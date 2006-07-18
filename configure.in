@@ -7,6 +7,7 @@ AM_INIT_AUTOMAKE(italc, 0.9.7.1-qt4-cvs-20060718)
 AM_CONFIG_HEADER(config.h)
 AX_PREFIX_CONFIG_H([common/include/rfb/rfbconfig.h])
 
+
 CPPFLAGS="$CPPFLAGS -I${prefix}/include"
 LDFLAGS="$LDFLAGS -L${prefix}/bin"
 
