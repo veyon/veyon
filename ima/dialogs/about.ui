@@ -8,12 +8,18 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>272</height>
+    <width>472</width>
+    <height>303</height>
    </rect>
   </property>
   <property name="windowTitle" >
    <string>About iTALC</string>
+  </property>
+  <property name="windowIcon" >
+   <iconset resource="../italc.qrc" >:/resources/info.png</iconset>
+  </property>
+  <property name="modal" >
+   <bool>true</bool>
   </property>
   <layout class="QVBoxLayout" >
    <property name="margin" >
@@ -65,7 +71,7 @@
    <item>
     <widget class="QTabWidget" name="tabWidget" >
      <property name="currentIndex" >
-      <number>2</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab" >
       <attribute name="title" >

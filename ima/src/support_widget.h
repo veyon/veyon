@@ -1,7 +1,7 @@
 /*
- * help_widget.h - declaration of help-widget for side-bar
+ * support_widget.h - declaration of support-widget for side-bar
  *
- * Copyright (c) 2004-2006 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -23,21 +23,46 @@
  */
 
 
-#ifndef _HELP_WIDGET_H
-#define _HELP_WIDGET_H
+#ifndef _SUPPORT_WIDGET_H
+#define _SUPPORT_WIDGET_H
 
+#include "dialogs/support.uic"
 #include "side_bar_widget.h"
 
 
-class QLabel;
-class QPushButton;
-
-
-class helpWidget : public sideBarWidget
+class supportWidget : public sideBarWidget
 {
 	Q_OBJECT
 public:
-	helpWidget( mainWindow * _main_window, QWidget * _parent );
+	supportWidget( mainWindow * _main_window, QWidget * _parent );
+
+
+private slots:
+	void supportBtnClicked( void );
+
+} ;
+
+
+
+
+class supportDialog : public QDialog, Ui::support
+{
+public:
+	supportDialog( void ) : QDialog()
+	{
+		setupUi( this );
+	}
+
+	static QString getHost( void )
+	{
+		supportDialog sd;
+		if( sd.exec() == Accepted )
+		
+		{
+			return( sd.hostEdit->text() );
+		}
+		return( "" );
+	}
 
 } ;
 

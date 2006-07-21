@@ -54,7 +54,7 @@ class QColorGroup;
 #include "user_list.h"
 #include "snapshot_list.h"
 #include "config_widget.h"
-#include "help_widget.h"
+#include "support_widget.h"
 #include "messagebox.h"
 #include "tool_button.h"
 #include "isd_connection.h"
@@ -171,7 +171,7 @@ mainWindow::mainWindow() :
 	m_userList = new userList( this, twp );
 	m_snapshotList = new snapshotList( this, twp );
 	m_configWidget = new configWidget( this, twp );
-	m_helpWidget = new helpWidget( this, twp );
+	m_supportWidget = new supportWidget( this, twp );
 
 	// append sidebar-workspaces to sidebar
 	int id = 0;
@@ -180,7 +180,7 @@ mainWindow::mainWindow() :
 	m_sideBar->appendTab( m_userList, ++id );
 	m_sideBar->appendTab( m_snapshotList, ++id );
 	m_sideBar->appendTab( m_configWidget, ++id );
-	m_sideBar->appendTab( m_helpWidget, ++id );
+	m_sideBar->appendTab( m_supportWidget, ++id );
 	m_sideBar->setPosition( italcSideBar::Left );
 	m_sideBar->setTab( m_openedTabInSideBar, TRUE );
 

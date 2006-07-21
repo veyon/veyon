@@ -19,7 +19,7 @@ italc_MOC =	./src/about_dialog.moc			\
 		./src/client_settings_dialog.moc	\
 		./src/cmd_input_dialog.moc		\
 		./src/config_widget.moc			\
-		./src/help_widget.moc			\
+		./src/support_widget.moc		\
 		./src/italc_side_bar.moc		\
 		./src/kmultitabbar.moc			\
 		./src/main_window.moc			\
@@ -33,6 +33,7 @@ italc_MOC =	./src/about_dialog.moc			\
 		../common/include/ivs_connection.moc
 
 italc_UIC =	./dialogs/client_settings.uic		\
+		./dialogs/support.uic			\
 		./dialogs/about.uic
 
 BUILT_SOURCES = $(italc_MOC) $(italc_UIC) ./italc_qrc.cpp
@@ -51,7 +52,7 @@ italc_SOURCES = $(srcdir)/src/about_dialog.cpp			\
 		$(srcdir)/src/client_settings_dialog.cpp	\
 		$(srcdir)/src/cmd_input_dialog.cpp		\
 		$(srcdir)/src/config_widget.cpp			\
-		$(srcdir)/src/help_widget.cpp			\
+		$(srcdir)/src/support_widget.cpp		\
 		$(srcdir)/src/italc_side_bar.cpp		\
 		$(srcdir)/src/main_window.cpp			\
 		$(srcdir)/src/kmultitabbar.cpp			\
@@ -69,7 +70,7 @@ italc_SOURCES = $(srcdir)/src/about_dialog.cpp			\
 		$(srcdir)/src/client_settings_dialog.h		\
 		$(srcdir)/src/cmd_input_dialog.h		\
 		$(srcdir)/src/config_widget.h 			\
-		$(srcdir)/src/help_widget.h			\
+		$(srcdir)/src/support_widget.h			\
 		$(srcdir)/src/main_window.h			\
 		$(srcdir)/src/italc_side_bar.h			\
 		$(srcdir)/src/kmultitabbar.h			\

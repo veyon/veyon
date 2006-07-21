@@ -39,7 +39,7 @@ class QToolBar;
 
 class clientManager;
 class configWidget;
-class helpWidget;
+class supportWidget;
 class italcSideBar;
 class isdConnection;
 class overviewWidget;
@@ -106,9 +106,9 @@ private:
 
 	QWorkspace * m_workspace;
 
-	QMenu * m_filePopupMenu;
+/*	QMenu * m_filePopupMenu;
 	QMenu * m_actionsPopupMenu;
-	QMenu * m_helpPopupMenu;
+	QMenu * m_helpPopupMenu;*/
 
 	QToolBar * m_toolBar;
 
@@ -125,7 +125,7 @@ private:
 	userList * m_userList;
 	snapshotList * m_snapshotList;
 	configWidget * m_configWidget;
-	helpWidget * m_helpWidget;
+	supportWidget * m_supportWidget;
 
 
 	friend class updateThread;

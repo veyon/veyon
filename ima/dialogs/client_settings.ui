@@ -18,6 +18,9 @@
   <property name="windowIcon" >
    <iconset resource="../italc.qrc" >:/resources/client-properties.png</iconset>
   </property>
+  <property name="modal" >
+   <bool>true</bool>
+  </property>
   <layout class="QVBoxLayout" >
    <property name="margin" >
     <number>9</number>
@@ -576,7 +579,6 @@
   </layout>
  </widget>
  <pixmapfunction></pixmapfunction>
- <includes/>
  <resources>
   <include location="../italc.qrc" />
  </resources>

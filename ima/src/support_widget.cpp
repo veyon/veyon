@@ -1,7 +1,7 @@
 /*
- * help_widget.cpp - implementation of help-widget for side-bar
+ * support_widget.cpp - implementation of support-widget for side-bar
  *
- * Copyright (c) 2004-2006 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -27,16 +27,16 @@
 #include <QtGui/QLayout>
 #include <QtGui/QPushButton>
 
-#include "help_widget.h"
+#include "support_widget.h"
+#include "isd_connection.h"
 #include "main_window.h"
 
 
 
-helpWidget::helpWidget( mainWindow * _main_window, QWidget * _parent ) :
-	sideBarWidget( QPixmap( ":/resources/help.png" ),
-			tr( "Help on iTALC" ),
-			tr( "Need help? This workspace might hold an answer "
-				"for your question." ),
+supportWidget::supportWidget( mainWindow * _main_window, QWidget * _parent ) :
+	sideBarWidget( QPixmap( ":/resources/remote_control.png" ),
+			tr( "Support" ),
+			tr( "Need to support someone? Open this workspace!" ),
 			_main_window, _parent )
 {
 	QBoxLayout * l = dynamic_cast<QBoxLayout *>(
@@ -53,13 +53,12 @@ helpWidget::helpWidget( mainWindow * _main_window, QWidget * _parent ) :
 	wt->setWordWrap( TRUE );
 	l->addWidget( wt );
 
-	QPushButton * wtb = new QPushButton(
-					QPixmap( ":/resources/whatsthis.png" ),
-					tr( "Enter \"What's this\"-mode" ),
+	QPushButton * sb = new QPushButton(
+				QPixmap( ":/resources/remote_control.png" ),
+					tr( "Support someone" ),
 							contentParent() );
-	l->addWidget( wtb );
-	connect( wtb, SIGNAL( clicked() ), getMainWindow(),
-						SLOT( enterWhatsThisMode() ) );
+	l->addWidget( sb );
+	connect( sb, SIGNAL( clicked() ), this, SLOT( supportBtnClicked() ) );
 
 	QPushButton * aib = new QPushButton(
 					QPixmap( ":/resources/info_22.png" ),
@@ -71,5 +70,18 @@ helpWidget::helpWidget( mainWindow * _main_window, QWidget * _parent ) :
 }
 
 
-#include "help_widget.moc"
+
+void supportWidget::supportBtnClicked( void )
+{
+	const QString h = supportDialog::getHost();
+	if( !h.isEmpty() )
+	{
+		getMainWindow()->localISD()->remoteControlDisplay( h );
+	}
+}
+
+
+
+
+#include "support_widget.moc"
 

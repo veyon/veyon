@@ -1,7 +1,7 @@
-- about-dialog: /AUTHORS/LICENSE
 - support for client-demo
 - support for demo-gateway for classrooms connected via VPN
-- add support-workspace for entering IP-address of host to connect to manually
+- improve support-workspace/artwork
+- close remoteControlWidget via escape when establishing connection
 - remove sidebar-background and draw it
 - make screenshot-stuff working again
 - common naming-conventions
