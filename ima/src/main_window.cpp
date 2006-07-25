@@ -164,14 +164,21 @@ mainWindow::mainWindow() :
 	m_workspace->setScrollBarsEnabled( TRUE );
 
 
+	printf("here3\n");
 	QWidget * twp = m_sideBar->tabWidgetParent();
 	// now create all sidebar-workspaces
 	m_overviewWidget = new overviewWidget( this, twp );
+	printf("here4\n");
 	m_clientManager = new clientManager( this, twp );
+	printf("here5\n");
 	m_userList = new userList( this, twp );
+	printf("here6\n");
 	m_snapshotList = new snapshotList( this, twp );
+	printf("here7\n");
 	m_configWidget = new configWidget( this, twp );
+	printf("here8\n");
 	m_supportWidget = new supportWidget( this, twp );
+	printf("here9\n");
 
 	// append sidebar-workspaces to sidebar
 	int id = 0;
@@ -184,6 +191,7 @@ mainWindow::mainWindow() :
 	m_sideBar->setPosition( italcSideBar::Left );
 	m_sideBar->setTab( m_openedTabInSideBar, TRUE );
 
+	printf("here10\n");
 	setCentralWidget( hbox );
 	hbox_layout->addWidget( m_sideBar );
 	hbox_layout->addWidget( m_splitter );
@@ -191,6 +199,7 @@ mainWindow::mainWindow() :
 
 
 
+	printf("here6\n");
 	// create the action-toolbar
 	m_toolBar = new QToolBar( tr( "Actions" ), this );
 	m_toolBar->setObjectName( "maintoolbar" );
@@ -376,6 +385,7 @@ mainWindow::mainWindow() :
 	m_toolBar->addSeparator();
 	m_toolBar->addWidget( adjust_size );
 
+	printf("here4\n");
 	restoreState( m_clientManager->winCfg().toAscii() );
 
 	QTimer::singleShot( 1000, m_clientManager, SLOT( updateClients() ) );

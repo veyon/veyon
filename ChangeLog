@@ -1,3 +1,18 @@
+2006-07-24	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* ica/Makefile.am:
+	added missing files in EXTRA_DIST-section
+
+	* ica/src/lock_widget.cpp:
+	pass 0L instead of NULL as third argument to RegSetValueEx(...)-call
+	to avoid compiler-warning
+
+	* ica/src/win32/...:
+	added missing files
+
+	* common/src/local_system.cpp:
+	corrected shutdown-calls under win32 ("-t 0" instead of "-t0")
+
 2006-07-21	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* ima/src/support_widget.h:

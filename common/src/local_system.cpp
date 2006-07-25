@@ -313,7 +313,7 @@ void powerDown( void )
 {
 	QProcess::startDetached(
 #ifdef BUILD_WIN32
-			"shutdown -s -t0 -f"
+			"shutdown -s -t 0 -f"
 #else
 			"halt"
 #endif
@@ -327,7 +327,7 @@ void reboot( void )
 {
 	QProcess::startDetached(
 #ifdef BUILD_WIN32
-			"shutdown -r -t0 -f"
+			"shutdown -r -t 0 -f"
 #else
 			"reboot"
 #endif
@@ -340,7 +340,7 @@ void logoutUser( void )
 {
 	QProcess::startDetached(
 #ifdef BUILD_WIN32
-			"shutdown -l -t0 -f"
+			"shutdown -l -t 0 -f"
 #else
 			"killall X"
 #endif

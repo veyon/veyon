@@ -489,7 +489,7 @@
 
 /* Define to the full name and version of this package. */
 #ifndef LIBVNCSERVER_PACKAGE_STRING 
-#define LIBVNCSERVER_PACKAGE_STRING  "italc 0.9.7.1-qt4-cvs-20060721" 
+#define LIBVNCSERVER_PACKAGE_STRING  "italc 0.9.7.1-qt4-cvs-20060724" 
 #endif
 
 /* Define to the one symbol short name of this package. */
@@ -499,7 +499,7 @@
 
 /* Define to the version of this package. */
 #ifndef LIBVNCSERVER_PACKAGE_VERSION 
-#define LIBVNCSERVER_PACKAGE_VERSION  "0.9.7.1-qt4-cvs-20060721" 
+#define LIBVNCSERVER_PACKAGE_VERSION  "0.9.7.1-qt4-cvs-20060724" 
 #endif
 
 /* The number of bytes in type char */
@@ -529,7 +529,7 @@
 
 /* Version number of package */
 #ifndef LIBVNCSERVER_VERSION 
-#define LIBVNCSERVER_VERSION  "0.9.7.1-qt4-cvs-20060721" 
+#define LIBVNCSERVER_VERSION  "0.9.7.1-qt4-cvs-20060724" 
 #endif
 
 /* Defined if on Win32 platform */

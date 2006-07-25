@@ -100,7 +100,7 @@ void DisableTaskKeys( BOOL bDisable )
 		}
 		// set registry-entry to disable task-manager (Alt+Ctrl+Del)
 		DWORD val = 1;
-		RegSetValueEx( hk, VAL_DisableTaskMgr, NULL, REG_DWORD,
+		RegSetValueEx( hk, VAL_DisableTaskMgr, 0L, REG_DWORD,
 						(BYTE*) &val, sizeof( val ) );
 	}
 	else if( g_hHookKbdLL != NULL )

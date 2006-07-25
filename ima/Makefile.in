@@ -204,8 +204,7 @@ sharedstatedir = @sharedstatedir@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 INCLUDES = -I$(srcdir)/../common/include
-italc_MOC = ./src/about_dialog.moc			\
-		./src/client.moc			\
+italc_MOC = ./src/client.moc			\
 		./src/client_manager.moc		\
 		./src/client_settings_dialog.moc	\
 		./src/cmd_input_dialog.moc		\

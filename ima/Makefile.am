@@ -13,8 +13,7 @@ bin_PROGRAMS = italc
 %.qm: %.ts
 	$(LRELEASE) $<
 
-italc_MOC =	./src/about_dialog.moc			\
-		./src/client.moc			\
+italc_MOC =	./src/client.moc			\
 		./src/client_manager.moc		\
 		./src/client_settings_dialog.moc	\
 		./src/cmd_input_dialog.moc		\
