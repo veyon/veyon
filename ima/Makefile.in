@@ -49,14 +49,13 @@ am__installdirs = "$(DESTDIR)$(bindir)"
 binPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
 PROGRAMS = $(bin_PROGRAMS)
 am__objects_1 =
-am_italc_OBJECTS = about_dialog.$(OBJEXT) client.$(OBJEXT) \
-	client_manager.$(OBJEXT) client_settings_dialog.$(OBJEXT) \
+am_italc_OBJECTS = client.$(OBJEXT) client_manager.$(OBJEXT) \
 	cmd_input_dialog.$(OBJEXT) config_widget.$(OBJEXT) \
-	support_widget.$(OBJEXT) italc_side_bar.$(OBJEXT) \
+	dialogs.$(OBJEXT) italc_side_bar.$(OBJEXT) \
 	main_window.$(OBJEXT) kmultitabbar.$(OBJEXT) main.$(OBJEXT) \
-	msg_input_dialog.$(OBJEXT) overview_widget.$(OBJEXT) \
-	progress_information.$(OBJEXT) snapshot_list.$(OBJEXT) \
-	side_bar_widget.$(OBJEXT) tool_button.$(OBJEXT) \
+	overview_widget.$(OBJEXT) progress_information.$(OBJEXT) \
+	snapshot_list.$(OBJEXT) side_bar_widget.$(OBJEXT) \
+	support_widget.$(OBJEXT) tool_button.$(OBJEXT) \
 	user_list.$(OBJEXT) italc_qrc.$(OBJEXT) fast_qimage.$(OBJEXT) \
 	isd_base.$(OBJEXT) isd_connection.$(OBJEXT) \
 	ivs_connection.$(OBJEXT) local_system.$(OBJEXT) \
@@ -206,17 +205,16 @@ target_alias = @target_alias@
 INCLUDES = -I$(srcdir)/../common/include
 italc_MOC = ./src/client.moc			\
 		./src/client_manager.moc		\
-		./src/client_settings_dialog.moc	\
 		./src/cmd_input_dialog.moc		\
 		./src/config_widget.moc			\
-		./src/support_widget.moc		\
+		./src/dialogs.moc			\
 		./src/italc_side_bar.moc		\
 		./src/kmultitabbar.moc			\
 		./src/main_window.moc			\
-		./src/msg_input_dialog.moc		\
 		./src/overview_widget.moc		\
 		./src/progress_information.moc		\
 		./src/snapshot_list.moc			\
+		./src/support_widget.moc		\
 		./src/tool_button.moc			\
 		./src/user_list.moc			\
 		../common/include/isd_connection.moc	\
@@ -224,39 +222,36 @@ italc_MOC = ./src/client.moc			\
 
 italc_UIC = ./dialogs/client_settings.uic		\
 		./dialogs/support.uic			\
+		./dialogs/text_message.uic		\
 		./dialogs/about.uic
 
 BUILT_SOURCES = $(italc_MOC) $(italc_UIC) ./italc_qrc.cpp
 italc_TRANSLATIONS = $(wildcard $(srcdir)/resources/*.qm $(srcdir)/resources/*.ts)
-italc_SOURCES = $(srcdir)/src/about_dialog.cpp			\
-		$(srcdir)/src/client.cpp			\
+italc_SOURCES = $(srcdir)/src/client.cpp			\
 		$(srcdir)/src/client_manager.cpp		\
-		$(srcdir)/src/client_settings_dialog.cpp	\
 		$(srcdir)/src/cmd_input_dialog.cpp		\
 		$(srcdir)/src/config_widget.cpp			\
-		$(srcdir)/src/support_widget.cpp		\
+		$(srcdir)/src/dialogs.cpp			\
 		$(srcdir)/src/italc_side_bar.cpp		\
 		$(srcdir)/src/main_window.cpp			\
 		$(srcdir)/src/kmultitabbar.cpp			\
 		$(srcdir)/src/main.cpp				\
-		$(srcdir)/src/msg_input_dialog.cpp		\
 		$(srcdir)/src/overview_widget.cpp		\
 		$(srcdir)/src/progress_information.cpp		\
 		$(srcdir)/src/snapshot_list.cpp			\
 		$(srcdir)/src/side_bar_widget.cpp		\
+		$(srcdir)/src/support_widget.cpp		\
 		$(srcdir)/src/tool_button.cpp			\
 		$(srcdir)/src/user_list.cpp			\
 		$(srcdir)/src/about_dialog.h			\
 		$(srcdir)/src/client.h				\
 		$(srcdir)/src/client_manager.h			\
-		$(srcdir)/src/client_settings_dialog.h		\
 		$(srcdir)/src/cmd_input_dialog.h		\
 		$(srcdir)/src/config_widget.h 			\
 		$(srcdir)/src/support_widget.h			\
 		$(srcdir)/src/main_window.h			\
 		$(srcdir)/src/italc_side_bar.h			\
 		$(srcdir)/src/kmultitabbar.h			\
-		$(srcdir)/src/msg_input_dialog.h		\
 		$(srcdir)/src/overview_widget.h			\
 		$(srcdir)/src/progress_information.h		\
 		$(srcdir)/src/snapshot_list.h			\
@@ -349,12 +344,11 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/about_dialog.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/client.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/client_manager.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/client_settings_dialog.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/cmd_input_dialog.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/config_widget.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/dialogs.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/dsa_key.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/fast_qimage.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/isd_base.Po@am__quote@
@@ -367,7 +361,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/main.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/main_window.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/messagebox.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/msg_input_dialog.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/overview_widget.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/progress_information.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/side_bar_widget.Po@am__quote@
@@ -389,20 +382,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXXCOMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
-
-about_dialog.o: $(srcdir)/src/about_dialog.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT about_dialog.o -MD -MP -MF "$(DEPDIR)/about_dialog.Tpo" -c -o about_dialog.o `test -f '$(srcdir)/src/about_dialog.cpp' || echo '$(srcdir)/'`$(srcdir)/src/about_dialog.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/about_dialog.Tpo" "$(DEPDIR)/about_dialog.Po"; else rm -f "$(DEPDIR)/about_dialog.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(srcdir)/src/about_dialog.cpp' object='about_dialog.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o about_dialog.o `test -f '$(srcdir)/src/about_dialog.cpp' || echo '$(srcdir)/'`$(srcdir)/src/about_dialog.cpp
-
-about_dialog.obj: $(srcdir)/src/about_dialog.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT about_dialog.obj -MD -MP -MF "$(DEPDIR)/about_dialog.Tpo" -c -o about_dialog.obj `if test -f '$(srcdir)/src/about_dialog.cpp'; then $(CYGPATH_W) '$(srcdir)/src/about_dialog.cpp'; else $(CYGPATH_W) '$(srcdir)/$(srcdir)/src/about_dialog.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/about_dialog.Tpo" "$(DEPDIR)/about_dialog.Po"; else rm -f "$(DEPDIR)/about_dialog.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(srcdir)/src/about_dialog.cpp' object='about_dialog.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o about_dialog.obj `if test -f '$(srcdir)/src/about_dialog.cpp'; then $(CYGPATH_W) '$(srcdir)/src/about_dialog.cpp'; else $(CYGPATH_W) '$(srcdir)/$(srcdir)/src/about_dialog.cpp'; fi`
 
 client.o: $(srcdir)/src/client.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT client.o -MD -MP -MF "$(DEPDIR)/client.Tpo" -c -o client.o `test -f '$(srcdir)/src/client.cpp' || echo '$(srcdir)/'`$(srcdir)/src/client.cpp; \
@@ -432,20 +411,6 @@ client_manager.obj: $(srcdir)/src/client_manager.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o client_manager.obj `if test -f '$(srcdir)/src/client_manager.cpp'; then $(CYGPATH_W) '$(srcdir)/src/client_manager.cpp'; else $(CYGPATH_W) '$(srcdir)/$(srcdir)/src/client_manager.cpp'; fi`
 
-client_settings_dialog.o: $(srcdir)/src/client_settings_dialog.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT client_settings_dialog.o -MD -MP -MF "$(DEPDIR)/client_settings_dialog.Tpo" -c -o client_settings_dialog.o `test -f '$(srcdir)/src/client_settings_dialog.cpp' || echo '$(srcdir)/'`$(srcdir)/src/client_settings_dialog.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/client_settings_dialog.Tpo" "$(DEPDIR)/client_settings_dialog.Po"; else rm -f "$(DEPDIR)/client_settings_dialog.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(srcdir)/src/client_settings_dialog.cpp' object='client_settings_dialog.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o client_settings_dialog.o `test -f '$(srcdir)/src/client_settings_dialog.cpp' || echo '$(srcdir)/'`$(srcdir)/src/client_settings_dialog.cpp
-
-client_settings_dialog.obj: $(srcdir)/src/client_settings_dialog.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT client_settings_dialog.obj -MD -MP -MF "$(DEPDIR)/client_settings_dialog.Tpo" -c -o client_settings_dialog.obj `if test -f '$(srcdir)/src/client_settings_dialog.cpp'; then $(CYGPATH_W) '$(srcdir)/src/client_settings_dialog.cpp'; else $(CYGPATH_W) '$(srcdir)/$(srcdir)/src/client_settings_dialog.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/client_settings_dialog.Tpo" "$(DEPDIR)/client_settings_dialog.Po"; else rm -f "$(DEPDIR)/client_settings_dialog.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(srcdir)/src/client_settings_dialog.cpp' object='client_settings_dialog.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o client_settings_dialog.obj `if test -f '$(srcdir)/src/client_settings_dialog.cpp'; then $(CYGPATH_W) '$(srcdir)/src/client_settings_dialog.cpp'; else $(CYGPATH_W) '$(srcdir)/$(srcdir)/src/client_settings_dialog.cpp'; fi`
-
 cmd_input_dialog.o: $(srcdir)/src/cmd_input_dialog.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT cmd_input_dialog.o -MD -MP -MF "$(DEPDIR)/cmd_input_dialog.Tpo" -c -o cmd_input_dialog.o `test -f '$(srcdir)/src/cmd_input_dialog.cpp' || echo '$(srcdir)/'`$(srcdir)/src/cmd_input_dialog.cpp; \
 @am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/cmd_input_dialog.Tpo" "$(DEPDIR)/cmd_input_dialog.Po"; else rm -f "$(DEPDIR)/cmd_input_dialog.Tpo"; exit 1; fi
@@ -474,19 +439,19 @@ config_widget.obj: $(srcdir)/src/config_widget.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o config_widget.obj `if test -f '$(srcdir)/src/config_widget.cpp'; then $(CYGPATH_W) '$(srcdir)/src/config_widget.cpp'; else $(CYGPATH_W) '$(srcdir)/$(srcdir)/src/config_widget.cpp'; fi`
 
-support_widget.o: $(srcdir)/src/support_widget.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT support_widget.o -MD -MP -MF "$(DEPDIR)/support_widget.Tpo" -c -o support_widget.o `test -f '$(srcdir)/src/support_widget.cpp' || echo '$(srcdir)/'`$(srcdir)/src/support_widget.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/support_widget.Tpo" "$(DEPDIR)/support_widget.Po"; else rm -f "$(DEPDIR)/support_widget.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(srcdir)/src/support_widget.cpp' object='support_widget.o' libtool=no @AMDEPBACKSLASH@
+dialogs.o: $(srcdir)/src/dialogs.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT dialogs.o -MD -MP -MF "$(DEPDIR)/dialogs.Tpo" -c -o dialogs.o `test -f '$(srcdir)/src/dialogs.cpp' || echo '$(srcdir)/'`$(srcdir)/src/dialogs.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/dialogs.Tpo" "$(DEPDIR)/dialogs.Po"; else rm -f "$(DEPDIR)/dialogs.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(srcdir)/src/dialogs.cpp' object='dialogs.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o support_widget.o `test -f '$(srcdir)/src/support_widget.cpp' || echo '$(srcdir)/'`$(srcdir)/src/support_widget.cpp
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o dialogs.o `test -f '$(srcdir)/src/dialogs.cpp' || echo '$(srcdir)/'`$(srcdir)/src/dialogs.cpp
 
-support_widget.obj: $(srcdir)/src/support_widget.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT support_widget.obj -MD -MP -MF "$(DEPDIR)/support_widget.Tpo" -c -o support_widget.obj `if test -f '$(srcdir)/src/support_widget.cpp'; then $(CYGPATH_W) '$(srcdir)/src/support_widget.cpp'; else $(CYGPATH_W) '$(srcdir)/$(srcdir)/src/support_widget.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/support_widget.Tpo" "$(DEPDIR)/support_widget.Po"; else rm -f "$(DEPDIR)/support_widget.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(srcdir)/src/support_widget.cpp' object='support_widget.obj' libtool=no @AMDEPBACKSLASH@
+dialogs.obj: $(srcdir)/src/dialogs.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT dialogs.obj -MD -MP -MF "$(DEPDIR)/dialogs.Tpo" -c -o dialogs.obj `if test -f '$(srcdir)/src/dialogs.cpp'; then $(CYGPATH_W) '$(srcdir)/src/dialogs.cpp'; else $(CYGPATH_W) '$(srcdir)/$(srcdir)/src/dialogs.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/dialogs.Tpo" "$(DEPDIR)/dialogs.Po"; else rm -f "$(DEPDIR)/dialogs.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(srcdir)/src/dialogs.cpp' object='dialogs.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o support_widget.obj `if test -f '$(srcdir)/src/support_widget.cpp'; then $(CYGPATH_W) '$(srcdir)/src/support_widget.cpp'; else $(CYGPATH_W) '$(srcdir)/$(srcdir)/src/support_widget.cpp'; fi`
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o dialogs.obj `if test -f '$(srcdir)/src/dialogs.cpp'; then $(CYGPATH_W) '$(srcdir)/src/dialogs.cpp'; else $(CYGPATH_W) '$(srcdir)/$(srcdir)/src/dialogs.cpp'; fi`
 
 italc_side_bar.o: $(srcdir)/src/italc_side_bar.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT italc_side_bar.o -MD -MP -MF "$(DEPDIR)/italc_side_bar.Tpo" -c -o italc_side_bar.o `test -f '$(srcdir)/src/italc_side_bar.cpp' || echo '$(srcdir)/'`$(srcdir)/src/italc_side_bar.cpp; \
@@ -544,20 +509,6 @@ main.obj: $(srcdir)/src/main.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o main.obj `if test -f '$(srcdir)/src/main.cpp'; then $(CYGPATH_W) '$(srcdir)/src/main.cpp'; else $(CYGPATH_W) '$(srcdir)/$(srcdir)/src/main.cpp'; fi`
 
-msg_input_dialog.o: $(srcdir)/src/msg_input_dialog.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT msg_input_dialog.o -MD -MP -MF "$(DEPDIR)/msg_input_dialog.Tpo" -c -o msg_input_dialog.o `test -f '$(srcdir)/src/msg_input_dialog.cpp' || echo '$(srcdir)/'`$(srcdir)/src/msg_input_dialog.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/msg_input_dialog.Tpo" "$(DEPDIR)/msg_input_dialog.Po"; else rm -f "$(DEPDIR)/msg_input_dialog.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(srcdir)/src/msg_input_dialog.cpp' object='msg_input_dialog.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o msg_input_dialog.o `test -f '$(srcdir)/src/msg_input_dialog.cpp' || echo '$(srcdir)/'`$(srcdir)/src/msg_input_dialog.cpp
-
-msg_input_dialog.obj: $(srcdir)/src/msg_input_dialog.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT msg_input_dialog.obj -MD -MP -MF "$(DEPDIR)/msg_input_dialog.Tpo" -c -o msg_input_dialog.obj `if test -f '$(srcdir)/src/msg_input_dialog.cpp'; then $(CYGPATH_W) '$(srcdir)/src/msg_input_dialog.cpp'; else $(CYGPATH_W) '$(srcdir)/$(srcdir)/src/msg_input_dialog.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/msg_input_dialog.Tpo" "$(DEPDIR)/msg_input_dialog.Po"; else rm -f "$(DEPDIR)/msg_input_dialog.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(srcdir)/src/msg_input_dialog.cpp' object='msg_input_dialog.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o msg_input_dialog.obj `if test -f '$(srcdir)/src/msg_input_dialog.cpp'; then $(CYGPATH_W) '$(srcdir)/src/msg_input_dialog.cpp'; else $(CYGPATH_W) '$(srcdir)/$(srcdir)/src/msg_input_dialog.cpp'; fi`
-
 overview_widget.o: $(srcdir)/src/overview_widget.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT overview_widget.o -MD -MP -MF "$(DEPDIR)/overview_widget.Tpo" -c -o overview_widget.o `test -f '$(srcdir)/src/overview_widget.cpp' || echo '$(srcdir)/'`$(srcdir)/src/overview_widget.cpp; \
 @am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/overview_widget.Tpo" "$(DEPDIR)/overview_widget.Po"; else rm -f "$(DEPDIR)/overview_widget.Tpo"; exit 1; fi
@@ -613,6 +564,20 @@ side_bar_widget.obj: $(srcdir)/src/side_bar_widget.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(srcdir)/src/side_bar_widget.cpp' object='side_bar_widget.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o side_bar_widget.obj `if test -f '$(srcdir)/src/side_bar_widget.cpp'; then $(CYGPATH_W) '$(srcdir)/src/side_bar_widget.cpp'; else $(CYGPATH_W) '$(srcdir)/$(srcdir)/src/side_bar_widget.cpp'; fi`
+
+support_widget.o: $(srcdir)/src/support_widget.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT support_widget.o -MD -MP -MF "$(DEPDIR)/support_widget.Tpo" -c -o support_widget.o `test -f '$(srcdir)/src/support_widget.cpp' || echo '$(srcdir)/'`$(srcdir)/src/support_widget.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/support_widget.Tpo" "$(DEPDIR)/support_widget.Po"; else rm -f "$(DEPDIR)/support_widget.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(srcdir)/src/support_widget.cpp' object='support_widget.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o support_widget.o `test -f '$(srcdir)/src/support_widget.cpp' || echo '$(srcdir)/'`$(srcdir)/src/support_widget.cpp
+
+support_widget.obj: $(srcdir)/src/support_widget.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT support_widget.obj -MD -MP -MF "$(DEPDIR)/support_widget.Tpo" -c -o support_widget.obj `if test -f '$(srcdir)/src/support_widget.cpp'; then $(CYGPATH_W) '$(srcdir)/src/support_widget.cpp'; else $(CYGPATH_W) '$(srcdir)/$(srcdir)/src/support_widget.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/support_widget.Tpo" "$(DEPDIR)/support_widget.Po"; else rm -f "$(DEPDIR)/support_widget.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(srcdir)/src/support_widget.cpp' object='support_widget.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o support_widget.obj `if test -f '$(srcdir)/src/support_widget.cpp'; then $(CYGPATH_W) '$(srcdir)/src/support_widget.cpp'; else $(CYGPATH_W) '$(srcdir)/$(srcdir)/src/support_widget.cpp'; fi`
 
 tool_button.o: $(srcdir)/src/tool_button.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT tool_button.o -MD -MP -MF "$(DEPDIR)/tool_button.Tpo" -c -o tool_button.o `test -f '$(srcdir)/src/tool_button.cpp' || echo '$(srcdir)/'`$(srcdir)/src/tool_button.cpp; \

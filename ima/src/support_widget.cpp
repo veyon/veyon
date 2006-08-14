@@ -27,6 +27,7 @@
 #include <QtGui/QLayout>
 #include <QtGui/QPushButton>
 
+#include "dialogs.h"
 #include "support_widget.h"
 #include "isd_connection.h"
 #include "main_window.h"
@@ -43,7 +44,8 @@ supportWidget::supportWidget( mainWindow * _main_window, QWidget * _parent ) :
 						contentParent()->layout() );
 	l->setSpacing( 15 );
 
-	QLabel * wt = new QLabel( tr( "If you want to know, what a specific "						"button etc. does, you can "
+	QLabel * wt = new QLabel( tr( "If you want to know, what a specific "
+						"button etc. does, you can "
 						"activate the \"What's this\"-"
 						"mode. Then click on the "
 						"corresponding button etc. and "

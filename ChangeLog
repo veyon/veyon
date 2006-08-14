@@ -1,3 +1,47 @@
+2006-08-14	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* common/include/paths.h:
+	removed
+
+	* AUTHORS:
+	cleaned up as now the whole code-base is what I worked out
+
+	* ima/src/client_manager.cpp:
+	* ima/src/client.cpp:
+	- do not include (not existing) dialog-specific header-files, use
+	  dialogs.h instead
+	- replace msgInputDialog-references with textMessageDialog
+
+	* ima/src/about_dialog.h:
+	* ima/src/about_dialog.cpp:
+	* ima/src/client_settings_dialog.h:
+	* ima/src/client_settings_dialog.cpp:
+	* ima/src/msg_input_dialog.h:
+	* ima/src/msg_input_dialog.cpp:
+	removed
+
+	* ima/src/dialog.cpp:
+	* ima/src/dialog.h:
+	* ima/dialogs/text_message.ui:
+	added text-message-dialog as replacement of msgInputDialog
+
+	* ima/src/support_widget.h:
+	* ima/src/support_widget.cpp:
+	removed code for dialog
+
+	* ima/src/dialogs.h:
+	* ima/src/dialogs.cpp:
+	moved code from about_dialog.*, client_settings_dialog.* and
+	support_widget.* into these files for having one central include-
+	and implementation-file for dialogs
+
+	* Makefile.am:
+	added target "win32-pkg" for creating distribution-zip-file of iTALC
+	including neccessary DLLs
+
+	* configure.in:
+	changed some optimization-flags
+
 2006-07-24	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* ica/Makefile.am:

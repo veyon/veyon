@@ -679,6 +679,23 @@ install-exec-hook:
 @HAVE_RPM_TRUE@rpm: $(PACKAGE)-$(VERSION).tar.gz $(PACKAGE).spec
 @HAVE_RPM_TRUE@	cp $(PACKAGE)-$(VERSION).tar.gz @RPMSOURCEDIR@
 @HAVE_RPM_TRUE@	rpmbuild -ba $(PACKAGE).spec
+
+@BUILD_WIN32_TRUE@win32-pkg: all
+@BUILD_WIN32_TRUE@	mkdir -p tmp/italc
+@BUILD_WIN32_TRUE@	cp ica/ica.exe tmp/italc
+@BUILD_WIN32_TRUE@	cp ima/italc.exe tmp/italc
+@BUILD_WIN32_TRUE@	cp /opt/mingw/bin/QtCore4.dll tmp/italc
+@BUILD_WIN32_TRUE@	cp /opt/mingw/bin/QtGui4.dll tmp/italc
+@BUILD_WIN32_TRUE@	cp /opt/mingw/bin/QtNetwork4.dll tmp/italc
+@BUILD_WIN32_TRUE@	cp /opt/mingw/bin/QtXml4.dll tmp/italc
+@BUILD_WIN32_TRUE@	cp /opt/mingw/bin/libeay32.dll tmp/italc
+@BUILD_WIN32_TRUE@	cp /opt/mingw/bin/libjpeg.dll tmp/italc
+@BUILD_WIN32_TRUE@	cp /opt/mingw/bin/libssl32.dll tmp/italc
+@BUILD_WIN32_TRUE@	cp /opt/mingw/bin/libz.dll tmp/italc
+@BUILD_WIN32_TRUE@	/opt/mingw/bin/i586-mingw32-strip tmp/italc/ica.exe
+@BUILD_WIN32_TRUE@	/opt/mingw/bin/i586-mingw32-strip tmp/italc/italc.exe
+@BUILD_WIN32_TRUE@	cd tmp && zip -9 ../$(PACKAGE)-$(VERSION).zip italc/*
+@BUILD_WIN32_TRUE@	rm -rf tmp
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:

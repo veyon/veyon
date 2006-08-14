@@ -2,8 +2,8 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.50)
-AC_INIT(italc, 0.9.7.1-qt4-cvs-20060724, tobydox/at/users/dot/sf/dot/net)
-AM_INIT_AUTOMAKE(italc, 0.9.7.1-qt4-cvs-20060724)
+AC_INIT(italc, 0.9.7.1-qt4-cvs-20060814, tobydox/at/users/dot/sf/dot/net)
+AM_INIT_AUTOMAKE(italc, 0.9.7.1-qt4-cvs-20060814)
 AM_CONFIG_HEADER(config.h)
 AX_PREFIX_CONFIG_H([common/include/rfb/rfbconfig.h])
 
@@ -16,7 +16,7 @@ LDFLAGS="$LDFLAGS -L${prefix}/bin"
 AC_PROG_CC
 AC_PROG_CXX
 
-EXTRAFLAGS="-g0 -O2 -ansi -Wall -I${prefix}/include -floop-optimize2 -fomit-frame-pointer -fgcse-sm -fgcse-las"
+EXTRAFLAGS="-g0 -O2 -ansi -Wall -I${prefix}/include -floop-optimize2 -fomit-frame-pointer"
 
 if test "x`$CC --version|head -1|cut -d\  -f3|cut -d. -f1`" = "x4" ; then
 	EXTRAFLAGS="$EXTRAFLAGS -ftree-vectorize -ftree-loop-linear"
@@ -28,7 +28,7 @@ fi
 #	EXTRAFLAGS="$EXTRAFLAGS -ftree-vectorize -funsafe-loop-optimizations -Wunsafe-loop-optimizations -ftree-loop-linear"
 #fi
 CFLAGS="$CFLAGS $EXTRAFLAGS"
-CXXFLAGS="$CXXFLAGS $EXTRAFLAGS -fno-exceptions"
+CXXFLAGS="$CXXFLAGS $EXTRAFLAGS"
 
 AH_TEMPLATE(BACKCHANNEL, [Enable BackChannel communication])
 AC_ARG_WITH(backchannel,

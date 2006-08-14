@@ -47,8 +47,7 @@ class QColorGroup;
 
 #include "main_window.h"
 #include "client_manager.h"
-#include "about_dialog.h"
-#include "paths.h"
+#include "dialogs.h"
 #include "italc_side_bar.h"
 #include "overview_widget.h"
 #include "user_list.h"

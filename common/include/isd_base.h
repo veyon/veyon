@@ -282,6 +282,14 @@ typedef struct
 
 	} ;
 
+	enum userRoles
+	{
+		RoleNone,
+		RoleTeacher,
+		RoleAdmin,
+		RoleCount
+	} ;
+
 
 } ISD;
 

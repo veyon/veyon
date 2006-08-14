@@ -53,10 +53,8 @@ class QColorGroup;
 #include "main_window.h"
 #include "client_manager.h"
 #include "client.h"
-#include "client_settings_dialog.h"
+#include "dialogs.h"
 #include "cmd_input_dialog.h"
-#include "msg_input_dialog.h"
-#include "paths.h"
 #include "progress_information.h"
 #include "italc_side_bar.h"
 
@@ -889,8 +887,8 @@ void clientManager::sendMessage( void )
 {
 	QString msg;
 
-	msgInputDialog msg_input_dialog( msg, this );
-	if( msg_input_dialog.exec() == QDialog::Accepted && msg != "" )
+	textMessageDialog tmd( msg );
+	if( tmd.exec() == QDialog::Accepted && msg != "" )
 	{
 		progressInformation pi(
 			tr( "Please wait, while the message is being sent." ) );
@@ -1394,8 +1392,7 @@ void clientManager::editClientSettings( void )
 		{
 			clientSettingsDialog settings_dlg( cri->getClient(),
 					getMainWindow(),
-						cri->parent()->text( 0 ),
-									this );
+						cri->parent()->text( 0 ) );
 			settings_dlg.exec();
 		}
 	}
@@ -1588,7 +1585,7 @@ void clientManager::addClient( void )
 	}
 
 	clientSettingsDialog settings_dlg( NULL, getMainWindow(),
-						classroom_name, this );
+							classroom_name );
 	settings_dlg.setWindowTitle( tr( "Add client" ) );
 	settings_dlg.exec();
 }
@@ -1744,9 +1741,8 @@ void classRoom::processCmdOnAllClients( QAction * _action )
 	{
 		case client::SendTextMessage:
 		{
-			msgInputDialog msg_input_dialog( u_data, NULL );
-			if( msg_input_dialog.exec() != QDialog::Accepted ||
-								u_data == "" )
+			textMessageDialog tmd( u_data );
+			if( tmd.exec() != QDialog::Accepted || u_data == "" )
 			{
 				return;
 			}

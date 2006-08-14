@@ -1,5 +1,5 @@
 /*
- * client_settings_dialog.cpp - implementation of class clientSettingsDialog
+ * dialogs.cpp - implementation of dialogs
  *
  * Copyright (c) 2006 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
@@ -23,22 +23,41 @@
  */
 
 
-
+#include <QtCore/QFile>
 #include <QtCore/QRegExp>
 
-#include "client_settings_dialog.h"
+#include "dialogs.h"
+
+
+
+aboutDialog::aboutDialog() :
+	QDialog()
+{
+	setupUi( this );
+
+	QFile authors_rc( ":/AUTHORS" );
+	authors_rc.open( QFile::ReadOnly );
+	authors->setPlainText( authors_rc.readAll() );
+
+	QFile license_rc( ":/COPYING" );
+	license_rc.open( QFile::ReadOnly );
+	license->setPlainText( license_rc.readAll() );
+}
+
+
+
+
+
 #include "client.h"
 #include "client_manager.h"
 #include "main_window.h"
 #include "messagebox.h"
 
 
-
 clientSettingsDialog::clientSettingsDialog( client * _client,
 						mainWindow * _main_window,
-						const QString & _classroom,
-							QWidget * _parent ) :
-	QDialog( _parent ),
+						const QString & _classroom ) :
+	QDialog(),
 	m_client( _client ),
 	m_mainWindow( _main_window )
 {
@@ -127,5 +146,25 @@ m_mainWindow->getClientManager()->m_classRooms[classRoomComboBox->currentIndex()
 
 
 
-#include "client_settings_dialog.moc"
+
+textMessageDialog::textMessageDialog( QString & _msg_str ) :
+	QDialog(),
+	m_msgStr( _msg_str )
+{
+	setupUi( this );
+}
+
+
+
+
+void textMessageDialog::accept( void )
+{
+	m_msgStr = textEdit->toPlainText();
+	QDialog::accept();
+}
+
+
+
+
+#include "dialogs.moc"
 

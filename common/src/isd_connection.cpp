@@ -33,7 +33,6 @@
 
 #include "isd_connection.h"
 #include "dsa_key.h"
-#include "paths.h"
 #include "local_system.h"
 
 #ifdef BUILD_ICA
@@ -53,18 +52,18 @@ bool isdConnection::initAuthentication( void )
 		return( TRUE );
 	}
 
-	QString PRIV_KEY_FILE = QDir::homePath() + QDir::separator() +
-						ITALC_CONFIG_PATH +
+	QString priv_key_file = QDir::homePath() + QDir::separator() +
+						localSystem::privateKeysPath() +
 						QDir::separator() + "id_dsa";
 	if( QDir::separator() != '/' )
 	{
-		PRIV_KEY_FILE = PRIV_KEY_FILE.replace( '/', QDir::separator() ).
+		priv_key_file = priv_key_file.replace( '/', QDir::separator() ).
 				replace( QString( QDir::separator() ) +
 							QDir::separator(),
 							QDir::separator() );
 	}
 
-	privDSAKey = new privateDSAKey( PRIV_KEY_FILE );
+	privDSAKey = new privateDSAKey( priv_key_file );
 
 	// key valid (i.e. could be loaded)?
 	if( !privDSAKey->valid() )
@@ -78,12 +77,12 @@ bool isdConnection::initAuthentication( void )
 			printf( "key generation failed!\n" );
 			return( FALSE );
 		}
-		privDSAKey->save( PRIV_KEY_FILE );
+		privDSAKey->save( priv_key_file );
 
-		const QString PUB_KEY_FILE = PRIV_KEY_FILE + ".public";
+		const QString pub_key_file = priv_key_file + ".public";
 	
 		// derive public key from private key and save it
-		publicDSAKey( *privDSAKey ).save( PUB_KEY_FILE );
+		publicDSAKey( *privDSAKey ).save( pub_key_file );
 		return( FALSE );
 	}
 	return( TRUE );

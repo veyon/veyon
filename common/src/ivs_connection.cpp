@@ -40,7 +40,6 @@
 #include <QtGui/QWidget>
 
 
-#include "paths.h"
 #include "ivs_connection.h"
 #include "qt_user_events.h"
 

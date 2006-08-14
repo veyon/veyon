@@ -33,7 +33,6 @@
 #include "isd_server.h"
 #include "isd_connection.h"
 #include "dsa_key.h"
-#include "paths.h"
 #include "local_system.h"
 #include "remote_control_widget.h"
 #include "ivs.h"
@@ -46,6 +45,9 @@
 static isdServer * __isd_server = NULL;
 
 QByteArray isdServer::s_appInternalChallenge;
+
+
+static const char * roleNames[ISD::RoleCount] = { "none", "teacher", "admin" } ;
 
 
 
@@ -150,9 +152,11 @@ bool isdServer::authSecTypeItalc( socketDispatcher _sd, void * _user,
 			const QByteArray chall = dsaKey::generateChallenge();
 			sdev.write( QVariant( chall ) );
 
-			// get user-name
-			const QString uname = sdev.read().toString();
-			if( uname.isEmpty() )
+			// get user-role
+			const ISD::userRoles urole =
+				static_cast<ISD::userRoles>(
+					sdev.read().toString().toInt() );
+			if( urole <= ISD::RoleNone || urole >= ISD::RoleCount )
 			{
 				return( FALSE );
 			}
@@ -160,8 +164,8 @@ bool isdServer::authSecTypeItalc( socketDispatcher _sd, void * _user,
 			// now try to verify received signed data using public
 			// key of the user under which the client claims to run
 			const QByteArray sig = sdev.read().toByteArray();
-			publicDSAKey pub_key( ITALC_CLIENT_PUBLIC_KEYS + uname +
-								".public" );
+			publicDSAKey pub_key( localSystem::publicKeysPath() +
+							roleNames[urole] + ".public" );
 			result = pub_key.verifySignature( chall, sig ) ?
 						ItalcAuthOK : ItalcAuthFailed;
 			break;

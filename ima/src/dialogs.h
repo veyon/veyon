@@ -1,5 +1,5 @@
 /*
- * about_dialog.h - declaration of class aboutDialog
+ * dialogs.h - declaration of dialog-classes
  *
  * Copyright (c) 2004-2006 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
@@ -23,16 +23,84 @@
  */
 
 
-#ifndef _ABOUT_DIALOG_H
-#define _ABOUT_DIALOG_H
+#ifndef _DIALOGS_H
+#define _DIALOGS_H
 
 #include "dialogs/about.uic"
+#include "dialogs/client_settings.uic"
+#include "dialogs/text_message.uic"
+#include "dialogs/support.uic"
+
+
+class client;
+class mainWindow;
+
 
 
 class aboutDialog : public QDialog, Ui::about
 {
 public:
 	aboutDialog();
+
+} ;
+
+
+
+class clientSettingsDialog : public QDialog, Ui::clientSettings
+{
+	Q_OBJECT
+public:
+	clientSettingsDialog( client * _c, mainWindow * _main_window,
+						const QString & _classroom );
+
+private:
+	virtual void accept( void );
+
+	client * m_client;
+	mainWindow * m_mainWindow;
+
+} ;
+
+
+
+
+class supportDialog : public QDialog, Ui::support
+{
+public:
+	supportDialog( void ) : QDialog()
+	{
+		setupUi( this );
+	}
+
+	static QString getHost( void )
+	{
+		supportDialog sd;
+		if( sd.exec() == Accepted )
+		
+		{
+			return( sd.hostEdit->text() );
+		}
+		return( "" );
+	}
+
+} ;
+
+
+
+
+class textMessageDialog : public QDialog, public Ui::textMessage
+{
+	Q_OBJECT
+public:
+	textMessageDialog( QString & _msg_str );
+
+
+private slots:
+	virtual void accept( void );
+
+
+private:
+	QString & m_msgStr;
 
 } ;
 

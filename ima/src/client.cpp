@@ -47,11 +47,9 @@
 #include "ivs_connection.h"
 #include "client_manager.h"
 #include "cmd_input_dialog.h"
-#include "msg_input_dialog.h"
-#include "paths.h"
 #include "local_system.h"
 #include "snapshot_list.h"
-
+#include "dialogs.h"
 
 
 
@@ -755,14 +753,11 @@ void client::sendTextMessage( const QString & _msg )
 	{
 		QString msg;
 
-		msgInputDialog * msg_input_dialog =
-					new msgInputDialog( msg, this );
-		if( msg_input_dialog->exec() == QDialog::Accepted && msg != "" )
+		textMessageDialog tmd( msg );
+		if( tmd.exec() == QDialog::Accepted && msg != "" )
 		{
 			sendTextMessage( msg );
 		}
-
-		delete msg_input_dialog;
 	}
 	else
 	{

@@ -43,6 +43,9 @@ namespace localSystem
 
 	QString currentUser( void );
 
+	QString privateKeysPath( void );
+	QString publicKeysPath( void );
+
 }
 
 #endif

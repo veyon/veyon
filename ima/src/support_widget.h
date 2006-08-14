@@ -26,7 +26,6 @@
 #ifndef _SUPPORT_WIDGET_H
 #define _SUPPORT_WIDGET_H
 
-#include "dialogs/support.uic"
 #include "side_bar_widget.h"
 
 
@@ -39,30 +38,6 @@ public:
 
 private slots:
 	void supportBtnClicked( void );
-
-} ;
-
-
-
-
-class supportDialog : public QDialog, Ui::support
-{
-public:
-	supportDialog( void ) : QDialog()
-	{
-		setupUi( this );
-	}
-
-	static QString getHost( void )
-	{
-		supportDialog sd;
-		if( sd.exec() == Accepted )
-		
-		{
-			return( sd.hostEdit->text() );
-		}
-		return( "" );
-	}
 
 } ;
 
