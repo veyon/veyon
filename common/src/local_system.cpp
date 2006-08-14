@@ -29,7 +29,10 @@
 #endif
 
 
+#include <QtCore/QCoreApplication>
+#include <QtCore/QDir>
 #include <QtCore/QProcess>
+#include <QtCore/QSettings>
 
 
 #ifdef BUILD_WIN32
@@ -76,7 +79,17 @@
 namespace localSystem
 {
 
-	
+
+void initialize( void )
+{
+	QCoreApplication::setOrganizationName( "EasySchoolSolutions" );
+	QCoreApplication::setOrganizationDomain( "ess.org" );
+	QCoreApplication::setApplicationName( "iTALC" );
+}
+
+
+
+
 void sleep( const int _ms )
 {
 #ifdef BUILD_WIN32
@@ -435,6 +448,123 @@ QString currentUser( void )
 
 	return "Default";
 
+}
+
+
+static const QString userRoleNames[] =
+{
+	"none",
+	"teacher",
+	"supporter",
+	"admin"
+} ;
+
+inline QString keyPath( const ISD::userRoles _role, const QString _group )
+{
+	QSettings settings( QSettings::SystemScope, "EasySchoolSolutions",
+								"iTALC" );
+	if( _role <= ISD::RoleNone || _role >= ISD::RoleCount )
+	{
+		return( "" );
+	}
+	const QString fallback_dir =
+#ifdef BUILD_LINUX
+		"/etc/italc/keys/"
+#elif BUILD_WIN32
+		"c:\\italc\\keys\\"
+#endif
+		+ _group + QDir::separator() + userRoleNames[_role] +
+						QDir::separator() + "key";
+	const QString val = settings.value( "keypaths" + _group + "/" +
+					userRoleNames[_role] ).toString();
+	if( val.isEmpty() )
+	{
+		settings.setValue( "keypaths" + _group + "/" +
+					userRoleNames[_role], fallback_dir );
+		return( fallback_dir );
+	}
+	return( val );
+}
+
+
+QString privateKeyPath( const ISD::userRoles _role )
+{
+	return( keyPath( _role, "private" ) );
+}
+
+
+QString publicKeyPath( const ISD::userRoles _role )
+{
+	return( keyPath( _role, "public" ) );
+}
+
+
+
+
+QString snapshotDir( void )
+{
+	QSettings settings;
+	return( settings.value( "paths/snapshots", personalConfigDir() +
+						"snapshots" ).toString() +
+							QDir::separator() );
+}
+
+
+
+
+QString globalConfigPath( void )
+{
+	QSettings settings;
+	return( settings.value( "paths/globalconfig", personalConfigDir() +
+					"globalconfig.xml" ).toString() );
+}
+
+
+
+
+QString personalConfigDir( void )
+{
+	QSettings settings;
+	const QString d = settings.value( "paths/personalconfig" ).toString();
+	return( d.isEmpty() ?
+				QDir::homePath() + QDir::separator() +
+				".italc" + QDir::separator()
+			:
+				d );
+}
+
+
+
+
+QString personalConfigPath( void )
+{
+	QSettings settings;
+	const QString d = settings.value( "paths/personalconfig" ).toString();
+	return( d.isEmpty() ?
+				personalConfigDir() + "personalconfig.xml"
+			:
+				d );
+}
+
+
+bool ensurePathExists( const QString & _path )
+{
+	QString p = QDir( _path ).absolutePath();
+	if( !QFileInfo( _path ).isDir() )
+	{
+		p = QFileInfo( _path ).absolutePath();
+	}
+	QStringList dirs;
+	while( !QDir( p ).exists() && !p.isEmpty() )
+	{
+		dirs.push_front( QDir( p ).dirName() );
+		p.chop( dirs.front().size() + 1 );
+	}
+	if( !p.isEmpty() )
+	{
+		return( QDir( p ).mkpath( dirs.join( QDir::separator() ) ) );
+	}
+	return( FALSE );
 }
 
 

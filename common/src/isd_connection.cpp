@@ -52,7 +52,7 @@ bool isdConnection::initAuthentication( void )
 		return( TRUE );
 	}
 
-	QString priv_key_file = QDir::homePath() + QDir::separator() +
+/*	QString priv_key_file = QDir::homePath() + QDir::separator() +
 						localSystem::privateKeysPath() +
 						QDir::separator() + "id_dsa";
 	if( QDir::separator() != '/' )
@@ -61,7 +61,11 @@ bool isdConnection::initAuthentication( void )
 				replace( QString( QDir::separator() ) +
 							QDir::separator(),
 							QDir::separator() );
-	}
+	}*/
+
+#warning: TODO: replace with role according to mode under which app is running
+	const ISD::userRoles __role = ISD::RoleTeacher;
+	const QString priv_key_file = localSystem::privateKeyPath( __role );
 
 	privDSAKey = new privateDSAKey( priv_key_file );
 
@@ -79,10 +83,10 @@ bool isdConnection::initAuthentication( void )
 		}
 		privDSAKey->save( priv_key_file );
 
-		const QString pub_key_file = priv_key_file + ".public";
-	
 		// derive public key from private key and save it
-		publicDSAKey( *privDSAKey ).save( pub_key_file );
+		publicDSAKey( *privDSAKey ).save(
+					localSystem::publicKeyPath( __role ) );
+
 		return( FALSE );
 	}
 	return( TRUE );

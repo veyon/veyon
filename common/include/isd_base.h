@@ -286,6 +286,7 @@ typedef struct
 	{
 		RoleNone,
 		RoleTeacher,
+		RoleSupporter,
 		RoleAdmin,
 		RoleCount
 	} ;

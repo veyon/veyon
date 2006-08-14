@@ -28,6 +28,8 @@
 
 // project-headers
 #include "dsa_key.h"
+#include "local_system.h"
+
 
 // OpenSSL-headers
 #include <openssl/evp.h>
@@ -607,6 +609,9 @@ void privateDSAKey::save( const QString & _file, QString _passphrase ) const
 					"using empty passphrase now\n" );
 		_passphrase = QString::null;
 	}
+
+	localSystem::ensurePathExists( QFileInfo( _file ).filePath() );
+
 	QFile outfile( _file );
 	if( !outfile.open( QFile::WriteOnly | QFile::Truncate ) )
 	{
@@ -765,6 +770,8 @@ void publicDSAKey::save( const QString & _file, QString ) const
 		printf( "publicDSAKey::save(...): key not valid!" );
 		return;
 	}
+
+	localSystem::ensurePathExists( QFileInfo( _file ).filePath() );
 
 	QFile outfile( _file );
 	if( !outfile.open( QFile::WriteOnly | QFile::Truncate ) )

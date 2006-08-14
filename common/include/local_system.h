@@ -28,8 +28,13 @@
 
 #include <QtCore/QString>
 
+#include "isd_base.h"
+
+
 namespace localSystem
 {
+	void initialize( void );
+
 	void sleep( const int _ms );
 
 	void execInTerminal( const QString & _cmds );
@@ -43,8 +48,15 @@ namespace localSystem
 
 	QString currentUser( void );
 
-	QString privateKeysPath( void );
-	QString publicKeysPath( void );
+	QString privateKeyPath( const ISD::userRoles _role );
+	QString publicKeyPath( const ISD::userRoles _role );
+
+	QString snapshotDir( void );
+	QString globalConfigPath( void );
+	QString personalConfigDir( void );
+	QString personalConfigPath( void );
+
+	bool ensurePathExists( const QString & _path );
 
 }
 

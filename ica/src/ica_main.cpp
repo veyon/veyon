@@ -37,11 +37,15 @@
 #include "remote_control_widget.h"
 #include "isd_server.h"
 #include "ivs.h"
+#include "local_system.h"
+
 
 
 int ISDMain( int argc, char * * argv )
 {
 	QApplication app( argc, argv );
+
+	localSystem::initialize();
 
 	QTranslator app_tr;
 	app_tr.load( ":/resources/" + QLocale::system().name().left( 2 ) +

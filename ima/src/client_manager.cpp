@@ -57,6 +57,7 @@ class QColorGroup;
 #include "cmd_input_dialog.h"
 #include "progress_information.h"
 #include "italc_side_bar.h"
+#include "local_system.h"
 
 
 
@@ -88,14 +89,8 @@ clientManager::clientManager( mainWindow * _main_window, QWidget * _parent ) :
 			tr( "Use this workspace to manage your clients and "
 				"classrooms in an easy way." ),
 			_main_window, _parent ),
-	m_personalConfiguration( QDir::homePath() + QDir::separator() +
-					QString( ITALC_CONFIG_PATH ) +
-					QDir::separator() +
-					"personal-config.xml" ),
-	m_globalClientConfiguration( QDir::homePath() + QDir::separator() +
-					QString( ITALC_CONFIG_PATH ) +
-					QDir::separator() +
-					"global-client-config.xml" ),
+	m_personalConfiguration( localSystem::personalConfigPath() ),
+	m_globalClientConfiguration( localSystem::globalConfigPath() ),
 	m_quickSwitchMenu( new QMenu( this ) ),
 	m_globalClientMode( client::Mode_Overview ),
 	m_clientUpdateInterval( 1 )
@@ -207,7 +202,7 @@ void clientManager::saveGlobalClientConfig( void )
 	}
 
 	QString xml = "<?xml version=\"1.0\"?>\n" + doc.toString( 2 );
-	if( mainWindow::ensureConfigPathExists() == FALSE )
+/*	if( mainWindow::ensureConfigPathExists() == FALSE )
 	{
 		qFatal( QString( "Could not read/write or create directory %1!"
 					"For running iTALC, make sure you have "
@@ -215,7 +210,7 @@ void clientManager::saveGlobalClientConfig( void )
 					"and to %1 (if already existing)."
 					).arg( ITALC_CONFIG_PATH
 						).toAscii().constData() );
-	}
+	}*/
 
 	QFile outfile( m_globalClientConfiguration );
 	outfile.open( QFile::WriteOnly | QFile::Truncate );
@@ -277,11 +272,11 @@ void clientManager::savePersonalConfig( void )
 	QString xml = "<?xml version=\"1.0\"?>\n" + doc.toString( 2 );
 	if( mainWindow::ensureConfigPathExists() == FALSE )
 	{
-		qFatal( QString( "Could not read/write or create directory %1!"
+		qWarning( QString( "Could not read/write or create directory %1!"
 					"For running iTALC, make sure you have "
 					"write-access to your home-directory "
 					"and to %1 (if already existing)."
-				).arg( ITALC_CONFIG_PATH
+				).arg( localSystem::personalConfigDir()
 						).toAscii().constData() );
 	}
 

@@ -47,8 +47,6 @@ static isdServer * __isd_server = NULL;
 QByteArray isdServer::s_appInternalChallenge;
 
 
-static const char * roleNames[ISD::RoleCount] = { "none", "teacher", "admin" } ;
-
 
 
 isdServer::isdServer( const quint16 _isd_port, const quint16 _ivs_port,
@@ -156,16 +154,13 @@ bool isdServer::authSecTypeItalc( socketDispatcher _sd, void * _user,
 			const ISD::userRoles urole =
 				static_cast<ISD::userRoles>(
 					sdev.read().toString().toInt() );
-			if( urole <= ISD::RoleNone || urole >= ISD::RoleCount )
-			{
-				return( FALSE );
-			}
 
 			// now try to verify received signed data using public
 			// key of the user under which the client claims to run
 			const QByteArray sig = sdev.read().toByteArray();
-			publicDSAKey pub_key( localSystem::publicKeysPath() +
-							roleNames[urole] + ".public" );
+			// (publicKeyPath does range-checking of urole)
+			publicDSAKey pub_key( localSystem::publicKeyPath(
+									urole ) );
 			result = pub_key.verifySignature( chall, sig ) ?
 						ItalcAuthOK : ItalcAuthFailed;
 			break;

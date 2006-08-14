@@ -29,16 +29,11 @@
 #include <QtGui/QWidget>
 
 #include "side_bar_widget.h"
-#include "paths.h"
 
 
 class QLabel;
 class QPushButton;
 class QListWidget;
-
-
-const QString SCREENSHOT_PATH = "/" + QString( ITALC_CONFIG_PATH ) +
-							"/snapshots/";
 
 
 class snapshotList : public sideBarWidget

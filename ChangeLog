@@ -1,5 +1,33 @@
 2006-08-14	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
+	* ica/src/ica_main.cpp:
+	* ica/src/isd_server.cpp:
+	* common/include/isd_base.cpp:
+	* common/src/dsa_key.cpp:
+	* common/src/isd_connection.cpp:
+	* ima/src/client.cpp:
+	* ima/src/client_manager.cpp:
+	* ima/src/main.cpp:
+	* ima/src/main_window.cpp:
+	* ima/src/snapshot_list.cpp:
+	* ima/src/snapshot_list.h:
+	use new methods from localSystem-namespace for retrieving information
+	where to store keys and settings
+
+	* common/include/local_system.h:
+	* common/src/local_system.cpp:
+	added methods for platform-independent storage of keys and settings:
+	  - privateKeyPath()
+	  - publicKeyPath()
+	  - snapshotDir()
+	  - globalConfigPath()
+	  - personalConfigDir()
+	  - personalConfigPath()
+	  - ensurePathExists()
+
+	* ima/src/dialogs.h:
+	made derivation from ui-classes private
+
 	* common/include/paths.h:
 	removed
 

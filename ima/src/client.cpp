@@ -545,13 +545,13 @@ void client::paintEvent( QPaintEvent * _pe )
 					" " +
 					QTime( QTime::currentTime() ).toString(
 								Qt::ISODate );
-			QString path = QDir::homePath() + SCREENSHOT_PATH;
-			if( QDir( path ).exists() == FALSE )
+			const QString dir = localSystem::snapshotDir();
+			if( QDir( dir ).exists() == FALSE )
 			{
-				QDir().mkpath( path );
+				QDir().mkpath( dir );
 			}
 			// construct filename
-			QString file_name =  path + m_user + "_" +
+			QString file_name =  dir + m_user + "_" +
 						m_localIP + "_" +
 			QDate( QDate::currentDate() ).toString( Qt::ISODate ) +
 						"_" +

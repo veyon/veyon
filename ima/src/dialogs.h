@@ -37,7 +37,7 @@ class mainWindow;
 
 
 
-class aboutDialog : public QDialog, Ui::about
+class aboutDialog : public QDialog, private Ui::about
 {
 public:
 	aboutDialog();
@@ -46,7 +46,7 @@ public:
 
 
 
-class clientSettingsDialog : public QDialog, Ui::clientSettings
+class clientSettingsDialog : public QDialog, private Ui::clientSettings
 {
 	Q_OBJECT
 public:
@@ -64,7 +64,7 @@ private:
 
 
 
-class supportDialog : public QDialog, Ui::support
+class supportDialog : public QDialog, private Ui::support
 {
 public:
 	supportDialog( void ) : QDialog()

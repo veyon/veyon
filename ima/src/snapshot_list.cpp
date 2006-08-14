@@ -35,6 +35,7 @@ class QColorGroup;
 #include "snapshot_list.h"
 #include "client.h"
 #include "client_manager.h"
+#include "local_system.h"
 
 
 
@@ -161,7 +162,7 @@ snapshotList::~snapshotList()
 
 void snapshotList::snapshotSelected( const QString & _s )
 {
-	m_preview->setPixmap( QDir::homePath() + SCREENSHOT_PATH + _s );
+	m_preview->setPixmap( localSystem::snapshotDir() + _s );
 	m_preview->setFixedHeight( m_preview->width() * 3 / 4 );
 	m_user->setText( _s.section( '_', 0, 0 ) );
  	m_client->setText( _s.section( '_', 1, 1 ) );
@@ -188,7 +189,7 @@ void snapshotList::snapshotDoubleClicked( const QString & _s )
 	w->setWindowTitle( _s );
 
 	QLabel * img_label = new QLabel( w );
-	img_label->setPixmap( QDir::homePath() + SCREENSHOT_PATH + _s );
+	img_label->setPixmap( localSystem::snapshotDir() + _s );
 	if( img_label->pixmap() != NULL )
 	{
 		w->setFixedSize( img_label->pixmap()->width(),
@@ -222,8 +223,7 @@ void snapshotList::deleteSnapshot( void )
 		return;
 	}
 
-	QFile snapshot( QDir::homePath() + SCREENSHOT_PATH + s );
-	snapshot.remove();
+	QFile( localSystem::snapshotDir() + s ).remove();
 
 	reloadList();
 }
@@ -233,7 +233,7 @@ void snapshotList::deleteSnapshot( void )
 
 void snapshotList::reloadList( void )
 {
-	QDir sdir( QDir::homePath() + SCREENSHOT_PATH, "*.png",
+	QDir sdir( localSystem::snapshotDir(), "*.png",
 						QDir::Name | QDir::IgnoreCase,
 						QDir::Files | QDir::Readable );
 

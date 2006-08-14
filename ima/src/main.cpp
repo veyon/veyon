@@ -34,6 +34,7 @@
 
 #include "main_window.h"
 #include "ivs_connection.h"
+#include "local_system.h"
 
 
 
@@ -47,6 +48,9 @@ QString MASTER_HOST;
 int main( int argc, char * * argv )
 {
 	QApplication app( argc, argv );
+
+	localSystem::initialize();
+
 	app.connect( &app, SIGNAL( lastWindowClosed() ), SLOT( quit() ) );
 
 	QPixmap splash = QPixmap( ":/resources/splash.png" ); 

@@ -57,27 +57,17 @@ class QColorGroup;
 #include "messagebox.h"
 #include "tool_button.h"
 #include "isd_connection.h"
+#include "local_system.h"
+
 
 
 bool mainWindow::ensureConfigPathExists( void )
 {
-	QDir home = QDir::home();
-	// does a file/dir named ITALC_CONFIG_PATH exist?
-	if( home.exists( ITALC_CONFIG_PATH ) == FALSE )
+	const QString d = localSystem::personalConfigDir();
+	if( !QDir( d ).exists() )
 	{
-		// no, then create dir
-		return( home.mkdir( ITALC_CONFIG_PATH ) );
-	}
-	// exists, so test, whether it is a file
-	else if( home.cd( ITALC_CONFIG_PATH ) == FALSE )
-	{
-		// it is, so we remove it
-		if( home.remove( ITALC_CONFIG_PATH ) == FALSE )
-		{
-			// remove failed, we give up
-			return( FALSE );
-		}
-		return( home.mkdir( ITALC_CONFIG_PATH ) );
+		QDir::home().rmpath( d );
+		return( QDir::home().mkpath( QDir( d ).dirName() ) );
 	}
 	return( TRUE );
 }
@@ -101,10 +91,9 @@ mainWindow::mainWindow() :
 		}
 		messageBox::information( tr( "No write-access" ),
 			tr( "Could not read/write or create directory %1! "
-			"For running iTALC, make sure you have write-access "
-			"to your home-directory and to %1 (if it "
-				"already exists)." ).arg( ITALC_CONFIG_PATH ).
-						arg( ITALC_CONFIG_PATH ) );
+			"For running iTALC, make sure you're permitted to create "
+			"or write this directory" ).arg(
+					localSystem::personalConfigDir() ) );
 		return;
 	}
 
