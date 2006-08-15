@@ -205,14 +205,14 @@ ivsConnection::states ivsConnection::protocolInitialization( void )
 	}
 	else
 	{
-		encs[se->nEncodings++] = swap32IfLE( rfbEncodingCopyRect );
-
+#warning: FIXME
 #ifdef HAVE_LIBZ
 #ifdef HAVE_LIBJPEG
-		encs[se->nEncodings++] = swap32IfLE( rfbEncodingTight );
+//		encs[se->nEncodings++] = swap32IfLE( rfbEncodingTight );
 #endif
-		encs[se->nEncodings++] = swap32IfLE( rfbEncodingZlib );
+//		encs[se->nEncodings++] = swap32IfLE( rfbEncodingZlib );
 #endif
+		encs[se->nEncodings++] = swap32IfLE( rfbEncodingCopyRect );
 		encs[se->nEncodings++] = swap32IfLE( rfbEncodingCoRRE );
 		encs[se->nEncodings++] = swap32IfLE( rfbEncodingRaw );
 		//encs[se->nEncodings++] = swap32IfLE( rfbEncodingRRE );

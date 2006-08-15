@@ -74,20 +74,17 @@ int main( int argc, char * * argv )
 	// now create the main-window
 	mainWindow * main_window = new mainWindow();
 
-	printf("checking isd: %d\n", main_window->localISD() );
-	printf("isd-state: %d\n", main_window->localISD()->state() );
 	if( !main_window->localISD() ||
 		main_window->localISD()->state() != isdConnection::Connected )
 	{
 		return( -1 );
 	}
-	printf("finish\n");
-	// hide splash-screen as soon as main-window is shown
-	//splashScreen->finish( main_window );
-	printf("done\n");
 
-	main_window->showMaximized();
-	printf("show up\n");
+	// hide splash-screen as soon as main-window is shown
+	splashScreen->finish( main_window );
+
+	main_window->show();
+
 	// let's rock!!
 	return( app.exec() );
 }

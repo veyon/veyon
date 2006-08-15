@@ -157,7 +157,7 @@ client::client( const QString & _local_ip, const QString & _remote_ip,
 								16, 16 ),
 						tr( s_commands[i].m_name ) );
 		a->setData( i );
-		if( s_commands[i].m_insertSep == TRUE )
+		if( s_commands[i].m_insertSep )
 		{
 			tb->addSeparator();
 		}
@@ -338,7 +338,7 @@ void client::createActionMenu( QMenu * _m )
 							s_commands[i].m_icon ),
 			tr( s_commands[i].m_name.toAscii().constData() ) );
 		a->setData( i );
-		if( s_commands[i].m_insertSep == TRUE )
+		if( s_commands[i].m_insertSep )
 		{
 			_m->addSeparator();
 		}
@@ -530,7 +530,7 @@ void client::paintEvent( QPaintEvent * _pe )
 		p.drawPixmap( 0, 0, m_statePixmap );
 	}
 
-	if( m_makeSnapshot == TRUE )
+	if( m_makeSnapshot )
 	{
 		m_makeSnapshot = FALSE;
 

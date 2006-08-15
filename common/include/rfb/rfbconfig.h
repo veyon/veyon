@@ -205,6 +205,16 @@
 #define LIBVNCSERVER_HAVE_LINUX_FB_H  1 
 #endif
 
+/* linux/input.h present */
+#ifndef LIBVNCSERVER_HAVE_LINUX_INPUT_H 
+#define LIBVNCSERVER_HAVE_LINUX_INPUT_H  1 
+#endif
+
+/* linux uinput device build environment present */
+#ifndef LIBVNCSERVER_HAVE_LINUX_UINPUT_H 
+#define LIBVNCSERVER_HAVE_LINUX_UINPUT_H  1 
+#endif
+
 /* video4linux build environment present */
 #ifndef LIBVNCSERVER_HAVE_LINUX_VIDEODEV_H 
 #define LIBVNCSERVER_HAVE_LINUX_VIDEODEV_H  1 

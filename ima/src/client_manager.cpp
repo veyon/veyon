@@ -318,7 +318,7 @@ void clientManager::saveSettingsOfChildren( QDomDocument & _doc,
 				QDomElement client_element = _doc.createElement(
 								"client" );
 				client_element.setAttribute( "id", c->id() );
-				if( _is_global_config == TRUE )
+				if( _is_global_config )
 				{
 					client_element.setAttribute( "name",
 								c->name() );
@@ -332,8 +332,7 @@ void clientManager::saveSettingsOfChildren( QDomDocument & _doc,
 				else
 				{
 					client_element.setAttribute( "visible",
-						( c->isVisible() == TRUE ) ?
-								"yes" : "no" );
+						c->isVisible() ? "yes" : "no" );
 						client_element.setAttribute(
 			"x", QString::number( c->parentWidget()->pos().x() ) );
  						client_element.setAttribute(
@@ -380,7 +379,7 @@ void clientManager::getVisibleClients( QTreeWidgetItem * _p,
 			getVisibleClients( lvi, _vc );
 		}
 		else if( ( l = dynamic_cast<classRoomItem *>( lvi ) ) != NULL &&
-					l->getClient()->isVisible() == TRUE )
+					l->getClient()->isVisible() )
 		{
 			_vc.push_back( l->getClient() );
 		}
@@ -500,7 +499,7 @@ void clientManager::loadTree( classRoom * _parent_item,
 		if( node.nodeName() == "classroom" )
 		{
 			classRoom * cur_item = NULL;
-			if( _is_global_config == TRUE )
+			if( _is_global_config )
 			{
 				// add new classroom
 				QString name = node.toElement().attribute(
@@ -525,7 +524,7 @@ void clientManager::loadTree( classRoom * _parent_item,
 		}
 		else if( node.nodeName() == "client" )
 		{
-			if( _is_global_config == TRUE )
+			if( _is_global_config )
 			{
 				// add new client
 				QString local_ip = node.toElement().attribute(
@@ -1199,7 +1198,7 @@ void clientManager::itemDoubleClicked( QTreeWidgetItem * _i, int )
 
 	if( cri != NULL )
 	{
-		if( cri->getClient()->isVisible() == TRUE )
+		if( cri->getClient()->isVisible() )
 		{
 			cri->getClient()->hide();
 		}
@@ -1683,7 +1682,7 @@ void classRoom::createActionMenu( QMenu * _m, bool _add_sub_menu )
 	QMenu * this_classroom_submenu = _m;
 	QMenu * orig_root = _m;
 
-	if( _add_sub_menu == TRUE )
+	if( _add_sub_menu )
 	{
 		orig_root = this_classroom_submenu;
 		this_classroom_submenu = _m->addMenu( text( 0 ) );
@@ -1710,7 +1709,7 @@ void classRoom::createActionMenu( QMenu * _m, bool _add_sub_menu )
 				client::tr( client::s_commands[i].m_name ) );
 		cur->setData( i );
 
-		if( client::s_commands[i].m_insertSep == TRUE )
+		if( client::s_commands[i].m_insertSep )
 		{
 			this_classroom_submenu->addSeparator();
 		}

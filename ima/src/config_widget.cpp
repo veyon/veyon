@@ -46,7 +46,7 @@ configWidget::configWidget( mainWindow * _main_window, QWidget * _parent ) :
 				"fit your needs." ),
 			_main_window, _parent )
 {
-	QBoxLayout * l = dynamic_cast<QBoxLayout *>(
+	QBoxLayout * l = static_cast<QBoxLayout *>(
 						contentParent()->layout() );
 
 	QPixmap pm( 1000, 1 );

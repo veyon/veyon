@@ -54,7 +54,7 @@ void italcSideBar::setTab( const int _id, const bool _state )
 	if( m_widgets[_id] != NULL )
 	{
 		KMultiTabBar::setTab( _id, _state );
-		if( _state == TRUE )
+		if( _state )
 		{
 			m_widgets[_id]->show();
 			m_openedTab = _id;
