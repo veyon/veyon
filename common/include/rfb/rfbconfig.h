@@ -98,6 +98,11 @@
 #define LIBVNCSERVER_HAVE_GETPWUID  1 
 #endif
 
+/* Define to 1 if you have the `getspnam' function. */
+#ifndef LIBVNCSERVER_HAVE_GETSPNAM 
+#define LIBVNCSERVER_HAVE_GETSPNAM  1 
+#endif
+
 /* Define to 1 if you have the `gettimeofday' function. */
 #ifndef LIBVNCSERVER_HAVE_GETTIMEOFDAY 
 #define LIBVNCSERVER_HAVE_GETTIMEOFDAY  1 
@@ -436,6 +441,11 @@
 /* Define to 1 if `vfork' works. */
 #ifndef LIBVNCSERVER_HAVE_WORKING_VFORK 
 #define LIBVNCSERVER_HAVE_WORKING_VFORK  1 
+#endif
+
+/* X11 build environment present */
+#ifndef LIBVNCSERVER_HAVE_X11 
+#define LIBVNCSERVER_HAVE_X11  1 
 #endif
 
 /* XKEYBOARD extension build environment present */

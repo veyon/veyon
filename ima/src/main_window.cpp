@@ -375,10 +375,11 @@ mainWindow::mainWindow() :
 
 	printf("here4\n");
 	restoreState( m_clientManager->winCfg().toAscii() );
-
+	printf("here5\n");
 	QTimer::singleShot( 1000, m_clientManager, SLOT( updateClients() ) );
 
 	m_updateThread = new updateThread( this );
+	printf("here6\n");
 
 }
 

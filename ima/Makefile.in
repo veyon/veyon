@@ -276,7 +276,7 @@ CLEANFILES = $(italc_MOC) $(italc_UIC) ./italc_qrc.cpp
 @HAVE_LIBSSL_TRUE@LIBSSL_LDADD = -lssl
 italc_LDADD = $(QT_LDADD) -lz -ljpeg $(LIBSSL_LDADD)
 italc_LDFLAGS = $(LDFLAGS)
-AM_CXXFLAGS := $(AM_CXXFLAGS) $(QT_CXXFLAGS)
+AM_CXXFLAGS := $(AM_CXXFLAGS) $(QT_CXXFLAGS) -g
 all: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) all-am
 

@@ -63,6 +63,9 @@
 /* Define to 1 if you have the `getpwuid' function. */
 #undef HAVE_GETPWUID
 
+/* Define to 1 if you have the `getspnam' function. */
+#undef HAVE_GETSPNAM
+
 /* Define to 1 if you have the `gettimeofday' function. */
 #undef HAVE_GETTIMEOFDAY
 
@@ -128,6 +131,12 @@
 
 /* linux fb device build environment present */
 #undef HAVE_LINUX_FB_H
+
+/* linux/input.h present */
+#undef HAVE_LINUX_INPUT_H
+
+/* linux uinput device build environment present */
+#undef HAVE_LINUX_UINPUT_H
 
 /* video4linux build environment present */
 #undef HAVE_LINUX_VIDEODEV_H
@@ -276,6 +285,9 @@
 
 /* Define to 1 if `vfork' works. */
 #undef HAVE_WORKING_VFORK
+
+/* X11 build environment present */
+#undef HAVE_X11
 
 /* XKEYBOARD extension build environment present */
 #undef HAVE_XKEYBOARD
