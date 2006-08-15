@@ -32,7 +32,9 @@ int copy_snap(void);
 void nap_sleep(int ms, int split);
 void set_offset(void);
 int scan_for_updates(int count_only);
-
+void rotate_curs(char *dst_0, char *src_0, int Dx, int Dy, int Bpp);
+void rotate_coords(int x, int y, int *xo, int *yo, int dxi, int dyi);
+void rotate_coords_inverse(int x, int y, int *xo, int *yo, int dxi, int dyi);
 
 static void set_fs_factor(int max);
 static char *flip_ximage_byte_order(XImage *xim);
@@ -1181,9 +1183,78 @@ void scale_rect(double factor, int blend, int interpolate, int Bpp,
 	}
 }
 
+/*
+ Framebuffers data flow:
+                                                                             
+ General case:
+                --------       --------       --------        --------    
+    -----      |8to24_fb|     |main_fb |     |snap_fb |      | X      |    
+   |rfbfb| <== |        | <== |        | <== |        | <==  | Server |    
+    -----       --------       --------       --------        --------    
+   (to vnc)    (optional)    (usu = rfbfb)   (optional)      (read only)   
+
+ 8to24_fb mode will create side fbs: poll24_fb and poll8_fb for
+ bookkeepping the different regions (merged into 8to24_fb).
+
+ Normal case:
+    --------        --------    
+   |main_fb |      | X      |    
+   |= rfb_fb| <==  | Server |    
+    --------        --------    
+                                                                             
+ Scaling case:
+                --------        --------    
+    -----      |main_fb |      | X      |    
+   |rfbfb| <== |        | <==  | Server |    
+    -----       --------        --------    
+
+ Webcam/video case:
+    --------        --------        --------    
+   |main_fb |      |snap_fb |      | Video  |    
+   |        | <==  |        | <==  | device |    
+    --------        --------        --------    
+
+If we ever do a -rr rotation/reflection tran, it probably should 
+be done after any scaling (need a rr_fb for intermediate results)
+
+-rr option:		transformation:
+
+	none		x -> x;
+			y -> y;
+
+	x		x -> w - x - 1;
+			y -> y;
+
+	y		x -> x;
+			x -> h - y - 1;
+
+	xy		x -> w - x - 1;
+			y -> h - y - 1;
+
+	+90		x -> h - y - 1;
+			y -> x;
+
+	+90x		x -> y;
+			y -> x;
+
+	+90y		x -> h - y - 1;
+			y -> w - x - 1;
+
+	-90		x -> y;
+			y -> w - x - 1;
+
+some aliases:
+
+	xy:	yx, +180, -180, 180
+	+90:	90
+	+90x:	90x
+	+90y:	90y
+	-90:	+270, 270
+ */
+
 void scale_and_mark_rect(int X1, int Y1, int X2, int Y2) {
-	char *src_fb = main_fb;
-	int Bpp = bpp/8, fac = 1;
+	char *dst_fb, *src_fb = main_fb;
+	int dst_bpl, Bpp = bpp/8, fac = 1;
 
 	if (!screen || !rfb_fb || !main_fb) {
 		return;
@@ -1213,10 +1284,309 @@ void scale_and_mark_rect(int X1, int Y1, int X2, int Y2) {
 			fac = 4;
 		}
 	}
+	dst_fb = rfb_fb;
+	dst_bpl = rfb_bytes_per_line;
 
 	scale_rect(scale_fac, scaling_blend, scaling_interpolate, fac * Bpp,
-	    src_fb, fac * main_bytes_per_line, rfb_fb, rfb_bytes_per_line,
-	    dpy_x, dpy_y, scaled_x, scaled_y, X1, Y1, X2, Y2, 1);
+	    src_fb, fac * main_bytes_per_line, dst_fb, dst_bpl, dpy_x, dpy_y,
+	    scaled_x, scaled_y, X1, Y1, X2, Y2, 1);
+}
+
+void rotate_coords(int x, int y, int *xo, int *yo, int dxi, int dyi) {
+	int xi = x, yi = y;
+	int Dx, Dy;
+
+	if (dxi >= 0) {
+		Dx = dxi;
+		Dy = dyi;
+	} else if (scaling) {
+		Dx = scaled_x;
+		Dy = scaled_y;
+	} else {
+		Dx = dpy_x;
+		Dy = dpy_y;
+	}
+
+	if (rotating == ROTATE_NONE) {
+		*xo = xi;
+		*yo = yi;
+	} else if (rotating == ROTATE_X) {
+		*xo = Dx - xi - 1;
+		*yo = yi;
+	} else if (rotating == ROTATE_Y) {
+		*xo = xi;
+		*yo = Dy - yi - 1;
+	} else if (rotating == ROTATE_XY) {
+		*xo = Dx - xi - 1;
+		*yo = Dy - yi - 1;
+	} else if (rotating == ROTATE_90) {
+		*xo = Dy - yi - 1;
+		*yo = xi;
+	} else if (rotating == ROTATE_90X) {
+		*xo = yi;
+		*yo = xi;
+	} else if (rotating == ROTATE_90Y) {
+		*xo = Dy - yi - 1;
+		*yo = Dx - xi - 1;
+	} else if (rotating == ROTATE_270) {
+		*xo = yi;
+		*yo = Dx - xi - 1;
+	}
+}
+
+void rotate_coords_inverse(int x, int y, int *xo, int *yo, int dxi, int dyi) {
+	int xi = x, yi = y;
+
+	int Dx, Dy;
+
+	if (dxi >= 0) {
+		Dx = dxi;
+		Dy = dyi;
+	} else if (scaling) {
+		Dx = scaled_x;
+		Dy = scaled_y;
+	} else {
+		Dx = dpy_x;
+		Dy = dpy_y;
+	}
+	if (! rotating_same) {
+		int t = Dx;
+		Dx = Dy;
+		Dy = t;
+	}
+
+	if (rotating == ROTATE_NONE) {
+		*xo = xi;
+		*yo = yi;
+	} else if (rotating == ROTATE_X) {
+		*xo = Dx - xi - 1;
+		*yo = yi;
+	} else if (rotating == ROTATE_Y) {
+		*xo = xi;
+		*yo = Dy - yi - 1;
+	} else if (rotating == ROTATE_XY) {
+		*xo = Dx - xi - 1;
+		*yo = Dy - yi - 1;
+	} else if (rotating == ROTATE_90) {
+		*xo = yi;
+		*yo = Dx - xi - 1;
+	} else if (rotating == ROTATE_90X) {
+		*xo = yi;
+		*yo = xi;
+	} else if (rotating == ROTATE_90Y) {
+		*xo = Dy - yi - 1;
+		*yo = Dx - xi - 1;
+	} else if (rotating == ROTATE_270) {
+		*xo = Dy - yi - 1;
+		*yo = xi;
+	}
+}
+
+	/* unroll the Bpp loop to be used in each case: */
+#define ROT_COPY \
+	src = src_0 + fbl*y  + Bpp*x;  \
+	dst = dst_0 + rbl*yn + Bpp*xn; \
+	if (Bpp == 1) { \
+		*(dst) = *(src);	 \
+	} else if (Bpp == 2) { \
+		*(dst+0) = *(src+0);	 \
+		*(dst+1) = *(src+1);	 \
+	} else if (Bpp == 3) { \
+		*(dst+0) = *(src+0);	 \
+		*(dst+1) = *(src+1);	 \
+		*(dst+2) = *(src+2);	 \
+	} else if (Bpp == 4) { \
+		*(dst+0) = *(src+0);	 \
+		*(dst+1) = *(src+1);	 \
+		*(dst+2) = *(src+2);	 \
+		*(dst+3) = *(src+3);	 \
+	}
+
+void rotate_fb(int x1, int y1, int x2, int y2) {
+	int x, y, xn, yn, r_x1, r_y1, r_x2, r_y2, Bpp = bpp/8;
+	int fbl = rfb_bytes_per_line;
+	int rbl = rot_bytes_per_line;
+	int Dx, Dy;
+	char *src, *dst;
+	char *src_0 = rfb_fb;
+	char *dst_0 = rot_fb;
+
+	if (! rotating || ! rot_fb) {
+		return;
+	}
+
+	if (scaling) {
+		Dx = scaled_x;
+		Dy = scaled_y;
+	} else {
+		Dx = dpy_x;
+		Dy = dpy_y;
+	}
+	rotate_coords(x1, y1, &r_x1, &r_y1, -1, -1);
+	rotate_coords(x2, y2, &r_x2, &r_y2, -1, -1);
+
+	dst = rot_fb;
+
+	if (rotating == ROTATE_X) {
+		for (y = y1; y < y2; y++)  {
+			for (x = x1; x < x2; x++)  {
+				xn = Dx - x - 1;
+				yn = y;
+				ROT_COPY
+			}
+		}
+	} else if (rotating == ROTATE_Y) {
+		for (y = y1; y < y2; y++)  {
+			for (x = x1; x < x2; x++)  {
+				xn = x;
+				yn = Dy - y - 1;
+				ROT_COPY
+			}
+		}
+	} else if (rotating == ROTATE_XY) {
+		for (y = y1; y < y2; y++)  {
+			for (x = x1; x < x2; x++)  {
+				xn = Dx - x - 1;
+				yn = Dy - y - 1;
+				ROT_COPY
+			}
+		}
+	} else if (rotating == ROTATE_90) {
+		for (y = y1; y < y2; y++)  {
+			for (x = x1; x < x2; x++)  {
+				xn = Dy - y - 1;
+				yn = x;
+				ROT_COPY
+			}
+		}
+	} else if (rotating == ROTATE_90X) {
+		for (y = y1; y < y2; y++)  {
+			for (x = x1; x < x2; x++)  {
+				xn = y;
+				yn = x;
+				ROT_COPY
+			}
+		}
+	} else if (rotating == ROTATE_90Y) {
+		for (y = y1; y < y2; y++)  {
+			for (x = x1; x < x2; x++)  {
+				xn = Dy - y - 1;
+				yn = Dx - x - 1;
+				ROT_COPY
+			}
+		}
+	} else if (rotating == ROTATE_270) {
+		for (y = y1; y < y2; y++)  {
+			for (x = x1; x < x2; x++)  {
+				xn = y;
+				yn = Dx - x - 1;
+				ROT_COPY
+			}
+		}
+	}
+}
+
+void rotate_curs(char *dst_0, char *src_0, int Dx, int Dy, int Bpp) {
+	int x, y, xn, yn;
+	char *src, *dst;
+	int fbl, rbl;
+
+	if (! rotating) {
+		return;
+	}
+
+	fbl = Dx * Bpp;
+	if (rotating_same) {
+		rbl = Dx * Bpp;
+	} else {
+		rbl = Dy * Bpp;
+	}
+
+	if (rotating == ROTATE_X) {
+		for (y = 0; y < Dy; y++)  {
+			for (x = 0; x < Dx; x++)  {
+				xn = Dx - x - 1;
+				yn = y;
+				ROT_COPY
+if (0) fprintf(stderr, "rcurs: %d %d  %d %d\n", x, y, xn, yn);
+			}
+		}
+	} else if (rotating == ROTATE_Y) {
+		for (y = 0; y < Dy; y++)  {
+			for (x = 0; x < Dx; x++)  {
+				xn = x;
+				yn = Dy - y - 1;
+				ROT_COPY
+			}
+		}
+	} else if (rotating == ROTATE_XY) {
+		for (y = 0; y < Dy; y++)  {
+			for (x = 0; x < Dx; x++)  {
+				xn = Dx - x - 1;
+				yn = Dy - y - 1;
+				ROT_COPY
+			}
+		}
+	} else if (rotating == ROTATE_90) {
+		for (y = 0; y < Dy; y++)  {
+			for (x = 0; x < Dx; x++)  {
+				xn = Dy - y - 1;
+				yn = x;
+				ROT_COPY
+			}
+		}
+	} else if (rotating == ROTATE_90X) {
+		for (y = 0; y < Dy; y++)  {
+			for (x = 0; x < Dx; x++)  {
+				xn = y;
+				yn = x;
+				ROT_COPY
+			}
+		}
+	} else if (rotating == ROTATE_90Y) {
+		for (y = 0; y < Dy; y++)  {
+			for (x = 0; x < Dx; x++)  {
+				xn = Dy - y - 1;
+				yn = Dx - x - 1;
+				ROT_COPY
+			}
+		}
+	} else if (rotating == ROTATE_270) {
+		for (y = 0; y < Dy; y++)  {
+			for (x = 0; x < Dx; x++)  {
+				xn = y;
+				yn = Dx - x - 1;
+				ROT_COPY
+			}
+		}
+	}
+}
+
+void mark_wrapper(int x1, int y1, int x2, int y2) {
+	int t, r_x1 = x1, r_y1 = y1, r_x2 = x2, r_y2 = y2;
+
+	if (rotating) {
+		/* well we hope rot_fb will always be the last one... */
+		rotate_coords(x1, y1, &r_x1, &r_y1, -1, -1);
+		rotate_coords(x2, y2, &r_x2, &r_y2, -1, -1);
+		rotate_fb(x1, y1, x2, y2);
+		if (r_x1 > r_x2) {
+			t = r_x1;
+			r_x1 = r_x2;
+			r_x2 = t;
+		}
+		if (r_y1 > r_y2) {
+			t = r_y1;
+			r_y1 = r_y2;
+			r_y2 = t;
+		}
+		/* painting errors  */
+		r_x1--;
+		r_x2++;
+		r_y1--;
+		r_y2++;
+	}
+	rfbMarkRectAsModified(screen, r_x1, r_y1, r_x2, r_y2);
 }
 
 void mark_rect_as_modified(int x1, int y1, int x2, int y2, int force) {
@@ -1243,8 +1613,9 @@ void mark_rect_as_modified(int x1, int y1, int x2, int y2, int force) {
 		}
 	}
 
+
 	if (rfb_fb == main_fb || force) {
-		rfbMarkRectAsModified(screen, x1, y1, x2, y2);
+		mark_wrapper(x1, y1, x2, y2);
 		return;
 	}
 
@@ -1255,7 +1626,7 @@ void mark_rect_as_modified(int x1, int y1, int x2, int y2, int force) {
 	if (scaling) {
 		scale_and_mark_rect(x1, y1, x2, y2);
 	} else {
-		rfbMarkRectAsModified(screen, x1, y1, x2, y2);
+		mark_wrapper(x1, y1, x2, y2);
 	}
 }
 

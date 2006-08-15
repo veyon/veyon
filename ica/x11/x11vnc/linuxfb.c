@@ -6,6 +6,9 @@
 #include "xinerama.h"
 #include "screen.h"
 #include "pointer.h"
+#include "allowed_input_t.h"
+#include "uinput.h"
+#include "keyboard.h"
 
 #if LIBVNCSERVER_HAVE_SYS_IOCTL_H
 #include <sys/ioctl.h>
@@ -21,18 +24,19 @@ void console_pointer_command(int mask, int x, int y, rfbClientPtr client);
 char *console_guess(char *str, int *fd) {
 	char *q, *in = strdup(str);
 	char *atparms = NULL, *file = NULL;
-	int tty = -1;
+	int do_input, have_uinput, tty = -1;
+
 	if (strstr(in, "/dev/fb") == in) {
 		free(in);
-		in = (char *) malloc(strlen("cons:") + strlen(str) + 1);
-		sprintf(in, "cons:%s", str);
+		in = (char *) malloc(strlen("console:") + strlen(str) + 1);
+		sprintf(in, "console:%s", str);
 	} else if (strstr(in, "fb") == in) {
 		free(in);
-		in = (char *) malloc(strlen("cons:/dev/") + strlen(str) + 1);
-		sprintf(in, "cons:/dev/%s", str);
+		in = (char *) malloc(strlen("console:/dev/") + strlen(str) + 1);
+		sprintf(in, "console:/dev/%s", str);
 	}
 
-	if (strstr(in, "cons") != in) {
+	if (strstr(in, "console") != in) {
 		rfbLog("console_guess: unrecognized console/fb format: %s\n", str);
 		free(in);
 		return NULL;
@@ -67,25 +71,29 @@ char *console_guess(char *str, int *fd) {
 	}
 	rfbLog("console_guess: file is %s\n", file);
 
-	if (!strcmp(in, "cons") || !strcmp(in, "console")) {
+	do_input = 1;
+	if (pipeinput_str) {
+		have_uinput = 0;
+		do_input = 0;
+	} else {
+		have_uinput = check_uinput();
+	}
+
+	if (!strcmp(in, "consolex")) {
+		do_input = 0;
+	} else if (!strcmp(in, "console")) {
 		/* current active VT: */
-		tty = 0;
+		if (! have_uinput) {
+			tty = 0;
+		}
 	} else {
 		int n;
-		if (sscanf(in, "cons%d", &n) == 1)  {
+		if (sscanf(in, "console%d", &n) != 1)  {
 			tty = n;
-		} else if (sscanf(in, "console%d", &n) != 1)  {
-			tty = n;
+			have_uinput = 0;
 		} 
 	}
-	if (tty >=0 && tty < 64) {
-		if (pipeinput_str == NULL) {
-			pipeinput_str = (char *) malloc(10);
-			sprintf(pipeinput_str, "CONS%d", tty);
-			rfbLog("console_guess: file pipeinput %s\n", pipeinput_str);
-			initialize_pipeinput();
-		}
-	}
+
 	if (! atparms) {
 #if LIBVNCSERVER_HAVE_LINUX_FB_H
 #if LIBVNCSERVER_HAVE_SYS_IOCTL_H
@@ -131,6 +139,30 @@ char *console_guess(char *str, int *fd) {
 #endif
 	}
 
+	if (atparms) {
+		int gw, gh, gb;
+		if (sscanf(atparms, "%dx%dx%d", &gw, &gh, &gb) == 3)  {
+			fb_x = gw;	
+			fb_y = gh;	
+			fb_b = gb;	
+		}
+	}
+
+	if (do_input) {
+		if (tty >=0 && tty < 64) {
+			pipeinput_str = (char *) malloc(10);
+			sprintf(pipeinput_str, "CONSOLE%d", tty);
+			rfbLog("console_guess: file pipeinput %s\n",
+			    pipeinput_str);
+			initialize_pipeinput();
+		} else if (have_uinput) {
+			pipeinput_str = strdup("UINPUT");
+			rfbLog("console_guess: file pipeinput %s\n",
+			    pipeinput_str);
+			initialize_pipeinput();
+		}
+	}
+
 	if (! atparms) {
 		rfbLog("console_guess: could not get @ parameters.\n");
 		return NULL;
@@ -143,9 +175,19 @@ char *console_guess(char *str, int *fd) {
 
 void console_key_command(rfbBool down, rfbKeySym keysym, rfbClientPtr client) {
 	static int control = 0, alt = 0;
+	allowed_input_t input;
+
 	if (debug_keyboard) fprintf(stderr, "console_key_command: %d %s\n", (int) keysym, down ? "down" : "up");
+
 	if (pipeinput_cons_fd < 0) {
 		return;		
+	}
+	if (view_only) {
+		return;
+	}
+	get_allowed_input(client, &input);
+	if (! input.keystroke) {
+		return;
 	}
 
 	/* From LinuxVNC.c: */
@@ -250,6 +292,7 @@ void console_key_command(rfbBool down, rfbKeySym keysym, rfbClientPtr client) {
 }
 
 void console_pointer_command(int mask, int x, int y, rfbClientPtr client) {
+	/* do not forget viewonly perms */
 	if (mask || x || y || client) {}
 }
 

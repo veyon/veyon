@@ -13,6 +13,7 @@
 #include "unixpw.h"
 #include "v4l.h"
 #include "linuxfb.h"
+#include "uinput.h"
 
 void get_keystate(int *keystate);
 void clear_modifiers(int init);
@@ -58,6 +59,9 @@ void get_keystate(int *keystate) {
 	char keys[32];
 
 	RAWFB_RET_VOID
+#if NO_X11
+	return;
+#else
 	
 	/* n.b. caller decides to X_LOCK or not. */
 	XQueryKeymap(dpy, keys);
@@ -73,6 +77,7 @@ void get_keystate(int *keystate) {
 			c = c >> 1;
 		}
 	}
+#endif	/* NO_X11 */
 }
 
 /*
@@ -90,6 +95,9 @@ void clear_modifiers(int init) {
 	KeyCode keycode;
 
 	RAWFB_RET_VOID
+#if NO_X11
+	return;
+#else
 
 	/* n.b. caller decides to X_LOCK or not. */
 	if (first) {
@@ -104,6 +112,7 @@ void clear_modifiers(int init) {
 
 		for (i = minkey; i <= maxkey; i++) {
 		    for (j = 0; j < syms_per_keycode; j++) {
+			char *str;
 			keysym = keymap[ (i - minkey) * syms_per_keycode + j ];
 			if (keysym == NoSymbol || ! ismodkey(keysym)) {
 				continue;
@@ -114,7 +123,9 @@ void clear_modifiers(int init) {
 			}
 			keycodes[kcount] = keycode;
 			keysyms[kcount]  = keysym;
-			keystrs[kcount]  = strdup(XKeysymToString(keysym));
+			str = XKeysymToString(keysym);
+			if (! str) str = "null";
+			keystrs[kcount]  = strdup(str);
 			kcount++;
 		    }
 		}
@@ -141,6 +152,7 @@ void clear_modifiers(int init) {
 		XTestFakeKeyEvent_wr(dpy, keycode, False, CurrentTime);
 	}
 	XFlush_wr(dpy);
+#endif	/* NO_X11 */
 }
 
 static KeySym simple_mods[] = {
@@ -248,11 +260,15 @@ int get_autorepeat_state(void) {
 	XKeyboardState kstate;
 
 	RAWFB_RET(0)
+#if NO_X11
+	return 0;
+#else
 
 	X_LOCK;
 	XGetKeyboardControl(dpy, &kstate);
 	X_UNLOCK;
 	return kstate.global_auto_repeat;
+#endif	/* NO_X11 */
 }
 
 int get_initial_autorepeat_state(void) {
@@ -267,6 +283,9 @@ void autorepeat(int restore, int bequiet) {
 	XKeyboardControl kctrl;
 
 	RAWFB_RET_VOID
+#if NO_X11
+	return;
+#else
 
 	if (restore) {
 		if (save_auto_repeat < 0) {
@@ -313,6 +332,7 @@ void autorepeat(int restore, int bequiet) {
 			}
 		}
 	}
+#endif	/* NO_X11 */
 }
 
 /*
@@ -364,6 +384,9 @@ int add_keysym(KeySym keysym) {
 	}
 
 	RAWFB_RET(0)
+#if NO_X11
+	return 0;
+#else
 
 	if (keysym == NoSymbol) {
 		return 0;
@@ -437,6 +460,7 @@ int add_keysym(KeySym keysym) {
 	}
 	XFree(keymap);
 	return ret;
+#endif	/* NO_X11 */
 }
 
 static void delete_keycode(KeyCode kc, int bequiet) {
@@ -446,6 +470,9 @@ static void delete_keycode(KeyCode kc, int bequiet) {
 	char *str;
 
 	RAWFB_RET_VOID
+#if NO_X11
+	return;
+#else
 
 	XDisplayKeycodes(dpy, &minkey, &maxkey);
 	keymap = XGetKeyboardMapping(dpy, minkey, (maxkey - minkey + 1),
@@ -466,6 +493,7 @@ static void delete_keycode(KeyCode kc, int bequiet) {
 
 	XFree(keymap);
 	XFlush_wr(dpy);
+#endif	/* NO_X11 */
 }
 
 static int count_added_keycodes(void) {
@@ -579,7 +607,7 @@ static void add_dead_keysyms(char *str) {
 	p = str;
 
 	while (*p != '\0') {
-		if (isspace(*p)) {
+		if (isspace((unsigned char) (*p))) {
 			*p = '\0';
 		}
 		p++;
@@ -768,6 +796,9 @@ int sloppy_key_check(int key, rfbBool down, rfbKeySym keysym, int *new) {
 	}
 
 	RAWFB_RET(0)
+#if NO_X11
+	return 0;
+#else
 	
 	if (!down && !keycode_state[key] && !IsModifierKey(keysym)) {
 		int i, cnt = 0, downkey = -1;
@@ -814,6 +845,7 @@ int sloppy_key_check(int key, rfbBool down, rfbKeySym keysym, int *new) {
 		}
 	}
 	return 0;
+#endif	/* NO_X11 */
 }
 
 #if !LIBVNCSERVER_HAVE_XKEYBOARD || SKIP_XKB
@@ -920,7 +952,7 @@ void switch_to_xkb_if_better(void) {
 					char *str = XKeysymToString(keysym);
 					fprintf(stderr, "- high keysym mapping"
 					    ": at %3d j=%d "
-					    "'%s'\n", i, j, str ? str:"null");
+					    "'%s'\n", i, j, str ? str : "null");
 				}
 			    }
 			    continue;
@@ -929,7 +961,7 @@ void switch_to_xkb_if_better(void) {
 				if (debug_keyboard > 1) {
 					char *str = XKeysymToString(must);
 					fprintf(stderr, "- at %3d j=%d found "
-					    "'%s'\n", i, j, str ? str:"null");
+					    "'%s'\n", i, j, str ? str : "null");
 				}
 				/* n.b. do not break, see syms_gt_4 above. */
 				gotit = 1;
@@ -1348,14 +1380,16 @@ xkbmodifiers[]    For the KeySym bound to this (keycode,group,level) store
 			}
 
 			if (debug_keyboard > 1) {
+				char *str;
 				fprintf(stderr, "  %03d  G%d L%d  mod=%s ",
 				    kc, grp+1, lvl+1, bitprint(ms, 8));
 				fprintf(stderr, "state=%s ",
 				    bitprint(xkbstate[kc][grp][lvl], 8));
 				fprintf(stderr, "ignore=%s ",
 				    bitprint(xkbignore[kc][grp][lvl], 8));
+				str = XKeysymToString(ks);
 				fprintf(stderr, " ks=0x%08lx \"%s\"\n",
-				    ks, XKeysymToString(ks));
+				    ks, str ? str : "null");
 			}
 		}
 	    }
@@ -1480,11 +1514,15 @@ static void xkb_tweak_keyboard(rfbBool down, rfbKeySym keysym,
 			state = xkbstate[kc][grp][lvl];
 
 			if (debug_keyboard > 1) {
+				char *s1, *s2;
+				s1 = XKeysymToString(XKeycodeToKeysym(dpy,
+				    kc, 0));
+				if (! s1) s1 = "null";
+				s2 = XKeysymToString(keysym);
+				if (! s2) s2 = "null";
 				fprintf(stderr, "  got match kc=%03d=0x%02x G%d"
 				    " L%d  ks=0x%x \"%s\"  (basesym: \"%s\")\n",
-				    kc, kc, grp+1, lvl+1, keysym,
-				    XKeysymToString(keysym), XKeysymToString(
-				    XKeycodeToKeysym(dpy, kc, 0)));
+				    kc, kc, grp+1, lvl+1, keysym, s2, s1);
 				fprintf(stderr, "    need state: %s\n",
 				    bitprint(state, 8));
 				fprintf(stderr, "    ignorable : %s\n",
@@ -2181,6 +2219,9 @@ void initialize_modtweak(void) {
 	}
 
 	RAWFB_RET_VOID
+#if NO_X11
+	return;
+#else
 
 	X_LOCK;
 	XDisplayKeycodes(dpy, &minkey, &maxkey);
@@ -2258,6 +2299,7 @@ void initialize_modtweak(void) {
 	XFree ((void *) keymap);
 
 	X_UNLOCK;
+#endif	/* NO_X11 */
 }
 
 /*
@@ -2322,6 +2364,9 @@ static void modifier_tweak_keyboard(rfbBool down, rfbKeySym keysym,
 	int tweak = 0;
 
 	RAWFB_RET_VOID
+#if NO_X11
+	return;
+#else
 
 	if (use_xkb_modtweak) {
 		xkb_tweak_keyboard(down, keysym, client);
@@ -2383,8 +2428,9 @@ static void modifier_tweak_keyboard(rfbBool down, rfbKeySym keysym,
 	}
 
 	if (debug_keyboard) {
+		char *str = XKeysymToString(keysym);
 		rfbLog("modifier_tweak_keyboard: KeySym 0x%x \"%s\" -> "
-		    "KeyCode 0x%x%s\n", (int) keysym, XKeysymToString(keysym),
+		    "KeyCode 0x%x%s\n", (int) keysym, str ? str : "null",
 		    (int) k, k ? "" : " *ignored*");
 	}
 	if ( k != NoSymbol ) {
@@ -2396,6 +2442,7 @@ static void modifier_tweak_keyboard(rfbBool down, rfbKeySym keysym,
 	if ( tweak ) {
 		tweak_mod(modifiers[keysym], False);
 	}
+#endif	/* NO_X11 */
 }
 
 void initialize_keyboard_and_pointer(void) {
@@ -2451,6 +2498,7 @@ void get_allowed_input(rfbClientPtr client, allowed_input_t *input) {
 			str = "KMBC";
 		}
 	}
+if (0) fprintf(stderr, "GAI: %s - %s\n", str, cd->input);
 
 	while (*str) {
 		if (*str == 'K') {
@@ -2475,9 +2523,10 @@ static void pipe_keyboard(rfbBool down, rfbKeySym keysym, rfbClientPtr client) {
 
 	if (pipeinput_int == PIPEINPUT_VID) {
 		v4l_key_command(down, keysym, client);
-	}
-	if (pipeinput_int == PIPEINPUT_CONS) {
+	} else if (pipeinput_int == PIPEINPUT_CONSOLE) {
 		console_key_command(down, keysym, client);
+	} else if (pipeinput_int == PIPEINPUT_UINPUT) {
+		uinput_key_command(down, keysym, client);
 	}
 	if (pipeinput_fh == NULL) {
 		return;
@@ -2485,7 +2534,7 @@ static void pipe_keyboard(rfbBool down, rfbKeySym keysym, rfbClientPtr client) {
 
 	if (! view_only) {
 		get_allowed_input(client, &input);
-		if (input.motion || input.button) {
+		if (input.keystroke) {
 			can_input = 1;	/* XXX distinguish later */
 		}
 	}
@@ -2501,7 +2550,7 @@ static void pipe_keyboard(rfbBool down, rfbKeySym keysym, rfbClientPtr client) {
 	X_UNLOCK;
 
 	fprintf(pipeinput_fh, "Keysym %d %d %u %s %s\n", uid, down,
-	    keysym, name, down ? "KeyPress" : "KeyRelease");
+	    keysym, name ? name : "null", down ? "KeyPress" : "KeyRelease");
 
 	fflush(pipeinput_fh);
 	check_pipeinput();
@@ -2619,6 +2668,7 @@ void keyboard(rfbBool down, rfbKeySym keysym, rfbClientPtr client) {
 	static rfbKeySym last_keysym = NoSymbol;
 	static rfbKeySym max_keyrepeat_last_keysym = NoSymbol;
 	static double max_keyrepeat_last_time = 0.0;
+	static double max_keyrepeat_always = -1.0;
 
 	dtime0(&tnow);
 	got_keyboard_calls++;
@@ -2627,13 +2677,26 @@ void keyboard(rfbBool down, rfbKeySym keysym, rfbClientPtr client) {
 		char *str;
 		X_LOCK;
 		str = XKeysymToString(keysym);
-		rfbLog("# keyboard(%s, 0x%x \"%s\")  %.4f\n", down ? "down":"up",
-		    (int) keysym, str ? str : "null", tnow - x11vnc_start);
 		X_UNLOCK;
+		rfbLog("# keyboard(%s, 0x%x \"%s\") uip=%d  %.4f\n",
+		    down ? "down":"up", (int) keysym, str ? str : "null",
+		    unixpw_in_progress, tnow - x11vnc_start);
+	}
+
+
+	if (keysym <= 0) {
+		rfbLog("keyboard: skipping 0x0 keysym\n");
+		return;
 	}
 	
 	if (unixpw && unixpw_in_progress) {
+		if (unixpw_denied) {
+			rfbLog("keyboard: ignoring keystroke 0x%x in "
+			    "unixpw_denied=1 state\n", (int) keysym);
+			return;
+		}
 		if (client != unixpw_client) {
+			rfbLog("keyboard: skipping other client in unixpw\n");
 			return;
 		}
 		unixpw_keystroke(down, keysym, 0);
@@ -2744,6 +2807,20 @@ void keyboard(rfbBool down, rfbKeySym keysym, rfbClientPtr client) {
 		}
 	}
 
+#ifdef MAX_KEYREPEAT 
+	if (max_keyrepeat_always < 0.0) {
+		if (getenv("MAX_KEYREPEAT")) {
+			max_keyrepeat_always = atof(getenv("MAX_KEYREPEAT"));
+		} else {
+			max_keyrepeat_always = 0.0;
+		}
+	}
+	if (max_keyrepeat_always > 0.0) {
+		max_keyrepeat_time = max_keyrepeat_always;
+	}
+#else
+	if (0) {max_keyrepeat_always=0;}
+#endif
 	if (!down && skipped_last_down) {
 		int db = debug_scroll;
 		if (keysym == max_keyrepeat_last_keysym) {
@@ -2838,14 +2915,17 @@ void keyboard(rfbBool down, rfbKeySym keysym, rfbClientPtr client) {
 				keysym = remap->after;
 				isbutton = remap->isbutton;
 				if (debug_keyboard) {
+					char *str1, *str2;
 					X_LOCK;
+					str1 = XKeysymToString(remap->before);
+					str2 = XKeysymToString(remap->after);
 					rfbLog("keyboard(): remapping keysym: "
 					    "0x%x \"%s\" -> 0x%x \"%s\"\n",
 					    (int) remap->before,
-					    XKeysymToString(remap->before),
+					    str1 ? str1 : "null",
 					    (int) remap->after,
 					    remap->isbutton ? "button" :
-					    XKeysymToString(remap->after));
+					    str2 ? str2 : "null");
 					X_UNLOCK;
 				}
 				break;

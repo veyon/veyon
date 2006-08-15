@@ -244,7 +244,7 @@ static void user2uid(char *user, uid_t *uid, char **name, char **home) {
 
 	q = user;
 	while (*q) {
-		if (! isdigit(*q++)) {
+		if (! isdigit((unsigned char) (*q++))) {
 			numerical = 0;
 			break;
 		}
@@ -810,7 +810,7 @@ int read_passwds(char *passfile) {
 		}
 		p = line;
 		while (*p != '\0') {
-			if (! isspace(*p)) {
+			if (! isspace((unsigned char) (*p))) {
 				blank = 0;
 				break;
 			}
@@ -1038,8 +1038,10 @@ void user_supplied_opts(char *opts) {
 	char *p, *str;
 	char *allow[] = {
 		"skip-display", "skip-auth", "skip-shared",
-		"scale", "scale_cursor", "solid", "id", "clear_mods",
-		"clear_keys", "repeat", "speeds",
+		"scale", "scale_cursor", "sc", "solid", "so", "id",
+		"clear_mods", "cm", "clear_keys", "ck", "repeat",
+		"speeds", "sp", "readtimeout", "rd",
+		"rotate", "ro",
 		NULL
 	};
 
@@ -1067,7 +1069,8 @@ void user_supplied_opts(char *opts) {
 			i++;
 		}
 
-		if (! ok && sscanf(p, "%d/%d", &n, &m) == 2) {
+		if (! ok && strpbrk(p, "0123456789") == p &&
+		    sscanf(p, "%d/%d", &n, &m) == 2) {
 			if (scale_str) free(scale_str);
 			scale_str = strdup(p);
 		} else if (ok) {
@@ -1077,24 +1080,36 @@ void user_supplied_opts(char *opts) {
 			} else if (strstr(p, "auth=") == p) {
 				if (auth_file) free(auth_file);
 				auth_file = strdup(p + strlen("auth="));
+			} else if (!strcmp(p, "shared")) {
+				shared = 1;
 			} else if (strstr(p, "scale=") == p) {
 				if (scale_str) free(scale_str);
 				scale_str = strdup(p + strlen("scale="));
-			} else if (strstr(p, "scale_cursor=") == p) {
+			} else if (strstr(p, "scale_cursor=") == p ||
+			    strstr(p, "sc=") == p) {
 				if (scale_cursor_str) free(scale_cursor_str);
-				scale_cursor_str = strdup(p +
-				    strlen("scale_cursor="));
-			} else if (!strcmp(p, "shared")) {
-				shared = 1;
-			} else if (!strcmp(p, "solid")) {
+				q = strchr(p, '=') + 1;
+				scale_cursor_str = strdup(q);
+			} else if (strstr(p, "rotate=") == p ||
+			    strstr(p, "ro=") == p) {
+				if (rotating_str) free(rotating_str);
+				q = strchr(p, '=') + 1;
+				rotating_str = strdup(q);
+			} else if (!strcmp(p, "solid") || !strcmp(p, "so")) {
 				use_solid_bg = 1;
 				if (!solid_str) {
 					solid_str = strdup(solid_default);
 				}
-			} else if (strstr(p, "solid=") == p) {
+			} else if (strstr(p, "solid=") == p ||
+			    strstr(p, "so=") == p) {
 				use_solid_bg = 1;
 				if (solid_str) free(solid_str);
-				solid_str = strdup(p + strlen("solid="));
+				q = strchr(p, '=') + 1;
+				if (!strcmp(q, "R")) {
+					solid_str = strdup("root:");
+				} else {
+					solid_str = strdup(q);
+				}
 			} else if (strstr(p, "id=") == p) {
 				unsigned long win;
 				q = p + strlen("id=");
@@ -1103,15 +1118,19 @@ void user_supplied_opts(char *opts) {
 						subwin = win;
 					}
 				}
-			} else if (!strcmp(p, "clear_mods")) {
+			} else if (!strcmp(p, "clear_mods") ||
+			    !strcmp(p, "cm")) {
 				clear_mods = 1;
-			} else if (!strcmp(p, "clear_keys")) {
+			} else if (!strcmp(p, "clear_keys") ||
+			    !strcmp(p, "ck")) {
 				clear_mods = 2;
 			} else if (!strcmp(p, "repeat")) {
 				no_autorepeat = 0;
-			} else if (strstr(p, "speeds=") == p) {
+			} else if (strstr(p, "speeds=") == p ||
+			    strstr(p, "sp=") == p) {
 				if (speeds_str) free(speeds_str);
-				speeds_str = strdup(p + strlen("speeds="));
+				q = strchr(p, '=') + 1;
+				speeds_str = strdup(q);
 				q = speeds_str;
 				while (*q != '\0') {
 					if (*q == '-') {
@@ -1119,7 +1138,13 @@ void user_supplied_opts(char *opts) {
 					}
 					q++;
 				}
+			} else if (strstr(p, "readtimeout=") == p ||
+			    strstr(p, "rd=") == p) {
+				q = strchr(p, '=') + 1;
+				rfbMaxClientWait = atoi(q) * 1000;
 			}
+		} else {
+			rfbLog("skipping option: %s\n", p);
 		}
 		p = strtok(NULL, ",");
 	}
@@ -1146,7 +1171,7 @@ int wait_for_client(int *argc, char** argv, int http) {
 		if (!strcmp(argv[i], "-desktop")) {
 			dt = 1;
 		}
-		if (1) fprintf(stderr, "args %d %s\n", i, argv[i]);
+		if (db) fprintf(stderr, "args %d %s\n", i, argv[i]);
 	}
 
 	str = strdup(use_dpy);

@@ -15,7 +15,7 @@ int xtrap_base_event_type = 0;
 int xdamage_base_event_type = 0;
 
 /*               date +'lastmod: %Y-%m-%d' */
-char lastmod[] = "0.8.2 lastmod: 2006-06-27";
+char lastmod[] = "0.8.3 lastmod: 2006-08-10";
 
 /* X display info */
 
@@ -27,7 +27,8 @@ Window window = None, rootwin = None;	/* polled window, root window (usu. same) 
 Visual *default_visual = NULL;	/* the default visual (unless -visual) */
 int bpp = 0, depth = 0;
 int indexed_color = 0;
-int dpy_x, dpy_y;		/* size of display */
+int dpy_x = 0, dpy_y = 0;		/* size of display */
+int fb_x = 0, fb_y = 0, fb_b = 0;	/* fb size and bpp guesses at display */
 int off_x, off_y;		/* offsets for -sid */
 int wdpy_x, wdpy_y;		/* for actual sizes in case of -clip */
 int cdpy_x, cdpy_y, coff_x, coff_y;	/* the -clip params */
@@ -59,6 +60,7 @@ char *rfb_fb = NULL;		/* same as main_fb unless transformation */
 char *fake_fb = NULL;		/* used under -padgeom */
 char *snap_fb = NULL;		/* used under -snapfb */
 char *cmap8to24_fb = NULL;	/* used under -8to24 */
+char *rot_fb = NULL;
 char *raw_fb = NULL;		/* when used should be main_fb */
 char *raw_fb_addr = NULL;
 int raw_fb_offset = 0;
@@ -70,6 +72,7 @@ int raw_fb_back_to_X = 0;	/* kludge for testing rawfb -> X */
 
 int rfb_bytes_per_line = 0;
 int main_bytes_per_line = 0;
+int rot_bytes_per_line = 0;
 unsigned long  main_red_mask = 0,  main_green_mask = 0,  main_blue_mask = 0;
 unsigned short main_red_max = 0,   main_green_max = 0,   main_blue_max = 0;
 unsigned short main_red_shift = 0, main_green_shift = 0, main_blue_shift = 0;
@@ -84,6 +87,10 @@ int scaling_pad = 0;		/* pad out scaled sizes to fit denominator */
 int scaling_interpolate = 0;	/* use interpolation scheme when shrinking */
 int scaled_x = 0, scaled_y = 0;	/* dimensions of scaled display */
 int scale_numer = 0, scale_denom = 0;	/* n/m */
+char *rotating_str = NULL;
+int rotating = 0;
+int rotating_same = 0;
+int rotating_cursors = 0;
 
 /* scale cursor */
 char *scale_cursor_str = NULL;

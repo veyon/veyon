@@ -97,7 +97,7 @@ char *ip2host(char *ip) {
 int dotted_ip(char *host) {
 	char *p = host;
 	while (*p != '\0') {
-		if (*p == '.' || isdigit(*p)) {
+		if (*p == '.' || isdigit((unsigned char) (*p))) {
 			p++;
 			continue;
 		}

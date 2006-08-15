@@ -29,6 +29,7 @@ extern char *ssl_certs_dir;
 extern int https_port_num;
 extern char *ssl_verify;
 extern int ssl_initialized;
+extern int ssl_timeout_secs;
 extern int usepw;
 extern char *blackout_str;
 extern int blackout_ptr;
@@ -219,6 +220,7 @@ extern int naptile;
 extern int napfac;
 extern int napmax;
 extern int ui_skip;
+extern int all_input;
 
 extern int watch_fbpm;
 

@@ -29,12 +29,13 @@ void set_colormap(int reset);
 void set_nofb_params(int restore);
 void set_raw_fb_params(int restore);
 void do_new_fb(int reset_mem);
-void free_old_fb(char *old_main, char *old_rfb, char *old_8to24, char *old_snap_fb);
+void free_old_fb(void);
 void check_padded_fb(void);
 void install_padded_fb(char *geom);
 XImage *initialize_xdisplay_fb(void);
 void parse_scale_string(char *str, double *factor, int *scaling, int *blend,
     int *nomult4, int *pad, int *interpolate, int *numer, int *denom);
+int parse_rotate_string(char *str, int *mode);
 int scale_round(int len, double fac);
 void initialize_screen(int *argc, char **argv, XImage *fb);
 void set_vnc_desktop_name(void);
@@ -168,6 +169,9 @@ if (0) fprintf(stderr, "unset_colormap: %d\n", reset);
 	}
 
 	RAWFB_RET_VOID
+#if NO_X11
+	return;
+#else
 
 	X_LOCK;
 
@@ -274,6 +278,7 @@ if (0) fprintf(stderr, "unset_colormap: %d\n", reset);
 	}
 
 	init = 0;
+#endif	/* NO_X11 */
 }
 
 static void debug_colormap(XImage *fb) {
@@ -336,6 +341,9 @@ static void set_visual(char *str) {
 	char *p, *vstring = strdup(str);
 
 	RAWFB_RET_VOID
+#if NO_X11
+	return;
+#else
 
 	defdepth = DefaultDepth(dpy, scr);
 	visual_id = (VisualID) 0;
@@ -406,6 +414,7 @@ static void set_visual(char *str) {
 
 	/* set numerical visual id. */
 	visual_id = vinfo.visualid;
+#endif	/* NO_X11 */
 }
 
 void set_nofb_params(int restore) {
@@ -574,10 +583,12 @@ void set_raw_fb_params(int restore) {
 		}
 	} else {
 		/* Normal case: */
-		if (! view_only) {
+#if 0
+		if (! view_only && ! pipeinput_str) {
 			if (! quiet) rfbLog("  rawfb: setting view_only\n");
 			view_only = 1;
 		}
+#endif
 		if (watch_selection) {
 			if (! quiet) rfbLog("  rawfb: turning off "
 			    "watch_selection\n");
@@ -608,10 +619,6 @@ void set_raw_fb_params(int restore) {
 			use_solid_bg = 0;
 		}
 		multiple_cursors_mode = strdup("arrow");
-	}
-	if (0 && use_snapfb) {
-		if (! quiet) rfbLog("  rawfb: turning off use_snapfb\n");
-		use_snapfb = 0;
 	}
 	if (using_shm) {
 		if (! quiet) rfbLog("  rawfb: turning off using_shm\n");
@@ -651,24 +658,34 @@ static void nofb_hook(rfbClientPtr cl) {
 	screen->displayHook = NULL;
 }
 
-void free_old_fb(char *old_main, char *old_rfb, char *old_8to24, char *old_snap_fb) {
-	if (old_main) {
-		free(old_main);
-	}
-	if (old_rfb) {
-		if (old_rfb != old_main) {
-			free(old_rfb);
+void free_old_fb(void) {
+	char *fbs[16];
+	int i, j, nfb = 0, db = 0; 
+
+	fbs[nfb++] = main_fb;		main_fb = NULL;
+	fbs[nfb++] = rfb_fb;		rfb_fb = NULL;
+	fbs[nfb++] = cmap8to24_fb;	cmap8to24_fb = NULL;
+	fbs[nfb++] = snap_fb;		snap_fb = NULL;
+	fbs[nfb++] = rot_fb;		rot_fb = NULL;
+	fbs[nfb++] = raw_fb;		raw_fb = NULL;
+
+	for (i=0; i < nfb; i++) {
+		char *fb = fbs[i];
+		int freeit = 1;
+		if (! fb || fb < (char *) 0x10) {
+			continue;
 		}
-	}
-	if (old_8to24) {
-		if (old_8to24 != old_main && old_8to24 != old_rfb) {
-			free(old_8to24);
+		for (j=0; j < i; j++) {
+			if (fb == fbs[j]) {
+				freeit = 0;
+				break;
+			}
 		}
-	}
-	if (old_snap_fb) {
-		if (old_snap_fb != old_main && old_snap_fb != old_rfb &&
-		    old_snap_fb != old_8to24) {
-			free(old_snap_fb);
+		if (freeit) {
+			if (db) fprintf(stderr, "free: %i %p\n", i, fb);
+			free(fb);
+		} else {
+			if (db) fprintf(stderr, "skip: %i %p\n", i, fb);
 		}
 	}
 }
@@ -688,15 +705,7 @@ void do_new_fb(int reset_mem) {
 		free_tiles();
 	}
 
-	free_old_fb(main_fb, rfb_fb, cmap8to24_fb, snap_fb);
-
-	if (raw_fb == main_fb || raw_fb == rfb_fb) {
-		raw_fb = NULL;
-	}
-	main_fb = NULL;
-	rfb_fb = NULL;
-	cmap8to24_fb = NULL;
-	snap_fb = NULL;
+	free_old_fb();
 
 	fb = initialize_xdisplay_fb();
 
@@ -963,7 +972,8 @@ if (db) fprintf(stderr, "initialize_raw_fb reset\n");
 		rawfb_dev_video = 1;
 	} else if (strstr(str, "dev/video")) {
 		rawfb_dev_video = 1;
-	} else if (strstr(str, "cons") == str || strstr(str, "/dev/fb") == str) {
+	} else if (strstr(str, "console") == str || strstr(str, "fb") == str ||
+	    strstr(str, "/dev/fb") == str) {
 		char *str2 = console_guess(str, &raw_fb_fd);
 		if (str2 == NULL) {
 			rfbLog("console_guess failed for: %s\n", str);
@@ -1357,6 +1367,9 @@ static int wait_until_mapped(Window win) {
 	time_t start = time(NULL);
 	XWindowAttributes attr;
 
+#if NO_X11
+	return 0;
+#else
 	while (1) {
 		if (! valid_window(win, NULL, 0)) {
 			if (time(NULL) > start + waittime) {
@@ -1374,6 +1387,7 @@ static int wait_until_mapped(Window win) {
 		usleep(ms * 1000);
 	}
 	return 0;
+#endif	/* NO_X11 */
 }
 
 /*
@@ -1389,6 +1403,9 @@ XImage *initialize_xdisplay_fb(void) {
 	if (raw_fb_str) {
 		return initialize_raw_fb(0);
 	}
+#if NO_X11
+	return NULL;
+#else
 
 	X_LOCK;
 	if (subwin) {
@@ -1639,6 +1656,7 @@ if (0) fprintf(stderr, "DefaultDepth: %d  visial_id: %d\n", depth, (int) visual_
 		rfbLog("warning: 24 bpp may have poor performance.\n");
 	}
 	return fb;
+#endif	/* NO_X11 */
 }
 
 void parse_scale_string(char *str, double *factor, int *scaling, int *blend,
@@ -1751,6 +1769,35 @@ void parse_scale_string(char *str, double *factor, int *scaling, int *blend,
 	free(tstr);
 }
 
+int parse_rotate_string(char *str, int *mode) {
+	int m = ROTATE_NONE;
+	if (str == NULL || !strcmp(str, "") || !strcmp(str, "0")) {
+		m = ROTATE_NONE;
+	} else if (!strcmp(str, "x")) {
+		m = ROTATE_X;
+	} else if (!strcmp(str, "y")) {
+		m = ROTATE_Y;
+	} else if (!strcmp(str, "xy") || !strcmp(str, "yx") ||
+	    !strcmp(str,"+180") || !strcmp(str,"-180") || !strcmp(str,"180")) {
+		m = ROTATE_XY;
+	} else if (!strcmp(str, "+90") || !strcmp(str, "90")) {
+		m = ROTATE_90;
+	} else if (!strcmp(str, "+90x") || !strcmp(str, "90x")) {
+		m = ROTATE_90X;
+	} else if (!strcmp(str, "+90y") || !strcmp(str, "90y")) {
+		m = ROTATE_90Y;
+	} else if (!strcmp(str, "-90") || !strcmp(str, "270") ||
+	    !strcmp(str, "+270")) {
+		m = ROTATE_270;
+	} else {
+		rfbLog("invalid -rotate mode: %s\n", str);
+	}
+	if (mode) {
+		*mode = m;
+	}
+	return m;
+}
+
 int scale_round(int len, double fac) {
 	double eps = 0.000001;
 	
@@ -1822,6 +1869,28 @@ static void setup_scaling(int *width_in, int *height_in) {
 	}
 }
 
+static void setup_rotating(void) {
+	char *rs = rotating_str;
+
+	rotating_cursors = 1;
+	if (rs && strstr(rs, "nc:") == rs) {
+		rs += strlen("nc:");
+		rotating_cursors = 0;
+	}
+
+	rotating = parse_rotate_string(rs, NULL);
+	if (! rotating) {
+		rotating_cursors = 0;
+	}
+
+	if (rotating == ROTATE_90  || rotating == ROTATE_90X ||
+	    rotating == ROTATE_90Y || rotating == ROTATE_270) {
+		rotating_same = 0;
+	} else {
+		rotating_same = 1;
+	}
+}
+
 /*
  * initialize the rfb framebuffer/screen
  */
@@ -1877,8 +1946,27 @@ void initialize_screen(int *argc, char **argv, XImage *fb) {
 		rfb_bytes_per_line = main_bytes_per_line;
 	}
 
+	setup_rotating();
+
+	if (rotating) {
+		if (! rotating_same) {
+			int t, b = main_bytes_per_line / fb->width;
+			if (scaling) {
+				rot_bytes_per_line = b * height;
+			} else {
+				rot_bytes_per_line = b * fb->height;
+			}
+			t = width;
+			width = height;		/* The big swap... */
+			height = t;
+		} else {
+			rot_bytes_per_line = rfb_bytes_per_line;
+		}
+	}
+
 	if (cmap8to24 && depth == 8) {
 		rfb_bytes_per_line *= 4;
+		rot_bytes_per_line *= 4;
 	}
 
 	/*
@@ -1950,7 +2038,11 @@ void initialize_screen(int *argc, char **argv, XImage *fb) {
 	}
 
 	/* set up format from scratch: */
-	screen->paddedWidthInBytes = rfb_bytes_per_line;
+	if (rotating && ! rotating_same) {
+		screen->paddedWidthInBytes = rot_bytes_per_line;
+	} else {
+		screen->paddedWidthInBytes = rfb_bytes_per_line;
+	}
 	screen->serverFormat.bitsPerPixel = fb_bpp;
 	screen->serverFormat.depth = fb_depth;
 	screen->serverFormat.trueColour = TRUE;
@@ -1984,7 +2076,11 @@ void initialize_screen(int *argc, char **argv, XImage *fb) {
 		have_masks = 2;
 		/* need to fetch TrueColor visual */
 		X_LOCK;
-		if (dpy && XMatchVisualInfo(dpy, scr, 24, TrueColor, &vinfo)) {
+		if (dpy
+#if !NO_X11
+		    && XMatchVisualInfo(dpy, scr, 24, TrueColor, &vinfo)
+#endif
+		    ) {
 			main_red_mask   = vinfo.red_mask;
 			main_green_mask = vinfo.green_mask;
 			main_blue_mask  = vinfo.blue_mask;
@@ -2136,6 +2232,8 @@ void initialize_screen(int *argc, char **argv, XImage *fb) {
 			main_bytes_per_line);
 		fprintf(stderr, " rfb_fb_bytes_per_line: %d\n",
 			rfb_bytes_per_line);
+		fprintf(stderr, " rot_fb_bytes_per_line: %d\n",
+			rot_bytes_per_line);
 		switch(fb->format) {
 		case XYBitmap:
 			fprintf(stderr, " format:     XYBitmap\n"); break;
@@ -2182,11 +2280,13 @@ void initialize_screen(int *argc, char **argv, XImage *fb) {
 		main_fb = NULL;
 		rfb_fb = main_fb;
 		cmap8to24_fb = NULL;
+		rot_fb = NULL;
 		screen->displayHook = nofb_hook;
 	} else {
 		main_fb = fb->data;
 		rfb_fb = NULL;
 		cmap8to24_fb = NULL;
+		rot_fb = NULL;
 
 		if (cmap8to24) {
 			int n = main_bytes_per_line * fb->height;
@@ -2196,20 +2296,39 @@ void initialize_screen(int *argc, char **argv, XImage *fb) {
 			cmap8to24_fb = (char *) malloc(n);
 			memset(cmap8to24_fb, 0, n);
 		}
+
+		if (rotating) {
+			int n = rot_bytes_per_line * height;
+			rot_fb = (char *) malloc(n);
+			memset(rot_fb, 0, n);
+		}
+
 		if (scaling) {
-			rfb_fb = (char *) malloc(rfb_bytes_per_line * height);
-			memset(rfb_fb, 0, rfb_bytes_per_line * height);
+			int n = rfb_bytes_per_line * height;
+
+			if (rotating && ! rotating_same) {
+				n = rot_bytes_per_line * height;
+			}
+
+			rfb_fb = (char *) malloc(n);
+			memset(rfb_fb, 0, n);
+
 		} else if (cmap8to24) {
 			rfb_fb = cmap8to24_fb;	
 		} else {
 			rfb_fb = main_fb;
 		}
 	}
-	screen->frameBuffer = rfb_fb;
+	if (rot_fb) {
+		screen->frameBuffer = rot_fb;
+	} else {
+		screen->frameBuffer = rfb_fb;
+	}
 	if (!quiet) {
 		fprintf(stderr, " rfb_fb:      %p\n", rfb_fb);
 		fprintf(stderr, " main_fb:     %p\n", main_fb);
 		fprintf(stderr, " 8to24_fb:    %p\n", cmap8to24_fb);
+		fprintf(stderr, " rot_fb:      %p\n", rot_fb);
 		fprintf(stderr, " snap_fb:     %p\n", snap_fb);
 		fprintf(stderr, " raw_fb:      %p\n", raw_fb);
 		fprintf(stderr, " fake_fb:     %p\n", fake_fb);
@@ -2222,7 +2341,7 @@ void initialize_screen(int *argc, char **argv, XImage *fb) {
 
 	setup_cursors_and_push();
 
-	if (scaling || cmap8to24) {
+	if (scaling || rotating || cmap8to24) {
 		mark_rect_as_modified(0, 0, dpy_x, dpy_y, 0);
 	}
 

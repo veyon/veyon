@@ -19,14 +19,12 @@
 #include <unistd.h>
 #include <signal.h>
 #include <sys/utsname.h>
+#ifdef __hpux
+/* to avoid select() compiler warning */
+#include <sys/time.h>
+#endif
 #include <time.h>
 #include <errno.h>
-
-#include <X11/Xlib.h>
-#include <X11/Xutil.h>
-
-#include <X11/keysym.h>
-#include <X11/Xatom.h>
 
 #include <sys/stat.h>
 #include <fcntl.h>
@@ -34,6 +32,25 @@
 
 #include <rfb/rfb.h>
 #include <rfb/rfbregion.h>
+
+
+/* we can now build under --without-x: */
+#if LIBVNCSERVER_HAVE_X11
+
+#define NO_X11 0
+#include <X11/Xlib.h>
+#include <X11/Xutil.h>
+
+#include <X11/keysym.h>
+#include <X11/Xatom.h>
+
+#else
+
+#define NO_X11 1
+#include "nox11.h"
+#include <rfb/keysym.h>
+
+#endif
 
 /****************************************************************************/
 
@@ -114,7 +131,7 @@
 #define PASSWD_UNLESS_NOPW 0
 #endif
 
-#define noREL81
+#define xxNO_SSL_OR_UNIXPW
 
 /*
  * Beginning of support for small binary footprint build for embedded
@@ -125,7 +142,7 @@
  * should be done too (manually for now).
  *
  * If there is interest more of the bloat can be removed...  Currently
- * these shrink the binary from 500K to about 270K.
+ * these shrink the binary from 1100K to about 600K.
  */
 #ifndef SMALL_FOOTPRINT
 #define SMALL_FOOTPRINT 0
@@ -328,6 +345,7 @@ extern Visual *default_visual;		/* the default visual (unless -visual) */
 extern int bpp, depth;
 extern int indexed_color;
 extern int dpy_x, dpy_y;		/* size of display */
+extern int fb_x, fb_y, fb_b;		/* fb size and bpp guesses at display */
 extern int off_x, off_y;		/* offsets for -sid */
 extern int wdpy_x, wdpy_y;		/* for actual sizes in case of -clip */
 extern int cdpy_x, cdpy_y, coff_x, coff_y;	/* the -clip params */
@@ -369,6 +387,7 @@ extern char *rfb_fb;			/* same as main_fb unless transformation */
 extern char *fake_fb;			/* used under -padgeom */
 extern char *snap_fb;			/* used under -snapfb */
 extern char *cmap8to24_fb;		/* used under -8to24 */
+extern char *rot_fb;			/* used under -rotate */
 extern char *raw_fb;
 extern char *raw_fb_addr;
 extern int raw_fb_offset;
@@ -380,6 +399,7 @@ extern int raw_fb_back_to_X;
 
 extern int rfb_bytes_per_line;
 extern int main_bytes_per_line;
+extern int rot_bytes_per_line;
 extern unsigned long  main_red_mask,  main_green_mask,  main_blue_mask;
 extern unsigned short main_red_max,   main_green_max,   main_blue_max;
 extern unsigned short main_red_shift, main_green_shift, main_blue_shift;
@@ -394,6 +414,10 @@ extern int scaling_pad;		/* pad out scaled sizes to fit denominator */
 extern int scaling_interpolate;	/* use interpolation scheme when shrinking */
 extern int scaled_x, scaled_y;		/* dimensions of scaled display */
 extern int scale_numer, scale_denom;	/* n/m */
+extern char *rotating_str;
+extern int rotating;
+extern int rotating_same;
+extern int rotating_cursors;
 
 /* scale cursor */
 extern char *scale_cursor_str;
@@ -492,6 +516,8 @@ typedef struct _ClientData {
 	int raw_bytes_sent;
 
 } ClientData;
+
+extern void nox11_exit(int rc);
 
 #include "params.h"
 #include "enums.h"

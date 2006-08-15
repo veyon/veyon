@@ -24,6 +24,7 @@
 #include "keyboard.h"
 #include "selection.h"
 #include "unixpw.h"
+#include "uinput.h"
 
 int send_remote_cmd(char *cmd, int query, int wait);
 int do_remote_query(char *remote_cmd, char *query_cmd, int remote_sync,
@@ -491,6 +492,9 @@ static void reset_rfbport(int old, int new)  {
 int remote_control_access_ok(void) {
 	struct stat sbuf;
 
+#if NO_X11
+	return 0;
+#else
 	if (client_connect_file) {
 		if (stat(client_connect_file, &sbuf) == 0) {
 			if (sbuf.st_mode & S_IWOTH) {
@@ -613,6 +617,7 @@ int remote_control_access_ok(void) {
 
 	}
 	return 1;
+#endif	/* NO_X11 */
 }
 
 static int hack_val = 0;
@@ -1892,6 +1897,20 @@ char *process_remote_cmd(char *cmd, int stringonly) {
 			rfbLog("remote_cmd: XRANDR ext. not present.\n");
 		}
 
+	} else if (strstr(p, "rotate") == p) {
+		COLON_CHECK("rotate:")
+		if (query) {
+			snprintf(buf, bufn, "ans=%s%s%s", p, co,
+			    NONUL(rotating_str));
+			goto qry;
+		}
+		p += strlen("rotate:");
+		if (rotating_str) free(rotating_str);
+		rotating_str = strdup(p);
+		rfbLog("remote_cmd: set rotate to \"%s\"\n", rotating_str);
+
+		do_new_fb(0);
+
 	} else if (strstr(p, "padgeom") == p) {
 		COLON_CHECK("padgeom:")
 		if (query) {
@@ -3029,6 +3048,21 @@ char *process_remote_cmd(char *cmd, int stringonly) {
 		rfbLog("remote_cmd: setting input_skip %d\n", is);
 		ui_skip = is;
 
+	} else if (!strcmp(p, "allinput")) {
+		if (query) {
+			snprintf(buf, bufn, "ans=%s:%d", p, all_input);
+			goto qry;
+		}
+		all_input = 1;
+		rfbLog("enabled allinput\n");
+	} else if (!strcmp(p, "noallinput")) {
+		if (query) {
+			snprintf(buf, bufn, "ans=%s:%d", p, !all_input);
+			goto qry;
+		}
+		all_input = 0;
+		rfbLog("disabled allinput\n");
+
 	} else if (strstr(p, "input") == p) {
 		int doit = 1;
 		COLON_CHECK("input:")
@@ -3066,9 +3100,11 @@ char *process_remote_cmd(char *cmd, int stringonly) {
 		}
 		grab_kbd = 0;
 		if (orig && dpy) {
+#if !NO_X11
 			X_LOCK;
 			XUngrabKeyboard(dpy, CurrentTime);
 			X_UNLOCK;
+#endif
 		}
 		rfbLog("disabled grab_kbd\n");
 	} else if (!strcmp(p, "grabptr")) {
@@ -3086,9 +3122,11 @@ char *process_remote_cmd(char *cmd, int stringonly) {
 		}
 		grab_ptr = 0;
 		if (orig && dpy) {
+#if !NO_X11
 			X_LOCK;
 			XUngrabPointer(dpy, CurrentTime);
 			X_UNLOCK;
+#endif
 		}
 		rfbLog("disabled grab_ptr\n");
 
@@ -3097,6 +3135,19 @@ char *process_remote_cmd(char *cmd, int stringonly) {
 		COLON_CHECK("client_input:")
 		p += strlen("client_input:");
 		set_client_input(p);
+
+	} else if (strstr(p, "ssltimeout") == p) {
+		int is;
+		COLON_CHECK("ssltimeout:")
+		if (query) {
+			snprintf(buf, bufn, "ans=%s%s%d", p, co,
+			    ssl_timeout_secs);
+			goto qry;
+		}
+		p += strlen("ssltimeout:");
+		is = atoi(p);
+		rfbLog("remote_cmd: setting ssltimeout: %d\n", is);
+		ssl_timeout_secs = is;
 
 	} else if (strstr(p, "speeds") == p) {
 		COLON_CHECK("speeds:")
@@ -3435,6 +3486,50 @@ char *process_remote_cmd(char *cmd, int stringonly) {
 		raw_fb_back_to_X = 1;
 		do_new_fb(1);
 		raw_fb_back_to_X = 0;
+
+	} else if (strstr(p, "uinput_accel") == p) {
+		COLON_CHECK("uinput_accel:")
+		if (query) {
+			snprintf(buf, bufn, "ans=%s%s%s", p, co,
+			    NONUL(get_uinput_accel()));
+			goto qry;
+		}
+		p += strlen("uinput_accel:");
+		rfbLog("set_uinput_accel: %s\n", p);
+		set_uinput_accel(p);
+
+	} else if (strstr(p, "uinput_thresh") == p) {
+		COLON_CHECK("uinput_thresh:")
+		if (query) {
+			snprintf(buf, bufn, "ans=%s%s%s", p, co,
+			    NONUL(get_uinput_thresh()));
+			goto qry;
+		}
+		p += strlen("uinput_thresh:");
+		rfbLog("set_uinput_thresh: %s\n", p);
+		set_uinput_thresh(p);
+
+	} else if (strstr(p, "uinput_reset") == p) {
+		COLON_CHECK("uinput_reset:")
+		p += strlen("uinput_reset:");
+		if (query) {
+			snprintf(buf, bufn, "ans=%s%s%d", p, co,
+			    get_uinput_reset());
+			goto qry;
+		}
+		rfbLog("set_uinput_reset: %s\n", p);
+		set_uinput_reset(atoi(p));
+
+	} else if (strstr(p, "uinput_always") == p) {
+		COLON_CHECK("uinput_always:")
+		p += strlen("uinput_always:");
+		if (query) {
+			snprintf(buf, bufn, "ans=%s%s%d", p, co,
+			    get_uinput_always());
+			goto qry;
+		}
+		rfbLog("set_uinput_always: %s\n", p);
+		set_uinput_always(atoi(p));
 
 	} else if (strstr(p, "progressive") == p) {
 		int f;
@@ -3967,7 +4062,7 @@ char *process_remote_cmd(char *cmd, int stringonly) {
 			snprintf(buf, bufn, "aro=%s:%d", p, no_external_cmds);
 		} else if (!strcmp(p, "passwdfile")) {
 			snprintf(buf, bufn, "aro=%s:%s", p, NONUL(passwdfile));
-#ifndef REL81
+#ifndef NO_SSL_OR_UNIXPW
 		} else if (!strcmp(p, "unixpw")) {
 			snprintf(buf, bufn, "aro=%s:%d", p, unixpw);
 		} else if (!strcmp(p, "unixpw_nis")) {

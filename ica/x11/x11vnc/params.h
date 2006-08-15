@@ -35,8 +35,20 @@
 
 #define MAXN 256
 
-#define PIPEINPUT_NONE	0x0
-#define PIPEINPUT_VID	0x1
-#define PIPEINPUT_CONS	0x2
+#define PIPEINPUT_NONE		0x0
+#define PIPEINPUT_VID		0x1
+#define PIPEINPUT_CONSOLE	0x2
+#define PIPEINPUT_UINPUT	0x3
+
+#define MAX_BUTTONS 5
+
+#define ROTATE_NONE		0
+#define ROTATE_X		1
+#define ROTATE_Y		2
+#define ROTATE_XY		3
+#define ROTATE_90		4
+#define ROTATE_90X		5
+#define ROTATE_90Y		6
+#define ROTATE_270		7
 
 #endif /* _X11VNC_PARAMS_H */

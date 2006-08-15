@@ -911,6 +911,10 @@ static unsigned char t2x2_bits[] = {
 	KeyCode key_o;
 
 	RAWFB_RET(0)
+#if NO_X11
+	nox11_exit(1);
+	return 0;
+#else
 
 	if (! accept) {
 		sprintf(str_y, "OK");
@@ -1168,6 +1172,7 @@ static unsigned char t2x2_bits[] = {
 	X_UNLOCK;
 
 	return ret;
+#endif	/* NO_X11 */
 }
 
 /*
@@ -1659,14 +1664,18 @@ void reverse_connect(char *str) {
  */
 void set_vnc_connect_prop(char *str) {
 	RAWFB_RET_VOID
+#if !NO_X11
 	XChangeProperty(dpy, rootwin, vnc_connect_prop, XA_STRING, 8,
 	    PropModeReplace, (unsigned char *)str, strlen(str));
+#endif	/* NO_X11 */
 }
 
 void set_x11vnc_remote_prop(char *str) {
 	RAWFB_RET_VOID
+#if !NO_X11
 	XChangeProperty(dpy, rootwin, x11vnc_remote_prop, XA_STRING, 8,
 	    PropModeReplace, (unsigned char *)str, strlen(str));
+#endif	/* NO_X11 */
 }
 
 void read_vnc_connect_prop(int nomsg) {
@@ -1684,6 +1693,9 @@ void read_vnc_connect_prop(int nomsg) {
 		return;
 	}
 	RAWFB_RET_VOID
+#if NO_X11
+	return;
+#else
 
 	/* read the property value into vnc_connect_str: */
 	do {
@@ -1713,6 +1725,7 @@ void read_vnc_connect_prop(int nomsg) {
 	} else {
 		rfbLog("read VNC_CONNECT: %s\n", vnc_connect_str);
 	}
+#endif	/* NO_X11 */
 }
 
 void read_x11vnc_remote_prop(int nomsg) {
@@ -1730,6 +1743,9 @@ void read_x11vnc_remote_prop(int nomsg) {
 		return;
 	}
 	RAWFB_RET_VOID
+#if NO_X11
+	return;
+#else
 
 	/* read the property value into x11vnc_remote_str: */
 	do {
@@ -1777,6 +1793,7 @@ void read_x11vnc_remote_prop(int nomsg) {
 	} else {
 		rfbLog("read X11VNC_REMOTE: %s\n", x11vnc_remote_str);
 	}
+#endif	/* NO_X11 */
 }
 
 /*
@@ -2176,6 +2193,9 @@ void send_client_info(char *str) {
 
 void adjust_grabs(int grab, int quiet) {
 	RAWFB_RET_VOID
+#if NO_X11
+	return;
+#else
 	/* n.b. caller decides to X_LOCK or not. */
 	if (grab) {
 		if (grab_kbd) {
@@ -2206,6 +2226,7 @@ void adjust_grabs(int grab, int quiet) {
 			XUngrabPointer(dpy, CurrentTime);
 		}
 	}
+#endif	/* NO_X11 */
 }
 
 void check_new_clients(void) {

@@ -19,7 +19,7 @@
  *  USA.
  *
  *
- * This program is based heavily on the following programs:
+ * This program is based on the following programs:
  *
  *       the originial x11vnc.c in libvncserver (Johannes E. Schindelin)
  *	 x0rfbserver, the original native X vnc server (Jens Wagner)
@@ -754,7 +754,7 @@ static void check_rcfile(int argc, char **argv) {
 						*(q-1) = ' ';
 						break;
 					}
-					while (isspace(*q)) {
+					while (isspace((unsigned char) (*q))) {
 						*q = '\0';
 						if (q == p) {
 							break;
@@ -770,7 +770,7 @@ static void check_rcfile(int argc, char **argv) {
 				if (*q == '\0') {
 					q--;
 				}
-				while (isspace(*q)) {
+				while (isspace((unsigned char) (*q))) {
 					*q = '\0';
 					if (q == p) {
 						break;
@@ -793,7 +793,7 @@ static void check_rcfile(int argc, char **argv) {
 			q = buf;
 			while (*q) {
 				i++;
-				if (*q == '\n' || isspace(*q)) {
+				if (*q == '\n' || isspace((unsigned char) (*q))) {
 					break;
 				}
 				q++;
@@ -1059,6 +1059,10 @@ static void print_settings(int try_http, int bg, char *gui_str) {
 	    : "null");
 	fprintf(stderr, " unixpw:     %d\n", unixpw);
 	fprintf(stderr, " unixpw_lst: %s\n", unixpw_list ? unixpw_list:"null");
+	fprintf(stderr, " ssl:        %s\n", openssl_pem ? openssl_pem:"null");
+	fprintf(stderr, " ssldir:     %s\n", ssl_certs_dir ? ssl_certs_dir:"null");
+	fprintf(stderr, " ssltimeout  %d\n", ssl_timeout_secs);
+	fprintf(stderr, " sslverify:  %s\n", ssl_verify ? ssl_verify:"null");
 	fprintf(stderr, " stunnel:    %d\n", use_stunnel);
 	fprintf(stderr, " accept:     %s\n", accept_cmd ? accept_cmd
 	    : "null");
@@ -1642,7 +1646,7 @@ int main(int argc, char* argv[]) {
 			CHECK_ARGC
 			passwdfile = strdup(argv[++i]);
 			got_passwdfile = 1;
-#ifndef REL81
+#ifndef NO_SSL_OR_UNIXPW
 		} else if (strstr(arg, "-unixpw") == arg) {
 			unixpw = 1;
 			if (strstr(arg, "-unixpw_nis")) {
@@ -1674,6 +1678,9 @@ int main(int argc, char* argv[]) {
 					i++;
 				}
 			}
+		} else if (!strcmp(arg, "-ssltimeout")) {
+			CHECK_ARGC
+			ssl_timeout_secs = atoi(argv[++i]);
 		} else if (!strcmp(arg, "-ssldir")) {
 			CHECK_ARGC
 			ssl_certs_dir = strdup(argv[++i]);
@@ -1826,6 +1833,9 @@ int main(int argc, char* argv[]) {
 					i++;
 				}
 			}
+		} else if (!strcmp(arg, "-rotate")) {
+			CHECK_ARGC
+			rotating_str = strdup(argv[++i]);
 		} else if (!strcmp(arg, "-padgeom")
 		    || !strcmp(arg, "-padgeometry")) {
 			CHECK_ARGC
@@ -1854,6 +1864,9 @@ int main(int argc, char* argv[]) {
 		} else if (!strcmp(arg, "-V") || !strcmp(arg, "-version")) {
 			fprintf(stdout, "x11vnc: %s\n", lastmod);
 			exit(0);
+		} else if (!strcmp(arg, "-license") ||
+		    !strcmp(arg, "-copying") || !strcmp(arg, "-warranty")) {
+			print_license();
 		} else if (!strcmp(arg, "-dbg")) {
 			crash_debug = 1;
 		} else if (!strcmp(arg, "-nodbg")) {
@@ -1913,7 +1926,7 @@ int main(int argc, char* argv[]) {
 				if (*s == '-') {
 					s++;
 				}
-				if (isdigit(*s)) {
+				if (isdigit((unsigned char) (*s))) {
 					no_repeat_countdown = atoi(argv[++i]);
 				}
 			}
@@ -2070,6 +2083,10 @@ int main(int argc, char* argv[]) {
 			CHECK_ARGC
 			ui_skip = atoi(argv[++i]);
 			if (! ui_skip) ui_skip = 1;
+		} else if (!strcmp(arg, "-allinput")) {
+			all_input = 1;
+		} else if (!strcmp(arg, "-noallinput")) {
+			all_input = 0;
 		} else if (!strcmp(arg, "-speeds")) {
 			CHECK_ARGC
 			speeds_str = strdup(argv[++i]);
@@ -2958,7 +2975,7 @@ int main(int argc, char* argv[]) {
 	}
 
 	overlay_present = 0;
-#ifdef SOLARIS_OVERLAY
+#if defined(SOLARIS_OVERLAY) && !NO_X11
 	if (! XQueryExtension(dpy, "SUN_OVL", &maj, &ev, &er)) {
 		if (! quiet && overlay) {
 			rfbLog("Disabling -overlay: SUN_OVL "
@@ -2968,7 +2985,7 @@ int main(int argc, char* argv[]) {
 		overlay_present = 1;
 	}
 #endif
-#ifdef IRIX_OVERLAY
+#if defined(IRIX_OVERLAY) && !NO_X11
 	if (! XReadDisplayQueryExtension(dpy, &ev, &er)) {
 		if (! quiet && overlay) {
 			rfbLog("Disabling -overlay: IRIX ReadDisplay "
@@ -3217,13 +3234,17 @@ int main(int argc, char* argv[]) {
 		rfb_desktop_name = strdup(argv_vnc[argc_vnc-1]);
 	}
 	
-	initialize_pipeinput();
-
 	/*
 	 * Create the XImage corresponding to the display framebuffer.
 	 */
 
 	fb0 = initialize_xdisplay_fb();
+
+	/*
+	 * In some cases (UINPUT touchscreens) we need the dpy_x dpy_y
+	 * to initialize pipeinput. So we do it after fb is created.
+	 */
+	initialize_pipeinput();
 
 	/*
 	 * n.b. we do not have to X_LOCK any X11 calls until watch_loop()

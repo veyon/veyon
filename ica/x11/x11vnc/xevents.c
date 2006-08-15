@@ -42,17 +42,24 @@ static void grab_buster_watch(int parent, char *dstr);
 void initialize_vnc_connect_prop(void) {
 	vnc_connect_str[0] = '\0';
 	RAWFB_RET_VOID
+#if !NO_X11
 	vnc_connect_prop = XInternAtom(dpy, "VNC_CONNECT", False);
+#endif
 }
 
 void initialize_x11vnc_remote_prop(void) {
 	x11vnc_remote_str[0] = '\0';
 	RAWFB_RET_VOID
+#if !NO_X11
 	x11vnc_remote_prop = XInternAtom(dpy, "X11VNC_REMOTE", False);
+#endif
 }
 
 void initialize_clipboard_atom(void) {
 	RAWFB_RET_VOID
+#if NO_X11
+	return;
+#else
 	clipboard_atom = XInternAtom(dpy, "CLIPBOARD", False);
 	if (clipboard_atom == None) {
 		if (! quiet) rfbLog("could not find atom CLIPBOARD\n");
@@ -63,6 +70,7 @@ void initialize_clipboard_atom(void) {
 			set_clipboard = 0;
 		}
 	}
+#endif	/* NO_X11 */
 }
 
 static void initialize_xevents(int reset) {
@@ -76,6 +84,9 @@ static void initialize_xevents(int reset) {
 	static int did_xrandr = 0;
 
 	RAWFB_RET_VOID
+#if NO_X11
+	return;
+#else
 
 	if (reset) {
 		did_xselect_input = 0;
@@ -136,6 +147,7 @@ static void initialize_xevents(int reset) {
 		initialize_xdamage();
 		did_xdamage = 1;
 	}
+#endif	/* NO_X11 */
 }
 
 static void print_xevent_bases(void) {
@@ -163,6 +175,9 @@ static void get_prop(char *str, int len, Atom prop) {
 		return;
 	}
 	RAWFB_RET_VOID
+#if NO_X11
+	return;
+#else
 
 	slen = 0;
 	
@@ -184,6 +199,7 @@ static void get_prop(char *str, int len, Atom prop) {
 			XFree(data);
 		}
 	} while (bytes_after > 0);
+#endif	/* NO_X11 */
 }
 
 static void bust_grab(int reset) {
@@ -200,6 +216,9 @@ static void bust_grab(int reset) {
 		bust_count = 0;
 		return;
 	}
+#if NO_X11
+	return;
+#else
 
 	x = 0;
 	y = 0;
@@ -275,6 +294,7 @@ static void bust_grab(int reset) {
 	}
 	XFlush_wr(dpy);
 	last_bust = time(NULL);
+#endif	/* NO_X11 */
 }
 
 typedef struct _grabwatch {
@@ -450,6 +470,9 @@ static void grab_buster_watch(int parent, char *dstr) {
 	int db = 0;
 
 	RAWFB_RET_VOID
+#if NO_X11
+	return;
+#else
 
 	if (grab_buster > 1) {
 		db = 1;
@@ -510,6 +533,7 @@ static void grab_buster_watch(int parent, char *dstr) {
 			break;
 		}
 	}
+#endif	/* NO_X11 */
 }
 
 void spawn_grab_buster(void) {
@@ -559,6 +583,9 @@ void sync_tod_with_servertime(void) {
 	int i, db = 0;
 
 	RAWFB_RET_VOID
+#if NO_X11
+	return;
+#else
 
 	if (! ticker_atom) {
 		ticker_atom = XInternAtom(dpy, "X11VNC_TICKER", False);
@@ -601,6 +628,7 @@ void sync_tod_with_servertime(void) {
 		}
 		usleep(1000);
 	}
+#endif	/* NO_X11 */
 }
 
 void check_keycode_state(void) {
@@ -717,6 +745,9 @@ void check_xevents(int reset) {
 	XErrorHandler old_handler;
 
 	RAWFB_RET_VOID
+#if NO_X11
+	return;
+#else
 
 	if (unixpw_in_progress) return;
 
@@ -1079,6 +1110,7 @@ void check_xevents(int reset) {
 	X_UNLOCK;
 
 	last_call = now;
+#endif	/* NO_X11 */
 }
 
 /*
@@ -1088,6 +1120,9 @@ void xcut_receive(char *text, int len, rfbClientPtr cl) {
 	allowed_input_t input;
 
 	RAWFB_RET_VOID
+#if NO_X11
+	return;
+#else
 
 	if (unixpw_in_progress) {
 		rfbLog("xcut_receive: unixpw_in_progress, skipping.\n");
@@ -1169,6 +1204,7 @@ void xcut_receive(char *text, int len, rfbClientPtr cl) {
 	X_UNLOCK;
 
 	set_cutbuffer = 1;
+#endif	/* NO_X11 */
 }
 
 

@@ -29,6 +29,7 @@ char *ssl_certs_dir = NULL;
 int https_port_num = -1;
 char *ssl_verify = NULL;
 int ssl_initialized = 0;
+int ssl_timeout_secs = -1;
 int usepw = USEPW;
 char *blackout_str = NULL;	/* -blackout */
 int blackout_ptr = 0;
@@ -290,6 +291,7 @@ int naptile = 4;	/* tile change threshold per poll to take a nap */
 int napfac = 4;		/* time = napfac*waitms, cut load with extra waits */
 int napmax = 1500;	/* longest nap in ms. */
 int ui_skip = 10;	/* see watchloop.  negative means ignore input */
+int all_input = 0;
 
 
 #if LIBVNCSERVER_HAVE_FBPM

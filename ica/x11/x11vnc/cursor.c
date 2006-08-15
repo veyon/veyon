@@ -82,6 +82,19 @@ static void curs_copy(cursor_info_t *dest, cursor_info_t *src) {
 	dest->sy = src->sy;
 	dest->reverse = src->reverse;
 	dest->rfb = src->rfb;
+
+	if (rotating && rotating_cursors && dest->data != NULL) {
+		int tx, ty;
+		rotate_curs(dest->data, src->data, src->wx, src->wy, 1);
+		rotate_curs(dest->mask, src->mask, src->wx, src->wy, 1);
+		rotate_coords(dest->sx, dest->sy, &tx, &ty, src->wx, src->wy);
+		dest->sx = tx;
+		dest->sy = ty;
+		if (! rotating_same) {
+			dest->wx = src->wy;
+			dest->wy = src->wx;
+		}
+	}
 }
 
 /* empty cursor */
@@ -828,6 +841,9 @@ static void tree_descend_cursor(int *depth, Window *w, win_str_info_t *winfo) {
 	XErrorHandler old_handler;
 
 	RAWFB_RET_VOID
+#if NO_X11
+	return;
+#else
 
 	X_LOCK;
 
@@ -914,6 +930,7 @@ static void tree_descend_cursor(int *depth, Window *w, win_str_info_t *winfo) {
 
 	*depth = descend;
 	*w = wins[descend];
+#endif	/* NO_X11 */
 }
 
 void initialize_xfixes(void) {
@@ -1313,6 +1330,27 @@ static int get_xfixes_cursor(int init) {
 			cursors[use]->rfb = NULL;
 		}
 
+		if (rotating && rotating_cursors) {
+			char *dst;
+			int tx, ty;
+			int w = xfc->width;
+			int h = xfc->height;
+
+			dst = (char *) malloc(w * h * 4);
+			rotate_curs(dst, (char *) xfc->pixels, w, h, 4);
+
+			memcpy(xfc->pixels, dst, w * h * 4);
+			free(dst);
+
+			rotate_coords(xfc->xhot, xfc->yhot, &tx, &ty, w, h);
+			xfc->xhot = tx;
+			xfc->yhot = ty;
+			if (! rotating_same) {
+				xfc->width = h;
+				xfc->height = w;
+			}
+		}
+
 		/* place cursor into our collection */
 		cursors[use]->rfb = pixels2curs(xfc->pixels, xfc->width,
 		    xfc->height, xfc->xhot, xfc->yhot, bpp/8);
@@ -1456,6 +1494,7 @@ int get_which_cursor(void) {
 				unsigned int w, h, bw, d;  
 				Window r;
 
+#if !NO_X11
 				trapped_xerror = 0;
 				X_LOCK;
 				old_handler = XSetErrorHandler(trap_xerror);
@@ -1470,6 +1509,7 @@ int get_which_cursor(void) {
 				XSetErrorHandler(old_handler);
 				X_UNLOCK;
 				trapped_xerror = 0;
+#endif	/* NO_X11 */
 			}
 			if (which == which0) {
 				/* the string "term" mean I-beam. */
@@ -1781,6 +1821,9 @@ int check_x11_pointer(void) {
 	unsigned int mask;
 
 	RAWFB_RET(0)
+#if NO_X11
+	return 0;
+#else
 
 	if (unixpw_in_progress) return 0;
 
@@ -1811,5 +1854,6 @@ int check_x11_pointer(void) {
 
 	/* change the cursor shape if necessary */
 	return set_cursor(x, y, get_which_cursor());
+#endif	/* NO_X11 */
 }
 

@@ -71,6 +71,9 @@ static void set_root_cmap(void) {
 	int redo = 0;
 
 	RAWFB_RET_VOID
+#if NO_X11
+	return;
+#else
 
 	if (now > last_set + 10) {
 		redo = 1;
@@ -116,6 +119,7 @@ static void set_root_cmap(void) {
 		}
 		X_UNLOCK;
 	}
+#endif	/* NO_X11 */
 }
 
 /* fixed size array.  Will primarily hold visible 8bpp windows */
@@ -256,6 +260,9 @@ void check_for_multivis(void) {
 	double delay;
 
 	RAWFB_RET_VOID
+#if NO_X11
+	return;
+#else
 
 	if (now > last_parse + 1.0) {
 		last_parse = now;
@@ -529,6 +536,7 @@ if (0) fprintf(stderr, "MV_count: %d hit: %d %.4f  %10.2f\n", MV_count, MV_hit, 
 		}
 	}
 if (0) fprintf(stderr, "done: %.4f\n", dnow() - last_query);
+#endif	/* NO_X11 */
 }
 
 #define VW_CACHE_MAX 1024
@@ -750,6 +758,9 @@ if (db24 > 1) fprintf(stderr, "          ------------ 0x%lx i=%d\n", windows_8bp
 
 static XImage *p_xi(XImage *xi, Visual *visual, int win_depth, int *w) {
 	RAWFB_RET(NULL)
+#if NO_X11
+	return NULL;
+#else
 	if (xi == NULL || *w < dpy_x) {
 		char *d;
 		if (xi) {
@@ -765,6 +776,7 @@ static XImage *p_xi(XImage *xi, Visual *visual, int win_depth, int *w) {
 		    dpy_x, 1, 8, 0);
 	}
 	return xi;
+#endif	/* NO_X11 */
 }
 
 static int poll_line(int x1, int x2, int y1, int n, sraRegionPtr mod) {
@@ -791,6 +803,9 @@ static int poll_line(int x1, int x2, int y1, int n, sraRegionPtr mod) {
 
 	RAWFB_RET(1)
 
+#if NO_X11
+	return 1;
+#else
 	if (win == None) {
 		return 1;
 	}
@@ -912,6 +927,7 @@ if (db24 > 2) fprintf(stderr, "avoid bad match...\n");
 		sraRgnDestroy(rect);	
 	}
 	return 1;
+#endif	/* NO_X11 */
 }
 
 static void poll_line_complement(int x1, int x2, int y1, sraRegionPtr mod) {
@@ -1279,6 +1295,9 @@ static int get_cmap(int j, Colormap cmap) {
 	XErrorHandler old_handler = NULL;
 
 	RAWFB_RET(0)
+#if NO_X11
+	return 0;
+#else
 
 	if (0) {
 		/* not working properly for depth 24... */
@@ -1345,6 +1364,7 @@ if (db24 > 2) fprintf(stderr, " cmap[%02d][%03d]: %03d %03d %03d  0x%08x \n", j,
 		rgb[j][i] = red | green | blue;
 	}
 	return 1;
+#endif	/* NO_X11 */
 }
 
 static void do_8bpp_region(int n, sraRegionPtr mark) {
@@ -1409,6 +1429,9 @@ static XImage *cmap_xi(XImage *xi, Window win, int win_depth) {
 	XWindowAttributes attr;
 	char *d;
 
+#if NO_X11
+	return NULL;
+#else
 	if (xi) {
 		XDestroyImage(xi);
 	}
@@ -1426,6 +1449,7 @@ static XImage *cmap_xi(XImage *xi, Window win, int win_depth) {
 	}
 	return XCreateImage(dpy, attr.visual, win_depth, ZPixmap, 0, d, dpy_x,
 	    dpy_y, 8, 0);
+#endif	/* NO_X11 */
 }
 
 
@@ -1446,6 +1470,9 @@ static void transform_rect(sraRect rect, Window win, int win_depth, int cm) {
 if (db24 > 1) fprintf(stderr, "transform %4d %4d %4d %4d cm: %d\n", rect.x1, rect.y1, rect.x2, rect.y2, cm);
 
 	RAWFB_RET_VOID
+#if NO_X11
+	return;
+#else
 
 	/* now transform the pixels in this rectangle: */
 	n_off = main_bytes_per_line * rect.y1 + pixelsize * rect.x1;
@@ -1649,6 +1676,7 @@ if (db24) fprintf(stderr, "xi: wrong depth: %d\n", xi->depth);
 			src += main_bytes_per_line * fac;
 		}
 	}
+#endif	/* NO_X11 */
 }
 
 void bpp8to24(int x1, int y1, int x2, int y2) {

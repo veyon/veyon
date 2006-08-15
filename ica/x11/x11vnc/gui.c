@@ -46,6 +46,9 @@ static Window tweak_tk_window_id(Window win) {
 	char *name = NULL;
 	Window parent, new;
 
+#if NO_X11
+	return None;
+#else
 	/* hack for tk, does not report outermost window */
 	new = win;
 	parent = parent_window(win, &name);
@@ -60,6 +63,7 @@ static Window tweak_tk_window_id(Window win) {
 		XFree(name);
 	}
 	return new;
+#endif	/* NO_X11 */
 }
 
 int tray_embed(Window iconwin, int remove) {
@@ -73,6 +77,9 @@ int tray_embed(Window iconwin, int remove) {
 	long data = 0;
 
 	RAWFB_RET(0)
+#if NO_X11
+	return 0;
+#else
 
 	if (remove) {
 		if (!valid_window(iconwin, &attr, 1)) {
@@ -153,6 +160,7 @@ int tray_embed(Window iconwin, int remove) {
 	XSetErrorHandler(old_handler);
 	trapped_xerror = 0;
 	return 1;
+#endif	/* NO_X11 */
 }
 
 static int tray_manager_running(Display *d, Window *manager) {
@@ -161,6 +169,9 @@ static int tray_manager_running(Display *d, Window *manager) {
 	Window tray_win;
 
 	RAWFB_RET(0)
+#if NO_X11
+	return 0;
+#else
 
 	if (manager) {
 		*manager = None;
@@ -182,6 +193,7 @@ static int tray_manager_running(Display *d, Window *manager) {
 	} else {
 		return 1;
 	}
+#endif	/* NO_X11 */
 }
 
 static char *gui_geometry = NULL;

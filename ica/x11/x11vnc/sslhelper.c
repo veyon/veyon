@@ -20,7 +20,7 @@
 #endif
 #endif
 
-#ifdef REL81
+#ifdef NO_SSL_OR_UNIXPW
 #undef FORK_OK
 #undef LIBVNCSERVER_HAVE_LIBSSL
 #define LIBVNCSERVER_HAVE_LIBSSL 0
@@ -923,14 +923,7 @@ static void lose_ram(void) {
 	 * without doing exec().  we really should re-exec, but a pain
 	 * to redo all SSL ctx.
 	 */
-	free_old_fb(main_fb, rfb_fb, cmap8to24_fb, snap_fb);
-	if (raw_fb == main_fb || raw_fb == rfb_fb) {
-		raw_fb = NULL;
-	}
-	main_fb = NULL;
-	rfb_fb = NULL;
-	cmap8to24_fb = NULL;
-	snap_fb = NULL;
+	free_old_fb();
 
 	free_tiles();
 }
@@ -1031,7 +1024,6 @@ if (db) fprintf(stderr, "waitpid(%d) 2\n", helpers[i]);
 	}
 }
 
-/* AUDIT */
 static int is_ssl_readable(int s_in, time_t last_https, char *last_get,
     int mode) {
 	int nfd, db = 0;
@@ -1064,7 +1056,7 @@ static int is_ssl_readable(int s_in, time_t last_https, char *last_get,
 	 */
 	if (time(NULL) < last_https + 30) {
 		tv.tv_sec  = 8;
-		if (strstr(last_get, "VncViewer")) {
+		if (last_get && strstr(last_get, "VncViewer")) {
 			tv.tv_sec  = 4;
 		}
 	}
@@ -1099,6 +1091,9 @@ static int watch_for_http_traffic(char *buf_a, int *n_a) {
 	 */
 	if (getenv("ACCEPT_OPENSSL_DEBUG")) {
 		db = atoi(getenv("ACCEPT_OPENSSL_DEBUG"));
+	}
+	if (! buf_a || ! n_a) {
+		return 0;
 	}
 
 	buf = (char *) calloc((ABSIZE+1), 1);
@@ -1138,7 +1133,9 @@ static int watch_for_http_traffic(char *buf_a, int *n_a) {
 	if (n2 >= 0) {
 		n += n2;
 	}
+
 	*n_a = n;
+
 	if (db) fprintf(stderr, "watch_for_http_traffic readmore: %d\n", n2);
 
 	if (n > 0) {
@@ -1166,7 +1163,11 @@ static void csock_timeout (int sig) {
 static int wait_conn(int sock) {
 	int conn;
 	struct sockaddr_in addr;
+#ifdef __hpux
+	int addrlen = sizeof(addr);
+#else
 	socklen_t addrlen = sizeof(addr);
+#endif
 
 	signal(SIGALRM, csock_timeout);
 	csock_timeout_sock = sock;
@@ -1181,6 +1182,7 @@ static int wait_conn(int sock) {
 
 int proxy_hack(int vncsock, int listen, int s_in, int s_out, char *cookie,
     int mode) {
+	int sock1, db = 0;
 	char reply[] = "HTTP/1.1 200 OK\r\n"
 	    "Content-Type: octet-stream\r\n"
 	    "Pragma: no-cache\r\n\r\n";
@@ -1188,7 +1190,6 @@ int proxy_hack(int vncsock, int listen, int s_in, int s_out, char *cookie,
 	    "Content-Type: octet-stream\r\n"
 	    "Content-Length: 9\r\n"
 	    "Pragma: no-cache\r\n\r\nGO_AHEAD\n";
-	int sock1, db = 0;
 
 	rfbLog("SSL: accept_openssl: detected https proxied connection"
 	    " request.\n");
@@ -1209,20 +1210,24 @@ int proxy_hack(int vncsock, int listen, int s_in, int s_out, char *cookie,
 	} else if (mode == OPENSSL_HTTPS) {
 		listen = https_sock;
 	} else {
+		/* inetd */
 		return 0;
 	}
+
 	sock1 = wait_conn(listen);
 
 	if (csock_timeout_sock < 0 || sock1 < 0) {
 		close(sock1);
 		return 0;
 	}
+
 if (db) fprintf(stderr, "got applet input sock1: %d\n", sock1);
 
 	if (! ssl_init(sock1, sock1)) {
 if (db) fprintf(stderr, "ssl_init FAILED\n");
 		exit(1);
 	}
+
 	SSL_write(ssl, reply, strlen(reply));
 
 	{
@@ -1242,21 +1247,27 @@ if (db) fprintf(stderr, "buf: '%s'\n", buf);
 		}
 	}
 
-	write(vncsock, cookie, strlen(cookie));
+	if (cookie) {
+		write(vncsock, cookie, strlen(cookie));
+	}
 	ssl_xfer(vncsock, sock1, sock1, 0);
 
 	return 1;
 }
 
 void accept_openssl(int mode) {
-	int sock = -1, cport, csock, vsock, listen = -1;	
+	int sock = -1, listen = -1, cport, csock, vsock;	
 	int status, n, i, db = 0;
 	struct sockaddr_in addr;
+#ifdef __hpux
+	int addrlen = sizeof(addr);
+#else
 	socklen_t addrlen = sizeof(addr);
-	char cookie[128], rcookie[128], *name;
+#endif
 	rfbClientPtr client;
 	pid_t pid;
 	char uniq[] = "__evilrats__";
+	char cookie[128], rcookie[128], *name = NULL;
 	static time_t last_https = 0;
 	static char last_get[128];
 	static int first = 1;
@@ -1268,7 +1279,7 @@ void accept_openssl(int mode) {
 		if (first) {
 			last_get[i] = '\0';
 		}
-		cookie[i] = '\0';
+		cookie[i]  = '\0';
 		rcookie[i] = '\0';
 	}
 	first = 0;
@@ -1281,23 +1292,23 @@ void accept_openssl(int mode) {
 	if (mode == OPENSSL_INETD) {
 		ssl_initialized = 1;
 
-	} else if (mode == OPENSSL_VNC && openssl_sock >= 0) {
+	} else if (mode == OPENSSL_VNC) {
 		sock = accept(openssl_sock, (struct sockaddr *)&addr, &addrlen);
+		if (sock < 0)  {
+			rfbLog("SSL: accept_openssl: accept connection failed\n");
+			rfbLogPerror("accept");
+			return;
+		}
 		listen = openssl_sock;
-		if (sock < 0)  {
-			rfbLog("SSL: accept_openssl: accept connection failed\n");
-			rfbLogPerror("accept");
-			return;
-		}
 
-	} else if (mode == OPENSSL_HTTPS && https_sock >= 0) {
+	} else if (mode == OPENSSL_HTTPS) {
 		sock = accept(https_sock, (struct sockaddr *)&addr, &addrlen);
-		listen = https_sock;
 		if (sock < 0)  {
 			rfbLog("SSL: accept_openssl: accept connection failed\n");
 			rfbLogPerror("accept");
 			return;
 		}
+		listen = https_sock;
 	}
 	if (db) fprintf(stderr, "SSL: accept_openssl: sock: %d\n", sock);
 
@@ -1349,11 +1360,23 @@ void accept_openssl(int mode) {
 	if (mode != OPENSSL_INETD) {
 		name = get_remote_host(sock);
 	} else {
-		name = strdup("inetd-connection");
+		openssl_last_ip = get_remote_host(fileno(stdin));
+		if (openssl_last_ip) {
+			name = strdup(openssl_last_ip);
+		} else {
+			name = strdup("unknown");
+		}
 	}
 	if (name) {
-		rfbLog("SSL: spawning helper process to handle: %s\n", name);
+		if (mode == OPENSSL_INETD) {
+			rfbLog("SSL: (inetd) spawning helper process "
+			    "to handle: %s\n", name);
+		} else {
+			rfbLog("SSL: spawning helper process to handle: "
+			    "%s\n", name);
+		}
 		free(name);
+		name = NULL;
 	}
 
 	/* now fork the child to handle the SSL: */
@@ -1371,10 +1394,12 @@ void accept_openssl(int mode) {
 
 	} else if (pid == 0) {
 		int s_in, s_out, httpsock = -1;
-		int vncsock, sslsock = sock;
+		int vncsock;
 		int i, have_httpd = 0;
 		int f_in  = fileno(stdin);
 		int f_out = fileno(stdout);
+
+		if (db) fprintf(stderr, "helper pid in: %d %d %d %d\n", f_in, f_out, sock, listen);
 
 		/* reset all handlers to default (no interrupted() calls) */
 		unset_signals();
@@ -1386,7 +1411,7 @@ void accept_openssl(int mode) {
 					continue;
 				}
 			}
-			if (i == sslsock) {
+			if (i == sock) {
 				continue;
 			}
 			if (i == 2) {
@@ -1410,9 +1435,9 @@ void accept_openssl(int mode) {
 		if (vncsock < 0) {
 			rfbLog("SSL: ssl_helper[%d]: could not connect"
 			    " back to: %d\n", getpid(), cport);
-			close(vncsock);
 			exit(1);
 		}
+		if (db) fprintf(stderr, "vncsock %d\n", vncsock);
 
 		/* try to initialize SSL with the remote client */
 
@@ -1434,6 +1459,10 @@ void accept_openssl(int mode) {
 		 * SSL socket.
 		 */
 
+		if (! screen) {
+			close(vncsock);
+			exit(1);
+		}
 		if (screen->httpListenSock >= 0 && screen->httpPort > 0) {
 			have_httpd = 1;
 		}
@@ -1480,6 +1509,7 @@ void accept_openssl(int mode) {
 			 */
 
 			if (db) fprintf(stderr, "watch_for_http_traffic\n");
+
 			is_http = watch_for_http_traffic(buf, &n);
 
 			if (is_http < 0 || is_http == 0) {
@@ -1494,7 +1524,9 @@ void accept_openssl(int mode) {
 				}
 				goto wrote_cookie;
 			}
-			if (db) fprintf(stderr, "is_http: %d n: %d\n", is_http, n);
+
+			if (db) fprintf(stderr, "is_http: %d n: %d\n",
+			    is_http, n);
 			if (db) fprintf(stderr, "buf: '%s'\n", buf);
 
 			if (strstr(buf, "/request.https.vnc.connection")) {
@@ -1507,25 +1539,27 @@ void accept_openssl(int mode) {
 				 * instead of a direct SSL connection.
 				 */
 				rfbLog("Handling VNC request via https GET. [%d]\n", getpid());
+
 				if (strstr(buf, "/reverse.proxy")) {
-					char *buf;
+					char *buf2;
 					int n, ptr;
 					SSL_write(ssl, reply, strlen(reply));
 				
-					buf  = (char *) calloc((8192+1), 1);
+					buf2  = (char *) calloc((8192+1), 1);
 					n = 0;
 					ptr = 0;
 					while (ptr < 8192) {
-						n = SSL_read(ssl, buf + ptr, 1);
+						n = SSL_read(ssl, buf2 + ptr, 1);
 						if (n > 0) {
 							ptr += n;
 						}
-			if (db) fprintf(stderr, "buf2: '%s'\n", buf);
+			if (db) fprintf(stderr, "buf2: '%s'\n", buf2);
 
-						if (strstr(buf, "\r\n\r\n")) {
+						if (strstr(buf2, "\r\n\r\n")) {
 							break;
 						}
 					}
+					free(buf2);
 				}
 				goto write_cookie;
 
@@ -1634,6 +1668,7 @@ if (db) fprintf(stderr, "iface: %s\n", iface);
 
 		exit(0);
 	}
+	/* parent here */
 
 	if (mode != OPENSSL_INETD) {
 		close(sock);
@@ -1897,20 +1932,21 @@ static void ssl_xfer(int csock, int s_in, int s_out, int is_https) {
 	int  cptr, sptr, c_rd, c_wr, s_rd, s_wr;
 	fd_set rd, wr;
 	struct timeval tv;
-	int ssock, cnt = 0;
+	int ssock, cnt = 0, ndata = 0;
 
 	/*
 	 * we want to switch to a longer timeout for long term VNC
-	 * connections (in case the network is not working for short
-	 * periods), but we also want the timeout shorter at the beginning
+	 * connections (in case the network is not working for periods of
+	 * time), but we also want the timeout shorter at the beginning
 	 * in case the client went away.
 	 */
 	time_t start;
 	int tv_https_early = 60;
 	int tv_https_later = 20;
 	int tv_vnc_early = 25;
-	int tv_vnc_later = 300;
-	int tv_cutover = 120;
+	int tv_vnc_later = 43200;	/* was 300, stunnel: 43200 */
+	int tv_cutover = 70;
+	int tv_closing = 60;
 	int tv_use;
 
 	if (dbxfer) {
@@ -1967,7 +2003,7 @@ static void ssl_xfer(int csock, int s_in, int s_out, int is_https) {
 	sptr = 0;
 
 	while (1) {
-		int c_to_s, s_to_c;
+		int c_to_s, s_to_c, closing;
 
 		if ( s_wr && (c_rd || cptr > 0) ) {
 			/* 
@@ -2035,6 +2071,8 @@ static void ssl_xfer(int csock, int s_in, int s_out, int is_https) {
 		}
 
 		if (tv_cutover && time(NULL) > start + tv_cutover) {
+			rfbLog("SSL: ssl_xfer[%d]: tv_cutover: %d\n", getpid(),
+			    tv_cutover);
 			tv_cutover = 0;
 			if (is_https) {
 				tv_use = tv_https_later;
@@ -2042,12 +2080,26 @@ static void ssl_xfer(int csock, int s_in, int s_out, int is_https) {
 				tv_use = tv_vnc_later;
 			}
 		}
+		if (ssl_timeout_secs > 0) {
+			tv_use = ssl_timeout_secs;
+		}
+
+		if ( (s_rd && c_rd) || cptr || sptr) {
+			closing = 0;
+		} else {
+			closing = 1;
+			tv_use = tv_closing;
+		}
 		tv.tv_sec  = tv_use;
 		tv.tv_usec = 0;
 
 		/*  do the select, repeat if interrupted */
 		do {
-			nfd = select(fdmax+1, &rd, &wr, NULL, &tv);
+			if (ssl_timeout_secs == 0) {
+				nfd = select(fdmax+1, &rd, &wr, NULL, NULL);
+			} else {
+				nfd = select(fdmax+1, &rd, &wr, NULL, &tv);
+			}
 		} while (nfd < 0 && errno == EINTR);
 
 		if (db > 1) fprintf(stderr, "nfd: %d\n", nfd);
@@ -2060,14 +2112,24 @@ static void ssl_xfer(int csock, int s_in, int s_out, int is_https) {
 		}
 
 		if (nfd == 0) {
-			rfbLog("SSL: ssl_xfer[%d]: connection timedout.\n",
-			    getpid());
+			if (!closing && tv_cutover && ndata > 25000) {
+				static int cn = 0;
+				/* probably ok, early windows iconify */
+				if (cn++ < 2) {
+					rfbLog("SSL: ssl_xfer[%d]: early time"
+					    "out: %d\n", getpid(), ndata);
+				}
+				continue;
+			}
+			rfbLog("SSL: ssl_xfer[%d]: connection timedout. %d\n",
+			    getpid(), ndata);
 			/* connection finished */
 			return;
 		}
 
 		/* used to see if SSL_pending() should be checked: */
 		check_pending = 0;
+/* AUDIT */
 
 		if (c_wr && FD_ISSET(csock, &wr)) {
 
@@ -2096,6 +2158,7 @@ static void ssl_xfer(int csock, int s_in, int s_out, int is_https) {
 					shutdown(csock, SHUT_WR);
 					c_wr = 0;
 				}
+				ndata += n;
 			}
 		}
 
@@ -2118,6 +2181,7 @@ static void ssl_xfer(int csock, int s_in, int s_out, int is_https) {
 						SSL_shutdown(ssl);
 						s_wr = 0;
 					}
+					ndata += n;
 
 				} else if (err == SSL_ERROR_WANT_WRITE
 					|| err == SSL_ERROR_WANT_READ
@@ -2167,6 +2231,7 @@ static void ssl_xfer(int csock, int s_in, int s_out, int is_https) {
 				/* good */
 
 				cptr += n;
+				ndata += n;
 			}
 		}
 
@@ -2184,6 +2249,7 @@ static void ssl_xfer(int csock, int s_in, int s_out, int is_https) {
 					/* good */
 
 					sptr += n;
+					ndata += n;
 
 				} else if (err == SSL_ERROR_WANT_WRITE
 					|| err == SSL_ERROR_WANT_READ
@@ -2330,10 +2396,9 @@ static void init_prng(void) {
 
 void raw_xfer(int csock, int s_in, int s_out) {
 	char buf[8192];
-	int sz = 8192, n, m, status;
+	int sz = 8192, n, m, status, db = 1;
 #ifdef FORK_OK
 	pid_t pid = fork();
-	int db = 1;
 
 	/* this is for testing, no SSL just socket redir */
 	if (pid < 0) {
@@ -2349,7 +2414,7 @@ void raw_xfer(int csock, int s_in, int s_out) {
 			} else if (n > 0) {
 				int len = n;
 				char *src = buf;
-if (db > 1) write(2, buf, n);
+				if (db > 1) write(2, buf, n);
 				while (len > 0) {
 					m = write(s_out, src, len);
 					if (m > 0) {
@@ -2360,7 +2425,7 @@ if (db > 1) write(2, buf, n);
 					if (m < 0 && (errno == EINTR || errno == EAGAIN)) {
 						continue;
 					}
-		if (db) fprintf(stderr, "raw_xfer bad write:  %d -> %d | %d/%d  errno=%d\n", csock, s_out, m, n, errno);
+if (db) fprintf(stderr, "raw_xfer bad write:  %d -> %d | %d/%d  errno=%d\n", csock, s_out, m, n, errno);
 					break;
 				}
 			}
@@ -2379,7 +2444,7 @@ if (db > 1) write(2, buf, n);
 			} else if (n > 0) {
 				int len = n;
 				char *src = buf;
-if (db > 1) write(2, buf, n);
+				if (db > 1) write(2, buf, n);
 				while (len > 0) {
 					m = write(csock, src, len);
 					if (m > 0) {
@@ -2401,6 +2466,6 @@ if (db > 1) write(2, buf, n);
 	close(csock);
 	close(s_in);
 	close(s_out);
-#endif
+#endif	/* FORK_OK */
 }
 

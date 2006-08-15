@@ -427,10 +427,14 @@ void initialize_signals(void) {
 		signal(SIGPIPE, interrupted);
 	}
 
+#if NO_X11
+	return;
+#else
 	X_LOCK;
 	Xerror_def = XSetErrorHandler(Xerror);
 	XIOerr_def = XSetIOErrorHandler(XIOerr);
 	X_UNLOCK;
+#endif	/* NO_X11 */
 }
 
 void unset_signals(void) {

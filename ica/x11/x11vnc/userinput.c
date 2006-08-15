@@ -97,6 +97,9 @@ int get_wm_frame_pos(int *px, int *py, int *x, int *y, int *w, int *h,
 	unsigned int mask;
 
 	RAWFB_RET(0)
+#if NO_X11
+	return 0;
+#else
 
 	ret = XQueryPointer(dpy, rootwin, &r, &c, &rootx, &rooty, &wx, &wy,
 	    &mask);
@@ -127,6 +130,7 @@ int get_wm_frame_pos(int *px, int *py, int *x, int *y, int *w, int *h,
 	}
 
 	return 1;
+#endif	/* NO_X11 */
 }
 
 static int scrollcopyrect_top, scrollcopyrect_bot;
@@ -299,6 +303,7 @@ static void parse_wireframe_str(char *wf) {
 		XColor cdef;
 		Colormap cmap;
 		if (dpy && (bpp == 32 || bpp == 16)) {
+#if !NO_X11
 		 	cmap = DefaultColormap (dpy, scr);
 			if (XParseColor(dpy, cmap, str, &cdef) &&
 			    XAllocColor(dpy, cmap, &cdef)) {
@@ -315,6 +320,7 @@ static void parse_wireframe_str(char *wf) {
 				wireframe_shade = n;
 				ok = 1;
 			}
+#endif
 		}
 		if (ok) {
 			;
@@ -1754,7 +1760,7 @@ static void do_copyregion(sraRegionPtr region, int dx, int dy)  {
 
 	last_copyrect = dnow();
 
-	if (rfb_fb == main_fb) {
+	if (rfb_fb == main_fb && ! rotating) {
 		/* normal case, no -scale or -8to24 */
 		get_client_regions(&req, &mod, &cpy, &ncli);
 if (debug_scroll > 1) fprintf(stderr, "<<<-rfbDoCopyRect req: %d mod: %d cpy: %d\n", req, mod, cpy); 
@@ -1771,7 +1777,7 @@ if (debug_scroll > 1) fprintf(stderr, ">>>-rfbDoCopyRect req: %d mod: %d cpy: %d
 
 	iter = sraRgnGetReverseIterator(region, dx < 0, dy < 0);
 	while(sraRgnIteratorNext(iter, &rect)) {
-		int j, c;
+		int j, c, t;
 
 		x1 = rect.x1;
 		y1 = rect.y1;
@@ -1819,6 +1825,7 @@ if (debug_scroll > 1) fprintf(stderr, ">>>-rfbDoCopyRect req: %d mod: %d cpy: %d
 			}
 		}
 
+
 		if (scaling) {
 			sx1 = ((double) x1 / dpy_x) * scaled_x;
 			sy1 = ((double) y1 / dpy_y) * scaled_y;
@@ -1834,6 +1841,46 @@ if (debug_scroll > 1) fprintf(stderr, ">>>-rfbDoCopyRect req: %d mod: %d cpy: %d
 			sdx = dx;
 			sdy = dy;
 		}
+if (0) fprintf(stderr, "s... %d %d %d %d %d %d\n", sx1, sy1, sx2, sy2, sdx, sdy);
+		if (rotating) {
+			rotate_coords(sx1, sy1, &sx1, &sy1, -1, -1);
+			rotate_coords(sx2, sy2, &sx2, &sy2, -1, -1);
+			if (rotating == ROTATE_X) {
+				sdx = -sdx;
+			} else if (rotating == ROTATE_Y) {
+				sdy = -sdy;
+			} else if (rotating == ROTATE_XY) {
+				sdx = -sdx;
+				sdy = -sdy;
+			} else if (rotating == ROTATE_90) {
+				t = sdx;
+				sdx = -sdy;
+				sdy = t;
+			} else if (rotating == ROTATE_90X) {
+				t = sdx;
+				sdx = sdy;
+				sdy = t;
+			} else if (rotating == ROTATE_90Y) {
+				t = sdx;
+				sdx = -sdy;
+				sdy = -t;
+			} else if (rotating == ROTATE_270) {
+				t = sdx;
+				sdx = sdy;
+				sdy = -t;
+			}
+		}
+		if (sx2 < sx1) {
+			t = sx1;
+			sx1 = sx2;
+			sx2 = t;
+		}
+		if (sy2 < sy1) {
+			t = sy1;
+			sy1 = sy2;
+			sy2 = t;
+		}
+if (0) fprintf(stderr, "s... %d %d %d %d %d %d\n", sx1, sy1, sx2, sy2, sdx, sdy);
 
 		rfbDoCopyRect(screen, sx1, sy1, sx2, sy2, sdx, sdy);
 	}

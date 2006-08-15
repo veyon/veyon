@@ -1,8 +1,8 @@
 .\" This file was automatically generated from x11vnc -help output.
-.TH X11VNC "1" "June 2006" "x11vnc " "User Commands"
+.TH X11VNC "1" "August 2006" "x11vnc " "User Commands"
 .SH NAME
 x11vnc - allow VNC connections to real X11 displays
-         version: 0.8.2, lastmod: 2006-06-27
+         version: 0.8.3, lastmod: 2006-08-10
 .SH SYNOPSIS
 .B x11vnc
 [OPTION]...
@@ -37,7 +37,7 @@ In brief:
 .PP
 % vncviewer -encodings 'copyrect tight zrle hextile' localhost:0
 .PP
-Also, use of a VNC password (-rfbauth or \fB-passwdfile)\fR is strongly recommend.
+Also, use of a VNC password (-rfbauth or \fB-passwdfile)\fR is strongly recommended.
 .PP
 For additional info see: http://www.karlrunge.com/x11vnc/
 and  http://www.karlrunge.com/x11vnc/#faq
@@ -231,11 +231,11 @@ speedup may be achieved via the option "nogetimage".
 This enables a scheme were XGetImage() is not used
 to retrieve the 8bpp data.  Instead, it assumes that
 the 8bpp data is in bits 25-32 of the 32bit X pixels.
-There is no reason the X server should put the data
-there for our poll requests, but some do and so the
-extra steps to retrieve it can be skipped.  Tested with
-mga driver with XFree86/Xorg.  For the default depth
-8 case this option is ignored.
+There is no requirement that the X server should put
+the data there for our poll requests, but some do and
+so the extra steps to retrieve it can be skipped.
+Tested with mga driver with XFree86/Xorg.  For the
+default depth 8 case this option is ignored.
 .IP
 To adjust how often XGetImage() is used to poll the
 non-default visual regions for changes, use the option
@@ -373,6 +373,11 @@ Also clients that log in viewonly cannot transfer files.
 However, if the remote control mechanism is used to
 change the global or per-client viewonly state the
 filetransfer permissions will NOT change.
+.IP
+Note, to *enable* UltraVNC filetransfer (currently
+disabled by default, this may change...) and to get it
+to work you probably need to supply these libvncserver
+options: "\fB-rfbversion\fR \fI3.6 \fB-permitfiletransfer\fR"\fR
 .PP
 \fB-http\fR
 .IP
@@ -437,7 +442,7 @@ out with the "#" character in the usual way.
 .PP
 \fB-localhost\fR
 .IP
-Same as "\fB-allow\fR \fI127.0.0.1\fR".
+Basically the same as "\fB-allow\fR \fI127.0.0.1\fR".
 .IP
 Note: if you want to restrict which network interface
 x11vnc listens on, see the \fB-listen\fR option below.
@@ -445,11 +450,11 @@ E.g. "\fB-listen\fR \fIlocalhost\fR" or "\fB-listen\fR \fI192.168.3.21\fR".
 As a special case, the option "\fB-localhost\fR" implies
 "\fB-listen\fR \fIlocalhost\fR".
 .IP
-For non-localhost \fB-listen\fR usage, if you use the remote
-control mechanism (-R) to change the \fB-listen\fR interface
-you may need to manually adjust the \fB-allow\fR list (and
-vice versa) to avoid situations where no connections
-(or too many) are allowed.
+A rare case, but for non-localhost \fB-listen\fR usage, if
+you use the remote control mechanism (-R) to change
+the \fB-listen\fR interface you may need to manually adjust
+the \fB-allow\fR list (and vice versa) to avoid situations
+where no connections (or too many) are allowed.
 .PP
 \fB-nolookup\fR
 .IP
@@ -476,15 +481,18 @@ in that case).
 .PP
 \fB-grabkbd\fR
 .IP
-When VNC viewers are connected, attempt to the grab the
-keyboard so someone sitting at the physical display
-is not able to enter keystrokes.  This method uses
+When VNC viewers are connected, attempt to the grab
+the keyboard so a (non-malicious) user sitting at the
+physical display is not able to enter keystrokes.
+This method uses 
 .IR XGrabKeyboard (3X11)
-and so it is not secure and does not
-rule out the person at the physical display injecting
-keystrokes by flooding the server with them, grabbing
-the keyboard himself, etc.  Some degree of cooperation
-from the person at the display is assumed.
+and so it is
+not secure and does not rule out the person at the
+physical display injecting keystrokes by flooding the
+server with them, grabbing the keyboard himself, etc.
+Some degree of cooperation from the person at the
+display is assumed.  This is intended for remote
+help-desk or educational usage modes.
 .PP
 \fB-grabptr\fR
 .IP
@@ -519,7 +527,7 @@ removed after being read.  Perhaps this is useful in
 limiting the readability of the file.  In general,
 the password file should not be readable by untrusted
 users (BTW: neither should the VNC \fB-rfbauth\fR file:
-it is NOT encrypted).
+it is NOT encrypted, only obscured).
 .IP
 If the filename is prefixed with "read:" it will
 periodically be checked for changes and reread.
@@ -661,7 +669,7 @@ The user names in the comma separated [list] can have
 per-user options after a ":", e.g. "fred:opts"
 where "opts" is a "+" separated list of
 "viewonly", "fullaccess", "input=XXXX", or
-"deny", e.g. "karl,fred:viewonly,boss:input=M".
+"deny", e.g. "karl,wally:viewonly,boss:input=M".
 For "input=" it is the K,M,B,C described under \fB-input.\fR
 .IP
 If a user in the list is "*" that means those
@@ -696,8 +704,10 @@ mode to work (only that
 .IR getpwnam (3)
 return the encrypted
 password is required), but it is unlikely it will work
-for any other modern environment.  All of the \fB-unixpw\fR
-options and contraints apply.
+for any other modern environment unless x11vnc is run
+as root (which, btw, is often done when running x11vnc
+from inetd and xdm/gdm/kdm).  All of the \fB-unixpw\fR options
+and contraints apply.
 .PP
 \fB-display\fR \fIWAIT:...\fR
 .IP
@@ -726,51 +736,60 @@ output is taken as XAUTHORITY data.  It can be either
 of the form XAUTHORITY=<file> or raw xauthority data for
 the display (e.g. "xauth extract - $DISPLAY" output).
 .IP
-In the case of \fB-unixpw,\fR then the above command is run
-as the user who just authenticated via the login and
-password prompt.
+In the case of \fB-unixpw\fR (but not \fB-unixpw_nis),\fR then the
+above command is run as the user who just authenticated
+via the login and password prompt.
 .IP
 Also in the case of \fB-unixpw,\fR the user logging in can
 place a colon at the end of his username and supply
-a few options: scale=, scale_cursor=, solid, id=,
-clear_mods, clear_keys, repeat, or speeds= separated
-by commas if there is more than one.  After the user
-logs in successfully, these options will be applied to
-the VNC screen.  For example,
+a few options: scale=, scale_cursor= (or sc=), solid
+(or so), id=, clear_mods (or cm), clear_keys (or ck),
+repeat, speeds= (or sp=), readtimeout= (or rd=), or
+rotate= (or ro=) separated by commas if there is more
+than one.  After the user logs in successfully, these
+options will be applied to the VNC screen.  For example,
 .IP
-login: fred:scale=3/4,repeat
+login: fred:scale=3/4,sc=1,repeat
 Password: ...
 .IP
-for convenience m/n implies scale= e.g. fred:3/4
-To disable this set the environment variable
-X11VNC_NO_UNIXPW_OPTS=1.  To set any other options,
-the user can use the gui (x11vnc \fB-gui\fR connect) or the
-remote control method (x11vnc \fB-R\fR opt:val) during his
-VNC session.
+login: runge:sp=modem,rd=120,solid
 .IP
-So the combination of \fB-display\fR WAIT:cmd=... and
-\fB-unixpw\fR allows automatic pairing of an unix
-authenticated VNC user with his desktop.  This could
-be very useful on SunRays and also any system where
-multiple users share a given machine.  The user does
-not need to remember special ports or passwords set up
-for his desktop and VNC.
+for convenience m/n implies scale= e.g. fred:3/4  If you
+type and enter your password incorrectly, to retrieve
+your long "login:" line press the Up arrow once
+(before typing anything else).
+.IP
+To disable the option setting set the environment
+variable X11VNC_NO_UNIXPW_OPTS=1 before starting x11vnc.
+To set any other options, the user can use the gui
+(x11vnc \fB-gui\fR connect) or the remote control method
+(x11vnc \fB-R\fR opt:val) during his VNC session.
+.IP
+The combination of \fB-display\fR WAIT:cmd=... and \fB-unixpw\fR
+allows automatic pairing of an unix authenticated VNC
+user with his desktop.  This could be very useful on
+SunRays and also any system where multiple users share
+a given machine.  The user does not need to remember
+special ports or passwords set up for his desktop
+and VNC.
 .IP
 A nice way to use WAIT:cmd=... is out of 
 .IR inetd (8)
 (it automatically forks a new x11vnc for each user).
 You can have the x11vnc inetd spawned process run as,
-say, root or nobody.  When run as root (for either
-inetd or display manager), you can also supply the
-option "\fB-users\fR \fIunixpw=\fR" to have the x11vnc process
-switch to the user as well.  Note: there will be a 2nd
-SSL helper process that will not switch, but it is only
-encoding and decoding the stream at that point.
+say, root or nobody.  When run as root (for either inetd
+or display manager), you can also supply the option
+"\fB-users\fR \fIunixpw=\fR" to have the x11vnc process switch to
+the user as well.  Note: there will be a 2nd SSL helper
+process that will not switch, but it is only encoding
+and decoding the encrypted stream at that point.
 .IP
-As a special case, WAIT:cmd=FINDDISPLAY will run
-a script that works on most Unixes to determine a
-user's DISPLAY variable and xauthority data.  To have
-this default script printed to stdout (e.g. for
+As a special case, WAIT:cmd=FINDDISPLAY will run a
+script that works on most Unixes to determine a user's
+DISPLAY variable and xauthority data (see 
+.IR who (1)
+).
+To have this default script printed to stdout (e.g. for
 customization) run with WAIT:cmd=FINDDISPLAY-print
 .IP
 As another special case, WAIT:cmd=HTTPONCE will allow
@@ -873,6 +892,15 @@ achieved.  E.g. on Unix it is easy to write a shell
 script that starts up stunnel and then vncviewer.
 Also in the x11vnc source a SSL enabled Java VNC Viewer
 applet is provided in the classes/ssl directory.
+.PP
+\fB-ssltimeout\fR \fIn\fR
+.IP
+Set SSL read timeout to n seconds.  In some situations
+(i.e. an iconified viewer in Windows) the viewer stops
+talking and the connection is dropped after the default
+timeout (25s for about the first minute, 43200s later).
+Set to zero to poll forever.  Set to a negative value
+to use the builtin setting.
 .PP
 \fB-ssldir\fR \fI[dir]\fR
 .IP
@@ -1316,7 +1344,7 @@ adds a few seconds delay to each connection and can be
 unreliable (especially if the user takes much time to
 ponder the Certificate dialogs in his browser, Java VM,
 or VNC Viewer applet.  That's right 3 separate "Are
-you sure you want to connect" dialogs!)
+you sure you want to connect?" dialogs!)
 .IP
 So use the \fB-https\fR option to provide a separate, more
 reliable HTTPS port that x11vnc will listen on.  If
@@ -1403,7 +1431,7 @@ In the case of "popup" and when the \fB-unixpw\fR option
 is specified, then a *second* window will be popped
 up after the user successfully logs in via his UNIX
 password.  This time the user will be identified as
-UNIX:username@localhost, the "UNIX:" prefix indicates
+UNIX:username@hostname, the "UNIX:" prefix indicates
 which user the viewer logged as via \fB-unixpw.\fR  The first
 popup is only for whether to allow him to even *try*
 to login via unix password.
@@ -1651,6 +1679,39 @@ encoding, and then resize the framebuffer.  "exit"
 means disconnect all viewer clients, and then terminate
 x11vnc.
 .PP
+\fB-rotate\fR \fIstring\fR
+.IP
+Rotate and/or flip the framebuffer view exported by VNC.
+This transformation is independent of XRANDR and is
+done in software in main memory and so may be slower.
+This mode could be useful on a handheld with portrait or
+landscape modes that do not correspond to the scanline
+order of the actual framebuffer.  \fIstring\fR can be:
+.IP
+x     flip along x-axis
+y     flip along y-axis
+xy     flip along x- and y-axes
++90     rotate 90 degrees clockwise
+\fB-90\fR     rotate 90 degrees counter-clockwise
++90x     rotate 90 degrees CW, then flip along x
++90y     rotate 90 degrees CW, then flip along y
+.IP
+these give all possible rotations and reflections.
+.IP
+Aliases: same as xy:  yx, +180, \fB-180,\fR 180
+same as \fB-90:\fR +270, 270
+same as +90: 90, (ditto for 90x, 90y)
+.IP
+Like \fB-scale,\fR this transformation is applied at the very
+end of any chain of framebuffer transformations and so
+any options with geometries, e.g. \fB-blackout,\fR \fB-clip,\fR etc.
+are relative to the original X (or \fB-rawfb)\fR framebuffer,
+not the final one sent to VNC viewers.
+.IP
+If you do not want the cursor shape to be rotated
+prefix \fIstring\fR with "nc:", e.g. "nc:+90",
+"nc:xy", etc.
+.PP
 \fB-padgeom\fR \fIWxH\fR
 .IP
 Whenever a new vncviewer connects, the framebuffer is
@@ -1698,6 +1759,11 @@ Print this help text.
 \fB-V,\fR \fB-version\fR
 .IP
 Print program version and last modification date.
+.PP
+\fB-license\fR
+.IP
+Print out license information.  Same as \fB-copying\fR and
+\fB-warranty.\fR
 .PP
 \fB-dbg\fR
 .IP
@@ -2555,6 +2621,11 @@ read n user input events before scanning display. n < 0
 means to act as though there is always user input.
 Default: 10
 .PP
+\fB-allinput\fR
+.IP
+Have x11vnc read and process all available client input
+before proceeding.
+.PP
 \fB-speeds\fR \fIrd,bw,lat\fR
 .IP
 x11vnc tries to estimate some speed parameters that
@@ -2780,17 +2851,23 @@ memory object specified in \fIstring\fR.
 For shared memory segments string is of the
 form: "shm:N@WxHxB" which specifies a shmid
 N and framebuffer Width, Height, and Bits
-per pixel.  To memory map 
+per pixel.
+.IP
+For file polling to memory map 
 .IR mmap (2)
 a file use:
-"map:/path/to/a/file@WxHxB".  If there is trouble
-with mmap, use  "file:/..." for slower 
+"map:/path/to/a/file@WxHxB", with WxHxB as above.
+"mmap:..." is the same. If there is trouble with mmap,
+use  "file:/..." for slower 
 .IR lseek (2)
-based
-reading. Use "snap:..." to imply \fB-snapfb\fR mode and the
-"file:" access (this is for devices that only provide
-the fb all at once). If you do not supply a type "map"
-is assumed if the file exists.
+based reading.
+Use "snap:..." to imply \fB-snapfb\fR mode and the "file:"
+access (this is for devices that only provide the fb
+all at once).
+.IP
+If you do not supply a type "map" is assumed if
+the file exists (see the next paragraphs for some
+exceptions to this.)
 .IP
 If string is "setup:cmd", then the command "cmd"
 is run and the first line from it is read and used
@@ -2798,13 +2875,14 @@ as \fIstring\fR.  This allows initializing the device,
 determining WxHxB, etc. These are often done as root
 so take care.
 .IP
-If the string begins with "video", see the video4linux
+If the string begins with "video", see the VIDEO4LINUX
 discusion below where the device may be queried for
 (and possibly set) the framebuffer parameters.
 .IP
-If the strings begins with "cons", see the linux
-console discussion below where the framebuffer device
-is opened and keystrokes are inserted into the console.
+If the string begins with "console", "/dev/fb", or
+"fb", see the LINUX CONSOLE discussion below where
+the framebuffer device is opened and keystrokes (and
+possibly mouse events) are inserted into the console.
 .IP
 Optional suffixes are ":R/G/B" and "+O" to specify
 red, green, and blue masks and an offset into the
@@ -2833,11 +2911,12 @@ and
 .IR fbset (1)
 for the first two examples)
 .IP
-All user input is discarded by default (but see the
-\fB-pipeinput\fR option).  Most of the X11 (screen, keyboard,
-mouse) options do not make sense and many will cause
-this mode to crash, so please think twice before
-setting or changing them in a running x11vnc.
+In general all user input is discarded by default (see
+the \fB-pipeinput\fR option for how to use a helper program
+to insert).  Most of the X11 (screen, keyboard, mouse)
+options do not make sense and many will cause this
+mode to crash, so please think twice before setting or
+changing them in a running x11vnc.
 .IP
 If you DO NOT want x11vnc to close the X DISPLAY in
 rawfb mode, prepend a "+" e.g. +file:/dev/fb0...
@@ -2856,13 +2935,13 @@ snapfb snapshot, set the environment variable:
 SNAPFB_RAWFB_RESET=1 as well.
 .IP
 If you want x11vnc to dynamically transform a 24bpp
-rawfb to 32bpp (note that this will be slower) use
-the \fB-24to32\fR option.  This would be useful for, say,
-for a video camera that delivers the pixel data as
+rawfb to 32bpp (note that this will be slower) also
+supply the \fB-24to32\fR option.  This would be useful for,
+say, a video camera that delivers the pixel data as
 24bpp packed RGB.  This is the default under "video"
 mode if the bpp is 24.
 .IP
-video4linux: on Linux some attempt is made to handle
+VIDEO4LINUX: on Linux some attempt is made to handle
 video devices (webcams or TV tuners) automatically.
 The idea is the WxHxB will be extracted from the
 device itself.  So if you do not supply "@WxHxB...
@@ -2942,46 +3021,65 @@ all of the above settings.
 .IP
 See the \fB-pipeinput\fR VID option below for a way to control
 the settings through the VNC Viewer via keystrokes.
+As a shortcut, if the string begins "Video.." instead
+of "video.." then \fB-pipeinput\fR VID is implied.
 .IP
 As above, if you specify a "@WxHxB..." after the
 <settings> string they are used verbatim: the device
 is not queried for the current values.  Otherwise the
 device will be queried.
 .IP
-Linux console:  If the libvncserver LinuxVNC command is
-on your system use that instead of the following method
-because it will be faster and more accurate for Linux
-text console.
+LINUX CONSOLE:  If the libvncserver LinuxVNC program
+is on your system you may want to use that instead of
+the following method because it will be faster and more
+accurate for Linux text console.
 .IP
-If the rawfb string begins with "cons" the framebuffer
-device /dev/fb0 is opened (this requires the appropriate
-kernel modules) and so is /dev/tty0.  The latter is
-used to inject keystrokes (not all are supported,
-but the basic ones are).  You will need to be root to
-inject keystrokes.  /dev/tty0 refers to the active VT,
-to indicate one explicitly, use "cons2", etc. using
-the VT number.  Note you can change VT remotely using
-the 
+If the rawfb string begins with "console" the
+framebuffer device /dev/fb0 is opened (this requires
+the appropriate kernel modules to be installed) and so
+is /dev/tty0.  The latter is used to inject keystrokes
+(not all are supported, but the basic ones are).
+You will need to be root to inject keystrokes.
+/dev/tty0 refers to the active VT, to indicate one
+explicitly, use "console2", etc. using the VT number.
+.IP
+If the Linux version seems to be 2.6 or later and the
+"uinput" module appears to be present, then the uinput
+method will be used instead of /dev/ttyN.  uinput allows
+insertion of BOTH keystrokes and mouse input and so it
+preferred when accessing graphical (e.g. QT-embedded)
+linux console apps.  See \fB-pipeinput\fR UINPUT below for
+more information on this mode; you will have to use
+\fB-pipeinput\fR if you want to tweak any UINPUT parameters.
+You may also want to also use the \fB-nodragging\fR and
+\fB-cursor\fR none options.  Use "console0", etc  or
+\fB-pipeinput\fR CONSOLE to force the /dev/ttyN method.
+.IP
+Note you can change VT remotely using the 
 .IR chvt (1)
-command.  Sometimes switching out and back
-corrects the framebuffer.  To skip injecting entirely
-use "consx".
+command.  Sometimes switching out and back corrects
+the framebuffer state.
 .IP
-The strings "console", or "/dev/fb0" can be used
-instead of "cons".  The latter can be used to specify
-a different framebuffer device, e.g. /dev/fb1.  If the
-name is something nonstandard, use "cons:/dev/foofb"
+To skip input injecting entirely use "consolex".
+.IP
+The string "/dev/fb0" (1, etc.) can be used instead
+of "console".  This can be used to specify a different
+framebuffer device, e.g. /dev/fb1.  As a shortcut the
+"/dev/" can be dropped.  If the name is something
+nonstandard, use "console:/dev/foofb"
 .IP
 If you do not want x11vnc to guess the framebuffer's
-WxHxB and masks automatically, specify them with a
+WxHxB and masks automatically (sometimes the kernel
+gives inaccurate information), specify them with a
 @WxHxB at the end of the string.
 .IP
 Examples:
-\fB-rawfb\fR cons               (same as \fB-rawfb\fR console)
+\fB-rawfb\fR console            (same as \fB-rawfb\fR console)
 \fB-rawfb\fR /dev/fb0           (same)
-\fB-rawfb\fR cons3              (force /dev/tty3)
-\fB-rawfb\fR consx              (no keystrokes)
+\fB-rawfb\fR console3           (force /dev/tty3)
+\fB-rawfb\fR consolex           (no keystrokes or mouse)
 \fB-rawfb\fR console:/dev/nonstd
+\fB-rawfb\fR console \fB-pipeinput\fR UINPUT:accel=4.0
 .PP
 \fB-freqtab\fR \fIfile\fR
 .IP
@@ -3014,6 +3112,8 @@ To facilitate this, if \fB-rawfb\fR is in effect then the
 value is stored in X11VNC_RAWFB_STR for the pipe command
 to use if it wants. Do 'env | grep X11VNC' for more.
 .IP
+Built-in pipeinput modes (no external program required):
+.IP
 If cmd is "VID" and you are using the \fB-rawfb\fR for a
 video capture device, then an internal list of keyboard
 mappings is used to set parameters of the video.
@@ -3030,9 +3130,83 @@ F1, F2, ..., F6 will switch the video capture pixel
 format to HI240, RGB565, RGB24, RGB32, RGB555, and
 GREY respectively.  See \fB-rawfb\fR video for details.
 .IP
-If cmd is "CONS" or "CONSn" where n is a Linux
-console number, then the linux console keystroke
-insertion (see \fB-rawfb\fR cons) is performed.
+If cmd is "CONSOLE" or "CONSOLEn" where n
+is a Linux console number, then the linux console
+keystroke insertion to /dev/ttyN (see \fB-rawfb\fR console)
+is performed.
+.IP
+If cmd begins with "UINPUT" then the Linux uinput
+module is used to insert both keystroke and mouse events
+to the Linux console (see \fB-rawfb\fR above).  This usually
+is the /dev/input/uinput device file (you may need to
+create it with "mknod /dev/input/uinput c 10 223"
+and insert the module with "modprobe uinput".
+.IP
+The UINPUT mode currently only does US keyboards (a
+scan code option may be added), and not all keysyms
+are supported.
+.IP
+You may want to use the options \fB-cursor\fR none and
+\fB-nodragging\fR in this mode.
+.IP
+Additional tuning options may be supplied via:
+UINPUT:opt1,opt2,... (a comma separated list). If an
+option begins with "/" it is taken as the uinput
+device file.
+.IP
+Which uinput is injected can be controlled by an option
+string made of the characters "K", "M", and "B"
+(see the \fB-input\fR option), e.g. "KM" allows keystroke
+and motion but not button clicks.
+.IP
+A UINPUT option of the form: accel=f, or accel=fx+fy
+sets the mouse motion "acceleration".  This is used
+to correct raw mouse relative motion into how much the
+application cursor moves (x11vnc has no control over,
+or knowledge of how the windowing application interprets
+the raw mouse motions).  Typically the acceleration
+for an X display is 2 (see xset "m" option).  "f"
+is a floating point number, e.g. 3.0.  Use "fx+fy"
+if you need to supply different corrections for x and y.
+.IP
+Note: the default acceleration is 2.0 since it seems
+both X and qt-embedded often (but not always) use
+this value.
+.IP
+Even with a correct accel setting the mouse position
+will get out of sync (probably due to a mouse
+"threshold" setting where the acceleration doe not
+apply, set 
+.IR xset (1)
+).  The option reset=N sets the
+number of ms (default 150) after which the cursor is
+attempted to be reset (by forcing the mouse to (0,
+0) via small increments and then back out to (x, y)
+in 1 jump), This correction seems to be needed but can
+cause jerkiness or unexpected behavior with menus, etc.
+Use reset=0 to disable.
+.IP
+If the uinput device has an absolute pointer (as opposed
+to a normal mouse that is a relative pointer) you can
+specify the option "abs".  Note that a touchpad
+on a laptop is an absolute device t some degree.
+This (usually) avoids all the problems with mouse
+acceleration.  If x11vnc has trouble deducing the size
+of the device, use "abs=WxH".  Furthermore, if the
+device is a touchscreen (assumed to have an absolute
+pointer) use "touch" or "touch=WxH".
+.IP
+If you set the env. var X11VNC_UINPUT_THRESHOLDS then
+the thresh=n mode will be enabled.  It it currently
+not working well.  If |dx| <= thresh and |dy| < thresh
+no acceleration is applied.  Use "thresh=+n" |dx| +
+|dy| < thresh to be used instead (X11?)
+.IP
+Example:
+\fB-pipeinput\fR UINPUT:accel=4.0 \fB-cursor\fR none
+.IP
+You can also set the env. var X11VNC_UINPUT_DEBUG=1 or
+higher to get debugging output for UINPUT mode.
 .PP
 \fB-gui\fR \fI[gui-opts]\fR
 .IP
@@ -3342,6 +3516,8 @@ noxrandr        disable \fB-xrandr\fR mode.
 .IP
 xrandr_mode:mode set the \fB-xrandr\fR mode to "mode".
 .IP
+rotate:mode     set the \fB-rotate\fR mode to "mode".
+.IP
 padgeom:WxH     set \fB-padgeom\fR to WxH (empty to disable)
 If WxH is "force" or "do" the padded
 geometry fb is immediately applied.
@@ -3512,6 +3688,12 @@ pointer_mode:n  set \fB-pointer_mode\fR to n. same as "pm"
 .IP
 input_skip:n    set \fB-input_skip\fR to n.
 .IP
+allinput        enable  use of \fB-allinput\fR mode.
+.IP
+noallinput      disable use of \fB-allinput\fR mode.
+.IP
+ssltimeout:n    set \fB-ssltimeout\fR to n.
+.IP
 speeds:str      set \fB-speeds\fR to str.
 .IP
 wmdt:str        set \fB-wmdt\fR to str.
@@ -3569,6 +3751,12 @@ snapfb          enable  \fB-snapfb\fR mode.
 nosnapfb        disable \fB-snapfb\fR mode.
 .IP
 rawfb:str       set \fB-rawfb\fR mode to "str".
+.IP
+uinput_accel:f  set uinput_accel to f.
+.IP
+uinput_reset:n  set uinput_reset to n ms.
+.IP
+uinput_always:n set uinput_always to 1/0.
 .IP
 progressive:n   set libvncserver \fB-progressive\fR slice
 height parameter to n.
@@ -3682,14 +3870,6 @@ these cases the value returned is "N/A".  To direct a
 query straight to the X11VNC_REMOTE property or connect
 file use "qry=..." instead of "cmd=..."
 .IP
-Here is the current list of "variables" that can
-be supplied to the \fB-query\fR command. This includes the
-"N/A" ones that return no useful info.  For variables
-names that do not correspond to an x11vnc option or
-remote command, we hope the name makes it obvious what
-the returned value corresponds to (hint: the ext_*
-variables correspond to the presence of X extensions):
-.IP
 ans= stop quit exit shutdown ping blacken zero
 refresh reset close disconnect id sid waitmapped
 nowaitmapped clip flashcmap noflashcmap shiftcmap
@@ -3703,7 +3883,7 @@ unlock connect allowonce allow localhost nolocalhost
 listen lookup nolookup accept afteraccept gone shm
 noshm flipbyteorder noflipbyteorder onetile noonetile
 solid_color solid nosolid blackout xinerama noxinerama
-xtrap noxtrap xrandr noxrandr xrandr_mode padgeom
+xtrap noxtrap xrandr noxrandr xrandr_mode rotate padgeom
 quiet q noquiet modtweak nomodtweak xkb noxkb capslock
 nocapslock skip_lockkeys noskip_lockkeys skip_keycodes
 sloppy_keys nosloppy_keys skip_dups noskip_dups
@@ -3721,15 +3901,16 @@ nodragging wireframe_mode wireframe wf nowireframe
 nowf wirecopyrect wcr nowirecopyrect nowcr scr_area
 scr_skip scr_inc scr_keys scr_term scr_keyrepeat
 scr_parms scrollcopyrect scr noscrollcopyrect noscr
-fixscreen noxrecord xrecord reset_record pointer_mode
-pm input_skip input grabkbd nograbkbd grabptr
-nograbptr client_input speeds wmdt debug_pointer dp
-nodebug_pointer nodp debug_keyboard dk nodebug_keyboard
-nodk deferupdate defer wait_ui wait_bog nowait_bog
-slow_fb wait readtimeout nap nonap sb screen_blank
-fbpm nofbpm fs gaps grow fuzz snapfb nosnapfb rawfb
-progressive rfbport http nohttp httpport httpdir
-enablehttpproxy noenablehttpproxy alwaysshared
+fixscreen noxrecord xrecord reset_record pointer_mode pm
+input_skip allinput noallinput input grabkbd nograbkbd
+grabptr nograbptr client_input ssltimeout speeds wmdt
+debug_pointer dp nodebug_pointer nodp debug_keyboard
+dk nodebug_keyboard nodk deferupdate defer wait_ui
+wait_bog nowait_bog slow_fb wait readtimeout nap nonap
+sb screen_blank fbpm nofbpm fs gaps grow fuzz snapfb
+nosnapfb rawfb uinput_accel uinput_thresh uinput_reset
+uinput_always progressive rfbport http nohttp httpport
+httpdir enablehttpproxy noenablehttpproxy alwaysshared
 noalwaysshared nevershared noalwaysshared dontdisconnect
 nodontdisconnect desktop debug_xevents nodebug_xevents
 debug_xevents debug_xdamage nodebug_xdamage

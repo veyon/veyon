@@ -36,6 +36,10 @@ Window parent_window(Window win, char **name) {
 		*name = NULL;
 	}
 	RAWFB_RET(None)
+#if NO_X11
+	nox11_exit(1);
+	return None;
+#else
 
 	old_handler = XSetErrorHandler(trap_xerror);
 	trapped_xerror = 0;
@@ -55,6 +59,7 @@ Window parent_window(Window win, char **name) {
 		XFetchName(dpy, parent, name);
 	}
 	return parent;
+#endif	/* NO_X11 */
 }
 
 /* trapping utility to check for a valid window: */
@@ -73,6 +78,10 @@ int valid_window(Window win, XWindowAttributes *attr_ret, int bequiet) {
 		return 0;
 	}
 	RAWFB_RET(0)
+#if NO_X11
+	nox11_exit(1);
+	return 0;
+#else
 
 	old_handler = XSetErrorHandler(trap_xerror);
 	trapped_xerror = 0;
@@ -90,6 +99,7 @@ int valid_window(Window win, XWindowAttributes *attr_ret, int bequiet) {
 	trapped_xerror = 0;
 	
 	return ok;
+#endif	/* NO_X11 */
 }
 
 Bool xtranslate(Window src, Window dst, int src_x, int src_y, int *dst_x,
@@ -98,6 +108,10 @@ Bool xtranslate(Window src, Window dst, int src_x, int src_y, int *dst_x,
 	Bool ok = False;
 
 	RAWFB_RET(False)
+#if NO_X11
+	nox11_exit(1);
+	return False;
+#else
 
 	trapped_xerror = 0;
 	old_handler = XSetErrorHandler(trap_xerror);
@@ -116,6 +130,7 @@ Bool xtranslate(Window src, Window dst, int src_x, int src_y, int *dst_x,
 	trapped_xerror = 0;
 	
 	return ok;
+#endif	/* NO_X11 */
 }
 
 int get_window_size(Window win, int *x, int *y) {
@@ -165,6 +180,9 @@ void snapshot_stack_list(int free_only, double allowed_age) {
 	last_free = now;
 
 	RAWFB_RET_VOID
+#if NO_X11
+	return;
+#else
 
 	X_LOCK;
 	/* no need to trap error since rootwin */
@@ -221,6 +239,7 @@ if (0) fprintf(stderr, "blackr: %d %dx%d+%d+%d\n", i,
 
 	XFree(list);
 	X_UNLOCK;
+#endif	/* NO_X11 */
 }
 
 void update_stack_list(void) {
@@ -271,6 +290,9 @@ Window query_pointer(Window start) {
 	int rx, ry, wx, wy;
 	unsigned int mask;
 	RAWFB_RET(None)
+#if NO_X11
+	return None;
+#else
 	if (start == None) {
 		start = rootwin;
 	}
@@ -279,6 +301,7 @@ Window query_pointer(Window start) {
 	} else {
 		return None;
 	}
+#endif	/* NO_X11 */
 }
 
 unsigned int mask_state(void) {
@@ -287,12 +310,16 @@ unsigned int mask_state(void) {
 	unsigned int mask;
 
 	RAWFB_RET(0)
+#if NO_X11
+	return 0;
+#else
 
 	if (XQueryPointer(dpy, rootwin, &r, &c, &rx, &ry, &wx, &wy, &mask)) {
 		return mask;
 	} else {
 		return 0;
 	}
+#endif	/* NO_X11 */
 }
 
 int pick_windowid(unsigned long *num) {
@@ -381,6 +408,9 @@ Window descend_pointer(int depth, Window start, char *name_info, int len) {
 	static Window prev_start = None;
 
 	RAWFB_RET(None)
+#if NO_X11
+	return None;
+#else
 
 	if (! classhint) {
 		classhint = XAllocClassHint();
@@ -481,6 +511,7 @@ Window descend_pointer(int depth, Window start, char *name_info, int len) {
 	}
 
 	return clast;
+#endif	/* NO_X11 */
 }
 
 

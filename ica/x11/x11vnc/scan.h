@@ -21,5 +21,8 @@ extern int copy_snap(void);
 extern void nap_sleep(int ms, int split);
 extern void set_offset(void);
 extern int scan_for_updates(int count_only);
+extern void rotate_curs(char *dst_0, char *src_0, int Dx, int Dy, int Bpp);
+extern void rotate_coords(int x, int y, int *xo, int *yo, int dxi, int dyi);
+extern void rotate_coords_inverse(int x, int y, int *xo, int *yo, int dxi, int dyi);
 
 #endif /* _X11VNC_SCAN_H */

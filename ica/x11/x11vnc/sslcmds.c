@@ -15,7 +15,7 @@
 #endif
 #endif
 
-#ifdef REL81
+#ifdef NO_SSL_OR_UNIXPW
 #undef SSLCMDS
 #endif
 

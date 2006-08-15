@@ -103,7 +103,7 @@ void lowercase(char *str) {
 	}
 	p = str;
 	while (*p != '\0') {
-		*p = tolower(*p);
+		*p = tolower((unsigned char) (*p));
 		p++;
 	}
 }
@@ -115,7 +115,7 @@ void uppercase(char *str) {
 	}
 	p = str;
 	while (*p != '\0') {
-		*p = toupper(*p);
+		*p = toupper((unsigned char) (*p));
 		p++;
 	}
 }
@@ -123,7 +123,7 @@ void uppercase(char *str) {
 char *lblanks(char *str) {
 	char *p = str;
 	while (*p != '\0') {
-		if (! isspace(*p)) {
+		if (! isspace((unsigned char) (*p))) {
 			break;
 		}
 		p++;
@@ -446,7 +446,24 @@ void rfbCFD(long usec) {
 	}
 
 	if (! use_threads) {
-		rfbCheckFds(screen, usec);
+		if (0 && all_input) {
+			static int cnt = 0;
+			int f = 1;
+			while (rfbCheckFds(screen, usec) > 0) {
+				if (f) {
+					cnt++;
+					f = 0;
+				}
+				fprintf(stderr, "-%d", cnt);
+			}
+		} else {
+			if (all_input) {
+				screen->handleEventsEagerly = TRUE;
+			} else {
+				screen->handleEventsEagerly = FALSE;
+			}
+			rfbCheckFds(screen, usec);
+		}
 	}
 
  	if (unixpw && unixpw_in_progress && !uip0) {
@@ -519,6 +536,7 @@ char *choose_title(char *display) {
 	strncat(title, display, MAXN - strlen(title));
 	if (subwin && dpy && valid_window(subwin, NULL, 0)) {
 		char *name = NULL;
+#if !NO_X11
 		if (XFetchName(dpy, subwin, &name)) {
 			if (name) {
 				strncat(title, " ",  MAXN - strlen(title));
@@ -526,6 +544,7 @@ char *choose_title(char *display) {
 				free(name);
 			}
 		}
+#endif	/* NO_X11 */
 	}
 	return title;
 }

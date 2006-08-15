@@ -4,6 +4,7 @@
 /* -- help.h -- */
 
 extern void print_help(int mode);
+extern void print_license(void);
 extern void xopen_display_fail_message(char *disp);
 extern void nopassword_warning_msg(int gotloc);
 

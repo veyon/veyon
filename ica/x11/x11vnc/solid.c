@@ -123,6 +123,9 @@ static void solid_root(char *color) {
 	Colormap cmap;
 
 	RAWFB_RET_VOID
+#if NO_X11
+	return;
+#else
 
 	if (subwin || window != rootwin) {
 		rfbLog("cannot set subwin to solid color, must be rootwin\n");
@@ -216,6 +219,7 @@ static void solid_root(char *color) {
 	XMapWindow(dpy, expose);
 	XSync(dpy, False);
 	XDestroyWindow(dpy, expose);
+#endif	/* NO_X11 */
 }
 
 static void solid_cde(char *color) {
@@ -236,6 +240,9 @@ static void solid_cde(char *color) {
 	int n;
 
 	RAWFB_RET_VOID
+#if NO_X11
+	return;
+#else
 
 	if (subwin || window != rootwin) {
 		rfbLog("cannot set subwin to solid color, must be rootwin\n");
@@ -476,6 +483,7 @@ static void solid_cde(char *color) {
 	XMapWindow(dpy, expose);
 	XSync(dpy, False);
 	XDestroyWindow(dpy, expose);
+#endif	/* NO_X11 */
 }
 
 static void solid_gnome(char *color) {
@@ -492,6 +500,9 @@ static void solid_gnome(char *color) {
 	char *cmd;
 
 	RAWFB_RET_VOID
+#if NO_X11
+	return;
+#else
 	
 	if (! color) {
 		if (! orig_color) {
@@ -562,6 +573,7 @@ static void solid_gnome(char *color) {
 	sprintf(cmd, set_option, "none");
 	dt_cmd(cmd);
 	free(cmd);
+#endif	/* NO_X11 */
 }
 
 static void solid_kde(char *color) {
@@ -575,6 +587,9 @@ static void solid_kde(char *color) {
 	int len;
 
 	RAWFB_RET_VOID
+#if NO_X11
+	return;
+#else
 
 	user = get_user_name();
 	if (strstr(user, "'") != NULL)  {
@@ -611,12 +626,16 @@ static void solid_kde(char *color) {
 	dt_cmd(cmd);
 	free(cmd);
 	free(user);
+#endif	/* NO_X11 */
 }
 
 char *guess_desktop(void) {
 	Atom prop;
 
 	RAWFB_RET("root")
+#if NO_X11
+	return "root";
+#else
 
 	if (wmdt_str && *wmdt_str != '\0') {
 		char *s = wmdt_str;
@@ -654,7 +673,13 @@ char *guess_desktop(void) {
 	if (prop != None) return "gnome";
 
 	prop = XInternAtom(dpy, "KWIN_RUNNING", True);
-	if (prop != None) return "kde";
+	if (prop != None) {
+		prop = XInternAtom(dpy, "_KDE_RUNNING", True);
+		if (prop != None) {
+			prop = XInternAtom(dpy, "KDE_DESKTOP_WINDOW", True);
+			if (prop != None) return "kde";
+		}
+	}
 
 	prop = XInternAtom(dpy, "_MOTIF_WM_INFO", True);
 	if (prop != None) {
@@ -662,6 +687,7 @@ char *guess_desktop(void) {
 		if (prop != None) return "cde";
 	}
 	return "root";
+#endif	/* NO_X11 */
 }
 
 void solid_bg(int restore) {

@@ -536,7 +536,7 @@ if (db) fprintf(stderr, "dt3 calc: num rects req: %d/%d mod: %d/%d  "
 				} else if (got_t3 == 2) {
 					dt3 = dts[1];
 				} else {
-					if (dts[2] >= 0.0) {
+					if (dts[2] > 0.0) {
 						double rat = dts[1]/dts[2];
 						if (rat > 0.5 && rat < 2.0) {
 							dt3 = dts[1]+dts[2];

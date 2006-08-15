@@ -5,6 +5,7 @@
 extern int grantpt(int);
 extern int unlockpt(int);
 extern char *ptsname(int);
+/* XXX remove need for this */
 extern char *crypt(const char*, const char *);
 #endif
 
@@ -15,6 +16,7 @@ extern char *crypt(const char*, const char *);
 #include "connections.h"
 #include "user.h"
 #include "connections.h"
+#include "cursor.h"
 #include <rfb/default8x16.h>
 
 #if LIBVNCSERVER_HAVE_FORK
@@ -26,6 +28,9 @@ extern char *crypt(const char*, const char *);
 #if LIBVNCSERVER_HAVE_PWD_H && LIBVNCSERVER_HAVE_GETPWNAM
 #if LIBVNCSERVER_HAVE_CRYPT || LIBVNCSERVER_HAVE_LIBCRYPT
 #define UNIXPW_CRYPT
+#if LIBVNCSERVER_HAVE_GETSPNAM
+#include <shadow.h>
+#endif
 #endif
 #endif
 
@@ -46,7 +51,7 @@ extern char *crypt(const char*, const char *);
 #define IS_BSD
 #endif
 
-#ifdef REL81
+#ifdef NO_SSL_OR_UNIXPW
 #undef UNIXPW_SU
 #undef UNIXPW_CRYPT
 #endif
@@ -66,6 +71,7 @@ static void set_db(void);
 static void unixpw_verify(char *user, char *pass);
 
 int unixpw_in_progress = 0;
+int unixpw_denied = 0;
 int unixpw_in_rfbPE = 0;
 int unixpw_login_viewonly = 0;
 time_t unixpw_last_try_time = 0;
@@ -111,6 +117,9 @@ static int text_y(void) {
 	return char_y + char_row * char_h;
 }
 
+static rfbScreenInfo fscreen;
+static rfbScreenInfoPtr pscreen;
+
 void unixpw_screen(int init) {
 	if (unixpw_nis) {
 #ifndef UNIXPW_CRYPT
@@ -137,9 +146,20 @@ void unixpw_screen(int init) {
 		if (scaling) {
 			x = (int) (x * scale_fac);
 			y = (int) (y * scale_fac);
+			x = nfix(x, scaled_x);
+			y = nfix(y, scaled_y);
 		}
 
-		rfbDrawString(screen, &default8x16Font, x, y, log, white());
+		if (rotating) {
+			fscreen.serverFormat.bitsPerPixel = bpp;
+			fscreen.paddedWidthInBytes = rfb_bytes_per_line;
+			fscreen.frameBuffer = rfb_fb;
+			pscreen = &fscreen;
+		} else {
+			pscreen = screen;
+		}
+
+		rfbDrawString(pscreen, &default8x16Font, x, y, log, white());
 
 		char_x = x;
 		char_y = y;
@@ -150,7 +170,7 @@ void unixpw_screen(int init) {
 	}
 
 	if (scaling) {
-		mark_rect_as_modified(0, 0, dpy_x, dpy_y, 1);
+		mark_rect_as_modified(0, 0, scaled_x, scaled_y, 1);
 	} else {
 		mark_rect_as_modified(0, 0, dpy_x, dpy_y, 0);
 	}
@@ -351,11 +371,32 @@ int crypt_verify(char *user, char *pass) {
 		return 0;
 	}
 
+	if (db > 1) fprintf(stderr, "realpw='%s'\n", realpw);
+
+	if (strlen(realpw) < 12) {
+		/* e.g. "x", try getspnam(), sometimes root for inetd, etc */
+#if LIBVNCSERVER_HAVE_GETSPNAM
+		struct spwd *sp = getspnam(user);
+		if (sp != NULL && sp->sp_pwdp != NULL) {
+			if (db) fprintf(stderr, "using getspnam()\n");
+			realpw = sp->sp_pwdp;
+		} else {
+			if (db) fprintf(stderr, "skipping getspnam()\n");
+		}
+#endif
+	}
+
 	n = strlen(pass);
 	if (pass[n-1] == '\n') {
 		pass[n-1] = '\0';
 	}
+
+	/* XXX remove need for cast */
 	cr = (char *) crypt(pass, realpw);
+	if (db > 1) {
+		fprintf(stderr, "user='%s' pass='%s' realpw='%s' cr='%s'\n",
+		    user, pass, realpw, cr ? cr : "(null)");
+	}
 	if (cr == NULL) {
 		return 0;
 	}
@@ -654,11 +695,11 @@ if (db) fprintf(stderr, "%s", buf);
 		}
 
 		if (n == 1) {
-			if (isspace(buf[0])) {
+			if (isspace((unsigned char) buf[0])) {
 				i--;
 				continue;
 			}
-			instr[j++] = tolower(buf[0]);
+			instr[j++] = tolower((unsigned char)buf[0]);
 		}
 		if (n <= 0 || strstr(pstr, instr) != pstr) {
 if (db) {
@@ -822,6 +863,8 @@ if (db) fprintf(stderr, "unixpw_verify: '%s' '%s'\n", user, db > 1 ? pass : "***
 
 	if (unixpw_nis) {
 		if (crypt_verify(user, pass)) {
+			rfbLog("unixpw_verify: crypt_verify login for '%s'"
+			    " succeeded.\n", user);
 			unixpw_accept(user);
 			if (keep_unixpw) {
 				keep_unixpw_user = strdup(user);
@@ -834,12 +877,14 @@ if (db) fprintf(stderr, "unixpw_verify: '%s' '%s'\n", user, db > 1 ? pass : "***
 			}
 			if (colon) *colon = ':';
 			return;
-		} else {
-			rfbLog("unixpw_verify: crypt_verify login for %s failed.\n", user);
-			usleep(3000*1000);
 		}
+		rfbLog("unixpw_verify: crypt_verify login for '%s' failed.\n",
+		    user);
+		usleep(3000*1000);
 	} else {
 		if (su_verify(user, pass, NULL, NULL, NULL)) {
+			rfbLog("unixpw_verify: su_verify login for '%s'"
+			    " succeeded.\n", user);
 			unixpw_accept(user);
 			if (keep_unixpw) {
 				keep_unixpw_user = strdup(user);
@@ -853,7 +898,8 @@ if (db) fprintf(stderr, "unixpw_verify: '%s' '%s'\n", user, db > 1 ? pass : "***
 			if (colon) *colon = ':';
 			return;
 		}
-		rfbLog("unixpw_verify: su_verify login for %s failed.\n", user);
+		rfbLog("unixpw_verify: su_verify login for '%s' failed.\n",
+		    user);
 	}
 	if (colon) *colon = ':';
 
@@ -863,18 +909,18 @@ if (db) fprintf(stderr, "unixpw_verify: '%s' '%s'\n", user, db > 1 ? pass : "***
 
 		x = text_x();
 		y = text_y();
-		rfbDrawString(screen, &default8x16Font, x, y, li, white());
+		rfbDrawString(pscreen, &default8x16Font, x, y, li, white());
 
 		char_row += 2;
 
 		x = text_x();
 		y = text_y();
-		rfbDrawString(screen, &default8x16Font, x, y, log, white());
+		rfbDrawString(pscreen, &default8x16Font, x, y, log, white());
 
 		char_col = strlen(log);
 
 		if (scaling) {
-			mark_rect_as_modified(0, 0, dpy_x, dpy_y, 1);
+			mark_rect_as_modified(0, 0, scaled_x, scaled_y, 1);
 		} else {
 			mark_rect_as_modified(0, 0, dpy_x, dpy_y, 0);
 		}
@@ -895,18 +941,23 @@ static void set_db(void) {
 
 void unixpw_keystroke(rfbBool down, rfbKeySym keysym, int init) {
 	int x, y, i, nmax = 100;
-	static char user[100], pass[100];
+	static char user_r[100], user[100], pass[100];
 	static int  u_cnt = 0, p_cnt = 0, first = 1;
 	char keystr[100];
+	char *str;
 
 	if (first) {
 		set_db();
 		first = 0;
+		for (i=0; i < nmax; i++) {
+			user_r[i] = '\0';
+		}
 	}
 
 	if (init) {
 		in_login = 1;
 		in_passwd = 0;
+		unixpw_denied = 0;
 		if (init == 1) {
 			tries = 0;
 		}
@@ -932,9 +983,22 @@ void unixpw_keystroke(rfbBool down, rfbKeySym keysym, int init) {
 		return;
 	}
 
+	if (unixpw_denied) {
+		rfbLog("unixpw_keystroke: unixpw_denied state: 0x%x\n", (int) keysym);
+		return;
+	}
+	if (keysym <= 0) {
+		rfbLog("unixpw_keystroke: bad keysym1: 0x%x\n", (int) keysym);
+		return;
+	}
 	X_LOCK;
-	sprintf(keystr, "%s", XKeysymToString(keysym));
+	str = XKeysymToString(keysym);
 	X_UNLOCK;
+	if (! str) {
+		rfbLog("unixpw_keystroke: bad keysym2: 0x%x\n", (int) keysym);
+		return;
+	}
+	snprintf(keystr, 100, "%s", str);
 
 	if (db > 2) {
 		fprintf(stderr, "%s / %s  0x%x %s\n", in_login ? "login":"pass ",
@@ -958,6 +1022,9 @@ void unixpw_keystroke(rfbBool down, rfbKeySym keysym, int init) {
 					int y2 = y / scale_fac;
 					int w2 = char_w / scale_fac;
 					int h2 = char_h / scale_fac;
+
+					x2 = nfix(x2, dpy_x);
+					y2 = nfix(y2, dpy_y);
 					
 					zero_fb(x2 - w2, y2 - h2, x2, y2);
 					mark_rect_as_modified(x2 - w2,
@@ -991,14 +1058,39 @@ void unixpw_keystroke(rfbBool down, rfbKeySym keysym, int init) {
 
 			x = text_x();
 			y = text_y();
-			rfbDrawString(screen, &default8x16Font, x, y, pw,
+			rfbDrawString(pscreen, &default8x16Font, x, y, pw,
 			    white());
 
 			char_col = strlen(pw);
 			if (scaling) {
-				mark_rect_as_modified(0, 0, dpy_x, dpy_y, 1);
+				mark_rect_as_modified(0, 0, scaled_x,
+				    scaled_y, 1);
 			} else {
 				mark_rect_as_modified(0, 0, dpy_x, dpy_y, 0);
+			}
+			return;
+		}
+		if (u_cnt == 0 && keysym == XK_Up) {
+			/*
+			 * Allow user to hit Up arrow at beginning to
+			 * regain their username plus any options.
+			 */
+			int i;
+			for (i=0; i < nmax; i++) {
+				user[u_cnt++] = user_r[i];
+				if (user_r[i] == '\0') {
+					break;
+				}
+				keystr[0] = (char) user_r[i];
+				keystr[1] = '\0';
+				x = text_x();
+				y = text_y();
+				rfbDrawString(pscreen, &default8x16Font, x, y,
+				    keystr, white());
+				mark_rect_as_modified(x, y-char_h, x+char_w,
+				    y, scaling);
+				char_col++;
+				usleep(10*1000);
 			}
 			return;
 		}
@@ -1019,6 +1111,9 @@ void unixpw_keystroke(rfbBool down, rfbKeySym keysym, int init) {
 		user[u_cnt++] = keystr[0];
 #else
 		user[u_cnt++] = (char) keysym;
+		for (i=0; i < nmax; i++) {
+			user_r[i] = user[i];
+		}
 		keystr[0] = (char) keysym;
 #endif
 
@@ -1028,13 +1123,9 @@ void unixpw_keystroke(rfbBool down, rfbKeySym keysym, int init) {
 if (db && db <= 2) fprintf(stderr, "u_cnt: %d %d/%d ks: 0x%x  %s\n", u_cnt, x, y, keysym, keystr);
 
 		keystr[1] = '\0';
-		rfbDrawString(screen, &default8x16Font, x, y, keystr, white());
+		rfbDrawString(pscreen, &default8x16Font, x, y, keystr, white());
 
-		if (scaling) {
-			mark_rect_as_modified(x, y-char_h, x+char_w, y, 1);
-		} else {
-			mark_rect_as_modified(x, y-char_h, x+char_w, y, 0);
-		}
+		mark_rect_as_modified(x, y-char_h, x+char_w, y, scaling);
 		char_col++;
 
 	} else if (in_passwd) {
@@ -1216,26 +1307,33 @@ void unixpw_deny(void) {
 	int x, y, i;
 	char pd[] = "Permission denied.";
 
-	char_row += 2;
-	char_col = 0;
-	x = char_x + char_col * char_w;
-	y = char_y + char_row * char_h;
+	rfbLog("unixpw_deny: %d, %d\n", unixpw_denied, unixpw_in_progress);
+	if (! unixpw_denied) {
+		unixpw_denied = 1;
 
-	rfbDrawString(screen, &default8x16Font, x, y, pd, white());
-	if (scaling) {
-		mark_rect_as_modified(0, 0, dpy_x, dpy_y, 1);
-	} else {
-		mark_rect_as_modified(0, 0, dpy_x, dpy_y, 0);
+		char_row += 2;
+		char_col = 0;
+		x = char_x + char_col * char_w;
+		y = char_y + char_row * char_h;
+
+		rfbDrawString(pscreen, &default8x16Font, x, y, pd, white());
+		if (scaling) {
+			mark_rect_as_modified(0, 0, scaled_x, scaled_y, 1);
+		} else {
+			mark_rect_as_modified(0, 0, dpy_x, dpy_y, 0);
+		}
+
+		for (i=0; i<5; i++) {
+			rfbPE(-1);
+			usleep(500 * 1000);
+		}
 	}
 
-	for (i=0; i<5; i++) {
+	if (unixpw_client) {
+		rfbCloseClient(unixpw_client);
+		rfbClientConnectionGone(unixpw_client);
 		rfbPE(-1);
-		usleep(500 * 1000);
 	}
-
-	rfbCloseClient(unixpw_client);
-	rfbClientConnectionGone(unixpw_client);
-	rfbPE(-1);
 
 	unixpw_in_progress = 0;
 	unixpw_client = NULL;
@@ -1250,9 +1348,9 @@ void unixpw_msg(char *msg, int delay) {
 	x = char_x + char_col * char_w;
 	y = char_y + char_row * char_h;
 
-	rfbDrawString(screen, &default8x16Font, x, y, msg, white());
+	rfbDrawString(pscreen, &default8x16Font, x, y, msg, white());
 	if (scaling) {
-		mark_rect_as_modified(0, 0, dpy_x, dpy_y, 1);
+		mark_rect_as_modified(0, 0, scaled_x, scaled_y, 1);
 	} else {
 		mark_rect_as_modified(0, 0, dpy_x, dpy_y, 0);
 	}

@@ -13,6 +13,8 @@
 #include "unixpw.h"
 #include "v4l.h"
 #include "linuxfb.h"
+#include "uinput.h"
+#include "scan.h"
 
 int pointer_queued_sent = 0;
 
@@ -43,7 +45,6 @@ typedef struct ptrremap {
 #ifdef LIBVNCSERVER_HAVE_LIBPTHREAD
 MUTEX(pointerMutex);
 #endif
-#define MAX_BUTTONS 5
 #define MAX_BUTTON_EVENTS 50
 static prtremap_t pointer_map[MAX_BUTTONS+1][MAX_BUTTON_EVENTS];
 
@@ -55,6 +56,9 @@ static void buttonparse(int from, char **s) {
 	int to, i;
 	int modisdown[256];
 
+#if NO_X11
+	return;
+#else
 	q = *s;
 
 	for (i=0; i<256; i++) {
@@ -121,6 +125,7 @@ static void buttonparse(int from, char **s) {
 				/*
 				 * XXX may not work with -modtweak or -xkb
 				 */
+				char *str;
 				X_LOCK;
 				kcode = XKeysymToKeycode(dpy, ksym);
 
@@ -143,9 +148,10 @@ static void buttonparse(int from, char **s) {
 						modisdown[kcode] = 1;
 					}
 				}
+				str = XKeysymToString(ksym);
 				rfbLog("   event %d: keysym %s (0x%x) -> "
 				    "keycode 0x%x down=%d up=%d\n", n+1,
-				    XKeysymToString(ksym), ksym, kcode,
+				    str ? str : "null", ksym, kcode,
 				    pointer_map[from][n].down,
 				    pointer_map[from][n].up);
 				X_UNLOCK;
@@ -200,6 +206,7 @@ static void buttonparse(int from, char **s) {
 		/* advance the source pointer position */
 		(*s)++;
 	}
+#endif	/* NO_X11 */
 }
 
 /*
@@ -215,6 +222,9 @@ void initialize_pointer_map(char *pointer_remap) {
 	 * from -buttonmap option.
 	 */
 	
+#if NO_X11
+	return;
+#else
 	if (!raw_fb_str) {
 		X_LOCK;
 		num_buttons = XGetPointerMapping(dpy, map, MAX_BUTTONS);
@@ -281,6 +291,7 @@ void initialize_pointer_map(char *pointer_remap) {
 		}
 		free(remap);
 	}
+#endif	/* NO_X11 */
 }
 
 /*
@@ -290,6 +301,9 @@ static void update_x11_pointer_position(int x, int y) {
 	int rc;
 
 	RAWFB_RET_VOID
+#if NO_X11
+	return;
+#else
 
 	X_LOCK;
 	if (use_xwarppointer) {
@@ -320,11 +334,15 @@ static void update_x11_pointer_position(int x, int y) {
 	cursor_changes += rc;
 
 	last_event = last_input = last_pointer_input = time(NULL);
+#endif	/* NO_X11 */
 }
 
 void do_button_mask_change(int mask, int button) {
 	int mb, k, i = button-1;
 
+#if NO_X11
+	return;
+#else
 	/*
 	 * this expands to any pointer_map button -> keystrokes
 	 * remappings.  Usually just k=0 and we send one button event.
@@ -364,13 +382,13 @@ void do_button_mask_change(int mask, int button) {
 				continue; 
 			}
 			if (debug_pointer && dpy) {
+				char *str = XKeysymToString(XKeycodeToKeysym(
+                                    dpy, key, 0));
 				rfbLog("pointer(): sending button %d "
 				    "down as keycode 0x%x (event %d)\n",
 				    i+1, key, k+1);
-				rfbLog("           down=%d up=%d "
-				    "keysym: %s\n", down, up,
-				    XKeysymToString(XKeycodeToKeysym(
-				    dpy, key, 0)));
+				rfbLog("           down=%d up=%d keysym: "
+				    "%s\n", down, up, str ? str : "null");
 			}
 			if (down) {
 				XTestFakeKeyEvent_wr(dpy, key, True,
@@ -382,6 +400,7 @@ void do_button_mask_change(int mask, int button) {
 			}
 		}
 	}
+#endif	/* NO_X11 */
 }
 
 /*
@@ -393,6 +412,9 @@ static void update_x11_pointer_mask(int mask) {
 	last_event = last_input = last_pointer_input = time(NULL);
 
 	RAWFB_RET_VOID
+#if NO_X11
+	return;
+#else
 
 	if (mask != button_mask) {
 		last_pointer_click_time = dnow();
@@ -507,6 +529,7 @@ if (debug_scroll > 1) fprintf(stderr, "internal scrollbar: %dx%d\n", w, h);
 	 */
 	button_mask_prev = button_mask;
 	button_mask = mask;
+#endif	/* NO_X11 */
 }
 
 /* for -pipeinput */
@@ -520,9 +543,10 @@ static void pipe_pointer(int mask, int x, int y, rfbClientPtr client) {
 
 	if (pipeinput_int == PIPEINPUT_VID) {
 		v4l_pointer_command(mask, x, y, client);
-	}
-	if (pipeinput_int == PIPEINPUT_CONS) {
+	} else if (pipeinput_int == PIPEINPUT_CONSOLE) {
 		console_pointer_command(mask, x, y, client);
+	} else if (pipeinput_int == PIPEINPUT_UINPUT) {
+		uinput_pointer_command(mask, x, y, client);
 	}
 	if (pipeinput_fh == NULL) {
 		return;
@@ -534,6 +558,7 @@ static void pipe_pointer(int mask, int x, int y, rfbClientPtr client) {
 			can_input = 1;	/* XXX distinguish later */
 		}
 	}
+
 	if (cd) {
 		uid = cd->uid;
 	}
@@ -592,6 +617,7 @@ void pointer(int mask, int x, int y, rfbClientPtr client) {
 	if (mask >= 0) {
 		got_pointer_calls++;
 	}
+	get_allowed_input(client, &input);
 
 	if (debug_pointer && mask >= 0) {
 		static int show_motion = -1;
@@ -621,6 +647,10 @@ void pointer(int mask, int x, int y, rfbClientPtr client) {
 		return;
 	}
 
+	if (rotating) {
+		rotate_coords_inverse(x, y, &x, &y, -1, -1);
+	}
+
 	if (scaling) {
 		/* map from rfb size to X11 size: */
 		x = ((double) x / scaled_x) * dpy_x;
@@ -629,7 +659,7 @@ void pointer(int mask, int x, int y, rfbClientPtr client) {
 		y = nfix(y, dpy_y);
 	}
 
-	if (pipeinput_fh != NULL && mask >= 0) {
+	if ((pipeinput_fh != NULL || pipeinput_int) && mask >= 0) {
 		pipe_pointer(mask, x, y, client);
 		if (! pipeinput_tee) {
 			if (! view_only || raw_fb) {	/* raw_fb hack */
@@ -637,7 +667,7 @@ void pointer(int mask, int x, int y, rfbClientPtr client) {
 				got_keyboard_input++;
 				last_pointer_client = client;
 			}
-			if (view_only && raw_fb) {
+			if (input.motion) {
 				/* raw_fb hack track button state */
 				button_mask_prev = button_mask;
 				button_mask = mask;
@@ -657,7 +687,6 @@ void pointer(int mask, int x, int y, rfbClientPtr client) {
 		 * mask = -1 is a special case call from scan_for_updates()
 		 * to flush the event queue; there is no real pointer event.
 		 */
-		get_allowed_input(client, &input);
 		if (! input.motion && ! input.button) {
 			return;
 		}
@@ -861,7 +890,7 @@ void pointer(int mask, int x, int y, rfbClientPtr client) {
 }
 
 void initialize_pipeinput(void) {
-	char *p;
+	char *p = NULL;
 
 	if (pipeinput_fh != NULL) {
 		rfbLog("closing pipeinput stream: %p\n", pipeinput_fh);
@@ -880,7 +909,11 @@ void initialize_pipeinput(void) {
 	}
 
 	/* look for options:  tee, reopen, ... */
-	p = strchr(pipeinput_str, ':');
+	if (strstr(pipeinput_str, "UINPUT") == pipeinput_str) {
+		;
+	} else {
+		p = strchr(pipeinput_str, ':');
+	}
 	if (p != NULL) {
 		char *str, *opt, *q;
 		int got = 0;
@@ -917,11 +950,10 @@ if (0) fprintf(stderr, "initialize_pipeinput: %s -- %s\n", pipeinput_str, p);
 	if (!strcmp(p, "VID")) {
 		pipeinput_int = PIPEINPUT_VID;
 		return;
-	}
-	if (strstr(p, "CONS") == p) {
+	} else if (strstr(p, "CONSOLE") == p) {
 		int tty = 0, n;
 		char dev[32];
-		if (sscanf(p, "CONS%d", &n) == 1) {
+		if (sscanf(p, "CONSOLE%d", &n) == 1) {
 			tty = n;
 		}
 		sprintf(dev, "/dev/tty%d", tty);
@@ -932,11 +964,19 @@ if (0) fprintf(stderr, "initialize_pipeinput: %s -- %s\n", pipeinput_str, p);
 				free(pipeinput_cons_dev);
 			}
 			pipeinput_cons_dev = strdup(dev);
-			pipeinput_int = PIPEINPUT_CONS;
+			pipeinput_int = PIPEINPUT_CONSOLE;
 		} else {
 			rfbLog("pipeinput: could not open: %s\n", dev);
 			rfbLogPerror("open");
 		}
+		return;
+	} else if (strstr(p, "UINPUT") == p) {
+		char *q = strchr(p, ':');
+		if (q) {
+			parse_uinput_str(q+1);
+		}
+		pipeinput_int = PIPEINPUT_UINPUT;
+		initialize_uinput();
 		return;
 	}
 
@@ -988,16 +1028,16 @@ if (0) fprintf(stderr, "initialize_pipeinput: %s -- %s\n", pipeinput_str, p);
 "# It can be:\n"
 "#\n"
 "#	None		(nothing to report)\n"
-"#	ButtonPress-N	(this event will cause button-1 to be pressed) \n"
-"#	ButtonRelease-N	(this event will cause button-1 to be released) \n"
+"#	ButtonPress-N	(this event will cause button-N to be pressed) \n"
+"#	ButtonRelease-N	(this event will cause button-N to be released) \n"
 "#\n"
 "# if two more more buttons change state in one event they are listed\n"
 "# separated by commas.\n"
 "#\n"
 "# One might parse a Pointer line with:\n"
 "#\n"
-"# int client, x, y, mask; char *hint;\n"
-"# sscanf(line, \"Pointer %d %d %d %s\", &client, &x, &y, &mask, &hint);\n"
+"# int client, x, y, mask; char hint[100];\n"
+"# sscanf(line, \"Pointer %d %d %d %d %s\", &client, &x, &y, &mask, hint);\n"
 "#\n"
 "#\n"
 "# Keysym events (keyboard presses and releases) come in the form:\n"
@@ -1021,8 +1061,8 @@ if (0) fprintf(stderr, "initialize_pipeinput: %s -- %s\n", pipeinput_str, p);
 "#\n"
 "# One might parse a Keysym line with:\n"
 "#\n"
-"# int client, down, keysym; char *name, *hint;\n"
-"# sscanf(line, \"Keysym %d %d %s %s\", &client, &down, &keysym, &name, &hint);\n"
+"# int client, down, keysym; char name[100], hint[100];\n"
+"# sscanf(line, \"Keysym %d %d %d %s %s\", &client, &down, &keysym, name, hint);\n"
 "#\n"
 "# The <hint> value is currently just None, KeyPress, or KeyRelease.\n"
 "#\n"
@@ -1038,6 +1078,20 @@ if (0) fprintf(stderr, "initialize_pipeinput: %s -- %s\n", pipeinput_str, p);
 "# The Keysym => Keycode(s) stuff gets pretty messy.  Hopefully the Keysym\n"
 "# info will be enough for most purposes (having identical keyboards on\n"
 "# both sides helps).\n"
+"#\n"
+"# Parsing example for perl:\n"
+"#\n"
+"# while (<>) {\n"
+"#     chomp;\n"
+"#     if (/^Pointer/) {\n"
+"#         my ($p, $client, $x, $y, $mask, $hint) = split(' ', $_, 6);\n"
+"#         do_pointer($client, $x, $y, $mask, $hint);\n"
+"#     } elsif (/^Keysym/) {\n"
+"#         my ($k, $client, $down, $keysym, $name, $hint) = split(' ', $_, 6);\n"
+"#         do_keysym($client, $down, $keysym, $name, $hint);\n"
+"#     }\n"
+"# }\n"
+"#\n"
 "#\n"
 "# Here comes your stream.  The following token will always indicate the\n"
 "# end of this informational text:\n"

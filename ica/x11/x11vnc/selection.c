@@ -61,6 +61,9 @@ void selection_request(XEvent *ev, char *type) {
 	unsigned long XA_LENGTH;
 #endif
 	RAWFB_RET_VOID
+#if NO_X11
+	return;
+#else
 #ifndef XA_LENGTH
 	XA_LENGTH = XInternAtom(dpy, "LENGTH", True);
 #endif
@@ -134,6 +137,7 @@ void selection_request(XEvent *ev, char *type) {
 	trapped_xerror = 0;
 
 	XFlush_wr(dpy);
+#endif	/* NO_X11 */
 }
 
 int check_sel_direction(char *dir, char *label, char *sel, int len) {
@@ -185,6 +189,9 @@ void cutbuffer_send(void) {
 	slen = 0;
 
 	RAWFB_RET_VOID
+#if NO_X11
+	return;
+#else
 
 	/* read the property value into cutbuffer_str: */
 	do {
@@ -230,6 +237,7 @@ void cutbuffer_send(void) {
 	if (check_sel_direction("send", "cutbuffer_send", cutbuffer_str, len)) {
 		rfbSendServerCutText(screen, cutbuffer_str, len);
 	}
+#endif	/* NO_X11 */
 }
 
 /* 
@@ -255,6 +263,9 @@ void selection_send(XEvent *ev) {
 	char *selection_str;
 
 	RAWFB_RET_VOID
+#if NO_X11
+	return;
+#else
 	/*
 	 * remember info about our last value of PRIMARY (or CUT_BUFFER0)
 	 * so we can check for any changes below.
@@ -368,6 +379,7 @@ if (debug_sel) fprintf(stderr, "selection_send: data: '%s' dlen: %d nitems: %lu 
 	if (check_sel_direction("send", "selection_send", selection_str, len)) {
 		rfbSendServerCutText(screen, selection_str, len);
 	}
+#endif	/* NO_X11 */
 }
 
 

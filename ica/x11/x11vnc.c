@@ -38,6 +38,10 @@
 #include "x11vnc/linuxfb.c"
 #include "x11vnc/v4l.c"
 
+#define db db2
+#include "x11vnc/uinput.c"
+#undef db
+
 #define SHOW_NO_PASSWORD_WARNING 0
 #define main x11vnc_main
 

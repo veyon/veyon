@@ -5,6 +5,7 @@
 #include "keyboard.h"
 #include "xevents.h"
 #include "connections.h"
+#include "cleanup.h"
 
 int xshm_present = 0;
 int xtest_present = 0;
@@ -103,11 +104,15 @@ int guess_bits_per_color(int bits_per_pixel) {
 }
 
 int XFlush_wr(Display *disp) {
+#if NO_X11
+	return 1;
+#else
 	if (disp) {
 		return XFlush(disp);
 	} else {
 		return 1;
 	}
+#endif	/* NO_X11 */
 }
 
 /*
@@ -184,6 +189,10 @@ Bool XShmQueryExtension_wr(Display *disp) {
 
 XImage *xreadscreen(Display *disp, Drawable d, int x, int y,
     unsigned int width, unsigned int height, Bool show_cursor) {
+#if NO_X11
+	return NULL;
+#else
+
 #ifdef SOLARIS_OVERLAY
 	return XReadScreen(disp, d, x, y, width, height,
 	    show_cursor);
@@ -201,12 +210,17 @@ XImage *xreadscreen(Display *disp, Drawable d, int x, int y,
 	return NULL;
 #  endif
 #endif
+
+#endif	/* NO_X11 */
 }
 
 XImage *XGetSubImage_wr(Display *disp, Drawable d, int x, int y,
     unsigned int width, unsigned int height, unsigned long plane_mask,
     int format, XImage *dest_image, int dest_x, int dest_y) {
-
+#if NO_X11
+	nox11_exit(1);
+	return NULL;
+#else
 	ADJUST_ROOTSHIFT
 
 	if (overlay && dest_x == 0 && dest_y == 0) {
@@ -231,11 +245,16 @@ XImage *XGetSubImage_wr(Display *disp, Drawable d, int x, int y,
 	}
 	return XGetSubImage(disp, d, x, y, width, height, plane_mask,
 	    format, dest_image, dest_x, dest_y);
+#endif	/* NO_X11 */
 }
 
 XImage *XGetImage_wr(Display *disp, Drawable d, int x, int y,
     unsigned int width, unsigned int height, unsigned long plane_mask,
     int format) {
+#if NO_X11
+	nox11_exit(1);
+	return NULL;
+#else
 
 	ADJUST_ROOTSHIFT
 
@@ -244,6 +263,7 @@ XImage *XGetImage_wr(Display *disp, Drawable d, int x, int y,
 		    (Bool) overlay_cursor);
 	}
 	return XGetImage(disp, d, x, y, width, height, plane_mask, format);
+#endif	/* NO_X11 */
 }
 
 XImage *XCreateImage_wr(Display *disp, Visual *visual, unsigned int depth,
@@ -275,6 +295,10 @@ XImage *XCreateImage_wr(Display *disp, Visual *visual, unsigned int depth,
 		return xi;
 	}
 
+#if NO_X11
+	nox11_exit(1);
+	return NULL;
+#else
 	if (overlay) {
 		XImage *xi;
 		xi = xreadscreen(disp, window, 0, 0, width, height, False);
@@ -290,6 +314,7 @@ XImage *XCreateImage_wr(Display *disp, Visual *visual, unsigned int depth,
 
 	return XCreateImage(disp, visual, depth, format, offset, data,
 	    width, height, bitmap_pad, bytes_per_line);
+#endif	/* NO_X11 */
 }
 
 static void copy_raw_fb_24_to_32(XImage *dest, int x, int y, unsigned int w,
@@ -545,12 +570,15 @@ void init_track_keycode_state(void) {
 
 static void upup_downdown_warning(KeyCode key, Bool down) {
 	RAWFB_RET_VOID
-
+#if NO_X11
+	return;
+#else
 	if ((down ? 1:0) == keycode_state[(int) key]) {
+		char *str = XKeysymToString(XKeycodeToKeysym(dpy, key, 0));
 		rfbLog("XTestFakeKeyEvent: keycode=0x%x \"%s\" is *already* "
-		    "%s\n", key, XKeysymToString(XKeycodeToKeysym(dpy, key, 0)),
-		    down ? "down":"up");
+		    "%s\n", key, str ? str : "null", down ? "down":"up");
 	}
+#endif	/* NO_X11 */
 }
 
 /*
@@ -562,6 +590,10 @@ void XTRAP_FakeKeyEvent_wr(Display* dpy, KeyCode key, Bool down,
     unsigned long delay) {
 
 	RAWFB_RET_VOID
+#if NO_X11
+	nox11_exit(1);
+	return;
+#else
 
 	if (! xtrap_present) {
 		DEBUG_SKIPPED_INPUT(debug_keyboard, "keyboard: no-XTRAP");
@@ -580,6 +612,8 @@ void XTRAP_FakeKeyEvent_wr(Display* dpy, KeyCode key, Bool down,
 #else
 	DEBUG_SKIPPED_INPUT(debug_keyboard, "keyboard: no-XTRAP-build");
 #endif
+
+#endif	/* NO_X11 */
 }
 
 void XTestFakeKeyEvent_wr(Display* dpy, KeyCode key, Bool down,
@@ -588,10 +622,14 @@ void XTestFakeKeyEvent_wr(Display* dpy, KeyCode key, Bool down,
 
 	RAWFB_RET_VOID
 
+#if NO_X11
+	nox11_exit(1);
+	return;
+#else
 	if (debug_keyboard) {
+		char *str = XKeysymToString(XKeycodeToKeysym(dpy, key, 0));
 		rfbLog("XTestFakeKeyEvent(dpy, keycode=0x%x \"%s\", %s)\n",
-		    key, XKeysymToString(XKeycodeToKeysym(dpy, key, 0)),
-		    down ? "down":"up");
+		    key, str ? str : "null", down ? "down":"up");
 	}
 	if (first) { 
 		init_track_keycode_state();
@@ -633,12 +671,18 @@ void XTestFakeKeyEvent_wr(Display* dpy, KeyCode key, Bool down,
 	}
 	keycode_state[(int) key] = down ? 1 : 0;
 #endif
+
+#endif	/* NO_X11 */
 }
 
 void XTRAP_FakeButtonEvent_wr(Display* dpy, unsigned int button, Bool is_press,
     unsigned long delay) {
 
 	RAWFB_RET_VOID
+#if NO_X11
+	nox11_exit(1);
+	return;
+#else
 
 	if (! xtrap_present) {
 		DEBUG_SKIPPED_INPUT(debug_keyboard, "button: no-XTRAP");
@@ -653,12 +697,18 @@ void XTRAP_FakeButtonEvent_wr(Display* dpy, unsigned int button, Bool is_press,
 #else
 	DEBUG_SKIPPED_INPUT(debug_keyboard, "button: no-XTRAP-build");
 #endif
+
+#endif	/* NO_X11 */
 }
 
 void XTestFakeButtonEvent_wr(Display* dpy, unsigned int button, Bool is_press,
     unsigned long delay) {
 
 	RAWFB_RET_VOID
+#if NO_X11
+	nox11_exit(1);
+	return;
+#else
 
 	if (grab_ptr) {
 		XUngrabPointer(dpy, CurrentTime);
@@ -686,6 +736,7 @@ void XTestFakeButtonEvent_wr(Display* dpy, unsigned int button, Bool is_press,
 	if (grab_ptr) {
 		adjust_grabs(1, 1);
 	}
+#endif	/* NO_X11 */
 }
 
 void XTRAP_FakeMotionEvent_wr(Display* dpy, int screen, int x, int y,
@@ -693,6 +744,10 @@ void XTRAP_FakeMotionEvent_wr(Display* dpy, int screen, int x, int y,
 
 	RAWFB_RET_VOID
 
+#if NO_X11
+	nox11_exit(1);
+	return;
+#else
 	if (! xtrap_present) {
 		DEBUG_SKIPPED_INPUT(debug_keyboard, "motion: no-XTRAP");
 		return;
@@ -705,12 +760,18 @@ void XTRAP_FakeMotionEvent_wr(Display* dpy, int screen, int x, int y,
 #else
 	DEBUG_SKIPPED_INPUT(debug_keyboard, "motion: no-XTRAP-build");
 #endif
+
+#endif	/* NO_X11 */
 }
 
 void XTestFakeMotionEvent_wr(Display* dpy, int screen, int x, int y,
     unsigned long delay) {
 
 	RAWFB_RET_VOID
+#if NO_X11
+	nox11_exit(1);
+	return;
+#else
 
 	if (grab_ptr) {
 		XUngrabPointer(dpy, CurrentTime);
@@ -734,6 +795,7 @@ void XTestFakeMotionEvent_wr(Display* dpy, int screen, int x, int y,
 	if (grab_ptr) {
 		adjust_grabs(1, 1);
 	}
+#endif	/* NO_X11 */
 }
 
 Bool XTestCompareCurrentCursorWithWindow_wr(Display* dpy, Window w) {
@@ -971,6 +1033,10 @@ Display *XOpenDisplay_wr(char *display_name) {
 	if (! xauth_raw(1)) {
 		return NULL;
 	}
+#if NO_X11
+	rfbLog("This x11vnc was built without X11 support (-rawfb only).\n");
+	return NULL;
+#else
 
 	d = XOpenDisplay(display_name);
 	if (db) fprintf(stderr, "XOpenDisplay_wr: %s  %p\n", display_name, (void *)d);
@@ -978,11 +1044,29 @@ Display *XOpenDisplay_wr(char *display_name) {
 	xauth_raw(0);
 
 	return d;
+#endif	/* NO_X11 */
 }
 
 int XCloseDisplay_wr(Display *display) {
 	int db = 0;
 	if (db) fprintf(stderr, "XCloseDisplay_wr: %p\n", (void *)display);
+#if NO_X11
+	return 0;
+#else
 	return XCloseDisplay(display);
+#endif	/* NO_X11 */
 }
+
+void nox11_exit(int rc) {
+#if NO_X11
+	rfbLog("This x11vnc was not built with X11 support.\n");
+	clean_up_exit(rc);
+#else
+	if (0) {rc = 0;}
+#endif
+}
+
+#if NO_X11
+#include "nox11_funcs.h"
+#endif
 
