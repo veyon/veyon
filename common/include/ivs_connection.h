@@ -155,6 +155,7 @@ private:
 	bool handleCoRRE( Q_UINT16 rx, Q_UINT16 ry, Q_UINT16 rw, Q_UINT16 rh );
 
 #ifdef HAVE_LIBZ
+	bool handleZlib( Q_UINT16 rx, Q_UINT16 ry, Q_UINT16 rw, Q_UINT16 rh );
 	bool handleTight( Q_UINT16 rx, Q_UINT16 ry, Q_UINT16 rw, Q_UINT16 rh );
 	Q_UINT8 initFilterCopy( Q_UINT16 rw, Q_UINT16 rh );
 	Q_UINT8 initFilterPalette( Q_UINT16 rw, Q_UINT16 rh );
@@ -200,11 +201,18 @@ private:
 	#define BUFFER_SIZE (640*480)
 	char m_buffer[BUFFER_SIZE];
 
+	// variables for the zlib-encoding
+#ifdef HAVE_LIBZ
+	int m_rawBufferSize;
+	char * m_rawBuffer;
+	z_stream m_decompStream;
+	bool m_decompStreamInited;
+#endif
 
 	// Variables for the ``tight'' encoding implementation.
 #ifdef HAVE_LIBZ
 
-	// Separate m_buffer for compressed data.
+	// Separate buffer for compressed data.
 	#define ZLIB_BUFFER_SIZE 512
 	char m_zlibBuffer[ZLIB_BUFFER_SIZE];
 

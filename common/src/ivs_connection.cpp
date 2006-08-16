@@ -88,7 +88,10 @@ ivsConnection::ivsConnection( const QString & _host, quality _q,
 	m_scaledSize(),
 	m_softwareCursor( FALSE ),
 	m_cursorPos( 0, 0 ),
-	m_cursorShape()
+	m_cursorShape(),
+	m_rawBufferSize( -1 ),
+	m_rawBuffer( NULL ),
+	m_decompStreamInited( FALSE )
 {
 #ifdef HAVE_LIBZ
 	m_zlibStreamActive[0] = m_zlibStreamActive[1] = m_zlibStreamActive[2] =
@@ -101,6 +104,7 @@ ivsConnection::ivsConnection( const QString & _host, quality _q,
 
 ivsConnection::~ivsConnection()
 {
+	delete m_rawBuffer;
 }
 
 
@@ -205,14 +209,11 @@ ivsConnection::states ivsConnection::protocolInitialization( void )
 	}
 	else
 	{
-#warning: FIXME
-#if 0
 #ifdef HAVE_LIBZ
 #ifdef HAVE_LIBJPEG
 		encs[se->nEncodings++] = swap32IfLE( rfbEncodingTight );
 #endif
 		encs[se->nEncodings++] = swap32IfLE( rfbEncodingZlib );
-#endif
 #endif
 		encs[se->nEncodings++] = swap32IfLE( rfbEncodingCopyRect );
 		encs[se->nEncodings++] = swap32IfLE( rfbEncodingCoRRE );
@@ -413,8 +414,10 @@ bool ivsConnection::handleServerMessages( bool _send_screen_update, int _tries )
 						m_si.framebufferHeight ) )
 				{
 					printf( "Rect too large: %dx%d at (%d, "
-						"%d)\n", rect.r.w, rect.r.h,
-							rect.r.x, rect.r.y );
+						"%d) (encoding: %d)\n",
+							rect.r.w, rect.r.h,
+							rect.r.x, rect.r.y,
+							rect.encoding );
 					return( FALSE );
 				}
 
@@ -476,6 +479,12 @@ bool ivsConnection::handleServerMessages( bool _send_screen_update, int _tries )
 		}
 		break;
 #ifdef HAVE_LIBZ
+					case rfbEncodingZlib:
+		if( !handleZlib( rect.r.x, rect.r.y, rect.r.w, rect.r.h ) )
+		{
+				return( FALSE );
+		}
+		break;
 					case rfbEncodingTight:
 		if( !handleTight( rect.r.x, rect.r.y, rect.r.w, rect.r.h ) )
 		{
@@ -726,6 +735,124 @@ bool ivsConnection::handleRRE( Q_UINT16, Q_UINT16, Q_UINT16, Q_UINT16 )
 
 #ifdef HAVE_LIBZ
 
+
+bool ivsConnection::handleZlib( Q_UINT16 rx, Q_UINT16 ry, Q_UINT16 rw,
+								Q_UINT16 rh )
+{
+	/* First make sure we have a large enough raw buffer to hold the
+	* decompressed data.  In practice, with a fixed BPP, fixed frame
+	* buffer size and the first update containing the entire frame
+	* buffer, this buffer allocation should only happen once, on the
+	* first update.
+	*/
+	if( m_rawBufferSize <  (int) rw * rh * 4 )
+	{
+		delete m_rawBuffer;
+		m_rawBufferSize = (int) rw * rh * 4;
+		m_rawBuffer = new char[m_rawBufferSize];
+	}
+
+	rfbZlibHeader hdr;
+	if( !readFromServer( (char *) &hdr, sz_rfbZlibHeader ) )
+	{
+		return( FALSE );
+	}
+
+	int remaining = swap32IfLE( hdr.nBytes );
+
+	// Need to initialize the decompressor state
+	m_decompStream.next_in   = ( Bytef * ) m_buffer;
+	m_decompStream.avail_in  = 0;
+	m_decompStream.next_out  = ( Bytef * ) m_rawBuffer;
+	m_decompStream.avail_out = m_rawBufferSize;
+	m_decompStream.data_type = Z_BINARY;
+
+	int inflateResult;
+	// Initialize the decompression stream structures on the first
+	// invocation.
+	if( !m_decompStreamInited )
+	{
+		inflateResult = inflateInit( &m_decompStream );
+
+		if ( inflateResult != Z_OK )
+		{
+			printf( "inflateInit returned error: %d, msg: %s\n",
+					inflateResult, m_decompStream.msg );
+			return( FALSE );
+		}
+		m_decompStreamInited = TRUE;
+	}
+
+	inflateResult = Z_OK;
+
+	// Process buffer full of data until no more to process, or
+	// some type of inflater error, or Z_STREAM_END.
+	while( remaining > 0 && inflateResult == Z_OK )
+	{
+		int toRead;
+		if( remaining > BUFFER_SIZE )
+		{
+			toRead = BUFFER_SIZE;
+		}
+		else
+		{
+			toRead = remaining;
+		}
+
+		// Fill the buffer, obtaining data from the server.
+		if( !readFromServer( m_buffer, toRead ) )
+		{
+			return( FALSE );
+		}
+
+		m_decompStream.next_in  = ( Bytef * ) m_buffer;
+		m_decompStream.avail_in = toRead;
+
+		// Need to uncompress buffer full.
+		inflateResult = inflate( &m_decompStream, Z_SYNC_FLUSH );
+
+		/* We never supply a dictionary for compression. */
+		if( inflateResult == Z_NEED_DICT )
+		{
+			printf( "zlib inflate needs a dictionary!\n" );
+			return( FALSE );
+		}
+		if ( inflateResult < 0 )
+		{
+			printf( "zlib inflate returned error: %d, msg: %s\n",
+					inflateResult, m_decompStream.msg );
+			return( FALSE );
+		}
+
+		// Result buffer allocated to be at least large enough.
+		// We should never run out of space!
+		if( m_decompStream.avail_in > 0 &&
+						m_decompStream.avail_out <= 0 )
+		{
+			printf( "zlib inflate ran out of space!\n" );
+			return( FALSE );
+		}
+
+		remaining -= toRead;
+
+	} // while ( remaining > 0 )
+
+	if ( inflateResult == Z_OK )
+	{
+		m_screen.copyRect( rx, ry, rw, rh, (QRgb *) m_rawBuffer );
+	}
+	else
+	{
+		printf( "zlib inflate returned error: %d, msg: %s\n",
+					inflateResult, m_decompStream.msg );
+		return( FALSE );
+	}
+
+	return( TRUE );
+}
+
+
+
 #define TIGHT_MIN_TO_COMPRESS 12
 
 
@@ -843,7 +970,7 @@ bool ivsConnection::handleTight( Q_UINT16 rx, Q_UINT16 ry, Q_UINT16 rw,
 
 
 	// Determine if the data should be decompressed or just copied.
-	Q_UINT16 row_size = ( rw * bits_pixel + 7 ) / 8;
+	Q_UINT16 row_size = ( (int) rw * bits_pixel + 7 ) / 8;
 	if( rh * row_size < TIGHT_MIN_TO_COMPRESS )
 	{
 		if( !readFromServer( (char*)m_buffer, rh * row_size ) )
@@ -1030,13 +1157,13 @@ void ivsConnection::filterGradient( Q_UINT16 num_rows, Q_UINT32 * dst )
 		s_localDisplayFormat.greenMax,
 		s_localDisplayFormat.blueMax
 	} ;
-	Q_UINT8 shift[3] =
+	int shift[3] =
 	{
 		s_localDisplayFormat.redShift,
 		s_localDisplayFormat.greenShift,
 		s_localDisplayFormat.blueShift
 	} ;
-	Q_INT16 est[3];
+	int est[3];
 
 
 	for( Q_UINT16 y = 0; y < num_rows; y++ )
@@ -1054,12 +1181,12 @@ void ivsConnection::filterGradient( Q_UINT16 num_rows, Q_UINT32 * dst )
 		{
 			for( Q_UINT8 c = 0; c < 3; c++ )
 			{
-				est[c] = (Q_INT16)that_row[x*3+c] +
-						(Q_INT16)pix[c] -
-						(Q_INT16)that_row[(x-1)*3+c];
-				if( est[c] > (Q_INT16)max[c] )
+				est[c] = (int)that_row[x*3+c] +
+						(int)pix[c] -
+						(int)that_row[(x-1)*3+c];
+				if( est[c] > (int)max[c] )
 				{
-					est[c] = (Q_INT16)max[c];
+					est[c] = (int)max[c];
 				}
 				else if( est[c] < 0 )
 				{
@@ -1117,22 +1244,21 @@ void ivsConnection::filterPalette( Q_UINT16 num_rows, Q_UINT32 * dst )
 	if( m_rectColors == 2 )
 	{
 		const Q_UINT16 w = (m_rectWidth + 7) / 8;
-		for( Q_UINT16 y = 0; y < num_rows; y++ )
+		for( Q_UINT16 y = 0; y < num_rows; ++y )
 		{
-			const Q_UINT32 base = y*m_rectWidth;
-			for( Q_UINT16 x = 0; x < m_rectWidth/8; x++ )
+			int x;
+			for( x = 0; x < m_rectWidth/8; x++ )
 			{
 				for( Q_INT8 b = 7; b >= 0; b-- )
 				{
-					dst[base+x*8+7-b] =
+					dst[y*m_rectWidth+x*8+7-b] =
 						palette[src[y*w+x] >> b & 1];
 				}
 			}
 			for( Q_INT8 b = 7; b >= 8 - m_rectWidth % 8; b-- )
 			{
-				dst[base+m_rectWidth+7-b] =
-					palette[src[y*w+m_rectWidth/8]
-								>> b & 1];
+				dst[y*m_rectWidth+x*8+7-b] =
+						palette[src[y*w+x] >> b & 1];
 			}
 		}
 	}
@@ -1140,10 +1266,10 @@ void ivsConnection::filterPalette( Q_UINT16 num_rows, Q_UINT32 * dst )
 	{
 		for( Q_UINT16 y = 0; y < num_rows; y++ )
 		{
-			const Q_UINT32 base = y*m_rectWidth;
 			for( Q_UINT16 x = 0; x < m_rectWidth; x++ )
 			{
-				dst[base+x] = palette[(int)src[base+x]];
+				dst[y*m_rectWidth+x] =
+					palette[(int)src[y*m_rectWidth+x]];
 			}
 		}
 	}
