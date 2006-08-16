@@ -206,11 +206,13 @@ ivsConnection::states ivsConnection::protocolInitialization( void )
 	else
 	{
 #warning: FIXME
+#if 0
 #ifdef HAVE_LIBZ
 #ifdef HAVE_LIBJPEG
-//		encs[se->nEncodings++] = swap32IfLE( rfbEncodingTight );
+		encs[se->nEncodings++] = swap32IfLE( rfbEncodingTight );
 #endif
-//		encs[se->nEncodings++] = swap32IfLE( rfbEncodingZlib );
+		encs[se->nEncodings++] = swap32IfLE( rfbEncodingZlib );
+#endif
 #endif
 		encs[se->nEncodings++] = swap32IfLE( rfbEncodingCopyRect );
 		encs[se->nEncodings++] = swap32IfLE( rfbEncodingCoRRE );
@@ -236,7 +238,7 @@ ivsConnection::states ivsConnection::protocolInitialization( void )
 		}
 #endif
 		encs[se->nEncodings++] = swap32IfLE(
-						rfbEncodingCompressLevel4 );
+						rfbEncodingCompressLevel2 );
 #endif
 	}
 	encs[se->nEncodings++] = swap32IfLE( rfbEncodingRichCursor );
