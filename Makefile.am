@@ -1,7 +1,7 @@
 AUTOMAKE_OPTIONS = foreign 1.4
 
 
-SUBDIRS = common ica ima
+SUBDIRS = common ica ima tests
 
 EXTRA_DIST = build_mingw32 tightvnc4win_integrate tightvnc4win_italc.diff
 

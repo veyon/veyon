@@ -239,7 +239,7 @@ ivsConnection::states ivsConnection::protocolInitialization( void )
 		}
 #endif
 		encs[se->nEncodings++] = swap32IfLE(
-						rfbEncodingCompressLevel2 );
+						rfbEncodingCompressLevel4 );
 #endif
 	}
 	encs[se->nEncodings++] = swap32IfLE( rfbEncodingRichCursor );

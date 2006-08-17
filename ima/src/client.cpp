@@ -142,13 +142,17 @@ client::client( const QString & _local_ip, const QString & _remote_ip,
 	connect( tb, SIGNAL( actionTriggered( QAction * ) ), this,
 					SLOT( processCmdSlot( QAction * ) ) );
 	tb->addAction( scaled( ":/resources/overview_mode.png", 16, 16 ),
-						tr( "Watch only" ) );
+							tr( "Watch only" ) )->
+				setData( CmdCount + Mode_Overview );
 	tb->addAction( scaled( ":/resources/fullscreen_demo.png", 16, 16 ),
-						tr( "Fullscreen demo" ) );
+						tr( "Fullscreen demo" ) )->
+				setData( CmdCount + Mode_FullscreenDemo );
 	tb->addAction( scaled( ":/resources/window_demo.png", 16, 16 ),
-						tr( "Window demo" ) );
+						tr( "Window demo" ) )->
+				setData( CmdCount + Mode_WindowDemo );
 	tb->addAction( scaled( ":/resources/locked.png", 16, 16 ),
-						tr( "Locked display" ) );
+						tr( "Locked display" ) )->
+				setData( CmdCount + Mode_Locked );
 	tb->addSeparator();
 	for( int i = ViewLive; i < CmdCount; ++i )
 	{
@@ -162,18 +166,6 @@ client::client( const QString & _local_ip, const QString & _remote_ip,
 			tb->addSeparator();
 		}
 	}
-/*	tb->addAction( scaled( ":/resources/client_demo.png", 16, 16 ),
-					tr( "Let this student show a demo" ) );
-	//tb->addSeparator();
-	tb->addAction( scaled( ":/resources/text_message.png", 16, 16 ),
-						tr( "Send text message" ) );
-	//tb->addSeparator();
-	tb->addAction( scaled( ":/resources/power_on.png", 16, 16 ),
-							tr( "Power on" ) );
-	tb->addAction( scaled( ":/resources/power_off.png", 16, 16 ),
-							tr( "Power down" ) );*/
-/*	tb->addAction( QPixmap( ":/resources/reboot.png" ),
-							tr( "Restart" ) );*/
 	tb->show();
 
 }
@@ -276,6 +268,15 @@ void client::changeMode( const modes _new_mode, isdConnection * _conn )
 		}
 		m_syncMutex.unlock();
 	}
+	// if connection was lost while sending commands such as stop-demo,
+	// there should be a way for switching back into normal mode, that's
+	// why we offer this lines
+	else if( m_mode == Mode_Overview )
+	{
+		_conn->demoServerDenyClient( m_localIP );
+		m_connection->stopDemo();
+		m_connection->unlockDisplay();
+	}
 }
 
 
@@ -375,7 +376,16 @@ void client::prepareDemo( isdConnection * _conn,
 
 void client::processCmdSlot( QAction * _action )
 {
-	processCmd( static_cast<clientCmds>( _action->data().toInt() ) );
+	int a = _action->data().toInt();
+	if( a >= ViewLive && a < CmdCount )
+	{
+		processCmd( static_cast<clientCmds>( a ) );
+	}
+	else if( a >= CmdCount+Mode_Overview && a < CmdCount+Mode_Unknown )
+	{
+		changeMode( static_cast<modes>( a-CmdCount ),
+						m_mainWindow->localISD() );
+	}
 }
 
 
@@ -586,8 +596,8 @@ void client::paintEvent( QPaintEvent * _pe )
 							2 * RECT_INNER_MARGIN;
 			const int ty = ry + RECT_INNER_MARGIN + FONT_SIZE - 2;
 
-			p.fillRect( rx, ry, rw, rh, QBrush( QColor(
-					255, 255, 255 ), Qt::Dense3Pattern ) );
+			p.fillRect( rx, ry, rw, rh, QColor(
+							255, 255, 255, 128 ) );
 			p.drawPixmap( ix, iy, italc_icon );
 			p.drawText( tx, ty, txt );
 			screen.save( file_name, "PNG", 50 );

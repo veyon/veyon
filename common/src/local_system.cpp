@@ -324,13 +324,11 @@ void sendWakeOnLANPacket( const QString & _mac )
 
 void powerDown( void )
 {
-	QProcess::startDetached(
 #ifdef BUILD_WIN32
-			"shutdown -s -t 0 -f"
+	ExitWindowsEx( EWX_POWEROFF | EWX_FORCE | EWX_FORCEIFHUNG, SHTDN_REASON_MINOR_ENVIRONMENT );
 #else
-			"halt"
+	QProcess::startDetached( "halt" );
 #endif
-					);
 }
 
 
@@ -338,26 +336,22 @@ void powerDown( void )
 
 void reboot( void )
 {
-	QProcess::startDetached(
 #ifdef BUILD_WIN32
-			"shutdown -r -t 0 -f"
+	ExitWindowsEx( EWX_REBOOT | EWX_FORCE | EWX_FORCEIFHUNG, SHTDN_REASON_MINOR_ENVIRONMENT );
 #else
-			"reboot"
+	QProcess::startDetached( "reboot" );
 #endif
-					);
 }
 
 
 
 void logoutUser( void )
 {
-	QProcess::startDetached(
 #ifdef BUILD_WIN32
-			"shutdown -l -t 0 -f"
+	ExitWindowsEx( EWX_LOGOFF | EWX_FORCE | EWX_FORCEIFHUNG, SHTDN_REASON_MINOR_ENVIRONMENT );
 #else
-			"killall X"
+	QProcess::startDetached( "killall X" );
 #endif
-					);
 }
 
 
@@ -397,8 +391,8 @@ QString currentUser( void )
 		{
 			// No user is logged in - ensure we're not
 			// impersonating anyone
-			RevertToSelf();
-			return "";
+			//RevertToSelf();
+			return "Default";
 		}
 	}
 
@@ -413,9 +407,11 @@ QString currentUser( void )
 		{
 			// Just call GetCurrentUser
 			DWORD len = 256;
-			char buf[len];
+			char buf[256];
 			if( GetUserName( buf, &len ) != 0 )
 			{
+				buf[len] = 0;
+				printf("%s\n", buf );
 				return buf;
 			}
 		}

@@ -195,6 +195,7 @@ int isdServer::processClient( socketDispatcher _sd, void * _user )
 	if( sdev.read( &cmd, sizeof( cmd ) ) == 0 )
 	{
 		printf( "couldn't read iTALC-request from client...\n" );
+		return( FALSE );
 	}
 
 	if( cmd == rfbItalcServiceRequest )
@@ -218,7 +219,6 @@ int isdServer::processClient( socketDispatcher _sd, void * _user )
 						localSystem::currentUser() ).
 					addArg( "homedir", QDir::homePath() ).
 									send();
-			
 			break;
 		}
 
