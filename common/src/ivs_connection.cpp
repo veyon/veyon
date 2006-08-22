@@ -243,7 +243,7 @@ ivsConnection::states ivsConnection::protocolInitialization( void )
 #endif
 	}
 	encs[se->nEncodings++] = swap32IfLE( rfbEncodingRichCursor );
-	encs[se->nEncodings++] = swap32IfLE( rfbEncodingXCursor );
+	//encs[se->nEncodings++] = swap32IfLE( rfbEncodingXCursor );
 	encs[se->nEncodings++] = swap32IfLE( rfbEncodingPointerPos );
 
 	//encs[se->nEncodings++] = swap32IfLE( rfbEncodingLastRect );
@@ -334,6 +334,9 @@ bool ivsConnection::sendPointerEvent( Q_UINT16 _x, Q_UINT16 _y,
 	//if (_y < 0) _y = 0;
 	pe.x = swap16IfLE( _x );
 	pe.y = swap16IfLE( _y );
+
+	// make sure our own pointer is updated when remote-controlling
+	handleCursorPos( _x, _y );
 
 	return( writeToServer( (char *) &pe, sizeof( pe ) ) );
 }

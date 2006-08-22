@@ -1,5 +1,9 @@
 2006-08-22	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
+	* common/src/ivs_connetion.cpp:
+	- update software-cursor when remote-controlling
+	- disabled XCursor-support as it's buggy under Win32
+
 	* ima/src/client.cpp:
 	when re-entering view-only-mode, check do not crash if passed
 	connection-pointer is NULL

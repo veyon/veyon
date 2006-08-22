@@ -33,6 +33,7 @@
 #include <QtCore/QDir>
 #include <QtCore/QProcess>
 #include <QtCore/QSettings>
+#include <QtCore/QMutex>
 
 
 #ifdef BUILD_WIN32
@@ -67,6 +68,7 @@ public:
 
 	const QString & name( void ) const
 	{
+		QMutexLocker m( &m_mutex );
 		return( m_name );
 	}
 
@@ -79,12 +81,14 @@ private:
 			p.start( "userinfo" );
 			if( p.waitForFinished() )
 			{
+				QMutexLocker m( &m_mutex );
 				( m_name = p.readAll() ).chop( 2 );
 			}
 		}
 	}
 
 	QString m_name;
+	mutable QMutex m_mutex;
 
 }  static * __user_poll_thread = NULL;
 
@@ -523,10 +527,10 @@ QString currentUser( void )
 {
 	QString ret = "unknown";
 #ifdef BUILD_WIN32
-	if( !__user_poll_thread->name().isEmpty() )
+/*	if( !__user_poll_thread->name().isEmpty() )
 	{
 		ret = __user_poll_thread->name();
-	}
+	}*/
 /*	char * name;
 	getUserName( &name );
 	if( name )

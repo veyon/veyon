@@ -16,6 +16,10 @@ LDFLAGS="$LDFLAGS -L${prefix}/bin"
 AC_PROG_CC
 AC_PROG_CXX
 
+AC_LIBTOOL_WIN32_DLL
+AC_PROG_LIBTOOL
+
+
 EXTRAFLAGS="-g0 -O2 -ansi -Wall -I${prefix}/include"
 #-floop-optimize2 -fomit-frame-pointer"
 

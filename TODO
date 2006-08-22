@@ -3,9 +3,9 @@
 - improve support-workspace/artwork
 - close remoteControlWidget via escape when establishing connection
 - remove sidebar-background and draw it
-- make screenshot-stuff working again
 - common naming-conventions
 - show version in about-dlg
+- handle <Ctrl>+character key-presses
 
 TODO
 =====

@@ -67,7 +67,7 @@ isdServer::isdServer( const quint16 _isd_port, const quint16 _ivs_port,
 					errorString().toAscii().constData() );
 	}
 
-	m_ivs->start( QThread::HighPriority );
+	m_ivs->start(/* QThread::HighPriority*/ );
 
 	connect( this, SIGNAL( newConnection() ),
 			this, SLOT( acceptNewConnection() ) );
