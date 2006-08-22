@@ -273,7 +273,10 @@ void client::changeMode( const modes _new_mode, isdConnection * _conn )
 	// why we offer this lines
 	else if( m_mode == Mode_Overview )
 	{
-		_conn->demoServerDenyClient( m_localIP );
+		if( _conn != NULL )
+		{
+			_conn->demoServerDenyClient( m_localIP );
+		}
 		m_connection->stopDemo();
 		m_connection->unlockDisplay();
 	}
