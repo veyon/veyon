@@ -2,8 +2,8 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.50)
-AC_INIT(italc, 0.9.7.1-qt4-cvs-20060817, tobydox/at/users/dot/sf/dot/net)
-AM_INIT_AUTOMAKE(italc, 0.9.7.1-qt4-cvs-20060817)
+AC_INIT(italc, 0.9.7.1-qt4-cvs-20060822, tobydox/at/users/dot/sf/dot/net)
+AM_INIT_AUTOMAKE(italc, 0.9.7.1-qt4-cvs-20060822)
 AM_CONFIG_HEADER(config.h)
 AX_PREFIX_CONFIG_H([common/include/rfb/rfbconfig.h])
 
@@ -16,7 +16,8 @@ LDFLAGS="$LDFLAGS -L${prefix}/bin"
 AC_PROG_CC
 AC_PROG_CXX
 
-EXTRAFLAGS="-g0 -O2 -ansi -Wall -I${prefix}/include -floop-optimize2 -fomit-frame-pointer"
+EXTRAFLAGS="-g0 -O2 -ansi -Wall -I${prefix}/include"
+#-floop-optimize2 -fomit-frame-pointer"
 
 if test "x`$CC --version|head -1|cut -d\  -f3|cut -d. -f1`" = "x4" ; then
 	EXTRAFLAGS="$EXTRAFLAGS -ftree-vectorize -ftree-loop-linear"
@@ -59,7 +60,6 @@ if test "x$build_win32" = "xtrue" ; then
 	AC_DEFINE(WIN32)
 	#WIN32_DEFINES="-D_WIN32_WINNT=Windows2000"
 	#AC_SUBST(WIN32_DEFINES)
-	# LDFLAGS="$LDFLAGS -mwindows"
 	build_linux="false"
 	build_win32="true"
 else
@@ -447,7 +447,7 @@ AC_CONFIG_FILES([Makefile
 		 common/Makefile
 		 ica/Makefile
 		 ima/Makefile
-		 tests/Makefile])
+		 utils-win32/Makefile])
 AC_OUTPUT
 
 echo

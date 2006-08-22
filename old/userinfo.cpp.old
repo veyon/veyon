@@ -1,0 +1,679 @@
+/*#ifndef UNICODE
+#define UNICODE
+#endif*/
+
+#if 0
+#include <stdio.h>
+#include <windows.h> 
+#include <lm.h>
+
+BOOL GetTextualSid(
+    PSID pSid,            // binary SID
+    LPTSTR TextualSid,    // buffer for Textual representation of SID
+    LPDWORD lpdwBufferLen // required/provided TextualSid buffersize
+    )
+{
+    PSID_IDENTIFIER_AUTHORITY psia;
+    DWORD dwSubAuthorities;
+    DWORD dwSidRev=SID_REVISION;
+    DWORD dwCounter;
+    DWORD dwSidSize;
+
+    // Validate the binary SID.
+
+    if(!IsValidSid(pSid)) return FALSE;
+
+    // Get the identifier authority value from the SID.
+
+    psia = GetSidIdentifierAuthority(pSid);
+
+    // Get the number of subauthorities in the SID.
+
+    dwSubAuthorities = *GetSidSubAuthorityCount(pSid);
+
+    // Compute the buffer length.
+    // S-SID_REVISION- + IdentifierAuthority- + subauthorities- + NULL
+
+    dwSidSize=(15 + 12 + (12 * dwSubAuthorities) + 1) * sizeof(TCHAR);
+
+    // Check input buffer length.
+    // If too small, indicate the proper size and set the last error.
+
+    if (*lpdwBufferLen < dwSidSize)
+    {
+        *lpdwBufferLen = dwSidSize;
+        SetLastError(ERROR_INSUFFICIENT_BUFFER);
+        return FALSE;
+    }
+
+    // Add 'S' prefix and revision number to the string.
+
+    dwSidSize=wsprintf(TextualSid, TEXT("S-%lu-"), dwSidRev );
+
+    // Add a SID identifier authority to the string.
+
+    if ( (psia->Value[0] != 0) || (psia->Value[1] != 0) )
+    {
+        dwSidSize+=wsprintf(TextualSid + lstrlen(TextualSid),
+                    TEXT("0x%02hx%02hx%02hx%02hx%02hx%02hx"),
+                    (USHORT)psia->Value[0],
+                    (USHORT)psia->Value[1],
+                    (USHORT)psia->Value[2],
+                    (USHORT)psia->Value[3],
+                    (USHORT)psia->Value[4],
+                    (USHORT)psia->Value[5]);
+    }
+    else
+    {
+        dwSidSize+=wsprintf(TextualSid + lstrlen(TextualSid),
+                    TEXT("%lu"),
+                    (ULONG)(psia->Value[5]      )   +
+                    (ULONG)(psia->Value[4] <<  8)   +
+                    (ULONG)(psia->Value[3] << 16)   +
+                    (ULONG)(psia->Value[2] << 24)   );
+    }
+
+    // Add SID subauthorities to the string.
+    //
+    for (dwCounter=0 ; dwCounter < dwSubAuthorities ; dwCounter++)
+    {
+        dwSidSize+=wsprintf(TextualSid + dwSidSize, TEXT("-%lu"),
+                    *GetSidSubAuthority(pSid, dwCounter) );
+    }
+
+    return TRUE;
+}
+
+
+
+void ShowError(LPTSTR lpszFunction) 
+{ 
+    LPVOID lpMsgBuf;
+    LPVOID lpDisplayBuf;
+
+    DWORD dw = GetLastError(); 
+
+    FormatMessage(
+        FORMAT_MESSAGE_ALLOCATE_BUFFER | 
+        FORMAT_MESSAGE_FROM_SYSTEM,
+        NULL,
+        dw,
+        MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
+        (LPTSTR) &lpMsgBuf,
+        0, NULL );
+
+    lpDisplayBuf = (LPVOID)LocalAlloc(LMEM_ZEROINIT, 
+        (lstrlen((LPCTSTR)lpMsgBuf)+lstrlen((LPCTSTR)lpszFunction)+40)*sizeof(TCHAR)); 
+    wsprintf((LPTSTR)lpDisplayBuf, 
+        TEXT("%s failed with error %d: %s"), 
+        lpszFunction, dw, lpMsgBuf); 
+    MessageBox(NULL, (LPCTSTR)lpDisplayBuf, TEXT("Error"), MB_OK); 
+
+    LocalFree(lpMsgBuf);
+    LocalFree(lpDisplayBuf);
+}
+
+int main(int argc, wchar_t *argv[])
+{
+ /*
+	OSVERSIONINFO osversioninfo;
+	osversioninfo.dwOSVersionInfoSize = sizeof( osversioninfo );
+
+	// Get the current OS version
+	if( !GetVersionEx( &osversioninfo ) )
+	{
+		osversioninfo.dwPlatformId = 0;
+	}
+	if( osversioninfo.dwPlatformId == VER_PLATFORM_WIN32_NT )
+	{*/
+		// Windows NT, service-mode
+
+		// verify that a user is logged on
+
+		// Get the current Window station
+/*		HWINSTA station = GetProcessWindowStation();
+		if( station == NULL )
+		{
+			return -1;
+		}*/
+		ShowError("foo");
+		HDESK desktop = GetThreadDesktop(GetCurrentThreadId());
+
+		// Get the current user SID size
+		DWORD usersize;
+/*		printf("guoi: %d\n",GetUserObjectInformation( desktop, UOI_USER_SID, NULL, 0,
+								&usersize ));
+
+		// Check the required buffer size isn't zero
+		if( usersize == 0 )
+		{
+			// No user is logged in - ensure we're not
+			// impersonating anyone
+			//RevertToSelf();
+			return -1;
+		}*/
+		usersize=20;
+		printf("size: %d\n", usersize );
+		PSID sid = (PSID) new char[usersize];
+		ShowError("foo");
+		printf("guoi: %d\n",GetUserObjectInformation( desktop, UOI_USER_SID, sid, usersize,
+								&usersize ));
+		ShowError("foo");
+		char txt[256];
+		DWORD len = 256;
+		GetTextualSid( sid, txt, &len );
+		printf("%s\n", txt );
+		DWORD accname_len = 0;
+		DWORD domname_len = 0;
+		SID_NAME_USE nu;
+		printf("%d\n", LookupAccountSid( NULL, sid, NULL, &accname_len, NULL, &domname_len, &nu ) );
+		ShowError("LookupAccountSid");
+		char * accname = new char[accname_len];
+		char * domname = new char[domname_len];
+		printf("%d\n", LookupAccountSid( NULL, sid, accname, &accname_len, domname, &domname_len, &nu ) );
+		//ShowError("LookupAccountSid");
+		printf("%s %s\n", accname, domname );
+		delete[] (char *) sid;
+
+	//}
+
+	// When we reach here, we're either running under Win9x, or we're
+	// running under NT as an application or as a service impersonating a
+	// user Either way, we should find a suitable user name.
+/*
+	switch( osversioninfo.dwPlatformId )
+	{
+		case VER_PLATFORM_WIN32_WINDOWS:
+		case VER_PLATFORM_WIN32_NT:
+		{
+			// Just call GetCurrentUser
+			DWORD len = 256;
+			char buf[256];
+/*			if( GetUserName( buf, &len ) != 0 )
+			{
+				buf[len] = 0;
+				printf("%s\n", buf );
+				//return buf;
+			}
+		}
+	}*/
+
+   /*if (argc != 3)
+   {
+      fwprintf(stderr, L"Usage: %s \\\\ServerName UserName\n", argv[0]);
+      exit(1);
+   }*/
+   //
+   // Call the NetUserGetInfo function; specify level 10.
+   //
+  WCHAR wszDomain[256];
+char * Domain = "PRUDSYS";
+MultiByteToWideChar( CP_ACP, 0, Domain,
+        strlen(Domain)+1, wszDomain, sizeof(wszDomain)/sizeof(wszDomain[0]) );
+LPBYTE ComputerName;
+NetGetDCName( NULL, wszDomain, &ComputerName );
+   LPUSER_INFO_2 pBuf = NULL;
+   NET_API_STATUS nStatus;
+wprintf(L"%s\n", ComputerName );
+   nStatus = NetUserGetInfo((LPWSTR)ComputerName/*argv[1]*/,
+                            L"hsi",
+                            2,
+                            (LPBYTE *)&pBuf);
+printf("%d %d %d\n", ERROR_ACCESS_DENIED, NERR_InvalidComputer, NERR_UserNotFound);
+//
+   // If the call succeeds, print the user information.
+   //
+   if (nStatus == NERR_Success)
+   {
+    if (pBuf != NULL)
+      {
+         wprintf(L"\n\tAccount:      %s\n", pBuf->usri2_name);
+         wprintf(L"\tComment:      %s\n", pBuf->usri2_comment);
+         wprintf(L"\tUser comment: %s\n", pBuf->usri2_usr_comment);
+         wprintf(L"\tFull name:    %s\n", pBuf->usri2_full_name);
+      }
+   }
+   // Otherwise, print the system error.
+   //
+   else
+      fprintf(stderr, "A system error has occurred: %d\n", nStatus);
+   //
+   // Free the allocated memory.
+   //
+   if (pBuf != NULL)
+      NetApiBufferFree(pBuf);
+
+   return 0;
+}
+
+#endif
+
+
+
+
+
+
+
+
+#if 0
+
+#include<stdio.h>
+#include<string.h>
+#include<windows.h>
+
+#include<assert.h>
+
+/*
+ * Burton Rosenberg
+ * 17 March 1999
+ *
+ */
+
+
+PVOID getInfoFromToken( HANDLE hToken, 
+		TOKEN_INFORMATION_CLASS tokenInfoClass,
+		void ** buffer )
+{
+	int len ;
+	PVOID buf ;
+	PVOID p ;
+
+	*buffer = NULL ;
+	len = 0 ;
+	p = NULL ;
+
+	GetTokenInformation(
+			hToken,
+			tokenInfoClass,
+			NULL,
+			0,
+			(DWORD*)&len ) ;
+	if ( (len==0) || !(buf = malloc(len)) ) return NULL ;
+	if ( GetTokenInformation(
+				hToken,
+				tokenInfoClass,
+				buf,
+				len,
+				(DWORD*)&len ) ) {
+		p = buf ;
+	}
+
+	*buffer = buf ;
+	return p ;
+
+}
+
+PTOKEN_GROUPS getGroupsFromToken( HANDLE hToken, void ** buffer ) 
+{
+	return (PTOKEN_GROUPS) getInfoFromToken( 
+			hToken, 
+			TokenGroups, 
+			buffer ) ;
+}
+
+PSID getSidFromGroups( PTOKEN_GROUPS pTokenGroups, int index )
+{
+	if ( index<0 || pTokenGroups->GroupCount<=index )
+		return NULL ;
+	return pTokenGroups->Groups[index].Sid ;	
+}
+
+PSID getSidFromToken ( HANDLE hToken, void ** buffer )
+{
+	TOKEN_USER * pTokenUser ;
+	PSID pSid ;
+    pSid = NULL ;
+
+	pTokenUser = (TOKEN_USER *) getInfoFromToken(
+			hToken, 
+			TokenUser,
+			buffer ) ;
+
+	if ( pTokenUser ) {
+        pSid = pTokenUser->User.Sid ;
+    }
+
+    return pSid ;
+}
+
+
+#define WIDEST_NUMBER 10
+
+int sprint_Sid ( char * buf, int size, PSID pSid )
+{
+    int subAuthCount, i ;
+    int needed_length ;
+    char shortBuf[WIDEST_NUMBER+1] ;
+
+    subAuthCount = *GetSidSubAuthorityCount(pSid) ;
+    /* room for "S-1-" topauthority ( "-" subauthority ) ** subAuthCount
+     *  + NULL
+     *
+     */
+    needed_length = subAuthCount*WIDEST_NUMBER
+                       + WIDEST_NUMBER
+                    + subAuthCount
+                    + 5 ;
+    if ( !buf || (needed_length>size) ) {
+		if ( buf && size>0 ) buf[0] = '\0' ;
+        return needed_length ;
+	}
+
+    sprintf( buf, "S-1-%d",
+        GetSidIdentifierAuthority(pSid)->Value[5] ) ;
+
+    for ( i=0; i<subAuthCount; i++ ) {
+        sprintf( shortBuf, "-%d", *GetSidSubAuthority( pSid, i ) ) ;
+        strcat( buf, shortBuf ) ;
+    }
+
+    return 0 ;
+
+}
+
+
+int main(int argc, char * argv[])
+{
+	HANDLE hToken ;
+	PSID pSid ;
+	PVOID buf ;
+	PTOKEN_GROUPS pGroups ;
+	char cs[5000] ;
+	int i ;
+	
+	if ( !OpenProcessToken(
+				GetCurrentProcess(),
+				TOKEN_ALL_ACCESS,
+				&hToken )) {
+		printf("did not get token\n") ;
+		return 0 ;
+	}
+
+
+	pSid = getSidFromToken( hToken, &buf ) ;
+	if ( !pSid ) {
+		printf("did not get SID from Token\n") ;
+		return 0 ;
+	}
+
+	sprint_Sid( cs, sizeof(cs), pSid ) ;
+	printf("U: %s\n", cs ) ;
+	free(buf) ;
+
+	pGroups = getGroupsFromToken( hToken, &buf ) ;
+	if ( !pGroups ) {
+		printf("did not get Groups from Token\n") ;
+		return 0 ;
+	}
+
+	i = 0 ;
+	while ( pSid = getSidFromGroups( pGroups, i++ ) ) {
+		sprint_Sid( cs, sizeof(cs), pSid ) ;
+		printf( "G: %s\n", cs ) ;
+	}
+	free(buf) ;
+	
+}
+
+#endif
+
+#include <windows.h>
+#include <stdio.h>
+#include <tchar.h>
+#include <lm.h>
+#include <psapi.h>
+
+BOOL GetTextualSid(
+    PSID pSid,            // binary SID
+    LPTSTR TextualSid,    // buffer for Textual representation of SID
+    LPDWORD lpdwBufferLen // required/provided TextualSid buffersize
+    )
+{
+    PSID_IDENTIFIER_AUTHORITY psia;
+    DWORD dwSubAuthorities;
+    DWORD dwSidRev=SID_REVISION;
+    DWORD dwCounter;
+    DWORD dwSidSize;
+
+    // Validate the binary SID.
+
+    if(!IsValidSid(pSid)) return FALSE;
+
+    // Get the identifier authority value from the SID.
+
+    psia = GetSidIdentifierAuthority(pSid);
+
+    // Get the number of subauthorities in the SID.
+
+    dwSubAuthorities = *GetSidSubAuthorityCount(pSid);
+
+    // Compute the buffer length.
+    // S-SID_REVISION- + IdentifierAuthority- + subauthorities- + NULL
+
+    dwSidSize=(15 + 12 + (12 * dwSubAuthorities) + 1) * sizeof(TCHAR);
+
+    // Check input buffer length.
+    // If too small, indicate the proper size and set the last error.
+
+    if (*lpdwBufferLen < dwSidSize)
+    {
+        *lpdwBufferLen = dwSidSize;
+        SetLastError(ERROR_INSUFFICIENT_BUFFER);
+        return FALSE;
+    }
+
+    // Add 'S' prefix and revision number to the string.
+
+    dwSidSize=wsprintf(TextualSid, TEXT("S-%lu-"), dwSidRev );
+
+    // Add a SID identifier authority to the string.
+
+    if ( (psia->Value[0] != 0) || (psia->Value[1] != 0) )
+    {
+        dwSidSize+=wsprintf(TextualSid + lstrlen(TextualSid),
+                    TEXT("0x%02hx%02hx%02hx%02hx%02hx%02hx"),
+                    (USHORT)psia->Value[0],
+                    (USHORT)psia->Value[1],
+                    (USHORT)psia->Value[2],
+                    (USHORT)psia->Value[3],
+                    (USHORT)psia->Value[4],
+                    (USHORT)psia->Value[5]);
+    }
+    else
+    {
+        dwSidSize+=wsprintf(TextualSid + lstrlen(TextualSid),
+                    TEXT("%lu"),
+                    (ULONG)(psia->Value[5]      )   +
+                    (ULONG)(psia->Value[4] <<  8)   +
+                    (ULONG)(psia->Value[3] << 16)   +
+                    (ULONG)(psia->Value[2] << 24)   );
+    }
+
+    // Add SID subauthorities to the string.
+    //
+    for (dwCounter=0 ; dwCounter < dwSubAuthorities ; dwCounter++)
+    {
+        dwSidSize+=wsprintf(TextualSid + dwSidSize, TEXT("-%lu"),
+                    *GetSidSubAuthority(pSid, dwCounter) );
+    }
+
+    return TRUE;
+}
+
+
+void ShowError(LPTSTR lpszFunction) 
+{ 
+    LPVOID lpMsgBuf;
+    LPVOID lpDisplayBuf;
+
+    DWORD dw = GetLastError(); 
+
+    FormatMessage(
+        FORMAT_MESSAGE_ALLOCATE_BUFFER | 
+        FORMAT_MESSAGE_FROM_SYSTEM,
+        NULL,
+        dw,
+        MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
+        (LPTSTR) &lpMsgBuf,
+        0, NULL );
+
+    lpDisplayBuf = (LPVOID)LocalAlloc(LMEM_ZEROINIT, 
+        (lstrlen((LPCTSTR)lpMsgBuf)+lstrlen((LPCTSTR)lpszFunction)+40)*sizeof(TCHAR)); 
+    wsprintf((LPTSTR)lpDisplayBuf, 
+        TEXT("%s failed with error %d: %s"), 
+        lpszFunction, dw, lpMsgBuf); 
+    MessageBox(NULL, (LPCTSTR)lpDisplayBuf, TEXT("Error"), MB_OK); 
+
+    LocalFree(lpMsgBuf);
+    LocalFree(lpDisplayBuf);
+}
+PVOID getInfoFromToken( HANDLE hToken, 
+		TOKEN_INFORMATION_CLASS tokenInfoClass,
+		void ** buffer )
+{
+	int len ;
+	PVOID buf ;
+	PVOID p ;
+
+	*buffer = NULL ;
+	len = 0 ;
+	p = NULL ;
+
+	GetTokenInformation(
+			hToken,
+			tokenInfoClass,
+			NULL,
+			0,
+			(DWORD*)&len ) ;
+	if ( (len==0) || !(buf = malloc(len)) ) return NULL ;
+	if ( GetTokenInformation(
+				hToken,
+				tokenInfoClass,
+				buf,
+				len,
+				(DWORD*)&len ) ) {
+		p = buf ;
+	}
+
+	*buffer = buf ;
+	return p ;
+
+}
+
+
+PSID getSidFromToken ( HANDLE hToken, void ** buffer )
+{
+	TOKEN_USER * pTokenUser ;
+	PSID pSid ;
+    pSid = NULL ;
+
+	pTokenUser = (TOKEN_USER *) getInfoFromToken(
+			hToken, 
+			TokenUser,
+			buffer ) ;
+
+	if ( pTokenUser ) {
+        pSid = pTokenUser->User.Sid ;
+    }
+
+    return pSid ;
+}
+
+
+
+void PrintProcessNameAndID( DWORD processID )
+{
+    TCHAR szProcessName[MAX_PATH];
+
+    // Get a handle to the process.
+
+    HANDLE hProcess = OpenProcess( PROCESS_QUERY_INFORMATION |
+                                   PROCESS_VM_READ,
+                                   FALSE, processID );
+
+    // Get the process name.
+
+    if (NULL != hProcess )
+    {
+        HMODULE hMod;
+        DWORD cbNeeded;
+
+        if ( EnumProcessModules( hProcess, &hMod, sizeof(hMod), 
+             &cbNeeded) )
+        {
+            GetModuleBaseName( hProcess, hMod, szProcessName, 
+                               sizeof(szProcessName)/sizeof(TCHAR) );
+	if( !strcasecmp( szProcessName, "explorer.exe" ) )
+	{
+		HANDLE hToken;
+		OpenProcessToken( hProcess, TOKEN_READ, &hToken );
+		void * buf;
+		PSID psid = getSidFromToken( hToken, &buf );
+		char txt[256];
+		DWORD len = 256;
+		GetTextualSid( psid, txt, &len );
+		printf("%s\n", txt );
+		DWORD rlen;
+
+		DWORD accname_len = 0;
+		DWORD domname_len = 0;
+		SID_NAME_USE nu;
+		LookupAccountSid( NULL, psid, NULL, &accname_len, NULL, &domname_len, &nu );
+		char * accname = new char[accname_len];
+		char * domname = new char[domname_len];
+		LookupAccountSid( NULL, psid, accname, &accname_len, domname, &domname_len, &nu );
+		//ShowError("LookupAccountSid");
+		printf("%s %s\n", accname, domname );
+		WCHAR wszDomain[256];
+		MultiByteToWideChar( CP_ACP, 0, domname,
+		strlen(domname)+1, wszDomain, sizeof(wszDomain)/sizeof(wszDomain[0]) );
+		WCHAR wszUser[256];
+		MultiByteToWideChar( CP_ACP, 0, accname,
+		strlen(accname)+1, wszUser, sizeof(wszUser)/sizeof(wszUser[0]) );
+		LPBYTE ComputerName;
+		NetGetDCName( NULL, wszDomain, &ComputerName );
+		LPUSER_INFO_2 pBuf = NULL;
+		NET_API_STATUS nStatus;
+		nStatus = NetUserGetInfo((LPWSTR)ComputerName, wszUser, 2,
+							(LPBYTE *)&pBuf);
+   if (nStatus == NERR_Success && pBuf != NULL)
+      {
+         wprintf(L"%s\n", pBuf->usri2_full_name);
+      }
+   //
+   // Free the allocated memory.
+   //
+   if (pBuf != NULL)
+      NetApiBufferFree(pBuf);
+
+		delete[] accname;
+		delete[] domname;
+		CloseHandle( hToken );
+	}
+        }
+    }
+    // Print the process name and identifier.
+
+    CloseHandle( hProcess );
+}
+
+int main( )
+{
+    // Get the list of process identifiers.
+
+    DWORD aProcesses[1024], cbNeeded, cProcesses;
+    unsigned int i;
+
+    if ( !EnumProcesses( aProcesses, sizeof(aProcesses), &cbNeeded ) )
+        return 0;
+
+    // Calculate how many process identifiers were returned.
+
+    cProcesses = cbNeeded / sizeof(DWORD);
+
+    // Print the name and process identifier for each process.
+
+    for ( i = 0; i < cProcesses; i++ )
+        PrintProcessNameAndID( aProcesses[i] );
+        return 0;
+}

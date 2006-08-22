@@ -1,7 +1,10 @@
 AUTOMAKE_OPTIONS = foreign 1.4
 
+if BUILD_WIN32
+EXTRA_TARGETS = utils-win32
+endif
 
-SUBDIRS = common ica ima tests
+SUBDIRS = common ica ima $(EXTRA_TARGETS)
 
 EXTRA_DIST = build_mingw32 tightvnc4win_integrate tightvnc4win_italc.diff
 

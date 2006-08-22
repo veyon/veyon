@@ -86,7 +86,7 @@ QT_CXXFLAGS="-I$QT_INCLUDES -I$QT_INCLUDES/Qt/"
 
 QT_IS_EMBEDDED="no"
 # On unix, figure out if we're doing a static or dynamic link
-case "${host}" in
+case "${build}" in
     *-cygwin)
 	AC_DEFINE_UNQUOTED(WIN32, "", Defined if on Win32 platform)
         if test -f "$QTDIR/lib/qt.lib" ; then

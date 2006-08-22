@@ -1,3 +1,31 @@
+2006-08-22	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* utils-w32/userinfo.cpp:
+	added userinfo-utility
+
+	* configure.in:
+	* Makefile.am:
+	* utils-w32/:
+	added directory for several utils used by win32-version of localSystem
+
+	* common/src/local_system.cpp:
+	(Win32)
+	as there're problems when using functions from netapi32.dll we can't
+	use some functions we need for getUserName(), therefore this code has
+	been moved to "userinfo"-utility which is called periodically by
+	userPollThread - localSystem::currentUser() now returns what the
+	userPollThread received when launching userinfo
+
+2006-08-18	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* ima/src/client.cpp:
+	do not reload user-name each time screen is being updated, instead do
+	only if user-name not set so far or is "unknown"
+
+	* common/src/local_system.cpp:
+	completely new code for retrieving user-name and his full name of
+	logged in user under win
+
 2006-08-17	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* common/src/local_system.cpp:

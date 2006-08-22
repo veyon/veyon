@@ -303,11 +303,16 @@ bool client::resetConnection( void )
 
 void client::update( void )
 {
-	if( m_user == "" )
+	QString u = m_user;
+	if( u.isEmpty() )
 	{
-		m_user = "none";
+		u = "none";
 	}
-	setWindowTitle( m_user + "@" + fullName() );
+	if( u.contains( '(' ) && u.contains( ')' ) )
+	{
+		u = u.section( '(', 1, 1 ).section( ')', 0, 0 );
+	}
+	setWindowTitle( u + "@" + fullName() );
 	states cur_state = currentState();
 	if( cur_state != m_state )
 	{
@@ -644,7 +649,11 @@ void client::reload( const QString & _update )
 	if( userLoggedIn() )
 	{
 		m_syncMutex.lock();
-		if( m_connection->sendGetUserInformationRequest() )
+		if( m_user.isEmpty() || m_user == "none" || m_user == "unknown" )
+		{
+			m_connection->sendGetUserInformationRequest();
+		}
+		//if( m_connection->sendGetUserInformationRequest() )
 		{
 			// only send a framebuffer-update-request if client
 			// is in (over)view-mode

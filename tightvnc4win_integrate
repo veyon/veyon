@@ -29,8 +29,6 @@ rm -rf $destdir/*
 # copy files
 cp $tightvnc4winsrc/VNCHooks/VNCHooks.h $destdir
 cp $tightvnc4winsrc/VNCHooks/VNCHooks.cpp $destdir
-cp $tightvnc4winsrc/VNCHooks/SharedData.h $destdir
-cp $tightvnc4winsrc/VNCHooks/SharedData.cpp $destdir
 cp $tightvnc4winsrc/omnithread/nt.cpp $destdir
 cp $tightvnc4winsrc/omnithread/nt.h $destdir
 cp $tightvnc4winsrc/omnithread/omnithread.h $destdir

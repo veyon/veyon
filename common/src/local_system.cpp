@@ -37,13 +37,57 @@
 
 #ifdef BUILD_WIN32
 
+#include <QtCore/QThread>
+
 #define _WIN32_WINNT 0x0501
 #include <windows.h>
+
+#if _WIN32_WINNT >= 0x500
+#define SHUTDOWN_FLAGS (EWX_FORCE | EWX_FORCEIFHUNG)
+#else
+#define SHUTDOWN_FLAGS (EWX_FORCE)
+#endif
+
+#if _WIN32_WINNT >= 0x501
 #include <reason.h>
-#include <string.h>
-#include <stdio.h>
-#include <lm.h>
-#include <psapi.h>
+#define SHUTDOWN_REASON (SHTDN_REASON_MINOR_ENVIRONMENT)
+#else
+#define SHUTDOWN_REASON 0
+#endif
+
+
+
+class userPollThread : public QThread
+{
+public:
+	userPollThread() : QThread()
+	{
+		start( LowPriority );
+	}
+
+	const QString & name( void ) const
+	{
+		return( m_name );
+	}
+
+private:
+	virtual void run( void )
+	{
+		while( 1 )
+		{
+			QProcess p;
+			p.start( "userinfo" );
+			if( p.waitForFinished() )
+			{
+				( m_name = p.readAll() ).chop( 2 );
+			}
+		}
+	}
+
+	QString m_name;
+
+}  static * __user_poll_thread = NULL;
+
 
 #else
 
@@ -91,6 +135,11 @@ void initialize( void )
 	QCoreApplication::setOrganizationName( "EasySchoolSolutions" );
 	QCoreApplication::setOrganizationDomain( "ess.org" );
 	QCoreApplication::setApplicationName( "iTALC" );
+
+#ifdef BUILD_WIN32
+	__user_poll_thread = new userPollThread();
+#endif
+
 }
 
 
@@ -327,11 +376,10 @@ void sendWakeOnLANPacket( const QString & _mac )
 
 
 
-
 void powerDown( void )
 {
 #ifdef BUILD_WIN32
-	ExitWindowsEx( EWX_POWEROFF | EWX_FORCE | EWX_FORCEIFHUNG, SHTDN_REASON_MINOR_ENVIRONMENT );
+	ExitWindowsEx( EWX_POWEROFF | SHUTDOWN_FLAGS, SHUTDOWN_REASON );
 #else
 	QProcess::startDetached( "halt" );
 #endif
@@ -343,7 +391,7 @@ void powerDown( void )
 void reboot( void )
 {
 #ifdef BUILD_WIN32
-	ExitWindowsEx( EWX_REBOOT | EWX_FORCE | EWX_FORCEIFHUNG, SHTDN_REASON_MINOR_ENVIRONMENT );
+	ExitWindowsEx( EWX_REBOOT | SHUTDOWN_FLAGS, SHUTDOWN_REASON );
 #else
 	QProcess::startDetached( "reboot" );
 #endif
@@ -354,7 +402,7 @@ void reboot( void )
 void logoutUser( void )
 {
 #ifdef BUILD_WIN32
-	ExitWindowsEx( EWX_LOGOFF | EWX_FORCE | EWX_FORCEIFHUNG, SHTDN_REASON_MINOR_ENVIRONMENT );
+	ExitWindowsEx( EWX_LOGOFF | SHUTDOWN_FLAGS, SHUTDOWN_REASON );
 #else
 	QProcess::startDetached( "killall X" );
 #endif
@@ -362,8 +410,13 @@ void logoutUser( void )
 
 
 #ifdef BUILD_WIN32
+#if 0
 void getUserName( char * * _str)
 {
+	if( !_str )
+	{
+		return;
+	}
 	*_str = NULL;
 
 	DWORD aProcesses[1024], cbNeeded;
@@ -445,13 +498,13 @@ void getUserName( char * * _str)
 			len = WideCharToMultiByte( CP_ACP, 0,
 							pBuf->usri2_full_name,
 						-1, mbstr, len, NULL, NULL );
-			*_str = new char[len+accname_len+3];
+			*_str = new char[len+accname_len+4];
 			sprintf( *_str, "%s (%s)", mbstr, accname );
 			delete[] mbstr;
 		}
 		if( pBuf != NULL )
 		{
-			NetApiBufferFree(pBuf);
+			NetApiBufferFree( pBuf );
 		}
 		delete[] accname;
 		delete[] domname;
@@ -462,6 +515,7 @@ void getUserName( char * * _str)
 	}
 }
 #endif
+#endif
 
 
 
@@ -469,77 +523,16 @@ QString currentUser( void )
 {
 	QString ret = "unknown";
 #ifdef BUILD_WIN32
-	char * name;
+	if( !__user_poll_thread->name().isEmpty() )
+	{
+		ret = __user_poll_thread->name();
+	}
+/*	char * name;
 	getUserName( &name );
 	if( name )
 	{
 		ret = name;
-	}
-#if 0
-	OSVERSIONINFO osversioninfo;
-	osversioninfo.dwOSVersionInfoSize = sizeof( osversioninfo );
-
-	// Get the current OS version
-	if( !GetVersionEx( &osversioninfo ) )
-	{
-		osversioninfo.dwPlatformId = 0;
-	}
-	if( osversioninfo.dwPlatformId == VER_PLATFORM_WIN32_NT )
-	{
-		// Windows NT, service-mode
-
-		// verify that a user is logged on
-
-		// Get the current Window station
-		HWINSTA station = GetProcessWindowStation();
-		if( station == NULL )
-		{
-			return FALSE;
-		}
-
-		// Get the current user SID size
-		DWORD usersize;
-		GetUserObjectInformation( station, UOI_USER_SID, NULL, 0,
-								&usersize );
-
-		// Check the required buffer size isn't zero
-		if( usersize == 0 )
-		{
-			// No user is logged in - ensure we're not
-			// impersonating anyone
-			//RevertToSelf();
-			return "Default";
-		}
-	}
-
-	// When we reach here, we're either running under Win9x, or we're
-	// running under NT as an application or as a service impersonating a
-	// user Either way, we should find a suitable user name.
-
-	switch( osversioninfo.dwPlatformId )
-	{
-		case VER_PLATFORM_WIN32_WINDOWS:
-		case VER_PLATFORM_WIN32_NT:
-		{
-			// Just call GetCurrentUser
-			DWORD len = 256;
-			char buf[256];
-			if( GetUserName( buf, &len ) != 0 )
-			{
-				buf[len] = 0;
-				printf("%s\n", buf );
-				return buf;
-			}
-		}
-	}
-
-/*	const int MAX_USERNAME_LEN = 256;
-	char user_name[MAX_USERNAME_LEN];
-	if( vncService::GetCurrentUser( user_name, MAX_USERNAME_LEN ) )
-	{
-		return user_name;
 	}*/
-#endif
 #else
 
 #ifdef HAVE_PWD_H
