@@ -56,12 +56,13 @@ am_italc_OBJECTS = client.$(OBJEXT) client_manager.$(OBJEXT) \
 	dialogs.$(OBJEXT) italc_side_bar.$(OBJEXT) \
 	main_window.$(OBJEXT) kmultitabbar.$(OBJEXT) main.$(OBJEXT) \
 	overview_widget.$(OBJEXT) progress_information.$(OBJEXT) \
-	snapshot_list.$(OBJEXT) side_bar_widget.$(OBJEXT) \
-	support_widget.$(OBJEXT) tool_button.$(OBJEXT) \
-	user_list.$(OBJEXT) italc_qrc.$(OBJEXT) fast_qimage.$(OBJEXT) \
-	isd_base.$(OBJEXT) isd_connection.$(OBJEXT) \
-	ivs_connection.$(OBJEXT) local_system.$(OBJEXT) \
-	messagebox.$(OBJEXT) dsa_key.$(OBJEXT) $(am__objects_1)
+	qnetworkinterface.$(OBJEXT) snapshot_list.$(OBJEXT) \
+	side_bar_widget.$(OBJEXT) support_widget.$(OBJEXT) \
+	tool_button.$(OBJEXT) user_list.$(OBJEXT) italc_qrc.$(OBJEXT) \
+	fast_qimage.$(OBJEXT) isd_base.$(OBJEXT) \
+	isd_connection.$(OBJEXT) ivs_connection.$(OBJEXT) \
+	local_system.$(OBJEXT) messagebox.$(OBJEXT) dsa_key.$(OBJEXT) \
+	$(am__objects_1)
 italc_OBJECTS = $(am_italc_OBJECTS)
 am__DEPENDENCIES_1 =
 italc_DEPENDENCIES = $(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1)
@@ -231,7 +232,7 @@ sbindir = @sbindir@
 sharedstatedir = @sharedstatedir@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
-INCLUDES = -I$(srcdir)/../common/include
+INCLUDES = -I$(srcdir)/../common/include -Isrc
 italc_MOC = ./src/client.moc			\
 		./src/client_manager.moc		\
 		./src/cmd_input_dialog.moc		\
@@ -267,6 +268,7 @@ italc_SOURCES = $(srcdir)/src/client.cpp			\
 		$(srcdir)/src/main.cpp				\
 		$(srcdir)/src/overview_widget.cpp		\
 		$(srcdir)/src/progress_information.cpp		\
+		$(srcdir)/src/qnetworkinterface.cpp		\
 		$(srcdir)/src/snapshot_list.cpp			\
 		$(srcdir)/src/side_bar_widget.cpp		\
 		$(srcdir)/src/support_widget.cpp		\
@@ -283,6 +285,7 @@ italc_SOURCES = $(srcdir)/src/client.cpp			\
 		$(srcdir)/src/kmultitabbar.h			\
 		$(srcdir)/src/overview_widget.h			\
 		$(srcdir)/src/progress_information.h		\
+		$(srcdir)/src/qplatformdefs.h			\
 		$(srcdir)/src/snapshot_list.h			\
 		$(srcdir)/src/side_bar_widget.h			\
 		$(srcdir)/src/tool_button.h			\
@@ -301,6 +304,7 @@ italc_SOURCES = $(srcdir)/src/client.cpp			\
 		$(wildcard $(srcdir)/resources/*.png)
 
 CLEANFILES = $(italc_MOC) $(italc_UIC) ./italc_qrc.cpp
+EXTRA_DIST = $(wildcard $(srcdir)/src/3rdparty/*)
 @HAVE_LIBEAY32_TRUE@LIBSSL_LDADD = -leay32
 @HAVE_LIBSSL_TRUE@LIBSSL_LDADD = -lssl
 italc_LDADD = $(QT_LDADD) -lz -ljpeg $(LIBSSL_LDADD)
@@ -397,6 +401,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/messagebox.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/overview_widget.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/progress_information.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/qnetworkinterface.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/side_bar_widget.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/snapshot_list.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/support_widget.Po@am__quote@
@@ -577,6 +582,20 @@ progress_information.obj: $(srcdir)/src/progress_information.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(srcdir)/src/progress_information.cpp' object='progress_information.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o progress_information.obj `if test -f '$(srcdir)/src/progress_information.cpp'; then $(CYGPATH_W) '$(srcdir)/src/progress_information.cpp'; else $(CYGPATH_W) '$(srcdir)/$(srcdir)/src/progress_information.cpp'; fi`
+
+qnetworkinterface.o: $(srcdir)/src/qnetworkinterface.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT qnetworkinterface.o -MD -MP -MF "$(DEPDIR)/qnetworkinterface.Tpo" -c -o qnetworkinterface.o `test -f '$(srcdir)/src/qnetworkinterface.cpp' || echo '$(srcdir)/'`$(srcdir)/src/qnetworkinterface.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/qnetworkinterface.Tpo" "$(DEPDIR)/qnetworkinterface.Po"; else rm -f "$(DEPDIR)/qnetworkinterface.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(srcdir)/src/qnetworkinterface.cpp' object='qnetworkinterface.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o qnetworkinterface.o `test -f '$(srcdir)/src/qnetworkinterface.cpp' || echo '$(srcdir)/'`$(srcdir)/src/qnetworkinterface.cpp
+
+qnetworkinterface.obj: $(srcdir)/src/qnetworkinterface.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT qnetworkinterface.obj -MD -MP -MF "$(DEPDIR)/qnetworkinterface.Tpo" -c -o qnetworkinterface.obj `if test -f '$(srcdir)/src/qnetworkinterface.cpp'; then $(CYGPATH_W) '$(srcdir)/src/qnetworkinterface.cpp'; else $(CYGPATH_W) '$(srcdir)/$(srcdir)/src/qnetworkinterface.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/qnetworkinterface.Tpo" "$(DEPDIR)/qnetworkinterface.Po"; else rm -f "$(DEPDIR)/qnetworkinterface.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(srcdir)/src/qnetworkinterface.cpp' object='qnetworkinterface.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o qnetworkinterface.obj `if test -f '$(srcdir)/src/qnetworkinterface.cpp'; then $(CYGPATH_W) '$(srcdir)/src/qnetworkinterface.cpp'; else $(CYGPATH_W) '$(srcdir)/$(srcdir)/src/qnetworkinterface.cpp'; fi`
 
 snapshot_list.o: $(srcdir)/src/snapshot_list.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT snapshot_list.o -MD -MP -MF "$(DEPDIR)/snapshot_list.Tpo" -c -o snapshot_list.o `test -f '$(srcdir)/src/snapshot_list.cpp' || echo '$(srcdir)/'`$(srcdir)/src/snapshot_list.cpp; \
@@ -819,6 +838,7 @@ distclean-tags:
 	-rm -f TAGS ID GTAGS GRTAGS GSYMS GPATH tags
 
 distdir: $(DISTFILES)
+	$(mkdir_p) $(distdir)/$(srcdir)/src/3rdparty
 	@srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`; \
 	topsrcdirstrip=`echo "$(top_srcdir)" | sed 's|.|.|g'`; \
 	list='$(DISTFILES)'; for file in $$list; do \

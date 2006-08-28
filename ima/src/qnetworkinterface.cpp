@@ -1,5 +1,5 @@
 /*
- * local_system.h - misc. platform-specific stuff
+ * qnetworkinterface.cpp - QNetworkInterface-class
  *
  * Copyright (c) 2006 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
@@ -23,45 +23,36 @@
  */
 
 
-#ifndef _LOCAL_SYSTEM_H
-#define _LOCAL_SYSTEM_H
+#include "qnetworkinterface.h"
 
-#include <QtCore/QString>
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
 
-#include "isd_base.h"
+#if QT_VERSION < 0x040200
 
+#include "3rdparty/qnetworkinterface.cpp"
 
-namespace localSystem
-{
-	void initialize( void );
+#ifdef BUILD_WIN32
 
-	void sleep( const int _ms );
+#include "3rdparty/qnetworkinterface_win.cpp"
 
-	void execInTerminal( const QString & _cmds );
+#else
 
-	void sendWakeOnLANPacket( const QString & _mac );
+#ifndef _GNU_SOURCE
+#define _GNU_SOURCE
+#endif
 
-	void powerDown( void );
-	void reboot( void );
+#ifdef HAVE_UNISTD_H
+#include <unistd.h>
+#endif
+#ifdef HAVE_NETINET_IN_H
+#include <netinet/in.h>
+#endif
 
-	void logoutUser( void );
-
-	QString currentUser( void );
-
-	QString privateKeyPath( const ISD::userRoles _role );
-	QString publicKeyPath( const ISD::userRoles _role );
-
-	QString snapshotDir( void );
-	QString globalConfigPath( void );
-	QString personalConfigDir( void );
-	QString personalConfigPath( void );
-
-	bool ensurePathExists( const QString & _path );
-
-	QString ip( void );
-}
-
-
-#define debugpoint printf("file:%s line %d\n",__FILE__,__LINE__);
+#include "3rdparty/qnetworkinterface_unix.cpp"
 
 #endif
+
+#endif
+

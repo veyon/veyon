@@ -122,7 +122,7 @@ case "${build}" in
             fi
         fi
 	QT_IS_MT="yes"
-	QT_LIB="-L$QTDIR/bin -lQtCore4 -lQtGui4 -lQtXml4 -lQtNetwork4"
+	QT_LIB="-L$QTDIR/bin -lQtCore4 -lQtGui4 -lQtXml4 -lQtNetwork4 -lws2_32"
         ;;
     *)
         QT_IS_STATIC=`ls $QTDIR/lib/*.a 2> /dev/null`

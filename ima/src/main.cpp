@@ -40,7 +40,8 @@
 
 QSplashScreen * splashScreen = NULL;
 
-QString MASTER_HOST;
+QString __demo_network_interface;
+QString __demo_master_ip;
 
 
 

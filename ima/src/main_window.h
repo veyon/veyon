@@ -47,7 +47,8 @@ class snapshotList;
 class userList;
 
 
-extern QString MASTER_HOST;
+extern QString __demo_network_interface;
+extern QString __demo_master_ip;
 
 
 

@@ -1,3 +1,22 @@
+2006-08-28	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* ima/include/main_window.h:
+	* ima/src/client.cpp:
+	* ima/src/core/client_manager.cpp:
+	* ima/src/core/config_widget.cpp:
+	* ima/src/core/main.cpp:
+	completely revised demo-master-stuff using QNetworkInterface-class
+
+	* ima/src/3rdparty/*:
+	* ima/src/qnetworkinterface.cpp:
+	* ima/src/qnetworkinterface.h:
+	added implementation of QNetworkInterface from recent Qt 4.2-snapshot
+
+	* ima/src/client.cpp:
+	- use localSystem::ensurePathExists() before trying to save a snapshot
+	- when quitting iTALC, change mode of all clients to overview-mode
+	- draw semi-transparent background for toolbar
+
 2006-08-22	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* common/src/ivs_connetion.cpp:

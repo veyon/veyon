@@ -1,5 +1,5 @@
 /*
- * local_system.h - misc. platform-specific stuff
+ * qnetworkinterface.h - QNetworkInterface-class
  *
  * Copyright (c) 2006 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
@@ -23,45 +23,17 @@
  */
 
 
-#ifndef _LOCAL_SYSTEM_H
-#define _LOCAL_SYSTEM_H
+#ifndef _QNETWORKINTERFACE_H
+#define _QNETWORKINTERFACE_H
 
-#include <QtCore/QString>
+#define QT_MAKEDLL
+#define Q_NETWORK_EXPORT
+#include <qglobal.h>
 
-#include "isd_base.h"
+#if QT_VERSION < 0x040200
+#include "3rdparty/qnetworkinterface.h"
+#endif
 
-
-namespace localSystem
-{
-	void initialize( void );
-
-	void sleep( const int _ms );
-
-	void execInTerminal( const QString & _cmds );
-
-	void sendWakeOnLANPacket( const QString & _mac );
-
-	void powerDown( void );
-	void reboot( void );
-
-	void logoutUser( void );
-
-	QString currentUser( void );
-
-	QString privateKeyPath( const ISD::userRoles _role );
-	QString publicKeyPath( const ISD::userRoles _role );
-
-	QString snapshotDir( void );
-	QString globalConfigPath( void );
-	QString personalConfigDir( void );
-	QString personalConfigPath( void );
-
-	bool ensurePathExists( const QString & _path );
-
-	QString ip( void );
-}
-
-
-#define debugpoint printf("file:%s line %d\n",__FILE__,__LINE__);
+#undef QT_MAKEDLL
 
 #endif

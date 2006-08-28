@@ -33,6 +33,10 @@
 
 #include "isd_base.h"
 
+#ifndef BUILD_ICA
+#include "main_window.h"
+#endif
+
 
 class isdConnection : public QObject
 {
@@ -83,9 +87,13 @@ public:
 
 	inline QString host( void ) const
 	{
+#ifdef BUILD_ICA
+		return( m_host );
+#else
 		return( m_host == QHostAddress( QHostAddress::LocalHost ).
 								toString() ?
-					QHostInfo::localHostName() : m_host );
+					__demo_master_ip : m_host );
+#endif
 	}
 
 	inline int port( void ) const

@@ -247,14 +247,7 @@ void clientManager::savePersonalConfig( void )
 	globalsettings.setAttribute( "wincfg", QString(
 					getMainWindow()->saveState() ) );
 
-	QList<QHostAddress> host_addresses = QHostInfo::fromName(
-				QHostInfo::localHostName() ).addresses();
-	int idx = host_addresses.indexOf( QHostAddress( MASTER_HOST ) );
-	if( idx >= 0 )
-	{
-		globalsettings.setAttribute( "net-iface",
-					host_addresses[idx].toString() );
-	}
+	globalsettings.setAttribute( "net-iface", __demo_network_interface );
 
 	head.appendChild( globalsettings );
 
@@ -428,46 +421,10 @@ void clientManager::getHeaderInformation( const QDomElement & _header )
 				m_winCfg = node.toElement().attribute(
 								"wincfg" );
 			}
-
-			// get list with all network-interfaces with
-			// according IP-addresses
-			QList<QHostAddress> host_addresses =
-	QHostInfo::fromName( QHostInfo::localHostName() ).addresses();
-			// iface already set in configuration?
-			if( node.toElement().attribute( "net-iface" ) !=
-				QString::null && host_addresses.count() )
-			{
-				int idx =
-	host_addresses.indexOf( QHostAddress( node.toElement().attribute(
-							"net-iface" ) ) );
-				if( idx >= 0 )
-				{
-					MASTER_HOST =
-						host_addresses[idx].toString();
-				}
-			}
-			else if( host_addresses.count() )
-			{
-/*				if( ip_addr_map.find( "eth0" ) !=
-							ip_addr_map.end() )
-				{
-					MASTER_HOST = ip_addr_map["eth0"];
-				}
-				else
-				{*/
-				MASTER_HOST = host_addresses.first().toString();
-//				}
-			}
-			else
-			{
-				// the guy running iTALC seems to have no
-				// network-ifaces configured, not even
-				// loopback!!!
-				qFatal( "You have no network-interfaces "
-					"configured!!! iTALC can't run without "
-					"at least a local loopback-interface."
-					"\n" );
-			}
+			// for now we only set the network-interface over which
+			// the demo should run
+			__demo_network_interface = node.toElement().
+						attribute( "net-iface" );
 
 			// if the attr did not exist, we got zero as value,
 			// which is not acceptable

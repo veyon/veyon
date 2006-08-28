@@ -1,4 +1,4 @@
-INCLUDES = -I$(srcdir)/../common/include
+INCLUDES = -I$(srcdir)/../common/include -Isrc
 bin_PROGRAMS = italc
 
 %.moc: $(srcdir)/%.h
@@ -56,6 +56,7 @@ italc_SOURCES = $(srcdir)/src/client.cpp			\
 		$(srcdir)/src/main.cpp				\
 		$(srcdir)/src/overview_widget.cpp		\
 		$(srcdir)/src/progress_information.cpp		\
+		$(srcdir)/src/qnetworkinterface.cpp		\
 		$(srcdir)/src/snapshot_list.cpp			\
 		$(srcdir)/src/side_bar_widget.cpp		\
 		$(srcdir)/src/support_widget.cpp		\
@@ -72,6 +73,7 @@ italc_SOURCES = $(srcdir)/src/client.cpp			\
 		$(srcdir)/src/kmultitabbar.h			\
 		$(srcdir)/src/overview_widget.h			\
 		$(srcdir)/src/progress_information.h		\
+		$(srcdir)/src/qplatformdefs.h			\
 		$(srcdir)/src/snapshot_list.h			\
 		$(srcdir)/src/side_bar_widget.h			\
 		$(srcdir)/src/tool_button.h			\
@@ -91,6 +93,8 @@ italc_SOURCES = $(srcdir)/src/client.cpp			\
 
 
 CLEANFILES = $(italc_MOC) $(italc_UIC) ./italc_qrc.cpp
+
+EXTRA_DIST = $(wildcard $(srcdir)/src/3rdparty/*)
 
 
 if HAVE_LIBSSL

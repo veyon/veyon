@@ -36,6 +36,7 @@ class QColorGroup;
 #include "config_widget.h"
 #include "client_manager.h"
 #include "main_window.h"
+#include "qnetworkinterface.h"
 
 
 
@@ -157,25 +158,55 @@ configWidget::configWidget( mainWindow * _main_window, QWidget * _parent ) :
 
 	QComboBox * if_cb = new QComboBox( contentParent() );
 	l->addWidget( if_cb );
-	QList<QHostAddress> host_addresses = QHostInfo::fromName(
+/*	QList<QHostAddress> host_addresses = QHostInfo::fromName(
 				QHostInfo::localHostName() ).addresses();
 	for( QList<QHostAddress>::iterator it = host_addresses.begin();
 					it != host_addresses.end(); ++it )
 	{
-		QString ip = it->toString();
+		const QString ip = it->toString();
 		if_cb->addItem( ip );
 		if( MASTER_HOST == ip )
 		{
 			if_cb->setCurrentIndex( if_cb->findText( ip ) );
 		}
+	}*/
+	QList<QNetworkInterface> ifs = QNetworkInterface::allInterfaces();
+	for( QList<QNetworkInterface>::const_iterator it = ifs.begin();
+							it != ifs.end(); ++it )
+	{
+		QList<QNetworkAddressEntry> nae = it->addressEntries();
+		for( QList<QNetworkAddressEntry>::const_iterator it2 =
+								nae.begin();
+							it2 != nae.end(); ++it2 )
+		{
+			const QString txt = it->name() + ": " +
+						it2->ip().toString();
+			if_cb->addItem( txt );
+			if( __demo_network_interface == it->name() ||
+				( __demo_network_interface.isEmpty() &&
+							it->name() != "lo" ) )
+			{
+				if_cb->setCurrentIndex(
+						if_cb->findText( txt ) );
+				__demo_network_interface = it->name();
+				__demo_master_ip = it2->ip().toString();
+			}
+		}
 	}
+
+	// as fallback use host-name
+	if( __demo_master_ip.isEmpty() )
+	{
+		__demo_master_ip = QHostInfo::localHostName();
+	}
+
 	if_cb->setWhatsThis( tr( "Here you can select the network interface "
 					"with the according IP-address. This "
-					"is needed if you computer has more "
-					"than one network-card and not all of "
-					"one of them have a connection to the "
-					"clients. Incorrect settings may "
-					"result in being unable to show a "
+					"is neccessary if you computer has "
+					"more than one network-card and not "
+					"all of one of them have a connection "
+					"to the clients. Incorrect settings "
+					"may result in being unable to show a "
 					"demo." ) );
 	connect( if_cb, SIGNAL( activated( const QString & ) ), this,
 				SLOT( interfaceSelected( const QString & ) ) );
@@ -196,13 +227,15 @@ configWidget::~configWidget()
 
 void configWidget::interfaceSelected( const QString & _if_name )
 {
+#if 0
 	if( _if_name.section( ' ', -1 ) == "127.0.0.1" )
 	{
 		// TODO: handle this case...
 		//QMessageBox::warning( NULL, tr( "Warning" ), tr( "You are trying to use the local loopback-device as network-interface. This will never work, because the local loopback is just the last alternative for running iTALC if no other network-interface was found." ), QMessageBox::Ok, QMessageBox::NoButton );
 	}
-	// the very right field/section contains the corresponding ip-address
-	MASTER_HOST = _if_name.section( ' ', -1 );
+#endif
+	__demo_network_interface = _if_name.section( ':', 0, 0 );
+	__demo_master_ip = _if_name.section( ' ', -1 );
 }
 
 

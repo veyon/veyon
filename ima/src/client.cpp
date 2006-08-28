@@ -50,6 +50,7 @@
 #include "local_system.h"
 #include "snapshot_list.h"
 #include "dialogs.h"
+#include "messagebox.h"
 
 
 
@@ -138,6 +139,10 @@ client::client( const QString & _local_ip, const QString & _remote_ip,
 	setAttribute( Qt::WA_OpaquePaintEvent, TRUE );
 	//setAttribute( Qt::WA_PaintUnclipped, TRUE );
 	QToolBar * tb = new QToolBar( this );
+	tb->setAutoFillBackground( TRUE );
+	QPalette pal;
+	pal.setBrush( QPalette::Background, QColor( 0, 0, 0, 160 ) );
+	tb->setPalette( pal );
 	tb->setIconSize( QSize( 16, 16 ) );
 	connect( tb, SIGNAL( actionTriggered( QAction * ) ), this,
 					SLOT( processCmdSlot( QAction * ) ) );
@@ -176,6 +181,7 @@ client::client( const QString & _local_ip, const QString & _remote_ip,
 client::~client()
 {
 	m_syncMutex.lock();
+	changeMode( Mode_Overview, NULL );
 	delete m_connection;
 	m_connection = NULL;
 	m_syncMutex.unlock();
@@ -564,9 +570,12 @@ void client::paintEvent( QPaintEvent * _pe )
 					QTime( QTime::currentTime() ).toString(
 								Qt::ISODate );
 			const QString dir = localSystem::snapshotDir();
-			if( QDir( dir ).exists() == FALSE )
+			if( !localSystem::ensurePathExists( dir ) )
 			{
-				QDir().mkpath( dir );
+				messageBox::information( tr( "Snapshot" ),
+		tr( "Could not make a snapshot as directory %1 doesn't exist "
+			"and couldn't be created." ).arg( dir ) );
+				return;
 			}
 			// construct filename
 			QString file_name =  dir + m_user + "_" +
