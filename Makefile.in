@@ -718,6 +718,8 @@ install-exec-hook:
 @BUILD_WIN32_TRUE@	mkdir -p tmp/italc
 @BUILD_WIN32_TRUE@	cp ica/ica.exe tmp/italc
 @BUILD_WIN32_TRUE@	cp ima/italc.exe tmp/italc
+@BUILD_WIN32_TRUE@	cp utils-win32/userinfo.exe tmp/italc
+@BUILD_WIN32_TRUE@	cp utils-win32/wake.exe tmp/italc
 @BUILD_WIN32_TRUE@	cp /opt/mingw/bin/QtCore4.dll tmp/italc
 @BUILD_WIN32_TRUE@	cp /opt/mingw/bin/QtGui4.dll tmp/italc
 @BUILD_WIN32_TRUE@	cp /opt/mingw/bin/QtNetwork4.dll tmp/italc
