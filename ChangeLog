@@ -1,3 +1,9 @@
+2006-08-30	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* Makefile.am:
+	added missing entries for copying win32-utils and mingwm10.dll into
+	win32-package
+
 2006-08-28	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* ima/include/main_window.h:

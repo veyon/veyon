@@ -726,6 +726,7 @@ install-exec-hook:
 @BUILD_WIN32_TRUE@	cp /opt/mingw/bin/libjpeg.dll tmp/italc
 @BUILD_WIN32_TRUE@	cp /opt/mingw/bin/libssl32.dll tmp/italc
 @BUILD_WIN32_TRUE@	cp /opt/mingw/bin/libz.dll tmp/italc
+@BUILD_WIN32_TRUE@	cp /opt/mingw/i586-mingw32/bin/mingwm10.dll tmp/italc
 @BUILD_WIN32_TRUE@	/opt/mingw/bin/i586-mingw32-strip tmp/italc/ica.exe
 @BUILD_WIN32_TRUE@	/opt/mingw/bin/i586-mingw32-strip tmp/italc/italc.exe
 @BUILD_WIN32_TRUE@	cd tmp && zip -9 ../$(PACKAGE)-$(VERSION).zip italc/*
