@@ -52,8 +52,7 @@ QByteArray isdServer::s_appInternalChallenge;
 isdServer::isdServer( const quint16 _isd_port, const quint16 _ivs_port,
 						int _argc, char * * _argv ) :
 	QTcpServer(),
-#warning: change this
-	m_authType( ItalcAuthNone ),
+	m_authType( ItalcAuthDSA ),
 	m_ivs( new IVS( _ivs_port, _argc, _argv ) ),
 	m_demoClient( NULL ),
 	m_demoServer( NULL ),
@@ -102,11 +101,22 @@ bool isdServer::authSecTypeItalc( socketDispatcher _sd, void * _user,
 						italcAuthTypes _auth_type )
 {
 	socketDevice sdev( _sd, _user );
-#warning: TODO: remove this one day!
-	_auth_type = ItalcAuthNone;
 	sdev.write( QVariant( (int) _auth_type ) );
 
 	italcAuthResults result = ItalcAuthFailed;
+
+	italcAuthTypes chosen = static_cast<italcAuthTypes>(
+							sdev.read().toInt() );
+	if( chosen == ItalcAuthAppInternalChallenge )
+	{
+		_auth_type = chosen;
+	}
+	else if( chosen != _auth_type )
+	{
+		printf( "Client chose other auth-type than offered!\n" );
+		return( result );
+	}
+
 	switch( _auth_type )
 	{
 		// no authentication
@@ -153,14 +163,14 @@ bool isdServer::authSecTypeItalc( socketDispatcher _sd, void * _user,
 			// get user-role
 			const ISD::userRoles urole =
 				static_cast<ISD::userRoles>(
-					sdev.read().toString().toInt() );
+							sdev.read().toInt() );
 
 			// now try to verify received signed data using public
 			// key of the user under which the client claims to run
 			const QByteArray sig = sdev.read().toByteArray();
 			// (publicKeyPath does range-checking of urole)
 			publicDSAKey pub_key( localSystem::publicKeyPath(
-									urole ) );
+								urole ) );
 			result = pub_key.verifySignature( chall, sig ) ?
 						ItalcAuthOK : ItalcAuthFailed;
 			break;
@@ -171,6 +181,7 @@ bool isdServer::authSecTypeItalc( socketDispatcher _sd, void * _user,
 		{
 			// generate challenge
 			s_appInternalChallenge = dsaKey::generateChallenge();
+			sdev.write( QVariant() );
 			// is our client able to read this byte-array? if so,
 			// it's for sure running inside the same app
 			result = ( sdev.read().toByteArray() ==

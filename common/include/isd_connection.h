@@ -151,7 +151,7 @@ protected:
 
 	virtual states protocolInitialization( void );
 
-	states authAgainstServer( void );
+	states authAgainstServer( bool _use_app_internal_challenge = FALSE );
 
 	states & state_ref( void )
 	{

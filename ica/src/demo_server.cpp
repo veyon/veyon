@@ -142,107 +142,6 @@ demoServerClient::demoServerClient( QTcpSocket * _sock,
 	m_bytesOut( 0 ),
 	m_frames( 0 )
 {
-	m_bandwidthTimer->start();
-
-	socketDevice sd( qtcpsocketDispatcher, m_sock );
-	if( !isdServer::protocolInitialization( sd,
-					ItalcAuthAppInternalChallenge, TRUE ) )
-	{
-		printf( "demoServerClient: protocol initialization failed\n" );
-		deleteLater();
-		return;
-	}
-
-	rfbClientInitMsg ci;
-
-	if( !sd.read( (char *) &ci, sizeof( ci ) ) )
-	{
-		deleteLater();
-		return;
-	}
-
-	rfbServerInitMsg si = _conn->m_si;
-	si.framebufferWidth = swap16IfLE( si.framebufferWidth );
-	si.framebufferHeight = swap16IfLE( si.framebufferHeight );
-	si.format.redMax = swap16IfLE( si.format.redMax );
-	si.format.greenMax = swap16IfLE( si.format.greenMax );
-	si.format.blueMax = swap16IfLE( si.format.blueMax );
-	si.nameLength = swap32IfLE( si.nameLength );
-
-	if( !sd.write( ( const char *) &si, sizeof( si ) ) )
-	{
-		deleteLater();
-		return;
-	}
-
-	char * desktop_name = new char[_conn->m_si.nameLength+1];
-	desktop_name[0] = 0;
-
-	if( !sd.write( desktop_name, _conn->m_si.nameLength ) )
-	{
-		deleteLater();
-		return;
-	}
-
-	delete[] desktop_name;
-
-
-	rfbSetPixelFormatMsg spf;
-
-	if( !sd.read( (char *) &spf, sizeof( spf ) ) )
-	{
-		deleteLater();
-		return;
-	}
-
-	char buf[sizeof( rfbSetPixelFormatMsg ) + MAX_ENCODINGS *
-							sizeof( Q_UINT32 )];
-	rfbSetEncodingsMsg * se = (rfbSetEncodingsMsg *) buf;
-
-	if( !sd.read( (char *) se, sizeof( *se ) ) )
-	{
-		deleteLater();
-		return;
-	}
-	se->nEncodings = swap16IfLE( se->nEncodings );
-
-	Q_UINT32 * encs = (Q_UINT32 *)( &buf[sizeof(rfbSetEncodingsMsg)] );
-
-	if( !sd.read( (char *) encs, se->nEncodings * sizeof( Q_UINT32 ) ) )
-	{
-		deleteLater();
-		return;
-	}
-
-	bool has_italc_encoding = FALSE;
-	for( Q_UINT32 i = 0; i < se->nEncodings; ++i )
-	{
-		if( swap32IfLE( encs[i] ) == rfbEncodingItalc )
-		{
-			has_italc_encoding = TRUE;
-		}
-	}
-
-	if( !has_italc_encoding )
-	{
-		printf( "demoServerClient: client has no italc-encoding\n" );
-		deleteLater();
-		return;
-	}
-
-	// for some reason we have to do this to make the following connection
-	// working
-	qRegisterMetaType<QRegion>( "QRegion" );
-
-	connect( m_conn, SIGNAL( cursorShapeChanged() ),
-				this, SLOT( updateCursorShape() ) );
-	connect( m_conn, SIGNAL( regionUpdated( const QRegion & ) ),
-				this, SLOT( updateRegion( const QRegion & ) ) );
-
-
-	// first time send a key-frame
-	updateRegion( m_conn->screen().rect() );
-
 	start();
 }
 
@@ -496,6 +395,107 @@ void demoServerClient::run( void )
 	// able to change it's thread-affinity afterwards
 	m_sock->setParent( 0 );
 	m_sock->moveToThread( this );
+
+	m_bandwidthTimer->start();
+
+	socketDevice sd( qtcpsocketDispatcher, m_sock );
+	if( !isdServer::protocolInitialization( sd,
+						ItalcAuthHostBased, TRUE ) )
+	{
+		printf( "demoServerClient: protocol initialization failed\n" );
+		deleteLater();
+		return;
+	}
+
+	rfbClientInitMsg ci;
+
+	if( !sd.read( (char *) &ci, sizeof( ci ) ) )
+	{
+		deleteLater();
+		return;
+	}
+
+	rfbServerInitMsg si = m_conn->m_si;
+	si.framebufferWidth = swap16IfLE( si.framebufferWidth );
+	si.framebufferHeight = swap16IfLE( si.framebufferHeight );
+	si.format.redMax = swap16IfLE( si.format.redMax );
+	si.format.greenMax = swap16IfLE( si.format.greenMax );
+	si.format.blueMax = swap16IfLE( si.format.blueMax );
+	si.nameLength = swap32IfLE( si.nameLength );
+
+	if( !sd.write( ( const char *) &si, sizeof( si ) ) )
+	{
+		deleteLater();
+		return;
+	}
+
+	char * desktop_name = new char[m_conn->m_si.nameLength+1];
+	desktop_name[0] = 0;
+
+	if( !sd.write( desktop_name, m_conn->m_si.nameLength ) )
+	{
+		deleteLater();
+		return;
+	}
+
+	delete[] desktop_name;
+
+
+	rfbSetPixelFormatMsg spf;
+
+	if( !sd.read( (char *) &spf, sizeof( spf ) ) )
+	{
+		deleteLater();
+		return;
+	}
+
+	char buf[sizeof( rfbSetPixelFormatMsg ) + MAX_ENCODINGS *
+							sizeof( Q_UINT32 )];
+	rfbSetEncodingsMsg * se = (rfbSetEncodingsMsg *) buf;
+
+	if( !sd.read( (char *) se, sizeof( *se ) ) )
+	{
+		deleteLater();
+		return;
+	}
+	se->nEncodings = swap16IfLE( se->nEncodings );
+
+	Q_UINT32 * encs = (Q_UINT32 *)( &buf[sizeof(rfbSetEncodingsMsg)] );
+
+	if( !sd.read( (char *) encs, se->nEncodings * sizeof( Q_UINT32 ) ) )
+	{
+		deleteLater();
+		return;
+	}
+
+	bool has_italc_encoding = FALSE;
+	for( Q_UINT32 i = 0; i < se->nEncodings; ++i )
+	{
+		if( swap32IfLE( encs[i] ) == rfbEncodingItalc )
+		{
+			has_italc_encoding = TRUE;
+		}
+	}
+
+	if( !has_italc_encoding )
+	{
+		printf( "demoServerClient: client has no italc-encoding\n" );
+		deleteLater();
+		return;
+	}
+
+	// for some reason we have to do this to make the following connection
+	// working
+	qRegisterMetaType<QRegion>( "QRegion" );
+
+	connect( m_conn, SIGNAL( cursorShapeChanged() ),
+				this, SLOT( updateCursorShape() ) );
+	connect( m_conn, SIGNAL( regionUpdated( const QRegion & ) ),
+				this, SLOT( updateRegion( const QRegion & ) ) );
+
+
+	// first time send a key-frame
+	updateRegion( m_conn->screen().rect() );
 
 	connect( m_sock, SIGNAL( readyRead() ), this, SLOT( processClient() ) );
 	connect( m_sock, SIGNAL( disconnected() ), this,

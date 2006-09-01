@@ -42,6 +42,8 @@
 
 static privateDSAKey * privDSAKey = NULL;
 
+#warning: TODO: replace with role according to mode under which app is running
+const ISD::userRoles __role = ISD::RoleTeacher;
 
 
 bool isdConnection::initAuthentication( void )
@@ -63,8 +65,6 @@ bool isdConnection::initAuthentication( void )
 							QDir::separator() );
 	}*/
 
-#warning: TODO: replace with role according to mode under which app is running
-	const ISD::userRoles __role = ISD::RoleTeacher;
 	const QString priv_key_file = localSystem::privateKeyPath( __role );
 
 	privDSAKey = new privateDSAKey( priv_key_file );
@@ -348,7 +348,8 @@ isdConnection::states isdConnection::protocolInitialization( void )
 
 
 
-isdConnection::states isdConnection::authAgainstServer( void )
+isdConnection::states isdConnection::authAgainstServer(
+					bool _use_app_internal_challenge )
 {
 	Q_UINT8 num_sec_types;
 	if( !readFromServer( (char *)&num_sec_types, sizeof( num_sec_types ) ) )
@@ -385,22 +386,45 @@ isdConnection::states isdConnection::authAgainstServer( void )
 			{
 				return( m_state = ConnectionFailed );
 			}
-			const int iat = m_socketDev.read().toInt();
+			int iat = m_socketDev.read().toInt();
+			if( _use_app_internal_challenge )
+			{
+				iat = ItalcAuthAppInternalChallenge;
+			}
+			m_socketDev.write( QVariant( iat ) );
+
 			if( iat == ItalcAuthDSA )
 			{
+				printf("dsa\n");
 				QByteArray chall =
 					m_socketDev.read().toByteArray();
-				m_socketDev.write( localSystem::currentUser().
-							replace( ' ', '_' ) );
+/*				m_socketDev.write( localSystem::currentUser().
+							replace( ' ', '_' ) );*/
+				m_socketDev.write( QVariant( (int) __role ) );
+				if( !privDSAKey )
+				{
+					isdConnection::initAuthentication();
+				}
 				m_socketDev.write( privDSAKey->sign( chall ) );
 			}
 #ifdef BUILD_ICA
 			else if( iat == ItalcAuthAppInternalChallenge )
 			{
-				m_socketDev.write(
-					isdServer::s_appInternalChallenge );
+				// wait for signal
+				m_socketDev.read();
+				printf("app internal\n");
+				m_socketDev.write( QVariant(
+					isdServer::s_appInternalChallenge ) );
 			}
 #endif
+			else if( iat == ItalcAuthHostBased )
+			{
+				printf("hostbased\n");
+			}
+			else
+			{
+				printf( "unhandled italc-auth-mechanism!\n" );
+			}
 			break;
 		}
 		// even last security type not handled?

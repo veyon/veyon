@@ -141,7 +141,8 @@ ivsConnection::states ivsConnection::protocolInitialization( void )
 		return( state_ref() = ConnectionFailed );
 	}
 
-	if( authAgainstServer() != Connecting )
+	if( authAgainstServer( m_quality == QualityDemoPurposes ) !=
+								Connecting )
 	{
 		return( state() );
 	}

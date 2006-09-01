@@ -574,6 +574,7 @@ inline QString keyPath( const ISD::userRoles _role, const QString _group )
 								"iTALC" );
 	if( _role <= ISD::RoleNone || _role >= ISD::RoleCount )
 	{
+		printf( "invalid role\n" );
 		return( "" );
 	}
 	const QString fallback_dir =

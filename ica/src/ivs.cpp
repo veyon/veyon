@@ -82,8 +82,10 @@ rfbBool isdHandleMessage( struct _rfbClientRec * _client, void * _data,
 
 void isdAuthAgainstServer( struct _rfbClientRec * _client )
 {
-#warning: ItalcAuthNone -> ItalcAuthDSA
-	authSecTypeItalc( libvncClientDispatcher, _client, ItalcAuthNone );
+	if( authSecTypeItalc( libvncClientDispatcher, _client, ItalcAuthDSA ) )
+	{
+		_client->state = rfbClientRec::RFB_INITIALISATION;
+	}
 }
 
 
@@ -101,6 +103,20 @@ IVS::IVS( const quint16 _ivs_port, int _argc, char * * _argv ) :
 	m_argc( _argc ),
 	m_argv( _argv ),
 	m_port( _ivs_port )
+{
+}
+
+
+
+
+IVS::~IVS()
+{
+}
+
+
+
+
+void IVS::run( void )
 {
 #ifdef BUILD_LINUX
 	QStringList cmdline;
@@ -128,35 +144,21 @@ IVS::IVS( const quint16 _ivs_port, int _argc, char * * _argv ) :
 /*			<< "-threads"	// enable threaded libvncserver*/
 /*		<< "-noremote"	// do not accept remote-cmds
 		<< "-nocmds"	// do not run ext. cmds*/
-		<< "-rfbport" << QString::number( _ivs_port )
+		<< "-rfbport" << QString::number( m_port )
 				// set port where the VNC-server should listen
 		;
-
+	char * old_av = m_argv[0];
 	m_argv = new char *[cmdline.size()+1];
 	m_argc = 1;
-	m_argv[0] = _argv[0];
+	m_argv[0] = old_av;
+
 	for( QStringList::iterator it = cmdline.begin();
 				it != cmdline.end(); ++it, ++m_argc )
 	{
 		m_argv[m_argc] = new char[it->length() + 1];
 		strcpy( m_argv[m_argc], it->toAscii().constData() );
 	}
-#endif
-}
 
-
-
-
-IVS::~IVS()
-{
-}
-
-
-
-
-void IVS::run( void )
-{
-#ifdef BUILD_LINUX
 	// register iTALC-protocol-extension
 	rfbProtocolExtension pe;
 	pe.newClient = isdNewClient;
