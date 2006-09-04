@@ -53,8 +53,8 @@ demoServer::demoServer( quint16 _port ) :
 
 	m_updaterThread->start();
 
-	connect( this, SIGNAL( newConnection() ),
-			this, SLOT( acceptNewConnection() ) );
+/*	connect( this, SIGNAL( newConnection() ),
+			this, SLOT( acceptNewConnection() ) );*/
 
 }
 
@@ -69,10 +69,14 @@ demoServer::~demoServer()
 
 
 
-
+/*
 void demoServer::acceptNewConnection( void )
 {
 	new demoServerClient( nextPendingConnection(), m_conn );
+}*/
+void demoServer::incomingConnection( int _sd )
+{
+	new demoServerClient( _sd, m_conn );
 }
 
 
@@ -125,23 +129,24 @@ void demoServer::updaterThread::run( void )
 
 
 
-demoServerClient::demoServerClient( QTcpSocket * _sock,
-						const ivsConnection * _conn ) :
+demoServerClient::demoServerClient( int _sd, const ivsConnection * _conn ) :
 	QThread(),
 	m_changedRegion(),
 	m_cursorShapeChanged( TRUE ),
 	m_dataMutex(),
 	m_lastCursorPos(),
-	m_sock( _sock ),
+	m_socketDescriptor( _sd ),
+	m_sock( NULL ),
 	m_conn( _conn ),
 	m_lzoWorkMem( new Q_UINT8[sizeof( lzo_align_t ) *
 			( ( ( LZO1X_1_MEM_COMPRESS ) +
 			    		( sizeof( lzo_align_t ) - 1 ) ) /
 				 		sizeof( lzo_align_t ) ) ] ),
-	m_bandwidthTimer( new QTime() ),
+	m_bandwidthTimer( NULL ),
 	m_bytesOut( 0 ),
 	m_frames( 0 )
 {
+	QTimer::singleShot( 20, this, SLOT( moveCursor() ) );
 	start();
 }
 
@@ -178,9 +183,9 @@ void demoServerClient::updateCursorShape( void )
 
 void demoServerClient::moveCursor( void )
 {
+	m_dataMutex.lock();
 	if( m_lastCursorPos != QCursor::pos() )
 	{
-		m_dataMutex.lock();
 		m_lastCursorPos = QCursor::pos();
 		const rfbFramebufferUpdateMsg m =
 		{
@@ -206,9 +211,10 @@ void demoServerClient::moveCursor( void )
 		} ;
 
 		m_sock->write( (const char *) &rh, sizeof( rh ) );
+		m_sock->waitForBytesWritten();
 
-		m_dataMutex.unlock();
 	}
+	m_dataMutex.unlock();
 	QTimer::singleShot( 20, this, SLOT( moveCursor() ) );
 }
 
@@ -226,12 +232,10 @@ void demoServerClient::processClient( void )
 			printf( "could not read cmd\n" );
 			continue;
 		}
-
 		if( cmd != rfbFramebufferUpdateRequest )
 		{
 			continue;
 		}
-
 		if( m_changedRegion.isEmpty() )
 		{
 			continue;
@@ -375,15 +379,15 @@ void demoServerClient::processClient( void )
 		// reset vars
 		m_changedRegion = QRegion();
 		m_cursorShapeChanged = FALSE;
-
 	}
 
 	++m_frames;
-	m_dataMutex.unlock();
+	QTimer::singleShot( 50, this, SLOT( processClient() ) );
 	m_sock->waitForBytesWritten();
-	printf("kbps%d  fps:%d\n", m_bytesOut /
+	m_dataMutex.unlock();
+/*	printf("kbps%d  fps:%d\n", m_bytesOut /
 				( m_bandwidthTimer->elapsed() * 1024 / 1000 ),
-				m_frames * 1000 / m_bandwidthTimer->elapsed() );
+				m_frames * 1000 / m_bandwidthTimer->elapsed() );*/
 }
 
 
@@ -391,13 +395,16 @@ void demoServerClient::processClient( void )
 
 void demoServerClient::run( void )
 {
-	// we're now in our own thread, therefore re-parent socket for being
-	// able to change it's thread-affinity afterwards
-	m_sock->setParent( 0 );
-	m_sock->moveToThread( this );
-
+	m_dataMutex.lock();
+	m_sock = new QTcpSocket;
+	if( !m_sock->setSocketDescriptor( m_socketDescriptor ) )
+	{
+		printf( "could not set socket-descriptor in "
+			"demoServerClient::run() - aborting.\n" );
+		return;
+	}
+	m_bandwidthTimer = new QTime();
 	m_bandwidthTimer->start();
-
 	socketDevice sd( qtcpsocketDispatcher, m_sock );
 	if( !isdServer::protocolInitialization( sd,
 						ItalcAuthHostBased, TRUE ) )
@@ -493,18 +500,16 @@ void demoServerClient::run( void )
 	connect( m_conn, SIGNAL( regionUpdated( const QRegion & ) ),
 				this, SLOT( updateRegion( const QRegion & ) ) );
 
+	m_dataMutex.unlock();
 
 	// first time send a key-frame
 	updateRegion( m_conn->screen().rect() );
 
-	connect( m_sock, SIGNAL( readyRead() ), this, SLOT( processClient() ) );
+	//connect( m_sock, SIGNAL( readyRead() ), this, SLOT( processClient() ) );
 	connect( m_sock, SIGNAL( disconnected() ), this,
 							SLOT( deleteLater() ) );
 
-/*	QTimer * t = new QTimer( this );
-	connect( t, SIGNAL( timeout() ), this, SLOT( moveCursor() ) );
-	t->start( 20 );*/
-	QTimer::singleShot( 20, this, SLOT( moveCursor() ) );
+	QTimer::singleShot( 500, this, SLOT( processClient() ) );
 	//moveCursor();
 
 	// ...and can run our own event-loop for optimal scheduling

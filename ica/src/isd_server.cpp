@@ -130,7 +130,7 @@ bool isdServer::authSecTypeItalc( socketDispatcher _sd, void * _user,
 			// find out IP of host
 			const int MAX_HOST_LEN = 255;
 			char host[MAX_HOST_LEN];
-			_sd( host, MAX_HOST_LEN, SocketGetIPBoundTo, NULL );
+			_sd( host, MAX_HOST_LEN, SocketGetIPBoundTo, _user );
 			host[MAX_HOST_LEN] = 0;
 
 			// create a list of all known addresses of host

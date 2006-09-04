@@ -166,8 +166,8 @@ protected:
 	}
 
 
-private:
 	QTcpSocket * m_socket;
+private:
 	states m_state;
 
 	socketDevice m_socketDev;

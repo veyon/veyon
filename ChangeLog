@@ -1,3 +1,19 @@
+2006-09-04	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* common/src/isd_connection.cpp:
+	handle ItalcAuthNone
+
+	* ica/src/demo_server.h:
+	* ica/src/demo_server.cpp:
+	- create client-sockets within according threads (using
+	  socket-descriptors) - fixes segfaults and other bugs on SMP-systems
+	- do not rely on readyRead()-signal, use QTimer::singleShot instead
+
+	* ica/src/isd_server.cpp:
+	when doing host-based auth., pass _user-ptr to socket-dispatcher-call
+	for getting peer address - fixes crash of ica when acting as
+	demo-master
+
 2006-09-01	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* ica/x11/libvncserver/auth.c:

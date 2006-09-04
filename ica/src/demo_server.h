@@ -45,12 +45,14 @@ public:
 	demoServer( quint16 _port );
 	virtual ~demoServer();
 
-
+/*
 private slots:
 	void acceptNewConnection( void );
-
+*/
 
 private:
+	virtual void incomingConnection( int _sd );
+
 	ivsConnection * m_conn;
 
 	// this thread is just responsible for updating IVS-connection's screen
@@ -81,7 +83,7 @@ class demoServerClient : public QThread
 {
 	Q_OBJECT
 public:
-	demoServerClient( QTcpSocket * _sock, const ivsConnection * _conn );
+	demoServerClient( int _sd, const ivsConnection * _conn );
 	virtual ~demoServerClient();
 
 
@@ -114,6 +116,7 @@ private:
 
 	QPoint m_lastCursorPos;
 
+	int m_socketDescriptor;
 	QTcpSocket * m_sock;
 	const ivsConnection * m_conn;
 

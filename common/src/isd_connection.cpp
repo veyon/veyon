@@ -421,6 +421,10 @@ isdConnection::states isdConnection::authAgainstServer(
 			{
 				printf("hostbased\n");
 			}
+			else if( iat == ItalcAuthNone )
+			{
+				printf("none\n");
+			}
 			else
 			{
 				printf( "unhandled italc-auth-mechanism!\n" );

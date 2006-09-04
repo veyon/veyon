@@ -32,6 +32,8 @@
 
 #if QT_VERSION < 0x040200
 #include "3rdparty/qnetworkinterface.h"
+#else
+#include <QtNetwork/QNetworkInterface>
 #endif
 
 #undef QT_MAKEDLL
