@@ -34,6 +34,8 @@
 #include <QtGui/QApplication>
 #include <QtNetwork/QTcpServer>
 
+#include "ica_main.h"
+#include "service.h"
 #include "remote_control_widget.h"
 #include "isd_server.h"
 #include "ivs.h"
@@ -41,7 +43,7 @@
 
 
 
-int ISDMain( int argc, char * * argv )
+int ICAMain( int argc, char * * argv )
 {
 	QApplication app( argc, argv );
 
@@ -73,6 +75,23 @@ int ISDMain( int argc, char * * argv )
 		{
 			new remoteControlWidget( arg_it.next() );
 			return( app.exec() );
+		}
+		else if( a == "-installservice" )
+		{
+			icaServiceInstall( 0 );
+			return( 0 );
+		}
+		else if( a == "-removeservice" )
+		{
+			icaServiceRemove( 0 );
+			return( 0 );
+		}
+		else if( a == SERVICE_ARG )
+		{
+			if( icaServiceMain() )
+			{
+				return( 0 );
+			}
 		}
 	}
 
@@ -112,7 +131,7 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance,
 		strcpy( argv[argc], it->toAscii().constData() );
 	}
 
-	return( ISDMain( argc, argv ) );
+	return( ICAMain( argc, argv ) );
 }
 
 
@@ -121,7 +140,7 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 int main( int argc, char * * argv )
 {
-	return( ISDMain( argc, argv ) );
+	return( ICAMain( argc, argv ) );
 }
 
 

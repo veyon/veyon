@@ -1,3 +1,14 @@
+2006-09-05	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* common/src/local_system.cpp:
+	re-activated username-code using external userinfo-tool
+
+	* ica/src/ica_main.h:
+	* ica/src/ica_main.cpp:
+	* ica/src/service.h:
+	* ica/src/service.cpp:
+	added service-functionality under win32
+
 2006-09-04	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* common/src/isd_connection.cpp:

@@ -51,8 +51,8 @@ am__installdirs = "$(DESTDIR)$(bindir)"
 binPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
 PROGRAMS = $(bin_PROGRAMS)
 am__ica_SOURCES_DIST = $(srcdir)/src/ica_main.cpp \
-	$(srcdir)/src/ivs.cpp $(srcdir)/src/isd_server.cpp \
-	$(srcdir)/src/lock_widget.cpp \
+	$(srcdir)/src/service.cpp $(srcdir)/src/ivs.cpp \
+	$(srcdir)/src/isd_server.cpp $(srcdir)/src/lock_widget.cpp \
 	$(srcdir)/src/progress_widget.cpp \
 	$(srcdir)/src/remote_control_widget.cpp \
 	$(srcdir)/src/vncview.cpp $(srcdir)/src/demo_server.cpp \
@@ -132,14 +132,14 @@ am__ica_SOURCES_DIST = $(srcdir)/src/ica_main.cpp \
 @BUILD_LINUX_TRUE@	zlib.$(OBJEXT) zrle.$(OBJEXT) \
 @BUILD_LINUX_TRUE@	zrleoutstream.$(OBJEXT) \
 @BUILD_LINUX_TRUE@	zrlepalettehelper.$(OBJEXT) tight.$(OBJEXT)
-am_ica_OBJECTS = ica_main.$(OBJEXT) ivs.$(OBJEXT) isd_server.$(OBJEXT) \
-	lock_widget.$(OBJEXT) progress_widget.$(OBJEXT) \
-	remote_control_widget.$(OBJEXT) vncview.$(OBJEXT) \
-	demo_server.$(OBJEXT) demo_client.$(OBJEXT) minilzo.$(OBJEXT) \
-	messagebox.$(OBJEXT) fast_qimage.$(OBJEXT) isd_base.$(OBJEXT) \
-	isd_connection.$(OBJEXT) ivs_connection.$(OBJEXT) \
-	local_system.$(OBJEXT) dsa_key.$(OBJEXT) ica_qrc.$(OBJEXT) \
-	$(am__objects_1)
+am_ica_OBJECTS = ica_main.$(OBJEXT) service.$(OBJEXT) ivs.$(OBJEXT) \
+	isd_server.$(OBJEXT) lock_widget.$(OBJEXT) \
+	progress_widget.$(OBJEXT) remote_control_widget.$(OBJEXT) \
+	vncview.$(OBJEXT) demo_server.$(OBJEXT) demo_client.$(OBJEXT) \
+	minilzo.$(OBJEXT) messagebox.$(OBJEXT) fast_qimage.$(OBJEXT) \
+	isd_base.$(OBJEXT) isd_connection.$(OBJEXT) \
+	ivs_connection.$(OBJEXT) local_system.$(OBJEXT) \
+	dsa_key.$(OBJEXT) ica_qrc.$(OBJEXT) $(am__objects_1)
 ica_OBJECTS = $(am_ica_OBJECTS)
 am__DEPENDENCIES_1 =
 @BUILD_LINUX_TRUE@am__DEPENDENCIES_2 = $(am__DEPENDENCIES_1)
@@ -379,6 +379,7 @@ ica_MOC = src/isd_server.moc 			\
 		../common/include/ivs_connection.moc
 
 ica_SOURCES = $(srcdir)/src/ica_main.cpp			\
+			$(srcdir)/src/service.cpp			\
 			$(srcdir)/src/ivs.cpp				\
 			$(srcdir)/src/isd_server.cpp			\
 			$(srcdir)/src/lock_widget.cpp			\
@@ -604,6 +605,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/rre.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/scale.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/selbox.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/service.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/sockets.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/stats.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/tight.Po@am__quote@
@@ -1099,6 +1101,20 @@ ica_main.obj: $(srcdir)/src/ica_main.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(srcdir)/src/ica_main.cpp' object='ica_main.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o ica_main.obj `if test -f '$(srcdir)/src/ica_main.cpp'; then $(CYGPATH_W) '$(srcdir)/src/ica_main.cpp'; else $(CYGPATH_W) '$(srcdir)/$(srcdir)/src/ica_main.cpp'; fi`
+
+service.o: $(srcdir)/src/service.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT service.o -MD -MP -MF "$(DEPDIR)/service.Tpo" -c -o service.o `test -f '$(srcdir)/src/service.cpp' || echo '$(srcdir)/'`$(srcdir)/src/service.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/service.Tpo" "$(DEPDIR)/service.Po"; else rm -f "$(DEPDIR)/service.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(srcdir)/src/service.cpp' object='service.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o service.o `test -f '$(srcdir)/src/service.cpp' || echo '$(srcdir)/'`$(srcdir)/src/service.cpp
+
+service.obj: $(srcdir)/src/service.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT service.obj -MD -MP -MF "$(DEPDIR)/service.Tpo" -c -o service.obj `if test -f '$(srcdir)/src/service.cpp'; then $(CYGPATH_W) '$(srcdir)/src/service.cpp'; else $(CYGPATH_W) '$(srcdir)/$(srcdir)/src/service.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/service.Tpo" "$(DEPDIR)/service.Po"; else rm -f "$(DEPDIR)/service.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(srcdir)/src/service.cpp' object='service.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o service.obj `if test -f '$(srcdir)/src/service.cpp'; then $(CYGPATH_W) '$(srcdir)/src/service.cpp'; else $(CYGPATH_W) '$(srcdir)/$(srcdir)/src/service.cpp'; fi`
 
 ivs.o: $(srcdir)/src/ivs.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT ivs.o -MD -MP -MF "$(DEPDIR)/ivs.Tpo" -c -o ivs.o `test -f '$(srcdir)/src/ivs.cpp' || echo '$(srcdir)/'`$(srcdir)/src/ivs.cpp; \

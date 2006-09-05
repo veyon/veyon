@@ -527,10 +527,10 @@ QString currentUser( void )
 {
 	QString ret = "unknown";
 #ifdef BUILD_WIN32
-/*	if( !__user_poll_thread->name().isEmpty() )
+	if( !__user_poll_thread->name().isEmpty() )
 	{
 		ret = __user_poll_thread->name();
-	}*/
+	}
 /*	char * name;
 	getUserName( &name );
 	if( name )

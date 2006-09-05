@@ -115,6 +115,7 @@ ica_MOC =	src/isd_server.moc 			\
 
 
 ica_SOURCES =		$(srcdir)/src/ica_main.cpp			\
+			$(srcdir)/src/service.cpp			\
 			$(srcdir)/src/ivs.cpp				\
 			$(srcdir)/src/isd_server.cpp			\
 			$(srcdir)/src/lock_widget.cpp			\

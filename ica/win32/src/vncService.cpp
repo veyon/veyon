@@ -609,6 +609,12 @@ vncService::KillAllClients()
 	return TRUE;
 }
 
+BOOL
+vncService::RunningAsService()
+{
+	return TRUE;
+}
+#if 0
 // SERVICE-MODE ROUTINES
 
 // Service-mode defines:
@@ -1348,3 +1354,4 @@ void LogErrorMsg(char *message)
 		DeregisterEventSource(heventsrc);
 	}
 }
+#endif
