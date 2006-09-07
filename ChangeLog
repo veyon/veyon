@@ -1,3 +1,8 @@
+2006-09-07	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* common/src/local_system.cpp:
+	implemented WOL under win32
+
 2006-09-05	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* common/src/local_system.cpp:

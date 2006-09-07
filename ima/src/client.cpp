@@ -408,6 +408,7 @@ void client::processCmdSlot( QAction * _action )
 void client::updateStatePixmap( void )
 {
 	m_statePixmap = QPixmap( size() );
+	return;
 	QPainter p( &m_statePixmap );
 
 	QLinearGradient grad( 0, 0, 0, height() );
@@ -661,7 +662,8 @@ void client::reload( const QString & _update )
 	if( userLoggedIn() )
 	{
 		m_syncMutex.lock();
-		if( m_user.isEmpty() || m_user == "none" || m_user == "unknown" )
+		if( m_user.isEmpty() || m_user == "none" ||
+							m_user == "unknown" )
 		{
 			m_connection->sendGetUserInformationRequest();
 		}

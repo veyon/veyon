@@ -180,7 +180,8 @@ void sendWakeOnLANPacket( const QString & _mac )
 {
 #ifdef BUILD_WIN32
 #warning TODO: check win32-WOL-code
-	QProcess::startDetached( "wake " + _mac + " 255.255.255.255" );
+	QProcess::startDetached( "wake " + _mac.replace( ':', '-' ) +
+							" 255.255.255.255" );
 
 #else
 	QProcess::startDetached( "etherwake " + _mac );
