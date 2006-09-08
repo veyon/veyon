@@ -35,7 +35,7 @@
     </message>
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Current language not translated yet (or native English).&lt;/p&gt;&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;If you&apos;re interested in translating iTALC into your local or another language or want to improve an existing translation, please contact an iTALC-developer!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Deutsche Übersetzung von Tobias Doerffel.&lt;/p&gt;&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Wenn Sie daran interessiert sind, iTALC in ihre lokale oder eine andere Sprache zu übersetzen oder eine existierende Übersetzungen zu verbessern, kontaktieren Sie bitte einen iTALC-Entwickler!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Deutsche Übersetzung von Tobias Doerffel.&lt;/p&gt;&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Wenn Sie daran interessiert sind, iTALC in ihre lokale oder eine andere Sprache zu übersetzen oder eine existierende Übersetzungen zu verbessern, kontaktieren Sie bitte einen iTALC-Entwickler!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
@@ -138,6 +138,14 @@ Das Basis-Verzeichnis ist HOME/PUBLIC.</translation>
     <message>
         <source>View live and fullscreen</source>
         <translation>Live und im Vollbild anschauen</translation>
+    </message>
+    <message>
+        <source>Snapshot</source>
+        <translation>Schnappschuss</translation>
+    </message>
+    <message>
+        <source>Could not make a snapshot as directory %1 doesn&apos;t exist and couldn&apos;t be created.</source>
+        <translation>Es konnte kein Schnappschuss erstellt werden, da das Verzeichnis %1 nicht existiert und nicht erzeugt werden konnte.</translation>
     </message>
 </context>
 <context>
@@ -381,11 +389,11 @@ Wollen Sie jetzt ein neues Klassenzimmer erstellen?</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;connection to hosts on the same level&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Here you can specify how this host is connected to the iTALC-network, i.e. hosts on the same level. Normally clients are connected via 100 MBit/s LAN, but there might be special hosts such as gateways to other iTALC-networks in foreign schools or a student&apos;s home-computer. In such cases iTALC tries to optimize its bandwidth utilization.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Analog</source>
@@ -413,7 +421,7 @@ Wollen Sie jetzt ein neues Klassenzimmer erstellen?</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Check if the host is the gateway for the subnet.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Host is &amp;gateway for subnet</source>
@@ -421,11 +429,11 @@ Wollen Sie jetzt ein neues Klassenzimmer erstellen?</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Activate this option for at least one host in a subnet.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;When showing a demo to more than one host in a foreign network, it&apos;s meaningful to activate this option for at least one of the involved hosts. This way all data is only sent once to the demo-replicator which provides the data for all the other clients in the network. Especially on slow links usage of this option is essential. Normally you should enable this option on the subnet-gateway (see option above).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Act as &amp;demo replicator</source>
@@ -500,6 +508,57 @@ ausgeführt werden sollen:</translation>
     </message>
 </context>
 <context>
+    <name>config</name>
+    <message>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Interval between updates</source>
+        <translation>Aktualisierungsintervall</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Here you can set the interval between updates of clients. Higher values result in lower network-traffic and lower CPU-usage on this computer.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1 second</source>
+        <translation>1 Sekunde</translation>
+    </message>
+    <message>
+        <source> seconds</source>
+        <translation> Sekunden</translation>
+    </message>
+    <message>
+        <source>Network interface for demo-mode</source>
+        <translation>Netzwerkschnittstelle für Demo-Modus</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Here you can select the network interface with the according IP-address which is used for demo-purposes. Actually this only concerns you if your computer has more than one network-card. Incorrect settings may result in being able to show a demo.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User interface</source>
+        <translation>Benutzeroberfläche</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Do not show balloon-tooltips for toolbar-buttons&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Check this option if you&apos;re annoyed by the balloon-tooltips appearing when moving mouse-cursor over toolbar-buttons.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No balloon-tooltips</source>
+        <translation>Keine Ballon-Tooltips</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;Please note, that some changes won&apos;t take effect until you restart iTALC.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>configWidget</name>
     <message>
         <source>Your iTALC-configuration</source>
@@ -507,54 +566,62 @@ ausgeführt werden sollen:</translation>
     </message>
     <message>
         <source>seconds</source>
-        <translation>Sekunden</translation>
+        <translation type="obsolete">Sekunden</translation>
     </message>
     <message>
         <source>second</source>
-        <translation>Sekunde</translation>
+        <translation type="obsolete">Sekunde</translation>
     </message>
     <message>
         <source>Update interval</source>
-        <translation>Aktualisierungs-Intervall</translation>
+        <translation type="obsolete">Aktualisierungs-Intervall</translation>
     </message>
     <message>
         <source>Network interface/IP-address</source>
-        <translation>Netzwerkschnittstelle/IP-Adresse</translation>
+        <translation type="obsolete">Netzwerkschnittstelle/IP-Adresse</translation>
     </message>
     <message>
         <source>Here you can set the interval between updates of clients. Higher values result in lower network-traffic and lower CPU-usage.</source>
-        <translation>Hier können Sie den zeitlichen Intervall zwischen Aktualisierungen der Clients einstellen. Höhere Werte äußern sich in geringerer Netzwerkauslastung und geringerer CPU-Auslastung.</translation>
+        <translation type="obsolete">Hier können Sie den zeitlichen Intervall zwischen Aktualisierungen der Clients einstellen. Höhere Werte äußern sich in geringerer Netzwerkauslastung und geringerer CPU-Auslastung.</translation>
     </message>
     <message>
         <source>Here you can select the network interface with the according IP-address. This is needed if you computer has more than one network-card and not all of one of them have a connection to the clients. Incorrect settings may result in being unable to show a demo.</source>
-        <translation>Hier können Sie die Netzwerkschnittstelle mit der zugehörigen IP-Adresse wählen. Diese Einstellung wird gebraucht, wenn Ihr Computer über mehr als eine Netzwerkkarte verfügt und nicht alle davon eine Verbindung zu den Clients besitzen. Falsche Einstellungen können sich darin äußern, dass keine Demo mehr gezeigt werden kann.</translation>
+        <translation type="obsolete">Hier können Sie die Netzwerkschnittstelle mit der zugehörigen IP-Adresse wählen. Diese Einstellung wird gebraucht, wenn Ihr Computer über mehr als eine Netzwerkkarte verfügt und nicht alle davon eine Verbindung zu den Clients besitzen. Falsche Einstellungen können sich darin äußern, dass keine Demo mehr gezeigt werden kann.</translation>
     </message>
     <message>
         <source>In this workspace you can customize iTALC to fit your needs.</source>
         <translation>In diesem Arbeitsbereich können Sie iTALC Ihren Bedürfnissen anpassen.</translation>
+    </message>
+    <message>
+        <source>Warning</source>
+        <translation>Warnung</translation>
+    </message>
+    <message>
+        <source>You are trying to use the local loopback-device as network-interface. This will never work, because the local loopback is just the last alternative for running iTALC if no other network-interface was found.</source>
+        <translation>Sie versuchen, die lokale Loopback-Schnittstelle als Netzwerkschnittstelle zu verwenden. Das wird nicht funktionieren, da die lokale Loopback-Schnittstelle nur eine letzte Alternative ist, um iTALC zum laufen zu bringen, wenn keine andere Netzwerkschnittstelle gefunden wurde.</translation>
     </message>
 </context>
 <context>
     <name>helpWidget</name>
     <message>
         <source>If you want to know, what a specific button etc. does, you can activate the &quot;What&apos;s this&quot;-mode. Then click on the corresponding button etc. and a short explanation to it will be shown.</source>
-        <translation>Wenn Sie wissen wollen, was ein bestimmter Button usw. macht, können Sie den &quot;Was ist das&quot;-Modus aktivieren. Dann klicken Sie auf den entsprechenden Button usw. Daraufhin wird eine kurze Erklärung angezeigt.</translation>
+        <translation type="obsolete">Wenn Sie wissen wollen, was ein bestimmter Button usw. macht, können Sie den &quot;Was ist das&quot;-Modus aktivieren. Dann klicken Sie auf den entsprechenden Button usw. Daraufhin wird eine kurze Erklärung angezeigt.</translation>
     </message>
     <message>
         <source>Enter &quot;What&apos;s this&quot;-mode</source>
-        <translation>&quot;Was ist das&quot;-Modus aktivieren</translation>
+        <translation type="obsolete">&quot;Was ist das&quot;-Modus aktivieren</translation>
     </message>
     <message>
         <source>Help on iTALC</source>
-        <translation>Hilfe über iTALC</translation>
+        <translation type="obsolete">Hilfe über iTALC</translation>
     </message>
     <message>
         <source>Need help? This workspace might hold an answer for your question.</source>
-        <translation>Hilfe nötig? Dieser Arbeitsbereich könnte eine Antwort auf Ihre Frage bereithalten.</translation>
+        <translation type="obsolete">Hilfe nötig? Dieser Arbeitsbereich könnte eine Antwort auf Ihre Frage bereithalten.</translation>
     </message>
     <message>
         <source>About iTALC</source>
-        <translation>Über iTALC</translation>
+        <translation type="obsolete">Über iTALC</translation>
     </message>
 </context>
 <context>
@@ -577,7 +644,7 @@ ausgeführt werden sollen:</translation>
     </message>
     <message>
         <source>Could not read/write or create directory %1! For running iTALC, make sure you have write-access to your home-directory and to %1 (if it already exists).</source>
-        <translation>Konnte das Verzeichnis %1 nicht lesen/schreiben oder erstellen! Um iTALC auszuführen, sollten Sie sicherstellen, dass Sie Schreibzugriff auf Ihre eigenen Dateien sowie auf %1 (falls bereits existierend) haben.</translation>
+        <translation type="obsolete">Konnte das Verzeichnis %1 nicht lesen/schreiben oder erstellen! Um iTALC auszuführen, sollten Sie sicherstellen, dass Sie Schreibzugriff auf Ihre eigenen Dateien sowie auf %1 (falls bereits existierend) haben.</translation>
     </message>
     <message>
         <source>New key-pair generated</source>
@@ -673,25 +740,33 @@ wechseln</translation>
         <source>Click on this button, to switch between classrooms.</source>
         <translation>Klicken Sie auf diesen Knopf, um zwischen Klassenzimmern zu wechseln.</translation>
     </message>
+    <message>
+        <source>Could not read/write or create directory %1! For running iTALC, make sure you&apos;re permitted to create or write this directory</source>
+        <translation type="obsolete">Konnte das Verzeichnis %1 nicht lesen/schreiben oder erstellen. Um iTALC auszuführen, stellen Sie sicher, dass Sie berechtigt sind, dieses Verzeichnis zu erzeugen oder zu beschreiben.</translation>
+    </message>
+    <message>
+        <source>Could not read/write or create directory %1! For running iTALC, make sure you&apos;re permitted to create or write this directory.</source>
+        <translation>Konnte das Verzeichnis %1 nicht lesen/schreiben oder erstellen. Um iTALC auszuführen, stellen Sie sicher, dass Sie berechtigt sind, dieses Verzeichnis zu erzeugen oder zu beschreiben.</translation>
+    </message>
 </context>
 <context>
     <name>msgInputDialog</name>
     <message>
         <source>Send message to client(s)</source>
-        <translation>Nachricht an Client(s) schicken</translation>
+        <translation type="obsolete">Nachricht an Client(s) schicken</translation>
     </message>
     <message>
         <source>Enter the message, which should displayed on client(s):</source>
-        <translation>Geben Sie die Nachricht ein, die auf dem bzw. den Client(s)
+        <translation type="obsolete">Geben Sie die Nachricht ein, die auf dem bzw. den Client(s)
 angezeigt werden soll:</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation>Abbrechen</translation>
+        <translation type="obsolete">Abbrechen</translation>
     </message>
     <message>
         <source>&amp;Send!</source>
-        <translation>&amp;Senden!</translation>
+        <translation type="obsolete">&amp;Senden!</translation>
     </message>
 </context>
 <context>
@@ -749,10 +824,6 @@ If you need help take a look at the help-workspace!</source>
         <translation>Verwalten Sie Ihre Schnappschüsse mit Hilfe dieses Arbeitsbereiches.</translation>
     </message>
     <message>
-        <source>All snapshots you made are listed here. You can make snapshots by clicking with the right mousebutton on a client-window and select &quot;Make snapshot&quot; in the menu. These snapshots can be managed using the buttons below.</source>
-        <translation type="unfinished">Hier werden alle Schnappschüsse aufgelistet, die Sie erstellt haben. Sie können Schnapschüsse erstellen, indem </translation>
-    </message>
-    <message>
         <source>User:</source>
         <translation>Benutzer:</translation>
     </message>
@@ -791,6 +862,87 @@ If you need help take a look at the help-workspace!</source>
     <message>
         <source>When clicking on this button, the snapshot-list is being reloaded immediately. You actually should never need this function since iTALC automatically reloads this list, after making a new snapshot.</source>
         <translation>Wenn Sie diesen Knopf anklicken, wird die Schnappschuss-Liste sofort neugeladen. Eigentlich sollten Sie diese Funktion nie benötigen, da iTALC diese Liste automatisch neu lädt, nachdem Sie einen Schnappschuss erstellt haben.</translation>
+    </message>
+    <message>
+        <source>All snapshots you made are listed here. You can make snapshots by clicking the camera-button in a client-window. These snapshots can be managed using the buttons below.</source>
+        <translation>Hier sind alle Schnappschüsse aufgelistet, die Sie erstellt haben. Sie können Schnappschüsse erstellen, indem Sie den Kamera-Knopf in einem Client-Fenster anklicken. Diese Schnappschüsse können mit Hilfe der Buttons unten verwaltet werden.</translation>
+    </message>
+</context>
+<context>
+    <name>support</name>
+    <message>
+        <source>Support</source>
+        <translation>Unterstützung</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:20pt; font-weight:600; font-style:italic;&quot;&gt;Support&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please enter the IP-address or the name of the host at which the person is sitting, you want to support.</source>
+        <translation>Bitte geben Sie die IP-Adresse oder den Namen des Rechners ein, an dem die Person sitzt, die Sie unterstützen möchten.</translation>
+    </message>
+    <message>
+        <source>OK</source>
+        <translation>OK</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>Abbrechen</translation>
+    </message>
+</context>
+<context>
+    <name>supportWidget</name>
+    <message>
+        <source>Support</source>
+        <translation>Unterstützung</translation>
+    </message>
+    <message>
+        <source>Need to support someone? Open this workspace!</source>
+        <translation>Sie müssen jemanden unterstützen? Öffnen Sie diesen Arbeitsbereich!</translation>
+    </message>
+    <message>
+        <source>If you want to know, what a specific button etc. does, you can activate the &quot;What&apos;s this&quot;-mode. Then click on the corresponding button etc. and a short explanation to it will be shown.</source>
+        <translation>Wenn Sie wissen wollen, was ein bestimmter Button usw. macht, können Sie den &quot;Was ist das&quot;-Modus aktivieren. Dann klicken Sie auf den entsprechenden Button usw. Daraufhin wird eine kurze Erklärung angezeigt.</translation>
+    </message>
+    <message>
+        <source>Support someone</source>
+        <translation>Jemanden unterstützen</translation>
+    </message>
+    <message>
+        <source>About iTALC</source>
+        <translation>Über iTALC</translation>
+    </message>
+</context>
+<context>
+    <name>textMessage</name>
+    <message>
+        <source>Send text message</source>
+        <translation>Text-Nachricht schicken</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:20pt; font-weight:600; font-style:italic;&quot;&gt;Send text message&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use the field below to type your message which will be sent to all selected users.</source>
+        <translation>Nutzen Sie das Feld unterhalb, um Ihre Nachricht zu tippen, die an alle Nutzer geschickt wird.</translation>
+    </message>
+    <message>
+        <source>&amp;OK</source>
+        <translation>&amp;OK</translation>
+    </message>
+    <message>
+        <source>Ctrl+Enter</source>
+        <translation>Strg+Enter</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>Abbrechen</translation>
+    </message>
+    <message>
+        <source>Escape</source>
+        <translation>Escape</translation>
     </message>
 </context>
 <context>

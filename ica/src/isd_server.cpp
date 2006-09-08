@@ -268,7 +268,8 @@ int isdServer::processClient( socketDispatcher _sd, void * _user )
 
 		case ISD::WakeOtherComputer:
 			localSystem::sendWakeOnLANPacket( 
-					msg_in.arg( "mac" ).toString() );
+					msg_in.arg( "mac" ).toString(),
+					msg_in.arg( "bcast" ).toString() );
 			break;
 
 		case ISD::PowerDownComputer:

@@ -91,8 +91,8 @@ mainWindow::mainWindow() :
 		}
 		messageBox::information( tr( "No write-access" ),
 			tr( "Could not read/write or create directory %1! "
-			"For running iTALC, make sure you're permitted to create "
-			"or write this directory" ).arg(
+			"For running iTALC, make sure you're permitted to "
+			"create or write this directory." ).arg(
 					localSystem::personalConfigDir() ) );
 		return;
 	}

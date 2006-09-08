@@ -39,7 +39,8 @@ namespace localSystem
 
 	void execInTerminal( const QString & _cmds );
 
-	void sendWakeOnLANPacket( const QString & _mac );
+	void sendWakeOnLANPacket( const QString & _mac,
+						const QString & _bcast );
 
 	void powerDown( void );
 	void reboot( void );

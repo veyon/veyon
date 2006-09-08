@@ -122,7 +122,7 @@ public:
 	bool remoteControlDisplay( const QString & _ip,
 						bool _view_only = FALSE );
 
-	bool wakeOtherComputer( const QString & _mac );
+	bool wakeOtherComputer( const QString & _mac, const QString & _bcast );
 	bool powerDownComputer( void );
 	bool restartComputer( void );
 

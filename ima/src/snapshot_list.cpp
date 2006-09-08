@@ -54,9 +54,8 @@ snapshotList::snapshotList( mainWindow * _main_window, QWidget * _parent ) :
 	m_list->setFont( f );
 	m_list->setSelectionMode( QListWidget::SingleSelection );
 	m_list->setWhatsThis( tr( "All snapshots you made are listed here. "
-				"You can make snapshots by clicking with the "
-				"right mousebutton on a client-window and "
-				"select \"Make snapshot\" in the menu. "
+				"You can make snapshots by clicking the "
+				"camera-button in a client-window. "
 				"These snapshots can be managed using the "
 				"buttons below." ) );
 	connect( m_list, SIGNAL( highlighted( const QString & ) ), this,

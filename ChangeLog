@@ -1,6 +1,31 @@
 2006-09-07	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
+	* ima/resources/de.ts:
+	updated German translation
+
+	* ima/src/client_manager.cpp:
+	* ima/src/config_widget.h:
+	* ima/src/config_widget.cpp:
+	* ima/src/tool_button.h:
+	* ima/src/tool_button.cpp:
+	added option for disabling balloon-tooltips for toolbar-buttons
+
+	* ima/dialogs/config.ui:
+	* ima/resources/userinterface.png:
+	* ima/italc.qrc:
+	* ima/src/config_widget.h:
+	* ima/src/config_widget.cpp:
+	- re-made config-workspace using ui-designer
+	- warn user when selecting local loopback as net-iface
+
+	* ima/dialogs/client_settings.ui:
+	corrected tab-order of input-fields
+
+	* common/include/isd_connection.h:
+	* common/include/local_system.h:
+	* common/src/isd_connection.cpp:
 	* common/src/local_system.cpp:
+	* ima/src/client.cpp:
 	implemented WOL under win32
 
 2006-09-05	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>

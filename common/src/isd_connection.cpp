@@ -649,7 +649,8 @@ bool isdConnection::remoteControlDisplay( const QString & _ip, bool _view_only )
 
 
 
-bool isdConnection::wakeOtherComputer( const QString & _mac )
+bool isdConnection::wakeOtherComputer( const QString & _mac,
+							const QString & _bcast )
 {
 	if( m_socket->state() != QTcpSocket::ConnectedState )
 	{
@@ -657,7 +658,8 @@ bool isdConnection::wakeOtherComputer( const QString & _mac )
 		return( FALSE );
 	}
 	return( ISD::msg( &m_socketDev, ISD::WakeOtherComputer ).
-					addArg( "mac", _mac ).send() );
+					addArg( "mac", _mac ).
+					addArg( "bcast", _bcast ).send() );
 }
 
 

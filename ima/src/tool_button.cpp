@@ -41,6 +41,8 @@
 const int MARGIN = 10;
 const int ROUNDED = 3000;
 
+bool toolButton::s_toolTipsDisabled = FALSE;
+
 
 toolButtonTip::toolButtonTip( const QPixmap & _pixmap, const QString & _title,
 				const QString & _description,
@@ -198,36 +200,41 @@ toolButton::~toolButton()
 
 void toolButton::enterEvent( QEvent * _e )
 {
-	QPoint p = mapToGlobal( QPoint( 0, 0 ) );
-	int scr = QApplication::desktop()->isVirtualDesktop() ?
-			QApplication::desktop()->screenNumber( p ) :
-			QApplication::desktop()->screenNumber( this );
+	if( !s_toolTipsDisabled )
+	{
+		QPoint p = mapToGlobal( QPoint( 0, 0 ) );
+		int scr = QApplication::desktop()->isVirtualDesktop() ?
+				QApplication::desktop()->screenNumber( p ) :
+				QApplication::desktop()->screenNumber( this );
 
 #ifdef Q_WS_MAC
-	QRect screen = QApplication::desktop()->availableGeometry( scr );
+		QRect screen = QApplication::desktop()->availableGeometry(
+									scr );
 #else
-	QRect screen = QApplication::desktop()->screenGeometry( scr );
+		QRect screen = QApplication::desktop()->screenGeometry( scr );
 #endif
 
-	toolButtonTip * tbt = new toolButtonTip( m_pixmap, m_title,
-						m_description,
+		toolButtonTip * tbt = new toolButtonTip( m_pixmap, m_title,
+							m_description,
 				QApplication::desktop()->screen( scr ) );
-	connect( this, SIGNAL( mouseLeftButton() ), tbt, SLOT( close() ) );
+		connect( this, SIGNAL( mouseLeftButton() ),
+							tbt, SLOT( close() ) );
 
-	if( p.x() + tbt->width() > screen.x() + screen.width() )
-		p.rx() -= 4;// + tbt->width();
-	if( p.y() + tbt->height() > screen.y() + screen.height() )
-		p.ry() -= 24 + tbt->height();
-	if( p.y() < screen.y() )
-		p.setY( screen.y() );
-	if( p.x() + tbt->width() > screen.x() + screen.width() )
-		p.setX( screen.x() + screen.width() - tbt->width() );
-	if( p.x() < screen.x() )
-		p.setX( screen.x() );
-	if( p.y() + tbt->height() > screen.y() + screen.height() )
-		p.setY( screen.y() + screen.height() - tbt->height() );
-	tbt->move( p += QPoint( 0, 48 ) );
-	tbt->show();
+		if( p.x() + tbt->width() > screen.x() + screen.width() )
+			p.rx() -= 4;// + tbt->width();
+		if( p.y() + tbt->height() > screen.y() + screen.height() )
+			p.ry() -= 24 + tbt->height();
+		if( p.y() < screen.y() )
+			p.setY( screen.y() );
+		if( p.x() + tbt->width() > screen.x() + screen.width() )
+			p.setX( screen.x() + screen.width() - tbt->width() );
+		if( p.x() < screen.x() )
+			p.setX( screen.x() );
+		if( p.y() + tbt->height() > screen.y() + screen.height() )
+			p.setY( screen.y() + screen.height() - tbt->height() );
+		tbt->move( p += QPoint( 0, 48 ) );
+		tbt->show();
+	}
 
 	m_mouseOver = TRUE;
 

@@ -73,6 +73,16 @@ public:
 
 	virtual ~toolButton();
 
+	static void setToolTipsDisabled( bool _disabled )
+	{
+		s_toolTipsDisabled = _disabled;
+	}
+
+	static bool toolTipsDisabled( void )
+	{
+		return( s_toolTipsDisabled );
+	}
+
 
 protected:
 	virtual void enterEvent( QEvent * _ev );
@@ -81,7 +91,8 @@ protected:
 
 
 private:
-	toolButtonTip * m_toolButtonTip;
+	static bool s_toolTipsDisabled;
+
 
 	QPixmap m_pixmap;
 	QString m_title;

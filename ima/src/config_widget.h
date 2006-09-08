@@ -27,9 +27,9 @@
 #define _CONFIG_WIDGET_H
 
 #include "side_bar_widget.h"
+#include "dialogs/config.uic"
 
-
-class configWidget : public sideBarWidget
+class configWidget : public sideBarWidget, private Ui::config
 {
 	Q_OBJECT
 public:
@@ -39,6 +39,7 @@ public:
 
 protected slots:
 	void interfaceSelected( const QString & _if_name );
+	void toggleToolButtonTips( bool _on );
 
 } ;
 

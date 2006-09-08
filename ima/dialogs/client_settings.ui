@@ -579,6 +579,20 @@
   </layout>
  </widget>
  <pixmapfunction></pixmapfunction>
+ <tabstops>
+  <tabstop>nameEdit</tabstop>
+  <tabstop>IPEdit</tabstop>
+  <tabstop>macEdit</tabstop>
+  <tabstop>classRoomComboBox</tabstop>
+  <tabstop>settingsTabWidget</tabstop>
+  <tabstop>connectionComboBox</tabstop>
+  <tabstop>hostIsGateway</tabstop>
+  <tabstop>actAsDemoReplicator</tabstop>
+  <tabstop>remoteIPEdit</tabstop>
+  <tabstop>rawEncodingForDemo</tabstop>
+  <tabstop>okButton</tabstop>
+  <tabstop>cancelButton</tabstop>
+ </tabstops>
  <resources>
   <include location="../italc.qrc" />
  </resources>

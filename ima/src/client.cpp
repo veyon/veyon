@@ -51,6 +51,7 @@
 #include "snapshot_list.h"
 #include "dialogs.h"
 #include "messagebox.h"
+#include "qnetworkinterface.h"
 
 
 
@@ -890,7 +891,31 @@ void client::snapshot( const QString & )
 
 void client::powerOn( const QString & )
 {
-	m_mainWindow->localISD()->wakeOtherComputer( m_mac );
+	QString bcast;
+	QList<QNetworkInterface> ifs = QNetworkInterface::allInterfaces();
+	for( QList<QNetworkInterface>::const_iterator it = ifs.begin();
+				it != ifs.end() && !bcast.isEmpty(); ++it )
+	{
+		QList<QNetworkAddressEntry> nae = it->addressEntries();
+		for( QList<QNetworkAddressEntry>::const_iterator it2 =
+								nae.begin();
+						it2 != nae.end(); ++it2 )
+		{
+			if( !( it2->ip() ==
+				QHostAddress( QHostAddress::LocalHost ) ) )
+			{
+				bcast = it2->broadcast().toString();
+				break;
+			}
+		}
+	}
+
+	if( bcast.isEmpty() )
+	{
+		bcast = QHostAddress( QHostAddress::Broadcast ).toString();
+	}
+
+	m_mainWindow->localISD()->wakeOtherComputer( m_mac, bcast );
 }
 
 

@@ -58,6 +58,7 @@ class QColorGroup;
 #include "progress_information.h"
 #include "italc_side_bar.h"
 #include "local_system.h"
+#include "tool_button.h"
 
 
 
@@ -248,6 +249,8 @@ void clientManager::savePersonalConfig( void )
 					getMainWindow()->saveState() ) );
 
 	globalsettings.setAttribute( "net-iface", __demo_network_interface );
+	globalsettings.setAttribute( "notooltips",
+					toolButton::toolTipsDisabled() );
 
 	head.appendChild( globalsettings );
 
@@ -426,6 +429,9 @@ void clientManager::getHeaderInformation( const QDomElement & _header )
 			__demo_network_interface = node.toElement().
 						attribute( "net-iface" );
 
+			toolButton::setToolTipsDisabled(
+				node.toElement().attribute( "notooltips" ).
+								toInt() );
 			// if the attr did not exist, we got zero as value,
 			// which is not acceptable
 			if( m_clientUpdateInterval < 1 )

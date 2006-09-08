@@ -37,6 +37,7 @@ class QColorGroup;
 #include "client_manager.h"
 #include "main_window.h"
 #include "qnetworkinterface.h"
+#include "tool_button.h"
 
 
 
@@ -47,129 +48,16 @@ configWidget::configWidget( mainWindow * _main_window, QWidget * _parent ) :
 				"fit your needs." ),
 			_main_window, _parent )
 {
-	QBoxLayout * l = static_cast<QBoxLayout *>(
-						contentParent()->layout() );
+	setupUi( contentParent() );
 
-	QPixmap pm( 1000, 1 );
-	pm.fill( QColor( 0, 0, 0 ) );
 
-	QFont f;
-	f.setPixelSize( 12 );
-
-	QWidget * ui_w = new QWidget( contentParent() );
-	l->addWidget( ui_w );
-	QHBoxLayout * ui_layout = new QHBoxLayout( ui_w );
-	QLabel * uipm_lbl = new QLabel( ui_w );
-	uipm_lbl->setPixmap( QPixmap( ":/resources/clock.png" ) );
-	uipm_lbl->setFixedSize( 24, 16 );
-
-	QLabel * ui_lbl = new QLabel( tr( "Update interval" ), ui_w );
-	ui_lbl->setFont( f );
-
-	ui_layout->addWidget( uipm_lbl );
-	ui_layout->addWidget( ui_lbl );
-
-	QLabel * hr1 = new QLabel( contentParent() );
-	l->addWidget( hr1 );
-	hr1->setPixmap( pm );
-	hr1->setFixedSize( 1000, 1 );
-	l->addSpacing( 6 );
-
-	QSpinBox * ui_sb = new QSpinBox( contentParent() );
-	l->addWidget( ui_sb );
-	ui_sb->setRange( 1, 60 );
-	ui_sb->setValue( 1 );
-	ui_sb->setSuffix( " " + tr( "seconds" ) );
-	ui_sb->setSpecialValueText( "1 " + tr( "second" ) );
-	ui_sb->setFont( f );
-	ui_sb->setWhatsThis( tr( "Here you can set the interval between "
-					"updates of clients. Higher values "
-					"result in lower network-traffic and "
-					"lower CPU-usage." ) );
-	connect( ui_sb, SIGNAL( valueChanged( int ) ),
+	connect( updateIntervalSB, SIGNAL( valueChanged( int ) ),
 			getMainWindow()->getClientManager(),
 					SLOT( updateIntervalChanged( int ) ) );
-	getMainWindow()->getClientManager()->setUpdateIntervalSpinBox( ui_sb );
-
-	l->addSpacing( 20 );
-
-/*	QWidget * bi_w = new QWidget( contentParent() );
-	l->addWidget( bi_w );
-	QHBoxLayout * bi_layout = new QHBoxLayout( bi_w );
-	QLabel * bipm_lbl = new QLabel( bi_w );
-	bipm_lbl->setPixmap( embed::getIconPixmap( "toolbar" ) );
-	bipm_lbl->setFixedSize( 24, 16 );
-	QLabel * bi_lbl = new QLabel( tr( "Toolbar" ), bi_w );
-	bi_lbl->setFont( f );
-
-	bi_layout->addWidget( bipm_lbl );
-	bi_layout->addWidget( bi_lbl );
-
-	QLabel * hr2 = new QLabel( contentParent() );
-	l->addWidget( hr2 );
-	hr2->setPixmap( pm );
-	hr2->setFixedSize( 1000, 1 );
-	l->addSpacing( 6 );
-
-	QCheckBox * bigicons_cb = new QCheckBox( tr( "Big icons" ),
-							contentParent() );
-	l->addWidget( bigicons_cb );
-	bigicons_cb->setFont( f );
-	bigicons_cb->setWhatsThis( tr( "When activating this option, you'll "
-						"have big icons in the "
-						"toolbar. This is useful for "
-						"faster access to important "
-						"functions of iTALC. Small "
-						"icons are good if the iTALC-"
-						"window isn't maximized or the "
-						"toolbar doesn't fit on the "
-						"screen." ) );
-	// TODO!!
-	if( italc::inst()->usesBigPixmaps() )
-	{
-		bigicons_cb->setChecked( TRUE );
-	}
-        connect( bigicons_cb, SIGNAL( toggled( bool ) ), italc::inst(),
-					SLOT( setUsesBigPixmaps( bool ) ) );
-
-	// spacer
-	l->addSpacing( 20 );*/
-
-	QWidget * ni_w = new QWidget( contentParent() );
-	l->addWidget( ni_w );
-	QHBoxLayout * ni_layout = new QHBoxLayout( ni_w );
-	QLabel * nipm_lbl = new QLabel( ni_w );
-	nipm_lbl->setPixmap( QPixmap( ":/resources/network.png" ) );
-	nipm_lbl->setFixedSize( 24, 16 );
-	QLabel * if_lbl = new QLabel( tr( "Network interface/IP-address" ),
-									ni_w );
-	if_lbl->setFont( f );
-
-	ni_layout->addWidget( nipm_lbl );
-	ni_layout->addWidget( if_lbl );
-
-	QLabel * hr3 = new QLabel( contentParent() );
-	l->addWidget( hr3 );
-	hr3->setPixmap( pm );
-	hr3->setFixedSize( 1000, 1 );
-
-	l->addSpacing( 6 );
+	getMainWindow()->getClientManager()->setUpdateIntervalSpinBox(
+							updateIntervalSB );
 
 
-	QComboBox * if_cb = new QComboBox( contentParent() );
-	l->addWidget( if_cb );
-/*	QList<QHostAddress> host_addresses = QHostInfo::fromName(
-				QHostInfo::localHostName() ).addresses();
-	for( QList<QHostAddress>::iterator it = host_addresses.begin();
-					it != host_addresses.end(); ++it )
-	{
-		const QString ip = it->toString();
-		if_cb->addItem( ip );
-		if( MASTER_HOST == ip )
-		{
-			if_cb->setCurrentIndex( if_cb->findText( ip ) );
-		}
-	}*/
 	QList<QNetworkInterface> ifs = QNetworkInterface::allInterfaces();
 	for( QList<QNetworkInterface>::const_iterator it = ifs.begin();
 							it != ifs.end(); ++it )
@@ -177,17 +65,17 @@ configWidget::configWidget( mainWindow * _main_window, QWidget * _parent ) :
 		QList<QNetworkAddressEntry> nae = it->addressEntries();
 		for( QList<QNetworkAddressEntry>::const_iterator it2 =
 								nae.begin();
-							it2 != nae.end(); ++it2 )
+						it2 != nae.end(); ++it2 )
 		{
 			const QString txt = it->name() + ": " +
 						it2->ip().toString();
-			if_cb->addItem( txt );
+			interfaceCB->addItem( txt );
 			if( __demo_network_interface == it->name() ||
 				( __demo_network_interface.isEmpty() &&
 							it->name() != "lo" ) )
 			{
-				if_cb->setCurrentIndex(
-						if_cb->findText( txt ) );
+				interfaceCB->setCurrentIndex(
+						interfaceCB->findText( txt ) );
 				__demo_network_interface = it->name();
 				__demo_master_ip = it2->ip().toString();
 			}
@@ -200,19 +88,13 @@ configWidget::configWidget( mainWindow * _main_window, QWidget * _parent ) :
 		__demo_master_ip = QHostInfo::localHostName();
 	}
 
-	if_cb->setWhatsThis( tr( "Here you can select the network interface "
-					"with the according IP-address. This "
-					"is neccessary if you computer has "
-					"more than one network-card and not "
-					"all of one of them have a connection "
-					"to the clients. Incorrect settings "
-					"may result in being unable to show a "
-					"demo." ) );
-	connect( if_cb, SIGNAL( activated( const QString & ) ), this,
+	connect( interfaceCB, SIGNAL( activated( const QString & ) ), this,
 				SLOT( interfaceSelected( const QString & ) ) );
 
 
-	l->addStretch();
+	balloonToolTips->setChecked( toolButton::toolTipsDisabled() );
+	connect( balloonToolTips, SIGNAL( toggled( bool ) ),
+			this, SLOT( toggleToolButtonTips( bool ) ) );
 }
 
 
@@ -227,15 +109,27 @@ configWidget::~configWidget()
 
 void configWidget::interfaceSelected( const QString & _if_name )
 {
-#if 0
 	if( _if_name.section( ' ', -1 ) == "127.0.0.1" )
 	{
-		// TODO: handle this case...
-		//QMessageBox::warning( NULL, tr( "Warning" ), tr( "You are trying to use the local loopback-device as network-interface. This will never work, because the local loopback is just the last alternative for running iTALC if no other network-interface was found." ), QMessageBox::Ok, QMessageBox::NoButton );
+		QMessageBox::warning( NULL,
+			tr( "Warning" ),
+			tr( "You are trying to use the local loopback-device "
+				"as network-interface. This will never work, "
+				"because the local loopback is just the last "
+				"alternative for running iTALC if no other "
+				"network-interface was found." ),
+				QMessageBox::Ok, QMessageBox::NoButton );
 	}
-#endif
 	__demo_network_interface = _if_name.section( ':', 0, 0 );
 	__demo_master_ip = _if_name.section( ' ', -1 );
+}
+
+
+
+
+void configWidget::toggleToolButtonTips( bool _on )
+{
+	toolButton::setToolTipsDisabled( _on );
 }
 
 

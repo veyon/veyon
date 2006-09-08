@@ -407,6 +407,12 @@ void KMultiTabBarButton::enterEvent( QEvent * _e )
 			QApplication::desktop()->screenNumber( p ) :
 			QApplication::desktop()->screenNumber( this );
 
+	QPushButton::enterEvent( _e );
+	if( toolButton::toolTipsDisabled() )
+	{
+		return;
+	}
+
 #ifdef Q_WS_MAC
 	QRect screen = QApplication::desktop()->availableGeometry( scr );
 #else
@@ -432,8 +438,6 @@ void KMultiTabBarButton::enterEvent( QEvent * _e )
 		p.setY(screen.y() + screen.height() - tbt->height());
 	tbt->move( p += QPoint( width()+2, 0 ) );
 	tbt->show();
-
-	QPushButton::enterEvent( _e );
 }
 
 
