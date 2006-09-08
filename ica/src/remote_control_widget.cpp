@@ -339,8 +339,8 @@ void remoteControlWidget::resizeEvent( QResizeEvent * )
 {
 	m_vncView->resize( size() );
 	m_toolBar->setFixedSize(
-		qMin( m_vncView->m_connection->framebufferSize().width(),
-								width() ), 34 );
+/*		qMin( m_vncView->m_connection->framebufferSize().width(),*/
+								width()/* )*/, 34 );
 }
 
 
