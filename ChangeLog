@@ -1,3 +1,16 @@
+2006-09-18	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* ima/src/client.h:
+	* ima/src/client.cpp:
+	* ima/src/main_window.cpp:
+	create threads for each client for reloading it instead of doing that
+	in one loop in main-window-updater-thread - if one client hangs, it
+	doesn't block the others anymore
+
+	* common/include/isd_base.h:
+	in socketDevice::socketDevice, pass Unbuffered-flag to open() for
+	making iTALC work with Qt 4.2
+
 2006-09-07	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* ima/resources/de.ts:

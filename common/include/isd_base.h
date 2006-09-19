@@ -124,7 +124,7 @@ public:
 		m_socketDispatcher( _sd ),
 		m_user( _user )
 	{
-		open( ReadWrite );
+		open( ReadWrite | Unbuffered );
 	}
 
 	inline QVariant read( void )

@@ -33,6 +33,7 @@
 
 #include <QtCore/QHash>
 #include <QtCore/QMutex>
+#include <QtCore/QThread>
 #include <QtCore/QVector>
 #include <QtGui/QWidget>
 #include <QtGui/QImage>
@@ -285,7 +286,28 @@ private:
 	static int freeID( void );
 
 
+	class updateThread : public QThread
+	{
+	public:
+		updateThread( client * _client );
+		virtual ~updateThread()
+		{
+		}
+		inline void quit( void )
+		{
+			m_quit = TRUE;
+		}
 
+	private:
+		virtual void run( void );
+
+		client * m_client;
+		bool m_quit;
+
+	} * m_updateThread;
+
+
+	friend class updateThread;
 	friend class classRoomItem;
 
 } ;

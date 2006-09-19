@@ -174,6 +174,7 @@ client::client( const QString & _local_ip, const QString & _remote_ip,
 	}
 	tb->show();
 
+	m_updateThread = new updateThread( this );
 }
 
 
@@ -181,6 +182,9 @@ client::client( const QString & _local_ip, const QString & _remote_ip,
 
 client::~client()
 {
+	m_updateThread->quit();
+	m_updateThread->wait();
+
 	m_syncMutex.lock();
 	changeMode( Mode_Overview, NULL );
 	delete m_connection;
@@ -1037,6 +1041,29 @@ client::states client::currentState( void ) const
 	return( State_Unkown );
 }
 
+
+
+
+client::updateThread::updateThread( client * _client ) :
+	QThread(),
+	m_client( _client ),
+	m_quit( FALSE )
+{
+	start();
+}
+
+
+
+
+void client::updateThread::run( void )
+{
+	while( !m_quit )
+	{
+		m_client->processCmd( client::Reload, CONFIRM_NO );
+		QThread::sleep( m_client->m_mainWindow->
+				getClientManager()->updateInterval() );
+	}
+}
 
 
 

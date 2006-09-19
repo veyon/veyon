@@ -429,7 +429,7 @@ void mainWindow::updateThread::run( void )
 	{
 		m_mainWindow->m_localISD->handleServerMessages();
 
-		// reload all clients...
+/*		// reload all clients...
 
 		QVector<client *> clients =
 			m_mainWindow->getClientManager()->visibleClients();
@@ -440,7 +440,7 @@ void mainWindow::updateThread::run( void )
 		{
 			// reload current client
 			( *it )->processCmd( client::Reload, CONFIRM_NO );
-		}
+		}*/
 
 		m_mainWindow->m_userList->reload();
 
