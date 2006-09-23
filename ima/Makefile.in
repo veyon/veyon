@@ -251,6 +251,7 @@ italc_MOC = ./src/client.moc			\
 		../common/include/ivs_connection.moc
 
 italc_UIC = ./dialogs/client_settings.uic		\
+		./dialogs/config.uic			\
 		./dialogs/support.uic			\
 		./dialogs/text_message.uic		\
 		./dialogs/about.uic
@@ -274,12 +275,12 @@ italc_SOURCES = $(srcdir)/src/client.cpp			\
 		$(srcdir)/src/support_widget.cpp		\
 		$(srcdir)/src/tool_button.cpp			\
 		$(srcdir)/src/user_list.cpp			\
-		$(srcdir)/src/about_dialog.h			\
 		$(srcdir)/src/client.h				\
 		$(srcdir)/src/client_manager.h			\
 		$(srcdir)/src/cmd_input_dialog.h		\
 		$(srcdir)/src/config_widget.h 			\
 		$(srcdir)/src/support_widget.h			\
+		$(srcdir)/src/dialogs.h				\
 		$(srcdir)/src/main_window.h			\
 		$(srcdir)/src/italc_side_bar.h			\
 		$(srcdir)/src/kmultitabbar.h			\
@@ -290,6 +291,7 @@ italc_SOURCES = $(srcdir)/src/client.cpp			\
 		$(srcdir)/src/side_bar_widget.h			\
 		$(srcdir)/src/tool_button.h			\
 		$(srcdir)/src/user_list.h			\
+		$(srcdir)/src/qnetworkinterface.h		\
 		$(srcdir)/italc_qrc.cpp				\
 		$(srcdir)/italc.qrc				\
 		$(srcdir)/../common/src/fast_qimage.cpp		\

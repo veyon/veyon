@@ -142,6 +142,8 @@ ica_SOURCES =		$(srcdir)/src/ica_main.cpp			\
 			$(srcdir)/src/demo_client.h			\
 			$(srcdir)/src/minilzo.h				\
 			$(srcdir)/src/lzoconf.h				\
+			$(srcdir)/src/ica_main.h			\
+			$(srcdir)/src/service.h				\
 			$(srcdir)/ica.qrc				\
 			$(srcdir)/ica_qrc.cpp				\
 			$(wildcard $(srcdir)/resources/*)		\
