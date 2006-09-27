@@ -24,6 +24,7 @@
 
 
 #include <QtCore/QLocale>
+#include <QtCore/QModelIndex>
 #include <QtCore/QTranslator>
 #include <QtGui/QApplication>
 #include <QtGui/QBitmap>
@@ -49,6 +50,8 @@ QString __demo_master_ip;
 int main( int argc, char * * argv )
 {
 	QApplication app( argc, argv );
+
+	qRegisterMetaType<QModelIndex>( "QModelIndex" );
 
 	localSystem::initialize();
 

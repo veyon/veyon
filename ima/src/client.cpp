@@ -413,7 +413,6 @@ void client::processCmdSlot( QAction * _action )
 void client::updateStatePixmap( void )
 {
 	m_statePixmap = QPixmap( size() );
-	return;
 	QPainter p( &m_statePixmap );
 
 	QLinearGradient grad( 0, 0, 0, height() );
@@ -1057,9 +1056,13 @@ client::updateThread::updateThread( client * _client ) :
 
 void client::updateThread::run( void )
 {
+	QThread::sleep( 3 );
 	while( !m_quit )
 	{
-		m_client->processCmd( client::Reload, CONFIRM_NO );
+		if( m_client->isVisible() )
+		{
+			m_client->processCmd( client::Reload, CONFIRM_NO );
+		}
 		QThread::sleep( m_client->m_mainWindow->
 				getClientManager()->updateInterval() );
 	}

@@ -40,7 +40,7 @@ supportWidget::supportWidget( mainWindow * _main_window, QWidget * _parent ) :
 			tr( "Need to support someone? Open this workspace!" ),
 			_main_window, _parent )
 {
-	QBoxLayout * l = static_cast<QBoxLayout *>(
+	QBoxLayout * l = dynamic_cast<QBoxLayout *>(
 						contentParent()->layout() );
 	l->setSpacing( 15 );
 

@@ -1,3 +1,19 @@
+2006-09-27	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* ima/src/client.cpp:
+	in updater-thread: only reload client if it is visible
+
+	* ima/src/main.cpp:
+	register meta-type QModelIndex
+
+	* ima/src/support_widget.cpp:
+	use dynamic_cast for casting layout, as Qt4-MinGW-X is now built with
+	rtti-support and therefore doesn't make problems anymore
+
+	* common/src/local_system.cpp:
+	before trying to create path, check whether it already exists! makes
+	it possible to make snapshots etc.
+
 2006-09-18	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* ima/src/client.h:

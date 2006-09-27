@@ -73,7 +73,14 @@ int ICAMain( int argc, char * * argv )
 		}
 		else if( a == "-rctrl" && arg_it.hasNext() )
 		{
-			new remoteControlWidget( arg_it.next() );
+			const QString host = arg_it.next();
+			bool view_only = arg_it.hasNext() ?
+						arg_it.next().toInt()
+					:
+						FALSE;
+			new remoteControlWidget( host, view_only );
+			app.connect( &app, SIGNAL( lastWindowClosed() ),
+							SLOT( quit() ) );
 			return( app.exec() );
 		}
 		else if( a == "-installservice" )

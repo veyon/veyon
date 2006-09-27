@@ -550,7 +550,14 @@ void isdServer::displayTextMessage( const QString & _msg )
 
 void isdServer::remoteControlDisplay( const QString & _ip, bool _view_only )
 {
+#ifdef BUILD_LINUX
+	QProcess::startDetached( QCoreApplication::applicationFilePath() +
+					QString( " -rctrl %1 %2" ).
+							arg( _ip ).
+							arg( _view_only ) );
+#else
 	new remoteControlWidget( _ip, _view_only );
+#endif
 }
 
 
@@ -564,7 +571,6 @@ void isdServer::allowDemoClient( const QString & _host )
 		const QString h = a.toString();
 		if( !m_allowedDemoClients.contains( h ) )
 		{
-			printf("allow: %s\n", h.toAscii().constData());
 			m_allowedDemoClients.push_back( h );
 		}
 	}

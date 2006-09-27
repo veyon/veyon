@@ -660,6 +660,10 @@ QString personalConfigPath( void )
 
 bool ensurePathExists( const QString & _path )
 {
+	if( QDir( _path ).exists() )
+	{
+		return( TRUE );
+	}
 	QString p = QDir( _path ).absolutePath();
 	if( !QFileInfo( _path ).isDir() )
 	{
