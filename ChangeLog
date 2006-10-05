@@ -1,3 +1,43 @@
+2006-10-06	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* configure.in:
+	do not check for linux/videodev.h-header as not really needed and
+	causes senseless warning
+
+	* Makefile.svn:
+	added for auto-creating files just removed from repository (see below)
+
+	* aclocal.m4:
+	* config.h.in:
+	* config.guess:
+	* config.sub:
+	* configure:
+	* depcomp:
+	* install-sh:
+	* missing:
+	* Makefile.in:
+	* common/Makefile.in:
+	* ica/Makefile.in:
+	* ima/Makefile.in:
+	* utils-win32/Makefile.in:
+	removed as these files should be generated on target-system
+
+	* ima/src/client.h:
+	* ima/src/client.cpp:
+	enqueue all actions which need writing to socket and process queue by
+	update-thread for using socket indeed only from one thread - supresses
+	some warnings and maybe iTALC also runs better
+
+	* ima/src/client_manager.cpp:
+	sleep 2 seconds between mode-changes of clients for avoiding troubles
+	with demo-server
+
+	* ima/src/main.cpp:
+	register quint16 as Qt-metatype at application-startup
+
+	* ica/src/service.cpp:
+	misc cleanups
+
 2006-09-27	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* ima/src/client.cpp:

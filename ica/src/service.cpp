@@ -79,7 +79,7 @@ int icaServiceRemove( bool _silent )
 static SERVICE_STATUS		g_srvstatus;	// current status of the service
 static SERVICE_STATUS_HANDLE	g_hstatus;
 static DWORD			g_error = 0;
-static DWORD			g_servicethread = NULL;
+static DWORD			g_servicethread = (DWORD) NULL;
 
 static const char * szAppName = "iTALC Client Application";
 
@@ -175,7 +175,7 @@ void ServiceWorkThread( void * _arg )
 	delete[] v;
 
 	// Mark that we're no longer running
-	g_servicethread = NULL;
+	g_servicethread = (DWORD) NULL;
 
 	// Tell the service manager that we've stopped.
 	ReportStatus( SERVICE_STOPPED, g_error, 0 );
@@ -184,14 +184,15 @@ void ServiceWorkThread( void * _arg )
 // SERVICE STOP ROUTINE - post a quit message to the relevant thread
 void ServiceStop( void )
 {
-/*	// Post a quit message to the main service thread
-	if( g_servicethread != NULL )
-	{
-		PostThreadMessage( g_servicethread, WM_QUIT, 0, 0 );
-	}*/
+	// Post a quit message to the main service thread
 	if( g_servicethread )
 	{
-		TerminateThread( (void *) g_servicethread, 0 );
+		PostThreadMessage( g_servicethread, WM_QUIT, 0, 0 );
+		omni_thread::sleep( 1 );
+		if( g_servicethread )
+		{
+			//TerminateThread( (void *) g_servicethread, 0 );
+		}
 	}
 	exit( 0 );
 }

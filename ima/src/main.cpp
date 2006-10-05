@@ -52,6 +52,7 @@ int main( int argc, char * * argv )
 	QApplication app( argc, argv );
 
 	qRegisterMetaType<QModelIndex>( "QModelIndex" );
+	qRegisterMetaType<quint16>( "quint16" );
 
 	localSystem::initialize();
 

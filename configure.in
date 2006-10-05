@@ -2,8 +2,8 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.50)
-AC_INIT(italc, 0.9.8.0-svn-20060919, tobydox/at/users/dot/sf/dot/net)
-AM_INIT_AUTOMAKE(italc, 0.9.8.0-svn-20060919)
+AC_INIT(italc, 0.9.8.0-svn-20061006, tobydox/at/users/dot/sf/dot/net)
+AM_INIT_AUTOMAKE(italc, 0.9.8.0-svn-20061006)
 AM_CONFIG_HEADER(config.h)
 AX_PREFIX_CONFIG_H([common/include/rfb/rfbconfig.h])
 
@@ -273,10 +273,10 @@ elif test "$X_CFLAGS" != "-DX_DISPLAY_MISSING"; then
 #			fi
 #		fi
 
-		if test "x$with_v4l" != "xno"; then
-			AC_CHECK_HEADER(linux/videodev.h,
-				[AC_DEFINE(HAVE_LINUX_VIDEODEV_H)],,)
-		fi
+#		if test "x$with_v4l" != "xno"; then
+#			AC_CHECK_HEADER(linux/videodev.h,
+#				[AC_DEFINE(HAVE_LINUX_VIDEODEV_H)],,)
+#		fi
 		if test "x$with_fbdev" != "xno"; then
 			AC_CHECK_HEADER(linux/fb.h,
 				[AC_DEFINE(HAVE_LINUX_FB_H)],,)

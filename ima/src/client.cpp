@@ -186,7 +186,6 @@ client::~client()
 	m_updateThread->wait();
 
 	m_syncMutex.lock();
-	changeMode( Mode_Overview, NULL );
 	delete m_connection;
 	m_connection = NULL;
 	m_syncMutex.unlock();
@@ -253,10 +252,12 @@ void client::changeMode( const modes _new_mode, isdConnection * _conn )
 			case Mode_FullscreenDemo:
 			case Mode_WindowDemo:
 				_conn->demoServerDenyClient( m_localIP );
-				m_connection->stopDemo();
+				m_updateThread->enqueueCommand(
+						updateThread::StopDemo );
 				break;
 			case Mode_Locked:
-				m_connection->unlockDisplay();
+				m_updateThread->enqueueCommand(
+						updateThread::UnlockScreen );
 				break;
 		}
 		switch( m_mode = _new_mode )
@@ -267,14 +268,17 @@ void client::changeMode( const modes _new_mode, isdConnection * _conn )
 			case Mode_FullscreenDemo:
 			case Mode_WindowDemo:
 				_conn->demoServerAllowClient( m_localIP );
-				m_connection->startDemo( _conn->host() + ":" +
-					QString::number(
-						_conn->demoServerPort() ),
-						m_mode == Mode_FullscreenDemo );
+				m_updateThread->enqueueCommand(
+						updateThread::StartDemo,
+	QList<QVariant>()
+			<< _conn->host() + ":" + QString::number(
+						_conn->demoServerPort() )
+			<< (int)( m_mode == Mode_FullscreenDemo ) );
 				m_mode = Mode_FullscreenDemo;
 				break;
 			case Mode_Locked:
-				m_connection->lockDisplay();
+				m_updateThread->enqueueCommand(
+						updateThread::LockScreen );
 				break;
 		}
 		m_syncMutex.unlock();
@@ -288,8 +292,8 @@ void client::changeMode( const modes _new_mode, isdConnection * _conn )
 		{
 			_conn->demoServerDenyClient( m_localIP );
 		}
-		m_connection->stopDemo();
-		m_connection->unlockDisplay();
+		m_updateThread->enqueueCommand( updateThread::StopDemo );
+		m_updateThread->enqueueCommand( updateThread::UnlockScreen );
 	}
 }
 
@@ -306,10 +310,10 @@ void client::setClassRoom( classRoom * _cr )
 
 
 
-bool client::resetConnection( void )
+void client::resetConnection( void )
 {
-	QMutexLocker ml( &m_syncMutex );
-	return( m_connection->reset( m_localIP ) == ivsConnection::Connected );
+	m_updateThread->enqueueCommand( updateThread::ResetConnection,
+								m_localIP );
 }
 
 
@@ -561,6 +565,7 @@ void client::paintEvent( QPaintEvent * _pe )
 
 	if( m_makeSnapshot )
 	{
+		QMutexLocker ml( &m_syncMutex );
 		m_makeSnapshot = FALSE;
 
 		if( m_user != "" &&
@@ -730,13 +735,16 @@ void client::clientDemo( const QString & )
 		// no demo running etc.)
 		cl->changeMode( Mode_Overview, NULL );
 
-		// now start a demo on local ip
-		cl->m_connection->startDemo( m_localIP.contains( ':' ) ?
+		cl->m_updateThread->enqueueCommand( updateThread::StartDemo,
+	QList<QVariant>()
+			<< ( m_localIP.contains( ':' ) ?
 						m_localIP
 					:
 						m_localIP + ":" +
 						QString::number(
-							PortOffsetIVS ) );
+							PortOffsetIVS ) )
+			<< TRUE );
+
 		cl->m_mode = Mode_FullscreenDemo;
 	}
 	m_syncMutex.unlock();
@@ -798,11 +806,8 @@ void client::sendTextMessage( const QString & _msg )
 	}
 	else
 	{
-		m_syncMutex.lock();
-
-		m_connection->displayTextMessage( _msg );
-
-		m_syncMutex.unlock();
+		m_updateThread->enqueueCommand( updateThread::SendTextMessage,
+									_msg );
 	}
 }
 
@@ -870,11 +875,7 @@ void client::collectFiles( const QString & _filter )
 
 void client::logoutUser( const QString & _confirm )
 {
-	m_syncMutex.lock();
-
-	m_connection->logoutUser();
-
-	m_syncMutex.unlock();
+	m_updateThread->enqueueCommand( updateThread::LogoutUser );
 }
 
 
@@ -882,10 +883,7 @@ void client::logoutUser( const QString & _confirm )
 
 void client::snapshot( const QString & )
 {
-	if( !m_user.isEmpty() && userLoggedIn() )
-	{
-		m_makeSnapshot = TRUE;
-	}
+	m_makeSnapshot = TRUE;
 }
 
 
@@ -926,7 +924,7 @@ void client::powerOn( const QString & )
 
 void client::reboot( const QString & _confirm )
 {
-	if( userLoggedIn() )
+/*	if( userLoggedIn() )
 	{
 		if( QMessageBox::warning( this, tr( "User logged in" ),
 			tr( "Warning: you are trying to reboot a client at "
@@ -948,8 +946,8 @@ void client::reboot( const QString & _confirm )
 		{
 			return;
 		}
-	}
-	m_connection->restartComputer();
+	}*/
+	m_updateThread->enqueueCommand( updateThread::Reboot );
 }
 
 
@@ -958,7 +956,7 @@ void client::reboot( const QString & _confirm )
 
 void client::powerDown( const QString & _confirm )
 {
-	if( userLoggedIn() )
+/*	if( userLoggedIn() )
 	{
 		if( QMessageBox::warning( this, tr( "User logged in" ),
 			tr( "Warning: you are trying to power off a client at "
@@ -980,8 +978,8 @@ void client::powerDown( const QString & _confirm )
 		{
 			return;
 		}
-	}
-	m_connection->powerDownComputer();
+	}*/
+	m_updateThread->enqueueCommand( updateThread::PowerDown );
 }
 
 
@@ -1002,9 +1000,7 @@ void client::execCmds( const QString & _cmds )
 	}
 	else
 	{
-		m_syncMutex.lock();
-		m_connection->execCmds( _cmds );
-		m_syncMutex.unlock();
+		m_updateThread->enqueueCommand( updateThread::ExecCmds, _cmds );
 	}
 }
 
@@ -1012,6 +1008,7 @@ void client::execCmds( const QString & _cmds )
 
 client::states client::currentState( void ) const
 {
+	//QMutexLocker m( &m_syncMutex );
 	switch( m_mode )
 	{
 		case Mode_Overview:
@@ -1063,9 +1060,61 @@ void client::updateThread::run( void )
 		{
 			m_client->processCmd( client::Reload, CONFIRM_NO );
 		}
+
 		QThread::sleep( m_client->m_mainWindow->
 				getClientManager()->updateInterval() );
+
+		m_queueMutex.lock();
+		m_client->m_syncMutex.lock();
+		while( !m_queue.isEmpty() )
+		{
+			const queueItem i = m_queue.dequeue();
+			switch( i.first )
+			{
+				case ResetConnection:
+					m_client->m_connection->reset(
+							i.second.toString() );
+					break;
+				case StartDemo:
+					m_client->m_connection->startDemo(
+						i.second.toList()[0].toString(),
+						i.second.toList()[1].toInt() );
+					break;
+				case StopDemo:
+					m_client->m_connection->stopDemo();
+					break;
+				case LockScreen:
+					m_client->m_connection->lockDisplay();
+					break;
+				case UnlockScreen:
+					m_client->m_connection->unlockDisplay();
+					break;
+				case SendTextMessage:
+					m_client->m_connection->
+						displayTextMessage(
+							i.second.toString() );
+					break;
+				case LogoutUser:
+					m_client->m_connection->logoutUser();
+					break;
+				case Reboot:
+					m_client->m_connection->
+							restartComputer();
+					break;
+				case PowerDown:
+					m_client->m_connection->
+							powerDownComputer();
+					break;
+				case ExecCmds:
+					m_client->m_connection->execCmds(
+							i.second.toString() );
+					break;
+			}
+		}
+		m_client->m_syncMutex.unlock();
+		m_queueMutex.unlock();
 	}
+	m_client->changeMode( Mode_Overview, NULL );
 }
 
 

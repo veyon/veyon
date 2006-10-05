@@ -759,6 +759,7 @@ void clientManager::changeGlobalClientMode( int _mode )
 		foreach( client * cl, vc )
 		{
 			cl->changeMode( m_globalClientMode, conn );
+			localSystem::sleep( 2000 );
 		}
 	}
 }

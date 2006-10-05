@@ -34,6 +34,7 @@
 #include <QtCore/QHash>
 #include <QtCore/QMutex>
 #include <QtCore/QThread>
+#include <QtCore/QQueue>
 #include <QtCore/QVector>
 #include <QtGui/QWidget>
 #include <QtGui/QImage>
@@ -67,12 +68,8 @@ public:
 		RemoteControl,
 		ClientDemo,
 		SendTextMessage,
-//		DistributeFile,
-//		CollectFiles,
 		LogoutUser,
 		Snapshot,
-//		ExecCmdsIRFB,
-//		SSHLogin,
 		PowerOn,
 		Reboot,
 		PowerDown,
@@ -175,7 +172,7 @@ public:
 
 	void setClassRoom( classRoom * _cr );
 
-	bool resetConnection( void );
+	void resetConnection( void );
 
 	virtual void update( void );
 
@@ -289,13 +286,37 @@ private:
 	class updateThread : public QThread
 	{
 	public:
+		enum queueableCommands
+		{
+			ResetConnection,
+			StartDemo,
+			StopDemo,
+			LockScreen,
+			UnlockScreen,
+			SendTextMessage,
+			LogoutUser,
+			Reboot,
+			PowerDown,
+			ExecCmds
+		} ;
+
 		updateThread( client * _client );
 		virtual ~updateThread()
 		{
 		}
+
 		inline void quit( void )
 		{
 			m_quit = TRUE;
+		}
+
+		inline void enqueueCommand( queueableCommands _cmd,
+						const QVariant & _data =
+								QVariant() )
+		{
+			m_queueMutex.lock();
+			m_queue.enqueue( qMakePair( _cmd, _data ) );
+			m_queueMutex.unlock();
 		}
 
 	private:
@@ -303,6 +324,9 @@ private:
 
 		client * m_client;
 		bool m_quit;
+		QMutex m_queueMutex;
+		typedef QPair<queueableCommands, QVariant> queueItem;
+		QQueue<queueItem> m_queue;
 
 	} * m_updateThread;
 
