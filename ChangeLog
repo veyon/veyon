@@ -1,3 +1,85 @@
+2006-10-08	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* ica/src/vncview.h:
+	* ica/src/vncview.cpp:
+	revised whole key-event-handling, especially handling of modifiers -
+	now things like holding <Alt> while switching apps with <Alt>+<Tab> are
+	supported, <Control>+<any key> is now recognized (e.g. Ctrl+C), under
+	Linux/X11 native translation of X-keycodes is done when compiling with
+	Qt >= 4.2.0
+
+	* ica/src/vncview.cpp:
+	- do not pass QX11BypassWindowManagerHint to parent-widget as this
+	  causes troubles with Qt 4.2.0 and things work without it as well
+	- when viewing remote desktop, update every 70ms instead of 80ms
+
+	* ica/src/demo_server.h:
+	* ica/src/demo_server.cpp:
+	- sleep less between updates of demo-screen (20ms instead of 25ms)
+	- do check for cursor-movements with GUI-thread-affinity and send
+	  actual changes within thread in which socket to client was created
+
+	* ica/src/ica_main.cpp:
+	renamed parameters "-installservice" and "-removeservice" to
+	"-registerservice" and "-unregisterservice"
+
+	* common/include/isd_connection.h:
+	* ica/src/isd_server.cpp:
+	introduced helper-class "isdForwarder" which is used by VNC-server-
+	subprocess under Linux/X11 for forwarding all requests received by
+	VNC-server to actual ISD-server in parent-process
+
+	* ica/src/ica_main.cpp:
+	* ica/src/ivs.cpp:
+	* ica/src/ivs.h:
+	* ica/src/demo_server.h:
+	* ica/src/demo_server.cpp:
+	* ica/src/vncview.cpp:
+	under Linux/X11 VNC-server is now run in separate process which
+	introduces several changes in the whole client-application
+
+	* ica/src/isd_server.h:
+	* ica/src/isd_server.cpp:
+	* ica/src/ivs.cpp:
+	* ica/win32/src/vncClient.cpp:
+	removed global authSecTypeItalc()-method and made according function
+	in isdServer static
+
+	* common/include/ivs_connection.h:
+	* common/src/ivs_connection.cpp:
+	* ica/src/vncview.cpp:
+	use QImage instead of QPixmap as image-container for cursor-shape
+	which sometimes led to X-errors as dealing with QPixmap's in non-GUI-
+	threads isn't safe
+
+	* common/src/isd_connection.cpp:
+	do not create QTcpSocket as child of isdConnection as isdConnection
+	was created in another thread than the socket - fixes some bugs
+
+	* common/include/italc_rfb_ext.h:
+	* common/include/ivs_connection.h:
+	* common/src/isd_connection.cpp:
+	* common/src/ivs_connection.cpp:
+	new authentication-mechanism: authentication via a file which is only
+	readable by owner and over which challenge is transmitted
+
+	* common/include/isd_base.h:
+	* common/include/isd_connection.h:
+	* common/include/local_system.h:
+	* common/src/isd_connection.cpp:
+	* common/src/local_system.cpp:
+	* ica/src/isd_server.cpp:
+	* ica/src/isd_server.h:
+	* ima/src/main_window.cpp:
+	port for demo-server is chosen before it is started - makes
+	demoserver-port-info-response-message obsolete
+
+2006-10-07	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* ima/src/snapshot_list.cpp:
+	do not crash when clicking one of the action-buttons while no item is
+	selected
+
 2006-10-06	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* configure.in:

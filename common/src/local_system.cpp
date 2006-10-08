@@ -31,9 +31,10 @@
 
 #include <QtCore/QCoreApplication>
 #include <QtCore/QDir>
+#include <QtCore/QMutex>
 #include <QtCore/QProcess>
 #include <QtCore/QSettings>
-#include <QtCore/QMutex>
+#include <QtNetwork/QTcpServer>
 
 
 #ifdef BUILD_WIN32
@@ -144,6 +145,16 @@ void initialize( void )
 	__user_poll_thread = new userPollThread();
 #endif
 
+}
+
+
+
+
+int freePort( void )
+{
+	QTcpServer t;
+	t.listen( QHostAddress::LocalHost );
+	return( t.serverPort() );
 }
 
 

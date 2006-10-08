@@ -28,11 +28,8 @@
 #endif
 
 #include <QtCore/QLocale>
-#include <QtCore/QStringList>
-#include <QtCore/QThread>
 #include <QtCore/QTranslator>
 #include <QtGui/QApplication>
-#include <QtNetwork/QTcpServer>
 
 #include "ica_main.h"
 #include "service.h"
@@ -40,24 +37,44 @@
 #include "isd_server.h"
 #include "ivs.h"
 #include "local_system.h"
+#include "debug.h"
 
+
+int __isd_port = PortOffsetISD;
 
 
 int ICAMain( int argc, char * * argv )
 {
-	QApplication app( argc, argv );
+#ifdef DEBUG
+#ifdef BUILD_LINUX
+	extern int _Xdebug;
+	_Xdebug = 1;
+#endif
+#endif
+
+	QCoreApplication * app;
+	if( argc > 1 && QString( argv[1] ) == "-rx11vs" )
+	{
+		app = new QCoreApplication( argc, argv );
+	}
+	else
+	{
+		QApplication * a = new QApplication( argc, argv );
+		a->setQuitOnLastWindowClosed( FALSE );
+		app = a;
+	}
 
 	localSystem::initialize();
 
 	QTranslator app_tr;
 	app_tr.load( ":/resources/" + QLocale::system().name().left( 2 ) +
 									".qm" );
-	app.installTranslator( &app_tr );
+	app->installTranslator( &app_tr );
 
-	app.setQuitOnLastWindowClosed( FALSE );
-
-	int isd_port = PortOffsetISD;
 	int ivs_port = PortOffsetIVS;
+#ifdef BUILD_LINUX
+	bool rx11vs = FALSE;
+#endif
 
 	QStringListIterator arg_it( QApplication::arguments() );
 	while( arg_it.hasNext() )
@@ -65,12 +82,19 @@ int ICAMain( int argc, char * * argv )
 		const QString & a = arg_it.next();
 		if( a == "-isdport" && arg_it.hasNext() )
 		{
-			isd_port = arg_it.next().toInt();
+			__isd_port = arg_it.next().toInt();
 		}
-		else if( a == "-ivsport" && arg_it.hasNext() )
+		else if( ( a == "-ivsport" || a == "-rfbport" ) &&
+							arg_it.hasNext() )
 		{
 			ivs_port = arg_it.next().toInt();
 		}
+#ifdef BUILD_LINUX
+		else if( a == "-rx11vs" )
+		{
+			rx11vs = TRUE;
+		}
+#endif
 		else if( a == "-rctrl" && arg_it.hasNext() )
 		{
 			const QString host = arg_it.next();
@@ -79,16 +103,16 @@ int ICAMain( int argc, char * * argv )
 					:
 						FALSE;
 			new remoteControlWidget( host, view_only );
-			app.connect( &app, SIGNAL( lastWindowClosed() ),
+			app->connect( app, SIGNAL( lastWindowClosed() ),
 							SLOT( quit() ) );
-			return( app.exec() );
+			return( app->exec() );
 		}
-		else if( a == "-installservice" )
+		else if( a == "-registerservice" )
 		{
 			icaServiceInstall( 0 );
 			return( 0 );
 		}
-		else if( a == "-removeservice" )
+		else if( a == "-unregisterservice" )
 		{
 			icaServiceRemove( 0 );
 			return( 0 );
@@ -102,9 +126,23 @@ int ICAMain( int argc, char * * argv )
 		}
 	}
 
-	new isdServer( isd_port, ivs_port, argc, argv );
+#ifdef BUILD_LINUX
+	if( rx11vs )
+	{
+#if 1
+		IVS( ivs_port, argc, argv, TRUE );
+		return( 0 );
+#else
+		IVS * i = new IVS( ivs_port, argc, argv );
+		i->start( IVS::HighestPriority );
+		return( app->exec() );
+#endif
+	}
+#endif
 
-	return( app.exec() );
+	new isdServer( ivs_port, argc, argv );
+
+	return( app->exec() );
 }
 
 

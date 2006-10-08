@@ -1,7 +1,6 @@
 /*
- * ivs.h - class IVS, a VNC-server-abstraction for platform-independent
- *         VNC-server-usage
- *           
+ * debug.h - central header where DEBUG is either defined or not
+ *
  * Copyright (c) 2006 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *  
  * This file is part of iTALC - http://italc.sourceforge.net
@@ -24,42 +23,10 @@
  */
 
 
-#ifndef _IVS_H
-#define _IVS_H
+#ifndef _DEBUG_H
+#define _DEBUG_H
 
-#include <QtCore/QThread>
-
-
-
-class IVS : public QThread
-{
-public:
-	IVS( const quint16 _ivs_port, int _argc, char * * _argv,
-						bool _no_threading = FALSE );
-	virtual ~IVS();
-
-	quint16 serverPort( void ) const
-	{
-		return( m_port );
-	}
-
-	bool runningInSeparateProcess( void ) const
-	{
-		return( m_runningInSeparateProcess );
-	}
-
-
-private:
-	virtual void run( void );
-
-	int m_argc;
-	char * * m_argv;
-
-	quint16 m_port;
-	bool m_runningInSeparateProcess;
-
-} ;
-
+#define DEBUG
 
 #endif
 

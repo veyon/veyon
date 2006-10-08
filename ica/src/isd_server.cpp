@@ -25,6 +25,7 @@
 
 #include <QtCore/QDir>
 #include <QtCore/QProcess>
+#include <QtCore/QTemporaryFile>
 #include <QtCore/QTimer>
 #include <QtGui/QApplication>
 #include <QtNetwork/QHostInfo>
@@ -40,17 +41,17 @@
 #include "messagebox.h"
 #include "demo_client.h"
 #include "demo_server.h"
+#include "ica_main.h"
 
 
 static isdServer * __isd_server = NULL;
 
 QByteArray isdServer::s_appInternalChallenge;
+QStringList isdServer::s_allowedDemoClients;
 
 
 
-
-isdServer::isdServer( const quint16 _isd_port, const quint16 _ivs_port,
-						int _argc, char * * _argv ) :
+isdServer::isdServer( const quint16 _ivs_port, int _argc, char * * _argv ) :
 	QTcpServer(),
 	m_authType( ItalcAuthDSA ),
 	m_ivs( new IVS( _ivs_port, _argc, _argv ) ),
@@ -59,7 +60,7 @@ isdServer::isdServer( const quint16 _isd_port, const quint16 _ivs_port,
 	m_lockWidget( NULL )
 {
 	if( __isd_server ||
-			listen( QHostAddress::LocalHost, _isd_port ) == FALSE )
+			listen( QHostAddress::LocalHost, __isd_port ) == FALSE )
 	{
 		// uh oh, already an ISD running or port isn't available...
 		printf( "Could not start ISD server: %s\n",
@@ -92,108 +93,6 @@ isdServer::~isdServer()
 	delete m_demoServer;
 	delete m_lockWidget;
 	__isd_server = NULL;
-}
-
-
-
-
-bool isdServer::authSecTypeItalc( socketDispatcher _sd, void * _user,
-						italcAuthTypes _auth_type )
-{
-	socketDevice sdev( _sd, _user );
-	sdev.write( QVariant( (int) _auth_type ) );
-
-	italcAuthResults result = ItalcAuthFailed;
-
-	italcAuthTypes chosen = static_cast<italcAuthTypes>(
-							sdev.read().toInt() );
-	if( chosen == ItalcAuthAppInternalChallenge )
-	{
-		_auth_type = chosen;
-	}
-	else if( chosen != _auth_type )
-	{
-		printf( "Client chose other auth-type than offered!\n" );
-		return( result );
-	}
-
-	switch( _auth_type )
-	{
-		// no authentication
-		case ItalcAuthNone:
-			result = ItalcAuthOK;
-			break;
-
-		// host has to be in list of allowed hosts
-		case ItalcAuthHostBased:
-		{
-			// find out IP of host
-			const int MAX_HOST_LEN = 255;
-			char host[MAX_HOST_LEN];
-			_sd( host, MAX_HOST_LEN, SocketGetIPBoundTo, _user );
-			host[MAX_HOST_LEN] = 0;
-
-			// create a list of all known addresses of host
-			QList<QHostAddress> addr =
-					QHostInfo::fromName( host ).addresses();
-			if( !addr.isEmpty() )
-			{
-				// check each address for existence in allowed-
-				// client-list
-				foreach( const QHostAddress a, addr )
-				{
-					if( m_allowedDemoClients.contains(
-								a.toString() ) )
-					{
-						result = ItalcAuthOK;
-						break;
-					}
-				}
-			}
-			break;
-		}
-
-		// authentication via DSA-challenge/-response
-		case ItalcAuthDSA:
-		{
-			// generate data to sign and send to client
-			const QByteArray chall = dsaKey::generateChallenge();
-			sdev.write( QVariant( chall ) );
-
-			// get user-role
-			const ISD::userRoles urole =
-				static_cast<ISD::userRoles>(
-							sdev.read().toInt() );
-
-			// now try to verify received signed data using public
-			// key of the user under which the client claims to run
-			const QByteArray sig = sdev.read().toByteArray();
-			// (publicKeyPath does range-checking of urole)
-			publicDSAKey pub_key( localSystem::publicKeyPath(
-								urole ) );
-			result = pub_key.verifySignature( chall, sig ) ?
-						ItalcAuthOK : ItalcAuthFailed;
-			break;
-		}
-
-		// used for demo-purposes (demo-server connects to local IVS)
-		case ItalcAuthAppInternalChallenge:
-		{
-			// generate challenge
-			s_appInternalChallenge = dsaKey::generateChallenge();
-			sdev.write( QVariant() );
-			// is our client able to read this byte-array? if so,
-			// it's for sure running inside the same app
-			result = ( sdev.read().toByteArray() ==
-						s_appInternalChallenge ) ?
-						ItalcAuthOK : ItalcAuthFailed;
-			break;
-		}
-	}
-
-	sdev.write( QVariant( (int) result ) );
-
-	return( result == ItalcAuthOK );
 }
 
 
@@ -292,8 +191,8 @@ int isdServer::processClient( socketDispatcher _sd, void * _user )
 			// make sure any running demo-server is destroyed
 			delete m_demoServer;
 			// start demo-server on local IVS
-			m_demoServer = new demoServer( m_ivs->serverPort() );
-			if( m_demoServer->serverPort() )
+			m_demoServer = new demoServer( m_ivs );
+/*			if( m_demoServer->serverPort() )
 			{
 				// tell iTALC-master at which port the demo-
 				// server is running
@@ -301,7 +200,7 @@ int isdServer::processClient( socketDispatcher _sd, void * _user )
 					addArg( "demoserverport",
 						m_demoServer->serverPort() ).
 									send();
-			}
+			}*/
 			break;
 
 		case ISD::DemoServer_Stop:
@@ -386,13 +285,143 @@ bool isdServer::protocolInitialization( socketDevice & _sd,
 		return( FALSE );
 	}
 
-	if( !::authSecTypeItalc( _sd.sockDispatcher(), _sd.user(),
-								_auth_type ) )
+	if( !authSecTypeItalc( _sd.sockDispatcher(), _sd.user(), _auth_type ) )
 	{
 		return( FALSE );
 	}
 
 	return( TRUE );
+}
+
+
+
+
+bool isdServer::authSecTypeItalc( socketDispatcher _sd, void * _user,
+						italcAuthTypes _auth_type )
+{
+	socketDevice sdev( _sd, _user );
+	sdev.write( QVariant( (int) _auth_type ) );
+
+	italcAuthResults result = ItalcAuthFailed;
+
+	italcAuthTypes chosen = static_cast<italcAuthTypes>(
+							sdev.read().toInt() );
+	if( chosen == ItalcAuthAppInternalChallenge ||
+		chosen == ItalcAuthChallengeViaAuthFile )
+	{
+		_auth_type = chosen;
+	}
+	else if( chosen != _auth_type )
+	{
+		printf( "Client chose other auth-type than offered!\n" );
+		return( result );
+	}
+
+	switch( _auth_type )
+	{
+		// no authentication
+		case ItalcAuthNone:
+			result = ItalcAuthOK;
+			break;
+
+		// host has to be in list of allowed hosts
+		case ItalcAuthHostBased:
+		{
+			// find out IP of host
+			const int MAX_HOST_LEN = 255;
+			char host[MAX_HOST_LEN];
+			_sd( host, MAX_HOST_LEN, SocketGetIPBoundTo, _user );
+			host[MAX_HOST_LEN] = 0;
+
+			// create a list of all known addresses of host
+			QList<QHostAddress> addr =
+					QHostInfo::fromName( host ).addresses();
+			if( !addr.isEmpty() )
+			{
+				// check each address for existence in allowed-
+				// client-list
+				foreach( const QHostAddress a, addr )
+				{
+					if( s_allowedDemoClients.contains(
+								a.toString() ) )
+					{
+						result = ItalcAuthOK;
+						break;
+					}
+				}
+			}
+			break;
+		}
+
+		// authentication via DSA-challenge/-response
+		case ItalcAuthDSA:
+		{
+			// generate data to sign and send to client
+			const QByteArray chall = dsaKey::generateChallenge();
+			sdev.write( QVariant( chall ) );
+
+			// get user-role
+			const ISD::userRoles urole =
+				static_cast<ISD::userRoles>(
+							sdev.read().toInt() );
+
+			// now try to verify received signed data using public
+			// key of the user under which the client claims to run
+			const QByteArray sig = sdev.read().toByteArray();
+			// (publicKeyPath does range-checking of urole)
+			publicDSAKey pub_key( localSystem::publicKeyPath(
+								urole ) );
+			result = pub_key.verifySignature( chall, sig ) ?
+						ItalcAuthOK : ItalcAuthFailed;
+			break;
+		}
+
+		// used for demo-purposes (demo-server connects to local IVS)
+		case ItalcAuthAppInternalChallenge:
+		{
+			// generate challenge
+			s_appInternalChallenge = dsaKey::generateChallenge();
+			sdev.write( QVariant() );
+			// is our client able to read this byte-array? if so,
+			// it's for sure running inside the same app
+			result = ( sdev.read().toByteArray() ==
+						s_appInternalChallenge ) ?
+						ItalcAuthOK : ItalcAuthFailed;
+			break;
+		}
+
+		// used for demo-purposes (demo-server connects to local IVS)
+		case ItalcAuthChallengeViaAuthFile:
+		{
+			// generate challenge
+			QByteArray chall = dsaKey::generateChallenge();
+			QTemporaryFile tf;
+			tf.setPermissions( QFile::ReadOwner |
+							QFile::WriteOwner );
+			tf.open();
+			tf.write( chall );
+			sdev.write( tf.fileName() );
+			// is our client able to read the file? if so,
+			// it's running as the same user as this piece of
+			// code does so we can assume that it's our parent-
+			// process
+			result = ( sdev.read().toByteArray() == chall ) ?
+						ItalcAuthOK : ItalcAuthFailed;
+			break;
+		}
+	}
+
+	sdev.write( QVariant( (int) result ) );
+
+	return( result == ItalcAuthOK );
+}
+
+
+
+
+quint16 isdServer::isdPort( void )
+{
+	return( __isd_server ? __isd_server->serverPort() : PortOffsetISD );
 }
 
 
@@ -445,6 +474,7 @@ void isdServer::checkForPendingActions( void )
 		{
 			case ISD::StartFullScreenDemo:
 			case ISD::StartWindowDemo:
+				printf("start demo\n");
 				startDemo( data,
 	( m_pendingActions.front().first == ISD::StartFullScreenDemo ) );
 				break;
@@ -550,14 +580,14 @@ void isdServer::displayTextMessage( const QString & _msg )
 
 void isdServer::remoteControlDisplay( const QString & _ip, bool _view_only )
 {
-#ifdef BUILD_LINUX
+/*#ifdef BUILD_LINUX
 	QProcess::startDetached( QCoreApplication::applicationFilePath() +
 					QString( " -rctrl %1 %2" ).
 							arg( _ip ).
 							arg( _view_only ) );
-#else
+#else*/
 	new remoteControlWidget( _ip, _view_only );
-#endif
+/*#endif*/
 }
 
 
@@ -569,9 +599,9 @@ void isdServer::allowDemoClient( const QString & _host )
 				QHostInfo::fromName( _host ).addresses() )
 	{
 		const QString h = a.toString();
-		if( !m_allowedDemoClients.contains( h ) )
+		if( !s_allowedDemoClients.contains( h ) )
 		{
-			m_allowedDemoClients.push_back( h );
+			s_allowedDemoClients.push_back( h );
 		}
 	}
 }
@@ -584,7 +614,7 @@ void isdServer::denyDemoClient( const QString & _host )
 	foreach( const QHostAddress a,
 				QHostInfo::fromName( _host ).addresses() )
 	{
-		m_allowedDemoClients.removeAll( a.toString() );
+		s_allowedDemoClients.removeAll( a.toString() );
 	}
 }
 
@@ -592,20 +622,236 @@ void isdServer::denyDemoClient( const QString & _host )
 
 
 
+#ifdef BUILD_LINUX
+// helper-class which forwards commands destined to ISD-server. We need this
+// when running VNC-server in separate process and VNC-server receives iTALC-
+// commands which it can't process
+class isdForwarder : public isdConnection
+{
+public:
+	isdForwarder() :
+		isdConnection( QHostAddress( QHostAddress::LocalHost ).
+						toString() + ":" +
+						QString::number( __isd_port ) )
+	{
+	}
+
+#if 0
+	bool handleServerMessage( Q_UINT8 _msg )
+	{
+		if( _msg != rfbItalcServiceResponse )
+		{
+			printf( "Unknown message type %d from server. Closing "
+				"connection. Will re-open it later.\n", _msg );
+			close();
+			return( FALSE );
+		}
+
+		Q_UINT8 cmd;
+		if( !readFromServer( (char *) &cmd, sizeof( cmd ) ) )
+		{
+			return( FALSE );
+		}
+		switch( cmd )
+		{
+			case ISD::UserInformation:
+			{
+				ISD::msg m( &socketDev() );
+				m.receive();
+				ISD::msg( &socketDev(), ISD::UserInformation ).
+						addArg( "username",
+							m.arg( "username" ) ).
+						addArg( "homedir",
+							m.arg( "homedir" ) ).
+									send();
+				break;
+			}
+
+/*			case ISD::DemoServer_PortInfo:
+			{
+				ISD::msg m( &socketDev() );
+				m.receive();
+				ISD::msg( &socketDev(),
+						ISD::DemoServer_PortInfo ).
+					addArg( "demoserverport",
+						m.arg( "demoserverport" ).
+							toInt() ).send();
+				break;
+			}*/
+
+			default:
+				printf( "Unknown server response %d\n",
+								(int) cmd );
+				return( FALSE );
+		}
+
+		return( TRUE );
+	}
+
+
+	void handleServerMessages( void )
+	{
+		printf("handle\n");
+		while( hasData() )
+		{
+			rfbServerToClientMsg msg;
+			if( !readFromServer( (char *) &msg,
+							sizeof( Q_UINT8 ) ) )
+			{
+				printf( "Reading message-type failed\n" );
+				continue;
+			}
+			handleServerMessage( msg.type );
+		}
+	}
+#endif
+
+	int processClient( socketDispatcher _sd, void * _user )
+	{
+		socketDevice sdev( _sd, _user );
+		char cmd;
+		if( sdev.read( &cmd, sizeof( cmd ) ) == 0 )
+		{
+			printf( "couldn't read iTALC-request from client...\n" );
+			return( FALSE );
+		}
+
+		if( cmd == rfbItalcServiceRequest )
+		{
+			return( processClient( _sd, _user ) );
+		}
+
+		// in every case receive message-arguments, even if it's an empty list
+		// because this is at leat the int32 with number of items in the list
+		ISD::msg msg_in( &sdev, static_cast<ISD::commands>( cmd ) );
+		msg_in.receive();
+
+		switch( cmd )
+		{
+			case ISD::GetUserInformation:
+		ISD::msg( &sdev, ISD::UserInformation ).
+				addArg( "username",
+					localSystem::currentUser() ).
+				addArg( "homedir", QDir::homePath() ).send();
+				break;
+
+			case ISD::ExecCmds:
+				execCmds( msg_in.arg( "cmds" ).toString() );
+				break;
+
+			case ISD::StartFullScreenDemo:
+			case ISD::StartWindowDemo:
+				startDemo( msg_in.arg( "ip" ).toString(),
+					cmd == ISD::StartFullScreenDemo );
+				break;
+
+			case ISD::ViewRemoteDisplay:
+			case ISD::RemoteControlDisplay:
+				remoteControlDisplay( msg_in.arg( "ip" ).
+								toString(),
+						cmd == ISD::ViewRemoteDisplay );
+				break;
+
+			case ISD::DisplayTextMessage:
+				displayTextMessage( msg_in.arg( "msg" ).
+								toString() );
+				break;
+
+			case ISD::LockDisplay:
+				lockDisplay();
+				break;
+
+			case ISD::UnlockDisplay:
+				unlockDisplay();
+				break;
+
+			case ISD::StopDemo:
+				stopDemo();
+				break;
+
+			case ISD::ForceUserLogout:
+				logoutUser();
+				break;
+
+			case ISD::WakeOtherComputer:
+				wakeOtherComputer( 
+					msg_in.arg( "mac" ).toString(),
+					msg_in.arg( "bcast" ).toString() );
+				break;
+
+			case ISD::PowerDownComputer:
+				powerDownComputer();
+				break;
+
+			case ISD::RestartComputer:
+				restartComputer();
+				break;
+
+			case ISD::DemoServer_Run:
+				demoServerRun( msg_in.arg( "port" ).toInt() );
+				break;
+
+			case ISD::DemoServer_Stop:
+				demoServerStop();
+				break;
+
+			case ISD::DemoServer_AllowClient:
+				demoServerAllowClient(
+					msg_in.arg( "client" ).toString() );
+				break;
+
+			case ISD::DemoServer_DenyClient:
+				demoServerDenyClient(
+					msg_in.arg( "client" ).toString() );
+				break;
+
+			default:
+				printf( "cmd %d not implemented!\n", cmd );
+				break;
+		}
+
+		return( TRUE );
+	}
+
+
+protected:
+	virtual states authAgainstServer( const italcAuthTypes _try_auth_type )
+	{
+		return( isdConnection::authAgainstServer(
+					ItalcAuthChallengeViaAuthFile ) );
+	}
+
+} ;
+
+static isdForwarder * __isd_forwarder = NULL;
+
+#endif
 
 
 int processItalcClient( socketDispatcher _sd, void * _user )
 {
-	return( __isd_server->processClient( _sd, _user ) );
+	if( __isd_server )
+	{
+		return( __isd_server->processClient( _sd, _user ) );
+	}
+
+#ifdef BUILD_LINUX
+	if( !__isd_forwarder )
+	{
+		__isd_forwarder = new isdForwarder();
+	}
+
+	if( __isd_forwarder->state() != isdForwarder::Connected )
+	{
+		__isd_forwarder->open();
+	}
+
+	//__isd_forwarder->handleServerMessages();
+
+	return( __isd_forwarder->processClient( _sd, _user ) );
+#endif
 }
 
-
-
-
-bool authSecTypeItalc( socketDispatcher _sd, void * _user, italcAuthTypes _at )
-{
-	return( __isd_server->authSecTypeItalc( _sd, _user, _at ) );
-}
 
 
 

@@ -218,7 +218,7 @@ vncClientThread::InitAuthenticate()
 			return FALSE;
 		if( type == rfbSecTypeItalc )
 		{
-			return( authSecTypeItalc( vsocketDispatcher,
+			return( isdServer::authSecTypeItalc( vsocketDispatcher,
 							m_socket,
 							ItalcAuthDSA ) );
 		}

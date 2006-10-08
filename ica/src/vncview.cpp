@@ -41,7 +41,7 @@
 
 
 vncView::vncView( const QString & _host, bool _view_only, QWidget * _parent ) :
-	QWidget( _parent, Qt::X11BypassWindowManagerHint ),
+	QWidget( _parent/*, Qt::X11BypassWindowManagerHint*/ ),
 	m_viewOnly( _view_only ),
 	m_buttonMask( 0 )
 {
@@ -50,7 +50,7 @@ vncView::vncView( const QString & _host, bool _view_only, QWidget * _parent ) :
 					":/resources/watch%1.png", 16, this );
 
 	m_connection = new ivsConnection( _host, ivsConnection::QualityHigh,
-									this );
+								FALSE, this );
 	m_connection->open();
 
 	if( !m_viewOnly )
@@ -87,7 +87,7 @@ vncView::vncView( const QString & _host, bool _view_only, QWidget * _parent ) :
 			SLOT( sendIncrementalFramebufferUpdateRequest() ) );
 	if( _view_only )
 	{
-		t->start( 80 );
+		t->start( 70 );
 	}
 	else
 	{
@@ -191,20 +191,55 @@ void vncView::framebufferUpdate( void )
 
 
 
-// our builtin keyboard-handler
-void vncView::keyPressEvent( QKeyEvent * _ke )
+// we have to filter key-events as QWidget's event()-implementation filters out
+// Tab and Shift-Tab for changing focus but as we need Tab, we have to do
+// key-event-dispatching on our own
+bool vncView::event( QEvent * e )
 {
-	int key = 0;
+	switch( e->type() )
+	{
+		case QEvent::KeyPress:
+		case QEvent::KeyRelease:
+			keyEvent( (QKeyEvent *)( e ) );
+			return( e->isAccepted() );
+		default:
+			break;
+	}
+	return( QWidget::event( e ) );
+}
 
+
+
+#ifdef BUILD_LINUX
+#if QT_VERSION >= 0x040200
+#define USE_NATIVE_VIRTUAL_KEY
+#else
+#warning for optimal usage please upgrade your Qt-installation to 4.2 or higher
+#endif
+#endif
+
+// our builtin keyboard-handler
+void vncView::keyEvent( QKeyEvent * _ke )
+{
+	bool pressed = _ke->type() == QEvent::KeyPress;
+
+#ifdef USE_NATIVE_VIRTUAL_KEY
+	// the Trolls seem to love us! With Qt 4.2 they introduced this cute
+	// function returning the key-code of the key (platform-dependent) so
+	// when operating under Linux/X11, key-codes are equal to the ones used
+	// by VNC-protocol
+	const int key = _ke->nativeVirtualKey();
+#else
+	// hmm, either Win32-platform or too old Qt so we have to handle and
+	// translate Qt-key-codes to X-keycodes
+	int key = 0;
 	switch( _ke->key() )
 	{
 		// modifiers are handled separately
-		case Qt::Key_Shift:
-		case Qt::Key_Control:
-		case Qt::Key_Meta:
-		case Qt::Key_Alt:
-			QWidget::keyPressEvent( _ke );
-			return;
+		case Qt::Key_Shift: key = XK_Shift_L; break;
+		case Qt::Key_Control: key = XK_Control_L; break;
+		case Qt::Key_Meta: key = XK_Meta_L; break;
+		case Qt::Key_Alt: key = XK_Alt_L; break;
 		case Qt::Key_Escape: key = XK_Escape; break;
 		case Qt::Key_Tab: key = XK_Tab; break;
 		case Qt::Key_Backtab: key = XK_ISO_Left_Tab; break;
@@ -289,14 +324,52 @@ void vncView::keyPressEvent( QKeyEvent * _ke )
 	}
 	else if( key == 0 )
 	{
-		key = _ke->text().utf16()[0];//[0].toAscii();
+		if( m_mods.contains( XK_Control_L ) &&
+			QKeySequence( _ke->key() ).toString().length() == 1 )
+		{
+			QString s = QKeySequence( _ke->key() ).toString();
+			if( !m_mods.contains( XK_Shift_L ) )
+			{
+				s = s.toLower();
+			}
+			key = s.toAscii().constData()[0];
+		}
+		else
+		{
+			key = _ke->text().utf16()[0];//[0].toAscii();
+		}
+		
 	}
-	if( key != 0 )
+#endif
+
+	// handle modifiers
+	if( key == XK_Shift_L || key == XK_Control_L || key == XK_Meta_L ||
+								key == XK_Alt_L )
 	{
-		pressMods( QApplication::keyboardModifiers(), true );
-		emit keyEvent( key, true );
-		emit keyEvent( key, false );
-		pressMods( QApplication::keyboardModifiers(), false );
+		if( pressed )
+		{
+			m_mods[key] = true;
+		}
+		else if( m_mods.contains( key ) )
+		{
+			m_mods.remove( key );
+		}
+		else
+		{
+			QList<unsigned int> keys = m_mods.keys();
+			QList<unsigned int>::const_iterator it = keys.begin();
+			while( it != keys.end() )
+			{
+				emit keyEvent( *it, FALSE );
+				it++;
+			}
+			m_mods.clear();
+		}
+	}
+
+	if( key )
+	{
+		emit keyEvent( key, pressed );
 		_ke->accept();
 	}
 }
@@ -357,7 +430,7 @@ void vncView::paintEvent( QPaintEvent * _pe )
 			_pe->rect().translated( m_viewOffset ),
 			Qt::ThresholdDither );
 
-	const QPixmap & cursor = m_connection->cursorShape();
+	const QImage & cursor = m_connection->cursorShape();
 	const QRect cursor_rect = QRect( m_connection->cursorPos() -
 						m_connection->cursorHotSpot(),
 					cursor.size() ).translated(
@@ -366,7 +439,7 @@ void vncView::paintEvent( QPaintEvent * _pe )
 	if( _pe->rect().intersects( cursor_rect ) )
 	{
 		// then repaint it
-		p.drawPixmap( cursor_rect.topLeft(), cursor );
+		p.drawImage( cursor_rect.topLeft(), cursor );
 	}
 
 	// draw black borders if neccessary
@@ -430,32 +503,6 @@ void vncView::customEvent( QEvent * _e )
 	else
 	{
 		QWidget::customEvent( _e );
-	}
-}
-
-
-
-
-void vncView::pressMods( Qt::KeyboardModifiers _mod, bool _pressed )
-{
-	struct modifierXlate
-	{
-		Qt::KeyboardModifier qt;
-		int x;
-	} const modmap[] =
-		{
-			{ Qt::ShiftModifier, XK_Shift_L },
-			{ Qt::ControlModifier, XK_Control_L },
-			{ Qt::AltModifier, XK_Alt_L },
-			{ Qt::MetaModifier, XK_Meta_L }
-		} ;
-
-	for( Q_UINT8 i = 0; i < sizeof( modmap )/sizeof( modifierXlate ); ++i )
-	{
-		if( _mod & modmap[i].qt )
-		{
-			emit keyEvent( modmap[i].x, _pressed );
-		}
 	}
 }
 

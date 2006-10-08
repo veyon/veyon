@@ -205,7 +205,10 @@ void snapshotList::snapshotDoubleClicked( const QString & _s )
 
 void snapshotList::showSnapshot( void )
 {
-	snapshotDoubleClicked( m_list->currentItem()->text() );
+	if( m_list->currentItem() )
+	{
+		snapshotDoubleClicked( m_list->currentItem()->text() );
+	}
 }
 
 
@@ -213,11 +216,16 @@ void snapshotList::showSnapshot( void )
 
 void snapshotList::deleteSnapshot( void )
 {
+	if( !m_list->currentItem() )
+	{
+		return;
+	}
+
 	const QString s = m_list->currentItem()->text();
 
 	// maybe the user clicked on "delete snapshot" and didn't select a
 	// snapshot...
-	if( s == "" )
+	if( s.isEmpty() )
 	{
 		return;
 	}

@@ -77,10 +77,12 @@ const rfbPixelFormat ivsConnection::s_localDisplayFormat =
 
 // normal ctor
 ivsConnection::ivsConnection( const QString & _host, quality _q,
+							bool _use_auth_file,
 							QObject * _parent ) :
 	isdConnection( ( _host.contains( ':' ) ? _host : _host + ":5900" ),
 								_parent ),
 	m_isDemoServer( FALSE ),
+	m_useAuthFile( _use_auth_file ),
 	m_quality( _q ),
 	m_imageLock(),
 	m_screen(),
@@ -141,8 +143,14 @@ ivsConnection::states ivsConnection::protocolInitialization( void )
 		return( state_ref() = ConnectionFailed );
 	}
 
-	if( authAgainstServer( m_quality == QualityDemoPurposes ) !=
-								Connecting )
+	if( authAgainstServer( m_quality == QualityDemoPurposes ?
+				m_useAuthFile ?
+					ItalcAuthChallengeViaAuthFile
+					:
+					ItalcAuthAppInternalChallenge
+				:
+				ItalcAuthNone
+						) != Connecting )
 	{
 		return( state() );
 	}
@@ -1431,9 +1439,9 @@ bool ivsConnection::handleCursorShape( const Q_UINT16 _xhot,
 					const Q_UINT16 _height,
 					const Q_UINT32 _enc )
 {
-	int bytesPerPixel = s_localDisplayFormat.bitsPerPixel / 8;
-	size_t bytesPerRow = ( _width + 7 ) / 8;
-	size_t bytesMaskData = bytesPerRow * _height;
+	const int bytesPerPixel = s_localDisplayFormat.bitsPerPixel / 8;
+	const size_t bytesPerRow = ( _width + 7 ) / 8;
+	const size_t bytesMaskData = bytesPerRow * _height;
 
 	if( _width * _height == 0 )
 	{
@@ -1553,12 +1561,22 @@ bool ivsConnection::handleCursorShape( const Q_UINT16 _xhot,
 		return( FALSE );
 	}
 
+	QImage alpha( _width, _height, QImage::Format_Mono );
+	// make data 32-bit-aligned for making it usable with QImage
+	for( Q_UINT16 y = 0; y < _height; ++y )
+	{
+		memcpy( alpha.scanLine( y ), rcMask + bytesPerRow*y,
+								bytesPerRow );
+	}
+
+
 	QRegion ch_reg = QRect( m_cursorPos - m_cursorHotSpot,
 							m_cursorShape.size() );
-	const QImage cur( rcSource, _width, _height, QImage::Format_RGB32 );
-	m_cursorShape = QPixmap::fromImage( cur );
-	m_cursorShape.setMask( QBitmap::fromData( QSize( _width, _height ),
-						rcMask, QImage::Format_Mono ) );
+	m_cursorShape = QImage( rcSource, _width, _height,
+							QImage::Format_RGB32 ).
+				convertToFormat( QImage::Format_ARGB32 );
+	m_cursorShape.setAlphaChannel( alpha );
+
 	m_cursorHotSpot = QPoint( _xhot, _yhot );
 
 

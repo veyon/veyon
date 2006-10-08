@@ -29,5 +29,8 @@
 int ICAMain( int _argc, char * * _argv );
 #define SERVICE_ARG "-service"
 
+extern int __isd_port;
+
+
 #endif
 

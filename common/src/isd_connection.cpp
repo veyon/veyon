@@ -138,7 +138,7 @@ isdConnection::states isdConnection::open( void )
 	// the thread actually using isdConnection
 	if( m_socket == NULL )
 	{
-		m_socket = new QTcpSocket( this );
+		m_socket = new QTcpSocket;
 		m_socketDev.setUser( m_socket );
 	}
 
@@ -349,7 +349,7 @@ isdConnection::states isdConnection::protocolInitialization( void )
 
 
 isdConnection::states isdConnection::authAgainstServer(
-					bool _use_app_internal_challenge )
+					const italcAuthTypes _try_auth_type )
 {
 	Q_UINT8 num_sec_types;
 	if( !readFromServer( (char *)&num_sec_types, sizeof( num_sec_types ) ) )
@@ -387,9 +387,10 @@ isdConnection::states isdConnection::authAgainstServer(
 				return( m_state = ConnectionFailed );
 			}
 			int iat = m_socketDev.read().toInt();
-			if( _use_app_internal_challenge )
+			if( _try_auth_type == ItalcAuthChallengeViaAuthFile ||
+			_try_auth_type == ItalcAuthAppInternalChallenge )
 			{
-				iat = ItalcAuthAppInternalChallenge;
+				iat = _try_auth_type;
 			}
 			m_socketDev.write( QVariant( iat ) );
 
@@ -417,6 +418,14 @@ isdConnection::states isdConnection::authAgainstServer(
 					isdServer::s_appInternalChallenge ) );
 			}
 #endif
+			else if( iat == ItalcAuthChallengeViaAuthFile )
+			{
+				QFile file( m_socketDev.read().toString() );
+				file.open( QFile::ReadOnly );
+				printf("auth file\n");
+				m_socketDev.write( QVariant(
+							file.readAll() ) );
+			}
 			else if( iat == ItalcAuthHostBased )
 			{
 				printf("hostbased\n");
@@ -477,14 +486,14 @@ bool isdConnection::handleServerMessage( Q_UINT8 _msg )
 				break;
 			}
 
-			case ISD::DemoServer_PortInfo:
+/*			case ISD::DemoServer_PortInfo:
 			{
 				ISD::msg m( &m_socketDev );
 				m.receive();
 				m_demoServerPort =
 					m.arg( "demoserverport" ).toInt();
 				break;
-			}
+			}*/
 
 			default:
 				printf( "Unknown server response %d\n",
@@ -691,14 +700,16 @@ bool isdConnection::restartComputer( void )
 
 
 
-bool isdConnection::demoServerRun( void )
+bool isdConnection::demoServerRun( int _port )
 {
 	if( m_socket->state() != QTcpSocket::ConnectedState )
 	{
 		m_state = Disconnected;
 		return( FALSE );
 	}
-	return( ISD::msg( &m_socketDev, ISD::DemoServer_Run ).send() );
+	m_demoServerPort = _port;
+	return( ISD::msg( &m_socketDev, ISD::DemoServer_Run ).
+					addArg( "port", _port ).send() );
 }
 
 

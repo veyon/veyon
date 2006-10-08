@@ -126,7 +126,7 @@ mainWindow::mainWindow() :
 	}
 
 	m_localISD->demoServerStop();
-	m_localISD->demoServerRun();
+	m_localISD->demoServerRun( localSystem::freePort() );
 
 
 

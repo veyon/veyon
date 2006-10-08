@@ -36,13 +36,15 @@
 #include "ivs_connection.h"
 
 
+class IVS;
+
 
 // there's one instance of a demo-server on the iTALC-master
 class demoServer : public QTcpServer
 {
 	Q_OBJECT
 public:
-	demoServer( quint16 _port );
+	demoServer( IVS * _ivs_conn );
 	virtual ~demoServer();
 
 /*
@@ -60,7 +62,7 @@ private:
 	{
 	public:
 		updaterThread( ivsConnection * _ic );
-		~updaterThread();
+		virtual ~updaterThread();
 
 	private:
 		virtual void run( void );
@@ -97,7 +99,15 @@ private slots:
 	// called whenever ivsConnection::cursorShapeChanged() is emitted
 	void updateCursorShape( void );
 
-	// connected to cursorMoved(...)-signal of demo-server's IVS-connection
+	// checks whether cursor was moved and sets according flags and
+	// variables used by moveCursor() - connection has to be done in
+	// GUI-thread as we're calling QCursor::pos() which at least under X11
+	// must not be called from another thread than the GUI-thread
+	void checkForCursorMovement( void );
+
+	// called regularly for sending pointer-movement-events detected by
+	// checkForCursorMovement() to clients - connection has to be done
+	// in demoServerClient-thread-context as we're writing to socket
 	void moveCursor( void );
 
 	// connected to readyRead()-signal of our client-socket and called as
@@ -110,11 +120,11 @@ private:
 	// event-loop of thread
 	virtual void run( void );
 
-	QRegion m_changedRegion;
-	bool m_cursorShapeChanged;
 	QMutex m_dataMutex;
-
+	QRegion m_changedRegion;
 	QPoint m_lastCursorPos;
+	bool m_cursorShapeChanged;
+	bool m_cursorPosChanged;
 
 	int m_socketDescriptor;
 	QTcpSocket * m_sock;

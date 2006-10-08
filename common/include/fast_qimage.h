@@ -23,8 +23,8 @@
  */
 
 
-#ifndef _FAST_QIMAGE
-#define _FAST_QIMAGE
+#ifndef _FAST_QIMAGE_H
+#define _FAST_QIMAGE_H
 
 #include <QtGui/QImage>
 #include <QtGui/QPixmap>

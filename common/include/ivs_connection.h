@@ -32,7 +32,6 @@
 
 #include <QtCore/QReadWriteLock>
 #include <QtGui/QImage>
-#include <QtGui/QPixmap>
 
 
 #ifdef HAVE_LIBZ
@@ -72,7 +71,8 @@ public:
 
 
 	ivsConnection( const QString & _host, quality _q = QualityLow,
-							QObject * _parent = 0 );
+						bool _use_auth_file = FALSE,
+						QObject * _parent = NULL );
 	virtual ~ivsConnection();
 
 	virtual void close( void );
@@ -121,7 +121,7 @@ public:
 		return( m_cursorHotSpot );
 	}
 
-	const QPixmap & cursorShape( void ) const
+	const QImage & cursorShape( void ) const
 	{
 		return( m_cursorShape );
 	}
@@ -173,6 +173,7 @@ private:
 #endif
 
 	bool m_isDemoServer;
+	bool m_useAuthFile;
 
 	quality m_quality;
 
@@ -189,7 +190,7 @@ private:
 	bool m_softwareCursor;
 	QPoint m_cursorPos;
 	QPoint m_cursorHotSpot;
-	QPixmap m_cursorShape;
+	QImage m_cursorShape;
 
 	static const rfbPixelFormat s_localDisplayFormat;
 

@@ -228,8 +228,7 @@ typedef struct
 		DemoServer_Run = 80,
 		DemoServer_Stop,
 		DemoServer_AllowClient,
-		DemoServer_DenyClient,
-		DemoServer_PortInfo
+		DemoServer_DenyClient
 
 /*		// ONLY FOR DEBUGGING
 		ISD_Terminate*/

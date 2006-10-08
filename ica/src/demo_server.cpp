@@ -34,15 +34,20 @@
 #include "isd_server.h"
 #include "italc_rfb_ext.h"
 #include "minilzo.h"
+#include "ivs.h"
 
 
+const int CURSOR_UPDATE_TIME = 30;
 
-demoServer::demoServer( quint16 _port ) :
+
+demoServer::demoServer( IVS * _ivs_conn ) :
 	QTcpServer(),
 	m_conn( new ivsConnection(
 			QHostAddress( QHostAddress::LocalHost ).toString() +
-					":" + QString::number( _port ),
-					ivsConnection::QualityDemoPurposes ) ),
+					":" + QString::number(
+						_ivs_conn->serverPort() ),
+					ivsConnection::QualityDemoPurposes,
+				_ivs_conn->runningInSeparateProcess() ) ),
 	m_updaterThread( new updaterThread( m_conn ) )
 {
 	if( listen() == FALSE )
@@ -114,7 +119,7 @@ void demoServer::updaterThread::run( void )
 	int i = 0;
 	while( !m_quit )
 	{
-		msleep( 25 );
+		msleep( 20 );
 		m_conn->handleServerMessages( ( i = ( i + 1 ) % 2 ) == 0 );
 	}
 }
@@ -131,10 +136,11 @@ void demoServer::updaterThread::run( void )
 
 demoServerClient::demoServerClient( int _sd, const ivsConnection * _conn ) :
 	QThread(),
-	m_changedRegion(),
-	m_cursorShapeChanged( TRUE ),
 	m_dataMutex(),
+	m_changedRegion(),
 	m_lastCursorPos(),
+	m_cursorShapeChanged( TRUE ),
+	m_cursorPosChanged( FALSE ),
 	m_socketDescriptor( _sd ),
 	m_sock( NULL ),
 	m_conn( _conn ),
@@ -146,7 +152,8 @@ demoServerClient::demoServerClient( int _sd, const ivsConnection * _conn ) :
 	m_bytesOut( 0 ),
 	m_frames( 0 )
 {
-	QTimer::singleShot( 20, this, SLOT( moveCursor() ) );
+	QTimer::singleShot( CURSOR_UPDATE_TIME, this,
+					SLOT( checkForCursorMovement() ) );
 	start();
 }
 
@@ -181,12 +188,29 @@ void demoServerClient::updateCursorShape( void )
 
 
 
-void demoServerClient::moveCursor( void )
+void demoServerClient::checkForCursorMovement( void )
 {
 	m_dataMutex.lock();
 	if( m_lastCursorPos != QCursor::pos() )
 	{
 		m_lastCursorPos = QCursor::pos();
+		m_cursorPosChanged = TRUE;
+
+	}
+	m_dataMutex.unlock();
+	QTimer::singleShot( CURSOR_UPDATE_TIME, this,
+					SLOT( checkForCursorMovement() ) );
+}
+
+
+
+
+void demoServerClient::moveCursor( void )
+{
+	m_dataMutex.lock();
+	if( m_cursorPosChanged )
+	{
+		m_cursorPosChanged = FALSE;
 		const rfbFramebufferUpdateMsg m =
 		{
 			rfbFramebufferUpdate,
@@ -211,11 +235,11 @@ void demoServerClient::moveCursor( void )
 		} ;
 
 		m_sock->write( (const char *) &rh, sizeof( rh ) );
-		m_sock->waitForBytesWritten();
+		m_sock->flush();
 
 	}
 	m_dataMutex.unlock();
-	QTimer::singleShot( 20, this, SLOT( moveCursor() ) );
+	QTimer::singleShot( CURSOR_UPDATE_TIME, this, SLOT( moveCursor() ) );
 }
 
 
@@ -355,7 +379,7 @@ void demoServerClient::processClient( void )
 
 		if( m_cursorShapeChanged )
 		{
-			const QPixmap cur = m_conn->cursorShape();
+			const QImage cur = m_conn->cursorShape();
 			const rfbRectangle rr =
 			{
 				swap16IfLE( m_conn->cursorHotSpot().x() ),
@@ -382,9 +406,9 @@ void demoServerClient::processClient( void )
 	}
 
 	++m_frames;
-	QTimer::singleShot( 50, this, SLOT( processClient() ) );
-	m_sock->waitForBytesWritten();
+	m_sock->flush();
 	m_dataMutex.unlock();
+	QTimer::singleShot( 20, this, SLOT( processClient() ) );
 /*	printf("kbps%d  fps:%d\n", m_bytesOut /
 				( m_bandwidthTimer->elapsed() * 1024 / 1000 ),
 				m_frames * 1000 / m_bandwidthTimer->elapsed() );*/
@@ -509,8 +533,9 @@ void demoServerClient::run( void )
 	connect( m_sock, SIGNAL( disconnected() ), this,
 							SLOT( deleteLater() ) );
 
-	QTimer::singleShot( 500, this, SLOT( processClient() ) );
-	//moveCursor();
+	QTimer::singleShot( 200, this, SLOT( processClient() ) );
+	moveCursor();
+	//processClient();
 
 	// ...and can run our own event-loop for optimal scheduling
 	exec();

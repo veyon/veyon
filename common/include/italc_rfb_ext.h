@@ -72,7 +72,9 @@ enum italcAuthTypes
 	// simply showing IVS that demo-server runs inside the same application
 	// by sending generated challenge which is a global variable and can be
 	// accessed by demo-server
-	ItalcAuthAppInternalChallenge
+	ItalcAuthAppInternalChallenge,
+
+	ItalcAuthChallengeViaAuthFile,
 } ;
 
 

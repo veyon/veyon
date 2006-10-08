@@ -129,7 +129,7 @@ public:
 /*	bool ivsRun( const bool _host_based_auth = TRUE );
 	bool ivsTerminate( void );*/
 
-	bool demoServerRun( void );
+	bool demoServerRun( int _port );
 	bool demoServerStop( void );
 	bool demoServerAllowClient( const QString & _client );
 	bool demoServerDenyClient( const QString & _client );
@@ -151,7 +151,8 @@ protected:
 
 	virtual states protocolInitialization( void );
 
-	states authAgainstServer( bool _use_app_internal_challenge = FALSE );
+	virtual states authAgainstServer( const italcAuthTypes _try_auth_type =
+								ItalcAuthNone );
 
 	states & state_ref( void )
 	{

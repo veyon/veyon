@@ -33,6 +33,8 @@
 
 namespace localSystem
 {
+	int freePort( void );
+
 	void initialize( void );
 
 	void sleep( const int _ms );

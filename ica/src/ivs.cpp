@@ -28,6 +28,8 @@
 #include <config.h>
 #endif
 
+#include <QtCore/QCoreApplication>
+#include <QtCore/QProcess>
 #include <QtCore/QStringList>
 
 
@@ -82,7 +84,8 @@ rfbBool isdHandleMessage( struct _rfbClientRec * _client, void * _data,
 
 void isdAuthAgainstServer( struct _rfbClientRec * _client )
 {
-	if( authSecTypeItalc( libvncClientDispatcher, _client, ItalcAuthDSA ) )
+	if( isdServer::authSecTypeItalc( libvncClientDispatcher, _client,
+								ItalcAuthDSA ) )
 	{
 		_client->state = rfbClientRec::RFB_INITIALISATION;
 	}
@@ -98,12 +101,18 @@ extern int WinVNCAppMain( void );
 
 
 
-IVS::IVS( const quint16 _ivs_port, int _argc, char * * _argv ) :
+IVS::IVS( const quint16 _ivs_port, int _argc, char * * _argv,
+							bool _no_threading ) :
 	QThread(),
 	m_argc( _argc ),
 	m_argv( _argv ),
-	m_port( _ivs_port )
+	m_port( _ivs_port ),
+	m_runningInSeparateProcess( FALSE )
 {
+	if( _no_threading )
+	{
+		run();
+	}
 }
 
 
@@ -120,6 +129,9 @@ void IVS::run( void )
 {
 #ifdef BUILD_LINUX
 	QStringList cmdline;
+
+	m_runningInSeparateProcess = TRUE;
+
 	// filter some options
 	for( int i = 0; i < m_argc; ++i )
 	{
@@ -129,7 +141,12 @@ void IVS::run( void )
 		{
 			cmdline.append( m_argv[i] );
 		}
+		else if( option == "-rx11vs" )
+		{
+			m_runningInSeparateProcess = FALSE;
+		}
 	}
+
 	cmdline/* << "-forever"	// do not quit after 1st conn.
 		<< "-shared"	// allow multiple clients
 		<< "-nopw"	// do not display warning
@@ -147,6 +164,19 @@ void IVS::run( void )
 		<< "-rfbport" << QString::number( m_port )
 				// set port where the VNC-server should listen
 		;
+	if( m_runningInSeparateProcess )
+	{
+		cmdline << "-rx11vs" << "-isdport" <<
+				QString::number( isdServer::isdPort() );
+		while( 1 )
+		{
+			QProcess::execute/*startDetached*/(
+				QCoreApplication::applicationFilePath() +
+					" -rx11vs " + cmdline.join( " " ) );
+		}
+		return;
+	}
+
 	char * old_av = m_argv[0];
 	m_argv = new char *[cmdline.size()+1];
 	m_argc = 1;
@@ -175,7 +205,7 @@ void IVS::run( void )
 	rfbSecurityHandler sh = {
 			rfbSecTypeItalc, isdAuthAgainstServer, NULL };
 	rfbRegisterSecurityHandler( &sh );
-	
+
 	// run x11vnc-server
 	x11vnc_main( m_argc, m_argv );
 #elif BUILD_WIN32

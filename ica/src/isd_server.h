@@ -44,19 +44,20 @@ class isdServer : public QTcpServer
 {
 	Q_OBJECT
 public:
-	isdServer( const quint16 _isd_port, const quint16 _ivs_port,
-						int _argc, char * * _argv );
+	isdServer( const quint16 _ivs_port, int _argc, char * * _argv );
 	~isdServer();
 
-	bool authSecTypeItalc( socketDispatcher _sd, void * _user,
-				italcAuthTypes _auth_type = ItalcAuthDSA );
 	int processClient( socketDispatcher _sd, void * _user );
 
 	static bool protocolInitialization( socketDevice & _sd,
 						italcAuthTypes _auth_type,
 						bool _demo_server = FALSE );
+	static bool authSecTypeItalc( socketDispatcher _sd, void * _user,
+				italcAuthTypes _auth_type = ItalcAuthDSA );
 
 	static QByteArray s_appInternalChallenge;
+
+	static quint16 isdPort( void );
 
 
 private slots:
@@ -85,7 +86,7 @@ private:
 
 
 	italcAuthTypes m_authType;
-	QStringList m_allowedDemoClients;
+	static QStringList s_allowedDemoClients;
 
 	QMutex m_actionMutex;
 	QList<QPair<ISD::commands, QString> > m_pendingActions;
@@ -99,7 +100,6 @@ private:
 
 
 
-bool authSecTypeItalc( socketDispatcher _sd, void * _user, italcAuthTypes _at );
 int processItalcClient( socketDispatcher _sd, void * user );
 
 

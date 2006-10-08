@@ -53,7 +53,6 @@ public:
 signals:
 	void pointerEvent( Q_UINT16 _x, Q_UINT16 _y, Q_UINT16 _button_mask );
 	void keyEvent( Q_UINT32 _key, bool _down );
-
 	void mouseAtTop( void );
 
 
@@ -63,8 +62,7 @@ private slots:
 
 private:
 	virtual void customEvent( QEvent * _user );
-	virtual void keyPressEvent( QKeyEvent * );
-	//virtual void keyReleaseEvent( QKeyEvent * );
+	virtual bool event( QEvent * );
 	virtual void mouseMoveEvent( QMouseEvent * );
 	virtual void mousePressEvent( QMouseEvent * );
 	virtual void mouseReleaseEvent( QMouseEvent * );
@@ -73,10 +71,9 @@ private:
 	virtual void resizeEvent( QResizeEvent * );
 	virtual void wheelEvent( QWheelEvent * );
 
-
-
-	void pressMods( Qt::KeyboardModifiers _mod, bool _pressed );
+	void keyEvent( QKeyEvent * );
 	void mouseEvent( QMouseEvent * );
+
 
 	ivsConnection * m_connection;
 	bool m_viewOnly;
@@ -84,6 +81,7 @@ private:
 	QPoint m_viewOffset;
 
 	int m_buttonMask;
+	QMap<unsigned int, bool> m_mods;
 
 	progressWidget * m_establishingConnection;
 
