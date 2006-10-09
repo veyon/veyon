@@ -528,7 +528,7 @@ void clientManager::loadTree( classRoom * _parent_item,
 								"x" ).toInt();
 				c->m_rasterY = node.toElement().attribute(
 								"y" ).toInt();
-				c->setFixedSize( node.toElement().attribute(
+				c->resize( node.toElement().attribute(
 								"w" ).toInt(),
 						node.toElement().attribute(
 								"h" ).toInt() );
@@ -1027,7 +1027,7 @@ void clientManager::adjustWindows( void )
 
 		foreach( client * cl, vc )
 		{
-			cl->setFixedSize( nw - decor_w, nh - decor_h );
+			cl->resize( nw - decor_w, nh - decor_h );
 			cl->parentWidget()->move(
 				static_cast<int>( cl->m_rasterX * nw ),
 				static_cast<int>( cl->m_rasterY * nh ) );
@@ -1077,7 +1077,7 @@ void clientManager::resizeClients( const int _new_width )
 
 		foreach( client * cl, vc )
 		{
-			cl->setFixedSize( _new_width, _new_height );
+			cl->resize( _new_width, _new_height );
 			const int xp = static_cast<int>( (
 				cl->parentWidget()->pos().x() - x_offset ) /
 				cw * ( _new_width + decor_w ) ) + x_offset;

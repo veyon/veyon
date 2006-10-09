@@ -136,7 +136,8 @@ client::client( const QString & _local_ip, const QString & _remote_ip,
 				"decreasing or optimizing the client-window-"
 								"size." ) );
 
-	setFixedSize( DEFAULT_CLIENT_SIZE );
+	//setFixedSize( DEFAULT_CLIENT_SIZE );
+	resize( DEFAULT_CLIENT_SIZE );
 	setAttribute( Qt::WA_OpaquePaintEvent, TRUE );
 	//setAttribute( Qt::WA_PaintUnclipped, TRUE );
 	QToolBar * tb = new QToolBar( this );
