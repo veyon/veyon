@@ -40,7 +40,7 @@
 const int CURSOR_UPDATE_TIME = 30;
 
 
-demoServer::demoServer( IVS * _ivs_conn ) :
+demoServer::demoServer( IVS * _ivs_conn, quint16 _port ) :
 	QTcpServer(),
 	m_conn( new ivsConnection(
 			QHostAddress( QHostAddress::LocalHost ).toString() +
@@ -50,7 +50,7 @@ demoServer::demoServer( IVS * _ivs_conn ) :
 				_ivs_conn->runningInSeparateProcess() ) ),
 	m_updaterThread( new updaterThread( m_conn ) )
 {
-	if( listen() == FALSE )
+	if( listen( QHostAddress::Any, _port ) == FALSE )
 	{
 		qCritical( "Could not start demo-server!\n" );
 		return;

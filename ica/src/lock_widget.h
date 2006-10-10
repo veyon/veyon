@@ -32,6 +32,8 @@
 #include <QtGui/QWidget>
 #include <QtGui/QPixmap>
 
+#include "system_key_trapper.h"
+
 
 class lockWidget : public QWidget
 {
@@ -57,6 +59,7 @@ private:
 */
 	QPixmap m_background;
 	types m_type;
+	systemKeyTrapper m_sysKeyTrapper;
 
 } ;
 

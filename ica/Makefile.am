@@ -103,6 +103,7 @@ INCLUDES = $(IVS_INCLUDES) -I$(srcdir)/../common/include -I$(srcdir)/../common/i
 ica_MOC =	src/isd_server.moc 			\
 		src/remote_control_widget.moc		\
 		src/vncview.moc				\
+		src/system_key_trapper.moc		\
 		src/demo_server.moc			\
 		src/progress_widget.moc			\
 		src/demo_client.moc			\
@@ -124,6 +125,7 @@ ica_SOURCES =		$(srcdir)/src/ica_main.cpp			\
 			$(srcdir)/src/vncview.cpp			\
 			$(srcdir)/src/demo_server.cpp			\
 			$(srcdir)/src/demo_client.cpp			\
+			$(srcdir)/src/system_key_trapper.cpp		\
 			$(srcdir)/src/inject.cpp			\
 			$(srcdir)/src/minilzo.c				\
 			$(srcdir)/../common/src/messagebox.cpp		\
@@ -145,6 +147,7 @@ ica_SOURCES =		$(srcdir)/src/ica_main.cpp			\
 			$(srcdir)/src/minilzo.h				\
 			$(srcdir)/src/lzoconf.h				\
 			$(srcdir)/src/ica_main.h			\
+			$(srcdir)/src/system_key_trapper.h		\
 			$(srcdir)/src/service.h				\
 			$(srcdir)/ica.qrc				\
 			$(srcdir)/ica_qrc.cpp				\

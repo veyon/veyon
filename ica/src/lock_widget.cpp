@@ -29,102 +29,6 @@
 #include <QtGui/QPainter>
 
 
-#if BUILD_WIN32
-
-// some code for disabling system's hotkeys such as Alt+Ctrl+Del, Alt+Tab,
-// Ctrl+Esc, Alt+Esc, Windows-key etc. - otherwise locking wouldn't be very
-// effective... ;-)
-#define _WIN32_WINNT 0x0500 // for KBDLLHOOKSTRUCT
-
-#include <windef.h>
-#include <winbase.h>
-#include <wingdi.h>
-#include <winreg.h>
-#include <winuser.h>
-
-#include "inject.h"
-
-
-HHOOK g_hHookKbdLL = NULL; // hook handle
-
-
-LRESULT CALLBACK TaskKeyHookLL(int nCode, WPARAM wp, LPARAM lp)
-{
-	KBDLLHOOKSTRUCT *pkh = (KBDLLHOOKSTRUCT *) lp;
-
-	if( nCode == HC_ACTION )
-	{
-		BOOL bCtrlKeyDown = GetAsyncKeyState( VK_CONTROL ) >>
-						( ( sizeof( SHORT ) * 8 ) - 1 );
-
-		if(
-			// Ctrl+Esc
-			( pkh->vkCode == VK_ESCAPE && bCtrlKeyDown )
-			||
-			// Alt+Tab
-			( pkh->vkCode == VK_TAB && pkh->flags & LLKHF_ALTDOWN )
-			||
-			// Alt+Esc
-			( pkh->vkCode == VK_ESCAPE && pkh->flags & LLKHF_ALTDOWN )
-			||
-			// Start Menu
-			( pkh->vkCode == VK_LWIN || pkh->vkCode == VK_RWIN ) )
-		{
-			return( 1 );
-		}
-	}
-	return CallNextHookEx( g_hHookKbdLL, nCode, wp, lp );
-}
-
-
-#define HKCU HKEY_CURRENT_USER
-
-extern HINSTANCE hAppInstance;
-
-// Magic registry key/value for "Remove Task Manager" policy.
-LPCTSTR KEY_DisableTaskMgr =
-	"Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System";
-LPCTSTR VAL_DisableTaskMgr = "DisableTaskMgr";
-
-void DisableTaskKeys( BOOL bDisable )
-{
-	HKEY hk;
-	if( RegOpenKey( HKCU, KEY_DisableTaskMgr, &hk ) != ERROR_SUCCESS )
-	{
-		RegCreateKey( HKCU, KEY_DisableTaskMgr, &hk );
-	}
-
-	if( bDisable )
-	{
-		if( !g_hHookKbdLL )
-		{
-			// set lowlevel-keyboard-hook
-			g_hHookKbdLL = SetWindowsHookEx( WH_KEYBOARD_LL,
-							TaskKeyHookLL,
-							hAppInstance, 0 );
-		}
-/*		// set registry-entry to disable task-manager (Alt+Ctrl+Del)
-		DWORD val = 1;
-		RegSetValueEx( hk, VAL_DisableTaskMgr, 0L, REG_DWORD,
-						(BYTE*) &val, sizeof( val ) );*/
-		Inject();
-	}
-	else if( g_hHookKbdLL != NULL )
-	{
-		// remove keyboard-hook
-		UnhookWindowsHookEx( g_hHookKbdLL );
-		g_hHookKbdLL = NULL;
-		// delete registry-entry
-		//RegDeleteValue( hk, VAL_DisableTaskMgr );
-		Eject();
-	}
-
-	// enable/disable task-bar
-	EnableWindow( FindWindow( "Shell_traywnd", NULL ), !bDisable );
-}
-
-#endif
-
 
 #ifdef BUILD_LINUX
 
@@ -144,7 +48,8 @@ lockWidget::lockWidget( types _type ) :
 				QPixmap::grabWindow( qApp->desktop()->winId() )
 			:
 				QPixmap() ),
-	m_type( _type )
+	m_type( _type ),
+	m_sysKeyTrapper()
 {
 	activateWindow();
 	setFixedSize( qApp->desktop()->size() );
@@ -157,7 +62,7 @@ lockWidget::lockWidget( types _type ) :
 	grabKeyboard();
 	setCursor( Qt::BlankCursor );
 #ifdef BUILD_WIN32
-	DisableTaskKeys( TRUE );
+	//DisableTaskKeys( TRUE );
 #endif
 }
 
@@ -167,7 +72,7 @@ lockWidget::lockWidget( types _type ) :
 lockWidget::~lockWidget()
 {
 #ifdef BUILD_WIN32
-	DisableTaskKeys( FALSE );
+	//DisableTaskKeys( FALSE );
 #endif
 }
 

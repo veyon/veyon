@@ -1,5 +1,18 @@
 2006-10-10	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
+	* ica/src/system_key_trapper.cpp:
+	* ica/src/system_key_trapper.h:
+	* ica/src/vncview.cpp:
+	* ica/src/vncview.h:
+	* ica/src/lock_widget.cpp:
+	added systemKeyTrapper, a class for trapping system-keys, especially
+	under win32
+
+	* ica/src/isd_server.cpp:
+	* ica/src/demo_server.cpp:
+	* ica/src/demo_server.h:
+	start demo-server on given port - bugfix
+
 	* ica/Makefile.am:
 	* ica/src/lock_widget.cpp:
 	* ica/src/inject.cpp:

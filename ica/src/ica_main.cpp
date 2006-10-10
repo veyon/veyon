@@ -38,6 +38,7 @@
 #include "ivs.h"
 #include "local_system.h"
 #include "debug.h"
+#include "system_key_trapper.h"
 
 
 int __isd_port = PortOffsetISD;
@@ -125,7 +126,7 @@ int ICAMain( int argc, char * * argv )
 			}
 		}
 	}
-
+	
 #ifdef BUILD_LINUX
 	if( rx11vs )
 	{

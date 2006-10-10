@@ -39,6 +39,7 @@
 
 class progressWidget;
 class remoteControlWidget;
+class systemKeyTrapper;
 
 
 class vncView : public QWidget
@@ -84,6 +85,9 @@ private:
 	QMap<unsigned int, bool> m_mods;
 
 	progressWidget * m_establishingConnection;
+
+	systemKeyTrapper * m_sysKeyTrapper;
+
 
 	friend class remoteControlWidget;
 

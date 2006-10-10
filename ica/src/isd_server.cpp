@@ -191,7 +191,8 @@ int isdServer::processClient( socketDispatcher _sd, void * _user )
 			// make sure any running demo-server is destroyed
 			delete m_demoServer;
 			// start demo-server on local IVS
-			m_demoServer = new demoServer( m_ivs );
+			m_demoServer = new demoServer( m_ivs,
+					msg_in.arg( "port" ).toInt() );
 /*			if( m_demoServer->serverPort() )
 			{
 				// tell iTALC-master at which port the demo-

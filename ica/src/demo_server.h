@@ -44,7 +44,7 @@ class demoServer : public QTcpServer
 {
 	Q_OBJECT
 public:
-	demoServer( IVS * _ivs_conn );
+	demoServer( IVS * _ivs_conn, quint16 _port = 0 );
 	virtual ~demoServer();
 
 /*

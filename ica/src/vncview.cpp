@@ -31,6 +31,7 @@
 #include "messagebox.h"
 #include "qt_user_events.h"
 #include "progress_widget.h"
+#include "system_key_trapper.h"
 
 #include <QtCore/QTimer>
 #include <QtGui/QApplication>
@@ -43,7 +44,8 @@
 vncView::vncView( const QString & _host, bool _view_only, QWidget * _parent ) :
 	QWidget( _parent/*, Qt::X11BypassWindowManagerHint*/ ),
 	m_viewOnly( _view_only ),
-	m_buttonMask( 0 )
+	m_buttonMask( 0 ),
+	m_sysKeyTrapper( NULL )
 {
 	m_establishingConnection = new progressWidget(
 		tr( "Establishing connection to %1 ..." ).arg( _host ),
@@ -55,6 +57,8 @@ vncView::vncView( const QString & _host, bool _view_only, QWidget * _parent ) :
 
 	if( !m_viewOnly )
 	{
+		m_sysKeyTrapper = new systemKeyTrapper();
+
 		// only connect slots for sending events, if we're not in
 		// view-only mode
 		connect( this,
@@ -63,6 +67,8 @@ vncView::vncView( const QString & _host, bool _view_only, QWidget * _parent ) :
 			SLOT( sendPointerEvent( Q_UINT16, Q_UINT16,
 								Q_UINT16 ) ) );
 		connect( this, SIGNAL( keyEvent( Q_UINT32, bool ) ),
+			m_connection, SLOT( sendKeyEvent( Q_UINT32, bool ) ) );
+		connect( m_sysKeyTrapper, SIGNAL( keyEvent( Q_UINT32, bool ) ),
 			m_connection, SLOT( sendKeyEvent( Q_UINT32, bool ) ) );
 	}
 
@@ -105,6 +111,7 @@ vncView::vncView( const QString & _host, bool _view_only, QWidget * _parent ) :
 vncView::~vncView()
 {
 	delete m_connection;
+	delete m_sysKeyTrapper;
 }
 
 
