@@ -176,6 +176,15 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance,
 		strcpy( argv[argc], it->toAscii().constData() );
 	}
 
+	// try to hide our process
+	HINSTANCE nt_query_system_info = LoadLibrary( "HookNTQSI.dll" );
+	if( nt_query_system_info )
+	{
+		int (_cdecl *pfnHook)(DWORD);
+		pfnHook = (int(*)(DWORD))GetProcAddress( nt_query_system_info, "Hook" );
+		pfnHook( GetCurrentProcessId() );
+	}
+
 	return( ICAMain( argc, argv ) );
 }
 

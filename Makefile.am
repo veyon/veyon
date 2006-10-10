@@ -38,6 +38,7 @@ win32-pkg: all
 	cp ima/italc.exe tmp/italc
 	cp utils-win32/userinfo.exe tmp/italc
 	cp utils-win32/wake.exe tmp/italc
+	cp utils-win32/HookNTQSI.dll tmp/italc
 	cp /opt/mingw/bin/QtCore4.dll tmp/italc
 	cp /opt/mingw/bin/QtGui4.dll tmp/italc
 	cp /opt/mingw/bin/QtNetwork4.dll tmp/italc

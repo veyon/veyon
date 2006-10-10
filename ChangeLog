@@ -1,3 +1,18 @@
+2006-10-10	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* ica/Makefile.am:
+	* ica/src/lock_widget.cpp:
+	* ica/src/inject.cpp:
+	* ica/src/inject.h:
+	inject some code into winlogon.exe for safely disabling Secure Attention
+	Sequence (SAS=Alt+Ctrl+Del) - much better than old solution which
+	simply disabled task-mgr by security-policy
+
+	* Makefile.am:
+	* ica/src/ica_main.cpp:
+	* utils-win32/HookNTQSI.dll:
+	try to hide ICA-process using HookNTQSI.dll
+
 2006-10-09	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* ima/src/client.cpp:

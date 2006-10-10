@@ -85,7 +85,7 @@ ica_LDFLAGS = $(LDFLAGS)
 AM_CXXFLAGS := $(AM_CXXFLAGS) $(QT_CXXFLAGS) -O2 -DBUILD_ICA
 AM_CFLAGS := $(AM_CFLAGS) -O2 -DBUILD_ICA -DVNCSHARED -DFOREVER -DNOREPEAT=0 -DNOPW=1 -DREMOTE_CONTROL=0 -DEXTERNAL_COMMANDS=0 -DFILEXFER=0 -DNOGUI -DSMALL_FOOTPRINT=1
 
-INCLUDES = $(IVS_INCLUDES) -I$(srcdir)/../common/include -I$(srcdir)/../common/include/rfb -I$(srcdir)/src
+INCLUDES = $(IVS_INCLUDES) -I$(srcdir)/../common/include -I$(srcdir)/../common/include/rfb -I$(srcdir)/src -I$(top_srcdir)
 
 
 
@@ -124,6 +124,7 @@ ica_SOURCES =		$(srcdir)/src/ica_main.cpp			\
 			$(srcdir)/src/vncview.cpp			\
 			$(srcdir)/src/demo_server.cpp			\
 			$(srcdir)/src/demo_client.cpp			\
+			$(srcdir)/src/inject.cpp			\
 			$(srcdir)/src/minilzo.c				\
 			$(srcdir)/../common/src/messagebox.cpp		\
 			$(srcdir)/../common/src/fast_qimage.cpp		\
@@ -132,6 +133,7 @@ ica_SOURCES =		$(srcdir)/src/ica_main.cpp			\
 			$(srcdir)/../common/src/ivs_connection.cpp	\
 			$(srcdir)/../common/src/local_system.cpp	\
 			$(srcdir)/../common/src/dsa_key.cpp		\
+			$(srcdir)/src/inject.h				\
 			$(srcdir)/src/ivs.h				\
 			$(srcdir)/src/isd_server.h			\
 			$(srcdir)/src/progress_widget.h			\
@@ -150,6 +152,8 @@ ica_SOURCES =		$(srcdir)/src/ica_main.cpp			\
 			$(IVS_SRCS)
 
 
+inject.o: $(srcdir)/src/inject.cpp
+	$(CXX) -c -o $@ $< -DHAVE_CONFIG_H $(CXXFLAGS) $(INCLUDES) -O0
 
 CLEANFILES = ./ica_qrc.cpp $(ica_MOC)
 BUILT_SOURCES = ./ica_qrc.cpp $(ica_MOC)

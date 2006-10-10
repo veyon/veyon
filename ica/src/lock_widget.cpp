@@ -41,7 +41,12 @@
 #include <wingdi.h>
 #include <winreg.h>
 #include <winuser.h>
+
+#include "inject.h"
+
+
 HHOOK g_hHookKbdLL = NULL; // hook handle
+
 
 LRESULT CALLBACK TaskKeyHookLL(int nCode, WPARAM wp, LPARAM lp)
 {
@@ -98,10 +103,11 @@ void DisableTaskKeys( BOOL bDisable )
 							TaskKeyHookLL,
 							hAppInstance, 0 );
 		}
-		// set registry-entry to disable task-manager (Alt+Ctrl+Del)
+/*		// set registry-entry to disable task-manager (Alt+Ctrl+Del)
 		DWORD val = 1;
 		RegSetValueEx( hk, VAL_DisableTaskMgr, 0L, REG_DWORD,
-						(BYTE*) &val, sizeof( val ) );
+						(BYTE*) &val, sizeof( val ) );*/
+		Inject();
 	}
 	else if( g_hHookKbdLL != NULL )
 	{
@@ -109,7 +115,8 @@ void DisableTaskKeys( BOOL bDisable )
 		UnhookWindowsHookEx( g_hHookKbdLL );
 		g_hHookKbdLL = NULL;
 		// delete registry-entry
-		RegDeleteValue( hk, VAL_DisableTaskMgr );
+		//RegDeleteValue( hk, VAL_DisableTaskMgr );
+		Eject();
 	}
 
 	// enable/disable task-bar
