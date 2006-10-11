@@ -74,6 +74,7 @@ private:
 
 	void keyEvent( QKeyEvent * );
 	void mouseEvent( QMouseEvent * );
+	void unpressModifiers( void );
 
 
 	ivsConnection * m_connection;

@@ -86,10 +86,10 @@ void progressWidget::paintEvent( QPaintEvent * )
 	QLinearGradient grad( 0, 0, 0, height() );
 	QColor g1 = palette().color( QPalette::Active, QPalette::Window ).
 								light( 130 );
-	g1.setAlpha( 204 );
+	//g1.setAlpha( 204 );
 	QColor g2 = palette().color( QPalette::Active, QPalette::Window ).
 								light( 70 );
-	g2.setAlpha( 204 );
+	//g2.setAlpha( 204 );
 	grad.setColorAt( 0, g1 );
 	grad.setColorAt( 1, g2 );
 	p.setBrush( grad );

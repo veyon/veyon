@@ -298,7 +298,7 @@ int InjectCode ()
 
 	switch(1)
 	{
-	case 1:
+	default:
 	{
 		// Initialize INJDATA for GetSASWnd() call
 		strcpy(DataLocal.szClassName, "SAS Window class");

@@ -405,7 +405,7 @@ void demoServerClient::processClient( void )
 		m_cursorShapeChanged = FALSE;
 	}
 
-	++m_frames;
+	//++m_frames;
 	m_sock->flush();
 	m_dataMutex.unlock();
 	QTimer::singleShot( 20, this, SLOT( processClient() ) );

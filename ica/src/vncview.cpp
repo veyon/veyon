@@ -93,7 +93,7 @@ vncView::vncView( const QString & _host, bool _view_only, QWidget * _parent ) :
 			SLOT( sendIncrementalFramebufferUpdateRequest() ) );
 	if( _view_only )
 	{
-		t->start( 70 );
+		t->start( 80 );
 	}
 	else
 	{
@@ -110,6 +110,8 @@ vncView::vncView( const QString & _host, bool _view_only, QWidget * _parent ) :
 
 vncView::~vncView()
 {
+	unpressModifiers();
+	m_connection->handleServerMessages( FALSE, 10 );
 	delete m_connection;
 	delete m_sysKeyTrapper;
 }
@@ -339,13 +341,23 @@ void vncView::keyEvent( QKeyEvent * _ke )
 			{
 				s = s.toLower();
 			}
-			key = s.toAscii().constData()[0];
+			key = s.utf16()[0];
 		}
 		else
 		{
-			key = _ke->text().utf16()[0];//[0].toAscii();
+			key = _ke->text().utf16()[0];
 		}
 		
+	}
+	// correct translation of AltGr+<character key> (non-US-keyboard layout
+	// such as German keyboard layout)
+	if( m_mods.contains( XK_Alt_L ) && m_mods.contains( XK_Control_L ) &&
+						key >= 64 && key < 0xF000 )
+	{
+		//emit keyEvent( XK_Control_L, FALSE );
+		//emit keyEvent( XK_Alt_L, FALSE );
+		unpressModifiers();
+		emit keyEvent( XK_ISO_Level3_Shift, TRUE );
 	}
 #endif
 
@@ -363,14 +375,7 @@ void vncView::keyEvent( QKeyEvent * _ke )
 		}
 		else
 		{
-			QList<unsigned int> keys = m_mods.keys();
-			QList<unsigned int>::const_iterator it = keys.begin();
-			while( it != keys.end() )
-			{
-				emit keyEvent( *it, FALSE );
-				it++;
-			}
-			m_mods.clear();
+			unpressModifiers();
 		}
 	}
 
@@ -379,6 +384,21 @@ void vncView::keyEvent( QKeyEvent * _ke )
 		emit keyEvent( key, pressed );
 		_ke->accept();
 	}
+}
+
+
+
+
+void vncView::unpressModifiers( void )
+{
+	QList<unsigned int> keys = m_mods.keys();
+	QList<unsigned int>::const_iterator it = keys.begin();
+	while( it != keys.end() )
+	{
+		emit keyEvent( *it, FALSE );
+		it++;
+	}
+	m_mods.clear();
 }
 
 

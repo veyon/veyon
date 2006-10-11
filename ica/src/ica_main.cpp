@@ -52,11 +52,17 @@ int ICAMain( int argc, char * * argv )
 	_Xdebug = 1;
 #endif
 #endif
-
 	QCoreApplication * app;
 	if( argc > 1 && QString( argv[1] ) == "-rx11vs" )
 	{
 		app = new QCoreApplication( argc, argv );
+	}
+	else if( argc > 1 && QString( argv[1] ) == SERVICE_ARG )
+	{
+		if( icaServiceMain() )
+		{
+			return( 0 );
+		}
 	}
 	else
 	{
@@ -166,7 +172,15 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	hAppInstance = hInstance;
 	mainthreadId = GetCurrentThreadId();
 
+	const int pathlen = 2048;
+	char path[pathlen];
+	if( GetModuleFileName( NULL, path, pathlen ) == 0 )
+	{
+		printf( "could not determine module-filename!\n" ); 
+	}
+
 	QStringList cmdline = QString( szCmdLine ).toLower().split( ' ' );
+	cmdline.push_front( path );
 
 	char * * argv = new char *[cmdline.size()];
 	int argc = 0;
@@ -177,6 +191,7 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance,
 		strcpy( argv[argc], it->toAscii().constData() );
 	}
 
+#if 0
 	// try to hide our process
 	HINSTANCE nt_query_system_info = LoadLibrary( "HookNTQSI.dll" );
 	if( nt_query_system_info )
@@ -185,6 +200,7 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance,
 		pfnHook = (int(*)(DWORD))GetProcAddress( nt_query_system_info, "Hook" );
 		pfnHook( GetCurrentProcessId() );
 	}
+#endif
 
 	return( ICAMain( argc, argv ) );
 }

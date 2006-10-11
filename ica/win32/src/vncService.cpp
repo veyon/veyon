@@ -380,7 +380,7 @@ vncService::InputDesktopSelected()
 }
 
 // Static routine used to fool Winlogon into thinking CtrlAltDel was pressed
-
+#include <QtCore/QProcess>
 void *
 SimulateCtrlAltDelThreadFn(void *context)
 {
@@ -390,6 +390,7 @@ SimulateCtrlAltDelThreadFn(void *context)
 	if (!vncService::SelectDesktop("Winlogon"))
 	{
 		vnclog.Print(LL_INTERR, VNCLOG("failed to select logon desktop\n"));
+		QProcess::startDetached( "taskmgr" );
 		return FALSE;
 	}
 

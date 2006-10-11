@@ -181,20 +181,16 @@ void ServiceWorkThread( void * _arg )
 	ReportStatus( SERVICE_STOPPED, g_error, 0 );
 }
 
+
 // SERVICE STOP ROUTINE - post a quit message to the relevant thread
 void ServiceStop( void )
 {
 	// Post a quit message to the main service thread
 	if( g_servicethread )
 	{
+		//TerminateThread( (void *) g_servicethread, 0 );
 		PostThreadMessage( g_servicethread, WM_QUIT, 0, 0 );
-		omni_thread::sleep( 1 );
-		if( g_servicethread )
-		{
-			//TerminateThread( (void *) g_servicethread, 0 );
-		}
 	}
-	exit( 0 );
 }
 
 

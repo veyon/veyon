@@ -1,3 +1,57 @@
+2006-10-11	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* ica/src/progress_widget.cpp:
+	do not use semi-transparent progress-widget as it's horribly slow
+	under win32
+
+	* ica/src/service.cpp:
+	do not call exit(0) at the end of ServiceStop() - win32-service-manager
+	now properly detects if service had been stopped
+
+	* ica/src/ica_main.cpp:
+	- do not create QApplication in first invocation of ICAMain() when
+	  running as service for not creating two QApplication-objects
+	- bugfix: when settings up commandline for ICAMain() in WinMain() make
+	  the first item to be the application-path - fixes several problems
+	  when building against Qt 4.2.0 and running as service under win32
+
+	* ica/src/remote_control_widget.cpp:
+	more usable toolbar and toolbuttons
+
+	* common/src/isd_connection.cpp:
+	wait 1000 ms instead of 500 ms for connection to be established
+
+	* ica/win32/src/vncService.cpp:
+	in SimulateCtrlAltDelThreadFn(): if switching to winlogon-desktop
+	failed, launch taskmgr manually
+
+	* ica/src/system_key_trapper.h:
+	* ica/src/system_key_trapper.cpp:
+	- trap Alt+F4 under win32
+	- detect Alt+Ctrl+Del-presses under win32
+
+	* ica/src/vncview.cpp:
+	* ica/src/vncview.h:
+	- full support for level3-shift-key (AKA AltGr) and unicode-characters
+	  such as euro-sign
+	- unpress all modifiers when quitting
+
+	* ima/src/client.cpp:
+	- do not lock m_syncMutex when changing client-mode as it isn't
+	  neccessary anymore and just causes senseless delays
+	- only lock m_queueMutex where it is really needed, improves reaction-
+	  time when changing client-mode as well
+
+	* ima/src/client_manager.cpp:
+	much smaller delay when changing global client mode in the hope this
+	doesn't cause problems with demo-mode
+
+	* ima/src/client.cpp:
+	* ima/src/client_manager.cpp:
+	set mainWindow::m_clientManager in constructor of clientManager, so
+	code called out of it does not crash when using
+	mainWindow::m_clientManager
+
 2006-10-10	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* ica/src/system_key_trapper.cpp:

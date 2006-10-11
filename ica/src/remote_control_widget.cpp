@@ -127,7 +127,7 @@ void remoteControlWidgetToolBar::paintEvent( QPaintEvent * _pe )
 	f.setBold( TRUE );
 	p.setFont( f );
 
-	p.setPen( QColor( 255, 232, 0 ) );
+	p.setPen( QColor( 0, 255, 0 ) );
 	p.drawText( 10, ( height() + fsize ) / 2 - 2, m_parent->windowTitle() );
 
 	fastQImage bg_img = QPixmap::grabWidget( m_parent->m_vncView,
@@ -187,6 +187,7 @@ fxToolButton::fxToolButton( const QString & _hint_label, const QImage & _img,
 	f.setPointSize( 12 );
 	setFont( f );
 	m_widthExpansion = fontMetrics().width( m_hintLabel ) + 5;
+	setFixedWidth( m_img.width() + m_widthExpansion );
 }
 
 
@@ -230,19 +231,24 @@ void fxToolButton::paintEvent( QPaintEvent * _pe )
 	p.drawImage( _pe->rect().topLeft(),
 			tmp.alphaFillMax( m_parent->opacity() ), _pe->rect() );
 
+		const Q_UINT16 coeff = isDown() ? 160 : 256;
 	if( m_colorizeLevel )
 	{
-		const Q_UINT16 coeff = isDown() ? 160 : 256;
 		tmp = m_img;
 		tmp.alphaFillMax( m_colorizeLevel ).darken( coeff );
 
 		p.drawImage( _pe->rect().topLeft(), tmp, _pe->rect() );
-		p.setPen( QColor( 255 * coeff / 256, 232 * coeff / 256,
-							0, m_colorizeLevel ) );
-		p.drawText( m_img.width() + 2, ( height() +
-					p.font().pointSize() ) / 2 - 2,
-				m_hintLabel );
 	}
+
+/*	p.setPen( QColor( 128+m_colorizeLevel/2, 128-16+m_colorizeLevel/2,
+						0, 191+m_colorizeLevel/4 ) );
+		*/
+	p.setPen( Qt::black );
+	p.drawText( m_img.width() + 3, ( height() + p.font().pointSize() ) / 2 -
+							1, m_hintLabel );
+	p.setPen( QColor( 255-m_colorizeLevel, 255, 255-m_colorizeLevel ) );
+	p.drawText( m_img.width() + 2, ( height() + p.font().pointSize() ) / 2 -
+							2, m_hintLabel );
 
 }
 
@@ -271,8 +277,9 @@ void fxToolButton::updateColorLevel( void )
 		m_colorizeLevel = qMin( 255, m_colorizeLevel + 10 );
 		again = m_colorizeLevel < 255;
 	}
-	setFixedWidth( m_img.width() + calcWidth( m_widthExpansion,
-							m_colorizeLevel ) );
+	//setFixedWidth( m_img.width() + m_widthExpansion );
+	/* calcWidth( m_widthExpansion,
+							m_colorizeLevel ) );*/
 	parentWidget()->updateGeometry();
 	update();
 	if( again )

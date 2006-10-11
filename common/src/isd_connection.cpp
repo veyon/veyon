@@ -149,7 +149,7 @@ isdConnection::states isdConnection::open( void )
 		return( m_state = HostUnreachable );
 	}
 
-	m_socket->waitForConnected( 500 );
+	m_socket->waitForConnected( 1000 );
 
 	if( m_socket->state() != QTcpSocket::ConnectedState )
 	{

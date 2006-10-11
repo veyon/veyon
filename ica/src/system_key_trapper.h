@@ -48,7 +48,8 @@ public:
 		AltTab,
 		AltEsc,
 		CtrlEsc,
-		MetaKey
+		MetaKey,
+		AltF4
 	} ;
 
 

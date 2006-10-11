@@ -78,7 +78,7 @@ isdServer::isdServer( const quint16 _ivs_port, int _argc, char * * _argv ) :
 	// as things like creating a demo-window, remote-control-view etc. can
 	// only be done by GUI-thread we push all actions into a list and
 	// process this list later in a slot called by the GUI-thread every 500s
-	t->start( 500 );
+	t->start( 300 );
 
 	// finally we set the global pointer to ourself
 	__isd_server = this;

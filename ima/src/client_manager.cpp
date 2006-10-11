@@ -96,6 +96,10 @@ clientManager::clientManager( mainWindow * _main_window, QWidget * _parent ) :
 	m_globalClientMode( client::Mode_Overview ),
 	m_clientUpdateInterval( 1 )
 {
+	// some code called out of this function relies on m_clientManager
+	// which actually is assigned after this function returns
+	_main_window->m_clientManager = this;
+
 	m_view = new QTreeWidget( contentParent() );
 	contentParent()->layout()->addWidget( m_view );
 	m_view->setWhatsThis( tr( "In this list clients and classrooms are "
@@ -759,7 +763,7 @@ void clientManager::changeGlobalClientMode( int _mode )
 		foreach( client * cl, vc )
 		{
 			cl->changeMode( m_globalClientMode, conn );
-			localSystem::sleep( 2000 );
+			localSystem::sleep( 200 );
 		}
 	}
 }

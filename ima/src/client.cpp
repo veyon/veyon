@@ -244,7 +244,7 @@ void client::changeMode( const modes _new_mode, isdConnection * _conn )
 {
 	if( _new_mode != m_mode )
 	{
-		m_syncMutex.lock();
+		//m_syncMutex.lock();
 		switch( m_mode )
 		{
 			case Mode_Overview:
@@ -282,7 +282,7 @@ void client::changeMode( const modes _new_mode, isdConnection * _conn )
 						updateThread::LockScreen );
 				break;
 		}
-		m_syncMutex.unlock();
+		//m_syncMutex.unlock();
 	}
 	// if connection was lost while sending commands such as stop-demo,
 	// there should be a way for switching back into normal mode, that's
@@ -1054,7 +1054,6 @@ client::updateThread::updateThread( client * _client ) :
 
 void client::updateThread::run( void )
 {
-	QThread::sleep( 3 );
 	while( !m_quit )
 	{
 		if( m_client->isVisible() )
@@ -1063,13 +1062,14 @@ void client::updateThread::run( void )
 		}
 
 		QThread::sleep( m_client->m_mainWindow->
-				getClientManager()->updateInterval() );
+					getClientManager()->updateInterval() );
 
 		m_queueMutex.lock();
 		m_client->m_syncMutex.lock();
 		while( !m_queue.isEmpty() )
 		{
 			const queueItem i = m_queue.dequeue();
+			m_queueMutex.unlock();
 			switch( i.first )
 			{
 				case ResetConnection:
@@ -1111,6 +1111,7 @@ void client::updateThread::run( void )
 							i.second.toString() );
 					break;
 			}
+			m_queueMutex.lock();
 		}
 		m_client->m_syncMutex.unlock();
 		m_queueMutex.unlock();
