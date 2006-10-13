@@ -700,7 +700,7 @@ bool isdConnection::restartComputer( void )
 
 
 
-bool isdConnection::demoServerRun( int _port )
+bool isdConnection::demoServerRun( int _quality, int _port )
 {
 	if( m_socket->state() != QTcpSocket::ConnectedState )
 	{
@@ -709,7 +709,8 @@ bool isdConnection::demoServerRun( int _port )
 	}
 	m_demoServerPort = _port;
 	return( ISD::msg( &m_socketDev, ISD::DemoServer_Run ).
-					addArg( "port", _port ).send() );
+					addArg( "port", _port ).
+					addArg( "quality", _quality ).send() );
 }
 
 

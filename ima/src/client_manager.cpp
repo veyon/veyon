@@ -253,6 +253,7 @@ void clientManager::savePersonalConfig( void )
 					getMainWindow()->saveState() ) );
 
 	globalsettings.setAttribute( "net-iface", __demo_network_interface );
+	globalsettings.setAttribute( "demoquality", __demo_quality );
 	globalsettings.setAttribute( "notooltips",
 					toolButton::toolTipsDisabled() );
 
@@ -432,6 +433,9 @@ void clientManager::getHeaderInformation( const QDomElement & _header )
 			// the demo should run
 			__demo_network_interface = node.toElement().
 						attribute( "net-iface" );
+
+			__demo_quality = node.toElement().
+					attribute( "demoquality" ).toInt();
 
 			toolButton::setToolTipsDisabled(
 				node.toElement().attribute( "notooltips" ).

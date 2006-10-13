@@ -1,6 +1,6 @@
 /*
- * demo_server.cpp - multi-threaded slim VNC-server for demo-purposes (lot of
- *                   clients accessing server in read-only-mode)
+ * demo_server.cpp - multi-threaded slim VNC-server for demo-purposes (optimized
+ *                   for lot of clients accessing server in read-only-mode)
  *
  * Copyright (c) 2006 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *  
@@ -40,13 +40,15 @@
 const int CURSOR_UPDATE_TIME = 30;
 
 
-demoServer::demoServer( IVS * _ivs_conn, quint16 _port ) :
+demoServer::demoServer( IVS * _ivs_conn, int _quality, quint16 _port ) :
 	QTcpServer(),
 	m_conn( new ivsConnection(
 			QHostAddress( QHostAddress::LocalHost ).toString() +
 					":" + QString::number(
 						_ivs_conn->serverPort() ),
-					ivsConnection::QualityDemoPurposes,
+			static_cast<ivsConnection::quality>(
+				ivsConnection::QualityDemoLow +
+						qBound( 0, _quality, 2 ) ),
 				_ivs_conn->runningInSeparateProcess() ) ),
 	m_updaterThread( new updaterThread( m_conn ) )
 {
@@ -147,10 +149,7 @@ demoServerClient::demoServerClient( int _sd, const ivsConnection * _conn ) :
 	m_lzoWorkMem( new Q_UINT8[sizeof( lzo_align_t ) *
 			( ( ( LZO1X_1_MEM_COMPRESS ) +
 			    		( sizeof( lzo_align_t ) - 1 ) ) /
-				 		sizeof( lzo_align_t ) ) ] ),
-	m_bandwidthTimer( NULL ),
-	m_bytesOut( 0 ),
-	m_frames( 0 )
+				 		sizeof( lzo_align_t ) ) ] )
 {
 	QTimer::singleShot( CURSOR_UPDATE_TIME, this,
 					SLOT( checkForCursorMovement() ) );
@@ -170,7 +169,7 @@ demoServerClient::~demoServerClient()
 
 
 
-void demoServerClient::updateRegion( const QRegion & _reg )
+void demoServerClient::updateRegion( const rectList & _reg )
 {
 	m_dataMutex.lock();
 	m_changedRegion += _reg;
@@ -270,22 +269,22 @@ void demoServerClient::processClient( void )
 		// e.g. if we didn't get an update-request for a quite long time
 		// and there were a lot of updates - at the end we don't send
 		// more than the whole screen one time
-		QVector<QRect> rects = m_changedRegion.rects();
+		//QVector<QRect> rects = m_changedRegion.rects();
+		const rectList r = m_changedRegion.nonOverlappingRects();
 
 		// no we gonna post all changed rects!
 		const rfbFramebufferUpdateMsg m =
 		{
 			rfbFramebufferUpdate,
 			0,
-			swap16IfLE( rects.size() +
+			swap16IfLE( r.size() +
 					( m_cursorShapeChanged ? 1 : 0 ) )
 		} ;
 
 		m_sock->write( (const char *) &m, sizeof( m ) );
-
 		// process each rect
-		for( QVector<QRect>::const_iterator it = rects.begin();
-						it != rects.end(); ++it )
+		for( rectList::const_iterator it = r.begin();
+							it != r.end(); ++it )
 		{
 			const rfbRectangle rr =
 			{
@@ -352,7 +351,6 @@ void demoServerClient::processClient( void )
 	lzo1x_1_compress( (const unsigned char *) out, (lzo_uint) hdr.bytesRLE,
 				(unsigned char *) comp,
 				(lzo_uint *) &hdr.bytesLZO, m_lzoWorkMem );
-	m_bytesOut += hdr.bytesLZO + 32;
 	hdr.bytesRLE = swap32IfLE( hdr.bytesRLE );
 	hdr.bytesLZO = swap32IfLE( hdr.bytesLZO );
 
@@ -372,8 +370,6 @@ void demoServerClient::processClient( void )
 			( (const QRgb *) i.scanLine( it->y() + y ) + it->x() ),
 							w * sizeof( QRgb ) );
 	}
-	m_bytesOut += w * h * sizeof( QRgb ) + 32;
-
 			}
 		}
 
@@ -401,17 +397,13 @@ void demoServerClient::processClient( void )
 		}
 
 		// reset vars
-		m_changedRegion = QRegion();
+		m_changedRegion.clear();
 		m_cursorShapeChanged = FALSE;
 	}
 
-	//++m_frames;
 	m_sock->flush();
 	m_dataMutex.unlock();
 	QTimer::singleShot( 20, this, SLOT( processClient() ) );
-/*	printf("kbps%d  fps:%d\n", m_bytesOut /
-				( m_bandwidthTimer->elapsed() * 1024 / 1000 ),
-				m_frames * 1000 / m_bandwidthTimer->elapsed() );*/
 }
 
 
@@ -427,8 +419,8 @@ void demoServerClient::run( void )
 			"demoServerClient::run() - aborting.\n" );
 		return;
 	}
-	m_bandwidthTimer = new QTime();
-	m_bandwidthTimer->start();
+	//m_bandwidthTimer = new QTime();
+	//m_bandwidthTimer->start();
 	socketDevice sd( qtcpsocketDispatcher, m_sock );
 	if( !isdServer::protocolInitialization( sd,
 						ItalcAuthHostBased, TRUE ) )
@@ -517,12 +509,12 @@ void demoServerClient::run( void )
 
 	// for some reason we have to do this to make the following connection
 	// working
-	qRegisterMetaType<QRegion>( "QRegion" );
+	qRegisterMetaType<rectList>( "rectList" );
 
 	connect( m_conn, SIGNAL( cursorShapeChanged() ),
 				this, SLOT( updateCursorShape() ) );
-	connect( m_conn, SIGNAL( regionUpdated( const QRegion & ) ),
-				this, SLOT( updateRegion( const QRegion & ) ) );
+	connect( m_conn, SIGNAL( regionUpdated( const rectList & ) ),
+			this, SLOT( updateRegion( const rectList & ) ) );
 
 	m_dataMutex.unlock();
 

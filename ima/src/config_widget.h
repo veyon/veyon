@@ -39,6 +39,7 @@ public:
 
 protected slots:
 	void interfaceSelected( const QString & _if_name );
+	void demoQualitySelected( int );
 	void toggleToolButtonTips( bool _on );
 
 } ;

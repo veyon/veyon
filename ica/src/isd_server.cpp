@@ -192,6 +192,7 @@ int isdServer::processClient( socketDispatcher _sd, void * _user )
 			delete m_demoServer;
 			// start demo-server on local IVS
 			m_demoServer = new demoServer( m_ivs,
+					msg_in.arg( "quality" ).toInt(),
 					msg_in.arg( "port" ).toInt() );
 /*			if( m_demoServer->serverPort() )
 			{
@@ -789,7 +790,8 @@ public:
 				break;
 
 			case ISD::DemoServer_Run:
-				demoServerRun( msg_in.arg( "port" ).toInt() );
+				demoServerRun( msg_in.arg( "quality" ).toInt(),
+						msg_in.arg( "port" ).toInt() );
 				break;
 
 			case ISD::DemoServer_Stop:

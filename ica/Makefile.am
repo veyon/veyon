@@ -134,6 +134,7 @@ ica_SOURCES =		$(srcdir)/src/ica_main.cpp			\
 			$(srcdir)/../common/src/isd_connection.cpp	\
 			$(srcdir)/../common/src/ivs_connection.cpp	\
 			$(srcdir)/../common/src/local_system.cpp	\
+			$(srcdir)/../common/src/rect_list.cpp		\
 			$(srcdir)/../common/src/dsa_key.cpp		\
 			$(srcdir)/src/inject.h				\
 			$(srcdir)/src/ivs.h				\

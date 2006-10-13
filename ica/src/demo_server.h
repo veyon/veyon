@@ -1,6 +1,6 @@
 /*
- * demo_server.h - multi-threaded slim VNC-server for demo-purposes (lot of
- *                 clients accessing server in read-only-mode)
+ * demo_server.h - multi-threaded slim VNC-server for demo-purposes (optimized
+ *                 for lot of clients accessing server in read-only-mode)
  *           
  * Copyright (c) 2006 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *  
@@ -30,7 +30,6 @@
 #include <QtCore/QMutex>
 #include <QtCore/QPair>
 #include <QtCore/QThread>
-#include <QtGui/QRegion>
 #include <QtNetwork/QTcpServer>
 
 #include "ivs_connection.h"
@@ -44,13 +43,9 @@ class demoServer : public QTcpServer
 {
 	Q_OBJECT
 public:
-	demoServer( IVS * _ivs_conn, quint16 _port = 0 );
+	demoServer( IVS * _ivs_conn, int _quality = 0, quint16 _port = 0 );
 	virtual ~demoServer();
 
-/*
-private slots:
-	void acceptNewConnection( void );
-*/
 
 private:
 	virtual void incomingConnection( int _sd );
@@ -77,7 +72,6 @@ private:
 
 
 
-class QTime;
 // the demo-server creates an instance of this class for each client, i.e.
 // each client is connected to a different server-thread for a maximum
 // performance
@@ -94,7 +88,7 @@ private slots:
 	// IVS-connection - this way we can record changes in screen, later we
 	// extract single, non-overlapping rectangles out of changed region for
 	// updating as less as possible of screen
-	void updateRegion( const QRegion & _reg );
+	void updateRegion( const rectList & _reg );
 
 	// called whenever ivsConnection::cursorShapeChanged() is emitted
 	void updateCursorShape( void );
@@ -121,7 +115,7 @@ private:
 	virtual void run( void );
 
 	QMutex m_dataMutex;
-	QRegion m_changedRegion;
+	rectList m_changedRegion;
 	QPoint m_lastCursorPos;
 	bool m_cursorShapeChanged;
 	bool m_cursorPosChanged;
@@ -131,10 +125,6 @@ private:
 	const ivsConnection * m_conn;
 
 	Q_UINT8 * m_lzoWorkMem;
-
-	QTime * m_bandwidthTimer;
-	Q_UINT32 m_bytesOut;
-	Q_UINT32 m_frames;
 
 } ;
 

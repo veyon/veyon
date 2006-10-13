@@ -51,7 +51,7 @@ namespace jpeglib
 #include "isd_connection.h"
 #include "rfb/rfbproto.h"
 #include "fast_qimage.h"
-
+#include "rect_list.h"
 
 
 class demoServerClient;
@@ -66,7 +66,9 @@ public:
 		QualityLow,
 		QualityMedium,
 		QualityHigh,
-		QualityDemoPurposes
+		QualityDemoLow,
+		QualityDemoMedium,
+		QualityDemoHigh
 	} ;
 
 
@@ -239,7 +241,7 @@ private:
 
 signals:
 	void cursorShapeChanged( void );
-	void regionUpdated( const QRegion & );
+	void regionUpdated( const rectList & );
 
 } ;
 

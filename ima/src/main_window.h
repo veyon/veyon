@@ -49,7 +49,7 @@ class userList;
 
 extern QString __demo_network_interface;
 extern QString __demo_master_ip;
-
+extern int __demo_quality;
 
 
 class mainWindow : public QMainWindow

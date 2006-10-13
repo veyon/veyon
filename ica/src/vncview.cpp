@@ -152,13 +152,13 @@ void vncView::framebufferUpdate( void )
 
 	// check whether to scroll because mouse-cursor is at an egde which
 	// doesn't correspond to the framebuffer's edge
-	QPoint mp = mapFromGlobal( QCursor::pos() );
+	const QPoint mp = mapFromGlobal( QCursor::pos() );
+	const QPoint old_vo = m_viewOffset;
 	const int MAGIC_MARGIN = 6;
 	if( mp.x() <= MAGIC_MARGIN && m_viewOffset.x() > 0 )
 	{
 		m_viewOffset.setX( qMax( 0, m_viewOffset.x() -
 						( MAGIC_MARGIN - mp.x() ) ) );
-		update();
 	}
 	else if( mp.x() > width() - MAGIC_MARGIN && m_viewOffset.x() <=
 			m_connection->framebufferSize().width() - width() )
@@ -166,7 +166,6 @@ void vncView::framebufferUpdate( void )
 		m_viewOffset.setX( qMin( m_viewOffset.x() +
 					( MAGIC_MARGIN + mp.x() - width() ),
 			m_connection->framebufferSize().width() - width() ) );
-		update();
 	}
 
 	if( mp.y() <= MAGIC_MARGIN )
@@ -175,7 +174,6 @@ void vncView::framebufferUpdate( void )
 		{
 			m_viewOffset.setY( qMax( 0, m_viewOffset.y() -
 						( MAGIC_MARGIN - mp.y() ) ) );
-			update();
 		}
 		else if( mp.y() < 2 )
 		{
@@ -190,6 +188,10 @@ void vncView::framebufferUpdate( void )
 		m_viewOffset.setY( qMin( m_viewOffset.y() +
 					( MAGIC_MARGIN + mp.y() - height() ),
 			m_connection->framebufferSize().height() - height() ) );
+	}
+
+	if( old_vo != m_viewOffset )
+	{
 		update();
 	}
 
@@ -448,7 +450,7 @@ void vncView::paintEvent( QPaintEvent * _pe )
 	// avoid nasty through-shining-window-effect when not connected yet
 	if( m_connection->screen().isNull() )
 	{
-		p.fillRect( rect(), Qt::black );
+		p.fillRect( _pe->rect(), Qt::black );
 		return;
 	}
 

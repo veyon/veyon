@@ -8,8 +8,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>315</width>
-    <height>423</height>
+    <width>326</width>
+    <height>553</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -18,10 +18,10 @@
   <widget class="QWidget" name="" >
    <property name="geometry" >
     <rect>
-     <x>1</x>
-     <y>22</y>
-     <width>251</width>
-     <height>388</height>
+     <x>0</x>
+     <y>23</y>
+     <width>301</width>
+     <height>482</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" >
@@ -127,7 +127,7 @@
       </property>
       <property name="sizeHint" >
        <size>
-        <width>16</width>
+        <width>249</width>
         <height>25</height>
        </size>
       </property>
@@ -211,7 +211,91 @@
       </property>
       <property name="sizeHint" >
        <size>
-        <width>16</width>
+        <width>249</width>
+        <height>25</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" >
+      <property name="margin" >
+       <number>0</number>
+      </property>
+      <property name="spacing" >
+       <number>6</number>
+      </property>
+      <item>
+       <widget class="QLabel" name="label_9" >
+        <property name="sizePolicy" >
+         <sizepolicy>
+          <hsizetype>0</hsizetype>
+          <vsizetype>0</vsizetype>
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text" >
+         <string/>
+        </property>
+        <property name="pixmap" >
+         <pixmap resource="../italc.qrc" >:/resources/demoquality.png</pixmap>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_14" >
+        <property name="text" >
+         <string>Screen-quality of demo-mode</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" >
+      <property name="margin" >
+       <number>0</number>
+      </property>
+      <property name="spacing" >
+       <number>6</number>
+      </property>
+      <item>
+       <spacer>
+        <property name="orientation" >
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeType" >
+         <enum>QSizePolicy::Fixed</enum>
+        </property>
+        <property name="sizeHint" >
+         <size>
+          <width>20</width>
+          <height>1</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QComboBox" name="demoQualityCB" >
+        <property name="whatsThis" >
+         <string>&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;/head>&lt;body style=" white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;">&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Here you can select the network interface with the according IP-address which is used for demo-purposes. Actually this only concerns you if your computer has more than one network-card. Incorrect settings may result in being able to show a demo.&lt;/p>&lt;/body>&lt;/html></string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <spacer>
+      <property name="orientation" >
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeType" >
+       <enum>QSizePolicy::Fixed</enum>
+      </property>
+      <property name="sizeHint" >
+       <size>
+        <width>249</width>
         <height>25</height>
        </size>
       </property>
@@ -306,7 +390,7 @@
       </property>
       <property name="sizeHint" >
        <size>
-        <width>16</width>
+        <width>249</width>
         <height>30</height>
        </size>
       </property>
@@ -357,8 +441,8 @@
       </property>
       <property name="sizeHint" >
        <size>
-        <width>20</width>
-        <height>40</height>
+        <width>249</width>
+        <height>56</height>
        </size>
       </property>
      </spacer>

@@ -125,11 +125,6 @@ mainWindow::mainWindow() :
 		return;
 	}
 
-	m_localISD->demoServerStop();
-	m_localISD->demoServerRun( localSystem::freePort() );
-
-
-
 	QWidget * hbox = new QWidget( this );
 	QHBoxLayout * hbox_layout = new QHBoxLayout( hbox );
 	hbox_layout->setMargin( 0 );
@@ -319,7 +314,8 @@ mainWindow::mainWindow() :
 			tr( "To power off all shown computers (e.g. after "
 				"the lesson has finished) you can click this "
 				"button." ),
-			m_clientManager, SLOT( powerOffClients() ), m_toolBar );
+			m_clientManager,
+					SLOT( powerDownClients() ), m_toolBar );
 
 
 	toolButton * adjust_size = new toolButton(
@@ -370,6 +366,8 @@ mainWindow::mainWindow() :
 
 	m_updateThread = new updateThread( this );
 
+	m_localISD->demoServerStop();
+	m_localISD->demoServerRun( __demo_quality, localSystem::freePort() );
 }
 
 

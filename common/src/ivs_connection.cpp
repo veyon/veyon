@@ -31,13 +31,8 @@
 #include <cstring>
 
 
-#include <QtCore/QDir>
-#include <QtCore/QFileInfo>
-#include <QtGui/QApplication>
-#include <QtGui/QBitmap>
+#include <QtCore/QCoreApplication>
 #include <QtGui/QImage>
-#include <QtGui/QPixmap>
-#include <QtGui/QWidget>
 
 
 #include "ivs_connection.h"
@@ -143,7 +138,7 @@ ivsConnection::states ivsConnection::protocolInitialization( void )
 		return( state_ref() = ConnectionFailed );
 	}
 
-	if( authAgainstServer( m_quality == QualityDemoPurposes ?
+	if( authAgainstServer( m_quality >= QualityDemoLow ?
 				m_useAuthFile ?
 					ItalcAuthChallengeViaAuthFile
 					:
@@ -212,7 +207,7 @@ ivsConnection::states ivsConnection::protocolInitialization( void )
 
 	Q_UINT32 * encs = (Q_UINT32 *)( &buf[sizeof(rfbSetEncodingsMsg)] );
 
-	if( m_quality == QualityDemoPurposes )
+	if( m_quality >= QualityDemoLow )
 	{
 		encs[se->nEncodings++] = swap32IfLE( rfbEncodingRaw );
 	}
@@ -224,7 +219,7 @@ ivsConnection::states ivsConnection::protocolInitialization( void )
 #endif
 		encs[se->nEncodings++] = swap32IfLE( rfbEncodingZlib );
 #endif
-		encs[se->nEncodings++] = swap32IfLE( rfbEncodingCopyRect );
+		//encs[se->nEncodings++] = swap32IfLE( rfbEncodingCopyRect );
 		encs[se->nEncodings++] = swap32IfLE( rfbEncodingCoRRE );
 		encs[se->nEncodings++] = swap32IfLE( rfbEncodingRaw );
 		//encs[se->nEncodings++] = swap32IfLE( rfbEncodingRRE );
@@ -398,7 +393,7 @@ bool ivsConnection::handleServerMessages( bool _send_screen_update, int _tries )
 
 			msg.fu.nRects = swap16IfLE( msg.fu.nRects );
 
-			QRegion updated_region;
+			rectList updated_region;
 
 			rfbFramebufferUpdateRectHeader rect;
 			for( Q_UINT16 i = 0; i < msg.fu.nRects; i++ )
@@ -531,15 +526,11 @@ bool ivsConnection::handleServerMessages( bool _send_screen_update, int _tries )
 
 					case rfbEncodingItalcCursor:
 	{
-		QRegion ch_reg = QRect( m_cursorPos - m_cursorHotSpot,
+		rectList ch_reg = QRect( m_cursorPos - m_cursorHotSpot,
 							m_cursorShape.size() );
 		QDataStream ds( static_cast<QTcpSocket *>(
 							socketDev().user() ) );
 		ds >> m_cursorShape;
-		//m_cursorShape = socketDev().user()<QPixmap>();
-/*		m_cursorShape = QPixmap::fromImage( cur );
-		m_cursorShape.setMask( QBitmap::fromData( QSize( _width, _height ),
-							rcMask, QImage::Format_Mono ) );*/
 		m_cursorHotSpot = QPoint( rect.r.x, rect.r.y );
 
 
@@ -551,7 +542,7 @@ bool ivsConnection::handleServerMessages( bool _send_screen_update, int _tries )
 		if( parent() != NULL )
 		{
 			regionChangedEvent rche( ch_reg );
-			QApplication::sendEvent( parent(), &rche );
+			QCoreApplication::sendEvent( parent(), &rche );
 		}
 		break;
 	}
@@ -569,13 +560,21 @@ bool ivsConnection::handleServerMessages( bool _send_screen_update, int _tries )
 								m_scaledSize );
 			}
 
-			if( m_quality == QualityDemoPurposes )
+			if( updated_region.size() == 0 )
 			{
+				wl.unlock();
+				break;
+			}
+			if( m_quality >= QualityDemoLow &&
+						m_quality != QualityDemoHigh )
+			{
+	const QRgb and_value = ( m_quality == QualityDemoLow ) ?
+							0xf8f8f8 : 0xfcfcfc;
 				// if we're providing data for demo-purposes,
 				// we perform a simple color-reduction for
 				// better compression-results
-	QVector<QRect> rects = updated_region.rects();
-	for( QVector<QRect>::const_iterator it = rects.begin();
+	const QList<QRect> rects = updated_region.nonOverlappingRects();
+	for( QList<QRect>::const_iterator it = rects.begin();
 					it != rects.end(); ++it )
 	{
 		for( Q_UINT16 y = 0; y < it->height(); ++y )
@@ -584,7 +583,7 @@ bool ivsConnection::handleServerMessages( bool _send_screen_update, int _tries )
 							it->y() ) ) + it->x();
 			for( Q_UINT16 x = 0; x < it->width(); ++x )
 			{
-				data[x] &= 0xf8f8f8;
+				data[x] &= and_value;
 			}
 		}
 	}
@@ -592,7 +591,7 @@ bool ivsConnection::handleServerMessages( bool _send_screen_update, int _tries )
 			if( parent() != NULL )
 			{
 				regionChangedEvent rche( updated_region );
-				QApplication::sendEvent( parent(), &rche );
+				QCoreApplication::sendEvent( parent(), &rche );
 			}
 
 			wl.unlock();
@@ -1411,7 +1410,7 @@ bool ivsConnection::decompressJpegRect( Q_UINT16 x, Q_UINT16 y, Q_UINT16 w,
 bool ivsConnection::handleCursorPos( const Q_UINT16 _x, const Q_UINT16 _y )
 {
 	// move cursor and update appropriate region
-	QRegion ch_reg = QRect( m_cursorPos - m_cursorHotSpot,
+	rectList ch_reg = QRect( m_cursorPos - m_cursorHotSpot,
 							m_cursorShape.size() );
 	m_cursorPos = QPoint( _x, _y );
 	ch_reg += QRect( m_cursorPos - m_cursorHotSpot, m_cursorShape.size() );
@@ -1419,10 +1418,10 @@ bool ivsConnection::handleCursorPos( const Q_UINT16 _x, const Q_UINT16 _y )
 	if( parent() != NULL )
 	{
 		regionChangedEvent rche( ch_reg );
-		QApplication::sendEvent( parent(), &rche );
+		QCoreApplication::sendEvent( parent(), &rche );
 	}
 
-	if( m_quality != QualityDemoPurposes )
+	if( m_quality < QualityDemoLow )
 	{
 		emit regionUpdated( ch_reg );
 	}
@@ -1570,7 +1569,7 @@ bool ivsConnection::handleCursorShape( const Q_UINT16 _xhot,
 	}
 
 
-	QRegion ch_reg = QRect( m_cursorPos - m_cursorHotSpot,
+	rectList ch_reg = QRect( m_cursorPos - m_cursorHotSpot,
 							m_cursorShape.size() );
 	m_cursorShape = QImage( rcSource, _width, _height,
 							QImage::Format_RGB32 ).
@@ -1587,11 +1586,11 @@ bool ivsConnection::handleCursorShape( const Q_UINT16 _xhot,
 	if( parent() != NULL )
 	{
 		regionChangedEvent rche( ch_reg );
-		QApplication::sendEvent( parent(), &rche );
+		QCoreApplication::sendEvent( parent(), &rche );
 	}
 
 	emit cursorShapeChanged();
-	if( m_quality != QualityDemoPurposes )
+	if( m_quality < QualityDemoLow )
 	{
 		emit regionUpdated( ch_reg );
 	}

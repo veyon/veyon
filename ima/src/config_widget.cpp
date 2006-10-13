@@ -91,6 +91,13 @@ configWidget::configWidget( mainWindow * _main_window, QWidget * _parent ) :
 	connect( interfaceCB, SIGNAL( activated( const QString & ) ), this,
 				SLOT( interfaceSelected( const QString & ) ) );
 
+	demoQualityCB->addItem( tr( "Low (15 bit)" ) );
+	demoQualityCB->addItem( tr( "Medium (18 bit)" ) );
+	demoQualityCB->addItem( tr( "High (Truecolor)" ) );
+	demoQualityCB->setCurrentIndex( __demo_quality );
+
+	connect( demoQualityCB, SIGNAL( activated( int ) ), this,
+				SLOT( demoQualitySelected( int ) ) );
 
 	balloonToolTips->setChecked( toolButton::toolTipsDisabled() );
 	connect( balloonToolTips, SIGNAL( toggled( bool ) ),
@@ -122,6 +129,14 @@ void configWidget::interfaceSelected( const QString & _if_name )
 	}
 	__demo_network_interface = _if_name.section( ':', 0, 0 );
 	__demo_master_ip = _if_name.section( ' ', -1 );
+}
+
+
+
+
+void configWidget::demoQualitySelected( int _q )
+{
+	__demo_quality = _q;
 }
 
 

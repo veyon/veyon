@@ -43,7 +43,7 @@ QSplashScreen * splashScreen = NULL;
 
 QString __demo_network_interface;
 QString __demo_master_ip;
-
+int __demo_quality = 0;
 
 
 // good old main-function... initializes qt-app and starts iTALC

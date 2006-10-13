@@ -88,6 +88,7 @@ italc_SOURCES = $(srcdir)/src/client.cpp			\
 		$(srcdir)/../common/src/ivs_connection.cpp	\
 		$(srcdir)/../common/src/local_system.cpp	\
 		$(srcdir)/../common/src/messagebox.cpp		\
+		$(srcdir)/../common/src/rect_list.cpp		\
 		$(srcdir)/../common/src/dsa_key.cpp		\
 		$(italc_TRANSLATIONS)				\
 		$(wildcard $(srcdir)/dialogs/*.ui)		\

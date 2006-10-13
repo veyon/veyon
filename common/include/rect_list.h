@@ -1,5 +1,6 @@
 /*
- * qt_user_events.h - user-defined Qt-events
+ * rect_list.h - replacement for QRegion for storing lot of rectangles and
+ *               extracting a subset of non-overlapping rectangles
  *
  * Copyright (c) 2006 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *  
@@ -23,34 +24,43 @@
  */
 
 
-#ifndef _QT_USER_EVENTS_H
-#define _QT_USER_EVENTS_H
+#ifndef _RECT_LIST_H
+#define _RECT_LIST_H
 
-#include <QtCore/QEvent>
+#include <QtCore/QList>
+#include <QtCore/QRect>
 
-#include "rect_list.h"
+
+typedef QList<QRect> rectListContainerBase;
 
 
-class regionChangedEvent : public QEvent
+class rectList : public rectListContainerBase
 {
 public:
-	regionChangedEvent( const rectList & _r = rectList() ) :
-		QEvent( static_cast<QEvent::Type>( QEvent::User+385 ) ),
-		m_changedRegion( _r )
+	rectList( rectListContainerBase _l = rectListContainerBase() ) :
+		rectListContainerBase( _l )
 	{
 	}
 
-	const rectList & changedRegion( void ) const
+	rectList( const QRect & _r ) :
+		rectListContainerBase()
 	{
-		return( m_changedRegion );
+		append( _r );
 	}
+
+	rectList nonOverlappingRects( void ) const;
+
+	QRect boundingRect( void ) const;
 
 
 private:
-	rectList m_changedRegion;
+	const rectList & tryMerge( void );
+
+	bool intersects( const rectList & _other, int & i1, int & i2 );
 
 } ;
 
 
 #endif
+
 

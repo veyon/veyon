@@ -129,7 +129,7 @@ public:
 /*	bool ivsRun( const bool _host_based_auth = TRUE );
 	bool ivsTerminate( void );*/
 
-	bool demoServerRun( int _port );
+	bool demoServerRun( int _quality, int _port );
 	bool demoServerStop( void );
 	bool demoServerAllowClient( const QString & _client );
 	bool demoServerDenyClient( const QString & _client );
