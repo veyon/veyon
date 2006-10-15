@@ -32,10 +32,11 @@
 #include "qt_user_events.h"
 #include "progress_widget.h"
 #include "system_key_trapper.h"
+#include "qt_features.h"
+
 
 #include <QtCore/QTimer>
 #include <QtGui/QApplication>
-#include <QtGui/QDesktopWidget>
 #include <QtGui/QMouseEvent>
 #include <QtGui/QPainter>
 
@@ -221,24 +222,16 @@ bool vncView::event( QEvent * e )
 
 
 
-#ifdef BUILD_LINUX
-#if QT_VERSION >= 0x040200
-#define USE_NATIVE_VIRTUAL_KEY
-#else
-#warning for optimal usage please upgrade your Qt-installation to 4.2 or higher
-#endif
-#endif
-
 // our builtin keyboard-handler
 void vncView::keyEvent( QKeyEvent * _ke )
 {
 	bool pressed = _ke->type() == QEvent::KeyPress;
 
-#ifdef USE_NATIVE_VIRTUAL_KEY
+#ifdef NATIVE_VIRTUAL_KEY_SUPPORT
 	// the Trolls seem to love us! With Qt 4.2 they introduced this cute
-	// function returning the key-code of the key (platform-dependent) so
-	// when operating under Linux/X11, key-codes are equal to the ones used
-	// by VNC-protocol
+	// function returning the key-code of the key-evem (platform-dependent)
+	// so when operating under Linux/X11, key-codes are equal to the ones
+	// used by VNC-protocol
 	const int key = _ke->nativeVirtualKey();
 #else
 	// hmm, either Win32-platform or too old Qt so we have to handle and

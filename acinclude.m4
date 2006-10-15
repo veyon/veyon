@@ -42,7 +42,9 @@ fi
 AC_MSG_RESULT([$QT_INCLUDES])
 
 
-QTHOSTDIR=/usr
+if test -z "$QTHOSTDIR" ; then
+	QTHOSTDIR=/usr
+fi
 
 # Check that moc is in path
 AC_CHECK_PROG(MOC, moc-qt4, $QTHOSTDIR/bin/moc-qt4,,$QTHOSTDIR/bin/)
@@ -55,7 +57,7 @@ fi
 
 # Check that uic is in path
 AC_CHECK_PROG(UIC, uic-qt4, $QTHOSTDIR/bin/uic-qt4,,$QTHOSTDIR/bin/)
-if test x$MOC = x ; then
+if test x$UIC = x ; then
 	AC_CHECK_PROG(UIC, uic, $QTHOSTDIR/bin/uic,,$QTHOSTDIR/bin/)
 	if test x$UIC = x ; then
         	AC_MSG_ERROR([*** not found! Make sure you have Qt-devel-tools installed!])
@@ -63,18 +65,18 @@ if test x$MOC = x ; then
 fi
 
 # lupdate is the Qt translation-update utility.
-AC_CHECK_PROG(LUPDATE, lupdate-qt4, $QTDIR/bin/lupdate-qt4,,$QTDIR/bin/)
+AC_CHECK_PROG(LUPDATE, lupdate-qt4, $QTHOSTDIR/bin/lupdate-qt4,,$QTHOSTDIR/bin/)
 if test x$LUPDATE = x ; then
-	AC_CHECK_PROG(LUPDATE, lupdate, $QTDIR/bin/lupdate,,$QTDIR/bin/)
+	AC_CHECK_PROG(LUPDATE, lupdate, $QTHOSTDIR/bin/lupdate,,$QTHOSTDIR/bin/)
 	if test x$MOC = x ; then
 	        AC_MSG_WARN([*** not found! It's not needed just for compiling but should be part of a proper Qt-devel-tools-installation!])
 	fi
 fi
 
 # lrelease is the Qt translation-release utility.
-AC_CHECK_PROG(LRELEASE, lrelease-qt4, $QTDIR/bin/lrelease-qt4,,$QTDIR/bin/)
+AC_CHECK_PROG(LRELEASE, lrelease-qt4, $QTHOSTDIR/bin/lrelease-qt4,,$QTHOSTDIR/bin/)
 if test x$LRELEASE = x ; then
-	AC_CHECK_PROG(LRELEASE, lrelease, $QTDIR/bin/lrelease,,$QTDIR/bin/)
+	AC_CHECK_PROG(LRELEASE, lrelease, $QTHOSTDIR/bin/lrelease,,$QTHOSTDIR/bin/)
 	if test x$MOC = x ; then
 	        AC_MSG_WARN([*** not found! It's not needed just for compiling but should be part of a proper Qt-devel-tools-installation!])
 	fi
@@ -87,27 +89,6 @@ QT_CXXFLAGS="-I$QT_INCLUDES -I$QT_INCLUDES/Qt/"
 QT_IS_EMBEDDED="no"
 # On unix, figure out if we're doing a static or dynamic link
 case "${build}" in
-    *-cygwin)
-	AC_DEFINE_UNQUOTED(WIN32, "", Defined if on Win32 platform)
-        if test -f "$QTDIR/lib/qt.lib" ; then
-            QT_LIB="qt.lib"
-            QT_IS_STATIC="yes"
-            QT_IS_MT="no"
-        elif test -f "$QTDIR/lib/qt-mt.lib" ; then
-            QT_LIB="qt-mt.lib" 
-            QT_IS_STATIC="yes"
-            QT_IS_MT="yes"
-        elif test -f "$QTDIR/lib/qt$QT_VER.lib" ; then
-            QT_LIB="qt$QT_VER.lib"
-            QT_IS_STATIC="no"
-            QT_IS_MT="no"
-        elif test -f "$QTDIR/lib/qt-mt$QT_VER.lib" ; then
-            QT_LIB="qt-mt$QT_VER.lib"
-            QT_IS_STATIC="no"
-            QT_IS_MT="yes"
-        fi
-        ;;
-
       *mingw32)
         QT_IS_STATIC=`ls $QTDIR/lib/*.a 2> /dev/null`
        	if test "x$QT_IS_STATIC" = x; then

@@ -1,3 +1,50 @@
+2006-10-15	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* acinclude.m4:
+	some bugfixes concerning Qt-devel-tool-recognition
+
+	* configure.in:
+	added template for WIN32-define as new autoheader otherwise refuses to
+	work
+
+	* ica/resources/de.ts:
+	* ima/resources/de.ts:
+	updated German translation
+
+	* ica/src/vncview.cpp:
+	* ica/src/demo_server.cpp:
+	cleanups etc.
+
+	* ica/src/isd_server.cpp:
+	- never start a demo if a demo-server is running within the same
+	  process!
+	- if supported, show messages using system-tray-message (balloon)
+	  instead of messagebox
+
+	* ica/src/service.h:
+	* ica/src/service.cpp:
+	* ica/src/ica_main.cpp:
+	- support for stopping ICA-service via command-line
+	- print out error-message when encountering unknown commandline
+	  argument
+
+	* ica/src/service.cpp:
+	use QMessageBox instead of native MessageBox()-function for displaying
+	service-related messages, allows localization as well
+
+	* ica/ica.qrc:
+	* ica/src/ica_main.h:
+	* ica/src/ica_main.cpp:
+	support for system-tray-icon
+
+	* common/include/rect_list.h:
+	* common/src/rect_list.cpp:
+	improved and optimized nonOverlappingRects()-algorithm
+
+	* common/include/qt_features.h:
+	added file which contains definition of several macros depending on
+	Qt-version and target platform
+
 2006-10-12	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* ica/src/vncview.cpp:

@@ -27,7 +27,7 @@
 #include "rect_list.h"
 
 
-rectList rectList::nonOverlappingRects( void ) const
+rectList rectList::nonOverlappingRectsStage1( void ) const
 {
 	if( isEmpty() || size() == 1 )
 	{
@@ -36,8 +36,8 @@ rectList rectList::nonOverlappingRects( void ) const
 
 	if( size() == 2 )
 	{
-		QRect r1 = at( 0 );
-		QRect r2 = at( 1 );
+		const QRect & r1 = at( 0 );
+		const QRect & r2 = at( 1 );
 		// does one rect contain the other?
 		if( r1 == r2 || r1.contains( r2, TRUE ) )
 		{
@@ -52,7 +52,6 @@ rectList rectList::nonOverlappingRects( void ) const
 		{
 			return( *this );
 		}
-
 		// ok, we have an intersection, so try to do something
 		// with it
 		const QRect is = r1.intersect( r2 );
@@ -62,63 +61,58 @@ rectList rectList::nonOverlappingRects( void ) const
 			{
 				if( is.y() == r1.y() )
 				{
-					rectList r( r2 );
-					r += QRect( r1.x(), is.y()+is.height(),
-								r1.width(),
-						r1.height()-is.height() );
-					return( r );
+					return( rectList( r2 ) <<
+						QRect( r1.x(), is.y() +
+								is.height(),
+							r1.width(),
+							r1.height() -
+								is.height() ) );
 				}
 				else if( is.bottom() == r1.bottom() )
 				{
-					rectList r( r2 );
-					r += QRect( r1.x(), r1.y(), r1.width(),
-						r1.height()-is.height() );
-					return( r );
+					return( rectList( r2 ) <<
+						QRect( r1.x(), r1.y(),
+							r1.width(),
+							r1.height() -
+								is.height() ) );
 				}
 			}
-
 			if( is.height() == r1.height() )
 			{
 				if( is.x() == r1.x() )
 				{
-					rectList r( r2 );
-					r += QRect( is.x()+is.width(),
+					return( rectList( r2 ) <<
+						QRect( is.x() + is.width(),
 							r1.y(),
-							r1.width()-is.width(),
-							r1.height() );
-					return( r );
+							r1.width() -
+								is.width(),
+							r1.height() ) );
 				}
 				if( is.right() == r1.right() )
 				{
-					rectList r( r2 );
-					r += QRect( r1.x(), r1.y(),
-							r1.width()-is.width(),
-								r1.height() );
-					return( r );
+					return( rectList( r2 ) <<
+						QRect( r1.x(), r1.y(),
+							r1.width() - 
+								is.width(),
+							r1.height() ) );
 				}
 			}
 		}
 
 		rectList r( r1 );
-		int xadd = 0;
-		if( is.x() == r2.x() )
-		{
-			xadd = is.width();
-		}
-
-		// rect2 above intersection?
+		const int xadd = ( is.x() == r2.x() ) ? is.width() : 0;
 		if( is.y() > r2.y()  )
 		{
 			r += QRect( r2.x(), r2.y(), r2.width(),
 							is.top() - r2.top() );
-			r += QRect( r2.x()+xadd,
-					r2.y()+r2.height()-is.height(),
-					r2.width()-xadd, is.height() );
+			r += QRect( r2.x() + xadd,
+					r2.y() + r2.height() - is.height(),
+					r2.width() - xadd,
+					is.height() );
 			if( r2.bottom() > is.bottom() )
 			{
-				r += QRect( r2.x(), r1.bottom()+1,
-						r2.width(),
-						r2.bottom()-is.bottom() );
+				r += QRect( r2.x(), r1.bottom()+1, r2.width(),
+						r2.bottom() - is.bottom() );
 			}
 		}
 		else if( is.y() == r2.y() && is.height() == r2.height() &&
@@ -140,24 +134,37 @@ rectList rectList::nonOverlappingRects( void ) const
 			r += QRect( r2.x()+xadd, r2.y(), r2.width()-xadd,
 								is.height() );
 		}
-
 		return( r );
 	}
 
-	int i1, i2, n = ( size()+1 ) / 2;
-	rectList rl1 = rectList( mid( 0, n ) ).nonOverlappingRects();
-	rectList rl2 = rectList( mid( n ) ).nonOverlappingRects();
-	if( rl1.intersects( rl2, i1, i2 ) )
+	int i1, i2;
+	const int n = ( size()+1 ) / 2;
+	rectList rl1 = rectList( mid( 0, n ) ).nonOverlappingRectsStage1();
+	rectList rl2 = rectList( mid( n ) ).nonOverlappingRectsStage1();
+
+	QRect r1;
+	QRect r2;
+	while( rl1.intersects( rl2, i1, i2, r1, r2 ) )
 	{
-		QRect r1 = rl1.at( i1 ); rl1.removeAt( i1 );
-		QRect r2 = rl2.at( i2 ); rl2.removeAt( i2 );
-		return( rectList( rl1 + rl2 +
-				rectList( rectList( r1 ) << r2 ).
-					nonOverlappingRects() ).
-						nonOverlappingRects() );
+		rl1.removeAt( i1 );
+		rl2.removeAt( i2 );
+		rectList r( r1 );
+		r << r2;
+		r = r.nonOverlappingRectsStage1();
+		if( rl1.intersects( r, i1, i2, r1, r2 ) )
+		{
+			rl1 = rectList( rl1 + r ).nonOverlappingRectsStage1();
+		}
+		else
+		{
+			rl1 += r;
+		}
 	}
 	return( rectList( rl1+rl2 ).tryMerge() );
 }
+
+
+
 
 
 
@@ -165,7 +172,8 @@ const rectList & rectList::tryMerge( void )
 {
 	for( int i = 0; i < size()-1; ++i )
 	{
-		if( at( i ).width() * at( i ).height() == 0 )
+		const QRect & ri = at( i );
+		if( ri.width() * ri.height() == 0 )
 		{
 			removeAt( i );
 			i = -1;
@@ -173,10 +181,9 @@ const rectList & rectList::tryMerge( void )
 		}
 		for( int j = i+1; j < size(); ++j )
 		{
-			const QRect r1 = at( i );
-			const QRect r2 = at( j );
-			const QRect r = r1.unite( r2 );
-			if( r1.width()*r1.height() + r2.width()*r2.height() ==
+			const QRect & r2 = at( j );
+			const QRect r = ri.unite( r2 );
+			if( ri.width()*ri.height() + r2.width()*r2.height() ==
 							r.width()*r.height() )
 			{
 				replace( i, r );
@@ -191,13 +198,69 @@ const rectList & rectList::tryMerge( void )
 
 
 
-bool rectList::intersects( const rectList & _other, int & i1, int & i2 )
+
+rectList rectList::nonOverlappingRectsStage2( void ) const
+{
+	if( isEmpty() || size() == 1 )
+	{
+		return( *this );
+	}
+
+	QList<int> grid_x;
+	QList<int> grid_y;
+	foreach( const QRect & r, *this )
+	{
+		insertOnce( grid_x, r.x() );
+		insertOnce( grid_x, r.x() + r.width() );
+		insertOnce( grid_y, r.y() );
+		insertOnce( grid_y, r.y() + r.height() );
+	}
+	qSort( grid_x );
+	qSort( grid_y );
+
+	rectList rl;
+	for( QList<int>::const_iterator y = grid_y.begin();
+						y != grid_y.end()-1; ++y )
+	{
+		QList<int>::const_iterator last_item = grid_x.end();
+		for( QList<int>::const_iterator x = grid_x.begin();
+						x != grid_x.end()-1; ++x )
+		{
+			const QRect r( *x, *y, *(x+1)-*x, *(y+1)-*y );
+			foreach( const QRect & rt, *this )
+			{
+				if( r.intersects( rt ) )
+				{
+					if( last_item == x-1 )
+					{
+						rl.last() |= r;
+					}
+					else
+					{
+						rl << r;
+					}
+					last_item = x;
+					break;
+				}
+			}
+
+		}
+	}
+
+	return( rl.tryMerge() );
+}
+
+
+
+
+bool rectList::intersects( const rectList & _other, int & i1, int & i2,
+						QRect & r1, QRect & r2 ) const
 {
 	i1 = 0;
-	foreach( const QRect r1, *this )
+	foreach( r1, *this )
 	{
 		i2 = 0;
-		foreach( const QRect r2, _other )
+		foreach( r2, _other )
 		{
 			if( r1.intersects( r2 ) )
 			{

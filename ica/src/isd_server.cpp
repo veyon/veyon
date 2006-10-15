@@ -42,6 +42,11 @@
 #include "demo_client.h"
 #include "demo_server.h"
 #include "ica_main.h"
+#include "qt_features.h"
+
+#ifdef SYSTEMTRAY_SUPPORT
+#include <QtGui/QSystemTrayIcon>
+#endif
 
 
 static isdServer * __isd_server = NULL;
@@ -527,7 +532,7 @@ void isdServer::startDemo( const QString & _master_host, bool _fullscreen )
 {
 	delete m_demoClient;
 	m_demoClient = NULL;
-	if( m_demoServer && _master_host.section( ':', 0, 0 ) ==
+/*	if( m_demoServer && _master_host.section( ':', 0, 0 ) ==
 				m_demoServer->serverAddress().toString() &&
 		_master_host.section( ':', 1, 1 ).toInt() ==
 						m_demoServer->serverPort() )
@@ -535,7 +540,15 @@ void isdServer::startDemo( const QString & _master_host, bool _fullscreen )
 		// somehow we tried to start a demo on demo-server which makes
 		// no sense and results in a deadlock...
 		return;
+	}*/
+	// if a demo-server is started, it's likely that the demo was started
+	// on master-computer as well therefore we deny starting a demo on
+	// hosts on which a demo-server is running
+	if( m_demoServer )
+	{
+		return;
 	}
+
 	m_demoClient = new demoClient( _master_host, _fullscreen );
 	connect( m_demoClient, SIGNAL( destroyed( QObject * ) ),
 				this, SLOT( demoWindowClosed( QObject * ) ) );
@@ -573,8 +586,24 @@ void isdServer::unlockDisplay( void )
 
 void isdServer::displayTextMessage( const QString & _msg )
 {
+#ifdef SYSTEMTRAY_SUPPORT
+	// OS X does not support messages
+	if( QSystemTrayIcon::supportsMessages() && __systray_icon )
+	{
+		__systray_icon->showMessage( tr( "Message from teacher" ),
+						_msg,
+						QSystemTrayIcon::Information,
+									-1 );
+	}
+	else
+	{
+#else
 	new messageBox( tr( "Message from teacher" ), _msg,
 					QPixmap( ":/resources/message.png" ) );
+#endif
+#ifdef SYSTEMTRAY_SUPPORT
+	}
+#endif
 }
 
 

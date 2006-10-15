@@ -58,10 +58,7 @@ demoServer::demoServer( IVS * _ivs_conn, int _quality, quint16 _port ) :
 		return;
 	}
 
-	m_updaterThread->start();
-
-/*	connect( this, SIGNAL( newConnection() ),
-			this, SLOT( acceptNewConnection() ) );*/
+	m_updaterThread->start( QThread::HighPriority );
 
 }
 
@@ -76,11 +73,7 @@ demoServer::~demoServer()
 
 
 
-/*
-void demoServer::acceptNewConnection( void )
-{
-	new demoServerClient( nextPendingConnection(), m_conn );
-}*/
+
 void demoServer::incomingConnection( int _sd )
 {
 	new demoServerClient( _sd, m_conn );
@@ -194,7 +187,6 @@ void demoServerClient::checkForCursorMovement( void )
 	{
 		m_lastCursorPos = QCursor::pos();
 		m_cursorPosChanged = TRUE;
-
 	}
 	m_dataMutex.unlock();
 	QTimer::singleShot( CURSOR_UPDATE_TIME, this,
@@ -235,7 +227,6 @@ void demoServerClient::moveCursor( void )
 
 		m_sock->write( (const char *) &rh, sizeof( rh ) );
 		m_sock->flush();
-
 	}
 	m_dataMutex.unlock();
 	QTimer::singleShot( CURSOR_UPDATE_TIME, this, SLOT( moveCursor() ) );
@@ -412,15 +403,15 @@ void demoServerClient::processClient( void )
 void demoServerClient::run( void )
 {
 	m_dataMutex.lock();
-	m_sock = new QTcpSocket;
+	QTcpSocket sock;
+	m_sock = &sock;//new QTcpSocket;
 	if( !m_sock->setSocketDescriptor( m_socketDescriptor ) )
 	{
 		printf( "could not set socket-descriptor in "
 			"demoServerClient::run() - aborting.\n" );
 		return;
 	}
-	//m_bandwidthTimer = new QTime();
-	//m_bandwidthTimer->start();
+
 	socketDevice sd( qtcpsocketDispatcher, m_sock );
 	if( !isdServer::protocolInitialization( sd,
 						ItalcAuthHostBased, TRUE ) )
@@ -529,11 +520,9 @@ void demoServerClient::run( void )
 	moveCursor();
 	//processClient();
 
-	// ...and can run our own event-loop for optimal scheduling
+	// now run our own event-loop for optimal scheduling
 	exec();
 
-	// we have to delete the socket here as we affined it to this thread
-	delete m_sock;
 }
 
 

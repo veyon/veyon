@@ -1,7 +1,4 @@
 <ui version="4.0" >
- <author></author>
- <comment></comment>
- <exportmacro></exportmacro>
  <class>config</class>
  <widget class="QWidget" name="config" >
   <property name="geometry" >
@@ -15,12 +12,12 @@
   <property name="windowTitle" >
    <string>Form</string>
   </property>
-  <widget class="QWidget" name="" >
+  <widget class="QWidget" name="layoutWidget" >
    <property name="geometry" >
     <rect>
      <x>0</x>
      <y>23</y>
-     <width>301</width>
+     <width>281</width>
      <height>482</height>
     </rect>
    </property>
@@ -450,7 +447,6 @@
    </layout>
   </widget>
  </widget>
- <pixmapfunction></pixmapfunction>
  <resources>
   <include location="../italc.qrc" />
  </resources>

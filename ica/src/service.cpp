@@ -1,5 +1,5 @@
 /*
- * service.cpp - implementation of service-functionalities under win32
+ * service.cpp - implementation of service-functionalities
  *
  * Copyright (c) 2006 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *  
@@ -22,6 +22,9 @@
  *
  */
 
+
+#include <QtGui/QApplication>
+#include <QtGui/QMessageBox>
 
 #include "service.h"
 #include "ica_main.h"
@@ -49,10 +52,14 @@ int icaServiceMain( void )
 	return( 0 );
 }
 
-int icaServiceInstall( bool _silent )
+int icaServiceInstall( bool )
 {
 }
-int icaServiceRemove( bool _silent )
+int icaServiceRemove( bool )
+{
+}
+
+void icaServiceStop( bool )
 {
 }
 
@@ -71,7 +78,7 @@ int icaServiceRemove( bool _silent )
 #define ICA_SERVICENAME        "icas"
 
 // Displayed service name
-#define ICA_SERVICEDISPLAYNAME "iTALC Client Application"
+#define ICA_SERVICEDISPLAYNAME "iTALC Client"
 
 #define ICA_DEPENDENCIES       ""
 
@@ -81,7 +88,7 @@ static SERVICE_STATUS_HANDLE	g_hstatus;
 static DWORD			g_error = 0;
 static DWORD			g_servicethread = (DWORD) NULL;
 
-static const char * szAppName = "iTALC Client Application";
+static const char * szAppName = "iTALC Client";
 
 // forward defines of internal service functions
 void WINAPI ServiceMain( DWORD _argc, char * * _argv );
@@ -93,6 +100,71 @@ void WINAPI ServiceCtrl( DWORD _ctrlcode );
 bool WINAPI CtrlHandler( DWORD _ctrltype );
 
 static BOOL ReportStatus( DWORD _state, DWORD _exitcode, DWORD _waithint );
+
+
+void icaServiceStop( bool _silent )
+{
+	// Open the SCM
+	SC_HANDLE hsrvmanager = OpenSCManager(
+					NULL,	// machine (NULL == local)
+					NULL,	// database (NULL == default)
+				SC_MANAGER_ALL_ACCESS	// access required
+							);
+	if( hsrvmanager )
+	{ 
+		SC_HANDLE hservice = OpenService( hsrvmanager, ICA_SERVICENAME,
+							SERVICE_ALL_ACCESS );
+
+		if( hservice != NULL )
+		{
+			SERVICE_STATUS status;
+
+			// Try to stop the service
+			if( ControlService( hservice, SERVICE_CONTROL_STOP,
+								&status ) )
+			{
+				while( QueryServiceStatus( hservice, &status ) )
+				{
+					if( status.dwCurrentState ==
+							SERVICE_STOP_PENDING )
+					{
+						Sleep( 1000 );
+					}
+					else
+					{
+						break;
+					}
+				}
+
+				if( status.dwCurrentState != SERVICE_STOPPED )
+				{
+					if( !_silent )
+					{
+	QMessageBox::critical( NULL, szAppName,
+		QApplication::tr( "The iTALC Client service could not be "
+								"stopped." ) );
+					}
+				}
+			}
+		}
+		else if( !_silent )
+		{
+	QMessageBox::critical( NULL, szAppName,
+		QApplication::tr( "The iTALC Client service could not be "
+								"found." ) );
+		}
+		CloseServiceHandle( hsrvmanager );
+	}
+	else if( !_silent )
+	{
+		QMessageBox::critical( NULL, szAppName,
+			QApplication::tr( "The Service Control Manager could "
+						"not be contacted (do you have "
+						"the neccessary rights?!) - "
+						"the iTALC Client "
+						"service was not stopped." ) );
+	}
+}
 
 
 
@@ -188,7 +260,6 @@ void ServiceStop( void )
 	// Post a quit message to the main service thread
 	if( g_servicethread )
 	{
-		//TerminateThread( (void *) g_servicethread, 0 );
 		PostThreadMessage( g_servicethread, WM_QUIT, 0, 0 );
 	}
 }
@@ -207,11 +278,9 @@ int icaServiceInstall( bool _silent )
 	{
 		if( !_silent )
 		{
-			MessageBox( NULL,
-					"Unable to install iTALC Client "
-					"Application as service.",
-					szAppName,
-					MB_ICONEXCLAMATION | MB_OK );
+			QMessageBox::critical( NULL, szAppName,
+				QApplication::tr( "Unable to register iTALC "
+						"Client as service." ) );
 		}
 		return( 0 );
 	}
@@ -233,11 +302,13 @@ int icaServiceInstall( bool _silent )
 	{
 		if( !_silent )
 		{
-			MessageBox( NULL,
-				"The Service Control Manager could not be "
-				"contacted - the iTALC Client Application was "
-				"not registered as service.",
-				szAppName, MB_ICONEXCLAMATION | MB_OK );
+			QMessageBox::critical( NULL, szAppName,
+				QApplication::tr(
+					"The Service Control Manager could "
+					"not be contacted (do you have the "
+					"neccessary rights?!) - the iTALC "
+					"Client was not registered as "
+								"service." ) );
 		}
 		return( 0 );
 	}
@@ -265,19 +336,17 @@ int icaServiceInstall( bool _silent )
 		{
 			if( error == ERROR_SERVICE_EXISTS )
 			{
-				MessageBox( NULL,
-					"The iTALC Client Application is "
-					"already registered as service.",
-					szAppName,
-					MB_ICONEXCLAMATION | MB_OK );
+				QMessageBox::warning( NULL, szAppName,
+					QApplication::tr(
+						"The iTALC Client is already "
+						"registered as service." ) );
 			}
 			else
 			{
-				MessageBox( NULL,
-					"The iTALC Client Application could "
-					"not be registered as service.",
-					szAppName,
-					MB_ICONEXCLAMATION | MB_OK );
+				QMessageBox::critical( NULL, szAppName,
+					QApplication::tr(
+						"The iTALC Client could not "
+						"be registered as service." ) );
 			}
 		}
 		CloseServiceHandle( hsrvmanager );
@@ -289,13 +358,11 @@ int icaServiceInstall( bool _silent )
 	// Everything went fine
 	if( !_silent )
 	{
-		MessageBox( NULL,
-				"The iTALC Client Application was successfully "
-				"registered as a service.\n It will "
-				"automatically be run the next time this "
-				"computer is starting.",
-				szAppName,
-				MB_ICONINFORMATION | MB_OK );
+		QMessageBox::information( NULL, szAppName,
+			QApplication::tr(
+				"The iTALC Client was successfully registered "
+				"as a service. It will automatically be run "
+				"the next time you reboot this computer." ) );
 	}
 
 	return( 0 );
@@ -342,8 +409,9 @@ int icaServiceRemove(bool _silent)
 				{
 					if( !_silent )
 					{
-	MessageBox( NULL, "The iTALC Client Application service could not be "
-			"stopped", szAppName, MB_ICONEXCLAMATION | MB_OK );
+	QMessageBox::critical( NULL, szAppName,
+		QApplication::tr( "The iTALC Client service could not be "
+								"stopped." ) );
 					}
 				}
 			}
@@ -353,8 +421,9 @@ int icaServiceRemove(bool _silent)
 			{
 				if( !_silent )
 				{
-	MessageBox( NULL, "The iTALC Client Application service has been "
-			"unregistered", szAppName, MB_ICONINFORMATION | MB_OK );
+		QMessageBox::information( NULL, szAppName,
+			QApplication::tr( "The iTALC Client service has been "
+							"unregistered." ) );
 				}
 			}
 			else
@@ -364,18 +433,19 @@ int icaServiceRemove(bool _silent)
 				{
 					if( !_silent )
 					{
-	MessageBox( NULL, "The iTALC Client Application isn't registered as "
-				"service and therefore can't be unregistered.",
-			szAppName, MB_ICONEXCLAMATION | MB_OK );
+	QMessageBox::critical( NULL, szAppName,
+		QApplication::tr( "The iTALC Client isn't registered as "
+					"service and therefore can't be "
+							"unregistered." ) );
 					}
 				}
 				else
 				{
 					if( !_silent )
 					{
-	MessageBox( NULL, "The iTALC Client Application service could not be "
-			"unregistered.", szAppName,
-						MB_ICONEXCLAMATION | MB_OK );
+	QMessageBox::critical( NULL, szAppName,
+		QApplication::tr( "The iTALC Client service could not be "
+							"unregistered." ) );
 					}
 				}
 			}
@@ -383,17 +453,20 @@ int icaServiceRemove(bool _silent)
 		}
 		else if( !_silent )
 		{
-	MessageBox( NULL, "The iTALC Client Application service could not be "
-			"found.", szAppName, MB_ICONEXCLAMATION | MB_OK );
+	QMessageBox::critical( NULL, szAppName,
+		QApplication::tr( "The iTALC Client service could not be "
+								"found." ) );
 		}
 		CloseServiceHandle( hsrvmanager );
 	}
 	else if( !_silent )
 	{
-		MessageBox( NULL, "The Service Control Manager could not be "
-				"contacted - the iTALC Client Application "
-				"service was not unregistered", szAppName,
-				MB_ICONEXCLAMATION | MB_OK );
+		QMessageBox::critical( NULL, szAppName,
+			QApplication::tr( "The Service Control Manager could "
+						"not be contacted (do you have "
+						"the neccessary rights?!) - "
+						"the iTALC Client "
+						"service was not stopped." ) );
 	}
 	return 0;
 }

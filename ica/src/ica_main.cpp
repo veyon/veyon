@@ -30,6 +30,7 @@
 #include <QtCore/QLocale>
 #include <QtCore/QTranslator>
 #include <QtGui/QApplication>
+#include <QtNetwork/QHostInfo>
 
 #include "ica_main.h"
 #include "service.h"
@@ -40,8 +41,13 @@
 #include "debug.h"
 #include "system_key_trapper.h"
 
+#ifdef SYSTEMTRAY_SUPPORT
+#include <QtGui/QSystemTrayIcon>
+#endif
+
 
 int __isd_port = PortOffsetISD;
+QSystemTrayIcon * __systray_icon = NULL;
 
 
 int ICAMain( int argc, char * * argv )
@@ -84,6 +90,7 @@ int ICAMain( int argc, char * * argv )
 #endif
 
 	QStringListIterator arg_it( QApplication::arguments() );
+	arg_it.next();
 	while( arg_it.hasNext() )
 	{
 		const QString & a = arg_it.next();
@@ -124,12 +131,28 @@ int ICAMain( int argc, char * * argv )
 			icaServiceRemove( 0 );
 			return( 0 );
 		}
+		else if( a == "-stopservice" )
+		{
+			icaServiceStop( 0 );
+			return( 0 );
+		}
 		else if( a == SERVICE_ARG )
 		{
 			if( icaServiceMain() )
 			{
 				return( 0 );
 			}
+		}
+#ifdef BUILD_LINUX
+		else if( a == "-nosel" || a == "-nosetclipboard" )
+		{
+		}
+#endif
+		else
+		{
+			printf( "Unrecognized commandline-argument %s\n",
+						a.toAscii().constData() );
+			return( -1 );
 		}
 	}
 	
@@ -147,6 +170,18 @@ int ICAMain( int argc, char * * argv )
 	}
 #endif
 
+#ifdef SYSTEMTRAY_SUPPORT
+	QIcon icon( ":/resources/icon16.png" );
+	icon.addFile( ":/resources/icon22.png" );
+	icon.addFile( ":/resources/icon32.png" );
+
+	__systray_icon = new QSystemTrayIcon( icon );
+	__systray_icon->setToolTip( IVS::tr( "iTALC Client on %1:%2" ).
+					arg( QHostInfo::localHostName() ).
+					arg( QString::number( ivs_port ) ) );
+	__systray_icon->show();
+#endif
+						
 	new isdServer( ivs_port, argc, argv );
 
 	return( app->exec() );

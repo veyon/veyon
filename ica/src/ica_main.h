@@ -1,5 +1,5 @@
 /*
- * ica_main.h - declaration of ICAMain
+ * ica_main.h - declaration of ICAMain and other global stuff
  *           
  * Copyright (c) 2006 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *  
@@ -26,10 +26,21 @@
 #ifndef _ICA_MAIN_H
 #define _ICA_MAIN_H
 
+#include "qt_features.h"
+
 int ICAMain( int _argc, char * * _argv );
 #define SERVICE_ARG "-service"
 
 extern int __isd_port;
+
+
+#ifdef SYSTEMTRAY_SUPPORT
+
+class QSystemTrayIcon;
+
+extern QSystemTrayIcon * __systray_icon;
+
+#endif
 
 
 #endif

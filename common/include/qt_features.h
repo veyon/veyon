@@ -1,6 +1,7 @@
 /*
- * service.h - support for running ica as service
- *           
+ * qt_features.h - definition of several macros depending on Qt-version
+ *                 and target platform
+ *
  * Copyright (c) 2006 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *  
  * This file is part of iTALC - http://italc.sourceforge.net
@@ -23,15 +24,25 @@
  */
 
 
-#ifndef _SERVICE_H
-#define _SERVICE_H
+#ifndef _QT_FEATURES_H
+#define _QT_FEATURES_H
 
-int icaServiceMain( void );
+#include <qglobal.h>
 
-int icaServiceReinstall( void );
-int icaServiceInstall( bool _silent );
-int icaServiceRemove( bool _silent );
-void icaServiceStop( bool _silent );
+#if QT_VERSION >= 0x040200
+#define SYSTEMTRAY_SUPPORT
+#endif
+
+
+#ifdef BUILD_LINUX
+
+#if QT_VERSION >= 0x040200
+
+#define NATIVE_VIRTUAL_KEY_SUPPORT
+
+#endif
+
+#endif
 
 
 #endif

@@ -48,15 +48,36 @@ public:
 		append( _r );
 	}
 
-	rectList nonOverlappingRects( void ) const;
+	inline rectList nonOverlappingRects( void ) const
+	{
+		return( nonOverlappingRectsStage1().
+						nonOverlappingRectsStage2() );
+	}
 
 	QRect boundingRect( void ) const;
 
 
 private:
+	template<class T>
+	static inline void insertOnce( QList<T> & _list, T _val )
+	{
+		if( !_list.contains( _val ) )
+		{
+			_list << _val;
+		}
+	}
+
+
+	rectList nonOverlappingRectsStage1( void ) const;
+
+	// does the same as nonOverlappingRectsStage1() but is slower - at the
+	// same time it procudes an even better result, i.e. less rects
+	rectList nonOverlappingRectsStage2( void ) const;
+
 	const rectList & tryMerge( void );
 
-	bool intersects( const rectList & _other, int & i1, int & i2 );
+	bool intersects( const rectList & _other, int & i1, int & i2,
+						QRect & r1, QRect & r2 ) const;
 
 } ;
 

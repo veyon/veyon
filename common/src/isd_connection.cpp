@@ -184,6 +184,7 @@ void isdConnection::close( void )
 	m_state = Disconnected;
 	if( m_socket != NULL )
 	{
+		//m_socket->disconnectFromHost();
 		m_socket->abort();
 	}
 

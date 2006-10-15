@@ -2,8 +2,8 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.50)
-AC_INIT(italc, 0.9.8.0-svn-20061012, tobydox/at/users/dot/sf/dot/net)
-AM_INIT_AUTOMAKE(italc, 0.9.8.0-svn-20061012)
+AC_INIT(italc, 0.9.8.0-svn-20061015, tobydox/at/users/dot/sf/dot/net)
+AM_INIT_AUTOMAKE(italc, 0.9.8.0-svn-20061015)
 AM_CONFIG_HEADER(config.h)
 AX_PREFIX_CONFIG_H([common/include/rfb/rfbconfig.h])
 
@@ -53,6 +53,7 @@ fi
 
 AH_TEMPLATE(BUILD_LINUX, [Build iTALC for Linux])
 AH_TEMPLATE(BUILD_WIN32, [Build iTALC for Win32])
+AH_TEMPLATE(WIN32, [Build iTALC for Win32])
 AC_ARG_WITH(linux,
 	[  --with-linux		explicit build iTALC for Linux], [ build_linux=true ], [ build_linux=false ])
 AC_ARG_WITH(win32,

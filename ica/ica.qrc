@@ -8,6 +8,9 @@
 		<file>resources/fullscreen.png</file>
 		<file>resources/quit.png</file>
 		<file>resources/display.png</file>
+		<file>resources/icon16.png</file>
+		<file>resources/icon22.png</file>
+		<file>resources/icon32.png</file>
 		<file>resources/watch1.png</file>
 		<file>resources/watch2.png</file>
 		<file>resources/watch3.png</file>
