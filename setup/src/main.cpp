@@ -1,5 +1,5 @@
 /*
- * local_system.h - misc. platform-specific stuff
+ * main.cpp - main-file for iTALC-setup-application
  *
  * Copyright (c) 2006 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
@@ -23,46 +23,37 @@
  */
 
 
-#ifndef _LOCAL_SYSTEM_H
-#define _LOCAL_SYSTEM_H
+#include <QtCore/QLocale>
+#include <QtCore/QTranslator>
+#include <QtGui/QApplication>
 
-#include <QtCore/QString>
-
-#include "isd_base.h"
+#include "dialogs.h"
 
 
-namespace localSystem
+
+// good old main-function... initializes qt-app and starts iTALC
+int main( int argc, char * * argv )
 {
-	int freePort( void );
+	QApplication app( argc, argv );
 
-	void initialize( void );
+	app.connect( &app, SIGNAL( lastWindowClosed() ), SLOT( quit() ) );
 
-	void sleep( const int _ms );
 
-	void execInTerminal( const QString & _cmds );
+	// load translations
+	const QString loc = QLocale::system().name().left( 2 );
 
-	void sendWakeOnLANPacket( const QString & _mac,
-						const QString & _bcast );
+	QTranslator app_tr;
+	app_tr.load( ":/resources/" + loc + ".qm" );
+	app.installTranslator( &app_tr );
 
-	void powerDown( void );
-	void reboot( void );
+	QTranslator qt_tr;
+	qt_tr.load( ":/resources/qt_" + loc + ".qm" );
+	app.installTranslator( &qt_tr );
 
-	void logoutUser( void );
+	setupWizard sw;
+	sw.show();
 
-	QString currentUser( void );
-
-	QString privateKeyPath( const ISD::userRoles _role );
-	QString publicKeyPath( const ISD::userRoles _role );
-
-	QString snapshotDir( void );
-	QString globalConfigPath( void );
-	QString personalConfigDir( void );
-	QString personalConfigPath( void );
-
-	bool ensurePathExists( const QString & _path );
-
-	QString ip( void );
+	// let's rock!!
+	return( app.exec() );
 }
 
-
-#endif

@@ -31,6 +31,7 @@
 
 #if QT_VERSION >= 0x040200
 #define SYSTEMTRAY_SUPPORT
+#define COMPLETER_SUPPORT
 #endif
 
 

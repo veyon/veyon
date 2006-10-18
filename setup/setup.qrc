@@ -1,0 +1,15 @@
+<RCC>
+    <qresource prefix="/" >
+        <file>../COPYING</file>
+        <file>resources/back.png</file>
+        <file>resources/cancel.png</file>
+        <file>resources/fileopen.png</file>
+        <file>resources/next.png</file>
+        <file>resources/page_artwork_welcome.png</file>
+        <file>resources/page_install_dir.png</file>
+        <file>resources/page_license_agreement.png</file>
+        <file>resources/page_security_options.png</file>
+        <file>resources/page_select_components.png</file>
+        <file>resources/setup.png</file>
+    </qresource>
+</RCC>

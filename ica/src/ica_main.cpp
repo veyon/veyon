@@ -58,7 +58,7 @@ int ICAMain( int argc, char * * argv )
 	_Xdebug = 1;
 #endif
 #endif
-	QCoreApplication * app;
+	QCoreApplication * app = NULL;
 	if( argc > 1 && QString( argv[1] ) == "-rx11vs" )
 	{
 		app = new QCoreApplication( argc, argv );
@@ -176,7 +176,8 @@ int ICAMain( int argc, char * * argv )
 	icon.addFile( ":/resources/icon32.png" );
 
 	__systray_icon = new QSystemTrayIcon( icon );
-	__systray_icon->setToolTip( IVS::tr( "iTALC Client on %1:%2" ).
+	__systray_icon->setToolTip(
+				QApplication::tr( "iTALC Client on %1:%2" ).
 					arg( QHostInfo::localHostName() ).
 					arg( QString::number( ivs_port ) ) );
 	__systray_icon->show();

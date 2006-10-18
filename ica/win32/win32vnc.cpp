@@ -1,4 +1,5 @@
 extern "C" char * strdup( const char * );
+#include <assert.h>
 
 #define _ASSERT assert
 

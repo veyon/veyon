@@ -1,4 +1,5 @@
 INCLUDES = -I$(srcdir)/../common/include -Isrc
+
 bin_PROGRAMS = italc
 
 %.moc: $(srcdir)/%.h

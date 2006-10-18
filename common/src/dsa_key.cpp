@@ -356,7 +356,7 @@ buffer_put_bignum2(Buffer *buffer, BIGNUM *value)
 bool dsaKey::verifySignature( const QByteArray & _data,
 					const QByteArray & _sig ) const
 {
-	if( !valid() )
+	if( !isValid() )
 	{
 		printf( "dsaKey::verifySignature( ... ): invalid key\n" );
 		return( FALSE );
@@ -498,7 +498,7 @@ privateDSAKey::privateDSAKey( const unsigned int _bits) :
 
 QByteArray privateDSAKey::sign( const QByteArray & _data ) const
 {
-	if( !valid() )
+	if( !isValid() )
 	{
 		printf( "privateDSAKey::sign( ... ): invalid key\n" );
 		return( QByteArray() );
@@ -555,7 +555,7 @@ QByteArray privateDSAKey::sign( const QByteArray & _data ) const
 
 void privateDSAKey::load( const QString & _file, QString _passphrase )
 {
-	if( valid() )
+	if( isValid() )
 	{
 		DSA_free( m_dsa );
 		m_dsa = NULL;
@@ -697,7 +697,7 @@ DSA * keyFromBlob( const QByteArray & _ba )
 publicDSAKey::publicDSAKey( const privateDSAKey & _pk ) :
 	dsaKey( Public )
 {
-	if( !_pk.valid() )
+	if( !_pk.isValid() )
 	{
 		printf( "publicDSAKey::publicDSAKey( ... ): "
 				"invalid private key to derive from!\n" );
@@ -717,7 +717,7 @@ publicDSAKey::publicDSAKey( const privateDSAKey & _pk ) :
 
 void publicDSAKey::load( const QString & _file, QString )
 {
-	if( valid() )
+	if( isValid() )
 	{
 		DSA_free( m_dsa );
 		m_dsa = NULL;
@@ -765,7 +765,7 @@ void publicDSAKey::load( const QString & _file, QString )
 
 void publicDSAKey::save( const QString & _file, QString ) const
 {
-	if( !valid() )
+	if( !isValid() )
 	{
 		printf( "publicDSAKey::save(...): key not valid!" );
 		return;

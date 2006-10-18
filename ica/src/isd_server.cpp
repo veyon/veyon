@@ -568,6 +568,10 @@ void isdServer::stopDemo( void )
 
 void isdServer::lockDisplay( void )
 {
+	if( m_demoServer )
+	{
+		return;
+	}
 	delete m_lockWidget;
 	m_lockWidget = new lockWidget();
 }

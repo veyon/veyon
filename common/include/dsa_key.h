@@ -51,7 +51,7 @@ public:
 	// destructor
 	virtual ~dsaKey()
 	{
-		if( valid() )
+		if( isValid() )
 		{
 			DSA_free( m_dsa );
 		}
@@ -63,7 +63,7 @@ public:
 		return( m_type );
 	}
 
-	inline bool valid( void ) const
+	inline bool isValid( void ) const
 	{
 		return( m_dsa != NULL );
 	}

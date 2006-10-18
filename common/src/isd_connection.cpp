@@ -70,13 +70,13 @@ bool isdConnection::initAuthentication( void )
 	privDSAKey = new privateDSAKey( priv_key_file );
 
 	// key valid (i.e. could be loaded)?
-	if( !privDSAKey->valid() )
+	if( !privDSAKey->isValid() )
 	{
 		// no, then create a new one
 		delete privDSAKey;
 		// generate 1024bit RSA-key and save it
 		privDSAKey = new privateDSAKey( 1024 );
-		if( !privDSAKey->valid() )
+		if( !privDSAKey->isValid() )
 		{
 			printf( "key generation failed!\n" );
 			return( FALSE );

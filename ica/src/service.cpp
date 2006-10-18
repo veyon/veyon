@@ -47,6 +47,9 @@ int icaServiceReinstall( void )
 #ifdef BUILD_LINUX
 
 
+#include <QtCore/QProcess>
+
+
 int icaServiceMain( void )
 {
 	return( 0 );
@@ -61,6 +64,7 @@ int icaServiceRemove( bool )
 
 void icaServiceStop( bool )
 {
+	QProcess::startDetached( "killall ica" );
 }
 
 

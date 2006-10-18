@@ -1,3 +1,45 @@
+2006-10-18	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* common/include/dsa_key.h:
+	* common/src/dsa_key.cpp:
+	* common/src/isd_connection.cpp:
+	renamed "dsaKey::valid()" to "dsaKey::isValid()" for closer match with
+	Qt-API-style
+
+	* ica/win32/win32vnc.cpp:
+	include assert.h to compile successfully with GCC 4.1
+
+	* ica/src/service.cpp:
+	implementation of icaServiceStop() under Linux
+
+	* setup/dialogs/page_key_dirs.ui:
+	* setup/dialogs/page_license_agreement.ui:
+	* setup/dialogs/page_welcome.ui:
+	* setup/dialogs/page_security_options.ui:
+	* setup/dialogs/page_install_dir.ui:
+	* setup/dialogs/page_select_components.ui:
+	* setup/dialogs/wizard.ui:
+	* setup/src/dialogs.cpp:
+	* setup/src/main.cpp:
+	* setup/src/dialogs.h:
+	* setup/Makefile.am:
+	* setup/setup.qrc::
+	* setup/resources/next.png:
+	* setup/resources/page_security_options.png:
+	* setup/resources/page_artwork_welcome.png:
+	* setup/resources/page_license_agreement.png:
+	* setup/resources/setup.png:
+	* setup/resources/back.png:
+	* setup/resources/page_select_components.png:
+	* setup/resources/page_install_dir.png:
+	* setup/resources/fileopen.png:
+	* setup/resources/cancel.png:
+	added setup-wizard for easy installation and setup of iTALC in a
+	network
+
+	* ica/src/isd_server.cpp:
+	do not lock screen if demo-server is running
+
 2006-10-15	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* acinclude.m4:
