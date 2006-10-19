@@ -47,7 +47,9 @@
 
 
 int __isd_port = PortOffsetISD;
+#ifdef SYSTEMTRAY_SUPPORT
 QSystemTrayIcon * __systray_icon = NULL;
+#endif
 
 
 int ICAMain( int argc, char * * argv )
