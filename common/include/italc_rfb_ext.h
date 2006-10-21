@@ -68,12 +68,22 @@ enum italcAuthTypes
 	// client has to sign some data to verify it's authority
 	ItalcAuthDSA,
 
+	// almost the same as ItalcAuthDSA - suppresses checks concerning
+	// teacher-role when connecting to local ISD (otherwise a question
+	// would appear for confirming access when starting iTALC as teacher
+	// and ICA is running in teacher-mode as well)
+	ItalcAuthLocalDSA,
+
 	// used for authentication of demo-server against IVS which is done by
 	// simply showing IVS that demo-server runs inside the same application
 	// by sending generated challenge which is a global variable and can be
 	// accessed by demo-server
 	ItalcAuthAppInternalChallenge,
 
+	// similiar to ItalcAuthAppInternalChallenge with the only difference
+	// that authentication is done via a file which is only readable by
+	// owner - only used by Linux/X11-version as IVS is run in separate
+	// process and therefore ItalcAuthAppInternalChallenge won't work
 	ItalcAuthChallengeViaAuthFile,
 } ;
 

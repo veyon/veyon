@@ -97,34 +97,6 @@ mainWindow::mainWindow() :
 		return;
 	}
 
-	if( isdConnection::initAuthentication() == FALSE )
-	{
-		if( splashScreen != NULL )
-		{
-			splashScreen->hide();
-		}
-		messageBox::information( tr( "New key-pair generated" ),
-			tr( 	"No authentication-keys were found or your "
-				"old ones contained errors, so a new key-"
-				"pair has been generated. Please have your "
-				"administrator to distribute your public key. "
-				"Otherwise you won't be able to access "
-						"computers using iTALC." ) );
-	}
-
-	m_localISD = new isdConnection( QHostAddress( QHostAddress::LocalHost
-								).toString() );
-	if( m_localISD->open() != isdConnection::Connected )
-	{
-		messageBox::information( tr( "No service-daemon running" ),
-			tr( 	"There seems to be no service-daemon running "
-				"on this computer, which is neccessary for "
-				"running iTALC properly. Please make sure "
-				"a service-daemon is started at system-startup "
-				"and try again." ) );
-		return;
-	}
-
 	QWidget * hbox = new QWidget( this );
 	QHBoxLayout * hbox_layout = new QHBoxLayout( hbox );
 	hbox_layout->setMargin( 0 );
@@ -362,12 +334,42 @@ mainWindow::mainWindow() :
 
 	restoreState( m_clientManager->winCfg().toAscii() );
 
+	if( isdConnection::initAuthentication() == FALSE )
+	{
+		if( splashScreen != NULL )
+		{
+			splashScreen->hide();
+		}
+		messageBox::information( tr( "New key-pair generated" ),
+			tr( 	"No authentication-keys were found or your "
+				"old ones contained errors, so a new key-"
+				"pair has been generated. Please have your "
+				"administrator to distribute your public key. "
+				"Otherwise you won't be able to access "
+						"computers using iTALC." ) );
+	}
+
+	m_localISD = new isdConnection( QHostAddress( QHostAddress::LocalHost
+								).toString() );
+	if( m_localISD->open() != isdConnection::Connected )
+	{
+		messageBox::information( tr( "No service-daemon running" ),
+			tr( 	"There seems to be no service-daemon running "
+				"on this computer, which is neccessary for "
+				"running iTALC properly. Please make sure "
+				"a service-daemon is started at system-startup "
+				"and try again." ) );
+		return;
+	}
+
+	m_localISD->setRole( __role );
+	m_localISD->demoServerStop();
+	m_localISD->demoServerRun( __demo_quality, localSystem::freePort() );
+
 	QTimer::singleShot( 1000, m_clientManager, SLOT( updateClients() ) );
 
 	m_updateThread = new updateThread( this );
 
-	m_localISD->demoServerStop();
-	m_localISD->demoServerRun( __demo_quality, localSystem::freePort() );
 }
 
 

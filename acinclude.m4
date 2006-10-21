@@ -9,7 +9,7 @@ AC_ARG_WITH([qtdir], [  --with-qtdir=DIR        Qt installation directory [defau
 # Check that QTDIR is defined or that --with-qtdir given
 if test x"$QTDIR" = x ; then
 	# some usual Qt-locations
-	QT_SEARCH="/usr /usr/lib/qt /usr/X11R6 /usr/local/Trolltech/Qt-4.0.0 /usr/local/Trolltech/Qt-4.0.1 /usr/local/Trolltech/Qt-4.1.0"
+	QT_SEARCH="/usr /usr/lib/qt /usr/X11R6 /usr/local/Trolltech/Qt-4.0.0 /usr/local/Trolltech/Qt-4.0.1 /usr/local/Trolltech/Qt-4.1.0 /usr/local/Trolltech/Qt-4.2.0"
 else
 	QT_SEARCH=$QTDIR
 	QTDIR=""
@@ -31,8 +31,7 @@ AC_MSG_RESULT([$QTDIR])
 # Change backslashes in QTDIR to forward slashes to prevent escaping
 # problems later on in the build process, mainly for Cygwin build
 # environment using MSVC as the compiler
-# TODO: Use sed instead of perl
-QTDIR=`echo $QTDIR | perl -p -e 's/\\\\/\\//g'`
+QTDIR=`echo $QTDIR | sed 's/\\\\/\\//g'`
 
 AC_MSG_CHECKING([Qt includes])
 # Check where includes are located
@@ -86,7 +85,6 @@ fi
 QT_CXXFLAGS="-I$QT_INCLUDES -I$QT_INCLUDES/Qt/"
 
 
-QT_IS_EMBEDDED="no"
 # On unix, figure out if we're doing a static or dynamic link
 case "${build}" in
       *mingw32)
@@ -102,8 +100,8 @@ case "${build}" in
                 AC_MSG_ERROR([*** Couldn't find any Qt libraries])
             fi
         fi
-	QT_IS_MT="yes"
-	QT_LIB="-L$QTDIR/bin -lQtCore4 -lQtGui4 -lQtXml4 -lQtNetwork4 -lws2_32"
+	QT_LIB="-L$QTDIR/bin -lQtCore4 -lQtXml4 -lQtNetwork4 -lws2_32"
+	QT_LIB_GUI="-lQtGui4"
         ;;
     *)
         QT_IS_STATIC=`ls $QTDIR/lib/*.a 2> /dev/null`
@@ -118,22 +116,13 @@ case "${build}" in
                 AC_MSG_ERROR([*** Couldn't find any Qt libraries])
             fi
         fi
-	QT_IS_MT="yes"
-	QT_LIB="-lQtCore -lQtGui -lQtXml -lQtNetwork"
+	QT_LIB="-L$QTDIR/lib -lQtCore -lQtXml -lQtNetwork"
+	QT_LIB_GUI="-lQtGui"
         ;;
 esac
 AC_MSG_CHECKING([if Qt is static])
 AC_MSG_RESULT([$QT_IS_STATIC])
-AC_MSG_CHECKING([if Qt is multithreaded])
-if test "$QT_IS_MT" = "no"; then
-	AC_MSG_ERROR([*** your Qt is not multithreaded. That's bad, because multithreading is required for compiling... Please install Qt-mt!])
-fi
-AC_MSG_RESULT([$QT_IS_MT])
-AC_MSG_CHECKING([if Qt is embedded])
-AC_MSG_RESULT([$QT_IS_EMBEDDED])
 
-QT_GUILINK=""
-QASSISTANTCLIENT_LDADD="-lqassistantclient"
 QT_LIBS="$QT_LIB"
 
 
@@ -147,11 +136,10 @@ case "${host}" in
 
     *linux*)
         QT_LIBS="$QT_LIB"
-        if test $QT_IS_STATIC = yes && test $QT_IS_EMBEDDED = no; then
-            QT_LIBS="$QT_LIBS -L$x_libraries -lXext -lX11 -lm -lSM -lICE -ldl -ljpeg"
+        if test $QT_IS_STATIC = yes ; then
+            QT_LIBS="$QT_LIBS -L$x_libraries -lXext -lX11 -lm -lSM -lICE -ldl"
         fi
         ;;
-
 
     *osf*) 
         # Digital Unix (aka DGUX aka Tru64)
@@ -168,54 +156,12 @@ case "${host}" in
         fi
         ;;
 
-
-    *win*)
-        # linker flag to suppress console when linking a GUI app on Win32
-        QT_GUILINK="/subsystem:windows"
-
-	if test $QT_MAJOR = "3" ; then
-	    if test $QT_IS_MT = yes ; then
-        	QT_LIBS="/nodefaultlib:libcmt"
-            else
-            	QT_LIBS="/nodefaultlib:libc"
-            fi
-        fi
-
-        if test $QT_IS_STATIC = yes ; then
-            QT_LIBS="$QT_LIBS $QT_LIB kernel32.lib user32.lib gdi32.lib comdlg32.lib ole32.lib shell32.lib imm32.lib advapi32.lib wsock32.lib winspool.lib winmm.lib netapi32.lib"
-            if test $QT_MAJOR = "3" ; then
-                QT_LIBS="$QT_LIBS qtmain.lib"
-            fi
-        else
-            QT_LIBS="$QT_LIBS $QT_LIB"        
-            if test $QT_MAJOR = "3" ; then
-                QT_CXXFLAGS="$QT_CXXFLAGS -DQT_DLL"
-                QT_LIBS="$QT_LIBS qtmain.lib qui.lib user32.lib netapi32.lib"
-            fi
-        fi
-        QASSISTANTCLIENT_LDADD="qassistantclient.lib"
-        ;;
-
 esac
 
 
-if test x"$QT_IS_EMBEDDED" = "xyes" ; then
-        QT_CXXFLAGS="-DQWS $QT_CXXFLAGS"
-fi
+QT_CXXFLAGS="$QT_CXXFLAGS -D_REENTRANT -DQT_NO_DEBUG -DQT_THREAD_SUPPORT"
 
-if test x"$QT_IS_MT" = "xyes" ; then
-        QT_CXXFLAGS="$QT_CXXFLAGS -D_REENTRANT -DQT_THREAD_SUPPORT"
-	# QT_LIBS="$QT_LIBS -lpthread"
-fi
-
-QT_LDADD="-L$QTDIR/lib $QT_LIBS"
-
-#if test x$QT_IS_STATIC = xyes ; then
-#    OLDLIBS="$LIBS"
-#    LIBS="$QT_LDADD"
-#    AC_CHECK_LIB(Xft, XftFontOpen, QT_LDADD="$QT_LDADD -lXft")
-#    LIBS="$LIBS"
-#fi
+QT_LDADD="$QT_LIBS"
 
 AC_MSG_CHECKING([QT_CXXFLAGS])
 AC_MSG_RESULT([$QT_CXXFLAGS])
@@ -224,8 +170,7 @@ AC_MSG_RESULT([$QT_LDADD])
 
 AC_SUBST(QT_CXXFLAGS)
 AC_SUBST(QT_LDADD)
-AC_SUBST(QT_GUILINK)
-AC_SUBST(QASSISTANTCLIENT_LDADD)
+AC_SUBST(QT_LIB_GUI)
 
 ])
 

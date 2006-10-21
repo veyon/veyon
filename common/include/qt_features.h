@@ -32,6 +32,10 @@
 #if QT_VERSION >= 0x040200
 #define SYSTEMTRAY_SUPPORT
 #define COMPLETER_SUPPORT
+#define QMESSAGEBOX_EXT_SUPPORT
+#else
+#define YesToAll YesAll
+#define NoToAll NoAll
 #endif
 
 

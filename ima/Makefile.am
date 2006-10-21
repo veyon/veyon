@@ -110,7 +110,7 @@ LIBSSL_LDADD = -leay32
 endif
 
 
-italc_LDADD = $(QT_LDADD) -lz -ljpeg $(LIBSSL_LDADD)
+italc_LDADD = $(QT_LDADD) $(QT_LIB_GUI) -lz -ljpeg $(LIBSSL_LDADD)
 italc_LDFLAGS = $(LDFLAGS)
 
 AM_CXXFLAGS := $(AM_CXXFLAGS) $(QT_CXXFLAGS)

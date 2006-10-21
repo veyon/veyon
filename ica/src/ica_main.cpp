@@ -123,6 +123,25 @@ int ICAMain( int argc, char * * argv )
 							SLOT( quit() ) );
 			return( app->exec() );
 		}
+		else if( a == "-role" )
+		{
+			if( arg_it.hasNext() )
+			{
+				const QString role = arg_it.next();
+				if( role == "teacher" )
+				{
+					__role = ISD::RoleTeacher;
+				}
+				else if( role == "admin" )
+				{
+					__role = ISD::RoleAdmin;
+				}
+				else if( role == "supporter" )
+				{
+					__role = ISD::RoleSupporter;
+				}
+			}
+		}
 		else if( a == "-registerservice" )
 		{
 			icaServiceInstall( 0 );

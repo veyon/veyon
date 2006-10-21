@@ -42,8 +42,7 @@
 
 static privateDSAKey * privDSAKey = NULL;
 
-#warning: TODO: replace with role according to mode under which app is running
-const ISD::userRoles __role = ISD::RoleTeacher;
+ISD::userRoles __role = ISD::RoleTeacher;
 
 
 bool isdConnection::initAuthentication( void )
@@ -395,7 +394,7 @@ isdConnection::states isdConnection::authAgainstServer(
 			}
 			m_socketDev.write( QVariant( iat ) );
 
-			if( iat == ItalcAuthDSA )
+			if( iat == ItalcAuthDSA || iat == ItalcAuthLocalDSA )
 			{
 				printf("dsa\n");
 				QByteArray chall =
@@ -696,6 +695,20 @@ bool isdConnection::restartComputer( void )
 		return( FALSE );
 	}
 	return( ISD::msg( &m_socketDev, ISD::RestartComputer).send() );
+}
+
+
+
+
+bool isdConnection::setRole( const ISD::userRoles _role )
+{
+	if( m_socket->state() != QTcpSocket::ConnectedState )
+	{
+		m_state = Disconnected;
+		return( FALSE );
+	}
+	return( ISD::msg( &m_socketDev, ISD::SetRole ).
+					addArg( "role", _role ).send() );
 }
 
 

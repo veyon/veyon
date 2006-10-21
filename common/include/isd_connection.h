@@ -129,6 +129,7 @@ public:
 /*	bool ivsRun( const bool _host_based_auth = TRUE );
 	bool ivsTerminate( void );*/
 
+	bool setRole( const ISD::userRoles _role );
 	bool demoServerRun( int _quality, int _port );
 	bool demoServerStop( void );
 	bool demoServerAllowClient( const QString & _client );

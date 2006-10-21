@@ -30,6 +30,7 @@
         <file>resources/flag.png</file>
         <file>resources/fullscreen_demo.png</file>
         <file>resources/help.png</file>
+        <file>resources/high.png</file>
         <file>resources/host_unreachable.png</file>
         <file>resources/info.png</file>
         <file>resources/info_22.png</file>
@@ -38,6 +39,8 @@
         <file>resources/license.png</file>
         <file>resources/locked.png</file>
         <file>resources/logout.png</file>
+        <file>resources/low.png</file>
+        <file>resources/medium.png</file>
         <file>resources/modem.png</file>
         <file>resources/network.png</file>
         <file>resources/no_user.png</file>

@@ -6,7 +6,7 @@
     <x>0</x>
     <y>0</y>
     <width>493</width>
-    <height>312</height>
+    <height>334</height>
    </rect>
   </property>
   <layout class="QHBoxLayout" >
@@ -90,7 +90,7 @@ p, li { white-space: pre-wrap; }
              <bool>true</bool>
             </property>
             <property name="text" >
-             <string>iTALC Client Software</string>
+             <string>iTALC Client Appliction (ICA)</string>
             </property>
             <property name="checked" >
              <bool>true</bool>
@@ -100,7 +100,14 @@ p, li { white-space: pre-wrap; }
           <item>
            <widget class="QCheckBox" name="componentMaster" >
             <property name="text" >
-             <string>iTALC Master Application</string>
+             <string>iTALC Master Application (IMA)</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="componentLUPUS" >
+            <property name="text" >
+             <string>Online-Update Service (LUPUS)</string>
             </property>
            </widget>
           </item>

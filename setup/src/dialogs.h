@@ -54,6 +54,7 @@ public:
 
 	bool m_installClient;
 	bool m_installMaster;
+	bool m_installLUPUS;
 	bool m_installDocs;
 
 	void setNextPageDisabled( bool );
@@ -164,6 +165,7 @@ public:
 private slots:
 	void toggleComponentClient( bool );
 	void toggleComponentMaster( bool );
+	void toggleComponentLUPUS( bool );
 	void toggleComponentDocs( bool );
 
 } ;

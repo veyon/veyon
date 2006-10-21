@@ -52,7 +52,7 @@
 
 #if _WIN32_WINNT >= 0x501
 #include <reason.h>
-#define SHUTDOWN_REASON (SHTDN_REASON_MINOR_ENVIRONMENT)
+#define SHUTDOWN_REASON (SHTDN_REASON_MAJOR_SYSTEM/* SHTDN_REASON_MINOR_ENVIRONMENT*/)
 #else
 #define SHUTDOWN_REASON 0
 #endif
@@ -420,148 +420,43 @@ void logoutUser( void )
 #ifdef BUILD_WIN32
 	ExitWindowsEx( EWX_LOGOFF | SHUTDOWN_FLAGS, SHUTDOWN_REASON );
 #else
-	QProcess::startDetached( "killall X" );
+	QProcess::startDetached( "killall Xorg" );
 #endif
 }
-
-
-#ifdef BUILD_WIN32
-#if 0
-void getUserName( char * * _str)
-{
-	if( !_str )
-	{
-		return;
-	}
-	*_str = NULL;
-
-	DWORD aProcesses[1024], cbNeeded;
-
-	if( !EnumProcesses( aProcesses, sizeof(aProcesses), &cbNeeded ) )
-	{
-		return;
-	}
-
-	DWORD cProcesses = cbNeeded / sizeof(DWORD);
-
-	for( DWORD i = 0; i < cProcesses; i++ )
-	{
-		HANDLE hProcess = OpenProcess( PROCESS_QUERY_INFORMATION |
-								PROCESS_VM_READ,
-							FALSE, aProcesses[i] );
-		HMODULE hMod;
-		if( hProcess == NULL ||
-			!EnumProcessModules( hProcess, &hMod, sizeof( hMod ),
-								&cbNeeded ) )
-	        {
-			continue;
-		}
-		TCHAR szProcessName[MAX_PATH];
-		GetModuleBaseName( hProcess, hMod, szProcessName, 
-                             		  sizeof(szProcessName)/sizeof(TCHAR) );
-		for( TCHAR * ptr = szProcessName; *ptr; ++ptr )
-		{
-			*ptr = tolower( *ptr );
-		}
-		if( strcmp( szProcessName, "explorer.exe" ) )
-		{
-			CloseHandle( hProcess );
-			continue;
-		}
-	
-		HANDLE hToken;
-		OpenProcessToken( hProcess, TOKEN_READ, &hToken );
-		DWORD len = 0;
-
-		GetTokenInformation( hToken, TokenUser, NULL, 0, &len ) ;
-		char * buf = new char[len];
-		if ( !GetTokenInformation( hToken, TokenUser, buf, len, &len ) )
-		{
-			CloseHandle( hProcess );
-			continue;
-		}
-
-		PSID psid = ((TOKEN_USER*) buf)->User.Sid;
-
-		DWORD accname_len = 0;
-		DWORD domname_len = 0;
-		SID_NAME_USE nu;
-		LookupAccountSid( NULL, psid, NULL, &accname_len, NULL,
-							&domname_len, &nu );
-		char * accname = new char[accname_len];
-		char * domname = new char[domname_len];
-		LookupAccountSid( NULL, psid, accname, &accname_len,
-						domname, &domname_len, &nu );
-		WCHAR wszDomain[256];
-		MultiByteToWideChar( CP_ACP, 0, domname,
-			strlen( domname ) + 1, wszDomain, sizeof( wszDomain ) /
-						sizeof( wszDomain[0] ) );
-		WCHAR wszUser[256];
-		MultiByteToWideChar( CP_ACP, 0, accname,
-			strlen( accname ) + 1, wszUser, sizeof( wszUser ) /
-							sizeof( wszUser[0] ) );
-		LPBYTE domcontroller;
-		NetGetDCName( NULL, wszDomain, &domcontroller );
-		LPUSER_INFO_2 pBuf = NULL;
-		NET_API_STATUS nStatus = NetUserGetInfo( (LPWSTR)domcontroller,
-						wszUser, 2, (LPBYTE *) &pBuf );
-		if( nStatus == NERR_Success && pBuf != NULL )
-		{
-			len = WideCharToMultiByte( CP_ACP, 0,
-							pBuf->usri2_full_name,
-						-1, NULL, 0, NULL, NULL );
-			char * mbstr = new char[len];
-			len = WideCharToMultiByte( CP_ACP, 0,
-							pBuf->usri2_full_name,
-						-1, mbstr, len, NULL, NULL );
-			*_str = new char[len+accname_len+4];
-			sprintf( *_str, "%s (%s)", mbstr, accname );
-			delete[] mbstr;
-		}
-		if( pBuf != NULL )
-		{
-			NetApiBufferFree( pBuf );
-		}
-		delete[] accname;
-		delete[] domname;
-		FreeSid( psid );
-		delete[] buf;
-		CloseHandle( hToken );
-		CloseHandle( hProcess );
-	}
-}
-#endif
-#endif
 
 
 
 QString currentUser( void )
 {
 	QString ret = "unknown";
+
 #ifdef BUILD_WIN32
+
 	if( !__user_poll_thread->name().isEmpty() )
 	{
 		ret = __user_poll_thread->name();
 	}
-/*	char * name;
-	getUserName( &name );
-	if( name )
-	{
-		ret = name;
-	}*/
+
 #else
 
+	char * user_name = getenv( "USER" );
 #ifdef HAVE_PWD_H
-	struct passwd * pw_entry = getpwuid( getuid() );
-	if( pw_entry != NULL )
+	struct passwd * pw_entry = NULL;
+	if( user_name )
+	{
+		pw_entry = getpwnam( user_name );
+	}
+	if( !pw_entry )
+	{
+		pw_entry = getpwuid( getuid() );
+	}
+	if( pw_entry )
 	{
 		return( QString( "%1 (%2)" ).arg( pw_entry->pw_gecos ).
-					arg( pw_entry->pw_name ) );
+						arg( pw_entry->pw_name ) );
 	}
 #endif
-
-	char * user_name = getenv( "USER" );
-	if( user_name != NULL )
+	if( user_name )
 	{
 		return user_name;
 	}
@@ -572,12 +467,14 @@ QString currentUser( void )
 }
 
 
+
 static const QString userRoleNames[] =
 {
 	"none",
 	"teacher",
+	"admin",
 	"supporter",
-	"admin"
+	"other"
 } ;
 
 inline QString keyPath( const ISD::userRoles _role, const QString _group )

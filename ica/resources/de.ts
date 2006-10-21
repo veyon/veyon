@@ -70,6 +70,23 @@
         <source>Message from teacher</source>
         <translation>Nachricht vom Lehrer</translation>
     </message>
+    <message>
+        <source>Confirm access
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Somebody at host %1 tries to access your screen. Do you want to grant him/her access?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Never for this session</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Always for this session</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>messageBox</name>

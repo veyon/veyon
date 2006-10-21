@@ -31,6 +31,7 @@
 #include <QtGui/QFileDialog>
 #include <QtGui/QLayout>
 #include <QtGui/QMessageBox>
+#include <QtGui/QProgressDialog>
 
 #include "dialogs.h"
 #include "local_system.h"
@@ -60,6 +61,10 @@ setupWizard::setupWizard() :
 	m_keyExportDir( m_keyImportDir ),
 	m_pubKeyDir( localSystem::publicKeyPath( ISD::RoleTeacher ) ),
 	m_privKeyDir( localSystem::privateKeyPath( ISD::RoleTeacher ) ),
+	m_installClient( TRUE ),
+	m_installMaster( FALSE ),
+	m_installLUPUS( FALSE ),
+	m_installDocs( FALSE ),
 	m_widgetStack(),
 	m_idx( 0 )
 {
@@ -173,10 +178,25 @@ void setupWizard::next( void )
 			"QtXml.so.4"
 #endif
 			;
+		QProgressDialog pd;
+
+		pd.setWindowTitle( tr( "Installing iTALC" ) );
+
+		pd.setLabelText( tr( "Copying files..." ) );
+
 		bool overwrite_all = FALSE;
 		bool overwrite_none = FALSE;
+		int i = 0;
 		foreach( const QString & file, files )
 		{
+			if( ( file.left( 3 ) == "ica" && !m_installClient )
+				||
+			( file.left( 5 ) == "italc" && !m_installMaster )
+				||
+				( file.left( 3 ) == "aus" && !m_installLUPUS ) )
+			{
+				continue;
+			}
 			if( QFileInfo( d + file ).exists() && !overwrite_all )
 			{
 				if( overwrite_none )
@@ -185,9 +205,16 @@ void setupWizard::next( void )
 				}
 	int res = QMessageBox::question( NULL, tr( "Confirm overwrite" ),
 			tr( "Do you want to overwrite %1?" ).arg( d + file ),
+#ifdef QMESSAGEBOX_EXT_SUPPORT
 				QMessageBox::Yes | QMessageBox::No |
 				QMessageBox::YesToAll | QMessageBox::NoToAll,
-							QMessageBox::Yes );
+							QMessageBox::Yes
+#else
+					QMessageBox::Yes | QMessageBox::Default,
+					QMessageBox::No,
+					QMessageBox::YesToAll
+#endif
+							);
 				switch( res )
 				{
 					case QMessageBox::YesToAll:
@@ -207,15 +234,26 @@ void setupWizard::next( void )
 				}
 			}
 			QFile( file ).copy( d + file );
+			pd.setValue( ++i * 50 / files.size() );
+			qApp->processEvents();
+			if( pd.wasCanceled() )
+			{
+				accept();
+				return;
+			}
 		}
+		const int remaining_steps = 1;
+		const int remaining_percent = 50;
+
+		pd.setLabelText( tr( "Registering ICA as service..." ) );
+		qApp->processEvents();
+	
 		// TODO: create/import/export keys
 		QProcess::execute( d + "ica -registerservice" );
 		// TODO: feedback
 		accept();
 	}
 }
-
-
 
 
 
@@ -306,8 +344,14 @@ bool setupWizardPageInstallDir::returnPressed( void )
 				tr( "Directory does not exist" ),
 				tr( "The specified directory does not exist. "
 					"Do you want to create it?" ),
+#ifdef QMESSAGEBOX_EXT_SUPPORT
 				QMessageBox::Yes | QMessageBox::No,
-							QMessageBox::Yes )
+							QMessageBox::Yes
+#else
+				QMessageBox::Yes | QMessageBox::Default,
+							QMessageBox::No
+#endif
+							)
 				==
 							QMessageBox::Yes )
 		{
@@ -319,7 +363,11 @@ bool setupWizardPageInstallDir::returnPressed( void )
 						"Make sure you have the "
 						"neccessary rights and try "
 						"again!" ).arg( d ),
-					QMessageBox::Ok );
+					QMessageBox::Ok
+#ifndef QMESSAGEBOX_EXT_SUPPORT
+					, 0
+#endif
+					);
 				return( FALSE );
 			}
 		}
@@ -369,6 +417,15 @@ setupWizardPageSelectComponents::setupWizardPageSelectComponents(
 	Ui::pageSelectComponents()
 {
 	setupUi( this );
+
+	connect( componentClient, SIGNAL( toggled( bool ) ),
+			this, SLOT( toggleComponentClient( bool ) ) );
+	connect( componentMaster, SIGNAL( toggled( bool ) ),
+			this, SLOT( toggleComponentMaster( bool ) ) );
+	connect( componentLUPUS, SIGNAL( toggled( bool ) ),
+			this, SLOT( toggleComponentLUPUS( bool ) ) );
+	connect( componentDocs, SIGNAL( toggled( bool ) ),
+			this, SLOT( toggleComponentDocs( bool ) ) );
 }
 
 
@@ -389,10 +446,19 @@ void setupWizardPageSelectComponents::toggleComponentMaster( bool _on )
 
 
 
+void setupWizardPageSelectComponents::toggleComponentLUPUS( bool _on )
+{
+	m_setupWizard->m_installLUPUS = _on;
+}
+
+
+
+
 void setupWizardPageSelectComponents::toggleComponentDocs( bool _on )
 {
 	m_setupWizard->m_installDocs = _on;
 }
+
 
 
 

@@ -28,6 +28,7 @@
 #include <QtCore/QTemporaryFile>
 #include <QtCore/QTimer>
 #include <QtGui/QApplication>
+#include <QtGui/QMessageBox>
 #include <QtNetwork/QHostInfo>
 #include <QtNetwork/QTcpSocket>
 
@@ -58,7 +59,6 @@ QStringList isdServer::s_allowedDemoClients;
 
 isdServer::isdServer( const quint16 _ivs_port, int _argc, char * * _argv ) :
 	QTcpServer(),
-	m_authType( ItalcAuthDSA ),
 	m_ivs( new IVS( _ivs_port, _argc, _argv ) ),
 	m_demoClient( NULL ),
 	m_demoServer( NULL ),
@@ -192,6 +192,16 @@ int isdServer::processClient( socketDispatcher _sd, void * _user )
 			m_ivs->terminate();
 			break;*/
 
+		case ISD::SetRole:
+		{
+			const int role = msg_in.arg( "role" ).toInt();
+			if( role > ISD::RoleNone && role < ISD::RoleCount )
+			{
+				__role = static_cast<ISD::userRoles>( role );
+			}
+			break;
+		}
+
 		case ISD::DemoServer_Run:
 			// make sure any running demo-server is destroyed
 			delete m_demoServer;
@@ -306,6 +316,14 @@ bool isdServer::protocolInitialization( socketDevice & _sd,
 bool isdServer::authSecTypeItalc( socketDispatcher _sd, void * _user,
 						italcAuthTypes _auth_type )
 {
+	// find out IP of host - needed at several places
+	const int MAX_HOST_LEN = 255;
+	char host[MAX_HOST_LEN];
+	_sd( host, MAX_HOST_LEN, SocketGetIPBoundTo, _user );
+	host[MAX_HOST_LEN] = 0;
+
+	static QStringList __denied_hosts, __allowed_hosts;
+
 	socketDevice sdev( _sd, _user );
 	sdev.write( QVariant( (int) _auth_type ) );
 
@@ -317,6 +335,10 @@ bool isdServer::authSecTypeItalc( socketDispatcher _sd, void * _user,
 		chosen == ItalcAuthChallengeViaAuthFile )
 	{
 		_auth_type = chosen;
+	}
+	else if( chosen == ItalcAuthDSA && _auth_type == ItalcAuthLocalDSA )
+	{
+		// this case is ok as well
 	}
 	else if( chosen != _auth_type )
 	{
@@ -334,12 +356,6 @@ bool isdServer::authSecTypeItalc( socketDispatcher _sd, void * _user,
 		// host has to be in list of allowed hosts
 		case ItalcAuthHostBased:
 		{
-			// find out IP of host
-			const int MAX_HOST_LEN = 255;
-			char host[MAX_HOST_LEN];
-			_sd( host, MAX_HOST_LEN, SocketGetIPBoundTo, _user );
-			host[MAX_HOST_LEN] = 0;
-
 			// create a list of all known addresses of host
 			QList<QHostAddress> addr =
 					QHostInfo::fromName( host ).addresses();
@@ -361,6 +377,7 @@ bool isdServer::authSecTypeItalc( socketDispatcher _sd, void * _user,
 		}
 
 		// authentication via DSA-challenge/-response
+		case ItalcAuthLocalDSA:
 		case ItalcAuthDSA:
 		{
 			// generate data to sign and send to client
@@ -371,7 +388,71 @@ bool isdServer::authSecTypeItalc( socketDispatcher _sd, void * _user,
 			const ISD::userRoles urole =
 				static_cast<ISD::userRoles>(
 							sdev.read().toInt() );
-
+			if( __role != ISD::RoleOther &&
+					_auth_type != ItalcAuthLocalDSA )
+			{
+				if( __denied_hosts.contains( host ) )
+				{
+					result = ItalcAuthFailed;
+					break;
+				}
+				if( !__allowed_hosts.contains( host ) )
+				{
+	QMessageBox m(
+#ifdef QMESSAGEBOX_EXT_SUPPORT
+			QMessageBox::Question,
+#endif
+			tr( "Confirm access\n" ),
+			tr( "Somebody at host %1 tries to access your screen. "
+				"Do you want to grant him/her access?" ),
+#ifdef QMESSAGEBOX_EXT_SUPPORT
+				QMessageBox::Yes | QMessageBox::No
+#else
+			QMessageBox::Question,
+			QMessageBox::Yes,
+			QMessageBox::No | QMessageBox::Escape,
+			QMessageBox::NoToAll | QMessageBox::Default
+#endif
+			);
+#ifdef QMESSAGEBOX_EXT_SUPPORT
+	QPushButton * never_btn = m.addButton( tr( "Never for this session" ),
+							QMessageBox::NoRole );
+	QPushButton * always_btn = m.addButton( tr( "Always for this session" ),
+							QMessageBox::YesRole );
+	m.setDefaultButton( never_btn );
+	m.setEscapeButton( m.button( QMessageBox::No ) );
+#else
+	m.setButtonText( 2, tr( "Never for this session" ) );
+#endif
+	const int res = m.exec();
+#ifdef QMESSAGEBOX_EXT_SUPPORT
+	if( m.clickedButton() == never_btn )
+#else
+	if( res == QMessageBox::NoToAll )
+#endif
+	{
+		__denied_hosts += host;
+		result = ItalcAuthFailed;
+		break;
+	}
+#ifdef QMESSAGEBOX_EXT_SUPPORT
+	else if( m.clickedButton() == always_btn )
+	{
+		__allowed_hosts += host;
+	}
+#endif
+	else if( res == QMessageBox::No )
+	{
+		result = ItalcAuthFailed;
+		break;
+	}
+				}
+				else
+				{
+					result = ItalcAuthFailed;
+				}
+			}
+			
 			// now try to verify received signed data using public
 			// key of the user under which the client claims to run
 			const QByteArray sig = sdev.read().toByteArray();
@@ -439,7 +520,7 @@ void isdServer::acceptNewConnection( void )
 	QTcpSocket * sock = nextPendingConnection();
 	socketDevice sd( qtcpsocketDispatcher, sock );
 
-	if( !protocolInitialization( sd, m_authType ) )
+	if( !protocolInitialization( sd, ItalcAuthLocalDSA) )
 	{
 		delete sock;
 		return;

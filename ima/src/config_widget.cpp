@@ -38,6 +38,7 @@ class QColorGroup;
 #include "main_window.h"
 #include "qnetworkinterface.h"
 #include "tool_button.h"
+#include "isd_base.h"
 
 
 
@@ -91,13 +92,17 @@ configWidget::configWidget( mainWindow * _main_window, QWidget * _parent ) :
 	connect( interfaceCB, SIGNAL( activated( const QString & ) ), this,
 				SLOT( interfaceSelected( const QString & ) ) );
 
-	demoQualityCB->addItem( tr( "Low (15 bit)" ) );
-	demoQualityCB->addItem( tr( "Medium (18 bit)" ) );
-	demoQualityCB->addItem( tr( "High (Truecolor)" ) );
 	demoQualityCB->setCurrentIndex( __demo_quality );
 
 	connect( demoQualityCB, SIGNAL( activated( int ) ), this,
-				SLOT( demoQualitySelected( int ) ) );
+					SLOT( demoQualitySelected( int ) ) );
+
+
+	roleCB->setCurrentIndex( __role - 1 );
+
+	connect( roleCB, SIGNAL( activated( int ) ), this,
+						SLOT( roleSelected( int ) ) );
+
 
 	balloonToolTips->setChecked( toolButton::toolTipsDisabled() );
 	connect( balloonToolTips, SIGNAL( toggled( bool ) ),
@@ -137,6 +142,14 @@ void configWidget::interfaceSelected( const QString & _if_name )
 void configWidget::demoQualitySelected( int _q )
 {
 	__demo_quality = _q;
+}
+
+
+
+
+void configWidget::roleSelected( int _role )
+{
+	__role = static_cast<ISD::userRoles>( _role+1 );
 }
 
 

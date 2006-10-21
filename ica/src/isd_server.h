@@ -85,7 +85,6 @@ private:
 	void denyDemoClient( const QString & _host );
 
 
-	italcAuthTypes m_authType;
 	static QStringList s_allowedDemoClients;
 
 	QMutex m_actionMutex;

@@ -219,19 +219,13 @@ typedef struct
 		PowerDownComputer,
 		RestartComputer,
 
-/*		IVS_Run = 64,
-		IVS_Terminate,
-		IVS_AllowClient,
-		IVS_DenyClient,
-		IVS_PortInfo,*/
+		SetRole = 64,
 
 		DemoServer_Run = 80,
 		DemoServer_Stop,
 		DemoServer_AllowClient,
 		DemoServer_DenyClient
 
-/*		// ONLY FOR DEBUGGING
-		ISD_Terminate*/
 	} ;
 
 
@@ -285,14 +279,17 @@ typedef struct
 	{
 		RoleNone,
 		RoleTeacher,
-		RoleSupporter,
 		RoleAdmin,
+		RoleSupporter,
+		RoleOther,
 		RoleCount
 	} ;
 
 
 } ISD;
 
+
+extern ISD::userRoles __role;
 
 
 #endif

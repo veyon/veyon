@@ -254,6 +254,7 @@ void clientManager::savePersonalConfig( void )
 
 	globalsettings.setAttribute( "net-iface", __demo_network_interface );
 	globalsettings.setAttribute( "demoquality", __demo_quality );
+	globalsettings.setAttribute( "role", __role );
 	globalsettings.setAttribute( "notooltips",
 					toolButton::toolTipsDisabled() );
 
@@ -437,6 +438,13 @@ void clientManager::getHeaderInformation( const QDomElement & _header )
 			__demo_quality = node.toElement().
 					attribute( "demoquality" ).toInt();
 
+			__role = static_cast<ISD::userRoles>(
+				node.toElement().attribute( "role" ).toInt() );
+			if( __role <= ISD::RoleNone ||
+						__role >= ISD::RoleCount )
+			{
+				__role = ISD::RoleTeacher;
+			}
 			toolButton::setToolTipsDisabled(
 				node.toElement().attribute( "notooltips" ).
 								toInt() );

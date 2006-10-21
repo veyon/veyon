@@ -1,3 +1,59 @@
+2006-10-21	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* common/src/local_system.cpp:
+	- cleanups and small fixes
+	- under Linux/X11 first try to evaluate USER-env-var before using
+	  getuid()
+	
+	* setup/dialogs/page_select_components.ui:
+	* setup/src/dialogs.cpp:
+	- when installing to according to list of components selected by user
+	- progress-dialog during actual installation
+
+	* ima/dialogs/config.ui:
+	- corrected "what's this"-texts for some elements
+	- items for demo-quality-combobox are now inserted by UIC-code instead
+	  of in ima/src/config_widget.cpp
+
+	* common/include/isd_base.h:
+	* common/include/isd_connection.h:
+	* common/include/italc_rfb_ext.h:
+	* common/src/isd_connection.cpp:
+	* common/src/local_system.cpp:
+	* ica/src/ica_main.cpp:
+	* ica/src/isd_server.h:
+	* ica/src/isd_server.cpp:
+	* ima/dialogs/config.ui:
+	* ima/src/config_widget.h:
+	* ima/src/config_widget.cpp:
+	* ima/src/client_manager.cpp:
+	* ima/src/main_window.cpp:
+	support for several roles, e.g. teachers, admins, supporters and
+	others (students etc.) and therefore different keys for each role
+
+	* ica/Makefile.am:
+	* ima/Makefile.am:
+	* setup/Makefile.am:
+	* acinclude.m4:
+	- more clean Qt-detection code
+	- separated QtGui-lib to extra variable as it isn't needed by all
+	  components
+
+	* ima/resources/low.png:
+	* ima/resources/medium.png:
+	* ima/resources/high.png:
+	* ima/italc.qrc:
+	added icons for different demo-quality-types
+
+2006-10-19	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* common/include/qt_features.h:
+	* setup/src/dialogs.cpp:
+	support static functions of QMessageBox in Qt < 4.2
+
+	* ica/src/ica_main.cpp:
+	compat-fix for Qt < 4.2
+
 2006-10-18	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* common/include/dsa_key.h:
