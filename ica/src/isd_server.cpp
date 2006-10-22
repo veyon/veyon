@@ -198,6 +198,13 @@ int isdServer::processClient( socketDispatcher _sd, void * _user )
 			if( role > ISD::RoleNone && role < ISD::RoleCount )
 			{
 				__role = static_cast<ISD::userRoles>( role );
+#ifdef BUILD_LINUX
+				// under Linux/X11, IVS runs in separate process
+				// therefore we need to restart it with new
+				// role, bad hack but there's no clean solution
+				// for the time being
+				m_ivs->restart();
+#endif
 			}
 			break;
 		}
@@ -209,6 +216,14 @@ int isdServer::processClient( socketDispatcher _sd, void * _user )
 			m_demoServer = new demoServer( m_ivs,
 					msg_in.arg( "quality" ).toInt(),
 					msg_in.arg( "port" ).toInt() );
+			if( _sd == &qtcpsocketDispatcher )
+			{
+				QTcpSocket * ts = static_cast<QTcpSocket *>(
+								_user );
+				ts->setProperty( "demoserver",
+					QVariant::fromValue( (QObject *)
+							m_demoServer ) );
+			}
 /*			if( m_demoServer->serverPort() )
 			{
 				// tell iTALC-master at which port the demo-
@@ -221,9 +236,17 @@ int isdServer::processClient( socketDispatcher _sd, void * _user )
 			break;
 
 		case ISD::DemoServer_Stop:
+		{
+			const QList<QTcpSocket *> sockets =
+						findChildren<QTcpSocket *>();
+			foreach( QTcpSocket * _ts, sockets )
+			{
+				cleanupDestroyedConnection( _ts );
+			}
 			delete m_demoServer;
 			m_demoServer = NULL;
 			break;
+		}
 
 		case ISD::DemoServer_AllowClient:
 			allowDemoClient( msg_in.arg( "client" ).toString() );
@@ -398,54 +421,33 @@ bool isdServer::authSecTypeItalc( socketDispatcher _sd, void * _user,
 				}
 				if( !__allowed_hosts.contains( host ) )
 				{
-	QMessageBox m(
-#ifdef QMESSAGEBOX_EXT_SUPPORT
-			QMessageBox::Question,
-#endif
-			tr( "Confirm access\n" ),
-			tr( "Somebody at host %1 tries to access your screen. "
-				"Do you want to grant him/her access?" ),
-#ifdef QMESSAGEBOX_EXT_SUPPORT
-				QMessageBox::Yes | QMessageBox::No
+					bool failed = TRUE;
+					switch(
+#ifdef BUILD_LINUX
+	QProcess::execute( QCoreApplication::applicationFilePath() +
+					QString( " %1 %2" ).
+						arg( ACCESS_DIALOG_ARG ).
+								arg( host ) )
 #else
-			QMessageBox::Question,
-			QMessageBox::Yes,
-			QMessageBox::No | QMessageBox::Escape,
-			QMessageBox::NoToAll | QMessageBox::Default
+					showAccessDialog( host )
 #endif
-			);
-#ifdef QMESSAGEBOX_EXT_SUPPORT
-	QPushButton * never_btn = m.addButton( tr( "Never for this session" ),
-							QMessageBox::NoRole );
-	QPushButton * always_btn = m.addButton( tr( "Always for this session" ),
-							QMessageBox::YesRole );
-	m.setDefaultButton( never_btn );
-	m.setEscapeButton( m.button( QMessageBox::No ) );
-#else
-	m.setButtonText( 2, tr( "Never for this session" ) );
-#endif
-	const int res = m.exec();
-#ifdef QMESSAGEBOX_EXT_SUPPORT
-	if( m.clickedButton() == never_btn )
-#else
-	if( res == QMessageBox::NoToAll )
-#endif
-	{
-		__denied_hosts += host;
-		result = ItalcAuthFailed;
-		break;
-	}
-#ifdef QMESSAGEBOX_EXT_SUPPORT
-	else if( m.clickedButton() == always_btn )
-	{
-		__allowed_hosts += host;
-	}
-#endif
-	else if( res == QMessageBox::No )
-	{
-		result = ItalcAuthFailed;
-		break;
-	}
+									)
+					{
+						case Always:
+							__allowed_hosts += host;
+						case Yes:
+							failed = FALSE;
+							break;
+						case Never:
+							__denied_hosts += host;
+						case No:
+							break;
+					}
+					if( failed )
+					{
+						result = ItalcAuthFailed;
+						break;
+					}
 				}
 				else
 				{
@@ -514,6 +516,61 @@ quint16 isdServer::isdPort( void )
 
 
 
+isdServer::accessDialogResult isdServer::showAccessDialog(
+							const QString & _host )
+{
+	QMessageBox m(
+#ifdef QMESSAGEBOX_EXT_SUPPORT
+			QMessageBox::Question,
+#endif
+			tr( "Confirm access" ),
+			tr( "Somebody at host %1 tries to access your screen. "
+				"Do you want to grant him/her access?" ).
+								arg( _host ),
+#ifdef QMESSAGEBOX_EXT_SUPPORT
+				QMessageBox::Yes | QMessageBox::No
+#else
+			QMessageBox::Question,
+			QMessageBox::Yes,
+			QMessageBox::No | QMessageBox::Escape,
+			QMessageBox::NoToAll | QMessageBox::Default
+#endif
+			);
+#ifdef QMESSAGEBOX_EXT_SUPPORT
+	QPushButton * never_btn = m.addButton( tr( "Never for this session" ),
+							QMessageBox::NoRole );
+	QPushButton * always_btn = m.addButton( tr( "Always for this session" ),
+							QMessageBox::YesRole );
+	m.setDefaultButton( never_btn );
+	m.setEscapeButton( m.button( QMessageBox::No ) );
+#else
+	m.setButtonText( 2, tr( "Never for this session" ) );
+#endif
+	m.activateWindow();
+
+	const int res = m.exec();
+#ifdef QMESSAGEBOX_EXT_SUPPORT
+	if( m.clickedButton() == never_btn )
+#else
+	if( res == QMessageBox::NoToAll )
+#endif
+	{
+		return( Never );
+	}
+#ifdef QMESSAGEBOX_EXT_SUPPORT
+	else if( m.clickedButton() == always_btn )
+	{
+		return( Always );
+	}
+#endif
+	else if( res == QMessageBox::No )
+	{
+		return( No );
+	}
+	return( Yes );
+}
+
+
 
 void isdServer::acceptNewConnection( void )
 {
@@ -530,6 +587,26 @@ void isdServer::acceptNewConnection( void )
 	// so make sure, we get informed about new requests
 	connect( sock, SIGNAL( disconnected() ), sock, SLOT( deleteLater() ) );
 	connect( sock, SIGNAL( readyRead() ), this, SLOT( processClients() ) );
+	connect( sock, SIGNAL( destroyed( QObject * ) ), this,
+			SLOT( cleanupDestroyedConnection( QObject * ) ) );
+}
+
+
+
+
+void isdServer::cleanupDestroyedConnection( QObject * _o )
+{
+	if( _o->property( "demoserver" ).isValid() )
+	{
+		demoServer * ds = dynamic_cast<demoServer *>(
+			_o->property( "demoserver" ).value<QObject *>() );
+		if( ds == m_demoServer )
+		{
+			m_demoServer = NULL;
+		}
+		delete ds;
+		_o->setProperty( "demoserver", QVariant() );
+	}
 }
 
 
@@ -923,7 +1000,7 @@ public:
 				break;
 
 			default:
-				printf( "cmd %d not implemented!\n", cmd );
+				printf( "!!! cmd %d not implemented!\n", cmd );
 				break;
 		}
 

@@ -47,9 +47,16 @@
 
 
 int __isd_port = PortOffsetISD;
+int __ivs_port = PortOffsetIVS;
+
 #ifdef SYSTEMTRAY_SUPPORT
 QSystemTrayIcon * __systray_icon = NULL;
 #endif
+
+#ifdef BUILD_LINUX
+bool __rx11vs = FALSE;
+#endif
+
 
 
 int ICAMain( int argc, char * * argv )
@@ -60,6 +67,7 @@ int ICAMain( int argc, char * * argv )
 	_Xdebug = 1;
 #endif
 #endif
+
 	QCoreApplication * app = NULL;
 	if( argc > 1 && QString( argv[1] ) == "-rx11vs" )
 	{
@@ -86,11 +94,6 @@ int ICAMain( int argc, char * * argv )
 									".qm" );
 	app->installTranslator( &app_tr );
 
-	int ivs_port = PortOffsetIVS;
-#ifdef BUILD_LINUX
-	bool rx11vs = FALSE;
-#endif
-
 	QStringListIterator arg_it( QApplication::arguments() );
 	arg_it.next();
 	while( arg_it.hasNext() )
@@ -103,12 +106,16 @@ int ICAMain( int argc, char * * argv )
 		else if( ( a == "-ivsport" || a == "-rfbport" ) &&
 							arg_it.hasNext() )
 		{
-			ivs_port = arg_it.next().toInt();
+			__ivs_port = arg_it.next().toInt();
 		}
 #ifdef BUILD_LINUX
 		else if( a == "-rx11vs" )
 		{
-			rx11vs = TRUE;
+			__rx11vs = TRUE;
+		}
+		else if( a == ACCESS_DIALOG_ARG && arg_it.hasNext() )
+		{
+			return( isdServer::showAccessDialog( arg_it.next() ) );
 		}
 #endif
 		else if( a == "-rctrl" && arg_it.hasNext() )
@@ -140,6 +147,14 @@ int ICAMain( int argc, char * * argv )
 				{
 					__role = ISD::RoleSupporter;
 				}
+			}
+			else
+			{
+				printf( "-role needs an argument:\n"
+					"	teacher\n"
+					"	admin\n"
+					"	supporter\n\n" );
+				return( -1 );
 			}
 		}
 		else if( a == "-registerservice" )
@@ -178,13 +193,13 @@ int ICAMain( int argc, char * * argv )
 	}
 	
 #ifdef BUILD_LINUX
-	if( rx11vs )
+	if( __rx11vs )
 	{
 #if 1
-		IVS( ivs_port, argc, argv, TRUE );
+		IVS( __ivs_port, argc, argv, TRUE );
 		return( 0 );
 #else
-		IVS * i = new IVS( ivs_port, argc, argv );
+		IVS * i = new IVS( __ivs_port, argc, argv );
 		i->start( IVS::HighestPriority );
 		return( app->exec() );
 #endif
@@ -200,11 +215,11 @@ int ICAMain( int argc, char * * argv )
 	__systray_icon->setToolTip(
 				QApplication::tr( "iTALC Client on %1:%2" ).
 					arg( QHostInfo::localHostName() ).
-					arg( QString::number( ivs_port ) ) );
+					arg( QString::number( __ivs_port ) ) );
 	__systray_icon->show();
 #endif
 						
-	new isdServer( ivs_port, argc, argv );
+	new isdServer( __ivs_port, argc, argv );
 
 	return( app->exec() );
 }

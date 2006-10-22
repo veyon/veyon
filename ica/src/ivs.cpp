@@ -42,6 +42,7 @@ extern "C" int x11vnc_main( int argc, char * * argv );
 
 #include "rfb/rfb.h"
 #include "isd_server.h"
+#include "local_system.h"
 
 
 qint64 libvncClientDispatcher( char * _buf, const qint64 _len,
@@ -167,12 +168,25 @@ void IVS::run( void )
 	if( m_runningInSeparateProcess )
 	{
 		cmdline << "-rx11vs" << "-isdport" <<
-				QString::number( isdServer::isdPort() );
+				QString::number( isdServer::isdPort() ) <<
+				"-role" << localSystem::userRoleName( __role );
 		while( 1 )
 		{
-			QProcess::execute/*startDetached*/(
-				QCoreApplication::applicationFilePath() +
+			QProcess p;
+			p.start( QCoreApplication::applicationFilePath() +
 					" -rx11vs " + cmdline.join( " " ) );
+			m_restart = FALSE;
+			while( p.state() != QProcess::NotRunning )
+			{
+				sleep( 1 );
+				if( m_restart )
+				{
+					p.terminate();
+					sleep( 1 );
+					p.kill();
+					break;
+				}
+			}
 		}
 		return;
 	}

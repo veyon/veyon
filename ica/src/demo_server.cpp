@@ -105,15 +105,16 @@ demoServer::updaterThread::~updaterThread()
 
 void demoServer::updaterThread::run( void )
 {
-	if( m_conn->open() != ivsConnection::Connected )
-	{
-		qCritical( "Could not connect to local IVS!\n" );
-		return;
-	}
-
 	int i = 0;
 	while( !m_quit )
 	{
+		while( !m_quit && m_conn->state() != ivsConnection::Connected &&
+				m_conn->open() != ivsConnection::Connected )
+		{
+			qCritical( "Could not connect to local IVS!\n" );
+			sleep( 1 );
+			printf("conn\n");
+		}
 		msleep( 20 );
 		m_conn->handleServerMessages( ( i = ( i + 1 ) % 2 ) == 0 );
 	}

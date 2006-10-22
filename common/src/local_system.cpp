@@ -477,6 +477,13 @@ static const QString userRoleNames[] =
 	"other"
 } ;
 
+
+QString userRoleName( const ISD::userRoles _role )
+{
+	return( userRoleNames[_role] );
+}
+
+
 inline QString keyPath( const ISD::userRoles _role, const QString _group )
 {
 	QSettings settings( QSettings::SystemScope, "EasySchoolSolutions",

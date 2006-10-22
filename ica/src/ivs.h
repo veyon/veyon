@@ -48,6 +48,13 @@ public:
 		return( m_runningInSeparateProcess );
 	}
 
+#ifdef BUILD_LINUX
+	void restart( void )
+	{
+		m_restart = TRUE;
+	}
+#endif
+
 
 private:
 	virtual void run( void );
@@ -57,6 +64,10 @@ private:
 
 	quint16 m_port;
 	bool m_runningInSeparateProcess;
+
+#ifdef BUILD_LINUX
+	bool m_restart;
+#endif
 
 } ;
 

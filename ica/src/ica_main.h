@@ -29,9 +29,20 @@
 #include "qt_features.h"
 
 int ICAMain( int _argc, char * * _argv );
+
 #define SERVICE_ARG "-service"
 
+#ifdef BUILD_LINUX
+
+#define ACCESS_DIALOG_ARG "-accessdialog"
+
+extern bool __rx11vs;
+
+#endif
+
+
 extern int __isd_port;
+extern int __ivs_port;
 
 
 #ifdef SYSTEMTRAY_SUPPORT

@@ -44,8 +44,16 @@ class isdServer : public QTcpServer
 {
 	Q_OBJECT
 public:
+	enum accessDialogResult
+	{
+		Yes,
+		No,
+		Always,
+		Never
+	} ;
+
 	isdServer( const quint16 _ivs_port, int _argc, char * * _argv );
-	~isdServer();
+	virtual ~isdServer();
 
 	int processClient( socketDispatcher _sd, void * _user );
 
@@ -59,9 +67,12 @@ public:
 
 	static quint16 isdPort( void );
 
+	static accessDialogResult showAccessDialog( const QString & _host );
+
 
 private slots:
 	void acceptNewConnection( void );
+	void cleanupDestroyedConnection( QObject * );
 	void processClients( void );
 
 	void checkForPendingActions( void );

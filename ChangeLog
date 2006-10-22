@@ -1,3 +1,46 @@
+2006-10-22	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* ica/src/inject.cpp:
+	made code follow coding-style-guidelines
+
+	* ica/src/demo_server.cpp:
+	do not quit if first attempt to connect to local IVS fails, instead
+	retry in loop - should make demo-server more stable in general
+
+	* ica/src/isd_server.cpp:
+	if master-app terminated unexspected and did not send
+	demo-stop-command, stop the demo-server started over according socket
+	(for each socket, the property "demoserver" is set when a demo-start-
+	command is received over it - the property contains a pointer to the
+	demo-server and therefore can be deleted when socket emits
+	destroyed()-signal)
+
+	* ica/src/isd_server.cpp:
+	* ica/src/ivs.h:
+	* ica/src/ivs.cpp:
+	Linux/X11-version: pass role to IVS in separate process and restart it
+	as soon as role changes
+
+	* ica/src/ica_main.h:
+	* ica/src/ica_main.cpp:
+	* ica/src/isd_server.h:
+	* ica/src/isd_server.cpp:
+	under Linux/X11 we can't display the access-dialog within IVS-process
+	as no QApplication is being created - instead launch a sub-process
+	whose exit-code corresponds to the choice the user made
+
+	* ica/src/ica_main.h:
+	* ica/src/ica_main.cpp:
+	- made rx11vs a global variable (__rx11vs)
+	- made ivs_port a global variable (__ivs_port)
+
+	* common/src/isd_connection.cpp:
+	use RoleOther for __role per default
+
+	* common/include/local_system.h:
+	* common/src/local_system.cpp:
+	new method userRoleName(...)
+
 2006-10-21	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* common/src/local_system.cpp:

@@ -42,7 +42,7 @@
 
 static privateDSAKey * privDSAKey = NULL;
 
-ISD::userRoles __role = ISD::RoleTeacher;
+ISD::userRoles __role = ISD::RoleOther;
 
 
 bool isdConnection::initAuthentication( void )

@@ -62,6 +62,9 @@ namespace localSystem
 	bool ensurePathExists( const QString & _path );
 
 	QString ip( void );
+
+	QString userRoleName( const ISD::userRoles _role );
+
 }
 
 
