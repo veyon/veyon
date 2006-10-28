@@ -25,6 +25,7 @@
 
 
 #include "inject.h"
+#include "local_system.h"
 
 #ifdef BUILD_WIN32
 
@@ -32,32 +33,6 @@
 #include <windows.h>
 #include <tlhelp32.h>
 
-
-
-BOOL EnablePrivilege( LPCTSTR lpszPrivilegeName, BOOL bEnable )
-{
-	HANDLE			hToken;
-	TOKEN_PRIVILEGES	tp;
-	LUID			luid;
-	BOOL			ret;
-
-	if( !OpenProcessToken( GetCurrentProcess(),
-	      TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY | TOKEN_READ, &hToken ) )
-		return FALSE;
-
-	if( !LookupPrivilegeValue( NULL, lpszPrivilegeName, &luid ) )
-		return FALSE;
-
-	tp.PrivilegeCount           = 1;
-	tp.Privileges[0].Luid       = luid;
-	tp.Privileges[0].Attributes = bEnable ? SE_PRIVILEGE_ENABLED : 0;
-
-	ret = AdjustTokenPrivileges( hToken, FALSE, &tp, 0, NULL, NULL );
-
-	CloseHandle( hToken );
-
-	return ret;
-}
 
 
 DWORD GetPIDFromName( char *szProcessName )
@@ -311,7 +286,7 @@ int InjectCode ()
 	BYTE		*p;
 
 	// Enable Debug privilege (needed for some processes)
-	if( !EnablePrivilege( SE_DEBUG_NAME, TRUE ) )
+	if( !localSystem::enablePrivilege( SE_DEBUG_NAME, TRUE ) )
 		return 0;
 
 	// Get handle of "USER32.DLL"
@@ -530,7 +505,7 @@ int InjectCode ()
 	CloseHandle( hProcess );
 
 	// Disable the DEBUG privilege
-	EnablePrivilege( SE_DEBUG_NAME, FALSE );
+	localSystem::enablePrivilege( SE_DEBUG_NAME, FALSE );
 
 	return nSuccess;	// 0=failure; 1=success
 }
@@ -558,7 +533,7 @@ int EjectCode( void )
 						// (= AfterFunc() - Func())
 
 	// Enable Debug privilege (needed for some processes)
-	EnablePrivilege( SE_DEBUG_NAME, TRUE );
+	localSystem::enablePrivilege( SE_DEBUG_NAME, TRUE );
 
 	// Remote INDATA and SASWindowProc() must exist 
 	if( !pDataRemote || !pSASWinProcRemote )
@@ -631,7 +606,7 @@ END:
 	CloseHandle( hProcess );
 
 	// Disable the DEBUG privilege
-	EnablePrivilege( SE_DEBUG_NAME, FALSE );
+	localSystem::enablePrivilege( SE_DEBUG_NAME, FALSE );
 
 	return nSuccess;	// 0=failure; 1=success
 }

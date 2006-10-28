@@ -30,6 +30,10 @@
 
 #include "isd_base.h"
 
+#ifdef BUILD_WIN32
+#include <windef.h>
+#endif
+
 
 namespace localSystem
 {
@@ -64,6 +68,10 @@ namespace localSystem
 	QString ip( void );
 
 	QString userRoleName( const ISD::userRoles _role );
+
+#ifdef BUILD_WIN32
+	BOOL enablePrivilege( LPCTSTR lpszPrivilegeName, BOOL bEnable );
+#endif
 
 }
 

@@ -157,7 +157,7 @@ ica_SOURCES =		$(srcdir)/src/ica_main.cpp			\
 
 
 inject.o: $(srcdir)/src/inject.cpp
-	$(CXX) -c -o $@ $< -DHAVE_CONFIG_H $(CXXFLAGS) $(INCLUDES) -O0
+	$(CXX) -c -o $@ $< -DHAVE_CONFIG_H $(CXXFLAGS) $(QT_CXXFLAGS) $(INCLUDES) -O0
 
 CLEANFILES = ./ica_qrc.cpp $(ica_MOC)
 BUILT_SOURCES = ./ica_qrc.cpp $(ica_MOC)

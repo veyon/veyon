@@ -1,3 +1,15 @@
+2006-10-28	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* common/src/local_system.cpp:
+	shutdown and reboot under win32 via InitiateSystemShutdown() instead
+	of ExitWindowsEx() - makes shutdown and rebooting under win32 possible
+	when running as service
+
+	* common/include/local_system.h:
+	* common/src/local_system.cpp:
+	* ica/src/inject.cpp:
+	moved enablePrivilege()-function to local-system
+
 2006-10-22	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* ica/src/inject.cpp:

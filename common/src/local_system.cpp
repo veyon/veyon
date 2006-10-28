@@ -395,7 +395,16 @@ void sendWakeOnLANPacket( const QString & _mac, const QString & _bcast )
 void powerDown( void )
 {
 #ifdef BUILD_WIN32
-	ExitWindowsEx( EWX_POWEROFF | SHUTDOWN_FLAGS, SHUTDOWN_REASON );
+	//ExitWindowsEx( EWX_POWEROFF | SHUTDOWN_FLAGS, SHUTDOWN_REASON );
+	enablePrivilege( SE_SHUTDOWN_NAME, TRUE );
+	InitiateSystemShutdown( NULL,	// local machine
+				NULL,	// message for shutdown-box
+				0,	// no timeout or possibility to abort
+					// system-shutdown
+				TRUE,	// force closing all apps
+				FALSE	// do not reboot
+				);
+	enablePrivilege( SE_SHUTDOWN_NAME, FALSE );
 #else
 	QProcess::startDetached( "halt" );
 #endif
@@ -407,7 +416,16 @@ void powerDown( void )
 void reboot( void )
 {
 #ifdef BUILD_WIN32
-	ExitWindowsEx( EWX_REBOOT | SHUTDOWN_FLAGS, SHUTDOWN_REASON );
+	//ExitWindowsEx( EWX_REBOOT | SHUTDOWN_FLAGS, SHUTDOWN_REASON );
+	enablePrivilege( SE_SHUTDOWN_NAME, TRUE );
+	InitiateSystemShutdown( NULL,	// local machine
+				NULL,	// message for shutdown-box
+				0,	// no timeout or possibility to abort
+					// system-shutdown
+				TRUE,	// force closing all apps
+				TRUE	// reboot
+				);
+	enablePrivilege( SE_SHUTDOWN_NAME, FALSE );
 #else
 	QProcess::startDetached( "reboot" );
 #endif
@@ -596,6 +614,35 @@ bool ensurePathExists( const QString & _path )
 	}
 	return( FALSE );
 }
+
+
+
+#ifdef BUILD_WIN32
+BOOL enablePrivilege( LPCTSTR lpszPrivilegeName, BOOL bEnable )
+{
+	HANDLE			hToken;
+	TOKEN_PRIVILEGES	tp;
+	LUID			luid;
+	BOOL			ret;
+
+	if( !OpenProcessToken( GetCurrentProcess(),
+	      TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY | TOKEN_READ, &hToken ) )
+		return FALSE;
+
+	if( !LookupPrivilegeValue( NULL, lpszPrivilegeName, &luid ) )
+		return FALSE;
+
+	tp.PrivilegeCount           = 1;
+	tp.Privileges[0].Luid       = luid;
+	tp.Privileges[0].Attributes = bEnable ? SE_PRIVILEGE_ENABLED : 0;
+
+	ret = AdjustTokenPrivileges( hToken, FALSE, &tp, 0, NULL, NULL );
+
+	CloseHandle( hToken );
+
+	return ret;
+}
+#endif
 
 
 } // end of namespace localSystem
