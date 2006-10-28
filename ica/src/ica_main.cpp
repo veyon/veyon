@@ -94,7 +94,7 @@ int ICAMain( int argc, char * * argv )
 									".qm" );
 	app->installTranslator( &app_tr );
 
-	QStringListIterator arg_it( QApplication::arguments() );
+	QStringListIterator arg_it( QCoreApplication::arguments() );
 	arg_it.next();
 	while( arg_it.hasNext() )
 	{
