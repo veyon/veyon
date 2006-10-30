@@ -52,11 +52,7 @@ private:
 #ifdef BUILD_LINUX
 	virtual bool x11Event( XEvent * _e );
 #endif
-/*
-#ifdef BUILD_WIN32
-	virtual bool winEvent( MSG * _message, long * _result );
-#endif
-*/
+
 	QPixmap m_background;
 	types m_type;
 	systemKeyTrapper m_sysKeyTrapper;

@@ -61,9 +61,6 @@ lockWidget::lockWidget( types _type ) :
 	grabMouse();
 	grabKeyboard();
 	setCursor( Qt::BlankCursor );
-#ifdef BUILD_WIN32
-	//DisableTaskKeys( TRUE );
-#endif
 }
 
 
@@ -71,9 +68,6 @@ lockWidget::lockWidget( types _type ) :
 
 lockWidget::~lockWidget()
 {
-#ifdef BUILD_WIN32
-	//DisableTaskKeys( FALSE );
-#endif
 }
 
 
@@ -91,7 +85,7 @@ void lockWidget::paintEvent( QPaintEvent * )
 		case Black:
 			p.fillRect( rect(), QColor( 0, 0, 0 ) );
 			p.drawPixmap( ( width() - m_background.width() ) / 2, 
-					( height() - m_background.height() ) / 2,
+				( height() - m_background.height() ) / 2,
 								m_background );
 			break;
 
@@ -119,27 +113,3 @@ bool lockWidget::x11Event( XEvent * _e )
 #endif
 
 
-
-/*
-#ifdef BUILD_WIN32
-bool lockWidget::winEvent( MSG * _message, long * _result )
-{
-	switch( _message->message )
-	{
-		case WM_KEYDOWN:
-		case WM_KEYUP:
-		case WM_SYSKEYDOWN:
-		case WM_SYSKEYUP:
-		case WM_NCMOUSEMOVE:
-#if _WIN32_WINNT >= 0x0500
-		case WM_NCXBUTTONDOWN:
-		case WM_NCXBUTTONUP:
-#endif
-			return( TRUE );
-		default:
-			break;
-	}
-	return( FALSE );
-}
-#endif
-*/

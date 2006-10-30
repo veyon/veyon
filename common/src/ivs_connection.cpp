@@ -101,7 +101,7 @@ ivsConnection::ivsConnection( const QString & _host, quality _q,
 
 ivsConnection::~ivsConnection()
 {
-	delete m_rawBuffer;
+	delete[] m_rawBuffer;
 }
 
 
@@ -758,7 +758,7 @@ bool ivsConnection::handleZlib( Q_UINT16 rx, Q_UINT16 ry, Q_UINT16 rw,
 	*/
 	if( m_rawBufferSize <  (int) rw * rh * 4 )
 	{
-		delete m_rawBuffer;
+		delete[] m_rawBuffer;
 		m_rawBufferSize = (int) rw * rh * 4;
 		m_rawBuffer = new char[m_rawBufferSize];
 	}
@@ -1626,6 +1626,7 @@ bool ivsConnection::handleItalc( Q_UINT16 rx, Q_UINT16 ry, Q_UINT16 rw,
 
 	if( !readFromServer( (char *) lzo_data, hdr.bytesLZO ) )
 	{
+		delete[] lzo_data;
 		return( FALSE );
 	}
 

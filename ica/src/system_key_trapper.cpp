@@ -89,7 +89,8 @@ LRESULT CALLBACK TaskKeyHookLL( int nCode, WPARAM wp, LPARAM lp )
 		{
 			key = systemKeyTrapper::MetaKey;
 		}
-		else if( pkh->vkCode == VK_DELETE && bCtrlKeyDown && pkh->flags && LLKHF_ALTDOWN )
+		else if( pkh->vkCode == VK_DELETE && bCtrlKeyDown &&
+						pkh->flags && LLKHF_ALTDOWN )
 		{
 			key = systemKeyTrapper::AltCtrlDel;
 		}
@@ -111,54 +112,8 @@ LRESULT CALLBACK TaskKeyHookLL( int nCode, WPARAM wp, LPARAM lp )
 }
 
 
-#define HKCU HKEY_CURRENT_USER
-
 extern HINSTANCE hAppInstance;
 
-#if 0
-// Magic registry key/value for "Remove Task Manager" policy.
-LPCTSTR KEY_DisableTaskMgr =
-	"Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System";
-LPCTSTR VAL_DisableTaskMgr = "DisableTaskMgr";
-
-void DisableTaskKeys( BOOL bDisable )
-{
-	HKEY hk;
-	if( RegOpenKey( HKCU, KEY_DisableTaskMgr, &hk ) != ERROR_SUCCESS )
-	{
-		RegCreateKey( HKCU, KEY_DisableTaskMgr, &hk );
-	}
-
-	if( bDisable )
-	{
-		if( !g_hHookKbdLL )
-		{
-			// set lowlevel-keyboard-hook
-			g_hHookKbdLL = SetWindowsHookEx( WH_KEYBOARD_LL,
-							TaskKeyHookLL,
-							hAppInstance, 0 );
-		}
-/*		// set registry-entry to disable task-manager (Alt+Ctrl+Del)
-		DWORD val = 1;
-		RegSetValueEx( hk, VAL_DisableTaskMgr, 0L, REG_DWORD,
-						(BYTE*) &val, sizeof( val ) );*/
-		Inject();
-	}
-	else if( g_hHookKbdLL != NULL )
-	{
-		// remove keyboard-hook
-		UnhookWindowsHookEx( g_hHookKbdLL );
-		g_hHookKbdLL = NULL;
-		// delete registry-entry
-		//RegDeleteValue( hk, VAL_DisableTaskMgr );
-		Eject();
-	}
-
-	// enable/disable task-bar
-	EnableWindow( FindWindow( "Shell_traywnd", NULL ), !bDisable );
-}
-
-#endif
 #endif
 
 
@@ -172,8 +127,9 @@ systemKeyTrapper::systemKeyTrapper( void ) :
 		if( !g_hHookKbdLL )
 		{
 			// set lowlevel-keyboard-hook
-			g_hHookKbdLL = SetWindowsHookEx( WH_KEYBOARD_LL, TaskKeyHookLL,
-								hAppInstance, 0 );
+			g_hHookKbdLL = SetWindowsHookEx( WH_KEYBOARD_LL,
+							TaskKeyHookLL,
+							hAppInstance, 0 );
 		}
 
 		EnableWindow( FindWindow( "Shell_traywnd", NULL ), FALSE );
