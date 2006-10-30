@@ -4,7 +4,7 @@ if BUILD_WIN32
 EXTRA_TARGETS = utils-win32
 endif
 
-SUBDIRS = common ica ima setup $(EXTRA_TARGETS)
+SUBDIRS = common ica ima setup $(subdirs) $(EXTRA_TARGETS)
 
 EXTRA_DIST = build_mingw32 tightvnc4win_integrate tightvnc4win_italc.diff
 
@@ -39,6 +39,8 @@ win32-pkg: all
 	cp setup/setup.exe tmp/italc
 	cp utils-win32/userinfo.exe tmp/italc
 	cp utils-win32/wake.exe tmp/italc
+	cp lupus/lupus/lupus.exe tmp/italc
+#	cp lupus/service/lupus_service.exe tmp/italc
 	cp /opt/mingw/bin/QtCore4.dll tmp/italc
 	cp /opt/mingw/bin/QtGui4.dll tmp/italc
 	cp /opt/mingw/bin/QtNetwork4.dll tmp/italc
@@ -52,6 +54,8 @@ win32-pkg: all
 	/opt/mingw/bin/i586-mingw32-strip tmp/italc/italc.exe
 	/opt/mingw/bin/i586-mingw32-strip tmp/italc/setup.exe
 	/opt/mingw/bin/i586-mingw32-strip tmp/italc/userinfo.exe
+	/opt/mingw/bin/i586-mingw32-strip tmp/italc/lupus.exe
+#	/opt/mingw/bin/i586-mingw32-strip tmp/italc/lupus_service.exe
 	cd tmp && zip -9 ../$(PACKAGE)-$(VERSION).zip italc/*
 	rm -rf tmp
 endif

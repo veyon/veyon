@@ -15,6 +15,7 @@ all:
 	@echo \ \* Cleaning up
 	@rm -rf autom4te.cache/
 	@echo
+	@cd lupus && make -f Makefile.svn
 	@echo ...done\! If something failed make sure you\'ve installed autoconf,
 	@echo automake and libtool.
 	@echo Otherwise you can run now configure \(if you did not so far\) and then make.
