@@ -32,8 +32,9 @@
 #include <QtGui/QApplication>
 #include <QtNetwork/QHostInfo>
 
+
 #include "ica_main.h"
-#include "service.h"
+#include "system_service.h"
 #include "remote_control_widget.h"
 #include "isd_server.h"
 #include "ivs.h"
@@ -57,6 +58,19 @@ QSystemTrayIcon * __systray_icon = NULL;
 bool __rx11vs = FALSE;
 #endif
 
+QString __app_name = "iTALC Client";
+const QString SERVICE_ARG = "-service";
+
+#include <QtCore/QProcess>
+
+int serviceMain( systemService * _srv )
+{
+	int c = 1;
+	char * * v = new char *[1];
+	v[0] = _srv->argv()[0];
+	return( ICAMain( c, v ) );
+}
+
 
 
 int ICAMain( int argc, char * * argv )
@@ -67,18 +81,22 @@ int ICAMain( int argc, char * * argv )
 	_Xdebug = 1;
 #endif
 #endif
+	systemService s( "icas", SERVICE_ARG, __app_name,
+#ifndef NO_LUPUS_INTEGRATION
+				"lupus",
+#else
+				"",
+#endif
+						serviceMain, argc, argv );
+	if( s.evalArgs( argc, argv ) || argc == 0 )
+	{
+		return( 0 );
+	}
 
 	QCoreApplication * app = NULL;
 	if( argc > 1 && QString( argv[1] ) == "-rx11vs" )
 	{
 		app = new QCoreApplication( argc, argv );
-	}
-	else if( argc > 1 && QString( argv[1] ) == SERVICE_ARG )
-	{
-		if( icaServiceMain() )
-		{
-			return( 0 );
-		}
 	}
 	else
 	{
@@ -96,7 +114,7 @@ int ICAMain( int argc, char * * argv )
 
 	QStringListIterator arg_it( QCoreApplication::arguments() );
 	arg_it.next();
-	while( arg_it.hasNext() )
+	while( argc > 1 && arg_it.hasNext() )
 	{
 		const QString & a = arg_it.next();
 		if( a == "-isdport" && arg_it.hasNext() )
@@ -157,28 +175,6 @@ int ICAMain( int argc, char * * argv )
 				return( -1 );
 			}
 		}
-		else if( a == "-registerservice" )
-		{
-			icaServiceInstall( 0 );
-			return( 0 );
-		}
-		else if( a == "-unregisterservice" )
-		{
-			icaServiceRemove( 0 );
-			return( 0 );
-		}
-		else if( a == "-stopservice" )
-		{
-			icaServiceStop( 0 );
-			return( 0 );
-		}
-		else if( a == SERVICE_ARG )
-		{
-			if( icaServiceMain() )
-			{
-				return( 0 );
-			}
-		}
 #ifdef BUILD_LINUX
 		else if( a == "-nosel" || a == "-nosetclipboard" )
 		{
@@ -218,7 +214,7 @@ int ICAMain( int argc, char * * argv )
 					arg( QString::number( __ivs_port ) ) );
 	__systray_icon->show();
 #endif
-						
+
 	new isdServer( __ivs_port, argc, argv );
 
 	return( app->exec() );
@@ -262,17 +258,6 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance,
 		argv[argc] = new char[it->length() + 1];
 		strcpy( argv[argc], it->toAscii().constData() );
 	}
-
-#if 0
-	// try to hide our process
-	HINSTANCE nt_query_system_info = LoadLibrary( "HookNTQSI.dll" );
-	if( nt_query_system_info )
-	{
-		int (_cdecl *pfnHook)(DWORD);
-		pfnHook = (int(*)(DWORD))GetProcAddress( nt_query_system_info, "Hook" );
-		pfnHook( GetCurrentProcessId() );
-	}
-#endif
 
 	return( ICAMain( argc, argv ) );
 }

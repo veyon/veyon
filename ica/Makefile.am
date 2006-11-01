@@ -82,7 +82,7 @@ endif
 ica_LDADD = $(QT_LDADD) $(QT_LIB_GUI) -lz -ljpeg $(LIBSSL_LDADD) $(IVSLDADD)
 ica_LDFLAGS = $(LDFLAGS)
 
-AM_CXXFLAGS := $(AM_CXXFLAGS) $(QT_CXXFLAGS) -O2 -DBUILD_ICA
+AM_CXXFLAGS := $(AM_CXXFLAGS) $(QT_CXXFLAGS) -O2 -DBUILD_ICA -DNO_LUPUS_INTEGRATION
 AM_CFLAGS := $(AM_CFLAGS) -O2 -DBUILD_ICA -DVNCSHARED -DFOREVER -DNOREPEAT=0 -DNOPW=1 -DREMOTE_CONTROL=0 -DEXTERNAL_COMMANDS=0 -DFILEXFER=0 -DNOGUI -DSMALL_FOOTPRINT=1
 
 INCLUDES = $(IVS_INCLUDES) -I$(srcdir)/../common/include -I$(srcdir)/../common/include/rfb -I$(srcdir)/src -I$(top_srcdir)
@@ -116,7 +116,7 @@ ica_MOC =	src/isd_server.moc 			\
 
 
 ica_SOURCES =		$(srcdir)/src/ica_main.cpp			\
-			$(srcdir)/src/service.cpp			\
+			$(srcdir)/src/system_service.cpp		\
 			$(srcdir)/src/ivs.cpp				\
 			$(srcdir)/src/isd_server.cpp			\
 			$(srcdir)/src/lock_widget.cpp			\
@@ -149,7 +149,7 @@ ica_SOURCES =		$(srcdir)/src/ica_main.cpp			\
 			$(srcdir)/src/lzoconf.h				\
 			$(srcdir)/src/ica_main.h			\
 			$(srcdir)/src/system_key_trapper.h		\
-			$(srcdir)/src/service.h				\
+			$(srcdir)/src/system_service.h			\
 			$(srcdir)/ica.qrc				\
 			$(srcdir)/ica_qrc.cpp				\
 			$(wildcard $(srcdir)/resources/*)		\

@@ -30,8 +30,6 @@
 
 int ICAMain( int _argc, char * * _argv );
 
-#define SERVICE_ARG "-service"
-
 #ifdef BUILD_LINUX
 
 #define ACCESS_DIALOG_ARG "-accessdialog"
