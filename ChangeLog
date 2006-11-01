@@ -1,3 +1,14 @@
+2006-11-01	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* ica/Makefile.am:
+	* ica/src/system_service.h:
+	* ica/src/system_service.cpp:
+	* ica/src/service.h:
+	* ica/src/service.cpp:
+	* ica/src/ica_main.h:
+	* ica/src/ica_main.cpp:
+	new generic systemService-class
+
 2006-10-30	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* configure.in:
