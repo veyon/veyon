@@ -215,7 +215,8 @@ isdConnection::states isdConnection::reset( const QString & _host )
 
 bool isdConnection::readFromServer( char * _out, const unsigned int _n )
 {
-	if( m_socket->state() != QTcpSocket::ConnectedState )
+	if( m_socket == NULL ||
+			m_socket->state() != QTcpSocket::ConnectedState )
 	{
 		m_state = ConnectionFailed;
 		return( FALSE );
@@ -258,7 +259,8 @@ bool isdConnection::readFromServer( char * _out, const unsigned int _n )
 
 bool isdConnection::writeToServer( const char * _buf, const unsigned int _n )
 {
-	if( m_socket->state() != QTcpSocket::ConnectedState )
+	if( m_socket == NULL ||
+			m_socket->state() != QTcpSocket::ConnectedState )
 	{
 		m_state = ConnectionFailed;
 		return( FALSE );
@@ -517,7 +519,8 @@ bool isdConnection::handleServerMessage( Q_UINT8 _msg )
 
 bool isdConnection::sendGetUserInformationRequest( void )
 {
-	if( m_socket->state() != QTcpSocket::ConnectedState )
+	if( m_socket == NULL ||
+			m_socket->state() != QTcpSocket::ConnectedState )
 	{
 		m_state = Disconnected;
 		return( FALSE );
@@ -530,7 +533,8 @@ bool isdConnection::sendGetUserInformationRequest( void )
 
 bool isdConnection::execCmds( const QString & _cmd )
 {
-	if( m_socket->state() != QTcpSocket::ConnectedState )
+	if( m_socket == NULL ||
+			m_socket->state() != QTcpSocket::ConnectedState )
 	{
 		m_state = Disconnected;
 		return( FALSE );
@@ -544,7 +548,8 @@ bool isdConnection::execCmds( const QString & _cmd )
 
 bool isdConnection::startDemo( const QString & _master_ip, bool _full_screen )
 {
-	if( m_socket->state() != QTcpSocket::ConnectedState )
+	if( m_socket == NULL ||
+			m_socket->state() != QTcpSocket::ConnectedState )
 	{
 		m_state = Disconnected;
 		return( FALSE );
@@ -559,7 +564,8 @@ bool isdConnection::startDemo( const QString & _master_ip, bool _full_screen )
 
 bool isdConnection::stopDemo( void )
 {
-	if( m_socket->state() != QTcpSocket::ConnectedState )
+	if( m_socket == NULL ||
+			m_socket->state() != QTcpSocket::ConnectedState )
 	{
 		m_state = Disconnected;
 		return( FALSE );
@@ -572,7 +578,8 @@ bool isdConnection::stopDemo( void )
 
 bool isdConnection::lockDisplay( void )
 {
-	if( m_socket->state() != QTcpSocket::ConnectedState )
+	if( m_socket == NULL ||
+			m_socket->state() != QTcpSocket::ConnectedState )
 	{
 		m_state = Disconnected;
 		return( FALSE );
@@ -585,7 +592,8 @@ bool isdConnection::lockDisplay( void )
 
 bool isdConnection::unlockDisplay( void )
 {
-	if( m_socket->state() != QTcpSocket::ConnectedState )
+	if( m_socket == NULL ||
+			m_socket->state() != QTcpSocket::ConnectedState )
 	{
 		m_state = Disconnected;
 		return( FALSE );
@@ -598,7 +606,8 @@ bool isdConnection::unlockDisplay( void )
 
 bool isdConnection::logoutUser( void )
 {
-	if( m_socket->state() != QTcpSocket::ConnectedState )
+	if( m_socket == NULL ||
+			m_socket->state() != QTcpSocket::ConnectedState )
 	{
 		m_state = Disconnected;
 		return( FALSE );
@@ -611,7 +620,8 @@ bool isdConnection::logoutUser( void )
 
 bool isdConnection::displayTextMessage( const QString & _msg )
 {
-	if( m_socket->state() != QTcpSocket::ConnectedState )
+	if( m_socket == NULL ||
+			m_socket->state() != QTcpSocket::ConnectedState )
 	{
 		m_state = Disconnected;
 		return( FALSE );
@@ -641,7 +651,8 @@ bool isdConnection::collectFiles( const QString & _nfilter )
 
 bool isdConnection::remoteControlDisplay( const QString & _ip, bool _view_only )
 {
-	if( m_socket->state() != QTcpSocket::ConnectedState )
+	if( m_socket == NULL ||
+			m_socket->state() != QTcpSocket::ConnectedState )
 	{
 		m_state = Disconnected;
 		return( FALSE );
@@ -661,7 +672,8 @@ bool isdConnection::remoteControlDisplay( const QString & _ip, bool _view_only )
 bool isdConnection::wakeOtherComputer( const QString & _mac,
 							const QString & _bcast )
 {
-	if( m_socket->state() != QTcpSocket::ConnectedState )
+	if( m_socket == NULL ||
+			m_socket->state() != QTcpSocket::ConnectedState )
 	{
 		m_state = Disconnected;
 		return( FALSE );
@@ -676,7 +688,8 @@ bool isdConnection::wakeOtherComputer( const QString & _mac,
 
 bool isdConnection::powerDownComputer( void )
 {
-	if( m_socket->state() != QTcpSocket::ConnectedState )
+	if( m_socket == NULL ||
+			m_socket->state() != QTcpSocket::ConnectedState )
 	{
 		m_state = Disconnected;
 		return( FALSE );
@@ -689,7 +702,8 @@ bool isdConnection::powerDownComputer( void )
 
 bool isdConnection::restartComputer( void )
 {
-	if( m_socket->state() != QTcpSocket::ConnectedState )
+	if( m_socket == NULL ||
+			m_socket->state() != QTcpSocket::ConnectedState )
 	{
 		m_state = Disconnected;
 		return( FALSE );
@@ -702,7 +716,8 @@ bool isdConnection::restartComputer( void )
 
 bool isdConnection::setRole( const ISD::userRoles _role )
 {
-	if( m_socket->state() != QTcpSocket::ConnectedState )
+	if( m_socket == NULL ||
+			m_socket->state() != QTcpSocket::ConnectedState )
 	{
 		m_state = Disconnected;
 		return( FALSE );
@@ -716,7 +731,8 @@ bool isdConnection::setRole( const ISD::userRoles _role )
 
 bool isdConnection::demoServerRun( int _quality, int _port )
 {
-	if( m_socket->state() != QTcpSocket::ConnectedState )
+	if( m_socket == NULL ||
+			m_socket->state() != QTcpSocket::ConnectedState )
 	{
 		m_state = Disconnected;
 		return( FALSE );
@@ -732,7 +748,8 @@ bool isdConnection::demoServerRun( int _quality, int _port )
 
 bool isdConnection::demoServerStop( void )
 {
-	if( m_socket->state() != QTcpSocket::ConnectedState )
+	if( m_socket == NULL ||
+			m_socket->state() != QTcpSocket::ConnectedState )
 	{
 		m_state = Disconnected;
 		return( FALSE );
@@ -745,7 +762,8 @@ bool isdConnection::demoServerStop( void )
 
 bool isdConnection::demoServerAllowClient( const QString & _client )
 {
-	if( m_socket->state() != QTcpSocket::ConnectedState )
+	if( m_socket == NULL ||
+			m_socket->state() != QTcpSocket::ConnectedState )
 	{
 		m_state = Disconnected;
 		return( FALSE );
@@ -759,7 +777,8 @@ bool isdConnection::demoServerAllowClient( const QString & _client )
 
 bool isdConnection::demoServerDenyClient( const QString & _client )
 {
-	if( m_socket->state() != QTcpSocket::ConnectedState )
+	if( m_socket == NULL ||
+			m_socket->state() != QTcpSocket::ConnectedState )
 	{
 		m_state = Disconnected;
 		return( FALSE );
@@ -768,19 +787,6 @@ bool isdConnection::demoServerDenyClient( const QString & _client )
 					addArg( "client", _client ).send() );
 }
 
-
-
-/*
-bool isdConnection::terminateISD( void )
-{
-	if( m_socket->state() != QTcpSocket::ConnectedState )
-	{
-		m_state = Disconnected;
-		return( FALSE );
-	}
-	return( ISD::msg( &m_socketDev, ISD::ISD_Terminate ).send() );
-}
-*/
 
 
 

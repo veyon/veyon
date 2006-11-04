@@ -31,6 +31,7 @@
 #endif
 
 #include <QtCore/QEvent>
+#include <QtCore/QThread>
 #include <QtGui/QWidget>
 
 #include "types.h"
@@ -40,6 +41,7 @@
 class progressWidget;
 class remoteControlWidget;
 class systemKeyTrapper;
+class vncViewThread;
 
 
 class vncView : public QWidget
@@ -91,6 +93,29 @@ private:
 
 
 	friend class remoteControlWidget;
+	friend class vncViewThread;
+
+} ;
+
+
+class vncViewThread : public QThread
+{
+	Q_OBJECT
+public:
+	vncViewThread( vncView * _vv );
+	virtual ~vncViewThread()
+	{
+	}
+
+
+private slots:
+	void framebufferUpdate( void );
+
+
+private:
+	virtual void run( void );
+
+	vncView * m_vncView;
 
 } ;
 

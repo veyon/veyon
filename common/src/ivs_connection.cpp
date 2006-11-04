@@ -530,7 +530,9 @@ bool ivsConnection::handleServerMessages( bool _send_screen_update, int _tries )
 							m_cursorShape.size() );
 		QDataStream ds( static_cast<QTcpSocket *>(
 							socketDev().user() ) );
+		m_cursorLock.lockForWrite();
 		ds >> m_cursorShape;
+		m_cursorLock.unlock();
 		m_cursorHotSpot = QPoint( rect.r.x, rect.r.y );
 
 
@@ -554,17 +556,18 @@ bool ivsConnection::handleServerMessages( bool _send_screen_update, int _tries )
 				}
 			}
 
+			if( updated_region.size() == 0 )
+			{
+				wl.unlock();
+				break;
+			}
+
 			if( !m_scaledSize.isEmpty() )
 			{
 				m_scaledScreen = m_screen.scaled(
 								m_scaledSize );
 			}
 
-			if( updated_region.size() == 0 )
-			{
-				wl.unlock();
-				break;
-			}
 			if( m_quality >= QualityDemoLow &&
 						m_quality != QualityDemoHigh )
 			{
@@ -1571,10 +1574,12 @@ bool ivsConnection::handleCursorShape( const Q_UINT16 _xhot,
 
 	rectList ch_reg = QRect( m_cursorPos - m_cursorHotSpot,
 							m_cursorShape.size() );
+	m_cursorLock.lockForWrite();
 	m_cursorShape = QImage( rcSource, _width, _height,
 							QImage::Format_RGB32 ).
 				convertToFormat( QImage::Format_ARGB32 );
 	m_cursorShape.setAlphaChannel( alpha );
+	m_cursorLock.unlock();
 
 	m_cursorHotSpot = QPoint( _xhot, _yhot );
 

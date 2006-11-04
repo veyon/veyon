@@ -87,7 +87,7 @@ public:
 
 	const QImage & screen( void ) const
 	{
-		QReadLocker rl( &m_imageLock );
+		//QReadLocker rl( &m_imageLock );
 		return( m_screen );
 	}
 
@@ -123,8 +123,9 @@ public:
 		return( m_cursorHotSpot );
 	}
 
-	const QImage & cursorShape( void ) const
+	QImage cursorShape( void ) const
 	{
+		QReadLocker rl( &m_cursorLock );
 		return( m_cursorShape );
 	}
 
@@ -189,6 +190,7 @@ private:
 	QSize m_scaledSize;
 
 
+	mutable QReadWriteLock m_cursorLock;
 	bool m_softwareCursor;
 	QPoint m_cursorPos;
 	QPoint m_cursorHotSpot;

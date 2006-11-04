@@ -44,6 +44,7 @@
 
 vncView::vncView( const QString & _host, bool _view_only, QWidget * _parent ) :
 	QWidget( _parent/*, Qt::X11BypassWindowManagerHint*/ ),
+	m_connection( NULL ),
 	m_viewOnly( _view_only ),
 	m_buttonMask( 0 ),
 	m_sysKeyTrapper( NULL )
@@ -54,8 +55,6 @@ vncView::vncView( const QString & _host, bool _view_only, QWidget * _parent ) :
 
 	m_connection = new ivsConnection( _host, ivsConnection::QualityHigh,
 								FALSE, this );
-	m_connection->open();
-
 	if( !m_viewOnly )
 	{
 		m_sysKeyTrapper = new systemKeyTrapper();
@@ -84,24 +83,13 @@ vncView::vncView( const QString & _host, bool _view_only, QWidget * _parent ) :
 	{
 		parent_size = parentWidget()->size();
 	}
-	resize( qMin( m_connection->framebufferSize().width(),
+	resize( parent_size );
+/*	resize( qMin( m_connection->framebufferSize().width(),
 						parent_size.width() ),
 			qMin( m_connection->framebufferSize().height(),
-						parent_size.height() ) );
+						parent_size.height() ) );*/
 
-	QTimer * t = new QTimer( this );
-	connect( t, SIGNAL( timeout() ), m_connection,
-			SLOT( sendIncrementalFramebufferUpdateRequest() ) );
-	if( _view_only )
-	{
-		t->start( 80 );
-	}
-	else
-	{
-		// when remote-controlling we need more updates for smoother
-		// usage
-		t->start( 50 );
-	}
+	new vncViewThread( this );
 
 	framebufferUpdate();
 }
@@ -112,7 +100,8 @@ vncView::vncView( const QString & _host, bool _view_only, QWidget * _parent ) :
 vncView::~vncView()
 {
 	unpressModifiers();
-	m_connection->handleServerMessages( FALSE, 10 );
+	findChild<vncViewThread *>()->quit();
+	findChild<vncViewThread *>()->wait();
 	delete m_connection;
 	delete m_sysKeyTrapper;
 }
@@ -122,9 +111,13 @@ vncView::~vncView()
 
 void vncView::framebufferUpdate( void )
 {
+	if( m_connection == NULL )
+	{
+		QTimer::singleShot( 40, this, SLOT( framebufferUpdate() ) );
+		return;
+	}
 	// not yet connected or connection lost while handling messages?
-	if( m_connection->state() != ivsConnection::Connected ||
-			!m_connection->handleServerMessages( FALSE, 3 ) )
+	if( m_connection->state() != ivsConnection::Connected )
 	{
 		// as the "establishing connection"-progress-widget is semi-
 		// transparent and has a non-rectangular shape, we have to
@@ -132,11 +125,10 @@ void vncView::framebufferUpdate( void )
 		// progress-widget
 		setAttribute( Qt::WA_PaintOnScreen, false );
 		m_establishingConnection->show();
-		// try to open the connection
-		m_connection->open();
 	}
 
-	if( m_connection->state() == ivsConnection::Connected )
+	if( m_connection->state() == ivsConnection::Connected &&
+					m_establishingConnection->isVisible() )
 	{
 		m_establishingConnection->hide();
 		// after we hid the progress-widget, we may use direct painting
@@ -197,7 +189,7 @@ void vncView::framebufferUpdate( void )
 	}
 
 	// we want to update everything in 20 ms
-	QTimer::singleShot( 20, this, SLOT( framebufferUpdate() ) );
+	QTimer::singleShot( 40, this, SLOT( framebufferUpdate() ) );
 }
 
 
@@ -229,7 +221,7 @@ void vncView::keyEvent( QKeyEvent * _ke )
 
 #ifdef NATIVE_VIRTUAL_KEY_SUPPORT
 	// the Trolls seem to love us! With Qt 4.2 they introduced this cute
-	// function returning the key-code of the key-evem (platform-dependent)
+	// function returning the key-code of the key-event (platform-dependent)
 	// so when operating under Linux/X11, key-codes are equal to the ones
 	// used by VNC-protocol
 	const int key = _ke->nativeVirtualKey();
@@ -349,8 +341,6 @@ void vncView::keyEvent( QKeyEvent * _ke )
 	if( m_mods.contains( XK_Alt_L ) && m_mods.contains( XK_Control_L ) &&
 						key >= 64 && key < 0xF000 )
 	{
-		//emit keyEvent( XK_Control_L, FALSE );
-		//emit keyEvent( XK_Alt_L, FALSE );
 		unpressModifiers();
 		emit keyEvent( XK_ISO_Level3_Shift, TRUE );
 	}
@@ -358,7 +348,7 @@ void vncView::keyEvent( QKeyEvent * _ke )
 
 	// handle modifiers
 	if( key == XK_Shift_L || key == XK_Control_L || key == XK_Meta_L ||
-								key == XK_Alt_L )
+							key == XK_Alt_L )
 	{
 		if( pressed )
 		{
@@ -565,6 +555,58 @@ void vncView::mouseEvent( QMouseEvent * _me )
 
 	emit pointerEvent( _me->x() + m_viewOffset.x(),
 				_me->y() + m_viewOffset.y(), m_buttonMask );
+}
+
+
+
+
+
+
+
+
+vncViewThread::vncViewThread( vncView * _vv ) :
+	QThread( _vv ),
+	m_vncView( _vv )
+{
+	start( QThread::HighPriority );
+}
+
+
+
+
+void vncViewThread::run( void )
+{
+	ivsConnection * conn = m_vncView->m_connection;
+	QTimer t;
+	connect( &t, SIGNAL( timeout() ), conn,
+			SLOT( sendIncrementalFramebufferUpdateRequest() ) );
+	if( m_vncView->m_viewOnly )
+	{
+		t.start( 70 );
+	}
+	else
+	{
+		// when remote-controlling we need more updates for smoother
+		// usage
+		t.start( 50 );
+	}
+	QTimer t2;
+	connect( &t2, SIGNAL( timeout() ), this, SLOT( framebufferUpdate() ) );
+	t2.start( 20 );
+	exec();
+}
+
+
+
+
+void vncViewThread::framebufferUpdate( void )
+{
+	ivsConnection * conn = m_vncView->m_connection;
+	if( conn->state() != ivsConnection::Connected ||
+				!conn->handleServerMessages( FALSE, 2 ) )
+	{
+		conn->open();
+	}
 }
 
 

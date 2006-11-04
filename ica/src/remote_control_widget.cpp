@@ -336,7 +336,8 @@ remoteControlWidget::~remoteControlWidget()
 
 QString remoteControlWidget::host( void ) const
 {
-	return( m_vncView->m_connection->host() );
+	return( m_vncView->m_connection ? m_vncView->m_connection->host() :
+								QString::null );
 }
 
 
@@ -345,9 +346,7 @@ QString remoteControlWidget::host( void ) const
 void remoteControlWidget::resizeEvent( QResizeEvent * )
 {
 	m_vncView->resize( size() );
-	m_toolBar->setFixedSize(
-/*		qMin( m_vncView->m_connection->framebufferSize().width(),*/
-								width()/* )*/, 34 );
+	m_toolBar->setFixedSize( width(), 34 );
 }
 
 
@@ -355,12 +354,17 @@ void remoteControlWidget::resizeEvent( QResizeEvent * )
 
 void remoteControlWidget::updateUser( void )
 {
+	if( m_vncView->m_connection == NULL )
+	{
+		QTimer::singleShot( 100, this, SLOT( updateUser() ) );
+		return;
+	}
 	m_user = m_vncView->m_connection->user();
 	if( m_user.isEmpty() )
 	{
 		setWindowTitle( tr( "iTALC remote control (host %1)" ).
 								arg( host() ) );
-		m_vncView->m_connection->sendGetUserInformationRequest();
+		//m_vncView->m_connection->sendGetUserInformationRequest();
 		QTimer::singleShot( 100, this, SLOT( updateUser() ) );
 	}
 	else

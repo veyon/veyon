@@ -1,3 +1,36 @@
+2006-11-04	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* common/include/ivs_connection.h:
+	* common/src/ivs_connection.cpp:
+	added read-write-lock for cursor-shape, should eliminate some problems
+	with demo-mode etc.
+
+	* ima/src/client.cpp:
+	start client-update-threads only with low priority for not withdrawing
+	the GUI-thread all CPU-time
+
+	* ica/src/vncview.h:
+	* ica/src/vncview.cpp:
+	deal with ivsConnection in a separate thread for not blocking GUI if
+	lot of data is processed
+
+	* ica/src/remote_control_widget.cpp:
+	clean ups and some more checks on pointers
+
+	* common/irc/ivs_connection.cpp:
+	if size of updated region is zero, return earlier, so senseless
+	screen-scaling is not done
+
+	* common/irc/isd_connection.cpp:
+	always test m_socket for being NULL as some functions might be called
+	before open() initially was called
+
+	* common/include/ivs_connection.h:
+	do not lock image when returning a read-only-reference as it's
+	absolutely senseless as the reference could be used somewhen later
+	when the actual mutex is locked... should speed up accesses by GUI-
+	thread
+
 2006-11-01	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* ica/Makefile.am:

@@ -1046,7 +1046,7 @@ client::updateThread::updateThread( client * _client ) :
 	m_client( _client ),
 	m_quit( FALSE )
 {
-	start();
+	start( LowPriority );
 }
 
 

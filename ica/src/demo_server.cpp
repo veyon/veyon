@@ -58,7 +58,7 @@ demoServer::demoServer( IVS * _ivs_conn, int _quality, quint16 _port ) :
 		return;
 	}
 
-	m_updaterThread->start( QThread::HighPriority );
+	m_updaterThread->start(/* QThread::HighPriority*/ );
 
 }
 
@@ -230,7 +230,7 @@ void demoServerClient::moveCursor( void )
 		m_sock->flush();
 	}
 	m_dataMutex.unlock();
-	QTimer::singleShot( CURSOR_UPDATE_TIME, this, SLOT( moveCursor() ) );
+	//QTimer::singleShot( CURSOR_UPDATE_TIME, this, SLOT( moveCursor() ) );
 }
 
 
@@ -391,11 +391,11 @@ void demoServerClient::processClient( void )
 		// reset vars
 		m_changedRegion.clear();
 		m_cursorShapeChanged = FALSE;
+		m_sock->flush();
 	}
 
-	m_sock->flush();
 	m_dataMutex.unlock();
-	QTimer::singleShot( 20, this, SLOT( processClient() ) );
+	QTimer::singleShot( 40, this, SLOT( processClient() ) );
 }
 
 
@@ -518,7 +518,10 @@ void demoServerClient::run( void )
 							SLOT( deleteLater() ) );
 
 	QTimer::singleShot( 200, this, SLOT( processClient() ) );
-	moveCursor();
+	QTimer t;
+	connect( &t, SIGNAL( timeout() ), this, SLOT( moveCursor() ) );
+	t.start( CURSOR_UPDATE_TIME );
+	//moveCursor();
 	//processClient();
 
 	// now run our own event-loop for optimal scheduling
