@@ -398,7 +398,6 @@ isdConnection::states isdConnection::authAgainstServer(
 
 			if( iat == ItalcAuthDSA || iat == ItalcAuthLocalDSA )
 			{
-				printf("dsa\n");
 				QByteArray chall =
 					m_socketDev.read().toByteArray();
 /*				m_socketDev.write( localSystem::currentUser().
@@ -415,7 +414,6 @@ isdConnection::states isdConnection::authAgainstServer(
 			{
 				// wait for signal
 				m_socketDev.read();
-				printf("app internal\n");
 				m_socketDev.write( QVariant(
 					isdServer::s_appInternalChallenge ) );
 			}
@@ -424,17 +422,14 @@ isdConnection::states isdConnection::authAgainstServer(
 			{
 				QFile file( m_socketDev.read().toString() );
 				file.open( QFile::ReadOnly );
-				printf("auth file\n");
 				m_socketDev.write( QVariant(
 							file.readAll() ) );
 			}
 			else if( iat == ItalcAuthHostBased )
 			{
-				printf("hostbased\n");
 			}
 			else if( iat == ItalcAuthNone )
 			{
-				printf("none\n");
 			}
 			else
 			{

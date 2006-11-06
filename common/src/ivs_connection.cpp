@@ -564,6 +564,7 @@ bool ivsConnection::handleServerMessages( bool _send_screen_update, int _tries )
 
 			if( !m_scaledSize.isEmpty() )
 			{
+				QWriteLocker swl( &m_scaledImageLock );
 				m_scaledScreen = m_screen.scaled(
 								m_scaledSize );
 			}

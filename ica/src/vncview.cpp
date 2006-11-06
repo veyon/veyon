@@ -46,6 +46,7 @@ vncView::vncView( const QString & _host, bool _view_only, QWidget * _parent ) :
 	QWidget( _parent/*, Qt::X11BypassWindowManagerHint*/ ),
 	m_connection( NULL ),
 	m_viewOnly( _view_only ),
+	m_viewOffset( QPoint( 0, 0 ) ),
 	m_buttonMask( 0 ),
 	m_sysKeyTrapper( NULL )
 {
@@ -603,7 +604,7 @@ void vncViewThread::framebufferUpdate( void )
 {
 	ivsConnection * conn = m_vncView->m_connection;
 	if( conn->state() != ivsConnection::Connected ||
-				!conn->handleServerMessages( FALSE, 2 ) )
+				!conn->handleServerMessages( FALSE, 3 ) )
 	{
 		conn->open();
 	}

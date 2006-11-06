@@ -81,7 +81,7 @@ public:
 
 	const QImage & scaledScreen( void )
 	{
-		QReadLocker rl( &m_imageLock );
+		QReadLocker rl( &m_scaledImageLock );
 		return( m_scaledScreen );
 	}
 
@@ -184,6 +184,7 @@ private:
 	rfbServerInitMsg m_si;
 
 	mutable QReadWriteLock m_imageLock;
+	mutable QReadWriteLock m_scaledImageLock;
 	fastQImage m_screen;
 	fastQImage m_scaledScreen;
 

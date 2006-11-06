@@ -103,7 +103,6 @@ int ICAMain( int argc, char * * argv )
 		QApplication * a = new QApplication( argc, argv );
 		a->setQuitOnLastWindowClosed( FALSE );
 		app = a;
-		printf("current thread id:%d\n", QThread::currentThreadId());
 	}
 
 	localSystem::initialize();

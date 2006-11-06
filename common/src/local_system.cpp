@@ -137,8 +137,8 @@ namespace localSystem
 
 void initialize( void )
 {
-	QCoreApplication::setOrganizationName( "EasySchoolSolutions" );
-	QCoreApplication::setOrganizationDomain( "ess.org" );
+	QCoreApplication::setOrganizationName( "iTALC Solutions" );
+	QCoreApplication::setOrganizationDomain( "is.org" );
 	QCoreApplication::setApplicationName( "iTALC" );
 
 #ifdef BUILD_WIN32
@@ -504,7 +504,7 @@ QString userRoleName( const ISD::userRoles _role )
 
 inline QString keyPath( const ISD::userRoles _role, const QString _group )
 {
-	QSettings settings( QSettings::SystemScope, "EasySchoolSolutions",
+	QSettings settings( QSettings::SystemScope, "iTALC Solutions",
 								"iTALC" );
 	if( _role <= ISD::RoleNone || _role >= ISD::RoleCount )
 	{

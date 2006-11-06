@@ -111,9 +111,8 @@ void demoServer::updaterThread::run( void )
 		while( !m_quit && m_conn->state() != ivsConnection::Connected &&
 				m_conn->open() != ivsConnection::Connected )
 		{
-			qCritical( "Could not connect to local IVS!\n" );
+			qWarning( "Could not connect to local IVS!\n" );
 			sleep( 1 );
-			printf("conn\n");
 		}
 		msleep( 20 );
 		m_conn->handleServerMessages( ( i = ( i + 1 ) % 2 ) == 0 );
@@ -247,10 +246,12 @@ void demoServerClient::processClient( void )
 			printf( "could not read cmd\n" );
 			continue;
 		}
+
 		if( cmd != rfbFramebufferUpdateRequest )
 		{
 			continue;
 		}
+
 		if( m_changedRegion.isEmpty() )
 		{
 			continue;
@@ -391,8 +392,9 @@ void demoServerClient::processClient( void )
 		// reset vars
 		m_changedRegion.clear();
 		m_cursorShapeChanged = FALSE;
-		m_sock->flush();
 	}
+	//m_sock->waitForBytesWritten();
+	m_sock->flush();
 
 	m_dataMutex.unlock();
 	QTimer::singleShot( 40, this, SLOT( processClient() ) );

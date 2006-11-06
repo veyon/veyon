@@ -1,4 +1,4 @@
-- do not start demo on demo-master
+- do not hang when connecting to unavailable client
 - support for client-demo
 - support for demo-gateway for classrooms connected via VPN
 - improve support-workspace/artwork
