@@ -45,6 +45,9 @@ extern "C" int x11vnc_main( int argc, char * * argv );
 #include "local_system.h"
 
 
+rfbClientPtr __client = NULL;
+
+
 qint64 libvncClientDispatcher( char * _buf, const qint64 _len,
 				const socketOpCodes _op_code, void * _user )
 {
@@ -89,6 +92,7 @@ void isdAuthAgainstServer( struct _rfbClientRec * _client )
 								ItalcAuthDSA ) )
 	{
 		_client->state = rfbClientRec::RFB_INITIALISATION;
+		__client = _client;
 	}
 }
 

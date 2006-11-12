@@ -34,7 +34,6 @@
 #include "system_key_trapper.h"
 #include "qt_features.h"
 
-
 #include <QtCore/QTimer>
 #include <QtGui/QApplication>
 #include <QtGui/QMouseEvent>
@@ -59,17 +58,15 @@ vncView::vncView( const QString & _host, bool _view_only, QWidget * _parent ) :
 	if( !m_viewOnly )
 	{
 		m_sysKeyTrapper = new systemKeyTrapper();
+		connect( m_sysKeyTrapper, SIGNAL( keyEvent( Q_UINT32, bool ) ),
+			m_connection, SLOT( sendKeyEvent( Q_UINT32, bool ) ) );
 
-		// only connect slots for sending events, if we're not in
-		// view-only mode
 		connect( this,
 			SIGNAL( pointerEvent( Q_UINT16, Q_UINT16, Q_UINT16 ) ),
 			m_connection,
 			SLOT( sendPointerEvent( Q_UINT16, Q_UINT16,
 								Q_UINT16 ) ) );
 		connect( this, SIGNAL( keyEvent( Q_UINT32, bool ) ),
-			m_connection, SLOT( sendKeyEvent( Q_UINT32, bool ) ) );
-		connect( m_sysKeyTrapper, SIGNAL( keyEvent( Q_UINT32, bool ) ),
 			m_connection, SLOT( sendKeyEvent( Q_UINT32, bool ) ) );
 	}
 
@@ -117,6 +114,7 @@ void vncView::framebufferUpdate( void )
 		QTimer::singleShot( 40, this, SLOT( framebufferUpdate() ) );
 		return;
 	}
+
 	// not yet connected or connection lost while handling messages?
 	if( m_connection->state() != ivsConnection::Connected )
 	{
@@ -189,7 +187,6 @@ void vncView::framebufferUpdate( void )
 		update();
 	}
 
-	// we want to update everything in 20 ms
 	QTimer::singleShot( 40, this, SLOT( framebufferUpdate() ) );
 }
 
@@ -580,7 +577,8 @@ void vncViewThread::run( void )
 	ivsConnection * conn = m_vncView->m_connection;
 	QTimer t;
 	connect( &t, SIGNAL( timeout() ), conn,
-			SLOT( sendIncrementalFramebufferUpdateRequest() ) );
+			SLOT( sendIncrementalFramebufferUpdateRequest() ),
+							Qt::DirectConnection );
 	if( m_vncView->m_viewOnly )
 	{
 		t.start( 70 );
@@ -592,7 +590,8 @@ void vncViewThread::run( void )
 		t.start( 50 );
 	}
 	QTimer t2;
-	connect( &t2, SIGNAL( timeout() ), this, SLOT( framebufferUpdate() ) );
+	connect( &t2, SIGNAL( timeout() ), this, SLOT( framebufferUpdate() ),
+							Qt::DirectConnection );
 	t2.start( 20 );
 	exec();
 }

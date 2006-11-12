@@ -316,6 +316,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLine,
 // (under Windows 95 or Windows NT)
 // Under NT, WinVNC can also run as a service.  The WinVNCServerMain routine,
 // defined in the vncService header, is used instead when running as a service.
+vncServer * __server = NULL;
+
 
 int WinVNCAppMain()
 {
@@ -333,9 +335,10 @@ int WinVNCAppMain()
 
 	// CREATE SERVER
 	vncServer server;
+	__server = &server;
 
 	// Set the name and port number
-	server.SetName(szAppName);
+	server.SetName( szAppName );
 	server.SockConnect( TRUE );
 	vnclog.Print(LL_STATE, VNCLOG("server created ok\n"));
 
@@ -363,6 +366,5 @@ int WinVNCAppMain()
 	if (menu != NULL)
 		delete menu;
 #endif
-
 	return msg.wParam;
 }

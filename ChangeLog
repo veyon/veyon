@@ -1,7 +1,69 @@
+2006-11-12	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* ima/resources/de.ts:
+	updated German translation
+
+	* ica/src/vncview.cpp:
+	use Qt::DirectConnection's to make framebufferUpdate()-method being
+	executed with vncViewThread-affinity -> GUI of remote-control etc. does
+	not hang anymore if host is not reachable or connected via slow link
+	for now the last kno wn critical bug is fixed!
+
+	* ica/src/demo_server.cpp:
+	- use QTimer-objects with Qt::DirectConnection instead of
+	  QTime::singleShot for running connected methods within desired
+	  thread - fixes warnings about QSocketNotifier etc.
+	- use m_lastCursorPos instead of QCursor::pos() for reading current
+	  cursor-position -> no more Xlib-errors
+
+2006-11-11	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* ima/src/client.cpp:
+	* ima/src/dialogs.h:
+	* ima/src/dialogs.cpp:
+	* ima/src/main_window.cpp:
+	* ima/src/support_widget.cpp:
+	always try to set parent-window for dialogs for not having separate
+	taskbar-entries for dialogs
+
+	* common/include/isd_connection.h:
+	* common/include/local_system.h:
+	* common/src/isd_connection.cpp:
+	* common/src/local_system.cpp:
+	* ica/src/isd_server.cpp:
+	* ima/src/client.cpp:
+	* Makefile.am:
+	new (built-in) WakeOnLAN-technology
+
+	* common/include/isd_base.h:
+	* common/include/isd_connection.h:
+	* common/include/local_system.h:
+	* common/src/isd_connection.cpp:
+	* common/src/local_system.cpp:
+	* ica/win32/src/WinVNC.cpp:
+	* ica/src/ivs.cpp:
+	* ica/src/isd_server.cpp:
+	* ica/x11/x11vnc/keyboard.h:
+	* ima/Makefile.am:
+	* ima/italc.qrc:
+	* ima/dialogs/multi_logon.ui:
+	* ima/resources/multilogon.png:
+	* ima/resources/multilogon_48.png:
+	* ima/src/client.h:
+	* ima/src/client.cpp:
+	* ima/src/client_manager.h:
+	* ima/src/client_manager.cpp:
+	* ima/src/dialogs.h:
+	* ima/src/dialogs.cpp:
+	* ima/src/main_window.cpp:
+	added multi-user-logon-feature, i.e. the teacher enters the username
+	and password which will be used for logging on the according users on
+	selected computers by faking neccessary key-events
+
 2006-11-06	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* ica/resources/de.ts:
-	* ima/resources/de.ts:
+	* ima/resources/de.s:
 	updated German translation
 
 	* ica/src/vncview.cpp:

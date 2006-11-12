@@ -166,14 +166,19 @@ int isdServer::processClient( socketDispatcher _sd, void * _user )
 					// GUI-thread
 			break;
 
-		case ISD::ForceUserLogout:
+		case ISD::LogonUser:
+			localSystem::logonUser(
+					msg_in.arg( "uname" ).toString(),
+					msg_in.arg( "passwd" ).toString() );
+			break;
+
+		case ISD::LogoutUser:
 			localSystem::logoutUser();
 			break;
 
 		case ISD::WakeOtherComputer:
-			localSystem::sendWakeOnLANPacket( 
-					msg_in.arg( "mac" ).toString(),
-					msg_in.arg( "bcast" ).toString() );
+			localSystem::broadcastWOLPacket( 
+					msg_in.arg( "mac" ).toString() );
 			break;
 
 		case ISD::PowerDownComputer:
@@ -962,14 +967,18 @@ public:
 				stopDemo();
 				break;
 
-			case ISD::ForceUserLogout:
+			case ISD::LogonUser:
+				logonUser( msg_in.arg( "uname" ).toString(),
+					msg_in.arg( "passwd" ).toString() );
+				break;
+
+			case ISD::LogoutUser:
 				logoutUser();
 				break;
 
 			case ISD::WakeOtherComputer:
 				wakeOtherComputer( 
-					msg_in.arg( "mac" ).toString(),
-					msg_in.arg( "bcast" ).toString() );
+					msg_in.arg( "mac" ).toString() );
 				break;
 
 			case ISD::PowerDownComputer:

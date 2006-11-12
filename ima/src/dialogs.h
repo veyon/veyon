@@ -30,6 +30,7 @@
 #include "dialogs/client_settings.uic"
 #include "dialogs/text_message.uic"
 #include "dialogs/support.uic"
+#include "dialogs/multi_logon.uic"
 
 
 class client;
@@ -40,7 +41,7 @@ class mainWindow;
 class aboutDialog : public QDialog, private Ui::about
 {
 public:
-	aboutDialog();
+	aboutDialog( QWidget * _parent );
 
 } ;
 
@@ -67,14 +68,15 @@ private:
 class supportDialog : public QDialog, private Ui::support
 {
 public:
-	supportDialog( void ) : QDialog()
+	supportDialog( QWidget * _parent ) :
+		QDialog( _parent ? _parent->window() : 0 )
 	{
 		setupUi( this );
 	}
 
-	static QString getHost( void )
+	static QString getHost( QWidget * _parent )
 	{
-		supportDialog sd;
+		supportDialog sd( _parent );
 		if( sd.exec() == Accepted )
 		
 		{
@@ -88,11 +90,11 @@ public:
 
 
 
-class textMessageDialog : public QDialog, public Ui::textMessage
+class textMessageDialog : public QDialog, private Ui::textMessage
 {
 	Q_OBJECT
 public:
-	textMessageDialog( QString & _msg_str );
+	textMessageDialog( QString & _msg_str, QWidget * _parent );
 
 
 private slots:
@@ -101,6 +103,43 @@ private slots:
 
 private:
 	QString & m_msgStr;
+
+} ;
+
+
+
+
+class multiLogonDialog : public QDialog, private Ui::multiLogon
+{
+	Q_OBJECT
+public:
+	multiLogonDialog( QWidget * _parent );
+
+	const QString & userName( void ) const
+	{
+		return( m_userName );
+	}
+
+	const QString & password( void ) const
+	{
+		return( m_password );
+	}
+
+
+private slots:
+	void userNameChanged( const QString & _un )
+	{
+		m_userName = _un;
+	}
+	void passwordChanged( const QString & _pw )
+	{
+		m_password = _pw;
+	}
+
+
+private:
+	QString m_userName;
+	QString m_password;
 
 } ;
 

@@ -599,6 +599,22 @@ bool isdConnection::unlockDisplay( void )
 
 
 
+bool isdConnection::logonUser( const QString & _uname, const QString & _pw )
+{
+	if( m_socket == NULL ||
+			m_socket->state() != QTcpSocket::ConnectedState )
+	{
+		m_state = Disconnected;
+		return( FALSE );
+	}
+	return( ISD::msg( &m_socketDev, ISD::LogonUser ).
+				addArg( "uname", _uname ).
+				addArg( "passwd", _pw ).send() );
+}
+
+
+
+
 bool isdConnection::logoutUser( void )
 {
 	if( m_socket == NULL ||
@@ -607,7 +623,7 @@ bool isdConnection::logoutUser( void )
 		m_state = Disconnected;
 		return( FALSE );
 	}
-	return( ISD::msg( &m_socketDev, ISD::ForceUserLogout ).send() );
+	return( ISD::msg( &m_socketDev, ISD::LogoutUser ).send() );
 }
 
 
@@ -664,8 +680,7 @@ bool isdConnection::remoteControlDisplay( const QString & _ip, bool _view_only )
 
 
 
-bool isdConnection::wakeOtherComputer( const QString & _mac,
-							const QString & _bcast )
+bool isdConnection::wakeOtherComputer( const QString & _mac )
 {
 	if( m_socket == NULL ||
 			m_socket->state() != QTcpSocket::ConnectedState )
@@ -674,8 +689,7 @@ bool isdConnection::wakeOtherComputer( const QString & _mac,
 		return( FALSE );
 	}
 	return( ISD::msg( &m_socketDev, ISD::WakeOtherComputer ).
-					addArg( "mac", _mac ).
-					addArg( "bcast", _bcast ).send() );
+					addArg( "mac", _mac ).send() );
 }
 
 

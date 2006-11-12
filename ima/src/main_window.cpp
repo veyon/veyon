@@ -273,13 +273,6 @@ mainWindow::mainWindow() :
 				"on each computer by hand." ),
 			m_clientManager, SLOT( powerOnClients() ), m_toolBar );
 
-	toolButton * reboot = new toolButton(
-			QPixmap( ":/resources/reboot.png" ),
-			tr( "Reboot computers" ),
-			tr( "When clicking this button all shown computers "
-				"are rebooted." ),
-			m_clientManager, SLOT( rebootClients() ), m_toolBar );
-
 	toolButton * power_off = new toolButton(
 			QPixmap( ":/resources/power_off.png" ),
 			tr( "Power off computers" ),
@@ -288,6 +281,14 @@ mainWindow::mainWindow() :
 				"button." ),
 			m_clientManager,
 					SLOT( powerDownClients() ), m_toolBar );
+
+	toolButton * multilogon = new toolButton(
+			QPixmap( ":/resources/multilogon.png" ),
+			tr( "Multi logon" ),
+			tr( "After clicking this button you can enter a "
+				"username and password for logging in the "
+				"according user on all visible computers." ),
+			m_clientManager, SLOT( multiLogon() ), m_toolBar );
 
 
 	toolButton * adjust_size = new toolButton(
@@ -327,8 +328,8 @@ mainWindow::mainWindow() :
 	m_toolBar->addWidget( text_msg );
 	m_toolBar->addSeparator();
 	m_toolBar->addWidget( power_on );
-	m_toolBar->addWidget( reboot );
 	m_toolBar->addWidget( power_off );
+	m_toolBar->addWidget( multilogon );
 	m_toolBar->addSeparator();
 	m_toolBar->addWidget( adjust_size );
 
@@ -404,7 +405,7 @@ void mainWindow::closeEvent( QCloseEvent * _ce )
 
 void mainWindow::aboutITALC( void )
 {
-	aboutDialog().exec();
+	aboutDialog( this ).exec();
 }
 
 

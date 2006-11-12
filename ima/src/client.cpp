@@ -68,6 +68,7 @@ const client::clientCommand client::s_commands[client::CmdCount] =
 	{ RemoteControl,	&client::remoteControl,		QT_TRANSLATE_NOOP( "client", "Remote control" ),		"remote_control.png",	FALSE	},
 	{ ClientDemo,		&client::clientDemo,		QT_TRANSLATE_NOOP( "client", "Let student show demo" ),		"client_demo.png",	FALSE	},
 	{ SendTextMessage,	&client::sendTextMessage,	QT_TRANSLATE_NOOP( "client", "Send text-message" ),		"text_message.png",	TRUE	},
+	{ LogonUser,		&client::logonUser,		QT_TRANSLATE_NOOP( "client", "Logon user" ),			"multilogon.png",		FALSE	},
 	{ LogoutUser,		&client::logoutUser,		QT_TRANSLATE_NOOP( "client", "Logout user" ),			"logout.png",		TRUE	},
 	{ Snapshot,		&client::snapshot,		QT_TRANSLATE_NOOP( "client", "Make a snapshot" ),		"snapshot.png", 	TRUE	},
 	{ PowerOn,		&client::powerOn,		QT_TRANSLATE_NOOP( "client", "Power on" ),			"power_on.png",		FALSE	},
@@ -795,11 +796,11 @@ void client::remoteControl( const QString & )
 
 void client::sendTextMessage( const QString & _msg )
 {
-	if( _msg == "" )
+	if( _msg.isEmpty() )
 	{
 		QString msg;
 
-		textMessageDialog tmd( msg );
+		textMessageDialog tmd( msg, this );
 		if( tmd.exec() == QDialog::Accepted && msg != "" )
 		{
 			sendTextMessage( msg );
@@ -874,6 +875,28 @@ void client::collectFiles( const QString & _filter )
 
 
 
+void client::logonUser( const QString & _uname_and_pw )
+{
+	
+	if( _uname_and_pw.isEmpty() )
+	{
+		multiLogonDialog mld( this );
+		if( mld.exec() == QDialog::Accepted &&
+			!mld.userName().isEmpty() && !mld.password().isEmpty() )
+		{
+			logonUser( mld.userName() + "*" + mld.password() );
+		}
+	}
+	else
+	{
+		m_updateThread->enqueueCommand( updateThread::LogonUser,
+								_uname_and_pw );
+	}
+}
+
+
+
+
 void client::logoutUser( const QString & _confirm )
 {
 	m_updateThread->enqueueCommand( updateThread::LogoutUser );
@@ -893,7 +916,7 @@ void client::snapshot( const QString & )
 
 void client::powerOn( const QString & )
 {
-	QString bcast;
+/*	QString bcast;
 	QList<QNetworkInterface> ifs = QNetworkInterface::allInterfaces();
 	for( QList<QNetworkInterface>::const_iterator it = ifs.begin();
 				it != ifs.end() && !bcast.isEmpty(); ++it )
@@ -915,9 +938,9 @@ void client::powerOn( const QString & )
 	if( bcast.isEmpty() )
 	{
 		bcast = QHostAddress( QHostAddress::Broadcast ).toString();
-	}
+	}*/
 
-	m_mainWindow->localISD()->wakeOtherComputer( m_mac, bcast );
+	m_mainWindow->localISD()->wakeOtherComputer( m_mac );
 }
 
 
@@ -1095,6 +1118,15 @@ void client::updateThread::run( void )
 						displayTextMessage(
 							i.second.toString() );
 					break;
+				case LogonUser:
+				{
+					const QString s = i.second.toString();
+					const int pos = s.indexOf( '*' );
+					m_client->m_connection->logonUser(
+							s.left( pos ),
+							s.mid( pos + 1 ) );
+					break;
+				}
 				case LogoutUser:
 					m_client->m_connection->logoutUser();
 					break;

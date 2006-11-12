@@ -106,8 +106,8 @@ public slots:
 	void collectFiles( void );
 	void collectFilesFromUserList( void );
 	void powerOnClients( void );
-	void rebootClients( void );
 	void powerDownClients( void );
+	void multiLogon( void );
 	void execCmds( void );
 
 	// slots for actions in view-menu

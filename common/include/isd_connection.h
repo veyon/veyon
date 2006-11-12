@@ -115,6 +115,7 @@ public:
 	bool stopDemo( void );
 	bool lockDisplay( void );
 	bool unlockDisplay( void );
+	bool logonUser( const QString & _uname, const QString & _pw );
 	bool logoutUser( void );
 	bool displayTextMessage( const QString & _msg );
 	bool sendFile( const QString & _fname );
@@ -122,7 +123,7 @@ public:
 	bool remoteControlDisplay( const QString & _ip,
 						bool _view_only = FALSE );
 
-	bool wakeOtherComputer( const QString & _mac, const QString & _bcast );
+	bool wakeOtherComputer( const QString & _mac );
 	bool powerDownComputer( void );
 	bool restartComputer( void );
 

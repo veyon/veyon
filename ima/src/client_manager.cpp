@@ -793,17 +793,14 @@ void clientManager::powerOnClients( void )
 
 
 
-void clientManager::rebootClients( void )
+void clientManager::multiLogon( void )
 {
-	if( QMessageBox::question( this, tr( "Reboot clients" ),
-					tr( "Are you sure want to reboot all "
-						"visible clients?" ),
-					QMessageBox::Yes, QMessageBox::No ) ==
-							QMessageBox::Yes )
+	multiLogonDialog mld( this );
+	if( mld.exec() == QDialog::Accepted &&
+		!mld.userName().isEmpty() && !mld.password().isEmpty() )
 	{
-		progressInformation pi( tr( "Please wait, while the clients "
-						"are being rebooted." ) );
-		cmdToVisibleClients( client::Reboot );
+		cmdToVisibleClients( client::LogonUser,
+				mld.userName() + "*" + mld.password() );
 	}
 }
 
@@ -861,7 +858,7 @@ void clientManager::sendMessage( void )
 {
 	QString msg;
 
-	textMessageDialog tmd( msg );
+	textMessageDialog tmd( msg, this );
 	if( tmd.exec() == QDialog::Accepted && msg != "" )
 	{
 		progressInformation pi(
@@ -1715,7 +1712,7 @@ void classRoom::processCmdOnAllClients( QAction * _action )
 	{
 		case client::SendTextMessage:
 		{
-			textMessageDialog tmd( u_data );
+			textMessageDialog tmd( u_data, m_clientManager );
 			if( tmd.exec() != QDialog::Accepted || u_data == "" )
 			{
 				return;

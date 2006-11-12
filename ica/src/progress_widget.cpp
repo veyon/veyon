@@ -54,7 +54,7 @@ progressWidget::progressWidget(  const QString & _txt,
 
 	QTimer * t = new QTimer( this );
 	connect( t, SIGNAL( timeout() ), this, SLOT( nextAnim() ) );
-	t->start( 100 );
+	t->start( 150 );
 }
 
 

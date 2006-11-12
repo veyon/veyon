@@ -45,12 +45,14 @@ namespace localSystem
 
 	void execInTerminal( const QString & _cmds );
 
-	void sendWakeOnLANPacket( const QString & _mac,
-						const QString & _bcast );
+	void broadcastWOLPacket( const QString & _mac );
 
 	void powerDown( void );
 	void reboot( void );
 
+#ifdef BUILD_ICA
+	void logonUser( const QString & _uname, const QString & _pw );
+#endif
 	void logoutUser( void );
 
 	QString currentUser( void );

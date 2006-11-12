@@ -528,9 +528,10 @@ bool ivsConnection::handleServerMessages( bool _send_screen_update, int _tries )
 	{
 		rectList ch_reg = QRect( m_cursorPos - m_cursorHotSpot,
 							m_cursorShape.size() );
+		m_cursorLock.lockForWrite();
+		//m_cursorShape = socketDev().read().value<QImage>();
 		QDataStream ds( static_cast<QTcpSocket *>(
 							socketDev().user() ) );
-		m_cursorLock.lockForWrite();
 		ds >> m_cursorShape;
 		m_cursorLock.unlock();
 		m_cursorHotSpot = QPoint( rect.r.x, rect.r.y );

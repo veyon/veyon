@@ -96,29 +96,10 @@ private:
 
 #else
 
-/*
 #ifdef HAVE_ERRNO_H
 #include <errno.h>
 #endif
 
-#ifdef HAVE_SYS_IOCTL_H
-#include <sys/ioctl.h>
-#endif
-
-#ifdef HAVE_NETINET_ETHER_H
-#include <netinet/ether.h>
-#endif
-
-#ifdef HAVE_LINUX_IF_H
-#include <linux/if.h>
-#endif
-
-#ifdef HAVE_NETPACKET_PACKET_H
-#include <netpacket/packet.h>
-#endif
-
-#define USE_SEND
-*/
 #ifdef HAVE_PWD_H
 #include <pwd.h>
 #endif
@@ -126,9 +107,72 @@ private:
 
 #endif
 
+#ifdef HAVE_SYS_SOCKET_H
+#include <sys/socket.h>
+#endif
+
+#ifdef HAVE_ARPA_INET_H
+#include <arpa/inet.h>
+#endif
+
+#ifdef HAVE_NETINET_IN_H
+#include <netinet/in.h>
+#endif
+
+#ifdef HAVE_ERRNO_H
+#include <errno.h>
+#endif
 
 #include "local_system.h"
 
+
+#ifdef BUILD_ICA
+
+#ifdef BUILD_WIN32
+
+#include "vncKeymap.h"
+
+class vncServer;
+extern vncServer * __server;
+
+static inline void pressKey( int _key, bool _down )
+{
+	if( !__server )
+	{
+		return;
+	}
+	vncKeymap::keyEvent( _key, _down, __server );
+}
+
+#else
+
+#ifdef HAVE_X11
+#include <X11/Xlib.h>
+#endif
+
+#include "rfb/rfb.h"
+
+extern "C"
+{
+#include "keyboard.h"
+}
+
+
+extern rfbClientPtr __client;
+
+static inline void pressKey( int _key, bool _down )
+{
+	if( !__client )
+	{
+		return;
+	}
+	keyboard( _down, _key, __client );
+}
+
+
+#endif
+
+#endif
 
 
 namespace localSystem
@@ -187,206 +231,79 @@ void execInTerminal( const QString & _cmds )
 
 
 
-void sendWakeOnLANPacket( const QString & _mac, const QString & _bcast )
+void broadcastWOLPacket( const QString & _mac )
 {
-#ifdef BUILD_WIN32
-	QString mac = _mac;
-	QProcess::startDetached( "wake " + mac.replace( ':', '-' ) + " " +
-							_bcast );
+	const int PORT_NUM = 65535;
+	const int MAC_SIZE = 6;
+	const int OUTBUF_SIZE = MAC_SIZE*7;
+	unsigned char mac[MAC_SIZE];
+	char out_buf[OUTBUF_SIZE];
 
-#else
-	QProcess::startDetached( "etherwake " + _mac );
-#if 0
-	const char * ifname = "eth0";
-
-	unsigned char outpack[1000];
-
-	int opt_no_src_addr = 0, opt_broadcast = 0;
-
-#if defined(PF_PACKET)
-	struct sockaddr_ll whereto;
-#else
-	struct sockaddr whereto;	// who to wake up
-#endif
-	struct ether_addr eaddr;
-
-
-	const int wol_passwd_size = 6;
-	unsigned char wol_passwd[wol_passwd_size];
-
-	const char * mac = _mac.toAscii().constData();
-
-	if( sscanf( mac, "%2x:%2x:%2x:%2x:%2x:%2x",
-				(unsigned int *) &wol_passwd[0],
-				(unsigned int *) &wol_passwd[1],
-				(unsigned int *) &wol_passwd[2],
-				(unsigned int *) &wol_passwd[3],
-				(unsigned int *) &wol_passwd[4],
-				(unsigned int *) &wol_passwd[5] ) != wol_passwd_size )
+	if( sscanf( _mac.toAscii().constData(),
+				"%2x:%2x:%2x:%2x:%2x:%2x",
+				(unsigned int *) &mac[0],
+				(unsigned int *) &mac[1],
+				(unsigned int *) &mac[2],
+				(unsigned int *) &mac[3],
+				(unsigned int *) &mac[4],
+				(unsigned int *) &mac[5] ) != MAC_SIZE )
 	{
 		printf( "Invalid MAC-address\n" );
 		return;
 	}
 
-
-	/* Note: PF_INET, SOCK_DGRAM, IPPROTO_UDP would allow SIOCGIFHWADDR to
-	   work as non-root, but we need SOCK_PACKET to specify the Ethernet
-	   destination address. */
-
-#if defined(PF_PACKET)
-	int s = socket( PF_PACKET, SOCK_RAW, 0 );
-#else
-	int s = socket( AF_INET, SOCK_PACKET, SOCK_PACKET );
-#endif
-	if( s < 0 )
+	for( int i = 0; i < MAC_SIZE; ++i )
 	{
-		if( errno == EPERM )
+		out_buf[i] = 0xff;	  
+	}
+
+	for( int i = 1; i < 17; ++i )
+	{
+		for(int j = 0; j < MAC_SIZE; ++j )
 		{
-			fprintf( stderr, "ether-wake: This program must be run as root.\n" );
+			out_buf[i*MAC_SIZE+j] = mac[j];
 		}
-		else
-		{
-			perror( "ether-wake: socket" );
-		}
+	}
+
+#ifdef BUILD_WIN32
+	WSADATA info;
+	if( WSAStartup( MAKEWORD( 1, 1 ), &info ) != 0 )
+	{
+		fprintf( stderr, "Cannot initialize WinSock!\n" );
 		return;
 	}
+#endif
+
+	// UDP-broadcast the MAC-address
+	unsigned int sock = socket( AF_INET, SOCK_DGRAM, IPPROTO_UDP );
+	struct sockaddr_in my_addr;
+	my_addr.sin_family      = AF_INET;            // Address family to use
+	my_addr.sin_port        = htons( PORT_NUM );    // Port number to use
+	my_addr.sin_addr.s_addr = inet_addr( "255.255.255.255" ); // send to
+								  // IP_ADDR
+
+	int optval = 1;
+	if( setsockopt( sock, SOL_SOCKET, SO_BROADCAST,(char *) &optval,
+							sizeof( optval ) ) < 0 )
+	{
+		fprintf( stderr,"Can't set sockopt (%d).\n", errno );
+		return;
+	}
+
+	sendto( sock, out_buf, sizeof( out_buf ), 0,
+			(struct sockaddr*) &my_addr, sizeof( my_addr ) );
+#ifdef BUILD_WIN32
+	closesocket( sock );
+	WSACleanup();
+#else
+	close( sock );
+#endif
+
 
 #if 0
-	/* We look up the station address before reporting failure so that
-	   errors may be reported even when run as a normal m_user.
-	*/
-	struct ether_addr * eap = ether_aton( mac );
-	if( eap )
-	{
-		eaddr = *eap;
-		printf( "The target station address is %s.\n",
-							ether_ntoa( eap ) );
-/*	} else if (ether_hostton(m_mac.ascii(), &eaddr) == 0) {
-		fprintf(stderr, "Station address for hostname %s is %s.\n",
-					m_mac.ascii(), ether_ntoa(&eaddr));*/
-	}
-	else
-	{
-		printf ("Invalid MAC-address\n");
-		return;
-	}
+#ifdef BUILD_LINUX
+	QProcess::startDetached( "etherwake " + _mac );
 #endif
-
-
-	if( opt_broadcast )
-	{
-		memset( outpack+0, 0xff, 6 );
-	}
-	else
-	{
-		memcpy( outpack, eaddr.ether_addr_octet, 6 );
-	}
-
-	memcpy( outpack+6, eaddr.ether_addr_octet, 6 );
-	outpack[12] = 0x08;				/* Or 0x0806 for ARP, 0x8035 for RARP */
-	outpack[13] = 0x42;
-	int pktsize = 14;
-
-	memset( outpack+pktsize, 0xff, 6 );
-	pktsize += 6;
-
-	for( int i = 0; i < 16; i++ )
-	{
-		memcpy( outpack+pktsize, eaddr.ether_addr_octet, 6 );
-		pktsize += 6;
-	}
-//	fprintf(stderr, "Packet is ");
-//	for (i = 0; i < pktsize; i++)
-//		fprintf(stderr, " %2.2x", outpack[i]);
-//	fprintf(stderr, ".\n");
-
-	/* Fill in the source address, if possible.
-	   The code to retrieve the local station address is Linux specific. */
-	if( !opt_no_src_addr )
-	{
-		struct ifreq if_hwaddr;
-		//unsigned char * hwaddr = if_hwaddr.ifr_hwaddr.sa_data;
-
-		strcpy( if_hwaddr.ifr_name, ifname );
-		if( ioctl( s, SIOCGIFHWADDR, &if_hwaddr ) < 0 )
-		{
-			fprintf( stderr, "SIOCGIFHWADDR on %s failed: %s\n", ifname, strerror( errno ) );
-			/* Magic packets still work if our source address is bogus, but
-			   we fail just to be anal. */
-			return;
-		}
-		memcpy( outpack+6, if_hwaddr.ifr_hwaddr.sa_data, 6 );
-
-		//printf("The hardware address (SIOCGIFHWADDR) of %s is type %d  %2.2x:%2.2x:%2.2x:%2.2x:%2.2x:%2.2x.\n", ifname, if_hwaddr.ifr_hwaddr.sa_family, hwaddr[0], hwaddr[1], hwaddr[2], hwaddr[3], hwaddr[4], hwaddr[5]);
-	}
-
-	memcpy( outpack+pktsize, wol_passwd, wol_passwd_size );
-	pktsize += wol_passwd_size;
-
-
-
-#if defined(PF_PACKET)
-	struct ifreq ifr;
-	strncpy( ifr.ifr_name, ifname, sizeof( ifr.ifr_name ) );
-	if( ioctl( s, SIOCGIFINDEX, &ifr ) == -1 )
-	{
-		fprintf( stderr, "SIOCGIFINDEX on %s failed: %s\n", ifname,
-							strerror( errno ) );
-		return;
-	}
-	memset( &whereto, 0, sizeof( whereto ) );
-	whereto.sll_family = AF_PACKET;
-	whereto.sll_ifindex = ifr.ifr_ifindex;
-	/* The manual page incorrectly claims the address must be filled.
-	   We do so because the code may change to match the docs. */
-	whereto.sll_halen = ETH_ALEN;
-	memcpy( whereto.sll_addr, outpack, ETH_ALEN );
-
-#else
-	whereto.sa_family = 0;
-	strcpy( whereto.sa_data, ifname );
-#endif
-
-	if( sendto( s, outpack, pktsize, 0, (struct sockaddr *) &whereto,
-						sizeof( whereto ) ) < 0 )
-	{
-		perror( "sendto" );
-	}
-
-#ifdef USE_SEND
-	if( bind( s, (struct sockaddr *) &whereto, sizeof( whereto ) ) < 0 )
-	{
-		perror( "bind" );
-	}
-	else if( send( s, outpack, 100, 0 ) < 0 )
-	{
-		perror( "send" );
-	}
-#elif USE_SENDMSG
-	struct msghdr msghdr = { 0,};
-	struct iovec iovector[1];
-	msghdr.msg_name = &whereto;
-	msghdr.msg_namelen = sizeof( whereto );
-	msghdr.msg_iov = iovector;
-	msghdr.msg_iovlen = 1;
-	iovector[0].iov_base = outpack;
-	iovector[0].iov_len = pktsize;
-	if( ( i = sendmsg( s, &msghdr, 0 ) ) < 0 )
-	{
-		perror( "sendmsg" );
-	}
-	else if( debug )
-	{
-		printf( "sendmsg worked, %d (%d).\n", i, errno );
-	}
-#else
-
-#error no method for sending raw-packet
-
-#endif
-
-#endif
-
 #endif
 }
 
@@ -430,6 +347,42 @@ void reboot( void )
 	QProcess::startDetached( "reboot" );
 #endif
 }
+
+
+
+
+#ifdef BUILD_ICA
+static inline void pressAndReleaseKey( int _key )
+{
+	pressKey( _key, TRUE );
+	pressKey( _key, FALSE );
+}
+
+
+void logonUser( const QString & _uname, const QString & _passwd )
+{
+#ifdef BUILD_WIN32
+	// send Secure Attention Sequence (SAS) for making sure we can enter
+	// username and password
+	pressKey( XK_Alt_L, TRUE );
+	pressKey( XK_Control_L, TRUE );
+	pressAndReleaseKey( XK_Delete );
+	pressKey( XK_Control_L, FALSE );
+	pressKey( XK_Alt_L, FALSE );
+#endif
+	for( int i = 0; i < _uname.size(); ++i )
+	{
+		pressAndReleaseKey( _uname.utf16()[i] );
+	}
+	pressAndReleaseKey( XK_Tab );
+	for( int i = 0; i < _passwd.size(); ++i )
+	{
+		pressAndReleaseKey( _passwd.utf16()[i] );
+	}
+	pressAndReleaseKey( XK_Return );
+}
+
+#endif
 
 
 
@@ -626,11 +579,15 @@ BOOL enablePrivilege( LPCTSTR lpszPrivilegeName, BOOL bEnable )
 	BOOL			ret;
 
 	if( !OpenProcessToken( GetCurrentProcess(),
-	      TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY | TOKEN_READ, &hToken ) )
+		TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY | TOKEN_READ, &hToken ) )
+	{
 		return FALSE;
+	}
 
 	if( !LookupPrivilegeValue( NULL, lpszPrivilegeName, &luid ) )
+	{
 		return FALSE;
+	}
 
 	tp.PrivilegeCount           = 1;
 	tp.Privileges[0].Luid       = luid;

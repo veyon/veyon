@@ -152,27 +152,27 @@
 <context>
     <name>isdServer</name>
     <message>
-        <location filename="../src/isd_server.cpp" line="763"/>
+        <location filename="../src/isd_server.cpp" line="768"/>
         <source>Message from teacher</source>
         <translation>Nachricht vom Lehrer</translation>
     </message>
     <message>
-        <location filename="../src/isd_server.cpp" line="529"/>
+        <location filename="../src/isd_server.cpp" line="534"/>
         <source>Somebody at host %1 tries to access your screen. Do you want to grant him/her access?</source>
         <translation>Jemand am Rechner %1 versucht auf Ihren Bildschirm zuzugreifen. Möchten Sie ihm/ihr Zugriff gewähren?</translation>
     </message>
     <message>
-        <location filename="../src/isd_server.cpp" line="547"/>
+        <location filename="../src/isd_server.cpp" line="552"/>
         <source>Never for this session</source>
         <translation>Nie für diese Sitzung</translation>
     </message>
     <message>
-        <location filename="../src/isd_server.cpp" line="542"/>
+        <location filename="../src/isd_server.cpp" line="547"/>
         <source>Always for this session</source>
         <translation>Immer für diese Sitzung</translation>
     </message>
     <message>
-        <location filename="../src/isd_server.cpp" line="526"/>
+        <location filename="../src/isd_server.cpp" line="531"/>
         <source>Confirm access</source>
         <translation>Zugriff bestätigen</translation>
     </message>

@@ -68,6 +68,7 @@ public:
 		RemoteControl,
 		ClientDemo,
 		SendTextMessage,
+		LogonUser,
 		LogoutUser,
 		Snapshot,
 		PowerOn,
@@ -242,6 +243,7 @@ private:
 	void sendTextMessage( const QString & _msg );
 /*	void distributeFile( const QString & _file );
 	void collectFiles( const QString & _name_filter );*/
+	void logonUser( const QString & _uname_and_pw );
 	void logoutUser( const QString & _confirm );
 	void snapshot( const QString & );
 /*	void execCmdsIRFB( const QString & _cmds );
@@ -294,6 +296,7 @@ private:
 			LockScreen,
 			UnlockScreen,
 			SendTextMessage,
+			LogonUser,
 			LogoutUser,
 			Reboot,
 			PowerDown,

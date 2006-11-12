@@ -30,8 +30,8 @@
 
 
 
-aboutDialog::aboutDialog() :
-	QDialog()
+aboutDialog::aboutDialog( QWidget * _parent ) :
+	QDialog( _parent ? _parent->window() : _parent )
 {
 	setupUi( this );
 
@@ -57,7 +57,8 @@ aboutDialog::aboutDialog() :
 clientSettingsDialog::clientSettingsDialog( client * _client,
 						mainWindow * _main_window,
 						const QString & _classroom ) :
-	QDialog(),
+	QDialog( _main_window ),
+	Ui::clientSettings(),
 	m_client( _client ),
 	m_mainWindow( _main_window )
 {
@@ -147,8 +148,9 @@ m_mainWindow->getClientManager()->m_classRooms[classRoomComboBox->currentIndex()
 
 
 
-textMessageDialog::textMessageDialog( QString & _msg_str ) :
-	QDialog(),
+textMessageDialog::textMessageDialog( QString & _msg_str, QWidget * _parent ) :
+	QDialog( _parent ? _parent->window() : 0 ),
+	Ui::textMessage(),
 	m_msgStr( _msg_str )
 {
 	setupUi( this );
@@ -161,6 +163,21 @@ void textMessageDialog::accept( void )
 {
 	m_msgStr = textEdit->toPlainText();
 	QDialog::accept();
+}
+
+
+
+
+multiLogonDialog::multiLogonDialog( QWidget * _parent ) :
+	QDialog( _parent ? _parent->window() : 0 ),
+	Ui::multiLogon()
+{
+	setupUi( this );
+
+	connect( userNameEdit, SIGNAL( textChanged( const QString & ) ),
+			this, SLOT( userNameChanged( const QString & ) ) );
+	connect( passwordEdit, SIGNAL( textChanged( const QString & ) ),
+			this, SLOT( passwordChanged( const QString & ) ) );
 }
 
 

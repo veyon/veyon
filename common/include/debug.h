@@ -26,7 +26,7 @@
 #ifndef _DEBUG_H
 #define _DEBUG_H
 
-#define DEBUG
+//#define DEBUG
 
 #ifdef DEBUG
 #define debugpoint printf("file:%s line %d\n",__FILE__,__LINE__);

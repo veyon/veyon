@@ -213,8 +213,8 @@ void demoServerClient::moveCursor( void )
 
 		const rfbRectangle rr =
 		{
-			swap16IfLE( QCursor::pos().x() ),
-			swap16IfLE( QCursor::pos().y() ),
+			swap16IfLE( m_lastCursorPos.x() ),
+			swap16IfLE( m_lastCursorPos.y() ),
 			swap16IfLE( 0 ),
 			swap16IfLE( 0 )
 		} ;
@@ -229,7 +229,6 @@ void demoServerClient::moveCursor( void )
 		m_sock->flush();
 	}
 	m_dataMutex.unlock();
-	//QTimer::singleShot( CURSOR_UPDATE_TIME, this, SLOT( moveCursor() ) );
 }
 
 
@@ -397,7 +396,7 @@ void demoServerClient::processClient( void )
 	m_sock->flush();
 
 	m_dataMutex.unlock();
-	QTimer::singleShot( 40, this, SLOT( processClient() ) );
+	//QTimer::singleShot( 40, this, SLOT( processClient() ) );
 }
 
 
@@ -407,7 +406,7 @@ void demoServerClient::run( void )
 {
 	m_dataMutex.lock();
 	QTcpSocket sock;
-	m_sock = &sock;//new QTcpSocket;
+	m_sock = &sock;
 	if( !m_sock->setSocketDescriptor( m_socketDescriptor ) )
 	{
 		printf( "could not set socket-descriptor in "
@@ -519,10 +518,14 @@ void demoServerClient::run( void )
 	connect( m_sock, SIGNAL( disconnected() ), this,
 							SLOT( deleteLater() ) );
 
-	QTimer::singleShot( 200, this, SLOT( processClient() ) );
 	QTimer t;
-	connect( &t, SIGNAL( timeout() ), this, SLOT( moveCursor() ) );
+	connect( &t, SIGNAL( timeout() ), this, SLOT( moveCursor() ),
+							Qt::DirectConnection );
 	t.start( CURSOR_UPDATE_TIME );
+	QTimer t2;
+	connect( &t2, SIGNAL( timeout() ), this, SLOT( processClient() ),
+							Qt::DirectConnection );
+	t2.start( 50 );
 	//moveCursor();
 	//processClient();
 

@@ -15,7 +15,7 @@ extern void check_add_keysyms(void);
 extern int add_keysym(KeySym keysym);
 extern void delete_added_keycodes(int bequiet);
 extern void initialize_remap(char *infile);
-extern int sloppy_key_check(int key, rfbBool down, rfbKeySym keysym, int *new);
+extern int sloppy_key_check(int key, rfbBool down, rfbKeySym keysym, int *);
 extern void switch_to_xkb_if_better(void);
 extern char *short_kmbc(char *str);
 extern void initialize_allowed_input(void);

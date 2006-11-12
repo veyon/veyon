@@ -35,6 +35,7 @@ italc_UIC =	./dialogs/client_settings.uic		\
 		./dialogs/config.uic			\
 		./dialogs/support.uic			\
 		./dialogs/text_message.uic		\
+		./dialogs/multi_logon.uic		\
 		./dialogs/about.uic
 
 BUILT_SOURCES = $(italc_MOC) $(italc_UIC) ./italc_qrc.cpp
@@ -111,7 +112,7 @@ endif
 
 
 italc_LDADD = $(QT_LDADD) $(QT_LIB_GUI) -lz -ljpeg $(LIBSSL_LDADD)
-italc_LDFLAGS = $(LDFLAGS)
+italc_LDFLAGS = $(LDFLAGS) -mwindows
 
 AM_CXXFLAGS := $(AM_CXXFLAGS) $(QT_CXXFLAGS)
 
