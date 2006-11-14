@@ -56,6 +56,8 @@ int main( int argc, char * * argv )
 
 	localSystem::initialize();
 
+	__role = ISD::RoleTeacher;
+
 	app.connect( &app, SIGNAL( lastWindowClosed() ), SLOT( quit() ) );
 
 	QPixmap splash = QPixmap( ":/resources/splash.png" ); 

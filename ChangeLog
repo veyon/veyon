@@ -1,3 +1,11 @@
+2006-11-13	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* ima/src/main.cpp:
+	per default set __role to RoleTeacher
+
+	* ima/dialogs/multi_logon.ui:
+	use password-echo-mode for password-input-field
+
 2006-11-12	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* ima/resources/de.ts:
