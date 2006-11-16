@@ -41,6 +41,7 @@
 #include "local_system.h"
 #include "debug.h"
 #include "system_key_trapper.h"
+#include "dsa_key.h"
 
 #ifdef SYSTEMTRAY_SUPPORT
 #include <QtGui/QSystemTrayIcon>
@@ -174,6 +175,31 @@ int ICAMain( int argc, char * * argv )
 					"	supporter\n\n" );
 				return( -1 );
 			}
+		}
+		else if( a == "-createkeypair" )
+		{
+			ISD::userRoles role = ( __role != ISD::RoleOther ) ?
+						__role : ISD::RoleTeacher;
+			bool user_path = arg_it.hasNext();
+			QString priv = user_path ? arg_it.next() :
+					localSystem::publicKeyPath( role );
+			QString pub = user_path ?
+					( arg_it.hasNext() ? 
+						arg_it.next() : priv + ".pub" )
+				:
+					localSystem::privateKeyPath( role );
+			privateDSAKey pkey( 1024 );
+			if( !pkey.isValid() )
+			{
+				printf( "key generation failed!\n" );
+				return( -1 );
+			}
+			pkey.save( priv );
+			publicDSAKey( pkey ).save( pub );
+			printf( "saved key-pair in %s and %s\n",
+						priv.toAscii().constData(),
+						pub.toAscii().constData() );
+			return( 0 );
 		}
 #ifdef BUILD_LINUX
 		else if( a == "-nosel" || a == "-nosetclipboard" )

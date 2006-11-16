@@ -89,6 +89,9 @@
        <property name="icon" >
         <iconset resource="../setup.qrc" >:/resources/next.png</iconset>
        </property>
+       <property name="default" >
+        <bool>true</bool>
+       </property>
       </widget>
      </item>
     </layout>

@@ -455,7 +455,8 @@ QString userRoleName( const ISD::userRoles _role )
 }
 
 
-inline QString keyPath( const ISD::userRoles _role, const QString _group )
+inline QString keyPath( const ISD::userRoles _role, const QString _group,
+							bool _only_path )
 {
 	QSettings settings( QSettings::SystemScope, "iTALC Solutions",
 								"iTALC" );
@@ -471,7 +472,8 @@ inline QString keyPath( const ISD::userRoles _role, const QString _group )
 		"c:\\italc\\keys\\"
 #endif
 		+ _group + QDir::separator() + userRoleNames[_role] +
-						QDir::separator() + "key";
+						QDir::separator() +
+						( _only_path ? "" : "key" );
 	const QString val = settings.value( "keypaths" + _group + "/" +
 					userRoleNames[_role] ).toString();
 	if( val.isEmpty() )
@@ -484,15 +486,15 @@ inline QString keyPath( const ISD::userRoles _role, const QString _group )
 }
 
 
-QString privateKeyPath( const ISD::userRoles _role )
+QString privateKeyPath( const ISD::userRoles _role, bool _only_path )
 {
-	return( keyPath( _role, "private" ) );
+	return( keyPath( _role, "private", _only_path ) );
 }
 
 
-QString publicKeyPath( const ISD::userRoles _role )
+QString publicKeyPath( const ISD::userRoles _role, bool _only_path )
 {
-	return( keyPath( _role, "public" ) );
+	return( keyPath( _role, "public", _only_path ) );
 }
 
 
@@ -546,10 +548,11 @@ QString personalConfigPath( void )
 
 bool ensurePathExists( const QString & _path )
 {
-	if( QDir( _path ).exists() )
+	if( _path.isEmpty() || QDir( _path ).exists() )
 	{
 		return( TRUE );
 	}
+
 	QString p = QDir( _path ).absolutePath();
 	if( !QFileInfo( _path ).isDir() )
 	{

@@ -1,3 +1,38 @@
+2006-11-16	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* setup/src/dialogs.h:
+	* setup/src/dialogs.cpp:
+	- now keys are created/imported/exported
+	- show confirm-dialog before cancel setup
+
+	* setup/resources/de.ts:
+	* setup/resources/de.qm:
+	* setup/setup.qrc:
+	added German localization
+
+	* setup/dialogs/page_security_options.ui:
+	* setup/dialogs/wizard.ui:
+	small fixes
+
+	* common/src/dsa_key.cpp:
+	if filename does not contain dir-separators, do not call
+	localSystem::ensurePathExists()
+
+	* common/include/local_system.h:
+	* common/src/local_system.cpp:
+	added option to privateKeyPath() and publicKeyPath() for only
+	returning path without filename
+
+	* ica/src/ica_main.cpp:
+	* common/src/dsa_key.cpp:
+	* common/src/local_system.cpp:
+	added "-createkeypair"-option to ICA
+
+2006-11-14	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* configure.in:
+	added some more checks for better configuration of miniLZO
+
 2006-11-13	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* ima/src/main.cpp:

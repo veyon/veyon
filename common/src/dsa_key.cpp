@@ -47,6 +47,7 @@ extern "C" FILE * __cdecl fdopen( int, const char * );
 
 // Qt-headers
 #include <QtCore/QByteArray>
+#include <QtCore/QDir>
 #include <QtCore/QFile>
 #include <QtCore/QFileInfo>
 #include <QtCore/QTextStream>
@@ -609,8 +610,10 @@ void privateDSAKey::save( const QString & _file, QString _passphrase ) const
 					"using empty passphrase now\n" );
 		_passphrase = QString::null;
 	}
-
-	localSystem::ensurePathExists( QFileInfo( _file ).filePath() );
+	if( _file.contains( QDir::separator() ) )
+	{
+		localSystem::ensurePathExists( QFileInfo( _file ).filePath() );
+	}
 
 	QFile outfile( _file );
 	if( !outfile.open( QFile::WriteOnly | QFile::Truncate ) )
@@ -771,7 +774,10 @@ void publicDSAKey::save( const QString & _file, QString ) const
 		return;
 	}
 
-	localSystem::ensurePathExists( QFileInfo( _file ).filePath() );
+	if( _file.contains( QDir::separator() ) )
+	{
+		localSystem::ensurePathExists( QFileInfo( _file ).filePath() );
+	}
 
 	QFile outfile( _file );
 	if( !outfile.open( QFile::WriteOnly | QFile::Truncate ) )

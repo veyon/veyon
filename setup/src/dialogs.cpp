@@ -45,22 +45,16 @@
 
 
 const QString PUBLIC_KEY_FILE_NAME = "italc_dsa_key.pub";
-const QString DEFAULT_INSTALL_DIR =
-#ifdef BUILD_WIN32
-					"c:\\italc"
-#else
-					"/opt/italc"
-#endif
-					;
+QString DEFAULT_INSTALL_DIR;
 
 setupWizard::setupWizard() :
 	QDialog(),
 	Ui::wizard(),
-	m_installDir( DEFAULT_INSTALL_DIR ),
+	m_installDir(),
 	m_keyImportDir( QDir::homePath() + QDir::separator() ),
 	m_keyExportDir( m_keyImportDir ),
-	m_pubKeyDir( localSystem::publicKeyPath( ISD::RoleTeacher ) ),
-	m_privKeyDir( localSystem::privateKeyPath( ISD::RoleTeacher ) ),
+	m_pubKeyDir( localSystem::publicKeyPath( ISD::RoleTeacher, TRUE ) ),
+	m_privKeyDir( localSystem::privateKeyPath( ISD::RoleTeacher, TRUE ) ),
 	m_installClient( TRUE ),
 	m_installMaster( FALSE ),
 	m_installLUPUS( FALSE ),
@@ -69,6 +63,13 @@ setupWizard::setupWizard() :
 	m_idx( 0 )
 {
 	setupUi( this );
+	DEFAULT_INSTALL_DIR = m_installDir =
+#ifdef BUILD_WIN32
+			"C:\\" + QDialog::tr( "Program Files" ) + "\\iTALC"
+#else
+					"/opt/italc"
+#endif
+					;
 
 	connect( backButton, SIGNAL( clicked() ), this, SLOT( back() ) );
 	connect( nextButton, SIGNAL( clicked() ), this, SLOT( next() ) );
@@ -105,6 +106,30 @@ setupWizard::setupWizard() :
 void setupWizard::setNextPageDisabled( bool _disabled )
 {
 	nextButton->setEnabled( !_disabled );
+}
+
+
+
+
+void setupWizard::reject( void )
+{
+	if( QMessageBox::question( NULL,
+			tr( "Cancel setup" ),
+			tr( "Are you sure want to quit setup? iTALC is not "
+				"installed completely yet!" ),
+#ifdef QMESSAGEBOX_EXT_SUPPORT
+			QMessageBox::Yes | QMessageBox::No,
+						QMessageBox::Yes
+#else
+			QMessageBox::Yes | QMessageBox::Default,
+						QMessageBox::No
+#endif
+						)
+			==
+						QMessageBox::Yes )
+	{
+		QDialog::reject();
+	}
 }
 
 
@@ -244,12 +269,34 @@ void setupWizard::next( void )
 		}
 		const int remaining_steps = 1;
 		const int remaining_percent = 50;
+		int step = 0;
 
 		pd.setLabelText( tr( "Registering ICA as service..." ) );
 		qApp->processEvents();
 	
-		// TODO: create/import/export keys
 		QProcess::execute( d + "ica -registerservice" );
+		++step;
+		pd.setValue( 50 + remaining_percent*step/remaining_steps );
+
+		pd.setLabelText( tr( "Creating/importing keys..." ) );
+		qApp->processEvents();
+		const QString add = QDir::separator() + QString( "key" );
+		const QString add2 = QDir::separator() + PUBLIC_KEY_FILE_NAME;
+		if( m_keyImportDir.isEmpty() )
+		{
+			QProcess::execute( d +
+		QString( "ica -createkeypair %1 %2" ).
+						arg( m_privKeyDir + add ).
+						arg( m_pubKeyDir + add ) );
+			QFile( m_pubKeyDir + add ).
+						copy( m_keyExportDir + add2 );
+		}
+		else
+		{
+			publicDSAKey( m_keyImportDir + add2 ).
+						save( m_pubKeyDir + add );
+		}
+
 		// TODO: feedback
 		accept();
 	}

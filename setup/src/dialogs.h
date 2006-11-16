@@ -61,6 +61,7 @@ public:
 
 
 private slots:
+	virtual void reject( void );
 	void back( void );
 	void next( void );
 

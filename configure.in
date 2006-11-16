@@ -2,8 +2,8 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.50)
-AC_INIT(italc, 0.9.8.0-svn-20061113, tobydox/at/users/dot/sf/dot/net)
-AM_INIT_AUTOMAKE(italc, 0.9.8.0-svn-20061113)
+AC_INIT(italc, 0.9.8.0-svn-20061116, tobydox/at/users/dot/sf/dot/net)
+AM_INIT_AUTOMAKE(italc, 0.9.8.0-svn-20061116)
 AM_CONFIG_HEADER(config.h)
 AX_PREFIX_CONFIG_H([common/include/rfb/rfbconfig.h])
 
@@ -375,6 +375,15 @@ AC_CHECK_HEADERS([arpa/inet.h fcntl.h limits.h memory.h netdb.h netinet/in.h std
 AC_C_CONST
 AC_C_INLINE
 AC_C_BIGENDIAN
+AC_CHECK_TYPE(ptrdiff_t,long)
+AC_CHECK_SIZEOF(short)
+AC_CHECK_SIZEOF(int)
+AC_CHECK_SIZEOF(long)
+AC_CHECK_SIZEOF(long long)
+AC_CHECK_SIZEOF(__int64)
+AC_CHECK_SIZEOF(void *)
+AC_CHECK_SIZEOF(size_t)
+AC_CHECK_SIZEOF(ptrdiff_t)
 AC_TYPE_SIZE_T
 AC_HEADER_SYS_WAIT
 AC_TYPE_SOCKLEN_T
@@ -404,7 +413,7 @@ AC_FUNC_VPRINTF
 
 AC_CHECK_LIB(nsl,gethostbyname)
 AC_CHECK_LIB(socket,socket)
-AC_CHECK_FUNCS([ftime mkfifo dup2 floor gethostbyname gethostname gettimeofday inet_ntoa memmove memset mmap pow putenv select socket strchr strdup strerror strpbrk strrchr strstr uname setsid getpwuid getpwnam getuid geteuid waitpid setutxent setpgrp seteuid grantpt getspnam])
+AC_CHECK_FUNCS([ftime mkfifo dup2 floor gethostbyname gethostname gettimeofday inet_ntoa memcmp memmove memcpy memset mmap pow putenv select socket strchr strdup strerror strpbrk strrchr strstr uname setsid getpwuid getpwnam getuid geteuid waitpid setutxent setpgrp seteuid grantpt getspnam])
 
 # check, if shmget is in cygipc.a
 AC_CHECK_LIB(cygipc,shmget)

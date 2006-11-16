@@ -57,8 +57,10 @@ namespace localSystem
 
 	QString currentUser( void );
 
-	QString privateKeyPath( const ISD::userRoles _role );
-	QString publicKeyPath( const ISD::userRoles _role );
+	QString privateKeyPath( const ISD::userRoles _role,
+						bool _only_path = FALSE );
+	QString publicKeyPath( const ISD::userRoles _role,
+						bool _only_path = FALSE );
 
 	QString snapshotDir( void );
 	QString globalConfigPath( void );

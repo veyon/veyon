@@ -77,7 +77,7 @@ p, li { white-space: pre-wrap; }
      <item>
       <widget class="QRadioButton" name="importKeysRadioButton" >
        <property name="text" >
-        <string>Import public key from master computer</string>
+        <string>Import public key of master computer</string>
        </property>
        <property name="checked" >
         <bool>true</bool>

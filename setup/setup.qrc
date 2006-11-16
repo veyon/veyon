@@ -11,5 +11,6 @@
         <file>resources/page_security_options.png</file>
         <file>resources/page_select_components.png</file>
         <file>resources/setup.png</file>
+        <file>resources/de.qm</file>
     </qresource>
 </RCC>
