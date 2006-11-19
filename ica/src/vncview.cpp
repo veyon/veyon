@@ -187,7 +187,7 @@ void vncView::framebufferUpdate( void )
 		update();
 	}
 
-	QTimer::singleShot( 40, this, SLOT( framebufferUpdate() ) );
+	QTimer::singleShot( 20, this, SLOT( framebufferUpdate() ) );
 }
 
 

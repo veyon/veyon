@@ -256,6 +256,8 @@ vncClientThread::InitAuthenticate()
 int
 vncClientThread::GetAuthenticationType()
 {
+		return rfbAuthExternal;
+#if 0
 	// Determine if the password is set
 	BOOL no_password_set;
 	{
@@ -358,6 +360,7 @@ vncClientThread::GetAuthenticationType()
 	} else {
 		return rfbSecTypeVncAuth;
 	}
+#endif
 }
 
 //

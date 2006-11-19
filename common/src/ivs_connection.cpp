@@ -312,6 +312,11 @@ bool ivsConnection::sendIncrementalFramebufferUpdateRequest( void )
 bool ivsConnection::sendFramebufferUpdateRequest( Q_UINT16 _x, Q_UINT16 _y,
 				Q_UINT16 _w, Q_UINT16 _h, bool _incremental )
 {
+	if( state() != Connected )
+	{
+		return( FALSE );
+	}
+
 	rfbFramebufferUpdateRequestMsg fur;
 
 	fur.type = rfbFramebufferUpdateRequest;
@@ -330,6 +335,11 @@ bool ivsConnection::sendFramebufferUpdateRequest( Q_UINT16 _x, Q_UINT16 _y,
 bool ivsConnection::sendPointerEvent( Q_UINT16 _x, Q_UINT16 _y,
 							Q_UINT16 _button_mask )
 {
+	if( state() != Connected )
+	{
+		return( FALSE );
+	}
+
 	rfbPointerEventMsg pe;
 
 	pe.type = rfbPointerEvent;
@@ -350,6 +360,11 @@ bool ivsConnection::sendPointerEvent( Q_UINT16 _x, Q_UINT16 _y,
 
 bool ivsConnection::sendKeyEvent( Q_UINT32 key, bool down )
 {
+	if( state() != Connected )
+	{
+		return( FALSE );
+	}
+
 	rfbKeyEventMsg ke;
 
 	ke.type = rfbKeyEvent;

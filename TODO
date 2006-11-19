@@ -1,3 +1,6 @@
+- do fullscreen-demo in fullscreen-mode
+- question "shutdown all?" not in foreground
+- more options to multi-logon
 - more clear description of overview-mode (+=unlocks clients & stops demo)
 - support for client-demo
 - support for demo-gateway for classrooms connected via VPN
