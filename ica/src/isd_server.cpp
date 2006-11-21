@@ -644,7 +644,6 @@ void isdServer::checkForPendingActions( void )
 		{
 			case ISD::StartFullScreenDemo:
 			case ISD::StartWindowDemo:
-				printf("start demo\n");
 				startDemo( data,
 	( m_pendingActions.front().first == ISD::StartFullScreenDemo ) );
 				break;

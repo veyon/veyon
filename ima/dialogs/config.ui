@@ -23,7 +23,7 @@
      <number>0</number>
     </property>
     <property name="spacing" >
-     <number>6</number>
+     <number>7</number>
     </property>
     <item>
      <layout class="QHBoxLayout" >
@@ -240,7 +240,7 @@
       <item>
        <widget class="QLabel" name="label_14" >
         <property name="text" >
-         <string>Screen-quality of demo-mode</string>
+         <string>Quality of demo-mode</string>
         </property>
        </widget>
       </item>

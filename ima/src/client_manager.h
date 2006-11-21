@@ -112,6 +112,7 @@ public slots:
 
 	// slots for actions in view-menu
 	void adjustWindows( void );
+	void arrangeWindows( void );
 	void increaseClientSize( void );
 	void decreaseClientSize( void );
 

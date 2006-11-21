@@ -182,12 +182,12 @@ int ICAMain( int argc, char * * argv )
 						__role : ISD::RoleTeacher;
 			bool user_path = arg_it.hasNext();
 			QString priv = user_path ? arg_it.next() :
-					localSystem::publicKeyPath( role );
+					localSystem::privateKeyPath( role );
 			QString pub = user_path ?
 					( arg_it.hasNext() ? 
 						arg_it.next() : priv + ".pub" )
 				:
-					localSystem::privateKeyPath( role );
+					localSystem::publicKeyPath( role );
 			privateDSAKey pkey( 1024 );
 			if( !pkey.isValid() )
 			{

@@ -29,6 +29,7 @@
 #include "side_bar_widget.h"
 #include "dialogs/config.uic"
 
+
 class configWidget : public sideBarWidget, private Ui::config
 {
 	Q_OBJECT

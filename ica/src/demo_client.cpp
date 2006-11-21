@@ -49,8 +49,10 @@ demoClient::demoClient( const QString & _host, bool _fullscreen ) :
 
 	connect( m_toplevel, SIGNAL( destroyed( QObject * ) ),
 			this, SLOT( viewDestroyed( QObject * ) ) );
-
-	m_toplevel->showMaximized();
+	if( !_fullscreen )
+	{
+		m_toplevel->showMaximized();
+	}
 }
 
 

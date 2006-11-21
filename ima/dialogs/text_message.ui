@@ -1,7 +1,4 @@
 <ui version="4.0" >
- <author></author>
- <comment></comment>
- <exportmacro></exportmacro>
  <class>textMessage</class>
  <widget class="QDialog" name="textMessage" >
   <property name="geometry" >
@@ -9,7 +6,7 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>300</height>
+    <height>413</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -20,10 +17,10 @@
   </property>
   <layout class="QVBoxLayout" >
    <property name="margin" >
-    <number>9</number>
+    <number>15</number>
    </property>
    <property name="spacing" >
-    <number>6</number>
+    <number>15</number>
    </property>
    <item>
     <layout class="QHBoxLayout" >
@@ -144,7 +141,7 @@
         <iconset resource="../italc.qrc" >:/resources/cancel.png</iconset>
        </property>
        <property name="shortcut" >
-        <string>Escape</string>
+        <string>Esc</string>
        </property>
       </widget>
      </item>
@@ -152,7 +149,6 @@
    </item>
   </layout>
  </widget>
- <pixmapfunction></pixmapfunction>
  <resources>
   <include location="../italc.qrc" />
  </resources>

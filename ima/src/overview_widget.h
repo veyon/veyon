@@ -27,9 +27,10 @@
 #define _OVERVIEW_WIDGET_H
 
 #include "side_bar_widget.h"
+#include "dialogs/overview.uic"
 
 
-class overviewWidget : public sideBarWidget
+class overviewWidget : public sideBarWidget, private Ui::overview
 {
 	Q_OBJECT
 public:

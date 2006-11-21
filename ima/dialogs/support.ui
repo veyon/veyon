@@ -1,15 +1,12 @@
 <ui version="4.0" >
- <author></author>
- <comment></comment>
- <exportmacro></exportmacro>
  <class>support</class>
  <widget class="QDialog" name="support" >
   <property name="geometry" >
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>322</width>
-    <height>210</height>
+    <width>400</width>
+    <height>260</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -23,7 +20,7 @@
   </property>
   <layout class="QVBoxLayout" >
    <property name="margin" >
-    <number>9</number>
+    <number>15</number>
    </property>
    <property name="spacing" >
     <number>6</number>
@@ -70,6 +67,14 @@
    </item>
    <item>
     <widget class="QLabel" name="label_3" >
+     <property name="sizePolicy" >
+      <sizepolicy>
+       <hsizetype>3</hsizetype>
+       <vsizetype>3</vsizetype>
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="text" >
       <string>Please enter the IP-address or the name of the host at which the person is sitting, you want to support.</string>
      </property>
@@ -91,8 +96,8 @@
      </property>
      <property name="sizeHint" >
       <size>
-       <width>20</width>
-       <height>10</height>
+       <width>370</width>
+       <height>16</height>
       </size>
      </property>
     </spacer>
@@ -149,7 +154,6 @@
    </item>
   </layout>
  </widget>
- <pixmapfunction></pixmapfunction>
  <resources>
   <include location="../italc.qrc" />
  </resources>

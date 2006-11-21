@@ -1,3 +1,66 @@
+2006-11-20	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* ica/src/system_key_trapper.cpp:
+	under win32 do not disable taskbar as sometimes remote-control-widget
+	does not come to front and as all system-keys are trapped there would
+	be no possibility to switch to it or even just quit it
+
+	* ica/src/remote_control_widget.cpp:
+	close remoteControlWidget when pressing escape while establishing
+	connection
+
+	* ima/dialogs/overview.ui:
+	* ima/resources/client_manager_48.png:
+	* ima/resources/config_48.png:
+	* ima/resources/snapshot_48.png:
+	* ima/resources/users_48.png:
+	* ima/src/overview.h:
+	* ima/src/overview.cpp:
+	re-made overview-widget using Qt-designer and added some nice icons
+
+	* ima/dialogs/about.ui:
+	* ima/dialogs/client_settings.ui:
+	* ima/dialogs/config.ui:
+	* ima/dialogs/multi_logon.ui:
+	* ima/dialogs/support.ui:
+	* ima/dialogs/text_message.ui:
+	higher value for spacing and margin of several layouts for better
+	design and other small fixes
+
+	* ima/resources/ok.png:
+	added ok-icon for messagebox
+
+	* common/src/messagebox.cpp:
+	better layout-handling better looking message-boxes
+
+	* ima/resources/de.ts:
+	* ima/resources/de.qm:
+	updated German localization
+
+	* ima/src/main_window.cpp:
+	- more clear message if ICA is not running
+	- more descriptive balloon-message for overview-button
+
+	* ima/italc.qrc:
+	* ima/resources/auto_arrange.png:
+	* ima/src/client_manager.cpp:
+	* ima/src/main_window.cpp:
+	new auto-arrange-feature for client-windows
+
+	* ima/src/client_manager.cpp:
+	pass window() as parent for dialogs - fixes bug which made dialogs
+	inaccessible under win32
+
+	* ima/resources/qt_*qm:
+	updated Qt-localizations
+
+	* ica/src/ica_main.cpp:
+	when using default-paths, do not save private key in public-key-file
+	and vice versa...
+
+	* ica/src/demo_client.cpp:
+	do not call showMaximized() on top-level-widget if in fullscreen-mode
+
 2006-11-16	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* setup/src/dialogs.h:

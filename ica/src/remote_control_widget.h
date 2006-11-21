@@ -137,6 +137,7 @@ protected:
 
 
 private slots:
+	void checkKeyEvent( Q_UINT32, bool );
 	void updateUser( void );
 
 

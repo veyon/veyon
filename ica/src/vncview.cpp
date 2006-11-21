@@ -33,6 +33,7 @@
 #include "progress_widget.h"
 #include "system_key_trapper.h"
 #include "qt_features.h"
+#include "lock_widget.h"
 
 #include <QtCore/QTimer>
 #include <QtGui/QApplication>
@@ -42,7 +43,7 @@
 
 
 vncView::vncView( const QString & _host, bool _view_only, QWidget * _parent ) :
-	QWidget( _parent/*, Qt::X11BypassWindowManagerHint*/ ),
+	QWidget( _parent ),
 	m_connection( NULL ),
 	m_viewOnly( _view_only ),
 	m_viewOffset( QPoint( 0, 0 ) ),

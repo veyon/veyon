@@ -39,12 +39,11 @@ messageBox::messageBox( const QString & _title, const QString & _msg,
 	QDialog()
 {
 	QVBoxLayout * vl = new QVBoxLayout( this );
-	vl->setMargin( 0 );
-	vl->setSpacing( 0 );
 
 	QWidget * content = new QWidget( this );
 
 	QHBoxLayout * hl1 = new QHBoxLayout( content );
+	hl1->setSpacing( 20 );
 
 	QLabel * icon_lbl = new QLabel( content );
 	if( _pixmap.isNull() == FALSE )
@@ -58,6 +57,7 @@ messageBox::messageBox( const QString & _title, const QString & _msg,
 	icon_lbl->setFixedSize( icon_lbl->pixmap()->size() );
 
 	QLabel * txt_lbl = new QLabel( _msg, content );
+	txt_lbl->setMinimumWidth( 400 );
 	txt_lbl->setWordWrap( TRUE );
 	
 	hl1->addWidget( icon_lbl );

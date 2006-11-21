@@ -3,55 +3,70 @@
 <context>
     <name>about</name>
     <message>
-        <location filename="../dialogs/about.ui" line="16"/>
+        <location filename="../dialogs/about.ui" line="13"/>
         <source>About iTALC</source>
         <translation>Über iTALC</translation>
     </message>
     <message>
-        <location filename="../dialogs/about.ui" line="52"/>
+        <location filename="../dialogs/about.ui" line="49"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:20pt; font-weight:600; font-style:italic;&quot;&gt;About iTALC&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:20pt; font-weight:600; font-style:italic;&quot;&gt;Über iTALC&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/about.ui" line="78"/>
+        <location filename="../dialogs/about.ui" line="75"/>
         <source>About</source>
         <translation>Über</translation>
     </message>
     <message>
-        <location filename="../dialogs/about.ui" line="93"/>
+        <location filename="../dialogs/about.ui" line="90"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;iTALC - Intelligent Teaching And Learning with Computers&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;&quot;&gt;&lt;/p&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;&quot;&gt;Copyright (c) 2004-2006 Tobias Doerffel&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;iTALC - Intelligent Teaching And Learning with Computers&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;&quot;&gt;&lt;/p&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;&quot;&gt;Copyright (c) 2004-2006 Tobias Doerffel&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/about.ui" line="101"/>
+        <location filename="../dialogs/about.ui" line="98"/>
         <source>Authors</source>
         <translation>Autoren</translation>
     </message>
     <message>
-        <location filename="../dialogs/about.ui" line="120"/>
+        <location filename="../dialogs/about.ui" line="117"/>
         <source>Translation</source>
         <translation>Übersetzung</translation>
     </message>
     <message>
-        <location filename="../dialogs/about.ui" line="143"/>
+        <location filename="../dialogs/about.ui" line="145"/>
         <source>License</source>
         <translation>Lizenz</translation>
     </message>
     <message>
-        <location filename="../dialogs/about.ui" line="186"/>
+        <location filename="../dialogs/about.ui" line="188"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
         <location filename="../dialogs/about.ui" line="135"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Current language not translated yet (or native English).&lt;/p&gt;&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;If you&apos;re interested in translating iTALC into your local or another language or want to improve an existing translation, please contact an iTALC-developer!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Deutsche Übersetzung von Tobias Doerffel.&lt;/p&gt;&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Wenn Sie daran interessiert sind, iTALC in ihre lokale oder eine andere Sprache zu übersetzen oder eine existierende Übersetzungen zu verbessern, kontaktieren Sie bitte einen iTALC-Entwickler!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation type="obsolete">&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Deutsche Übersetzung von Tobias Doerffel.&lt;/p&gt;&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Wenn Sie daran interessiert sind, iTALC in ihre lokale oder eine andere Sprache zu übersetzen oder eine existierende Übersetzungen zu verbessern, kontaktieren Sie bitte einen iTALC-Entwickler!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/about.ui" line="132"/>
+        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Current language not translated yet (or native English).&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;If you&apos;re interested in translating iTALC into your local or another language or want to improve an existing translation, please contact an iTALC-developer!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Deutsche Übersetzung von Tobias Doerffel.&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Wenn Sie daran interessiert sind, iTALC in Ihre lokale oder eine andere Sprache zu übersetzen oder eine existierende Übersetzungen zu verbessern, kontaktieren Sie bitte einen iTALC-Entwickler!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
     <name>classRoom</name>
     <message>
-        <location filename="../src/client_manager.cpp" line="1676"/>
+        <location filename="../src/client_manager.cpp" line="1716"/>
         <source>Administation</source>
         <translation>Administration</translation>
     </message>
@@ -211,37 +226,37 @@ Das Basis-Verzeichnis ist HOME/PUBLIC.</translation>
         <translation>Fehler in der Konfigurationsdatei</translation>
     </message>
     <message>
-        <location filename="../src/client_manager.cpp" line="1765"/>
+        <location filename="../src/client_manager.cpp" line="1809"/>
         <source>Reboot clients</source>
         <translation>Clients neustarten</translation>
     </message>
     <message>
-        <location filename="../src/client_manager.cpp" line="1768"/>
+        <location filename="../src/client_manager.cpp" line="1811"/>
         <source>Are you sure want to reboot all visible clients?</source>
         <translation>Sind Sie sicher, dass Sie alle sichtbaren Clients neustarten wollen?</translation>
     </message>
     <message>
-        <location filename="../src/client_manager.cpp" line="1215"/>
+        <location filename="../src/client_manager.cpp" line="1255"/>
         <source>Remove</source>
         <translation>Entfernen</translation>
     </message>
     <message>
-        <location filename="../src/client_manager.cpp" line="1222"/>
+        <location filename="../src/client_manager.cpp" line="1262"/>
         <source>Actions</source>
         <translation>Aktionen</translation>
     </message>
     <message>
-        <location filename="../src/client_manager.cpp" line="1242"/>
+        <location filename="../src/client_manager.cpp" line="1282"/>
         <source>Edit name</source>
         <translation>Name bearbeiten</translation>
     </message>
     <message>
-        <location filename="../src/client_manager.cpp" line="1254"/>
+        <location filename="../src/client_manager.cpp" line="1294"/>
         <source>Actions for %1</source>
         <translation>Aktionen für %1</translation>
     </message>
     <message>
-        <location filename="../src/client_manager.cpp" line="1560"/>
+        <location filename="../src/client_manager.cpp" line="1600"/>
         <source>Add client</source>
         <translation>Client hinzufügen</translation>
     </message>
@@ -266,7 +281,7 @@ Das Basis-Verzeichnis ist HOME/PUBLIC.</translation>
         <translation>Bitte warten, während die Nachricht verschickt wird.</translation>
     </message>
     <message>
-        <location filename="../src/client_manager.cpp" line="1205"/>
+        <location filename="../src/client_manager.cpp" line="1245"/>
         <source>Show/hide</source>
         <translation>Zeigen/verstecken</translation>
     </message>
@@ -302,66 +317,66 @@ Please edit it. Otherwise you should delete this file and have to add all classr
 Bitte bearbeiten Sie sie. Andernfalls müssen Sie die Datei löschen und alle Klassenräume und Clients erneut hinzufügen.</translation>
     </message>
     <message>
-        <location filename="../src/client_manager.cpp" line="1232"/>
+        <location filename="../src/client_manager.cpp" line="1272"/>
         <source>Show all clients in classroom</source>
         <translation>Zeige alle Clients im Klassenzimmer</translation>
     </message>
     <message>
-        <location filename="../src/client_manager.cpp" line="1237"/>
+        <location filename="../src/client_manager.cpp" line="1277"/>
         <source>Hide all clients in classroom</source>
         <translation>Verstecke alle Clients im Klassenzimmer</translation>
     </message>
     <message>
-        <location filename="../src/client_manager.cpp" line="1492"/>
+        <location filename="../src/client_manager.cpp" line="1532"/>
         <source>Remove classroom</source>
         <translation>Klassenzimmer entfernen</translation>
     </message>
     <message>
-        <location filename="../src/client_manager.cpp" line="1280"/>
+        <location filename="../src/client_manager.cpp" line="1320"/>
         <source>Add classroom</source>
         <translation>Klassenzimmer hinzufügen</translation>
     </message>
     <message>
-        <location filename="../src/client_manager.cpp" line="1472"/>
+        <location filename="../src/client_manager.cpp" line="1512"/>
         <source>Please enter a new name for classroom &quot;%1&quot;.</source>
         <translation>Bitte geben Sie einen neuen Namen für das Klassenzimmer &quot;%1&quot; ein.</translation>
     </message>
     <message>
-        <location filename="../src/client_manager.cpp" line="1470"/>
+        <location filename="../src/client_manager.cpp" line="1510"/>
         <source>New name for classroom</source>
         <translation>Neuer Name für Klassenzimmer</translation>
     </message>
     <message>
-        <location filename="../src/client_manager.cpp" line="1497"/>
+        <location filename="../src/client_manager.cpp" line="1537"/>
         <source>Are you sure want to remove classroom &quot;%1&quot;?
 All clients in it will also be removed!</source>
         <translation>Sind Sie sicher, dass Sie das Klassenzimmer &quot;%1&quot; entfernen wollen?
 Alle darin befindlichen Clients werden ebenfalls gelöscht!</translation>
     </message>
     <message>
-        <location filename="../src/client_manager.cpp" line="1527"/>
+        <location filename="../src/client_manager.cpp" line="1567"/>
         <source>Missing classroom</source>
         <translation>Fehlendes Klassenzimmer</translation>
     </message>
     <message>
-        <location filename="../src/client_manager.cpp" line="1574"/>
+        <location filename="../src/client_manager.cpp" line="1614"/>
         <source>New classroom</source>
         <translation>Neues Klassenzimmer</translation>
     </message>
     <message>
-        <location filename="../src/client_manager.cpp" line="1573"/>
+        <location filename="../src/client_manager.cpp" line="1613"/>
         <source>Please enter the name of the classroom you want to create.</source>
         <translation>Bitten geben Sie den Namen des zu erstellenden Klassenzimmers ein.</translation>
     </message>
     <message>
-        <location filename="../src/client_manager.cpp" line="1533"/>
+        <location filename="../src/client_manager.cpp" line="1573"/>
         <source>Before you can add clients, you have to add at least one classroom.
 Do you want to create a new classrom now?</source>
         <translation>Bevor Sie Clients hinzufügen können, müssen Sie mindestens ein Klassenzimmer hinzufügen.
 Wollen Sie jetzt ein neues Klassenzimmer erstellen?</translation>
     </message>
     <message>
-        <location filename="../src/client_manager.cpp" line="1725"/>
+        <location filename="../src/client_manager.cpp" line="1766"/>
         <source>Logout user</source>
         <translation>Nutzer abmelden</translation>
     </message>
@@ -371,22 +386,22 @@ Wollen Sie jetzt ein neues Klassenzimmer erstellen?</translation>
         <translation>Sind Sie sicher, dass Sie die Nutzer an allen sichtbaren Clients abmelden wollen?</translation>
     </message>
     <message>
-        <location filename="../src/client_manager.cpp" line="1264"/>
+        <location filename="../src/client_manager.cpp" line="1304"/>
         <source>Action for whole classroom</source>
         <translation>Aktion für ganzes Klassenzimmer</translation>
     </message>
     <message>
-        <location filename="../src/client_manager.cpp" line="1729"/>
+        <location filename="../src/client_manager.cpp" line="1770"/>
         <source>Are you sure want to logout the users on all visible clients?</source>
         <translation>Sind Sie sicher, dass Sie die Nutzer an allen sichtbaren Clients abmelden wollen?</translation>
     </message>
     <message>
-        <location filename="../src/client_manager.cpp" line="1780"/>
+        <location filename="../src/client_manager.cpp" line="1822"/>
         <source>Power down clients</source>
         <translation>Clients ausschalten</translation>
     </message>
     <message>
-        <location filename="../src/client_manager.cpp" line="1783"/>
+        <location filename="../src/client_manager.cpp" line="1824"/>
         <source>Are you sure want to power down all visible clients?</source>
         <translation>Sind Sie sicher, dass Sie alle sichtbaren Clients ausschalten wollen?</translation>
     </message>
@@ -416,7 +431,7 @@ Wollen Sie jetzt ein neues Klassenzimmer erstellen?</translation>
         <translation>Nutzen Sie diesen Arbeitsbereich, um Ihre Rechner und Klassenräume auf eine einfache Art und Weise zu verwalten.</translation>
     </message>
     <message>
-        <location filename="../src/client_manager.cpp" line="1210"/>
+        <location filename="../src/client_manager.cpp" line="1250"/>
         <source>Edit settings</source>
         <translation>Einstellungen bearbeiten</translation>
     </message>
@@ -424,154 +439,164 @@ Wollen Sie jetzt ein neues Klassenzimmer erstellen?</translation>
 <context>
     <name>clientSettings</name>
     <message>
-        <location filename="../dialogs/client_settings.ui" line="16"/>
+        <location filename="../dialogs/client_settings.ui" line="14"/>
         <source>Client settings</source>
         <translation>Rechner-Einstellungen</translation>
     </message>
     <message>
         <location filename="../dialogs/client_settings.ui" line="63"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Client settings&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Rechner-Einstellungen&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation type="obsolete">&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Rechner-Einstellungen&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/client_settings.ui" line="92"/>
+        <location filename="../dialogs/client_settings.ui" line="109"/>
         <source>General</source>
         <translation>Allgemein</translation>
     </message>
     <message>
-        <location filename="../dialogs/client_settings.ui" line="131"/>
+        <location filename="../dialogs/client_settings.ui" line="148"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Name of the host which is displayed in iTALC.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Name des Rechners, welcher in iTALC angezeigt wird.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/client_settings.ui" line="146"/>
+        <location filename="../dialogs/client_settings.ui" line="163"/>
         <source>Name</source>
         <translation>Name</translation>
     </message>
     <message>
-        <location filename="../dialogs/client_settings.ui" line="159"/>
+        <location filename="../dialogs/client_settings.ui" line="176"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Hardware/MAC-address of client - only used for powering on client&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Hardware/MAC-Adresse des Rechners - wird nur zum Anschalten des Rechners benötigt&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/client_settings.ui" line="174"/>
+        <location filename="../dialogs/client_settings.ui" line="191"/>
         <source>IP/hostname</source>
         <translation>IP/Rechnername</translation>
     </message>
     <message>
-        <location filename="../dialogs/client_settings.ui" line="184"/>
+        <location filename="../dialogs/client_settings.ui" line="201"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;enter an IP-address or hostname under which iTALC can reach the client (use &apos;:&apos; for specifying an optional port-number)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Geben Sie eine IP-Adresse oder den Rechnernamen an, unter dem iTALC den Client erreichen kann (benutzen Sie &apos;:&apos; um eine optionale Portnummer anzugeben)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/client_settings.ui" line="199"/>
+        <location filename="../dialogs/client_settings.ui" line="216"/>
         <source>MAC-address</source>
         <translation>MAC-Adresse</translation>
     </message>
     <message>
-        <location filename="../dialogs/client_settings.ui" line="209"/>
+        <location filename="../dialogs/client_settings.ui" line="226"/>
         <source>Classroom</source>
         <translation>Klassenzimmer</translation>
     </message>
     <message>
-        <location filename="../dialogs/client_settings.ui" line="256"/>
+        <location filename="../dialogs/client_settings.ui" line="273"/>
         <source>VPN</source>
         <translation>VPN</translation>
     </message>
     <message>
-        <location filename="../dialogs/client_settings.ui" line="287"/>
+        <location filename="../dialogs/client_settings.ui" line="304"/>
         <source>Connection</source>
         <translation>Verbindung</translation>
     </message>
     <message>
-        <location filename="../dialogs/client_settings.ui" line="321"/>
+        <location filename="../dialogs/client_settings.ui" line="338"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;connection to hosts on the same level&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Verbindung zu Rechnern auf der selben Ebene&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/client_settings.ui" line="324"/>
+        <location filename="../dialogs/client_settings.ui" line="341"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Here you can specify how this host is connected to the iTALC-network, i.e. hosts on the same level. Normally clients are connected via 100 MBit/s LAN, but there might be special hosts such as gateways to other iTALC-networks in foreign schools or a student&apos;s home-computer. In such cases iTALC tries to optimize its bandwidth utilization.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/client_settings.ui" line="334"/>
+        <location filename="../dialogs/client_settings.ui" line="351"/>
         <source>Analog</source>
         <translation>Analog</translation>
     </message>
     <message>
-        <location filename="../dialogs/client_settings.ui" line="342"/>
+        <location filename="../dialogs/client_settings.ui" line="359"/>
         <source>ISDN</source>
         <translation>ISDN</translation>
     </message>
     <message>
-        <location filename="../dialogs/client_settings.ui" line="350"/>
+        <location filename="../dialogs/client_settings.ui" line="367"/>
         <source>DSL / 400 KBit/s</source>
         <translation>DSL / 400 KBit/s</translation>
     </message>
     <message>
-        <location filename="../dialogs/client_settings.ui" line="358"/>
+        <location filename="../dialogs/client_settings.ui" line="375"/>
         <source>DSL / 2000 KBit/s</source>
         <translation>DSL / 2000 KBit/s</translation>
     </message>
     <message>
-        <location filename="../dialogs/client_settings.ui" line="366"/>
+        <location filename="../dialogs/client_settings.ui" line="383"/>
         <source>100 MBit/s LAN</source>
         <translation>100 MBit/s LAN</translation>
     </message>
     <message>
-        <location filename="../dialogs/client_settings.ui" line="374"/>
+        <location filename="../dialogs/client_settings.ui" line="391"/>
         <source>1000 MBit/s LAN</source>
         <translation>1000 MBit/s LAN</translation>
     </message>
     <message>
-        <location filename="../dialogs/client_settings.ui" line="403"/>
+        <location filename="../dialogs/client_settings.ui" line="420"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Check if the host is the gateway for the subnet.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Aktivieren, wenn der Rechner Gateway für das Subnetz ist.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/client_settings.ui" line="406"/>
+        <location filename="../dialogs/client_settings.ui" line="423"/>
         <source>Host is &amp;gateway for subnet</source>
         <translation>Rechner ist &amp;Gateway für Subnetz</translation>
     </message>
     <message>
-        <location filename="../dialogs/client_settings.ui" line="413"/>
+        <location filename="../dialogs/client_settings.ui" line="430"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Activate this option for at least one host in a subnet.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Aktivieren Sie diese Option für mindestens einen Rechner in einem Subnetz.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/client_settings.ui" line="416"/>
+        <location filename="../dialogs/client_settings.ui" line="433"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;When showing a demo to more than one host in a foreign network, it&apos;s meaningful to activate this option for at least one of the involved hosts. This way all data is only sent once to the demo-replicator which provides the data for all the other clients in the network. Especially on slow links usage of this option is essential. Normally you should enable this option on the subnet-gateway (see option above).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/client_settings.ui" line="419"/>
+        <location filename="../dialogs/client_settings.ui" line="436"/>
         <source>Act as &amp;demo replicator</source>
         <translation>Als &amp;Demo-Replikator agieren</translation>
     </message>
     <message>
-        <location filename="../dialogs/client_settings.ui" line="442"/>
+        <location filename="../dialogs/client_settings.ui" line="459"/>
         <source>ThinClient</source>
         <translation>ThinClient</translation>
     </message>
     <message>
-        <location filename="../dialogs/client_settings.ui" line="465"/>
+        <location filename="../dialogs/client_settings.ui" line="482"/>
         <source>Remote IP</source>
         <translation>Entfernte IP</translation>
     </message>
     <message>
-        <location filename="../dialogs/client_settings.ui" line="493"/>
+        <location filename="../dialogs/client_settings.ui" line="510"/>
         <source>Use raw-encoding for demo-mode</source>
         <translation>Rohdaten-Enkodierung für Demo-Modus nutzen</translation>
     </message>
     <message>
-        <location filename="../dialogs/client_settings.ui" line="549"/>
+        <location filename="../dialogs/client_settings.ui" line="582"/>
         <source>&amp;OK</source>
         <translation>&amp;OK</translation>
     </message>
     <message>
-        <location filename="../dialogs/client_settings.ui" line="570"/>
+        <location filename="../dialogs/client_settings.ui" line="603"/>
         <source>C&amp;ancel</source>
         <translation>&amp;Abbrechen</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/client_settings.ui" line="61"/>
+        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:20pt; font-weight:600; font-style:italic;&quot;&gt;Client settings&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished">&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:20pt; font-weight:600; font-style:italic;&quot;&gt;Rechner-Einstellungen&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
@@ -691,7 +716,7 @@ ausgeführt werden sollen:</translation>
     <message>
         <location filename="../dialogs/config.ui" line="243"/>
         <source>Screen-quality of demo-mode</source>
-        <translation>Bildschirm-Qualität im Demo-Modus</translation>
+        <translation type="obsolete">Bildschirm-Qualität im Demo-Modus</translation>
     </message>
     <message>
         <location filename="../dialogs/config.ui" line="276"/>
@@ -749,6 +774,11 @@ p, li { white-space: pre-wrap; }
         <source>Other</source>
         <translation>Andere</translation>
     </message>
+    <message>
+        <location filename="../dialogs/config.ui" line="243"/>
+        <source>Quality of demo-mode</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>configWidget</name>
@@ -793,12 +823,12 @@ p, li { white-space: pre-wrap; }
         <translation>In diesem Arbeitsbereich können Sie iTALC Ihren Bedürfnissen anpassen.</translation>
     </message>
     <message>
-        <location filename="../src/config_widget.cpp" line="127"/>
+        <location filename="../src/config_widget.cpp" line="128"/>
         <source>Warning</source>
         <translation>Warnung</translation>
     </message>
     <message>
-        <location filename="../src/config_widget.cpp" line="132"/>
+        <location filename="../src/config_widget.cpp" line="133"/>
         <source>You are trying to use the local loopback-device as network-interface. This will never work, because the local loopback is just the last alternative for running iTALC if no other network-interface was found.</source>
         <translation>Sie versuchen, die lokale Loopback-Schnittstelle als Netzwerkschnittstelle zu verwenden. Das wird nicht funktionieren, da die lokale Loopback-Schnittstelle nur eine letzte Alternative ist, um iTALC zum laufen zu bringen, wenn keine andere Netzwerkschnittstelle gefunden wurde.</translation>
     </message>
@@ -854,12 +884,12 @@ p, li { white-space: pre-wrap; }
         <translation>iTALC</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="176"/>
+        <location filename="../src/main_window.cpp" line="178"/>
         <source>Fullscreen demo</source>
         <translation>Vollbild-Demo</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="185"/>
+        <location filename="../src/main_window.cpp" line="187"/>
         <source>Window demo</source>
         <translation>Fenster-Demo</translation>
     </message>
@@ -874,12 +904,12 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Konnte das Verzeichnis %1 nicht lesen/schreiben oder erstellen! Um iTALC auszuführen, sollten Sie sicherstellen, dass Sie Schreibzugriff auf Ihre eigenen Dateien sowie auf %1 (falls bereits existierend) haben.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="344"/>
+        <location filename="../src/main_window.cpp" line="354"/>
         <source>New key-pair generated</source>
         <translation>Neues Schlüssel-Paar generiert</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="350"/>
+        <location filename="../src/main_window.cpp" line="360"/>
         <source>No authentication-keys were found or your old ones contained errors, so a new key-pair has been generated. Please have your administrator to distribute your public key. Otherwise you won&apos;t be able to access computers using iTALC.</source>
         <translation>Es wurden keine Authentifizierungsschlüssel gefunden oder Ihre alten waren fehlerhaft, weshalb ein neues Schlüsselpaar generiert wurde. Bitte teilen Sie Ihrem Administrator mit, dass er Ihren öffentlichen Schlüssel verteilt, da sie ansonsten nicht in der Lage sein werden, mit iTALC auf andere Computer zuzugreifen.</translation>
     </message>
@@ -896,14 +926,14 @@ classroom</source>
 wechseln</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="357"/>
+        <location filename="../src/main_window.cpp" line="365"/>
         <source>No service-daemon running</source>
-        <translation>Service-Dämon läuft nicht</translation>
+        <translation type="obsolete">Service-Dämon läuft nicht</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="362"/>
         <source>There seems to be no service-daemon running on this computer, which is neccessary for running iTALC properly. Please make sure a service-daemon is started at system-startup and try again.</source>
-        <translation>Auf diesem Computer scheint kein Service-Dämon zu laufen, welcher für die Ausführung von iTALC nötig ist. Bitte Stellen Sie sicher, dass ein Service-Dämon beim Hochfahren gestartet wird und versuchen es erneut.</translation>
+        <translation type="obsolete">Auf diesem Computer scheint kein Service-Dämon zu laufen, welcher für die Ausführung von iTALC nötig ist. Bitte Stellen Sie sicher, dass ein Service-Dämon beim Hochfahren gestartet wird und versuchen es erneut.</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="168"/>
@@ -913,35 +943,35 @@ wechseln</translation>
     <message>
         <location filename="../src/main_window.cpp" line="171"/>
         <source>This is the default mode in iTALC and allows you to have an overview over all visible computers.</source>
-        <translation>Dies ist der Standardmodus in iTALC und ermöglicht es, einen Überblick über alle sichtbaren Computer zu haben.</translation>
+        <translation type="obsolete">Dies ist der Standardmodus in iTALC und ermöglicht es, einen Überblick über alle sichtbaren Computer zu haben.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="180"/>
+        <location filename="../src/main_window.cpp" line="182"/>
         <source>In this mode your screen is being displayed on all shown computers. Furthermore the users aren&apos;t able to do something else as all input devices are locked in this mode.</source>
         <translation>In diesem Modus wird Ihr Bildschirm auf alle angezeigte Computer übertragen. Weiterhin können die Nutzer nichts anderes machen, da in diesem Modus sämtliche Eingabegeräte gesperrt sind.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="189"/>
+        <location filename="../src/main_window.cpp" line="191"/>
         <source>In this mode your screen being displayed in a window on all shown computers. The users are able to switch to other windows and thus can continue to work.</source>
         <translation>In diesem Modus wird Ihr Bildschirm auf alle angezeigte Computer in einem Fenster übertragen. Die Nutzer sind in der Lage, zu anderen Fenstern zu wechseln und somit ihre Arbeiten fortzusetzen.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="219"/>
+        <location filename="../src/main_window.cpp" line="221"/>
         <source>Send text message</source>
         <translation>Text-Nachricht schicken</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="221"/>
+        <location filename="../src/main_window.cpp" line="223"/>
         <source>Use this button to send a text message to all users e.g. to tell them new tasks etc.</source>
         <translation>Nutzen Sie diesen Button, um an alle Nutzer eine Text-Nachricht zu schicken, beispielsweise um ihnen neue Aufgaben mitzuteilen.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="270"/>
+        <location filename="../src/main_window.cpp" line="272"/>
         <source>Power on computers</source>
         <translation>Computer anschalten</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="273"/>
+        <location filename="../src/main_window.cpp" line="275"/>
         <source>Click this button to power on all visible computers. This way you do not have to turn on each computer by hand.</source>
         <translation>Klicken Sie auf diesen Button, um alle angezeigten Computer anzuschalten. Auf diese Weise müssen Sie nicht jeden Computer einzeln per Hand einschalten.</translation>
     </message>
@@ -956,32 +986,32 @@ wechseln</translation>
         <translation type="obsolete">Wenn Sie diesen Button anklicken, werden alle angezeigten Computer neugestartet.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="278"/>
+        <location filename="../src/main_window.cpp" line="280"/>
         <source>Power off computers</source>
         <translation>Computer herunterfahren</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="281"/>
+        <location filename="../src/main_window.cpp" line="283"/>
         <source>To power off all shown computers (e.g. after the lesson has finished) you can click this button.</source>
         <translation>Um alle angezeigten Computer herunterzufahren (z.B. nach Stundenende) klicken Sie einfach auf diesen Knopf.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="296"/>
+        <location filename="../src/main_window.cpp" line="298"/>
         <source>Adjust windows and their size</source>
         <translation>Fenster und deren Größe ausrichten</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="299"/>
         <source>When clicking this button the biggest possible size for the screen-windows is adjusted. Furthermore all windows are aligned.</source>
-        <translation>Wenn Sie diesen Knopf anklicken, wird die größt-mögliche Größe für die Bildschirm-Fenster eingestellt. Weiterhin werden alle Fenster ausgerichtet.</translation>
+        <translation type="obsolete">Wenn Sie diesen Knopf anklicken, wird die größt-mögliche Größe für die Bildschirm-Fenster eingestellt. Weiterhin werden alle Fenster ausgerichtet.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="194"/>
+        <location filename="../src/main_window.cpp" line="196"/>
         <source>Lock desktops</source>
         <translation>Arbeitsflächen sperren</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="198"/>
+        <location filename="../src/main_window.cpp" line="200"/>
         <source>To have all user&apos;s full attention you can lock their desktops using this button. In this mode all input devices are locked and the screen is black.</source>
         <translation>Um die volle Aufmerksamkeit der Nutzer zu erlangen können Sie deren Arbeitsflächen mit Hilfe dieses Knopfes sperren. In diesem Modus werden alle Eingabegeräte gesperrt und der Bildschirm ist schwarz.</translation>
     </message>
@@ -1001,14 +1031,49 @@ wechseln</translation>
         <translation>Konnte das Verzeichnis %1 nicht lesen/schreiben oder erstellen. Um iTALC auszuführen, stellen Sie sicher, dass Sie berechtigt sind, dieses Verzeichnis zu erzeugen oder zu beschreiben.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="287"/>
+        <location filename="../src/main_window.cpp" line="289"/>
         <source>Multi logon</source>
         <translation>Mehrfach-Anmeldung</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="290"/>
+        <location filename="../src/main_window.cpp" line="292"/>
         <source>After clicking this button you can enter a username and password for logging in the according user on all visible computers.</source>
-        <translation>Nachdem Sie diesen Button angeklickt haben, können Sie einen Nutzernamen und ein Passwort eingeben, um alle angezeigten Computer mit dem entsprechden Nutzer anzumelden.</translation>
+        <translation>Wenn Sie diesen Button angeklicken, können Sie einen Nutzernamen und ein Passwort eingeben, um alle angezeigten Computer mit dem entsprechenden Nutzer anzumelden.</translation>
+    </message>
+    <message>
+        <location filename="../src/main_window.cpp" line="301"/>
+        <source>When clicking this button the biggest possible size for the client-windows is adjusted. Furthermore all windows are aligned.</source>
+        <translation>Wenn Sie diesen Knopf anklicken, wird die größt-mögliche Größe für die Fenster eingestellt. Weiterhin werden alle Fenster ausgerichtet.</translation>
+    </message>
+    <message>
+        <location filename="../src/main_window.cpp" line="306"/>
+        <source>Auto re-arrange windows and their size</source>
+        <translation>Automatische Neuanordnung der Fenster und deren Größe</translation>
+    </message>
+    <message>
+        <location filename="../src/main_window.cpp" line="308"/>
+        <source>When clicking this button all visible windows are re-arranged and adjusted.</source>
+        <translation>Wenn Sie diesen Knopf anklicken werden alle sichtbaren Fenster neu angeordnet und ausgerichtet.</translation>
+    </message>
+    <message>
+        <location filename="../src/main_window.cpp" line="371"/>
+        <source>There seems to be no service-daemon running on this computer (or authentication-keys aren&apos;t set up properly), which is neccessary for running iTALC properly. Please make sure a service-daemon is started at system-startup and try again.</source>
+        <translation type="obsolete">Auf diesem Computer scheint kein Service-Dämon zu laufen (oder die Authentifizierungs-Schlüssel sind nicht ordnungsgemäß eingerichtet). , welcher für die Ausführung von iTALC nötig ist. Bitte Stellen Sie sicher, dass ein Service-Dämon beim Hochfahren gestartet wird und versuchen es erneut.</translation>
+    </message>
+    <message>
+        <location filename="../src/main_window.cpp" line="367"/>
+        <source>iTALC service not running</source>
+        <translation>iTALC-Dienst läuft nicht</translation>
+    </message>
+    <message>
+        <location filename="../src/main_window.cpp" line="372"/>
+        <source>There seems to be no iTALC service running on this computer or the authentication-keys aren&apos;t set up properly. The service is required for running iTALC. Contact your administrator for solving this problem.</source>
+        <translation>Auf diese Computer scheint kein iTALC-Dienst zu laufen oder die Authentifizierungsschlüssel sind nicht richtig eingerichtet. Der Dienst wird benötigt, um iTALC auszuführen. Kontaktieren Sie Ihren Administrator, um das Problem zu lösen.</translation>
+    </message>
+    <message>
+        <location filename="../src/main_window.cpp" line="173"/>
+        <source>This is the default mode in iTALC and allows you to have an overview over all visible computers. Also click on this button for unlocking locked workstations or for leaving demo-mode.</source>
+        <translation>Dies ist der Standardmodus in iTALC und ermöglicht es, einen Überblick über alle sichtbaren Computer zu bekommen. Weiterhin werden gesperrte Bildschirme entsperrt oder der Demo-Modus verlassen, wenn Sie auf diesen Knopf klicken.</translation>
     </message>
 </context>
 <context>
@@ -1048,90 +1113,139 @@ angezeigt werden soll:</translation>
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:20pt; font-weight:600; font-style:italic;&quot;&gt;Multi logon&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;(new line)p, li { white-space: pre-wrap; }(new line)&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;(new line)p, li { white-space: pre-wrap; }(new line)&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:20pt; font-weight:600; font-style:italic;&quot;&gt;Mehrfach-Anmeldung&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/multi_logon.ui" line="79"/>
+        <location filename="../dialogs/multi_logon.ui" line="85"/>
         <source>Use the fields below to enter the username and password which will be used for logging on the computer(s).</source>
         <translation>Nutzen Sie die Eingabefelder unterhalb, um den Nutzername und das zugehörige Passwort für die Anmeldung der Computer einzugeben.</translation>
     </message>
     <message>
-        <location filename="../dialogs/multi_logon.ui" line="100"/>
+        <location filename="../dialogs/multi_logon.ui" line="110"/>
         <source>Username</source>
         <translation>Nutzername</translation>
     </message>
     <message>
-        <location filename="../dialogs/multi_logon.ui" line="123"/>
+        <location filename="../dialogs/multi_logon.ui" line="133"/>
         <source>Password</source>
         <translation>Passwort</translation>
     </message>
     <message>
-        <location filename="../dialogs/multi_logon.ui" line="179"/>
+        <location filename="../dialogs/multi_logon.ui" line="189"/>
         <source>&amp;OK</source>
         <translation>&amp;OK</translation>
     </message>
     <message>
-        <location filename="../dialogs/multi_logon.ui" line="185"/>
+        <location filename="../dialogs/multi_logon.ui" line="195"/>
         <source>Ctrl+Enter</source>
         <translation>Strg+Enter</translation>
     </message>
     <message>
-        <location filename="../dialogs/multi_logon.ui" line="192"/>
+        <location filename="../dialogs/multi_logon.ui" line="202"/>
         <source>Cancel</source>
         <translation>Abbrechen</translation>
     </message>
     <message>
-        <location filename="../dialogs/multi_logon.ui" line="198"/>
+        <location filename="../dialogs/multi_logon.ui" line="208"/>
         <source>Esc</source>
         <translation>Esc</translation>
     </message>
 </context>
 <context>
+    <name>overview</name>
+    <message>
+        <location filename="../dialogs/overview.ui" line="31"/>
+        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; font-style:italic;&quot;&gt;Welcome to iTALC!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; font-style:italic;&quot;&gt;Willkommen bei iTALC!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/overview.ui" line="64"/>
+        <source>Here you see the working-bar which contains several buttons. Each button is connected to a workspace. Just take a look at the available workspaces by clicking on the corresponding button.</source>
+        <translation>Hier sehen Sie die Arbeitsleiste mit ihren verschiedenen Knöpfe. Jeder Knopf ist mit einem Arbeitsbereich verbunden. Schauen Sie sich einfach einmal die verfügbaren Arbeitsbereiche an, indem Sie auf den entsprechenden Knopf klicken.</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/overview.ui" line="99"/>
+        <source>Using the client-manager you can add or removeclients (computers) and switch between classrooms.</source>
+        <translation type="obsolete">Mit Hilfe des Client-Managers können Sie Clients (Computer) hinzufügen oder entfernen und zwischen Klassenräumen wechseln.</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/overview.ui" line="134"/>
+        <source>If you want to know which users are logged in you can open the user-list.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/overview.ui" line="169"/>
+        <source>The snapshot-workspace is a very useful tool. It let&apos;s you manage the snapshots you made.</source>
+        <translation>Der Schnappschuss-Arbeitsbereich ist ein sehr nützliches Werzeug, mit dem Sie ihre Schnappschüsse verwalten können.</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/overview.ui" line="204"/>
+        <source>Of course you can configure iTALC. This is usually done using the configuration-workspace.</source>
+        <translation>Natürlich können Sie iTALC auch einrichten. Dies wird in der Regel mit dem Konfigurations-Arbeitsbereich erledigt.</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/overview.ui" line="232"/>
+        <source>About iTALC</source>
+        <translation>Über iTALC</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/overview.ui" line="99"/>
+        <source>Using the client-manager you can add or remove clients (computers) and switch between classrooms.</source>
+        <translation>Mit Hilfe des Client-Managers können Sie Clients (Computer) hinzufügen oder entfernen und zwischen Klassenräumen wechseln.</translation>
+    </message>
+</context>
+<context>
     <name>overviewWidget</name>
     <message>
-        <location filename="../src/overview_widget.cpp" line="35"/>
+        <location filename="../src/overview_widget.cpp" line="37"/>
         <source>Overview</source>
         <translation>Übersicht</translation>
     </message>
     <message>
         <location filename="../src/overview_widget.cpp" line="80"/>
         <source>If you want to know, which users are logged in, you can open the user-list.</source>
-        <translation>Wenn Sie wissen wollen, welche Benutzer angemeldet sind, können Sie die Benutzer-Liste öffnen.</translation>
+        <translation type="obsolete">Wenn Sie wissen wollen, welche Benutzer angemeldet sind, können Sie die Benutzer-Liste öffnen.</translation>
     </message>
     <message>
         <location filename="../src/overview_widget.cpp" line="97"/>
         <source>Of course you can configure iTALC. This is usually done with the configuration-workspace.</source>
-        <translation>Natürlich können Sie iTALC auch konfigurieren. Das wird in der Regel mit dem Konfigurations-Arbeitsbereich erledigt.</translation>
+        <translation type="obsolete">Natürlich können Sie iTALC auch konfigurieren. Das wird in der Regel mit dem Konfigurations-Arbeitsbereich erledigt.</translation>
     </message>
     <message>
         <location filename="../src/overview_widget.cpp" line="41"/>
         <source>Welcome to iTALC!</source>
-        <translation>Willkommen zu iTALC!</translation>
+        <translation type="obsolete">Willkommen zu iTALC!</translation>
     </message>
     <message>
         <location filename="../src/overview_widget.cpp" line="72"/>
         <source>With the client-manager you can add or remove clients (computers) and switch between classrooms.</source>
-        <translation>Mit dem Client-Manager können Sie Clients (Computer) hinzufügen oder entfernen und zwischen Klassenräumen wechseln.</translation>
+        <translation type="obsolete">Mit dem Client-Manager können Sie Clients (Computer) hinzufügen oder entfernen und zwischen Klassenräumen wechseln.</translation>
     </message>
     <message>
-        <location filename="../src/overview_widget.cpp" line="37"/>
+        <location filename="../src/overview_widget.cpp" line="39"/>
         <source>Some basic information on iTALC and how to use it.</source>
-        <translation>Ein paar Grundlegende Informationen über iTALC und dessen Benutzung.</translation>
+        <translation>Grundlegende Informationen über iTALC und dessen Benutzung.</translation>
     </message>
     <message>
         <location filename="../src/overview_widget.cpp" line="64"/>
         <source>Here you see the working-bar which contains several buttons. Each button is connected to a workspace. Just take a look at the available workspaces by clicking on the corresponding button.
 
 If you need help take a look at the help-workspace!</source>
-        <translation>Hier sehen Sie die Arbeitsleiste, welche verschiedene Knöpfe enthält. Jeder Knopf ist mit einem Arbeitsbereich verbunden. Schauen Sie sich einfach einmal die verfügbaren Arbeitsbereiche an, indem Sie auf den entsprechenden Knopf klicken.
+        <translation type="obsolete">Hier sehen Sie die Arbeitsleiste, welche verschiedene Knöpfe enthält. Jeder Knopf ist mit einem Arbeitsbereich verbunden. Schauen Sie sich einfach einmal die verfügbaren Arbeitsbereiche an, indem Sie auf den entsprechenden Knopf klicken.
 
 Wenn Sie Hilfe brauchen, schauen Sie in den Hilfe-Arbeitsbereich!</translation>
     </message>
     <message>
         <location filename="../src/overview_widget.cpp" line="89"/>
         <source>The snapshot-workspace is a very useful tool. It let&apos;s you manage the snapshots you made.</source>
-        <translation>Der Schnappschuss-Arbeitsbereich ist ein sehr nützliches Werzeug, mit dem Sie ihre Schnappschüsse verwalten können.</translation>
+        <translation type="obsolete">Der Schnappschuss-Arbeitsbereich ist ein sehr nützliches Werzeug, mit dem Sie ihre Schnappschüsse verwalten können.</translation>
     </message>
 </context>
 <context>
@@ -1213,27 +1327,27 @@ Wenn Sie Hilfe brauchen, schauen Sie in den Hilfe-Arbeitsbereich!</translation>
 <context>
     <name>support</name>
     <message>
-        <location filename="../dialogs/support.ui" line="16"/>
+        <location filename="../dialogs/support.ui" line="13"/>
         <source>Support</source>
         <translation>Unterstützung</translation>
     </message>
     <message>
-        <location filename="../dialogs/support.ui" line="52"/>
+        <location filename="../dialogs/support.ui" line="49"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:20pt; font-weight:600; font-style:italic;&quot;&gt;Support&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../dialogs/support.ui" line="74"/>
+        <location filename="../dialogs/support.ui" line="79"/>
         <source>Please enter the IP-address or the name of the host at which the person is sitting, you want to support.</source>
         <translation>Bitte geben Sie die IP-Adresse oder den Namen des Rechners ein, an dem die Person sitzt, die Sie unterstützen möchten.</translation>
     </message>
     <message>
-        <location filename="../dialogs/support.ui" line="131"/>
+        <location filename="../dialogs/support.ui" line="136"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="../dialogs/support.ui" line="141"/>
+        <location filename="../dialogs/support.ui" line="146"/>
         <source>Cancel</source>
         <translation>Abbrechen</translation>
     </message>
@@ -1263,45 +1377,50 @@ Wenn Sie Hilfe brauchen, schauen Sie in den Hilfe-Arbeitsbereich!</translation>
     <message>
         <location filename="../src/support_widget.cpp" line="67"/>
         <source>About iTALC</source>
-        <translation>Über iTALC</translation>
+        <translation type="obsolete">Über iTALC</translation>
     </message>
 </context>
 <context>
     <name>textMessage</name>
     <message>
-        <location filename="../dialogs/text_message.ui" line="16"/>
+        <location filename="../dialogs/text_message.ui" line="13"/>
         <source>Send text message</source>
         <translation>Text-Nachricht schicken</translation>
     </message>
     <message>
-        <location filename="../dialogs/text_message.ui" line="49"/>
+        <location filename="../dialogs/text_message.ui" line="46"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:20pt; font-weight:600; font-style:italic;&quot;&gt;Send text message&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:20pt; font-weight:600; font-style:italic;&quot;&gt;Text-Nachricht schicken&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/text_message.ui" line="71"/>
+        <location filename="../dialogs/text_message.ui" line="68"/>
         <source>Use the field below to type your message which will be sent to all selected users.</source>
         <translation>Nutzen Sie das Feld unterhalb, um Ihre Nachricht zu tippen, die an alle Nutzer geschickt wird.</translation>
     </message>
     <message>
-        <location filename="../dialogs/text_message.ui" line="128"/>
+        <location filename="../dialogs/text_message.ui" line="125"/>
         <source>&amp;OK</source>
         <translation>&amp;OK</translation>
     </message>
     <message>
-        <location filename="../dialogs/text_message.ui" line="134"/>
+        <location filename="../dialogs/text_message.ui" line="131"/>
         <source>Ctrl+Enter</source>
         <translation>Strg+Enter</translation>
     </message>
     <message>
-        <location filename="../dialogs/text_message.ui" line="141"/>
+        <location filename="../dialogs/text_message.ui" line="138"/>
         <source>Cancel</source>
         <translation>Abbrechen</translation>
     </message>
     <message>
         <location filename="../dialogs/text_message.ui" line="147"/>
         <source>Escape</source>
-        <translation>Escape</translation>
+        <translation type="obsolete">Escape</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/text_message.ui" line="144"/>
+        <source>Esc</source>
+        <translation type="unfinished">Esc</translation>
     </message>
 </context>
 <context>

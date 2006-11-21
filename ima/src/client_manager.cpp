@@ -809,7 +809,7 @@ void clientManager::multiLogon( void )
 
 void clientManager::powerDownClients( void )
 {
-	if( QMessageBox::question( this, tr( "Power down clients" ),
+	if( QMessageBox::question( window(), tr( "Power down clients" ),
 					tr( "Are you sure want to power down "
 						"all visible clients?" ),
 					QMessageBox::Yes, QMessageBox::No ) ==
@@ -826,7 +826,7 @@ void clientManager::powerDownClients( void )
 
 void clientManager::logoutUser( void )
 {
-	if( QMessageBox::question( this, tr( "Logout user" ),
+	if( QMessageBox::question( window(), tr( "Logout user" ),
 					tr( "Are you sure want logout the "
 						"users on all visible "
 								"clients?" ),
@@ -1045,6 +1045,46 @@ void clientManager::adjustWindows( void )
 				static_cast<int>( cl->m_rasterX * nw ),
 				static_cast<int>( cl->m_rasterY * nh ) );
 		}
+	}
+}
+
+
+
+
+bool clientIPSort( const client * _1, const client * _2 )
+{
+	return( _1->remoteIP() < _2->remoteIP() );
+}
+
+
+
+
+void clientManager::arrangeWindows( void )
+{
+	QVector<client *> vc = visibleClients();
+	if( vc.size() )
+	{
+		const int avail_w = getMainWindow()->workspace()->width();
+		const int avail_h = getMainWindow()->workspace()->height();
+		const int w = avail_w;
+		const int h = avail_h;
+		const float s = sqrt( vc.size() * h / (float) w );
+		const int win_per_line = (int) round( vc.size() / round( s ) );
+		const int win_per_row = (int) round( s );
+		const int ww = avail_w / win_per_line;
+		const int wh = avail_h / win_per_row;
+
+		qSort( vc.begin(), vc.end(), clientIPSort );
+
+		int i = 0;
+		foreach( client * cl, vc )
+		{
+			cl->parentWidget()->move( ( i % win_per_line ) * ww,
+						( i / win_per_line ) * wh );
+			cl->resize( ww, wh );
+			++i;
+		}
+		adjustWindows();
 	}
 }
 
@@ -1489,7 +1529,7 @@ void clientManager::removeClassRoom( void )
 		{
 			continue;
 		}
-		if( QMessageBox::question( this, tr( "Remove classroom" ),
+		if( QMessageBox::question( window(), tr( "Remove classroom" ),
 						tr( "Are you sure want "
 							"to remove classroom "
 							"\"%1\"?\nAll clients "
@@ -1524,7 +1564,7 @@ void clientManager::addClient( void )
 {
 	if( m_classRooms.size() == 0 )
 	{
-		if( QMessageBox::question( this, tr( "Missing classroom" ),
+		if( QMessageBox::question( window(), tr( "Missing classroom" ),
 						tr( "Before you can add "
 							"clients, you have to "
 							"add at least one "
@@ -1719,11 +1759,12 @@ void classRoom::processCmdOnAllClients( QAction * _action )
 			}
 			break;
 		}
+
 		case client::LogoutUser:
 		{
-			if( QMessageBox::question( NULL, clientManager::tr(
-						"Logout user" ),
-							clientManager::tr(
+			if( QMessageBox::question( m_clientManager->window(),
+					clientManager::tr( "Logout user" ),
+				clientManager::tr(
 						"Are you sure want to logout "
 						"the users on all visible "
 						"clients?" ),
@@ -1735,6 +1776,7 @@ void classRoom::processCmdOnAllClients( QAction * _action )
 			}
 			break;
 		}
+
 		case client::ExecCmds:
 		{
 			cmdInputDialog cmd_input_dialog( u_data, NULL );
@@ -1745,6 +1787,7 @@ void classRoom::processCmdOnAllClients( QAction * _action )
 			}
 			break;
 		}
+
 /*		case client::SSHLogin:
 		{
 			bool ok;
@@ -1759,15 +1802,14 @@ void classRoom::processCmdOnAllClients( QAction * _action )
 			}
 			break;
 		}*/
+
 		case client::Reboot:
 		{
-			if( QMessageBox::question( NULL, clientManager::tr(
-							"Reboot clients" ),
-							clientManager::tr(
-					"Are you sure want to reboot all "
-					"visible clients?" ),
-						QMessageBox::Yes,
-						QMessageBox::No ) ==
+			if( QMessageBox::question( m_clientManager->window(),
+				clientManager::tr( "Reboot clients" ),
+				clientManager::tr( "Are you sure want to "
+						"reboot all visible clients?" ),
+					QMessageBox::Yes, QMessageBox::No ) ==
 							QMessageBox::No )
 			{
 				return;
@@ -1776,13 +1818,11 @@ void classRoom::processCmdOnAllClients( QAction * _action )
 		}
 		case client::PowerDown:
 		{
-			if( QMessageBox::question( NULL, clientManager::tr(
-							 "Power down clients" ),
-							clientManager::tr(
-					"Are you sure want to power down all "
-					"visible clients?" ),
-						QMessageBox::Yes,
-						QMessageBox::No ) ==
+			if( QMessageBox::question( m_clientManager->window(),
+				clientManager::tr( "Power down clients" ),
+				clientManager::tr( "Are you sure want to power "
+						"down all visible clients?" ),
+					QMessageBox::Yes, QMessageBox::No ) ==
 							QMessageBox::No )
 			{
 				return;

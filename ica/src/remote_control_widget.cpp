@@ -308,6 +308,9 @@ remoteControlWidget::remoteControlWidget( const QString & _host,
 							SLOT( appear() ) );
 	connect( m_vncView, SIGNAL( mouseAtTop() ), this,
 							SLOT( updateUser() ) );
+	connect( m_vncView, SIGNAL( keyEvent( Q_UINT32, bool ) ),
+				this, SLOT( checkKeyEvent( Q_UINT32, bool ) ) );
+
 	activateWindow();
 	raise();
 	showMaximized();
@@ -373,6 +376,18 @@ void remoteControlWidget::updateUser( void )
 						arg( m_user ).arg( host() ) );
 	}
 	m_toolBar->update();
+}
+
+
+
+
+void remoteControlWidget::checkKeyEvent( Q_UINT32 _key, bool _pressed )
+{
+	if( _pressed && _key == XK_Escape &&
+		m_vncView->m_connection->state() != ivsConnection::Connected )
+	{
+		close();
+	}
 }
 
 

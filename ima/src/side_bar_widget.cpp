@@ -52,6 +52,7 @@ sideBarWidget::sideBarWidget( const QPixmap & _icon,
 	QVBoxLayout * contents_layout = new QVBoxLayout( m_contents );
 	contents_layout->setSpacing( 5 );
 	contents_layout->setMargin( 5 );
+	contents_layout->addSpacing( 10 );
 }
 
 

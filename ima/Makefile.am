@@ -36,6 +36,7 @@ italc_UIC =	./dialogs/client_settings.uic		\
 		./dialogs/support.uic			\
 		./dialogs/text_message.uic		\
 		./dialogs/multi_logon.uic		\
+		./dialogs/overview.uic			\
 		./dialogs/about.uic
 
 BUILT_SOURCES = $(italc_MOC) $(italc_UIC) ./italc_qrc.cpp

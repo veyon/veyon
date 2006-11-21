@@ -6,7 +6,7 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>287</height>
+    <height>298</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -17,10 +17,10 @@
   </property>
   <layout class="QVBoxLayout" >
    <property name="margin" >
-    <number>9</number>
+    <number>15</number>
    </property>
    <property name="spacing" >
-    <number>6</number>
+    <number>10</number>
    </property>
    <item>
     <layout class="QHBoxLayout" >
@@ -74,6 +74,12 @@ p, li { white-space: pre-wrap; }
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
+     </property>
+     <property name="minimumSize" >
+      <size>
+       <width>0</width>
+       <height>64</height>
+      </size>
      </property>
      <property name="text" >
       <string>Use the fields below to enter the username and password which will be used for logging on the computer(s).</string>

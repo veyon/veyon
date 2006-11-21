@@ -2,7 +2,7 @@ iTALC 0.9.8 - Intelligent Teaching and Learning with Computers
 ===============================================================
 
 
-Copyright (c) 2004-2006 Tobias Doerffel and others
+Copyright (c) 2004-2006 Tobias Doerffel
 
 
 
@@ -34,15 +34,10 @@ a demo, help a person, lock/unlock the screen, halt/reboot, execute a sequence
 of commands or login with SSH and much more...
 
 
-How to compile iTALC
----------------------
-
-See INSTALL for details.
 
 
-
-How to install and setup iTALC
-------------------------------
+How to build, install and setup iTALC
+-------------------------------------
 
 see INSTALL for details.
 

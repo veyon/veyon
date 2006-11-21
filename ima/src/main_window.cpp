@@ -168,7 +168,9 @@ mainWindow::mainWindow() :
 			tr( "Overview mode" ),
 			tr( "This is the default mode in iTALC and allows you "
 				"to have an overview over all visible "
-				"computers." ),
+				"computers. Also click on this button for "
+				"unlocking locked workstations or for leaving "
+				"demo-mode." ),
 			NULL, NULL, m_toolBar );
 
 	toolButton * fsdemo_mode = new toolButton(
@@ -295,9 +297,16 @@ mainWindow::mainWindow() :
 			QPixmap( ":/resources/adjust_size.png" ),
 			tr( "Adjust windows and their size" ),
 			tr( "When clicking this button the biggest possible "
-				"size for the screen-windows is adjusted. "
+				"size for the client-windows is adjusted. "
 				"Furthermore all windows are aligned." ),
 			m_clientManager, SLOT( adjustWindows() ), m_toolBar );
+
+	toolButton * auto_arrange = new toolButton(
+			QPixmap( ":/resources/auto_arrange.png" ),
+			tr( "Auto re-arrange windows and their size" ),
+			tr( "When clicking this button all visible windows "
+				"are re-arranged and adjusted." ),
+			m_clientManager, SLOT( arrangeWindows() ), m_toolBar );
 
 /*	m_toolBar->addAction( QPixmap( ":/resources/inc_client_size.png" ),
 					tr( "Increase" ),
@@ -332,6 +341,7 @@ mainWindow::mainWindow() :
 	m_toolBar->addWidget( multilogon );
 	m_toolBar->addSeparator();
 	m_toolBar->addWidget( adjust_size );
+	m_toolBar->addWidget( auto_arrange );
 
 	restoreState( m_clientManager->winCfg().toAscii() );
 
@@ -354,12 +364,13 @@ mainWindow::mainWindow() :
 								).toString() );
 	if( m_localISD->open() != isdConnection::Connected )
 	{
-		messageBox::information( tr( "No service-daemon running" ),
-			tr( 	"There seems to be no service-daemon running "
-				"on this computer, which is neccessary for "
-				"running iTALC properly. Please make sure "
-				"a service-daemon is started at system-startup "
-				"and try again." ) );
+		messageBox::information( tr( "iTALC service not running" ),
+			tr( 	"There seems to be no iTALC service running "
+				"on this computer or the authentication-keys "
+				"aren't set up properly. The service is "
+				"required for running iTALC. Contact your "
+				"administrator for solving this problem." ),
+					QPixmap( ":/resources/stop.png" ) );
 		return;
 	}
 

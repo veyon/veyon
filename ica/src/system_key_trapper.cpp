@@ -132,7 +132,7 @@ systemKeyTrapper::systemKeyTrapper( void ) :
 							hAppInstance, 0 );
 		}
 
-		EnableWindow( FindWindow( "Shell_traywnd", NULL ), FALSE );
+		//EnableWindow( FindWindow( "Shell_traywnd", NULL ), FALSE );
 
 		Inject();
 	}
@@ -158,7 +158,7 @@ systemKeyTrapper::~systemKeyTrapper()
 		UnhookWindowsHookEx( g_hHookKbdLL );
 		g_hHookKbdLL = NULL;
 
-		EnableWindow( FindWindow( "Shell_traywnd", NULL ), TRUE );
+		//EnableWindow( FindWindow( "Shell_traywnd", NULL ), TRUE );
 
 		Eject();
 	}

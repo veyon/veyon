@@ -44,13 +44,9 @@ supportWidget::supportWidget( mainWindow * _main_window, QWidget * _parent ) :
 						contentParent()->layout() );
 	l->setSpacing( 15 );
 
-	QLabel * wt = new QLabel( tr( "If you want to know, what a specific "
-						"button etc. does, you can "
-						"activate the \"What's this\"-"
-						"mode. Then click on the "
-						"corresponding button etc. and "
-						"a short explanation to it "
-						"will be shown." ),
+	QLabel * wt = new QLabel( tr( "If you want to support someone at "
+					"another host you can do this by "
+					"clicking the button below." ),
 							contentParent() );
 	wt->setWordWrap( TRUE );
 	l->addWidget( wt );
@@ -62,12 +58,6 @@ supportWidget::supportWidget( mainWindow * _main_window, QWidget * _parent ) :
 	l->addWidget( sb );
 	connect( sb, SIGNAL( clicked() ), this, SLOT( supportBtnClicked() ) );
 
-	QPushButton * aib = new QPushButton(
-					QPixmap( ":/resources/info_22.png" ),
-					tr( "About iTALC" ), contentParent() );
-	l->addWidget( aib );
-	connect( aib, SIGNAL( clicked() ), getMainWindow(),
-						SLOT( aboutITALC() ) );
 	l->addStretch();
 }
 

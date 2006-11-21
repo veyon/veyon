@@ -50,6 +50,7 @@ configWidget::configWidget( mainWindow * _main_window, QWidget * _parent ) :
 			_main_window, _parent )
 {
 	setupUi( contentParent() );
+	contentParent()->layout()->addWidget( layoutWidget );
 
 
 	connect( updateIntervalSB, SIGNAL( valueChanged( int ) ),

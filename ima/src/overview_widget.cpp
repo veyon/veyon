@@ -25,8 +25,10 @@
 
 #include <QtGui/QLabel>
 #include <QtGui/QLayout>
+#include <QtGui/QPushButton>
 
 #include "overview_widget.h"
+#include "main_window.h"
 
 
 
@@ -36,74 +38,11 @@ overviewWidget::overviewWidget( mainWindow * _main_window, QWidget * _parent ) :
 			tr( "Some basic information on iTALC and how to use "
 				"it." ), _main_window, _parent )
 {
-	QFont f;
+	setupUi( contentParent() );
+	contentParent()->layout()->addWidget( layoutWidget );
 
-	QLabel * welcome = new QLabel( tr( "Welcome to iTALC!" ) + "\n",
-							contentParent() );
-	contentParent()->layout()->addWidget( welcome );
-	f.setPixelSize( 14 );
-	f.setBold( TRUE );
-	f.setItalic( TRUE );	// leads to crashes sometimes because of
-	//			// bug in qt's font-db-mgm
-	welcome->setFont( f );
-	welcome->setWordWrap( TRUE );
-	f.setBold( FALSE );
-	f.setItalic( FALSE );
-
-	f.setPixelSize( 12 );
-	QLabel * here = new QLabel( contentParent() );
-	contentParent()->layout()->addWidget( here );
-	here->setPixmap( QPixmap( ":/resources/back.png" ) ); 
-
-	QLabel * workbar_desc = new QLabel(
-		tr( "Here you see the working-bar which contains several "
-			"buttons. Each button is connected to a workspace. "
-			"Just take a look at the available workspaces by "
-			"clicking on the corresponding button.\n\n"
-			"If you need help take a look at the help-workspace!"
-						) + "\n ", contentParent() );
-	contentParent()->layout()->addWidget( workbar_desc );
-	workbar_desc->setFont( f );
-	workbar_desc->setWordWrap( TRUE );
-
-	QLabel * cm_desc = new QLabel( tr( "With the client-manager you can "
-						"add or remove clients "
-						"(computers) and switch "
-						"between classrooms." ) + "\n ",
-							contentParent() );
-	contentParent()->layout()->addWidget( cm_desc );
-	cm_desc->setFont( f );
-	cm_desc->setWordWrap( TRUE );
-
-	QLabel * ul_desc = new QLabel(
-			tr( "If you want to know, which users are logged in, "
-				"you can open the user-list." ) + "\n ",
-					contentParent() );
-	contentParent()->layout()->addWidget( ul_desc );
-	ul_desc->setFont( f );
-	ul_desc->setWordWrap( TRUE );
-
-	QLabel * screenshot_desc = new QLabel(
-			tr( "The snapshot-workspace is a very useful tool. "
-				"It let's you manage the snapshots you made."
-						) + "\n ", contentParent() );
-	contentParent()->layout()->addWidget( screenshot_desc );
-	screenshot_desc->setFont( f );
-	screenshot_desc->setWordWrap( TRUE );
-
-	QLabel * config_desc = new QLabel(
-			tr( "Of course you can configure iTALC. This is "
-				"usually done with the configuration-"
-				"workspace." ) + "\n ",
-							contentParent() );
-	contentParent()->layout()->addWidget( config_desc );
-	config_desc->setFont( f );
-	config_desc->setWordWrap( TRUE );
-
-	QLabel * filler = new QLabel( contentParent() );
-	contentParent()->layout()->addWidget( filler );
-	filler->setFixedHeight( 2048 );
-
+	connect( aboutButton, SIGNAL( clicked() ), getMainWindow(),
+							SLOT( aboutITALC() ) );
 }
 
 

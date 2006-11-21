@@ -145,17 +145,20 @@ void toolButtonTip::updateMask( void )
 	p.setBrush( Qt::color0 );
 	p.setPen( Qt::color0 );
 
-        const int size = 16;
-	for( Q_UINT16 y = 0; y < height() + size; y += size )
+	if( m_dissolveSize > 0 )
 	{
-		Q_INT16 s = m_dissolveSize * width() / 128;
-		for( Q_INT16 x = width(); x > -size; x -= size, s -= 2 )
+		const int size = 16;
+		for( Q_UINT16 y = 0; y < height() + size; y += size )
 		{
-			if( s < 0 )
+			Q_INT16 s = m_dissolveSize * width() / 128;
+			for( Q_INT16 x = width(); x > -size; x -= size, s -= 2 )
 			{
-				s = 0;
+				if( s < 0 )
+				{
+					s = 0;
+				}
+				p.drawEllipse( x - s / 2, y - s / 2, s, s );
 			}
-			p.drawEllipse( x - s / 2, y - s / 2, s, s );
 		}
 	}
 
