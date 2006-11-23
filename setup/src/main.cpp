@@ -28,6 +28,7 @@
 #include <QtGui/QApplication>
 
 #include "dialogs.h"
+#include "local_system.h"
 
 
 
@@ -38,6 +39,7 @@ int main( int argc, char * * argv )
 
 	app.connect( &app, SIGNAL( lastWindowClosed() ), SLOT( quit() ) );
 
+	localSystem::initialize();
 
 	// load translations
 	const QString loc = QLocale::system().name().left( 2 );

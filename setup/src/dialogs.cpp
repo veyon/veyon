@@ -87,6 +87,7 @@ setupWizard::setupWizard() :
 	m_widgetStack << new setupWizardPageSelectComponents( this );
 	m_widgetStack << new setupWizardPageSecurityOptions( this );
 	m_widgetStack << new setupWizardPageKeyDirs( this );
+	m_widgetStack << new setupWizardPageFinished( this );
 
 	QSize max = m_widgetStack.front()->sizeHint();
 
@@ -156,25 +157,12 @@ void setupWizard::next( void )
 	{
 		return;
 	}
-	if( m_idx+1 < m_widgetStack.size() )
-	{
-		m_widgetStack[m_idx]->hide();
-		m_widgetStack[++m_idx]->show();
-		if( m_widgetStack[m_idx]->nextPageDisabled() )
-		{
-			setNextPageDisabled( TRUE );
-		}
-		if( m_idx+1 == m_widgetStack.size() )
-		{
-			nextButton->setText( tr( "Finish" ) );
-		}
-		nextButton->setFocus();
-	}
-	else
+	if( m_idx+2 == m_widgetStack.size() )
 	{
 		const QString & d = m_installDir + QDir::separator();
 		QStringList files;
 		files <<
+			"italc.ico" 		<<
 #ifdef BUILD_WIN32
 			"ica.exe" 		<<
 			"italc.exe" 		<<
@@ -218,7 +206,8 @@ void setupWizard::next( void )
 				||
 			( file.left( 5 ) == "italc" && !m_installMaster )
 				||
-				( file.left( 3 ) == "aus" && !m_installLUPUS ) )
+				( file.left( 5 ) == "lupus" &&
+							!m_installLUPUS ) )
 			{
 				continue;
 			}
@@ -263,7 +252,6 @@ void setupWizard::next( void )
 			qApp->processEvents();
 			if( pd.wasCanceled() )
 			{
-				accept();
 				return;
 			}
 		}
@@ -282,6 +270,10 @@ void setupWizard::next( void )
 		qApp->processEvents();
 		const QString add = QDir::separator() + QString( "key" );
 		const QString add2 = QDir::separator() + PUBLIC_KEY_FILE_NAME;
+		localSystem::setPrivateKeyPath( m_privKeyDir + add,
+							ISD::RoleTeacher );
+		localSystem::setPublicKeyPath( m_pubKeyDir + add,
+							ISD::RoleTeacher );
 		if( m_keyImportDir.isEmpty() )
 		{
 			QProcess::execute( d +
@@ -296,10 +288,28 @@ void setupWizard::next( void )
 			publicDSAKey( m_keyImportDir + add2 ).
 						save( m_pubKeyDir + add );
 		}
-
-		// TODO: feedback
-		accept();
 	}
+	else if( m_idx+1 == m_widgetStack.size() )
+	{
+		accept();
+		return;
+	}
+
+	m_widgetStack[m_idx]->hide();
+	m_widgetStack[++m_idx]->show();
+	if( m_widgetStack[m_idx]->nextPageDisabled() )
+	{
+		setNextPageDisabled( TRUE );
+	}
+	if( m_idx+2 == m_widgetStack.size() )
+	{
+		nextButton->setText( tr( "Finish" ) );
+	}
+	else if( m_idx+1 == m_widgetStack.size() )
+	{
+		nextButton->setText( tr( "Quit" ) );
+	}
+	nextButton->setFocus();
 }
 
 
@@ -726,6 +736,16 @@ void setupWizardPageKeyDirs::setKeyExportDir( const QString & _dir )
 	}
 }
 
+
+
+
+
+setupWizardPageFinished::setupWizardPageFinished( setupWizard * _wiz ) :
+	setupWizardPage( _wiz ),
+	Ui::pageFinished()
+{
+	setupUi( this );
+}
 
 
 

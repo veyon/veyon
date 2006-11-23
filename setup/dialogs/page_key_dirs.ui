@@ -6,7 +6,7 @@
     <x>0</x>
     <y>0</y>
     <width>595</width>
-    <height>402</height>
+    <height>375</height>
    </rect>
   </property>
   <layout class="QHBoxLayout" >
@@ -44,8 +44,7 @@ p, li { white-space: pre-wrap; }
      <item>
       <widget class="QLabel" name="label_3" >
        <property name="text" >
-        <string>The newly created or imported key(s) need to be installed somewhere. It's recommended to leave the suggested directories.
-You can also choose a directory in which to export the public key, e.g. a USB-drive or a network share.</string>
+        <string>The newly created or imported key(s) need to be installed somewhere. It's recommended to leave the suggested directories.</string>
        </property>
        <property name="wordWrap" >
         <bool>true</bool>
@@ -78,7 +77,7 @@ You can also choose a directory in which to export the public key, e.g. a USB-dr
      <item>
       <layout class="QHBoxLayout" >
        <property name="margin" >
-        <number>0</number>
+        <number>4</number>
        </property>
        <property name="spacing" >
         <number>6</number>
@@ -127,8 +126,8 @@ You can also choose a directory in which to export the public key, e.g. a USB-dr
        </property>
        <property name="sizeHint" >
         <size>
-         <width>0</width>
-         <height>6</height>
+         <width>387</width>
+         <height>16</height>
         </size>
        </property>
       </spacer>
@@ -152,7 +151,7 @@ You can also choose a directory in which to export the public key, e.g. a USB-dr
         <item>
          <layout class="QHBoxLayout" >
           <property name="margin" >
-           <number>0</number>
+           <number>4</number>
           </property>
           <property name="spacing" >
            <number>6</number>
@@ -210,33 +209,27 @@ You can also choose a directory in which to export the public key, e.g. a USB-dr
         <item>
          <widget class="QLabel" name="label_9" >
           <property name="text" >
-           <string>Directory to where public key should be exported</string>
+           <string>You can choose a directory in which to export the public key, e.g. a USB-drive or a network share.</string>
+          </property>
+          <property name="wordWrap" >
+           <bool>true</bool>
           </property>
          </widget>
         </item>
         <item>
          <layout class="QHBoxLayout" >
           <property name="margin" >
-           <number>0</number>
+           <number>5</number>
           </property>
           <property name="spacing" >
            <number>6</number>
           </property>
           <item>
-           <spacer>
-            <property name="orientation" >
-             <enum>Qt::Horizontal</enum>
+           <widget class="QLabel" name="label_4" >
+            <property name="pixmap" >
+             <pixmap resource="../setup.qrc" >:/resources/usbdrive.png</pixmap>
             </property>
-            <property name="sizeType" >
-             <enum>QSizePolicy::Fixed</enum>
-            </property>
-            <property name="sizeHint" >
-             <size>
-              <width>40</width>
-              <height>21</height>
-             </size>
-            </property>
-           </spacer>
+           </widget>
           </item>
           <item>
            <widget class="QLineEdit" name="keyExportDirLineEdit" />
@@ -267,7 +260,7 @@ You can also choose a directory in which to export the public key, e.g. a USB-dr
        <property name="sizeHint" >
         <size>
          <width>387</width>
-         <height>26</height>
+         <height>16</height>
         </size>
        </property>
       </spacer>

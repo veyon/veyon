@@ -1,3 +1,54 @@
+2006-11-23	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* ima/src/client.cpp:
+	- replaced toolbar by context-menu
+	- before remote-controlling, ensure no demo etc. is running
+
+	* common/src/local_system.cpp:
+	fixed size of buffer - fixes segfault when broadcasting WOL-packets
+
+	* ima/src/client_manager.cpp:
+	increased sleep between mode-changes of clients from 200ms to 400ms
+
+	* ica/src/vncview.cpp:
+	- do not change view-port while not connected
+	- completely re-worked threading - makes remote-control etc. more
+	  stable
+
+	* common/src/local_system.cpp:
+	win32: press Escape before sending Alt+Ctrl+Del to make sure an
+	already opened login-dialog is closed
+
+	* common/include/local_system.h:
+	* common/src/local_system.cpp:
+	save paths to keys in setup
+
+	* setup/dialogs/page_key_dirs.ui:
+	improved usability in several ways
+
+	* setup/dialogs/page_security_options.ui:
+	disable field for input of key-export-dir etc. when selecting "create
+	new keys"
+
+	* setup/dialogs/page_select_components.ui:
+	for the time being disable checkboxes for components "LUPUS" and
+	"docs"
+
+	* setup/Makefile.am:
+	pass -mwindows to linker when creating win32-executable
+
+	* setup/resources/qt*qm:
+	added Qt-localizations to setup
+
+	* setup/src/main.cpp:
+	call localSystem::initialize() at startup
+
+	* setup/dialogs/page_setup_finished.ui:
+	* setup/resources/page_setup_finished.png:
+	* setup/src/dialogs.cpp:
+	added page at the end of setup to inform user about finished
+	installation and so on
+
 2006-11-20	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* ica/src/system_key_trapper.cpp:

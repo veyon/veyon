@@ -139,15 +139,17 @@ client::client( const QString & _local_ip, const QString & _remote_ip,
 
 	//setFixedSize( DEFAULT_CLIENT_SIZE );
 	resize( DEFAULT_CLIENT_SIZE );
-	setAttribute( Qt::WA_OpaquePaintEvent, TRUE );
+	setAttribute( Qt::WA_NoSystemBackground, TRUE );
 	//setAttribute( Qt::WA_PaintUnclipped, TRUE );
-	QToolBar * tb = new QToolBar( this );
+/*	QToolBar * tb = new QToolBar( this );
 	tb->setAutoFillBackground( TRUE );
 	QPalette pal;
 	pal.setBrush( QPalette::Background, QColor( 0, 0, 0, 160 ) );
 	tb->setPalette( pal );
-	tb->setIconSize( QSize( 16, 16 ) );
-	connect( tb, SIGNAL( actionTriggered( QAction * ) ), this,
+	tb->setIconSize( QSize( 16, 16 ) );*/
+	QMenu * tb = new QMenu( this );
+	m_contextMenu = tb;
+	connect( tb, SIGNAL( triggered( QAction * ) ), this,
 					SLOT( processCmdSlot( QAction * ) ) );
 	tb->addAction( scaled( ":/resources/overview_mode.png", 16, 16 ),
 							tr( "Watch only" ) )->
@@ -347,28 +349,9 @@ void client::update( void )
 
 void client::createActionMenu( QMenu * _m )
 {
-/*	connect( _m, SIGNAL( triggered( QAction * ) ), this,
+	connect( _m, SIGNAL( triggered( QAction * ) ), this,
 					SLOT( processCmdSlot( QAction * ) ) );
-	for( int i = ClientDemo; i < CmdCount; ++i )
-	{
-		if( i == ExecCmds )
-		{
-			_m = _m->addMenu( QPixmap(
-					":/resources/client_settings.png" ),
-							tr( "Administation" ) );
-			connect( _m, SIGNAL( triggered( QAction * ) ), this,
-					SLOT( processCmdSlot( QAction * ) ) );
-		}
-
-		QAction * a = _m->addAction( QPixmap( ":/resources/" +
-							s_commands[i].m_icon ),
-			tr( s_commands[i].m_name.toAscii().constData() ) );
-		a->setData( i );
-		if( s_commands[i].m_insertSep )
-		{
-			_m->addSeparator();
-		}
-	}*/
+	_m->addActions( m_contextMenu->actions() );
 }
 
 
@@ -494,22 +477,7 @@ void client::closeEvent( QCloseEvent * _ce )
 
 void client::contextMenuEvent( QContextMenuEvent * )
 {
-	QMenu context_menu( this );
-	createActionMenu( &context_menu );
-	context_menu.exec( QCursor::pos() );
-}
-
-
-
-
-void client::enterEvent( QEvent * _me )
-{
-/*	if( findChild<QToolBar *>() )
-	{
-		QToolBar * t = findChild<QToolBar *>();
-		t->resize( t->sizeHint() );*/
-		//t->show();
-	//}
+	m_contextMenu->exec( QCursor::pos() );
 }
 
 
@@ -526,17 +494,6 @@ void client::hideEvent( QHideEvent * )
 	{
 		m_classRoomItem->setVisible( FALSE );
 	}
-}
-
-
-
-
-void client::leaveEvent( QEvent * _me )
-{
-/*	if( findChild<QToolBar *>() )
-	{
-		findChild<QToolBar *>()->hide();
-	}*/
 }
 
 
@@ -772,11 +729,12 @@ void client::clientDemo( const QString & )
 
 void client::viewLive( const QString & )
 {
-	m_syncMutex.lock();
+	changeMode( Mode_Overview, m_mainWindow->localISD() );
+	//m_syncMutex.lock();
 
 	m_mainWindow->localISD()->remoteControlDisplay( m_localIP, TRUE );
 
-	m_syncMutex.unlock();
+	//m_syncMutex.unlock();
 }
 
 
@@ -784,11 +742,12 @@ void client::viewLive( const QString & )
 
 void client::remoteControl( const QString & )
 {
-	m_syncMutex.lock();
+	changeMode( Mode_Overview, m_mainWindow->localISD() );
+	//m_syncMutex.lock();
 
 	m_mainWindow->localISD()->remoteControlDisplay( m_localIP );
 
-	m_syncMutex.unlock();
+	//m_syncMutex.unlock();
 }
 
 

@@ -35,6 +35,7 @@
 #include "dialogs/page_select_components.uic"
 #include "dialogs/page_security_options.uic"
 #include "dialogs/page_key_dirs.uic"
+#include "dialogs/page_setup_finished.uic"
 
 
 class setupWizardPage;
@@ -213,6 +214,16 @@ private slots:
 	void setKeyExportDir( const QString & _dir );
 
 } ;
+
+
+
+class setupWizardPageFinished : public setupWizardPage, public Ui::pageFinished
+{
+public:
+	setupWizardPageFinished( setupWizard * _wiz );
+
+} ;
+
 
 
 

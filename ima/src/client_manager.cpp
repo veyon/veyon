@@ -687,14 +687,14 @@ void clientManager::loadPersonalConfig( void )
 
 void clientManager::createActionMenu( QMenu * _m )
 {
-	for( int i = 0; i < m_view->topLevelItemCount(); ++i )
+/*for( int i = 0; i < m_view->topLevelItemCount(); ++i )
 	{
 		QTreeWidgetItem * lvi = m_view->topLevelItem( i );
 		if( lvi->childCount() )
 		{
 			createActionMenu( lvi, _m );
 		}
-	}
+	}*/
 }
 
 
@@ -702,7 +702,7 @@ void clientManager::createActionMenu( QMenu * _m )
 
 void clientManager::createActionMenu( QTreeWidgetItem * _p, QMenu * _m )
 {
-	QMenu * root = _m->addMenu( _p->text( 0 ) );
+/*	QMenu * root = _m->addMenu( _p->text( 0 ) );
 
 	classRoomItem * l = NULL;
 
@@ -718,7 +718,7 @@ void clientManager::createActionMenu( QTreeWidgetItem * _p, QMenu * _m )
 			l->getClient()->createActionMenu(
 				root->addMenu( l->getClient()->fullName() ) );
 		}
-	}
+	}*/
 }
 
 
@@ -775,7 +775,7 @@ void clientManager::changeGlobalClientMode( int _mode )
 		foreach( client * cl, vc )
 		{
 			cl->changeMode( m_globalClientMode, conn );
-			localSystem::sleep( 200 );
+			localSystem::sleep( 400 );
 		}
 	}
 }

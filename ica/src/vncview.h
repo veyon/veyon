@@ -41,7 +41,7 @@
 class progressWidget;
 class remoteControlWidget;
 class systemKeyTrapper;
-class vncViewThread;
+class vncWorker;
 
 
 class vncView : public QWidget
@@ -93,9 +93,33 @@ private:
 
 
 	friend class remoteControlWidget;
-	friend class vncViewThread;
+	friend class vncWorker;
 
 } ;
+
+
+
+
+class vncWorker : public QObject
+{
+	Q_OBJECT
+public:
+	vncWorker( vncView * _vv );
+
+
+private slots:
+	void framebufferUpdate( void );
+	void sendPointerEvent( Q_UINT16 _x, Q_UINT16 _y,
+							Q_UINT16 _button_mask );
+	void sendKeyEvent( Q_UINT32 _key, bool _down );
+
+
+private:
+	vncView * m_vncView;
+
+} ;
+
+
 
 
 class vncViewThread : public QThread
@@ -106,10 +130,6 @@ public:
 	virtual ~vncViewThread()
 	{
 	}
-
-
-private slots:
-	void framebufferUpdate( void );
 
 
 private:

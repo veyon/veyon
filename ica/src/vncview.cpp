@@ -56,21 +56,6 @@ vncView::vncView( const QString & _host, bool _view_only, QWidget * _parent ) :
 
 	m_connection = new ivsConnection( _host, ivsConnection::QualityHigh,
 								FALSE, this );
-	if( !m_viewOnly )
-	{
-		m_sysKeyTrapper = new systemKeyTrapper();
-		connect( m_sysKeyTrapper, SIGNAL( keyEvent( Q_UINT32, bool ) ),
-			m_connection, SLOT( sendKeyEvent( Q_UINT32, bool ) ) );
-
-		connect( this,
-			SIGNAL( pointerEvent( Q_UINT16, Q_UINT16, Q_UINT16 ) ),
-			m_connection,
-			SLOT( sendPointerEvent( Q_UINT16, Q_UINT16,
-								Q_UINT16 ) ) );
-		connect( this, SIGNAL( keyEvent( Q_UINT32, bool ) ),
-			m_connection, SLOT( sendKeyEvent( Q_UINT32, bool ) ) );
-	}
-
 	setMouseTracking( TRUE );
 	//setWidgetAttribute( Qt::WA_OpaquePaintEvent );
 	setAttribute( Qt::WA_NoSystemBackground, true );
@@ -83,10 +68,11 @@ vncView::vncView( const QString & _host, bool _view_only, QWidget * _parent ) :
 		parent_size = parentWidget()->size();
 	}
 	resize( parent_size );
-/*	resize( qMin( m_connection->framebufferSize().width(),
-						parent_size.width() ),
-			qMin( m_connection->framebufferSize().height(),
-						parent_size.height() ) );*/
+
+	if( !m_viewOnly )
+	{
+		m_sysKeyTrapper = new systemKeyTrapper();
+	}
 
 	new vncViewThread( this );
 
@@ -125,6 +111,8 @@ void vncView::framebufferUpdate( void )
 		// progress-widget
 		setAttribute( Qt::WA_PaintOnScreen, false );
 		m_establishingConnection->show();
+		QTimer::singleShot( 40, this, SLOT( framebufferUpdate() ) );
+		return;
 	}
 
 	if( m_connection->state() == ivsConnection::Connected &&
@@ -147,7 +135,7 @@ void vncView::framebufferUpdate( void )
 	// doesn't correspond to the framebuffer's edge
 	const QPoint mp = mapFromGlobal( QCursor::pos() );
 	const QPoint old_vo = m_viewOffset;
-	const int MAGIC_MARGIN = 6;
+	const int MAGIC_MARGIN = 15;
 	if( mp.x() <= MAGIC_MARGIN && m_viewOffset.x() > 0 )
 	{
 		m_viewOffset.setX( qMax( 0, m_viewOffset.x() -
@@ -188,7 +176,7 @@ void vncView::framebufferUpdate( void )
 		update();
 	}
 
-	QTimer::singleShot( 20, this, SLOT( framebufferUpdate() ) );
+	QTimer::singleShot( 40, this, SLOT( framebufferUpdate() ) );
 }
 
 
@@ -546,7 +534,7 @@ void vncView::mouseEvent( QMouseEvent * _me )
 				}
 				else
 				{
-					m_buttonMask&=~map[i].rfb;
+					m_buttonMask &= ~map[i].rfb;
 				}
 			}
 		}
@@ -575,32 +563,57 @@ vncViewThread::vncViewThread( vncView * _vv ) :
 
 void vncViewThread::run( void )
 {
-	ivsConnection * conn = m_vncView->m_connection;
-	QTimer t;
-	connect( &t, SIGNAL( timeout() ), conn,
-			SLOT( sendIncrementalFramebufferUpdateRequest() ),
-							Qt::DirectConnection );
-	if( m_vncView->m_viewOnly )
-	{
-		t.start( 70 );
-	}
-	else
-	{
-		// when remote-controlling we need more updates for smoother
-		// usage
-		t.start( 50 );
-	}
-	QTimer t2;
-	connect( &t2, SIGNAL( timeout() ), this, SLOT( framebufferUpdate() ),
-							Qt::DirectConnection );
-	t2.start( 20 );
+	vncWorker vw( m_vncView );
 	exec();
 }
 
 
 
 
-void vncViewThread::framebufferUpdate( void )
+
+
+vncWorker::vncWorker( vncView * _vv ) :
+	QObject(),
+	m_vncView( _vv )
+{
+	if( !m_vncView->m_viewOnly )
+	{
+		qRegisterMetaType<Q_UINT16>( "Q_UINT16" );
+		qRegisterMetaType<Q_UINT32>( "Q_UINT32" );
+		connect( m_vncView->m_sysKeyTrapper,
+					SIGNAL( keyEvent( Q_UINT32, bool ) ),
+				this, SLOT( sendKeyEvent( Q_UINT32, bool ) ) );
+
+		connect( m_vncView,
+			SIGNAL( pointerEvent( Q_UINT16, Q_UINT16, Q_UINT16 ) ),
+			this, SLOT( sendPointerEvent( Q_UINT16, Q_UINT16,
+								Q_UINT16 ) ) );
+		connect( m_vncView, SIGNAL( keyEvent( Q_UINT32, bool ) ),
+				this, SLOT( sendKeyEvent( Q_UINT32, bool ) ) );
+	}
+
+	ivsConnection * conn = m_vncView->m_connection;
+	QTimer * t = new QTimer( this );
+	connect( t, SIGNAL( timeout() ), conn,
+			SLOT( sendIncrementalFramebufferUpdateRequest() ),
+							Qt::DirectConnection );
+	if( m_vncView->m_viewOnly )
+	{
+		t->start( 80 );
+	}
+	else
+	{
+		// when remote-controlling we need more updates for smoother
+		// usage
+		t->start( 50 );
+	}
+
+	framebufferUpdate();
+}
+
+
+
+void vncWorker::framebufferUpdate( void )
 {
 	ivsConnection * conn = m_vncView->m_connection;
 	if( conn->state() != ivsConnection::Connected ||
@@ -608,7 +621,26 @@ void vncViewThread::framebufferUpdate( void )
 	{
 		conn->open();
 	}
+	QTimer::singleShot( 20, this, SLOT( framebufferUpdate() ) );
 }
+
+
+
+
+void vncWorker::sendPointerEvent( Q_UINT16 _x, Q_UINT16 _y,
+							Q_UINT16 _button_mask )
+{
+	m_vncView->m_connection->sendPointerEvent( _x, _y, _button_mask );
+}
+
+
+
+
+void vncWorker::sendKeyEvent( Q_UINT32 _key, bool _down )
+{
+	m_vncView->m_connection->sendKeyEvent( _key, _down );
+}
+
 
 
 

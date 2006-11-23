@@ -6,7 +6,7 @@
     <x>0</x>
     <y>0</y>
     <width>595</width>
-    <height>300</height>
+    <height>350</height>
    </rect>
   </property>
   <layout class="QHBoxLayout" >
@@ -85,78 +85,87 @@ p, li { white-space: pre-wrap; }
       </widget>
      </item>
      <item>
-      <layout class="QHBoxLayout" >
-       <property name="margin" >
-        <number>0</number>
-       </property>
-       <property name="spacing" >
-        <number>6</number>
-       </property>
-       <item>
-        <spacer>
-         <property name="orientation" >
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeType" >
-          <enum>QSizePolicy::Fixed</enum>
-         </property>
-         <property name="sizeHint" >
-          <size>
-           <width>40</width>
-           <height>32</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item>
-        <layout class="QVBoxLayout" >
-         <property name="margin" >
-          <number>0</number>
-         </property>
-         <property name="spacing" >
-          <number>6</number>
-         </property>
-         <item>
-          <widget class="QLabel" name="label_5" >
-           <property name="text" >
-            <string>Choose location of exported public key:</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <layout class="QHBoxLayout" >
-           <property name="margin" >
-            <number>0</number>
-           </property>
-           <property name="spacing" >
-            <number>6</number>
-           </property>
-           <item>
-            <widget class="QLineEdit" name="keyImportDirLineEdit" />
-           </item>
-           <item>
-            <widget class="QPushButton" name="openDirButton" >
-             <property name="icon" >
-              <iconset resource="../setup.qrc" >:/resources/fileopen.png</iconset>
-             </property>
-             <property name="iconSize" >
-              <size>
-               <width>22</width>
-               <height>22</height>
-              </size>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </item>
-        </layout>
-       </item>
-      </layout>
+      <widget class="QWidget" native="1" name="widget" >
+       <layout class="QHBoxLayout" >
+        <property name="margin" >
+         <number>9</number>
+        </property>
+        <property name="spacing" >
+         <number>6</number>
+        </property>
+        <item>
+         <widget class="QLabel" name="usbPenLabel" >
+          <property name="pixmap" >
+           <pixmap resource="../setup.qrc" >:/resources/usbdrive.png</pixmap>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" >
+          <property name="margin" >
+           <number>0</number>
+          </property>
+          <property name="spacing" >
+           <number>6</number>
+          </property>
+          <item>
+           <widget class="QLabel" name="pubKeyDirLabel" >
+            <property name="text" >
+             <string>Choose location of exported public key:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" >
+            <property name="margin" >
+             <number>0</number>
+            </property>
+            <property name="spacing" >
+             <number>6</number>
+            </property>
+            <item>
+             <widget class="QLineEdit" name="keyImportDirLineEdit" />
+            </item>
+            <item>
+             <widget class="QPushButton" name="openDirButton" >
+              <property name="icon" >
+               <iconset resource="../setup.qrc" >:/resources/fileopen.png</iconset>
+              </property>
+              <property name="iconSize" >
+               <size>
+                <width>22</width>
+                <height>22</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
      </item>
      <item>
       <spacer>
        <property name="orientation" >
         <enum>Qt::Vertical</enum>
+       </property>
+       <property name="sizeHint" >
+        <size>
+         <width>0</width>
+         <height>0</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <spacer>
+       <property name="orientation" >
+        <enum>Qt::Vertical</enum>
+       </property>
+       <property name="sizeType" >
+        <enum>QSizePolicy::Fixed</enum>
        </property>
        <property name="sizeHint" >
         <size>
@@ -173,5 +182,22 @@ p, li { white-space: pre-wrap; }
  <resources>
   <include location="../setup.qrc" />
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>importKeysRadioButton</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>widget</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>403</x>
+     <y>219</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>281</x>
+     <y>49</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

@@ -161,7 +161,7 @@ QString userList::getUserFromClient( const QString & _ip )
 
 void userList::contextMenuHandler( const QPoint & _pos )
 {
-	if( m_list->itemAt( _pos ) != NULL )
+/*	if( m_list->itemAt( _pos ) != NULL )
 	{
 		client * c = userList::getClientFromUser( m_list->itemAt(
 							_pos )->text(),
@@ -172,7 +172,7 @@ void userList::contextMenuHandler( const QPoint & _pos )
 			c->createActionMenu( &context_menu );
 			context_menu.exec( QCursor::pos() );
 		}
-	}
+	}*/
 }
 
 

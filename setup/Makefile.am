@@ -21,6 +21,7 @@ setup_UIC =	./dialogs/wizard.uic			\
 		./dialogs/page_install_dir.uic		\
 		./dialogs/page_select_components.uic	\
 		./dialogs/page_security_options.uic	\
+		./dialogs/page_setup_finished.uic	\
 		./dialogs/page_key_dirs.uic
 
 BUILT_SOURCES = $(setup_MOC) $(setup_UIC) ./setup_qrc.cpp
@@ -57,7 +58,7 @@ endif
 
 
 setup_LDADD = $(QT_LDADD) $(QT_LIB_GUI) $(LIBSSL_LDADD)
-setup_LDFLAGS = $(LDFLAGS)
+setup_LDFLAGS = $(LDFLAGS) -mwindow
 
 AM_CXXFLAGS := $(AM_CXXFLAGS) $(QT_CXXFLAGS)
 

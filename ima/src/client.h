@@ -225,15 +225,13 @@ private:
 	void updateStatePixmap( void );
 	bool userLoggedIn( void );
 
-	void contextMenuEvent( QContextMenuEvent * _cme );
-	void closeEvent( QCloseEvent * _ce );
-	void enterEvent( QEvent * _e );
-	void hideEvent( QHideEvent * _he );
-	void leaveEvent( QEvent * _e );
-	void mouseDoubleClickEvent( QMouseEvent * _me );
-	void paintEvent( QPaintEvent * _pe );
-	void resizeEvent( QResizeEvent * _re );
-	void showEvent( QShowEvent * _se );
+	virtual void contextMenuEvent( QContextMenuEvent * _cme );
+	virtual void closeEvent( QCloseEvent * _ce );
+	virtual void hideEvent( QHideEvent * _he );
+	virtual void mouseDoubleClickEvent( QMouseEvent * _me );
+	virtual void paintEvent( QPaintEvent * _pe );
+	virtual void resizeEvent( QResizeEvent * _re );
+	virtual void showEvent( QShowEvent * _se );
 
 	// action-handlers
 	void reload( const QString & _update = CONFIRM_YES );
@@ -274,6 +272,9 @@ private:
 	QMutex m_syncMutex;
 
 	classRoomItem * m_classRoomItem;
+
+
+	QMenu * m_contextMenu;
 
 
 	// static data

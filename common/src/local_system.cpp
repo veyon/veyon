@@ -235,7 +235,7 @@ void broadcastWOLPacket( const QString & _mac )
 {
 	const int PORT_NUM = 65535;
 	const int MAC_SIZE = 6;
-	const int OUTBUF_SIZE = MAC_SIZE*7;
+	const int OUTBUF_SIZE = MAC_SIZE*17;
 	unsigned char mac[MAC_SIZE];
 	char out_buf[OUTBUF_SIZE];
 
@@ -362,6 +362,7 @@ static inline void pressAndReleaseKey( int _key )
 void logonUser( const QString & _uname, const QString & _passwd )
 {
 #ifdef BUILD_WIN32
+	pressAndReleaseKey( XK_Escape );
 	// send Secure Attention Sequence (SAS) for making sure we can enter
 	// username and password
 	pressKey( XK_Alt_L, TRUE );
@@ -495,6 +496,37 @@ QString privateKeyPath( const ISD::userRoles _role, bool _only_path )
 QString publicKeyPath( const ISD::userRoles _role, bool _only_path )
 {
 	return( keyPath( _role, "public", _only_path ) );
+}
+
+
+
+
+void setKeyPath( const QString _path, const ISD::userRoles _role,
+							const QString _group )
+{
+	QSettings settings( QSettings::SystemScope, "iTALC Solutions",
+								"iTALC" );
+	if( _role <= ISD::RoleNone || _role >= ISD::RoleCount )
+	{
+		printf( "invalid role\n" );
+		return;
+	}
+	settings.setValue( "keypaths" + _group + "/" +
+						userRoleNames[_role], _path );
+}
+
+
+void setPrivateKeyPath( const QString & _path, const ISD::userRoles _role )
+{
+	setKeyPath( _path, _role, "private" );
+}
+
+
+
+
+void setPublicKeyPath( const QString & _path, const ISD::userRoles _role )
+{
+	setKeyPath( _path, _role, "public" );
 }
 
 

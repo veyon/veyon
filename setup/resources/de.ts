@@ -17,6 +17,28 @@
     </message>
 </context>
 <context>
+    <name>pageFinished</name>
+    <message>
+        <location filename="../dialogs/page_setup_finished.ui" line="43"/>
+        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:13pt; font-weight:600;&quot;&gt;iTALC is now installed!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:13pt; font-weight:600;&quot;&gt;iTALC ist jetzt installiert!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/page_setup_finished.ui" line="61"/>
+        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;iTALC is now completely installed and ready to use!&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;If you use iTALC under Windows it&apos;s strongly recommended that you install DFMirage-driver from http://www.demoforge.com/dfmirage.htm for a better performance when using iTALC.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;p, li { white-space: pre-wrap; }&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;iTALC ist jetzt vollständig installiert und kann nun verwendet werden!&lt;/p&gt;&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Wenn Sie iTALC unter Windows nutzen wird empfohlen, den DFMirage-Treiber von http://www.demoforge.com/dfmirage.htm installieren, um eine bessere Performance bei der Verwendung von iTALC zu erreichen.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+</context>
+<context>
     <name>pageInstallDir</name>
     <message>
         <location filename="../dialogs/page_install_dir.ui" line="37"/>
@@ -52,22 +74,32 @@ p, li { white-space: pre-wrap; }
         <location filename="../dialogs/page_key_dirs.ui" line="47"/>
         <source>The newly created or imported key(s) need to be installed somewhere. It&apos;s recommended to leave the suggested directories.
 You can also choose a directory in which to export the public key, e.g. a USB-drive or a network share.</source>
-        <translation>Die neu erstellten oder importierten Schlüssel müssen irgendwo installiert werden. Es wird empfohlen, das vorgeschlagene Verzeichnis beizubehalten. Sie können außerdem ein Verzeichnis auswählen, in welches der öffentliche Schlüssel exportiert wird, z.B. ein USB-Stick oder eine Netzwerkfreigabe.</translation>
+        <translation type="obsolete">Die neu erstellten oder importierten Schlüssel müssen irgendwo installiert werden. Es wird empfohlen, das vorgeschlagene Verzeichnis beizubehalten. Sie können außerdem ein Verzeichnis auswählen, in welches der öffentliche Schlüssel exportiert wird, z.B. ein USB-Stick oder eine Netzwerkfreigabe.</translation>
     </message>
     <message>
-        <location filename="../dialogs/page_key_dirs.ui" line="74"/>
+        <location filename="../dialogs/page_key_dirs.ui" line="73"/>
         <source>Directory to store public key in</source>
         <translation>Verzeichnis für öffentlichen Schlüssel</translation>
     </message>
     <message>
-        <location filename="../dialogs/page_key_dirs.ui" line="148"/>
+        <location filename="../dialogs/page_key_dirs.ui" line="147"/>
         <source>Directory to store private key in</source>
         <translation>Verzeichnis für privaten Schlüssel</translation>
     </message>
     <message>
         <location filename="../dialogs/page_key_dirs.ui" line="213"/>
         <source>Directory to where public key should be exported</source>
-        <translation>Verzeichnis zum Exportieren des öffentlichen Schlüssels</translation>
+        <translation type="obsolete">Verzeichnis zum Exportieren des öffentlichen Schlüssels</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/page_key_dirs.ui" line="47"/>
+        <source>The newly created or imported key(s) need to be installed somewhere. It&apos;s recommended to leave the suggested directories.</source>
+        <translation>Die neu erstellten oder importierten Schlüssel müssen irgendwo installiert werden. Es wird empfohlen, die  vorgeschlagenen Verzeichnisse beizubehalten.</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/page_key_dirs.ui" line="212"/>
+        <source>You can choose a directory in which to export the public key, e.g. a USB-drive or a network share.</source>
+        <translation>Sie können ein Verzeichnis wählen, in das der öffentliche Schlüssel exportiert wird, z.B. ein USB-Stick oder eine Netzwerkfreigabe.</translation>
     </message>
 </context>
 <context>
@@ -115,7 +147,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../dialogs/page_security_options.ui" line="63"/>
         <source>iTALC has a sophisticated security-concept for preventing unauthorized access to computers having iTALC client software installed. Therefore you either have to create a new key-pair or import the public key created during iTALC installation on master computer.</source>
-        <translation>iTALC besitzt ein ausgeklügeltes Sicherheitskonzept, um unerlaubten Zugriff auf Computer mit der iTALC-Client-Software zu verhindern. Deshalb müssen Sie entweder ein neues Schlüsselpaar erzeugen oder den öffentlichen Schlüssel, der bei der Installatio iTALC auf dem Master-Computer erzeugt wurde, importieren.</translation>
+        <translation>iTALC besitzt ein ausgeklügeltes Sicherheitskonzept, um unerlaubten Zugriff auf Computer mit der iTALC-Client-Software zu verhindern. Deshalb müssen Sie entweder ein neues Schlüsselpaar erzeugen oder den öffentlichen Schlüssel, der bei der Installation von iTALC auf dem Master-Computer erzeugt wurde, importieren.</translation>
     </message>
     <message>
         <location filename="../dialogs/page_security_options.ui" line="73"/>
@@ -128,7 +160,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Öffentlichen Schlüssel vom Master-Computer importieren</translation>
     </message>
     <message>
-        <location filename="../dialogs/page_security_options.ui" line="122"/>
+        <location filename="../dialogs/page_security_options.ui" line="114"/>
         <source>Choose location of exported public key:</source>
         <translation>Wählen Sie den Ort des exportierten öffentlichen Schlüssels:</translation>
     </message>
@@ -182,12 +214,12 @@ p, li { white-space: pre-wrap; }
         <translation>iTALC Master Applikation (IMA)</translation>
     </message>
     <message>
-        <location filename="../dialogs/page_select_components.ui" line="110"/>
+        <location filename="../dialogs/page_select_components.ui" line="113"/>
         <source>Online-Update Service (LUPUS)</source>
         <translation>Online-Update-Dienst (LUPUS)</translation>
     </message>
     <message>
-        <location filename="../dialogs/page_select_components.ui" line="117"/>
+        <location filename="../dialogs/page_select_components.ui" line="123"/>
         <source>iTALC documentation</source>
         <translation>iTALC Dokumentation</translation>
     </message>
@@ -222,80 +254,85 @@ Klicken Sie auf &apos;Weiter&apos;, um fortzufahren.</translation>
 <context>
     <name>setupWizard</name>
     <message>
-        <location filename="../src/dialogs.cpp" line="117"/>
+        <location filename="../src/dialogs.cpp" line="118"/>
         <source>Cancel setup</source>
         <translation>Setup abbrechen</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="119"/>
+        <location filename="../src/dialogs.cpp" line="120"/>
         <source>Are you sure want to quit setup? iTALC is not installed completely yet!</source>
         <translation>Sind Sie sicher, dass Sie die Installation abbrechen wollen? iTALC ist noch nicht vollständig installiert!</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="145"/>
+        <location filename="../src/dialogs.cpp" line="146"/>
         <source>Next</source>
         <translation>Weiter</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="169"/>
+        <location filename="../src/dialogs.cpp" line="306"/>
         <source>Finish</source>
         <translation>Abschließen</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="208"/>
+        <location filename="../src/dialogs.cpp" line="196"/>
         <source>Installing iTALC</source>
         <translation>Installiere iTALC</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="210"/>
+        <location filename="../src/dialogs.cpp" line="198"/>
         <source>Copying files...</source>
         <translation>Kopiere Dateien...</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="231"/>
+        <location filename="../src/dialogs.cpp" line="220"/>
         <source>Confirm overwrite</source>
         <translation>Überschreiben bestätigen</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="232"/>
+        <location filename="../src/dialogs.cpp" line="221"/>
         <source>Do you want to overwrite %1?</source>
         <translation>Möchten Sie die Datei %1 überschreiben?</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="274"/>
+        <location filename="../src/dialogs.cpp" line="262"/>
         <source>Registering ICA as service...</source>
         <translation>Registriere ICA als Dienst...</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="282"/>
+        <location filename="../src/dialogs.cpp" line="269"/>
         <source>Creating/importing keys...</source>
         <translation>Erstelle/importiere Schlüssel...</translation>
+    </message>
+    <message>
+        <location filename="../src/dialogs.cpp" line="310"/>
+        <source>Quit</source>
+        <translation>Beenden</translation>
     </message>
 </context>
 <context>
     <name>setupWizardPageInstallDir</name>
     <message>
-        <location filename="../src/dialogs.cpp" line="392"/>
+        <location filename="../src/dialogs.cpp" line="401"/>
         <source>Directory does not exist</source>
         <translation>Verzeichnis existiert nicht</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="394"/>
+        <location filename="../src/dialogs.cpp" line="403"/>
         <source>The specified directory does not exist. Do you want to create it?</source>
         <translation>Das angegebene Verzeichnis existiert nicht. Möchten Sie es erstellen?</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="409"/>
+        <location filename="../src/dialogs.cpp" line="418"/>
         <source>Could not create directory</source>
         <translation>Konnte Verzeichnis nicht erstellen</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="413"/>
+        <location filename="../src/dialogs.cpp" line="422"/>
         <source>Could not create directory %1! Make sure you have the neccessary rights and try again!</source>
         <translation>Konnte das Verzeichnis %1 nicht erzeugen. Stellen Sie sicher, dass Sie die nötigen Rechte besitzen und versuchen es erneut!</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="436"/>
+        <location filename="../src/dialogs.cpp" line="445"/>
         <source>Choose installation directory</source>
         <translation>Installationsverzeichnis wählen</translation>
     </message>
@@ -303,17 +340,17 @@ Klicken Sie auf &apos;Weiter&apos;, um fortzufahren.</translation>
 <context>
     <name>setupWizardPageKeyDirs</name>
     <message>
-        <location filename="../src/dialogs.cpp" line="658"/>
+        <location filename="../src/dialogs.cpp" line="667"/>
         <source>Choose public key directory</source>
         <translation>Verzeichnis für öffentlichen Schlüssel wählen</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="672"/>
+        <location filename="../src/dialogs.cpp" line="681"/>
         <source>Choose private key directory</source>
         <translation>Verzeichnis für privaten Schlüssel wählen</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="686"/>
+        <location filename="../src/dialogs.cpp" line="695"/>
         <source>Choose public key export directory</source>
         <translation>Verzeichnis zum Exportieren des öffentlichen Schlüssels wählen</translation>
     </message>
@@ -321,7 +358,7 @@ Klicken Sie auf &apos;Weiter&apos;, um fortzufahren.</translation>
 <context>
     <name>setupWizardPageSecurityOptions</name>
     <message>
-        <location filename="../src/dialogs.cpp" line="567"/>
+        <location filename="../src/dialogs.cpp" line="576"/>
         <source>Choose directory for key-import</source>
         <translation>Verzeichnis für Schlüssel-Import wählen</translation>
     </message>
