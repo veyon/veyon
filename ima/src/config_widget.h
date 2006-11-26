@@ -43,6 +43,7 @@ protected slots:
 	void demoQualitySelected( int );
 	void roleSelected( int );
 	void toggleToolButtonTips( bool _on );
+	void domainChanged( const QString & _domain );
 
 } ;
 

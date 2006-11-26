@@ -193,9 +193,6 @@ public:
 	}
 
 
-	static void prepareDemo( isdConnection * _conn,
-					const QVector<client *> & _clients );
-
 
 	float m_rasterX;
 	float m_rasterY;
@@ -297,6 +294,7 @@ private:
 			LockScreen,
 			UnlockScreen,
 			SendTextMessage,
+			ClientDemo,
 			LogonUser,
 			LogoutUser,
 			Reboot,

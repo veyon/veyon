@@ -253,6 +253,7 @@ void clientManager::savePersonalConfig( void )
 					getMainWindow()->saveState() ) );
 
 	globalsettings.setAttribute( "net-iface", __demo_network_interface );
+	globalsettings.setAttribute( "defaultdomain", __default_domain );
 	globalsettings.setAttribute( "demoquality", __demo_quality );
 	globalsettings.setAttribute( "role", __role );
 	globalsettings.setAttribute( "notooltips",
@@ -437,6 +438,9 @@ void clientManager::getHeaderInformation( const QDomElement & _header )
 
 			__demo_quality = node.toElement().
 					attribute( "demoquality" ).toInt();
+
+			__default_domain = node.toElement().
+						attribute( "defaultdomain" );
 
 			__role = static_cast<ISD::userRoles>(
 				node.toElement().attribute( "role" ).toInt() );
@@ -766,16 +770,16 @@ void clientManager::changeGlobalClientMode( int _mode )
 		m_globalClientMode = new_mode;
 		isdConnection * conn = getMainWindow()->localISD();
 		QVector<client *> vc = visibleClients();
-/*		if( m_globalClientMode == client::Mode_FullscreenDemo ||
-			m_globalClientMode == client::Mode_WindowDemo )
-		{
-			client::prepareDemo( conn, vc );
-		}*/
 
 		foreach( client * cl, vc )
 		{
 			cl->changeMode( m_globalClientMode, conn );
-			localSystem::sleep( 400 );
+			if( m_globalClientMode == client::Mode_FullscreenDemo ||
+				m_globalClientMode ==
+						client::Mode_WindowDemo )
+			{
+				localSystem::sleep( 400 );
+			}
 		}
 	}
 }

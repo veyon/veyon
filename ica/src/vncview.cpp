@@ -102,6 +102,8 @@ void vncView::framebufferUpdate( void )
 		return;
 	}
 
+	const QPoint mp = mapFromGlobal( QCursor::pos() );
+
 	// not yet connected or connection lost while handling messages?
 	if( m_connection->state() != ivsConnection::Connected )
 	{
@@ -112,6 +114,12 @@ void vncView::framebufferUpdate( void )
 		setAttribute( Qt::WA_PaintOnScreen, false );
 		m_establishingConnection->show();
 		QTimer::singleShot( 40, this, SLOT( framebufferUpdate() ) );
+		if( mp.y() < 2 )
+		{
+			// special signal for allowing parent-widgets to
+			// show a toolbar etc.
+			emit mouseAtTop();
+		}
 		return;
 	}
 
@@ -133,7 +141,6 @@ void vncView::framebufferUpdate( void )
 
 	// check whether to scroll because mouse-cursor is at an egde which
 	// doesn't correspond to the framebuffer's edge
-	const QPoint mp = mapFromGlobal( QCursor::pos() );
 	const QPoint old_vo = m_viewOffset;
 	const int MAGIC_MARGIN = 15;
 	if( mp.x() <= MAGIC_MARGIN && m_viewOffset.x() > 0 )

@@ -1,3 +1,48 @@
+2006-11-26	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* ica/resources/de.ts:
+	* ica/resources/de.qm:
+	* ima/resources/de.ts:
+	* ima/resources/de.qm:
+	updated German localization
+
+	* ima/src/client.h:
+	* ima/src/client.cpp:
+	- rewrote code for client-demo - should work now
+	- added note to "watch only"-action
+
+	* ima/src/client_manager.h:
+	* ima/src/main_window.h:
+	* ima/src/main_window.cpp:
+	clicking buttons such as "lock screens" or "start-demo" when already
+	activated will switch back to view-only-mode - probably avoids some
+	confused users...
+
+	* ima/src/client_manager.cpp:
+	only sleep in changeGlobalClientMode( ... ) when starting demo
+
+	* common/include/local_system.h:
+	* common/include/isd_connection.h:
+	* common/src/isd_connection.cpp:
+	* common/src/local_system.cpp:
+	* ica/src/isd_server.cpp:
+	* ima/dialogs/config.ui:
+	* ima/dialogs/multi_logon.ui:
+	* ima/src/config_widget.h:
+	* ima/src/config_widget.cpp:
+	* ima/src/client.cpp:
+	* ima/src/client_manager.cpp:
+	* ima/src/dialogs.h:
+	* ima/src/dialogs.cpp:
+	* ima/src/main.cpp:
+	* ima/src/main_window.h:
+	better support for multi-logon under win32 by using accellerators
+	for each input-field and also allowing to enter domain-name
+
+	* ica/src/vncview.cpp:
+	also display toolbar when user moves cursor to top of screen while
+	connecting to host
+
 2006-11-23	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* ima/src/client.cpp:

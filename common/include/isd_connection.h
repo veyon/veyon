@@ -115,7 +115,8 @@ public:
 	bool stopDemo( void );
 	bool lockDisplay( void );
 	bool unlockDisplay( void );
-	bool logonUser( const QString & _uname, const QString & _pw );
+	bool logonUser( const QString & _uname, const QString & _pw,
+						const QString & _domain );
 	bool logoutUser( void );
 	bool displayTextMessage( const QString & _msg );
 	bool sendFile( const QString & _fname );

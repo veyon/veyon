@@ -36,6 +36,7 @@ class QSplashScreen;
 class QSplitter;
 class QWorkspace;
 class QToolBar;
+class QButtonGroup;
 
 class clientManager;
 class configWidget;
@@ -49,6 +50,7 @@ class userList;
 
 extern QString __demo_network_interface;
 extern QString __demo_master_ip;
+extern QString __default_domain;
 extern int __demo_quality;
 
 
@@ -78,13 +80,14 @@ public:
 
 
 private slots:
-	// slots for actions in help-menu
 	void enterWhatsThisMode( void )
 	{
 		QWhatsThis::enterWhatsThisMode();
 	}
 
 	void aboutITALC( void );
+
+	void changeGlobalClientMode( int );
 
 
 private:
@@ -107,9 +110,7 @@ private:
 
 	QWorkspace * m_workspace;
 
-/*	QMenu * m_filePopupMenu;
-	QMenu * m_actionsPopupMenu;
-	QMenu * m_helpPopupMenu;*/
+	QButtonGroup * m_modeGroup;
 
 	QToolBar * m_toolBar;
 

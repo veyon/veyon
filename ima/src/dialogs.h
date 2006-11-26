@@ -125,21 +125,33 @@ public:
 		return( m_password );
 	}
 
+	const QString & domain( void ) const
+	{
+		return( m_domain );
+	}
+
 
 private slots:
 	void userNameChanged( const QString & _un )
 	{
 		m_userName = _un;
 	}
+
 	void passwordChanged( const QString & _pw )
 	{
 		m_password = _pw;
+	}
+
+	void domainChanged( const QString & _domain )
+	{
+		m_domain = _domain;
 	}
 
 
 private:
 	QString m_userName;
 	QString m_password;
+	QString m_domain;
 
 } ;
 

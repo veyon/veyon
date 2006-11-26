@@ -359,7 +359,8 @@ static inline void pressAndReleaseKey( int _key )
 }
 
 
-void logonUser( const QString & _uname, const QString & _passwd )
+void logonUser( const QString & _uname, const QString & _passwd,
+						const QString & _domain )
 {
 #ifdef BUILD_WIN32
 	pressAndReleaseKey( XK_Escape );
@@ -370,16 +371,49 @@ void logonUser( const QString & _uname, const QString & _passwd )
 	pressAndReleaseKey( XK_Delete );
 	pressKey( XK_Control_L, FALSE );
 	pressKey( XK_Alt_L, FALSE );
+
+	const ushort * accels = QObject::tr(
+		"UPL (note for translators: the first three characters of "
+		"this string are the accellerators (underlined characters) "
+		"of the three input-fields in logon-dialog of windows - "
+		"you only need to \"translate\" these characters, this note "
+						"can be ommited)" ).utf16();
+	pressKey( XK_Alt_L, TRUE );
+	pressAndReleaseKey( accels[0] );
+	pressKey( XK_Alt_L, FALSE );
 #endif
+
 	for( int i = 0; i < _uname.size(); ++i )
 	{
 		pressAndReleaseKey( _uname.utf16()[i] );
 	}
+
+#ifdef BUILD_WIN32
+	pressKey( XK_Alt_L, TRUE );
+	pressAndReleaseKey( accels[1] );
+	pressKey( XK_Alt_L, FALSE );
+#else
 	pressAndReleaseKey( XK_Tab );
+#endif
+
 	for( int i = 0; i < _passwd.size(); ++i )
 	{
 		pressAndReleaseKey( _passwd.utf16()[i] );
 	}
+
+#ifdef BUILD_WIN32
+	if( !_domain.isEmpty() )
+	{
+		pressKey( XK_Alt_L, TRUE );
+		pressAndReleaseKey( accels[2] );
+		pressKey( XK_Alt_L, FALSE );
+		for( int i = 0; i < _domain.size(); ++i )
+		{
+			pressAndReleaseKey( _domain.utf16()[i] );
+		}
+	}
+#endif
+
 	pressAndReleaseKey( XK_Return );
 }
 

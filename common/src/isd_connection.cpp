@@ -599,7 +599,8 @@ bool isdConnection::unlockDisplay( void )
 
 
 
-bool isdConnection::logonUser( const QString & _uname, const QString & _pw )
+bool isdConnection::logonUser( const QString & _uname, const QString & _pw,
+						const QString & _domain )
 {
 	if( m_socket == NULL ||
 			m_socket->state() != QTcpSocket::ConnectedState )
@@ -609,7 +610,8 @@ bool isdConnection::logonUser( const QString & _uname, const QString & _pw )
 	}
 	return( ISD::msg( &m_socketDev, ISD::LogonUser ).
 				addArg( "uname", _uname ).
-				addArg( "passwd", _pw ).send() );
+				addArg( "passwd", _uname ).
+				addArg( "domain", _pw ).send() );
 }
 
 

@@ -27,8 +27,6 @@
 #include <config.h>
 #endif
 
-class QColorGroup;
-
 #include <QtCore/QDir>
 #include <QtCore/QDateTime>
 #include <QtCore/QTimer>
@@ -161,7 +159,7 @@ mainWindow::mainWindow() :
 							"classrooms." ) );
 
 
-	QButtonGroup * mode_group = new QButtonGroup( this );
+	m_modeGroup = new QButtonGroup( this );
 
 	toolButton * overview_mode = new toolButton(
 			QPixmap( ":/resources/overview_mode.png" ),
@@ -205,14 +203,14 @@ mainWindow::mainWindow() :
 	windemo_mode->setCheckable( TRUE );
 	lock_mode->setCheckable( TRUE );
 
-	mode_group->addButton( overview_mode, client::Mode_Overview );
-	mode_group->addButton( fsdemo_mode, client::Mode_FullscreenDemo );
-	mode_group->addButton( windemo_mode, client::Mode_WindowDemo );
-	mode_group->addButton( lock_mode, client::Mode_Locked );
+	m_modeGroup->addButton( overview_mode, client::Mode_Overview );
+	m_modeGroup->addButton( fsdemo_mode, client::Mode_FullscreenDemo );
+	m_modeGroup->addButton( windemo_mode, client::Mode_WindowDemo );
+	m_modeGroup->addButton( lock_mode, client::Mode_Locked );
 
 	overview_mode->setChecked( TRUE );
-	connect( mode_group, SIGNAL( buttonClicked( int ) ),
-		m_clientManager, SLOT( changeGlobalClientMode( int ) ) );
+	connect( m_modeGroup, SIGNAL( buttonClicked( int ) ),
+			this, SLOT( changeGlobalClientMode( int ) ) );
 
 
 
@@ -417,6 +415,26 @@ void mainWindow::closeEvent( QCloseEvent * _ce )
 void mainWindow::aboutITALC( void )
 {
 	aboutDialog( this ).exec();
+}
+
+
+
+
+void mainWindow::changeGlobalClientMode( int _mode )
+{
+	client::modes new_mode = static_cast<client::modes>( _mode );
+	if( new_mode == m_clientManager->globalClientMode() &&
+					new_mode != client::Mode_Overview )
+	{
+		m_clientManager->changeGlobalClientMode(
+							client::Mode_Overview );
+		m_modeGroup->button( client::Mode_Overview )->setChecked(
+									TRUE );
+	}
+	else
+	{
+		m_clientManager->changeGlobalClientMode( _mode );
+	}
 }
 
 

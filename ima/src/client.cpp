@@ -152,7 +152,7 @@ client::client( const QString & _local_ip, const QString & _remote_ip,
 	connect( tb, SIGNAL( triggered( QAction * ) ), this,
 					SLOT( processCmdSlot( QAction * ) ) );
 	tb->addAction( scaled( ":/resources/overview_mode.png", 16, 16 ),
-							tr( "Watch only" ) )->
+			tr( "Watch only (stops demo and unlocks screen)" ) )->
 				setData( CmdCount + Mode_Overview );
 	tb->addAction( scaled( ":/resources/fullscreen_demo.png", 16, 16 ),
 						tr( "Fullscreen demo" ) )->
@@ -365,18 +365,6 @@ void client::processCmd( clientCmds _cmd, const QString & _u_data )
 	}
 
 	( this->*( client::s_commands[_cmd].m_exec ) )( _u_data );
-}
-
-
-
-
-void client::prepareDemo( isdConnection * _conn,
-					const QVector<client *> & _clients )
-{
-	foreach( const client * cl, _clients )
-	{
-		_conn->demoServerAllowClient( cl->localIP() );
-	}
 }
 
 
@@ -678,50 +666,7 @@ void client::reload( const QString & _update )
 
 void client::clientDemo( const QString & )
 {
-	QVector<client *> vc =
-			m_mainWindow->getClientManager()->visibleClients();
-	m_syncMutex.lock();
-	prepareDemo( m_connection, vc );
-#warning: TODO: start demo-server on this client instead of connect all hosts to the client's IVS
-	foreach( client * cl, vc )
-	{
-		if( cl == this )
-		{
-			continue;
-		}
-
-		// first make sure, everything is in order (screen not locked,
-		// no demo running etc.)
-		cl->changeMode( Mode_Overview, NULL );
-
-		cl->m_updateThread->enqueueCommand( updateThread::StartDemo,
-	QList<QVariant>()
-			<< ( m_localIP.contains( ':' ) ?
-						m_localIP
-					:
-						m_localIP + ":" +
-						QString::number(
-							PortOffsetIVS ) )
-			<< TRUE );
-
-		cl->m_mode = Mode_FullscreenDemo;
-	}
-	m_syncMutex.unlock();
-/*	if( !m_mainWindow->getClientManager()->demoRunning() )
-	{
-		QMessageBox::information( this, tr( "No demo running" ),
-						tr( "Before you allow a client "
-							"to show a demo, you "
-							"have to start the "
-							"demo-mode by clicking "
-							"on the corresponding "
-							"icon in the toolbar."
-									) );
-		return;
-	}
-
-	stopDemo( "" );
-	remoteControl( "" );*/
+	m_updateThread->enqueueCommand( updateThread::ClientDemo, "" );
 }
 
 
@@ -843,7 +788,8 @@ void client::logonUser( const QString & _uname_and_pw )
 		if( mld.exec() == QDialog::Accepted &&
 			!mld.userName().isEmpty() && !mld.password().isEmpty() )
 		{
-			logonUser( mld.userName() + "*" + mld.password() );
+			logonUser( mld.userName() + "*" + mld.password() +
+							"*" + mld.domain() );
 		}
 	}
 	else
@@ -1077,13 +1023,53 @@ void client::updateThread::run( void )
 						displayTextMessage(
 							i.second.toString() );
 					break;
+				case ClientDemo:
+{
+	QVector<client *> vc =
+			m_client->m_mainWindow->getClientManager()->
+							visibleClients();
+	const int ClientDemoPort = 5999;
+
+	isdConnection * conn = m_client->m_connection;
+	conn->demoServerStop();
+	conn->demoServerRun( __demo_quality, ClientDemoPort );
+
+	foreach( const client * cl, vc )
+	{
+		conn->demoServerAllowClient( cl->localIP() );
+	}
+
+	foreach( client * cl, vc )
+	{
+		if( cl == m_client )
+		{
+			continue;
+		}
+
+		// first make sure, everything is in order (screen not locked,
+		// no demo running etc.)
+		cl->changeMode( Mode_Overview, NULL );
+
+		cl->m_updateThread->enqueueCommand( updateThread::StartDemo,
+	QList<QVariant>()
+			<< ( m_client->m_localIP.section( ':', 0, 0 )
+				+ ":" + QString::number( ClientDemoPort ) )
+			<< TRUE );
+
+		cl->m_mode = Mode_FullscreenDemo;
+	}
+}
+					break;
 				case LogonUser:
 				{
 					const QString s = i.second.toString();
 					const int pos = s.indexOf( '*' );
+					const int pos2 = s.lastIndexOf( '*' );
 					m_client->m_connection->logonUser(
 							s.left( pos ),
-							s.mid( pos + 1 ) );
+							s.mid( pos + 1,
+								pos2-pos-1 ),
+							s.mid( pos2 + 1 ) );
 					break;
 				}
 				case LogoutUser:

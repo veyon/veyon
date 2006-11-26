@@ -51,7 +51,8 @@ namespace localSystem
 	void reboot( void );
 
 #ifdef BUILD_ICA
-	void logonUser( const QString & _uname, const QString & _pw );
+	void logonUser( const QString & _uname, const QString & _pw,
+						const QString & _domain );
 #endif
 	void logoutUser( void );
 

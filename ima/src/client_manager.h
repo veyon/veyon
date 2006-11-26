@@ -80,6 +80,11 @@ public:
 		return( m_winCfg );
 	}
 
+	client::modes globalClientMode( void ) const
+	{
+		return( m_globalClientMode );
+	}
+
 	inline void setUpdateIntervalSpinBox( QSpinBox * _update_interval_sb )
 	{
 		m_updateIntervalSpinBox = _update_interval_sb;

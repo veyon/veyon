@@ -169,7 +169,8 @@ int isdServer::processClient( socketDispatcher _sd, void * _user )
 		case ISD::LogonUser:
 			localSystem::logonUser(
 					msg_in.arg( "uname" ).toString(),
-					msg_in.arg( "passwd" ).toString() );
+					msg_in.arg( "passwd" ).toString(),
+					msg_in.arg( "domain" ).toString() );
 			break;
 
 		case ISD::LogoutUser:
@@ -968,7 +969,8 @@ public:
 
 			case ISD::LogonUser:
 				logonUser( msg_in.arg( "uname" ).toString(),
-					msg_in.arg( "passwd" ).toString() );
+					msg_in.arg( "passwd" ).toString(),
+					msg_in.arg( "domain" ).toString() );
 				break;
 
 			case ISD::LogoutUser:

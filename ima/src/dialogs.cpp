@@ -174,10 +174,14 @@ multiLogonDialog::multiLogonDialog( QWidget * _parent ) :
 {
 	setupUi( this );
 
+	domainEdit->setText( __default_domain );
+
 	connect( userNameEdit, SIGNAL( textChanged( const QString & ) ),
 			this, SLOT( userNameChanged( const QString & ) ) );
 	connect( passwordEdit, SIGNAL( textChanged( const QString & ) ),
 			this, SLOT( passwordChanged( const QString & ) ) );
+	connect( domainEdit, SIGNAL( textChanged( const QString & ) ),
+			this, SLOT( domainChanged( const QString & ) ) );
 }
 
 

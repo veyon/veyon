@@ -50,7 +50,7 @@ configWidget::configWidget( mainWindow * _main_window, QWidget * _parent ) :
 			_main_window, _parent )
 {
 	setupUi( contentParent() );
-	contentParent()->layout()->addWidget( layoutWidget );
+	contentParent()->layout()->addWidget( widget );
 
 
 	connect( updateIntervalSB, SIGNAL( valueChanged( int ) ),
@@ -108,6 +108,10 @@ configWidget::configWidget( mainWindow * _main_window, QWidget * _parent ) :
 	balloonToolTips->setChecked( toolButton::toolTipsDisabled() );
 	connect( balloonToolTips, SIGNAL( toggled( bool ) ),
 			this, SLOT( toggleToolButtonTips( bool ) ) );
+
+	domainEdit->setText( __default_domain );
+	connect( domainEdit, SIGNAL( textChanged( const QString & ) ),
+			this, SLOT( domainChanged( const QString & ) ) );
 }
 
 
@@ -159,6 +163,14 @@ void configWidget::roleSelected( int _role )
 void configWidget::toggleToolButtonTips( bool _on )
 {
 	toolButton::setToolTipsDisabled( _on );
+}
+
+
+
+
+void configWidget::domainChanged( const QString & _domain )
+{
+	__default_domain = _domain;
 }
 
 

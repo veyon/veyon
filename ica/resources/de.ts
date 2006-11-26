@@ -66,7 +66,7 @@
         <translation type="obsolete">Der iTALC-Client wurde erfolgreich als Dienst registriert. Er wird automatisch beim nächsten Neustart ausgeführt.</translation>
     </message>
     <message>
-        <location filename="../src/ica_main.cpp" line="213"/>
+        <location filename="../src/ica_main.cpp" line="239"/>
         <source>iTALC Client on %1:%2</source>
         <translation>iTALC Client auf %1:%2</translation>
     </message>
@@ -142,6 +142,14 @@
     </message>
 </context>
 <context>
+    <name>QObject</name>
+    <message>
+        <location filename="../../common/src/local_system.cpp" line="380"/>
+        <source>UPL (note for translators: the first three characters of this string are the accellerators (underlined characters) of the three input-fields in logon-dialog of windows - you only need to &quot;translate&quot; these characters, this note can be ommited)</source>
+        <translation>BKA</translation>
+    </message>
+</context>
+<context>
     <name>demoClient</name>
     <message>
         <location filename="../src/demo_client.cpp" line="41"/>
@@ -157,22 +165,22 @@
         <translation>Nachricht vom Lehrer</translation>
     </message>
     <message>
-        <location filename="../src/isd_server.cpp" line="534"/>
+        <location filename="../src/isd_server.cpp" line="535"/>
         <source>Somebody at host %1 tries to access your screen. Do you want to grant him/her access?</source>
         <translation>Jemand am Rechner %1 versucht auf Ihren Bildschirm zuzugreifen. Möchten Sie ihm/ihr Zugriff gewähren?</translation>
     </message>
     <message>
-        <location filename="../src/isd_server.cpp" line="552"/>
+        <location filename="../src/isd_server.cpp" line="553"/>
         <source>Never for this session</source>
         <translation>Nie für diese Sitzung</translation>
     </message>
     <message>
-        <location filename="../src/isd_server.cpp" line="547"/>
+        <location filename="../src/isd_server.cpp" line="548"/>
         <source>Always for this session</source>
         <translation>Immer für diese Sitzung</translation>
     </message>
     <message>
-        <location filename="../src/isd_server.cpp" line="531"/>
+        <location filename="../src/isd_server.cpp" line="532"/>
         <source>Confirm access</source>
         <translation>Zugriff bestätigen</translation>
     </message>
@@ -188,12 +196,12 @@
 <context>
     <name>remoteControlWidget</name>
     <message>
-        <location filename="../src/remote_control_widget.cpp" line="373"/>
+        <location filename="../src/remote_control_widget.cpp" line="376"/>
         <source>User %1 at host %2</source>
         <translation>Nutzer %1 am Rechner %2</translation>
     </message>
     <message>
-        <location filename="../src/remote_control_widget.cpp" line="366"/>
+        <location filename="../src/remote_control_widget.cpp" line="369"/>
         <source>iTALC remote control (host %1)</source>
         <translation>iTALC Fernsteuerung (Rechner %1)</translation>
     </message>
@@ -229,7 +237,7 @@
         <translation type="obsolete">Verbindung wird hergestellt ...</translation>
     </message>
     <message>
-        <location filename="../src/vncview.cpp" line="53"/>
+        <location filename="../src/vncview.cpp" line="54"/>
         <source>Establishing connection to %1 ...</source>
         <translation>Verbindung zu %1 wird hergestellt ...</translation>
     </message>
