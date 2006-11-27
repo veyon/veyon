@@ -84,7 +84,6 @@ fi
 # Calculate Qt include path
 QT_CXXFLAGS="-I$QT_INCLUDES -I$QT_INCLUDES/Qt/"
 
-
 # On unix, figure out if we're doing a static or dynamic link
 case "${build}" in
       *mingw32)
@@ -102,6 +101,12 @@ case "${build}" in
         fi
 	QT_LIB="-L$QTDIR/bin -lQtCore4 -lQtXml4 -lQtNetwork4 -lws2_32"
 	QT_LIB_GUI="-lQtGui4"
+	# Check that windres is in path
+	AC_CHECK_PROG(WINDRES, i586-mingw32-windres, ${prefix}/bin/i586-mingw32-windres,,${prefix}/bin/)
+	if test x$WINDRES = x ; then
+		AC_MSG_ERROR([*** not found! Make sure you have binutils installed!])
+	fi
+
         ;;
     *)
         QT_IS_STATIC=`ls $QTDIR/lib/*.a 2> /dev/null`

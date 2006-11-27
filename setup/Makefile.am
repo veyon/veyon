@@ -56,9 +56,14 @@ if HAVE_LIBEAY32
 LIBSSL_LDADD = -leay32
 endif
 
+if BUILD_WIN32
+setup_win_resources.o: setup.rc
+	$(WINDRES) -o $@ $<
+WIN32_RES_LDADD = setup_win_resources.o
+endif
 
-setup_LDADD = $(QT_LDADD) $(QT_LIB_GUI) $(LIBSSL_LDADD)
-setup_LDFLAGS = $(LDFLAGS) -mwindow
+setup_LDADD = $(QT_LDADD) $(QT_LIB_GUI) $(LIBSSL_LDADD) $(WIN32_RES_LDADD)
+setup_LDFLAGS = $(LDFLAGS) -mwindows
 
 AM_CXXFLAGS := $(AM_CXXFLAGS) $(QT_CXXFLAGS)
 

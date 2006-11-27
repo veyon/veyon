@@ -30,6 +30,8 @@
 #else
 #include <QtCore/QCoreApplication>
 #endif
+#include <QtCore/QLocale>
+#include <QtCore/QTranslator>
 
 #include "system_service.h"
 
@@ -74,6 +76,14 @@ bool systemService::evalArgs( int & _argc, char * * _argv )
 		}
 #ifndef NO_GUI
 		QApplication app( _argc, _argv );
+		const QString loc = QLocale::system().name().left( 2 );
+		QTranslator app_tr;
+		app_tr.load( ":/resources/" + loc + ".qm" );
+		app.installTranslator( &app_tr );
+
+		QTranslator qt_tr;
+		qt_tr.load( ":/resources/qt_" + loc + ".qm" );
+		app.installTranslator( &qt_tr );
 #endif
 		for( int i = 1; i < oac; ++i )
 		{

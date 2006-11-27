@@ -2,8 +2,8 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.50)
-AC_INIT(italc, 0.9.8.0-svn-20061126, tobydox/at/users/dot/sf/dot/net)
-AM_INIT_AUTOMAKE(italc, 0.9.8.0-svn-20061126)
+AC_INIT(italc, 0.9.8.0-svn-20061127, tobydox/at/users/dot/sf/dot/net)
+AM_INIT_AUTOMAKE(italc, 0.9.8.0-svn-20061127)
 AM_CONFIG_HEADER(config.h)
 AX_PREFIX_CONFIG_H([common/include/rfb/rfbconfig.h])
 
@@ -463,7 +463,11 @@ AC_CONFIG_FILES([Makefile
 		 ica/Makefile
 		 ima/Makefile
 		 setup/Makefile
-		 utils-win32/Makefile])
+		 utils-win32/Makefile
+		 ica/ica.rc
+		 ima/italc.rc
+		 setup/setup.rc
+		 ])
 AC_OUTPUT
 
 echo

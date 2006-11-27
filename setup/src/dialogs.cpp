@@ -51,7 +51,8 @@ setupWizard::setupWizard() :
 	QDialog(),
 	Ui::wizard(),
 	m_installDir(),
-	m_keyImportDir( QDir::homePath() + QDir::separator() ),
+	m_keyImportDir( QDir::homePath().replace( "/", QDir::separator() ) +
+							QDir::separator() ),
 	m_keyExportDir( m_keyImportDir ),
 	m_pubKeyDir( localSystem::publicKeyPath( ISD::RoleTeacher, TRUE ) ),
 	m_privKeyDir( localSystem::privateKeyPath( ISD::RoleTeacher, TRUE ) ),
@@ -63,7 +64,14 @@ setupWizard::setupWizard() :
 	m_idx( 0 )
 {
 	setupUi( this );
-	DEFAULT_INSTALL_DIR = m_installDir =
+	DEFAULT_INSTALL_DIR =
+#ifdef BUILD_WIN32
+			"c:\\italc"
+#else
+					"/opt/italc"
+#endif
+					;
+	m_installDir =
 #ifdef BUILD_WIN32
 			"C:\\" + QDialog::tr( "Program Files" ) + "\\iTALC"
 #else
@@ -114,7 +122,7 @@ void setupWizard::setNextPageDisabled( bool _disabled )
 
 void setupWizard::reject( void )
 {
-	if( QMessageBox::question( NULL,
+	if( QMessageBox::question( window(),
 			tr( "Cancel setup" ),
 			tr( "Are you sure want to quit setup? iTALC is not "
 				"installed completely yet!" ),
@@ -162,7 +170,6 @@ void setupWizard::next( void )
 		const QString & d = m_installDir + QDir::separator();
 		QStringList files;
 		files <<
-			"italc.ico" 		<<
 #ifdef BUILD_WIN32
 			"ica.exe" 		<<
 			"italc.exe" 		<<
@@ -191,7 +198,7 @@ void setupWizard::next( void )
 			"QtXml.so.4"
 #endif
 			;
-		QProgressDialog pd;
+		QProgressDialog pd( window() );
 
 		pd.setWindowTitle( tr( "Installing iTALC" ) );
 
@@ -217,7 +224,7 @@ void setupWizard::next( void )
 				{
 					continue;
 				}
-	int res = QMessageBox::question( NULL, tr( "Confirm overwrite" ),
+	int res = QMessageBox::question( window(), tr( "Confirm overwrite" ),
 			tr( "Do you want to overwrite %1?" ).arg( d + file ),
 #ifdef QMESSAGEBOX_EXT_SUPPORT
 				QMessageBox::Yes | QMessageBox::No |
@@ -247,6 +254,7 @@ void setupWizard::next( void )
 							" -unregisterservice" );
 				}
 			}
+			QFile( d + file ).remove();
 			QFile( file ).copy( d + file );
 			pd.setValue( ++i * 50 / files.size() );
 			qApp->processEvents();
@@ -397,7 +405,7 @@ bool setupWizardPageInstallDir::returnPressed( void )
 	QString d = m_setupWizard->m_installDir + QDir::separator();
 	if( !QDir( d ).exists() )
 	{
-		if( QMessageBox::question( NULL,
+		if( QMessageBox::question( window(),
 				tr( "Directory does not exist" ),
 				tr( "The specified directory does not exist. "
 					"Do you want to create it?" ),
@@ -414,7 +422,7 @@ bool setupWizardPageInstallDir::returnPressed( void )
 		{
 			if( !localSystem::ensurePathExists( d ) )
 			{
-				QMessageBox::critical( NULL,
+				QMessageBox::critical( window(),
 					tr( "Could not create directory" ),
 					tr( "Could not create directory %1! "
 						"Make sure you have the "
@@ -441,7 +449,7 @@ bool setupWizardPageInstallDir::returnPressed( void )
 
 void setupWizardPageInstallDir::openDir( void )
 {
-	QString dir = QFileDialog::getExistingDirectory( NULL,
+	QString dir = QFileDialog::getExistingDirectory( window(),
 					tr( "Choose installation directory" ),
 					m_setupWizard->m_installDir );
 	if( !dir.isEmpty() )
@@ -572,7 +580,7 @@ bool setupWizardPageSecurityOptions::nextPageDisabled( void )
 
 void setupWizardPageSecurityOptions::openKeyImportDir( void )
 {
-	QString dir = QFileDialog::getExistingDirectory( NULL,
+	QString dir = QFileDialog::getExistingDirectory( window(),
 					tr( "Choose directory for key-import" ),
 					m_setupWizard->m_keyImportDir );
 	if( !dir.isEmpty() )
@@ -663,7 +671,7 @@ bool setupWizardPageKeyDirs::nextPageDisabled( void )
 
 void setupWizardPageKeyDirs::openPubKeyDir( void )
 {
-	QString dir = QFileDialog::getExistingDirectory( NULL,
+	QString dir = QFileDialog::getExistingDirectory( window(),
 					tr( "Choose public key directory" ),
 					m_setupWizard->m_pubKeyDir );
 	if( !dir.isEmpty() )
@@ -677,7 +685,7 @@ void setupWizardPageKeyDirs::openPubKeyDir( void )
 
 void setupWizardPageKeyDirs::openPrivKeyDir( void )
 {
-	QString dir = QFileDialog::getExistingDirectory( NULL,
+	QString dir = QFileDialog::getExistingDirectory( window(),
 					tr( "Choose private key directory" ),
 					m_setupWizard->m_privKeyDir );
 	if( !dir.isEmpty() )
@@ -691,7 +699,7 @@ void setupWizardPageKeyDirs::openPrivKeyDir( void )
 
 void setupWizardPageKeyDirs::openKeyExportDir( void )
 {
-	QString dir = QFileDialog::getExistingDirectory( NULL,
+	QString dir = QFileDialog::getExistingDirectory( window(),
 				tr( "Choose public key export directory" ),
 					m_setupWizard->m_keyExportDir );
 	if( !dir.isEmpty() )

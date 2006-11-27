@@ -176,7 +176,6 @@ client::client( const QString & _local_ip, const QString & _remote_ip,
 			tb->addSeparator();
 		}
 	}
-	tb->show();
 
 	m_updateThread = new updateThread( this );
 }

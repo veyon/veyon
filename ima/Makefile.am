@@ -102,6 +102,11 @@ CLEANFILES = $(italc_MOC) $(italc_UIC) ./italc_qrc.cpp
 
 EXTRA_DIST = $(wildcard $(srcdir)/src/3rdparty/*)
 
+if BUILD_WIN32
+italc_win_resources.o: italc.rc
+	$(WINDRES) -o $@ $<
+WIN32_RES_LDADD = italc_win_resources.o
+endif
 
 if HAVE_LIBSSL
 LIBSSL_LDADD = -lssl
@@ -112,7 +117,7 @@ LIBSSL_LDADD = -leay32
 endif
 
 
-italc_LDADD = $(QT_LDADD) $(QT_LIB_GUI) -lz -ljpeg $(LIBSSL_LDADD)
+italc_LDADD = $(QT_LDADD) $(QT_LIB_GUI) -lz -ljpeg $(LIBSSL_LDADD) $(WIN32_RES_LDADD)
 italc_LDFLAGS = $(LDFLAGS) -mwindows
 
 AM_CXXFLAGS := $(AM_CXXFLAGS) $(QT_CXXFLAGS)

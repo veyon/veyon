@@ -37,7 +37,6 @@ win32-pkg: all
 	cp ica/ica.exe tmp/italc
 	cp ima/italc.exe tmp/italc
 	cp setup/setup.exe tmp/italc
-	cp setup/italc.ico tmp/italc
 	cp utils-win32/userinfo.exe tmp/italc
 #	cp lupus/lupus/lupus.exe tmp/italc
 #	cp lupus/service/lupus_service.exe tmp/italc

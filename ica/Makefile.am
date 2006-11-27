@@ -78,8 +78,13 @@ if HAVE_LIBEAY32
 LIBSSL_LDADD = -leay32
 endif
 
+if BUILD_WIN32
+ica_win_resources.o: ica.rc
+	$(WINDRES) -o $@ $<
+WIN32_RES_LDADD = ica_win_resources.o
+endif
 
-ica_LDADD = $(QT_LDADD) $(QT_LIB_GUI) -lz -ljpeg $(LIBSSL_LDADD) $(IVSLDADD)
+ica_LDADD = $(QT_LDADD) $(QT_LIB_GUI) -lz -ljpeg $(LIBSSL_LDADD) $(IVSLDADD) $(WIN32_RES_LDADD)
 ica_LDFLAGS = $(LDFLAGS)
 
 AM_CXXFLAGS := $(AM_CXXFLAGS) $(QT_CXXFLAGS) -O2 -DBUILD_ICA -DNO_LUPUS_INTEGRATION
