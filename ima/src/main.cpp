@@ -63,7 +63,7 @@ int main( int argc, char * * argv )
 
 	QPixmap splash = QPixmap( ":/resources/splash.png" ); 
 	splashScreen = new QSplashScreen( splash );
-	splashScreen->setMask( splash.mask() );
+	//splashScreen->setMask( splash.mask() );
 	splashScreen->show();
 
 

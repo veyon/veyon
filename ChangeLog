@@ -1,5 +1,8 @@
 2006-11-27	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
+	* ima/src/main.cpp:
+	do not set mask on splash as not neccessary anymore
+
 	* acinclude.m4:
 	* configure.in:
 	* ima/Makefile.am:
