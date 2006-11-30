@@ -404,13 +404,15 @@ void demoServerClient::processClient( void )
 
 void demoServerClient::run( void )
 {
-	m_dataMutex.lock();
+	QMutexLocker ml( &m_dataMutex );
+
 	QTcpSocket sock;
 	m_sock = &sock;
 	if( !m_sock->setSocketDescriptor( m_socketDescriptor ) )
 	{
 		printf( "could not set socket-descriptor in "
 			"demoServerClient::run() - aborting.\n" );
+		deleteLater();
 		return;
 	}
 
@@ -509,7 +511,7 @@ void demoServerClient::run( void )
 	connect( m_conn, SIGNAL( regionUpdated( const rectList & ) ),
 			this, SLOT( updateRegion( const rectList & ) ) );
 
-	m_dataMutex.unlock();
+	ml.unlock();
 
 	// first time send a key-frame
 	updateRegion( m_conn->screen().rect() );
@@ -528,10 +530,8 @@ void demoServerClient::run( void )
 	t2.start( 50 );
 	//moveCursor();
 	//processClient();
-
 	// now run our own event-loop for optimal scheduling
 	exec();
-
 }
 
 

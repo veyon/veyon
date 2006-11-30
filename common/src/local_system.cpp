@@ -67,7 +67,7 @@ public:
 		start( LowPriority );
 	}
 
-	const QString & name( void ) const
+	const QString & name( void )
 	{
 		QMutexLocker m( &m_mutex );
 		return( m_name );
@@ -89,7 +89,7 @@ private:
 	}
 
 	QString m_name;
-	mutable QMutex m_mutex;
+	QMutex m_mutex;
 
 }  static * __user_poll_thread = NULL;
 
@@ -364,6 +364,7 @@ void logonUser( const QString & _uname, const QString & _passwd,
 {
 #ifdef BUILD_WIN32
 	pressAndReleaseKey( XK_Escape );
+	pressAndReleaseKey( XK_Escape );
 	// send Secure Attention Sequence (SAS) for making sure we can enter
 	// username and password
 	pressKey( XK_Alt_L, TRUE );
@@ -415,6 +416,9 @@ void logonUser( const QString & _uname, const QString & _passwd,
 #endif
 
 	pressAndReleaseKey( XK_Return );
+#ifdef BUILD_WIN32
+	pressAndReleaseKey( XK_Escape );
+#endif
 }
 
 #endif
@@ -517,6 +521,13 @@ inline QString keyPath( const ISD::userRoles _role, const QString _group,
 					userRoleNames[_role], fallback_dir );
 		return( fallback_dir );
 	}
+	else
+	{
+		if( _only_path && val.right( 4 ) == "\\key" )
+		{
+			return( val.left( val.size() - 4 ) );
+		}
+	}
 	return( val );
 }
 
@@ -535,9 +546,12 @@ QString publicKeyPath( const ISD::userRoles _role, bool _only_path )
 
 
 
-void setKeyPath( const QString _path, const ISD::userRoles _role,
+void setKeyPath( QString _path, const ISD::userRoles _role,
 							const QString _group )
 {
+	_path.replace( QString( QDir::separator() ) + QDir::separator(),
+							QDir::separator() );
+
 	QSettings settings( QSettings::SystemScope, "iTALC Solutions",
 								"iTALC" );
 	if( _role <= ISD::RoleNone || _role >= ISD::RoleCount )
@@ -593,8 +607,14 @@ QString personalConfigDir( void )
 	const QString d = settings.value( "paths/personalconfig" ).toString();
 	return( d.isEmpty() ?
 				QDir::homePath() + QDir::separator() +
-				".italc" + QDir::separator()
-			:
+#ifdef BUILD_WIN32
+				QObject::tr( "Application Data" ) +
+				QDir::separator() + "iTALC"
+#else
+				".italc"
+#endif
+				+ QDir::separator()
+		:
 				d );
 }
 

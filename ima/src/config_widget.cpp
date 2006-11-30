@@ -23,8 +23,6 @@
  */
 
 
-class QColorGroup;
-
 #include <QtGui/QLabel>
 #include <QtGui/QLayout>
 #include <QtGui/QCheckBox>

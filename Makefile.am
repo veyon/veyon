@@ -49,8 +49,8 @@ win32-pkg: all
 	cp /opt/mingw/bin/libssl32.dll tmp/italc
 	cp /opt/mingw/bin/libz.dll tmp/italc
 	cp /opt/mingw/i586-mingw32/bin/mingwm10.dll tmp/italc
-#	/opt/mingw/bin/i586-mingw32-strip tmp/italc/ica.exe
-#	/opt/mingw/bin/i586-mingw32-strip tmp/italc/italc.exe
+	/opt/mingw/bin/i586-mingw32-strip tmp/italc/ica.exe
+	/opt/mingw/bin/i586-mingw32-strip tmp/italc/italc.exe
 	/opt/mingw/bin/i586-mingw32-strip tmp/italc/setup.exe
 	/opt/mingw/bin/i586-mingw32-strip tmp/italc/userinfo.exe
 #	/opt/mingw/bin/i586-mingw32-strip tmp/italc/lupus.exe

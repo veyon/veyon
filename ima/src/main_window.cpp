@@ -61,13 +61,15 @@
 
 bool mainWindow::ensureConfigPathExists( void )
 {
-	const QString d = localSystem::personalConfigDir();
+/*	const QString d = localSystem::personalConfigDir();
 	if( !QDir( d ).exists() )
 	{
 		QDir::home().rmpath( d );
 		return( QDir::home().mkpath( QDir( d ).dirName() ) );
 	}
-	return( TRUE );
+	return( TRUE );*/
+	return( localSystem::ensurePathExists(
+					localSystem::personalConfigDir() ) );
 }
 
 

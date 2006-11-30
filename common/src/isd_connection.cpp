@@ -610,8 +610,8 @@ bool isdConnection::logonUser( const QString & _uname, const QString & _pw,
 	}
 	return( ISD::msg( &m_socketDev, ISD::LogonUser ).
 				addArg( "uname", _uname ).
-				addArg( "passwd", _uname ).
-				addArg( "domain", _pw ).send() );
+				addArg( "passwd", _pw ).
+				addArg( "domain", _domain ).send() );
 }
 
 

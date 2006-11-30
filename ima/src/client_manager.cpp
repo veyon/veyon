@@ -29,8 +29,6 @@
 
 #include <math.h>
 
-class QColorGroup;
-
 
 #include <QtCore/QDateTime>
 #include <QtCore/QTextStream>
@@ -59,7 +57,7 @@ class QColorGroup;
 #include "italc_side_bar.h"
 #include "local_system.h"
 #include "tool_button.h"
-
+#include "messagebox.h"
 
 
 template<typename T>
@@ -217,6 +215,9 @@ void clientManager::saveGlobalClientConfig( void )
 						).toAscii().constData() );
 	}*/
 
+	QFile( m_globalClientConfiguration + ".bak" ).remove();
+	QFile( m_globalClientConfiguration ).copy( m_globalClientConfiguration +
+									".bak" );
 	QFile outfile( m_globalClientConfiguration );
 	outfile.open( QFile::WriteOnly | QFile::Truncate );
 
@@ -241,9 +242,6 @@ void clientManager::savePersonalConfig( void )
 	QDomElement globalsettings = doc.createElement( "globalsettings" );
 	globalsettings.setAttribute( "client-update-interval",
 						m_clientUpdateInterval );
-	// TODO!!!
-/*	globalsettings.setAttribute( "use-big-icons",
-					italc::inst()->usesBigPixmaps() );*/
 	globalsettings.setAttribute( "win-width", getMainWindow()->width() );
 	globalsettings.setAttribute( "win-height", getMainWindow()->height() );
 	globalsettings.setAttribute( "opened-tab",
@@ -283,6 +281,8 @@ void clientManager::savePersonalConfig( void )
 						).toAscii().constData() );
 	}
 
+	QFile( m_personalConfiguration + ".bak" ).remove();
+	QFile( m_personalConfiguration ).copy( m_personalConfiguration + ".bak" );
 	QFile outfile( m_personalConfiguration );
 	outfile.open( QFile::WriteOnly | QFile::Truncate );
 
@@ -548,7 +548,7 @@ void clientManager::loadTree( classRoom * _parent_item,
 								"x" ).toInt();
 				c->m_rasterY = node.toElement().attribute(
 								"y" ).toInt();
-				c->resize( node.toElement().attribute(
+				c->setFixedSize( node.toElement().attribute(
 								"w" ).toInt(),
 						node.toElement().attribute(
 								"h" ).toInt() );
@@ -574,6 +574,13 @@ void clientManager::loadGlobalClientConfig( void )
 {
 	m_view->clear();
 
+	if( !QFileInfo( m_globalClientConfiguration ).exists() &&
+		QFileInfo( m_globalClientConfiguration + ".bak" ).exists() )
+	{
+		QFile( m_globalClientConfiguration + ".bak" ).copy(
+						m_globalClientConfiguration );
+	}
+
 	// read the XML file and create DOM tree
 	QFile cfg_file( m_globalClientConfiguration );
 	if( !cfg_file.open( QIODevice::ReadOnly ) )
@@ -582,7 +589,7 @@ void clientManager::loadGlobalClientConfig( void )
 		{
 			splashScreen->close();
 		}
-		QMessageBox::warning( this, tr( "No configuration-file found" ),
+		messageBox::information( tr( "No configuration-file found" ),
 					tr( "Could not open configuration "
 						"file %1.\nYou will have to "
 						"add at least one classroom "
@@ -599,13 +606,14 @@ void clientManager::loadGlobalClientConfig( void )
 		{
 			splashScreen->close();
 		}
-		QMessageBox::critical( 0, tr( "Error in configuration-file" ),
+		messageBox::information( tr( "Error in configuration-file" ),
 					tr( "Error while parsing configuration-"
 						"file %1.\nPlease edit it. "
 						"Otherwise you should delete "
 						"this file and have to add all "
 						"classrooms and clients again."
-					).arg( m_globalClientConfiguration ) );
+					).arg( m_globalClientConfiguration ),
+					QPixmap( ":/resources/error.png" ) );
 		cfg_file.close();
 		return;
 	}
@@ -634,6 +642,13 @@ void clientManager::loadGlobalClientConfig( void )
 
 void clientManager::loadPersonalConfig( void )
 {
+	if( !QFileInfo( m_personalConfiguration ).exists() &&
+		QFileInfo( m_personalConfiguration + ".bak" ).exists() )
+	{
+		QFile( m_personalConfiguration + ".bak" ).copy(
+							m_personalConfiguration );
+	}
+
 	// read the XML file and create DOM tree
 	QFile cfg_file( m_personalConfiguration );
 	if( !cfg_file.open( QIODevice::ReadOnly ) )
@@ -647,12 +662,13 @@ void clientManager::loadPersonalConfig( void )
 		{
 			splashScreen->close();
 		}
-		QMessageBox::critical( 0, tr( "Error in configuration-file" ),
+		messageBox::information( tr( "Error in configuration-file" ),
 					tr( "Error while parsing configuration-"
 						"file %1.\nPlease edit it. "
 						"Otherwise you should delete "
 						"this file."
-					).arg( m_personalConfiguration ) );
+					).arg( m_personalConfiguration ),
+					QPixmap( ":/resources/error.png" ) );
 		cfg_file.close();
 		return;
 	}
@@ -778,7 +794,7 @@ void clientManager::changeGlobalClientMode( int _mode )
 				m_globalClientMode ==
 						client::Mode_WindowDemo )
 			{
-				localSystem::sleep( 400 );
+				localSystem::sleep( 20 );
 			}
 		}
 	}
@@ -804,7 +820,8 @@ void clientManager::multiLogon( void )
 		!mld.userName().isEmpty() && !mld.password().isEmpty() )
 	{
 		cmdToVisibleClients( client::LogonUser,
-				mld.userName() + "*" + mld.password() );
+				mld.userName() + "*" + mld.password() +
+							"*" + mld.domain() );
 	}
 }
 
@@ -1044,7 +1061,7 @@ void clientManager::adjustWindows( void )
 
 		foreach( client * cl, vc )
 		{
-			cl->resize( nw - decor_w, nh - decor_h );
+			cl->setFixedSize( nw - decor_w, nh - decor_h );
 			cl->parentWidget()->move(
 				static_cast<int>( cl->m_rasterX * nw ),
 				static_cast<int>( cl->m_rasterY * nh ) );
@@ -1085,7 +1102,7 @@ void clientManager::arrangeWindows( void )
 		{
 			cl->parentWidget()->move( ( i % win_per_line ) * ww,
 						( i / win_per_line ) * wh );
-			cl->resize( ww, wh );
+			cl->setFixedSize( ww, wh );
 			++i;
 		}
 		adjustWindows();
@@ -1134,7 +1151,7 @@ void clientManager::resizeClients( const int _new_width )
 
 		foreach( client * cl, vc )
 		{
-			cl->resize( _new_width, _new_height );
+			cl->setFixedSize( _new_width, _new_height );
 			const int xp = static_cast<int>( (
 				cl->parentWidget()->pos().x() - x_offset ) /
 				cw * ( _new_width + decor_w ) ) + x_offset;

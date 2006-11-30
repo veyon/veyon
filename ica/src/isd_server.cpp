@@ -23,11 +23,11 @@
  */
 
 
+#include <QtCore/QCoreApplication>
 #include <QtCore/QDir>
 #include <QtCore/QProcess>
 #include <QtCore/QTemporaryFile>
 #include <QtCore/QTimer>
-#include <QtGui/QApplication>
 #include <QtGui/QMessageBox>
 #include <QtNetwork/QHostInfo>
 #include <QtNetwork/QTcpSocket>
@@ -190,14 +190,6 @@ int isdServer::processClient( socketDispatcher _sd, void * _user )
 			localSystem::reboot();
 			break;
 
-/*		case ISD::IVS_Run:
-			m_ivs->start( QThread::HighestPriority );
-			break;
-
-		case ISD::IVS_Terminate:
-			m_ivs->terminate();
-			break;*/
-
 		case ISD::SetRole:
 		{
 			const int role = msg_in.arg( "role" ).toInt();
@@ -230,15 +222,6 @@ int isdServer::processClient( socketDispatcher _sd, void * _user )
 					QVariant::fromValue( (QObject *)
 							m_demoServer ) );
 			}
-/*			if( m_demoServer->serverPort() )
-			{
-				// tell iTALC-master at which port the demo-
-				// server is running
-				ISD::msg( &sdev, ISD::DemoServer_PortInfo ).
-					addArg( "demoserverport",
-						m_demoServer->serverPort() ).
-									send();
-			}*/
 			break;
 
 		case ISD::DemoServer_Stop:

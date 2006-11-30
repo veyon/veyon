@@ -9,7 +9,7 @@ bin_PROGRAMS = italc
 	$(UIC) -o $@ $<
 
 %.ts: 
-	$(LUPDATE) $(srcdir)/src/*.cpp $(srcdir)/dialogs/*.ui -ts $(srcdir)/resources/$@
+	$(LUPDATE) $(srcdir)/src/*.cpp $(srcdir)/dialogs/*.ui $(srcdir)/../common/src/*.cpp -ts $(srcdir)/resources/$@
 	
 %.qm: %.ts
 	$(LRELEASE) $<

@@ -6,7 +6,7 @@
     <x>0</x>
     <y>0</y>
     <width>595</width>
-    <height>375</height>
+    <height>403</height>
    </rect>
   </property>
   <layout class="QHBoxLayout" >
@@ -250,6 +250,13 @@ p, li { white-space: pre-wrap; }
          </layout>
         </item>
        </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QCheckBox" name="checkBox" >
+       <property name="text" >
+        <string>Export private key too</string>
+       </property>
       </widget>
      </item>
      <item>

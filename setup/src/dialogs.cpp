@@ -256,7 +256,7 @@ void setupWizard::next( void )
 			}
 			QFile( d + file ).remove();
 			QFile( file ).copy( d + file );
-			pd.setValue( ++i * 50 / files.size() );
+			pd.setValue( ++i * 90 / files.size() );
 			qApp->processEvents();
 			if( pd.wasCanceled() )
 			{
@@ -264,7 +264,7 @@ void setupWizard::next( void )
 			}
 		}
 		const int remaining_steps = 1;
-		const int remaining_percent = 50;
+		const int remaining_percent = 10;
 		int step = 0;
 
 		pd.setLabelText( tr( "Registering ICA as service..." ) );
@@ -272,7 +272,7 @@ void setupWizard::next( void )
 	
 		QProcess::execute( d + "ica -registerservice" );
 		++step;
-		pd.setValue( 50 + remaining_percent*step/remaining_steps );
+		pd.setValue( 90 + remaining_percent*step/remaining_steps );
 
 		pd.setLabelText( tr( "Creating/importing keys..." ) );
 		qApp->processEvents();

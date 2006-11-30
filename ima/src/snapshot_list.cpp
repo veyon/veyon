@@ -23,8 +23,6 @@
  */
 
 
-class QColorGroup;
-
 #include <QtCore/QDir>
 #include <QtGui/QLabel>
 #include <QtGui/QPushButton>

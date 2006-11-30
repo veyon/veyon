@@ -23,8 +23,6 @@
  */
 
 
-class QColorGroup;
-
 #include <QtGui/QFileDialog>
 #include <QtGui/QListWidget>
 #include <QtGui/QMenu>
@@ -53,10 +51,10 @@ userList::userList( mainWindow * _main_window, QWidget * _parent ) :
 	m_list->setWhatsThis( tr( "Here you see the real names and the "
 					"user-names of the users, logged in at "
 					"currently visible clients." ) );
-	connect( m_list, SIGNAL( customContextMenuRequested( const QPoint & ) ),
+/*	connect( m_list, SIGNAL( customContextMenuRequested( const QPoint & ) ),
 			this, SLOT( contextMenuRequested( const QPoint & ) ) );
 	//m_list->setSelectionMode( Q3ListBox::Single );
-/*	connect( m_list, SIGNAL( contextMenuRequested( Q3ListBoxItem *,
+	connect( m_list, SIGNAL( contextMenuRequested( Q3ListBoxItem *,
 							const QPoint & ) ),
 			this, SLOT( contextMenuHandler( Q3ListBoxItem *,
 							const QPoint & ) ) );*/

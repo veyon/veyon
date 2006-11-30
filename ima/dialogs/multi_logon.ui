@@ -226,6 +226,7 @@ p, li { white-space: pre-wrap; }
  <tabstops>
   <tabstop>userNameEdit</tabstop>
   <tabstop>passwordEdit</tabstop>
+  <tabstop>domainEdit</tabstop>
   <tabstop>okButton</tabstop>
   <tabstop>cancelButton</tabstop>
  </tabstops>

@@ -66,77 +66,77 @@
         <translation type="obsolete">Der iTALC-Client wurde erfolgreich als Dienst registriert. Er wird automatisch beim nächsten Neustart ausgeführt.</translation>
     </message>
     <message>
-        <location filename="../src/ica_main.cpp" line="239"/>
+        <location filename="../src/ica_main.cpp" line="244"/>
         <source>iTALC Client on %1:%2</source>
         <translation>iTALC Client auf %1:%2</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="251"/>
+        <location filename="../src/system_service.cpp" line="261"/>
         <source>Unable to register service &apos;%1&apos;.</source>
         <translation>Der Dienst &apos;%1&apos; konnte nicht registriert werden.</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="279"/>
+        <location filename="../src/system_service.cpp" line="289"/>
         <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not registered.</source>
         <translation>Es konnte keine Verbindung zum Service-Control-Manager hergestellt werden (haben Sie die nötigen Rechte?!) - der Dienst &apos;%1&apos; wurde nicht registriert.</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="310"/>
+        <location filename="../src/system_service.cpp" line="320"/>
         <source>The service &apos;%1&apos; is already registered.</source>
         <translation>Der Dienst &apos;%1&apos; ist bereits registriert.</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="318"/>
+        <location filename="../src/system_service.cpp" line="328"/>
         <source>The service &apos;%1&apos; could not be registered.</source>
         <translation>Der Dienst &apos;%1&apos; konnte nicht registriert werden.</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="336"/>
+        <location filename="../src/system_service.cpp" line="346"/>
         <source>The service &apos;%1&apos; was successfully registered. It will automatically be run the next time you start this computer.</source>
         <translation>Der Dienst &apos;%1&apos; wurde erfolgreich registriert. Er wird automatisch gestartet, wenn Sie den Computer das nächste Mal hochfahren.</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="574"/>
+        <location filename="../src/system_service.cpp" line="584"/>
         <source>The service &apos;%1&apos; could not be stopped.</source>
         <translation>Der Dienst &apos;%1&apos; konnte nicht gestoppt werden.</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="399"/>
+        <location filename="../src/system_service.cpp" line="409"/>
         <source>The service &apos;%1&apos; has been unregistered.</source>
         <translation>Der Dienst &apos;%1&apos; wurde entfernt.</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="411"/>
+        <location filename="../src/system_service.cpp" line="421"/>
         <source>The service &apos;%1&apos; isn&apos;t registered and therefore can&apos;t be unregistered.</source>
         <translation>Der Dienst &apos;%1&apos; ist nicht registriert und kann daher nicht entfernt werden.</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="420"/>
+        <location filename="../src/system_service.cpp" line="430"/>
         <source>The service &apos;%1&apos; could not be unregistered.</source>
         <translation>Der Dienst &apos;%1&apos; konnte nicht entfernt werden.</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="586"/>
+        <location filename="../src/system_service.cpp" line="596"/>
         <source>The service &apos;%1&apos; could not be found.</source>
         <translation>Der Dienst &apos;%1&apos; wurde nicht gefunden.</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="447"/>
+        <location filename="../src/system_service.cpp" line="457"/>
         <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not unregistered.</source>
         <translation>Es konnte keine Verbindung zum Service-Control-Manager hergestellt werden (haben Sie die nötigen Rechte?!) - der Dienst &apos;%1&apos; wurde nicht entfernt.</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="496"/>
+        <location filename="../src/system_service.cpp" line="506"/>
         <source>The service &apos;%1&apos; could not be started.</source>
         <translation>Der Dienst &apos;%1&apos; konnte nicht gestartet werden.</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="524"/>
+        <location filename="../src/system_service.cpp" line="534"/>
         <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not started.</source>
         <translation>Es konnte keine Verbindung zum Service-Control-Manager hergestellt werden (haben Sie die nötigen Rechte?!) - der Dienst &apos;%1&apos; wurde nicht gestartet.</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="602"/>
+        <location filename="../src/system_service.cpp" line="612"/>
         <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not stopped.</source>
         <translation>Es konnte keine Verbindung zum Service-Control-Manager hergestellt werden (haben Sie die nötigen Rechte?!) - der Dienst &apos;%1&apos; wurde nicht beendet.</translation>
     </message>
@@ -144,9 +144,14 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../common/src/local_system.cpp" line="380"/>
+        <location filename="../../common/src/local_system.cpp" line="381"/>
         <source>UPL (note for translators: the first three characters of this string are the accellerators (underlined characters) of the three input-fields in logon-dialog of windows - you only need to &quot;translate&quot; these characters, this note can be ommited)</source>
         <translation>BKA</translation>
+    </message>
+    <message>
+        <location filename="../../common/src/local_system.cpp" line="609"/>
+        <source>Application Data</source>
+        <translation>Anwendungsdaten</translation>
     </message>
 </context>
 <context>
@@ -160,27 +165,27 @@
 <context>
     <name>isdServer</name>
     <message>
-        <location filename="../src/isd_server.cpp" line="768"/>
+        <location filename="../src/isd_server.cpp" line="760"/>
         <source>Message from teacher</source>
         <translation>Nachricht vom Lehrer</translation>
     </message>
     <message>
-        <location filename="../src/isd_server.cpp" line="535"/>
+        <location filename="../src/isd_server.cpp" line="527"/>
         <source>Somebody at host %1 tries to access your screen. Do you want to grant him/her access?</source>
         <translation>Jemand am Rechner %1 versucht auf Ihren Bildschirm zuzugreifen. Möchten Sie ihm/ihr Zugriff gewähren?</translation>
     </message>
     <message>
-        <location filename="../src/isd_server.cpp" line="553"/>
+        <location filename="../src/isd_server.cpp" line="545"/>
         <source>Never for this session</source>
         <translation>Nie für diese Sitzung</translation>
     </message>
     <message>
-        <location filename="../src/isd_server.cpp" line="548"/>
+        <location filename="../src/isd_server.cpp" line="540"/>
         <source>Always for this session</source>
         <translation>Immer für diese Sitzung</translation>
     </message>
     <message>
-        <location filename="../src/isd_server.cpp" line="532"/>
+        <location filename="../src/isd_server.cpp" line="524"/>
         <source>Confirm access</source>
         <translation>Zugriff bestätigen</translation>
     </message>

@@ -1,3 +1,43 @@
+2006-11-30	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* setup/src/dialogs.cpp:
+	small fixes concerning progress-dialog
+
+	* common/src/local_system.cpp:
+	when saving path to key, replace multiple dir-separators by one
+	separator
+
+	* ima/src/user_list.cpp:
+	* ima/src/snapshot_list.cpp:
+	* ima/src/config_widget.cpp:
+	several code-cleanups
+
+	* ica/src/demo_server.cpp:
+	fixed some really bad bugs which caused ICA to freeze if
+	initialization of even one demo-client failed (demoServerClient::run()
+	returned without unlocking m_dataMutex which caused a deadlock if
+	slots called from GUI-thread tried to lock the mutex)
+
+	* common/src/local_system.cpp:
+	several fixes concerning paths for keys and config-files
+
+	* common/src/isd_connection.cpp:
+	fixed typos concerning auto-logon
+
+	* ima/dialogs/multi_logon.ui:
+	fixed tab-order
+
+	* ima/src/client_manager.cpp:
+	- before writing global/personal config, copy old file to backup and try
+	  to copy backup-file back if according file does not exist at startup
+	- except for questions, always use own messageBox-class
+
+	* ima/Makefile.am:
+	when updating translation, also include files in common src-dir
+
+	* ima/src/main_window.cpp:
+	use localSystem::ensurePathExists() in ensureConfigPathExists()
+
 2006-11-27	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* ima/src/main.cpp:
