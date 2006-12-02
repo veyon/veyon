@@ -19,11 +19,13 @@ extern char *passwdfile;
 extern int unixpw;
 extern int unixpw_nis;
 extern char *unixpw_list;
+extern char *unixpw_cmd;
 extern int use_stunnel;
 extern int stunnel_port;
 extern char *stunnel_pem;
 extern int use_openssl;
 extern int http_ssl;
+extern int ssl_no_fail;
 extern char *openssl_pem;
 extern char *ssl_certs_dir;
 extern int https_port_num;
@@ -125,11 +127,13 @@ extern int noxrecord;
 
 extern char *client_connect;
 extern char *client_connect_file;
+extern int connect_or_exit;
 extern int vnc_connect;
 
 extern int show_cursor;
 extern int show_multiple_cursors;
 extern char *multiple_cursors_mode;
+extern int cursor_drag_changes;
 extern int cursor_pos_updates;
 extern int cursor_shape_updates;
 extern int use_xwarppointer;
@@ -247,10 +251,12 @@ extern int debug_pointer;
 extern int debug_keyboard;
 
 extern int quiet;
+extern int verbose;
 
 extern int use_threads;
 
 extern int got_rfbport;
+extern int got_rfbport_val;
 extern int got_alwaysshared;
 extern int got_nevershared;
 extern int got_cursorpos;

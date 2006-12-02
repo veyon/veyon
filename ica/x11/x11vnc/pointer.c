@@ -617,7 +617,6 @@ void pointer(int mask, int x, int y, rfbClientPtr client) {
 	if (mask >= 0) {
 		got_pointer_calls++;
 	}
-	get_allowed_input(client, &input);
 
 	if (debug_pointer && mask >= 0) {
 		static int show_motion = -1;
@@ -643,9 +642,12 @@ void pointer(int mask, int x, int y, rfbClientPtr client) {
 		last_x = x;
 		last_y = y;
 	}
-	if (unixpw && unixpw_in_progress) {
+
+	if (unixpw_in_progress) {
 		return;
 	}
+
+	get_allowed_input(client, &input);
 
 	if (rotating) {
 		rotate_coords_inverse(x, y, &x, &y, -1, -1);

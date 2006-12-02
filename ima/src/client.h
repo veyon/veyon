@@ -294,7 +294,6 @@ private:
 			LockScreen,
 			UnlockScreen,
 			SendTextMessage,
-			ClientDemo,
 			LogonUser,
 			LogoutUser,
 			Reboot,

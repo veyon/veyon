@@ -10,6 +10,7 @@
 #include "rates.h"
 #include "screen.h"
 #include "unixpw.h"
+#include "user.h"
 #include "scan.h"
 #include "sslcmds.h"
 #include "sslhelper.h"
@@ -49,10 +50,10 @@ void send_client_info(char *str);
 void adjust_grabs(int grab, int quiet);
 void check_new_clients(void);
 int accept_client(rfbClientPtr client);
-
+int run_user_command(char *cmd, rfbClientPtr client, char *mode, char *input,
+    int len, FILE *output);
 
 static rfbClientPtr *client_match(char *str);
-static int run_user_command(char *cmd, rfbClientPtr client, char *mode);
 static void free_client_data(rfbClientPtr client);
 static int check_access(char *addr);
 static void ugly_geom(char *p, int *x, int *y);
@@ -365,12 +366,16 @@ int cmd_ok(char *cmd) {
  * utility to run a user supplied command setting some RFB_ env vars.
  * used by, e.g., accept_client() and client_gone()
  */
-static int run_user_command(char *cmd, rfbClientPtr client, char *mode) {
+int run_user_command(char *cmd, rfbClientPtr client, char *mode, char *input,
+   int len, FILE *output) {
 	char *old_display = NULL;
 	char *addr = client->host;
 	char str[100];
 	int rc, ok;
-	ClientData *cd = (ClientData *) client->clientData;
+	ClientData *cd = NULL;
+	if (client != NULL) {
+		cd = (ClientData *) client->clientData;
+	}
 
 	if (addr == NULL || addr[0] == '\0') {
 		addr = "unknown-host";
@@ -492,6 +497,15 @@ static int run_user_command(char *cmd, rfbClientPtr client, char *mode) {
 	if (!strcmp(mode, "gone") && cmd_ok("gone")) {
 		ok = 1;
 	}
+	if (!strcmp(mode, "cmd_verify") && cmd_ok("unixpw")) {
+		ok = 1;
+	}
+	if (!strcmp(mode, "read_passwds") && cmd_ok("passwdfile")) {
+		ok = 1;
+	}
+	if (!strcmp(mode, "custom_passwd") && cmd_ok("custom_passwd")) {
+		ok = 1;
+	}
 	if (no_external_cmds || !ok) {
 		rfbLogEnable(1);
 		rfbLog("cannot run external commands in -nocmds mode:\n");
@@ -501,6 +515,32 @@ static int run_user_command(char *cmd, rfbClientPtr client, char *mode) {
 	}
 	rfbLog("running command:\n");
 	rfbLog("  %s\n", cmd);
+
+	if (output != NULL) {
+		FILE *ph = popen(cmd, "r");
+		char line[1024];
+		if (ph == NULL) {
+			rfbLog("popen(%s) failed", cmd);
+			rfbLogPerror("popen");
+			clean_up_exit(1);
+		}
+		while (fgets(line, 1024, ph) != NULL) {
+			if (0) fprintf(stderr, "line: %s", line);
+			fprintf(output, "%s", line);
+		}
+		rc = pclose(ph);
+		goto got_rc;
+	} else if (input != NULL) {
+		FILE *ph = popen(cmd, "w");
+		if (ph == NULL) {
+			rfbLog("popen(%s) failed", cmd);
+			rfbLogPerror("popen");
+			clean_up_exit(1);
+		}
+		write(fileno(ph), input, len);
+		rc = pclose(ph);
+		goto got_rc;
+	}
 
 #if LIBVNCSERVER_HAVE_FORK
 	{
@@ -549,6 +589,7 @@ static int run_user_command(char *cmd, rfbClientPtr client, char *mode) {
 	/* this will still have port 5900 open */
 	rc = system(cmd);
 #endif
+	got_rc:
 
 	if (rc >= 256) {
 		rc = rc/256;
@@ -671,7 +712,7 @@ void client_gone(rfbClientPtr client) {
 			free(userhost);
 		} else {
 			rfbLog("client_gone: using cmd: %s\n", client->host);
-			run_user_command(gone_cmd, client, "gone");
+			run_user_command(gone_cmd, client, "gone", NULL,0,NULL);
 		}
 	}
 
@@ -1007,7 +1048,7 @@ static unsigned char t2x2_bits[] = {
 		char *ip = addr;
 		char *type = "accept";
 		if (unixpw && strstr(userhost, "UNIX:") != userhost) {
-			type = "unixpw";
+			type = "UNIXPW";
 			if (openssl_last_ip) {
 				ip = openssl_last_ip;
 			}
@@ -1412,7 +1453,7 @@ int accept_client(rfbClientPtr client) {
 		int rc;
 
 		rfbLog("accept_client: using cmd for: %s\n", addr);
-		rc = run_user_command(cmd, client, "accept");
+		rc = run_user_command(cmd, client, "accept", NULL, 0, NULL);
 
 		if (action) {
 			int result;
@@ -1587,6 +1628,9 @@ static int do_reverse_connect(char *str) {
 	free(host);
 
 	if (cl == NULL) {
+		if (quiet && connect_or_exit) {
+			rfbLogEnable(1);
+		}
 		rfbLog("reverse_connect: %s failed\n", str);
 		return 0;
 	} else {
@@ -1609,6 +1653,7 @@ void reverse_connect(char *str) {
 	int sleep_between_host = 300;
 	int sleep_min = 1500, sleep_max = 4500, n_max = 5;
 	int n, tot, t, dt = 100, cnt = 0;
+	int nclients0 = client_count;
 
 	if (unixpw_in_progress) return;
 
@@ -1634,6 +1679,11 @@ void reverse_connect(char *str) {
 	free(tmp);
 
 	if (cnt == 0) {
+		if (connect_or_exit) {
+			rfbLogEnable(1);
+			rfbLog("exiting under -connect_or_exit\n");
+			clean_up_exit(0);
+		}
 		return;
 	}
 
@@ -1653,8 +1703,22 @@ void reverse_connect(char *str) {
 	t = 0;
 	while (t < tot) {
 		rfbPE(-1);
+		rfbPE(-1);
 		usleep(dt * 1000);
 		t += dt;
+	}
+	if (connect_or_exit) {
+		if (client_count <= nclients0)  {
+			for (t = 0; t < 10; t++) {
+				rfbPE(-1);
+				usleep(100 * 1000);
+			}
+		}
+		if (client_count <= nclients0)  {
+			rfbLogEnable(1);
+			rfbLog("exiting under -connect_or_exit\n");
+			clean_up_exit(0);
+		}
 	}
 }
 
@@ -1929,6 +1993,8 @@ enum rfbNewClientAction new_client(rfbClientPtr client) {
 
 	last_event = last_input = time(NULL);
 
+	latest_client = client;
+
 	if (inetd) {
 		/* 
 		 * Set this so we exit as soon as connection closes,
@@ -1941,7 +2007,6 @@ enum rfbNewClientAction new_client(rfbClientPtr client) {
 	}
 
 	clients_served++;
-if (getenv("NEW_CLIENT")) fprintf(stderr, "new_client: %s %d\n", client->host, clients_served);
 
 	if (use_openssl || use_stunnel) {
 		if (! ssl_initialized) {
@@ -1950,7 +2015,7 @@ if (getenv("NEW_CLIENT")) fprintf(stderr, "new_client: %s %d\n", client->host, c
 			return(RFB_CLIENT_REFUSE);
 		}
 	}
-	if (unixpw && unixpw_in_progress) {
+	if (unixpw_in_progress) {
 		rfbLog("denying additional client: %s during -unixpw login.\n",
 		     client->host);
 		return(RFB_CLIENT_REFUSE);
@@ -1986,7 +2051,6 @@ if (getenv("NEW_CLIENT")) fprintf(stderr, "new_client: %s %d\n", client->host, c
 	cd->ssl_helper_pid = 0;
 
 	if (use_openssl && openssl_last_helper_pid) {
-if (0) fprintf(stderr, "SET ssl_helper_pid: %d\n", openssl_last_helper_pid);
 		cd->ssl_helper_pid = openssl_last_helper_pid;
 		openssl_last_helper_pid = 0;
 	}
@@ -2002,8 +2066,23 @@ if (0) fprintf(stderr, "SET ssl_helper_pid: %d\n", openssl_last_helper_pid);
 		return(RFB_CLIENT_REFUSE);
 	}
 
-	cd->uid = clients_served;
+	if (passwdfile) {
+		if (strstr(passwdfile, "read:") == passwdfile ||
+		    strstr(passwdfile, "cmd:") == passwdfile) {
+			if (read_passwds(passwdfile)) {
+				install_passwds();
+			} else {
+				rfbLog("problem reading: %s\n", passwdfile);
+				clean_up_exit(1);
+			}
+		} else if (strstr(passwdfile, "custom:") == passwdfile) {
+			if (screen) {
+				screen->passwordCheck = custom_passwd_check;
+			}
+		}
+	}
 
+	cd->uid = clients_served;
 
 	client->clientGoneHook = client_gone;
 
@@ -2049,8 +2128,10 @@ if (0) fprintf(stderr, "SET ssl_helper_pid: %d\n", openssl_last_helper_pid);
 			client->viewOnly = FALSE;
 		}
 		unixpw_last_try_time = time(NULL);
+
 		unixpw_screen(1);
 		unixpw_keystroke(0, 0, 1);
+
 		if (!unixpw_in_rfbPE) {
 			rfbLog("new client: %s in non-unixpw_in_rfbPE.\n",
 			     client->host);
@@ -2317,7 +2398,7 @@ void check_new_clients(void) {
 			}
 			if (run_after_accept) {
 				run_user_command(afteraccept_cmd, cl,
-				    "afteraccept");
+				    "afteraccept", NULL, 0, NULL);
 			}
 		}
 	}

@@ -36,7 +36,9 @@ static void check_fbpm(void) {
 				    " VNC clients are connected.\n");
 			}
 		} else {
-			rfbLog("X display is not capable of FBPM.\n");
+			if (! raw_fb_str) {
+				rfbLog("X display is not capable of FBPM.\n");
+			}
 			fbpm_capable = 0;
 		}
 		init_fbpm = 1;
@@ -85,7 +87,9 @@ static void check_fbpm(void) {
 #else
 	RAWFB_RET_VOID
 	if (! init_fbpm) {
-		rfbLog("X FBPM extension not supported.\n");
+		if (! raw_fb_str) {
+			rfbLog("X FBPM extension not supported.\n");
+		}
 		init_fbpm = 1;
 	}
 #endif

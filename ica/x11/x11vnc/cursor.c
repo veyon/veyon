@@ -554,7 +554,9 @@ static void setup_cursors(void) {
 	int i, j, n = 0;
 	static int first = 1;
 
-	rfbLog("setting up %d cursors...\n", CURS_MAX);
+	if (verbose) {
+		rfbLog("setting up %d cursors...\n", CURS_MAX);
+	}
 
 	if (first) {
 		for (i=0; i<CURS_MAX; i++) {
@@ -814,7 +816,9 @@ static void setup_cursors(void) {
 	if (screen) {
 		UNLOCK(screen->cursorMutex);
 	}
-	rfbLog("  done.\n");
+	if (verbose) {
+		rfbLog("  done.\n");
+	}
 	rfbLog("\n");
 }
 
@@ -1423,7 +1427,7 @@ void initialize_cursors_mode(void) {
 		}
 	} else {
 		if (screen) {
-			screen->cursor = NULL;	/* dangerous? */
+			screen->cursor = NULL;
 			set_cursor_was_changed(screen);
 		}
 	}
@@ -1443,7 +1447,9 @@ int get_which_cursor(void) {
 
 		if (drag_in_progress || button_mask) {
 			/* XXX not exactly what we want for menus */
-			return -1;
+			if (! cursor_drag_changes) {
+				return -1;
+			}
 		}
 
 		if (!strcmp(multiple_cursors_mode, "arrow")) {

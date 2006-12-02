@@ -63,6 +63,7 @@ void unixpw_deny(void);
 void unixpw_msg(char *msg, int delay);
 int su_verify(char *user, char *pass, char *cmd, char *rbuf, int *rbuf_size);
 int crypt_verify(char *user, char *pass);
+int cmd_verify(char *user, char *pass);
 
 static int white(void);
 static int text_x(void);
@@ -121,7 +122,9 @@ static rfbScreenInfo fscreen;
 static rfbScreenInfoPtr pscreen;
 
 void unixpw_screen(int init) {
-	if (unixpw_nis) {
+	if (unixpw_cmd) {
+		;	/* OK */
+	} else if (unixpw_nis) {
 #ifndef UNIXPW_CRYPT
 	rfbLog("-unixpw_nis is not supported on this OS/machine\n");
 	clean_up_exit(1);
@@ -354,6 +357,79 @@ static void kill_child (pid_t pid, int fd) {
 	waitpid(pid, &status, WNOHANG); 
 }
 
+static int scheck(char *str, int n, char *name) {
+	int j, i;
+
+	if (! str) {
+		return 0;
+	}
+	j = 0;
+	for (i=0; i<n; i++) {
+		if (str[i] == '\0') {
+			j = 1;
+			break;
+		}
+		if (!strcmp(name, "password")) {
+			if (str[i] == '\n') {
+				continue;
+			}
+		}
+		if (str[i] < ' ' || str[i] >= 0x7f) {
+			rfbLog("scheck: invalid character in %s.\n", name);	
+			return 0;
+		}
+	}
+	if (j == 0) {
+		rfbLog("scheck: unterminated string in %s.\n", name);	
+		return 0;
+	}
+	return 1;
+}
+
+int unixpw_list_match(char *user) {
+	if (! unixpw_list || unixpw_list[0] == '\0') {
+		return 1;
+	} else {
+		char *p, *q, *str = strdup(unixpw_list);
+		int ok = 0;
+		int notmode = 0;
+
+		if (str[0] == '!') {
+			notmode = 1;
+			ok = 1;
+			p = strtok(str+1, ",");
+		} else {
+			p = strtok(str, ",");
+		}
+		while (p) {
+			if ( (q = strchr(p, ':')) != NULL ) {
+				*q = '\0';	/* get rid of options. */
+			}
+			if (!strcmp(user, p)) {
+				if (notmode) {
+					ok = 0;
+				} else {
+					ok = 1;
+				}
+				break;
+			}
+			if (!notmode && !strcmp("*", p)) {
+				ok = 1;
+				break;
+			}
+			p = strtok(NULL, ",");
+		}
+		free(str);
+		if (! ok) {
+			rfbLog("unixpw_list_match: fail for '%s'\n", user);
+			return 0;
+		} else {
+			rfbLog("unixpw_list_match: OK for '%s'\n", user);
+			return 1;
+		}
+	}
+}
+
 int crypt_verify(char *user, char *pass) {
 #ifndef UNIXPW_CRYPT
 	return 0;
@@ -361,6 +437,17 @@ int crypt_verify(char *user, char *pass) {
 	struct passwd *pwd;
 	char *realpw, *cr;
 	int n;
+
+	if (! scheck(user, 100, "username")) {
+		return 0;
+	}
+	if (! scheck(pass, 100, "password")) {
+		return 0;
+	}
+	if (! unixpw_list_match(user)) {
+		return 0;
+	}
+
 	pwd = getpwnam(user);
 	if (! pwd) {
 		return 0;
@@ -408,6 +495,62 @@ int crypt_verify(char *user, char *pass) {
 #endif	/* UNIXPW_CRYPT */
 }
 
+int cmd_verify(char *user, char *pass) {
+	int i, len, rc;
+	char *str;
+
+	if (! user || ! pass) {
+		return 0;
+	}
+	if (! unixpw_cmd || *unixpw_cmd == '\0') {
+		return 0;
+	}
+
+	if (! scheck(user, 100, "username")) {
+		return 0;
+	}
+	if (! scheck(pass, 100, "password")) {
+		return 0;
+	}
+	if (! unixpw_list_match(user)) {
+		return 0;
+	}
+
+	if (unixpw_client) {
+		ClientData *cd = (ClientData *) unixpw_client->clientData;
+		if (cd) {
+			cd->username = strdup(user);
+		}
+	}
+
+	len = strlen(user) + 1 + strlen(pass) + 1 + 1;
+	str = (char *) malloc(len);
+	if (! str) {
+		return 0;
+	}
+	str[0] = '\0';
+	strcat(str, user);
+	strcat(str, "\n");
+	strcat(str, pass);
+	if (!strchr(pass, '\n')) {
+		strcat(str, "\n");
+	}
+
+	rc = run_user_command(unixpw_cmd, unixpw_client, "cmd_verify",
+	    str, strlen(str), NULL);
+
+	for (i=0; i < len; i++) {
+		str[i] = '\0';
+	}
+	free(str);
+
+	if (rc == 0) {
+		return 1;
+	} else {
+		return 0;
+	}
+}
+
 int su_verify(char *user, char *pass, char *cmd, char *rbuf, int *rbuf_size) {
 #ifndef UNIXPW_SU
 	return 0;
@@ -418,33 +561,23 @@ int su_verify(char *user, char *pass, char *cmd, char *rbuf, int *rbuf_size) {
 	pid_t pid, pidw;
 	struct stat sbuf;
 	static int first = 1;
-	char instr[32], buf[10];
+	char instr[32], cbuf[10];
 
 	if (first) {
 		set_db();
 		first = 0;
 	}
 
-	if (unixpw_list) {
-		char *p, *q, *str = strdup(unixpw_list);
-		int ok = 0;
-
-		p = strtok(str, ",");
-		while (p) {
-			if ( (q = strchr(p, ':')) != NULL ) {
-				*q = '\0';	/* get rid of options. */
-			}
-			if (!strcmp(user, p) || !strcmp("*", p)) {
-				ok = 1;
-				break;
-			}
-			p = strtok(NULL, ",");
-		}
-		free(str);
-		if (! ok) {
-			return 0;
-		}
+	if (! scheck(user, 100, "username")) {
+		return 0;
 	}
+	if (! scheck(pass, 100, "password")) {
+		return 0;
+	}
+	if (! unixpw_list_match(user)) {
+		return 0;
+	}
+
 	/* unixpw */
 	if (no_external_cmds || !cmd_ok("unixpw")) {
 		rfbLog("su_verify: cannot run external commands.\n");	
@@ -475,7 +608,7 @@ int su_verify(char *user, char *pass, char *cmd, char *rbuf, int *rbuf_size) {
 		bin_true = "/usr/bin/true";
 	}
 	if (cmd != NULL && cmd[0] != '\0') {
-		/* this is for ext. cmd su -c "my cmd" */
+		/* this is for ext. cmd su -c "my cmd" after login */
 		bin_true = cmd;
 	}
 	if (bin_true == NULL) {
@@ -490,7 +623,7 @@ int su_verify(char *user, char *pass, char *cmd, char *rbuf, int *rbuf_size) {
 		return 0;
 	}
 
-if (db) fprintf(stderr, "slave is: %s fd=%d\n", slave, fd);
+	if (db) fprintf(stderr, "slave is: %s fd=%d\n", slave, fd);
 
 	if (fd < 0) {
 		rfbLogPerror("get_pty fd < 0");
@@ -572,7 +705,8 @@ if (db) fprintf(stderr, "slave is: %s fd=%d\n", slave, fd);
 			tfd = open("/tmp/isatty", O_CREAT|O_WRONLY, 0600);
 			if (isatty(sfd)) {
 				close(tfd);
-				sprintf(nam, "stty -a < %s > /tmp/isatty 2>&1", slave);
+				sprintf(nam, "stty -a < %s > /tmp/isatty 2>&1",
+				    slave);
 				system(nam);
 			} else {
 				write(tfd, "NOTTTY\n", 7);
@@ -594,6 +728,11 @@ if (db) fprintf(stderr, "slave is: %s fd=%d\n", slave, fd);
 		set_env("LC_ALL", "C");
 		set_env("LANG", "C");
 		set_env("SHELL", "/bin/sh");
+		if (!cmd && getenv("DISPLAY")) {
+			/* this will cause timeout problems with pam_xauth */
+			char *s = getenv("DISPLAY");
+			if (s) *(s-2) = '_';	/* quite... */
+		}
 
 		/* synchronize with parent: */
 		write(2, "C", 1);
@@ -621,11 +760,13 @@ if (db) fprintf(stderr, "slave is: %s fd=%d\n", slave, fd);
 	alarm(10);
 
 	/* synchronize with child: */
+	cbuf[0] = '\0';
+	cbuf[1] = '\0';
 	for (i=0; i<10; i++) {
 		int n;
-		buf[0] = '\0';
-		buf[1] = '\0';
-		n = read(fd, buf, 1);
+		cbuf[0] = '\0';
+		cbuf[1] = '\0';
+		n = read(fd, cbuf, 1);
 		if (n < 0 && errno == EINTR) {
 			continue;
 		} else {
@@ -634,7 +775,7 @@ if (db) fprintf(stderr, "slave is: %s fd=%d\n", slave, fd);
 	}
 
 	if (db) {
-		fprintf(stderr, "read from child: '%s'\n", buf);
+		fprintf(stderr, "read from child: '%s'\n", cbuf);
 	}
 
 	alarm(0);
@@ -672,42 +813,52 @@ if (db) fprintf(stderr, "slave is: %s fd=%d\n", slave, fd);
 		char pstr[] = "password:";
 		int n;	
 
-		buf[0] = '\0';
-		buf[1] = '\0';
+		cbuf[0] = '\0';
+		cbuf[1] = '\0';
 
-		n = read(fd, buf, 1);
+		n = read(fd, cbuf, 1);
 		if (n < 0 && errno == EINTR) {
 			i--;
+			if (i < 0) i = 0;
 			continue;
 		}
 
-if (db) fprintf(stderr, "%s", buf);
-
-		if (db > 3 && n == 1 && buf[0] == ':') {
-			char cmd0[32];
-			usleep( 100 * 1000 );
-			fprintf(stderr, "\n\n");
-			sprintf(cmd0, "ps wu %d", pid);
-			system(cmd0);
-			sprintf(cmd0, "stty -a < %s", slave);
-			system(cmd0);
-			fprintf(stderr, "\n\n");
+		if (db) {
+			fprintf(stderr, "%s", cbuf);
+			if (db > 3 && n == 1 && cbuf[0] == ':') {
+				char cmd0[32];
+				usleep( 100 * 1000 );
+				fprintf(stderr, "\n\n");
+				sprintf(cmd0, "ps wu %d", pid);
+				system(cmd0);
+				sprintf(cmd0, "stty -a < %s", slave);
+				system(cmd0);
+				fprintf(stderr, "\n\n");
+			}
 		}
 
 		if (n == 1) {
-			if (isspace((unsigned char) buf[0])) {
+			if (isspace((unsigned char) cbuf[0])) {
 				i--;
+				if (i < 0) i = 0;
 				continue;
 			}
-			instr[j++] = tolower((unsigned char)buf[0]);
+			if (j >= 32-1) {
+				rfbLog("su_verify: problem finding Password:\n");	
+				return 0;
+			}
+			instr[j++] = tolower((unsigned char)cbuf[0]);
 		}
+
 		if (n <= 0 || strstr(pstr, instr) != pstr) {
-if (db) {
-	fprintf(stderr, "\"Password:\" did not appear: '%s'" " n=%d\n", instr, n);
-	if (db > 3 && n == 1 && j < 32) {
-		continue;
-	}
-}
+
+			if (db) {
+				fprintf(stderr, "\"Password:\" did not "
+				    "appear: '%s'" " n=%d\n", instr, n);
+				if (db > 3 && n == 1 && j < 32) {
+					continue;
+				}
+			}
 			alarm(0);
 			signal(SIGALRM, SIG_DFL);
 			kill_child(pid, fd);
@@ -750,26 +901,27 @@ if (db) {
 	for (i = 0; i< drain_size; i++) {
 		int n;	
 		
-		buf[0] = '\0';
-		buf[1] = '\0';
+		cbuf[0] = '\0';
+		cbuf[1] = '\0';
 
-		n = read(fd, buf, 1);
+		n = read(fd, cbuf, 1);
 		if (n < 0 && errno == EINTR) {
+			i--;
+			if (i < 0) i = 0;
 			continue;
 		}
 
-if (db) fprintf(stderr, "%s", buf);
+		if (db) fprintf(stderr, "%s", cbuf);
 
 		if (n <= 0) {
 			break;
 		}
-
-		if (rbuf) {
-			rbuf[i] = buf[0];
-			rsize++;
+		if (rbuf && *rbuf_size > 0) {
+			rbuf[rsize++] = cbuf[0];
 		}
 	}
-	if (rbuf) {
+
+	if (rbuf && *rbuf_size > 0) {
 		char *s = rbuf;
 		char *p = strdup(pass);
 		int n, o = 0;
@@ -805,9 +957,10 @@ if (db) fprintf(stderr, "%s", buf);
 		}
 		*rbuf_size = rsize;
 		strzero(p);
+		free(p);
 	}
 
-if (db) fprintf(stderr, "\n");
+	if (db) fprintf(stderr, "\n");
 
 	alarm(0);
 	signal(SIGALRM, SIG_DFL);
@@ -839,14 +992,17 @@ static void unixpw_verify(char *user, char *pass) {
 	char log[] = "login: ";
 	char *colon = NULL;
 	ClientData *cd = NULL;
+	int ok;
 
 if (db) fprintf(stderr, "unixpw_verify: '%s' '%s'\n", user, db > 1 ? pass : "********");
-	rfbLog("unixpw_verify: %s\n", user);
+	rfbLog("unixpw_verify: '%s'\n", user ? user : "(null)");
 
-	colon = strchr(user, ':');
+	if (user) {
+		colon = strchr(user, ':');
+	}
 	if (colon) {
 		*colon = '\0';
-		rfbLog("unixpw_verify: colon: %s\n", user);
+		rfbLog("unixpw_verify: colon: '%s'\n", user);
 	}
 	if (unixpw_client) {
 		cd = (ClientData *) unixpw_client->clientData;
@@ -861,45 +1017,55 @@ if (db) fprintf(stderr, "unixpw_verify: '%s' '%s'\n", user, db > 1 ? pass : "***
 		}
 	}
 
-	if (unixpw_nis) {
+	ok = 0;
+	if (unixpw_cmd) {
+		if (cmd_verify(user, pass)) {
+			rfbLog("unixpw_verify: cmd_verify login for '%s'"
+			    " succeeded.\n", user);
+			ok = 1;
+		} else {
+			rfbLog("unixpw_verify: crypt_verify login for '%s'"
+			    " failed.\n", user);
+			usleep(3000*1000);
+			ok = 0;
+		}
+	} else if (unixpw_nis) {
 		if (crypt_verify(user, pass)) {
 			rfbLog("unixpw_verify: crypt_verify login for '%s'"
 			    " succeeded.\n", user);
-			unixpw_accept(user);
-			if (keep_unixpw) {
-				keep_unixpw_user = strdup(user);
-				keep_unixpw_pass = strdup(pass);
-				if (colon) {
-					keep_unixpw_opts = strdup(colon+1);
-				} else {
-					keep_unixpw_opts = strdup("");
-				}
-			}
-			if (colon) *colon = ':';
-			return;
+			ok = 1;
+		} else {
+			rfbLog("unixpw_verify: crypt_verify login for '%s'"
+			    " failed.\n", user);
+			usleep(3000*1000);
+			ok = 0;
 		}
-		rfbLog("unixpw_verify: crypt_verify login for '%s' failed.\n",
-		    user);
-		usleep(3000*1000);
 	} else {
 		if (su_verify(user, pass, NULL, NULL, NULL)) {
 			rfbLog("unixpw_verify: su_verify login for '%s'"
 			    " succeeded.\n", user);
-			unixpw_accept(user);
-			if (keep_unixpw) {
-				keep_unixpw_user = strdup(user);
-				keep_unixpw_pass = strdup(pass);
-				if (colon) {
-					keep_unixpw_opts = strdup(colon+1);
-				} else {
-					keep_unixpw_opts = strdup("");
-				}
-			}
-			if (colon) *colon = ':';
-			return;
+			ok = 1;
+		} else {
+			rfbLog("unixpw_verify: su_verify login for '%s'"
+			    " failed.\n", user);
+			/* use su(1)'s sleep */
+			ok = 0;
 		}
-		rfbLog("unixpw_verify: su_verify login for '%s' failed.\n",
-		    user);
+	}
+
+	if (ok) {
+		unixpw_accept(user);
+		if (keep_unixpw) {
+			keep_unixpw_user = strdup(user);
+			keep_unixpw_pass = strdup(pass);
+			if (colon) {
+				keep_unixpw_opts = strdup(colon+1);
+			} else {
+				keep_unixpw_opts = strdup("");
+			}
+		}
+		if (colon) *colon = ':';
+		return;
 	}
 	if (colon) *colon = ':';
 
@@ -940,7 +1106,7 @@ static void set_db(void) {
 }
 
 void unixpw_keystroke(rfbBool down, rfbKeySym keysym, int init) {
-	int x, y, i, nmax = 100;
+	int x, y, i, rc, nmax = 100;
 	static char user_r[100], user[100], pass[100];
 	static int  u_cnt = 0, p_cnt = 0, first = 1;
 	char keystr[100];
@@ -951,6 +1117,8 @@ void unixpw_keystroke(rfbBool down, rfbKeySym keysym, int init) {
 		first = 0;
 		for (i=0; i < nmax; i++) {
 			user_r[i] = '\0';
+			user[i] = '\0';
+			pass[i] = '\0';
 		}
 	}
 
@@ -973,13 +1141,16 @@ void unixpw_keystroke(rfbBool down, rfbKeySym keysym, int init) {
 			keep_unixpw_user = NULL;
 		}
 		if (keep_unixpw_pass) {
+			strzero(keep_unixpw_pass);
 			free(keep_unixpw_pass);
 			keep_unixpw_pass = NULL;
 		}
 		if (keep_unixpw_opts) {
+			strzero(keep_unixpw_opts);
 			free(keep_unixpw_opts);
 			keep_unixpw_opts = NULL;
 		}
+
 		return;
 	}
 
@@ -991,14 +1162,22 @@ void unixpw_keystroke(rfbBool down, rfbKeySym keysym, int init) {
 		rfbLog("unixpw_keystroke: bad keysym1: 0x%x\n", (int) keysym);
 		return;
 	}
+
+	/* rfbKeySym = uint32_t */
+	/* KeySym = XID = CARD32 = (unsigned long or unsigned int on LONG64) */
 	X_LOCK;
 	str = XKeysymToString(keysym);
 	X_UNLOCK;
-	if (! str) {
+	if (str == NULL) {
 		rfbLog("unixpw_keystroke: bad keysym2: 0x%x\n", (int) keysym);
 		return;
 	}
-	snprintf(keystr, 100, "%s", str);
+
+	rc = snprintf(keystr, 100, "%s", str);
+	if (rc < 1 || rc > 90) {
+		rfbLog("unixpw_keystroke: bad keysym3: 0x%x\n", (int) keysym);
+		return;
+	}
 
 	if (db > 2) {
 		fprintf(stderr, "%s / %s  0x%x %s\n", in_login ? "login":"pass ",
@@ -1006,7 +1185,10 @@ void unixpw_keystroke(rfbBool down, rfbKeySym keysym, int init) {
 	}
 
 	if (keysym == XK_Return || keysym == XK_Linefeed) {
-		;	/* let "up" pass down below for Return case */
+		/* let "up" pass down below for Return case */
+		if (down) {
+			return;
+		}
 	} else if (! down) {
 		return;
 	}
@@ -1015,6 +1197,8 @@ void unixpw_keystroke(rfbBool down, rfbKeySym keysym, int init) {
 		if (keysym == XK_BackSpace || keysym == XK_Delete) {
 			if (u_cnt > 0) {
 				user[u_cnt-1] = '\0';
+				u_cnt--;
+
 				x = text_x();
 				y = text_y();
 				if (scaling) {
@@ -1035,10 +1219,11 @@ void unixpw_keystroke(rfbBool down, rfbKeySym keysym, int init) {
 					    y - char_h, x, y, 0);
 				}
 				char_col--;
-				u_cnt--;
 			}
+
 			return;
 		}
+
 		if (keysym == XK_Return || keysym == XK_Linefeed) {
 			char pw[] = "Password: ";
 
@@ -1046,6 +1231,7 @@ void unixpw_keystroke(rfbBool down, rfbKeySym keysym, int init) {
 				/*
 				 * require Up so the Return Up is not processed
 				 * by the normal session after login.
+				 * (actually we already returned above)
 				 */
 				return;
 			}
@@ -1068,8 +1254,10 @@ void unixpw_keystroke(rfbBool down, rfbKeySym keysym, int init) {
 			} else {
 				mark_rect_as_modified(0, 0, dpy_x, dpy_y, 0);
 			}
+
 			return;
 		}
+
 		if (u_cnt == 0 && keysym == XK_Up) {
 			/*
 			 * Allow user to hit Up arrow at beginning to
@@ -1077,28 +1265,39 @@ void unixpw_keystroke(rfbBool down, rfbKeySym keysym, int init) {
 			 */
 			int i;
 			for (i=0; i < nmax; i++) {
+				user[i] = '\0';
+			}
+			for (i=0; i < nmax; i++) {
+				char str[10];
 				user[u_cnt++] = user_r[i];
 				if (user_r[i] == '\0') {
 					break;
 				}
-				keystr[0] = (char) user_r[i];
-				keystr[1] = '\0';
+				str[0] = (char) user_r[i];
+				str[1] = '\0';
+
 				x = text_x();
 				y = text_y();
 				rfbDrawString(pscreen, &default8x16Font, x, y,
-				    keystr, white());
+				    str, white());
 				mark_rect_as_modified(x, y-char_h, x+char_w,
 				    y, scaling);
 				char_col++;
 				usleep(10*1000);
 			}
+
 			return;
 		}
-		if (keysym <= ' ' || keysym >= 0x7f) {
+
+		if (keysym < ' ' || keysym >= 0x7f) {
+			/* require normal keyboard characters for username */
+			rfbLog("unixpw_keystroke: bad keysym4: 0x%x\n", (int) keysym);
 			return;
 		}
+
 		if (u_cnt >= nmax - 1) {
-			rfbLog("unixpw_deny: username too long\n");
+			/* user[u_cnt=99] will be '\0' */
+			rfbLog("unixpw_deny: username too long: %d\n", u_cnt);
 			for (i=0; i<nmax; i++) {
 				user[i] = '\0';
 				pass[i] = '\0';
@@ -1112,21 +1311,24 @@ void unixpw_keystroke(rfbBool down, rfbKeySym keysym, int init) {
 #else
 		user[u_cnt++] = (char) keysym;
 		for (i=0; i < nmax; i++) {
+			/* keep a full copy of username */
 			user_r[i] = user[i];
 		}
 		keystr[0] = (char) keysym;
 #endif
+		keystr[1] = '\0';
 
 		x = text_x();
 		y = text_y();
 
-if (db && db <= 2) fprintf(stderr, "u_cnt: %d %d/%d ks: 0x%x  %s\n", u_cnt, x, y, keysym, keystr);
+if (db && db <= 2) fprintf(stderr, "u_cnt: %d %d/%d ks: 0x%x  '%s'\n", u_cnt, x, y, keysym, keystr);
 
-		keystr[1] = '\0';
 		rfbDrawString(pscreen, &default8x16Font, x, y, keystr, white());
 
 		mark_rect_as_modified(x, y-char_h, x+char_w, y, scaling);
 		char_col++;
+
+		return;
 
 	} else if (in_passwd) {
 		if (keysym == XK_BackSpace || keysym == XK_Delete) {
@@ -1141,11 +1343,14 @@ if (db && db <= 2) fprintf(stderr, "u_cnt: %d %d/%d ks: 0x%x  %s\n", u_cnt, x, y
 				/*
 				 * require Up so the Return Up is not processed
 				 * by the normal session after login.
+				 * (actually we already returned above)
 				 */
 				return;
 			}
+
 			in_login = 0;
 			in_passwd = 0;
+
 			pass[p_cnt++] = '\n';
 			unixpw_verify(user, pass);
 			for (i=0; i<nmax; i++) {
@@ -1154,11 +1359,16 @@ if (db && db <= 2) fprintf(stderr, "u_cnt: %d %d/%d ks: 0x%x  %s\n", u_cnt, x, y
 			}
 			return;
 		}
-		if (keysym <= ' ' || keysym >= 0x7f) {
+
+		if (keysym < ' ' || keysym >= 0x7f) {
+			/* require normal keyboard characters for password */
 			return;
 		}
+
 		if (p_cnt >= nmax - 2) {
-			rfbLog("unixpw_deny: password too long\n");
+			/* pass[u_cnt=98] will be '\n' */
+			/* pass[u_cnt=99] will be '\0' */
+			rfbLog("unixpw_deny: password too long: %d\n", p_cnt);
 			for (i=0; i<nmax; i++) {
 				user[i] = '\0';
 				pass[i] = '\0';
@@ -1166,42 +1376,61 @@ if (db && db <= 2) fprintf(stderr, "u_cnt: %d %d/%d ks: 0x%x  %s\n", u_cnt, x, y
 			unixpw_deny();
 			return;
 		}
+
 		pass[p_cnt++] = (char) keysym;
+
+		return;
+
 	} else {
-		/* should not happen... clean up a bit. */
+		/* should not happen... anyway clean up a bit. */
 		u_cnt = 0;
 		p_cnt = 0;
 		for (i=0; i<nmax; i++) {
+			user_r[i] = '\0';
 			user[i] = '\0';
 			pass[i] = '\0';
 		}
+
+		return;
 	}
 }
 
 static void apply_opts (char *user) {
 	char *p, *q, *str, *opts = NULL, *opts_star = NULL;
-	ClientData *cd = (ClientData *) unixpw_client->clientData;
-	rfbClientPtr cl = unixpw_client;
-	int i;
+	rfbClientPtr cl;
+	ClientData *cd;
+	int i, notmode = 0;
 
-	if (! cd) {
+	if (! unixpw_list) {
 		return;
 	}
+	if (! unixpw_client) {
+		rfbLog("apply_opts: unixpw_client is NULL\n");
+		clean_up_exit(1);
+	}
+	cd = (ClientData *) unixpw_client->clientData;
+	cl = unixpw_client;
+
+	if (! cd) {
+		rfbLog("apply_opts: no ClientData\n");
+	}
 	
-	if (user) {
+	if (user && cd) {
 		if (cd->unixname) {
 			free(cd->unixname);
 		}
 		cd->unixname = strdup(user);
 	}
 
-	if (! unixpw_list) {
-		return;
-	}
 	str = strdup(unixpw_list);
 
 	/* apply any per-user options. */
-	p = strtok(str, ",");
+	if (str[0] == '!') {
+		p = strtok(str+1, ",");
+		notmode = 1;
+	} else {
+		p = strtok(str, ",");
+	}
 	while (p) {
 		if ( (q = strchr(p, ':')) != NULL ) {
 			*q = '\0';	/* get rid of options. */
@@ -1210,6 +1439,7 @@ static void apply_opts (char *user) {
 			continue;
 		}
 		if (user && !strcmp(user, p)) {
+			/* will not happen in notmode */
 			opts = strdup(q+1);
 		}
 		if (!strcmp("*", p)) {
@@ -1228,13 +1458,19 @@ static void apply_opts (char *user) {
 		while (p) {
 			if (!strcmp(p, "viewonly")) {
 				cl->viewOnly = TRUE;
-				strncpy(cd->input, "-", CILEN);
+				if (cd) {
+					strncpy(cd->input, "-", CILEN);
+				}
 			} else if (!strcmp(p, "fullaccess")) {
 				cl->viewOnly = FALSE;
-				strncpy(cd->input, "-", CILEN);
+				if (cd) {
+					strncpy(cd->input, "-", CILEN);
+				}
 			} else if ((q = strstr(p, "input=")) == p) {
 				q += strlen("input=");
-				strncpy(cd->input, q, CILEN);
+				if (cd) {
+					strncpy(cd->input, q, CILEN);
+				}
 			} else if (!strcmp(p, "deny")) {
 				cl->viewOnly = TRUE;
 				unixpw_deny();

@@ -314,6 +314,7 @@ void setup_stunnel(int rport, int *argc, char **argv) {
 				argv[i+1] = strdup(tmp);
 				*argc += 2;
 				got_rfbport = 1;
+				got_rfbport_val = atoi(tmp);
 			}
 		}
 		stunnel_port = rport;
@@ -710,14 +711,34 @@ void sslEncKey(char *path, int mode) {
 	unlink(tmp);
 
 	if (! mode && cert && cert[0] != '\0') {
-		file = fopen(path, "a");
+		int got_cert = 0;
+		file = fopen(path, "r");
 		if (file == NULL) {
 			rfbLog("sslEncKey: %s\n", path);
 			rfbLogPerror("fopen");
 			exit(1);
 		}
-		fprintf(file, "%s", cert);
+		while (fgets(line, 1024, file) != NULL) {
+			if (strstr(line, "-----BEGIN CERTIFICATE-----")
+			    == line) {
+				got_cert++;
+			}
+			if (strstr(line, "-----END CERTIFICATE-----")
+			    == line) {
+				got_cert++;
+			}
+		}
 		fclose(file);
+		if (got_cert < 2) {
+			file = fopen(path, "a");
+			if (file == NULL) {
+				rfbLog("sslEncKey: %s\n", path);
+				rfbLogPerror("fopen");
+				exit(1);
+			}
+			fprintf(file, "%s", cert);
+			fclose(file);
+		}
 		free(cert);
 	}
 

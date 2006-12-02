@@ -790,12 +790,6 @@ void clientManager::changeGlobalClientMode( int _mode )
 		foreach( client * cl, vc )
 		{
 			cl->changeMode( m_globalClientMode, conn );
-			if( m_globalClientMode == client::Mode_FullscreenDemo ||
-				m_globalClientMode ==
-						client::Mode_WindowDemo )
-			{
-				localSystem::sleep( 20 );
-			}
 		}
 	}
 }

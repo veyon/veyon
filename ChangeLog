@@ -1,3 +1,20 @@
+2006-12-01	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* ima/src/client_manager.cpp:
+	do not sleep in changeGlobalClientMode( ... ) at all as not neccessary
+	any longer
+
+	* common/src/local_system.cpp:
+	fixes concerning logonUser( ... )-implementation under win32
+
+	* ima/src/client.h:
+	* ima/src/client.cpp:
+	demo of a client is now done by starting a fullscreen-demo on all
+	other clients and remote-control this client
+
+	* ica/x11/x11vnc/*:
+	integrated latest x11vnc-code
+
 2006-11-30	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* setup/src/dialogs.cpp:

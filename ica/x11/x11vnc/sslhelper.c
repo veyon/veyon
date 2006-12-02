@@ -146,9 +146,35 @@ char *get_saved_pem(char *save, int create) {
 			}
 		}
 		return new;
-	} else {
-		return strdup(path);
 	}
+
+	if (! quiet) {
+		char line[1024];
+		int on = 0;
+		FILE *in = fopen(path, "r");
+		if (in != NULL) {
+			rfbLog("\n");
+			rfbLog("Using SSL Certificate:\n");
+			fprintf(stderr, "\n");
+			while (fgets(line, 1024, in) != NULL) {
+				if (strstr(line, "BEGIN CERTIFICATE")) {
+					on = 1;
+				}
+				if (on) {
+					fprintf(stderr, "%s", line);
+				}
+				if (strstr(line, "END CERTIFICATE")) {
+					on = 0;
+				}
+				if (strstr(line, "PRIVATE KEY")) {
+					on = 0;
+				}
+			}
+			fprintf(stderr, "\n");
+			fclose(in);
+		}
+	}
+	return strdup(path);
 }
 
 static char *get_input(char *tag, char **in) {
@@ -441,14 +467,17 @@ static char *create_tmp_pem(char *pathin, int prompt) {
 			return NULL;
 		}
 		while (fgets(line, 1024, in) != NULL) {
-			if (strstr(line, "-----BEGIN CERTIFICATE-----")) {
+			if (strstr(line, "BEGIN CERTIFICATE")) {
 				on = 1;
 			}
 			fprintf(out, "%s", line);
 			if (on) {
 				fprintf(crt, "%s", line);
 			}
-			if (strstr(line, "-----END CERTIFICATE-----")) {
+			if (strstr(line, "END CERTIFICATE")) {
+				on = 0;
+			}
+			if (strstr(line, "PRIVATE KEY")) {
 				on = 0;
 			}
 		}
@@ -1297,6 +1326,9 @@ void accept_openssl(int mode) {
 		if (sock < 0)  {
 			rfbLog("SSL: accept_openssl: accept connection failed\n");
 			rfbLogPerror("accept");
+			if (ssl_no_fail) {
+				clean_up_exit(1);
+			}
 			return;
 		}
 		listen = openssl_sock;
@@ -1306,6 +1338,9 @@ void accept_openssl(int mode) {
 		if (sock < 0)  {
 			rfbLog("SSL: accept_openssl: accept connection failed\n");
 			rfbLogPerror("accept");
+			if (ssl_no_fail) {
+				clean_up_exit(1);
+			}
 			return;
 		}
 		listen = https_sock;
@@ -1328,7 +1363,7 @@ void accept_openssl(int mode) {
 	if (! cport) {
 		rfbLog("SSL: accept_openssl: could not find open port.\n");
 		close(sock);
-		if (mode == OPENSSL_INETD) {
+		if (mode == OPENSSL_INETD || ssl_no_fail) {
 			clean_up_exit(1);
 		}
 		return;
@@ -1341,7 +1376,7 @@ void accept_openssl(int mode) {
 		rfbLog("SSL: accept_openssl: could not listen on port %d.\n",
 		    cport);
 		close(sock);
-		if (mode == OPENSSL_INETD) {
+		if (mode == OPENSSL_INETD || ssl_no_fail) {
 			clean_up_exit(1);
 		}
 		return;
@@ -1387,7 +1422,7 @@ void accept_openssl(int mode) {
 		rfbLogPerror("fork");
 		close(sock);
 		close(csock);
-		if (mode == OPENSSL_INETD) {
+		if (mode == OPENSSL_INETD || ssl_no_fail) {
 			clean_up_exit(1);
 		}
 		return;
@@ -1539,6 +1574,7 @@ void accept_openssl(int mode) {
 				 * instead of a direct SSL connection.
 				 */
 				rfbLog("Handling VNC request via https GET. [%d]\n", getpid());
+				rfbLog("-- %s\n", buf);
 
 				if (strstr(buf, "/reverse.proxy")) {
 					char *buf2;
@@ -1568,6 +1604,9 @@ void accept_openssl(int mode) {
 				    "Connection: close\r\n"
 				    "Content-Type: octet-stream\r\n"
 				    "Pragma: no-cache\r\n\r\n";
+
+				rfbLog("Handling Check HTTPS request via https GET. [%d]\n", getpid());
+				rfbLog("-- %s\n", buf);
 
 				SSL_write(ssl, reply, strlen(reply));
 				SSL_shutdown(ssl);
@@ -1692,7 +1731,7 @@ if (db) fprintf(stderr, "iface: %s\n", iface);
 
 		kill(pid, SIGTERM);
 		waitpid(pid, &status, WNOHANG); 
-		if (mode == OPENSSL_INETD) {
+		if (mode == OPENSSL_INETD || ssl_no_fail) {
 			clean_up_exit(1);
 		}
 		return;
@@ -1758,7 +1797,7 @@ if (db) fprintf(stderr, "iface: %s\n", iface);
 		}
 		kill(pid, SIGTERM);
 		waitpid(pid, &status, WNOHANG); 
-		if (mode == OPENSSL_INETD) {
+		if (mode == OPENSSL_INETD || ssl_no_fail) {
 			clean_up_exit(1);
 		}
 		return;
@@ -1791,7 +1830,7 @@ if (db) fprintf(stderr, "iface: %s\n", iface);
 
 		kill(pid, SIGTERM);
 		waitpid(pid, &status, WNOHANG); 
-		if (mode == OPENSSL_INETD) {
+		if (mode == OPENSSL_INETD || ssl_no_fail) {
 			clean_up_exit(1);
 		}
 		return;

@@ -19,9 +19,9 @@ void lurk_loop(char *str);
 int switch_user(char *user, int fb_mode);
 int read_passwds(char *passfile);
 void install_passwds(void);
-void check_new_passwds(void);
+void check_new_passwds(int force);
 int wait_for_client(int *argc, char** argv, int http);
-
+rfbBool custom_passwd_check(rfbClientPtr cl, const char *response, int len);
 
 static void switch_user_task_dummy(void);
 static void switch_user_task_solid_bg(void);
@@ -722,15 +722,20 @@ int read_passwds(char *passfile) {
 	char line[1024];
 	char *filename;
 	char **old_passwd_list = passwd_list;
-	int remove = 0;
-	int read_mode = 0;
-	int begin_vo = -1;
+	int linecount = 0, i, remove = 0, read_mode = 0, begin_vo = -1;
 	struct stat sbuf;
-	int linecount = 0, i, max;
-	FILE *in;
+	static int max = -1;
+	FILE *in = NULL;
 	static time_t last_read = 0;
 	static int read_cnt = 0;
 	int db_passwd = 0;
+
+	if (max < 0) {
+		max = 1000;
+		if (getenv("X11VNC_MAX_PASSWDS")) {
+			max = atoi(getenv("X11VNC_MAX_PASSWDS"));
+		}
+	}
 
 	filename = passfile;
 	if (strstr(filename, "rm:") == filename) {
@@ -741,18 +746,37 @@ int read_passwds(char *passfile) {
 		read_mode = 1;
 		if (stat(filename, &sbuf) == 0) {
 			if (sbuf.st_mtime <= last_read) {
-				return 0;
+				return 1;
 			}
 			last_read = sbuf.st_mtime;
 		}
+	} else if (strstr(filename, "cmd:") == filename) {
+		int rc;
+
+		filename += strlen("cmd:");
+		read_mode = 1;
+		in = tmpfile();
+		if (in == NULL) {
+			rfbLog("run_user_command tmpfile() failed: %s\n",
+			    filename);
+			clean_up_exit(1);
+		}
+		rc = run_user_command(filename, latest_client, "read_passwds",
+		    NULL, 0, in);
+		if (rc != 0) {
+			rfbLog("run_user_command command failed: %s\n",
+			    filename);
+			clean_up_exit(1);
+		}
+		rewind(in);
+	} else if (strstr(filename, "custom:") == filename) {
+		return 1;
 	}
 
-	if (stat(filename, &sbuf) == 0) {
+	if (in == NULL && stat(filename, &sbuf) == 0) {
 		/* (poor...) upper bound to number of lines */
 		max = (int) sbuf.st_size;
 		last_read = sbuf.st_mtime;
-	} else {
-		max = 64;
 	}
 
 	/* create 1 more than max to have it be the ending NULL */
@@ -761,7 +785,9 @@ int read_passwds(char *passfile) {
 		passwd_list[i] = NULL;
 	}
 	
-	in = fopen(filename, "r");
+	if (in == NULL) {
+		in = fopen(filename, "r");
+	}
 	if (in == NULL) {
 		rfbLog("cannot open passwdfile: %s\n", passfile);
 		rfbLogPerror("fopen");
@@ -827,6 +853,7 @@ int read_passwds(char *passfile) {
 		}
 
 		if (linecount >= max) {
+			rfbLog("read_passwds: hit max passwd: %d\n", max);
 			break;
 		}
 	}
@@ -927,7 +954,7 @@ void install_passwds(void) {
 	}
 }
 
-void check_new_passwds(void) {
+void check_new_passwds(int force) {
 	static time_t last_check = 0;
 	time_t now;
 
@@ -939,12 +966,54 @@ void check_new_passwds(void) {
 	}
 	if (unixpw_in_progress) return;
 
+	if (force) {
+		last_check = 0;
+	}
+
 	now = time(NULL);
 	if (now > last_check + 1) {
 		if (read_passwds(passwdfile)) {
 			install_passwds();
 		}
 		last_check = now;
+	}
+}
+
+rfbBool custom_passwd_check(rfbClientPtr cl, const char *response, int len) {
+	char *input, *q, *cmd;
+	char num[16];
+	int j, i, n, rc;
+
+	rfbLog("custom_passwd_check: len=%d\n", len);
+
+	if (!passwdfile || strstr(passwdfile, "custom:") != passwdfile) {
+		return FALSE;
+	}
+	cmd = passwdfile + strlen("custom:");
+
+	sprintf(num, "%d\n", len);
+
+	input = (char *) malloc(2 * len + 16 + 1);
+	
+	input[0] = '\0';
+	strcat(input, num);
+	n = strlen(num);
+
+	j = n;
+	for (i=0; i < len; i++) {
+		input[j] = cl->authChallenge[i];
+		j++;
+	}
+	for (i=0; i < len; i++) {
+		input[j] = response[i];
+		j++;
+	}
+	rc = run_user_command(cmd, cl, "custom_passwd", input, n+2*len, NULL);
+	free(input);
+	if (rc == 0) {
+		return TRUE;
+	} else {
+		return FALSE;
 	}
 }
 

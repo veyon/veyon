@@ -21,7 +21,13 @@
 #include <sys/ioctl.h>
 #include <linux/input.h>
 #include <linux/uinput.h>
+
+#if !defined(EV_SYN) || !defined(SYN_REPORT)
+#undef UINPUT_OK
 #endif
+
+#endif
+
 
 int check_uinput(void);
 int initialize_uinput(void);

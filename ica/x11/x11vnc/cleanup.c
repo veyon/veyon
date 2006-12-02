@@ -405,6 +405,83 @@ static void interrupted (int sig) {
 	}
 }
 
+static void ignore_sigs(char *list) {
+	char *str, *p;
+	int ignore = 1;
+	if (list == NULL || *list == '\0') {
+		return;
+	}
+	str = strdup(list);
+	p = strtok(str, ":,");
+
+#define SETSIG(x, y) \
+	if (strstr(p, x)) { \
+		if (ignore) { \
+			signal(y, SIG_IGN); \
+		} else { \
+			signal(y, interrupted); \
+		} \
+	}
+
+#ifdef SIG_IGN
+	while (p) {
+		if (!strcmp(p, "ignore")) {
+			ignore = 1;
+		} else if (!strcmp(p, "exit")) {
+			ignore = 0;
+		}
+		/* Take off every 'sig' ;-) */
+#ifdef SIGHUP
+		SETSIG("HUP", SIGHUP);
+#endif
+#ifdef SIGINT
+		SETSIG("INT", SIGINT);
+#endif
+#ifdef SIGQUIT
+		SETSIG("QUIT", SIGQUIT);
+#endif
+#ifdef SIGTRAP
+		SETSIG("TRAP", SIGTRAP);
+#endif
+#ifdef SIGABRT
+		SETSIG("ABRT", SIGABRT);
+#endif
+#ifdef SIGBUS
+		SETSIG("BUS", SIGBUS);
+#endif
+#ifdef SIGFPE
+		SETSIG("FPE", SIGFPE);
+#endif
+#ifdef SIGSEGV
+		SETSIG("SEGV", SIGSEGV);
+#endif
+#ifdef SIGPIPE
+		SETSIG("PIPE", SIGPIPE);
+#endif
+#ifdef SIGTERM
+		SETSIG("TERM", SIGTERM);
+#endif
+#ifdef SIGUSR1
+		SETSIG("USR1", SIGUSR1);
+#endif
+#ifdef SIGUSR2
+		SETSIG("USR2", SIGUSR2);
+#endif
+#ifdef SIGCONT
+		SETSIG("CONT", SIGCONT);
+#endif
+#ifdef SIGSTOP
+		SETSIG("STOP", SIGSTOP);
+#endif
+#ifdef SIGTSTP
+		SETSIG("TSTP", SIGTSTP);
+#endif
+		p = strtok(NULL, ":,");
+	}
+#endif	/* SIG_IGN */
+	free(str);
+}
+
 /* signal handlers */
 void initialize_signals(void) {
 	signal(SIGHUP,  interrupted);
@@ -418,6 +495,10 @@ void initialize_signals(void) {
 
 	if (!sigpipe || *sigpipe == '\0' || !strcmp(sigpipe, "skip")) {
 		;
+	} else if (strstr(sigpipe, "ignore:") == sigpipe) {
+		ignore_sigs(sigpipe);
+	} else if (strstr(sigpipe, "exit:") == sigpipe) {
+		ignore_sigs(sigpipe);
 	} else if (!strcmp(sigpipe, "ignore")) {
 #ifdef SIG_IGN
 		signal(SIGPIPE, SIG_IGN);
@@ -454,6 +535,12 @@ int known_sigpipe_mode(char *s) {
 /*
  * skip, ignore, exit
  */
+	if (strstr(s, "ignore:") == s) {
+		return 1;
+	}
+	if (strstr(s, "exit:") == s) {
+		return 1;
+	}
 	if (strcmp(s, "skip") && strcmp(s, "ignore") && 
 	    strcmp(s, "exit")) {
 		return 0;

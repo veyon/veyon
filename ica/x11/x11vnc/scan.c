@@ -467,7 +467,7 @@ void initialize_polling_images(void) {
 			break;
 		}
 	}
-	if (!quiet) {
+	if (verbose) {
 		if (using_shm && ! xform24to32) {
 			rfbLog("created %d tile_row shm polling images.\n",
 			    tile_shm_count);

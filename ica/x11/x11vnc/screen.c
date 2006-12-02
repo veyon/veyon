@@ -565,7 +565,7 @@ void set_raw_fb_params(int restore) {
 		return;
 	}
 
-	if (! quiet) {
+	if (verbose) {
 		rfbLog("set_raw_fb_params: modifying settings for "
 		    "-rawfb mode.\n");
 	}
@@ -577,7 +577,7 @@ void set_raw_fb_params(int restore) {
 		 * (i.e. rawfb but also send user input to the X
 		 * display, most likely using /dev/fb0 for some reason...)
 		 */
-		if (! quiet) {
+		if (verbose) {
 		   rfbLog("rawfb: -noviewonly mode: still sending mouse and\n");
 		   rfbLog("rawfb:   keyboard input to the X DISPLAY!!\n");
 		}
@@ -590,50 +590,50 @@ void set_raw_fb_params(int restore) {
 		}
 #endif
 		if (watch_selection) {
-			if (! quiet) rfbLog("  rawfb: turning off "
+			if (verbose) rfbLog("  rawfb: turning off "
 			    "watch_selection\n");
 			watch_selection = 0;
 		}
 		if (watch_primary) {
-			if (! quiet) rfbLog("  rawfb: turning off "
+			if (verbose) rfbLog("  rawfb: turning off "
 			    "watch_primary\n");
 			watch_primary = 0;
 		}
 		if (watch_clipboard) {
-			if (! quiet) rfbLog("  rawfb: turning off "
+			if (verbose) rfbLog("  rawfb: turning off "
 			    "watch_clipboard\n");
 			watch_clipboard = 0;
 		}
 		if (watch_bell) {
-			if (! quiet) rfbLog("  rawfb: turning off watch_bell\n");
+			if (verbose) rfbLog("  rawfb: turning off watch_bell\n");
 			watch_bell = 0;
 		}
 		if (no_autorepeat) {
-			if (! quiet) rfbLog("  rawfb: turning off "
+			if (verbose) rfbLog("  rawfb: turning off "
 			    "no_autorepeat\n");
 			no_autorepeat = 0;
 		}
 		if (use_solid_bg) {
-			if (! quiet) rfbLog("  rawfb: turning off "
+			if (verbose) rfbLog("  rawfb: turning off "
 			    "use_solid_bg\n");
 			use_solid_bg = 0;
 		}
 		multiple_cursors_mode = strdup("arrow");
 	}
 	if (using_shm) {
-		if (! quiet) rfbLog("  rawfb: turning off using_shm\n");
+		if (verbose) rfbLog("  rawfb: turning off using_shm\n");
 		using_shm = 0;
 	}
 	if (take_naps) {
-		if (! quiet) rfbLog("  rawfb: turning off take_naps\n");
+		if (verbose) rfbLog("  rawfb: turning off take_naps\n");
 		take_naps = 0;
 	}
 	if (xrandr) {
-		if (! quiet) rfbLog("  rawfb: turning off xrandr\n");
+		if (verbose) rfbLog("  rawfb: turning off xrandr\n");
 		xrandr = 0;
 	}
 	if (! noxrecord) {
-		if (! quiet) rfbLog("  rawfb: turning off xrecord\n");
+		if (verbose) rfbLog("  rawfb: turning off xrecord\n");
 		noxrecord = 1;
 	}
 }
@@ -880,7 +880,8 @@ if (db) fprintf(stderr, "initialize_raw_fb reset\n");
 	if (! raw_fb_str) {
 		return NULL;
 	}
-	if (!strcasecmp(raw_fb_str, "NULL") || !strcasecmp(raw_fb_str, "ZERO")) {
+	if (!strcasecmp(raw_fb_str, "NULL") || !strcasecmp(raw_fb_str, "ZERO")
+	    || !strcasecmp(raw_fb_str, "NONE")) {
 		raw_fb_str = strdup("map:/dev/zero@640x480x32");
 	}
 	if (!strcasecmp(raw_fb_str, "RAND")) {
@@ -1303,16 +1304,19 @@ if (db) fprintf(stderr, "initialize_raw_fb reset\n");
 		memset(raw_fb, 0xff, dpy_x * dpy_y * b/8);
 	}
 
-	rfbLog("\n");
-	rfbLog("rawfb:  raw_fb  %p\n", raw_fb);
-	rfbLog("        format  %d\n", raw_fb_image->format);
-	rfbLog("        width   %d\n", raw_fb_image->width);
-	rfbLog("        height  %d\n", raw_fb_image->height);
-	rfbLog("        bpp     %d\n", raw_fb_image->bits_per_pixel);
-	rfbLog("        depth   %d\n", raw_fb_image->depth);
-	rfbLog("        bpl     %d\n", raw_fb_image->bytes_per_line);
-	if (use_snapfb && snap_fb) {
-		rfbLog("        snap_fb %p\n", snap_fb);
+	if (verbose) {
+		
+		rfbLog("\n");
+		rfbLog("rawfb:  raw_fb  %p\n", raw_fb);
+		rfbLog("        format  %d\n", raw_fb_image->format);
+		rfbLog("        width   %d\n", raw_fb_image->width);
+		rfbLog("        height  %d\n", raw_fb_image->height);
+		rfbLog("        bpp     %d\n", raw_fb_image->bits_per_pixel);
+		rfbLog("        depth   %d\n", raw_fb_image->depth);
+		rfbLog("        bpl     %d\n", raw_fb_image->bytes_per_line);
+		if (use_snapfb && snap_fb) {
+			rfbLog("        snap_fb %p\n", snap_fb);
+		}
 	}
 
 	free(str);
@@ -2195,7 +2199,7 @@ void initialize_screen(int *argc, char **argv, XImage *fb) {
 	}
 
 #if !SMALL_FOOTPRINT
-	if (!quiet) {
+	if (verbose) {
 		fprintf(stderr, "\n");
 		fprintf(stderr, "FrameBuffer Info:\n");
 		fprintf(stderr, " width:            %d\n", fb->width);
@@ -2324,7 +2328,7 @@ void initialize_screen(int *argc, char **argv, XImage *fb) {
 	} else {
 		screen->frameBuffer = rfb_fb;
 	}
-	if (!quiet) {
+	if (verbose) {
 		fprintf(stderr, " rfb_fb:      %p\n", rfb_fb);
 		fprintf(stderr, " main_fb:     %p\n", main_fb);
 		fprintf(stderr, " 8to24_fb:    %p\n", cmap8to24_fb);
@@ -2398,6 +2402,9 @@ void initialize_screen(int *argc, char **argv, XImage *fb) {
 
 	} else if (! got_rfbport) {
 		screen->autoPort = TRUE;
+	} else if (got_rfbport && got_rfbport_val == 0) {
+		screen->autoPort = FALSE;
+		screen->port = 0;
 	}
 
 	if (! got_nevershared && ! got_alwaysshared) {

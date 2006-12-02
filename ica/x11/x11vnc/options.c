@@ -19,11 +19,13 @@ char *passwdfile = NULL;	/* -passwdfile */
 int unixpw = 0;			/* -unixpw */
 int unixpw_nis = 0;		/* -unixpw_nis */
 char *unixpw_list = NULL;
+char *unixpw_cmd = NULL;
 int use_stunnel = 0;		/* -stunnel */
 int stunnel_port = 0;
 char *stunnel_pem = NULL;
 int use_openssl = 0;
 int http_ssl = 0;
+int ssl_no_fail = 0;
 char *openssl_pem = NULL;
 char *ssl_certs_dir = NULL;
 int https_port_num = -1;
@@ -150,11 +152,16 @@ int noxrecord = 0;
 
 char *client_connect = NULL;	/* strings for -connect option */
 char *client_connect_file = NULL;
+int connect_or_exit = 0;
 int vnc_connect = 1;		/* -vncconnect option */
 
 int show_cursor = 1;		/* show cursor shapes */
 int show_multiple_cursors = 0;	/* show X when on root background, etc */
 char *multiple_cursors_mode = NULL;
+#ifndef CURSOR_DRAG
+#define CURSOR_DRAG 0
+#endif
+int cursor_drag_changes = CURSOR_DRAG;
 int cursor_pos_updates = 1;	/* cursor position updates -cursorpos */
 int cursor_shape_updates = 1;	/* cursor shape updates -nocursorshape */
 int use_xwarppointer = 0;	/* use XWarpPointer instead of XTestFake... */
@@ -326,6 +333,7 @@ int debug_pointer = 0;
 int debug_keyboard = 0;
 
 int quiet = 0;
+int verbose = 0;
 
 /* threaded vs. non-threaded (default) */
 #if LIBVNCSERVER_HAVE_LIBPTHREAD && defined(X11VNC_THREADED)
@@ -336,6 +344,7 @@ int use_threads = 0;
 
 /* info about command line opts */
 int got_rfbport = 0;
+int got_rfbport_val = -1;
 int got_alwaysshared = 0;
 int got_nevershared = 0;
 int got_cursorpos = 0;

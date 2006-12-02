@@ -1,8 +1,8 @@
 .\" This file was automatically generated from x11vnc -help output.
-.TH X11VNC "1" "August 2006" "x11vnc " "User Commands"
+.TH X11VNC "1" "November 2006" "x11vnc " "User Commands"
 .SH NAME
 x11vnc - allow VNC connections to real X11 displays
-         version: 0.8.3, lastmod: 2006-08-10
+         version: 0.8.3, lastmod: 2006-11-06
 .SH SYNOPSIS
 .B x11vnc
 [OPTION]...
@@ -32,8 +32,8 @@ these protections.  See the FAQ for details how to tunnel the VNC connection
 through an encrypted channel such as 
 .IR ssh (1).
 In brief:
-.PP
-% ssh -L 5900:localhost:5900 far-host 'x11vnc -localhost -display :0'
+.IP
+ssh \fB-t\fR \fB-L\fR 5900:localhost:5900 far-host 'x11vnc \fB-localhost\fR \fB-display\fR :0'
 .PP
 % vncviewer -encodings 'copyrect tight zrle hextile' localhost:0
 .PP
@@ -130,17 +130,17 @@ even if it looks like 8bpp TrueColor (rare problem).
 .PP
 \fB-visual\fR \fIn\fR
 .IP
-Experimental option: probably does not do what you
-think.  It simply *forces* the visual used for the
-framebuffer; this may be a bad thing... (e.g. messes
-up colors or cause a crash). It is useful for testing
-and for some workarounds.  n may be a decimal number,
-or 0x hex.  Run 
+This option probably does not do what you think.
+It simply *forces* the visual used for the framebuffer;
+this may be a bad thing... (e.g. messes up colors or
+cause a crash). It is useful for testing and for some
+workarounds.  n may be a decimal number, or 0x hex.
+Run 
 .IR xdpyinfo (1)
-for the values.  One may
-also use "TrueColor", etc. see <X11/X.h> for a list.
-If the string ends in ":m" then for better or for
-worse the visual depth is forced to be m.
+for the values.  One may also use
+"TrueColor", etc. see <X11/X.h> for a list.  If the
+string ends in ":m" then for better or for worse the
+visual depth is forced to be m.
 .PP
 \fB-overlay\fR
 .IP
@@ -373,11 +373,14 @@ Also clients that log in viewonly cannot transfer files.
 However, if the remote control mechanism is used to
 change the global or per-client viewonly state the
 filetransfer permissions will NOT change.
+.PP
+\fB-ultrafilexfer\fR
 .IP
 Note, to *enable* UltraVNC filetransfer (currently
 disabled by default, this may change...) and to get it
 to work you probably need to supply these libvncserver
 options: "\fB-rfbversion\fR \fI3.6 \fB-permitfiletransfer\fR"\fR
+"\fB-ultrafilexfer\fR" is an alias for this combination.
 .PP
 \fB-http\fR
 .IP
@@ -409,10 +412,18 @@ your environment before starting x11vnc.
 If \fIstring\fR contains "/" it is instead interpreted
 as a file to periodically check for new hosts.
 The first line is read and then the file is truncated.
-Be careful for this usage mode if x11vnc is running as
-root (e.g. via 
+Be careful about the location of this file if x11vnc
+is running as root (e.g. via 
 .IR gdm (1)
 , etc).
+.PP
+\fB-connect_or_exit\fR \fIstr\fR
+.IP
+As with \fB-connect,\fR except if none of the reverse
+connections succeed, then x11vnc shutdowns immediately.
+.IP
+If you do not want x11vnc to listen on ANY interface
+use \fB-rfbport\fR 0
 .PP
 \fB-vncconnect,\fR \fB-novncconnect\fR
 .IP
@@ -455,6 +466,11 @@ you use the remote control mechanism (-R) to change
 the \fB-listen\fR interface you may need to manually adjust
 the \fB-allow\fR list (and vice versa) to avoid situations
 where no connections (or too many) are allowed.
+.IP
+If you do not want x11vnc to listen on ANY interface
+(evidently you are using \fB-connect\fR or \fB-connect_or_exit,\fR
+or plan to use remote control: \fB-R\fR connect:host), use
+\fB-rfbport\fR 0
 .PP
 \fB-nolookup\fR
 .IP
@@ -520,20 +536,59 @@ of the file \fIfilename\fR (instead of via \fB-passwd\fR on
 the command line where others might see it via 
 .IR ps (1)
 ).
-See below for how to supply multiple passwords.
+.IP
+See the descriptions below for how to supply multiple
+passwords, view-only passwords, to specify external
+programs for the authentication, and other features.
 .IP
 If the filename is prefixed with "rm:" it will be
 removed after being read.  Perhaps this is useful in
-limiting the readability of the file.  In general,
-the password file should not be readable by untrusted
-users (BTW: neither should the VNC \fB-rfbauth\fR file:
-it is NOT encrypted, only obscured).
+limiting the readability of the file.  In general, the
+password file should not be readable by untrusted users
+(BTW: neither should the VNC \fB-rfbauth\fR file: it is NOT
+encrypted, only obscured with a fixed key).
 .IP
 If the filename is prefixed with "read:" it will
-periodically be checked for changes and reread.
+periodically be checked for changes and reread.  It it
+guaranteed to be reread just when a new client connects
+so that the latest passwords will be used.
 .IP
-Note that only the first 8 characters of a password
-are used.
+If \fIfilename\fR is prefixed with "cmd:" then the
+string after the ":" is run as an external command:
+the output of the command will be interpreted as if it
+were read from a password file (see below).  If the
+command does not exit with 0, then x11vnc terminates
+immediately.  To specify more than 1000 passwords this
+way set X11VNC_MAX_PASSWDS before starting x11vnc.
+The environment variables are set as in \fB-accept.\fR
+.IP
+Note that due to the VNC protocol only the first 8
+characters of a password are used (DES key).
+.IP
+If \fIfilename\fR is prefixed with "custom:" then a
+custom password checker is supplied as an external
+command following the ":". The command will be run
+when a client authenticates.  If the command exits with
+0 the client is accepted, otherwise it is rejected.
+The environment variables are set as in \fB-accept.\fR
+.IP
+The standard input to the custom command will be a
+decimal digit "len" followed by a newline. "len"
+specifies the challenge size and is usually 16 (the
+VNC spec).  Then follows len bytes which is the random
+challenge string that was sent to the client. This is
+then followed by len more bytes holding the client's
+response (i.e. the challenge string encrypted via DES
+with the user password in the standard situation).
+.IP
+The "custom:" scheme can be useful to implement
+dynamic passwords or to implement methods where longer
+passwords and/or different encryption algorithms
+are used.  The latter will require customizing the VNC
+client as well.  One could create an MD5SUM based scheme
+for example.
+.IP
+File format for \fB-passwdfile:\fR
 .IP
 If multiple non-blank lines exist in the file they are
 all taken as valid passwords.  Blank lines are ignored.
@@ -562,8 +617,10 @@ uses the
 .IR su (1)
 program to verify the user's password.
 [list] is an optional comma separated list of allowed
-Unix usernames.  See below for per-user options that
-can be applied.
+Unix usernames.  If the [list] string begins with the
+character "!" then the entire list is taken as an
+exclude list.  See below for per-user options that can
+be applied.
 .IP
 A familiar "login:" and "Password:" dialog is
 presented to the user on a black screen inside the
@@ -672,11 +729,14 @@ where "opts" is a "+" separated list of
 "deny", e.g. "karl,wally:viewonly,boss:input=M".
 For "input=" it is the K,M,B,C described under \fB-input.\fR
 .IP
-If a user in the list is "*" that means those
+If an item in the list is "*" that means those
 options apply to all users.  It also means all users
 are allowed to log in after supplying a valid password.
 Use "deny" to explicitly deny some users if you use
-"*" to set a global option.
+"*" to set a global option.  If [list] begins with
+the "!" character then "*" is ignored for checking
+if the user is allowed, but the any value of options
+associated with it does apply as normal.
 .IP
 There are also some utilities for testing password
 if [list] starts with the "%" character.  See the
@@ -692,22 +752,52 @@ use the traditional
 + 
 .IR crypt (3)
 method to
-verify passwords instead.  This requires that the
-encrypted passwords be readable.  Passwords stored
-in /etc/shadow will be inaccessible unless x11vnc
-is run as root.
+verify passwords. All of the above \fB-unixpw\fR options and
+contraints apply.
+.IP
+This mode requires that the encrypted passwords be
+readable.  Encrypted passwords stored in /etc/shadow
+will be inaccessible unless x11vnc is run as root.
 .IP
 This is called "NIS" mode simply because in most
-NIS setups the user encrypted passwords are accessible
-(e.g. "ypcat passwd").  NIS is not required for this
-mode to work (only that 
+NIS setups user encrypted passwords are accessible
+(e.g. "ypcat passwd") by an ordinary user and so that
+user can authenticate ANY user.
+.IP
+NIS is not required for this mode to work (only that
 .IR getpwnam (3)
-return the encrypted
-password is required), but it is unlikely it will work
-for any other modern environment unless x11vnc is run
-as root (which, btw, is often done when running x11vnc
-from inetd and xdm/gdm/kdm).  All of the \fB-unixpw\fR options
-and contraints apply.
+return the encrypted password is required),
+but it is unlikely it will work for any most modern
+environments unless x11vnc is run as root to be able
+to access /etc/shadow (note running as root is often
+done when running x11vnc from inetd and xdm/gdm/kdm).
+.IP
+Looked at another way, if you do not want to use the
+.IR su (1)
+method provided by \fB-unixpw,\fR you can run x11vnc
+as root and use \fB-unixpw_nis.\fR  Any users with passwords
+in /etc/shadow can then be authenticated.  You may want
+to use \fB-users\fR unixpw= to switch the process user after
+the user logs in.
+.PP
+\fB-unixpw_cmd\fR \fIstr\fR
+.IP
+As \fB-unixpw\fR above, however do not use 
+.IR su (1)
+but rather
+run the externally supplied command \fIstr\fR.  The first
+line of its stdin will the username and the second line
+the received password.  If the command exits with status
+0 (success) the VNC client will be accepted.  It will be
+rejected for any other return status.
+.IP
+Dynamic passwords and non-unix passwords can be
+implemented this way by providing your own custom helper
+program.  Note that under unixpw mode the remote viewer
+is given 3 tries to enter the correct password.
+.IP
+If a list of allowed users is needed use \fB-unixpw\fR [list]
+in addition to this option.
 .PP
 \fB-display\fR \fIWAIT:...\fR
 .IP
@@ -901,6 +991,13 @@ talking and the connection is dropped after the default
 timeout (25s for about the first minute, 43200s later).
 Set to zero to poll forever.  Set to a negative value
 to use the builtin setting.
+.PP
+\fB-sslnofail\fR
+.IP
+Exit at the first SSL connection failure. Useful when
+scripting SSL connections (e.g. x11vnc is started via
+ssh) and you do not want x11vnc waiting around for more
+connections, tying up ports, etc.
 .PP
 \fB-ssldir\fR \fI[dir]\fR
 .IP
@@ -1207,6 +1304,13 @@ roger), and on the viewer user on somehost could do
 for example:
 .IP
 ssl_vncviewer \fB-mycert\fR ./roger.pem hostname:0
+.IP
+If you set the env. var REQ_ARGS='...' it will be
+passed to openssl 
+.IR req (1).
+A common use would be
+REQ_ARGS='-days 730' to bump up the expiration date
+(2 years in this case).
 .PP
 \fB-sslEncKey\fR \fI[pem]\fR
 .IP
@@ -1770,10 +1874,14 @@ Print out license information.  Same as \fB-copying\fR and
 Instead of exiting after cleaning up, run a simple
 "debug crash shell" when fatal errors are trapped.
 .PP
-\fB-q\fR
+\fB-q,\fR \fB-quiet\fR
 .IP
 Be quiet by printing less informational output to
-stderr.  Same as \fB-quiet.\fR
+stderr.
+.PP
+\fB-v,\fR \fB-verbose\fR
+.IP
+Print out more information to stderr.
 .PP
 \fB-bg\fR
 .IP
@@ -1781,7 +1889,7 @@ Go into the background after screen setup.  Messages to
 stderr are lost unless \fB-o\fR logfile is used.  Something
 like this could be useful in a script:
 .IP
-port=`ssh $host "x11vnc -display :0 -bg" | grep PORT`
+port=`ssh -t $host "x11vnc -display :0 -bg" | grep PORT`
 .IP
 port=`echo "$port" | sed -e 's/PORT=//'`
 .IP
@@ -2087,6 +2195,12 @@ possible.  Often this will only be the same as "some"
 unless the display has overlay visuals or XFIXES
 extensions available.  On Solaris and IRIX if XFIXES
 is not available, \fB-overlay\fR mode will be attempted.
+.PP
+\fB-cursor_drag\fR
+.IP
+Show cursor shape changes even when the mouse is being
+dragged with a mouse button down.  This is useful if you
+want to be able to see Drag-and-Drop cursor icons, etc.
 .PP
 \fB-arrow\fR \fIn\fR
 .IP
@@ -2794,8 +2908,17 @@ Broken pipe (SIGPIPE) handling.  \fIstring\fR can be
 "ignore" or "exit".  For "ignore" libvncserver
 will handle the abrupt loss of a client and continue,
 for "exit" x11vnc will cleanup and exit at the 1st
-broken connection.  Default: "ignore".  This option
-is obsolete.
+broken connection.
+.IP
+This option is not really needed since libvncserver
+is doing the correct thing now for quite some time.
+However, for convenience you can use it to ignore other
+signals, e.g. "\fB-sigpipe\fR \fIignore:HUP,INT,TERM\fR" in case
+that would be useful for some sort of application.
+You can also put "exit:.." in the list to have x11vnc
+cleanup on the listed signals. "\fB-sig\fR" is an alias
+for this option if you don't like the 'pipe'. Example:
+\fB-sig\fR ignore:INT,TERM,exit:USR1
 .PP
 \fB-threads,\fR \fB-nothreads\fR
 .IP
@@ -2845,8 +2968,8 @@ or where window tearing is a problem.
 .PP
 \fB-rawfb\fR \fIstring\fR
 .IP
-Experimental option, instead of polling X, poll the
-memory object specified in \fIstring\fR.
+Instead of polling X, poll the memory object specified
+in \fIstring\fR.
 .IP
 For shared memory segments string is of the
 form: "shm:N@WxHxB" which specifies a shmid
@@ -3074,7 +3197,7 @@ gives inaccurate information), specify them with a
 @WxHxB at the end of the string.
 .IP
 Examples:
-\fB-rawfb\fR console            (same as \fB-rawfb\fR console)
+\fB-rawfb\fR console
 \fB-rawfb\fR /dev/fb0           (same)
 \fB-rawfb\fR console3           (force /dev/tty3)
 \fB-rawfb\fR consolex           (no keystrokes or mouse)
@@ -3095,16 +3218,16 @@ format.
 .PP
 \fB-pipeinput\fR \fIcmd\fR
 .IP
-Another experimental option: it lets you supply an
-external command in \fIcmd\fR that x11vnc will pipe
-all of the user input events to in a simple format.
-In \fB-pipeinput\fR mode by default x11vnc will not process
-any of the user input events.  If you prefix \fIcmd\fR
-with "tee:" it will both send them to the pipe
-command and process them.  For a description of the
-format run "\fB-pipeinput\fR \fItee:/bin/cat\fR".  Another prefix
-is "reopen" which means to reopen pipe if it exits.
-Separate multiple prefixes with commas.
+This option lets you supply an external command in
+\fIcmd\fR that x11vnc will pipe all of the user input
+events to in a simple format.  In \fB-pipeinput\fR mode by
+default x11vnc will not process any of the user input
+events.  If you prefix \fIcmd\fR with "tee:" it will
+both send them to the pipe command and process them.
+For a description of the format run "-pipeinput
+tee:/bin/cat".  Another prefix is "reopen" which
+means to reopen pipe if it exits.  Separate multiple
+prefixes with commas.
 .IP
 In combination with \fB-rawfb\fR one might be able to
 do amusing things (e.g. control non-X devices).
@@ -3612,6 +3735,10 @@ show_cursor     enable  showing a cursor.
 noshow_cursor   disable showing a cursor. (same as
 "nocursor")
 .IP
+cursor_drag     enable  cursor changes during drag.
+.IP
+nocursor_drag   disable cursor changes during drag.
+.IP
 arrow:n         set \fB-arrow\fR to alternate n.
 .IP
 xfixes          enable  xfixes cursor shape mode.
@@ -3883,16 +4010,17 @@ unlock connect allowonce allow localhost nolocalhost
 listen lookup nolookup accept afteraccept gone shm
 noshm flipbyteorder noflipbyteorder onetile noonetile
 solid_color solid nosolid blackout xinerama noxinerama
-xtrap noxtrap xrandr noxrandr xrandr_mode rotate padgeom
-quiet q noquiet modtweak nomodtweak xkb noxkb capslock
-nocapslock skip_lockkeys noskip_lockkeys skip_keycodes
-sloppy_keys nosloppy_keys skip_dups noskip_dups
-add_keysyms noadd_keysyms clear_mods noclear_mods
-clear_keys noclear_keys remap repeat norepeat fb nofb
-bell nobell sel nosel primary noprimary setprimary
-nosetprimary clipboard noclipboard setclipboard
-nosetclipboard seldir cursorshape nocursorshape
-cursorpos nocursorpos cursor show_cursor noshow_cursor
+xtrap noxtrap xrandr noxrandr xrandr_mode rotate
+padgeom quiet q noquiet modtweak nomodtweak xkb noxkb
+capslock nocapslock skip_lockkeys noskip_lockkeys
+skip_keycodes sloppy_keys nosloppy_keys skip_dups
+noskip_dups add_keysyms noadd_keysyms clear_mods
+noclear_mods clear_keys noclear_keys remap repeat
+norepeat fb nofb bell nobell sel nosel primary
+noprimary setprimary nosetprimary clipboard noclipboard
+setclipboard nosetclipboard seldir cursorshape
+nocursorshape cursorpos nocursorpos cursor_drag
+nocursor_drag cursor show_cursor noshow_cursor
 nocursor arrow xfixes noxfixes xdamage noxdamage
 xd_area xd_mem alphacut alphafrac alpharemove
 noalpharemove alphablend noalphablend xwarppointer
@@ -4029,7 +4157,7 @@ associated options is:
 .IP
 stunnel, ssl, unixpw, WAIT, id, accept, afteraccept,
 gone, pipeinput, v4l-info, rawfb-setup, dt, gui,
-storepasswd, crash.
+storepasswd, passwdfile, custom_passwd, crash.
 .IP
 See each option's help to learn the associated external
 command.  Note that the \fB-nocmds\fR option takes precedence

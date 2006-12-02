@@ -394,6 +394,47 @@ if (0 && dt > 0.0) fprintf(stderr, "dt: %.5f %.4f\n", dt, dnow() - x11vnc_start)
 	return msec;
 }
 
+void check_filexfer(void) {
+	static time_t last_check = 0;
+	rfbClientIteratorPtr iter;
+	rfbClientPtr cl;
+	int transferring = 0; 
+	
+	if (time(NULL) <= last_check) {
+		return;
+	}
+
+#if 0
+	if (getenv("NOFT")) {
+		return;
+	}
+#endif
+
+	iter = rfbGetClientIterator(screen);
+	while( (cl = rfbClientIteratorNext(iter)) ) {
+		if (cl->fileTransfer.receiving) {
+			transferring = 1;
+			break;
+		}
+		if (cl->fileTransfer.sending) {
+			transferring = 1;
+			break;
+		}
+	}
+	rfbReleaseClientIterator(iter);
+
+	if (transferring) {
+		double start = dnow();
+		while (dnow() < start + 0.5) {
+			rfbCFD(5000);
+			rfbCFD(1000);
+			rfbCFD(0);
+		}
+	} else {
+		last_check = time(NULL);
+	}
+}
+
 /*
  * main x11vnc loop: polls, checks for events, iterate libvncserver, etc.
  */
@@ -419,7 +460,7 @@ static void watch_loop(void) {
 		if (! use_threads) {
 			dtime0(&tm);
 			if (! skip_pe) {
-				if (unixpw && unixpw_in_progress) {
+				if (unixpw_in_progress) {
 					rfbClientPtr cl = unixpw_client;
 					if (cl && cl->onHold) {
 						rfbLog(msg, cl->host);
@@ -431,21 +472,37 @@ static void watch_loop(void) {
 
 				unixpw_in_rfbPE = 1;
 
-				rfbPE(-1);
+				/*
+				 * do a few more since a key press may
+				 * have induced a small change we want to
+				 * see quickly (just 1 rfbPE will likely
+				 * only process the subsequent "up" event)
+				 */
+				if (tm < last_keyboard_time + 0.16) {
+					rfbPE(0);
+					rfbPE(0);
+					rfbPE(-1);
+					rfbPE(0);
+					rfbPE(0);
+				} else {
+					rfbPE(-1);
+				}
 
 				unixpw_in_rfbPE = 0;
 
-				if (unixpw && unixpw_in_progress) {
+				if (unixpw_in_progress) {
 					/* rfbPE loop until logged in. */
 					skip_pe = 0;
+					check_new_clients();
 					continue;
 				} else {
 					measure_send_rates(0);
 					fb_update_sent(NULL);
 				}
 			} else {
-				if (unixpw && unixpw_in_progress) {
+				if (unixpw_in_progress) {
 					skip_pe = 0;
+					check_new_clients();
 					continue;
 				}
 			}
@@ -473,12 +530,6 @@ static void watch_loop(void) {
 				eat_viewonly_input(10, 3);
 			}
 		} else {
-#if 0
-			if (0 && use_xrecord) {
-				/* XXX not working */
-				check_xrecord();
-			}
-#endif
 			if (wireframe && button_mask) {
 				check_wireframe();
 			}
@@ -489,7 +540,10 @@ static void watch_loop(void) {
 			clean_up_exit(0);
 		}
 
-		if (unixpw_in_progress) continue;
+		if (unixpw_in_progress) {
+			check_new_clients();
+			continue;
+		}
 
 		if (! urgent_update) {
 			if (do_copy_screen) {
@@ -501,6 +555,7 @@ static void watch_loop(void) {
 			check_xevents(0);
 			check_autorepeat();
 			check_pm();
+			check_filexfer();
 			check_keycode_state();
 			check_connect_inputs();		
 			check_gui_inputs();		
@@ -513,7 +568,7 @@ static void watch_loop(void) {
 			check_xdamage_state();
 			check_xrecord_reset(0);
 			check_add_keysyms();
-			check_new_passwds();
+			check_new_passwds(0);
 			if (started_as_root) {
 				check_switched_user();
 			}
@@ -993,7 +1048,15 @@ static void quick_pw(char *str) {
 	}
 	*q = '\0';
 	if (db) fprintf(stderr, "'%s' '%s'\n", p, q+1);
-	if (unixpw_nis) {
+	if (unixpw_cmd) {
+		if (cmd_verify(p, q+1)) {
+			fprintf(stdout, "Y %s\n", p);
+			exit(0);
+		} else {
+			fprintf(stdout, "N %s\n", p);
+			exit(1);
+		}
+	} else if (unixpw_nis) {
 		if (crypt_verify(p, q+1)) {
 			fprintf(stdout, "Y %s\n", p);
 			exit(0);
@@ -1611,12 +1674,16 @@ int main(int argc, char* argv[]) {
 		} else if (!strcmp(arg, "-http_ssl")) {
 			try_http = 1;
 			http_ssl = 1;
-		} else if (!strcmp(arg, "-connect")) {
+		} else if (!strcmp(arg, "-connect") ||
+		    !strcmp(arg, "-connect_or_exit")) {
 			CHECK_ARGC
 			if (strchr(argv[++i], '/')) {
 				client_connect_file = strdup(argv[i]);
 			} else {
 				client_connect = strdup(argv[i]);
+			}
+			if (!strcmp(arg, "-connect_or_exit")) {
+				connect_or_exit = 1;
 			}
 		} else if (!strcmp(arg, "-vncconnect")) {
 			vnc_connect = 1;
@@ -1647,6 +1714,16 @@ int main(int argc, char* argv[]) {
 			passwdfile = strdup(argv[++i]);
 			got_passwdfile = 1;
 #ifndef NO_SSL_OR_UNIXPW
+		} else if (!strcmp(arg, "-unixpw_cmd")
+		    || !strcmp(arg, "-unixpw_cmd_unsafe")) {
+			CHECK_ARGC
+			unixpw_cmd = strdup(argv[++i]);
+			unixpw = 1;
+			if (strstr(arg, "_unsafe")) {
+				/* hidden option for testing. */
+				set_env("UNIXPW_DISABLE_SSL", "1");
+				set_env("UNIXPW_DISABLE_LOCALHOST", "1");
+			}
 		} else if (strstr(arg, "-unixpw") == arg) {
 			unixpw = 1;
 			if (strstr(arg, "-unixpw_nis")) {
@@ -1681,6 +1758,8 @@ int main(int argc, char* argv[]) {
 		} else if (!strcmp(arg, "-ssltimeout")) {
 			CHECK_ARGC
 			ssl_timeout_secs = atoi(argv[++i]);
+		} else if (!strcmp(arg, "-sslnofail")) {
+			ssl_no_fail = 1;
 		} else if (!strcmp(arg, "-ssldir")) {
 			CHECK_ARGC
 			ssl_certs_dir = strdup(argv[++i]);
@@ -1873,6 +1952,8 @@ int main(int argc, char* argv[]) {
 			crash_debug = 0;
 		} else if (!strcmp(arg, "-q") || !strcmp(arg, "-quiet")) {
 			quiet = 1;
+		} else if (!strcmp(arg, "-v") || !strcmp(arg, "-verbose")) {
+			verbose = 1;
 		} else if (!strcmp(arg, "-bg") || !strcmp(arg, "-background")) {
 #if LIBVNCSERVER_HAVE_SETSID
 			bg = 1;
@@ -1967,6 +2048,10 @@ int main(int argc, char* argv[]) {
 		} else if (!strcmp(arg, "-nocursor")) { 
 			multiple_cursors_mode = strdup("none");
 			show_cursor = 0;
+		} else if (!strcmp(arg, "-cursor_drag")) { 
+			cursor_drag_changes = 1;
+		} else if (!strcmp(arg, "-nocursor_drag")) { 
+			cursor_drag_changes = 0;
 		} else if (!strcmp(arg, "-arrow")) {
 			CHECK_ARGC
 			alt_arrow = atoi(argv[++i]);
@@ -2146,7 +2231,7 @@ int main(int argc, char* argv[]) {
 			if (f >= 0.0) {
 				xdamage_memory = f;
 			}
-		} else if (!strcmp(arg, "-sigpipe")) {
+		} else if (!strcmp(arg, "-sigpipe") || !strcmp(arg, "-sig")) {
 			CHECK_ARGC
 			if (known_sigpipe_mode(argv[++i])) {
 				sigpipe = strdup(argv[i]);
@@ -2292,7 +2377,8 @@ int main(int argc, char* argv[]) {
 				got_deferupdate = 1;
 			}
 			if (!strcmp(arg, "-rfbport") && i < argc-1) {
-				got_rfbport = atoi(argv[i+1]);
+				got_rfbport = 1;
+				got_rfbport_val = atoi(argv[i+1]);
 			}
 			if (!strcmp(arg, "-alwaysshared ")) {
 				got_alwaysshared = 1;
@@ -2304,7 +2390,14 @@ int main(int argc, char* argv[]) {
 				listen_str = strdup(argv[i+1]);
 			}
 			/* otherwise copy it for libvncserver use below. */
-			if (argc_vnc < argc_vnc_max) {
+			if (!strcmp(arg, "-ultrafilexfer") ||
+			    !strcmp(arg, "-ultravncfilexfer")) {
+				if (argc_vnc + 2 < argc_vnc_max) {
+					argv_vnc[argc_vnc++] = strdup("-rfbversion");
+					argv_vnc[argc_vnc++] = strdup("3.6");
+					argv_vnc[argc_vnc++] = strdup("-permitfiletransfer");
+				}
+			} else if (argc_vnc < argc_vnc_max) {
 				argv_vnc[argc_vnc++] = strdup(arg);
 			} else {
 				rfbLog("too many arguments.\n");
@@ -2510,12 +2603,24 @@ int main(int argc, char* argv[]) {
 		}
 	} else if (passwdfile) {
 		/* read passwd(s) from file */
-		if (read_passwds(passwdfile)) {
+		if (strstr(passwdfile, "cmd:") == passwdfile ||
+		    strstr(passwdfile, "custom:") == passwdfile) {
+			char tstr[100], *q;
+			sprintf(tstr, "%f", dnow());
+			if ((q = strrchr(tstr, '.')) == NULL) {
+				q = tstr;
+			} else {
+				q++;
+			}
+			/* never used under cmd:, used to force auth */
+			argv_vnc[argc_vnc++] = strdup("-passwd");
+			argv_vnc[argc_vnc++] = strdup(q);
+		} else if (read_passwds(passwdfile)) {
 			argv_vnc[argc_vnc++] = strdup("-passwd");
 			argv_vnc[argc_vnc++] = strdup(passwd_list[0]);
-			got_passwd = 1;
-			pw_loc = 100;	/* just for pw_loc check below */
 		}
+		got_passwd = 1;
+		pw_loc = 100;	/* just for pw_loc check below */
 	}
 	if (vpw_loc > 0) {
 		int i;
@@ -2696,7 +2801,6 @@ int main(int argc, char* argv[]) {
 		if (use_stunnel) {
 			exit(1);
 		}
-		/* others? */
 	}
 
 	if (flip_byte_order && using_shm && ! quiet) {
@@ -2776,7 +2880,9 @@ int main(int argc, char* argv[]) {
 	initialize_crash_handler();
 
 	if (! quiet) {
-		print_settings(try_http, bg, gui_str);
+		if (verbose) {
+			print_settings(try_http, bg, gui_str);
+		}
 	} else {
 		rfbLogEnable(0);
 	}
@@ -2825,9 +2931,17 @@ int main(int argc, char* argv[]) {
 			    "\"lurk=\" mode...\n");
 		}
 		lurk_loop(users_list);
+
 	} else if (use_dpy && strstr(use_dpy, "WAIT:") == use_dpy) {
+		char *mcm = multiple_cursors_mode;
+
 		waited_for_client = wait_for_client(&argc_vnc, argv_vnc,
 		    try_http && ! got_httpdir);
+
+		if (!mcm && multiple_cursors_mode) {
+			free(multiple_cursors_mode);
+			multiple_cursors_mode = NULL;
+		}
 	}
 
 	if (use_dpy) {
@@ -2885,7 +2999,7 @@ int main(int argc, char* argv[]) {
 	scr = DefaultScreen(dpy);
 	rootwin = RootWindow(dpy, scr);
 
-	if (! quiet) {
+	if (! quiet && ! raw_fb_str) {
 		rfbLog("\n");
 		rfbLog("------------------ USEFUL INFORMATION ------------------\n");
 	}
@@ -2916,7 +3030,7 @@ int main(int argc, char* argv[]) {
 
 #if LIBVNCSERVER_HAVE_LIBXFIXES
 	if (! XFixesQueryExtension(dpy, &xfixes_base_event_type, &er)) {
-		if (! quiet) {
+		if (! quiet && ! raw_fb_str) {
 			rfbLog("Disabling XFIXES mode: display does not "
 			    "support it.\n");
 		}
@@ -2932,7 +3046,7 @@ int main(int argc, char* argv[]) {
 
 #if LIBVNCSERVER_HAVE_LIBXDAMAGE
 	if (! XDamageQueryExtension(dpy, &xdamage_base_event_type, &er)) {
-		if (! quiet) {
+		if (! quiet && ! raw_fb_str) {
 			rfbLog("Disabling X DAMAGE mode: display does not "
 			    "support it.\n");
 		}
@@ -2945,14 +3059,14 @@ int main(int argc, char* argv[]) {
 	if (! xdamage_present) {
 		use_xdamage = 0;
 	}
-	if (! quiet && xdamage_present && use_xdamage) {
+	if (! quiet && xdamage_present && use_xdamage && ! raw_fb_str) {
 		rfbLog("X DAMAGE available on display, using it for"
 		    " polling hints.\n");
 		rfbLog("  To disable this behavior use: "
 		    "'-noxdamage'\n");
 	}
 
-	if (! quiet && wireframe) {
+	if (! quiet && wireframe && ! raw_fb_str) {
 		rfbLog("Wireframing: -wireframe mode is in effect for window "
 		    "moves.\n");
 		rfbLog("  If this yields undesired behavior (poor response, "
@@ -2977,7 +3091,7 @@ int main(int argc, char* argv[]) {
 	overlay_present = 0;
 #if defined(SOLARIS_OVERLAY) && !NO_X11
 	if (! XQueryExtension(dpy, "SUN_OVL", &maj, &ev, &er)) {
-		if (! quiet && overlay) {
+		if (! quiet && overlay && ! raw_fb_str) {
 			rfbLog("Disabling -overlay: SUN_OVL "
 			    "extension not available.\n");
 		}
@@ -2987,7 +3101,7 @@ int main(int argc, char* argv[]) {
 #endif
 #if defined(IRIX_OVERLAY) && !NO_X11
 	if (! XReadDisplayQueryExtension(dpy, &ev, &er)) {
-		if (! quiet && overlay) {
+		if (! quiet && overlay && ! raw_fb_str) {
 			rfbLog("Disabling -overlay: IRIX ReadDisplay "
 			    "extension not available.\n");
 		}
@@ -3010,7 +3124,7 @@ int main(int argc, char* argv[]) {
 			free(multiple_cursors_mode);
 			multiple_cursors_mode = strdup("most");
 
-			if (! quiet) {
+			if (! quiet && ! raw_fb_str) {
 				rfbLog("XFIXES available on display, resetting"
 				    " cursor mode\n");
 				rfbLog("  to: '-cursor most'.\n");
@@ -3022,7 +3136,7 @@ int main(int argc, char* argv[]) {
 		if(!strcmp(multiple_cursors_mode, "most")) {
 			if (xfixes_present && use_xfixes &&
 			    overlay_cursor == 1) {
-				if (! quiet) {
+				if (! quiet && ! raw_fb_str) {
 					rfbLog("using XFIXES for cursor "
 					    "drawing.\n");
 				}
@@ -3033,7 +3147,7 @@ int main(int argc, char* argv[]) {
 
 	if (overlay) {
 		using_shm = 0;
-		if (flash_cmap && ! quiet) {
+		if (flash_cmap && ! quiet && ! raw_fb_str) {
 			rfbLog("warning: -flashcmap may be "
 			    "incompatible with -overlay\n");
 		}
@@ -3060,7 +3174,7 @@ int main(int argc, char* argv[]) {
 
 	/* check for XTEST */
 	if (! XTestQueryExtension_wr(dpy, &ev, &er, &maj, &min)) {
-		if (! quiet) {
+		if (! quiet && ! raw_fb_str) {
 			rfbLog("WARNING: XTEST extension not available "
 			    "(either missing from\n");
 			rfbLog("  display or client library libXtst "
@@ -3105,6 +3219,20 @@ int main(int argc, char* argv[]) {
 	/* check for RECORD */
 	if (! XRecordQueryVersion_wr(dpy, &maj, &min)) {
 		xrecord_present = 0;
+		if (! quiet) {
+			rfbLog("The RECORD X extension was not found on the display.\n");
+			rfbLog("If your system has disabled it by default, you can\n");
+			rfbLog("enable it to get a nice x11vnc performance speedup\n");
+			rfbLog("for scrolling by putting this into the \"Module\" section\n");
+			rfbLog("of /etc/X11/xorg.conf or /etc/X11/XF86Config:\n");
+			rfbLog("\n");
+			rfbLog("  Section \"Module\"\n");
+			rfbLog("  ...\n");
+			rfbLog("      Load    \"record\"\n");
+			rfbLog("  ...\n");
+			rfbLog("  EndSection\n");
+			rfbLog("\n");
+		}
 	} else {
 		xrecord_present = 1;
 	}
@@ -3127,7 +3255,7 @@ int main(int argc, char* argv[]) {
 #if !LIBVNCSERVER_HAVE_RECORD
 	tmpi = 0;
 #endif
-	if (! quiet && tmpi) {
+	if (! quiet && tmpi && ! raw_fb_str) {
 		rfbLog("Scroll Detection: -scrollcopyrect mode is in effect "
 		    "to\n");
 		rfbLog("  use RECORD extension to try to detect scrolling "
@@ -3161,12 +3289,12 @@ int main(int argc, char* argv[]) {
 	if (! XShmQueryExtension_wr(dpy)) {
 		xshm_present = 0;
 		if (! using_shm) {
-			if (! quiet) {
+			if (! quiet && ! raw_fb_str) {
 				rfbLog("info: display does not support"
 				    " XShm.\n");
 			}
 		} else {
-		    if (! quiet) {
+		    if (! quiet && ! raw_fb_str) {
 			rfbLog("warning: XShm extension is not available.\n");
 			rfbLog("For best performance the X Display should be"
 			    " local. (i.e.\n");
@@ -3190,7 +3318,7 @@ int main(int argc, char* argv[]) {
 	initialize_xkb();
 	initialize_watch_bell();
 	if (!xkb_present && use_xkb_modtweak) {
-		if (! quiet) {
+		if (! quiet && ! raw_fb_str) {
 			rfbLog("warning: disabling xkb modtweak."
 			    " XKEYBOARD ext. not present.\n");
 		}
@@ -3206,7 +3334,7 @@ int main(int argc, char* argv[]) {
 
 #if LIBVNCSERVER_HAVE_LIBXRANDR
 	if (! XRRQueryExtension(dpy, &xrandr_base_event_type, &er)) {
-		if (xrandr && ! quiet) {
+		if (xrandr && ! quiet && ! raw_fb_str) {
 			rfbLog("Disabling -xrandr mode: display does not"
 			    " support X RANDR.\n");
 		}
@@ -3220,7 +3348,7 @@ int main(int argc, char* argv[]) {
 
 	check_pm();
 
-	if (! quiet) {
+	if (! quiet && ! raw_fb_str) {
 		rfbLog("--------------------------------------------------------\n");
 		rfbLog("\n");
 	}
@@ -3315,9 +3443,13 @@ int main(int argc, char* argv[]) {
 	}
 	if (! inetd && ! use_openssl) {
 		if (! screen->port || screen->listenSock < 0) {
-			rfbLogEnable(1);
-			rfbLog("Error: could not obtain listening port.\n");
-			clean_up_exit(1);
+			if (got_rfbport && got_rfbport_val == 0) {
+				;
+			} else {
+				rfbLogEnable(1);
+				rfbLog("Error: could not obtain listening port.\n");
+				clean_up_exit(1);
+			}
 		}
 	}
 	if (! quiet) {

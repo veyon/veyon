@@ -417,6 +417,12 @@ void rfbPE(long usec) {
  		return;
  	}
 
+	if (debug_tiles > 2) {
+		double tm = dnow();
+		fprintf(stderr, "rfbPE(%d)  t: %.4f\n",
+		    (int) usec, tm - x11vnc_start);
+	}
+
 	if (usec > USEC_MAX) {
 		usec = USEC_MAX;
 	}
@@ -444,6 +450,13 @@ void rfbCFD(long usec) {
 	if (usec > USEC_MAX) {
 		usec = USEC_MAX;
 	}
+
+	if (debug_tiles > 2) {
+		double tm = dnow();
+		fprintf(stderr, "rfbCFD(%d) t: %.4f\n",
+		    (int) usec, tm - x11vnc_start);
+	}
+
 
 	if (! use_threads) {
 		if (0 && all_input) {

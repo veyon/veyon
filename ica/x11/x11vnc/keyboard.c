@@ -996,27 +996,31 @@ void switch_to_xkb_if_better(void) {
 
 	XFree(keymap);
 	if (missing_noxkb == 0 && syms_gt_4 >= 8) {
-		rfbLog("XKEYBOARD: number of keysyms per keycode %d "
-		    "is greater\n", syms_per_keycode);
-		rfbLog("  than 4 and %d keysyms are mapped above 4.\n",
-		    syms_gt_4);
-		rfbLog("  Automatically switching to -xkb mode.\n");
-		rfbLog("  If this makes the key mapping worse you can\n");
-		rfbLog("  disable it with the \"-noxkb\" option.\n");
-		rfbLog("  Also, remember \"-remap DEAD\" for accenting"
-		    " characters.\n");
+		if (! raw_fb_str) {
+			rfbLog("XKEYBOARD: number of keysyms per keycode %d "
+			    "is greater\n", syms_per_keycode);
+			rfbLog("  than 4 and %d keysyms are mapped above 4.\n",
+			    syms_gt_4);
+			rfbLog("  Automatically switching to -xkb mode.\n");
+			rfbLog("  If this makes the key mapping worse you can\n");
+			rfbLog("  disable it with the \"-noxkb\" option.\n");
+			rfbLog("  Also, remember \"-remap DEAD\" for accenting"
+			    " characters.\n");
+		}
 
 		use_xkb_modtweak = 1;
 		return;
 
 	} else if (missing_noxkb == 0) {
-		rfbLog("XKEYBOARD: all %d \"must have\" keysyms accounted"
-		    " for.\n", n);
-		rfbLog("  Not automatically switching to -xkb mode.\n");
-		rfbLog("  If some keys still cannot be typed, try using"
-		    " -xkb.\n");
-		rfbLog("  Also, remember \"-remap DEAD\" for accenting"
-		    " characters.\n");
+		if (! raw_fb_str) {
+			rfbLog("XKEYBOARD: all %d \"must have\" keysyms accounted"
+			    " for.\n", n);
+			rfbLog("  Not automatically switching to -xkb mode.\n");
+			rfbLog("  If some keys still cannot be typed, try using"
+			    " -xkb.\n");
+			rfbLog("  Also, remember \"-remap DEAD\" for accenting"
+			    " characters.\n");
+		}
 		return;
 	}
 
@@ -2676,20 +2680,19 @@ void keyboard(rfbBool down, rfbKeySym keysym, rfbClientPtr client) {
 	if (debug_keyboard) {
 		char *str;
 		X_LOCK;
-		str = XKeysymToString(keysym);
+		str = XKeysymToString((KeySym) keysym);
 		X_UNLOCK;
 		rfbLog("# keyboard(%s, 0x%x \"%s\") uip=%d  %.4f\n",
 		    down ? "down":"up", (int) keysym, str ? str : "null",
 		    unixpw_in_progress, tnow - x11vnc_start);
 	}
 
-
 	if (keysym <= 0) {
 		rfbLog("keyboard: skipping 0x0 keysym\n");
 		return;
 	}
 	
-	if (unixpw && unixpw_in_progress) {
+	if (unixpw_in_progress) {
 		if (unixpw_denied) {
 			rfbLog("keyboard: ignoring keystroke 0x%x in "
 			    "unixpw_denied=1 state\n", (int) keysym);
@@ -2699,7 +2702,9 @@ void keyboard(rfbBool down, rfbKeySym keysym, rfbClientPtr client) {
 			rfbLog("keyboard: skipping other client in unixpw\n");
 			return;
 		}
+
 		unixpw_keystroke(down, keysym, 0);
+
 		return;
 	}
 

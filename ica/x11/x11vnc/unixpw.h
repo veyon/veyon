@@ -10,6 +10,7 @@ extern void unixpw_deny(void);
 extern void unixpw_msg(char *msg, int delay);
 extern int su_verify(char *user, char *pass, char *cmd, char *rbuf, int *rbuf_size);
 extern int crypt_verify(char *user, char *pass);
+extern int cmd_verify(char *user, char *pass);
 
 extern int unixpw_in_progress;
 extern int unixpw_denied;

@@ -1,3 +1,8 @@
+TODO
+=====
+
+- client-demo
+- no escape at login / check for explorer.exe
 - disable "back"-button when on last-page in setup
 - create shortcuts during installation
 - support for demo-gateway for classrooms connected via VPN
@@ -5,16 +10,10 @@
 - remove sidebar-background and draw it
 
 
-TODO
-=====
-
 master:
 - clientManager::cmdToVisibleClients: progressdialog-ptr as param
-
-todo for 1.0.0:
-
 - highlight duplicate items in user-list -> you can see instantly if several users logged in with the same account
-- make iTALC more stable and fix bugs...
+
 
 
 todo after 1.0.0:
@@ -22,6 +21,5 @@ todo after 1.0.0:
 - audio- and video-streaming support (mplayer/xine already implement something like that, maybe we can use them via an API...)
 - modules for importing information about clients (name, IP, MAC-addres) -> LDAP, NIS, Subnet-Scan, XML- and CSV-file ...
 - Chat-Management-System
-- add support for FreeNX
 
 

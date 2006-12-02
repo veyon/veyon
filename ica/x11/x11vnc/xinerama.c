@@ -243,14 +243,18 @@ static void initialize_xinerama (void) {
 	RAWFB_RET_VOID
 
 	if (! XineramaQueryExtension(dpy, &ev, &er)) {
-		rfbLog("Xinerama: disabling: display does not support it.\n");
+		if (verbose) {
+			rfbLog("Xinerama: disabling: display does not support it.\n");
+		}
 		xinerama = 0;
 		xinerama_present = 0;
 		return;
 	}
 	if (! XineramaIsActive(dpy)) {
 		/* n.b. change to XineramaActive(dpy, window) someday */
-		rfbLog("Xinerama: disabling: not active on display.\n");
+		if (verbose) {
+			rfbLog("Xinerama: disabling: not active on display.\n");
+		}
 		xinerama = 0;
 		xinerama_present = 0;
 		return;
@@ -259,11 +263,15 @@ static void initialize_xinerama (void) {
 
 	/* n.b. change to XineramaGetData() someday */
 	xineramas = XineramaQueryScreens(dpy, &n);
-	rfbLog("Xinerama: number of sub-screens: %d\n", n);
+	if (verbose) {
+		rfbLog("Xinerama: number of sub-screens: %d\n", n);
+	}
 
 	if (n == 1) {
-		rfbLog("Xinerama: no blackouts needed (only one"
-		    " sub-screen)\n");
+		if (verbose) {
+			rfbLog("Xinerama: no blackouts needed (only one"
+			    " sub-screen)\n");
+		}
 		XFree(xineramas);
 		return;		/* must be OK w/o change */
 	}

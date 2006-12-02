@@ -665,7 +665,10 @@ void client::reload( const QString & _update )
 
 void client::clientDemo( const QString & )
 {
-	m_updateThread->enqueueCommand( updateThread::ClientDemo, "" );
+	m_mainWindow->getClientManager()->changeGlobalClientMode(
+							Mode_FullscreenDemo );
+	remoteControl( "" );
+	
 }
 
 
@@ -1021,43 +1024,6 @@ void client::updateThread::run( void )
 					m_client->m_connection->
 						displayTextMessage(
 							i.second.toString() );
-					break;
-				case ClientDemo:
-{
-	QVector<client *> vc =
-			m_client->m_mainWindow->getClientManager()->
-							visibleClients();
-	const int ClientDemoPort = 5999;
-
-	isdConnection * conn = m_client->m_connection;
-	conn->demoServerStop();
-	conn->demoServerRun( __demo_quality, ClientDemoPort );
-
-	foreach( const client * cl, vc )
-	{
-		conn->demoServerAllowClient( cl->localIP() );
-	}
-
-	foreach( client * cl, vc )
-	{
-		if( cl == m_client )
-		{
-			continue;
-		}
-
-		// first make sure, everything is in order (screen not locked,
-		// no demo running etc.)
-		cl->changeMode( Mode_Overview, NULL );
-
-		cl->m_updateThread->enqueueCommand( updateThread::StartDemo,
-	QList<QVariant>()
-			<< ( m_client->m_localIP.section( ':', 0, 0 )
-				+ ":" + QString::number( ClientDemoPort ) )
-			<< TRUE );
-
-		cl->m_mode = Mode_FullscreenDemo;
-	}
-}
 					break;
 				case LogonUser:
 				{

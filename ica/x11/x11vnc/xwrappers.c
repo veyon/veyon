@@ -922,7 +922,7 @@ void disable_grabserver(Display *in_dpy, int change) {
 			if (change) {
 				XTRAP_GrabControl_wr(in_dpy, False);
 			}
-			if (! didmsg) {
+			if (! didmsg && ! raw_fb_str) {
 				rfbLog("GrabServer control via XTEST.\n"); 
 				didmsg = 1;
 			}
@@ -930,7 +930,7 @@ void disable_grabserver(Display *in_dpy, int change) {
 		} else {
 			if (XTRAP_GrabControl_wr(in_dpy, True)) {
 				ok = 1;
-				if (! didmsg) {
+				if (! didmsg && ! raw_fb_str) {
 					rfbLog("Using DEC-XTRAP for protection"
 					    " from XGrabServer.\n");
 					didmsg = 1;
@@ -942,7 +942,7 @@ void disable_grabserver(Display *in_dpy, int change) {
 			if (change) {
 				XTestGrabControl_wr(in_dpy, False);
 			}
-			if (! didmsg) {
+			if (! didmsg && ! raw_fb_str) {
 				rfbLog("GrabServer control via DEC-XTRAP.\n"); 
 				didmsg = 1;
 			}
@@ -950,7 +950,7 @@ void disable_grabserver(Display *in_dpy, int change) {
 		} else {
 			if (XTestGrabControl_wr(in_dpy, True)) {
 				ok = 1;
-				if (! didmsg) {
+				if (! didmsg && ! raw_fb_str) {
 					rfbLog("DEC-XTRAP XGrabServer "
 					    "protection not available, "
 					    "using XTEST.\n");

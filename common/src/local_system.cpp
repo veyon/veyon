@@ -283,7 +283,7 @@ void broadcastWOLPacket( const QString & _mac )
 								  // IP_ADDR
 
 	int optval = 1;
-	if( setsockopt( sock, SOL_SOCKET, SO_BROADCAST,(char *) &optval,
+	if( setsockopt( sock, SOL_SOCKET, SO_BROADCAST, (char *) &optval,
 							sizeof( optval ) ) < 0 )
 	{
 		fprintf( stderr,"Can't set sockopt (%d).\n", errno );
@@ -365,6 +365,8 @@ void logonUser( const QString & _uname, const QString & _passwd,
 #ifdef BUILD_WIN32
 	pressAndReleaseKey( XK_Escape );
 	pressAndReleaseKey( XK_Escape );
+	sleep( 50 );
+
 	// send Secure Attention Sequence (SAS) for making sure we can enter
 	// username and password
 	pressKey( XK_Alt_L, TRUE );
@@ -382,6 +384,7 @@ void logonUser( const QString & _uname, const QString & _passwd,
 	pressKey( XK_Alt_L, TRUE );
 	pressAndReleaseKey( accels[0] );
 	pressKey( XK_Alt_L, FALSE );
+	sleep( 50 );
 #endif
 
 	for( int i = 0; i < _uname.size(); ++i )
@@ -393,6 +396,7 @@ void logonUser( const QString & _uname, const QString & _passwd,
 	pressKey( XK_Alt_L, TRUE );
 	pressAndReleaseKey( accels[1] );
 	pressKey( XK_Alt_L, FALSE );
+	sleep( 50 );
 #else
 	pressAndReleaseKey( XK_Tab );
 #endif
@@ -408,17 +412,16 @@ void logonUser( const QString & _uname, const QString & _passwd,
 		pressKey( XK_Alt_L, TRUE );
 		pressAndReleaseKey( accels[2] );
 		pressKey( XK_Alt_L, FALSE );
+		sleep( 50 );
 		for( int i = 0; i < _domain.size(); ++i )
 		{
 			pressAndReleaseKey( _domain.utf16()[i] );
 		}
+		sleep( 50 );
 	}
 #endif
 
 	pressAndReleaseKey( XK_Return );
-#ifdef BUILD_WIN32
-	pressAndReleaseKey( XK_Escape );
-#endif
 }
 
 #endif
