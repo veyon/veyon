@@ -80,7 +80,9 @@
 #ifdef LIBVNCSERVER_HAVE_NETINET_IN_H
 #include <netinet/in.h>
 #endif
+#ifndef SOCKET
 #define SOCKET int
+#endif
 typedef int8_t rfbBool;
 #undef FALSE
 #define FALSE 0

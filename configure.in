@@ -2,8 +2,8 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.50)
-AC_INIT(italc, 0.9.8.0-svn-20061201, tobydox/at/users/dot/sf/dot/net)
-AM_INIT_AUTOMAKE(italc, 0.9.8.0-svn-20061201)
+AC_INIT(italc, 0.9.8.0-svn-20061202, tobydox/at/users/dot/sf/dot/net)
+AM_INIT_AUTOMAKE(italc, 0.9.8.0-svn-20061202)
 AM_CONFIG_HEADER(config.h)
 AX_PREFIX_CONFIG_H([common/include/rfb/rfbconfig.h])
 
@@ -371,7 +371,7 @@ AC_HEADER_STDC
 AC_CHECK_HEADERS([arpa/inet.h fcntl.h limits.h memory.h netdb.h netinet/in.h stdint.h stdlib.h string.h sys/ioctl.h sys/socket.h sys/time.h sys/timeb.h syslog.h unistd.h pwd.h sys/types.h utmpx.h sys/wait.h time.h errno.h])
 
 # Checks for typedefs, structures, and compiler characteristics.
-#AC_HEADER_STDBOOL
+AC_HEADER_STDBOOL
 AC_C_CONST
 AC_C_INLINE
 AC_C_BIGENDIAN

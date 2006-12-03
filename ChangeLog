@@ -1,3 +1,16 @@
+2006-12-02	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* ima/src/main.cpp:
+	- small improvement concerning splash
+	- removed inclusion of obsolete header-files
+
+	* ima/dialogs/overview.ui:
+	bigger height for about-button
+
+	* common/include/rfb/rfbproto.h:
+	* ica/Makefile.am:
+	fixes for GCC 4.1 (mingw-x)
+
 2006-12-01	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* ima/src/client_manager.cpp:

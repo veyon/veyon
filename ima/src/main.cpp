@@ -27,11 +27,7 @@
 #include <QtCore/QModelIndex>
 #include <QtCore/QTranslator>
 #include <QtGui/QApplication>
-#include <QtGui/QBitmap>
 #include <QtGui/QSplashScreen>
-#include <QtGui/QPixmap>
-#include <QtGui/QDesktopWidget>
-#include <QtGui/QPainter>
 
 #include "main_window.h"
 #include "ivs_connection.h"
@@ -61,9 +57,7 @@ int main( int argc, char * * argv )
 
 	app.connect( &app, SIGNAL( lastWindowClosed() ), SLOT( quit() ) );
 
-	QPixmap splash = QPixmap( ":/resources/splash.png" ); 
-	splashScreen = new QSplashScreen( splash );
-	//splashScreen->setMask( splash.mask() );
+	splashScreen = new QSplashScreen( QPixmap( ":/resources/splash.png" ) );
 	splashScreen->show();
 
 
@@ -77,7 +71,6 @@ int main( int argc, char * * argv )
 	QTranslator qt_tr;
 	qt_tr.load( ":/resources/qt_" + loc + ".qm" );
 	app.installTranslator( &qt_tr );
-
 
 	// now create the main-window
 	mainWindow * main_window = new mainWindow();
