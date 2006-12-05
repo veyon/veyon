@@ -68,7 +68,7 @@ const client::clientCommand client::s_commands[client::CmdCount] =
 	{ RemoteControl,	&client::remoteControl,		QT_TRANSLATE_NOOP( "client", "Remote control" ),		"remote_control.png",	FALSE	},
 	{ ClientDemo,		&client::clientDemo,		QT_TRANSLATE_NOOP( "client", "Let student show demo" ),		"client_demo.png",	FALSE	},
 	{ SendTextMessage,	&client::sendTextMessage,	QT_TRANSLATE_NOOP( "client", "Send text-message" ),		"text_message.png",	TRUE	},
-	{ LogonUser,		&client::logonUser,		QT_TRANSLATE_NOOP( "client", "Logon user" ),			"multilogon.png",		FALSE	},
+	{ LogonUserCmd,		&client::logonUser,		QT_TRANSLATE_NOOP( "client", "Logon user" ),			"multilogon.png",		FALSE	},
 	{ LogoutUser,		&client::logoutUser,		QT_TRANSLATE_NOOP( "client", "Logout user" ),			"logout.png",		TRUE	},
 	{ Snapshot,		&client::snapshot,		QT_TRANSLATE_NOOP( "client", "Make a snapshot" ),		"snapshot.png", 	TRUE	},
 	{ PowerOn,		&client::powerOn,		QT_TRANSLATE_NOOP( "client", "Power on" ),			"power_on.png",		FALSE	},
@@ -796,7 +796,7 @@ void client::logonUser( const QString & _uname_and_pw )
 	}
 	else
 	{
-		m_updateThread->enqueueCommand( updateThread::LogonUser,
+		m_updateThread->enqueueCommand( updateThread::LogonUserCmd,
 								_uname_and_pw );
 	}
 }
@@ -1025,7 +1025,7 @@ void client::updateThread::run( void )
 						displayTextMessage(
 							i.second.toString() );
 					break;
-				case LogonUser:
+				case LogonUserCmd:
 				{
 					const QString s = i.second.toString();
 					const int pos = s.indexOf( '*' );

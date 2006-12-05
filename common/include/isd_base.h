@@ -206,7 +206,7 @@ typedef struct
 		StopDemo,
 		LockDisplay,
 		UnlockDisplay,
-		LogonUser,
+		LogonUserCmd,
 		LogoutUser,
 		DisplayTextMessage,
 		SendFile,

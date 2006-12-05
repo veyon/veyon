@@ -608,7 +608,7 @@ bool isdConnection::logonUser( const QString & _uname, const QString & _pw,
 		m_state = Disconnected;
 		return( FALSE );
 	}
-	return( ISD::msg( &m_socketDev, ISD::LogonUser ).
+	return( ISD::msg( &m_socketDev, ISD::LogonUserCmd ).
 				addArg( "uname", _uname ).
 				addArg( "passwd", _pw ).
 				addArg( "domain", _domain ).send() );

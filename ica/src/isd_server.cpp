@@ -166,7 +166,7 @@ int isdServer::processClient( socketDispatcher _sd, void * _user )
 					// GUI-thread
 			break;
 
-		case ISD::LogonUser:
+		case ISD::LogonUserCmd:
 			localSystem::logonUser(
 					msg_in.arg( "uname" ).toString(),
 					msg_in.arg( "passwd" ).toString(),
@@ -1037,6 +1037,7 @@ int processItalcClient( socketDispatcher _sd, void * _user )
 
 	return( __isd_forwarder->processClient( _sd, _user ) );
 #endif
+	return( 0 );
 }
 
 

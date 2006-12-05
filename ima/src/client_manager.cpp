@@ -813,7 +813,7 @@ void clientManager::multiLogon( void )
 	if( mld.exec() == QDialog::Accepted &&
 		!mld.userName().isEmpty() && !mld.password().isEmpty() )
 	{
-		cmdToVisibleClients( client::LogonUser,
+		cmdToVisibleClients( client::LogonUserCmd,
 				mld.userName() + "*" + mld.password() +
 							"*" + mld.domain() );
 	}

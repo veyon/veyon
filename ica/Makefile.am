@@ -82,7 +82,7 @@ if BUILD_WIN32
 ica_win_resources.o: ica.rc
 	$(WINDRES) -o $@ $<
 WIN32_RES_LDADD = ica_win_resources.o
-CXXFLAGS_ADD=-DHAVE_BOOLEAN
+#CXXFLAGS_ADD=-DHAVE_BOOLEAN
 endif
 
 ica_LDADD = $(QT_LDADD) $(QT_LIB_GUI) -lz -ljpeg $(LIBSSL_LDADD) $(IVSLDADD) $(WIN32_RES_LDADD)

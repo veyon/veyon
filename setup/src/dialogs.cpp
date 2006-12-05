@@ -296,6 +296,10 @@ void setupWizard::next( void )
 			publicDSAKey( m_keyImportDir + add2 ).
 						save( m_pubKeyDir + add );
 		}
+		// make public key read-only
+		QFile::setPermissions( m_pubKeyDir + add,
+					QFile::ReadOwner | QFile::ReadUser |
+					QFile::ReadGroup | QFile::ReadOther );
 	}
 	else if( m_idx+1 == m_widgetStack.size() )
 	{
