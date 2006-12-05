@@ -950,7 +950,7 @@ public:
 				stopDemo();
 				break;
 
-			case ISD::LogonUser:
+			case ISD::LogonUserCmd:
 				logonUser( msg_in.arg( "uname" ).toString(),
 					msg_in.arg( "passwd" ).toString(),
 					msg_in.arg( "domain" ).toString() );
