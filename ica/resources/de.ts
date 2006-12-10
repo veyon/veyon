@@ -1,70 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="de_DE">
 <context>
-    <name>IVS</name>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>iTALC Client on %1:%2</source>
-        <translation type="obsolete">iTALC Client auf %1:%2</translation>
-    </message>
-</context>
-<context>
     <name>QApplication</name>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>The iTALC Client service could not be stopped.</source>
-        <translation type="obsolete">Der iTALC-Client-Dienst konnte nicht beendet werden.</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>The iTALC Client service could not be found.</source>
-        <translation type="obsolete">Der iTALC-Client-Dienst wurde nicht gefunden.</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the iTALC Client service was not stopped.</source>
-        <translation type="obsolete">Es konnte keine Verbindung zum Service-Control-Manager hergestellt werden (haben Sie die nötigen Rechte?!) - der iTALC-Client wurde nicht beendet.</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the iTALC Client was not registered as service.</source>
-        <translation type="obsolete">Es konnte keine Verbindung zum Service-Control-Manager hergestellt werden (haben Sie die nötigen Rechte?!) - der iTALC-Client wurde nicht als Dienst registriert.</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>The iTALC Client is already registered as service.</source>
-        <translation type="obsolete">Der iTALC-Client ist bereits als Dienst registriert.</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>The iTALC Client could not be registered as service.</source>
-        <translation type="obsolete">Der iTALC-Client konnte nicht als Dienst registriert werden.</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>The iTALC Client service has been unregistered.</source>
-        <translation type="obsolete">Der iTALC-Client-Dienst wurde deinstalliert.</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>The iTALC Client isn&apos;t registered as service and therefore can&apos;t be unregistered.</source>
-        <translation type="obsolete">Der iTALC-Client ist nicht als Dienst registriert und kann daher auch nicht deinstalliert werden.</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>The iTALC Client service could not be unregistered.</source>
-        <translation type="obsolete">Der iTALC-Client-Dienst konnte nicht deinstalliert werden.</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>Unable to register iTALC Client as service.</source>
-        <translation type="obsolete">Der iTALC-Client konnte nicht als Dienst registriert werden.</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>The iTALC Client was successfully registered as a service. It will automatically be run the next time you reboot this computer.</source>
-        <translation type="obsolete">Der iTALC-Client wurde erfolgreich als Dienst registriert. Er wird automatisch beim nächsten Neustart ausgeführt.</translation>
-    </message>
     <message>
         <location filename="../src/ica_main.cpp" line="244"/>
         <source>iTALC Client on %1:%2</source>
@@ -144,20 +81,20 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../common/src/local_system.cpp" line="381"/>
+        <location filename="../../common/src/local_system.cpp" line="451"/>
         <source>UPL (note for translators: the first three characters of this string are the accellerators (underlined characters) of the three input-fields in logon-dialog of windows - you only need to &quot;translate&quot; these characters, this note can be ommited)</source>
         <translation>BKA</translation>
     </message>
     <message>
-        <location filename="../../common/src/local_system.cpp" line="609"/>
-        <source>Application Data</source>
-        <translation>Anwendungsdaten</translation>
+        <location filename="../../common/src/local_system.cpp" line="663"/>
+        <source>iTALC-snapshots</source>
+        <translation>iTALC-Schnappschuesse</translation>
     </message>
 </context>
 <context>
     <name>demoClient</name>
     <message>
-        <location filename="../src/demo_client.cpp" line="41"/>
+        <location filename="../src/demo_client.cpp" line="42"/>
         <source>iTALC Demo</source>
         <translation>iTALC Demo</translation>
     </message>
@@ -165,27 +102,27 @@
 <context>
     <name>isdServer</name>
     <message>
-        <location filename="../src/isd_server.cpp" line="760"/>
+        <location filename="../src/isd_server.cpp" line="751"/>
         <source>Message from teacher</source>
         <translation>Nachricht vom Lehrer</translation>
     </message>
     <message>
-        <location filename="../src/isd_server.cpp" line="527"/>
+        <location filename="../src/isd_server.cpp" line="518"/>
         <source>Somebody at host %1 tries to access your screen. Do you want to grant him/her access?</source>
         <translation>Jemand am Rechner %1 versucht auf Ihren Bildschirm zuzugreifen. Möchten Sie ihm/ihr Zugriff gewähren?</translation>
     </message>
     <message>
-        <location filename="../src/isd_server.cpp" line="545"/>
+        <location filename="../src/isd_server.cpp" line="536"/>
         <source>Never for this session</source>
         <translation>Nie für diese Sitzung</translation>
     </message>
     <message>
-        <location filename="../src/isd_server.cpp" line="540"/>
+        <location filename="../src/isd_server.cpp" line="531"/>
         <source>Always for this session</source>
         <translation>Immer für diese Sitzung</translation>
     </message>
     <message>
-        <location filename="../src/isd_server.cpp" line="524"/>
+        <location filename="../src/isd_server.cpp" line="515"/>
         <source>Confirm access</source>
         <translation>Zugriff bestätigen</translation>
     </message>
@@ -193,7 +130,7 @@
 <context>
     <name>messageBox</name>
     <message>
-        <location filename="../../common/src/messagebox.cpp" line="70"/>
+        <location filename="../../common/src/messagebox.cpp" line="71"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
@@ -201,12 +138,7 @@
 <context>
     <name>remoteControlWidget</name>
     <message>
-        <location filename="../src/remote_control_widget.cpp" line="376"/>
-        <source>User %1 at host %2</source>
-        <translation>Nutzer %1 am Rechner %2</translation>
-    </message>
-    <message>
-        <location filename="../src/remote_control_widget.cpp" line="369"/>
+        <location filename="../src/remote_control_widget.cpp" line="368"/>
         <source>iTALC remote control (host %1)</source>
         <translation>iTALC Fernsteuerung (Rechner %1)</translation>
     </message>
@@ -214,33 +146,18 @@
 <context>
     <name>remoteControlWidgetToolBar</name>
     <message>
-        <location filename="../src/remote_control_widget.cpp" line="52"/>
+        <location filename="../src/remote_control_widget.cpp" line="53"/>
         <source>Fullscreen/window</source>
         <translation>Vollbild/Fenster</translation>
     </message>
     <message>
-        <location filename="../src/remote_control_widget.cpp" line="54"/>
+        <location filename="../src/remote_control_widget.cpp" line="55"/>
         <source>Quit</source>
         <translation>Beenden</translation>
     </message>
 </context>
 <context>
     <name>vncView</name>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>Could not connect</source>
-        <translation type="obsolete">Verbindung nicht möglich</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>Could not connect to host %1.</source>
-        <translation type="obsolete">Eine Verbindung mit Rechner %1 konnte nicht hergestellt werden.</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>Establishing connection ...</source>
-        <translation type="obsolete">Verbindung wird hergestellt ...</translation>
-    </message>
     <message>
         <location filename="../src/vncview.cpp" line="54"/>
         <source>Establishing connection to %1 ...</source>

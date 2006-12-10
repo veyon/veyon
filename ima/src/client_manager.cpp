@@ -178,10 +178,8 @@ void clientManager::doCleanupWork( void )
 		delete m_classRoomsToRemove.first();
 		m_classRoomsToRemove.erase( m_classRoomsToRemove.begin() );
 	}
-	savePersonalConfig();
-	saveGlobalClientConfig();
-
-	//saveSettings();
+	//savePersonalConfig();
+	//saveGlobalClientConfig();
 }
 
 
@@ -1421,6 +1419,8 @@ void clientManager::editClientSettings( void )
 						cri->parent()->text( 0 ) );
 			settings_dlg.exec();
 		}
+		saveGlobalClientConfig();
+		savePersonalConfig();
 	}
 }
 
@@ -1530,6 +1530,8 @@ void clientManager::editClassRoomName( void )
 		{
 			cr->setText( 0, classroom_name );
 		}
+		saveGlobalClientConfig();
+		savePersonalConfig();
 	}
 }
 
@@ -1614,6 +1616,8 @@ void clientManager::addClient( void )
 							classroom_name );
 	settings_dlg.setWindowTitle( tr( "Add client" ) );
 	settings_dlg.exec();
+	saveGlobalClientConfig();
+	savePersonalConfig();
 }
 
 
@@ -1648,6 +1652,7 @@ void clientManager::addClassRoom( void )
 			m_classRooms.push_back( new classRoom( classroom_name,
 							this, m_view ) );
 		}
+		saveGlobalClientConfig();
 	}
 }
 

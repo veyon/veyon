@@ -23,6 +23,7 @@
 
 
 #include "lock_widget.h"
+#include "local_system.h"
 
 #include <QtGui/QApplication>
 #include <QtGui/QDesktopWidget>
@@ -51,11 +52,10 @@ lockWidget::lockWidget( types _type ) :
 	m_type( _type ),
 	m_sysKeyTrapper()
 {
-	activateWindow();
-	setFixedSize( qApp->desktop()->size() );
-	move( 0, 0 );
 	showFullScreen();
-	raise();
+	localSystem::activateWindow( this );
+	//setFixedSize( qApp->desktop()->size() );
+	//move( 0, 0 );
 	setFocusPolicy( Qt::StrongFocus );
 	setFocus();
 	grabMouse();

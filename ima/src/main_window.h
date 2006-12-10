@@ -27,7 +27,9 @@
 #define _MAIN_WINDOW_H
 
 #include <QtCore/QThread>
+#include <QtGui/QButtonGroup>
 #include <QtGui/QMainWindow>
+#include <QtGui/QToolButton>
 #include <QtGui/QWhatsThis>
 
 
@@ -36,7 +38,6 @@ class QSplashScreen;
 class QSplitter;
 class QWorkspace;
 class QToolBar;
-class QButtonGroup;
 
 class clientManager;
 class configWidget;
@@ -74,6 +75,16 @@ public:
 	isdConnection * localISD( void )
 	{
 		return( m_localISD );
+	}
+
+	void checkModeButton( int _id )
+	{
+		QToolButton * btn = dynamic_cast<QToolButton *>(
+						m_modeGroup->button( _id ) );
+		if( btn != NULL )
+		{
+			btn->setChecked( TRUE );
+		}
 	}
 
 	static bool ensureConfigPathExists( void );

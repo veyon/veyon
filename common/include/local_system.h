@@ -34,6 +34,8 @@
 #include <windef.h>
 #endif
 
+class QWidget;
+
 
 namespace localSystem
 {
@@ -72,6 +74,8 @@ namespace localSystem
 	QString personalConfigDir( void );
 	QString personalConfigPath( void );
 
+	QString globalStartmenuDir( void );
+
 	bool ensurePathExists( const QString & _path );
 
 	QString ip( void );
@@ -81,6 +85,8 @@ namespace localSystem
 #ifdef BUILD_WIN32
 	BOOL enablePrivilege( LPCTSTR lpszPrivilegeName, BOOL bEnable );
 #endif
+
+	void activateWindow( QWidget * _window );
 
 }
 

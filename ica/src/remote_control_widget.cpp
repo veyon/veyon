@@ -24,6 +24,7 @@
 
 #include "remote_control_widget.h"
 #include "vncview.h"
+#include "local_system.h"
 
 #include <math.h>
 
@@ -310,10 +311,8 @@ remoteControlWidget::remoteControlWidget( const QString & _host,
 							SLOT( updateUser() ) );
 	connect( m_vncView, SIGNAL( keyEvent( Q_UINT32, bool ) ),
 				this, SLOT( checkKeyEvent( Q_UINT32, bool ) ) );
-
-	activateWindow();
-	raise();
 	showMaximized();
+	localSystem::activateWindow( this );
 	toggleFullScreen();
 	updateUser();
 #ifdef BUILD_LINUX
@@ -362,19 +361,19 @@ void remoteControlWidget::updateUser( void )
 		QTimer::singleShot( 100, this, SLOT( updateUser() ) );
 		return;
 	}
-	m_user = m_vncView->m_connection->user();
+/*	m_user = m_vncView->m_connection->user();
 	if( m_user.isEmpty() )
-	{
+	{*/
 		setWindowTitle( tr( "iTALC remote control (host %1)" ).
 								arg( host() ) );
 		//m_vncView->m_connection->sendGetUserInformationRequest();
-		QTimer::singleShot( 100, this, SLOT( updateUser() ) );
+/*		QTimer::singleShot( 100, this, SLOT( updateUser() ) );
 	}
 	else
 	{
 		setWindowTitle( tr( "User %1 at host %2" ).
 						arg( m_user ).arg( host() ) );
-	}
+	}*/
 	m_toolBar->update();
 }
 

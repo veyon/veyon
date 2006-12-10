@@ -1,13 +1,12 @@
 TODO
 =====
 
-- client-demo
-- no escape at login / check for explorer.exe
+
 - disable "back"-button when on last-page in setup
-- create shortcuts during installation
 - support for demo-gateway for classrooms connected via VPN
 - improve support-workspace/artwork
 - remove sidebar-background and draw it
+- proper shutdown under w2k
 
 
 master:

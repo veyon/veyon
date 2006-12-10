@@ -93,7 +93,14 @@ void getUserName( char * * _str)
 							pBuf->usri2_full_name,
 						-1, mbstr, len, NULL, NULL );
 			*_str = new char[len+accname_len+4];
-			sprintf( *_str, "%s (%s)", mbstr, accname );
+			if( strlen( mbstr ) == 0 )
+			{
+				sprintf( *_str, "%s (%s)", accname, accname );
+			}
+			else
+			{
+				sprintf( *_str, "%s (%s)", mbstr, accname );
+			}
 			delete[] mbstr;
 		}
 		if( pBuf != NULL )

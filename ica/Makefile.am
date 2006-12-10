@@ -65,7 +65,7 @@ IVS_SRCS =	$(srcdir)/win32/win32vnc.cpp			\
 		$(srcdir)/win32/src/vncEncodeHexT.cpp
 
 
-IVSLDADD = -lkernel32 -lwsock32 -luser32 -lgdi32
+IVSLDADD = -lkernel32 -lwsock32 -luser32 -lgdi32 -lpsapi
 
 endif
 

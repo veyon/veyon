@@ -158,6 +158,11 @@ void setupWizard::back( void )
 
 
 
+#ifdef BUILD_WIN32
+static const QString _exe_ext = ".exe";
+#else
+static const QString _exe_ext = "";
+#endif
 
 void setupWizard::next( void )
 {
@@ -170,9 +175,9 @@ void setupWizard::next( void )
 		const QString & d = m_installDir + QDir::separator();
 		QStringList files;
 		files <<
+			"ica" + _exe_ext	<<
+			"italc" + _exe_ext	<<
 #ifdef BUILD_WIN32
-			"ica.exe" 		<<
-			"italc.exe" 		<<
 			"libeay32.dll" 		<<
 			"libjpeg.dll" 		<<
 			"libssl32.dll" 		<<
@@ -185,8 +190,6 @@ void setupWizard::next( void )
 			"userinfo.exe"		<<
 			"wake.exe"
 #else
-			"ica"			<<
-			"italc"			<<
 			"libssl.so.0.9.8"	<<
 			"libcrypto.so.0.9.8"	<<
 			"libz.so.1"		<<
@@ -246,7 +249,7 @@ void setupWizard::next( void )
 					case QMessageBox::No:
 						continue;
 				}
-				if( file == "ica" || file == "ica.exe" )
+				if( file == ( "ica" + _exe_ext ) )
 				{
 					QProcess::execute( d + file +
 							" -stopservice" );
@@ -300,6 +303,18 @@ void setupWizard::next( void )
 		QFile::setPermissions( m_pubKeyDir + add,
 					QFile::ReadOwner | QFile::ReadUser |
 					QFile::ReadGroup | QFile::ReadOther );
+		pd.setLabelText( tr( "Creating shortcuts..." ) );
+		qApp->processEvents();
+		if( m_installMaster )
+		{
+#ifdef BUILD_WIN32
+			QFile( d + "italc" + _exe_ext ).link(
+				localSystem::globalStartmenuDir() +
+								"iTALC.lnk" );
+#else
+			// TODO: create desktop-file under Linux
+#endif
+		}
 	}
 	else if( m_idx+1 == m_widgetStack.size() )
 	{

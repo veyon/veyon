@@ -2,14 +2,18 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.50)
-AC_INIT(italc, 0.9.8.0-svn-20061205, tobydox/at/users/dot/sf/dot/net)
-AM_INIT_AUTOMAKE(italc, 0.9.8.0-svn-20061205)
+AC_INIT(italc, 0.9.8.0-svn-20061210, tobydox/at/users/dot/sf/dot/net)
+AM_INIT_AUTOMAKE(italc, 0.9.8.0-svn-20061210)
 AM_CONFIG_HEADER(config.h)
 AX_PREFIX_CONFIG_H([common/include/rfb/rfbconfig.h])
 
 
-CPPFLAGS="$CPPFLAGS -I${prefix}/include"
-LDFLAGS="$LDFLAGS -L${prefix}/bin"
+
+if ! test -z "${prefix}" -o "${prefix}" = "NONE" ; then
+	CFLAGS="$CFLAGS -I${prefix}/include"
+	CXXFLAGS="$CXXFLAGS -I${prefix}/include"
+	LDFLAGS="$LDFLAGS -L${prefix}/bin"
+fi
 
 
 # Checks for programs.
@@ -20,7 +24,7 @@ AC_LIBTOOL_WIN32_DLL
 AC_PROG_LIBTOOL
 
 
-EXTRAFLAGS="-g0 -O2 -ansi -Wall -I${prefix}/include"
+EXTRAFLAGS="-g0 -O2 -ansi -Wall"
 #-floop-optimize2 -fomit-frame-pointer"
 
 if test "x`$CC --version|head -1|cut -d\  -f3|cut -d. -f1`" = "x4" ; then

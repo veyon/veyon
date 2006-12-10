@@ -403,6 +403,8 @@ void mainWindow::closeEvent( QCloseEvent * _ce )
 	m_updateThread->wait();
 
 	m_clientManager->doCleanupWork();
+	m_clientManager->savePersonalConfig();
+	m_clientManager->saveGlobalClientConfig();
 	_ce->accept();
 
 	m_localISD->demoServerStop();
@@ -449,7 +451,7 @@ mainWindow::updateThread::updateThread( mainWindow * _main_window ) :
 	QThread(),
 	m_mainWindow( _main_window )
 {
-	start();
+	start( QThread::LowestPriority );
 }
 
 
@@ -460,19 +462,6 @@ void mainWindow::updateThread::run( void )
 	while( 1 )
 	{
 		m_mainWindow->m_localISD->handleServerMessages();
-
-/*		// reload all clients...
-
-		QVector<client *> clients =
-			m_mainWindow->getClientManager()->visibleClients();
-
-		// loop through all clients
-		for( QVector<client *>::iterator it = clients.begin();
-						it != clients.end(); ++it )
-		{
-			// reload current client
-			( *it )->processCmd( client::Reload, CONFIRM_NO );
-		}*/
 
 		m_mainWindow->m_userList->reload();
 

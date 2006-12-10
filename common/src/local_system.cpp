@@ -34,15 +34,19 @@
 #include <QtCore/QMutex>
 #include <QtCore/QProcess>
 #include <QtCore/QSettings>
+#include <QtGui/QWidget>
 #include <QtNetwork/QTcpServer>
 
 
 #ifdef BUILD_WIN32
 
 #include <QtCore/QThread>
+#include <QtCore/QLibrary>
 
 #define _WIN32_WINNT 0x0501
 #include <windows.h>
+#include <shlobj.h>
+#include <psapi.h>
 
 #if _WIN32_WINNT >= 0x500
 #define SHUTDOWN_FLAGS (EWX_FORCE | EWX_FORCEIFHUNG)
@@ -92,6 +96,25 @@ private:
 	QMutex m_mutex;
 
 }  static * __user_poll_thread = NULL;
+
+
+// taken from qt-win-opensource-src-4.2.2/src/corelib/io/qsettings.cpp
+static QString windowsConfigPath( int _type )
+{
+	QString result;
+
+	QLibrary library( "shell32" );
+	typedef BOOL( WINAPI* GetSpecialFolderPath )( HWND, char *, int, BOOL );
+	GetSpecialFolderPath SHGetSpecialFolderPath = (GetSpecialFolderPath)
+				library.resolve( "SHGetSpecialFolderPathA" );
+	if( SHGetSpecialFolderPath )
+	{
+	    char path[MAX_PATH];
+	    SHGetSpecialFolderPath( 0, path, _type, FALSE );
+	    result = QString::fromLocal8Bit( path );
+	}
+	return( result );
+}
 
 
 #else
@@ -363,6 +386,51 @@ void logonUser( const QString & _uname, const QString & _passwd,
 						const QString & _domain )
 {
 #ifdef BUILD_WIN32
+
+	// first check for process "explorer.exe" - if we find it, a user
+	// is logged in and we do not send our key-sequences as it probably
+	// disturbes user
+	DWORD aProcesses[1024], cbNeeded;
+
+	if( !EnumProcesses( aProcesses, sizeof(aProcesses), &cbNeeded ) )
+	{
+		return;
+	}
+
+	DWORD cProcesses = cbNeeded / sizeof(DWORD);
+
+	bool user_logged_on = FALSE;
+	for( DWORD i = 0; i < cProcesses; i++ )
+	{
+		HANDLE hProcess = OpenProcess( PROCESS_QUERY_INFORMATION |
+								PROCESS_VM_READ,
+							FALSE, aProcesses[i] );
+		HMODULE hMod;
+		if( hProcess == NULL ||
+			!EnumProcessModules( hProcess, &hMod, sizeof( hMod ),
+								&cbNeeded ) )
+	        {
+			continue;
+		}
+		TCHAR szProcessName[MAX_PATH];
+		GetModuleBaseName( hProcess, hMod, szProcessName, 
+                             		  sizeof(szProcessName)/sizeof(TCHAR) );
+		for( TCHAR * ptr = szProcessName; *ptr; ++ptr )
+		{
+			*ptr = tolower( *ptr );
+		}
+		if( strcmp( szProcessName, "explorer.exe" ) == 0 )
+		{
+			user_logged_on = TRUE;
+			break;
+		}
+	}
+
+	if( user_logged_on )
+	{
+		return;
+	}
+
 	pressAndReleaseKey( XK_Escape );
 	pressAndReleaseKey( XK_Escape );
 	sleep( 50 );
@@ -384,7 +452,7 @@ void logonUser( const QString & _uname, const QString & _passwd,
 	pressKey( XK_Alt_L, TRUE );
 	pressAndReleaseKey( accels[0] );
 	pressKey( XK_Alt_L, FALSE );
-	sleep( 50 );
+	sleep( 1000 );
 #endif
 
 	for( int i = 0; i < _uname.size(); ++i )
@@ -396,7 +464,7 @@ void logonUser( const QString & _uname, const QString & _passwd,
 	pressKey( XK_Alt_L, TRUE );
 	pressAndReleaseKey( accels[1] );
 	pressKey( XK_Alt_L, FALSE );
-	sleep( 50 );
+	sleep( 1000 );
 #else
 	pressAndReleaseKey( XK_Tab );
 #endif
@@ -412,12 +480,12 @@ void logonUser( const QString & _uname, const QString & _passwd,
 		pressKey( XK_Alt_L, TRUE );
 		pressAndReleaseKey( accels[2] );
 		pressKey( XK_Alt_L, FALSE );
-		sleep( 50 );
+		sleep( 1000 );
 		for( int i = 0; i < _domain.size(); ++i )
 		{
 			pressAndReleaseKey( _domain.utf16()[i] );
 		}
-		sleep( 50 );
+		sleep( 200 );
 	}
 #endif
 
@@ -586,9 +654,15 @@ void setPublicKeyPath( const QString & _path, const ISD::userRoles _role )
 QString snapshotDir( void )
 {
 	QSettings settings;
-	return( settings.value( "paths/snapshots", personalConfigDir() +
-						"snapshots" ).toString() +
-							QDir::separator() );
+	return( settings.value( "paths/snapshots",
+#ifdef BUILD_WIN32
+				windowsConfigPath( CSIDL_PERSONAL ) +
+					QDir::separator() +
+					QObject::tr( "iTALC-snapshots" )
+#else
+				personalConfigDir() + "snapshots"
+#endif
+					).toString() + QDir::separator() );
 }
 
 
@@ -609,12 +683,12 @@ QString personalConfigDir( void )
 	QSettings settings;
 	const QString d = settings.value( "paths/personalconfig" ).toString();
 	return( d.isEmpty() ?
-				QDir::homePath() + QDir::separator() +
 #ifdef BUILD_WIN32
-				QObject::tr( "Application Data" ) +
-				QDir::separator() + "iTALC"
+				windowsConfigPath( CSIDL_APPDATA ) +
+						QDir::separator() + "iTALC"
 #else
-				".italc"
+				QDir::homePath() + QDir::separator() +
+								".italc"
 #endif
 				+ QDir::separator()
 		:
@@ -633,6 +707,21 @@ QString personalConfigPath( void )
 			:
 				d );
 }
+
+
+
+
+QString globalStartmenuDir( void )
+{
+#ifdef BUILD_WIN32
+	return( windowsConfigPath( CSIDL_COMMON_STARTMENU ) +
+							QDir::separator() );
+#else
+	return( "/usr/share/applnk/Applications/" );
+#endif
+}
+
+
 
 
 bool ensurePathExists( const QString & _path )
@@ -692,6 +781,20 @@ BOOL enablePrivilege( LPCTSTR lpszPrivilegeName, BOOL bEnable )
 	return ret;
 }
 #endif
+
+
+
+void activateWindow( QWidget * _w )
+{
+	_w->activateWindow();
+	_w->raise();
+#ifdef BUILD_WIN32
+	SetWindowPos( _w->winId(), HWND_TOPMOST, 0, 0, 0, 0,
+						SWP_NOMOVE | SWP_NOSIZE );
+	SetWindowPos( _w->winId(), HWND_NOTOPMOST, 0, 0, 0, 0,
+						SWP_NOMOVE | SWP_NOSIZE );
+#endif
+}
 
 
 } // end of namespace localSystem

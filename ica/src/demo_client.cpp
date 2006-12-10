@@ -29,6 +29,7 @@
 #include "demo_client.h"
 #include "vncview.h"
 #include "lock_widget.h"
+#include "local_system.h"
 
 
 demoClient::demoClient( const QString & _host, bool _fullscreen ) :
@@ -52,6 +53,7 @@ demoClient::demoClient( const QString & _host, bool _fullscreen ) :
 	if( !_fullscreen )
 	{
 		m_toplevel->showMaximized();
+		localSystem::activateWindow( m_toplevel );
 	}
 }
 

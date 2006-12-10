@@ -101,7 +101,8 @@ client::client( const QString & _local_ip, const QString & _remote_ip,
 	m_makeSnapshot( FALSE ),
 	m_state( State_Unkown ),
 	m_statePixmap(),
-	m_syncMutex()
+	m_syncMutex(),
+	m_classRoomItem( NULL )
 {
 	m_mainWindow->workspace()->addWindow( this );
 
@@ -534,12 +535,14 @@ void client::paintEvent( QPaintEvent * _pe )
 				return;
 			}
 			// construct filename
-			QString file_name =  dir + m_user + "_" +
+			QString file_name =  "_" +
 						m_localIP + "_" +
 			QDate( QDate::currentDate() ).toString( Qt::ISODate ) +
 						"_" +
 		QTime( QTime::currentTime() ).toString( Qt::ISODate ) + ".png";
 			file_name.replace( ':', '-' );
+			file_name = dir + m_user.section( '(', 1, 1 ).section( ')', 0, 0 ) +
+										file_name;
 			const int FONT_SIZE = 20;
 			const int RECT_MARGIN = 10;
 			const int RECT_INNER_MARGIN = 5;
@@ -636,10 +639,6 @@ void client::reload( const QString & _update )
 		if( m_user != "" )
 		{
 			available = TRUE;
-
-/*			QString real_name = systemEnvironment::realUserName(
-								m_user );
-*/
 			if( toolTip() != m_user )
 			{
 				setToolTip( m_user );
@@ -665,10 +664,23 @@ void client::reload( const QString & _update )
 
 void client::clientDemo( const QString & )
 {
-	m_mainWindow->getClientManager()->changeGlobalClientMode(
-							Mode_FullscreenDemo );
-	remoteControl( "" );
-	
+	clientManager * cm = m_mainWindow->getClientManager();
+	cm->changeGlobalClientMode( Mode_Overview );
+
+	isdConnection * conn = m_mainWindow->localISD();
+	QVector<client *> vc = cm->visibleClients();
+
+	foreach( client * cl, vc )
+	{
+		if( cl != this )
+		{
+			cl->changeMode( Mode_FullscreenDemo, conn );
+		}
+	}
+
+	m_mainWindow->checkModeButton( client::Mode_FullscreenDemo );
+
+	conn->remoteControlDisplay( m_localIP );
 }
 
 

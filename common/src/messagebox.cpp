@@ -24,6 +24,7 @@
 
 
 #include "messagebox.h"
+#include "local_system.h"
 
 #include <QtGui/QApplication>
 #include <QtGui/QWidget>
@@ -82,9 +83,7 @@ messageBox::messageBox( const QString & _title, const QString & _msg,
 	setAttribute( Qt::WA_DeleteOnClose, TRUE );
 	setModal( TRUE );
 	show();
-#ifdef BUILD_WIN32
-	activateWindow();
-#endif
+	localSystem::activateWindow( this );
 }
 
 
