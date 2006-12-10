@@ -44,7 +44,8 @@
 	* ica/src/remote_control_widget.cpp:
 	* ica/src/demo_client.cpp:
 	* ica/src/lock_widget.cpp:
-	activate window (bring it to forgeground) using localSystem::activateWindow()
+	activate window (bring it to forgeground) using
+	localSystem::activateWindow()
 
 	* include/local_system.h:
 	* common/src/local_system.cpp:
@@ -56,10 +57,6 @@
 
 	* common/src/isd_connection.cpp:
 	proper cleanup of sockets in destructor
-
-	* ima/src/client.cpp:
-	initialize m_classRoomItem to NULL in constructor for not crashing
-	later
 
 2006-12-08	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
