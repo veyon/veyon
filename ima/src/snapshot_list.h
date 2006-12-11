@@ -29,6 +29,7 @@
 #include <QtGui/QWidget>
 
 #include "side_bar_widget.h"
+#include "dialogs/snapshots.uic"
 
 
 class QLabel;
@@ -36,7 +37,7 @@ class QPushButton;
 class QListWidget;
 
 
-class snapshotList : public sideBarWidget
+class snapshotList : public sideBarWidget, private Ui::snapshots
 {
 	Q_OBJECT
 public:
@@ -48,24 +49,19 @@ public slots:
 	void reloadList( void );
 
 
-
 private slots:
 	void snapshotSelected( const QString & _s );
-	void snapshotDoubleClicked( const QString & _s );
+	void snapshotActivated( QListWidgetItem * _item )
+	{
+		snapshotDoubleClicked( _item->text() );
+	}
+
 	void showSnapshot( void );
 	void deleteSnapshot( void );
 
 
 private:
-	QListWidget * m_list;
-	QLabel * m_preview;
-	QLabel * m_user;
-	QLabel * m_date;
-	QLabel * m_time;
-	QLabel * m_client;
-	QPushButton * m_showBtn;
-	QPushButton * m_deleteBtn;
-	QPushButton * m_reloadBtn;
+	void snapshotDoubleClicked( const QString & _s );
 
 } ;
 

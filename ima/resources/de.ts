@@ -1105,69 +1105,115 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>snapshotList</name>
     <message>
-        <location filename="../src/snapshot_list.cpp" line="42"/>
+        <location filename="../src/snapshot_list.cpp" line="39"/>
         <source>Snapshots</source>
         <translation>Schnappschüsse</translation>
     </message>
     <message>
-        <location filename="../src/snapshot_list.cpp" line="44"/>
+        <location filename="../src/snapshot_list.cpp" line="41"/>
         <source>Simply manage the snapshots you made using this workspace.</source>
         <translation>Verwalten Sie Ihre Schnappschüsse mit Hilfe dieses Arbeitsbereiches.</translation>
     </message>
     <message>
         <location filename="../src/snapshot_list.cpp" line="90"/>
         <source>User:</source>
-        <translation>Benutzer:</translation>
+        <translation type="obsolete">Benutzer:</translation>
     </message>
     <message>
         <location filename="../src/snapshot_list.cpp" line="91"/>
         <source>Date:</source>
-        <translation>Datum:</translation>
+        <translation type="obsolete">Datum:</translation>
     </message>
     <message>
         <location filename="../src/snapshot_list.cpp" line="92"/>
         <source>Time:</source>
-        <translation>Zeit:</translation>
+        <translation type="obsolete">Zeit:</translation>
     </message>
     <message>
         <location filename="../src/snapshot_list.cpp" line="93"/>
         <source>Client:</source>
-        <translation>Client:</translation>
+        <translation type="obsolete">Client:</translation>
     </message>
     <message>
         <location filename="../src/snapshot_list.cpp" line="118"/>
         <source>Show snapshot</source>
-        <translation>Schnappschuss zeigen</translation>
+        <translation type="obsolete">Schnappschuss zeigen</translation>
     </message>
     <message>
         <location filename="../src/snapshot_list.cpp" line="125"/>
         <source>When clicking this button, the selected snapshot is being displayed in full size.</source>
-        <translation>Wenn Sie diesen Knopf anklicken, wird der gewählte Schnappschuss in voller Größe angezeigt.</translation>
+        <translation type="obsolete">Wenn Sie diesen Knopf anklicken, wird der gewählte Schnappschuss in voller Größe angezeigt.</translation>
     </message>
     <message>
         <location filename="../src/snapshot_list.cpp" line="128"/>
         <source>Delete snapshot</source>
-        <translation>Schnappschuss löschen</translation>
+        <translation type="obsolete">Schnappschuss löschen</translation>
     </message>
     <message>
         <location filename="../src/snapshot_list.cpp" line="133"/>
         <source>When clicking on this button, the selected snapshot is being deleted.</source>
-        <translation>Wenn Sie diesen Knopf anklicken, wird der gewählte Schnappschuss gelöscht.</translation>
+        <translation type="obsolete">Wenn Sie diesen Knopf anklicken, wird der gewählte Schnappschuss gelöscht.</translation>
     </message>
     <message>
         <location filename="../src/snapshot_list.cpp" line="136"/>
         <source>Reload list</source>
-        <translation>Liste neuladen</translation>
+        <translation type="obsolete">Liste neuladen</translation>
     </message>
     <message>
         <location filename="../src/snapshot_list.cpp" line="144"/>
         <source>When clicking on this button, the snapshot-list is being reloaded immediately. You actually should never need this function since iTALC automatically reloads this list, after making a new snapshot.</source>
-        <translation>Wenn Sie diesen Knopf anklicken, wird die Schnappschuss-Liste sofort neugeladen. Eigentlich sollten Sie diese Funktion nie benötigen, da iTALC diese Liste automatisch neu lädt, nachdem Sie einen Schnappschuss erstellt haben.</translation>
+        <translation type="obsolete">Wenn Sie diesen Knopf anklicken, wird die Schnappschuss-Liste sofort neugeladen. Eigentlich sollten Sie diese Funktion nie benötigen, da iTALC diese Liste automatisch neu lädt, nachdem Sie einen Schnappschuss erstellt haben.</translation>
     </message>
     <message>
         <location filename="../src/snapshot_list.cpp" line="58"/>
         <source>All snapshots you made are listed here. You can make snapshots by clicking the camera-button in a client-window. These snapshots can be managed using the buttons below.</source>
-        <translation>Hier sind alle Schnappschüsse aufgelistet, die Sie erstellt haben. Sie können Schnappschüsse erstellen, indem Sie den Kamera-Knopf in einem Client-Fenster anklicken. Diese Schnappschüsse können mit Hilfe der Buttons unten verwaltet werden.</translation>
+        <translation type="obsolete">Hier sind alle Schnappschüsse aufgelistet, die Sie erstellt haben. Sie können Schnappschüsse erstellen, indem Sie den Kamera-Knopf in einem Client-Fenster anklicken. Diese Schnappschüsse können mit Hilfe der Buttons unten verwaltet werden.</translation>
+    </message>
+</context>
+<context>
+    <name>snapshots</name>
+    <message>
+        <location filename="../dialogs/snapshots.ui" line="31"/>
+        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;All snapshots you made are listed here. You can make snapshots by selecting the according entry in the context-menu of a client-window. These snapshosts can be managed using the buttons below.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;p, li { white-space: pre-wrap; }&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Hier sind alle Schnappschüsse aufgelistet, die Sie erstellt haben. Sie können Schnappschüsse erstellen, indem Sie den entsprechenden Eintrag im Kontextmenü eines Client-Fenster anklicken. Diese Schnappschüsse können mit Hilfe der unterhalb befindlichen Buttons verwaltet werden.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/snapshots.ui" line="55"/>
+        <source>User:</source>
+        <translation>Benutzer:</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/snapshots.ui" line="68"/>
+        <source>Host:</source>
+        <translation>Rechner:</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/snapshots.ui" line="75"/>
+        <source>Date:</source>
+        <translation>Datum:</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/snapshots.ui" line="85"/>
+        <source>Time:</source>
+        <translation>Zeit:</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/snapshots.ui" line="94"/>
+        <source>Show snapshot</source>
+        <translation>Schnappschuss zeigen</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/snapshots.ui" line="104"/>
+        <source>Delete snapshot</source>
+        <translation>Schnappschuss löschen</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/snapshots.ui" line="114"/>
+        <source>Reload list</source>
+        <translation>Liste neuladen</translation>
     </message>
 </context>
 <context>

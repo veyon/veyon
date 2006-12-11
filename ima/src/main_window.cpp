@@ -427,8 +427,8 @@ void mainWindow::aboutITALC( void )
 void mainWindow::changeGlobalClientMode( int _mode )
 {
 	client::modes new_mode = static_cast<client::modes>( _mode );
-	if( new_mode == m_clientManager->globalClientMode() &&
-					new_mode != client::Mode_Overview )
+	if( new_mode == m_clientManager->globalClientMode()/* &&
+					new_mode != client::Mode_Overview*/ )
 	{
 		m_clientManager->changeGlobalClientMode(
 							client::Mode_Overview );

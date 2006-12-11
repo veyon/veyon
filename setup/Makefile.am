@@ -36,6 +36,7 @@ setup_TRANSLATIONS = $(wildcard $(srcdir)/resources/*.qm $(srcdir)/resources/*.t
 
 setup_SOURCES = $(srcdir)/src/main.cpp				\
 		$(srcdir)/src/dialogs.cpp			\
+		$(srcdir)/src/dialogs.h				\
 		$(srcdir)/../common/src/dsa_key.cpp		\
 		$(srcdir)/../common/src/local_system.cpp	\
 		$(srcdir)/setup_qrc.cpp				\

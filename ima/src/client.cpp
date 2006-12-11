@@ -541,9 +541,9 @@ void client::paintEvent( QPaintEvent * _pe )
 						"_" +
 		QTime( QTime::currentTime() ).toString( Qt::ISODate ) + ".png";
 			file_name.replace( ':', '-' );
-			file_name = dir + m_user.section( '(', 1, 1 ).section( ')', 0, 0 ) +
-										file_name;
-			const int FONT_SIZE = 20;
+			file_name = dir + m_user.section( '(', 1, 1 ).
+					section( ')', 0, 0 ) + file_name;
+			const int FONT_SIZE = 14;
 			const int RECT_MARGIN = 10;
 			const int RECT_INNER_MARGIN = 5;
 

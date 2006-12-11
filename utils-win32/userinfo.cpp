@@ -88,20 +88,31 @@ void getUserName( char * * _str)
 			len = WideCharToMultiByte( CP_ACP, 0,
 							pBuf->usri2_full_name,
 						-1, NULL, 0, NULL, NULL );
-			char * mbstr = new char[len];
-			len = WideCharToMultiByte( CP_ACP, 0,
+			if( len > 0 )
+			{
+				char * mbstr = new char[len];
+				len = WideCharToMultiByte( CP_ACP, 0,
 							pBuf->usri2_full_name,
 						-1, mbstr, len, NULL, NULL );
-			*_str = new char[len+accname_len+4];
-			if( strlen( mbstr ) == 0 )
-			{
-				sprintf( *_str, "%s (%s)", accname, accname );
+				if( strlen( mbstr ) < 1 )
+				{
+					*_str = new char[2*accname_len+4];
+					sprintf( *_str, "%s (%s)", accname,
+								accname );
+				}
+				else
+				{
+					*_str = new char[len+accname_len+4];
+					sprintf( *_str, "%s (%s)", mbstr,
+								accname );
+				}
+				delete[] mbstr;
 			}
 			else
 			{
-				sprintf( *_str, "%s (%s)", mbstr, accname );
+				*_str = new char[2*accname_len+4];
+				sprintf( *_str, "%s (%s)", accname, accname );
 			}
-			delete[] mbstr;
 		}
 		if( pBuf != NULL )
 		{

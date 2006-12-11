@@ -55,6 +55,6 @@ win32-pkg: all
 	/opt/mingw/bin/i586-mingw32-strip tmp/italc/userinfo.exe
 #	/opt/mingw/bin/i586-mingw32-strip tmp/italc/lupus.exe
 #	/opt/mingw/bin/i586-mingw32-strip tmp/italc/lupus_service.exe
-	cd tmp && zip -9 ../$(PACKAGE)-$(VERSION).zip italc/*
+	cd tmp && zip -9 ../$(PACKAGE)-$(VERSION)-bin-win32.zip italc/*
 	rm -rf tmp
 endif
