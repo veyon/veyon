@@ -63,7 +63,9 @@ vncServer::vncServer()
 	{
 		vncPasswd::FromClear clearPWD;
 		memcpy(m_password, clearPWD, MAXPWLEN);
+		m_password_set = FALSE;
 		memcpy(m_password_viewonly, clearPWD, MAXPWLEN);
+		m_password_viewonly_set = FALSE;
 	}
 	m_querysetting = 2;
 	m_querytimeout = 10;
@@ -83,11 +85,12 @@ vncServer::vncServer()
 
 	m_dont_set_hooks = FALSE;
 	m_dont_use_driver = FALSE;
+	m_driver_direct_access_en = TRUE;
 
 	// General options
 	m_loopbackOnly = FALSE;
 	m_disableTrayIcon = FALSE;
-	m_loopback_allowed = TRUE;
+	m_loopback_allowed = FALSE;
 	m_httpd_enabled = TRUE;
 	m_httpd_params_enabled = FALSE;
 	m_lock_on_exit = 0;
@@ -111,10 +114,9 @@ vncServer::vncServer()
 	m_WindowShared= FALSE;
 	m_hwndShared = NULL;
 	m_screen_area = FALSE;
+	m_primary_display_only_shared = FALSE;
 	m_disable_time = 3;
-	RECT temp;
-	GetWindowRect(GetDesktopWindow(), &temp);
-	SetSharedRect(temp);
+	SetSharedRect(GetScreenRect());
 	SetPollingCycle(300);
 	PollingCycleChanged(false);
 	m_cursor_pos.x = 0;
@@ -133,6 +135,7 @@ vncServer::vncServer()
 	m_remote_keyboard = 1;
 #endif
 
+	m_wallpaper_wait = FALSE;
 }
 
 vncServer::~vncServer()
@@ -146,7 +149,6 @@ vncServer::~vncServer()
 		m_socketConn = NULL;
 	}
 
-#if 0
 	if (m_corbaConn != NULL)
 	{
 		delete m_corbaConn;
@@ -158,7 +160,6 @@ vncServer::~vncServer()
 		delete m_httpConn;
 		m_httpConn = NULL;
 	}
-#endif
 
 	// Remove any active clients!
 	KillAuthClients();
@@ -214,13 +215,13 @@ vncServer::ClientsDisabled()
 }
 
 vncClientId
-vncServer::AddClient(VSocket *socket, BOOL auth, BOOL shared)
+vncServer::AddClient(VSocket *socket, BOOL reverse, BOOL shared)
 {
-	return AddClient(socket, auth, shared, TRUE, TRUE);
+	return AddClient(socket, reverse, shared, TRUE, TRUE);
 }
 
 vncClientId
-vncServer::AddClient(VSocket *socket, BOOL auth, BOOL shared,
+vncServer::AddClient(VSocket *socket, BOOL reverse, BOOL shared,
 					 BOOL keysenabled, BOOL ptrenabled)
 {
 	vncClient *client;
@@ -254,7 +255,7 @@ vncServer::AddClient(VSocket *socket, BOOL auth, BOOL shared,
 	client->EnablePointer(ptrenabled && m_enable_remote_inputs);
 
 	// Start the client
-	if (!client->Init(this, socket, auth, shared, clientid))
+	if (!client->Init(this, socket, reverse, shared, clientid))
 	{
 		// The client will delete the socket for us...
 		vnclog.Print(LL_CONNERR, VNCLOG("failed to initialize client object\n"));
@@ -298,6 +299,10 @@ vncServer::Authenticated(vncClientId clientid)
 			// Create the screen handler if necessary
 			if (m_desktop == NULL)
 			{
+				if (RemoveWallpaperEnabled()) {
+					m_wallpaper_wait = TRUE;
+					DoNotify(WM_SRV_CLIENT_HIDEWALLPAPER, 0, 0);
+				}
 				m_desktop = new vncDesktop();
 				if (m_desktop == NULL)
 				{
@@ -822,6 +827,12 @@ vncServer::DontUseDriver(BOOL enable)
 	m_dont_use_driver = enable;
 }
 
+void
+vncServer::DriverDirectAccess(BOOL enable)
+{
+	m_driver_direct_access_en = enable;
+}
+
 // Name and port number handling
 void
 vncServer::SetName(const char * name)
@@ -853,40 +864,77 @@ vncServer::SetPorts(const UINT port_rfb, const UINT port_http)
 }
 
 void
-vncServer::SetPassword(const char *passwd)
+vncServer::SetPassword(BOOL activate, const char *passwd)
 {
+	m_password_set = activate;
 	memcpy(m_password, passwd, MAXPWLEN);
 }
 
-void
+BOOL
 vncServer::GetPassword(char *passwd)
 {
 	memcpy(passwd, m_password, MAXPWLEN);
+	return m_password_set;
 }
 
 void
-vncServer::SetPasswordViewOnly(const char *passwd)
+vncServer::SetPasswordViewOnly(BOOL activate, const char *passwd)
 {
+	m_password_viewonly_set = activate;
 	memcpy(m_password_viewonly, passwd, MAXPWLEN);
 }
 
-void
+BOOL
 vncServer::GetPasswordViewOnly(char *passwd)
 {
 	memcpy(passwd, m_password_viewonly, MAXPWLEN);
-}
-
-// External authentication
-void
-vncServer::EnableExternalAuth(BOOL enable)
-{
-	m_external_auth = enable;
+	return m_password_viewonly_set;
 }
 
 BOOL
-vncServer::ExternalAuthEnabled()
+vncServer::ValidPasswordsSet()
 {
-	return m_external_auth;
+	char passwd1[MAXPWLEN];
+	char passwd2[MAXPWLEN];
+	BOOL set1 = GetPassword(passwd1);
+	BOOL set2 = GetPasswordViewOnly(passwd2);
+	if (!set1 && !set2)
+		return FALSE;	// no passwords set, connections impossible
+
+	if (!AuthRequired())
+		return TRUE;	// passwords may be empty, but we allow that
+
+	vncPasswd::ToText plain1(passwd1);
+	vncPasswd::ToText plain2(passwd2);
+	BOOL empty1 = !set1 || (strlen(plain1) == 0);
+	BOOL empty2 = !set2 || (strlen(plain2) == 0);
+	if (empty1 && empty2)
+		return FALSE;	// both passwords empty or unset, not allowed
+
+	return TRUE;		// at least one non-empty password
+}
+
+BOOL
+vncServer::ValidPasswordsEmpty()
+{
+	if (AuthRequired())
+		return FALSE;	// empty passwords disallowed, always fail
+
+	char passwd1[MAXPWLEN];
+	char passwd2[MAXPWLEN];
+	BOOL set1 = GetPassword(passwd1);
+	BOOL set2 = GetPasswordViewOnly(passwd2);
+	if (!set1 && !set2)
+		return FALSE;	// no passwords set, connections impossible
+
+	vncPasswd::ToText plain1(passwd1);
+	vncPasswd::ToText plain2(passwd2);
+	BOOL empty1 = !set1 || (strlen(plain1) == 0);
+	BOOL empty2 = !set2 || (strlen(plain2) == 0);
+	if (empty1 && empty2)
+		return TRUE;	// there are no passwords that are non-empty
+
+	return FALSE;		// at least one non-empty password
 }
 
 // Remote input handling
@@ -1024,7 +1072,6 @@ vncServer::SockConnect(BOOL On)
 		WaitUntilUnauthEmpty();
 #endif
 
-#if 0
 		// Is there a listening socket?
 		if (m_socketConn != NULL)
 		{
@@ -1033,6 +1080,7 @@ vncServer::SockConnect(BOOL On)
 			m_socketConn = NULL;
 		}
 
+#if 0
 		// Is there an HTTP socket active?
 		if (m_httpConn != NULL)
 		{
@@ -1042,7 +1090,6 @@ vncServer::SockConnect(BOOL On)
 		}
 #endif
 	}
-
 	return TRUE;
 }
 
@@ -1055,7 +1102,6 @@ vncServer::SockConnected()
 BOOL
 vncServer::SetHttpdEnabled(BOOL enable_httpd, BOOL enable_params)
 {
-#if 0
 	if (enable_httpd != m_httpd_enabled) {
 		m_httpd_enabled = enable_httpd;
 		m_httpd_params_enabled = enable_params;
@@ -1071,7 +1117,6 @@ vncServer::SetHttpdEnabled(BOOL enable_httpd, BOOL enable_params)
 			}
 		}
 	}
-#endif
 	return TRUE;
 }
 
@@ -1142,8 +1187,8 @@ vncServer::CORBAConnect(BOOL On)
 			m_corbaConn = NULL;
 		}
 	}
-
 #endif
+
 	return TRUE;
 }
 
@@ -1476,11 +1521,9 @@ vncServer::SetWindowShared(HWND hWnd)
 	m_hwndShared=hWnd;
 }
 
-void 
-vncServer::SetMatchSizeFields(int left,int top,int right,int bottom)
+void  vncServer::SetMatchSizeFields(int left,int top,int right,int bottom)
 {
-	RECT trect;
-	GetWindowRect(GetDesktopWindow(), &trect);
+	RECT trect = GetScreenRect();
 
 /*	if ( right - left < 32 )
 		right = left + 32;
@@ -1624,4 +1667,54 @@ vncServer::checkPointer(vncClient *pClient)
 BOOL
 vncServer::DriverActive() {
 	return (m_desktop != NULL) ? m_desktop->DriverActive() : FALSE;
+}
+
+typedef HMONITOR (WINAPI* pMonitorFromPoint)(POINT,DWORD);
+typedef BOOL (WINAPI* pGetMonitorInfo)(HMONITOR,LPMONITORINFO);
+
+BOOL vncServer::SetShareMonitorFromPoint(POINT pt)
+{
+	HINSTANCE  hInstUser32 = LoadLibrary("User32.DLL");
+	if (!hInstUser32) return FALSE;  
+	pMonitorFromPoint pMFP = (pMonitorFromPoint)GetProcAddress(hInstUser32, "MonitorFromPoint");
+	pGetMonitorInfo pGMI = (pGetMonitorInfo)GetProcAddress(hInstUser32, "GetMonitorInfoA");
+	if (!pMFP || !pGMI)
+	{
+		vnclog.Print(
+			LL_INTERR,
+			VNCLOG("Can not import '%s' and '%s' from '%s'.\n"),
+			"MonitorFromPoint",
+			"GetMonitorInfoA",
+			"User32.DLL");
+		FreeLibrary(hInstUser32);
+		return FALSE;
+	}
+
+	HMONITOR hm = pMFP(pt, MONITOR_DEFAULTTONEAREST);
+	if (!hm)
+	{
+		FreeLibrary(hInstUser32);
+		return FALSE;
+	}
+	MONITORINFO	moninfo;
+	moninfo.cbSize = sizeof(moninfo);
+	if (!pGMI(hm, &moninfo))
+	{
+		FreeLibrary(hInstUser32);
+		return FALSE;
+	}
+
+	FullScreen(FALSE);
+	WindowShared(FALSE);
+	ScreenAreaShared(TRUE);
+	PrimaryDisplayOnlyShared(FALSE);
+
+	SetMatchSizeFields(
+		moninfo.rcMonitor.left,
+		moninfo.rcMonitor.top,
+		moninfo.rcMonitor.right,
+		moninfo.rcMonitor.bottom);
+
+	FreeLibrary(hInstUser32);
+	return TRUE;
 }

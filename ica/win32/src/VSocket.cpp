@@ -36,7 +36,13 @@ class VSocket;
 // System includes
 
 #include "stdhdrs.h"
+
+// Visual C++ .NET 2003 compatibility
+#if (_MSC_VER>= 1300)
 #include <iostream>
+#else
+#include <iostream>
+#endif
 
 #include <stdio.h>
 #ifdef __WIN32__
@@ -499,16 +505,26 @@ VSocket::SetTimeout(VCard32 secs)
 
 ////////////////////////////
 
-VInt
-VSocket::Send(const char *buff, const VCard bufflen)
+VInt VSocket::Send(const char *buff, const VCard bufflen)
 {
 	errno = 0;
 
 	VInt bytes = send(sock, buff, bufflen, 0);
+	if (bytes < 0)
+	{
+		int wsa_error = WSAGetLastError();
+		vnclog.Print(
+			LL_SOCKERR,
+			VNCLOG("send(0x%x, 0x%x, %d, 0): wsa_error = %d\n"),
+			sock,
+			buff,
+			bufflen,
+			wsa_error);
 #ifdef __WIN32__
-	if (bytes < 0 && WSAGetLastError() == WSAEWOULDBLOCK)
-		errno = EWOULDBLOCK;
+		if (wsa_error == WSAEWOULDBLOCK)
+			errno = EWOULDBLOCK;
 #endif
+	}
 
 	return bytes;
 }

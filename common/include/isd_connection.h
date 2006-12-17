@@ -69,7 +69,8 @@ public:
 
 	bool hasData( void ) const
 	{
-		return( m_socket->bytesAvailable() > 0 );
+		return( m_socket != NULL &&
+					m_socket->bytesAvailable() > 0 );
 	}
 
 
@@ -170,8 +171,8 @@ protected:
 	}
 
 
-	QTcpSocket * m_socket;
 private:
+	QTcpSocket * m_socket;
 	states m_state;
 
 	socketDevice m_socketDev;

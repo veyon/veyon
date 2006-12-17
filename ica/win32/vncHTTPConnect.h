@@ -1,1 +1,3 @@
-class vncHTTPConnect;
+struct vncHTTPConnect
+{
+} ;

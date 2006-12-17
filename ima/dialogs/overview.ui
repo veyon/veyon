@@ -44,7 +44,7 @@ p, li { white-space: pre-wrap; }
        <number>15</number>
       </property>
       <item>
-       <widget class="QLabel" name="label" >
+       <widget class="QLabel" name="label6" >
         <property name="sizePolicy" >
          <sizepolicy>
           <hsizetype>0</hsizetype>
@@ -59,7 +59,7 @@ p, li { white-space: pre-wrap; }
        </widget>
       </item>
       <item>
-       <widget class="QLabel" name="label" >
+       <widget class="QLabel" name="label1" >
         <property name="text" >
          <string>Here you see the working-bar which contains several buttons. Each button is connected to a workspace. Just take a look at the available workspaces by clicking on the corresponding button.</string>
         </property>
@@ -79,7 +79,7 @@ p, li { white-space: pre-wrap; }
        <number>15</number>
       </property>
       <item>
-       <widget class="QLabel" name="label" >
+       <widget class="QLabel" name="label7" >
         <property name="sizePolicy" >
          <sizepolicy>
           <hsizetype>0</hsizetype>
@@ -94,7 +94,7 @@ p, li { white-space: pre-wrap; }
        </widget>
       </item>
       <item>
-       <widget class="QLabel" name="label" >
+       <widget class="QLabel" name="label2" >
         <property name="text" >
          <string>Using the client-manager you can add or remove clients (computers) and switch between classrooms.</string>
         </property>
@@ -114,7 +114,7 @@ p, li { white-space: pre-wrap; }
        <number>15</number>
       </property>
       <item>
-       <widget class="QLabel" name="label" >
+       <widget class="QLabel" name="label8" >
         <property name="sizePolicy" >
          <sizepolicy>
           <hsizetype>0</hsizetype>
@@ -129,7 +129,7 @@ p, li { white-space: pre-wrap; }
        </widget>
       </item>
       <item>
-       <widget class="QLabel" name="label" >
+       <widget class="QLabel" name="label3" >
         <property name="text" >
          <string>If you want to know which users are logged in you can open the user-list.</string>
         </property>
@@ -149,7 +149,7 @@ p, li { white-space: pre-wrap; }
        <number>15</number>
       </property>
       <item>
-       <widget class="QLabel" name="label" >
+       <widget class="QLabel" name="label9" >
         <property name="sizePolicy" >
          <sizepolicy>
           <hsizetype>0</hsizetype>
@@ -164,7 +164,7 @@ p, li { white-space: pre-wrap; }
        </widget>
       </item>
       <item>
-       <widget class="QLabel" name="label" >
+       <widget class="QLabel" name="label4" >
         <property name="text" >
          <string>The snapshot-workspace is a very useful tool. It let's you manage the snapshots you made.</string>
         </property>
@@ -184,7 +184,7 @@ p, li { white-space: pre-wrap; }
        <number>15</number>
       </property>
       <item>
-       <widget class="QLabel" name="label" >
+       <widget class="QLabel" name="label10" >
         <property name="sizePolicy" >
          <sizepolicy>
           <hsizetype>0</hsizetype>
@@ -199,7 +199,7 @@ p, li { white-space: pre-wrap; }
        </widget>
       </item>
       <item>
-       <widget class="QLabel" name="label" >
+       <widget class="QLabel" name="label5" >
         <property name="text" >
          <string>Of course you can configure iTALC. This is usually done using the configuration-workspace.</string>
         </property>

@@ -109,6 +109,7 @@ vncEncoder::NumCodedRects(RECT &rect)
 inline void
 vncEncoder::Translate(BYTE *source, BYTE *dest, const RECT &rect)
 {
+// IMPORTANT: ASSUME backbuffer-relative coordinates for rect
 	// Calculate where in the source rectangle to read from
 	BYTE *sourcepos = (BYTE *)(source + (m_bytesPerRow * rect.top)+(rect.left * (m_localformat.bitsPerPixel / 8)));
 
@@ -139,18 +140,15 @@ vncEncoder::Translate(BYTE *source, BYTE *dest, int w, int h, int bytesPerRow)
 inline UINT
 vncEncoder::EncodeRect(BYTE *source, BYTE *dest, const RECT &rect, int offsetx, int offsety)
 {
-
 	const int rectW = rect.right - rect.left;
 	const int rectH = rect.bottom - rect.top;
 
-
 	// Create the header for the update in the destination area
 	rfbFramebufferUpdateRectHeader *surh = (rfbFramebufferUpdateRectHeader *)dest;
-	surh->r.x = (CARD16) rect.left - offsetx;
-	surh->r.y = (CARD16) rect.top - offsety;
-
-	surh->r.w = (CARD16) rectW;
-	surh->r.h = (CARD16) rectH;
+	surh->r.x = (CARD16) (rect.left - offsetx);
+	surh->r.y = (CARD16) (rect.top - offsety);
+	surh->r.w = (CARD16) (rectW);
+	surh->r.h = (CARD16) (rectH);
 	surh->r.x = Swap16IfLE(surh->r.x);
 	surh->r.y = Swap16IfLE(surh->r.y);
 	surh->r.w = Swap16IfLE(surh->r.w);
@@ -182,9 +180,7 @@ vncEncoder::EncodeRect(BYTE *source, BYTE *dest, const RECT &rect, int offsetx, 
 inline UINT
 vncEncoder::EncodeRect(BYTE *source, VSocket *outConn, BYTE *dest, const RECT &rect, int offsetx, int offsety)
 {
-
 	return EncodeRect(source, dest, rect, offsetx, offsety);
-
 }
 
 BOOL

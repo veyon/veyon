@@ -38,7 +38,6 @@ class vncEncodeTight;
 
 #include "zlib/zlib.h"
 extern "C" {
-#define XMD_H
 #include "libjpeg/jpeglib.h"
 }
 

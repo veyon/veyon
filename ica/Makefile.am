@@ -53,7 +53,7 @@ IVSLDADD = @X_LIBS@ $(PTHREADLDADD)
 else
 
 
-IVS_INCLUDES = -I$(srcdir)/win32/ -I$(srcdir)/win32/src
+IVS_INCLUDES = -I$(srcdir)/win32/ -I$(srcdir)/win32/src -I$(srcdir)/win32/src/omnithread/ -I$(srcdir)/win32/src/VNCHooks
 
 IVS_SRCS =	$(srcdir)/win32/win32vnc.cpp			\
 		$(srcdir)/win32/src/d3des_w32.c			\
@@ -203,10 +203,9 @@ EXTRA_DIST =	$(srcdir)/x11/libvncserver/tableinit24.c		\
 		$(srcdir)/win32/src/vncRegion.cpp			\
 		$(srcdir)/win32/src/vncSockConnect.cpp			\
 		$(srcdir)/win32/src/vncDesktop.cpp			\
-		$(srcdir)/win32/src/VNCHooks.cpp			\
-		$(srcdir)/win32/src/SharedData.cpp			\
+		$(srcdir)/win32/src/VNCHooks/VNCHooks.cpp		\
+		$(srcdir)/win32/src/VNCHooks/SharedData.cpp		\
 		$(srcdir)/win32/src/MinMax.cpp				\
-		$(srcdir)/win32/src/nt.cpp				\
 		$(srcdir)/win32/src/VSocket.h				\
 		$(srcdir)/win32/src/stdhdrs.h				\
 		$(srcdir)/win32/src/vncBuffer.h				\
@@ -232,14 +231,17 @@ EXTRA_DIST =	$(srcdir)/x11/libvncserver/tableinit24.c		\
 		$(srcdir)/win32/src/vncEncoder.h			\
 		$(srcdir)/win32/src/vncEncodeCoRRE.h			\
 		$(srcdir)/win32/src/VTypes.h				\
-		$(srcdir)/win32/src/SharedData.h			\
-		$(srcdir)/win32/src/VNCHooks.h				\
-		$(srcdir)/win32/src/omnithread.h			\
+		$(srcdir)/win32/src/VNCHooks/SharedData.h		\
+		$(srcdir)/win32/src/VNCHooks/VNCHooks.h			\
 		$(srcdir)/win32/src/MinMax.h				\
-		$(srcdir)/win32/src/nt.h				\
 		$(srcdir)/win32/src/d3des.h				\
 		$(srcdir)/win32/src/vncPasswd.h				\
 		$(srcdir)/win32/src/vncauth.h				\
+		$(srcdir)/win32/src/ParseHost.c				\
+		$(srcdir)/win32/src/ParseHost.h				\
+		$(srcdir)/win32/src/omnithread/nt.cpp			\
+		$(srcdir)/win32/src/omnithread/nt.h			\
+		$(srcdir)/win32/src/omnithread/omnithread.h		\
 		$(srcdir)/win32/zlib/zlib.h				\
 		$(srcdir)/win32/libjpeg/jpeglib.h			\
 		$(srcdir)/win32/crtdbg.h				\

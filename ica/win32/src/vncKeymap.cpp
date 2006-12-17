@@ -183,8 +183,8 @@ inline void doKeyboardEvent(BYTE vkCode, vncServer *server, DWORD flags) {
 class KeyStateModifier {
 public:
   KeyStateModifier(int vkCode_, vncServer *server_, int flags_=0)
-    : vkCode(vkCode_), flags(flags_),
-      pressed(false), released(false), server(server_)
+    : vkCode(vkCode_), flags(flags_), server(server_),
+      pressed(false), released(false)
   {}
   void press() {
     if (!(GetAsyncKeyState(vkCode) & 0x8000)) {
@@ -238,7 +238,7 @@ public:
     {
       // ordinary Latin-1 character
 
-      SHORT s = VkKeyScan(keysym);
+      SHORT s = VkKeyScan((CHAR)keysym);
       if (s == -1) {
         vnclog.Print(LL_INTWARN, "ignoring unrecognised Latin-1 keysym %d\n",
                      keysym);

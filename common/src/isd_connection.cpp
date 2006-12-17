@@ -53,17 +53,6 @@ bool isdConnection::initAuthentication( void )
 		return( TRUE );
 	}
 
-/*	QString priv_key_file = QDir::homePath() + QDir::separator() +
-						localSystem::privateKeysPath() +
-						QDir::separator() + "id_dsa";
-	if( QDir::separator() != '/' )
-	{
-		priv_key_file = priv_key_file.replace( '/', QDir::separator() ).
-				replace( QString( QDir::separator() ) +
-							QDir::separator(),
-							QDir::separator() );
-	}*/
-
 	const QString priv_key_file = localSystem::privateKeyPath( __role );
 
 	privDSAKey = new privateDSAKey( priv_key_file );
@@ -122,6 +111,130 @@ isdConnection::~isdConnection()
 
 
 
+#define NO_QTCPSOCKET_CONNECT
+
+#ifdef NO_QTCPSOCKET_CONNECT
+
+#include <stdio.h>
+#ifdef BUILD_WIN32
+#include <io.h>
+#include <winsock.h>
+#else
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <arpa/inet.h>
+#include <netinet/in.h>
+#include <netinet/tcp.h>
+#include <netdb.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <errno.h>
+#include <string.h>
+#include <signal.h>
+#endif
+#include <sys/types.h>
+
+
+bool connectToHost( const QString & _host, int _port, QTcpSocket * _sock )
+{
+	static bool initialized = FALSE;
+	if( initialized == FALSE )
+	{
+		initialized = TRUE;
+#ifdef BUILD_WIN32
+		// Initialise WinPoxySockets on Win32
+		WORD wVersionRequested;
+		WSADATA wsaData;
+
+		wVersionRequested = MAKEWORD(2, 0);
+		if (WSAStartup(wVersionRequested, &wsaData) != 0)
+		{
+			return( FALSE );
+		}
+#else
+		// Disable the nasty read/write failure signals on UNIX
+		signal( SIGPIPE, SIG_IGN );
+#endif
+	}
+	const int one = 1;
+	int sock = socket( AF_INET, SOCK_STREAM, 0 );
+	// Create the socket
+	if( sock < 0 )
+	{
+		return( FALSE );
+	}
+
+	// Set the socket options:
+	if( setsockopt( sock, SOL_SOCKET, SO_REUSEADDR, (char *) &one,
+							sizeof( one ) ) )
+	{
+		return( FALSE );
+	}
+	if( setsockopt( sock, IPPROTO_TCP, TCP_NODELAY, (char *) &one,
+							sizeof( one ) ) )
+	{
+		return FALSE;
+	}
+
+	// Create an address structure and clear it
+	struct sockaddr_in addr;
+	memset(&addr, 0, sizeof(addr));
+
+	// Fill in the address if possible
+	addr.sin_family = AF_INET;
+	addr.sin_addr.s_addr = inet_addr( _host.toAscii().constData() );
+
+	// Was the string a valid IP address?
+	if( (signed int) addr.sin_addr.s_addr == -1 )
+	{
+		// No, so get the actual IP address of the host name specified
+		struct hostent *pHost;
+		pHost = gethostbyname( _host.toAscii().constData() );
+		if( pHost != NULL )
+		{
+			if( pHost->h_addr == NULL )
+			{
+				return( FALSE );
+			}
+			addr.sin_addr.s_addr =
+				((struct in_addr *)pHost->h_addr)->s_addr;
+		}
+		else
+		{
+			return( FALSE );
+		}
+	}
+
+	// Set the port number in the correct format
+	addr.sin_port = htons( _port );
+
+	// Actually connect the socket
+	if( connect( sock, (struct sockaddr *) &addr, sizeof( addr ) ) != 0 )
+	{
+		return( FALSE );
+	}
+
+	// Put the socket into non-blocking mode
+#ifdef __WIN32__
+	u_long arg = 1;
+	if( ioctlsocket( sock, FIONBIO, &arg ) != 0 )
+	{
+		return( FALSE );
+	}
+#else
+	if( fcntl( sock, F_SETFL, O_NDELAY ) != 0 )
+	{
+		return( FALSE );
+	}
+#endif
+
+	_sock->setSocketDescriptor( sock );
+
+	return( TRUE );
+}
+#endif
+
+
 
 isdConnection::states isdConnection::open( void )
 {
@@ -141,19 +254,25 @@ isdConnection::states isdConnection::open( void )
 		m_socketDev.setUser( m_socket );
 	}
 
+#ifdef NO_QTCPSOCKET_CONNECT
+	if( !connectToHost( m_host, m_port, m_socket ) )
+#else
 	m_socket->connectToHost( m_host, m_port );
 	if( m_socket->error() == QTcpSocket::HostNotFoundError ||
 			m_socket->error() == QTcpSocket::NetworkError )
+#endif
 	{
 		return( m_state = HostUnreachable );
 	}
 
-	m_socket->waitForConnected( 1000 );
+#ifndef NO_QTCPSOCKET_CONNECT
+	m_socket->waitForConnected( 2000 );
+#endif
 
 	if( m_socket->state() != QTcpSocket::ConnectedState )
 	{
-/*		printf( "Unable to connect to VNC server on client %s\n",
-					m_host.toAscii().constData() );*/
+		printf( "Unable to connect to server on client %s\n",
+					m_host.toAscii().constData() );
 		
 		if( m_socket->error() == QTcpSocket::ConnectionRefusedError )
 		{
@@ -183,7 +302,7 @@ void isdConnection::close( void )
 	m_state = Disconnected;
 	if( m_socket != NULL )
 	{
-		m_socket->disconnectFromHost();
+		//m_socket->disconnectFromHost();
 		m_socket->abort();
 		delete m_socket;
 		m_socket = NULL;
@@ -229,7 +348,7 @@ bool isdConnection::readFromServer( char * _out, const unsigned int _n )
 	while( bytes_done < _n )
 	{
 		int bytes_read = m_socket->read( _out + bytes_done,
-							_n - bytes_done);
+							_n - bytes_done );
 		if( bytes_read < 0 )
 		{
 			printf( "VNC server closed connection: %d\n",
@@ -356,7 +475,8 @@ isdConnection::states isdConnection::authAgainstServer(
 					const italcAuthTypes _try_auth_type )
 {
 	Q_UINT8 num_sec_types;
-	if( !readFromServer( (char *)&num_sec_types, sizeof( num_sec_types ) ) )
+	if( !readFromServer( (char *)&num_sec_types, sizeof( num_sec_types ) )
+							|| num_sec_types < 1 )
 	{
 		return( m_state = ConnectionFailed );
 	}

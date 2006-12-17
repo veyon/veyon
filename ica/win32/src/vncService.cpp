@@ -347,10 +347,11 @@ vncService::InputDesktopSelected()
 				DESKTOP_WRITEOBJECTS | DESKTOP_READOBJECTS |
 				DESKTOP_SWITCHDESKTOP | GENERIC_WRITE);
 
-		// Get the desktop names:
-		// *** I think this is horribly inefficient but I'm not sure.
-		if (inputdesktop == NULL)
-		    return FALSE;
+		if (inputdesktop == NULL) {
+			// Returning TRUE on ERROR_BUSY fixes the bug #1109102.
+			// FIXME: Probably this is not the most correct way to do it.
+			return (GetLastError() == ERROR_BUSY) ? TRUE : FALSE;
+		}
 
 		DWORD dummy;
 		char threadname[256];
@@ -380,7 +381,7 @@ vncService::InputDesktopSelected()
 }
 
 // Static routine used to fool Winlogon into thinking CtrlAltDel was pressed
-#include <QtCore/QProcess>
+
 void *
 SimulateCtrlAltDelThreadFn(void *context)
 {
@@ -390,7 +391,6 @@ SimulateCtrlAltDelThreadFn(void *context)
 	if (!vncService::SelectDesktop("Winlogon"))
 	{
 		vnclog.Print(LL_INTERR, VNCLOG("failed to select logon desktop\n"));
-		QProcess::startDetached( "taskmgr" );
 		return FALSE;
 	}
 
@@ -505,7 +505,7 @@ vncService::FindWindowByTitle(char *substr)
 	strncpy(l_substr, substr, 255);
 	l_substr[255] = 0;
 	int i;
-	for (i = 0; i < strlen(substr); i++) {
+	for (i = 0; i < (int)strlen(substr); i++) {
 		l_substr[i] = tolower(l_substr[i]);
 	}
 
@@ -533,11 +533,50 @@ vncService::FindWindowByTitle(char *substr)
 }
 
 BOOL
-vncService::NewSharedWindow(HWND hwndwindow)
+vncService::PostShareAll()
 {
-	
 	// Post to the WinVNC menu window
-	if (!PostToWinVNC(MENU_SERVER_SHAREWINDOW, (WPARAM)hwndwindow, 0))
+	if (!PostToWinVNC(MENU_SERVER_SHAREALL, 0, 0))
+	{
+		MessageBox(NULL, "No existing instance of WinVNC could be contacted", szAppName, MB_ICONEXCLAMATION | MB_OK);
+		return FALSE;
+	}
+
+	return TRUE;
+}
+
+BOOL
+vncService::PostSharePrimary()
+{
+	// Post to the WinVNC menu window
+	if (!PostToWinVNC(MENU_SERVER_SHAREPRIMARY, 0, 0))
+	{
+		MessageBox(NULL, "No existing instance of WinVNC could be contacted", szAppName, MB_ICONEXCLAMATION | MB_OK);
+		return FALSE;
+	}
+
+	return TRUE;
+}
+
+BOOL
+vncService::PostShareArea(unsigned short x, unsigned short y,
+						  unsigned short w, unsigned short h)
+{
+	// Post to the WinVNC menu window
+	if (!PostToWinVNC(MENU_SERVER_SHAREAREA,
+					  MAKEWPARAM(x,y), MAKELPARAM(w,h))) {
+		MessageBox(NULL, "No existing instance of WinVNC could be contacted", szAppName, MB_ICONEXCLAMATION | MB_OK);
+		return FALSE;
+	}
+
+	return TRUE;
+}
+
+BOOL
+vncService::PostShareWindow(HWND hwnd)
+{
+	// Post to the WinVNC menu window
+	if (!PostToWinVNC(MENU_SERVER_SHAREWINDOW, (WPARAM)hwnd, 0))
 	{
 		MessageBox(NULL, "No existing instance of WinVNC could be contacted", szAppName, MB_ICONEXCLAMATION | MB_OK);
 		return FALSE;
@@ -610,12 +649,6 @@ vncService::KillAllClients()
 	return TRUE;
 }
 
-BOOL
-vncService::RunningAsService()
-{
-	return TRUE;
-}
-#if 0
 // SERVICE-MODE ROUTINES
 
 // Service-mode defines:
@@ -1355,4 +1388,3 @@ void LogErrorMsg(char *message)
 		DeregisterEventSource(heventsrc);
 	}
 }
-#endif

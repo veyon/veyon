@@ -80,7 +80,10 @@ public:
 
 	// ENCODING
 	BOOL SetEncoding(CARD32 encoding);
-	UINT TranslateRect(const RECT &rect, VSocket *outConn, int offsetx, int offsety);
+
+// semantics changed: offset now is the shared area origin
+// in screen coordinates
+	UINT TranslateRect(const RECT &rect, VSocket *outConn, int shared_org_x, int shared_org_y);
 
 	// SENDING CURSOR SHAPE UPDATES
 	BOOL IsCursorUpdatePending();
@@ -95,6 +98,7 @@ protected:
 	//inline BOOL FastCheckMainbuffer();
 	
 	BYTE		*m_mainbuff;
+	RECT		m_mainrect;
 	UINT		m_mainsize;
 
 	BYTE		*m_clientbuff;

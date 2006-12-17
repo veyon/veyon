@@ -1,4 +1,4 @@
-/*
+#if 0
 //  Copyright (C) 1999 AT&T Laboratories Cambridge. All Rights Reserved.
 //
 //  This file is part of the VNC system.
@@ -23,7 +23,7 @@
 // If the source code for the VNC system is not available from the place 
 // whence you received this file, check http://www.uk.research.att.com/vnc or contact
 // the authors on vnc@uk.research.att.com for information on obtaining it.
-*/
+#endif
 
 
 /* 

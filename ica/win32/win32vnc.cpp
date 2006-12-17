@@ -2,15 +2,19 @@ extern "C" char * strdup( const char * );
 #include <assert.h>
 
 #define _ASSERT assert
+#define _ASSERTE assert
 
 #include <rfb/rfbproto.h>
 #include <rfb.h>
 
 #define XMD_H
+#define _WIN32_WINNT 0x0500
 
 #define rfbAuthNone rfbNoAuth
 #define rfbAuthVNC rfbVncAuth
 
+#define rfbAuthOK rfbVncAuthOK
+#define rfbAuthFailed rfbVncAuthFailed
 #define rfbSecTypeTight rfbTight
 #define rfbAuthUnixLogin 129
 #define rfbAuthExternal 130
@@ -173,15 +177,15 @@ qint64 vsocketDispatcher( char * _buf, const qint64 _len,
 
 
 
+#include "src/ParseHost.c"
 #include "src/vncKeymap.cpp"
 #include "src/WinVNC.cpp"
 #include "src/vncService.cpp"
 #include "src/vncInstHandler.cpp"
-#include "src/SharedData.cpp"
 #include "src/vncServer.cpp"
 #include "src/vncClient.cpp"
 #include "src/stdhdrs.cpp"
-#include "src/nt.cpp"
+#include "src/omnithread/nt.cpp"
 #include "src/RectList.cpp"
 #include "src/translate.cpp"
 #include "src/Log.cpp"
@@ -199,6 +203,7 @@ qint64 vsocketDispatcher( char * _buf, const qint64 _len,
 #define _MAX_PATH 260
 #endif
 
-#include "src/VNCHooks.cpp"
+#include "src/VNCHooks/VNCHooks.cpp"
+#include "src/VNCHooks/SharedData.cpp"
 #include "src/vncDesktop.cpp"
 

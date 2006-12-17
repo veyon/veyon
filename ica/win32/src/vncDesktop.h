@@ -87,15 +87,22 @@ public:
 	void SetLocalInputDisableHook(BOOL enable);
 	void SetLocalInputPriorityHook(BOOL enable);
 	void CaptureScreen(const RECT &UpdateArea, BYTE *scrBuff);
+	void CaptureScreenFromAdapterGeneral(RECT UpdateArea, BYTE *scrBuff);
+	void CaptureScreenFromMirage(RECT UpdateArea, BYTE *scrBuff);
 	int ScreenBuffSize();
 	HWND Window() { return m_hwnd; }
 
 	// Mouse related
 	void CaptureMouse(BYTE *scrBuff, UINT scrBuffSize);
+
+	void CaptureMouseRect();
 	BOOL GetRichCursorData(BYTE *databuf, HCURSOR hcursor, int width, int height);
 	RECT MouseRect();
 	void SetCursor(HCURSOR cursor);
 	HCURSOR GetCursor() { return m_hcursor; }
+
+// created for debug purposes. not used in normal builds.
+	bool bDbgDumpSurfBuffers(const RECT &rcl);
 
 	// Clipboard manipulation
 	static void ConvertClipText(char *dst, const char *src);
@@ -103,8 +110,9 @@ public:
 
 	// Method to obtain the DIBsection buffer if fast blits are enabled
 	// If they're disabled, it'll return NULL
-	inline BYTE *MainBuffer() {return m_mainbuff;};
-	void CopyRect(RECT &dest, POINT &source);
+	inline BYTE *MainBuffer() {	return m_mainbuff; }
+	inline RECT MainBufferRect() {	return m_bmrect; }
+	void CopyRect(RECT const& dest, POINT source);
 
 	BOOL			m_initialClipBoardSeen;
 
@@ -121,6 +129,10 @@ protected:
 	BOOL InitDesktop();
 	void KillScreenSaver();
 
+	RECT GetSourceRect();
+	BOOL GetSourceDisplayRect(RECT &rdisp_rect);
+	static BOOL IsMultiMonDesktop();
+
 	void ChangeResNow();
 	void SetupDisplayForConnection();
 	void ResetDisplayToNormal();
@@ -133,8 +145,9 @@ protected:
 	BOOL InitHooks();
 	BOOL SetPalette();
 
-	void CopyToBuffer(const RECT &rect, BYTE *scrBuff);
-	void CopyRectToBuffer(RECT &dest, POINT &source);
+	void CopyToBuffer(RECT rect, BYTE *scrBuff);
+	void CopyToBuffer(RECT rect, BYTE *scrBuff, const BYTE *SourceBuff);
+	void CopyRectToBuffer(RECT dest, POINT source);
 	void CalcCopyRects();
 	
 	// Routine to attempt enabling optimised DIBsection blits
@@ -153,9 +166,20 @@ protected:
 	BOOL GetPollingFlag() { return m_polling_flag; }
 	void PerformPolling();
 	void PollWindow(HWND hwnd);
-	void PollArea(RECT &rect);
+	void PollArea(const RECT &rect);
 	void CheckRects(vncRegion &rgn, rectlist &rects);
-	void GetChangedRegion(vncRegion &rgn, const RECT &rect);
+	void GetChangedRegion_Normal(vncRegion &rgn, const RECT &rect);
+	void GetChangedRegion_Dummy(vncRegion &rgn, const RECT &rect);
+
+	void GetChangedRegion(vncRegion &rgn, const RECT &rect)
+	{
+#if 1
+		GetChangedRegion_Normal(rgn, rect);
+#else
+		GetChangedRegion_Dummy(rgn, rect);
+#endif
+	}
+
 	void UpdateChangedRect(vncRegion &rgn, const RECT &rect);
 	void UpdateChangedSubRect(vncRegion &rgn, const RECT &rect);
 
@@ -200,7 +224,10 @@ protected:
 	HBITMAP			m_membitmap;
 	omni_mutex		m_bitbltlock;
 
+// frame buffer relative to the entire (virtual) desktop.
+// NOTE: non-zero offsets possible
 	RECT			m_bmrect;
+
 	struct _BMInfo {
 		BOOL			truecolour;
 		BITMAPINFO		bmi;
@@ -234,7 +261,8 @@ protected:
 	BOOL			m_freemainbuff;
 	BOOL			m_formatmunged;
 
-	DEVMODE			*lpDevMode; // *** used for res changes - Jeremy Peaks
+// DevMode alteration
+	DEVMODE			*m_lpAlternateDevMode; // *** used for res changes - Jeremy Peaks
 	long			origPelsWidth; // *** To set the original resolution
 	long			origPelsHeight; // *** - Jeremy Peaks
 	

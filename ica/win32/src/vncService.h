@@ -109,7 +109,11 @@ public:
 	// Properties dialog, to allow the user to make changes to their settings
 	static BOOL ShowProperties();
 
-	static BOOL NewSharedWindow(HWND hwndwindow);
+	static BOOL PostShareAll();
+	static BOOL PostSharePrimary();
+	static BOOL PostShareArea(unsigned short x, unsigned short y,
+							  unsigned short w, unsigned short h);
+	static BOOL PostShareWindow(HWND hwnd);
 	static HWND FindWindowByTitle(char *substr);
 
 	// Routine to make any currently running version of WinVNC show the

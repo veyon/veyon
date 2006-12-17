@@ -1,3 +1,30 @@
+2006-12-16	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* ima/dialogs/overview.ui:
+	unique names for labels which avoids uic-warnings
+
+	* ica/src/isd_server.cpp:
+	do not try to make a reverse-lookup on IPs when doing
+	host-based-authentication
+
+	* ica/Makefile.am:
+	* ica/win32/win32vnc.cpp:
+	* ica/win32/vncMenu.h:
+	* ica/win32/src/*:
+	integrated new sources from TightVNC 1.3.8
+
+	* common/src/isd_connection.cpp:
+	- self-written code for connecting to socket as Qt's
+	  QAbstractSocket::connectToHost() does lot of extra stuff (ghost
+	  connections etc) which also confuses the different servers sometimes
+	- when doint authentication, check whether number of sec-types is
+	  greater then zero and return (instead of crash) if so
+
+2006-12-13	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* common/include/isd_connection.h:
+	added NULL-check for m_socket in hasData()-method
+
 2006-12-11	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* configure.in:

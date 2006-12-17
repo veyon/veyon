@@ -197,11 +197,10 @@ vncBuffer::CheckBuffer()
 	    ZeroMemory(m_clientbuff, m_clientbuffsize);
 	}
 
-
-		// Take the main buffer pointer and size from vncDesktop 
-		m_mainbuff = m_desktop->MainBuffer();
-		m_mainsize = m_desktop->ScreenBuffSize();
-
+	// Take the main buffer pointer and size from vncDesktop 
+	m_mainbuff = m_desktop->MainBuffer();
+	m_mainrect = m_desktop->MainBufferRect();
+	m_mainsize = m_desktop->ScreenBuffSize();
 		
 	vnclog.Print(LL_INTINFO, VNCLOG("local buffer=%d, remote buffer=%d\n"), m_mainsize, m_clientbuffsize);
 
@@ -218,10 +217,11 @@ vncBuffer::GetNumCodedRects(RECT &rect)
 	return m_encoder->NumCodedRects(rect);
 }
 
-RECT
-vncBuffer::GrabMouse()
+RECT vncBuffer::GrabMouse()
 {
+// capture uncovered area
 	m_desktop->CaptureScreen(m_desktop->MouseRect(), m_mainbuff);
+// capture new mouse area
 	m_desktop->CaptureMouse(m_mainbuff, m_mainsize);
 
 	return m_desktop->MouseRect();
@@ -327,6 +327,7 @@ vncBuffer::SetEncoding(CARD32 encoding)
 			return FALSE;
 		break;
 
+#if 0
 	case rfbEncodingZlib:
 
 		vnclog.Print(LL_INTINFO, VNCLOG("Zlib encoder requested\n"));
@@ -346,6 +347,7 @@ vncBuffer::SetEncoding(CARD32 encoding)
 			return FALSE;
 		zlib_encoder_in_use = true;
 		break;
+#endif
 
 	case rfbEncodingTight:
 
@@ -463,13 +465,32 @@ vncBuffer::EnableLastRect(BOOL enable)
 
 
 // Routine to translate a rectangle between pixel formats
-UINT
-vncBuffer::TranslateRect(const RECT &rect, VSocket *outConn,
-						 int offsetx, int offsety)
+// semantics changed:
+// offset now is the shared area origin in screen coordinates
+UINT vncBuffer::TranslateRect(
+		const RECT &rect,
+		VSocket *outConn,
+		int shared_org_x,
+		int shared_org_y)
 {
 	// Call the encoder to encode the rectangle into the client buffer...
-	return m_encoder->EncodeRect(m_mainbuff, outConn, m_clientbuff, rect,
-								 offsetx, offsety);
+
+// Translate (==> EncodeRect also) assumes mainbuff-relative coordinates
+// so we need to adjust the rect.
+// also, presentation (fb) rect is required.
+	RECT ar;
+	ar.left = rect.left - m_mainrect.left;
+	ar.top = rect.top -  m_mainrect.top;
+	ar.right = rect.right - m_mainrect.left;
+	ar.bottom = rect.bottom - m_mainrect.top;
+
+	return m_encoder->EncodeRect(
+		m_mainbuff,
+		outConn,
+		m_clientbuff,
+		ar,
+		shared_org_x - m_mainrect.left,
+		shared_org_y - m_mainrect.top);
 }
 
 // Check if cursor shape update should be sent

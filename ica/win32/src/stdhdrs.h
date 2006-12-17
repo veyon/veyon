@@ -25,7 +25,7 @@
 
 
 // #define VC_EXTRALEAN
-//#define STRICT
+#define STRICT
 
 #include <winsock2.h>
 #include <windows.h>

@@ -46,3 +46,4 @@ HHOOK hKeyboardHook = NULL;							// Handle to kbd hook
 HHOOK hMouseHook = NULL;							// Handle to mouse hook
 HWND hKeyboardPriorityWindow = NULL;
 HWND hMousePriorityWindow = NULL;
+

@@ -161,8 +161,8 @@ unsigned char *inblock, *outblock;
 	}
 
 static void scrunch(outof, into)
-unsigned char *outof;
-unsigned long *into;
+register unsigned char *outof;
+register unsigned long *into;
 {
 	*into	 = (*outof++ & 0xffL) << 24;
 	*into	|= (*outof++ & 0xffL) << 16;

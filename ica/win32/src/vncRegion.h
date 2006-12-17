@@ -52,7 +52,8 @@ public:
 	vncRegion();
 	~vncRegion();
 
-	void AddRect(const RECT &rect);				// Add another rectangle to the regions
+	void AddRect(const RECT &rect);			// Add another rectangle to the regions
+	void AddRect(RECT rect, int xoffset, int yoffset);	// ... with offset
 	void SubtractRect(RECT &rect);			// Subtract a rectangle from the regions
 	void Clear();							// Clear the current set of rectangles
 	inline BOOL IsEmpty() {					// Is the region empty?

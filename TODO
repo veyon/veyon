@@ -2,6 +2,7 @@ TODO
 =====
 
 
+- show access-dialog in foreground
 - disable "back"-button when on last-page in setup
 - support for demo-gateway for classrooms connected via VPN
 - improve support-workspace/artwork

@@ -1,1 +1,2 @@
-class vncCorbaConnect;
+#include "vncCorbaConnect.h"
+

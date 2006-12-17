@@ -333,7 +333,6 @@ bool isdServer::authSecTypeItalc( socketDispatcher _sd, void * _user,
 	char host[MAX_HOST_LEN];
 	_sd( host, MAX_HOST_LEN, SocketGetIPBoundTo, _user );
 	host[MAX_HOST_LEN] = 0;
-
 	static QStringList __denied_hosts, __allowed_hosts;
 
 	socketDevice sdev( _sd, _user );
@@ -368,6 +367,16 @@ bool isdServer::authSecTypeItalc( socketDispatcher _sd, void * _user,
 		// host has to be in list of allowed hosts
 		case ItalcAuthHostBased:
 		{
+			// already valid IP?
+			if( QHostAddress().setAddress( host ) )
+			{
+				if( s_allowedDemoClients.contains( host ) )
+				{
+					result = ItalcAuthOK;
+				}
+			}
+			else
+			{
 			// create a list of all known addresses of host
 			QList<QHostAddress> addr =
 					QHostInfo::fromName( host ).addresses();
@@ -384,6 +393,7 @@ bool isdServer::authSecTypeItalc( socketDispatcher _sd, void * _user,
 						break;
 					}
 				}
+			}
 			}
 			break;
 		}
@@ -776,14 +786,23 @@ void isdServer::remoteControlDisplay( const QString & _ip, bool _view_only )
 
 void isdServer::allowDemoClient( const QString & _host )
 {
+	// already valid IP?
+	if( QHostAddress().setAddress( _host ) )
+	{
+		if( !s_allowedDemoClients.contains( _host ) )
+		{
+			s_allowedDemoClients.push_back( _host );
+		}
+		return;
+	}
 	foreach( const QHostAddress a,
 				QHostInfo::fromName( _host ).addresses() )
 	{
 		const QString h = a.toString();
-		if( !s_allowedDemoClients.contains( h ) )
-		{
-			s_allowedDemoClients.push_back( h );
-		}
+			if( !s_allowedDemoClients.contains( h ) )
+			{
+				s_allowedDemoClients.push_back( h );
+			}
 	}
 }
 
@@ -792,6 +811,12 @@ void isdServer::allowDemoClient( const QString & _host )
 
 void isdServer::denyDemoClient( const QString & _host )
 {
+	// already valid IP?
+	if( QHostAddress().setAddress( _host ) )
+	{
+		s_allowedDemoClients.removeAll( _host );
+		return;
+	}
 	foreach( const QHostAddress a,
 				QHostInfo::fromName( _host ).addresses() )
 	{
