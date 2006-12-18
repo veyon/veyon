@@ -343,7 +343,8 @@ mainWindow::mainWindow() :
 	m_toolBar->addWidget( adjust_size );
 	m_toolBar->addWidget( auto_arrange );
 
-	restoreState( m_clientManager->winCfg().toAscii() );
+	restoreState( QByteArray::fromBase64(
+				m_clientManager->winCfg().toAscii() ) );
 
 	if( isdConnection::initAuthentication() == FALSE )
 	{

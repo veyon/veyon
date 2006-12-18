@@ -545,7 +545,7 @@ isdServer::accessDialogResult isdServer::showAccessDialog(
 #else
 	m.setButtonText( 2, tr( "Never for this session" ) );
 #endif
-	m.activateWindow();
+	localSystem::activateWindow( &m );
 
 	const int res = m.exec();
 #ifdef QMESSAGEBOX_EXT_SUPPORT

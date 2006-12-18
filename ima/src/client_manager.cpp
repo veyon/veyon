@@ -246,7 +246,7 @@ void clientManager::savePersonalConfig( void )
 				getMainWindow()->m_sideBar->openedTab() );
 
 	globalsettings.setAttribute( "wincfg", QString(
-					getMainWindow()->saveState() ) );
+				getMainWindow()->saveState().toBase64() ) );
 
 	globalsettings.setAttribute( "net-iface", __demo_network_interface );
 	globalsettings.setAttribute( "defaultdomain", __default_domain );
@@ -779,7 +779,8 @@ inline void clientManager::cmdToVisibleClients( client::clientCmds _cmd,
 void clientManager::changeGlobalClientMode( int _mode )
 {
 	client::modes new_mode = static_cast<client::modes>( _mode );
-	if( new_mode != m_globalClientMode )
+	if( new_mode != m_globalClientMode ||
+					new_mode == client::Mode_Overview )
 	{
 		m_globalClientMode = new_mode;
 		isdConnection * conn = getMainWindow()->localISD();
