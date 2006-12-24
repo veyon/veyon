@@ -121,7 +121,7 @@ case "${build}" in
                 AC_MSG_ERROR([*** Couldn't find any Qt libraries])
             fi
         fi
-	QT_LIB="-L$QTDIR/lib -lQtCore -lQtXml -lQtNetwork"
+	QT_LIB="-L$QTDIR/lib -L$QTDIR/lib/qt4 -lQtCore -lQtXml -lQtNetwork"
 	QT_LIB_GUI="-lQtGui"
         ;;
 esac
