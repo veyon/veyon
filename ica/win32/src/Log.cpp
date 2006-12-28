@@ -16,6 +16,7 @@
 const int Log::ToDebug   =  1;
 const int Log::ToFile    =  2;
 const int Log::ToConsole =  4;
+const int Log::ToQtLog   =  8;
 
 const static int LINE_BUFFER_SIZE = 1024;
 
@@ -28,6 +29,7 @@ Log::Log(int mode, int level, char *filename, bool append)
     m_todebug = false;
     m_toconsole = false;
     m_tofile = false;
+    m_toqtlog = false;
 
     SetFile(filename, append);
     SetMode(mode);
@@ -69,6 +71,7 @@ void Log::SetMode(int mode) {
     } else {
         m_toconsole = false;
     }
+    m_toqtlog = ( mode && ToQtLog ) != 0;
 }
 
 int Log::GetMode() {
@@ -173,6 +176,10 @@ inline void Log::ReallyPrintLine(char *line)
     if (m_tofile && (hlogfile != NULL)) {
         DWORD byteswritten;
         WriteFile(hlogfile, line, strlen(line), &byteswritten, NULL); 
+    }
+    if( m_toqtlog )
+    {
+    	qDebug( line );
     }
 }
 

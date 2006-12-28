@@ -49,7 +49,8 @@ bool isdConnection::initAuthentication( void )
 {
 	if( privDSAKey != NULL )
 	{
-		printf( "private key already initialized" );
+		qWarning( "isdConnection::initAuthentication(): private key "
+							"already initialized" );
 		return( TRUE );
 	}
 
@@ -66,7 +67,8 @@ bool isdConnection::initAuthentication( void )
 		privDSAKey = new privateDSAKey( 1024 );
 		if( !privDSAKey->isValid() )
 		{
-			printf( "key generation failed!\n" );
+			qCritical( "isdConnection::initAuthentication(): "
+						"key generation failed!" );
 			return( FALSE );
 		}
 		privDSAKey->save( priv_key_file );
@@ -271,8 +273,8 @@ isdConnection::states isdConnection::open( void )
 
 	if( m_socket->state() != QTcpSocket::ConnectedState )
 	{
-		printf( "Unable to connect to server on client %s\n",
-					m_host.toAscii().constData() );
+		qWarning( "isdConnection::open(): unable to connect to server "
+				"on client %s", m_host.toAscii().constData() );
 		
 		if( m_socket->error() == QTcpSocket::ConnectionRefusedError )
 		{
@@ -351,7 +353,8 @@ bool isdConnection::readFromServer( char * _out, const unsigned int _n )
 							_n - bytes_done );
 		if( bytes_read < 0 )
 		{
-			printf( "VNC server closed connection: %d\n",
+			qWarning( "isdConnection::readFromServer(): "
+					"server closed connection: %d",
 							m_socket->error() );
 			close();
 			return( FALSE );
@@ -362,7 +365,8 @@ bool isdConnection::readFromServer( char * _out, const unsigned int _n )
 			// anymore?
 			if( m_socket->state() != QTcpSocket::ConnectedState )
 			{
-				printf( "connection failed: %d\n",
+				qWarning( "isdConnection::readFromServer(): "
+						"connection failed: %d",
 							m_socket->state() );
 				m_state = ConnectionFailed;
 				return( FALSE );
@@ -395,7 +399,8 @@ bool isdConnection::writeToServer( const char * _buf, const unsigned int _n )
 							_n - bytes_done );
 		if( bytes_written < 0 )
 		{
-			printf( "writeToServer: write(..) failed\n" );
+			qCritical( "isdConnection::writeToServer(...): "
+							"write(..) failed" );
 			close();
 			return( FALSE );
 		}
@@ -456,7 +461,8 @@ isdConnection::states isdConnection::protocolInitialization( void )
 	if( sscanf( protocol_version, isdProtocolVersionFormat, &major,
 							&minor ) != 2 )
 	{
-		printf( "Not a valid iTALC Service Daemon\n" );
+		qCritical( "isdConnection::protocolInitialization(): "
+					"not a valid iTALC Service Daemon" );
 		return( m_state = InvalidServer );
 	}
 
@@ -493,7 +499,7 @@ isdConnection::states isdConnection::authAgainstServer(
 	{
 		if( sec_type_list[i] == rfbNoAuth )
 		{
-			printf("no auth\n" );
+			qDebug( "no auth" );
 			if( !writeToServer( (char *)&sec_type_list[i],
 						sizeof( sec_type_list[i] ) ) )
 			{
@@ -504,7 +510,7 @@ isdConnection::states isdConnection::authAgainstServer(
 		}
 		else if( sec_type_list[i] == rfbSecTypeItalc )
 		{
-			printf("italcauth\n");
+			qDebug( "italcauth" );
 			if( !writeToServer( (char *)&sec_type_list[i],
 						sizeof( sec_type_list[i] ) ) )
 			{
@@ -522,8 +528,6 @@ isdConnection::states isdConnection::authAgainstServer(
 			{
 				QByteArray chall =
 					m_socketDev.read().toByteArray();
-/*				m_socketDev.write( localSystem::currentUser().
-							replace( ' ', '_' ) );*/
 				m_socketDev.write( QVariant( (int) __role ) );
 				if( !privDSAKey )
 				{
@@ -555,15 +559,17 @@ isdConnection::states isdConnection::authAgainstServer(
 			}
 			else
 			{
-				printf( "unhandled italc-auth-mechanism!\n" );
+	qCritical( "isdConnection::authAgainstServer(): "
+					"unhandled italc-auth-mechanism!" );
 			}
 			break;
 		}
 		// even last security type not handled?
 		else if( i == num_sec_types - 1 )
 		{
-			printf( "unknown sec-type for authentication: "
-					"%d\n", (int) sec_type_list[i] );
+			qCritical( "isdConnection::authAgainstServer(): "
+					"unknown sec-type for authentication: "
+						"%d", (int) sec_type_list[i] );
 			m_state = AuthFailed;
 		}
 	}
@@ -615,15 +621,16 @@ bool isdConnection::handleServerMessage( Q_UINT8 _msg )
 			}*/
 
 			default:
-				printf( "Unknown server response %d\n",
-								(int) cmd );
+	qCritical( "isdConnection::handleServerMessage(): unknown server "
+						"response %d", (int) cmd );
 				return( FALSE );
 		}
 	}
 	else
 	{
-		printf( "Unknown message type %d from server. Closing "
-			"connection. Will re-open it later.\n", _msg );
+		qCritical( "isdConnection::handleServerMessage(): unknown "
+				"message type %d from server. Closing "
+				"connection. Will re-open it later.", _msg );
 		close();
 		return( FALSE );
 	}
@@ -931,7 +938,8 @@ bool isdConnection::handleServerMessages( void )
 		rfbServerToClientMsg msg;
 		if( !readFromServer( (char *) &msg, sizeof( Q_UINT8 ) ) )
 		{
-			printf( "Reading message-type failed\n" );
+			qCritical( "isdConnection::handleServerMessage(): "
+						"reading message-type failed" );
 			return( FALSE );
 		}
 

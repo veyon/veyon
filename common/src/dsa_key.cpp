@@ -148,7 +148,7 @@ buffer_append_space(Buffer *buffer, unsigned int len)
 {
 	if (len > 0x100000)
 	{
-		printf("buffer_append_space: len %u not supported", len);
+		qCritical( "buffer_append_space: len %u not supported", len );
 		exit( -1 );
 	}
 
@@ -181,7 +181,8 @@ restart:
 	unsigned int newlen = buffer->alloc + len + 32768;
 	if (newlen > 0xa00000)
 	{
-		printf("buffer_append_space: alloc %u not supported", newlen);
+		qCritical( "buffer_append_space: alloc %u not supported",
+								newlen );
 		exit( -1 );
 	}
 	buffer->buf = (unsigned char *)realloc(buffer->buf, newlen);
@@ -214,7 +215,8 @@ buffer_get(Buffer *buffer, void *buf, unsigned int len)
 {
 	if (len > buffer->end - buffer->offset)
 	{
-		printf("buffer_get: trying to get more bytes %d than in buffer %d", len, buffer->end - buffer->offset);
+		qCritical( "buffer_get: trying to get more bytes %d than in "
+			"buffer %d", len, buffer->end - buffer->offset );
 		exit( -1 );
 	}
 	memcpy(buf, buffer->buf + buffer->offset, len);
@@ -262,7 +264,7 @@ buffer_put_cstring(Buffer *buffer, const char *s)
 {
 	if (s == NULL)
 	{
-		printf("buffer_put_cstring: s == NULL");
+		qCritical( "buffer_put_cstring: s == NULL" );
 		exit( -1 );
 	}
 	buffer_put_string(buffer, s, strlen(s));
@@ -287,7 +289,7 @@ buffer_get_string(Buffer *buffer, unsigned int *length_ptr)
 	len = buffer_get_int(buffer);
 	if (len > 256 * 1024)
 	{
-		printf("buffer_get_string: bad string length %u", len);
+		qCritical( "buffer_get_string: bad string length %u", len );
 		exit( -1 );
 	}
 	/* Allocate space for the string.  Add one byte for a null character. */
@@ -310,7 +312,8 @@ void buffer_get_bignum2(Buffer *buffer, BIGNUM *value)
 
 	if (len > 8 * 1024)
 	{
-		printf("buffer_get_bignum2: cannot handle BN of size %d", len);
+		qCritical( "buffer_get_bignum2: cannot handle BN of size %d",
+									len );
 		exit( -1 );
 	}
 	BN_bin2bn(bin, len, value);
@@ -330,7 +333,8 @@ buffer_put_bignum2(Buffer *buffer, BIGNUM *value)
 	oi = BN_bn2bin(value, buf+1);
 	if (oi != bytes-1)
 	{
-		printf( "buffer_put_bignum: BN_bn2bin() failed: oi %d != bin_size %d", oi, bytes);
+		qCritical( "buffer_put_bignum: BN_bn2bin() failed: oi %d "
+						"!= bin_size %d", oi, bytes );
 		exit( -1 );
 	}
 	hasnohigh = (buf[1] & 0x80) ? 0 : 1;
@@ -359,7 +363,7 @@ bool dsaKey::verifySignature( const QByteArray & _data,
 {
 	if( !isValid() )
 	{
-		printf( "dsaKey::verifySignature( ... ): invalid key\n" );
+		qCritical( "dsaKey::verifySignature( ... ): invalid key" );
 		return( FALSE );
 	}
 
@@ -370,8 +374,8 @@ bool dsaKey::verifySignature( const QByteArray & _data,
 	char * ktype = (char*) buffer_get_string( &b, NULL );
 	if( strcmp( "italc-dss", ktype ) != 0 )
 	{
-		printf( "dsaKey::verifySignature( ... ): cannot handle "
-							"type %s\n", ktype );
+		qCritical( "dsaKey::verifySignature( ... ): cannot handle "
+							"type %s", ktype );
 		buffer_free( &b );
 		delete[] ktype;
 		return( FALSE );
@@ -385,15 +389,15 @@ bool dsaKey::verifySignature( const QByteArray & _data,
 	buffer_free( &b );
 	if( rlen != 0 )
 	{
-		printf( "dsaKey::verifySignature( ... ): remaining bytes in "
-						"signature %d\n", rlen );
+		qWarning( "dsaKey::verifySignature( ... ): remaining bytes in "
+							"signature %d", rlen );
 		delete[] sigblob;
 		return( FALSE );
 	}
 
 	if( len != SIGBLOB_LEN )
 	{
-		printf( "bad sigbloblen %u != SIGBLOB_LEN", len );
+		qCritical( "bad sigbloblen %u != SIGBLOB_LEN", len );
 		return( FALSE );
 	}
 
@@ -402,20 +406,20 @@ bool dsaKey::verifySignature( const QByteArray & _data,
 	// parse signature
 	if( sig == NULL )
 	{
-		printf( "dsaKey::verifySignature( ... ): DSA_SIG_new "
-								"failed\n" );
+		qCritical( "dsaKey::verifySignature( ... ): DSA_SIG_new "
+								"failed" );
 		return( FALSE );
 	}
 
 	if( ( sig->r = BN_new() ) == NULL )
 	{
-		printf( "dsaKey::verifySignature( ... ): BN_new failed\n" );
+		qCritical( "dsaKey::verifySignature( ... ): BN_new failed" );
 		return( FALSE );
 	}
 
 	if( ( sig->s = BN_new() ) == NULL )
 	{
-		printf( "dsaKey::verifySignature( ... ): BN_new failed\n" );
+		qCritical( "dsaKey::verifySignature( ... ): BN_new failed" );
 		return( FALSE );
 	}
 
@@ -439,7 +443,7 @@ bool dsaKey::verifySignature( const QByteArray & _data,
 
 	DSA_SIG_free( sig );
 
-	printf( "dsa_verify: signature %s\n", ret == 1 ? "correct" : ret == 0 ?
+	qDebug( "dsa_verify: signature %s", ret == 1 ? "correct" : ret == 0 ?
 							"incorrect" : "error" );
 	return( ret == 1 );
 }
@@ -453,7 +457,7 @@ QByteArray dsaKey::generateChallenge( void )
 
 	if( challenge_bn == NULL )
 	{
-		printf( "dsaKey::generateChallenge(): BN_new() failed\n" );
+		qCritical( "dsaKey::generateChallenge(): BN_new() failed" );
 		return( QByteArray() );
 	}
 
@@ -480,15 +484,15 @@ privateDSAKey::privateDSAKey( const unsigned int _bits) :
 									NULL );
 	if( m_dsa == NULL)
 	{
-		printf( "privateDSAKey::privateDSAKey( ... ): "
-					"DSA_generate_parameters failed\n" );
+		qCritical( "privateDSAKey::privateDSAKey( ... ): "
+					"DSA_generate_parameters failed" );
 		return;
 	}
 
 	if( !DSA_generate_key( m_dsa ) )
 	{
-		printf("privateDSAKey::privateDSAKey( ... ): "
-					"DSA_generate_key failed\n" );
+		qCritical("privateDSAKey::privateDSAKey( ... ): "
+						"DSA_generate_key failed" );
 		m_dsa = NULL;
 		return;
 	}
@@ -501,7 +505,7 @@ QByteArray privateDSAKey::sign( const QByteArray & _data ) const
 {
 	if( !isValid() )
 	{
-		printf( "privateDSAKey::sign( ... ): invalid key\n" );
+		qCritical( "privateDSAKey::sign( ... ): invalid key" );
 		return( QByteArray() );
 	}
 
@@ -519,7 +523,7 @@ QByteArray privateDSAKey::sign( const QByteArray & _data ) const
 
 	if( sig == NULL )
 	{
-		printf("privateDSAKey::sign( ... ): DSA_do_sign() failed\n" );
+		qCritical("privateDSAKey::sign( ... ): DSA_do_sign() failed" );
 		return( QByteArray() );
 	}
 
@@ -527,7 +531,7 @@ QByteArray privateDSAKey::sign( const QByteArray & _data ) const
 	unsigned int slen = BN_num_bytes( sig->s );
 	if( rlen > INTBLOB_LEN || slen > INTBLOB_LEN )
 	{
-		printf( "bad sig size %u %u", rlen, slen );
+		qCritical( "bad sig size %u %u", rlen, slen );
 		DSA_SIG_free( sig );
 		return( QByteArray() );
 	}
@@ -565,7 +569,7 @@ void privateDSAKey::load( const QString & _file, QString _passphrase )
 	QFile infile( _file );
 	if( !QFileInfo( _file ).exists() || !infile.open( QFile::ReadOnly ) )
 	{
-		printf( "privateDSAKey::load( ... ): could not open file %s\n",
+		qCritical( "privateDSAKey::load( ... ): could not open file %s",
 						_file.toAscii().constData() );
 		return;
 	}
@@ -573,7 +577,7 @@ void privateDSAKey::load( const QString & _file, QString _passphrase )
 	FILE * fp = fdopen( infile.handle(), "r" );
 	if( fp == NULL )
 	{
-		printf( "privateDSAKey::load( ... ): fdopen failed\n" );
+		qCritical( "privateDSAKey::load( ... ): fdopen failed" );
 		return;
 	}
 
@@ -581,7 +585,7 @@ void privateDSAKey::load( const QString & _file, QString _passphrase )
 						_passphrase.toAscii().data() );
 	if( pk == NULL )
 	{
-		printf( "PEM_read_PrivateKey failed\n" );
+		qCritical( "PEM_read_PrivateKey failed" );
 	}
 	else if( pk->type == EVP_PKEY_DSA )
 	{
@@ -589,8 +593,8 @@ void privateDSAKey::load( const QString & _file, QString _passphrase )
 	}
 	else
 	{
-		printf( "PEM_read_PrivateKey: mismatch or "
-			    "unknown EVP_PKEY save_type %d\n", pk->save_type );
+		qCritical( "PEM_read_PrivateKey: mismatch or "
+			    "unknown EVP_PKEY save_type %d", pk->save_type );
 	}
 	fclose( fp );
 	if( pk != NULL )
@@ -606,8 +610,8 @@ void privateDSAKey::save( const QString & _file, QString _passphrase ) const
 {
 	if( _passphrase.length() > 0 && _passphrase.length() <= 4 )
 	{
-		printf( "passphrase too short: need more than 4 bytes - "
-					"using empty passphrase now\n" );
+		qWarning( "passphrase too short: need more than 4 bytes - "
+						"using empty passphrase now" );
 		_passphrase = QString::null;
 	}
 	if( _file.contains( QDir::separator() ) )
@@ -618,14 +622,14 @@ void privateDSAKey::save( const QString & _file, QString _passphrase ) const
 	QFile outfile( _file );
 	if( !outfile.open( QFile::WriteOnly | QFile::Truncate ) )
 	{
-		printf( "could not save private key in %s\n",
+		qCritical( "could not save private key in %s",
 						_file.toAscii().constData() );
 		return;
 	}
 	FILE * fp = fdopen( outfile.handle(), "w" );
 	if( fp == NULL )
 	{
-		printf( "fdopen failed." );
+		qCritical( "fdopen failed." );
 		return;
 	}
 
@@ -647,7 +651,7 @@ DSA * createNewDSA( void )
 	DSA * dsa = DSA_new();
 	if( dsa == NULL )
 	{
-		printf( "createNewDSA: DSA_new failed\n" );
+		qCritical( "createNewDSA: DSA_new failed" );
 		return( NULL );
 	}
 	if( ( dsa->p = BN_new() ) == NULL ||
@@ -655,7 +659,7 @@ DSA * createNewDSA( void )
 		( dsa->g = BN_new() ) == NULL ||
 		( dsa->pub_key = BN_new() ) == NULL )
 	{
-		printf( "createNewDSA: BN_new failed\n" );
+		qCritical( "createNewDSA: BN_new failed" );
 		return( NULL );
 	}
 	return( dsa );
@@ -683,7 +687,7 @@ DSA * keyFromBlob( const QByteArray & _ba )
 	}
 	else
 	{
-		printf( "key_from_blob: cannot handle type %s", ktype);
+		qCritical( "key_from_blob: cannot handle type %s", ktype );
 		return( NULL );
 	}
 	//int rlen = buffer_len( &b );
@@ -702,8 +706,8 @@ publicDSAKey::publicDSAKey( const privateDSAKey & _pk ) :
 {
 	if( !_pk.isValid() )
 	{
-		printf( "publicDSAKey::publicDSAKey( ... ): "
-				"invalid private key to derive from!\n" );
+		qCritical( "publicDSAKey::publicDSAKey( ... ): "
+				"invalid private key to derive from!" );
 	}
 	m_dsa = createNewDSA();
 	if( m_dsa != NULL )
@@ -729,7 +733,7 @@ void publicDSAKey::load( const QString & _file, QString )
 	QFile infile( _file );
 	if( !QFileInfo( _file ).exists() || !infile.open( QFile::ReadOnly ) )
 	{
-		printf( "could not open file %s\n",
+		qCritical( "could not open file %s",
 						_file.toAscii().constData() );
 		return;
 	}
@@ -744,23 +748,23 @@ void publicDSAKey::load( const QString & _file, QString )
 		{
 			if( line.section( ' ', 0, 0 ) != "italc-dss" )
 			{
-				printf( "publicDSAKey::load(): "
-							"missing keytype\n" );
+				qCritical( "publicDSAKey::load(): "
+							"missing keytype" );
 				continue;
 			}
 			m_dsa = keyFromBlob( QByteArray::fromBase64(
 					line.section( ' ', 1, 1 ).toAscii() ) );
 			if( m_dsa == NULL )
 			{
-				printf( "publicDSAKey::load(): "
-						"keyFromBlob failed\n" );
+				qCritical( "publicDSAKey::load(): "
+						"keyFromBlob failed" );
 				continue;
 			}
 			return;
 		}
 	}
 
-	printf( "error while reading public key!\n" );
+	qCritical( "error while reading public key!" );
 }
 
 
@@ -770,7 +774,7 @@ void publicDSAKey::save( const QString & _file, QString ) const
 {
 	if( !isValid() )
 	{
-		printf( "publicDSAKey::save(...): key not valid!" );
+		qCritical( "publicDSAKey::save(...): key not valid!" );
 		return;
 	}
 
@@ -782,7 +786,7 @@ void publicDSAKey::save( const QString & _file, QString ) const
 	QFile outfile( _file );
 	if( !outfile.open( QFile::WriteOnly | QFile::Truncate ) )
 	{
-		printf( "Could not save public key in %s\n",
+		qCritical( "Could not save public key in %s",
 						_file.toAscii().constData() );
 		return;
 	}

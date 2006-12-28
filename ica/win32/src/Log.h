@@ -30,6 +30,7 @@ public:
     static const int ToDebug;
     static const int ToFile;
     static const int ToConsole;
+    static const int ToQtLog;
 
     // Create a new log object.
     // Parameters as follows:
@@ -78,7 +79,7 @@ private:
     void ReallyPrint(char *format, va_list ap);
 	void OpenFile();
     void CloseFile();
-    bool m_tofile, m_todebug, m_toconsole;
+    bool m_tofile, m_todebug, m_toconsole, m_toqtlog;
     int m_level;
     int m_mode;
 	int m_style;

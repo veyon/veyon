@@ -117,17 +117,11 @@ static QString windowsConfigPath( int _type )
 }
 
 
-#else
-
-#ifdef HAVE_ERRNO_H
-#include <errno.h>
 #endif
+
 
 #ifdef HAVE_PWD_H
 #include <pwd.h>
-#endif
-
-
 #endif
 
 #ifdef HAVE_SYS_SOCKET_H
@@ -153,9 +147,19 @@ static QString windowsConfigPath( int _type )
 
 #ifdef BUILD_WIN32
 
+static BOOL WINAPI consoleCtrlHandler( DWORD _dwCtrlType )
+{
+	switch( _dwCtrlType )
+	{
+		case CTRL_LOGOFF_EVENT: return TRUE;
+		default: return FALSE;
+	}
+}
+
+
+
 #include "vncKeymap.h"
 
-class vncServer;
 extern vncServer * __server;
 
 static inline void pressKey( int _key, bool _down )
@@ -197,6 +201,55 @@ static inline void pressKey( int _key, bool _down )
 
 #endif
 
+static QFile * __debug_out = NULL;
+
+void msgHandler( QtMsgType _type, const char * _msg )
+{
+	if( __debug_out == NULL )
+	{
+#ifdef BUILD_WIN32
+		const QString log_path = windowsConfigPath( CSIDL_WINDOWS ) +
+							QDir::separator();
+#else
+		const QString log_path = "/var/log/";
+#endif
+		__debug_out = new QFile( log_path +
+#ifdef BUILD_ICA
+					"italc_client.log"
+#else
+					"italc_master.log"
+#endif
+								);
+		__debug_out->open( QFile::WriteOnly | QFile::Append |
+							QFile::Unbuffered );
+	}
+
+	QString out;
+	switch( _type )
+	{
+		case QtDebugMsg:
+			out = QString( "(debug)" );
+			break;
+		case QtWarningMsg:
+			out = QString( "(warning)" );
+			break;
+		case QtCriticalMsg:
+			out = QString( "(critical)" );
+			break;
+		case QtFatalMsg:
+			out = QString( "(fatal)" );
+			break;
+	}
+
+	out = QString( out + " %1" ).arg( _msg );
+	if( out.right( 1 ) != "\n" )
+	{
+		out += "\n";
+	}
+	__debug_out->write( out.toAscii() );
+}
+
+
 
 namespace localSystem
 {
@@ -208,8 +261,14 @@ void initialize( void )
 	QCoreApplication::setOrganizationDomain( "is.org" );
 	QCoreApplication::setApplicationName( "iTALC" );
 
+	qInstallMsgHandler( msgHandler );
+
 #ifdef BUILD_WIN32
+#ifdef BUILD_ICA
 	__user_poll_thread = new userPollThread();
+
+	SetConsoleCtrlHandler( consoleCtrlHandler, TRUE );
+#endif
 #endif
 
 }
@@ -271,7 +330,7 @@ void broadcastWOLPacket( const QString & _mac )
 				(unsigned int *) &mac[4],
 				(unsigned int *) &mac[5] ) != MAC_SIZE )
 	{
-		printf( "Invalid MAC-address\n" );
+		qWarning( "invalid MAC-address" );
 		return;
 	}
 
@@ -292,7 +351,7 @@ void broadcastWOLPacket( const QString & _mac )
 	WSADATA info;
 	if( WSAStartup( MAKEWORD( 1, 1 ), &info ) != 0 )
 	{
-		fprintf( stderr, "Cannot initialize WinSock!\n" );
+		qCritical( "cannot initialize WinSock!" );
 		return;
 	}
 #endif
@@ -309,7 +368,7 @@ void broadcastWOLPacket( const QString & _mac )
 	if( setsockopt( sock, SOL_SOCKET, SO_BROADCAST, (char *) &optval,
 							sizeof( optval ) ) < 0 )
 	{
-		fprintf( stderr,"Can't set sockopt (%d).\n", errno );
+		qCritical( "can't set sockopt (%d).", errno );
 		return;
 	}
 
@@ -572,7 +631,7 @@ inline QString keyPath( const ISD::userRoles _role, const QString _group,
 								"iTALC" );
 	if( _role <= ISD::RoleNone || _role >= ISD::RoleCount )
 	{
-		printf( "invalid role\n" );
+		qWarning( "invalid role" );
 		return( "" );
 	}
 	const QString fallback_dir =
@@ -627,7 +686,7 @@ void setKeyPath( QString _path, const ISD::userRoles _role,
 								"iTALC" );
 	if( _role <= ISD::RoleNone || _role >= ISD::RoleCount )
 	{
-		printf( "invalid role\n" );
+		qWarning( "invalid role" );
 		return;
 	}
 	settings.setValue( "keypaths" + _group + "/" +

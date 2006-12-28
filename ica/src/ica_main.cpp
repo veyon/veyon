@@ -275,7 +275,9 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	char path[pathlen];
 	if( GetModuleFileName( NULL, path, pathlen ) == 0 )
 	{
-		printf( "could not determine module-filename!\n" ); 
+		qCritical( "WinMain(...): "
+				"could not determine module-filename!" ); 
+		return -1;
 	}
 
 	QStringList cmdline = QString( szCmdLine ).toLower().split( ' ' );

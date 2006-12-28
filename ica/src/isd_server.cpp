@@ -68,7 +68,8 @@ isdServer::isdServer( const quint16 _ivs_port, int _argc, char * * _argv ) :
 			listen( QHostAddress::LocalHost, __isd_port ) == FALSE )
 	{
 		// uh oh, already an ISD running or port isn't available...
-		printf( "Could not start ISD server: %s\n",
+		qCritical( "isdServer::isdServer(...): "
+				"could not start ISD server: %s",
 					errorString().toAscii().constData() );
 	}
 
@@ -109,7 +110,8 @@ int isdServer::processClient( socketDispatcher _sd, void * _user )
 	char cmd;
 	if( sdev.read( &cmd, sizeof( cmd ) ) == 0 )
 	{
-		printf( "couldn't read iTALC-request from client...\n" );
+		qCritical( "isdServer::processClient(...): couldn't read "
+					"iTALC-request from client..." );
 		return( FALSE );
 	}
 
@@ -246,7 +248,8 @@ int isdServer::processClient( socketDispatcher _sd, void * _user )
 			break;
 
 		default:
-			printf( "cmd %d not implemented!\n", cmd );
+			qCritical( "isdServer::processClients(...): "
+					"cmd %d not implemented!", cmd );
 			break;
 	}
 
@@ -280,7 +283,8 @@ bool isdServer::protocolInitialization( socketDevice & _sd,
 		pv_cl[sz_idsProtocolVersionMsg] = 0;
 		if( memcmp( pv, pv_cl, sz_idsProtocolVersionMsg ) )
 		{
-			printf( "invalid client!\n" );
+			qCritical( "isdServer::protocolInitialization(...): "
+							"invalid client!" );
 			return FALSE;
 		}
 	}
@@ -296,7 +300,8 @@ bool isdServer::protocolInitialization( socketDevice & _sd,
 		pv_cl[sz_isdProtocolVersionMsg] = 0;
 		if( memcmp( pv, pv_cl, sz_isdProtocolVersionMsg ) )
 		{
-			printf( "invalid client!\n" );
+			qCritical( "isdServer::protocolInitialization(...): "
+							"invalid client!" );
 			return FALSE;
 		}
 	}
@@ -310,7 +315,8 @@ bool isdServer::protocolInitialization( socketDevice & _sd,
 
 	if( chosen != rfbSecTypeItalc )
 	{
-		printf( "client wants unknown security type %d\n", chosen );
+		qCritical( "isdServer::protocolInitialization(...): "
+			"client wants unknown security type %d", chosen );
 		return( FALSE );
 	}
 
@@ -353,7 +359,8 @@ bool isdServer::authSecTypeItalc( socketDispatcher _sd, void * _user,
 	}
 	else if( chosen != _auth_type )
 	{
-		printf( "Client chose other auth-type than offered!\n" );
+		qCritical( "isdServer::authSecTypeItalc(...): "
+				"client chose other auth-type than offered!" );
 		return( result );
 	}
 
@@ -665,7 +672,8 @@ void isdServer::checkForPendingActions( void )
 				break;
 
 			default:
-				printf( "unhandled command %d\n",
+				qWarning( "isdServer::checkForPendingActions():"
+						" unhandled command %d",
 					(int) m_pendingActions.front().first );
 				break;
 		}
@@ -918,7 +926,8 @@ public:
 		char cmd;
 		if( sdev.read( &cmd, sizeof( cmd ) ) == 0 )
 		{
-			printf( "couldn't read iTALC-request from client...\n" );
+			qCritical( "isdForwarder::processClient(...): "
+				"couldn't read iTALC-request from client..." );
 			return( FALSE );
 		}
 
@@ -1018,7 +1027,8 @@ public:
 				break;
 
 			default:
-				printf( "!!! cmd %d not implemented!\n", cmd );
+				qCritical( "isdForwarder::processClient(...): "
+					"cmd %d not implemented!", cmd );
 				break;
 		}
 

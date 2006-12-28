@@ -127,7 +127,7 @@ ivsConnection::states ivsConnection::protocolInitialization( void )
 		if( sscanf( protocol_version, idsProtocolVersionFormat, &major,
 							&minor ) != 2 )
 		{
-			printf( "Not a server I can deal with\n" );
+			qCritical( "not a server I can deal with" );
 			return( state_ref() = InvalidServer );
 		}
 		m_isDemoServer = TRUE;
@@ -177,13 +177,9 @@ ivsConnection::states ivsConnection::protocolInitialization( void )
 		return( state_ref() = ConnectionFailed );
 	}
 
+	//desktop_name[m_si.nameLength] = 0;
 	delete[] desktop_name;
 
-	//desktop_name[m_si.nameLength] = 0;
-
-	//printf( "Desktop name: \"%s\"\n",desktop_name );
-	//printf( "Connected to VNC server, using protocol version %d.%d\n",
-	//			RFBP_MAJOR_VERSION, RFBP_MINOR_VERSION );
 
 	rfbSetPixelFormatMsg spf;
 
@@ -385,14 +381,15 @@ bool ivsConnection::handleServerMessages( bool _send_screen_update, int _tries )
 	rfbServerToClientMsg msg;
 	if( !readFromServer( (char *) &msg, sizeof( Q_UINT8 ) ) )
 	{
-		printf( "Reading message-type failed\n" );
+		qWarning( "ivsConnection::handleServerMessage(...): "
+						"reading message-type failed" );
 		return( FALSE );
 	}
 	switch( msg.type )
 	{
 		case rfbSetColourMapEntries:
-			printf( "setting colormap entries requested. "
-								"Ignoring.\n" );
+			qWarning( "ivsConnection::handleServerMessage(...): "
+			"setting colormap entries requested - ignoring" );
 			break;
 
 		case rfbFramebufferUpdate:
@@ -401,8 +398,8 @@ bool ivsConnection::handleServerMessages( bool _send_screen_update, int _tries )
 			if( !readFromServer( ( (char *)&msg.fu ) + 1,
 				sizeof( rfbFramebufferUpdateMsg ) - 1 ) )
 			{
-				printf( "reading framebuffer-update-msg "
-								"failed\n" );
+	qCritical( "ivsConnection::handleServerMessage(...): "
+			"reading framebuffer-update-msg failed" );
 				return( FALSE );
 			}
 
@@ -435,11 +432,9 @@ bool ivsConnection::handleServerMessages( bool _send_screen_update, int _tries )
 				    ( rect.r.y + rect.r.h >
 						m_si.framebufferHeight ) )
 				{
-					printf( "Rect too large: %dx%d at (%d, "
-						"%d) (encoding: %d)\n",
-							rect.r.w, rect.r.h,
-							rect.r.x, rect.r.y,
-							rect.encoding );
+	qWarning( "ivsConnection::handleServerMessage(...): "
+			"rect too large: %dx%d at (%d, %d) (encoding: %d)",
+			rect.r.w, rect.r.h, rect.r.x, rect.r.y, rect.encoding );
 					return( FALSE );
 				}
 
@@ -449,8 +444,8 @@ bool ivsConnection::handleServerMessages( bool _send_screen_update, int _tries )
 				{
 					if( ( rect.r.h * rect.r.w ) == 0 )
 					{
-						printf( "Zero size rect - "
-							"ignoring\n" );
+	qWarning( "ivsConnection::handleServerMessage(...): zero size rect - "
+								"ignoring" );
 						continue;
 					}
 					updated_region += QRect( rect.r.x,
@@ -566,7 +561,9 @@ bool ivsConnection::handleServerMessages( bool _send_screen_update, int _tries )
 	}
 
 					default:
-		printf( "Unknown rect encoding %d\n", (int) rect.encoding );
+		qCritical( "ivsConnection::handleServerMessage(...): "
+				"unknown rect encoding %d",
+							(int) rect.encoding );
 		close();
 		return( FALSE );
 				}
@@ -749,7 +746,8 @@ bool ivsConnection::handleCoRRE( Q_UINT16 rx, Q_UINT16 ry, Q_UINT16 rw,
 
 bool ivsConnection::handleRRE( Q_UINT16, Q_UINT16, Q_UINT16, Q_UINT16 )
 {
-	printf( "Fatal: Got RRE-encoded rect. Can't decode.\n" );
+	qCritical( "ivsConnection:handleRRE(...): got RRE-encoded rect. "
+							"Can't decode." );
 	return( TRUE );
 }
 
@@ -807,7 +805,7 @@ bool ivsConnection::handleZlib( Q_UINT16 rx, Q_UINT16 ry, Q_UINT16 rw,
 
 		if ( inflateResult != Z_OK )
 		{
-			printf( "inflateInit returned error: %d, msg: %s\n",
+			qCritical( "inflateInit returned error: %d, msg: %s",
 					inflateResult, m_decompStream.msg );
 			return( FALSE );
 		}
@@ -842,15 +840,17 @@ bool ivsConnection::handleZlib( Q_UINT16 rx, Q_UINT16 ry, Q_UINT16 rw,
 		// Need to uncompress buffer full.
 		inflateResult = inflate( &m_decompStream, Z_SYNC_FLUSH );
 
-		/* We never supply a dictionary for compression. */
+		// We never supply a dictionary for compression. */
 		if( inflateResult == Z_NEED_DICT )
 		{
-			printf( "zlib inflate needs a dictionary!\n" );
+			qCritical( "ivsConnection::handleZlib(...): "
+					"zlib inflate needs a dictionary!" );
 			return( FALSE );
 		}
 		if ( inflateResult < 0 )
 		{
-			printf( "zlib inflate returned error: %d, msg: %s\n",
+			qCritical( "ivsConnection::handleZlib(...): "
+				"zlib inflate returned error: %d, msg: %s",
 					inflateResult, m_decompStream.msg );
 			return( FALSE );
 		}
@@ -860,7 +860,8 @@ bool ivsConnection::handleZlib( Q_UINT16 rx, Q_UINT16 ry, Q_UINT16 rw,
 		if( m_decompStream.avail_in > 0 &&
 						m_decompStream.avail_out <= 0 )
 		{
-			printf( "zlib inflate ran out of space!\n" );
+			qCritical( "ivsConnection::handleZlib(...): "
+					"zlib inflate ran out of space!" );
 			return( FALSE );
 		}
 
@@ -874,7 +875,8 @@ bool ivsConnection::handleZlib( Q_UINT16 rx, Q_UINT16 ry, Q_UINT16 rw,
 	}
 	else
 	{
-		printf( "zlib inflate returned error: %d, msg: %s\n",
+		qCritical( "ivsConnection::handleZlib(...): "
+				"zlib inflate returned error: %d, msg: %s",
 					inflateResult, m_decompStream.msg );
 		return( FALSE );
 	}
@@ -915,7 +917,7 @@ bool ivsConnection::handleTight( Q_UINT16 rx, Q_UINT16 ry, Q_UINT16 rw,
 			if( inflateEnd( &m_zlibStream[stream_id] ) != Z_OK &&
 					m_zlibStream[stream_id].msg != NULL )
 			{
-				printf( "inflateEnd: %s\n",
+				qCritical( "inflateEnd: %s",
 						m_zlibStream[stream_id].msg );
 			}
 			m_zlibStreamActive[stream_id] = FALSE;
@@ -948,7 +950,7 @@ bool ivsConnection::handleTight( Q_UINT16 rx, Q_UINT16 ry, Q_UINT16 rw,
 	// Quit on unsupported subencoding value.
 	if( comp_ctl > rfbTightMaxSubencoding)
 	{
-		printf( "Tight encoding: bad subencoding value received.\n" );
+		qCritical( "tight encoding: bad subencoding value received." );
 		return( FALSE );
 	}
 
@@ -982,8 +984,8 @@ bool ivsConnection::handleTight( Q_UINT16 rx, Q_UINT16 ry, Q_UINT16 rw,
 				bits_pixel = initFilterGradient( rw, rh );
 				break;
 			default:
-				printf( "Tight encoding: unknown filter code "
-								"received.\n" );
+				qCritical( "Tight encoding: unknown filter "
+							"code received." );
 				return( FALSE );
 		}
 	}
@@ -995,7 +997,7 @@ bool ivsConnection::handleTight( Q_UINT16 rx, Q_UINT16 ry, Q_UINT16 rw,
 
 	if( bits_pixel == 0 )
 	{
-		printf( "Tight encoding: error receiving palette.\n" );
+		qCritical( "Tight encoding: error receiving palette." );
 		return( FALSE );
 	}
 
@@ -1019,7 +1021,7 @@ bool ivsConnection::handleTight( Q_UINT16 rx, Q_UINT16 ry, Q_UINT16 rw,
 	int compressed_len = (int)readCompactLen();
 	if( compressed_len <= 0 )
 	{
-		printf( "Incorrect data received from the server.\n" );
+		qCritical( "Incorrect data received from the server." );
 		return( FALSE );
 	}
 
@@ -1037,7 +1039,7 @@ bool ivsConnection::handleTight( Q_UINT16 rx, Q_UINT16 ry, Q_UINT16 rw,
 		{
 			if( zs->msg != NULL )
 			{
-				printf( "InflateInit error: %s.\n", zs->msg );
+				qCritical( "InflateInit error: %s", zs->msg );
 			}
 			return( FALSE );
 		}
@@ -1051,7 +1053,7 @@ bool ivsConnection::handleTight( Q_UINT16 rx, Q_UINT16 ry, Q_UINT16 rw,
 	if( row_size > buffer_size )
 	{
 		// Should be impossible when BUFFER_SIZE >= 16384
-		printf( "Internal error: incorrect m_buffer size.\n" );
+		qCritical( "Internal error: incorrect buffer size." );
 		return( FALSE );
 	}
 	QRgb * buffer2 = (QRgb *) &m_buffer[buffer_size];
@@ -1097,12 +1099,12 @@ bool ivsConnection::handleTight( Q_UINT16 rx, Q_UINT16 ry, Q_UINT16 rw,
 			{
 				if( zs->msg != NULL )
 				{
-					printf( "Inflate error: %s.\n",
+					qCritical( "Inflate error: %s",
 								zs->msg );
 				}
 				else
 				{
-					printf( "Inflate error: %d.\n", err );
+					qCritical( "Inflate error: %d", err );
 				}
 				return( FALSE );
 			}
@@ -1131,8 +1133,8 @@ bool ivsConnection::handleTight( Q_UINT16 rx, Q_UINT16 ry, Q_UINT16 rw,
 
 	if( rows_processed != rh )
 	{
-		printf( "Incorrect number of scan lines after "
-							"decompression.\n" );
+		qCritical( "Incorrect number of scan lines after "
+							"decompression" );
 		return( FALSE );
 	}
 
@@ -1324,8 +1326,8 @@ void jpegInitSource( jpeglib::j_decompress_ptr )
 
 jpeglib::boolean jpegFillInputBuffer( jpeglib::j_decompress_ptr )
 {
-	printf( "ERROR: jpegFillInputBuffer(...) called (not implemented, "
-					"because it should not be needed\n" );
+	qWarning( "jpegFillInputBuffer(...) called (not implemented, "
+					"because it should not be needed" );
 	return( 0 );
 }
 
@@ -1334,8 +1336,8 @@ jpeglib::boolean jpegFillInputBuffer( jpeglib::j_decompress_ptr )
 
 void jpegSkipInputData( jpeglib::j_decompress_ptr, long )
 {
-	printf( "ERROR: jpegSkipInputData(...) called (not implemented, "
-					"because it should not be needed\n" );
+	qWarning( "jpegSkipInputData(...) called (not implemented, "
+					"because it should not be needed" );
 }
 
 
@@ -1355,7 +1357,8 @@ bool ivsConnection::decompressJpegRect( Q_UINT16 x, Q_UINT16 y, Q_UINT16 w,
 	int compressed_len = (int) readCompactLen();
 	if( compressed_len <= 0 )
 	{
-		printf( "Incorrect data received from the server.\n" );
+		qCritical( "ivsConnection::decompressJpegRect(...): "
+				"Incorrect data received from the server." );
 		return( FALSE );
 	}
 
@@ -1390,7 +1393,7 @@ bool ivsConnection::decompressJpegRect( Q_UINT16 x, Q_UINT16 y, Q_UINT16 w,
 	if( cinfo.output_width != w || cinfo.output_height != h ||
 						cinfo.output_components != 3 )
 	{
-		printf( "Tight Encoding: Wrong JPEG data received.\n" );
+		qCritical( "Tight Encoding: Wrong JPEG data received." );
 		jpeglib::jpeg_destroy_decompress( &cinfo );
 		return( FALSE );
 	}
@@ -1661,8 +1664,9 @@ bool ivsConnection::handleItalc( Q_UINT16 rx, Q_UINT16 ry, Q_UINT16 rw,
 				(lzo_uint *) &decomp_bytes, NULL );
 	if( decomp_bytes != hdr.bytesRLE )
 	{
-		printf( "expected and real size of decompressed data do not "
-				"match!\n" );
+		qCritical( "ivsConnection::handleItalc(...): expected and real "
+				"size of decompressed data do not match!" );
+		return( FALSE );
 	}
 
 	QRgb * dst = (QRgb *) m_screen.scanLine( ry ) + rx;
@@ -1687,7 +1691,7 @@ bool ivsConnection::handleItalc( Q_UINT16 rx, Q_UINT16 ry, Q_UINT16 rw,
 
 	if( dx != 0 )
 	{
-		printf("dx(%d) != 0\n",dx);
+		qWarning( "ivsConnection::handleItalc(...): dx(%d) != 0", dx );
 	}
 
 	delete[] lzo_data;

@@ -639,7 +639,8 @@ bool systemService::runAsService( void )
 	// call the service control dispatcher with our entry table
 	if( !StartServiceCtrlDispatcher( dispatchTable ) )
 	{
-		printf( "StartServiceCtrlDispatcher failed\n." );
+		qCritical( "systemService::runAsService(): "
+					"StartServiceCtrlDispatcher failed." );
 		return( FALSE );
 	}
 
@@ -782,7 +783,8 @@ bool systemService::reportStatus( DWORD _state, DWORD _exit_code,
 	// Tell the SCM our new status
 	if( !( result = SetServiceStatus( s_statusHandle, &s_status ) ) )
 	{
-		printf( "SetServiceStatus failed.\n" );
+		qCritical( "systemService::reportStatus(...): "
+						"SetServiceStatus failed." );
 	}
 
 	return( result );

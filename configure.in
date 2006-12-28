@@ -4,8 +4,8 @@
 AC_PREREQ(2.50)
 #AC_INIT(italc, 0.9.8.0-svn-20061211, tobydox/at/users/dot/sf/dot/net)
 #AM_INIT_AUTOMAKE(italc, 0.9.8.0-svn-20061211)
-AC_INIT(italc, 1.0.0.0-svn-20061224, tobydox/at/users/dot/sf/dot/net)
-AM_INIT_AUTOMAKE(italc, 1.0.0.0-svn-20061224)
+AC_INIT(italc, 1.0.0.0-svn-20061227, tobydox/at/users/dot/sf/dot/net)
+AM_INIT_AUTOMAKE(italc, 1.0.0.0-svn-20061227)
 AM_CONFIG_HEADER(config.h)
 AX_PREFIX_CONFIG_H([common/include/rfb/rfbconfig.h])
 

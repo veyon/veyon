@@ -1,7 +1,29 @@
+2006-12-26	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* common/src/dsa_key.cpp:
+	* common/src/isd_base.cpp:
+	* common/src/isd_server.cpp:
+	* common/src/ivs_connection.cpp:
+	* common/src/local_system.cpp:
+	* ica/win32/src/Log.h:
+	* ica/win32/src/Log.cpp:
+	* ica/win32/src/stdhdrs.cpp:
+	* ica/src/demo_server.cpp:
+	* ica/src/ica_main.cpp:
+	* ica/src/isd_server.cpp:
+	* ica/src/system_service.cpp:
+	use Qt-debugging-techniques rather than printf & co
+
+	* common/src/local_system.cpp:
+	- under win32, handle logoff-events for not stopping service at logoff
+	- added qt-message-handler for logging messages into file
+	- do not create user-poll-thread when not building ICA
+
 2006-12-24	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* acinclude.m4:
-	added -L$QTDIR/lib/qt4 to linker-flags for compiling under Gentoo
+	added -L$QTDIR/lib/qt4 to linker-flags to make iTALC compile under
+	Gentoo
 
 2006-12-18	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 

@@ -54,7 +54,8 @@ demoServer::demoServer( IVS * _ivs_conn, int _quality, quint16 _port ) :
 {
 	if( listen( QHostAddress::Any, _port ) == FALSE )
 	{
-		qCritical( "Could not start demo-server!\n" );
+		qCritical( "demoServer::demoServer(): "
+					"could not start demo-server!" );
 		return;
 	}
 
@@ -111,7 +112,8 @@ void demoServer::updaterThread::run( void )
 		while( !m_quit && m_conn->state() != ivsConnection::Connected &&
 				m_conn->open() != ivsConnection::Connected )
 		{
-			qWarning( "Could not connect to local IVS!\n" );
+			qWarning( "demoServer::updaterThread::run(): "
+					"could not connect to local IVS!" );
 			sleep( 1 );
 		}
 		msleep( 20 );
@@ -242,7 +244,8 @@ void demoServerClient::processClient( void )
 		Q_UINT8 cmd;
 		if( m_sock->read( (char *) &cmd, sizeof( cmd ) ) <= 0 )
 		{
-			printf( "could not read cmd\n" );
+			qWarning( "demoServerClient::processClient(): "
+							"could not read cmd" );
 			continue;
 		}
 
@@ -410,8 +413,8 @@ void demoServerClient::run( void )
 	m_sock = &sock;
 	if( !m_sock->setSocketDescriptor( m_socketDescriptor ) )
 	{
-		printf( "could not set socket-descriptor in "
-			"demoServerClient::run() - aborting.\n" );
+		qCritical( "demoServerClient::run(): "
+				"could not set socket-descriptor - aborting" );
 		deleteLater();
 		return;
 	}
@@ -420,7 +423,8 @@ void demoServerClient::run( void )
 	if( !isdServer::protocolInitialization( sd,
 						ItalcAuthHostBased, TRUE ) )
 	{
-		printf( "demoServerClient: protocol initialization failed\n" );
+		qCritical( "demoServerClient:::run(): "
+					"protocol initialization failed" );
 		deleteLater();
 		return;
 	}
@@ -497,7 +501,8 @@ void demoServerClient::run( void )
 
 	if( !has_italc_encoding )
 	{
-		printf( "demoServerClient: client has no italc-encoding\n" );
+		qCritical( "demoServerClient::run(): "
+					"client has no italc-encoding" );
 		deleteLater();
 		return;
 	}

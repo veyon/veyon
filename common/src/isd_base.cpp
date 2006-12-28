@@ -42,7 +42,7 @@ qint64 qtcpsocketDispatcher( char * _buf, const qint64 _len,
 				qint64 bytes_read = sock->read( _buf, _len );
 				if( bytes_read < 0 )
 				{
-					printf( "connection closed\n" );
+	qDebug( "qtcpsocketDispatcher(...): connection closed while reading" );
 					return( 0 );
 				}
 				else if( bytes_read == 0 )
@@ -50,10 +50,8 @@ qint64 qtcpsocketDispatcher( char * _buf, const qint64 _len,
 					if( sock->state() !=
 						QTcpSocket::ConnectedState )
 					{
-						printf( "connection failed: "
-							"state:%d\nerror:%d\n",
-							sock->state(),
-							sock->error() );
+	qDebug( "qtcpsocketDispatcher(...): connection failed while writing  "
+			"state:%d  error:%d", sock->state(), sock->error() );
 						return( 0 );
 					}
 					sock->waitForReadyRead( 10 );
@@ -67,7 +65,7 @@ qint64 qtcpsocketDispatcher( char * _buf, const qint64 _len,
 				qint64 written = sock->write( _buf, _len );
 				if( written < 0 )
 				{
-					printf( "connection closed\n" );
+	qDebug( "qtcpsocketDispatcher(...): connection closed while writing" );
 					return( 0 );
 				}
 				else if( written == 0 )
@@ -75,9 +73,8 @@ qint64 qtcpsocketDispatcher( char * _buf, const qint64 _len,
 					if( sock->state() !=
 						QTcpSocket::ConnectedState )
 					{
-						printf( "connection failed: "
-									"%d\n",
-								sock->state() );
+	qDebug( "qtcpsocketDispatcher(...): connection failed while writing  "
+			"state:%d error:%d", sock->state(), sock->error() );
 						return( 0 );
 					}
 				}
