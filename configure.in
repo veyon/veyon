@@ -461,7 +461,7 @@ AC_SUBST(RPMSOURCEDIR)
 docdir="$datadir/$PACKAGE/doc"
 AC_SUBST(docdir)
 
-AC_CONFIG_SUBDIRS(lupus)
+#AC_CONFIG_SUBDIRS(lupus)
 
 AC_CONFIG_FILES([Makefile
 		 italc.spec
