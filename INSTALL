@@ -2,6 +2,13 @@ INSTALLING AND SETTING UP iTALC FOR USE
 =========================================
 
 
+Please note that all instructions in this file apply to the Linux-version of
+iTALC. Users of the win32-version of iTALC should run setup.exe which will guide
+you through the installation.
+
+
+
+
 Building iTALC
 ----------------
 
@@ -11,10 +18,10 @@ and continue with "Install iTALC".
 
 Requirements:
 
-For compiling iTALC, the packages qt3-devel and qt3-devel-tools or libqt3-dev
-and libqt3-dev-tools (Debian) are required to be installed. You'll also need
-libjpeg-dev(el), libz/zlib-dev(el) and XAW(7) + devel-packages.
-Of course GCC/G++ (at least 2.95) or equivalent C++ Compiler must not be missing...
+For compiling iTALC, the packages libqt4-dev and qt4-dev-tools (Debian-based
+distributions) or qt4-devel (Fedora etc.) need to be installed. You'll also need
+libjpeg62-dev/libjpeg-devel, zlib1g-dev/zlib-devel. Of course GCC/G++ (at least
+3.3) must not be missing...
 
 
 
@@ -25,25 +32,15 @@ It's the same as with most other opensource-software: run configure by invoking
 ./configure
 
 If some requirements are not fullfilled, configure will inform you about it and
-you have to install the missing software before proceeding.
+you have to install the missing software before continuing.
 
-After configure ran successfully you have two options. Either you  
-compile iTALC directly by running make and then make install:
+After configure ran successfully you can run
 
-make
 make install
 
 Make sure you're doing the "make install" as root! This will install iTALC
 directly on the computer.
 
-
-The other way is to build RPM-packages by running
-
-make rpm
-
-Make sure, you're doing this as root, otherwise it'll fail. After a while,
-three RPM-packages should be built in your RPM-directory. Look at the last
-lines of the "make rpm"-output to find out, where your RPMs were placed.
 
 Read the next section on how to install and setup iTALC.
 
@@ -67,99 +64,83 @@ RPM etc.) will complain about it.
 Installing:
 
 First you have to install the neccessary packages on your computer(s).
-On clients you have to install the packages italc and italc-client: 
-
-on RPM-based systems:
-
-rpm -i italc italc-client
+On clients you only have to install the packages italc: 
 
 on DPKG-based systems:
 
-dpkg -i italc italc-client
+
+apt-get install italc
 
 
-On the master-computer, italc-client is normally not needed, but it's
-recommended to install it too. For only installing the master-software, type
+on RPM-based systems:
 
-rpm/dpkg -i italc italc-master
+rpm -i italc...rpm
+
+
+On the master-computer you additionally need italc-master.
+
+apt-get install italc-master
+
+or
+
+rpm -i italc-master...rpm
 
 
 
 Setup an iTALC-client
 ----------------------
 
-For clients you have to make sure, that the iTALC-VNC-Server (IVS),
-provided by package italc, is being started, when a user logs in. There're
-several methods for doing this (this is why it's not done automatically when
-installing the package):
+For clients you have to make sure, that the iTALC-Client-Application (ICA),
+provided by package italc, is being started when either X is started or a
+user logs on.
+There're several methods for doing this (this is why it's not done
+automatically when installing the package):
 
-1. add the appropriate command ("/usr/bin/ivs &") to /etc/X11/xinit/xinitrc.
-   This method isn't recommend, because then IVS runs with the user's
-   privileges -> the user is able to kill IVS and get out of teacher's
+1. add the appropriate command ("ica &") to /etc/X11/xinit/xinitrc.
+   This method isn't recommend, because then ICA runs with the user's
+   privileges -> the user is able to kill ICA and get out of teacher's
    control.
 
-2. add "/usr/bin/ivs &" to /etc/X11/xdm/Xstartup. On some KDE-systems, this
-   doesn't take effect, so edit /etc/kde/kdm/Xstartup instead of
-   /etc/X11/xdm/Xstartup.
+2. add "ica &" to /etc/X11/xdm/Xsetup. On some systems, this
+   doesn't take effect, so either edit /etc/kde/kdm/Xsetup or
+   /etc/X11/gdm/Xsetup
 
-You can easily test whether all is fine by running a telnet on port 5900 of the
-according host.
+You can easily test whether all is fine by running telnet on port 5900 of the
+according compter.
 
 example:
 
-telnet 10.1.10.1 5900
+telnet 192.168.1.2 5900
 
 
-You should see something like "RFB 003.003".
-
-If you don't want to use authentication, you can start IVS with the option
-"-noauth". Then you do not have to install public-keys of authorized
-iTALC-users. Please note, that then everybody can access any client with a
-normal vncviewer or something like that!! So it is strongly recommened to use
-the public-key-authentication provided by iTALC. See next section for details.
-
-For using all features of iTALC, the clients should also have a SSH-daemon
-running. For administation it's important, that the user, running iTALC,
-can authorize as root on clients without entering a password, i.e.
-/root/.ssh/authorized_keys on every client must contain the public SSH-key(s)
-of the user(s) administrating the network with iTALC.
-Note, that this is also needed for normal iTALC-users, if they should be able
-to halt or reboot clients.
+You should see something like "RFB 003.007".
 
 
 
 Setup iTALC-authentication
 ----------------------------
 
-The first time, a users starts iTALC, a key-pair is being generated.
-The public-key ($HOME/.italc/id_rsa.public) has to be available in
-/etc/italc-client/public-keys/$USER.public.
+iTALC uses a sophisticated authentication-concept for making sure only
+authorized persons are able to access computers using iTALC.
 
-Example:
-The name of the user is foo. Then you have to copy ~foo/.italc/id_rsa.public
-to /etc/italc-client/public-keys/foo.public.
+The security is achieved by data-signing and -verification using a public and
+a private key. Thus you have to create a key-pair by invoking
 
+ica -role teacher -createkeypair
 
-For generating and installing keys for several users at once, you can use the
-tool italc-keygen, provided by package italc-master. It generates a key-pair,
-saves it in the home-directory of the specified user, sets access permissions
-and - if specified - installs the public-key to the public-key-directory. See
-manpage of italc-keygen for details. Please note that you need to have write-
-access to the users home-directory for using this tool.
+which will create a key-pair in /etc/italc/keys.
 
-Example:
-foo@bar:~> for i in foo1 foo2 foo3 foo4 foo5 ; do italc-keygen -fdu $i ; done
+Now copy the directory /etc/italc/keys/public to each client. Make sure the
+whole directory including sub-directories and files are readable but not
+writable to normal users. If you have network-shares (AFS, NFS, Samba etc.) it's
+recommended to copy this directory to a network-share, set the according
+permissions and link it on each client to /etc/italc/keys. This way it's no
+problem to generate a new key-pair (e.g. if the private key was compromised)
 
-This will generate keys for users foo1-foo5 and store them into the default-
-public-key-directory (/etc/italc-client/public-keys). 
+Then (the most important thing!) make sure only the users which should be
+allowed to use iTALC have (only!) read-access to /etc/italc/keys/private
+including sub-directories and files.
 
-
-The public-key-files must be installed on every client! So if you have public
-network-directories in you network-environment (AFS-cells, NFS-shares etc.) it
-saves much work when making /etc/italc-client/ a link to
-PUBLIC_NET_DIR/italc-client on all clients.  Then you only have to copy new
-public keys into this public directory and that's all. Of course nobody but the
-administrator should have write-access to this directory.
 
 
 
@@ -167,7 +148,7 @@ Setup clients and classrooms (i.e. client-groups)
 -------------------------------------------------
 
 Before using iTALC, you need tell iTALC which clients to access and how they're
-grouped. For this, iTALC has an easy to use client-manager. After starting
+grouped. For doing so iTALC has an easy to use client-manager. After starting
 iTALC, you can open it by clicking on the according button on iTALC's sidebar.
 
 Now you can add clients and client-groups using the context-menu.

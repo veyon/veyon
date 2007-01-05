@@ -1,3 +1,15 @@
+2007-01-05	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* INSTALL:
+	rewritten for new version
+
+2007-01-02	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* README:
+	* ima/dialogs/about.ui:
+	* ima/resources/splash.png:
+	extended copyright-notice from 2006 to 2007
+
 2006-12-26	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* common/src/dsa_key.cpp:
