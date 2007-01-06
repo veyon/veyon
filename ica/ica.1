@@ -1,0 +1,75 @@
+.\"                                      Hey, EMACS: -*- nroff -*-
+.\" First parameter, NAME, should be all caps
+.\" Second parameter, SECTION, should be 1-8, maybe w/ subsection
+.\" other parameters are allowed: see man(7), man(1)
+.TH ICA 1 "January 06, 2007"
+.\" Please adjust this date whenever revising the manpage.
+.\"
+.\" Some roff macros, for reference:
+.\" .nh        disable hyphenation
+.\" .hy        enable hyphenation
+.\" .ad l      left justify
+.\" .ad b      justify to both left and right margins
+.\" .nf        disable filling
+.\" .fi        enable filling
+.\" .br        insert line break
+.\" .sp <n>    insert n+1 empty lines
+.\" for manpage-specific macros, see man(7)
+.SH NAME
+ica \- iTALC Client Application
+.SH SYNOPSIS
+.B ica
+.RB "[options]"
+.br
+.B ica
+.RI "[options] [command]"
+.SH DESCRIPTION
+.PP
+.\" TeX users may be more comfortable with the \fB<whatever>\fP and
+.\" \fI<whatever>\fP escape sequences to invode bold face and italics, 
+.\" respectively.
+.B ICA
+is the software which needs to run on clients in order to access them using iTALC master application. It provides a VNC-server and a service-daemon which is neccessary for taking control over the client.
+
+.SH OPTIONS
+.IP "\fB\-role\fP \fIrole\fP
+.IP
+Set role under which ICA should run where \fIrole\fP has to be "teacher", "admin", "supporter" or "other". This is mainly used in combination with the \fB-rctrl\fP option.
+.IP "\fB\-ivsport\fP \fIport\fP
+.IP
+Set port at which the iTALC-VNC-server should listen. Default: 5900
+.
+.IP "\fB\-isdport\fP \fIport\fP
+.IP
+Set port at which the iTALC-service-daemon should listen. Default: 5800
+.
+.IP \fB-noshm\fR
+.IP
+Do not use the MIT-SHM extension for the polling.
+Remote displays can be polled this way: be careful this
+can use large amounts of network bandwidth.  This is
+also of use if the local machine has a limited number
+of shm segments and \fB-onetile\fR is not sufficient.
+.PP
+\fB-onetile\fR
+.IP
+Do not use the new copy_tiles() framebuffer mechanism,
+just use 1 shm tile for polling.  Limits shm segments
+used to 3.
+.
+.SH COMMANDS
+.IP "\fB\-rctrl\fP \fIhost:[port]\fP
+.IP
+Directly remote-control the specified host. You can omit port if the server is running at the default-port (5900).
+.
+.IP "\fB\-createkeypair\fP \fI[private-key-file] [public-key-file]\fP
+.IP
+Create a new key pair for authentication between master and client. Until specified with \fB-role\fP the key-pair will be created for role "other". The keys either will be saved under given file-names or the default ones according to the selected role (/etc/italc/keys/private/<role>/key and /etc/italc/keys/public/<role>/key).
+.SH SEE ALSO
+.IR italc (1),
+.IR http://italc.sf.net/
+
+.SH AUTHOR
+iTALC was written by Tobias Doerffel. See AUTHORS for details.
+.PP
+This manual page was written by Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>, for the Debian project (but may be used by others).

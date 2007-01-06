@@ -16,8 +16,8 @@ BEGIN
       VALUE "CompanyName",	"iTALC Solutions\0"
       VALUE "FileDescription",	"iTALC Client Application\0"
       VALUE "FileVersion",	"@PACKAGE_VERSION@\0"
-      VALUE "LegalCopyright",	"Copyright (c) 2004-2006 Tobias Doerffel\0"
-      VALUE "OriginalFilename",	"italc.exe\0"
+      VALUE "LegalCopyright",	"Copyright (c) 2004-2007 Tobias Doerffel\0"
+      VALUE "OriginalFilename",	"ica.exe\0"
       VALUE "ProductName",	"iTALC\0"
       VALUE "ProductVersion",	"@PACKAGE_VERSION@\0"
     END

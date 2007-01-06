@@ -207,7 +207,9 @@ int ICAMain( int argc, char * * argv )
 			return( 0 );
 		}
 #ifdef BUILD_LINUX
-		else if( a == "-nosel" || a == "-nosetclipboard" )
+		else if( a == "-nosel" || a == "-nosetclipboard" ||
+				a == "-noshm" || a == "-solid" ||
+				a == "-xrandr" || a == "-onetile" )
 		{
 		}
 #endif

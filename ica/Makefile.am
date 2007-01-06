@@ -259,3 +259,5 @@ EXTRA_DIST =	$(srcdir)/x11/libvncserver/tableinit24.c		\
 		$(srcdir)/win32/WallpaperUtils.h			\
 		$(srcdir)/win32/Windows.h
 
+
+man_MANS=ica.1

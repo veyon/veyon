@@ -123,3 +123,5 @@ italc_LDFLAGS = $(LDFLAGS) -mwindows
 
 AM_CXXFLAGS := $(AM_CXXFLAGS) $(QT_CXXFLAGS)
 
+
+man_MANS=italc.1

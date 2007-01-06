@@ -142,7 +142,7 @@ void IVS::run( void )
 	{
 		QString option = m_argv[i];
 		if( option == "-noshm" || option == "-solid" ||
-							option == "-xrandr" )
+				option == "-xrandr" || option == "-onetile" )
 		{
 			cmdline.append( m_argv[i] );
 		}
