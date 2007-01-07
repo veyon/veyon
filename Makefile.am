@@ -31,6 +31,13 @@ rpm: $(PACKAGE)-$(VERSION).tar.gz $(PACKAGE).spec
 endif
 
 
+#CLEANFILES = config.log config.status
+clean: clean-recursive
+	rm -f config.log
+	rm -f config.status
+
+clean-am: clean-generic clean-libtool mostlyclean-am
+
 if BUILD_WIN32
 win32-pkg: all
 	mkdir -p tmp/italc

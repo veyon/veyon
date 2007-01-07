@@ -20,8 +20,8 @@ Requirements:
 
 For compiling iTALC, the packages libqt4-dev and qt4-dev-tools (Debian-based
 distributions) or qt4-devel (Fedora etc.) need to be installed. You'll also need
-libjpeg62-dev/libjpeg-devel, zlib1g-dev/zlib-devel. Of course GCC/G++ (at least
-3.3) must not be missing...
+libjpeg62-dev/libjpeg-devel, zlib1g-dev/zlib-devel and libssl-dev/openssl-devel.
+Of course GCC/G++ (at least 3.3) must not be missing...
 
 
 

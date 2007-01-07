@@ -1,6 +1,7 @@
 INCLUDES = -I$(srcdir)/../common/include -Isrc
 
-bin_PROGRAMS = setup
+noinst_PROGRAMS = setup
+
 
 %.moc: $(srcdir)/%.h
 	$(MOC) -o $@ $<

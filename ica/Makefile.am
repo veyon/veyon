@@ -169,9 +169,11 @@ CLEANFILES = ./ica_qrc.cpp $(ica_MOC)
 BUILT_SOURCES = ./ica_qrc.cpp $(ica_MOC)
 
 
+man_MANS=ica.1
 
 
-EXTRA_DIST =	$(srcdir)/x11/libvncserver/tableinit24.c		\
+EXTRA_DIST =	$(man_MANS)						\
+		$(srcdir)/x11/libvncserver/tableinit24.c		\
 		$(srcdir)/x11/libvncserver/tableinittctemplate.c	\
 		$(srcdir)/x11/libvncserver/tabletranstemplate.c		\
 		$(srcdir)/x11/libvncserver/tableinitcmtemplate.c	\
@@ -260,4 +262,3 @@ EXTRA_DIST =	$(srcdir)/x11/libvncserver/tableinit24.c		\
 		$(srcdir)/win32/Windows.h
 
 
-man_MANS=ica.1

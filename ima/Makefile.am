@@ -101,7 +101,10 @@ italc_SOURCES = $(srcdir)/src/client.cpp			\
 
 CLEANFILES = $(italc_MOC) $(italc_UIC) ./italc_qrc.cpp
 
-EXTRA_DIST = $(wildcard $(srcdir)/src/3rdparty/*)
+man_MANS=italc.1
+
+EXTRA_DIST =	$(man_MANS)					\
+		$(wildcard $(srcdir)/src/3rdparty/*)
 
 if BUILD_WIN32
 italc_win_resources.o: italc.rc
@@ -123,5 +126,3 @@ italc_LDFLAGS = $(LDFLAGS) -mwindows
 
 AM_CXXFLAGS := $(AM_CXXFLAGS) $(QT_CXXFLAGS)
 
-
-man_MANS=italc.1
