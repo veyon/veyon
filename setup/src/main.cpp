@@ -23,9 +23,11 @@
  */
 
 
+#include <QtCore/QFileInfo>
 #include <QtCore/QLocale>
 #include <QtCore/QTranslator>
 #include <QtGui/QApplication>
+#include <QtGui/QMessageBox>
 
 #include "dialogs.h"
 #include "local_system.h"
@@ -53,7 +55,29 @@ int main( int argc, char * * argv )
 	app.installTranslator( &qt_tr );
 
 	setupWizard sw;
-	sw.show();
+
+	if( app.arguments().size() > 1 )
+	{
+		if( QFileInfo( app.arguments()[1] ).exists() )
+		{
+			sw.loadSettings( app.arguments()[1] );
+			sw.doInstallation();
+			return( 0 );
+		}
+		else
+		{
+			QMessageBox::information( NULL,
+					app.tr( "File does not exist" ),
+					app.tr( "The file %1 could not be "
+						"found. Please check this and "
+						"try again." ).
+						arg( app.arguments()[1] ) );
+		}
+	}
+	else
+	{
+		sw.show();
+	}
 
 	// let's rock!!
 	return( app.exec() );

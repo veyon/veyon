@@ -57,8 +57,12 @@ public:
 	bool m_installMaster;
 	bool m_installLUPUS;
 	bool m_installDocs;
+	bool m_saveInstallSettings;
 
 	void setNextPageDisabled( bool );
+
+	void loadSettings( const QString & _install_settings );
+	void doInstallation( void );
 
 
 private slots:
@@ -219,8 +223,12 @@ private slots:
 
 class setupWizardPageFinished : public setupWizardPage, public Ui::pageFinished
 {
+	Q_OBJECT
 public:
 	setupWizardPageFinished( setupWizard * _wiz );
+
+private slots:
+	void toggleSaveInstallSettings( bool );
 
 } ;
 

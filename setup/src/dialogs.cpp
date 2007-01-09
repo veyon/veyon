@@ -32,6 +32,7 @@
 #include <QtGui/QLayout>
 #include <QtGui/QMessageBox>
 #include <QtGui/QProgressDialog>
+#include <Qt/QtXml>
 
 #include "dialogs.h"
 #include "local_system.h"
@@ -60,6 +61,7 @@ setupWizard::setupWizard() :
 	m_installMaster( FALSE ),
 	m_installLUPUS( FALSE ),
 	m_installDocs( FALSE ),
+	m_saveInstallSettings( FALSE ),
 	m_widgetStack(),
 	m_idx( 0 )
 {
@@ -117,6 +119,23 @@ void setupWizard::setNextPageDisabled( bool _disabled )
 	nextButton->setEnabled( !_disabled );
 }
 
+
+
+
+void setupWizard::loadSettings( const QString & _install_settings )
+{
+	QFile in( _install_settings );
+	in.open( QFile::ReadOnly );
+	QDomDocument doc;
+	doc.setContent( in.readAll() );
+	//printf("%s\n", doc.firstChild().toElement().attribute( "installdir" ).toAscii().constData() );
+}
+
+
+
+void setupWizard::doInstallation( void )
+{
+}
 
 
 
@@ -318,6 +337,26 @@ void setupWizard::next( void )
 	}
 	else if( m_idx+1 == m_widgetStack.size() )
 	{
+		if( m_saveInstallSettings )
+		{
+			QDomDocument doc( "italc-installation-settings" );
+			QDomElement root = doc.createElement( "settings" );
+			root.setAttribute( "installdir", m_installDir );
+			root.setAttribute( "keyimportdir", m_keyImportDir );
+			root.setAttribute( "keyexportdir", m_keyExportDir );
+			root.setAttribute( "pubkeydir", m_pubKeyDir );
+			root.setAttribute( "privkeydir", m_privKeyDir );
+			root.setAttribute( "installclient", m_installClient );
+			root.setAttribute( "installmaster", m_installMaster );
+			root.setAttribute( "installlupus", m_installLUPUS );
+			root.setAttribute( "installdocs", m_installDocs );
+			doc.appendChild( root );
+			QFile out( "installsettings.xml" );
+			out.open( QIODevice::WriteOnly | QIODevice::Truncate );
+			QString xml = "<?xml version=\"1.0\"?>\n" +
+							doc.toString( 4 );
+			out.write( xml.toUtf8().constData(), xml.length() );
+		}
 		accept();
 		return;
 	}
@@ -772,6 +811,16 @@ setupWizardPageFinished::setupWizardPageFinished( setupWizard * _wiz ) :
 	Ui::pageFinished()
 {
 	setupUi( this );
+	connect( saveInstallSettings, SIGNAL( toggled( bool ) ),
+			this, SLOT( toggleSaveInstallSettings( bool ) ) );
+}
+
+
+
+
+void setupWizardPageFinished::toggleSaveInstallSettings( bool _on )
+{
+	m_setupWizard->m_saveInstallSettings = _on;
 }
 
 
