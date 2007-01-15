@@ -1,7 +1,7 @@
 /*
  * dialogs.cpp - implementation of dialogs
  *
- * Copyright (c) 2006 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2007 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -128,14 +128,199 @@ void setupWizard::loadSettings( const QString & _install_settings )
 	in.open( QFile::ReadOnly );
 	QDomDocument doc;
 	doc.setContent( in.readAll() );
-	//printf("%s\n", doc.firstChild().toElement().attribute( "installdir" ).toAscii().constData() );
+	QDomElement root = doc.documentElement();
+	m_installDir = root.attribute( "installdir" );
+	m_keyImportDir = root.attribute( "keyimportdir" );
+	m_keyExportDir = root.attribute( "keyexportdir" );
+	m_pubKeyDir = root.attribute( "pubkeydir" );
+	m_privKeyDir = root.attribute( "privkeydir" );
+	m_installClient = root.attribute( "installclient" ).toInt();
+	m_installMaster = root.attribute( "installmaster" ).toInt();
+	m_installLUPUS= root.attribute( "installlupus" ).toInt();
+	m_installDocs = root.attribute( "installdocs" ).toInt();
 }
 
+
+
+
+#ifdef BUILD_WIN32
+static const QString _exe_ext = ".exe";
+#else
+static const QString _exe_ext = "";
+#endif
 
 
 void setupWizard::doInstallation( void )
 {
+	createInstallationPath( m_installDir );
+	const QString & d = m_installDir + QDir::separator();
+	QStringList files;
+	files <<
+		"ica" + _exe_ext	<<
+		"italc" + _exe_ext	<<
+#ifdef BUILD_WIN32
+		"libeay32.dll" 		<<
+		"libjpeg.dll" 		<<
+		"libssl32.dll" 		<<
+		"libz.dll" 		<<
+		"mingwm10.dll" 		<<
+		"QtCore4.dll"		<<
+		"QtGui4.dll"		<<
+		"QtNetwork4.dll"	<<
+		"QtXml4.dll"		<<
+		"userinfo.exe"		<<
+		"wake.exe"
+#else
+		"libssl.so.0.9.8"	<<
+		"libcrypto.so.0.9.8"	<<
+		"libz.so.1"		<<
+		"libjpeg.so.62"		<<
+		"libpng12.so.0"		<<
+		"QtCore.so.4"		<<
+		"QtGui.so.4"		<<
+		"QtNetwork.so.4"	<<
+		"QtXml.so.4"
+#endif
+		;
+	QProgressDialog pd( window() );
+
+	pd.setWindowTitle( tr( "Installing iTALC" ) );
+
+	pd.setLabelText( tr( "Copying files..." ) );
+
+	bool overwrite_all = FALSE;
+	bool overwrite_none = FALSE;
+	int i = 0;
+	foreach( const QString & file, files )
+	{
+		if( ( file.left( 3 ) == "ica" && !m_installClient )
+			||
+		( file.left( 5 ) == "italc" && !m_installMaster )
+			||
+			( file.left( 5 ) == "lupus" &&
+						!m_installLUPUS ) )
+		{
+			continue;
+		}
+		if( QFileInfo( d + file ).exists() && !overwrite_all )
+		{
+			if( overwrite_none )
+			{
+				continue;
+			}
+int res = QMessageBox::question( window(), tr( "Confirm overwrite" ),
+		tr( "Do you want to overwrite %1?" ).arg( d + file ),
+#ifdef QMESSAGEBOX_EXT_SUPPORT
+			QMessageBox::Yes | QMessageBox::No |
+			QMessageBox::YesToAll | QMessageBox::NoToAll,
+						QMessageBox::Yes
+#else
+				QMessageBox::Yes | QMessageBox::Default,
+				QMessageBox::No,
+				QMessageBox::YesToAll
+#endif
+						);
+			switch( res )
+			{
+				case QMessageBox::YesToAll:
+					overwrite_all = TRUE;
+					break;
+				case QMessageBox::NoToAll:
+					overwrite_none = TRUE;
+				case QMessageBox::No:
+					continue;
+			}
+			if( file == ( "ica" + _exe_ext ) )
+			{
+				QProcess::execute( d + file +
+						" -stopservice" );
+				QProcess::execute( d + file +
+						" -unregisterservice" );
+			}
+		}
+		QFile( d + file ).remove();
+		QFile( file ).copy( d + file );
+		pd.setValue( ++i * 90 / files.size() );
+		qApp->processEvents();
+		if( pd.wasCanceled() )
+		{
+			return;
+		}
+	}
+	const int remaining_steps = 1;
+	const int remaining_percent = 10;
+	int step = 0;
+
+	pd.setLabelText( tr( "Registering ICA as service..." ) );
+	qApp->processEvents();
+
+	QProcess::execute( d + "ica -registerservice" );
+	++step;
+	pd.setValue( 90 + remaining_percent*step/remaining_steps );
+
+	pd.setLabelText( tr( "Creating/importing keys..." ) );
+	qApp->processEvents();
+	const QString add = QDir::separator() + QString( "key" );
+	const QString add2 = QDir::separator() + PUBLIC_KEY_FILE_NAME;
+	localSystem::setPrivateKeyPath( m_privKeyDir + add,
+						ISD::RoleTeacher );
+	localSystem::setPublicKeyPath( m_pubKeyDir + add,
+						ISD::RoleTeacher );
+	if( m_keyImportDir.isEmpty() )
+	{
+		QProcess::execute( d +
+	QString( "ica -createkeypair %1 %2" ).
+					arg( m_privKeyDir + add ).
+					arg( m_pubKeyDir + add ) );
+		QFile( m_pubKeyDir + add ).
+					copy( m_keyExportDir + add2 );
+	}
+	else
+	{
+		publicDSAKey( m_keyImportDir + add2 ).
+					save( m_pubKeyDir + add );
+	}
+	// make public key read-only
+	QFile::setPermissions( m_pubKeyDir + add,
+				QFile::ReadOwner | QFile::ReadUser |
+				QFile::ReadGroup | QFile::ReadOther );
+	pd.setLabelText( tr( "Creating shortcuts..." ) );
+	qApp->processEvents();
+	if( m_installMaster )
+	{
+#ifdef BUILD_WIN32
+		QFile( d + "italc" + _exe_ext ).link(
+			localSystem::globalStartmenuDir() +
+							"iTALC.lnk" );
+#else
+		// TODO: create desktop-file under Linux
+#endif
+	}
 }
+
+
+
+
+bool setupWizard::createInstallationPath( const QString & _dir )
+{
+	if( !localSystem::ensurePathExists( _dir ) )
+	{
+		QMessageBox::critical( window(),
+			tr( "Could not create directory" ),
+			tr( "Could not create directory %1! "
+				"Make sure you have the "
+				"neccessary rights and try "
+				"again!" ).arg( _dir ),
+			QMessageBox::Ok
+#ifndef QMESSAGEBOX_EXT_SUPPORT
+			, 0
+#endif
+			);
+		return( FALSE );
+	}
+	return( TRUE );
+}
+
 
 
 
@@ -177,11 +362,6 @@ void setupWizard::back( void )
 
 
 
-#ifdef BUILD_WIN32
-static const QString _exe_ext = ".exe";
-#else
-static const QString _exe_ext = "";
-#endif
 
 void setupWizard::next( void )
 {
@@ -191,149 +371,7 @@ void setupWizard::next( void )
 	}
 	if( m_idx+2 == m_widgetStack.size() )
 	{
-		const QString & d = m_installDir + QDir::separator();
-		QStringList files;
-		files <<
-			"ica" + _exe_ext	<<
-			"italc" + _exe_ext	<<
-#ifdef BUILD_WIN32
-			"libeay32.dll" 		<<
-			"libjpeg.dll" 		<<
-			"libssl32.dll" 		<<
-			"libz.dll" 		<<
-			"mingwm10.dll" 		<<
-			"QtCore4.dll"		<<
-			"QtGui4.dll"		<<
-			"QtNetwork4.dll"	<<
-			"QtXml4.dll"		<<
-			"userinfo.exe"		<<
-			"wake.exe"
-#else
-			"libssl.so.0.9.8"	<<
-			"libcrypto.so.0.9.8"	<<
-			"libz.so.1"		<<
-			"libjpeg.so.62"		<<
-			"libpng12.so.0"		<<
-			"QtCore.so.4"		<<
-			"QtGui.so.4"		<<
-			"QtNetwork.so.4"	<<
-			"QtXml.so.4"
-#endif
-			;
-		QProgressDialog pd( window() );
-
-		pd.setWindowTitle( tr( "Installing iTALC" ) );
-
-		pd.setLabelText( tr( "Copying files..." ) );
-
-		bool overwrite_all = FALSE;
-		bool overwrite_none = FALSE;
-		int i = 0;
-		foreach( const QString & file, files )
-		{
-			if( ( file.left( 3 ) == "ica" && !m_installClient )
-				||
-			( file.left( 5 ) == "italc" && !m_installMaster )
-				||
-				( file.left( 5 ) == "lupus" &&
-							!m_installLUPUS ) )
-			{
-				continue;
-			}
-			if( QFileInfo( d + file ).exists() && !overwrite_all )
-			{
-				if( overwrite_none )
-				{
-					continue;
-				}
-	int res = QMessageBox::question( window(), tr( "Confirm overwrite" ),
-			tr( "Do you want to overwrite %1?" ).arg( d + file ),
-#ifdef QMESSAGEBOX_EXT_SUPPORT
-				QMessageBox::Yes | QMessageBox::No |
-				QMessageBox::YesToAll | QMessageBox::NoToAll,
-							QMessageBox::Yes
-#else
-					QMessageBox::Yes | QMessageBox::Default,
-					QMessageBox::No,
-					QMessageBox::YesToAll
-#endif
-							);
-				switch( res )
-				{
-					case QMessageBox::YesToAll:
-						overwrite_all = TRUE;
-						break;
-					case QMessageBox::NoToAll:
-						overwrite_none = TRUE;
-					case QMessageBox::No:
-						continue;
-				}
-				if( file == ( "ica" + _exe_ext ) )
-				{
-					QProcess::execute( d + file +
-							" -stopservice" );
-					QProcess::execute( d + file +
-							" -unregisterservice" );
-				}
-			}
-			QFile( d + file ).remove();
-			QFile( file ).copy( d + file );
-			pd.setValue( ++i * 90 / files.size() );
-			qApp->processEvents();
-			if( pd.wasCanceled() )
-			{
-				return;
-			}
-		}
-		const int remaining_steps = 1;
-		const int remaining_percent = 10;
-		int step = 0;
-
-		pd.setLabelText( tr( "Registering ICA as service..." ) );
-		qApp->processEvents();
-	
-		QProcess::execute( d + "ica -registerservice" );
-		++step;
-		pd.setValue( 90 + remaining_percent*step/remaining_steps );
-
-		pd.setLabelText( tr( "Creating/importing keys..." ) );
-		qApp->processEvents();
-		const QString add = QDir::separator() + QString( "key" );
-		const QString add2 = QDir::separator() + PUBLIC_KEY_FILE_NAME;
-		localSystem::setPrivateKeyPath( m_privKeyDir + add,
-							ISD::RoleTeacher );
-		localSystem::setPublicKeyPath( m_pubKeyDir + add,
-							ISD::RoleTeacher );
-		if( m_keyImportDir.isEmpty() )
-		{
-			QProcess::execute( d +
-		QString( "ica -createkeypair %1 %2" ).
-						arg( m_privKeyDir + add ).
-						arg( m_pubKeyDir + add ) );
-			QFile( m_pubKeyDir + add ).
-						copy( m_keyExportDir + add2 );
-		}
-		else
-		{
-			publicDSAKey( m_keyImportDir + add2 ).
-						save( m_pubKeyDir + add );
-		}
-		// make public key read-only
-		QFile::setPermissions( m_pubKeyDir + add,
-					QFile::ReadOwner | QFile::ReadUser |
-					QFile::ReadGroup | QFile::ReadOther );
-		pd.setLabelText( tr( "Creating shortcuts..." ) );
-		qApp->processEvents();
-		if( m_installMaster )
-		{
-#ifdef BUILD_WIN32
-			QFile( d + "italc" + _exe_ext ).link(
-				localSystem::globalStartmenuDir() +
-								"iTALC.lnk" );
-#else
-			// TODO: create desktop-file under Linux
-#endif
-		}
+		doInstallation();
 	}
 	else if( m_idx+1 == m_widgetStack.size() )
 	{
@@ -478,21 +516,7 @@ bool setupWizardPageInstallDir::returnPressed( void )
 				==
 							QMessageBox::Yes )
 		{
-			if( !localSystem::ensurePathExists( d ) )
-			{
-				QMessageBox::critical( window(),
-					tr( "Could not create directory" ),
-					tr( "Could not create directory %1! "
-						"Make sure you have the "
-						"neccessary rights and try "
-						"again!" ).arg( d ),
-					QMessageBox::Ok
-#ifndef QMESSAGEBOX_EXT_SUPPORT
-					, 0
-#endif
-					);
-				return( FALSE );
-			}
+			return( m_setupWizard->createInstallationPath( d ) );
 		}
 		else
 		{

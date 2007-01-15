@@ -1,9 +1,16 @@
+2007-01-15	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* setup/src/dialogs.h:
+	* setup/src/dialogs.cpp:
+	fixed bug which made auto-setup not work if
+	iTALC-installation-directory was not existing
+
 2007-01-09	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
-	* ica/dialogs/page_setup_finished.ui:
-	* ica/src/dialogs.h:
-	* ica/src/main.cpp:
-	* ica/src/dialogs.cpp:
+	* setup/dialogs/page_setup_finished.ui:
+	* setup/src/dialogs.h:
+	* setup/src/main.cpp:
+	* setup/src/dialogs.cpp:
 	first initial (incomplete) support for auto-setup
 
 2007-01-07	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
