@@ -149,6 +149,7 @@ mainWindow::mainWindow() :
 	// create the action-toolbar
 	m_toolBar = new QToolBar( tr( "Actions" ), this );
 	m_toolBar->setObjectName( "maintoolbar" );
+	m_toolBar->toggleViewAction()->setEnabled( FALSE );
 
 	addToolBar( Qt::TopToolBarArea, m_toolBar );
 
