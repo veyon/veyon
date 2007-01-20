@@ -183,6 +183,7 @@ toolButton::toolButton( const QPixmap & _pixmap, const QString & _title,
 	m_description( _description ),
 	m_mouseOver( FALSE )
 {
+	setText( m_title );
 	if( _receiver != NULL && _slot != NULL )
 	{
 		connect( this, SIGNAL( clicked() ), _receiver, _slot );

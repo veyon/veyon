@@ -644,7 +644,7 @@ void clientManager::loadPersonalConfig( void )
 		QFileInfo( m_personalConfiguration + ".bak" ).exists() )
 	{
 		QFile( m_personalConfiguration + ".bak" ).copy(
-							m_personalConfiguration );
+						m_personalConfiguration );
 	}
 
 	// read the XML file and create DOM tree
@@ -1093,8 +1093,10 @@ void clientManager::arrangeWindows( void )
 		int i = 0;
 		foreach( client * cl, vc )
 		{
-			cl->parentWidget()->move( ( i % win_per_line ) * ww,
-						( i / win_per_line ) * wh );
+			cl->parentWidget()->move( ( i % win_per_line ) *
+							( ww + decor_w ),
+						( i / win_per_line ) *
+							( wh + decor_h ) );
 			cl->setFixedSize( ww, wh );
 			++i;
 		}
