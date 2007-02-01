@@ -325,7 +325,7 @@ void client::resetConnection( void )
 
 void client::update( void )
 {
-	QString u = m_user;
+/*	QString u = m_user;
 	if( u.isEmpty() )
 	{
 		u = "none";
@@ -334,7 +334,9 @@ void client::update( void )
 	{
 		u = u.section( '(', 1, 1 ).section( ')', 0, 0 );
 	}
-	setWindowTitle( u + "@" + fullName() );
+	setWindowTitle( u + "@" + fullName() );*/
+	setWindowTitle( m_name + " (" + m_classRoomItem->parent()->text( 0 ) +
+									")" );
 	states cur_state = currentState();
 	if( cur_state != m_state )
 	{

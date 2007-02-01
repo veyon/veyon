@@ -1,9 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="de_DE">
 <context>
+    <name></name>
+    <message>
+        <location filename="../src/main.cpp" line="70"/>
+        <source>File does not exist</source>
+        <translation>Datei existiert nicht</translation>
+    </message>
+    <message>
+        <location filename="../src/main.cpp" line="74"/>
+        <source>The file %1 could not be found. Please check this and try again.</source>
+        <translation>Die Datei %1 konnte nicht gefunden Werden. Bitte überprüfen Sie dies und versuchen es erneut.</translation>
+    </message>
+</context>
+<context>
     <name>QDialog</name>
     <message>
-        <location filename="../src/dialogs.cpp" line="76"/>
+        <location filename="../src/dialogs.cpp" line="78"/>
         <source>Program Files</source>
         <translation>Programme</translation>
     </message>
@@ -27,7 +40,17 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;iTALC is now completely installed. For using iTALC you either have to restart your computer or start the iTALC Client service manually.&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;If you use iTALC under Windows it&apos;s strongly recommended that you install DFMirage-driver from http://www.demoforge.com/dfmirage.htm for a better performance when using iTALC.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;p, li { white-space: pre-wrap; }&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;iTALC ist jetzt vollständig installiert. Um iTALC zu benutzen müssen Sie entweder den Computer neustarten oder den iTALC-Client-Dienst manuell starten.&lt;/p&gt;&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Wenn Sie iTALC unter Windows nutzen wird empfohlen, den DFMirage-Treiber von http://www.demoforge.com/dfmirage.htm installieren, um eine bessere Performance bei der Verwendung von iTALC zu erreichen.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation type="obsolete">&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;p, li { white-space: pre-wrap; }&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;iTALC ist jetzt vollständig installiert. Um iTALC zu benutzen müssen Sie entweder den Computer neustarten oder den iTALC-Client-Dienst manuell starten.&lt;/p&gt;&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Wenn Sie iTALC unter Windows nutzen wird empfohlen, den DFMirage-Treiber von http://www.demoforge.com/dfmirage.htm installieren, um eine bessere Performance bei der Verwendung von iTALC zu erreichen.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/page_setup_finished.ui" line="61"/>
+        <source>iTALC is now completely installed. For using iTALC you either have to restart your computer or start the iTALC Client service manually.</source>
+        <translation>iTALC ist nun vollständig installiert. Um iTALC zu nutzen müssen Sie entweder den Computer neustarten oder den iTALC-Client-Dienst manuell starten.</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/page_setup_finished.ui" line="71"/>
+        <source>Save installation settings</source>
+        <translation>Installationseinstellungen speichern</translation>
     </message>
 </context>
 <context>
@@ -235,90 +258,100 @@ Klicken Sie auf &apos;Weiter&apos;, um fortzufahren.</translation>
 <context>
     <name>setupWizard</name>
     <message>
-        <location filename="../src/dialogs.cpp" line="126"/>
+        <location filename="../src/dialogs.cpp" line="347"/>
         <source>Cancel setup</source>
         <translation>Setup abbrechen</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="128"/>
+        <location filename="../src/dialogs.cpp" line="349"/>
         <source>Are you sure want to quit setup? iTALC is not installed completely yet!</source>
         <translation>Sind Sie sicher, dass Sie die Installation abbrechen wollen? iTALC ist noch nicht vollständig installiert!</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="154"/>
+        <location filename="../src/dialogs.cpp" line="375"/>
         <source>Next</source>
         <translation>Weiter</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="333"/>
+        <location filename="../src/dialogs.cpp" line="427"/>
         <source>Finish</source>
         <translation>Abschließen</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="206"/>
+        <location filename="../src/dialogs.cpp" line="207"/>
         <source>Installing iTALC</source>
         <translation>Installiere iTALC</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="208"/>
+        <location filename="../src/dialogs.cpp" line="209"/>
         <source>Copying files...</source>
         <translation>Kopiere Dateien...</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="230"/>
+        <location filename="../src/dialogs.cpp" line="148"/>
         <source>Confirm overwrite</source>
         <translation>Überschreiben bestätigen</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="231"/>
+        <location filename="../src/dialogs.cpp" line="149"/>
         <source>Do you want to overwrite %1?</source>
         <translation>Möchten Sie die Datei %1 überschreiben?</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="273"/>
+        <location filename="../src/dialogs.cpp" line="263"/>
         <source>Registering ICA as service...</source>
         <translation>Registriere ICA als Dienst...</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="280"/>
+        <location filename="../src/dialogs.cpp" line="270"/>
         <source>Creating/importing keys...</source>
         <translation>Erstelle/importiere Schlüssel...</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="337"/>
+        <location filename="../src/dialogs.cpp" line="431"/>
         <source>Quit</source>
         <translation>Beenden</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="306"/>
+        <location filename="../src/dialogs.cpp" line="304"/>
         <source>Creating shortcuts...</source>
         <translation>Erzeuge Verknüpfungen...</translation>
+    </message>
+    <message>
+        <location filename="../src/dialogs.cpp" line="326"/>
+        <source>Could not create directory</source>
+        <translation>Konnte Verzeichnis nicht erstellen</translation>
+    </message>
+    <message>
+        <location filename="../src/dialogs.cpp" line="330"/>
+        <source>Could not create directory %1! Make sure you have the neccessary rights and try again!</source>
+        <translation>Konnte das Verzeichnis %1 nicht erzeugen. Stellen Sie sicher, dass Sie die nötigen Rechte besitzen und versuchen es erneut!</translation>
     </message>
 </context>
 <context>
     <name>setupWizardPageInstallDir</name>
     <message>
-        <location filename="../src/dialogs.cpp" line="428"/>
+        <location filename="../src/dialogs.cpp" line="522"/>
         <source>Directory does not exist</source>
         <translation>Verzeichnis existiert nicht</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="430"/>
+        <location filename="../src/dialogs.cpp" line="524"/>
         <source>The specified directory does not exist. Do you want to create it?</source>
         <translation>Das angegebene Verzeichnis existiert nicht. Möchten Sie es erstellen?</translation>
     </message>
     <message>
         <location filename="../src/dialogs.cpp" line="445"/>
         <source>Could not create directory</source>
-        <translation>Konnte Verzeichnis nicht erstellen</translation>
+        <translation type="obsolete">Konnte Verzeichnis nicht erstellen</translation>
     </message>
     <message>
         <location filename="../src/dialogs.cpp" line="449"/>
         <source>Could not create directory %1! Make sure you have the neccessary rights and try again!</source>
-        <translation>Konnte das Verzeichnis %1 nicht erzeugen. Stellen Sie sicher, dass Sie die nötigen Rechte besitzen und versuchen es erneut!</translation>
+        <translation type="obsolete">Konnte das Verzeichnis %1 nicht erzeugen. Stellen Sie sicher, dass Sie die nötigen Rechte besitzen und versuchen es erneut!</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="472"/>
+        <location filename="../src/dialogs.cpp" line="552"/>
         <source>Choose installation directory</source>
         <translation>Installationsverzeichnis wählen</translation>
     </message>
@@ -326,17 +359,17 @@ Klicken Sie auf &apos;Weiter&apos;, um fortzufahren.</translation>
 <context>
     <name>setupWizardPageKeyDirs</name>
     <message>
-        <location filename="../src/dialogs.cpp" line="694"/>
+        <location filename="../src/dialogs.cpp" line="774"/>
         <source>Choose public key directory</source>
         <translation>Verzeichnis für öffentlichen Schlüssel wählen</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="708"/>
+        <location filename="../src/dialogs.cpp" line="788"/>
         <source>Choose private key directory</source>
         <translation>Verzeichnis für privaten Schlüssel wählen</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="722"/>
+        <location filename="../src/dialogs.cpp" line="802"/>
         <source>Choose public key export directory</source>
         <translation>Verzeichnis zum Exportieren des öffentlichen Schlüssels wählen</translation>
     </message>
@@ -344,7 +377,7 @@ Klicken Sie auf &apos;Weiter&apos;, um fortzufahren.</translation>
 <context>
     <name>setupWizardPageSecurityOptions</name>
     <message>
-        <location filename="../src/dialogs.cpp" line="603"/>
+        <location filename="../src/dialogs.cpp" line="683"/>
         <source>Choose directory for key-import</source>
         <translation>Verzeichnis für Schlüssel-Import wählen</translation>
     </message>

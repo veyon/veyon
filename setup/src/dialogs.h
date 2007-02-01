@@ -65,6 +65,8 @@ public:
 	bool createInstallationPath( const QString & _dir );
 	void doInstallation( void );
 
+	int askOverwrite( const QString & _file, bool _all = FALSE );
+
 
 private slots:
 	virtual void reject( void );

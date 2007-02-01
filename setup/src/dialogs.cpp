@@ -143,12 +143,32 @@ void setupWizard::loadSettings( const QString & _install_settings )
 
 
 
+int setupWizard::askOverwrite( const QString & _file, bool _all )
+{
+	return( QMessageBox::question( window(), tr( "Confirm overwrite" ),
+			tr( "Do you want to overwrite %1?" ).arg( _file ),
+#ifdef QMESSAGEBOX_EXT_SUPPORT
+			QMessageBox::Yes | QMessageBox::No |
+			( _all ?
+				( QMessageBox::YesToAll | QMessageBox::NoToAll )
+						: QMessageBox::NoButton )
+							, QMessageBox::Yes
+#else
+				QMessageBox::Yes | QMessageBox::Default,
+				QMessageBox::No,
+				_all ? QMessageBox::YesToAll : 0
+#endif
+						) );
+}
+
+
+
+
 #ifdef BUILD_WIN32
 static const QString _exe_ext = ".exe";
 #else
 static const QString _exe_ext = "";
 #endif
-
 
 void setupWizard::doInstallation( void )
 {
@@ -208,18 +228,7 @@ void setupWizard::doInstallation( void )
 			{
 				continue;
 			}
-int res = QMessageBox::question( window(), tr( "Confirm overwrite" ),
-		tr( "Do you want to overwrite %1?" ).arg( d + file ),
-#ifdef QMESSAGEBOX_EXT_SUPPORT
-			QMessageBox::Yes | QMessageBox::No |
-			QMessageBox::YesToAll | QMessageBox::NoToAll,
-						QMessageBox::Yes
-#else
-				QMessageBox::Yes | QMessageBox::Default,
-				QMessageBox::No,
-				QMessageBox::YesToAll
-#endif
-						);
+			int res = askOverwrite( d + file, TRUE );
 			switch( res )
 			{
 				case QMessageBox::YesToAll:
@@ -272,8 +281,16 @@ int res = QMessageBox::question( window(), tr( "Confirm overwrite" ),
 	QString( "ica -createkeypair %1 %2" ).
 					arg( m_privKeyDir + add ).
 					arg( m_pubKeyDir + add ) );
-		QFile( m_pubKeyDir + add ).
+		if( QFileInfo( m_keyExportDir+add2 ).exists() )
+		{
+			if( askOverwrite( m_keyExportDir+add2 ) ==
+							QMessageBox::Yes )
+			{
+				QFile( m_keyExportDir+add2 ).remove();
+				QFile( m_pubKeyDir + add ).
 					copy( m_keyExportDir + add2 );
+			}
+		}
 	}
 	else
 	{

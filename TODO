@@ -2,6 +2,7 @@ TODO
 =====
 
 
+- do not crash when quitting italc if demo is running
 - disable "back"-button when on last-page in setup
 - support for demo-gateway for classrooms connected via VPN
 - improve support-workspace/artwork

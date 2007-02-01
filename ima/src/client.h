@@ -117,10 +117,10 @@ public:
 	void changeMode( const modes _new_mode, isdConnection * _conn );
 
 
-	inline QString fullName( void ) const
+/*	inline QString fullName( void ) const
 	{
 		return( m_name + " (" + m_localIP + ")" );
-	}
+	}*/
 
 	inline QString name( void ) const
 	{

@@ -1,3 +1,19 @@
+2007-02-01	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* ima/src/client.cpp:
+	* ima/src/client.h:
+	changed title of client-window, now only hostname + classroom are
+	displayed - user-name is as usual displayed as tooltip
+
+	* setup/resources/de.qm:
+	* setup/resources/de.ts:
+	updated German translation
+
+	* setup/src/dialogs.cpp:
+	* setup/src/dialogs.h:
+	if exported-key already exists, ask whether to overwrite and if so do
+	so instead of failure silently
+
 2007-01-20	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* ica/x11/x11vnc/x11vnc.1:
