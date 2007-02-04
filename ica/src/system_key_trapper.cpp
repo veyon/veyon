@@ -54,6 +54,9 @@ int systemKeyTrapper::s_refCnt;
 #include "inject.h"
 
 
+extern HINSTANCE hAppInstance;
+
+
 HHOOK g_hHookKbdLL = NULL; // hook handle
 
 
@@ -112,7 +115,57 @@ LRESULT CALLBACK TaskKeyHookLL( int nCode, WPARAM wp, LPARAM lp )
 }
 
 
-extern HINSTANCE hAppInstance;
+
+
+static STICKYKEYS settings_sk = { sizeof( STICKYKEYS ), 0 };
+static TOGGLEKEYS settings_tk = { sizeof( TOGGLEKEYS ), 0 };
+static FILTERKEYS settings_fk = { sizeof( FILTERKEYS ), 0 };
+
+
+void enableStickyKeys( bool _enable )
+{
+	if( _enable )
+	{
+		STICKYKEYS sk = settings_sk;
+		TOGGLEKEYS tk = settings_tk;
+		FILTERKEYS fk = settings_fk;
+
+		SystemParametersInfo( SPI_SETSTICKYKEYS, sizeof( STICKYKEYS ),
+							&settings_sk, 0 );
+		SystemParametersInfo( SPI_SETTOGGLEKEYS, sizeof( TOGGLEKEYS ),
+							&settings_tk, 0 );
+		SystemParametersInfo( SPI_SETFILTERKEYS, sizeof( FILTERKEYS ),
+							&settings_fk, 0 );
+	}
+	else
+	{
+		SystemParametersInfo( SPI_GETSTICKYKEYS, sizeof( STICKYKEYS ),
+							&settings_sk, 0 );
+		SystemParametersInfo( SPI_GETTOGGLEKEYS, sizeof( TOGGLEKEYS ),
+							&settings_tk, 0 );
+		SystemParametersInfo( SPI_GETFILTERKEYS, sizeof( FILTERKEYS ),
+							&settings_fk, 0 );
+
+		STICKYKEYS skOff = settings_sk;
+		skOff.dwFlags &= ~SKF_HOTKEYACTIVE;
+		skOff.dwFlags &= ~SKF_CONFIRMHOTKEY;
+		SystemParametersInfo( SPI_SETSTICKYKEYS, sizeof( STICKYKEYS ),
+								&skOff, 0 );
+
+		TOGGLEKEYS tkOff = settings_tk;
+		tkOff.dwFlags &= ~TKF_HOTKEYACTIVE;
+		tkOff.dwFlags &= ~TKF_CONFIRMHOTKEY;
+		SystemParametersInfo( SPI_SETTOGGLEKEYS, sizeof( TOGGLEKEYS ),
+								&tkOff, 0 );
+
+		FILTERKEYS fkOff = settings_fk;
+		fkOff.dwFlags &= ~FKF_HOTKEYACTIVE;
+		fkOff.dwFlags &= ~FKF_CONFIRMHOTKEY;
+		SystemParametersInfo( SPI_SETFILTERKEYS, sizeof( FILTERKEYS ),
+								&fkOff, 0 );
+	}
+}
+
 
 #endif
 
@@ -131,6 +184,8 @@ systemKeyTrapper::systemKeyTrapper( void ) :
 							TaskKeyHookLL,
 							hAppInstance, 0 );
 		}
+
+		enableStickyKeys( FALSE );
 
 		//EnableWindow( FindWindow( "Shell_traywnd", NULL ), FALSE );
 
@@ -158,6 +213,7 @@ systemKeyTrapper::~systemKeyTrapper()
 		UnhookWindowsHookEx( g_hHookKbdLL );
 		g_hHookKbdLL = NULL;
 
+		enableStickyKeys( TRUE );
 		//EnableWindow( FindWindow( "Shell_traywnd", NULL ), TRUE );
 
 		Eject();
