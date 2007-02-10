@@ -1,3 +1,11 @@
+2007-02-10	Mario Izquierdo <mariodebian/at/gmail/dot/com>
+
+	* ica/resources/es.ts:
+	* ica/resources/es.qm:
+	* ima/resources/es.ts:
+	* ima/resources/es.qm:
+	added/updated Spanish localization
+
 2007-02-03	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* ica/src/system_key_trapper.cpp:
