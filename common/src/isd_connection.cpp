@@ -1,7 +1,7 @@
 /*
  * isd_connection.cpp - client-implementation for ISD (iTALC Service Daemon)
  *
- * Copyright (c) 2006 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2007 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -113,7 +113,7 @@ isdConnection::~isdConnection()
 
 
 
-#define NO_QTCPSOCKET_CONNECT
+//#define NO_QTCPSOCKET_CONNECT
 
 #ifdef NO_QTCPSOCKET_CONNECT
 
@@ -268,7 +268,7 @@ isdConnection::states isdConnection::open( void )
 	}
 
 #ifndef NO_QTCPSOCKET_CONNECT
-	m_socket->waitForConnected( 2000 );
+	m_socket->waitForConnected( 3000 );
 #endif
 
 	if( m_socket->state() != QTcpSocket::ConnectedState )

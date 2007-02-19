@@ -2,7 +2,7 @@
  * client.h - declaration of class client which represents a client, shows its
  *            display and allows controlling it in several ways
  *
- * Copyright (c) 2004-2006 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2007 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -53,6 +53,57 @@ typedef void( client:: * execCmd )( const QString & );
 
 const QString CONFIRM_NO = "n";
 const QString CONFIRM_YES = "y";
+
+
+class updateThread : public QThread
+{
+	Q_OBJECT
+public:
+	enum queueableCommands
+	{
+		ResetConnection,
+		StartDemo,
+		StopDemo,
+		LockScreen,
+		UnlockScreen,
+		SendTextMessage,
+		LogonUserCmd,
+		LogoutUser,
+		Reboot,
+		PowerDown,
+		ExecCmds
+	} ;
+
+	updateThread( client * _client );
+	virtual ~updateThread()
+	{
+	}
+
+	inline void enqueueCommand( queueableCommands _cmd,
+					const QVariant & _data =
+							QVariant() )
+	{
+		m_queueMutex.lock();
+		m_queue.enqueue( qMakePair( _cmd, _data ) );
+		m_queueMutex.unlock();
+	}
+
+
+private slots:
+	void update( void );
+
+
+private:
+	virtual void run( void );
+
+	client * m_client;
+	QMutex m_queueMutex;
+	typedef QPair<queueableCommands, QVariant> queueItem;
+	QQueue<queueItem> m_queue;
+
+	friend class client;
+
+} ;
 
 
 
@@ -270,8 +321,9 @@ private:
 
 	classRoomItem * m_classRoomItem;
 
-
 	QMenu * m_contextMenu;
+
+	updateThread * m_updateThread;
 
 
 	// static data
@@ -281,55 +333,6 @@ private:
 
 	// static members
 	static int freeID( void );
-
-
-	class updateThread : public QThread
-	{
-	public:
-		enum queueableCommands
-		{
-			ResetConnection,
-			StartDemo,
-			StopDemo,
-			LockScreen,
-			UnlockScreen,
-			SendTextMessage,
-			LogonUserCmd,
-			LogoutUser,
-			Reboot,
-			PowerDown,
-			ExecCmds
-		} ;
-
-		updateThread( client * _client );
-		virtual ~updateThread()
-		{
-		}
-
-		inline void quit( void )
-		{
-			m_quit = TRUE;
-		}
-
-		inline void enqueueCommand( queueableCommands _cmd,
-						const QVariant & _data =
-								QVariant() )
-		{
-			m_queueMutex.lock();
-			m_queue.enqueue( qMakePair( _cmd, _data ) );
-			m_queueMutex.unlock();
-		}
-
-	private:
-		virtual void run( void );
-
-		client * m_client;
-		bool m_quit;
-		QMutex m_queueMutex;
-		typedef QPair<queueableCommands, QVariant> queueItem;
-		QQueue<queueItem> m_queue;
-
-	} * m_updateThread;
 
 
 	friend class updateThread;

@@ -1,8 +1,8 @@
 /*
  * local_system.cpp - namespace localSystem, providing an interface for
- *                    transparent usage of operating-system-dependent functions
+ *                    transparent usage of operating-system-specific functions
  *
- * Copyright (c) 2006 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2007 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -77,25 +77,116 @@ public:
 		return( m_name );
 	}
 
+
 private:
 	virtual void run( void )
 	{
 		while( 1 )
 		{
-			QProcess p;
-			p.start( "userinfo" );
-			if( p.waitForFinished() )
+		char buf[1024];
+		STARTUPINFO si;
+		SECURITY_ATTRIBUTES sa;
+		SECURITY_DESCRIPTOR sd;	// security information for pipes
+		PROCESS_INFORMATION pi;
+		HANDLE newstdin, newstdout, read_stdout, write_stdin;
+								// pipe handles
+
+		// initialize security descriptor (Windows NT)
+		InitializeSecurityDescriptor( &sd,
+						SECURITY_DESCRIPTOR_REVISION );
+		SetSecurityDescriptorDacl( &sd, true, NULL, FALSE );
+		sa.lpSecurityDescriptor = &sd;
+		sa.nLength = sizeof( SECURITY_ATTRIBUTES) ;
+		sa.bInheritHandle = TRUE;	//allow inheritable handles
+
+		// create stdin pipe
+		if( !CreatePipe( &newstdin, &write_stdin, &sa, 0 ) )
+		{
+			qCritical( "CreatePipe (stdin)" );
+			continue;
+		}
+		// create stdout pipe
+		if( !CreatePipe( &read_stdout, &newstdout, &sa, 0 ) )
+		{
+			qCritical( "CreatePipe (stdout)" );
+			CloseHandle( newstdin );
+			CloseHandle( write_stdin );
+			continue;
+		}
+
+		// set startupinfo for the spawned process
+		GetStartupInfo( &si );
+		si.dwFlags = STARTF_USESTDHANDLES;
+		si.wShowWindow = 0;
+		si.hStdOutput = newstdout;
+		si.hStdError = newstdout;	// set the new handles for the
+						// child process
+		si.hStdInput = newstdin;
+		const char * app_spawn = "userinfo.exe";
+		// spawn the child process
+		if( !CreateProcess( app_spawn, NULL, NULL, NULL, TRUE,
+				CREATE_NO_WINDOW, NULL,NULL, &si, &pi ) )
+		{
+			qCritical( "CreateProcess" );
+			CloseHandle( newstdin );
+			CloseHandle( newstdout );
+			CloseHandle( read_stdout );
+			CloseHandle( write_stdin );
+			continue;
+		}
+
+		bool read_something = FALSE;
+		while( 1 )
+		{
+			DWORD bread, avail;
+
+			//check to see if there is any data to read from stdout
+			PeekNamedPipe( read_stdout, buf, 1023, &bread, &avail,
+									NULL );
+			if( bread != 0 )
 			{
 				QMutexLocker m( &m_mutex );
-				( m_name = p.readAll() ).chop( 2 );
+				m_name.clear();
+				while( avail > 0 )
+				{
+					memset( buf, 0, sizeof( buf ) );
+					ReadFile( read_stdout, buf,
+						qMin<long unsigned>( avail,
+									1023 ),
+							&bread, NULL );
+					m_name += buf;
+					avail -= bread;
+					m_name.chop( 2 );
+				}
+				read_something = TRUE;
+			}
+
+			DWORD exit;
+			GetExitCodeProcess( pi.hProcess, &exit );
+			if( exit != STILL_ACTIVE && read_something == TRUE )
+			{
+				break;
 			}
 		}
+
+		CloseHandle( pi.hThread );
+		CloseHandle( pi.hProcess );
+		CloseHandle( newstdin );
+		CloseHandle( newstdout );
+		CloseHandle( read_stdout );
+		CloseHandle( write_stdin );
+
+		sleep( 5 );
+
+		} // end while( 1 )
+
 	}
 
 	QString m_name;
 	QMutex m_mutex;
 
 }  static * __user_poll_thread = NULL;
+
 
 
 // taken from qt-win-opensource-src-4.2.2/src/corelib/io/qsettings.cpp

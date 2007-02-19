@@ -1,7 +1,7 @@
 /*
  * isd_server.cpp - ISD Server
  *
- * Copyright (c) 2006 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2007 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *  
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -234,7 +234,7 @@ int isdServer::processClient( socketDispatcher _sd, void * _user )
 			{
 				cleanupDestroyedConnection( _ts );
 			}
-			delete m_demoServer;
+			//delete m_demoServer;
 			m_demoServer = NULL;
 			break;
 		}

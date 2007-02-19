@@ -1,7 +1,7 @@
 /*
  * main_window.cpp - main-file for iTALC-Application
  *
- * Copyright (c) 2004-2006 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2007 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -73,6 +73,7 @@ bool mainWindow::ensureConfigPathExists( void )
 }
 
 
+bool mainWindow::s_atExit = FALSE;
 
 
 mainWindow::mainWindow() :
@@ -391,6 +392,13 @@ mainWindow::mainWindow() :
 
 mainWindow::~mainWindow()
 {
+	m_clientManager->doCleanupWork();
+	delete m_workspace;
+
+
+	m_localISD->demoServerStop();
+	delete m_localISD;
+	m_localISD = NULL;
 }
 
 
@@ -398,20 +406,16 @@ mainWindow::~mainWindow()
 
 void mainWindow::closeEvent( QCloseEvent * _ce )
 {
-	// make sure, no screens are locked, demos running etc.
-	m_clientManager->changeGlobalClientMode( client::Mode_Overview );
+	s_atExit = TRUE;
 
 	m_updateThread->terminate();
 	m_updateThread->wait();
 
-	m_clientManager->doCleanupWork();
 	m_clientManager->savePersonalConfig();
 	m_clientManager->saveGlobalClientConfig();
-	_ce->accept();
 
-	m_localISD->demoServerStop();
-	delete m_localISD;
-	m_localISD = NULL;
+	_ce->accept();
+	deleteLater();
 }
 
 

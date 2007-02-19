@@ -2,7 +2,7 @@
  * client.cpp - code for client-windows, which are displayed in several
  *              instances in the main-window of iTALC
  *
- * Copyright (c) 2004-2006 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2007 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -188,6 +188,9 @@ client::~client()
 {
 	m_updateThread->quit();
 	m_updateThread->wait();
+	changeMode( client::Mode_Overview, m_mainWindow->localISD() );
+	m_updateThread->update();
+	delete m_updateThread;
 
 	m_syncMutex.lock();
 	delete m_connection;
@@ -278,7 +281,7 @@ void client::changeMode( const modes _new_mode, isdConnection * _conn )
 			<< _conn->host() + ":" + QString::number(
 						_conn->demoServerPort() )
 			<< (int)( m_mode == Mode_FullscreenDemo ) );
-				m_mode = Mode_FullscreenDemo;
+				//m_mode = Mode_FullscreenDemo;
 				break;
 			case Mode_Locked:
 				m_updateThread->enqueueCommand(
@@ -448,7 +451,7 @@ bool client::userLoggedIn( void )
 	QMutexLocker ml( &m_syncMutex );
 
 	return( m_connection->state() == ivsConnection::Connected ||
-		m_connection->reset( m_localIP ) == ivsConnection::Connected);
+		m_connection->reset( m_localIP ) == ivsConnection::Connected );
 }
 
 
@@ -457,7 +460,7 @@ bool client::userLoggedIn( void )
 void client::closeEvent( QCloseEvent * _ce )
 {
 	// make sure, client isn't forgotten by teacher after being hidden
-	changeMode( Mode_Overview, NULL );
+	changeMode( Mode_Overview, m_mainWindow->localISD() );
 	hide();
 	_ce->ignore();
 }
@@ -985,94 +988,98 @@ client::states client::currentState( void ) const
 
 
 
-client::updateThread::updateThread( client * _client ) :
+updateThread::updateThread( client * _client ) :
 	QThread(),
-	m_client( _client ),
-	m_quit( FALSE )
+	m_client( _client )
 {
 	start( LowPriority );
 }
 
 
 
-
-void client::updateThread::run( void )
+void updateThread::update( void )
 {
-	while( !m_quit )
+	if( mainWindow::atExit() == FALSE && m_client->isVisible() )
 	{
-		if( m_client->isVisible() )
-		{
-			m_client->processCmd( client::Reload, CONFIRM_NO );
-		}
-
-		QThread::sleep( m_client->m_mainWindow->
-					getClientManager()->updateInterval() );
-
-		m_queueMutex.lock();
-		m_client->m_syncMutex.lock();
-		while( !m_queue.isEmpty() )
-		{
-			const queueItem i = m_queue.dequeue();
-			m_queueMutex.unlock();
-			switch( i.first )
-			{
-				case ResetConnection:
-					m_client->m_connection->reset(
-							i.second.toString() );
-					break;
-				case StartDemo:
-					m_client->m_connection->startDemo(
-						i.second.toList()[0].toString(),
-						i.second.toList()[1].toInt() );
-					break;
-				case StopDemo:
-					m_client->m_connection->stopDemo();
-					break;
-				case LockScreen:
-					m_client->m_connection->lockDisplay();
-					break;
-				case UnlockScreen:
-					m_client->m_connection->unlockDisplay();
-					break;
-				case SendTextMessage:
-					m_client->m_connection->
-						displayTextMessage(
-							i.second.toString() );
-					break;
-				case LogonUserCmd:
-				{
-					const QString s = i.second.toString();
-					const int pos = s.indexOf( '*' );
-					const int pos2 = s.lastIndexOf( '*' );
-					m_client->m_connection->logonUser(
-							s.left( pos ),
-							s.mid( pos + 1,
-								pos2-pos-1 ),
-							s.mid( pos2 + 1 ) );
-					break;
-				}
-				case LogoutUser:
-					m_client->m_connection->logoutUser();
-					break;
-				case Reboot:
-					m_client->m_connection->
-							restartComputer();
-					break;
-				case PowerDown:
-					m_client->m_connection->
-							powerDownComputer();
-					break;
-				case ExecCmds:
-					m_client->m_connection->execCmds(
-							i.second.toString() );
-					break;
-			}
-			m_queueMutex.lock();
-		}
-		m_client->m_syncMutex.unlock();
-		m_queueMutex.unlock();
+		m_client->processCmd( client::Reload, CONFIRM_NO );
 	}
-	m_client->changeMode( Mode_Overview, NULL );
+
+	m_queueMutex.lock();
+	m_client->m_syncMutex.lock();
+	while( !m_queue.isEmpty() )
+	{
+		const queueItem i = m_queue.dequeue();
+		m_queueMutex.unlock();
+		switch( i.first )
+		{
+			case ResetConnection:
+				m_client->m_connection->reset(
+						i.second.toString() );
+				break;
+			case StartDemo:
+				m_client->m_connection->startDemo(
+					i.second.toList()[0].toString(),
+					i.second.toList()[1].toInt() );
+				break;
+			case StopDemo:
+				m_client->m_connection->stopDemo();
+				break;
+			case LockScreen:
+				m_client->m_connection->lockDisplay();
+				break;
+			case UnlockScreen:
+				m_client->m_connection->unlockDisplay();
+				break;
+			case SendTextMessage:
+				m_client->m_connection->
+					displayTextMessage(
+						i.second.toString() );
+				break;
+			case LogonUserCmd:
+			{
+				const QString s = i.second.toString();
+				const int pos = s.indexOf( '*' );
+				const int pos2 = s.lastIndexOf( '*' );
+				m_client->m_connection->logonUser(
+						s.left( pos ),
+						s.mid( pos + 1,
+							pos2-pos-1 ),
+						s.mid( pos2 + 1 ) );
+				break;
+			}
+			case LogoutUser:
+				m_client->m_connection->logoutUser();
+				break;
+			case Reboot:
+				m_client->m_connection->
+						restartComputer();
+				break;
+			case PowerDown:
+				m_client->m_connection->
+						powerDownComputer();
+				break;
+			case ExecCmds:
+				m_client->m_connection->execCmds(
+						i.second.toString() );
+				break;
+		}
+		m_queueMutex.lock();
+	}
+	m_client->m_syncMutex.unlock();
+	m_queueMutex.unlock();
+}
+
+
+
+
+void updateThread::run( void )
+{
+	QTimer t;
+	connect( &t, SIGNAL( timeout() ), this, SLOT( update() ),
+							Qt::DirectConnection );
+	t.start( m_client->m_mainWindow->getClientManager()->updateInterval() *
+									1000 );
+	exec();
 }
 
 

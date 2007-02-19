@@ -1,3 +1,35 @@
+2007-02-19	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* ima/src/main_window.h:
+	* ima/src/main_window.cpp:
+	- added flag which is set upon exit
+	- proper destruction of whole application on window-close
+	- do not change global client mode as it's done by clients individually
+
+	* ima/src/client.h:
+	* ima/src/client.cpp:
+	- made update-thread eventloop-based for better scheduling and less
+	  potential problems
+	- do not set m_mode to Mode_FullscreenDemo in all demo-modes - fixes
+	  bug which made it impossible to change from window- to fullscreen-demo
+	  directly
+	- everywhere pass m_mainWindow->localISD() as parameter for
+	  changeMode(...) to fix potential crashes
+
+	* ica/src/isd_server.cpp:
+	do not explicitely delete m_demoServer as this should be done per
+	connection - fixes bug which crashed ICA in several cases
+
+	* common/src/local_system.cpp:
+	completely rewritten code for running userinfo.exe under win32 as
+	QProcess-class is buggy and caused several Windows-processes to hang
+	when being used the way done in iTALC - should fix explorer-freezes
+	and many more
+
+	* common/src/isd_connection.cpp:
+	use QTcpSocket::connect() rather than own methods as they do not time
+	out
+
 2007-02-10	Mario Izquierdo <mariodebian/at/gmail/dot/com>
 
 	* ica/resources/es.ts:

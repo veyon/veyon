@@ -1,7 +1,7 @@
 /*
  * tool_button.cpp - implementation of iTALC-tool-button
  *
- * Copyright (c) 2006 Tobias Doerffel <tobydox/at/users.sourceforge.net>
+ * Copyright (c) 2006-2007 Tobias Doerffel <tobydox/at/users.sourceforge.net>
  * 
  * This file is part of iTALC - http://italc.sourceforge.net
  *
