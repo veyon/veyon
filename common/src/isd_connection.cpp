@@ -663,7 +663,7 @@ bool isdConnection::execCmds( const QString & _cmd )
 		m_state = Disconnected;
 		return( FALSE );
 	}
-	return( ISD::msg( &m_socketDev, ISD::GetUserInformation ).
+	return( ISD::msg( &m_socketDev, ISD::ExecCmds ).
 					addArg( "cmds", _cmd ).send() );
 }
 

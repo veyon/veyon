@@ -1,5 +1,8 @@
 2007-02-22	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
+	* common/src/isd_connection.cpp:
+	fixed typo
+
 	* common/src/local_system.cpp:
 	* utils-win32/userinfo.cpp:
 	rewrote userinfo for being invoked once and continuously printing
