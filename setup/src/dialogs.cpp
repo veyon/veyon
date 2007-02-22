@@ -241,10 +241,10 @@ void setupWizard::doInstallation( void )
 			}
 			if( file == ( "ica" + _exe_ext ) )
 			{
-				QProcess::execute( d + file +
-						" -stopservice" );
-				QProcess::execute( d + file +
-						" -unregisterservice" );
+				QProcess::execute( d + file,
+					QStringList() << "-stopservice" );
+				QProcess::execute( d + file,
+					QStringList() << "-unregisterservice" );
 			}
 		}
 		QFile( d + file ).remove();
@@ -263,7 +263,7 @@ void setupWizard::doInstallation( void )
 	pd.setLabelText( tr( "Registering ICA as service..." ) );
 	qApp->processEvents();
 
-	QProcess::execute( d + "ica -registerservice" );
+	QProcess::execute( d + "ica", QStringList() << "-registerservice" );
 	++step;
 	pd.setValue( 90 + remaining_percent*step/remaining_steps );
 
@@ -277,10 +277,10 @@ void setupWizard::doInstallation( void )
 						ISD::RoleTeacher );
 	if( m_keyImportDir.isEmpty() )
 	{
-		QProcess::execute( d +
-	QString( "ica -createkeypair %1 %2" ).
-					arg( m_privKeyDir + add ).
-					arg( m_pubKeyDir + add ) );
+		QProcess::execute( d + "ica",
+					QStringList() << "-createkeypair"
+							<< ( m_privKeyDir + add )
+							<< ( m_pubKeyDir + add ) );
 		if( QFileInfo( m_keyExportDir+add2 ).exists() )
 		{
 			if( askOverwrite( m_keyExportDir+add2 ) ==

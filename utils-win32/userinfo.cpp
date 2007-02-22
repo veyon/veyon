@@ -5,6 +5,9 @@
 #include <ctype.h>
 
 
+bool __found_ica;
+
+
 void getUserName( char * * _str)
 {
 	if( !_str )
@@ -26,7 +29,7 @@ void getUserName( char * * _str)
 	{
 		HANDLE hProcess = OpenProcess( PROCESS_QUERY_INFORMATION |
 								PROCESS_VM_READ,
-							FALSE, aProcesses[i] );
+							false, aProcesses[i] );
 		HMODULE hMod;
 		if( hProcess == NULL ||
 			!EnumProcessModules( hProcess, &hMod, sizeof( hMod ),
@@ -41,6 +44,12 @@ void getUserName( char * * _str)
 		{
 			*ptr = tolower( *ptr );
 		}
+
+		if( strcmp( szProcessName, "ica.exe" ) == 0 )
+		{
+			__found_ica = true;
+		}
+
 		if( strcmp( szProcessName, "explorer.exe" ) )
 		{
 			CloseHandle( hProcess );
@@ -135,11 +144,20 @@ void getUserName( char * * _str)
 
 int main( void )
 {
-	char * name;
-	getUserName( &name );
-	if( name )
+	do
 	{
-		printf( "%s\n", name );
+		__found_ica = false;
+		char * name;
+		getUserName( &name );
+		if( name )
+		{
+			printf( "%s:\n", name );
+		}
+		delete[] name;
+		fflush( stdout );
+		Sleep( 10*1000 );
 	}
+	while( __found_ica );
+
 	return( 0 );
 }

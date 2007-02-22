@@ -116,15 +116,19 @@ private:
 
 		// set startupinfo for the spawned process
 		GetStartupInfo( &si );
-		si.dwFlags = STARTF_USESTDHANDLES;
-		si.wShowWindow = 0;
+		si.dwFlags = STARTF_USESTDHANDLES|STARTF_USESHOWWINDOW;
+		si.wShowWindow = SW_HIDE;
 		si.hStdOutput = newstdout;
 		si.hStdError = newstdout;	// set the new handles for the
 						// child process
 		si.hStdInput = newstdin;
-		const char * app_spawn = "userinfo.exe";
+		QString app = QCoreApplication::applicationDirPath() +
+					QDir::separator() + "userinfo.exe";
+		app.replace( '/', QDir::separator() );
+
 		// spawn the child process
-		if( !CreateProcess( app_spawn, NULL, NULL, NULL, TRUE,
+		if( !CreateProcess( app.toAscii().constData(),
+							NULL, NULL, NULL, TRUE,
 				CREATE_NO_WINDOW, NULL,NULL, &si, &pi ) )
 		{
 			qCritical( "CreateProcess" );
@@ -132,10 +136,11 @@ private:
 			CloseHandle( newstdout );
 			CloseHandle( read_stdout );
 			CloseHandle( write_stdin );
+			sleep( 5 );
 			continue;
 		}
 
-		bool read_something = FALSE;
+		QString s;
 		while( 1 )
 		{
 			DWORD bread, avail;
@@ -145,8 +150,6 @@ private:
 									NULL );
 			if( bread != 0 )
 			{
-				QMutexLocker m( &m_mutex );
-				m_name.clear();
 				while( avail > 0 )
 				{
 					memset( buf, 0, sizeof( buf ) );
@@ -154,19 +157,27 @@ private:
 						qMin<long unsigned>( avail,
 									1023 ),
 							&bread, NULL );
-					m_name += buf;
 					avail -= bread;
-					m_name.chop( 2 );
+					s += buf;
+					s.chop( 2 );
 				}
-				read_something = TRUE;
+			}
+
+			if( s.count( ':' ) >= 1 )
+			{
+				QMutexLocker m( &m_mutex );
+				m_name = s.section( ':', 0, 0 );
+				m_name.remove( "\n" );
+				s = s.section( ':', 1 );
 			}
 
 			DWORD exit;
 			GetExitCodeProcess( pi.hProcess, &exit );
-			if( exit != STILL_ACTIVE && read_something == TRUE )
+			if( exit != STILL_ACTIVE )
 			{
 				break;
 			}
+			sleep( 5 );
 		}
 
 		CloseHandle( pi.hThread );

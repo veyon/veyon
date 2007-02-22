@@ -242,6 +242,7 @@ void clientManager::savePersonalConfig( void )
 						m_clientUpdateInterval );
 	globalsettings.setAttribute( "win-width", getMainWindow()->width() );
 	globalsettings.setAttribute( "win-height", getMainWindow()->height() );
+	globalsettings.setAttribute( "ismaximized", getMainWindow()->isMaximized() );
 	globalsettings.setAttribute( "opened-tab",
 				getMainWindow()->m_sideBar->openedTab() );
 
@@ -423,6 +424,11 @@ void clientManager::getHeaderInformation( const QDomElement & _header )
 						node.toElement().attribute(
 							"opened-tab" ).toInt();
 			}
+			if( node.toElement().attribute( "ismaximized" ).toInt() > 0 )
+			{
+				getMainWindow()->setWindowState( getMainWindow()->windowState() |
+										Qt::WindowMaximized );
+			}
 			if( node.toElement().attribute( "wincfg" ) !=
 								QString::null )
 			{
@@ -593,7 +599,10 @@ void clientManager::loadGlobalClientConfig( void )
 						"add at least one classroom "
 						"and clients by using the "
 						"context-menu in the client-"
-						"manager."
+						"manager. You'll find the "
+						"client-manager inside the "
+						"program in the sidebar on "
+						"the left side."
 					).arg( m_globalClientConfiguration ) );
 		return;
 	}

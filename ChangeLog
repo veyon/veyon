@@ -1,4 +1,27 @@
+2007-02-22	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* common/src/local_system.cpp:
+	* utils-win32/userinfo.cpp:
+	rewrote userinfo for being invoked once and continuously printing
+	user-name - solves problem with high CPU-load
+
+	* setup/src/dialogs.cpp:
+	when invoking installed "ica.exe", pass arguments in separate
+	QStringList for not running into problems if installation-path
+	contains spaces - fixes several bugs concerning key-creation and
+	service-registration
+
+	* ima/src/client_manager.cpp:
+	remember state of main-window (maximized/normal)
+
+	* ima/resources/de.ts:
+	* ima/resources/de.qm:
+	updated German translation
+
 2007-02-19	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* configure.in:
+	made RC3 release
 
 	* ima/src/main_window.h:
 	* ima/src/main_window.cpp:
