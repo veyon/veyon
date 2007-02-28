@@ -1,5 +1,6 @@
 /* -- cleanup.c -- */
 
+#include <stdio.h>
 #include "x11vnc.h"
 #include "xwrappers.h"
 #include "xdamage.h"
