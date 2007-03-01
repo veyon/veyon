@@ -22,7 +22,6 @@ void initialize_xrandr(void);
 int check_xrandr_event(char *msg);
 int known_xrandr_mode(char *s);
 
-
 static int handle_subwin_resize(char *msg);
 static void handle_xrandr_change(int new_x, int new_y);
 

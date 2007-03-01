@@ -75,6 +75,12 @@ int xauth_raw(int on);
 Display *XOpenDisplay_wr(char *display_name);
 int XCloseDisplay_wr(Display *display);
 
+Bool XQueryPointer_wr(Display *display, Window w, Window *root_return,
+    Window *child_return, int *root_x_return, int *root_y_return,
+    int *win_x_return, int *win_y_return, unsigned int *mask_return);
+
+int XFree_wr(void *data);
+
 void copy_raw_fb(XImage *dest, int x, int y, unsigned int w, unsigned int h);
 static void upup_downdown_warning(KeyCode key, Bool down);
 
@@ -379,6 +385,7 @@ static void copy_raw_fb_24_to_32(XImage *dest, int x, int y, unsigned int w,
 
 	} else if (! raw_fb_seek) {
 		/* mmap */
+		bpl = raw_fb_bytes_per_line;
 		src = raw_fb_addr + raw_fb_offset + bpl*y + 3*x;
 		dst = dest->data;
 
@@ -402,7 +409,9 @@ static void copy_raw_fb_24_to_32(XImage *dest, int x, int y, unsigned int w,
 
 	} else {
 		/* lseek */
-		off_t off = (off_t) (raw_fb_offset + bpl*y + 3*x);
+		off_t off;
+		bpl = raw_fb_bytes_per_line;
+		off = (off_t) (raw_fb_offset + bpl*y + 3*x);
 
 		lseek(raw_fb_fd, off, SEEK_SET);
 		dst = dest->data;
@@ -472,6 +481,7 @@ void copy_raw_fb(XImage *dest, int x, int y, unsigned int w, unsigned int h) {
 
 	} else if (! raw_fb_seek) {
 		/* mmap */
+		bpl = raw_fb_bytes_per_line;
 		src = raw_fb_addr + raw_fb_offset + bpl*y + pixelsize*x;
 		dst = dest->data;
 
@@ -484,7 +494,9 @@ void copy_raw_fb(XImage *dest, int x, int y, unsigned int w, unsigned int h) {
 	} else {
 		/* lseek */
 		int n, len, del, sz = w * pixelsize;
-		off_t off = (off_t) (raw_fb_offset + bpl*y + pixelsize*x);
+		off_t off;
+		bpl = raw_fb_bytes_per_line;
+		off = (off_t) (raw_fb_offset + bpl*y + pixelsize*x);
 
 		lseek(raw_fb_fd, off, SEEK_SET);
 		dst = dest->data;
@@ -1057,6 +1069,83 @@ int XCloseDisplay_wr(Display *display) {
 #endif	/* NO_X11 */
 }
 
+static unsigned int Bmask = (Button1Mask|Button2Mask|Button3Mask|Button4Mask|Button5Mask);
+static unsigned int Mmask = (ShiftMask|LockMask|ControlMask|Mod1Mask|Mod2Mask|Mod3Mask|Mod4Mask|Mod5Mask);
+
+static unsigned int last_local_button_mask = 0;
+static unsigned int last_local_mod_mask = 0;
+static int last_local_x = 0;
+static int last_local_y = 0;
+
+Bool XQueryPointer_wr(Display *display, Window w, Window *root_return,
+    Window *child_return, int *root_x_return, int *root_y_return,
+    int *win_x_return, int *win_y_return, unsigned int *mask_return) {
+	Bool rc;
+
+#if NO_X11
+	return False;
+#else
+	if (! display) {
+		return False;
+	}
+	rc = XQueryPointer(display, w, root_return, child_return,
+	    root_x_return, root_y_return, win_x_return, win_y_return,
+	    mask_return);
+	if (rc) {
+		display_button_mask = (*mask_return) & Bmask;
+		display_mod_mask    = (*mask_return) & Mmask;
+		if (last_local_button_mask != display_button_mask) {
+			got_local_pointer_input++;
+		} else if (*root_x_return != last_local_x ||
+		    *root_y_return != last_local_y) {
+			got_local_pointer_input++;
+		}
+		last_local_button_mask = display_button_mask;
+		last_local_mod_mask = display_mod_mask;
+		last_local_x = *root_x_return;
+		last_local_y = *root_y_return;
+	}
+	return rc;
+#endif	/* NO_X11 */
+}
+ 
+
+Status XQueryTree_wr(Display *display, Window w, Window *root_return,
+    Window *parent_return, Window **children_return,
+    unsigned int *nchildren_return) {
+
+#ifdef MACOSX
+	if (macosx_console) {
+		return macosx_xquerytree(w, root_return, parent_return,
+		    children_return, nchildren_return);
+	}
+#endif
+#if NO_X11
+	return (Status) 0;
+#else
+	if (! display) {
+		return (Status) 0;
+	}
+	return XQueryTree(display, w, root_return, parent_return,
+	    children_return, nchildren_return);
+#endif	/* NO_X11 */
+    	
+}
+
+int XFree_wr(void *data) {
+	if (data == NULL) {
+		return 1;
+	}
+	if (! dpy) {
+		return 1;
+	}
+#if NO_X11
+	return 1;
+#else
+	return XFree(data);
+#endif
+}
+
 void nox11_exit(int rc) {
 #if NO_X11
 	rfbLog("This x11vnc was not built with X11 support.\n");
@@ -1065,6 +1154,7 @@ void nox11_exit(int rc) {
 	if (0) {rc = 0;}
 #endif
 }
+
 
 #if NO_X11
 #include "nox11_funcs.h"

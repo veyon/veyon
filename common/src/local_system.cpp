@@ -277,6 +277,8 @@ static inline void pressKey( int _key, bool _down )
 
 #ifdef HAVE_X11
 #include <X11/Xlib.h>
+#else
+#define KeySym int
 #endif
 
 #include "rfb/rfb.h"

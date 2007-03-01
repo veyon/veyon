@@ -104,6 +104,15 @@ extern int pipeinput_int;
 extern int pipeinput_cons_fd;
 extern char *pipeinput_cons_dev;
 
+extern int macosx_nodimming;
+extern int macosx_nosleep;
+extern int macosx_noscreensaver;
+extern int macosx_wait_for_switch;
+extern int macosx_mouse_wheel_speed;
+extern int macosx_console;
+extern int macosx_swap23;
+extern int macosx_resize;
+
 extern unsigned long subwin;
 extern int subwin_wait_mapped;
 
@@ -139,6 +148,7 @@ extern int cursor_shape_updates;
 extern int use_xwarppointer;
 extern int show_dragging;
 extern int wireframe;
+extern int wireframe_local;
 
 extern char *wireframe_str;
 extern char *wireframe_copyrect;
@@ -227,6 +237,7 @@ extern int ui_skip;
 extern int all_input;
 
 extern int watch_fbpm;
+extern int watch_dpms;
 
 extern int watch_selection;
 extern int watch_primary;

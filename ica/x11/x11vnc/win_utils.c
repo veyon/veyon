@@ -18,6 +18,8 @@ Bool xtranslate(Window src, Window dst, int src_x, int src_y, int *dst_x,
     int *dst_y, Window *child, int bequiet);
 int get_window_size(Window win, int *x, int *y);
 void snapshot_stack_list(int free_only, double allowed_age);
+int get_boff(void);
+int get_bwin(void);
 void update_stack_list(void);
 Window query_pointer(Window start);
 unsigned int mask_state(void);
@@ -43,7 +45,7 @@ Window parent_window(Window win, char **name) {
 
 	old_handler = XSetErrorHandler(trap_xerror);
 	trapped_xerror = 0;
-	rc = XQueryTree(dpy, win, &r, &parent, &list, &nchild);
+	rc = XQueryTree_wr(dpy, win, &r, &parent, &list, &nchild);
 	XSetErrorHandler(old_handler);
 
 	if (! rc || trapped_xerror) {
@@ -53,7 +55,7 @@ Window parent_window(Window win, char **name) {
 	trapped_xerror = 0;
 
 	if (list) {
-		XFree(list);
+		XFree_wr(list);
 	}
 	if (parent && name) {
 		XFetchName(dpy, parent, name);
@@ -77,7 +79,13 @@ int valid_window(Window win, XWindowAttributes *attr_ret, int bequiet) {
 	if (win == None) {
 		return 0;
 	}
+#ifdef MACOSX
+	if (macosx_console) {
+		return macosx_valid_window(win, attr_ret);
+	}
+#endif
 	RAWFB_RET(0)
+
 #if NO_X11
 	nox11_exit(1);
 	return 0;
@@ -179,14 +187,21 @@ void snapshot_stack_list(int free_only, double allowed_age) {
 	stack_list_num = 0;
 	last_free = now;
 
+#ifdef MACOSX
+	if (! macosx_console) {
+		RAWFB_RET_VOID
+	}
+#else
 	RAWFB_RET_VOID
-#if NO_X11
+#endif
+
+#if NO_X11 && !defined(MACOSX)
 	return;
 #else
 
 	X_LOCK;
 	/* no need to trap error since rootwin */
-	rc = XQueryTree(dpy, rootwin, &r, &w, &list, &ui);
+	rc = XQueryTree_wr(dpy, rootwin, &r, &w, &list, &ui);
 	num = (int) ui;
 
 	if (! rc) {
@@ -213,7 +228,7 @@ void snapshot_stack_list(int free_only, double allowed_age) {
 		j++;
 	}
 	for (i=0; i<blackouts; i++) {
-		stack_list[j].win = 0x1;
+		stack_list[j].win = get_boff() + 1;
 		stack_list[j].fetched = 1;
 		stack_list[j].valid = 1;
 		stack_list[j].x = blackr[i].x1;
@@ -237,15 +252,28 @@ if (0) fprintf(stderr, "blackr: %d %dx%d+%d+%d\n", i,
 		    stack_list_num, stack_list_len);
 	}
 
-	XFree(list);
+	XFree_wr(list);
 	X_UNLOCK;
 #endif	/* NO_X11 */
+}
+
+int get_boff(void) {
+	if (macosx_console) {
+		return 0x1000000;
+	} else {
+		return 0;		
+	}
+}
+
+int get_bwin(void) {
+	return 10;		
 }
 
 void update_stack_list(void) {
 	int k;
 	double now;
 	XWindowAttributes attr;
+	int boff, bwin;
 
 	if (! stack_list) {
 		return;
@@ -255,11 +283,14 @@ void update_stack_list(void) {
 	}
 
 	dtime0(&now);
+
+	boff = get_boff();
+	bwin = get_bwin();
 	
 	X_LOCK;
 	for (k=0; k < stack_list_num; k++) {
 		Window win = stack_list[k].win;
-		if (win != None && win < 10) {
+		if (win != None && boff <= win && win < boff + bwin) {
 			;	/* special, blackout */
 		} else if (!valid_window(win, &attr, 1)) {
 			stack_list[k].valid = 0;
@@ -289,6 +320,13 @@ Window query_pointer(Window start) {
 	Window r, c;	
 	int rx, ry, wx, wy;
 	unsigned int mask;
+
+#ifdef MACOSX
+	if (macosx_console) {
+		macosx_get_cursor_pos(&rx, &rx);
+	}
+#endif
+
 	RAWFB_RET(None)
 #if NO_X11
 	return None;
@@ -296,7 +334,7 @@ Window query_pointer(Window start) {
 	if (start == None) {
 		start = rootwin;
 	}
-	if (XQueryPointer(dpy, start, &r, &c, &rx, &ry, &wx, &wy, &mask)) {
+	if (XQueryPointer_wr(dpy, start, &r, &c, &rx, &ry, &wx, &wy, &mask)) {
 		return c;
 	} else {
 		return None;
@@ -314,7 +352,7 @@ unsigned int mask_state(void) {
 	return 0;
 #else
 
-	if (XQueryPointer(dpy, rootwin, &r, &c, &rx, &ry, &wx, &wy, &mask)) {
+	if (XQueryPointer_wr(dpy, rootwin, &r, &c, &rx, &ry, &wx, &wy, &mask)) {
 		return mask;
 	} else {
 		return 0;
@@ -340,6 +378,7 @@ int pick_windowid(unsigned long *num) {
 		rfbLog("   exiting.\n");
 		clean_up_exit(1);
 	}
+	close_exec_fds();
 	p = popen("xwininfo", "r");
 
 	if (! p) {
@@ -462,7 +501,7 @@ Window descend_pointer(int depth, Window start, char *name_info, int len) {
 				} else {
 					filled = 1;
 				}
-				XFree(name);
+				XFree_wr(name);
 			}
 		}
 		if (store && classhint && ! filled) {
@@ -492,14 +531,14 @@ Window descend_pointer(int depth, Window start, char *name_info, int len) {
 					filled = 1;
 				}
 				if (classhint->res_class) {
-					XFree(classhint->res_class);
+					XFree_wr(classhint->res_class);
 				}
 				if (classhint->res_name) {
-					XFree(classhint->res_name);
+					XFree_wr(classhint->res_name);
 				}
 			}
 		}
-		if (! XQueryPointer(dpy, c, &r, &c, &rx, &ry, &wx, &wy, &m)) {
+		if (! XQueryPointer_wr(dpy, c, &r, &c, &rx, &ry, &wx, &wy, &m)) {
 			break;
 		}
 		if (! c) {

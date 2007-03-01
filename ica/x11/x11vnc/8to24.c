@@ -434,7 +434,7 @@ if (db24 > 2) fprintf(stderr, " check_for_multivis: %.4f\n", now - last_call);
 
 		old_handler = XSetErrorHandler(trap_xerror);
 		trapped_xerror = 0;
-		rc = XQueryTree(dpy, win, &r, &parent, &list0, &nc0);
+		rc = XQueryTree_wr(dpy, win, &r, &parent, &list0, &nc0);
 		XSetErrorHandler(old_handler);
 
 		if (! rc || trapped_xerror) {
@@ -460,7 +460,7 @@ if (db24 > 2) fprintf(stderr, " check_for_multivis: %.4f\n", now - last_call);
 
 			old_handler = XSetErrorHandler(trap_xerror);
 			trapped_xerror = 0;
-			rc = XQueryTree(dpy, win1, &r, &parent, &list1, &nc1);
+			rc = XQueryTree_wr(dpy, win1, &r, &parent, &list1, &nc1);
 			XSetErrorHandler(old_handler);
 
 			if (! rc || trapped_xerror) {
@@ -479,11 +479,11 @@ if (db24 > 2) fprintf(stderr, " check_for_multivis: %.4f\n", now - last_call);
 				/* more? Which wm does this? */
 			}
 			if (nc1) {
-				XFree(list1);
+				XFree_wr(list1);
 			}
 		}
 		if (nc0) {
-			XFree(list0);
+			XFree_wr(list0);
 		}
 	}
 	X_UNLOCK;

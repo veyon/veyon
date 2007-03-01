@@ -156,9 +156,9 @@ void initialize_xrecord(void) {
 	RAWFB_RET_VOID
 #if LIBVNCSERVER_HAVE_RECORD
 
-	if (rr_CA) XFree(rr_CA);
-	if (rr_CW) XFree(rr_CW);
-	if (rr_GS) XFree(rr_GS);
+	if (rr_CA) XFree_wr(rr_CA);
+	if (rr_CW) XFree_wr(rr_CW);
+	if (rr_GS) XFree_wr(rr_GS);
 
 	rr_CA = XRecordAllocRange();
 	rr_CW = XRecordAllocRange();
@@ -236,9 +236,9 @@ void shutdown_xrecord(void) {
 			xserver_grabbed, dnowx());
 	}
 
-	if (rr_CA) XFree(rr_CA);
-	if (rr_CW) XFree(rr_CW);
-	if (rr_GS) XFree(rr_GS);
+	if (rr_CA) XFree_wr(rr_CA);
+	if (rr_CW) XFree_wr(rr_CW);
+	if (rr_GS) XFree_wr(rr_GS);
 
 	rr_CA = NULL;
 	rr_CW = NULL;

@@ -1020,8 +1020,8 @@ rfbBool custom_passwd_check(rfbClientPtr cl, const char *response, int len) {
 static void handle_one_http_request(void) {
 
 	rfbLog("handle_one_http_request: begin.\n");
-	if (screen->httpPort == 0) {
-		int port = find_free_port(5800, 5850);
+	if (inetd || screen->httpPort == 0) {
+		int port = find_free_port(5800, 5860);
 		if (port) {
 			screen->httpPort = port;
 		} else {
@@ -1221,6 +1221,7 @@ void user_supplied_opts(char *opts) {
 }
 
 extern char find_display[];
+extern char create_display[];
 static XImage ximage_struct;
 
 int wait_for_client(int *argc, char** argv, int http) {
@@ -1231,6 +1232,9 @@ int wait_for_client(int *argc, char** argv, int http) {
 	int db = 0;
 	char tmp[] = "/tmp/x11vnc-find_display.XXXXXX";
 	int tmp_fd = -1, dt = 0;
+	char *create_cmd = NULL;
+	char *users_list_save = NULL;
+	int created_disp = 0;
 
 	if (! use_dpy || strstr(use_dpy, "WAIT:") != use_dpy) {
 		return 0;
@@ -1283,6 +1287,10 @@ int wait_for_client(int *argc, char** argv, int http) {
 		cmd = str + strlen("cmd=");
 		if (!strcmp(str, "FINDDISPLAY-print")) {
 			fprintf(stdout, "%s", find_display);
+			clean_up_exit(0);
+		}
+		if (!strcmp(str, "FINDCREATEDISPLAY-print")) {
+			fprintf(stdout, "%s", create_display);
 			clean_up_exit(0);
 		}
 		if (db) fprintf(stderr, "cmd: %s\n", cmd);
@@ -1394,6 +1402,12 @@ int wait_for_client(int *argc, char** argv, int http) {
 			rfbLog("taking unixpw_client off hold.\n");
 			unixpw_client->onHold = FALSE;
 		}
+		if (cmd && strstr(cmd, "FINDCREATEDISPLAY") == cmd) {
+			if (users_list && strstr(users_list, "unixpw=") == users_list) {
+				users_list_save = users_list;
+				users_list = NULL;
+			}
+		}
 		while (1) {
 			if (shut_down) {
 				clean_up_exit(0);
@@ -1421,7 +1435,8 @@ int wait_for_client(int *argc, char** argv, int http) {
 		memset(line1, 0, 1024);
 		memset(line2, 0, 16384);
 
-		if (!strcmp(cmd, "FINDDISPLAY")) {
+		if (!strcmp(cmd, "FINDDISPLAY") ||
+		    strstr(cmd, "FINDCREATEDISPLAY") == cmd) {
 			tmp_fd = mkstemp(tmp);
 			if (tmp_fd < 0) {
 				rfbLog("wait_for_client: open failed: %s\n", tmp);
@@ -1431,6 +1446,28 @@ int wait_for_client(int *argc, char** argv, int http) {
 			write(tmp_fd, find_display, strlen(find_display));
 			close(tmp_fd);
 			chmod(tmp, 0644);
+
+			if (strstr(cmd, "FINDCREATEDISPLAY") == cmd) {
+				char *opts = strchr(cmd, '-');
+				char st[] = "";
+				if (opts) {
+					opts++;
+				} else {
+					opts = st;
+				}
+				if (unixpw && keep_unixpw_user) {
+					create_cmd = (char *) malloc(strlen(tmp)
+					    + strlen("env USER='' /bin/sh ")
+					    + strlen(keep_unixpw_user) + 1 + strlen(opts) + 1);
+					sprintf(create_cmd, "env USER='%s' /bin/sh %s %s",
+					    keep_unixpw_user, tmp, opts);
+				} else {
+					create_cmd = (char *) malloc(strlen(tmp)
+					    + strlen("/bin/sh ") + 1 + strlen(opts) + 1);
+					sprintf(create_cmd, "/bin/sh %s %s", tmp, opts);
+				}
+if (db) fprintf(stderr, "create_cmd: %s\n", create_cmd);
+			}
 			cmd = (char *) malloc(strlen(tmp) + strlen("/bin/sh ") + 1);
 			sprintf(cmd, "/bin/sh %s", tmp);
 		}
@@ -1447,16 +1484,57 @@ int wait_for_client(int *argc, char** argv, int http) {
 				n = 18000;
 				res = su_verify(keep_unixpw_user,
 				    keep_unixpw_pass, cmd, line, &n);
-				strzero(keep_unixpw_user);
-				strzero(keep_unixpw_pass);
 			}
-			keep_unixpw = 0;
+
+if (db) write(2, line, n); write(2, "\n", 1);
+
+			if (! res && create_cmd) {
+				FILE *mt = fopen(tmp, "w");
+				if (! mt) {
+					rfbLog("wait_for_client: open failed: %s\n", tmp);
+					rfbLogPerror("fopen");
+					clean_up_exit(1);
+				}
+				fprintf(mt, "%s", create_display);
+				fclose(mt);
+
+				if (getuid() != 0) {
+					/* if not root, run as the other user... */
+					n = 18000;
+					res = su_verify(keep_unixpw_user,
+					    keep_unixpw_pass, create_cmd, line, &n);
+/*if (1) fprintf(stderr, "line: '%s'\n", line); */
+
+				} else {
+					FILE *p;
+					close_exec_fds();
+					rfbLog("wait_for_client: running: %s\n", create_cmd);
+					p = popen(create_cmd, "r");
+					if (! p) {
+						rfbLog("wait_for_client: popen failed: %s\n", create_cmd);
+						res = 0;
+					} else if (fgets(line1, 1024, p) == NULL) {
+						rfbLog("wait_for_client: read failed: %s\n", create_cmd);
+						res = 0;
+					} else {
+						n = fread(line2, 1, 16384, p);
+						if (pclose(p) != 0) {
+							res = 0;
+						} else {
+							strncpy(line, line1, 100);
+							memcpy(line + strlen(line1), line2, n);
+if (db) fprintf(stderr, "line1: '%s'\n", line1);
+							n += strlen(line1);
+							created_disp = 1;
+							res = 1;
+						}
+					}
+				}
+			}
 
 			if (tmp_fd >= 0) {
 				unlink(tmp);
 			}
-
-if (db) write(2, line, n); write(2, "\n", 1);
 
 			if (! res) {
 				rfbLog("wait_for_client: cmd failed: %s\n", cmd);
@@ -1490,18 +1568,21 @@ if (db) write(2, line, n); write(2, "\n", 1);
 						continue;
 					}
 				}
+				
 				line2[i] = q[k+j];
 				i++;
 			}
 		} else {
-			FILE *p = popen(cmd, "r");
+			FILE *p;
+			int rc;
+			close_exec_fds();
+			p = popen(cmd, "r");
 			if (! p) {
 				rfbLog("wait_for_client: cmd failed: %s\n", cmd);
 				rfbLogPerror("popen");
 				if (tmp_fd >= 0) {
 					unlink(tmp);
 				}
-				unixpw_msg("No DISPLAY found.", 3);
 				clean_up_exit(1);
 			}
 			if (fgets(line1, 1024, p) == NULL) {
@@ -1510,20 +1591,68 @@ if (db) write(2, line, n); write(2, "\n", 1);
 				if (tmp_fd >= 0) {
 					unlink(tmp);
 				}
-				unixpw_msg("No DISPLAY found.", 3);
 				clean_up_exit(1);
 			}
 			n = fread(line2, 1, 16384, p);
-			pclose(p);
+			rc = pclose(p);
+
+			if (create_cmd && rc != 0) {
+				FILE *mt = fopen(tmp, "w");
+				if (! mt) {
+					rfbLog("wait_for_client: open failed: %s\n", tmp);
+					rfbLogPerror("fopen");
+					if (tmp_fd >= 0) {
+						unlink(tmp);
+					}
+					clean_up_exit(1);
+				}
+				fprintf(mt, "%s", create_display);
+				fclose(mt);
+
+				rfbLog("wait_for_client: FINDCREATEDISPLAY cmd: %s\n", create_cmd);
+
+				p = popen(create_cmd, "r");
+				if (! p) {
+					rfbLog("wait_for_client: cmd failed: %s\n", create_cmd);
+					rfbLogPerror("popen");
+					if (tmp_fd >= 0) {
+						unlink(tmp);
+					}
+					clean_up_exit(1);
+				}
+				if (fgets(line1, 1024, p) == NULL) {
+					rfbLog("wait_for_client: read failed: %s\n", create_cmd);
+					rfbLogPerror("fgets");
+					if (tmp_fd >= 0) {
+						unlink(tmp);
+					}
+					clean_up_exit(1);
+				}
+				n = fread(line2, 1, 16384, p);
+			}
 			if (tmp_fd >= 0) {
 				unlink(tmp);
 			}
 		}
 
 		if (strstr(line1, "DISPLAY=") != line1) {
-			rfbLog("wait_for_client: bad reply %s\n", line1);
+			rfbLog("wait_for_client: bad reply '%s'\n", line1);
 			unixpw_msg("No DISPLAY found.", 3);
 			clean_up_exit(1);
+		}
+
+		if (strstr(line1, ",VT=")) {
+			int vt;
+			char *t = strstr(line1, ",VT=");
+			vt = atoi(t + strlen(",VT="));
+			*t = '\0';
+			if (7 <= vt && vt <= 128) {
+				char chvt[100];
+				sprintf(chvt, "chvt %d >/dev/null 2>/dev/null &", vt);
+				rfbLog("running: %s\n", chvt);
+				system(chvt);
+				sleep(2);
+			}
 		}
 
 		use_dpy = strdup(line1 + strlen("DISPLAY="));
@@ -1551,9 +1680,53 @@ if (db) write(2, line, n); write(2, "\n", 1);
 if (db) fprintf(stderr, "xauth_raw_len: %d\n", n);
 			}
 		}
+
+		if (users_list_save && keep_unixpw_user) {
+			char *user = keep_unixpw_user;
+			char *u = (char *)malloc(strlen(user)+1); 
+
+			users_list = users_list_save;
+
+			u[0] = '\0';
+			if (!strcmp(users_list, "unixpw=")) {
+				sprintf(u, "+%s", user);
+			} else {
+				char *p, *str = strdup(users_list);
+				p = strtok(str + strlen("unixpw="), ",");
+				while (p) {
+					if (!strcmp(p, user)) {
+						sprintf(u, "+%s", user);
+						break;
+					}
+					p = strtok(NULL, ",");
+				}
+				free(str);
+			}
+			
+			if (u[0] == '\0') {
+				rfbLog("unixpw_accept skipping switch to user: %s\n", user);
+			} else if (switch_user(u, 0)) {
+				rfbLog("unixpw_accept switched to user: %s\n", user);
+			} else {
+				rfbLog("unixpw_accept failed to switched to user: %s\n", user);
+			}
+			free(u);
+		}
+
 		if (unixpw) {
 			char str[32];
-			snprintf(str, 30, "Using DISPLAY %s", use_dpy);
+
+			if (keep_unixpw_user && keep_unixpw_pass) {
+				strzero(keep_unixpw_user);
+				strzero(keep_unixpw_pass);
+				keep_unixpw = 0;
+			}
+
+			if (created_disp) {
+				snprintf(str, 30, "Created DISPLAY %s", use_dpy);
+			} else {
+				snprintf(str, 30, "Using DISPLAY %s", use_dpy);
+			}
 			unixpw_msg(str, 2);
 		}
 	} else {
@@ -1564,6 +1737,9 @@ if (db) fprintf(stderr, "xauth_raw_len: %d\n", n);
 	}
 	if (unixpw && keep_unixpw_opts && keep_unixpw_opts[0] != '\0') {
 		user_supplied_opts(keep_unixpw_opts);
+	}
+	if (create_cmd) {
+		free(create_cmd);
 	}
 
 	return 1;

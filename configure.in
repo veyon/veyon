@@ -11,6 +11,7 @@ AX_PREFIX_CONFIG_H([common/include/rfb/rfbconfig.h])
 
 if ! test -z "${prefix}" -o "${prefix}" = "NONE" ; then
 	CFLAGS="$CFLAGS -I${prefix}/include"
+	CPPFLAGS="$CFLAGS -I${prefix}/include"
 	CXXFLAGS="$CXXFLAGS -I${prefix}/include"
 	LDFLAGS="$LDFLAGS -L${prefix}/bin"
 fi
@@ -24,7 +25,7 @@ AC_LIBTOOL_WIN32_DLL
 AC_PROG_LIBTOOL
 
 
-EXTRAFLAGS="-g0 -O2 -ansi -Wall"
+EXTRAFLAGS="-g0 -O2 -Wall"
 #-floop-optimize2 -fomit-frame-pointer"
 
 if test "x`$CC --version|head -1|cut -d\  -f3|cut -d. -f1`" = "x4" ; then
@@ -102,11 +103,13 @@ AH_TEMPLATE(HAVE_LIBXTRAP, [DEC-XTRAP extension build environment present])
 AH_TEMPLATE(HAVE_RECORD, [RECORD extension build environment present])
 AH_TEMPLATE(HAVE_SOLARIS_XREADSCREEN, [Solaris XReadScreen available])
 AH_TEMPLATE(HAVE_IRIX_XREADDISPLAY, [IRIX XReadDisplay available])
+AH_TEMPLATE(HAVE_DPMS, [DPMS extension build environment present])
 AH_TEMPLATE(HAVE_FBPM, [FBPM extension build environment present])
 AH_TEMPLATE(HAVE_LINUX_VIDEODEV_H, [video4linux build environment present])
 AH_TEMPLATE(HAVE_LINUX_FB_H, [linux fb device build environment present])
 AH_TEMPLATE(HAVE_LINUX_INPUT_H, [linux/input.h present])
 AH_TEMPLATE(HAVE_LINUX_UINPUT_H, [linux uinput device build environment present])
+AH_TEMPLATE(HAVE_MACOSX_NATIVE_DISPLAY, [build MacOS X native display support])
 
 AC_ARG_WITH(xkeyboard,
 [  --without-xkeyboard     disable xkeyboard extension support],,)
@@ -124,12 +127,16 @@ AC_ARG_WITH(xrecord,
 [  --without-xrecord       disable xrecord extension support],,)
 AC_ARG_WITH(fbpm,
 [  --without-fbpm          disable fbpm extension support],,)
+AC_ARG_WITH(dpms,
+[  --without-dpms          disable dpms extension support],,)
 AC_ARG_WITH(v4l,
 [  --without-v4l           disable video4linux support],,)
 AC_ARG_WITH(fbdev,
 [  --without-fbdev         disable linux fb device support],,)
 AC_ARG_WITH(uinput,
 [  --without-uinput        disable linux uinput device support],,)
+AC_ARG_WITH(macosx-native,
+[  --without-macosx-native disable MacOS X native display support],,)
 
 if test "x$with_x" = "xno"; then
 	HAVE_X="false"
@@ -153,10 +160,17 @@ elif test "$X_CFLAGS" != "-DX_DISPLAY_MISSING"; then
 			[AC_DEFINE(HAVE_IRIX_XREADDISPLAY)], ,
 			[#include <X11/Xlib.h>])
 
-		AC_CHECK_HEADER(X11/extensions/fbpm.h,
-			[AC_DEFINE(HAVE_FBPM)], ,
-			[#include <X11/Xlib.h>
-#include <X11/Xmd.h>])
+		if test "x$with_fbpm" != "xno"; then
+			AC_CHECK_LIB(Xext, FBPMForceLevel, 
+				[AC_DEFINE(HAVE_FBPM)], ,
+				$X_LIBS $X_PRELIBS -lX11 $X_EXTRA_LIBS)
+		fi
+
+		if test "x$with_dpms" != "xno"; then
+			AC_CHECK_LIB(Xext, DPMSForceLevel, 
+				[AC_DEFINE(HAVE_DPMS)], ,
+				$X_LIBS $X_PRELIBS -lX11 $X_EXTRA_LIBS)
+		fi
 
 		AC_CHECK_LIB(Xtst, XTestGrabControl, 
 			X_PRELIBS="-lXtst $X_PRELIBS"
@@ -165,7 +179,7 @@ elif test "$X_CFLAGS" != "-DX_DISPLAY_MISSING"; then
 
 		AC_CHECK_LIB(Xtst, XTestFakeKeyEvent, 
 			X_PRELIBS="-lXtst $X_PRELIBS"
-			[AC_DEFINE(HAVE_XTEST)], ,
+			[AC_DEFINE(HAVE_XTEST) HAVE_XTEST="true"], ,
 			$X_LIBS $X_PRELIBS -lX11 $X_EXTRA_LIBS)
 
 		if test "x$with_xrecord" != "xno"; then
@@ -278,28 +292,97 @@ elif test "$X_CFLAGS" != "-DX_DISPLAY_MISSING"; then
 #			fi
 #		fi
 
-#		if test "x$with_v4l" != "xno"; then
-#			AC_CHECK_HEADER(linux/videodev.h,
-#				[AC_DEFINE(HAVE_LINUX_VIDEODEV_H)],,)
-#		fi
-		if test "x$with_fbdev" != "xno"; then
-			AC_CHECK_HEADER(linux/fb.h,
-				[AC_DEFINE(HAVE_LINUX_FB_H)],,)
-		fi
-
-		if test "x$with_uinput" != "xno"; then
-			AC_CHECK_HEADER(linux/input.h,
-				[AC_DEFINE(HAVE_LINUX_INPUT_H) HAVE_LINUX_INPUT_H="true"],,)
-			if test "x$HAVE_LINUX_INPUT_H" = "xtrue"; then
-				AC_CHECK_HEADER(linux/uinput.h,
-					[AC_DEFINE(HAVE_LINUX_UINPUT_H)],, [#include <linux/input.h>])
-			fi
-		fi
 		X_LIBS="$X_LIBS $X_PRELIBS -lX11 $X_EXTRA_LIBS"
 	fi
 fi
+
 AC_SUBST(X_LIBS)
 AM_CONDITIONAL(HAVE_X, test $HAVE_X != "false")
+
+if test "$build_win32" != "true" -a "x$HAVE_X" = "xfalse" -a "x$with_x" != "xno"; then
+	AC_MSG_ERROR([
+==========================================================================
+A working X window system build environment is required to build iTALC.
+Make sure any required X development packages are installed.  If they are
+installed in non-standard locations, one can use the --x-includes=DIR
+and --x-libraries=DIR configure options or set the CPPFLAGS and LDFLAGS
+environment variables to indicate where the X window system header files
+and libraries may be found.  On 64+32 bit machines you may need to point
+to lib64 or lib32 directories to pick up the correct word size.
+
+If you want to build iTALC without X support (e.g. for -rawfb use only
+or for native Mac OS X), specify the --without-x configure option.
+==========================================================================
+])
+fi
+
+if test "$build_win32" != "true" -a "x$HAVE_X" = "xtrue" -a "x$HAVE_XTEST" != "xtrue"; then
+	AC_MSG_ERROR([
+==========================================================================
+A working build environment for the XTEST extension was not found (libXtst).
+An iTALC built this way will be only barely usable.  You will be able to
+move the mouse but not click or type.  There can also be deadlocks if an
+application grabs the X server.
+
+It is recommended that you install the necessary development packages
+for XTEST (perhaps it is named something like libxtst-dev) and run
+configure again.
+==========================================================================
+])
+fi
+
+if test "x$with_v4l" != "xno"; then
+	AC_CHECK_HEADER(linux/videodev.h,
+		[AC_DEFINE(HAVE_LINUX_VIDEODEV_H)],,)
+fi
+
+if test "x$with_fbdev" != "xno"; then
+	AC_CHECK_HEADER(linux/fb.h,
+		[AC_DEFINE(HAVE_LINUX_FB_H)],,)
+fi
+
+if test "x$with_uinput" != "xno"; then
+	AC_CHECK_HEADER(linux/input.h,
+		[AC_DEFINE(HAVE_LINUX_INPUT_H) HAVE_LINUX_INPUT_H="true"],,)
+	if test "x$HAVE_LINUX_INPUT_H" = "xtrue"; then
+		AC_CHECK_HEADER(linux/uinput.h,
+			[AC_DEFINE(HAVE_LINUX_UINPUT_H)],, [#include <linux/input.h>])
+	fi
+fi
+
+if test "x$with_macosx_native" != "xno"; then
+	AC_DEFINE(HAVE_MACOSX_NATIVE_DISPLAY)
+fi
+
+
+
+#AH_TEMPLATE(HAVE_AVAHI, [Avahi/mDNS client build environment present])
+#AC_ARG_WITH(avahi,
+#[  --without-avahi         disable support for Avahi/mDNS]
+#[  --with-avahi=DIR        use avahi include/library files in DIR],,)
+#if test "x$with_avahi" != "xno"; then
+#	printf "checking for avahi... "
+#	if test ! -z "$with_avahi" -a "x$with_avahi" != "xyes"; then
+#		AVAHI_CFLAGS="-I$with_avahi/include"
+#		AVAHI_LIBS="-L$with_avahi/lib -lavahi-common -lavahi-client"
+#		echo "using $with_avahi"
+#		with_avahi=yes
+#	elif pkg-config --atleast-version=0.6.4 avahi-client >/dev/null 2>&1; then
+#		AVAHI_CFLAGS=`pkg-config --cflags avahi-client`
+#		AVAHI_LIBS=`pkg-config --libs avahi-client`
+#		with_avahi=yes
+#		echo yes
+#	else
+#		with_avahi=no
+#		echo no
+#	fi
+#fi
+#if test "x$with_avahi" = "xyes"; then
+#	AC_DEFINE(HAVE_AVAHI)
+#	AC_SUBST(AVAHI_CFLAGS)
+#	AC_SUBST(AVAHI_LIBS)
+#fi
+
 
 
 # Checks for libraries and header files
@@ -342,13 +425,6 @@ AC_DEFINE(HAVE_LIBJPEG)
 AC_DEFINE(HAVE_JPEGLIB_H)
 AC_DEFINE(HAVE_LIBSSL)
 AC_DEFINE(HAVE_DSA_H)
-
-
-AC_CHECK_HEADER(pthread.h, HAVE_PTHREAD_H="true")
-if test ! -z "$HAVE_PTHREAD_H"; then
-	AC_CHECK_LIB(pthread, pthread_mutex_lock)
-	AC_CHECK_LIB(pthread, pthread_mutex_lock, HAVE_LIBPTHREAD="true")
-fi
 
 AC_ARG_WITH(pthread,
 [  --without-pthread       disable support for libpthread],,)
@@ -412,8 +488,8 @@ fi
 AC_FUNC_MEMCMP
 AC_FUNC_STAT
 AC_FUNC_STRFTIME
-AC_FUNC_FORK
 AC_FUNC_VPRINTF
+AC_FUNC_FORK
 
 AC_CHECK_LIB(nsl,gethostbyname)
 AC_CHECK_LIB(socket,socket)
@@ -425,6 +501,10 @@ AM_CONDITIONAL(CYGIPC, test "$HAVE_CYGIPC" = "true")
 
 # Check if /dev/vcsa1 exists, if so, define LINUX
 AM_CONDITIONAL(LINUX, test -c /dev/vcsa1)
+
+# Check for OS X specific header
+AC_CHECK_HEADER(ApplicationServices/ApplicationServices.h, HAVE_OSX="true")
+AM_CONDITIONAL(OSX, test "$HAVE_OSX" = "true")
 
 # Check for OS X specific header
 AC_CHECK_HEADER(ApplicationServices/ApplicationServices.h, HAVE_OSX="true")

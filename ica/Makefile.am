@@ -173,6 +173,8 @@ man_MANS=ica.1
 
 
 EXTRA_DIST =	$(man_MANS)						\
+		$(srcdir)/x11/README					\
+		$(srcdir)/win32/README					\
 		$(srcdir)/x11/libvncserver/tableinit24.c		\
 		$(srcdir)/x11/libvncserver/tableinittctemplate.c	\
 		$(srcdir)/x11/libvncserver/tabletranstemplate.c		\

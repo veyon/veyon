@@ -75,6 +75,14 @@
 /* errno */
 #include <errno.h>
 
+#ifdef __MINGW32__
+static int compat_mkdir(const char *path, int mode)
+{
+	return mkdir(path);
+}
+#define mkdir compat_mkdir
+#endif
+
 static void rfbProcessClientProtocolVersion(rfbClientPtr cl);
 static void rfbProcessClientNormalMessage(rfbClientPtr cl);
 static void rfbProcessClientInitMessage(rfbClientPtr cl);
@@ -1115,32 +1123,32 @@ rfbBool rfbSendFileTransferMessage(rfbClientPtr cl, uint8_t contentType, uint8_t
  */
 #define MAX_PATH 260
 
-typedef struct _FILETIME {
+typedef struct {
     uint32_t dwLowDateTime;
     uint32_t dwHighDateTime;
-} FILETIME; 
+} RFB_FILETIME; 
 
-typedef struct _WIN32_FIND_DATA {
+typedef struct {
     uint32_t dwFileAttributes;
-    FILETIME ftCreationTime;
-    FILETIME ftLastAccessTime;
-    FILETIME ftLastWriteTime;
+    RFB_FILETIME ftCreationTime;
+    RFB_FILETIME ftLastAccessTime;
+    RFB_FILETIME ftLastWriteTime;
     uint32_t nFileSizeHigh;
     uint32_t nFileSizeLow;
     uint32_t dwReserved0;
     uint32_t dwReserved1;
     uint8_t  cFileName[ MAX_PATH ];
     uint8_t  cAlternateFileName[ 14 ];
-} WIN32_FIND_DATA;
+} RFB_FIND_DATA;
 
-#define FILE_ATTRIBUTE_READONLY   0x1
-#define FILE_ATTRIBUTE_HIDDEN     0x2
-#define FILE_ATTRIBUTE_SYSTEM     0x4
-#define FILE_ATTRIBUTE_DIRECTORY  0x10
-#define FILE_ATTRIBUTE_ARCHIVE    0x20
-#define FILE_ATTRIBUTE_NORMAL     0x80
-#define FILE_ATTRIBUTE_TEMPORARY  0x100
-#define FILE_ATTRIBUTE_COMPRESSED 0x800
+#define RFB_FILE_ATTRIBUTE_READONLY   0x1
+#define RFB_FILE_ATTRIBUTE_HIDDEN     0x2
+#define RFB_FILE_ATTRIBUTE_SYSTEM     0x4
+#define RFB_FILE_ATTRIBUTE_DIRECTORY  0x10
+#define RFB_FILE_ATTRIBUTE_ARCHIVE    0x20
+#define RFB_FILE_ATTRIBUTE_NORMAL     0x80
+#define RFB_FILE_ATTRIBUTE_TEMPORARY  0x100
+#define RFB_FILE_ATTRIBUTE_COMPRESSED 0x800
 
 rfbBool rfbFilenameTranslate2UNIX(rfbClientPtr cl, char *path, char *unixPath)
 {
@@ -1180,7 +1188,7 @@ rfbBool rfbSendDirContent(rfbClientPtr cl, int length, char *buffer)
     char retfilename[MAX_PATH];
     char path[MAX_PATH];
     struct stat statbuf;
-    WIN32_FIND_DATA win32filename;
+    RFB_FIND_DATA win32filename;
     int nOptLen = 0, retval=0;
     DIR *dirp=NULL;
     struct dirent *direntp=NULL;
@@ -1203,9 +1211,9 @@ rfbBool rfbSendDirContent(rfbClientPtr cl, int length, char *buffer)
         if (retval==0)
         {
             memset((char *)&win32filename, 0, sizeof(win32filename));
-            win32filename.dwFileAttributes = Swap32IfBE(FILE_ATTRIBUTE_NORMAL);
+            win32filename.dwFileAttributes = Swap32IfBE(RFB_FILE_ATTRIBUTE_NORMAL);
             if (S_ISDIR(statbuf.st_mode))
-              win32filename.dwFileAttributes = Swap32IfBE(FILE_ATTRIBUTE_DIRECTORY);
+              win32filename.dwFileAttributes = Swap32IfBE(RFB_FILE_ATTRIBUTE_DIRECTORY);
             win32filename.ftCreationTime.dwLowDateTime = Swap32IfBE(statbuf.st_ctime);   /* Intel Order */
             win32filename.ftCreationTime.dwHighDateTime = 0;
             win32filename.ftLastAccessTime.dwLowDateTime = Swap32IfBE(statbuf.st_atime); /* Intel Order */
@@ -1224,7 +1232,7 @@ rfbBool rfbSendDirContent(rfbClientPtr cl, int length, char *buffer)
             /* Do not show hidden files (but show how to move up the tree) */
             if ((strcmp(direntp->d_name, "..")==0) || (direntp->d_name[0]!='.'))
             {
-                nOptLen = sizeof(WIN32_FIND_DATA) - MAX_PATH - 14 + strlen((char *)win32filename.cFileName);
+                nOptLen = sizeof(RFB_FIND_DATA) - MAX_PATH - 14 + strlen((char *)win32filename.cFileName);
                 /*
                 rfbLog("rfbProcessFileTransfer() rfbDirContentRequest: rfbRDirContent: Sending \"%s\"\n", (char *)win32filename.cFileName);
                 */
@@ -1290,8 +1298,9 @@ rfbBool rfbSendFileTransferChunk(rfbClientPtr cl)
 	tv.tv_usec = 0;
 	n = select(cl->sock + 1, NULL, &wfds, NULL, &tv);
 
-	if (n<1)
+	if (n<0) {
             rfbLog("rfbSendFileTransferChunk() select failed: %s\n", strerror(errno));
+	}
         /* We have space on the transmit queue */
 	if (n > 0)
 	{
@@ -2969,9 +2978,9 @@ rfbSendNewFBSize(rfbClientPtr cl,
     }
 
     if (cl->PalmVNC==TRUE)
-        rfbLog("Sending a rfbEncodingNewFBSize in response to a PalmVNC  style frameuffer resize request (%dx%d)\n", w, h);
+        rfbLog("Sending rfbEncodingNewFBSize in response to a PalmVNC style framebuffer resize (%dx%d)\n", w, h);
     else
-        rfbLog("Sending a rfbEncodingNewFBSize in response to a UltraVNC style frameuffer resize request (%dx%d)\n", w, h);
+        rfbLog("Sending rfbEncodingNewFBSize for resize to (%dx%d)\n", w, h);
 
     rect.encoding = Swap32IfLE(rfbEncodingNewFBSize);
     rect.r.x = 0;

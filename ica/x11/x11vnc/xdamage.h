@@ -19,6 +19,7 @@ extern int XD_skip, XD_tot, XD_des;
 
 extern void add_region_xdamage(sraRegionPtr new_region);
 extern void clear_xdamage_mark_region(sraRegionPtr markregion, int flush);
+extern int collect_macosx_damage(int x_in, int y_in, int w_in, int h_in, int call);
 extern int collect_xdamage(int scancnt, int call);
 extern int xdamage_hint_skip(int y);
 extern void initialize_xdamage(void);

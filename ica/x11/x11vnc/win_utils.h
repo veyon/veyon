@@ -15,6 +15,8 @@ extern Bool xtranslate(Window src, Window dst, int src_x, int src_y, int *dst_x,
     int *dst_y, Window *child, int bequiet);
 extern int get_window_size(Window win, int *x, int *y);
 extern void snapshot_stack_list(int free_only, double allowed_age);
+extern int get_boff(void);
+extern int get_bwin(void);
 extern void update_stack_list(void);
 extern Window query_pointer(Window start);
 extern unsigned int mask_state(void);

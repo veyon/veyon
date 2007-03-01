@@ -15,7 +15,7 @@ int xtrap_base_event_type = 0;
 int xdamage_base_event_type = 0;
 
 /*               date +'lastmod: %Y-%m-%d' */
-char lastmod[] = "0.8.3 lastmod: 2006-11-06";
+char lastmod[] = "0.8.4 lastmod: 2006-11-26";
 
 /* X display info */
 
@@ -35,6 +35,9 @@ int cdpy_x, cdpy_y, coff_x, coff_y;	/* the -clip params */
 int button_mask = 0;		/* button state and info */
 int button_mask_prev = 0;
 int num_buttons = -1;
+
+unsigned int display_button_mask = 0;
+unsigned int display_mod_mask = 0;
 
 /* image structures */
 XImage *scanline = NULL;
@@ -77,6 +80,8 @@ unsigned long  main_red_mask = 0,  main_green_mask = 0,  main_blue_mask = 0;
 unsigned short main_red_max = 0,   main_green_max = 0,   main_blue_max = 0;
 unsigned short main_red_shift = 0, main_green_shift = 0, main_blue_shift = 0;
 
+int raw_fb_bytes_per_line = 0;
+
 /* scaling parameters */
 char *scale_str = NULL;
 double scale_fac = 1.0;
@@ -111,6 +116,7 @@ unsigned char *tile_has_xdamage_diff = NULL, *tile_row_has_xdamage_diff = NULL;
 
 /* times of recent events */
 time_t last_event, last_input = 0, last_client = 0;
+time_t last_local_input = 0;
 time_t last_keyboard_input = 0, last_pointer_input = 0; 
 time_t last_fb_bytes_sent = 0;
 double last_keyboard_time = 0.0;
@@ -137,6 +143,7 @@ int cursor_x = 0, cursor_y = 0;		/* x and y from the viewer(s) */
 int button_change_x = 0, button_change_y = 0;
 int got_user_input = 0;
 int got_pointer_input = 0;
+int got_local_pointer_input = 0;
 int got_pointer_calls = 0;
 int got_keyboard_input = 0;
 int got_keyboard_calls = 0;

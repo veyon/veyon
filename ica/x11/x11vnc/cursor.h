@@ -30,5 +30,7 @@ extern void set_no_cursor(void);
 extern void set_warrow_cursor(void);
 extern int set_cursor(int x, int y, int which);
 extern int check_x11_pointer(void);
+extern int store_cursor(int serial, unsigned long *data, int w, int h, int cbpp, int xhot, int yhot);
+extern unsigned long get_cursor_serial(int mode);
 
 #endif /* _X11VNC_CURSOR_H */

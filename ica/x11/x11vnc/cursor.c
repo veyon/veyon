@@ -33,6 +33,8 @@ void set_no_cursor(void);
 void set_warrow_cursor(void);
 int set_cursor(int x, int y, int which);
 int check_x11_pointer(void);
+int store_cursor(int serial, unsigned long *data, int w, int h, int cbpp, int xhot, int yhot);
+unsigned long get_cursor_serial(int mode);
 
 
 typedef struct win_str_info {
@@ -57,7 +59,7 @@ static void set_rfb_cursor(int which);
 static void tree_descend_cursor(int *depth, Window *w, win_str_info_t *winfo);
 static rfbCursorPtr pixels2curs(unsigned long *pixels, int w, int h,
     int xhot, int yhot, int Bpp);
-static int get_xfixes_cursor(int init);
+static int get_exact_cursor(int init);
 static void set_cursor_was_changed(rfbScreenInfoPtr s);
 
 
@@ -618,7 +620,7 @@ static void setup_cursors(void) {
 	}
 
 	/* clear any xfixes cursor cache (no freeing is done) */
-	get_xfixes_cursor(1);
+	get_exact_cursor(1);
 
 	/* manually fill in the data+masks: */
 	cur_empty.data	= curs_empty_data;
@@ -876,7 +878,7 @@ static void tree_descend_cursor(int *depth, Window *w, win_str_info_t *winfo) {
 			break;
 		}
 		/* TBD: query_pointer() */
-		XQueryPointer(dpy, c, &r, &c, &rx, &ry, &wx, &wy, &mask);
+		XQueryPointer_wr(dpy, c, &r, &c, &rx, &ry, &wx, &wy, &mask);
 	}
 
 	if (nm_info) {
@@ -898,7 +900,7 @@ static void tree_descend_cursor(int *depth, Window *w, win_str_info_t *winfo) {
 						strcpy(winfo->wm_name, name);
 						got_wm_name = 1;
 					}
-					XFree(name);
+					XFree_wr(name);
 				}
 			}
 			if (classhint && (! got_res_name || ! got_res_class)) {
@@ -910,7 +912,7 @@ static void tree_descend_cursor(int *depth, Window *w, win_str_info_t *winfo) {
 						strcpy(winfo->res_name, p);
 						got_res_name = 1;
 					}
-					XFree(p);
+					XFree_wr(p);
 					classhint->res_name = NULL;
 				}
 				p = classhint->res_class;
@@ -919,7 +921,7 @@ static void tree_descend_cursor(int *depth, Window *w, win_str_info_t *winfo) {
 						strcpy(winfo->res_class, p);
 						got_res_class = 1;
 					}
-					XFree(p);
+					XFree_wr(p);
 					classhint->res_class = NULL;
 				}
 			    }
@@ -1215,11 +1217,20 @@ static rfbCursorPtr pixels2curs(unsigned long *pixels, int w, int h,
 	return c;
 }
 
-static int get_xfixes_cursor(int init) {
-	static unsigned long last_cursor = 0;
-	static int last_index = 0;
-	static time_t curs_times[CURS_MAX];
-	static unsigned long curs_index[CURS_MAX];
+static unsigned long last_cursor = 0;
+static int last_index = 0;
+static time_t curs_times[CURS_MAX];
+static unsigned long curs_index[CURS_MAX];
+
+unsigned long get_cursor_serial(int mode) {
+	if (mode == 0) {
+		return last_cursor;
+	} else if (mode == 1) {
+		return (unsigned long) last_index;
+	}
+}
+
+static int get_exact_cursor(int init) {
 	int which = CURS_ARROW;
 
 	if (init) {
@@ -1234,11 +1245,20 @@ static int get_xfixes_cursor(int init) {
 		return -1;
 	}
 
+#ifdef MACOSX
+	if (macosx_console) {
+		return macosx_get_cursor();
+	}
+#endif
+
 	if (xfixes_present && dpy) {
 #if LIBVNCSERVER_HAVE_LIBXFIXES
-		int use, oldest, i;
-		time_t oldtime, now;
+		int last_idx = (int) get_cursor_serial(1);
 		XFixesCursorImage *xfc;
+
+		if (last_idx) {
+			which = last_idx;
+		}
 
 		if (! got_xfixes_cursor_notify && xfixes_base_event_type) {
 			/* try again for XFixesCursorNotify event */
@@ -1252,11 +1272,7 @@ static int get_xfixes_cursor(int init) {
 		}
 		if (! got_xfixes_cursor_notify) {
 			/* evidently no cursor change, just return last one */
-			if (last_index) {
-				return last_index;
-			} else {
-				return CURS_ARROW;
-			}
+			return which;
 		}
 		got_xfixes_cursor_notify = 0;
 
@@ -1266,113 +1282,117 @@ static int get_xfixes_cursor(int init) {
 		X_UNLOCK;
 		if (! xfc) {
 			/* failure. */
-			return(which);
+			return which;
 		}
 
-		if (xfc->cursor_serial == last_cursor) {
-			/* same serial index: no change */
-			X_LOCK;
-			XFree(xfc);
-			X_UNLOCK;
-			if (last_index) {
-				return last_index;
-			} else {
-				return CURS_ARROW;
-			}
-		}
-
-		oldest = CURS_DYN_MIN;
-		if (screen && screen->cursor == cursors[oldest]->rfb) {
-			oldest++;
-		}
-		oldtime = curs_times[oldest];
-		now = time(NULL);
-		for (i = CURS_DYN_MIN; i <= CURS_DYN_MAX; i++) {
-			if (screen && screen->cursor == cursors[i]->rfb) {
-				;
-			} else if (curs_times[i] < oldtime) {
-				/* watch for oldest one to overwrite */
-				oldest = i;
-				oldtime = curs_times[i];
-			}
-			if (xfc->cursor_serial == curs_index[i]) {
-				/*
-				 * got a hit with an existing cursor,
-				 * use that one.
-				 */
-				last_cursor = curs_index[i];
-				curs_times[i] = now;
-				last_index = i;
-				X_LOCK;
-				XFree(xfc);
-				X_UNLOCK;
-				return last_index;
-			}
-		}
-
-		/* we need to create the cursor and overwrite oldest */
-		use = oldest;
-		if (cursors[use]->rfb) {
-			/* clean up oldest if it exists */
-			if (cursors[use]->rfb->richSource) {
-				free(cursors[use]->rfb->richSource);
-				cursors[use]->rfb->richSource = NULL;
-			}
-			if (cursors[use]->rfb->alphaSource) {
-				free(cursors[use]->rfb->alphaSource);
-				cursors[use]->rfb->alphaSource = NULL;
-			}
-			if (cursors[use]->rfb->source) {
-				free(cursors[use]->rfb->source);
-				cursors[use]->rfb->source = NULL;
-			}
-			if (cursors[use]->rfb->mask) {
-				free(cursors[use]->rfb->mask);
-				cursors[use]->rfb->mask = NULL;
-			}
-			free(cursors[use]->rfb);
-			cursors[use]->rfb = NULL;
-		}
-
-		if (rotating && rotating_cursors) {
-			char *dst;
-			int tx, ty;
-			int w = xfc->width;
-			int h = xfc->height;
-
-			dst = (char *) malloc(w * h * 4);
-			rotate_curs(dst, (char *) xfc->pixels, w, h, 4);
-
-			memcpy(xfc->pixels, dst, w * h * 4);
-			free(dst);
-
-			rotate_coords(xfc->xhot, xfc->yhot, &tx, &ty, w, h);
-			xfc->xhot = tx;
-			xfc->yhot = ty;
-			if (! rotating_same) {
-				xfc->width = h;
-				xfc->height = w;
-			}
-		}
-
-		/* place cursor into our collection */
-		cursors[use]->rfb = pixels2curs(xfc->pixels, xfc->width,
-		    xfc->height, xfc->xhot, xfc->yhot, bpp/8);
-
-		/* update time and serial index: */
-		curs_times[use] = now;
-		curs_index[use] = xfc->cursor_serial;
-		last_index = use;
-		last_cursor = xfc->cursor_serial;
-
-		which = last_index;
+		which = store_cursor(xfc->cursor_serial, xfc->pixels,
+		    xfc->width, xfc->height, 32, xfc->xhot, xfc->yhot);
 
 		X_LOCK;
-		XFree(xfc);
+		XFree_wr(xfc);
 		X_UNLOCK;
 #endif
 	}
 	return(which);
+}
+
+int store_cursor(int serial, unsigned long *data, int w, int h, int cbpp,
+    int xhot, int yhot) {
+	int which = CURS_ARROW;
+	int use, oldest, i;
+	time_t oldtime, now;
+
+#if 0
+fprintf(stderr, "sc: %d  %d/%d %d - %d %d\n", serial, w, h, cbpp, xhot, yhot);
+#endif
+
+	oldest = CURS_DYN_MIN;
+	if (screen && screen->cursor == cursors[oldest]->rfb) {
+		oldest++;
+	}
+	oldtime = curs_times[oldest];
+	now = time(NULL);
+	for (i = CURS_DYN_MIN; i <= CURS_DYN_MAX; i++) {
+		if (screen && screen->cursor == cursors[i]->rfb) {
+			;
+		} else if (curs_times[i] < oldtime) {
+			/* watch for oldest one to overwrite */
+			oldest = i;
+			oldtime = curs_times[i];
+		}
+		if (serial == curs_index[i]) {
+			/*
+			 * got a hit with an existing cursor,
+			 * use that one.
+			 */
+#ifdef MACOSX
+			if (now > curs_times[i] + 1) {
+				continue;
+			}
+#endif
+			last_cursor = curs_index[i];
+			curs_times[i] = now;
+			last_index = i;
+			return last_index;
+		}
+	}
+
+	/* we need to create the cursor and overwrite oldest */
+	use = oldest;
+	if (cursors[use]->rfb) {
+		/* clean up oldest if it exists */
+		if (cursors[use]->rfb->richSource) {
+			free(cursors[use]->rfb->richSource);
+			cursors[use]->rfb->richSource = NULL;
+		}
+		if (cursors[use]->rfb->alphaSource) {
+			free(cursors[use]->rfb->alphaSource);
+			cursors[use]->rfb->alphaSource = NULL;
+		}
+		if (cursors[use]->rfb->source) {
+			free(cursors[use]->rfb->source);
+			cursors[use]->rfb->source = NULL;
+		}
+		if (cursors[use]->rfb->mask) {
+			free(cursors[use]->rfb->mask);
+			cursors[use]->rfb->mask = NULL;
+		}
+		free(cursors[use]->rfb);
+		cursors[use]->rfb = NULL;
+	}
+
+	if (rotating && rotating_cursors) {
+		char *dst;
+		int tx, ty;
+
+		dst = (char *) malloc(w * h * cbpp/8);
+		rotate_curs(dst, (char *) data, w, h, cbpp/8);
+
+		memcpy(data, dst, w * h * cbpp/8);
+		free(dst);
+
+		rotate_coords(xhot, yhot, &tx, &ty, w, h);
+		xhot = tx;
+		yhot = ty;
+		if (! rotating_same) {
+			int tmp = w;
+			w = h;
+			h = tmp;
+		}
+	}
+
+	/* place cursor into our collection */
+	cursors[use]->rfb = pixels2curs(data, w, h, xhot, yhot, bpp/8);
+
+	/* update time and serial index: */
+	curs_times[use] = now;
+	curs_index[use] = serial;
+	last_index = use;
+	last_cursor = serial;
+
+	which = last_index;
+
+	return which;
 }
 
 int known_cursors_mode(char *s) {
@@ -1465,9 +1485,11 @@ int get_which_cursor(void) {
 			mode = 3;
 		}
 
-		if (mode == 3 && xfixes_present && use_xfixes) {
-			if (db) fprintf(stderr, "get_which_cursor call get_xfixes_cursor\n");
-			return get_xfixes_cursor(0);
+		if (mode == 3) {
+			if ((xfixes_present && use_xfixes) || macosx_console) {
+				if (db) fprintf(stderr, "get_which_cursor call get_exact_cursor\n");
+				return get_exact_cursor(0);
+			}
 		}
 
 		if (depth_cutoff < 0) {
@@ -1518,7 +1540,7 @@ int get_which_cursor(void) {
 #endif	/* NO_X11 */
 			}
 			if (which == which0) {
-				/* the string "term" mean I-beam. */
+				/* the string "term" means I-beam. */
 				char *name, *class;
 				lowercase(winfo.res_name);
 				lowercase(winfo.res_class);
@@ -1821,23 +1843,40 @@ int set_cursor(int x, int y, int which) {
  */
 int check_x11_pointer(void) {
 	Window root_w, child_w;
-	rfbBool ret;
+	rfbBool ret = 0;
 	int root_x, root_y, win_x, win_y;
 	int x, y;
 	unsigned int mask;
 
-	RAWFB_RET(0)
-#if NO_X11
-	return 0;
-#else
-
 	if (unixpw_in_progress) return 0;
 
-	X_LOCK;
-	ret = XQueryPointer(dpy, rootwin, &root_w, &child_w, &root_x, &root_y,
-	    &win_x, &win_y, &mask);
-	X_UNLOCK;
 
+#ifdef MACOSX
+	if (macosx_console) {
+		ret = macosx_get_cursor_pos(&root_x, &root_y);
+	} else {
+		RAWFB_RET(0)
+	}
+#else
+	RAWFB_RET(0)
+
+#   if NO_X11
+	return 0;
+#   endif
+
+#endif
+
+
+#if ! NO_X11
+	if (dpy) {
+		X_LOCK;
+		ret = XQueryPointer_wr(dpy, rootwin, &root_w, &child_w, &root_x, &root_y,
+		    &win_x, &win_y, &mask);
+		X_UNLOCK;
+	}
+#endif	/* NO_X11 */
+
+if (0) fprintf(stderr, "check_x11_pointer %d %d\n", root_x, root_y);
 	if (! ret) {
 		return 0;
 	}
@@ -1860,6 +1899,5 @@ int check_x11_pointer(void) {
 
 	/* change the cursor shape if necessary */
 	return set_cursor(x, y, get_which_cursor());
-#endif	/* NO_X11 */
 }
 

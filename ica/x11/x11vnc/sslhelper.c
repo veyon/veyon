@@ -901,6 +901,7 @@ void openssl_port(void) {
 		clean_up_exit(1);
 	}
 	rfbLog("openssl_port: listen on port/sock %d/%d\n", port, sock);
+	announce(port, 1, NULL);
 	openssl_sock = sock;
 	openssl_port_num = port;
 

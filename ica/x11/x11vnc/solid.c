@@ -68,6 +68,7 @@ static int dt_cmd(char *cmd) {
 
 	rfbLog("running command:\n  %s\n", cmd);
 	usr_bin_path(0);
+	close_exec_fds();
 	rc = system(cmd);
 	usr_bin_path(1);
 
@@ -96,6 +97,7 @@ static char *cmd_output(char *cmd) {
 
 	rfbLog("running pipe:\n  %s\n", cmd);
 	usr_bin_path(0);
+	close_exec_fds();
 	p = popen(cmd, "r");
 	usr_bin_path(1);
 

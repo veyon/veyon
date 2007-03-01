@@ -13,6 +13,7 @@
 #include "connections.h"
 #include "unixpw.h"
 #include "cleanup.h"
+#include "macosx.h"
 
 /* XXX CHECK BEFORE RELEASE */
 int grab_buster = 0;
@@ -190,13 +191,13 @@ static void get_prop(char *str, int len, Atom prop) {
 			dlen = nitems * (format/8);
 			if (slen + dlen > len) {
 				/* too big */
-				XFree(data);
+				XFree_wr(data);
 				break;
 			}
 			memcpy(str+slen, data, dlen);
 			slen += dlen;
 			str[slen] = '\0';
-			XFree(data);
+			XFree_wr(data);
 		}
 	} while (bytes_after > 0);
 #endif	/* NO_X11 */
@@ -639,10 +640,9 @@ void check_keycode_state(void) {
 	if (! client_count) {
 		return;
 	}
+	if (unixpw_in_progress) return;
 
 	RAWFB_RET_VOID
-
-	if (unixpw_in_progress) return;
 
 	/*
 	 * periodically update our model of the keycode_state[]
@@ -744,12 +744,12 @@ void check_xevents(int reset) {
 	static double last_request = 0.0;
 	XErrorHandler old_handler;
 
+	if (unixpw_in_progress) return;
+
 	RAWFB_RET_VOID
 #if NO_X11
 	return;
 #else
-
-	if (unixpw_in_progress) return;
 
 	if (now > last_init_check+1 || reset) {
 		last_init_check = now;
@@ -1119,11 +1119,6 @@ void check_xevents(int reset) {
 void xcut_receive(char *text, int len, rfbClientPtr cl) {
 	allowed_input_t input;
 
-	RAWFB_RET_VOID
-#if NO_X11
-	return;
-#else
-
 	if (unixpw_in_progress) {
 		rfbLog("xcut_receive: unixpw_in_progress, skipping.\n");
 		return;
@@ -1146,6 +1141,18 @@ void xcut_receive(char *text, int len, rfbClientPtr cl) {
 	if (! check_sel_direction("recv", "xcut_receive", text, len)) {
 		return;
 	}
+
+#ifdef MACOSX
+	if (macosx_console) {
+		return macosx_set_sel(text, len);
+	}
+#endif
+
+	RAWFB_RET_VOID
+
+#if NO_X11
+	return;
+#else
 
 	X_LOCK;
 

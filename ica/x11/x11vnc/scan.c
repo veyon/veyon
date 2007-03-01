@@ -12,6 +12,7 @@
 #include "cleanup.h"
 #include "unixpw.h"
 #include "screen.h"
+#include "macosx.h"
 
 /*
  * routines for scanning and reading the X11 display for changes, and
@@ -2355,14 +2356,16 @@ int copy_screen(void) {
 	if (! fs_factor) {
 		return 0;
 	}
+	if (debug_tiles) fprintf(stderr, "copy_screen\n");
 
 	if (unixpw_in_progress) return 0;
 
-	block_size = (dpy_x * (dpy_y/fs_factor) * pixelsize);
 
 	if (! main_fb) {
 		return 0;
 	}
+
+	block_size = ((dpy_y/fs_factor) * main_bytes_per_line);
 
 	fbp = main_fb;
 	y = 0;
@@ -2403,7 +2406,7 @@ static void snap_all_rawfb(void) {
 	if (xform24to32 && bpp == 32) {
 		pixelsize = 3;
 	}
-	sz = dpy_x * dpy_y * pixelsize;
+	sz = dpy_y * snap->bytes_per_line;
 
 	if (wdpy_x > dpy_x || wdpy_y > dpy_y) {
 		sz = wdpy_x * wdpy_y * pixelsize;
@@ -2451,7 +2454,7 @@ static void snap_all_rawfb(void) {
 		for (h = 0; h < dpy_y; h++) {
 			memcpy(dst, src, dpy_x * pixelsize);
 			src += wdpy_x * pixelsize;
-			dst += dpy_x * pixelsize;
+			dst += snap->bytes_per_line;
 		}
 	}
 }
@@ -2480,6 +2483,9 @@ int copy_snap(void) {
 		if (rawfb_reset) {
 			initialize_raw_fb(1);
 		}
+		if (raw_fb_bytes_per_line != snap->bytes_per_line) {
+			read_all_at_once = 0;
+		}
 		if (read_all_at_once) {
 			snap_all_rawfb();
 		} else {
@@ -2495,11 +2501,12 @@ if (db && snapcnt++ < 5) rfbLog("rawfb copy_snap took: %.5f secs\n", dnow() - st
 		return 0;
 	}
 
-	block_size = (dpy_x * (dpy_y/fs_factor) * pixelsize);
 
 	if (! snap_fb || ! snap || ! snaprect) {
 		return 0;
 	}
+	block_size = ((dpy_y/fs_factor) * snap->bytes_per_line);
+
 	fbp = snap_fb;
 	y = 0;
 
@@ -2577,6 +2584,7 @@ static void nap_set(int tile_cnt) {
  */
 void nap_sleep(int ms, int split) {
 	int i, input = got_user_input;
+	int gd = got_local_pointer_input;
 
 	for (i=0; i<split; i++) {
 		usleep(ms * 1000 / split);
@@ -2584,6 +2592,9 @@ void nap_sleep(int ms, int split) {
 			rfbPE(-1);
 		}
 		if (input != got_user_input) {
+			break;
+		}
+		if (gd != got_local_pointer_input) {
 			break;
 		}
 	}
@@ -2622,7 +2633,9 @@ static void nap_check(int tile_cnt) {
 	if (naptile && nap_ok && tile_cnt < naptile) {
 		int ms = napfac * waitms;
 		ms = ms > napmax ? napmax : ms;
-		if (now - last_input <= 2) {
+		if (now - last_input <= 3) {
+			nap_ok = 0;
+		} else if (now - last_local_input <= 3) {
 			nap_ok = 0;
 		} else {
 			nap_sleep(ms, 1);
@@ -2941,9 +2954,21 @@ int scan_for_updates(int count_only) {
 		if (cmap8to24 && scan_count % 1 == 0) {
 			check_for_multivis();
 		}
+#ifdef MACOSX
+		if (macosx_console) {
+			macosx_event_loop();
+		}
+#endif
 		if (use_xdamage) {
 			/* first pass collecting DAMAGE events: */
-			collect_xdamage(scan_count, 0);
+#ifdef MACOSX
+			if (macosx_console) {
+				collect_macosx_damage(-1, -1, -1, -1, 0);
+			} else 
+#endif
+			{
+				collect_xdamage(scan_count, 0);
+			}
 		}
 	}
 
@@ -2967,7 +2992,14 @@ int scan_for_updates(int count_only) {
 	 * the unchanged tiles are read in again).
 	 */
 	if (use_xdamage) {
-		collect_xdamage(scan_count, 1);
+#ifdef MACOSX
+		if (macosx_console) {
+			;
+		} else 
+#endif
+		{
+			collect_xdamage(scan_count, 1);
+		}
 	}
 	if (count_only) {
 		scan_in_progress = 0;

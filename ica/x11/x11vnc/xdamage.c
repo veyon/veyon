@@ -13,7 +13,13 @@ Damage xdamage = 0;
 #endif
 int use_xdamage = XDAMAGE;	/* use the xdamage rects for scanline hints */
 int xdamage_present = 0;
+
+#ifdef MACOSX
+int xdamage_max_area = 50000;
+#else
 int xdamage_max_area = 20000;	/* pixels */
+#endif
+
 double xdamage_memory = 1.0;	/* in units of NSCAN */
 int xdamage_tile_count = 0, xdamage_direct_count = 0;
 double xdamage_scheduled_mark = 0.0;
@@ -24,13 +30,13 @@ int XD_skip = 0, XD_tot = 0, XD_des = 0;	/* for stats */
 
 void add_region_xdamage(sraRegionPtr new_region);
 void clear_xdamage_mark_region(sraRegionPtr markregion, int flush);
+int collect_macosx_damage(int x_in, int y_in, int w_in, int h_in, int call);
 int collect_xdamage(int scancnt, int call);
 int xdamage_hint_skip(int y);
 void initialize_xdamage(void);
 void create_xdamage_if_needed(void);
 void destroy_xdamage_if_needed(void);
 void check_xdamage_state(void);
-
 
 static void record_desired_xdamage_rect(int x, int y, int w, int h);
 
@@ -157,8 +163,8 @@ void add_region_xdamage(sraRegionPtr new_region) {
 	}
 
 	reg = xdamage_regions[prev_tick];  
-	if (reg != NULL) {
-if (0) fprintf(stderr, "add_region_xdamage: prev_tick: %d reg %p\n", prev_tick, (void *)reg);
+	if (reg != NULL && new_region != NULL) {
+if (debug_xdamage > 1) fprintf(stderr, "add_region_xdamage: prev_tick: %d reg %p  new_region %p\n", prev_tick, (void *)reg, (void *)new_region);
 		sraRgnOr(reg, new_region);
 	}
 }
@@ -211,6 +217,133 @@ void clear_xdamage_mark_region(sraRegionPtr markregion, int flush) {
 #endif
 }
 
+int collect_macosx_damage(int x_in, int y_in, int w_in, int h_in, int call) {
+	sraRegionPtr tmpregion;
+	sraRegionPtr reg;
+	static int rect_count = 0;
+	int nreg, ccount = 0, dcount = 0, ecount = 0;
+	static time_t last_rpt = 0;
+	time_t now;
+	double tm, dt;
+	int x, y, w, h, x2, y2;
+
+if (call && debug_xdamage > 1) fprintf(stderr, "collect_macosx_damage: %d %d %d %d - %d / %d\n", x_in, y_in, w_in, h_in, call, use_xdamage);
+
+	if (! use_xdamage) {
+		return 0;
+	}
+	if (! xdamage_regions) {
+		return 0;
+	}
+
+	dtime0(&tm);
+
+	nreg = (xdamage_memory * NSCAN) + 1;
+
+	if (call == 0) {
+		xdamage_ticker = (xdamage_ticker+1) % nreg;
+		xdamage_direct_count = 0;
+		reg = xdamage_regions[xdamage_ticker];  
+		if (reg != NULL) {
+			sraRgnMakeEmpty(reg);
+		}
+	} else {
+		reg = xdamage_regions[xdamage_ticker];  
+	}
+	if (reg == NULL) {
+		return 0;
+	}
+
+	if (x_in < 0) {
+		return 0;
+	}
+
+
+	x = x_in;
+	y = y_in;
+	w = w_in;
+	h = h_in;
+
+	/* translate if needed */
+	if (clipshift) {
+		/* set coords relative to fb origin */
+		if (0 && rootshift) {
+			/*
+			 * Note: not needed because damage is
+			 * relative to subwin, not rootwin.
+			 */
+			x = x - off_x;
+			y = y - off_y;
+		}
+		if (clipshift) {
+			x = x - coff_x;
+			y = y - coff_y;
+		}
+
+		x2 = x + w;		/* upper point */
+		x  = nfix(x,  dpy_x);	/* place both in fb area */
+		x2 = nfix(x2, dpy_x+1);
+		w = x2 - x;		/* recompute w */
+		
+		y2 = y + h;
+		y  = nfix(y,  dpy_y);
+		y2 = nfix(y2, dpy_y+1);
+		h = y2 - y;
+
+		if (w <= 0 || h <= 0) {
+			return 0;
+		}
+	}
+	if (debug_xdamage > 2) {
+		fprintf(stderr, "xdamage: -> event %dx%d+%d+%d area:"
+		    " %d  dups: %d  %s reg: %p\n", w, h, x, y, w*h, dcount,
+		    (w*h > xdamage_max_area) ? "TOO_BIG" : "", (void *)reg);
+	}
+
+	record_desired_xdamage_rect(x, y, w, h);
+
+	tmpregion = sraRgnCreateRect(x, y, x + w, y + h); 
+	sraRgnOr(reg, tmpregion);
+	sraRgnDestroy(tmpregion);
+	rect_count++;
+	ccount++;
+
+	if (0 && xdamage_direct_count) {
+		fb_push();
+	}
+
+	dt = dtime(&tm);
+	if ((debug_tiles > 1 && ecount) || (debug_tiles && ecount > 200)
+	    || debug_xdamage > 1) {
+		fprintf(stderr, "collect_macosx_damage(%d): %.4f t: %.4f ev/dup/accept"
+		    "/direct %d/%d/%d/%d\n", call, dt, tm - x11vnc_start, ecount,
+		    dcount, ccount, xdamage_direct_count); 
+	}
+	now = time(NULL);
+	if (! last_rpt) {
+		last_rpt = now;
+	}
+	if (now > last_rpt + 15) {
+		double rat = -1.0;
+
+		if (XD_tot) {
+			rat = ((double) XD_skip)/XD_tot;
+		}
+		if (debug_tiles || debug_xdamage) {
+			fprintf(stderr, "xdamage: == scanline skip/tot: "
+			    "%04d/%04d =%.3f  rects: %d  desired: %d\n",
+			    XD_skip, XD_tot, rat, rect_count, XD_des);
+		}
+			
+		XD_skip = 0;
+		XD_tot  = 0;
+		XD_des  = 0;
+		rect_count = 0;
+		last_rpt = now;
+	}
+	return 0;
+}
+
 int collect_xdamage(int scancnt, int call) {
 #if LIBVNCSERVER_HAVE_LIBXDAMAGE
 	XDamageNotifyEvent *dev;
@@ -240,6 +373,9 @@ int collect_xdamage(int scancnt, int call) {
 	if (! xdamage_base_event_type) {
 		return 0;
 	}
+	if (! xdamage_regions) {
+		return 0;
+	}
 
 	dtime0(&tm);
 
@@ -249,9 +385,14 @@ int collect_xdamage(int scancnt, int call) {
 		xdamage_ticker = (xdamage_ticker+1) % nreg;
 		xdamage_direct_count = 0;
 		reg = xdamage_regions[xdamage_ticker];  
-		sraRgnMakeEmpty(reg);
+		if (reg != NULL) {
+			sraRgnMakeEmpty(reg);
+		}
 	} else {
 		reg = xdamage_regions[xdamage_ticker];  
+	}
+	if (reg == NULL) {
+		return 0;
 	}
 
 
@@ -424,6 +565,9 @@ int xdamage_hint_skip(int y) {
 		/* go back thru the history starting at most recent */
 		n = (xdamage_ticker + nreg - i) % nreg;
 		reg = xdamage_regions[n];  
+		if (reg == NULL) {
+			continue;
+		}
 		if (sraRgnEmpty(reg)) {
 			/* checking for emptiness is very fast */
 			continue;
@@ -436,6 +580,7 @@ int xdamage_hint_skip(int y) {
 		}
 	}
 	sraRgnDestroy(tmpl);
+if (0) fprintf(stderr, "xdamage_hint_skip: %d -> %d\n", y, ret);
 
 	return ret;
 }

@@ -1537,6 +1537,9 @@ void unixpw_accept(char *user) {
 	unixpw_in_progress = 0;
 	unixpw_client = NULL;
 	mark_rect_as_modified(0, 0, dpy_x, dpy_y, 0);
+	if (macosx_console) {
+		refresh_screen(1);
+	}
 }
 
 void unixpw_deny(void) {

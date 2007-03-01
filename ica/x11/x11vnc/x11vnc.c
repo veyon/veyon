@@ -452,6 +452,7 @@ static void watch_loop(void) {
 
 		got_user_input = 0;
 		got_pointer_input = 0;
+		got_local_pointer_input = 0;
 		got_pointer_calls = 0;
 		got_keyboard_input = 0;
 		got_keyboard_calls = 0;
@@ -530,6 +531,7 @@ static void watch_loop(void) {
 				eat_viewonly_input(10, 3);
 			}
 		} else {
+			/* -threads here. */
 			if (wireframe && button_mask) {
 				check_wireframe();
 			}
@@ -557,14 +559,14 @@ static void watch_loop(void) {
 			check_pm();
 			check_filexfer();
 			check_keycode_state();
-			check_connect_inputs();		
-			check_gui_inputs();		
-			check_stunnel();		
-			check_openssl();		
-			check_https();		
+			check_connect_inputs();
+			check_gui_inputs();
+			check_stunnel();
+			check_openssl();
+			check_https();
 			record_last_fb_update();
-			check_padded_fb();		
-			check_fixscreen();		
+			check_padded_fb();
+			check_fixscreen();
 			check_xdamage_state();
 			check_xrecord_reset(0);
 			check_add_keysyms();
@@ -601,6 +603,9 @@ static void watch_loop(void) {
 			if (cursor_pos_updates) {
 				check_x11_pointer();
 			}
+#ifdef MACOSX
+			else check_x11_pointer();
+#endif
 			continue;
 		}
 
@@ -1235,6 +1240,7 @@ static void print_settings(int try_http, int bg, char *gui_str) {
 	fprintf(stderr, " take_naps:  %d\n", take_naps);
 	fprintf(stderr, " sb:         %d\n", screen_blank);
 	fprintf(stderr, " fbpm:       %d\n", !watch_fbpm);
+	fprintf(stderr, " dpms:       %d\n", !watch_dpms);
 	fprintf(stderr, " xdamage:    %d\n", use_xdamage);
 	fprintf(stderr, "  xd_area:   %d\n", xdamage_max_area);
 	fprintf(stderr, "  xd_mem:    %.3f\n", xdamage_memory);
@@ -1262,7 +1268,6 @@ static void print_settings(int try_http, int bg, char *gui_str) {
 	fprintf(stderr, " pid:        %d\n", getpid());
 	fprintf(stderr, "\n");
 #endif
-	rfbLog("x11vnc version: %s\n", lastmod);
 }
 
 
@@ -1440,6 +1445,8 @@ static void store_homedir_passwd(char *file) {
 	    && !query_cmd && !remote_cmd && !unixpw && !got_gui_pw \
 	    && ! ssl_verify && !inetd)
 
+extern int dragum(void);
+
 int main(int argc, char* argv[]) {
 
 	int i, len, tmpi;
@@ -1462,6 +1469,9 @@ int main(int argc, char* argv[]) {
 	/* used to pass args we do not know about to rfbGetScreen(): */
 	int argc_vnc_max = 1024;
 	int argc_vnc = 1; char *argv_vnc[2048];
+
+//dragum();
+
 
 	/* check for -loop mode: */
 	check_loop_mode(argc, argv);
@@ -1570,8 +1580,13 @@ int main(int argc, char* argv[]) {
 			use_dpy = strdup(argv[++i]);
 			if (strstr(use_dpy, "WAIT")) {
 				extern char find_display[];
+				extern char create_display[];
 				if (strstr(use_dpy, "cmd=FINDDISPLAY-print")) {
 					fprintf(stdout, "%s", find_display);
+					exit(0);
+				}
+				if (strstr(use_dpy, "cmd=FINDCREATEDISPLAY-print")) {
+					fprintf(stdout, "%s", create_display);
 					exit(0);
 				}
 			}
@@ -1936,6 +1951,12 @@ int main(int argc, char* argv[]) {
 			;	/* done above */
 		} else if (!strcmp(arg, "-env")) {
 			i++;	/* done above */
+		} else if (!strcmp(arg, "-prog")) {
+			CHECK_ARGC
+			if (program_name) {
+				free(program_name);
+			}
+			program_name = strdup(argv[++i]);
 		} else if (!strcmp(arg, "-h") || !strcmp(arg, "-help")) {
 			print_help(0);
 		} else if (!strcmp(arg, "-?") || !strcmp(arg, "-opts")) {
@@ -2095,6 +2116,9 @@ int main(int argc, char* argv[]) {
 		} else if (!strcmp(arg, "-nowireframe")
 		    || !strcmp(arg, "-nowf")) {
 			wireframe = 0;
+		} else if (!strcmp(arg, "-nowireframelocal")
+		    || !strcmp(arg, "-nowfl")) {
+			wireframe_local = 0;
 		} else if (!strcmp(arg, "-wirecopyrect")
 		    || !strcmp(arg, "-wcr")) {
 			CHECK_ARGC
@@ -2213,6 +2237,10 @@ int main(int argc, char* argv[]) {
 			watch_fbpm = 1;
 		} else if (!strcmp(arg, "-fbpm")) {
 			watch_fbpm = 0;
+		} else if (!strcmp(arg, "-nodpms")) {
+			watch_dpms = 1;
+		} else if (!strcmp(arg, "-dpms")) {
+			watch_dpms = 0;
 		} else if (!strcmp(arg, "-xdamage")) {
 			use_xdamage = 1;
 		} else if (!strcmp(arg, "-noxdamage")) {
@@ -2280,6 +2308,21 @@ int main(int argc, char* argv[]) {
 		} else if (!strcmp(arg, "-pipeinput")) {
 			CHECK_ARGC
 			pipeinput_str = strdup(argv[++i]);
+		} else if (!strcmp(arg, "-macnodim")) {
+			macosx_nodimming = 1;
+		} else if (!strcmp(arg, "-macnosleep")) {
+			macosx_nosleep = 1;
+		} else if (!strcmp(arg, "-macnosaver")) {
+			macosx_noscreensaver = 1;
+		} else if (!strcmp(arg, "-macnowait")) {
+			macosx_wait_for_switch = 0;
+		} else if (!strcmp(arg, "-macwheel")) {
+			CHECK_ARGC
+			macosx_mouse_wheel_speed = atoi(argv[++i]);
+		} else if (!strcmp(arg, "-macnoswap")) {
+			macosx_swap23 = 0;
+		} else if (!strcmp(arg, "-macnoresize")) {
+			macosx_resize = 0;
 		} else if (!strcmp(arg, "-gui")) {
 			launch_gui = 1;
 			if (i < argc-1) {
@@ -2434,8 +2477,23 @@ int main(int argc, char* argv[]) {
 	if (launch_gui) {
 		int sleep = 0;
 		if (SHOW_NO_PASSWORD_WARNING && !nopw) {
-			sleep = 2;
+			sleep = 1;
 		}
+#ifdef MACOSX
+		if (! use_dpy && getenv("DISPLAY") == NULL) {
+			/* we need this for gui since no X properties */
+			if (! client_connect_file && ! client_connect) {
+				int fd;
+				char tmp[] = "/tmp/x11vnc-macosx-channel.XXXXXX";
+				fd = mkstemp(tmp);
+				if (fd >= 0) {
+					close(fd);
+					client_connect_file = strdup(tmp);
+					rfbLog("MacOS X: set -connect file to %s\n", client_connect_file);
+				}
+			}
+		}
+#endif
 		do_gui(gui_str, sleep);
 	}
 	if (logfile) {
@@ -2883,6 +2941,7 @@ int main(int argc, char* argv[]) {
 		if (verbose) {
 			print_settings(try_http, bg, gui_str);
 		}
+		rfbLog("x11vnc version: %s\n", lastmod);
 	} else {
 		rfbLogEnable(0);
 	}
@@ -2951,6 +3010,12 @@ int main(int argc, char* argv[]) {
 	} else {
 		dpy = XOpenDisplay_wr("");
 	}
+
+#ifdef MACOSX
+	if (! dpy && ! raw_fb_str) {
+		raw_fb_str = strdup("console");
+	}
+#endif
 
 	if (! dpy && raw_fb_str) {
 		rfbLog("continuing without X display in -rawfb mode, "
@@ -3355,6 +3420,22 @@ int main(int argc, char* argv[]) {
 
 	raw_fb_pass_go_and_collect_200_dollars:
 
+#ifdef MACOSX
+	if (! dpy) {
+		/* XXX this needs improvement (esp. for remote control) */
+		if (! raw_fb_str || strstr(raw_fb_str, "console") == raw_fb_str) {
+			if (! multiple_cursors_mode) {
+				multiple_cursors_mode = strdup("most");
+			}
+			initialize_cursors_mode();
+			if (use_xdamage) {
+				xdamage_present = 1;
+				initialize_xdamage();
+			}
+		}
+	}
+#endif
+
 	if (! dt) {
 		static char str[] = "-desktop";
 		argv_vnc[argc_vnc++] = str;
@@ -3413,6 +3494,9 @@ int main(int argc, char* argv[]) {
 			}
 			rfbLog("waited_for_client: popup accepted.\n");
 			cl0->onHold = FALSE;
+		}
+		if (macosx_console) {
+			refresh_screen(1);
 		}
 	}
 

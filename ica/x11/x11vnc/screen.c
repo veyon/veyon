@@ -21,6 +21,7 @@
 #include "sslhelper.h"
 #include "v4l.h"
 #include "linuxfb.h"
+#include "macosx.h"
 
 void set_greyscale_colormap(void);
 void set_hi240_colormap(void);
@@ -39,6 +40,7 @@ int parse_rotate_string(char *str, int *mode);
 int scale_round(int len, double fac);
 void initialize_screen(int *argc, char **argv, XImage *fb);
 void set_vnc_desktop_name(void);
+void announce(int lport, int ssl, char *iface);
 
 
 static void debug_colormap(XImage *fb);
@@ -50,7 +52,6 @@ static void initialize_snap_fb(void);
 XImage *initialize_raw_fb(int);
 static void initialize_clipshift(void);
 static int wait_until_mapped(Window win);
-static void announce(int lport, int ssl, char *iface);
 static void setup_scaling(int *width_in, int *height_in);
 
 int rawfb_reset = -1;
@@ -618,7 +619,9 @@ void set_raw_fb_params(int restore) {
 			    "use_solid_bg\n");
 			use_solid_bg = 0;
 		}
+#ifndef MACOSX
 		multiple_cursors_mode = strdup("arrow");
+#endif
 	}
 	if (using_shm) {
 		if (verbose) rfbLog("  rawfb: turning off using_shm\n");
@@ -650,8 +653,14 @@ static void nofb_hook(rfbClientPtr cl) {
 
 	rfbLog("framebuffer requested in -nofb mode by client %s\n", cl->host);
 	/* ignore xrandr */
-	RAWFB_RET_VOID
-	fb = XGetImage_wr(dpy, window, 0, 0, dpy_x, dpy_y, AllPlanes, ZPixmap);
+
+	if (raw_fb && ! dpy) {
+		XImage raw;
+		fb = &raw;
+		fb->data = (char *)malloc(32);
+	} else {
+		fb = XGetImage_wr(dpy, window, 0, 0, dpy_x, dpy_y, AllPlanes, ZPixmap);
+	}
 	main_fb = fb->data;
 	rfb_fb = main_fb;
 	screen->frameBuffer = rfb_fb;
@@ -809,6 +818,7 @@ XImage *initialize_raw_fb(int reset) {
 	static XImage ximage_struct;	/* n.b.: not (XImage *) */
 	static XImage ximage_struct_snap;
 	int closedpy = 1, i, m, db = 0;
+	int do_macosx = 0;
 
 	static char *last_file = NULL;
 	static int last_mode = 0;
@@ -855,6 +865,12 @@ if (db) fprintf(stderr, "initialize_raw_fb reset\n");
 		}
 		return NULL;
 	}
+
+#ifdef MACOSX
+	if (raw_fb_addr != NULL && macosx_console && raw_fb_addr == macosx_get_fb_addr()) {
+		raw_fb_addr = NULL;
+	}
+#endif
 	
 	if (raw_fb_addr || raw_fb_seek) {
 		if (raw_fb_shm) {
@@ -904,6 +920,7 @@ if (db) fprintf(stderr, "initialize_raw_fb reset\n");
 			clean_up_exit(1);
 		}
 		rfbLog("running command to setup rawfb: %s\n", q);
+		close_exec_fds();
 		pipe = popen(q, "r");
 		if (! pipe) {
 			rfbLogEnable(1);
@@ -947,6 +964,7 @@ if (db) fprintf(stderr, "initialize_raw_fb reset\n");
 	raw_fb_fd = -1;
 	raw_fb_addr = NULL;
 	raw_fb_offset = 0;
+	raw_fb_bytes_per_line = 0;
 
 	last_mode = 0;
 	if (last_file) {
@@ -1043,6 +1061,12 @@ if (db) fprintf(stderr, "initialize_raw_fb reset\n");
 		rfbLog("invalid rawfb str: %s\n", str);
 		clean_up_exit(1);
 	}
+
+	if (strrchr(q, '-')) {
+		char *q2 = strrchr(q, '-');
+		raw_fb_bytes_per_line = atoi(q2+1);
+		*q2 = '\0';
+	}
 	/* @WxHxB */
 	if (sscanf(q, "@%dx%dx%d", &w, &h, &b) != 3) {
 		rfbLogEnable(1);
@@ -1129,6 +1153,15 @@ if (db) fprintf(stderr, "initialize_raw_fb reset\n");
 		q = strchr(str, ':');
 		q++;
 
+		macosx_console = 0;
+		if (strstr(q, "macosx:") == q) {
+			/* mmap:macosx:/dev/null@... */
+			q += strlen("macosx:");			
+			do_macosx = 1;
+			do_mmap = 0;
+			macosx_console = 1;
+		}
+
 		last_file = strdup(q);
 
 		fd = raw_fb_fd;
@@ -1159,7 +1192,15 @@ if (db) fprintf(stderr, "initialize_raw_fb reset\n");
 			}
 		}
 
-		if (do_mmap) {
+		if (do_macosx) {
+			raw_fb_addr = macosx_get_fb_addr();
+			raw_fb_mmap = size;
+			rfbLog("rawfb: macosx fb: %s\n", q);
+			rfbLog("   w: %d h: %d b: %d addr: %p sz: %d\n", w, h,
+			    b, raw_fb_addr, size);
+			last_mode = 0;
+
+		} else if (do_mmap) {
 #if LIBVNCSERVER_HAVE_MMAP
 			raw_fb_addr = mmap(0, size, PROT_READ, MAP_SHARED,
 			    fd, 0);
@@ -1202,14 +1243,29 @@ if (db) fprintf(stderr, "initialize_raw_fb reset\n");
 
 	initialize_clipshift();
 
-	raw_fb = (char *) malloc(dpy_x * dpy_y * b/8);
+	if (raw_fb_bytes_per_line == 0) {
+		raw_fb_bytes_per_line = dpy_x*b/8;
+
+		/*
+		 * Put cases here were we can determine that
+		 * raw_bytes_per_line != dpy_x*b/8
+		 */
+#ifdef MACOSX
+		if (do_macosx) {
+			raw_fb_bytes_per_line = macosxCG_CGDisplayBytesPerRow();
+		}
+#endif
+	}
+
+	raw_fb_image->bytes_per_line = dpy_x * b/8;
+	raw_fb = (char *) malloc(dpy_y * dpy_x * b/8);
 	raw_fb_image->data = raw_fb;
 	raw_fb_image->format = ZPixmap;
 	raw_fb_image->width  = dpy_x;
 	raw_fb_image->height = dpy_y;
 	raw_fb_image->bits_per_pixel = b;
-	raw_fb_image->bytes_per_line = dpy_x*b/8;
 	raw_fb_image->bitmap_unit = -1;
+
 
 	if (use_snapfb && (raw_fb_seek || raw_fb_mmap)) {
 		int b_use = b;
@@ -1217,16 +1273,25 @@ if (db) fprintf(stderr, "initialize_raw_fb reset\n");
 			free(snap_fb);
 		}
 		if (b_use == 32 && xform24to32) {
+			/*
+			 * The actual framebuffer (e.g. mapped addr) and
+			 * snap fb must be the same bpp.  E.g. both 24bpp.
+			 * Reading FROM snap to utility image will be
+			 * transformed 24->32 in copy_raw_fb_24_to_32.
+			 *
+			 * addr -> snap -> (scanline, fullscreen, ...)
+			 */
 			b_use = 24;
+			raw_fb_bytes_per_line = dpy_x * b_use/8;
 		}
-		snap_fb = (char *) malloc(dpy_x * dpy_y * b_use/8);
+		snap_fb = (char *) malloc(dpy_y * dpy_x * b_use/8);
 		snap = &ximage_struct_snap;
 		snap->data = snap_fb;
 		snap->format = ZPixmap;
 		snap->width  = dpy_x;
 		snap->height = dpy_y;
 		snap->bits_per_pixel = b_use;
-		snap->bytes_per_line = dpy_x*b_use/8;
+		snap->bytes_per_line = dpy_x * b_use/8;
 		snap->bitmap_unit = -1;
 	}
 
@@ -1297,11 +1362,11 @@ if (db) fprintf(stderr, "initialize_raw_fb reset\n");
 	}
 
 	if (clipshift) {
-		memset(raw_fb, 0xff, dpy_x * dpy_y * b/8);
+		memset(raw_fb, 0xff, dpy_y * raw_fb_image->bytes_per_line);
 	} else if (raw_fb_addr && ! xform24to32) {
-		memcpy(raw_fb, raw_fb_addr + raw_fb_offset, dpy_x*dpy_y*b/8);
+		memcpy(raw_fb, raw_fb_addr + raw_fb_offset, dpy_y * raw_fb_image->bytes_per_line);
 	} else {
-		memset(raw_fb, 0xff, dpy_x * dpy_y * b/8);
+		memset(raw_fb, 0xff, dpy_y * raw_fb_image->bytes_per_line);
 	}
 
 	if (verbose) {
@@ -1556,7 +1621,7 @@ if (0) fprintf(stderr, "DefaultDepth: %d  visial_id: %d\n", depth, (int) visual_
 			    vinfo->bits_per_rgb);
 			fprintf(stderr, "\n");
 		}
-		XFree(vinfo);
+		XFree_wr(vinfo);
 	}
 
 	if (! quiet) {
@@ -2238,6 +2303,8 @@ void initialize_screen(int *argc, char **argv, XImage *fb) {
 			rfb_bytes_per_line);
 		fprintf(stderr, " rot_fb_bytes_per_line: %d\n",
 			rot_bytes_per_line);
+		fprintf(stderr, " raw_fb_bytes_per_line: %d\n",
+			raw_fb_bytes_per_line);
 		switch(fb->format) {
 		case XYBitmap:
 			fprintf(stderr, " format:     XYBitmap\n"); break;
@@ -2431,7 +2498,7 @@ void initialize_screen(int *argc, char **argv, XImage *fb) {
 	install_passwds();
 }
 
-static void announce(int lport, int ssl, char *iface) {
+void announce(int lport, int ssl, char *iface) {
 	
 	char *host = this_host();
 	char *tvdt;

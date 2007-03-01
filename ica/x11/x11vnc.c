@@ -37,6 +37,20 @@
 #include "x11vnc/sslhelper.c"
 #include "x11vnc/linuxfb.c"
 #include "x11vnc/v4l.c"
+#include "x11vnc/macosx.c"
+#include "x11vnc/macosxCG.c"
+#include "x11vnc/macosxCGP.c"
+#include "x11vnc/macosxCGS.c"
+
+/*
+for x11vnc 0.8.5
+#include "x11vnc/avahi.c"
+#include "libvncclient/vncviewer.c"
+#include "libvncclient/cursor.c"
+#include "libvncclient/listen.c"
+#include "libvncclient/rfbproto.c"
+#include "libvncclient/sockets.c"
+*/
 
 #define db db2
 #include "x11vnc/uinput.c"

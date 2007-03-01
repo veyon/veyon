@@ -277,7 +277,7 @@ int check_httpdir(void) {
 		struct stat sbuf;
 		int len;
 
-		rfbLog("check_httpdir: trying to guess httpdir...\n");
+		rfbLog("check_httpdir: trying to guess httpdir... %s\n", program_name);
 		if (program_name[0] == '/') {
 			prog = strdup(program_name);
 		} else {
@@ -579,7 +579,7 @@ int remote_control_access_ok(void) {
 					rfbLog("  unknown-%d\n", i+1);
 				}
 			}
-			XFree(xha);
+			XFree_wr(xha);
 			return 0;
 		}
 
@@ -2774,6 +2774,21 @@ char *process_remote_cmd(char *cmd, int stringonly) {
 		rfbLog("remote_cmd: enabling -nowireframe mode.\n");
 		wireframe = 0;
 
+	} else if (!strcmp(p, "wireframelocal") || !strcmp(p, "wfl")) {
+		if (query) {
+			snprintf(buf, bufn, "ans=%s:%d", p, wireframe_local);
+			goto qry;
+		}
+		rfbLog("remote_cmd: enabling -wireframelocal mode.\n");
+		wireframe_local = 1;
+	} else if (!strcmp(p, "nowireframelocal") || !strcmp(p, "nowfl")) {
+		if (query) {
+			snprintf(buf, bufn, "ans=%s:%d", p, !wireframe_local);
+			goto qry;
+		}
+		rfbLog("remote_cmd: enabling -nowireframelocal mode.\n");
+		wireframe_local = 0;
+
 	} else if (strstr(p, "wirecopyrect") == p) {
 		COLON_CHECK("wirecopyrect:")
 		if (query) {
@@ -3385,6 +3400,21 @@ char *process_remote_cmd(char *cmd, int stringonly) {
 		rfbLog("remote_cmd: turning on -nofbpm mode.\n");
 		watch_fbpm = 1;
 
+	} else if (!strcmp(p, "dpms")) {
+		if (query) {
+			snprintf(buf, bufn, "ans=%s:%d", p, !watch_dpms);
+			    goto qry;
+		}
+		rfbLog("remote_cmd: turning off -nodpms mode.\n");
+		watch_dpms = 0;
+	} else if (!strcmp(p, "nodpms")) {
+		if (query) {
+			snprintf(buf, bufn, "ans=%s:%d", p, watch_dpms);
+			    goto qry;
+		}
+		rfbLog("remote_cmd: turning on -nodpms mode.\n");
+		watch_dpms = 1;
+
 	} else if (strstr(p, "fs") == p) {
 		COLON_CHECK("fs:")
 		if (query) {
@@ -3888,6 +3918,20 @@ char *process_remote_cmd(char *cmd, int stringonly) {
 		crash_debug = 0;
 		rfbLog("set crash_debug to: %d\n", crash_debug);
 
+	} else if (!strcmp(p, "macnosaver")) {
+		if (query) {
+			snprintf(buf, bufn, "ans=%s:%d", p, macosx_noscreensaver); goto qry;
+		}
+		rfbLog("remote_cmd: turn on macnosaver.\n");
+		macosx_noscreensaver = 1;
+	} else if (!strcmp(p, "macsaver")) {
+		if (query) {
+			snprintf(buf, bufn, "ans=%s:%d", p, !macosx_noscreensaver); goto qry;
+		}
+		rfbLog("remote_cmd: turn off macnosaver.\n");
+		macosx_noscreensaver = 0;
+
+
 	} else if (strstr(p, "hack") == p) { /* skip-cmd-list */
 		COLON_CHECK("hack:")
 		if (query) {
@@ -3993,7 +4037,6 @@ char *process_remote_cmd(char *cmd, int stringonly) {
 			rfbLog("remote_cmd: will try to unembed 0x%x out"
 			    " of the system tray.\n", id);
 		}
-
 
 	} else if (query) {
 		/* read-only variables that can only be queried: */

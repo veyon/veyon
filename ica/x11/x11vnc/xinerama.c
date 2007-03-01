@@ -272,7 +272,7 @@ static void initialize_xinerama (void) {
 			rfbLog("Xinerama: no blackouts needed (only one"
 			    " sub-screen)\n");
 		}
-		XFree(xineramas);
+		XFree_wr(xineramas);
 		return;		/* must be OK w/o change */
 	}
 
@@ -293,7 +293,7 @@ static void initialize_xinerama (void) {
 		sraRgnDestroy(tmp_region);
 		sc++;
 	}
-	XFree(xineramas);
+	XFree_wr(xineramas);
 
 	if (sraRgnEmpty(black_region)) {
 		rfbLog("Xinerama: no blackouts needed (screen fills"

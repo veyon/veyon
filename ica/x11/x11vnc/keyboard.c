@@ -129,7 +129,7 @@ void clear_modifiers(int init) {
 			kcount++;
 		    }
 		}
-		XFree((void *) keymap);
+		XFree_wr((void *) keymap);
 		first = 0;
 	}
 	if (init) {
@@ -458,7 +458,7 @@ int add_keysym(KeySym keysym) {
 		ret = kc;
 		break;
 	}
-	XFree(keymap);
+	XFree_wr(keymap);
 	return ret;
 #endif	/* NO_X11 */
 }
@@ -491,7 +491,7 @@ static void delete_keycode(KeyCode kc, int bequiet) {
 		    kc, ksym, str ? str : "null");
 	}
 
-	XFree(keymap);
+	XFree_wr(keymap);
 	XFlush_wr(dpy);
 #endif	/* NO_X11 */
 }
@@ -994,7 +994,7 @@ void switch_to_xkb_if_better(void) {
 	}
 	n = k;
 
-	XFree(keymap);
+	XFree_wr(keymap);
 	if (missing_noxkb == 0 && syms_gt_4 >= 8) {
 		if (! raw_fb_str) {
 			rfbLog("XKEYBOARD: number of keysyms per keycode %d "
@@ -2300,7 +2300,7 @@ void initialize_modtweak(void) {
 	iso_level3_code = XKeysymToKeycode(dpy, XK_ISO_Level3_Shift);
 #endif
 
-	XFree ((void *) keymap);
+	XFree_wr ((void *) keymap);
 
 	X_UNLOCK;
 #endif	/* NO_X11 */
@@ -2531,6 +2531,8 @@ static void pipe_keyboard(rfbBool down, rfbKeySym keysym, rfbClientPtr client) {
 		console_key_command(down, keysym, client);
 	} else if (pipeinput_int == PIPEINPUT_UINPUT) {
 		uinput_key_command(down, keysym, client);
+	} else if (pipeinput_int == PIPEINPUT_MACOSX) {
+		macosx_key_command(down, keysym, client);
 	}
 	if (pipeinput_fh == NULL) {
 		return;
@@ -2868,7 +2870,7 @@ void keyboard(rfbBool down, rfbKeySym keysym, rfbClientPtr client) {
 	last_rfb_key_accepted = TRUE;
 
 	if (pipeinput_fh != NULL || pipeinput_int) {
-		pipe_keyboard(down, keysym, client);
+		pipe_keyboard(down, keysym, client);	/* MACOSX here. */
 		if (! pipeinput_tee) {
 			if (! view_only || raw_fb) {	/* raw_fb hack */
 				last_keyboard_client = client;

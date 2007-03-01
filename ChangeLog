@@ -1,5 +1,19 @@
 2007-03-01	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
+	* configure.in:
+	- added several stuff from x11vnc-0.8.4/configure.ac
+	- print out error if XTEST-extension could not be found under Linux
+	- removed "-ansi"-flag
+	- added v4l-check again
+
+	* ica/x11/README:
+	* ica/win32/README:
+	added README's with copyright-notices
+
+	* ica/x11/x11vnc/*
+	* ica/x11/x11vnc.c:
+	integrated x11vnc 0.8.4
+
 	* acinclude.m4:
 	several fixes for less problems with cross-compiling iTALC (thanks to
 	Timshell Knoll-Miller)

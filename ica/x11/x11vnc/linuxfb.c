@@ -9,6 +9,7 @@
 #include "allowed_input_t.h"
 #include "uinput.h"
 #include "keyboard.h"
+#include "macosx.h"
 
 #if LIBVNCSERVER_HAVE_SYS_IOCTL_H
 #include <sys/ioctl.h>
@@ -25,6 +26,11 @@ char *console_guess(char *str, int *fd) {
 	char *q, *in = strdup(str);
 	char *atparms = NULL, *file = NULL;
 	int do_input, have_uinput, tty = -1;
+
+#ifdef MACOSX
+	return macosx_console_guess(str, fd);
+#endif
+
 
 	if (strstr(in, "/dev/fb") == in) {
 		free(in);

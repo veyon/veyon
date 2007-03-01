@@ -205,13 +205,13 @@ void cutbuffer_send(void) {
 				/* too big */
 				rfbLog("warning: truncating large CUT_BUFFER0"
 				   " selection > %d bytes.\n", PROP_MAX);
-				XFree(data);
+				XFree_wr(data);
 				break;
 			}
 			memcpy(cutbuffer_str+slen, data, dlen);
 			slen += dlen;
 			cutbuffer_str[slen] = '\0';
-			XFree(data);
+			XFree_wr(data);
 		}
 	} while (bytes_after > 0);
 
@@ -309,7 +309,7 @@ void selection_send(XEvent *ev) {
 			if (slen + dlen > PROP_MAX) {
 				/* too big */
 				toobig = 1;
-				XFree(data);
+				XFree_wr(data);
 				if (err) {	/* cut down on messages */
 					break;
 				} else {
@@ -324,7 +324,7 @@ if (debug_sel) fprintf(stderr, "selection_send: data: '%s' dlen: %d nitems: %lu 
 			memcpy(selection_str+slen, data, dlen);
 			slen += dlen;
 			selection_str[slen] = '\0';
-			XFree(data);
+			XFree_wr(data);
 		}
 	} while (bytes_after > 0);
 

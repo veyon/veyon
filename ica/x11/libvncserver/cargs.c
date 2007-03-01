@@ -93,7 +93,6 @@ rfbProcessArguments(rfbScreenInfoPtr rfbScreen,int* argc, char *argv[])
 	    }
             rfbScreen->authPasswdData = argv[++i];
 
-            fprintf(stderr, "-permitfiletransfer    permit file transfer support\n");
         } else if (strcmp(argv[i], "-permitfiletransfer") == 0) {  /* -permitfiletransfer  */
             rfbScreen->permitFileTransfer = TRUE;
         } else if (strcmp(argv[i], "-rfbversion") == 0) {  /* -rfbversion 3.6  */

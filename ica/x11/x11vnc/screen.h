@@ -21,6 +21,7 @@ extern int parse_rotate_string(char *str, int *mode);
 extern int scale_round(int len, double fac);
 extern void initialize_screen(int *argc, char **argv, XImage *fb);
 extern void set_vnc_desktop_name(void);
+extern void announce(int lport, int ssl, char *iface);
 
 extern int rawfb_reset;
 extern int rawfb_dev_video;

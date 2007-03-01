@@ -1126,6 +1126,7 @@ static char *guess_via_v4l_info(char *dev, int *fd) {
 	sprintf(cmd, "v4l-info '%s' > %s", dev, tmp);
 
 	close(tmp_fd);
+	close_exec_fds();
 	rc = system(cmd);
 	if (rc != 0) {
 		unlink(tmp);

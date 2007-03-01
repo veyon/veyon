@@ -72,4 +72,11 @@ extern int xauth_raw(int on);
 extern Display *XOpenDisplay_wr(char *display_name);
 extern int XCloseDisplay_wr(Display *display);
 
+extern Bool XQueryPointer_wr(Display *display, Window w, Window *root_return,
+    Window *child_return, int *root_x_return, int *root_y_return,
+    int *win_x_return, int *win_y_return, unsigned int *mask_return);
+
+extern int XFree_wr(void *data);
+
+
 #endif /* _X11VNC_XWRAPPERS_H */

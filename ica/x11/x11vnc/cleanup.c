@@ -36,6 +36,7 @@ char *xerror_string(XErrorEvent *error);
 void initialize_crash_handler(void);
 void initialize_signals(void);
 void unset_signals(void);
+void close_exec_fds(void);
 int known_sigpipe_mode(char *s);
 
 
@@ -126,6 +127,18 @@ void clean_up_exit (int ret) {
 	if (use_openssl) {
 		ssl_helper_pid(0, 0);	/* killall */
 	}
+
+#ifdef MACOSX
+	if (client_connect_file) {
+		if (strstr(client_connect_file, "/tmp/x11vnc-macosx-channel.")
+		    == client_connect_file) {
+			unlink(client_connect_file);
+		}
+	}
+	if (macosx_console) {
+		macosxCG_fini();
+	}
+#endif
 
 	if (! dpy) exit(ret);	/* raw_rb hack */
 
@@ -531,6 +544,18 @@ void unset_signals(void) {
 	signal(SIGPIPE, SIG_DFL);
 }
 
+void close_exec_fds(void) {
+	int fd;
+#ifdef FD_CLOEXEC
+	for (fd = 3; fd < 64; fd++) {
+		int flags = fcntl(fd, F_GETFD);
+		if (flags != -1) {
+			flags |= FD_CLOEXEC;
+			fcntl(fd, F_SETFD, flags);
+		}
+	}
+#endif
+}
 
 int known_sigpipe_mode(char *s) {
 /*

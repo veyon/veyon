@@ -129,6 +129,15 @@ int pipeinput_int = 0;
 int pipeinput_cons_fd = -1;
 char *pipeinput_cons_dev = NULL;
 
+int macosx_nodimming = 0;	/* Some native MacOSX server settings. */
+int macosx_nosleep = 0;
+int macosx_noscreensaver = 0;
+int macosx_wait_for_switch = 1;
+int macosx_mouse_wheel_speed = 5;
+int macosx_console = 0;
+int macosx_swap23 = 1;
+int macosx_resize = 1;
+
 unsigned long subwin = 0x0;	/* -id, -sid */
 int subwin_wait_mapped = 0;
 
@@ -182,6 +191,7 @@ char *wireframe_copyrect_default = "always";
 char *wireframe_copyrect_default = "never";
 #endif
 int wireframe_in_progress = 0;
+int wireframe_local = 1;
 
 /* T+B+L+R,tkey+presist_key,tmouse+persist_mouse */
 char *scroll_copyrect_str = NULL;
@@ -306,6 +316,8 @@ int watch_fbpm = 1;	/* -nofbpm */
 #else
 int watch_fbpm = 0;
 #endif
+
+int watch_dpms = 0;	/* -dpms */
 
 int watch_selection = 1;	/* normal selection/cutbuffer maintenance */
 int watch_primary = 1;		/* more dicey, poll for changes in PRIMARY */

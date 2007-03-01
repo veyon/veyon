@@ -60,7 +60,7 @@ static Window tweak_tk_window_id(Window win) {
 		}
 	}
 	if (name != NULL) {
-		XFree(name);
+		XFree_wr(name);
 	}
 	return new;
 #endif	/* NO_X11 */
@@ -256,6 +256,9 @@ if (0) fprintf(stderr, "run_gui: %s -- %d %d\n", gui_xdisplay, connect_to_x11vnc
 			if (! dpy) {
 				rfbLog("gui: could not open x11vnc "
 				    "display: %s\n", NONUL(x11vnc_xdisplay));
+#ifdef MACOSX
+				goto macjump;
+#endif
 				exit(1);
 			}
 			scr = DefaultScreen(dpy);
@@ -263,6 +266,8 @@ if (0) fprintf(stderr, "run_gui: %s -- %d %d\n", gui_xdisplay, connect_to_x11vnc
 			initialize_vnc_connect_prop();
 			initialize_x11vnc_remote_prop();
 		}
+
+		macjump:
 		
 		signal(SIGUSR1, sigusr1);
 		got_sigusr1 = 0;
@@ -451,6 +456,7 @@ if (0) fprintf(stderr, "run_gui: %s -- %d %d\n", gui_xdisplay, connect_to_x11vnc
 				strcat(cmd, icon_mode_embed_id);
 			}
 		}
+		close_exec_fds();
 		pipe = popen(cmd, "w");
 		if (! pipe) {
 			fprintf(stderr, "could not run: %s\n", cmd);
@@ -572,6 +578,10 @@ void do_gui(char *opts, int sleep) {
 		connect_to_x11vnc = 1;
 	}
 
+#ifdef MACOSX
+	goto startit;
+#endif
+
 	if (icon_mode && !got_gui_xdisplay) {
 		/* for tray mode, prefer the polled DISPLAY */
 		if (use_dpy) {
@@ -619,6 +629,8 @@ void do_gui(char *opts, int sleep) {
 		}
 	}
 	XCloseDisplay_wr(test_dpy);
+
+	startit:
 
 	if (start_x11vnc) {
 

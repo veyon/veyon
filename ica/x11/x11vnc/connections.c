@@ -16,6 +16,7 @@
 #include "sslhelper.h"
 #include "xwrappers.h"
 #include "xevents.h"
+#include "macosxCG.h"
 
 /*
  * routines for handling incoming, outgoing, etc connections
@@ -516,6 +517,8 @@ int run_user_command(char *cmd, rfbClientPtr client, char *mode, char *input,
 	rfbLog("running command:\n");
 	rfbLog("  %s\n", cmd);
 
+	close_exec_fds();
+
 	if (output != NULL) {
 		FILE *ph = popen(cmd, "r");
 		char line[1024];
@@ -586,7 +589,6 @@ int run_user_command(char *cmd, rfbClientPtr client, char *mode, char *input,
 		}
 	}
 #else
-	/* this will still have port 5900 open */
 	rc = system(cmd);
 #endif
 	got_rc:
@@ -746,6 +748,11 @@ void client_gone(rfbClientPtr client) {
 		rfbLog("viewer exited.\n");
 		clean_up_exit(0);
 	}
+#ifdef MACOSX
+	if (macosx_console && client_count == 0) {
+		macosxCG_refresh_callback_off();
+	}
+#endif
 }
 
 /*
@@ -1204,7 +1211,7 @@ static unsigned char t2x2_bits[] = {
 			ret = out;
 			XSelectInput(dpy, awin, 0);
 			XUnmapWindow(dpy, awin);
-			XFreeGC(dpy, gc);
+			XFree_wr(gc);
 			XDestroyWindow(dpy, awin);
 			XFlush_wr(dpy);
 			break;
@@ -1773,13 +1780,13 @@ void read_vnc_connect_prop(int nomsg) {
 				/* too big */
 				rfbLog("warning: truncating large VNC_CONNECT"
 				   " string > %d bytes.\n", VNC_CONNECT_MAX);
-				XFree(data);
+				XFree_wr(data);
 				break;
 			}
 			memcpy(vnc_connect_str+slen, data, dlen);
 			slen += dlen;
 			vnc_connect_str[slen] = '\0';
-			XFree(data);
+			XFree_wr(data);
 		}
 	} while (bytes_after > 0);
 
@@ -1823,13 +1830,13 @@ void read_x11vnc_remote_prop(int nomsg) {
 				/* too big */
 				rfbLog("warning: truncating large X11VNC_REMOTE"
 				   " string > %d bytes.\n", X11VNC_REMOTE_MAX);
-				XFree(data);
+				XFree_wr(data);
 				break;
 			}
 			memcpy(x11vnc_remote_str+slen, data, dlen);
 			slen += dlen;
 			x11vnc_remote_str[slen] = '\0';
-			XFree(data);
+			XFree_wr(data);
 		}
 	} while (bytes_after > 0);
 
@@ -2101,6 +2108,11 @@ enum rfbNewClientAction new_client(rfbClientPtr client) {
 		 */
 		autorepeat(0, 0);
 	}
+#ifdef MACOSX
+	if (macosx_console && client_count == 1) {
+		macosxCG_refresh_callback_on();
+	}
+#endif
 	if (use_solid_bg && client_count == 1) {
 		solid_bg(0);
 	}

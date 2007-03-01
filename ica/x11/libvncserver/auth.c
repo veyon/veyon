@@ -133,7 +133,7 @@ rfbVncAuthNone(rfbClientPtr cl)
     uint32_t authResult;
 
     if (cl->protocolMajorVersion==3 && cl->protocolMinorVersion > 7) {
-        rfbLog("rfbProcessClientSecurityType: returning securityResult for client rfb versin >= 3.8\n");
+        rfbLog("rfbProcessClientSecurityType: returning securityResult for client rfb version >= 3.8\n");
         authResult = Swap32IfLE(rfbVncAuthOK);
         if (rfbWriteExact(cl, (char *)&authResult, 4) < 0) {
             rfbLogPerror("rfbAuthProcessClientMessage: write");
@@ -276,6 +276,7 @@ rfbAuthNewClient(rfbClientPtr cl)
  	    securityType = rfbSecTypeVncAuth;
     }
 #endif
+
     if (cl->protocolMajorVersion==3 && cl->protocolMinorVersion < 7)
     {
 	/* Make sure we use only RFB 3.3 compatible security types. */
