@@ -1,6 +1,9 @@
 2007-03-01	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* configure.in:
+	made RC4 release
+
+	* configure.in:
 	- added several stuff from x11vnc-0.8.4/configure.ac
 	- print out error if XTEST-extension could not be found under Linux
 	- removed "-ansi"-flag
