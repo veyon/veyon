@@ -15,7 +15,7 @@ else
 	QTDIR=""
 fi
 for i in $QT_SEARCH ; do
-	QT_INCLUDE_SEARCH="include/qt4 include/"
+	QT_INCLUDE_SEARCH="include/qt4 include"
 	for j in $QT_INCLUDE_SEARCH ; do
 	        if test -f $i/$j/Qt/qglobal.h -a x$QTDIR = x ; then
 			QTDIR=$i
@@ -42,8 +42,20 @@ AC_MSG_RESULT([$QT_INCLUDES])
 
 
 if test -z "$QTHOSTDIR" ; then
-	QTHOSTDIR=/usr
+	case "${prefix}" in
+		/opt/mingw*)
+			QTHOSTDIR=/usr
+			;;
+		*)
+			if test -n "$QTDIR" ; then
+				QTHOSTDIR="$QTDIR"
+			else
+				QTHOSTDIR=/usr
+			fi
+			;;
+	esac
 fi
+
 
 # Check that moc is in path
 AC_CHECK_PROG(MOC, moc-qt4, $QTHOSTDIR/bin/moc-qt4,,$QTHOSTDIR/bin/)
@@ -82,7 +94,7 @@ if test x$LRELEASE = x ; then
 fi
 
 # Calculate Qt include path
-QT_CXXFLAGS="-I$QT_INCLUDES -I$QT_INCLUDES/Qt/"
+QT_CXXFLAGS="-I$QT_INCLUDES -I$QT_INCLUDES/Qt"
 
 # On unix, figure out if we're doing a static or dynamic link
 case "${build}" in
@@ -102,11 +114,10 @@ case "${build}" in
 	QT_LIB="-L$QTDIR/bin -lQtCore4 -lQtXml4 -lQtNetwork4 -lws2_32"
 	QT_LIB_GUI="-lQtGui4"
 	# Check that windres is in path
-	AC_CHECK_PROG(WINDRES, i586-mingw32-windres, ${prefix}/bin/i586-mingw32-windres,,${prefix}/bin/)
+	AC_PATH_PROGS([WINDRES],[i586-mingw32-windres windres],,[${prefix}/bin:$PATH])
 	if test x$WINDRES = x ; then
 		AC_MSG_ERROR([*** not found! Make sure you have binutils installed!])
 	fi
-
         ;;
     *)
         QT_IS_STATIC=`ls $QTDIR/lib/*.a 2> /dev/null`

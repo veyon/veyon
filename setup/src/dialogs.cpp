@@ -32,7 +32,7 @@
 #include <QtGui/QLayout>
 #include <QtGui/QMessageBox>
 #include <QtGui/QProgressDialog>
-#include <Qt/QtXml>
+#include <QtXml/QtXml>
 
 #include "dialogs.h"
 #include "local_system.h"
@@ -172,8 +172,8 @@ static const QString _exe_ext = "";
 
 void setupWizard::doInstallation( void )
 {
-	createInstallationPath( m_installDir );
 	const QString & d = m_installDir + QDir::separator();
+	createInstallationPath( d );
 	QStringList files;
 	files <<
 		"ica" + _exe_ext	<<
@@ -281,15 +281,12 @@ void setupWizard::doInstallation( void )
 					QStringList() << "-createkeypair"
 							<< ( m_privKeyDir + add )
 							<< ( m_pubKeyDir + add ) );
-		if( QFileInfo( m_keyExportDir+add2 ).exists() )
-		{
-			if( askOverwrite( m_keyExportDir+add2 ) ==
+		if( !QFileInfo( m_keyExportDir+add2 ).exists() ||
+			askOverwrite( m_keyExportDir+add2 ) ==
 							QMessageBox::Yes )
-			{
-				QFile( m_keyExportDir+add2 ).remove();
-				QFile( m_pubKeyDir + add ).
-					copy( m_keyExportDir + add2 );
-			}
+		{
+			QFile( m_keyExportDir+add2 ).remove();
+			QFile( m_pubKeyDir+add ).copy( m_keyExportDir + add2 );
 		}
 	}
 	else
@@ -297,6 +294,7 @@ void setupWizard::doInstallation( void )
 		publicDSAKey( m_keyImportDir + add2 ).
 					save( m_pubKeyDir + add );
 	}
+
 	// make public key read-only
 	QFile::setPermissions( m_pubKeyDir + add,
 				QFile::ReadOwner | QFile::ReadUser |

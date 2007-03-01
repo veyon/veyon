@@ -610,9 +610,34 @@ void logonUser( const QString & _uname, const QString & _passwd,
 		"of the three input-fields in logon-dialog of windows - "
 		"you only need to \"translate\" these characters, this note "
 						"can be ommited)" ).utf16();
+
+	/* Need to handle 2 cases here; if an interactive login message is
+         * defined in policy, this window will be displayed with an "OK" button;
+         * if not the login window will be displayed. Sending a space will
+         * dismiss the message, but will also add a space to the currently
+         * selected field if the login windows is active. The solution is:
+         *  1. send the "username" field accelerator (which won't do anything
+         *     to the message window, but will select the "username" field of
+         *     the login window if it is active)
+         *  2. Send a space keypress to dismiss the message. (adds a space
+         *     to username field of login window if active)
+         *  3. Send the "username" field accelerator again; which will select
+         *     the username field for the case where the message was displayed
+         *  4. Send a backspace keypress to remove any space that was added to
+         *     the username field if there is no message.
+         */
 	pressKey( XK_Alt_L, TRUE );
 	pressAndReleaseKey( accels[0] );
 	pressKey( XK_Alt_L, FALSE );
+
+	pressAndReleaseKey( XK_space );
+
+	pressKey( XK_Alt_L, TRUE );
+	pressAndReleaseKey( accels[0] );
+	pressKey( XK_Alt_L, FALSE );
+
+	pressAndReleaseKey( XK_BackSpace );
+
 	sleep( 1000 );
 #endif
 

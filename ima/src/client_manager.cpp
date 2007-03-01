@@ -513,6 +513,7 @@ void clientManager::loadTree( classRoom * _parent_item,
 		{
 			if( _is_global_config )
 			{
+                                client * c;
 				// add new client
 				QString local_ip = node.toElement().attribute(
 								"localip" );
@@ -530,11 +531,12 @@ void clientManager::loadTree( classRoom * _parent_item,
 				QString name = node.toElement().attribute(
 								"name" );
 
-				(void) new client( local_ip, remote_ip, mac,
+				c = new client( local_ip, remote_ip, mac,
 							name, _parent_item,
 							getMainWindow(),
 						node.toElement().attribute(
 							"id" ).toInt() );
+				c->hide();
 			}
 			else
 			{

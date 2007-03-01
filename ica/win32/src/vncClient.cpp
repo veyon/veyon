@@ -55,7 +55,7 @@
 #include "vncPasswd.h"
 #include "vncAcceptDialog.h"
 #include "vncKeymap.h"
-#include "Windows.h"
+#include <windows.h>
 extern "C" {
 #include "d3des.h"
 }

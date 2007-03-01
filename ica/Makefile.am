@@ -53,7 +53,7 @@ IVSLDADD = @X_LIBS@ $(PTHREADLDADD)
 else
 
 
-IVS_INCLUDES = -I$(srcdir)/win32/ -I$(srcdir)/win32/src -I$(srcdir)/win32/src/omnithread/ -I$(srcdir)/win32/src/VNCHooks
+IVS_INCLUDES = -I$(srcdir)/win32 -I$(srcdir)/win32/src -I$(srcdir)/win32/src/omnithread -I$(srcdir)/win32/src/VNCHooks
 
 IVS_SRCS =	$(srcdir)/win32/win32vnc.cpp			\
 		$(srcdir)/win32/src/d3des_w32.c			\
@@ -163,7 +163,7 @@ ica_SOURCES =		$(srcdir)/src/ica_main.cpp			\
 
 
 inject.o: $(srcdir)/src/inject.cpp
-	$(CXX) -c -o $@ $< -DHAVE_CONFIG_H $(CXXFLAGS) $(QT_CXXFLAGS) $(INCLUDES) -O0
+	$(CXX) -c -o $@ $< -DHAVE_CONFIG_H $(CXXFLAGS) $(QT_CXXFLAGS) $(INCLUDES) $(CPPFLAGS) -O0
 
 CLEANFILES = ./ica_qrc.cpp $(ica_MOC)
 BUILT_SOURCES = ./ica_qrc.cpp $(ica_MOC)
@@ -232,6 +232,7 @@ EXTRA_DIST =	$(man_MANS)						\
 		$(srcdir)/win32/src/translate.h				\
 		$(srcdir)/win32/src/vncEncoder.h			\
 		$(srcdir)/win32/src/vncEncodeCoRRE.h			\
+		$(srcdir)/win32/src/vncTimedMsgBox.h			\
 		$(srcdir)/win32/src/VTypes.h				\
 		$(srcdir)/win32/src/VNCHooks/SharedData.h		\
 		$(srcdir)/win32/src/VNCHooks/VNCHooks.h			\
@@ -252,13 +253,11 @@ EXTRA_DIST =	$(man_MANS)						\
 		$(srcdir)/win32/rectlist.h				\
 		$(srcdir)/win32/vncAcceptDialog.h			\
 		$(srcdir)/win32/vncCorbaConnect.h			\
-		$(srcdir)/win32/vncCORBAConnect.h			\
 		$(srcdir)/win32/vncEncodeZlibHex.h			\
 		$(srcdir)/win32/VNCHelp.h				\
 		$(srcdir)/win32/vncHTTPConnect.h			\
 		$(srcdir)/win32/vncMenu.h				\
 		$(srcdir)/win32/vncPasswd.h				\
-		$(srcdir)/win32/WallpaperUtils.h			\
-		$(srcdir)/win32/Windows.h
+		$(srcdir)/win32/WallpaperUtils.h
 
 

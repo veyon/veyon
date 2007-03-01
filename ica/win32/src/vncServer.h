@@ -43,7 +43,7 @@ class vncServer;
 #define _WINVNC_VNCSERVER
 
 // Custom
-#include "vncCORBAConnect.h"
+#include "vncCorbaConnect.h"
 #include "vncSockConnect.h"
 #include "vncHTTPConnect.h"
 #include "vncClient.h"

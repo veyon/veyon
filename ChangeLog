@@ -1,3 +1,54 @@
+2007-03-01	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* acinclude.m4:
+	several fixes for less problems with cross-compiling iTALC (thanks to
+	Timshell Knoll-Miller)
+
+	* ima/Makefile.am:
+	added italc.ico to EXTRA_DIST (thanks to Timshell Knoll-Miller)
+
+	* ima/src/client.cpp:
+	close connection to invisible clients (thanks to Timshell Knoll-Miller)
+
+	* ima/src/client_manager.cpp:
+	do not show all clients if no personal-config exists (thanks to Timshell
+	Knoll-Miller)
+
+	* setup/Makefile.am:
+	added setup.ico to EXTRA_DIST (thanks to Timshell Knoll-Miller)
+
+	* setup/src/dialogs.cpp:
+	- include <QtXml/QtXml> instead of <Qt/QtXml> - fixes build-problem
+	  reported by an user
+	- correctly create installation-path in auto-setup-mode
+	- export public key properly if it does not exist
+
+	* ica/Makefile.am:
+	- several small fixes in build-system
+	- added missing entry for a header-file to sources-list
+	- removed obsolete files from sources-list
+
+	* ica/x11/rfb/default8x16.h:
+	prevent from being included more than once
+
+	* ica/src/local_system.cpp:
+	after registering service under win32, change failure-config of it to
+	make it being restart each time, it is stopped, e.g. at user-logoff
+	(the problem had been reported by some users)
+
+	* ica/win32/src/vncClient.cpp:
+	* ica/win32/src/vncServer.h:
+	corrected #include-statements
+
+	* ica/win32/vncCORBAConnect.h:
+	* ica/win32/Windows.h:
+	removed as caused troubles under operating systems that do not have
+	case-sensitive filename-handling
+
+	* common/src/local_system.cpp:
+	handle additional state of logon-dialog under win32 (thanks to
+	Timshell Knoll-Miller)
+
 2007-02-28	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* ica/resources/fr.ts:

@@ -31,6 +31,7 @@
 #include <QtCore/QCoreApplication>
 #endif
 #include <QtCore/QLocale>
+#include <QtCore/QProcess>
 #include <QtCore/QTranslator>
 
 #include "system_service.h"
@@ -121,7 +122,6 @@ bool systemService::evalArgs( int & _argc, char * * _argv )
 
 #include <QtCore/QFile>
 #include <QtCore/QFileInfo>
-#include <QtCore/QProcess>
 
 
 inline bool isDebian( void )
@@ -336,6 +336,9 @@ bool systemService::install( void )
 	CloseServiceHandle( hsrvmanager );
 	CloseServiceHandle( hservice );
 
+	QProcess::execute(
+		QString( "sc failure %1 reset= 0 actions= restart/1000"
+							).arg( m_name ) );
 	// Everything went fine
 #ifndef NO_GUI
 	QMessageBox::information( NULL, __app_name,

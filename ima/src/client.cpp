@@ -800,7 +800,7 @@ void client::collectFiles( const QString & _filter )
 
 void client::logonUser( const QString & _uname_and_pw )
 {
-	
+
 	if( _uname_and_pw.isEmpty() )
 	{
 		multiLogonDialog mld( this );
@@ -1067,6 +1067,12 @@ void updateThread::update( void )
 	}
 	m_client->m_syncMutex.unlock();
 	m_queueMutex.unlock();
+	
+	if( m_client->isVisible() == FALSE &&
+		m_client->m_connection->state() == ivsConnection::Connected )
+	{
+		m_client->m_connection->close();
+	}
 }
 
 

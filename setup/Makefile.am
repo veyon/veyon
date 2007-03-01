@@ -46,6 +46,7 @@ setup_SOURCES = $(srcdir)/src/main.cpp				\
 		$(wildcard $(srcdir)/dialogs/*.ui)		\
 		$(wildcard $(srcdir)/resources/*.png)
 
+EXTRA_DIST =	setup.ico
 
 CLEANFILES = $(setup_MOC) $(setup_UIC) ./setup_qrc.cpp
 
