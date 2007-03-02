@@ -40,7 +40,7 @@
 
 
 lockWidget::lockWidget( types _type ) :
-	QWidget( 0, Qt::X11BypassWindowManagerHint ),
+	QWidget( 0 ),
 	m_background(
 		_type == Black ?
 			QPixmap( ":/resources/locked.png" )
