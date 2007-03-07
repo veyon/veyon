@@ -491,7 +491,7 @@ privateDSAKey::privateDSAKey( const unsigned int _bits) :
 
 	if( !DSA_generate_key( m_dsa ) )
 	{
-		qCritical("privateDSAKey::privateDSAKey( ... ): "
+		qCritical( "privateDSAKey::privateDSAKey( ... ): "
 						"DSA_generate_key failed" );
 		m_dsa = NULL;
 		return;
@@ -523,7 +523,7 @@ QByteArray privateDSAKey::sign( const QByteArray & _data ) const
 
 	if( sig == NULL )
 	{
-		qCritical("privateDSAKey::sign( ... ): DSA_do_sign() failed" );
+		qCritical( "privateDSAKey::sign( ... ): DSA_do_sign() failed" );
 		return( QByteArray() );
 	}
 
