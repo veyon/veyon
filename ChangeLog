@@ -1,4 +1,16 @@
-2007-03-05 Andriano Rino <rino_andr/at/yahoo/dot/it>
+2007-03-07	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* INSTALL:
+	updated
+
+	* acinclude.m4:
+	evaluate $host instead of $build
+
+	* build_mingw32:
+	do not pass --build for allowing cross-compile without WINE being
+	installed
+
+2007-03-05	Andriano Rino <rino_andr/at/yahoo/dot/it>
 
 	* ica/resources/it.ts:
 	* ica/resources/it.qm:

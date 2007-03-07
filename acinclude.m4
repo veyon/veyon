@@ -97,7 +97,7 @@ fi
 QT_CXXFLAGS="-I$QT_INCLUDES -I$QT_INCLUDES/Qt"
 
 # On unix, figure out if we're doing a static or dynamic link
-case "${build}" in
+case "${host}" in
       *mingw32)
         QT_IS_STATIC=`ls $QTDIR/lib/*.a 2> /dev/null`
        	if test "x$QT_IS_STATIC" = x; then

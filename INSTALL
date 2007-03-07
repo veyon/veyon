@@ -6,23 +6,30 @@ Please note that all instructions in this file apply to the Linux-version of
 iTALC. Users of the win32-version of iTALC should run setup.exe which will guide
 you through the installation.
 
+For further information you can also take a look at iTALC-Wiki:
+
+	http://italc.sf.net/wiki/
 
 
 
 Building iTALC
 ----------------
 
-If you have ready built packages (RPMs, DEBs etc.), you can skip this section
+If you have ready to use packages (RPMs, DEBs etc.), you can skip this section
 and continue with "Install iTALC".
 
 
 Requirements:
 
-For compiling iTALC, the packages libqt4-dev and qt4-dev-tools (Debian-based
-distributions) or qt4-devel (Fedora etc.) need to be installed. You'll also need
-libjpeg62-dev/libjpeg-devel, zlib1g-dev/zlib-devel and libssl-dev/openssl-devel.
-Of course GCC/G++ (at least 3.3) must not be missing...
+- libqt4-dev and qt4-dev-tools (Debian-based distributions) or qt4-devel
+  (Fedora etc.)
+- xorg-dev or similiar
+- libxtst-dev
+- libjpeg62-dev/libjpeg-devel
+- zlib1g-dev/zlib-devel
+- libssl-dev/openssl-devel
 
+Of course GCC/G++ (at least 3.3) must not be missing... 
 
 
 Building:
@@ -42,7 +49,7 @@ Make sure you're doing the "make install" as root! This will install iTALC
 directly on the computer.
 
 
-Read the next section on how to install and setup iTALC.
+Read the next section on how to setup iTALC.
 
 
 
@@ -69,7 +76,7 @@ On clients you only have to install the packages italc:
 on DPKG-based systems:
 
 
-apt-get install italc
+apt-get install italc-client
 
 
 on RPM-based systems:
@@ -90,7 +97,7 @@ rpm -i italc-master...rpm
 Setup an iTALC-client
 ----------------------
 
-For clients you have to make sure, that the iTALC-Client-Application (ICA),
+On clients you have to make sure that the iTALC-Client-Application (ICA),
 provided by package italc, is being started when either X is started or a
 user logs on.
 There're several methods for doing this (this is why it's not done
@@ -102,7 +109,7 @@ automatically when installing the package):
    control.
 
 2. add "ica &" to /etc/X11/xdm/Xsetup. On some systems, this
-   doesn't take effect, so either edit /etc/kde/kdm/Xsetup or
+   doesn't take effect, so either edit /etc/kde333/kdm/Xsetup or
    /etc/X11/gdm/Xsetup
 
 You can easily test whether all is fine by running telnet on port 5900 of the
@@ -113,14 +120,14 @@ example:
 telnet 192.168.1.2 5900
 
 
-You should see something like "RFB 003.007".
+You should see something like "RFB 003.008".
 
 
 
 Setup iTALC-authentication
 ----------------------------
 
-iTALC uses a sophisticated authentication-concept for making sure only
+iTALC uses a sophisticated authentication-concept to make sure only
 authorized persons are able to access computers using iTALC.
 
 The security is achieved by data-signing and -verification using a public and
@@ -139,8 +146,9 @@ problem to generate a new key-pair (e.g. if the private key was compromised)
 
 Then (the most important thing!) make sure only the users which should be
 allowed to use iTALC have (only!) read-access to /etc/italc/keys/private
-including sub-directories and files.
-
+including sub-directories and files. In most cases you would have to create a
+group "teacher", add all teachers etc. to it and set permissions, so that only
+this group has read-permissions.
 
 
 
