@@ -103,9 +103,22 @@ CLEANFILES = $(italc_MOC) $(italc_UIC) ./italc_qrc.cpp
 
 man_MANS=italc.1
 
-EXTRA_DIST =	$(man_MANS)					\
-		$(wildcard $(srcdir)/src/3rdparty/*)		\
-		italc.ico
+menudir = $(prefix)/share/menu
+menu_DATA = data/italc
+
+applicationsdir = $(prefix)/share/applications
+applications_DATA = data/italc.desktop
+
+pixmapsdir = $(prefix)/share/pixmaps
+pixmaps_DATA = data/italc.png
+
+
+EXTRA_DIST =	$(man_MANS)				\
+		$(wildcard $(srcdir)/src/3rdparty/*)	\
+		$(applications_DATA)			\
+		$(menu_DATA)				\
+		$(pixmaps_DATA)				\
+		data/italc.ico
 
 if BUILD_WIN32
 italc_win_resources.o: italc.rc

@@ -1,4 +1,4 @@
-italcicon ICON italc.ico
+italcicon ICON data/italc.ico
 #include <windows.h>
 
 VS_VERSION_INFO	VERSIONINFO

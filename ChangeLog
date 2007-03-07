@@ -1,5 +1,16 @@
 2007-03-07	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
+	* ima/Makefile.am:
+	* ima/data/italc.ico
+	* ima/data/italc.png
+	* ima/data/italc.desktop
+	* ima/data/italc:
+	added several files for better desktop-integration under Linux
+
+	* ima/Makefile.am:
+	* ima/italc.ico:
+	moved ima/italc.ico to ima/data/italc.ico
+
 	* INSTALL:
 	updated
 
