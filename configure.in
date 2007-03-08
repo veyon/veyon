@@ -87,6 +87,14 @@ fi
 AM_CONDITIONAL(BUILD_WIN32, test "$build_win32" = "true")
 AM_CONDITIONAL(BUILD_LINUX, test "$build_linux" = "true")
 
+
+AH_TEMPLATE(ENABLE_DEBUG, [enable debugging])
+AC_ARG_ENABLE(debug,
+	[  --enable-debug		enable debugging], [ enable_debug=true ], [ enable_debug=false ])
+AM_CONDITIONAL(DEBUG, test "$enable_debug" = "true")
+
+
+
 HAVE_X="false"
 AC_PATH_XTRA
 gw_CHECK_QT
