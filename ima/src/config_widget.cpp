@@ -74,6 +74,12 @@ configWidget::configWidget( mainWindow * _main_window, QWidget * _parent ) :
 				( __demo_network_interface.isEmpty() &&
 							it->name() != "lo" ) )
 			{
+				if( nae.size() > 1 &&
+					!__demo_master_ip.isEmpty() &&
+					__demo_master_ip != it2->ip().toString() )
+				{
+					continue;
+				}
 				interfaceCB->setCurrentIndex(
 						interfaceCB->findText( txt ) );
 				__demo_network_interface = it->name();

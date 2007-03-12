@@ -38,6 +38,7 @@ class IVS;
 class demoClient;
 class demoServer;
 class lockWidget;
+class remoteControlWidget;
 
 
 class isdServer : public QTcpServer
@@ -78,6 +79,7 @@ private slots:
 	void checkForPendingActions( void );
 
 	void demoWindowClosed( QObject * );
+	void remoteControlWidgetClosed( QObject * );
 
 	// client-functions
 	void startDemo( const QString & _master_host, bool _fullscreen );
@@ -105,6 +107,7 @@ private:
 	demoClient * m_demoClient;
 	demoServer * m_demoServer;
 	lockWidget * m_lockWidget;
+	remoteControlWidget * m_remoteControlWidget;
 
 } ;
 

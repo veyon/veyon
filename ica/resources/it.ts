@@ -30,7 +30,7 @@
     <message>
         <location filename="../src/system_service.cpp" line="346"/>
         <source>The service &apos;%1&apos; was successfully registered. It will automatically be run the next time you start this computer.</source>
-        <translation>Il servizio &apos;%1&apos; è stato registrato con successo. Sarà eseguito automaticamente al prossimo riavvio.</translation>
+        <translation>Il servizio &apos;%1&apos; è stato registrato correttamente. Sarà eseguito automaticamente al prossimo riavvio.</translation>
     </message>
     <message>
         <location filename="../src/system_service.cpp" line="584"/>

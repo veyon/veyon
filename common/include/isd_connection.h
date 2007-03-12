@@ -129,19 +129,11 @@ public:
 	bool powerDownComputer( void );
 	bool restartComputer( void );
 
-/*	bool ivsRun( const bool _host_based_auth = TRUE );
-	bool ivsTerminate( void );*/
-
 	bool setRole( const ISD::userRoles _role );
 	bool demoServerRun( int _quality, int _port );
 	bool demoServerStop( void );
 	bool demoServerAllowClient( const QString & _client );
 	bool demoServerDenyClient( const QString & _client );
-
-/*	bool ivsAllowClient( const QString & _client );
-	bool ivsDenyClient( const QString & _client );*/
-
-//	bool terminateISD( void );
 
 
 	// read private key and/or create new key-pair if necessary

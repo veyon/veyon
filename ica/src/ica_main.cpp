@@ -95,7 +95,19 @@ int ICAMain( int argc, char * * argv )
 	}
 
 	QCoreApplication * app = NULL;
-	if( argc > 1 && QString( argv[1] ) == "-rx11vs" )
+
+	// decide whether to create a QCoreApplication or QApplication
+	bool core_app = FALSE;
+	for( int i = 1; i < argc; ++i )
+	{
+		if( QString( argv[i] ) == "-rx11vs" ||
+			QString( argv[i] ) == "-createkeypair" )
+		{
+			core_app = TRUE;
+		}
+	}
+
+	if( core_app )
 	{
 		app = new QCoreApplication( argc, argv );
 	}

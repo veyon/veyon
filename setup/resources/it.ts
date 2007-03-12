@@ -37,7 +37,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="" line="0"/>
         <source>iTALC is now completely installed. For using iTALC you either have to restart your computer or start the iTALC Client service manually.</source>
-        <translation>iTAL ora è installato. Prima di utilizzarlo è neccessario riavviare il computer o avviare manualmente il servizio iTALC Client.</translation>
+        <translation>iTALC ora è installato. Prima di utilizzarlo è neccessario riavviare il computer o avviare manualmente il servizio iTALC Client.</translation>
     </message>
     <message>
         <location filename="" line="0"/>
@@ -119,7 +119,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="" line="0"/>
         <source>iTALC is published under the terms of the General Public License (GPL). Please read the following license terms and choose whether you agree or disagree the license.</source>
-        <translation>iTALC is published under the terms of the General Public License (GPL). Please read the following license terms and choose whether you agree or disagree the license.</translation>
+        <translation>iTALC è rilasciato sotto licenza General Public License (GPL). Leggere i termini della licenza qui sotto e scegliere se la si accetta o meno.</translation>
     </message>
     <message>
         <location filename="" line="0"/>
@@ -148,7 +148,8 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="" line="0"/>
         <source>iTALC has a sophisticated security-concept for preventing unauthorized access to computers having iTALC client software installed. Therefore you either have to create a new key-pair or import the public key created during iTALC installation on master computer.</source>
-        <translation>iTALC ha un sofisticato sistema per prevenire l&apos;accesso non autorizzato ai computer equipaggiati con il software client di iTALC. Per questo è necessario creare una nuova coppia di chiavi o importare la chiave pubblica creata durante l&apos;installazione dell&apos;applicazione master sul computer docente.</translation>
+        <translation>iTALC è dotato di un sofisticato sistema di sicurezza (basato su chiavi crittografiche) per prevenire l&apos;accesso non autorizzato ai computer su cui è installato il software client di iTALC. 
+Per questo, è necessario creare una nuova coppia di chiavi o importare la chiave pubblica creata durante l&apos;installazione dell&apos;applicazione master sul computer docente.</translation>
     </message>
     <message>
         <location filename="" line="0"/>
@@ -192,7 +193,7 @@ p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Ora è il momento di scegliere quali componenti di iTALC si vuole installare su questo computer. Se è un computer-client si deve installare solo il software client.&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600; font-style:italic;&quot;&gt;Si consideri che l&apos;applicazione master dipende dall&apos;applicazione client per funzionare correttamente.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600; font-style:italic;&quot;&gt;Si consideri che l&apos;applicazione&lt;b&gt;Master&lt;/b&gt;dipende dall&apos;applicazione&lt;b&gt;Client&lt;/b&gt; per funzionare correttamente.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="" line="0"/>
@@ -240,7 +241,7 @@ p, li { white-space: pre-wrap; }
 Furthermore you&apos;ll be able to setup security-settings.
 
 Click &apos;Next&apos; to continue.</source>
-        <translation>Questa finesta di installazione-guidata ti assisterà nell&apos;installazione di iTALC sul computer. L&apos;installazione prevede l&apos;applicazione client e come opzionalmente anche l&apos;apllicazione master.
+        <translation>Questa installazione-guidata ti assisterà nell&apos;installazione di iTALC sul computer. L&apos;installazione prevede l&apos;applicazione client e opzionalmente anche l&apos;applicazione master.
 
 Inoltre sarà possibile configurare l&apos;ambiente di sicurezza.
 

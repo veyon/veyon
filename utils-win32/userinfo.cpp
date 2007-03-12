@@ -1,3 +1,28 @@
+/*
+ * userinfo.cpp - userinfo-module for iTALC
+ *
+ * Copyright (c) 2006-2007 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ *
+ * This file is part of iTALC - http://italc.sourceforge.net
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public
+ * License along with this program (see COPYING); if not, write to the
+ * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+ * Boston, MA 02111-1307, USA.
+ *
+ */
+
+
 #include <windows.h>
 #include <stdio.h>
 #include <lm.h>
@@ -8,7 +33,7 @@
 bool __found_ica;
 
 
-void getUserName( char * * _str)
+void getUserName( char * * _str )
 {
 	if( !_str )
 	{
@@ -18,7 +43,7 @@ void getUserName( char * * _str)
 
 	DWORD aProcesses[1024], cbNeeded;
 
-	if( !EnumProcesses( aProcesses, sizeof(aProcesses), &cbNeeded ) )
+	if( !EnumProcesses( aProcesses, sizeof( aProcesses ), &cbNeeded ) )
 	{
 		return;
 	}
@@ -37,9 +62,10 @@ void getUserName( char * * _str)
 	        {
 			continue;
 		}
+
 		TCHAR szProcessName[MAX_PATH];
 		GetModuleBaseName( hProcess, hMod, szProcessName, 
-                             		  sizeof(szProcessName)/sizeof(TCHAR) );
+                       		  sizeof( szProcessName ) / sizeof( TCHAR) );
 		for( TCHAR * ptr = szProcessName; *ptr; ++ptr )
 		{
 			*ptr = tolower( *ptr );
@@ -62,6 +88,10 @@ void getUserName( char * * _str)
 
 		GetTokenInformation( hToken, TokenUser, NULL, 0, &len ) ;
 		char * buf = new char[len];
+		if( buf == NULL )
+		{
+			continue;
+		}
 		if ( !GetTokenInformation( hToken, TokenUser, buf, len, &len ) )
 		{
 			CloseHandle( hProcess );
@@ -77,6 +107,13 @@ void getUserName( char * * _str)
 							&domname_len, &nu );
 		char * accname = new char[accname_len];
 		char * domname = new char[domname_len];
+		if( accname == NULL || domname == NULL )
+		{
+			delete[] buf;
+			delete[] accname;
+			delete[] domname;
+			continue;
+		}
 		LookupAccountSid( NULL, psid, accname, &accname_len,
 						domname, &domname_len, &nu );
 		WCHAR wszDomain[256];
@@ -147,13 +184,13 @@ int main( void )
 	do
 	{
 		__found_ica = false;
-		char * name;
+		char * name = NULL;
 		getUserName( &name );
 		if( name )
 		{
 			printf( "%s:\n", name );
+			delete[] name;
 		}
-		delete[] name;
 		fflush( stdout );
 		Sleep( 10*1000 );
 	}

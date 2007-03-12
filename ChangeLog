@@ -1,3 +1,38 @@
+2007-03-12	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* ima/src/client_manager.cpp:
+	* ima/src/config_widget.cpp:
+	save correct demo-network-interface even if selected interface has
+	more than one addresses
+
+	* ima/src/client_manager.cpp:
+	do not provide client-demo in context-menu of classrooms
+
+	* common/include/isd_connection.h:
+	cleanups
+
+	* common/src/local_system.cpp:
+	new organization-domain
+
+	* ica/Makefile.am:
+	* ica/src/system_service.cpp:
+	* ica/src/system_service.h:
+	moved to common/src/system_service.cpp and
+	common/include/system_service.h
+
+	* utils-win32/userinfo.cpp:
+	small fixes
+
+2007-03-12	Andriano Rino <rino_andr/at/yahoo/dot/it>
+
+	* ica/resources/it.ts:
+	* ica/resources/it.qm:
+	* ima/resources/it.ts:
+	* ima/resources/it.qm:
+	* setup/resources/it.ts:
+	* setup/resources/it.qm:
+	updated Italian localization
+
 2007-03-08	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* ica/ica.qrc:

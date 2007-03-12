@@ -122,7 +122,6 @@ ica_MOC =	src/isd_server.moc 			\
 
 
 ica_SOURCES =		$(srcdir)/src/ica_main.cpp			\
-			$(srcdir)/src/system_service.cpp		\
 			$(srcdir)/src/ivs.cpp				\
 			$(srcdir)/src/isd_server.cpp			\
 			$(srcdir)/src/lock_widget.cpp			\
@@ -134,6 +133,7 @@ ica_SOURCES =		$(srcdir)/src/ica_main.cpp			\
 			$(srcdir)/src/system_key_trapper.cpp		\
 			$(srcdir)/src/inject.cpp			\
 			$(srcdir)/src/minilzo.c				\
+			$(srcdir)/../common/src/dsa_key.cpp		\
 			$(srcdir)/../common/src/messagebox.cpp		\
 			$(srcdir)/../common/src/fast_qimage.cpp		\
 			$(srcdir)/../common/src/isd_base.cpp		\
@@ -141,7 +141,7 @@ ica_SOURCES =		$(srcdir)/src/ica_main.cpp			\
 			$(srcdir)/../common/src/ivs_connection.cpp	\
 			$(srcdir)/../common/src/local_system.cpp	\
 			$(srcdir)/../common/src/rect_list.cpp		\
-			$(srcdir)/../common/src/dsa_key.cpp		\
+			$(srcdir)/../common/src/system_service.cpp	\
 			$(srcdir)/src/inject.h				\
 			$(srcdir)/src/ivs.h				\
 			$(srcdir)/src/isd_server.h			\
@@ -155,7 +155,6 @@ ica_SOURCES =		$(srcdir)/src/ica_main.cpp			\
 			$(srcdir)/src/lzoconf.h				\
 			$(srcdir)/src/ica_main.h			\
 			$(srcdir)/src/system_key_trapper.h		\
-			$(srcdir)/src/system_service.h			\
 			$(srcdir)/ica.qrc				\
 			$(srcdir)/ica_qrc.cpp				\
 			$(wildcard $(srcdir)/resources/*)		\

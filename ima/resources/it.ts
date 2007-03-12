@@ -61,7 +61,7 @@ p, li { white-space: pre-wrap; }
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Rino Andriano&lt;rino/dot/andriano/at/istruzione/dot/it&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Rino Andriano &amp;lt;rino/dot/andriano/at/istruzione/dot/it&amp;gt; &lt;/p&gt;
 &lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
@@ -113,7 +113,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="" line="0"/>
         <source>Logout user</source>
-        <translation>Disconnetti sessione</translation>
+        <translation>Disconnetti utente</translation>
     </message>
     <message>
         <location filename="" line="0"/>
@@ -150,7 +150,7 @@ Puoi cambiare le dimensioni di questa finestra-client (e tutte le altre finestre
     <message>
         <location filename="" line="0"/>
         <source>Watch only (stops demo and unlocks screen)</source>
-        <translation>Osserva (ferma la Presentazione e sblocca gli schermi dei client)</translation>
+        <translation>Osserva (ferma la Presentazione e sblocca lo schermo)</translation>
     </message>
     <message>
         <location filename="" line="0"/>
@@ -160,7 +160,7 @@ Puoi cambiare le dimensioni di questa finestra-client (e tutte le altre finestre
     <message>
         <location filename="" line="0"/>
         <source>Window demo</source>
-        <translation>Presenta in una Finestra</translation>
+        <translation>Presenta in una finestra</translation>
     </message>
     <message>
         <location filename="" line="0"/>
@@ -232,12 +232,12 @@ La directory di base è HOME/PUBLIC.</translation>
     <message>
         <location filename="" line="0"/>
         <source>Client-Manager</source>
-        <translation>Gestore-Client</translation>
+        <translation>Gestione-Client</translation>
     </message>
     <message>
         <location filename="" line="0"/>
         <source>Use this workspace to manage your clients and classrooms in an easy way.</source>
-        <translation>Usa questo spazio per gestire e organizzare i tuoi client e le aule.</translation>
+        <translation>Usa quest&apos;area di lavoro per configurare e gestire le aule e i client.</translation>
     </message>
     <message>
         <location filename="" line="0"/>
@@ -247,7 +247,7 @@ La directory di base è HOME/PUBLIC.</translation>
     <message>
         <location filename="" line="0"/>
         <source>Clients</source>
-        <translation>Clients</translation>
+        <translation>Client</translation>
     </message>
     <message>
         <location filename="" line="0"/>
@@ -690,7 +690,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="" line="0"/>
         <source> seconds</source>
-        <translation>  secondi</translation>
+        <translation> secondi</translation>
     </message>
     <message>
         <location filename="" line="0"/>
@@ -900,7 +900,7 @@ Aula</translation>
     <message>
         <location filename="" line="0"/>
         <source>To have all user&apos;s full attention you can lock their desktops using this button. In this mode all input devices are locked and the screen is black.</source>
-        <translation>Per ottenere l&apos;attenzione dagli studenti si possono bloccare i desktop utilizzando questo pulsante. In questa modalità le periferiche di input (mouse-tastiera) sono bloccate e lo schermo è nero (visualizza un lucchetto).</translation>
+        <translation>Per ottenere l&apos;attenzione dagli studenti si possono bloccare i desktop utilizzando questo pulsante. In questa modalità sui client le periferiche di input (mouse-tastiera) sono bloccate e lo schermo è nero (visualizza un lucchetto).</translation>
     </message>
     <message>
         <location filename="" line="0"/>
@@ -915,7 +915,7 @@ Aula</translation>
     <message>
         <location filename="" line="0"/>
         <source>Power on computers</source>
-        <translation>Accedi i computer</translation>
+        <translation>Accendi i computer</translation>
     </message>
     <message>
         <location filename="" line="0"/>
@@ -930,7 +930,7 @@ Aula</translation>
     <message>
         <location filename="" line="0"/>
         <source>To power off all shown computers (e.g. after the lesson has finished) you can click this button.</source>
-        <translation>Puoi usare questo pulsante per spegner tutti i computer gestiti (ad esempio a lezione terminata) .</translation>
+        <translation>Puoi usare questo pulsante per spegnere tutti i computer gestiti (ad esempio a lezione terminata) . </translation>
     </message>
     <message>
         <location filename="" line="0"/>
@@ -940,7 +940,7 @@ Aula</translation>
     <message>
         <location filename="" line="0"/>
         <source>After clicking this button you can enter a username and password for logging in the according user on all visible computers.</source>
-        <translation>Con questo pulsante potrai effettuare l&apos;accesso (logon) indicando username, password e dominio su tutte le macchine (client) gestite.</translation>
+        <translation>Con questo pulsante potrai effettuare l&apos;accesso (logon) su tutte le macchine (client) gestite, indicando username, password e dominio.</translation>
     </message>
     <message>
         <location filename="" line="0"/>
@@ -1099,7 +1099,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="" line="0"/>
         <source>Overview</source>
-        <translation>Panoramica</translation>
+        <translation>Panoramica sul programma</translation>
     </message>
     <message>
         <location filename="" line="0"/>
@@ -1125,7 +1125,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="" line="0"/>
         <source>Simply manage the snapshots you made using this workspace.</source>
-        <translation>Gestisci le foto fatte utilizzando quest&apos;area di lavoro.</translation>
+        <translation>Gestisci le foto fatte ai client utilizzando quest&apos;area di lavoro.</translation>
     </message>
 </context>
 <context>
@@ -1182,7 +1182,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="" line="0"/>
         <source>Support</source>
-        <translation>Assisti</translation>
+        <translation>Assisti/Aiuta</translation>
     </message>
     <message>
         <location filename="" line="0"/>

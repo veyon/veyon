@@ -62,7 +62,8 @@ isdServer::isdServer( const quint16 _ivs_port, int _argc, char * * _argv ) :
 	m_ivs( new IVS( _ivs_port, _argc, _argv ) ),
 	m_demoClient( NULL ),
 	m_demoServer( NULL ),
-	m_lockWidget( NULL )
+	m_lockWidget( NULL ),
+	m_remoteControlWidget( NULL )
 {
 	if( __isd_server ||
 			listen( QHostAddress::LocalHost, __isd_port ) == FALSE )
@@ -692,6 +693,14 @@ void isdServer::demoWindowClosed( QObject * )
 
 
 
+void isdServer::remoteControlWidgetClosed( QObject * )
+{
+	m_remoteControlWidget = NULL;
+}
+
+
+
+
 void isdServer::startDemo( const QString & _master_host, bool _fullscreen )
 {
 	delete m_demoClient;
@@ -779,14 +788,13 @@ void isdServer::displayTextMessage( const QString & _msg )
 
 void isdServer::remoteControlDisplay( const QString & _ip, bool _view_only )
 {
-/*#ifdef BUILD_LINUX
-	QProcess::startDetached( QCoreApplication::applicationFilePath() +
-					QString( " -rctrl %1 %2" ).
-							arg( _ip ).
-							arg( _view_only ) );
-#else*/
-	new remoteControlWidget( _ip, _view_only );
-/*#endif*/
+	if( m_remoteControlWidget  )
+	{
+		return;
+	}
+	m_remoteControlWidget = new remoteControlWidget( _ip, _view_only );
+	connect( m_remoteControlWidget, SIGNAL( destroyed( QObject * ) ),
+			this, SLOT( remoteControlWidgetClosed( QObject * ) ) );
 }
 
 

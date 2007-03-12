@@ -2,20 +2,14 @@ TODO
 =====
 
 
-- do not allow more than one remote-controls per client
-- sync local/remote-ip of clients
-- no "let student show demo"-item for "actions for classroom"
-- no QApplication for -createkeypair
 - disable "back"-button when on last-page in setup
 - support for demo-gateway for classrooms connected via VPN
 - improve support-workspace/artwork
-- remove sidebar-background and draw it
 - proper shutdown under w2k
 
 
 master:
 - clientManager::cmdToVisibleClients: progressdialog-ptr as param
-- highlight duplicate items in user-list -> you can see instantly if several users logged in with the same account
 
 
 

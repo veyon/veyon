@@ -362,7 +362,7 @@ namespace localSystem
 void initialize( void )
 {
 	QCoreApplication::setOrganizationName( "iTALC Solutions" );
-	QCoreApplication::setOrganizationDomain( "is.org" );
+	QCoreApplication::setOrganizationDomain( "italcsolutions.org" );
 	QCoreApplication::setApplicationName( "iTALC" );
 
 	qInstallMsgHandler( msgHandler );
