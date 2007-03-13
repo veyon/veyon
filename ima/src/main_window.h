@@ -39,7 +39,7 @@ class QSplitter;
 class QWorkspace;
 class QToolBar;
 
-class clientManager;
+class classroomManager;
 class configWidget;
 class supportWidget;
 class italcSideBar;
@@ -67,9 +67,9 @@ public:
 		return( m_workspace );
 	}
 
-	clientManager * getClientManager( void )
+	classroomManager * getClassroomManager( void )
 	{
-		return( m_clientManager );
+		return( m_classroomManager );
 	}
 
 	isdConnection * localISD( void )
@@ -139,7 +139,7 @@ private:
 	isdConnection * m_localISD;
 
 	overviewWidget * m_overviewWidget;
-	clientManager * m_clientManager;
+	classroomManager * m_classroomManager;
 	userList * m_userList;
 	snapshotList * m_snapshotList;
 	configWidget * m_configWidget;
@@ -148,7 +148,7 @@ private:
 	static bool s_atExit;
 
 	friend class updateThread;
-	friend class clientManager;
+	friend class classroomManager;
 
 } ;
 

@@ -1,7 +1,7 @@
 /*
  * config_widget.cpp - implementation of configuration-widget for side-bar
  *
- * Copyright (c) 2004-2006 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2007 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -32,7 +32,7 @@
 
 
 #include "config_widget.h"
-#include "client_manager.h"
+#include "classroom_manager.h"
 #include "main_window.h"
 #include "qnetworkinterface.h"
 #include "tool_button.h"
@@ -52,9 +52,9 @@ configWidget::configWidget( mainWindow * _main_window, QWidget * _parent ) :
 
 
 	connect( updateIntervalSB, SIGNAL( valueChanged( int ) ),
-			getMainWindow()->getClientManager(),
+			getMainWindow()->getClassroomManager(),
 					SLOT( updateIntervalChanged( int ) ) );
-	getMainWindow()->getClientManager()->setUpdateIntervalSpinBox(
+	getMainWindow()->getClassroomManager()->setUpdateIntervalSpinBox(
 							updateIntervalSB );
 
 

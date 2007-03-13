@@ -89,14 +89,14 @@ p, li { white-space: pre-wrap; }
          </sizepolicy>
         </property>
         <property name="pixmap" >
-         <pixmap resource="../italc.qrc" >:/resources/client_manager_48.png</pixmap>
+         <pixmap resource="../italc.qrc" >:/resources/classroom_manager_48.png</pixmap>
         </property>
        </widget>
       </item>
       <item>
        <widget class="QLabel" name="label2" >
         <property name="text" >
-         <string>Using the client-manager you can add or remove clients (computers) and switch between classrooms.</string>
+         <string>Using the classroom-manager you can manage your classrooms and computers.</string>
         </property>
         <property name="wordWrap" >
          <bool>true</bool>

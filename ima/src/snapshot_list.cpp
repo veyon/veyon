@@ -1,7 +1,7 @@
 /*
  * snapshot_list.cpp - implementation of snapshot-list for side-bar
  *
- * Copyright (c) 2004-2006 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2007 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -24,12 +24,12 @@
 
 
 #include <QtCore/QDir>
+#include <QtCore/QDate>
 #include <QtGui/QScrollArea>
 
 
 #include "snapshot_list.h"
 #include "client.h"
-#include "client_manager.h"
 #include "local_system.h"
 
 
@@ -92,7 +92,8 @@ void snapshotList::snapshotSelected( const QString & _s )
  	hostLbl->setText( _s.section( '_', 1, 1 ) );
 	dateLbl->setText( QDate::fromString( _s.section( '_', 2, 2 ),
 				Qt::ISODate ).toString( Qt::LocalDate ) );
-	timeLbl->setText( _s.section( '_', 3, 3 ).section( '.', 0, 0 ).replace( '-', ':' ) );
+	timeLbl->setText( _s.section( '_', 3, 3 ).section( '.', 0, 0 ).
+							replace( '-', ':' ) );
 }
 
 

@@ -71,7 +71,7 @@ endif
 
 
 if HAVE_LIBSSL
-LIBSSL_LDADD = -lssl
+LIBSSL_LDADD = -lssl -lcrypto
 endif
 
 if HAVE_LIBEAY32

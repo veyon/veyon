@@ -689,7 +689,9 @@ void logoutUser( void )
 #ifdef BUILD_WIN32
 	ExitWindowsEx( EWX_LOGOFF | SHUTDOWN_FLAGS, SHUTDOWN_REASON );
 #else
-	QProcess::startDetached( "killall Xorg" );
+	QProcess::startDetached( "/etc/init.d/kdm restart" );
+	QProcess::startDetached( "/etc/init.d/gdm restart" );
+	QProcess::startDetached( "/etc/init.d/xdm restart" );
 #endif
 }
 

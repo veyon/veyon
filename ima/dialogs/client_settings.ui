@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
+    <width>388</width>
     <height>328</height>
    </rect>
   </property>
@@ -326,6 +326,9 @@ p, li { white-space: pre-wrap; }
            </item>
            <item>
             <widget class="QComboBox" name="connectionComboBox" >
+             <property name="enabled" >
+              <bool>false</bool>
+             </property>
              <property name="sizePolicy" >
               <sizepolicy>
                <hsizetype>5</hsizetype>
@@ -416,6 +419,9 @@ p, li { white-space: pre-wrap; }
          </item>
          <item>
           <widget class="QCheckBox" name="hostIsGateway" >
+           <property name="enabled" >
+            <bool>false</bool>
+           </property>
            <property name="toolTip" >
             <string>&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;/head>&lt;body style=" white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;">&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Check if the host is the gateway for the subnet.&lt;/p>&lt;/body>&lt;/html></string>
            </property>
@@ -426,6 +432,9 @@ p, li { white-space: pre-wrap; }
          </item>
          <item>
           <widget class="QCheckBox" name="actAsDemoReplicator" >
+           <property name="enabled" >
+            <bool>false</bool>
+           </property>
            <property name="toolTip" >
             <string>&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;/head>&lt;body style=" white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;">&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Activate this option for at least one host in a subnet.&lt;/p>&lt;/body>&lt;/html></string>
            </property>
@@ -506,6 +515,9 @@ p, li { white-space: pre-wrap; }
        </item>
        <item>
         <widget class="QCheckBox" name="rawEncodingForDemo" >
+         <property name="enabled" >
+          <bool>false</bool>
+         </property>
          <property name="text" >
           <string>Use raw-encoding for demo-mode</string>
          </property>

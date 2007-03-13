@@ -2,8 +2,8 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.50)
-AC_INIT(italc, 1.0.0.0-svn-20070312, tobydox/at/users/dot/sf/dot/net)
-AM_INIT_AUTOMAKE(italc, 1.0.0.0-svn-20070312)
+AC_INIT(italc, 1.0.0.0-svn-20070313, tobydox/at/users/dot/sf/dot/net)
+AM_INIT_AUTOMAKE(italc, 1.0.0.0-svn-20070313)
 AM_CONFIG_HEADER(config.h)
 AX_PREFIX_CONFIG_H([common/include/rfb/rfbconfig.h])
 
@@ -408,9 +408,10 @@ AC_CHECK_HEADER(openssl/dsa.h, HAVE_DSA_H="true")
 
 AC_CHECK_LIB(z, deflate, HAVE_LIBZ="true", HAVE_ZLIB_H="")
 AC_CHECK_LIB(jpeg, jpeg_CreateCompress, HAVE_LIBJPEG="true", HAVE_JPEGLIB_H="")
-AC_CHECK_LIB(ssl, DSA_new, HAVE_LIBSSL="true")
+AC_CHECK_LIB(ssl, SSL_library_init, HAVE_LIBSSL="true")
+AC_CHECK_LIB(crypto, RAND_file_name, HAVE_LIBCRYPTO="true")
 AC_CHECK_LIB(eay32, DSA_new, HAVE_LIBEAY32="true")
-if test -z "$HAVE_LIBSSL" -a -z "$HAVE_LIBEAY32" ; then
+if test \( -z "$HAVE_LIBSSL" -o -z "$HAVE_LIBCRYPTO" \) -a \( -z "$HAVE_LIBEAY32" \) ; then
 	HAVE_DSA_H=""
 fi
 
@@ -448,7 +449,7 @@ fi
 
 AM_CONDITIONAL(HAVE_LIBZ, test ! -z "$HAVE_ZLIB_H")
 AM_CONDITIONAL(HAVE_LIBJPEG, test ! -z "$HAVE_LIBJPEG")
-AM_CONDITIONAL(HAVE_LIBSSL, test ! -z "$HAVE_LIBSSL")
+AM_CONDITIONAL(HAVE_LIBSSL, test -n "$HAVE_LIBSSL" -a -n "$HAVE_LIBCRYPTO")
 AM_CONDITIONAL(HAVE_LIBEAY32, test ! -z "$HAVE_LIBEAY32")
 AM_CONDITIONAL(HAVE_LIBPTHREAD, test ! -z "$HAVE_LIBPTHREAD")
 

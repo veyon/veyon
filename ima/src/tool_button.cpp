@@ -39,19 +39,20 @@
 
 
 const int MARGIN = 10;
-const int ROUNDED = 3000;
+const int ROUNDED = 2000;
 
 bool toolButton::s_toolTipsDisabled = FALSE;
 
 
 toolButtonTip::toolButtonTip( const QPixmap & _pixmap, const QString & _title,
 				const QString & _description,
-							QWidget * _parent ) :
+				QWidget * _parent, toolButton * _tool_btn ) :
 	QWidget( _parent, Qt::ToolTip ),
 	m_icon( fastQImage( _pixmap ).scaled( 72, 72 ) ),
 	m_title( _title ),
 	m_description( _description ),
-	m_dissolveSize( 24 )
+	m_dissolveSize( 24 ),
+	m_toolButton( _tool_btn )
 {
 	setAttribute( Qt::WA_DeleteOnClose, TRUE );
 	setAttribute( Qt::WA_NoSystemBackground, TRUE );
@@ -84,7 +85,7 @@ QSize toolButtonTip::sizeHint( void ) const
 void toolButtonTip::paintEvent( QPaintEvent * _pe )
 {
 	QPainter p( this );
-	p.drawPixmap( 0, 0, m_bg );
+	p.drawImage( 0, 0, m_bg );
 }
 
 
@@ -92,20 +93,42 @@ void toolButtonTip::paintEvent( QPaintEvent * _pe )
 
 void toolButtonTip::resizeEvent( QResizeEvent * _re )
 {
-	m_bg = QPixmap( size() );
+	const QColor color_frame = QColor( 48, 48, 48 );
+	m_bg = QImage( size(), QImage::Format_ARGB32 );
+	m_bg.fill( color_frame.rgba() );
 	QPainter p( &m_bg );
 	p.setRenderHint( QPainter::Antialiasing );
-	p.setPen( QColor( 0, 0, 0 ) );
+	QPen pen( color_frame );
+	pen.setWidthF( 1.5 );
+	p.setPen( pen );
 	QLinearGradient grad( 0, 0, 0, height() );
-	grad.setColorAt( 0, palette().color( QPalette::Active,
-						QPalette::Window ).
-							light( 120 ) );
+	const QColor color_top = palette().color( QPalette::Active,
+						QPalette::Window ).light( 120 );
+	grad.setColorAt( 0, color_top );
 	grad.setColorAt( 1, palette().color( QPalette::Active,
 						QPalette::Window ).
 							light( 80 ) );
 	p.setBrush( grad );
 	p.drawRoundRect( 0, 0, width() - 1, height() - 1,
 					ROUNDED / width(), ROUNDED / height() );
+	if( m_toolButton )
+	{
+		QPoint pt = m_toolButton->mapToGlobal( QPoint( 0, 0 ) );
+		p.setPen( color_top );
+		p.setBrush( color_top );
+		p.setRenderHint( QPainter::Antialiasing, FALSE );
+		p.drawLine( pt.x() - x(), 0,
+				pt.x() + m_toolButton->width() - x() - 2, 0 );
+		const int dx = pt.x() - x();
+		p.setRenderHint( QPainter::Antialiasing, TRUE );
+		if( dx < 10 && dx >= 0 )
+		{
+			p.setPen( pen );
+			p.drawImage( dx+1, 0, m_bg.copy( 20, 0, 10-dx, 10 ) );
+			p.drawImage( dx, 0, m_bg.copy( 0, 10, 1, 10-dx*2 ) );
+		}
+	}
+	p.setPen( Qt::black );
 
 	p.drawImage( MARGIN, MARGIN, m_icon );
 	QFont f = p.font();
@@ -122,6 +145,7 @@ void toolButtonTip::resizeEvent( QResizeEvent * _re )
 					height() - MARGIN - title_y ),
 					Qt::TextWordWrap, m_description );
 
+	updateMask();
 	QWidget::resizeEvent( _re );
 }
 
@@ -142,7 +166,16 @@ void toolButtonTip::updateMask( void )
 	p.drawRoundRect( 0, 0, width() - 1, height() - 1,
 					ROUNDED / width(), ROUNDED / height() );
 
-	p.setBrush( Qt::color0 );
+	if( m_toolButton )
+	{
+		QPoint pt = m_toolButton->mapToGlobal( QPoint( 0, 0 ) );
+		const int dx = pt.x()-x();
+		if( dx < 10 && dx >= 0 )
+		{
+			p.fillRect( dx, 0, 10, 10, Qt::color1 );
+		}
+	}
+/*	p.setBrush( Qt::color0 );
 	p.setPen( Qt::color0 );
 
 	if( m_dissolveSize > 0 )
@@ -160,26 +193,28 @@ void toolButtonTip::updateMask( void )
 				p.drawEllipse( x - s / 2, y - s / 2, s, s );
 			}
 		}
-	}
+	}*/
 
 	setMask( b );
 
-	if( --m_dissolveSize >= 0 )
+/*	if( --m_dissolveSize >= 0 )
 	{
 		QTimer::singleShot( 20, this, SLOT( updateMask() ) );
-	}
+	}*/
 }
 
 
 
 
 toolButton::toolButton( const QPixmap & _pixmap, const QString & _title,
+			const QString & _short_title,
 			const QString & _description,
 			QObject * _receiver, const char * _slot,
 			QWidget * _parent ) :
 	QToolButton( _parent ),
 	m_pixmap( _pixmap ),
 	m_title( _title ),
+	m_shortTitle( _short_title ),
 	m_description( _description ),
 	m_mouseOver( FALSE )
 {
@@ -188,7 +223,7 @@ toolButton::toolButton( const QPixmap & _pixmap, const QString & _title,
 	{
 		connect( this, SIGNAL( clicked() ), _receiver, _slot );
 	}
-	setFixedSize( 47, 47 );
+	setFixedSize( 80, 60 );
 }
 
 
@@ -204,7 +239,7 @@ toolButton::~toolButton()
 
 void toolButton::enterEvent( QEvent * _e )
 {
-	if( !s_toolTipsDisabled )
+	if( !s_toolTipsDisabled)
 	{
 		QPoint p = mapToGlobal( QPoint( 0, 0 ) );
 		int scr = QApplication::desktop()->isVirtualDesktop() ?
@@ -220,14 +255,14 @@ void toolButton::enterEvent( QEvent * _e )
 
 		toolButtonTip * tbt = new toolButtonTip( m_pixmap, m_title,
 							m_description,
-				QApplication::desktop()->screen( scr ) );
+				QApplication::desktop()->screen( scr ), this );
 		connect( this, SIGNAL( mouseLeftButton() ),
 							tbt, SLOT( close() ) );
 
 		if( p.x() + tbt->width() > screen.x() + screen.width() )
 			p.rx() -= 4;// + tbt->width();
 		if( p.y() + tbt->height() > screen.y() + screen.height() )
-			p.ry() -= 24 + tbt->height();
+			p.ry() -= 30 + tbt->height();
 		if( p.y() < screen.y() )
 			p.setY( screen.y() );
 		if( p.x() + tbt->width() > screen.x() + screen.width() )
@@ -236,7 +271,7 @@ void toolButton::enterEvent( QEvent * _e )
 			p.setX( screen.x() );
 		if( p.y() + tbt->height() > screen.y() + screen.height() )
 			p.setY( screen.y() + screen.height() - tbt->height() );
-		tbt->move( p += QPoint( 0, 48 ) );
+		tbt->move( p += QPoint( -4, 54 ) );
 		tbt->show();
 	}
 
@@ -254,7 +289,7 @@ void toolButton::leaveEvent( QEvent * _e )
 
 	m_mouseOver = FALSE;
 
-	QToolButton::enterEvent( _e );
+	QToolButton::leaveEvent( _e );
 }
 
 
@@ -264,9 +299,12 @@ void toolButton::paintEvent( QPaintEvent * _pe )
 {
 	QPainter p( this );
 	p.setRenderHint( QPainter::Antialiasing );
-	if( m_mouseOver || isDown() || isChecked() )
+	const bool active = m_mouseOver || isDown() || isChecked();
+	if( active )
 	{
-		p.setPen( QColor( 64, 64, 64 ) );
+		QPen pen( QColor( 48, 48, 48 ) );
+		pen.setWidthF( 1.5 );
+		p.setPen( pen );
 		QLinearGradient grad( 0, 0, 0, height() );
 		const int a1 = isChecked() ? -30 : ( isDown() ? -30 : 0 );
 		const int a2 = isDown() ? -30 : 0;
@@ -285,9 +323,25 @@ void toolButton::paintEvent( QPaintEvent * _pe )
 		p.setBrush( p.pen().color() );
 	}
 
+	QImage img = fastQImage( fastQImage( m_pixmap ).scaled(
+						width() - 40, height() - 20 ) ).
+			alphaFillMax( active and !( s_toolTipsDisabled xor
+						m_mouseOver ) ? 255 : 160 );
 	p.drawRoundRect( 0, 0, width() - 1, height() - 1, 20, 20 );
-	p.drawImage( 3, 3, fastQImage( m_pixmap ).scaled(
-						width() - 7, height() - 7 ) );
+	p.drawImage( width()/2 - 20, 2, img );
+
+	if( s_toolTipsDisabled ||
+		!( m_mouseOver &&  mapFromGlobal( QCursor::pos() ).y() < 54 ) )
+	{
+		p.setPen( active ? Qt::black : Qt::gray );
+		p.setBrush( active ? Qt::black : Qt::gray );
+		QFont f = p.font();
+		f.setPointSize( 7 );
+		p.setFont( f );
+		int x = qMax( 0, ( width() - p.fontMetrics().width(
+							m_shortTitle ) ) / 2 );
+		p.drawText( x,height() - 5, m_shortTitle );
+	}
 }
 
 

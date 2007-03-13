@@ -17,8 +17,8 @@
         <file>resources/client_add.png</file>
         <file>resources/client_demo.png</file>
         <file>resources/client_hidden.png</file>
-        <file>resources/client_manager.png</file>
-        <file>resources/client_manager_48.png</file>
+        <file>resources/classroom_manager.png</file>
+        <file>resources/classroom_manager_48.png</file>
         <file>resources/client_remove.png</file>
         <file>resources/client_show.png</file>
         <file>resources/client_visible.png</file>
@@ -87,5 +87,6 @@
         <file>resources/vpn.png</file>
         <file>resources/whatsthis.png</file>
         <file>resources/window_demo.png</file>
+        <file>resources/logo.png</file>
     </qresource>
 </RCC>

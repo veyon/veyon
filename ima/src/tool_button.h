@@ -1,7 +1,7 @@
 /*
  * tool_button.h - declaration of class toolButton 
  *
- * Copyright (c) 2006 Tobias Doerffel <tobydox/at/users.sourceforge.net>
+ * Copyright (c) 2006-2007 Tobias Doerffel <tobydox/at/users.sourceforge.net>
  * 
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -30,43 +30,12 @@
 #include <QtGui/QColor>
 
 
-class toolButtonTip : public QWidget
-{
-	Q_OBJECT
-public:
-	toolButtonTip( const QPixmap & _pixmap, const QString & _title,
-				const QString & _description,
-							QWidget * _parent );
-
-	virtual QSize sizeHint( void ) const;
-
-
-protected:
-	virtual void paintEvent( QPaintEvent * _pe );
-	virtual void resizeEvent( QResizeEvent * _re );
-
-
-private slots:
-	void updateMask( void );
-
-
-private:
-	QImage m_icon;
-	QString m_title;
-	QString m_description;
-
-	QPixmap m_bg;
-	int m_dissolveSize;
-
-} ;
-
-
-
 class toolButton : public QToolButton
 {
 	Q_OBJECT
 public:
 	toolButton( const QPixmap & _pixmap, const QString & _title,
+			const QString & _short_title,
 			const QString & _description,
 			QObject * _receiver, const char * _slot,
 			QWidget * _parent );
@@ -96,6 +65,7 @@ private:
 
 	QPixmap m_pixmap;
 	QString m_title;
+	QString m_shortTitle;
 	QString m_description;
 
 	bool m_mouseOver;
@@ -105,6 +75,41 @@ signals:
 	void mouseLeftButton( void );
 
 } ;
+
+
+class toolButtonTip : public QWidget
+{
+	Q_OBJECT
+public:
+	toolButtonTip( const QPixmap & _pixmap, const QString & _title,
+				const QString & _description,
+				QWidget * _parent, toolButton * _tool_btn = 0 );
+
+	virtual QSize sizeHint( void ) const;
+
+
+protected:
+	virtual void paintEvent( QPaintEvent * _pe );
+	virtual void resizeEvent( QResizeEvent * _re );
+
+
+private slots:
+	void updateMask( void );
+
+
+private:
+	QImage m_icon;
+	QString m_title;
+	QString m_description;
+
+	QImage m_bg;
+	int m_dissolveSize;
+
+	toolButton * m_toolButton;
+
+} ;
+
+
 
 #endif
 

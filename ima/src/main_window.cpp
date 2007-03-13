@@ -44,7 +44,7 @@
 #include <QtNetwork/QHostAddress>
 
 #include "main_window.h"
-#include "client_manager.h"
+#include "classroom_manager.h"
 #include "dialogs.h"
 #include "italc_side_bar.h"
 #include "overview_widget.h"
@@ -82,7 +82,7 @@ mainWindow::mainWindow() :
 	m_localISD( NULL )
 {
 	setWindowTitle( tr( "iTALC" ) + " " + VERSION );
-	setWindowIcon( QPixmap( ":/resources/splash.png" ) );
+	setWindowIcon( QPixmap( ":/resources/logo.png" ) );
 
 	if( mainWindow::ensureConfigPathExists() == FALSE )
 	{
@@ -123,7 +123,7 @@ mainWindow::mainWindow() :
 	QWidget * twp = m_sideBar->tabWidgetParent();
 	// now create all sidebar-workspaces
 	m_overviewWidget = new overviewWidget( this, twp );
-	m_clientManager = new clientManager( this, twp );
+	m_classroomManager = new classroomManager( this, twp );
 	m_userList = new userList( this, twp );
 	m_snapshotList = new snapshotList( this, twp );
 	m_configWidget = new configWidget( this, twp );
@@ -132,7 +132,7 @@ mainWindow::mainWindow() :
 	// append sidebar-workspaces to sidebar
 	int id = 0;
 	m_sideBar->appendTab( m_overviewWidget, ++id );
-	m_sideBar->appendTab( m_clientManager, ++id );
+	m_sideBar->appendTab( m_classroomManager, ++id );
 	m_sideBar->appendTab( m_userList, ++id );
 	m_sideBar->appendTab( m_snapshotList, ++id );
 	m_sideBar->appendTab( m_configWidget, ++id );
@@ -157,7 +157,7 @@ mainWindow::mainWindow() :
 	QToolButton * scr = new QToolButton;
 	scr->setToolButtonStyle( Qt::ToolButtonTextOnly );
 	scr->setText( tr( "Switch\nclassroom" ) );
-	scr->setMenu( m_clientManager->quickSwitchMenu() );
+	scr->setMenu( m_classroomManager->quickSwitchMenu() );
 	scr->setPopupMode( toolButton::InstantPopup );
 	scr->setWhatsThis( tr( "Click on this button, to switch between "
 							"classrooms." ) );
@@ -168,6 +168,7 @@ mainWindow::mainWindow() :
 	toolButton * overview_mode = new toolButton(
 			QPixmap( ":/resources/overview_mode.png" ),
 			tr( "Overview mode" ),
+			tr( "Overview" ),
 			tr( "This is the default mode in iTALC and allows you "
 				"to have an overview over all visible "
 				"computers. Also click on this button for "
@@ -178,6 +179,7 @@ mainWindow::mainWindow() :
 	toolButton * fsdemo_mode = new toolButton(
 			QPixmap( ":/resources/fullscreen_demo.png" ),
 			tr( "Fullscreen demo" ),
+			tr( "Demo" ),
 			tr( "In this mode your screen is being displayed on "
 				"all shown computers. Furthermore the users "
 				"aren't able to do something else as all input "
@@ -187,6 +189,7 @@ mainWindow::mainWindow() :
 	toolButton * windemo_mode = new toolButton(
 			QPixmap( ":/resources/window_demo.png" ),
 			tr( "Window demo" ),
+			tr( "Demo/window" ),
 			tr( "In this mode your screen being displayed in a "
 				"window on all shown computers. The users are "
 				"able to switch to other windows and thus "
@@ -196,6 +199,7 @@ mainWindow::mainWindow() :
 	toolButton * lock_mode = new toolButton(
 			QPixmap( ":/resources/locked.png" ),
 			tr( "Lock desktops" ),
+			tr( "Lock" ),
 			tr( "To have all user's full attention you can lock "
 				"their desktops using this button. "
 				"In this mode all input devices are locked and "
@@ -221,13 +225,14 @@ mainWindow::mainWindow() :
 	toolButton * text_msg = new toolButton(
 			QPixmap( ":/resources/text_message.png" ),
 			tr( "Send text message" ),
+			tr( "Text message" ),
 			tr( "Use this button to send a text message to all "
 				"users e.g. to tell them new tasks etc." ),
-			m_clientManager, SLOT( sendMessage() ), m_toolBar );
+			m_classroomManager, SLOT( sendMessage() ), m_toolBar );
 
 /*	m_toolBar->addAction( QPixmap( ":/resources/distribute_file.png" ),
 						tr( "Distribute" ),
-							m_clientManager,
+							m_classroomManager,
 							SLOT( distributeFile() )
 			)->setWhatsThis( tr( "If you want to distribute a file "
 					"to all pupils (e.g. a worksheet to "
@@ -241,7 +246,7 @@ mainWindow::mainWindow() :
 	QAction * cf = m_toolBar->addAction(
 				QPixmap( ":/resources/collect_files.png" ),
 						tr( "Collect" ),
-						m_clientManager,
+						m_classroomManager,
 						SLOT( collectFiles() ) );
 	cf->setWhatsThis( tr( "For collecting a specific file "
 				"from every pupil click on this "
@@ -257,13 +262,13 @@ mainWindow::mainWindow() :
 	file_collect_menu->addAction( QPixmap( ":/resources/users.png" ),
 					tr( "Collect files from users logged "
 									"in" ),
-						m_clientManager,
+						m_classroomManager,
 						SLOT( collectFiles() ) );
 
 	file_collect_menu->addAction( QPixmap( ":/resources/filesave.png" ),
 					tr( "Collect files from users in "
 						"exported user-list" ),
-					m_clientManager,
+					m_classroomManager,
 					SLOT( collectFilesFromUserList() ) );
 	cf->setMenu( file_collect_menu );
 	//cf->setMenuDelay( 1 );*/
@@ -272,47 +277,52 @@ mainWindow::mainWindow() :
 	toolButton * power_on = new toolButton(
 			QPixmap( ":/resources/power_on.png" ),
 			tr( "Power on computers" ),
+			tr( "Power on" ),
 			tr( "Click this button to power on all visible "
 				"computers. This way you do not have to turn "
 				"on each computer by hand." ),
-			m_clientManager, SLOT( powerOnClients() ), m_toolBar );
+			m_classroomManager, SLOT( powerOnClients() ), m_toolBar );
 
 	toolButton * power_off = new toolButton(
 			QPixmap( ":/resources/power_off.png" ),
-			tr( "Power off computers" ),
-			tr( "To power off all shown computers (e.g. after "
+			tr( "Power down computers" ),
+			tr( "Power down" ),
+			tr( "To power down all shown computers (e.g. after "
 				"the lesson has finished) you can click this "
 				"button." ),
-			m_clientManager,
+			m_classroomManager,
 					SLOT( powerDownClients() ), m_toolBar );
 
 	toolButton * multilogon = new toolButton(
 			QPixmap( ":/resources/multilogon.png" ),
 			tr( "Multi logon" ),
+			tr( "Logon" ),
 			tr( "After clicking this button you can enter a "
 				"username and password for logging in the "
 				"according user on all visible computers." ),
-			m_clientManager, SLOT( multiLogon() ), m_toolBar );
+			m_classroomManager, SLOT( multiLogon() ), m_toolBar );
 
 
 	toolButton * adjust_size = new toolButton(
 			QPixmap( ":/resources/adjust_size.png" ),
 			tr( "Adjust windows and their size" ),
+			tr( "Adjust/align" ),
 			tr( "When clicking this button the biggest possible "
 				"size for the client-windows is adjusted. "
 				"Furthermore all windows are aligned." ),
-			m_clientManager, SLOT( adjustWindows() ), m_toolBar );
+			m_classroomManager, SLOT( adjustWindows() ), m_toolBar );
 
 	toolButton * auto_arrange = new toolButton(
 			QPixmap( ":/resources/auto_arrange.png" ),
 			tr( "Auto re-arrange windows and their size" ),
+			tr( "Auto view" ),
 			tr( "When clicking this button all visible windows "
 				"are re-arranged and adjusted." ),
-			m_clientManager, SLOT( arrangeWindows() ), m_toolBar );
+			m_classroomManager, SLOT( arrangeWindows() ), m_toolBar );
 
 /*	m_toolBar->addAction( QPixmap( ":/resources/inc_client_size.png" ),
 					tr( "Increase" ),
-						m_clientManager,
+						m_classroomManager,
 						SLOT( increaseClientSize() )
 			)->setWhatsThis( tr( "When clicking this button, the "
 					"size of all visible client-windows is "
@@ -321,7 +331,7 @@ mainWindow::mainWindow() :
 
 	m_toolBar->addAction( QPixmap( ":/resources/dec_client_size.png" ),
 					tr( "Decrease" ),
-						m_clientManager,
+						m_classroomManager,
 						SLOT( decreaseClientSize() )
 			)->setWhatsThis( tr( "When clicking this button, the "
 					"size of the visible client-windows is "
@@ -346,7 +356,7 @@ mainWindow::mainWindow() :
 	m_toolBar->addWidget( auto_arrange );
 
 	restoreState( QByteArray::fromBase64(
-				m_clientManager->winCfg().toAscii() ) );
+				m_classroomManager->winCfg().toAscii() ) );
 
 	if( isdConnection::initAuthentication() == FALSE )
 	{
@@ -381,7 +391,7 @@ mainWindow::mainWindow() :
 	m_localISD->demoServerStop();
 	m_localISD->demoServerRun( __demo_quality, localSystem::freePort() );
 
-	QTimer::singleShot( 1000, m_clientManager, SLOT( updateClients() ) );
+	QTimer::singleShot( 1000, m_classroomManager, SLOT( updateClients() ) );
 
 	m_updateThread = new updateThread( this );
 
@@ -392,7 +402,7 @@ mainWindow::mainWindow() :
 
 mainWindow::~mainWindow()
 {
-	m_clientManager->doCleanupWork();
+	m_classroomManager->doCleanupWork();
 	delete m_workspace;
 
 
@@ -411,8 +421,8 @@ void mainWindow::closeEvent( QCloseEvent * _ce )
 	m_updateThread->terminate();
 	m_updateThread->wait();
 
-	m_clientManager->savePersonalConfig();
-	m_clientManager->saveGlobalClientConfig();
+	m_classroomManager->savePersonalConfig();
+	m_classroomManager->saveGlobalClientConfig();
 
 	_ce->accept();
 	deleteLater();
@@ -433,17 +443,17 @@ void mainWindow::aboutITALC( void )
 void mainWindow::changeGlobalClientMode( int _mode )
 {
 	client::modes new_mode = static_cast<client::modes>( _mode );
-	if( new_mode == m_clientManager->globalClientMode()/* &&
+	if( new_mode == m_classroomManager->globalClientMode()/* &&
 					new_mode != client::Mode_Overview*/ )
 	{
-		m_clientManager->changeGlobalClientMode(
+		m_classroomManager->changeGlobalClientMode(
 							client::Mode_Overview );
 		m_modeGroup->button( client::Mode_Overview )->setChecked(
 									TRUE );
 	}
 	else
 	{
-		m_clientManager->changeGlobalClientMode( _mode );
+		m_classroomManager->changeGlobalClientMode( _mode );
 	}
 }
 
@@ -479,10 +489,10 @@ void mainWindow::updateThread::run( void )
 
 		// now sleep before reloading clients again
 		QThread::sleep(
-			m_mainWindow->getClientManager()->updateInterval() );
+			m_mainWindow->getClassroomManager()->updateInterval() );
 
 		// now do cleanup-work
-		m_mainWindow->getClientManager()->doCleanupWork();
+		m_mainWindow->getClassroomManager()->doCleanupWork();
 	}
 }
 

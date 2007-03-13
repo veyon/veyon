@@ -640,6 +640,9 @@ void privateDSAKey::save( const QString & _file, QString _passphrase ) const
 			NULL : (unsigned char *) _passphrase.toAscii().data(),
 					_passphrase.length(), NULL, NULL );
 	fclose( fp );
+	outfile.close();
+	outfile.setPermissions( QFile::ReadOwner | QFile::ReadUser |
+							QFile::ReadGroup );
 }
 
 
@@ -806,6 +809,10 @@ void publicDSAKey::save( const QString & _file, QString ) const
 								toBase64() ) );
 	memset( p, 0, len );
 	buffer_free( &b );
+	ts.flush();
+	outfile.close();
+	outfile.setPermissions( QFile::ReadOwner | QFile::ReadUser |
+				QFile::ReadGroup | QFile::ReadOther );
 }
 
 

@@ -1,7 +1,7 @@
 /*
  * user_list.h - declaration of user-list for side-bar
  *
- * Copyright (c) 2004-2006 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2007 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -32,7 +32,7 @@ class QListWidget;
 class QPushButton;
 
 class client;
-class clientManager;
+class classroomManager;
 
 
 class userList : public sideBarWidget
@@ -42,11 +42,10 @@ public:
 	userList( mainWindow * _main_window, QWidget * _parent );
 	virtual ~userList();
 
-	static QStringList getLoggedInUsers( clientManager * _client_manager );
+	static QStringList getLoggedInUsers(
+					classroomManager * _classroom_manager );
 	static client * getClientFromUser( const QString & _user,
-					clientManager * _client_manager );
-/*	static QString getUserFromClient( const QString & _ip,
-					clientManager * _client_manager );*/
+					classroomManager * _classroom_manager );
 
 	void reload( void );
 

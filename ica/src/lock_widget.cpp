@@ -1,7 +1,7 @@
 /*
  *  lock_widget.cpp - widget for locking a client
  *
- *  Copyright (c) 2006 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ *  Copyright (c) 2006-2007 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *  
  *  This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -40,7 +40,7 @@
 
 
 lockWidget::lockWidget( types _type ) :
-	QWidget( 0 ),
+	QWidget( 0, Qt::X11BypassWindowManagerHint ),
 	m_background(
 		_type == Black ?
 			QPixmap( ":/resources/locked.png" )
@@ -53,9 +53,10 @@ lockWidget::lockWidget( types _type ) :
 	m_sysKeyTrapper()
 {
 	showFullScreen();
+	move( 0, 0 );
+	setFixedSize( QDesktopWidget().screenGeometry( this ).size() );
 	localSystem::activateWindow( this );
 	//setFixedSize( qApp->desktop()->size() );
-	//move( 0, 0 );
 	setFocusPolicy( Qt::StrongFocus );
 	setFocus();
 	grabMouse();

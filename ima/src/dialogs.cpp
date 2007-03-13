@@ -1,7 +1,7 @@
 /*
  * dialogs.cpp - implementation of dialogs
  *
- * Copyright (c) 2006 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2007 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -49,7 +49,7 @@ aboutDialog::aboutDialog( QWidget * _parent ) :
 
 
 #include "client.h"
-#include "client_manager.h"
+#include "classroom_manager.h"
 #include "main_window.h"
 #include "messagebox.h"
 
@@ -67,7 +67,7 @@ clientSettingsDialog::clientSettingsDialog( client * _client,
 
 	int set_to_classroom = 0;
 
-	clientManager * cm = m_mainWindow->getClientManager();
+	classroomManager * cm = m_mainWindow->getClassroomManager();
 	for( int i = 0; i < cm->m_classRooms.size(); ++i )
 	{
 		classRoomComboBox->addItem( cm->m_classRooms[i]->text( 0 ) );
@@ -127,7 +127,7 @@ void clientSettingsDialog::accept( void )
 					remoteIPEdit->text(),
 					macEdit->text(),
 					nameEdit->text(),
-m_mainWindow->getClientManager()->m_classRooms[classRoomComboBox->currentIndex()],
+m_mainWindow->getClassroomManager()->m_classRooms[classRoomComboBox->currentIndex()],
 					m_mainWindow );
 	}
 	else
@@ -137,7 +137,7 @@ m_mainWindow->getClientManager()->m_classRooms[classRoomComboBox->currentIndex()
 		m_client->setRemoteIP( remoteIPEdit->text() );
 		m_client->setMac( macEdit->text() );
 		m_client->setClassRoom(
-m_mainWindow->getClientManager()->m_classRooms[classRoomComboBox->currentIndex()] );
+m_mainWindow->getClassroomManager()->m_classRooms[classRoomComboBox->currentIndex()] );
 		m_client->resetConnection();
 	}
 

@@ -45,7 +45,7 @@
 #include "main_window.h"
 #include "client.h"
 #include "ivs_connection.h"
-#include "client_manager.h"
+#include "classroom_manager.h"
 #include "cmd_input_dialog.h"
 #include "local_system.h"
 #include "snapshot_list.h"
@@ -121,7 +121,7 @@ client::client( const QString & _local_ip, const QString & _remote_ip,
 	m_connection = new ivsConnection( m_localIP,
 						ivsConnection::QualityLow);
 
-	setWindowIcon( QPixmap( ":/resources/client_manager.png" ) );
+	setWindowIcon( QPixmap( ":/resources/classroom_manager.png" ) );
 
 	setWhatsThis( tr( "This is a client-window. It either displays the "
 				"screen of the according client or a message "
@@ -130,7 +130,7 @@ client::client( const QString & _local_ip, const QString & _remote_ip,
 				"click with the right mouse-button and an "
 				"action-menu for this client will appear. "
 				"You can also close this client-window. "
-				"To open it again, open the client-manager-"
+				"To open it again, open the classroom-manager-"
 				"workspace and search this client and double-"
 				"click it.\nYou can change the size of this "
 				"(and all other visible) client-windows by "
@@ -669,7 +669,7 @@ void client::reload( const QString & _update )
 
 void client::clientDemo( const QString & )
 {
-	clientManager * cm = m_mainWindow->getClientManager();
+	classroomManager * cm = m_mainWindow->getClassroomManager();
 	cm->changeGlobalClientMode( Mode_Overview );
 
 	isdConnection * conn = m_mainWindow->localISD();
@@ -1083,7 +1083,7 @@ void updateThread::run( void )
 	QTimer t;
 	connect( &t, SIGNAL( timeout() ), this, SLOT( update() ),
 							Qt::DirectConnection );
-	t.start( m_client->m_mainWindow->getClientManager()->updateInterval() *
+	t.start( m_client->m_mainWindow->getClassroomManager()->updateInterval() *
 									1000 );
 	exec();
 }

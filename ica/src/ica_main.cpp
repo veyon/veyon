@@ -1,7 +1,7 @@
 /*
  * ica_main.cpp - main-file for ICA (iTALC Client Application)
  *
- * Copyright (c) 2006 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2007 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *  
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -82,23 +82,10 @@ int ICAMain( int argc, char * * argv )
 	_Xdebug = 1;
 #endif
 #endif
-	systemService s( "icas", SERVICE_ARG, __app_name,
-#ifndef NO_LUPUS_INTEGRATION
-				"lupus",
-#else
-				"",
-#endif
-						serviceMain, argc, argv );
-	if( s.evalArgs( argc, argv ) || argc == 0 )
-	{
-		return( 0 );
-	}
-
-	QCoreApplication * app = NULL;
 
 	// decide whether to create a QCoreApplication or QApplication
 	bool core_app = FALSE;
-	for( int i = 1; i < argc; ++i )
+	for( int i = 1; i <= argc; ++i )
 	{
 		if( QString( argv[i] ) == "-rx11vs" ||
 			QString( argv[i] ) == "-createkeypair" )
@@ -106,6 +93,23 @@ int ICAMain( int argc, char * * argv )
 			core_app = TRUE;
 		}
 	}
+
+	if( !core_app )
+	{
+		systemService s( "icas", SERVICE_ARG, __app_name,
+#ifndef NO_LUPUS_INTEGRATION
+				"lupus",
+#else
+				"",
+#endif
+						serviceMain, argc, argv );
+		if( s.evalArgs( argc, argv ) || argc == 0 )
+		{
+			return( 0 );
+		}
+	}
+
+	QCoreApplication * app = NULL;
 
 	if( core_app )
 	{
@@ -118,8 +122,6 @@ int ICAMain( int argc, char * * argv )
 		app = a;
 	}
 
-	localSystem::initialize();
-
 	const QString loc = QLocale::system().name().left( 2 );
 	QTranslator app_tr;
 	app_tr.load( ":/resources/" + loc + ".qm" );
@@ -129,6 +131,7 @@ int ICAMain( int argc, char * * argv )
 	qt_tr.load( ":/resources/qt_" + loc + ".qm" );
 	app->installTranslator( &qt_tr );
 
+	localSystem::initialize();
 
 	QStringListIterator arg_it( QCoreApplication::arguments() );
 	arg_it.next();
@@ -205,6 +208,7 @@ int ICAMain( int argc, char * * argv )
 						arg_it.next() : priv + ".pub" )
 				:
 					localSystem::publicKeyPath( role );
+			printf( "\n\ncreating new key-pair ... \n" );
 			privateDSAKey pkey( 1024 );
 			if( !pkey.isValid() )
 			{
@@ -213,9 +217,17 @@ int ICAMain( int argc, char * * argv )
 			}
 			pkey.save( priv );
 			publicDSAKey( pkey ).save( pub );
-			printf( "saved key-pair in %s and %s\n",
+			printf( "...done, saved key-pair in\n\n%s\n\nand\n\n%s",
 						priv.toAscii().constData(),
 						pub.toAscii().constData() );
+			printf( "\n\n\nFor now the file is only readable by "
+				"root and members of group root (if you\n"
+				"didn't ran this command as non-root).\n"
+				"I suggest changing the ownership of the "
+				"private key so that the file is\nreadable "
+				"by all members of a special group to which "
+				"all users belong who are\nallowed to use "
+				"iTALC.\n\n\n" );
 			return( 0 );
 		}
 #ifdef BUILD_LINUX

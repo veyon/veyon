@@ -188,8 +188,7 @@ void setupWizard::doInstallation( void )
 		"QtGui4.dll"		<<
 		"QtNetwork4.dll"	<<
 		"QtXml4.dll"		<<
-		"userinfo.exe"		<<
-		"wake.exe"
+		"userinfo.exe"
 #else
 		"libssl.so.0.9.8"	<<
 		"libcrypto.so.0.9.8"	<<
@@ -426,6 +425,8 @@ void setupWizard::next( void )
 	}
 	else if( m_idx+1 == m_widgetStack.size() )
 	{
+		cancelButton->setDisabled( TRUE );
+		backButton->setDisabled( TRUE );
 		nextButton->setText( tr( "Quit" ) );
 	}
 	nextButton->setFocus();

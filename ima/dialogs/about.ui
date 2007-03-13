@@ -39,7 +39,7 @@
         <string/>
        </property>
        <property name="pixmap" >
-        <pixmap resource="../italc.qrc" >:/resources/info.png</pixmap>
+        <pixmap resource="../italc.qrc" >:/resources/logo.png</pixmap>
        </property>
       </widget>
      </item>

@@ -1,7 +1,7 @@
 /*
  * user_list.cpp - implementation of user-list for side-bar
  *
- * Copyright (c) 2004-2006 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2007 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -33,7 +33,7 @@
 
 #include "user_list.h"
 #include "client.h"
-#include "client_manager.h"
+#include "classroom_manager.h"
 #include "main_window.h"
 
 
@@ -92,7 +92,7 @@ userList::~userList()
 void userList::reload( void )
 {
 	QStringList users = userList::getLoggedInUsers(
-					getMainWindow()->getClientManager() );
+					getMainWindow()->getClassroomManager() );
 
 	QString selected_user;
 
@@ -117,9 +117,9 @@ void userList::reload( void )
 
 
 client * userList::getClientFromUser( const QString & _user,
-					clientManager * _client_manager )
+					classroomManager * _classroom_manager )
 {
-	QVector<client *> clients = _client_manager->visibleClients();
+	QVector<client *> clients = _classroom_manager->visibleClients();
 
 	// loop through all clients
 	for( QVector<client *>::iterator it = clients.begin();
@@ -140,7 +140,7 @@ client * userList::getClientFromUser( const QString & _user,
 QString userList::getUserFromClient( const QString & _ip )
 {
 	QVector<client *> clients =
-			getMainWindow()->getClientManager()->visibleClients();
+			getMainWindow()->getClassroomManager()->visibleClients();
 
 	// loop through all clients
 	for( QVector<client *>::iterator it = clients.begin();
@@ -163,7 +163,7 @@ void userList::contextMenuHandler( const QPoint & _pos )
 	{
 		client * c = userList::getClientFromUser( m_list->itemAt(
 							_pos )->text(),
-					getMainWindow()->getClientManager() );
+					getMainWindow()->getClassroomManager() );
 		if( c != NULL )
 		{
 			QMenu context_menu( this );
@@ -188,7 +188,7 @@ void userList::clickedExportToFile( void )
 	}
 
 	QStringList users = userList::getLoggedInUsers(
-					getMainWindow()->getClientManager() );
+					getMainWindow()->getClassroomManager() );
 	QString output = QDateTime::currentDateTime().toString() + "\n";
 
 	for( QStringList::Iterator it = users.begin(); it != users.end(); ++it )
@@ -205,9 +205,9 @@ void userList::clickedExportToFile( void )
 
 
 
-QStringList userList::getLoggedInUsers( clientManager * _client_manager )
+QStringList userList::getLoggedInUsers( classroomManager * _classroom_manager )
 {
-	QVector<client *> clients = _client_manager->visibleClients();
+	QVector<client *> clients = _classroom_manager->visibleClients();
 
 	QStringList users;
 

@@ -1,7 +1,7 @@
 /*
  *  remote_control_widget.cpp - widget containing a VNC-view and controls for it
  *
- *  Copyright (c) 2006 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ *  Copyright (c) 2006-2007 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *  
  *  This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -30,6 +30,7 @@
 
 
 #include <QtCore/QTimer>
+#include <QtGui/QDesktopWidget>
 #include <QtGui/QLayout>
 #include <QtGui/QPainter>
 #include <QtGui/QPaintEvent>
@@ -50,20 +51,20 @@ remoteControlWidgetToolBar::remoteControlWidgetToolBar(
 	move( 0, -200 );
 	show();
 
-	fxToolButton * fs_btn = new fxToolButton( tr( "Fullscreen/window" ),
-				QImage( ":/resources/fullscreen.png" ), this );
+/*	fxToolButton * fs_btn = new fxToolButton( tr( "Fullscreen/window" ),
+				QImage( ":/resources/fullscreen.png" ), this );*/
 	fxToolButton * quit_btn = new fxToolButton( tr( "Quit" ),
 				QImage( ":/resources/quit.png" ), this );
 
-	connect( fs_btn, SIGNAL( clicked() ), _parent,
-						SLOT( toggleFullScreen() ) );
+/*	connect( fs_btn, SIGNAL( clicked() ), _parent,
+						SLOT( toggleFullScreen() ) );*/
 	connect( quit_btn, SIGNAL( clicked() ), _parent, SLOT( close() ) );
 
 	QHBoxLayout * layout = new QHBoxLayout( this );
 	layout->setMargin( 1 );
 	layout->setSpacing( 5 );
 	layout->addStretch( 0 );
-	layout->addWidget( fs_btn );
+//	layout->addWidget( fs_btn );
 	layout->addWidget( quit_btn );
 	layout->addSpacing( 10 );
 }
@@ -298,7 +299,7 @@ void fxToolButton::updateColorLevel( void )
 
 remoteControlWidget::remoteControlWidget( const QString & _host,
 							bool _view_only ) :
-	QWidget(),
+	QWidget( 0, Qt::X11BypassWindowManagerHint ),
 	m_vncView( new vncView( _host, _view_only, this ) ),
 	m_toolBar( new remoteControlWidgetToolBar( this ) )
 {
@@ -311,9 +312,11 @@ remoteControlWidget::remoteControlWidget( const QString & _host,
 							SLOT( updateUser() ) );
 	connect( m_vncView, SIGNAL( keyEvent( Q_UINT32, bool ) ),
 				this, SLOT( checkKeyEvent( Q_UINT32, bool ) ) );
-	showMaximized();
+	showFullScreen();
+	move( 0, 0 );
+	setFixedSize( QDesktopWidget().screenGeometry( this ).size() );
 	localSystem::activateWindow( this );
-	toggleFullScreen();
+	//toggleFullScreen();
 	updateUser();
 #ifdef BUILD_LINUX
 	// for some reason we have to grab mouse and then release again to
@@ -391,12 +394,12 @@ void remoteControlWidget::checkKeyEvent( Q_UINT32 _key, bool _pressed )
 
 
 
-
+/*
 void remoteControlWidget::toggleFullScreen( void )
 {
 	setWindowState( windowState() ^ Qt::WindowFullScreen );
 }
-
+*/
 
 
 

@@ -9,13 +9,22 @@ bin_PROGRAMS = italc
 	$(UIC) -o $@ $<
 
 %.ts: 
-	$(LUPDATE) $(srcdir)/src/*.cpp $(srcdir)/dialogs/*.ui $(srcdir)/../common/src/*.cpp -ts $(srcdir)/resources/$@
+	$(LUPDATE) $(srcdir)/src/*.cpp $(srcdir)/dialogs/*.ui	\
+		$(srcdir)/../common/src/fast_qimage.cpp		\
+		$(srcdir)/../common/src/isd_base.cpp		\
+		$(srcdir)/../common/src/isd_connection.cpp	\
+		$(srcdir)/../common/src/ivs_connection.cpp	\
+		$(srcdir)/../common/src/local_system.cpp	\
+		$(srcdir)/../common/src/messagebox.cpp		\
+		$(srcdir)/../common/src/rect_list.cpp		\
+		$(srcdir)/../common/src/dsa_key.cpp		\
+						-ts $(srcdir)/resources/$@
 	
 %.qm: %.ts
 	$(LRELEASE) $<
 
 italc_MOC =	./src/client.moc			\
-		./src/client_manager.moc		\
+		./src/classroom_manager.moc		\
 		./src/cmd_input_dialog.moc		\
 		./src/config_widget.moc			\
 		./src/dialogs.moc			\
@@ -23,7 +32,6 @@ italc_MOC =	./src/client.moc			\
 		./src/kmultitabbar.moc			\
 		./src/main_window.moc			\
 		./src/overview_widget.moc		\
-		./src/progress_information.moc		\
 		./src/snapshot_list.moc			\
 		./src/support_widget.moc		\
 		./src/tool_button.moc			\
@@ -51,7 +59,7 @@ italc_TRANSLATIONS = $(wildcard $(srcdir)/resources/*.qm $(srcdir)/resources/*.t
 
 
 italc_SOURCES = $(srcdir)/src/client.cpp			\
-		$(srcdir)/src/client_manager.cpp		\
+		$(srcdir)/src/classroom_manager.cpp		\
 		$(srcdir)/src/cmd_input_dialog.cpp		\
 		$(srcdir)/src/config_widget.cpp			\
 		$(srcdir)/src/dialogs.cpp			\
@@ -60,7 +68,6 @@ italc_SOURCES = $(srcdir)/src/client.cpp			\
 		$(srcdir)/src/kmultitabbar.cpp			\
 		$(srcdir)/src/main.cpp				\
 		$(srcdir)/src/overview_widget.cpp		\
-		$(srcdir)/src/progress_information.cpp		\
 		$(srcdir)/src/qnetworkinterface.cpp		\
 		$(srcdir)/src/snapshot_list.cpp			\
 		$(srcdir)/src/side_bar_widget.cpp		\
@@ -68,7 +75,7 @@ italc_SOURCES = $(srcdir)/src/client.cpp			\
 		$(srcdir)/src/tool_button.cpp			\
 		$(srcdir)/src/user_list.cpp			\
 		$(srcdir)/src/client.h				\
-		$(srcdir)/src/client_manager.h			\
+		$(srcdir)/src/classroom_manager.h		\
 		$(srcdir)/src/cmd_input_dialog.h		\
 		$(srcdir)/src/config_widget.h 			\
 		$(srcdir)/src/support_widget.h			\
@@ -77,7 +84,6 @@ italc_SOURCES = $(srcdir)/src/client.cpp			\
 		$(srcdir)/src/italc_side_bar.h			\
 		$(srcdir)/src/kmultitabbar.h			\
 		$(srcdir)/src/overview_widget.h			\
-		$(srcdir)/src/progress_information.h		\
 		$(srcdir)/src/qplatformdefs.h			\
 		$(srcdir)/src/snapshot_list.h			\
 		$(srcdir)/src/side_bar_widget.h			\
@@ -127,7 +133,7 @@ WIN32_RES_LDADD = italc_win_resources.o
 endif
 
 if HAVE_LIBSSL
-LIBSSL_LDADD = -lssl
+LIBSSL_LDADD = -lssl -lcrypto
 endif
 
 if HAVE_LIBEAY32

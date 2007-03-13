@@ -1,3 +1,102 @@
+2007-03-13	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* ica/resources/de.ts:
+	* ica/resources/de.qm:
+	* ima/resources/de.ts:
+	* ima/resources/de.qm:
+	updated German localization
+
+	* ima/dialogs/overview.ui:
+	* ima/src/user_list.h:
+	* ima/src/main_window.h:
+	* ima/src/classroom_manager.h:
+	* ima/src/config_widget.cpp:
+	* ima/src/user_list.cpp:
+	* ima/src/dialogs.cpp:
+	* ima/src/snapshot_list.cpp:
+	* ima/src/main_window.cpp:
+	* ima/src/client.cpp:
+	* ima/src/classroom_manager.cpp:
+	- renamed "client-manager" to "classroom-manager"
+	- renamed all occurences of "client" to "computer"
+	- made tree-widget in classroom-manager sortable
+	- simplified/improved/corrected help-texts
+
+	* ima/Makefile.am:
+	only include files from common/src/ in lupdate-run which are actually
+	used by IMA
+
+	* ima/src/client_manager.h:
+	* ima/src/client_manager.cpp:
+	* ima/resources/client_manager.png:
+	* ima/resources/client_manager_48.png:
+	* ima/italc.qrc.am:
+	* ima/Makefile.am:
+	moved to classroom_manager*.*
+
+	* ima/src/main_window.cpp:
+	added short-titles for all buttons in action-toolbar
+
+	* ima/resources/logo.png:
+	* ima/italc.qrc:
+	* ima/dialogs/about.ui:
+	added and integrated iTALC-logo
+
+	* ima/src/tool_button.h:
+	* ima/src/tool_button.cpp:
+	- removed annoying dissolve-effect
+	- improved design of tooltips
+	- added "short-title" which is displayed on tool-buttons
+	- decreased "roundness-factor" of tooltips from 3000 to 2000
+
+	* TODO:
+	- cleaned up
+	- added roadmap
+
+	* ima/Makefile.am:
+	* ima/src/client_manager.cpp:
+	removed references to progressInformation-dialog
+
+	* ima/src/progress_information.h:
+	* ima/src/progress_information.cpp:
+	removed
+
+	* setup/src/dialogs.cpp:
+	- removed "wake.exe" from file-list
+	- set "back" and "cancel"-button disabled when on last page
+
+	* ima/dialogs/client_settings.ui:
+	disabled widgets which are currently unused
+
+	* ica/src/lock_widget.cpp:
+	added widget-flag Qt::X11BypassWindowManagerHint again together with
+	several fixes making it work flawless
+
+	* ica/src/remote_control_widget.h:
+	* ica/src/remote_control_widget.cpp:
+	- removed non-fullscreen-view
+	- use widget-flag Qt::X11BypassWindowManagerHint to make window always
+	  being at top
+
+	* common/src/local_system.cpp:
+	more clean (but maybe less compatible) way to logout user under Linux
+
+	* ica/src/ica_main.cpp:
+	- more helpfull output on key-creation
+	- allow key-creation without creating a QApplication in systemService-
+	  class
+
+	* common/src/dsa_key.cpp:
+	- when saving private key, make it only readable by user and group
+	- when saving public key, make it only read- but not writeable by
+	  user, group and others
+
+	* configure.in:
+	* ica/Makefile.am:
+	* ima/Makefile.am:
+	* setup/Makefile.am:
+	do complete linking against OpenSSL-libraries
+
 2007-03-12	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* ima/src/client_manager.cpp:
@@ -163,7 +262,7 @@
 	* ima/resources/fr.qm:
 	* setup/resources/fr.ts:
 	* setup/resources/fr.qm:
-	added French translation from Guillaume Allegre
+	added French localization from Guillaume Allegre
 	(guillaume/dot/allegre/at/silecs/dot/info)
 
 2007-02-22	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
@@ -187,7 +286,7 @@
 
 	* ima/resources/de.ts:
 	* ima/resources/de.qm:
-	updated German translation
+	updated German localization
 
 2007-02-19	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
@@ -248,7 +347,7 @@
 
 	* setup/resources/de.qm:
 	* setup/resources/de.ts:
-	updated German translation
+	updated German localization
 
 	* setup/src/dialogs.cpp:
 	* setup/src/dialogs.h:
@@ -607,7 +706,7 @@
 	- other bugfixes
 
 	* ica/src/system_service.cpp:
-	load translation even when only doing some service-stuff
+	load localization even when only doing some service-stuff
 
 2006-11-26	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
@@ -814,7 +913,7 @@
 2006-11-12	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* ima/resources/de.ts:
-	updated German translation
+	updated German localization
 
 	* ica/src/vncview.cpp:
 	use Qt::DirectConnection's to make framebufferUpdate()-method being
@@ -877,7 +976,7 @@
 
 	* ica/resources/de.ts:
 	* ima/resources/de.s:
-	updated German translation
+	updated German localization
 
 	* ica/src/vncview.cpp:
 	initialize m_viewOffset
@@ -961,7 +1060,7 @@
 
 	* ica/resources/de.ts:
 	* ica/resources/de.qm:
-	updated German translation
+	updated German localization
 
 	* common/src/local_system.cpp:
 	shutdown and reboot under win32 via InitiateSystemShutdown() instead
@@ -1125,7 +1224,7 @@
 
 	* ica/resources/de.ts:
 	* ima/resources/de.ts:
-	updated German translation
+	updated German localization
 
 	* ica/src/vncview.cpp:
 	* ica/src/demo_server.cpp:
@@ -1445,7 +1544,7 @@
 2006-09-07	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* ima/resources/de.ts:
-	updated German translation
+	updated German localization
 
 	* ima/src/client_manager.cpp:
 	* ima/src/config_widget.h:
