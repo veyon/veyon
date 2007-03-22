@@ -16,7 +16,7 @@
 <context>
     <name>QDialog</name>
     <message>
-        <location filename="../src/dialogs.cpp" line="78"/>
+        <location filename="../src/dialogs.cpp" line="79"/>
         <source>Program Files</source>
         <translation>Programme</translation>
     </message>
@@ -45,12 +45,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../dialogs/page_setup_finished.ui" line="61"/>
         <source>iTALC is now completely installed. For using iTALC you either have to restart your computer or start the iTALC Client service manually.</source>
-        <translation>iTALC ist nun vollständig installiert. Um iTALC zu nutzen müssen Sie entweder den Computer neustarten oder den iTALC-Client-Dienst manuell starten.</translation>
+        <translation type="obsolete">iTALC ist nun vollständig installiert. Um iTALC zu nutzen müssen Sie entweder den Computer neustarten oder den iTALC-Client-Dienst manuell starten.</translation>
     </message>
     <message>
         <location filename="../dialogs/page_setup_finished.ui" line="71"/>
         <source>Save installation settings</source>
         <translation>Installationseinstellungen speichern</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/page_setup_finished.ui" line="61"/>
+        <source>iTALC is now completely installed. If you installed the master application you can start it using the start-menu.</source>
+        <translation>iTALC ist nun vollständig installiert. Wenn Sie die Master-Applikation installiert haben, können Sie diese über das Start-Menü starten.</translation>
     </message>
 </context>
 <context>
@@ -173,6 +178,11 @@ p, li { white-space: pre-wrap; }
         <source>Import public key of master computer</source>
         <translation>Öffentlichen Schlüssel des Master-Computers importieren</translation>
     </message>
+    <message>
+        <location filename="../dialogs/page_security_options.ui" line="152"/>
+        <source>Keep all keys (only when updating existing installation!)</source>
+        <translation>Alle Schlüssel beibehalten (nur bei Update einer existierenden Installation!)</translation>
+    </message>
 </context>
 <context>
     <name>pageSelectComponents</name>
@@ -258,22 +268,22 @@ Klicken Sie auf &apos;Weiter&apos;, um fortzufahren.</translation>
 <context>
     <name>setupWizard</name>
     <message>
-        <location filename="../src/dialogs.cpp" line="347"/>
+        <location filename="../src/dialogs.cpp" line="346"/>
         <source>Cancel setup</source>
         <translation>Setup abbrechen</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="349"/>
+        <location filename="../src/dialogs.cpp" line="348"/>
         <source>Are you sure want to quit setup? iTALC is not installed completely yet!</source>
         <translation>Sind Sie sicher, dass Sie die Installation abbrechen wollen? iTALC ist noch nicht vollständig installiert!</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="375"/>
+        <location filename="../src/dialogs.cpp" line="374"/>
         <source>Next</source>
         <translation>Weiter</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="427"/>
+        <location filename="../src/dialogs.cpp" line="426"/>
         <source>Finish</source>
         <translation>Abschließen</translation>
     </message>
@@ -288,12 +298,12 @@ Klicken Sie auf &apos;Weiter&apos;, um fortzufahren.</translation>
         <translation>Kopiere Dateien...</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="148"/>
+        <location filename="../src/dialogs.cpp" line="149"/>
         <source>Confirm overwrite</source>
         <translation>Überschreiben bestätigen</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="149"/>
+        <location filename="../src/dialogs.cpp" line="150"/>
         <source>Do you want to overwrite %1?</source>
         <translation>Möchten Sie die Datei %1 überschreiben?</translation>
     </message>
@@ -303,27 +313,27 @@ Klicken Sie auf &apos;Weiter&apos;, um fortzufahren.</translation>
         <translation>Registriere ICA als Dienst...</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="270"/>
+        <location filename="../src/dialogs.cpp" line="271"/>
         <source>Creating/importing keys...</source>
         <translation>Erstelle/importiere Schlüssel...</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="431"/>
+        <location filename="../src/dialogs.cpp" line="432"/>
         <source>Quit</source>
         <translation>Beenden</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="304"/>
+        <location filename="../src/dialogs.cpp" line="303"/>
         <source>Creating shortcuts...</source>
         <translation>Erzeuge Verknüpfungen...</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="326"/>
+        <location filename="../src/dialogs.cpp" line="325"/>
         <source>Could not create directory</source>
         <translation>Konnte Verzeichnis nicht erstellen</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="330"/>
+        <location filename="../src/dialogs.cpp" line="329"/>
         <source>Could not create directory %1! Make sure you have the neccessary rights and try again!</source>
         <translation>Konnte das Verzeichnis %1 nicht erzeugen. Stellen Sie sicher, dass Sie die nötigen Rechte besitzen und versuchen es erneut!</translation>
     </message>
@@ -331,12 +341,12 @@ Klicken Sie auf &apos;Weiter&apos;, um fortzufahren.</translation>
 <context>
     <name>setupWizardPageInstallDir</name>
     <message>
-        <location filename="../src/dialogs.cpp" line="522"/>
+        <location filename="../src/dialogs.cpp" line="523"/>
         <source>Directory does not exist</source>
         <translation>Verzeichnis existiert nicht</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="524"/>
+        <location filename="../src/dialogs.cpp" line="525"/>
         <source>The specified directory does not exist. Do you want to create it?</source>
         <translation>Das angegebene Verzeichnis existiert nicht. Möchten Sie es erstellen?</translation>
     </message>
@@ -351,7 +361,7 @@ Klicken Sie auf &apos;Weiter&apos;, um fortzufahren.</translation>
         <translation type="obsolete">Konnte das Verzeichnis %1 nicht erzeugen. Stellen Sie sicher, dass Sie die nötigen Rechte besitzen und versuchen es erneut!</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="552"/>
+        <location filename="../src/dialogs.cpp" line="553"/>
         <source>Choose installation directory</source>
         <translation>Installationsverzeichnis wählen</translation>
     </message>
@@ -359,17 +369,17 @@ Klicken Sie auf &apos;Weiter&apos;, um fortzufahren.</translation>
 <context>
     <name>setupWizardPageKeyDirs</name>
     <message>
-        <location filename="../src/dialogs.cpp" line="774"/>
+        <location filename="../src/dialogs.cpp" line="791"/>
         <source>Choose public key directory</source>
         <translation>Verzeichnis für öffentlichen Schlüssel wählen</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="788"/>
+        <location filename="../src/dialogs.cpp" line="805"/>
         <source>Choose private key directory</source>
         <translation>Verzeichnis für privaten Schlüssel wählen</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="802"/>
+        <location filename="../src/dialogs.cpp" line="819"/>
         <source>Choose public key export directory</source>
         <translation>Verzeichnis zum Exportieren des öffentlichen Schlüssels wählen</translation>
     </message>
@@ -377,7 +387,7 @@ Klicken Sie auf &apos;Weiter&apos;, um fortzufahren.</translation>
 <context>
     <name>setupWizardPageSecurityOptions</name>
     <message>
-        <location filename="../src/dialogs.cpp" line="683"/>
+        <location filename="../src/dialogs.cpp" line="691"/>
         <source>Choose directory for key-import</source>
         <translation>Verzeichnis für Schlüssel-Import wählen</translation>
     </message>

@@ -47,6 +47,7 @@
 #include <windows.h>
 #include <shlobj.h>
 #include <psapi.h>
+#include <winable.h>
 
 #if _WIN32_WINNT >= 0x500
 #define SHUTDOWN_FLAGS (EWX_FORCE | EWX_FORCEIFHUNG)
@@ -498,15 +499,15 @@ void broadcastWOLPacket( const QString & _mac )
 void powerDown( void )
 {
 #ifdef BUILD_WIN32
-	//ExitWindowsEx( EWX_POWEROFF | SHUTDOWN_FLAGS, SHUTDOWN_REASON );
 	enablePrivilege( SE_SHUTDOWN_NAME, TRUE );
-	InitiateSystemShutdown( NULL,	// local machine
+	ExitWindowsEx( EWX_POWEROFF | SHUTDOWN_FLAGS, SHUTDOWN_REASON );
+/*	InitiateSystemShutdown( NULL,	// local machine
 				NULL,	// message for shutdown-box
 				0,	// no timeout or possibility to abort
 					// system-shutdown
 				TRUE,	// force closing all apps
 				FALSE	// do not reboot
-				);
+				);*/
 	enablePrivilege( SE_SHUTDOWN_NAME, FALSE );
 #else
 	QProcess::startDetached( "halt" );
@@ -519,15 +520,15 @@ void powerDown( void )
 void reboot( void )
 {
 #ifdef BUILD_WIN32
-	//ExitWindowsEx( EWX_REBOOT | SHUTDOWN_FLAGS, SHUTDOWN_REASON );
 	enablePrivilege( SE_SHUTDOWN_NAME, TRUE );
-	InitiateSystemShutdown( NULL,	// local machine
+	ExitWindowsEx( EWX_REBOOT | SHUTDOWN_FLAGS, SHUTDOWN_REASON );
+/*	InitiateSystemShutdown( NULL,	// local machine
 				NULL,	// message for shutdown-box
 				0,	// no timeout or possibility to abort
 					// system-shutdown
 				TRUE,	// force closing all apps
 				TRUE	// reboot
-				);
+				);*/
 	enablePrivilege( SE_SHUTDOWN_NAME, FALSE );
 #else
 	QProcess::startDetached( "reboot" );
@@ -592,6 +593,17 @@ void logonUser( const QString & _uname, const QString & _passwd,
 	if( user_logged_on )
 	{
 		return;
+	}
+
+	// disable caps lock
+	if( GetKeyState( VK_CAPITAL ) & 1 )
+	{
+		INPUT input[2];
+		ZeroMemory( input, sizeof( input ) );        
+		input[0].type = input[1].type = INPUT_KEYBOARD;
+		input[0].ki.wVk = input[1].ki.wVk = VK_CAPITAL;        
+		input[1].ki.dwFlags = KEYEVENTF_KEYUP;
+		SendInput( 2, input, sizeof( INPUT ) );
 	}
 
 	pressAndReleaseKey( XK_Escape );

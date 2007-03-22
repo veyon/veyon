@@ -58,7 +58,9 @@ bool isdConnection::initAuthentication( void )
 
 	privDSAKey = new privateDSAKey( priv_key_file );
 
-	// key valid (i.e. could be loaded)?
+	return( privDSAKey->isValid() );
+
+/*	// key valid (i.e. could be loaded)?
 	if( !privDSAKey->isValid() )
 	{
 		// no, then create a new one
@@ -79,7 +81,7 @@ bool isdConnection::initAuthentication( void )
 
 		return( FALSE );
 	}
-	return( TRUE );
+	return( TRUE );*/
 }
 
 

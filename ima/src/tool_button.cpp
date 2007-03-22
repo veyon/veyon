@@ -333,8 +333,11 @@ void toolButton::paintEvent( QPaintEvent * _pe )
 	if( s_toolTipsDisabled ||
 		!( m_mouseOver &&  mapFromGlobal( QCursor::pos() ).y() < 54 ) )
 	{
-		p.setPen( active ? Qt::black : Qt::gray );
-		p.setBrush( active ? Qt::black : Qt::gray );
+/*		p.setPen( active ? Qt::black : Qt::gray );
+		p.setBrush( active ? Qt::black : Qt::gray );*/
+		p.setPen( Qt::black );
+		p.setBrush( Qt::black );
+	
 		QFont f = p.font();
 		f.setPointSize( 7 );
 		p.setFont( f );

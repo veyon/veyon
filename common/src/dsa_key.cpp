@@ -620,6 +620,14 @@ void privateDSAKey::save( const QString & _file, QString _passphrase ) const
 	}
 
 	QFile outfile( _file );
+	if( outfile.exists() )
+	{
+		if( !outfile.remove() )
+		{
+			qWarning( "could note remove %s",
+						_file.toAscii().constData() );
+		}
+	}
 	if( !outfile.open( QFile::WriteOnly | QFile::Truncate ) )
 	{
 		qCritical( "could not save private key in %s",
@@ -787,6 +795,10 @@ void publicDSAKey::save( const QString & _file, QString ) const
 	}
 
 	QFile outfile( _file );
+	if( outfile.exists() )
+	{
+		outfile.remove();
+	}
 	if( !outfile.open( QFile::WriteOnly | QFile::Truncate ) )
 	{
 		qCritical( "Could not save public key in %s",

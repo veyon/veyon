@@ -435,7 +435,7 @@ void client::updateStatePixmap( void )
 
 	QFont f = p.font();
 	f.setBold( TRUE );
-	f.setPointSize( f.pointSize() + 4 );
+	f.setPointSize( f.pointSize() + 2 );
 	p.setFont( f );
 	p.setPen( QColor( 0, 0, 0 ) );
 	p.drawText( QRect( 5, 10 + s.height(), width() - 10,

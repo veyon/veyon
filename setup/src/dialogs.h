@@ -196,6 +196,7 @@ private slots:
 	void openKeyImportDir( void );
 	void setKeyImportDir( const QString & _dir );
 	void createKeysRadioButtonToggled( bool );
+	void keepKeysRadioButtonToggled( bool );
 
 
 } ;

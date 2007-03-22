@@ -364,11 +364,11 @@ mainWindow::mainWindow() :
 		{
 			splashScreen->hide();
 		}
-		messageBox::information( tr( "New key-pair generated" ),
+		messageBox::information( tr( "No valid keys found" ),
 			tr( 	"No authentication-keys were found or your "
-				"old ones contained errors, so a new key-"
-				"pair has been generated. Please have your "
-				"administrator to distribute your public key. "
+				"old ones were broken. Please create a new "
+				"key-pair using ICA (see documentation at "
+		"http://italc.sf.net/wiki/index.php?title=Installation).\n"
 				"Otherwise you won't be able to access "
 						"computers using iTALC." ) );
 	}

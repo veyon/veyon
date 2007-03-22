@@ -1,3 +1,59 @@
+2007-03-22	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* common/src/system_service.cpp:
+	- win32: use ChangeServiceConfig2( ... ) instead of calling "sc" which
+	  might not exist on target system
+	- start service using "net"-command
+	- several small fixes
+
+	* common/src/dsa_key.cpp:
+	remove existing key-files before saving them
+
+	* common/src/local_system.cpp:
+	- disable caps-lock when logging on user under win32
+	- use ExitWindowsEx instead of InitiateSystemShutdown - hopefully also
+	  shutsdown W2K properly
+
+	* ima/src/client.cpp:
+	decreased font-size for messages like "Host not reachable"
+
+	* ima/src/main_window.cpp:
+	* common/src/isd_connection.cpp:
+	do not create new key-pair if private key could not be loaded and show
+	message instead
+
+	* ica/src/ica_main.cpp:
+	- run "man ica" if ica is launched with option "-h"
+	- fixed bug in argument-processing
+
+	* ima/src/tool_button.cpp:
+	always draw button-label with black color
+
+	* ima/resources/de.ts:
+	* ima/resources/de.qm:
+	* setup/resources/de.ts:
+	* setup/resources/de.qm:
+	updated German localization and removed obsolete translations
+
+	* setup/dialogs/page_setup_finished.ui:
+	* setup/src/dialogs.cpp:
+	start service after registering it
+
+	* setup/dialogs/page_security_options.ui:
+	* setup/src/dialogs.h:
+	* setup/src/dialogs.cpp:
+	added possibility to keep all keys during installation
+
+2007-03-20	Andriano Rino <rino_andr/at/yahoo/dot/it>
+
+	* ica/resources/it.ts:
+	* ica/resources/it.qm:
+	* ima/resources/it.ts:
+	* ima/resources/it.qm:
+	* setup/resources/it.ts:
+	* setup/resources/it.qm:
+	updated Italian localization and removed obsolete translations
+
 2007-03-13	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* ica/resources/de.ts:

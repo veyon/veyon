@@ -5,7 +5,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>516</width>
+    <width>550</width>
     <height>250</height>
    </rect>
   </property>
@@ -51,14 +51,14 @@ p, li { white-space: pre-wrap; }
       <widget class="QLabel" name="label_3" >
        <property name="sizePolicy" >
         <sizepolicy>
-         <hsizetype>3</hsizetype>
+         <hsizetype>7</hsizetype>
          <vsizetype>7</vsizetype>
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
        <property name="text" >
-        <string>iTALC is now completely installed. For using iTALC you either have to restart your computer or start the iTALC Client service manually.</string>
+        <string>iTALC is now completely installed. If you installed the master application you can start it using the start-menu.</string>
        </property>
        <property name="wordWrap" >
         <bool>true</bool>

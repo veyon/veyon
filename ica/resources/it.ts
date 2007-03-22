@@ -3,92 +3,69 @@
 <context>
     <name>QApplication</name>
     <message>
-        <location filename="../src/ica_main.cpp" line="246"/>
+        <location filename="../src/ica_main.cpp" line="276"/>
         <source>iTALC Client on %1:%2</source>
         <translation>iTALC Client su %1:%2</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="261"/>
+        <location filename="../../common/src/system_service.cpp" line="261"/>
         <source>Unable to register service &apos;%1&apos;.</source>
         <translation>Non è possibile registrare il servizio &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="289"/>
+        <location filename="../../common/src/system_service.cpp" line="289"/>
         <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not registered.</source>
         <translation>Il gestore dei servizi (Service Control Manger) non può essere contattato (hai i diritti sufficienti?!) - il servizio &apos;%1&apos; non è stato registrato.</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="320"/>
+        <location filename="../../common/src/system_service.cpp" line="320"/>
         <source>The service &apos;%1&apos; is already registered.</source>
         <translation>Il servizio &apos;%1&apos; è già registrato.</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="328"/>
+        <location filename="../../common/src/system_service.cpp" line="328"/>
         <source>The service &apos;%1&apos; could not be registered.</source>
         <translation>Il servizio &apos;%1&apos; non può essere registrato.</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="346"/>
-        <source>The service &apos;%1&apos; was successfully registered. It will automatically be run the next time you start this computer.</source>
-        <translation>Il servizio &apos;%1&apos; è stato registrato correttamente. Sarà eseguito automaticamente al prossimo riavvio.</translation>
-    </message>
-    <message>
-        <location filename="../src/system_service.cpp" line="584"/>
+        <location filename="../../common/src/system_service.cpp" line="599"/>
         <source>The service &apos;%1&apos; could not be stopped.</source>
         <translation>Il servizio &apos;%1&apos; non può essere fermato.</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="409"/>
+        <location filename="../../common/src/system_service.cpp" line="424"/>
         <source>The service &apos;%1&apos; has been unregistered.</source>
         <translation>Il servizio &apos;%1&apos; è stato rimosso.</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="421"/>
+        <location filename="../../common/src/system_service.cpp" line="436"/>
         <source>The service &apos;%1&apos; isn&apos;t registered and therefore can&apos;t be unregistered.</source>
         <translation>Il servizio &apos;%1&apos; non è registrato pertanto non può essere rimosso.</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="430"/>
+        <location filename="../../common/src/system_service.cpp" line="445"/>
         <source>The service &apos;%1&apos; could not be unregistered.</source>
         <translation>Il servizio &apos;%1&apos; non può essere rimosso.</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="596"/>
+        <location filename="../../common/src/system_service.cpp" line="613"/>
         <source>The service &apos;%1&apos; could not be found.</source>
         <translation>Il servizio &apos;%1&apos; non è stato trovato.</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="457"/>
+        <location filename="../../common/src/system_service.cpp" line="472"/>
         <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not unregistered.</source>
         <translation>Il gestore dei servizi (Service Control Manger) non può essere contattato (hai i diritti sufficienti?!) - il servizio &apos;%1&apos; non è stato rimosso.</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="506"/>
-        <source>The service &apos;%1&apos; could not be started.</source>
-        <translation>Il servizio &apos;%1&apos; non può essere avviato.</translation>
-    </message>
-    <message>
-        <location filename="../src/system_service.cpp" line="534"/>
-        <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not started.</source>
-        <translation>Il gestore dei servizi (Service Control Manger) non può essere contattato (hai i diritti sufficienti?!) - il servizio &apos;%1&apos; non è stato avviato.</translation>
-    </message>
-    <message>
-        <location filename="../src/system_service.cpp" line="612"/>
+        <location filename="../../common/src/system_service.cpp" line="629"/>
         <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not stopped.</source>
         <translation>Il gestore dei servizi (Service Control Manger) non può essere contattato (hai i diritti sufficienti?!) - il servizio &apos;%1&apos; non è stato fermato.</translation>
     </message>
-</context>
-<context>
-    <name>QObject</name>
     <message>
-        <location filename="../../common/src/local_system.cpp" line="604"/>
-        <source>UPL (note for translators: the first three characters of this string are the accellerators (underlined characters) of the three input-fields in logon-dialog of windows - you only need to &quot;translate&quot; these characters, this note can be ommited)</source>
-        <translation>NPC</translation>
-    </message>
-    <message>
-        <location filename="../../common/src/local_system.cpp" line="816"/>
-        <source>iTALC-snapshots</source>
-        <translation>iTALC-foto</translation>
+        <location filename="../../common/src/system_service.cpp" line="361"/>
+        <source>The service &apos;%1&apos; was successfully registered.</source>
+        <translation>Il servizio &apos;%1&apos; è stato registrato correttamente.</translation>
     </message>
 </context>
 <context>
@@ -102,29 +79,42 @@
 <context>
     <name>isdServer</name>
     <message>
-        <location filename="../src/isd_server.cpp" line="532"/>
+        <location filename="../src/isd_server.cpp" line="533"/>
         <source>Confirm access</source>
         <translation>Conferma accesso</translation>
     </message>
     <message>
-        <location filename="../src/isd_server.cpp" line="535"/>
+        <location filename="../src/isd_server.cpp" line="536"/>
         <source>Somebody at host %1 tries to access your screen. Do you want to grant him/her access?</source>
         <translation>Qualcuno dalla macchina %1 cerca di accedere al tuo video. Consenti l&apos;accesso?</translation>
     </message>
     <message>
-        <location filename="../src/isd_server.cpp" line="553"/>
+        <location filename="../src/isd_server.cpp" line="554"/>
         <source>Never for this session</source>
         <translation>Mai per questa sessione</translation>
     </message>
     <message>
-        <location filename="../src/isd_server.cpp" line="548"/>
+        <location filename="../src/isd_server.cpp" line="549"/>
         <source>Always for this session</source>
         <translation>Sempre per questa sessione</translation>
     </message>
     <message>
-        <location filename="../src/isd_server.cpp" line="769"/>
+        <location filename="../src/isd_server.cpp" line="778"/>
         <source>Message from teacher</source>
         <translation>Messaggio dall&apos;insegnante</translation>
+    </message>
+</context>
+<context>
+    <name>localSystem::QObject</name>
+    <message>
+        <location filename="../../common/src/local_system.cpp" line="626"/>
+        <source>UPL (note for translators: the first three characters of this string are the accellerators (underlined characters) of the three input-fields in logon-dialog of windows - you only need to &quot;translate&quot; these characters, this note can be ommited)</source>
+        <translation>NPC (note for translators: the first three characters of this string are the accellerators (underlined characters) of the three input-fields in logon-dialog of windows - you only need to &quot;translate&quot; these characters, this note can be ommited)</translation>
+    </message>
+    <message>
+        <location filename="../../common/src/local_system.cpp" line="865"/>
+        <source>iTALC-snapshots</source>
+        <translation>iTALC-foto</translation>
     </message>
 </context>
 <context>
@@ -138,7 +128,7 @@
 <context>
     <name>remoteControlWidget</name>
     <message>
-        <location filename="../src/remote_control_widget.cpp" line="368"/>
+        <location filename="../src/remote_control_widget.cpp" line="371"/>
         <source>iTALC remote control (host %1)</source>
         <translation>iTALC controllo remoto (PC %1)</translation>
     </message>
@@ -146,14 +136,9 @@
 <context>
     <name>remoteControlWidgetToolBar</name>
     <message>
-        <location filename="../src/remote_control_widget.cpp" line="53"/>
-        <source>Fullscreen/window</source>
-        <translation>Schermo Intero/Finestra</translation>
-    </message>
-    <message>
-        <location filename="../src/remote_control_widget.cpp" line="55"/>
+        <location filename="../src/remote_control_widget.cpp" line="56"/>
         <source>Quit</source>
-        <translation>Esci</translation>
+        <translation>Chiudi</translation>
     </message>
 </context>
 <context>

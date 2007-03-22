@@ -3,7 +3,7 @@
 <context>
     <name>QApplication</name>
     <message>
-        <location filename="../src/ica_main.cpp" line="270"/>
+        <location filename="../src/ica_main.cpp" line="276"/>
         <source>iTALC Client on %1:%2</source>
         <translation>iTALC Client auf %1:%2</translation>
     </message>
@@ -28,67 +28,44 @@
         <translation>Der Dienst &apos;%1&apos; konnte nicht registriert werden.</translation>
     </message>
     <message>
-        <location filename="../../common/src/system_service.cpp" line="349"/>
-        <source>The service &apos;%1&apos; was successfully registered. It will automatically be run the next time you start this computer.</source>
-        <translation>Der Dienst &apos;%1&apos; wurde erfolgreich registriert. Er wird automatisch gestartet, wenn Sie den Computer das nächste Mal hochfahren.</translation>
-    </message>
-    <message>
-        <location filename="../../common/src/system_service.cpp" line="587"/>
+        <location filename="../../common/src/system_service.cpp" line="599"/>
         <source>The service &apos;%1&apos; could not be stopped.</source>
         <translation>Der Dienst &apos;%1&apos; konnte nicht gestoppt werden.</translation>
     </message>
     <message>
-        <location filename="../../common/src/system_service.cpp" line="412"/>
+        <location filename="../../common/src/system_service.cpp" line="424"/>
         <source>The service &apos;%1&apos; has been unregistered.</source>
         <translation>Der Dienst &apos;%1&apos; wurde entfernt.</translation>
     </message>
     <message>
-        <location filename="../../common/src/system_service.cpp" line="424"/>
+        <location filename="../../common/src/system_service.cpp" line="436"/>
         <source>The service &apos;%1&apos; isn&apos;t registered and therefore can&apos;t be unregistered.</source>
         <translation>Der Dienst &apos;%1&apos; ist nicht registriert und kann daher nicht entfernt werden.</translation>
     </message>
     <message>
-        <location filename="../../common/src/system_service.cpp" line="433"/>
+        <location filename="../../common/src/system_service.cpp" line="445"/>
         <source>The service &apos;%1&apos; could not be unregistered.</source>
         <translation>Der Dienst &apos;%1&apos; konnte nicht entfernt werden.</translation>
     </message>
     <message>
-        <location filename="../../common/src/system_service.cpp" line="599"/>
+        <location filename="../../common/src/system_service.cpp" line="613"/>
         <source>The service &apos;%1&apos; could not be found.</source>
         <translation>Der Dienst &apos;%1&apos; wurde nicht gefunden.</translation>
     </message>
     <message>
-        <location filename="../../common/src/system_service.cpp" line="460"/>
+        <location filename="../../common/src/system_service.cpp" line="472"/>
         <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not unregistered.</source>
         <translation>Es konnte keine Verbindung zum Service-Control-Manager hergestellt werden (haben Sie die nötigen Rechte?!) - der Dienst &apos;%1&apos; wurde nicht entfernt.</translation>
     </message>
     <message>
-        <location filename="../../common/src/system_service.cpp" line="509"/>
-        <source>The service &apos;%1&apos; could not be started.</source>
-        <translation>Der Dienst &apos;%1&apos; konnte nicht gestartet werden.</translation>
-    </message>
-    <message>
-        <location filename="../../common/src/system_service.cpp" line="537"/>
-        <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not started.</source>
-        <translation>Es konnte keine Verbindung zum Service-Control-Manager hergestellt werden (haben Sie die nötigen Rechte?!) - der Dienst &apos;%1&apos; wurde nicht gestartet.</translation>
-    </message>
-    <message>
-        <location filename="../../common/src/system_service.cpp" line="615"/>
+        <location filename="../../common/src/system_service.cpp" line="629"/>
         <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not stopped.</source>
         <translation>Es konnte keine Verbindung zum Service-Control-Manager hergestellt werden (haben Sie die nötigen Rechte?!) - der Dienst &apos;%1&apos; wurde nicht beendet.</translation>
     </message>
-</context>
-<context>
-    <name>QObject</name>
     <message>
-        <location filename="../../common/src/local_system.cpp" line="451"/>
-        <source>UPL (note for translators: the first three characters of this string are the accellerators (underlined characters) of the three input-fields in logon-dialog of windows - you only need to &quot;translate&quot; these characters, this note can be ommited)</source>
-        <translation type="obsolete">BKA</translation>
-    </message>
-    <message>
-        <location filename="../../common/src/local_system.cpp" line="663"/>
-        <source>iTALC-snapshots</source>
-        <translation type="obsolete">iTALC-Schnappschuesse</translation>
+        <location filename="../../common/src/system_service.cpp" line="361"/>
+        <source>The service &apos;%1&apos; was successfully registered.</source>
+        <translation>Der Dienst &apos;%1&apos; wurde erfolgreich registriert.</translation>
     </message>
 </context>
 <context>
@@ -130,12 +107,12 @@
 <context>
     <name>localSystem::QObject</name>
     <message>
-        <location filename="../../common/src/local_system.cpp" line="614"/>
+        <location filename="../../common/src/local_system.cpp" line="626"/>
         <source>UPL (note for translators: the first three characters of this string are the accellerators (underlined characters) of the three input-fields in logon-dialog of windows - you only need to &quot;translate&quot; these characters, this note can be ommited)</source>
         <translation>BKA</translation>
     </message>
     <message>
-        <location filename="../../common/src/local_system.cpp" line="853"/>
+        <location filename="../../common/src/local_system.cpp" line="865"/>
         <source>iTALC-snapshots</source>
         <translation>iTALC-Schnappschuesse</translation>
     </message>
@@ -158,11 +135,6 @@
 </context>
 <context>
     <name>remoteControlWidgetToolBar</name>
-    <message>
-        <location filename="../src/remote_control_widget.cpp" line="53"/>
-        <source>Fullscreen/window</source>
-        <translation type="obsolete">Vollbild/Fenster</translation>
-    </message>
     <message>
         <location filename="../src/remote_control_widget.cpp" line="56"/>
         <source>Quit</source>

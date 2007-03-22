@@ -60,7 +60,12 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;iTALC - Intelligent Teaching And Learning with Computers&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;&quot;&gt;Copyright (c) 2004-2007 Tobias Doerffel&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;iTALC - Intelligent Teaching And Learning with Computers&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;&quot;&gt;Copyright (c) 2004-2007 Tobias Doerffel&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
@@ -733,7 +738,10 @@ p, li { white-space: pre-wrap; }
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Here you can select your role. Only change this if you know what you&apos;re doing. Otherwise you won&apos;t be able to access any clients until you restore your old role.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Hier können Sie Ihre Rolle setzen. Ändern Sie diese nur, wenn Sie wissen, was sie tun! Anderenfalls werden Sie auf keine Computer zugreifen können, bis Sie ihre alte Rolle wieder hergestellt haben.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/config.ui" line="475"/>
@@ -797,12 +805,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>localSystem::QObject</name>
     <message>
-        <location filename="../../common/src/local_system.cpp" line="614"/>
+        <location filename="../../common/src/local_system.cpp" line="626"/>
         <source>UPL (note for translators: the first three characters of this string are the accellerators (underlined characters) of the three input-fields in logon-dialog of windows - you only need to &quot;translate&quot; these characters, this note can be ommited)</source>
         <translation>BKA</translation>
     </message>
     <message>
-        <location filename="../../common/src/local_system.cpp" line="853"/>
+        <location filename="../../common/src/local_system.cpp" line="865"/>
         <source>iTALC-snapshots</source>
         <translation>iTALC-Schnappschuesse</translation>
     </message>
@@ -828,16 +836,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../src/main_window.cpp" line="93"/>
         <source>No write-access</source>
         <translation>Kein Schreibzugriff</translation>
-    </message>
-    <message>
-        <location filename="../src/main_window.cpp" line="367"/>
-        <source>New key-pair generated</source>
-        <translation>Neues Schlüssel-Paar generiert</translation>
-    </message>
-    <message>
-        <location filename="../src/main_window.cpp" line="373"/>
-        <source>No authentication-keys were found or your old ones contained errors, so a new key-pair has been generated. Please have your administrator to distribute your public key. Otherwise you won&apos;t be able to access computers using iTALC.</source>
-        <translation>Es wurden keine Authentifizierungsschlüssel gefunden oder Ihre alten waren fehlerhaft, weshalb ein neues Schlüsselpaar generiert wurde. Bitte teilen Sie Ihrem Administrator mit, dass er Ihren öffentlichen Schlüssel verteilt, da sie ansonsten nicht in der Lage sein werden, mit iTALC auf andere Computer zuzugreifen.</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="151"/>
@@ -1010,6 +1008,18 @@ wechseln</translation>
         <location filename="../src/main_window.cpp" line="318"/>
         <source>Auto view</source>
         <translation>Anordnung</translation>
+    </message>
+    <message>
+        <location filename="../src/main_window.cpp" line="367"/>
+        <source>No valid keys found</source>
+        <translation>Keine gültigen Schlüssel gefunden</translation>
+    </message>
+    <message>
+        <location filename="../src/main_window.cpp" line="373"/>
+        <source>No authentication-keys were found or your old ones were broken. Please create a new key-pair using ICA (see documentation at http://italc.sf.net/wiki/index.php?title=Installation).
+Otherwise you won&apos;t be able to access computers using iTALC.</source>
+        <translation>Es wurden keine Authentifizierungsschlüssel gefunden oder Ihre alten waren fehlerhaft. Bitte erstellen Sie mit Hilfe von ICA ein neues Schlüsselpaar (siehe Dokumentation unter http://italc.sf.net/wiki/index.php?title=De:Installation)
+Andernfalls werden Sie nicht in der Lage sein, mit iTALC auf andere Computer zuzugreifen.</translation>
     </message>
 </context>
 <context>

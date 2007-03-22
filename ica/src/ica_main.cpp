@@ -85,10 +85,11 @@ int ICAMain( int argc, char * * argv )
 
 	// decide whether to create a QCoreApplication or QApplication
 	bool core_app = FALSE;
-	for( int i = 1; i <= argc; ++i )
+	for( int i = 1; i < argc; ++i )
 	{
 		if( QString( argv[i] ) == "-rx11vs" ||
-			QString( argv[i] ) == "-createkeypair" )
+			QString( argv[i] ) == "-createkeypair" ||
+			QString( argv[i] ) == "-h" )
 		{
 			core_app = TRUE;
 		}
@@ -235,6 +236,11 @@ int ICAMain( int argc, char * * argv )
 				a == "-noshm" || a == "-solid" ||
 				a == "-xrandr" || a == "-onetile" )
 		{
+		}
+		else if( a == "-h" || a == "--help" )
+		{
+			QProcess::execute( "man ica" );
+			return( 0 );
 		}
 #endif
 		else

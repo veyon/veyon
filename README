@@ -24,15 +24,12 @@ Place - Suite 330, Boston, MA  02111-1307, USA
 What is iTALC?
 ----------------
 
-iTALC is a use- and powerful tool which lets you observe and remote-control
-other clients in a Linux-network.  It aims to be a free and OpenSource version
-of commercial and expensive programs like MasterEye.
-iTALC was designed for usage in school. With iTALC, the teacher is able to see,
-what the students are doing on their computers, without any need to walk around
-in the classroom... You can also control the clients. For example you can show
-a demo, help a person, lock/unlock the screen, halt/reboot, execute a sequence
-of commands or login with SSH and much more...
+iTALC is a use- and powerful didactical tool which lets you view and control
+other computers in your network in several ways.
 
+iTALC was designed for usage in school. With the help of iTALC the teacher is
+able to see what the students are doing on their computers, without any need to walk around in the classroom. One can also remote-control the clients and much
+more...
 
 
 

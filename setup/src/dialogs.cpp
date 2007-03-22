@@ -46,6 +46,7 @@
 
 
 const QString PUBLIC_KEY_FILE_NAME = "italc_dsa_key.pub";
+const QString KEEP_SETTINGS = ":keep-settings:";
 QString DEFAULT_INSTALL_DIR;
 
 setupWizard::setupWizard() :
@@ -263,6 +264,7 @@ void setupWizard::doInstallation( void )
 	qApp->processEvents();
 
 	QProcess::execute( d + "ica", QStringList() << "-registerservice" );
+	QProcess::execute( d + "ica", QStringList() << "-startservice" );
 	++step;
 	pd.setValue( 90 + remaining_percent*step/remaining_steps );
 
@@ -288,7 +290,7 @@ void setupWizard::doInstallation( void )
 			QFile( m_pubKeyDir+add ).copy( m_keyExportDir + add2 );
 		}
 	}
-	else
+	else if( m_keyImportDir == KEEP_SETTINGS )
 	{
 		publicDSAKey( m_keyImportDir + add2 ).
 					save( m_pubKeyDir + add );
@@ -651,6 +653,8 @@ setupWizardPageSecurityOptions::setupWizardPageSecurityOptions(
 			this, SLOT( setKeyImportDir( const QString & ) ) );
 	connect( createKeysRadioButton, SIGNAL( toggled( bool ) ),
 			this, SLOT( createKeysRadioButtonToggled( bool ) ) );
+	connect( keepKeysRadioButton, SIGNAL( toggled( bool ) ),
+			this, SLOT( keepKeysRadioButtonToggled( bool ) ) );
 }
 
 
@@ -661,6 +665,11 @@ bool setupWizardPageSecurityOptions::nextPageDisabled( void )
 	if( createKeysRadioButton->isChecked() )
 	{
 		m_setupWizard->m_keyImportDir.clear();
+		return( FALSE );
+	}
+	if( keepKeysRadioButton->isChecked() )
+	{
+		m_setupWizard->m_keyImportDir = KEEP_SETTINGS;
 		return( FALSE );
 	}
 	m_setupWizard->m_keyImportDir = keyImportDirLineEdit->text();
@@ -707,6 +716,15 @@ void setupWizardPageSecurityOptions::createKeysRadioButtonToggled( bool )
 {
 	m_setupWizard->setNextPageDisabled( nextPageDisabled() );
 }
+
+
+
+
+void setupWizardPageSecurityOptions::keepKeysRadioButtonToggled( bool )
+{
+	m_setupWizard->setNextPageDisabled( nextPageDisabled() );
+}
+
 
 
 

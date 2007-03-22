@@ -333,20 +333,32 @@ bool systemService::install( void )
 		CloseServiceHandle( hsrvmanager );
 		return( FALSE );
 	}
-	CloseServiceHandle( hsrvmanager );
-	CloseServiceHandle( hservice );
 
-	QProcess::execute(
+	SC_ACTION service_actions;
+	service_actions.Delay = 10000;
+	service_actions.Type = SC_ACTION_RESTART;
+
+
+	SERVICE_FAILURE_ACTIONS service_failure_actions;
+	service_failure_actions.dwResetPeriod = 0;
+	service_failure_actions.lpRebootMsg = NULL;
+	service_failure_actions.lpCommand = NULL;
+	service_failure_actions.lpsaActions = &service_actions;
+	service_failure_actions.cActions = 1;    
+	ChangeServiceConfig2( hservice, SERVICE_CONFIG_FAILURE_ACTIONS,
+						&service_failure_actions );
+/*	QProcess::execute(
 		QString( "sc failure %1 reset= 0 actions= restart/1000"
-							).arg( m_name ) );
+							).arg( m_name ) );*/
+
+	CloseServiceHandle( hservice );
+	CloseServiceHandle( hsrvmanager );
 	// Everything went fine
 #ifndef NO_GUI
 	QMessageBox::information( NULL, __app_name,
 		QApplication::tr(
-				"The service '%1' was successfully registered. "
-				"It will automatically be run the next time "
-				"you start this computer." ).
-							arg( m_displayName ) );
+			"The service '%1' was successfully registered."
+						).arg( m_displayName ) );
 #endif
 
 	return( TRUE );
@@ -468,7 +480,10 @@ bool systemService::remove( void )
 
 bool systemService::start( void )
 {
-	// Open the SCM
+	return( QProcess::execute( QString( "net start %1" ).arg( m_name ) )
+									== 0 );
+
+/*	// Open the SCM
 	SC_HANDLE hsrvmanager = OpenSCManager(
 					NULL,	// machine (NULL == local)
 					NULL,	// database (NULL == default)
@@ -483,10 +498,8 @@ bool systemService::start( void )
 		if( hservice != NULL )
 		{
 			SERVICE_STATUS status;
-
-			// Try to stop the service
-			if( ControlService( hservice, SERVICE_START,
-								&status ) )
+			status.dwCurrentState = SERVICE_START_PENDING;
+			if( StartService( hservice, 0, NULL ) )
 			{
 				while( QueryServiceStatus( hservice, &status ) )
 				{
@@ -500,17 +513,17 @@ bool systemService::start( void )
 						break;
 					}
 				}
-
-				if( status.dwCurrentState != SERVICE_RUNNING )
-				{
+			}
+			CloseServiceHandle( hservice );
+			CloseServiceHandle( hsrvmanager );
+			if( status.dwCurrentState != SERVICE_RUNNING )
+			{
 #ifndef NO_GUI
 	QMessageBox::critical( NULL, __app_name,
 		QApplication::tr( "The service '%1' could not be started." ).
 							arg( m_displayName ) );
 #endif
-					CloseServiceHandle( hsrvmanager );
-					return( FALSE );
-				}
+				return( FALSE );
 			}
 		}
 		else
@@ -523,7 +536,6 @@ bool systemService::start( void )
 			CloseServiceHandle( hsrvmanager );
 			return( FALSE );
 		}
-		CloseServiceHandle( hsrvmanager );
 	}
 	else
 	{
@@ -537,7 +549,7 @@ bool systemService::start( void )
 							arg( m_displayName )  );
 #endif
 		return( FALSE );
-	}
+	}*/
 	return( TRUE );
 }
 
@@ -586,10 +598,12 @@ bool systemService::stop( void )
 		QApplication::tr( "The service '%1' could not be stopped." ).
 						arg( m_displayName ) );
 #endif
+					CloseServiceHandle( hservice );
 					CloseServiceHandle( hsrvmanager );
 					return( FALSE );
 				}
 			}
+			CloseServiceHandle( hservice );
 		}
 		else
 		{
