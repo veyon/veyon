@@ -6,6 +6,7 @@ EXTRA_DIST =	src/dsa_key.cpp			\
 		src/local_system.cpp		\
 		src/messagebox.cpp		\
 		src/rect_list.cpp		\
+		src/system_service.cpp		\
 		include/debug.h			\
 		include/dsa_key.h		\
 		include/fast_qimage.h		\
@@ -19,6 +20,7 @@ EXTRA_DIST =	src/dsa_key.cpp			\
 		include/qt_user_events.h	\
 		include/rect_list.h		\
 		include/types.h			\
+		include/system_service.h	\
 		include/rfb/keysym.h		\
 		include/rfb/rfb.h		\
 		include/rfb/rfbproto.h
