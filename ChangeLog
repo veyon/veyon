@@ -1,5 +1,8 @@
 2007-03-22	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
+	* configure.in:
+	made 1.0.0 release
+
 	* common/src/system_service.cpp:
 	- win32: use ChangeServiceConfig2( ... ) instead of calling "sc" which
 	  might not exist on target system
