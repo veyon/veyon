@@ -43,6 +43,7 @@
 #include <QtCore/QThread>
 #include <QtCore/QLibrary>
 
+#ifdef BUILD_ICA
 static const char * tr_accels = QT_TRANSLATE_NOOP(
 		"QObject",
 		"UPL (note for translators: the first three characters of "
@@ -50,7 +51,7 @@ static const char * tr_accels = QT_TRANSLATE_NOOP(
 		"of the three input-fields in logon-dialog of windows - "
 		"please keep this note as otherwise there are strange errors "
 					"concerning logon-feature)" );
-
+#endif
 
 #define _WIN32_WINNT 0x0501
 #include <windows.h>
@@ -633,7 +634,7 @@ void logonUser( const QString & _uname, const QString & _passwd,
 	pressKey( XK_Alt_L, FALSE );
 
 	const ushort * accels = QObject::tr( tr_accels ).utf16();
-	qWarning("%d %d %d\n", accels[0], accels[1], accels[2]);
+
 	/* Need to handle 2 cases here; if an interactive login message is
          * defined in policy, this window will be displayed with an "OK" button;
          * if not the login window will be displayed. Sending a space will
