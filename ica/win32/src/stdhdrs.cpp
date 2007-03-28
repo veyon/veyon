@@ -34,5 +34,5 @@ Log vnclog(0, 1, "WinVNC.log", false);
 #endif
 
 #endif
-Log vnclog(Log::ToQtLog, LL_ALL);
+Log vnclog(Log::ToQtLog, LL_INTWARN);
 

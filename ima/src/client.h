@@ -309,6 +309,7 @@ private:
 	QString m_localIP;
 	QString m_remoteIP;
 	QString m_mac;
+	int m_reloadsAfterReset;
 
 	modes m_mode;
 	QString m_user;

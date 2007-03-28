@@ -318,7 +318,7 @@ void isdConnection::close( void )
 
 
 
-isdConnection::states isdConnection::reset( const QString & _host )
+isdConnection::states isdConnection::reset( const QString & _host, int * _cnt )
 {
 	close();
 
@@ -332,7 +332,12 @@ isdConnection::states isdConnection::reset( const QString & _host )
 		}
 	}
 
-	return( open() );
+	const states s = open();
+	if( s == Connected && _cnt != NULL )
+	{
+		*_cnt = 0;
+	}
+	return( s );
 }
 
 

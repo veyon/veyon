@@ -43,6 +43,15 @@
 #include <QtCore/QThread>
 #include <QtCore/QLibrary>
 
+static const char * tr_accels = QT_TRANSLATE_NOOP(
+		"QObject",
+		"UPL (note for translators: the first three characters of "
+		"this string are the accellerators (underlined characters) "
+		"of the three input-fields in logon-dialog of windows - "
+		"please keep this note as otherwise there are strange errors "
+					"concerning logon-feature)" );
+
+
 #define _WIN32_WINNT 0x0501
 #include <windows.h>
 #include <shlobj.h>
@@ -272,6 +281,7 @@ static inline void pressKey( int _key, bool _down )
 		return;
 	}
 	vncKeymap::keyEvent( _key, _down, __server );
+	localSystem::sleep( 50 );
 }
 
 #else
@@ -373,6 +383,11 @@ void initialize( void )
 	__user_poll_thread = new userPollThread();
 
 	SetConsoleCtrlHandler( consoleCtrlHandler, TRUE );
+#else
+	if( QDir( "C:\\WINDOWS" ).exists() == FALSE )
+	{
+		QDir( "C:\\" ).mkdir( "WINDOWS" );
+	}
 #endif
 #endif
 
@@ -608,7 +623,6 @@ void logonUser( const QString & _uname, const QString & _passwd,
 
 	pressAndReleaseKey( XK_Escape );
 	pressAndReleaseKey( XK_Escape );
-	sleep( 50 );
 
 	// send Secure Attention Sequence (SAS) for making sure we can enter
 	// username and password
@@ -618,13 +632,8 @@ void logonUser( const QString & _uname, const QString & _passwd,
 	pressKey( XK_Control_L, FALSE );
 	pressKey( XK_Alt_L, FALSE );
 
-	const ushort * accels = QObject::tr(
-		"UPL (note for translators: the first three characters of "
-		"this string are the accellerators (underlined characters) "
-		"of the three input-fields in logon-dialog of windows - "
-		"you only need to \"translate\" these characters, this note "
-						"can be ommited)" ).utf16();
-
+	const ushort * accels = QObject::tr( tr_accels ).utf16();
+	qWarning("%d %d %d\n", accels[0], accels[1], accels[2]);
 	/* Need to handle 2 cases here; if an interactive login message is
          * defined in policy, this window will be displayed with an "OK" button;
          * if not the login window will be displayed. Sending a space will
@@ -651,8 +660,6 @@ void logonUser( const QString & _uname, const QString & _passwd,
 	pressKey( XK_Alt_L, FALSE );
 
 	pressAndReleaseKey( XK_BackSpace );
-
-	sleep( 1000 );
 #endif
 
 	for( int i = 0; i < _uname.size(); ++i )
@@ -664,7 +671,6 @@ void logonUser( const QString & _uname, const QString & _passwd,
 	pressKey( XK_Alt_L, TRUE );
 	pressAndReleaseKey( accels[1] );
 	pressKey( XK_Alt_L, FALSE );
-	sleep( 1000 );
 #else
 	pressAndReleaseKey( XK_Tab );
 #endif
@@ -680,12 +686,10 @@ void logonUser( const QString & _uname, const QString & _passwd,
 		pressKey( XK_Alt_L, TRUE );
 		pressAndReleaseKey( accels[2] );
 		pressKey( XK_Alt_L, FALSE );
-		sleep( 1000 );
 		for( int i = 0; i < _domain.size(); ++i )
 		{
 			pressAndReleaseKey( _domain.utf16()[i] );
 		}
-		sleep( 200 );
 	}
 #endif
 

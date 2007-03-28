@@ -1,3 +1,30 @@
+2007-03-29	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* configure.in:
+	made 1.0.1 release
+
+	* ica/resources/de.ts:
+	* ica/resources/es.ts:
+	* ica/resources/it.ts:
+	* ica/resources/fr.ts:
+	fixed translation of logon-dialog-accellerators
+
+	* common/include/isd_connection.h:
+	* common/src/isd_connection.cpp:
+	* ima/src/client.h:
+	* ima/src/client.cpp:
+	reload username-tooltip regularly
+
+	* common/src/local_system.cpp:
+	win32: - create C:\WINDOWS if it does not exist as otherwise there are
+	         strange errors with iTALC Master
+	       - partly rewrote logon-code
+
+	* ica/win32/src/stdhdrs.cpp:
+	only log warnings and more severe messages - fixes security issue
+	where faked keysyms were logged, e.g. key-presses of logon-function
+	were logged!
+
 2007-03-22	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* configure.in:

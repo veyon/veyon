@@ -96,6 +96,7 @@ client::client( const QString & _local_ip, const QString & _remote_ip,
 	m_localIP( _local_ip ),
 	m_remoteIP( _remote_ip ),
 	m_mac( _mac ),
+	m_reloadsAfterReset( 0 ),
 	m_mode( Mode_Overview ),
 	m_user( "" ),
 	m_makeSnapshot( FALSE ),
@@ -451,7 +452,8 @@ bool client::userLoggedIn( void )
 	QMutexLocker ml( &m_syncMutex );
 
 	return( m_connection->state() == ivsConnection::Connected ||
-		m_connection->reset( m_localIP ) == ivsConnection::Connected );
+		m_connection->reset( m_localIP, &m_reloadsAfterReset ) ==
+						ivsConnection::Connected );
 }
 
 
@@ -625,10 +627,17 @@ void client::reload( const QString & _update )
 	if( userLoggedIn() )
 	{
 		m_syncMutex.lock();
-		if( m_user.isEmpty() || m_user == "none" ||
-							m_user == "unknown" )
+
+		// for some reason we must not send user-information-requests
+		// while first messages being exchanged between client and
+		// server
+		if( m_reloadsAfterReset > 5 )
 		{
 			m_connection->sendGetUserInformationRequest();
+		}
+		else
+		{
+			++m_reloadsAfterReset;
 		}
 		//if( m_connection->sendGetUserInformationRequest() )
 		{
