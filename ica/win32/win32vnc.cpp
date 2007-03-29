@@ -154,6 +154,7 @@ typedef struct _rfbInteractionCapsMsg {
 
 
 #include "isd_server.h"
+#include "ica_main.h"
 #include "src/VSocket.cpp"
 
 

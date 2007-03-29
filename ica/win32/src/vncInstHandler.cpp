@@ -54,8 +54,8 @@ BOOL
 vncInstHandler::Init()
 {
 	// Create the named mutex
-	HANDLE mutex = CreateMutex(NULL, FALSE, mutexname);
-	if (mutex == NULL)
+	m_mutex = CreateMutex(NULL, FALSE, mutexname);
+	if (m_mutex == NULL)
 		return FALSE;
 
 	// Check that the mutex didn't already exist

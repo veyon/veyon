@@ -188,11 +188,10 @@ protected:
 	void BlankScreen(BOOL set);
 
 	// Timer identifiers (the third one is not used in any real timer)
-	struct TimerID { enum {
-		POLL = 1,
-		BLANK_SCREEN = 2,
-		RESTORE_SCREEN = 3
-		} ;
+	enum TimerID {
+		TIMER_POLL = 1,
+		TIMER_BLANK_SCREEN = 2,
+		TIMER_RESTORE_SCREEN = 3
 	};
 
 	// Video driver stuff

@@ -376,6 +376,8 @@ int WinVNCAppMain()
 
 	// CREATE SERVER
 	vncServer server;
+	server.SetAutoPortSelect( FALSE );
+	server.SetPorts( __ivs_port, server.GetHttpPort() );
 	__server = &server;
 
 	// Set the name and port number
