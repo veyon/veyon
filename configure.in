@@ -73,7 +73,7 @@ if test "x$build_win32" = "xtrue" ; then
 	build_linux="false"
 	build_win32="true"
 else
-	if test `uname -s | tr -s 'LINUX' 'linux'` = "linux" -o "x$build_linux" = "xyes" ; then
+	if test `uname -s | tr -s 'LINUX' 'linux'` = "linux" -o "x$build_linux" = "xtrue" ; then
 		AC_MSG_RESULT([Linux, will enable support for it])
 		AC_DEFINE(BUILD_LINUX)
 		build_linux="true"
