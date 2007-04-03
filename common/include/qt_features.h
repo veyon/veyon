@@ -30,7 +30,7 @@
 #include <qglobal.h>
 
 #if QT_VERSION >= 0x040200
-#ifndef BUILD_WIN32
+#ifdef BUILD_ICA
 #define SYSTEMTRAY_SUPPORT
 #endif
 #define COMPLETER_SUPPORT

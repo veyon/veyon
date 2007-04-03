@@ -43,11 +43,6 @@
 #include "demo_client.h"
 #include "demo_server.h"
 #include "ica_main.h"
-#include "qt_features.h"
-
-#ifdef SYSTEMTRAY_SUPPORT
-#include <QtGui/QSystemTrayIcon>
-#endif
 
 
 static isdServer * __isd_server = NULL;
@@ -72,6 +67,13 @@ isdServer::isdServer( const quint16 _ivs_port, int _argc, char * * _argv ) :
 		qCritical( "isdServer::isdServer(...): "
 				"could not start ISD server: %s",
 					errorString().toAscii().constData() );
+		messageBox::trySysTrayMessage( tr( "ISD-server error" ),
+			tr( "The ISD-server could not be started because "
+				"port %1 is already in use. Please make sure "
+				"that no other application is using this "
+				"port and try again." ).
+					arg( QString::number( __isd_port ) ),
+							messageBox::Critical );
 	}
 
 	m_ivs->start(/* QThread::HighPriority*/ );
@@ -314,15 +316,26 @@ bool isdServer::protocolInitialization( socketDevice & _sd,
 	Q_UINT8 chosen = 0;
 	_sd.read( (char *) &chosen, sizeof( chosen ) );
 
+	const int MAX_HOST_LEN = 255;
+	char host[MAX_HOST_LEN];
+	_sd.sockDispatcher()( host, MAX_HOST_LEN, SocketGetIPBoundTo,
+								_sd.user() );
+	host[MAX_HOST_LEN] = 0;
+
+
 	if( chosen != rfbSecTypeItalc )
 	{
+		errorMsgAuth( host );
 		qCritical( "isdServer::protocolInitialization(...): "
 			"client wants unknown security type %d", chosen );
 		return( FALSE );
 	}
 
-	if( !authSecTypeItalc( _sd.sockDispatcher(), _sd.user(), _auth_type ) )
+	if( chosen != rfbSecTypeItalc ||
+		!authSecTypeItalc( _sd.sockDispatcher(), _sd.user(),
+								_auth_type ) )
 	{
+		errorMsgAuth( host );
 		return( FALSE );
 	}
 
@@ -360,6 +373,7 @@ bool isdServer::authSecTypeItalc( socketDispatcher _sd, void * _user,
 	}
 	else if( chosen != _auth_type )
 	{
+		errorMsgAuth( host );
 		qCritical( "isdServer::authSecTypeItalc(...): "
 				"client chose other auth-type than offered!" );
 		return( result );
@@ -509,6 +523,10 @@ bool isdServer::authSecTypeItalc( socketDispatcher _sd, void * _user,
 	}
 
 	sdev.write( QVariant( (int) result ) );
+	if( result != ItalcAuthOK )
+	{
+		errorMsgAuth( host );
+	}
 
 	return( result == ItalcAuthOK );
 }
@@ -763,24 +781,8 @@ void isdServer::unlockDisplay( void )
 
 void isdServer::displayTextMessage( const QString & _msg )
 {
-#ifdef SYSTEMTRAY_SUPPORT
-	// OS X does not support messages
-	if( QSystemTrayIcon::supportsMessages() && __systray_icon )
-	{
-		__systray_icon->showMessage( tr( "Message from teacher" ),
-						_msg,
-						QSystemTrayIcon::Information,
-									-1 );
-	}
-	else
-	{
-#else
 	new messageBox( tr( "Message from teacher" ), _msg,
 					QPixmap( ":/resources/message.png" ) );
-#endif
-#ifdef SYSTEMTRAY_SUPPORT
-	}
-#endif
 }
 
 
@@ -840,6 +842,17 @@ void isdServer::denyDemoClient( const QString & _host )
 	}
 }
 
+
+
+
+void isdServer::errorMsgAuth( const QString & _ip )
+{
+	messageBox::trySysTrayMessage( tr( "Authentication error" ),
+		tr( "Somebody (IP: %1) tried to access this computer "
+			"but could not authenticate itself "
+			"successfully!" ).arg( QString( _ip ) ),
+						messageBox::Critical );
+}
 
 
 

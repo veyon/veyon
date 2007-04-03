@@ -97,6 +97,8 @@ private:
 	void allowDemoClient( const QString & _host );
 	void denyDemoClient( const QString & _host );
 
+	static void errorMsgAuth( const QString & _ip );
+
 
 	static QStringList s_allowedDemoClients;
 

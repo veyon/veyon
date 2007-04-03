@@ -1,7 +1,7 @@
 /*
  * messagebox.h - simple messagebox
  *
- * Copyright (c) 2006 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2007 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -27,19 +27,38 @@
 
 #include <QtGui/QDialog>
 #include <QtGui/QPixmap>
+#include "qt_features.h"
+
+#ifdef SYSTEMTRAY_SUPPORT
+#include <QtGui/QSystemTrayIcon>
+#endif
 
 
 class messageBox : public QDialog
 {
 public:
+	enum MessageIcon
+	{
+		NoIcon,
+		Information,
+		Warning,
+		Critical
+	} ;
+
 	messageBox( const QString & _title, const QString & _msg,
 					const QPixmap & _pixmap = QPixmap() );
 
 	static void information( const QString & _title, const QString & _msg,
 					const QPixmap & _pixmap = QPixmap() );
 
+	static void trySysTrayMessage( const QString & _title,
+							const QString & _msg,
+							MessageIcon _msg_icon );
 } ;
 
+#ifdef SYSTEMTRAY_SUPPORT
+extern QSystemTrayIcon * __systray_icon;
+#endif
 
 #endif
 

@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="de_DE">
 <context>
+    <name>QObject</name>
+    <message>
+        <location filename="../../common/src/local_system.cpp" line="53"/>
+        <source>UPL (note for translators: the first three characters of this string are the accellerators (underlined characters) of the three input-fields in logon-dialog of windows - please keep this note as otherwise there are strange errors concerning logon-feature)</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>about</name>
     <message>
         <location filename="../dialogs/about.ui" line="13"/>
@@ -303,7 +311,7 @@ Weitere Aktionen finden Sie im Kontext-Menü eines Computers oder Klassenraums.<
         <translation>Anschalten</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="749"/>
+        <location filename="../src/client.cpp" line="758"/>
         <source>Select file to distribute</source>
         <translation>Zuverteilende Datei wählen</translation>
     </message>
@@ -335,17 +343,17 @@ Das Basis-Verzeichnis ist HOME/PUBLIC.</translation>
         <translation>Ausschalten</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="159"/>
+        <location filename="../src/client.cpp" line="160"/>
         <source>Fullscreen demo</source>
         <translation>Vollbild-Demo</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="162"/>
+        <location filename="../src/client.cpp" line="163"/>
         <source>Window demo</source>
         <translation>Fenster-Demo</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="165"/>
+        <location filename="../src/client.cpp" line="166"/>
         <source>Locked display</source>
         <translation>Bildschirm gesperrt</translation>
     </message>
@@ -365,27 +373,27 @@ Das Basis-Verzeichnis ist HOME/PUBLIC.</translation>
         <translation>Befehle ausführen</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="406"/>
+        <location filename="../src/client.cpp" line="407"/>
         <source>Unknown state</source>
         <translation>Unbekannter Zustand</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="414"/>
+        <location filename="../src/client.cpp" line="415"/>
         <source>No user logged in</source>
         <translation>Kein Benutzer angemeldet</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="418"/>
+        <location filename="../src/client.cpp" line="419"/>
         <source>Host unreachable</source>
         <translation>Rechner nicht erreichbar</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="422"/>
+        <location filename="../src/client.cpp" line="423"/>
         <source>Demo running</source>
         <translation>Demo läuft</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="426"/>
+        <location filename="../src/client.cpp" line="427"/>
         <source>Desktop locked</source>
         <translation>Arbeitsfläche gesperrt</translation>
     </message>
@@ -395,12 +403,12 @@ Das Basis-Verzeichnis ist HOME/PUBLIC.</translation>
         <translation>Live und im Vollbild anschauen</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="537"/>
+        <location filename="../src/client.cpp" line="539"/>
         <source>Snapshot</source>
         <translation>Schnappschuss</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="539"/>
+        <location filename="../src/client.cpp" line="541"/>
         <source>Could not make a snapshot as directory %1 doesn&apos;t exist and couldn&apos;t be created.</source>
         <translation>Es konnte kein Schnappschuss erstellt werden, da das Verzeichnis %1 nicht existiert und nicht erzeugt werden konnte.</translation>
     </message>
@@ -410,23 +418,23 @@ Das Basis-Verzeichnis ist HOME/PUBLIC.</translation>
         <translation>Nutzer anmelden</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="156"/>
+        <location filename="../src/client.cpp" line="157"/>
         <source>Watch only (stops demo and unlocks screen)</source>
         <translation>Nur beobachten (beendet Demo und entsperrt Bildschirm)</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="777"/>
+        <location filename="../src/client.cpp" line="786"/>
         <source>Collect files</source>
         <translation>Dateien einsammeln</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="783"/>
+        <location filename="../src/client.cpp" line="792"/>
         <source>Please enter the name of the file to be collected.
 Only files located in the PUBLIC-directory are allowed.</source>
         <translation>Bitte geben Sie den/die Namen der zu verteilenden Datei(en) ein (Platzhalter sind möglich).Das Basis-Verzeichnis ist HOME/PUBLIC.</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="139"/>
+        <location filename="../src/client.cpp" line="140"/>
         <source>This is a client-window. It either displays the screen of the according client or a message about the state of this client (no user logged in/powered off) is shown. You can click with the right mouse-button and an action-menu for this client will appear. You can also close this client-window. To open it again, open the classroom-manager-workspace and search this client and double-click it.
 You can change the size of this (and all other visible) client-windows by using the functions for increasing, decreasing or optimizing the client-window-size.</source>
         <translation>Das ist ein Client-Fenster. Es zeigt entweder den Bildschirm des zugehörigen Clients oder einen Text zum Status des Clients (kein Benutzer angemeldet/ausgeschaltet). Sie können das Fenster mit der rechten Maustaste anklicken. Anschließend erscheint ein Aktionsmenü für diesen Client. Sie können das Client-Fenster auch schließen. Um es wieder herzustellen, öffnen Sie die Klassenraum-Verwaltung, suchen dort den Client und klicken doppelt auf ihn.Sie können die Größe von diesem (und allen anderen sichtbaren) Client-Fenster(n) ändern, indem Sie die Funktionen zum vergrößern, verkleinern oder optimieren der Client-Fenster-Größe verwenden.</translation>
@@ -807,10 +815,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../common/src/local_system.cpp" line="626"/>
         <source>UPL (note for translators: the first three characters of this string are the accellerators (underlined characters) of the three input-fields in logon-dialog of windows - you only need to &quot;translate&quot; these characters, this note can be ommited)</source>
-        <translation>BKA</translation>
+        <translation type="obsolete">BKA</translation>
     </message>
     <message>
-        <location filename="../../common/src/local_system.cpp" line="865"/>
+        <location filename="../../common/src/local_system.cpp" line="870"/>
         <source>iTALC-snapshots</source>
         <translation>iTALC-Schnappschuesse</translation>
     </message>
@@ -1025,7 +1033,7 @@ Andernfalls werden Sie nicht in der Lage sein, mit iTALC auf andere Computer zuz
 <context>
     <name>messageBox</name>
     <message>
-        <location filename="../../common/src/messagebox.cpp" line="71"/>
+        <location filename="../../common/src/messagebox.cpp" line="75"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>

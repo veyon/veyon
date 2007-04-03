@@ -243,6 +243,7 @@ void setupWizard::doInstallation( void )
 			{
 				QProcess::execute( d + file,
 					QStringList() << "-stopservice" );
+				QProcess::execute( "net stop icas" );
 				QProcess::execute( d + file,
 					QStringList() << "-unregisterservice" );
 			}
@@ -290,7 +291,7 @@ void setupWizard::doInstallation( void )
 			QFile( m_pubKeyDir+add ).copy( m_keyExportDir + add2 );
 		}
 	}
-	else if( m_keyImportDir == KEEP_SETTINGS )
+	else if( m_keyImportDir != KEEP_SETTINGS )
 	{
 		publicDSAKey( m_keyImportDir + add2 ).
 					save( m_pubKeyDir + add );

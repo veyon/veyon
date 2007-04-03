@@ -26,8 +26,6 @@
 #ifndef _ICA_MAIN_H
 #define _ICA_MAIN_H
 
-#include "qt_features.h"
-
 int ICAMain( int _argc, char * * _argv );
 
 #ifdef BUILD_LINUX
@@ -41,16 +39,6 @@ extern bool __rx11vs;
 
 extern int __isd_port;
 extern int __ivs_port;
-
-
-#ifdef SYSTEMTRAY_SUPPORT
-
-class QSystemTrayIcon;
-
-extern QSystemTrayIcon * __systray_icon;
-
-#endif
-
 
 #endif
 

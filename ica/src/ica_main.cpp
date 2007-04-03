@@ -42,6 +42,7 @@
 #include "debug.h"
 #include "system_key_trapper.h"
 #include "dsa_key.h"
+#include "messagebox.h"
 
 #ifdef SYSTEMTRAY_SUPPORT
 #include <QtGui/QSystemTrayIcon>
@@ -50,10 +51,6 @@
 
 int __isd_port = PortOffsetISD;
 int __ivs_port = PortOffsetIVS;
-
-#ifdef SYSTEMTRAY_SUPPORT
-QSystemTrayIcon * __systray_icon = NULL;
-#endif
 
 #ifdef BUILD_LINUX
 bool __rx11vs = FALSE;
@@ -72,6 +69,22 @@ int serviceMain( systemService * _srv )
 	return( ICAMain( c, v ) );
 }
 
+
+#ifdef BUILD_WIN32
+
+// event-filter which makes ICA ignore quit- end end-session-messages for not
+// quitting at user logoff
+bool eventFilter( void * _msg, long * _result )
+{
+	DWORD msg = ( ( MSG *) _msg )->message;
+	if(/* msg == WM_QUIT ||*/msg == WM_ENDSESSION )
+	{
+		return( TRUE );
+	}
+	return( FALSE );
+}
+
+#endif
 
 
 int ICAMain( int argc, char * * argv )
@@ -122,6 +135,10 @@ int ICAMain( int argc, char * * argv )
 		a->setQuitOnLastWindowClosed( FALSE );
 		app = a;
 	}
+
+#ifdef BUILD_WIN32
+	app->setEventFilter( eventFilter );
+#endif
 
 	const QString loc = QLocale::system().name().left( 2 );
 	QTranslator app_tr;

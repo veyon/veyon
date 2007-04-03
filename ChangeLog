@@ -1,3 +1,35 @@
+2007-04-03	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* configure.in:
+	made 1.0.2 release
+
+	* ica/resources/de.ts:
+	* ica/resources/de.qm:
+	updated German localization
+
+	* setup/src/dialogs.cpp:
+	- fixed typo which made key-import not working - closes #1686845
+	- added "net stop icas"-call which might be neccessary when updating
+	  old installations
+
+	* ica/src/isd_server.h:
+	* ica/src/isd_server.cpp:
+	show messages about failed authentication via system-tray-icon
+
+	* ica/src/ica_main.h:
+	* ica/src/ica_main.cpp:
+	changed several stuff concerning QSystemTray-instantiation
+
+	* ica/src/ica_main.cpp:
+	install event-filter in QCoreApplication and handle
+	WM_ENDSESSION-messages for not terminating on user-logoff (which is
+	the case if there was some desktop-interaction) - closes #1686921
+
+	* common/include/messagebox.h:
+	* common/src/messagebox.cpp:
+	added static trySysTrayMessage(...)-method for being able to display
+	several stuff in system-tray-icon (if available) in an easy way
+
 2007-03-31	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* configure.in:

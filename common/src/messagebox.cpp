@@ -1,7 +1,7 @@
 /*
  * messagebox.cpp - simple message-box
  *
- * Copyright (c) 2006 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2007 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -33,6 +33,10 @@
 #include <QtGui/QLabel>
 #include <QtGui/QBoxLayout>
 #include <QtGui/QPushButton>
+
+#ifdef SYSTEMTRAY_SUPPORT
+QSystemTrayIcon * __systray_icon = NULL;
+#endif
 
 
 messageBox::messageBox( const QString & _title, const QString & _msg,
@@ -94,6 +98,36 @@ void messageBox::information( const QString & _title, const QString & _msg,
 {
 	messageBox * m = new messageBox( _title, _msg, _pixmap );
 	m->exec();
+}
+
+
+
+void messageBox::trySysTrayMessage( const QString & _title,
+					const QString & _msg,
+					MessageIcon _msg_icon )
+{
+#ifdef SYSTEMTRAY_SUPPORT
+	// OS X does not support messages
+	if( QSystemTrayIcon::supportsMessages() && __systray_icon )
+	{
+		__systray_icon->showMessage( _title, _msg,
+				(QSystemTrayIcon::MessageIcon) _msg_icon, -1 );
+		return;
+	}
+#else
+	QPixmap p;
+	switch( _msg_icon )
+	{
+		case Information:
+		case Warning:
+			p = QPixmap( ":/resources/info.png" );
+			break;
+		case Critical:
+			p = QPixmap( ":/resources/stop.png" );
+			break;
+	}
+	new messageBox( _title, _msg, p );
+#endif
 }
 
 
