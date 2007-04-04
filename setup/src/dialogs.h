@@ -63,7 +63,7 @@ public:
 
 	void loadSettings( const QString & _install_settings );
 	bool createInstallationPath( const QString & _dir );
-	void doInstallation( void );
+	void doInstallation( bool _quiet = FALSE);
 
 	int askOverwrite( const QString & _file, bool _all = FALSE );
 

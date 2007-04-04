@@ -100,6 +100,7 @@ private:
 	const QString m_dependencies;
 	service_main m_serviceMain;
 	bool m_running;
+	bool m_quiet;
 
 	int m_argc;
 	char * * m_argv;

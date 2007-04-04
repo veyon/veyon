@@ -56,6 +56,7 @@ systemService::systemService(
 	m_dependencies( _service_dependencies ),
 	m_serviceMain( _sm ),
 	m_running( FALSE ),
+	m_quiet( FALSE ),
 	m_argc( _argc ),
 	m_argv( _argv )
 {
@@ -108,6 +109,10 @@ bool systemService::evalArgs( int & _argc, char * * _argv )
 			else if( a == "-stopservice" )
 			{
 				return( stop() );
+			}
+			else if( a == "-quiet" )
+			{
+				m_quiet = TRUE;
 			}
 		}
 		_argc = oac;
@@ -355,10 +360,13 @@ bool systemService::install( void )
 	CloseServiceHandle( hsrvmanager );
 	// Everything went fine
 #ifndef NO_GUI
-	QMessageBox::information( NULL, __app_name,
-		QApplication::tr(
-			"The service '%1' was successfully registered."
+	if( !m_quiet )
+	{
+		QMessageBox::information( NULL, __app_name,
+			QApplication::tr(
+				"The service '%1' was successfully registered."
 						).arg( m_displayName ) );
+	}
 #endif
 
 	return( TRUE );
@@ -419,9 +427,13 @@ bool systemService::remove( void )
 			if( suc && DeleteService( hservice ) )
 			{
 #ifndef NO_GUI
-	QMessageBox::information( NULL, __app_name,
-		QApplication::tr( "The service '%1' has been unregistered." ).
+	if( !m_quiet )
+	{
+		QMessageBox::information( NULL, __app_name,
+			QApplication::tr( "The service '%1' has been "
+						"unregistered." ).
 							arg( m_displayName ) );
+	}
 #endif
 			}
 			else
@@ -430,10 +442,14 @@ bool systemService::remove( void )
 				if( error == ERROR_SERVICE_MARKED_FOR_DELETE )
 				{
 #ifndef NO_GUI
-	QMessageBox::critical( NULL, __app_name,
-		QApplication::tr( "The service '%1' isn't registered and "
-					"therefore can't be unregistered." ).
+	if( !m_quiet )
+	{
+		QMessageBox::critical( NULL, __app_name,
+			QApplication::tr( "The service '%1' isn't registered "
+						"and therefore can't be "
+						"unregistered." ).
 							arg( m_displayName ) );
+	}
 #endif
 				}
 				else

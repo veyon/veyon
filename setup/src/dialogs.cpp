@@ -171,10 +171,15 @@ static const QString _exe_ext = ".exe";
 static const QString _exe_ext = "";
 #endif
 
-void setupWizard::doInstallation( void )
+void setupWizard::doInstallation( bool _quiet )
 {
 	const QString & d = m_installDir + QDir::separator();
 	createInstallationPath( d );
+	QStringList quiet_opt;
+	if( _quiet )
+	{
+		quiet_opt << "-quiet";
+	}
 	QStringList files;
 	files <<
 		"ica" + _exe_ext	<<
@@ -207,9 +212,11 @@ void setupWizard::doInstallation( void )
 	pd.setWindowTitle( tr( "Installing iTALC" ) );
 
 	pd.setLabelText( tr( "Copying files..." ) );
+	qApp->processEvents();
 
-	bool overwrite_all = FALSE;
+	bool overwrite_all = _quiet;
 	bool overwrite_none = FALSE;
+	bool did_overwrite_ica = FALSE;
 	int i = 0;
 	foreach( const QString & file, files )
 	{
@@ -239,14 +246,16 @@ void setupWizard::doInstallation( void )
 				case QMessageBox::No:
 					continue;
 			}
-			if( file == ( "ica" + _exe_ext ) )
-			{
-				QProcess::execute( d + file,
+		}
+		if( file == ( "ica" + _exe_ext ) )
+		{
+			QProcess::execute( d + file,
 					QStringList() << "-stopservice" );
-				QProcess::execute( "net stop icas" );
-				QProcess::execute( d + file,
-					QStringList() << "-unregisterservice" );
-			}
+			QProcess::execute( "net stop icas" );
+			QProcess::execute( d + file,
+					QStringList() << quiet_opt <<
+							"-unregisterservice" );
+			did_overwrite_ica = TRUE;
 		}
 		QFile( d + file ).remove();
 		QFile( file ).copy( d + file );
@@ -264,7 +273,13 @@ void setupWizard::doInstallation( void )
 	pd.setLabelText( tr( "Registering ICA as service..." ) );
 	qApp->processEvents();
 
-	QProcess::execute( d + "ica", QStringList() << "-registerservice" );
+	QProcess::execute( d + "ica", QStringList() << quiet_opt <<
+							"-registerservice"  );
+	if( did_overwrite_ica )
+	{
+		qApp->processEvents();
+		localSystem::sleep( 5000 );
+	}
 	QProcess::execute( d + "ica", QStringList() << "-startservice" );
 	++step;
 	pd.setValue( 90 + remaining_percent*step/remaining_steps );
@@ -281,9 +296,9 @@ void setupWizard::doInstallation( void )
 	{
 		QProcess::execute( d + "ica",
 					QStringList() << "-createkeypair"
-							<< ( m_privKeyDir + add )
-							<< ( m_pubKeyDir + add ) );
-		if( !QFileInfo( m_keyExportDir+add2 ).exists() ||
+						<< ( m_privKeyDir + add )
+						<< ( m_pubKeyDir + add ) );
+		if( !_quiet || !QFileInfo( m_keyExportDir+add2 ).exists() ||
 			askOverwrite( m_keyExportDir+add2 ) ==
 							QMessageBox::Yes )
 		{

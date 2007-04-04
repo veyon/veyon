@@ -1,7 +1,32 @@
-2007-04-03	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+2007-04-04	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* configure.in:
 	made 1.0.2 release
+
+	* build_mingw32:
+	build with MMX-support per default
+
+	* setup/src/dialogs.h:
+	* setup/src/dialogs.cpp:
+	* setup/src/main.cpp:
+	when doing auto-install do not display information-messages concerning
+	service-(un)registration
+
+	* common/src/system_service.cpp:
+	* common/include/system_service.h:
+	added quiet-option for being able to supress information-messages
+
+2007-04-04	Andriano Rino <rino_andr/at/yahoo/dot/it>
+
+	* ica/resources/it.ts:
+	* ica/resources/it.qm:
+	* ima/resources/it.ts:
+	* ima/resources/it.qm:
+	* setup/resources/it.ts:
+	* setup/resources/it.qm:
+	updated Italian localization and removed obsolete translations
+
+2007-04-03	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* ica/resources/de.ts:
 	* ica/resources/de.qm:

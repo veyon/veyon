@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="it_IT">
 <context>
+    <name>QObject</name>
+    <message>
+        <location filename="../../common/src/local_system.cpp" line="53"/>
+        <source>UPL (note for translators: the first three characters of this string are the accellerators (underlined characters) of the three input-fields in logon-dialog of windows - please keep this note as otherwise there are strange errors concerning logon-feature)</source>
+        <translation>NPC (note for translators: the first three characters of this string are the accellerators (underlined characters) of the three input-fields in logon-dialog of windows - please keep this note as otherwise there are strange errors concerning logon-feature)</translation>
+    </message>
+    <message>
+        <location filename="../../common/src/local_system.cpp" line="870"/>
+        <source>iTALC-snapshots</source>
+        <translation>iTALC-foto</translation>
+    </message>
+</context>
+<context>
     <name>about</name>
     <message>
         <location filename="../dialogs/about.ui" line="13"/>
@@ -25,7 +38,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;iTALC - Intelligent Teaching And Learning with Computers&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;&quot;&gt;Copyright (c) 2004-2007 Tobias Doerffel&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../dialogs/about.ui" line="103"/>
@@ -45,7 +58,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Current language not translated yet (or native English).&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;If you&apos;re interested in translating iTALC into your local or another language or want to improve an existing translation, please contact an iTALC-developer!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Rino Andriano &amp;lt;rino/dot/andriano/at/istruzione/dot/it&amp;gt; &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
@@ -343,72 +356,72 @@ Vuoi creare un&apos;aula adesso?</translation>
         <translation>Esegui comandi</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="156"/>
+        <location filename="../src/client.cpp" line="157"/>
         <source>Watch only (stops demo and unlocks screen)</source>
         <translation>Osserva (ferma la Presentazione e sblocca lo schermo)</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="159"/>
+        <location filename="../src/client.cpp" line="160"/>
         <source>Fullscreen demo</source>
         <translation>Presenta su schermo intero</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="162"/>
+        <location filename="../src/client.cpp" line="163"/>
         <source>Window demo</source>
         <translation>Presenta in una finestra</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="165"/>
+        <location filename="../src/client.cpp" line="166"/>
         <source>Locked display</source>
         <translation>Blocca postazioni</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="406"/>
+        <location filename="../src/client.cpp" line="407"/>
         <source>Unknown state</source>
         <translation>Stato sconosciuto</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="414"/>
+        <location filename="../src/client.cpp" line="415"/>
         <source>No user logged in</source>
         <translation>Nessun utente in linea</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="418"/>
+        <location filename="../src/client.cpp" line="419"/>
         <source>Host unreachable</source>
         <translation>PC non raggiungibile</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="422"/>
+        <location filename="../src/client.cpp" line="423"/>
         <source>Demo running</source>
         <translation>Presentazione in corso</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="426"/>
+        <location filename="../src/client.cpp" line="427"/>
         <source>Desktop locked</source>
         <translation>Desktop bloccato</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="537"/>
+        <location filename="../src/client.cpp" line="539"/>
         <source>Snapshot</source>
         <translation>Foto</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="539"/>
+        <location filename="../src/client.cpp" line="541"/>
         <source>Could not make a snapshot as directory %1 doesn&apos;t exist and couldn&apos;t be created.</source>
         <translation>Non posso scattare la foto! La cartella %1 non esiste e non può essere creata. </translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="749"/>
+        <location filename="../src/client.cpp" line="758"/>
         <source>Select file to distribute</source>
         <translation>Scegli il file da distribuire</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="777"/>
+        <location filename="../src/client.cpp" line="786"/>
         <source>Collect files</source>
         <translation>Raccogli files</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="783"/>
+        <location filename="../src/client.cpp" line="792"/>
         <source>Please enter the name of the file to be collected.
 Only files located in the PUBLIC-directory are allowed.</source>
         <translation>Inserisci il nome del file da raccogliere.
@@ -422,7 +435,7 @@ The base-directory is HOME/PUBLIC.</source>
 La directory di base è HOME/PUBLIC.</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="139"/>
+        <location filename="../src/client.cpp" line="140"/>
         <source>This is a client-window. It either displays the screen of the according client or a message about the state of this client (no user logged in/powered off) is shown. You can click with the right mouse-button and an action-menu for this client will appear. You can also close this client-window. To open it again, open the classroom-manager-workspace and search this client and double-click it.
 You can change the size of this (and all other visible) client-windows by using the functions for increasing, decreasing or optimizing the client-window-size.</source>
         <translation>Questa è una finestra client. Essa visualizza lo schermo del client o un messaggio sullo stato del computer client (nessun utente in linea/spento). Puoi usare il click destro del mouse per accedere al menù delle azioni per il client. Puoi anche chiudere questa finestra. Per aprirla nuovamente, apri il gestore dei client, cerca il client che ti interessa e fai un doppio-click su di esso.
@@ -803,19 +816,6 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
-    <name>localSystem::QObject</name>
-    <message>
-        <location filename="../../common/src/local_system.cpp" line="626"/>
-        <source>UPL (note for translators: the first three characters of this string are the accellerators (underlined characters) of the three input-fields in logon-dialog of windows - you only need to &quot;translate&quot; these characters, this note can be ommited)</source>
-        <translation>NPC (note for translators: the first three characters of this string are the accellerators (underlined characters) of the three input-fields in logon-dialog of windows - you only need to &quot;translate&quot; these characters, this note can be ommited)</translation>
-    </message>
-    <message>
-        <location filename="../../common/src/local_system.cpp" line="865"/>
-        <source>iTALC-snapshots</source>
-        <translation>iTALC-foto</translation>
-    </message>
-</context>
-<context>
     <name>mainWindow</name>
     <message>
         <location filename="../src/main_window.cpp" line="84"/>
@@ -1012,19 +1012,20 @@ Aula</translation>
     <message>
         <location filename="../src/main_window.cpp" line="367"/>
         <source>No valid keys found</source>
-        <translation type="unfinished"></translation>
+        <translation>Non sono state trovate chiavi valide</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="373"/>
         <source>No authentication-keys were found or your old ones were broken. Please create a new key-pair using ICA (see documentation at http://italc.sf.net/wiki/index.php?title=Installation).
 Otherwise you won&apos;t be able to access computers using iTALC.</source>
-        <translation type="unfinished"></translation>
+        <translation>Non sono state trovate le chiavi di autenticazione oppure esse sono state danneggiate. Si prega di creare una nuova coppia di chiavi utilizzando ICA (consultare la documentazione disponibile presso http://italc.sf.net/wiki/index.php?title=Installation).
+Altrimenti non sarà possibile accedere ai computer utilizzando iTALC.</translation>
     </message>
 </context>
 <context>
     <name>messageBox</name>
     <message>
-        <location filename="../../common/src/messagebox.cpp" line="71"/>
+        <location filename="../../common/src/messagebox.cpp" line="75"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>

@@ -61,7 +61,7 @@ int main( int argc, char * * argv )
 		if( QFileInfo( app.arguments()[1] ).exists() )
 		{
 			sw.loadSettings( app.arguments()[1] );
-			sw.doInstallation();
+			sw.doInstallation( TRUE );
 			return( 0 );
 		}
 		else
