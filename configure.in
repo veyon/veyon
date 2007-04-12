@@ -2,8 +2,8 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.50)
-AC_INIT(italc, 1.0.2, tobydox/at/users/dot/sf/dot/net)
-AM_INIT_AUTOMAKE(italc, 1.0.2)
+AC_INIT(italc, 1.0.2.svn20070412, tobydox/at/users/dot/sf/dot/net)
+AM_INIT_AUTOMAKE(italc, 1.0.2.svn20070412)
 AM_CONFIG_HEADER(config.h)
 AX_PREFIX_CONFIG_H([common/include/rfb/rfbconfig.h])
 

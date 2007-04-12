@@ -4,96 +4,60 @@
 Name:		@PACKAGE@
 Version:	@VERSION@
 Release:	0
-Summary:	didactical software for Linux-networks
-Summary(de):	Didaktische Software fuer Linux-Netzwerke
+Summary:	didactical software for teachers etc.
+Summary(de):	Didaktische Software fuer Lehrer usw.
 License:	GPL
 URL:		http://italc.sourceforge.net/
 Group:		Applications/Networking
 Packager:	Tobias Doerffel <tobydox@users.sourceforge.net>
 Provides:	italc = %{version}-%{release}
 %if %_suse
-BuildRequires:	gcc gcc-c++ libstdc++-devel autoconf automake make openssl openssl-devel zlib zlib-devel libjpeg
-BuildRequires:	qt3 qt3-devel qt3-devel-tools
-Requires:	qt3 openssl zlib libjpeg
+BuildRequires:	gcc gcc-c++ libstdc++-devel autoconf automake make openssl openssl-devel zlib zlib-devel libjpeg libjpeg-devel
+BuildRequires:	libqt4-devel
+Requires:	libqt4 libqt4-x11 openssl zlib libjpeg
 %endif
 Source:		%{name}-%{version}.tar.gz
 BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 Prefix:		%{_prefix}
 
 %description
-iTALC is a powerful software for Linux-networks, which was especially developed
-for working with computers in school. But it can be also used in other
-learning-environments. iTALC is a software for teachers using the computer
-as didactical tool in their lessons. It aims to be a complete replacement for
-expensive commercial software like MasterEye (tm).
+iTALC is a use- and powerful didactical tool for teachers. It lets you view and control other computers in your network in several ways. It supports Linux and Windows 2000/XP/Vista.
 
-iTALC makes it possible, to access and influence the pupils activities from the
-computer of the teacher. This way iTALC supports the work with modern
-equipment in school.
-For example the teacher is able to see the content of the pupils screens on his
-screen. If a student needs help, the teacher can access his desktop and
-give support while sitting in front of his computer. The pupil can watch all
-activities, the teacher is doing on his desktop. So the he can learn new
-processes.
+Features:
 
-If you want to teach the pupils completely new stuff, you can switch into
-demo-mode. Then all pupils see what the teacher is doing/demonstrating.
-It's also possible to let a pupil demonstrate something by redirecting his
-screen to all screens of the other pupils.
-iTALC provides even more features for controlling the pupils computers.
-For example you can lock all screens, so that the pupils can't continue their
-work and are forced to turn their attention to the teacher. You can also kill
-games or internet-browsers, if these things are not part of the lesson.
+* see what's going on in computer-labs by using overview mode and make snapshots
+* remote-control computers to support and help other people
+* show a demo (either in fullscreen or in a window) - the teacher's screen is shown on all student's computers in realtime
+* lock workstations for moving undivided attention to teacher
+* send text-messages to students
+* powering on/off and rebooting computers per remote
+* remote logon and logoff and remote execution of arbitrary commands/scripts
+* home-schooling - iTALC's network-technology is not restricted to a subnet and therefore students at home can join lessons via VPN-connections just by installing iTALC client
 
-But there are also some nice features for administrators, making the
-administration of the computers much easier and more comfortable. For example
-you can execute one or more commands on every computer without sitting in front
-of every computer and typing these comands. The execution of X-applications
-(e.g. Star/OpenOffice-Setup) on all clients with redirection to the local
-admin-computer is also part of iTALC's featurelist. Furthermore you can
-shutdown and restart the computers per remote control. If the computers support
-Wake-on-LAN, it's also possible to turn on all computers from a central place.
+Furthermore iTALC is optimized for usage on multi-core systems (by making
+heavy use of threads). No matter how many cores you have, iTALC can make use
+of all of them. 
+
 
 %description -l de
-iTALC ist eine leistungsfaehige Software fuer Linux-Netzwerke, die speziell
-fuer die Computer-Arbeit in der Schule entwickelt wurde, jedoch auch in
-anderen Lernumgebungen sinnvoll eingesetzt werden kann. Sie richtet sich an
-Informatik-Lehrer und Lehrer, die im Unterricht den Computer als didaktisches
-Werkzeug einsetzen. Dabei soll iTALC als vollwertiger Ersatz fuer teure
-kommerzielle Software wie MasterEye (tm) dienen.
+iTALC ist ein nuetzliches und leistungsfaehiges didaktisches Werkzeug für
+Lehrer, mit dem man andere Computer im Netzwerk auf verschiedene Art und Weise
+beobachten und fernsteuern kann.
 
-iTALC macht es unter anderem moeglich, vom Lehrercomputer aus sowohl Einsicht
-als auch Einfluss auf die Aktivitaeten der Schueler zu nehmen und unterstuetzt
-somit die Arbeit mit moderner Technik im Unterricht.
-Zum Beispiel koennen Lehrer auf ihrem Bildschirm den Inhalt der Schueler-
-Bildschirme sehen. Falls bei einem Schueler die Notwendigkeit der Hilfe besteht,
-kann der Lehrer ganz einfach vom Lehrercomputer aus auf die Arbeitsflaeche des
-Schuelers zugreifen und unterstuetzend eingreifen. Der Schueler sieht auf seinem
-Bildschirm alle Aktivitaeten, die der Lehrer durchfuehrt und kann somit neue
-Vorgaenge lernen.
+iTALC unterstuetzt derzeit Linux und Windows 2000/XP/Vista.
 
-Wenn es gilt, den Schuelern einen voellig neuen Sachverhalt mittels des
-Computers verstaendlich zu machen, kann man in den Demo-Modus wechseln. Dann
-sehen alle Schueler auf ihren Bildschirmen, was der Lehrer gerade macht bzw.
-vorfuehrt. Genauso besteht die Moeglichkeit, einen Schueler etwas vorfuehren zu
-lassen, indem mit einem Klick sein Bildschirminhalt auf die Bildschirme der
-anderen Schueler umgeleitet wird.
-iTALC bietet noch weitere Funktionen zur Steuerung der Schuelercomputer.
-So kann man zum Beispiel alle Bildschirme sperren, so dass die Schueler nicht
-mehr weiterarbeiten koennen und stattdessen gezwungen sind, ihre Aufmerksamkeit
-auf den Lehrer zu richten. Ebenfalls koennen Spiele oder der Internet-Browser
-beendet werden, falls diese nicht den Inhalt des Unterrichtsstoffes darstellen.
+Funktionen:
 
-Auch fuer Administratoren bietet iTALC einige Funktionen, die die Administration
-der Schuelercomputer erheblich einfacher und bequemer gestalten. Beispielsweise
-koennen ein oder mehrere Befehle auf allen Rechnern ausgefuehrt werden, ohne
-dass sich an jeden Rechner gesetzt werden muss und die Befehle jedes Mal
-eingegeben werden muessen. Desweiteren gehoert das Ausfuehren von X-Programmen
-(z.B. Star/Open-Office-Setup) auf beliebigen Clients mit Umleitung auf lokalen
-(Admin-)Rechner zum Funktionsumfang von iTALC. Ausserdem koennen die Computer
-per Fernsteuerung heruntergefahren und neugestartet werden. Wenn die
-entsprechende hardwareseitige Unterstuetzung vorhanden ist (Wake-on-LAN-
-Faehigkeit), ist es auch moeglich, die Rechner zentral einzuschalten.
+* sehen, was in Computerkabinetten los ist (Uebersichtsmodus) und Schnapsschuesse erstellen
+* Computern fernsteuern, um anderen Leuten zu unterstuetzen
+* eine Demo zeigen (entweder als Vollbild oder in einem Fenster) - der Lehrer-Bildschirm wird auf alle Schuelercomputer in Echtzeit uebertragen
+* Schuelercomputer sperren um Aufmerksamkeit zu erlangen
+* Textnachrichten an Schueler senden
+* Computer uebers Netzwerk an- und ausschalten sowie neustarten
+* Remote-Anmeldung sowie Ausfuehrung beliebiger Befehle/Skripte
+* Anbindung zu Hause sitzender Schueler ueber VPN moeglich
+
+Weiterhin ist iTALC optimiert auf die Nutzung auf Mehrkern-Systemen (indem es in grossen Umfang Threads benutzt). Egal wie viele Kerne sie haben, iTALC kann von allen Gebrauch machen.
 
 
 %package client
@@ -110,28 +74,29 @@ See /usr/share/italc/doc/INSTALL for details on how to install and setup iTALC
 in your network.
 
 %description client -l de
-Dieses Paket beinhaltet die Software, die von iTALC-Clients benoetigt wird.
+Dieses Paket beinhaltet die Software, die auf iTALC-Clients benoetigt wird.
 
 Weitere Details ueber die Installation und Einrichtung von iTALC in Ihrem
 Netzwerk finden Sie in /usr/share/italc/doc/INSTALL.
 
 
 %package master
-Summary:	software for iTALC-masters
-Summary(de):	Software fuer iTALC-Master
+Summary:	iTALC master software
+Summary(de):	iTALC-Master-Software
 Group:		Applications/Networking
 Provides:	italc-master = %{version}-%{release}
 Requires:	italc = %{version}-%{release}
+Requires:	italc-client = %{version}-%{release}
 
 %description master
-This package contains the software, needed by iTALC-master-computers.
+This package contains the actual master-software for accessing clients.
 
 See /usr/share/italc/doc/INSTALL for details on how to install and setup iTALC
 in your network.
 
 %description master -l de
-Dieses Paket beinhaltet die Software, die von iTALC-Master-Computern benoetigt
-wird.
+Dieses Paket beinhaltet die eigentliche Master-Software, um auf Clients
+zuzugreifen.
 
 Weitere Details ueber die Installation und Einrichtung von iTALC in Ihrem
 Netzwerk finden Sie in /usr/share/italc/doc/INSTALL.
@@ -163,25 +128,28 @@ make DESTDIR=$RPM_BUILD_ROOT install
 
 %files
 %defattr(-,root,root)
-%{_bindir}/ivs
 %{_datadir}/italc/
 
 
 %files client
 %defattr(-,root,root)
-%{_bindir}/demoviewer
-%{_bindir}/messageviewer
-%{_bindir}/screenlocker
+%{_bindir}/ica
+%{_datadir}/man/man1/ica.1.gz
 
 
 %files master
 %defattr(-,root,root)
-%{_bindir}/icv
 %{_bindir}/italc
-%{_bindir}/italc-keygen
+%{_datadir}/man/man1/italc.1.gz
+%{_datadir}/applications/italc.desktop
+%{_datadir}/menu/italc
+%{_datadir}/pixmaps/italc.png
 
 
 %changelog
+* Sat Apr 12 2007 Tobias Doerffel
+- lot of updates for "new" iTALC
+
 * Sat Jun 25 2005 Tobias Doerffel
 - updated project-homepage and email-address of packager
 
