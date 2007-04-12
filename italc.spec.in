@@ -143,7 +143,8 @@ make DESTDIR=$RPM_BUILD_ROOT install
 %{_datadir}/man/man1/italc.1.gz
 %{_datadir}/applications/italc.desktop
 %{_datadir}/menu/italc
-%{_datadir}/pixmaps/italc.png
+%{_datadir}/pixmaps/italc.xpm
+%{_datadir}/icons/italc.png
 
 
 %changelog

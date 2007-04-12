@@ -116,14 +116,19 @@ applicationsdir = $(prefix)/share/applications
 applications_DATA = data/italc.desktop
 
 pixmapsdir = $(prefix)/share/pixmaps
-pixmaps_DATA = data/italc.png
+pixmaps_DATA = data/italc.xpm
+
+iconsdir = $(prefix)/share/icons
+icons_DATA = data/italc.png
+
 
 
 EXTRA_DIST =	$(man_MANS)				\
 		$(wildcard $(srcdir)/src/3rdparty/*)	\
-		$(applications_DATA)			\
-		$(menu_DATA)				\
+		data/italc.desktop.in			\
+		data/italc.in				\
 		$(pixmaps_DATA)				\
+		$(icons_DATA)				\
 		data/italc.ico
 
 if BUILD_WIN32

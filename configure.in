@@ -555,6 +555,8 @@ AC_CONFIG_FILES([Makefile
 		 common/Makefile
 		 ica/Makefile
 		 ima/Makefile
+		 ima/data/italc
+		 ima/data/italc.desktop
 		 setup/Makefile
 		 utils-win32/Makefile
 		 ica/ica.rc

@@ -2,6 +2,6 @@
 	needs="X11"\
 	section="Apps/Education"\
 	title="iTALC"\
-	command="/usr/bin/italc" \
-	icon32x32="/usr/share/pixmaps/italc.png"\
+	command="@prefix@/bin/italc" \
+	icon32x32="@prefix@/share/pixmaps/italc.png"\
 	hints="KDE"
