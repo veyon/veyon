@@ -69,12 +69,15 @@ namespace localSystem
 						const ISD::userRoles _role );
 	void setPublicKeyPath( const QString & _path,
 						const ISD::userRoles _role );
+
 	QString snapshotDir( void );
 	QString globalConfigPath( void );
 	QString personalConfigDir( void );
 	QString personalConfigPath( void );
 
 	QString globalStartmenuDir( void );
+
+	QString parameterSetting( const QString & _name );
 
 	bool ensurePathExists( const QString & _path );
 

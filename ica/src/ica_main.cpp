@@ -151,6 +151,15 @@ int ICAMain( int argc, char * * argv )
 
 	localSystem::initialize();
 
+	if( localSystem::parameterSetting( "ivsport" ).toInt() > 0 )
+	{
+		__ivs_port = localSystem::parameterSetting( "ivsport" ).toInt();
+	}
+	if( localSystem::parameterSetting( "isdport" ).toInt() > 0 )
+	{
+		__isd_port = localSystem::parameterSetting( "isdport" ).toInt();
+	}
+
 	QStringListIterator arg_it( QCoreApplication::arguments() );
 	arg_it.next();
 	while( argc > 1 && arg_it.hasNext() )

@@ -931,6 +931,14 @@ QString globalStartmenuDir( void )
 
 
 
+QString parameter( const QString & _name )
+{
+	return( QSettings().value( "parameters/" + _name ).toString() );
+}
+
+
+
+
 bool ensurePathExists( const QString & _path )
 {
 	if( _path.isEmpty() || QDir( _path ).exists() )

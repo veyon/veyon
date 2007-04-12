@@ -1,5 +1,12 @@
 2007-04-12	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
+	* common/include/local_system.h:
+	* common/src/local_system.cpp:
+	* ica/src/ica_main.cpp:
+	added possibility to set parameters such as -ivsport and -isdport
+	using settings in either /etc/qt4/iTALC Solutions/iTALC.conf (Linux)
+	or registry (win32)
+
 	* ima/Makefile.am:
 	* ima/data/italc.desktop.in:
 	* ima/data/italc.in:
