@@ -496,7 +496,14 @@ void client::hideEvent( QHideEvent * )
 
 void client::mouseDoubleClickEvent( QMouseEvent * _me )
 {
-	remoteControl( "" );
+	if( m_mainWindow->getClassroomManager()->clientDblClickAction() == 0 )
+	{
+		remoteControl( "" );
+	}
+	else
+	{
+		viewLive( "" );
+	}
 }
 
 

@@ -48,7 +48,7 @@ configWidget::configWidget( mainWindow * _main_window, QWidget * _parent ) :
 			_main_window, _parent )
 {
 	setupUi( contentParent() );
-	contentParent()->layout()->addWidget( widget );
+	contentParent()->layout()->addWidget( layoutWidget );
 
 
 	connect( updateIntervalSB, SIGNAL( valueChanged( int ) ),
@@ -116,6 +116,12 @@ configWidget::configWidget( mainWindow * _main_window, QWidget * _parent ) :
 	domainEdit->setText( __default_domain );
 	connect( domainEdit, SIGNAL( textChanged( const QString & ) ),
 			this, SLOT( domainChanged( const QString & ) ) );
+
+	clientDoubleClickActionCB->setCurrentIndex( getMainWindow()->
+				getClassroomManager()->clientDblClickAction() );
+	connect( clientDoubleClickActionCB, SIGNAL( activated( int ) ),
+			getMainWindow()->getClassroomManager(),
+				SLOT( setClientDblClickAction( int ) ) );
 }
 
 

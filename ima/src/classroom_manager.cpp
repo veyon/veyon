@@ -253,6 +253,8 @@ void classroomManager::savePersonalConfig( void )
 	globalsettings.setAttribute( "role", __role );
 	globalsettings.setAttribute( "notooltips",
 					toolButton::toolTipsDisabled() );
+	globalsettings.setAttribute( "clientdoubleclickaction",
+						m_clientDblClickAction );
 
 	head.appendChild( globalsettings );
 
@@ -457,6 +459,8 @@ void classroomManager::getHeaderInformation( const QDomElement & _header )
 			toolButton::setToolTipsDisabled(
 				node.toElement().attribute( "notooltips" ).
 								toInt() );
+			m_clientDblClickAction = node.toElement().attribute(
+					"clientdoubleclickaction" ).toInt();
 			// if the attr did not exist, we got zero as value,
 			// which is not acceptable
 			if( m_clientUpdateInterval < 1 )

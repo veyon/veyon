@@ -5,17 +5,17 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>282</width>
-    <height>540</height>
+    <width>304</width>
+    <height>610</height>
    </rect>
   </property>
-  <widget class="QWidget" name="" >
+  <widget class="QWidget" name="layoutWidget" >
    <property name="geometry" >
     <rect>
-     <x>12</x>
-     <y>14</y>
-     <width>261</width>
-     <height>545</height>
+     <x>10</x>
+     <y>15</y>
+     <width>276</width>
+     <height>581</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" >
@@ -23,7 +23,7 @@
      <number>0</number>
     </property>
     <property name="spacing" >
-     <number>20</number>
+     <number>19</number>
     </property>
     <item>
      <layout class="QVBoxLayout" >
@@ -569,6 +569,105 @@ p, li { white-space: pre-wrap; }
         </item>
         <item>
          <widget class="QLineEdit" name="domainEdit" />
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QVBoxLayout" >
+      <property name="margin" >
+       <number>0</number>
+      </property>
+      <property name="spacing" >
+       <number>6</number>
+      </property>
+      <item>
+       <layout class="QHBoxLayout" >
+        <property name="margin" >
+         <number>0</number>
+        </property>
+        <property name="spacing" >
+         <number>6</number>
+        </property>
+        <item>
+         <widget class="QLabel" name="label_16" >
+          <property name="pixmap" >
+           <pixmap resource="../italc.qrc" >:/resources/thinclient.png</pixmap>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_17" >
+          <property name="text" >
+           <string>Double-click action for client-window</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer>
+          <property name="orientation" >
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" >
+           <size>
+            <width>10</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" >
+        <property name="margin" >
+         <number>0</number>
+        </property>
+        <property name="spacing" >
+         <number>6</number>
+        </property>
+        <item>
+         <spacer>
+          <property name="orientation" >
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeType" >
+           <enum>QSizePolicy::Fixed</enum>
+          </property>
+          <property name="sizeHint" >
+           <size>
+            <width>20</width>
+            <height>1</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QComboBox" name="clientDoubleClickActionCB" >
+          <property name="whatsThis" >
+           <string>&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
+p, li { white-space: pre-wrap; }
+&lt;/style>&lt;/head>&lt;body style=" font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;">
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Here you can set what should happen if you double-click a client-window.&lt;/p>&lt;/body>&lt;/html></string>
+          </property>
+          <item>
+           <property name="text" >
+            <string>Remote control</string>
+           </property>
+           <property name="icon" >
+            <iconset resource="../italc.qrc" >:/resources/remote_control.png</iconset>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string>View live in fullscreen</string>
+           </property>
+           <property name="icon" >
+            <iconset resource="../italc.qrc" >:/resources/viewmag.png</iconset>
+           </property>
+          </item>
+         </widget>
         </item>
        </layout>
       </item>

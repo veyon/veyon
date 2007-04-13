@@ -85,6 +85,11 @@ public:
 		return( m_globalClientMode );
 	}
 
+	int clientDblClickAction( void ) const
+	{
+		return( m_clientDblClickAction );
+	}
+
 	inline void setUpdateIntervalSpinBox( QSpinBox * _update_interval_sb )
 	{
 		m_updateIntervalSpinBox = _update_interval_sb;
@@ -125,6 +130,11 @@ public slots:
 	void updateIntervalChanged( int _value );
 
 	void hideAllClassRooms( void );
+
+	void setClientDblClickAction( int _a )
+	{
+		m_clientDblClickAction = _a;
+	}
 
 
 private slots:
@@ -187,6 +197,7 @@ private:
 	int m_clientUpdateInterval;
 	QString m_winCfg;
 
+	int m_clientDblClickAction;
 
 	friend class clientSettingsDialog;
 	friend class configWidget;
