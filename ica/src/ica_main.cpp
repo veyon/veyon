@@ -102,7 +102,9 @@ int ICAMain( int argc, char * * argv )
 	{
 		if( QString( argv[i] ) == "-rx11vs" ||
 			QString( argv[i] ) == "-createkeypair" ||
-			QString( argv[i] ) == "-h" )
+			QString( argv[i] ) == "-h" ||
+			QString( argv[i] ) == "--version" ||
+			QString( argv[i] ) == "-v" )
 		{
 			core_app = TRUE;
 		}
@@ -151,13 +153,13 @@ int ICAMain( int argc, char * * argv )
 
 	localSystem::initialize();
 
-	if( localSystem::parameterSetting( "ivsport" ).toInt() > 0 )
+	if( localSystem::parameter( "ivsport" ).toInt() > 0 )
 	{
-		__ivs_port = localSystem::parameterSetting( "ivsport" ).toInt();
+		__ivs_port = localSystem::parameter( "ivsport" ).toInt();
 	}
-	if( localSystem::parameterSetting( "isdport" ).toInt() > 0 )
+	if( localSystem::parameter( "isdport" ).toInt() > 0 )
 	{
-		__isd_port = localSystem::parameterSetting( "isdport" ).toInt();
+		__isd_port = localSystem::parameter( "isdport" ).toInt();
 	}
 
 	QStringListIterator arg_it( QCoreApplication::arguments() );
@@ -269,6 +271,11 @@ int ICAMain( int argc, char * * argv )
 			return( 0 );
 		}
 #endif
+		else if( a == "-v" || a == "--version" )
+		{
+			printf( "%s\n", PACKAGE_VERSION );
+			return( 0 );
+		}
 		else
 		{
 			printf( "Unrecognized commandline-argument %s\n",

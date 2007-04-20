@@ -84,6 +84,10 @@ LRESULT CALLBACK TaskKeyHookLL( int nCode, WPARAM wp, LPARAM lp )
 		{
 			key = systemKeyTrapper::AltEsc;
 		}
+		else if( pkh->vkCode == VK_SPACE && pkh->flags & LLKHF_ALTDOWN )
+		{
+			key = systemKeyTrapper::AltSpace;
+		}
 		else if( pkh->vkCode == VK_F4 && pkh->flags & LLKHF_ALTDOWN )
 		{
 			key = systemKeyTrapper::AltF4;
@@ -236,9 +240,10 @@ void systemKeyTrapper::checkForTrappedKeys( void )
 			case AltCtrlDel: key = XK_Delete; break;
 			case AltTab: key = XK_Tab; break;
 			case AltEsc: key = XK_Escape; break;
+			case AltSpace: key = XK_KP_Space; break;
+			case AltF4: key = XK_F4; break;
 			case CtrlEsc: key = XK_Escape; break;
 			case MetaKey: key = XK_Meta_L; break;
-			case AltF4: key = XK_F4; break;
 		}
 
 		if( key )

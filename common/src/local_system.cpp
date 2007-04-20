@@ -363,6 +363,7 @@ void msgHandler( QtMsgType _type, const char * _msg )
 		out += "\n";
 	}
 	__debug_out->write( out.toAscii() );
+	printf( "%s", out.toAscii().constData() );
 }
 
 

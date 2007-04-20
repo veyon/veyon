@@ -77,7 +77,7 @@ namespace localSystem
 
 	QString globalStartmenuDir( void );
 
-	QString parameterSetting( const QString & _name );
+	QString parameter( const QString & _name );
 
 	bool ensurePathExists( const QString & _path );
 

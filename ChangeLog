@@ -1,3 +1,20 @@
+2007-04-20	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* common/src/local_system.cpp:
+	also print log-messages to stdout
+
+	* ica/src/system_key_trapper.h:
+	* ica/src/system_key_trapper.cpp:
+	added support for trapping Alt+Space - closes #1704091
+
+	* common/src/local_system.cpp:
+	* common/include/local_system.h:
+	* ica/src/ica_main.cpp:
+	renamed "localSystem::parameterSetting" to "localSystem::parameter"
+
+	* ica/src/ica_main.cpp:
+	added "-v" and "--version"-parameter
+
 2007-04-13	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* ima/dialogs/config.ui:
