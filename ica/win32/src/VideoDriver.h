@@ -214,9 +214,9 @@ protected:
 	bool	m_fDirectAccessInEffect;
 	bool	m_fHandleScreen2ScreenBlt;
 
-	static char	vncVideoDriver::szDriverString[];
-	static char	vncVideoDriver::szDriverStringAlt[];
-	static char	vncVideoDriver::szMiniportName[];
+	static char szDriverString[];
+	static char szDriverStringAlt[];
+	static char szMiniportName[];
 };
 
 VOID	DebugPrint(PCHAR DebugMessage, ...);

@@ -56,6 +56,8 @@ vncView::vncView( const QString & _host, bool _view_only, QWidget * _parent ) :
 
 	m_connection = new ivsConnection( _host, ivsConnection::QualityHigh,
 								FALSE, this );
+	connect( m_connection, SIGNAL( cursorShapeChanged() ),
+					this, SLOT( updateCursorShape() ) );
 	setMouseTracking( TRUE );
 	//setWidgetAttribute( Qt::WA_OpaquePaintEvent );
 	setAttribute( Qt::WA_NoSystemBackground, true );
@@ -184,6 +186,16 @@ void vncView::framebufferUpdate( void )
 	}
 
 	QTimer::singleShot( 40, this, SLOT( framebufferUpdate() ) );
+}
+
+
+
+
+void vncView::updateCursorShape( void )
+{
+	setCursor( QCursor( QPixmap::fromImage( m_connection->cursorShape() ),
+			m_connection->cursorHotSpot().x(),
+			m_connection->cursorHotSpot().y() ) );
 }
 
 
@@ -441,12 +453,12 @@ void vncView::paintEvent( QPaintEvent * _pe )
 						m_connection->cursorHotSpot(),
 					cursor.size() ).translated(
 								-m_viewOffset );
-	// parts of cursor within updated region?
+/*	// parts of cursor within updated region?
 	if( _pe->rect().intersects( cursor_rect ) )
 	{
 		// then repaint it
 		p.drawImage( cursor_rect.topLeft(), cursor );
-	}
+	}*/
 
 	// draw black borders if neccessary
 	const int fbw = m_connection->framebufferSize().width();

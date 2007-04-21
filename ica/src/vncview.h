@@ -52,6 +52,11 @@ public:
 							QWidget * _parent = 0 );
 	virtual ~vncView();
 
+	bool viewOnly( void ) const
+	{
+		return( m_viewOnly );
+	}
+
 
 signals:
 	void pointerEvent( Q_UINT16 _x, Q_UINT16 _y, Q_UINT16 _button_mask );
@@ -61,7 +66,7 @@ signals:
 
 private slots:
 	void framebufferUpdate( void );
-
+	void updateCursorShape( void );
 
 private:
 	virtual void customEvent( QEvent * _user );

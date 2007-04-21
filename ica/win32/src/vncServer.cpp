@@ -89,7 +89,7 @@ vncServer::vncServer()
 
 	// General options
 	m_loopbackOnly = FALSE;
-	m_disableTrayIcon = FALSE;
+	m_disableTrayIcon = TRUE;
 	m_loopback_allowed = FALSE;
 	m_httpd_enabled = TRUE;
 	m_httpd_params_enabled = FALSE;

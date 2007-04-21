@@ -57,11 +57,9 @@ const UINT RFB_LOCAL_MOUSE = RegisterWindowMessage("WinVNC.Local.Mouse");
 
 const char szDesktopSink[] = "WinVNC desktop sink";
 
-#if 0
 // Atoms
 const char *VNC_WINDOWPOS_ATOMNAME = "VNCHooks.CopyRect.WindowPos";
 ATOM VNC_WINDOWPOS_ATOM = NULL;
-#endif
 
 // Static members to use with new polling algorithm
 const int vncDesktop::m_pollingOrder[32] = {

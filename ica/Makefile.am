@@ -67,6 +67,15 @@ IVS_SRCS =	$(srcdir)/win32/win32vnc.cpp			\
 
 IVSLDADD = -lkernel32 -lwsock32 -luser32 -lgdi32 -lpsapi
 
+VNCHooks.o: $(srcdir)/win32/src/VNCHooks/VNCHooks.cpp
+	$(CXX) $(INCLUDES) $(AM_CXXFLAGS) $< -c -o $@
+
+SharedData.o: $(srcdir)/win32/src/VNCHooks/SharedData.cpp
+	$(CXX) $(INCLUDES) $(AM_CXXFLAGS) $< -c -o $@
+
+vnchooks.dll: VNCHooks.o SharedData.o
+	$(CXX) VNCHooks.o SharedData.o -Wl,-lgdi32 -shared -Wl,-no-undefined -Wl,--out-implib,libvnchooks.a -o $@ && $(STRIP) $@
+
 endif
 
 
@@ -79,9 +88,11 @@ LIBSSL_LDADD = -leay32
 endif
 
 if BUILD_WIN32
-ica_win_resources.o: ica.rc
+
+ica_win_resources.o: ica.rc vnchooks.dll
 	$(WINDRES) -o $@ $<
-WIN32_RES_LDADD = ica_win_resources.o
+
+WIN32_RES_LDADD = ica_win_resources.o -L. -lvnchooks
 #CXXFLAGS_ADD=-DHAVE_BOOLEAN
 endif
 
@@ -164,7 +175,7 @@ ica_SOURCES =		$(srcdir)/src/ica_main.cpp			\
 inject.o: $(srcdir)/src/inject.cpp
 	$(CXX) -c -o $@ $< -DHAVE_CONFIG_H $(CXXFLAGS) $(QT_CXXFLAGS) $(INCLUDES) $(CPPFLAGS) -O0
 
-CLEANFILES = ./ica_qrc.cpp $(ica_MOC)
+CLEANFILES = ./ica_qrc.cpp $(ica_MOC) vnchooks.dll libvnchooks.a
 BUILT_SOURCES = ./ica_qrc.cpp $(ica_MOC)
 
 

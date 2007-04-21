@@ -24,26 +24,25 @@
 // This file is used only when your compiler is Borland C++.
 
 // Change default data segment and data class names
-#pragma option -zRSHSEG
-#pragma option -zTSHCLASS
+#define SHARED __attribute__((section(".shr"), shared))
 
 #include "windows.h"
 
-HWND hVeneto = NULL;
-UINT UpdateRectMessage = 0;
-UINT CopyRectMessage = 0;
-UINT MouseMoveMessage = 0;
-UINT LocalMouseMessage = 0;
-UINT LocalKeyboardMessage = 0;
-HHOOK hCallWndHook = NULL;							// Handle to the CallWnd hook
-HHOOK hGetMsgHook = NULL;							// Handle to the GetMsg hook
-HHOOK hDialogMsgHook = NULL;						// Handle to the DialogMsg hook
-HHOOK hLLKeyboardHook = NULL;						// Handle to LowLevel kbd hook
-HHOOK hLLMouseHook = NULL;							// Handle to LowLevel mouse hook
-HHOOK hLLKeyboardPrHook = NULL;						// Handle to LowLevel kbd hook for local event priority
-HHOOK hLLMousePrHook = NULL;						// Handle to LowLevel mouse hook for local event priority
-HHOOK hKeyboardHook = NULL;							// Handle to kbd hook
-HHOOK hMouseHook = NULL;							// Handle to mouse hook
-HWND hKeyboardPriorityWindow = NULL;
-HWND hMousePriorityWindow = NULL;
+SHARED HWND hVeneto = NULL;
+SHARED UINT UpdateRectMessage = 0;
+SHARED UINT CopyRectMessage = 0;
+SHARED UINT MouseMoveMessage = 0;
+SHARED UINT LocalMouseMessage = 0;
+SHARED UINT LocalKeyboardMessage = 0;
+SHARED HHOOK hCallWndHook = NULL;							// Handle to the CallWnd hook
+SHARED HHOOK hGetMsgHook = NULL;							// Handle to the GetMsg hook
+SHARED HHOOK hDialogMsgHook = NULL;						// Handle to the DialogMsg hook
+SHARED HHOOK hLLKeyboardHook = NULL;						// Handle to LowLevel kbd hook
+SHARED HHOOK hLLMouseHook = NULL;							// Handle to LowLevel mouse hook
+SHARED HHOOK hLLKeyboardPrHook = NULL;						// Handle to LowLevel kbd hook for local event priority
+SHARED HHOOK hLLMousePrHook = NULL;						// Handle to LowLevel mouse hook for local event priority
+SHARED HHOOK hKeyboardHook = NULL;							// Handle to kbd hook
+SHARED HHOOK hMouseHook = NULL;							// Handle to mouse hook
+SHARED HWND hKeyboardPriorityWindow = NULL;
+SHARED HWND hMousePriorityWindow = NULL;
 

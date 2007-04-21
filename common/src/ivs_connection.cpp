@@ -218,6 +218,9 @@ ivsConnection::states ivsConnection::protocolInitialization( void )
 		//encs[se->nEncodings++] = swap32IfLE( rfbEncodingCopyRect );
 		encs[se->nEncodings++] = swap32IfLE( rfbEncodingCoRRE );
 		encs[se->nEncodings++] = swap32IfLE( rfbEncodingRaw );
+	encs[se->nEncodings++] = swap32IfLE( rfbEncodingRichCursor );
+	//encs[se->nEncodings++] = swap32IfLE( rfbEncodingXCursor );
+	encs[se->nEncodings++] = swap32IfLE( rfbEncodingPointerPos );
 		//encs[se->nEncodings++] = swap32IfLE( rfbEncodingRRE );
 #ifdef HAVE_LIBZ
 #ifdef HAVE_LIBJPEG
@@ -242,9 +245,6 @@ ivsConnection::states ivsConnection::protocolInitialization( void )
 						rfbEncodingCompressLevel4 );
 #endif
 	}
-	encs[se->nEncodings++] = swap32IfLE( rfbEncodingRichCursor );
-	//encs[se->nEncodings++] = swap32IfLE( rfbEncodingXCursor );
-	encs[se->nEncodings++] = swap32IfLE( rfbEncodingPointerPos );
 
 	//encs[se->nEncodings++] = swap32IfLE( rfbEncodingLastRect );
 	encs[se->nEncodings++] = swap32IfLE( rfbEncodingItalc );
@@ -1464,7 +1464,6 @@ bool ivsConnection::handleCursorShape( const Q_UINT16 _xhot,
 	const int bytesPerPixel = s_localDisplayFormat.bitsPerPixel / 8;
 	const size_t bytesPerRow = ( _width + 7 ) / 8;
 	const size_t bytesMaskData = bytesPerRow * _height;
-
 	if( _width * _height == 0 )
 	{
 		return( TRUE );

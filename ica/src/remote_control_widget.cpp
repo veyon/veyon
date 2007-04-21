@@ -367,8 +367,15 @@ void remoteControlWidget::updateUser( void )
 /*	m_user = m_vncView->m_connection->user();
 	if( m_user.isEmpty() )
 	{*/
+	if( m_vncView->viewOnly() )
+	{
+		setWindowTitle( tr( "View live (host %1)" ).arg( host() ) );
+	}
+	else
+	{
 		setWindowTitle( tr( "iTALC remote control (host %1)" ).
 								arg( host() ) );
+	}
 		//m_vncView->m_connection->sendGetUserInformationRequest();
 /*		QTimer::singleShot( 100, this, SLOT( updateUser() ) );
 	}

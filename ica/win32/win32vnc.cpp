@@ -196,15 +196,12 @@ qint64 vsocketDispatcher( char * _buf, const qint64 _len,
 #include "src/vncSockConnect.cpp"
 #include "src/VideoDriver.cpp"
 
-#ifndef LLMHF_INJECTED
-/* from $prefix/include/wine/windows/winuser.h */
-#define LLMHF_INJECTED 0x000000001
-#endif
 #ifndef _MAX_PATH
 #define _MAX_PATH 260
 #endif
 
-#include "src/VNCHooks/VNCHooks.cpp"
-#include "src/VNCHooks/SharedData.cpp"
+//#include "src/VNCHooks/VNCHooks.cpp"
+//#include "src/VNCHooks/SharedData.cpp"
+#include "src/VNCHooks/SharedData.h"
 #include "src/vncDesktop.cpp"
 

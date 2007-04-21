@@ -69,6 +69,11 @@ HHOOK hMouseHook = NULL;							// Handle to mouse hook
 
 #endif // _MSC_VER
 
+#ifndef LLMHF_INJECTED
+/* from $prefix/include/wine/windows/winuser.h */
+#define LLMHF_INJECTED 0x000000001
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Per-instance DLL variables
 
@@ -97,8 +102,8 @@ const UINT VNC_DEFERRED_UPDATE = RegisterWindowMessage("VNCHooks.Deferred.Update
 // Atoms
 const char *VNC_WINDOWPOS_ATOMNAME = "VNCHooks.CopyRect.WindowPos";
 const char *VNC_POPUPSELN_ATOMNAME = "VNCHooks.PopUpMenu.Selected";
-ATOM VNC_WINDOWPOS_ATOM = NULL;
-ATOM VNC_POPUPSELN_ATOM = NULL;
+ATOM VNC_WINDOWPOS_ATOM = (ATOM) NULL;
+ATOM VNC_POPUPSELN_ATOM = (ATOM) NULL;
 
 /////////////////////////////////////////////////////////////////////////////
 // The DLL functions
@@ -121,7 +126,7 @@ BOOL InitInstance();
 BOOL ExitInstance();
 
 // The DLL's main procedure
-BOOL WINAPI DllMain (HANDLE hInst, ULONG ul_reason_for_call, LPVOID lpReserved)
+extern "C" BOOL APIENTRY DllMain (HANDLE hInst, ULONG ul_reason_for_call, LPVOID lpReserved)
 {
 	// Find out why we're being called
 	switch (ul_reason_for_call)
@@ -134,7 +139,6 @@ BOOL WINAPI DllMain (HANDLE hInst, ULONG ul_reason_for_call, LPVOID lpReserved)
 
 		// Save the instance handle
 		hInstance = (HINSTANCE)hInst;
-
 		// Call the initialisation function
 		appHookedOK = InitInstance();
 
@@ -253,7 +257,7 @@ DllExport BOOL UnSetHook(HWND hWnd)
 	BOOL unHooked = TRUE;
 	
 	// Remove the extra property value from all local windows
-	EnumWindows((WNDENUMPROC) &KillPropsProc, NULL);
+	EnumWindows((WNDENUMPROC) &KillPropsProc, (LPARAM) NULL);
 
 	// Stop the keyboard & mouse hooks
 	unHooked = unHooked && SetKeyboardFilterHook(FALSE);
@@ -1246,10 +1250,10 @@ BOOL InitInstance()
 {
 	// Create the global atoms
 	VNC_WINDOWPOS_ATOM = GlobalAddAtom(VNC_WINDOWPOS_ATOMNAME);
-	if (VNC_WINDOWPOS_ATOM == NULL)
+	if (VNC_WINDOWPOS_ATOM == (ATOM) NULL)
 		return FALSE;
 	VNC_POPUPSELN_ATOM = GlobalAddAtom(VNC_POPUPSELN_ATOMNAME);
-	if (VNC_POPUPSELN_ATOM == NULL)
+	if (VNC_POPUPSELN_ATOM == (ATOM) NULL)
 		return FALSE;
 
 	// Get the module name
@@ -1310,15 +1314,15 @@ BOOL InitInstance()
 BOOL ExitInstance() 
 {
 	// Free the created atoms
-	if (VNC_WINDOWPOS_ATOM != NULL)
+	if (VNC_WINDOWPOS_ATOM != (ATOM) NULL)
 	{
 		GlobalDeleteAtom(VNC_WINDOWPOS_ATOM);
-		VNC_WINDOWPOS_ATOM = NULL;
+		VNC_WINDOWPOS_ATOM = (ATOM) NULL;
 	}
-	if (VNC_POPUPSELN_ATOM != NULL)
+	if (VNC_POPUPSELN_ATOM != (ATOM) NULL)
 	{
 		GlobalDeleteAtom(VNC_POPUPSELN_ATOM);
-		VNC_POPUPSELN_ATOM = NULL;
+		VNC_POPUPSELN_ATOM = (ATOM) NULL;
 	}
 
 	// Write the module settings to disk

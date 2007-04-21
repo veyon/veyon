@@ -1,3 +1,34 @@
+2007-04-21	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* common/src/ivs_connection.cpp:
+	enqueue cursor-encodings in an earlier stage
+
+	* build_mingw32:
+	* ica/Makefile.am:
+	* ica/win32/win32vnc.cpp:
+	* ica/win32/src/vncDesktop.cpp:
+	* ica/win32/src/VNCHooks/VNCHooks.cpp:
+	put vnc-hook-stuff into separate DLL-file to make hooks work as
+	expected - closes #1698534 and probably fixes some other problems
+
+	* ica/src/vncview.cpp:
+	set widget-cursor for vncView to according remote-cursor instead of
+	drawing it - speeds thing a bit up
+
+	* ica/src/vncview.h:
+	* ica/src/remote_control_widget.cpp:
+	correct titlebar caption - closes #1700553
+
+	* ica/win32/src/vncServer.cpp:
+	tweaked default-settings a bit
+
+	* ica/win32/src/VideoDriver.h:
+	fixed non-ANSI-conform code
+
+	* ica/win32/src/VNCHooks/SharedData.cpp:
+	added SHARED-attribute to make all variables reside in a different
+	shared segment
+
 2007-04-20	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* common/src/local_system.cpp:
