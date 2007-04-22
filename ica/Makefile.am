@@ -96,7 +96,7 @@ WIN32_RES_LDADD = ica_win_resources.o -L. -lvnchooks
 #CXXFLAGS_ADD=-DHAVE_BOOLEAN
 endif
 
-ica_LDADD = $(QT_LDADD) $(QT_LIB_GUI) -lz -ljpeg $(LIBSSL_LDADD) $(IVSLDADD) $(WIN32_RES_LDADD)
+ica_LDADD = $(QT_LDADD) $(QT_LIB_GUI) -lz -ljpeg $(LIBSSL_LDADD) $(IVSLDADD) $(WIN32_RES_LDADD) -L../common/ -litalccore
 ica_LDFLAGS = $(LDFLAGS)
 
 AM_CXXFLAGS := $(AM_CXXFLAGS) $(QT_CXXFLAGS) -O2 -DBUILD_ICA -DNO_LUPUS_INTEGRATION $(CXXFLAGS_ADD)
@@ -111,18 +111,14 @@ INCLUDES = $(IVS_INCLUDES) -I$(srcdir)/../common/include -I$(srcdir)/../common/i
 
 
 %.ts: 
-	$(LUPDATE) $(wildcard $(srcdir)/src/*.cpp $(srcdir)/../common/src/*.cpp) -ts $(srcdir)/resources/$@
+	$(LUPDATE) $(wildcard $(srcdir)/src/*.cpp) -ts $(srcdir)/resources/$@
 
 %.qm: %.ts
 	$(LRELEASE) $< -qm $@ 
 
 
 ica_MOC =	src/isd_server.moc 			\
-		src/remote_control_widget.moc		\
-		src/vncview.moc				\
-		src/system_key_trapper.moc		\
 		src/demo_server.moc			\
-		src/progress_widget.moc			\
 		src/demo_client.moc			\
 		../common/include/isd_connection.moc	\
 		../common/include/ivs_connection.moc
@@ -135,37 +131,17 @@ ica_MOC =	src/isd_server.moc 			\
 ica_SOURCES =		$(srcdir)/src/ica_main.cpp			\
 			$(srcdir)/src/ivs.cpp				\
 			$(srcdir)/src/isd_server.cpp			\
-			$(srcdir)/src/lock_widget.cpp			\
-			$(srcdir)/src/progress_widget.cpp		\
-			$(srcdir)/src/remote_control_widget.cpp		\
-			$(srcdir)/src/vncview.cpp			\
+			$(srcdir)/src/local_system_ica.cpp		\
 			$(srcdir)/src/demo_server.cpp			\
 			$(srcdir)/src/demo_client.cpp			\
-			$(srcdir)/src/system_key_trapper.cpp		\
 			$(srcdir)/src/inject.cpp			\
-			$(srcdir)/src/minilzo.c				\
-			$(srcdir)/../common/src/dsa_key.cpp		\
-			$(srcdir)/../common/src/messagebox.cpp		\
-			$(srcdir)/../common/src/fast_qimage.cpp		\
-			$(srcdir)/../common/src/isd_base.cpp		\
-			$(srcdir)/../common/src/isd_connection.cpp	\
-			$(srcdir)/../common/src/ivs_connection.cpp	\
-			$(srcdir)/../common/src/local_system.cpp	\
-			$(srcdir)/../common/src/rect_list.cpp		\
-			$(srcdir)/../common/src/system_service.cpp	\
 			$(srcdir)/src/inject.h				\
 			$(srcdir)/src/ivs.h				\
 			$(srcdir)/src/isd_server.h			\
-			$(srcdir)/src/progress_widget.h			\
-			$(srcdir)/src/lock_widget.h			\
-			$(srcdir)/src/remote_control_widget.h		\
-			$(srcdir)/src/vncview.h				\
+			$(srcdir)/src/local_system_ica.h		\
 			$(srcdir)/src/demo_server.h			\
 			$(srcdir)/src/demo_client.h			\
-			$(srcdir)/src/minilzo.h				\
-			$(srcdir)/src/lzoconf.h				\
 			$(srcdir)/src/ica_main.h			\
-			$(srcdir)/src/system_key_trapper.h		\
 			$(srcdir)/ica.qrc				\
 			$(srcdir)/ica_qrc.cpp				\
 			$(wildcard $(srcdir)/resources/*)		\

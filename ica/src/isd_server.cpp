@@ -29,6 +29,7 @@
 #include <QtCore/QTemporaryFile>
 #include <QtCore/QTimer>
 #include <QtGui/QMessageBox>
+#include <QtGui/QPushButton>
 #include <QtNetwork/QHostInfo>
 #include <QtNetwork/QTcpSocket>
 
@@ -36,7 +37,6 @@
 #include "isd_connection.h"
 #include "dsa_key.h"
 #include "local_system.h"
-#include "remote_control_widget.h"
 #include "ivs.h"
 #include "lock_widget.h"
 #include "messagebox.h"
@@ -47,7 +47,7 @@
 
 static isdServer * __isd_server = NULL;
 
-QByteArray isdServer::s_appInternalChallenge;
+QByteArray __appInternalChallenge;
 QStringList isdServer::s_allowedDemoClients;
 
 
@@ -57,8 +57,7 @@ isdServer::isdServer( const quint16 _ivs_port, int _argc, char * * _argv ) :
 	m_ivs( new IVS( _ivs_port, _argc, _argv ) ),
 	m_demoClient( NULL ),
 	m_demoServer( NULL ),
-	m_lockWidget( NULL ),
-	m_remoteControlWidget( NULL )
+	m_lockWidget( NULL )
 {
 	if( __isd_server ||
 			listen( QHostAddress::LocalHost, __isd_port ) == FALSE )
@@ -154,8 +153,8 @@ int isdServer::processClient( socketDispatcher _sd, void * _user )
 
 		case ISD::StartFullScreenDemo:
 		case ISD::StartWindowDemo:
-		case ISD::ViewRemoteDisplay:
-		case ISD::RemoteControlDisplay:
+/*		case ISD::ViewRemoteDisplay:
+		case ISD::RemoteControlDisplay:*/
 			action = msg_in.arg( "ip" ).toString();
 			break;
 
@@ -491,12 +490,12 @@ bool isdServer::authSecTypeItalc( socketDispatcher _sd, void * _user,
 		case ItalcAuthAppInternalChallenge:
 		{
 			// generate challenge
-			s_appInternalChallenge = dsaKey::generateChallenge();
+			__appInternalChallenge = dsaKey::generateChallenge();
 			sdev.write( QVariant() );
 			// is our client able to read this byte-array? if so,
 			// it's for sure running inside the same app
 			result = ( sdev.read().toByteArray() ==
-						s_appInternalChallenge ) ?
+						__appInternalChallenge ) ?
 						ItalcAuthOK : ItalcAuthFailed;
 			break;
 		}
@@ -684,12 +683,12 @@ void isdServer::checkForPendingActions( void )
 				displayTextMessage( data );
 				break;
 
-			case ISD::ViewRemoteDisplay:
+/*			case ISD::ViewRemoteDisplay:
 			case ISD::RemoteControlDisplay:
 				remoteControlDisplay( data,
 		( m_pendingActions.front().first == ISD::ViewRemoteDisplay ) );
 				break;
-
+*/
 			default:
 				qWarning( "isdServer::checkForPendingActions():"
 						" unhandled command %d",
@@ -710,12 +709,12 @@ void isdServer::demoWindowClosed( QObject * )
 
 
 
-
+/*
 void isdServer::remoteControlWidgetClosed( QObject * )
 {
 	m_remoteControlWidget = NULL;
 }
-
+*/
 
 
 
@@ -787,7 +786,7 @@ void isdServer::displayTextMessage( const QString & _msg )
 
 
 
-
+/*
 void isdServer::remoteControlDisplay( const QString & _ip, bool _view_only )
 {
 	if( m_remoteControlWidget  )
@@ -798,7 +797,7 @@ void isdServer::remoteControlDisplay( const QString & _ip, bool _view_only )
 	connect( m_remoteControlWidget, SIGNAL( destroyed( QObject * ) ),
 			this, SLOT( remoteControlWidgetClosed( QObject * ) ) );
 }
-
+*/
 
 
 
@@ -981,12 +980,12 @@ public:
 					cmd == ISD::StartFullScreenDemo );
 				break;
 
-			case ISD::ViewRemoteDisplay:
+/*			case ISD::ViewRemoteDisplay:
 			case ISD::RemoteControlDisplay:
 				remoteControlDisplay( msg_in.arg( "ip" ).
 								toString(),
 						cmd == ISD::ViewRemoteDisplay );
-				break;
+				break;*/
 
 			case ISD::DisplayTextMessage:
 				displayTextMessage( msg_in.arg( "msg" ).

@@ -1,7 +1,7 @@
 /*
  * local_system.h - misc. platform-specific stuff
  *
- * Copyright (c) 2006 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2007 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -36,12 +36,17 @@
 
 class QWidget;
 
+extern QByteArray __appInternalChallenge;
+
 
 namespace localSystem
 {
+	typedef void (*p_pressKey)( int _key, bool _down );
+
+
 	int freePort( void );
 
-	void initialize( void );
+	void initialize( p_pressKey _pk, const QString & _log_file );
 
 	void sleep( const int _ms );
 
@@ -52,10 +57,8 @@ namespace localSystem
 	void powerDown( void );
 	void reboot( void );
 
-#ifdef BUILD_ICA
 	void logonUser( const QString & _uname, const QString & _pw,
 						const QString & _domain );
-#endif
 	void logoutUser( void );
 
 	QString currentUser( void );

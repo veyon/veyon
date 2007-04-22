@@ -9,16 +9,7 @@ bin_PROGRAMS = italc
 	$(UIC) -o $@ $<
 
 %.ts: 
-	$(LUPDATE) $(srcdir)/src/*.cpp $(srcdir)/dialogs/*.ui	\
-		$(srcdir)/../common/src/fast_qimage.cpp		\
-		$(srcdir)/../common/src/isd_base.cpp		\
-		$(srcdir)/../common/src/isd_connection.cpp	\
-		$(srcdir)/../common/src/ivs_connection.cpp	\
-		$(srcdir)/../common/src/local_system.cpp	\
-		$(srcdir)/../common/src/messagebox.cpp		\
-		$(srcdir)/../common/src/rect_list.cpp		\
-		$(srcdir)/../common/src/dsa_key.cpp		\
-						-ts $(srcdir)/resources/$@
+	$(LUPDATE) $(srcdir)/src/*.cpp $(srcdir)/dialogs/*.ui -ts $(srcdir)/resources/$@
 	
 %.qm: %.ts
 	$(LRELEASE) $<
@@ -32,12 +23,12 @@ italc_MOC =	./src/client.moc			\
 		./src/kmultitabbar.moc			\
 		./src/main_window.moc			\
 		./src/overview_widget.moc		\
+		./src/remote_control_widget.moc		\
 		./src/snapshot_list.moc			\
 		./src/support_widget.moc		\
 		./src/tool_button.moc			\
 		./src/user_list.moc			\
-		../common/include/isd_connection.moc	\
-		../common/include/ivs_connection.moc
+		./src/ext_toolbar.moc
 
 italc_UIC =	./dialogs/client_settings.uic		\
 		./dialogs/config.uic			\
@@ -63,12 +54,15 @@ italc_SOURCES = $(srcdir)/src/client.cpp			\
 		$(srcdir)/src/cmd_input_dialog.cpp		\
 		$(srcdir)/src/config_widget.cpp			\
 		$(srcdir)/src/dialogs.cpp			\
+		$(srcdir)/src/ext_toolbar.cpp			\
 		$(srcdir)/src/italc_side_bar.cpp		\
 		$(srcdir)/src/main_window.cpp			\
 		$(srcdir)/src/kmultitabbar.cpp			\
+		$(srcdir)/src/local_system_ima.cpp		\
 		$(srcdir)/src/main.cpp				\
 		$(srcdir)/src/overview_widget.cpp		\
 		$(srcdir)/src/qnetworkinterface.cpp		\
+		$(srcdir)/src/remote_control_widget.cpp		\
 		$(srcdir)/src/snapshot_list.cpp			\
 		$(srcdir)/src/side_bar_widget.cpp		\
 		$(srcdir)/src/support_widget.cpp		\
@@ -78,13 +72,16 @@ italc_SOURCES = $(srcdir)/src/client.cpp			\
 		$(srcdir)/src/classroom_manager.h		\
 		$(srcdir)/src/cmd_input_dialog.h		\
 		$(srcdir)/src/config_widget.h 			\
+		$(srcdir)/src/ext_toolbar.h 			\
 		$(srcdir)/src/support_widget.h			\
 		$(srcdir)/src/dialogs.h				\
+		$(srcdir)/src/local_system_ima.h		\
 		$(srcdir)/src/main_window.h			\
 		$(srcdir)/src/italc_side_bar.h			\
 		$(srcdir)/src/kmultitabbar.h			\
 		$(srcdir)/src/overview_widget.h			\
 		$(srcdir)/src/qplatformdefs.h			\
+		$(srcdir)/src/remote_control_widget.h		\
 		$(srcdir)/src/snapshot_list.h			\
 		$(srcdir)/src/side_bar_widget.h			\
 		$(srcdir)/src/tool_button.h			\
@@ -92,14 +89,6 @@ italc_SOURCES = $(srcdir)/src/client.cpp			\
 		$(srcdir)/src/qnetworkinterface.h		\
 		$(srcdir)/italc_qrc.cpp				\
 		$(srcdir)/italc.qrc				\
-		$(srcdir)/../common/src/fast_qimage.cpp		\
-		$(srcdir)/../common/src/isd_base.cpp		\
-		$(srcdir)/../common/src/isd_connection.cpp	\
-		$(srcdir)/../common/src/ivs_connection.cpp	\
-		$(srcdir)/../common/src/local_system.cpp	\
-		$(srcdir)/../common/src/messagebox.cpp		\
-		$(srcdir)/../common/src/rect_list.cpp		\
-		$(srcdir)/../common/src/dsa_key.cpp		\
 		$(italc_TRANSLATIONS)				\
 		$(wildcard $(srcdir)/dialogs/*.ui)		\
 		$(wildcard $(srcdir)/resources/*.png)
@@ -146,7 +135,7 @@ LIBSSL_LDADD = -leay32
 endif
 
 
-italc_LDADD = $(QT_LDADD) $(QT_LIB_GUI) -lz -ljpeg $(LIBSSL_LDADD) $(WIN32_RES_LDADD)
+italc_LDADD = $(QT_LDADD) $(QT_LIB_GUI) -lz -ljpeg $(LIBSSL_LDADD) $(WIN32_RES_LDADD) -L../common -litalccore
 italc_LDFLAGS = $(LDFLAGS) -mwindows
 
 AM_CXXFLAGS := $(AM_CXXFLAGS) $(QT_CXXFLAGS)

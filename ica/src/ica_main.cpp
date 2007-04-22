@@ -35,10 +35,9 @@
 
 #include "ica_main.h"
 #include "system_service.h"
-#include "remote_control_widget.h"
 #include "isd_server.h"
 #include "ivs.h"
-#include "local_system.h"
+#include "local_system_ica.h"
 #include "debug.h"
 #include "system_key_trapper.h"
 #include "dsa_key.h"
@@ -186,7 +185,7 @@ int ICAMain( int argc, char * * argv )
 			return( isdServer::showAccessDialog( arg_it.next() ) );
 		}
 #endif
-		else if( a == "-rctrl" && arg_it.hasNext() )
+/*		else if( a == "-rctrl" && arg_it.hasNext() )
 		{
 			const QString host = arg_it.next();
 			bool view_only = arg_it.hasNext() ?
@@ -197,7 +196,7 @@ int ICAMain( int argc, char * * argv )
 			app->connect( app, SIGNAL( lastWindowClosed() ),
 							SLOT( quit() ) );
 			return( app->exec() );
-		}
+		}*/
 		else if( a == "-role" )
 		{
 			if( arg_it.hasNext() )

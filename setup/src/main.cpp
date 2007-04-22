@@ -41,7 +41,7 @@ int main( int argc, char * * argv )
 
 	app.connect( &app, SIGNAL( lastWindowClosed() ), SLOT( quit() ) );
 
-	localSystem::initialize();
+	localSystem::initialize( NULL, "italc_setup.log" );
 
 	// load translations
 	const QString loc = QLocale::system().name().left( 2 );

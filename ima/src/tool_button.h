@@ -83,7 +83,7 @@ class toolButtonTip : public QWidget
 public:
 	toolButtonTip( const QPixmap & _pixmap, const QString & _title,
 				const QString & _description,
-				QWidget * _parent, toolButton * _tool_btn = 0 );
+				QWidget * _parent, QWidget * _tool_btn = 0 );
 
 	virtual QSize sizeHint( void ) const;
 
@@ -105,7 +105,7 @@ private:
 	QImage m_bg;
 	int m_dissolveSize;
 
-	toolButton * m_toolButton;
+	QWidget * m_toolButton;
 
 } ;
 

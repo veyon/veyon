@@ -1,3 +1,57 @@
+2007-04-22	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* common/include/local_system.h:
+	* common/include/isd_connection.h:
+	* common/include/isd_base.h:
+	* common/src/isd_connection.cpp:
+	* common/src/local_system.cpp:
+	* common/italc_core.qrc:
+	* common/resources/es.ts:
+	* common/resources/fr.ts:
+	* common/resources/it.ts:
+	* common/resources/de.ts:
+	* ica/src/ica_main.cpp:
+	* ica/src/isd_server.cpp:
+	* ica/src/isd_server.h:
+	changes for new library-infrastructure
+
+	* ica/src/progress_widget.cpp:
+	* ica/src/progress_widget.h:
+	* ica/src/lzoconf.h:
+	* ica/src/vncview.cpp:
+	* ica/src/vncview.h:
+	* ica/src/minilzo.c:
+	* ica/src/minilzo.h:
+	* ica/src/system_key_trapper.cpp:
+	* ica/src/system_key_trapper.h:
+	* ica/src/lock_widget.cpp:
+	* ica/src/lock_widget.h:
+	moved to common
+
+	* ica/Makefile.am:
+	* ima/Makefile.am:
+	* setup/Makefile.am:
+	* common/Makefile.am:
+	* setup/src/main.cpp:
+	made all code in common-dir a shared library which all components are
+	linked against
+
+	* ima/italc.qrc:
+	* ima/src/main.cpp:
+	* ima/src/tool_button.h:
+	* ima/src/main_window.h:
+	* ima/src/tool_button.cpp:
+	adapted toolbar from remote-control
+
+	* ima/src/main.cpp:
+	* ima/src/main_window.cpp:
+	* ima/src/client.cpp:
+	* ima/src/support_widget.cpp:
+	* ima/src/remote_control_widget.cpp:
+	* ima/src/remote_control_widget.h:
+	* ima/Makefile.am:
+	moved remote-control-feature from ICA to IMA
+
 2007-04-21	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* ica/ica.qrc:

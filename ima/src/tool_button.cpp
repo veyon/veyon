@@ -46,7 +46,7 @@ bool toolButton::s_toolTipsDisabled = FALSE;
 
 toolButtonTip::toolButtonTip( const QPixmap & _pixmap, const QString & _title,
 				const QString & _description,
-				QWidget * _parent, toolButton * _tool_btn ) :
+				QWidget * _parent, QWidget * _tool_btn ) :
 	QWidget( _parent, Qt::ToolTip ),
 	m_icon( fastQImage( _pixmap ).scaled( 72, 72 ) ),
 	m_title( _title ),

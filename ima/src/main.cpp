@@ -31,7 +31,7 @@
 
 #include "main_window.h"
 #include "ivs_connection.h"
-#include "local_system.h"
+#include "local_system_ima.h"
 
 
 

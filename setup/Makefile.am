@@ -38,8 +38,6 @@ setup_TRANSLATIONS = $(wildcard $(srcdir)/resources/*.qm $(srcdir)/resources/*.t
 setup_SOURCES = $(srcdir)/src/main.cpp				\
 		$(srcdir)/src/dialogs.cpp			\
 		$(srcdir)/src/dialogs.h				\
-		$(srcdir)/../common/src/dsa_key.cpp		\
-		$(srcdir)/../common/src/local_system.cpp	\
 		$(srcdir)/setup_qrc.cpp				\
 		$(srcdir)/setup.qrc				\
 		$(setup_TRANSLATIONS)				\
@@ -65,7 +63,7 @@ setup_win_resources.o: setup.rc
 WIN32_RES_LDADD = setup_win_resources.o
 endif
 
-setup_LDADD = $(QT_LDADD) $(QT_LIB_GUI) $(LIBSSL_LDADD) $(WIN32_RES_LDADD)
+setup_LDADD = $(QT_LDADD) $(QT_LIB_GUI) $(LIBSSL_LDADD) $(WIN32_RES_LDADD) -L../common -litalc_core
 setup_LDFLAGS = $(LDFLAGS) -mwindows
 
 AM_CXXFLAGS := $(AM_CXXFLAGS) $(QT_CXXFLAGS)

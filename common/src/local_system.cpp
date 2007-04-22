@@ -40,10 +40,8 @@
 
 #ifdef BUILD_WIN32
 
-#include <QtCore/QThread>
 #include <QtCore/QLibrary>
 
-#ifdef BUILD_ICA
 static const char * tr_accels = QT_TRANSLATE_NOOP(
 		"QObject",
 		"UPL (note for translators: the first three characters of "
@@ -51,12 +49,10 @@ static const char * tr_accels = QT_TRANSLATE_NOOP(
 		"of the three input-fields in logon-dialog of windows - "
 		"please keep this note as otherwise there are strange errors "
 					"concerning logon-feature)" );
-#endif
 
 #define _WIN32_WINNT 0x0501
 #include <windows.h>
 #include <shlobj.h>
-#include <psapi.h>
 #include <winable.h>
 
 #if _WIN32_WINNT >= 0x500
@@ -72,142 +68,6 @@ static const char * tr_accels = QT_TRANSLATE_NOOP(
 #define SHUTDOWN_REASON 0
 #endif
 
-
-
-class userPollThread : public QThread
-{
-public:
-	userPollThread() : QThread()
-	{
-		start( LowPriority );
-	}
-
-	const QString & name( void )
-	{
-		QMutexLocker m( &m_mutex );
-		return( m_name );
-	}
-
-
-private:
-	virtual void run( void )
-	{
-		while( 1 )
-		{
-		char buf[1024];
-		STARTUPINFO si;
-		SECURITY_ATTRIBUTES sa;
-		SECURITY_DESCRIPTOR sd;	// security information for pipes
-		PROCESS_INFORMATION pi;
-		HANDLE newstdin, newstdout, read_stdout, write_stdin;
-								// pipe handles
-
-		// initialize security descriptor (Windows NT)
-		InitializeSecurityDescriptor( &sd,
-						SECURITY_DESCRIPTOR_REVISION );
-		SetSecurityDescriptorDacl( &sd, true, NULL, FALSE );
-		sa.lpSecurityDescriptor = &sd;
-		sa.nLength = sizeof( SECURITY_ATTRIBUTES) ;
-		sa.bInheritHandle = TRUE;	//allow inheritable handles
-
-		// create stdin pipe
-		if( !CreatePipe( &newstdin, &write_stdin, &sa, 0 ) )
-		{
-			qCritical( "CreatePipe (stdin)" );
-			continue;
-		}
-		// create stdout pipe
-		if( !CreatePipe( &read_stdout, &newstdout, &sa, 0 ) )
-		{
-			qCritical( "CreatePipe (stdout)" );
-			CloseHandle( newstdin );
-			CloseHandle( write_stdin );
-			continue;
-		}
-
-		// set startupinfo for the spawned process
-		GetStartupInfo( &si );
-		si.dwFlags = STARTF_USESTDHANDLES|STARTF_USESHOWWINDOW;
-		si.wShowWindow = SW_HIDE;
-		si.hStdOutput = newstdout;
-		si.hStdError = newstdout;	// set the new handles for the
-						// child process
-		si.hStdInput = newstdin;
-		QString app = QCoreApplication::applicationDirPath() +
-					QDir::separator() + "userinfo.exe";
-		app.replace( '/', QDir::separator() );
-
-		// spawn the child process
-		if( !CreateProcess( app.toAscii().constData(),
-							NULL, NULL, NULL, TRUE,
-				CREATE_NO_WINDOW, NULL,NULL, &si, &pi ) )
-		{
-			qCritical( "CreateProcess" );
-			CloseHandle( newstdin );
-			CloseHandle( newstdout );
-			CloseHandle( read_stdout );
-			CloseHandle( write_stdin );
-			sleep( 5 );
-			continue;
-		}
-
-		QString s;
-		while( 1 )
-		{
-			DWORD bread, avail;
-
-			//check to see if there is any data to read from stdout
-			PeekNamedPipe( read_stdout, buf, 1023, &bread, &avail,
-									NULL );
-			if( bread != 0 )
-			{
-				while( avail > 0 )
-				{
-					memset( buf, 0, sizeof( buf ) );
-					ReadFile( read_stdout, buf,
-						qMin<long unsigned>( avail,
-									1023 ),
-							&bread, NULL );
-					avail -= bread;
-					s += buf;
-					s.chop( 2 );
-				}
-			}
-
-			if( s.count( ':' ) >= 1 )
-			{
-				QMutexLocker m( &m_mutex );
-				m_name = s.section( ':', 0, 0 );
-				m_name.remove( "\n" );
-				s = s.section( ':', 1 );
-			}
-
-			DWORD exit;
-			GetExitCodeProcess( pi.hProcess, &exit );
-			if( exit != STILL_ACTIVE )
-			{
-				break;
-			}
-			sleep( 5 );
-		}
-
-		CloseHandle( pi.hThread );
-		CloseHandle( pi.hProcess );
-		CloseHandle( newstdin );
-		CloseHandle( newstdout );
-		CloseHandle( read_stdout );
-		CloseHandle( write_stdin );
-
-		sleep( 5 );
-
-		} // end while( 1 )
-
-	}
-
-	QString m_name;
-	QMutex m_mutex;
-
-}  static * __user_poll_thread = NULL;
 
 
 
@@ -256,68 +116,11 @@ static QString windowsConfigPath( int _type )
 #include "local_system.h"
 
 
-#ifdef BUILD_ICA
 
-#ifdef BUILD_WIN32
-
-static BOOL WINAPI consoleCtrlHandler( DWORD _dwCtrlType )
-{
-	switch( _dwCtrlType )
-	{
-		case CTRL_LOGOFF_EVENT: return TRUE;
-		default: return FALSE;
-	}
-}
-
-
-
-#include "vncKeymap.h"
-
-extern vncServer * __server;
-
-static inline void pressKey( int _key, bool _down )
-{
-	if( !__server )
-	{
-		return;
-	}
-	vncKeymap::keyEvent( _key, _down, __server );
-	localSystem::sleep( 50 );
-}
-
-#else
-
-#ifdef HAVE_X11
-#include <X11/Xlib.h>
-#else
-#define KeySym int
-#endif
-
-#include "rfb/rfb.h"
-
-extern "C"
-{
-#include "keyboard.h"
-}
-
-
-extern rfbClientPtr __client;
-
-static inline void pressKey( int _key, bool _down )
-{
-	if( !__client )
-	{
-		return;
-	}
-	keyboard( _down, _key, __client );
-}
-
-
-#endif
-
-#endif
-
+static localSystem::p_pressKey __pressKey;
+static QString __log_file;
 static QFile * __debug_out = NULL;
+
 
 void msgHandler( QtMsgType _type, const char * _msg )
 {
@@ -329,13 +132,7 @@ void msgHandler( QtMsgType _type, const char * _msg )
 #else
 		const QString log_path = "/var/log/";
 #endif
-		__debug_out = new QFile( log_path +
-#ifdef BUILD_ICA
-					"italc_client.log"
-#else
-					"italc_master.log"
-#endif
-								);
+		__debug_out = new QFile( log_path + __log_file );
 		__debug_out->open( QFile::WriteOnly | QFile::Append |
 							QFile::Unbuffered );
 	}
@@ -372,26 +169,16 @@ namespace localSystem
 {
 
 
-void initialize( void )
+void initialize( p_pressKey _pk, const QString & _log_file )
 {
+	__pressKey = _pk;
+	__log_file = _log_file;
+
 	QCoreApplication::setOrganizationName( "iTALC Solutions" );
 	QCoreApplication::setOrganizationDomain( "italcsolutions.org" );
 	QCoreApplication::setApplicationName( "iTALC" );
 
 	qInstallMsgHandler( msgHandler );
-
-#ifdef BUILD_WIN32
-#ifdef BUILD_ICA
-	__user_poll_thread = new userPollThread();
-
-	SetConsoleCtrlHandler( consoleCtrlHandler, TRUE );
-#else
-	if( QDir( "C:\\WINDOWS" ).exists() == FALSE )
-	{
-		QDir( "C:\\" ).mkdir( "WINDOWS" );
-	}
-#endif
-#endif
 
 }
 
@@ -555,11 +342,10 @@ void reboot( void )
 
 
 
-#ifdef BUILD_ICA
 static inline void pressAndReleaseKey( int _key )
 {
-	pressKey( _key, TRUE );
-	pressKey( _key, FALSE );
+	__pressKey( _key, TRUE );
+	__pressKey( _key, FALSE );
 }
 
 
@@ -628,11 +414,11 @@ void logonUser( const QString & _uname, const QString & _passwd,
 
 	// send Secure Attention Sequence (SAS) for making sure we can enter
 	// username and password
-	pressKey( XK_Alt_L, TRUE );
-	pressKey( XK_Control_L, TRUE );
+	__pressKey( XK_Alt_L, TRUE );
+	__pressKey( XK_Control_L, TRUE );
 	pressAndReleaseKey( XK_Delete );
-	pressKey( XK_Control_L, FALSE );
-	pressKey( XK_Alt_L, FALSE );
+	__pressKey( XK_Control_L, FALSE );
+	__pressKey( XK_Alt_L, FALSE );
 
 	const ushort * accels = QObject::tr( tr_accels ).utf16();
 
@@ -651,15 +437,15 @@ void logonUser( const QString & _uname, const QString & _passwd,
          *  4. Send a backspace keypress to remove any space that was added to
          *     the username field if there is no message.
          */
-	pressKey( XK_Alt_L, TRUE );
+	__pressKey( XK_Alt_L, TRUE );
 	pressAndReleaseKey( accels[0] );
-	pressKey( XK_Alt_L, FALSE );
+	__pressKey( XK_Alt_L, FALSE );
 
 	pressAndReleaseKey( XK_space );
 
-	pressKey( XK_Alt_L, TRUE );
+	__pressKey( XK_Alt_L, TRUE );
 	pressAndReleaseKey( accels[0] );
-	pressKey( XK_Alt_L, FALSE );
+	__pressKey( XK_Alt_L, FALSE );
 
 	pressAndReleaseKey( XK_BackSpace );
 #endif
@@ -670,9 +456,9 @@ void logonUser( const QString & _uname, const QString & _passwd,
 	}
 
 #ifdef BUILD_WIN32
-	pressKey( XK_Alt_L, TRUE );
+	__pressKey( XK_Alt_L, TRUE );
 	pressAndReleaseKey( accels[1] );
-	pressKey( XK_Alt_L, FALSE );
+	__pressKey( XK_Alt_L, FALSE );
 #else
 	pressAndReleaseKey( XK_Tab );
 #endif
@@ -685,9 +471,9 @@ void logonUser( const QString & _uname, const QString & _passwd,
 #ifdef BUILD_WIN32
 	if( !_domain.isEmpty() )
 	{
-		pressKey( XK_Alt_L, TRUE );
+		__pressKey( XK_Alt_L, TRUE );
 		pressAndReleaseKey( accels[2] );
-		pressKey( XK_Alt_L, FALSE );
+		__pressKey( XK_Alt_L, FALSE );
 		for( int i = 0; i < _domain.size(); ++i )
 		{
 			pressAndReleaseKey( _domain.utf16()[i] );
@@ -698,7 +484,6 @@ void logonUser( const QString & _uname, const QString & _passwd,
 	pressAndReleaseKey( XK_Return );
 }
 
-#endif
 
 
 

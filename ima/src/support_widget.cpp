@@ -68,7 +68,7 @@ void supportWidget::supportBtnClicked( void )
 	const QString h = supportDialog::getHost( this );
 	if( !h.isEmpty() )
 	{
-		getMainWindow()->localISD()->remoteControlDisplay( h );
+		getMainWindow()->remoteControlDisplay( h );
 	}
 }
 

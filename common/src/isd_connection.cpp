@@ -35,10 +35,6 @@
 #include "dsa_key.h"
 #include "local_system.h"
 
-#ifdef BUILD_ICA
-#include "isd_server.h"
-#endif
-
 
 static privateDSAKey * privDSAKey = NULL;
 
@@ -542,15 +538,13 @@ isdConnection::states isdConnection::authAgainstServer(
 				}
 				m_socketDev.write( privDSAKey->sign( chall ) );
 			}
-#ifdef BUILD_ICA
 			else if( iat == ItalcAuthAppInternalChallenge )
 			{
 				// wait for signal
 				m_socketDev.read();
 				m_socketDev.write( QVariant(
-					isdServer::s_appInternalChallenge ) );
+					__appInternalChallenge ) );
 			}
-#endif
 			else if( iat == ItalcAuthChallengeViaAuthFile )
 			{
 				QFile file( m_socketDev.read().toString() );
@@ -797,7 +791,7 @@ bool isdConnection::collectFiles( const QString & _nfilter )
 
 
 
-
+/*
 bool isdConnection::remoteControlDisplay( const QString & _ip, bool _view_only )
 {
 	if( m_socket == NULL ||
@@ -814,7 +808,7 @@ bool isdConnection::remoteControlDisplay( const QString & _ip, bool _view_only )
 	return( ISD::msg( &m_socketDev, ISD::RemoteControlDisplay ).
 						addArg( "ip", _ip ).send() );
 }
-
+*/
 
 
 

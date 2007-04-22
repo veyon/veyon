@@ -1,36 +1,8 @@
 <!DOCTYPE RCC><RCC version="1.0">
 	<qresource>
-		<file>resources/info.png</file>
-		<file>resources/message.png</file>
-		<file>resources/ok.png</file>
 		<file>resources/de.qm</file>
 		<file>resources/it.qm</file>
 		<file>resources/es.qm</file>
 		<file>resources/fr.qm</file>
-		<file>resources/locked.png</file>
-		<file>resources/mouse.png</file>
-		<file>resources/fullscreen.png</file>
-		<file>resources/quit.png</file>
-		<file>resources/up.png</file>
-		<file>resources/display.png</file>
-		<file>resources/icon16.png</file>
-		<file>resources/icon22.png</file>
-		<file>resources/icon32.png</file>
-		<file>resources/watch1.png</file>
-		<file>resources/watch2.png</file>
-		<file>resources/watch3.png</file>
-		<file>resources/watch4.png</file>
-		<file>resources/watch5.png</file>
-		<file>resources/watch6.png</file>
-		<file>resources/watch7.png</file>
-		<file>resources/watch8.png</file>
-		<file>resources/watch9.png</file>
-		<file>resources/watch10.png</file>
-		<file>resources/watch11.png</file>
-		<file>resources/watch12.png</file>
-		<file>resources/watch13.png</file>
-		<file>resources/watch14.png</file>
-		<file>resources/watch15.png</file>
-		<file>resources/watch16.png</file>
 	</qresource>
 </RCC>

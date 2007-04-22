@@ -56,6 +56,8 @@
 #include "tool_button.h"
 #include "isd_connection.h"
 #include "local_system.h"
+#include "remote_control_widget.h"
+#include "ext_toolbar.h"
 
 
 
@@ -77,9 +79,10 @@ bool mainWindow::s_atExit = FALSE;
 
 
 mainWindow::mainWindow() :
-	QMainWindow(),
+	QMainWindow(/* 0, Qt::FramelessWindowHint*/ ),
 	m_openedTabInSideBar( 1 ),
-	m_localISD( NULL )
+	m_localISD( NULL ),
+	m_remoteControlWidget( NULL )
 {
 	setWindowTitle( tr( "iTALC" ) + " " + VERSION );
 	setWindowIcon( QPixmap( ":/resources/logo.png" ) );
@@ -148,27 +151,31 @@ mainWindow::mainWindow() :
 
 
 	// create the action-toolbar
-	m_toolBar = new QToolBar( tr( "Actions" ), this );
+	m_toolBar = new extToolBar( tr( "Actions" ), this );
+	m_toolBar->setMovable( FALSE );
 	m_toolBar->setObjectName( "maintoolbar" );
 	m_toolBar->toggleViewAction()->setEnabled( FALSE );
 
 	addToolBar( Qt::TopToolBarArea, m_toolBar );
 
-	QToolButton * scr = new QToolButton;
-	scr->setToolButtonStyle( Qt::ToolButtonTextOnly );
-	scr->setText( tr( "Switch\nclassroom" ) );
+	extToolButton * scr = new extToolButton(
+			QPixmap( ":/resources/tutorials.png" ),
+			tr( "Classroom" ),
+			tr( "Switch classroom" ),
+			tr( "Click this button to open a menu where you can "
+				"choose the active classroom" ),
+			NULL, NULL, m_toolBar );
 	scr->setMenu( m_classroomManager->quickSwitchMenu() );
-	scr->setPopupMode( toolButton::InstantPopup );
+	scr->setPopupMode( extToolButton::InstantPopup );
 	scr->setWhatsThis( tr( "Click on this button, to switch between "
 							"classrooms." ) );
 
-
 	m_modeGroup = new QButtonGroup( this );
 
-	toolButton * overview_mode = new toolButton(
+	extToolButton * overview_mode = new extToolButton(
 			QPixmap( ":/resources/overview_mode.png" ),
-			tr( "Overview mode" ),
 			tr( "Overview" ),
+			tr( "Overview mode" ),
 			tr( "This is the default mode in iTALC and allows you "
 				"to have an overview over all visible "
 				"computers. Also click on this button for "
@@ -176,30 +183,30 @@ mainWindow::mainWindow() :
 				"demo-mode." ),
 			NULL, NULL, m_toolBar );
 
-	toolButton * fsdemo_mode = new toolButton(
+	extToolButton * fsdemo_mode = new extToolButton(
 			QPixmap( ":/resources/fullscreen_demo.png" ),
-			tr( "Fullscreen demo" ),
 			tr( "Demo" ),
+			tr( "Fullscreen demo" ),
 			tr( "In this mode your screen is being displayed on "
 				"all shown computers. Furthermore the users "
 				"aren't able to do something else as all input "
 				"devices are locked in this mode." ),
 			NULL, NULL, m_toolBar );
 
-	toolButton * windemo_mode = new toolButton(
+	extToolButton * windemo_mode = new extToolButton(
 			QPixmap( ":/resources/window_demo.png" ),
-			tr( "Window demo" ),
 			tr( "Demo/window" ),
+			tr( "Window demo" ),
 			tr( "In this mode your screen being displayed in a "
 				"window on all shown computers. The users are "
 				"able to switch to other windows and thus "
 				"can continue to work." ),
 			NULL, NULL, m_toolBar );
 
-	toolButton * lock_mode = new toolButton(
+	extToolButton * lock_mode = new extToolButton(
 			QPixmap( ":/resources/locked.png" ),
-			tr( "Lock desktops" ),
 			tr( "Lock" ),
+			tr( "Lock desktops" ),
 			tr( "To have all user's full attention you can lock "
 				"their desktops using this button. "
 				"In this mode all input devices are locked and "
@@ -222,10 +229,10 @@ mainWindow::mainWindow() :
 
 
 
-	toolButton * text_msg = new toolButton(
+	extToolButton * text_msg = new extToolButton(
 			QPixmap( ":/resources/text_message.png" ),
-			tr( "Send text message" ),
 			tr( "Text message" ),
+			tr( "Send text message" ),
 			tr( "Use this button to send a text message to all "
 				"users e.g. to tell them new tasks etc." ),
 			m_classroomManager, SLOT( sendMessage() ), m_toolBar );
@@ -274,48 +281,48 @@ mainWindow::mainWindow() :
 	//cf->setMenuDelay( 1 );*/
 
 
-	toolButton * power_on = new toolButton(
+	extToolButton * power_on = new extToolButton(
 			QPixmap( ":/resources/power_on.png" ),
-			tr( "Power on computers" ),
 			tr( "Power on" ),
+			tr( "Power on computers" ),
 			tr( "Click this button to power on all visible "
 				"computers. This way you do not have to turn "
 				"on each computer by hand." ),
 			m_classroomManager, SLOT( powerOnClients() ), m_toolBar );
 
-	toolButton * power_off = new toolButton(
+	extToolButton * power_off = new extToolButton(
 			QPixmap( ":/resources/power_off.png" ),
-			tr( "Power down computers" ),
 			tr( "Power down" ),
+			tr( "Power down computers" ),
 			tr( "To power down all shown computers (e.g. after "
 				"the lesson has finished) you can click this "
 				"button." ),
 			m_classroomManager,
 					SLOT( powerDownClients() ), m_toolBar );
 
-	toolButton * multilogon = new toolButton(
+	extToolButton * multilogon = new extToolButton(
 			QPixmap( ":/resources/multilogon.png" ),
-			tr( "Multi logon" ),
 			tr( "Logon" ),
+			tr( "Multi logon" ),
 			tr( "After clicking this button you can enter a "
 				"username and password for logging in the "
 				"according user on all visible computers." ),
 			m_classroomManager, SLOT( multiLogon() ), m_toolBar );
 
 
-	toolButton * adjust_size = new toolButton(
+	extToolButton * adjust_size = new extToolButton(
 			QPixmap( ":/resources/adjust_size.png" ),
-			tr( "Adjust windows and their size" ),
 			tr( "Adjust/align" ),
+			tr( "Adjust windows and their size" ),
 			tr( "When clicking this button the biggest possible "
 				"size for the client-windows is adjusted. "
 				"Furthermore all windows are aligned." ),
 			m_classroomManager, SLOT( adjustWindows() ), m_toolBar );
 
-	toolButton * auto_arrange = new toolButton(
+	extToolButton * auto_arrange = new extToolButton(
 			QPixmap( ":/resources/auto_arrange.png" ),
-			tr( "Auto re-arrange windows and their size" ),
 			tr( "Auto view" ),
+			tr( "Auto re-arrange windows and their size" ),
 			tr( "When clicking this button all visible windows "
 				"are re-arranged and adjusted." ),
 			m_classroomManager, SLOT( arrangeWindows() ), m_toolBar );
@@ -339,19 +346,14 @@ mainWindow::mainWindow() :
 					"have the smallest possible size." ) );
 */
 	m_toolBar->addWidget( scr );
-
-	m_toolBar->addSeparator();
 	m_toolBar->addWidget( overview_mode );
 	m_toolBar->addWidget( fsdemo_mode );
 	m_toolBar->addWidget( windemo_mode );
 	m_toolBar->addWidget( lock_mode );
-	m_toolBar->addSeparator();
 	m_toolBar->addWidget( text_msg );
-	m_toolBar->addSeparator();
 	m_toolBar->addWidget( power_on );
 	m_toolBar->addWidget( power_off );
 	m_toolBar->addWidget( multilogon );
-	m_toolBar->addSeparator();
 	m_toolBar->addWidget( adjust_size );
 	m_toolBar->addWidget( auto_arrange );
 
@@ -428,6 +430,26 @@ void mainWindow::closeEvent( QCloseEvent * _ce )
 	deleteLater();
 }
 
+
+
+void mainWindow::remoteControlDisplay( const QString & _ip, bool _view_only )
+{
+	if( m_remoteControlWidget  )
+	{
+		return;
+	}
+	m_remoteControlWidget = new remoteControlWidget( _ip, _view_only );
+	connect( m_remoteControlWidget, SIGNAL( destroyed( QObject * ) ),
+			this, SLOT( remoteControlWidgetClosed( QObject * ) ) );
+}
+
+
+
+
+void mainWindow::remoteControlWidgetClosed( QObject * )
+{
+        m_remoteControlWidget = NULL;
+}
 
 
 

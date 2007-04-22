@@ -37,14 +37,15 @@ class QMenu;
 class QSplashScreen;
 class QSplitter;
 class QWorkspace;
-class QToolBar;
 
 class classroomManager;
 class configWidget;
+class extToolBar;
 class supportWidget;
 class italcSideBar;
 class isdConnection;
 class overviewWidget;
+class remoteControlWidget;
 class snapshotList;
 class userList;
 
@@ -94,8 +95,12 @@ public:
 		return( s_atExit );
 	}
 
+	void remoteControlDisplay( const QString & _ip, bool _view_only = FALSE );
+
 
 private slots:
+	void remoteControlWidgetClosed( QObject * );
+
 	void enterWhatsThisMode( void )
 	{
 		QWhatsThis::enterWhatsThisMode();
@@ -128,7 +133,7 @@ private:
 
 	QButtonGroup * m_modeGroup;
 
-	QToolBar * m_toolBar;
+	extToolBar * m_toolBar;
 
 	QSplitter * m_splitter;
 
@@ -137,6 +142,8 @@ private:
 	int m_openedTabInSideBar;
 
 	isdConnection * m_localISD;
+
+	remoteControlWidget * m_remoteControlWidget;
 
 	overviewWidget * m_overviewWidget;
 	classroomManager * m_classroomManager;

@@ -38,7 +38,7 @@ class IVS;
 class demoClient;
 class demoServer;
 class lockWidget;
-class remoteControlWidget;
+//class remoteControlWidget;
 
 
 class isdServer : public QTcpServer
@@ -64,8 +64,6 @@ public:
 	static bool authSecTypeItalc( socketDispatcher _sd, void * _user,
 				italcAuthTypes _auth_type = ItalcAuthDSA );
 
-	static QByteArray s_appInternalChallenge;
-
 	static quint16 isdPort( void );
 
 	static accessDialogResult showAccessDialog( const QString & _host );
@@ -79,7 +77,7 @@ private slots:
 	void checkForPendingActions( void );
 
 	void demoWindowClosed( QObject * );
-	void remoteControlWidgetClosed( QObject * );
+//	void remoteControlWidgetClosed( QObject * );
 
 	// client-functions
 	void startDemo( const QString & _master_host, bool _fullscreen );
@@ -90,7 +88,7 @@ private slots:
 
 	void displayTextMessage( const QString & _msg );
 
-	void remoteControlDisplay( const QString & _ip, bool _view_only );
+//	void remoteControlDisplay( const QString & _ip, bool _view_only );
 
 
 private:
@@ -109,7 +107,7 @@ private:
 	demoClient * m_demoClient;
 	demoServer * m_demoServer;
 	lockWidget * m_lockWidget;
-	remoteControlWidget * m_remoteControlWidget;
+//	remoteControlWidget * m_remoteControlWidget;
 
 } ;
 

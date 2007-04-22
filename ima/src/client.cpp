@@ -52,6 +52,7 @@
 #include "dialogs.h"
 #include "messagebox.h"
 #include "qnetworkinterface.h"
+#include "remote_control_widget.h"
 
 
 
@@ -103,7 +104,9 @@ client::client( const QString & _local_ip, const QString & _remote_ip,
 	m_state( State_Unkown ),
 	m_statePixmap(),
 	m_syncMutex(),
-	m_classRoomItem( NULL )
+	m_classRoomItem( NULL ),
+	m_contextMenu( NULL ),
+	m_updateThread( NULL )
 {
 	m_mainWindow->workspace()->addWindow( this );
 
@@ -701,7 +704,7 @@ void client::clientDemo( const QString & )
 
 	m_mainWindow->checkModeButton( client::Mode_FullscreenDemo );
 
-	conn->remoteControlDisplay( m_localIP );
+	m_mainWindow->remoteControlDisplay( m_localIP );
 }
 
 
@@ -712,7 +715,7 @@ void client::viewLive( const QString & )
 	changeMode( Mode_Overview, m_mainWindow->localISD() );
 	//m_syncMutex.lock();
 
-	m_mainWindow->localISD()->remoteControlDisplay( m_localIP, TRUE );
+	m_mainWindow->remoteControlDisplay( m_localIP, TRUE );
 
 	//m_syncMutex.unlock();
 }
@@ -725,7 +728,7 @@ void client::remoteControl( const QString & )
 	changeMode( Mode_Overview, m_mainWindow->localISD() );
 	//m_syncMutex.lock();
 
-	m_mainWindow->localISD()->remoteControlDisplay( m_localIP );
+	m_mainWindow->remoteControlDisplay( m_localIP );
 
 	//m_syncMutex.unlock();
 }

@@ -211,8 +211,8 @@ typedef struct
 		DisplayTextMessage,
 		SendFile,
 		CollectFiles,
-		ViewRemoteDisplay,
-		RemoteControlDisplay,
+/*		ViewRemoteDisplay,
+		RemoteControlDisplay,*/
 		ExecCmds,
 
 		// system-stuff
