@@ -30,6 +30,7 @@
 
 
 #include <QtCore/QTimer>
+#include <QtGui/QBitmap>
 #include <QtGui/QDesktopWidget>
 #include <QtGui/QLayout>
 #include <QtGui/QPainter>
@@ -44,29 +45,43 @@ remoteControlWidgetToolBar::remoteControlWidgetToolBar(
 					remoteControlWidget * _parent ) :
 	QWidget( _parent ),
 	m_parent( _parent ),
-	m_opacity( 0 ),
-	m_disappear( FALSE )
+	m_disappear( FALSE ),
+	m_connecting( FALSE ),
+	m_icon( QImage( ":/resources/icon32.png" ) ),
+	m_iconGray( fastQImage( m_icon ).toGray().darken( 50 ) ),
+	m_iconState()
 {
 	setAttribute( Qt::WA_NoSystemBackground, true );
-	move( 0, -200 );
+	move( 0, 0 );
 	show();
+	startConnection();
 
-/*	fxToolButton * fs_btn = new fxToolButton( tr( "Fullscreen/window" ),
-				QImage( ":/resources/fullscreen.png" ), this );*/
+	fxToolButton * ls_btn = new fxToolButton( tr( "Lock student" ),
+				QImage( ":/resources/mouse.png" ), this );
+	fxToolButton * ah_btn = new fxToolButton( tr( "Auto hide" ),
+				QImage( ":/resources/up.png" ), this );
+	fxToolButton * fs_btn = new fxToolButton( tr( "Fullscreen" ),
+				QImage( ":/resources/fullscreen.png" ), this );
 	fxToolButton * quit_btn = new fxToolButton( tr( "Quit" ),
 				QImage( ":/resources/quit.png" ), this );
 
-/*	connect( fs_btn, SIGNAL( clicked() ), _parent,
-						SLOT( toggleFullScreen() ) );*/
+	connect( fs_btn, SIGNAL( clicked() ), _parent,
+						SLOT( toggleFullScreen() ) );
 	connect( quit_btn, SIGNAL( clicked() ), _parent, SLOT( close() ) );
 
 	QHBoxLayout * layout = new QHBoxLayout( this );
 	layout->setMargin( 1 );
-	layout->setSpacing( 5 );
+	layout->setSpacing( 1 );
 	layout->addStretch( 0 );
-//	layout->addWidget( fs_btn );
+	layout->addWidget( ls_btn );
+	layout->addWidget( ah_btn );
+	layout->addWidget( fs_btn );
 	layout->addWidget( quit_btn );
-	layout->addSpacing( 10 );
+	layout->addSpacing( 5 );
+	connect( m_parent->m_vncView, SIGNAL( startConnection() ),
+					this, SLOT( startConnection() ) );
+	connect( m_parent->m_vncView, SIGNAL( connectionEstablished() ),
+					this, SLOT( connectionEstablished() ) );
 }
 
 
@@ -82,33 +97,25 @@ remoteControlWidgetToolBar::~remoteControlWidgetToolBar()
 void remoteControlWidgetToolBar::appear( void )
 {
 	m_disappear = FALSE;
-	if( m_opacity == 0 )
+	if( y() <= -height() )
 	{
-		// as there's no possibility to force Qt not to erase
-		// background of newly exposed areas where children are
-		// located, simply set an according background-pixmap
-		QPalette pal = palette();
-		pal.setBrush( backgroundRole(),
-			QPixmap::grabWidget( m_parent->m_vncView, rect() ) );
-		setPalette( pal );
-		move( 0, 0 );
-		updateOpacity();
+		updatePosition();
 	}
-	//m_parent->m_vncView->releaseMouse();
 }
 
-
-static const int MaxOpac = 208;
 
 
 void remoteControlWidgetToolBar::disappear( void )
 {
-	m_disappear = TRUE;
-	if( m_opacity == MaxOpac )
+	if( !m_connecting )
 	{
-		updateOpacity();
+		m_disappear = TRUE;
+		if( y() == 0 )
+		{
+			updatePosition();
+		}
+		//m_parent->m_vncView->grabMouse();
 	}
-	//m_parent->m_vncView->grabMouse();
 }
 
 
@@ -117,57 +124,101 @@ void remoteControlWidgetToolBar::disappear( void )
 void remoteControlWidgetToolBar::paintEvent( QPaintEvent * _pe )
 {
 	QPainter p( this );
+	p.setRenderHint( QPainter::Antialiasing, true );
 	QLinearGradient lingrad( 0, 0, 0, height() );
-	lingrad.setColorAt( 0, QColor( 96, 96, 96 ) );
-	lingrad.setColorAt( 1, QColor( 0, 0, 0 ) );
+	lingrad.setColorAt( 0, QColor( 64, 128, 255 ) );
+	lingrad.setColorAt( 0.38, QColor( 32, 64, 192 ) );
+	lingrad.setColorAt( 0.42, QColor( 16, 32, 128 ) );
+	lingrad.setColorAt( 1, QColor( 0, 16, 32 ) );
 	p.fillRect( rect(), lingrad );
 
-	const int fsize = 16;
 
 	QFont f = p.font();
-	f.setPointSize( fsize );
+	f.setPointSize( 14 );
 	f.setBold( TRUE );
 	p.setFont( f );
+	QFont f2 = f;
+	f2.setPointSize( 10 );
 
-	p.setPen( QColor( 0, 255, 0 ) );
-	p.drawText( 10, ( height() + fsize ) / 2 - 2, m_parent->windowTitle() );
+	p.setPen( QColor( 255, 212, 0 ) );
 
-	fastQImage bg_img = QPixmap::grabWidget( m_parent->m_vncView,
-								_pe->rect() ).
-						toImage().
-				convertToFormat( QImage::Format_ARGB32 );
-	p.drawImage( _pe->rect().topLeft(),
-					bg_img.alphaFill( 255 - m_opacity ) );
+	const QString wt = m_parent->windowTitle();
+	const QString title = wt.section( '(', 0, 0 );
+	const QString host = wt.section( '(', 1, 1 ).section( ')', 0, 0 );
+	const int px = width() - layout()->minimumSize().width() -
+				qMax( p.fontMetrics().width( title ),
+					QFontMetrics( f2 ).width( host ) ) - 10;
+	p.drawText( px, 22, title );
+	p.setPen( QColor( 255, 255, 255 ) );
+	p.setFont( f2 );
+	p.drawText( px, 38, host );
+
+	p.setFont( f );
+	p.drawImage( 10, 8, m_icon );
+	if( m_connecting )
+	{
+		fastQImage tmp = m_iconGray;
+		tmp.alphaFillMax( (int)( 150 + 90.0 *
+				sin( m_iconState.elapsed()*3.141592/900 ) ) );
+		p.drawImage( 10, 8, tmp );
+
+		QString dots;
+		for( int i = 0; i < ( m_iconState.elapsed() / 400 ) % 6;++i)
+		{
+			dots += ".";
+		}
+		p.drawText( 52, 32, tr( "Connecting %1" ).arg( dots ) );
+		QTimer::singleShot( 50, this, SLOT( update() ) );
+	}
+	else
+	{
+		p.drawText( 52, 32, tr( "Connected." ) );
+	}
 }
 
 
 
 
-void remoteControlWidgetToolBar::updateOpacity( void )
+void remoteControlWidgetToolBar::updatePosition( void )
 {
 	bool again;
 	if( m_disappear )
 	{
-		m_opacity = qMax( 0, m_opacity - 8 );
-		again = m_opacity > 0;
+		move( x(), qMax( -height(), y()-3 ) );
+		again = y() > -height();
 	}
 	else
 	{
-		m_opacity = qMin( MaxOpac, m_opacity + 8 );
-		again = m_opacity < MaxOpac;
+		move( x(), qMin( 0, y()+3 ) );
+		again = y() < 0;
 	}
 
 	update();
 
 	if( again )
 	{
-		QTimer::singleShot( 15, this, SLOT( updateOpacity() ) );
-	}
-	if( m_opacity == 0 && m_disappear )
-	{
-		move( 0, -height() );
+		QTimer::singleShot( 15, this, SLOT( updatePosition() ) );
 	}
 }
+
+
+
+void remoteControlWidgetToolBar::startConnection( void )
+{
+	m_connecting = TRUE;
+	m_iconState.restart();
+	appear();
+	update();
+}
+
+
+
+void remoteControlWidgetToolBar::connectionEstablished( void )
+{
+	m_connecting = FALSE;
+	QTimer::singleShot( 3000, this, SLOT( disappear() ) );
+}
+
 
 
 
@@ -180,16 +231,27 @@ fxToolButton::fxToolButton( const QString & _hint_label, const QImage & _img,
 	m_img( _img ),
 	m_imgGray( _img ),
 	m_colorizeLevel( 0 ),
-	m_fadeBack( FALSE ),
-	m_widthExpansion( 0 )
+	m_fadeBack( FALSE )
 {
+	setAttribute( Qt::WA_NoSystemBackground, true );
 	m_imgGray.toGray();
-	setFixedSize( m_img.size() );
 	QFont f = font();
-	f.setPointSize( 12 );
+	f.setPointSize( 8 );
 	setFont( f );
-	m_widthExpansion = fontMetrics().width( m_hintLabel ) + 5;
-	setFixedWidth( m_img.width() + m_widthExpansion );
+	//setFixedWidth( qMax<int>( m_img.width(), fontMetrics().width( m_hintLabel ) )+20 );
+	//setFixedHeight( 48 );
+	setFixedSize( 96, 48 );
+
+	// set mask
+	QBitmap b( size() );
+	b.clear();
+
+	QPainter p( &b );
+	p.setBrush( Qt::color1 );
+	p.setPen( Qt::color1 );
+	p.drawRoundRect( 0, 0, width() - 1, height() - 1,
+					1000 / width(), 1000 / height() );
+	setMask( b );
 }
 
 
@@ -228,40 +290,72 @@ void fxToolButton::leaveEvent( QEvent * )
 void fxToolButton::paintEvent( QPaintEvent * _pe )
 {
 	QPainter p( this );
+	p.fillRect( rect(), Qt::black );
+	p.setRenderHint( QPainter::Antialiasing );
+	const QColor ctbl[2][4] = {
+				{
+					QColor( 64, 128, 255 ),
+					QColor( 32, 64, 192 ),
+					QColor( 16, 32, 128 ),
+					QColor( 0, 16, 64 )
+				},
+				{
+					QColor( 255, 224, 0, m_colorizeLevel ),
+					QColor( 224, 192, 0, m_colorizeLevel ),
+					QColor( 192, 160, 0, m_colorizeLevel ),
+					QColor( 96, 48, 0, m_colorizeLevel )
+				}
+				} ;
+	QLinearGradient lingrad( 0, 0, 0, height() );
+	lingrad.setColorAt( 0, ctbl[0][0] );
+	lingrad.setColorAt( 0.38, ctbl[0][1] );
+	lingrad.setColorAt( 0.42, ctbl[0][2] );
+	lingrad.setColorAt( 1, ctbl[0][3] );
+	p.setBrush( lingrad );
+	p.drawRoundRect( 1, 1, width()-2, height()-2, 1000 / width(),
+							1000 / height() );
 
-	fastQImage tmp = m_imgGray;
-	p.drawImage( _pe->rect().topLeft(),
-			tmp.alphaFillMax( m_parent->opacity() ), _pe->rect() );
-
-		const Q_UINT16 coeff = isDown() ? 160 : 256;
 	if( m_colorizeLevel )
 	{
-		tmp = m_img;
-		tmp.alphaFillMax( m_colorizeLevel ).darken( coeff );
-
-		p.drawImage( _pe->rect().topLeft(), tmp, _pe->rect() );
+		lingrad = QLinearGradient( 0, 0, 0, height() );
+		lingrad.setColorAt( 0, ctbl[1][0] );
+		lingrad.setColorAt( 0.38, ctbl[1][1] );
+		lingrad.setColorAt( 0.42, ctbl[1][2] );
+		lingrad.setColorAt( 1, ctbl[1][3] );
+		p.setBrush( lingrad );
+		p.drawRoundRect( 1, 1, width()-2, height()-2, 1000 / width(),
+							1000 / height() );
 	}
+	p.setBrush( QBrush() );
 
-/*	p.setPen( QColor( 128+m_colorizeLevel/2, 128-16+m_colorizeLevel/2,
-						0, 191+m_colorizeLevel/4 ) );
-		*/
+	p.fillRect( rect(), QColor( 0, 0, 0, isDown() ? 128 : 0 ) );
+
+	QPen pen( QColor( 255, 255, 255, 128 ) );
+	pen.setWidthF( 1.3f );
+	p.setPen( pen );
+	p.drawRoundRect( 0, 0, width()-1, height()-1, 1000 / width(),
+							1000 / height() );
+	QPen pen2 = pen;
+	pen.setColor( QColor( 0, 0, 0, 128 ) );
+	p.setPen( pen );
+	p.drawRoundRect( 1, 1, width()-3, height()-3, 1000 / width(),
+							1000 / height() );
+	p.setPen( pen2 );
+	p.drawRoundRect( 2, 2, width()-2, height()-2, 1000 / width(),
+							1000 / height() );
+
+	const int dd = isDown() ? 1 : 0;
+	const QPoint pt = QPoint( (width() - m_img.width() ) / 2 + dd, 3 + dd);
+	p.drawImage( pt, m_img );
+
+	const int w = p.fontMetrics().width( m_hintLabel );
 	p.setPen( Qt::black );
-	p.drawText( m_img.width() + 3, ( height() + p.font().pointSize() ) / 2 -
-							1, m_hintLabel );
-	p.setPen( QColor( 255-m_colorizeLevel, 255, 255-m_colorizeLevel ) );
-	p.drawText( m_img.width() + 2, ( height() + p.font().pointSize() ) / 2 -
-							2, m_hintLabel );
+	p.drawText( ( width() -w ) / 2 + 1+dd, height() - 4+dd, m_hintLabel );
+	p.setPen( Qt::white );
+	p.drawText( ( width() - w ) / 2+dd, height() - 5+dd, m_hintLabel );
 
 }
 
-
-
-
-inline int calcWidth( const int _w, const int _level )
-{
-	return( (int)( _w * ( 1.0f - cosf( _level / 255.0f * 3.14159f ) ) *
-								0.5f ) );
-}
 
 
 
@@ -279,10 +373,6 @@ void fxToolButton::updateColorLevel( void )
 		m_colorizeLevel = qMin( 255, m_colorizeLevel + 10 );
 		again = m_colorizeLevel < 255;
 	}
-	//setFixedWidth( m_img.width() + m_widthExpansion );
-	/* calcWidth( m_widthExpansion,
-							m_colorizeLevel ) );*/
-	parentWidget()->updateGeometry();
 	update();
 	if( again )
 	{
@@ -299,7 +389,7 @@ void fxToolButton::updateColorLevel( void )
 
 remoteControlWidget::remoteControlWidget( const QString & _host,
 							bool _view_only ) :
-	QWidget( 0, Qt::X11BypassWindowManagerHint ),
+	QWidget( 0/*, Qt::X11BypassWindowManagerHint*/ ),
 	m_vncView( new vncView( _host, _view_only, this ) ),
 	m_toolBar( new remoteControlWidgetToolBar( this ) )
 {
@@ -312,9 +402,9 @@ remoteControlWidget::remoteControlWidget( const QString & _host,
 							SLOT( updateUser() ) );
 	connect( m_vncView, SIGNAL( keyEvent( Q_UINT32, bool ) ),
 				this, SLOT( checkKeyEvent( Q_UINT32, bool ) ) );
+	resize( QDesktopWidget().screenGeometry( this ).size() );
 	showFullScreen();
 	move( 0, 0 );
-	setFixedSize( QDesktopWidget().screenGeometry( this ).size() );
 	localSystem::activateWindow( this );
 	//toggleFullScreen();
 	updateUser();
@@ -351,7 +441,7 @@ QString remoteControlWidget::host( void ) const
 void remoteControlWidget::resizeEvent( QResizeEvent * )
 {
 	m_vncView->resize( size() );
-	m_toolBar->setFixedSize( width(), 34 );
+	m_toolBar->setFixedSize( width(), 52 );
 }
 
 
@@ -401,12 +491,19 @@ void remoteControlWidget::checkKeyEvent( Q_UINT32 _key, bool _pressed )
 
 
 
-/*
 void remoteControlWidget::toggleFullScreen( void )
 {
 	setWindowState( windowState() ^ Qt::WindowFullScreen );
+/*	if( windowState() & Qt::WindowFullScreen )
+	{
+		setWindowFlags( windowFlags() | Qt::X11BypassWindowManagerHint );
+	}
+	else
+	{
+		printf("toggle\n");
+		setWindowFlags( windowFlags() & ~Qt::X11BypassWindowManagerHint );
+	}*/
 }
-*/
 
 
 

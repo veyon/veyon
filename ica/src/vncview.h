@@ -62,6 +62,8 @@ signals:
 	void pointerEvent( Q_UINT16 _x, Q_UINT16 _y, Q_UINT16 _button_mask );
 	void keyEvent( Q_UINT32 _key, bool _down );
 	void mouseAtTop( void );
+	void startConnection( void );
+	void connectionEstablished( void );
 
 
 private slots:

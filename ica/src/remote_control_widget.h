@@ -26,6 +26,7 @@
 #define _REMOTE_CONTROL_WIDGET_H
 
 
+#include <QtCore/QTime>
 #include <QtGui/QPushButton>
 #include <QtGui/QWidget>
 
@@ -43,11 +44,6 @@ class remoteControlWidgetToolBar : public QWidget
 public:
 	remoteControlWidgetToolBar( remoteControlWidget * _parent );
 	virtual ~remoteControlWidgetToolBar();
-
-	inline unsigned char opacity( void ) const
-	{
-		return( m_opacity );
-	}
 
 
 public slots:
@@ -72,13 +68,18 @@ protected:
 
 
 private slots:
-	void updateOpacity( void );
+	void updatePosition( void );
+	void startConnection( void );
+	void connectionEstablished( void );
 
 
 private:
 	remoteControlWidget * m_parent;
-	unsigned char m_opacity;
 	bool m_disappear;
+	bool m_connecting;
+	QImage m_icon;
+	fastQImage m_iconGray;
+	QTime m_iconState;
 
 } ;
 
@@ -111,7 +112,6 @@ private:
 	fastQImage m_imgGray;
 	unsigned char m_colorizeLevel;
 	bool m_fadeBack;
-	int m_widthExpansion;
 
 } ;
 
@@ -129,7 +129,7 @@ public:
 
 
 public slots:
-//	void toggleFullScreen( void );
+	void toggleFullScreen( void );
 
 
 protected:

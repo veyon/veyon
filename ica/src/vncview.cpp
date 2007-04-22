@@ -107,7 +107,7 @@ void vncView::framebufferUpdate( void )
 	const QPoint mp = mapFromGlobal( QCursor::pos() );
 
 	// not yet connected or connection lost while handling messages?
-	if( m_connection->state() != ivsConnection::Connected )
+	if( m_connection->state() != ivsConnection::Connected && !m_establishingConnection->isVisible() )
 	{
 		// as the "establishing connection"-progress-widget is semi-
 		// transparent and has a non-rectangular shape, we have to
@@ -115,6 +115,7 @@ void vncView::framebufferUpdate( void )
 		// progress-widget
 		setAttribute( Qt::WA_PaintOnScreen, false );
 		m_establishingConnection->show();
+		emit startConnection();
 		QTimer::singleShot( 40, this, SLOT( framebufferUpdate() ) );
 		if( mp.y() < 2 )
 		{
@@ -129,6 +130,8 @@ void vncView::framebufferUpdate( void )
 					m_establishingConnection->isVisible() )
 	{
 		m_establishingConnection->hide();
+		emit connectionEstablished();
+	
 		// after we hid the progress-widget, we may use direct painting
 		// again
 		setAttribute( Qt::WA_PaintOnScreen, true );
@@ -489,7 +492,7 @@ void vncView::resizeEvent( QResizeEvent * _re )
 	}
 
 	m_establishingConnection->move( 10,
-			height() - 10 - m_establishingConnection->height() );
+			10 );//height() - 10 - m_establishingConnection->height() );
 
 	QWidget::resizeEvent( _re );
 }

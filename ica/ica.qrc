@@ -8,8 +8,10 @@
 		<file>resources/es.qm</file>
 		<file>resources/fr.qm</file>
 		<file>resources/locked.png</file>
+		<file>resources/mouse.png</file>
 		<file>resources/fullscreen.png</file>
 		<file>resources/quit.png</file>
+		<file>resources/up.png</file>
 		<file>resources/display.png</file>
 		<file>resources/icon16.png</file>
 		<file>resources/icon22.png</file>
