@@ -53,6 +53,7 @@ static const char * tr_accels = QT_TRANSLATE_NOOP(
 #define _WIN32_WINNT 0x0501
 #include <windows.h>
 #include <shlobj.h>
+#include <psapi.h>
 #include <winable.h>
 
 #if _WIN32_WINNT >= 0x500
@@ -164,6 +165,10 @@ void msgHandler( QtMsgType _type, const char * _msg )
 }
 
 
+void initResources( void )
+{
+	Q_INIT_RESOURCE(italc_core);
+}
 
 namespace localSystem
 {
@@ -180,6 +185,7 @@ void initialize( p_pressKey _pk, const QString & _log_file )
 
 	qInstallMsgHandler( msgHandler );
 
+	initResources();
 }
 
 
@@ -498,47 +504,6 @@ void logoutUser( void )
 #endif
 }
 
-
-
-QString currentUser( void )
-{
-	QString ret = "unknown";
-
-#ifdef BUILD_WIN32
-
-	if( !__user_poll_thread->name().isEmpty() )
-	{
-		ret = __user_poll_thread->name();
-	}
-
-#else
-
-	char * user_name = getenv( "USER" );
-#ifdef HAVE_PWD_H
-	struct passwd * pw_entry = NULL;
-	if( user_name )
-	{
-		pw_entry = getpwnam( user_name );
-	}
-	if( !pw_entry )
-	{
-		pw_entry = getpwuid( getuid() );
-	}
-	if( pw_entry )
-	{
-		return( QString( "%1 (%2)" ).arg( pw_entry->pw_gecos ).
-						arg( pw_entry->pw_name ) );
-	}
-#endif
-	if( user_name )
-	{
-		return user_name;
-	}
-
-#endif
-
-	return( ret );
-}
 
 
 

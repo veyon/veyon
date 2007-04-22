@@ -25,6 +25,7 @@
 #include "remote_control_widget.h"
 #include "vncview.h"
 #include "local_system.h"
+#include "tool_button.h"
 
 #include <math.h>
 
@@ -47,7 +48,7 @@ remoteControlWidgetToolBar::remoteControlWidgetToolBar(
 	m_parent( _parent ),
 	m_disappear( FALSE ),
 	m_connecting( FALSE ),
-	m_icon( QImage( ":/resources/icon32.png" ) ),
+	m_icon( QImage( ":/resources/logo.png" ) ),
 	m_iconGray( fastQImage( m_icon ).toGray().darken( 50 ) ),
 	m_iconState()
 {
@@ -56,17 +57,27 @@ remoteControlWidgetToolBar::remoteControlWidgetToolBar(
 	show();
 	startConnection();
 
-	fxToolButton * ls_btn = new fxToolButton( tr( "Lock student" ),
-				QImage( ":/resources/mouse.png" ), this );
-	fxToolButton * ah_btn = new fxToolButton( tr( "Auto hide" ),
-				QImage( ":/resources/up.png" ), this );
-	fxToolButton * fs_btn = new fxToolButton( tr( "Fullscreen" ),
-				QImage( ":/resources/fullscreen.png" ), this );
-	fxToolButton * quit_btn = new fxToolButton( tr( "Quit" ),
-				QImage( ":/resources/quit.png" ), this );
+	toolButton * ls_btn = new toolButton(
+				QPixmap( ":/resources/mouse.png" ),
+				tr( "Lock student" ),
+				QString::null, QString::null, 0, 0,
+				this );
+	toolButton * fs_btn = new toolButton(
+				QPixmap( ":/resources/fullscreen.png" ),
+				tr( "Fullscreen" ),
+				QString::null, QString::null, 0, 0,
+				this );
+	toolButton * quit_btn = new toolButton(
+				QPixmap( ":/resources/quit.png" ),
+				tr( "Quit" ),
+				QString::null, QString::null, 0, 0,
+				this );
+	ls_btn->setCheckable( TRUE );
+	fs_btn->setCheckable( TRUE );
+	fs_btn->setChecked( TRUE );
 
-	connect( fs_btn, SIGNAL( clicked() ), _parent,
-						SLOT( toggleFullScreen() ) );
+	connect( fs_btn, SIGNAL( toggled( bool ) ),
+			_parent, SLOT( toggleFullScreen( bool ) ) );
 	connect( quit_btn, SIGNAL( clicked() ), _parent, SLOT( close() ) );
 
 	QHBoxLayout * layout = new QHBoxLayout( this );
@@ -74,7 +85,6 @@ remoteControlWidgetToolBar::remoteControlWidgetToolBar(
 	layout->setSpacing( 1 );
 	layout->addStretch( 0 );
 	layout->addWidget( ls_btn );
-	layout->addWidget( ah_btn );
 	layout->addWidget( fs_btn );
 	layout->addWidget( quit_btn );
 	layout->addSpacing( 5 );
@@ -154,25 +164,25 @@ void remoteControlWidgetToolBar::paintEvent( QPaintEvent * _pe )
 	p.drawText( px, 38, host );
 
 	p.setFont( f );
-	p.drawImage( 10, 8, m_icon );
+	p.drawImage( 5, 2, m_icon );
 	if( m_connecting )
 	{
 		fastQImage tmp = m_iconGray;
 		tmp.alphaFillMax( (int)( 150 + 90.0 *
 				sin( m_iconState.elapsed()*3.141592/900 ) ) );
-		p.drawImage( 10, 8, tmp );
+		p.drawImage( 5, 2, tmp );
 
 		QString dots;
 		for( int i = 0; i < ( m_iconState.elapsed() / 400 ) % 6;++i)
 		{
 			dots += ".";
 		}
-		p.drawText( 52, 32, tr( "Connecting %1" ).arg( dots ) );
+		p.drawText( 64, 32, tr( "Connecting %1" ).arg( dots ) );
 		QTimer::singleShot( 50, this, SLOT( update() ) );
 	}
 	else
 	{
-		p.drawText( 52, 32, tr( "Connected." ) );
+		p.drawText( 64, 32, tr( "Connected." ) );
 	}
 }
 
@@ -222,8 +232,8 @@ void remoteControlWidgetToolBar::connectionEstablished( void )
 
 
 
-
-fxToolButton::fxToolButton( const QString & _hint_label, const QImage & _img,
+#if 0
+ToolButton::fxToolButton( const QString & _hint_label, const QImage & _img,
 					remoteControlWidgetToolBar * _parent ) :
 	QPushButton( _parent ),
 	m_parent( _parent ),
@@ -383,6 +393,7 @@ void fxToolButton::updateColorLevel( void )
 
 
 
+#endif
 
 
 
@@ -463,7 +474,7 @@ void remoteControlWidget::updateUser( void )
 	}
 	else
 	{
-		setWindowTitle( tr( "iTALC remote control (host %1)" ).
+		setWindowTitle( tr( "Remote control (host %1)" ).
 								arg( host() ) );
 	}
 		//m_vncView->m_connection->sendGetUserInformationRequest();
@@ -491,9 +502,16 @@ void remoteControlWidget::checkKeyEvent( Q_UINT32 _key, bool _pressed )
 
 
 
-void remoteControlWidget::toggleFullScreen( void )
+void remoteControlWidget::toggleFullScreen( bool _on )
 {
-	setWindowState( windowState() ^ Qt::WindowFullScreen );
+	if( _on )
+	{
+		setWindowState( windowState() | Qt::WindowFullScreen );
+	}
+	else
+	{
+		setWindowState( windowState() & ~Qt::WindowFullScreen );
+	}
 /*	if( windowState() & Qt::WindowFullScreen )
 	{
 		setWindowFlags( windowFlags() | Qt::X11BypassWindowManagerHint );

@@ -40,6 +40,8 @@ static privateDSAKey * privDSAKey = NULL;
 
 ISD::userRoles __role = ISD::RoleOther;
 
+QByteArray __appInternalChallenge;
+
 
 bool isdConnection::initAuthentication( void )
 {

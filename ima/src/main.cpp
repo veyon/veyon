@@ -32,6 +32,7 @@
 #include "main_window.h"
 #include "ivs_connection.h"
 #include "local_system_ima.h"
+#include "remote_control_widget.h"
 
 
 
@@ -47,19 +48,7 @@ int __demo_quality = 0;
 int main( int argc, char * * argv )
 {
 	QApplication app( argc, argv );
-
-	qRegisterMetaType<QModelIndex>( "QModelIndex" );
-	qRegisterMetaType<quint16>( "quint16" );
-
-	localSystem::initialize();
-
-	__role = ISD::RoleTeacher;
-
 	app.connect( &app, SIGNAL( lastWindowClosed() ), SLOT( quit() ) );
-
-	splashScreen = new QSplashScreen( QPixmap( ":/resources/splash.png" ) );
-	splashScreen->show();
-
 
 	// load translations
 	const QString loc = QLocale::system().name().left( 2 );
@@ -68,9 +57,73 @@ int main( int argc, char * * argv )
 	app_tr.load( ":/resources/" + loc + ".qm" );
 	app.installTranslator( &app_tr );
 
+	QTranslator core_tr;
+	core_tr.load( ":/resources/" + loc + "-core.qm" );
+	app.installTranslator( &core_tr );
+
 	QTranslator qt_tr;
 	qt_tr.load( ":/resources/qt_" + loc + ".qm" );
 	app.installTranslator( &qt_tr );
+
+
+	qRegisterMetaType<QModelIndex>( "QModelIndex" );
+	qRegisterMetaType<quint16>( "quint16" );
+
+
+	localSystem::initialize();
+
+	__role = ISD::RoleTeacher;
+
+	// parse arguments
+	QStringListIterator arg_it( QCoreApplication::arguments() );
+	arg_it.next();
+	while( argc > 1 && arg_it.hasNext() )
+	{
+		const QString & a = arg_it.next();
+		if( a == "-rctrl" && arg_it.hasNext() )
+		{
+			const QString host = arg_it.next();
+			bool view_only = arg_it.hasNext() ?
+						arg_it.next().toInt()
+					:
+						FALSE;
+			new remoteControlWidget( host, view_only );
+			return( app.exec() );
+		}
+		else if( a == "-role" )
+		{
+			if( arg_it.hasNext() )
+			{
+				const QString role = arg_it.next();
+				if( role == "teacher" )
+				{
+					__role = ISD::RoleTeacher;
+				}
+				else if( role == "admin" )
+				{
+					__role = ISD::RoleAdmin;
+				}
+				else if( role == "supporter" )
+				{
+					__role = ISD::RoleSupporter;
+				}
+			}
+			else
+			{
+				printf( "-role needs an argument:\n"
+					"	teacher\n"
+					"	admin\n"
+					"	supporter\n\n" );
+				return( -1 );
+			}
+		}
+	}
+
+
+
+	splashScreen = new QSplashScreen( QPixmap( ":/resources/splash.png" ) );
+	splashScreen->show();
+
 
 	// now create the main-window
 	mainWindow * main_window = new mainWindow();

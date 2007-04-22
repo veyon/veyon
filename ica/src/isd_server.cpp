@@ -47,7 +47,6 @@
 
 static isdServer * __isd_server = NULL;
 
-QByteArray __appInternalChallenge;
 QStringList isdServer::s_allowedDemoClients;
 
 

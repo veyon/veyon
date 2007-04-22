@@ -2,10 +2,10 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.50)
-AC_INIT(italc, 1.0.2.svn20070420, tobydox/at/users/dot/sf/dot/net)
-AM_INIT_AUTOMAKE(italc, 1.0.2.svn20070420)
+AC_INIT(italc, 1.0.2.svn20070422, tobydox/at/users/dot/sf/dot/net)
+AM_INIT_AUTOMAKE(italc, 1.0.2.svn20070422)
 AM_CONFIG_HEADER(config.h)
-AX_PREFIX_CONFIG_H([common/include/rfb/rfbconfig.h])
+AX_PREFIX_CONFIG_H([lib/include/rfb/rfbconfig.h])
 
 
 
@@ -478,7 +478,7 @@ AC_HEADER_SYS_WAIT
 AC_TYPE_SOCKLEN_T
 AC_HEADER_TIME
 AC_TYPE_OFF_T
-AC_CREATE_STDINT_H(common/include/rfb/rfbint.h)
+AC_CREATE_STDINT_H(lib/include/rfb/rfbint.h)
 AC_CACHE_CHECK([for in_addr_t],
         inaddrt, [
                 AC_TRY_COMPILE([#include <sys/types.h>
@@ -552,7 +552,7 @@ AC_SUBST(docdir)
 
 AC_CONFIG_FILES([Makefile
 		 italc.spec
-		 common/Makefile
+		 lib/Makefile
 		 ica/Makefile
 		 ima/Makefile
 		 ima/data/italc

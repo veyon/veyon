@@ -1,4 +1,4 @@
-INCLUDES = -I$(srcdir)/../common/include -Isrc
+INCLUDES = -I$(srcdir)/../lib/include -Isrc
 
 noinst_PROGRAMS = setup
 
@@ -63,7 +63,7 @@ setup_win_resources.o: setup.rc
 WIN32_RES_LDADD = setup_win_resources.o
 endif
 
-setup_LDADD = $(QT_LDADD) $(QT_LIB_GUI) $(LIBSSL_LDADD) $(WIN32_RES_LDADD) -L../common -litalc_core
+setup_LDADD = $(QT_LDADD) $(QT_LIB_GUI) $(LIBSSL_LDADD) -ljpeg $(WIN32_RES_LDADD) -L../lib -litalc_core
 setup_LDFLAGS = $(LDFLAGS) -mwindows
 
 AM_CXXFLAGS := $(AM_CXXFLAGS) $(QT_CXXFLAGS)

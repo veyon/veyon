@@ -1,5 +1,13 @@
 2007-04-22	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
+	* ima/src/main_window.cpp:
+	* ima/src/main_window.h:
+	* ima/src/client.cpp:
+	do not reload clients if remote-control is active
+
+	* common/:
+	renamed to "lib"
+
 	* common/include/local_system.h:
 	* common/include/isd_connection.h:
 	* common/include/isd_base.h:

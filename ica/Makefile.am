@@ -96,13 +96,13 @@ WIN32_RES_LDADD = ica_win_resources.o -L. -lvnchooks
 #CXXFLAGS_ADD=-DHAVE_BOOLEAN
 endif
 
-ica_LDADD = $(QT_LDADD) $(QT_LIB_GUI) -lz -ljpeg $(LIBSSL_LDADD) $(IVSLDADD) $(WIN32_RES_LDADD) -L../common/ -litalccore
+ica_LDADD = $(QT_LDADD) $(QT_LIB_GUI) -lz -ljpeg $(LIBSSL_LDADD) $(IVSLDADD) $(WIN32_RES_LDADD) -L../lib -litalc_core
 ica_LDFLAGS = $(LDFLAGS)
 
 AM_CXXFLAGS := $(AM_CXXFLAGS) $(QT_CXXFLAGS) -O2 -DBUILD_ICA -DNO_LUPUS_INTEGRATION $(CXXFLAGS_ADD)
 AM_CFLAGS := $(AM_CFLAGS) -O2 -DBUILD_ICA -DVNCSHARED -DFOREVER -DNOREPEAT=0 -DNOPW=1 -DREMOTE_CONTROL=0 -DEXTERNAL_COMMANDS=0 -DFILEXFER=0 -DNOGUI -DSMALL_FOOTPRINT=1 -w
 
-INCLUDES = $(IVS_INCLUDES) -I$(srcdir)/../common/include -I$(srcdir)/../common/include/rfb -I$(srcdir)/src -I$(top_srcdir)
+INCLUDES = $(IVS_INCLUDES) -I$(srcdir)/../lib/include -I$(srcdir)/../lib/include/rfb -I$(srcdir)/src -I$(top_srcdir)
 
 
 
@@ -119,37 +119,32 @@ INCLUDES = $(IVS_INCLUDES) -I$(srcdir)/../common/include -I$(srcdir)/../common/i
 
 ica_MOC =	src/isd_server.moc 			\
 		src/demo_server.moc			\
-		src/demo_client.moc			\
-		../common/include/isd_connection.moc	\
-		../common/include/ivs_connection.moc
+		src/demo_client.moc
 
 
 ./ica_qrc.cpp: ica.qrc
 	rcc $< > $@
 
 
-ica_SOURCES =		$(srcdir)/src/ica_main.cpp			\
-			$(srcdir)/src/ivs.cpp				\
-			$(srcdir)/src/isd_server.cpp			\
-			$(srcdir)/src/local_system_ica.cpp		\
-			$(srcdir)/src/demo_server.cpp			\
-			$(srcdir)/src/demo_client.cpp			\
-			$(srcdir)/src/inject.cpp			\
-			$(srcdir)/src/inject.h				\
-			$(srcdir)/src/ivs.h				\
-			$(srcdir)/src/isd_server.h			\
-			$(srcdir)/src/local_system_ica.h		\
-			$(srcdir)/src/demo_server.h			\
-			$(srcdir)/src/demo_client.h			\
-			$(srcdir)/src/ica_main.h			\
-			$(srcdir)/ica.qrc				\
-			$(srcdir)/ica_qrc.cpp				\
-			$(wildcard $(srcdir)/resources/*)		\
+ica_SOURCES =		$(srcdir)/src/ica_main.cpp		\
+			$(srcdir)/src/ivs.cpp			\
+			$(srcdir)/src/isd_server.cpp		\
+			$(srcdir)/src/local_system_ica.cpp	\
+			$(srcdir)/src/system_service.cpp	\
+			$(srcdir)/src/demo_server.cpp		\
+			$(srcdir)/src/demo_client.cpp		\
+			$(srcdir)/src/ivs.h			\
+			$(srcdir)/src/isd_server.h		\
+			$(srcdir)/src/local_system_ica.h	\
+			$(srcdir)/src/demo_server.h		\
+			$(srcdir)/src/demo_client.h		\
+			$(srcdir)/src/system_service.h		\
+			$(srcdir)/src/ica_main.h		\
+			$(srcdir)/ica.qrc			\
+			$(srcdir)/ica_qrc.cpp			\
+			$(wildcard $(srcdir)/resources/*)	\
 			$(IVS_SRCS)
 
-
-inject.o: $(srcdir)/src/inject.cpp
-	$(CXX) -c -o $@ $< -DHAVE_CONFIG_H $(CXXFLAGS) $(QT_CXXFLAGS) $(INCLUDES) $(CPPFLAGS) -O0
 
 CLEANFILES = ./ica_qrc.cpp $(ica_MOC) vnchooks.dll libvnchooks.a
 BUILT_SOURCES = ./ica_qrc.cpp $(ica_MOC)

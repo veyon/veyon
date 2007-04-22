@@ -142,6 +142,10 @@ int ICAMain( int argc, char * * argv )
 #endif
 
 	const QString loc = QLocale::system().name().left( 2 );
+	QTranslator core_tr;
+	core_tr.load( ":/resources/" + loc + "-core.qm" );
+	app->installTranslator( &core_tr );
+
 	QTranslator app_tr;
 	app_tr.load( ":/resources/" + loc + ".qm" );
 	app->installTranslator( &app_tr );

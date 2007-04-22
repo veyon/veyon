@@ -1,4 +1,4 @@
-INCLUDES = -I$(srcdir)/../common/include -Isrc
+INCLUDES = -I$(srcdir)/../lib/include -Isrc
 
 bin_PROGRAMS = italc
 
@@ -27,8 +27,7 @@ italc_MOC =	./src/client.moc			\
 		./src/snapshot_list.moc			\
 		./src/support_widget.moc		\
 		./src/tool_button.moc			\
-		./src/user_list.moc			\
-		./src/ext_toolbar.moc
+		./src/user_list.moc
 
 italc_UIC =	./dialogs/client_settings.uic		\
 		./dialogs/config.uic			\
@@ -54,7 +53,7 @@ italc_SOURCES = $(srcdir)/src/client.cpp			\
 		$(srcdir)/src/cmd_input_dialog.cpp		\
 		$(srcdir)/src/config_widget.cpp			\
 		$(srcdir)/src/dialogs.cpp			\
-		$(srcdir)/src/ext_toolbar.cpp			\
+		$(srcdir)/src/tool_bar.cpp			\
 		$(srcdir)/src/italc_side_bar.cpp		\
 		$(srcdir)/src/main_window.cpp			\
 		$(srcdir)/src/kmultitabbar.cpp			\
@@ -72,7 +71,7 @@ italc_SOURCES = $(srcdir)/src/client.cpp			\
 		$(srcdir)/src/classroom_manager.h		\
 		$(srcdir)/src/cmd_input_dialog.h		\
 		$(srcdir)/src/config_widget.h 			\
-		$(srcdir)/src/ext_toolbar.h 			\
+		$(srcdir)/src/tool_bar.h 			\
 		$(srcdir)/src/support_widget.h			\
 		$(srcdir)/src/dialogs.h				\
 		$(srcdir)/src/local_system_ima.h		\
@@ -135,7 +134,7 @@ LIBSSL_LDADD = -leay32
 endif
 
 
-italc_LDADD = $(QT_LDADD) $(QT_LIB_GUI) -lz -ljpeg $(LIBSSL_LDADD) $(WIN32_RES_LDADD) -L../common -litalccore
+italc_LDADD = $(QT_LDADD) $(QT_LIB_GUI) -lz -ljpeg $(LIBSSL_LDADD) $(WIN32_RES_LDADD) -L../lib -litalc_core
 italc_LDFLAGS = $(LDFLAGS) -mwindows
 
 AM_CXXFLAGS := $(AM_CXXFLAGS) $(QT_CXXFLAGS)

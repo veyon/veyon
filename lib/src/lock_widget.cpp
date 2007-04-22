@@ -43,7 +43,7 @@ lockWidget::lockWidget( types _type ) :
 	QWidget( 0, Qt::X11BypassWindowManagerHint ),
 	m_background(
 		_type == Black ?
-			QPixmap( ":/resources/locked.png" )
+			QPixmap( ":/resources/locked_bg.png" )
 		:
 			_type == DesktopVisible ?
 				QPixmap::grabWindow( qApp->desktop()->winId() )

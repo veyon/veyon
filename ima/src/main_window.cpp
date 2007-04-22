@@ -54,10 +54,10 @@
 #include "support_widget.h"
 #include "messagebox.h"
 #include "tool_button.h"
+#include "tool_bar.h"
 #include "isd_connection.h"
 #include "local_system.h"
 #include "remote_control_widget.h"
-#include "ext_toolbar.h"
 
 
 
@@ -151,28 +151,28 @@ mainWindow::mainWindow() :
 
 
 	// create the action-toolbar
-	m_toolBar = new extToolBar( tr( "Actions" ), this );
+	m_toolBar = new toolBar( tr( "Actions" ), this );
 	m_toolBar->setMovable( FALSE );
 	m_toolBar->setObjectName( "maintoolbar" );
 	m_toolBar->toggleViewAction()->setEnabled( FALSE );
 
 	addToolBar( Qt::TopToolBarArea, m_toolBar );
 
-	extToolButton * scr = new extToolButton(
+	toolButton * scr = new toolButton(
 			QPixmap( ":/resources/tutorials.png" ),
 			tr( "Classroom" ),
 			tr( "Switch classroom" ),
 			tr( "Click this button to open a menu where you can "
-				"choose the active classroom" ),
+				"choose the active classroom." ),
 			NULL, NULL, m_toolBar );
 	scr->setMenu( m_classroomManager->quickSwitchMenu() );
-	scr->setPopupMode( extToolButton::InstantPopup );
+	scr->setPopupMode( toolButton::InstantPopup );
 	scr->setWhatsThis( tr( "Click on this button, to switch between "
 							"classrooms." ) );
 
 	m_modeGroup = new QButtonGroup( this );
 
-	extToolButton * overview_mode = new extToolButton(
+	toolButton * overview_mode = new toolButton(
 			QPixmap( ":/resources/overview_mode.png" ),
 			tr( "Overview" ),
 			tr( "Overview mode" ),
@@ -183,7 +183,7 @@ mainWindow::mainWindow() :
 				"demo-mode." ),
 			NULL, NULL, m_toolBar );
 
-	extToolButton * fsdemo_mode = new extToolButton(
+	toolButton * fsdemo_mode = new toolButton(
 			QPixmap( ":/resources/fullscreen_demo.png" ),
 			tr( "Demo" ),
 			tr( "Fullscreen demo" ),
@@ -193,7 +193,7 @@ mainWindow::mainWindow() :
 				"devices are locked in this mode." ),
 			NULL, NULL, m_toolBar );
 
-	extToolButton * windemo_mode = new extToolButton(
+	toolButton * windemo_mode = new toolButton(
 			QPixmap( ":/resources/window_demo.png" ),
 			tr( "Demo/window" ),
 			tr( "Window demo" ),
@@ -203,7 +203,7 @@ mainWindow::mainWindow() :
 				"can continue to work." ),
 			NULL, NULL, m_toolBar );
 
-	extToolButton * lock_mode = new extToolButton(
+	toolButton * lock_mode = new toolButton(
 			QPixmap( ":/resources/locked.png" ),
 			tr( "Lock" ),
 			tr( "Lock desktops" ),
@@ -229,7 +229,7 @@ mainWindow::mainWindow() :
 
 
 
-	extToolButton * text_msg = new extToolButton(
+	toolButton * text_msg = new toolButton(
 			QPixmap( ":/resources/text_message.png" ),
 			tr( "Text message" ),
 			tr( "Send text message" ),
@@ -281,7 +281,7 @@ mainWindow::mainWindow() :
 	//cf->setMenuDelay( 1 );*/
 
 
-	extToolButton * power_on = new extToolButton(
+	toolButton * power_on = new toolButton(
 			QPixmap( ":/resources/power_on.png" ),
 			tr( "Power on" ),
 			tr( "Power on computers" ),
@@ -290,7 +290,7 @@ mainWindow::mainWindow() :
 				"on each computer by hand." ),
 			m_classroomManager, SLOT( powerOnClients() ), m_toolBar );
 
-	extToolButton * power_off = new extToolButton(
+	toolButton * power_off = new toolButton(
 			QPixmap( ":/resources/power_off.png" ),
 			tr( "Power down" ),
 			tr( "Power down computers" ),
@@ -300,7 +300,7 @@ mainWindow::mainWindow() :
 			m_classroomManager,
 					SLOT( powerDownClients() ), m_toolBar );
 
-	extToolButton * multilogon = new extToolButton(
+	toolButton * multilogon = new toolButton(
 			QPixmap( ":/resources/multilogon.png" ),
 			tr( "Logon" ),
 			tr( "Multi logon" ),
@@ -310,7 +310,7 @@ mainWindow::mainWindow() :
 			m_classroomManager, SLOT( multiLogon() ), m_toolBar );
 
 
-	extToolButton * adjust_size = new extToolButton(
+	toolButton * adjust_size = new toolButton(
 			QPixmap( ":/resources/adjust_size.png" ),
 			tr( "Adjust/align" ),
 			tr( "Adjust windows and their size" ),
@@ -319,7 +319,7 @@ mainWindow::mainWindow() :
 				"Furthermore all windows are aligned." ),
 			m_classroomManager, SLOT( adjustWindows() ), m_toolBar );
 
-	extToolButton * auto_arrange = new extToolButton(
+	toolButton * auto_arrange = new toolButton(
 			QPixmap( ":/resources/auto_arrange.png" ),
 			tr( "Auto view" ),
 			tr( "Auto re-arrange windows and their size" ),

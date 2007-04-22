@@ -194,6 +194,8 @@ void setupWizard::doInstallation( bool _quiet )
 		"QtGui4.dll"		<<
 		"QtNetwork4.dll"	<<
 		"QtXml4.dll"		<<
+		"vnchooks.dll"		<<
+		"italc_core.dll"	<<
 		"userinfo.exe"
 #else
 		"libssl.so.0.9.8"	<<

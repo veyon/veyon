@@ -29,18 +29,24 @@
 #include <config.h>
 #endif
 
-#include "local_system.h"
-
+#include <QtCore/QCoreApplication>
+#include <QtCore/QProcess>
 
 #ifdef BUILD_WIN32
-
-#include <QtCore/QThread>
 
 #define _WIN32_WINNT 0x0501
 #include <windows.h>
 #include <shlobj.h>
 #include <psapi.h>
-//#include <winable.h>
+#include <winable.h>
+
+
+#include <QtCore/QDir>
+#include <QtCore/QMutex>
+#include <QtCore/QThread>
+#include <QtCore/QLibrary>
+
+#include "local_system.h"
 
 
 class userPollThread : public QThread
@@ -207,10 +213,16 @@ static inline void pressKey( int _key, bool _down )
 
 #else
 
+#include "local_system.h"
+
 #ifdef HAVE_X11
 #include <X11/Xlib.h>
 #else
 #define KeySym int
+#endif
+
+#ifdef HAVE_PWD_H
+#include <pwd.h>
 #endif
 
 #include "rfb/rfb.h"
@@ -252,6 +264,49 @@ void initialize( void )
 #endif
 
 }
+
+
+
+QString currentUser( void )
+{
+	QString ret = "unknown";
+
+#ifdef BUILD_WIN32
+
+	if( __user_poll_thread && !__user_poll_thread->name().isEmpty() )
+	{
+		ret = __user_poll_thread->name();
+	}
+
+#else
+
+	char * user_name = getenv( "USER" );
+#ifdef HAVE_PWD_H
+	struct passwd * pw_entry = NULL;
+	if( user_name )
+	{
+		pw_entry = getpwnam( user_name );
+	}
+	if( !pw_entry )
+	{
+		pw_entry = getpwuid( getuid() );
+	}
+	if( pw_entry )
+	{
+		return( QString( "%1 (%2)" ).arg( pw_entry->pw_gecos ).
+						arg( pw_entry->pw_name ) );
+	}
+#endif
+	if( user_name )
+	{
+		return user_name;
+	}
+
+#endif
+
+	return( ret );
+}
+
 
 
 } // end of namespace localSystem

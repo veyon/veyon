@@ -27,20 +27,20 @@
 #define _TOOL_BUTTON_H 
 
 #include <QtGui/QToolButton>
-#include <QtGui/QColor>
+
+#include "fast_qimage.h"
 
 
 class toolButton : public QToolButton
 {
 	Q_OBJECT
 public:
-	toolButton( const QPixmap & _pixmap, const QString & _title,
-			const QString & _short_title,
-			const QString & _description,
-			QObject * _receiver, const char * _slot,
-			QWidget * _parent );
-
+	toolButton( const QPixmap & _pixmap, const QString & _label,
+				const QString & _title, const QString & _desc,
+				QObject * _receiver, const char * _slot,
+							QWidget * _parent );
 	virtual ~toolButton();
+
 
 	static void setToolTipsDisabled( bool _disabled )
 	{
@@ -53,28 +53,37 @@ public:
 	}
 
 
+
 protected:
-	virtual void enterEvent( QEvent * _ev );
-	virtual void leaveEvent( QEvent * _ev );
+	virtual void enterEvent( QEvent * _e );
+	virtual void leaveEvent( QEvent * _e );
+	virtual void mousePressEvent( QMouseEvent * _me );
 	virtual void paintEvent( QPaintEvent * _pe );
-
-
-private:
-	static bool s_toolTipsDisabled;
-
-
-	QPixmap m_pixmap;
-	QString m_title;
-	QString m_shortTitle;
-	QString m_description;
-
-	bool m_mouseOver;
 
 
 signals:
 	void mouseLeftButton( void );
 
+
+private slots:
+	void updateColorLevel( void );
+
+
+private:
+	static bool s_toolTipsDisabled;
+
+	QPixmap m_pixmap;
+	fastQImage m_img;
+	unsigned char m_colorizeLevel;
+	bool m_fadeBack;
+
+	QString m_label;
+	QString m_title;
+	QString m_descr;
+
 } ;
+
+
 
 
 class toolButtonTip : public QWidget

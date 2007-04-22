@@ -27,7 +27,6 @@
 
 
 #include <QtCore/QTime>
-#include <QtGui/QPushButton>
 #include <QtGui/QWidget>
 
 #include "fast_qimage.h"
@@ -58,11 +57,11 @@ protected:
 		QWidget::leaveEvent( _e );
 	}
 
-	virtual void mousePressEvent( QMouseEvent * _e )
+/*	virtual void mousePressEvent( QMouseEvent * _e )
 	{
 		disappear();
 		QWidget::mousePressEvent( _e );
-	}
+	}*/
 
 	virtual void paintEvent( QPaintEvent * _pe );
 
@@ -86,37 +85,6 @@ private:
 
 
 
-class fxToolButton : public QPushButton
-{
-	Q_OBJECT
-public:
-	fxToolButton( const QString & _hint_label, const QImage & _img,
-					remoteControlWidgetToolBar * _parent );
-	virtual ~fxToolButton();
-
-
-protected:
-	virtual void enterEvent( QEvent * _e );
-	virtual void leaveEvent( QEvent * _e );
-	virtual void paintEvent( QPaintEvent * _pe );
-
-
-private slots:
-	void updateColorLevel( void );
-
-
-private:
-	remoteControlWidgetToolBar * m_parent;
-	QString m_hintLabel;
-	QImage m_img;
-	fastQImage m_imgGray;
-	unsigned char m_colorizeLevel;
-	bool m_fadeBack;
-
-} ;
-
-
-
 
 class remoteControlWidget : public QWidget
 {
@@ -129,7 +97,7 @@ public:
 
 
 public slots:
-	void toggleFullScreen( void );
+	void toggleFullScreen( bool );
 
 
 protected:

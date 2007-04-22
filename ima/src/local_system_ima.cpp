@@ -31,12 +31,8 @@
 
 #include "local_system_ima.h"
 
-#include <QtCore/QByteArray>
-#include <QtCore/QCoreApplication>
 #include <QtCore/QDir>
 
-
-QByteArray __appInternalChallenge;
 
 namespace localSystem
 {
@@ -52,8 +48,8 @@ void initialize( void )
 		QDir( "C:\\" ).mkdir( "WINDOWS" );
 	}
 #endif
-
 }
+
 
 } // end of namespace localSystem
 

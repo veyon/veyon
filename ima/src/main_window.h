@@ -40,7 +40,7 @@ class QWorkspace;
 
 class classroomManager;
 class configWidget;
-class extToolBar;
+class toolBar;
 class supportWidget;
 class italcSideBar;
 class isdConnection;
@@ -97,6 +97,11 @@ public:
 
 	void remoteControlDisplay( const QString & _ip, bool _view_only = FALSE );
 
+	inline bool remoteControlRunning( void ) const
+	{
+		return( m_remoteControlWidget != NULL );
+	}
+
 
 private slots:
 	void remoteControlWidgetClosed( QObject * );
@@ -133,7 +138,7 @@ private:
 
 	QButtonGroup * m_modeGroup;
 
-	extToolBar * m_toolBar;
+	toolBar * m_toolBar;
 
 	QSplitter * m_splitter;
 

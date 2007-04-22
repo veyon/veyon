@@ -3,16 +3,11 @@
 		<file>resources/info.png</file>
 		<file>resources/message.png</file>
 		<file>resources/ok.png</file>
-		<file>resources/de.qm</file>
-		<file>resources/it.qm</file>
-		<file>resources/es.qm</file>
-		<file>resources/fr.qm</file>
-		<file>resources/locked.png</file>
-		<file>resources/mouse.png</file>
-		<file>resources/fullscreen.png</file>
-		<file>resources/quit.png</file>
-		<file>resources/up.png</file>
-		<file>resources/display.png</file>
+		<file alias="resources/de-core.qm">resources/de.qm</file>
+		<file alias="resources/it-core.qm">resources/it.qm</file>
+		<file alias="resources/es-core.qm">resources/es.qm</file>
+		<file alias="resources/fr-core.qm">resources/fr.qm</file>
+		<file>resources/locked_bg.png</file>
 		<file>resources/icon16.png</file>
 		<file>resources/icon22.png</file>
 		<file>resources/icon32.png</file>

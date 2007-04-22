@@ -1018,7 +1018,8 @@ updateThread::updateThread( client * _client ) :
 
 void updateThread::update( void )
 {
-	if( mainWindow::atExit() == FALSE && m_client->isVisible() )
+	if( mainWindow::atExit() == FALSE && m_client->isVisible() &&
+		!m_client->m_mainWindow->remoteControlRunning() )
 	{
 		m_client->processCmd( client::Reload, CONFIRM_NO );
 	}

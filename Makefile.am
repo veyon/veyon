@@ -4,7 +4,7 @@ if BUILD_WIN32
 EXTRA_TARGETS = utils-win32
 endif
 
-SUBDIRS = common ica ima setup $(subdirs) $(EXTRA_TARGETS)
+SUBDIRS = lib ica ima setup $(subdirs) $(EXTRA_TARGETS)
 
 EXTRA_DIST = build_mingw32 tightvnc4win_integrate tightvnc4win_italc.diff
 
@@ -41,7 +41,9 @@ clean-am: clean-generic clean-libtool mostlyclean-am
 if BUILD_WIN32
 win32-pkg: all
 	mkdir -p tmp/italc
+	cp lib/italc_core.dll tmp/italc
 	cp ica/ica.exe tmp/italc
+	cp ica/vnchooks.dll tmp/italc
 	cp ima/italc.exe tmp/italc
 	cp setup/setup.exe tmp/italc
 	cp utils-win32/userinfo.exe tmp/italc

@@ -54,8 +54,6 @@ int systemKeyTrapper::s_refCnt;
 #include "inject.h"
 
 
-extern HINSTANCE hAppInstance;
-
 
 HHOOK g_hHookKbdLL = NULL; // hook handle
 
@@ -183,6 +181,7 @@ systemKeyTrapper::systemKeyTrapper( void ) :
 	{
 		if( !g_hHookKbdLL )
 		{
+			HINSTANCE hAppInstance = GetModuleHandle( NULL );
 			// set lowlevel-keyboard-hook
 			g_hHookKbdLL = SetWindowsHookEx( WH_KEYBOARD_LL,
 							TaskKeyHookLL,
