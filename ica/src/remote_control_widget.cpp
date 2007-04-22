@@ -236,11 +236,11 @@ fxToolButton::fxToolButton( const QString & _hint_label, const QImage & _img,
 	setAttribute( Qt::WA_NoSystemBackground, true );
 	m_imgGray.toGray();
 	QFont f = font();
-	f.setPointSize( 8 );
+	f.setPointSize( 7 );
 	setFont( f );
 	//setFixedWidth( qMax<int>( m_img.width(), fontMetrics().width( m_hintLabel ) )+20 );
 	//setFixedHeight( 48 );
-	setFixedSize( 96, 48 );
+	setFixedSize( 90, 48 );
 
 	// set mask
 	QBitmap b( size() );
