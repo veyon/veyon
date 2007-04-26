@@ -224,7 +224,7 @@ void setupWizard::doInstallation( bool _quiet )
 	{
 		if( ( file.left( 3 ) == "ica" && !m_installClient )
 			||
-		( file.left( 5 ) == "italc" && !m_installMaster )
+		( file == "italc"+_exe_ext && !m_installMaster )
 			||
 			( file.left( 5 ) == "lupus" &&
 						!m_installLUPUS ) )

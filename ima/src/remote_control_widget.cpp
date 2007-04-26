@@ -413,7 +413,8 @@ remoteControlWidget::remoteControlWidget( const QString & _host,
 							SLOT( updateUser() ) );
 	connect( m_vncView, SIGNAL( keyEvent( Q_UINT32, bool ) ),
 				this, SLOT( checkKeyEvent( Q_UINT32, bool ) ) );
-	resize( QDesktopWidget().screenGeometry( this ).size() );
+	//resize( QDesktopWidget().screenGeometry( this ).size() );
+	showMaximized();
 	showFullScreen();
 	move( 0, 0 );
 	localSystem::activateWindow( this );

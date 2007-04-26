@@ -1,3 +1,11 @@
+2007-04-25	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* setup/src/dialogs.cpp:
+	fixed installation of italc_core.dll under win32
+
+	* ima/src/remote_control_widget.cpp:
+	do not resize to desktop-geometry in window-mode
+
 2007-04-22	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* ima/src/main_window.cpp:
