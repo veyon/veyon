@@ -1,7 +1,7 @@
 /*
  * vncview.h - VNC-viewer-widget
  *
- * Copyright (c) 2006 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2007 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *  
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -73,6 +73,8 @@ private slots:
 private:
 	virtual void customEvent( QEvent * _user );
 	virtual bool event( QEvent * );
+	virtual void focusInEvent( QFocusEvent * );
+	virtual void focusOutEvent( QFocusEvent * );
 	virtual void mouseMoveEvent( QMouseEvent * );
 	virtual void mousePressEvent( QMouseEvent * );
 	virtual void mouseReleaseEvent( QMouseEvent * );

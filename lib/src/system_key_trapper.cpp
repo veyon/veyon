@@ -173,34 +173,10 @@ void enableStickyKeys( bool _enable )
 
 
 systemKeyTrapper::systemKeyTrapper( void ) :
-	QObject()
+	QObject(),
+	m_enabled( FALSE )
 {
-	s_refCntMutex.lock();
-#if BUILD_WIN32
-	if( !s_refCnt )
-	{
-		if( !g_hHookKbdLL )
-		{
-			HINSTANCE hAppInstance = GetModuleHandle( NULL );
-			// set lowlevel-keyboard-hook
-			g_hHookKbdLL = SetWindowsHookEx( WH_KEYBOARD_LL,
-							TaskKeyHookLL,
-							hAppInstance, 0 );
-		}
-
-		enableStickyKeys( FALSE );
-
-		//EnableWindow( FindWindow( "Shell_traywnd", NULL ), FALSE );
-
-		Inject();
-	}
-
-	QTimer * t = new QTimer( this );
-	connect( t, SIGNAL( timeout() ), this, SLOT( checkForTrappedKeys() ) );
-	t->start( 10 );
-#endif
-	++s_refCnt;
-	s_refCntMutex.unlock();
+	setEnabled( TRUE );
 }
 
 
@@ -208,22 +184,73 @@ systemKeyTrapper::systemKeyTrapper( void ) :
 
 systemKeyTrapper::~systemKeyTrapper()
 {
-	s_refCntMutex.lock();
-	--s_refCnt;
-#if BUILD_WIN32
-	if( !s_refCnt )
+	setEnabled( FALSE );
+}
+
+
+
+
+void systemKeyTrapper::setEnabled( bool _on )
+{
+	if( _on == m_enabled )
 	{
-		UnhookWindowsHookEx( g_hHookKbdLL );
-		g_hHookKbdLL = NULL;
-
-		enableStickyKeys( TRUE );
-		//EnableWindow( FindWindow( "Shell_traywnd", NULL ), TRUE );
-
-		Eject();
+		return;
 	}
+
+	s_refCntMutex.lock();
+	if( _on )
+	{
+#if BUILD_WIN32
+		if( !s_refCnt )
+		{
+			if( !g_hHookKbdLL )
+			{
+				HINSTANCE hAppInstance =
+							GetModuleHandle( NULL );
+				// set lowlevel-keyboard-hook
+				g_hHookKbdLL =
+					SetWindowsHookEx( WH_KEYBOARD_LL,
+								TaskKeyHookLL,
+								hAppInstance,
+								0 );
+			}
+
+			enableStickyKeys( FALSE );
+
+			//EnableWindow( FindWindow( "Shell_traywnd", NULL ),
+			//						FALSE );
+
+			Inject();
+		}
+
+		QTimer * t = new QTimer( this );
+		connect( t, SIGNAL( timeout() ),
+					this, SLOT( checkForTrappedKeys() ) );
+		t->start( 10 );
 #endif
+		++s_refCnt;
+	}
+	else
+	{
+#if BUILD_WIN32
+		if( !s_refCnt )
+		{
+			UnhookWindowsHookEx( g_hHookKbdLL );
+			g_hHookKbdLL = NULL;
+
+			enableStickyKeys( TRUE );
+			//EnableWindow( FindWindow( "Shell_traywnd", NULL ),
+			//						TRUE );
+
+			Eject();
+		}
+#endif
+		--s_refCnt;
+	}
 	s_refCntMutex.unlock();
 }
+
+
 
 
 void systemKeyTrapper::checkForTrappedKeys( void )

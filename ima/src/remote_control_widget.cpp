@@ -142,29 +142,20 @@ void remoteControlWidgetToolBar::paintEvent( QPaintEvent * _pe )
 	lingrad.setColorAt( 1, QColor( 0, 16, 32 ) );
 	p.fillRect( rect(), lingrad );
 
+	p.drawImage( 5, 2, m_icon );
 
 	QFont f = p.font();
-	f.setPointSize( 14 );
+	f.setPointSize( 12 );
 	f.setBold( TRUE );
 	p.setFont( f );
-	QFont f2 = f;
-	f2.setPointSize( 10 );
 
 	p.setPen( QColor( 255, 212, 0 ) );
+	p.drawText( 64, 22, m_parent->windowTitle() );
 
-	const QString wt = m_parent->windowTitle();
-	const QString title = wt.section( '(', 0, 0 );
-	const QString host = wt.section( '(', 1, 1 ).section( ')', 0, 0 );
-	const int px = width() - layout()->minimumSize().width() -
-				qMax( p.fontMetrics().width( title ),
-					QFontMetrics( f2 ).width( host ) ) - 10;
-	p.drawText( px, 22, title );
 	p.setPen( QColor( 255, 255, 255 ) );
-	p.setFont( f2 );
-	p.drawText( px, 38, host );
-
+	f.setPointSize( 10 );
 	p.setFont( f );
-	p.drawImage( 5, 2, m_icon );
+
 	if( m_connecting )
 	{
 		fastQImage tmp = m_iconGray;
@@ -177,12 +168,12 @@ void remoteControlWidgetToolBar::paintEvent( QPaintEvent * _pe )
 		{
 			dots += ".";
 		}
-		p.drawText( 64, 32, tr( "Connecting %1" ).arg( dots ) );
+		p.drawText( 64, 40, tr( "Connecting %1" ).arg( dots ) );
 		QTimer::singleShot( 50, this, SLOT( update() ) );
 	}
 	else
 	{
-		p.drawText( 64, 32, tr( "Connected." ) );
+		p.drawText( 64, 40, tr( "Connected." ) );
 	}
 }
 
@@ -232,203 +223,34 @@ void remoteControlWidgetToolBar::connectionEstablished( void )
 
 
 
-#if 0
-ToolButton::fxToolButton( const QString & _hint_label, const QImage & _img,
-					remoteControlWidgetToolBar * _parent ) :
-	QPushButton( _parent ),
-	m_parent( _parent ),
-	m_hintLabel( _hint_label ),
-	m_img( _img ),
-	m_imgGray( _img ),
-	m_colorizeLevel( 0 ),
-	m_fadeBack( FALSE )
-{
-	setAttribute( Qt::WA_NoSystemBackground, true );
-	m_imgGray.toGray();
-	QFont f = font();
-	f.setPointSize( 7 );
-	setFont( f );
-	//setFixedWidth( qMax<int>( m_img.width(), fontMetrics().width( m_hintLabel ) )+20 );
-	//setFixedHeight( 48 );
-	setFixedSize( 90, 48 );
-
-	// set mask
-	QBitmap b( size() );
-	b.clear();
-
-	QPainter p( &b );
-	p.setBrush( Qt::color1 );
-	p.setPen( Qt::color1 );
-	p.drawRoundRect( 0, 0, width() - 1, height() - 1,
-					1000 / width(), 1000 / height() );
-	setMask( b );
-}
-
-
-
-
-fxToolButton::~fxToolButton()
-{
-}
-
-
-
-
-void fxToolButton::enterEvent( QEvent * )
-{
-	m_fadeBack = FALSE;
-	if( m_colorizeLevel == 0 )
-	{
-		updateColorLevel();
-	}
-}
-
-
-
-
-void fxToolButton::leaveEvent( QEvent * )
-{
-	m_fadeBack = TRUE;
-	if( m_colorizeLevel == 255 )
-	{
-		updateColorLevel();
-	}
-}
-
-
-
-void fxToolButton::paintEvent( QPaintEvent * _pe )
-{
-	QPainter p( this );
-	p.fillRect( rect(), Qt::black );
-	p.setRenderHint( QPainter::Antialiasing );
-	const QColor ctbl[2][4] = {
-				{
-					QColor( 64, 128, 255 ),
-					QColor( 32, 64, 192 ),
-					QColor( 16, 32, 128 ),
-					QColor( 0, 16, 64 )
-				},
-				{
-					QColor( 255, 224, 0, m_colorizeLevel ),
-					QColor( 224, 192, 0, m_colorizeLevel ),
-					QColor( 192, 160, 0, m_colorizeLevel ),
-					QColor( 96, 48, 0, m_colorizeLevel )
-				}
-				} ;
-	QLinearGradient lingrad( 0, 0, 0, height() );
-	lingrad.setColorAt( 0, ctbl[0][0] );
-	lingrad.setColorAt( 0.38, ctbl[0][1] );
-	lingrad.setColorAt( 0.42, ctbl[0][2] );
-	lingrad.setColorAt( 1, ctbl[0][3] );
-	p.setBrush( lingrad );
-	p.drawRoundRect( 1, 1, width()-2, height()-2, 1000 / width(),
-							1000 / height() );
-
-	if( m_colorizeLevel )
-	{
-		lingrad = QLinearGradient( 0, 0, 0, height() );
-		lingrad.setColorAt( 0, ctbl[1][0] );
-		lingrad.setColorAt( 0.38, ctbl[1][1] );
-		lingrad.setColorAt( 0.42, ctbl[1][2] );
-		lingrad.setColorAt( 1, ctbl[1][3] );
-		p.setBrush( lingrad );
-		p.drawRoundRect( 1, 1, width()-2, height()-2, 1000 / width(),
-							1000 / height() );
-	}
-	p.setBrush( QBrush() );
-
-	p.fillRect( rect(), QColor( 0, 0, 0, isDown() ? 128 : 0 ) );
-
-	QPen pen( QColor( 255, 255, 255, 128 ) );
-	pen.setWidthF( 1.3f );
-	p.setPen( pen );
-	p.drawRoundRect( 0, 0, width()-1, height()-1, 1000 / width(),
-							1000 / height() );
-	QPen pen2 = pen;
-	pen.setColor( QColor( 0, 0, 0, 128 ) );
-	p.setPen( pen );
-	p.drawRoundRect( 1, 1, width()-3, height()-3, 1000 / width(),
-							1000 / height() );
-	p.setPen( pen2 );
-	p.drawRoundRect( 2, 2, width()-2, height()-2, 1000 / width(),
-							1000 / height() );
-
-	const int dd = isDown() ? 1 : 0;
-	const QPoint pt = QPoint( (width() - m_img.width() ) / 2 + dd, 3 + dd);
-	p.drawImage( pt, m_img );
-
-	const int w = p.fontMetrics().width( m_hintLabel );
-	p.setPen( Qt::black );
-	p.drawText( ( width() -w ) / 2 + 1+dd, height() - 4+dd, m_hintLabel );
-	p.setPen( Qt::white );
-	p.drawText( ( width() - w ) / 2+dd, height() - 5+dd, m_hintLabel );
-
-}
-
-
-
-
-
-void fxToolButton::updateColorLevel( void )
-{
-	bool again;
-	if( m_fadeBack )
-	{
-		m_colorizeLevel = qMax( 0, m_colorizeLevel - 10 );
-		again = m_colorizeLevel > 0;
-	}
-	else
-	{
-		m_colorizeLevel = qMin( 255, m_colorizeLevel + 10 );
-		again = m_colorizeLevel < 255;
-	}
-	update();
-	if( again )
-	{
-		QTimer::singleShot( 10, this, SLOT( updateColorLevel() ) );
-	}
-}
-
-
-
-
-#endif
-
-
-
 
 remoteControlWidget::remoteControlWidget( const QString & _host,
 							bool _view_only ) :
-	QWidget( 0/*, Qt::X11BypassWindowManagerHint*/ ),
+	QWidget( 0 ),
 	m_vncView( new vncView( _host, _view_only, this ) ),
-	m_toolBar( new remoteControlWidgetToolBar( this ) )
+	m_toolBar( new remoteControlWidgetToolBar( this ) ),
+	m_extraStates( Qt::WindowMaximized )
 {
 	setWindowIcon( QPixmap( ":/resources/display.png" ) );
 	setAttribute( Qt::WA_DeleteOnClose, TRUE );
 	m_vncView->move( 0, 0 );
 	connect( m_vncView, SIGNAL( mouseAtTop() ), m_toolBar,
 							SLOT( appear() ) );
-	connect( m_vncView, SIGNAL( mouseAtTop() ), this,
-							SLOT( updateUser() ) );
 	connect( m_vncView, SIGNAL( keyEvent( Q_UINT32, bool ) ),
 				this, SLOT( checkKeyEvent( Q_UINT32, bool ) ) );
-	//resize( QDesktopWidget().screenGeometry( this ).size() );
-	showMaximized();
+	//showMaximized();
 	showFullScreen();
-	move( 0, 0 );
 	localSystem::activateWindow( this );
-	//toggleFullScreen();
-	updateUser();
-#ifdef BUILD_LINUX
-	// for some reason we have to grab mouse and then release again to
-	// make complete keyboard-grabbing working ... ??
-	m_vncView->grabMouse();
-	m_vncView->releaseMouse();
-#endif
-	m_vncView->grabKeyboard();
-	m_vncView->setFocusPolicy( Qt::StrongFocus );
-	m_vncView->setFocus();
+	if( m_vncView->viewOnly() )
+	{
+		setWindowTitle( tr( "View live (host %1)" ).arg( host() ) );
+	}
+	else
+	{
+		setWindowTitle( tr( "Remote control (host %1)" ).
+								arg( host() ) );
+	}
+	m_toolBar->update();
 }
 
 
@@ -459,39 +281,6 @@ void remoteControlWidget::resizeEvent( QResizeEvent * )
 
 
 
-void remoteControlWidget::updateUser( void )
-{
-	if( m_vncView->m_connection == NULL )
-	{
-		QTimer::singleShot( 100, this, SLOT( updateUser() ) );
-		return;
-	}
-/*	m_user = m_vncView->m_connection->user();
-	if( m_user.isEmpty() )
-	{*/
-	if( m_vncView->viewOnly() )
-	{
-		setWindowTitle( tr( "View live (host %1)" ).arg( host() ) );
-	}
-	else
-	{
-		setWindowTitle( tr( "Remote control (host %1)" ).
-								arg( host() ) );
-	}
-		//m_vncView->m_connection->sendGetUserInformationRequest();
-/*		QTimer::singleShot( 100, this, SLOT( updateUser() ) );
-	}
-	else
-	{
-		setWindowTitle( tr( "User %1 at host %2" ).
-						arg( m_user ).arg( host() ) );
-	}*/
-	m_toolBar->update();
-}
-
-
-
-
 void remoteControlWidget::checkKeyEvent( Q_UINT32 _key, bool _pressed )
 {
 	if( _pressed && _key == XK_Escape &&
@@ -500,6 +289,7 @@ void remoteControlWidget::checkKeyEvent( Q_UINT32 _key, bool _pressed )
 		close();
 	}
 }
+
 
 
 
@@ -512,16 +302,9 @@ void remoteControlWidget::toggleFullScreen( bool _on )
 	else
 	{
 		setWindowState( windowState() & ~Qt::WindowFullScreen );
+		setWindowState( windowState() | m_extraStates );
+		m_extraStates = Qt::WindowNoState;
 	}
-/*	if( windowState() & Qt::WindowFullScreen )
-	{
-		setWindowFlags( windowFlags() | Qt::X11BypassWindowManagerHint );
-	}
-	else
-	{
-		printf("toggle\n");
-		setWindowFlags( windowFlags() & ~Qt::X11BypassWindowManagerHint );
-	}*/
 }
 
 

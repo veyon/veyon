@@ -57,12 +57,6 @@ protected:
 		QWidget::leaveEvent( _e );
 	}
 
-/*	virtual void mousePressEvent( QMouseEvent * _e )
-	{
-		disappear();
-		QWidget::mousePressEvent( _e );
-	}*/
-
 	virtual void paintEvent( QPaintEvent * _pe );
 
 
@@ -106,14 +100,14 @@ protected:
 
 private slots:
 	void checkKeyEvent( Q_UINT32, bool );
-	void updateUser( void );
 
 
 private:
 	vncView * m_vncView;
 	remoteControlWidgetToolBar * m_toolBar;
 
-	QString m_user;
+	Qt::WindowStates m_extraStates;
+
 	friend class remoteControlWidgetToolBar;
 
 } ;

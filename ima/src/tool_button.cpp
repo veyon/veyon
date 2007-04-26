@@ -207,7 +207,7 @@ void toolButton::paintEvent( QPaintEvent * _pe )
 	}
 	p.setBrush( QBrush() );
 
-	p.fillRect( rect(), QColor( 0, 0, 0, active ? 128 : 0 ) );
+	p.fillRect( rect(), QColor( 0, 0, 0, active ? 160 : 0 ) );
 
 	QPen pen( QColor( 255, 255, 255, 128 ) );
 	pen.setWidthF( 1.3f );

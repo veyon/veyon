@@ -57,11 +57,18 @@ public:
 	systemKeyTrapper( void );
 	~systemKeyTrapper();
 
+	void setEnabled( bool _on );
+	bool isEnabled( void ) const
+	{
+		return( m_enabled );
+	}
+
 
 private:
 	static QMutex s_refCntMutex;
 	static int s_refCnt;
 
+	bool m_enabled;
 
 private slots:
 	void checkForTrappedKeys( void );

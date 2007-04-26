@@ -1,4 +1,23 @@
-2007-04-25	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+2007-04-26	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* lib/include/vncview.h:
+	* lib/src/vncview.cpp:
+	on focus-out-event release keyboard-grab and system-key-trapping and
+	get them back at focus-in-event
+
+	* lib/include/system_key_trapper.h:
+	* lib/src/system_key_trapper.cpp:
+	added possibility to dynamically enable or disable trapping of
+	system-keys
+
+	* ima/src/tool_button.cpp:
+	draw button more dark if checked/pressed
+
+	* ima/src/remote_control_widget.cpp:
+	* ima/src/remote_control_widget.h:
+	- reworked texts in toolbar
+	- when in window mode, show maximized per default
+	- lot of cleanups
 
 	* setup/src/dialogs.cpp:
 	fixed installation of italc_core.dll under win32

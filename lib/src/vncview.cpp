@@ -1,7 +1,7 @@
 /*
  * vncview.cpp - VNC-viewer-widget
  *
- * Copyright (c) 2006 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2007 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *  
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -74,6 +74,15 @@ vncView::vncView( const QString & _host, bool _view_only, QWidget * _parent ) :
 	if( !m_viewOnly )
 	{
 		m_sysKeyTrapper = new systemKeyTrapper();
+#ifdef BUILD_LINUX
+		// for some reason we have to grab mouse and then release
+		// again to make complete keyboard-grabbing working ... ??
+		grabMouse();
+		releaseMouse();
+#endif
+		grabKeyboard();
+		setFocusPolicy( Qt::StrongFocus );
+		setFocus();
 	}
 
 	new vncViewThread( this );
@@ -107,7 +116,8 @@ void vncView::framebufferUpdate( void )
 	const QPoint mp = mapFromGlobal( QCursor::pos() );
 
 	// not yet connected or connection lost while handling messages?
-	if( m_connection->state() != ivsConnection::Connected && !m_establishingConnection->isVisible() )
+	if( m_connection->state() != ivsConnection::Connected &&
+					!m_establishingConnection->isVisible() )
 	{
 		// as the "establishing connection"-progress-widget is semi-
 		// transparent and has a non-rectangular shape, we have to
@@ -209,17 +219,47 @@ void vncView::updateCursorShape( void )
 // key-event-dispatching on our own
 bool vncView::event( QEvent * e )
 {
-	switch( e->type() )
+	if( m_sysKeyTrapper != NULL && m_sysKeyTrapper->isEnabled() )
 	{
-		case QEvent::KeyPress:
-		case QEvent::KeyRelease:
-			keyEvent( (QKeyEvent *)( e ) );
-			return( e->isAccepted() );
-		default:
-			break;
+		switch( e->type() )
+		{
+			case QEvent::KeyPress:
+			case QEvent::KeyRelease:
+				keyEvent( (QKeyEvent *)( e ) );
+				return( e->isAccepted() );
+			default:
+				break;
+		}
 	}
 	return( QWidget::event( e ) );
 }
+
+
+
+
+void vncView::focusInEvent( QFocusEvent * _e )
+{
+	if( m_sysKeyTrapper != NULL )
+	{
+		grabKeyboard();
+		m_sysKeyTrapper->setEnabled( TRUE );
+	}
+	QWidget::focusInEvent( _e );
+}
+
+
+
+
+void vncView::focusOutEvent( QFocusEvent * _e )
+{
+	if( m_sysKeyTrapper != NULL )
+	{
+		releaseKeyboard();
+		m_sysKeyTrapper->setEnabled( FALSE );
+	}
+	QWidget::focusOutEvent( _e );
+}
+
 
 
 
