@@ -1,3 +1,12 @@
+2007-04-29	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* lib/src/system_key_trapper.cpp:
+	- set m_enabled in setEnabled()-method
+	- decrement s_refCnt before accessing it
+
+	* lib/Makefile.am:
+	fixed entry for inject.h
+
 2007-04-26	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* lib/include/vncview.h:

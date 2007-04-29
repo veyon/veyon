@@ -198,6 +198,7 @@ void systemKeyTrapper::setEnabled( bool _on )
 	}
 
 	s_refCntMutex.lock();
+	m_enabled = _on;
 	if( _on )
 	{
 #if BUILD_WIN32
@@ -232,6 +233,7 @@ void systemKeyTrapper::setEnabled( bool _on )
 	}
 	else
 	{
+		--s_refCnt;
 #if BUILD_WIN32
 		if( !s_refCnt )
 		{
@@ -245,7 +247,6 @@ void systemKeyTrapper::setEnabled( bool _on )
 			Eject();
 		}
 #endif
-		--s_refCnt;
 	}
 	s_refCntMutex.unlock();
 }

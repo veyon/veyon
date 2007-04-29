@@ -36,7 +36,6 @@ libitalc_core_static_a_SOURCES =			\
 		$(srcdir)/src/dsa_key.cpp		\
 		$(srcdir)/src/fast_qimage.cpp		\
 		$(srcdir)/src/inject.cpp		\
-		$(srcdir)/src/inject.h			\
 		$(srcdir)/src/isd_base.cpp		\
 		$(srcdir)/src/isd_connection.cpp	\
 		$(srcdir)/src/ivs_connection.cpp	\
@@ -51,6 +50,7 @@ libitalc_core_static_a_SOURCES =			\
 		$(srcdir)/include/debug.h		\
 		$(srcdir)/include/dsa_key.h		\
 		$(srcdir)/include/fast_qimage.h		\
+		$(srcdir)/include/inject.h		\
 		$(srcdir)/include/isd_base.h		\
 		$(srcdir)/include/isd_connection.h	\
 		$(srcdir)/include/italc_rfb_ext.h	\
