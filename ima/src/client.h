@@ -168,11 +168,6 @@ public:
 	void changeMode( const modes _new_mode, isdConnection * _conn );
 
 
-/*	inline QString fullName( void ) const
-	{
-		return( m_name + " (" + m_localIP + ")" );
-	}*/
-
 	inline QString name( void ) const
 	{
 		return( m_name );
@@ -287,13 +282,9 @@ private:
 	void viewLive( const QString & );
 	void remoteControl( const QString & );
 	void sendTextMessage( const QString & _msg );
-/*	void distributeFile( const QString & _file );
-	void collectFiles( const QString & _name_filter );*/
 	void logonUser( const QString & _uname_and_pw );
 	void logoutUser( const QString & _confirm );
 	void snapshot( const QString & );
-/*	void execCmdsIRFB( const QString & _cmds );
-	void sshLogin( const QString & _user );*/
 	void powerOn( const QString & );
 	void reboot( const QString & _confirm );
 	void powerDown( const QString & _confirm );

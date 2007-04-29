@@ -26,7 +26,9 @@
 #ifndef _MAIN_WINDOW_H
 #define _MAIN_WINDOW_H
 
+#include <QtCore/QReadWriteLock>
 #include <QtCore/QThread>
+#include <QtCore/QWaitCondition>
 #include <QtGui/QButtonGroup>
 #include <QtGui/QMainWindow>
 #include <QtGui/QToolButton>
@@ -95,11 +97,21 @@ public:
 		return( s_atExit );
 	}
 
-	void remoteControlDisplay( const QString & _ip, bool _view_only = FALSE );
+	void remoteControlDisplay( const QString & _ip,
+						bool _view_only = FALSE );
 
-	inline bool remoteControlRunning( void ) const
+	inline void blockWhileRemoteControlRunning( QMutex * _mutex )
 	{
-		return( m_remoteControlWidget != NULL );
+		m_rctrlLock.lockForRead();
+		if( m_remoteControlWidget != NULL )
+		{
+			m_rctrlLock.unlock();
+			m_clientUpdateBlocker.wait( _mutex );
+		}
+		else
+		{
+			m_rctrlLock.unlock();
+		}
 	}
 
 
@@ -146,9 +158,14 @@ private:
 	italcSideBar * m_sideBar;
 	int m_openedTabInSideBar;
 
+
 	isdConnection * m_localISD;
 
+
+	QWaitCondition m_clientUpdateBlocker;
+	QReadWriteLock m_rctrlLock;
 	remoteControlWidget * m_remoteControlWidget;
+
 
 	overviewWidget * m_overviewWidget;
 	classroomManager * m_classroomManager;

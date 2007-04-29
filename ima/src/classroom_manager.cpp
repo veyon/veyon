@@ -111,9 +111,6 @@ classroomManager::classroomManager( mainWindow * _main_window, QWidget * _parent
 	m_view->setIconSize( QSize( 22, 22 ) );
 	m_view->header()->resizeSection( m_view->header()->logicalIndex( 0 ),
 									200 );
-/*	m_view->setTreeStepSize( 12 );
-	m_view->setDefaultRenameAction( QTreeWidget::Accept );
-	m_view->setSorting( 0 );*/
 	m_view->setSortingEnabled( TRUE );
 	m_view->setRootIsDecorated( TRUE );
 //	m_view->setShowToolTips( TRUE );
@@ -401,13 +398,6 @@ void classroomManager::getHeaderInformation( const QDomElement & _header )
 		{
 			m_clientUpdateInterval = node.toElement().attribute(
 					"client-update-interval" ).toInt();
-/*			if( node.toElement().attribute( "use-big-icons" ) !=
-								QString::null )
-			{
-				italc::inst()->setUsesBigPixmaps(
-					node.toElement().attribute(
-						"use-big-icons" ).toInt() );
-			}*/
 			if( node.toElement().attribute( "win-width" ) !=
 								QString::null &&
 				node.toElement().attribute( "win-height" ) !=
@@ -465,7 +455,7 @@ void classroomManager::getHeaderInformation( const QDomElement & _header )
 			// which is not acceptable
 			if( m_clientUpdateInterval < 1 )
 			{
-				m_clientUpdateInterval = 1;
+				m_clientUpdateInterval = 2;
 			}
 		}
 		node = node.nextSibling();
@@ -896,99 +886,6 @@ void classroomManager::sendMessage( void )
 	}
 }
 
-
-
-void classroomManager::distributeFile( void )
-{
-/*	QMessageBox::information (this, tr("Function not implemented yet."), tr("This function is not completely implemented yet. This is why it is disabled at the moment."), QMessageBox::Ok);
-	return;*/
-#if 0
-	QFileDialog ofd( this, client::tr( "Select file to distribute" ),
-							QDir::homePath() );
-	ofd.setFileMode( QFileDialog::ExistingFile );
-	if( ofd.exec() == QDialog::Accepted &&
-					ofd.selectedFiles().empty() == FALSE )
-	{
-		cmdToVisibleClients( client::DistributeFile,
-						ofd.selectedFiles().front() );
-	}
-#endif
-}
-
-
-
-
-void classroomManager::collectFiles( void )
-{
-/*	QMessageBox::information (this, tr("Function not implemented yet."), tr("This function is not completely implemented yet. This is why it is disabled at the moment."), QMessageBox::Ok);
-	return;*/
-
-#if 0
-	// ask user for file(s)
-	bool ok;
-	QString f = QInputDialog::getText( this, tr( "Collect files" ),
-					client::tr( "Please enter the name(s) "
-							"of the file(s) to be "
-							"collected (wildcards "
-							"are allowed).\nThe "
-							"base-directory is "
-							"HOME/PUBLIC." ),
-						QLineEdit::Normal, "", &ok );
-	if( ok && !f.isEmpty() )
-	{
-		cmdToVisibleClients( client::CollectFiles, f );
-	}
-#endif
-}
-
-
-
-
-void classroomManager::collectFilesFromUserList( void )
-{
-	QMessageBox::information (this, tr("Function not implemented yet."), tr("This function is not completely implemented yet. This is why it is disabled at the moment."), QMessageBox::Ok);
-	return;
-/*	// ask user for user-list
-	QString infile = QFileDialog::getOpenFileName( this,
-					tr( "Select exported user-list" ),
-					QDir::homePath() );
-	if( infile == QString::null )
-	{
-		return;
-	}
-
-	// ask user for file(s)
-	QString fn;
-	textInputDialog file_name_input( client::tr( "Please enter the name(s) "
-							"of the file(s) to be "
-							"collected (wildcards "
-							"are allowed).\nThe "
-							"base-directory is "
-							"HOME/PUBLIC." ),
-								fn, this );
-	file_name_input.setWindowTitle( client::tr( "Collect files" ) );
-
-	if( file_name_input.exec() == QDialog::Accepted && fn != "" )
-	{
-		// open and read user-list
-		QFile f( infile );
-		f.open( QFile::ReadOnly );
-		QTextStream ts( &f );
-		ts.readLine();			// skip date which is located
-						// in first line of exported
-						// user-list
-		while( ts.atEnd() == FALSE )
-		{
-			// extract user-name in brackets
-			QString user = ts.readLine().section( '(', -1, -1
-							).section( ')', 0, 1 );
-#warning TODO: make local ISD run with priveleges to read out of users home-dir?
-			getMainWindow()->localISD()->
-			// collect files from this user
-			systemEnvironment::collectFiles( fn, user );
-		}
-	}*/
-}
 
 
 

@@ -123,7 +123,7 @@ client::client( const QString & _local_ip, const QString & _remote_ip,
 	setRemoteIP( m_remoteIP );
 
 	m_connection = new ivsConnection( m_localIP,
-						ivsConnection::QualityLow);
+						ivsConnection::QualityLow );
 
 	setWindowIcon( QPixmap( ":/resources/classroom_manager.png" ) );
 
@@ -145,13 +145,8 @@ client::client( const QString & _local_ip, const QString & _remote_ip,
 	setFixedSize( DEFAULT_CLIENT_SIZE );
 	//resize( DEFAULT_CLIENT_SIZE );
 	setAttribute( Qt::WA_NoSystemBackground, TRUE );
-	//setAttribute( Qt::WA_PaintUnclipped, TRUE );
-/*	QToolBar * tb = new QToolBar( this );
-	tb->setAutoFillBackground( TRUE );
-	QPalette pal;
-	pal.setBrush( QPalette::Background, QColor( 0, 0, 0, 160 ) );
-	tb->setPalette( pal );
-	tb->setIconSize( QSize( 16, 16 ) );*/
+
+
 	QMenu * tb = new QMenu( this );
 	m_contextMenu = tb;
 	connect( tb, SIGNAL( triggered( QAction * ) ), this,
@@ -332,16 +327,6 @@ void client::resetConnection( void )
 
 void client::update( void )
 {
-/*	QString u = m_user;
-	if( u.isEmpty() )
-	{
-		u = "none";
-	}
-	if( u.contains( '(' ) && u.contains( ')' ) )
-	{
-		u = u.section( '(', 1, 1 ).section( ')', 0, 0 );
-	}
-	setWindowTitle( u + "@" + fullName() );*/
 	setWindowTitle( m_name + " (" + m_classRoomItem->parent()->text( 0 ) +
 									")" );
 	states cur_state = currentState();
@@ -402,7 +387,7 @@ void client::updateStatePixmap( void )
 	QPainter p( &m_statePixmap );
 
 	QLinearGradient grad( 0, 0, 0, height() );
-	grad.setColorAt( 0, QColor( 224, 224, 224 ) );
+	grad.setColorAt( 0, QColor( 240, 240, 240 ) );
 	grad.setColorAt( 1, QColor( 128, 128, 128 ) );
 	p.fillRect( rect(), grad );//QColor( 255, 255, 255 ) );
 
@@ -516,7 +501,7 @@ void client::paintEvent( QPaintEvent * _pe )
 {
 	QPainter p( this );
 
-	if( m_connection->state() == ivsConnection::Connected/* && m_user != ""*/ &&
+	if( m_connection->state() == ivsConnection::Connected &&
 						m_mode == Mode_Overview )
 	{
 		p.drawImage( _pe->rect().topLeft(),
@@ -524,7 +509,8 @@ void client::paintEvent( QPaintEvent * _pe )
 	}
 	else
 	{
-		p.drawPixmap( 0, 0, m_statePixmap );
+		p.drawPixmap( _pe->rect().topLeft(), m_statePixmap,
+								_pe->rect() );
 	}
 
 	if( m_makeSnapshot )
@@ -676,7 +662,7 @@ void client::reload( const QString & _update )
 	}
 
 
-	// if we are called out of draw-thread, we may update...
+	// if we are called out of main-thread, we may update...
 	if( _update == CONFIRM_YES )
 	{
 		update();
@@ -713,11 +699,8 @@ void client::clientDemo( const QString & )
 void client::viewLive( const QString & )
 {
 	changeMode( Mode_Overview, m_mainWindow->localISD() );
-	//m_syncMutex.lock();
 
 	m_mainWindow->remoteControlDisplay( m_localIP, TRUE );
-
-	//m_syncMutex.unlock();
 }
 
 
@@ -726,11 +709,8 @@ void client::viewLive( const QString & )
 void client::remoteControl( const QString & )
 {
 	changeMode( Mode_Overview, m_mainWindow->localISD() );
-	//m_syncMutex.lock();
 
 	m_mainWindow->remoteControlDisplay( m_localIP );
-
-	//m_syncMutex.unlock();
 }
 
 
@@ -755,65 +735,6 @@ void client::sendTextMessage( const QString & _msg )
 	}
 }
 
-
-
-#if 0
-void client::distributeFile( const QString & _file )
-{
-/*	QMessageBox::information( this, tr( "Function not implemented yet." ), tr( "This function is not completely implemented yet. This is why it is disabled at the moment." ), QMessageBox::Ok );
-	return;*/
-
-	if( _file == "" )
-	{
-		QFileDialog ofd( this, tr( "Select file to distribute" ),
-							QDir::homePath() );
-		ofd.setFileMode( QFileDialog::ExistingFile );
-		if( ofd.exec() == QDialog::Accepted &&
-					ofd.selectedFiles().empty() == FALSE )
-		{
-			distributeFile( ofd.selectedFiles().front() );
-		}
-	}
-	else
-	{
-		m_syncMutex.lock ();
-		m_connection->sendFile( _file );
-		m_syncMutex.unlock();
-	}
-}
-
-
-
-
-void client::collectFiles( const QString & _filter )
-{
-/*	QMessageBox::information( this, tr( "Function not implemented yet."), tr("This function is not completely implemented yet. This is why it is disabled at the moment."), QMessageBox::Ok);
-	return;*/
-
-	if( _filter.isEmpty() )
-	{
-		bool ok;
-		QString f = QInputDialog::getText( this, tr( "Collect files" ),
-						tr( "Please enter the name of "
-							"the file to be "
-							"collected.\nOnly "
-							"files located in the "
-							"PUBLIC-directory are "
-							"allowed." ),
-						QLineEdit::Normal, "", &ok );
-		if( ok && !f.isEmpty() )
-		{
-			collectFiles( f );
-		}
-	}
-	else
-	{
-		m_syncMutex.lock ();
-		m_connection->collectFiles( _filter );
-		m_syncMutex.unlock();
-	}
-}
-#endif
 
 
 
@@ -859,30 +780,6 @@ void client::snapshot( const QString & )
 
 void client::powerOn( const QString & )
 {
-/*	QString bcast;
-	QList<QNetworkInterface> ifs = QNetworkInterface::allInterfaces();
-	for( QList<QNetworkInterface>::const_iterator it = ifs.begin();
-				it != ifs.end() && !bcast.isEmpty(); ++it )
-	{
-		QList<QNetworkAddressEntry> nae = it->addressEntries();
-		for( QList<QNetworkAddressEntry>::const_iterator it2 =
-								nae.begin();
-						it2 != nae.end(); ++it2 )
-		{
-			if( !( it2->ip() ==
-				QHostAddress( QHostAddress::LocalHost ) ) )
-			{
-				bcast = it2->broadcast().toString();
-				break;
-			}
-		}
-	}
-
-	if( bcast.isEmpty() )
-	{
-		bcast = QHostAddress( QHostAddress::Broadcast ).toString();
-	}*/
-
 	m_mainWindow->localISD()->wakeOtherComputer( m_mac );
 }
 
@@ -891,29 +788,6 @@ void client::powerOn( const QString & )
 
 void client::reboot( const QString & _confirm )
 {
-/*	if( userLoggedIn() )
-	{
-		if( QMessageBox::warning( this, tr( "User logged in" ),
-			tr( "Warning: you are trying to reboot a client at "
-				"which a user is logged in! Continue anyway?" ),
-						QMessageBox::Yes,
-						QMessageBox::No ) ==
-							QMessageBox::No )
-		{
-			return;
-		}
-	}
-	else if( _confirm == CONFIRM_YES || _confirm.isEmpty() )
-	{
-		if( QMessageBox::question( this, tr( "Reboot client" ),
-			tr( "Are you sure want to reboot selected client?" ),
-						QMessageBox::Yes,
-						QMessageBox::No ) ==
-							QMessageBox::No )
-		{
-			return;
-		}
-	}*/
 	m_updateThread->enqueueCommand( updateThread::Reboot );
 }
 
@@ -923,29 +797,6 @@ void client::reboot( const QString & _confirm )
 
 void client::powerDown( const QString & _confirm )
 {
-/*	if( userLoggedIn() )
-	{
-		if( QMessageBox::warning( this, tr( "User logged in" ),
-			tr( "Warning: you are trying to power off a client at "
-				"which a user is logged in! Continue anyway?" ),
-						QMessageBox::Yes,
-						QMessageBox::No ) ==
-							QMessageBox::No )
-		{
-			return;
-		}
-	}
-	else if( _confirm == CONFIRM_YES || _confirm == "" )
-	{
-		if( QMessageBox::question( this, tr( "Power off client" ),
-			tr( "Are you sure want to power off selected client?" ),
-						QMessageBox::Yes,
-						QMessageBox::No ) ==
-							QMessageBox::No )
-		{
-			return;
-		}
-	}*/
 	m_updateThread->enqueueCommand( updateThread::PowerDown );
 }
 
@@ -1007,6 +858,14 @@ client::states client::currentState( void ) const
 
 
 
+
+
+
+
+
+
+
+
 updateThread::updateThread( client * _client ) :
 	QThread(),
 	m_client( _client )
@@ -1016,10 +875,13 @@ updateThread::updateThread( client * _client ) :
 
 
 
+
 void updateThread::update( void )
 {
-	if( mainWindow::atExit() == FALSE && m_client->isVisible() &&
-		!m_client->m_mainWindow->remoteControlRunning() )
+	QMutex m;
+	m_client->m_mainWindow->blockWhileRemoteControlRunning( &m );
+
+	if( mainWindow::atExit() == FALSE && m_client->isVisible() )
 	{
 		m_client->processCmd( client::Reload, CONFIRM_NO );
 	}
@@ -1103,10 +965,11 @@ void updateThread::run( void )
 	QTimer t;
 	connect( &t, SIGNAL( timeout() ), this, SLOT( update() ),
 							Qt::DirectConnection );
-	t.start( m_client->m_mainWindow->getClassroomManager()->updateInterval() *
-									1000 );
+	t.start( m_client->m_mainWindow->getClassroomManager()->updateInterval()
+								* 1000 );
 	exec();
 }
+
 
 
 

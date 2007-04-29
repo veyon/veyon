@@ -112,9 +112,6 @@ public slots:
 	void changeGlobalClientMode( int );
 	void logoutUser( void );
 	void sendMessage( void );
-	void distributeFile( void );
-	void collectFiles( void );
-	void collectFilesFromUserList( void );
 	void powerOnClients( void );
 	void powerDownClients( void );
 	void multiLogon( void );

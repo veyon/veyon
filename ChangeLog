@@ -1,5 +1,27 @@
 2007-04-29	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
+	* ima/src/client.cpp:
+	* ima/src/main_window.cpp:
+	* ima/src/main_window.h:
+	introduced mechanisms for blocking all client-update-threads via a
+	wait-condition while remote-control is active for not wasting
+	CPU-time - should speed up remote-control a bit
+
+	* ima/src/classroom_manager.cpp:
+	* ima/dialogs/config.ui:
+	defaulted update-interval from 1 to 2 for not causing too high
+	CPU-load
+
+	* ima/src/client.cpp:
+	in paintEvent() only redraw requested rect of state-pixmap - possible
+	speed-up
+
+	* ima/src/main_window.cpp:
+	* ima/src/classroom_manager.h:
+	* ima/src/client.cpp:
+	* ima/src/client.h:
+	cleanups
+
 	* lib/src/system_key_trapper.cpp:
 	- set m_enabled in setEnabled()-method
 	- decrement s_refCnt before accessing it

@@ -82,6 +82,8 @@ mainWindow::mainWindow() :
 	QMainWindow(/* 0, Qt::FramelessWindowHint*/ ),
 	m_openedTabInSideBar( 1 ),
 	m_localISD( NULL ),
+	m_clientUpdateBlocker(),
+	m_rctrlLock(),
 	m_remoteControlWidget( NULL )
 {
 	setWindowTitle( tr( "iTALC" ) + " " + VERSION );
@@ -237,49 +239,6 @@ mainWindow::mainWindow() :
 				"users e.g. to tell them new tasks etc." ),
 			m_classroomManager, SLOT( sendMessage() ), m_toolBar );
 
-/*	m_toolBar->addAction( QPixmap( ":/resources/distribute_file.png" ),
-						tr( "Distribute" ),
-							m_classroomManager,
-							SLOT( distributeFile() )
-			)->setWhatsThis( tr( "If you want to distribute a file "
-					"to all pupils (e.g. a worksheet to "
-					"be filled out), you can click on this "
-					"button. Afterwards you can select the "
-					"file you want to distribute and then "
-					"this file is copied into \"%1\" in "
-					"every pupils home-directory."
-					).arg( client::tr( "material" ) ) );
-
-	QAction * cf = m_toolBar->addAction(
-				QPixmap( ":/resources/collect_files.png" ),
-						tr( "Collect" ),
-						m_classroomManager,
-						SLOT( collectFiles() ) );
-	cf->setWhatsThis( tr( "For collecting a specific file "
-				"from every pupil click on this "
-				"button. Then you can enter the "
-				"filename (wildcards are possible) and "
-				"the file is copied from each pupil if "
-				"it exists. All collected files are "
-				"stored in the directory \"%1\" in "
-				"your home-directory." ).arg (
-					client::tr( "collected-files" ) ) );
-
-	QMenu * file_collect_menu = new QMenu( this );
-	file_collect_menu->addAction( QPixmap( ":/resources/users.png" ),
-					tr( "Collect files from users logged "
-									"in" ),
-						m_classroomManager,
-						SLOT( collectFiles() ) );
-
-	file_collect_menu->addAction( QPixmap( ":/resources/filesave.png" ),
-					tr( "Collect files from users in "
-						"exported user-list" ),
-					m_classroomManager,
-					SLOT( collectFilesFromUserList() ) );
-	cf->setMenu( file_collect_menu );
-	//cf->setMenuDelay( 1 );*/
-
 
 	toolButton * power_on = new toolButton(
 			QPixmap( ":/resources/power_on.png" ),
@@ -327,24 +286,6 @@ mainWindow::mainWindow() :
 				"are re-arranged and adjusted." ),
 			m_classroomManager, SLOT( arrangeWindows() ), m_toolBar );
 
-/*	m_toolBar->addAction( QPixmap( ":/resources/inc_client_size.png" ),
-					tr( "Increase" ),
-						m_classroomManager,
-						SLOT( increaseClientSize() )
-			)->setWhatsThis( tr( "When clicking this button, the "
-					"size of all visible client-windows is "
-					"increased, if they do not already "
-					"have the biggest possible size. " ) );
-
-	m_toolBar->addAction( QPixmap( ":/resources/dec_client_size.png" ),
-					tr( "Decrease" ),
-						m_classroomManager,
-						SLOT( decreaseClientSize() )
-			)->setWhatsThis( tr( "When clicking this button, the "
-					"size of the visible client-windows is "
-					"decreased, if they do not already "
-					"have the smallest possible size." ) );
-*/
 	m_toolBar->addWidget( scr );
 	m_toolBar->addWidget( overview_mode );
 	m_toolBar->addWidget( fsdemo_mode );
@@ -393,7 +334,7 @@ mainWindow::mainWindow() :
 	m_localISD->demoServerStop();
 	m_localISD->demoServerRun( __demo_quality, localSystem::freePort() );
 
-	QTimer::singleShot( 1000, m_classroomManager, SLOT( updateClients() ) );
+	QTimer::singleShot( 2000, m_classroomManager, SLOT( updateClients() ) );
 
 	m_updateThread = new updateThread( this );
 
@@ -434,6 +375,7 @@ void mainWindow::closeEvent( QCloseEvent * _ce )
 
 void mainWindow::remoteControlDisplay( const QString & _ip, bool _view_only )
 {
+	QWriteLocker wl( &m_rctrlLock );
 	if( m_remoteControlWidget  )
 	{
 		return;
@@ -448,7 +390,10 @@ void mainWindow::remoteControlDisplay( const QString & _ip, bool _view_only )
 
 void mainWindow::remoteControlWidgetClosed( QObject * )
 {
+	m_rctrlLock.lockForWrite();
         m_remoteControlWidget = NULL;
+	m_rctrlLock.unlock();
+	m_clientUpdateBlocker.wakeAll();
 }
 
 
