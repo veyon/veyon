@@ -1,7 +1,7 @@
 /*
  * demo_client.cpp - client for demo-server
  *
- * Copyright (c) 2006 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2007 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *  
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -46,7 +46,7 @@ demoClient::demoClient( const QString & _host, bool _fullscreen ) :
 	QVBoxLayout * toplevel_layout = new QVBoxLayout( m_toplevel );
 	toplevel_layout->setMargin( 0 );
 	toplevel_layout->setSpacing( 0 );
-	toplevel_layout->addWidget( new vncView( _host, TRUE, m_toplevel ) );
+	toplevel_layout->addWidget( new vncView( _host, m_toplevel ) );
 
 	connect( m_toplevel, SIGNAL( destroyed( QObject * ) ),
 			this, SLOT( viewDestroyed( QObject * ) ) );

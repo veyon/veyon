@@ -172,11 +172,11 @@ void enableStickyKeys( bool _enable )
 #endif
 
 
-systemKeyTrapper::systemKeyTrapper( void ) :
+systemKeyTrapper::systemKeyTrapper( bool _enabled ) :
 	QObject(),
 	m_enabled( FALSE )
 {
-	setEnabled( TRUE );
+	setEnabled( _enabled );
 }
 
 

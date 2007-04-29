@@ -41,7 +41,8 @@ class remoteControlWidgetToolBar : public QWidget
 {
 	Q_OBJECT
 public:
-	remoteControlWidgetToolBar( remoteControlWidget * _parent );
+	remoteControlWidgetToolBar( remoteControlWidget * _parent,
+							bool _view_only );
 	virtual ~remoteControlWidgetToolBar();
 
 
@@ -92,6 +93,7 @@ public:
 
 public slots:
 	void toggleFullScreen( bool );
+	void toggleViewOnly( bool );
 
 
 protected:

@@ -76,11 +76,11 @@ inject.o: $(srcdir)/src/inject.cpp
 	$(CXX) -c -o $@ $< -DHAVE_CONFIG_H $(CXXFLAGS) $(QT_CXXFLAGS) $(INCLUDES) $(CPPFLAGS) -O0
 
 if HAVE_LIBSSL
-LIBSSL_LDADD = -lssl -lcrypto
+LIBSSL = -lssl -lcrypto
 endif
 
 if HAVE_LIBEAY32
-LIBSSL_LDADD = -leay32
+LIBSSL = -leay32
 endif
 
 
@@ -88,14 +88,14 @@ if BUILD_WIN32
 shared-lib: italc_core.dll
 
 italc_core.dll: libitalc_core-static.a italc_core_qrc.o
-	$(CXX) *.o -shared -Wl,-no-undefined -Wl,-enable-runtime-pseudo-reloc -Wl,--out-implib,libitalc_core.a -o $@ $(QT_LDADD) $(QT_LIB_GUI) $(LIBSSL_LDADD) -lz -ljpeg -lpsapi && $(STRIP) italc_core.dll
+	$(CXX) *.o -shared -Wl,-no-undefined -Wl,-enable-runtime-pseudo-reloc -Wl,--out-implib,libitalc_core.a -o $@ $(QT_LDADD) $(QT_LIB_GUI) $(LIBSSL) -lz -ljpeg -lpsapi && $(STRIP) italc_core.dll
 endif
 
 if BUILD_LINUX
 shared-lib: libitalc_core.so
 
 libitalc_core.so: libitalc_core-static.a italc_core_qrc.o
-	$(CXX) *.o -shared -Wl,-no-undefined -Wl,-enable-runtime-pseudo-reloc -o $@  $(QT_LDADD) $(QT_LIB_GUI) $(LIBSSL_LDADD) -lz -ljpeg
+	$(CXX) *.o -shared -Wl,-no-undefined -Wl,-enable-runtime-pseudo-reloc -o $@  $(QT_LDADD) $(QT_LIB_GUI) $(LIBSSL) -lz -ljpeg
 endif
 
 

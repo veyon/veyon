@@ -48,14 +48,17 @@ class vncView : public QWidget
 {
 	Q_OBJECT
 public:
-	vncView( const QString & _host, bool _view_only = TRUE,
-							QWidget * _parent = 0 );
+	vncView( const QString & _host, QWidget * _parent = 0 );
 	virtual ~vncView();
 
-	bool viewOnly( void ) const
+	inline bool viewOnly( void ) const
 	{
 		return( m_viewOnly );
 	}
+
+
+public slots:
+	void setViewOnly( bool _vo );
 
 
 signals:
@@ -90,6 +93,7 @@ private:
 
 	ivsConnection * m_connection;
 	bool m_viewOnly;
+	bool m_viewOnlyFocus;
 
 	QPoint m_viewOffset;
 

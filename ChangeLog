@@ -1,5 +1,22 @@
 2007-04-29	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
+	* lib/Makefile.am:
+	fixed variable-name
+
+	* lib/src/vncview.cpp:
+	show local cursor when only viewing
+
+	* ica/src/demo_client.cpp:
+	* ima/src/remote_control_widget.cpp:
+	* ima/src/remote_control_widget.h:
+	* lib/include/system_key_trapper.h:
+	* lib/include/vncview.h:
+	* lib/src/system_key_trapper.cpp:
+	* lib/src/vncview.cpp:
+	made view-only-property of vncView-class switchable and added button
+	in remote-control-view to be able to switch between "remote control"
+	and "view only"
+
 	* ima/src/client.cpp:
 	* ima/src/main_window.cpp:
 	* ima/src/main_window.h:

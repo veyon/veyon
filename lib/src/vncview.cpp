@@ -42,13 +42,14 @@
 
 
 
-vncView::vncView( const QString & _host, bool _view_only, QWidget * _parent ) :
+vncView::vncView( const QString & _host, QWidget * _parent ) :
 	QWidget( _parent ),
 	m_connection( NULL ),
-	m_viewOnly( _view_only ),
+	m_viewOnly( TRUE ),
+	m_viewOnlyFocus( TRUE ),
 	m_viewOffset( QPoint( 0, 0 ) ),
 	m_buttonMask( 0 ),
-	m_sysKeyTrapper( NULL )
+	m_sysKeyTrapper( new systemKeyTrapper( FALSE ) )
 {
 	m_establishingConnection = new progressWidget(
 		tr( "Establishing connection to %1 ..." ).arg( _host ),
@@ -71,19 +72,8 @@ vncView::vncView( const QString & _host, bool _view_only, QWidget * _parent ) :
 	}
 	resize( parent_size );
 
-	if( !m_viewOnly )
-	{
-		m_sysKeyTrapper = new systemKeyTrapper();
-#ifdef BUILD_LINUX
-		// for some reason we have to grab mouse and then release
-		// again to make complete keyboard-grabbing working ... ??
-		grabMouse();
-		releaseMouse();
-#endif
-		grabKeyboard();
-		setFocusPolicy( Qt::StrongFocus );
-		setFocus();
-	}
+	setFocusPolicy( Qt::StrongFocus );
+	setFocus();
 
 	new vncViewThread( this );
 
@@ -100,6 +90,38 @@ vncView::~vncView()
 	findChild<vncViewThread *>()->wait();
 	delete m_connection;
 	delete m_sysKeyTrapper;
+}
+
+
+
+
+void vncView::setViewOnly( bool _vo )
+{
+	if( _vo == m_viewOnly )
+	{
+		return;
+	}
+
+	m_viewOnly = _vo;
+
+	if( m_viewOnly )
+	{
+		releaseKeyboard();
+		m_sysKeyTrapper->setEnabled( FALSE );
+		setCursor( Qt::ArrowCursor );
+	}
+	else
+	{
+#ifdef BUILD_LINUX
+		// for some reason we have to grab mouse and then release
+		// again to make complete keyboard-grabbing working ... ??
+		grabMouse();
+		releaseMouse();
+#endif
+		grabKeyboard();
+		m_sysKeyTrapper->setEnabled( TRUE );
+		updateCursorShape();
+	}
 }
 
 
@@ -206,9 +228,13 @@ void vncView::framebufferUpdate( void )
 
 void vncView::updateCursorShape( void )
 {
-	setCursor( QCursor( QPixmap::fromImage( m_connection->cursorShape() ),
+	if( !viewOnly() && !m_connection->cursorShape().isNull() )
+	{
+		setCursor( QCursor( QPixmap::fromImage(
+						m_connection->cursorShape() ),
 			m_connection->cursorHotSpot().x(),
 			m_connection->cursorHotSpot().y() ) );
+	}
 }
 
 
@@ -219,7 +245,7 @@ void vncView::updateCursorShape( void )
 // key-event-dispatching on our own
 bool vncView::event( QEvent * e )
 {
-	if( m_sysKeyTrapper != NULL && m_sysKeyTrapper->isEnabled() )
+	if( !m_viewOnly )
 	{
 		switch( e->type() )
 		{
@@ -239,10 +265,9 @@ bool vncView::event( QEvent * e )
 
 void vncView::focusInEvent( QFocusEvent * _e )
 {
-	if( m_sysKeyTrapper != NULL )
+	if( !m_viewOnlyFocus )
 	{
-		grabKeyboard();
-		m_sysKeyTrapper->setEnabled( TRUE );
+		setViewOnly( FALSE );
 	}
 	QWidget::focusInEvent( _e );
 }
@@ -252,10 +277,10 @@ void vncView::focusInEvent( QFocusEvent * _e )
 
 void vncView::focusOutEvent( QFocusEvent * _e )
 {
-	if( m_sysKeyTrapper != NULL )
+	m_viewOnlyFocus = viewOnly();
+	if( !viewOnly() )
 	{
-		releaseKeyboard();
-		m_sysKeyTrapper->setEnabled( FALSE );
+		setViewOnly( TRUE );
 	}
 	QWidget::focusOutEvent( _e );
 }
@@ -491,17 +516,20 @@ void vncView::paintEvent( QPaintEvent * _pe )
 			_pe->rect().translated( m_viewOffset ),
 			Qt::ThresholdDither );
 
-	const QImage & cursor = m_connection->cursorShape();
-	const QRect cursor_rect = QRect( m_connection->cursorPos() -
+	if( viewOnly() && !m_connection->cursorShape().isNull() )
+	{
+		const QImage & cursor = m_connection->cursorShape();
+		const QRect cursor_rect = QRect( m_connection->cursorPos() -
 						m_connection->cursorHotSpot(),
 					cursor.size() ).translated(
 								-m_viewOffset );
-/*	// parts of cursor within updated region?
-	if( _pe->rect().intersects( cursor_rect ) )
-	{
-		// then repaint it
-		p.drawImage( cursor_rect.topLeft(), cursor );
-	}*/
+		// parts of cursor within updated region?
+		if( _pe->rect().intersects( cursor_rect ) )
+		{
+			// then repaint it
+			p.drawImage( cursor_rect.topLeft(), cursor );
+		}
+	}
 
 	// draw black borders if neccessary
 	const int fbw = m_connection->framebufferSize().width();
@@ -638,28 +666,26 @@ vncWorker::vncWorker( vncView * _vv ) :
 	QObject(),
 	m_vncView( _vv )
 {
-	if( !m_vncView->m_viewOnly )
-	{
-		qRegisterMetaType<Q_UINT16>( "Q_UINT16" );
-		qRegisterMetaType<Q_UINT32>( "Q_UINT32" );
-		connect( m_vncView->m_sysKeyTrapper,
-					SIGNAL( keyEvent( Q_UINT32, bool ) ),
+	qRegisterMetaType<Q_UINT16>( "Q_UINT16" );
+	qRegisterMetaType<Q_UINT32>( "Q_UINT32" );
+	connect( m_vncView->m_sysKeyTrapper,
+				SIGNAL( keyEvent( Q_UINT32, bool ) ),
 				this, SLOT( sendKeyEvent( Q_UINT32, bool ) ) );
 
-		connect( m_vncView,
-			SIGNAL( pointerEvent( Q_UINT16, Q_UINT16, Q_UINT16 ) ),
-			this, SLOT( sendPointerEvent( Q_UINT16, Q_UINT16,
+	connect( m_vncView,
+		SIGNAL( pointerEvent( Q_UINT16, Q_UINT16, Q_UINT16 ) ),
+		this, SLOT( sendPointerEvent( Q_UINT16, Q_UINT16,
 								Q_UINT16 ) ) );
-		connect( m_vncView, SIGNAL( keyEvent( Q_UINT32, bool ) ),
+	connect( m_vncView, SIGNAL( keyEvent( Q_UINT32, bool ) ),
 				this, SLOT( sendKeyEvent( Q_UINT32, bool ) ) );
-	}
+
 
 	ivsConnection * conn = m_vncView->m_connection;
 	QTimer * t = new QTimer( this );
 	connect( t, SIGNAL( timeout() ), conn,
 			SLOT( sendIncrementalFramebufferUpdateRequest() ),
 							Qt::DirectConnection );
-	if( m_vncView->m_viewOnly )
+/*	if( m_vncView->m_viewOnly )
 	{
 		t->start( 80 );
 	}
@@ -668,7 +694,8 @@ vncWorker::vncWorker( vncView * _vv ) :
 		// when remote-controlling we need more updates for smoother
 		// usage
 		t->start( 50 );
-	}
+	}*/
+	t->start( 50 );
 
 	framebufferUpdate();
 }
@@ -692,7 +719,11 @@ void vncWorker::framebufferUpdate( void )
 void vncWorker::sendPointerEvent( Q_UINT16 _x, Q_UINT16 _y,
 							Q_UINT16 _button_mask )
 {
-	m_vncView->m_connection->sendPointerEvent( _x, _y, _button_mask );
+	if( !m_vncView->viewOnly() )
+	{
+		m_vncView->m_connection->sendPointerEvent( _x, _y,
+								_button_mask );
+	}
 }
 
 
@@ -700,7 +731,10 @@ void vncWorker::sendPointerEvent( Q_UINT16 _x, Q_UINT16 _y,
 
 void vncWorker::sendKeyEvent( Q_UINT32 _key, bool _down )
 {
-	m_vncView->m_connection->sendKeyEvent( _key, _down );
+	if( !m_vncView->viewOnly() )
+	{
+		m_vncView->m_connection->sendKeyEvent( _key, _down );
+	}
 }
 
 

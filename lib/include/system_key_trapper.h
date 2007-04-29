@@ -54,7 +54,7 @@ public:
 	} ;
 
 
-	systemKeyTrapper( void );
+	systemKeyTrapper( bool _enable = TRUE );
 	~systemKeyTrapper();
 
 	void setEnabled( bool _on );
@@ -70,8 +70,10 @@ private:
 
 	bool m_enabled;
 
+
 private slots:
 	void checkForTrappedKeys( void );
+
 
 signals:
 	void keyEvent( Q_UINT32, bool );
