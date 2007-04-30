@@ -2,7 +2,7 @@
 .\" First parameter, NAME, should be all caps
 .\" Second parameter, SECTION, should be 1-8, maybe w/ subsection
 .\" other parameters are allowed: see man(7), man(1)
-.TH ICA 1 "January 06, 2007"
+.TH ICA 1 "April 30, 2007"
 .\" Please adjust this date whenever revising the manpage.
 .\"
 .\" Some roff macros, for reference:
@@ -34,7 +34,7 @@ is the software which needs to run on clients in order to access them using iTAL
 .SH OPTIONS
 .IP "\fB\-role\fP \fIrole\fP
 .IP
-Set role under which ICA should run where \fIrole\fP has to be "teacher", "admin", "supporter" or "other". This is mainly used in combination with the \fB-rctrl\fP option.
+Set role under which ICA should run where \fIrole\fP has to be "teacher", "admin", "supporter" or "other". This is mainly used in combination with the \fB-createkeypair\fP option.
 .IP "\fB\-ivsport\fP \fIport\fP
 .IP
 Set port at which the iTALC-VNC-server should listen. Default: 5900
@@ -57,11 +57,6 @@ Do not use the new copy_tiles() framebuffer mechanism,
 just use 1 shm tile for polling.  Limits shm segments
 used to 3.
 .
-.SH COMMANDS
-.IP "\fB\-rctrl\fP \fIhost:[port]\fP
-.IP
-Directly remote-control the specified host. You can omit port if the server is running at the default-port (5900).
-.
 .IP "\fB\-createkeypair\fP \fI[private-key-file] [public-key-file]\fP
 .IP
 Create a new key pair for authentication between master and client. Until specified with \fB-role\fP the key-pair will be created for role "other". The keys either will be saved under given file-names or the default ones according to the selected role (/etc/italc/keys/private/<role>/key and /etc/italc/keys/public/<role>/key).
@@ -72,4 +67,4 @@ Create a new key pair for authentication between master and client. Until specif
 .SH AUTHOR
 iTALC was written by Tobias Doerffel. See AUTHORS for details.
 .PP
-This manual page was written by Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>, for the Debian project (but may be used by others).
+This manual page was written by Tobias Doerffel <tobydox /at/ users /dot/ sf /dot/ net>, for the Debian project (but may be used by others).
