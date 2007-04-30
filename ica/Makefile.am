@@ -74,7 +74,7 @@ SharedData.o: $(srcdir)/win32/src/VNCHooks/SharedData.cpp
 	$(CXX) $(INCLUDES) $(AM_CXXFLAGS) $< -c -o $@
 
 vnchooks.dll: VNCHooks.o SharedData.o
-	$(CXX) VNCHooks.o SharedData.o -Wl,-lgdi32 -shared -Wl,-no-undefined -Wl,--out-implib,libvnchooks.a -o $@ && $(STRIP) $@
+	$(CXX) VNCHooks.o SharedData.o -Wl,-lgdi32 -shared -Wl,--no-undefined -Wl,--out-implib,libvnchooks.a -o $@ && $(STRIP) $@
 
 endif
 
