@@ -320,7 +320,7 @@ void powerDown( void )
 				);*/
 	enablePrivilege( SE_SHUTDOWN_NAME, FALSE );
 #else
-	QProcess::startDetached( "halt" );
+	QProcess::startDetached( "poweroff" );
 #endif
 }
 

@@ -113,6 +113,7 @@ classroomManager::classroomManager( mainWindow * _main_window, QWidget * _parent
 									200 );
 	m_view->setSortingEnabled( TRUE );
 	m_view->setRootIsDecorated( TRUE );
+	m_view->sortItems( 0, Qt::AscendingOrder );
 //	m_view->setShowToolTips( TRUE );
 	m_view->setWindowTitle( tr( "Classroom-Manager" ) );
 	m_view->setContextMenuPolicy( Qt::CustomContextMenu );

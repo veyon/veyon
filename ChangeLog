@@ -1,3 +1,35 @@
+2007-05-01	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* lib/src/local_system.cpp:
+	use "halt" rather than "poweroff" for halting Linux-systems
+
+	* ima/src/classroom_manager.cpp:
+	sort items in ascending order per default
+
+	* ica/win32/src/vncEncodeRRE.cpp:
+	* ica/win32/src/VSocket.cpp:
+	* ica/win32/src/vncDesktop.cpp:
+	* ica/win32/src/VideoDriver.cpp:
+	* ica/win32/src/vncEncoder.cpp:
+	* ica/win32/src/vncRegion.cpp:
+	* ica/win32/src/vncService.cpp:
+	* ica/win32/src/vncKeymap.cpp:
+	* ica/win32/src/vncEncodeHexT.cpp:
+	* ica/win32/src/vncClient.cpp:
+	fixes & cleanups to compile without any warnings at all
+
+	* ica/win32/src/vncServer.h:
+	* ica/win32/src/vncServer.cpp:
+	* ica/win32/src/vncDesktop.cpp:
+	* ica/win32/src/TsSessions.h:
+	* ica/win32/src/TsSessions.cpp:
+	* ica/win32/src/DynamicFn.cpp:
+	* ica/win32/src/DynamicFn.h:
+	* ica/win32/src/resource.cpp:
+	* ica/win32/win32vnc.cpp:
+	* ica/Makefile.am:
+	merged changes from TightVNC-upstream
+
 2007-04-30	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* ica/Makefile.am:
