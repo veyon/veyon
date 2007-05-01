@@ -187,10 +187,16 @@ public:
 	// not empty if empty passwords are disabled.
 	virtual BOOL ValidPasswordsSet();
 
+	// Version of ValidPasswordsSet() that does not use m_valid_passwords_set.
+	virtual BOOL ValidPasswordsSet_nocache();
+
 	// Determine if there are valid passwords (primary or view-only) AND all
 	// valid passwords are empty. If this function returns TRUE, no password
 	// authentication will be requested.
 	virtual BOOL ValidPasswordsEmpty();
+
+	// Version of ValidPasswordsEmpty() that does not use m_valid_passwords_empty.
+	virtual BOOL ValidPasswordsEmpty_nocache();
 
 	// Remote input handling
 	virtual void EnableRemoteInputs(BOOL enable);
@@ -220,7 +226,7 @@ public:
 	virtual void GetScreenInfo(int &width, int &height, int &depth);
 
 	// Allow connections without password authentication?
-	virtual void SetAuthRequired(BOOL reqd) {m_passwd_required = reqd;};
+	virtual void SetAuthRequired(BOOL reqd) {ResetPasswordsValidityInfo(); m_passwd_required = reqd;}
 	virtual BOOL AuthRequired() {return m_passwd_required;};
 
 	// Beep on connect/disconnect?
@@ -429,6 +435,27 @@ protected:
 
 	// Set of windows to send notifications to
 	vncNotifyList		m_notifyList;
+
+	// The value that would be returned by ValidPasswordsSet(). This variable has correct
+	// authentic value only if m_valid_passwords_set_cached is true. Maintaining this variable
+	// prevents from decoding passwords each time ValidPasswordsSet() is called.
+	BOOL				m_valid_passwords_set;
+
+	// This variable set to true means that the value of m_valid_passwords_set is authentic.
+	BOOL				m_valid_passwords_set_cached;
+
+	// The value that would be returned by ValidPasswordsEmpty(). This variable has correct
+	// authentic value only if m_valid_passwords_empty_cached is true. Maintaining this variable
+	// prevents from decoding passwords each time ValidPasswordsEmpty() is called.
+	BOOL				m_valid_passwords_empty;
+
+	// This variable set to true means that the value of m_valid_passwords_empty is authentic.
+	BOOL				m_valid_passwords_empty_cached;
+
+	// A short function to invalidate both m_valid_passwords_set and m_valid_passwords_empty.
+	void inline ResetPasswordsValidityInfo() {
+		m_valid_passwords_set_cached = m_valid_passwords_empty_cached = FALSE;
+	}
 };
 
 BOOL IsWinNT();

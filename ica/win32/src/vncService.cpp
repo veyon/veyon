@@ -670,7 +670,7 @@ vncService::KillAllClients()
 SERVICE_STATUS          g_srvstatus;       // current status of the service
 SERVICE_STATUS_HANDLE   g_hstatus;
 DWORD                   g_error = 0;
-DWORD					g_servicethread = NULL;
+DWORD			g_servicethread = (DWORD) NULL;
 char*                   g_errortext[256];
 
 // Forward defines of internal service functions
@@ -841,13 +841,13 @@ vncService::WinVNCServiceMain()
 				break;
 
 			// Register this process with the OS as a service!
-			RegisterService(NULL, RSP_SIMPLE_SERVICE);
+			RegisterService((DWORD)NULL, RSP_SIMPLE_SERVICE);
 
 			// Run the service itself
 			WinVNCAppMain();
 
 			// Then remove the service from the system service table
-			RegisterService(NULL, RSP_UNREGISTER_SERVICE);
+			RegisterService((DWORD)NULL, RSP_UNREGISTER_SERVICE);
 
 			// Free the kernel library
 			FreeLibrary(kerneldll);
@@ -929,7 +929,7 @@ void ServiceWorkThread(void *arg)
 	WinVNCAppMain();
 
 	// Mark that we're no longer running
-	g_servicethread = NULL;
+	g_servicethread = (DWORD) NULL;
 
 	// Tell the service manager that we've stopped.
     ReportStatus(
@@ -942,7 +942,7 @@ void ServiceWorkThread(void *arg)
 void ServiceStop()
 {
 	// Post a quit message to the main service thread
-	if (g_servicethread != NULL)
+	if (g_servicethread != (DWORD) NULL)
 	{
 		vnclog.Print(LL_INTINFO, VNCLOG("quitting from ServiceStop\n"));
 		PostThreadMessage(g_servicethread, WM_QUIT, 0, 0);
@@ -973,7 +973,7 @@ vncService::InstallService(BOOL silent)
     }
 
 	// Append the service-start flag to the end of the path:
-	if (strlen(path) + 4 + strlen(winvncRunService) < pathlength)
+	if ((int)(strlen(path) + 4 + strlen(winvncRunService)) < pathlength)
 		sprintf(servicecmd, "\"%s\" %s", path, winvncRunService);
 	else
 		return 0;
@@ -1119,7 +1119,7 @@ vncService::InstallService(BOOL silent)
 				char servicehelpercmd[pathlength];
 
 				// Append the service-helper-start flag to the end of the path:
-				if (strlen(path) + 4 + strlen(winvncRunServiceHelper) < pathlength)
+				if ((int)(strlen(path) + 4 + strlen(winvncRunServiceHelper)) < pathlength)
 					sprintf(servicehelpercmd, "\"%s\" %s", path, winvncRunServiceHelper);
 				else
 					return 0;
@@ -1366,7 +1366,7 @@ void LogErrorMsg(char *message)
 	// Use event logging to log the error
     heventsrc = RegisterEventSource(NULL, VNCSERVICENAME);
 
-	sprintf(msgbuff, "%.200s error: %d", VNCSERVICENAME, g_error);
+	sprintf(msgbuff, "%.200s error: %d", VNCSERVICENAME, (int) g_error);
     strings[0] = msgbuff;
     strings[1] = message;
 

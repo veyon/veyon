@@ -40,6 +40,7 @@
 #include "vncDesktop.h"
 #include "vncService.h"
 #include "WallpaperUtils.h"
+#include "TsSessions.h"
 
 #if (_MSC_VER>= 1300)
 #include <fstream>
@@ -59,7 +60,7 @@ const char szDesktopSink[] = "WinVNC desktop sink";
 
 // Atoms
 const char *VNC_WINDOWPOS_ATOMNAME = "VNCHooks.CopyRect.WindowPos";
-ATOM VNC_WINDOWPOS_ATOM = NULL;
+ATOM VNC_WINDOWPOS_ATOM = (ATOM) NULL;
 
 // Static members to use with new polling algorithm
 const int vncDesktop::m_pollingOrder[32] = {
@@ -160,6 +161,10 @@ void *vncDesktopThread::run_undetached(void *arg)
 	// Save the thread's "home" desktop, under NT (no effect under 9x)
 	HDESK home_desktop = GetThreadDesktop(GetCurrentThreadId());
 
+	// Try to make session zero the console session
+	if (!inConsoleSession())
+		setConsoleSession();
+
 	// Attempt to initialise and return success or failure
 	if (!m_desktop->Startup())
 	{
@@ -193,7 +198,7 @@ void *vncDesktopThread::run_undetached(void *arg)
 	MSG msg;
 	while (TRUE)
 	{
-		if (!PeekMessage(&msg, m_desktop->Window(), NULL, NULL, PM_REMOVE))
+		if (!PeekMessage(&msg, m_desktop->Window(), (UINT) NULL, (UINT) NULL, PM_REMOVE))
 		{
 			// Whenever the message queue becomes empty, we check to see whether
 			// there are updates to be passed to clients (first we make sure
@@ -401,6 +406,12 @@ vncDesktop::~vncDesktop()
 BOOL
 vncDesktop::Startup()
 {
+	// Currently, we just check whether we're in the console session, and
+	//   fail if not
+	if (!inConsoleSession()) {
+		vnclog.Print(LL_INTERR, VNCLOG("Console is not session zero - reconnect to restore Console session"));
+		return FALSE;
+	}
 
 	// Configure the display for optimal VNC performance.
 	SetupDisplayForConnection();
@@ -562,7 +573,7 @@ BOOL vncDesktop::Shutdown()
 	}
 
 	// Free the WindowPos atom!
-	if (VNC_WINDOWPOS_ATOM != NULL)
+	if (VNC_WINDOWPOS_ATOM != (ATOM) NULL)
 	{
 		if (GlobalDeleteAtom(VNC_WINDOWPOS_ATOM) != 0)
 		{
@@ -682,7 +693,7 @@ vncDesktop::KillScreenSaver()
 				// Pause long enough for the screen-saver to close
 				//Sleep(2000);
 				// Reset the screen saver so it can run again
-				SystemParametersInfo(SPI_SETSCREENSAVEACTIVE, TRUE, 0, SPIF_SENDWININICHANGE); 
+				SystemParametersInfo(SPI_SETSCREENSAVEACTIVE, (UINT) TRUE, 0, SPIF_SENDWININICHANGE); 
 			}
 			break;
 		}
@@ -698,7 +709,6 @@ void vncDesktop::ChangeResNow()
 	}
 
 	BOOL settingsUpdated = false;
-	int i = 0;
 
 	_ASSERTE(!m_lpAlternateDevMode);
 	m_lpAlternateDevMode = new DEVMODE; // *** create an instance of DEVMODE - Jeremy Peaks
@@ -2004,7 +2014,7 @@ BOOL vncDesktop::CheckUpdates()
 		UpdateBlankScreenTimer();
 
 		// Has the display resolution or desktop changed?
-		if (m_displaychanged || !vncService::InputDesktopSelected())
+		if (m_displaychanged || !vncService::InputDesktopSelected() || !inConsoleSession())
 		{
 			vnclog.Print(LL_STATE, VNCLOG("display resolution or desktop changed.\n"));
 
@@ -2266,8 +2276,10 @@ inline void vncDesktop::CheckRects(vncRegion &rgn, rectlist &rects)
 #endif
 }
 
+#ifdef _MSC_VER
 // This notably improves performance when using Visual C++ 6.0 compiler
 #pragma function(memcpy, memcmp)
+#endif
 
 static const int BLOCK_SIZE = 32;
 
@@ -2691,7 +2703,8 @@ void vncDesktop::CopyRect(RECT const &rcDest, POINT ptSrc)
 
 	// Clip the destination to the screen
 	RECT rcDr2;
-	if (!IntersectRect(&rcDr2, &rcDest, &m_server->GetSharedRect()))
+	const RECT r = m_server->GetSharedRect();
+	if (!IntersectRect(&rcDr2, &rcDest, &r))
 		return;
 
 // NOTE: this is important.
@@ -2712,7 +2725,7 @@ void vncDesktop::CopyRect(RECT const &rcDest, POINT ptSrc)
 
 	// Clip the source to the screen
 	RECT rcSr2;
-	if (!IntersectRect(&rcSr2, &rcSource, &m_server->GetSharedRect()))
+	if (!IntersectRect(&rcSr2, &rcSource, &r))
 		return;
 
 	rcDr2 = MoveRect(rcSr2, mv2);
@@ -2883,7 +2896,7 @@ BOOL vncDesktop::InitVideoDriver()
 	{
 		RECT	vdesk_rect;
 		GetSourceDisplayRect(vdesk_rect);
-		BOOL b = m_videodriver->Activate(bSolicitDASD, &vdesk_rect);
+		(BOOL) m_videodriver->Activate(bSolicitDASD, &vdesk_rect);
 	}
 
 	if (!m_videodriver->CheckVersion())
@@ -3067,7 +3080,7 @@ bool	bDbgBmDump(
 		"%04u.%02u.%02u-%02u-%02u-%02u-0x%08x.bmp",
 		stm.wYear, stm.wMonth, stm.wDay,
 		stm.wHour, stm.wMinute, stm.wSecond,
-		ptr);
+		(uint) ptr);
 
 	HANDLE hFile = CreateFile(
 		szFileName,

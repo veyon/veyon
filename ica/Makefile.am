@@ -191,6 +191,8 @@ EXTRA_DIST =	$(man_MANS)						\
 		$(srcdir)/win32/src/VNCHooks/VNCHooks.cpp		\
 		$(srcdir)/win32/src/VNCHooks/SharedData.cpp		\
 		$(srcdir)/win32/src/MinMax.cpp				\
+		$(srcdir)/win32/src/DynamicFn.cpp			\
+		$(srcdir)/win32/src/TsSessions.cpp			\
 		$(srcdir)/win32/src/VSocket.h				\
 		$(srcdir)/win32/src/stdhdrs.h				\
 		$(srcdir)/win32/src/vncBuffer.h				\
@@ -203,6 +205,8 @@ EXTRA_DIST =	$(man_MANS)						\
 		$(srcdir)/win32/src/vncEncodeHexT.h			\
 		$(srcdir)/win32/src/WinVNC.h				\
 		$(srcdir)/win32/src/VideoDriver.h			\
+		$(srcdir)/win32/src/DynamicFn.h				\
+		$(srcdir)/win32/src/TsSessions.h			\
 		$(srcdir)/win32/src/vncKeymap.h				\
 		$(srcdir)/win32/src/vncClient.h				\
 		$(srcdir)/win32/src/vncRegion.h				\

@@ -155,7 +155,7 @@ vncEncodeHexT::EncodeHextiles##bpp(BYTE *source, BYTE *dest,				\
 {																			\
     int x, y, w, h;															\
     int rectoffset, destoffset;												\
-    CARD##bpp bg, fg, newBg, newFg;											\
+    CARD##bpp bg=0, fg=0, newBg, newFg;											\
     BOOL mono, solid;														\
     BOOL validBg = FALSE;													\
     CARD##bpp clientPixelData[16*16*(bpp/8)];								\
@@ -362,7 +362,7 @@ testColours##bpp(CARD##bpp *data, int size,									\
 				 BOOL *mono, BOOL *solid,									\
 				 CARD##bpp *bg, CARD##bpp *fg)								\
 {																			\
-    CARD##bpp colour1, colour2;												\
+    CARD##bpp colour1=0, colour2=0;												\
     int n1 = 0, n2 = 0;														\
     *mono = TRUE;															\
     *solid = TRUE;															\

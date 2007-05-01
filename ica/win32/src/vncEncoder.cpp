@@ -229,7 +229,7 @@ vncEncoder::GetRemotePalette(RGBQUAD *quadlist, UINT ncolours)
 		vnclog.Print(LL_INTINFO, VNCLOG("generating 8-bit palette data\n"));
 
 		rfbPixelFormat remote;
-		remote.trueColour = TRUE;
+		remote.trueColour = (uint8_t)TRUE;
 		remote.bitsPerPixel = 32;
 		remote.depth = 24;
 		remote.bigEndian = FALSE;

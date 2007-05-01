@@ -31,7 +31,7 @@
 // key presses, to keep this messy code on one place!
 
 // Disable warnings about truncated names caused by #include <map>
-#pragma warning(disable : 4786)
+//#pragma warning(disable : 4786)
 
 #include "vncKeymap.h"
 
@@ -183,8 +183,8 @@ inline void doKeyboardEvent(BYTE vkCode, vncServer *server, DWORD flags) {
 class KeyStateModifier {
 public:
   KeyStateModifier(int vkCode_, vncServer *server_, int flags_=0)
-    : vkCode(vkCode_), flags(flags_), server(server_),
-      pressed(false), released(false)
+    : vkCode(vkCode_), flags(flags_),
+      pressed(false), released(false), server(server_)
   {}
   void press() {
     if (!(GetAsyncKeyState(vkCode) & 0x8000)) {
@@ -225,7 +225,7 @@ class Keymapper {
 public:
   Keymapper()
   {
-    for (int i = 0; i < sizeof(keymap) / sizeof(keymap_t); i++) {
+    for (int i = 0; i < (int)(sizeof(keymap) / sizeof(keymap_t)); i++) {
       vkMap[keymap[i].keysym] = keymap[i].vk;
       extendedMap[keymap[i].keysym] = keymap[i].extended;
     }

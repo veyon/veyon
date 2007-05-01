@@ -277,7 +277,7 @@ VSocket::Connect(VStringConst address, const VCard port)
   addr.sin_addr.s_addr = inet_addr(address);
 
   // Was the string a valid IP address?
-  if (addr.sin_addr.s_addr == -1)
+  if ((int) addr.sin_addr.s_addr == -1)
     {
       // No, so get the actual IP address of the host name specified
       struct hostent *pHost;
@@ -386,12 +386,12 @@ VSocket::TryAccept(VSocket **new_socket, long ms)
 {
 	// Check this socket
 	if (sock < 0)
-		return NULL;
+		return VFalse;
 
 	struct fd_set fds;
 	struct timeval tm;
 	FD_ZERO(&fds);
-	FD_SET((unsigned int)sock, &fds);
+	FD_SET((int)sock, &fds);
 	tm.tv_sec = ms / 1000;
 	tm.tv_usec = (ms % 1000) * 1000;
 	int ready = select(sock + 1, &fds, NULL, NULL, &tm);
@@ -545,7 +545,7 @@ VSocket::SendExact(const char *buff, const VCard bufflen)
 		// Wait until some data can be sent
 		do {
 			FD_ZERO(&write_fds);
-			FD_SET((unsigned int)sock, &write_fds);
+			FD_SET((int)sock, &write_fds);
 			tm.tv_sec = 1;
 			tm.tv_usec = 0;
 			count = select(sock + 1, NULL, &write_fds, NULL, &tm);
@@ -555,7 +555,7 @@ VSocket::SendExact(const char *buff, const VCard bufflen)
 			return VFalse;
 		}
 		// Actually send some data
-		if (FD_ISSET((unsigned int)sock, &write_fds)) {
+		if (FD_ISSET((int)sock, &write_fds)) {
 			if (!SendFromQueue())
 				return VFalse;
 		}
@@ -653,10 +653,10 @@ VSocket::ReadExact(char *buff, const VCard bufflen)
 		// Wait until some data can be read or sent
 		do {
 			FD_ZERO(&read_fds);
-			FD_SET((unsigned int)sock, &read_fds);
+			FD_SET((int)sock, &read_fds);
 			FD_ZERO(&write_fds);
 			if (out_queue)
-				FD_SET((unsigned int)sock, &write_fds);
+				FD_SET((int)sock, &write_fds);
 			tm.tv_sec = 0;
 			tm.tv_usec = 50;
 			count = select(sock + 1, &read_fds, &write_fds, NULL, &tm);

@@ -168,7 +168,7 @@ BOOL vncRegion::Rectangles(rectlist &rects)
 		return FALSE;
 
 	// Get the size of buffer required
-	buffsize = GetRegionData(region, NULL, 0);
+	buffsize = GetRegionData(region, (DWORD) NULL, 0);
 	buff = (RGNDATA *) new BYTE [buffsize];
 	if (buff == NULL)
 		return FALSE;

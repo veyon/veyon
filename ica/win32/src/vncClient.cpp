@@ -440,7 +440,7 @@ vncClientThread::NegotiateAuthentication(int authType)
 		if (!m_socket->ReadExact((char *)&type, sizeof(type)))
 			return FALSE;
 		type = Swap32IfLE(type);
-		if (type != authType) {
+		if ((int) type != authType) {
 			vnclog.Print(LL_CONNERR, VNCLOG("incorrect authentication type requested\n"));
 			return FALSE;
 		}
@@ -1037,8 +1037,8 @@ vncClientThread::run(void *arg)
 					update.top = Swap16IfLE(msg.fur.y)+ sharedRect.top;
 					update.right = update.left + Swap16IfLE(msg.fur.w);
 
-					_ASSERTE(Swap16IfLE(msg.fur.x) >= 0);
-					_ASSERTE(Swap16IfLE(msg.fur.y) >= 0);
+//					_ASSERTE(Swap16IfLE(msg.fur.x) >= 0);
+//					_ASSERTE(Swap16IfLE(msg.fur.y) >= 0);
 
 					//if (update.right > m_client->m_fullscreen.right)
 					//	update.right = m_client->m_fullscreen.right;
@@ -1751,8 +1751,8 @@ vncClient::UpdateMouse()
 {
 	if (!m_mousemoved && !m_cursor_update_sent)	{
 		omni_mutex_lock l(m_regionLock);
-
-		if (IntersectRect(&m_oldmousepos, &m_oldmousepos, &m_server->GetSharedRect()))
+		const RECT r = m_server->GetSharedRect();
+		if (IntersectRect(&m_oldmousepos, &m_oldmousepos, &r))
 			m_changed_rgn.AddRect(m_oldmousepos);
 
 		m_mousemoved = TRUE;
@@ -1772,7 +1772,8 @@ vncClient::UpdateRect(RECT &rect)
 
 	omni_mutex_lock l(m_regionLock);
 
-	if (IntersectRect(&rect, &rect, &m_server->GetSharedRect()))
+	const RECT r = m_server->GetSharedRect();
+	if (IntersectRect(&rect, &rect, &r))
 		m_changed_rgn.AddRect(rect);
 }
 
@@ -1810,7 +1811,8 @@ vncClient::CopyRect(RECT &dest, POINT &source)
 
 		// Clip the destination to the screen
 		RECT destrect;
-		if (!IntersectRect(&destrect, &dest, &m_server->GetSharedRect()))
+		const RECT r = m_server->GetSharedRect();
+		if (!IntersectRect(&destrect, &dest, &r))
 			return;
 
 		// Adjust the source correspondingly
@@ -1841,7 +1843,7 @@ vncClient::CopyRect(RECT &dest, POINT &source)
 
 		// Clip the source to the screen
 		RECT srcrect2;
-		if (!IntersectRect(&srcrect2, &srcrect, &m_server->GetSharedRect()))
+		if (!IntersectRect(&srcrect2, &srcrect, &r))
 			return;
 
 		// Correct the destination rectangle
@@ -2004,12 +2006,13 @@ BOOL vncClient::SendUpdate()
 					// If the mouse has moved (or otherwise needs an update):
 					if (m_mousemoved) {
 						// Include an update for its previous position
-						if (IntersectRect(&m_oldmousepos, &m_oldmousepos, &m_server->GetSharedRect())) 
+						const RECT r = m_server->GetSharedRect();
+						if (IntersectRect(&m_oldmousepos, &m_oldmousepos, &r)) 
 							toBeSent.AddRect(m_oldmousepos);
 						// Update the cached mouse position
 						m_oldmousepos = m_buffer->GrabMouse();
 						// Include an update for its current position
-						if (IntersectRect(&m_oldmousepos, &m_oldmousepos, &m_server->GetSharedRect())) 
+						if (IntersectRect(&m_oldmousepos, &m_oldmousepos, &r)) 
 							toBeSent.AddRect(m_oldmousepos);
 						// Indicate the move has been handled
 						m_mousemoved = FALSE;
@@ -2455,17 +2458,17 @@ vncClient::SendFileDownloadData(unsigned short sizeFile, char *pFile)
 
 }
 
+#if 0
 unsigned int 
 vncClient::FiletimeToTime70(FILETIME filetime)
 {
-#if 0
 	LARGE_INTEGER uli;
 	uli.LowPart = filetime.dwLowDateTime;
 	uli.HighPart = filetime.dwHighDateTime;
 	uli.QuadPart = (uli.QuadPart - 116444736000000000) / 10000000;
 	return uli.LowPart;
-#endif
 }
+#endif
 
 void
 vncClient::CloseUndoneFileTransfer()

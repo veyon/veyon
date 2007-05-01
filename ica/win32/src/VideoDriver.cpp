@@ -402,7 +402,7 @@ BOOL vncVideoDriver::Activate_NT50(
 		BOOL fForDirectAccess,
 		const RECT *prcltarget)
 {
-	HDESK   hdeskInput;
+	HDESK   hdeskInput = 0;
     HDESK   hdeskCurrent;
  
 	DISPLAY_DEVICE dd;
@@ -417,7 +417,7 @@ BOOL vncVideoDriver::Activate_NT50(
 	FillMemory(&devmode, sizeof(DEVMODE), 0);
 	devmode.dmSize = sizeof(DEVMODE);
 	devmode.dmDriverExtra = 0;
-	BOOL change = EnumDisplaySettings(NULL, ENUM_CURRENT_SETTINGS, &devmode);
+	(BOOL) EnumDisplaySettings(NULL, ENUM_CURRENT_SETTINGS, &devmode);
 	devmode.dmFields = DM_BITSPERPEL | DM_PELSWIDTH | DM_PELSHEIGHT;
 	if (prcltarget)
 	{
@@ -579,7 +579,7 @@ BOOL vncVideoDriver::Activate_NT46(BOOL fForDirectAccess)
 
 void vncVideoDriver::Deactivate_NT50()
 {
-	HDESK   hdeskInput;
+	HDESK   hdeskInput = 0;
 	HDESK   hdeskCurrent;
  
 // it is important to us to be able to deactivate
@@ -601,7 +601,7 @@ void vncVideoDriver::Deactivate_NT50()
 	FillMemory(&devmode, sizeof(DEVMODE), 0);
 	devmode.dmSize = sizeof(DEVMODE);
 	devmode.dmDriverExtra = 0;
-	BOOL change = EnumDisplaySettings(NULL, ENUM_CURRENT_SETTINGS, &devmode);
+	(BOOL) EnumDisplaySettings(NULL, ENUM_CURRENT_SETTINGS, &devmode);
 	devmode.dmFields = DM_BITSPERPEL | DM_PELSWIDTH | DM_PELSHEIGHT;
 	devmode.dmDeviceName[0] = '\0';
 
