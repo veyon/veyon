@@ -1,3 +1,8 @@
+2007-05-02	Dirk Zoellner <dirkzoellner/at/users/dot/sourceforge/dot/net>
+
+	* build_mingw32
+	works now without modifying PATH-variable
+	
 2007-05-02	Andriano Rino <rino_andr/at/yahoo/dot/it>
 
 	* ica/resources/it.ts:
