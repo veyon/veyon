@@ -1,6 +1,11 @@
+2007-05-06	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* lib/Makefile.am:
+	make library being installed at proper place under Linux
+
 2007-05-02	Dirk Zoellner <dirkzoellner/at/users/dot/sourceforge/dot/net>
 
-	* build_mingw32
+	* build_mingw32:
 	works now without modifying PATH-variable
 	
 2007-05-02	Andriano Rino <rino_andr/at/yahoo/dot/it>

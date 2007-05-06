@@ -96,6 +96,8 @@ shared-lib: libitalc_core.so
 
 libitalc_core.so: libitalc_core-static.a italc_core_qrc.o
 	$(CXX) *.o -shared -Wl,-no-undefined -Wl,-enable-runtime-pseudo-reloc -o $@  $(QT_LDADD) $(QT_LIB_GUI) $(LIBSSL) -lz -ljpeg
+
+lib_LTLIBRARIES = libitalc_core.so
 endif
 
 
