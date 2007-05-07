@@ -717,7 +717,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../dialogs/config.ui" line="485"/>
         <source>Supporter</source>
-        <translation>Aiutante</translation>
+        <translation>Assistente</translation>
     </message>
     <message>
         <location filename="../dialogs/config.ui" line="490"/>
