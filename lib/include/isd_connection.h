@@ -122,8 +122,6 @@ public:
 	bool displayTextMessage( const QString & _msg );
 	bool sendFile( const QString & _fname );
 	bool collectFiles( const QString & _nfilter );
-/*	bool remoteControlDisplay( const QString & _ip,
-						bool _view_only = FALSE );*/
 
 	bool wakeOtherComputer( const QString & _mac );
 	bool powerDownComputer( void );

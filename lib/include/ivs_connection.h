@@ -129,6 +129,8 @@ public:
 		return( m_cursorShape );
 	}
 
+	bool takeSnapshot( void );
+
 
 public slots:
 	bool sendFramebufferUpdateRequest( void );

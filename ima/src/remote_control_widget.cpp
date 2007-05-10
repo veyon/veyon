@@ -67,6 +67,11 @@ remoteControlWidgetToolBar::remoteControlWidgetToolBar(
 				tr( "Lock student" ),
 				QString::null, QString::null, 0, 0,
 				this );
+	toolButton * ss_btn = new toolButton(
+				QPixmap( ":/resources/snapshot.png" ),
+				tr( "Snapshot" ),
+				QString::null, QString::null, 0, 0,
+				this );
 	toolButton * fs_btn = new toolButton(
 				QPixmap( ":/resources/fullscreen.png" ),
 				tr( "Fullscreen" ),
@@ -87,6 +92,7 @@ remoteControlWidgetToolBar::remoteControlWidgetToolBar(
 				_parent, SLOT( toggleViewOnly( bool ) ) );
 	connect( fs_btn, SIGNAL( toggled( bool ) ),
 				_parent, SLOT( toggleFullScreen( bool ) ) );
+	connect( ss_btn, SIGNAL( clicked() ), _parent, SLOT( takeSnapshot() ) );
 	connect( quit_btn, SIGNAL( clicked() ), _parent, SLOT( close() ) );
 
 	QHBoxLayout * layout = new QHBoxLayout( this );
@@ -95,6 +101,7 @@ remoteControlWidgetToolBar::remoteControlWidgetToolBar(
 	layout->addStretch( 0 );
 	layout->addWidget( vo_btn );
 	layout->addWidget( ls_btn );
+	layout->addWidget( ss_btn );
 	layout->addWidget( fs_btn );
 	layout->addWidget( quit_btn );
 	layout->addSpacing( 5 );
@@ -122,6 +129,7 @@ void remoteControlWidgetToolBar::appear( void )
 		updatePosition();
 	}
 }
+
 
 
 
@@ -159,6 +167,7 @@ void remoteControlWidgetToolBar::paintEvent( QPaintEvent * _pe )
 	p.setFont( f );
 
 	p.setPen( QColor( 255, 212, 0 ) );
+	m_parent->updateWindowTitle();
 	p.drawText( 64, 22, m_parent->windowTitle() );
 
 	p.setPen( QColor( 255, 255, 255 ) );
@@ -213,6 +222,7 @@ void remoteControlWidgetToolBar::updatePosition( void )
 
 
 
+
 void remoteControlWidgetToolBar::startConnection( void )
 {
 	m_connecting = TRUE;
@@ -223,10 +233,14 @@ void remoteControlWidgetToolBar::startConnection( void )
 
 
 
+
 void remoteControlWidgetToolBar::connectionEstablished( void )
 {
 	m_connecting = FALSE;
 	QTimer::singleShot( 3000, this, SLOT( disappear() ) );
+	// within the next 1000ms the username should be known and therefore
+	// we update
+	QTimer::singleShot( 1000, this, SLOT( update() ) );
 }
 
 
@@ -278,6 +292,27 @@ QString remoteControlWidget::host( void ) const
 
 
 
+void remoteControlWidget::updateWindowTitle( void )
+{
+	const QString s = m_vncView->viewOnly() ?
+			tr( "View live (%1 at host %2)" )
+		:
+			tr( "Remote control (%1 at host %2)" );
+	QString u = m_vncView->m_connection->user();
+	if( u.isEmpty() )
+	{
+		u = tr( "unknown user" );
+	}
+	else
+	{
+		u = u.section( '(', 1 ).section( ')', 0, 0 );
+	}
+	setWindowTitle( s.arg( u ).arg( host() ) );
+}
+
+
+
+
 void remoteControlWidget::resizeEvent( QResizeEvent * )
 {
 	m_vncView->resize( size() );
@@ -315,23 +350,20 @@ void remoteControlWidget::toggleFullScreen( bool _on )
 
 
 
+
 void remoteControlWidget::toggleViewOnly( bool _on )
 {
 	m_vncView->setViewOnly( _on );
-
-	if( _on )
-	{
-		setWindowTitle( tr( "View live (host %1)" ).arg( host() ) );
-	}
-	else
-	{
-		setWindowTitle( tr( "Remote control (host %1)" ).
-								arg( host() ) );
-	}
-
 	m_toolBar->update();
 }
 
+
+
+
+void remoteControlWidget::takeSnapshot( void )
+{
+	m_vncView->m_connection->takeSnapshot();
+}
 
 
 #include "remote_control_widget.moc"

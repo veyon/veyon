@@ -32,11 +32,15 @@
 
 
 #include <QtCore/QCoreApplication>
+#include <QtCore/QDateTime>
 #include <QtGui/QImage>
+#include <QtGui/QPainter>
 
 
 #include "ivs_connection.h"
 #include "qt_user_events.h"
+#include "local_system.h"
+#include "messagebox.h"
 
 #ifdef BUILD_ICA
 #include "minilzo.h"
@@ -268,7 +272,7 @@ ivsConnection::states ivsConnection::protocolInitialization( void )
 
 
 	sendFramebufferUpdateRequest();
-
+	sendGetUserInformationRequest();
 	return( state() );
 }
 
@@ -282,6 +286,74 @@ void ivsConnection::close( void )
 						m_zlibStreamActive[3] = FALSE;
 #endif
 	isdConnection::close();
+}
+
+
+
+
+bool ivsConnection::takeSnapshot( void )
+{
+	if( user().isEmpty() || state() != ivsConnection::Connected )
+	{
+		return( FALSE );
+	}
+
+	// construct text
+	QString txt = user() + "@" + host() + " " +
+			QDate( QDate::currentDate() ).toString( Qt::ISODate ) +
+			" " + QTime( QTime::currentTime() ).
+							toString( Qt::ISODate );
+	const QString dir = localSystem::snapshotDir();
+	if( !localSystem::ensurePathExists( dir ) )
+	{
+		messageBox::information( tr( "Snapshot" ),
+			tr( "Could not make a snapshot as directory %1 doesn't "
+				"exist and couldn't be created." ).arg( dir ) );
+		return( FALSE );
+	}
+
+	// construct filename
+	QString file_name =  "_" + host() + "_" + QDate( QDate::currentDate() ).
+						toString( Qt::ISODate ) +
+				"_" + QTime( QTime::currentTime() ).
+					toString( Qt::ISODate ) + ".png";
+	file_name.replace( ':', '-' );
+	file_name = dir + user().section( '(', 1, 1 ).section( ')', 0, 0 ) +
+								file_name;
+	const int FONT_SIZE = 14;
+	const int RECT_MARGIN = 10;
+	const int RECT_INNER_MARGIN = 5;
+
+	QImage img( screen() );
+
+	QPixmap italc_icon( QPixmap(
+			":/resources/client_observed.png" ) );
+
+	QPainter p( &img );
+	QFont fnt = p.font();
+	fnt.setPointSize( FONT_SIZE );
+	fnt.setBold( TRUE );
+	p.setFont( fnt );
+	QFontMetrics fm( p.font() );
+
+	const int rx = RECT_MARGIN;
+	const int ry = img.height() - RECT_MARGIN - 2 * RECT_INNER_MARGIN -
+								FONT_SIZE;
+	const int rw = RECT_MARGIN + 4 * RECT_INNER_MARGIN +
+				fm.size( Qt::TextSingleLine, txt ).width() +
+							italc_icon.width();
+	const int rh = 2 * RECT_INNER_MARGIN + FONT_SIZE;
+	const int ix = rx + RECT_INNER_MARGIN;
+	const int iy = ry + RECT_INNER_MARGIN;
+	const int tx = ix + italc_icon.width() + 2 * RECT_INNER_MARGIN;
+	const int ty = ry + RECT_INNER_MARGIN + FONT_SIZE - 2;
+
+	p.fillRect( rx, ry, rw, rh, QColor( 255, 255, 255, 128 ) );
+	p.drawPixmap( ix, iy, italc_icon );
+	p.drawText( tx, ty, txt );
+	img.save( file_name, "PNG", 50 );
+
+	return( TRUE );
 }
 
 

@@ -1,5 +1,19 @@
 2007-05-10	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
+	* lib/src/ivs_connection.cpp:
+	* ima/src/remote_control_widget.cpp:
+	* ima/src/remote_control_widget.h:
+	display user-name in toolbar - closes #1711333
+
+	* ima/src/remote_control_widget.cpp:
+	* ima/src/remote_control_widget.h:
+	added snapshot-functionality in remote-control/view-live mode
+
+	* lib/include/ivs_connection.h:
+	* lib/src/ivs_connection.cpp:
+	* ima/src/client.cpp:
+	moved snapshot-functionality into ivsConnection-class
+
 	* ica/win32/src/vncDesktop.cpp:
 	* ica/win32/win32vnc.cpp:
 	disabled TightVNC's new terminal-session-support

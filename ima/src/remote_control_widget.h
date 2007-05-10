@@ -94,9 +94,11 @@ public:
 public slots:
 	void toggleFullScreen( bool );
 	void toggleViewOnly( bool );
+	void takeSnapshot( void );
 
 
 protected:
+	void updateWindowTitle( void );
 	virtual void resizeEvent( QResizeEvent * );
 
 

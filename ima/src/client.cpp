@@ -24,21 +24,12 @@
  */
 
  
-#include <QtCore/QDateTime>
-#include <QtCore/QDir>
-#include <QtCore/QFile>
-#include <QtGui/QApplication>
 #include <QtGui/QCloseEvent>
-#include <QtGui/QFileDialog>
-#include <QtGui/QImage>
-#include <QtGui/QInputDialog>
 #include <QtGui/QLinearGradient>
 #include <QtGui/QMenu>
-#include <QtGui/QMessageBox>
 #include <QtGui/QPainter>
 #include <QtGui/QPixmap>
 #include <QtGui/QToolBar>
-#include <QtGui/QToolButton>
 #include <QtGui/QWorkspace>
 
 
@@ -517,74 +508,11 @@ void client::paintEvent( QPaintEvent * _pe )
 	{
 		QMutexLocker ml( &m_syncMutex );
 		m_makeSnapshot = FALSE;
-
-		if( m_user != "" &&
-			m_connection->state() == ivsConnection::Connected )
+		if( m_connection->takeSnapshot() )
 		{
-			// construct text
-			QString txt = m_user + "@" + m_name + " (" +
-					m_localIP + ") " +
-					QDate( QDate::currentDate()
-						).toString( Qt::ISODate ) +
-					" " +
-					QTime( QTime::currentTime() ).toString(
-								Qt::ISODate );
-			const QString dir = localSystem::snapshotDir();
-			if( !localSystem::ensurePathExists( dir ) )
-			{
-				messageBox::information( tr( "Snapshot" ),
-		tr( "Could not make a snapshot as directory %1 doesn't exist "
-			"and couldn't be created." ).arg( dir ) );
-				return;
-			}
-			// construct filename
-			QString file_name =  "_" +
-						m_localIP + "_" +
-			QDate( QDate::currentDate() ).toString( Qt::ISODate ) +
-						"_" +
-		QTime( QTime::currentTime() ).toString( Qt::ISODate ) + ".png";
-			file_name.replace( ':', '-' );
-			file_name = dir + m_user.section( '(', 1, 1 ).
-					section( ')', 0, 0 ) + file_name;
-			const int FONT_SIZE = 14;
-			const int RECT_MARGIN = 10;
-			const int RECT_INNER_MARGIN = 5;
-
-			QImage screen( m_connection->screen() );
-
-			QPixmap italc_icon( QPixmap(
-					":/resources/client_observed.png" ) );
-
-			QPainter p( &screen );
-			QFont fnt = p.font();
-			fnt.setPointSize( FONT_SIZE );
-			fnt.setBold( TRUE );
-			p.setFont( fnt );
-			QFontMetrics fm( p.font() );
-
-			const int rx = RECT_MARGIN;
-			const int ry = screen.height() - RECT_MARGIN -
-					2 * RECT_INNER_MARGIN - FONT_SIZE;
-			const int rw = RECT_MARGIN + 4 * RECT_INNER_MARGIN +
-				fm.size( Qt::TextSingleLine, txt ).width() +
-							italc_icon.width();
-			const int rh = 2 * RECT_INNER_MARGIN + FONT_SIZE;
-			const int ix = rx + RECT_INNER_MARGIN;
-			const int iy = ry + RECT_INNER_MARGIN;
-			const int tx = ix + italc_icon.width() +
-							2 * RECT_INNER_MARGIN;
-			const int ty = ry + RECT_INNER_MARGIN + FONT_SIZE - 2;
-
-			p.fillRect( rx, ry, rw, rh, QColor(
-							255, 255, 255, 128 ) );
-			p.drawPixmap( ix, iy, italc_icon );
-			p.drawText( tx, ty, txt );
-			screen.save( file_name, "PNG", 50 );
-
 			s_reloadSnapshotList = TRUE;
 		}
 	}
-
 
 }
 
