@@ -195,8 +195,8 @@ qint64 vsocketDispatcher( char * _buf, const qint64 _len,
 #include "src/vncRegion.cpp"
 #include "src/vncSockConnect.cpp"
 #include "src/VideoDriver.cpp"
-#include "src/TsSessions.cpp"
-#include "src/DynamicFn.cpp"
+//#include "src/TsSessions.cpp"
+//#include "src/DynamicFn.cpp"
 
 #ifndef _MAX_PATH
 #define _MAX_PATH 260
