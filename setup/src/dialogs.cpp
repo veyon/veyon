@@ -260,7 +260,7 @@ void setupWizard::doInstallation( bool _quiet )
 			did_overwrite_ica = TRUE;
 		}
 		QFile( d + file ).remove();
-		QFile( file ).copy( d + file );
+		QFile( QCoreApplication::applicationDirPath()+QDir::separator()+file ).copy( d + file );
 		pd.setValue( ++i * 90 / files.size() );
 		qApp->processEvents();
 		if( pd.wasCanceled() )
