@@ -60,7 +60,7 @@ endif
 if BUILD_WIN32
 setup_win_resources.o: setup.rc
 	$(WINDRES) -o $@ $<
-PLATFORM_LDADD = setup_win_resources.o
+PLATFORM_LDADD = setup_win_resources.o -L../lib/ -litalc_core
 else
 PLATFORM_LDADD = ../lib/libitalc_core-static.a
 endif
