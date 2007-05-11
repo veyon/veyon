@@ -11,7 +11,6 @@
 
 
 
-
 ./italc_core_qrc.cpp: italc_core.qrc
 	rcc $< -name italc_core > $@
 
@@ -19,14 +18,14 @@
 noinst_LIBRARIES = libitalc_core-static.a
 
 libitalc_core_static_a_MOC =				\
-		include/vncview.moc		\
-		include/system_key_trapper.moc	\
-		include/progress_widget.moc	\
-		include/isd_connection.moc	\
+		include/vncview.moc			\
+		include/system_key_trapper.moc		\
+		include/progress_widget.moc		\
+		include/isd_connection.moc		\
 		include/ivs_connection.moc
 
-CLEANFILES =	include/rfb/rfbconfig.h		\
-		include/rfb/rfbint.h		\
+CLEANFILES =	include/rfb/rfbconfig.h			\
+		include/rfb/rfbint.h			\
 		$(libitalc_core_static_a_MOC)		\
 		./italc_core_qrc.cpp
 
@@ -69,7 +68,11 @@ libitalc_core_static_a_SOURCES =			\
 		$(srcdir)/include/vncview.h		\
 		$(srcdir)/include/rfb/keysym.h		\
 		$(srcdir)/include/rfb/rfb.h		\
-		$(srcdir)/include/rfb/rfbproto.h
+		$(srcdir)/include/rfb/rfbproto.h	\
+		$(srcdir)/italc_core_qrc.cpp		\
+		$(srcdir)/italc_core.qrc		\
+		$(wildcard $(srcdir)/resources/*.qm $(srcdir)/resources/*.ts) \
+		$(wildcard $(srcdir)/resources/*.png)
 
 
 inject.o: $(srcdir)/src/inject.cpp
@@ -87,17 +90,19 @@ endif
 if BUILD_WIN32
 shared-lib: italc_core.dll
 
-italc_core.dll: libitalc_core-static.a italc_core_qrc.o
+italc_core.dll: libitalc_core-static.a
 	$(CXX) *.o -shared -Wl,-no-undefined -Wl,-enable-runtime-pseudo-reloc -Wl,--out-implib,libitalc_core.a -o $@ $(QT_LDADD) $(QT_LIB_GUI) $(LIBSSL) -lz -ljpeg -lpsapi && $(STRIP) italc_core.dll
 endif
 
 if BUILD_LINUX
 shared-lib: libitalc_core.so
 
-libitalc_core.so: libitalc_core-static.a italc_core_qrc.o
+libitalc_core.so: libitalc_core-static.a
 	$(CXX) *.o -shared -Wl,-no-undefined -Wl,-enable-runtime-pseudo-reloc -o $@  $(QT_LDADD) $(QT_LIB_GUI) $(LIBSSL) -lz -ljpeg
 
 lib_LTLIBRARIES = libitalc_core.so
+libitalc_core_so_SOURCES =
+
 endif
 
 

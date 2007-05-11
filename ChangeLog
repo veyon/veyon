@@ -1,5 +1,14 @@
 2007-05-11	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
+	* Makefile.svn:
+	fixed automake-call to ignore warnings
+
+	* setup/Makefile.am:
+	link Linux-version against static version of library
+
+	* lib/Makefile.am:
+	fixed missing resource-file-object in shared library
+
 	* lib/resources/de.ts:
 	* lib/resources/de.qm:
 	* ica/resources/de.ts:
