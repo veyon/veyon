@@ -624,7 +624,7 @@ void privateDSAKey::save( const QString & _file, QString _passphrase ) const
 	{
 		if( !outfile.remove() )
 		{
-			qWarning( "could note remove %s",
+			qWarning( "could not remove %s",
 						_file.toAscii().constData() );
 		}
 	}
@@ -801,7 +801,7 @@ void publicDSAKey::save( const QString & _file, QString ) const
 	}
 	if( !outfile.open( QFile::WriteOnly | QFile::Truncate ) )
 	{
-		qCritical( "Could not save public key in %s",
+		qCritical( "could not save public key in %s",
 						_file.toAscii().constData() );
 		return;
 	}
