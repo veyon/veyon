@@ -28,7 +28,6 @@
 
 #include <QtCore/QReadWriteLock>
 #include <QtCore/QThread>
-#include <QtCore/QWaitCondition>
 #include <QtGui/QButtonGroup>
 #include <QtGui/QMainWindow>
 #include <QtGui/QToolButton>
@@ -100,18 +99,10 @@ public:
 	void remoteControlDisplay( const QString & _ip,
 						bool _view_only = FALSE );
 
-	inline void blockWhileRemoteControlRunning( QMutex * _mutex )
+	inline bool remoteControlRunning( void )
 	{
-		m_rctrlLock.lockForRead();
-		if( m_remoteControlWidget != NULL )
-		{
-			m_rctrlLock.unlock();
-			m_clientUpdateBlocker.wait( _mutex );
-		}
-		else
-		{
-			m_rctrlLock.unlock();
-		}
+		QReadLocker rl( &m_rctrlLock );
+		return( m_remoteControlWidget != NULL );
 	}
 
 
@@ -162,7 +153,6 @@ private:
 	isdConnection * m_localISD;
 
 
-	QWaitCondition m_clientUpdateBlocker;
 	QReadWriteLock m_rctrlLock;
 	remoteControlWidget * m_remoteControlWidget;
 

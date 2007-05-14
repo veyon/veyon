@@ -82,7 +82,6 @@ mainWindow::mainWindow() :
 	QMainWindow(/* 0, Qt::FramelessWindowHint*/ ),
 	m_openedTabInSideBar( 1 ),
 	m_localISD( NULL ),
-	m_clientUpdateBlocker(),
 	m_rctrlLock(),
 	m_remoteControlWidget( NULL )
 {
@@ -393,7 +392,6 @@ void mainWindow::remoteControlWidgetClosed( QObject * )
 	m_rctrlLock.lockForWrite();
         m_remoteControlWidget = NULL;
 	m_rctrlLock.unlock();
-	m_clientUpdateBlocker.wakeAll();
 }
 
 

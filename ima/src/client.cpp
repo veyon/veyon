@@ -618,7 +618,7 @@ void client::clientDemo( const QString & )
 
 	m_mainWindow->checkModeButton( client::Mode_FullscreenDemo );
 
-	m_mainWindow->remoteControlDisplay( m_localIP );
+	m_mainWindow->remoteControlDisplay( m_localIP, TRUE );
 }
 
 
@@ -806,14 +806,6 @@ updateThread::updateThread( client * _client ) :
 
 void updateThread::update( void )
 {
-	QMutex m;
-	m_client->m_mainWindow->blockWhileRemoteControlRunning( &m );
-
-	if( mainWindow::atExit() == FALSE && m_client->isVisible() )
-	{
-		m_client->processCmd( client::Reload, CONFIRM_NO );
-	}
-
 	m_queueMutex.lock();
 	m_client->m_syncMutex.lock();
 	while( !m_queue.isEmpty() )
@@ -877,9 +869,16 @@ void updateThread::update( void )
 	}
 	m_client->m_syncMutex.unlock();
 	m_queueMutex.unlock();
-	
-	if( m_client->isVisible() == FALSE &&
-		m_client->m_connection->state() == ivsConnection::Connected )
+
+	if( m_client->isVisible() )
+	{
+		if( !m_client->m_mainWindow->remoteControlRunning() &&
+						!mainWindow::atExit() )
+		{
+			m_client->processCmd( client::Reload, CONFIRM_NO );
+		}
+	}
+	else if( m_client->m_connection->state() == ivsConnection::Connected )
 	{
 		m_client->m_connection->close();
 	}

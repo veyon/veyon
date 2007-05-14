@@ -1,7 +1,14 @@
 2007-05-14	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
+	* ima/src/main_window.h:
+	* ima/src/main_window.cpp:
+	* ima/src/client.cpp:
+	do not freeze client-update-threads while remote-control is running
+	and do nothing instead - fixes several bugs such as non-working
+	student-demo etc.
+
 	* ica/src/isd_server.cpp:
-	when doing ItalcAuthChallengeViaAuthFile-authentication, close
+	when doing ItalcAuthChallengeViaAuthFile-authentication, flush
 	temporary file before requesting response
 
 2007-05-11	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
