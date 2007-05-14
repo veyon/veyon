@@ -509,6 +509,7 @@ bool isdServer::authSecTypeItalc( socketDispatcher _sd, void * _user,
 							QFile::WriteOwner );
 			tf.open();
 			tf.write( chall );
+			tf.close();
 			sdev.write( tf.fileName() );
 			// is our client able to read the file? if so,
 			// it's running as the same user as this piece of
