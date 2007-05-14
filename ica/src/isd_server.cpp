@@ -540,6 +540,7 @@ quint16 isdServer::isdPort( void )
 
 
 
+
 isdServer::accessDialogResult isdServer::showAccessDialog(
 							const QString & _host )
 {
@@ -593,6 +594,7 @@ isdServer::accessDialogResult isdServer::showAccessDialog(
 	}
 	return( Yes );
 }
+
 
 
 
@@ -709,28 +711,11 @@ void isdServer::demoWindowClosed( QObject * )
 
 
 
-/*
-void isdServer::remoteControlWidgetClosed( QObject * )
-{
-	m_remoteControlWidget = NULL;
-}
-*/
-
-
 
 void isdServer::startDemo( const QString & _master_host, bool _fullscreen )
 {
 	delete m_demoClient;
 	m_demoClient = NULL;
-/*	if( m_demoServer && _master_host.section( ':', 0, 0 ) ==
-				m_demoServer->serverAddress().toString() &&
-		_master_host.section( ':', 1, 1 ).toInt() ==
-						m_demoServer->serverPort() )
-	{
-		// somehow we tried to start a demo on demo-server which makes
-		// no sense and results in a deadlock...
-		return;
-	}*/
 	// if a demo-server is started, it's likely that the demo was started
 	// on master-computer as well therefore we deny starting a demo on
 	// hosts on which a demo-server is running
@@ -784,20 +769,6 @@ void isdServer::displayTextMessage( const QString & _msg )
 					QPixmap( ":/resources/message.png" ) );
 }
 
-
-
-/*
-void isdServer::remoteControlDisplay( const QString & _ip, bool _view_only )
-{
-	if( m_remoteControlWidget  )
-	{
-		return;
-	}
-	m_remoteControlWidget = new remoteControlWidget( _ip, _view_only );
-	connect( m_remoteControlWidget, SIGNAL( destroyed( QObject * ) ),
-			this, SLOT( remoteControlWidgetClosed( QObject * ) ) );
-}
-*/
 
 
 
