@@ -47,6 +47,7 @@
 #include <QtCore/QLibrary>
 
 #include "local_system.h"
+#include "system_key_trapper.h"
 
 
 class userPollThread : public QThread
@@ -200,6 +201,7 @@ static BOOL WINAPI consoleCtrlHandler( DWORD _dwCtrlType )
 #include "vncKeymap.h"
 
 extern vncServer * __server;
+extern BOOL __localInputsDisabled;
 
 static inline void pressKey( int _key, bool _down )
 {
@@ -267,6 +269,7 @@ void initialize( void )
 
 
 
+
 QString currentUser( void )
 {
 	QString ret = "unknown";
@@ -307,6 +310,28 @@ QString currentUser( void )
 	return( ret );
 }
 
+
+void disableLocalInputs( bool _disabled )
+{
+	static systemKeyTrapper * __skt = NULL;
+#ifdef BUILD_WIN32
+	if( __localInputsDisabled != _disabled )
+	{
+		__localInputsDisabled = _disabled;
+		if( _disabled && __skt == NULL )
+		{
+			__skt = new systemKeyTrapper();
+		}
+		else
+		{
+			delete __skt;
+			__skt = NULL;
+		}
+	}
+#else
+#warning TODO
+#endif
+}
 
 
 } // end of namespace localSystem

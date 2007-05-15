@@ -80,24 +80,9 @@ inline const uint32_t swap32IfLE( const uint32_t & _val )
 			_val );
 }
 
-/*
-#ifndef Swap16IfLE
-#define Swap16IfLE(s) ( QSysInfo::ByteOrder == QSysInfo::LittleEndian ?	\
-			((((s) & 0xff) << 8) | (((s) >> 8) & 0xff)) : (s))
-#endif
-
-#ifndef Swap32IfLE
-#define Swap32IfLE(l) ( QSysInfo::ByteOrder == QSysInfo::LittleEndian ?	\
-				((((l) & 0xff000000) >> 24) |	\
-				(((l) & 0x00ff0000) >> 8)  |	\
-				(((l) & 0x0000ff00) << 8)  |	\
-				(((l) & 0x000000ff) << 24))  : (l))
-#endif*/
-
-
 
 /* ============================================================================
- * ISD dispatching
+ * socket dispatching
  * ============================================================================ 
  */
 
@@ -211,14 +196,13 @@ typedef struct
 		DisplayTextMessage,
 		SendFile,
 		CollectFiles,
-/*		ViewRemoteDisplay,
-		RemoteControlDisplay,*/
 		ExecCmds,
 
 		// system-stuff
 		WakeOtherComputer = 48,
 		PowerDownComputer,
 		RestartComputer,
+		DisableLocalInputs,
 
 		SetRole = 64,
 

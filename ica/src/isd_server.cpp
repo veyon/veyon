@@ -36,7 +36,7 @@
 #include "isd_server.h"
 #include "isd_connection.h"
 #include "dsa_key.h"
-#include "local_system.h"
+#include "local_system_ica.h"
 #include "ivs.h"
 #include "lock_widget.h"
 #include "messagebox.h"
@@ -191,6 +191,11 @@ int isdServer::processClient( socketDispatcher _sd, void * _user )
 
 		case ISD::RestartComputer:
 			localSystem::reboot();
+			break;
+
+		case ISD::DisableLocalInputs:
+			localSystem::disableLocalInputs(
+					msg_in.arg( "disabled" ).toBool() );
 			break;
 
 		case ISD::SetRole:

@@ -100,7 +100,7 @@ vncServer::vncServer()
 
 	// Set the input options
 	m_enable_remote_inputs = TRUE;
-	m_disable_local_inputs = FALSE;
+	m_disable_local_inputs = TRUE;
 
 	// Clear the client mapping table
 	for (int x=0; x<MAX_CLIENTS; x++)

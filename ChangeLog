@@ -1,5 +1,30 @@
 2007-05-14	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
+	* ima/resources/mouse.png:
+	removed
+
+	* ima/italc.qrc:
+	* ima/resources/no_mouse.png:
+	* ima/src/remote_control_widget.cpp:
+	better icon for blocked input
+
+	* lib/include/isd_base.h:
+	cleanups
+
+	* ica/win32/src/VNCHooks/SharedData.h:
+	* ica/win32/src/VNCHooks/SharedData.cpp:
+	* ica/win32/src/VNCHooks/VNCHooks.cpp:
+	* ica/win32/src/vncServer.cpp:
+	* ica/src/local_system_ica.h:
+	* ica/src/local_system_ica.cpp:
+	* ica/src/isd_server.cpp:
+	* ima/src/remote_control_widget.h:
+	* ima/src/remote_control_widget.cpp:
+	* lib/include/isd_base.h:
+	* lib/include/isd_connection.h:
+	* lib/src/isd_connection.cpp:
+	implemented "lock student"-functionality in remote-control
+
 	* ima/src/main_window.h:
 	* ima/src/main_window.cpp:
 	* ima/src/client.cpp:

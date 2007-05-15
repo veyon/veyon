@@ -39,3 +39,4 @@ extern HHOOK hKeyboardHook;
 extern HHOOK hMouseHook;
 extern HWND hKeyboardPriorityWindow;
 extern HWND hMousePriorityWindow;
+extern BOOL __localInputsDisabled;

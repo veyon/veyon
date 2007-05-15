@@ -126,6 +126,7 @@ public:
 	bool wakeOtherComputer( const QString & _mac );
 	bool powerDownComputer( void );
 	bool restartComputer( void );
+	bool disableLocalInputs( bool _disabled );
 
 	bool setRole( const ISD::userRoles _role );
 	bool demoServerRun( int _quality, int _port );

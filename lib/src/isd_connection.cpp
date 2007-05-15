@@ -837,7 +837,7 @@ bool isdConnection::powerDownComputer( void )
 		m_state = Disconnected;
 		return( FALSE );
 	}
-	return( ISD::msg( &m_socketDev, ISD::PowerDownComputer).send() );
+	return( ISD::msg( &m_socketDev, ISD::PowerDownComputer ).send() );
 }
 
 
@@ -851,7 +851,22 @@ bool isdConnection::restartComputer( void )
 		m_state = Disconnected;
 		return( FALSE );
 	}
-	return( ISD::msg( &m_socketDev, ISD::RestartComputer).send() );
+	return( ISD::msg( &m_socketDev, ISD::RestartComputer ).send() );
+}
+
+
+
+
+bool isdConnection::disableLocalInputs( bool _disabled )
+{
+	if( m_socket == NULL ||
+			m_socket->state() != QTcpSocket::ConnectedState )
+	{
+		m_state = Disconnected;
+		return( FALSE );
+	}
+	return( ISD::msg( &m_socketDev, ISD::DisableLocalInputs ).
+				addArg( "disabled", _disabled ).send() );
 }
 
 

@@ -968,7 +968,7 @@ LRESULT CALLBACK LowLevelKeyboardFilterProc(int nCode, WPARAM wParam, LPARAM lPa
 		// Is this keyboard event "real" or "injected"
 		// i.e. hardware or software-produced?
 		KBDLLHOOKSTRUCT *hookStruct = (KBDLLHOOKSTRUCT*)lParam;
-		if (!(hookStruct->flags & LLKHF_INJECTED)) {
+		if (!(hookStruct->flags & LLKHF_INJECTED) && __localInputsDisabled) {
 			// Message was not injected - reject it!
 			return TRUE;
 		}
@@ -1016,7 +1016,7 @@ LRESULT CALLBACK LowLevelMouseFilterProc(int nCode, WPARAM wParam, LPARAM lParam
 		// Is this mouse event "real" or "injected"
 		// i.e. hardware or software-produced?
 		MSLLHOOKSTRUCT *hookStruct = (MSLLHOOKSTRUCT*)lParam;
-		if (!(hookStruct->flags & LLMHF_INJECTED)) {
+		if (!(hookStruct->flags & LLMHF_INJECTED) && __localInputsDisabled) {
 
 			return TRUE;
 		}

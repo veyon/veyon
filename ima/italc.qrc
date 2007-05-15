@@ -2,7 +2,7 @@
     <qresource prefix="/" >
         <file>../AUTHORS</file>
         <file>../COPYING</file>
-	<file>resources/mouse.png</file>
+	<file>resources/no_mouse.png</file>
 	<file>resources/fullscreen.png</file>
 	<file>resources/quit.png</file>
         <file>resources/adjust_size.png</file>

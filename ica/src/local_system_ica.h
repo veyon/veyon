@@ -31,6 +31,8 @@
 namespace localSystem
 {
 	void initialize( void );
+
+	void disableLocalInputs( bool _disabled );
 }
 
 #endif

@@ -63,7 +63,7 @@ remoteControlWidgetToolBar::remoteControlWidgetToolBar(
 				QString::null, QString::null, 0, 0,
 				this );
 	toolButton * ls_btn = new toolButton(
-				QPixmap( ":/resources/mouse.png" ),
+				QPixmap( ":/resources/no_mouse.png" ),
 				tr( "Lock student" ),
 				QString::null, QString::null, 0, 0,
 				this );
@@ -90,6 +90,8 @@ remoteControlWidgetToolBar::remoteControlWidgetToolBar(
 
 	connect( vo_btn, SIGNAL( toggled( bool ) ),
 				_parent, SLOT( toggleViewOnly( bool ) ) );
+	connect( ls_btn, SIGNAL( toggled( bool ) ),
+				_parent, SLOT( lockStudent( bool ) ) );
 	connect( fs_btn, SIGNAL( toggled( bool ) ),
 				_parent, SLOT( toggleFullScreen( bool ) ) );
 	connect( ss_btn, SIGNAL( clicked() ), _parent, SLOT( takeSnapshot() ) );
@@ -329,6 +331,14 @@ void remoteControlWidget::checkKeyEvent( Q_UINT32 _key, bool _pressed )
 	{
 		close();
 	}
+}
+
+
+
+
+void remoteControlWidget::lockStudent( bool _on )
+{
+	m_vncView->m_connection->disableLocalInputs( _on );
 }
 
 
