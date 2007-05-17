@@ -313,8 +313,8 @@ QString currentUser( void )
 
 void disableLocalInputs( bool _disabled )
 {
-	static systemKeyTrapper * __skt = NULL;
 #ifdef BUILD_WIN32
+	static systemKeyTrapper * __skt = NULL;
 	if( __localInputsDisabled != _disabled )
 	{
 		__localInputsDisabled = _disabled;

@@ -1,3 +1,8 @@
+2007-05-17	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* ica/src/local_system_ica.cpp:
+	fixed compiling error
+
 2007-05-14	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* ima/resources/mouse.png:
