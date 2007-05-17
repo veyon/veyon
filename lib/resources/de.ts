@@ -81,6 +81,11 @@
     <message>
         <location filename="../src/ivs_connection.cpp" line="311"/>
         <source>Could not make a snapshot as directory %1 doesn&apos;t exist and couldn&apos;t be created.</source>
+        <translation type="obsolete">Konnte keinen Schnappschuss erstellen, da das Verzeichnis %1 nicht existiert und nicht erstellt werden konnte.</translation>
+    </message>
+    <message>
+        <location filename="../src/ivs_connection.cpp" line="311"/>
+        <source>Could not take a snapshot as directory %1 doesn&apos;t exist and couldn&apos;t be created.</source>
         <translation>Konnte keinen Schnappschuss erstellen, da das Verzeichnis %1 nicht existiert und nicht erstellt werden konnte.</translation>
     </message>
 </context>
