@@ -307,7 +307,7 @@ bool ivsConnection::takeSnapshot( void )
 	if( !localSystem::ensurePathExists( dir ) )
 	{
 		messageBox::information( tr( "Snapshot" ),
-			tr( "Could not make a snapshot as directory %1 doesn't "
+			tr( "Could not take a snapshot as directory %1 doesn't "
 				"exist and couldn't be created." ).arg( dir ) );
 		return( FALSE );
 	}
