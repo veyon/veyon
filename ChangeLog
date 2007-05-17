@@ -1,5 +1,12 @@
 2007-05-17	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
+	* ima/src/remote_control_widget.h:
+	* ima/src/remote_control_widget.cpp:
+	* ima/src/main_window.h:
+	* ima/src/main_window.cpp:
+	reload snapshot-list after taking snapshot in remote-control-/
+	view-live-mode
+
 	* lib/src/dsa_key.cpp:
 	fixed case where ICA would quit on authentication with bad signed data
 

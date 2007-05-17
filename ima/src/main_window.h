@@ -33,6 +33,8 @@
 #include <QtGui/QToolButton>
 #include <QtGui/QWhatsThis>
 
+#include "snapshot_list.h"
+
 
 class QMenu;
 class QSplashScreen;
@@ -47,7 +49,6 @@ class italcSideBar;
 class isdConnection;
 class overviewWidget;
 class remoteControlWidget;
-class snapshotList;
 class userList;
 
 
@@ -103,6 +104,11 @@ public:
 	{
 		QReadLocker rl( &m_rctrlLock );
 		return( m_remoteControlWidget != NULL );
+	}
+
+	inline void reloadSnapshotList( void )
+	{
+		m_snapshotList->reloadList();
 	}
 
 

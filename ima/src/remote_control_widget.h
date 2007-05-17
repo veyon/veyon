@@ -34,6 +34,7 @@
 
 class vncView;
 class remoteControlWidget;
+class mainWindow;
 
 
 
@@ -85,7 +86,8 @@ class remoteControlWidget : public QWidget
 {
 	Q_OBJECT
 public:
-	remoteControlWidget( const QString & _host, bool _view_only = FALSE );
+	remoteControlWidget( const QString & _host, bool _view_only = FALSE,
+						mainWindow * _main_window = NULL );
 	virtual ~remoteControlWidget();
 
 	QString host( void ) const;
@@ -110,6 +112,7 @@ private slots:
 private:
 	vncView * m_vncView;
 	remoteControlWidgetToolBar * m_toolBar;
+	mainWindow * m_mainWindow;
 
 	Qt::WindowStates m_extraStates;
 

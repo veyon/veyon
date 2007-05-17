@@ -379,7 +379,7 @@ void mainWindow::remoteControlDisplay( const QString & _ip, bool _view_only )
 	{
 		return;
 	}
-	m_remoteControlWidget = new remoteControlWidget( _ip, _view_only );
+	m_remoteControlWidget = new remoteControlWidget( _ip, _view_only, this );
 	connect( m_remoteControlWidget, SIGNAL( destroyed( QObject * ) ),
 			this, SLOT( remoteControlWidgetClosed( QObject * ) ) );
 }

@@ -26,6 +26,7 @@
 #include "vncview.h"
 #include "local_system.h"
 #include "tool_button.h"
+#include "main_window.h"
 
 #include <math.h>
 
@@ -255,10 +256,12 @@ void remoteControlWidgetToolBar::connectionEstablished( void )
 
 
 remoteControlWidget::remoteControlWidget( const QString & _host,
-							bool _view_only ) :
+						bool _view_only,
+						mainWindow * _main_window ) :
 	QWidget( 0 ),
 	m_vncView( new vncView( _host, this ) ),
 	m_toolBar( new remoteControlWidgetToolBar( this, _view_only ) ),
+	m_mainWindow( _main_window ),
 	m_extraStates( Qt::WindowMaximized )
 {
 	setWindowIcon( QPixmap( ":/resources/display.png" ) );
@@ -373,6 +376,10 @@ void remoteControlWidget::toggleViewOnly( bool _on )
 void remoteControlWidget::takeSnapshot( void )
 {
 	m_vncView->m_connection->takeSnapshot();
+	if( m_mainWindow )
+	{
+		m_mainWindow->reloadSnapshotList();
+	}
 }
 
 
