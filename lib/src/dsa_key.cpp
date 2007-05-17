@@ -210,17 +210,19 @@ buffer_len(Buffer *buffer)
 
 /* Gets data from the beginning of the buffer. */
 
-void
+bool
 buffer_get(Buffer *buffer, void *buf, unsigned int len)
 {
 	if (len > buffer->end - buffer->offset)
 	{
 		qCritical( "buffer_get: trying to get more bytes %d than in "
 			"buffer %d", len, buffer->end - buffer->offset );
-		exit( -1 );
+		return( false );
+		//exit( -1 );
 	}
 	memcpy(buf, buffer->buf + buffer->offset, len);
 	buffer->offset += len;
+	return( true );
 }
 
 
@@ -246,8 +248,9 @@ buffer_get_int(Buffer *buffer)
 {
 	unsigned char buf[4];
 
-	buffer_get(buffer, (char *) buf, 4);
-	return GET_32BIT(buf);
+	if(buffer_get(buffer, (char *) buf, 4))
+		return GET_32BIT(buf);
+	return 0;
 }
 
 /*

@@ -1,5 +1,8 @@
 2007-05-17	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
+	* lib/src/dsa_key.cpp:
+	fixed case where ICA would quit on authentication with bad signed data
+
 	* ima/resources/de.ts:
 	* ima/resources/de.qm:
 	updated German localization
