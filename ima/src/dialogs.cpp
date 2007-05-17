@@ -85,6 +85,7 @@ clientSettingsDialog::clientSettingsDialog( client * _client,
 		IPEdit->setText( m_client->localIP() );
 		macEdit->setText( m_client->mac() );
 		remoteIPEdit->setText( m_client->remoteIP() );
+		typeComboBox->setCurrentIndex( m_client->type() );
 	}
 }
 
@@ -116,7 +117,7 @@ void clientSettingsDialog::accept( void )
 		messageBox::information( tr( "Invalid MAC-address" ),
 			tr( "You specified an invalid MAC-address. Either "
 				"leave the field blank or enter a valid MAC-"
-				"address." ),
+				"address (use \":\" as separator!)." ),
 					QPixmap( ":/resources/stop.png" ) );
 		return;
 	}
@@ -127,6 +128,7 @@ void clientSettingsDialog::accept( void )
 					remoteIPEdit->text(),
 					macEdit->text(),
 					nameEdit->text(),
+				(client::types) typeComboBox->currentIndex(),
 m_mainWindow->getClassroomManager()->m_classRooms[classRoomComboBox->currentIndex()],
 					m_mainWindow );
 	}
@@ -136,6 +138,8 @@ m_mainWindow->getClassroomManager()->m_classRooms[classRoomComboBox->currentInde
 		m_client->setLocalIP( IPEdit->text() );
 		m_client->setRemoteIP( remoteIPEdit->text() );
 		m_client->setMac( macEdit->text() );
+		m_client->setType( (client::types)
+						typeComboBox->currentIndex() );
 		m_client->setClassRoom(
 m_mainWindow->getClassroomManager()->m_classRooms[classRoomComboBox->currentIndex()] );
 		m_client->resetConnection();

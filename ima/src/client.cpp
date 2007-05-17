@@ -51,22 +51,22 @@ const QSize DEFAULT_CLIENT_SIZE( 256, 192 );
 
 
 
-const client::clientCommand client::s_commands[client::CmdCount] =
+const client::clientCommand client::s_commands[client::Cmd_CmdCount] =
 {
 
-	{ None,			NULL,				"",								"",			FALSE	},
-	{ Reload,		&client::reload,		"",								"", 			TRUE	},
-	{ ViewLive,		&client::viewLive,		QT_TRANSLATE_NOOP( "client", "View live and fullscreen" ),	"viewmag.png",		FALSE	},
-	{ RemoteControl,	&client::remoteControl,		QT_TRANSLATE_NOOP( "client", "Remote control" ),		"remote_control.png",	FALSE	},
-	{ ClientDemo,		&client::clientDemo,		QT_TRANSLATE_NOOP( "client", "Let student show demo" ),		"client_demo.png",	FALSE	},
-	{ SendTextMessage,	&client::sendTextMessage,	QT_TRANSLATE_NOOP( "client", "Send text-message" ),		"text_message.png",	TRUE	},
-	{ LogonUserCmd,		&client::logonUser,		QT_TRANSLATE_NOOP( "client", "Logon user" ),			"multilogon.png",		FALSE	},
-	{ LogoutUser,		&client::logoutUser,		QT_TRANSLATE_NOOP( "client", "Logout user" ),			"logout.png",		TRUE	},
-	{ Snapshot,		&client::snapshot,		QT_TRANSLATE_NOOP( "client", "Make a snapshot" ),		"snapshot.png", 	TRUE	},
-	{ PowerOn,		&client::powerOn,		QT_TRANSLATE_NOOP( "client", "Power on" ),			"power_on.png",		FALSE	},
-	{ Reboot,		&client::reboot,		QT_TRANSLATE_NOOP( "client", "Reboot" ),			"reboot.png",		FALSE	},
-	{ PowerDown,		&client::powerDown,		QT_TRANSLATE_NOOP( "client", "Power down" ),			"power_off.png",	FALSE	},
-	{ ExecCmds,		&client::execCmds,		QT_TRANSLATE_NOOP( "client", "Execute commands" ),		"run.png", 		FALSE	}
+	{ Cmd_None,		NULL,				"",								"",			FALSE	},
+	{ Cmd_Reload,		&client::reload,		"",								"", 			TRUE	},
+	{ Cmd_ViewLive,		&client::viewLive,		QT_TRANSLATE_NOOP( "client", "View live in fullscreen" ),	"viewmag.png",		FALSE	},
+	{ Cmd_RemoteControl,	&client::remoteControl,		QT_TRANSLATE_NOOP( "client", "Remote control" ),		"remote_control.png",	FALSE	},
+	{ Cmd_ClientDemo,	&client::clientDemo,		QT_TRANSLATE_NOOP( "client", "Let student show demo" ),		"client_demo.png",	FALSE	},
+	{ Cmd_SendTextMessage,	&client::sendTextMessage,	QT_TRANSLATE_NOOP( "client", "Send text message" ),		"text_message.png",	TRUE	},
+	{ Cmd_LogonUser,	&client::logonUser,		QT_TRANSLATE_NOOP( "client", "Logon user" ),			"multilogon.png",	FALSE	},
+	{ Cmd_LogoutUser,	&client::logoutUser,		QT_TRANSLATE_NOOP( "client", "Logout user" ),			"logout.png",		TRUE	},
+	{ Cmd_Snapshot,		&client::snapshot,		QT_TRANSLATE_NOOP( "client", "Take a snapshot" ),		"snapshot.png", 	TRUE	},
+	{ Cmd_PowerOn,		&client::powerOn,		QT_TRANSLATE_NOOP( "client", "Power on" ),			"power_on.png",		FALSE	},
+	{ Cmd_Reboot,		&client::reboot,		QT_TRANSLATE_NOOP( "client", "Reboot" ),			"reboot.png",		FALSE	},
+	{ Cmd_PowerDown,	&client::powerDown,		QT_TRANSLATE_NOOP( "client", "Power down" ),			"power_off.png",	FALSE	},
+	{ Cmd_ExecCmds,		&client::execCmds,		QT_TRANSLATE_NOOP( "client", "Execute commands" ),		"run.png", 		FALSE	}
 
 } ;
 
@@ -80,7 +80,8 @@ bool client::s_reloadSnapshotList = FALSE;
 
 client::client( const QString & _local_ip, const QString & _remote_ip,
 		const QString & _mac, const QString & _name,
-		classRoom * _class_room, mainWindow * _main_window, int _id ) :
+		types _type, classRoom * _class_room,
+					mainWindow * _main_window, int _id ) :
 	QWidget( _main_window->workspace() ),
 	m_mainWindow( _main_window ),
 	m_connection( NULL ),
@@ -88,6 +89,7 @@ client::client( const QString & _local_ip, const QString & _remote_ip,
 	m_localIP( _local_ip ),
 	m_remoteIP( _remote_ip ),
 	m_mac( _mac ),
+	m_type( _type ),
 	m_reloadsAfterReset( 0 ),
 	m_mode( Mode_Overview ),
 	m_user( "" ),
@@ -118,7 +120,7 @@ client::client( const QString & _local_ip, const QString & _remote_ip,
 
 	setWindowIcon( QPixmap( ":/resources/classroom_manager.png" ) );
 
-	setWhatsThis( tr( "This is a client-window. It either displays the "
+/*	setWhatsThis( tr( "This is a client-window. It either displays the "
 				"screen of the according client or a message "
 				"about the state of this client (no user "
 				"logged in/powered off) is shown. You can "
@@ -131,7 +133,7 @@ client::client( const QString & _local_ip, const QString & _remote_ip,
 				"(and all other visible) client-windows by "
 				"using the functions for increasing, "
 				"decreasing or optimizing the client-window-"
-								"size." ) );
+								"size." ) );*/
 
 	setFixedSize( DEFAULT_CLIENT_SIZE );
 	//resize( DEFAULT_CLIENT_SIZE );
@@ -143,19 +145,19 @@ client::client( const QString & _local_ip, const QString & _remote_ip,
 	connect( tb, SIGNAL( triggered( QAction * ) ), this,
 					SLOT( processCmdSlot( QAction * ) ) );
 	tb->addAction( scaled( ":/resources/overview_mode.png", 16, 16 ),
-			tr( "Watch only (stops demo and unlocks screen)" ) )->
-				setData( CmdCount + Mode_Overview );
+		tr( "Watch only (stops demo and unlocks workstation)" ) )->
+				setData( Cmd_CmdCount + Mode_Overview );
 	tb->addAction( scaled( ":/resources/fullscreen_demo.png", 16, 16 ),
 						tr( "Fullscreen demo" ) )->
-				setData( CmdCount + Mode_FullscreenDemo );
+				setData( Cmd_CmdCount + Mode_FullscreenDemo );
 	tb->addAction( scaled( ":/resources/window_demo.png", 16, 16 ),
 						tr( "Window demo" ) )->
-				setData( CmdCount + Mode_WindowDemo );
+				setData( Cmd_CmdCount + Mode_WindowDemo );
 	tb->addAction( scaled( ":/resources/locked.png", 16, 16 ),
 						tr( "Locked display" ) )->
-				setData( CmdCount + Mode_Locked );
+				setData( Cmd_CmdCount + Mode_Locked );
 	tb->addSeparator();
-	for( int i = ViewLive; i < CmdCount; ++i )
+	for( int i = Cmd_ViewLive; i < Cmd_CmdCount; ++i )
 	{
 		QAction * a = tb->addAction( scaled(
 			QString( ":/resources/" ) + s_commands[i].m_icon,
@@ -250,11 +252,11 @@ void client::changeMode( const modes _new_mode, isdConnection * _conn )
 			case Mode_WindowDemo:
 				_conn->demoServerDenyClient( m_localIP );
 				m_updateThread->enqueueCommand(
-						updateThread::StopDemo );
+						updateThread::Cmd_StopDemo );
 				break;
 			case Mode_Locked:
 				m_updateThread->enqueueCommand(
-						updateThread::UnlockScreen );
+						updateThread::Cmd_UnlockScreen );
 				break;
 		}
 		switch( m_mode = _new_mode )
@@ -266,7 +268,7 @@ void client::changeMode( const modes _new_mode, isdConnection * _conn )
 			case Mode_WindowDemo:
 				_conn->demoServerAllowClient( m_localIP );
 				m_updateThread->enqueueCommand(
-						updateThread::StartDemo,
+						updateThread::Cmd_StartDemo,
 	QList<QVariant>()
 			<< _conn->host() + ":" + QString::number(
 						_conn->demoServerPort() )
@@ -275,7 +277,7 @@ void client::changeMode( const modes _new_mode, isdConnection * _conn )
 				break;
 			case Mode_Locked:
 				m_updateThread->enqueueCommand(
-						updateThread::LockScreen );
+						updateThread::Cmd_LockScreen );
 				break;
 		}
 		//m_syncMutex.unlock();
@@ -289,8 +291,8 @@ void client::changeMode( const modes _new_mode, isdConnection * _conn )
 		{
 			_conn->demoServerDenyClient( m_localIP );
 		}
-		m_updateThread->enqueueCommand( updateThread::StopDemo );
-		m_updateThread->enqueueCommand( updateThread::UnlockScreen );
+		m_updateThread->enqueueCommand( updateThread::Cmd_StopDemo );
+		m_updateThread->enqueueCommand( updateThread::Cmd_UnlockScreen );
 	}
 }
 
@@ -309,7 +311,7 @@ void client::setClassRoom( classRoom * _cr )
 
 void client::resetConnection( void )
 {
-	m_updateThread->enqueueCommand( updateThread::ResetConnection,
+	m_updateThread->enqueueCommand( updateThread::Cmd_ResetConnection,
 								m_localIP );
 }
 
@@ -344,7 +346,7 @@ void client::createActionMenu( QMenu * _m )
 
 void client::processCmd( clientCmds _cmd, const QString & _u_data )
 {
-	if( _cmd < 0 || _cmd >= CmdCount )
+	if( _cmd < 0 || _cmd >= Cmd_CmdCount )
 	{
 		return;
 	}
@@ -358,13 +360,14 @@ void client::processCmd( clientCmds _cmd, const QString & _u_data )
 void client::processCmdSlot( QAction * _action )
 {
 	int a = _action->data().toInt();
-	if( a >= ViewLive && a < CmdCount )
+	if( a >= Cmd_ViewLive && a < Cmd_CmdCount )
 	{
 		processCmd( static_cast<clientCmds>( a ) );
 	}
-	else if( a >= CmdCount+Mode_Overview && a < CmdCount+Mode_Unknown )
+	else if( a >= Cmd_CmdCount+Mode_Overview &&
+						a < Cmd_CmdCount+Mode_Unknown )
 	{
-		changeMode( static_cast<modes>( a-CmdCount ),
+		changeMode( static_cast<modes>( a - Cmd_CmdCount ),
 						m_mainWindow->localISD() );
 	}
 }
@@ -658,8 +661,8 @@ void client::sendTextMessage( const QString & _msg )
 	}
 	else
 	{
-		m_updateThread->enqueueCommand( updateThread::SendTextMessage,
-									_msg );
+		m_updateThread->enqueueCommand(
+				updateThread::Cmd_SendTextMessage, _msg );
 	}
 }
 
@@ -681,7 +684,7 @@ void client::logonUser( const QString & _uname_and_pw )
 	}
 	else
 	{
-		m_updateThread->enqueueCommand( updateThread::LogonUserCmd,
+		m_updateThread->enqueueCommand( updateThread::Cmd_LogonUser,
 								_uname_and_pw );
 	}
 }
@@ -691,7 +694,7 @@ void client::logonUser( const QString & _uname_and_pw )
 
 void client::logoutUser( const QString & _confirm )
 {
-	m_updateThread->enqueueCommand( updateThread::LogoutUser );
+	m_updateThread->enqueueCommand( updateThread::Cmd_LogoutUser );
 }
 
 
@@ -716,7 +719,7 @@ void client::powerOn( const QString & )
 
 void client::reboot( const QString & _confirm )
 {
-	m_updateThread->enqueueCommand( updateThread::Reboot );
+	m_updateThread->enqueueCommand( updateThread::Cmd_Reboot );
 }
 
 
@@ -725,7 +728,7 @@ void client::reboot( const QString & _confirm )
 
 void client::powerDown( const QString & _confirm )
 {
-	m_updateThread->enqueueCommand( updateThread::PowerDown );
+	m_updateThread->enqueueCommand( updateThread::Cmd_PowerDown );
 }
 
 
@@ -746,7 +749,8 @@ void client::execCmds( const QString & _cmds )
 	}
 	else
 	{
-		m_updateThread->enqueueCommand( updateThread::ExecCmds, _cmds );
+		m_updateThread->enqueueCommand( updateThread::Cmd_ExecCmds,
+									_cmds );
 	}
 }
 
@@ -814,30 +818,30 @@ void updateThread::update( void )
 		m_queueMutex.unlock();
 		switch( i.first )
 		{
-			case ResetConnection:
+			case Cmd_ResetConnection:
 				m_client->m_connection->reset(
 						i.second.toString() );
 				break;
-			case StartDemo:
+			case Cmd_StartDemo:
 				m_client->m_connection->startDemo(
 					i.second.toList()[0].toString(),
 					i.second.toList()[1].toInt() );
 				break;
-			case StopDemo:
+			case Cmd_StopDemo:
 				m_client->m_connection->stopDemo();
 				break;
-			case LockScreen:
+			case Cmd_LockScreen:
 				m_client->m_connection->lockDisplay();
 				break;
-			case UnlockScreen:
+			case Cmd_UnlockScreen:
 				m_client->m_connection->unlockDisplay();
 				break;
-			case SendTextMessage:
+			case Cmd_SendTextMessage:
 				m_client->m_connection->
 					displayTextMessage(
 						i.second.toString() );
 				break;
-			case LogonUserCmd:
+			case Cmd_LogonUser:
 			{
 				const QString s = i.second.toString();
 				const int pos = s.indexOf( '*' );
@@ -849,18 +853,18 @@ void updateThread::update( void )
 						s.mid( pos2 + 1 ) );
 				break;
 			}
-			case LogoutUser:
+			case Cmd_LogoutUser:
 				m_client->m_connection->logoutUser();
 				break;
-			case Reboot:
+			case Cmd_Reboot:
 				m_client->m_connection->
 						restartComputer();
 				break;
-			case PowerDown:
+			case Cmd_PowerDown:
 				m_client->m_connection->
 						powerDownComputer();
 				break;
-			case ExecCmds:
+			case Cmd_ExecCmds:
 				m_client->m_connection->execCmds(
 						i.second.toString() );
 				break;
@@ -875,7 +879,7 @@ void updateThread::update( void )
 		if( !m_client->m_mainWindow->remoteControlRunning() &&
 						!mainWindow::atExit() )
 		{
-			m_client->processCmd( client::Reload, CONFIRM_NO );
+			m_client->processCmd( client::Cmd_Reload, CONFIRM_NO );
 		}
 	}
 	else if( m_client->m_connection->state() == ivsConnection::Connected )

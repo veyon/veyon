@@ -92,5 +92,6 @@
         <file>resources/whatsthis.png</file>
         <file>resources/window_demo.png</file>
         <file>resources/logo.png</file>
+        <file>resources/greenled.png</file>
     </qresource>
 </RCC>

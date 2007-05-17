@@ -61,17 +61,17 @@ class updateThread : public QThread
 public:
 	enum queueableCommands
 	{
-		ResetConnection,
-		StartDemo,
-		StopDemo,
-		LockScreen,
-		UnlockScreen,
-		SendTextMessage,
-		LogonUserCmd,
-		LogoutUser,
-		Reboot,
-		PowerDown,
-		ExecCmds
+		Cmd_ResetConnection,
+		Cmd_StartDemo,
+		Cmd_StopDemo,
+		Cmd_LockScreen,
+		Cmd_UnlockScreen,
+		Cmd_SendTextMessage,
+		Cmd_LogonUser,
+		Cmd_LogoutUser,
+		Cmd_Reboot,
+		Cmd_PowerDown,
+		Cmd_ExecCmds
 	} ;
 
 	updateThread( client * _client );
@@ -113,20 +113,20 @@ class client : public QWidget
 public:
 	enum clientCmds
 	{
-		None,
-		Reload,
-		ViewLive,
-		RemoteControl,
-		ClientDemo,
-		SendTextMessage,
-		LogonUserCmd,
-		LogoutUser,
-		Snapshot,
-		PowerOn,
-		Reboot,
-		PowerDown,
-		ExecCmds,
-		CmdCount
+		Cmd_None,
+		Cmd_Reload,
+		Cmd_ViewLive,
+		Cmd_RemoteControl,
+		Cmd_ClientDemo,
+		Cmd_SendTextMessage,
+		Cmd_LogonUser,
+		Cmd_LogoutUser,
+		Cmd_Snapshot,
+		Cmd_PowerOn,
+		Cmd_Reboot,
+		Cmd_PowerDown,
+		Cmd_ExecCmds,
+		Cmd_CmdCount
 	} ;
 
 	enum modes
@@ -148,10 +148,17 @@ public:
 		State_Unkown
 	} ;
 
+	enum types
+	{
+		Type_Student,
+		Type_Teacher,
+		Type_Other
+	} ;
+
 	client( const QString & _local_ip, const QString & _remote_ip,
-		const QString & _mac, const QString & _name,
+		const QString & _mac, const QString & _name, types _type,
 		classRoom * _class_room, mainWindow * _main_window,
-		int _id = -1 );
+								int _id = -1 );
 
 	virtual ~client();
 
@@ -188,6 +195,11 @@ public:
 		return( m_mac );
 	}
 
+	inline types type( void ) const
+	{
+		return( m_type );
+	}
+
 	inline const QString & user( void ) const
 	{
 		return( m_user );
@@ -215,6 +227,14 @@ public:
 	inline void setMac( const QString & _mac )
 	{
 		m_mac = _mac;
+	}
+
+	inline void setType( types _type )
+	{
+		if( _type >= Type_Student && _type <= Type_Other )
+		{
+			m_type = _type;
+		}
 	}
 
 	void setClassRoom( classRoom * _cr );
@@ -256,7 +276,7 @@ public:
 	} ;
 
 
-	static const clientCommand s_commands[CmdCount];
+	static const clientCommand s_commands[Cmd_CmdCount];
 
 
 
@@ -300,6 +320,7 @@ private:
 	QString m_localIP;
 	QString m_remoteIP;
 	QString m_mac;
+	types m_type;
 	int m_reloadsAfterReset;
 
 	modes m_mode;

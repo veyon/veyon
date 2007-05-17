@@ -153,6 +153,8 @@ private slots:
 	void addClient( void );
 	void addClassRoom( void );
 
+	void hideTeacherClients( void );
+
 
 private:
 	void cmdToVisibleClients( client::clientCmds _cmd,
@@ -188,7 +190,7 @@ private:
 
 	QSpinBox * m_updateIntervalSpinBox;
 	QMenu * m_quickSwitchMenu;
-
+	QAction * m_qsmClassRoomSeparator;
 	client::modes m_globalClientMode;
 
 	int m_clientUpdateInterval;
@@ -217,6 +219,14 @@ public:
 	virtual ~classRoom();
 
 	void createActionMenu( QMenu * _m, bool _add_sub_menu = TRUE );
+
+	void setMenuItemIcon( const QIcon & _icon )
+	{
+		m_qsMenuAction->setIcon( _icon );
+		QFont f = m_qsMenuAction->font();
+		f.setBold( !_icon.isNull() );
+		m_qsMenuAction->setFont( f );
+	}
 
 
 public slots:

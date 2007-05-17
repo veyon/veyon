@@ -1,5 +1,35 @@
 2007-05-17	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
+	* ima/resources/de.ts:
+	* ima/resources/de.qm:
+	updated German localization
+
+	* ima/src/classroom_manager.cpp:
+	* ima/src/classroom_manager.h:
+	added "hide teacher-clients"-feature in classroom-menu
+
+	* ima/resources/greenled.png:
+	* ima/italc.qrc:
+	* ima/src/classroom_manager.cpp:
+	highlight current classroom in classroom-menu
+
+	* ima/dialogs/client_settings.ui:
+	* ima/src/dialogs.cpp:
+	* ima/src/classroom_manager.cpp:
+	* ima/src/client.h:
+	* ima/src/client.cpp:
+	added "type"-property to clients to have another distinction between
+	different clients
+
+	* ima/src/classroom_manager.cpp:
+	* ima/src/client.cpp:
+	* ima/src/client.h:
+	more clear identifiers in enums
+
+	* ima/src/classroom_manager.cpp:
+	* ica/src/ica_main.cpp:
+	cleanups
+
 	* ica/src/local_system_ica.cpp:
 	fixed compiling error
 
