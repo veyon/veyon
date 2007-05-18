@@ -130,7 +130,7 @@ classroomManager::classroomManager( mainWindow * _main_window,
 	QLabel * help_txt = new QLabel(
 		tr( "\nUse the context-menu (right mouse-button) to add/remove "
 			"computers and/or classrooms.\n\n"
-			"Once you did so you can show or hide clients by "
+			"Once you did so you can show or hide computers by "
 			"double-clicking them.\n\nFurther actions can be "
 			"found in the context-menu of a computer or "
 			"classroom.\n" ),
@@ -143,7 +143,7 @@ classroomManager::classroomManager( mainWindow * _main_window,
 	loadPersonalConfig();
 
 	QAction * hide_teacher_clients =
-		m_quickSwitchMenu->addAction( tr( "Hide teacher clients" ) );
+		m_quickSwitchMenu->addAction( tr( "Hide teacher computers" ) );
 	connect( hide_teacher_clients, SIGNAL( triggered( bool ) ),
 					this, SLOT( hideTeacherClients() ) );
 
@@ -244,14 +244,16 @@ void classroomManager::savePersonalConfig( void )
 						m_clientUpdateInterval );
 	globalsettings.setAttribute( "win-width", getMainWindow()->width() );
 	globalsettings.setAttribute( "win-height", getMainWindow()->height() );
-	globalsettings.setAttribute( "ismaximized", getMainWindow()->isMaximized() );
+	globalsettings.setAttribute( "ismaximized",
+					getMainWindow()->isMaximized() );
 	globalsettings.setAttribute( "opened-tab",
 				getMainWindow()->m_sideBar->openedTab() );
 
 	globalsettings.setAttribute( "wincfg", QString(
 				getMainWindow()->saveState().toBase64() ) );
 
-	globalsettings.setAttribute( "demo-net-iface", __demo_network_interface );
+	globalsettings.setAttribute( "demo-net-iface",
+						__demo_network_interface );
 	globalsettings.setAttribute( "demo-master-ip", __demo_master_ip );
 	globalsettings.setAttribute( "defaultdomain", __default_domain );
 	globalsettings.setAttribute( "demoquality", __demo_quality );
@@ -277,16 +279,18 @@ void classroomManager::savePersonalConfig( void )
 	QString xml = "<?xml version=\"1.0\"?>\n" + doc.toString( 2 );
 	if( mainWindow::ensureConfigPathExists() == FALSE )
 	{
-		qWarning( QString( "Could not read/write or create directory %1!"
-					"For running iTALC, make sure you have "
-					"write-access to your home-directory "
-					"and to %1 (if already existing)."
+		qWarning( QString( "Could not read/write or create directory "
+					"%1! For running iTALC, make sure you "
+					"have write-access to your home-"
+					"directory and to %1 (if already "
+					"existing)."
 				).arg( localSystem::personalConfigDir()
 						).toAscii().constData() );
 	}
 
 	QFile( m_personalConfiguration + ".bak" ).remove();
-	QFile( m_personalConfiguration ).copy( m_personalConfiguration + ".bak" );
+	QFile( m_personalConfiguration ).copy( m_personalConfiguration +
+								".bak" );
 	QFile outfile( m_personalConfiguration );
 	outfile.open( QFile::WriteOnly | QFile::Truncate );
 
@@ -424,10 +428,11 @@ void classroomManager::getHeaderInformation( const QDomElement & _header )
 						node.toElement().attribute(
 							"opened-tab" ).toInt();
 			}
-			if( node.toElement().attribute( "ismaximized" ).toInt() > 0 )
+			if( node.toElement().attribute( "ismaximized" ).
+								toInt() > 0 )
 			{
-				getMainWindow()->setWindowState( getMainWindow()->windowState() |
-										Qt::WindowMaximized );
+	getMainWindow()->setWindowState( getMainWindow()->windowState() |
+							Qt::WindowMaximized );
 			}
 			if( node.toElement().attribute( "wincfg" ) !=
 								QString::null )
@@ -523,12 +528,6 @@ void classroomManager::loadTree( classRoom * _parent_item,
 				QString local_ip = node.toElement().attribute(
 								"localip" );
 
-				// compat-code - to be removed with final 1.0.0
-				if( local_ip == QString::null )
-				{
-					local_ip = node.toElement().attribute(
-									"ip" );
-				}
 				QString remote_ip = node.toElement().attribute(
 								"remoteip" );
 				QString mac = node.toElement().attribute(
@@ -1216,6 +1215,11 @@ void classroomManager::contextMenuRequest( const QPoint & _pos )
 				this, SLOT( hideSelectedClassRooms() ) );
 
 		context_menu->addAction(
+				QPixmap( ":/resources/no_user.png" ),
+				tr( "Hide teacher computers" ),
+				this, SLOT( hideTeacherClients() ) );
+
+		context_menu->addAction(
 				QPixmap( ":/resources/client_settings.png" ),
 				tr( "Edit name" ),
 				this, SLOT( editClassRoomName() ) );
@@ -1758,8 +1762,9 @@ void classRoom::processCmdOnAllClients( QAction * _action )
 		{
 			if( QMessageBox::question( m_classroomManager->window(),
 				classroomManager::tr( "Power down computers" ),
-				classroomManager::tr( "Are you sure want to power "
-						"down all visible computers?" ),
+				classroomManager::tr( "Are you sure want to "
+						"power down all visible "
+								"computers?" ),
 					QMessageBox::Yes, QMessageBox::No ) ==
 							QMessageBox::No )
 			{

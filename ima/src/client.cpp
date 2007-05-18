@@ -56,7 +56,7 @@ const client::clientCommand client::s_commands[client::Cmd_CmdCount] =
 
 	{ Cmd_None,		NULL,				"",								"",			FALSE	},
 	{ Cmd_Reload,		&client::reload,		"",								"", 			TRUE	},
-	{ Cmd_ViewLive,		&client::viewLive,		QT_TRANSLATE_NOOP( "client", "View live in fullscreen" ),	"viewmag.png",		FALSE	},
+	{ Cmd_ViewLive,		&client::viewLive,		QT_TRANSLATE_NOOP( "client", "View live" ),			"viewmag.png",		FALSE	},
 	{ Cmd_RemoteControl,	&client::remoteControl,		QT_TRANSLATE_NOOP( "client", "Remote control" ),		"remote_control.png",	FALSE	},
 	{ Cmd_ClientDemo,	&client::clientDemo,		QT_TRANSLATE_NOOP( "client", "Let student show demo" ),		"client_demo.png",	FALSE	},
 	{ Cmd_SendTextMessage,	&client::sendTextMessage,	QT_TRANSLATE_NOOP( "client", "Send text message" ),		"text_message.png",	TRUE	},
@@ -145,8 +145,8 @@ client::client( const QString & _local_ip, const QString & _remote_ip,
 	connect( tb, SIGNAL( triggered( QAction * ) ), this,
 					SLOT( processCmdSlot( QAction * ) ) );
 	tb->addAction( scaled( ":/resources/overview_mode.png", 16, 16 ),
-		tr( "Watch only (stops demo and unlocks workstation)" ) )->
-				setData( Cmd_CmdCount + Mode_Overview );
+			tr( "Overview" ) )->
+					setData( Cmd_CmdCount + Mode_Overview );
 	tb->addAction( scaled( ":/resources/fullscreen_demo.png", 16, 16 ),
 						tr( "Fullscreen demo" ) )->
 				setData( Cmd_CmdCount + Mode_FullscreenDemo );

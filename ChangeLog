@@ -1,3 +1,15 @@
+2007-05-18	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* ima/dialogs/client_settings.ui:
+	* ima/src/client.cpp:
+	* ima/src/classroom_manager.cpp:
+	- fixed/improved some texts/descriptions ("client" -> "computer")
+	- added "hide-teacher-computers"-function to context-menu of classrooms
+	
+	* ima/resources/de.ts:
+	* ima/resources/de.qm:
+	updated German localization
+
 2007-05-17	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* ica/resources/fr.ts:

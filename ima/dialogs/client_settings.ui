@@ -132,17 +132,17 @@ p, li { white-space: pre-wrap; }
         <widget class="QComboBox" name="typeComboBox" >
          <item>
           <property name="text" >
-           <string>Student client</string>
+           <string>Student computer</string>
           </property>
          </item>
          <item>
           <property name="text" >
-           <string>Teacher client</string>
+           <string>Teacher computer</string>
           </property>
          </item>
          <item>
           <property name="text" >
-           <string>Other/undefined</string>
+           <string>Other/undefined computer</string>
           </property>
          </item>
         </widget>
