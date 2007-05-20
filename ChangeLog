@@ -1,3 +1,13 @@
+2007-05-20	Dirk Zoellner <dirkzoellner/at/users/dot/sourceforge/dot/net>
+	
+	* lib/src/local_system.cpp:
+	- modified log-system to work with loglevels
+	- changed log-directory to /tmp resp. C:\temp
+
+	* setup/src/dialogs.cpp:
+	- added key for loglevel: 0 silent, 2 fatal, 4 critical, 6 warning, 9 debug
+	  default is 6 
+	
 2007-05-20	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* lib/Makefile.am:
