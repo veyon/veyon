@@ -121,17 +121,45 @@ static QString windowsConfigPath( int _type )
 static localSystem::p_pressKey __pressKey;
 static QString __log_file;
 static QFile * __debug_out = NULL;
+static int logLevel = 6;
 
 
 void msgHandler( QtMsgType _type, const char * _msg )
 {
+	if( logLevel == 0 )
+	{
+		return ;
+	}
 	if( __debug_out == NULL )
 	{
-#ifdef BUILD_WIN32
-		const QString log_path = windowsConfigPath( CSIDL_WINDOWS ) +
-							QDir::separator();
+#ifdef BUILD_WIN32		
+		if( !QDir( QDir::rootPath() + QString( "temp" ) ).exists() )
+		{
+			if( QDir( QDir::rootPath() ).mkdir( "temp" ) )
+			{
+				QFile::setPermissions( QDir::rootPath() + QString( "temp" ),
+						QFile::ReadOwner | QFile::WriteOwner | QFile::ExeOwner |
+						QFile::ReadUser | QFile::WriteUser | QFile::ExeUser |
+						QFile::ReadGroup | QFile::WriteGroup | QFile::ExeGroup |
+						QFile::ReadOther | QFile::WriteOther | QFile::ExeOther );
+			}
+		}		
+		const QString log_path = QDir::rootPath() + QString( "temp" ) + 
+									QDir::separator();
 #else
-		const QString log_path = "/var/log/";
+		if( !QDir( QDir::rootPath() + QString( "tmp" ) ).exists() )
+		{
+			if( QDir( QDir::rootPath() ).mkdir( "tmp" ) )
+			{
+				QFile::setPermissions( QDir::rootPath() + QString( "tmp" ),
+						QFile::ReadOwner | QFile::WriteOwner | QFile::ExeOwner |
+						QFile::ReadUser | QFile::WriteUser | QFile::ExeUser |
+						QFile::ReadGroup | QFile::WriteGroup | QFile::ExeGroup |
+						QFile::ReadOther | QFile::WriteOther | QFile::ExeOther );
+			}
+		}
+		const QString log_path = QDir::rootPath() + QString( "tmp" ) + 
+									QDir::separator();
 #endif
 		__debug_out = new QFile( log_path + __log_file );
 		__debug_out->open( QFile::WriteOnly | QFile::Append |
@@ -142,24 +170,88 @@ void msgHandler( QtMsgType _type, const char * _msg )
 	switch( _type )
 	{
 		case QtDebugMsg:
-			out = QString( "(debug)" );
+			if( logLevel > 8)
+			{
+				out = QString( "(debug) %1" ).arg( _msg );
+#ifdef BUILD_WIN32
+				if( out.right( 1 ) != "\015" )
+				{
+					out.replace(QString("\012"), QString("\015\012"));
+#elif BUILD_LINUX
+				if( out.right( 1 ) != "\012" )
+				{
+					out += "\012";				
+#else
+				if( out.right( 1 ) != "\015" ) // MAC
+				{
+					out.replace(QString("\012"), QString("\015"));
+#endif			
+				}
+			}
 			break;
 		case QtWarningMsg:
-			out = QString( "(warning)" );
+			if( logLevel > 5 )
+			{
+				out = QString( "(warning) %1" ).arg( _msg );
+#ifdef BUILD_WIN32
+				if( out.right( 1 ) != "\015" )
+				{
+					out.replace(QString("\012"), QString("\015\012"));
+#elif BUILD_LINUX
+				if( out.right( 1 ) != "\012" )
+				{
+					out += "\012";				
+#else
+				if( out.right( 1 ) != "\015" )
+				{
+					out.replace(QString("\012"), QString("\015"));
+#endif			
+				}
+			}
 			break;
 		case QtCriticalMsg:
-			out = QString( "(critical)" );
+			if( logLevel > 3 )
+			{
+				out = QString( "(critical) %1" ).arg( _msg );
+#ifdef BUILD_WIN32
+				if( out.right( 1 ) != "\015" )
+				{
+					out.replace(QString("\012"), QString("\015\012"));
+#elif BUILD_LINUX
+				if( out.right( 1 ) != "\012" )
+				{
+					out += "\012";				
+#else
+				if( out.right( 1 ) != "\015" ) // MAC
+				{
+					out.replace(QString("\012"), QString("\015"));
+#endif			
+				}
+			}
 			break;
 		case QtFatalMsg:
-			out = QString( "(fatal)" );
+			if( logLevel > 1 )
+			{
+				out = QString( "(fatal) %1" ).arg( _msg );
+#ifdef BUILD_WIN32
+				if( out.right( 1 ) != "\015" )
+				{
+					out.replace(QString("\012"), QString("\015\012"));
+#elif BUILD_LINUX
+				if( out.right( 1 ) != "\012" )
+				{
+					out += "\012";				
+#else
+				if( out.right( 1 ) != "\015" ) // MAC
+				{
+					out.replace(QString("\012"), QString("\015"));
+#endif			
+				}
+			}
+		default:
 			break;
 	}
-
-	out = QString( out + " %1" ).arg( _msg );
-	if( out.right( 1 ) != "\n" )
-	{
-		out += "\n";
-	}
+	
 	__debug_out->write( out.toAscii() );
 	printf( "%s", out.toAscii().constData() );
 }
@@ -182,6 +274,14 @@ void initialize( p_pressKey _pk, const QString & _log_file )
 	QCoreApplication::setOrganizationName( "iTALC Solutions" );
 	QCoreApplication::setOrganizationDomain( "italcsolutions.org" );
 	QCoreApplication::setApplicationName( "iTALC" );
+
+	QSettings settings( QSettings::SystemScope, "iTALC Solutions", "iTALC" );
+	
+	if( settings.contains( "settings/LogLevel" ) && 
+		   settings.value( "settings/LogLevel" ).toInt() != 0 )
+	{
+		logLevel = settings.value( "settings/LogLevel" ).toInt();
+	}	
 
 	qInstallMsgHandler( msgHandler );
 
