@@ -311,6 +311,8 @@ QString currentUser( void )
 }
 
 
+
+
 void disableLocalInputs( bool _disabled )
 {
 #ifdef BUILD_WIN32

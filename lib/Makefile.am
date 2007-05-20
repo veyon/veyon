@@ -92,6 +92,8 @@ shared-lib: italc_core.dll
 
 italc_core.dll: libitalc_core-static.a
 	$(CXX) *.o -shared -Wl,-no-undefined -Wl,-enable-runtime-pseudo-reloc -Wl,--out-implib,libitalc_core.a -o $@ $(QT_LDADD) $(QT_LIB_GUI) $(LIBSSL) -lz -ljpeg -lpsapi && $(STRIP) italc_core.dll
+
+lib_LTLIBRARIES = italc_core.dll
 endif
 
 if BUILD_LINUX
