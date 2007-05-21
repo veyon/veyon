@@ -14,6 +14,19 @@
     </message>
 </context>
 <context>
+    <name>ivsConnection</name>
+    <message>
+        <location filename="../src/ivs_connection.cpp" line="309"/>
+        <source>Snapshot</source>
+        <translation>Foto</translation>
+    </message>
+    <message>
+        <location filename="../src/ivs_connection.cpp" line="311"/>
+        <source>Could not take a snapshot as directory %1 doesn&apos;t exist and couldn&apos;t be created.</source>
+        <translation>Non è possibile scattare una foto perché la cartella %1 non esiste e non è possibile crearla.</translation>
+    </message>
+</context>
+<context>
     <name>messageBox</name>
     <message>
         <location filename="../src/messagebox.cpp" line="75"/>

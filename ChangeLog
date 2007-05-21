@@ -1,3 +1,14 @@
+2007-05-21	Andriano Rino <rino-andr/at/users/dot/sourceforge/dot/net>
+
+	* ica/resources/it.ts:
+	* ima/resources/it.ts:
+	* ima/resources/it.qm:
+	* lib/resources/it.ts:
+	* lib/resources/it.qm:
+	* setup/resources/it.ts:
+	* setup/resources/it.qm:
+	updated Italian localization to svn 180 and removed obsolete translations
+
 2007-05-20	Dirk Zoellner <dirkzoellner/at/users/dot/sourceforge/dot/net>
 	
 	* lib/src/local_system.cpp:
@@ -181,7 +192,7 @@
 	* build_mingw32:
 	works now without modifying PATH-variable
 	
-2007-05-02	Andriano Rino <rino_andr/at/yahoo/dot/it>
+2007-05-02	Andriano Rino <rino-andr/at/users/dot/sourceforge/dot/net>
 
 	* ica/resources/it.ts:
 	* ica/resources/it.qm:
@@ -477,7 +488,7 @@
 	* common/include/system_service.h:
 	added quiet-option for being able to supress information-messages
 
-2007-04-04	Andriano Rino <rino_andr/at/yahoo/dot/it>
+2007-04-04	Andriano Rino <rino-andr/at/users/dot/sourceforge/dot/net>
 
 	* ica/resources/it.ts:
 	* ica/resources/it.qm:
@@ -608,7 +619,7 @@
 	* setup/src/dialogs.cpp:
 	added possibility to keep all keys during installation
 
-2007-03-20	Andriano Rino <rino_andr/at/yahoo/dot/it>
+2007-03-20	Andriano Rino <rino-andr/at/users/dot/sourceforge/dot/net>
 
 	* ica/resources/it.ts:
 	* ica/resources/it.qm:
@@ -742,7 +753,7 @@
 	* utils-win32/userinfo.cpp:
 	small fixes
 
-2007-03-12	Andriano Rino <rino_andr/at/yahoo/dot/it>
+2007-03-12	Andriano Rino <rino-andr/at/users/dot/sourceforge/dot/net>
 
 	* ica/resources/it.ts:
 	* ica/resources/it.qm:
@@ -790,7 +801,7 @@
 	do not pass --build for allowing cross-compile without WINE being
 	installed
 
-2007-03-05	Andriano Rino <rino_andr/at/yahoo/dot/it>
+2007-03-05	Andriano Rino <rino-andr/at/users/dot/sourceforge/dot/net>
 
 	* ica/resources/it.ts:
 	* ica/resources/it.qm:
