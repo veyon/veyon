@@ -1,3 +1,15 @@
+2007-05-24	Asbjørn Stokka <asbjorn/dot/stokka/at/lyse/dot/net>
+
+	* ica/resources/nn.ts:
+	* ica/resources/nn.qm:
+	* ima/resources/nn.ts:
+	* ima/resources/nn.qm:
+	* lib/resources/nn.ts:
+	* lib/resources/nn.qm:
+	* setup/resources/nn.ts:
+	* setup/resources/nn.qm:
+	added Norwegian localization
+
 2007-05-21	Andriano Rino <rino-andr/at/users/dot/sourceforge/dot/net>
 
 	* ica/resources/it.ts:
@@ -7,7 +19,8 @@
 	* lib/resources/it.qm:
 	* setup/resources/it.ts:
 	* setup/resources/it.qm:
-	updated Italian localization to svn 180 and removed obsolete translations
+	updated Italian localization to svn 180 and removed obsolete
+	translations
 
 2007-05-20	Dirk Zoellner <dirkzoellner/at/users/dot/sourceforge/dot/net>
 	
@@ -16,8 +29,8 @@
 	- changed log-directory to /tmp resp. C:\temp
 
 	* setup/src/dialogs.cpp:
-	- added key for loglevel: 0 silent, 2 fatal, 4 critical, 6 warning, 9 debug
-	  default is 6 
+	- added key for loglevel: 0 silent, 2 fatal, 4 critical, 6 warning,
+	  9 debug, default is 6 
 	
 2007-05-20	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
