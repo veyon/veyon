@@ -7,6 +7,7 @@
 		<file alias="resources/it-core.qm">resources/it.qm</file>
 		<file alias="resources/es-core.qm">resources/es.qm</file>
 		<file alias="resources/fr-core.qm">resources/fr.qm</file>
+		<file alias="resources/nn-core.qm">resources/nn.qm</file>
 		<file>resources/locked_bg.png</file>
 		<file>resources/icon16.png</file>
 		<file>resources/icon22.png</file>
