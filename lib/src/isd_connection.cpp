@@ -113,7 +113,7 @@ isdConnection::~isdConnection()
 
 
 
-//#define NO_QTCPSOCKET_CONNECT
+#define NO_QTCPSOCKET_CONNECT
 
 #ifdef NO_QTCPSOCKET_CONNECT
 
@@ -121,6 +121,8 @@ isdConnection::~isdConnection()
 #ifdef BUILD_WIN32
 #include <io.h>
 #include <winsock.h>
+#define lasterror WSAGetLastError()
+
 #else
 #include <sys/types.h>
 #include <sys/socket.h>
@@ -133,7 +135,9 @@ isdConnection::~isdConnection()
 #include <errno.h>
 #include <string.h>
 #include <signal.h>
+#define lasterror errno
 #endif
+
 #include <sys/types.h>
 
 
@@ -148,8 +152,8 @@ bool connectToHost( const QString & _host, int _port, QTcpSocket * _sock )
 		WORD wVersionRequested;
 		WSADATA wsaData;
 
-		wVersionRequested = MAKEWORD(2, 0);
-		if (WSAStartup(wVersionRequested, &wsaData) != 0)
+		wVersionRequested = MAKEWORD( 2, 0 );
+		if( WSAStartup( wVersionRequested, &wsaData ) != 0 )
 		{
 			return( FALSE );
 		}
@@ -207,15 +211,6 @@ bool connectToHost( const QString & _host, int _port, QTcpSocket * _sock )
 		}
 	}
 
-	// Set the port number in the correct format
-	addr.sin_port = htons( _port );
-
-	// Actually connect the socket
-	if( connect( sock, (struct sockaddr *) &addr, sizeof( addr ) ) != 0 )
-	{
-		return( FALSE );
-	}
-
 	// Put the socket into non-blocking mode
 #ifdef __WIN32__
 	u_long arg = 1;
@@ -224,11 +219,68 @@ bool connectToHost( const QString & _host, int _port, QTcpSocket * _sock )
 		return( FALSE );
 	}
 #else
-	if( fcntl( sock, F_SETFL, O_NDELAY ) != 0 )
+	if( fcntl( sock, F_SETFL, O_NONBLOCK ) != 0 )
 	{
 		return( FALSE );
 	}
 #endif
+
+	// Set the port number in the correct format
+	addr.sin_port = htons( _port );
+
+	// Actually connect the socket
+	int res = connect( sock, (struct sockaddr *) &addr, sizeof( addr ) );
+	if( res < 0 )
+	{
+		if( lasterror ==
+	#ifdef BUILD_WIN32
+				WSAEWOULDBLOCK
+	#else
+				EINPROGRESS
+	#endif
+						)
+		{
+			do
+			{
+				fd_set s;
+				timeval tv;
+				tv.tv_sec = 3;
+				tv.tv_usec = 0;
+				FD_ZERO( &s );
+				FD_SET( sock, &s );
+				res = select( sock+1, NULL, &s, NULL, &tv );
+				if( res < 0 && lasterror != EINTR )
+				{
+					return( FALSE );
+				}
+				else if( res > 0 )
+				{
+					socklen_t lon = sizeof( int );
+					int valopt;
+					if( getsockopt( sock, SOL_SOCKET,
+							SO_ERROR,
+							(char *) &valopt,
+							&lon ) < 0 )
+					{
+						return( FALSE );
+					}
+					if( valopt )
+					{
+						return( FALSE );
+					}
+					break;
+				}
+				else	// timeout
+				{
+					return( FALSE );
+				}
+			} while( 1 );
+		}
+		else
+		{
+			return( FALSE );
+		}
+	}
 
 	_sock->setSocketDescriptor( sock );
 
