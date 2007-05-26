@@ -268,6 +268,10 @@ void setupWizard::doInstallation( bool _quiet )
 			return;
 		}
 	}
+	
+	QSettings settings( QSettings::SystemScope, "iTALC Solutions", "iTALC" );
+	settings.setValue( "settings/LogLevel", 6 );
+	
 	const int remaining_steps = 1;
 	const int remaining_percent = 10;
 	int step = 0;
