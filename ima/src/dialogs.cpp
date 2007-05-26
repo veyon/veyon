@@ -64,7 +64,7 @@ clientSettingsDialog::clientSettingsDialog( client * _client,
 {
 	setupUi( this );
 
-
+	nameEdit->setFocus();
 	int set_to_classroom = 0;
 
 	classroomManager * cm = m_mainWindow->getClassroomManager();
