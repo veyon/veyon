@@ -161,7 +161,7 @@ mainWindow::mainWindow() :
 
 	toolButton * scr = new toolButton(
 			QPixmap( ":/resources/tutorials.png" ),
-			tr( "Classroom" ),
+			tr( "Classroom" ), QString::null,
 			tr( "Switch classroom" ),
 			tr( "Click this button to open a menu where you can "
 				"choose the active classroom." ),
@@ -175,7 +175,7 @@ mainWindow::mainWindow() :
 
 	toolButton * overview_mode = new toolButton(
 			QPixmap( ":/resources/overview_mode.png" ),
-			tr( "Overview" ),
+			tr( "Overview" ), QString::null,
 			tr( "Overview mode" ),
 			tr( "This is the default mode in iTALC and allows you "
 				"to have an overview over all visible "
@@ -186,7 +186,7 @@ mainWindow::mainWindow() :
 
 	toolButton * fsdemo_mode = new toolButton(
 			QPixmap( ":/resources/fullscreen_demo.png" ),
-			tr( "Demo" ),
+			tr( "Demo on" ), tr( "Demo off" ),
 			tr( "Fullscreen demo" ),
 			tr( "In this mode your screen is being displayed on "
 				"all shown computers. Furthermore the users "
@@ -196,7 +196,7 @@ mainWindow::mainWindow() :
 
 	toolButton * windemo_mode = new toolButton(
 			QPixmap( ":/resources/window_demo.png" ),
-			tr( "Demo/window" ),
+			tr( "Demo/window on" ), tr( "Demo/window off" ),
 			tr( "Window demo" ),
 			tr( "In this mode your screen being displayed in a "
 				"window on all shown computers. The users are "
@@ -206,8 +206,8 @@ mainWindow::mainWindow() :
 
 	toolButton * lock_mode = new toolButton(
 			QPixmap( ":/resources/locked.png" ),
-			tr( "Lock" ),
-			tr( "Lock desktops" ),
+			tr( "Lock all" ), tr( "Unlock all" ),
+			tr( "Lock/unlock desktops" ),
 			tr( "To have all user's full attention you can lock "
 				"their desktops using this button. "
 				"In this mode all input devices are locked and "
@@ -232,7 +232,7 @@ mainWindow::mainWindow() :
 
 	toolButton * text_msg = new toolButton(
 			QPixmap( ":/resources/text_message.png" ),
-			tr( "Text message" ),
+			tr( "Text message" ), QString::null,
 			tr( "Send text message" ),
 			tr( "Use this button to send a text message to all "
 				"users e.g. to tell them new tasks etc." ),
@@ -241,7 +241,7 @@ mainWindow::mainWindow() :
 
 	toolButton * power_on = new toolButton(
 			QPixmap( ":/resources/power_on.png" ),
-			tr( "Power on" ),
+			tr( "Power on" ), QString::null,
 			tr( "Power on computers" ),
 			tr( "Click this button to power on all visible "
 				"computers. This way you do not have to turn "
@@ -250,7 +250,7 @@ mainWindow::mainWindow() :
 
 	toolButton * power_off = new toolButton(
 			QPixmap( ":/resources/power_off.png" ),
-			tr( "Power down" ),
+			tr( "Power down" ), QString::null,
 			tr( "Power down computers" ),
 			tr( "To power down all shown computers (e.g. after "
 				"the lesson has finished) you can click this "
@@ -260,7 +260,7 @@ mainWindow::mainWindow() :
 
 	toolButton * multilogon = new toolButton(
 			QPixmap( ":/resources/multilogon.png" ),
-			tr( "Logon" ),
+			tr( "Logon" ), QString::null,
 			tr( "Multi logon" ),
 			tr( "After clicking this button you can enter a "
 				"username and password for logging in the "
@@ -270,7 +270,7 @@ mainWindow::mainWindow() :
 
 	toolButton * adjust_size = new toolButton(
 			QPixmap( ":/resources/adjust_size.png" ),
-			tr( "Adjust/align" ),
+			tr( "Adjust/align" ), QString::null,
 			tr( "Adjust windows and their size" ),
 			tr( "When clicking this button the biggest possible "
 				"size for the client-windows is adjusted. "
@@ -279,7 +279,7 @@ mainWindow::mainWindow() :
 
 	toolButton * auto_arrange = new toolButton(
 			QPixmap( ":/resources/auto_arrange.png" ),
-			tr( "Auto view" ),
+			tr( "Auto view" ), QString::null,
 			tr( "Auto re-arrange windows and their size" ),
 			tr( "When clicking this button all visible windows "
 				"are re-arranged and adjusted." ),
@@ -336,7 +336,6 @@ mainWindow::mainWindow() :
 	QTimer::singleShot( 2000, m_classroomManager, SLOT( updateClients() ) );
 
 	m_updateThread = new updateThread( this );
-
 }
 
 
@@ -351,6 +350,22 @@ mainWindow::~mainWindow()
 	m_localISD->demoServerStop();
 	delete m_localISD;
 	m_localISD = NULL;
+}
+
+
+
+
+void mainWindow::keyPressEvent( QKeyEvent * _e )
+{
+	if( _e->key() == Qt::Key_F11 )
+	{
+		QWidget::setWindowState( QWidget::windowState() ^
+							Qt::WindowFullScreen );
+	}
+	else
+	{
+		QMainWindow::keyPressEvent( _e );
+	}
 }
 
 

@@ -58,6 +58,9 @@
 #include "tool_button.h"
 #include "messagebox.h"
 
+#define DEFAULT_WINDOW_WIDTH	1005
+#define DEFAULT_WINDOW_HEIGHT	700
+
 
 template<typename T>
 inline T roundCorrect( T _val )
@@ -244,6 +247,8 @@ void classroomManager::savePersonalConfig( void )
 						m_clientUpdateInterval );
 	globalsettings.setAttribute( "win-width", getMainWindow()->width() );
 	globalsettings.setAttribute( "win-height", getMainWindow()->height() );
+	globalsettings.setAttribute( "win-x", getMainWindow()->x() );
+	globalsettings.setAttribute( "win-y", getMainWindow()->y() );	
 	globalsettings.setAttribute( "ismaximized",
 					getMainWindow()->isMaximized() );
 	globalsettings.setAttribute( "opened-tab",
@@ -415,12 +420,22 @@ void classroomManager::getHeaderInformation( const QDomElement & _header )
 			if( node.toElement().attribute( "win-width" ) !=
 								QString::null &&
 				node.toElement().attribute( "win-height" ) !=
+								QString::null &&
+				node.toElement().attribute( "win-x" ) !=
+								QString::null &&
+				node.toElement().attribute( "win-y" ) !=
 								QString::null )
 			{
-				getMainWindow()->resize(
-			node.toElement().attribute( "win-width" ).toInt(),
-			node.toElement().attribute( "win-height" ).toInt() );
+getMainWindow()->resize( node.toElement().attribute( "win-width" ).toInt(),
+			node.toElement().attribute("win-height" ).toInt() );
+
+getMainWindow()->move( node.toElement().attribute( "win-x" ).toInt(),
+				node.toElement().attribute( "win-y" ).toInt() );
 			}
+			else
+			{
+				setDefaultWindowsSizeAndPosition();
+ 			}
 			if( node.toElement().attribute( "opened-tab" ) !=
 								QString::null )
 			{
@@ -653,6 +668,15 @@ void classroomManager::loadGlobalClientConfig( void )
 
 
 
+void classroomManager::setDefaultWindowsSizeAndPosition( void )
+{
+	getMainWindow()->resize( DEFAULT_WINDOW_WIDTH, DEFAULT_WINDOW_HEIGHT );
+	getMainWindow()->move( QPoint( 0, 0 ) );	
+}
+
+
+
+
 void classroomManager::loadPersonalConfig( void )
 {
 	if( !QFileInfo( m_personalConfiguration ).exists() &&
@@ -666,6 +690,7 @@ void classroomManager::loadPersonalConfig( void )
 	QFile cfg_file( m_personalConfiguration );
 	if( !cfg_file.open( QIODevice::ReadOnly ) )
 	{
+		setDefaultWindowsSizeAndPosition();
 		return;
 	}
 
@@ -683,6 +708,7 @@ void classroomManager::loadPersonalConfig( void )
 					).arg( m_personalConfiguration ),
 					QPixmap( ":/resources/error.png" ) );
 		cfg_file.close();
+		setDefaultWindowsSizeAndPosition();
 		return;
 	}
 	cfg_file.close();
@@ -1819,6 +1845,7 @@ classRoomItem::classRoomItem( client * _client, QTreeWidgetItem * _parent ) :
 
 	setVisible( FALSE );
 	setText( 1, m_client->remoteIP() );
+// 	setText( 1, m_client->localIP() );
 }
 
 

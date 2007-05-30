@@ -112,6 +112,10 @@ public:
 	}
 
 
+protected:
+		void keyPressEvent( QKeyEvent *e );
+
+
 private slots:
 	void remoteControlWidgetClosed( QObject * );
 

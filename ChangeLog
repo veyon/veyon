@@ -1,7 +1,29 @@
+2007-05-30	Dirk Zoellner <dirkzoellner/at/users/dot/sourceforge/dot/net>
+
+	* ima/src/main_window.cpp:
+	* ima/src/main_window.h:
+	added fullscreen-functionality via F11
+
+	* ima/src/classroom_manager.cpp:
+	- save window-position in personal-config, move to (0,0) if no items
+	  in configuration exist
+	- set sane default-size for main-window if no according configuration
+	  exists
+	- in client-treeview display remote IP of client rather local IP
+
+	* ima/src/remote_control_widget.cpp:
+	* ima/src/main_window.cpp:
+	apply API-changes of toolButton-class
+
+	* ima/src/tool_button.cpp:
+	* ima/src/tool_button.h:
+	added alternative label functionality
+
 2007-05-26	Dirk Zoellner <dirkzoellner/at/users/dot/sourceforge/dot/net>
 
 	* ima/src/dialog.cpp:
-	changed clientsettings-dialog, always focus on name, only for convenience purposes
+	changed clientsettings-dialog, always focus on name, only for
+	convenience purposes
 
 2007-05-26	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 

@@ -63,6 +63,7 @@ public:
 	void saveGlobalClientConfig( void );
 	void loadPersonalConfig( void );
 	void savePersonalConfig( void );
+	void setDefaultWindowsSizeAndPosition( void );
 
 	QVector<client *> visibleClients( void ) const;
 	static void getVisibleClients( QTreeWidgetItem * _p,

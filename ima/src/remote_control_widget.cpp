@@ -60,27 +60,27 @@ remoteControlWidgetToolBar::remoteControlWidgetToolBar(
 
 	toolButton * vo_btn = new toolButton(
 				QPixmap( ":/resources/overview_mode.png" ),
-				tr( "View only" ),
+				tr( "View only" ), tr( "Remote control" ),
 				QString::null, QString::null, 0, 0,
 				this );
 	toolButton * ls_btn = new toolButton(
 				QPixmap( ":/resources/no_mouse.png" ),
-				tr( "Lock student" ),
+				tr( "Lock student" ), tr( "Unlock student" ),
 				QString::null, QString::null, 0, 0,
 				this );
 	toolButton * ss_btn = new toolButton(
 				QPixmap( ":/resources/snapshot.png" ),
-				tr( "Snapshot" ),
+				tr( "Snapshot" ), QString::null,
 				QString::null, QString::null, 0, 0,
 				this );
 	toolButton * fs_btn = new toolButton(
 				QPixmap( ":/resources/fullscreen.png" ),
-				tr( "Fullscreen" ),
+				tr( "Fullscreen" ), tr( "Window" ),
 				QString::null, QString::null, 0, 0,
 				this );
 	toolButton * quit_btn = new toolButton(
 				QPixmap( ":/resources/quit.png" ),
-				tr( "Quit" ),
+				tr( "Quit" ), QString::null,
 				QString::null, QString::null, 0, 0,
 				this );
 	vo_btn->setCheckable( TRUE );

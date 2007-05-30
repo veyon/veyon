@@ -45,15 +45,17 @@ bool toolButton::s_toolTipsDisabled = FALSE;
 
 
 toolButton::toolButton( const QPixmap & _pixmap, const QString & _label,
-				const QString & _title, const QString & _desc,
-				QObject * _receiver, const char * _slot,
-							QWidget * _parent ) :
+				const QString & _alt_label,
+				const QString & _title, 
+				const QString & _desc, QObject * _receiver, 
+				const char * _slot,	QWidget * _parent ) :
 	QToolButton( _parent ),
 	m_pixmap( _pixmap ),
 	m_img( fastQImage( _pixmap.toImage() ).scaled( 32, 32 ) ),
 	m_colorizeLevel( 0 ),
 	m_fadeBack( FALSE ),
 	m_label( _label ),
+	m_altLabel( _alt_label ),
 	m_title( _title ),
 	m_descr( _desc )
 {
@@ -63,7 +65,14 @@ toolButton::toolButton( const QPixmap & _pixmap, const QString & _label,
 	setFont( f );
 	//setFixedWidth( qMax<int>( m_img.width(), fontMetrics().width( m_hintLabel ) )+20 );
 	//setFixedHeight( 48 );
-	setFixedSize( 88, 48 );
+	if( m_label.size() > 14 || m_altLabel.size() > 14 )
+	{
+		setFixedSize( 96, 48 );
+	}
+	else
+	{
+		setFixedSize( 88, 48 );
+	}
 
 	setText( m_title );
 	if( _receiver != NULL && _slot != NULL )
@@ -227,12 +236,13 @@ void toolButton::paintEvent( QPaintEvent * _pe )
 	const QPoint pt = QPoint( (width() - m_img.width() ) / 2 + dd, 3 + dd);
 	p.drawImage( pt, m_img );
 
-	const int w = p.fontMetrics().width( m_label );
+	const QString l = ( active && m_altLabel.isEmpty() == FALSE ) ?
+							m_altLabel : m_label;
+	const int w = p.fontMetrics().width( l );
 	p.setPen( Qt::black );
-	p.drawText( ( width() -w ) / 2 + 1+dd, height() - 4+dd, m_label );
+	p.drawText( ( width() - w ) / 2 +1+dd, height() - 4+dd, l );
 	p.setPen( Qt::white );
-	p.drawText( ( width() - w ) / 2+dd, height() - 5+dd, m_label );
-
+	p.drawText( ( width() - w ) / 2 +dd, height() - 5+dd, l );
 }
 
 

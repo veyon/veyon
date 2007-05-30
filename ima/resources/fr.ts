@@ -71,7 +71,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>classRoom</name>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1670"/>
+        <location filename="../src/classroom_manager.cpp" line="1704"/>
         <source>Administation</source>
         <translation>Administration</translation>
     </message>
@@ -79,27 +79,27 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>classroomManager</name>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="120"/>
+        <location filename="../src/classroom_manager.cpp" line="123"/>
         <source>Classroom-Manager</source>
         <translation>Gestionnaire de salle</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="89"/>
+        <location filename="../src/classroom_manager.cpp" line="92"/>
         <source>Use this workspace to manage your computers and classrooms in an easy way.</source>
         <translation>Utilisez cet espace pour gérer facilement vos ordinateurs et vos salles.</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="107"/>
+        <location filename="../src/classroom_manager.cpp" line="110"/>
         <source>This is where computers and classrooms are managed. You can add computers or classrooms by clicking right in this list.</source>
         <translation>C&apos;est d&apos;ici que vous gérez les ordinateurs et les salles. Vous pouvez ajouter des ordinateurs ou des salles par un clic droit sur cette liste.</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="110"/>
+        <location filename="../src/classroom_manager.cpp" line="113"/>
         <source>Classrooms/computers</source>
         <translation>Salles/ordinateurs</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="110"/>
+        <location filename="../src/classroom_manager.cpp" line="113"/>
         <source>IP-address</source>
         <translation>Adresse IP</translation>
     </message>
@@ -112,174 +112,185 @@ Once you did so you can show or hide clients by double-clicking them.
 
 Further actions can be found in the context-menu of a computer or classroom.
 </source>
-        <translation>Utilisez le menu contextuel (clic droit) pour ajouter/enlever des ordinateurs ou des salles. 
+        <translation type="obsolete">Utilisez le menu contextuel (clic droit) pour ajouter/enlever des ordinateurs ou des salles. 
 Par la suite, vous pouvez afficher ou cacher les clients en double-cliquant dessus. 
 Des actions supplémentaires sont disponibles dans le menu contextuel de chaque classe ou ordinateur.</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="603"/>
+        <location filename="../src/classroom_manager.cpp" line="619"/>
         <source>No configuration-file found</source>
         <translation>Aucun fichier de configuration trouvé</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="612"/>
+        <location filename="../src/classroom_manager.cpp" line="628"/>
         <source>Could not open configuration file %1.
 You will have to add at least one classroom and computers using the classroom-manager which you&apos;ll find inside the program in the sidebar on the left side.</source>
         <translation>Impossible d&apos;ouvrir le fichier de configuration %1. 
 Vous devez ajouter au moins une salle et un ordinateur, en utilisant le gestionnaire de salle dans la barre latérale gauche.</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="679"/>
+        <location filename="../src/classroom_manager.cpp" line="707"/>
         <source>Error in configuration-file</source>
         <translation>Erreur dans le fichier de configuration
 </translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="629"/>
+        <location filename="../src/classroom_manager.cpp" line="645"/>
         <source>Error while parsing configuration-file %1.
 Please edit it. Otherwise you should delete this file and have to add all classrooms and computers again.</source>
         <translation>Erreur pendant la lecture du fichier de configuration. 
 Veuillez le modifier, ou bien supprimer le fichier puis re-créer les salles et les ordinateurs.</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="684"/>
+        <location filename="../src/classroom_manager.cpp" line="712"/>
         <source>Error while parsing configuration-file %1.
 Please edit it. Otherwise you should delete this file.</source>
         <translation>Erreur pendant la lecture du fichier de configuration %1. 
 Veuillez le modifier ou le supprimer.</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1760"/>
+        <location filename="../src/classroom_manager.cpp" line="1794"/>
         <source>Power down computers</source>
         <translation>Éteindre les ordinateurs</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1762"/>
+        <location filename="../src/classroom_manager.cpp" line="1797"/>
         <source>Are you sure want to power down all visible computers?</source>
         <translation>Voulez-vous vraiment éteindre tous les ordinateurs visibiles ?</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1720"/>
+        <location filename="../src/classroom_manager.cpp" line="1754"/>
         <source>Logout user</source>
         <translation>Déconnecter l&apos;utilisateur</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1723"/>
+        <location filename="../src/classroom_manager.cpp" line="1757"/>
         <source>Are you sure want logout all users on all visible computers ?</source>
         <translation>Voulez-vous vraiment déconnecter tous les utilisateurs de tous les ordinateurs visibles ?</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1183"/>
+        <location filename="../src/classroom_manager.cpp" line="1212"/>
         <source>Show/hide</source>
         <translation>Afficher/cacher</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1188"/>
+        <location filename="../src/classroom_manager.cpp" line="1217"/>
         <source>Edit settings</source>
         <translation>Modifier les réglages</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1193"/>
+        <location filename="../src/classroom_manager.cpp" line="1222"/>
         <source>Remove</source>
         <translation>Supprimer</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1200"/>
+        <location filename="../src/classroom_manager.cpp" line="1229"/>
         <source>Actions</source>
         <translation>Actions</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1210"/>
+        <location filename="../src/classroom_manager.cpp" line="1239"/>
         <source>Show all computers in classroom</source>
         <translation>Afficher tous les ordinateurs de cette salle</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1215"/>
+        <location filename="../src/classroom_manager.cpp" line="1244"/>
         <source>Hide all computers in classroom</source>
         <translation>Cacher tous les ordinateurs de cette salle</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1220"/>
+        <location filename="../src/classroom_manager.cpp" line="1254"/>
         <source>Edit name</source>
         <translation>Modifier le nom </translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1486"/>
+        <location filename="../src/classroom_manager.cpp" line="1520"/>
         <source>Remove classroom</source>
         <translation>Supprimer la salle </translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1232"/>
+        <location filename="../src/classroom_manager.cpp" line="1266"/>
         <source>Actions for %1</source>
         <translation>Actions pour %1</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1242"/>
+        <location filename="../src/classroom_manager.cpp" line="1276"/>
         <source>Action for whole classroom</source>
         <translation>Action sur toute la salle</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1551"/>
+        <location filename="../src/classroom_manager.cpp" line="1585"/>
         <source>Add computer</source>
         <translation>Ajouter un ordinateur</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1258"/>
+        <location filename="../src/classroom_manager.cpp" line="1292"/>
         <source>Add classroom</source>
         <translation>Ajouter une salle</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1462"/>
+        <location filename="../src/classroom_manager.cpp" line="1496"/>
         <source>New name for classroom</source>
         <translation>Nouveau nom pour la salle</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1464"/>
+        <location filename="../src/classroom_manager.cpp" line="1498"/>
         <source>Please enter a new name for classroom &quot;%1&quot;.</source>
         <translation>Veuillez entrer un nouveau nom pour la salle &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1489"/>
+        <location filename="../src/classroom_manager.cpp" line="1523"/>
         <source>Are you sure want to remove classroom &quot;%1&quot;?
 All computers in it will be removed as well!</source>
         <translation>Voulez-vous vraiment supprimer la salle &quot;%1&quot; ? 
 Tous les ordinateurs lui appartenant seront supprimés également !</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1518"/>
+        <location filename="../src/classroom_manager.cpp" line="1552"/>
         <source>Missing classroom</source>
         <translation>Salle manquante</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1524"/>
+        <location filename="../src/classroom_manager.cpp" line="1558"/>
         <source>Before adding computers you have to create at least one classroom.
 Do you want to create a new classrom now?</source>
         <translation>Avant d&apos;ajouter des ordinateurs, vous devez créer au moins une salle. 
 Voulez-vous en créer une maintenant ?</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1567"/>
+        <location filename="../src/classroom_manager.cpp" line="1601"/>
         <source>New classroom</source>
         <translation>Nouvelle salle</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1566"/>
+        <location filename="../src/classroom_manager.cpp" line="1600"/>
         <source>Please enter the name of the classroom you want to create.</source>
         <translation>Veuillez entrer le nom de la salle que vous voulez créer.</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1747"/>
+        <location filename="../src/classroom_manager.cpp" line="1781"/>
         <source>Reboot computers</source>
         <translation>Redémarrer les ordinateurs</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1749"/>
+        <location filename="../src/classroom_manager.cpp" line="1783"/>
         <source>Are you sure want to reboot all visible computers?</source>
         <translation>Voulez-vous vraiment redémarrer tous les ordinateurs visibles ?</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="146"/>
-        <source>Hide teacher clients</source>
+        <location filename="../src/classroom_manager.cpp" line="139"/>
+        <source>
+Use the context-menu (right mouse-button) to add/remove computers and/or classrooms.
+
+Once you did so you can show or hide computers by double-clicking them.
+
+Further actions can be found in the context-menu of a computer or classroom.
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/classroom_manager.cpp" line="1249"/>
+        <source>Hide teacher computers</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -405,7 +416,7 @@ Vous pouvez changer la taille de cette fenêtre client (et des autres visibles) 
     <message>
         <location filename="../src/client.cpp" line="59"/>
         <source>View live in fullscreen</source>
-        <translation type="unfinished">Voir en direct en plein écran</translation>
+        <translation type="obsolete">Voir en direct en plein écran</translation>
     </message>
     <message>
         <location filename="../src/client.cpp" line="62"/>
@@ -418,9 +429,14 @@ Vous pouvez changer la taille de cette fenêtre client (et des autres visibles) 
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="148"/>
-        <source>Watch only (stops demo and unlocks workstation)</source>
+        <location filename="../src/client.cpp" line="59"/>
+        <source>View live</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/client.cpp" line="148"/>
+        <source>Overview</source>
+        <translation type="unfinished">Aperçu</translation>
     </message>
 </context>
 <context>
@@ -589,17 +605,17 @@ p, li { white-space: pre-wrap; }&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot;
     </message>
     <message>
         <location filename="../dialogs/client_settings.ui" line="135"/>
-        <source>Student client</source>
+        <source>Student computer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../dialogs/client_settings.ui" line="140"/>
-        <source>Teacher client</source>
+        <source>Teacher computer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../dialogs/client_settings.ui" line="145"/>
-        <source>Other/undefined</source>
+        <source>Other/undefined computer</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -918,7 +934,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/main_window.cpp" line="210"/>
         <source>Lock desktops</source>
-        <translation>Verrouiller les bureaux</translation>
+        <translation type="obsolete">Verrouiller les bureaux</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="214"/>
@@ -1000,17 +1016,17 @@ Dans ce mode, l&apos;écran est noir et les périphériques d&apos;entrée sont 
     <message>
         <location filename="../src/main_window.cpp" line="189"/>
         <source>Demo</source>
-        <translation>Démo</translation>
+        <translation type="obsolete">Démo</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="199"/>
         <source>Demo/window</source>
-        <translation>Démo/fenêtre</translation>
+        <translation type="obsolete">Démo/fenêtre</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="209"/>
         <source>Lock</source>
-        <translation>Verrouiller</translation>
+        <translation type="obsolete">Verrouiller</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="235"/>
@@ -1064,6 +1080,41 @@ Otherwise you won&apos;t be able to access computers using iTALC.</source>
         <translation>Aucune clé d&apos;authentification n&apos;a été trouvée, ou bien vos anciennes clés sont cassées. 
 Veuillez créer une nouvelle paire de clés à l&apos;aide d&apos;ICA (documentation à http://italc.sf.net/wiki/index.php?title=Installation), sans quoi vous ne pourrez pas accéder aux ordinateurs utilisant iTALC.
 </translation>
+    </message>
+    <message>
+        <location filename="../src/main_window.cpp" line="189"/>
+        <source>Demo on</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/main_window.cpp" line="189"/>
+        <source>Demo off</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/main_window.cpp" line="199"/>
+        <source>Demo/window on</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/main_window.cpp" line="199"/>
+        <source>Demo/window off</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/main_window.cpp" line="209"/>
+        <source>Lock all</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/main_window.cpp" line="209"/>
+        <source>Unlock all</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/main_window.cpp" line="210"/>
+        <source>Lock/unlock desktops</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1244,6 +1295,21 @@ p, li { white-space: pre-wrap; }
         <location filename="../src/remote_control_widget.cpp" line="73"/>
         <source>Snapshot</source>
         <translation type="unfinished">Capture</translation>
+    </message>
+    <message>
+        <location filename="../src/remote_control_widget.cpp" line="63"/>
+        <source>Remote control</source>
+        <translation type="unfinished">Contrôle à distance</translation>
+    </message>
+    <message>
+        <location filename="../src/remote_control_widget.cpp" line="68"/>
+        <source>Unlock student</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/remote_control_widget.cpp" line="78"/>
+        <source>Window</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

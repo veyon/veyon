@@ -36,9 +36,10 @@ class toolButton : public QToolButton
 	Q_OBJECT
 public:
 	toolButton( const QPixmap & _pixmap, const QString & _label,
-				const QString & _title, const QString & _desc,
-				QObject * _receiver, const char * _slot,
-							QWidget * _parent );
+				const QString & _alt_label,
+				const QString & _title, 
+				const QString & _desc, QObject * _receiver, 
+				const char * _slot, QWidget * _parent );
 	virtual ~toolButton();
 
 
@@ -78,6 +79,7 @@ private:
 	bool m_fadeBack;
 
 	QString m_label;
+	QString m_altLabel;
 	QString m_title;
 	QString m_descr;
 
