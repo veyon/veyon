@@ -294,7 +294,8 @@ int ICAMain( int argc, char * * argv )
 	icon.addFile( ":/resources/icon22.png" );
 	icon.addFile( ":/resources/icon32.png" );
 
-	__systray_icon = new QSystemTrayIcon( icon );
+	QSystemTrayIcon sti( icon );
+	__systray_icon = &sti;
 	__systray_icon->setToolTip(
 				QApplication::tr( "iTALC Client on %1:%2" ).
 					arg( QHostInfo::localHostName() ).
