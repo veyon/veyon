@@ -1,5 +1,10 @@
 2007-06-01	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
+	* ima/src/main_window.h:
+	* ima/src/main_window.cpp:
+	* ima/src/client.cpp:
+	stop demo on clients after student showed demo
+
 	* ica/src/ica_main.cpp:
 	create QSystemTrayIcon-object on stack rather than heap for being
 	destroyed properly at exit - fixes problem with non-disappearing icon

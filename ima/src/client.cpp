@@ -621,7 +621,7 @@ void client::clientDemo( const QString & )
 
 	m_mainWindow->checkModeButton( client::Mode_FullscreenDemo );
 
-	m_mainWindow->remoteControlDisplay( m_localIP, TRUE );
+	m_mainWindow->remoteControlDisplay( m_localIP, TRUE, TRUE );
 }
 
 

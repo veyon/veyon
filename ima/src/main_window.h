@@ -98,7 +98,8 @@ public:
 	}
 
 	void remoteControlDisplay( const QString & _ip,
-						bool _view_only = FALSE );
+					bool _view_only = FALSE,
+					bool _stop_demo_afterwards = FALSE );
 
 	inline bool remoteControlRunning( void )
 	{
@@ -113,7 +114,7 @@ public:
 
 
 protected:
-		void keyPressEvent( QKeyEvent *e );
+	void keyPressEvent( QKeyEvent *e );
 
 
 private slots:
@@ -165,6 +166,7 @@ private:
 
 	QReadWriteLock m_rctrlLock;
 	remoteControlWidget * m_remoteControlWidget;
+	bool m_stopDemo;
 
 
 	overviewWidget * m_overviewWidget;

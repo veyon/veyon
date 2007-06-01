@@ -83,7 +83,8 @@ mainWindow::mainWindow() :
 	m_openedTabInSideBar( 1 ),
 	m_localISD( NULL ),
 	m_rctrlLock(),
-	m_remoteControlWidget( NULL )
+	m_remoteControlWidget( NULL ),
+	m_stopDemo( FALSE )
 {
 	setWindowTitle( tr( "iTALC" ) + " " + VERSION );
 	setWindowIcon( QPixmap( ":/resources/logo.png" ) );
@@ -387,7 +388,8 @@ void mainWindow::closeEvent( QCloseEvent * _ce )
 
 
 
-void mainWindow::remoteControlDisplay( const QString & _ip, bool _view_only )
+void mainWindow::remoteControlDisplay( const QString & _ip, bool _view_only,
+						bool _stop_demo_afterwards )
 {
 	QWriteLocker wl( &m_rctrlLock );
 	if( m_remoteControlWidget  )
@@ -395,6 +397,7 @@ void mainWindow::remoteControlDisplay( const QString & _ip, bool _view_only )
 		return;
 	}
 	m_remoteControlWidget = new remoteControlWidget( _ip, _view_only, this );
+	m_stopDemo = _stop_demo_afterwards;
 	connect( m_remoteControlWidget, SIGNAL( destroyed( QObject * ) ),
 			this, SLOT( remoteControlWidgetClosed( QObject * ) ) );
 }
@@ -405,8 +408,13 @@ void mainWindow::remoteControlDisplay( const QString & _ip, bool _view_only )
 void mainWindow::remoteControlWidgetClosed( QObject * )
 {
 	m_rctrlLock.lockForWrite();
-        m_remoteControlWidget = NULL;
+	m_remoteControlWidget = NULL;
 	m_rctrlLock.unlock();
+	if( m_stopDemo )
+	{
+		m_classroomManager->changeGlobalClientMode( client::Mode_Overview );
+		m_stopDemo = FALSE;
+	}
 }
 
 
