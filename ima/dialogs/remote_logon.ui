@@ -13,7 +13,7 @@
    <string>Remote Logon</string>
   </property>
   <property name="windowIcon" >
-   <iconset resource="../italc.qrc" >:/resources/multilogon_48.png</iconset>
+   <iconset resource="../italc.qrc" >:/resources/remotelogon_48.png</iconset>
   </property>
   <layout class="QVBoxLayout" >
    <property name="margin" >
@@ -36,7 +36,7 @@
         <string/>
        </property>
        <property name="pixmap" >
-        <pixmap resource="../italc.qrc" >:/resources/multilogon_48.png</pixmap>
+        <pixmap resource="../italc.qrc" >:/resources/remotelogon_48.png</pixmap>
        </property>
       </widget>
      </item>

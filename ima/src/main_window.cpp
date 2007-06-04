@@ -259,14 +259,14 @@ mainWindow::mainWindow() :
 			m_classroomManager,
 					SLOT( powerDownClients() ), m_toolBar );
 
-	toolButton * multilogon = new toolButton(
-			QPixmap( ":/resources/multilogon.png" ),
+	toolButton * remotelogon = new toolButton(
+			QPixmap( ":/resources/remotelogon.png" ),
 			tr( "Logon" ), QString::null,
-			tr( "Multi logon" ),
+			tr( "Remote logon" ),
 			tr( "After clicking this button you can enter a "
-				"username and password for logging in the "
+				"username and password to log on the "
 				"according user on all visible computers." ),
-			m_classroomManager, SLOT( multiLogon() ), m_toolBar );
+			m_classroomManager, SLOT( remoteLogon() ), m_toolBar );
 
 
 	toolButton * adjust_size = new toolButton(
@@ -294,7 +294,7 @@ mainWindow::mainWindow() :
 	m_toolBar->addWidget( text_msg );
 	m_toolBar->addWidget( power_on );
 	m_toolBar->addWidget( power_off );
-	m_toolBar->addWidget( multilogon );
+	m_toolBar->addWidget( remotelogon );
 	m_toolBar->addWidget( adjust_size );
 	m_toolBar->addWidget( auto_arrange );
 

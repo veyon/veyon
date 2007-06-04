@@ -66,7 +66,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>classRoom</name>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1704"/>
+        <location filename="../src/classroom_manager.cpp" line="1700"/>
         <source>Administation</source>
         <translation>Administración</translation>
     </message>
@@ -99,51 +99,51 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished">Dirección IP</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="619"/>
+        <location filename="../src/classroom_manager.cpp" line="617"/>
         <source>No configuration-file found</source>
         <translation type="unfinished">No se ha encontrado archivo de configuración</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="628"/>
+        <location filename="../src/classroom_manager.cpp" line="626"/>
         <source>Could not open configuration file %1.
 You will have to add at least one classroom and computers using the classroom-manager which you&apos;ll find inside the program in the sidebar on the left side.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="707"/>
+        <location filename="../src/classroom_manager.cpp" line="703"/>
         <source>Error in configuration-file</source>
         <translation type="unfinished">Error en el archivo de configuración</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="645"/>
+        <location filename="../src/classroom_manager.cpp" line="643"/>
         <source>Error while parsing configuration-file %1.
 Please edit it. Otherwise you should delete this file and have to add all classrooms and computers again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="712"/>
+        <location filename="../src/classroom_manager.cpp" line="708"/>
         <source>Error while parsing configuration-file %1.
 Please edit it. Otherwise you should delete this file.</source>
         <translation type="unfinished">Error al leer archivo de configuración %1.
 Por favor, edítelo o en otro caso, bórrelo.</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1794"/>
+        <location filename="../src/classroom_manager.cpp" line="1790"/>
         <source>Power down computers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1797"/>
+        <location filename="../src/classroom_manager.cpp" line="1793"/>
         <source>Are you sure want to power down all visible computers?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1754"/>
+        <location filename="../src/classroom_manager.cpp" line="1750"/>
         <source>Logout user</source>
         <translation type="unfinished">Desconectar usuario</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1757"/>
+        <location filename="../src/classroom_manager.cpp" line="1753"/>
         <source>Are you sure want logout all users on all visible computers ?</source>
         <translation type="unfinished"></translation>
     </message>
@@ -163,109 +163,109 @@ Por favor, edítelo o en otro caso, bórrelo.</translation>
         <translation type="obsolete">Diese Funktion ist noch nicht vollständig implementiert. Aus diesem Grund ist sie derzeit deaktiviert.</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1212"/>
+        <location filename="../src/classroom_manager.cpp" line="1208"/>
         <source>Show/hide</source>
         <translation type="unfinished">Mostrar/ocultar</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1217"/>
+        <location filename="../src/classroom_manager.cpp" line="1213"/>
         <source>Edit settings</source>
         <translation type="unfinished">Editar configuración</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1222"/>
+        <location filename="../src/classroom_manager.cpp" line="1218"/>
         <source>Remove</source>
         <translation type="unfinished">Borrar</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1229"/>
+        <location filename="../src/classroom_manager.cpp" line="1225"/>
         <source>Actions</source>
         <translation type="unfinished">Acciones</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1239"/>
+        <location filename="../src/classroom_manager.cpp" line="1235"/>
         <source>Show all computers in classroom</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1244"/>
+        <location filename="../src/classroom_manager.cpp" line="1240"/>
         <source>Hide all computers in classroom</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1254"/>
+        <location filename="../src/classroom_manager.cpp" line="1250"/>
         <source>Edit name</source>
         <translation type="unfinished">Editar nombre</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1520"/>
+        <location filename="../src/classroom_manager.cpp" line="1516"/>
         <source>Remove classroom</source>
         <translation type="unfinished">Borrar clase</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1266"/>
+        <location filename="../src/classroom_manager.cpp" line="1262"/>
         <source>Actions for %1</source>
         <translation type="unfinished">Acciones para %1</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1276"/>
+        <location filename="../src/classroom_manager.cpp" line="1272"/>
         <source>Action for whole classroom</source>
         <translation type="unfinished">Acción para toda la clase</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1585"/>
+        <location filename="../src/classroom_manager.cpp" line="1581"/>
         <source>Add computer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1292"/>
+        <location filename="../src/classroom_manager.cpp" line="1288"/>
         <source>Add classroom</source>
         <translation type="unfinished">Añadir clase</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1496"/>
+        <location filename="../src/classroom_manager.cpp" line="1492"/>
         <source>New name for classroom</source>
         <translation type="unfinished">Nuevo nombre para la clase</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1498"/>
+        <location filename="../src/classroom_manager.cpp" line="1494"/>
         <source>Please enter a new name for classroom &quot;%1&quot;.</source>
         <translation type="unfinished">Por favor introduzca el nuevo nombre para la clase &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1523"/>
+        <location filename="../src/classroom_manager.cpp" line="1519"/>
         <source>Are you sure want to remove classroom &quot;%1&quot;?
 All computers in it will be removed as well!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1552"/>
+        <location filename="../src/classroom_manager.cpp" line="1548"/>
         <source>Missing classroom</source>
         <translation type="unfinished">Clase no encontrada</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1558"/>
+        <location filename="../src/classroom_manager.cpp" line="1554"/>
         <source>Before adding computers you have to create at least one classroom.
 Do you want to create a new classrom now?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1601"/>
+        <location filename="../src/classroom_manager.cpp" line="1597"/>
         <source>New classroom</source>
         <translation type="unfinished">Nueva clase</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1600"/>
+        <location filename="../src/classroom_manager.cpp" line="1596"/>
         <source>Please enter the name of the classroom you want to create.</source>
         <translation type="unfinished">Bitten geben Sie den Namen des zu erstellenden Klassenzimmers ein.</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1781"/>
+        <location filename="../src/classroom_manager.cpp" line="1777"/>
         <source>Reboot computers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1783"/>
+        <location filename="../src/classroom_manager.cpp" line="1779"/>
         <source>Are you sure want to reboot all visible computers?</source>
         <translation type="unfinished"></translation>
     </message>
@@ -281,7 +281,7 @@ Further actions can be found in the context-menu of a computer or classroom.
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1249"/>
+        <location filename="../src/classroom_manager.cpp" line="1245"/>
         <source>Hide teacher computers</source>
         <translation type="unfinished"></translation>
     </message>
@@ -872,27 +872,27 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>mainWindow</name>
     <message>
-        <location filename="../src/main_window.cpp" line="88"/>
+        <location filename="../src/main_window.cpp" line="89"/>
         <source>iTALC</source>
         <translation>iTALC</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="190"/>
+        <location filename="../src/main_window.cpp" line="191"/>
         <source>Fullscreen demo</source>
         <translation>Demo a pantalla completa</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="200"/>
+        <location filename="../src/main_window.cpp" line="201"/>
         <source>Window demo</source>
         <translation>Demo en ventana</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="97"/>
+        <location filename="../src/main_window.cpp" line="98"/>
         <source>No write-access</source>
         <translation>No hay permiso de escritura</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="155"/>
+        <location filename="../src/main_window.cpp" line="156"/>
         <source>Actions</source>
         <translation>Acciones</translation>
     </message>
@@ -904,42 +904,42 @@ classroom</source>
 clase</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="179"/>
+        <location filename="../src/main_window.cpp" line="180"/>
         <source>Overview mode</source>
         <translation>Modo ayuda</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="194"/>
+        <location filename="../src/main_window.cpp" line="195"/>
         <source>In this mode your screen is being displayed on all shown computers. Furthermore the users aren&apos;t able to do something else as all input devices are locked in this mode.</source>
         <translation>In diesem Modus wird Ihr Bildschirm auf alle angezeigte Computer übertragen. Weiterhin können die Nutzer nichts anderes machen, da in diesem Modus sämtliche Eingabegeräte gesperrt sind.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="204"/>
+        <location filename="../src/main_window.cpp" line="205"/>
         <source>In this mode your screen being displayed in a window on all shown computers. The users are able to switch to other windows and thus can continue to work.</source>
         <translation>In diesem Modus wird Ihr Bildschirm auf alle angezeigte Computer in einem Fenster übertragen. Die Nutzer sind in der Lage, zu anderen Fenstern zu wechseln und somit ihre Arbeiten fortzusetzen.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="236"/>
+        <location filename="../src/main_window.cpp" line="237"/>
         <source>Send text message</source>
         <translation>Enviar mensaje de texto</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="238"/>
+        <location filename="../src/main_window.cpp" line="239"/>
         <source>Use this button to send a text message to all users e.g. to tell them new tasks etc.</source>
         <translation>Nutzen Sie diesen Button, um an alle Nutzer eine Text-Nachricht zu schicken, beispielsweise um ihnen neue Aufgaben mitzuteilen.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="245"/>
+        <location filename="../src/main_window.cpp" line="246"/>
         <source>Power on computers</source>
         <translation>Arrancar equipos</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="248"/>
+        <location filename="../src/main_window.cpp" line="249"/>
         <source>Click this button to power on all visible computers. This way you do not have to turn on each computer by hand.</source>
         <translation>Klicken Sie auf diesen Button, um alle angezeigten Computer anzuschalten. Auf diese Weise müssen Sie nicht jeden Computer einzeln per Hand einschalten.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="274"/>
+        <location filename="../src/main_window.cpp" line="275"/>
         <source>Adjust windows and their size</source>
         <translation>Ajustar ventanas y tamaños</translation>
     </message>
@@ -949,164 +949,174 @@ clase</translation>
         <translation type="obsolete">Bloquear escritorios</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="214"/>
+        <location filename="../src/main_window.cpp" line="215"/>
         <source>To have all user&apos;s full attention you can lock their desktops using this button. In this mode all input devices are locked and the screen is black.</source>
         <translation>Um die volle Aufmerksamkeit der Nutzer zu erlangen können Sie deren Arbeitsflächen mit Hilfe dieses Knopfes sperren. In diesem Modus werden alle Eingabegeräte gesperrt und der Bildschirm ist schwarz.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="172"/>
+        <location filename="../src/main_window.cpp" line="173"/>
         <source>Click on this button, to switch between classrooms.</source>
         <translation>Klicken Sie auf diesen Knopf, um zwischen Klassenzimmern zu wechseln.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="100"/>
+        <location filename="../src/main_window.cpp" line="101"/>
         <source>Could not read/write or create directory %1! For running iTALC, make sure you&apos;re permitted to create or write this directory.</source>
         <translation>Konnte das Verzeichnis %1 nicht lesen/schreiben oder erstellen. Um iTALC auszuführen, stellen Sie sicher, dass Sie berechtigt sind, dieses Verzeichnis zu erzeugen oder zu beschreiben.</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="264"/>
         <source>Multi logon</source>
-        <translation>Entrada múltiple</translation>
+        <translation type="obsolete">Entrada múltiple</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="267"/>
         <source>After clicking this button you can enter a username and password for logging in the according user on all visible computers.</source>
-        <translation>Wenn Sie diesen Button angeklicken, können Sie einen Nutzernamen und ein Passwort eingeben, um alle angezeigten Computer mit dem entsprechenden Nutzer anzumelden.</translation>
+        <translation type="obsolete">Wenn Sie diesen Button angeklicken, können Sie einen Nutzernamen und ein Passwort eingeben, um alle angezeigten Computer mit dem entsprechenden Nutzer anzumelden.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="277"/>
+        <location filename="../src/main_window.cpp" line="278"/>
         <source>When clicking this button the biggest possible size for the client-windows is adjusted. Furthermore all windows are aligned.</source>
         <translation>Wenn Sie diesen Knopf anklicken, wird die größt-mögliche Größe für die Fenster eingestellt. Weiterhin werden alle Fenster ausgerichtet.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="283"/>
+        <location filename="../src/main_window.cpp" line="284"/>
         <source>Auto re-arrange windows and their size</source>
         <translation>Automatische Neuanordnung der Fenster und deren Größe</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="285"/>
+        <location filename="../src/main_window.cpp" line="286"/>
         <source>When clicking this button all visible windows are re-arranged and adjusted.</source>
         <translation>Wenn Sie diesen Knopf anklicken werden alle sichtbaren Fenster neu angeordnet und ausgerichtet.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="322"/>
+        <location filename="../src/main_window.cpp" line="323"/>
         <source>iTALC service not running</source>
         <translation>El servicio iTALC no está funcionando</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="327"/>
+        <location filename="../src/main_window.cpp" line="328"/>
         <source>There seems to be no iTALC service running on this computer or the authentication-keys aren&apos;t set up properly. The service is required for running iTALC. Contact your administrator for solving this problem.</source>
         <translation>Auf diese Computer scheint kein iTALC-Dienst zu laufen oder die Authentifizierungsschlüssel sind nicht richtig eingerichtet. Der Dienst wird benötigt, um iTALC auszuführen. Kontaktieren Sie Ihren Administrator, um das Problem zu lösen.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="184"/>
+        <location filename="../src/main_window.cpp" line="185"/>
         <source>This is the default mode in iTALC and allows you to have an overview over all visible computers. Also click on this button for unlocking locked workstations or for leaving demo-mode.</source>
         <translation>Dies ist der Standardmodus in iTALC und ermöglicht es, einen Überblick über alle sichtbaren Computer zu bekommen. Weiterhin werden gesperrte Bildschirme entsperrt oder der Demo-Modus verlassen, wenn Sie auf diesen Knopf klicken.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="178"/>
+        <location filename="../src/main_window.cpp" line="179"/>
         <source>Overview</source>
-        <translation type="unfinished">Ayuda</translation>
+        <translation>Ayuda</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="235"/>
+        <location filename="../src/main_window.cpp" line="236"/>
         <source>Text message</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="244"/>
+        <location filename="../src/main_window.cpp" line="245"/>
         <source>Power on</source>
-        <translation type="unfinished">Apagar</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="254"/>
+        <location filename="../src/main_window.cpp" line="255"/>
         <source>Power down computers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="253"/>
+        <location filename="../src/main_window.cpp" line="254"/>
         <source>Power down</source>
         <translation type="unfinished">Apagar</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="257"/>
+        <location filename="../src/main_window.cpp" line="258"/>
         <source>To power down all shown computers (e.g. after the lesson has finished) you can click this button.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="263"/>
+        <location filename="../src/main_window.cpp" line="264"/>
         <source>Logon</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="273"/>
+        <location filename="../src/main_window.cpp" line="274"/>
         <source>Adjust/align</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="282"/>
+        <location filename="../src/main_window.cpp" line="283"/>
         <source>Auto view</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="309"/>
+        <location filename="../src/main_window.cpp" line="310"/>
         <source>No valid keys found</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="315"/>
+        <location filename="../src/main_window.cpp" line="316"/>
         <source>No authentication-keys were found or your old ones were broken. Please create a new key-pair using ICA (see documentation at http://italc.sf.net/wiki/index.php?title=Installation).
 Otherwise you won&apos;t be able to access computers using iTALC.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="164"/>
+        <location filename="../src/main_window.cpp" line="165"/>
         <source>Classroom</source>
         <translation type="unfinished">Clase</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="165"/>
+        <location filename="../src/main_window.cpp" line="166"/>
         <source>Switch classroom</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="167"/>
+        <location filename="../src/main_window.cpp" line="168"/>
         <source>Click this button to open a menu where you can choose the active classroom.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="189"/>
+        <location filename="../src/main_window.cpp" line="190"/>
         <source>Demo on</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="189"/>
+        <location filename="../src/main_window.cpp" line="190"/>
         <source>Demo off</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="199"/>
+        <location filename="../src/main_window.cpp" line="200"/>
         <source>Demo/window on</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="199"/>
+        <location filename="../src/main_window.cpp" line="200"/>
         <source>Demo/window off</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="209"/>
+        <location filename="../src/main_window.cpp" line="210"/>
         <source>Lock all</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="209"/>
+        <location filename="../src/main_window.cpp" line="210"/>
         <source>Unlock all</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="210"/>
+        <location filename="../src/main_window.cpp" line="211"/>
         <source>Lock/unlock desktops</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/main_window.cpp" line="265"/>
+        <source>Remote logon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/main_window.cpp" line="268"/>
+        <source>After clicking this button you can enter a username and password to log on the according user on all visible computers.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1123,7 +1133,7 @@ Otherwise you won&apos;t be able to access computers using iTALC.</source>
     <message>
         <location filename="../dialogs/multi_logon.ui" line="13"/>
         <source>Multi logon</source>
-        <translation>Entrada múltiple</translation>
+        <translation type="obsolete">Entrada múltiple</translation>
     </message>
     <message>
         <location filename="../dialogs/multi_logon.ui" line="46"/>
@@ -1131,48 +1141,48 @@ Otherwise you won&apos;t be able to access computers using iTALC.</source>
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:20pt; font-weight:600; font-style:italic;&quot;&gt;Multi logon&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;(new line)p, li { white-space: pre-wrap; }(new line)&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+        <translation type="obsolete">&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;(new line)p, li { white-space: pre-wrap; }(new line)&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:20pt; font-weight:600; font-style:italic;&quot;&gt;Mehrfach-Anmeldung&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/multi_logon.ui" line="122"/>
         <source>Username</source>
-        <translation>Usuario</translation>
+        <translation type="obsolete">Usuario</translation>
     </message>
     <message>
         <location filename="../dialogs/multi_logon.ui" line="129"/>
         <source>Password</source>
-        <translation>Contraseña</translation>
+        <translation type="obsolete">Contraseña</translation>
     </message>
     <message>
         <location filename="../dialogs/multi_logon.ui" line="199"/>
         <source>&amp;OK</source>
-        <translation>&amp;OK</translation>
+        <translation type="obsolete">&amp;OK</translation>
     </message>
     <message>
         <location filename="../dialogs/multi_logon.ui" line="205"/>
         <source>Ctrl+Enter</source>
-        <translation>Ctrl+Enter</translation>
+        <translation type="obsolete">Ctrl+Enter</translation>
     </message>
     <message>
         <location filename="../dialogs/multi_logon.ui" line="212"/>
         <source>Cancel</source>
-        <translation>Cancelar</translation>
+        <translation type="obsolete">Cancelar</translation>
     </message>
     <message>
         <location filename="../dialogs/multi_logon.ui" line="218"/>
         <source>Esc</source>
-        <translation>Esc</translation>
+        <translation type="obsolete">Esc</translation>
     </message>
     <message>
         <location filename="../dialogs/multi_logon.ui" line="85"/>
         <source>Use the fields below to enter the username, password and optional the domain-name. These information will be used to logon the computer(s).</source>
-        <translation>Nutzen Sie die Eingabefelder unterhalb, um den Nutzername, das zugehörige Passwort sowie den optionalen Domäne-Name einzugeben. Diese Informationen werden für die Anmeldung der Computer genutzt.</translation>
+        <translation type="obsolete">Nutzen Sie die Eingabefelder unterhalb, um den Nutzername, das zugehörige Passwort sowie den optionalen Domäne-Name einzugeben. Diese Informationen werden für die Anmeldung der Computer genutzt.</translation>
     </message>
     <message>
         <location filename="../dialogs/multi_logon.ui" line="136"/>
         <source>Domain</source>
-        <translation>Dominio</translation>
+        <translation type="obsolete">Dominio</translation>
     </message>
 </context>
 <context>
@@ -1260,7 +1270,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/remote_control_widget.cpp" line="63"/>
         <source>Remote control</source>
-        <translation type="unfinished">Control remoto</translation>
+        <translation>Control remoto</translation>
     </message>
     <message>
         <location filename="../src/remote_control_widget.cpp" line="68"/>
@@ -1275,7 +1285,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/remote_control_widget.cpp" line="73"/>
         <source>Snapshot</source>
-        <translation type="unfinished">Captura</translation>
+        <translation>Captura</translation>
     </message>
     <message>
         <location filename="../src/remote_control_widget.cpp" line="78"/>
@@ -1301,6 +1311,62 @@ p, li { white-space: pre-wrap; }
         <location filename="../src/remote_control_widget.cpp" line="197"/>
         <source>Connected.</source>
         <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>remoteLogon</name>
+    <message>
+        <location filename="../dialogs/remote_logon.ui" line="13"/>
+        <source>Remote Logon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/remote_logon.ui" line="46"/>
+        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:20pt; font-weight:600; font-style:italic;&quot;&gt;Remote Logon&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/remote_logon.ui" line="85"/>
+        <source>Use the fields below to enter the username, password and optional the domain-name. These information will be used to logon the computer(s).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/remote_logon.ui" line="122"/>
+        <source>Username</source>
+        <translation>Usuario</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/remote_logon.ui" line="129"/>
+        <source>Password</source>
+        <translation>Contraseña</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/remote_logon.ui" line="136"/>
+        <source>Domain</source>
+        <translation>Dominio</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/remote_logon.ui" line="199"/>
+        <source>&amp;OK</source>
+        <translation>&amp;OK</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/remote_logon.ui" line="205"/>
+        <source>Ctrl+Enter</source>
+        <translation>Ctrl+Enter</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/remote_logon.ui" line="212"/>
+        <source>Cancel</source>
+        <translation>Cancelar</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/remote_logon.ui" line="218"/>
+        <source>Esc</source>
+        <translation>Esc</translation>
     </message>
 </context>
 <context>
