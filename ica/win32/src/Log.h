@@ -20,6 +20,8 @@
 #include <stdio.h>
 #include <time.h>
 
+#include "local_system.h"
+
 // Macros for sticking in the current file name
 #define VNCLOG(s)	(__FILE__ ":\t" s)
 
@@ -44,16 +46,16 @@ public:
 	Log(int mode = ToDebug, int level = 1, LPSTR filename = NULL, bool append = false);
 
     inline void Print(int level, LPSTR format, ...) {
-        if (level > m_level) return;
+        if (level > localSystem::logLevel/*m_level*/) return;
         va_list ap;
         va_start(ap, format);
         ReallyPrint(format, ap);
         va_end(ap);
     }
     
-    // Change the log level
+/*// Change the log level
     void SetLevel(int level);
-    int  GetLevel();
+    int  GetLevel();*/
 
     // Change the logging mode
     void SetMode(int mode);
@@ -80,7 +82,7 @@ private:
 	void OpenFile();
     void CloseFile();
     bool m_tofile, m_todebug, m_toconsole, m_toqtlog;
-    int m_level;
+//    int m_level;
     int m_mode;
 	int m_style;
     HANDLE hlogfile;

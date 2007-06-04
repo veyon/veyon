@@ -41,6 +41,8 @@ extern QByteArray __appInternalChallenge;
 
 namespace localSystem
 {
+	extern int logLevel;
+
 	typedef void (*p_pressKey)( int _key, bool _down );
 
 

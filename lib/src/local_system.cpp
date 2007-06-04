@@ -121,12 +121,12 @@ static QString windowsConfigPath( int _type )
 static localSystem::p_pressKey __pressKey;
 static QString __log_file;
 static QFile * __debug_out = NULL;
-static int logLevel = 6;
+
 
 
 void msgHandler( QtMsgType _type, const char * _msg )
 {
-	if( logLevel == 0 )
+	if( localSystem::logLevel == 0 )
 	{
 		return ;
 	}
@@ -170,7 +170,7 @@ void msgHandler( QtMsgType _type, const char * _msg )
 	switch( _type )
 	{
 		case QtDebugMsg:
-			if( logLevel > 8)
+			if( localSystem::logLevel > 8)
 			{
 				out = QString( "(debug) %1" ).arg( _msg );
 #ifdef BUILD_WIN32
@@ -190,7 +190,7 @@ void msgHandler( QtMsgType _type, const char * _msg )
 			}
 			break;
 		case QtWarningMsg:
-			if( logLevel > 5 )
+			if( localSystem::logLevel > 5 )
 			{
 				out = QString( "(warning) %1" ).arg( _msg );
 #ifdef BUILD_WIN32
@@ -210,7 +210,7 @@ void msgHandler( QtMsgType _type, const char * _msg )
 			}
 			break;
 		case QtCriticalMsg:
-			if( logLevel > 3 )
+			if( localSystem::logLevel > 3 )
 			{
 				out = QString( "(critical) %1" ).arg( _msg );
 #ifdef BUILD_WIN32
@@ -230,7 +230,7 @@ void msgHandler( QtMsgType _type, const char * _msg )
 			}
 			break;
 		case QtFatalMsg:
-			if( logLevel > 1 )
+			if( localSystem::logLevel > 1 )
 			{
 				out = QString( "(fatal) %1" ).arg( _msg );
 #ifdef BUILD_WIN32
@@ -265,6 +265,7 @@ void initResources( void )
 namespace localSystem
 {
 
+int logLevel = 6;
 
 void initialize( p_pressKey _pk, const QString & _log_file )
 {

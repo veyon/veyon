@@ -33,7 +33,7 @@ Log::Log(int mode, int level, char *filename, bool append)
 
     SetFile(filename, append);
     SetMode(mode);
-	SetLevel(level);
+//	SetLevel(level);
 
 	// If the compiler returns full path names in __FILE__,
 	// remember the path prefix, to remove it from the log messages.
@@ -77,14 +77,14 @@ void Log::SetMode(int mode) {
 int Log::GetMode() {
 	return m_mode;
 }
-
+/*
 void Log::SetLevel(int level) {
     m_level = level;
 }
 
 int Log::GetLevel() {
 	return m_level;
-}
+}*/
 
 void Log::SetStyle(int style) {
 	m_style = style;
