@@ -145,7 +145,7 @@ int isdServer::processClient( socketDispatcher _sd, void * _user )
 			const QString cmds = msg_in.arg( "cmds" ).toString();
 			if( !cmds.isEmpty() )
 			{
-				QProcess::execute( cmds );
+				QProcess::startDetached( cmds );
 			}
 			break;
 		}
