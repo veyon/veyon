@@ -51,9 +51,9 @@
         <file>resources/low.png</file>
         <file>resources/medium.png</file>
         <file>resources/modem.png</file>
-        <file>resources/multilogon.png</file>
-        <file>resources/multilogon_22.png</file>
-        <file>resources/multilogon_48.png</file>
+        <file>resources/remotelogon.png</file>
+        <file>resources/remotelogon_22.png</file>
+        <file>resources/remotelogon_48.png</file>
         <file>resources/network.png</file>
         <file>resources/no_user.png</file>
         <file>resources/ok.png</file>

@@ -172,9 +172,9 @@ void textMessageDialog::accept( void )
 
 
 
-multiLogonDialog::multiLogonDialog( QWidget * _parent ) :
+remoteLogonDialog::remoteLogonDialog( QWidget * _parent ) :
 	QDialog( _parent ? _parent->window() : 0 ),
-	Ui::multiLogon()
+	Ui::remoteLogon()
 {
 	setupUi( this );
 

@@ -115,7 +115,7 @@ public slots:
 	void sendMessage( void );
 	void powerOnClients( void );
 	void powerDownClients( void );
-	void multiLogon( void );
+	void remoteLogon( void );
 	void execCmds( void );
 
 	// slots for actions in view-menu

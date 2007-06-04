@@ -30,7 +30,7 @@
 #include "dialogs/client_settings.uic"
 #include "dialogs/text_message.uic"
 #include "dialogs/support.uic"
-#include "dialogs/multi_logon.uic"
+#include "dialogs/remote_logon.uic"
 
 
 class client;
@@ -109,11 +109,11 @@ private:
 
 
 
-class multiLogonDialog : public QDialog, private Ui::multiLogon
+class remoteLogonDialog : public QDialog, private Ui::remoteLogon
 {
 	Q_OBJECT
 public:
-	multiLogonDialog( QWidget * _parent );
+	remoteLogonDialog( QWidget * _parent );
 
 	const QString & userName( void ) const
 	{

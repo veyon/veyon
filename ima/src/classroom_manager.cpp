@@ -847,9 +847,9 @@ void classroomManager::powerOnClients( void )
 
 
 
-void classroomManager::multiLogon( void )
+void classroomManager::remoteLogon( void )
 {
-	multiLogonDialog mld( this );
+	remoteLogonDialog mld( this );
 	if( mld.exec() == QDialog::Accepted &&
 		!mld.userName().isEmpty() && !mld.password().isEmpty() )
 	{

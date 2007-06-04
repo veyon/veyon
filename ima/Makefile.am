@@ -33,7 +33,7 @@ italc_UIC =	./dialogs/client_settings.uic		\
 		./dialogs/config.uic			\
 		./dialogs/support.uic			\
 		./dialogs/text_message.uic		\
-		./dialogs/multi_logon.uic		\
+		./dialogs/remote_logon.uic		\
 		./dialogs/overview.uic			\
 		./dialogs/snapshots.uic			\
 		./dialogs/about.uic

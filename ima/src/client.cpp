@@ -60,7 +60,7 @@ const client::clientCommand client::s_commands[client::Cmd_CmdCount] =
 	{ Cmd_RemoteControl,	&client::remoteControl,		QT_TRANSLATE_NOOP( "client", "Remote control" ),		"remote_control.png",	FALSE	},
 	{ Cmd_ClientDemo,	&client::clientDemo,		QT_TRANSLATE_NOOP( "client", "Let student show demo" ),		"client_demo.png",	FALSE	},
 	{ Cmd_SendTextMessage,	&client::sendTextMessage,	QT_TRANSLATE_NOOP( "client", "Send text message" ),		"text_message.png",	TRUE	},
-	{ Cmd_LogonUser,	&client::logonUser,		QT_TRANSLATE_NOOP( "client", "Logon user" ),			"multilogon.png",	FALSE	},
+	{ Cmd_LogonUser,	&client::logonUser,		QT_TRANSLATE_NOOP( "client", "Logon user" ),			"remotelogon.png",	FALSE	},
 	{ Cmd_LogoutUser,	&client::logoutUser,		QT_TRANSLATE_NOOP( "client", "Logout user" ),			"logout.png",		TRUE	},
 	{ Cmd_Snapshot,		&client::snapshot,		QT_TRANSLATE_NOOP( "client", "Take a snapshot" ),		"snapshot.png", 	TRUE	},
 	{ Cmd_PowerOn,		&client::powerOn,		QT_TRANSLATE_NOOP( "client", "Power on" ),			"power_on.png",		FALSE	},
@@ -674,7 +674,7 @@ void client::logonUser( const QString & _uname_and_pw )
 
 	if( _uname_and_pw.isEmpty() )
 	{
-		multiLogonDialog mld( this );
+		remoteLogonDialog mld( this );
 		if( mld.exec() == QDialog::Accepted &&
 			!mld.userName().isEmpty() && !mld.password().isEmpty() )
 		{
