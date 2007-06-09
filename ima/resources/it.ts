@@ -852,11 +852,6 @@ p, li { white-space: pre-wrap; }
         <translation>In questa modalità il tuo schermo sarà visualizzato in una finestra su tutti i computer client. Gli utenti, pertanto, potranno cambiare finestra e continuare il loro lavoro.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="210"/>
-        <source>Lock desktops</source>
-        <translation type="obsolete">Blocca i desktop</translation>
-    </message>
-    <message>
         <location filename="../src/main_window.cpp" line="215"/>
         <source>To have all user&apos;s full attention you can lock their desktops using this button. In this mode all input devices are locked and the screen is black.</source>
         <translation>Per ottenere l&apos;attenzione dagli studenti si possono bloccare i desktop utilizzando questo pulsante. In questa modalità sui computer client le periferiche di input (mouse-tastiera) sono bloccate e lo schermo è nero (visualizza un lucchetto).</translation>
@@ -880,16 +875,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../src/main_window.cpp" line="249"/>
         <source>Click this button to power on all visible computers. This way you do not have to turn on each computer by hand.</source>
         <translation>Clicca su questo pulsante per accendere tutti i computer gestiti. In tal modo non sarà necessario accendere a mano ogni singolo PC dell&apos;aula.</translation>
-    </message>
-    <message>
-        <location filename="../src/main_window.cpp" line="264"/>
-        <source>Multi logon</source>
-        <translation type="obsolete">Accedi come</translation>
-    </message>
-    <message>
-        <location filename="../src/main_window.cpp" line="267"/>
-        <source>After clicking this button you can enter a username and password for logging in the according user on all visible computers.</source>
-        <translation type="obsolete">Con questo pulsante potrai effettuare l&apos;accesso (logon) su tutti i computer gestiti, indicando username, password e dominio.</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="275"/>
@@ -925,21 +910,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../src/main_window.cpp" line="179"/>
         <source>Overview</source>
         <translation>Panoramica</translation>
-    </message>
-    <message>
-        <location filename="../src/main_window.cpp" line="189"/>
-        <source>Demo</source>
-        <translation type="obsolete">Presenta</translation>
-    </message>
-    <message>
-        <location filename="../src/main_window.cpp" line="199"/>
-        <source>Demo/window</source>
-        <translation type="obsolete">Presenta in finestra</translation>
-    </message>
-    <message>
-        <location filename="../src/main_window.cpp" line="209"/>
-        <source>Lock</source>
-        <translation type="obsolete">Blocca</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="236"/>
@@ -1011,106 +981,47 @@ Altrimenti non sarà possibile accedere ai computer utilizzando iTALC.</translat
     <message>
         <location filename="../src/main_window.cpp" line="190"/>
         <source>Demo on</source>
-        <translation type="unfinished"></translation>
+        <translation>Presenta</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="190"/>
         <source>Demo off</source>
-        <translation type="unfinished"></translation>
+        <translation>Ferma Presentazione</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="200"/>
         <source>Demo/window on</source>
-        <translation type="unfinished"></translation>
+        <translation>Presenta in finestra</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="200"/>
         <source>Demo/window off</source>
-        <translation type="unfinished"></translation>
+        <translation>Ferma Presentazione</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="210"/>
         <source>Lock all</source>
-        <translation type="unfinished"></translation>
+        <translation>Blocca tutti</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="210"/>
         <source>Unlock all</source>
-        <translation type="unfinished"></translation>
+        <translation>Sblocca tutti</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="211"/>
         <source>Lock/unlock desktops</source>
-        <translation type="unfinished"></translation>
+        <translation>Blocca/Sblocca i desktop</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="265"/>
         <source>Remote logon</source>
-        <translation type="unfinished"></translation>
+        <translation>Accedi come...</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="268"/>
         <source>After clicking this button you can enter a username and password to log on the according user on all visible computers.</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>multiLogon</name>
-    <message>
-        <location filename="../dialogs/multi_logon.ui" line="13"/>
-        <source>Multi logon</source>
-        <translation type="obsolete">Multi logon</translation>
-    </message>
-    <message>
-        <location filename="../dialogs/multi_logon.ui" line="46"/>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:20pt; font-weight:600; font-style:italic;&quot;&gt;Multi logon&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="obsolete">&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:20pt; font-weight:600; font-style:italic;&quot;&gt;Accedi come...&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <location filename="../dialogs/multi_logon.ui" line="85"/>
-        <source>Use the fields below to enter the username, password and optional the domain-name. These information will be used to logon the computer(s).</source>
-        <translation type="obsolete">Utilizza i campi qui sotto per inserire nome-utente, password e l&apos;eventuale dominio. Queste informazioni saranno utilizzate per l&apos;autenticazione sul/i computer client.</translation>
-    </message>
-    <message>
-        <location filename="../dialogs/multi_logon.ui" line="122"/>
-        <source>Username</source>
-        <translation type="obsolete">Nome Utente</translation>
-    </message>
-    <message>
-        <location filename="../dialogs/multi_logon.ui" line="129"/>
-        <source>Password</source>
-        <translation type="obsolete">Password</translation>
-    </message>
-    <message>
-        <location filename="../dialogs/multi_logon.ui" line="136"/>
-        <source>Domain</source>
-        <translation type="obsolete">Dominio</translation>
-    </message>
-    <message>
-        <location filename="../dialogs/multi_logon.ui" line="199"/>
-        <source>&amp;OK</source>
-        <translation type="obsolete">&amp;OK</translation>
-    </message>
-    <message>
-        <location filename="../dialogs/multi_logon.ui" line="205"/>
-        <source>Ctrl+Enter</source>
-        <translation type="obsolete">Ctrl+Invio</translation>
-    </message>
-    <message>
-        <location filename="../dialogs/multi_logon.ui" line="212"/>
-        <source>Cancel</source>
-        <translation type="obsolete">Annulla</translation>
-    </message>
-    <message>
-        <location filename="../dialogs/multi_logon.ui" line="218"/>
-        <source>Esc</source>
-        <translation type="obsolete">Esc</translation>
+        <translation>Con questo pulsante potrai effettuare l&apos;accesso (logon) su tutti i computer gestiti, indicando username, password e dominio.</translation>
     </message>
 </context>
 <context>
@@ -1233,12 +1144,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/remote_control_widget.cpp" line="68"/>
         <source>Unlock student</source>
-        <translation type="unfinished"></translation>
+        <translation>Sblocca studente</translation>
     </message>
     <message>
         <location filename="../src/remote_control_widget.cpp" line="78"/>
         <source>Window</source>
-        <translation type="unfinished"></translation>
+        <translation>Finestra</translation>
     </message>
 </context>
 <context>
@@ -1246,7 +1157,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../dialogs/remote_logon.ui" line="13"/>
         <source>Remote Logon</source>
-        <translation type="unfinished"></translation>
+        <translation>Accesso Remoto</translation>
     </message>
     <message>
         <location filename="../dialogs/remote_logon.ui" line="46"/>
@@ -1254,7 +1165,10 @@ p, li { white-space: pre-wrap; }
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:20pt; font-weight:600; font-style:italic;&quot;&gt;Remote Logon&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:20pt; font-weight:600; font-style:italic;&quot;&gt;Accedi come...&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/remote_logon.ui" line="85"/>
