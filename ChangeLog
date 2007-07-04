@@ -1,3 +1,15 @@
+2007-07-04	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* Makefile.svn:
+	removed LUPUS-references
+
+	* utils-win32/userinfo.cpp:
+	more error-handling
+
+	* lib/src/dsa_key.cpp:
+	applied patch from Diego J. Brengi <brengi/at/inti/dot/gov/dot/ar> for
+	also accepting keys that were generated using ssh-keygen
+
 2007-06-09	Andriano Rino <rino-andr/at/users/dot/sourceforge/dot/net>
 
 	* ima/resources/it.ts:

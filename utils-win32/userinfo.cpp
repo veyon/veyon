@@ -87,13 +87,23 @@ void getUserName( char * * _str )
 		DWORD len = 0;
 
 		GetTokenInformation( hToken, TokenUser, NULL, 0, &len ) ;
+		if( len <= 0 )
+		{
+			CloseHandle( hToken );
+			CloseHandle( hProcess );
+			continue;
+		}
 		char * buf = new char[len];
 		if( buf == NULL )
 		{
+			CloseHandle( hToken );
+			CloseHandle( hProcess );
 			continue;
 		}
 		if ( !GetTokenInformation( hToken, TokenUser, buf, len, &len ) )
 		{
+			delete[] buf;
+			CloseHandle( hToken );
 			CloseHandle( hProcess );
 			continue;
 		}
@@ -105,6 +115,13 @@ void getUserName( char * * _str )
 		SID_NAME_USE nu;
 		LookupAccountSid( NULL, psid, NULL, &accname_len, NULL,
 							&domname_len, &nu );
+		if( accname_len == 0 || domname_len == 0 )
+		{
+			delete[] buf;
+			CloseHandle( hToken );
+			CloseHandle( hProcess );
+			continue;
+		}
 		char * accname = new char[accname_len];
 		char * domname = new char[domname_len];
 		if( accname == NULL || domname == NULL )
@@ -112,6 +129,8 @@ void getUserName( char * * _str )
 			delete[] buf;
 			delete[] accname;
 			delete[] domname;
+			CloseHandle( hToken );
+			CloseHandle( hProcess );
 			continue;
 		}
 		LookupAccountSid( NULL, psid, accname, &accname_len,

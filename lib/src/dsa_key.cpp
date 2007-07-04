@@ -375,7 +375,7 @@ bool dsaKey::verifySignature( const QByteArray & _data,
 	buffer_init( &b );
 	buffer_append( &b, _sig.data(), _sig.size() );
 	char * ktype = (char*) buffer_get_string( &b, NULL );
-	if( strcmp( "italc-dss", ktype ) != 0 )
+	if( strcmp( "italc-dss", ktype ) != 0 && strcmp( "ssh-dss", ktype ) != 0)
 	{
 		qCritical( "dsaKey::verifySignature( ... ): cannot handle "
 							"type %s", ktype );
@@ -691,7 +691,7 @@ DSA * keyFromBlob( const QByteArray & _ba )
 	buffer_append( &b, _ba.constData(), _ba.size() );
 	char * ktype = (char*)buffer_get_string( &b, NULL );
 
-	if( strcmp(ktype, "dsa") == 0 || strcmp(ktype, "italc-dss" ) == 0 )
+	if( strcmp(ktype, "dsa") == 0 || strcmp(ktype, "italc-dss" ) == 0 || strcmp(ktype, "ssh-dss" ) == 0 )
 	{
 		dsa = createNewDSA();
 		buffer_get_bignum2(&b, dsa->p);
@@ -760,7 +760,7 @@ void publicDSAKey::load( const QString & _file, QString )
 		line = line.trimmed();
 		if( line[0] != '#' )
 		{
-			if( line.section( ' ', 0, 0 ) != "italc-dss" )
+			if( line.section( ' ', 0, 0 ) != "italc-dss" && line.section( ' ', 0, 0 ) != "ssh-dss")
 			{
 				qCritical( "publicDSAKey::load(): "
 							"missing keytype" );
