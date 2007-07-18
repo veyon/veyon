@@ -1,3 +1,10 @@
+2007-07-18	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* lib/include/system_key_trapper.h:
+	* lib/src/system_key_trapper.cpp:
+	* lib/src/lock_widget.cpp:
+	win32: disable *all* keys while screen is being locked
+
 2007-07-04	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* Makefile.svn:

@@ -33,9 +33,10 @@
 
 static QMutex __trapped_keys_mutex;
 static QList<systemKeyTrapper::trappedKeys> __trapped_keys;
+static bool __disable_all_keys = FALSE;
 
 QMutex systemKeyTrapper::s_refCntMutex;
-int systemKeyTrapper::s_refCnt;
+int systemKeyTrapper::s_refCnt = 0;
 
 
 #if BUILD_WIN32
@@ -110,6 +111,10 @@ LRESULT CALLBACK TaskKeyHookLL( int nCode, WPARAM wp, LPARAM lp )
 			{
 				pressed.removeAll( key );
 			}
+			return( 1 );
+		}
+		if( __disable_all_keys )
+		{
 			return( 1 );
 		}
 	}
@@ -249,6 +254,14 @@ void systemKeyTrapper::setEnabled( bool _on )
 #endif
 	}
 	s_refCntMutex.unlock();
+}
+
+
+
+
+void systemKeyTrapper::disableAllKeys( bool _on )
+{
+	__disable_all_keys = _on;
 }
 
 

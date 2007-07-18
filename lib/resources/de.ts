@@ -70,6 +70,11 @@
         <source>UPL (note for translators: the first three characters of this string are the accellerators (underlined characters) of the three input-fields in logon-dialog of windows - please keep this note as otherwise there are strange errors concerning logon-feature)</source>
         <translation>BKA (note for translators: the first three characters of this string are the accellerators (underlined characters) of the three input-fields in logon-dialog of windows - please keep this note as otherwise there are strange errors concerning logon-feature)</translation>
     </message>
+    <message>
+        <location filename="../src/local_system.cpp" line="722"/>
+        <source>iTALC-snapshots</source>
+        <translation>iTALC-Schnappschuesse</translation>
+    </message>
 </context>
 <context>
     <name>ivsConnection</name>
@@ -94,7 +99,15 @@
     <message>
         <location filename="../src/local_system.cpp" line="621"/>
         <source>iTALC-snapshots</source>
-        <translation>iTALC-Schnappschuesse</translation>
+        <translation type="obsolete">iTALC-Schnappschuesse</translation>
+    </message>
+</context>
+<context>
+    <name>lockWidget</name>
+    <message>
+        <location filename="../src/lock_widget.cpp" line="57"/>
+        <source>screen lock</source>
+        <translation>Bildschirmsperre</translation>
     </message>
 </context>
 <context>

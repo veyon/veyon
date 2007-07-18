@@ -27,6 +27,7 @@
 
 #include <QtGui/QApplication>
 #include <QtGui/QDesktopWidget>
+#include <QtGui/QIcon>
 #include <QtGui/QPainter>
 
 
@@ -52,6 +53,9 @@ lockWidget::lockWidget( types _type ) :
 	m_type( _type ),
 	m_sysKeyTrapper()
 {
+	m_sysKeyTrapper.disableAllKeys( TRUE );
+	setWindowTitle( tr( "screen lock" ) );
+	setWindowIcon( QIcon( ":/resources/icon32.png" ) );
 	showFullScreen();
 	move( 0, 0 );
 	setFixedSize( QDesktopWidget().screenGeometry( this ).size() );

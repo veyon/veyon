@@ -63,6 +63,8 @@ public:
 		return( m_enabled );
 	}
 
+	void disableAllKeys( bool _on );
+
 
 private:
 	static QMutex s_refCntMutex;
