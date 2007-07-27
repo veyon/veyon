@@ -45,7 +45,7 @@ italc_TRANSLATIONS = $(wildcard $(srcdir)/resources/*.qm $(srcdir)/resources/*.t
 
 
 ./italc_qrc.cpp: italc.qrc
-	rcc $< > $@
+	$(RCC) $< > $@
 
 
 italc_SOURCES = $(srcdir)/src/client.cpp			\

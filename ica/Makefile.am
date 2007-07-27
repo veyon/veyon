@@ -123,7 +123,7 @@ ica_MOC =	src/isd_server.moc 			\
 
 
 ./ica_qrc.cpp: ica.qrc
-	rcc $< > $@
+	$(RCC) $< > $@
 
 
 ica_SOURCES =		$(srcdir)/src/ica_main.cpp		\

@@ -9,7 +9,7 @@ AC_ARG_WITH([qtdir], [  --with-qtdir=DIR        Qt installation directory [defau
 # Check that QTDIR is defined or that --with-qtdir given
 if test x"$QTDIR" = x ; then
 	# some usual Qt-locations
-	QT_SEARCH="/usr /usr/lib/qt /usr/lib/qt4 /usr/X11R6 /usr/local/Trolltech/Qt-4.2.0 /usr/local/Trolltech/Qt-4.2.1 /usr/local/Trolltech/Qt-4.2.2 /usr/local/Trolltech/Qt-4.2.3 /usr/local/Trolltech/Qt-4.3.0"
+	QT_SEARCH="/usr /usr/lib/qt /usr/lib64/qt4 /usr/lib/qt4 /usr/X11R6 /usr/local/Trolltech/Qt-4.2.0 /usr/local/Trolltech/Qt-4.2.1 /usr/local/Trolltech/Qt-4.2.2 /usr/local/Trolltech/Qt-4.2.3 /usr/local/Trolltech/Qt-4.3.0"
 else
 	QT_SEARCH=$QTDIR
 	QTDIR=""
@@ -75,11 +75,20 @@ if test x$UIC = x ; then
 	fi
 fi
 
+# Check that rcc is in path
+AC_CHECK_PROG(RCC, rcc-qt4, $QTHOSTDIR/bin/rcc-qt4,,$QTHOSTDIR/bin/)
+if test x$RCC = x ; then
+	AC_CHECK_PROG(RCC, rcc, $QTHOSTDIR/bin/rcc,,$QTHOSTDIR/bin/)
+	if test x$RCC = x ; then
+        	AC_MSG_ERROR([*** not found! Make sure you have Qt-devel-tools installed!])
+	fi
+fi
+
 # lupdate is the Qt translation-update utility.
 AC_CHECK_PROG(LUPDATE, lupdate-qt4, $QTHOSTDIR/bin/lupdate-qt4,,$QTHOSTDIR/bin/)
 if test x$LUPDATE = x ; then
 	AC_CHECK_PROG(LUPDATE, lupdate, $QTHOSTDIR/bin/lupdate,,$QTHOSTDIR/bin/)
-	if test x$MOC = x ; then
+	if test x$LUPDATE = x ; then
 	        AC_MSG_WARN([*** not found! It's not needed just for compiling but should be part of a proper Qt-devel-tools-installation!])
 	fi
 fi
@@ -88,101 +97,56 @@ fi
 AC_CHECK_PROG(LRELEASE, lrelease-qt4, $QTHOSTDIR/bin/lrelease-qt4,,$QTHOSTDIR/bin/)
 if test x$LRELEASE = x ; then
 	AC_CHECK_PROG(LRELEASE, lrelease, $QTHOSTDIR/bin/lrelease,,$QTHOSTDIR/bin/)
-	if test x$MOC = x ; then
+	if test x$LRELEASE = x ; then
 	        AC_MSG_WARN([*** not found! It's not needed just for compiling but should be part of a proper Qt-devel-tools-installation!])
 	fi
 fi
 
-# Calculate Qt include path
-QT_CXXFLAGS="-I$QT_INCLUDES -I$QT_INCLUDES/Qt"
+# construct CXXFLAGS
+QT_CXXFLAGS="-I$QT_INCLUDES -I$QT_INCLUDES/Qt -D_REENTRANT -DQT_NO_DEBUG -DQT_CORE_LIB -DQT_XML_LIB -DQT_THREAD_SUPPORT"
 
-# On unix, figure out if we're doing a static or dynamic link
+AC_MSG_CHECKING([QT_CXXFLAGS])
+AC_MSG_RESULT([$QT_CXXFLAGS])
+
+
+# check libraries
+AC_MSG_CHECKING([Qt4 libraries])
+
 case "${host}" in
       *mingw32)
-        QT_IS_STATIC=`ls $QTDIR/lib/*.a 2> /dev/null`
-       	if test "x$QT_IS_STATIC" = x; then
-            QT_IS_STATIC="no"
-       	else
-            QT_IS_STATIC="yes"
-        fi
-        if test x$QT_IS_STATIC = xno ; then
-            QT_IS_DYNAMIC=`ls $QTDIR/lib/*.so 2> /dev/null` 
-            if test "x$QT_IS_DYNAMIC" = x;  then
-                AC_MSG_ERROR([*** Couldn't find any Qt libraries])
-            fi
+        QT_LIBS=`ls $QTDIR/lib/libQt*.so 2> /dev/null` 
+        if test "x$QT_LIBS" = x;  then
+            AC_MSG_ERROR([*** Couldn't find any Qt4 libraries])
         fi
 	QT_LIB="-L$QTDIR/bin -lQtCore4 -lQtXml4 -lQtNetwork4 -lws2_32"
 	QT_LIB_GUI="-lQtGui4"
 	# Check that windres is in path
 	AC_PATH_PROGS([WINDRES],[i586-mingw32-windres windres],,[${prefix}/bin:$PATH])
 	if test x$WINDRES = x ; then
-		AC_MSG_ERROR([*** not found! Make sure you have binutils installed!])
+		AC_MSG_ERROR([*** not found! Make sure you have mingw32 binutils installed!])
 	fi
         ;;
     *)
-        QT_IS_STATIC=`ls $QTDIR/lib/*.a 2> /dev/null`
-       	if test "x$QT_IS_STATIC" = x; then
-            QT_IS_STATIC="no"
-       	else
-            QT_IS_STATIC="yes"
+       	QT_LIBS=`ls $QTDIR/lib64/libQt*.so 2> /dev/null` 
+        if test "x$QT_LIBS" = x;  then
+        	QT_LIBS=`ls $QTDIR/lib/libQt*.so 2> /dev/null` 
+            	if test "x$QT_LIBS" = x;  then
+			AC_MSG_ERROR([*** Couldn't find any Qt4 libraries])
+            	fi
+		QT_LIB="-L$QTDIR/lib -L$QTDIR/lib/qt4"
+	else
+		QT_LIB="-L$QTDIR/lib64 -L$QTDIR/lib64/qt4"
         fi
-        if test x$QT_IS_STATIC = xno ; then
-            QT_IS_DYNAMIC=`ls $QTDIR/lib/*.so 2> /dev/null` 
-            if test "x$QT_IS_DYNAMIC" = x;  then
-                AC_MSG_ERROR([*** Couldn't find any Qt libraries])
-            fi
-        fi
-	QT_LIB="-L$QTDIR/lib -L$QTDIR/lib/qt4 -lQtCore -lQtXml -lQtNetwork"
+ 	QT_LIB="$QT_LIB -lQtCore -lQtXml -lQtNetwork"
 	QT_LIB_GUI="-lQtGui"
         ;;
 esac
-AC_MSG_CHECKING([if Qt is static])
-AC_MSG_RESULT([$QT_IS_STATIC])
+AC_MSG_RESULT([found: $QT_LIB])
 
-QT_LIBS="$QT_LIB"
-
-
-case "${host}" in
-    *irix*)
-        QT_LIBS="$QT_LIB"
-        if test $QT_IS_STATIC = yes ; then
-            QT_LIBS="$QT_LIBS -L$x_libraries -lXext -lX11 -lm -lSM -lICE"
-        fi
-        ;;
-
-    *linux*)
-        QT_LIBS="$QT_LIB"
-        if test $QT_IS_STATIC = yes ; then
-            QT_LIBS="$QT_LIBS -L$x_libraries -lXext -lX11 -lm -lSM -lICE -ldl"
-        fi
-        ;;
-
-    *osf*) 
-        # Digital Unix (aka DGUX aka Tru64)
-        QT_LIBS="$QT_LIB"
-        if test $QT_IS_STATIC = yes ; then
-            QT_LIBS="$QT_LIBS -L$x_libraries -lXext -lX11 -lm -lSM -lICE"
-        fi
-        ;;
-
-    *solaris*)
-        QT_LIBS="$QT_LIB"
-        if test $QT_IS_STATIC = yes ; then
-            QT_LIBS="$QT_LIBS -L$x_libraries -lXext -lX11 -lm -lSM -lICE -lresolv -lsocket -lnsl"
-        fi
-        ;;
-
-esac
+QT_LDADD="$QT_LIB"
 
 
-QT_CXXFLAGS="$QT_CXXFLAGS -D_REENTRANT -DQT_NO_DEBUG -DQT_THREAD_SUPPORT"
 
-QT_LDADD="$QT_LIBS"
-
-AC_MSG_CHECKING([QT_CXXFLAGS])
-AC_MSG_RESULT([$QT_CXXFLAGS])
-AC_MSG_CHECKING([QT_LDADD])
-AC_MSG_RESULT([$QT_LDADD])
 
 AC_SUBST(QT_CXXFLAGS)
 AC_SUBST(QT_LDADD)

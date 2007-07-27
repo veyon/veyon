@@ -12,7 +12,7 @@
 
 
 ./italc_core_qrc.cpp: italc_core.qrc
-	rcc $< -name italc_core > $@
+	$(RCC) $< -name italc_core > $@
 
 
 noinst_LIBRARIES = libitalc_core-static.a
@@ -102,7 +102,7 @@ if BUILD_LINUX
 shared-lib: libitalc_core.so
 
 libitalc_core.so: libitalc_core-static.a
-	$(CXX) *.o -shared -Wl,-no-undefined -Wl,-enable-runtime-pseudo-reloc -o $@  $(QT_LDADD) $(QT_LIB_GUI) $(LIBSSL) -lz -ljpeg
+	$(CXX) *.o -shared -Wl,-no-undefined -Wl,-enable-runtime-pseudo-reloc -Wl,-soname,libitalc_core.so -o $@  $(QT_LDADD) $(QT_LIB_GUI) $(LIBSSL) -lz -ljpeg
 
 lib_LTLIBRARIES = libitalc_core.so
 libitalc_core_so_SOURCES =

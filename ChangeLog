@@ -1,7 +1,25 @@
 2007-07-28	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
+	* configure.in:
+	use -fPIC as compiler flag per default
+
+	* lib/Makefile.am:
+	added -soname-flag to linker flags for not having shared library
+	without SONAME-entry
+
+	* ica/Makefile.am:
+	* ima/Makefile.am:
+	* setup/Makefile.am:
+	* lib/Makefile.am:
+	use $(RCC)-variable instead of rcc - fixes some compilation errors on
+	several platforms/distributions
+
 	* acinclude.m4:
-	added some more Qt4-search-paths and removed deprecated ones
+	- added some more Qt4-search-paths and removed deprecated ones
+	- cleaned up a lot all the Qt4-detection code and made ready for
+	  64 bit platforms
+	- also check for Qt's rcc-utility
+	- fixed typos in lrelease and lupdate-detection
 
 2007-07-18	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 

@@ -32,7 +32,7 @@ setup_TRANSLATIONS = $(wildcard $(srcdir)/resources/*.qm $(srcdir)/resources/*.t
 
 
 ./setup_qrc.cpp: setup.qrc
-	rcc $< > $@
+	$(RCC) $< > $@
 
 
 setup_SOURCES = $(srcdir)/src/main.cpp				\
