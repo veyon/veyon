@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="de_DE">
+<defaultcodec></defaultcodec>
 <context>
     <name>QApplication</name>
     <message>
         <location filename="../src/ica_main.cpp" line="300"/>
         <source>iTALC Client on %1:%2</source>
-        <translation>iTALC Client auf %1:%2</translation>
+        <translation type="obsolete">iTALC Client auf %1:%2</translation>
     </message>
     <message>
         <location filename="../src/system_service.cpp" line="266"/>
@@ -66,6 +67,11 @@
         <location filename="../src/system_service.cpp" line="645"/>
         <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not stopped.</source>
         <translation>Es konnte keine Verbindung zum Service-Control-Manager hergestellt werden (haben Sie die nötigen Rechte?!) - der Dienst &apos;%1&apos; wurde nicht beendet.</translation>
+    </message>
+    <message>
+        <location filename="../src/ica_main.cpp" line="301"/>
+        <source>iTALC Client %1 on %2:%3</source>
+        <translation>iTALC Client %1 auf %2:%3</translation>
     </message>
 </context>
 <context>

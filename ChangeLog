@@ -1,4 +1,12 @@
+2007-07-28	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* acinclude.m4:
+	added some more Qt4-search-paths and removed deprecated ones
+
 2007-07-18	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* ica/src/ica_main.cpp:
+	include version-info in tooltip of system-tray-icon
 
 	* lib/include/system_key_trapper.h:
 	* lib/src/system_key_trapper.cpp:

@@ -297,7 +297,8 @@ int ICAMain( int argc, char * * argv )
 	QSystemTrayIcon sti( icon );
 	__systray_icon = &sti;
 	__systray_icon->setToolTip(
-				QApplication::tr( "iTALC Client on %1:%2" ).
+				QApplication::tr( "iTALC Client %1 on %2:%3" ).
+					arg( PACKAGE_VERSION ).
 					arg( QHostInfo::localHostName() ).
 					arg( QString::number( __ivs_port ) ) );
 	__systray_icon->show();
