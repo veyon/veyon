@@ -114,7 +114,7 @@ AC_MSG_CHECKING([Qt4 libraries])
 
 case "${host}" in
       *mingw32)
-        QT_LIBS=`ls $QTDIR/lib/libQt*.so 2> /dev/null` 
+        QT_LIBS=`ls $QTDIR/lib/libQt*.a 2> /dev/null` 
         if test "x$QT_LIBS" = x;  then
             AC_MSG_ERROR([*** Couldn't find any Qt4 libraries])
         fi
