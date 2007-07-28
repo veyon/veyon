@@ -24,7 +24,9 @@
  */
 
 
+#ifdef HAVE_CONFIG_H
 #include <config.h>
+#endif
 
 // project-headers
 #include "dsa_key.h"
@@ -40,10 +42,6 @@
 #include <memory.h>
 #include <cstdlib>
 #include <cstdio>
-
-#ifdef BUILD_WIN32
-extern "C" FILE * __cdecl fdopen( int, const char * );
-#endif
 
 // Qt-headers
 #include <QtCore/QByteArray>
@@ -569,6 +567,8 @@ void privateDSAKey::load( const QString & _file, QString _passphrase )
 		m_dsa = NULL;
 	}
 
+	// QFile::handle() of Qt >= 4.3.0 returns -1 under win32
+#if QT_VERSION < 0x040300 || !BUILD_WIN32
 	QFile infile( _file );
 	if( !QFileInfo( _file ).exists() || !infile.open( QFile::ReadOnly ) )
 	{
@@ -576,8 +576,10 @@ void privateDSAKey::load( const QString & _file, QString _passphrase )
 						_file.toAscii().constData() );
 		return;
 	}
-
 	FILE * fp = fdopen( infile.handle(), "r" );
+#else
+	FILE * fp = fopen( _file.toAscii().constData(), "r" );
+#endif
 	if( fp == NULL )
 	{
 		qCritical( "privateDSAKey::load( ... ): fdopen failed" );
@@ -631,6 +633,8 @@ void privateDSAKey::save( const QString & _file, QString _passphrase ) const
 						_file.toAscii().constData() );
 		}
 	}
+	// QFile::handle() of Qt >= 4.3.0 returns -1 under win32
+#if QT_VERSION < 0x040300 || !BUILD_WIN32
 	if( !outfile.open( QFile::WriteOnly | QFile::Truncate ) )
 	{
 		qCritical( "could not save private key in %s",
@@ -638,6 +642,9 @@ void privateDSAKey::save( const QString & _file, QString _passphrase ) const
 		return;
 	}
 	FILE * fp = fdopen( outfile.handle(), "w" );
+#else
+	FILE * fp = fopen( _file.toAscii().constData(), "w" );
+#endif
 	if( fp == NULL )
 	{
 		qCritical( "fdopen failed." );

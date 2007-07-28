@@ -135,7 +135,7 @@ void IVS::run( void )
 #ifdef BUILD_LINUX
 	QStringList cmdline;
 
-	m_runningInSeparateProcess = TRUE;
+//	m_runningInSeparateProcess = TRUE;
 
 	// filter some options
 	for( int i = 0; i < m_argc; ++i )

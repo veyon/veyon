@@ -123,6 +123,28 @@ static QString __log_file;
 static QFile * __debug_out = NULL;
 
 
+static QString properLineEnding( QString _out )
+{
+	if( _out.right( 1 ) != "\012" )
+	{
+		_out += "\012";				
+	}
+#ifdef BUILD_WIN32
+	if( _out.right( 1 ) != "\015" )
+	{
+		_out.replace( QString( "\012" ), QString( "\015\012" ) );
+	}
+#elif BUILD_LINUX
+#else
+	if( _out.right( 1 ) != "\015" ) // MAC
+	{
+		_out.replace( QString( "\012" ), QString( "\015" ) );
+	}
+#endif			
+	return( _out );
+}
+
+
 
 void msgHandler( QtMsgType _type, const char * _msg )
 {
@@ -172,88 +194,36 @@ void msgHandler( QtMsgType _type, const char * _msg )
 		case QtDebugMsg:
 			if( localSystem::logLevel > 8)
 			{
-				out = QString( "(debug) %1" ).arg( _msg );
-#ifdef BUILD_WIN32
-				if( out.right( 1 ) != "\015" )
-				{
-					out.replace(QString("\012"), QString("\015\012"));
-#elif BUILD_LINUX
-				if( out.right( 1 ) != "\012" )
-				{
-					out += "\012";				
-#else
-				if( out.right( 1 ) != "\015" ) // MAC
-				{
-					out.replace(QString("\012"), QString("\015"));
-#endif			
-				}
+				out = QString( "[debug] %1" ).arg( _msg );
 			}
 			break;
 		case QtWarningMsg:
 			if( localSystem::logLevel > 5 )
 			{
-				out = QString( "(warning) %1" ).arg( _msg );
-#ifdef BUILD_WIN32
-				if( out.right( 1 ) != "\015" )
-				{
-					out.replace(QString("\012"), QString("\015\012"));
-#elif BUILD_LINUX
-				if( out.right( 1 ) != "\012" )
-				{
-					out += "\012";				
-#else
-				if( out.right( 1 ) != "\015" )
-				{
-					out.replace(QString("\012"), QString("\015"));
-#endif			
-				}
+				out = QString( "[warning] %1" ).arg( _msg );
 			}
 			break;
 		case QtCriticalMsg:
 			if( localSystem::logLevel > 3 )
 			{
-				out = QString( "(critical) %1" ).arg( _msg );
-#ifdef BUILD_WIN32
-				if( out.right( 1 ) != "\015" )
-				{
-					out.replace(QString("\012"), QString("\015\012"));
-#elif BUILD_LINUX
-				if( out.right( 1 ) != "\012" )
-				{
-					out += "\012";				
-#else
-				if( out.right( 1 ) != "\015" ) // MAC
-				{
-					out.replace(QString("\012"), QString("\015"));
-#endif			
-				}
+				out = QString( "[critical] %1" ).arg( _msg );
 			}
 			break;
 		case QtFatalMsg:
 			if( localSystem::logLevel > 1 )
 			{
-				out = QString( "(fatal) %1" ).arg( _msg );
-#ifdef BUILD_WIN32
-				if( out.right( 1 ) != "\015" )
-				{
-					out.replace(QString("\012"), QString("\015\012"));
-#elif BUILD_LINUX
-				if( out.right( 1 ) != "\012" )
-				{
-					out += "\012";				
-#else
-				if( out.right( 1 ) != "\015" ) // MAC
-				{
-					out.replace(QString("\012"), QString("\015"));
-#endif			
-				}
+				out = QString( "[fatal] %1" ).arg( _msg );
 			}
 		default:
+			out = QString( "[unknown] %1" ).arg( _msg );
 			break;
 	}
-	
-	__debug_out->write( out.toAscii() );
-	printf( "%s", out.toAscii().constData() );
+	if( out.trimmed().size() )
+	{
+		out = properLineEnding( out );
+		__debug_out->write( out.toAscii() );
+		printf( "%s", out.toAscii().constData() );
+	}
 }
 
 

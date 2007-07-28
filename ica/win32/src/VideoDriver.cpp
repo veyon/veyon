@@ -310,7 +310,7 @@ BOOL vncVideoDriver::LookupVideoDeviceAlt(
 	ZeroMemory(pDd, sizeof(DISPLAY_DEVICE));
 	pDd->cb = sizeof(DISPLAY_DEVICE);
 	BOOL result;
-	while (result = (*pd)(NULL,devNum, pDd, 0))
+	while ((result = (*pd)(NULL,devNum, pDd, 0)))
 	{
 		if (strcmp((const char *)pDd->DeviceString, szDevStr) == 0 ||
 			szDevStrAlt && strcmp((const char *)pDd->DeviceString, szDevStrAlt) == 0)

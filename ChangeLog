@@ -1,5 +1,40 @@
 2007-07-28	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
+	* lib/src/dsa_key.cpp:
+	do not use QFile::handle() with Qt >= 4.3.0 under win32 as it always
+	returns -1, use fopen() instead
+
+	* lib/src/local_system.cpp:
+	fixed wrong code for line-endings in log files
+
+	* ica/win32/win32vnc.cpp:
+	* lib/src/system_key_trapper.cpp:
+	* lib/src/isd_connection.cpp:
+	re-ordered win32-header-inclusion to fix some compile errors with
+	recent GCC versions
+
+	* lib/src/ivs_connection.cpp:
+	* lib/include/ivs_connection.h:
+	post regionChangedEvent in separate method (i.e. use postEvent instead
+	of sendEvent as sendEvent is not thread-safe and produces
+	Qt-assertions)
+
+	* lib/src/vncview.cpp:
+	* lib/include/vncview.h:
+	close connection in destructor vncWorker-class - fixes assertions with
+	Qt >= 4.3.0
+
+	* Makefile.am:
+	* ica/Makefile.am:
+	* ica/src/local_system_ica.cpp:
+	moved code from userinfo.cpp here
+
+	* ica/src/ivs.cpp:
+	do not run IVS in separate process anymore (to be tested)
+
+	* ica/win32/src/VideoDriver.cpp:
+	fixed compiler warning
+
 	* utils-win32/userinfo.cpp:
 	fixed uninitialized pointer and improved some casts - fixes
 	non-working code when compiling with GCC 4.x

@@ -118,6 +118,7 @@ class vncWorker : public QObject
 	Q_OBJECT
 public:
 	vncWorker( vncView * _vv );
+	~vncWorker();
 
 
 private slots:

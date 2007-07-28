@@ -2,8 +2,8 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.50)
-AC_INIT(italc, 1.0.3.1, tobydox/at/users/dot/sf/dot/net)
-AM_INIT_AUTOMAKE(italc, 1.0.3.1)
+AC_INIT(italc, 1.0.3.2, tobydox/at/users/dot/sf/dot/net)
+AM_INIT_AUTOMAKE(italc, 1.0.3.2)
 AM_CONFIG_HEADER(config.h)
 AX_PREFIX_CONFIG_H([lib/include/rfb/rfbconfig.h])
 
@@ -25,15 +25,15 @@ AC_LIBTOOL_WIN32_DLL
 AC_PROG_LIBTOOL
 
 
-EXTRAFLAGS="-g0 -O2 -fPIC -Wall"
+EXTRAFLAGS="-g -O2 -Wall"
 #-floop-optimize2 -fomit-frame-pointer"
 
-if test "x`$CC --version|head -1|cut -d\  -f3|cut -d. -f1`" = "x4" ; then
-	EXTRAFLAGS="$EXTRAFLAGS -ftree-vectorize -ftree-loop-linear"
-	if test "x`$CC --version|head -1|cut -d\  -f3|cut -d. -f2`" != "x0" ; then
-		EXTRAFLAGS="$EXTRAFLAGS -funsafe-loop-optimizations -Wunsafe-loop-optimizations"
-	fi	
-fi
+#if test "x`$CC --version|head -1|cut -d\  -f3|cut -d. -f1`" = "x4" ; then
+#	EXTRAFLAGS="$EXTRAFLAGS -ftree-vectorize -ftree-loop-linear"
+#	if test "x`$CC --version|head -1|cut -d\  -f3|cut -d. -f2`" != "x0" ; then
+#		EXTRAFLAGS="$EXTRAFLAGS -funsafe-loop-optimizations -Wunsafe-loop-optimizations"
+#	fi	
+#fi
 #if test "x`$CC --version|head -1|cut -d\  -f3|cut -d. -f1`" = "x4" ; then
 #	EXTRAFLAGS="$EXTRAFLAGS -ftree-vectorize -funsafe-loop-optimizations -Wunsafe-loop-optimizations -ftree-loop-linear"
 #fi

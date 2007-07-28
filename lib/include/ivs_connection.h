@@ -149,6 +149,8 @@ private:
 						Q_UINT16 _w, Q_UINT16 _h,
 						bool _incremental );
 
+	void postRegionChangedEvent( const rectList & _rgn );
+
 	bool handleCursorPos( const Q_UINT16 _x, const Q_UINT16 _y );
 	bool handleCursorShape( const Q_UINT16 _xhot, const Q_UINT16 _yhot,
 				const Q_UINT16 _w, const Q_UINT16 _h,

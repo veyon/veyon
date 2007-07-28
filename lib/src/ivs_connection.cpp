@@ -445,6 +445,18 @@ bool ivsConnection::sendKeyEvent( Q_UINT32 key, bool down )
 
 
 
+void ivsConnection::postRegionChangedEvent( const rectList & _rgn )
+{
+	if( parent() != NULL )
+	{
+		regionChangedEvent * rche = new regionChangedEvent( _rgn );
+		QCoreApplication::postEvent( parent(), rche );
+	}
+}
+
+
+
+
 bool ivsConnection::handleServerMessages( bool _send_screen_update, int _tries )
 {
 	while( hasData() && --_tries >= 0 )
@@ -624,11 +636,7 @@ bool ivsConnection::handleServerMessages( bool _send_screen_update, int _tries )
 
 		// make sure, area around old cursor is updated and new cursor
 		// is painted
-		if( parent() != NULL )
-		{
-			regionChangedEvent rche( ch_reg );
-			QCoreApplication::sendEvent( parent(), &rche );
-		}
+		postRegionChangedEvent( ch_reg );
 		break;
 	}
 
@@ -677,11 +685,7 @@ bool ivsConnection::handleServerMessages( bool _send_screen_update, int _tries )
 		}
 	}
 			}
-			if( parent() != NULL )
-			{
-				regionChangedEvent rche( updated_region );
-				QCoreApplication::sendEvent( parent(), &rche );
-			}
+			postRegionChangedEvent( updated_region );
 
 			wl.unlock();
 			emit regionUpdated( updated_region );
@@ -1509,12 +1513,8 @@ bool ivsConnection::handleCursorPos( const Q_UINT16 _x, const Q_UINT16 _y )
 							m_cursorShape.size() );
 	m_cursorPos = QPoint( _x, _y );
 	ch_reg += QRect( m_cursorPos - m_cursorHotSpot, m_cursorShape.size() );
-
-	if( parent() != NULL )
-	{
-		regionChangedEvent rche( ch_reg );
-		QCoreApplication::sendEvent( parent(), &rche );
-	}
+printf("%d\n", m_cursorShape.size());
+	postRegionChangedEvent( ch_reg );
 
 	if( m_quality < QualityDemoLow )
 	{
@@ -1679,11 +1679,7 @@ bool ivsConnection::handleCursorShape( const Q_UINT16 _xhot,
 
 	// make sure, area around old cursor is updated and new cursor is
 	// painted
-	if( parent() != NULL )
-	{
-		regionChangedEvent rche( ch_reg );
-		QCoreApplication::sendEvent( parent(), &rche );
-	}
+	postRegionChangedEvent( ch_reg );
 
 	emit cursorShapeChanged();
 	if( m_quality < QualityDemoLow )

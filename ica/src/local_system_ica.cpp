@@ -36,18 +36,179 @@
 
 #define _WIN32_WINNT 0x0501
 #include <windows.h>
-#include <shlobj.h>
 #include <psapi.h>
-#include <winable.h>
+#include <lm.h>
 
-
-#include <QtCore/QDir>
 #include <QtCore/QMutex>
 #include <QtCore/QThread>
-#include <QtCore/QLibrary>
 
 #include "local_system.h"
 #include "system_key_trapper.h"
+
+
+
+void getUserName( char * * _str )
+{
+	if( !_str )
+	{
+		return;
+	}
+	*_str = NULL;
+
+	DWORD aProcesses[1024], cbNeeded;
+
+	if( !EnumProcesses( aProcesses, sizeof( aProcesses ), &cbNeeded ) )
+	{
+		return;
+	}
+
+	DWORD cProcesses = cbNeeded / sizeof(DWORD);
+
+	for( DWORD i = 0; i < cProcesses; i++ )
+	{
+		HANDLE hProcess = OpenProcess( PROCESS_QUERY_INFORMATION |
+								PROCESS_VM_READ,
+							false, aProcesses[i] );
+		HMODULE hMod;
+		if( hProcess == NULL ||
+			!EnumProcessModules( hProcess, &hMod, sizeof( hMod ),
+								&cbNeeded ) )
+	        {
+			continue;
+		}
+
+		TCHAR szProcessName[MAX_PATH];
+		GetModuleBaseName( hProcess, hMod, szProcessName, 
+                       		  sizeof( szProcessName ) / sizeof( TCHAR) );
+		for( TCHAR * ptr = szProcessName; *ptr; ++ptr )
+		{
+			*ptr = tolower( *ptr );
+		}
+
+		if( strcmp( szProcessName, "explorer.exe" ) )
+		{
+			CloseHandle( hProcess );
+			continue;
+		}
+	
+		HANDLE hToken;
+		OpenProcessToken( hProcess, TOKEN_READ, &hToken );
+		DWORD len = 0;
+
+		GetTokenInformation( hToken, TokenUser, NULL, 0, &len ) ;
+		if( len <= 0 )
+		{
+			CloseHandle( hToken );
+			CloseHandle( hProcess );
+			continue;
+		}
+		char * buf = new char[len];
+		if( buf == NULL )
+		{
+			CloseHandle( hToken );
+			CloseHandle( hProcess );
+			continue;
+		}
+		if ( !GetTokenInformation( hToken, TokenUser, buf, len, &len ) )
+		{
+			delete[] buf;
+			CloseHandle( hToken );
+			CloseHandle( hProcess );
+			continue;
+		}
+
+		PSID psid = ((TOKEN_USER*) buf)->User.Sid;
+
+		DWORD accname_len = 0;
+		DWORD domname_len = 0;
+		SID_NAME_USE nu;
+		LookupAccountSid( NULL, psid, NULL, &accname_len, NULL,
+							&domname_len, &nu );
+		if( accname_len == 0 || domname_len == 0 )
+		{
+			delete[] buf;
+			CloseHandle( hToken );
+			CloseHandle( hProcess );
+			continue;
+		}
+		char * accname = new char[accname_len];
+		char * domname = new char[domname_len];
+		if( accname == NULL || domname == NULL )
+		{
+			delete[] buf;
+			delete[] accname;
+			delete[] domname;
+			CloseHandle( hToken );
+			CloseHandle( hProcess );
+			continue;
+		}
+		LookupAccountSid( NULL, psid, accname, &accname_len,
+						domname, &domname_len, &nu );
+		WCHAR wszDomain[256];
+		MultiByteToWideChar( CP_ACP, 0, domname,
+			strlen( domname ) + 1, wszDomain, sizeof( wszDomain ) /
+						sizeof( wszDomain[0] ) );
+		WCHAR wszUser[256];
+		MultiByteToWideChar( CP_ACP, 0, accname,
+			strlen( accname ) + 1, wszUser, sizeof( wszUser ) /
+							sizeof( wszUser[0] ) );
+		PBYTE domcontroller = NULL;
+		if( NetGetDCName( NULL, wszDomain, &domcontroller ) !=
+								NERR_Success )
+		{
+			domcontroller = NULL;
+		}
+		LPUSER_INFO_2 pBuf = NULL;
+		NET_API_STATUS nStatus = NetUserGetInfo( (LPWSTR)domcontroller,
+						wszUser, 2, (LPBYTE *) &pBuf );
+		if( nStatus == NERR_Success && pBuf != NULL )
+		{
+			len = WideCharToMultiByte( CP_ACP, 0,
+							pBuf->usri2_full_name,
+						-1, NULL, 0, NULL, NULL );
+			if( len > 0 )
+			{
+				char * mbstr = new char[len];
+				len = WideCharToMultiByte( CP_ACP, 0,
+							pBuf->usri2_full_name,
+						-1, mbstr, len, NULL, NULL );
+				if( strlen( mbstr ) < 1 )
+				{
+					*_str = new char[2*accname_len+4];
+					sprintf( *_str, "%s (%s)", accname,
+								accname );
+				}
+				else
+				{
+					*_str = new char[len+accname_len+4];
+					sprintf( *_str, "%s (%s)", mbstr,
+								accname );
+				}
+				delete[] mbstr;
+			}
+			else
+			{
+				*_str = new char[2*accname_len+4];
+				sprintf( *_str, "%s (%s)", accname, accname );
+			}
+		}
+		if( pBuf != NULL )
+		{
+			NetApiBufferFree( pBuf );
+		}
+		if( domcontroller != NULL )
+		{
+			NetApiBufferFree( domcontroller );
+		}
+		delete[] accname;
+		delete[] domname;
+		FreeSid( psid );
+		delete[] buf;
+		CloseHandle( hToken );
+		CloseHandle( hProcess );
+	}
+}
+
 
 
 class userPollThread : public QThread
@@ -70,112 +231,16 @@ private:
 	{
 		while( 1 )
 		{
-		char buf[1024];
-		STARTUPINFO si;
-		SECURITY_ATTRIBUTES sa;
-		SECURITY_DESCRIPTOR sd;	// security information for pipes
-		PROCESS_INFORMATION pi;
-		HANDLE newstdin, newstdout, read_stdout, write_stdin;
-								// pipe handles
-
-		// initialize security descriptor (Windows NT)
-		InitializeSecurityDescriptor( &sd,
-						SECURITY_DESCRIPTOR_REVISION );
-		SetSecurityDescriptorDacl( &sd, true, NULL, FALSE );
-		sa.lpSecurityDescriptor = &sd;
-		sa.nLength = sizeof( SECURITY_ATTRIBUTES) ;
-		sa.bInheritHandle = TRUE;	//allow inheritable handles
-
-		// create stdin pipe
-		if( !CreatePipe( &newstdin, &write_stdin, &sa, 0 ) )
-		{
-			qCritical( "CreatePipe (stdin)" );
-			continue;
-		}
-		// create stdout pipe
-		if( !CreatePipe( &read_stdout, &newstdout, &sa, 0 ) )
-		{
-			qCritical( "CreatePipe (stdout)" );
-			CloseHandle( newstdin );
-			CloseHandle( write_stdin );
-			continue;
-		}
-
-		// set startupinfo for the spawned process
-		GetStartupInfo( &si );
-		si.dwFlags = STARTF_USESTDHANDLES|STARTF_USESHOWWINDOW;
-		si.wShowWindow = SW_HIDE;
-		si.hStdOutput = newstdout;
-		si.hStdError = newstdout;	// set the new handles for the
-						// child process
-		si.hStdInput = newstdin;
-		QString app = QCoreApplication::applicationDirPath() +
-					QDir::separator() + "userinfo.exe";
-		app.replace( '/', QDir::separator() );
-
-		// spawn the child process
-		if( !CreateProcess( app.toAscii().constData(),
-							NULL, NULL, NULL, TRUE,
-				CREATE_NO_WINDOW, NULL,NULL, &si, &pi ) )
-		{
-			qCritical( "CreateProcess" );
-			CloseHandle( newstdin );
-			CloseHandle( newstdout );
-			CloseHandle( read_stdout );
-			CloseHandle( write_stdin );
-			sleep( 5 );
-			continue;
-		}
-
-		QString s;
-		while( 1 )
-		{
-			DWORD bread, avail;
-
-			//check to see if there is any data to read from stdout
-			PeekNamedPipe( read_stdout, buf, 1023, &bread, &avail,
-									NULL );
-			if( bread != 0 )
-			{
-				while( avail > 0 )
-				{
-					memset( buf, 0, sizeof( buf ) );
-					ReadFile( read_stdout, buf,
-						qMin<long unsigned>( avail,
-									1023 ),
-							&bread, NULL );
-					avail -= bread;
-					s += buf;
-					s.chop( 2 );
-				}
-			}
-
-			if( s.count( ':' ) >= 1 )
+			char * name = NULL;
+			getUserName( &name );
+			if( name )
 			{
 				QMutexLocker m( &m_mutex );
-				m_name = s.section( ':', 0, 0 );
-				m_name.remove( "\n" );
-				s = s.section( ':', 1 );
+				m_name = name;
+				m_name.detach();
+				delete[] name;
 			}
-
-			DWORD exit;
-			GetExitCodeProcess( pi.hProcess, &exit );
-			if( exit != STILL_ACTIVE )
-			{
-				break;
-			}
-			sleep( 5 );
-		}
-
-		CloseHandle( pi.hThread );
-		CloseHandle( pi.hProcess );
-		CloseHandle( newstdin );
-		CloseHandle( newstdout );
-		CloseHandle( read_stdout );
-		CloseHandle( write_stdin );
-
-		sleep( 5 );
-
+			Sleep( 5000 );
 		} // end while( 1 )
 
 	}

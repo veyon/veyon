@@ -702,6 +702,18 @@ vncWorker::vncWorker( vncView * _vv ) :
 
 
 
+
+vncWorker::~vncWorker()
+{
+	// have to close the connection here for destroying/closing everything
+	// within the same thread - otherwise Qt might complain or even let us
+	// crash...
+	m_vncView->m_connection->close();
+}
+
+
+
+
 void vncWorker::framebufferUpdate( void )
 {
 	ivsConnection * conn = m_vncView->m_connection;

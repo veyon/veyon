@@ -27,6 +27,42 @@
 #include <config.h>
 #endif
 
+#define NO_QTCPSOCKET_CONNECT
+
+
+#ifdef NO_QTCPSOCKET_CONNECT
+
+#include <stdio.h>
+
+#ifdef BUILD_WIN32
+
+#include <io.h>
+#include <winsock.h>
+#define lasterror WSAGetLastError()
+
+#else
+
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <arpa/inet.h>
+#include <netinet/in.h>
+#include <netinet/tcp.h>
+#include <netdb.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <errno.h>
+#include <string.h>
+#include <signal.h>
+
+#define lasterror errno
+
+#endif /* BUILD_WIN32 */
+
+#include <sys/types.h>
+
+#endif /* NO_QTCPSOCKET_CONNECT */
+
+
 #include <QtCore/QDir>
 #include <QtCore/QFileInfo>
 
@@ -113,33 +149,8 @@ isdConnection::~isdConnection()
 
 
 
-#define NO_QTCPSOCKET_CONNECT
 
 #ifdef NO_QTCPSOCKET_CONNECT
-
-#include <stdio.h>
-#ifdef BUILD_WIN32
-#include <io.h>
-#include <winsock.h>
-#define lasterror WSAGetLastError()
-
-#else
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <arpa/inet.h>
-#include <netinet/in.h>
-#include <netinet/tcp.h>
-#include <netdb.h>
-#include <unistd.h>
-#include <fcntl.h>
-#include <errno.h>
-#include <string.h>
-#include <signal.h>
-#define lasterror errno
-#endif
-
-#include <sys/types.h>
-
 
 bool connectToHost( const QString & _host, int _port, QTcpSocket * _sock )
 {

@@ -1,14 +1,17 @@
-extern "C" char * strdup( const char * );
-#include <assert.h>
-
-#define _ASSERT assert
-#define _ASSERTE assert
-
-#include <rfb/rfbproto.h>
-#include <rfb.h>
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
 
 #define XMD_H
 #define _WIN32_WINNT 0x0500
+#include <windows.h>
+
+
+extern "C" char * strdup( const char * );
+
+
+#include <rfb/rfbproto.h>
+#include <rfb.h>
 
 #define rfbAuthNone rfbNoAuth
 #define rfbAuthVNC rfbVncAuth
@@ -26,6 +29,12 @@ extern "C" char * strdup( const char * );
 #define sig_rfbAuthExternal "XTRNAUTH"
 
 #define rfbProtocolFallbackMinorVersion 3
+
+
+#include <assert.h>
+
+#define _ASSERT assert
+#define _ASSERTE assert
 
 
 /*-----------------------------------------------------------------------------

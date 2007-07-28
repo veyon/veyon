@@ -24,6 +24,22 @@
  */
 
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
+
+#ifdef BUILD_WIN32
+
+#define _WIN32_WINNT 0x0500 // for KBDLLHOOKSTRUCT
+
+#include <windows.h>
+
+#include "inject.h"
+
+#endif
+
+
 #define XK_KOREAN
 #include "rfb/keysym.h"
 #include "system_key_trapper.h"
@@ -39,21 +55,12 @@ QMutex systemKeyTrapper::s_refCntMutex;
 int systemKeyTrapper::s_refCnt = 0;
 
 
-#if BUILD_WIN32
+#ifdef BUILD_WIN32
+
 
 // some code for disabling system's hotkeys such as Alt+Ctrl+Del, Alt+Tab,
 // Ctrl+Esc, Alt+Esc, Windows-key etc. - otherwise locking wouldn't be very
 // effective... ;-)
-#define _WIN32_WINNT 0x0500 // for KBDLLHOOKSTRUCT
-
-#include <windef.h>
-#include <winbase.h>
-#include <wingdi.h>
-#include <winreg.h>
-#include <winuser.h>
-
-#include "inject.h"
-
 
 
 HHOOK g_hHookKbdLL = NULL; // hook handle

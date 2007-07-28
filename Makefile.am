@@ -1,9 +1,5 @@
 AUTOMAKE_OPTIONS = foreign 1.4
 
-if BUILD_WIN32
-EXTRA_TARGETS = utils-win32
-endif
-
 SUBDIRS = lib ica ima setup $(subdirs) $(EXTRA_TARGETS)
 
 EXTRA_DIST = build_mingw32 tightvnc4win_integrate tightvnc4win_italc.diff
@@ -46,7 +42,6 @@ win32-pkg: all
 	cp ica/vnchooks.dll tmp/italc
 	cp ima/italc.exe tmp/italc
 	cp setup/setup.exe tmp/italc
-	cp utils-win32/userinfo.exe tmp/italc
 #	cp lupus/lupus/lupus.exe tmp/italc
 #	cp lupus/service/lupus_service.exe tmp/italc
 	cp /opt/mingw/bin/QtCore4.dll tmp/italc
@@ -61,7 +56,6 @@ win32-pkg: all
 	/opt/mingw/bin/i586-mingw32-strip tmp/italc/ica.exe
 	/opt/mingw/bin/i586-mingw32-strip tmp/italc/italc.exe
 	/opt/mingw/bin/i586-mingw32-strip tmp/italc/setup.exe
-	/opt/mingw/bin/i586-mingw32-strip tmp/italc/userinfo.exe
 #	/opt/mingw/bin/i586-mingw32-strip tmp/italc/lupus.exe
 #	/opt/mingw/bin/i586-mingw32-strip tmp/italc/lupus_service.exe
 	cd tmp && zip -9 ../$(PACKAGE)-$(VERSION)-bin-win32.zip italc/*
