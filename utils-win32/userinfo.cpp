@@ -143,11 +143,15 @@ void getUserName( char * * _str )
 		MultiByteToWideChar( CP_ACP, 0, accname,
 			strlen( accname ) + 1, wszUser, sizeof( wszUser ) /
 							sizeof( wszUser[0] ) );
-		PBYTE domcontroller;
-		NetGetDCName( NULL, wszDomain, &domcontroller );
+		PBYTE domcontroller = NULL;
+		if( NetGetDCName( NULL, wszDomain, &domcontroller ) !=
+								NERR_Success )
+		{
+			domcontroller = NULL;
+		}
 		LPUSER_INFO_2 pBuf = NULL;
-		NET_API_STATUS nStatus = NetUserGetInfo( (LPCWSTR)domcontroller,
-						wszUser, 2, (PBYTE *) &pBuf );
+		NET_API_STATUS nStatus = NetUserGetInfo( (LPWSTR)domcontroller,
+						wszUser, 2, (LPBYTE *) &pBuf );
 		if( nStatus == NERR_Success && pBuf != NULL )
 		{
 			len = WideCharToMultiByte( CP_ACP, 0,

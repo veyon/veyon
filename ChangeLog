@@ -1,5 +1,9 @@
 2007-07-28	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
+	* utils-win32/userinfo.cpp:
+	fixed uninitialized pointer and improved some casts - fixes
+	non-working code when compiling with GCC 4.x
+
 	* configure.in:
 	use -fPIC as compiler flag per default
 
