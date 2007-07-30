@@ -112,12 +112,7 @@ int ICAMain( int argc, char * * argv )
 	if( !core_app )
 	{
 		systemService s( "icas", SERVICE_ARG, __app_name,
-#ifndef NO_LUPUS_INTEGRATION
-				"lupus",
-#else
-				"",
-#endif
-						serviceMain, argc, argv );
+					"", serviceMain, argc, argv );
 		if( s.evalArgs( argc, argv ) || argc == 0 )
 		{
 			return( 0 );

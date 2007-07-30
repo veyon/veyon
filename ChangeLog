@@ -1,3 +1,23 @@
+2007-07-30	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* ica/win32/src/VNCHooks/SharedData.cpp:
+	* ica/src/local_system_ica.cpp:
+	* ica/Makefile.am:
+	* lib/include/messagebox.h:
+	* lib/include/local_system.h:
+	* lib/include/isd_base.h:
+	* lib/src/inject.cpp:
+	more fixes and improvements for compiling (and working!!) with
+	GCC 4.2 - has been a mess to find out that now we need
+	--enable-auto-image-base flag when linking vnchooks.dll because
+	otherwise ICA won't even start under win32
+
+	* ica/src/ica_main.cpp:
+	* ica/src/system_service.cpp:
+	* ica/Makefile.am:
+	* lib/Makefile.am:
+	removed some more LUPUS-references
+
 2007-07-28	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* lib/src/dsa_key.cpp:

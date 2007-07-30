@@ -45,5 +45,5 @@ SHARED HHOOK hKeyboardHook = NULL;							// Handle to kbd hook
 SHARED HHOOK hMouseHook = NULL;							// Handle to mouse hook
 SHARED HWND hKeyboardPriorityWindow = NULL;
 SHARED HWND hMousePriorityWindow = NULL;
-__attribute__((dllexport)) BOOL __localInputsDisabled = false;
+__declspec(dllexport) BOOL __localInputsDisabled = false;
 

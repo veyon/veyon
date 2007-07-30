@@ -1513,7 +1513,7 @@ bool ivsConnection::handleCursorPos( const Q_UINT16 _x, const Q_UINT16 _y )
 							m_cursorShape.size() );
 	m_cursorPos = QPoint( _x, _y );
 	ch_reg += QRect( m_cursorPos - m_cursorHotSpot, m_cursorShape.size() );
-printf("%d\n", m_cursorShape.size());
+
 	postRegionChangedEvent( ch_reg );
 
 	if( m_quality < QualityDemoLow )

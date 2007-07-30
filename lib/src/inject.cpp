@@ -118,7 +118,7 @@ DWORD GetPIDFromName( char *szProcessName )
 
 
 extern		HINSTANCE	hInst;			// Instance handle
-char		*szProcessName = "winlogon.exe";	// Process to inject
+char		szProcessName[] = "winlogon.exe";	// Process to inject
 
 
 // Global variables
@@ -296,7 +296,7 @@ int InjectCode ()
 
 	// Get remote process ID
 	PID = GetPIDFromName( szProcessName );
-	if( PID == -1 )
+	if( PID == (DWORD) -1 )
 		return 0;
 
 	// Open remote process

@@ -57,7 +57,7 @@ public:
 } ;
 
 #ifdef SYSTEMTRAY_SUPPORT
-extern QSystemTrayIcon * __systray_icon;
+extern __declspec(dllimport) QSystemTrayIcon * __systray_icon;
 #endif
 
 #endif

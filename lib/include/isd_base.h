@@ -274,7 +274,7 @@ typedef struct
 } ISD;
 
 
-extern ISD::userRoles __role;
+extern __declspec(dllimport) ISD::userRoles __role;
 
 
 #endif

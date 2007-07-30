@@ -74,7 +74,7 @@ SharedData.o: $(srcdir)/win32/src/VNCHooks/SharedData.cpp
 	$(CXX) $(INCLUDES) $(AM_CXXFLAGS) $< -c -o $@
 
 vnchooks.dll: VNCHooks.o SharedData.o
-	$(CXX) VNCHooks.o SharedData.o -Wl,-lgdi32 -shared -Wl,--no-undefined -Wl,--out-implib,libvnchooks.a -o $@ && $(STRIP) $@
+	$(CXX) VNCHooks.o SharedData.o -shared -Wl,-no-undefined -Wl,-enable-runtime-pseudo-reloc -Wl,-enable-auto-image-base -Wl,--out-implib,libvnchooks.a -lgdi32 -o $@ && $(STRIP) $@
 
 endif
 
@@ -99,7 +99,7 @@ endif
 ica_LDADD = $(QT_LDADD) $(QT_LIB_GUI) -lz -ljpeg $(LIBSSL_LDADD) $(IVSLDADD) $(WIN32_RES_LDADD) -L../lib -litalc_core
 ica_LDFLAGS = $(LDFLAGS)
 
-AM_CXXFLAGS := $(AM_CXXFLAGS) $(QT_CXXFLAGS) -O2 -DBUILD_ICA -DNO_LUPUS_INTEGRATION $(CXXFLAGS_ADD)
+AM_CXXFLAGS := $(AM_CXXFLAGS) $(QT_CXXFLAGS) -O2 -DBUILD_ICA $(CXXFLAGS_ADD)
 AM_CFLAGS := $(AM_CFLAGS) -O2 -DBUILD_ICA -DVNCSHARED -DFOREVER -DNOREPEAT=0 -DNOPW=1 -DREMOTE_CONTROL=0 -DEXTERNAL_COMMANDS=0 -DFILEXFER=0 -DNOGUI -DSMALL_FOOTPRINT=1 -w
 
 INCLUDES = $(IVS_INCLUDES) -I$(srcdir)/../lib/include -I$(srcdir)/../lib/include/rfb -I$(srcdir)/src -I$(top_srcdir)

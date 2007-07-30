@@ -36,12 +36,12 @@
 
 class QWidget;
 
-extern QByteArray __appInternalChallenge;
+extern __declspec(dllimport) QByteArray __appInternalChallenge;
 
 
 namespace localSystem
 {
-	extern int logLevel;
+	extern int __declspec(dllimport) logLevel;
 
 	typedef void (*p_pressKey)( int _key, bool _down );
 
