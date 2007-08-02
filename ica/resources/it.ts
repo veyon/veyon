@@ -5,67 +5,72 @@
     <message>
         <location filename="../src/ica_main.cpp" line="300"/>
         <source>iTALC Client on %1:%2</source>
-        <translation>iTALC Client su %1:%2</translation>
+        <translation type="obsolete">iTALC Client su %1:%2</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="266"/>
+        <location filename="../src/system_service.cpp" line="265"/>
         <source>Unable to register service &apos;%1&apos;.</source>
         <translation>Non è possibile registrare il servizio &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="294"/>
+        <location filename="../src/system_service.cpp" line="293"/>
         <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not registered.</source>
         <translation>Il gestore dei servizi (Service Control Manger) non può essere contattato (hai i diritti sufficienti?!) - il servizio &apos;%1&apos; non è stato registrato.</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="325"/>
+        <location filename="../src/system_service.cpp" line="324"/>
         <source>The service &apos;%1&apos; is already registered.</source>
         <translation>Il servizio &apos;%1&apos; è già registrato.</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="333"/>
+        <location filename="../src/system_service.cpp" line="332"/>
         <source>The service &apos;%1&apos; could not be registered.</source>
         <translation>Il servizio &apos;%1&apos; non può essere registrato.</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="368"/>
+        <location filename="../src/system_service.cpp" line="367"/>
         <source>The service &apos;%1&apos; was successfully registered.</source>
         <translation>Il servizio &apos;%1&apos; è stato registrato correttamente.</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="615"/>
+        <location filename="../src/system_service.cpp" line="614"/>
         <source>The service &apos;%1&apos; could not be stopped.</source>
         <translation>Il servizio &apos;%1&apos; non può essere fermato.</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="435"/>
+        <location filename="../src/system_service.cpp" line="434"/>
         <source>The service &apos;%1&apos; has been unregistered.</source>
         <translation>Il servizio &apos;%1&apos; è stato rimosso.</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="451"/>
+        <location filename="../src/system_service.cpp" line="450"/>
         <source>The service &apos;%1&apos; isn&apos;t registered and therefore can&apos;t be unregistered.</source>
         <translation>Il servizio &apos;%1&apos; non è registrato, pertanto non può essere rimosso.</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="461"/>
+        <location filename="../src/system_service.cpp" line="460"/>
         <source>The service &apos;%1&apos; could not be unregistered.</source>
         <translation>Il servizio &apos;%1&apos; non può essere rimosso.</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="629"/>
+        <location filename="../src/system_service.cpp" line="628"/>
         <source>The service &apos;%1&apos; could not be found.</source>
         <translation>Il servizio &apos;%1&apos; non è stato trovato.</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="488"/>
+        <location filename="../src/system_service.cpp" line="487"/>
         <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not unregistered.</source>
         <translation>Il gestore dei servizi (Service Control Manger) non può essere contattato (hai i diritti sufficienti?!) - il servizio &apos;%1&apos; non è stato rimosso.</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="645"/>
+        <location filename="../src/system_service.cpp" line="644"/>
         <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not stopped.</source>
         <translation>Il gestore dei servizi (Service Control Manger) non può essere contattato (hai i diritti sufficienti?!) - il servizio &apos;%1&apos; non è stato fermato.</translation>
+    </message>
+    <message>
+        <location filename="../src/ica_main.cpp" line="296"/>
+        <source>iTALC Client %1 on %2:%3</source>
+        <translation>iTALC Client su %1:%2:%3</translation>
     </message>
 </context>
 <context>

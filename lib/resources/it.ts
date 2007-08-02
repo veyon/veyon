@@ -24,9 +24,17 @@
 <context>
     <name>localSystem::QObject</name>
     <message>
-        <location filename="../src/local_system.cpp" line="722"/>
+        <location filename="../src/local_system.cpp" line="692"/>
         <source>iTALC-snapshots</source>
         <translation>iTALC-foto</translation>
+    </message>
+</context>
+<context>
+    <name>lockWidget</name>
+    <message>
+        <location filename="../src/lock_widget.cpp" line="57"/>
+        <source>screen lock</source>
+        <translation>Schermo Bloccato</translation>
     </message>
 </context>
 <context>
