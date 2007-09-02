@@ -1,3 +1,15 @@
+2007-09-02	Iztok <Iztok/dot/osredkar/at/guest/dot/arnes/dot/si>
+
+	* ica/resources/sl.qm:
+	* ica/resources/sl.ts:
+	* ima/resources/sl.qm:
+	* ima/resources/sl.ts:
+	* lib/resources/sl.qm:
+	* lib/resources/sl.ts:
+	* setup/resources/sl.qm:
+	* setup/resources/sl.ts:
+	added Slovenian localization-files
+
 2007-08-02	Andriano Rino <rino-andr/at/users/dot/sourceforge/dot/net>
 	* ica/resources/it.ts:
 	* lib/resources/it.ts:
