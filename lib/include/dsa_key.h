@@ -31,8 +31,10 @@
 
 #include <openssl/dsa.h>
 
+#include "types.h"
 
-class dsaKey
+
+class IC_DllExport dsaKey
 {
 public:
 	enum keyType
@@ -93,7 +95,7 @@ protected:
 
 
 
-class privateDSAKey : public dsaKey
+class IC_DllExport privateDSAKey : public dsaKey
 {
 public:
 	// constructor - load private key from file
@@ -120,7 +122,7 @@ public:
 
 
 
-class publicDSAKey : public dsaKey
+class IC_DllExport publicDSAKey : public dsaKey
 {
 public:
 	// constructor - load public key from file

@@ -57,7 +57,7 @@ namespace jpeglib
 class demoServerClient;
 
 
-class ivsConnection : public isdConnection
+class IC_DllExport ivsConnection : public isdConnection
 {
 	Q_OBJECT
 public:
@@ -175,9 +175,7 @@ private:
 								Q_UINT16 h );
 #endif
 #endif
-#ifdef BUILD_ICA
 	bool handleItalc( Q_UINT16 rx, Q_UINT16 ry, Q_UINT16 rw, Q_UINT16 rh );
-#endif
 
 	bool m_isDemoServer;
 	bool m_useAuthFile;

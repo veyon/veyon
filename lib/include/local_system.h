@@ -36,65 +36,65 @@
 
 class QWidget;
 
-extern __declspec(dllimport) QByteArray __appInternalChallenge;
+extern IC_DllExport QByteArray __appInternalChallenge;
 
 
 namespace localSystem
 {
-	extern int __declspec(dllimport) logLevel;
+	extern int IC_DllExport logLevel;
 
 	typedef void (*p_pressKey)( int _key, bool _down );
 
 
-	int freePort( void );
+	int IC_DllExport freePort( void );
 
-	void initialize( p_pressKey _pk, const QString & _log_file );
+	void IC_DllExport initialize( p_pressKey _pk, const QString & _log_file );
 
-	void sleep( const int _ms );
+	void IC_DllExport sleep( const int _ms );
 
-	void execInTerminal( const QString & _cmds );
+	void IC_DllExport execInTerminal( const QString & _cmds );
 
-	void broadcastWOLPacket( const QString & _mac );
+	void IC_DllExport broadcastWOLPacket( const QString & _mac );
 
-	void powerDown( void );
-	void reboot( void );
+	void IC_DllExport powerDown( void );
+	void IC_DllExport reboot( void );
 
-	void logonUser( const QString & _uname, const QString & _pw,
+	void IC_DllExport logonUser( const QString & _uname, const QString & _pw,
 						const QString & _domain );
-	void logoutUser( void );
+	void IC_DllExport logoutUser( void );
 
-	QString currentUser( void );
+	QString /*IC_DllExport*/ currentUser( void );
 
-	QString privateKeyPath( const ISD::userRoles _role,
+	QString IC_DllExport privateKeyPath( const ISD::userRoles _role,
 						bool _only_path = FALSE );
-	QString publicKeyPath( const ISD::userRoles _role,
+	QString IC_DllExport publicKeyPath( const ISD::userRoles _role,
 						bool _only_path = FALSE );
 
-	void setPrivateKeyPath( const QString & _path,
+	void IC_DllExport setPrivateKeyPath( const QString & _path,
 						const ISD::userRoles _role );
-	void setPublicKeyPath( const QString & _path,
+	void IC_DllExport setPublicKeyPath( const QString & _path,
 						const ISD::userRoles _role );
 
-	QString snapshotDir( void );
-	QString globalConfigPath( void );
-	QString personalConfigDir( void );
-	QString personalConfigPath( void );
+	QString IC_DllExport snapshotDir( void );
+	QString IC_DllExport globalConfigPath( void );
+	QString IC_DllExport personalConfigDir( void );
+	QString IC_DllExport personalConfigPath( void );
 
-	QString globalStartmenuDir( void );
+	QString IC_DllExport globalStartmenuDir( void );
 
-	QString parameter( const QString & _name );
+	QString IC_DllExport parameter( const QString & _name );
 
-	bool ensurePathExists( const QString & _path );
+	bool IC_DllExport ensurePathExists( const QString & _path );
 
-	QString ip( void );
+	QString IC_DllExport ip( void );
 
-	QString userRoleName( const ISD::userRoles _role );
+	QString IC_DllExport userRoleName( const ISD::userRoles _role );
 
 #ifdef BUILD_WIN32
 	BOOL enablePrivilege( LPCTSTR lpszPrivilegeName, BOOL bEnable );
 #endif
 
-	void activateWindow( QWidget * _window );
+	void IC_DllExport activateWindow( QWidget * _window );
 
 }
 

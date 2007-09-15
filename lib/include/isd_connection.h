@@ -88,7 +88,7 @@ public:
 
 	inline QString host( void ) const
 	{
-#ifdef BUILD_ICA
+#if BUILD_ICA || BUILD_LIBRARY
 		return( m_host );
 #else
 		return( m_host == QHostAddress( QHostAddress::LocalHost ).

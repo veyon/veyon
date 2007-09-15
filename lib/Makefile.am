@@ -91,7 +91,7 @@ if BUILD_WIN32
 shared-lib: italc_core.dll
 
 italc_core.dll: libitalc_core-static.a
-	$(CXX) *.o -shared -Wl,-no-undefined -Wl,-enable-runtime-pseudo-reloc -Wl,--out-implib,libitalc_core.a -o $@ $(QT_LDADD) $(QT_LIB_GUI) $(LIBSSL) -lz -ljpeg -lpsapi && $(STRIP) italc_core.dll
+	$(CXX) *.o -shared -Wl,-no-undefined -Wl,-enable-runtime-pseudo-reloc -Wl,-export-all-symbols -Wl,--out-implib,libitalc_core.a -o $@ $(QT_LDADD) $(QT_LIB_GUI) $(LIBSSL) -lz -ljpeg -lpsapi && $(STRIP) italc_core.dll
 
 lib_LTLIBRARIES = italc_core.dll
 italc_core_dll_SOURCES =
@@ -110,7 +110,7 @@ libitalc_core_so_SOURCES =
 endif
 
 
-AM_CXXFLAGS := $(AM_CXXFLAGS) $(QT_CXXFLAGS) -O2 -DBUILD_ICA $(CXXFLAGS_ADD)
+AM_CXXFLAGS := $(AM_CXXFLAGS) $(QT_CXXFLAGS) -O2 -DBUILD_ICA -DBUILD_LIBRARY $(CXXFLAGS_ADD)
 
 INCLUDES = -I$(srcdir)/include -I$(top_srcdir)
 

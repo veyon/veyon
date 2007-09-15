@@ -30,11 +30,13 @@
 #include <QtCore/QList>
 #include <QtCore/QRect>
 
+#include "types.h"
+
 
 typedef QList<QRect> rectListContainerBase;
 
 
-class rectList : public rectListContainerBase
+class IC_DllExport rectList : public rectListContainerBase
 {
 public:
 	rectList( rectListContainerBase _l = rectListContainerBase() ) :

@@ -28,13 +28,14 @@
 #include <QtGui/QDialog>
 #include <QtGui/QPixmap>
 #include "qt_features.h"
+#include "types.h"
 
 #ifdef SYSTEMTRAY_SUPPORT
 #include <QtGui/QSystemTrayIcon>
 #endif
 
 
-class messageBox : public QDialog
+class IC_DllExport messageBox : public QDialog
 {
 public:
 	enum MessageIcon
@@ -57,7 +58,7 @@ public:
 } ;
 
 #ifdef SYSTEMTRAY_SUPPORT
-extern __declspec(dllimport) QSystemTrayIcon * __systray_icon;
+extern IC_DllExport QSystemTrayIcon * __systray_icon;
 #endif
 
 #endif

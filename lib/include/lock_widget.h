@@ -35,7 +35,7 @@
 #include "system_key_trapper.h"
 
 
-class lockWidget : public QWidget
+class IC_DllExport lockWidget : public QWidget
 {
 public:
 	enum types

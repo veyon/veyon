@@ -44,7 +44,7 @@ class systemKeyTrapper;
 class vncWorker;
 
 
-class vncView : public QWidget
+class IC_DllExport vncView : public QWidget
 {
 	Q_OBJECT
 public:

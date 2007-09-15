@@ -27,7 +27,10 @@
 #define _QNETWORKINTERFACE_H
 
 #define QT_MAKEDLL
+#ifndef Q_NETWORK_EXPORT
 #define Q_NETWORK_EXPORT
+#endif
+
 #include <qglobal.h>
 
 #if QT_VERSION < 0x040200

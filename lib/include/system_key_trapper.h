@@ -37,7 +37,7 @@
 #include <QtCore/QObject>
 
 
-class systemKeyTrapper : public QObject
+class IC_DllExport systemKeyTrapper : public QObject
 {
 	Q_OBJECT
 public:

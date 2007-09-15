@@ -1,3 +1,12 @@
+2007-09-15	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* configure.in:
+	made 1.0.4 release
+
+	* lib/src/local_system.cpp:
+	fixed code which replaced duplicate dir-separators - made things not
+	work on network-shares ("\\...") under win32
+
 2007-09-02	Iztok <Iztok/dot/osredkar/at/guest/dot/arnes/dot/si>
 
 	* ica/resources/sl.qm:

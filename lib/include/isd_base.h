@@ -172,7 +172,7 @@ private:
 
 
 
-qint64 qtcpsocketDispatcher( char * _buf, const qint64 _len,
+qint64 IC_DllExport qtcpsocketDispatcher( char * _buf, const qint64 _len,
 						const socketOpCodes _op_code,
 						void * _user );
 
@@ -274,7 +274,7 @@ typedef struct
 } ISD;
 
 
-extern __declspec(dllimport) ISD::userRoles __role;
+extern IC_DllExport ISD::userRoles __role;
 
 
 #endif

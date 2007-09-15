@@ -123,6 +123,7 @@ static QString __log_file;
 static QFile * __debug_out = NULL;
 
 
+
 static QString properLineEnding( QString _out )
 {
 	if( _out.right( 1 ) != "\012" )
@@ -235,7 +236,8 @@ void initResources( void )
 namespace localSystem
 {
 
-int logLevel = 6;
+int IC_DllExport logLevel = 6;
+
 
 void initialize( p_pressKey _pk, const QString & _log_file )
 {
@@ -649,7 +651,8 @@ QString publicKeyPath( const ISD::userRoles _role, bool _only_path )
 void setKeyPath( QString _path, const ISD::userRoles _role,
 							const QString _group )
 {
-	_path.replace( QString( QDir::separator() ) + QDir::separator(),
+	_path = _path.left( 1 ) + _path.mid( 1 ).
+		replace( QString( QDir::separator() ) + QDir::separator(),
 							QDir::separator() );
 
 	QSettings settings( QSettings::SystemScope, "iTALC Solutions",

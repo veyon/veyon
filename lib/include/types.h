@@ -1,7 +1,7 @@
 /*
  * types.h - some typedefs
  *
- * Copyright (c) 2006 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2007 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -25,13 +25,28 @@
 #ifndef _TYPES_H
 #define _TYPES_H
 
-
 typedef signed char             Q_INT8;         /* 8 bit signed */
 typedef unsigned char           Q_UINT8;        /* 8 bit unsigned */
 typedef short                   Q_INT16;        /* 16 bit signed */
 typedef unsigned short          Q_UINT16;       /* 16 bit unsigned */
 typedef int                     Q_INT32;        /* 32 bit signed */
 typedef unsigned int            Q_UINT32;       /* 32 bit unsigned */
+
+
+#ifdef BUILD_WIN32
+
+#ifdef BUILD_LIBRARY
+#define IC_DllExport __declspec(dllexport)
+#else
+#define IC_DllExport __declspec(dllimport)
+#endif
+
+
+#else
+
+#define IC_DllExport
+
+#endif
 
 
 #endif

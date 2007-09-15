@@ -42,9 +42,7 @@
 #include "local_system.h"
 #include "messagebox.h"
 
-#ifdef BUILD_ICA
 #include "minilzo.h"
-#endif
 
 
 const rfbPixelFormat ivsConnection::s_localDisplayFormat =
@@ -609,14 +607,12 @@ bool ivsConnection::handleServerMessages( bool _send_screen_update, int _tries )
 		}
 		break;
 
-#ifdef BUILD_ICA
 					case rfbEncodingItalc:
 		if( !handleItalc( rect.r.x, rect.r.y, rect.r.w, rect.r.h ) )
 		{
 			return( FALSE );
 		}
 		break;
-#endif
 
 					case rfbEncodingItalcCursor:
 	{
@@ -1696,7 +1692,6 @@ bool ivsConnection::handleCursorShape( const Q_UINT16 _xhot,
 
 
 
-#ifdef BUILD_ICA
 bool ivsConnection::handleItalc( Q_UINT16 rx, Q_UINT16 ry, Q_UINT16 rw,
 								Q_UINT16 rh )
 {
@@ -1766,7 +1761,6 @@ bool ivsConnection::handleItalc( Q_UINT16 rx, Q_UINT16 ry, Q_UINT16 rw,
 
 	return( TRUE );
 }
-#endif
 
 
 
