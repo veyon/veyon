@@ -26,6 +26,7 @@
 #include <QtCore/QFileInfo>
 #include <QtCore/QLocale>
 #include <QtCore/QTranslator>
+#include <QtCore/QDir>
 #include <QtGui/QApplication>
 #include <QtGui/QMessageBox>
 
@@ -58,9 +59,20 @@ int main( int argc, char * * argv )
 
 	if( app.arguments().size() > 1 )
 	{
-		if( QFileInfo( app.arguments()[1] ).exists() )
+		QString arg = app.arguments()[1];
+		if( QFileInfo( arg ).exists() )
 		{
-			sw.loadSettings( app.arguments()[1] );
+#ifdef BUILD_WIN32
+			// UNC-paths on windows need some special handling
+			// as QFile does not relocate relative file-paths
+			// while current-dir of application is a UNC-path
+			if( !QFileInfo( arg ).isAbsolute() &&
+				QDir::currentPath().left( 2 ) == "//" )
+			{
+				arg = QDir::currentPath()+"/"+arg;
+			}
+#endif
+			sw.loadSettings( arg );
 			sw.doInstallation( TRUE );
 			return( 0 );
 		}

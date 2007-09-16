@@ -253,7 +253,9 @@ void setupWizard::doInstallation( bool _quiet )
 		{
 			QProcess::execute( d + file,
 					QStringList() << "-stopservice" );
+#ifdef BUILD_WIN32
 			QProcess::execute( "net stop icas" );
+#endif
 			QProcess::execute( d + file,
 					QStringList() << quiet_opt <<
 							"-unregisterservice" );
@@ -284,7 +286,7 @@ void setupWizard::doInstallation( bool _quiet )
 	if( did_overwrite_ica )
 	{
 		qApp->processEvents();
-		localSystem::sleep( 5000 );
+		localSystem::sleep( 3000 );
 	}
 	QProcess::execute( d + "ica", QStringList() << "-startservice" );
 	++step;

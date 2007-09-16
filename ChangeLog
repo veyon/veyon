@@ -1,5 +1,19 @@
 2007-09-16	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
+	* setup/src/main.cpp:
+	when running auto-setup from UNC-path and specifying relative path to
+	XML-file do not fail (because of bug or so in QFile) by making path to
+	XML-file absolute
+
+	* setup/src/dialogs.cpp:
+	- only run net-command in win32-version
+	- when upgrading, only sleep 3 seconds since the systray-bug has been
+	  fixed a while ago
+
+	* ica/src/system_service.cpp:
+	do not show message about already registered service when running in
+	quiet-mode
+
 	* ima/data/italc.in:
 	changed from section "Apps" to "Applications"
 

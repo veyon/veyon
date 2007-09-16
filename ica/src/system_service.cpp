@@ -315,7 +315,7 @@ bool systemService::install( void )
 	{
 #ifndef NO_GUI
 		DWORD error = GetLastError();
-		if( error == ERROR_SERVICE_EXISTS )
+		if( error == ERROR_SERVICE_EXISTS && !m_quiet )
 		{
 			QMessageBox::warning( NULL, __app_name,
 				QApplication::tr(
@@ -348,7 +348,7 @@ bool systemService::install( void )
 	service_failure_actions.lpRebootMsg = NULL;
 	service_failure_actions.lpCommand = NULL;
 	service_failure_actions.lpsaActions = &service_actions;
-	service_failure_actions.cActions = 1;    
+	service_failure_actions.cActions = 1;
 	ChangeServiceConfig2( hservice, SERVICE_CONFIG_FAILURE_ACTIONS,
 						&service_failure_actions );
 /*	QProcess::execute(
