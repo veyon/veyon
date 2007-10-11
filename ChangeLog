@@ -1,3 +1,23 @@
+2007-10-11	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* ica/ica.qrc:
+	* ica/resources/zh.qm:
+	* ica/resources/zh.ts:
+	* setup/setup.qrc:
+	* setup/resources/qt_zh.qm:
+	* setup/resources/zh.qm:
+	* setup/resources/zh.ts:
+	* ima/italc.qrc:
+	* ima/resources/qt_zh.qm:
+	* ima/resources/zh.qm:
+	* ima/resources/zh.ts:
+	* lib/italc_core.qrc:
+	added Chinese localization-files
+
+	* ima/src/classroom_manager.cpp:
+	when saving XML-file use toUtf8() instead of toAscii() for solving
+	problems with different locales
+
 2007-09-16	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* setup/src/main.cpp:

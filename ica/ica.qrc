@@ -5,5 +5,7 @@
 		<file>resources/es.qm</file>
 		<file>resources/fr.qm</file>
 		<file>resources/nn.qm</file>
+		<file>resources/sl.qm</file>
+		<file>resources/zh.qm</file>
 	</qresource>
 </RCC>

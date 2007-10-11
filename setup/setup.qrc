@@ -7,6 +7,8 @@
         <file>resources/it.qm</file>
         <file>resources/fr.qm</file>
         <file>resources/nn.qm</file>
+        <file>resources/sl.qm</file>
+        <file>resources/zh.qm</file>
         <file>resources/fileopen.png</file>
         <file>resources/next.png</file>
         <file>resources/page_artwork_welcome.png</file>
@@ -27,5 +29,6 @@
         <file>resources/qt_ru.qm</file>
         <file>resources/qt_sk.qm</file>
         <file>resources/qt_zh_CN.qm</file>
+        <file>resources/qt_zh.qm</file>
     </qresource>
 </RCC>
