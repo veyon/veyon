@@ -224,7 +224,7 @@ void classroomManager::saveGlobalClientConfig( void )
 	QFile outfile( m_globalClientConfiguration );
 	outfile.open( QFile::WriteOnly | QFile::Truncate );
 
-	outfile.write( xml.toAscii() );
+	outfile.write( xml.toUtf8() );
 	outfile.close();
 }
 
