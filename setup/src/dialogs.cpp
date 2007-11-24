@@ -28,26 +28,28 @@
 #endif
 
 #include <QtCore/QProcess>
+#include <QtGui/QCompleter>
+#include <QtGui/QDirModel>
 #include <QtGui/QFileDialog>
 #include <QtGui/QLayout>
 #include <QtGui/QMessageBox>
 #include <QtGui/QProgressDialog>
 #include <QtXml/QtXml>
 
+#ifdef BUILD_WIN32
+#include <windows.h>
+#endif
+
 #include "dialogs.h"
 #include "local_system.h"
 #include "dsa_key.h"
-#include "qt_features.h"
 
-#ifdef COMPLETER_SUPPORT
-#include <QtGui/QDirModel>
-#include <QtGui/QCompleter>
-#endif
 
 
 const QString PUBLIC_KEY_FILE_NAME = "italc_dsa_key.pub";
 const QString KEEP_SETTINGS = ":keep-settings:";
 QString DEFAULT_INSTALL_DIR;
+
 
 setupWizard::setupWizard() :
 	QDialog(),
@@ -148,18 +150,11 @@ int setupWizard::askOverwrite( const QString & _file, bool _all )
 {
 	return( QMessageBox::question( window(), tr( "Confirm overwrite" ),
 			tr( "Do you want to overwrite %1?" ).arg( _file ),
-#ifdef QMESSAGEBOX_EXT_SUPPORT
 			QMessageBox::Yes | QMessageBox::No |
 			( _all ?
 				( QMessageBox::YesToAll | QMessageBox::NoToAll )
 						: QMessageBox::NoButton )
-							, QMessageBox::Yes
-#else
-				QMessageBox::Yes | QMessageBox::Default,
-				QMessageBox::No,
-				_all ? QMessageBox::YesToAll : 0
-#endif
-						) );
+							, QMessageBox::Yes ) );
 }
 
 
@@ -286,8 +281,37 @@ void setupWizard::doInstallation( bool _quiet )
 	if( did_overwrite_ica )
 	{
 		qApp->processEvents();
-		localSystem::sleep( 3000 );
+		localSystem::sleep( 2000 );
 	}
+
+#ifdef BUILD_WIN32
+	// disable firewall for ICA-process
+	HKEY hKey; 
+	const QString val = d + "ica.exe:*:Enabled:iTALC Client Application (ICA)";
+	RegOpenKeyEx( HKEY_LOCAL_MACHINE,
+			"SYSTEM\\CurrentControlSet\\Services\\SharedAccess\\"
+				"Parameters\\FirewallPolicy\\DomainProfile\\"
+				"AuthorizedApplications\\List",
+                    NULL, KEY_SET_VALUE, &hKey );
+
+	RegSetValueEx( hKey, QString( d + "ica.exe" ).toAscii().constData(),
+			0, REG_SZ,
+			(LPBYTE) QString( val ).toAscii().constData(),
+			val.size()+1 );
+	RegCloseKey( hKey );
+	RegOpenKeyEx( HKEY_LOCAL_MACHINE,
+			"SYSTEM\\CurrentControlSet\\Services\\SharedAccess\\"
+				"Parameters\\FirewallPolicy\\StandardProfile\\"
+				"AuthorizedApplications\\List",
+                    NULL, KEY_SET_VALUE, &hKey );
+
+	RegSetValueEx( hKey, QString( d + "ica.exe" ).toAscii().constData(),
+			0, REG_SZ,
+			(LPBYTE) QString( val ).toAscii().constData(),
+			val.size()+1 );
+	RegCloseKey( hKey );
+#endif
+
 	QProcess::execute( d + "ica", QStringList() << "-startservice" );
 	++step;
 	pd.setValue( 90 + remaining_percent*step/remaining_steps );
@@ -351,11 +375,7 @@ bool setupWizard::createInstallationPath( const QString & _dir )
 				"Make sure you have the "
 				"neccessary rights and try "
 				"again!" ).arg( _dir ),
-			QMessageBox::Ok
-#ifndef QMESSAGEBOX_EXT_SUPPORT
-			, 0
-#endif
-			);
+			QMessageBox::Ok );
 		return( FALSE );
 	}
 	return( TRUE );
@@ -370,14 +390,8 @@ void setupWizard::reject( void )
 			tr( "Cancel setup" ),
 			tr( "Are you sure want to quit setup? iTALC is not "
 				"installed completely yet!" ),
-#ifdef QMESSAGEBOX_EXT_SUPPORT
 			QMessageBox::Yes | QMessageBox::No,
-						QMessageBox::Yes
-#else
-			QMessageBox::Yes | QMessageBox::Default,
-						QMessageBox::No
-#endif
-						)
+						QMessageBox::Yes )
 			==
 						QMessageBox::Yes )
 	{
@@ -409,7 +423,14 @@ void setupWizard::next( void )
 	{
 		return;
 	}
-	if( m_idx+2 == m_widgetStack.size() )
+	if( m_idx+3 == m_widgetStack.size() && m_keyImportDir == KEEP_SETTINGS )
+	{
+		// skip key-directory-page when user chose to keep keys
+		doInstallation();
+		m_widgetStack[m_idx]->hide();
+		++m_idx;
+	}
+	else if( m_idx+2 == m_widgetStack.size() )
 	{
 		doInstallation();
 	}
@@ -522,11 +543,9 @@ setupWizardPageInstallDir::setupWizardPageInstallDir( setupWizard * _wiz ) :
 
 	installDirLineEdit->setText( m_setupWizard->m_installDir );
 
-#ifdef COMPLETER_SUPPORT
 	QCompleter * completer = new QCompleter( this );
 	completer->setModel( new QDirModel( completer ) );
  	installDirLineEdit->setCompleter( completer );
-#endif
 
 	connect( openDirButton, SIGNAL( clicked() ), this, SLOT( openDir() ) );
 	connect( installDirLineEdit, SIGNAL( returnPressed() ),
@@ -547,14 +566,8 @@ bool setupWizardPageInstallDir::returnPressed( void )
 				tr( "Directory does not exist" ),
 				tr( "The specified directory does not exist. "
 					"Do you want to create it?" ),
-#ifdef QMESSAGEBOX_EXT_SUPPORT
 				QMessageBox::Yes | QMessageBox::No,
-							QMessageBox::Yes
-#else
-				QMessageBox::Yes | QMessageBox::Default,
-							QMessageBox::No
-#endif
-							)
+							QMessageBox::Yes )
 				==
 							QMessageBox::Yes )
 		{
@@ -664,11 +677,9 @@ setupWizardPageSecurityOptions::setupWizardPageSecurityOptions(
 
 	keyImportDirLineEdit->setText( m_setupWizard->m_keyImportDir );
 
-#ifdef COMPLETER_SUPPORT
 	QCompleter * completer = new QCompleter( this );
 	completer->setModel( new QDirModel( completer ) );
  	keyImportDirLineEdit->setCompleter( completer );
-#endif
 
 
 	connect( openDirButton, SIGNAL( clicked() ), this,
@@ -766,7 +777,6 @@ setupWizardPageKeyDirs::setupWizardPageKeyDirs( setupWizard * _wiz ) :
 	privKeyDirLineEdit->setText( m_setupWizard->m_privKeyDir );
 	keyExportDirLineEdit->setText( m_setupWizard->m_keyExportDir );
 
-#ifdef COMPLETER_SUPPORT
 	QCompleter * completer = new QCompleter( this );
 	completer->setModel( new QDirModel( completer ) );
  	pubKeyDirLineEdit->setCompleter( completer );
@@ -776,7 +786,6 @@ setupWizardPageKeyDirs::setupWizardPageKeyDirs( setupWizard * _wiz ) :
 	completer = new QCompleter( this );
 	completer->setModel( new QDirModel( completer ) );
  	keyExportDirLineEdit->setCompleter( completer );
-#endif
 
 
 	connect( openPubKeyDirButton, SIGNAL( clicked() ),
