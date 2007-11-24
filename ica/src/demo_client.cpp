@@ -25,6 +25,8 @@
 
 #include <QtGui/QIcon>
 #include <QtGui/QLayout>
+#include <QtGui/QApplication>
+#include <QtGui/QDesktopWidget>
 
 #include "demo_client.h"
 #include "vncview.h"
@@ -42,11 +44,14 @@ demoClient::demoClient( const QString & _host, bool _fullscreen ) :
 	m_toplevel->setWindowTitle( tr( "iTALC Demo" ) );
 	m_toplevel->setWindowIcon( QPixmap( ":/resources/display.png" ) );
 	m_toplevel->setAttribute( Qt::WA_DeleteOnClose, TRUE );
+	m_toplevel->resize( QApplication::desktop()->availableGeometry( m_toplevel ).size() );
 
-	QVBoxLayout * toplevel_layout = new QVBoxLayout( m_toplevel );
+	QVBoxLayout * toplevel_layout = new QVBoxLayout;//( m_toplevel );
 	toplevel_layout->setMargin( 0 );
 	toplevel_layout->setSpacing( 0 );
 	toplevel_layout->addWidget( new vncView( _host, m_toplevel ) );
+
+	m_toplevel->setLayout( toplevel_layout );
 
 	connect( m_toplevel, SIGNAL( destroyed( QObject * ) ),
 			this, SLOT( viewDestroyed( QObject * ) ) );
@@ -54,6 +59,7 @@ demoClient::demoClient( const QString & _host, bool _fullscreen ) :
 	{
 		m_toplevel->showMaximized();
 		localSystem::activateWindow( m_toplevel );
+
 	}
 }
 

@@ -60,7 +60,6 @@ italc_SOURCES = $(srcdir)/src/client.cpp			\
 		$(srcdir)/src/local_system_ima.cpp		\
 		$(srcdir)/src/main.cpp				\
 		$(srcdir)/src/overview_widget.cpp		\
-		$(srcdir)/src/qnetworkinterface.cpp		\
 		$(srcdir)/src/remote_control_widget.cpp		\
 		$(srcdir)/src/snapshot_list.cpp			\
 		$(srcdir)/src/side_bar_widget.cpp		\
@@ -85,7 +84,6 @@ italc_SOURCES = $(srcdir)/src/client.cpp			\
 		$(srcdir)/src/side_bar_widget.h			\
 		$(srcdir)/src/tool_button.h			\
 		$(srcdir)/src/user_list.h			\
-		$(srcdir)/src/qnetworkinterface.h		\
 		$(srcdir)/italc_qrc.cpp				\
 		$(srcdir)/italc.qrc				\
 		$(italc_TRANSLATIONS)				\

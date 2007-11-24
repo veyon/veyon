@@ -1,3 +1,76 @@
+2007-11-24	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* configure.in:
+	made 1.0.4 release
+
+	* ima/src/client.cpp:
+	- change to overview-mode before quitting update-thread
+	- at exit properly close connection inside update-thread and flush
+	  the event-queue before
+
+	* ima/src/main_window.h:
+	* ima/src/main_window.cpp:
+	stripped out mainWindow-update-thread into separate class (instead of
+	nested class) - now the update-thread is event-loop/timer-based which
+	allows further fixes of lockups and other optimizations
+
+	* ica/src/demo_client.cpp:
+	fixed non-working window-demo under win32 (a certain size has to be
+	set for a window before it is shown)
+
+	* lib/src/lock_widget.cpp:
+	use QApplication's desktop-widget instead of creating a new one
+
+	* ica/src/ivs.cpp:
+	run IVS in separate process again
+
+	* setup/src/dialogs.cpp:
+	- add ICA as an exception-application for windows-firewall
+	- when user chose to keep keys do not show key-directory-page
+
+	* Makfile.am:
+	improved win32-packaging
+
+	* acinclude.m4:
+	added more Qt4-search-paths
+
+	* lib/src/vncview.cpp:
+	- do not set Qt::WA_PaintOnScreen-attribute on win32 as it causes
+	  painting errors (although Qt-docs say that this flag has no effect on
+	  win32!) in VNC-views
+	- increased framebuffer-update-interval from 20 to 25 ms
+	- use QTimer-timeout-signals instead of recursive QTimer-singleshots
+	  (fixes lockups on unreachable hosts etc.)
+
+	* lib/src/ivs_connection.cpp:
+	re-enabled CopyRect-encoding
+
+	* lib/include/ivs_connection.h:
+	re-enabled read-locker for screen-image
+
+	* ima/src/3rdparty/qnetworkinterface_win.cpp:
+	* ima/src/3rdparty/qnetworkinterface.h:
+	* ima/src/3rdparty/qnetworkinterface_p.h:
+	* ima/src/3rdparty/qnetworkinterface.cpp:
+	* ima/src/3rdparty/qnetworkinterface_win_p.h
+	* ima/src/3rdparty/qnetworkinterface_unix.cpp:
+	* ima/src/qnetworkinterface.cpp:
+	* ima/src/qnetworkinterface.h:
+	removed as not needed anymore
+
+	* lib/include/qt_features.h:
+	* ica/src/isd_server.cpp:
+	* ima/src/config_widget.cpp:
+	* ima/src/client.cpp:
+	* setup/src/dialogs.cpp:
+	removed support for Qt < 4.2.0
+
+	* build_mingw32:
+	added generic-tune parameter (new in GCC 4.2.x)
+
+	* README:
+	updated
+
 2007-10-11	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* ica/ica.qrc:
@@ -41,9 +114,6 @@
 	removed orphaned reference to utils-win32/Makefile.in
 
 2007-09-15	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
-
-	* configure.in:
-	made 1.0.4 release
 
 	* lib/src/local_system.cpp:
 	fixed code which replaced duplicate dir-separators - made things not

@@ -145,7 +145,9 @@ void vncView::framebufferUpdate( void )
 		// transparent and has a non-rectangular shape, we have to
 		// disable paint-on-screen-capability as long as we display this
 		// progress-widget
+#ifndef BUILD_WIN32
 		setAttribute( Qt::WA_PaintOnScreen, false );
+#endif
 		m_establishingConnection->show();
 		emit startConnection();
 		QTimer::singleShot( 40, this, SLOT( framebufferUpdate() ) );
@@ -166,7 +168,9 @@ void vncView::framebufferUpdate( void )
 	
 		// after we hid the progress-widget, we may use direct painting
 		// again
+#ifndef BUILD_WIN32
 		setAttribute( Qt::WA_PaintOnScreen, true );
+#endif
 		if( parentWidget() )
 		{
 			// if we have a parent it's likely remoteControlWidget
@@ -685,19 +689,14 @@ vncWorker::vncWorker( vncView * _vv ) :
 	connect( t, SIGNAL( timeout() ), conn,
 			SLOT( sendIncrementalFramebufferUpdateRequest() ),
 							Qt::DirectConnection );
-/*	if( m_vncView->m_viewOnly )
-	{
-		t->start( 80 );
-	}
-	else
-	{
-		// when remote-controlling we need more updates for smoother
-		// usage
-		t->start( 50 );
-	}*/
 	t->start( 50 );
 
-	framebufferUpdate();
+	t = new QTimer( this );
+	connect( t, SIGNAL( timeout() ), this,
+			SLOT( framebufferUpdate() ) );
+	t->start( 25 );
+
+//	framebufferUpdate();
 }
 
 
@@ -722,7 +721,6 @@ void vncWorker::framebufferUpdate( void )
 	{
 		conn->open();
 	}
-	QTimer::singleShot( 20, this, SLOT( framebufferUpdate() ) );
 }
 
 

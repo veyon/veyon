@@ -29,12 +29,12 @@
 #include <QtGui/QComboBox>
 #include <QtGui/QMessageBox>
 #include <QtNetwork/QHostInfo>
+#include <QtNetwork/QNetworkInterface>
 
 
 #include "config_widget.h"
 #include "classroom_manager.h"
 #include "main_window.h"
-#include "qnetworkinterface.h"
 #include "tool_button.h"
 #include "isd_base.h"
 

@@ -9,7 +9,7 @@ AC_ARG_WITH([qtdir], [  --with-qtdir=DIR        Qt installation directory [defau
 # Check that QTDIR is defined or that --with-qtdir given
 if test x"$QTDIR" = x ; then
 	# some usual Qt-locations
-	QT_SEARCH="/usr /usr/lib/qt /usr/lib64/qt4 /usr/lib/qt4 /usr/X11R6 /usr/local/Trolltech/Qt-4.2.0 /usr/local/Trolltech/Qt-4.2.1 /usr/local/Trolltech/Qt-4.2.2 /usr/local/Trolltech/Qt-4.2.3 /usr/local/Trolltech/Qt-4.3.0"
+	QT_SEARCH="/usr /usr/lib/qt /usr/lib64/qt4 /usr/lib/qt4 /usr/X11R6 /usr/local/Trolltech/Qt-4.2.0 /usr/local/Trolltech/Qt-4.2.1 /usr/local/Trolltech/Qt-4.2.2 /usr/local/Trolltech/Qt-4.2.3 /usr/local/Trolltech/Qt-4.3.0 /usr/local/Trolltech/Qt-4.3.1 /usr/local/Trolltech/Qt-4.3.2"
 else
 	QT_SEARCH=$QTDIR
 	QTDIR=""

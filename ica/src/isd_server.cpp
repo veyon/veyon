@@ -549,50 +549,31 @@ quint16 isdServer::isdPort( void )
 isdServer::accessDialogResult isdServer::showAccessDialog(
 							const QString & _host )
 {
-	QMessageBox m(
-#ifdef QMESSAGEBOX_EXT_SUPPORT
-			QMessageBox::Question,
-#endif
+	QMessageBox m( QMessageBox::Question,
 			tr( "Confirm access" ),
 			tr( "Somebody at host %1 tries to access your screen. "
 				"Do you want to grant him/her access?" ).
 								arg( _host ),
-#ifdef QMESSAGEBOX_EXT_SUPPORT
-				QMessageBox::Yes | QMessageBox::No
-#else
-			QMessageBox::Question,
-			QMessageBox::Yes,
-			QMessageBox::No | QMessageBox::Escape,
-			QMessageBox::NoToAll | QMessageBox::Default
-#endif
-			);
-#ifdef QMESSAGEBOX_EXT_SUPPORT
+				QMessageBox::Yes | QMessageBox::No );
+
 	QPushButton * never_btn = m.addButton( tr( "Never for this session" ),
 							QMessageBox::NoRole );
 	QPushButton * always_btn = m.addButton( tr( "Always for this session" ),
 							QMessageBox::YesRole );
 	m.setDefaultButton( never_btn );
 	m.setEscapeButton( m.button( QMessageBox::No ) );
-#else
-	m.setButtonText( 2, tr( "Never for this session" ) );
-#endif
+
 	localSystem::activateWindow( &m );
 
 	const int res = m.exec();
-#ifdef QMESSAGEBOX_EXT_SUPPORT
 	if( m.clickedButton() == never_btn )
-#else
-	if( res == QMessageBox::NoToAll )
-#endif
 	{
 		return( Never );
 	}
-#ifdef QMESSAGEBOX_EXT_SUPPORT
 	else if( m.clickedButton() == always_btn )
 	{
 		return( Always );
 	}
-#endif
 	else if( res == QMessageBox::No )
 	{
 		return( No );

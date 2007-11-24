@@ -53,11 +53,14 @@ win32-pkg: all
 	cp /opt/mingw/bin/libssl32.dll tmp/italc
 	cp /opt/mingw/bin/libz.dll tmp/italc
 	cp /opt/mingw/i586-mingw32/bin/mingwm10.dll tmp/italc
+	cp -L COPYING tmp/italc/LICENSE.TXT
+	cp -L README tmp/italc/README.TXT
 	/opt/mingw/bin/i586-mingw32-strip tmp/italc/ica.exe
 	/opt/mingw/bin/i586-mingw32-strip tmp/italc/italc.exe
 	/opt/mingw/bin/i586-mingw32-strip tmp/italc/setup.exe
 #	/opt/mingw/bin/i586-mingw32-strip tmp/italc/lupus.exe
 #	/opt/mingw/bin/i586-mingw32-strip tmp/italc/lupus_service.exe
-	cd tmp && zip -9 ../$(PACKAGE)-$(VERSION)-bin-win32.zip italc/*
+	mv tmp/italc tmp/italc-$(VERSION)
+	cd tmp && zip -9 ../$(PACKAGE)-$(VERSION)-bin-win32.zip italc-$(VERSION)/*
 	rm -rf tmp
 endif

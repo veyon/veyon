@@ -1,4 +1,4 @@
-iTALC 1.0.0.0 - Intelligent Teaching and Learning with Computers
+iTALC 1.0.4 - Intelligent Teaching and Learning with Computers
 ===============================================================
 
 
@@ -25,18 +25,41 @@ What is iTALC?
 ----------------
 
 iTALC is a use- and powerful didactical tool which lets you view and control
-other computers in your network in several ways.
+computers in your labs and interact with students in a modern way.
 
-iTALC was designed for usage in school. With the help of iTALC the teacher is
-able to see what the students are doing on their computers, without any need to walk around in the classroom. One can also remote-control the clients and much
-more...
+iTALC has been designed for usage in school.
+Therefore it offers a lot of possibilities to teachers, such as
+
+  * see what's going on in computer-labs by using overview mode and make snapshots
+  * remote-control computers to support and help other people
+  * show a demo (either in fullscreen or in a window) - the teacher's screen is
+    shown on all student's computers in realtime
+  * lock workstations for moving undivided attention to teacher
+  * send text-messages to students
+  * powering on/off and rebooting computers per remote
+  * remote logon and logoff and remote execution of arbitrary commands/scripts
+  * home-schooling - iTALC's network-technology is not restricted to a subnet
+    and therefore students at home can join lessons via VPN-connections just by
+    installing iTALC client software
 
 
 
 How to build, install and setup iTALC
--------------------------------------
+---------------------------------------
 
-see INSTALL for details.
+* Linux:
+   configure, make and make install - see INSTALL for details.
+
+* Windows:
+   run setup.exe
+
+
+
+More Information
+------------------
+
+http://italc.sourceforge.net/
+http://italc.sourceforge.net/wiki/
 
 
 

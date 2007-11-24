@@ -217,12 +217,12 @@ ivsConnection::states ivsConnection::protocolInitialization( void )
 #endif
 		encs[se->nEncodings++] = swap32IfLE( rfbEncodingZlib );
 #endif
-		//encs[se->nEncodings++] = swap32IfLE( rfbEncodingCopyRect );
 		encs[se->nEncodings++] = swap32IfLE( rfbEncodingCoRRE );
+		encs[se->nEncodings++] = swap32IfLE( rfbEncodingCopyRect );
 		encs[se->nEncodings++] = swap32IfLE( rfbEncodingRaw );
-	encs[se->nEncodings++] = swap32IfLE( rfbEncodingRichCursor );
-	//encs[se->nEncodings++] = swap32IfLE( rfbEncodingXCursor );
-	encs[se->nEncodings++] = swap32IfLE( rfbEncodingPointerPos );
+		encs[se->nEncodings++] = swap32IfLE( rfbEncodingRichCursor );
+		//encs[se->nEncodings++] = swap32IfLE( rfbEncodingXCursor );
+		encs[se->nEncodings++] = swap32IfLE( rfbEncodingPointerPos );
 		//encs[se->nEncodings++] = swap32IfLE( rfbEncodingRRE );
 #ifdef HAVE_LIBZ
 #ifdef HAVE_LIBJPEG

@@ -58,7 +58,7 @@ lockWidget::lockWidget( types _type ) :
 	setWindowIcon( QIcon( ":/resources/icon32.png" ) );
 	showFullScreen();
 	move( 0, 0 );
-	setFixedSize( QDesktopWidget().screenGeometry( this ).size() );
+	setFixedSize( QApplication::desktop()->screenGeometry( this ).size() );
 	localSystem::activateWindow( this );
 	//setFixedSize( qApp->desktop()->size() );
 	setFocusPolicy( Qt::StrongFocus );

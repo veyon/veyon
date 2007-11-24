@@ -58,6 +58,26 @@ extern QString __default_domain;
 extern int __demo_quality;
 
 
+class mainWindow;
+
+
+class mainWindowUpdateThread : public QThread
+{
+	Q_OBJECT
+public:
+	mainWindowUpdateThread( mainWindow * _main_window );
+
+private slots:
+	void update( void );
+
+private:
+	virtual void run( void );
+
+	mainWindow * m_mainWindow;
+
+} ;
+
+
 class mainWindow : public QMainWindow
 {
 	Q_OBJECT
@@ -131,22 +151,9 @@ private slots:
 
 
 private:
-
-	class updateThread : public QThread
-	{
-	public:
-		updateThread( mainWindow * _main_window );
-
-	private:
-		virtual void run( void );
-
-		mainWindow * m_mainWindow;
-
-	} * m_updateThread;
-
-
 	virtual void closeEvent( QCloseEvent * _ce );
 
+	mainWindowUpdateThread * m_updateThread;
 
 	QWorkspace * m_workspace;
 
@@ -178,7 +185,7 @@ private:
 
 	static bool s_atExit;
 
-	friend class updateThread;
+	friend class mainWindowUpdateThread;
 	friend class classroomManager;
 
 } ;

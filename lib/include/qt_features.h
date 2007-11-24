@@ -29,24 +29,18 @@
 
 #include <qglobal.h>
 
-#if QT_VERSION >= 0x040200
+#if QT_VERSION < 0x040200
+
+#error iTALC requires Qt version to be >= 4.2.0
+
+#else
+
 #ifdef BUILD_ICA
 #define SYSTEMTRAY_SUPPORT
 #endif
-#define COMPLETER_SUPPORT
-#define QMESSAGEBOX_EXT_SUPPORT
-#else
-#define YesToAll YesAll
-#define NoToAll NoAll
-#endif
-
 
 #ifdef BUILD_LINUX
-
-#if QT_VERSION >= 0x040200
-
 #define NATIVE_VIRTUAL_KEY_SUPPORT
-
 #endif
 
 #endif

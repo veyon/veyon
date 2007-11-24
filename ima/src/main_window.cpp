@@ -336,7 +336,7 @@ mainWindow::mainWindow() :
 
 	QTimer::singleShot( 2000, m_classroomManager, SLOT( updateClients() ) );
 
-	m_updateThread = new updateThread( this );
+	m_updateThread = new mainWindowUpdateThread( this );
 }
 
 
@@ -376,8 +376,10 @@ void mainWindow::closeEvent( QCloseEvent * _ce )
 {
 	s_atExit = TRUE;
 
-	m_updateThread->terminate();
+	m_updateThread->quit();
 	m_updateThread->wait();
+	delete m_updateThread;
+	m_updateThread = NULL;
 
 	m_classroomManager->savePersonalConfig();
 	m_classroomManager->saveGlobalClientConfig();
@@ -451,7 +453,7 @@ void mainWindow::changeGlobalClientMode( int _mode )
 
 
 
-mainWindow::updateThread::updateThread( mainWindow * _main_window ) :
+mainWindowUpdateThread::mainWindowUpdateThread( mainWindow * _main_window ) :
 	QThread(),
 	m_mainWindow( _main_window )
 {
@@ -461,27 +463,29 @@ mainWindow::updateThread::updateThread( mainWindow * _main_window ) :
 
 
 
-void mainWindow::updateThread::run( void )
+void mainWindowUpdateThread::update( void )
 {
-	while( 1 )
+	m_mainWindow->m_localISD->handleServerMessages();
+
+	m_mainWindow->m_userList->reload();
+
+	if( client::reloadSnapshotList() )
 	{
-		m_mainWindow->m_localISD->handleServerMessages();
-
-		m_mainWindow->m_userList->reload();
-
-		if( client::reloadSnapshotList() )
-		{
-			m_mainWindow->m_snapshotList->reloadList();
-		}
-		client::resetReloadOfSnapshotList();
-
-		// now sleep before reloading clients again
-		QThread::sleep(
-			m_mainWindow->getClassroomManager()->updateInterval() );
-
-		// now do cleanup-work
-		m_mainWindow->getClassroomManager()->doCleanupWork();
+		m_mainWindow->m_snapshotList->reloadList();
 	}
+	client::resetReloadOfSnapshotList();
+
+	// now do cleanup-work
+	m_mainWindow->getClassroomManager()->doCleanupWork();
+}
+
+
+void mainWindowUpdateThread::run( void )
+{
+	QTimer t;
+	connect( &t, SIGNAL( timeout() ), this, SLOT( update() ) );
+	t.start( m_mainWindow->getClassroomManager()->updateInterval() * 1000 );
+	exec();
 }
 
 

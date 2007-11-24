@@ -27,7 +27,7 @@
 #include <config.h>
 #endif
 
-#define NO_QTCPSOCKET_CONNECT
+/*#define NO_QTCPSOCKET_CONNECT*/
 
 
 #ifdef NO_QTCPSOCKET_CONNECT

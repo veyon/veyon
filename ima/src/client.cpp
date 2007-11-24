@@ -42,7 +42,6 @@
 #include "snapshot_list.h"
 #include "dialogs.h"
 #include "messagebox.h"
-#include "qnetworkinterface.h"
 #include "remote_control_widget.h"
 
 
@@ -178,9 +177,9 @@ client::client( const QString & _local_ip, const QString & _remote_ip,
 
 client::~client()
 {
+	changeMode( client::Mode_Overview, m_mainWindow->localISD() );
 	m_updateThread->quit();
 	m_updateThread->wait();
-	changeMode( client::Mode_Overview, m_mainWindow->localISD() );
 	m_updateThread->update();
 	delete m_updateThread;
 
@@ -899,6 +898,8 @@ void updateThread::run( void )
 	t.start( m_client->m_mainWindow->getClassroomManager()->updateInterval()
 								* 1000 );
 	exec();
+	update();
+	m_client->m_connection->close();
 }
 
 
