@@ -1,3 +1,20 @@
+2007-12-23	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* ica/ica.qrc:
+	* ica/resources/cs.qm:
+	* ica/resources/cs.ts:
+	* setup/setup.qrc:
+	* setup/resources/cs.qm:
+	* setup/resources/cs.ts:
+	* ima/italc.qrc:
+	* ima/resources/cs.qm:
+	* ima/resources/cs.qm:
+	* lib/italc_core.qrc:
+	* lib/resources/zh.qm:
+	* lib/resources/zh.ts:
+	added Czech localization-files by Martin Sin
+	<martin/dot/sin/at/zshk/dot/cz>
+
 2007-11-24	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* configure.in:
@@ -489,10 +506,6 @@
 
 	* lib/resources/de.ts:
 	* lib/resources/de.qm:
-	* ica/resources/de.ts:
-	* ica/resources/de.qm:
-	* ima/resources/de.ts:
-	* ima/resources/de.qm:
 	updated German localization
 
 2007-05-10	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>

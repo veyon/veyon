@@ -109,7 +109,7 @@ automatically when installing the package):
    control.
 
 2. add "ica &" to /etc/X11/xdm/Xsetup. On some systems, this
-   doesn't take effect, so either edit /etc/kde333/kdm/Xsetup or
+   doesn't take effect, so either edit /etc/kde3/kdm/Xsetup or
    /etc/X11/gdm/Xsetup
 
 You can easily test whether all is fine by running telnet on port 5900 of the
