@@ -1697,7 +1697,7 @@ void classRoom::createActionMenu( QMenu * _m, bool _add_sub_menu )
 			this_classroom_submenu =
 				this_classroom_submenu->addMenu( QPixmap(
 					":/resources/client_settings.png" ),
-							tr( "Administation" ) );
+						tr( "Administration" ) );
 
 			connect( this_classroom_submenu,
 					SIGNAL( triggered( QAction * ) ),
