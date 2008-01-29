@@ -73,7 +73,7 @@ p, li { white-space: pre-wrap; }
     <name>classRoom</name>
     <message>
         <location filename="../src/classroom_manager.cpp" line="1700"/>
-        <source>Administation</source>
+        <source>Administration</source>
         <translation>Адміністрування</translation>
     </message>
 </context>
