@@ -2,7 +2,7 @@
  * dsa_key.cpp - easy to use C++ classes for dealing with DSA-keys, -signatures
  *               etc.
  *
- * Copyright (c) 2006 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *  
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -23,6 +23,20 @@
  *
  */
 
+ /****************************************************************************
+ *
+ * In addition, as a special exception, Tobias Doerffel gives permission to link
+ * the code of its release of iTALC with the OpenSSL project's "OpenSSL" library
+ * (or modified versions of the "OpenSSL" library that use the same license
+ * as the original version), and distribute the linked executables.
+ *
+ * You must comply with the GNU General Public License version 2 in all
+ * respects for all of the code used other than the "OpenSSL" code.  If you
+ * modify this file, you may extend this exception to your version of the file,
+ * but you are not obligated to do so.  If you do not wish to do so, delete
+ * this exception statement from your version of this file.
+ *
+ ****************************************************************************/
 
 #ifdef HAVE_CONFIG_H
 #include <config.h>
