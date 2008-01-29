@@ -1,7 +1,7 @@
 /*
  * main_window.cpp - main-file for iTALC-Application
  *
- * Copyright (c) 2004-2007 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -33,6 +33,7 @@
 #include <QtGui/QApplication>
 #include <QtGui/QButtonGroup>
 #include <QtGui/QCloseEvent>
+#include <QtGui/QDesktopWidget>
 #include <QtGui/QMenu>
 #include <QtGui/QMenuBar>
 #include <QtGui/QMessageBox>
@@ -63,13 +64,6 @@
 
 bool mainWindow::ensureConfigPathExists( void )
 {
-/*	const QString d = localSystem::personalConfigDir();
-	if( !QDir( d ).exists() )
-	{
-		QDir::home().rmpath( d );
-		return( QDir::home().mkpath( QDir( d ).dirName() ) );
-	}
-	return( TRUE );*/
 	return( localSystem::ensurePathExists(
 					localSystem::personalConfigDir() ) );
 }
@@ -78,13 +72,14 @@ bool mainWindow::ensureConfigPathExists( void )
 bool mainWindow::s_atExit = FALSE;
 
 
-mainWindow::mainWindow() :
+mainWindow::mainWindow( int _rctrl_screen ) :
 	QMainWindow(/* 0, Qt::FramelessWindowHint*/ ),
 	m_openedTabInSideBar( 1 ),
 	m_localISD( NULL ),
 	m_rctrlLock(),
 	m_remoteControlWidget( NULL ),
-	m_stopDemo( FALSE )
+	m_stopDemo( FALSE ),
+	m_remoteControlScreen( _rctrl_screen )
 {
 	setWindowTitle( tr( "iTALC" ) + " " + VERSION );
 	setWindowIcon( QPixmap( ":/resources/logo.png" ) );
@@ -398,7 +393,10 @@ void mainWindow::remoteControlDisplay( const QString & _ip, bool _view_only,
 	{
 		return;
 	}
-	m_remoteControlWidget = new remoteControlWidget( _ip, _view_only, this );
+	m_remoteControlWidget = new remoteControlWidget( _ip, _view_only,
+									this );
+	m_remoteControlWidget->move( QApplication::desktop()->width() *
+						m_remoteControlScreen, 0 );
 	m_stopDemo = _stop_demo_afterwards;
 	connect( m_remoteControlWidget, SIGNAL( destroyed( QObject * ) ),
 			this, SLOT( remoteControlWidgetClosed( QObject * ) ) );

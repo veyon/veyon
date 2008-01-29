@@ -82,7 +82,7 @@ class mainWindow : public QMainWindow
 {
 	Q_OBJECT
 public:
-	mainWindow();
+	mainWindow( int _screen );
 	virtual ~mainWindow();
 
 	QWorkspace * workspace( void )
@@ -174,7 +174,7 @@ private:
 	QReadWriteLock m_rctrlLock;
 	remoteControlWidget * m_remoteControlWidget;
 	bool m_stopDemo;
-
+	int m_remoteControlScreen;
 
 	overviewWidget * m_overviewWidget;
 	classroomManager * m_classroomManager;

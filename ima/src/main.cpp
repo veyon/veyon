@@ -77,6 +77,7 @@ int main( int argc, char * * argv )
 	// parse arguments
 	QStringListIterator arg_it( QCoreApplication::arguments() );
 	arg_it.next();
+	int screen = 0;
 	while( argc > 1 && arg_it.hasNext() )
 	{
 		const QString & a = arg_it.next();
@@ -89,6 +90,10 @@ int main( int argc, char * * argv )
 						FALSE;
 			new remoteControlWidget( host, view_only );
 			return( app.exec() );
+		}
+		else if( a == "-screen" && arg_it.hasNext() )
+		{
+			screen = arg_it.next().toInt();
 		}
 		else if( a == "-role" )
 		{
@@ -126,7 +131,7 @@ int main( int argc, char * * argv )
 
 
 	// now create the main-window
-	mainWindow * main_window = new mainWindow();
+	mainWindow * main_window = new mainWindow( screen );
 
 	if( !main_window->localISD() ||
 		main_window->localISD()->state() != isdConnection::Connected )

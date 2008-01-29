@@ -1,7 +1,7 @@
 /*
  * local_system.h - misc. platform-specific stuff
  *
- * Copyright (c) 2006-2007 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -92,6 +92,7 @@ namespace localSystem
 
 #ifdef BUILD_WIN32
 	BOOL enablePrivilege( LPCTSTR lpszPrivilegeName, BOOL bEnable );
+	QString windowsConfigPath( int _type );
 #endif
 
 	void IC_DllExport activateWindow( QWidget * _window );

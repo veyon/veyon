@@ -3,6 +3,32 @@
 	* configure.in:
 	made 1.0.5 release
 
+	* README:
+	* ima/dialogs/about.ui:
+	* ima/resources/splash.png:
+	extended copyright-notice from 2007 to 2008
+
+	* lib/include/local_system.h:
+	* lib/src/local_system.cpp:
+	* setup/src/dialogs.cpp:
+	- use Win32-API for determining program-files folder (closes #1846814)
+	- use %temp% and %tmp% environment-variables instead of C:\temp if
+	  possible (closes #1879580)
+
+	* ima/src/main_window.h:
+	* ima/src/main_window.cpp:
+	* ima/src/main.cpp:
+	added "-screen"-argument which makes it possible to specify which
+	screen the remote-control-window should be displayed on
+
+	* ica/ica.rc.in:
+	* ima/italc.rc.in:
+	fixed FILEVERSION-info-tag
+
+	* ica/Makefile.am:
+	made ICA a non-console-application in order to make it usable when
+	running as normal application instead of service
+
 	* COPYING:
 	* lib/include/dsa_key.h:
 	* lib/src/dsa_key.cpp:

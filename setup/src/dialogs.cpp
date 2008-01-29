@@ -1,7 +1,7 @@
 /*
  * dialogs.cpp - implementation of dialogs
  *
- * Copyright (c) 2006-2007 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -38,6 +38,7 @@
 
 #ifdef BUILD_WIN32
 #include <windows.h>
+#include <shlobj.h>
 #endif
 
 #include "dialogs.h"
@@ -78,7 +79,8 @@ setupWizard::setupWizard() :
 					;
 	m_installDir =
 #ifdef BUILD_WIN32
-			"C:\\" + QDialog::tr( "Program Files" ) + "\\iTALC"
+			localSystem::windowsConfigPath( CSIDL_PROGRAM_FILES ) +
+								"\\iTALC"
 #else
 					"/opt/italc"
 #endif

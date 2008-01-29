@@ -71,9 +71,11 @@ static const char * tr_accels = QT_TRANSLATE_NOOP(
 
 
 
+namespace localSystem
+{
 
 // taken from qt-win-opensource-src-4.2.2/src/corelib/io/qsettings.cpp
-static QString windowsConfigPath( int _type )
+QString windowsConfigPath( int _type )
 {
 	QString result;
 
@@ -90,6 +92,7 @@ static QString windowsConfigPath( int _type )
 	return( result );
 }
 
+}
 
 #endif
 
@@ -155,35 +158,38 @@ void msgHandler( QtMsgType _type, const char * _msg )
 	}
 	if( __debug_out == NULL )
 	{
-#ifdef BUILD_WIN32		
-		if( !QDir( QDir::rootPath() + QString( "temp" ) ).exists() )
-		{
-			if( QDir( QDir::rootPath() ).mkdir( "temp" ) )
-			{
-				QFile::setPermissions( QDir::rootPath() + QString( "temp" ),
-						QFile::ReadOwner | QFile::WriteOwner | QFile::ExeOwner |
-						QFile::ReadUser | QFile::WriteUser | QFile::ExeUser |
-						QFile::ReadGroup | QFile::WriteGroup | QFile::ExeGroup |
-						QFile::ReadOther | QFile::WriteOther | QFile::ExeOther );
-			}
-		}		
-		const QString log_path = QDir::rootPath() + QString( "temp" ) + 
-									QDir::separator();
+		QString tmp_path = QDir::rootPath() +
+#ifdef BUILD_WIN32
+						"temp"
 #else
-		if( !QDir( QDir::rootPath() + QString( "tmp" ) ).exists() )
+						"tmp"
+#endif
+				;
+		foreach( const QString s, QProcess::systemEnvironment() )
 		{
-			if( QDir( QDir::rootPath() ).mkdir( "tmp" ) )
+			if( s.toLower().left( 5 ) == "temp=" )
 			{
-				QFile::setPermissions( QDir::rootPath() + QString( "tmp" ),
+				tmp_path = s.toLower().mid( 5 );
+				break;
+			}
+			else if( s.toLower().left( 4 ) == "tmp=" )
+			{
+				tmp_path = s.toLower().mid( 4 );
+				break;
+			}
+		}
+		if( !QDir( tmp_path ).exists() )
+		{
+			if( QDir( QDir::rootPath() ).mkdir( tmp_path ) )
+			{
+				QFile::setPermissions( tmp_path,
 						QFile::ReadOwner | QFile::WriteOwner | QFile::ExeOwner |
 						QFile::ReadUser | QFile::WriteUser | QFile::ExeUser |
 						QFile::ReadGroup | QFile::WriteGroup | QFile::ExeGroup |
 						QFile::ReadOther | QFile::WriteOther | QFile::ExeOther );
 			}
 		}
-		const QString log_path = QDir::rootPath() + QString( "tmp" ) + 
-									QDir::separator();
-#endif
+		const QString log_path = tmp_path + QDir::separator();
 		__debug_out = new QFile( log_path + __log_file );
 		__debug_out->open( QFile::WriteOnly | QFile::Append |
 							QFile::Unbuffered );
