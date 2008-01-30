@@ -79,7 +79,11 @@ mainWindow::mainWindow( int _rctrl_screen ) :
 	m_rctrlLock(),
 	m_remoteControlWidget( NULL ),
 	m_stopDemo( FALSE ),
-	m_remoteControlScreen( _rctrl_screen )
+	m_remoteControlScreen( _rctrl_screen > -1 ?
+				qMin( _rctrl_screen,
+					QApplication::desktop()->numScreens() )
+				:
+				QApplication::desktop()->screenNumber( this ) )
 {
 	setWindowTitle( tr( "iTALC" ) + " " + VERSION );
 	setWindowIcon( QPixmap( ":/resources/logo.png" ) );
@@ -395,8 +399,12 @@ void mainWindow::remoteControlDisplay( const QString & _ip, bool _view_only,
 	}
 	m_remoteControlWidget = new remoteControlWidget( _ip, _view_only,
 									this );
-	m_remoteControlWidget->move( QApplication::desktop()->width() *
-						m_remoteControlScreen, 0 );
+	int x = 0;
+	for( int i = 0; i < m_remoteControlScreen; ++i )
+	{
+		x += QApplication::desktop()->screenGeometry( i ).width();
+	}
+	m_remoteControlWidget->move( x, 0 );
 	m_stopDemo = _stop_demo_afterwards;
 	connect( m_remoteControlWidget, SIGNAL( destroyed( QObject * ) ),
 			this, SLOT( remoteControlWidgetClosed( QObject * ) ) );

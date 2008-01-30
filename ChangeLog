@@ -1,3 +1,9 @@
+2008-01-30	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* ima/src/main_window.cpp:
+	* ima/src/main.cpp:
+	fixed "-screen"-parameter for virtual desktops
+
 2008-01-29	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* configure.in:

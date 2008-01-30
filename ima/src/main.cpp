@@ -1,7 +1,7 @@
 /*
  * main.cpp - main-file for iTALC-Application
  *
- * Copyright (c) 2004-2006 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -77,7 +77,7 @@ int main( int argc, char * * argv )
 	// parse arguments
 	QStringListIterator arg_it( QCoreApplication::arguments() );
 	arg_it.next();
-	int screen = 0;
+	int screen = -1;
 	while( argc > 1 && arg_it.hasNext() )
 	{
 		const QString & a = arg_it.next();
