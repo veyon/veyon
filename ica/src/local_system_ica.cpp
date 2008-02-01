@@ -361,13 +361,14 @@ QString currentUser( void )
 	}
 	if( pw_entry )
 	{
-		return( QString( "%1 (%2)" ).arg( pw_entry->pw_gecos ).
-						arg( pw_entry->pw_name ) );
+		return( QString( "%1 (%2)" ).
+				arg( QString::fromUtf8( pw_entry->pw_gecos ) ).
+				arg( QString::fromUtf8( pw_entry->pw_name ) ) );
 	}
 #endif
 	if( user_name )
 	{
-		return user_name;
+		return QString::fromUtf8( user_name );
 	}
 
 #endif
