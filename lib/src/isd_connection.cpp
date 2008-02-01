@@ -548,39 +548,43 @@ isdConnection::states isdConnection::protocolInitialization( void )
 isdConnection::states isdConnection::authAgainstServer(
 					const italcAuthTypes _try_auth_type )
 {
-	Q_UINT8 num_sec_types;
-	if( !readFromServer( (char *)&num_sec_types, sizeof( num_sec_types ) )
+	Q_UINT8 num_sec_types = 0;
+	if( !readFromServer( (char *)&num_sec_types, 1 )
 							|| num_sec_types < 1 )
 	{
 		return( m_state = ConnectionFailed );
 	}
 
-	Q_UINT8 * sec_type_list = new Q_UINT8[num_sec_types];
-	if( !readFromServer( (char *)sec_type_list, num_sec_types *
-						sizeof( *sec_type_list ) ) )
-	{
-		delete[] sec_type_list;
-		return( m_state = ConnectionFailed );
-	}
-
+	bool auth_handled = FALSE;
+	bool italc_auth = FALSE;
 	for( Q_UINT8 i = 0; i < num_sec_types; ++i )
 	{
-		if( sec_type_list[i] == rfbNoAuth )
+		Q_UINT8 auth_type = 0;
+		if( !readFromServer( (char *)&auth_type, 1 ) )
+		{
+			return( m_state = ConnectionFailed );
+		}
+
+		if( auth_handled )
+		{
+			continue;
+		}
+
+		if( auth_type == rfbNoAuth )
 		{
 			qDebug( "no auth" );
-			if( !writeToServer( (char *)&sec_type_list[i],
-						sizeof( sec_type_list[i] ) ) )
+			if( !writeToServer( (char *)&auth_type, 1 ) )
 			{
-				m_state = ConnectionFailed;
+				return( m_state = ConnectionFailed );
 			}
-			delete[] sec_type_list;
-			return( m_state );
+			auth_handled = TRUE;
+			continue;
 		}
-		else if( sec_type_list[i] == rfbSecTypeItalc )
+		else if( auth_type == rfbSecTypeItalc )
 		{
+			italc_auth = TRUE;
 			qDebug( "italcauth" );
-			if( !writeToServer( (char *)&sec_type_list[i],
-						sizeof( sec_type_list[i] ) ) )
+			if( !writeToServer( (char *)&auth_type, 1 ) )
 			{
 				return( m_state = ConnectionFailed );
 			}
@@ -628,26 +632,40 @@ isdConnection::states isdConnection::authAgainstServer(
 	qCritical( "isdConnection::authAgainstServer(): "
 					"unhandled italc-auth-mechanism!" );
 			}
-			break;
+			auth_handled = TRUE;
 		}
 		// even last security type not handled?
 		else if( i == num_sec_types - 1 )
 		{
 			qCritical( "isdConnection::authAgainstServer(): "
 					"unknown sec-type for authentication: "
-						"%d", (int) sec_type_list[i] );
+						"%d", (int) auth_type );
 			m_state = AuthFailed;
 		}
 	}
 
-	delete[] sec_type_list;
-
 	if( m_state == Connecting )
 	{
-		const uint res = m_socketDev.read().toUInt();
-		if( res != ItalcAuthOK )
+		if( italc_auth )
 		{
-			return( m_state = AuthFailed );
+			const uint res = m_socketDev.read().toUInt();
+			if( res != ItalcAuthOK )
+			{
+				return( m_state = AuthFailed );
+			}
+		}
+		else
+		{
+			uint32_t res = 0;
+			if( !readFromServer( (char *)&res, 4 ) )
+			{
+				return( m_state = ConnectionFailed );
+			}
+			if( res != rfbVncAuthOK )
+			{
+				return( m_state = AuthFailed );
+			}
+			
 		}
 	}
 
