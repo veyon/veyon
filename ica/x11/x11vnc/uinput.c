@@ -82,10 +82,10 @@ static char *devs[] = {
  */
 
 int check_uinput(void) {
-	int i;
 #ifndef UINPUT_OK
 	return 0;
 #else
+	int i;
 	if (UT.release) {
 		int maj, min;
 		/* guard against linux 2.4 */
@@ -455,6 +455,8 @@ static void ptr_move(int dx, int dy) {
 	ev.code = SYN_REPORT;
 	ev.value = 0;
 	write(fd, &ev, sizeof(ev));
+#else
+	if (!dx || !dy) {}
 #endif
 }
 
@@ -485,6 +487,8 @@ static void ptr_abs(int x, int y) {
 	ev.code = SYN_REPORT;
 	ev.value = 0;
 	write(fd, &ev, sizeof(ev));
+#else
+	if (!x || !y) {}
 #endif
 }
 
@@ -668,7 +672,8 @@ static void button_click(int down, int btn) {
 	write(fd, &ev, sizeof(ev));
 
 	last_button_click = dnow();
-
+#else
+	if (!down || !btn) {}
 #endif
 }
 
@@ -910,6 +915,8 @@ void uinput_key_command(int down, int keysym, rfbClientPtr client) {
 	if (0 <= scancode && scancode < 256) {
 		key_pressed[scancode] = down ? 1 : 0;
 	}
+#else
+	if (!down || !keysym || !client) {}
 #endif
 }
 

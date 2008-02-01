@@ -1,5 +1,7 @@
 /* -- macosxCGP.c -- */
 
+void macosxCGP_unused(void) {}
+
 #if (defined(__MACH__) && defined(__APPLE__))
 
 #include <ApplicationServices/ApplicationServices.h>
@@ -38,21 +40,22 @@ static EventLoopTimerUPP  sstimerUPP;
 static EventLoopTimerRef  sstimer;
 
 void macosxCG_screensaver_timer(EventLoopTimerRef timer, void *data) {
-	if (0) fprintf(stderr, "macosxCG_screensaver_timer: %d\n", time(0));
+	if (0) fprintf(stderr, "macosxCG_screensaver_timer: %d\n", (int) time(0));
+	if (!timer || !data) {}
 	if (macosx_nosleep && client_count) {
-		if (0) fprintf(stderr, "UpdateSystemActivity: %d\n", time(0));
+		if (0) fprintf(stderr, "UpdateSystemActivity: %d\n", (int) time(0));
 		UpdateSystemActivity(IdleActivity);
 	}
 }
 
 void macosxCGP_screensaver_timer_off(void) {
-	if (0) fprintf(stderr, "macosxCGP_screensaver_timer_off: %d\n", time(0));
+	if (0) fprintf(stderr, "macosxCGP_screensaver_timer_off: %d\n", (int) time(0));
 	RemoveEventLoopTimer(sstimer);
 	DisposeEventLoopTimerUPP(sstimerUPP);
 }
 
 void macosxCGP_screensaver_timer_on(void) {
-	if (0) fprintf(stderr, "macosxCGP_screensaver_timer_on: %d\n", time(0));
+	if (0) fprintf(stderr, "macosxCGP_screensaver_timer_on: %d\n", (int) time(0));
 	sstimerUPP = NewEventLoopTimerUPP(macosxCG_screensaver_timer);
 	InstallEventLoopTimer(GetMainEventLoop(), kEventDurationSecond * 30,
 	    kEventDurationSecond * 30, sstimerUPP, NULL, &sstimer);

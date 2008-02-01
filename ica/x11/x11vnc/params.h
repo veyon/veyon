@@ -5,8 +5,9 @@
 
 #define ICON_MODE_SOCKS 16
 
+/* had lw=3 for a long time */
 #ifndef WIREFRAME_PARMS
-#define WIREFRAME_PARMS "0xff,3,0,32+8+8+8,all,0.15+0.30+5.0+0.125"
+#define WIREFRAME_PARMS "0xff,2,0,32+8+8+8,all,0.15+0.30+5.0+0.125"
 #endif
 
 #ifndef SCROLL_COPYRECT_PARMS
@@ -40,6 +41,7 @@
 #define PIPEINPUT_CONSOLE	0x2
 #define PIPEINPUT_UINPUT	0x3
 #define PIPEINPUT_MACOSX	0x4
+#define PIPEINPUT_VNC		0x5
 
 #define MAX_BUTTONS 5
 

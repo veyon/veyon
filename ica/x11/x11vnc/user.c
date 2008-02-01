@@ -13,6 +13,7 @@
 #include "keyboard.h"
 #include "cursor.h"
 #include "remote.h"
+#include "avahi.h"
 
 void check_switched_user(void);
 void lurk_loop(char *str);
@@ -22,16 +23,17 @@ void install_passwds(void);
 void check_new_passwds(int force);
 int wait_for_client(int *argc, char** argv, int http);
 rfbBool custom_passwd_check(rfbClientPtr cl, const char *response, int len);
+char *xdmcp_insert = NULL;
 
 static void switch_user_task_dummy(void);
 static void switch_user_task_solid_bg(void);
 static char *get_login_list(int with_display);
 static char **user_list(char *user_str);
-static void user2uid(char *user, uid_t *uid, char **name, char **home);
+static void user2uid(char *user, uid_t *uid, gid_t *gid, char **name, char **home);
 static int lurk(char **users);
 static int guess_user_and_switch(char *str, int fb_mode);
-static int try_user_and_display(uid_t uid, char *dpystr);
-static int switch_user_env(uid_t uid, char *name, char *home, int fb_mode);
+static int try_user_and_display(uid_t uid, gid_t gid, char *dpystr);
+static int switch_user_env(uid_t uid, gid_t gid, char *name, char *home, int fb_mode);
 static void try_to_switch_users(void);
 
 
@@ -234,8 +236,8 @@ static char **user_list(char *user_str) {
 	return list;
 }
 
-static void user2uid(char *user, uid_t *uid, char **name, char **home) {
-	int numerical = 1;
+static void user2uid(char *user, uid_t *uid, gid_t *gid, char **name, char **home) {
+	int numerical = 1, gotgroup = 0;
 	char *q;
 
 	*uid = (uid_t) -1;
@@ -247,6 +249,46 @@ static void user2uid(char *user, uid_t *uid, char **name, char **home) {
 		if (! isdigit((unsigned char) (*q++))) {
 			numerical = 0;
 			break;
+		}
+	}
+
+	if (user2group != NULL) {
+		static int *did = NULL;
+		int i;
+
+		if (did == NULL) {
+			int n = 0;
+			i = 0;
+			while (user2group[i] != NULL) {
+				n++;
+				i++;
+			}
+			did = (int *) malloc((n+1) * sizeof(int)); 
+			i = 0;
+			for (i=0; i<n; i++) {
+				did[i] = 0;
+			}
+		}
+		i = 0;
+		while (user2group[i] != NULL) {
+			if (strstr(user2group[i], user) == user2group[i]) {
+				char *w = user2group[i] + strlen(user);
+				if (*w == '.') {
+					struct group* gr = getgrnam(++w);
+					if (! gr) {
+						rfbLog("Invalid group: %s\n", w);
+						clean_up_exit(1);
+					}
+					*gid = gr->gr_gid;
+					if (! did[i]) {
+						rfbLog("user2uid: using group %s (%d) for %s\n",
+						    w, (int) *gid, user);
+						did[i] = 1;
+					}
+					gotgroup = 1;
+				}
+			}
+			i++;
 		}
 	}
 
@@ -269,6 +311,9 @@ static void user2uid(char *user, uid_t *uid, char **name, char **home) {
 		}
 		if (pw) {
 			*uid  = pw->pw_uid;
+			if (! gotgroup) {
+				*gid  = pw->pw_gid;
+			}
 			*name = pw->pw_name;	/* n.b. use immediately */
 			*home = pw->pw_dir;
 		}
@@ -279,6 +324,7 @@ static void user2uid(char *user, uid_t *uid, char **name, char **home) {
 
 static int lurk(char **users) {
 	uid_t uid;
+	gid_t gid;
 	int success = 0, dmin = -1, dmax = -1;
 	char *p, *logins, **u;
 
@@ -388,10 +434,10 @@ static int lurk(char **users) {
 			}
 		}
 
-		user2uid(user, &uid, &name, &home);
+		user2uid(user, &uid, &gid, &name, &home);
 		free(t);
 
-		if (! uid) {
+		if (! uid || ! gid) {
 			ok = 0;
 		}
 
@@ -404,8 +450,8 @@ static int lurk(char **users) {
 			if (dn >= 0) {
 				sprintf(dpystr, ":%d", dn);
 			}
-			if (try_user_and_display(uid, dpystr)) {
-				if (switch_user_env(uid, name, home, 0)) {
+			if (try_user_and_display(uid, gid, dpystr)) {
+				if (switch_user_env(uid, gid, name, home, 0)) {
 					rfbLog("lurk: now user: %s @ %s\n",
 					    name, dpystr);
 					started_as_root = 2;
@@ -537,7 +583,7 @@ static int guess_user_and_switch(char *str, int fb_mode) {
 	return ret;
 }
 
-static int try_user_and_display(uid_t uid, char *dpystr) {
+static int try_user_and_display(uid_t uid, gid_t gid, char *dpystr) {
 	/* NO strtoks */
 #if LIBVNCSERVER_HAVE_FORK && LIBVNCSERVER_HAVE_SYS_WAIT_H && LIBVNCSERVER_HAVE_PWD_H
 	pid_t pid, pidw;
@@ -576,7 +622,7 @@ static int try_user_and_display(uid_t uid, char *dpystr) {
 		signal(SIGQUIT, SIG_DFL);
 		signal(SIGTERM, SIG_DFL);
 
-		rc = switch_user_env(uid, name, home, 0); 
+		rc = switch_user_env(uid, gid, name, home, 0); 
 		if (! rc) {
 			exit(1);
 		}
@@ -604,6 +650,7 @@ int switch_user(char *user, int fb_mode) {
 	/* NO strtoks */
 	int doit = 0;
 	uid_t uid = 0;
+	gid_t gid = 0;
 	char *name, *home;
 
 	if (*user == '+') {
@@ -615,20 +662,23 @@ int switch_user(char *user, int fb_mode) {
 		return guess_user_and_switch(user, fb_mode);
 	}
 
-	user2uid(user, &uid, &name, &home);
+	user2uid(user, &uid, &gid, &name, &home);
 
 	if (uid == (uid_t) -1 || uid == 0) {
+		return 0;
+	}
+	if (gid == 0) {
 		return 0;
 	}
 
 	if (! doit && dpy) {
 		/* see if this display works: */
 		char *dstr = DisplayString(dpy);
-		doit = try_user_and_display(uid, dstr);
+		doit = try_user_and_display(uid, gid, dstr);
 	}
 
 	if (doit) {
-		int rc = switch_user_env(uid, name, home, fb_mode);
+		int rc = switch_user_env(uid, gid, name, home, fb_mode);
 		if (rc) {
 			started_as_root = 2;
 		}
@@ -638,10 +688,11 @@ int switch_user(char *user, int fb_mode) {
 	}
 }
 
-static int switch_user_env(uid_t uid, char *name, char *home, int fb_mode) {
+static int switch_user_env(uid_t uid, gid_t gid, char *name, char *home, int fb_mode) {
 	/* NO strtoks */
 	char *xauth;
 	int reset_fb = 0;
+	int grp_ok = 0;
 
 #if !LIBVNCSERVER_HAVE_SETUID
 	return 0;
@@ -655,6 +706,31 @@ static int switch_user_env(uid_t uid, char *name, char *home, int fb_mode) {
 		clean_shm(0);
 		free_tiles();
 	}
+#if LIBVNCSERVER_HAVE_INITGROUPS
+#if LIBVNCSERVER_HAVE_PWD_H
+	if (getpwuid(uid) != NULL && getenv("X11VNC_SINGLE_GROUP") == NULL) {
+		struct passwd *p = getpwuid(uid);
+		if (initgroups(p->pw_name, gid) == 0)  {
+			grp_ok = 1;
+		} else {
+			rfbLogPerror("initgroups");
+		}
+	}
+#endif
+#endif
+	if (! grp_ok) {
+		if (setgid(gid) == 0) {
+			grp_ok = 1;
+		}
+	}
+	if (! grp_ok) {
+		if (reset_fb) {
+			/* 2 means we did clean_shm and free_tiles */
+			do_new_fb(2);
+		}
+		return 0;
+	}
+
 	if (setuid(uid) != 0) {
 		if (reset_fb) {
 			/* 2 means we did clean_shm and free_tiles */
@@ -980,7 +1056,7 @@ void check_new_passwds(int force) {
 }
 
 rfbBool custom_passwd_check(rfbClientPtr cl, const char *response, int len) {
-	char *input, *q, *cmd;
+	char *input, *cmd;
 	char num[16];
 	int j, i, n, rc;
 
@@ -1109,8 +1185,12 @@ void user_supplied_opts(char *opts) {
 		"skip-display", "skip-auth", "skip-shared",
 		"scale", "scale_cursor", "sc", "solid", "so", "id",
 		"clear_mods", "cm", "clear_keys", "ck", "repeat",
+		"clear_all", "ca",
 		"speeds", "sp", "readtimeout", "rd",
 		"rotate", "ro",
+		"geometry", "geom", "ge",
+		"noncache", "nc",
+		"nodisplay", "nd",
 		NULL
 	};
 
@@ -1193,6 +1273,22 @@ void user_supplied_opts(char *opts) {
 			} else if (!strcmp(p, "clear_keys") ||
 			    !strcmp(p, "ck")) {
 				clear_mods = 2;
+			} else if (!strcmp(p, "clear_all") ||
+			    !strcmp(p, "ca")) {
+				clear_mods = 3;
+			} else if (!strcmp(p, "noncache") ||
+			    !strcmp(p, "nc")) {
+				ncache  = 0;
+				ncache0 = 0;
+			} else if (strstr(p, "nc=") == p) {
+				int n2 = atoi(p + strlen("nc="));
+				if (nabs(n2) < nabs(ncache)) {
+					if (ncache < 0) {
+						ncache = -nabs(n2);
+					} else {
+						ncache = nabs(n2);
+					}
+				}
 			} else if (!strcmp(p, "repeat")) {
 				no_autorepeat = 0;
 			} else if (strstr(p, "speeds=") == p ||
@@ -1220,6 +1316,12 @@ void user_supplied_opts(char *opts) {
 	free(str);
 }
 
+static void vnc_redirect_timeout (int sig) {
+	write(2, "timeout: no clients connected.\n", 31);
+	if (sig) {};
+	exit(0);
+}
+
 extern char find_display[];
 extern char create_display[];
 static XImage ximage_struct;
@@ -1235,9 +1337,23 @@ int wait_for_client(int *argc, char** argv, int http) {
 	char *create_cmd = NULL;
 	char *users_list_save = NULL;
 	int created_disp = 0;
+	int ncache_save;
+	int did_client_connect = 0;
+	int loop = 0;
+	time_t start;
+	char *vnc_redirect_host = "localhost";
+	int vnc_redirect_port = -1;
+	int vnc_redirect_cnt = 0;
+	char vnc_redirect_test[10];
+
+	vnc_redirect = 0;
 
 	if (! use_dpy || strstr(use_dpy, "WAIT:") != use_dpy) {
 		return 0;
+	}
+
+	if (getenv("WAIT_FOR_CLIENT_DB")) {
+		db = 1;
 	}
 
 	for (i=0; i < *argc; i++) {
@@ -1246,9 +1362,14 @@ int wait_for_client(int *argc, char** argv, int http) {
 		}
 		if (db) fprintf(stderr, "args %d %s\n", i, argv[i]);
 	}
+	if (!quiet && !strstr(use_dpy, "FINDDISPLAY-run")) {
+		rfbLog("wait_for_client: %s\n", use_dpy);
+	}
 
 	str = strdup(use_dpy);
 	str += strlen("WAIT");
+
+	xdmcp_insert = NULL;
 
 	/* get any leading geometry: */
 	q = strchr(str+1, ':');
@@ -1285,15 +1406,57 @@ int wait_for_client(int *argc, char** argv, int http) {
 		}
 
 		cmd = str + strlen("cmd=");
-		if (!strcmp(str, "FINDDISPLAY-print")) {
+		if (!strcmp(cmd, "FINDDISPLAY-print")) {
 			fprintf(stdout, "%s", find_display);
 			clean_up_exit(0);
+		}
+		if (!strcmp(cmd, "FINDDISPLAY-run")) {
+			char tmp[] = "/tmp/fd.XXXXXX";
+			char com[100];
+			int fd = mkstemp(tmp);
+			if (fd >= 0) {
+				write(fd, find_display, strlen(find_display));
+				close(fd);
+				set_env("FINDDISPLAY_run", "1");
+				sprintf(com, "/bin/sh %s -n; rm -f %s", tmp, tmp);
+				system(com);
+			}
+			unlink(tmp);
+			exit(0);
 		}
 		if (!strcmp(str, "FINDCREATEDISPLAY-print")) {
 			fprintf(stdout, "%s", create_display);
 			clean_up_exit(0);
 		}
 		if (db) fprintf(stderr, "cmd: %s\n", cmd);
+		if (strstr(str, "FINDCREATEDISPLAY") || strstr(str, "FINDDISPLAY")) {
+			if (strstr(str, "Xvnc.redirect") || strstr(str, "X.redirect")) {
+				vnc_redirect = 1;
+			}
+		}
+		if (strstr(cmd, "FINDDISPLAY-vnc_redirect") == cmd) {
+			int p;
+			char h[256];
+			if (strlen(cmd) >= 256) {
+				rfbLog("wait_for_client string too long: %s\n", str);
+				clean_up_exit(1);
+			}
+			h[0] = '\0';
+			if (sscanf(cmd, "FINDDISPLAY-vnc_redirect=%d", &p) == 1) {
+				;
+			} else if (sscanf(cmd, "FINDDISPLAY-vnc_redirect=%s %d", h, &p) == 2) {
+				;
+			} else {
+				rfbLog("wait_for_client bad string: %s\n", cmd);
+				clean_up_exit(1);
+			}
+			vnc_redirect_port = p;
+			if (strcmp(h, "")) {
+				vnc_redirect_host = strdup(h);
+			}
+			vnc_redirect = 2;
+			rfbLog("wait_for_client: vnc_redirect: %s:%d\n", vnc_redirect_host, vnc_redirect_port);
+		}
 	}
 	
 	if (fake_fb) {
@@ -1341,6 +1504,9 @@ int wait_for_client(int *argc, char** argv, int http) {
 		*argc = (*argc) + 1;
 	}
 
+	ncache_save = ncache;
+	ncache = 0;
+
 	initialize_allowed_input();
 
 	if (! multiple_cursors_mode) {
@@ -1351,6 +1517,10 @@ int wait_for_client(int *argc, char** argv, int http) {
 	initialize_screen(argc, argv, fb_image);
 
 	initialize_signals();
+
+	if (ssh_str != NULL) {
+		ssh_remote_tunnel(ssh_str, screen->port);
+	}
 
 	if (! raw_fb) {
 		chg_raw_fb = 1;
@@ -1371,20 +1541,255 @@ int wait_for_client(int *argc, char** argv, int http) {
 		keep_unixpw = 1;
 	}
 
-	if (inetd && use_openssl) {
-		accept_openssl(OPENSSL_INETD);
+	if (!inetd) {
+		if (!use_openssl) {
+			announce(screen->port, use_openssl, NULL);
+			fprintf(stdout, "PORT=%d\n", screen->port);
+		} else {
+			fprintf(stdout, "PORT=%d\n", screen->port);
+			if (stunnel_port) {
+				fprintf(stdout, "SSLPORT=%d\n", stunnel_port);
+			} else if (use_openssl) {
+				fprintf(stdout, "SSLPORT=%d\n", screen->port);
+			}
+		}
+		fflush(stdout);
+	} else if (!use_openssl && avahi) {
+		char *name = rfb_desktop_name;
+		if (!name) {
+			name = use_dpy;
+		}
+		avahi_initialise();
+		avahi_advertise(name, this_host(), screen->port);
 	}
 
+	if (getenv("WAITBG")) {
+#if LIBVNCSERVER_HAVE_FORK && LIBVNCSERVER_HAVE_SETSID
+		int p, n;
+		if ((p = fork()) > 0)  {
+			exit(0);
+		} else if (p == -1) {
+			rfbLogEnable(1);
+			fprintf(stderr, "could not fork\n");
+			perror("fork");
+			clean_up_exit(1);
+		}
+		if (setsid() == -1) {
+			rfbLogEnable(1);
+			fprintf(stderr, "setsid failed\n");
+			perror("setsid");
+			clean_up_exit(1);
+		}
+		/* adjust our stdio */
+		n = open("/dev/null", O_RDONLY);
+		dup2(n, 0);
+		dup2(n, 1);
+		if (! logfile) {
+			dup2(n, 2);
+		}
+		if (n > 2) {
+			close(n);
+		}
+#else
+		clean_up_exit(1);
+#endif
+	}
+
+	if (vnc_redirect) {
+		if (unixpw) {
+			rfbLog("wait_for_client: -unixpw and Xvnc.redirect not allowed\n");
+			clean_up_exit(1);
+		}
+		if (client_connect) {
+			rfbLog("wait_for_client: -connect and Xvnc.redirect not allowed\n");
+			clean_up_exit(1);
+		}
+		if (inetd) {
+			if (use_openssl) {
+				accept_openssl(OPENSSL_INETD, -1);
+			}
+		} else {
+			if (first_conn_timeout) {
+				if (first_conn_timeout < 0) {
+					first_conn_timeout = -first_conn_timeout;
+				}
+				signal(SIGALRM, vnc_redirect_timeout);
+				alarm(first_conn_timeout);
+			}
+			if (use_openssl) {
+				accept_openssl(OPENSSL_VNC, -1);
+			} else {
+				struct sockaddr_in addr;
+#ifdef __hpux
+				int addrlen = sizeof(addr);
+#else
+				socklen_t addrlen = sizeof(addr);
+#endif
+				if (screen->listenSock < 0) {
+					rfbLog("wait_for_client: Xvnc.redirect not listening... sock=%d port=%d\n", screen->listenSock, screen->port);
+					clean_up_exit(1);
+				}
+				vnc_redirect_sock = accept(screen->listenSock, (struct sockaddr *)&addr, &addrlen);
+			}
+			if (first_conn_timeout) {
+				alarm(0);
+			}
+		}
+		if (vnc_redirect_sock < 0) {
+			rfbLog("wait_for_client: vnc_redirect failed.\n");
+			clean_up_exit(1);
+		}
+		if (!inetd && use_openssl) {
+			/* check for Fetch Cert closing */
+			fd_set rfds;
+			struct timeval tv;
+			int nfds;
+
+			usleep(300*1000);
+
+			FD_ZERO(&rfds);
+			FD_SET(vnc_redirect_sock, &rfds);
+
+			tv.tv_sec = 0;
+			tv.tv_usec = 200000;
+			nfds = select(vnc_redirect_sock+1, &rfds, NULL, NULL, &tv);
+
+			rfbLog("wait_for_client: vnc_redirect nfds: %d\n", nfds);
+			if (nfds > 0) {
+				int n;
+				n = read(vnc_redirect_sock, vnc_redirect_test, 1);
+				if (n <= 0) {
+					close(vnc_redirect_sock);
+					vnc_redirect_sock = -1;
+					rfbLog("wait_for_client: waiting for 2nd connection (Fetch Cert?)\n");
+					accept_openssl(OPENSSL_VNC, -1);
+					if (vnc_redirect_sock < 0) {
+						rfbLog("wait_for_client: vnc_redirect failed.\n");
+						clean_up_exit(1);
+					}
+				} else {
+					vnc_redirect_cnt = n;
+				}
+			}
+		}
+		goto vnc_redirect_place;
+	}
+
+	if (inetd && use_openssl) {
+		accept_openssl(OPENSSL_INETD, -1);
+	}
+
+	if (client_connect != NULL) {
+		char *remainder = NULL;
+		if (inetd) {
+			rfbLog("wait_for_client: -connect disallowed in inetd mode: %s\n",
+			    client_connect);
+		} else if (screen && screen->clientHead) {
+			rfbLog("wait_for_client: -connect disallowed: client exists: %s\n",
+			    client_connect);
+		} else if (strchr(client_connect, '=')) {
+			rfbLog("wait_for_client: invalid -connect string: %s\n",
+			    client_connect);
+		} else {
+			char *q = strchr(client_connect, ',');
+			if (q) {
+				rfbLog("wait_for_client: only using first"
+				    " connect host in: %s\n", client_connect);
+				remainder = strdup(q+1);
+				*q = '\0';
+			}
+			rfbLog("wait_for_client: reverse_connect(%s)\n",
+			    client_connect);
+			reverse_connect(client_connect);
+			did_client_connect = 1;
+		}
+		free(client_connect);
+		if (remainder != NULL) {
+			/* reset to host2,host3,... */
+			client_connect = remainder;
+		} else {
+			client_connect = NULL;
+		}
+	}
+
+	if (first_conn_timeout < 0) {
+		first_conn_timeout = -first_conn_timeout;
+	}
+	start = time(NULL);
+
 	while (1) {
+		loop++;
+		if (first_conn_timeout && time(NULL) > start + first_conn_timeout) {
+			rfbLog("no client connect after %d seconds.\n", first_conn_timeout);
+			shut_down = 1;
+		}
 		if (shut_down) {
 			clean_up_exit(0);
 		}
-		if (use_openssl) {
+		if (loop < 2) {
+			if (did_client_connect) {
+				goto screen_check;
+			}
+			if (inetd) {
+				goto screen_check;
+			}
+			if (screen && screen->clientHead) {
+				goto screen_check;
+			}
+		}
+		if (use_openssl && !inetd) {
+			check_openssl();
+			/*
+			 * This is to handle an initial verify cert from viewer,
+			 * they disconnect right after fetching the cert.
+			 */
+			if (! use_threads) rfbPE(-1);
+			if (screen && screen->clientHead) {
+				int i;
+				if (unixpw) {
+					if (! unixpw_in_progress) {
+						rfbLog("unixpw but no unixpw_in_progress\n");
+						clean_up_exit(1);
+					}
+					if (unixpw_client && unixpw_client->onHold) {
+						rfbLog("taking unixpw_client off hold\n");
+						unixpw_client->onHold = FALSE;
+					}
+				}
+				for (i=0; i<10; i++) {
+					if (shut_down) {
+						clean_up_exit(0);
+					}
+					usleep(20 * 1000);
+					if (0) rfbLog("wait_for_client: %d\n", i);
+
+					if (! use_threads) {
+						if (unixpw) {
+							unixpw_in_rfbPE = 1;
+						}
+						rfbPE(-1);
+						if (unixpw) {
+							unixpw_in_rfbPE = 0;
+						}
+					}
+
+					if (unixpw && !unixpw_in_progress) {
+						/* XXX too soon. */
+						goto screen_check;
+					}
+					if (!screen->clientHead) {
+						break;
+					}
+				}
+			}
+		} else if (use_openssl) {
 			check_openssl();
 		}
+
 		if (! use_threads) {
 			rfbPE(-1);
 		}
+		screen_check:
 		if (! screen || ! screen->clientHead) {
 			usleep(100 * 1000);
 			continue;
@@ -1392,6 +1797,7 @@ int wait_for_client(int *argc, char** argv, int http) {
 		rfbLog("wait_for_client: got client\n");
 		break;
 	}
+
 
 	if (unixpw) {
 		if (! unixpw_in_progress) {
@@ -1426,50 +1832,346 @@ int wait_for_client(int *argc, char** argv, int http) {
 		}
 	}
 
-	if (cmd) {
+if (0) db = 1;
+
+	vnc_redirect_place:
+
+	if (vnc_redirect == 2) {
+		;
+	} else if (cmd) {
 		char line1[1024];
 		char line2[16384];
 		char *q;
 		int n;
+		int nodisp = 0;
+		int saw_xdmcp = 0;
+		char *usslpeer = NULL;
 
 		memset(line1, 0, 1024);
 		memset(line2, 0, 16384);
 
+		if (users_list && strstr(users_list, "sslpeer=") == users_list) {
+			int ok = 0;
+			char *u = NULL, *upeer = NULL;
+
+			if (certret_str) {
+				char *q, *p, *str = strdup(certret_str);
+				q = strstr(str, "Subject: ");
+				if (! q) return 0;
+				p = strstr(q, "\n");
+				if (p) *p = '\0';
+				q = strstr(q, "CN=");
+				if (! q) return 0;
+				if (! getenv("X11VNC_SSLPEER_CN")) {
+					p = q;
+					q = strstr(q, "/emailAddress=");
+					if (! q) q = strstr(p, "/Email=");
+					if (! q) return 0;
+				}
+				q = strstr(q, "=");
+				if (! q) return 0;
+				q++;
+				p = strstr(q, " ");
+				if (p) *p = '\0';
+				p = strstr(q, "@");
+				if (p) *p = '\0';
+				p = strstr(q, "/");
+				if (p) *p = '\0';
+				upeer = strdup(q);
+				if (strcmp(upeer, "")) {
+					p = upeer;
+					while (*p != '\0') {
+						char c = *p;
+						if (!isalnum((int) c)) {
+							*p = '\0';
+							break;
+						}
+						p++;
+					}
+					if (strcmp(upeer, "")) {
+						ok = 1;
+					}
+				}
+			}
+			if (! ok || !upeer) {
+				return 0;
+			}
+			rfbLog("sslpeer unix username extracted from x509 cert: %s\n", upeer);
+			u = (char *) malloc(strlen(upeer+2));
+			u[0] = '\0';
+			if (!strcmp(users_list, "sslpeer=")) {
+				sprintf(u, "+%s", upeer);
+			} else {
+				char *p, *str = strdup(users_list);
+				p = strtok(str + strlen("sslpeer="), ",");
+				while (p) {
+					if (!strcmp(p, upeer)) {
+						sprintf(u, "+%s", upeer);
+						break;
+					}
+					p = strtok(NULL, ",");
+				}
+				free(str);
+			}
+			if (u[0] == '\0') {
+				rfbLog("sslpeer cannot determine user: %s\n", upeer);
+				free(u);
+				return 0;
+			}
+			free(u);
+			usslpeer = upeer;
+		}
+
+		/* only sets environment variables: */
+		run_user_command("", latest_client, "env", NULL, 0, NULL);
+
+		if (program_name) {
+			set_env("X11VNC_PROG", program_name);
+		} else {
+			set_env("X11VNC_PROG", "x11vnc");
+		}
+
 		if (!strcmp(cmd, "FINDDISPLAY") ||
 		    strstr(cmd, "FINDCREATEDISPLAY") == cmd) {
+			char *nd = "";
 			tmp_fd = mkstemp(tmp);
 			if (tmp_fd < 0) {
 				rfbLog("wait_for_client: open failed: %s\n", tmp);
 				rfbLogPerror("mkstemp");
 				clean_up_exit(1);
 			}
-			write(tmp_fd, find_display, strlen(find_display));
-			close(tmp_fd);
 			chmod(tmp, 0644);
+			if (getenv("X11VNC_FINDDISPLAY_ALWAYS_FAILS")) {
+				char *s = "#!/bin/sh\necho _FAIL_\nexit 1\n";
+				write(tmp_fd, s, strlen(s));
+			} else {
+				write(tmp_fd, find_display, strlen(find_display));
+			}
+			close(tmp_fd);
+			nodisp = 1;
 
 			if (strstr(cmd, "FINDCREATEDISPLAY") == cmd) {
 				char *opts = strchr(cmd, '-');
 				char st[] = "";
+				char fdgeom[128], fdsess[128], fdopts[128], fdprog[128];
+				char fdxsrv[128], fdxdum[128], fdcups[128], fdesd[128];
+				char fdnas[128], fdsmb[128], fdtag[128];
 				if (opts) {
 					opts++;
+					if (strstr(opts, "xdmcp")) {
+						saw_xdmcp = 1;
+					}
 				} else {
 					opts = st;
 				}
-				if (unixpw && keep_unixpw_user) {
-					create_cmd = (char *) malloc(strlen(tmp)
-					    + strlen("env USER='' /bin/sh ")
-					    + strlen(keep_unixpw_user) + 1 + strlen(opts) + 1);
-					sprintf(create_cmd, "env USER='%s' /bin/sh %s %s",
-					    keep_unixpw_user, tmp, opts);
+				sprintf(fdgeom, "NONE");
+				fdsess[0] = '\0';
+				fdgeom[0] = '\0';
+				fdopts[0] = '\0';
+				fdprog[0] = '\0';
+				fdxsrv[0] = '\0';
+				fdxdum[0] = '\0';
+				fdcups[0] = '\0';
+				fdesd[0]  = '\0';
+				fdnas[0]  = '\0';
+				fdsmb[0]  = '\0';
+				fdtag[0]  = '\0';
+
+				if (unixpw && keep_unixpw_opts && keep_unixpw_opts[0] != '\0') {
+					char *q, *p, *t = strdup(keep_unixpw_opts);
+					if (strstr(t, "gnome")) {
+						sprintf(fdsess, "gnome");
+					} else if (strstr(t, "kde")) {
+						sprintf(fdsess, "kde");
+					} else if (strstr(t, "twm")) {
+						sprintf(fdsess, "twm");
+					} else if (strstr(t, "fvwm")) {
+						sprintf(fdsess, "fvwm");
+					} else if (strstr(t, "mwm")) {
+						sprintf(fdsess, "mwm");
+					} else if (strstr(t, "cde")) {
+						sprintf(fdsess, "cde");
+					} else if (strstr(t, "dtwm")) {
+						sprintf(fdsess, "dtwm");
+					} else if (strstr(t, "xterm")) {
+						sprintf(fdsess, "xterm");
+					} else if (strstr(t, "wmaker")) {
+						sprintf(fdsess, "wmaker");
+					} else if (strstr(t, "xfce")) {
+						sprintf(fdsess, "xfce");
+					} else if (strstr(t, "enlightenment")) {
+						sprintf(fdsess, "enlightenment");
+					} else if (strstr(t, "Xsession")) {
+						sprintf(fdsess, "Xsession");
+					} else if (strstr(t, "failsafe")) {
+						sprintf(fdsess, "failsafe");
+					}
+
+					q = strstr(t, "ge=");
+					if (! q) q = strstr(t, "geom=");
+					if (! q) q = strstr(t, "geometry=");
+					if (q) {
+						int ok = 1;
+						q = strstr(q, "=");
+						q++;
+						p = strstr(q, ",");
+						if (p) *p = '\0';
+						p = q;
+						while (*p) {
+							if (*p == 'x') {
+								;
+							} else if (isdigit((int) *p)) {
+								;
+							} else {
+								ok = 0;
+								break;
+							}
+							p++;
+						}
+						if (ok && strlen(q) < 32) {
+							sprintf(fdgeom, q);
+							if (!quiet) {
+								rfbLog("set create display geom: %s\n", fdgeom);
+							}
+						}
+					}
+					q = strstr(t, "cups=");
+					if (q) {
+						int p;
+						if (sscanf(q, "cups=%d", &p) == 1) {
+							sprintf(fdcups, "%d", p);
+						}
+					}
+					q = strstr(t, "esd=");
+					if (q) {
+						int p;
+						if (sscanf(q, "esd=%d", &p) == 1) {
+							sprintf(fdesd, "%d", p);
+						}
+					}
+					free(t);
+				}
+				if (fdgeom[0] == '\0' && getenv("FD_GEOM")) {
+					snprintf(fdgeom,  120, "%s", getenv("FD_GEOM"));
+				}
+				if (fdsess[0] == '\0' && getenv("FD_SESS")) {
+					snprintf(fdsess, 120, "%s", getenv("FD_SESS"));
+				}
+				if (fdopts[0] == '\0' && getenv("FD_OPTS")) {
+					snprintf(fdopts, 120, "%s", getenv("FD_OPTS"));
+				}
+				if (fdprog[0] == '\0' && getenv("FD_PROG")) {
+					snprintf(fdprog, 120, "%s", getenv("FD_PROG"));
+				}
+				if (fdxsrv[0] == '\0' && getenv("FD_XSRV")) {
+					snprintf(fdxsrv, 120, "%s", getenv("FD_XSRV"));
+				}
+				if (fdcups[0] == '\0' && getenv("FD_CUPS")) {
+					snprintf(fdcups, 120, "%s", getenv("FD_CUPS"));
+				}
+				if (fdesd[0] == '\0' && getenv("FD_ESD")) {
+					snprintf(fdesd, 120, "%s", getenv("FD_ESD"));
+				}
+				if (fdnas[0] == '\0' && getenv("FD_NAS")) {
+					snprintf(fdnas, 120, "%s", getenv("FD_NAS"));
+				}
+				if (fdsmb[0] == '\0' && getenv("FD_SMB")) {
+					snprintf(fdsmb, 120, "%s", getenv("FD_SMB"));
+				}
+				if (fdtag[0] == '\0' && getenv("FD_TAG")) {
+					snprintf(fdtag, 120, "%s", getenv("FD_TAG"));
+				}
+				if (fdxdum[0] == '\0' && getenv("FD_XDUMMY_NOROOT")) {
+					snprintf(fdxdum, 120, "%s", getenv("FD_XDUMMY_NOROOT"));
+				}
+
+				set_env("FD_GEOM", fdgeom);
+				set_env("FD_OPTS", fdopts);
+				set_env("FD_PROG", fdprog);
+				set_env("FD_XSRV", fdxsrv);
+				set_env("FD_CUPS", fdcups);
+				set_env("FD_ESD",  fdesd);
+				set_env("FD_NAS",  fdnas);
+				set_env("FD_SMB",  fdsmb);
+				set_env("FD_TAG",  fdtag);
+				set_env("FD_XDUMMY_NOROOT", fdxdum);
+				set_env("FD_SESS", fdsess);
+
+				if (usslpeer || (unixpw && keep_unixpw_user)) {
+					char *uu = usslpeer;
+					if (!uu) {
+						uu = keep_unixpw_user;
+					}
+					create_cmd = (char *) malloc(strlen(tmp)+1
+					    + strlen("env USER='' ")
+					    + strlen("FD_GEOM='' ")
+					    + strlen("FD_OPTS='' ")
+					    + strlen("FD_PROG='' ")
+					    + strlen("FD_XSRV='' ")
+					    + strlen("FD_CUPS='' ")
+					    + strlen("FD_ESD='' ")
+					    + strlen("FD_NAS='' ")
+					    + strlen("FD_SMB='' ")
+					    + strlen("FD_TAG='' ")
+					    + strlen("FD_XDUMMY_NOROOT='' ")
+					    + strlen("FD_SESS='' /bin/sh ")
+					    + strlen(uu) + 1
+					    + strlen(fdgeom) + 1
+					    + strlen(fdopts) + 1
+					    + strlen(fdprog) + 1
+					    + strlen(fdxsrv) + 1
+					    + strlen(fdcups) + 1
+					    + strlen(fdesd) + 1
+					    + strlen(fdnas) + 1
+					    + strlen(fdsmb) + 1
+					    + strlen(fdtag) + 1
+					    + strlen(fdxdum) + 1
+					    + strlen(fdsess) + 1
+					    + strlen(opts) + 1);
+					sprintf(create_cmd, "env USER='%s' FD_GEOM='%s' FD_SESS='%s' "
+					    "FD_OPTS='%s' FD_PROG='%s' FD_XSRV='%s' FD_CUPS='%s' "
+					    "FD_ESD='%s' FD_NAS='%s' FD_SMB='%s' FD_TAG='%s' "
+					    "FD_XDUMMY_NOROOT='%s' /bin/sh %s %s",
+					    uu, fdgeom, fdsess, fdopts, fdprog, fdxsrv,
+					    fdcups, fdesd, fdnas, fdsmb, fdtag, fdxdum, tmp, opts);
 				} else {
 					create_cmd = (char *) malloc(strlen(tmp)
 					    + strlen("/bin/sh ") + 1 + strlen(opts) + 1);
 					sprintf(create_cmd, "/bin/sh %s %s", tmp, opts);
 				}
+
 if (db) fprintf(stderr, "create_cmd: %s\n", create_cmd);
 			}
-			cmd = (char *) malloc(strlen(tmp) + strlen("/bin/sh ") + 1);
-			sprintf(cmd, "/bin/sh %s", tmp);
+			if (getenv("X11VNC_SKIP_DISPLAY")) {
+				nd = strdup(getenv("X11VNC_SKIP_DISPLAY"));
+			}
+			if (unixpw && keep_unixpw_opts && keep_unixpw_opts[0] != '\0') {
+				char *q, *t = keep_unixpw_opts;
+				q = strstr(t, "nd=");
+				if (! q) q = strstr(t, "nodisplay=");
+				if (q) {
+					char *t2;
+					q = strchr(q, '=') + 1;
+					t = strdup(q);
+					q = t;
+					t2 = strchr(t, ',');
+					if (t2) *t2 = '\0';
+					while (*t != '\0') {
+						if (*t == '-') {
+							*t = ',';
+						}
+						t++;
+					}
+					if (!strchr(q, '\'')) {
+						if (! quiet) rfbLog("set X11VNC_SKIP_DISPLAY: %s\n", q);
+						nd = q;
+					}
+				}
+			}
+
+			cmd = (char *) malloc(strlen("env X11VNC_SKIP_DISPLAY='' ")
+			    + strlen(nd) + strlen(tmp) + strlen("/bin/sh ") + 1);
+			sprintf(cmd, "env X11VNC_SKIP_DISPLAY='%s' /bin/sh %s", nd, tmp);
 		}
 
 		rfbLog("wait_for_client: running: %s\n", cmd);
@@ -1483,10 +2185,13 @@ if (db) fprintf(stderr, "create_cmd: %s\n", create_cmd);
 			if (keep_unixpw_user && keep_unixpw_pass) {
 				n = 18000;
 				res = su_verify(keep_unixpw_user,
-				    keep_unixpw_pass, cmd, line, &n);
+				    keep_unixpw_pass, cmd, line, &n, nodisp);
 			}
 
-if (db) write(2, line, n); write(2, "\n", 1);
+if (db) {fprintf(stderr, "line: "); write(2, line, n); write(2, "\n", 1); fprintf(stderr, "res=%d n=%d\n", res, n);}
+			if (! res) {
+				rfbLog("wait_for_client: find display cmd failed\n");
+			}
 
 			if (! res && create_cmd) {
 				FILE *mt = fopen(tmp, "w");
@@ -1498,12 +2203,15 @@ if (db) write(2, line, n); write(2, "\n", 1);
 				fprintf(mt, "%s", create_display);
 				fclose(mt);
 
+				findcreatedisplay = 1;
+
 				if (getuid() != 0) {
 					/* if not root, run as the other user... */
 					n = 18000;
+					close_exec_fds();
 					res = su_verify(keep_unixpw_user,
-					    keep_unixpw_pass, create_cmd, line, &n);
-/*if (1) fprintf(stderr, "line: '%s'\n", line); */
+					    keep_unixpw_pass, create_cmd, line, &n, nodisp);
+if (db) fprintf(stderr, "c-res=%d n=%d line: '%s'\n", res, n, line);
 
 				} else {
 					FILE *p;
@@ -1529,6 +2237,9 @@ if (db) fprintf(stderr, "line1: '%s'\n", line1);
 							res = 1;
 						}
 					}
+				}
+				if (res && saw_xdmcp) {
+					xdmcp_insert = strdup(keep_unixpw_user);
 				}
 			}
 
@@ -1572,11 +2283,28 @@ if (db) fprintf(stderr, "line1: '%s'\n", line1);
 				line2[i] = q[k+j];
 				i++;
 			}
+if (db) write(2, line, 100);
+if (db) fprintf(stderr, "\n");
 		} else {
 			FILE *p;
 			int rc;
 			close_exec_fds();
-			p = popen(cmd, "r");
+
+			if (usslpeer) {
+				char *c;
+				if (getuid() == 0) {
+					c = (char *) malloc(strlen("su - '' -c \"")
+					    + strlen(usslpeer) + strlen(cmd) + 1 + 1);
+					sprintf(c, "su - '%s' -c \"%s\"", usslpeer, cmd);
+				} else {
+					c = strdup(cmd);
+				}
+				p = popen(c, "r");
+				free(c);
+				
+			} else {
+				p = popen(cmd, "r");
+			}
 			if (! p) {
 				rfbLog("wait_for_client: cmd failed: %s\n", cmd);
 				rfbLogPerror("popen");
@@ -1596,6 +2324,10 @@ if (db) fprintf(stderr, "line1: '%s'\n", line1);
 			n = fread(line2, 1, 16384, p);
 			rc = pclose(p);
 
+			if (rc != 0) {
+				rfbLog("wait_for_client: find display cmd failed\n");
+			}
+
 			if (create_cmd && rc != 0) {
 				FILE *mt = fopen(tmp, "w");
 				if (! mt) {
@@ -1608,6 +2340,8 @@ if (db) fprintf(stderr, "line1: '%s'\n", line1);
 				}
 				fprintf(mt, "%s", create_display);
 				fclose(mt);
+
+				findcreatedisplay = 1;
 
 				rfbLog("wait_for_client: FINDCREATEDISPLAY cmd: %s\n", create_cmd);
 
@@ -1635,18 +2369,58 @@ if (db) fprintf(stderr, "line1: '%s'\n", line1);
 			}
 		}
 
+if (db) fprintf(stderr, "line1=%s\n", line1);
+
 		if (strstr(line1, "DISPLAY=") != line1) {
 			rfbLog("wait_for_client: bad reply '%s'\n", line1);
-			unixpw_msg("No DISPLAY found.", 3);
+			if (unixpw) {
+				unixpw_msg("No DISPLAY found.", 3);
+			}
 			clean_up_exit(1);
 		}
+
 
 		if (strstr(line1, ",VT=")) {
 			int vt;
 			char *t = strstr(line1, ",VT=");
 			vt = atoi(t + strlen(",VT="));
 			*t = '\0';
-			if (7 <= vt && vt <= 128) {
+			if (7 <= vt && vt <= 15) {
+				char chvt[100];
+				sprintf(chvt, "chvt %d >/dev/null 2>/dev/null &", vt);
+				rfbLog("running: %s\n", chvt);
+				system(chvt);
+				sleep(2);
+			}
+		} else if (strstr(line1, ",XPID=")) {
+			int i, pvt, vt = -1;
+			char *t = strstr(line1, ",XPID=");
+			pvt = atoi(t + strlen(",XPID="));
+			*t = '\0';
+			if (pvt > 0) {
+				for (i=3; i <= 10; i++) {
+					int k;
+					char proc[100];
+					char buf[100];
+					sprintf(proc, "/proc/%d/fd/%d", pvt, i);
+if (db) fprintf(stderr, "%d -- %s\n", i, proc);
+					for (k=0; k < 100; k++) {
+						buf[k] = '\0';
+					}
+		
+					if (readlink(proc, buf, 100) != -1) {
+						buf[100-1] = '\0';
+if (db) fprintf(stderr, "%d -- %s -- %s\n", i, proc, buf);
+						if (strstr(buf, "/dev/tty") == buf) {
+							vt = atoi(buf + strlen("/dev/tty"));
+							if (vt > 0) {
+								break;
+							}
+						}
+					}
+				}
+			}
+			if (7 <= vt && vt <= 12) {
 				char chvt[100];
 				sprintf(chvt, "chvt %d >/dev/null 2>/dev/null &", vt);
 				rfbLog("running: %s\n", chvt);
@@ -1677,11 +2451,23 @@ if (db) fprintf(stderr, "line1: '%s'\n", line1);
 				xauth_raw_data = (char *)malloc(n);
 				xauth_raw_len = n;
 				memcpy(xauth_raw_data, line2, n);
-if (db) fprintf(stderr, "xauth_raw_len: %d\n", n);
+if (db) {fprintf(stderr, "xauth_raw_len: %d\n", n);
+write(2, xauth_raw_data, n);
+fprintf(stderr, "\n");}
 			}
 		}
 
-		if (users_list_save && keep_unixpw_user) {
+		if (usslpeer) {
+			char *u = (char *) malloc(strlen(usslpeer+2));
+			sprintf(u, "+%s", usslpeer);
+			if (switch_user(u, 0)) {
+				rfbLog("sslpeer switched to user: %s\n", usslpeer);
+			} else {
+				rfbLog("sslpeer failed to switch to user: %s\n", usslpeer);
+			}
+			free(u);
+			
+		} else if (users_list_save && keep_unixpw_user) {
 			char *user = keep_unixpw_user;
 			char *u = (char *)malloc(strlen(user)+1); 
 
@@ -1708,7 +2494,7 @@ if (db) fprintf(stderr, "xauth_raw_len: %d\n", n);
 			} else if (switch_user(u, 0)) {
 				rfbLog("unixpw_accept switched to user: %s\n", user);
 			} else {
-				rfbLog("unixpw_accept failed to switched to user: %s\n", user);
+				rfbLog("unixpw_accept failed to switch to user: %s\n", user);
 			}
 			free(u);
 		}
@@ -1735,11 +2521,73 @@ if (db) fprintf(stderr, "xauth_raw_len: %d\n", n);
 	if (chg_raw_fb) {
 		raw_fb = NULL;
 	}
+
+	ncache = ncache_save;
+
 	if (unixpw && keep_unixpw_opts && keep_unixpw_opts[0] != '\0') {
 		user_supplied_opts(keep_unixpw_opts);
 	}
 	if (create_cmd) {
 		free(create_cmd);
+	}
+
+	if (vnc_redirect) {
+		char *q = strchr(use_dpy, ':');
+		int vdpy = -1, sock = -1;
+		int s_in, s_out, i;
+		if (vnc_redirect == 2) {
+			char num[32];	
+			sprintf(num, ":%d", vnc_redirect_port);
+			q = num;
+		}
+		if (!q) {
+			rfbLog("wait_for_client: can't find number in X display: %s\n", use_dpy);
+			clean_up_exit(1);
+		}
+		if (sscanf(q+1, "%d", &vdpy) != 1) {
+			rfbLog("wait_for_client: can't find number in X display: %s\n", q);
+			clean_up_exit(1);
+		}
+		if (vdpy == -1 && vnc_redirect != 2) {
+			rfbLog("wait_for_client: can't find number in X display: %s\n", q);
+			clean_up_exit(1);
+		}
+		if (vnc_redirect == 2) {
+			if (vdpy < 0) {
+				vdpy = -vdpy;
+			} else if (vdpy < 200) {
+				vdpy += 5900;
+			}
+		} else {
+			vdpy += 5900;
+		}
+		if (created_disp) {
+			usleep(1000*1000);
+		}
+		for (i=0; i < 20; i++) {
+			sock = rfbConnectToTcpAddr(vnc_redirect_host, vdpy);
+			if (sock >= 0) {
+				break;
+			}
+			rfbLog("wait_for_client: ...\n");
+			usleep(500*1000);
+		}
+		if (sock < 0) {
+			rfbLog("wait_for_client: could not connect to a VNC Server at %s:%d\n", vnc_redirect_host, vdpy);
+			clean_up_exit(1);
+		}
+		if (inetd) {
+			s_in  = fileno(stdin);
+			s_out = fileno(stdout);
+		} else {
+			s_in = s_out = vnc_redirect_sock;
+		}
+		if (vnc_redirect_cnt > 0) {
+			write(vnc_redirect_sock, vnc_redirect_test, vnc_redirect_cnt);
+		}
+		rfbLog("wait_for_client: switching control to VNC Server at %s:%d\n", vnc_redirect_host, vdpy);
+		raw_xfer(sock, s_in, s_out);
+		clean_up_exit(0);
 	}
 
 	return 1;

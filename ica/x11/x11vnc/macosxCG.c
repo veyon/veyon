@@ -6,6 +6,8 @@
  * will not work!!
  */
 
+void macosxCG_dummy(void) {}
+
 #if (defined(__MACH__) && defined(__APPLE__))
 
 #include <ApplicationServices/ApplicationServices.h>
@@ -13,6 +15,7 @@
 #include <Carbon/Carbon.h>
 
 void macosxCG_init(void);
+void macosxCG_fini(void);
 void macosxCG_event_loop(void);
 char *macosxCG_get_fb_addr(void);
 
@@ -29,16 +32,18 @@ int macosxCG_get_cursor(void);
 void macosxCG_init_key_table(void);
 void macosxCG_key_inject(int down, unsigned int keysym);
 
-CGDirectDisplayID displayID = NULL;
+CGDirectDisplayID displayID = 0;
 
-extern int collect_macosx_damage(int x_in, int y_in, int w_in, int h_in, int call);
+extern void macosx_log(char *);
+extern int collect_non_X_xdamage(int x_in, int y_in, int w_in, int h_in, int call);
 
 static void macosxCG_callback(CGRectCount n, const CGRect *rects, void *dum) {
 	int i, db = 0;
 	if (db) fprintf(stderr, "macosx_callback: n=%d\n", (int) n);
-	for (i=0; i < n; i++) {
+	if (!dum) {}
+	for (i=0; i < (int) n; i++) {
 		if (db > 1) fprintf(stderr, "               : %g %g - %g %g\n", rects[i].origin.x, rects[i].origin.y, rects[i].size.width, rects[i].size.height);
-		collect_macosx_damage( (int) rects[i].origin.x, (int) rects[i].origin.y,
+		collect_non_X_xdamage( (int) rects[i].origin.x, (int) rects[i].origin.y,
 		    (int) rects[i].size.width, (int) rects[i].size.height, 1);
 	}
 }
@@ -72,7 +77,7 @@ void macosxCG_refresh_callback_on(void) {
 	}
 
 	if (! callback_set) {
-		if (1) fprintf(stderr, "macosxCG_callback: register\n");
+		if (1) macosx_log("macosxCG_callback: register\n");
 		CGRegisterScreenRefreshCallback(macosxCG_callback, NULL);
 	}
 	callback_set = 1;
@@ -80,7 +85,7 @@ void macosxCG_refresh_callback_on(void) {
 
 void macosxCG_refresh_callback_off(void) {
 	if (callback_set) {
-		if (1) fprintf(stderr, "macosxCG_callback: unregister\n");
+		if (1) macosx_log("macosxCG_callback: unregister\n");
 		CGUnregisterScreenRefreshCallback(macosxCG_callback, NULL);
 	}
 	callback_set = 0;
@@ -88,11 +93,18 @@ void macosxCG_refresh_callback_off(void) {
 
 extern int macosx_noscreensaver;
 extern void macosxGCS_initpb(void);
+extern int macosxCGP_init_dimming(void);
+extern int macosxCGP_undim(void);
+extern int macosxCGP_dim_shutdown(void);
+extern void macosxCGP_screensaver_timer_off(void);
+extern void macosxCGP_screensaver_timer_on(void);
 
 void macosxCG_init(void) {
-	if (displayID == NULL) {
-		fprintf(stderr, "macosxCG_init: initializing display.\n");
-		//dragum();
+	if (displayID == 0) {
+		macosx_log("macosxCG_init: initializing display.\n");
+#if 0
+		dragum();
+#endif
 
 		displayID = kCGDirectMainDisplay;
 		(void) GetMainDevice();
@@ -125,6 +137,15 @@ extern int dpy_x, dpy_y, bpp, wdpy_x, wdpy_y;
 extern int client_count, nofb;
 extern void do_new_fb(int);
 extern int macosx_wait_for_switch, macosx_resize;
+
+extern void macosxGCS_poll_pb(void);
+#if 0
+extern void usleep(unsigned long usec);
+#else
+extern int usleep(useconds_t usec);
+#endif
+extern unsigned int sleep(unsigned int seconds);
+extern void clean_up_exit (int ret);
 
 void macosxCG_event_loop(void) {
 	OSStatus rc;
@@ -162,14 +183,14 @@ void macosxCG_event_loop(void) {
 					}
 				}
 				if ((cnt++ % 120) == 0) {
-					fprintf(stderr, "waiting for user to "
+					macosx_log("waiting for user to "
 					    "switch back..\n");
 				}
 				sleep(1);
 			}
 			if (wdpy_x == (int) CGDisplayPixelsWide(displayID)) {
 				if (wdpy_y == (int) CGDisplayPixelsHigh(displayID)) {
-					fprintf(stderr, "we're back...\n");
+					macosx_log("we're back...\n");
 					return;
 				}
 			}
@@ -232,11 +253,14 @@ static CGPoint current_cursor_pos(void) {
 	pos.y = 0;
 	if (! conn) {
 		if (CGSNewConnection(NULL, &conn) != kCGErrorSuccess) {
-			fprintf(stderr, "CGSNewConnection error\n");
+			macosx_log("CGSNewConnection error.\n");
+			if (!dpy_x || !dpy_y || !wdpy_x || !wdpy_y) {
+				clean_up_exit(1);
+			}
 		}
 	}
 	if (CGSGetCurrentCursorLocation(conn, &pos) != kCGErrorSuccess) {
-		fprintf(stderr, "CGSGetCurrentCursorLocation error\n");
+		macosx_log("CGSGetCurrentCursorLocation error\n");
 	}
 
 	display_button_mask = GetCurrentButtonState();
@@ -274,11 +298,11 @@ int macosxCG_get_cursor(void) {
 	int last_idx = (int) get_cursor_serial(1);
 	int which = 1;
 	CGError err;
-	int datasize, masksize, row_bytes, cdepth, comps, bpcomp;
+	int datasize, row_bytes, cdepth, comps, bpcomp;
 	CGRect rect;
 	CGPoint hot;
 	unsigned char *data;
-	int res, cursor_seed;
+	int cursor_seed;
 	static int last_cursor_seed = -1;
 	static time_t last_fetch = 0;
 	time_t now = time(NULL);
@@ -289,7 +313,10 @@ int macosxCG_get_cursor(void) {
 
 	if (! conn) {
 		if (CGSNewConnection(NULL, &conn) != kCGErrorSuccess) {
-			fprintf(stderr, "CGSNewConnection error\n");
+			macosx_log("CGSNewConnection error.\n");
+			if (!dpy_x || !dpy_y || !wdpy_x || !wdpy_y) {
+				clean_up_exit(1);
+			}
 			return which;
 		}
 	}
@@ -304,7 +331,7 @@ int macosxCG_get_cursor(void) {
 	last_fetch = now;
 
 	if (CGSGetGlobalCursorDataSize(conn, &datasize) != kCGErrorSuccess) {
-		fprintf(stderr, "CGSGetGlobalCursorDataSize error\n");
+		macosx_log("CGSGetGlobalCursorDataSize error\n");
 		return which;
 	}
 
@@ -313,7 +340,7 @@ int macosxCG_get_cursor(void) {
 	err = CGSGetGlobalCursorData(conn, data, &datasize, &row_bytes,
 	    &rect, &hot, &cdepth, &comps, &bpcomp);
 	if (err != kCGErrorSuccess) {
-		fprintf(stderr, "CGSGetGlobalCursorData error\n");
+		macosx_log("CGSGetGlobalCursorData error\n");
 		return which;
 	}
 
@@ -333,7 +360,7 @@ extern int macosx_swap23;
 extern int off_x, coff_x, off_y, coff_y;
 
 void macosxCG_pointer_inject(int mask, int x, int y) {
-	int swap23 = macosx_swap23, rc;
+	int swap23 = macosx_swap23;
 	int s1 = 0, s2 = 1, s3 = 2, s4 = 3, s5 = 4;
 	CGPoint loc;
 	int wheel_distance = macosx_mouse_wheel_speed;
@@ -469,7 +496,7 @@ static int USKeyCodes[] = {
     XK_question,          44,      /* ? */
     XK_backslash,         42,      /* \ */
     XK_bar,               42,      /* | */
-    // OS X Sends this (END OF MEDIUM) for Shift-Tab (with US Keyboard)
+    /* OS X Sends this (END OF MEDIUM) for Shift-Tab (with US Keyboard) */
     0x0019,               48,      /* Tab */
     XK_space,             49,      /* Space */
 };
@@ -557,23 +584,25 @@ void macosxCG_init_key_table(void) {
 		keyTable[i] = 0xFFFF;
 		keyTableMods[i] = 0;
 	}
-	for (i=0; i< (sizeof(USKeyCodes) / sizeof(int)); i += 2) {
+	for (i=0; i< (int) (sizeof(USKeyCodes) / sizeof(int)); i += 2) {
 		int j = USKeyCodes[i];
 		keyTable[(unsigned short) j] = (CGKeyCode) USKeyCodes[i+1];
 	}
-	for (i=0; i< (sizeof(SpecialKeyCodes) / sizeof(int)); i += 2) {
+	for (i=0; i< (int) (sizeof(SpecialKeyCodes) / sizeof(int)); i += 2) {
 		int j = SpecialKeyCodes[i];
 		keyTable[(unsigned short) j] = (CGKeyCode) SpecialKeyCodes[i+1];
 	}
 }
 
-void macosxCG_key_inject(int down, unsigned int keysym) {
-	static int control = 0, alt = 0;
-	int pressModsForKeys = FALSE;
+extern void init_key_table(void);
 
+void macosxCG_key_inject(int down, unsigned int keysym) {
 	CGKeyCode keyCode = keyTable[(unsigned short)keysym];
 	CGCharCode keyChar = 0;
+#if 0
+	int pressModsForKeys = FALSE;
 	UInt32 modsForKey = keyTableMods[keysym] << 8;
+#endif
 
 	init_key_table();
 

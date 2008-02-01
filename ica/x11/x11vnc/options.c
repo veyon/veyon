@@ -9,6 +9,8 @@
 int debug = 0;
 
 char *use_dpy = NULL;		/* -display */
+int display_N = 0;
+int auto_port = 0;
 char *auth_file = NULL;		/* -auth/-xauth */
 char *visual_str = NULL;	/* -visual */
 int set_visual_str_to_something = 0;
@@ -29,9 +31,12 @@ int ssl_no_fail = 0;
 char *openssl_pem = NULL;
 char *ssl_certs_dir = NULL;
 int https_port_num = -1;
+int https_port_redir = 0;
 char *ssl_verify = NULL;
 int ssl_initialized = 0;
 int ssl_timeout_secs = -1;
+char *ssh_str = NULL;
+pid_t ssh_pid = 0;
 int usepw = USEPW;
 char *blackout_str = NULL;	/* -blackout */
 int blackout_ptr = 0;
@@ -82,6 +87,7 @@ char *allowed_external_cmds = NULL;
 int started_as_root = 0;
 int host_lookup = 1;
 char *users_list = NULL;	/* -users */
+char **user2group = NULL;
 char *allow_list = NULL;	/* for -allow and -localhost */
 char *listen_str = NULL;
 char *allow_once = NULL;	/* one time -allow */
@@ -99,11 +105,12 @@ char *viewonly_passwd = NULL;	/* view only passwd. */
 char **passwd_list = NULL;	/* for -passwdfile */
 int begin_viewonly = -1;
 int inetd = 0;			/* spawned from inetd(8) */
-#ifndef FILEXFER
-#define FILEXFER 1
+#ifndef TIGHTFILEXFER
+#define TIGHTFILEXFER 0
 #endif
-int filexfer = FILEXFER; 
+int tightfilexfer = TIGHTFILEXFER; 
 int first_conn_timeout = 0;	/* -timeout */
+int ping_interval = 0;		/* -ping */
 int flash_cmap = 0;		/* follow installed colormaps */
 int shift_cmap = 0;		/* ncells < 256 and needs shift of pixel values */
 int force_indexed_color = 0;	/* whether to force indexed color for 8bpp */
@@ -112,11 +119,18 @@ int xform24to32 = 0;		/* -24to32 */
 char *cmap8to24_str = NULL;
 int launch_gui = 0;		/* -gui */
 
+#ifndef AVAHI
+#define AVAHI 0
+#endif
+int avahi = AVAHI;		/* -avahi, -mdns */
+int vnc_redirect = 0;
+int vnc_redirect_sock = -1;
+
 int use_modifier_tweak = 1;	/* use the shift/altgr modifier tweak */
 int watch_capslock = 0;		/* -capslock */
 int skip_lockkeys = 0;		/* -skip_lockkeys */
 int use_iso_level3 = 0;		/* ISO_Level3_Shift instead of Mode_switch */
-int clear_mods = 0;		/* -clear_mods (1) and -clear_keys (2) */
+int clear_mods = 0;		/* -clear_mods (1) and -clear_keys (2) -clear_locks (3) */
 int nofb = 0;			/* do not send any fb updates */
 char *raw_fb_str = NULL;	/* used under -rawfb */
 char *raw_fb_pixfmt = NULL;
@@ -137,6 +151,7 @@ int macosx_mouse_wheel_speed = 5;
 int macosx_console = 0;
 int macosx_swap23 = 1;
 int macosx_resize = 1;
+int macosx_icon_anim_time = 450;
 
 unsigned long subwin = 0x0;	/* -id, -sid */
 int subwin_wait_mapped = 0;
@@ -151,6 +166,7 @@ int debug_sel = 0;
 int xtrap_input = 0;		/* -xtrap for user input insertion */
 int xinerama = XINERAMA;	/* -xinerama */
 int xrandr = 0;			/* -xrandr */
+int xrandr_maybe = 1;		/* check for events, but don't trap all calls */
 char *xrandr_mode = NULL;
 char *pad_geometry = NULL;
 time_t pad_geometry_time = 0;
@@ -163,6 +179,7 @@ char *client_connect = NULL;	/* strings for -connect option */
 char *client_connect_file = NULL;
 int connect_or_exit = 0;
 int vnc_connect = 1;		/* -vncconnect option */
+char *connect_proxy = NULL;
 
 int show_cursor = 1;		/* show cursor shapes */
 int show_multiple_cursors = 0;	/* show X when on root background, etc */
@@ -192,6 +209,47 @@ char *wireframe_copyrect_default = "never";
 #endif
 int wireframe_in_progress = 0;
 int wireframe_local = 1;
+
+#ifndef NCACHE
+#ifdef NO_NCACHE
+#define NCACHE 0 
+#else
+#define xxNCACHE -12
+#define NCACHE -1
+#endif
+#endif
+
+#ifdef MACOSX
+int ncache = 0;
+int ncache_pad = 24;
+#else
+int ncache = NCACHE;
+int ncache_pad = 0;
+#endif
+
+#ifndef NCACHE_XROOTPMAP
+#define NCACHE_XROOTPMAP 1
+#endif
+int ncache_xrootpmap = NCACHE_XROOTPMAP;
+int ncache0 = 0;
+int ncache_default = 10;
+int ncache_copyrect = 0;
+int ncache_wf_raises = 1;
+int ncache_dt_change = 1;
+int ncache_keep_anims = 0;
+int ncache_old_wm = 0;
+int macosx_ncache_macmenu = 0;
+int ncache_beta_tester = 0;
+int ncdb = 0;
+
+Atom atom_NET_ACTIVE_WINDOW = None;
+Atom atom_NET_CURRENT_DESKTOP = None;
+Atom atom_NET_CLIENT_LIST_STACKING = None;
+Atom atom_XROOTPMAP_ID = None;
+double got_NET_ACTIVE_WINDOW = 0.0;
+double got_NET_CURRENT_DESKTOP = 0.0;
+double got_NET_CLIENT_LIST_STACKING = 0.0;
+double got_XROOTPMAP_ID = 0.0;
 
 /* T+B+L+R,tkey+presist_key,tmouse+persist_mouse */
 char *scroll_copyrect_str = NULL;
@@ -292,11 +350,12 @@ int flip_byte_order = 0;	/* sometimes needed when using_shm = 0 */
  * waitms is the msec to wait between screen polls.  Not too old h/w shows
  * poll times of 10-35ms, so maybe this value cuts the idle load by 2 or so.
  */
-int waitms = 30;
+int waitms = 20;
 double wait_ui = 2.0;
 double slow_fb = 0.0;
+double xrefresh = 0.0;
 int wait_bog = 1;
-int defer_update = 30;	/* deferUpdateTime ms to wait before sends. */
+int defer_update = 20;	/* deferUpdateTime ms to wait before sends. */
 int got_defer = 0;
 int got_deferupdate = 0;
 
@@ -318,6 +377,12 @@ int watch_fbpm = 0;
 #endif
 
 int watch_dpms = 0;	/* -dpms */
+int force_dpms = 0;
+int client_dpms = 0;
+int no_ultra_dpms = 0;
+int no_ultra_ext = 0;
+int saw_ultra_chat = 0;
+int saw_ultra_file = 0;
 
 int watch_selection = 1;	/* normal selection/cutbuffer maintenance */
 int watch_primary = 1;		/* more dicey, poll for changes in PRIMARY */
@@ -355,6 +420,7 @@ int use_threads = 0;
 #endif
 
 /* info about command line opts */
+int got_noxwarppointer = 0;
 int got_rfbport = 0;
 int got_rfbport_val = -1;
 int got_alwaysshared = 0;

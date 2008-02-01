@@ -14,12 +14,17 @@
 #include "unixpw.h"
 #include "cleanup.h"
 #include "macosx.h"
+#include "screen.h"
+#include "pm.h"
+#include "pointer.h"
+#include "remote.h"
 
 /* XXX CHECK BEFORE RELEASE */
 int grab_buster = 0;
 int grab_kbd = 0;
 int grab_ptr = 0;
-int sync_tod_delay = 3;
+int grab_always = 0;
+int sync_tod_delay = 20;
 
 void initialize_vnc_connect_prop(void);
 void initialize_x11vnc_remote_prop(void);
@@ -28,13 +33,20 @@ void spawn_grab_buster(void);
 void sync_tod_with_servertime(void);
 void check_keycode_state(void);
 void check_autorepeat(void);
+void set_prop_atom(Atom atom);
 void check_xevents(int reset);
 void xcut_receive(char *text, int len, rfbClientPtr cl);
 
+void kbd_release_all_keys(rfbClientPtr cl);
+void set_single_window(rfbClientPtr cl, int x, int y);
+void set_server_input(rfbClientPtr cl, int s);
+void set_text_chat(rfbClientPtr cl, int l, char *t);
+int get_keyboard_led_state_hook(rfbScreenInfoPtr s);
+int get_file_transfer_permitted(rfbClientPtr cl);
+void get_prop(char *str, int len, Atom prop);
 
 static void initialize_xevents(int reset);
 static void print_xevent_bases(void);
-static void get_prop(char *str, int len, Atom prop);
 static void bust_grab(int reset);
 static int process_watch(char *str, int parent, int db);
 static void grab_buster_watch(int parent, char *dstr);
@@ -75,6 +87,11 @@ void initialize_clipboard_atom(void) {
 }
 
 static void initialize_xevents(int reset) {
+#if NO_X11
+	RAWFB_RET_VOID
+	if (!reset) {}
+	return;
+#else
 	static int did_xselect_input = 0;
 	static int did_xcreate_simple_window = 0;
 	static int did_vnc_connect_prop = 0;
@@ -85,9 +102,6 @@ static void initialize_xevents(int reset) {
 	static int did_xrandr = 0;
 
 	RAWFB_RET_VOID
-#if NO_X11
-	return;
-#else
 
 	if (reset) {
 		did_xselect_input = 0;
@@ -107,7 +121,8 @@ static void initialize_xevents(int reset) {
 		 * XXX: does this cause a flood of other stuff?
 		 */
 		X_LOCK;
-		XSelectInput(dpy, rootwin, PropertyChangeMask);
+		xselectinput_rootwin |= PropertyChangeMask;
+		XSelectInput_wr(dpy, rootwin, xselectinput_rootwin);
 		X_UNLOCK;
 		did_xselect_input = 1;
 	}
@@ -120,7 +135,7 @@ static void initialize_xevents(int reset) {
 		did_xcreate_simple_window = 1;
 	}
 
-	if (xrandr && !did_xrandr) {
+	if ((xrandr || xrandr_maybe) && !did_xrandr) {
 		initialize_xrandr();
 		did_xrandr = 1;
 	}
@@ -163,11 +178,14 @@ static void print_xevent_bases(void) {
 	fprintf(stderr, "  SelClear=%d, Expose=%d\n", SelectionClear, Expose);
 }
 
-static void get_prop(char *str, int len, Atom prop) {
+void get_prop(char *str, int len, Atom prop) {
+	int i;
+#if !NO_X11
 	Atom type;
-	int format, slen, dlen, i;
+	int format, slen, dlen;
 	unsigned long nitems = 0, bytes_after = 0;
 	unsigned char* data = NULL;
+#endif
 
 	for (i=0; i<len; i++) {
 		str[i] = '\0';
@@ -175,7 +193,9 @@ static void get_prop(char *str, int len, Atom prop) {
 	if (prop == None) {
 		return;
 	}
+
 	RAWFB_RET_VOID
+
 #if NO_X11
 	return;
 #else
@@ -204,6 +224,10 @@ static void get_prop(char *str, int len, Atom prop) {
 }
 
 static void bust_grab(int reset) {
+#if NO_X11
+	if (!reset) {}
+	return;
+#else
 	static int bust_count = 0;
 	static time_t last_bust = 0;
 	time_t now = time(NULL);
@@ -217,9 +241,6 @@ static void bust_grab(int reset) {
 		bust_count = 0;
 		return;
 	}
-#if NO_X11
-	return;
-#else
 
 	x = 0;
 	y = 0;
@@ -464,6 +485,11 @@ static int process_watch(char *str, int parent, int db) {
 }
 
 static void grab_buster_watch(int parent, char *dstr) {
+#if NO_X11
+	RAWFB_RET_VOID
+	if (!parent || !dstr) {}
+	return;
+#else
 	Atom ticker_atom = None;
 	int sleep = sync_tod_delay * 921 * 1000;
 	char propval[200];
@@ -471,9 +497,6 @@ static void grab_buster_watch(int parent, char *dstr) {
 	int db = 0;
 
 	RAWFB_RET_VOID
-#if NO_X11
-	return;
-#else
 
 	if (grab_buster > 1) {
 		db = 1;
@@ -576,6 +599,10 @@ void spawn_grab_buster(void) {
 }
 
 void sync_tod_with_servertime(void) {
+#if NO_X11
+	RAWFB_RET_VOID
+	return;
+#else
 	static Atom ticker_atom = None;
 	XEvent xev;
 	char diff[128];
@@ -584,9 +611,19 @@ void sync_tod_with_servertime(void) {
 	int i, db = 0;
 
 	RAWFB_RET_VOID
-#if NO_X11
-	return;
-#else
+
+	if (atom_NET_ACTIVE_WINDOW == None) {
+		atom_NET_ACTIVE_WINDOW = XInternAtom(dpy, "_NET_ACTIVE_WINDOW", True);
+	}
+	if (atom_NET_CURRENT_DESKTOP == None) {
+		atom_NET_CURRENT_DESKTOP = XInternAtom(dpy, "_NET_CURRENT_DESKTOP", True);
+	}
+	if (atom_NET_CLIENT_LIST_STACKING == None) {
+		atom_NET_CLIENT_LIST_STACKING = XInternAtom(dpy, "_NET_CLIENT_LIST_STACKING", True);
+	}
+	if (atom_XROOTPMAP_ID == None) {
+		atom_XROOTPMAP_ID = XInternAtom(dpy, "_XROOTPMAP_ID", True);
+	}
 
 	if (! ticker_atom) {
 		ticker_atom = XInternAtom(dpy, "X11VNC_TICKER", False);
@@ -597,7 +634,7 @@ void sync_tod_with_servertime(void) {
 
 	XSync(dpy, False);
 	while (XCheckTypedEvent(dpy, PropertyNotify, &xev)) {
-		;
+		set_prop_atom(xev.xproperty.atom);
 	}
 
 	snprintf(diff, 128, "%d/%08d/%lu/%.6f", (int) getpid(), seq++,
@@ -727,11 +764,24 @@ void check_autorepeat(void) {
 	}
 }
 
+void set_prop_atom(Atom atom) {
+	if (atom == None) return;
+	if (atom == atom_NET_ACTIVE_WINDOW) got_NET_ACTIVE_WINDOW = dnow();
+	if (atom == atom_NET_CURRENT_DESKTOP) got_NET_CURRENT_DESKTOP = dnow();
+	if (atom == atom_NET_CLIENT_LIST_STACKING) got_NET_CLIENT_LIST_STACKING = dnow();
+	if (atom == atom_XROOTPMAP_ID) got_XROOTPMAP_ID = dnow();
+}
+
 /*
  * This routine is periodically called to check for selection related
  * and other X11 events and respond to them as needed.
  */
 void check_xevents(int reset) {
+#if NO_X11
+	RAWFB_RET_VOID
+	if (!reset) {}
+	return;
+#else
 	XEvent xev;
 	int tmp, have_clients = 0;
 	static int sent_some_sel = 0;
@@ -742,14 +792,12 @@ void check_xevents(int reset) {
 	static time_t last_time_sync = 0;
 	time_t now = time(NULL);
 	static double last_request = 0.0;
+	static double last_xrefresh = 0.0;
 	XErrorHandler old_handler;
 
 	if (unixpw_in_progress) return;
 
 	RAWFB_RET_VOID
-#if NO_X11
-	return;
-#else
 
 	if (now > last_init_check+1 || reset) {
 		last_init_check = now;
@@ -787,6 +835,31 @@ void check_xevents(int reset) {
 			last_X_ping = now;
 			XGetSelectionOwner(dpy, XA_PRIMARY);
 		}
+	}
+
+	if (have_clients && xrefresh > 0.0 && dnow() > last_xrefresh + xrefresh) {
+		XSetWindowAttributes swa;
+		Visual visual;
+		Window xrf;
+		unsigned long mask;
+
+		swa.override_redirect = True;
+		swa.backing_store = NotUseful;
+		swa.save_under = False;
+		swa.background_pixmap = None;
+		visual.visualid = CopyFromParent;
+		mask = (CWOverrideRedirect|CWBackingStore|CWSaveUnder|CWBackPixmap);
+
+		xrf = XCreateWindow(dpy, window, coff_x, coff_y, dpy_x, dpy_y, 0, CopyFromParent,
+		    InputOutput, &visual, mask, &swa);
+		if (xrf != None) {
+			if (0) fprintf(stderr, "XCreateWindow(%d, %d, %d, %d) 0x%lx\n", coff_x, coff_y, dpy_x, dpy_y, xrf);
+			XMapWindow(dpy, xrf);
+			XFlush_wr(dpy);
+			XDestroyWindow(dpy, xrf);
+			XFlush_wr(dpy);
+		}
+		last_xrefresh = dnow();
 	}
 
 	if (now > last_call+1) {
@@ -827,6 +900,7 @@ void check_xevents(int reset) {
 
 		XSetErrorHandler(old_handler);
 		trapped_xerror = 0;
+		last_call = now;
 	}
 
 	/* check for CUT_BUFFER0 and VNC_CONNECT changes: */
@@ -857,7 +931,10 @@ void check_xevents(int reset) {
 				 * Go retrieve X11VNC_REMOTE string.
 				 */
 				read_x11vnc_remote_prop(0);
+
+
 			}
+			set_prop_atom(xev.xproperty.atom);
 		}
 	}
 
@@ -872,7 +949,7 @@ void check_xevents(int reset) {
 	}
 
 #if LIBVNCSERVER_HAVE_LIBXRANDR
-	if (xrandr) {
+	if (xrandr || xrandr_maybe) {
 		check_xrandr_event("check_xevents");
 	}
 #endif
@@ -1109,10 +1186,10 @@ void check_xevents(int reset) {
 	}
 	X_UNLOCK;
 
-	last_call = now;
 #endif	/* NO_X11 */
 }
 
+extern int rawfb_vnc_reflect;
 /*
  * hook called when a VNC client sends us some "XCut" text (rfbClientCutText).
  */
@@ -1144,7 +1221,14 @@ void xcut_receive(char *text, int len, rfbClientPtr cl) {
 
 #ifdef MACOSX
 	if (macosx_console) {
-		return macosx_set_sel(text, len);
+		macosx_set_sel(text, len);
+		return;
+	}
+#endif
+#if 0
+	if (rawfb_vnc_reflect) {
+		vnc_reflect_send_cuttext(text, len);
+		return;
 	}
 #endif
 
@@ -1212,6 +1296,186 @@ void xcut_receive(char *text, int len, rfbClientPtr cl) {
 
 	set_cutbuffer = 1;
 #endif	/* NO_X11 */
+}
+
+void kbd_release_all_keys(rfbClientPtr cl) {
+	if (unixpw_in_progress) {
+		rfbLog("kbd_release_all_keys: unixpw_in_progress, skipping.\n");
+		return;
+	}
+	if (cl->viewOnly) {
+		return;
+	}
+
+	RAWFB_RET_VOID
+
+#if NO_X11
+	return;
+#else
+	clear_keys();
+	clear_modifiers(0);
+#endif
+}
+
+void set_single_window(rfbClientPtr cl, int x, int y) {
+	int ok = 0;
+	if (no_ultra_ext) {
+		return;
+	}
+	if (unixpw_in_progress) {
+		rfbLog("set_single_window: unixpw_in_progress, dropping client.\n");
+		rfbCloseClient(cl);
+		return;
+	}
+	if (cl->viewOnly) {
+		return;
+	}
+
+	RAWFB_RET_VOID
+
+#if NO_X11
+	return;
+#else
+	if (x==1 && y==1) {
+		if (subwin) {
+			subwin = 0x0;
+			ok = 1;
+		}
+	} else {
+		Window r, c;
+		int rootx, rooty, wx, wy;
+		unsigned int mask;
+
+		update_x11_pointer_position(x, y);
+		XSync(dpy, False);
+
+		if (XQueryPointer_wr(dpy, rootwin, &r, &c, &rootx, &rooty,
+		    &wx, &wy, &mask)) {
+			if (c != None) {
+				subwin = c;
+				ok = 1;
+			}
+		}
+	}
+
+	if (ok) {
+		check_black_fb();
+		do_new_fb(1);	
+	}
+#endif
+
+}
+void set_server_input(rfbClientPtr cl, int grab) {
+	if (no_ultra_ext) {
+		return;
+	}
+	if (unixpw_in_progress) {
+		rfbLog("set_server_input: unixpw_in_progress, dropping client.\n");
+		rfbCloseClient(cl);
+		return;
+	}
+	if (cl->viewOnly) {
+		return;
+	}
+
+	RAWFB_RET_VOID
+
+#if NO_X11
+	return;
+#else
+	if (grab) {
+		if (!no_ultra_dpms) {
+			set_dpms_mode("enable");
+			set_dpms_mode("off");
+			force_dpms = 1;
+		}
+
+		process_remote_cmd("cmd=grabkbd", 0);
+		process_remote_cmd("cmd=grabptr", 0);
+
+	} else {
+		process_remote_cmd("cmd=nograbkbd", 0);
+		process_remote_cmd("cmd=nograbptr", 0);
+
+		if (!no_ultra_dpms) {
+			force_dpms = 0;
+		}
+	}
+#endif
+}
+
+void set_text_chat(rfbClientPtr cl, int len, char *txt) {
+	int dochat = 1;
+	rfbClientIteratorPtr iter;
+	rfbClientPtr cl2;
+
+	if (no_ultra_ext || ! dochat) {
+		return;
+	}
+
+#if 0
+	rfbLog("set_text_chat: len=%d\n", len);
+	rfbLog("set_text_chat: len=0x%x txt='", len);
+	if (0 < len && len < 10000) write(2, txt, len);
+	fprintf(stderr, "'\n");
+#endif
+	if (unixpw_in_progress) {
+		rfbLog("set_text_chat: unixpw_in_progress, dropping client.\n");
+		rfbCloseClient(cl);
+		return;
+	}
+
+	saw_ultra_chat = 1;
+
+	iter = rfbGetClientIterator(screen);
+	while( (cl2 = rfbClientIteratorNext(iter)) ) {
+		unsigned int ulen = (unsigned int) len;
+		if (cl2 == cl) {
+			continue;
+		}
+		if (ulen == rfbTextChatOpen) {
+			rfbSendTextChatMessage(cl2, rfbTextChatOpen, "");
+		} else if (ulen == rfbTextChatClose) {
+			rfbSendTextChatMessage(cl2, rfbTextChatClose, "");
+		} else if (ulen == rfbTextChatFinished) {
+			rfbSendTextChatMessage(cl2, rfbTextChatFinished, "");
+		} else if (len <= rfbTextMaxSize) {
+			rfbSendTextChatMessage(cl2, len, txt);
+		}
+	}
+	rfbReleaseClientIterator(iter);
+}
+
+int get_keyboard_led_state_hook(rfbScreenInfoPtr s) {
+	if (s) {}
+	if (unixpw_in_progress) {
+		rfbLog("get_keyboard_led_state_hook: unixpw_in_progress, skipping.\n");
+		return 0;
+	}
+	return 0;
+}
+int get_file_transfer_permitted(rfbClientPtr cl) {
+	allowed_input_t input;
+	if (unixpw_in_progress) {
+		rfbLog("get_file_transfer_permitted: unixpw_in_progress, dropping client.\n");
+		rfbCloseClient(cl);
+		return FALSE;
+	}
+if (0) fprintf(stderr, "get_file_transfer_permitted called\n");
+	if (view_only) {
+		return FALSE;
+	}
+	if (cl->viewOnly) {
+		return FALSE;
+	}
+	get_allowed_input(cl, &input);
+	if (!input.files) {
+		return FALSE;
+	}
+	if (screen->permitFileTransfer) {
+		saw_ultra_file = 1;
+	}
+	return screen->permitFileTransfer;
 }
 
 

@@ -1,7 +1,7 @@
 /*
  * x11vnc: a VNC server for X displays.
  *
- * Copyright (c) 2002-2006 Karl J. Runge <runge@karlrunge.com>
+ * Copyright (c) 2002-2007 Karl J. Runge <runge@karlrunge.com>
  * All rights reserved.
  *
  *  This is free software; you can redistribute it and/or modify
@@ -75,7 +75,7 @@
  * extensions exists that allow drawing the mouse into the framebuffer)
  * 
  * The current *position* of the remote X mouse pointer is shown with
- * the -cursor option.  Further, if -cursorX or -X is used, a trick
+ * the -cursor option.  Further, if -cursor X is used, a trick
  * is done to at least show the root window cursor vs non-root cursor.
  * (perhaps some heuristic can be done to further distinguish cases...,
  * currently "-cursor some" is a first hack at this)
@@ -157,7 +157,7 @@ static int limit_shm(void);
 static void check_rcfile(int argc, char **argv);
 static void immediate_switch_user(int argc, char* argv[]);
 static void print_settings(int try_http, int bg, char *gui_str);
-static void check_loop_mode(int argc, char* argv[]);
+static void check_loop_mode(int argc, char* argv[], int force);
 
 
 static void check_cursor_changes(void) {
@@ -329,7 +329,7 @@ static int choose_delay(double dt) {
 	}
 	dts[ndt-1] = dt;
 
-if (0 && dt > 0.0) fprintf(stderr, "dt: %.5f %.4f\n", dt, dnow() - x11vnc_start);
+if (0 && dt > 0.0) fprintf(stderr, "dt: %.5f %.4f\n", dt, dnowx());
 	if (bogdown) {
 		if (use_xdamage) {
 			/* DAMAGE can queue ~1000 rectangles for a scroll */
@@ -392,6 +392,704 @@ if (0 && dt > 0.0) fprintf(stderr, "dt: %.5f %.4f\n", dt, dnow() - x11vnc_start)
 	t1 = t2;
 
 	return msec;
+}
+
+static int tsdo_timeout_flag;
+
+static void tsdo_timeout (int sig) {
+	tsdo_timeout_flag = 1;
+	if (sig) {};
+}
+
+#define TASKMAX 32
+static pid_t ts_tasks[TASKMAX];
+static int ts_taskn = -1;
+
+int tsdo(int port, int lsock, int *conn) {
+	int csock, rsock, i, db = 1;
+	pid_t pid;
+	struct sockaddr_in addr;
+#ifdef __hpux
+	int addrlen = sizeof(addr);
+#else
+	socklen_t addrlen = sizeof(addr);
+#endif
+
+	if (*conn < 0) {
+		signal(SIGALRM, tsdo_timeout);
+		tsdo_timeout_flag = 0;
+
+		alarm(10);
+		csock = accept(lsock, (struct sockaddr *)&addr, &addrlen);
+		alarm(0);
+
+		if (db) rfbLog("tsdo: accept: lsock: %d, csock: %d, port: %d\n", lsock, csock, port);
+
+		if (tsdo_timeout_flag > 0 || csock < 0) {
+			close(csock);
+			*conn = -1;
+			return 1;
+		}
+		*conn = csock;
+	} else {
+		csock = *conn;
+		if (db) rfbLog("tsdo: using exiting csock: %d, port: %d\n", csock, port);
+	}
+
+	rsock = rfbConnectToTcpAddr("127.0.0.1", port);
+	if (rsock < 0) {
+		if (db) rfbLog("tsdo: rfbConnectToTcpAddr(port=%d) failed.\n", port);
+		return 2;
+	}
+
+	pid = fork();
+	if (pid < 0) {
+		close(rsock);
+		return 3;
+	}
+	if (pid > 0) {
+		ts_taskn = (ts_taskn+1) % TASKMAX;
+		ts_tasks[ts_taskn] = pid;
+		close(csock);
+		*conn = -1;
+		close(rsock);
+		return 0;
+	}
+	if (pid == 0) {
+		for (i=0; i<255; i++) {
+			if (i != csock && i != rsock && i != 2) {
+				close(i);
+			}
+		}
+#if LIBVNCSERVER_HAVE_SETSID
+		if (setsid() == -1) {
+			perror("setsid");
+			exit(1);
+		}
+#else
+		if (setpgrp() == -1) {
+			perror("setpgrp");
+			exit(1);
+		}
+#endif	/* SETSID */
+		raw_xfer(rsock, csock, csock);
+		exit(0);
+	}
+	return 0;
+}
+
+void set_redir_properties(void);
+
+#define TSMAX 32
+#define TSSTK 16
+void terminal_services(char *list) {
+	int i, j, n = 0, db = 1;
+	char *p, *q, *r, *str = strdup(list);
+#if !NO_X11
+	char *tag[TSMAX];
+	int listen[TSMAX], redir[TSMAX][TSSTK], socks[TSMAX], tstk[TSSTK];
+	Atom at, atom[TSMAX];
+	fd_set rd;
+	Window rwin;
+	XErrorHandler   old_handler1;
+	XIOErrorHandler old_handler2;
+	char num[32];
+	time_t last_clean = time(NULL);
+
+	if (! dpy) {
+		return;
+	}
+	rwin = RootWindow(dpy, DefaultScreen(dpy));
+
+	at = XInternAtom(dpy, "TS_REDIR_LIST", False);
+	if (at != None) {
+		XChangeProperty(dpy, rwin, at, XA_STRING, 8,
+		    PropModeReplace, (unsigned char *)list, strlen(list));
+		XSync(dpy, False);
+	}
+	for (i=0; i<TASKMAX; i++) {
+		ts_tasks[i] = 0;
+	}
+	for (i=0; i<TSMAX; i++) {
+		for (j=0; j<TSSTK; j++) {
+			redir[i][j] = 0;
+		}
+	}
+
+	p = strtok(str, ",");
+	while (p) {
+		int m1, m2;
+		if (db) fprintf(stderr, "item: %s\n", p);
+		q = strrchr(p, ':');
+		if (!q) {
+			p = strtok(NULL, ",");
+			continue;
+		}
+		r = strchr(p, ':');
+		if (!r || r == q) {
+			p = strtok(NULL, ",");
+			continue;
+		}
+
+		m1 = atoi(q+1);
+		*q = '\0';
+		m2 = atoi(r+1);
+		*r = '\0';
+
+		if (m1 <= 0 || m2 <= 0 || m1 >= 0xffff || m2 >= 0xffff) {
+			p = strtok(NULL, ",");
+			continue;
+		}
+
+		redir[n][0] = m1;
+		listen[n] = m2;
+		tag[n] = strdup(p);
+
+		if (db) fprintf(stderr, "     %d %d %s\n", redir[n][0], listen[n], tag[n]);
+
+		*r = ':';
+		*q = ':';
+
+		n++;
+		if (n >= TSMAX) {
+			break;
+		}
+		p = strtok(NULL, ",");
+	}
+	free(str);
+
+	if (n==0) {
+		return;
+	}
+
+	at = XInternAtom(dpy, "TS_REDIR_PID", False);
+	if (at != None) {
+		sprintf(num, "%d", getpid());
+		XChangeProperty(dpy, rwin, at, XA_STRING, 8,
+		    PropModeReplace, (unsigned char *)num, strlen(num));
+		XSync(dpy, False);
+	}
+
+	for (i=0; i<n; i++) {
+		atom[i] = XInternAtom(dpy, tag[i], False);
+		if (db) fprintf(stderr, "tag: %s atom: %d\n", tag[i], (int) atom[i]);
+		if (atom[i] == None) {
+			continue;
+		}
+		sprintf(num, "%d", redir[i][0]);
+		if (db) fprintf(stderr, "     listen: %d  redir: %s\n", listen[i], num);
+		XChangeProperty(dpy, rwin, atom[i], XA_STRING, 8,
+		    PropModeReplace, (unsigned char *)num, strlen(num));
+		XSync(dpy, False);
+
+		socks[i] = rfbListenOnTCPPort(listen[i], htonl(INADDR_LOOPBACK));
+	}
+
+	if (getenv("TSD_RESTART")) {
+		if (!strcmp(getenv("TSD_RESTART"), "1")) {
+			set_redir_properties();
+		}
+	}
+
+	while (1) {
+		struct timeval tv;
+		int nfd;
+		int fmax = -1;
+
+		tv.tv_sec  = 3;
+		tv.tv_usec = 0;
+
+		FD_ZERO(&rd);
+		for (i=0; i<n; i++) {
+			if (socks[i] >= 0) {
+				FD_SET(socks[i], &rd);
+				if (socks[i] > fmax) {
+					fmax = socks[i];
+				}
+			}
+		}
+
+		nfd = select(fmax+1, &rd, NULL, NULL, &tv);
+
+		if (db && 0) fprintf(stderr, "nfd=%d\n", nfd);
+		if (nfd < 0 && errno == EINTR) {
+			XSync(dpy, True);
+			continue;
+		}
+		if (nfd > 0) {
+			for(i=0; i<n; i++) {
+				int k = 0;
+				for (j = 0; j < TSSTK; j++) {
+					tstk[j] = 0;
+				}
+				for (j = 0; j < TSSTK; j++) {
+					if (redir[i][j] != 0) {
+						tstk[k++] = redir[i][j];
+					}
+				}
+				for (j = 0; j < TSSTK; j++) {
+					redir[i][j] = tstk[j];
+if (tstk[j] != 0) fprintf(stderr, "B redir[%d][%d] = %d  %s\n", i, j, tstk[j], tag[i]);
+				}
+			}
+			for(i=0; i<n; i++) {
+				int s = socks[i];
+				if (s < 0) {
+					continue;
+				}
+				if (FD_ISSET(s, &rd)) {
+					int p0, p, found = -1, jzero = -1;
+					int conn = -1;
+
+					get_prop(num, 32, atom[i]);
+					p0 = atoi(num);
+
+					for (j = TSSTK-1; j >= 0; j--) {
+						if (redir[i][j] == 0) {
+							jzero = j;
+							continue;
+						}
+						if (p0 > 0 && p0 < 0xffff) {
+							if (redir[i][j] == p0) {
+								found = j;
+								break;
+							}
+						}
+					}
+					if (jzero < 0) {
+						jzero = TSSTK-1;
+					}
+					if (found < 0) {
+						if (p0 > 0 && p0 < 0xffff) {
+							redir[i][jzero] = p0;
+						}
+					}
+					for (j = TSSTK-1; j >= 0; j--) {
+						int rc;
+						p = redir[i][j];
+						if (p <= 0 || p >= 0xffff) {
+							redir[i][j] = 0;
+							continue;
+						}
+						rc = tsdo(p, s, &conn);
+						if (rc == 0) {
+							/* AOK */
+							if (db) fprintf(stderr, "tsdo[%d] OK: %d\n", i, p);
+							if (p != p0) {
+								sprintf(num, "%d", p);
+								XChangeProperty(dpy, rwin, atom[i], XA_STRING, 8,
+								    PropModeReplace, (unsigned char *)num, strlen(num));
+								XSync(dpy, False);
+							}
+							break;
+						} else if (rc == 1) {
+							/* accept failed */
+							if (db) fprintf(stderr, "tsdo[%d] accept failed: %d\n", i, p);
+							break;
+						} else if (rc == 2) {
+							/* connect failed */
+							if (db) fprintf(stderr, "tsdo[%d] connect failed: %d\n", i, p);
+							redir[i][j] = 0;
+							continue;
+						} else if (rc == 3) {
+							/* fork failed */
+							usleep(250*1000);
+							break;
+						}
+					}
+					for (j = 0; j < TSSTK; j++) {
+						if (redir[i][j] != 0) fprintf(stderr, "A redir[%d][%d] = %d  %s\n", i, j, redir[i][j], tag[i]);
+					}
+				}
+			}
+		}
+		for (i=0; i<TASKMAX; i++) {
+			pid_t p = ts_tasks[i];
+			if (p > 0) {
+				int status;
+				pid_t p2 = waitpid(p, &status, WNOHANG); 
+				if (p2 == p) {
+					ts_tasks[i] = 0;
+				}
+			}
+		}
+		/* this is to drop events and exit when X server is gone. */
+		old_handler1 = XSetErrorHandler(trap_xerror);
+		old_handler2 = XSetIOErrorHandler(trap_xioerror);
+		trapped_xerror = 0;
+		trapped_xioerror = 0;
+
+		XSync(dpy, True);
+
+		sprintf(num, "%d", (int) time(NULL));
+		at = XInternAtom(dpy, "TS_REDIR", False);
+		if (at != None) {
+			XChangeProperty(dpy, rwin, at, XA_STRING, 8,
+			    PropModeReplace, (unsigned char *)num, strlen(num));
+			XSync(dpy, False);
+		}
+		if (time(NULL) > last_clean + 20 * 60) {
+			int i, j;
+			for(i=0; i<n; i++) {
+				int first = 1;
+				for (j = TSSTK-1; j >= 0; j--) {
+					int s, p = redir[i][j];
+					if (p <= 0 || p >= 0xffff) {
+						redir[i][j] = 0;
+						continue;
+					}
+					s = rfbConnectToTcpAddr("127.0.0.1", p);
+					if (s < 0) {
+						redir[i][j] = 0;
+						if (db) fprintf(stderr, "tsdo[%d][%d] clean: connect failed: %d\n", i, j, p);
+					} else {
+						close(s);
+						if (first) {
+							sprintf(num, "%d", p);
+							XChangeProperty(dpy, rwin, atom[i], XA_STRING, 8,
+							    PropModeReplace, (unsigned char *)num, strlen(num));
+							XSync(dpy, False);
+						}
+						first = 0;
+					}
+					usleep(500*1000);
+				}
+			}
+			last_clean = time(NULL);
+		}
+		if (trapped_xerror || trapped_xioerror) {
+			if (db) fprintf(stderr, "Xerror: %d/%d\n", trapped_xerror, trapped_xioerror);
+			exit(0);
+		}
+		XSetErrorHandler(old_handler1);
+		XSetIOErrorHandler(old_handler2);
+	}
+#endif
+}
+
+char *ts_services[][2] = {
+	{"FD_CUPS", "TS_CUPS_REDIR"},
+	{"FD_SMB",  "TS_SMB_REDIR"},
+	{"FD_ESD",  "TS_ESD_REDIR"},
+	{"FD_NAS",  "TS_NAS_REDIR"},
+	{NULL, NULL}
+};
+
+void do_tsd(void) {
+#if !NO_X11
+	Atom a;
+	char prop[513];
+	pid_t pid;
+	char *cmd;
+	int n, sz = 0;
+	char *disp = DisplayString(dpy);
+
+	prop[0] = '\0';
+	a = XInternAtom(dpy, "TS_REDIR_LIST", False);
+	if (a != None) {
+		get_prop(prop, 512, a);
+	}
+
+	if (prop[0] == '\0') {
+		return;
+	}
+
+	if (! program_name) {
+		program_name = "x11vnc";
+	}
+	sz += strlen(program_name) + 1;
+	sz += strlen("-display") + 1;
+	sz += strlen(disp) + 1;
+	sz += strlen("-tsd") + 1;
+	sz += 1 + strlen(prop) + 1 + 1;
+	sz += strlen("-env TSD_RESTART=1") + 1;
+	sz += strlen("</dev/null 1>/dev/null 2>&1") + 1;
+	sz += strlen(" &") + 1;
+
+	cmd = (char *) malloc(sz);
+
+	if (getenv("XAUTHORITY")) {
+		char *xauth = getenv("XAUTHORITY");
+		if (!strcmp(xauth, "") || access(xauth, R_OK) != 0) {
+			*(xauth-2) = '_';	/* yow */
+		}
+	}
+	sprintf(cmd, "%s -display %s -tsd '%s' -env TSD_RESTART=1 </dev/null 1>/dev/null 2>&1 &", program_name, disp, prop); 
+	rfbLog("running: %s\n", cmd);
+
+#if LIBVNCSERVER_HAVE_FORK && LIBVNCSERVER_HAVE_SETSID
+	/* fork into the background now */
+	if ((pid = fork()) > 0)  {
+		pid_t pidw;
+		int status;
+		double s = dnow();
+
+		while (dnow() < s + 1.5) {
+			pidw = waitpid(pid, &status, WNOHANG);
+			if (pidw == pid) {
+				break;
+			}
+			usleep(100*1000);
+		}
+		return;
+
+	} else if (pid == -1) {
+		system(cmd);
+	} else {
+		setsid();
+		/* adjust our stdio */
+		n = open("/dev/null", O_RDONLY);
+		dup2(n, 0);
+		dup2(n, 1);
+		dup2(n, 2);
+		if (n > 2) {
+			close(n);
+		}
+		system(cmd);
+		exit(0);
+	}
+#else
+	system(cmd);
+#endif
+
+#endif
+}
+
+void set_redir_properties(void) {
+#if !NO_X11
+	char *e, *f, *t;
+	Atom a;
+	char num[32];
+	int i, p;
+
+	if (! dpy) {
+		return;
+	}
+
+	i = 0;
+	while (ts_services[i][0] != NULL) {
+		f = ts_services[i][0]; 
+		t = ts_services[i][1]; 
+		e = getenv(f);
+		if (!e || strstr(e, "DAEMON-") != e) {
+			i++;
+			continue;
+		}
+		p = atoi(e + strlen("DAEMON-"));
+		if (p <= 0) {
+			i++;
+			continue;
+		}
+		sprintf(num, "%d", p);
+		a = XInternAtom(dpy, t, False);
+		if (a != None) {
+			Window rwin = RootWindow(dpy, DefaultScreen(dpy));
+fprintf(stderr, "Set: %s %s %s -> %s\n", f, t, e, num);
+			XChangeProperty(dpy, rwin, a, XA_STRING, 8,
+			    PropModeReplace, (unsigned char *) num, strlen(num));
+			XSync(dpy, False);
+		}
+		i++;
+	}
+#endif
+}
+
+void check_redir_services(void) {
+#if !NO_X11
+	Atom a;
+	char prop[513];
+	time_t tsd_last;
+	int restart = 0;
+	pid_t pid = 0;
+
+	if (! dpy) {
+		return;
+	}
+
+	a = XInternAtom(dpy, "TS_REDIR_PID", False);
+	if (a != None) {
+		prop[0] = '\0';
+		get_prop(prop, 512, a);
+		if (prop[0] != '\0') {
+			pid = (pid_t) atoi(prop);
+		}
+	}
+
+	if (getenv("FD_TAG")) {
+		a = XInternAtom(dpy, "FD_TAG", False);
+		if (a != None) {
+			Window rwin = RootWindow(dpy, DefaultScreen(dpy));
+			char *tag = getenv("FD_TAG");
+			XChangeProperty(dpy, rwin, a, XA_STRING, 8,
+			    PropModeReplace, (unsigned char *)tag, strlen(tag));
+			XSync(dpy, False);
+		}
+	}
+
+	prop[0] = '\0';
+	a = XInternAtom(dpy, "TS_REDIR", False);
+	if (a != None) {
+		get_prop(prop, 512, a);
+	}
+	if (prop[0] == '\0') {
+		rfbLog("TS_REDIR is empty, restarting...\n");
+		restart = 1;
+	} else {
+		tsd_last = (time_t) atoi(prop);
+		if (time(NULL) > tsd_last + 30) {
+			rfbLog("TS_REDIR seems dead for: %d sec, restarting...\n",
+			    time(NULL) - tsd_last);
+			restart = 1;
+		} else if (pid > 0 && time(NULL) > tsd_last + 6) {
+			if (kill(pid, 0) != 0) {
+				rfbLog("TS_REDIR seems dead via kill(%d, 0), restarting...\n",
+				    pid);
+				restart = 1;
+			}
+		}
+	}
+	if (restart) {
+
+		if (pid > 1) {
+			rfbLog("killing TS_REDIR_PID: %d\n", pid);
+			kill(pid, SIGTERM);
+			usleep(500*1000);
+			kill(pid, SIGKILL);
+		}
+		do_tsd();
+		return;
+	}
+
+	set_redir_properties();
+#endif
+}
+
+void ssh_remote_tunnel(char *instr, int lport) {
+	char *p, *q, *cmd, *ssh;
+	char *s = strdup(instr);
+	int sleep = 300, disp = 0, sport = 0;
+	int rc, len, rport;
+
+	/* user@host:port:disp+secs */
+
+	/* +sleep */
+	q = strrchr(s, '+');
+	if (q) {
+		sleep = atoi(q+1);
+		if (sleep <= 0) {
+			sleep = 1;
+		}
+		*q = '\0';
+	}
+	/* :disp */
+	q = strrchr(s, ':');
+	if (q) {
+		disp = atoi(q+1);
+		*q = '\0';
+	}
+	
+	/* :sshport */
+	q = strrchr(s, ':');
+	if (q) {
+		sport = atoi(q+1);
+		*q = '\0';
+	}
+
+	if (getenv("SSH")) {
+		ssh = getenv("SSH");
+	} else {
+		ssh = "ssh";
+	}
+
+	len = 0;
+	len += strlen(ssh) + strlen(s) + 500;
+	cmd = (char *) malloc(len);
+
+	if (disp >= 0 && disp <= 200) {
+		rport = disp + 5900;
+	} else if (disp < 0) {
+		rport = -disp;
+	} else {
+		rport = disp;
+	}
+
+	if (sport > 0) {
+		sprintf(cmd, "%s -f -p %d -R '%d:localhost:%d' '%s' 'sleep %d'", ssh, sport, rport, lport, s, sleep);
+	} else {
+		sprintf(cmd, "%s -f       -R '%d:localhost:%d' '%s' 'sleep %d'", ssh,        rport, lport, s, sleep);
+	}
+
+	if (no_external_cmds || !cmd_ok("ssh")) {
+		rfbLogEnable(1);
+		rfbLog("cannot run external commands in -nocmds mode:\n");
+		rfbLog("   \"%s\"\n", cmd);
+		rfbLog("   exiting.\n");
+		clean_up_exit(1);
+	}
+
+	close_exec_fds();
+	fprintf(stderr, "\n");
+	rfbLog("running: %s\n", cmd);
+	rc = system(cmd);
+
+	if (rc != 0) {
+		free(cmd);
+		free(s);
+		rfbLog("ssh remote listen failed.\n");
+		clean_up_exit(1);
+	}
+
+	if (1) {
+		FILE *pipe;
+		int mypid = (int) getpid();
+		int bestpid = -1;
+		int best = -1;
+		char line[1024];
+		char *psef = "ps -ef";
+		char *psww = "ps wwwwwwaux";
+		char *ps = psef;
+		/* not portable... but it is really good to terminate the ssh when done. */
+		/* ps -ef | egrep 'ssh2.*-R.*5907:localhost:5900.*runge@celias.lbl.gov.*sleep 300' | grep -v grep | awk '{print $2}' */
+		if (strstr(UT.sysname, "Linux")) {
+			ps = psww;
+		} else if (strstr(UT.sysname, "BSD")) {
+			ps = psww;
+		} else if (strstr(UT.sysname, "Darwin")) {
+			ps = psww;
+		}
+		sprintf(cmd, "env COLUMNS=256 %s | egrep '%s.*-R *%d:localhost:%d.*%s.*sleep *%d' | grep -v grep | awk '{print $2}'", ps, ssh, rport, lport, s, sleep);
+		pipe = popen(cmd, "r");
+		if (pipe) {
+			while (fgets(line, 1024, pipe) != NULL) {
+				int p = atoi(line);
+				if (p > 0) {
+					int score;
+					if (p > mypid) 	{
+						score = p - mypid;
+					} else {
+						score = p - mypid + 32768;
+						if (score < 0) {
+							score = 32768;
+						}
+					}
+					if (best < 0 || score < best) {
+						best = score;
+						bestpid = p;
+					}
+				}
+			}
+			pclose(pipe);
+		}
+
+		if (bestpid != -1) {
+			ssh_pid = (pid_t) bestpid;
+			rfbLog("guessed ssh pid=%d, will terminate it on exit.\n", bestpid);
+		}
+	}
+
+	free(cmd);
+	free(s);
+
 }
 
 void check_filexfer(void) {
@@ -457,6 +1155,8 @@ static void watch_loop(void) {
 		got_keyboard_input = 0;
 		got_keyboard_calls = 0;
 		urgent_update = 0;
+
+		x11vnc_current = dnow();
 
 		if (! use_threads) {
 			dtime0(&tm);
@@ -554,6 +1254,7 @@ static void watch_loop(void) {
 			}
 
 			check_new_clients();
+			check_ncache(0, 0);
 			check_xevents(0);
 			check_autorepeat();
 			check_pm();
@@ -580,6 +1281,14 @@ static void watch_loop(void) {
 				first_conn_timeout = -first_conn_timeout;
 			}
 		}
+
+/*		if (rawfb_vnc_reflect) {
+			static time_t lastone = 0;
+			if (time(NULL) > lastone + 10) {
+				lastone = time(NULL);
+				vnc_reflect_process_client();
+			}
+		}*/
 
 		if (! screen || ! screen->clientHead) {
 			/* waiting for a client */
@@ -611,8 +1320,9 @@ static void watch_loop(void) {
 
 		if (button_mask && (!show_dragging || pointer_mode == 0)) {
 			/*
-			 * if any button is pressed do not update rfb
-			 * screen, but do flush the X11 display.
+			 * if any button is pressed in this mode do
+			 * not update rfb screen, but do flush the
+			 * X11 display.
 			 */
 			X_LOCK;
 			XFlush_wr(dpy);
@@ -631,11 +1341,36 @@ static void watch_loop(void) {
 			}
 
 			if (unixpw_in_progress) continue;
+
+/*			if (rawfb_vnc_reflect) {
+				vnc_reflect_process_client();
+			}*/
 			dtime0(&tm);
+
+#if !NO_X11
+			if (xrandr_present && !xrandr && xrandr_maybe) {
+				int delay = 180;
+				/*  there may be xrandr right after xsession start */
+				if (tm < x11vnc_start + delay || tm < last_client + delay) {
+					int tw = 20;
+					if (auth_file != NULL) {
+						tw = 120;
+					}
+					X_LOCK;
+					if (tm < x11vnc_start + tw || tm < last_client + tw) {
+						XSync(dpy, False);
+					} else {
+						XFlush_wr(dpy);
+					}
+					X_UNLOCK;
+				}
+				check_xrandr_event("before-scan");
+			}
+#endif
 			if (use_snapfb) {
 				int t, tries = 3;
 				copy_snap();
-				for (t =0; t < tries; t++) {
+				for (t=0; t < tries; t++) {
 					tile_diffs = scan_for_updates(0);
 				}
 			} else {
@@ -768,7 +1503,7 @@ static void check_rcfile(int argc, char **argv) {
 	argv2[argc2++] = strdup(argv[0]);
 
 	if (! norc) {
-		char line[4096], parm[100], tmp[101];
+		char line[4096], parm[400], tmp[401];
 		char *buf, *tbuf;
 		struct stat sbuf;
 		int sz;
@@ -859,7 +1594,7 @@ static void check_rcfile(int argc, char **argv) {
 				q++;
 			}
 
-			if (i >= 100) {
+			if (i >= 400) {
 				fprintf(stderr, "invalid rcfile line: %s/%s\n",
 				    p, buf);
 				exit(1);
@@ -870,10 +1605,17 @@ static void check_rcfile(int argc, char **argv) {
 				exit(1);
 			}
 			if (parm[0] == '-') {
-				strncpy(tmp, parm, 100); 
+				strncpy(tmp, parm, 400); 
 			} else {
 				tmp[0] = '-';
-				strncpy(tmp+1, parm, 100); 
+				strncpy(tmp+1, parm, 400); 
+			}
+
+			if (strstr(tmp, "-loop") == tmp) {
+				if (! getenv("X11VNC_LOOP_MODE")) {
+					check_loop_mode(argc, argv, 1);
+					exit(0);
+				}
 			}
 
 			argv2[argc2++] = strdup(tmp);
@@ -936,9 +1678,20 @@ static void check_rcfile(int argc, char **argv) {
 }
 
 static void immediate_switch_user(int argc, char* argv[]) {
-	int i;
+	int i, bequiet = 0;
 	for (i=1; i < argc; i++) {
-		char *u;
+		if (strcmp(argv[i], "-inetd")) {
+			bequiet = 1;
+		}
+		if (strcmp(argv[i], "-quiet")) {
+			bequiet = 1;
+		}
+		if (strcmp(argv[i], "-q")) {
+			bequiet = 1;
+		}
+	}
+	for (i=1; i < argc; i++) {
+		char *u, *q;
 
 		if (strcmp(argv[i], "-users")) {
 			continue;
@@ -954,6 +1707,13 @@ static void immediate_switch_user(int argc, char* argv[]) {
 		/* wants an immediate switch: =bob */
 		u = strdup(argv[i+1]);
 		*u = '+';
+		q = strchr(u, '.');
+		if (q) {
+			user2group = (char **) malloc(2*sizeof(char *));
+			user2group[0] = strdup(u+1);
+			user2group[1] = NULL;
+			*q = '\0';
+		}
 		if (strstr(u, "+guess") == u) {
 			fprintf(stderr, "invalid user: %s\n", u+1);
 			exit(1);
@@ -962,7 +1722,9 @@ static void immediate_switch_user(int argc, char* argv[]) {
 			fprintf(stderr, "Could not switch to user: %s\n", u+1);
 			exit(1);
 		} else {
-			fprintf(stderr, "Switched to user: %s\n", u+1);
+			if (!bequiet) {
+				fprintf(stderr, "Switched to user: %s\n", u+1);
+			}
 			started_as_root = 2;
 		}
 		free(u);
@@ -1070,7 +1832,7 @@ static void quick_pw(char *str) {
 			exit(1);
 		}
 	} else {
-		if (su_verify(p, q+1, NULL, NULL, NULL)) {
+		if (su_verify(p, q+1, NULL, NULL, NULL, 1)) {
 			fprintf(stdout, "Y %s\n", p);
 			exit(0);
 		} else {
@@ -1111,8 +1873,9 @@ static void print_settings(int try_http, int bg, char *gui_str) {
 	fprintf(stderr, " shared:     %d\n", shared);
 	fprintf(stderr, " conn_once:  %d\n", connect_once);
 	fprintf(stderr, " timeout:    %d\n", first_conn_timeout);
+	fprintf(stderr, " ping:       %d\n", ping_interval);
 	fprintf(stderr, " inetd:      %d\n", inetd);
-	fprintf(stderr, " filexfer:   %d\n", filexfer);
+	fprintf(stderr, " tightfilexfer:   %d\n", tightfilexfer);
 	fprintf(stderr, " http:       %d\n", try_http);
 	fprintf(stderr, " connect:    %s\n", client_connect
 	    ? client_connect : "null");
@@ -1200,6 +1963,7 @@ static void print_settings(int try_http, int bg, char *gui_str) {
 	fprintf(stderr, " buttonmap:  %s\n", pointer_remap
 	    ? pointer_remap : "null");
 	fprintf(stderr, " dragging:   %d\n", show_dragging);
+	fprintf(stderr, " ncache:     %d\n", ncache);
 	fprintf(stderr, " wireframe:  %s\n", wireframe_str ?
 	    wireframe_str : WIREFRAME_PARMS);
 	fprintf(stderr, " wirecopy:   %s\n", wireframe_copyrect ?
@@ -1236,6 +2000,7 @@ static void print_settings(int try_http, int bg, char *gui_str) {
 	fprintf(stderr, " wait_ui:    %.2f\n", wait_ui);
 	fprintf(stderr, " nowait_bog: %d\n", !wait_bog);
 	fprintf(stderr, " slow_fb:    %.2f\n", slow_fb);
+	fprintf(stderr, " xrefresh:   %.2f\n", xrefresh);
 	fprintf(stderr, " readtimeout: %d\n", rfbMaxClientWait/1000);
 	fprintf(stderr, " take_naps:  %d\n", take_naps);
 	fprintf(stderr, " sb:         %d\n", screen_blank);
@@ -1271,10 +2036,13 @@ static void print_settings(int try_http, int bg, char *gui_str) {
 }
 
 
-static void check_loop_mode(int argc, char* argv[]) {
+static void check_loop_mode(int argc, char* argv[], int force) {
 	int i;
 	int loop_mode = 0, loop_sleep = 2000, loop_max = 0;
 
+	if (force) {
+		loop_mode = 1;
+	}
 	for (i=1; i < argc; i++) {
 		char *p = argv[i];
 		if (strstr(p, "--") == p) {
@@ -1287,12 +2055,16 @@ static void check_loop_mode(int argc, char* argv[]) {
 				loop_max = atoi(q+1);
 				*q = '\0';
 			}
+			if (strstr(p, "-loopbg") == p) {
+				set_env("X11VNC_LOOP_MODE_BG", "1");
+				loop_sleep = 500;
+			}
 			
 			q = strpbrk(p, "0123456789");
 			if (q) {
 				loop_sleep = atoi(q);
 				if (loop_sleep <= 0) {
-					loop_sleep = 10;
+					loop_sleep = 20;
 				}
 			}
 		}
@@ -1440,10 +2212,82 @@ static void store_homedir_passwd(char *file) {
 	exit(0);
 }
 
+void ncache_beta_tester_message(void) {
+
+char msg[] = 
+"\n"
+"******************************************************************************\n"
+"\n"
+"Hello!  Exciting News!!\n"
+"\n"
+"You have been selected at random to beta-test the x11vnc '-ncache' VNC\n"
+"client-side pixel caching feature!\n"
+"\n"
+"This scheme stores pixel data offscreen on the VNC viewer side for faster\n"
+"retrieval.  It should work with any VNC viewer.\n"
+"\n"
+"This method requires much testing and so we hope you will try it out and\n"
+"perhaps even report back your observations.  However, if you do not want\n"
+"to test or use the feature, run x11vnc like this:\n"
+"\n"
+"    x11vnc -noncache ...\n"
+"\n"
+"Your current setting is: -ncache %d\n"
+"\n"
+"The feature needs additional testing because we want to have x11vnc\n"
+"performance enhancements on by default.  Otherwise, only a relative few\n"
+"would notice and use the -ncache option (e.g. the wireframe and scroll\n"
+"detection features are on by default).  A couple things to note:\n"
+"\n"
+"    1) It uses a large amount of RAM (on both viewer and server sides)\n"
+"\n"
+"    2) You can actually see the cached pixel data if you scroll down\n"
+"       to it in your viewer; adjust your viewer's size to hide it.\n"
+"\n"
+"More info: http://www.karlrunge.com/x11vnc/#faq-client-caching\n"
+"\n"
+"waiting for connections:\n"
+;
+
+char msg2[] = 
+"\n"
+"******************************************************************************\n"
+"Have you tried the x11vnc '-ncache' VNC client-side pixel caching feature yet?\n"
+"\n"
+"The scheme stores pixel data offscreen on the VNC viewer side for faster\n"
+"retrieval.  It should work with any VNC viewer.  Try it by running:\n"
+"\n"
+"    x11vnc -ncache 10 ...\n"
+"\n"
+"more info: http://www.karlrunge.com/x11vnc/#faq-client-caching\n"
+"\n"
+;
+
+	if (raw_fb_str && !macosx_console) {
+		return;
+	}
+	if (quiet) {
+		return;
+	}
+	if (nofb) {
+		return;
+	}
+#ifdef NO_NCACHE
+	return;
+#endif
+
+	if (ncache == 0) {
+		fprintf(stderr, msg2);
+		ncache0 = ncache = 0;
+	} else {
+		fprintf(stderr, msg, ncache);
+	}
+}
+
 #define	SHOW_NO_PASSWORD_WARNING \
 	(!got_passwd && !got_rfbauth && (!got_passwdfile || !passwd_list) \
 	    && !query_cmd && !remote_cmd && !unixpw && !got_gui_pw \
-	    && ! ssl_verify && !inetd)
+	    && ! ssl_verify && !inetd && !terminal_services_daemon)
 
 extern int dragum(void);
 
@@ -1463,18 +2307,17 @@ int main(int argc, char* argv[]) {
 	int dt = 0, bg = 0;
 	int got_rfbwait = 0;
 	int got_httpdir = 0, try_http = 0;
-	int waited_for_client = 0;
+	int orig_use_xdamage = use_xdamage;
 	XImage *fb0 = NULL;
+	int ncache_msg = 0;
 
 	/* used to pass args we do not know about to rfbGetScreen(): */
 	int argc_vnc_max = 1024;
 	int argc_vnc = 1; char *argv_vnc[2048];
 
-//dragum();
-
 
 	/* check for -loop mode: */
-	check_loop_mode(argc, argv);
+	check_loop_mode(argc, argv, 0);
 
 	dtime0(&x11vnc_start);
 
@@ -1590,9 +2433,52 @@ int main(int argc, char* argv[]) {
 					exit(0);
 				}
 			}
+		} else if (!strcmp(arg, "-find")) {
+			use_dpy = strdup("WAIT:cmd=FINDDISPLAY");
+		} else if (!strcmp(arg, "-finddpy") || strstr(arg, "-listdpy") == arg) {
+			int ic = 0;
+			use_dpy = strdup("WAIT:cmd=FINDDISPLAY-run");
+			if (argc > i+1) {
+				set_env("X11VNC_USER", argv[i+1]);
+				fprintf(stdout, "X11VNC_USER=%s\n", getenv("X11VNC_USER"));
+			}
+			if (strstr(arg, "-listdpy") == arg) {
+				set_env("FIND_DISPLAY_ALL", "1");
+			}
+			wait_for_client(&ic, NULL, 0);
+			exit(0);
+		} else if (!strcmp(arg, "-create")) {
+			use_dpy = strdup("WAIT:cmd=FINDCREATEDISPLAY-Xvfb");
+		} else if (!strcmp(arg, "-xdummy")) {
+			use_dpy = strdup("WAIT:cmd=FINDCREATEDISPLAY-Xdummy");
+		} else if (!strcmp(arg, "-xvnc")) {
+			use_dpy = strdup("WAIT:cmd=FINDCREATEDISPLAY-Xvnc");
+		} else if (!strcmp(arg, "-xvnc_redirect")) {
+			use_dpy = strdup("WAIT:cmd=FINDCREATEDISPLAY-Xvnc.redirect");
+		} else if (!strcmp(arg, "-redirect")) {
+			char *q, *t, *t0 = "WAIT:cmd=FINDDISPLAY-vnc_redirect";
+			CHECK_ARGC
+			t = (char *) malloc(strlen(t0) + strlen(argv[++i]) + 2);
+			q = strrchr(argv[i], ':');
+			if (q) *q = ' ';
+			sprintf(t, "%s=%s", t0, argv[i]);
+			use_dpy = t;
 		} else if (!strcmp(arg, "-auth") || !strcmp(arg, "-xauth")) {
 			CHECK_ARGC
 			auth_file = strdup(argv[++i]);
+		} else if (!strcmp(arg, "-N")) {
+			display_N = 1;
+		} else if (!strcmp(arg, "-autoport")) {
+			CHECK_ARGC
+			auto_port = atoi(argv[++i]);
+		} else if (!strcmp(arg, "-reflect")) {
+			CHECK_ARGC
+			raw_fb_str = (char *) malloc(4 + strlen(argv[i]) + 1);
+			sprintf(raw_fb_str, "vnc:%s", argv[++i]);
+			shared = 1;
+		} else if (!strcmp(arg, "-tsd")) {
+			CHECK_ARGC
+			terminal_services_daemon = strdup(argv[++i]);
 		} else if (!strcmp(arg, "-id") || !strcmp(arg, "-sid")) {
 			CHECK_ARGC
 			if (!strcmp(arg, "-sid")) {
@@ -1665,6 +2551,8 @@ int main(int argc, char* argv[]) {
 			got_noviewonly = 1;
 		} else if (!strcmp(arg, "-shared")) {
 			shared = 1;
+		} else if (!strcmp(arg, "-noshared")) {
+			shared = 0;
 		} else if (!strcmp(arg, "-once")) {
 			connect_once = 1;
 			got_connect_once = 1;
@@ -1675,20 +2563,29 @@ int main(int argc, char* argv[]) {
 		} else if (!strcmp(arg, "-timeout")) {
 			CHECK_ARGC
 			first_conn_timeout = atoi(argv[++i]);
+		} else if (!strcmp(arg, "-sleepin")) {
+			int n;
+			CHECK_ARGC
+			n = atoi(argv[++i]);
+			if (n > 0) {
+				usleep(1000*1000*n);
+			}
 		} else if (!strcmp(arg, "-users")) {
 			CHECK_ARGC
 			users_list = strdup(argv[++i]);
 		} else if (!strcmp(arg, "-inetd")) {
 			inetd = 1;
-		} else if (!strcmp(arg, "-nofilexfer")) {
-			filexfer = 0;
-		} else if (!strcmp(arg, "-filexfer")) {
-			filexfer = 1;
+		} else if (!strcmp(arg, "-notightfilexfer")) {
+			tightfilexfer = 0;
+		} else if (!strcmp(arg, "-tightfilexfer")) {
+			tightfilexfer = 1;
 		} else if (!strcmp(arg, "-http")) {
 			try_http = 1;
 		} else if (!strcmp(arg, "-http_ssl")) {
 			try_http = 1;
 			http_ssl = 1;
+		} else if (!strcmp(arg, "-avahi") || !strcmp(arg, "-mdns")) {
+			avahi = 1;
 		} else if (!strcmp(arg, "-connect") ||
 		    !strcmp(arg, "-connect_or_exit")) {
 			CHECK_ARGC
@@ -1700,6 +2597,9 @@ int main(int argc, char* argv[]) {
 			if (!strcmp(arg, "-connect_or_exit")) {
 				connect_or_exit = 1;
 			}
+		} else if (!strcmp(arg, "-proxy")) {
+			CHECK_ARGC
+			connect_proxy = strdup(argv[++i]);
 		} else if (!strcmp(arg, "-vncconnect")) {
 			vnc_connect = 1;
 		} else if (!strcmp(arg, "-novncconnect")) {
@@ -1719,6 +2619,10 @@ int main(int argc, char* argv[]) {
 			grab_kbd = 1;
 		} else if (!strcmp(arg, "-grabptr")) {
 			grab_ptr = 1;
+		} else if (!strcmp(arg, "-grabalways")) {
+			grab_kbd = 1;
+			grab_ptr = 1;
+			grab_always = 1;
 		} else if (!strcmp(arg, "-viewpasswd")) {
 			vpw_loc = i;
 			CHECK_ARGC
@@ -1728,6 +2632,35 @@ int main(int argc, char* argv[]) {
 			CHECK_ARGC
 			passwdfile = strdup(argv[++i]);
 			got_passwdfile = 1;
+		} else if (!strcmp(arg, "-svc") || !strcmp(arg, "-service")) {
+			use_dpy = strdup("WAIT:cmd=FINDCREATEDISPLAY-Xvfb");
+			unixpw = 1;
+			users_list = strdup("unixpw=");
+			use_openssl = 1;
+			openssl_pem = strdup("SAVE");
+		} else if (!strcmp(arg, "-svc_xdummy")) {
+			use_dpy = strdup("WAIT:cmd=FINDCREATEDISPLAY-Xdummy");
+			unixpw = 1;
+			users_list = strdup("unixpw=");
+			use_openssl = 1;
+			openssl_pem = strdup("SAVE");
+			set_env("FD_XDUMMY_NOROOT", "1");
+		} else if (!strcmp(arg, "-svc_xvnc")) {
+			use_dpy = strdup("WAIT:cmd=FINDCREATEDISPLAY-Xvnc");
+			unixpw = 1;
+			users_list = strdup("unixpw=");
+			use_openssl = 1;
+			openssl_pem = strdup("SAVE");
+		} else if (!strcmp(arg, "-xdmsvc") || !strcmp(arg, "-xdm_service")) {
+			use_dpy = strdup("WAIT:cmd=FINDCREATEDISPLAY-Xvfb.xdmcp");
+			unixpw = 1;
+			users_list = strdup("unixpw=");
+			use_openssl = 1;
+			openssl_pem = strdup("SAVE");
+		} else if (!strcmp(arg, "-sshxdmsvc")) {
+			use_dpy = strdup("WAIT:cmd=FINDCREATEDISPLAY-Xvfb.xdmcp");
+			allow_list = strdup("127.0.0.1");
+			got_localhost = 1;
 #ifndef NO_SSL_OR_UNIXPW
 		} else if (!strcmp(arg, "-unixpw_cmd")
 		    || !strcmp(arg, "-unixpw_cmd_unsafe")) {
@@ -1761,6 +2694,9 @@ int main(int argc, char* argv[]) {
 				set_env("UNIXPW_DISABLE_SSL", "1");
 				set_env("UNIXPW_DISABLE_LOCALHOST", "1");
 			}
+		} else if (!strcmp(arg, "-nossl")) {
+			use_openssl = 0;
+			openssl_pem = NULL;
 		} else if (!strcmp(arg, "-ssl")) {
 			use_openssl = 1;
 			if (i < argc-1) {
@@ -1861,9 +2797,21 @@ int main(int argc, char* argv[]) {
 					i++;
 				}
 			}
+		} else if (!strcmp(arg, "-httpsredir")) {
+			https_port_redir = -1;
+			if (i < argc-1) {
+				char *s = argv[i+1];
+				if (s[0] != '-') {
+					https_port_redir = atoi(s);
+					i++;
+				}
+			}
 #endif
 		} else if (!strcmp(arg, "-nopw")) {
 			nopw = 1;
+		} else if (!strcmp(arg, "-ssh")) {
+			CHECK_ARGC
+			ssh_str = strdup(argv[++i]);
 		} else if (!strcmp(arg, "-usepw")) {
 			usepw = 1;
 		} else if (!strcmp(arg, "-storepasswd")) {
@@ -1916,6 +2864,8 @@ int main(int argc, char* argv[]) {
 			blackout_str = strdup(argv[++i]);
 		} else if (!strcmp(arg, "-xinerama")) {
 			xinerama = 1;
+		} else if (!strcmp(arg, "-noxinerama")) {
+			xinerama = 0;
 		} else if (!strcmp(arg, "-xtrap")) {
 			xtrap_input = 1;
 		} else if (!strcmp(arg, "-xrandr")) {
@@ -1927,6 +2877,9 @@ int main(int argc, char* argv[]) {
 					i++;
 				}
 			}
+		} else if (!strcmp(arg, "-noxrandr")) {
+			xrandr = 0;
+			xrandr_maybe = 0;
 		} else if (!strcmp(arg, "-rotate")) {
 			CHECK_ARGC
 			rotating_str = strdup(argv[++i]);
@@ -2018,6 +2971,8 @@ int main(int argc, char* argv[]) {
 			clear_mods = 1;
 		} else if (!strcmp(arg, "-clear_keys")) {
 			clear_mods = 2;
+		} else if (!strcmp(arg, "-clear_all")) {
+			clear_mods = 3;
 		} else if (!strcmp(arg, "-remap")) {
 			CHECK_ARGC
 			remap_file = strdup(argv[++i]);
@@ -2099,11 +3054,50 @@ int main(int argc, char* argv[]) {
 			cursor_pos_updates = 0;
 		} else if (!strcmp(arg, "-xwarppointer")) {
 			use_xwarppointer = 1;
+		} else if (!strcmp(arg, "-noxwarppointer")) {
+			use_xwarppointer = 0;
+			got_noxwarppointer = 1;
 		} else if (!strcmp(arg, "-buttonmap")) {
 			CHECK_ARGC
 			pointer_remap = strdup(argv[++i]);
 		} else if (!strcmp(arg, "-nodragging")) {
 			show_dragging = 0;
+#ifndef NO_NCACHE
+		} else if (!strcmp(arg, "-ncache") || !strcmp(arg, "-nc")) {
+			if (i < argc-1) {
+				char *s = argv[i+1];
+				if (s[0] != '-') {
+					ncache = atoi(s);
+					i++;
+				} else {
+					ncache = ncache_default;
+				}
+			} else {
+				ncache = ncache_default;
+			}
+			if (ncache % 2 != 0) {
+				ncache++;
+			}
+		} else if (!strcmp(arg, "-noncache") || !strcmp(arg, "-nonc")) {
+			ncache = 0;
+		} else if (!strcmp(arg, "-ncache_cr") || !strcmp(arg, "-nc_cr")) {
+			ncache_copyrect = 1;
+		} else if (!strcmp(arg, "-ncache_no_moveraise") || !strcmp(arg, "-nc_no_moveraise")) {
+			ncache_wf_raises = 1;
+		} else if (!strcmp(arg, "-ncache_no_dtchange") || !strcmp(arg, "-nc_no_dtchange")) {
+			ncache_dt_change = 0;
+		} else if (!strcmp(arg, "-ncache_no_rootpixmap") || !strcmp(arg, "-nc_no_rootpixmap")) {
+			ncache_xrootpmap = 0;
+		} else if (!strcmp(arg, "-ncache_keep_anims") || !strcmp(arg, "-nc_keep_anims")) {
+			ncache_keep_anims = 1;
+		} else if (!strcmp(arg, "-ncache_old_wm") || !strcmp(arg, "-nc_old_wm")) {
+			ncache_old_wm = 1;
+		} else if (!strcmp(arg, "-ncache_pad") || !strcmp(arg, "-nc_pad")) {
+			CHECK_ARGC
+			ncache_pad = atoi(argv[++i]);
+		} else if (!strcmp(arg, "-debug_ncache")) {
+			ncdb++;
+#endif
 		} else if (!strcmp(arg, "-wireframe")
 		    || !strcmp(arg, "-wf")) {
 			wireframe = 1;
@@ -2208,6 +3202,8 @@ int main(int argc, char* argv[]) {
 		} else if (!strcmp(arg, "-debug_keyboard")
 		    || !strcmp(arg, "-dk")) {
 			debug_keyboard++;
+		} else if (!strcmp(arg, "-debug_xdamage")) {
+			debug_xdamage++;
 		} else if (!strcmp(arg, "-defer")) {
 			CHECK_ARGC
 			defer_update = atoi(argv[++i]);
@@ -2223,9 +3219,15 @@ int main(int argc, char* argv[]) {
 		} else if (!strcmp(arg, "-slow_fb")) {
 			CHECK_ARGC
 			slow_fb = atof(argv[++i]);
+		} else if (!strcmp(arg, "-xrefresh")) {
+			CHECK_ARGC
+			xrefresh = atof(argv[++i]);
 		} else if (!strcmp(arg, "-readtimeout")) {
 			CHECK_ARGC
 			rfbMaxClientWait = atoi(argv[++i]) * 1000;
+		} else if (!strcmp(arg, "-ping")) {
+			CHECK_ARGC
+			ping_interval = atoi(argv[++i]);
 		} else if (!strcmp(arg, "-nap")) {
 			take_naps = 1;
 		} else if (!strcmp(arg, "-nonap")) {
@@ -2241,8 +3243,16 @@ int main(int argc, char* argv[]) {
 			watch_dpms = 1;
 		} else if (!strcmp(arg, "-dpms")) {
 			watch_dpms = 0;
+		} else if (!strcmp(arg, "-forcedpms")) {
+			force_dpms = 1;
+		} else if (!strcmp(arg, "-clientdpms")) {
+			client_dpms = 1;
+		} else if (!strcmp(arg, "-noserverdpms")) {
+			no_ultra_dpms = 1;
+		} else if (!strcmp(arg, "-noultraext")) {
+			no_ultra_ext = 1;
 		} else if (!strcmp(arg, "-xdamage")) {
-			use_xdamage = 1;
+			use_xdamage++;
 		} else if (!strcmp(arg, "-noxdamage")) {
 			use_xdamage = 0;
 		} else if (!strcmp(arg, "-xd_area")) {
@@ -2302,6 +3312,9 @@ int main(int argc, char* argv[]) {
 		} else if (!strcmp(arg, "-rawfb")) {
 			CHECK_ARGC
 			raw_fb_str = strdup(argv[++i]);
+			if (strstr(raw_fb_str, "vnc:") == raw_fb_str) {
+				shared = 1;
+			}
 		} else if (!strcmp(arg, "-freqtab")) {
 			CHECK_ARGC
 			freqtab = strdup(argv[++i]);
@@ -2323,6 +3336,11 @@ int main(int argc, char* argv[]) {
 			macosx_swap23 = 0;
 		} else if (!strcmp(arg, "-macnoresize")) {
 			macosx_resize = 0;
+		} else if (!strcmp(arg, "-maciconanim")) {
+			CHECK_ARGC
+			macosx_icon_anim_time = atoi(argv[++i]);
+		} else if (!strcmp(arg, "-macmenu")) {
+			macosx_ncache_macmenu = 1;
 		} else if (!strcmp(arg, "-gui")) {
 			launch_gui = 1;
 			if (i < argc-1) {
@@ -2433,8 +3451,7 @@ int main(int argc, char* argv[]) {
 				listen_str = strdup(argv[i+1]);
 			}
 			/* otherwise copy it for libvncserver use below. */
-			if (!strcmp(arg, "-ultrafilexfer") ||
-			    !strcmp(arg, "-ultravncfilexfer")) {
+			if (!strcmp(arg, "-ultrafilexfer")) {
 				if (argc_vnc + 2 < argc_vnc_max) {
 					argv_vnc[argc_vnc++] = strdup("-rfbversion");
 					argv_vnc[argc_vnc++] = strdup("3.6");
@@ -2449,9 +3466,14 @@ int main(int argc, char* argv[]) {
 		}
 	}
 
+	orig_use_xdamage = use_xdamage;
+
+	if (!auto_port && getenv("AUTO_PORT")) {
+		auto_port = atoi(getenv("AUTO_PORT"));
+	}
 
 	if (getenv("X11VNC_LOOP_MODE")) {
-		if (bg) {
+		if (bg && !getenv("X11VNC_LOOP_MODE_BG")) {
 			if (! quiet) {
 				fprintf(stderr, "disabling -bg in -loop "
 				    "mode\n");
@@ -2474,26 +3496,38 @@ int main(int argc, char* argv[]) {
 	if (more_safe) {
 		launch_gui = 0;
 	}
+
+#ifdef MACOSX
+	if (! use_dpy) {
+		/* we need this for gui since no X properties */
+		if (!client_connect_file && !client_connect) {
+			char *user = get_user_name();
+			char *str = (char *) malloc(strlen(user) + strlen("/tmp/x11vnc-macosx-remote.") + 1);
+			struct stat sb;
+			sprintf(str, "/tmp/x11vnc-macosx-remote.%s", user);
+			if (!remote_cmd && !query_cmd) {
+				unlink(str);
+				if (stat(str, &sb) != 0) {
+					int fd = open(str, O_WRONLY|O_EXCL|O_CREAT, 0600);
+					if (fd >= 0) {
+						close(fd);
+						client_connect_file = str;
+					}
+				}
+			} else {
+				client_connect_file = str;
+			}
+			if (client_connect_file) {
+				rfbLog("MacOS X: set -connect file to %s\n", client_connect_file);
+			}
+		}
+	}
+#endif
 	if (launch_gui) {
 		int sleep = 0;
 		if (SHOW_NO_PASSWORD_WARNING && !nopw) {
 			sleep = 1;
 		}
-#ifdef MACOSX
-		if (! use_dpy && getenv("DISPLAY") == NULL) {
-			/* we need this for gui since no X properties */
-			if (! client_connect_file && ! client_connect) {
-				int fd;
-				char tmp[] = "/tmp/x11vnc-macosx-channel.XXXXXX";
-				fd = mkstemp(tmp);
-				if (fd >= 0) {
-					close(fd);
-					client_connect_file = strdup(tmp);
-					rfbLog("MacOS X: set -connect file to %s\n", client_connect_file);
-				}
-			}
-		}
-#endif
 		do_gui(gui_str, sleep);
 	}
 	if (logfile) {
@@ -2740,17 +3774,62 @@ int main(int argc, char* argv[]) {
 		launch_gui = 0;
 	}
 
+	if (users_list && strchr(users_list, '.')) {
+		char *p, *q, *tmp = (char *) malloc(strlen(users_list)+1);
+		char *str = strdup(users_list);
+		int i, n, db = 1;
+
+		tmp[0] = '\0';
+
+		n = strlen(users_list) + 1;
+		user2group = (char **) malloc(n * sizeof(char *));
+		for (i=0; i<n; i++) {
+			user2group[i] = NULL;
+		}
+
+		i = 0;
+		p = strtok(str, ",");
+		if (db) fprintf(stderr, "users_list: %s\n", users_list);
+		while (p) {
+			if (tmp[0] != '\0') {
+				strcat(tmp, ",");
+			}
+			q = strchr(p, '.');
+			if (q) {
+				char *s = strchr(p, '=');
+				if (! s) {
+					s = p;
+				} else {
+					s++;
+				}
+				if (s[0] == '+') s++;
+				user2group[i++] = strdup(s);
+				if (db) fprintf(stderr, "u2g: %s\n", s);
+				*q = '\0';
+			}
+			strcat(tmp, p);
+			p = strtok(NULL, ",");
+		}
+		free(str);
+		users_list = tmp;
+		if (db) fprintf(stderr, "users_list: %s\n", users_list);
+	}
+
 	if (unixpw) {
 		if (inetd) {
 			use_stunnel = 0;
 		}
 		if (! use_stunnel && ! use_openssl) {
-			if (have_ssh_env()) {
+			if (getenv("UNIXPW_DISABLE_LOCALHOST")) {
+				rfbLog("Skipping -ssl/-stunnel requirement"
+				    " due to\n");
+				rfbLog("UNIXPW_DISABLE_LOCALHOST setting.\n");
+			} else if (have_ssh_env()) {
 				char *s = getenv("SSH_CONNECTION");
 				if (! s) s = getenv("SSH_CLIENT");
 				if (! s) s = "SSH_CONNECTION";
 				fprintf(stderr, "\n");
-				rfbLog("Skipping -ssl/-stunnel contraint in"
+				rfbLog("Skipping -ssl/-stunnel constraint in"
 				    " -unixpw\n");
 				rfbLog("mode, assuming your SSH encryption"
 				    " is: %s\n", s);
@@ -2762,10 +3841,6 @@ int main(int argc, char* argv[]) {
 				if (! nopw) {
 					usleep(2000*1000);
 				}
-			} else if (getenv("UNIXPW_DISABLE_SSL")) {
-				rfbLog("Skipping -ssl/-stunnel requirement"
-				    " due to\n");
-				rfbLog("UNIXPW_DISABLE_SSL setting.\n");
 			} else {
 				if (openssl_present()) {
 					rfbLog("set -ssl in -unixpw mode.\n");
@@ -2844,12 +3919,12 @@ int main(int argc, char* argv[]) {
 		overlay = 0;
 	}
 
-	if (filexfer && view_only) {
+	if (tightfilexfer && view_only) {
 		if (! quiet) {
-			rfbLog("setting -nofilexfer in -viewonly mode.\n");
+			rfbLog("setting -notightfilexfer in -viewonly mode.\n");
 		}
 		/* how to undo via -R? */
-		filexfer = 0;
+		tightfilexfer = 0;
 	}
 
 	if (inetd) {
@@ -2895,6 +3970,24 @@ int main(int argc, char* argv[]) {
 		}
 		if (got_pointer_mode < 0) {
 			pointer_mode = POINTER_MODE_NOFB;
+		}
+	}
+
+	if (ncache < 0) {
+		ncache_beta_tester = 1;
+		ncache_msg = 1;
+		if (ncache == -1) {
+			ncache = 0;
+		}
+		ncache = -ncache;
+		if (try_http || got_httpdir) {
+			/* JVM usually not set to handle all the memory */
+			ncache = 0;
+			ncache_msg = 0;
+		}
+		if (subwin) {
+			ncache = 0;
+			ncache_msg = 0;
 		}
 	}
 
@@ -2952,6 +4045,7 @@ int main(int argc, char* argv[]) {
 	/* open the X display: */
 	if (auth_file) {
 		set_env("XAUTHORITY", auth_file);
+if (0) fprintf(stderr, "XA: %s\n", getenv("XAUTHORITY"));
 	}
 #if LIBVNCSERVER_HAVE_XKEYBOARD
 	/*
@@ -2975,14 +4069,44 @@ int main(int argc, char* argv[]) {
 #endif
 
 #ifdef LIBVNCSERVER_WITH_TIGHTVNC_FILETRANSFER
-	if (filexfer) {
+	if (tightfilexfer) {
+		rfbLog("rfbRegisterTightVNCFileTransferExtension: 6\n");
 		rfbRegisterTightVNCFileTransferExtension();
 	} else {
+		if (0) rfbLog("rfbUnregisterTightVNCFileTransferExtension: 3\n");
 		rfbUnregisterTightVNCFileTransferExtension();
 	}
 #endif
 
 	initialize_allowed_input();
+
+	if (display_N && !got_rfbport) {
+		char *ud = use_dpy;
+		if (ud == NULL) {
+			ud = getenv("DISPLAY");
+		}
+		if (ud && strstr(ud, "cmd=") == NULL) {
+			char *p;
+			ud = strdup(ud);
+			p = strrchr(ud, ':');
+			if (p) {
+				int N;	
+				char *q = strchr(p, '.');
+				if (q) {
+					*q = '\0';
+				}
+				N = atoi(p+1);	
+				if (argc_vnc+1 < argc_vnc_max) {
+					char Nstr[16];
+					sprintf(Nstr, "%d", (5900 + N) % 65536); 
+					argv_vnc[argc_vnc++] = strdup("-rfbport");
+					argv_vnc[argc_vnc++] = strdup(Nstr);
+					got_rfbport = 1;
+				}
+			}
+			free(ud);
+		}
+	}
 
 	if (users_list && strstr(users_list, "lurk=")) {
 		if (use_dpy) {
@@ -3003,12 +4127,29 @@ int main(int argc, char* argv[]) {
 		}
 	}
 
+#ifdef MACOSX
+	if (use_dpy && !strcmp(use_dpy, "console")) {
+		;
+	} else
+#endif
 	if (use_dpy) {
 		dpy = XOpenDisplay_wr(use_dpy);
+#ifdef MACOSX
+	} else if (!subwin && getenv("DISPLAY")
+	    && strstr(getenv("DISPLAY"), "/tmp/") ) {
+		/* e.g. /tmp/launch-XlspvM/:0 on leopard */
+		rfbLog("MacOSX: Ignoring $DISPLAY '%s'\n", getenv("DISPLAY"));
+		rfbLog("MacOSX: Use -display $DISPLAY to force it.\n");
+#endif
 	} else if ( (use_dpy = getenv("DISPLAY")) ) {
 		dpy = XOpenDisplay_wr(use_dpy);
 	} else {
 		dpy = XOpenDisplay_wr("");
+	}
+
+	if (terminal_services_daemon != NULL) {
+		terminal_services(terminal_services_daemon);
+		exit(0);
 	}
 
 #ifdef MACOSX
@@ -3061,8 +4202,33 @@ int main(int argc, char* argv[]) {
 		if (! quiet) rfbLog("Using default X display.\n");
 	}
 
+
 	scr = DefaultScreen(dpy);
 	rootwin = RootWindow(dpy, scr);
+
+	if (ncache_beta_tester) {
+		int h = DisplayHeight(dpy, scr);
+		int w = DisplayWidth(dpy, scr);
+		int mem = (w * h * 4) / (1000 * 1000), MEM = 96;
+		if (mem < 1) mem = 1;
+
+		/* limit poor, unsuspecting beta tester's viewer to 96 MB */
+		if ( (ncache+2) * mem > MEM ) {
+			int n = (MEM/mem) - 2;
+			if (n < 0) n = 0;
+			n = 2 * (n / 2);
+			if (n < ncache) {
+				ncache = n;
+			}
+		}
+	}
+
+	if (grab_always) {
+		Window save = window;
+		window = rootwin;
+		adjust_grabs(1, 0);
+		window = save;
+	}
 
 	if (! quiet && ! raw_fb_str) {
 		rfbLog("\n");
@@ -3082,8 +4248,7 @@ int main(int argc, char* argv[]) {
 
 	if (priv_remote) {
 		if (! remote_control_access_ok()) {
-			rfbLog("** Disabling remote commands in -privremote "
-			    "mode.\n");
+			rfbLog("** Disabling remote commands in -privremote mode.\n");
 			accept_remote_cmds = 0;
 		}
 	}
@@ -3096,8 +4261,7 @@ int main(int argc, char* argv[]) {
 #if LIBVNCSERVER_HAVE_LIBXFIXES
 	if (! XFixesQueryExtension(dpy, &xfixes_base_event_type, &er)) {
 		if (! quiet && ! raw_fb_str) {
-			rfbLog("Disabling XFIXES mode: display does not "
-			    "support it.\n");
+			rfbLog("Disabling XFIXES mode: display does not support it.\n");
 		}
 		xfixes_base_event_type = 0;
 		xfixes_present = 0;
@@ -3112,8 +4276,7 @@ int main(int argc, char* argv[]) {
 #if LIBVNCSERVER_HAVE_LIBXDAMAGE
 	if (! XDamageQueryExtension(dpy, &xdamage_base_event_type, &er)) {
 		if (! quiet && ! raw_fb_str) {
-			rfbLog("Disabling X DAMAGE mode: display does not "
-			    "support it.\n");
+			rfbLog("Disabling X DAMAGE mode: display does not support it.\n");
 		}
 		xdamage_base_event_type = 0;
 		xdamage_present = 0;
@@ -3125,31 +4288,24 @@ int main(int argc, char* argv[]) {
 		use_xdamage = 0;
 	}
 	if (! quiet && xdamage_present && use_xdamage && ! raw_fb_str) {
-		rfbLog("X DAMAGE available on display, using it for"
-		    " polling hints.\n");
-		rfbLog("  To disable this behavior use: "
-		    "'-noxdamage'\n");
+		rfbLog("X DAMAGE available on display, using it for polling hints.\n");
+		rfbLog("  To disable this behavior use: '-noxdamage'\n");
 	}
 
 	if (! quiet && wireframe && ! raw_fb_str) {
-		rfbLog("Wireframing: -wireframe mode is in effect for window "
-		    "moves.\n");
-		rfbLog("  If this yields undesired behavior (poor response, "
-		    "painting\n");
+		rfbLog("\n");
+		rfbLog("Wireframing: -wireframe mode is in effect for window moves.\n");
+		rfbLog("  If this yields undesired behavior (poor response, painting\n");
 		rfbLog("  errors, etc) it may be disabled:\n");
 		rfbLog("   - use '-nowf' to disable wireframing completely.\n");
-		rfbLog("   - use '-nowcr' to disable the Copy Rectangle after "
-		    "the\n");
+		rfbLog("   - use '-nowcr' to disable the Copy Rectangle after the\n");
 		rfbLog("     moved window is released in the new position.\n");
 		rfbLog("  Also see the -help entry for tuning parameters.\n");
-		rfbLog("  You can press 3 Alt_L's (Left \"Alt\" key) in a row"
-		    " to \n");
-		rfbLog("  repaint the screen, also see the -fixscreen option"
-		    " for\n");
+		rfbLog("  You can press 3 Alt_L's (Left \"Alt\" key) in a row to \n");
+		rfbLog("  repaint the screen, also see the -fixscreen option for\n");
 		rfbLog("  periodic repaints.\n");
 		if (scale_str && !strstr(scale_str, "nocr")) {
-			rfbLog("  Note: '-scale' is on and this can cause "
-			    "more problems.\n");
+			rfbLog("  Note: '-scale' is on and this can cause more problems.\n");
 		}
 	}
 
@@ -3157,8 +4313,7 @@ int main(int argc, char* argv[]) {
 #if defined(SOLARIS_OVERLAY) && !NO_X11
 	if (! XQueryExtension(dpy, "SUN_OVL", &maj, &ev, &er)) {
 		if (! quiet && overlay && ! raw_fb_str) {
-			rfbLog("Disabling -overlay: SUN_OVL "
-			    "extension not available.\n");
+			rfbLog("Disabling -overlay: SUN_OVL extension not available.\n");
 		}
 	} else {
 		overlay_present = 1;
@@ -3167,8 +4322,7 @@ int main(int argc, char* argv[]) {
 #if defined(IRIX_OVERLAY) && !NO_X11
 	if (! XReadDisplayQueryExtension(dpy, &ev, &er)) {
 		if (! quiet && overlay && ! raw_fb_str) {
-			rfbLog("Disabling -overlay: IRIX ReadDisplay "
-			    "extension not available.\n");
+			rfbLog("Disabling -overlay: IRIX ReadDisplay extension not available.\n");
 		}
 	} else {
 		overlay_present = 1;
@@ -3190,11 +4344,10 @@ int main(int argc, char* argv[]) {
 			multiple_cursors_mode = strdup("most");
 
 			if (! quiet && ! raw_fb_str) {
-				rfbLog("XFIXES available on display, resetting"
-				    " cursor mode\n");
+				rfbLog("\n");
+				rfbLog("XFIXES available on display, resetting cursor mode\n");
 				rfbLog("  to: '-cursor most'.\n");
-				rfbLog("  to disable this behavior use: "
-				    "'-cursor arrow'\n");
+				rfbLog("  to disable this behavior use: '-cursor arrow'\n");
 				rfbLog("  or '-noxfixes'.\n");
 			}
 		}
@@ -3202,8 +4355,7 @@ int main(int argc, char* argv[]) {
 			if (xfixes_present && use_xfixes &&
 			    overlay_cursor == 1) {
 				if (! quiet && ! raw_fb_str) {
-					rfbLog("using XFIXES for cursor "
-					    "drawing.\n");
+					rfbLog("using XFIXES for cursor drawing.\n");
 				}
 				overlay_cursor = 0;
 			}
@@ -3213,8 +4365,7 @@ int main(int argc, char* argv[]) {
 	if (overlay) {
 		using_shm = 0;
 		if (flash_cmap && ! quiet && ! raw_fb_str) {
-			rfbLog("warning: -flashcmap may be "
-			    "incompatible with -overlay\n");
+			rfbLog("warning: -flashcmap may be incompatible with -overlay\n");
 		}
 		if (show_cursor && overlay_cursor) {
 			char *s = multiple_cursors_mode;
@@ -3240,19 +4391,14 @@ int main(int argc, char* argv[]) {
 	/* check for XTEST */
 	if (! XTestQueryExtension_wr(dpy, &ev, &er, &maj, &min)) {
 		if (! quiet && ! raw_fb_str) {
-			rfbLog("WARNING: XTEST extension not available "
-			    "(either missing from\n");
-			rfbLog("  display or client library libXtst "
-			    "missing at build time).\n");
-			rfbLog("  MOST user input (pointer and keyboard) "
-			    "will be DISCARDED.\n");
-			rfbLog("  If display does have XTEST, be sure to "
-			    "build x11vnc with\n");
-			rfbLog("  a working libXtst build environment "
-			    "(e.g. libxtst-dev,\n");
+			rfbLog("\n");
+			rfbLog("WARNING: XTEST extension not available (either missing from\n");
+			rfbLog("  display or client library libXtst missing at build time).\n");
+			rfbLog("  MOST user input (pointer and keyboard) will be DISCARDED.\n");
+			rfbLog("  If display does have XTEST, be sure to build x11vnc with\n");
+			rfbLog("  a working libXtst build environment (e.g. libxtst-dev,\n");
 			rfbLog("  or other packages).\n");
-			rfbLog("No XTEST extension, switching to "
-			    "-xwarppointer mode for\n");
+			rfbLog("No XTEST extension, switching to -xwarppointer mode for\n");
 			rfbLog("  pointer motion input.\n");
 		}
 		xtest_present = 0;
@@ -3285,6 +4431,7 @@ int main(int argc, char* argv[]) {
 	if (! XRecordQueryVersion_wr(dpy, &maj, &min)) {
 		xrecord_present = 0;
 		if (! quiet) {
+			rfbLog("\n");
 			rfbLog("The RECORD X extension was not found on the display.\n");
 			rfbLog("If your system has disabled it by default, you can\n");
 			rfbLog("enable it to get a nice x11vnc performance speedup\n");
@@ -3321,24 +4468,44 @@ int main(int argc, char* argv[]) {
 	tmpi = 0;
 #endif
 	if (! quiet && tmpi && ! raw_fb_str) {
-		rfbLog("Scroll Detection: -scrollcopyrect mode is in effect "
-		    "to\n");
-		rfbLog("  use RECORD extension to try to detect scrolling "
-		    "windows\n");
+		rfbLog("\n");
+		rfbLog("Scroll Detection: -scrollcopyrect mode is in effect to\n");
+		rfbLog("  use RECORD extension to try to detect scrolling windows\n");
 		rfbLog("  (induced by either user keystroke or mouse input).\n");
-		rfbLog("  If this yields undesired behavior (poor response, "
-		    "painting\n");
+		rfbLog("  If this yields undesired behavior (poor response, painting\n");
 		rfbLog("  errors, etc) it may be disabled via: '-noscr'\n");
 		rfbLog("  Also see the -help entry for tuning parameters.\n");
-		rfbLog("  You can press 3 Alt_L's (Left \"Alt\" key) in a row"
-		    " to \n");
-		rfbLog("  repaint the screen, also see the -fixscreen option"
-		    " for\n");
+		rfbLog("  You can press 3 Alt_L's (Left \"Alt\" key) in a row to \n");
+		rfbLog("  repaint the screen, also see the -fixscreen option for\n");
 		rfbLog("  periodic repaints.\n");
 		if (scale_str && !strstr(scale_str, "nocr")) {
-			rfbLog("  Note: '-scale' is on and this can cause "
-			    "more problems.\n");
+			rfbLog("  Note: '-scale' is on and this can cause more problems.\n");
 		}
+	}
+
+	if (! quiet && ncache && ! raw_fb_str) {
+		rfbLog("\n");
+		rfbLog("Client Side Caching: -ncache mode is in effect to provide\n");
+		rfbLog("  client-side pixel data caching.  This speeds up\n");
+		rfbLog("  iconifying/deiconifying windows, moving and raising\n");
+		rfbLog("  windows, and reposting menus.  In the simple CopyRect\n");
+		rfbLog("  encoding scheme used (no compression) a huge amount\n");
+		rfbLog("  of extra memory (20-100MB) is used on both the server and\n");
+		rfbLog("  client sides.  This mode works with any VNC viewer.\n");
+		rfbLog("  However, in most you can actually see the cached pixel\n");
+		rfbLog("  data by scrolling down, so you need to re-adjust its size.\n");
+		rfbLog("  See http://www.karlrunge.com/x11vnc/#faq-client-caching.\n");
+		rfbLog("  If this mode yields undesired behavior (poor response,\n");
+		rfbLog("  painting errors, etc) it may be disabled via: '-ncache 0'\n");
+		rfbLog("  You can press 3 Alt_L's (Left \"Alt\" key) in a row to \n");
+		rfbLog("  repaint the screen, also see the -fixscreen option for\n");
+		rfbLog("  periodic repaints.\n");
+		if (scale_str) {
+			rfbLog("  Note: '-scale' is on and this can cause more problems.\n");
+		}
+	}
+	if (ncache && getenv("NCACHE_DEBUG")) {
+		ncdb = 1;
 	}
 
 	/* check for OS with small shm limits */
@@ -3355,16 +4522,14 @@ int main(int argc, char* argv[]) {
 		xshm_present = 0;
 		if (! using_shm) {
 			if (! quiet && ! raw_fb_str) {
-				rfbLog("info: display does not support"
-				    " XShm.\n");
+				rfbLog("info: display does not support XShm.\n");
 			}
 		} else {
 		    if (! quiet && ! raw_fb_str) {
+			rfbLog("\n");
 			rfbLog("warning: XShm extension is not available.\n");
-			rfbLog("For best performance the X Display should be"
-			    " local. (i.e.\n");
-			rfbLog("the x11vnc and X server processes should be"
-			    " running on\n");
+			rfbLog("For best performance the X Display should be local. (i.e.\n");
+			rfbLog("the x11vnc and X server processes should be running on\n");
 			rfbLog("the same machine.)\n");
 #if LIBVNCSERVER_HAVE_XSHM
 			rfbLog("Restart with -noshm to override this.\n");
@@ -3384,8 +4549,7 @@ int main(int argc, char* argv[]) {
 	initialize_watch_bell();
 	if (!xkb_present && use_xkb_modtweak) {
 		if (! quiet && ! raw_fb_str) {
-			rfbLog("warning: disabling xkb modtweak."
-			    " XKEYBOARD ext. not present.\n");
+			rfbLog("warning: disabling xkb modtweak. XKEYBOARD ext. not present.\n");
 		}
 		use_xkb_modtweak = 0;
 	}
@@ -3400,11 +4564,11 @@ int main(int argc, char* argv[]) {
 #if LIBVNCSERVER_HAVE_LIBXRANDR
 	if (! XRRQueryExtension(dpy, &xrandr_base_event_type, &er)) {
 		if (xrandr && ! quiet && ! raw_fb_str) {
-			rfbLog("Disabling -xrandr mode: display does not"
-			    " support X RANDR.\n");
+			rfbLog("Disabling -xrandr mode: display does not support X RANDR.\n");
 		}
 		xrandr_base_event_type = 0;
 		xrandr = 0;
+		xrandr_maybe = 0;
 		xrandr_present = 0;
 	} else {
 		xrandr_present = 1;
@@ -3420,21 +4584,29 @@ int main(int argc, char* argv[]) {
 
 	raw_fb_pass_go_and_collect_200_dollars:
 
-#ifdef MACOSX
-	if (! dpy) {
+	if (! dpy || raw_fb_str) {
+		int doit = 0;
 		/* XXX this needs improvement (esp. for remote control) */
 		if (! raw_fb_str || strstr(raw_fb_str, "console") == raw_fb_str) {
+#ifdef MACOSX
+			doit = 1;
+#endif
+		}
+		if (raw_fb_str && strstr(raw_fb_str, "vnc") == raw_fb_str) {
+			doit = 1;
+		}
+		if (doit) {
 			if (! multiple_cursors_mode) {
 				multiple_cursors_mode = strdup("most");
 			}
 			initialize_cursors_mode();
+			use_xdamage = orig_use_xdamage;
 			if (use_xdamage) {
 				xdamage_present = 1;
 				initialize_xdamage();
 			}
 		}
 	}
-#endif
 
 	if (! dt) {
 		static char str[] = "-desktop";
@@ -3498,11 +4670,77 @@ int main(int argc, char* argv[]) {
 		if (macosx_console) {
 			refresh_screen(1);
 		}
+		if (dpy && xdmcp_insert != NULL) {
+#if !NO_X11
+			char c;
+			int n = strlen(xdmcp_insert);
+			KeyCode k, k2;
+			KeySym sym;
+			int i, ok = 1;
+			for (i = 0; i < n; i++) {
+				c = xdmcp_insert[i];
+				sym = (KeySym) c;
+				if (sym < ' ' || sym > 0x7f) {
+					ok = 0;
+					break;
+				}
+				k = XKeysymToKeycode(dpy, sym);
+				if (k == NoSymbol) {
+					ok = 0;
+					break;
+				}
+			}
+			if (ok) {
+				XFlush_wr(dpy);
+				usleep(2*1000*1000);
+				if (!quiet) {
+					rfbLog("sending XDM '%s'\n", xdmcp_insert);
+				}
+				for (i = 0; i < n; i++) {
+					c = xdmcp_insert[i];
+					sym = (KeySym) c;
+					k = XKeysymToKeycode(dpy, sym);
+					if (isupper(c)) {
+						k2 = XKeysymToKeycode(dpy, XK_Shift_L);
+						XTestFakeKeyEvent_wr(dpy, k2, True, CurrentTime);
+						XFlush_wr(dpy);
+						usleep(100*1000);
+					}
+					if (0) fprintf(stderr, "C/k %c/%x\n", c, k);
+					XTestFakeKeyEvent_wr(dpy, k, True, CurrentTime);
+					XFlush_wr(dpy);
+					usleep(100*1000);
+					XTestFakeKeyEvent_wr(dpy, k, False, CurrentTime);
+					XFlush_wr(dpy);
+					usleep(100*1000);
+					if (isupper(c)) {
+						k2 = XKeysymToKeycode(dpy, XK_Shift_L);
+						XTestFakeKeyEvent_wr(dpy, k2, False, CurrentTime);
+						XFlush_wr(dpy);
+						usleep(100*1000);
+					}
+				}
+				k2 = XKeysymToKeycode(dpy, XK_Tab);
+				XTestFakeKeyEvent_wr(dpy, k2, True, CurrentTime);
+				XFlush_wr(dpy);
+				usleep(100*1000);
+				XTestFakeKeyEvent_wr(dpy, k2, False, CurrentTime);
+				XFlush_wr(dpy);
+				usleep(100*1000);
+			}
+			free(xdmcp_insert);
+#endif
+		}
+		check_redir_services();
+
 	}
 
 	if (! waited_for_client) {
 		if (try_http && ! got_httpdir && check_httpdir()) {
 			http_connections(1);
+		}
+		if (ssh_str != NULL) {
+			ssh_remote_tunnel(ssh_str, screen->port);
 		}
 	}
 
@@ -3522,7 +4760,7 @@ int main(int argc, char* argv[]) {
 
 	if (inetd && use_openssl) {
 		if (! waited_for_client) {
-			accept_openssl(OPENSSL_INETD);
+			accept_openssl(OPENSSL_INETD, -1);
 		}
 	}
 	if (! inetd && ! use_openssl) {
@@ -3548,10 +4786,34 @@ int main(int argc, char* argv[]) {
 	}
 	set_vnc_desktop_name();
 
+	if (ncache_beta_tester && (ncache != 0 || ncache_msg)) {
+		ncache_beta_tester_message();
+	}
+
 #if LIBVNCSERVER_HAVE_FORK && LIBVNCSERVER_HAVE_SETSID
 	if (bg) {
-		/* fork into the background now */
 		int p, n;
+		if (getenv("X11VNC_LOOP_MODE_BG")) {
+			if (screen && screen->listenSock >= 0) {
+				close(screen->listenSock);
+				FD_CLR(screen->listenSock,&screen->allFds);
+				screen->listenSock = -1;
+			}
+			if (screen && screen->httpListenSock >= 0) {
+				close(screen->httpListenSock);
+				FD_CLR(screen->httpListenSock,&screen->allFds);
+				screen->httpListenSock = -1;
+			}
+			if (openssl_sock >= 0) {
+				close(openssl_sock);
+				openssl_sock = -1;
+			}
+			if (https_sock >= 0) {
+				close(https_sock);
+				https_sock = -1;
+			}
+		}
+		/* fork into the background now */
 		if ((p = fork()) > 0)  {
 			exit(0);
 		} else if (p == -1) {

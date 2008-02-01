@@ -25,6 +25,7 @@ extern int known_xrandr_mode(char *s);
 		if (check_xrandr_event(y)) { \
 			trapped_getimage_xerror = 0; \
 			XSetErrorHandler(old_getimage_handler);	 \
+			X_UNLOCK; \
 			return(x); \
 		} \
 	}

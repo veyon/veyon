@@ -3,6 +3,7 @@
 #include <rfb/rfbconfig.h>
 #include <rfb/keysym.h>
 
+#include "x11vnc/avahi.c"
 #include "x11vnc/pm.c"
 #include "x11vnc/rates.c"
 #include "x11vnc/cleanup.c"

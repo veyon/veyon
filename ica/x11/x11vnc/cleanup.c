@@ -1,6 +1,5 @@
 /* -- cleanup.c -- */
 
-#include <stdio.h>
 #include "x11vnc.h"
 #include "xwrappers.h"
 #include "xdamage.h"
@@ -13,6 +12,9 @@
 #include "sslcmds.h"
 #include "sslhelper.h"
 #include "connections.h"
+#include "macosx.h"
+#include "macosxCG.h"
+#include "avahi.h"
 
 /*
  * Exiting and error handling routines
@@ -87,7 +89,7 @@ void clean_shm(int quick) {
 			break;
 		}
 	}
-	if (!quiet) {
+	if (!quiet && cnt > 0) {
 		rfbLog("deleted %d tile_row polling images.\n", cnt);
 	}
 }
@@ -128,9 +130,17 @@ void clean_up_exit (int ret) {
 		ssl_helper_pid(0, 0);	/* killall */
 	}
 
+	if (avahi) {
+		avahi_cleanup();
+	}
+	if (ssh_pid > 0) {
+		kill(ssh_pid, SIGTERM);
+		ssh_pid = 0;
+	}
+
 #ifdef MACOSX
 	if (client_connect_file) {
-		if (strstr(client_connect_file, "/tmp/x11vnc-macosx-channel.")
+		if (strstr(client_connect_file, "/tmp/x11vnc-macosx-remote")
 		    == client_connect_file) {
 			unlink(client_connect_file);
 		}
@@ -149,6 +159,9 @@ void clean_up_exit (int ret) {
 		clear_modifiers(0);
 	} else if (clear_mods == 2) {
 		clear_keys();
+	} else if (clear_mods == 3) {
+		clear_keys();
+		clear_locks();
 	}
 
 	if (no_autorepeat) {
@@ -156,6 +169,9 @@ void clean_up_exit (int ret) {
 	}
 	if (use_solid_bg) {
 		solid_bg(1);
+	}
+	if (ncache || ncache0) {
+		kde_no_animate(1);
 	}
 	X_LOCK;
 	XTestDiscard_wr(dpy);
@@ -360,6 +376,7 @@ crash_prompt:
 static void interrupted (int sig) {
 	exit_sig = sig;
 	if (exit_flag) {
+		fprintf(stderr, "extra[%d] signal: %d\n", exit_flag, sig);
 		exit_flag++;
 		if (use_threads) {
 			usleep2(250 * 1000);
@@ -371,6 +388,7 @@ static void interrupted (int sig) {
 	exit_flag++;
 	if (sig == 0) {
 		fprintf(stderr, "caught X11 error:\n");
+		if (crash_debug) { crash_shell(); }
 	} else if (sig == -1) {
 		fprintf(stderr, "caught XIO error:\n");
 	} else {
@@ -379,6 +397,10 @@ static void interrupted (int sig) {
 	if (sig == SIGINT) {
 		shut_down = 1;
 		return;
+	}
+
+	if (crash_debug) {
+		crash_shell();
 	}
 
 	X_UNLOCK;
@@ -401,12 +423,18 @@ static void interrupted (int sig) {
 		clear_modifiers(0);
 	} else if (clear_mods == 2) {
 		clear_keys();
+	} else if (clear_mods == 3) {
+		clear_keys();
+		clear_locks();
 	}
 	if (no_autorepeat) {
 		autorepeat(1, 0);
 	}
 	if (use_solid_bg) {
 		solid_bg(1);
+	}
+	if (ncache || ncache0) {
+		kde_no_animate(1);
 	}
 	stop_stunnel();
 

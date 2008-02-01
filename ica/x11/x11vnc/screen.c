@@ -22,6 +22,12 @@
 #include "v4l.h"
 #include "linuxfb.h"
 #include "macosx.h"
+#include "macosxCG.h"
+#include "avahi.h"
+#include "solid.h"
+#include "inet.h"
+
+#include <rfb/rfbclient.h>
 
 void set_greyscale_colormap(void);
 void set_hi240_colormap(void);
@@ -42,6 +48,13 @@ void initialize_screen(int *argc, char **argv, XImage *fb);
 void set_vnc_desktop_name(void);
 void announce(int lport, int ssl, char *iface);
 
+#if 0
+char *vnc_reflect_guess(char *str, char **raw_fb_addr);
+void vnc_reflect_process_client(void);
+rfbBool vnc_reflect_send_pointer(int x, int y, int mask);
+rfbBool vnc_reflect_send_key(uint32_t key, rfbBool down);
+rfbBool vnc_reflect_send_cuttext(char *str, int len);
+#endif
 
 static void debug_colormap(XImage *fb);
 static void set_visual(char *str);
@@ -56,6 +69,7 @@ static void setup_scaling(int *width_in, int *height_in);
 
 int rawfb_reset = -1;
 int rawfb_dev_video = 0;
+int rawfb_vnc_reflect = 0;
 
 /*
  * X11 and rfb display/screen related routines
@@ -140,6 +154,10 @@ if (0) fprintf(stderr, "unset_colormap: %s\n", raw_fb_pixfmt);
 }
 
 void set_colormap(int reset) {
+#if NO_X11
+	if (!reset) {}
+	return;
+#else
 	static int init = 1;
 	static XColor color[NCOLOR], prev[NCOLOR];
 	Colormap cmap;
@@ -170,9 +188,6 @@ if (0) fprintf(stderr, "unset_colormap: %d\n", reset);
 	}
 
 	RAWFB_RET_VOID
-#if NO_X11
-	return;
-#else
 
 	X_LOCK;
 
@@ -337,14 +352,16 @@ static void debug_colormap(XImage *fb) {
  * visual_id and possibly visual_depth are set.
  */
 static void set_visual(char *str) {
+#if NO_X11
+	RAWFB_RET_VOID
+	if (!str) {}
+	return;
+#else
 	int vis, vdepth, defdepth;
 	XVisualInfo vinfo;
 	char *p, *vstring = strdup(str);
 
 	RAWFB_RET_VOID
-#if NO_X11
-	return;
-#else
 
 	defdepth = DefaultDepth(dpy, scr);
 	visual_id = (VisualID) 0;
@@ -421,6 +438,7 @@ static void set_visual(char *str) {
 void set_nofb_params(int restore) {
 	static int first = 1;
 	static int save[100];
+	static char *scroll = NULL;
 	int i = 0;
 
 	if (first) {
@@ -440,6 +458,9 @@ void set_nofb_params(int restore) {
 		save[i++] = show_cursor;
 		save[i++] = cursor_shape_updates;
 		save[i++] = cursor_pos_updates;
+		save[i++] = ncache;
+
+		scroll = scroll_copyrect;
 	}
 	if (restore) {
 		i = 0;
@@ -458,6 +479,9 @@ void set_nofb_params(int restore) {
 		show_cursor           = save[i++];
 		cursor_shape_updates  = save[i++];
 		cursor_pos_updates    = save[i++];
+		ncache                = save[i++];
+
+		scroll_copyrect = scroll;
 
 		if (cursor_shape_updates) {
 			restore_cursor_shape_updates(screen);
@@ -492,9 +516,13 @@ void set_nofb_params(int restore) {
 		cursor_pos_updates = 0;
 	}
 
+	ncache = 0;
+
+	scroll_copyrect = "never";
+
 	if (! quiet) {
 		rfbLog("disabling: xfixes, xdamage, solid, overlay, shm,\n");
-		rfbLog("  wireframe, scrollcopyrect,\n");
+		rfbLog("  wireframe, scrollcopyrect, ncache,\n");
 		rfbLog("  noonetile, nap, cursor, %scursorshape\n",
 		    got_cursorpos ? "" : "cursorpos, " );
 		rfbLog("  in -nofb mode.\n");
@@ -506,7 +534,7 @@ static char *raw_fb_orig_dpy = NULL;
 void set_raw_fb_params(int restore) {
 	static int first = 1;
 	static int vo0, us0, sm0, ws0, wp0, wc0, wb0, na0, tn0;  
-	static int xr0, sb0, re0;
+	static int xr0, xrm0, sb0, re0;
 	static char *mc0;
 
 	/*
@@ -528,6 +556,7 @@ void set_raw_fb_params(int restore) {
 		sm0 = using_shm;
 		tn0 = take_naps;
 		xr0 = xrandr;
+		xrm0 = xrandr_maybe;
 		re0 = noxrecord;
 		mc0 = multiple_cursors_mode;
 
@@ -547,6 +576,7 @@ void set_raw_fb_params(int restore) {
 		using_shm = sm0;
 		take_naps = tn0;
 		xrandr = xr0;
+		xrandr_maybe = xrm0;
 		noxrecord = re0;
 		multiple_cursors_mode = mc0;
 
@@ -590,7 +620,9 @@ void set_raw_fb_params(int restore) {
 			view_only = 1;
 		}
 #endif
-		if (watch_selection) {
+		if (raw_fb_str && strstr(raw_fb_str, "vnc") == raw_fb_str) {
+			;
+		} else if (watch_selection) {
 			if (verbose) rfbLog("  rawfb: turning off "
 			    "watch_selection\n");
 			watch_selection = 0;
@@ -620,7 +652,11 @@ void set_raw_fb_params(int restore) {
 			use_solid_bg = 0;
 		}
 #ifndef MACOSX
-		multiple_cursors_mode = strdup("arrow");
+		if (raw_fb_str && strstr(raw_fb_str, "vnc") == raw_fb_str) {
+			;
+		} else {
+			multiple_cursors_mode = strdup("arrow");
+		}
 #endif
 	}
 	if (using_shm) {
@@ -634,6 +670,10 @@ void set_raw_fb_params(int restore) {
 	if (xrandr) {
 		if (verbose) rfbLog("  rawfb: turning off xrandr\n");
 		xrandr = 0;
+	}
+	if (xrandr_maybe) {
+		if (verbose) rfbLog("  rawfb: turning off xrandr_maybe\n");
+		xrandr_maybe = 0;
 	}
 	if (! noxrecord) {
 		if (verbose) rfbLog("  rawfb: turning off xrecord\n");
@@ -650,16 +690,22 @@ void set_raw_fb_params(int restore) {
  */
 static void nofb_hook(rfbClientPtr cl) {
 	XImage *fb;
+	XImage raw;
 
 	rfbLog("framebuffer requested in -nofb mode by client %s\n", cl->host);
 	/* ignore xrandr */
 
 	if (raw_fb && ! dpy) {
-		XImage raw;
 		fb = &raw;
 		fb->data = (char *)malloc(32);
 	} else {
-		fb = XGetImage_wr(dpy, window, 0, 0, dpy_x, dpy_y, AllPlanes, ZPixmap);
+		int use_real_ximage = 0;
+		if (use_real_ximage) {
+			fb = XGetImage_wr(dpy, window, 0, 0, dpy_x, dpy_y, AllPlanes, ZPixmap);
+		} else {
+			fb = &raw;
+			fb->data = (char *) calloc(dpy_x*dpy_y*bpp/8, 1);
+		}
 	}
 	main_fb = fb->data;
 	rfb_fb = main_fb;
@@ -725,7 +771,9 @@ void do_new_fb(int reset_mem) {
 		initialize_blackouts_and_xinerama();
 		initialize_polling_images();
 	}
-
+	if (ncache) {
+		check_ncache(1, 0);
+	}
 }
 
 static void remove_fake_fb(void) {
@@ -807,6 +855,285 @@ static void initialize_snap_fb(void) {
 	snap_fb = snap->data;
 }
 
+#if 0
+static rfbClient* client = NULL;
+
+void vnc_reflect_bell(rfbClient *cl) {
+	if (cl) {}
+	if (sound_bell) {
+		if (unixpw_in_progress) {
+			return;
+		}
+		if (! all_clients_initialized()) {
+			rfbLog("vnc_reflect_bell: not sending bell: "
+			    "uninitialized clients\n");
+		} else {
+			if (screen && client_count) {
+				rfbSendBell(screen);
+			}
+		}
+	}
+}
+
+void vnc_reflect_recv_cuttext(rfbClient *cl, const char *str, int len) {
+	if (cl) {}
+	if (unixpw_in_progress) {
+		return;
+	}
+	if (! watch_selection) {
+		return;
+	}
+	if (! all_clients_initialized()) {
+		rfbLog("vnc_reflect_recv_cuttext: no send: uninitialized clients\n");
+		return; /* some clients initializing, cannot send */ 
+	}
+	rfbSendServerCutText(screen, (char *)str, len);
+}
+
+void vnc_reflect_got_update(rfbClient *cl, int x, int y, int w, int h) {
+	if (cl) {}
+	if (use_xdamage) {
+		static int first = 1;
+		if (first) {
+			collect_non_X_xdamage(-1, -1, -1, -1, 0);
+			first = 0;
+		}
+		collect_non_X_xdamage(x, y, w, h, 1);
+	}
+}
+
+void vnc_reflect_got_cursorshape(rfbClient *cl, int xhot, int yhot, int width, int height, int bytesPerPixel) {
+	static int serial = 1;
+	int i, j;
+	char *pixels = NULL;
+	unsigned long r, g, b;
+	unsigned int ui = 0;
+	unsigned long red_mask, green_mask, blue_mask;
+
+	if (cl) {}
+	if (unixpw_in_progress) {
+		return;
+	}
+	if (! all_clients_initialized()) {
+		rfbLog("vnc_reflect_got_copyshape: no send: uninitialized clients\n");
+		return; /* some clients initializing, cannot send */ 
+	}
+	if (! client->rcSource) {
+		return;
+	}
+	if (bytesPerPixel != 1 && bytesPerPixel != 2 && bytesPerPixel != 4) {
+		return;
+	}
+
+	red_mask   = (client->format.redMax   << client->format.redShift);
+	green_mask = (client->format.greenMax << client->format.greenShift);
+	blue_mask  = (client->format.blueMax  << client->format.blueShift);
+
+	pixels = (char *)malloc(4*width*height);
+	for (j=0; j<height; j++) {
+		for (i=0; i<width; i++) {
+			unsigned int* uip;
+			unsigned char* uic;
+			int m;
+			if (bytesPerPixel == 1) {
+				unsigned char* p = (unsigned char *) client->rcSource;
+				ui = (unsigned long) *(p + j * width + i);
+			} else if (bytesPerPixel == 2) {
+				unsigned short* p = (unsigned short *) client->rcSource;
+				ui = (unsigned long) *(p + j * width + i);
+			} else if (bytesPerPixel == 4) {
+				unsigned int* p = (unsigned int *) client->rcSource;
+				ui = (unsigned long) *(p + j * width + i);
+			}
+			r = (red_mask   & ui) >> client->format.redShift;
+			g = (green_mask & ui) >> client->format.greenShift;
+			b = (blue_mask  & ui) >> client->format.blueShift;
+
+			r = (255 * r) / client->format.redMax;
+			g = (255 * g) / client->format.greenMax;
+			b = (255 * b) / client->format.blueMax;
+
+			ui = (r << 16 | g << 8 | b << 0) ;
+
+			uic = (unsigned char *)client->rcMask;
+			m = (int) *(uic + j * width + i);
+			if (m) {
+				ui |= 0xff000000;
+			}
+			uip = (unsigned int *)pixels;
+			*(uip + j * width + i) = ui;
+		}
+	}
+
+	store_cursor(serial++, (unsigned long*) pixels, width, height, 32, xhot, yhot);
+	free(pixels);
+	set_cursor(cursor_x, cursor_y, get_which_cursor());
+}
+
+void vnc_reflect_got_copyrect(rfbClient *cl, int src_x, int src_y, int w, int h, int dest_x, int dest_y) {
+	sraRegionPtr reg;
+	int dx, dy, rc = -1;
+	static int last_dx = 0, last_dy = 0;
+	if (cl) {}
+	if (unixpw_in_progress) {
+		return;
+	}
+	if (! all_clients_initialized()) {
+		rfbLog("vnc_reflect_got_copyrect: no send: uninitialized clients\n");
+		return; /* some clients initializing, cannot send */ 
+	}
+	dx = dest_x - src_x;
+	dy = dest_y - src_y;
+	if (dx != last_dx || dy != last_dy) {
+		rc = fb_push_wait(0.05, FB_COPY|FB_MOD);
+	}
+	if (0) fprintf(stderr, "vnc_reflect_got_copyrect: %dx%d+%d+%d   %d %d  rc=%d\n", dest_x, dest_y, w, h, dx, dy, rc);
+	reg = sraRgnCreateRect(dest_x, dest_y, dest_x + w, dest_y + h);
+	do_copyregion(reg, dx, dy, 0);
+	sraRgnDestroy(reg);
+
+	last_dx = dx;
+	last_dy = dy;
+}
+
+rfbBool vnc_reflect_resize(rfbClient *cl)  {
+	static int first = 1;
+	if(cl->frameBuffer) {
+		free(cl->frameBuffer);
+	}
+	cl->frameBuffer= malloc(cl->width * cl->height * cl->format.bitsPerPixel/8);
+	if (!first) {
+		do_new_fb(1);
+	}
+	first = 0;
+	return cl->frameBuffer ? TRUE : FALSE;
+}
+
+char *vnc_reflect_guess(char *str, char **raw_fb_addr) {
+
+	static int first = 1;
+	char *hp = str + strlen("vnc:");
+	char *at = NULL;
+	int argc = 0, i;
+	char *argv[16];
+	char str2[256];
+	char *str0 = strdup(str);
+
+	if (client == NULL) {
+		client = rfbGetClient(8, 3, 4);
+	}
+
+	rfbLog("rawfb: %s\n", str);
+
+	at = strchr(hp, '@');
+	if (at) {
+		*at = '\0';
+		at++;
+	}
+
+	client->appData.useRemoteCursor = TRUE;
+	client->Bell = vnc_reflect_bell;
+	client->GotXCutText = vnc_reflect_recv_cuttext;
+	client->GotCopyRect = vnc_reflect_got_copyrect;
+	client->GotCursorShape = vnc_reflect_got_cursorshape;
+	client->MallocFrameBuffer = vnc_reflect_resize;
+	client->canHandleNewFBSize = TRUE;
+	client->GotFrameBufferUpdate = vnc_reflect_got_update;
+
+	if (first) {
+		argv[argc++] = "x11vnc_rawfb_vnc";
+		if (strstr(hp, "listen") == hp) {
+			char *q = strchr(hp, ':');
+			argv[argc++] = strdup("-listen");
+			if (q) {
+				client->listenPort = atoi(q+1);
+			} else {
+				client->listenPort = LISTEN_PORT_OFFSET;
+			}
+		} else {
+			argv[argc++] = strdup(hp);
+		}
+
+		if (! rfbInitClient(client, &argc, argv)) {
+			rfbLog("vnc_reflector failed for: %s\n", str0);
+			clean_up_exit(1);
+		}
+	}
+
+	if (at) {
+		sprintf(str2, "map:/dev/null@%s", at);
+	} else {
+		unsigned long red_mask, green_mask, blue_mask;
+		red_mask   = (client->format.redMax   << client->format.redShift);
+		green_mask = (client->format.greenMax << client->format.greenShift);
+		blue_mask  = (client->format.blueMax  << client->format.blueShift);
+		sprintf(str2, "map:/dev/null@%dx%dx%d:0x%lx/0x%lx/0x%lx",
+		    client->width, client->height, client->format.bitsPerPixel,
+		    red_mask, green_mask, blue_mask);
+	}
+	*raw_fb_addr = (char *) client->frameBuffer;
+	free(str0);
+
+	if (first) {
+		setup_cursors_and_push();
+
+		for (i=0; i<10; i++) {
+			vnc_reflect_process_client();
+		}
+	}
+	first = 0;
+
+	return strdup(str2);
+}
+
+rfbBool vnc_reflect_send_pointer(int x, int y, int mask) {
+	int rc;
+	if (mask >= 0) {
+		got_user_input++;
+		got_pointer_input++;
+		last_pointer_time = time(NULL);
+	}
+
+	if (cursor_x != x || cursor_y != y) {
+		last_pointer_motion_time = dnow();
+	}
+
+	cursor_x = x;
+	cursor_y = y;
+
+	/* record the x, y position for the rfb screen as well. */
+	cursor_position(x, y);
+
+	/* change the cursor shape if necessary */
+	rc = set_cursor(x, y, get_which_cursor());
+	cursor_changes += rc;
+
+	return SendPointerEvent(client, x, y, mask);
+}
+
+rfbBool vnc_reflect_send_key(uint32_t key, rfbBool down) {
+	return SendKeyEvent(client, key, down);
+}
+
+rfbBool vnc_reflect_send_cuttext(char *str, int len) {
+	return SendClientCutText(client, str, len);
+}
+
+void vnc_reflect_process_client(void) {
+	int num;
+	if (client == NULL) {
+		return;
+	}
+	num = WaitForMessage(client, 1000);
+	if (num > 0) {
+		if (!HandleRFBServerMessage(client)) {
+			rfbLog("vnc_reflect_process_client: read failure to server\n");
+			shut_down = 1;
+		}
+	}
+}
+#endif
+
 #define RAWFB_MMAP 1
 #define RAWFB_FILE 2
 #define RAWFB_SHM  3
@@ -819,6 +1146,8 @@ XImage *initialize_raw_fb(int reset) {
 	static XImage ximage_struct_snap;
 	int closedpy = 1, i, m, db = 0;
 	int do_macosx = 0;
+	int do_reflect = 0;
+	char *unlink_me = NULL;
 
 	static char *last_file = NULL;
 	static int last_mode = 0;
@@ -896,13 +1225,74 @@ if (db) fprintf(stderr, "initialize_raw_fb reset\n");
 	if (! raw_fb_str) {
 		return NULL;
 	}
+
+	/* testing aliases */
 	if (!strcasecmp(raw_fb_str, "NULL") || !strcasecmp(raw_fb_str, "ZERO")
 	    || !strcasecmp(raw_fb_str, "NONE")) {
 		raw_fb_str = strdup("map:/dev/zero@640x480x32");
+	} else if (!strcasecmp(raw_fb_str, "NULLBIG") || !strcasecmp(raw_fb_str, "NONEBIG")) {
+		raw_fb_str = strdup("map:/dev/zero@1024x768x32");
 	}
 	if (!strcasecmp(raw_fb_str, "RAND")) {
 		raw_fb_str = strdup("file:/dev/urandom@128x128x16");
+	} else if (!strcasecmp(raw_fb_str, "RANDBIG")) {
+		raw_fb_str = strdup("file:/dev/urandom@640x480x16");
+	} else if (!strcasecmp(raw_fb_str, "RANDHUGE")) {
+		raw_fb_str = strdup("file:/dev/urandom@1024x768x16");
 	}
+	if (strstr(raw_fb_str, "solid=") == raw_fb_str) {
+		char *n = raw_fb_str + strlen("solid=");
+		char tmp[] = "/tmp/solid.XXXXXX";
+		char str[100];
+		unsigned int vals[1024], val;
+		int x, y, fd, w = 1024, h = 768;
+		if (strstr(n, "0x")) {
+			if (sscanf(n, "0x%x", &val) != 1) {
+				val = 0;
+			}
+		}
+		if (val == 0) {
+			val = get_pixel(n);
+		}
+		if (val == 0) {
+			val = 0xFF00FF;
+		}
+		fd = mkstemp(tmp);
+		for (y = 0; y < h; y++) {
+			for (x = 0; x < w; x++) {
+				vals[x] = val;
+			}
+			write(fd, (char *)vals, 4 * w);
+		}
+		close(fd);
+		fd = open(tmp, O_WRONLY);
+		unlink_me = strdup(tmp);
+		sprintf(str, "map:%s@%dx%dx32", tmp, w, h);
+		raw_fb_str = strdup(str);
+	} else if (strstr(raw_fb_str, "swirl") == raw_fb_str) {
+		char tmp[] = "/tmp/solid.XXXXXX";
+		char str[100];
+		unsigned int val[1024];
+		unsigned int c1, c2, c3, c4;
+		int x, y, fd, w = 1024, h = 768;
+		fd = mkstemp(tmp);
+		for (y = 0; y < h; y++) {
+			for (x = 0; x < w; x++) {
+				c1 = 0;
+				c2 = ((x+y)*128)/(w+h);
+				c3 = (x*128)/w;
+				c4 = (y*256)/h;
+				val[x] = (c1 << 24) | (c2 << 16) | (c3 << 8) | (c4 << 0);
+			}
+			write(fd, (char *)val, 4 * w);
+		}
+		close(fd);
+		fd = open(tmp, O_WRONLY);
+		unlink_me = strdup(tmp);
+		sprintf(str, "map:%s@%dx%dx32", tmp, w, h);
+		raw_fb_str = strdup(str);
+	}
+
 
 	if ( (q = strstr(raw_fb_str, "setup:")) == raw_fb_str) {
 		FILE *pipe;
@@ -965,6 +1355,7 @@ if (db) fprintf(stderr, "initialize_raw_fb reset\n");
 	raw_fb_addr = NULL;
 	raw_fb_offset = 0;
 	raw_fb_bytes_per_line = 0;
+/*	rawfb_vnc_reflect = 0;*/
 
 	last_mode = 0;
 	if (last_file) {
@@ -1000,8 +1391,21 @@ if (db) fprintf(stderr, "initialize_raw_fb reset\n");
 		}
 		str = str2;
 		rfbLog("console_guess returned: %s\n", str);
-	}
+#if 0
+	} else if (strstr(str, "vnc:") == str) {
+		char *str2 = vnc_reflect_guess(str, &raw_fb_addr);
 
+		rawfb_vnc_reflect = 1;
+		do_reflect = 1;
+
+		str = str2;
+		rfbLog("vnc_reflector set rawfb str to: %s\n", str);
+		if (pipeinput_str == NULL) {
+			pipeinput_str = strdup("VNC");
+		}
+		initialize_pipeinput();
+#endif
+	}
 	if (closedpy && !view_only && got_noviewonly) {
 		rfbLog("not closing X DISPLAY under -noviewonly option.\n");
 		closedpy = 0;
@@ -1199,6 +1603,12 @@ if (db) fprintf(stderr, "initialize_raw_fb reset\n");
 			rfbLog("   w: %d h: %d b: %d addr: %p sz: %d\n", w, h,
 			    b, raw_fb_addr, size);
 			last_mode = 0;
+		} else if (do_reflect) {
+			raw_fb_mmap = size;
+			rfbLog("rawfb: vnc fb: %s\n", q);
+			rfbLog("   w: %d h: %d b: %d addr: %p sz: %d\n", w, h,
+			    b, raw_fb_addr, size);
+			last_mode = 0;
 
 		} else if (do_mmap) {
 #if LIBVNCSERVER_HAVE_MMAP
@@ -1235,6 +1645,10 @@ if (db) fprintf(stderr, "initialize_raw_fb reset\n");
 		rfbLogEnable(1);
 		rfbLog("invalid rawfb str: %s\n", str);
 		clean_up_exit(1);
+	}
+
+	if (unlink_me) {
+		unlink(unlink_me);
 	}
 
 	if (! raw_fb_image) {
@@ -1432,13 +1846,14 @@ static void initialize_clipshift(void) {
 }
 
 static int wait_until_mapped(Window win) {
+#if NO_X11
+	if (!win) {}
+	return 0;
+#else
 	int ms = 50, waittime = 30;
 	time_t start = time(NULL);
 	XWindowAttributes attr;
 
-#if NO_X11
-	return 0;
-#else
 	while (1) {
 		if (! valid_window(win, NULL, 0)) {
 			if (time(NULL) > start + waittime) {
@@ -1463,6 +1878,12 @@ static int wait_until_mapped(Window win) {
  * initialize a fb for the X display
  */
 XImage *initialize_xdisplay_fb(void) {
+#if NO_X11
+	if (raw_fb_str) {
+		return initialize_raw_fb(0);
+	}
+	return NULL;
+#else
 	XImage *fb;
 	char *vis_str = visual_str;
 	int try = 0, subwin_tries = 3;
@@ -1472,9 +1893,6 @@ XImage *initialize_xdisplay_fb(void) {
 	if (raw_fb_str) {
 		return initialize_raw_fb(0);
 	}
-#if NO_X11
-	return NULL;
-#else
 
 	X_LOCK;
 	if (subwin) {
@@ -1960,6 +2378,20 @@ static void setup_rotating(void) {
 	}
 }
 
+static rfbBool set_xlate_wrapper(rfbClientPtr cl) {
+	static int first = 1;
+	if (first) {
+		first = 0;
+	} else if (ncache) {
+		int save = ncache_xrootpmap;
+		rfbLog("set_xlate_wrapper: clearing -ncache for new pixel format.\n");
+		ncache_xrootpmap = 0;
+		check_ncache(1, 0);
+		ncache_xrootpmap = save;
+	}
+	return rfbSetTranslateFunction(cl);	
+}
+
 /*
  * initialize the rfb framebuffer/screen
  */
@@ -2033,6 +2465,35 @@ void initialize_screen(int *argc, char **argv, XImage *fb) {
 		}
 	}
 
+#ifndef NO_NCACHE
+	if (ncache > 0 && !nofb) {
+# ifdef MACOSX
+		if (! raw_fb_str || macosx_console) {
+# else
+		if (! raw_fb_str) {
+# endif
+			
+			char *new_fb;
+			int sz = fb->height * fb->bytes_per_line;
+			int ns = 1+ncache;
+
+			if (ncache_xrootpmap) {
+				ns++;
+			}
+
+			new_fb = (char *) calloc((size_t) (sz * ns), 1);
+			if (fb->data) {
+				memcpy(new_fb, fb->data, sz);
+				free(fb->data);
+			}
+			fb->data = new_fb;
+			fb->height *= (ns);
+			height *= (ns);
+			ncache0 = ncache;
+		}
+	}
+#endif
+
 	if (cmap8to24 && depth == 8) {
 		rfb_bytes_per_line *= 4;
 		rot_bytes_per_line *= 4;
@@ -2048,7 +2509,7 @@ void initialize_screen(int *argc, char **argv, XImage *fb) {
 	/* n.b. samplesPerPixel (set = 1 here) seems to be unused. */
 	if (create_screen) {
 		if (use_openssl) {
-			openssl_init();
+			openssl_init(0);
 		} else if (use_stunnel) {
 			setup_stunnel(0, argc, argv);
 		}
@@ -2095,6 +2556,7 @@ void initialize_screen(int *argc, char **argv, XImage *fb) {
 		rfbLog("\n");
 		rfbLog("removed: -hints, -nohints\n");
 		rfbLog("removed: -cursorposall\n");
+		rfbLog("removed: -nofilexfer, now the default.\n");
 		rfbLog("\n");
 		rfbLog("renamed: -old_copytile, use -onetile\n");
 		rfbLog("renamed: -mouse,   use -cursor\n");
@@ -2141,6 +2603,9 @@ void initialize_screen(int *argc, char **argv, XImage *fb) {
 
 	if (cmap8to24 && depth == 8 && dpy) {
 		XVisualInfo vinfo;
+		vinfo.red_mask = 0;
+		vinfo.green_mask = 0;
+		vinfo.blue_mask = 0;
 		/* more cooking up... */
 		have_masks = 2;
 		/* need to fetch TrueColor visual */
@@ -2448,6 +2913,13 @@ void initialize_screen(int *argc, char **argv, XImage *fb) {
 	screen->kbdAddEvent = keyboard;
 	screen->ptrAddEvent = pointer;
 	screen->setXCutText = xcut_receive;
+	screen->setTranslateFunction = set_xlate_wrapper;
+
+	screen->kbdReleaseAllKeys = kbd_release_all_keys; 
+	screen->setSingleWindow = set_single_window; 
+	screen->setServerInput = set_server_input; 
+	screen->setTextChat = set_text_chat; 
+	screen->getFileTransferPermission = get_file_transfer_permitted; 
 
 	/* called from inetd, we need to treat stdio as our socket */
 	if (inetd && use_openssl) {
@@ -2467,6 +2939,10 @@ void initialize_screen(int *argc, char **argv, XImage *fb) {
 		screen->inetdSock = fd;
 		screen->port = 0;
 
+	} else if (! got_rfbport && auto_port > 0) {
+		int lport = find_free_port(auto_port, auto_port+200);
+		screen->autoPort = FALSE;
+		screen->port = lport;
 	} else if (! got_rfbport) {
 		screen->autoPort = TRUE;
 	} else if (got_rfbport && got_rfbport_val == 0) {
@@ -2498,6 +2974,13 @@ void initialize_screen(int *argc, char **argv, XImage *fb) {
 	install_passwds();
 }
 
+#define DO_AVAHI \
+	if (avahi) { \
+		avahi_initialise(); \
+		avahi_advertise(vnc_desktop_name, host, lport); \
+		usleep(1000*1000); \
+	}
+
 void announce(int lport, int ssl, char *iface) {
 	
 	char *host = this_host();
@@ -2521,18 +3004,21 @@ void announce(int lport, int ssl, char *iface) {
 			if (lport >= 5900) {
 				snprintf(vnc_desktop_name, sz, "%s:%d",
 				    host, lport - 5900);
-				fprintf(stderr, "%s %s\n", tvdt,
+				DO_AVAHI
+				fprintf(stderr, "\n%s %s\n", tvdt,
 				    vnc_desktop_name);
 			} else {
 				snprintf(vnc_desktop_name, sz, "%s:%d",
 				    host, lport);
-				fprintf(stderr, "%s %s\n", tvdt,
+				DO_AVAHI
+				fprintf(stderr, "\n%s %s\n", tvdt,
 				    vnc_desktop_name);
 			}
 		} else if (lport >= 5900) {
 			snprintf(vnc_desktop_name, sz, "%s:%d",
 			    host, lport - 5900);
-			fprintf(stderr, "%s %s\n", tvdt, vnc_desktop_name);
+			DO_AVAHI
+			fprintf(stderr, "\n%s %s\n", tvdt, vnc_desktop_name);
 			if (lport >= 6000) {
 				rfbLog("possible aliases:  %s:%d, "
 				    "%s::%d\n", host, lport,
@@ -2541,7 +3027,8 @@ void announce(int lport, int ssl, char *iface) {
 		} else {
 			snprintf(vnc_desktop_name, sz, "%s:%d",
 			    host, lport);
-			fprintf(stderr, "%s %s\n", tvdt, vnc_desktop_name);
+			DO_AVAHI
+			fprintf(stderr, "\n%s %s\n", tvdt, vnc_desktop_name);
 			rfbLog("possible alias:    %s::%d\n",
 			    host, lport);
 		}
@@ -2580,6 +3067,23 @@ void set_vnc_desktop_name(void) {
 	if (screen->port) {
 
 		if (! quiet) {
+			if (screen->httpListenSock > -1 && screen->httpPort) {
+				rfbLog("\n");
+				rfbLog("The URLs printed out below ('Java ... viewer URL') can\n");
+				rfbLog("be used for Java enabled Web browser connections.\n");
+				if (use_openssl || stunnel_port) {
+					rfbLog("Here are some additional possibilities:\n");
+					rfbLog("\n");
+					rfbLog("https://host:port/proxy.vnc (MUST be used if Web Proxy used)\n");
+					rfbLog("\n");
+					rfbLog("https://host:port/ultra.vnc (Use UltraVNC Java Viewer)\n");
+					rfbLog("https://host:port/ultraproxy.vnc (Web Proxy with UltraVNC)\n");
+					rfbLog("https://host:port/ultrasigned.vnc (Signed UltraVNC Filexfer)\n");
+					rfbLog("\n");
+					rfbLog("Where you replace \"host:port\" with that printed below, or\n");
+					rfbLog("whatever is needed to reach the host e.g. Internet IP number\n");
+				}
+			}
 			rfbLog("\n");
 		}
 

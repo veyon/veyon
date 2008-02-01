@@ -6,6 +6,7 @@
 #include "xevents.h"
 #include "connections.h"
 #include "cleanup.h"
+#include "macosx.h"
 
 int xshm_present = 0;
 int xtest_present = 0;
@@ -79,7 +80,12 @@ Bool XQueryPointer_wr(Display *display, Window w, Window *root_return,
     Window *child_return, int *root_x_return, int *root_y_return,
     int *win_x_return, int *win_y_return, unsigned int *mask_return);
 
+Status XQueryTree_wr(Display *display, Window w, Window *root_return,
+    Window *parent_return, Window **children_return,
+    unsigned int *nchildren_return);
+
 int XFree_wr(void *data);
+int XSelectInput_wr(Display *display, Window w, long event_mask);
 
 void copy_raw_fb(XImage *dest, int x, int y, unsigned int w, unsigned int h);
 static void upup_downdown_warning(KeyCode key, Bool down);
@@ -111,6 +117,7 @@ int guess_bits_per_color(int bits_per_pixel) {
 
 int XFlush_wr(Display *disp) {
 #if NO_X11
+	if (!disp) {}
 	return 1;
 #else
 	if (disp) {
@@ -151,6 +158,7 @@ Status XShmGetImage_wr(Display *disp, Drawable d, XImage *image, int x, int y,
 #if LIBVNCSERVER_HAVE_XSHM
 	return XShmGetImage(disp, d, image, x, y, mask); 
 #else
+	if (!disp || !d || !image || !x || !y || !mask) {}
 	return (Status) 0;
 #endif
 }
@@ -163,6 +171,7 @@ XImage *XShmCreateImage_wr(Display* disp, Visual* vis, unsigned int depth,
 	return XShmCreateImage(disp, vis, depth, format, data, shminfo,
 	    width, height); 
 #else
+	if (!disp || !vis || !depth || !format || !data || !shminfo || !width || !height) {}
 	return (XImage *) 0;
 #endif
 }
@@ -171,6 +180,7 @@ Status XShmAttach_wr(Display *disp, XShmSegmentInfo *shminfo) {
 #if LIBVNCSERVER_HAVE_XSHM
 	return XShmAttach(disp, shminfo);
 #else
+	if (!disp || !shminfo) {}
 	return (Status) 0;
 #endif
 }
@@ -179,6 +189,7 @@ Status XShmDetach_wr(Display *disp, XShmSegmentInfo *shminfo) {
 #if LIBVNCSERVER_HAVE_XSHM
 	return XShmDetach(disp, shminfo);
 #else
+	if (!disp || !shminfo) {}
 	return (Status) 0;
 #endif
 }
@@ -187,6 +198,7 @@ Bool XShmQueryExtension_wr(Display *disp) {
 #if LIBVNCSERVER_HAVE_XSHM
 	return XShmQueryExtension(disp);
 #else
+	if (!disp) {}
 	return False;
 #endif
 }
@@ -196,6 +208,7 @@ Bool XShmQueryExtension_wr(Display *disp) {
 XImage *xreadscreen(Display *disp, Drawable d, int x, int y,
     unsigned int width, unsigned int height, Bool show_cursor) {
 #if NO_X11
+	if (!disp || !d || !x || !y || !width || !height || !show_cursor) {}
 	return NULL;
 #else
 
@@ -225,6 +238,7 @@ XImage *XGetSubImage_wr(Display *disp, Drawable d, int x, int y,
     int format, XImage *dest_image, int dest_x, int dest_y) {
 #if NO_X11
 	nox11_exit(1);
+	if (!disp || !d || !x || !y || !width || !height || !plane_mask || !format || !dest_image || !dest_x || !dest_y) {}
 	return NULL;
 #else
 	ADJUST_ROOTSHIFT
@@ -258,6 +272,7 @@ XImage *XGetImage_wr(Display *disp, Drawable d, int x, int y,
     unsigned int width, unsigned int height, unsigned long plane_mask,
     int format) {
 #if NO_X11
+	if (!disp || !d || !x || !y || !width || !height || !plane_mask || !format) {}
 	nox11_exit(1);
 	return NULL;
 #else
@@ -303,6 +318,8 @@ XImage *XCreateImage_wr(Display *disp, Visual *visual, unsigned int depth,
 
 #if NO_X11
 	nox11_exit(1);
+	if (!disp || !visual || !depth || !format || !offset || !data || !width
+	    || !height || !width || !bitmap_pad || !bytes_per_line) {}
 	return NULL;
 #else
 	if (overlay) {
@@ -583,6 +600,7 @@ void init_track_keycode_state(void) {
 static void upup_downdown_warning(KeyCode key, Bool down) {
 	RAWFB_RET_VOID
 #if NO_X11
+	if (!key || !down) {}
 	return;
 #else
 	if ((down ? 1:0) == keycode_state[(int) key]) {
@@ -604,6 +622,7 @@ void XTRAP_FakeKeyEvent_wr(Display* dpy, KeyCode key, Bool down,
 	RAWFB_RET_VOID
 #if NO_X11
 	nox11_exit(1);
+	if (!dpy || !key || !down || !delay) {}
 	return;
 #else
 
@@ -614,16 +633,16 @@ void XTRAP_FakeKeyEvent_wr(Display* dpy, KeyCode key, Bool down,
 	/* unused vars warning: */
 	if (key || down || delay) {} 
 
-#if LIBVNCSERVER_HAVE_LIBXTRAP
+# if LIBVNCSERVER_HAVE_LIBXTRAP
 	XESimulateXEventRequest(trap_ctx, down ? KeyPress : KeyRelease,
 	    key, 0, 0, 0);
 	if (debug_keyboard) {
 		upup_downdown_warning(key, down);
 	}
 	keycode_state[(int) key] = down ? 1 : 0;
-#else
+# else
 	DEBUG_SKIPPED_INPUT(debug_keyboard, "keyboard: no-XTRAP-build");
-#endif
+# endif
 
 #endif	/* NO_X11 */
 }
@@ -636,6 +655,7 @@ void XTestFakeKeyEvent_wr(Display* dpy, KeyCode key, Bool down,
 
 #if NO_X11
 	nox11_exit(1);
+	if (!dpy || !key || !down || !delay || !first) {}
 	return;
 #else
 	if (debug_keyboard) {
@@ -671,7 +691,7 @@ void XTestFakeKeyEvent_wr(Display* dpy, KeyCode key, Bool down,
 	}
 	if (debug_keyboard) {
 		rfbLog("calling XTestFakeKeyEvent(%d, %d)  %.4f\n",
-		    key, down, dnow() - x11vnc_start);	
+		    key, down, dnowx());	
 	}
 #if LIBVNCSERVER_HAVE_XTEST
 	XTestFakeKeyEvent(dpy, key, down, delay);
@@ -693,6 +713,7 @@ void XTRAP_FakeButtonEvent_wr(Display* dpy, unsigned int button, Bool is_press,
 	RAWFB_RET_VOID
 #if NO_X11
 	nox11_exit(1);
+	if (!dpy || !button || !is_press || !delay) {}
 	return;
 #else
 
@@ -719,6 +740,7 @@ void XTestFakeButtonEvent_wr(Display* dpy, unsigned int button, Bool is_press,
 	RAWFB_RET_VOID
 #if NO_X11
 	nox11_exit(1);
+	if (!dpy || !button || !is_press || !delay) {}
 	return;
 #else
 
@@ -740,7 +762,7 @@ void XTestFakeButtonEvent_wr(Display* dpy, unsigned int button, Bool is_press,
 	}
 	if (debug_pointer) {
 		rfbLog("calling XTestFakeButtonEvent(%d, %d)  %.4f\n",
-		    button, is_press, dnow() - x11vnc_start);	
+		    button, is_press, dnowx());	
 	}
 #if LIBVNCSERVER_HAVE_XTEST
     	XTestFakeButtonEvent(dpy, button, is_press, delay);
@@ -758,6 +780,7 @@ void XTRAP_FakeMotionEvent_wr(Display* dpy, int screen, int x, int y,
 
 #if NO_X11
 	nox11_exit(1);
+	if (!dpy || !screen || !x || !y || !delay) {}
 	return;
 #else
 	if (! xtrap_present) {
@@ -782,6 +805,7 @@ void XTestFakeMotionEvent_wr(Display* dpy, int screen, int x, int y,
 	RAWFB_RET_VOID
 #if NO_X11
 	nox11_exit(1);
+	if (!dpy || !screen || !x || !y || !delay) {}
 	return;
 #else
 
@@ -799,7 +823,7 @@ void XTestFakeMotionEvent_wr(Display* dpy, int screen, int x, int y,
 
 	if (debug_pointer) {
 		rfbLog("calling XTestFakeMotionEvent(%d, %d)  %.4f\n",
-		    x, y, dnow() - x11vnc_start);	
+		    x, y, dnowx());	
 	}
 #if LIBVNCSERVER_HAVE_XTEST
 	XTestFakeMotionEvent(dpy, screen, x, y, delay);
@@ -819,6 +843,7 @@ Bool XTestCompareCurrentCursorWithWindow_wr(Display* dpy, Window w) {
 #if LIBVNCSERVER_HAVE_XTEST
 	return XTestCompareCurrentCursorWithWindow(dpy, w);
 #else
+	if (!w) {}
 	return False;
 #endif
 }
@@ -831,6 +856,7 @@ Bool XTestCompareCursorWithWindow_wr(Display* dpy, Window w, Cursor cursor) {
 #if LIBVNCSERVER_HAVE_XTEST
 	return XTestCompareCursorWithWindow(dpy, w, cursor);
 #else
+	if (!dpy || !w || !cursor) {}
 	return False;
 #endif
 }
@@ -841,6 +867,7 @@ Bool XTestQueryExtension_wr(Display *dpy, int *ev, int *er, int *maj,
 #if LIBVNCSERVER_HAVE_XTEST
 	return XTestQueryExtension(dpy, ev, er, maj, min);
 #else
+	if (!dpy || !ev || !er || !maj || !min) {}
 	return False;
 #endif
 }
@@ -852,6 +879,8 @@ void XTestDiscard_wr(Display *dpy) {
 	RAWFB_RET_VOID
 #if LIBVNCSERVER_HAVE_XTEST
 	XTestDiscard(dpy);
+#else
+	if (!dpy) {}
 #endif
 }
 
@@ -876,6 +905,7 @@ int XTestGrabControl_wr(Display *dpy, Bool impervious) {
 	XTestGrabControl(dpy, impervious);
 	return 1;
 #else
+	if (!dpy || !impervious) {}
 	return 0;
 #endif
 }
@@ -985,6 +1015,7 @@ Bool XRecordQueryVersion_wr(Display *dpy, int *maj, int *min) {
 #if LIBVNCSERVER_HAVE_RECORD
 	return XRecordQueryVersion(dpy, maj, min);
 #else
+	if (!dpy || !maj || !min) {}
 	return False;
 #endif
 }
@@ -1011,7 +1042,7 @@ int xauth_raw(int on) {
 				rfbLog("could not create tmp xauth file: %s\n", tmp);	
 				return 0;
 			}
-			if (db) fprintf(stderr, "tmp: %s\n", tmp);
+			if (db) fprintf(stderr, "XAUTHORITY tmp: %s\n", tmp);
 			write(tmp_fd, xauth_raw_data, xauth_raw_len);
 			close(tmp_fd);
 			if (getenv("XAUTHORITY")) {
@@ -1025,7 +1056,14 @@ int xauth_raw(int on) {
 		return 1;
 	} else {
 		if (old_xauthority) {
-			set_env("XAUTHORITY", old_xauthority);
+			if (!strcmp(old_xauthority, "")) {
+				char *xauth = getenv("XAUTHORITY");
+				if (xauth) {
+					*(xauth-2) = '_';	/* yow */
+				}
+			} else {
+				set_env("XAUTHORITY", old_xauthority);
+			}
 			free(old_xauthority);
 			old_xauthority = NULL;
 		}
@@ -1039,7 +1077,7 @@ int xauth_raw(int on) {
 }
 
 Display *XOpenDisplay_wr(char *display_name) {
-	Display *d;
+	Display *d = NULL;
 	int db = 0;
 
 	if (! xauth_raw(1)) {
@@ -1047,6 +1085,7 @@ Display *XOpenDisplay_wr(char *display_name) {
 	}
 #if NO_X11
 	rfbLog("This x11vnc was built without X11 support (-rawfb only).\n");
+	if (!display_name || !d || !db) {}
 	return NULL;
 #else
 
@@ -1080,17 +1119,29 @@ static int last_local_y = 0;
 Bool XQueryPointer_wr(Display *display, Window w, Window *root_return,
     Window *child_return, int *root_x_return, int *root_y_return,
     int *win_x_return, int *win_y_return, unsigned int *mask_return) {
-	Bool rc;
-
 #if NO_X11
+	if (!display || !w || !root_return || !child_return || !root_x_return
+	    || !root_y_return || !win_x_return || !win_y_return || !mask_return) {}
 	return False;
 #else
+	Bool rc;
+	XErrorHandler old_handler;
+
+
 	if (! display) {
 		return False;
 	}
+	old_handler = XSetErrorHandler(trap_xerror);
+	trapped_xerror = 0;
+
 	rc = XQueryPointer(display, w, root_return, child_return,
 	    root_x_return, root_y_return, win_x_return, win_y_return,
 	    mask_return);
+
+	XSetErrorHandler(old_handler);
+	if (trapped_xerror) {
+		rc = 0;
+	}
 	if (rc) {
 		display_button_mask = (*mask_return) & Bmask;
 		display_mod_mask    = (*mask_return) & Mmask;
@@ -1121,6 +1172,8 @@ Status XQueryTree_wr(Display *display, Window w, Window *root_return,
 	}
 #endif
 #if NO_X11
+	if (!display || !w || !root_return || !parent_return
+	    || !children_return || !nchildren_return) {}
 	return (Status) 0;
 #else
 	if (! display) {
@@ -1143,6 +1196,27 @@ int XFree_wr(void *data) {
 	return 1;
 #else
 	return XFree(data);
+#endif
+}
+
+int XSelectInput_wr(Display *display, Window w, long event_mask) {
+#if NO_X11
+	if (!display || !w || !event_mask) {}
+	return 0;
+#else
+	int rc;
+	XErrorHandler old_handler;
+	if (display == NULL || w == None) {
+		return 0;
+	}
+	old_handler = XSetErrorHandler(trap_xerror);
+	trapped_xerror = 0;
+	rc = XSelectInput(display, w, event_mask);
+	XSetErrorHandler(old_handler);
+	if (trapped_xerror) {
+		rc = 0;
+	}
+	return rc;
 #endif
 }
 

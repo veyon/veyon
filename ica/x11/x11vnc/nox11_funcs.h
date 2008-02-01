@@ -2807,10 +2807,12 @@ char *XKeysymToString(KeySym k) {
 }
 
 KeySym XKeycodeToKeysym(Display *display, KeyCode keycode, int index) {
+	if (!display || !keycode || !index) {}
 	return NoSymbol;
 }
 
 KeyCode XKeysymToKeycode(Display *display, KeySym keysym) {
+	if (!display || !keysym) {}
 	return NoSymbol;
 }
 

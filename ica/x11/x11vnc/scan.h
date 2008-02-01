@@ -14,7 +14,7 @@ extern void initialize_polling_images(void);
 extern void scale_rect(double factor, int blend, int interpolate, int Bpp,
     char *src_fb, int src_bytes_per_line, char *dst_fb, int dst_bytes_per_line,
     int Nx, int Ny, int nx, int ny, int X1, int Y1, int X2, int Y2, int mark);
-extern void scale_and_mark_rect(int X1, int Y1, int X2, int Y2);
+extern void scale_and_mark_rect(int X1, int Y1, int X2, int Y2, int mark);
 extern void mark_rect_as_modified(int x1, int y1, int x2, int y2, int force);
 extern int copy_screen(void);
 extern int copy_snap(void);

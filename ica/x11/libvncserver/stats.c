@@ -25,7 +25,6 @@
  */
 
 #include <rfb/rfb.h>
-#include <stdio.h>
 
 char *messageNameServer2Client(uint32_t type, char *buf, int len);
 char *messageNameClient2Server(uint32_t type, char *buf, int len);

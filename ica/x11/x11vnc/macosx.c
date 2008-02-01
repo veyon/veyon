@@ -19,10 +19,12 @@
 #include "allowed_input_t.h"
 #include "keyboard.h"
 #include "cursor.h"
+#include "connections.h"
 #include "macosxCG.h"
 #include "macosxCGP.h"
 #include "macosxCGS.h"
 
+void macosx_log(char *);
 char *macosx_console_guess(char *str, int *fd);
 void macosx_key_command(rfbBool down, rfbKeySym keysym, rfbClientPtr client);
 void macosx_pointer_command(int mask, int x, int y, rfbClientPtr client);
@@ -35,6 +37,18 @@ int macosx_valid_window(Window, XWindowAttributes*);
 
 Status macosx_xquerytree(Window w, Window *root_return, Window *parent_return,
     Window **children_return, unsigned int *nchildren_return);
+int macosx_get_wm_frame_pos(int *px, int *py, int *x, int *y, int *w, int *h,
+    Window *frame, Window *win);
+
+void macosx_add_mapnotify(Window win, int level, int map);
+void macosx_add_create(Window win, int level);
+void macosx_add_destroy(Window win, int level);
+void macosx_add_visnotify(Window win, int level, int obscured);
+int macosx_checkevent(XEvent *ev);
+
+void macosx_log(char *str) {
+	rfbLog(str);
+}
 
 #if (! DOMAC)
 
@@ -42,12 +56,15 @@ void macosx_event_loop(void) {
 	return;
 }
 char *macosx_console_guess(char *str, int *fd) {
+	if (!str || !fd) {}
 	return NULL;
 }
 void macosx_key_command(rfbBool down, rfbKeySym keysym, rfbClientPtr client) {
+	if (!down || !keysym || !client) {}
 	return;
 }
 void macosx_pointer_command(int mask, int x, int y, rfbClientPtr client) {
+	if (!mask || !x || !y || !client) {}
 	return;
 }
 char *macosx_get_fb_addr(void) {
@@ -57,20 +74,46 @@ int macosx_get_cursor(void) {
 	return 0;
 }
 int macosx_get_cursor_pos(int *x, int *y) {
+	if (!x || !y) {}
 	return 0;
 }
 void macosx_send_sel(char * str, int len) {
+	if (!str || !len) {}
 	return;
 }
 void macosx_set_sel(char * str, int len) {
+	if (!str || !len) {}
 	return;
 }
 int macosx_valid_window(Window w, XWindowAttributes* a) {
+	if (!w || !a) {}
 	return 0;
 }
 Status macosx_xquerytree(Window w, Window *root_return, Window *parent_return,
     Window **children_return, unsigned int *nchildren_return) {
+	if (!w || !root_return || !parent_return || !children_return || !nchildren_return) {}
 	return (Status) 0;
+}
+void macosx_add_mapnotify(Window win, int level, int map) {
+	if (!win || !level || !map) {}
+	return;
+}
+void macosx_add_create(Window win, int level) {
+	if (!win || !level) {}
+	return;
+}
+void macosx_add_destroy(Window win, int level) {
+	if (!win || !level) {}
+	return;
+}
+void macosx_add_visnotify(Window win, int level, int obscured) {
+	if (!win || !level || !obscured) {}
+	return;
+}
+
+int macosx_checkevent(XEvent *ev) {
+	if (!ev) {}
+	return 0;
 }
 
 
@@ -169,6 +212,8 @@ char *macosx_console_guess(char *str, int *fd) {
 	return q;
 }
 
+Window macosx_click_frame = None;
+
 void macosx_pointer_command(int mask, int x, int y, rfbClientPtr client) {
 	allowed_input_t input;
 	static int last_mask = 0;
@@ -197,6 +242,16 @@ void macosx_pointer_command(int mask, int x, int y, rfbClientPtr client) {
 		last_pointer_client = client;
 		last_pointer_time = time(NULL);
 	}
+	if (last_mask != mask) {
+		if (0) fprintf(stderr, "about to inject mask change %d -> %d: %.4f\n", last_mask, mask, dnowx());
+		if (mask) {
+			int px, py, x, y, w, h;
+			macosx_click_frame = None;
+			if (!macosx_get_wm_frame_pos(&px, &py, &x, &y, &w, &h, &macosx_click_frame, NULL)) {
+				macosx_click_frame = None;
+			}
+		}
+	}
 
 	macosxCG_pointer_inject(mask, x, y);
 
@@ -209,6 +264,19 @@ void macosx_pointer_command(int mask, int x, int y, rfbClientPtr client) {
 
 	if (last_mask != mask) {
 		last_pointer_click_time = dnow();
+		if (ncache > 0) {
+			/* XXX Y */
+			int i;
+if (0) fprintf(stderr, "about to get all windows:           %.4f\n", dnowx());
+			for (i=0; i < 2; i++) {
+				macosxCGS_get_all_windows();
+				fprintf(stderr, "!");
+				if (macosx_checkevent(NULL)) {
+					break;
+				}
+			}
+if (0) fprintf(stderr, "\ndone:                               %.4f\n", dnowx());
+		}
 	}
 	last_mask = mask;
 
@@ -227,7 +295,6 @@ void init_key_table(void) {
 }
 
 void macosx_key_command(rfbBool down, rfbKeySym keysym, rfbClientPtr client) {
-	static int control = 0, alt = 0;
 	allowed_input_t input;
 	if (debug_keyboard) fprintf(stderr, "macosx_key_command: %d %s\n", (int) keysym, down ? "down" : "up");
 
@@ -241,7 +308,6 @@ void macosx_key_command(rfbBool down, rfbKeySym keysym, rfbClientPtr client) {
 
 	init_key_table();
 	macosxCG_key_inject((int) down, (unsigned int) keysym);
-
 }
 
 extern void macosxGCS_poll_pb(void);
@@ -299,11 +365,130 @@ int macosx_get_cursor(void) {
 	return macosxCG_get_cursor();
 }
 
+typedef struct evdat {
+	int win;
+	int map;
+	int level;
+	int vis;
+	int type;
+} evdat_t;
+
+#define MAX_EVENTS 1024
+evdat_t mac_events[MAX_EVENTS];
+int mac_events_ptr = 0;
+int mac_events_last = 0;
+
+void macosx_add_mapnotify(Window win, int level, int map) {
+	int i = mac_events_last++;
+	mac_events[i].win = win;
+	mac_events[i].level = level;
+
+	if (map) {
+		mac_events[i].type = MapNotify;
+	} else {
+		mac_events[i].type = UnmapNotify;
+	}
+	mac_events[i].map = map;
+	mac_events[i].vis = -1;
+
+	mac_events_last = mac_events_last % MAX_EVENTS;
+
+	return;
+}
+
+void macosx_add_create(Window win, int level) {
+	int i = mac_events_last++;
+	mac_events[i].win = win;
+	mac_events[i].level = level;
+
+	mac_events[i].type = CreateNotify;
+	mac_events[i].map = -1;
+	mac_events[i].vis = -1;
+
+	mac_events_last = mac_events_last % MAX_EVENTS;
+
+	return;
+}
+
+void macosx_add_destroy(Window win, int level) {
+	int i = mac_events_last++;
+	mac_events[i].win = win;
+	mac_events[i].level = level;
+
+	mac_events[i].type = DestroyNotify;
+	mac_events[i].map = -1;
+	mac_events[i].vis = -1;
+
+	mac_events_last = mac_events_last % MAX_EVENTS;
+
+	return;
+}
+
+void macosx_add_visnotify(Window win, int level, int obscured) {
+	int i = mac_events_last++;
+	mac_events[i].win = win;
+	mac_events[i].level = level;
+
+	mac_events[i].type = VisibilityNotify;
+	mac_events[i].map = -1;
+
+	mac_events[i].vis = 1;
+	if (obscured == 0) {
+		mac_events[i].vis = VisibilityUnobscured;
+	} else if (obscured == 1) {
+		mac_events[i].vis = VisibilityPartiallyObscured;
+	} else if (obscured == 2) {
+		mac_events[i].vis = VisibilityFullyObscured; 	/* NI */
+	}
+
+	mac_events_last = mac_events_last % MAX_EVENTS;
+
+	return;
+}
+
+int macosx_checkevent(XEvent *ev) {
+	int i = mac_events_ptr;
+
+	if (mac_events_ptr == mac_events_last) {
+		return 0;
+	}
+	if (ev == NULL) {
+		return mac_events[i].type;
+	}
+
+	ev->xany.window = mac_events[i].win;
+
+	if (mac_events[i].type == CreateNotify) {
+		ev->type = CreateNotify;
+		ev->xany.window = rootwin;
+		ev->xcreatewindow.window = mac_events[i].win;
+	} else if (mac_events[i].type == DestroyNotify) {
+		ev->type = DestroyNotify;
+		ev->xdestroywindow.window = mac_events[i].win;
+	} else if (mac_events[i].type == VisibilityNotify) {
+		ev->type = VisibilityNotify;
+		ev->xvisibility.state = mac_events[i].vis;
+	} else if (mac_events[i].type == MapNotify) {
+		ev->type = MapNotify;
+	} else if (mac_events[i].type == UnmapNotify) {
+		ev->type = UnmapNotify;
+	} else {
+		fprintf(stderr, "unknown macosx_checkevent: %d\n", mac_events[i].type);
+	}
+	mac_events_ptr++;
+	mac_events_ptr = mac_events_ptr % MAX_EVENTS;
+
+	return mac_events[i].type;
+}
+
 typedef struct windat {
 	int win;
 	int x, y;
 	int width, height;
 	int level;
+	int mapped;
+	int clipped;
+	int ncache_only;
 } windat_t;
 
 extern int macwinmax; 
@@ -313,19 +498,13 @@ int macosx_get_wm_frame_pos(int *px, int *py, int *x, int *y, int *w, int *h,
     Window *frame, Window *win) {
 	static int last_idx = -1;
 	int x1, x2, y1, y2;
-	int idx = -1, i, k;
+	int idx = -1, k;
 	macosxCGS_get_all_windows();
 	macosxCG_get_cursor_pos(px, py);
 
-	for (i = -1; i<macwinmax; i++) {
-		k = i;
-		if (i == -1)  {
-			if (last_idx >= 0 && last_idx < macwinmax) {
-				k = last_idx;
-			} else {
-				last_idx = -1;
-				continue;
-			}
+	for (k = 0; k<macwinmax; k++) {
+		if (! macwins[k].mapped) {
+			continue;
 		}
 		x1 = macwins[k].x;
 		x2 = macwins[k].x + macwins[k].width;
@@ -362,19 +541,38 @@ int macosx_valid_window(Window w, XWindowAttributes* a) {
 	int win = (int) w;
 	int i, k, idx = -1;
 
-	for (i = -1; i<macwinmax; i++) {
-		k = i;
-		if (i == -1)  {
-			if (last_idx >= 0 && last_idx < macwinmax) {
-				k = last_idx;
-			} else {
-				last_idx = -1;
-				continue;
-			}
+	if (last_idx >= 0 && last_idx < macwinmax) {
+		if (macwins[last_idx].win == win) {
+			idx = last_idx;
 		}
-		if (macwins[k].win == win) {
-			idx = k;
-			break;
+	}
+
+	if (idx < 0) {
+		idx = macosxCGS_get_qlook(w);
+		if (idx >= 0 && idx < macwinmax) {
+			if (macwins[idx].win != win) {
+				idx = -1;
+			}
+		} else {
+			idx = -1;
+		}
+	}
+
+	if (idx < 0) {
+		for (i = 0; i<macwinmax; i++) {
+			k = i;
+			if (i == -1)  {
+				if (last_idx >= 0 && last_idx < macwinmax) {
+					k = last_idx;
+				} else {
+					last_idx = -1;
+					continue;
+				}
+			}
+			if (macwins[k].win == win) {
+				idx = k;
+				break;
+			}
 		}
 	}
 	if (idx < 0) {
@@ -388,7 +586,11 @@ int macosx_valid_window(Window w, XWindowAttributes* a) {
 	a->depth = depth;
 	a->border_width = 0;
 	a->backing_store = 0;
-	a->map_state = IsViewable;
+	if (macwins[idx].mapped) {
+		a->map_state = IsViewable;
+	} else {
+		a->map_state = IsUnmapped;
+	}
 
 	last_idx = idx;
 	
@@ -404,17 +606,18 @@ extern int CGS_levels[];
 Status macosx_xquerytree(Window w, Window *root_return, Window *parent_return,
     Window **children_return, unsigned int *nchildren_return) {
 
-	int i, n, k, swap;
-	int win1, win2;
+	int i, n, k;
 
 	*root_return = (Window) 0;
 	*parent_return = (Window) 0;
+	if (!w) {}
 
 	macosxCGS_get_all_windows();
 
 	n = 0;
 	for (k = CGS_levelmax - 1; k >= 0; k--) {
 		for (i = macwinmax - 1; i >= 0; i--) {
+			if (n >= QTMAX) break;
 			if (macwins[i].level == CGS_levels[k]) {
 if (0) fprintf(stderr, "k=%d i=%d n=%d\n", k, i, n);
 				cret[n++] = (Window) macwins[i].win;
@@ -426,6 +629,78 @@ if (0) fprintf(stderr, "k=%d i=%d n=%d\n", k, i, n);
 
 	return (Status) 1;
 }
+
+int macosx_check_offscreen(int win) {
+	sraRegionPtr r0, r1;
+	int x1, y1, x2, y2;
+	int ret;
+	int i = macosxCGS_find_index(win);
+
+	if (i < 0) {
+		return 0;
+	}
+
+	x1 = macwins[i].x;
+	y1 = macwins[i].y;
+	x2 = macwins[i].x + macwins[i].width;
+	y2 = macwins[i].y + macwins[i].height;
+
+	r0 = sraRgnCreateRect(0, 0, dpy_x, dpy_y);
+	r1 = sraRgnCreateRect(x1, y1, x2, y2);
+
+	if (sraRgnAnd(r1, r0)) {
+		ret = 0;
+	} else {
+		ret = 1;
+	}
+	sraRgnDestroy(r0);
+	sraRgnDestroy(r1);
+
+	return ret;
+}
+
+int macosx_check_clipped(int win, int *list, int n) {
+	sraRegionPtr r0, r1, r2;
+	int x1, y1, x2, y2;
+	int ret = 0;
+	int k, j, i = macosxCGS_find_index(win);
+
+	if (i < 0) {
+		return 0;
+	}
+
+	x1 = macwins[i].x;
+	y1 = macwins[i].y;
+	x2 = macwins[i].x + macwins[i].width;
+	y2 = macwins[i].y + macwins[i].height;
+
+	r0 = sraRgnCreateRect(0, 0, dpy_x, dpy_y);
+	r1 = sraRgnCreateRect(x1, y1, x2, y2);
+	sraRgnAnd(r1, r0);
+
+	for (k = 0; k < n; k++) {
+		j = macosxCGS_find_index(list[k]);	/* XXX slow? */
+		if (j < 0) {
+			continue;
+		}
+		x1 = macwins[j].x;
+		y1 = macwins[j].y;
+		x2 = macwins[j].x + macwins[j].width;
+		y2 = macwins[j].y + macwins[j].height;
+		r2 = sraRgnCreateRect(x1, y1, x2, y2);
+		if (sraRgnAnd(r2, r1)) {
+			ret = 1;
+			sraRgnDestroy(r2);
+			break;
+		}
+		sraRgnDestroy(r2);
+	}
+	sraRgnDestroy(r0);
+	sraRgnDestroy(r1);
+
+	return ret;
+}
+
 
 #endif 	/* LIBVNCSERVER_HAVE_MACOSX_NATIVE_DISPLAY */
 

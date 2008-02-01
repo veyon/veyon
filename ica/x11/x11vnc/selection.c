@@ -51,22 +51,26 @@ static char clipboard_str[PROP_MAX+1];
  * n.b.: our caller already has the X_LOCK.
  */
 void selection_request(XEvent *ev, char *type) {
+#if NO_X11
+	RAWFB_RET_VOID
+	if (!ev || !type) {}
+	return;
+#else
 	XSelectionEvent notify_event;
 	XSelectionRequestEvent *req_event;
 	XErrorHandler old_handler;
 	char *str;
 	unsigned int length;
 	unsigned char *data;
-#ifndef XA_LENGTH
+	static Atom xa_targets = None;
+# ifndef XA_LENGTH
 	unsigned long XA_LENGTH;
-#endif
+# endif
 	RAWFB_RET_VOID
-#if NO_X11
-	return;
-#else
-#ifndef XA_LENGTH
+
+# ifndef XA_LENGTH
 	XA_LENGTH = XInternAtom(dpy, "LENGTH", True);
-#endif
+# endif
 
 	req_event = &(ev->xselectionrequest);
 	notify_event.type 	= SelectionNotify;
@@ -100,34 +104,69 @@ void selection_request(XEvent *ev, char *type) {
 			req_event->target, req_event->property);
 	}
 
+	if (xa_targets == None) {
+		xa_targets = XInternAtom(dpy, "TARGETS", False);
+	}
+
 	/* the window may have gone away, so trap errors */
 	trapped_xerror = 0;
 	old_handler = XSetErrorHandler(trap_xerror);
 
 	if (ev->xselectionrequest.target == XA_LENGTH) {
 		/* length request */
+		int ret;
+		long llength = (long) length;
 
-		XChangeProperty(ev->xselectionrequest.display,
+		ret = XChangeProperty(ev->xselectionrequest.display,
 		    ev->xselectionrequest.requestor,
 		    ev->xselectionrequest.property,
 		    ev->xselectionrequest.target, 32, PropModeReplace,
-		    (unsigned char *) &length, sizeof(unsigned int));
+		    (unsigned char *) &llength, 1);	/* had sizeof(unsigned int) = 4 before... */
+		if (debug_sel) {
+			rfbLog("LENGTH: XChangeProperty() -> %d\n", ret);
+		}
 
-	} else {
-		/* data request */
+	} else if (xa_targets != None && ev->xselectionrequest.target == xa_targets) {
+		/* targets request */
+		int ret;
+		Atom targets[2];
+		targets[0] = (Atom) xa_targets;
+		targets[1] = (Atom) XA_STRING;
 
 		data = (unsigned char *)str;
 
-		XChangeProperty(ev->xselectionrequest.display,
+		ret = XChangeProperty(ev->xselectionrequest.display,
+		    ev->xselectionrequest.requestor,
+		    ev->xselectionrequest.property,
+		    ev->xselectionrequest.target, 32, PropModeReplace,
+		    (unsigned char *) targets, 2);
+		if (debug_sel) {
+			rfbLog("TARGETS: XChangeProperty() -> %d -- sz1: %d  sz2: %d\n",
+			    ret, sizeof(targets[0]), sizeof(targets)/sizeof(targets[0]));
+		}
+
+	} else {
+		/* data request */
+		int ret;
+
+		data = (unsigned char *)str;
+
+		ret = XChangeProperty(ev->xselectionrequest.display,
 		    ev->xselectionrequest.requestor,
 		    ev->xselectionrequest.property,
 		    ev->xselectionrequest.target, 8, PropModeReplace,
 		    data, length);
+		if (debug_sel) {
+			rfbLog("DATA: XChangeProperty() -> %d\n", ret);
+		}
 	}
 
 	if (! trapped_xerror) {
-		XSendEvent(req_event->display, req_event->requestor, False, 0,
+		int ret = XSendEvent(req_event->display, req_event->requestor, False, 0,
 		    (XEvent *)&notify_event);
+		if (debug_sel) {
+			rfbLog("XSendEvent() -> %d\n", ret);
+		}
 	} 
 	if (trapped_xerror) {
 		rfbLog("selection_request: ignored XError while sending "
@@ -180,6 +219,10 @@ int check_sel_direction(char *dir, char *label, char *sel, int len) {
  * n.b.: our caller already has the X_LOCK.
  */
 void cutbuffer_send(void) {
+#if NO_X11
+	RAWFB_RET_VOID
+	return;
+#else
 	Atom type;
 	int format, slen, dlen, len;
 	unsigned long nitems = 0, bytes_after = 0;
@@ -189,9 +232,6 @@ void cutbuffer_send(void) {
 	slen = 0;
 
 	RAWFB_RET_VOID
-#if NO_X11
-	return;
-#else
 
 	/* read the property value into cutbuffer_str: */
 	do {
@@ -253,7 +293,13 @@ void cutbuffer_send(void) {
  * Also: XFIXES has XFixesSelectSelectionInput().
  */
 #define CHKSZ 32
+
 void selection_send(XEvent *ev) {
+#if NO_X11
+	RAWFB_RET_VOID
+	if (!ev) {}
+	return;
+#else
 	Atom type;
 	int format, slen, dlen, oldlen, newlen, toobig = 0, len;
 	static int err = 0, sent_one = 0;
@@ -263,9 +309,6 @@ void selection_send(XEvent *ev) {
 	char *selection_str;
 
 	RAWFB_RET_VOID
-#if NO_X11
-	return;
-#else
 	/*
 	 * remember info about our last value of PRIMARY (or CUT_BUFFER0)
 	 * so we can check for any changes below.

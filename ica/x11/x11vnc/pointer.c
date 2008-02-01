@@ -15,6 +15,8 @@
 #include "linuxfb.h"
 #include "uinput.h"
 #include "scan.h"
+#include "macosx.h"
+#include "screen.h"
 
 int pointer_queued_sent = 0;
 
@@ -23,10 +25,10 @@ void do_button_mask_change(int mask, int button);
 void pointer(int mask, int x, int y, rfbClientPtr client);
 void initialize_pipeinput(void);
 int check_pipeinput(void);
+void update_x11_pointer_position(int x, int y);
 
 
 static void buttonparse(int from, char **s);
-static void update_x11_pointer_position(int x, int y);
 static void update_x11_pointer_mask(int mask);
 static void pipe_pointer(int mask, int x, int y, rfbClientPtr client);
 
@@ -52,13 +54,14 @@ static prtremap_t pointer_map[MAX_BUTTONS+1][MAX_BUTTON_EVENTS];
  * For parsing the -buttonmap sections, e.g. "4" or ":Up+Up+Up:"
  */
 static void buttonparse(int from, char **s) {
+#if NO_X11
+	if (!from || !s) {}
+	return;
+#else
 	char *q;
 	int to, i;
 	int modisdown[256];
 
-#if NO_X11
-	return;
-#else
 	q = *s;
 
 	for (i=0; i<256; i++) {
@@ -213,6 +216,10 @@ static void buttonparse(int from, char **s) {
  * process the -buttonmap string
  */
 void initialize_pointer_map(char *pointer_remap) {
+#if NO_X11
+	if (!pointer_remap) {}
+	return;
+#else
 	unsigned char map[MAX_BUTTONS];
 	int i, k;
 	/*
@@ -222,9 +229,6 @@ void initialize_pointer_map(char *pointer_remap) {
 	 * from -buttonmap option.
 	 */
 	
-#if NO_X11
-	return;
-#else
 	if (!raw_fb_str) {
 		X_LOCK;
 		num_buttons = XGetPointerMapping(dpy, map, MAX_BUTTONS);
@@ -297,13 +301,15 @@ void initialize_pointer_map(char *pointer_remap) {
 /*
  * Send a pointer position event to the X server.
  */
-static void update_x11_pointer_position(int x, int y) {
+void update_x11_pointer_position(int x, int y) {
+#if NO_X11
+	RAWFB_RET_VOID
+	if (!x || !y) {}
+	return;
+#else
 	int rc;
 
 	RAWFB_RET_VOID
-#if NO_X11
-	return;
-#else
 
 	X_LOCK;
 	if (use_xwarppointer) {
@@ -338,11 +344,12 @@ static void update_x11_pointer_position(int x, int y) {
 }
 
 void do_button_mask_change(int mask, int button) {
-	int mb, k, i = button-1;
-
 #if NO_X11
+	if (!mask || !button) {}
 	return;
 #else
+	int mb, k, i = button-1;
+
 	/*
 	 * this expands to any pointer_map button -> keystrokes
 	 * remappings.  Usually just k=0 and we send one button event.
@@ -407,14 +414,17 @@ void do_button_mask_change(int mask, int button) {
  * Send a pointer button event to the X server.
  */
 static void update_x11_pointer_mask(int mask) {
-	int snapped = 0, xr_mouse = 1, i;
-
+#if NO_X11
 	last_event = last_input = last_pointer_input = time(NULL);
 
 	RAWFB_RET_VOID
-#if NO_X11
+	if (!mask) {}
 	return;
 #else
+	int snapped = 0, xr_mouse = 1, i;
+	last_event = last_input = last_pointer_input = time(NULL);
+
+	RAWFB_RET_VOID
 
 	if (mask != button_mask) {
 		last_pointer_click_time = dnow();
@@ -549,6 +559,8 @@ static void pipe_pointer(int mask, int x, int y, rfbClientPtr client) {
 		uinput_pointer_command(mask, x, y, client);
 	} else if (pipeinput_int == PIPEINPUT_MACOSX) {
 		macosx_pointer_command(mask, x, y, client);
+/*	} else if (pipeinput_int == PIPEINPUT_VNC) {
+		vnc_reflect_send_pointer(x, y, mask);*/
 	}
 	if (pipeinput_fh == NULL) {
 		return;
@@ -670,6 +682,8 @@ void pointer(int mask, int x, int y, rfbClientPtr client) {
 				got_user_input++;
 				got_pointer_input++;
 				last_pointer_client = client;
+				last_pointer_time = dnow();
+				last_event = last_input = last_pointer_input = time(NULL);
 			}
 			if (input.motion) {
 				/* raw_fb hack track button state */
@@ -816,7 +830,7 @@ void pointer(int mask, int x, int y, rfbClientPtr client) {
 			}
 			if (debug_pointer) {
 				rfbLog("pointer(): sending event %d %.4f\n",
-				    i+1, dnow() - x11vnc_start);
+				    i+1, dnowx());
 			}
 			if (ev[i][1] >= 0) {
 				update_x11_pointer_position(ev[i][1], ev[i][2]);
@@ -836,7 +850,7 @@ void pointer(int mask, int x, int y, rfbClientPtr client) {
 			if (mask < 0) {
 				if (debug_pointer) {
 					rfbLog("pointer(): calling XFlush "
-					    "%.4f\n", dnow() - x11vnc_start);
+					    "%.4f\n", dnowx());
 				}
 				X_LOCK;
 				XFlush_wr(dpy);	
@@ -853,7 +867,7 @@ void pointer(int mask, int x, int y, rfbClientPtr client) {
 	if (mask < 0) {		/* -1 just means flush the event queue */
 		if (debug_pointer) {
 			rfbLog("pointer(): flush only.  %.4f\n",
-			    dnow() - x11vnc_start);
+			    dnowx());
 		}
 		return;
 	}
@@ -885,7 +899,7 @@ void pointer(int mask, int x, int y, rfbClientPtr client) {
 	} else if (buffer_it) {
 		if (debug_pointer) {
 			rfbLog("pointer(): calling XFlush+"
-			    "%.4f\n", dnow() - x11vnc_start);
+			    "%.4f\n", dnowx());
 		}
 		X_LOCK;
 		XFlush_wr(dpy);	
@@ -984,6 +998,9 @@ if (0) fprintf(stderr, "initialize_pipeinput: %s -- %s\n", pipeinput_str, p);
 		return;
 	} else if (strstr(p, "MACOSX") == p) {
 		pipeinput_int = PIPEINPUT_MACOSX;
+		return;
+	} else if (strstr(p, "VNC") == p) {
+		pipeinput_int = PIPEINPUT_VNC;
 		return;
 	}
 

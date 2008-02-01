@@ -40,18 +40,50 @@
 
 #define EXTRA_ARGS , rfbClientPtr cl
 
+#define ENDIAN_LITTLE 0
+#define ENDIAN_BIG 1
+#define ENDIAN_NO 2
 #define BPP 8
+#define ZYWRLE_ENDIAN ENDIAN_NO
+#include <zrleencodetemplate.c>
+#undef BPP
+#define BPP 15
+#undef ZYWRLE_ENDIAN
+#define ZYWRLE_ENDIAN ENDIAN_LITTLE
+#include <zrleencodetemplate.c>
+#undef ZYWRLE_ENDIAN
+#define ZYWRLE_ENDIAN ENDIAN_BIG
 #include <zrleencodetemplate.c>
 #undef BPP
 #define BPP 16
+#undef ZYWRLE_ENDIAN
+#define ZYWRLE_ENDIAN ENDIAN_LITTLE
+#include <zrleencodetemplate.c>
+#undef ZYWRLE_ENDIAN
+#define ZYWRLE_ENDIAN ENDIAN_BIG
 #include <zrleencodetemplate.c>
 #undef BPP
 #define BPP 32
+#undef ZYWRLE_ENDIAN
+#define ZYWRLE_ENDIAN ENDIAN_LITTLE
+#include <zrleencodetemplate.c>
+#undef ZYWRLE_ENDIAN
+#define ZYWRLE_ENDIAN ENDIAN_BIG
 #include <zrleencodetemplate.c>
 #define CPIXEL 24A
+#undef ZYWRLE_ENDIAN
+#define ZYWRLE_ENDIAN ENDIAN_LITTLE
+#include <zrleencodetemplate.c>
+#undef ZYWRLE_ENDIAN
+#define ZYWRLE_ENDIAN ENDIAN_BIG
 #include <zrleencodetemplate.c>
 #undef CPIXEL
 #define CPIXEL 24B
+#undef ZYWRLE_ENDIAN
+#define ZYWRLE_ENDIAN ENDIAN_LITTLE
+#include <zrleencodetemplate.c>
+#undef ZYWRLE_ENDIAN
+#define ZYWRLE_ENDIAN ENDIAN_BIG
 #include <zrleencodetemplate.c>
 #undef CPIXEL
 #undef BPP
@@ -64,6 +96,7 @@
  * data.
  */
 
+/* TODO: put into rfbClient struct */
 static char zrleBeforeBuf[rfbZRLETileWidth * rfbZRLETileHeight * 4 + 4];
 
 
@@ -80,6 +113,19 @@ rfbBool rfbSendRectEncodingZRLE(rfbClientPtr cl, int x, int y, int w, int h)
   rfbZRLEHeader hdr;
   int i;
 
+  if (cl->preferredEncoding == rfbEncodingZYWRLE) {
+	  if (cl->tightQualityLevel < 0) {
+		  cl->zywrleLevel = 1;
+	  } else if (cl->tightQualityLevel < 3) {
+		  cl->zywrleLevel = 3;
+	  } else if (cl->tightQualityLevel < 6) {
+		  cl->zywrleLevel = 2;
+	  } else {
+		  cl->zywrleLevel = 1;
+	  }
+  } else
+	  cl->zywrleLevel = 0;
+
   if (!cl->zrleData)
     cl->zrleData = zrleOutStreamNew();
   zos = cl->zrleData;
@@ -89,11 +135,21 @@ rfbBool rfbSendRectEncodingZRLE(rfbClientPtr cl, int x, int y, int w, int h)
   switch (cl->format.bitsPerPixel) {
 
   case 8:
-    zrleEncode8( x, y, w, h, zos, zrleBeforeBuf, cl);
+    zrleEncode8NE(x, y, w, h, zos, zrleBeforeBuf, cl);
     break;
 
   case 16:
-    zrleEncode16(x, y, w, h, zos, zrleBeforeBuf, cl);
+	if (cl->format.greenMax > 0x1F) {
+		if (cl->format.bigEndian)
+		  zrleEncode16BE(x, y, w, h, zos, zrleBeforeBuf, cl);
+		else
+		  zrleEncode16LE(x, y, w, h, zos, zrleBeforeBuf, cl);
+	} else {
+		if (cl->format.bigEndian)
+		  zrleEncode15BE(x, y, w, h, zos, zrleBeforeBuf, cl);
+		else
+		  zrleEncode15LE(x, y, w, h, zos, zrleBeforeBuf, cl);
+	}
     break;
 
   case 32: {
@@ -107,18 +163,24 @@ rfbBool rfbSendRectEncodingZRLE(rfbClientPtr cl, int x, int y, int w, int h)
                            cl->format.blueShift  > 7);
 
     if ((fitsInLS3Bytes && !cl->format.bigEndian) ||
-        (fitsInMS3Bytes && cl->format.bigEndian))
-    {
-      zrleEncode24A(x, y, w, h, zos, zrleBeforeBuf, cl);
+        (fitsInMS3Bytes && cl->format.bigEndian)) {
+	if (cl->format.bigEndian)
+		zrleEncode24ABE(x, y, w, h, zos, zrleBeforeBuf, cl);
+	else
+		zrleEncode24ALE(x, y, w, h, zos, zrleBeforeBuf, cl);
     }
     else if ((fitsInLS3Bytes && cl->format.bigEndian) ||
-             (fitsInMS3Bytes && !cl->format.bigEndian))
-    {
-      zrleEncode24B(x, y, w, h, zos, zrleBeforeBuf, cl);
+             (fitsInMS3Bytes && !cl->format.bigEndian)) {
+	if (cl->format.bigEndian)
+		zrleEncode24BBE(x, y, w, h, zos, zrleBeforeBuf, cl);
+	else
+		zrleEncode24BLE(x, y, w, h, zos, zrleBeforeBuf, cl);
     }
-    else
-    {
-      zrleEncode32(x, y, w, h, zos, zrleBeforeBuf, cl);
+    else {
+	if (cl->format.bigEndian)
+		zrleEncode32BE(x, y, w, h, zos, zrleBeforeBuf, cl);
+	else
+		zrleEncode32LE(x, y, w, h, zos, zrleBeforeBuf, cl);
     }
   }
     break;
@@ -138,7 +200,7 @@ rfbBool rfbSendRectEncodingZRLE(rfbClientPtr cl, int x, int y, int w, int h)
   rect.r.y = Swap16IfLE(y);
   rect.r.w = Swap16IfLE(w);
   rect.r.h = Swap16IfLE(h);
-  rect.encoding = Swap32IfLE(rfbEncodingZRLE);
+  rect.encoding = Swap32IfLE(cl->preferredEncoding);
 
   memcpy(cl->updateBuf+cl->ublen, (char *)&rect,
          sz_rfbFramebufferUpdateRectHeader);

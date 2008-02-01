@@ -59,6 +59,9 @@
 #include <tcpd.h>
 #endif
 
+#define connection_close
+#ifndef connection_close
+
 #define NOT_FOUND_STR "HTTP/1.0 404 Not found\r\n\r\n" \
     "<HEAD><TITLE>File Not Found</TITLE></HEAD>\n" \
     "<BODY><H1>File Not Found</H1></BODY>\n"
@@ -67,10 +70,20 @@
     "<HEAD><TITLE>Invalid Request</TITLE></HEAD>\n" \
     "<BODY><H1>Invalid request</H1></BODY>\n"
 
-#if 1
 #define OK_STR "HTTP/1.0 200 OK\r\nContent-Type: text/html\r\n\r\n"
+
 #else
+
+#define NOT_FOUND_STR "HTTP/1.0 404 Not found\r\nConnection: close\r\n\r\n" \
+    "<HEAD><TITLE>File Not Found</TITLE></HEAD>\n" \
+    "<BODY><H1>File Not Found</H1></BODY>\n"
+
+#define INVALID_REQUEST_STR "HTTP/1.0 400 Invalid Request\r\nConnection: close\r\n\r\n" \
+    "<HEAD><TITLE>Invalid Request</TITLE></HEAD>\n" \
+    "<BODY><H1>Invalid request</H1></BODY>\n"
+
 #define OK_STR "HTTP/1.0 200 OK\r\nConnection: close\r\nContent-Type: text/html\r\n\r\n"
+
 #endif
 
 static void httpProcessInput(rfbScreenInfoPtr screen);
@@ -332,7 +345,7 @@ httpProcessInput(rfbScreenInfoPtr rfbScreen)
 	return;
     }
 
-    if (sscanf(buf, "GET %s HTTP/1.0", fname) != 1) {
+    if (sscanf(buf, "GET %s HTTP/1.", fname) != 1) {
 	rfbErr("httpd: couldn't parse GET line\n");
 	httpCloseSock(rfbScreen);
 	return;

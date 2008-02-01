@@ -43,17 +43,37 @@
 #define __RFB_CONCAT2E(a,b) __RFB_CONCAT2(a,b)
 #endif
 
+#ifndef __RFB_CONCAT3E
+#define __RFB_CONCAT3(a,b,c) a##b##c
+#define __RFB_CONCAT3E(a,b,c) __RFB_CONCAT3(a,b,c)
+#endif
+
+#undef END_FIX
+#if ZYWRLE_ENDIAN == ENDIAN_LITTLE
+#  define END_FIX LE
+#elif ZYWRLE_ENDIAN == ENDIAN_BIG
+#  define END_FIX BE
+#else
+#  define END_FIX NE
+#endif
+
 #ifdef CPIXEL
 #define PIXEL_T __RFB_CONCAT2E(zrle_U,BPP)
 #define zrleOutStreamWRITE_PIXEL __RFB_CONCAT2E(zrleOutStreamWriteOpaque,CPIXEL)
-#define ZRLE_ENCODE __RFB_CONCAT2E(zrleEncode,CPIXEL)
-#define ZRLE_ENCODE_TILE __RFB_CONCAT2E(zrleEncodeTile,CPIXEL)
+#define ZRLE_ENCODE __RFB_CONCAT3E(zrleEncode,CPIXEL,END_FIX)
+#define ZRLE_ENCODE_TILE __RFB_CONCAT3E(zrleEncodeTile,CPIXEL,END_FIX)
 #define BPPOUT 24
+#elif BPP==15
+#define PIXEL_T __RFB_CONCAT2E(zrle_U,16)
+#define zrleOutStreamWRITE_PIXEL __RFB_CONCAT2E(zrleOutStreamWriteOpaque,16)
+#define ZRLE_ENCODE __RFB_CONCAT3E(zrleEncode,BPP,END_FIX)
+#define ZRLE_ENCODE_TILE __RFB_CONCAT3E(zrleEncodeTile,BPP,END_FIX)
+#define BPPOUT 16
 #else
 #define PIXEL_T __RFB_CONCAT2E(zrle_U,BPP)
 #define zrleOutStreamWRITE_PIXEL __RFB_CONCAT2E(zrleOutStreamWriteOpaque,BPP)
-#define ZRLE_ENCODE __RFB_CONCAT2E(zrleEncode,BPP)
-#define ZRLE_ENCODE_TILE __RFB_CONCAT2E(zrleEncodeTile,BPP)
+#define ZRLE_ENCODE __RFB_CONCAT3E(zrleEncode,BPP,END_FIX)
+#define ZRLE_ENCODE_TILE __RFB_CONCAT3E(zrleEncodeTile,BPP,END_FIX)
 #define BPPOUT BPP
 #endif
 
@@ -68,7 +88,13 @@ static zrlePaletteHelper paletteHelper;
 
 #endif /* ZRLE_ONCE */
 
-void ZRLE_ENCODE_TILE (PIXEL_T* data, int w, int h, zrleOutStream* os);
+void ZRLE_ENCODE_TILE (PIXEL_T* data, int w, int h, zrleOutStream* os,
+		int zywrle_level, int *zywrleBuf);
+
+#if BPP!=8
+#define ZYWRLE_ENCODE
+#include "zywrletemplate.c"
+#endif
 
 static void ZRLE_ENCODE (int x, int y, int w, int h,
 		  zrleOutStream* os, void* buf
@@ -85,14 +111,16 @@ static void ZRLE_ENCODE (int x, int y, int w, int h,
 
       GET_IMAGE_INTO_BUF(tx,ty,tw,th,buf);
 
-      ZRLE_ENCODE_TILE((PIXEL_T*)buf, tw, th, os);
+      ZRLE_ENCODE_TILE((PIXEL_T*)buf, tw, th, os,
+		      cl->zywrleLevel, cl->zywrleBuf);
     }
   }
   zrleOutStreamFlush(os);
 }
 
 
-void ZRLE_ENCODE_TILE (PIXEL_T* data, int w, int h, zrleOutStream* os)
+void ZRLE_ENCODE_TILE(PIXEL_T* data, int w, int h, zrleOutStream* os,
+	int zywrle_level, int *zywrleBuf)
 {
   /* First find the palette and the number of runs */
 
@@ -143,6 +171,11 @@ void ZRLE_ENCODE_TILE (PIXEL_T* data, int w, int h, zrleOutStream* os)
   usePalette = FALSE;
 
   estimatedBytes = w * h * (BPPOUT/8); /* start assuming raw */
+
+#if BPP!=8
+  if (zywrle_level > 0 && !(zywrle_level & 0x80))
+	  estimatedBytes >>= zywrle_level;
+#endif
 
   plainRleBytes = ((BPPOUT/8)+1) * (runs + singlePixels);
 
@@ -253,14 +286,22 @@ void ZRLE_ENCODE_TILE (PIXEL_T* data, int w, int h, zrleOutStream* os)
 
       /* raw */
 
-#ifdef CPIXEL
-      PIXEL_T *ptr;
-      for (ptr = data; ptr < data+w*h; ptr++) {
-        zrleOutStreamWRITE_PIXEL(os, *ptr);
+#if BPP!=8
+      if (zywrle_level > 0 && !(zywrle_level & 0x80)) {
+        ZYWRLE_ANALYZE(data, data, w, h, w, zywrle_level, zywrleBuf);
+	ZRLE_ENCODE_TILE(data, w, h, os, zywrle_level | 0x80, zywrleBuf);
       }
-#else
-      zrleOutStreamWriteBytes(os, (zrle_U8 *)data, w*h*(BPP/8));
+      else
 #endif
+      {
+#ifdef CPIXEL
+        PIXEL_T *ptr;
+        for (ptr = data; ptr < data+w*h; ptr++)
+          zrleOutStreamWRITE_PIXEL(os, *ptr);
+#else
+        zrleOutStreamWriteBytes(os, (zrle_U8 *)data, w*h*(BPP/8));
+#endif
+      }
     }
   }
 }
@@ -269,4 +310,5 @@ void ZRLE_ENCODE_TILE (PIXEL_T* data, int w, int h, zrleOutStream* os)
 #undef zrleOutStreamWRITE_PIXEL
 #undef ZRLE_ENCODE
 #undef ZRLE_ENCODE_TILE
+#undef ZYWRLE_ENCODE_TILE
 #undef BPPOUT

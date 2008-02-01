@@ -56,16 +56,17 @@ extern char *crypt(const char*, const char *);
 #undef UNIXPW_CRYPT
 #endif
 
+int white_pixel(void);
 void unixpw_screen(int init);
 void unixpw_keystroke(rfbBool down, rfbKeySym keysym, int init);
 void unixpw_accept(char *user);
 void unixpw_deny(void);
 void unixpw_msg(char *msg, int delay);
-int su_verify(char *user, char *pass, char *cmd, char *rbuf, int *rbuf_size);
+int su_verify(char *user, char *pass, char *cmd, char *rbuf, int *rbuf_size, int nodisp);
 int crypt_verify(char *user, char *pass);
 int cmd_verify(char *user, char *pass);
 
-static int white(void);
+
 static int text_x(void);
 static int text_y(void);
 static void set_db(void);
@@ -75,6 +76,8 @@ int unixpw_in_progress = 0;
 int unixpw_denied = 0;
 int unixpw_in_rfbPE = 0;
 int unixpw_login_viewonly = 0;
+int unixpw_tightvnc_xfer_save = 0;
+rfbBool unixpw_file_xfer_save = FALSE;
 time_t unixpw_last_try_time = 0;
 rfbClientPtr unixpw_client = NULL;
 
@@ -89,7 +92,7 @@ static int char_x = 0, char_y = 0, char_w = 8, char_h = 16;
 
 static int db = 0;
 
-static int white(void) {
+int white_pixel(void) {
 	static unsigned long black_pix = 0, white_pix = 1, set = 0;
 
 	RAWFB_RET(0xffffff)
@@ -162,7 +165,7 @@ void unixpw_screen(int init) {
 			pscreen = screen;
 		}
 
-		rfbDrawString(pscreen, &default8x16Font, x, y, log, white());
+		rfbDrawString(pscreen, &default8x16Font, x, y, log, white_pixel());
 
 		char_x = x;
 		char_y = y;
@@ -551,11 +554,11 @@ int cmd_verify(char *user, char *pass) {
 	}
 }
 
-int su_verify(char *user, char *pass, char *cmd, char *rbuf, int *rbuf_size) {
+int su_verify(char *user, char *pass, char *cmd, char *rbuf, int *rbuf_size, int nodisp) {
 #ifndef UNIXPW_SU
 	return 0;
 #else
-	int i, j, status, fd = -1, sfd, tfd, drain_size = 4096, rsize = 0;
+	int i, j, status, fd = -1, sfd, tfd, drain_size = 65536, rsize = 0;
 	int slow_pw = 1;
 	char *slave, *bin_true = NULL, *bin_su = NULL;
 	pid_t pid, pidw;
@@ -623,6 +626,7 @@ int su_verify(char *user, char *pass, char *cmd, char *rbuf, int *rbuf_size) {
 		return 0;
 	}
 
+	if (db) fprintf(stderr, "cmd is: %s\n", cmd);
 	if (db) fprintf(stderr, "slave is: %s fd=%d\n", slave, fd);
 
 	if (fd < 0) {
@@ -728,10 +732,19 @@ int su_verify(char *user, char *pass, char *cmd, char *rbuf, int *rbuf_size) {
 		set_env("LC_ALL", "C");
 		set_env("LANG", "C");
 		set_env("SHELL", "/bin/sh");
-		if (!cmd && getenv("DISPLAY")) {
+		if (nodisp) {
 			/* this will cause timeout problems with pam_xauth */
-			char *s = getenv("DISPLAY");
-			if (s) *(s-2) = '_';	/* quite... */
+			int k;
+			for (k=0; k<3; k++) {
+				if (getenv("DISPLAY")) {
+					char *s = getenv("DISPLAY");
+					if (s) *(s-2) = '_';	/* quite... */
+				}
+				if (getenv("XAUTHORITY")) {
+					char *s = getenv("XAUTHORITY");
+					if (s) *(s-2) = '_';	/* quite... */
+				}
+			}
 		}
 
 		/* synchronize with parent: */
@@ -873,6 +886,7 @@ int su_verify(char *user, char *pass, char *cmd, char *rbuf, int *rbuf_size) {
 		return 0;
 	}
 
+	if (db > 2) fprintf(stderr, "\nsending passwd: %s\n", pass);
 	usleep(100 * 1000);
 	if (slow_pw) {
 		unsigned int k;
@@ -898,6 +912,7 @@ int su_verify(char *user, char *pass, char *cmd, char *rbuf, int *rbuf_size) {
 		drain_size = *rbuf_size;
 		rsize = 0;
 	}
+	if (db) fprintf(stderr, "\ndraining:\n");
 	for (i = 0; i< drain_size; i++) {
 		int n;	
 		
@@ -906,12 +921,13 @@ int su_verify(char *user, char *pass, char *cmd, char *rbuf, int *rbuf_size) {
 
 		n = read(fd, cbuf, 1);
 		if (n < 0 && errno == EINTR) {
+			if (db) fprintf(stderr, "\nEINTR n=%d i=%d --", n, i);
 			i--;
 			if (i < 0) i = 0;
 			continue;
 		}
 
-		if (db) fprintf(stderr, "%s", cbuf);
+		if (db) fprintf(stderr, "\nn=%d i=%d errno=%d %.6f  '%s'", n, i, errno, dnowx(), cbuf);
 
 		if (n <= 0) {
 			break;
@@ -920,6 +936,7 @@ int su_verify(char *user, char *pass, char *cmd, char *rbuf, int *rbuf_size) {
 			rbuf[rsize++] = cbuf[0];
 		}
 	}
+	if (db && rbuf) fprintf(stderr, "\nrbuf: '%s'\n", rbuf);
 
 	if (rbuf && *rbuf_size > 0) {
 		char *s = rbuf;
@@ -960,7 +977,7 @@ int su_verify(char *user, char *pass, char *cmd, char *rbuf, int *rbuf_size) {
 		free(p);
 	}
 
-	if (db) fprintf(stderr, "\n");
+	if (db) fprintf(stderr, "\n--\n");
 
 	alarm(0);
 	signal(SIGALRM, SIG_DFL);
@@ -1041,7 +1058,7 @@ if (db) fprintf(stderr, "unixpw_verify: '%s' '%s'\n", user, db > 1 ? pass : "***
 			ok = 0;
 		}
 	} else {
-		if (su_verify(user, pass, NULL, NULL, NULL)) {
+		if (su_verify(user, pass, NULL, NULL, NULL, 1)) {
 			rfbLog("unixpw_verify: su_verify login for '%s'"
 			    " succeeded.\n", user);
 			ok = 1;
@@ -1075,13 +1092,13 @@ if (db) fprintf(stderr, "unixpw_verify: '%s' '%s'\n", user, db > 1 ? pass : "***
 
 		x = text_x();
 		y = text_y();
-		rfbDrawString(pscreen, &default8x16Font, x, y, li, white());
+		rfbDrawString(pscreen, &default8x16Font, x, y, li, white_pixel());
 
 		char_row += 2;
 
 		x = text_x();
 		y = text_y();
-		rfbDrawString(pscreen, &default8x16Font, x, y, log, white());
+		rfbDrawString(pscreen, &default8x16Font, x, y, log, white_pixel());
 
 		char_col = strlen(log);
 
@@ -1109,6 +1126,7 @@ void unixpw_keystroke(rfbBool down, rfbKeySym keysym, int init) {
 	int x, y, i, rc, nmax = 100;
 	static char user_r[100], user[100], pass[100];
 	static int  u_cnt = 0, p_cnt = 0, first = 1;
+	static int echo = 1;
 	char keystr[100];
 	char *str;
 
@@ -1126,6 +1144,7 @@ void unixpw_keystroke(rfbBool down, rfbKeySym keysym, int init) {
 		in_login = 1;
 		in_passwd = 0;
 		unixpw_denied = 0;
+		echo = 1;
 		if (init == 1) {
 			tries = 0;
 		}
@@ -1192,6 +1211,11 @@ void unixpw_keystroke(rfbBool down, rfbKeySym keysym, int init) {
 	} else if (! down) {
 		return;
 	}
+	if (in_login && keysym == XK_Escape && u_cnt == 0) {
+		echo = 0;	
+		rfbLog("unixpw_keystroke: echo off.\n");
+		return;
+	}
 
 	if (in_login) {
 		if (keysym == XK_BackSpace || keysym == XK_Delete) {
@@ -1245,7 +1269,7 @@ void unixpw_keystroke(rfbBool down, rfbKeySym keysym, int init) {
 			x = text_x();
 			y = text_y();
 			rfbDrawString(pscreen, &default8x16Font, x, y, pw,
-			    white());
+			    white_pixel());
 
 			char_col = strlen(pw);
 			if (scaling) {
@@ -1278,8 +1302,10 @@ void unixpw_keystroke(rfbBool down, rfbKeySym keysym, int init) {
 
 				x = text_x();
 				y = text_y();
-				rfbDrawString(pscreen, &default8x16Font, x, y,
-				    str, white());
+				if (echo) {
+					rfbDrawString(pscreen, &default8x16Font, x, y,
+					    str, white_pixel());
+				}
 				mark_rect_as_modified(x, y-char_h, x+char_w,
 				    y, scaling);
 				char_col++;
@@ -1323,7 +1349,9 @@ void unixpw_keystroke(rfbBool down, rfbKeySym keysym, int init) {
 
 if (db && db <= 2) fprintf(stderr, "u_cnt: %d %d/%d ks: 0x%x  '%s'\n", u_cnt, x, y, keysym, keystr);
 
-		rfbDrawString(pscreen, &default8x16Font, x, y, keystr, white());
+		if (echo ) {
+			rfbDrawString(pscreen, &default8x16Font, x, y, keystr, white_pixel());
+		}
 
 		mark_rect_as_modified(x, y-char_h, x+char_w, y, scaling);
 		char_col++;
@@ -1525,7 +1553,7 @@ void unixpw_accept(char *user) {
 			} else if (switch_user(u, 0)) {
 				rfbLog("unixpw_accept switched to user: %s\n", user);
 			} else {
-				rfbLog("unixpw_accept failed to switched to user: %s\n", user);
+				rfbLog("unixpw_accept failed to switch to user: %s\n", user);
 			}
 			free(u);
 		}
@@ -1535,6 +1563,14 @@ void unixpw_accept(char *user) {
 		unixpw_client->viewOnly = TRUE;
 	}
 	unixpw_in_progress = 0;
+	screen->permitFileTransfer = unixpw_file_xfer_save;
+	if ((tightfilexfer = unixpw_tightvnc_xfer_save)) {
+		/* this doesn't work: the current client is never registered! */
+#ifdef LIBVNCSERVER_WITH_TIGHTVNC_FILETRANSFER
+		rfbLog("rfbRegisterTightVNCFileTransferExtension: 1\n");
+                rfbRegisterTightVNCFileTransferExtension();
+#endif
+	}
 	unixpw_client = NULL;
 	mark_rect_as_modified(0, 0, dpy_x, dpy_y, 0);
 	if (macosx_console) {
@@ -1555,7 +1591,7 @@ void unixpw_deny(void) {
 		x = char_x + char_col * char_w;
 		y = char_y + char_row * char_h;
 
-		rfbDrawString(pscreen, &default8x16Font, x, y, pd, white());
+		rfbDrawString(pscreen, &default8x16Font, x, y, pd, white_pixel());
 		if (scaling) {
 			mark_rect_as_modified(0, 0, scaled_x, scaled_y, 1);
 		} else {
@@ -1575,6 +1611,13 @@ void unixpw_deny(void) {
 	}
 
 	unixpw_in_progress = 0;
+	screen->permitFileTransfer = unixpw_file_xfer_save;
+	if ((tightfilexfer = unixpw_tightvnc_xfer_save)) {
+#ifdef LIBVNCSERVER_WITH_TIGHTVNC_FILETRANSFER
+		rfbLog("rfbRegisterTightVNCFileTransferExtension: 2\n");
+                rfbRegisterTightVNCFileTransferExtension();
+#endif
+	}
 	unixpw_client = NULL;
 	copy_screen();
 }
@@ -1587,7 +1630,7 @@ void unixpw_msg(char *msg, int delay) {
 	x = char_x + char_col * char_w;
 	y = char_y + char_row * char_h;
 
-	rfbDrawString(pscreen, &default8x16Font, x, y, msg, white());
+	rfbDrawString(pscreen, &default8x16Font, x, y, msg, white_pixel());
 	if (scaling) {
 		mark_rect_as_modified(0, 0, scaled_x, scaled_y, 1);
 	} else {

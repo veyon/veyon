@@ -43,12 +43,13 @@ char *get_gui_code(void) {
 }
 
 static Window tweak_tk_window_id(Window win) {
+#if NO_X11
+	if (!win) {}
+	return None;
+#else
 	char *name = NULL;
 	Window parent, new;
 
-#if NO_X11
-	return None;
-#else
 	/* hack for tk, does not report outermost window */
 	new = win;
 	parent = parent_window(win, &name);
@@ -67,6 +68,11 @@ static Window tweak_tk_window_id(Window win) {
 }
 
 int tray_embed(Window iconwin, int remove) {
+#if NO_X11
+	RAWFB_RET(0)
+	if (!iconwin || !remove) {}
+	return 0;
+#else
 	XEvent ev;
 	XErrorHandler old_handler;
 	Window manager;
@@ -77,9 +83,6 @@ int tray_embed(Window iconwin, int remove) {
 	long data = 0;
 
 	RAWFB_RET(0)
-#if NO_X11
-	return 0;
-#else
 
 	if (remove) {
 		if (!valid_window(iconwin, &attr, 1)) {
@@ -149,6 +152,16 @@ int tray_embed(Window iconwin, int remove) {
 	XChangeProperty(dpy, iconwin, xembed_info, xembed_info, 32,
 	    PropModeReplace, (unsigned char *)&info, 2);
 
+#if 0
+{
+XSizeHints *xszh = XAllocSizeHints();
+xszh->flags = PMinSize;
+xszh->min_width = 24;
+xszh->min_height = 24;
+XSetWMNormalHints(dpy, iconwin, xszh);
+}
+#endif
+
 	/* kludge for KDE evidently needed... */
 	tatom = XInternAtom(dpy, "KWM_DOCKWINDOW", False);
 	XChangeProperty(dpy, iconwin, tatom, tatom, 32, PropModeReplace,
@@ -164,14 +177,16 @@ int tray_embed(Window iconwin, int remove) {
 }
 
 static int tray_manager_running(Display *d, Window *manager) {
+#if NO_X11
+	RAWFB_RET(0)
+	if (!d || !manager) {}
+	return 0;
+#else
 	char tray_string[100];
 	Atom tray_manager;
 	Window tray_win;
 
 	RAWFB_RET(0)
-#if NO_X11
-	return 0;
-#else
 
 	if (manager) {
 		*manager = None;
@@ -267,7 +282,9 @@ if (0) fprintf(stderr, "run_gui: %s -- %d %d\n", gui_xdisplay, connect_to_x11vnc
 			initialize_x11vnc_remote_prop();
 		}
 
+#ifdef MACOSX
 		macjump:
+#endif
 		
 		signal(SIGUSR1, sigusr1);
 		got_sigusr1 = 0;
@@ -630,7 +647,9 @@ void do_gui(char *opts, int sleep) {
 	}
 	XCloseDisplay_wr(test_dpy);
 
+#ifdef MACOSX
 	startit:
+#endif
 
 	if (start_x11vnc) {
 

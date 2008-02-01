@@ -36,7 +36,7 @@ void initialize_xrandr(void) {
 		xrandr_height = XDisplayHeight(dpy, scr);
 		XRRRotations(dpy, scr, &rot);
 		xrandr_rotation = (int) rot;
-		if (xrandr) {
+		if (xrandr || xrandr_maybe) {
 			XRRSelectInput(dpy, rootwin, RRScreenChangeNotifyMask);
 		} else {
 			XRRSelectInput(dpy, rootwin, 0);
@@ -156,36 +156,58 @@ int check_xrandr_event(char *msg) {
 		return handle_subwin_resize(msg);
 	}
 #if LIBVNCSERVER_HAVE_LIBXRANDR
-	if (! xrandr || ! xrandr_present) {
+	if (! xrandr_present) {
+		return 0;
+	}
+	if (! xrandr && ! xrandr_maybe) {
 		return 0;
 	}
 	if (xrandr_base_event_type && XCheckTypedEvent(dpy,
 	    xrandr_base_event_type + RRScreenChangeNotify, &xev)) {
-		int do_change;
+		int do_change, qout = 0;
+		static int first = 1;
 		XRRScreenChangeNotifyEvent *rev;
 
 		rev = (XRRScreenChangeNotifyEvent *) &xev;
+
+		if (first && ! xrandr) {
+			fprintf(stderr, "\n");
+			qout = 1;
+		}
+		first = 0;
+			
 		rfbLog("check_xrandr_event():\n");
 		rfbLog("Detected XRANDR event at location '%s':\n", msg);
-		rfbLog("  serial:          %d\n", (int) rev->serial);
-		rfbLog("  timestamp:       %d\n", (int) rev->timestamp);
-		rfbLog("  cfg_timestamp:   %d\n", (int) rev->config_timestamp);
-		rfbLog("  size_id:         %d\n", (int) rev->size_index);
-		rfbLog("  sub_pixel:       %d\n", (int) rev->subpixel_order);
-		rfbLog("  rotation:        %d\n", (int) rev->rotation);
-		rfbLog("  width:           %d\n", (int) rev->width);
-		rfbLog("  height:          %d\n", (int) rev->height);
-		rfbLog("  mwidth:          %d mm\n", (int) rev->mwidth);
-		rfbLog("  mheight:         %d mm\n", (int) rev->mheight);
-		rfbLog("\n");
-		rfbLog("check_xrandr_event: previous WxH: %dx%d\n",
-		    wdpy_x, wdpy_y);
+
+		if (qout) {
+			;
+		} else {
+			rfbLog("  serial:          %d\n", (int) rev->serial);
+			rfbLog("  timestamp:       %d\n", (int) rev->timestamp);
+			rfbLog("  cfg_timestamp:   %d\n", (int) rev->config_timestamp);
+			rfbLog("  size_id:         %d\n", (int) rev->size_index);
+			rfbLog("  sub_pixel:       %d\n", (int) rev->subpixel_order);
+			rfbLog("  rotation:        %d\n", (int) rev->rotation);
+			rfbLog("  width:           %d\n", (int) rev->width);
+			rfbLog("  height:          %d\n", (int) rev->height);
+			rfbLog("  mwidth:          %d mm\n", (int) rev->mwidth);
+			rfbLog("  mheight:         %d mm\n", (int) rev->mheight);
+			rfbLog("\n");
+			rfbLog("check_xrandr_event: previous WxH: %dx%d\n",
+			    wdpy_x, wdpy_y);
+		}
+
 		if (wdpy_x == rev->width && wdpy_y == rev->height &&
 		    xrandr_rotation == (int) rev->rotation) {
 		    rfbLog("check_xrandr_event: no change detected.\n");
 			do_change = 0;
 		} else {
 			do_change = 1;
+			if (! xrandr) {
+		    		rfbLog("check_xrandr_event: Resize; "
+				    "enabling full XRANDR trapping.\n");
+				xrandr = 1;
+			}
 		}
 
 		xrandr_width  = rev->width;
@@ -194,12 +216,15 @@ int check_xrandr_event(char *msg) {
 		xrandr_cfg_time  = rev->config_timestamp;
 		xrandr_rotation = (int) rev->rotation;
 
-		rfbLog("check_xrandr_event: updating config...\n");
+		if (! qout) rfbLog("check_xrandr_event: updating config...\n");
 		XRRUpdateConfiguration(&xev);
 
 		if (do_change) {
 			X_UNLOCK;
 			handle_xrandr_change(rev->width, rev->height);
+		}
+		if (qout) {
+			return do_change;
 		}
 		rfbLog("check_xrandr_event: current  WxH: %dx%d\n",
 		    XDisplayWidth(dpy, scr), XDisplayHeight(dpy, scr));
@@ -207,6 +232,8 @@ int check_xrandr_event(char *msg) {
 		    " caller...\n");
 		return do_change;
 	}
+#else
+	xev.type = 0;
 #endif
 	return 0;
 }

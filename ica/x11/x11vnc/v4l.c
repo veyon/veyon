@@ -12,6 +12,7 @@
 #if LIBVNCSERVER_HAVE_LINUX_VIDEODEV_H
 #if LIBVNCSERVER_HAVE_SYS_IOCTL_H
 #include <sys/ioctl.h>
+#define CONFIG_VIDEO_V4L1_COMPAT
 #include <linux/videodev.h>
 #define V4L_OK
 #endif
@@ -133,9 +134,9 @@ static int v4l1_height(int h) {
 }
 
 static int v4l1_resize(int fd, int w, int h) {
+#ifdef V4L_OK
 	int dowin = 0;
 
-#ifdef V4L_OK
 	memset(&v4l1_window, 0, sizeof(v4l1_window));
 	if (ioctl(fd, VIDIOCGWIN, &v4l1_window) == -1) {
 		return 0;
@@ -167,6 +168,8 @@ static int v4l1_resize(int fd, int w, int h) {
 			return 0;
 		}
 	}
+#else
+	if (!fd || !w || !h) {}
 #endif
 	return 1;
 }
@@ -186,6 +189,8 @@ static void v4l1_setfreq(int fd, unsigned long freq, int verb) {
 			last_freq = freq;
 		}
 	}
+#else
+	if (!fd || !freq || !verb) {}
 #endif
 }
 
@@ -202,6 +207,8 @@ static void v4l1_set_input(int fd, int which) {
 			ioctl(fd, VIDIOCSCHAN, &v4l1_channel);
 		}
 	}
+#else
+	if (!fd || !which) {}
 #endif
 }
 
@@ -224,6 +231,8 @@ static int v4l1_setfmt(int fd, char *fmt) {
 		free(raw_fb_pixfmt);
 	}
 	raw_fb_pixfmt = strdup(fmt);
+#else
+	if (!fd || !fmt) {}
 #endif
 	return 1;
 }
@@ -231,12 +240,12 @@ static int v4l1_setfmt(int fd, char *fmt) {
 static int ignore_all = 0;
 
 static void apply_settings(char *dev, char *settings, int *fd) {
+#ifdef V4L_OK
 	char *str, *p, *fmt = NULL, *tun = NULL, *inp = NULL;
 	int br = -1, co = -1, cn = -1, hu = -1;
 	int w = -1, h = -1, b = -1;
 	int sta = -1;
 	int setcnt = 0;
-#ifdef V4L_OK
 	if (! settings || settings[0] == '\0') {
 		return;
 	}
@@ -380,6 +389,7 @@ static void apply_settings(char *dev, char *settings, int *fd) {
 	v4l1_cap = v4l1_query(*fd, 1);
 	v4l2_cap = v4l2_query(*fd, 1);
 #else
+	if (!dev || !settings || !fd) {}
 	return;
 #endif
 }
@@ -421,6 +431,8 @@ static void v4l_br(int b) {
 	v4l1_picture.brightness = v4l1_dpct(old, b);
 	ioctl(raw_fb_fd, VIDIOCSPICT, &v4l1_picture);
 	v4l_requery();
+#else
+	if (!b) {}
 #endif
 }
 
@@ -431,6 +443,8 @@ static void v4l_hu(int b) {
 	v4l1_picture.hue = v4l1_dpct(old, b);
 	ioctl(raw_fb_fd, VIDIOCSPICT, &v4l1_picture);
 	v4l_requery();
+#else
+	if (!b) {}
 #endif
 }
 
@@ -441,6 +455,8 @@ static void v4l_co(int b) {
 	v4l1_picture.colour = v4l1_dpct(old, b);
 	ioctl(raw_fb_fd, VIDIOCSPICT, &v4l1_picture);
 	v4l_requery();
+#else
+	if (!b) {}
 #endif
 }
 
@@ -451,6 +467,8 @@ static void v4l_cn(int b) {
 	v4l1_picture.contrast = v4l1_dpct(old, b);
 	ioctl(raw_fb_fd, VIDIOCSPICT, &v4l1_picture);
 	v4l_requery();
+#else
+	if (!b) {}
 #endif
 }
 
@@ -488,6 +506,8 @@ static void v4l_sz(int b) {
 	ignore_all = 1;
 	do_new_fb(1);
 	ignore_all = 0;
+#else
+	if (!b) {}
 #endif
 }
 
@@ -522,6 +542,8 @@ static void v4l_sta(int sta) {
 	}
 	fprintf(stderr, "to station %d / %d\n", cur, (int) freq);
 	v4l1_setfreq(raw_fb_fd, freq, 0);
+#else
+	if (!sta) {}
 #endif
 }
 
@@ -544,6 +566,8 @@ static void v4l_inp(int inp) {
 		next = inp;
 	}
 	v4l1_set_input(raw_fb_fd, next);
+#else
+	if (!inp) {}
 #endif
 }
 
@@ -732,6 +756,8 @@ static unsigned short v4l1_lu_palette_str(char *name, int *bits, int *rev) {
 		*bits = 8;
 		return VIDEO_PALETTE_GREY;
 	}
+#else
+	if (!name || !bits || !rev) {}
 #endif
 	return 0;
 }
@@ -814,6 +840,8 @@ static unsigned int v4l2_lu_palette_str(char *name, int *bits, int *rev) {
 		*rev = 0;
 		return V4L2_PIX_FMT_GREY;
 	}
+#else
+	if (!name || !bits || !rev) {}
 #endif
 	return 0;
 }
@@ -912,6 +940,7 @@ static int v4l1_query(int fd, int v) {
 
 	return 1;
 #else
+	if (!fd || !v) {}
 	return 0;
 #endif	/* V4L_OK */
 
@@ -992,6 +1021,7 @@ static int v4l2_query(int fd, int v) {
 
 	return 1;
 #else
+	if (!fd || !v) {}
 	return 0;
 #endif	/* V4L_OK && HAVE_V4L2 */
 
@@ -1089,6 +1119,7 @@ if (0) fprintf(stderr, "v4l1: %d %d %d\n", g_w, g_h, g_d);
 	close(dfd);
 	return NULL;
 #else
+	if (!dev || !fd) {}
 	return NULL;
 #endif
 }

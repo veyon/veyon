@@ -25,6 +25,8 @@
 #include "selection.h"
 #include "unixpw.h"
 #include "uinput.h"
+#include "userinput.h"
+#include "avahi.h"
 
 int send_remote_cmd(char *cmd, int query, int wait);
 int do_remote_query(char *remote_cmd, char *query_cmd, int remote_sync,
@@ -50,6 +52,7 @@ int send_remote_cmd(char *cmd, int query, int wait) {
 	FILE *in = NULL;
 
 	if (client_connect_file) {
+		umask(077);
 		in = fopen(client_connect_file, "w");
 		if (in == NULL) {
 			fprintf(stderr, "send_remote_cmd: could not open "
@@ -335,6 +338,13 @@ int check_httpdir(void) {
 		} else {
 			snprintf(httpdir, len, "%s/../share/x11vnc/classes", prog);
 		}
+		if (stat(httpdir, &sbuf) != 0) {
+			if (use_openssl || use_stunnel || http_ssl) {
+				snprintf(httpdir, len, "%s/../classes/ssl", prog);
+			} else {
+				snprintf(httpdir, len, "%s/../classes", prog);
+			}
+		}
 		free(prog);
 
 		if (stat(httpdir, &sbuf) == 0) {
@@ -490,11 +500,11 @@ static void reset_rfbport(int old, int new)  {
  * libXau yet.
  */
 int remote_control_access_ok(void) {
-	struct stat sbuf;
-
 #if NO_X11
 	return 0;
 #else
+	struct stat sbuf;
+
 	if (client_connect_file) {
 		if (stat(client_connect_file, &sbuf) == 0) {
 			if (sbuf.st_mode & S_IWOTH) {
@@ -749,7 +759,22 @@ char *process_remote_cmd(char *cmd, int stringonly) {
 /*
  * Maybe add: passwdfile logfile bg rfbauth passwd...
  */
-	if (!strcmp(p, "stop") || !strcmp(p, "quit") ||
+	if (strstr(p, "CR:") == p) {	/* skip-cmd-list */
+		/* CR:WxH+X+Y,dx,dy */
+		int w, h, x, y, dx, dy;
+		NOTAPP
+		if (sscanf(p+3, "%dx%d+%d+%d,%d,%d", &w, &h, &x, &y, &dx, &dy) == 6) {
+			sraRegionPtr r;
+			rfbLog("rfbDoCopyRect(screen, %d, %d, %d, %d, %d, %d)\n", x, y, x+w, y+h, dx, dy);
+			r = sraRgnCreateRect(x, y, x+w, y+h);
+			do_copyregion(r, dx, dy, 0);
+			fb_push();
+			sraRgnDestroy(r);
+			rfbLog("did\n");
+		} else {
+			rfbLog("remote_cmd: bad CR string: %s\n", p);
+		}
+	} else if (!strcmp(p, "stop") || !strcmp(p, "quit") ||
 	    !strcmp(p, "exit") || !strcmp(p, "shutdown")) {
 		NOTAPP
 		if (client_connect_file) {
@@ -1241,35 +1266,75 @@ char *process_remote_cmd(char *cmd, int stringonly) {
 		first_conn_timeout = to;
 		rfbLog("remote_cmd: set -timeout to %d\n", -to);
 
-	} else if (!strcmp(p, "filexfer")) {
+	} else if (!strcmp(p, "tightfilexfer")) {
 		if (query) {
-			snprintf(buf, bufn, "ans=%s:%d", p, filexfer);
+			snprintf(buf, bufn, "ans=%s:%d", p, tightfilexfer);
 			goto qry;
 		}
 #ifdef LIBVNCSERVER_WITH_TIGHTVNC_FILETRANSFER
-		if (! filexfer) {
-			rfbLog("remote_cmd: enabling -filexfer for new clients.\n");
-			filexfer = 1;
+		if (! tightfilexfer) {
+			rfbLog("remote_cmd: enabling -tightfilexfer for *NEW* clients.\n");
+			tightfilexfer = 1;
+			rfbLog("rfbRegisterTightVNCFileTransferExtension: 4\n");
 			rfbRegisterTightVNCFileTransferExtension();
 		}
 #else
-		rfbLog("remote_cmd: -filexfer not supported in this binary.\n");
+		rfbLog("remote_cmd: -tightfilexfer not supported in this binary.\n");
 #endif
 
-	} else if (!strcmp(p, "nofilexfer")) {
+	} else if (!strcmp(p, "notightfilexfer")) {
 		if (query) {
-			snprintf(buf, bufn, "ans=%s:%d", p, !filexfer);
+			snprintf(buf, bufn, "ans=%s:%d", p, !tightfilexfer);
 			goto qry;
 		}
 #ifdef LIBVNCSERVER_WITH_TIGHTVNC_FILETRANSFER
-		if (filexfer) {
-			rfbLog("remote_cmd: disabling -filexfer for new clients.\n");
-			filexfer = 0;
+		if (tightfilexfer) {
+			rfbLog("remote_cmd: disabling -tightfilexfer for *NEW* clients.\n");
+			tightfilexfer = 0;
+			rfbLog("rfbUnregisterTightVNCFileTransferExtension: 2\n");
 			rfbUnregisterTightVNCFileTransferExtension();
 		}
 #else
-		rfbLog("remote_cmd: -filexfer not supported in this binary.\n");
+		rfbLog("remote_cmd: -tightfilexfer not supported in this binary.\n");
 #endif
+
+	} else if (!strcmp(p, "ultrafilexfer")) {
+		if (query) {
+			snprintf(buf, bufn, "ans=%s:%d", p, screen->permitFileTransfer == TRUE);
+			goto qry;
+		}
+		if (! screen->permitFileTransfer) {
+			rfbLog("remote_cmd: enabling -ultrafilexfer for clients.\n");
+			screen->permitFileTransfer = TRUE;
+		}
+
+	} else if (!strcmp(p, "noultrafilexfer")) {
+		if (query) {
+			snprintf(buf, bufn, "ans=%s:%d", p, screen->permitFileTransfer == FALSE);
+			goto qry;
+		}
+		if (screen->permitFileTransfer) {
+			rfbLog("remote_cmd: disabling -ultrafilexfer for clients.\n");
+			screen->permitFileTransfer = FALSE;
+		}
+
+	} else if (strstr(p, "rfbversion") == p) {
+		int maj, min;
+		COLON_CHECK("rfbversion:")
+		if (query) {
+			snprintf(buf, bufn, "ans=%s:%d.%d", p, screen->protocolMajorVersion, screen->protocolMinorVersion);
+			goto qry;
+		}
+		p += strlen("rfbversion:");
+
+		if (sscanf(p, "%d.%d", &maj, &min) == 2) {
+			screen->protocolMajorVersion = maj;
+			screen->protocolMinorVersion = min;
+			rfbLog("remote_cmd: set rfbversion to: %d.%d\n", maj, min);
+		} else {
+			rfbLog("remote_cmd: invalid rfbversion: %s\n", p);
+		}
+		
 
 	} else if (!strcmp(p, "deny") || !strcmp(p, "lock")) {
 		if (query) {
@@ -1286,12 +1351,54 @@ char *process_remote_cmd(char *cmd, int stringonly) {
 		rfbLog("remote_cmd: allowing new connections.\n");
 		deny_all = 0;
 
+	} else if (!strcmp(p, "avahi") || !strcmp(p, "mdns")) {
+		if (query) {
+			snprintf(buf, bufn, "ans=%s:%d", p, avahi);
+			goto qry;
+		}
+		rfbLog("remote_cmd: enable -avahi mDNS mode.\n");
+		if (!avahi) {
+			avahi = 1;
+			avahi_initialise();
+			avahi_advertise(vnc_desktop_name, this_host(),
+			    screen->port);
+		}
+	} else if (!strcmp(p, "noavahi") || !strcmp(p, "nomdns")) {
+		if (query) {
+			snprintf(buf, bufn, "ans=%s:%d", p, !avahi);
+			goto qry;
+		}
+		rfbLog("remote_cmd: disable -avahi mDNS mode.\n");
+		if (avahi) {
+			avahi = 0;
+			avahi_reset();
+		}
+
 	} else if (strstr(p, "connect") == p) {
 		NOTAPP
 		COLON_CHECK("connect:")
 		p += strlen("connect:");
 		/* this is a reverse connection */
 		reverse_connect(p);
+
+	} else if (strstr(p, "proxy") == p) {
+		COLON_CHECK("proxy:")
+		if (query) {
+			snprintf(buf, bufn, "ans=%s%s%s", p, co,
+			    NONUL(connect_proxy));
+			goto qry;
+		}
+		p += strlen("proxy:");
+		if (connect_proxy) {
+			free(connect_proxy);
+			connect_proxy = NULL;
+		}
+		if (!strcmp(p, "") || !strcasecmp(p, "none")) {
+			rfbLog("remote_cmd: disabled -proxy\n");
+		} else {
+			connect_proxy = strdup(p);
+			rfbLog("remote_cmd: set -proxy %s\n", connect_proxy);
+		}
 
 	} else if (strstr(p, "allowonce") == p) {
 		COLON_CHECK("allowonce:")
@@ -1850,6 +1957,7 @@ char *process_remote_cmd(char *cmd, int stringonly) {
 			snprintf(buf, bufn, "ans=%s:%d", p, !xrandr); goto qry;
 		}
 		xrandr = 0;
+		xrandr_maybe = 0;
 		if (xrandr_present) {
 			rfbLog("remote_cmd: disable xrandr mode.\n");
 			if (orig != xrandr) {
@@ -1869,6 +1977,7 @@ char *process_remote_cmd(char *cmd, int stringonly) {
 		p += strlen("xrandr_mode:");
 		if (!strcmp("none", p)) {
 			xrandr = 0;
+			xrandr_maybe = 0;
 		} else {
 			if (known_xrandr_mode(p)) {
 				if (xrandr_mode) free(xrandr_mode);
@@ -2137,6 +2246,33 @@ char *process_remote_cmd(char *cmd, int stringonly) {
 		}
 		rfbLog("remote_cmd: disabling -clear_keys mode.\n");
 		clear_mods = 0;
+
+	} else if (!strcmp(p, "clear_all")) {
+		if (query) {
+			snprintf(buf, bufn, "ans=%s:%d", p,
+			    clear_mods == 3);
+			goto qry;
+		}
+		rfbLog("remote_cmd: doing clear_all action.\n");
+		clear_mods = 3;
+		clear_keys();
+		clear_locks();
+
+	} else if (!strcmp(p, "clear_locks")) {
+		NOTAPP
+		rfbLog("remote_cmd: doing clear_locks action.\n");
+		clear_locks();
+
+	} else if (!strcmp(p, "keystate")) {
+		int i, state[256];
+		NOTAPP
+		for (i=0; i<256; i++) {
+			state[i] = 0;
+		}
+		get_keystate(state);
+		for (i=0; i<256; i++) {
+			fprintf(stderr, "keystate[%03d] %d\n", i, state[i]);
+		}
 
 	} else if (strstr(p, "remap") == p) {
 		char *before, *old;
@@ -2710,6 +2846,177 @@ char *process_remote_cmd(char *cmd, int stringonly) {
 		rfbLog("remote_cmd: enabling mouse nodragging mode.\n");
 		show_dragging = 0;
 
+#ifndef NO_NCACHE
+	} else if (!strcmp(p, "ncache_cr")) {
+		if (query) {
+			snprintf(buf, bufn, "ans=%s:%d", p, ncache_copyrect);
+			goto qry;
+		}
+		ncache_copyrect = 1;
+		rfbLog("remote_cmd: set -ncache_cr %d\n", ncache_copyrect);
+	} else if (!strcmp(p, "noncache_cr")) {
+		if (query) {
+			snprintf(buf, bufn, "ans=%s:%d", p, !ncache_copyrect);
+			goto qry;
+		}
+		ncache_copyrect = 0;
+		rfbLog("remote_cmd: disabled -ncache_cr %d\n", ncache_copyrect);
+
+	} else if (!strcmp(p, "ncache_no_moveraise")) {
+		if (query) {
+			snprintf(buf, bufn, "ans=%s:%d", p, !ncache_wf_raises);
+			goto qry;
+		}
+		ncache_wf_raises = 0;
+		rfbLog("remote_cmd: set -ncache_no_moveraise\n");
+	} else if (!strcmp(p, "noncache_no_moveraise")) {
+		if (query) {
+			snprintf(buf, bufn, "ans=%s:%d", p, ncache_wf_raises);
+			goto qry;
+		}
+		ncache_wf_raises = 1;
+		rfbLog("remote_cmd: disabled -ncache_no_moveraise\n");
+
+	} else if (!strcmp(p, "ncache_no_dtchange")) {
+		if (query) {
+			snprintf(buf, bufn, "ans=%s:%d", p, !ncache_dt_change);
+			goto qry;
+		}
+		ncache_dt_change = 0;
+		rfbLog("remote_cmd: set -ncache_no_dt_change\n");
+	} else if (!strcmp(p, "noncache_no_dtchange")) {
+		if (query) {
+			snprintf(buf, bufn, "ans=%s:%d", p, ncache_dt_change);
+			goto qry;
+		}
+		ncache_dt_change = 1;
+		rfbLog("remote_cmd: disabled -ncache_no_dt_change\n");
+
+	} else if (!strcmp(p, "ncache_no_rootpixmap")) {
+		int orig = ncache_xrootpmap;
+		if (query) {
+			snprintf(buf, bufn, "ans=%s:%d", p, !ncache_xrootpmap);
+			goto qry;
+		}
+		ncache_xrootpmap = 0;
+		rfbLog("remote_cmd: set -ncache_no_rootpixmap\n");
+		if (orig != ncache_xrootpmap) {
+			do_new_fb(1);
+		}
+	} else if (!strcmp(p, "noncache_no_rootpixmap")) {
+		int orig = ncache_xrootpmap;
+		if (query) {
+			snprintf(buf, bufn, "ans=%s:%d", p, ncache_xrootpmap);
+			goto qry;
+		}
+		ncache_xrootpmap = 1;
+		rfbLog("remote_cmd: disabled -ncache_no_rootpixmap\n");
+		if (orig != ncache_xrootpmap) {
+			do_new_fb(1);
+		}
+
+	} else if (!strcmp(p, "ncache_reset_rootpixmap") || !strcmp(p, "ncrp")) {
+		if (query) {
+			snprintf(buf, bufn, "ans=%s:%d", p, !ncache_xrootpmap);
+			goto qry;
+		}
+		if (ncache_xrootpmap) {
+			rfbLog("remote_cmd: resetting root pixmap.\n");
+			set_ncache_xrootpmap();
+		}
+
+	} else if (!strcmp(p, "ncache_keep_anims")) {
+		if (query) {
+			snprintf(buf, bufn, "ans=%s:%d", p, ncache_keep_anims);
+			goto qry;
+		}
+		kde_no_animate(0);
+		ncache_keep_anims = 1;
+		rfbLog("remote_cmd: set -ncache_keep_anims\n");
+	} else if (!strcmp(p, "noncache_keep_anims")) {
+		if (query) {
+			snprintf(buf, bufn, "ans=%s:%d", p, !ncache_keep_anims);
+			goto qry;
+		}
+		ncache_keep_anims = 0;
+		kde_no_animate(1);
+		rfbLog("remote_cmd: disabled -ncache_keep_anims\n");
+
+	} else if (!strcmp(p, "ncache_old_wm")) {
+		if (query) {
+			snprintf(buf, bufn, "ans=%s:%d", p, ncache_old_wm);
+			goto qry;
+		}
+		ncache_old_wm = 1;
+		rfbLog("remote_cmd: set -ncache_old_wm\n");
+	} else if (!strcmp(p, "noncache_old_wm")) {
+		if (query) {
+			snprintf(buf, bufn, "ans=%s:%d", p, !ncache_old_wm);
+			goto qry;
+		}
+		ncache_old_wm = 0;
+		rfbLog("remote_cmd: disabled -ncache_old_wm\n");
+
+	} else if (strstr(p, "ncache_pad") == p) {
+		int orig = ncache_pad, n;
+		COLON_CHECK("ncache_pad:")
+		if (query) {
+			snprintf(buf, bufn, "ans=%s%s%d", p, co, ncache_pad);
+			goto qry;
+		}
+		p += strlen("ncache_pad:");
+		n = atoi(p);
+
+		rfbLog("remote_cmd: setting ncache_pad %d to: %d\n", orig, n);
+
+	} else if (!strcmp(p, "ncache")) {
+		if (query) {
+			snprintf(buf, bufn, "ans=%s:%d", p, !!ncache);
+			goto qry;
+		}
+		ncache = ncache0;
+		rfbLog("remote_cmd: set ncache %d\n", ncache);
+	} else if (!strcmp(p, "noncache")) {
+		if (query) {
+			snprintf(buf, bufn, "ans=%s:%d", p, !ncache);
+			goto qry;
+		}
+		ncache = 0;
+		rfbLog("remote_cmd: disabled ncache %d\n", ncache);
+	} else if (strstr(p, "ncache_size") == p) {
+		int orig = ncache, n;
+		COLON_CHECK("ncache_size:")
+		if (query) {
+			snprintf(buf, bufn, "ans=%s%s%d", p, co, ncache);
+			goto qry;
+		}
+		p += strlen("ncache_size:");
+		n = atoi(p);
+
+		if (n >= 0 && n != ncache) {
+			rfbLog("remote_cmd: setting ncache %d to: %d\n", orig, ncache);
+			ncache = n;
+			do_new_fb(1);
+			if (client_count) {
+				check_ncache(1,0);
+			}
+		}
+	} else if (!strcmp(p, "debug_ncache")) {
+		if (query) {
+			snprintf(buf, bufn, "ans=%s:%d", p, ncdb);
+			goto qry;
+		}
+		ncdb = 1;
+		rfbLog("remote_cmd: enabled debug_ncache\n");
+	} else if (!strcmp(p, "nodebug_ncache")) {
+		if (query) {
+			snprintf(buf, bufn, "ans=%s:%d", p, !ncdb);
+			goto qry;
+		}
+		ncdb = 0;
+		rfbLog("remote_cmd: disabled debug_ncache\n");
+#endif
+
 	} else if (strstr(p, "wireframe_mode") == p) {
 		COLON_CHECK("wireframe_mode:")
 		if (query) {
@@ -3119,6 +3426,9 @@ char *process_remote_cmd(char *cmd, int stringonly) {
 			goto qry;
 		}
 		grab_kbd = 1;
+		if (grab_always) {
+			adjust_grabs(1, 0);
+		}
 		rfbLog("enabled grab_kbd\n");
 	} else if (!strcmp(p, "nograbkbd")) {
 		int orig = grab_kbd;
@@ -3135,12 +3445,16 @@ char *process_remote_cmd(char *cmd, int stringonly) {
 #endif
 		}
 		rfbLog("disabled grab_kbd\n");
+
 	} else if (!strcmp(p, "grabptr")) {
 		if (query) {
 			snprintf(buf, bufn, "ans=%s:%d", p, grab_ptr);
 			goto qry;
 		}
 		grab_ptr = 1;
+		if (grab_always) {
+			adjust_grabs(1, 0);
+		}
 		rfbLog("enabled grab_ptr\n");
 	} else if (!strcmp(p, "nograbptr")) {
 		int orig = grab_ptr;
@@ -3157,6 +3471,36 @@ char *process_remote_cmd(char *cmd, int stringonly) {
 #endif
 		}
 		rfbLog("disabled grab_ptr\n");
+
+	} else if (!strcmp(p, "grabalways")) {
+		if (query) {
+			snprintf(buf, bufn, "ans=%s:%d", p, grab_always);
+			goto qry;
+		}
+		grab_ptr = 1;
+		grab_kbd = 1;
+		grab_always = 1;
+		adjust_grabs(1, 0);
+		rfbLog("enabled grab_always\n");
+	} else if (!strcmp(p, "nograbalways")) {
+		int orig = grab_always;
+		if (query) {
+			snprintf(buf, bufn, "ans=%s:%d", p, !grab_always);
+			goto qry;
+		}
+		grab_ptr = 0;
+		grab_kbd = 0;
+		grab_always = 0;
+		if (orig && dpy) {
+#if !NO_X11
+			X_LOCK;
+			XUngrabKeyboard(dpy, CurrentTime);
+			XUngrabPointer(dpy, CurrentTime);
+			X_UNLOCK;
+#endif
+		}
+		adjust_grabs(0, 0);
+		rfbLog("disabled grab_always\n");
 
 	} else if (strstr(p, "client_input") == p) {
 		NOTAPP
@@ -3315,6 +3659,20 @@ char *process_remote_cmd(char *cmd, int stringonly) {
 		    slow_fb, w);
 		slow_fb = w;
 
+	} else if (strstr(p, "xrefresh") == p) {
+		double w;
+		COLON_CHECK("xrefresh:")
+		if (query) {
+			snprintf(buf, bufn, "ans=%s%s%.2f", p, co, xrefresh);
+			goto qry;
+		}
+		p += strlen("xrefresh:");
+		w = atof(p);
+		if (w <= 0) w = 0.0;
+		rfbLog("remote_cmd: setting xrefresh delay %.2f -> %.2f\n",
+		    xrefresh, w);
+		xrefresh = w;
+
 	} else if (strstr(p, "wait") == p) {
 		int w;
 		COLON_CHECK("wait:")
@@ -3414,6 +3772,66 @@ char *process_remote_cmd(char *cmd, int stringonly) {
 		}
 		rfbLog("remote_cmd: turning on -nodpms mode.\n");
 		watch_dpms = 1;
+
+	} else if (!strcmp(p, "clientdpms")) {
+		if (query) {
+			snprintf(buf, bufn, "ans=%s:%d", p, client_dpms);
+			    goto qry;
+		}
+		rfbLog("remote_cmd: turning on -clientdpms mode.\n");
+		client_dpms = 1;
+	} else if (!strcmp(p, "noclientdpms")) {
+		if (query) {
+			snprintf(buf, bufn, "ans=%s:%d", p, !client_dpms);
+			    goto qry;
+		}
+		rfbLog("remote_cmd: turning off -clientdpms mode.\n");
+		client_dpms = 0;
+
+	} else if (!strcmp(p, "forcedpms")) {
+		if (query) {
+			snprintf(buf, bufn, "ans=%s:%d", p, force_dpms);
+			    goto qry;
+		}
+		rfbLog("remote_cmd: turning on -forcedpms mode.\n");
+		force_dpms = 1;
+	} else if (!strcmp(p, "noforcedpms")) {
+		if (query) {
+			snprintf(buf, bufn, "ans=%s:%d", p, !force_dpms);
+			    goto qry;
+		}
+		rfbLog("remote_cmd: turning off -forcedpms mode.\n");
+		force_dpms = 0;
+
+	} else if (!strcmp(p, "noserverdpms")) {
+		if (query) {
+			snprintf(buf, bufn, "ans=%s:%d", p, no_ultra_dpms);
+			    goto qry;
+		}
+		rfbLog("remote_cmd: turning on -noserverdpms mode.\n");
+		no_ultra_dpms = 1;
+	} else if (!strcmp(p, "serverdpms")) {
+		if (query) {
+			snprintf(buf, bufn, "ans=%s:%d", p, !no_ultra_dpms);
+			    goto qry;
+		}
+		rfbLog("remote_cmd: turning off -noserverdpms mode.\n");
+		no_ultra_dpms = 0;
+
+	} else if (!strcmp(p, "noultraext")) {
+		if (query) {
+			snprintf(buf, bufn, "ans=%s:%d", p, no_ultra_ext);
+			    goto qry;
+		}
+		rfbLog("remote_cmd: turning on -noultraext mode.\n");
+		no_ultra_ext = 1;
+	} else if (!strcmp(p, "ultraext")) {
+		if (query) {
+			snprintf(buf, bufn, "ans=%s:%d", p, !no_ultra_ext);
+			    goto qry;
+		}
+		rfbLog("remote_cmd: turning off -noultraext mode.\n");
+		no_ultra_ext = 0;
 
 	} else if (strstr(p, "fs") == p) {
 		COLON_CHECK("fs:")
@@ -3924,13 +4342,84 @@ char *process_remote_cmd(char *cmd, int stringonly) {
 		}
 		rfbLog("remote_cmd: turn on macnosaver.\n");
 		macosx_noscreensaver = 1;
-	} else if (!strcmp(p, "macsaver")) {
+	} else if (!strcmp(p, "macsaver") || !strcmp(p, "nomacnosaver")) {
 		if (query) {
 			snprintf(buf, bufn, "ans=%s:%d", p, !macosx_noscreensaver); goto qry;
 		}
 		rfbLog("remote_cmd: turn off macnosaver.\n");
 		macosx_noscreensaver = 0;
 
+	} else if (!strcmp(p, "macnowait")) {
+		if (query) {
+			snprintf(buf, bufn, "ans=%s:%d", p, !macosx_wait_for_switch); goto qry;
+		}
+		rfbLog("remote_cmd: disable macosx_wait_for_switch.\n");
+		macosx_wait_for_switch = 0;
+	} else if (!strcmp(p, "macwait") || !strcmp(p, "nomacnowait")) {
+		if (query) {
+			snprintf(buf, bufn, "ans=%s:%d", p, macosx_wait_for_switch); goto qry;
+		}
+		rfbLog("remote_cmd: enable macosx_wait_for_switch.\n");
+		macosx_wait_for_switch = 1;
+
+	} else if (strstr(p, "macwheel") == p) {
+		COLON_CHECK("macwheel:")
+		if (query) {
+			snprintf(buf, bufn, "ans=%s%s%d", p, co, macosx_mouse_wheel_speed);
+			goto qry;
+		}
+		p += strlen("macwheel:");
+		macosx_mouse_wheel_speed = atoi(p);
+		rfbLog("set macosx_mouse_wheel_speed to: %d\n", macosx_mouse_wheel_speed);
+
+	} else if (!strcmp(p, "macnoswap")) {
+		if (query) {
+			snprintf(buf, bufn, "ans=%s:%d", p, !macosx_swap23); goto qry;
+		}
+		rfbLog("remote_cmd: disable macosx_swap23.\n");
+		macosx_swap23 = 0;
+	} else if (!strcmp(p, "macswap") || !strcmp(p, "nomacnoswap")) {
+		if (query) {
+			snprintf(buf, bufn, "ans=%s:%d", p, macosx_swap23); goto qry;
+		}
+		rfbLog("remote_cmd: enable macosx_swap23.\n");
+		macosx_swap23 = 1;
+
+	} else if (!strcmp(p, "macnoresize")) {
+		if (query) {
+			snprintf(buf, bufn, "ans=%s:%d", p, !macosx_resize); goto qry;
+		}
+		rfbLog("remote_cmd: disable macosx_resize.\n");
+		macosx_resize = 0;
+	} else if (!strcmp(p, "macresize") || !strcmp(p, "nomacnoresize")) {
+		if (query) {
+			snprintf(buf, bufn, "ans=%s:%d", p, macosx_resize); goto qry;
+		}
+		rfbLog("remote_cmd: enable macosx_resize.\n");
+		macosx_resize = 1;
+
+	} else if (strstr(p, "maciconanim") == p) {
+		COLON_CHECK("maciconanim:")
+		if (query) {
+			snprintf(buf, bufn, "ans=%s%s%d", p, co, macosx_icon_anim_time);
+			goto qry;
+		}
+		p += strlen("maciconanim:");
+		macosx_icon_anim_time = atoi(p);
+		rfbLog("set macosx_icon_anim_time to: %d\n", macosx_icon_anim_time);
+
+	} else if (!strcmp(p, "macmenu")) {
+		if (query) {
+			snprintf(buf, bufn, "ans=%s:%d", p, macosx_ncache_macmenu); goto qry;
+		}
+		rfbLog("remote_cmd: enable macosx_ncache_macmenu.\n");
+		macosx_ncache_macmenu = 1;
+	} else if (!strcmp(p, "macnomenu") || !strcmp(p, "nomacmenu")) {
+		if (query) {
+			snprintf(buf, bufn, "ans=%s:%d", p, !macosx_ncache_macmenu); goto qry;
+		}
+		rfbLog("remote_cmd: disable macosx_ncache_macmenu.\n");
+		macosx_ncache_macmenu = 0;
 
 	} else if (strstr(p, "hack") == p) { /* skip-cmd-list */
 		COLON_CHECK("hack:")
@@ -4137,6 +4626,8 @@ char *process_remote_cmd(char *cmd, int stringonly) {
 			snprintf(buf, bufn, "aro=%s:%s", p, NONUL(stunnel_pem));
 		} else if (!strcmp(p, "https")) {
 			snprintf(buf, bufn, "aro=%s:%d", p, https_port_num);
+		} else if (!strcmp(p, "httpsredir")) {
+			snprintf(buf, bufn, "aro=%s:%d", p, https_port_redir);
 #endif
 		} else if (!strcmp(p, "usepw")) {
 			snprintf(buf, bufn, "aro=%s:%d", p, usepw);

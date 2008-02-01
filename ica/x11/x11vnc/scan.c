@@ -13,6 +13,7 @@
 #include "unixpw.h"
 #include "screen.h"
 #include "macosx.h"
+#include "userinput.h"
 
 /*
  * routines for scanning and reading the X11 display for changes, and
@@ -26,7 +27,7 @@ void initialize_polling_images(void);
 void scale_rect(double factor, int blend, int interpolate, int Bpp,
     char *src_fb, int src_bytes_per_line, char *dst_fb, int dst_bytes_per_line,
     int Nx, int Ny, int nx, int ny, int X1, int Y1, int X2, int Y2, int mark);
-void scale_and_mark_rect(int X1, int Y1, int X2, int Y2);
+void scale_and_mark_rect(int X1, int Y1, int X2, int Y2, int mark);
 void mark_rect_as_modified(int x1, int y1, int x2, int y2, int force);
 int copy_screen(void);
 int copy_snap(void);
@@ -346,6 +347,8 @@ void shm_delete(XShmSegmentInfo *shm) {
 	if (shm != NULL && shm->shmid != -1) {
 		shmctl(shm->shmid, IPC_RMID, 0);
 	}
+#else
+	if (!shm) {}
 #endif
 }
 
@@ -545,6 +548,8 @@ static void hint_updates(void) {
 	hint_t hint;
 	int x, y, i, n, ty, th, tx, tw;
 	int hint_count = 0, in_run = 0;
+
+	hint.x = hint.y = hint.w = hint.h = 0;
 
 	for (y=0; y < ntiles_y; y++) {
 		for (x=0; x < ntiles_x; x++) {
@@ -1253,7 +1258,7 @@ some aliases:
 	-90:	+270, 270
  */
 
-void scale_and_mark_rect(int X1, int Y1, int X2, int Y2) {
+void scale_and_mark_rect(int X1, int Y1, int X2, int Y2, int mark) {
 	char *dst_fb, *src_fb = main_fb;
 	int dst_bpl, Bpp = bpp/8, fac = 1;
 
@@ -1290,7 +1295,7 @@ void scale_and_mark_rect(int X1, int Y1, int X2, int Y2) {
 
 	scale_rect(scale_fac, scaling_blend, scaling_interpolate, fac * Bpp,
 	    src_fb, fac * main_bytes_per_line, dst_fb, dst_bpl, dpy_x, dpy_y,
-	    scaled_x, scaled_y, X1, Y1, X2, Y2, 1);
+	    scaled_x, scaled_y, X1, Y1, X2, Y2, mark);
 }
 
 void rotate_coords(int x, int y, int *xo, int *yo, int dxi, int dyi) {
@@ -1307,6 +1312,8 @@ void rotate_coords(int x, int y, int *xo, int *yo, int dxi, int dyi) {
 		Dx = dpy_x;
 		Dy = dpy_y;
 	}
+
+	/* ncache?? */
 
 	if (rotating == ROTATE_NONE) {
 		*xo = xi;
@@ -1625,7 +1632,7 @@ void mark_rect_as_modified(int x1, int y1, int x2, int y2, int force) {
 	}
 
 	if (scaling) {
-		scale_and_mark_rect(x1, y1, x2, y2);
+		scale_and_mark_rect(x1, y1, x2, y2, 1);
 	} else {
 		mark_wrapper(x1, y1, x2, y2);
 	}
@@ -1652,8 +1659,8 @@ static void mark_hint(hint_t hint) {
  * devices are optimized for write, not read, so we are limited by the
  * read bandwidth, sometimes only 5 MB/sec on otherwise fast hardware.
  */
-static int *first_line = NULL, *last_line;
-static unsigned short *left_diff, *right_diff;
+static int *first_line = NULL, *last_line = NULL;
+static unsigned short *left_diff = NULL, *right_diff = NULL;
 
 static int copy_tiles(int tx, int ty, int nt) {
 	int x, y, line;
@@ -1663,14 +1670,23 @@ static int copy_tiles(int tx, int ty, int nt) {
 	int pixelsize = bpp/8;
 	int first_min, last_max;
 	int first_x = -1, last_x = -1;
+	static int prev_ntiles_x = -1;
 
 	char *src, *dst, *s_src, *s_dst, *m_src, *m_dst;
 	char *h_src, *h_dst;
 	if (unixpw_in_progress) return 0;
 
-	if (! first_line) {
+	if (ntiles_x != prev_ntiles_x && first_line != NULL) {
+		free(first_line);	first_line = NULL;
+		free(last_line);	last_line = NULL;
+		free(left_diff);	left_diff = NULL;
+		free(right_diff);	right_diff = NULL;
+	}
+
+	if (first_line == NULL) {
 		/* allocate arrays first time in. */
 		int n = ntiles_x + 1;
+		rfbLog("copy_tiles: allocating first_line at size %d\n", n);
 		first_line = (int *) malloc((size_t) (n * sizeof(int)));
 		last_line  = (int *) malloc((size_t) (n * sizeof(int)));
 		left_diff  = (unsigned short *)
@@ -1678,6 +1694,7 @@ static int copy_tiles(int tx, int ty, int nt) {
 		right_diff = (unsigned short *)
 			malloc((size_t) (n * sizeof(unsigned short)));
 	}
+	prev_ntiles_x = ntiles_x;
 
 	x = tx * tile_x;
 	y = ty * tile_y;
@@ -2349,7 +2366,6 @@ static void blackout_regions(void) {
  * are other issues...  use -fs 1.0 to disable.
  */
 int copy_screen(void) {
-	int pixelsize = bpp/8;
 	char *fbp;
 	int i, y, block_size;
 
@@ -2460,7 +2476,7 @@ static void snap_all_rawfb(void) {
 }
 
 int copy_snap(void) {
-	int db = 1, pixelsize = bpp/8;
+	int db = 1;
 	char *fbp;
 	int i, y, block_size;
 	double dt;
@@ -2536,6 +2552,48 @@ if (db && snapcnt++ < 5) rfbLog("rawfb copy_snap took: %.5f secs\n", dnow() - st
 	return 0;
 }
 
+
+/* 
+ * debugging: print out a picture of the tiles.
+ */
+static void print_tiles(void) {
+	/* hack for viewing tile diffs on the screen. */
+	static char *prev = NULL;
+	int n, x, y, ms = 1500;
+
+	ms = 1;
+
+	if (! prev) {
+		prev = (char *) malloc((size_t) ntiles);
+		for (n=0; n < ntiles; n++) {
+			prev[n] = 0;
+		}
+	}
+	fprintf(stderr, "   ");
+	for (x=0; x < ntiles_x; x++) {
+		fprintf(stderr, "%1d", x % 10);
+	}
+	fprintf(stderr, "\n");
+	n = 0;
+	for (y=0; y < ntiles_y; y++) {
+		fprintf(stderr, "%2d ", y);
+		for (x=0; x < ntiles_x; x++) {
+			if (tile_has_diff[n]) {
+				fprintf(stderr, "X");
+			} else if (prev[n]) {
+				fprintf(stderr, "o");
+			} else {
+				fprintf(stderr, ".");
+			}
+			n++;
+		}
+		fprintf(stderr, "\n");
+	}
+	for (n=0; n < ntiles; n++) {
+		prev[n] = tile_has_diff[n];
+	}
+	usleep(ms * 1000);
+}
 
 /*
  * Utilities for managing the "naps" to cut down on amount of polling.
@@ -2656,8 +2714,13 @@ static void ping_clients(int tile_cnt) {
 		rfbLog("reset rfbMaxClientWait to %d msec.\n",
 		    rfbMaxClientWait);
 	}
-	if (tile_cnt) {
+	if (tile_cnt > 0) {
 		last_send = now;
+	} else if (tile_cnt < 0) {
+		if (now >= last_send - tile_cnt) {
+			mark_rect_as_modified(0, 0, 1, 1, 1);
+			last_send = now;
+		}
 	} else if (now - last_send > 2) {
 		/* Send small heartbeat to client */
 		mark_rect_as_modified(0, 0, 1, 1, 1);
@@ -2783,43 +2846,113 @@ void set_offset(void) {
 	X_UNLOCK;
 }
 
+static int xd_samples = 0, xd_misses = 0, xd_do_check = 0;
+
 /*
  * Loop over 1-pixel tall horizontal scanlines looking for changes.  
  * Record the changes in tile_has_diff[].  Scanlines in the loop are
  * equally spaced along y by NSCAN pixels, but have a slightly random
  * starting offset ystart ( < NSCAN ) from scanlines[].
  */
+
 static int scan_display(int ystart, int rescan) {
 	char *src, *dst;
 	int pixelsize = bpp/8;
 	int x, y, w, n;
 	int tile_count = 0;
 	int nodiffs = 0, diff_hint;
+	int xd_check = 0, xd_freq = 1;
+	static int xd_tck = 0;
 
 	y = ystart;
+
+	g_now = dnow();
 
 	if (! main_fb) {
 		rfbLog("scan_display: no main_fb!\n");
 		return 0;
 	}
 
+	X_LOCK;
+
 	while (y < dpy_y) {
 
 		if (use_xdamage) {
 			XD_tot++;
+			xd_check = 0;
 			if (xdamage_hint_skip(y)) {
-				XD_skip++;
-				y += NSCAN;
-				continue;
+				if (xd_do_check && dpy && use_xdamage == 1) {
+					xd_tck++;
+					xd_tck = xd_tck % xd_freq;
+					if (xd_tck == 0) {
+						xd_check = 1;
+						xd_samples++;
+					}
+				}
+				if (!xd_check) {
+					XD_skip++;
+					y += NSCAN;
+					continue;
+				}
+			} else {
+				if (xd_do_check && 0) {
+					fprintf(stderr, "ns y=%d\n", y);
+				}
 			}
 		}
 
 		/* grab the horizontal scanline from the display: */
+
+#ifndef NO_NCACHE
+/* XXX Y test */
+if (ncache > 0) {
+	int gotone = 0;
+	if (macosx_console) {
+		if (macosx_checkevent(NULL)) {
+			gotone = 1;
+		}
+	} else {
+#if !NO_X11
+		XEvent ev;
+		if (raw_fb_str) {
+			;
+		} else if (XEventsQueued(dpy, QueuedAlready) == 0) {
+			;	/* XXX Y resp */
+		} else if (XCheckTypedEvent(dpy, MapNotify, &ev)) {
+			gotone = 1;
+		} else if (XCheckTypedEvent(dpy, UnmapNotify, &ev)) {
+			gotone = 2;
+		} else if (XCheckTypedEvent(dpy, CreateNotify, &ev)) {
+			gotone = 3;
+		} else if (XCheckTypedEvent(dpy, ConfigureNotify, &ev)) {
+			gotone = 4;
+		} else if (XCheckTypedEvent(dpy, VisibilityNotify, &ev)) {
+			gotone = 5;
+		}
+		if (gotone) {
+			XPutBackEvent(dpy, &ev);
+		}
+#endif
+	}
+	if (gotone) {
+		static int nomsg = 1;
+		if (nomsg) {
+			if (dnowx() > 20) {
+				nomsg = 0;
+			}
+		} else {
+if (ncdb) fprintf(stderr, "\n*** SCAN_DISPLAY CHECK_NCACHE/%d *** %d rescan=%d\n", gotone, y, rescan);
+		}
+		X_UNLOCK;
+		check_ncache(0, 1);
 		X_LOCK;
+	}
+}
+#endif
+
 		XRANDR_SET_TRAP_RET(-1, "scan_display-set");
 		copy_image(scanline, 0, y, 0, 0);
 		XRANDR_CHK_TRAP_RET(-1, "scan_display-chk");
-		X_UNLOCK;
 
 		/* for better memory i/o try the whole line at once */
 		src = scanline->data;
@@ -2832,6 +2965,9 @@ static int scan_display(int ystart, int rescan) {
 				y += NSCAN;
 				continue;
 			}
+		}
+		if (xd_check) {
+			xd_misses++;
 		}
 
 		x = 0;
@@ -2889,6 +3025,9 @@ static int scan_display(int ystart, int rescan) {
 		}
 		y += NSCAN;
 	}
+
+	X_UNLOCK;
+
 	return tile_count;
 }
 
@@ -2911,6 +3050,7 @@ int scan_for_updates(int count_only) {
 	double frac2 = 0.35;  /* or 3rd */
 	double frac3 = 0.02;  /* do scan_display() again after copy_tiles() */
 	static double last_poll = 0.0;
+	double dtmp = 0.0;
 
 	if (unixpw_in_progress) return 0;
  
@@ -2963,11 +3103,15 @@ int scan_for_updates(int count_only) {
 			/* first pass collecting DAMAGE events: */
 #ifdef MACOSX
 			if (macosx_console) {
-				collect_macosx_damage(-1, -1, -1, -1, 0);
+				collect_non_X_xdamage(-1, -1, -1, -1, 0);
 			} else 
 #endif
 			{
-				collect_xdamage(scan_count, 0);
+				if (rawfb_vnc_reflect) {
+					collect_non_X_xdamage(-1, -1, -1, -1, 0);
+				} else {
+					collect_xdamage(scan_count, 0);
+				}
 			}
 		}
 	}
@@ -2998,7 +3142,11 @@ int scan_for_updates(int count_only) {
 		} else 
 #endif
 		{
-			collect_xdamage(scan_count, 1);
+			if (rawfb_vnc_reflect) {
+				;
+			} else {
+				collect_xdamage(scan_count, 1);
+			}
 		}
 	}
 	if (count_only) {
@@ -3019,6 +3167,33 @@ int scan_for_updates(int count_only) {
 					tile_has_xdamage_diff[i] = 2;
 					tile_count++;
 				}
+			}
+		}
+	}
+	if (dpy && use_xdamage == 1) {
+		static time_t last_xd_check = 0;
+		if (time(NULL) > last_xd_check + 2) {
+			int cp = (scan_count + 3) % NSCAN;
+			xd_do_check = 1;
+			tile_count = scan_display(scanlines[cp], 0);
+			xd_do_check = 0;
+			SCAN_FATAL(tile_count);
+			last_xd_check = time(NULL);
+			if (xd_samples > 200) {
+				static int bad = 0;
+				if (xd_misses > (5 * xd_samples) / 100) {
+					rfbLog("XDAMAGE is not working well... misses: %d/%d\n", xd_misses, xd_samples);
+					rfbLog("Maybe a OpenGL app like Beryl is the problem? Use -noxdamage\n");
+					rfbLog("To disable this check and warning specify -xdamage twice.\n");
+					if (++bad >= 10) {
+						rfbLog("XDAMAGE appears broken (OpenGL app?), turning it off.\n");
+						use_xdamage = 0;
+						initialize_xdamage();
+						destroy_xdamage_if_needed();
+					}
+				}
+				xd_samples = 0;
+				xd_misses = 0;
 			}
 		}
 	}
@@ -3103,12 +3278,24 @@ int scan_for_updates(int count_only) {
 
 	if (unixpw_in_progress) return 0;
 
+/* XXX Y */
+if (0 && tile_count > 20) print_tiles();
+#if 0
+dtmp = dnow();
+#else
+dtmp = 0.0;
+#endif
+
 	if (old_copy_tile) {
 		tile_diffs = copy_all_tiles();
 	} else {
 		tile_diffs = copy_all_tile_runs();
 	}
 	SCAN_FATAL(tile_diffs);
+
+#if 0
+if (tile_count) fprintf(stderr, "XX copytile: %.4f  tile_count: %d\n", dnow() - dtmp, tile_count);
+#endif
 
 	/*
 	 * This backward pass for upward and left tiles complements what
@@ -3172,8 +3359,15 @@ int scan_for_updates(int count_only) {
 	/* Work around threaded rfbProcessClientMessage() calls timeouts */
 	if (use_threads) {
 		ping_clients(tile_diffs);
+	} else if (saw_ultra_chat || saw_ultra_file) {
+		ping_clients(-1);
 	} else if (use_openssl && !tile_diffs) {
 		ping_clients(0);
+	}
+	/* -ping option: */
+	if (ping_interval) {
+		int td = ping_interval > 0 ? ping_interval : -ping_interval;
+		ping_clients(-td);
 	}
 
 

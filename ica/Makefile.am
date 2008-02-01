@@ -27,7 +27,6 @@ IVS_SRCS =	$(srcdir)/x11/x11vnc.c				\
 		$(srcdir)/x11/libvncserver/translate.c		\
 		$(srcdir)/x11/libvncserver/ultra.c		\
 		$(srcdir)/x11/libvncserver/vncauth.c		\
-		$(srcdir)/x11/rfb/rfb.h				\
 		$(srcdir)/x11/rfb/rfbregion.h			\
 		$(srcdir)/x11/rfb/default8x16.h			\
 		$(srcdir)/x11/libvncserver/d3des.h		\
@@ -162,6 +161,7 @@ EXTRA_DIST =	$(man_MANS)						\
 		$(srcdir)/x11/libvncserver/tableinitcmtemplate.c	\
 		$(srcdir)/x11/libvncserver/tabletrans24template.c	\
 		$(srcdir)/x11/libvncserver/zrleencodetemplate.c		\
+		$(srcdir)/x11/libvncserver/zywrletemplate.c		\
 		$(srcdir)/x11/libvncserver/zlib.c			\
 		$(srcdir)/x11/libvncserver/zrle.c			\
 		$(srcdir)/x11/libvncserver/zrleoutstream.c		\

@@ -71,7 +71,7 @@
  * -DREMOTE_DEFAULT=0  to disable remote-control on by default (-yesremote).
  * -DREMOTE_CONTROL=0  to disable remote-control mechanism completely.
  * -DEXTERNAL_COMMANDS=0  to disable the running of all external commands.
- * -DFILEXFER=0  disable filexfer.
+ * -DTIGHTFILEXFER=0  disable tightfilexfer.
  *
  * -DHARDWIRE_PASSWD=...      hardwired passwords, quoting necessary.
  * -DHARDWIRE_VIEWPASSWD=...
@@ -134,7 +134,9 @@
 #define PASSWD_UNLESS_NOPW 0
 #endif
 
+/* these are for delaying features: */
 #define xxNO_SSL_OR_UNIXPW
+#define xxNO_NCACHE
 
 /*
  * Beginning of support for small binary footprint build for embedded
@@ -258,6 +260,7 @@ extern int h_errno;
 
 #if LIBVNCSERVER_HAVE_PWD_H
 #include <pwd.h>
+#include <grp.h>
 #endif
 #if LIBVNCSERVER_HAVE_SYS_WAIT_H
 #include <sys/wait.h>
@@ -360,6 +363,8 @@ extern int button_mask;		/* button state and info */
 extern int button_mask_prev;
 extern int num_buttons;
 
+extern long xselectinput_rootwin;
+
 extern unsigned int display_button_mask;
 extern unsigned int display_mod_mask;
 
@@ -460,14 +465,29 @@ extern double last_pointer_motion_time;
 extern double last_key_to_button_remap_time;
 extern double last_copyrect;
 extern double last_copyrect_fix;
+extern double last_wireframe;
 extern double servertime_diff;
 extern double x11vnc_start;
+extern double x11vnc_current;
+extern double g_now;
+
+extern double last_get_wm_frame_time;
+extern Window last_get_wm_frame;
+extern double last_bs_restore;
+extern double last_su_restore;
+extern double last_bs_save;
+extern double last_su_save;
 
 extern int hack_val;
 
 /* last client to move pointer */
 extern rfbClientPtr last_pointer_client;
 extern rfbClientPtr latest_client;
+extern double last_client_gone;
+
+extern int waited_for_client;
+extern int findcreatedisplay;
+extern char *terminal_services_daemon;
 
 extern int client_count;
 extern int clients_served;

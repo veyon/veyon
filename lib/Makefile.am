@@ -68,6 +68,7 @@ libitalc_core_static_a_SOURCES =			\
 		$(srcdir)/include/vncview.h		\
 		$(srcdir)/include/rfb/keysym.h		\
 		$(srcdir)/include/rfb/rfb.h		\
+		$(srcdir)/include/rfb/rfbclient.h	\
 		$(srcdir)/include/rfb/rfbproto.h	\
 		$(srcdir)/italc_core_qrc.cpp		\
 		$(srcdir)/italc_core.qrc		\

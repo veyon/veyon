@@ -14,11 +14,14 @@
 #include "v4l.h"
 #include "linuxfb.h"
 #include "uinput.h"
+#include "macosx.h"
+#include "screen.h"
 
 void get_keystate(int *keystate);
 void clear_modifiers(int init);
 int track_mod_state(rfbKeySym keysym, rfbBool down, rfbBool set);
 void clear_keys(void);
+void clear_locks(void);
 int get_autorepeat_state(void);
 int get_initial_autorepeat_state(void);
 void autorepeat(int restore, int bequiet);
@@ -28,7 +31,7 @@ void delete_added_keycodes(int bequiet);
 void initialize_remap(char *infile);
 int sloppy_key_check(int key, rfbBool down, rfbKeySym keysym, int *new);
 void switch_to_xkb_if_better(void);
-char *short_kmbc(char *str);
+char *short_kmbcf(char *str);
 void initialize_allowed_input(void);
 void initialize_modtweak(void);
 void initialize_keyboard_and_pointer(void);
@@ -55,13 +58,15 @@ static void pipe_keyboard(rfbBool down, rfbKeySym keysym, rfbClientPtr client);
  * Routine to retreive current state keyboard.  1 means down, 0 up.
  */
 void get_keystate(int *keystate) {
+#if NO_X11
+	RAWFB_RET_VOID
+	if (!keystate) {}
+	return;
+#else
 	int i, k;
 	char keys[32];
 
 	RAWFB_RET_VOID
-#if NO_X11
-	return;
-#else
 	
 	/* n.b. caller decides to X_LOCK or not. */
 	XQueryKeymap(dpy, keys);
@@ -84,6 +89,11 @@ void get_keystate(int *keystate) {
  * Try to KeyRelease any non-Lock modifiers that are down.
  */
 void clear_modifiers(int init) {
+#if NO_X11
+	RAWFB_RET_VOID
+	if (!init) {}
+	return;
+#else
 	static KeyCode keycodes[256];
 	static KeySym  keysyms[256];
 	static char *keystrs[256];
@@ -95,9 +105,6 @@ void clear_modifiers(int init) {
 	KeyCode keycode;
 
 	RAWFB_RET_VOID
-#if NO_X11
-	return;
-#else
 
 	/* n.b. caller decides to X_LOCK or not. */
 	if (first) {
@@ -244,6 +251,69 @@ void clear_keys(void) {
 	XFlush_wr(dpy);
 }
 		
+
+void clear_locks(void) {
+#if NO_X11
+	RAWFB_RET_VOID
+	return;
+#else
+	XModifierKeymap *map;
+	int i, j, k = 0;
+	unsigned int state = 0;
+
+	RAWFB_RET_VOID
+
+	/* n.b. caller decides to X_LOCK or not. */
+#if LIBVNCSERVER_HAVE_XKEYBOARD
+	if (xkb_present) {
+		XkbStateRec kbstate;
+		XkbGetState(dpy, XkbUseCoreKbd, &kbstate);
+		rfbLog("locked:  0x%x\n", kbstate.locked_mods);
+		rfbLog("latched: 0x%x\n", kbstate.latched_mods);
+		rfbLog("compat:  0x%x\n", kbstate.compat_state);
+		state = kbstate.locked_mods;
+		if (! state) {
+			state = kbstate.compat_state;
+		}
+	} else 
+#endif
+	{
+		state = mask_state();
+		/* this may contain non-locks too... */
+		rfbLog("state:   0x%x\n", state);
+	}
+	if (! state) {
+		return;
+	}
+	map = XGetModifierMapping(dpy);
+	if (! map) {
+		return;
+	}
+	for (i = 0; i < 8; i++) {
+		int did = 0;
+		for (j = 0; j < map->max_keypermod; j++) {
+			if (! did && state & (0x1 << i)) {
+				if (map->modifiermap[k]) {
+					KeyCode key = map->modifiermap[k];
+					KeySym ks = XKeycodeToKeysym(dpy, key, 0);
+					char *nm = XKeysymToString(ks);
+					rfbLog("toggling: %03d / %03d -- %s\n", key, ks, nm ? nm : "BadKey");
+					did = 1;
+					XTestFakeKeyEvent_wr(dpy, key, True, CurrentTime);
+					usleep(10*1000);
+					XTestFakeKeyEvent_wr(dpy, key, False, CurrentTime);
+					XFlush_wr(dpy);
+				}
+			}
+			k++;
+		}
+	}
+	XFreeModifiermap(map);
+	XFlush_wr(dpy);
+	rfbLog("state:   0x%x\n", mask_state());
+#endif
+}
+
 /*
  * Kludge for -norepeat option: we turn off keystroke autorepeat in
  * the X server when clients are connected.  This may annoy people at
@@ -257,12 +327,13 @@ void clear_keys(void) {
 static int save_auto_repeat = -1;
 
 int get_autorepeat_state(void) {
+#if NO_X11
+	RAWFB_RET(0)
+	return 0;
+#else
 	XKeyboardState kstate;
 
 	RAWFB_RET(0)
-#if NO_X11
-	return 0;
-#else
 
 	X_LOCK;
 	XGetKeyboardControl(dpy, &kstate);
@@ -279,13 +350,15 @@ int get_initial_autorepeat_state(void) {
 }
 
 void autorepeat(int restore, int bequiet) {
+#if NO_X11
+	RAWFB_RET_VOID
+	if (!restore || !bequiet) {}
+	return;
+#else
 	int global_auto_repeat;
 	XKeyboardControl kctrl;
 
 	RAWFB_RET_VOID
-#if NO_X11
-	return;
-#else
 
 	if (restore) {
 		if (save_auto_repeat < 0) {
@@ -371,9 +444,21 @@ static int alltime_len = 1024;
 static int alltime_num = 0;
 
 int add_keysym(KeySym keysym) {
-	int minkey, maxkey, syms_per_keycode;
-	int kc, n, ret = 0;
 	static int first = 1;
+	int n;
+#if NO_X11
+	if (first) {
+		for (n=0; n < 0x100; n++) {
+			added_keysyms[n] = NoSymbol;
+		}
+		first = 0;
+	}
+	RAWFB_RET(0)
+	if (!keysym) {}
+	return 0;
+#else
+	int minkey, maxkey, syms_per_keycode;
+	int kc, ret = 0;
 	KeySym *keymap;
 
 	if (first) {
@@ -384,9 +469,6 @@ int add_keysym(KeySym keysym) {
 	}
 
 	RAWFB_RET(0)
-#if NO_X11
-	return 0;
-#else
 
 	if (keysym == NoSymbol) {
 		return 0;
@@ -464,15 +546,17 @@ int add_keysym(KeySym keysym) {
 }
 
 static void delete_keycode(KeyCode kc, int bequiet) {
+#if NO_X11
+	RAWFB_RET_VOID
+	if (!kc || !bequiet) {}
+	return;
+#else
 	int minkey, maxkey, syms_per_keycode, i;
 	KeySym *keymap;
 	KeySym ksym, new[8];
 	char *str;
 
 	RAWFB_RET_VOID
-#if NO_X11
-	return;
-#else
 
 	XDisplayKeycodes(dpy, &minkey, &maxkey);
 	keymap = XGetKeyboardMapping(dpy, minkey, (maxkey - minkey + 1),
@@ -658,6 +742,8 @@ static void add_dead_keysyms(char *str) {
 				    }
 				}
 			}
+#else
+			if ((ksym2 = 0)) {}
 #endif
 			if (! inmap) {
 				add_remap(p);
@@ -797,6 +883,7 @@ int sloppy_key_check(int key, rfbBool down, rfbKeySym keysym, int *new) {
 
 	RAWFB_RET(0)
 #if NO_X11
+	if (!key || !down || !keysym || !new) {}
 	return 0;
 #else
 	
@@ -854,6 +941,7 @@ int sloppy_key_check(int key, rfbBool down, rfbKeySym keysym, int *new) {
 static void initialize_xkb_modtweak(void) {}
 static void xkb_tweak_keyboard(rfbBool down, rfbKeySym keysym,
     rfbClientPtr client) {
+	if (!client || !down || !keysym) {} /* unused vars warning: */
 }
 void switch_to_xkb_if_better(void) {}
 
@@ -997,15 +1085,13 @@ void switch_to_xkb_if_better(void) {
 	XFree_wr(keymap);
 	if (missing_noxkb == 0 && syms_gt_4 >= 8) {
 		if (! raw_fb_str) {
-			rfbLog("XKEYBOARD: number of keysyms per keycode %d "
-			    "is greater\n", syms_per_keycode);
-			rfbLog("  than 4 and %d keysyms are mapped above 4.\n",
-			    syms_gt_4);
+			rfbLog("\n");
+			rfbLog("XKEYBOARD: number of keysyms per keycode %d is greater\n", syms_per_keycode);
+			rfbLog("  than 4 and %d keysyms are mapped above 4.\n", syms_gt_4);
 			rfbLog("  Automatically switching to -xkb mode.\n");
 			rfbLog("  If this makes the key mapping worse you can\n");
 			rfbLog("  disable it with the \"-noxkb\" option.\n");
-			rfbLog("  Also, remember \"-remap DEAD\" for accenting"
-			    " characters.\n");
+			rfbLog("  Also, remember \"-remap DEAD\" for accenting characters.\n");
 		}
 
 		use_xkb_modtweak = 1;
@@ -1013,13 +1099,11 @@ void switch_to_xkb_if_better(void) {
 
 	} else if (missing_noxkb == 0) {
 		if (! raw_fb_str) {
-			rfbLog("XKEYBOARD: all %d \"must have\" keysyms accounted"
-			    " for.\n", n);
+			rfbLog("\n");
+			rfbLog("XKEYBOARD: all %d \"must have\" keysyms accounted for.\n", n);
 			rfbLog("  Not automatically switching to -xkb mode.\n");
-			rfbLog("  If some keys still cannot be typed, try using"
-			    " -xkb.\n");
-			rfbLog("  Also, remember \"-remap DEAD\" for accenting"
-			    " characters.\n");
+			rfbLog("  If some keys still cannot be typed, try using -xkb.\n");
+			rfbLog("  Also, remember \"-remap DEAD\" for accenting characters.\n");
 		}
 		return;
 	}
@@ -1446,6 +1530,7 @@ xkbmodifiers[]    For the KeySym bound to this (keycode,group,level) store
 	}
 }
 
+static short **score_hint = NULL;
 /*
  * Called on user keyboard input.  Try to solve the reverse mapping
  * problem: KeySym (from VNC client) => KeyCode(s) to press to generate
@@ -1465,14 +1550,59 @@ static void xkb_tweak_keyboard(rfbBool down, rfbKeySym keysym,
 	XkbStateRec kbstate;
 	int got_kbstate = 0;
 	int Kc_f, Grp_f = 0, Lvl_f = 0;
-	static int Kc_last_down = -1;
-	static KeySym Ks_last_down = NoSymbol;
+#	define KLAST 10
+	static int Kc_last_down[KLAST];
+	static KeySym Ks_last_down[KLAST];
+	static int klast = 0, khints = 1, anydown = 1;
+	static int cnt = 0;
 
-	if (client) {} /* unused vars warning: */
+	if (!client || !down || !keysym) {} /* unused vars warning: */
 
 	RAWFB_RET_VOID
 
 	X_LOCK;
+
+	if (klast == 0) {
+		int i, j;
+		for (i=0; i<KLAST; i++) {
+			Kc_last_down[i] = -1;
+			Ks_last_down[i] = NoSymbol;
+		}
+		if (getenv("NOKEYHINTS")) {
+			khints = 0;
+		}
+		if (getenv("NOANYDOWN")) {
+			anydown = 0;
+		}
+		if (getenv("KEYSDOWN")) {
+			klast = atoi(getenv("KEYSDOWN"));
+			if (klast < 1) klast = 1;
+			if (klast > KLAST) klast = KLAST;
+		} else {
+			klast = 3;
+		}
+		if (khints && score_hint == NULL) {
+			score_hint = (short **) malloc(0x100 * sizeof(short *));
+			for (i=0; i<0x100; i++) {
+				score_hint[i] = (short *) malloc(0x100 * sizeof(short));
+			}
+			
+			for (i=0; i<0x100; i++) {
+				for (j=0; j<0x100; j++) {
+					score_hint[i][j] = -1;
+				}
+			}
+		}
+	}
+	cnt++;
+	if (cnt % 100 && khints && score_hint != NULL) {
+		int i, j;
+		for (i=0; i<0x100; i++) {
+			for (j=0; j<0x100; j++) {
+				score_hint[i][j] = -1;
+			}
+		}
+	}
 
 	if (debug_keyboard) {
 		char *str = XKeysymToString(keysym);
@@ -1616,6 +1746,12 @@ static void xkb_tweak_keyboard(rfbBool down, rfbKeySym keysym,
 				XkbGetState(dpy, XkbUseCoreKbd, &kbstate);
 				got_kbstate = 1;
 			}
+			if (khints && keysym < 0x100) {
+				int ks = (int) keysym, j;
+				for (j=0; j< 0x100; j++) {
+					score_hint[ks][j] = -1;
+				}
+			}
 			for (l=0; l < found; l++) {
 				int myscore = 0, b = 0x1, i;
 				int curr, curr_state = kbstate.mods;
@@ -1658,6 +1794,9 @@ static void xkb_tweak_keyboard(rfbBool down, rfbKeySym keysym,
 					    "keycode %03d: %4d\n",
 					    kc_f[l], myscore);
 				}
+				if (khints && keysym < 0x100 && kc_f[l] < 0x100) {
+					score_hint[(int) keysym][kc_f[l]] = (short) score[l];
+				}
 			}
 			for (l=0; l < found; l++) {
 				int myscore = score[l];
@@ -1673,27 +1812,122 @@ static void xkb_tweak_keyboard(rfbBool down, rfbKeySym keysym,
 			
 		} else {
 			/* up */
+			int i, Kc_loc = -1;
 			Kc_f = -1;
-			if (keysym == Ks_last_down) {
-				int l;
+
+			/* first try the scores we remembered when the key went down: */
+			if (khints && keysym < 0x100) {
+				/* low keysyms, ascii, only */
+				int ks = (int) keysym;
+				int ok = 1, lbest = 0, l;
+				short sbest = -1;
 				for (l=0; l < found; l++) {
-					if (Kc_last_down == kc_f[l]) {
-						Kc_f = Kc_last_down;
+					if (kc_f[l] < 0x100) {
+						int key = (int) kc_f[l];
+						if (! keycode_state[key]) {
+							continue;
+						}
+						if (score_hint[ks][key] < 0) {
+							ok = 0;
+							break;
+						}
+						if (sbest < 0 || score_hint[ks][key] < sbest) {
+							sbest = score_hint[ks][key];
+							lbest = l;
+						}
+					} else {
+						ok = 0;
 						break;
 					}
 				}
+				if (ok && sbest != -1) {
+					Kc_f = kc_f[lbest];
+				}
+				if (debug_keyboard && Kc_f != -1) {
+					fprintf(stderr, "    UP: found via score_hint, s/l=%d/%d\n",
+					    sbest, lbest);
+				}
 			}
+
+			/* next look at our list of recently pressed down keys */
 			if (Kc_f == -1) {
+				for (i=klast-1; i>=0; i--) {
+					/*
+					 * some people type really fast and leave
+					 * lots of keys down before releasing
+					 * them.  this gives problem on weird
+					 * qwerty+dvorak keymappings where each
+					 * alpha character is on TWO keys.
+					 */
+					if (keysym == Ks_last_down[i]) {
+						int l;
+						for (l=0; l < found; l++) {
+							if (Kc_last_down[i] == kc_f[l]) {
+								int key = (int) kc_f[l];
+								if (keycode_state[key]) {
+									Kc_f = Kc_last_down[i];
+									Kc_loc = i;
+									break;
+								}
+							}
+						}
+					}
+					if (Kc_f != -1) {
+						break;
+					}
+				}
+				if (debug_keyboard && Kc_f != -1) {
+					fprintf(stderr, "    UP: found via klast, i=%d\n", Kc_loc);
+				}
+			}
+
+			/* next just check for "best" one that is down */
+			if (Kc_f == -1 && anydown) {
 				int l;
+				int best = -1, lbest = 0;
 				/*
 				 * If it is already down, that is
 				 * a great hint.  Use it.
 				 *
-				 * note: keycode_state in internal and
+				 * note: keycode_state is internal and
 				 * ignores someone pressing keys on the
 				 * physical display (but is updated
 				 * periodically to clean out stale info).
 				 */
+				for (l=0; l < found; l++) {
+					int key = (int) kc_f[l];
+					int j, jmatch = -1;
+
+					if (! keycode_state[key]) {
+						continue;
+					}
+					/* break ties based on lowest XKeycodeToKeysym index */
+					for (j=0; j<8; j++) {
+						KeySym ks = XKeycodeToKeysym(dpy, kc_f[l], j);
+						if (ks != NoSymbol && ks == keysym) {
+							jmatch = j;
+							break;
+						}
+					}
+					if (jmatch == -1) {
+						continue;
+					}
+					if (best == -1 || jmatch < best) {
+						best = jmatch;
+						lbest = l;
+					}
+				}
+				if (best != -1) {
+					Kc_f = kc_f[lbest];
+				}
+				if (debug_keyboard && Kc_f != -1) {
+					fprintf(stderr, "    UP: found via downlist, l=%d\n", lbest);
+				}
+			}
+
+			/* next, use the first one found that is down */
+			if (Kc_f == -1) {
+				int l;
 				for (l=0; l < found; l++) {
 					int key = (int) kc_f[l];
 					if (keycode_state[key]) {
@@ -1701,11 +1935,18 @@ static void xkb_tweak_keyboard(rfbBool down, rfbKeySym keysym,
 						break;
 					}
 				}
+				if (debug_keyboard && Kc_f != -1) {
+					fprintf(stderr, "    UP: set to first one down, kc_f[%d]!!\n", l);
+				}
 			}
 
+			/* last, use the first one found */
 			if (Kc_f == -1) {
 				/* hope for the best... XXX check mods */
 				Kc_f = kc_f[0];
+				if (debug_keyboard && Kc_f != -1) {
+					fprintf(stderr, "    UP: set to first one at all, kc_f[0]!!\n");
+				}
 			}
 		}
 	} else {
@@ -1727,7 +1968,7 @@ static void xkb_tweak_keyboard(rfbBool down, rfbKeySym keysym,
 			fprintf(stderr, " \"%s\"", str ? str : "null");
 		}
 		fprintf(stderr, ", picked this one: %03d  (last down: %03d)\n",
-		    Kc_f, Kc_last_down);
+		    Kc_f, Kc_last_down[0]);
 	}
 
 	if (sloppy_keys) {
@@ -1749,8 +1990,12 @@ static void xkb_tweak_keyboard(rfbBool down, rfbKeySym keysym,
 		Bool dn;
 
 		/* remember these to aid the subsequent up case: */
-		Ks_last_down = keysym;
-		Kc_last_down = Kc_f;
+		for (i=KLAST-1; i >= 1; i--) {
+			Ks_last_down[i] = Ks_last_down[i-1];
+			Kc_last_down[i] = Kc_last_down[i-1];
+		}
+		Ks_last_down[0] = keysym;
+		Kc_last_down[0] = Kc_f;
 
 		if (! got_kbstate) {
 			/* get the current modifier state if we haven't yet */
@@ -2101,8 +2346,8 @@ if (sym >> 8 == 0) { \
 }
 #endif
 
-char *short_kmbc(char *str) {
-	int i, saw_k = 0, saw_m = 0, saw_b = 0, saw_c = 0, n = 10;
+char *short_kmbcf(char *str) {
+	int i, saw_k = 0, saw_m = 0, saw_b = 0, saw_c = 0, saw_f = 0, n = 10;
 	char *p, tmp[10];
 	
 	for (i=0; i<n; i++) {
@@ -2124,6 +2369,9 @@ char *short_kmbc(char *str) {
 		} else if ((*p == 'C' || *p == 'c') && !saw_c) {
 			tmp[i++] = 'C';
 			saw_c = 1;
+		} else if ((*p == 'F' || *p == 'f') && !saw_f) {
+			tmp[i++] = 'F';
+			saw_f = 1;
 		}
 		p++;
 	}
@@ -2143,7 +2391,7 @@ void initialize_allowed_input(void) {
 	}
 
 	if (! allowed_input_str) {
-		allowed_input_normal = strdup("KMBC");
+		allowed_input_normal = strdup("KMBCF");
 		allowed_input_view_only = strdup("");
 	} else {
 		char *p, *str = strdup(allowed_input_str);
@@ -2160,11 +2408,11 @@ void initialize_allowed_input(void) {
 	}
 
 	/* shorten them */
-	str = short_kmbc(allowed_input_normal);
+	str = short_kmbcf(allowed_input_normal);
 	free(allowed_input_normal);
 	allowed_input_normal = str;
 
-	str = short_kmbc(allowed_input_view_only);
+	str = short_kmbcf(allowed_input_view_only);
 	free(allowed_input_view_only);
 	allowed_input_view_only = str;
 
@@ -2210,8 +2458,13 @@ rfbLog("allowed_input_view_only: %s\n", allowed_input_view_only);
 }
 
 void initialize_modtweak(void) {
+#if NO_X11
+	RAWFB_RET_VOID
+	return;
+#else
 	KeySym keysym, *keymap;
 	int i, j, minkey, maxkey, syms_per_keycode;
+	int use_lowest_index = 0;
 
 	if (use_xkb_modtweak) {
 		initialize_xkb_modtweak();
@@ -2223,9 +2476,10 @@ void initialize_modtweak(void) {
 	}
 
 	RAWFB_RET_VOID
-#if NO_X11
-	return;
-#else
+
+	if (getenv("MODTWEAK_LOWEST")) {
+		use_lowest_index = 1;
+	}
 
 	X_LOCK;
 	XDisplayKeycodes(dpy, &minkey, &maxkey);
@@ -2286,6 +2540,9 @@ void initialize_modtweak(void) {
 			keysym = keymap[ (i - minkey) * syms_per_keycode + j ];
 			if ( keysym >= ' ' && keysym < 0x100
 			    && i == XKeysymToKeycode(dpy, keysym) ) {
+				if (use_lowest_index && keycodes[keysym] != NoSymbol) {
+					continue;
+				}
 				keycodes[keysym] = i;
 				modifiers[keysym] = j;
 			}
@@ -2364,13 +2621,15 @@ static void tweak_mod(signed char mod, rfbBool down) {
  */
 static void modifier_tweak_keyboard(rfbBool down, rfbKeySym keysym,
     rfbClientPtr client) {
+#if NO_X11
+	RAWFB_RET_VOID
+	if (!down || !keysym || !client) {}
+	return;
+#else
 	KeyCode k;
 	int tweak = 0;
 
 	RAWFB_RET_VOID
-#if NO_X11
-	return;
-#else
 
 	if (use_xkb_modtweak) {
 		xkb_tweak_keyboard(down, keysym, client);
@@ -2466,6 +2725,9 @@ void initialize_keyboard_and_pointer(void) {
 	if (clear_mods == 1) {
 		clear_modifiers(0);
 	}
+	if (clear_mods == 3) {
+		clear_locks();
+	}
 }
 
 void get_allowed_input(rfbClientPtr client, allowed_input_t *input) {
@@ -2476,6 +2738,7 @@ void get_allowed_input(rfbClientPtr client, allowed_input_t *input) {
 	input->motion    = 0;
 	input->button    = 0;
 	input->clipboard = 0;
+	input->files     = 0;
 
 	if (! client) {
 		return;
@@ -2499,7 +2762,7 @@ void get_allowed_input(rfbClientPtr client, allowed_input_t *input) {
 		if (allowed_input_normal) {
 			str = allowed_input_normal;
 		} else {
-			str = "KMBC";
+			str = "KMBCF";
 		}
 	}
 if (0) fprintf(stderr, "GAI: %s - %s\n", str, cd->input);
@@ -2513,6 +2776,8 @@ if (0) fprintf(stderr, "GAI: %s - %s\n", str, cd->input);
 			input->button = 1;
 		} else if (*str == 'C') {
 			input->clipboard = 1;
+		} else if (*str == 'F') {
+			input->files = 1;
 		}
 		str++;
 	}
@@ -2533,6 +2798,8 @@ static void pipe_keyboard(rfbBool down, rfbKeySym keysym, rfbClientPtr client) {
 		uinput_key_command(down, keysym, client);
 	} else if (pipeinput_int == PIPEINPUT_MACOSX) {
 		macosx_key_command(down, keysym, client);
+/*	} else if (pipeinput_int == PIPEINPUT_VNC) {
+		vnc_reflect_send_key((uint32_t) keysym, down);*/
 	}
 	if (pipeinput_fh == NULL) {
 		return;

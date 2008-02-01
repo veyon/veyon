@@ -455,12 +455,11 @@ clientOutput(void *data)
 		haveUpdate = sraRgnAnd(updateRegion,cl->requestedRegion);
 		sraRgnDestroy(updateRegion);
 	    }
-	    UNLOCK(cl->updateMutex);
 
             if (!haveUpdate) {
                 WAIT(cl->updateCond, cl->updateMutex);
-		UNLOCK(cl->updateMutex); /* we really needn't lock now. */
             }
+	    UNLOCK(cl->updateMutex);
         }
         
         /* OK, now, to save bandwidth, wait a little while for more

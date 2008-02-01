@@ -23,7 +23,14 @@ extern void initialize_screen(int *argc, char **argv, XImage *fb);
 extern void set_vnc_desktop_name(void);
 extern void announce(int lport, int ssl, char *iface);
 
+extern char *vnc_reflect_guess(char *str, char **raw_fb_addr);
+extern void vnc_reflect_process_client(void);
+extern rfbBool vnc_reflect_send_pointer(int x, int y, int mask);
+extern rfbBool vnc_reflect_send_key(uint32_t key, rfbBool down);
+extern rfbBool vnc_reflect_send_cuttext(char *str, int len);
+
 extern int rawfb_reset;
 extern int rawfb_dev_video;
+extern int rawfb_vnc_reflect;
 
 #endif /* _X11VNC_SCREEN_H */

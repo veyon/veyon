@@ -151,6 +151,10 @@ void rfbScaledScreenUpdateRect(rfbScreenInfoPtr screen, rfbScreenInfoPtr ptr, in
     h1 = h0;
 
     rfbScaledCorrection(screen, ptr, &x1, &y1, &w1, &h1, "rfbScaledScreenUpdateRect");
+    x0 = ScaleX(ptr, screen, x1);
+    y0 = ScaleY(ptr, screen, y1);
+    w0 = ScaleX(ptr, screen, w1);
+    h0 = ScaleY(ptr, screen, h1);
 
     bitsPerPixel = screen->bitsPerPixel;
     bytesPerPixel = bitsPerPixel / 8;
@@ -197,8 +201,8 @@ void rfbScaledScreenUpdateRect(rfbScreenInfoPtr screen, rfbScreenInfoPtr ptr, in
          /* Get the totals for rgb from the source grid... */
          for (w = 0; w < areaX; w++) {
            for (v = 0; v < areaY; v++) {
-             srcptr2 = &srcptr[(((x * areaX) + v) * bytesPerPixel) +
-                               (w * screen->paddedWidthInBytes)];
+             srcptr2 = &srcptr[(((x * areaX) + w) * bytesPerPixel) +
+                               (v * screen->paddedWidthInBytes)];
              pixel_value = 0;
 
 

@@ -6,6 +6,7 @@
 #include "screen.h"
 #include "scan.h"
 #include "unixpw.h"
+#include "macosx.h"
 
 int xfixes_present = 0;
 int use_xfixes = 1;
@@ -836,6 +837,11 @@ void setup_cursors_and_push(void) {
  *
  */
 static void tree_descend_cursor(int *depth, Window *w, win_str_info_t *winfo) {
+#if NO_X11
+	RAWFB_RET_VOID
+	if (!depth || !w || !winfo) {}
+	return;
+#else
 	Window r, c;
 	int i, rx, ry, wx, wy;
 	unsigned int mask;
@@ -847,9 +853,6 @@ static void tree_descend_cursor(int *depth, Window *w, win_str_info_t *winfo) {
 	XErrorHandler old_handler;
 
 	RAWFB_RET_VOID
-#if NO_X11
-	return;
-#else
 
 	X_LOCK;
 
@@ -1110,7 +1113,6 @@ static rfbCursorPtr pixels2curs(unsigned long *pixels, int w, int h,
 			a = 0xff000000 & (*(pixels+i));
 			a = a >> 24;	/* alpha channel */
 
-
 			if (a < (unsigned int) thresh) {
 				bitmap[i] = ' ';
 			} else {
@@ -1207,6 +1209,16 @@ static rfbCursorPtr pixels2curs(unsigned long *pixels, int w, int h,
 	c->cleanupRichSource = FALSE;
 	c->richSource = (unsigned char *) rich;
 
+	/* zeroes mean interpolate the rich cursor somehow and use B+W */
+	c->foreRed   = 0;
+	c->foreGreen = 0;
+	c->foreBlue  = 0;
+	c->backRed   = 0;
+	c->backGreen = 0;
+	c->backBlue  = 0;
+
+	c->source = NULL;
+
 	if (alpha_blend && !indexed_color) {
 		c->alphaSource = (unsigned char *) alpha;
 		c->alphaPreMultiplied = TRUE;
@@ -1226,6 +1238,8 @@ unsigned long get_cursor_serial(int mode) {
 	if (mode == 0) {
 		return last_cursor;
 	} else if (mode == 1) {
+		return (unsigned long) last_index;
+	} else {
 		return (unsigned long) last_index;
 	}
 }
@@ -1251,6 +1265,13 @@ static int get_exact_cursor(int init) {
 	}
 #endif
 
+	if (rawfb_vnc_reflect) {
+		int last_idx = (int) get_cursor_serial(1);
+		if (last_idx) {
+			which = last_idx;
+		}
+		return which;
+	}
 	if (xfixes_present && dpy) {
 #if LIBVNCSERVER_HAVE_LIBXFIXES
 		int last_idx = (int) get_cursor_serial(1);
@@ -1320,7 +1341,7 @@ fprintf(stderr, "sc: %d  %d/%d %d - %d %d\n", serial, w, h, cbpp, xhot, yhot);
 			oldest = i;
 			oldtime = curs_times[i];
 		}
-		if (serial == curs_index[i]) {
+		if (serial == (int) curs_index[i]) {
 			/*
 			 * got a hit with an existing cursor,
 			 * use that one.
@@ -1458,10 +1479,10 @@ int get_which_cursor(void) {
 	int db = 0;
 
 	if (show_multiple_cursors) {
-		int depth;
+		int depth = 0;
 		static win_str_info_t winfo;
 		static int first = 1, depth_cutoff = -1;
-		Window win;
+		Window win = None;
 		XErrorHandler old_handler;
 		int mode = 0;
 
@@ -1485,6 +1506,9 @@ int get_which_cursor(void) {
 			mode = 3;
 		}
 
+		if (rawfb_vnc_reflect && mode > -1) {
+			return get_exact_cursor(0);
+		}
 		if (mode == 3) {
 			if ((xfixes_present && use_xfixes) || macosx_console) {
 				if (db) fprintf(stderr, "get_which_cursor call get_exact_cursor\n");
@@ -1537,6 +1561,8 @@ int get_which_cursor(void) {
 				XSetErrorHandler(old_handler);
 				X_UNLOCK;
 				trapped_xerror = 0;
+#else
+				if (!r || !d || !bw || !h || !w || !y || !x || !ratio || !old_handler) {}
 #endif	/* NO_X11 */
 			}
 			if (which == which0) {
@@ -1705,6 +1731,24 @@ int cursor_shape_updates_clients(rfbScreenInfoPtr s) {
 	return count;
 }
 
+int cursor_noshape_updates_clients(rfbScreenInfoPtr s) {
+	rfbClientIteratorPtr iter;
+	rfbClientPtr cl;
+	int count = 0;
+
+	if (! s) {
+		return 0;
+	}
+	iter = rfbGetClientIterator(s);
+	while( (cl = rfbClientIteratorNext(iter)) ) {
+		if (!cl->enableCursorShapeUpdates) {
+			count++;
+		}
+	}
+	rfbReleaseClientIterator(iter);
+	return count;
+}
+
 int cursor_pos_updates_clients(rfbScreenInfoPtr s) {
 	rfbClientIteratorPtr iter;
 	rfbClientPtr cl;
@@ -1744,6 +1788,13 @@ void cursor_position(int x, int y) {
 		x = nfix(x, scaled_x);
 		y = ((double) y / dpy_y) * scaled_y;
 		y = nfix(y, scaled_y);
+	}
+
+	if (clipshift) {
+		if (x < 0) x = 0;
+		if (y < 0) y = 0;
+		if (x >= dpy_x) x = dpy_x-1;
+		if (y >= dpy_y) y = dpy_y-1;
 	}
 
 	if (x == screen->cursorX && y == screen->cursorY) {
@@ -1850,7 +1901,6 @@ int check_x11_pointer(void) {
 
 	if (unixpw_in_progress) return 0;
 
-
 #ifdef MACOSX
 	if (macosx_console) {
 		ret = macosx_get_cursor_pos(&root_x, &root_y);
@@ -1858,6 +1908,7 @@ int check_x11_pointer(void) {
 		RAWFB_RET(0)
 	}
 #else
+
 	RAWFB_RET(0)
 
 #   if NO_X11
@@ -1874,6 +1925,8 @@ int check_x11_pointer(void) {
 		    &win_x, &win_y, &mask);
 		X_UNLOCK;
 	}
+#else
+	if (!mask || !win_y || !win_x || !child_w || !root_w) {}
 #endif	/* NO_X11 */
 
 if (0) fprintf(stderr, "check_x11_pointer %d %d\n", root_x, root_y);
@@ -1893,6 +1946,18 @@ if (0) fprintf(stderr, "check_x11_pointer %d %d\n", root_x, root_y);
 	/* offset subtracted since XQueryPointer relative to rootwin */
 	x = root_x - off_x - coff_x;
 	y = root_y - off_y - coff_y;
+
+	if (clipshift) {
+		static int cnt = 0;
+		if (x < 0 || y < 0 || x >= dpy_x || y >= dpy_y)  {
+			if (cnt++ % 4 != 0) {
+				if (debug_pointer) {
+					rfbLog("Skipping cursor_position() outside our clipshift\n");
+				}
+				return 0;
+			}
+		}
+	}
 
 	/* record the cursor position in the rfb screen */
 	cursor_position(x, y);

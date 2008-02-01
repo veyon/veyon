@@ -305,15 +305,17 @@ void measure_send_rates(int init) {
 	double lat_min = .0005;		/* 0.5 ms */
 	int min_cmp = 10000, nclients;
 	rfbClientIteratorPtr iter;
-	rfbClientPtr cl;
-	int db = 0, msg = 0;
-
-db = 0;
+	rfbClientPtr cl0, cl;
+	int msg = 0, clcnt0 = 0, cc;
+	int db = 0, ouch_db = 0, ouch = 0;
 
 	if (! measure_speeds) {
 		return;
 	}
 	if (speeds_net_rate && speeds_net_latency) {
+		return;
+	}
+	if (!client_count) {
 		return;
 	}
 
@@ -324,7 +326,11 @@ db = 0;
 	if (start == 0.0) {
 		dtime(&start);
 	}
+
 	dtime0(&now);
+	if (now < last_client_gone+4.0) {
+		return;
+	}
 	now = now - start;
 
 	nclients = 0;
@@ -333,13 +339,9 @@ db = 0;
 		return;
 	}
 
+	cl0 = NULL;
 	iter = rfbGetClientIterator(screen);
 	while( (cl = rfbClientIteratorNext(iter)) ) {
-		int defer, i, cbs, rbs;
-		char *httpdir;
-		double dt, dt1 = 0.0, dt2, dt3;
-		double tm, spin_max = 15.0, spin_lat_max = 1.5;
-		int got_t2 = 0, got_t3 = 0;
 		ClientData *cd = (ClientData *) cl->clientData;
 
 		if (! cd) {
@@ -348,8 +350,26 @@ db = 0;
 		if (cd->send_cmp_rate > 0.0) {
 			continue;
 		}
+		if (cl->onHold) {
+			continue;
+		}
 		nclients++;
+		if (cl0 == NULL)  {
+			cl0 = cl;
+		}
+	}
+	rfbReleaseClientIterator(iter);
 
+	cl = cl0;
+	cc = 0;
+
+	while (cl != NULL && cc++ == 0) {
+		int defer, i, cbs, rbs;
+		char *httpdir;
+		double dt, dt1 = 0.0, dt2, dt3;
+		double tm, spin_max = 15.0, spin_lat_max = 1.5;
+		int got_t2 = 0, got_t3 = 0;
+		ClientData *cd = (ClientData *) cl->clientData;
 
 #if 0
 		for (i=0; i<MAX_ENCODINGS; i++) {
@@ -393,9 +413,18 @@ if (db) fprintf(stderr, "%d client num rects req: %d  mod: %d  cbs: %d  "
 			continue;
 		}
 
+		if (ouch_db) fprintf(stderr, "START-OUCH: %d\n", client_count);
+		clcnt0 = client_count;
+#define OUCH ( ouch || (ouch = (!client_count || client_count != clcnt0 || dnow() < last_client_gone+4.0)) )
+
 		rfbPE(1000);
+		if (OUCH && ouch_db) fprintf(stderr, "***OUCH-A\n");
+		if (OUCH) continue;
+
 		if (sraRgnCountRects(cl->modifiedRegion)) {
 			rfbPE(1000);
+			if (OUCH && ouch_db) fprintf(stderr, "***OUCH-B\n");
+			if (OUCH) continue;
 		}
 
 		defer = screen->deferUpdateTime;
@@ -419,6 +448,10 @@ if (db) fprintf(stderr, "%d client num rects req: %d  mod: %d  cbs: %d  "
 		/* when req1 = 1 mod1 == 0, end of 2nd part of bulk transfer */
 		while (1) {
 			int req0, req1, mod0, mod1;
+
+			if (OUCH && ouch_db) fprintf(stderr, "***OUCH-C1\n");
+			if (OUCH) break;
+
 			req0 = sraRgnCountRects(cl->requestedRegion);
 			mod0 = sraRgnCountRects(cl->modifiedRegion);
 			if (use_threads) {
@@ -435,6 +468,10 @@ if (db) fprintf(stderr, "%d client num rects req: %d  mod: %d  cbs: %d  "
 			if (dt2 > spin_max) {
 				break;
 			}
+
+			if (OUCH && ouch_db) fprintf(stderr, "***OUCH-C2\n");
+			if (OUCH) break;
+
 			req1 = sraRgnCountRects(cl->requestedRegion);
 			mod1 = sraRgnCountRects(cl->modifiedRegion);
 
@@ -452,6 +489,8 @@ if (db) fprintf(stderr, "dt2 calc: num rects req: %d/%d mod: %d/%d  "
 				break;
 			}
 		}
+		if (OUCH && ouch_db) fprintf(stderr, "***OUCH-D\n");
+		if (OUCH) goto ouch;
 
 		if (! got_t2) {
 			dt2 = 0.0;
@@ -498,6 +537,8 @@ if (db) fprintf(stderr, "dt2 calc: num rects req: %d/%d mod: %d/%d  "
 							rfbCFD(1000*1000);
 						}
 					}
+					if (OUCH && ouch_db) fprintf(stderr, "***OUCH-E\n");
+					if (OUCH) goto ouch;
 					dt = dtime(&tm);
 					i++;
 
@@ -550,9 +591,14 @@ if (db) fprintf(stderr, "dt3 calc: num rects req: %d/%d mod: %d/%d  "
 				}
 			}
 		}
+
+		ouch:
 		
 		screen->deferUpdateTime = defer;
 		screen->httpDir = httpdir;
+
+		if (OUCH && ouch_db) fprintf(stderr, "***OUCH-F\n");
+		if (OUCH) break;
 
 		dt = dt1 + dt2;
 
@@ -591,7 +637,6 @@ if (db) fprintf(stderr, "dt3 calc: num rects req: %d/%d mod: %d/%d  "
 		    dt1, dt2, dt3, cbs);
 		msg = 1;
 	}
-	rfbReleaseClientIterator(iter);
 
 	if (msg) {
 		int link, latency, netrate;

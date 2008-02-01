@@ -287,6 +287,8 @@ char *this_host(void) {
 	if (gethostname(host, MAXN) == 0) {
 		host[MAXN-1] = '\0';
 		return strdup(host);
+	} else if (UT.nodename) {
+		return strdup(UT.nodename);
 	}
 #endif
 	return NULL;
@@ -402,6 +404,67 @@ double rfac(void) {
 	return f;
 }
 
+void check_allinput_rate(void) {
+	static double last_all_input_check = 0.0;
+	static int set = 0;
+	if (! set) {
+		set = 1;
+		last_all_input_check = dnow();
+	} else {
+		int dt = 4;
+		if (x11vnc_current > last_all_input_check + dt) {
+			int n, nq = 0;
+			while ((n = rfbCheckFds(screen, 0))) {
+				nq += n;
+			}
+			fprintf(stderr, "nqueued: %d\n", nq);
+			if (0 && nq > 25 * dt) {
+				double rate = nq / dt;
+				rfbLog("Client is sending %.1f extra requests per second for the\n", rate);
+				rfbLog("past %d seconds! Switching to -allpinput mode. (queued: %d)\n", dt, nq);
+				all_input = 1;
+			}
+			set = 0;
+		}
+	}
+}
+
+static void do_allinput(long usec) {
+	static double last = 0.0;
+	static int meas = 0;
+	int n, f = 1, cnt = 0;
+	long usec0;
+	double now;
+	if (!screen || !screen->clientHead) {
+		return;
+	}
+	if (usec < 0) {
+		usec = 0;
+	}
+	usec0 = usec;
+	if (last == 0.0) {
+		last = dnow();
+	}
+	while ((n = rfbCheckFds(screen, usec)) > 0) {
+		if (f) {
+			fprintf(stderr, " *");
+			f = 0;
+		}
+		if (cnt++ > 30) {
+			break;
+		}
+		meas += n;
+	}
+	fprintf(stderr, "-%d", cnt);
+	now = dnow();
+	if (now > last + 2.0) {
+		double rate = meas / (now - last);
+		fprintf(stderr, "\n%.2f ", rate);
+		meas = 0;
+		last = dnow();
+	}
+}
+
 /*
  * utility wrapper to call rfbProcessEvents
  * checks that we are not in threaded mode.
@@ -409,6 +472,7 @@ double rfac(void) {
 #define USEC_MAX 999999		/* libvncsever assumes < 1 second */
 void rfbPE(long usec) {
 	int uip0 = unixpw_in_progress;
+	static int check_rate = -1;
 	if (! screen) {
 		return;
 	}
@@ -436,6 +500,22 @@ void rfbPE(long usec) {
 			;	/* this is new unixpw client  */
 		}
  	}
+
+	if (check_rate != 0) {
+		if (check_rate < 0) {
+			if (getenv("CHECK_RATE")) {
+				check_rate = 1;
+			} else {
+				check_rate = 0;
+			}
+		}
+		if (check_rate && !all_input && x11vnc_current < last_client + 45)  {
+			check_allinput_rate();
+		}
+	}
+	if (all_input) {
+		do_allinput(usec);
+	}
 }
 
 void rfbCFD(long usec) {
@@ -457,19 +537,15 @@ void rfbCFD(long usec) {
 		    (int) usec, tm - x11vnc_start);
 	}
 
+#if 0
+fprintf(stderr, "handleEventsEagerly: %d\n", screen->handleEventsEagerly);
+#endif
 
 	if (! use_threads) {
-		if (0 && all_input) {
-			static int cnt = 0;
-			int f = 1;
-			while (rfbCheckFds(screen, usec) > 0) {
-				if (f) {
-					cnt++;
-					f = 0;
-				}
-				fprintf(stderr, "-%d", cnt);
-			}
+		if (all_input) {
+			do_allinput(usec);
 		} else {
+			/* XXX how for cmdline? */
 			if (all_input) {
 				screen->handleEventsEagerly = TRUE;
 			} else {
@@ -548,8 +624,8 @@ char *choose_title(char *display) {
 	}
 	strncat(title, display, MAXN - strlen(title));
 	if (subwin && dpy && valid_window(subwin, NULL, 0)) {
-		char *name = NULL;
 #if !NO_X11
+		char *name = NULL;
 		if (XFetchName(dpy, subwin, &name)) {
 			if (name) {
 				strncat(title, " ",  MAXN - strlen(title));

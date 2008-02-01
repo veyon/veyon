@@ -54,6 +54,11 @@
 #define DEFAULT_VIA_CMD     \
   (DEFAULT_SSH_CMD " -f -L %L:%H:%R %G sleep 20")
 
+#if(defined __cplusplus)
+extern "C"
+{
+#endif
+
 /* vncrec */
 
 typedef struct {
@@ -321,6 +326,10 @@ rfbClient* rfbGetClient(int bitsPerSample,int samplesPerPixel,int bytesPerPixel)
 rfbBool rfbInitClient(rfbClient* client,int* argc,char** argv);
 /* rfbClientCleanup() does not touch client->frameBuffer */
 void rfbClientCleanup(rfbClient* client);
+
+#if(defined __cplusplus)
+}
+#endif
 
 #endif
 

@@ -525,6 +525,8 @@ typedef struct _rfbClientRec {
     struct z_stream_s compStream;
     rfbBool compStreamInited;
     uint32_t zlibCompressLevel;
+    /* the quality level is also used by ZYWRLE */
+    int tightQualityLevel;
 
 #ifdef LIBVNCSERVER_HAVE_LIBJPEG
     /* tight encoding -- preserve zlib streams' state for each client */
@@ -532,7 +534,6 @@ typedef struct _rfbClientRec {
     rfbBool zsActive[4];
     int zsLevel[4];
     int tightCompressLevel;
-    int tightQualityLevel;
 #endif
 #endif
 
@@ -579,6 +580,8 @@ typedef struct _rfbClientRec {
 
 #ifdef LIBVNCSERVER_HAVE_LIBZ
     void* zrleData;
+    int zywrleLevel;
+    int zywrleBuf[rfbZRLETileWidth * rfbZRLETileHeight];
 #endif
 
     /* if progressive updating is on, this variable holds the current
@@ -965,8 +968,10 @@ extern rfbBool rfbSendTextChatMessage(rfbClientPtr cl, uint32_t length, char *bu
 
 
 
-#endif
 
 #if(defined __cplusplus)
 }
 #endif
+
+#endif
+

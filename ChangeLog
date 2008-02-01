@@ -1,3 +1,123 @@
+2008-02-01	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* configure.in:
+	made 1.0.6-rc1 release
+
+	* ica/x11/x11vnc/xrandr.c:
+	* ica/x11/x11vnc/userinput.c:
+	* ica/x11/x11vnc/macosx.h:
+	* ica/x11/x11vnc/xwrappers.h:
+	* ica/x11/x11vnc/keyboard.c:
+	* ica/x11/x11vnc/options.h:
+	* ica/x11/x11vnc/xrandr.h:
+	* ica/x11/x11vnc/userinput.h:
+	* ica/x11/x11vnc/xinerama.c:
+	* ica/x11/x11vnc/keyboard.h:
+	* ica/x11/x11vnc/util.c:
+	* ica/x11/x11vnc/user.c:
+	* ica/x11/x11vnc/8to24.c:
+	* ica/x11/x11vnc/winattr_t.h:
+	* ica/x11/x11vnc/connections.c:
+	* ica/x11/x11vnc/user.h:
+	* ica/x11/x11vnc/macosxCGP.c:
+	* ica/x11/x11vnc/avahi.c:
+	* ica/x11/x11vnc/xevents.c:
+	* ica/x11/x11vnc/avahi.h:
+	* ica/x11/x11vnc/xevents.h:
+	* ica/x11/x11vnc/macosxCG.c:
+	* ica/x11/x11vnc/macosxCG.h:
+	* ica/x11/x11vnc/win_utils.c:
+	* ica/x11/x11vnc/cursor.c:
+	* ica/x11/x11vnc/rates.c:
+	* ica/x11/x11vnc/x11vnc_defs.c:
+	* ica/x11/x11vnc/cursor.h:
+	* ica/x11/x11vnc/gui.c:
+	* ica/x11/x11vnc/scan.c:
+	* ica/x11/x11vnc/tkx11vnc.h:
+	* ica/x11/x11vnc/uinput.c:
+	* ica/x11/x11vnc/selection.c:
+	* ica/x11/x11vnc/scan.h:
+	* ica/x11/x11vnc/unixpw.c:
+	* ica/x11/x11vnc/remote.c:
+	* ica/x11/x11vnc/allowed_input_t.h:
+	* ica/x11/x11vnc/unixpw.h:
+	* ica/x11/x11vnc/screen.c:
+	* ica/x11/x11vnc/x11vnc.c:
+	* ica/x11/x11vnc/pointer.c:
+	* ica/x11/x11vnc/screen.h:
+	* ica/x11/x11vnc/x11vnc.h:
+	* ica/x11/x11vnc/pointer.h:
+	* ica/x11/x11vnc/ssltools.h:
+	* ica/x11/x11vnc/macosxCGS.c:
+	* ica/x11/x11vnc/macosxCGS.h:
+	* ica/x11/x11vnc/sslhelper.c:
+	* ica/x11/x11vnc/v4l.c:
+	* ica/x11/x11vnc/sslhelper.h:
+	* ica/x11/x11vnc/xdamage.c:
+	* ica/x11/x11vnc/xrecord.c:
+	* ica/x11/x11vnc/nox11_funcs.h:
+	* ica/x11/x11vnc/solid.c:
+	* ica/x11/x11vnc/xdamage.h:
+	* ica/x11/x11vnc/pm.c:
+	* ica/x11/x11vnc/solid.h:
+	* ica/x11/x11vnc/pm.h:
+	* ica/x11/x11vnc/cleanup.c:
+	* ica/x11/x11vnc/params.h:
+	* ica/x11/x11vnc/help.c:
+	* ica/x11/x11vnc/macosx.c:
+	* ica/x11/x11vnc/options.c:
+	* ica/x11/x11vnc/xwrappers.c:
+	* ica/x11/x11vnc.c:
+	* ica/x11/libvncserver/stats.c:
+	* ica/x11/libvncserver/zrle.c:
+	* ica/x11/libvncserver/rfbserver.c:
+	* ica/x11/libvncserver/cursor.c:
+	* ica/x11/libvncserver/httpd.c:
+	* ica/x11/libvncserver/main.c:
+	* ica/x11/libvncserver/zrleencodetemplate.c:
+	* ica/x11/libvncserver/scale.c:
+	* ica/Makefile.am:
+	* lib/include/rfb/rfb.h:
+	* lib/include/rfb/rfbproto.h:
+	* lib/include/rfb/rfbclient.h:
+	* lib/Makefile.am:
+	integrated latest release of x11vnc (0.9.4)
+
+	* ima/italc.1:
+	updated manpage
+
+	* ima/src/main.cpp:
+	* ima/src/main_window.cpp:
+	added -isdport-option in order to connect to a different local ISD
+	(e.g. for LTSP-environments)
+
+	* ica/src/local_system_ica.cpp:
+	when retrieving user-name, construct QString using QString::fromUtf8()
+	which fixes encoding problems in user-names
+
+	* lib/src/local_system.cpp:
+	fixed shutdown, reboot and logoff methods for KDE and GNOME
+
+	* lib/src/isd_connection.cpp:
+	- fixed broken authentication-type rfbNoAuth
+	- include port-number in warning
+
+	* lib/include/types.h:
+	made typedefs for 32-bit-integers more specific
+
+	* configure.in:
+	cleanups
+
+	* ica/src/ivs.cpp:
+	fixed missing pe.pseudoEncoding-NULL-initialization which lead to
+	crash on several platforms
+
+	* ica/src/isd_server.cpp:
+	fixed too small array-sizes
+
+	* configure.in:
+	added -fPIC-flag to make everything compile well on x86_64
+
 2008-01-30	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* ima/src/main_window.cpp:

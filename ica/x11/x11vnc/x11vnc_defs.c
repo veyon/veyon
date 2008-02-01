@@ -15,7 +15,7 @@ int xtrap_base_event_type = 0;
 int xdamage_base_event_type = 0;
 
 /*               date +'lastmod: %Y-%m-%d' */
-char lastmod[] = "0.8.4 lastmod: 2006-11-26";
+char lastmod[] = "0.9.4 lastmod: 2008-01-24";
 
 /* X display info */
 
@@ -35,6 +35,8 @@ int cdpy_x, cdpy_y, coff_x, coff_y;	/* the -clip params */
 int button_mask = 0;		/* button state and info */
 int button_mask_prev = 0;
 int num_buttons = -1;
+
+long xselectinput_rootwin = 0;
 
 unsigned int display_button_mask = 0;
 unsigned int display_mod_mask = 0;
@@ -108,14 +110,14 @@ int scale_cursor_numer = 0, scale_cursor_denom = 0;
 /* size of the basic tile unit that is polled for changes: */
 int tile_x = 32;
 int tile_y = 32;
-int ntiles, ntiles_x, ntiles_y;
+int ntiles, ntiles_x = 0, ntiles_y = 0;
 
 /* arrays that indicate changed or checked tiles. */
 unsigned char *tile_has_diff = NULL, *tile_tried = NULL, *tile_copied = NULL;
 unsigned char *tile_has_xdamage_diff = NULL, *tile_row_has_xdamage_diff = NULL;
 
 /* times of recent events */
-time_t last_event, last_input = 0, last_client = 0;
+time_t last_event = 0, last_input = 0, last_client = 0;
 time_t last_local_input = 0;
 time_t last_keyboard_input = 0, last_pointer_input = 0; 
 time_t last_fb_bytes_sent = 0;
@@ -126,14 +128,29 @@ double last_pointer_motion_time = 0.0;
 double last_key_to_button_remap_time = 0.0;
 double last_copyrect = 0.0;
 double last_copyrect_fix = 0.0;
+double last_wireframe = 0.0;
 double servertime_diff = 0.0;
 double x11vnc_start = 0.0;
+double x11vnc_current = 0.0;
+double g_now = 0.0;
+
+double last_get_wm_frame_time = 0.0;
+Window last_get_wm_frame = None;
+double last_bs_restore = 0.0;
+double last_su_restore = 0.0;
+double last_bs_save = 0.0;
+double last_su_save = 0.0;
 
 int hack_val = 0;
 
 /* last client to move pointer */
 rfbClientPtr last_pointer_client = NULL;
 rfbClientPtr latest_client = NULL;
+double last_client_gone = 0.0;
+
+int waited_for_client = 0;
+int findcreatedisplay = 0;
+char *terminal_services_daemon = NULL;
 
 int client_count = 0;
 int clients_served = 0;

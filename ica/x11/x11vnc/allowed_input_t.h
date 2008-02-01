@@ -8,6 +8,7 @@ typedef struct allowed_input {
 	int motion;
 	int button;
 	int clipboard;
+	int files;
 } allowed_input_t;
 
 #endif /* _X11VNC_ALLOWED_INPUT_T_H */

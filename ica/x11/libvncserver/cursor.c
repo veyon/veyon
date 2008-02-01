@@ -375,22 +375,66 @@ void rfbMakeXCursorFromRichCursor(rfbScreenInfoPtr rfbScreen,rfbCursorPtr cursor
    uint32_t background;
    char *back=(char*)&background;
    unsigned char bit;
+   int interp = 0, db = 0;
 
    if(cursor->source && cursor->cleanupSource)
        free(cursor->source);
    cursor->source=(unsigned char*)calloc(w,cursor->height);
    cursor->cleanupSource=TRUE;
    
-   if(format->bigEndian)
+   if(format->bigEndian) {
       back+=4-bpp;
+   }
 
-   background=cursor->backRed<<format->redShift|
-     cursor->backGreen<<format->greenShift|cursor->backBlue<<format->blueShift;
+	/* all zeros means we should interpolate to black+white ourselves */
+	if (!cursor->backRed && !cursor->backGreen && !cursor->backBlue &&
+	    !cursor->foreRed && !cursor->foreGreen && !cursor->foreBlue) {
+		if (format->trueColour && (bpp == 1 || bpp == 2 || bpp == 4)) {
+			interp = 1;
+			cursor->foreRed = cursor->foreGreen = cursor->foreBlue = 0xffff;
+		}
+	}
 
-   for(j=0;j<cursor->height;j++)
-     for(i=0,bit=0x80;i<cursor->width;i++,bit=(bit&1)?0x80:bit>>1)
-       if(memcmp(cursor->richSource+j*width+i*bpp,back,bpp))
-	 cursor->source[j*w+i/8]|=bit;
+   background = ((format->redMax   * cursor->backRed)   / 0xffff) << format->redShift   |
+                ((format->greenMax * cursor->backGreen) / 0xffff) << format->greenShift |
+                ((format->blueMax  * cursor->backBlue)  / 0xffff) << format->blueShift;
+
+#define SETRGB(u) \
+   r = (255 * (((format->redMax   << format->redShift)   & (*u)) >> format->redShift))   / format->redMax; \
+   g = (255 * (((format->greenMax << format->greenShift) & (*u)) >> format->greenShift)) / format->greenMax; \
+   b = (255 * (((format->blueMax  << format->blueShift)  & (*u)) >> format->blueShift))  / format->blueMax;
+
+   if (db) fprintf(stderr, "interp: %d\n", interp);
+
+   for(j=0;j<cursor->height;j++) {
+	for(i=0,bit=0x80;i<cursor->width;i++,bit=(bit&1)?0x80:bit>>1) {
+		if (interp) {
+			int r = 0, g = 0, b = 0, grey;
+			char *p = cursor->richSource+j*width+i*bpp;
+			if (bpp == 1) {
+				unsigned char*  uc = (unsigned char*)  p;
+				SETRGB(uc);
+			} else if (bpp == 2) {
+				unsigned short* us = (unsigned short*) p;
+				SETRGB(us);
+			} else if (bpp == 4) {
+				unsigned int*   ui = (unsigned int*)   p;
+				SETRGB(ui);
+			}
+			grey = (r + g + b) / 3;
+			if (grey >= 128) {
+				cursor->source[j*w+i/8]|=bit;
+				if (db) fprintf(stderr, "1");
+			} else {
+				if (db) fprintf(stderr, "0");
+			}
+			
+		} else if(memcmp(cursor->richSource+j*width+i*bpp, back, bpp)) {
+			cursor->source[j*w+i/8]|=bit;
+		}
+	}
+	if (db) fprintf(stderr, "\n");
+   }
 }
 
 void rfbMakeRichCursorFromXCursor(rfbScreenInfoPtr rfbScreen,rfbCursorPtr cursor)

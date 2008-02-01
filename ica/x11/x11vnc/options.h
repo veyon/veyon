@@ -9,6 +9,8 @@
 extern int debug;
 
 extern char *use_dpy;
+extern int display_N;
+extern int auto_port;
 extern char *auth_file;
 extern char *visual_str;
 extern int set_visual_str_to_something;
@@ -29,9 +31,12 @@ extern int ssl_no_fail;
 extern char *openssl_pem;
 extern char *ssl_certs_dir;
 extern int https_port_num;
+extern int https_port_redir;
 extern char *ssl_verify;
 extern int ssl_initialized;
 extern int ssl_timeout_secs;
+extern char *ssh_str;
+extern pid_t ssh_pid;
 extern int usepw;
 extern char *blackout_str;
 extern int blackout_ptr;
@@ -63,6 +68,7 @@ extern char *allowed_external_cmds;
 extern int started_as_root;
 extern int host_lookup;
 extern char *users_list;
+extern char **user2group;
 extern char *allow_list;
 extern char *listen_str;
 extern char *allow_once;
@@ -77,8 +83,9 @@ extern char *viewonly_passwd;
 extern char **passwd_list;
 extern int begin_viewonly;
 extern int inetd;
-extern int filexfer; 
+extern int tightfilexfer; 
 extern int first_conn_timeout;
+extern int ping_interval;
 extern int flash_cmap;
 extern int shift_cmap;
 extern int force_indexed_color;
@@ -86,6 +93,10 @@ extern int cmap8to24;
 extern char *cmap8to24_str;
 extern int xform24to32;
 extern int launch_gui;
+
+extern int avahi;
+extern int vnc_redirect;
+extern int vnc_redirect_sock;
 
 extern int use_modifier_tweak;
 extern int watch_capslock;
@@ -112,6 +123,7 @@ extern int macosx_mouse_wheel_speed;
 extern int macosx_console;
 extern int macosx_swap23;
 extern int macosx_resize;
+extern int macosx_icon_anim_time;
 
 extern unsigned long subwin;
 extern int subwin_wait_mapped;
@@ -126,6 +138,7 @@ extern int debug_sel;
 extern int xtrap_input;
 extern int xinerama;
 extern int xrandr;
+extern int xrandr_maybe;
 extern char *xrandr_mode;
 extern char *pad_geometry;
 extern time_t pad_geometry_time;
@@ -138,6 +151,7 @@ extern char *client_connect;
 extern char *client_connect_file;
 extern int connect_or_exit;
 extern int vnc_connect;
+extern char *connect_proxy;
 
 extern int show_cursor;
 extern int show_multiple_cursors;
@@ -154,6 +168,29 @@ extern char *wireframe_str;
 extern char *wireframe_copyrect;
 extern char *wireframe_copyrect_default;
 extern int wireframe_in_progress;
+
+extern int ncache;
+extern int ncache0;
+extern int ncache_default;
+extern int ncache_copyrect;
+extern int ncache_wf_raises;
+extern int ncache_dt_change;
+extern int ncache_pad;
+extern int ncache_xrootpmap;
+extern int ncache_keep_anims;
+extern int ncache_old_wm;
+extern int macosx_ncache_macmenu;
+extern int ncache_beta_tester;
+extern int ncdb;
+
+extern Atom atom_NET_ACTIVE_WINDOW;
+extern Atom atom_NET_CURRENT_DESKTOP;
+extern Atom atom_NET_CLIENT_LIST_STACKING;
+extern Atom atom_XROOTPMAP_ID;
+extern double got_NET_ACTIVE_WINDOW;
+extern double got_NET_CURRENT_DESKTOP;
+extern double got_NET_CLIENT_LIST_STACKING;
+extern double got_XROOTPMAP_ID;
 
 extern char *scroll_copyrect_str;
 extern char *scroll_copyrect;
@@ -221,6 +258,7 @@ extern int flip_byte_order;
 extern int waitms;
 extern double wait_ui;
 extern double slow_fb;
+extern double xrefresh;
 extern int wait_bog;
 extern int defer_update;
 extern int got_defer;
@@ -238,6 +276,12 @@ extern int all_input;
 
 extern int watch_fbpm;
 extern int watch_dpms;
+extern int force_dpms;
+extern int client_dpms;
+extern int no_ultra_dpms;
+extern int no_ultra_ext;
+extern int saw_ultra_chat;
+extern int saw_ultra_file;
 
 extern int watch_selection;
 extern int watch_primary;
@@ -266,6 +310,7 @@ extern int verbose;
 
 extern int use_threads;
 
+extern int got_noxwarppointer;
 extern int got_rfbport;
 extern int got_rfbport_val;
 extern int got_alwaysshared;

@@ -21,7 +21,7 @@ extern void initialize_max_keyrepeat(void);
 
 extern int direct_fb_copy(int x1, int y1, int x2, int y2, int mark);
 extern void fb_push(void);
-extern void fb_push_wait(double max_wait, int flags);
+extern int fb_push_wait(double max_wait, int flags);
 extern void eat_viewonly_input(int max_eat, int keep);
 
 extern void mark_for_xdamage(int x, int y, int w, int h);
@@ -35,5 +35,11 @@ extern int check_xrecord(void);
 extern int check_wireframe(void);
 extern int fb_update_sent(int *count);
 extern int check_user_input(double dt, double dtr, int tile_diffs, int *cnt);
+extern void do_copyregion(sraRegionPtr region, int dx, int dy, int mode);
+
+extern int check_ncache(int reset, int mode);
+extern int find_rect(int idx, int x, int y, int w, int h);
+extern int lookup_win_index(Window);
+extern void set_ncache_xrootpmap(void);
 
 #endif /* _X11VNC_USERINPUT_H */
