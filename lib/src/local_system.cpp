@@ -399,7 +399,9 @@ void powerDown( void )
 				);*/
 	enablePrivilege( SE_SHUTDOWN_NAME, FALSE );
 #else
-	QProcess::startDetached( "poweroff" );
+	QProcess::startDetached( "gdm-signal -h" ); // Gnome shutdown
+	QProcess::startDetached( "gnome-session-save --silent --kill" ); // Gnome logout
+	QProcess::startDetached( "dcop ksmserver ksmserver logout 0 2 0" ); // KDE shutdown
 #endif
 }
 
@@ -420,7 +422,9 @@ void reboot( void )
 				);*/
 	enablePrivilege( SE_SHUTDOWN_NAME, FALSE );
 #else
-	QProcess::startDetached( "reboot" );
+	QProcess::startDetached( "gdm-signal -r" ); // Gnome reboot
+	QProcess::startDetached( "gnome-session-save --silent --kill" ); // Gnome logout
+	QProcess::startDetached( "dcop ksmserver ksmserver logout 0 1 0" ); // KDE reboot
 #endif
 }
 
@@ -577,9 +581,8 @@ void logoutUser( void )
 #ifdef BUILD_WIN32
 	ExitWindowsEx( EWX_LOGOFF | SHUTDOWN_FLAGS, SHUTDOWN_REASON );
 #else
-	QProcess::startDetached( "/etc/init.d/kdm restart" );
-	QProcess::startDetached( "/etc/init.d/gdm restart" );
-	QProcess::startDetached( "/etc/init.d/xdm restart" );
+	QProcess::startDetached( "gnome-session-save --silent --kill" ); // Gnome logout
+	QProcess::startDetached( "dcop ksmserver ksmserver logout 0 0 0" ); // KDE logout
 #endif
 }
 
