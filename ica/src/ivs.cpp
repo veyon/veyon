@@ -212,6 +212,7 @@ void IVS::run( void )
 	pe.newClient = isdNewClient;
 	pe.init = NULL;
 	pe.enablePseudoEncoding = NULL;
+	pe.pseudoEncodings = NULL;
 	pe.handleMessage = isdHandleMessage;
 	pe.close = NULL;
 	pe.usage = NULL;
