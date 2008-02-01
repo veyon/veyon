@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.50)
-AC_INIT(italc, 1.0.5, tobydox/at/users/dot/sf/dot/net)
+AC_INIT(italc, 1.0.5, http://lmms.sourceforge.net/)
 AM_INIT_AUTOMAKE(italc, 1.0.5)
 AM_CONFIG_HEADER(config.h)
 AX_PREFIX_CONFIG_H([lib/include/rfb/rfbconfig.h])
@@ -25,7 +25,7 @@ AC_LIBTOOL_WIN32_DLL
 AC_PROG_LIBTOOL
 
 
-EXTRAFLAGS="-g -O2 -Wall"
+EXTRAFLAGS="-g -O2 -Wall -fPIC"
 #-floop-optimize2 -fomit-frame-pointer"
 
 #if test "x`$CC --version|head -1|cut -d\  -f3|cut -d. -f1`" = "x4" ; then
@@ -94,6 +94,7 @@ AC_ARG_ENABLE(debug,
 AM_CONDITIONAL(DEBUG, test "$enable_debug" = "true")
 
 
+AH_TEMPLATE(WITH_TIGHTVNC_FILETRANSFER, [Disable TightVNCFileTransfer protocol])
 
 HAVE_X="false"
 AC_PATH_XTRA
@@ -111,8 +112,8 @@ AH_TEMPLATE(HAVE_LIBXTRAP, [DEC-XTRAP extension build environment present])
 AH_TEMPLATE(HAVE_RECORD, [RECORD extension build environment present])
 AH_TEMPLATE(HAVE_SOLARIS_XREADSCREEN, [Solaris XReadScreen available])
 AH_TEMPLATE(HAVE_IRIX_XREADDISPLAY, [IRIX XReadDisplay available])
-AH_TEMPLATE(HAVE_DPMS, [DPMS extension build environment present])
 AH_TEMPLATE(HAVE_FBPM, [FBPM extension build environment present])
+AH_TEMPLATE(HAVE_DPMS, [DPMS extension build environment present])
 AH_TEMPLATE(HAVE_LINUX_VIDEODEV_H, [video4linux build environment present])
 AH_TEMPLATE(HAVE_LINUX_FB_H, [linux fb device build environment present])
 AH_TEMPLATE(HAVE_LINUX_INPUT_H, [linux/input.h present])
@@ -273,33 +274,6 @@ elif test "$X_CFLAGS" != "-DX_DISPLAY_MISSING"; then
 			fi
 		fi
 
-		# some OS's need both -lssl and -lcrypto on link line:
-#		AH_TEMPLATE(HAVE_LIBCRYPTO, [openssl libcrypto library present])
-#		AC_ARG_WITH(crypto,
-#		[  --without-crypto        disable support for openssl libcrypto],,)
-#
-#		AH_TEMPLATE(HAVE_LIBSSL, [openssl libssl library present])
-#		AC_ARG_WITH(ssl,
-#		[  --without-ssl           disable support for openssl libssl],,)
-#
-#		if test "x$with_crypto" != "xno" -a "x$with_ssl" != "xno"; then
-#			AC_CHECK_LIB(crypto, RAND_file_name,
-#				[AC_DEFINE(HAVE_LIBCRYPTO) HAVE_LIBCRYPTO="true"], ,)
-#		fi
-#
-#		if test "x$with_ssl" != "xno"; then
-#			if test "x$HAVE_LIBCRYPTO" = "xtrue"; then
-#				AC_CHECK_LIB(ssl, SSL_library_init,
-#					X_PRELIBS="$X_PRELIBS -lssl -lcrypto"
-#					[AC_DEFINE(HAVE_LIBSSL) HAVE_LIBSSL="true"], ,
-#					-lcrypto)
-#			else
-#				AC_CHECK_LIB(ssl, SSL_library_init,
-#					X_PRELIBS="$X_PRELIBS -lssl"
-#					[AC_DEFINE(HAVE_LIBSSL) HAVE_LIBSSL="true"], ,)
-#			fi
-#		fi
-
 		X_LIBS="$X_LIBS $X_PRELIBS -lX11 $X_EXTRA_LIBS"
 	fi
 fi
@@ -364,7 +338,7 @@ fi
 
 
 
-#AH_TEMPLATE(HAVE_AVAHI, [Avahi/mDNS client build environment present])
+AH_TEMPLATE(HAVE_AVAHI, [Avahi/mDNS client build environment present])
 #AC_ARG_WITH(avahi,
 #[  --without-avahi         disable support for Avahi/mDNS]
 #[  --with-avahi=DIR        use avahi include/library files in DIR],,)
@@ -502,7 +476,7 @@ AC_FUNC_FORK
 
 AC_CHECK_LIB(nsl,gethostbyname)
 AC_CHECK_LIB(socket,socket)
-AC_CHECK_FUNCS([ftime mkfifo dup2 floor gethostbyname gethostname gettimeofday inet_ntoa memcmp memmove memcpy memset mmap pow putenv select socket strchr strdup strerror strpbrk strrchr strstr uname setsid getpwuid getpwnam getuid geteuid waitpid setutxent setpgrp seteuid grantpt getspnam])
+AC_CHECK_FUNCS([ftime mkfifo dup2 floor gethostbyname gethostname gettimeofday inet_ntoa memcmp memmove memcpy memset mmap pow putenv select socket strchr strdup strerror strpbrk strrchr strstr uname setsid getpwuid getpwnam getuid geteuid waitpid setutxent setpgrp seteuid grantpt getspnam initgroups])
 
 # check, if shmget is in cygipc.a
 AC_CHECK_LIB(cygipc,shmget)
