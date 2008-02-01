@@ -61,6 +61,8 @@
 #include "remote_control_widget.h"
 
 
+extern int __isd_port;
+
 
 bool mainWindow::ensureConfigPathExists( void )
 {
@@ -316,7 +318,8 @@ mainWindow::mainWindow( int _rctrl_screen ) :
 	}
 
 	m_localISD = new isdConnection( QHostAddress( QHostAddress::LocalHost
-								).toString() );
+								).toString() +
+					":" + QString::number( __isd_port ) );
 	if( m_localISD->open() != isdConnection::Connected )
 	{
 		messageBox::information( tr( "iTALC service not running" ),

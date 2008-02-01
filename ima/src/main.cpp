@@ -43,6 +43,8 @@ QString __demo_master_ip;
 QString __default_domain;
 int __demo_quality = 0;
 
+int __isd_port = PortOffsetISD;
+
 
 // good old main-function... initializes qt-app and starts iTALC
 int main( int argc, char * * argv )
@@ -121,6 +123,10 @@ int main( int argc, char * * argv )
 					"	supporter\n\n" );
 				return( -1 );
 			}
+		}
+		else if( a == "-isdport" && arg_it.hasNext() )
+		{
+			__isd_port = arg_it.next().toInt();
 		}
 	}
 
