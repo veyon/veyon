@@ -1,5 +1,19 @@
 2008-02-09	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
+	* lib/include/ivs_connection.h:
+	* lib/src/ivs_connection.cpp:
+	- moved ivsConnection::s_localDisplayFormat to static
+	  __localDisplayFormat-struct
+	- fixed broken gradient-filter of tight-encoding
+	- fixed missing parentheses in pixel-calculation in tight-encoding
+	- when handling jpeg-data, dynamically allocate memory instead of
+	  using the stack in a non-standard way
+	- fixed color-conversion when handling X-cursor
+	- fixed frequent crash of demo-mode by adding additional check in
+	  ivsConnection::handleItalc(...) which avoids calling
+	  QImage::scanLine() with an invalid parameter and thus raising a
+	  Qt-internal assertion (closes #1849671)
+
 	* lib/resources/*.ts:
 	* lib/resources/*.qm:
 	* ica/resources/*.ts:

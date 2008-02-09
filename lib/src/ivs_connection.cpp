@@ -45,7 +45,7 @@
 #include "minilzo.h"
 
 
-const rfbPixelFormat ivsConnection::s_localDisplayFormat =
+static const rfbPixelFormat __localDisplayFormat =
 {
 	32, 		// bit per pixel
 	32,		// depth
@@ -186,7 +186,7 @@ ivsConnection::states ivsConnection::protocolInitialization( void )
 	rfbSetPixelFormatMsg spf;
 
 	spf.type = rfbSetPixelFormat;
-	spf.format = s_localDisplayFormat;
+	spf.format = __localDisplayFormat;
 	spf.format.redMax = swap16IfLE( spf.format.redMax );
 	spf.format.greenMax = swap16IfLE( spf.format.greenMax );
 	spf.format.blueMax = swap16IfLE( spf.format.blueMax );
@@ -825,14 +825,21 @@ bool ivsConnection::handleRRE( Q_UINT16, Q_UINT16, Q_UINT16, Q_UINT16 )
 
 
 #define RGB_TO_PIXEL(r,g,b)						\
-  (((Q_UINT32)(r) & s_localDisplayFormat.redMax ) <<			\
-				s_localDisplayFormat.redShift |		\
-   ((Q_UINT32)(g) & s_localDisplayFormat.greenMax ) << 			\
-				s_localDisplayFormat.greenShift |	\
-   ((Q_UINT32)(b) & s_localDisplayFormat.blueMax ) <<			\
-				s_localDisplayFormat.blueShift )
+  (((Q_UINT32)(r) & __localDisplayFormat.redMax ) <<			\
+				__localDisplayFormat.redShift |		\
+   ((Q_UINT32)(g) & __localDisplayFormat.greenMax ) << 			\
+				__localDisplayFormat.greenShift |	\
+   ((Q_UINT32)(b) & __localDisplayFormat.blueMax ) <<			\
+				__localDisplayFormat.blueShift )
 
 
+#define RGB24_TO_PIXEL(r,g,b)                                       	\
+   ((((uint32_t)(r) & 0xFF) * __localDisplayFormat.redMax + 127) / 255             \
+    << __localDisplayFormat.redShift |                                              \
+    (((uint32_t)(g) & 0xFF) * __localDisplayFormat.greenMax + 127) / 255           \
+    << __localDisplayFormat.greenShift |                                            \
+    (((uint32_t)(b) & 0xFF) * __localDisplayFormat.blueMax + 127) / 255            \
+    << __localDisplayFormat.blueShift)
 
 #ifdef HAVE_LIBZ
 
@@ -1221,7 +1228,7 @@ bool ivsConnection::handleTight( Q_UINT16 rx, Q_UINT16 ry, Q_UINT16 rw,
  *
  */
 
-Q_UINT8 ivsConnection::initFilterCopy( Q_UINT16 rw, Q_UINT16/* rh*/ )
+int ivsConnection::initFilterCopy( Q_UINT16 rw, Q_UINT16/* rh*/ )
 {
 	m_rectWidth = rw;
 
@@ -1233,18 +1240,17 @@ Q_UINT8 ivsConnection::initFilterCopy( Q_UINT16 rw, Q_UINT16/* rh*/ )
 
 void ivsConnection::filterCopy( Q_UINT16 num_rows, Q_UINT32 * dst )
 {
-	memcpy( dst, m_buffer, num_rows * m_rectWidth * sizeof( Q_UINT32 ) );
+	memcpy( dst, m_buffer, num_rows * m_rectWidth * 4 );
 }
 
 
 
 
-Q_UINT8 ivsConnection::initFilterGradient( Q_UINT16 rw, Q_UINT16/* rh*/ )
+int ivsConnection::initFilterGradient( Q_UINT16 rw, Q_UINT16/* rh*/ )
 {
-	m_rectWidth = rw;
-	memset( m_tightPrevRow, 0, rw * 3 * sizeof( Q_UINT16 ) );
-
-	return( sizeof( QRgb ) );
+	const int bits = initFilterCopy( rw, 0 );
+	memset( m_tightPrevRow, 0, rw * 3 * sizeof( uint16_t ) );
+	return( bits );
 }
 
 
@@ -1256,35 +1262,35 @@ void ivsConnection::filterGradient( Q_UINT16 num_rows, Q_UINT32 * dst )
 	Q_UINT16 * that_row = (Q_UINT16 *) m_tightPrevRow;
 	Q_UINT16 this_row[2048*3];
 	Q_UINT16 pix[3];
-	Q_UINT16 max[3] =
+	const Q_UINT16 max[3] =
 	{
-		s_localDisplayFormat.redMax,
-		s_localDisplayFormat.greenMax,
-		s_localDisplayFormat.blueMax
+		__localDisplayFormat.redMax,
+		__localDisplayFormat.greenMax,
+		__localDisplayFormat.blueMax
 	} ;
-	int shift[3] =
+	const int shift[3] =
 	{
-		s_localDisplayFormat.redShift,
-		s_localDisplayFormat.greenShift,
-		s_localDisplayFormat.blueShift
+		__localDisplayFormat.redShift,
+		__localDisplayFormat.greenShift,
+		__localDisplayFormat.blueShift
 	} ;
 	int est[3];
 
 
-	for( Q_UINT16 y = 0; y < num_rows; y++ )
+	for( Q_UINT16 y = 0; y < num_rows; ++y )
 	{
 		// First pixel in a row
-		for( Q_UINT8 c = 0; c < 3; c++ )
+		for( Q_UINT8 c = 0; c < 3; ++c )
 		{
-			pix[c] = (Q_UINT16)((src[y*m_rectWidth] >> shift[c]) +
-							that_row[c] & max[c]);
+			pix[c] = (Q_UINT16)(((src[y*m_rectWidth] >> shift[c]) +
+							that_row[c]) & max[c]);
 			this_row[c] = pix[c];
 		}
 		dst[y*m_rectWidth] = RGB_TO_PIXEL( pix[0], pix[1], pix[2] );
 		// Remaining pixels of a row 
-		for( Q_UINT16 x = 1; x < m_rectWidth; x++ )
+		for( Q_UINT16 x = 1; x < m_rectWidth; ++x )
 		{
-			for( Q_UINT8 c = 0; c < 3; c++ )
+			for( Q_UINT8 c = 0; c < 3; ++c )
 			{
 				est[c] = (int)that_row[x*3+c] +
 						(int)pix[c] -
@@ -1297,8 +1303,8 @@ void ivsConnection::filterGradient( Q_UINT16 num_rows, Q_UINT32 * dst )
 				{
 					est[c] = 0;
 				}
-				pix[c] = (Q_UINT16)((src[y*m_rectWidth+x] >>
-						shift[c]) + est[c] & max[c]);
+				pix[c] = (Q_UINT16)(((src[y*m_rectWidth+x] >>
+						shift[c]) + est[c]) & max[c]);
 				this_row[x*3+c] = pix[c];
 			}
 			dst[y*m_rectWidth+x] = RGB_TO_PIXEL( pix[0], pix[1],
@@ -1312,13 +1318,13 @@ void ivsConnection::filterGradient( Q_UINT16 num_rows, Q_UINT32 * dst )
 
 
 
-Q_UINT8 ivsConnection::initFilterPalette( Q_UINT16 rw, Q_UINT16/* rh*/ )
+int ivsConnection::initFilterPalette( Q_UINT16 rw, Q_UINT16/* rh*/ )
 {
 	Q_UINT8 num_colors;
 
 	m_rectWidth = rw;
 
-	if( !readFromServer( (char*)&num_colors, sizeof( num_colors ) ) )
+	if( !readFromServer( (char*)&num_colors, 1 ) )
 	{
 		return( 0 );
 	}
@@ -1354,13 +1360,13 @@ void ivsConnection::filterPalette( Q_UINT16 num_rows, Q_UINT32 * dst )
 			int x;
 			for( x = 0; x < m_rectWidth/8; x++ )
 			{
-				for( Q_INT8 b = 7; b >= 0; b-- )
+				for( int b = 7; b >= 0; b-- )
 				{
 					dst[y*m_rectWidth+x*8+7-b] =
 						palette[src[y*w+x] >> b & 1];
 				}
 			}
-			for( Q_INT8 b = 7; b >= 8 - m_rectWidth % 8; b-- )
+			for( int b = 7; b >= 8 - m_rectWidth % 8; b-- )
 			{
 				dst[y*m_rectWidth+x*8+7-b] =
 						palette[src[y*w+x] >> b & 1];
@@ -1434,10 +1440,11 @@ bool ivsConnection::decompressJpegRect( Q_UINT16 x, Q_UINT16 y, Q_UINT16 w,
 		return( FALSE );
 	}
 
-	Q_UINT8 compressed_data[compressed_len];
+	Q_UINT8 * compressed_data = new Q_UINT8[compressed_len];
 
 	if( !readFromServer( (char*)compressed_data, compressed_len ) )
 	{
+		delete[] compressed_data;
 		return( FALSE );
 	}
 
@@ -1466,6 +1473,7 @@ bool ivsConnection::decompressJpegRect( Q_UINT16 x, Q_UINT16 y, Q_UINT16 w,
 						cinfo.output_components != 3 )
 	{
 		qCritical( "Tight Encoding: Wrong JPEG data received." );
+		delete[] compressed_data;
 		jpeglib::jpeg_destroy_decompress( &cinfo );
 		return( FALSE );
 	}
@@ -1491,6 +1499,8 @@ bool ivsConnection::decompressJpegRect( Q_UINT16 x, Q_UINT16 y, Q_UINT16 w,
 	jpeglib::jpeg_finish_decompress( &cinfo );
 
 	jpeglib::jpeg_destroy_decompress( &cinfo );
+
+	delete[] compressed_data;
 
 	return( TRUE );
 }
@@ -1529,9 +1539,9 @@ bool ivsConnection::handleCursorShape( const Q_UINT16 _xhot,
 					const Q_UINT16 _height,
 					const Q_UINT32 _enc )
 {
-	const int bytesPerPixel = s_localDisplayFormat.bitsPerPixel / 8;
-	const size_t bytesPerRow = ( _width + 7 ) / 8;
-	const size_t bytesMaskData = bytesPerRow * _height;
+	const int bytesPerPixel = __localDisplayFormat.bitsPerPixel / 8;
+	const int bytesPerRow = ( _width + 7 ) / 8;
+	const int bytesMaskData = bytesPerRow * _height;
 	if( _width * _height == 0 )
 	{
 		return( TRUE );
@@ -1564,9 +1574,9 @@ bool ivsConnection::handleCursorShape( const Q_UINT16 _xhot,
 			delete[] rcMask;
 			return( FALSE );
 		}
-    		Q_UINT32 colors[2] = {
-	RGB_TO_PIXEL( rgb.backRed, rgb.backGreen, rgb.backBlue ),
-	RGB_TO_PIXEL( rgb.foreRed, rgb.foreGreen, rgb.foreBlue )
+    		const Q_UINT32 colors[2] = {
+	RGB24_TO_PIXEL( rgb.backRed, rgb.backGreen, rgb.backBlue ),
+	RGB24_TO_PIXEL( rgb.foreRed, rgb.foreGreen, rgb.foreBlue )
 					} ;
 
 		// Read 1bpp pixel data into a temporary buffer.
@@ -1624,7 +1634,7 @@ bool ivsConnection::handleCursorShape( const Q_UINT16 _xhot,
 				for( int x = 0; x < _width * _height; ++x )
 				{
 					((Q_UINT32 *) rcSource)[x] =
-							colors[rcSource[x * 4]];
+							colors[rcSource[x*4]];
 					break;
 				}
 			}
@@ -1733,7 +1743,9 @@ bool ivsConnection::handleItalc( Q_UINT16 rx, Q_UINT16 ry, Q_UINT16 rw,
 
 	QRgb * dst = (QRgb *) m_screen.scanLine( ry ) + rx;
 	Q_UINT16 dx = 0;
-	for( Q_UINT32 i = 0; i < hdr.bytesRLE; i+=4 )
+	bool done = FALSE;
+	const Q_UINT16 sh = m_screen.height();
+	for( Q_UINT32 i = 0; i < hdr.bytesRLE && done == FALSE; i+=4 )
 	{
 		const QRgb val = *( (QRgb*)( rle_data + i ) ) & 0xffffff;
 		for( Q_UINT16 j = 0; j <= rle_data[i+3]; ++j )
@@ -1741,8 +1753,17 @@ bool ivsConnection::handleItalc( Q_UINT16 rx, Q_UINT16 ry, Q_UINT16 rw,
 			*dst = val;//[i+1];
 			if( ++dx >= rw )
 			{
-				dst = (QRgb *) m_screen.scanLine( ++ry ) + rx;
 				dx = 0;
+				if( ry+1 < sh )
+				{
+					dst = (QRgb *)
+						m_screen.scanLine( ++ry ) + rx;
+				}
+				else
+				{
+					done = TRUE;
+					break;
+				}
 			}
 			else
 			{

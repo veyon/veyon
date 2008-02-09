@@ -164,9 +164,9 @@ private:
 #ifdef HAVE_LIBZ
 	bool handleZlib( Q_UINT16 rx, Q_UINT16 ry, Q_UINT16 rw, Q_UINT16 rh );
 	bool handleTight( Q_UINT16 rx, Q_UINT16 ry, Q_UINT16 rw, Q_UINT16 rh );
-	Q_UINT8 initFilterCopy( Q_UINT16 rw, Q_UINT16 rh );
-	Q_UINT8 initFilterPalette( Q_UINT16 rw, Q_UINT16 rh );
-	Q_UINT8 initFilterGradient( Q_UINT16 rw, Q_UINT16 rh );
+	int initFilterCopy( Q_UINT16 rw, Q_UINT16 rh );
+	int initFilterPalette( Q_UINT16 rw, Q_UINT16 rh );
+	int initFilterGradient( Q_UINT16 rw, Q_UINT16 rh );
 	void filterCopy( Q_UINT16 num_rows, Q_UINT32 * dest_buffer );
 	void filterPalette( Q_UINT16 num_rows, Q_UINT32 * dest_buffer );
 	void filterGradient( Q_UINT16 num_rows, Q_UINT32 * dest_buffer );
@@ -199,7 +199,7 @@ private:
 	QPoint m_cursorHotSpot;
 	QImage m_cursorShape;
 
-	static const rfbPixelFormat s_localDisplayFormat;
+//	static const rfbPixelFormat s_localDisplayFormat;
 
 	// Note that the CoRRE encoding uses this buffer and assumes it is
 	// big enough to hold 255 * 255 * 32 bits -> 260100 bytes.
