@@ -2,7 +2,7 @@
  * ivs_connection.h - declaration of class ivsConnection, an implementation of
  *                    the RFB-protocol with iTALC-extensions for Qt
  *
- * Copyright (c) 2004-2006 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2007 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -32,6 +32,7 @@
 
 #include <QtCore/QReadWriteLock>
 #include <QtGui/QImage>
+#include <QtGui/QRegion>
 
 
 #ifdef HAVE_LIBZ
@@ -51,7 +52,6 @@ namespace jpeglib
 #include "isd_connection.h"
 #include "rfb/rfbproto.h"
 #include "fast_qimage.h"
-#include "rect_list.h"
 
 
 class demoServerClient;
@@ -149,7 +149,7 @@ private:
 						Q_UINT16 _w, Q_UINT16 _h,
 						bool _incremental );
 
-	void postRegionChangedEvent( const rectList & _rgn );
+	void postRegionChangedEvent( const QRegion & _rgn );
 
 	bool handleCursorPos( const Q_UINT16 _x, const Q_UINT16 _y );
 	bool handleCursorShape( const Q_UINT16 _xhot, const Q_UINT16 _yhot,
@@ -246,7 +246,7 @@ private:
 
 signals:
 	void cursorShapeChanged( void );
-	void regionUpdated( const rectList & );
+	void regionUpdated( const QRegion & );
 
 } ;
 

@@ -43,7 +43,6 @@ libitalc_core_static_a_SOURCES =			\
 		$(srcdir)/src/messagebox.cpp		\
 		$(srcdir)/src/minilzo.c			\
 		$(srcdir)/src/progress_widget.cpp	\
-		$(srcdir)/src/rect_list.cpp		\
 		$(srcdir)/src/system_key_trapper.cpp	\
 		$(srcdir)/src/vncview.cpp		\
 		$(srcdir)/include/debug.h		\
@@ -62,7 +61,6 @@ libitalc_core_static_a_SOURCES =			\
 		$(srcdir)/include/progress_widget.h	\
 		$(srcdir)/include/qt_features.h		\
 		$(srcdir)/include/qt_user_events.h	\
-		$(srcdir)/include/rect_list.h		\
 		$(srcdir)/include/types.h		\
 		$(srcdir)/include/system_key_trapper.h	\
 		$(srcdir)/include/vncview.h		\

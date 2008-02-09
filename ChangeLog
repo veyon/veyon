@@ -1,5 +1,16 @@
 2008-02-09	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
+	* lib/include/rect_list.h:
+	* lib/src/rect_list.cpp:
+	removed
+
+	* lib/include/isd_base.h:
+	* lib/include/qt_user_events.h:
+	* ica/src/demo_server.h:
+	* ica/src/demo_server.cpp:
+	- replaced own rectList-implementation by QRegion
+	- fixed endianess-problems of demo-mode
+
 	* ima/src/classroom_manager.cpp:
 	hide item before pushing client into remove-list
 

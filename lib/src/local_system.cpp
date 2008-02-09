@@ -2,7 +2,7 @@
  * local_system.cpp - namespace localSystem, providing an interface for
  *                    transparent usage of operating-system-specific functions
  *
- * Copyright (c) 2006-2007 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *

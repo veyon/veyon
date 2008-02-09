@@ -1,7 +1,7 @@
 /*
  * isd_base.h - basics concerning ISD (iTALC Service Daemon)
  *
- * Copyright (c) 2006 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -69,16 +69,28 @@ inline const uint16_t swap16IfLE( const uint16_t & _val )
 }
 
 
+inline const uint32_t swap32( const uint32_t & _val )
+{
+	return( ( ( _val & 0xff000000 ) >> 24 ) |
+			( ( _val & 0x00ff0000 ) >> 8 ) |
+			( ( _val & 0x0000ff00 ) << 8 ) |
+			( ( _val & 0x000000ff ) << 24 ) );
+}
+
+
 inline const uint32_t swap32IfLE( const uint32_t & _val )
 {
 	return( QSysInfo::ByteOrder == QSysInfo::LittleEndian ?
-			( ( _val & 0xff000000 ) >> 24 ) |
-			( ( _val & 0x00ff0000 ) >> 8 ) |
-			( ( _val & 0x0000ff00 ) << 8 ) |
-			( ( _val & 0x000000ff ) << 24 )
-		:
-			_val );
+						swap32( _val ) : _val );
 }
+
+
+inline const uint32_t swap32IfBE( const uint32_t & _val )
+{
+	return( QSysInfo::ByteOrder == QSysInfo::BigEndian ?
+						swap32( _val ) : _val );
+}
+
 
 
 /* ============================================================================

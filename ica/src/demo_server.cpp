@@ -2,7 +2,7 @@
  * demo_server.cpp - multi-threaded slim VNC-server for demo-purposes (optimized
  *                   for lot of clients accessing server in read-only-mode)
  *
- * Copyright (c) 2006-2007 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *  
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -141,6 +141,7 @@ demoServerClient::demoServerClient( int _sd, const ivsConnection * _conn ) :
 	m_socketDescriptor( _sd ),
 	m_sock( NULL ),
 	m_conn( _conn ),
+	m_otherEndianess( FALSE ),
 	m_lzoWorkMem( new Q_UINT8[sizeof( lzo_align_t ) *
 			( ( ( LZO1X_1_MEM_COMPRESS ) +
 			    		( sizeof( lzo_align_t ) - 1 ) ) /
@@ -164,7 +165,7 @@ demoServerClient::~demoServerClient()
 
 
 
-void demoServerClient::updateRegion( const rectList & _reg )
+void demoServerClient::updateRegion( const QRegion & _reg )
 {
 	m_dataMutex.lock();
 	m_changedRegion += _reg;
@@ -264,8 +265,7 @@ void demoServerClient::processClient( void )
 		// e.g. if we didn't get an update-request for a quite long time
 		// and there were a lot of updates - at the end we don't send
 		// more than the whole screen one time
-		//QVector<QRect> rects = m_changedRegion.rects();
-		const rectList r = m_changedRegion.nonOverlappingRects();
+		const QVector<QRect> r = m_changedRegion.rects();
 
 		// no we gonna post all changed rects!
 		const rfbFramebufferUpdateMsg m =
@@ -278,7 +278,7 @@ void demoServerClient::processClient( void )
 
 		m_sock->write( (const char *) &m, sizeof( m ) );
 		// process each rect
-		for( rectList::const_iterator it = r.begin();
+		for( QVector<QRect>::const_iterator it = r.begin();
 							it != r.end(); ++it )
 		{
 			const rfbRectangle rr =
@@ -312,7 +312,7 @@ void demoServerClient::processClient( void )
 	QRgb last_pix = *( (QRgb *) i.scanLine( it->y() ) + it->x() );
 	Q_UINT8 rle_cnt = 0;
 	Q_UINT8 rle_sub = 1;
-	Q_UINT8 * out = new Q_UINT8[w * h * sizeof( QRgb )];
+	Q_UINT8 * out = new Q_UINT8[w * h * sizeof( QRgb )+16];
 	Q_UINT8 * out_ptr = out;
 	for( Q_UINT16 y = it->y(); y < it->y() + h; ++y )
 	{
@@ -322,7 +322,7 @@ void demoServerClient::processClient( void )
 		{
 			if( data[x] != last_pix || rle_cnt > 254 )
 			{
-				*( (QRgb *) out_ptr ) = last_pix;
+				*( (QRgb *) out_ptr ) = swap32IfBE( last_pix );
 				*( out_ptr + 3 ) = rle_cnt - rle_sub;
 				out_ptr += 4;
 				last_pix = data[x];
@@ -357,13 +357,30 @@ void demoServerClient::processClient( void )
 			}
 			else
 			{
-
 	m_sock->write( (const char *) &hdr, sizeof( hdr ) );
-	for( Q_UINT16 y = 0; y < h; ++y )
+	if( m_otherEndianess )
 	{
-		m_sock->write( (const char *)
-			( (const QRgb *) i.scanLine( it->y() + y ) + it->x() ),
-							w * sizeof( QRgb ) );
+		Q_UINT32 * buf = new Q_UINT32[w];
+		for( Q_UINT16 y = 0; y < h; ++y )
+		{
+			const QRgb * src = (const QRgb *) i.scanLine( it->y() + y ) +
+										it->x();
+			for( Q_UINT16 x = 0; x < w; ++x, ++src )
+			{
+				buf[x] = swap32( *src );
+			}
+			m_sock->write( (const char *) buf, w * sizeof( QRgb ) );
+		}
+		delete[] buf;
+	}
+	else
+	{
+		for( Q_UINT16 y = 0; y < h; ++y )
+		{
+			m_sock->write( (const char *)
+				( (const QRgb *) i.scanLine( it->y() + y ) + it->x() ),
+								w * sizeof( QRgb ) );
+		}
 	}
 			}
 		}
@@ -392,7 +409,8 @@ void demoServerClient::processClient( void )
 		}
 
 		// reset vars
-		m_changedRegion.clear();
+		//m_changedRegion.clear();
+		m_changedRegion = QRegion();
 		m_cursorShapeChanged = FALSE;
 	}
 	//m_sock->waitForBytesWritten();
@@ -444,7 +462,8 @@ void demoServerClient::run( void )
 	si.format.greenMax = swap16IfLE( si.format.greenMax );
 	si.format.blueMax = swap16IfLE( si.format.blueMax );
 	si.nameLength = swap32IfLE( si.nameLength );
-
+	si.format.bigEndian = ( QSysInfo::ByteOrder == QSysInfo::BigEndian )
+									? 1 : 0;
 	if( !sd.write( ( const char *) &si, sizeof( si ) ) )
 	{
 		deleteLater();
@@ -469,6 +488,13 @@ void demoServerClient::run( void )
 	{
 		deleteLater();
 		return;
+	}
+
+	// we have to do server-side endianess-conversion in case it differs
+	// between client and server
+	if( spf.format.bigEndian != si.format.bigEndian )
+	{
+		m_otherEndianess = TRUE;
 	}
 
 	char buf[sizeof( rfbSetPixelFormatMsg ) + MAX_ENCODINGS *
@@ -509,12 +535,11 @@ void demoServerClient::run( void )
 
 	// for some reason we have to do this to make the following connection
 	// working
-	qRegisterMetaType<rectList>( "rectList" );
 
 	connect( m_conn, SIGNAL( cursorShapeChanged() ),
 				this, SLOT( updateCursorShape() ) );
-	connect( m_conn, SIGNAL( regionUpdated( const rectList & ) ),
-			this, SLOT( updateRegion( const rectList & ) ) );
+	connect( m_conn, SIGNAL( regionUpdated( const QRegion & ) ),
+			this, SLOT( updateRegion( const QRegion & ) ) );
 
 	ml.unlock();
 

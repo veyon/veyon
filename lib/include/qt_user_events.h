@@ -1,7 +1,7 @@
 /*
  * qt_user_events.h - user-defined Qt-events
  *
- * Copyright (c) 2006 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *  
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -27,27 +27,26 @@
 #define _QT_USER_EVENTS_H
 
 #include <QtCore/QEvent>
-
-#include "rect_list.h"
+#include <QtGui/QRegion>
 
 
 class regionChangedEvent : public QEvent
 {
 public:
-	regionChangedEvent( const rectList & _r = rectList() ) :
+	regionChangedEvent( const QRegion & _r = QRegion() ) :
 		QEvent( static_cast<QEvent::Type>( QEvent::User+385 ) ),
 		m_changedRegion( _r )
 	{
 	}
 
-	const rectList & changedRegion( void ) const
+	const QRegion & changedRegion( void ) const
 	{
 		return( m_changedRegion );
 	}
 
 
 private:
-	rectList m_changedRegion;
+	QRegion m_changedRegion;
 
 } ;
 

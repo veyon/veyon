@@ -2,7 +2,7 @@
  * ivs_connection.cpp - class ivsConnection, an implementation of the 
  *                      RFB-protocol with iTALC-extensions for Qt
  *
- * Copyright (c) 2004-2006 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -443,7 +443,7 @@ bool ivsConnection::sendKeyEvent( Q_UINT32 key, bool down )
 
 
 
-void ivsConnection::postRegionChangedEvent( const rectList & _rgn )
+void ivsConnection::postRegionChangedEvent( const QRegion & _rgn )
 {
 	if( parent() != NULL )
 	{
@@ -487,7 +487,7 @@ bool ivsConnection::handleServerMessages( bool _send_screen_update, int _tries )
 
 			msg.fu.nRects = swap16IfLE( msg.fu.nRects );
 
-			rectList updated_region;
+			QRegion updated_region;
 
 			rfbFramebufferUpdateRectHeader rect;
 			for( Q_UINT16 i = 0; i < msg.fu.nRects; i++ )
@@ -616,7 +616,7 @@ bool ivsConnection::handleServerMessages( bool _send_screen_update, int _tries )
 
 					case rfbEncodingItalcCursor:
 	{
-		rectList ch_reg = QRect( m_cursorPos - m_cursorHotSpot,
+		QRegion ch_reg = QRect( m_cursorPos - m_cursorHotSpot,
 							m_cursorShape.size() );
 		m_cursorLock.lockForWrite();
 		//m_cursorShape = socketDev().read().value<QImage>();
@@ -645,7 +645,7 @@ bool ivsConnection::handleServerMessages( bool _send_screen_update, int _tries )
 				}
 			}
 
-			if( updated_region.size() == 0 )
+			if( updated_region.isEmpty() )
 			{
 				wl.unlock();
 				break;
@@ -666,8 +666,8 @@ bool ivsConnection::handleServerMessages( bool _send_screen_update, int _tries )
 				// if we're providing data for demo-purposes,
 				// we perform a simple color-reduction for
 				// better compression-results
-	const QList<QRect> rects = updated_region.nonOverlappingRects();
-	for( QList<QRect>::const_iterator it = rects.begin();
+	const QVector<QRect> rects = updated_region.rects();
+	for( QVector<QRect>::const_iterator it = rects.begin();
 					it != rects.end(); ++it )
 	{
 		for( Q_UINT16 y = 0; y < it->height(); ++y )
@@ -1515,7 +1515,7 @@ bool ivsConnection::decompressJpegRect( Q_UINT16 x, Q_UINT16 y, Q_UINT16 w,
 bool ivsConnection::handleCursorPos( const Q_UINT16 _x, const Q_UINT16 _y )
 {
 	// move cursor and update appropriate region
-	rectList ch_reg = QRect( m_cursorPos - m_cursorHotSpot,
+	QRegion ch_reg = QRect( m_cursorPos - m_cursorHotSpot,
 							m_cursorShape.size() );
 	m_cursorPos = QPoint( _x, _y );
 	ch_reg += QRect( m_cursorPos - m_cursorHotSpot, m_cursorShape.size() );
@@ -1669,7 +1669,7 @@ bool ivsConnection::handleCursorShape( const Q_UINT16 _xhot,
 	}
 
 
-	rectList ch_reg = QRect( m_cursorPos - m_cursorHotSpot,
+	QRegion ch_reg = QRect( m_cursorPos - m_cursorHotSpot,
 							m_cursorShape.size() );
 	m_cursorLock.lockForWrite();
 	m_cursorShape = QImage( rcSource, _width, _height,
@@ -1747,7 +1747,8 @@ bool ivsConnection::handleItalc( Q_UINT16 rx, Q_UINT16 ry, Q_UINT16 rw,
 	const Q_UINT16 sh = m_screen.height();
 	for( Q_UINT32 i = 0; i < hdr.bytesRLE && done == FALSE; i+=4 )
 	{
-		const QRgb val = *( (QRgb*)( rle_data + i ) ) & 0xffffff;
+		const QRgb val = swap32IfBE( *( (QRgb*)( rle_data + i ) ) ) &
+								0xffffff;
 		for( Q_UINT16 j = 0; j <= rle_data[i+3]; ++j )
 		{
 			*dst = val;//[i+1];

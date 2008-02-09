@@ -2,7 +2,7 @@
  * demo_server.h - multi-threaded slim VNC-server for demo-purposes (optimized
  *                 for lot of clients accessing server in read-only-mode)
  *           
- * Copyright (c) 2006 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *  
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -88,7 +88,7 @@ private slots:
 	// IVS-connection - this way we can record changes in screen, later we
 	// extract single, non-overlapping rectangles out of changed region for
 	// updating as less as possible of screen
-	void updateRegion( const rectList & _reg );
+	void updateRegion( const QRegion & _reg );
 
 	// called whenever ivsConnection::cursorShapeChanged() is emitted
 	void updateCursorShape( void );
@@ -115,7 +115,7 @@ private:
 	virtual void run( void );
 
 	QMutex m_dataMutex;
-	rectList m_changedRegion;
+	QRegion m_changedRegion;
 	QPoint m_lastCursorPos;
 	bool m_cursorShapeChanged;
 	bool m_cursorPosChanged;
@@ -123,7 +123,7 @@ private:
 	int m_socketDescriptor;
 	QTcpSocket * m_sock;
 	const ivsConnection * m_conn;
-
+	bool m_otherEndianess;
 	Q_UINT8 * m_lzoWorkMem;
 
 } ;
