@@ -7,16 +7,21 @@
         <source>UPL (note for translators: the first three characters of this string are the accellerators (underlined characters) of the three input-fields in logon-dialog of windows - please keep this note as otherwise there are strange errors concerning logon-feature)</source>
         <translation>NPC (note for translators: the first three characters of this string are the accellerators (underlined characters) of the three input-fields in logon-dialog of windows - please keep this note as otherwise there are strange errors concerning logon-feature)</translation>
     </message>
+    <message>
+        <location filename="../src/local_system.cpp" line="704"/>
+        <source>iTALC-snapshots</source>
+        <translation type="unfinished">iTALC-foto</translation>
+    </message>
 </context>
 <context>
     <name>ivsConnection</name>
     <message>
-        <location filename="../src/ivs_connection.cpp" line="309"/>
+        <location filename="../src/ivs_connection.cpp" line="307"/>
         <source>Snapshot</source>
         <translation>Foto</translation>
     </message>
     <message>
-        <location filename="../src/ivs_connection.cpp" line="311"/>
+        <location filename="../src/ivs_connection.cpp" line="309"/>
         <source>Could not take a snapshot as directory %1 doesn&apos;t exist and couldn&apos;t be created.</source>
         <translation>Non è possibile scattare una foto perché la cartella %1 non esiste e non è possibile crearla.</translation>
     </message>
@@ -26,7 +31,7 @@
     <message>
         <location filename="../src/local_system.cpp" line="692"/>
         <source>iTALC-snapshots</source>
-        <translation>iTALC-foto</translation>
+        <translation type="obsolete">iTALC-foto</translation>
     </message>
 </context>
 <context>

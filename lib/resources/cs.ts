@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="cs_CZ">
-<defaultcodec></defaultcodec>
 <context>
     <name>QObject</name>
     <message>
@@ -9,7 +8,7 @@
         <translation>UPL</translation>
     </message>
     <message>
-        <location filename="../src/local_system.cpp" line="695"/>
+        <location filename="../src/local_system.cpp" line="704"/>
         <source>iTALC-snapshots</source>
         <translation>iTALC-snímky</translation>
     </message>

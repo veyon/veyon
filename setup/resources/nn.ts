@@ -3,12 +3,12 @@
 <context>
     <name></name>
     <message>
-        <location filename="../src/main.cpp" line="70"/>
+        <location filename="../src/main.cpp" line="82"/>
         <source>File does not exist</source>
         <translation>Klarer ikkje finne fila</translation>
     </message>
     <message>
-        <location filename="../src/main.cpp" line="74"/>
+        <location filename="../src/main.cpp" line="86"/>
         <source>The file %1 could not be found. Please check this and try again.</source>
         <translation>Klarte ikkje finne fila %1, kontroller at den finnes og prøv igjen.</translation>
     </message>
@@ -18,7 +18,7 @@
     <message>
         <location filename="../src/dialogs.cpp" line="79"/>
         <source>Program Files</source>
-        <translation>Programfiler</translation>
+        <translation type="obsolete">Programfiler</translation>
     </message>
 </context>
 <context>
@@ -229,72 +229,72 @@ Trykk &apos;Neste &gt;&apos; for å gå videre.</translation>
 <context>
     <name>setupWizard</name>
     <message>
-        <location filename="../src/dialogs.cpp" line="149"/>
+        <location filename="../src/dialogs.cpp" line="153"/>
         <source>Confirm overwrite</source>
         <translation>Bekreft overskriving</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="150"/>
+        <location filename="../src/dialogs.cpp" line="154"/>
         <source>Do you want to overwrite %1?</source>
         <translation>Er du sikker på at du vil skrive over %1?</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="214"/>
+        <location filename="../src/dialogs.cpp" line="211"/>
         <source>Installing iTALC</source>
         <translation>Installerer iTALC</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="216"/>
+        <location filename="../src/dialogs.cpp" line="213"/>
         <source>Copying files...</source>
         <translation>Kopierer filer...</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="275"/>
+        <location filename="../src/dialogs.cpp" line="278"/>
         <source>Registering ICA as service...</source>
         <translation>Registrerer ICA som ein teneste ...</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="289"/>
+        <location filename="../src/dialogs.cpp" line="321"/>
         <source>Creating/importing keys...</source>
         <translation>Lager / importerer nøkler ...</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="321"/>
+        <location filename="../src/dialogs.cpp" line="353"/>
         <source>Creating shortcuts...</source>
         <translation>Lager snarvegar... </translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="343"/>
+        <location filename="../src/dialogs.cpp" line="375"/>
         <source>Could not create directory</source>
         <translation>Klarer ikkje lage katalog</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="347"/>
+        <location filename="../src/dialogs.cpp" line="379"/>
         <source>Could not create directory %1! Make sure you have the neccessary rights and try again!</source>
         <translation>Klarte ikkje opprette katalogen %1! Kontroller at du har dei nødvendige rettighetene og prøv igjen!</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="364"/>
+        <location filename="../src/dialogs.cpp" line="392"/>
         <source>Cancel setup</source>
         <translation>Avbryt installasjonen</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="366"/>
+        <location filename="../src/dialogs.cpp" line="394"/>
         <source>Are you sure want to quit setup? iTALC is not installed completely yet!</source>
         <translation>Er du sikker på at du vil avbryte installasjonen? iTALC er framleis ikkje ferdig installert.</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="392"/>
+        <location filename="../src/dialogs.cpp" line="414"/>
         <source>Next</source>
         <translation>Neste &gt;</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="444"/>
+        <location filename="../src/dialogs.cpp" line="473"/>
         <source>Finish</source>
         <translation>Fullfør</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="450"/>
+        <location filename="../src/dialogs.cpp" line="479"/>
         <source>Quit</source>
         <translation>Avslutt</translation>
     </message>
@@ -302,17 +302,17 @@ Trykk &apos;Neste &gt;&apos; for å gå videre.</translation>
 <context>
     <name>setupWizardPageInstallDir</name>
     <message>
-        <location filename="../src/dialogs.cpp" line="541"/>
+        <location filename="../src/dialogs.cpp" line="568"/>
         <source>Directory does not exist</source>
         <translation>Katalogen eksisterer ikkje</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="543"/>
+        <location filename="../src/dialogs.cpp" line="570"/>
         <source>The specified directory does not exist. Do you want to create it?</source>
         <translation>Katalogen finnes ikkje, skal den opprettast?</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="571"/>
+        <location filename="../src/dialogs.cpp" line="592"/>
         <source>Choose installation directory</source>
         <translation>Vel installasjonskatalog</translation>
     </message>
@@ -320,17 +320,17 @@ Trykk &apos;Neste &gt;&apos; for å gå videre.</translation>
 <context>
     <name>setupWizardPageKeyDirs</name>
     <message>
-        <location filename="../src/dialogs.cpp" line="809"/>
+        <location filename="../src/dialogs.cpp" line="826"/>
         <source>Choose public key directory</source>
         <translation>Vel katalog for offentleg nøkkel</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="823"/>
+        <location filename="../src/dialogs.cpp" line="840"/>
         <source>Choose private key directory</source>
         <translation>Vel katalog for privat nøkkel</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="837"/>
+        <location filename="../src/dialogs.cpp" line="854"/>
         <source>Choose public key export directory</source>
         <translation>Vel katalog offentleg nøkkel skal eksporterast til</translation>
     </message>
@@ -338,7 +338,7 @@ Trykk &apos;Neste &gt;&apos; for å gå videre.</translation>
 <context>
     <name>setupWizardPageSecurityOptions</name>
     <message>
-        <location filename="../src/dialogs.cpp" line="709"/>
+        <location filename="../src/dialogs.cpp" line="728"/>
         <source>Choose directory for key-import</source>
         <translation>Vel katalog nøklane skal hentast frå</translation>
     </message>

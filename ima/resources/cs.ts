@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="cs_CZ">
-<defaultcodec></defaultcodec>
 <context>
     <name>about</name>
     <message>
@@ -26,7 +25,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;iTALC - Intelligent Teaching And Learning with Computers&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;&quot;&gt;Copyright (c) 2004-2007 Tobias Doerffel&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+        <translation type="obsolete">&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;iTALC - Inteligentní výuka a vzdělávání za pomoci počítačů&lt;/span&gt;&lt;/p&gt;
@@ -68,13 +67,33 @@ p, li { white-space: pre-wrap; }
         <source>OK</source>
         <translation>OK</translation>
     </message>
+    <message>
+        <location filename="../dialogs/about.ui" line="90"/>
+        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;iTALC - Intelligent Teaching And Learning with Computers&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;&quot;&gt;Copyright (c) 2004-2008 Tobias Doerffel&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished">&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;iTALC - Inteligentní výuka a vzdělávání za pomoci počítačů&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;&quot;&gt;Copyright (c) 2004-2007 Tobias Doerffel&lt;/p&gt;&lt;/body&gt;&lt;/html&gt; {1&quot;?} {9p?} {400;?} {0p?} {0p?} {0p?} {0p?} {0;?} {0p?} {11p?} {0p?} {0p?} {0p?} {0p?} {0;?} {0p?} {11p?} {0p?} {0p?} {0p?} {0p?} {0;?} {0p?} {11p?} {2004-2008 ?}</translation>
+    </message>
 </context>
 <context>
     <name>classRoom</name>
     <message>
         <location filename="../src/classroom_manager.cpp" line="1700"/>
         <source>Administation</source>
-        <translation>Administrace</translation>
+        <translation type="obsolete">Administrace</translation>
+    </message>
+    <message>
+        <location filename="../src/classroom_manager.cpp" line="1700"/>
+        <source>Administration</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -812,229 +831,229 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>mainWindow</name>
     <message>
-        <location filename="../src/main_window.cpp" line="89"/>
+        <location filename="../src/main_window.cpp" line="90"/>
         <source>iTALC</source>
         <translation>iTALC</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="98"/>
+        <location filename="../src/main_window.cpp" line="99"/>
         <source>No write-access</source>
         <translation>Bez možnosti zápisu</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="101"/>
+        <location filename="../src/main_window.cpp" line="102"/>
         <source>Could not read/write or create directory %1! For running iTALC, make sure you&apos;re permitted to create or write this directory.</source>
         <translation>Nemohu číst/zapisovat nebo vytvořit adresář %1! Pro spuštění iTALC je nutné, abyste měli oprávnění vytvářet a zapisovat do tohoto adresáře.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="156"/>
+        <location filename="../src/main_window.cpp" line="157"/>
         <source>Actions</source>
         <translation>Akce</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="165"/>
+        <location filename="../src/main_window.cpp" line="166"/>
         <source>Classroom</source>
         <translation>Třída</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="166"/>
+        <location filename="../src/main_window.cpp" line="167"/>
         <source>Switch classroom</source>
         <translation>Přepnout třídu</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="168"/>
+        <location filename="../src/main_window.cpp" line="169"/>
         <source>Click this button to open a menu where you can choose the active classroom.</source>
         <translation>Kliknutím na toto tlačítko se zobrazí nabídka, kde si budete moci zvolit aktivní třídu.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="173"/>
+        <location filename="../src/main_window.cpp" line="174"/>
         <source>Click on this button, to switch between classrooms.</source>
         <translation>Klikněte na toto tlačítko a přepněte se mezi třídami.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="179"/>
+        <location filename="../src/main_window.cpp" line="180"/>
         <source>Overview</source>
         <translation>Přehled</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="180"/>
+        <location filename="../src/main_window.cpp" line="181"/>
         <source>Overview mode</source>
         <translation>Přehledový mód</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="185"/>
+        <location filename="../src/main_window.cpp" line="186"/>
         <source>This is the default mode in iTALC and allows you to have an overview over all visible computers. Also click on this button for unlocking locked workstations or for leaving demo-mode.</source>
         <translation>Toto je výchozí mód iTALC, který vám umožní zobrazit přehled dostupných počítačů. Kliknutím na toto tlačítko odemknete zamknuté stanice nebo opustíte ukázkový mód.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="190"/>
+        <location filename="../src/main_window.cpp" line="191"/>
         <source>Demo on</source>
         <translation>Zapnout ukázku</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="190"/>
+        <location filename="../src/main_window.cpp" line="191"/>
         <source>Demo off</source>
         <translation>Vypnout ukázku</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="191"/>
+        <location filename="../src/main_window.cpp" line="192"/>
         <source>Fullscreen demo</source>
         <translation>Ukázka přes celou obrazovku</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="195"/>
+        <location filename="../src/main_window.cpp" line="196"/>
         <source>In this mode your screen is being displayed on all shown computers. Furthermore the users aren&apos;t able to do something else as all input devices are locked in this mode.</source>
         <translation>V tomto módu bude vaše obrazovka zobrazena na všech dostupných počítačích. Mimo to, uživatelé nebudou schopni dělat nic jiného, protože budou jejich vstupní zařízení uzamčeny.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="200"/>
+        <location filename="../src/main_window.cpp" line="201"/>
         <source>Demo/window on</source>
         <translation>Zapnout ukázku/okno</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="200"/>
+        <location filename="../src/main_window.cpp" line="201"/>
         <source>Demo/window off</source>
         <translation>Vypnout ukázku/okno</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="201"/>
+        <location filename="../src/main_window.cpp" line="202"/>
         <source>Window demo</source>
         <translation>Ukázkové okno</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="205"/>
+        <location filename="../src/main_window.cpp" line="206"/>
         <source>In this mode your screen being displayed in a window on all shown computers. The users are able to switch to other windows and thus can continue to work.</source>
         <translation>V tomto módu se vaše obrazovka zobrazí na všech počítačích. Uživatelé přitom budou moci přepínat mezi dalšími oknami a tak může vaše práce pokračovat.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="210"/>
+        <location filename="../src/main_window.cpp" line="211"/>
         <source>Lock all</source>
         <translation>Zamknout vše</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="210"/>
+        <location filename="../src/main_window.cpp" line="211"/>
         <source>Unlock all</source>
         <translation>Odemknout vše</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="211"/>
+        <location filename="../src/main_window.cpp" line="212"/>
         <source>Lock/unlock desktops</source>
         <translation>Zamknout/odemknout počítače</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="215"/>
+        <location filename="../src/main_window.cpp" line="216"/>
         <source>To have all user&apos;s full attention you can lock their desktops using this button. In this mode all input devices are locked and the screen is black.</source>
         <translation>Abyste upoutali pozornost všech uživatelů, můžete jim pomocí tohoto tlačítka uzamknout všechny počítače. V tomto módu budou všechna vstupní zařízení uzamčena a obrazovky budou černé.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="236"/>
+        <location filename="../src/main_window.cpp" line="237"/>
         <source>Text message</source>
         <translation>Textová zpráva</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="237"/>
+        <location filename="../src/main_window.cpp" line="238"/>
         <source>Send text message</source>
         <translation>Poslat textovou zprávu</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="239"/>
+        <location filename="../src/main_window.cpp" line="240"/>
         <source>Use this button to send a text message to all users e.g. to tell them new tasks etc.</source>
         <translation>Pomocí tohoto tlačítka můžete poslat zprávu všem uživatelům, např. zadat jim tak nové úkoly, atd.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="245"/>
+        <location filename="../src/main_window.cpp" line="246"/>
         <source>Power on</source>
         <translation>Zapnout</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="246"/>
+        <location filename="../src/main_window.cpp" line="247"/>
         <source>Power on computers</source>
         <translation>Zapne počítače</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="249"/>
+        <location filename="../src/main_window.cpp" line="250"/>
         <source>Click this button to power on all visible computers. This way you do not have to turn on each computer by hand.</source>
         <translation>Kliknutím na toto tlačítko zapnete všechny viditelné počítače. Tímto způsobem nebudete muset zapínat každý počítač ručně.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="254"/>
+        <location filename="../src/main_window.cpp" line="255"/>
         <source>Power down</source>
         <translation>Vypnout</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="255"/>
+        <location filename="../src/main_window.cpp" line="256"/>
         <source>Power down computers</source>
         <translation>Vypne počítače</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="258"/>
+        <location filename="../src/main_window.cpp" line="259"/>
         <source>To power down all shown computers (e.g. after the lesson has finished) you can click this button.</source>
         <translation>Pro vypnutí všech zobrazených počítačů (např. na konci hodiny), stačí kliknout na toto tlačítko.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="264"/>
+        <location filename="../src/main_window.cpp" line="265"/>
         <source>Logon</source>
         <translation>Odhlásit</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="265"/>
+        <location filename="../src/main_window.cpp" line="266"/>
         <source>Remote logon</source>
         <translation>Vzdálené odhlášení</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="268"/>
+        <location filename="../src/main_window.cpp" line="269"/>
         <source>After clicking this button you can enter a username and password to log on the according user on all visible computers.</source>
         <translation>Kliknutím na toto tlačítko můžete zadat uživatelské jméno a heslo nutné pro odhlášení daného uživatele nebo dostupných počítačů.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="274"/>
+        <location filename="../src/main_window.cpp" line="275"/>
         <source>Adjust/align</source>
         <translation>Seřadit/uspořádat</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="275"/>
+        <location filename="../src/main_window.cpp" line="276"/>
         <source>Adjust windows and their size</source>
         <translation>Uspořádá okna a nastaví jejich velikosti</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="278"/>
+        <location filename="../src/main_window.cpp" line="279"/>
         <source>When clicking this button the biggest possible size for the client-windows is adjusted. Furthermore all windows are aligned.</source>
         <translation>Kliknutím na toto tlačítko bude nastavena ta největší možná velikost oken klientů. Kromě toho budou všechna okna srovnána.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="283"/>
+        <location filename="../src/main_window.cpp" line="284"/>
         <source>Auto view</source>
         <translation>Automatický pohled</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="284"/>
+        <location filename="../src/main_window.cpp" line="285"/>
         <source>Auto re-arrange windows and their size</source>
         <translation>Automaticky přenastaví okna a jejich velikosti</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="286"/>
+        <location filename="../src/main_window.cpp" line="287"/>
         <source>When clicking this button all visible windows are re-arranged and adjusted.</source>
         <translation>Kliknutím na toto tlačítko budou všechna okna přeuspořádána a přizpůsobena.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="310"/>
+        <location filename="../src/main_window.cpp" line="311"/>
         <source>No valid keys found</source>
         <translation>Nebyla nalezena žádná platná tlačítka</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="316"/>
+        <location filename="../src/main_window.cpp" line="317"/>
         <source>No authentication-keys were found or your old ones were broken. Please create a new key-pair using ICA (see documentation at http://italc.sf.net/wiki/index.php?title=Installation).
 Otherwise you won&apos;t be able to access computers using iTALC.</source>
         <translation>Nebyly nalezeny žádné autentizační klíče nebo jsou vaše klíče poškozeny. Prosím, vytvořte nový pár klíčů pomocí ICA (podívejte se na dokumentaci  http://italc.sf.net/wiki/index.php?title=Installation).
 Jinak nebudete moci přistupovat k počítačům pomocí iTALC.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="323"/>
+        <location filename="../src/main_window.cpp" line="325"/>
         <source>iTALC service not running</source>
         <translation>Služba iTALC neběží</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="328"/>
+        <location filename="../src/main_window.cpp" line="330"/>
         <source>There seems to be no iTALC service running on this computer or the authentication-keys aren&apos;t set up properly. The service is required for running iTALC. Contact your administrator for solving this problem.</source>
         <translation>Vypadá to, že služba iTALC běžící na tomto počítači nebo autentizační klíče nejsou nastaveny správně.Tato služba je pro spuštění iTALC vyžadována. Pro vyřešení tohoto problému kontaktujte svého administrátora.</translation>
     </message>

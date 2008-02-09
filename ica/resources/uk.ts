@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="uk_UA">
-<defaultcodec></defaultcodec>
 <context>
     <name>QApplication</name>
     <message>

@@ -71,7 +71,7 @@
         <translation>BKA (note for translators: the first three characters of this string are the accellerators (underlined characters) of the three input-fields in logon-dialog of windows - please keep this note as otherwise there are strange errors concerning logon-feature)</translation>
     </message>
     <message>
-        <location filename="../src/local_system.cpp" line="722"/>
+        <location filename="../src/local_system.cpp" line="704"/>
         <source>iTALC-snapshots</source>
         <translation>iTALC-Schnappschuesse</translation>
     </message>
@@ -79,7 +79,7 @@
 <context>
     <name>ivsConnection</name>
     <message>
-        <location filename="../src/ivs_connection.cpp" line="309"/>
+        <location filename="../src/ivs_connection.cpp" line="307"/>
         <source>Snapshot</source>
         <translation>Schnappschuss</translation>
     </message>
@@ -89,7 +89,7 @@
         <translation type="obsolete">Konnte keinen Schnappschuss erstellen, da das Verzeichnis %1 nicht existiert und nicht erstellt werden konnte.</translation>
     </message>
     <message>
-        <location filename="../src/ivs_connection.cpp" line="311"/>
+        <location filename="../src/ivs_connection.cpp" line="309"/>
         <source>Could not take a snapshot as directory %1 doesn&apos;t exist and couldn&apos;t be created.</source>
         <translation>Konnte keinen Schnappschuss erstellen, da das Verzeichnis %1 nicht existiert und nicht erstellt werden konnte.</translation>
     </message>

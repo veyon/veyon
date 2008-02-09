@@ -3,12 +3,12 @@
 <context>
     <name></name>
     <message>
-        <location filename="../src/main.cpp" line="70"/>
+        <location filename="../src/main.cpp" line="82"/>
         <source>File does not exist</source>
         <translation>Il file non esiste</translation>
     </message>
     <message>
-        <location filename="../src/main.cpp" line="74"/>
+        <location filename="../src/main.cpp" line="86"/>
         <source>The file %1 could not be found. Please check this and try again.</source>
         <translation>il file %1 non è stato trovato. Si prega di verificare e riprovare nuovamente.</translation>
     </message>
@@ -18,7 +18,7 @@
     <message>
         <location filename="../src/dialogs.cpp" line="79"/>
         <source>Program Files</source>
-        <translation>Programmi</translation>
+        <translation type="obsolete">Programmi</translation>
     </message>
 </context>
 <context>
@@ -256,72 +256,72 @@ Clicca su &apos;Avanti&apos; per continuare.</translation>
 <context>
     <name>setupWizard</name>
     <message>
-        <location filename="../src/dialogs.cpp" line="149"/>
+        <location filename="../src/dialogs.cpp" line="153"/>
         <source>Confirm overwrite</source>
         <translation>Conferma sovrascrittura</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="150"/>
+        <location filename="../src/dialogs.cpp" line="154"/>
         <source>Do you want to overwrite %1?</source>
         <translation>Vuoi sovrascrivere %1?</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="214"/>
+        <location filename="../src/dialogs.cpp" line="211"/>
         <source>Installing iTALC</source>
         <translation>Installazione di iTALC</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="216"/>
+        <location filename="../src/dialogs.cpp" line="213"/>
         <source>Copying files...</source>
         <translation>Copia file in corso ...</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="279"/>
+        <location filename="../src/dialogs.cpp" line="278"/>
         <source>Registering ICA as service...</source>
         <translation>Registrazione di ICA come servizio...</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="293"/>
+        <location filename="../src/dialogs.cpp" line="321"/>
         <source>Creating/importing keys...</source>
         <translation>Creazione/importazione delle chiavi...</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="325"/>
+        <location filename="../src/dialogs.cpp" line="353"/>
         <source>Creating shortcuts...</source>
         <translation>Creazione dei collegamenti...</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="347"/>
+        <location filename="../src/dialogs.cpp" line="375"/>
         <source>Could not create directory</source>
         <translation>Non posso creare la cartella</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="351"/>
+        <location filename="../src/dialogs.cpp" line="379"/>
         <source>Could not create directory %1! Make sure you have the neccessary rights and try again!</source>
         <translation>Non è stato possibile creare la cartella %1! Accertati di avere i diritti necessari e riprova!</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="368"/>
+        <location filename="../src/dialogs.cpp" line="392"/>
         <source>Cancel setup</source>
         <translation>Annulla installazione</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="370"/>
+        <location filename="../src/dialogs.cpp" line="394"/>
         <source>Are you sure want to quit setup? iTALC is not installed completely yet!</source>
         <translation>Sei sicuro di voler uscire dal programma di installazione? L&apos;installazione di iTALC non è ancora completa!</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="396"/>
+        <location filename="../src/dialogs.cpp" line="414"/>
         <source>Next</source>
         <translation>Avanti</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="448"/>
+        <location filename="../src/dialogs.cpp" line="473"/>
         <source>Finish</source>
         <translation>Fine</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="454"/>
+        <location filename="../src/dialogs.cpp" line="479"/>
         <source>Quit</source>
         <translation>Esci</translation>
     </message>
@@ -329,17 +329,17 @@ Clicca su &apos;Avanti&apos; per continuare.</translation>
 <context>
     <name>setupWizardPageInstallDir</name>
     <message>
-        <location filename="../src/dialogs.cpp" line="545"/>
+        <location filename="../src/dialogs.cpp" line="568"/>
         <source>Directory does not exist</source>
         <translation>La cartella non esiste</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="547"/>
+        <location filename="../src/dialogs.cpp" line="570"/>
         <source>The specified directory does not exist. Do you want to create it?</source>
         <translation>La cartella indicata non esiste. Vuoi crearla?</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="575"/>
+        <location filename="../src/dialogs.cpp" line="592"/>
         <source>Choose installation directory</source>
         <translation>Scegli la cartella di installazione</translation>
     </message>
@@ -347,17 +347,17 @@ Clicca su &apos;Avanti&apos; per continuare.</translation>
 <context>
     <name>setupWizardPageKeyDirs</name>
     <message>
-        <location filename="../src/dialogs.cpp" line="813"/>
+        <location filename="../src/dialogs.cpp" line="826"/>
         <source>Choose public key directory</source>
         <translation>Scegli la cartella per la chiave pubblica</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="827"/>
+        <location filename="../src/dialogs.cpp" line="840"/>
         <source>Choose private key directory</source>
         <translation>Scegli la cartella per la chiave privata</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="841"/>
+        <location filename="../src/dialogs.cpp" line="854"/>
         <source>Choose public key export directory</source>
         <translation>Scegli la cartella in cui esportare le chiavi</translation>
     </message>
@@ -365,7 +365,7 @@ Clicca su &apos;Avanti&apos; per continuare.</translation>
 <context>
     <name>setupWizardPageSecurityOptions</name>
     <message>
-        <location filename="../src/dialogs.cpp" line="713"/>
+        <location filename="../src/dialogs.cpp" line="728"/>
         <source>Choose directory for key-import</source>
         <translation>Scegli la cartella da cui importare le chiavi</translation>
     </message>

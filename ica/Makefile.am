@@ -113,7 +113,7 @@ INCLUDES = $(IVS_INCLUDES) -I$(srcdir)/../lib/include -I$(srcdir)/../lib/include
 	$(LUPDATE) $(wildcard $(srcdir)/src/*.cpp) -ts $(srcdir)/resources/$@
 
 %.qm: %.ts
-	$(LRELEASE) $< -qm $@ 
+	$(LRELEASE) $(srcdir)/resources/$< -qm $(srcdir)/resources/$@
 
 
 ica_MOC =	src/isd_server.moc 			\

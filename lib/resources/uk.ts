@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="uk_UA">
-<defaultcodec></defaultcodec>
 <context>
     <name>QObject</name>
     <message>
@@ -9,7 +8,7 @@
         <translation>UPL (зауваження для перекладачів: перші три літери рядка є гарячими (підкресленими) літерами трьох полів вводу у діалозі початку роботи у windows - будь ласка, майте це на увазі, оскільки у іншому випадку можливі незрозумілі помилки, пов’язані з початком роботи)</translation>
     </message>
     <message>
-        <location filename="../src/local_system.cpp" line="695"/>
+        <location filename="../src/local_system.cpp" line="704"/>
         <source>iTALC-snapshots</source>
         <translation>Знімки екрану iTALC</translation>
     </message>

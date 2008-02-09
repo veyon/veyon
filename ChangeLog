@@ -1,3 +1,14 @@
+2008-02-09	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* lib/resources/*.ts:
+	* lib/resources/*.qm:
+	* ica/resources/*.ts:
+	* ica/resources/*.qm:
+	* ima/resources/*.ts:
+	* ima/resources/*.qm:
+	refreshed localization files, included updates of Spanish localization
+	by <schoolboy/at/ole/dot/com>
+
 2008-02-01	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* configure.in:

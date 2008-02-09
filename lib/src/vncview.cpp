@@ -55,7 +55,7 @@ vncView::vncView( const QString & _host, QWidget * _parent ) :
 		tr( "Establishing connection to %1 ..." ).arg( _host ),
 					":/resources/watch%1.png", 16, this );
 
-	m_connection = new ivsConnection( _host, ivsConnection::QualityHigh,
+	m_connection = new ivsConnection( _host, ivsConnection::QualityLow,
 								FALSE, this );
 	connect( m_connection, SIGNAL( cursorShapeChanged() ),
 					this, SLOT( updateCursorShape() ) );

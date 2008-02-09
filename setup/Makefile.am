@@ -13,7 +13,7 @@ noinst_PROGRAMS = setup
 	$(LUPDATE) $(srcdir)/src/*.cpp $(srcdir)/dialogs/*.ui -ts $(srcdir)/resources/$@
 	
 %.qm: %.ts
-	$(LRELEASE) $<
+	$(LRELEASE) $(srcdir)/resources/$< -qm $(srcdir)/resources/$@
 
 setup_MOC =	./src/dialogs.moc
 setup_UIC =	./dialogs/wizard.uic			\

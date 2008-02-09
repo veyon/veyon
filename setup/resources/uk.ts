@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="uk_UA">
-<defaultcodec></defaultcodec>
 <context>
     <name></name>
     <message>
@@ -19,7 +18,7 @@
     <message>
         <location filename="../src/dialogs.cpp" line="81"/>
         <source>Program Files</source>
-        <translation>Program Files</translation>
+        <translation type="obsolete">Program Files</translation>
     </message>
 </context>
 <context>
@@ -256,72 +255,72 @@ Click &apos;Next&apos; to continue.</source>
 <context>
     <name>setupWizard</name>
     <message>
-        <location filename="../src/dialogs.cpp" line="151"/>
+        <location filename="../src/dialogs.cpp" line="153"/>
         <source>Confirm overwrite</source>
         <translation>Підтвердження перезапису</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="152"/>
+        <location filename="../src/dialogs.cpp" line="154"/>
         <source>Do you want to overwrite %1?</source>
         <translation>Ви бажаєте перезаписати %1?</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="209"/>
+        <location filename="../src/dialogs.cpp" line="211"/>
         <source>Installing iTALC</source>
         <translation>Встановлення iTALC</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="211"/>
+        <location filename="../src/dialogs.cpp" line="213"/>
         <source>Copying files...</source>
         <translation>Копіювання файлів...</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="276"/>
+        <location filename="../src/dialogs.cpp" line="278"/>
         <source>Registering ICA as service...</source>
         <translation>Реєстрація служби ICA...</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="319"/>
+        <location filename="../src/dialogs.cpp" line="321"/>
         <source>Creating/importing keys...</source>
         <translation>Створення/імпорт ключів...</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="351"/>
+        <location filename="../src/dialogs.cpp" line="353"/>
         <source>Creating shortcuts...</source>
         <translation>Створення посилань...</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="373"/>
+        <location filename="../src/dialogs.cpp" line="375"/>
         <source>Could not create directory</source>
         <translation>Не вдалося створити теку</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="377"/>
+        <location filename="../src/dialogs.cpp" line="379"/>
         <source>Could not create directory %1! Make sure you have the neccessary rights and try again!</source>
         <translation>Не вдалося створити теку %1! Переконайтеся, що Ви маєте на це дозвіл і спробуйте ще раз!</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="390"/>
+        <location filename="../src/dialogs.cpp" line="392"/>
         <source>Cancel setup</source>
         <translation>Скасувати встановлення</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="392"/>
+        <location filename="../src/dialogs.cpp" line="394"/>
         <source>Are you sure want to quit setup? iTALC is not installed completely yet!</source>
         <translation>Ви справді бажаєте вийти з програми встановлення? iTALC ще не встановлено повністю!</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="412"/>
+        <location filename="../src/dialogs.cpp" line="414"/>
         <source>Next</source>
         <translation>Далі</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="471"/>
+        <location filename="../src/dialogs.cpp" line="473"/>
         <source>Finish</source>
         <translation>Завершити</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="477"/>
+        <location filename="../src/dialogs.cpp" line="479"/>
         <source>Quit</source>
         <translation>Вийти</translation>
     </message>
@@ -329,17 +328,17 @@ Click &apos;Next&apos; to continue.</source>
 <context>
     <name>setupWizardPageInstallDir</name>
     <message>
-        <location filename="../src/dialogs.cpp" line="566"/>
+        <location filename="../src/dialogs.cpp" line="568"/>
         <source>Directory does not exist</source>
         <translation>Теки не існує</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="568"/>
+        <location filename="../src/dialogs.cpp" line="570"/>
         <source>The specified directory does not exist. Do you want to create it?</source>
         <translation>Заданої теки не існує. Ви бажаєте її створити?</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="590"/>
+        <location filename="../src/dialogs.cpp" line="592"/>
         <source>Choose installation directory</source>
         <translation>Вибір теки встановлення</translation>
     </message>
@@ -347,17 +346,17 @@ Click &apos;Next&apos; to continue.</source>
 <context>
     <name>setupWizardPageKeyDirs</name>
     <message>
-        <location filename="../src/dialogs.cpp" line="824"/>
+        <location filename="../src/dialogs.cpp" line="826"/>
         <source>Choose public key directory</source>
         <translation>Вибір теки публічного ключа</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="838"/>
+        <location filename="../src/dialogs.cpp" line="840"/>
         <source>Choose private key directory</source>
         <translation>Вибір теки особистого ключа</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="852"/>
+        <location filename="../src/dialogs.cpp" line="854"/>
         <source>Choose public key export directory</source>
         <translation>Вибір теки експорту публічного ключа</translation>
     </message>
@@ -365,7 +364,7 @@ Click &apos;Next&apos; to continue.</source>
 <context>
     <name>setupWizardPageSecurityOptions</name>
     <message>
-        <location filename="../src/dialogs.cpp" line="726"/>
+        <location filename="../src/dialogs.cpp" line="728"/>
         <source>Choose directory for key-import</source>
         <translation>Вибір теки імпорту ключа</translation>
     </message>

@@ -8,15 +8,15 @@
         <translation>UPL</translation>
     </message>
     <message>
-        <location filename="../src/local_system.cpp" line="621"/>
+        <location filename="../src/local_system.cpp" line="704"/>
         <source>iTALC-snapshots</source>
-        <translation type="obsolete">iTALC-Skjermskot</translation>
+        <translation type="unfinished">iTALC-Skjermskot</translation>
     </message>
 </context>
 <context>
     <name>ivsConnection</name>
     <message>
-        <location filename="../src/ivs_connection.cpp" line="309"/>
+        <location filename="../src/ivs_connection.cpp" line="307"/>
         <source>Snapshot</source>
         <translation>Skjermskot</translation>
     </message>
@@ -26,7 +26,7 @@
         <translation type="obsolete">Klarte ikkje lage skjermskot då katalogen %1 verken finnes eller kunne opprettast.</translation>
     </message>
     <message>
-        <location filename="../src/ivs_connection.cpp" line="311"/>
+        <location filename="../src/ivs_connection.cpp" line="309"/>
         <source>Could not take a snapshot as directory %1 doesn&apos;t exist and couldn&apos;t be created.</source>
         <translation>Klarte ikkje lage skjermskot då katalogen %1 verken finnes eller kunne opprettast.</translation>
     </message>
@@ -36,7 +36,15 @@
     <message>
         <location filename="../src/local_system.cpp" line="721"/>
         <source>iTALC-snapshots</source>
-        <translation>iTALC-Skjermskotdd</translation>
+        <translation type="obsolete">iTALC-Skjermskotdd</translation>
+    </message>
+</context>
+<context>
+    <name>lockWidget</name>
+    <message>
+        <location filename="../src/lock_widget.cpp" line="57"/>
+        <source>screen lock</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

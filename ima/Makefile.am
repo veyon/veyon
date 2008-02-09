@@ -12,7 +12,8 @@ bin_PROGRAMS = italc
 	$(LUPDATE) $(srcdir)/src/*.cpp $(srcdir)/dialogs/*.ui -ts $(srcdir)/resources/$@
 	
 %.qm: %.ts
-	$(LRELEASE) $<
+	$(LRELEASE) $(srcdir)/resources/$< -qm $(srcdir)/resources/$@
+
 
 italc_MOC =	./src/client.moc			\
 		./src/classroom_manager.moc		\
