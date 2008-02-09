@@ -1391,8 +1391,8 @@ void classroomManager::removeClient( void )
 		foreach( classRoomItem * cri, si )
 		{
 			cri->getClient()->hide();
-			m_clientsToRemove.push_back( cri->getClient() );
 			m_view->setItemHidden( cri, TRUE );
+			m_clientsToRemove.push_back( cri->getClient() );
 		}
 	}
 }

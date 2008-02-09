@@ -1,5 +1,8 @@
 2008-02-09	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
+	* ima/src/classroom_manager.cpp:
+	hide item before pushing client into remove-list
+
 	* lib/include/ivs_connection.h:
 	* lib/src/ivs_connection.cpp:
 	- moved ivsConnection::s_localDisplayFormat to static
