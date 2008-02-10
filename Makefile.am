@@ -4,7 +4,7 @@ SUBDIRS = lib ica ima setup $(subdirs) $(EXTRA_TARGETS)
 
 EXTRA_DIST = build_mingw32 tightvnc4win_integrate tightvnc4win_italc.diff
 
-nobase_doc_DATA = AUTHORS ChangeLog COPYING INSTALL README TODO
+nobase_doc_DATA = AUTHORS ChangeLog COPYING INSTALL README README.LZO TODO
 
 dist-hook:
 	rm -rf `find $(distdir) -name *.moc`

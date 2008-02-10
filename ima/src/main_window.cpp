@@ -300,7 +300,7 @@ mainWindow::mainWindow( int _rctrl_screen ) :
 	m_toolBar->addWidget( auto_arrange );
 
 	restoreState( QByteArray::fromBase64(
-				m_classroomManager->winCfg().toAscii() ) );
+				m_classroomManager->winCfg().toUtf8() ) );
 
 	if( isdConnection::initAuthentication() == FALSE )
 	{

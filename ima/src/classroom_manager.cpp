@@ -215,7 +215,7 @@ void classroomManager::saveGlobalClientConfig( void )
 					"write-access to your home-directory "
 					"and to %1 (if already existing)."
 					).arg( ITALC_CONFIG_PATH
-						).toAscii().constData() );
+						).toUtf8().constData() );
 	}*/
 
 	QFile( m_globalClientConfiguration + ".bak" ).remove();
@@ -290,7 +290,7 @@ void classroomManager::savePersonalConfig( void )
 					"directory and to %1 (if already "
 					"existing)."
 				).arg( localSystem::personalConfigDir()
-						).toAscii().constData() );
+						).toUtf8().constData() );
 	}
 
 	QFile( m_personalConfiguration + ".bak" ).remove();
@@ -299,7 +299,7 @@ void classroomManager::savePersonalConfig( void )
 	QFile outfile( m_personalConfiguration );
 	outfile.open( QFile::WriteOnly | QFile::Truncate );
 
-	outfile.write( xml.toAscii() );
+	outfile.write( xml.toUtf8() );
 	outfile.close();
 }
 

@@ -233,8 +233,8 @@ int ICAMain( int argc, char * * argv )
 			pkey.save( priv );
 			publicDSAKey( pkey ).save( pub );
 			printf( "...done, saved key-pair in\n\n%s\n\nand\n\n%s",
-						priv.toAscii().constData(),
-						pub.toAscii().constData() );
+						priv.toUtf8().constData(),
+						pub.toUtf8().constData() );
 			printf( "\n\n\nFor now the file is only readable by "
 				"root and members of group root (if you\n"
 				"didn't ran this command as non-root).\n"
@@ -265,7 +265,7 @@ int ICAMain( int argc, char * * argv )
 		else
 		{
 			printf( "Unrecognized commandline-argument %s\n",
-						a.toAscii().constData() );
+						a.toUtf8().constData() );
 			return( -1 );
 		}
 	}
@@ -342,7 +342,7 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance,
 								++it, ++argc )
 	{
 		argv[argc] = new char[it->length() + 1];
-		strcpy( argv[argc], it->toAscii().constData() );
+		strcpy( argv[argc], it->toUtf8().constData() );
 	}
 
 	return( ICAMain( argc, argv ) );

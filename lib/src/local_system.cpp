@@ -228,8 +228,8 @@ void msgHandler( QtMsgType _type, const char * _msg )
 	if( out.trimmed().size() )
 	{
 		out = properLineEnding( out );
-		__debug_out->write( out.toAscii() );
-		printf( "%s", out.toAscii().constData() );
+		__debug_out->write( out.toUtf8() );
+		printf( "%s", out.toUtf8().constData() );
 	}
 }
 

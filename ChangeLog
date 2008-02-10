@@ -1,5 +1,42 @@
 2008-02-10	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
+	* lib/src/vncview.cpp:
+	make Backtab (i.e. Shift+Tab) work properly in remote-control (closes
+	#1889307)
+
+	* README.LZO:
+	* lib/include/lzodefs.h:
+	* lib/include/lzoconf.h:
+	* lib/include/minilzo.h:
+	* lib/src/minilzo.c:
+	* lib/Makefile.am:
+	updated from version 1.08 to 2.02 which fixes random crashes on
+	64-bit-platforms
+
+	* ica/src/demo_server.cpp:
+	use correct type (lzo_uint) for bytes-lzo-parameter when calling
+	lzo1x_1_compress - fixes possible problems on 64-bit-platforms
+
+	* lib/src/local_system.cpp:
+	* ica/src/ica_main.cpp:
+	* ica/src/ivs.cpp:
+	* ica/src/system_service.cpp:
+	* ica/src/isd_server.cpp:
+	* ima/src/classroom_manager.cpp:
+	* ima/src/main_window.cpp:
+	* ima/src/user_list.cpp:
+	replaced QString::toAscii() with QString::toUtf8()
+
+	* lib/src/messagebox.cpp:
+	check for GUI-thread-affinity and only show message in logfile/console
+	in case we're not in GUI-thread - fixes various crashes
+
+	* ica/src/isd_server.cpp:
+	fixed host-based authentication in such a way that it works for
+	ThinClient-environments as well as when ports other than 5900 are used
+	for IVS (i.e. -ivsport has been used) - fixes non-working-demo in
+	these scenarios
+
 	* lib/src/ivs_connection.cpp:
 	when deflating compressed data, handle num_rows = 0, i.e. do not call
 	m_screen.copyRect()

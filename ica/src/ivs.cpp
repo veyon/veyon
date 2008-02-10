@@ -204,7 +204,7 @@ void IVS::run( void )
 				it != cmdline.end(); ++it, ++m_argc )
 	{
 		m_argv[m_argc] = new char[it->length() + 1];
-		strcpy( m_argv[m_argc], it->toAscii().constData() );
+		strcpy( m_argv[m_argc], it->toUtf8().constData() );
 	}
 
 	// register iTALC-protocol-extension

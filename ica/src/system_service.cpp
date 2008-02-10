@@ -142,7 +142,7 @@ bool systemService::install( void )
 	f.open( QFile::WriteOnly | QFile::Truncate );
 	f.write( QString( "%1 %2\n" ).
 			arg( QCoreApplication::applicationFilePath() ).
-			arg( m_arg ).toAscii() );
+			arg( m_arg ).toUtf8() );
 	f.setPermissions( QFile::ReadOwner | QFile::WriteOwner |
 							QFile::ExeOwner |
 				QFile::ReadGroup | QFile::ExeGroup |
@@ -167,7 +167,7 @@ bool systemService::install( void )
 			f.open( QFile::WriteOnly );
 			f.seek( f.size() );
 			f.write( QString( "%1 %2" ).arg( sn ).arg( "start" ).
-								toAscii() );
+								toUtf8() );
 		}
 		else if( dm == "gdm" )
 		{
@@ -271,7 +271,7 @@ bool systemService::install( void )
 	if( strlen( path ) + 4 + m_arg.length() < pathlength )
 	{
 		sprintf( servicecmd, "\"%s\" %s", path,
-						m_arg.toAscii().constData() );
+						m_arg.toUtf8().constData() );
 	}
 	else
 	{
@@ -298,8 +298,8 @@ bool systemService::install( void )
 	// Create an entry for the WinVNC service
 	SC_HANDLE hservice = CreateService(
 			hsrvmanager,		// SCManager database
-			m_name.toAscii().constData(),	// name of service
-			m_displayName.toAscii().constData(),// name to display
+			m_name.toUtf8().constData(),	// name of service
+			m_displayName.toUtf8().constData(),// name to display
 			SERVICE_ALL_ACCESS,	// desired access
 			SERVICE_WIN32_OWN_PROCESS | SERVICE_INTERACTIVE_PROCESS,
 						// service type
@@ -308,7 +308,7 @@ bool systemService::install( void )
 			servicecmd,		// service's binary
 			NULL,			// no load ordering group
 			NULL,			// no tag identifier
-			m_dependencies.toAscii().constData(), // dependencies
+			m_dependencies.toUtf8().constData(), // dependencies
 			NULL,			// LocalSystem account
 			NULL );			// no password
 	if( hservice == NULL)
@@ -387,7 +387,7 @@ bool systemService::remove( void )
 	if( hsrvmanager )
 	{ 
 		SC_HANDLE hservice = OpenService( hsrvmanager,
-						m_name.toAscii().constData(),
+						m_name.toUtf8().constData(),
 							SERVICE_ALL_ACCESS );
 
 		if( hservice != NULL )
@@ -507,7 +507,7 @@ bool systemService::start( void )
 	if( hsrvmanager )
 	{ 
 		SC_HANDLE hservice = OpenService( hsrvmanager,
-						m_name.toAscii().constData(),
+						m_name.toUtf8().constData(),
 							SERVICE_ALL_ACCESS );
 
 		if( hservice != NULL )
@@ -582,7 +582,7 @@ bool systemService::stop( void )
 	if( hsrvmanager )
 	{ 
 		SC_HANDLE hservice = OpenService( hsrvmanager,
-						m_name.toAscii().constData(),
+						m_name.toUtf8().constData(),
 							SERVICE_ALL_ACCESS );
 
 		if( hservice != NULL )
@@ -662,7 +662,7 @@ bool systemService::runAsService( void )
 	// Create a service entry table
 	SERVICE_TABLE_ENTRY dispatchTable[] =
 	{
-		{ m_name.toAscii().data(), (LPSERVICE_MAIN_FUNCTION) main },
+		{ m_name.toUtf8().data(), (LPSERVICE_MAIN_FUNCTION) main },
 		{ NULL, NULL }
 	} ;
 
@@ -713,7 +713,7 @@ void WINAPI systemService::main( DWORD _argc, char * * _argv )
 {
 	// register the service control handler
 	s_statusHandle = RegisterServiceCtrlHandler(
-					s_this->m_name.toAscii().constData(),
+					s_this->m_name.toUtf8().constData(),
 								serviceCtrl );
 
 	if( s_statusHandle == 0 )

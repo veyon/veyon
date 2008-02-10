@@ -198,7 +198,7 @@ void userList::clickedExportToFile( void )
 
 	QFile outfile( outfn );
 	outfile.open( QFile::WriteOnly );
-	outfile.write( output.toAscii() );
+	outfile.write( output.toUtf8() );
 	outfile.close();
 }
 
