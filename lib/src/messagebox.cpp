@@ -26,6 +26,7 @@
 #include "messagebox.h"
 #include "local_system.h"
 
+#include <QtCore/QThread>
 #include <QtGui/QApplication>
 #include <QtGui/QWidget>
 #include <QtGui/QPixmap>
@@ -106,6 +107,12 @@ void messageBox::trySysTrayMessage( const QString & _title,
 					const QString & _msg,
 					MessageIcon _msg_icon )
 {
+	qWarning( _msg.toUtf8().constData() );
+	if( QThread::currentThreadId() !=
+		QCoreApplication::instance()->thread()->currentThreadId() )
+	{
+		return;
+	}
 #ifdef SYSTEMTRAY_SUPPORT
 	// OS X does not support messages
 	if( QSystemTrayIcon::supportsMessages() && __systray_icon )
