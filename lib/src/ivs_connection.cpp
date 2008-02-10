@@ -948,7 +948,7 @@ bool ivsConnection::handleZlib( Q_UINT16 rx, Q_UINT16 ry, Q_UINT16 rw,
 
 	} // while ( remaining > 0 )
 
-	if ( inflateResult == Z_OK )
+	if( inflateResult == Z_OK )
 	{
 		m_screen.copyRect( rx, ry, rw, rh, (QRgb *) m_rawBuffer );
 	}
@@ -1188,7 +1188,7 @@ bool ivsConnection::handleTight( Q_UINT16 rx, Q_UINT16 ry, Q_UINT16 rw,
 				return( FALSE );
 			}
 
-			Q_UINT16 num_rows = (Q_UINT16)( ( buffer_size -
+			const Q_UINT16 num_rows = (Q_UINT16)( ( buffer_size -
 							zs->avail_out ) /
 								(int)row_size );
 
@@ -1202,9 +1202,11 @@ bool ivsConnection::handleTight( Q_UINT16 rx, Q_UINT16 ry, Q_UINT16 rw,
 						&m_buffer[num_rows * row_size],
 								extra_bytes );
 			}
-
-			m_screen.copyRect( rx, ry+rows_processed, rw,
+			if( num_rows > 0 )
+			{
+				m_screen.copyRect( rx, ry+rows_processed, rw,
 							num_rows, buffer2 );
+			}
 			rows_processed += num_rows;
 		}
 		while( zs->avail_out == 0 );

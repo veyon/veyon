@@ -71,13 +71,20 @@ public:
 				const Q_UINT16 rw, const Q_UINT16 rh,
 				const QRgb * buf )
 	{
-		const Q_UINT16 img_width = width();
-		QRgb * dst = (QRgb *) scanLine( ry ) + rx;
-		for( Q_UINT16 y = 0; y < rh; ++y )
+		if( rh > 0 )
 		{
-			memcpy( dst, buf, rw * sizeof( QRgb ) );
-			buf += rw;
-			dst += img_width;
+			const Q_UINT16 img_width = width();
+			QRgb * dst = (QRgb *) scanLine( ry ) + rx;
+			for( Q_UINT16 y = 0; y < rh; ++y )
+			{
+				memcpy( dst, buf, rw * sizeof( QRgb ) );
+				buf += rw;
+				dst += img_width;
+			}
+		}
+		else
+		{
+			qWarning( "fastQImage::copyRect(): tried to copy a rect with zero-height - ignoring" );
 		}
 	}
 

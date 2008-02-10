@@ -53,7 +53,7 @@ QStringList isdServer::s_allowedDemoClients;
 
 isdServer::isdServer( const quint16 _ivs_port, int _argc, char * * _argv ) :
 	QTcpServer(),
-	m_ivs( new IVS( _ivs_port, _argc, _argv ) ),
+	m_ivs( NULL ),
 	m_demoClient( NULL ),
 	m_demoServer( NULL ),
 	m_lockWidget( NULL )
@@ -74,8 +74,6 @@ isdServer::isdServer( const quint16 _ivs_port, int _argc, char * * _argv ) :
 							messageBox::Critical );
 	}
 
-	m_ivs->start(/* QThread::HighPriority*/ );
-
 	connect( this, SIGNAL( newConnection() ),
 			this, SLOT( acceptNewConnection() ) );
 
@@ -89,6 +87,9 @@ isdServer::isdServer( const quint16 _ivs_port, int _argc, char * * _argv ) :
 
 	// finally we set the global pointer to ourself
 	__isd_server = this;
+
+	m_ivs = new IVS( _ivs_port, _argc, _argv );
+	m_ivs->start(/* QThread::HighPriority*/ );
 }
 
 

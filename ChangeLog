@@ -1,3 +1,18 @@
+2008-02-10	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* lib/src/ivs_connection.cpp:
+	when deflating compressed data, handle num_rows = 0, i.e. do not call
+	m_screen.copyRect()
+
+	* lib/include/fast_qimage.h:
+	in fastQImage::copyRect() handle case when height of rect is zero
+	instead of calling QImage::scanLine() with invalid parameter - fixes
+	frequent crashes of IMA!
+
+	* ica/src/isd_server.cpp:
+	moved initialization of IVS-server to end of isdServer-constructor so
+	that correct isdport-parameter is passed to IVS-sub-processes
+
 2008-02-09	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* lib/include/rect_list.h:
