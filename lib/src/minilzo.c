@@ -2,6 +2,9 @@
 
    This file is part of the LZO real-time data compression library.
 
+   Copyright (C) 2005 Markus Franz Xaver Johannes Oberhumer
+   Copyright (C) 2004 Markus Franz Xaver Johannes Oberhumer
+   Copyright (C) 2003 Markus Franz Xaver Johannes Oberhumer
    Copyright (C) 2002 Markus Franz Xaver Johannes Oberhumer
    Copyright (C) 2001 Markus Franz Xaver Johannes Oberhumer
    Copyright (C) 2000 Markus Franz Xaver Johannes Oberhumer
@@ -12,9 +15,8 @@
    All Rights Reserved.
 
    The LZO library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU General Public License as
-   published by the Free Software Foundation; either version 2 of
-   the License, or (at your option) any later version.
+   modify it under the terms of the GNU General Public License,
+   version 2, as published by the Free Software Foundation.
 
    The LZO library is distributed in the hope that it will be useful,
    but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -24,7 +26,7 @@
    You should have received a copy of the GNU General Public License
    along with the LZO library; see the file COPYING.
    If not, write to the Free Software Foundation, Inc.,
-   59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
    Markus F.X.J. Oberhumer
    <markus@oberhumer.com>
@@ -40,14 +42,1533 @@
 #define __LZO_IN_MINILZO
 #define LZO_BUILD
 
+#if defined(LZO_CFG_FREESTANDING)
+#  undef MINILZO_HAVE_CONFIG_H
+#  define LZO_LIBC_FREESTANDING 1
+#  define LZO_OS_FREESTANDING 1
+#endif
+
 #ifdef MINILZO_HAVE_CONFIG_H
 #  include <config.h>
+#endif
+#include <limits.h>
+#include <stddef.h>
+#if defined(MINILZO_CFG_USE_INTERNAL_LZODEFS)
+
+#ifndef __LZODEFS_H_INCLUDED
+#define __LZODEFS_H_INCLUDED 1
+
+#if defined(__CYGWIN32__) && !defined(__CYGWIN__)
+#  define __CYGWIN__ __CYGWIN32__
+#endif
+#if defined(__IBMCPP__) && !defined(__IBMC__)
+#  define __IBMC__ __IBMCPP__
+#endif
+#if defined(__ICL) && defined(_WIN32) && !defined(__INTEL_COMPILER)
+#  define __INTEL_COMPILER __ICL
+#endif
+#if 1 && defined(__INTERIX) && defined(__GNUC__) && !defined(_ALL_SOURCE)
+#  define _ALL_SOURCE 1
+#endif
+#if defined(__mips__) && defined(__R5900__)
+#  if !defined(__LONG_MAX__)
+#    define __LONG_MAX__ 9223372036854775807L
+#  endif
+#endif
+#if defined(__INTEL_COMPILER) && defined(__linux__)
+#  pragma warning(disable: 193)
+#endif
+#if defined(__KEIL__) && defined(__C166__)
+#  pragma warning disable = 322
+#elif 0 && defined(__C251__)
+#  pragma warning disable = 322
+#endif
+#if defined(_MSC_VER) && !defined(__INTEL_COMPILER) && !defined(__MWERKS__)
+#  if (_MSC_VER >= 1300)
+#    pragma warning(disable: 4668)
+#  endif
+#endif
+#if 0 && defined(__WATCOMC__)
+#  if (__WATCOMC__ >= 1050) && (__WATCOMC__ < 1060)
+#    pragma warning 203 9
+#  endif
+#endif
+#if defined(__BORLANDC__) && defined(__MSDOS__) && !defined(__FLAT__)
+#  pragma option -h
+#endif
+#if 0
+#define LZO_0xffffL             0xfffful
+#define LZO_0xffffffffL         0xfffffffful
+#else
+#define LZO_0xffffL             65535ul
+#define LZO_0xffffffffL         4294967295ul
+#endif
+#if (LZO_0xffffL == LZO_0xffffffffL)
+#  error "your preprocessor is broken 1"
+#endif
+#if (16ul * 16384ul != 262144ul)
+#  error "your preprocessor is broken 2"
+#endif
+#if 0
+#if (32767 >= 4294967295ul)
+#  error "your preprocessor is broken 3"
+#endif
+#if (65535u >= 4294967295ul)
+#  error "your preprocessor is broken 4"
+#endif
+#endif
+#if (UINT_MAX == LZO_0xffffL)
+#if defined(__ZTC__) && defined(__I86__) && !defined(__OS2__)
+#  if !defined(MSDOS)
+#    define MSDOS 1
+#  endif
+#  if !defined(_MSDOS)
+#    define _MSDOS 1
+#  endif
+#elif 0 && defined(__VERSION) && defined(MB_LEN_MAX)
+#  if (__VERSION == 520) && (MB_LEN_MAX == 1)
+#    if !defined(__AZTEC_C__)
+#      define __AZTEC_C__ __VERSION
+#    endif
+#    if !defined(__DOS__)
+#      define __DOS__ 1
+#    endif
+#  endif
+#endif
+#endif
+#if defined(_MSC_VER) && defined(M_I86HM) && (UINT_MAX == LZO_0xffffL)
+#  define ptrdiff_t long
+#  define _PTRDIFF_T_DEFINED
+#endif
+#if (UINT_MAX == LZO_0xffffL)
+#  undef __LZO_RENAME_A
+#  undef __LZO_RENAME_B
+#  if defined(__AZTEC_C__) && defined(__DOS__)
+#    define __LZO_RENAME_A 1
+#  elif defined(_MSC_VER) && defined(MSDOS)
+#    if (_MSC_VER < 600)
+#      define __LZO_RENAME_A 1
+#    elif (_MSC_VER < 700)
+#      define __LZO_RENAME_B 1
+#    endif
+#  elif defined(__TSC__) && defined(__OS2__)
+#    define __LZO_RENAME_A 1
+#  elif defined(__MSDOS__) && defined(__TURBOC__) && (__TURBOC__ < 0x0410)
+#    define __LZO_RENAME_A 1
+#  elif defined(__PACIFIC__) && defined(DOS)
+#    if !defined(__far)
+#      define __far far
+#    endif
+#    if !defined(__near)
+#      define __near near
+#    endif
+#  endif
+#  if defined(__LZO_RENAME_A)
+#    if !defined(__cdecl)
+#      define __cdecl cdecl
+#    endif
+#    if !defined(__far)
+#      define __far far
+#    endif
+#    if !defined(__huge)
+#      define __huge huge
+#    endif
+#    if !defined(__near)
+#      define __near near
+#    endif
+#    if !defined(__pascal)
+#      define __pascal pascal
+#    endif
+#    if !defined(__huge)
+#      define __huge huge
+#    endif
+#  elif defined(__LZO_RENAME_B)
+#    if !defined(__cdecl)
+#      define __cdecl _cdecl
+#    endif
+#    if !defined(__far)
+#      define __far _far
+#    endif
+#    if !defined(__huge)
+#      define __huge _huge
+#    endif
+#    if !defined(__near)
+#      define __near _near
+#    endif
+#    if !defined(__pascal)
+#      define __pascal _pascal
+#    endif
+#  elif (defined(__PUREC__) || defined(__TURBOC__)) && defined(__TOS__)
+#    if !defined(__cdecl)
+#      define __cdecl cdecl
+#    endif
+#    if !defined(__pascal)
+#      define __pascal pascal
+#    endif
+#  endif
+#  undef __LZO_RENAME_A
+#  undef __LZO_RENAME_B
+#endif
+#if (UINT_MAX == LZO_0xffffL)
+#if defined(__AZTEC_C__) && defined(__DOS__)
+#  define LZO_BROKEN_CDECL_ALT_SYNTAX 1
+#elif defined(_MSC_VER) && defined(MSDOS)
+#  if (_MSC_VER < 600)
+#    define LZO_BROKEN_INTEGRAL_CONSTANTS 1
+#  endif
+#  if (_MSC_VER < 700)
+#    define LZO_BROKEN_INTEGRAL_PROMOTION 1
+#    define LZO_BROKEN_SIZEOF 1
+#  endif
+#elif defined(__PACIFIC__) && defined(DOS)
+#  define LZO_BROKEN_INTEGRAL_CONSTANTS 1
+#elif defined(__TURBOC__) && defined(__MSDOS__)
+#  if (__TURBOC__ < 0x0150)
+#    define LZO_BROKEN_CDECL_ALT_SYNTAX 1
+#    define LZO_BROKEN_INTEGRAL_CONSTANTS 1
+#    define LZO_BROKEN_INTEGRAL_PROMOTION 1
+#  endif
+#  if (__TURBOC__ < 0x0200)
+#    define LZO_BROKEN_SIZEOF 1
+#  endif
+#  if (__TURBOC__ < 0x0400) && defined(__cplusplus)
+#    define LZO_BROKEN_CDECL_ALT_SYNTAX 1
+#  endif
+#elif (defined(__PUREC__) || defined(__TURBOC__)) && defined(__TOS__)
+#  define LZO_BROKEN_CDECL_ALT_SYNTAX 1
+#  define LZO_BROKEN_SIZEOF 1
+#endif
+#endif
+#if defined(__WATCOMC__) && (__WATCOMC__ < 900)
+#  define LZO_BROKEN_INTEGRAL_CONSTANTS 1
+#endif
+#define LZO_CPP_STRINGIZE(x)            #x
+#define LZO_CPP_MACRO_EXPAND(x)         LZO_CPP_STRINGIZE(x)
+#define LZO_CPP_CONCAT2(a,b)            a ## b
+#define LZO_CPP_CONCAT3(a,b,c)          a ## b ## c
+#define LZO_CPP_CONCAT4(a,b,c,d)        a ## b ## c ## d
+#define LZO_CPP_CONCAT5(a,b,c,d,e)      a ## b ## c ## d ## e
+#define LZO_CPP_ECONCAT2(a,b)           LZO_CPP_CONCAT2(a,b)
+#define LZO_CPP_ECONCAT3(a,b,c)         LZO_CPP_CONCAT3(a,b,c)
+#define LZO_CPP_ECONCAT4(a,b,c,d)       LZO_CPP_CONCAT4(a,b,c,d)
+#define LZO_CPP_ECONCAT5(a,b,c,d,e)     LZO_CPP_CONCAT5(a,b,c,d,e)
+#define __LZO_MASK_GEN(o,b)     (((((o) << ((b)-1)) - (o)) << 1) + (o))
+#if 1 && defined(__cplusplus)
+#  if !defined(__STDC_CONSTANT_MACROS)
+#    define __STDC_CONSTANT_MACROS 1
+#  endif
+#  if !defined(__STDC_LIMIT_MACROS)
+#    define __STDC_LIMIT_MACROS 1
+#  endif
+#endif
+#if defined(__cplusplus)
+#  define LZO_EXTERN_C extern "C"
+#else
+#  define LZO_EXTERN_C extern
+#endif
+#if !defined(__LZO_OS_OVERRIDE)
+#if defined(LZO_OS_FREESTANDING)
+#  define LZO_INFO_OS           "freestanding"
+#elif defined(LZO_OS_EMBEDDED)
+#  define LZO_INFO_OS           "embedded"
+#elif defined(__CYGWIN__) && defined(__GNUC__)
+#  define LZO_OS_CYGWIN         1
+#  define LZO_INFO_OS           "cygwin"
+#elif defined(__EMX__) && defined(__GNUC__)
+#  define LZO_OS_EMX            1
+#  define LZO_INFO_OS           "emx"
+#elif defined(__BEOS__)
+#  define LZO_OS_BEOS           1
+#  define LZO_INFO_OS           "beos"
+#elif defined(__Lynx__)
+#  define LZO_OS_LYNXOS         1
+#  define LZO_INFO_OS           "lynxos"
+#elif defined(__OS400__)
+#  define LZO_OS_OS400          1
+#  define LZO_INFO_OS           "os400"
+#elif defined(__QNX__)
+#  define LZO_OS_QNX            1
+#  define LZO_INFO_OS           "qnx"
+#elif defined(__BORLANDC__) && defined(__DPMI32__) && (__BORLANDC__ >= 0x0460)
+#  define LZO_OS_DOS32          1
+#  define LZO_INFO_OS           "dos32"
+#elif defined(__BORLANDC__) && defined(__DPMI16__)
+#  define LZO_OS_DOS16          1
+#  define LZO_INFO_OS           "dos16"
+#elif defined(__ZTC__) && defined(DOS386)
+#  define LZO_OS_DOS32          1
+#  define LZO_INFO_OS           "dos32"
+#elif defined(__OS2__) || defined(__OS2V2__)
+#  if (UINT_MAX == LZO_0xffffL)
+#    define LZO_OS_OS216        1
+#    define LZO_INFO_OS         "os216"
+#  elif (UINT_MAX == LZO_0xffffffffL)
+#    define LZO_OS_OS2          1
+#    define LZO_INFO_OS         "os2"
+#  else
+#    error "check your limits.h header"
+#  endif
+#elif defined(__WIN64__) || defined(_WIN64) || defined(WIN64)
+#  define LZO_OS_WIN64          1
+#  define LZO_INFO_OS           "win64"
+#elif defined(__WIN32__) || defined(_WIN32) || defined(WIN32) || defined(__WINDOWS_386__)
+#  define LZO_OS_WIN32          1
+#  define LZO_INFO_OS           "win32"
+#elif defined(__MWERKS__) && defined(__INTEL__)
+#  define LZO_OS_WIN32          1
+#  define LZO_INFO_OS           "win32"
+#elif defined(__WINDOWS__) || defined(_WINDOWS) || defined(_Windows)
+#  if (UINT_MAX == LZO_0xffffL)
+#    define LZO_OS_WIN16        1
+#    define LZO_INFO_OS         "win16"
+#  elif (UINT_MAX == LZO_0xffffffffL)
+#    define LZO_OS_WIN32        1
+#    define LZO_INFO_OS         "win32"
+#  else
+#    error "check your limits.h header"
+#  endif
+#elif defined(__DOS__) || defined(__MSDOS__) || defined(_MSDOS) || defined(MSDOS) || (defined(__PACIFIC__) && defined(DOS))
+#  if (UINT_MAX == LZO_0xffffL)
+#    define LZO_OS_DOS16        1
+#    define LZO_INFO_OS         "dos16"
+#  elif (UINT_MAX == LZO_0xffffffffL)
+#    define LZO_OS_DOS32        1
+#    define LZO_INFO_OS         "dos32"
+#  else
+#    error "check your limits.h header"
+#  endif
+#elif defined(__WATCOMC__)
+#  if defined(__NT__) && (UINT_MAX == LZO_0xffffL)
+#    define LZO_OS_DOS16        1
+#    define LZO_INFO_OS         "dos16"
+#  elif defined(__NT__) && (__WATCOMC__ < 1100)
+#    define LZO_OS_WIN32        1
+#    define LZO_INFO_OS         "win32"
+#  else
+#    error "please specify a target using the -bt compiler option"
+#  endif
+#elif defined(__palmos__)
+#  define LZO_OS_PALMOS         1
+#  define LZO_INFO_OS           "palmos"
+#elif defined(__TOS__) || defined(__atarist__)
+#  define LZO_OS_TOS            1
+#  define LZO_INFO_OS           "tos"
+#elif defined(macintosh) && !defined(__ppc__)
+#  define LZO_OS_MACCLASSIC     1
+#  define LZO_INFO_OS           "macclassic"
+#elif defined(__VMS)
+#  define LZO_OS_VMS            1
+#  define LZO_INFO_OS           "vms"
+#elif ((defined(__mips__) && defined(__R5900__)) || defined(__MIPS_PSX2__))
+#  define LZO_OS_CONSOLE        1
+#  define LZO_OS_CONSOLE_PS2    1
+#  define LZO_INFO_OS           "console"
+#  define LZO_INFO_OS_CONSOLE   "ps2"
+#elif (defined(__mips__) && defined(__psp__))
+#  define LZO_OS_CONSOLE        1
+#  define LZO_OS_CONSOLE_PSP    1
+#  define LZO_INFO_OS           "console"
+#  define LZO_INFO_OS_CONSOLE   "psp"
+#else
+#  define LZO_OS_POSIX          1
+#  define LZO_INFO_OS           "posix"
+#endif
+#if (LZO_OS_POSIX)
+#  if defined(_AIX) || defined(__AIX__) || defined(__aix__)
+#    define LZO_OS_POSIX_AIX        1
+#    define LZO_INFO_OS_POSIX       "aix"
+#  elif defined(__FreeBSD__)
+#    define LZO_OS_POSIX_FREEBSD    1
+#    define LZO_INFO_OS_POSIX       "freebsd"
+#  elif defined(__hpux__) || defined(__hpux)
+#    define LZO_OS_POSIX_HPUX       1
+#    define LZO_INFO_OS_POSIX       "hpux"
+#  elif defined(__INTERIX)
+#    define LZO_OS_POSIX_INTERIX    1
+#    define LZO_INFO_OS_POSIX       "interix"
+#  elif defined(__IRIX__) || defined(__irix__)
+#    define LZO_OS_POSIX_IRIX       1
+#    define LZO_INFO_OS_POSIX       "irix"
+#  elif defined(__linux__) || defined(__linux)
+#    define LZO_OS_POSIX_LINUX      1
+#    define LZO_INFO_OS_POSIX       "linux"
+#  elif defined(__APPLE__) || defined(__MACOS__)
+#    define LZO_OS_POSIX_MACOSX     1
+#    define LZO_INFO_OS_POSIX       "macosx"
+#  elif defined(__NetBSD__)
+#    define LZO_OS_POSIX_NETBSD     1
+#    define LZO_INFO_OS_POSIX       "netbsd"
+#  elif defined(__OpenBSD__)
+#    define LZO_OS_POSIX_OPENBSD    1
+#    define LZO_INFO_OS_POSIX       "openbsd"
+#  elif defined(__osf__)
+#    define LZO_OS_POSIX_OSF        1
+#    define LZO_INFO_OS_POSIX       "osf"
+#  elif defined(__solaris__) || defined(__sun)
+#    if defined(__SVR4) || defined(__svr4__)
+#      define LZO_OS_POSIX_SOLARIS  1
+#      define LZO_INFO_OS_POSIX     "solaris"
+#    else
+#      define LZO_OS_POSIX_SUNOS    1
+#      define LZO_INFO_OS_POSIX     "sunos"
+#    endif
+#  elif defined(__ultrix__) || defined(__ultrix)
+#    define LZO_OS_POSIX_ULTRIX     1
+#    define LZO_INFO_OS_POSIX       "ultrix"
+#  else
+#    define LZO_OS_POSIX_UNKNOWN    1
+#    define LZO_INFO_OS_POSIX       "unknown"
+#  endif
+#endif
+#endif
+#if (LZO_OS_DOS16 || LZO_OS_OS216 || LZO_OS_WIN16)
+#  if (UINT_MAX != LZO_0xffffL)
+#    error "this should not happen"
+#  endif
+#  if (ULONG_MAX != LZO_0xffffffffL)
+#    error "this should not happen"
+#  endif
+#endif
+#if (LZO_OS_DOS32 || LZO_OS_OS2 || LZO_OS_WIN32 || LZO_OS_WIN64)
+#  if (UINT_MAX != LZO_0xffffffffL)
+#    error "this should not happen"
+#  endif
+#  if (ULONG_MAX != LZO_0xffffffffL)
+#    error "this should not happen"
+#  endif
+#endif
+#if defined(CIL) && defined(_GNUCC) && defined(__GNUC__)
+#  define LZO_CC_CILLY          1
+#  define LZO_INFO_CC           "Cilly"
+#  if defined(__CILLY__)
+#    define LZO_INFO_CCVER      LZO_CPP_MACRO_EXPAND(__CILLY__)
+#  else
+#    define LZO_INFO_CCVER      "unknown"
+#  endif
+#elif 0 && defined(SDCC) && defined(__VERSION__) && !defined(__GNUC__)
+#  define LZO_CC_SDCC           1
+#  define LZO_INFO_CC           "sdcc"
+#  define LZO_INFO_CCVER        LZO_CPP_MACRO_EXPAND(SDCC)
+#elif defined(__PATHSCALE__) && defined(__PATHCC_PATCHLEVEL__)
+#  define LZO_CC_PATHSCALE      (__PATHCC__ * 0x10000L + __PATHCC_MINOR__ * 0x100 + __PATHCC_PATCHLEVEL__)
+#  define LZO_INFO_CC           "Pathscale C"
+#  define LZO_INFO_CCVER        __PATHSCALE__
+#elif defined(__INTEL_COMPILER)
+#  define LZO_CC_INTELC         1
+#  define LZO_INFO_CC           "Intel C"
+#  define LZO_INFO_CCVER        LZO_CPP_MACRO_EXPAND(__INTEL_COMPILER)
+#elif defined(__POCC__) && defined(_WIN32)
+#  define LZO_CC_PELLESC        1
+#  define LZO_INFO_CC           "Pelles C"
+#  define LZO_INFO_CCVER        LZO_CPP_MACRO_EXPAND(__POCC__)
+#elif defined(__llvm__) && defined(__GNUC__) && defined(__VERSION__)
+#  define LZO_CC_LLVM           1
+#  define LZO_INFO_CC           "llvm-gcc"
+#  define LZO_INFO_CCVER        __VERSION__
+#elif defined(__GNUC__) && defined(__VERSION__)
+#  if defined(__GNUC_MINOR__) && defined(__GNUC_PATCHLEVEL__)
+#    define LZO_CC_GNUC         (__GNUC__ * 0x10000L + __GNUC_MINOR__ * 0x100 + __GNUC_PATCHLEVEL__)
+#  elif defined(__GNUC_MINOR__)
+#    define LZO_CC_GNUC         (__GNUC__ * 0x10000L + __GNUC_MINOR__ * 0x100)
+#  else
+#    define LZO_CC_GNUC         (__GNUC__ * 0x10000L)
+#  endif
+#  define LZO_INFO_CC           "gcc"
+#  define LZO_INFO_CCVER        __VERSION__
+#elif defined(__AZTEC_C__)
+#  define LZO_CC_AZTECC         1
+#  define LZO_INFO_CC           "Aztec C"
+#  define LZO_INFO_CCVER        LZO_CPP_MACRO_EXPAND(__AZTEC_C__)
+#elif defined(__BORLANDC__)
+#  define LZO_CC_BORLANDC       1
+#  define LZO_INFO_CC           "Borland C"
+#  define LZO_INFO_CCVER        LZO_CPP_MACRO_EXPAND(__BORLANDC__)
+#elif defined(__DMC__) && defined(__SC__)
+#  define LZO_CC_DMC            1
+#  define LZO_INFO_CC           "Digital Mars C"
+#  define LZO_INFO_CCVER        LZO_CPP_MACRO_EXPAND(__DMC__)
+#elif defined(__DECC)
+#  define LZO_CC_DECC           1
+#  define LZO_INFO_CC           "DEC C"
+#  define LZO_INFO_CCVER        LZO_CPP_MACRO_EXPAND(__DECC)
+#elif defined(__HIGHC__)
+#  define LZO_CC_HIGHC          1
+#  define LZO_INFO_CC           "MetaWare High C"
+#  define LZO_INFO_CCVER        "unknown"
+#elif defined(__IBMC__)
+#  define LZO_CC_IBMC           1
+#  define LZO_INFO_CC           "IBM C"
+#  define LZO_INFO_CCVER        LZO_CPP_MACRO_EXPAND(__IBMC__)
+#elif defined(__KEIL__) && defined(__C166__)
+#  define LZO_CC_KEILC          1
+#  define LZO_INFO_CC           "Keil C"
+#  define LZO_INFO_CCVER        LZO_CPP_MACRO_EXPAND(__C166__)
+#elif defined(__LCC__) && defined(_WIN32) && defined(__LCCOPTIMLEVEL)
+#  define LZO_CC_LCCWIN32       1
+#  define LZO_INFO_CC           "lcc-win32"
+#  define LZO_INFO_CCVER        "unknown"
+#elif defined(__LCC__)
+#  define LZO_CC_LCC            1
+#  define LZO_INFO_CC           "lcc"
+#  if defined(__LCC_VERSION__)
+#    define LZO_INFO_CCVER      LZO_CPP_MACRO_EXPAND(__LCC_VERSION__)
+#  else
+#    define LZO_INFO_CCVER      "unknown"
+#  endif
+#elif defined(_MSC_VER)
+#  define LZO_CC_MSC            1
+#  define LZO_INFO_CC           "Microsoft C"
+#  if defined(_MSC_FULL_VER)
+#    define LZO_INFO_CCVER      LZO_CPP_MACRO_EXPAND(_MSC_VER) "." LZO_CPP_MACRO_EXPAND(_MSC_FULL_VER)
+#  else
+#    define LZO_INFO_CCVER      LZO_CPP_MACRO_EXPAND(_MSC_VER)
+#  endif
+#elif defined(__MWERKS__)
+#  define LZO_CC_MWERKS         1
+#  define LZO_INFO_CC           "Metrowerks C"
+#  define LZO_INFO_CCVER        LZO_CPP_MACRO_EXPAND(__MWERKS__)
+#elif (defined(__NDPC__) || defined(__NDPX__)) && defined(__i386)
+#  define LZO_CC_NDPC           1
+#  define LZO_INFO_CC           "Microway NDP C"
+#  define LZO_INFO_CCVER        "unknown"
+#elif defined(__PACIFIC__)
+#  define LZO_CC_PACIFICC       1
+#  define LZO_INFO_CC           "Pacific C"
+#  define LZO_INFO_CCVER        LZO_CPP_MACRO_EXPAND(__PACIFIC__)
+#elif defined(__PGI) && (defined(__linux__) || defined(__WIN32__))
+#  define LZO_CC_PGI            1
+#  define LZO_INFO_CC           "Portland Group PGI C"
+#  define LZO_INFO_CCVER        "unknown"
+#elif defined(__PUREC__) && defined(__TOS__)
+#  define LZO_CC_PUREC          1
+#  define LZO_INFO_CC           "Pure C"
+#  define LZO_INFO_CCVER        LZO_CPP_MACRO_EXPAND(__PUREC__)
+#elif defined(__SC__) && defined(__ZTC__)
+#  define LZO_CC_SYMANTECC      1
+#  define LZO_INFO_CC           "Symantec C"
+#  define LZO_INFO_CCVER        LZO_CPP_MACRO_EXPAND(__SC__)
+#elif defined(__SUNPRO_C)
+#  define LZO_CC_SUNPROC        1
+#  define LZO_INFO_CC           "Sun C"
+#  define LZO_INFO_CCVER        "unknown"
+#elif defined(__TINYC__)
+#  define LZO_CC_TINYC          1
+#  define LZO_INFO_CC           "Tiny C"
+#  define LZO_INFO_CCVER        LZO_CPP_MACRO_EXPAND(__TINYC__)
+#elif defined(__TSC__)
+#  define LZO_CC_TOPSPEEDC      1
+#  define LZO_INFO_CC           "TopSpeed C"
+#  define LZO_INFO_CCVER        LZO_CPP_MACRO_EXPAND(__TSC__)
+#elif defined(__WATCOMC__)
+#  define LZO_CC_WATCOMC        1
+#  define LZO_INFO_CC           "Watcom C"
+#  define LZO_INFO_CCVER        LZO_CPP_MACRO_EXPAND(__WATCOMC__)
+#elif defined(__TURBOC__)
+#  define LZO_CC_TURBOC         1
+#  define LZO_INFO_CC           "Turbo C"
+#  define LZO_INFO_CCVER        LZO_CPP_MACRO_EXPAND(__TURBOC__)
+#elif defined(__ZTC__)
+#  define LZO_CC_ZORTECHC       1
+#  define LZO_INFO_CC           "Zortech C"
+#  if (__ZTC__ == 0x310)
+#    define LZO_INFO_CCVER      "0x310"
+#  else
+#    define LZO_INFO_CCVER      LZO_CPP_MACRO_EXPAND(__ZTC__)
+#  endif
+#else
+#  define LZO_CC_UNKNOWN        1
+#  define LZO_INFO_CC           "unknown"
+#  define LZO_INFO_CCVER        "unknown"
+#endif
+#if 0 && (LZO_CC_MSC && (_MSC_VER >= 1200)) && !defined(_MSC_FULL_VER)
+#  error "LZO_CC_MSC: _MSC_FULL_VER is not defined"
+#endif
+#if !defined(__LZO_ARCH_OVERRIDE)
+#if defined(LZO_ARCH_GENERIC)
+#  define LZO_INFO_ARCH             "generic"
+#elif (LZO_OS_DOS16 || LZO_OS_OS216 || LZO_OS_WIN16)
+#  define LZO_ARCH_I086             1
+#  define LZO_ARCH_IA16             1
+#  define LZO_INFO_ARCH             "i086"
+#elif defined(__alpha__) || defined(__alpha) || defined(_M_ALPHA)
+#  define LZO_ARCH_ALPHA            1
+#  define LZO_INFO_ARCH             "alpha"
+#elif defined(__amd64__) || defined(__x86_64__) || defined(_M_AMD64)
+#  define LZO_ARCH_AMD64            1
+#  define LZO_INFO_ARCH             "amd64"
+#elif defined(__thumb__) || (defined(_M_ARM) && defined(_M_THUMB))
+#  define LZO_ARCH_ARM              1
+#  define LZO_ARCH_ARM_THUMB        1
+#  define LZO_INFO_ARCH             "arm_thumb"
+#elif defined(__arm__) || defined(_M_ARM)
+#  define LZO_ARCH_ARM              1
+#  define LZO_INFO_ARCH             "arm"
+#elif (UINT_MAX <= LZO_0xffffL) && defined(__AVR__)
+#  define LZO_ARCH_AVR              1
+#  define LZO_INFO_ARCH             "avr"
+#elif defined(__bfin__)
+#  define LZO_ARCH_BLACKFIN         1
+#  define LZO_INFO_ARCH             "blackfin"
+#elif (UINT_MAX == LZO_0xffffL) && defined(__C166__)
+#  define LZO_ARCH_C166             1
+#  define LZO_INFO_ARCH             "c166"
+#elif defined(__cris__)
+#  define LZO_ARCH_CRIS             1
+#  define LZO_INFO_ARCH             "cris"
+#elif defined(__H8300__) || defined(__H8300H__) || defined(__H8300S__) || defined(__H8300SX__)
+#  define LZO_ARCH_H8300            1
+#  define LZO_INFO_ARCH             "h8300"
+#elif defined(__hppa__) || defined(__hppa)
+#  define LZO_ARCH_HPPA             1
+#  define LZO_INFO_ARCH             "hppa"
+#elif defined(__386__) || defined(__i386__) || defined(__i386) || defined(_M_IX86) || defined(_M_I386)
+#  define LZO_ARCH_I386             1
+#  define LZO_ARCH_IA32             1
+#  define LZO_INFO_ARCH             "i386"
+#elif (LZO_CC_ZORTECHC && defined(__I86__))
+#  define LZO_ARCH_I386             1
+#  define LZO_ARCH_IA32             1
+#  define LZO_INFO_ARCH             "i386"
+#elif (LZO_OS_DOS32 && LZO_CC_HIGHC) && defined(_I386)
+#  define LZO_ARCH_I386             1
+#  define LZO_ARCH_IA32             1
+#  define LZO_INFO_ARCH             "i386"
+#elif defined(__ia64__) || defined(__ia64) || defined(_M_IA64)
+#  define LZO_ARCH_IA64             1
+#  define LZO_INFO_ARCH             "ia64"
+#elif (UINT_MAX == LZO_0xffffL) && defined(__m32c__)
+#  define LZO_ARCH_M16C             1
+#  define LZO_INFO_ARCH             "m16c"
+#elif defined(__m32r__)
+#  define LZO_ARCH_M32R             1
+#  define LZO_INFO_ARCH             "m32r"
+#elif (LZO_OS_TOS) || defined(__m68k__) || defined(__m68000__) || defined(__mc68000__) || defined(_M_M68K)
+#  define LZO_ARCH_M68K             1
+#  define LZO_INFO_ARCH             "m68k"
+#elif (UINT_MAX == LZO_0xffffL) && defined(__C251__)
+#  define LZO_ARCH_MCS251           1
+#  define LZO_INFO_ARCH             "mcs251"
+#elif (UINT_MAX == LZO_0xffffL) && defined(__C51__)
+#  define LZO_ARCH_MCS51            1
+#  define LZO_INFO_ARCH             "mcs51"
+#elif defined(__mips__) || defined(__mips) || defined(_MIPS_ARCH) || defined(_M_MRX000)
+#  define LZO_ARCH_MIPS             1
+#  define LZO_INFO_ARCH             "mips"
+#elif (UINT_MAX == LZO_0xffffL) && defined(__MSP430__)
+#  define LZO_ARCH_MSP430           1
+#  define LZO_INFO_ARCH             "msp430"
+#elif defined(__powerpc__) || defined(__powerpc) || defined(__ppc__) || defined(__PPC__) || defined(_M_PPC)
+#  define LZO_ARCH_POWERPC          1
+#  define LZO_INFO_ARCH             "powerpc"
+#elif defined(__s390__) || defined(__s390) || defined(__s390x__) || defined(__s390x)
+#  define LZO_ARCH_S390             1
+#  define LZO_INFO_ARCH             "s390"
+#elif defined(__sh__) || defined(_M_SH)
+#  define LZO_ARCH_SH               1
+#  define LZO_INFO_ARCH             "sh"
+#elif defined(__sparc__) || defined(__sparc) || defined(__sparcv8)
+#  define LZO_ARCH_SPARC            1
+#  define LZO_INFO_ARCH             "sparc"
+#elif (UINT_MAX == LZO_0xffffL) && defined(__z80)
+#  define LZO_ARCH_Z80              1
+#  define LZO_INFO_ARCH             "z80"
+#else
+#  define LZO_ARCH_UNKNOWN          1
+#  define LZO_INFO_ARCH             "unknown"
+#endif
+#endif
+#if 1 && (LZO_ARCH_UNKNOWN) && (LZO_OS_DOS32 || LZO_OS_OS2)
+#  error "FIXME - missing define for CPU architecture"
+#endif
+#if 1 && (LZO_ARCH_UNKNOWN) && (LZO_OS_WIN32)
+#  error "FIXME - missing WIN32 define for CPU architecture"
+#endif
+#if 1 && (LZO_ARCH_UNKNOWN) && (LZO_OS_WIN64)
+#  error "FIXME - missing WIN64 define for CPU architecture"
+#endif
+#if (LZO_OS_OS216 || LZO_OS_WIN16)
+#  define LZO_ARCH_I086PM           1
+#  define LZO_ARCH_IA16PM           1
+#elif 1 && (LZO_OS_DOS16 && defined(BLX286))
+#  define LZO_ARCH_I086PM           1
+#  define LZO_ARCH_IA16PM           1
+#elif 1 && (LZO_OS_DOS16 && defined(DOSX286))
+#  define LZO_ARCH_I086PM           1
+#  define LZO_ARCH_IA16PM           1
+#elif 1 && (LZO_OS_DOS16 && LZO_CC_BORLANDC && defined(__DPMI16__))
+#  define LZO_ARCH_I086PM           1
+#  define LZO_ARCH_IA16PM           1
+#endif
+#if defined(LZO_ARCH_ARM_THUMB) && !defined(LZO_ARCH_ARM)
+#  error "this should not happen"
+#endif
+#if defined(LZO_ARCH_I086PM) && !defined(LZO_ARCH_I086)
+#  error "this should not happen"
+#endif
+#if (LZO_ARCH_I086)
+#  if (UINT_MAX != LZO_0xffffL)
+#    error "this should not happen"
+#  endif
+#  if (ULONG_MAX != LZO_0xffffffffL)
+#    error "this should not happen"
+#  endif
+#endif
+#if (LZO_ARCH_I386)
+#  if (UINT_MAX != LZO_0xffffL) && defined(__i386_int16__)
+#    error "this should not happen"
+#  endif
+#  if (UINT_MAX != LZO_0xffffffffL) && !defined(__i386_int16__)
+#    error "this should not happen"
+#  endif
+#  if (ULONG_MAX != LZO_0xffffffffL)
+#    error "this should not happen"
+#  endif
+#endif
+#if !defined(__LZO_MM_OVERRIDE)
+#if (LZO_OS_DOS16 || LZO_OS_OS216 || LZO_OS_WIN16)
+#if (UINT_MAX != LZO_0xffffL)
+#  error "this should not happen"
+#endif
+#if defined(__TINY__) || defined(M_I86TM) || defined(_M_I86TM)
+#  define LZO_MM_TINY           1
+#elif defined(__HUGE__) || defined(_HUGE_) || defined(M_I86HM) || defined(_M_I86HM)
+#  define LZO_MM_HUGE           1
+#elif defined(__SMALL__) || defined(M_I86SM) || defined(_M_I86SM) || defined(SMALL_MODEL)
+#  define LZO_MM_SMALL          1
+#elif defined(__MEDIUM__) || defined(M_I86MM) || defined(_M_I86MM)
+#  define LZO_MM_MEDIUM         1
+#elif defined(__COMPACT__) || defined(M_I86CM) || defined(_M_I86CM)
+#  define LZO_MM_COMPACT        1
+#elif defined(__LARGE__) || defined(M_I86LM) || defined(_M_I86LM) || defined(LARGE_MODEL)
+#  define LZO_MM_LARGE          1
+#elif (LZO_CC_AZTECC)
+#  if defined(_LARGE_CODE) && defined(_LARGE_DATA)
+#    define LZO_MM_LARGE        1
+#  elif defined(_LARGE_CODE)
+#    define LZO_MM_MEDIUM       1
+#  elif defined(_LARGE_DATA)
+#    define LZO_MM_COMPACT      1
+#  else
+#    define LZO_MM_SMALL        1
+#  endif
+#elif (LZO_CC_ZORTECHC && defined(__VCM__))
+#  define LZO_MM_LARGE          1
+#else
+#  error "unknown memory model"
+#endif
+#define LZO_HAVE_MM_HUGE_PTR        1
+#define LZO_HAVE_MM_HUGE_ARRAY      1
+#if (LZO_MM_TINY)
+#  undef LZO_HAVE_MM_HUGE_ARRAY
+#endif
+#if (LZO_CC_AZTECC || LZO_CC_PACIFICC || LZO_CC_ZORTECHC)
+#  undef LZO_HAVE_MM_HUGE_PTR
+#  undef LZO_HAVE_MM_HUGE_ARRAY
+#elif (LZO_CC_DMC || LZO_CC_SYMANTECC)
+#  undef LZO_HAVE_MM_HUGE_ARRAY
+#elif (LZO_CC_MSC && defined(_QC))
+#  undef LZO_HAVE_MM_HUGE_ARRAY
+#  if (_MSC_VER < 600)
+#    undef LZO_HAVE_MM_HUGE_PTR
+#  endif
+#elif (LZO_CC_TURBOC && (__TURBOC__ < 0x0295))
+#  undef LZO_HAVE_MM_HUGE_ARRAY
+#endif
+#if (LZO_ARCH_I086PM) && !defined(LZO_HAVE_MM_HUGE_PTR)
+#  if (LZO_OS_DOS16)
+#    error "this should not happen"
+#  elif (LZO_CC_ZORTECHC)
+#  else
+#    error "this should not happen"
+#  endif
+#endif
+#ifdef __cplusplus
+extern "C" {
+#endif
+#if (LZO_CC_BORLANDC && (__BORLANDC__ >= 0x0200))
+   extern void __near __cdecl _AHSHIFT(void);
+#  define LZO_MM_AHSHIFT      ((unsigned) _AHSHIFT)
+#elif (LZO_CC_DMC || LZO_CC_SYMANTECC || LZO_CC_ZORTECHC)
+   extern void __near __cdecl _AHSHIFT(void);
+#  define LZO_MM_AHSHIFT      ((unsigned) _AHSHIFT)
+#elif (LZO_CC_MSC || LZO_CC_TOPSPEEDC)
+   extern void __near __cdecl _AHSHIFT(void);
+#  define LZO_MM_AHSHIFT      ((unsigned) _AHSHIFT)
+#elif (LZO_CC_TURBOC && (__TURBOC__ >= 0x0295))
+   extern void __near __cdecl _AHSHIFT(void);
+#  define LZO_MM_AHSHIFT      ((unsigned) _AHSHIFT)
+#elif ((LZO_CC_AZTECC || LZO_CC_PACIFICC || LZO_CC_TURBOC) && LZO_OS_DOS16)
+#  define LZO_MM_AHSHIFT      12
+#elif (LZO_CC_WATCOMC)
+   extern unsigned char _HShift;
+#  define LZO_MM_AHSHIFT      ((unsigned) _HShift)
+#else
+#  error "FIXME - implement LZO_MM_AHSHIFT"
+#endif
+#ifdef __cplusplus
+}
+#endif
+#elif (LZO_ARCH_C166)
+#if !defined(__MODEL__)
+#  error "FIXME - C166 __MODEL__"
+#elif ((__MODEL__) == 0)
+#  define LZO_MM_SMALL          1
+#elif ((__MODEL__) == 1)
+#  define LZO_MM_SMALL          1
+#elif ((__MODEL__) == 2)
+#  define LZO_MM_LARGE          1
+#elif ((__MODEL__) == 3)
+#  define LZO_MM_TINY           1
+#elif ((__MODEL__) == 4)
+#  define LZO_MM_XTINY          1
+#elif ((__MODEL__) == 5)
+#  define LZO_MM_XSMALL         1
+#else
+#  error "FIXME - C166 __MODEL__"
+#endif
+#elif (LZO_ARCH_MCS251)
+#if !defined(__MODEL__)
+#  error "FIXME - MCS251 __MODEL__"
+#elif ((__MODEL__) == 0)
+#  define LZO_MM_SMALL          1
+#elif ((__MODEL__) == 2)
+#  define LZO_MM_LARGE          1
+#elif ((__MODEL__) == 3)
+#  define LZO_MM_TINY           1
+#elif ((__MODEL__) == 4)
+#  define LZO_MM_XTINY          1
+#elif ((__MODEL__) == 5)
+#  define LZO_MM_XSMALL         1
+#else
+#  error "FIXME - MCS251 __MODEL__"
+#endif
+#elif (LZO_ARCH_MCS51)
+#if !defined(__MODEL__)
+#  error "FIXME - MCS51 __MODEL__"
+#elif ((__MODEL__) == 1)
+#  define LZO_MM_SMALL          1
+#elif ((__MODEL__) == 2)
+#  define LZO_MM_LARGE          1
+#elif ((__MODEL__) == 3)
+#  define LZO_MM_TINY           1
+#elif ((__MODEL__) == 4)
+#  define LZO_MM_XTINY          1
+#elif ((__MODEL__) == 5)
+#  define LZO_MM_XSMALL         1
+#else
+#  error "FIXME - MCS51 __MODEL__"
+#endif
+#else
+#  define LZO_MM_FLAT           1
+#endif
+#if (LZO_MM_FLAT)
+#  define LZO_INFO_MM           "flat"
+#elif (LZO_MM_TINY)
+#  define LZO_INFO_MM           "tiny"
+#elif (LZO_MM_SMALL)
+#  define LZO_INFO_MM           "small"
+#elif (LZO_MM_MEDIUM)
+#  define LZO_INFO_MM           "medium"
+#elif (LZO_MM_COMPACT)
+#  define LZO_INFO_MM           "compact"
+#elif (LZO_MM_LARGE)
+#  define LZO_INFO_MM           "large"
+#elif (LZO_MM_HUGE)
+#  define LZO_INFO_MM           "huge"
+#else
+#  error "unknown memory model"
+#endif
+#endif
+#if defined(SIZEOF_SHORT)
+#  define LZO_SIZEOF_SHORT          (SIZEOF_SHORT)
+#endif
+#if defined(SIZEOF_INT)
+#  define LZO_SIZEOF_INT            (SIZEOF_INT)
+#endif
+#if defined(SIZEOF_LONG)
+#  define LZO_SIZEOF_LONG           (SIZEOF_LONG)
+#endif
+#if defined(SIZEOF_LONG_LONG)
+#  define LZO_SIZEOF_LONG_LONG      (SIZEOF_LONG_LONG)
+#endif
+#if defined(SIZEOF___INT16)
+#  define LZO_SIZEOF___INT16        (SIZEOF___INT16)
+#endif
+#if defined(SIZEOF___INT32)
+#  define LZO_SIZEOF___INT32        (SIZEOF___INT32)
+#endif
+#if defined(SIZEOF___INT64)
+#  define LZO_SIZEOF___INT64        (SIZEOF___INT64)
+#endif
+#if defined(SIZEOF_VOID_P)
+#  define LZO_SIZEOF_VOID_P         (SIZEOF_VOID_P)
+#endif
+#if defined(SIZEOF_SIZE_T)
+#  define LZO_SIZEOF_SIZE_T         (SIZEOF_SIZE_T)
+#endif
+#if defined(SIZEOF_PTRDIFF_T)
+#  define LZO_SIZEOF_PTRDIFF_T      (SIZEOF_PTRDIFF_T)
+#endif
+#define __LZO_LSR(x,b)    (((x)+0ul) >> (b))
+#if !defined(LZO_SIZEOF_SHORT)
+#  if (USHRT_MAX == LZO_0xffffL)
+#    define LZO_SIZEOF_SHORT        2
+#  elif (__LZO_LSR(USHRT_MAX,7) == 1)
+#    define LZO_SIZEOF_SHORT        1
+#  elif (__LZO_LSR(USHRT_MAX,15) == 1)
+#    define LZO_SIZEOF_SHORT        2
+#  elif (__LZO_LSR(USHRT_MAX,31) == 1)
+#    define LZO_SIZEOF_SHORT        4
+#  elif (__LZO_LSR(USHRT_MAX,63) == 1)
+#    define LZO_SIZEOF_SHORT        8
+#  elif (__LZO_LSR(USHRT_MAX,127) == 1)
+#    define LZO_SIZEOF_SHORT        16
+#  else
+#    error "LZO_SIZEOF_SHORT"
+#  endif
+#endif
+#if !defined(LZO_SIZEOF_INT)
+#  if (UINT_MAX == LZO_0xffffL)
+#    define LZO_SIZEOF_INT          2
+#  elif (UINT_MAX == LZO_0xffffffffL)
+#    define LZO_SIZEOF_INT          4
+#  elif (__LZO_LSR(UINT_MAX,7) == 1)
+#    define LZO_SIZEOF_INT          1
+#  elif (__LZO_LSR(UINT_MAX,15) == 1)
+#    define LZO_SIZEOF_INT          2
+#  elif (__LZO_LSR(UINT_MAX,31) == 1)
+#    define LZO_SIZEOF_INT          4
+#  elif (__LZO_LSR(UINT_MAX,63) == 1)
+#    define LZO_SIZEOF_INT          8
+#  elif (__LZO_LSR(UINT_MAX,127) == 1)
+#    define LZO_SIZEOF_INT          16
+#  else
+#    error "LZO_SIZEOF_INT"
+#  endif
+#endif
+#if !defined(LZO_SIZEOF_LONG)
+#  if (ULONG_MAX == LZO_0xffffffffL)
+#    define LZO_SIZEOF_LONG         4
+#  elif (__LZO_LSR(ULONG_MAX,7) == 1)
+#    define LZO_SIZEOF_LONG         1
+#  elif (__LZO_LSR(ULONG_MAX,15) == 1)
+#    define LZO_SIZEOF_LONG         2
+#  elif (__LZO_LSR(ULONG_MAX,31) == 1)
+#    define LZO_SIZEOF_LONG         4
+#  elif (__LZO_LSR(ULONG_MAX,63) == 1)
+#    define LZO_SIZEOF_LONG         8
+#  elif (__LZO_LSR(ULONG_MAX,127) == 1)
+#    define LZO_SIZEOF_LONG         16
+#  else
+#    error "LZO_SIZEOF_LONG"
+#  endif
+#endif
+#if !defined(LZO_SIZEOF_LONG_LONG) && !defined(LZO_SIZEOF___INT64)
+#if (LZO_SIZEOF_LONG > 0 && LZO_SIZEOF_LONG < 8)
+#  if defined(__LONG_MAX__) && defined(__LONG_LONG_MAX__)
+#    if (LZO_CC_GNUC >= 0x030300ul)
+#      if ((__LONG_MAX__)+0 == (__LONG_LONG_MAX__)+0)
+#        define LZO_SIZEOF_LONG_LONG      LZO_SIZEOF_LONG
+#      endif
+#    endif
+#  endif
+#endif
+#endif
+#if !defined(LZO_SIZEOF_LONG_LONG) && !defined(LZO_SIZEOF___INT64)
+#if (LZO_SIZEOF_LONG > 0 && LZO_SIZEOF_LONG < 8)
+#if (LZO_ARCH_I086 && LZO_CC_DMC)
+#elif (LZO_CC_CILLY) && defined(__GNUC__)
+#  define LZO_SIZEOF_LONG_LONG      8
+#elif (LZO_CC_GNUC || LZO_CC_LLVM || LZO_CC_PATHSCALE)
+#  define LZO_SIZEOF_LONG_LONG      8
+#elif ((LZO_OS_WIN32 || LZO_OS_WIN64) && LZO_CC_MSC && (_MSC_VER >= 1400))
+#  define LZO_SIZEOF_LONG_LONG      8
+#elif (LZO_OS_WIN64)
+#  define LZO_SIZEOF___INT64        8
+#elif (LZO_ARCH_I386 && (LZO_CC_DMC))
+#  define LZO_SIZEOF_LONG_LONG      8
+#elif (LZO_ARCH_I386 && (LZO_CC_SYMANTECC && (__SC__ >= 0x700)))
+#  define LZO_SIZEOF_LONG_LONG      8
+#elif (LZO_ARCH_I386 && (LZO_CC_INTELC && defined(__linux__)))
+#  define LZO_SIZEOF_LONG_LONG      8
+#elif (LZO_ARCH_I386 && (LZO_CC_MWERKS || LZO_CC_PELLESC || LZO_CC_PGI))
+#  define LZO_SIZEOF_LONG_LONG      8
+#elif (LZO_ARCH_I386 && (LZO_CC_INTELC || LZO_CC_MSC))
+#  define LZO_SIZEOF___INT64        8
+#elif (LZO_OS_WIN32 && (LZO_CC_MSC))
+#  define LZO_SIZEOF___INT64        8
+#elif (LZO_ARCH_I386 && (LZO_CC_BORLANDC && (__BORLANDC__ >= 0x0520)))
+#  define LZO_SIZEOF___INT64        8
+#elif (LZO_ARCH_I386 && (LZO_CC_WATCOMC && (__WATCOMC__ >= 1100)))
+#  define LZO_SIZEOF___INT64        8
+#elif (LZO_CC_WATCOMC && defined(_INTEGRAL_MAX_BITS) && (_INTEGRAL_MAX_BITS == 64))
+#  define LZO_SIZEOF___INT64        8
+#elif (LZO_OS_OS400) && defined(__LLP64_IFC__)
+#  define LZO_SIZEOF_LONG_LONG      8
+#elif (defined(__vms) || defined(__VMS)) && (__INITIAL_POINTER_SIZE+0 == 64)
+#  define LZO_SIZEOF_LONG_LONG      8
+#elif (LZO_CC_SDCC) && (LZO_SIZEOF_INT == 2)
+#elif 1 && defined(__STDC_VERSION__) && (__STDC_VERSION__ >= 199901L)
+#  define LZO_SIZEOF_LONG_LONG      8
+#endif
+#endif
+#endif
+#if defined(__cplusplus) && defined(LZO_CC_GNUC)
+#  if (LZO_CC_GNUC < 0x020800ul)
+#    undef LZO_SIZEOF_LONG_LONG
+#  endif
+#endif
+#if defined(LZO_CFG_NO_LONG_LONG) || defined(__NO_LONG_LONG)
+#  undef LZO_SIZEOF_LONG_LONG
+#endif
+#if !defined(LZO_SIZEOF_VOID_P)
+#if (LZO_ARCH_I086)
+#  define __LZO_WORDSIZE            2
+#  if (LZO_MM_TINY || LZO_MM_SMALL || LZO_MM_MEDIUM)
+#    define LZO_SIZEOF_VOID_P       2
+#  elif (LZO_MM_COMPACT || LZO_MM_LARGE || LZO_MM_HUGE)
+#    define LZO_SIZEOF_VOID_P       4
+#  else
+#    error "LZO_MM"
+#  endif
+#elif (LZO_ARCH_AVR || LZO_ARCH_Z80)
+#  define __LZO_WORDSIZE            1
+#  define LZO_SIZEOF_VOID_P         2
+#elif (LZO_ARCH_C166 || LZO_ARCH_MCS51 || LZO_ARCH_MCS251 || LZO_ARCH_MSP430)
+#  define LZO_SIZEOF_VOID_P         2
+#elif (LZO_ARCH_H8300)
+#  if defined(__NORMAL_MODE__)
+#    define __LZO_WORDSIZE          4
+#    define LZO_SIZEOF_VOID_P       2
+#  elif defined(__H8300H__) || defined(__H8300S__) || defined(__H8300SX__)
+#    define __LZO_WORDSIZE          4
+#    define LZO_SIZEOF_VOID_P       4
+#  else
+#    define __LZO_WORDSIZE          2
+#    define LZO_SIZEOF_VOID_P       2
+#  endif
+#  if (LZO_CC_GNUC && (LZO_CC_GNUC < 0x040000ul)) && (LZO_SIZEOF_INT == 4)
+#    define LZO_SIZEOF_SIZE_T       LZO_SIZEOF_INT
+#    define LZO_SIZEOF_PTRDIFF_T    LZO_SIZEOF_INT
+#  endif
+#elif (LZO_ARCH_M16C)
+#  define __LZO_WORDSIZE            2
+#  if defined(__m32c_cpu__) || defined(__m32cm_cpu__)
+#    define LZO_SIZEOF_VOID_P       4
+#  else
+#    define LZO_SIZEOF_VOID_P       2
+#  endif
+#elif (LZO_SIZEOF_LONG == 8) && ((defined(__mips__) && defined(__R5900__)) || defined(__MIPS_PSX2__))
+#  define __LZO_WORDSIZE            8
+#  define LZO_SIZEOF_VOID_P         4
+#elif defined(__LLP64__) || defined(__LLP64) || defined(_LLP64) || defined(_WIN64)
+#  define __LZO_WORDSIZE            8
+#  define LZO_SIZEOF_VOID_P         8
+#elif (LZO_OS_OS400) && defined(__LLP64_IFC__)
+#  define LZO_SIZEOF_VOID_P         LZO_SIZEOF_LONG
+#  define LZO_SIZEOF_SIZE_T         LZO_SIZEOF_LONG
+#  define LZO_SIZEOF_PTRDIFF_T      LZO_SIZEOF_LONG
+#elif (LZO_OS_OS400)
+#  define __LZO_WORDSIZE            LZO_SIZEOF_LONG
+#  define LZO_SIZEOF_VOID_P         16
+#  define LZO_SIZEOF_SIZE_T         LZO_SIZEOF_LONG
+#  define LZO_SIZEOF_PTRDIFF_T      LZO_SIZEOF_LONG
+#elif (defined(__vms) || defined(__VMS)) && (__INITIAL_POINTER_SIZE+0 == 64)
+#  define LZO_SIZEOF_VOID_P         8
+#  define LZO_SIZEOF_SIZE_T         LZO_SIZEOF_LONG
+#  define LZO_SIZEOF_PTRDIFF_T      LZO_SIZEOF_LONG
+#else
+#  define LZO_SIZEOF_VOID_P         LZO_SIZEOF_LONG
+#endif
+#endif
+#if !defined(LZO_WORDSIZE)
+#  if defined(__LZO_WORDSIZE)
+#    define LZO_WORDSIZE            __LZO_WORDSIZE
+#  else
+#    define LZO_WORDSIZE            LZO_SIZEOF_VOID_P
+#  endif
+#endif
+#if !defined(LZO_SIZEOF_SIZE_T)
+#if (LZO_ARCH_I086 || LZO_ARCH_M16C)
+#  define LZO_SIZEOF_SIZE_T         2
+#else
+#  define LZO_SIZEOF_SIZE_T         LZO_SIZEOF_VOID_P
+#endif
+#endif
+#if !defined(LZO_SIZEOF_PTRDIFF_T)
+#if (LZO_ARCH_I086)
+#  if (LZO_MM_TINY || LZO_MM_SMALL || LZO_MM_MEDIUM || LZO_MM_HUGE)
+#    define LZO_SIZEOF_PTRDIFF_T    LZO_SIZEOF_VOID_P
+#  elif (LZO_MM_COMPACT || LZO_MM_LARGE)
+#    if (LZO_CC_BORLANDC || LZO_CC_TURBOC)
+#      define LZO_SIZEOF_PTRDIFF_T  4
+#    else
+#      define LZO_SIZEOF_PTRDIFF_T  2
+#    endif
+#  else
+#    error "LZO_MM"
+#  endif
+#else
+#  define LZO_SIZEOF_PTRDIFF_T      LZO_SIZEOF_SIZE_T
+#endif
+#endif
+#if !defined(LZO_ABI_BIG_ENDIAN) && !defined(LZO_ABI_LITTLE_ENDIAN) && !defined(LZO_ABI_NEUTRAL_ENDIAN)
+#if (LZO_ARCH_AMD64 || LZO_ARCH_CRIS || LZO_ARCH_I086 || LZO_ARCH_I386 || LZO_ARCH_MSP430)
+#  define LZO_ABI_LITTLE_ENDIAN     1
+#elif (LZO_ARCH_M68K || LZO_ARCH_S390)
+#  define LZO_ABI_BIG_ENDIAN        1
+#elif 1 && defined(__BIG_ENDIAN__) && !defined(__LITTLE_ENDIAN__)
+#  define LZO_ABI_BIG_ENDIAN        1
+#elif 1 && defined(__LITTLE_ENDIAN__) && !defined(__BIG_ENDIAN__)
+#  define LZO_ABI_LITTLE_ENDIAN     1
+#elif 1 && (LZO_ARCH_MIPS) && defined(__MIPSEB__) && !defined(__MIPSEL__)
+#  define LZO_ABI_BIG_ENDIAN        1
+#elif 1 && (LZO_ARCH_MIPS) && defined(__MIPSEL__) && !defined(__MIPSEB__)
+#  define LZO_ABI_LITTLE_ENDIAN     1
+#endif
+#endif
+#if defined(LZO_ABI_BIG_ENDIAN) && defined(LZO_ABI_LITTLE_ENDIAN)
+#  error "this should not happen"
+#endif
+#if defined(LZO_ABI_BIG_ENDIAN)
+#  define LZO_INFO_ABI_ENDIAN       "be"
+#elif defined(LZO_ABI_LITTLE_ENDIAN)
+#  define LZO_INFO_ABI_ENDIAN       "le"
+#elif defined(LZO_ABI_NEUTRAL_ENDIAN)
+#  define LZO_INFO_ABI_ENDIAN       "neutral"
+#endif
+#if (LZO_SIZEOF_INT == 1 && LZO_SIZEOF_LONG == 2 && LZO_SIZEOF_VOID_P == 2)
+#  define LZO_ABI_I8LP16         1
+#  define LZO_INFO_ABI_PM       "i8lp16"
+#elif (LZO_SIZEOF_INT == 2 && LZO_SIZEOF_LONG == 2 && LZO_SIZEOF_VOID_P == 2)
+#  define LZO_ABI_ILP16         1
+#  define LZO_INFO_ABI_PM       "ilp16"
+#elif (LZO_SIZEOF_INT == 4 && LZO_SIZEOF_LONG == 4 && LZO_SIZEOF_VOID_P == 4)
+#  define LZO_ABI_ILP32         1
+#  define LZO_INFO_ABI_PM       "ilp32"
+#elif (LZO_SIZEOF_INT == 4 && LZO_SIZEOF_LONG == 4 && LZO_SIZEOF_VOID_P == 8 && LZO_SIZEOF_SIZE_T == 8)
+#  define LZO_ABI_LLP64         1
+#  define LZO_INFO_ABI_PM       "llp64"
+#elif (LZO_SIZEOF_INT == 4 && LZO_SIZEOF_LONG == 8 && LZO_SIZEOF_VOID_P == 8)
+#  define LZO_ABI_LP64          1
+#  define LZO_INFO_ABI_PM       "lp64"
+#elif (LZO_SIZEOF_INT == 8 && LZO_SIZEOF_LONG == 8 && LZO_SIZEOF_VOID_P == 8)
+#  define LZO_ABI_ILP64         1
+#  define LZO_INFO_ABI_PM       "ilp64"
+#elif (LZO_SIZEOF_INT == 4 && LZO_SIZEOF_LONG == 8 && LZO_SIZEOF_VOID_P == 4)
+#  define LZO_ABI_IP32L64       1
+#  define LZO_INFO_ABI_PM       "ip32l64"
+#endif
+#if !defined(__LZO_LIBC_OVERRIDE)
+#if defined(LZO_LIBC_NAKED)
+#  define LZO_INFO_LIBC         "naked"
+#elif defined(LZO_LIBC_FREESTANDING)
+#  define LZO_INFO_LIBC         "freestanding"
+#elif defined(LZO_LIBC_MOSTLY_FREESTANDING)
+#  define LZO_INFO_LIBC         "mfreestanding"
+#elif defined(LZO_LIBC_ISOC90)
+#  define LZO_INFO_LIBC         "isoc90"
+#elif defined(LZO_LIBC_ISOC99)
+#  define LZO_INFO_LIBC         "isoc99"
+#elif defined(__dietlibc__)
+#  define LZO_LIBC_DIETLIBC     1
+#  define LZO_INFO_LIBC         "dietlibc"
+#elif defined(_NEWLIB_VERSION)
+#  define LZO_LIBC_NEWLIB       1
+#  define LZO_INFO_LIBC         "newlib"
+#elif defined(__UCLIBC__) && defined(__UCLIBC_MAJOR__) && defined(__UCLIBC_MINOR__)
+#  if defined(__UCLIBC_SUBLEVEL__)
+#    define LZO_LIBC_UCLIBC     (__UCLIBC_MAJOR__ * 0x10000L + __UCLIBC_MINOR__ * 0x100 + __UCLIBC_SUBLEVEL__)
+#  else
+#    define LZO_LIBC_UCLIBC     0x00090bL
+#  endif
+#  define LZO_INFO_LIBC         "uclibc"
+#elif defined(__GLIBC__) && defined(__GLIBC_MINOR__)
+#  define LZO_LIBC_GLIBC        (__GLIBC__ * 0x10000L + __GLIBC_MINOR__ * 0x100)
+#  define LZO_INFO_LIBC         "glibc"
+#elif (LZO_CC_MWERKS) && defined(__MSL__)
+#  define LZO_LIBC_MSL          __MSL__
+#  define LZO_INFO_LIBC         "msl"
+#else
+#  define LZO_LIBC_DEFAULT      1
+#  define LZO_INFO_LIBC         "default"
+#endif
+#endif
+#if (LZO_CC_GNUC >= 0x020800ul)
+#  define __lzo_gnuc_extension__ __extension__
+#elif (LZO_CC_LLVM || LZO_CC_PATHSCALE)
+#  define __lzo_gnuc_extension__ __extension__
+#else
+#  define __lzo_gnuc_extension__
+#endif
+#if (LZO_CC_CILLY || LZO_CC_GNUC || LZO_CC_LLVM || LZO_CC_PATHSCALE || LZO_CC_PGI)
+#  define lzo_alignof(e)        __alignof__(e)
+#elif (LZO_CC_INTELC && (__INTEL_COMPILER >= 700))
+#  define lzo_alignof(e)        __alignof__(e)
+#elif (LZO_CC_MSC && (_MSC_VER >= 1300))
+#  define lzo_alignof(e)        __alignof(e)
+#endif
+#if (LZO_CC_TURBOC && (__TURBOC__ <= 0x0295))
+#elif defined(__cplusplus)
+#  define __lzo_inline          inline
+#elif (LZO_CC_BORLANDC && (__BORLANDC__ >= 0x0550))
+#  define __lzo_inline          __inline
+#elif (LZO_CC_CILLY || LZO_CC_GNUC || LZO_CC_LLVM || LZO_CC_PATHSCALE || LZO_CC_PGI)
+#  define __lzo_inline          __inline__
+#elif (LZO_CC_DMC)
+#  define __lzo_inline          __inline
+#elif (LZO_CC_INTELC)
+#  define __lzo_inline          __inline
+#elif (LZO_CC_MWERKS && (__MWERKS__ >= 0x2405))
+#  define __lzo_inline          __inline
+#elif (LZO_CC_MSC && (_MSC_VER >= 900))
+#  define __lzo_inline          __inline
+#elif defined(__STDC_VERSION__) && (__STDC_VERSION__ >= 199901L)
+#  define __lzo_inline          inline
+#endif
+#if (LZO_CC_GNUC >= 0x030200ul)
+#  define __lzo_forceinline     __inline__ __attribute__((__always_inline__))
+#elif (LZO_CC_INTELC && (__INTEL_COMPILER >= 450) && (LZO_OS_WIN32 || LZO_OS_WIN64))
+#  define __lzo_forceinline     __forceinline
+#elif (LZO_CC_INTELC && (__INTEL_COMPILER >= 800))
+#  define __lzo_forceinline     __inline__ __attribute__((__always_inline__))
+#elif (LZO_CC_LLVM || LZO_CC_PATHSCALE)
+#  define __lzo_forceinline     __inline__ __attribute__((__always_inline__))
+#elif (LZO_CC_MSC && (_MSC_VER >= 1200))
+#  define __lzo_forceinline     __forceinline
+#endif
+#if (LZO_CC_GNUC >= 0x030200ul)
+#  define __lzo_noinline        __attribute__((__noinline__))
+#elif (LZO_CC_INTELC && (__INTEL_COMPILER >= 600) && (LZO_OS_WIN32 || LZO_OS_WIN64))
+#  define __lzo_noinline        __declspec(noinline)
+#elif (LZO_CC_INTELC && (__INTEL_COMPILER >= 800))
+#  define __lzo_noinline        __attribute__((__noinline__))
+#elif (LZO_CC_LLVM || LZO_CC_PATHSCALE)
+#  define __lzo_noinline        __attribute__((__noinline__))
+#elif (LZO_CC_MSC && (_MSC_VER >= 1300))
+#  define __lzo_noinline        __declspec(noinline)
+#elif (LZO_CC_MWERKS && (__MWERKS__ >= 0x3200) && (LZO_OS_WIN32 || LZO_OS_WIN64))
+#  if defined(__cplusplus)
+#  else
+#    define __lzo_noinline      __declspec(noinline)
+#  endif
+#endif
+#if (defined(__lzo_forceinline) || defined(__lzo_noinline)) && !defined(__lzo_inline)
+#  error "this should not happen"
+#endif
+#if (LZO_CC_GNUC >= 0x020700ul)
+#  define __lzo_noreturn        __attribute__((__noreturn__))
+#elif (LZO_CC_INTELC && (__INTEL_COMPILER >= 450) && (LZO_OS_WIN32 || LZO_OS_WIN64))
+#  define __lzo_noreturn        __declspec(noreturn)
+#elif (LZO_CC_INTELC && (__INTEL_COMPILER >= 600) && (LZO_OS_POSIX))
+#  define __lzo_noreturn        __attribute__((__noreturn__))
+#elif (LZO_CC_LLVM || LZO_CC_PATHSCALE)
+#  define __lzo_noreturn        __attribute__((__noreturn__))
+#elif (LZO_CC_MSC && (_MSC_VER >= 1200))
+#  define __lzo_noreturn        __declspec(noreturn)
+#endif
+#if (LZO_CC_GNUC >= 0x030400ul)
+#  define __lzo_constructor     __attribute__((__constructor__,__used__))
+#elif (LZO_CC_GNUC >= 0x020700ul)
+#  define __lzo_constructor     __attribute__((__constructor__))
+#elif (LZO_CC_LLVM || LZO_CC_PATHSCALE)
+#  define __lzo_constructor     __attribute__((__constructor__))
+#endif
+#if (LZO_CC_GNUC >= 0x030400ul)
+#  define __lzo_destructor      __attribute__((__destructor__,__used__))
+#elif (LZO_CC_GNUC >= 0x020700ul)
+#  define __lzo_destructor      __attribute__((__destructor__))
+#elif (LZO_CC_LLVM || LZO_CC_PATHSCALE)
+#  define __lzo_destructor      __attribute__((__destructor__))
+#endif
+#if defined(__lzo_destructor) && !defined(__lzo_constructor)
+#  error "this should not happen"
+#endif
+#if (LZO_CC_GNUC >= 0x030200ul)
+#  define __lzo_likely(e)       (__builtin_expect(!!(e),1))
+#  define __lzo_unlikely(e)     (__builtin_expect(!!(e),0))
+#elif (LZO_CC_INTELC && (__INTEL_COMPILER >= 800))
+#  define __lzo_likely(e)       (__builtin_expect(!!(e),1))
+#  define __lzo_unlikely(e)     (__builtin_expect(!!(e),0))
+#elif (LZO_CC_LLVM || LZO_CC_PATHSCALE)
+#  define __lzo_likely(e)       (__builtin_expect(!!(e),1))
+#  define __lzo_unlikely(e)     (__builtin_expect(!!(e),0))
+#else
+#  define __lzo_likely(e)       (e)
+#  define __lzo_unlikely(e)     (e)
+#endif
+#if !defined(LZO_UNUSED)
+#  if (LZO_CC_BORLANDC && (__BORLANDC__ >= 0x0600))
+#    define LZO_UNUSED(var)         ((void) &var)
+#  elif (LZO_CC_BORLANDC || LZO_CC_HIGHC || LZO_CC_NDPC || LZO_CC_PELLESC || LZO_CC_TURBOC)
+#    define LZO_UNUSED(var)         if (&var) ; else
+#  elif (LZO_CC_GNUC || LZO_CC_LLVM || LZO_CC_PATHSCALE)
+#    define LZO_UNUSED(var)         ((void) var)
+#  elif (LZO_CC_MSC && (_MSC_VER < 900))
+#    define LZO_UNUSED(var)         if (&var) ; else
+#  elif (LZO_CC_KEILC)
+#    define LZO_UNUSED(var)         {extern int __lzo_unused[1-2*!(sizeof(var)>0)];}
+#  elif (LZO_CC_PACIFICC)
+#    define LZO_UNUSED(var)         ((void) sizeof(var))
+#  elif (LZO_CC_WATCOMC) && defined(__cplusplus)
+#    define LZO_UNUSED(var)         ((void) var)
+#  else
+#    define LZO_UNUSED(var)         ((void) &var)
+#  endif
+#endif
+#if !defined(LZO_UNUSED_FUNC)
+#  if (LZO_CC_BORLANDC && (__BORLANDC__ >= 0x0600))
+#    define LZO_UNUSED_FUNC(func)   ((void) func)
+#  elif (LZO_CC_BORLANDC || LZO_CC_NDPC || LZO_CC_TURBOC)
+#    define LZO_UNUSED_FUNC(func)   if (func) ; else
+#  elif (LZO_CC_LLVM)
+#    define LZO_UNUSED_FUNC(func)   ((void) &func)
+#  elif (LZO_CC_MSC && (_MSC_VER < 900))
+#    define LZO_UNUSED_FUNC(func)   if (func) ; else
+#  elif (LZO_CC_MSC)
+#    define LZO_UNUSED_FUNC(func)   ((void) &func)
+#  elif (LZO_CC_KEILC || LZO_CC_PELLESC)
+#    define LZO_UNUSED_FUNC(func)   {extern int __lzo_unused[1-2*!(sizeof((int)func)>0)];}
+#  else
+#    define LZO_UNUSED_FUNC(func)   ((void) func)
+#  endif
+#endif
+#if !defined(LZO_UNUSED_LABEL)
+#  if (LZO_CC_WATCOMC) && defined(__cplusplus)
+#    define LZO_UNUSED_LABEL(l)     switch(0) case 1:goto l
+#  elif (LZO_CC_INTELC || LZO_CC_WATCOMC)
+#    define LZO_UNUSED_LABEL(l)     if (0) goto l
+#  else
+#    define LZO_UNUSED_LABEL(l)     switch(0) case 1:goto l
+#  endif
+#endif
+#if !defined(LZO_COMPILE_TIME_ASSERT_HEADER)
+#  if (LZO_CC_AZTECC || LZO_CC_ZORTECHC)
+#    define LZO_COMPILE_TIME_ASSERT_HEADER(e)  extern int __lzo_cta[1-!(e)];
+#  elif (LZO_CC_DMC || LZO_CC_SYMANTECC)
+#    define LZO_COMPILE_TIME_ASSERT_HEADER(e)  extern int __lzo_cta[1u-2*!(e)];
+#  elif (LZO_CC_TURBOC && (__TURBOC__ == 0x0295))
+#    define LZO_COMPILE_TIME_ASSERT_HEADER(e)  extern int __lzo_cta[1-!(e)];
+#  else
+#    define LZO_COMPILE_TIME_ASSERT_HEADER(e)  extern int __lzo_cta[1-2*!(e)];
+#  endif
+#endif
+#if !defined(LZO_COMPILE_TIME_ASSERT)
+#  if (LZO_CC_AZTECC)
+#    define LZO_COMPILE_TIME_ASSERT(e)  {typedef int __lzo_cta_t[1-!(e)];}
+#  elif (LZO_CC_DMC || LZO_CC_PACIFICC || LZO_CC_SYMANTECC || LZO_CC_ZORTECHC)
+#    define LZO_COMPILE_TIME_ASSERT(e)  switch(0) case 1:case !(e):break;
+#  elif (LZO_CC_MSC && (_MSC_VER < 900))
+#    define LZO_COMPILE_TIME_ASSERT(e)  switch(0) case 1:case !(e):break;
+#  elif (LZO_CC_TURBOC && (__TURBOC__ == 0x0295))
+#    define LZO_COMPILE_TIME_ASSERT(e)  switch(0) case 1:case !(e):break;
+#  else
+#    define LZO_COMPILE_TIME_ASSERT(e)  {typedef int __lzo_cta_t[1-2*!(e)];}
+#  endif
+#endif
+#if (LZO_ARCH_I086 || LZO_ARCH_I386) && (LZO_OS_DOS16 || LZO_OS_DOS32 || LZO_OS_OS2 || LZO_OS_OS216 || LZO_OS_WIN16 || LZO_OS_WIN32 || LZO_OS_WIN64)
+#  if (LZO_CC_GNUC || LZO_CC_HIGHC || LZO_CC_NDPC || LZO_CC_PACIFICC)
+#  elif (LZO_CC_DMC || LZO_CC_SYMANTECC || LZO_CC_ZORTECHC)
+#    define __lzo_cdecl                 __cdecl
+#    define __lzo_cdecl_atexit
+#    define __lzo_cdecl_main            __cdecl
+#    if (LZO_OS_OS2 && (LZO_CC_DMC || LZO_CC_SYMANTECC))
+#      define __lzo_cdecl_qsort         __pascal
+#    elif (LZO_OS_OS2 && (LZO_CC_ZORTECHC))
+#      define __lzo_cdecl_qsort         _stdcall
+#    else
+#      define __lzo_cdecl_qsort         __cdecl
+#    endif
+#  elif (LZO_CC_WATCOMC)
+#    define __lzo_cdecl                 __cdecl
+#  else
+#    define __lzo_cdecl                 __cdecl
+#    define __lzo_cdecl_atexit          __cdecl
+#    define __lzo_cdecl_main            __cdecl
+#    define __lzo_cdecl_qsort           __cdecl
+#  endif
+#  if (LZO_CC_GNUC || LZO_CC_HIGHC || LZO_CC_NDPC || LZO_CC_PACIFICC || LZO_CC_WATCOMC)
+#  elif (LZO_OS_OS2 && (LZO_CC_DMC || LZO_CC_SYMANTECC))
+#    define __lzo_cdecl_sighandler      __pascal
+#  elif (LZO_OS_OS2 && (LZO_CC_ZORTECHC))
+#    define __lzo_cdecl_sighandler      _stdcall
+#  elif (LZO_CC_MSC && (_MSC_VER >= 1400)) && defined(_M_CEE_PURE)
+#    define __lzo_cdecl_sighandler      __clrcall
+#  elif (LZO_CC_MSC && (_MSC_VER >= 600 && _MSC_VER < 700))
+#    if defined(_DLL)
+#      define __lzo_cdecl_sighandler    _far _cdecl _loadds
+#    elif defined(_MT)
+#      define __lzo_cdecl_sighandler    _far _cdecl
+#    else
+#      define __lzo_cdecl_sighandler    _cdecl
+#    endif
+#  else
+#    define __lzo_cdecl_sighandler      __cdecl
+#  endif
+#elif (LZO_ARCH_M68K && LZO_OS_TOS && (LZO_CC_PUREC || LZO_CC_TURBOC))
+#  define __lzo_cdecl                   cdecl
+#endif
+#if !defined(__lzo_cdecl)
+#  define __lzo_cdecl
+#endif
+#if !defined(__lzo_cdecl_atexit)
+#  define __lzo_cdecl_atexit
+#endif
+#if !defined(__lzo_cdecl_main)
+#  define __lzo_cdecl_main
+#endif
+#if !defined(__lzo_cdecl_qsort)
+#  define __lzo_cdecl_qsort
+#endif
+#if !defined(__lzo_cdecl_sighandler)
+#  define __lzo_cdecl_sighandler
+#endif
+#if !defined(__lzo_cdecl_va)
+#  define __lzo_cdecl_va                __lzo_cdecl
+#endif
+#if (LZO_OS_CYGWIN || (LZO_OS_EMX && defined(__RSXNT__)) || LZO_OS_WIN32 || LZO_OS_WIN64)
+#  if (LZO_CC_WATCOMC && (__WATCOMC__ < 1000))
+#  elif (LZO_OS_WIN32 && LZO_CC_GNUC) && defined(__PW32__)
+#  elif ((LZO_OS_CYGWIN || defined(__MINGW32__)) && (LZO_CC_GNUC && (LZO_CC_GNUC < 0x025f00ul)))
+#  else
+#    define LZO_HAVE_WINDOWS_H 1
+#  endif
+#endif
+#if (LZO_ARCH_ALPHA)
+#  define LZO_OPT_AVOID_UINT_INDEX  1
+#  define LZO_OPT_AVOID_SHORT       1
+#  define LZO_OPT_AVOID_USHORT      1
+#elif (LZO_ARCH_AMD64)
+#  define LZO_OPT_AVOID_INT_INDEX   1
+#  define LZO_OPT_AVOID_UINT_INDEX  1
+#  define LZO_OPT_UNALIGNED16       1
+#  define LZO_OPT_UNALIGNED32       1
+#  define LZO_OPT_UNALIGNED64       1
+#elif (LZO_ARCH_ARM && LZO_ARCH_ARM_THUMB)
+#elif (LZO_ARCH_ARM)
+#  define LZO_OPT_AVOID_SHORT       1
+#  define LZO_OPT_AVOID_USHORT      1
+#elif (LZO_ARCH_CRIS)
+#  define LZO_OPT_UNALIGNED16       1
+#  define LZO_OPT_UNALIGNED32       1
+#elif (LZO_ARCH_I386)
+#  define LZO_OPT_UNALIGNED16       1
+#  define LZO_OPT_UNALIGNED32       1
+#elif (LZO_ARCH_IA64)
+#  define LZO_OPT_AVOID_INT_INDEX   1
+#  define LZO_OPT_AVOID_UINT_INDEX  1
+#  define LZO_OPT_PREFER_POSTINC    1
+#elif (LZO_ARCH_M68K)
+#  define LZO_OPT_PREFER_POSTINC    1
+#  define LZO_OPT_PREFER_PREDEC     1
+#  if defined(__mc68020__) && !defined(__mcoldfire__)
+#    define LZO_OPT_UNALIGNED16     1
+#    define LZO_OPT_UNALIGNED32     1
+#  endif
+#elif (LZO_ARCH_MIPS)
+#  define LZO_OPT_AVOID_UINT_INDEX  1
+#elif (LZO_ARCH_POWERPC)
+#  define LZO_OPT_PREFER_PREINC     1
+#  define LZO_OPT_PREFER_PREDEC     1
+#  if defined(LZO_ABI_BIG_ENDIAN)
+#    define LZO_OPT_UNALIGNED16     1
+#    define LZO_OPT_UNALIGNED32     1
+#  endif
+#elif (LZO_ARCH_S390)
+#  define LZO_OPT_UNALIGNED16       1
+#  define LZO_OPT_UNALIGNED32       1
+#  if (LZO_SIZEOF_SIZE_T == 8)
+#    define LZO_OPT_UNALIGNED64     1
+#  endif
+#elif (LZO_ARCH_SH)
+#  define LZO_OPT_PREFER_POSTINC    1
+#  define LZO_OPT_PREFER_PREDEC     1
+#endif
+#if !defined(LZO_CFG_NO_INLINE_ASM)
+#if defined(LZO_CC_LLVM)
+#  define LZO_CFG_NO_INLINE_ASM 1
+#endif
+#endif
+#if !defined(LZO_CFG_NO_UNALIGNED)
+#if defined(LZO_ABI_NEUTRAL_ENDIAN) || defined(LZO_ARCH_GENERIC)
+#  define LZO_CFG_NO_UNALIGNED 1
+#endif
+#endif
+#if defined(LZO_CFG_NO_UNALIGNED)
+#  undef LZO_OPT_UNALIGNED16
+#  undef LZO_OPT_UNALIGNED32
+#  undef LZO_OPT_UNALIGNED64
+#endif
+#if defined(LZO_CFG_NO_INLINE_ASM)
+#elif (LZO_ARCH_I386 && (LZO_OS_DOS32 || LZO_OS_WIN32) && (LZO_CC_DMC || LZO_CC_INTELC || LZO_CC_MSC || LZO_CC_PELLESC))
+#  define LZO_ASM_SYNTAX_MSC 1
+#elif (LZO_OS_WIN64 && (LZO_CC_DMC || LZO_CC_INTELC || LZO_CC_MSC || LZO_CC_PELLESC))
+#elif (LZO_ARCH_I386 && (LZO_CC_GNUC || LZO_CC_INTELC || LZO_CC_PATHSCALE))
+#  define LZO_ASM_SYNTAX_GNUC 1
+#elif (LZO_ARCH_AMD64 && (LZO_CC_GNUC || LZO_CC_INTELC || LZO_CC_PATHSCALE))
+#  define LZO_ASM_SYNTAX_GNUC 1
+#endif
+#if (LZO_ASM_SYNTAX_GNUC)
+#if (LZO_ARCH_I386 && LZO_CC_GNUC && (LZO_CC_GNUC < 0x020000ul))
+#  define __LZO_ASM_CLOBBER         "ax"
+#elif (LZO_CC_INTELC)
+#  define __LZO_ASM_CLOBBER         "memory"
+#else
+#  define __LZO_ASM_CLOBBER         "cc", "memory"
+#endif
+#endif
+#if defined(__LZO_INFOSTR_MM)
+#elif (LZO_MM_FLAT) && (defined(__LZO_INFOSTR_PM) || defined(LZO_INFO_ABI_PM))
+#  define __LZO_INFOSTR_MM          ""
+#elif defined(LZO_INFO_MM)
+#  define __LZO_INFOSTR_MM          "." LZO_INFO_MM
+#else
+#  define __LZO_INFOSTR_MM          ""
+#endif
+#if defined(__LZO_INFOSTR_PM)
+#elif defined(LZO_INFO_ABI_PM)
+#  define __LZO_INFOSTR_PM          "." LZO_INFO_ABI_PM
+#else
+#  define __LZO_INFOSTR_PM          ""
+#endif
+#if defined(__LZO_INFOSTR_ENDIAN)
+#elif defined(LZO_INFO_ABI_ENDIAN)
+#  define __LZO_INFOSTR_ENDIAN      "." LZO_INFO_ABI_ENDIAN
+#else
+#  define __LZO_INFOSTR_ENDIAN      ""
+#endif
+#if defined(__LZO_INFOSTR_OSNAME)
+#elif defined(LZO_INFO_OS_CONSOLE)
+#  define __LZO_INFOSTR_OSNAME      LZO_INFO_OS "." LZO_INFO_OS_CONSOLE
+#elif defined(LZO_INFO_OS_POSIX)
+#  define __LZO_INFOSTR_OSNAME      LZO_INFO_OS "." LZO_INFO_OS_POSIX
+#else
+#  define __LZO_INFOSTR_OSNAME      LZO_INFO_OS
+#endif
+#if defined(__LZO_INFOSTR_LIBC)
+#elif defined(LZO_INFO_LIBC)
+#  define __LZO_INFOSTR_LIBC        "." LZO_INFO_LIBC
+#else
+#  define __LZO_INFOSTR_LIBC        ""
+#endif
+#if defined(__LZO_INFOSTR_CCVER)
+#elif defined(LZO_INFO_CCVER)
+#  define __LZO_INFOSTR_CCVER       " " LZO_INFO_CCVER
+#else
+#  define __LZO_INFOSTR_CCVER       ""
+#endif
+#define LZO_INFO_STRING \
+    LZO_INFO_ARCH __LZO_INFOSTR_MM __LZO_INFOSTR_PM __LZO_INFOSTR_ENDIAN \
+    " " __LZO_INFOSTR_OSNAME __LZO_INFOSTR_LIBC " " LZO_INFO_CC __LZO_INFOSTR_CCVER
+
+#endif
+
 #endif
 
 #undef LZO_HAVE_CONFIG_H
 #include "minilzo.h"
 
-#if !defined(MINILZO_VERSION) || (MINILZO_VERSION != 0x1080)
+#if !defined(MINILZO_VERSION) || (MINILZO_VERSION != 0x2020)
 #  error "version mismatch in miniLZO source files"
 #endif
 
@@ -55,109 +1576,172 @@
 #  define LZO_HAVE_CONFIG_H
 #endif
 
-#if !defined(LZO_NO_SYS_TYPES_H)
-#  include <sys/types.h>
-#endif
-#include <stdio.h>
-
 #ifndef __LZO_CONF_H
 #define __LZO_CONF_H
 
 #if !defined(__LZO_IN_MINILZO)
-#  ifndef __LZOCONF_H
-#    include <lzoconf.h>
-#  endif
+#if defined(LZO_CFG_FREESTANDING)
+#  define LZO_LIBC_FREESTANDING 1
+#  define LZO_OS_FREESTANDING 1
+#  define ACC_LIBC_FREESTANDING 1
+#  define ACC_OS_FREESTANDING 1
+#endif
+#if defined(LZO_CFG_NO_UNALIGNED)
+#  define ACC_CFG_NO_UNALIGNED 1
+#endif
+#if defined(LZO_HAVE_CONFIG_H)
+#  define ACC_CONFIG_NO_HEADER 1
+#endif
+#if defined(__LZOCONF_H) || defined(__LZOCONF_H_INCLUDED)
+#  error "include this file first"
+#endif
+#include "lzo/lzoconf.h"
 #endif
 
-#if defined(__BOUNDS_CHECKING_ON)
+#if (LZO_VERSION < 0x02000) || !defined(__LZOCONF_H_INCLUDED)
+#  error "version mismatch"
+#endif
+
+#if (LZO_CC_BORLANDC && LZO_ARCH_I086)
+#  pragma option -h
+#endif
+
+#if (LZO_CC_MSC && (_MSC_VER >= 1000))
+#  pragma warning(disable: 4127 4701)
+#endif
+#if (LZO_CC_MSC && (_MSC_VER >= 1300))
+#  pragma warning(disable: 4820)
+#  pragma warning(disable: 4514 4710 4711)
+#endif
+
+#if defined(__LZO_MMODEL_HUGE) && (!LZO_HAVE_MM_HUGE_PTR)
+#  error "this should not happen - check defines for __huge"
+#endif
+
+#if defined(__LZO_IN_MINILZO) || defined(LZO_CFG_FREESTANDING)
+#elif (LZO_OS_DOS16 || LZO_OS_OS216 || LZO_OS_WIN16)
+#  define ACC_WANT_ACC_INCD_H 1
+#  define ACC_WANT_ACC_INCE_H 1
+#  define ACC_WANT_ACC_INCI_H 1
+#elif 1
+#  include <string.h>
+#else
+#  define ACC_WANT_ACC_INCD_H 1
+#endif
+
+#if (LZO_ARCH_I086)
+#  define ACC_MM_AHSHIFT        LZO_MM_AHSHIFT
+#  define ACC_PTR_FP_OFF(x)     (((const unsigned __far*)&(x))[0])
+#  define ACC_PTR_FP_SEG(x)     (((const unsigned __far*)&(x))[1])
+#  define ACC_PTR_MK_FP(s,o)    ((void __far*)(((unsigned long)(s)<<16)+(unsigned)(o)))
+#endif
+
+#if !defined(lzo_uintptr_t)
+#  if defined(__LZO_MMODEL_HUGE)
+#    define lzo_uintptr_t       unsigned long
+#  elif 1 && defined(LZO_OS_OS400) && (LZO_SIZEOF_VOID_P == 16)
+#    define __LZO_UINTPTR_T_IS_POINTER 1
+     typedef char*              lzo_uintptr_t;
+#    define lzo_uintptr_t       lzo_uintptr_t
+#  elif (LZO_SIZEOF_SIZE_T == LZO_SIZEOF_VOID_P)
+#    define lzo_uintptr_t       size_t
+#  elif (LZO_SIZEOF_LONG == LZO_SIZEOF_VOID_P)
+#    define lzo_uintptr_t       unsigned long
+#  elif (LZO_SIZEOF_INT == LZO_SIZEOF_VOID_P)
+#    define lzo_uintptr_t       unsigned int
+#  elif (LZO_SIZEOF_LONG_LONG == LZO_SIZEOF_VOID_P)
+#    define lzo_uintptr_t       unsigned long long
+#  else
+#    define lzo_uintptr_t       size_t
+#  endif
+#endif
+LZO_COMPILE_TIME_ASSERT_HEADER(sizeof(lzo_uintptr_t) >= sizeof(lzo_voidp))
+
+#if 1 && !defined(LZO_CFG_FREESTANDING)
+#if 1 && !defined(HAVE_STRING_H)
+#define HAVE_STRING_H 1
+#endif
+#if 1 && !defined(HAVE_MEMCMP)
+#define HAVE_MEMCMP 1
+#endif
+#if 1 && !defined(HAVE_MEMCPY)
+#define HAVE_MEMCPY 1
+#endif
+#if 1 && !defined(HAVE_MEMMOVE)
+#define HAVE_MEMMOVE 1
+#endif
+#if 1 && !defined(HAVE_MEMSET)
+#define HAVE_MEMSET 1
+#endif
+#endif
+
+#if 1 && defined(HAVE_STRING_H)
+#include <string.h>
+#endif
+
+#if defined(LZO_CFG_FREESTANDING)
+#  undef HAVE_MEMCMP
+#  undef HAVE_MEMCPY
+#  undef HAVE_MEMMOVE
+#  undef HAVE_MEMSET
+#endif
+
+#if !defined(HAVE_MEMCMP)
+#  undef memcmp
+#  define memcmp(a,b,c)         lzo_memcmp(a,b,c)
+#elif !defined(__LZO_MMODEL_HUGE)
+#  define lzo_memcmp(a,b,c)     memcmp(a,b,c)
+#endif
+#if !defined(HAVE_MEMCPY)
+#  undef memcpy
+#  define memcpy(a,b,c)         lzo_memcpy(a,b,c)
+#elif !defined(__LZO_MMODEL_HUGE)
+#  define lzo_memcpy(a,b,c)     memcpy(a,b,c)
+#endif
+#if !defined(HAVE_MEMMOVE)
+#  undef memmove
+#  define memmove(a,b,c)        lzo_memmove(a,b,c)
+#elif !defined(__LZO_MMODEL_HUGE)
+#  define lzo_memmove(a,b,c)    memmove(a,b,c)
+#endif
+#if !defined(HAVE_MEMSET)
+#  undef memset
+#  define memset(a,b,c)         lzo_memset(a,b,c)
+#elif !defined(__LZO_MMODEL_HUGE)
+#  define lzo_memset(a,b,c)     memset(a,b,c)
+#endif
+
+#undef NDEBUG
+#if defined(LZO_CFG_FREESTANDING)
+#  undef LZO_DEBUG
+#  define NDEBUG 1
+#  undef assert
+#  define assert(e) ((void)0)
+#else
+#  if !defined(LZO_DEBUG)
+#    define NDEBUG 1
+#  endif
+#  include <assert.h>
+#endif
+
+#if 0 && defined(__BOUNDS_CHECKING_ON)
 #  include <unchecked.h>
 #else
 #  define BOUNDS_CHECKING_OFF_DURING(stmt)      stmt
 #  define BOUNDS_CHECKING_OFF_IN_EXPR(expr)     (expr)
 #endif
 
-#if !defined(LZO_HAVE_CONFIG_H)
-#  include <stddef.h>
-#  include <string.h>
-#  if !defined(NO_STDLIB_H)
-#    include <stdlib.h>
-#  endif
-#  define HAVE_MEMCMP
-#  define HAVE_MEMCPY
-#  define HAVE_MEMMOVE
-#  define HAVE_MEMSET
-#else
-#  include <sys/types.h>
-#  if defined(HAVE_STDDEF_H)
-#    include <stddef.h>
-#  endif
-#  if defined(STDC_HEADERS)
-#    include <string.h>
-#    include <stdlib.h>
-#  endif
+#if !defined(__lzo_inline)
+#  define __lzo_inline
+#endif
+#if !defined(__lzo_forceinline)
+#  define __lzo_forceinline
+#endif
+#if !defined(__lzo_noinline)
+#  define __lzo_noinline
 #endif
 
-#if defined(__LZO_DOS16) || defined(__LZO_WIN16)
-#  define HAVE_MALLOC_H
-#  define HAVE_HALLOC
-#endif
-
-#undef NDEBUG
-#if !defined(LZO_DEBUG)
-#  define NDEBUG
-#endif
-#if defined(LZO_DEBUG) || !defined(NDEBUG)
-#  if !defined(NO_STDIO_H)
-#    include <stdio.h>
-#  endif
-#endif
-#include <assert.h>
-
-#if !defined(LZO_COMPILE_TIME_ASSERT)
-#  define LZO_COMPILE_TIME_ASSERT(expr) \
-	{ typedef int __lzo_compile_time_assert_fail[1 - 2 * !(expr)]; }
-#endif
-
-#if !defined(LZO_UNUSED)
-#  if 1
-#    define LZO_UNUSED(var)     ((void)&var)
-#  elif 0
-#    define LZO_UNUSED(var)     { typedef int __lzo_unused[sizeof(var) ? 2 : 1]; }
-#  else
-#    define LZO_UNUSED(parm)    (parm = parm)
-#  endif
-#endif
-
-#if !defined(__inline__) && !defined(__GNUC__)
-#  if defined(__cplusplus)
-#    define __inline__      inline
-#  else
-#    define __inline__
-#  endif
-#endif
-
-#if defined(NO_MEMCMP)
-#  undef HAVE_MEMCMP
-#endif
-
-#if !defined(HAVE_MEMCMP)
-#  undef memcmp
-#  define memcmp    lzo_memcmp
-#endif
-#if !defined(HAVE_MEMCPY)
-#  undef memcpy
-#  define memcpy    lzo_memcpy
-#endif
-#if !defined(HAVE_MEMMOVE)
-#  undef memmove
-#  define memmove   lzo_memmove
-#endif
-#if !defined(HAVE_MEMSET)
-#  undef memset
-#  define memset    lzo_memset
-#endif
-
-#if 0
+#if 1
 #  define LZO_BYTE(x)       ((unsigned char) (x))
 #else
 #  define LZO_BYTE(x)       ((unsigned char) ((x) & 0xff))
@@ -181,144 +1765,47 @@
 #define LZO_USIZE(bits)     ((lzo_uint) 1 << (bits))
 #define LZO_UMASK(bits)     (LZO_USIZE(bits) - 1)
 
-#define LZO_STYPE_MAX(b)    (((1l  << (8*(b)-2)) - 1l)  + (1l  << (8*(b)-2)))
-#define LZO_UTYPE_MAX(b)    (((1ul << (8*(b)-1)) - 1ul) + (1ul << (8*(b)-1)))
+#if !defined(DMUL)
+#if 0
 
-#if !defined(SIZEOF_UNSIGNED)
-#  if (UINT_MAX == 0xffff)
-#    define SIZEOF_UNSIGNED         2
-#  elif (UINT_MAX == LZO_0xffffffffL)
-#    define SIZEOF_UNSIGNED         4
-#  elif (UINT_MAX >= LZO_0xffffffffL)
-#    define SIZEOF_UNSIGNED         8
-#  else
-#    error "SIZEOF_UNSIGNED"
-#  endif
+#  define DMUL(a,b) ((lzo_xint) ((lzo_uint32)(a) * (lzo_uint32)(b)))
+#else
+#  define DMUL(a,b) ((lzo_xint) ((a) * (b)))
+#endif
 #endif
 
-#if !defined(SIZEOF_UNSIGNED_LONG)
-#  if (ULONG_MAX == LZO_0xffffffffL)
-#    define SIZEOF_UNSIGNED_LONG    4
-#  elif (ULONG_MAX >= LZO_0xffffffffL)
-#    define SIZEOF_UNSIGNED_LONG    8
-#  else
-#    error "SIZEOF_UNSIGNED_LONG"
-#  endif
-#endif
-
-#if !defined(SIZEOF_SIZE_T)
-#  define SIZEOF_SIZE_T             SIZEOF_UNSIGNED
-#endif
-#if !defined(SIZE_T_MAX)
-#  define SIZE_T_MAX                LZO_UTYPE_MAX(SIZEOF_SIZE_T)
-#endif
-
-#if 1 && defined(__LZO_i386) && (UINT_MAX == LZO_0xffffffffL)
-#  if !defined(LZO_UNALIGNED_OK_2) && (USHRT_MAX == 0xffff)
+#if 1 && !defined(LZO_CFG_NO_UNALIGNED)
+#if 1 && (LZO_ARCH_AMD64 || LZO_ARCH_I386)
+#  if (LZO_SIZEOF_SHORT == 2)
 #    define LZO_UNALIGNED_OK_2
 #  endif
-#  if !defined(LZO_UNALIGNED_OK_4) && (LZO_UINT32_MAX == LZO_0xffffffffL)
+#  if (LZO_SIZEOF_INT == 4)
 #    define LZO_UNALIGNED_OK_4
 #  endif
 #endif
-
-#if defined(LZO_UNALIGNED_OK_2) || defined(LZO_UNALIGNED_OK_4)
-#  if !defined(LZO_UNALIGNED_OK)
-#    define LZO_UNALIGNED_OK
-#  endif
 #endif
 
-#if defined(__LZO_NO_UNALIGNED)
-#  undef LZO_UNALIGNED_OK
-#  undef LZO_UNALIGNED_OK_2
-#  undef LZO_UNALIGNED_OK_4
+#if defined(LZO_UNALIGNED_OK_2)
+  LZO_COMPILE_TIME_ASSERT_HEADER(sizeof(short) == 2)
+#endif
+#if defined(LZO_UNALIGNED_OK_4)
+  LZO_COMPILE_TIME_ASSERT_HEADER(sizeof(lzo_uint32) == 4)
+#elif defined(LZO_ALIGNED_OK_4)
+  LZO_COMPILE_TIME_ASSERT_HEADER(sizeof(lzo_uint32) == 4)
 #endif
 
-#if defined(LZO_UNALIGNED_OK_2) && (USHRT_MAX != 0xffff)
-#  error "LZO_UNALIGNED_OK_2 must not be defined on this system"
-#endif
-#if defined(LZO_UNALIGNED_OK_4) && (LZO_UINT32_MAX != LZO_0xffffffffL)
-#  error "LZO_UNALIGNED_OK_4 must not be defined on this system"
-#endif
+#define MEMCPY8_DS(dest,src,len) \
+    lzo_memcpy(dest,src,len); dest += len; src += len
 
-#if defined(__LZO_NO_ALIGNED)
-#  undef LZO_ALIGNED_OK_4
-#endif
+#define BZERO8_PTR(s,l,n) \
+    lzo_memset((lzo_voidp)(s),0,(lzo_uint)(l)*(n))
 
-#if defined(LZO_ALIGNED_OK_4) && (LZO_UINT32_MAX != LZO_0xffffffffL)
-#  error "LZO_ALIGNED_OK_4 must not be defined on this system"
-#endif
-
-#define LZO_LITTLE_ENDIAN       1234
-#define LZO_BIG_ENDIAN          4321
-#define LZO_PDP_ENDIAN          3412
-
-#if !defined(LZO_BYTE_ORDER)
-#  if defined(MFX_BYTE_ORDER)
-#    define LZO_BYTE_ORDER      MFX_BYTE_ORDER
-#  elif defined(__LZO_i386)
-#    define LZO_BYTE_ORDER      LZO_LITTLE_ENDIAN
-#  elif defined(BYTE_ORDER)
-#    define LZO_BYTE_ORDER      BYTE_ORDER
-#  elif defined(__BYTE_ORDER)
-#    define LZO_BYTE_ORDER      __BYTE_ORDER
-#  endif
-#endif
-
-#if defined(LZO_BYTE_ORDER)
-#  if (LZO_BYTE_ORDER != LZO_LITTLE_ENDIAN) && \
-      (LZO_BYTE_ORDER != LZO_BIG_ENDIAN)
-#    error "invalid LZO_BYTE_ORDER"
-#  endif
-#endif
-
-#if defined(LZO_UNALIGNED_OK) && !defined(LZO_BYTE_ORDER)
-#  error "LZO_BYTE_ORDER is not defined"
-#endif
-
-#define LZO_OPTIMIZE_GNUC_i386_IS_BUGGY
-
-#if defined(NDEBUG) && !defined(LZO_DEBUG) && !defined(__LZO_CHECKER)
-#  if defined(__GNUC__) && defined(__i386__)
-#    if !defined(LZO_OPTIMIZE_GNUC_i386_IS_BUGGY)
-#      define LZO_OPTIMIZE_GNUC_i386
-#    endif
-#  endif
-#endif
+#define MEMCPY_DS(dest,src,len) \
+    do *dest++ = *src++; while (--len > 0)
 
 __LZO_EXTERN_C int __lzo_init_done;
-__LZO_EXTERN_C const lzo_byte __lzo_copyright[];
-LZO_EXTERN(const lzo_byte *) lzo_copyright(void);
-__LZO_EXTERN_C const lzo_uint32 _lzo_crc32_table[256];
-
-#define _LZO_STRINGIZE(x)           #x
-#define _LZO_MEXPAND(x)             _LZO_STRINGIZE(x)
-
-#define _LZO_CONCAT2(a,b)           a ## b
-#define _LZO_CONCAT3(a,b,c)         a ## b ## c
-#define _LZO_CONCAT4(a,b,c,d)       a ## b ## c ## d
-#define _LZO_CONCAT5(a,b,c,d,e)     a ## b ## c ## d ## e
-
-#define _LZO_ECONCAT2(a,b)          _LZO_CONCAT2(a,b)
-#define _LZO_ECONCAT3(a,b,c)        _LZO_CONCAT3(a,b,c)
-#define _LZO_ECONCAT4(a,b,c,d)      _LZO_CONCAT4(a,b,c,d)
-#define _LZO_ECONCAT5(a,b,c,d,e)    _LZO_CONCAT5(a,b,c,d,e)
-
-#if 0
-
-#define __LZO_IS_COMPRESS_QUERY(i,il,o,ol,w)    ((lzo_voidp)(o) == (w))
-#define __LZO_QUERY_COMPRESS(i,il,o,ol,w,n,s) \
-		(*ol = (n)*(s), LZO_E_OK)
-
-#define __LZO_IS_DECOMPRESS_QUERY(i,il,o,ol,w)  ((lzo_voidp)(o) == (w))
-#define __LZO_QUERY_DECOMPRESS(i,il,o,ol,w,n,s) \
-		(*ol = (n)*(s), LZO_E_OK)
-
-#define __LZO_IS_OPTIMIZE_QUERY(i,il,o,ol,w)    ((lzo_voidp)(o) == (w))
-#define __LZO_QUERY_OPTIMIZE(i,il,o,ol,w,n,s) \
-		(*ol = (n)*(s), LZO_E_OK)
-
-#endif
+__LZO_EXTERN_C const char __lzo_copyright[];
+LZO_EXTERN(const lzo_bytep) lzo_copyright(void);
 
 #ifndef __LZO_PTR_H
 #define __LZO_PTR_H
@@ -327,84 +1814,23 @@ __LZO_EXTERN_C const lzo_uint32 _lzo_crc32_table[256];
 extern "C" {
 #endif
 
-#if defined(__LZO_DOS16) || defined(__LZO_WIN16)
-#  include <dos.h>
-#  if 1 && defined(__WATCOMC__)
-#    include <i86.h>
-     __LZO_EXTERN_C unsigned char _HShift;
-#    define __LZO_HShift    _HShift
-#  elif 1 && defined(_MSC_VER)
-     __LZO_EXTERN_C unsigned short __near _AHSHIFT;
-#    define __LZO_HShift    ((unsigned) &_AHSHIFT)
-#  elif defined(__LZO_WIN16)
-#    define __LZO_HShift    3
+#if !defined(lzo_uintptr_t)
+#  if defined(__LZO_MMODEL_HUGE)
+#    define lzo_uintptr_t   unsigned long
 #  else
-#    define __LZO_HShift    12
-#  endif
-#  if !defined(_FP_SEG) && defined(FP_SEG)
-#    define _FP_SEG         FP_SEG
-#  endif
-#  if !defined(_FP_OFF) && defined(FP_OFF)
-#    define _FP_OFF         FP_OFF
-#  endif
-#endif
-
-#if !defined(lzo_ptrdiff_t)
-#  if (UINT_MAX >= LZO_0xffffffffL)
-     typedef ptrdiff_t          lzo_ptrdiff_t;
-#  else
-     typedef long               lzo_ptrdiff_t;
-#  endif
-#endif
-
-#if !defined(__LZO_HAVE_PTR_T)
-#  if defined(lzo_ptr_t)
-#    define __LZO_HAVE_PTR_T
-#  endif
-#endif
-#if !defined(__LZO_HAVE_PTR_T)
-#  if defined(SIZEOF_CHAR_P) && defined(SIZEOF_UNSIGNED_LONG)
-#    if (SIZEOF_CHAR_P == SIZEOF_UNSIGNED_LONG)
-       typedef unsigned long    lzo_ptr_t;
-       typedef long             lzo_sptr_t;
-#      define __LZO_HAVE_PTR_T
+#    define lzo_uintptr_t   acc_uintptr_t
+#    ifdef __ACC_INTPTR_T_IS_POINTER
+#      define __LZO_UINTPTR_T_IS_POINTER 1
 #    endif
 #  endif
 #endif
-#if !defined(__LZO_HAVE_PTR_T)
-#  if defined(SIZEOF_CHAR_P) && defined(SIZEOF_UNSIGNED)
-#    if (SIZEOF_CHAR_P == SIZEOF_UNSIGNED)
-       typedef unsigned int     lzo_ptr_t;
-       typedef int              lzo_sptr_t;
-#      define __LZO_HAVE_PTR_T
-#    endif
-#  endif
-#endif
-#if !defined(__LZO_HAVE_PTR_T)
-#  if defined(SIZEOF_CHAR_P) && defined(SIZEOF_UNSIGNED_SHORT)
-#    if (SIZEOF_CHAR_P == SIZEOF_UNSIGNED_SHORT)
-       typedef unsigned short   lzo_ptr_t;
-       typedef short            lzo_sptr_t;
-#      define __LZO_HAVE_PTR_T
-#    endif
-#  endif
-#endif
-#if !defined(__LZO_HAVE_PTR_T)
-#  if defined(LZO_HAVE_CONFIG_H) || defined(SIZEOF_CHAR_P)
-#    error "no suitable type for lzo_ptr_t"
-#  else
-     typedef unsigned long      lzo_ptr_t;
-     typedef long               lzo_sptr_t;
-#    define __LZO_HAVE_PTR_T
-#  endif
-#endif
 
-#if defined(__LZO_DOS16) || defined(__LZO_WIN16)
+#if (LZO_ARCH_I086)
 #define PTR(a)              ((lzo_bytep) (a))
-#define PTR_ALIGNED_4(a)    ((_FP_OFF(a) & 3) == 0)
-#define PTR_ALIGNED2_4(a,b) (((_FP_OFF(a) | _FP_OFF(b)) & 3) == 0)
+#define PTR_ALIGNED_4(a)    ((ACC_PTR_FP_OFF(a) & 3) == 0)
+#define PTR_ALIGNED2_4(a,b) (((ACC_PTR_FP_OFF(a) | ACC_PTR_FP_OFF(b)) & 3) == 0)
 #else
-#define PTR(a)              ((lzo_ptr_t) (a))
+#define PTR(a)              ((lzo_uintptr_t) (a))
 #define PTR_LINEAR(a)       PTR(a)
 #define PTR_ALIGNED_4(a)    ((PTR_LINEAR(a) & 3) == 0)
 #define PTR_ALIGNED_8(a)    ((PTR_LINEAR(a) & 7) == 0)
@@ -414,10 +1840,10 @@ extern "C" {
 
 #define PTR_LT(a,b)         (PTR(a) < PTR(b))
 #define PTR_GE(a,b)         (PTR(a) >= PTR(b))
-#define PTR_DIFF(a,b)       ((lzo_ptrdiff_t) (PTR(a) - PTR(b)))
+#define PTR_DIFF(a,b)       (PTR(a) - PTR(b))
 #define pd(a,b)             ((lzo_uint) ((a)-(b)))
 
-LZO_EXTERN(lzo_ptr_t)
+LZO_EXTERN(lzo_uintptr_t)
 __lzo_ptr_linear(const lzo_voidp ptr);
 
 typedef union
@@ -435,8 +1861,7 @@ typedef union
     lzo_int32       a_lzo_int32;
     lzo_uint32      a_lzo_uint32;
     ptrdiff_t       a_ptrdiff_t;
-    lzo_ptrdiff_t   a_lzo_ptrdiff_t;
-    lzo_ptr_t       a_lzo_ptr_t;
+    lzo_uintptr_t   a_lzo_uintptr_t;
     lzo_voidp       a_lzo_voidp;
     void *          a_void_p;
     lzo_bytep       a_lzo_bytep;
@@ -459,7 +1884,7 @@ lzo_full_align_t;
 #define LZO_DETERMINISTIC
 
 #define LZO_DICT_USE_PTR
-#if defined(__LZO_DOS16) || defined(__LZO_WIN16) || defined(__LZO_STRICT_16BIT)
+#if 0 && (LZO_ARCH_I086)
 #  undef LZO_DICT_USE_PTR
 #endif
 
@@ -471,21 +1896,19 @@ lzo_full_align_t;
 #  define lzo_dict_p    lzo_dict_t __LZO_MMODEL *
 #endif
 
-#if !defined(lzo_moff_t)
-#define lzo_moff_t      lzo_uint
 #endif
 
-#endif
+#if !defined(MINILZO_CFG_SKIP_LZO_PTR)
 
-LZO_PUBLIC(lzo_ptr_t)
+LZO_PUBLIC(lzo_uintptr_t)
 __lzo_ptr_linear(const lzo_voidp ptr)
 {
-    lzo_ptr_t p;
+    lzo_uintptr_t p;
 
-#if defined(__LZO_DOS16) || defined(__LZO_WIN16)
-    p = (((lzo_ptr_t)(_FP_SEG(ptr))) << (16 - __LZO_HShift)) + (_FP_OFF(ptr));
+#if (LZO_ARCH_I086)
+    p = (((lzo_uintptr_t)(ACC_PTR_FP_SEG(ptr))) << (16 - ACC_MM_AHSHIFT)) + (ACC_PTR_FP_OFF(ptr));
 #else
-    p = PTR_LINEAR(ptr);
+    p = (lzo_uintptr_t) PTR_LINEAR(ptr);
 #endif
 
     return p;
@@ -494,242 +1917,49 @@ __lzo_ptr_linear(const lzo_voidp ptr)
 LZO_PUBLIC(unsigned)
 __lzo_align_gap(const lzo_voidp ptr, lzo_uint size)
 {
-    lzo_ptr_t p, s, n;
-
-    assert(size > 0);
-
-    p = __lzo_ptr_linear(ptr);
-    s = (lzo_ptr_t) (size - 1);
-#if 0
-    assert((size & (size - 1)) == 0);
-    n = ((p + s) & ~s) - p;
+#if defined(__LZO_UINTPTR_T_IS_POINTER)
+    size_t n = (size_t) ptr;
+    n = (((n + size - 1) / size) * size) - n;
 #else
-    n = (((p + s) / size) * size) - p;
+    lzo_uintptr_t p, n;
+    p = __lzo_ptr_linear(ptr);
+    n = (((p + size - 1) / size) * size) - p;
 #endif
 
+    assert(size > 0);
     assert((long)n >= 0);
     assert(n <= s);
-
     return (unsigned)n;
 }
 
-#ifndef __LZO_UTIL_H
-#define __LZO_UTIL_H
-
-#ifndef __LZO_CONF_H
 #endif
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-#if 1 && defined(HAVE_MEMCPY)
-#if !defined(__LZO_DOS16) && !defined(__LZO_WIN16)
-
-#define MEMCPY8_DS(dest,src,len) \
-    memcpy(dest,src,len); \
-    dest += len; \
-    src += len
-
-#endif
-#endif
-
-#if 0 && !defined(MEMCPY8_DS)
-
-#define MEMCPY8_DS(dest,src,len) \
-    { do { \
-	*dest++ = *src++; \
-	*dest++ = *src++; \
-	*dest++ = *src++; \
-	*dest++ = *src++; \
-	*dest++ = *src++; \
-	*dest++ = *src++; \
-	*dest++ = *src++; \
-	*dest++ = *src++; \
-	len -= 8; \
-    } while (len > 0); }
-
-#endif
-
-#if !defined(MEMCPY8_DS)
-
-#define MEMCPY8_DS(dest,src,len) \
-    { register lzo_uint __l = (len) / 8; \
-    do { \
-	*dest++ = *src++; \
-	*dest++ = *src++; \
-	*dest++ = *src++; \
-	*dest++ = *src++; \
-	*dest++ = *src++; \
-	*dest++ = *src++; \
-	*dest++ = *src++; \
-	*dest++ = *src++; \
-    } while (--__l > 0); }
-
-#endif
-
-#define MEMCPY_DS(dest,src,len) \
-    do *dest++ = *src++; \
-    while (--len > 0)
-
-#define MEMMOVE_DS(dest,src,len) \
-    do *dest++ = *src++; \
-    while (--len > 0)
-
-#if 0 && defined(LZO_OPTIMIZE_GNUC_i386)
-
-#define BZERO8_PTR(s,l,n) \
-__asm__ __volatile__( \
-    "movl  %0,%%eax \n"             \
-    "movl  %1,%%edi \n"             \
-    "movl  %2,%%ecx \n"             \
-    "cld \n"                        \
-    "rep \n"                        \
-    "stosl %%eax,(%%edi) \n"        \
-    :               \
-    :"g" (0),"g" (s),"g" (n)        \
-    :"eax","edi","ecx", "memory", "cc" \
-)
-
-#elif (LZO_UINT_MAX <= SIZE_T_MAX) && defined(HAVE_MEMSET)
-
-#if 1
-#define BZERO8_PTR(s,l,n)   memset((s),0,(lzo_uint)(l)*(n))
-#else
-#define BZERO8_PTR(s,l,n)   memset((lzo_voidp)(s),0,(lzo_uint)(l)*(n))
-#endif
-
-#else
-
-#define BZERO8_PTR(s,l,n) \
-    lzo_memset((lzo_voidp)(s),0,(lzo_uint)(l)*(n))
-
-#endif
-
-#if 0
-#if defined(__GNUC__) && defined(__i386__)
-
-unsigned char lzo_rotr8(unsigned char value, int shift);
-extern __inline__ unsigned char lzo_rotr8(unsigned char value, int shift)
-{
-    unsigned char result;
-
-    __asm__ __volatile__ ("movb %b1, %b0; rorb %b2, %b0"
-			: "=a"(result) : "g"(value), "c"(shift));
-    return result;
-}
-
-unsigned short lzo_rotr16(unsigned short value, int shift);
-extern __inline__ unsigned short lzo_rotr16(unsigned short value, int shift)
-{
-    unsigned short result;
-
-    __asm__ __volatile__ ("movw %b1, %b0; rorw %b2, %b0"
-			: "=a"(result) : "g"(value), "c"(shift));
-    return result;
-}
-
-#endif
-#endif
-
-#ifdef __cplusplus
-}
-#endif
-
-#endif
-
-LZO_PUBLIC(lzo_bool)
-lzo_assert(int expr)
-{
-    return (expr) ? 1 : 0;
-}
 
 /* If you use the LZO library in a product, you *must* keep this
  * copyright string in the executable of your product.
  */
 
-const lzo_byte __lzo_copyright[] =
+const char __lzo_copyright[] =
 #if !defined(__LZO_IN_MINLZO)
     LZO_VERSION_STRING;
 #else
-    "\n\n\n"
-    "LZO real-time data compression library.\n"
-    "Copyright (C) 1996, 1997, 1998, 1999, 2000, 2001, 2002 Markus Franz Xaver Johannes Oberhumer\n"
-    "<markus.oberhumer@jk.uni-linz.ac.at>\n"
-    "http://www.oberhumer.com/opensource/lzo/\n"
-    "\n"
-    "LZO version: v" LZO_VERSION_STRING ", " LZO_VERSION_DATE "\n"
-    "LZO build date: " __DATE__ " " __TIME__ "\n\n"
-    "LZO special compilation options:\n"
-#ifdef __cplusplus
-    " __cplusplus\n"
-#endif
-#if defined(__PIC__)
-    " __PIC__\n"
-#elif defined(__pic__)
-    " __pic__\n"
-#endif
-#if (UINT_MAX < LZO_0xffffffffL)
-    " 16BIT\n"
-#endif
-#if defined(__LZO_STRICT_16BIT)
-    " __LZO_STRICT_16BIT\n"
-#endif
-#if (UINT_MAX > LZO_0xffffffffL)
-    " UINT_MAX=" _LZO_MEXPAND(UINT_MAX) "\n"
-#endif
-#if (ULONG_MAX > LZO_0xffffffffL)
-    " ULONG_MAX=" _LZO_MEXPAND(ULONG_MAX) "\n"
-#endif
-#if defined(LZO_BYTE_ORDER)
-    " LZO_BYTE_ORDER=" _LZO_MEXPAND(LZO_BYTE_ORDER) "\n"
-#endif
-#if defined(LZO_UNALIGNED_OK_2)
-    " LZO_UNALIGNED_OK_2\n"
-#endif
-#if defined(LZO_UNALIGNED_OK_4)
-    " LZO_UNALIGNED_OK_4\n"
-#endif
-#if defined(LZO_ALIGNED_OK_4)
-    " LZO_ALIGNED_OK_4\n"
-#endif
-#if defined(LZO_DICT_USE_PTR)
-    " LZO_DICT_USE_PTR\n"
-#endif
-#if defined(__LZO_QUERY_COMPRESS)
-    " __LZO_QUERY_COMPRESS\n"
-#endif
-#if defined(__LZO_QUERY_DECOMPRESS)
-    " __LZO_QUERY_DECOMPRESS\n"
-#endif
-#if defined(__LZO_IN_MINILZO)
-    " __LZO_IN_MINILZO\n"
-#endif
-    "\n\n"
-    "$Id: LZO " LZO_VERSION_STRING " built " __DATE__ " " __TIME__
-#if defined(__GNUC__) && defined(__VERSION__)
-    " by gcc " __VERSION__
-#elif defined(__BORLANDC__)
-    " by Borland C " _LZO_MEXPAND(__BORLANDC__)
-#elif defined(_MSC_VER)
-    " by Microsoft C " _LZO_MEXPAND(_MSC_VER)
-#elif defined(__PUREC__)
-    " by Pure C " _LZO_MEXPAND(__PUREC__)
-#elif defined(__SC__)
-    " by Symantec C " _LZO_MEXPAND(__SC__)
-#elif defined(__TURBOC__)
-    " by Turbo C " _LZO_MEXPAND(__TURBOC__)
-#elif defined(__WATCOMC__)
-    " by Watcom C " _LZO_MEXPAND(__WATCOMC__)
-#endif
-    " $\n"
-    "$Copyright: LZO (C) 1996, 1997, 1998, 1999, 2000, 2001, 2002 Markus Franz Xaver Johannes Oberhumer $\n";
+    "\r\n\n"
+    "LZO data compression library.\n"
+    "$Copyright: LZO (C) 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005 Markus Franz Xaver Johannes Oberhumer\n"
+    "<markus@oberhumer.com>\n"
+    "http://www.oberhumer.com $\n\n"
+    "$Id: LZO version: v" LZO_VERSION_STRING ", " LZO_VERSION_DATE " $\n"
+    "$Built: " __DATE__ " " __TIME__ " $\n"
+    "$Info: " LZO_INFO_STRING " $\n";
 #endif
 
-LZO_PUBLIC(const lzo_byte *)
+LZO_PUBLIC(const lzo_bytep)
 lzo_copyright(void)
 {
-    return __lzo_copyright;
+#if (LZO_OS_DOS16 && LZO_CC_TURBOC)
+    return (lzo_voidp) __lzo_copyright;
+#else
+    return (const lzo_bytep) __lzo_copyright;
+#endif
 }
 
 LZO_PUBLIC(unsigned)
@@ -765,605 +1995,264 @@ _lzo_version_date(void)
 #define LZO_BASE 65521u
 #define LZO_NMAX 5552
 
-#define LZO_DO1(buf,i)  {s1 += buf[i]; s2 += s1;}
+#define LZO_DO1(buf,i)  s1 += buf[i]; s2 += s1
 #define LZO_DO2(buf,i)  LZO_DO1(buf,i); LZO_DO1(buf,i+1);
 #define LZO_DO4(buf,i)  LZO_DO2(buf,i); LZO_DO2(buf,i+2);
 #define LZO_DO8(buf,i)  LZO_DO4(buf,i); LZO_DO4(buf,i+4);
 #define LZO_DO16(buf,i) LZO_DO8(buf,i); LZO_DO8(buf,i+8);
 
 LZO_PUBLIC(lzo_uint32)
-lzo_adler32(lzo_uint32 adler, const lzo_byte *buf, lzo_uint len)
+lzo_adler32(lzo_uint32 adler, const lzo_bytep buf, lzo_uint len)
 {
     lzo_uint32 s1 = adler & 0xffff;
     lzo_uint32 s2 = (adler >> 16) & 0xffff;
-    int k;
+    unsigned k;
 
     if (buf == NULL)
-	return 1;
+        return 1;
 
     while (len > 0)
     {
-	k = len < LZO_NMAX ? (int) len : LZO_NMAX;
-	len -= k;
-	if (k >= 16) do
-	{
-	    LZO_DO16(buf,0);
-	    buf += 16;
-	    k -= 16;
-	} while (k >= 16);
-	if (k != 0) do
-	{
-	    s1 += *buf++;
-	    s2 += s1;
-	} while (--k > 0);
-	s1 %= LZO_BASE;
-	s2 %= LZO_BASE;
+        k = len < LZO_NMAX ? (unsigned) len : LZO_NMAX;
+        len -= k;
+        if (k >= 16) do
+        {
+            LZO_DO16(buf,0);
+            buf += 16;
+            k -= 16;
+        } while (k >= 16);
+        if (k != 0) do
+        {
+            s1 += *buf++;
+            s2 += s1;
+        } while (--k > 0);
+        s1 %= LZO_BASE;
+        s2 %= LZO_BASE;
     }
     return (s2 << 16) | s1;
 }
 
-LZO_PUBLIC(int)
-lzo_memcmp(const lzo_voidp s1, const lzo_voidp s2, lzo_uint len)
-{
-#if (LZO_UINT_MAX <= SIZE_T_MAX) && defined(HAVE_MEMCMP)
-    return memcmp(s1,s2,len);
-#else
-    const lzo_byte *p1 = (const lzo_byte *) s1;
-    const lzo_byte *p2 = (const lzo_byte *) s2;
-    int d;
+#undef LZO_DO1
+#undef LZO_DO2
+#undef LZO_DO4
+#undef LZO_DO8
+#undef LZO_DO16
 
-    if (len > 0) do
+#if !defined(MINILZO_CFG_SKIP_LZO_STRING)
+#undef lzo_memcmp
+#undef lzo_memcpy
+#undef lzo_memmove
+#undef lzo_memset
+#if !defined(__LZO_MMODEL_HUGE)
+#  undef LZO_HAVE_MM_HUGE_PTR
+#endif
+#define lzo_hsize_t             lzo_uint
+#define lzo_hvoid_p             lzo_voidp
+#define lzo_hbyte_p             lzo_bytep
+#define LZOLIB_PUBLIC(r,f)      LZO_PUBLIC(r) f
+#define lzo_hmemcmp             lzo_memcmp
+#define lzo_hmemcpy             lzo_memcpy
+#define lzo_hmemmove            lzo_memmove
+#define lzo_hmemset             lzo_memset
+#define __LZOLIB_HMEMCPY_CH_INCLUDED 1
+#if !defined(LZOLIB_PUBLIC)
+#  define LZOLIB_PUBLIC(r,f)    r __LZOLIB_FUNCNAME(f)
+#endif
+LZOLIB_PUBLIC(int, lzo_hmemcmp) (const lzo_hvoid_p s1, const lzo_hvoid_p s2, lzo_hsize_t len)
+{
+#if (LZO_HAVE_MM_HUGE_PTR) || !defined(HAVE_MEMCMP)
+    const lzo_hbyte_p p1 = (const lzo_hbyte_p) s1;
+    const lzo_hbyte_p p2 = (const lzo_hbyte_p) s2;
+    if __lzo_likely(len > 0) do
     {
-	d = *p1 - *p2;
-	if (d != 0)
-	    return d;
-	p1++;
-	p2++;
-    }
-    while (--len > 0);
+        int d = *p1 - *p2;
+        if (d != 0)
+            return d;
+        p1++; p2++;
+    } while __lzo_likely(--len > 0);
     return 0;
+#else
+    return memcmp(s1, s2, len);
 #endif
 }
-
-LZO_PUBLIC(lzo_voidp)
-lzo_memcpy(lzo_voidp dest, const lzo_voidp src, lzo_uint len)
+LZOLIB_PUBLIC(lzo_hvoid_p, lzo_hmemcpy) (lzo_hvoid_p dest, const lzo_hvoid_p src, lzo_hsize_t len)
 {
-#if (LZO_UINT_MAX <= SIZE_T_MAX) && defined(HAVE_MEMCPY)
-    return memcpy(dest,src,len);
-#else
-    lzo_byte *p1 = (lzo_byte *) dest;
-    const lzo_byte *p2 = (const lzo_byte *) src;
-
+#if (LZO_HAVE_MM_HUGE_PTR) || !defined(HAVE_MEMCPY)
+    lzo_hbyte_p p1 = (lzo_hbyte_p) dest;
+    const lzo_hbyte_p p2 = (const lzo_hbyte_p) src;
     if (len <= 0 || p1 == p2)
-	return dest;
+        return dest;
     do
-	*p1++ = *p2++;
-    while (--len > 0);
+        *p1++ = *p2++;
+    while __lzo_likely(--len > 0);
     return dest;
+#else
+    return memcpy(dest, src, len);
 #endif
 }
-
-LZO_PUBLIC(lzo_voidp)
-lzo_memmove(lzo_voidp dest, const lzo_voidp src, lzo_uint len)
+LZOLIB_PUBLIC(lzo_hvoid_p, lzo_hmemmove) (lzo_hvoid_p dest, const lzo_hvoid_p src, lzo_hsize_t len)
 {
-#if (LZO_UINT_MAX <= SIZE_T_MAX) && defined(HAVE_MEMMOVE)
-    return memmove(dest,src,len);
-#else
-    lzo_byte *p1 = (lzo_byte *) dest;
-    const lzo_byte *p2 = (const lzo_byte *) src;
-
+#if (LZO_HAVE_MM_HUGE_PTR) || !defined(HAVE_MEMMOVE)
+    lzo_hbyte_p p1 = (lzo_hbyte_p) dest;
+    const lzo_hbyte_p p2 = (const lzo_hbyte_p) src;
     if (len <= 0 || p1 == p2)
-	return dest;
-
+        return dest;
     if (p1 < p2)
     {
-	do
-	    *p1++ = *p2++;
-	while (--len > 0);
+        do
+            *p1++ = *p2++;
+        while __lzo_likely(--len > 0);
     }
     else
     {
-	p1 += len;
-	p2 += len;
-	do
-	    *--p1 = *--p2;
-	while (--len > 0);
+        p1 += len;
+        p2 += len;
+        do
+            *--p1 = *--p2;
+        while __lzo_likely(--len > 0);
     }
     return dest;
+#else
+    return memmove(dest, src, len);
 #endif
 }
-
-LZO_PUBLIC(lzo_voidp)
-lzo_memset(lzo_voidp s, int c, lzo_uint len)
+LZOLIB_PUBLIC(lzo_hvoid_p, lzo_hmemset) (lzo_hvoid_p s, int c, lzo_hsize_t len)
 {
-#if (LZO_UINT_MAX <= SIZE_T_MAX) && defined(HAVE_MEMSET)
-    return memset(s,c,len);
-#else
-    lzo_byte *p = (lzo_byte *) s;
-
-    if (len > 0) do
-	*p++ = LZO_BYTE(c);
-    while (--len > 0);
+#if (LZO_HAVE_MM_HUGE_PTR) || !defined(HAVE_MEMSET)
+    lzo_hbyte_p p = (lzo_hbyte_p) s;
+    if __lzo_likely(len > 0) do
+        *p++ = (unsigned char) c;
+    while __lzo_likely(--len > 0);
     return s;
+#else
+    return memset(s, c, len);
 #endif
 }
-
-#if 0
-#  define IS_SIGNED(type)       (((type) (1ul << (8 * sizeof(type) - 1))) < 0)
-#  define IS_UNSIGNED(type)     (((type) (1ul << (8 * sizeof(type) - 1))) > 0)
-#else
-#  define IS_SIGNED(type)       (((type) (-1)) < ((type) 0))
-#  define IS_UNSIGNED(type)     (((type) (-1)) > ((type) 0))
+#undef LZOLIB_PUBLIC
 #endif
 
-#define IS_POWER_OF_2(x)        (((x) & ((x) - 1)) == 0)
-
-static lzo_bool schedule_insns_bug(void);
-static lzo_bool strength_reduce_bug(int *);
-
-#if 0 || defined(LZO_DEBUG)
-#include <stdio.h>
-static lzo_bool __lzo_assert_fail(const char *s, unsigned line)
-{
-#if defined(__palmos__)
-    printf("LZO assertion failed in line %u: '%s'\n",line,s);
-#else
-    fprintf(stderr,"LZO assertion failed in line %u: '%s'\n",line,s);
-#endif
-    return 0;
-}
-#  define __lzo_assert(x)   ((x) ? 1 : __lzo_assert_fail(#x,__LINE__))
-#else
-#  define __lzo_assert(x)   ((x) ? 1 : 0)
-#endif
-
-#undef COMPILE_TIME_ASSERT
-#if 0
-#  define COMPILE_TIME_ASSERT(expr)     r &= __lzo_assert(expr)
-#else
-#  define COMPILE_TIME_ASSERT(expr)     LZO_COMPILE_TIME_ASSERT(expr)
-#endif
-
-static lzo_bool basic_integral_check(void)
-{
-    lzo_bool r = 1;
-
-    COMPILE_TIME_ASSERT(CHAR_BIT == 8);
-    COMPILE_TIME_ASSERT(sizeof(char) == 1);
-    COMPILE_TIME_ASSERT(sizeof(short) >= 2);
-    COMPILE_TIME_ASSERT(sizeof(long) >= 4);
-    COMPILE_TIME_ASSERT(sizeof(int) >= sizeof(short));
-    COMPILE_TIME_ASSERT(sizeof(long) >= sizeof(int));
-
-    COMPILE_TIME_ASSERT(sizeof(lzo_uint) == sizeof(lzo_int));
-    COMPILE_TIME_ASSERT(sizeof(lzo_uint32) == sizeof(lzo_int32));
-
-    COMPILE_TIME_ASSERT(sizeof(lzo_uint32) >= 4);
-    COMPILE_TIME_ASSERT(sizeof(lzo_uint32) >= sizeof(unsigned));
-#if defined(__LZO_STRICT_16BIT)
-    COMPILE_TIME_ASSERT(sizeof(lzo_uint) == 2);
-#else
-    COMPILE_TIME_ASSERT(sizeof(lzo_uint) >= 4);
-    COMPILE_TIME_ASSERT(sizeof(lzo_uint) >= sizeof(unsigned));
-#endif
-
-#if (USHRT_MAX == 65535u)
-    COMPILE_TIME_ASSERT(sizeof(short) == 2);
-#elif (USHRT_MAX == LZO_0xffffffffL)
-    COMPILE_TIME_ASSERT(sizeof(short) == 4);
-#elif (USHRT_MAX >= LZO_0xffffffffL)
-    COMPILE_TIME_ASSERT(sizeof(short) > 4);
-#endif
-#if (UINT_MAX == 65535u)
-    COMPILE_TIME_ASSERT(sizeof(int) == 2);
-#elif (UINT_MAX == LZO_0xffffffffL)
-    COMPILE_TIME_ASSERT(sizeof(int) == 4);
-#elif (UINT_MAX >= LZO_0xffffffffL)
-    COMPILE_TIME_ASSERT(sizeof(int) > 4);
-#endif
-#if (ULONG_MAX == 65535ul)
-    COMPILE_TIME_ASSERT(sizeof(long) == 2);
-#elif (ULONG_MAX == LZO_0xffffffffL)
-    COMPILE_TIME_ASSERT(sizeof(long) == 4);
-#elif (ULONG_MAX >= LZO_0xffffffffL)
-    COMPILE_TIME_ASSERT(sizeof(long) > 4);
-#endif
-
-#if defined(SIZEOF_UNSIGNED)
-    COMPILE_TIME_ASSERT(SIZEOF_UNSIGNED == sizeof(unsigned));
-#endif
-#if defined(SIZEOF_UNSIGNED_LONG)
-    COMPILE_TIME_ASSERT(SIZEOF_UNSIGNED_LONG == sizeof(unsigned long));
-#endif
-#if defined(SIZEOF_UNSIGNED_SHORT)
-    COMPILE_TIME_ASSERT(SIZEOF_UNSIGNED_SHORT == sizeof(unsigned short));
-#endif
 #if !defined(__LZO_IN_MINILZO)
-#if defined(SIZEOF_SIZE_T)
-    COMPILE_TIME_ASSERT(SIZEOF_SIZE_T == sizeof(size_t));
+
+#define ACC_WANT_ACC_CHK_CH 1
+#undef ACCCHK_ASSERT
+
+    ACCCHK_ASSERT_IS_SIGNED_T(lzo_int)
+    ACCCHK_ASSERT_IS_UNSIGNED_T(lzo_uint)
+
+    ACCCHK_ASSERT_IS_SIGNED_T(lzo_int32)
+    ACCCHK_ASSERT_IS_UNSIGNED_T(lzo_uint32)
+    ACCCHK_ASSERT((LZO_UINT32_C(1) << (int)(8*sizeof(LZO_UINT32_C(1))-1)) > 0)
+    ACCCHK_ASSERT(sizeof(lzo_uint32) >= 4)
+
+#if !defined(__LZO_UINTPTR_T_IS_POINTER)
+    ACCCHK_ASSERT_IS_UNSIGNED_T(lzo_uintptr_t)
 #endif
+    ACCCHK_ASSERT(sizeof(lzo_uintptr_t) >= sizeof(lzo_voidp))
+
+    ACCCHK_ASSERT_IS_UNSIGNED_T(lzo_xint)
+    ACCCHK_ASSERT(sizeof(lzo_xint) >= sizeof(lzo_uint32))
+    ACCCHK_ASSERT(sizeof(lzo_xint) >= sizeof(lzo_uint))
+    ACCCHK_ASSERT(sizeof(lzo_xint) == sizeof(lzo_uint32) || sizeof(lzo_xint) == sizeof(lzo_uint))
+
 #endif
-
-    COMPILE_TIME_ASSERT(IS_UNSIGNED(unsigned char));
-    COMPILE_TIME_ASSERT(IS_UNSIGNED(unsigned short));
-    COMPILE_TIME_ASSERT(IS_UNSIGNED(unsigned));
-    COMPILE_TIME_ASSERT(IS_UNSIGNED(unsigned long));
-    COMPILE_TIME_ASSERT(IS_SIGNED(short));
-    COMPILE_TIME_ASSERT(IS_SIGNED(int));
-    COMPILE_TIME_ASSERT(IS_SIGNED(long));
-
-    COMPILE_TIME_ASSERT(IS_UNSIGNED(lzo_uint32));
-    COMPILE_TIME_ASSERT(IS_UNSIGNED(lzo_uint));
-    COMPILE_TIME_ASSERT(IS_SIGNED(lzo_int32));
-    COMPILE_TIME_ASSERT(IS_SIGNED(lzo_int));
-
-    COMPILE_TIME_ASSERT(INT_MAX    == LZO_STYPE_MAX(sizeof(int)));
-    COMPILE_TIME_ASSERT(UINT_MAX   == LZO_UTYPE_MAX(sizeof(unsigned)));
-    COMPILE_TIME_ASSERT(LONG_MAX   == LZO_STYPE_MAX(sizeof(long)));
-    COMPILE_TIME_ASSERT(ULONG_MAX  == LZO_UTYPE_MAX(sizeof(unsigned long)));
-    COMPILE_TIME_ASSERT(SHRT_MAX   == LZO_STYPE_MAX(sizeof(short)));
-    COMPILE_TIME_ASSERT(USHRT_MAX  == LZO_UTYPE_MAX(sizeof(unsigned short)));
-    COMPILE_TIME_ASSERT(LZO_UINT32_MAX == LZO_UTYPE_MAX(sizeof(lzo_uint32)));
-    COMPILE_TIME_ASSERT(LZO_UINT_MAX   == LZO_UTYPE_MAX(sizeof(lzo_uint)));
-#if !defined(__LZO_IN_MINILZO)
-    COMPILE_TIME_ASSERT(SIZE_T_MAX     == LZO_UTYPE_MAX(sizeof(size_t)));
-#endif
-
-    r &= __lzo_assert(LZO_BYTE(257) == 1);
-
-    return r;
-}
-
-static lzo_bool basic_ptr_check(void)
-{
-    lzo_bool r = 1;
-
-    COMPILE_TIME_ASSERT(sizeof(char *) >= sizeof(int));
-    COMPILE_TIME_ASSERT(sizeof(lzo_byte *) >= sizeof(char *));
-
-    COMPILE_TIME_ASSERT(sizeof(lzo_voidp) == sizeof(lzo_byte *));
-    COMPILE_TIME_ASSERT(sizeof(lzo_voidp) == sizeof(lzo_voidpp));
-    COMPILE_TIME_ASSERT(sizeof(lzo_voidp) == sizeof(lzo_bytepp));
-    COMPILE_TIME_ASSERT(sizeof(lzo_voidp) >= sizeof(lzo_uint));
-
-    COMPILE_TIME_ASSERT(sizeof(lzo_ptr_t) == sizeof(lzo_voidp));
-    COMPILE_TIME_ASSERT(sizeof(lzo_ptr_t) == sizeof(lzo_sptr_t));
-    COMPILE_TIME_ASSERT(sizeof(lzo_ptr_t) >= sizeof(lzo_uint));
-
-    COMPILE_TIME_ASSERT(sizeof(lzo_ptrdiff_t) >= 4);
-    COMPILE_TIME_ASSERT(sizeof(lzo_ptrdiff_t) >= sizeof(ptrdiff_t));
-
-    COMPILE_TIME_ASSERT(sizeof(ptrdiff_t) >= sizeof(size_t));
-    COMPILE_TIME_ASSERT(sizeof(lzo_ptrdiff_t) >= sizeof(lzo_uint));
-
-#if defined(SIZEOF_CHAR_P)
-    COMPILE_TIME_ASSERT(SIZEOF_CHAR_P == sizeof(char *));
-#endif
-#if defined(SIZEOF_PTRDIFF_T)
-    COMPILE_TIME_ASSERT(SIZEOF_PTRDIFF_T == sizeof(ptrdiff_t));
-#endif
-
-    COMPILE_TIME_ASSERT(IS_SIGNED(ptrdiff_t));
-    COMPILE_TIME_ASSERT(IS_UNSIGNED(size_t));
-    COMPILE_TIME_ASSERT(IS_SIGNED(lzo_ptrdiff_t));
-    COMPILE_TIME_ASSERT(IS_SIGNED(lzo_sptr_t));
-    COMPILE_TIME_ASSERT(IS_UNSIGNED(lzo_ptr_t));
-    COMPILE_TIME_ASSERT(IS_UNSIGNED(lzo_moff_t));
-
-    return r;
-}
-
-static lzo_bool ptr_check(void)
-{
-    lzo_bool r = 1;
-    int i;
-    char _wrkmem[10 * sizeof(lzo_byte *) + sizeof(lzo_full_align_t)];
-    lzo_bytep wrkmem;
-    lzo_bytepp dict;
-    unsigned char x[4 * sizeof(lzo_full_align_t)];
-    long d;
-    lzo_full_align_t a;
-    lzo_full_align_t u;
-
-    for (i = 0; i < (int) sizeof(x); i++)
-	x[i] = LZO_BYTE(i);
-
-    wrkmem = LZO_PTR_ALIGN_UP((lzo_byte *)_wrkmem,sizeof(lzo_full_align_t));
-
-#if 0
-    dict = (lzo_bytepp) wrkmem;
-#else
-
-    u.a_lzo_bytep = wrkmem; dict = u.a_lzo_bytepp;
-#endif
-
-    d = (long) ((const lzo_bytep) dict - (const lzo_bytep) _wrkmem);
-    r &= __lzo_assert(d >= 0);
-    r &= __lzo_assert(d < (long) sizeof(lzo_full_align_t));
-
-    memset(&a,0,sizeof(a));
-    r &= __lzo_assert(a.a_lzo_voidp == NULL);
-
-    memset(&a,0xff,sizeof(a));
-    r &= __lzo_assert(a.a_ushort == USHRT_MAX);
-    r &= __lzo_assert(a.a_uint == UINT_MAX);
-    r &= __lzo_assert(a.a_ulong == ULONG_MAX);
-    r &= __lzo_assert(a.a_lzo_uint == LZO_UINT_MAX);
-    r &= __lzo_assert(a.a_lzo_uint32 == LZO_UINT32_MAX);
-
-    if (r == 1)
-    {
-	for (i = 0; i < 8; i++)
-	    r &= __lzo_assert((const lzo_voidp) (&dict[i]) == (const lzo_voidp) (&wrkmem[i * sizeof(lzo_byte *)]));
-    }
-
-    memset(&a,0,sizeof(a));
-    r &= __lzo_assert(a.a_char_p == NULL);
-    r &= __lzo_assert(a.a_lzo_bytep == NULL);
-    r &= __lzo_assert(NULL == (void *)0);
-    if (r == 1)
-    {
-	for (i = 0; i < 10; i++)
-	    dict[i] = wrkmem;
-	BZERO8_PTR(dict+1,sizeof(dict[0]),8);
-	r &= __lzo_assert(dict[0] == wrkmem);
-	for (i = 1; i < 9; i++)
-	    r &= __lzo_assert(dict[i] == NULL);
-	r &= __lzo_assert(dict[9] == wrkmem);
-    }
-
-    if (r == 1)
-    {
-	unsigned k = 1;
-	const unsigned n = (unsigned) sizeof(lzo_uint32);
-	lzo_byte *p0;
-	lzo_byte *p1;
-
-	k += __lzo_align_gap(&x[k],n);
-	p0 = (lzo_bytep) &x[k];
-#if defined(PTR_LINEAR)
-	r &= __lzo_assert((PTR_LINEAR(p0) & (n-1)) == 0);
-#else
-	r &= __lzo_assert(n == 4);
-	r &= __lzo_assert(PTR_ALIGNED_4(p0));
-#endif
-
-	r &= __lzo_assert(k >= 1);
-	p1 = (lzo_bytep) &x[1];
-	r &= __lzo_assert(PTR_GE(p0,p1));
-
-	r &= __lzo_assert(k < 1+n);
-	p1 = (lzo_bytep) &x[1+n];
-	r &= __lzo_assert(PTR_LT(p0,p1));
-
-	if (r == 1)
-	{
-	    lzo_uint32 v0, v1;
-#if 0
-	    v0 = * (lzo_uint32 *) &x[k];
-	    v1 = * (lzo_uint32 *) &x[k+n];
-#else
-
-	    u.a_uchar_p = &x[k];
-	    v0 = *u.a_lzo_uint32_p;
-	    u.a_uchar_p = &x[k+n];
-	    v1 = *u.a_lzo_uint32_p;
-#endif
-	    r &= __lzo_assert(v0 > 0);
-	    r &= __lzo_assert(v1 > 0);
-	}
-    }
-
-    return r;
-}
+#undef ACCCHK_ASSERT
 
 LZO_PUBLIC(int)
 _lzo_config_check(void)
 {
     lzo_bool r = 1;
-    int i;
-    union {
-	lzo_uint32 a;
-	unsigned short b;
-	lzo_uint32 aa[4];
-	unsigned char x[4*sizeof(lzo_full_align_t)];
-    } u;
+    union { unsigned char c[2*sizeof(lzo_xint)]; lzo_xint l[2]; } u;
 
-    COMPILE_TIME_ASSERT( (int) ((unsigned char) ((signed char) -1)) == 255);
-    COMPILE_TIME_ASSERT( (((unsigned char)128) << (int)(8*sizeof(int)-8)) < 0);
-
-#if 0
-    r &= __lzo_assert((const void *)&u == (const void *)&u.a);
-    r &= __lzo_assert((const void *)&u == (const void *)&u.b);
-    r &= __lzo_assert((const void *)&u == (const void *)&u.x[0]);
-    r &= __lzo_assert((const void *)&u == (const void *)&u.aa[0]);
+#if !defined(LZO_CFG_NO_CONFIG_CHECK)
+#if defined(LZO_ABI_BIG_ENDIAN)
+    u.l[0] = u.l[1] = 0; u.c[sizeof(lzo_xint) - 1] = 128;
+    r &= (u.l[0] == 128);
 #endif
-
-    r &= basic_integral_check();
-    r &= basic_ptr_check();
-    if (r != 1)
-	return LZO_E_ERROR;
-
-    u.a = 0; u.b = 0;
-    for (i = 0; i < (int) sizeof(u.x); i++)
-	u.x[i] = LZO_BYTE(i);
-
-#if defined(LZO_BYTE_ORDER)
-    if (r == 1)
-    {
-#  if (LZO_BYTE_ORDER == LZO_LITTLE_ENDIAN)
-	lzo_uint32 a = (lzo_uint32) (u.a & LZO_0xffffffffL);
-	unsigned short b = (unsigned short) (u.b & 0xffff);
-	r &= __lzo_assert(a == 0x03020100L);
-	r &= __lzo_assert(b == 0x0100);
-#  elif (LZO_BYTE_ORDER == LZO_BIG_ENDIAN)
-	lzo_uint32 a = u.a >> (8 * sizeof(u.a) - 32);
-	unsigned short b = u.b >> (8 * sizeof(u.b) - 16);
-	r &= __lzo_assert(a == 0x00010203L);
-	r &= __lzo_assert(b == 0x0001);
-#  else
-#    error "invalid LZO_BYTE_ORDER"
-#  endif
-    }
+#if defined(LZO_ABI_LITTLE_ENDIAN)
+    u.l[0] = u.l[1] = 0; u.c[0] = 128;
+    r &= (u.l[0] == 128);
 #endif
-
 #if defined(LZO_UNALIGNED_OK_2)
-    COMPILE_TIME_ASSERT(sizeof(short) == 2);
-    if (r == 1)
-    {
-	unsigned short b[4];
-
-	for (i = 0; i < 4; i++)
-	    b[i] = * (const unsigned short *) &u.x[i];
-
-#  if (LZO_BYTE_ORDER == LZO_LITTLE_ENDIAN)
-	r &= __lzo_assert(b[0] == 0x0100);
-	r &= __lzo_assert(b[1] == 0x0201);
-	r &= __lzo_assert(b[2] == 0x0302);
-	r &= __lzo_assert(b[3] == 0x0403);
-#  elif (LZO_BYTE_ORDER == LZO_BIG_ENDIAN)
-	r &= __lzo_assert(b[0] == 0x0001);
-	r &= __lzo_assert(b[1] == 0x0102);
-	r &= __lzo_assert(b[2] == 0x0203);
-	r &= __lzo_assert(b[3] == 0x0304);
-#  endif
-    }
+    u.l[0] = u.l[1] = 0;
+    r &= ((* (const lzo_ushortp) (const lzo_voidp) &u.c[1]) == 0);
 #endif
-
 #if defined(LZO_UNALIGNED_OK_4)
-    COMPILE_TIME_ASSERT(sizeof(lzo_uint32) == 4);
-    if (r == 1)
-    {
-	lzo_uint32 a[4];
-
-	for (i = 0; i < 4; i++)
-	    a[i] = * (const lzo_uint32 *) &u.x[i];
-
-#  if (LZO_BYTE_ORDER == LZO_LITTLE_ENDIAN)
-	r &= __lzo_assert(a[0] == 0x03020100L);
-	r &= __lzo_assert(a[1] == 0x04030201L);
-	r &= __lzo_assert(a[2] == 0x05040302L);
-	r &= __lzo_assert(a[3] == 0x06050403L);
-#  elif (LZO_BYTE_ORDER == LZO_BIG_ENDIAN)
-	r &= __lzo_assert(a[0] == 0x00010203L);
-	r &= __lzo_assert(a[1] == 0x01020304L);
-	r &= __lzo_assert(a[2] == 0x02030405L);
-	r &= __lzo_assert(a[3] == 0x03040506L);
-#  endif
-    }
+    u.l[0] = u.l[1] = 0;
+    r &= ((* (const lzo_uint32p) (const lzo_voidp) &u.c[1]) == 0);
+#endif
 #endif
 
-#if defined(LZO_ALIGNED_OK_4)
-    COMPILE_TIME_ASSERT(sizeof(lzo_uint32) == 4);
-#endif
-
-    COMPILE_TIME_ASSERT(lzo_sizeof_dict_t == sizeof(lzo_dict_t));
-
-#if defined(__LZO_IN_MINLZO)
-    if (r == 1)
-    {
-	lzo_uint32 adler;
-	adler = lzo_adler32(0, NULL, 0);
-	adler = lzo_adler32(adler, lzo_copyright(), 200);
-	r &= __lzo_assert(adler == 0xc76f1751L);
-    }
-#endif
-
-    if (r == 1)
-    {
-	r &= __lzo_assert(!schedule_insns_bug());
-    }
-
-    if (r == 1)
-    {
-	static int x[3];
-	static unsigned xn = 3;
-	register unsigned j;
-
-	for (j = 0; j < xn; j++)
-	    x[j] = (int)j - 3;
-	r &= __lzo_assert(!strength_reduce_bug(x));
-    }
-
-    if (r == 1)
-    {
-	r &= ptr_check();
-    }
-
+    LZO_UNUSED(u);
     return r == 1 ? LZO_E_OK : LZO_E_ERROR;
 }
-
-static lzo_bool schedule_insns_bug(void)
-{
-#if defined(__LZO_CHECKER)
-    return 0;
-#else
-    const int clone[] = {1, 2, 0};
-    const int *q;
-    q = clone;
-    return (*q) ? 0 : 1;
-#endif
-}
-
-static lzo_bool strength_reduce_bug(int *x)
-{
-    return x[0] != -3 || x[1] != -2 || x[2] != -1;
-}
-
-#undef COMPILE_TIME_ASSERT
 
 int __lzo_init_done = 0;
 
 LZO_PUBLIC(int)
-__lzo_init2(unsigned v, int s1, int s2, int s3, int s4, int s5,
-			int s6, int s7, int s8, int s9)
+__lzo_init_v2(unsigned v, int s1, int s2, int s3, int s4, int s5,
+                          int s6, int s7, int s8, int s9)
 {
     int r;
+
+#if defined(__LZO_IN_MINILZO)
+#elif (LZO_CC_MSC && ((_MSC_VER) < 700))
+#else
+#define ACC_WANT_ACC_CHK_CH 1
+#undef ACCCHK_ASSERT
+#define ACCCHK_ASSERT(expr)  LZO_COMPILE_TIME_ASSERT(expr)
+#endif
+#undef ACCCHK_ASSERT
 
     __lzo_init_done = 1;
 
     if (v == 0)
-	return LZO_E_ERROR;
+        return LZO_E_ERROR;
 
     r = (s1 == -1 || s1 == (int) sizeof(short)) &&
-	(s2 == -1 || s2 == (int) sizeof(int)) &&
-	(s3 == -1 || s3 == (int) sizeof(long)) &&
-	(s4 == -1 || s4 == (int) sizeof(lzo_uint32)) &&
-	(s5 == -1 || s5 == (int) sizeof(lzo_uint)) &&
-	(s6 == -1 || s6 == (int) lzo_sizeof_dict_t) &&
-	(s7 == -1 || s7 == (int) sizeof(char *)) &&
-	(s8 == -1 || s8 == (int) sizeof(lzo_voidp)) &&
-	(s9 == -1 || s9 == (int) sizeof(lzo_compress_t));
+        (s2 == -1 || s2 == (int) sizeof(int)) &&
+        (s3 == -1 || s3 == (int) sizeof(long)) &&
+        (s4 == -1 || s4 == (int) sizeof(lzo_uint32)) &&
+        (s5 == -1 || s5 == (int) sizeof(lzo_uint)) &&
+        (s6 == -1 || s6 == (int) lzo_sizeof_dict_t) &&
+        (s7 == -1 || s7 == (int) sizeof(char *)) &&
+        (s8 == -1 || s8 == (int) sizeof(lzo_voidp)) &&
+        (s9 == -1 || s9 == (int) sizeof(lzo_callback_t));
     if (!r)
-	return LZO_E_ERROR;
+        return LZO_E_ERROR;
 
     r = _lzo_config_check();
     if (r != LZO_E_OK)
-	return r;
+        return r;
 
     return r;
 }
 
 #if !defined(__LZO_IN_MINILZO)
 
-LZO_EXTERN(int)
-__lzo_init(unsigned v,int s1,int s2,int s3,int s4,int s5,int s6,int s7);
+#if (LZO_OS_WIN16 && LZO_CC_WATCOMC) && defined(__SW_BD)
 
-LZO_PUBLIC(int)
-__lzo_init(unsigned v,int s1,int s2,int s3,int s4,int s5,int s6,int s7)
+#if 0
+BOOL FAR PASCAL LibMain ( HANDLE hInstance, WORD wDataSegment,
+                          WORD wHeapSize, LPSTR lpszCmdLine )
+#else
+int __far __pascal LibMain ( int a, short b, short c, long d )
+#endif
 {
-    if (v == 0 || v > 0x1010)
-	return LZO_E_ERROR;
-    return __lzo_init2(v,s1,s2,s3,s4,s5,-1,-1,s6,s7);
+    LZO_UNUSED(a); LZO_UNUSED(b); LZO_UNUSED(c); LZO_UNUSED(d);
+    return 1;
 }
+
+#endif
 
 #endif
 
 #define do_compress         _lzo1x_1_do_compress
 
+#if !defined(MINILZO_CFG_SKIP_LZO1X_1_COMPRESS)
+
 #define LZO_NEED_DICT_H
 #define D_BITS          14
-#define D_INDEX1(d,p)       d = DM((0x21*DX3(p,5,5,6)) >> 5)
+#define D_INDEX1(d,p)       d = DM(DMUL(0x21,DX3(p,5,5,6)) >> 5)
 #define D_INDEX2(d,p)       d = (d & (D_MASK & 0x7ff)) ^ (D_HIGH | 0x1f)
 
 #ifndef __LZO_CONFIG1X_H
@@ -1374,7 +2263,7 @@ __lzo_init(unsigned v,int s1,int s2,int s3,int s4,int s5,int s6,int s7)
 #endif
 
 #if !defined(__LZO_IN_MINILZO)
-#include <lzo1x.h>
+#include "lzo/lzo1x.h"
 #endif
 
 #define LZO_EOF_CODE
@@ -1484,29 +2373,32 @@ extern "C" {
 #  error "choose a hashing strategy"
 #endif
 
+#undef DM
+#undef DX
+
 #if (DL_MIN_LEN == 3)
 #  define _DV2_A(p,shift1,shift2) \
-	(((( (lzo_uint32)((p)[0]) << shift1) ^ (p)[1]) << shift2) ^ (p)[2])
+        (((( (lzo_xint)((p)[0]) << shift1) ^ (p)[1]) << shift2) ^ (p)[2])
 #  define _DV2_B(p,shift1,shift2) \
-	(((( (lzo_uint32)((p)[2]) << shift1) ^ (p)[1]) << shift2) ^ (p)[0])
+        (((( (lzo_xint)((p)[2]) << shift1) ^ (p)[1]) << shift2) ^ (p)[0])
 #  define _DV3_B(p,shift1,shift2,shift3) \
-	((_DV2_B((p)+1,shift1,shift2) << (shift3)) ^ (p)[0])
+        ((_DV2_B((p)+1,shift1,shift2) << (shift3)) ^ (p)[0])
 #elif (DL_MIN_LEN == 2)
 #  define _DV2_A(p,shift1,shift2) \
-	(( (lzo_uint32)(p[0]) << shift1) ^ p[1])
+        (( (lzo_xint)(p[0]) << shift1) ^ p[1])
 #  define _DV2_B(p,shift1,shift2) \
-	(( (lzo_uint32)(p[1]) << shift1) ^ p[2])
+        (( (lzo_xint)(p[1]) << shift1) ^ p[2])
 #else
 #  error "invalid DL_MIN_LEN"
 #endif
 #define _DV_A(p,shift)      _DV2_A(p,shift,shift)
 #define _DV_B(p,shift)      _DV2_B(p,shift,shift)
 #define DA2(p,s1,s2) \
-	(((((lzo_uint32)((p)[2]) << (s2)) + (p)[1]) << (s1)) + (p)[0])
+        (((((lzo_xint)((p)[2]) << (s2)) + (p)[1]) << (s1)) + (p)[0])
 #define DS2(p,s1,s2) \
-	(((((lzo_uint32)((p)[2]) << (s2)) - (p)[1]) << (s1)) - (p)[0])
+        (((((lzo_xint)((p)[2]) << (s2)) - (p)[1]) << (s1)) - (p)[0])
 #define DX2(p,s1,s2) \
-	(((((lzo_uint32)((p)[2]) << (s2)) ^ (p)[1]) << (s1)) ^ (p)[0])
+        (((((lzo_xint)((p)[2]) << (s2)) ^ (p)[1]) << (s1)) ^ (p)[0])
 #define DA3(p,s1,s2,s3) ((DA2((p)+1,s2,s3) << (s1)) + (p)[0])
 #define DS3(p,s1,s2,s3) ((DS2((p)+1,s2,s3) << (s1)) - (p)[0])
 #define DX3(p,s1,s2,s3) ((DX2((p)+1,s2,s3) << (s1)) ^ (p)[0])
@@ -1527,16 +2419,16 @@ extern "C" {
 #  define __LZO_HASH_INCREMENTAL
 #  define DVAL_FIRST(dv,p)  dv = _DV_A((p),5)
 #  define DVAL_NEXT(dv,p) \
-		dv ^= (lzo_uint32)(p[-1]) << (2*5); dv = (((dv) << 5) ^ p[2])
-#  define _DINDEX(dv,p)     ((0x9f5f * (dv)) >> 5)
+                dv ^= (lzo_xint)(p[-1]) << (2*5); dv = (((dv) << 5) ^ p[2])
+#  define _DINDEX(dv,p)     ((DMUL(0x9f5f,dv)) >> 5)
 #  define DVAL_LOOKAHEAD    DL_MIN_LEN
 
 #elif (LZO_HASH == LZO_HASH_LZO_INCREMENTAL_B)
 #  define __LZO_HASH_INCREMENTAL
 #  define DVAL_FIRST(dv,p)  dv = _DV_B((p),5)
 #  define DVAL_NEXT(dv,p) \
-		dv ^= p[-1]; dv = (((dv) >> 5) ^ ((lzo_uint32)(p[2]) << (2*5)))
-#  define _DINDEX(dv,p)     ((0x9f5f * (dv)) >> 5)
+                dv ^= p[-1]; dv = (((dv) >> 5) ^ ((lzo_xint)(p[2]) << (2*5)))
+#  define _DINDEX(dv,p)     ((DMUL(0x9f5f,dv)) >> 5)
 #  define DVAL_LOOKAHEAD    DL_MIN_LEN
 
 #else
@@ -1561,9 +2453,9 @@ extern "C" {
 
 #if !defined(DVAL_ASSERT)
 #if defined(__LZO_HASH_INCREMENTAL) && !defined(NDEBUG)
-static void DVAL_ASSERT(lzo_uint32 dv, const lzo_byte *p)
+static void DVAL_ASSERT(lzo_xint dv, const lzo_bytep p)
 {
-    lzo_uint32 df;
+    lzo_xint df;
     DVAL_FIRST(df,(p));
     assert(DINDEX(dv,p) == DINDEX(df,p));
 }
@@ -1589,36 +2481,37 @@ static void DVAL_ASSERT(lzo_uint32 dv, const lzo_byte *p)
 #else
 
 #  define UPDATE_D(dict,drun,dv,p,in)   \
-	dict[ DINDEX(dv,p) + drun++ ] = DENTRY(p,in); drun &= DD_MASK
+        dict[ DINDEX(dv,p) + drun++ ] = DENTRY(p,in); drun &= DD_MASK
 #  define UPDATE_I(dict,drun,index,p,in)    \
-	dict[ (index) + drun++ ] = DENTRY(p,in); drun &= DD_MASK
+        dict[ (index) + drun++ ] = DENTRY(p,in); drun &= DD_MASK
 #  define UPDATE_P(ptr,drun,p,in)   \
-	(ptr) [ drun++ ] = DENTRY(p,in); drun &= DD_MASK
+        (ptr) [ drun++ ] = DENTRY(p,in); drun &= DD_MASK
 
 #endif
 
 #if defined(LZO_DICT_USE_PTR)
 
 #define LZO_CHECK_MPOS_DET(m_pos,m_off,in,ip,max_offset) \
-	(m_pos == NULL || (m_off = (lzo_moff_t) (ip - m_pos)) > max_offset)
+        (m_pos == NULL || (m_off = pd(ip, m_pos)) > max_offset)
 
 #define LZO_CHECK_MPOS_NON_DET(m_pos,m_off,in,ip,max_offset) \
-    (BOUNDS_CHECKING_OFF_IN_EXPR( \
-	(PTR_LT(m_pos,in) || \
-	 (m_off = (lzo_moff_t) PTR_DIFF(ip,m_pos)) <= 0 || \
-	  m_off > max_offset) ))
+    (BOUNDS_CHECKING_OFF_IN_EXPR(( \
+        m_pos = ip - (lzo_uint) PTR_DIFF(ip,m_pos), \
+        PTR_LT(m_pos,in) || \
+        (m_off = (lzo_uint) PTR_DIFF(ip,m_pos)) <= 0 || \
+         m_off > max_offset )))
 
 #else
 
 #define LZO_CHECK_MPOS_DET(m_pos,m_off,in,ip,max_offset) \
-	(m_off == 0 || \
-	 ((m_off = (lzo_moff_t) ((ip)-(in)) - m_off) > max_offset) || \
-	 (m_pos = (ip) - (m_off), 0) )
+        (m_off == 0 || \
+         ((m_off = pd(ip, in) - m_off) > max_offset) || \
+         (m_pos = (ip) - (m_off), 0) )
 
 #define LZO_CHECK_MPOS_NON_DET(m_pos,m_off,in,ip,max_offset) \
-	((lzo_moff_t) ((ip)-(in)) <= m_off || \
-	 ((m_off = (lzo_moff_t) ((ip)-(in)) - m_off) > max_offset) || \
-	 (m_pos = (ip) - (m_off), 0) )
+        (pd(ip, in) <= m_off || \
+         ((m_off = pd(ip, in) - m_off) > max_offset) || \
+         (m_pos = (ip) - (m_off), 0) )
 
 #endif
 
@@ -1640,20 +2533,16 @@ static void DVAL_ASSERT(lzo_uint32 dv, const lzo_byte *p)
 
 #define DO_COMPRESS     lzo1x_1_compress
 
-static
-lzo_uint do_compress     ( const lzo_byte *in , lzo_uint  in_len,
-				 lzo_byte *out, lzo_uintp out_len,
-				 lzo_voidp wrkmem )
+static __lzo_noinline lzo_uint
+do_compress ( const lzo_bytep in , lzo_uint  in_len,
+                    lzo_bytep out, lzo_uintp out_len,
+                    lzo_voidp wrkmem )
 {
-#if 0 && defined(__GNUC__) && defined(__i386__)
-    register const lzo_byte *ip __asm__("%esi");
-#else
-    register const lzo_byte *ip;
-#endif
-    lzo_byte *op;
-    const lzo_byte * const in_end = in + in_len;
-    const lzo_byte * const ip_end = in + in_len - M2_MAX_LEN - 5;
-    const lzo_byte *ii;
+    register const lzo_bytep ip;
+    lzo_bytep op;
+    const lzo_bytep const in_end = in + in_len;
+    const lzo_bytep const ip_end = in + in_len - M2_MAX_LEN - 5;
+    const lzo_bytep ii;
     lzo_dict_p const dict = (lzo_dict_p) wrkmem;
 
     op = out;
@@ -1663,309 +2552,302 @@ lzo_uint do_compress     ( const lzo_byte *in , lzo_uint  in_len,
     ip += 4;
     for (;;)
     {
-#if 0 && defined(__GNUC__) && defined(__i386__)
-	register const lzo_byte *m_pos __asm__("%edi");
-#else
-	register const lzo_byte *m_pos;
-#endif
-	lzo_moff_t m_off;
-	lzo_uint m_len;
-	lzo_uint dindex;
+        register const lzo_bytep m_pos;
+        lzo_uint m_off;
+        lzo_uint m_len;
+        lzo_uint dindex;
 
-	DINDEX1(dindex,ip);
-	GINDEX(m_pos,m_off,dict,dindex,in);
-	if (LZO_CHECK_MPOS_NON_DET(m_pos,m_off,in,ip,M4_MAX_OFFSET))
-	    goto literal;
+        DINDEX1(dindex,ip);
+        GINDEX(m_pos,m_off,dict,dindex,in);
+        if (LZO_CHECK_MPOS_NON_DET(m_pos,m_off,in,ip,M4_MAX_OFFSET))
+            goto literal;
 #if 1
-	if (m_off <= M2_MAX_OFFSET || m_pos[3] == ip[3])
-	    goto try_match;
-	DINDEX2(dindex,ip);
+        if (m_off <= M2_MAX_OFFSET || m_pos[3] == ip[3])
+            goto try_match;
+        DINDEX2(dindex,ip);
 #endif
-	GINDEX(m_pos,m_off,dict,dindex,in);
-	if (LZO_CHECK_MPOS_NON_DET(m_pos,m_off,in,ip,M4_MAX_OFFSET))
-	    goto literal;
-	if (m_off <= M2_MAX_OFFSET || m_pos[3] == ip[3])
-	    goto try_match;
-	goto literal;
+        GINDEX(m_pos,m_off,dict,dindex,in);
+        if (LZO_CHECK_MPOS_NON_DET(m_pos,m_off,in,ip,M4_MAX_OFFSET))
+            goto literal;
+        if (m_off <= M2_MAX_OFFSET || m_pos[3] == ip[3])
+            goto try_match;
+        goto literal;
 
 try_match:
 #if 1 && defined(LZO_UNALIGNED_OK_2)
-	if (* (const lzo_ushortp) m_pos != * (const lzo_ushortp) ip)
+        if (* (const lzo_ushortp) m_pos != * (const lzo_ushortp) ip)
 #else
-	if (m_pos[0] != ip[0] || m_pos[1] != ip[1])
+        if (m_pos[0] != ip[0] || m_pos[1] != ip[1])
 #endif
-	{
-	}
-	else
-	{
-	    if (m_pos[2] == ip[2])
-	    {
+        {
+        }
+        else
+        {
+            if __lzo_likely(m_pos[2] == ip[2])
+            {
 #if 0
-		if (m_off <= M2_MAX_OFFSET)
-		    goto match;
-		if (lit <= 3)
-		    goto match;
-		if (lit == 3)
-		{
-		    assert(op - 2 > out); op[-2] |= LZO_BYTE(3);
-		    *op++ = *ii++; *op++ = *ii++; *op++ = *ii++;
-		    goto code_match;
-		}
-		if (m_pos[3] == ip[3])
+                if (m_off <= M2_MAX_OFFSET)
+                    goto match;
+                if (lit <= 3)
+                    goto match;
+                if (lit == 3)
+                {
+                    assert(op - 2 > out); op[-2] |= LZO_BYTE(3);
+                    *op++ = *ii++; *op++ = *ii++; *op++ = *ii++;
+                    goto code_match;
+                }
+                if (m_pos[3] == ip[3])
 #endif
-		    goto match;
-	    }
-	    else
-	    {
+                    goto match;
+            }
+            else
+            {
 #if 0
 #if 0
-		if (m_off <= M1_MAX_OFFSET && lit > 0 && lit <= 3)
+                if (m_off <= M1_MAX_OFFSET && lit > 0 && lit <= 3)
 #else
-		if (m_off <= M1_MAX_OFFSET && lit == 3)
+                if (m_off <= M1_MAX_OFFSET && lit == 3)
 #endif
-		{
-		    register lzo_uint t;
+                {
+                    register lzo_uint t;
 
-		    t = lit;
-		    assert(op - 2 > out); op[-2] |= LZO_BYTE(t);
-		    do *op++ = *ii++; while (--t > 0);
-		    assert(ii == ip);
-		    m_off -= 1;
-		    *op++ = LZO_BYTE(M1_MARKER | ((m_off & 3) << 2));
-		    *op++ = LZO_BYTE(m_off >> 2);
-		    ip += 2;
-		    goto match_done;
-		}
+                    t = lit;
+                    assert(op - 2 > out); op[-2] |= LZO_BYTE(t);
+                    do *op++ = *ii++; while (--t > 0);
+                    assert(ii == ip);
+                    m_off -= 1;
+                    *op++ = LZO_BYTE(M1_MARKER | ((m_off & 3) << 2));
+                    *op++ = LZO_BYTE(m_off >> 2);
+                    ip += 2;
+                    goto match_done;
+                }
 #endif
-	    }
-	}
+            }
+        }
 
 literal:
-	UPDATE_I(dict,0,dindex,ip,in);
-	++ip;
-	if (ip >= ip_end)
-	    break;
-	continue;
+        UPDATE_I(dict,0,dindex,ip,in);
+        ++ip;
+        if __lzo_unlikely(ip >= ip_end)
+            break;
+        continue;
 
 match:
-	UPDATE_I(dict,0,dindex,ip,in);
-	if (pd(ip,ii) > 0)
-	{
-	    register lzo_uint t = pd(ip,ii);
+        UPDATE_I(dict,0,dindex,ip,in);
+        if (pd(ip,ii) > 0)
+        {
+            register lzo_uint t = pd(ip,ii);
 
-	    if (t <= 3)
-	    {
-		assert(op - 2 > out);
-		op[-2] |= LZO_BYTE(t);
-	    }
-	    else if (t <= 18)
-		*op++ = LZO_BYTE(t - 3);
-	    else
-	    {
-		register lzo_uint tt = t - 18;
+            if (t <= 3)
+            {
+                assert(op - 2 > out);
+                op[-2] |= LZO_BYTE(t);
+            }
+            else if (t <= 18)
+                *op++ = LZO_BYTE(t - 3);
+            else
+            {
+                register lzo_uint tt = t - 18;
 
-		*op++ = 0;
-		while (tt > 255)
-		{
-		    tt -= 255;
-		    *op++ = 0;
-		}
-		assert(tt > 0);
-		*op++ = LZO_BYTE(tt);
-	    }
-	    do *op++ = *ii++; while (--t > 0);
-	}
+                *op++ = 0;
+                while (tt > 255)
+                {
+                    tt -= 255;
+                    *op++ = 0;
+                }
+                assert(tt > 0);
+                *op++ = LZO_BYTE(tt);
+            }
+            do *op++ = *ii++; while (--t > 0);
+        }
 
-	assert(ii == ip);
-	ip += 3;
-	if (m_pos[3] != *ip++ || m_pos[4] != *ip++ || m_pos[5] != *ip++ ||
-	    m_pos[6] != *ip++ || m_pos[7] != *ip++ || m_pos[8] != *ip++
+        assert(ii == ip);
+        ip += 3;
+        if (m_pos[3] != *ip++ || m_pos[4] != *ip++ || m_pos[5] != *ip++ ||
+            m_pos[6] != *ip++ || m_pos[7] != *ip++ || m_pos[8] != *ip++
 #ifdef LZO1Y
-	    || m_pos[ 9] != *ip++ || m_pos[10] != *ip++ || m_pos[11] != *ip++
-	    || m_pos[12] != *ip++ || m_pos[13] != *ip++ || m_pos[14] != *ip++
+            || m_pos[ 9] != *ip++ || m_pos[10] != *ip++ || m_pos[11] != *ip++
+            || m_pos[12] != *ip++ || m_pos[13] != *ip++ || m_pos[14] != *ip++
 #endif
-	   )
-	{
-	    --ip;
-	    m_len = ip - ii;
-	    assert(m_len >= 3); assert(m_len <= M2_MAX_LEN);
+           )
+        {
+            --ip;
+            m_len = pd(ip, ii);
+            assert(m_len >= 3); assert(m_len <= M2_MAX_LEN);
 
-	    if (m_off <= M2_MAX_OFFSET)
-	    {
-		m_off -= 1;
+            if (m_off <= M2_MAX_OFFSET)
+            {
+                m_off -= 1;
 #if defined(LZO1X)
-		*op++ = LZO_BYTE(((m_len - 1) << 5) | ((m_off & 7) << 2));
-		*op++ = LZO_BYTE(m_off >> 3);
+                *op++ = LZO_BYTE(((m_len - 1) << 5) | ((m_off & 7) << 2));
+                *op++ = LZO_BYTE(m_off >> 3);
 #elif defined(LZO1Y)
-		*op++ = LZO_BYTE(((m_len + 1) << 4) | ((m_off & 3) << 2));
-		*op++ = LZO_BYTE(m_off >> 2);
+                *op++ = LZO_BYTE(((m_len + 1) << 4) | ((m_off & 3) << 2));
+                *op++ = LZO_BYTE(m_off >> 2);
 #endif
-	    }
-	    else if (m_off <= M3_MAX_OFFSET)
-	    {
-		m_off -= 1;
-		*op++ = LZO_BYTE(M3_MARKER | (m_len - 2));
-		goto m3_m4_offset;
-	    }
-	    else
+            }
+            else if (m_off <= M3_MAX_OFFSET)
+            {
+                m_off -= 1;
+                *op++ = LZO_BYTE(M3_MARKER | (m_len - 2));
+                goto m3_m4_offset;
+            }
+            else
 #if defined(LZO1X)
-	    {
-		m_off -= 0x4000;
-		assert(m_off > 0); assert(m_off <= 0x7fff);
-		*op++ = LZO_BYTE(M4_MARKER |
-				 ((m_off & 0x4000) >> 11) | (m_len - 2));
-		goto m3_m4_offset;
-	    }
+            {
+                m_off -= 0x4000;
+                assert(m_off > 0); assert(m_off <= 0x7fff);
+                *op++ = LZO_BYTE(M4_MARKER |
+                                 ((m_off & 0x4000) >> 11) | (m_len - 2));
+                goto m3_m4_offset;
+            }
 #elif defined(LZO1Y)
-		goto m4_match;
+                goto m4_match;
 #endif
-	}
-	else
-	{
-	    {
-		const lzo_byte *end = in_end;
-		const lzo_byte *m = m_pos + M2_MAX_LEN + 1;
-		while (ip < end && *m == *ip)
-		    m++, ip++;
-		m_len = (ip - ii);
-	    }
-	    assert(m_len > M2_MAX_LEN);
+        }
+        else
+        {
+            {
+                const lzo_bytep end = in_end;
+                const lzo_bytep m = m_pos + M2_MAX_LEN + 1;
+                while (ip < end && *m == *ip)
+                    m++, ip++;
+                m_len = pd(ip, ii);
+            }
+            assert(m_len > M2_MAX_LEN);
 
-	    if (m_off <= M3_MAX_OFFSET)
-	    {
-		m_off -= 1;
-		if (m_len <= 33)
-		    *op++ = LZO_BYTE(M3_MARKER | (m_len - 2));
-		else
-		{
-		    m_len -= 33;
-		    *op++ = M3_MARKER | 0;
-		    goto m3_m4_len;
-		}
-	    }
-	    else
-	    {
+            if (m_off <= M3_MAX_OFFSET)
+            {
+                m_off -= 1;
+                if (m_len <= 33)
+                    *op++ = LZO_BYTE(M3_MARKER | (m_len - 2));
+                else
+                {
+                    m_len -= 33;
+                    *op++ = M3_MARKER | 0;
+                    goto m3_m4_len;
+                }
+            }
+            else
+            {
 #if defined(LZO1Y)
 m4_match:
 #endif
-		m_off -= 0x4000;
-		assert(m_off > 0); assert(m_off <= 0x7fff);
-		if (m_len <= M4_MAX_LEN)
-		    *op++ = LZO_BYTE(M4_MARKER |
-				     ((m_off & 0x4000) >> 11) | (m_len - 2));
-		else
-		{
-		    m_len -= M4_MAX_LEN;
-		    *op++ = LZO_BYTE(M4_MARKER | ((m_off & 0x4000) >> 11));
+                m_off -= 0x4000;
+                assert(m_off > 0); assert(m_off <= 0x7fff);
+                if (m_len <= M4_MAX_LEN)
+                    *op++ = LZO_BYTE(M4_MARKER |
+                                     ((m_off & 0x4000) >> 11) | (m_len - 2));
+                else
+                {
+                    m_len -= M4_MAX_LEN;
+                    *op++ = LZO_BYTE(M4_MARKER | ((m_off & 0x4000) >> 11));
 m3_m4_len:
-		    while (m_len > 255)
-		    {
-			m_len -= 255;
-			*op++ = 0;
-		    }
-		    assert(m_len > 0);
-		    *op++ = LZO_BYTE(m_len);
-		}
-	    }
+                    while (m_len > 255)
+                    {
+                        m_len -= 255;
+                        *op++ = 0;
+                    }
+                    assert(m_len > 0);
+                    *op++ = LZO_BYTE(m_len);
+                }
+            }
 
 m3_m4_offset:
-	    *op++ = LZO_BYTE((m_off & 63) << 2);
-	    *op++ = LZO_BYTE(m_off >> 6);
-	}
+            *op++ = LZO_BYTE((m_off & 63) << 2);
+            *op++ = LZO_BYTE(m_off >> 6);
+        }
 
 #if 0
 match_done:
 #endif
-	ii = ip;
-	if (ip >= ip_end)
-	    break;
+        ii = ip;
+        if __lzo_unlikely(ip >= ip_end)
+            break;
     }
 
-    *out_len = op - out;
+    *out_len = pd(op, out);
     return pd(in_end,ii);
 }
 
 LZO_PUBLIC(int)
-DO_COMPRESS      ( const lzo_byte *in , lzo_uint  in_len,
-			 lzo_byte *out, lzo_uintp out_len,
-			 lzo_voidp wrkmem )
+DO_COMPRESS      ( const lzo_bytep in , lzo_uint  in_len,
+                         lzo_bytep out, lzo_uintp out_len,
+                         lzo_voidp wrkmem )
 {
-    lzo_byte *op = out;
+    lzo_bytep op = out;
     lzo_uint t;
 
-#if defined(__LZO_QUERY_COMPRESS)
-    if (__LZO_IS_COMPRESS_QUERY(in,in_len,out,out_len,wrkmem))
-	return __LZO_QUERY_COMPRESS(in,in_len,out,out_len,wrkmem,D_SIZE,lzo_sizeof(lzo_dict_t));
-#endif
-
-    if (in_len <= M2_MAX_LEN + 5)
-	t = in_len;
+    if __lzo_unlikely(in_len <= M2_MAX_LEN + 5)
+        t = in_len;
     else
     {
-	t = do_compress(in,in_len,op,out_len,wrkmem);
-	op += *out_len;
+        t = do_compress(in,in_len,op,out_len,wrkmem);
+        op += *out_len;
     }
 
     if (t > 0)
     {
-	const lzo_byte *ii = in + in_len - t;
+        const lzo_bytep ii = in + in_len - t;
 
-	if (op == out && t <= 238)
-	    *op++ = LZO_BYTE(17 + t);
-	else if (t <= 3)
-	    op[-2] |= LZO_BYTE(t);
-	else if (t <= 18)
-	    *op++ = LZO_BYTE(t - 3);
-	else
-	{
-	    lzo_uint tt = t - 18;
+        if (op == out && t <= 238)
+            *op++ = LZO_BYTE(17 + t);
+        else if (t <= 3)
+            op[-2] |= LZO_BYTE(t);
+        else if (t <= 18)
+            *op++ = LZO_BYTE(t - 3);
+        else
+        {
+            lzo_uint tt = t - 18;
 
-	    *op++ = 0;
-	    while (tt > 255)
-	    {
-		tt -= 255;
-		*op++ = 0;
-	    }
-	    assert(tt > 0);
-	    *op++ = LZO_BYTE(tt);
-	}
-	do *op++ = *ii++; while (--t > 0);
+            *op++ = 0;
+            while (tt > 255)
+            {
+                tt -= 255;
+                *op++ = 0;
+            }
+            assert(tt > 0);
+            *op++ = LZO_BYTE(tt);
+        }
+        do *op++ = *ii++; while (--t > 0);
     }
 
     *op++ = M4_MARKER | 1;
     *op++ = 0;
     *op++ = 0;
 
-    *out_len = op - out;
+    *out_len = pd(op, out);
     return LZO_E_OK;
 }
+
+#endif
 
 #undef do_compress
 #undef DO_COMPRESS
 #undef LZO_HASH
 
-#undef LZO_TEST_DECOMPRESS_OVERRUN
-#undef LZO_TEST_DECOMPRESS_OVERRUN_INPUT
-#undef LZO_TEST_DECOMPRESS_OVERRUN_OUTPUT
-#undef LZO_TEST_DECOMPRESS_OVERRUN_LOOKBEHIND
+#undef LZO_TEST_OVERRUN
 #undef DO_DECOMPRESS
 #define DO_DECOMPRESS       lzo1x_decompress
 
-#if defined(LZO_TEST_DECOMPRESS_OVERRUN)
-#  if !defined(LZO_TEST_DECOMPRESS_OVERRUN_INPUT)
-#    define LZO_TEST_DECOMPRESS_OVERRUN_INPUT       2
+#if !defined(MINILZO_CFG_SKIP_LZO1X_DECOMPRESS)
+
+#if defined(LZO_TEST_OVERRUN)
+#  if !defined(LZO_TEST_OVERRUN_INPUT)
+#    define LZO_TEST_OVERRUN_INPUT       2
 #  endif
-#  if !defined(LZO_TEST_DECOMPRESS_OVERRUN_OUTPUT)
-#    define LZO_TEST_DECOMPRESS_OVERRUN_OUTPUT      2
+#  if !defined(LZO_TEST_OVERRUN_OUTPUT)
+#    define LZO_TEST_OVERRUN_OUTPUT      2
 #  endif
-#  if !defined(LZO_TEST_DECOMPRESS_OVERRUN_LOOKBEHIND)
-#    define LZO_TEST_DECOMPRESS_OVERRUN_LOOKBEHIND
+#  if !defined(LZO_TEST_OVERRUN_LOOKBEHIND)
+#    define LZO_TEST_OVERRUN_LOOKBEHIND
 #  endif
 #endif
 
 #undef TEST_IP
 #undef TEST_OP
-#undef TEST_LOOKBEHIND
+#undef TEST_LB
+#undef TEST_LBO
 #undef NEED_IP
 #undef NEED_OP
 #undef HAVE_TEST_IP
@@ -1975,31 +2857,33 @@ DO_COMPRESS      ( const lzo_byte *in , lzo_uint  in_len,
 #undef HAVE_ANY_IP
 #undef HAVE_ANY_OP
 
-#if defined(LZO_TEST_DECOMPRESS_OVERRUN_INPUT)
-#  if (LZO_TEST_DECOMPRESS_OVERRUN_INPUT >= 1)
+#if defined(LZO_TEST_OVERRUN_INPUT)
+#  if (LZO_TEST_OVERRUN_INPUT >= 1)
 #    define TEST_IP             (ip < ip_end)
 #  endif
-#  if (LZO_TEST_DECOMPRESS_OVERRUN_INPUT >= 2)
+#  if (LZO_TEST_OVERRUN_INPUT >= 2)
 #    define NEED_IP(x) \
-	    if ((lzo_uint)(ip_end - ip) < (lzo_uint)(x))  goto input_overrun
+            if ((lzo_uint)(ip_end - ip) < (lzo_uint)(x))  goto input_overrun
 #  endif
 #endif
 
-#if defined(LZO_TEST_DECOMPRESS_OVERRUN_OUTPUT)
-#  if (LZO_TEST_DECOMPRESS_OVERRUN_OUTPUT >= 1)
+#if defined(LZO_TEST_OVERRUN_OUTPUT)
+#  if (LZO_TEST_OVERRUN_OUTPUT >= 1)
 #    define TEST_OP             (op <= op_end)
 #  endif
-#  if (LZO_TEST_DECOMPRESS_OVERRUN_OUTPUT >= 2)
+#  if (LZO_TEST_OVERRUN_OUTPUT >= 2)
 #    undef TEST_OP
 #    define NEED_OP(x) \
-	    if ((lzo_uint)(op_end - op) < (lzo_uint)(x))  goto output_overrun
+            if ((lzo_uint)(op_end - op) < (lzo_uint)(x))  goto output_overrun
 #  endif
 #endif
 
-#if defined(LZO_TEST_DECOMPRESS_OVERRUN_LOOKBEHIND)
-#  define TEST_LOOKBEHIND(m_pos,out)    if (m_pos < out) goto lookbehind_overrun
+#if defined(LZO_TEST_OVERRUN_LOOKBEHIND)
+#  define TEST_LB(m_pos)        if (m_pos < out || m_pos >= op) goto lookbehind_overrun
+#  define TEST_LBO(m_pos,o)     if (m_pos < out || m_pos >= op - (o)) goto lookbehind_overrun
 #else
-#  define TEST_LOOKBEHIND(m_pos,op)     ((void) 0)
+#  define TEST_LB(m_pos)        ((void) 0)
+#  define TEST_LBO(m_pos,o)     ((void) 0)
 #endif
 
 #if !defined(LZO_EOF_CODE) && !defined(TEST_IP)
@@ -2042,29 +2926,29 @@ DO_COMPRESS      ( const lzo_byte *in , lzo_uint  in_len,
 #if defined(LZO_UNALIGNED_OK_4)
 #  define COPY4(dst,src)    __COPY4(dst,src)
 #elif defined(LZO_ALIGNED_OK_4)
-#  define COPY4(dst,src)    __COPY4((lzo_ptr_t)(dst),(lzo_ptr_t)(src))
+#  define COPY4(dst,src)    __COPY4((lzo_uintptr_t)(dst),(lzo_uintptr_t)(src))
 #endif
 
 #if defined(DO_DECOMPRESS)
 LZO_PUBLIC(int)
-DO_DECOMPRESS  ( const lzo_byte *in , lzo_uint  in_len,
-		       lzo_byte *out, lzo_uintp out_len,
-		       lzo_voidp wrkmem )
+DO_DECOMPRESS  ( const lzo_bytep in , lzo_uint  in_len,
+                       lzo_bytep out, lzo_uintp out_len,
+                       lzo_voidp wrkmem )
 #endif
 {
-    register lzo_byte *op;
-    register const lzo_byte *ip;
+    register lzo_bytep op;
+    register const lzo_bytep ip;
     register lzo_uint t;
 #if defined(COPY_DICT)
     lzo_uint m_off;
-    const lzo_byte *dict_end;
+    const lzo_bytep dict_end;
 #else
-    register const lzo_byte *m_pos;
+    register const lzo_bytep m_pos;
 #endif
 
-    const lzo_byte * const ip_end = in + in_len;
+    const lzo_bytep const ip_end = in + in_len;
 #if defined(HAVE_ANY_OP)
-    lzo_byte * const op_end = out + *out_len;
+    lzo_bytep const op_end = out + *out_len;
 #endif
 #if defined(LZO1Z)
     lzo_uint last_m_off = 0;
@@ -2072,25 +2956,20 @@ DO_DECOMPRESS  ( const lzo_byte *in , lzo_uint  in_len,
 
     LZO_UNUSED(wrkmem);
 
-#if defined(__LZO_QUERY_DECOMPRESS)
-    if (__LZO_IS_DECOMPRESS_QUERY(in,in_len,out,out_len,wrkmem))
-	return __LZO_QUERY_DECOMPRESS(in,in_len,out,out_len,wrkmem,0,0);
-#endif
-
 #if defined(COPY_DICT)
     if (dict)
     {
-	if (dict_len > M4_MAX_OFFSET)
-	{
-	    dict += dict_len - M4_MAX_OFFSET;
-	    dict_len = M4_MAX_OFFSET;
-	}
-	dict_end = dict + dict_len;
+        if (dict_len > M4_MAX_OFFSET)
+        {
+            dict += dict_len - M4_MAX_OFFSET;
+            dict_len = M4_MAX_OFFSET;
+        }
+        dict_end = dict + dict_len;
     }
     else
     {
-	dict_len = 0;
-	dict_end = NULL;
+        dict_len = 0;
+        dict_end = NULL;
     }
 #endif
 
@@ -2101,363 +2980,372 @@ DO_DECOMPRESS  ( const lzo_byte *in , lzo_uint  in_len,
 
     if (*ip > 17)
     {
-	t = *ip++ - 17;
-	if (t < 4)
-	    goto match_next;
-	assert(t > 0); NEED_OP(t); NEED_IP(t+1);
-	do *op++ = *ip++; while (--t > 0);
-	goto first_literal_run;
+        t = *ip++ - 17;
+        if (t < 4)
+            goto match_next;
+        assert(t > 0); NEED_OP(t); NEED_IP(t+1);
+        do *op++ = *ip++; while (--t > 0);
+        goto first_literal_run;
     }
 
     while (TEST_IP && TEST_OP)
     {
-	t = *ip++;
-	if (t >= 16)
-	    goto match;
-	if (t == 0)
-	{
-	    NEED_IP(1);
-	    while (*ip == 0)
-	    {
-		t += 255;
-		ip++;
-		NEED_IP(1);
-	    }
-	    t += 15 + *ip++;
-	}
-	assert(t > 0); NEED_OP(t+3); NEED_IP(t+4);
+        t = *ip++;
+        if (t >= 16)
+            goto match;
+        if (t == 0)
+        {
+            NEED_IP(1);
+            while (*ip == 0)
+            {
+                t += 255;
+                ip++;
+                NEED_IP(1);
+            }
+            t += 15 + *ip++;
+        }
+        assert(t > 0); NEED_OP(t+3); NEED_IP(t+4);
 #if defined(LZO_UNALIGNED_OK_4) || defined(LZO_ALIGNED_OK_4)
 #if !defined(LZO_UNALIGNED_OK_4)
-	if (PTR_ALIGNED2_4(op,ip))
-	{
+        if (PTR_ALIGNED2_4(op,ip))
+        {
 #endif
-	COPY4(op,ip);
-	op += 4; ip += 4;
-	if (--t > 0)
-	{
-	    if (t >= 4)
-	    {
-		do {
-		    COPY4(op,ip);
-		    op += 4; ip += 4; t -= 4;
-		} while (t >= 4);
-		if (t > 0) do *op++ = *ip++; while (--t > 0);
-	    }
-	    else
-		do *op++ = *ip++; while (--t > 0);
-	}
+        COPY4(op,ip);
+        op += 4; ip += 4;
+        if (--t > 0)
+        {
+            if (t >= 4)
+            {
+                do {
+                    COPY4(op,ip);
+                    op += 4; ip += 4; t -= 4;
+                } while (t >= 4);
+                if (t > 0) do *op++ = *ip++; while (--t > 0);
+            }
+            else
+                do *op++ = *ip++; while (--t > 0);
+        }
 #if !defined(LZO_UNALIGNED_OK_4)
-	}
-	else
+        }
+        else
 #endif
 #endif
 #if !defined(LZO_UNALIGNED_OK_4)
-	{
-	    *op++ = *ip++; *op++ = *ip++; *op++ = *ip++;
-	    do *op++ = *ip++; while (--t > 0);
-	}
+        {
+            *op++ = *ip++; *op++ = *ip++; *op++ = *ip++;
+            do *op++ = *ip++; while (--t > 0);
+        }
 #endif
 
 first_literal_run:
 
-	t = *ip++;
-	if (t >= 16)
-	    goto match;
+        t = *ip++;
+        if (t >= 16)
+            goto match;
 #if defined(COPY_DICT)
 #if defined(LZO1Z)
-	m_off = (1 + M2_MAX_OFFSET) + (t << 6) + (*ip++ >> 2);
-	last_m_off = m_off;
+        m_off = (1 + M2_MAX_OFFSET) + (t << 6) + (*ip++ >> 2);
+        last_m_off = m_off;
 #else
-	m_off = (1 + M2_MAX_OFFSET) + (t >> 2) + (*ip++ << 2);
+        m_off = (1 + M2_MAX_OFFSET) + (t >> 2) + (*ip++ << 2);
 #endif
-	NEED_OP(3);
-	t = 3; COPY_DICT(t,m_off)
+        NEED_OP(3);
+        t = 3; COPY_DICT(t,m_off)
 #else
 #if defined(LZO1Z)
-	t = (1 + M2_MAX_OFFSET) + (t << 6) + (*ip++ >> 2);
-	m_pos = op - t;
-	last_m_off = t;
+        t = (1 + M2_MAX_OFFSET) + (t << 6) + (*ip++ >> 2);
+        m_pos = op - t;
+        last_m_off = t;
 #else
-	m_pos = op - (1 + M2_MAX_OFFSET);
-	m_pos -= t >> 2;
-	m_pos -= *ip++ << 2;
+        m_pos = op - (1 + M2_MAX_OFFSET);
+        m_pos -= t >> 2;
+        m_pos -= *ip++ << 2;
 #endif
-	TEST_LOOKBEHIND(m_pos,out); NEED_OP(3);
-	*op++ = *m_pos++; *op++ = *m_pos++; *op++ = *m_pos;
+        TEST_LB(m_pos); NEED_OP(3);
+        *op++ = *m_pos++; *op++ = *m_pos++; *op++ = *m_pos;
 #endif
-	goto match_done;
+        goto match_done;
 
-	while (TEST_IP && TEST_OP)
-	{
+        do {
 match:
-	    if (t >= 64)
-	    {
+            if (t >= 64)
+            {
 #if defined(COPY_DICT)
 #if defined(LZO1X)
-		m_off = 1 + ((t >> 2) & 7) + (*ip++ << 3);
-		t = (t >> 5) - 1;
+                m_off = 1 + ((t >> 2) & 7) + (*ip++ << 3);
+                t = (t >> 5) - 1;
 #elif defined(LZO1Y)
-		m_off = 1 + ((t >> 2) & 3) + (*ip++ << 2);
-		t = (t >> 4) - 3;
+                m_off = 1 + ((t >> 2) & 3) + (*ip++ << 2);
+                t = (t >> 4) - 3;
 #elif defined(LZO1Z)
-		m_off = t & 0x1f;
-		if (m_off >= 0x1c)
-		    m_off = last_m_off;
-		else
-		{
-		    m_off = 1 + (m_off << 6) + (*ip++ >> 2);
-		    last_m_off = m_off;
-		}
-		t = (t >> 5) - 1;
+                m_off = t & 0x1f;
+                if (m_off >= 0x1c)
+                    m_off = last_m_off;
+                else
+                {
+                    m_off = 1 + (m_off << 6) + (*ip++ >> 2);
+                    last_m_off = m_off;
+                }
+                t = (t >> 5) - 1;
 #endif
 #else
 #if defined(LZO1X)
-		m_pos = op - 1;
-		m_pos -= (t >> 2) & 7;
-		m_pos -= *ip++ << 3;
-		t = (t >> 5) - 1;
+                m_pos = op - 1;
+                m_pos -= (t >> 2) & 7;
+                m_pos -= *ip++ << 3;
+                t = (t >> 5) - 1;
 #elif defined(LZO1Y)
-		m_pos = op - 1;
-		m_pos -= (t >> 2) & 3;
-		m_pos -= *ip++ << 2;
-		t = (t >> 4) - 3;
+                m_pos = op - 1;
+                m_pos -= (t >> 2) & 3;
+                m_pos -= *ip++ << 2;
+                t = (t >> 4) - 3;
 #elif defined(LZO1Z)
-		{
-		    lzo_uint off = t & 0x1f;
-		    m_pos = op;
-		    if (off >= 0x1c)
-		    {
-			assert(last_m_off > 0);
-			m_pos -= last_m_off;
-		    }
-		    else
-		    {
-			off = 1 + (off << 6) + (*ip++ >> 2);
-			m_pos -= off;
-			last_m_off = off;
-		    }
-		}
-		t = (t >> 5) - 1;
+                {
+                    lzo_uint off = t & 0x1f;
+                    m_pos = op;
+                    if (off >= 0x1c)
+                    {
+                        assert(last_m_off > 0);
+                        m_pos -= last_m_off;
+                    }
+                    else
+                    {
+                        off = 1 + (off << 6) + (*ip++ >> 2);
+                        m_pos -= off;
+                        last_m_off = off;
+                    }
+                }
+                t = (t >> 5) - 1;
 #endif
-		TEST_LOOKBEHIND(m_pos,out); assert(t > 0); NEED_OP(t+3-1);
-		goto copy_match;
+                TEST_LB(m_pos); assert(t > 0); NEED_OP(t+3-1);
+                goto copy_match;
 #endif
-	    }
-	    else if (t >= 32)
-	    {
-		t &= 31;
-		if (t == 0)
-		{
-		    NEED_IP(1);
-		    while (*ip == 0)
-		    {
-			t += 255;
-			ip++;
-			NEED_IP(1);
-		    }
-		    t += 31 + *ip++;
-		}
+            }
+            else if (t >= 32)
+            {
+                t &= 31;
+                if (t == 0)
+                {
+                    NEED_IP(1);
+                    while (*ip == 0)
+                    {
+                        t += 255;
+                        ip++;
+                        NEED_IP(1);
+                    }
+                    t += 31 + *ip++;
+                }
 #if defined(COPY_DICT)
 #if defined(LZO1Z)
-		m_off = 1 + (ip[0] << 6) + (ip[1] >> 2);
-		last_m_off = m_off;
+                m_off = 1 + (ip[0] << 6) + (ip[1] >> 2);
+                last_m_off = m_off;
 #else
-		m_off = 1 + (ip[0] >> 2) + (ip[1] << 6);
+                m_off = 1 + (ip[0] >> 2) + (ip[1] << 6);
 #endif
 #else
 #if defined(LZO1Z)
-		{
-		    lzo_uint off = 1 + (ip[0] << 6) + (ip[1] >> 2);
-		    m_pos = op - off;
-		    last_m_off = off;
-		}
-#elif defined(LZO_UNALIGNED_OK_2) && (LZO_BYTE_ORDER == LZO_LITTLE_ENDIAN)
-		m_pos = op - 1;
-		m_pos -= (* (const lzo_ushortp) ip) >> 2;
+                {
+                    lzo_uint off = 1 + (ip[0] << 6) + (ip[1] >> 2);
+                    m_pos = op - off;
+                    last_m_off = off;
+                }
+#elif defined(LZO_UNALIGNED_OK_2) && defined(LZO_ABI_LITTLE_ENDIAN)
+                m_pos = op - 1;
+                m_pos -= (* (const lzo_ushortp) ip) >> 2;
 #else
-		m_pos = op - 1;
-		m_pos -= (ip[0] >> 2) + (ip[1] << 6);
+                m_pos = op - 1;
+                m_pos -= (ip[0] >> 2) + (ip[1] << 6);
 #endif
 #endif
-		ip += 2;
-	    }
-	    else if (t >= 16)
-	    {
+                ip += 2;
+            }
+            else if (t >= 16)
+            {
 #if defined(COPY_DICT)
-		m_off = (t & 8) << 11;
+                m_off = (t & 8) << 11;
 #else
-		m_pos = op;
-		m_pos -= (t & 8) << 11;
+                m_pos = op;
+                m_pos -= (t & 8) << 11;
 #endif
-		t &= 7;
-		if (t == 0)
-		{
-		    NEED_IP(1);
-		    while (*ip == 0)
-		    {
-			t += 255;
-			ip++;
-			NEED_IP(1);
-		    }
-		    t += 7 + *ip++;
-		}
-#if defined(COPY_DICT)
-#if defined(LZO1Z)
-		m_off += (ip[0] << 6) + (ip[1] >> 2);
-#else
-		m_off += (ip[0] >> 2) + (ip[1] << 6);
-#endif
-		ip += 2;
-		if (m_off == 0)
-		    goto eof_found;
-		m_off += 0x4000;
-#if defined(LZO1Z)
-		last_m_off = m_off;
-#endif
-#else
-#if defined(LZO1Z)
-		m_pos -= (ip[0] << 6) + (ip[1] >> 2);
-#elif defined(LZO_UNALIGNED_OK_2) && (LZO_BYTE_ORDER == LZO_LITTLE_ENDIAN)
-		m_pos -= (* (const lzo_ushortp) ip) >> 2;
-#else
-		m_pos -= (ip[0] >> 2) + (ip[1] << 6);
-#endif
-		ip += 2;
-		if (m_pos == op)
-		    goto eof_found;
-		m_pos -= 0x4000;
-#if defined(LZO1Z)
-		last_m_off = op - m_pos;
-#endif
-#endif
-	    }
-	    else
-	    {
+                t &= 7;
+                if (t == 0)
+                {
+                    NEED_IP(1);
+                    while (*ip == 0)
+                    {
+                        t += 255;
+                        ip++;
+                        NEED_IP(1);
+                    }
+                    t += 7 + *ip++;
+                }
 #if defined(COPY_DICT)
 #if defined(LZO1Z)
-		m_off = 1 + (t << 6) + (*ip++ >> 2);
-		last_m_off = m_off;
+                m_off += (ip[0] << 6) + (ip[1] >> 2);
 #else
-		m_off = 1 + (t >> 2) + (*ip++ << 2);
+                m_off += (ip[0] >> 2) + (ip[1] << 6);
 #endif
-		NEED_OP(2);
-		t = 2; COPY_DICT(t,m_off)
+                ip += 2;
+                if (m_off == 0)
+                    goto eof_found;
+                m_off += 0x4000;
+#if defined(LZO1Z)
+                last_m_off = m_off;
+#endif
 #else
 #if defined(LZO1Z)
-		t = 1 + (t << 6) + (*ip++ >> 2);
-		m_pos = op - t;
-		last_m_off = t;
+                m_pos -= (ip[0] << 6) + (ip[1] >> 2);
+#elif defined(LZO_UNALIGNED_OK_2) && defined(LZO_ABI_LITTLE_ENDIAN)
+                m_pos -= (* (const lzo_ushortp) ip) >> 2;
 #else
-		m_pos = op - 1;
-		m_pos -= t >> 2;
-		m_pos -= *ip++ << 2;
+                m_pos -= (ip[0] >> 2) + (ip[1] << 6);
 #endif
-		TEST_LOOKBEHIND(m_pos,out); NEED_OP(2);
-		*op++ = *m_pos++; *op++ = *m_pos;
+                ip += 2;
+                if (m_pos == op)
+                    goto eof_found;
+                m_pos -= 0x4000;
+#if defined(LZO1Z)
+                last_m_off = pd((const lzo_bytep)op, m_pos);
 #endif
-		goto match_done;
-	    }
+#endif
+            }
+            else
+            {
+#if defined(COPY_DICT)
+#if defined(LZO1Z)
+                m_off = 1 + (t << 6) + (*ip++ >> 2);
+                last_m_off = m_off;
+#else
+                m_off = 1 + (t >> 2) + (*ip++ << 2);
+#endif
+                NEED_OP(2);
+                t = 2; COPY_DICT(t,m_off)
+#else
+#if defined(LZO1Z)
+                t = 1 + (t << 6) + (*ip++ >> 2);
+                m_pos = op - t;
+                last_m_off = t;
+#else
+                m_pos = op - 1;
+                m_pos -= t >> 2;
+                m_pos -= *ip++ << 2;
+#endif
+                TEST_LB(m_pos); NEED_OP(2);
+                *op++ = *m_pos++; *op++ = *m_pos;
+#endif
+                goto match_done;
+            }
 
 #if defined(COPY_DICT)
 
-	    NEED_OP(t+3-1);
-	    t += 3-1; COPY_DICT(t,m_off)
+            NEED_OP(t+3-1);
+            t += 3-1; COPY_DICT(t,m_off)
 
 #else
 
-	    TEST_LOOKBEHIND(m_pos,out); assert(t > 0); NEED_OP(t+3-1);
+            TEST_LB(m_pos); assert(t > 0); NEED_OP(t+3-1);
 #if defined(LZO_UNALIGNED_OK_4) || defined(LZO_ALIGNED_OK_4)
 #if !defined(LZO_UNALIGNED_OK_4)
-	    if (t >= 2 * 4 - (3 - 1) && PTR_ALIGNED2_4(op,m_pos))
-	    {
-		assert((op - m_pos) >= 4);
+            if (t >= 2 * 4 - (3 - 1) && PTR_ALIGNED2_4(op,m_pos))
+            {
+                assert((op - m_pos) >= 4);
 #else
-	    if (t >= 2 * 4 - (3 - 1) && (op - m_pos) >= 4)
-	    {
+            if (t >= 2 * 4 - (3 - 1) && (op - m_pos) >= 4)
+            {
 #endif
-		COPY4(op,m_pos);
-		op += 4; m_pos += 4; t -= 4 - (3 - 1);
-		do {
-		    COPY4(op,m_pos);
-		    op += 4; m_pos += 4; t -= 4;
-		} while (t >= 4);
-		if (t > 0) do *op++ = *m_pos++; while (--t > 0);
-	    }
-	    else
+                COPY4(op,m_pos);
+                op += 4; m_pos += 4; t -= 4 - (3 - 1);
+                do {
+                    COPY4(op,m_pos);
+                    op += 4; m_pos += 4; t -= 4;
+                } while (t >= 4);
+                if (t > 0) do *op++ = *m_pos++; while (--t > 0);
+            }
+            else
 #endif
-	    {
+            {
 copy_match:
-		*op++ = *m_pos++; *op++ = *m_pos++;
-		do *op++ = *m_pos++; while (--t > 0);
-	    }
+                *op++ = *m_pos++; *op++ = *m_pos++;
+                do *op++ = *m_pos++; while (--t > 0);
+            }
 
 #endif
 
 match_done:
 #if defined(LZO1Z)
-	    t = ip[-1] & 3;
+            t = ip[-1] & 3;
 #else
-	    t = ip[-2] & 3;
+            t = ip[-2] & 3;
 #endif
-	    if (t == 0)
-		break;
+            if (t == 0)
+                break;
 
 match_next:
-	    assert(t > 0); NEED_OP(t); NEED_IP(t+1);
-	    do *op++ = *ip++; while (--t > 0);
-	    t = *ip++;
-	}
+            assert(t > 0); assert(t < 4); NEED_OP(t); NEED_IP(t+1);
+#if 0
+            do *op++ = *ip++; while (--t > 0);
+#else
+            *op++ = *ip++;
+            if (t > 1) { *op++ = *ip++; if (t > 2) { *op++ = *ip++; } }
+#endif
+            t = *ip++;
+        } while (TEST_IP && TEST_OP);
     }
 
 #if defined(HAVE_TEST_IP) || defined(HAVE_TEST_OP)
-    *out_len = op - out;
+    *out_len = pd(op, out);
     return LZO_E_EOF_NOT_FOUND;
 #endif
 
 eof_found:
     assert(t == 1);
-    *out_len = op - out;
+    *out_len = pd(op, out);
     return (ip == ip_end ? LZO_E_OK :
-	   (ip < ip_end  ? LZO_E_INPUT_NOT_CONSUMED : LZO_E_INPUT_OVERRUN));
+           (ip < ip_end  ? LZO_E_INPUT_NOT_CONSUMED : LZO_E_INPUT_OVERRUN));
 
 #if defined(HAVE_NEED_IP)
 input_overrun:
-    *out_len = op - out;
+    *out_len = pd(op, out);
     return LZO_E_INPUT_OVERRUN;
 #endif
 
 #if defined(HAVE_NEED_OP)
 output_overrun:
-    *out_len = op - out;
+    *out_len = pd(op, out);
     return LZO_E_OUTPUT_OVERRUN;
 #endif
 
-#if defined(LZO_TEST_DECOMPRESS_OVERRUN_LOOKBEHIND)
+#if defined(LZO_TEST_OVERRUN_LOOKBEHIND)
 lookbehind_overrun:
-    *out_len = op - out;
+    *out_len = pd(op, out);
     return LZO_E_LOOKBEHIND_OVERRUN;
 #endif
 }
 
-#define LZO_TEST_DECOMPRESS_OVERRUN
+#endif
+
+#define LZO_TEST_OVERRUN
 #undef DO_DECOMPRESS
 #define DO_DECOMPRESS       lzo1x_decompress_safe
 
-#if defined(LZO_TEST_DECOMPRESS_OVERRUN)
-#  if !defined(LZO_TEST_DECOMPRESS_OVERRUN_INPUT)
-#    define LZO_TEST_DECOMPRESS_OVERRUN_INPUT       2
+#if !defined(MINILZO_CFG_SKIP_LZO1X_DECOMPRESS_SAFE)
+
+#if defined(LZO_TEST_OVERRUN)
+#  if !defined(LZO_TEST_OVERRUN_INPUT)
+#    define LZO_TEST_OVERRUN_INPUT       2
 #  endif
-#  if !defined(LZO_TEST_DECOMPRESS_OVERRUN_OUTPUT)
-#    define LZO_TEST_DECOMPRESS_OVERRUN_OUTPUT      2
+#  if !defined(LZO_TEST_OVERRUN_OUTPUT)
+#    define LZO_TEST_OVERRUN_OUTPUT      2
 #  endif
-#  if !defined(LZO_TEST_DECOMPRESS_OVERRUN_LOOKBEHIND)
-#    define LZO_TEST_DECOMPRESS_OVERRUN_LOOKBEHIND
+#  if !defined(LZO_TEST_OVERRUN_LOOKBEHIND)
+#    define LZO_TEST_OVERRUN_LOOKBEHIND
 #  endif
 #endif
 
 #undef TEST_IP
 #undef TEST_OP
-#undef TEST_LOOKBEHIND
+#undef TEST_LB
+#undef TEST_LBO
 #undef NEED_IP
 #undef NEED_OP
 #undef HAVE_TEST_IP
@@ -2467,31 +3355,33 @@ lookbehind_overrun:
 #undef HAVE_ANY_IP
 #undef HAVE_ANY_OP
 
-#if defined(LZO_TEST_DECOMPRESS_OVERRUN_INPUT)
-#  if (LZO_TEST_DECOMPRESS_OVERRUN_INPUT >= 1)
+#if defined(LZO_TEST_OVERRUN_INPUT)
+#  if (LZO_TEST_OVERRUN_INPUT >= 1)
 #    define TEST_IP             (ip < ip_end)
 #  endif
-#  if (LZO_TEST_DECOMPRESS_OVERRUN_INPUT >= 2)
+#  if (LZO_TEST_OVERRUN_INPUT >= 2)
 #    define NEED_IP(x) \
-	    if ((lzo_uint)(ip_end - ip) < (lzo_uint)(x))  goto input_overrun
+            if ((lzo_uint)(ip_end - ip) < (lzo_uint)(x))  goto input_overrun
 #  endif
 #endif
 
-#if defined(LZO_TEST_DECOMPRESS_OVERRUN_OUTPUT)
-#  if (LZO_TEST_DECOMPRESS_OVERRUN_OUTPUT >= 1)
+#if defined(LZO_TEST_OVERRUN_OUTPUT)
+#  if (LZO_TEST_OVERRUN_OUTPUT >= 1)
 #    define TEST_OP             (op <= op_end)
 #  endif
-#  if (LZO_TEST_DECOMPRESS_OVERRUN_OUTPUT >= 2)
+#  if (LZO_TEST_OVERRUN_OUTPUT >= 2)
 #    undef TEST_OP
 #    define NEED_OP(x) \
-	    if ((lzo_uint)(op_end - op) < (lzo_uint)(x))  goto output_overrun
+            if ((lzo_uint)(op_end - op) < (lzo_uint)(x))  goto output_overrun
 #  endif
 #endif
 
-#if defined(LZO_TEST_DECOMPRESS_OVERRUN_LOOKBEHIND)
-#  define TEST_LOOKBEHIND(m_pos,out)    if (m_pos < out) goto lookbehind_overrun
+#if defined(LZO_TEST_OVERRUN_LOOKBEHIND)
+#  define TEST_LB(m_pos)        if (m_pos < out || m_pos >= op) goto lookbehind_overrun
+#  define TEST_LBO(m_pos,o)     if (m_pos < out || m_pos >= op - (o)) goto lookbehind_overrun
 #else
-#  define TEST_LOOKBEHIND(m_pos,op)     ((void) 0)
+#  define TEST_LB(m_pos)        ((void) 0)
+#  define TEST_LBO(m_pos,o)     ((void) 0)
 #endif
 
 #if !defined(LZO_EOF_CODE) && !defined(TEST_IP)
@@ -2534,29 +3424,29 @@ lookbehind_overrun:
 #if defined(LZO_UNALIGNED_OK_4)
 #  define COPY4(dst,src)    __COPY4(dst,src)
 #elif defined(LZO_ALIGNED_OK_4)
-#  define COPY4(dst,src)    __COPY4((lzo_ptr_t)(dst),(lzo_ptr_t)(src))
+#  define COPY4(dst,src)    __COPY4((lzo_uintptr_t)(dst),(lzo_uintptr_t)(src))
 #endif
 
 #if defined(DO_DECOMPRESS)
 LZO_PUBLIC(int)
-DO_DECOMPRESS  ( const lzo_byte *in , lzo_uint  in_len,
-		       lzo_byte *out, lzo_uintp out_len,
-		       lzo_voidp wrkmem )
+DO_DECOMPRESS  ( const lzo_bytep in , lzo_uint  in_len,
+                       lzo_bytep out, lzo_uintp out_len,
+                       lzo_voidp wrkmem )
 #endif
 {
-    register lzo_byte *op;
-    register const lzo_byte *ip;
+    register lzo_bytep op;
+    register const lzo_bytep ip;
     register lzo_uint t;
 #if defined(COPY_DICT)
     lzo_uint m_off;
-    const lzo_byte *dict_end;
+    const lzo_bytep dict_end;
 #else
-    register const lzo_byte *m_pos;
+    register const lzo_bytep m_pos;
 #endif
 
-    const lzo_byte * const ip_end = in + in_len;
+    const lzo_bytep const ip_end = in + in_len;
 #if defined(HAVE_ANY_OP)
-    lzo_byte * const op_end = out + *out_len;
+    lzo_bytep const op_end = out + *out_len;
 #endif
 #if defined(LZO1Z)
     lzo_uint last_m_off = 0;
@@ -2564,25 +3454,20 @@ DO_DECOMPRESS  ( const lzo_byte *in , lzo_uint  in_len,
 
     LZO_UNUSED(wrkmem);
 
-#if defined(__LZO_QUERY_DECOMPRESS)
-    if (__LZO_IS_DECOMPRESS_QUERY(in,in_len,out,out_len,wrkmem))
-	return __LZO_QUERY_DECOMPRESS(in,in_len,out,out_len,wrkmem,0,0);
-#endif
-
 #if defined(COPY_DICT)
     if (dict)
     {
-	if (dict_len > M4_MAX_OFFSET)
-	{
-	    dict += dict_len - M4_MAX_OFFSET;
-	    dict_len = M4_MAX_OFFSET;
-	}
-	dict_end = dict + dict_len;
+        if (dict_len > M4_MAX_OFFSET)
+        {
+            dict += dict_len - M4_MAX_OFFSET;
+            dict_len = M4_MAX_OFFSET;
+        }
+        dict_end = dict + dict_len;
     }
     else
     {
-	dict_len = 0;
-	dict_end = NULL;
+        dict_len = 0;
+        dict_end = NULL;
     }
 #endif
 
@@ -2593,343 +3478,349 @@ DO_DECOMPRESS  ( const lzo_byte *in , lzo_uint  in_len,
 
     if (*ip > 17)
     {
-	t = *ip++ - 17;
-	if (t < 4)
-	    goto match_next;
-	assert(t > 0); NEED_OP(t); NEED_IP(t+1);
-	do *op++ = *ip++; while (--t > 0);
-	goto first_literal_run;
+        t = *ip++ - 17;
+        if (t < 4)
+            goto match_next;
+        assert(t > 0); NEED_OP(t); NEED_IP(t+1);
+        do *op++ = *ip++; while (--t > 0);
+        goto first_literal_run;
     }
 
     while (TEST_IP && TEST_OP)
     {
-	t = *ip++;
-	if (t >= 16)
-	    goto match;
-	if (t == 0)
-	{
-	    NEED_IP(1);
-	    while (*ip == 0)
-	    {
-		t += 255;
-		ip++;
-		NEED_IP(1);
-	    }
-	    t += 15 + *ip++;
-	}
-	assert(t > 0); NEED_OP(t+3); NEED_IP(t+4);
+        t = *ip++;
+        if (t >= 16)
+            goto match;
+        if (t == 0)
+        {
+            NEED_IP(1);
+            while (*ip == 0)
+            {
+                t += 255;
+                ip++;
+                NEED_IP(1);
+            }
+            t += 15 + *ip++;
+        }
+        assert(t > 0); NEED_OP(t+3); NEED_IP(t+4);
 #if defined(LZO_UNALIGNED_OK_4) || defined(LZO_ALIGNED_OK_4)
 #if !defined(LZO_UNALIGNED_OK_4)
-	if (PTR_ALIGNED2_4(op,ip))
-	{
+        if (PTR_ALIGNED2_4(op,ip))
+        {
 #endif
-	COPY4(op,ip);
-	op += 4; ip += 4;
-	if (--t > 0)
-	{
-	    if (t >= 4)
-	    {
-		do {
-		    COPY4(op,ip);
-		    op += 4; ip += 4; t -= 4;
-		} while (t >= 4);
-		if (t > 0) do *op++ = *ip++; while (--t > 0);
-	    }
-	    else
-		do *op++ = *ip++; while (--t > 0);
-	}
+        COPY4(op,ip);
+        op += 4; ip += 4;
+        if (--t > 0)
+        {
+            if (t >= 4)
+            {
+                do {
+                    COPY4(op,ip);
+                    op += 4; ip += 4; t -= 4;
+                } while (t >= 4);
+                if (t > 0) do *op++ = *ip++; while (--t > 0);
+            }
+            else
+                do *op++ = *ip++; while (--t > 0);
+        }
 #if !defined(LZO_UNALIGNED_OK_4)
-	}
-	else
+        }
+        else
 #endif
 #endif
 #if !defined(LZO_UNALIGNED_OK_4)
-	{
-	    *op++ = *ip++; *op++ = *ip++; *op++ = *ip++;
-	    do *op++ = *ip++; while (--t > 0);
-	}
+        {
+            *op++ = *ip++; *op++ = *ip++; *op++ = *ip++;
+            do *op++ = *ip++; while (--t > 0);
+        }
 #endif
 
 first_literal_run:
 
-	t = *ip++;
-	if (t >= 16)
-	    goto match;
+        t = *ip++;
+        if (t >= 16)
+            goto match;
 #if defined(COPY_DICT)
 #if defined(LZO1Z)
-	m_off = (1 + M2_MAX_OFFSET) + (t << 6) + (*ip++ >> 2);
-	last_m_off = m_off;
+        m_off = (1 + M2_MAX_OFFSET) + (t << 6) + (*ip++ >> 2);
+        last_m_off = m_off;
 #else
-	m_off = (1 + M2_MAX_OFFSET) + (t >> 2) + (*ip++ << 2);
+        m_off = (1 + M2_MAX_OFFSET) + (t >> 2) + (*ip++ << 2);
 #endif
-	NEED_OP(3);
-	t = 3; COPY_DICT(t,m_off)
+        NEED_OP(3);
+        t = 3; COPY_DICT(t,m_off)
 #else
 #if defined(LZO1Z)
-	t = (1 + M2_MAX_OFFSET) + (t << 6) + (*ip++ >> 2);
-	m_pos = op - t;
-	last_m_off = t;
+        t = (1 + M2_MAX_OFFSET) + (t << 6) + (*ip++ >> 2);
+        m_pos = op - t;
+        last_m_off = t;
 #else
-	m_pos = op - (1 + M2_MAX_OFFSET);
-	m_pos -= t >> 2;
-	m_pos -= *ip++ << 2;
+        m_pos = op - (1 + M2_MAX_OFFSET);
+        m_pos -= t >> 2;
+        m_pos -= *ip++ << 2;
 #endif
-	TEST_LOOKBEHIND(m_pos,out); NEED_OP(3);
-	*op++ = *m_pos++; *op++ = *m_pos++; *op++ = *m_pos;
+        TEST_LB(m_pos); NEED_OP(3);
+        *op++ = *m_pos++; *op++ = *m_pos++; *op++ = *m_pos;
 #endif
-	goto match_done;
+        goto match_done;
 
-	while (TEST_IP && TEST_OP)
-	{
+        do {
 match:
-	    if (t >= 64)
-	    {
+            if (t >= 64)
+            {
 #if defined(COPY_DICT)
 #if defined(LZO1X)
-		m_off = 1 + ((t >> 2) & 7) + (*ip++ << 3);
-		t = (t >> 5) - 1;
+                m_off = 1 + ((t >> 2) & 7) + (*ip++ << 3);
+                t = (t >> 5) - 1;
 #elif defined(LZO1Y)
-		m_off = 1 + ((t >> 2) & 3) + (*ip++ << 2);
-		t = (t >> 4) - 3;
+                m_off = 1 + ((t >> 2) & 3) + (*ip++ << 2);
+                t = (t >> 4) - 3;
 #elif defined(LZO1Z)
-		m_off = t & 0x1f;
-		if (m_off >= 0x1c)
-		    m_off = last_m_off;
-		else
-		{
-		    m_off = 1 + (m_off << 6) + (*ip++ >> 2);
-		    last_m_off = m_off;
-		}
-		t = (t >> 5) - 1;
+                m_off = t & 0x1f;
+                if (m_off >= 0x1c)
+                    m_off = last_m_off;
+                else
+                {
+                    m_off = 1 + (m_off << 6) + (*ip++ >> 2);
+                    last_m_off = m_off;
+                }
+                t = (t >> 5) - 1;
 #endif
 #else
 #if defined(LZO1X)
-		m_pos = op - 1;
-		m_pos -= (t >> 2) & 7;
-		m_pos -= *ip++ << 3;
-		t = (t >> 5) - 1;
+                m_pos = op - 1;
+                m_pos -= (t >> 2) & 7;
+                m_pos -= *ip++ << 3;
+                t = (t >> 5) - 1;
 #elif defined(LZO1Y)
-		m_pos = op - 1;
-		m_pos -= (t >> 2) & 3;
-		m_pos -= *ip++ << 2;
-		t = (t >> 4) - 3;
+                m_pos = op - 1;
+                m_pos -= (t >> 2) & 3;
+                m_pos -= *ip++ << 2;
+                t = (t >> 4) - 3;
 #elif defined(LZO1Z)
-		{
-		    lzo_uint off = t & 0x1f;
-		    m_pos = op;
-		    if (off >= 0x1c)
-		    {
-			assert(last_m_off > 0);
-			m_pos -= last_m_off;
-		    }
-		    else
-		    {
-			off = 1 + (off << 6) + (*ip++ >> 2);
-			m_pos -= off;
-			last_m_off = off;
-		    }
-		}
-		t = (t >> 5) - 1;
+                {
+                    lzo_uint off = t & 0x1f;
+                    m_pos = op;
+                    if (off >= 0x1c)
+                    {
+                        assert(last_m_off > 0);
+                        m_pos -= last_m_off;
+                    }
+                    else
+                    {
+                        off = 1 + (off << 6) + (*ip++ >> 2);
+                        m_pos -= off;
+                        last_m_off = off;
+                    }
+                }
+                t = (t >> 5) - 1;
 #endif
-		TEST_LOOKBEHIND(m_pos,out); assert(t > 0); NEED_OP(t+3-1);
-		goto copy_match;
+                TEST_LB(m_pos); assert(t > 0); NEED_OP(t+3-1);
+                goto copy_match;
 #endif
-	    }
-	    else if (t >= 32)
-	    {
-		t &= 31;
-		if (t == 0)
-		{
-		    NEED_IP(1);
-		    while (*ip == 0)
-		    {
-			t += 255;
-			ip++;
-			NEED_IP(1);
-		    }
-		    t += 31 + *ip++;
-		}
+            }
+            else if (t >= 32)
+            {
+                t &= 31;
+                if (t == 0)
+                {
+                    NEED_IP(1);
+                    while (*ip == 0)
+                    {
+                        t += 255;
+                        ip++;
+                        NEED_IP(1);
+                    }
+                    t += 31 + *ip++;
+                }
 #if defined(COPY_DICT)
 #if defined(LZO1Z)
-		m_off = 1 + (ip[0] << 6) + (ip[1] >> 2);
-		last_m_off = m_off;
+                m_off = 1 + (ip[0] << 6) + (ip[1] >> 2);
+                last_m_off = m_off;
 #else
-		m_off = 1 + (ip[0] >> 2) + (ip[1] << 6);
+                m_off = 1 + (ip[0] >> 2) + (ip[1] << 6);
 #endif
 #else
 #if defined(LZO1Z)
-		{
-		    lzo_uint off = 1 + (ip[0] << 6) + (ip[1] >> 2);
-		    m_pos = op - off;
-		    last_m_off = off;
-		}
-#elif defined(LZO_UNALIGNED_OK_2) && (LZO_BYTE_ORDER == LZO_LITTLE_ENDIAN)
-		m_pos = op - 1;
-		m_pos -= (* (const lzo_ushortp) ip) >> 2;
+                {
+                    lzo_uint off = 1 + (ip[0] << 6) + (ip[1] >> 2);
+                    m_pos = op - off;
+                    last_m_off = off;
+                }
+#elif defined(LZO_UNALIGNED_OK_2) && defined(LZO_ABI_LITTLE_ENDIAN)
+                m_pos = op - 1;
+                m_pos -= (* (const lzo_ushortp) ip) >> 2;
 #else
-		m_pos = op - 1;
-		m_pos -= (ip[0] >> 2) + (ip[1] << 6);
+                m_pos = op - 1;
+                m_pos -= (ip[0] >> 2) + (ip[1] << 6);
 #endif
 #endif
-		ip += 2;
-	    }
-	    else if (t >= 16)
-	    {
+                ip += 2;
+            }
+            else if (t >= 16)
+            {
 #if defined(COPY_DICT)
-		m_off = (t & 8) << 11;
+                m_off = (t & 8) << 11;
 #else
-		m_pos = op;
-		m_pos -= (t & 8) << 11;
+                m_pos = op;
+                m_pos -= (t & 8) << 11;
 #endif
-		t &= 7;
-		if (t == 0)
-		{
-		    NEED_IP(1);
-		    while (*ip == 0)
-		    {
-			t += 255;
-			ip++;
-			NEED_IP(1);
-		    }
-		    t += 7 + *ip++;
-		}
-#if defined(COPY_DICT)
-#if defined(LZO1Z)
-		m_off += (ip[0] << 6) + (ip[1] >> 2);
-#else
-		m_off += (ip[0] >> 2) + (ip[1] << 6);
-#endif
-		ip += 2;
-		if (m_off == 0)
-		    goto eof_found;
-		m_off += 0x4000;
-#if defined(LZO1Z)
-		last_m_off = m_off;
-#endif
-#else
-#if defined(LZO1Z)
-		m_pos -= (ip[0] << 6) + (ip[1] >> 2);
-#elif defined(LZO_UNALIGNED_OK_2) && (LZO_BYTE_ORDER == LZO_LITTLE_ENDIAN)
-		m_pos -= (* (const lzo_ushortp) ip) >> 2;
-#else
-		m_pos -= (ip[0] >> 2) + (ip[1] << 6);
-#endif
-		ip += 2;
-		if (m_pos == op)
-		    goto eof_found;
-		m_pos -= 0x4000;
-#if defined(LZO1Z)
-		last_m_off = op - m_pos;
-#endif
-#endif
-	    }
-	    else
-	    {
+                t &= 7;
+                if (t == 0)
+                {
+                    NEED_IP(1);
+                    while (*ip == 0)
+                    {
+                        t += 255;
+                        ip++;
+                        NEED_IP(1);
+                    }
+                    t += 7 + *ip++;
+                }
 #if defined(COPY_DICT)
 #if defined(LZO1Z)
-		m_off = 1 + (t << 6) + (*ip++ >> 2);
-		last_m_off = m_off;
+                m_off += (ip[0] << 6) + (ip[1] >> 2);
 #else
-		m_off = 1 + (t >> 2) + (*ip++ << 2);
+                m_off += (ip[0] >> 2) + (ip[1] << 6);
 #endif
-		NEED_OP(2);
-		t = 2; COPY_DICT(t,m_off)
+                ip += 2;
+                if (m_off == 0)
+                    goto eof_found;
+                m_off += 0x4000;
+#if defined(LZO1Z)
+                last_m_off = m_off;
+#endif
 #else
 #if defined(LZO1Z)
-		t = 1 + (t << 6) + (*ip++ >> 2);
-		m_pos = op - t;
-		last_m_off = t;
+                m_pos -= (ip[0] << 6) + (ip[1] >> 2);
+#elif defined(LZO_UNALIGNED_OK_2) && defined(LZO_ABI_LITTLE_ENDIAN)
+                m_pos -= (* (const lzo_ushortp) ip) >> 2;
 #else
-		m_pos = op - 1;
-		m_pos -= t >> 2;
-		m_pos -= *ip++ << 2;
+                m_pos -= (ip[0] >> 2) + (ip[1] << 6);
 #endif
-		TEST_LOOKBEHIND(m_pos,out); NEED_OP(2);
-		*op++ = *m_pos++; *op++ = *m_pos;
+                ip += 2;
+                if (m_pos == op)
+                    goto eof_found;
+                m_pos -= 0x4000;
+#if defined(LZO1Z)
+                last_m_off = pd((const lzo_bytep)op, m_pos);
 #endif
-		goto match_done;
-	    }
+#endif
+            }
+            else
+            {
+#if defined(COPY_DICT)
+#if defined(LZO1Z)
+                m_off = 1 + (t << 6) + (*ip++ >> 2);
+                last_m_off = m_off;
+#else
+                m_off = 1 + (t >> 2) + (*ip++ << 2);
+#endif
+                NEED_OP(2);
+                t = 2; COPY_DICT(t,m_off)
+#else
+#if defined(LZO1Z)
+                t = 1 + (t << 6) + (*ip++ >> 2);
+                m_pos = op - t;
+                last_m_off = t;
+#else
+                m_pos = op - 1;
+                m_pos -= t >> 2;
+                m_pos -= *ip++ << 2;
+#endif
+                TEST_LB(m_pos); NEED_OP(2);
+                *op++ = *m_pos++; *op++ = *m_pos;
+#endif
+                goto match_done;
+            }
 
 #if defined(COPY_DICT)
 
-	    NEED_OP(t+3-1);
-	    t += 3-1; COPY_DICT(t,m_off)
+            NEED_OP(t+3-1);
+            t += 3-1; COPY_DICT(t,m_off)
 
 #else
 
-	    TEST_LOOKBEHIND(m_pos,out); assert(t > 0); NEED_OP(t+3-1);
+            TEST_LB(m_pos); assert(t > 0); NEED_OP(t+3-1);
 #if defined(LZO_UNALIGNED_OK_4) || defined(LZO_ALIGNED_OK_4)
 #if !defined(LZO_UNALIGNED_OK_4)
-	    if (t >= 2 * 4 - (3 - 1) && PTR_ALIGNED2_4(op,m_pos))
-	    {
-		assert((op - m_pos) >= 4);
+            if (t >= 2 * 4 - (3 - 1) && PTR_ALIGNED2_4(op,m_pos))
+            {
+                assert((op - m_pos) >= 4);
 #else
-	    if (t >= 2 * 4 - (3 - 1) && (op - m_pos) >= 4)
-	    {
+            if (t >= 2 * 4 - (3 - 1) && (op - m_pos) >= 4)
+            {
 #endif
-		COPY4(op,m_pos);
-		op += 4; m_pos += 4; t -= 4 - (3 - 1);
-		do {
-		    COPY4(op,m_pos);
-		    op += 4; m_pos += 4; t -= 4;
-		} while (t >= 4);
-		if (t > 0) do *op++ = *m_pos++; while (--t > 0);
-	    }
-	    else
+                COPY4(op,m_pos);
+                op += 4; m_pos += 4; t -= 4 - (3 - 1);
+                do {
+                    COPY4(op,m_pos);
+                    op += 4; m_pos += 4; t -= 4;
+                } while (t >= 4);
+                if (t > 0) do *op++ = *m_pos++; while (--t > 0);
+            }
+            else
 #endif
-	    {
+            {
 copy_match:
-		*op++ = *m_pos++; *op++ = *m_pos++;
-		do *op++ = *m_pos++; while (--t > 0);
-	    }
+                *op++ = *m_pos++; *op++ = *m_pos++;
+                do *op++ = *m_pos++; while (--t > 0);
+            }
 
 #endif
 
 match_done:
 #if defined(LZO1Z)
-	    t = ip[-1] & 3;
+            t = ip[-1] & 3;
 #else
-	    t = ip[-2] & 3;
+            t = ip[-2] & 3;
 #endif
-	    if (t == 0)
-		break;
+            if (t == 0)
+                break;
 
 match_next:
-	    assert(t > 0); NEED_OP(t); NEED_IP(t+1);
-	    do *op++ = *ip++; while (--t > 0);
-	    t = *ip++;
-	}
+            assert(t > 0); assert(t < 4); NEED_OP(t); NEED_IP(t+1);
+#if 0
+            do *op++ = *ip++; while (--t > 0);
+#else
+            *op++ = *ip++;
+            if (t > 1) { *op++ = *ip++; if (t > 2) { *op++ = *ip++; } }
+#endif
+            t = *ip++;
+        } while (TEST_IP && TEST_OP);
     }
 
 #if defined(HAVE_TEST_IP) || defined(HAVE_TEST_OP)
-    *out_len = op - out;
+    *out_len = pd(op, out);
     return LZO_E_EOF_NOT_FOUND;
 #endif
 
 eof_found:
     assert(t == 1);
-    *out_len = op - out;
+    *out_len = pd(op, out);
     return (ip == ip_end ? LZO_E_OK :
-	   (ip < ip_end  ? LZO_E_INPUT_NOT_CONSUMED : LZO_E_INPUT_OVERRUN));
+           (ip < ip_end  ? LZO_E_INPUT_NOT_CONSUMED : LZO_E_INPUT_OVERRUN));
 
 #if defined(HAVE_NEED_IP)
 input_overrun:
-    *out_len = op - out;
+    *out_len = pd(op, out);
     return LZO_E_INPUT_OVERRUN;
 #endif
 
 #if defined(HAVE_NEED_OP)
 output_overrun:
-    *out_len = op - out;
+    *out_len = pd(op, out);
     return LZO_E_OUTPUT_OVERRUN;
 #endif
 
-#if defined(LZO_TEST_DECOMPRESS_OVERRUN_LOOKBEHIND)
+#if defined(LZO_TEST_OVERRUN_LOOKBEHIND)
 lookbehind_overrun:
-    *out_len = op - out;
+    *out_len = pd(op, out);
     return LZO_E_LOOKBEHIND_OVERRUN;
 #endif
 }
+
+#endif
 
 /***** End of minilzo.c *****/
 

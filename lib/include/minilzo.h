@@ -2,6 +2,9 @@
 
    This file is part of the LZO real-time data compression library.
 
+   Copyright (C) 2005 Markus Franz Xaver Johannes Oberhumer
+   Copyright (C) 2004 Markus Franz Xaver Johannes Oberhumer
+   Copyright (C) 2003 Markus Franz Xaver Johannes Oberhumer
    Copyright (C) 2002 Markus Franz Xaver Johannes Oberhumer
    Copyright (C) 2001 Markus Franz Xaver Johannes Oberhumer
    Copyright (C) 2000 Markus Franz Xaver Johannes Oberhumer
@@ -12,9 +15,8 @@
    All Rights Reserved.
 
    The LZO library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU General Public License as
-   published by the Free Software Foundation; either version 2 of
-   the License, or (at your option) any later version.
+   modify it under the terms of the GNU General Public License,
+   version 2, as published by the Free Software Foundation.
 
    The LZO library is distributed in the hope that it will be useful,
    but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -24,7 +26,7 @@
    You should have received a copy of the GNU General Public License
    along with the LZO library; see the file COPYING.
    If not, write to the Free Software Foundation, Inc.,
-   59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
    Markus F.X.J. Oberhumer
    <markus@oberhumer.com>
@@ -41,7 +43,7 @@
 #ifndef __MINILZO_H
 #define __MINILZO_H
 
-#define MINILZO_VERSION         0x1080
+#define MINILZO_VERSION         0x2020
 
 #ifdef __LZOCONF_H
 #  error "you cannot use both LZO and miniLZO"
@@ -75,20 +77,20 @@ extern "C" {
 
 /* compression */
 LZO_EXTERN(int)
-lzo1x_1_compress        ( const lzo_byte *src, lzo_uint  src_len,
-                                lzo_byte *dst, lzo_uintp dst_len,
+lzo1x_1_compress        ( const lzo_bytep src, lzo_uint  src_len,
+                                lzo_bytep dst, lzo_uintp dst_len,
                                 lzo_voidp wrkmem );
 
 /* decompression */
 LZO_EXTERN(int)
-lzo1x_decompress        ( const lzo_byte *src, lzo_uint  src_len,
-                                lzo_byte *dst, lzo_uintp dst_len,
+lzo1x_decompress        ( const lzo_bytep src, lzo_uint  src_len,
+                                lzo_bytep dst, lzo_uintp dst_len,
                                 lzo_voidp wrkmem /* NOT USED */ );
 
 /* safe decompression with overrun testing */
 LZO_EXTERN(int)
-lzo1x_decompress_safe   ( const lzo_byte *src, lzo_uint  src_len,
-                                lzo_byte *dst, lzo_uintp dst_len,
+lzo1x_decompress_safe   ( const lzo_bytep src, lzo_uint  src_len,
+                                lzo_bytep dst, lzo_uintp dst_len,
                                 lzo_voidp wrkmem /* NOT USED */ );
 
 
