@@ -302,7 +302,15 @@ void vncView::keyEvent( QKeyEvent * _ke )
 	// function returning the key-code of the key-event (platform-dependent)
 	// so when operating under Linux/X11, key-codes are equal to the ones
 	// used by VNC-protocol
-	const int key = _ke->nativeVirtualKey();
+	int key = _ke->nativeVirtualKey();
+
+	// we do not handle Key_Backtab separately as the Shift-modifier
+	// is already enabled
+	if( _ke->key() == Qt::Key_Backtab )
+	{
+		key = XK_Tab;
+	}
+
 #else
 	// hmm, either Win32-platform or too old Qt so we have to handle and
 	// translate Qt-key-codes to X-keycodes
@@ -316,7 +324,7 @@ void vncView::keyEvent( QKeyEvent * _ke )
 		case Qt::Key_Alt: key = XK_Alt_L; break;
 		case Qt::Key_Escape: key = XK_Escape; break;
 		case Qt::Key_Tab: key = XK_Tab; break;
-		case Qt::Key_Backtab: key = XK_ISO_Left_Tab; break;
+		case Qt::Key_Backtab: key = XK_Tab; break;
 		case Qt::Key_Backspace: key = XK_BackSpace; break;
 		case Qt::Key_Return: key = XK_Return; break;
 		case Qt::Key_Insert: key = XK_Insert; break;
