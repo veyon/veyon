@@ -341,13 +341,13 @@ void demoServerClient::processClient( void )
 	out_ptr += 4;
 
 	hdr.bytesRLE = out_ptr - out;
-	hdr.bytesLZO = hdr.bytesRLE + hdr.bytesRLE / 16 + 67;
-	Q_UINT8 * comp = new Q_UINT8[hdr.bytesLZO];
+	lzo_uint bytes_lzo = hdr.bytesRLE + hdr.bytesRLE / 16 + 67;
+	Q_UINT8 * comp = new Q_UINT8[bytes_lzo];
 	lzo1x_1_compress( (const unsigned char *) out, (lzo_uint) hdr.bytesRLE,
 				(unsigned char *) comp,
-				(lzo_uint *) &hdr.bytesLZO, m_lzoWorkMem );
+				&bytes_lzo, m_lzoWorkMem );
 	hdr.bytesRLE = swap32IfLE( hdr.bytesRLE );
-	hdr.bytesLZO = swap32IfLE( hdr.bytesLZO );
+	hdr.bytesLZO = swap32IfLE( bytes_lzo );
 
 	m_sock->write( (const char *) &hdr, sizeof( hdr ) );
 	m_sock->write( (const char *) comp, swap32IfLE( hdr.bytesLZO ) );
