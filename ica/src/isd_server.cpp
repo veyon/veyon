@@ -64,7 +64,7 @@ isdServer::isdServer( const quint16 _ivs_port, int _argc, char * * _argv ) :
 		// uh oh, already an ISD running or port isn't available...
 		qCritical( "isdServer::isdServer(...): "
 				"could not start ISD server: %s",
-					errorString().toAscii().constData() );
+					errorString().toUtf8().constData() );
 		messageBox::trySysTrayMessage( tr( "ISD-server error" ),
 			tr( "The ISD-server could not be started because "
 				"port %1 is already in use. Please make sure "
@@ -393,10 +393,23 @@ bool isdServer::authSecTypeItalc( socketDispatcher _sd, void * _user,
 		// host has to be in list of allowed hosts
 		case ItalcAuthHostBased:
 		{
+			if( s_allowedDemoClients.isEmpty() )
+			{
+				break;
+			}
+			QStringList allowed;
+			foreach( const QString a, s_allowedDemoClients )
+			{
+				const QString h = a.split( ':' )[0];
+				if( !allowed.contains( h ) )
+				{
+					allowed.push_back( h );
+				}
+			}
 			// already valid IP?
 			if( QHostAddress().setAddress( host ) )
 			{
-				if( s_allowedDemoClients.contains( host ) )
+				if( allowed.contains( host ) )
 				{
 					result = ItalcAuthOK;
 				}
@@ -412,8 +425,8 @@ bool isdServer::authSecTypeItalc( socketDispatcher _sd, void * _user,
 				// client-list
 				foreach( const QHostAddress a, addr )
 				{
-					if( s_allowedDemoClients.contains(
-								a.toString() ) )
+	if( allowed.contains( a.toString() ) ||
+			a.toString() == QHostAddress( QHostAddress::LocalHost ).toString() )
 					{
 						result = ItalcAuthOK;
 						break;
@@ -761,8 +774,10 @@ void isdServer::displayTextMessage( const QString & _msg )
 
 void isdServer::allowDemoClient( const QString & _host )
 {
+	const QString h = _host.split( ':' )[0];
+	const QString p = _host.contains( ':' ) ? ':'+_host.split( ':' )[1] : "";
 	// already valid IP?
-	if( QHostAddress().setAddress( _host ) )
+	if( QHostAddress().setAddress( h ) )
 	{
 		if( !s_allowedDemoClients.contains( _host ) )
 		{
@@ -771,13 +786,13 @@ void isdServer::allowDemoClient( const QString & _host )
 		return;
 	}
 	foreach( const QHostAddress a,
-				QHostInfo::fromName( _host ).addresses() )
+				QHostInfo::fromName( h ).addresses() )
 	{
-		const QString h = a.toString();
-			if( !s_allowedDemoClients.contains( h ) )
-			{
-				s_allowedDemoClients.push_back( h );
-			}
+		const QString h2 = a.toString();
+		if( !s_allowedDemoClients.contains( h2+p ) )
+		{
+			s_allowedDemoClients.push_back( h2+p );
+		}
 	}
 }
 
@@ -786,16 +801,18 @@ void isdServer::allowDemoClient( const QString & _host )
 
 void isdServer::denyDemoClient( const QString & _host )
 {
+	const QString h = _host.split( ':' )[0];
+	const QString p = _host.contains( ':' ) ? ':'+_host.split( ':' )[1] : "";
 	// already valid IP?
-	if( QHostAddress().setAddress( _host ) )
+	if( QHostAddress().setAddress( h ) )
 	{
 		s_allowedDemoClients.removeAll( _host );
 		return;
 	}
 	foreach( const QHostAddress a,
-				QHostInfo::fromName( _host ).addresses() )
+				QHostInfo::fromName( h ).addresses() )
 	{
-		s_allowedDemoClients.removeAll( a.toString() );
+		s_allowedDemoClients.removeAll( a.toString()+p );
 	}
 }
 
@@ -805,9 +822,9 @@ void isdServer::denyDemoClient( const QString & _host )
 void isdServer::errorMsgAuth( const QString & _ip )
 {
 	messageBox::trySysTrayMessage( tr( "Authentication error" ),
-		tr( "Somebody (IP: %1) tried to access this computer "
-			"but could not authenticate itself "
-			"successfully!" ).arg( QString( _ip ) ),
+			tr( "Somebody (IP: %1) tried to access this computer "
+					"but could not authenticate itself "
+					"successfully!" ).arg( QString( _ip ) ),
 						messageBox::Critical );
 }
 
