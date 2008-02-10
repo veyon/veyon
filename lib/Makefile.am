@@ -56,6 +56,7 @@ libitalc_core_static_a_SOURCES =			\
 		$(srcdir)/include/local_system.h	\
 		$(srcdir)/include/lock_widget.h		\
 		$(srcdir)/include/lzoconf.h		\
+		$(srcdir)/include/lzodefs.h		\
 		$(srcdir)/include/messagebox.h		\
 		$(srcdir)/include/minilzo.h		\
 		$(srcdir)/include/progress_widget.h	\
