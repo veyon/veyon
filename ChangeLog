@@ -1,5 +1,10 @@
 2008-02-10	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
+	* lib/Makefile.am:
+	* ica/Makefile.am:
+	* ima/Makefile.am:
+	install libitalc_core.so to /usr/lib/italc/ instead of /usr/lib/
+
 	* lib/src/vncview.cpp:
 	make Backtab (i.e. Shift+Tab) work properly in remote-control (closes
 	#1889307)

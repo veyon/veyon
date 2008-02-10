@@ -134,7 +134,7 @@ endif
 
 
 italc_LDADD = $(QT_LDADD) $(QT_LIB_GUI) -lz -ljpeg $(LIBSSL_LDADD) $(WIN32_RES_LDADD) -L../lib -litalc_core
-italc_LDFLAGS = $(LDFLAGS) -mwindows
+italc_LDFLAGS = $(LDFLAGS) -mwindows -rpath $(pkglibdir)
 
 AM_CXXFLAGS := $(AM_CXXFLAGS) $(QT_CXXFLAGS)
 

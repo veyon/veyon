@@ -92,7 +92,7 @@ shared-lib: italc_core.dll
 italc_core.dll: libitalc_core-static.a
 	$(CXX) *.o -shared -Wl,-no-undefined -Wl,-enable-runtime-pseudo-reloc -Wl,-export-all-symbols -Wl,--out-implib,libitalc_core.a -o $@ $(QT_LDADD) $(QT_LIB_GUI) $(LIBSSL) -lz -ljpeg -lpsapi && $(STRIP) italc_core.dll
 
-lib_LTLIBRARIES = italc_core.dll
+pkglib_LTLIBRARIES = italc_core.dll
 italc_core_dll_SOURCES =
 
 endif
@@ -103,7 +103,7 @@ shared-lib: libitalc_core.so
 libitalc_core.so: libitalc_core-static.a
 	$(CXX) *.o -shared -Wl,-no-undefined -Wl,-enable-runtime-pseudo-reloc -Wl,-soname,libitalc_core.so -o $@  $(QT_LDADD) $(QT_LIB_GUI) $(LIBSSL) -lz -ljpeg
 
-lib_LTLIBRARIES = libitalc_core.so
+pkglib_LTLIBRARIES = libitalc_core.so
 libitalc_core_so_SOURCES =
 
 endif
