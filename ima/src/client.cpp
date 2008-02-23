@@ -528,6 +528,7 @@ void client::resizeEvent( QResizeEvent * )
 		findChild<QToolBar *>()->setFixedWidth( width() );
 	}
 	m_connection->setScaledSize( size() );
+	m_connection->rescaleScreen();
 	updateStatePixmap();
 }
 

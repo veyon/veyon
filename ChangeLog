@@ -1,3 +1,26 @@
+2008-02-23	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* ima/src/client.cpp:
+	instantly rescale screen after change of window-size
+
+	* lib/include/ivs_connection.h:
+	return shallow QImage-copy instead of reference to image which isn't
+	protected by read-lock after leaving scaledScreen()-method - fixes
+	crashes under rare circumstances where image has been drawn while
+	being rescaled
+
+	* lib/include/ivs_connection.h:
+	* lib/src/ivs_connection.cpp:
+	* lib/include/vncview.h:
+	* lib/src/vncview.cpp:
+	added support for scaled view to vncView-class
+
+	* lib/src/fast_qimage.cpp:
+	replaced old slow image-scaling code with fast new one - if available,
+	MMX-optimized version is being used which makes things even faster -
+	fixes unresponsive master-workstations when overviewing a lot of
+	clients
+
 2008-02-10	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* configure.in:
