@@ -2,7 +2,7 @@
  * ivs_connection.h - declaration of class ivsConnection, an implementation of
  *                    the RFB-protocol with iTALC-extensions for Qt
  *
- * Copyright (c) 2004-2007 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -79,7 +79,7 @@ public:
 
 	virtual void close( void );
 
-	const QImage & scaledScreen( void )
+	QImage scaledScreen( void )
 	{
 		QReadLocker rl( &m_scaledImageLock );
 		return( m_scaledScreen );
@@ -104,7 +104,10 @@ public:
 	void setScaledSize( const QSize & _s )
 	{
 		m_scaledSize = _s;
+		m_scaledScreenNeedsUpdate = TRUE;
 	}
+
+	void rescaleScreen( void );
 
 	bool handleServerMessages( bool _send_screen_update, int _tries = 5 );
 
@@ -188,7 +191,8 @@ private:
 	mutable QReadWriteLock m_imageLock;
 	mutable QReadWriteLock m_scaledImageLock;
 	fastQImage m_screen;
-	fastQImage m_scaledScreen;
+	QImage m_scaledScreen;
+	bool m_scaledScreenNeedsUpdate;
 
 	QSize m_scaledSize;
 

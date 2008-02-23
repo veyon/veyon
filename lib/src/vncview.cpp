@@ -47,6 +47,7 @@ vncView::vncView( const QString & _host, QWidget * _parent ) :
 	m_connection( NULL ),
 	m_viewOnly( TRUE ),
 	m_viewOnlyFocus( TRUE ),
+	m_scaledView( TRUE ),
 	m_viewOffset( QPoint( 0, 0 ) ),
 	m_buttonMask( 0 ),
 	m_sysKeyTrapper( new systemKeyTrapper( FALSE ) )
@@ -127,6 +128,26 @@ void vncView::setViewOnly( bool _vo )
 
 
 
+void vncView::setScaledView( bool _sv )
+{
+	m_scaledView = _sv;
+	if( m_connection != NULL )
+	{
+		if( m_scaledView )
+		{
+			m_connection->setScaledSize( size() );
+		}
+		else
+		{
+			m_connection->setScaledSize( QSize() );
+		}
+	}
+	update();
+}
+
+
+
+
 void vncView::framebufferUpdate( void )
 {
 	if( m_connection == NULL )
@@ -136,7 +157,6 @@ void vncView::framebufferUpdate( void )
 	}
 
 	const QPoint mp = mapFromGlobal( QCursor::pos() );
-
 	// not yet connected or connection lost while handling messages?
 	if( m_connection->state() != ivsConnection::Connected &&
 					!m_establishingConnection->isVisible() )
@@ -180,48 +200,59 @@ void vncView::framebufferUpdate( void )
 		}
 	}
 
-	// check whether to scroll because mouse-cursor is at an egde which
-	// doesn't correspond to the framebuffer's edge
-	const QPoint old_vo = m_viewOffset;
-	const int MAGIC_MARGIN = 15;
-	if( mp.x() <= MAGIC_MARGIN && m_viewOffset.x() > 0 )
+	if( m_scaledView == FALSE )
 	{
-		m_viewOffset.setX( qMax( 0, m_viewOffset.x() -
+		// check whether to scroll because mouse-cursor is at an egde which
+		// doesn't correspond to the framebuffer's edge
+		const QPoint old_vo = m_viewOffset;
+		const int MAGIC_MARGIN = 15;
+		if( mp.x() <= MAGIC_MARGIN && m_viewOffset.x() > 0 )
+		{
+			m_viewOffset.setX( qMax( 0, m_viewOffset.x() -
 						( MAGIC_MARGIN - mp.x() ) ) );
-	}
-	else if( mp.x() > width() - MAGIC_MARGIN && m_viewOffset.x() <=
-			m_connection->framebufferSize().width() - width() )
-	{
-		m_viewOffset.setX( qMin( m_viewOffset.x() +
+		}
+		else if( mp.x() > width() - MAGIC_MARGIN && m_viewOffset.x() <=
+				m_connection->framebufferSize().width() -
+								width() )
+		{
+			m_viewOffset.setX( qMin( m_viewOffset.x() +
 					( MAGIC_MARGIN + mp.x() - width() ),
-			m_connection->framebufferSize().width() - width() ) );
-	}
+				m_connection->framebufferSize().width() -
+								width() ) );
+		}
 
-	if( mp.y() <= MAGIC_MARGIN )
-	{
-		if( m_viewOffset.y() > 0 )
+		if( mp.y() <= MAGIC_MARGIN )
 		{
-			m_viewOffset.setY( qMax( 0, m_viewOffset.y() -
+			if( m_viewOffset.y() > 0 )
+			{
+				m_viewOffset.setY( qMax( 0, m_viewOffset.y() -
 						( MAGIC_MARGIN - mp.y() ) ) );
+			}
+			else if( mp.y() < 2 )
+			{
+				// special signal for allowing parent-widgets to
+				// show a toolbar etc.
+				emit mouseAtTop();
+			}
 		}
-		else if( mp.y() < 2 )
+		else if( mp.y() > height() - MAGIC_MARGIN && m_viewOffset.y() <=
+				m_connection->framebufferSize().height() -
+								height() )
 		{
-			// special signal for allowing parent-widgets to
-			// show a toolbar etc.
-			emit mouseAtTop();
+			m_viewOffset.setY( qMin( m_viewOffset.y() +
+					( MAGIC_MARGIN + mp.y() - height() ),
+				m_connection->framebufferSize().height() -
+								height() ) );
+		}
+
+		if( old_vo != m_viewOffset )
+		{
+			update();
 		}
 	}
-	else if( mp.y() > height() - MAGIC_MARGIN && m_viewOffset.y() <=
-			m_connection->framebufferSize().height() - height() )
+	else if( mp.y() <= 2 )
 	{
-		m_viewOffset.setY( qMin( m_viewOffset.y() +
-					( MAGIC_MARGIN + mp.y() - height() ),
-			m_connection->framebufferSize().height() - height() ) );
-	}
-
-	if( old_vo != m_viewOffset )
-	{
-		update();
+		emit mouseAtTop();
 	}
 
 	QTimer::singleShot( 40, this, SLOT( framebufferUpdate() ) );
@@ -475,6 +506,41 @@ void vncView::unpressModifiers( void )
 
 
 
+QPoint vncView::mapToFramebuffer( const QPoint & _pos )
+{
+	const int x = m_scaledView && m_connection ?
+			_pos.x() * m_connection->framebufferSize().width() /
+								width()
+		:
+			_pos.x() + m_viewOffset.x();
+	const int y = m_scaledView && m_connection ?
+			_pos.y() * m_connection->framebufferSize().height() /
+								height()
+		:
+			_pos.y() + m_viewOffset.y();
+	return( QPoint( x, y ) );
+}
+
+
+
+
+QRect vncView::mapFromFramebuffer( const QRect & _r )
+{
+	if( m_scaledView && m_connection )
+	{
+		const float dx = width() / 
+				m_connection->framebufferSize().width();
+		const float dy = height() /
+				m_connection->framebufferSize().height();
+		return( QRect( _r.x()*dx, _r.y()*dy,
+					_r.width()*dx, _r.height()*dy ) );
+	}
+	return( _r.translated( -m_viewOffset ) );
+}
+
+
+
+
 void vncView::mouseMoveEvent( QMouseEvent * _me )
 {
 	mouseEvent( _me );
@@ -524,7 +590,9 @@ void vncView::paintEvent( QPaintEvent * _pe )
 	}
 
 	// only paint requested region of image
-	p.drawImage( _pe->rect().topLeft(), m_connection->screen(),
+	p.drawImage( _pe->rect().topLeft(),
+			m_scaledView ? m_connection->scaledScreen() :
+						m_connection->screen(),
 			_pe->rect().translated( m_viewOffset ),
 			Qt::ThresholdDither );
 
@@ -543,16 +611,19 @@ void vncView::paintEvent( QPaintEvent * _pe )
 		}
 	}
 
-	// draw black borders if neccessary
-	const int fbw = m_connection->framebufferSize().width();
-	if( fbw < width() )
+	if( m_scaledView == FALSE )
 	{
-		p.fillRect( fbw, 0, width() - fbw, height(), Qt::black );
-	}
-	const int fbh = m_connection->framebufferSize().height();
-	if( fbh < height() )
-	{
-		p.fillRect( 0, fbh, fbw, height() - fbh, Qt::black );
+		// draw black borders if neccessary
+		const int fbw = m_connection->framebufferSize().width();
+		if( fbw < width() )
+		{
+			p.fillRect( fbw, 0, width() - fbw, height(), Qt::black );
+		}
+		const int fbh = m_connection->framebufferSize().height();
+		if( fbh < height() )
+		{
+			p.fillRect( 0, fbh, fbw, height() - fbh, Qt::black );
+		}
 	}
 }
 
@@ -561,6 +632,7 @@ void vncView::paintEvent( QPaintEvent * _pe )
 
 void vncView::resizeEvent( QResizeEvent * _re )
 {
+	m_connection->setScaledSize( size() );
 	const int max_x = m_connection->framebufferSize().width() - width();
 	const int max_y = m_connection->framebufferSize().height() - height();
 	if( m_viewOffset.x() > max_x || m_viewOffset.y() > max_y )
@@ -582,9 +654,10 @@ void vncView::resizeEvent( QResizeEvent * _re )
 
 void vncView::wheelEvent( QWheelEvent * _we )
 {
-	emit pointerEvent( _we->x(), _we->y(), m_buttonMask |
+	const QPoint p = mapToFramebuffer( _we->pos() );
+	emit pointerEvent( p.x(), p.y(), m_buttonMask |
 		( ( _we->delta() < 0 ) ? rfbButton5Mask : rfbButton4Mask ) );
-	emit pointerEvent( _we->x(), _we->y(), m_buttonMask );
+	emit pointerEvent( p.x(), p.y(), m_buttonMask );
 	
 	_we->accept();
 }
@@ -596,9 +669,10 @@ void vncView::customEvent( QEvent * _e )
 {
 	if( _e->type() == regionChangedEvent().type() )
 	{
-		QWidget::update( dynamic_cast<regionChangedEvent *>( _e )->
-			changedRegion().boundingRect().translated(
-							-m_viewOffset ) );
+		const QRect r = mapFromFramebuffer(
+				dynamic_cast<regionChangedEvent *>( _e )->
+					changedRegion().boundingRect() );
+		QWidget::update(  );
 		_e->accept();
 	}
 	else
@@ -642,8 +716,8 @@ void vncView::mouseEvent( QMouseEvent * _me )
 		}
 	}
 
-	emit pointerEvent( _me->x() + m_viewOffset.x(),
-				_me->y() + m_viewOffset.y(), m_buttonMask );
+	const QPoint p = mapToFramebuffer( _me->pos() );
+	emit pointerEvent( p.x(), p.y(), m_buttonMask );
 }
 
 

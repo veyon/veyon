@@ -84,6 +84,7 @@ ivsConnection::ivsConnection( const QString & _host, quality _q,
 	m_imageLock(),
 	m_screen(),
 	m_scaledScreen(),
+	m_scaledScreenNeedsUpdate( FALSE ),
 	m_scaledSize(),
 	m_softwareCursor( FALSE ),
 	m_cursorPos( 0, 0 ),
@@ -455,6 +456,19 @@ void ivsConnection::postRegionChangedEvent( const QRegion & _rgn )
 
 
 
+void ivsConnection::rescaleScreen( void )
+{
+	if( m_scaledScreenNeedsUpdate )
+	{
+		QWriteLocker swl( &m_scaledImageLock );
+		m_scaledScreen = m_screen.scaled( m_scaledSize );
+		m_scaledScreenNeedsUpdate = FALSE;
+	}
+}
+
+
+
+
 bool ivsConnection::handleServerMessages( bool _send_screen_update, int _tries )
 {
 	while( hasData() && --_tries >= 0 )
@@ -651,12 +665,7 @@ bool ivsConnection::handleServerMessages( bool _send_screen_update, int _tries )
 				break;
 			}
 
-			if( !m_scaledSize.isEmpty() )
-			{
-				QWriteLocker swl( &m_scaledImageLock );
-				m_scaledScreen = m_screen.scaled(
-								m_scaledSize );
-			}
+			m_scaledScreenNeedsUpdate = TRUE;
 
 			if( m_quality >= QualityDemoLow &&
 						m_quality != QualityDemoHigh )
@@ -719,6 +728,11 @@ bool ivsConnection::handleServerMessages( bool _send_screen_update, int _tries )
 	}
 
 	}	// end while( ... )
+
+	if( !m_scaledSize.isEmpty() )
+	{
+		rescaleScreen();
+	}
 
 	if( _send_screen_update )
 	{

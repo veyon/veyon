@@ -1,7 +1,7 @@
 /*
  * vncview.h - VNC-viewer-widget
  *
- * Copyright (c) 2006-2007 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *  
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -56,9 +56,15 @@ public:
 		return( m_viewOnly );
 	}
 
+	inline bool scaledView( void ) const
+	{
+		return( m_scaledView );
+	}
+
 
 public slots:
 	void setViewOnly( bool _vo );
+	void setScaledView( bool _sv );
 
 
 signals:
@@ -72,6 +78,7 @@ signals:
 private slots:
 	void framebufferUpdate( void );
 	void updateCursorShape( void );
+
 
 private:
 	virtual void customEvent( QEvent * _user );
@@ -90,10 +97,14 @@ private:
 	void mouseEvent( QMouseEvent * );
 	void unpressModifiers( void );
 
+	QPoint mapToFramebuffer( const QPoint & _pos );
+	QRect mapFromFramebuffer( const QRect & _rect );
+
 
 	ivsConnection * m_connection;
 	bool m_viewOnly;
 	bool m_viewOnlyFocus;
+	bool m_scaledView;
 
 	QPoint m_viewOffset;
 
