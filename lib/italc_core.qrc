@@ -9,6 +9,7 @@
 		<file alias="resources/es-core.qm">resources/es.qm</file>
 		<file alias="resources/fr-core.qm">resources/fr.qm</file>
 		<file alias="resources/nn-core.qm">resources/nn.qm</file>
+		<file alias="resources/pl-core.qm">resources/pl.qm</file>
 		<file alias="resources/sl-core.qm">resources/sl.qm</file>
 		<file alias="resources/uk-core.qm">resources/uk.qm</file>
 		<file alias="resources/zh-core.qm">resources/zh.qm</file>

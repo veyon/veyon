@@ -1,5 +1,24 @@
 2008-02-25	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
+	* ica/ica.qrc:
+	* ica/resources/pl.qm:
+	* ica/resources/pl.ts:
+	* setup/setup.qrc:
+	* setup/resources/pl.qm:
+	* setup/resources/pl.ts:
+	* ima/italc.qrc:
+	* ima/resources/pl.qm:
+	* ima/resources/pl.ts:
+	* lib/italc_core.qrc:
+	* lib/resources/pl.qm:
+	* lib/resources/pl.ts:
+	added Polish localization-files by Robert Radko <robert/at/radko/dot/pl>
+
+	* ima/src/client.cpp:
+	less transparency
+
+2008-02-25	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
 	* setup/resources/page_artwork_welcome.png:
 	* ima/italc.qrc:
 	* ima/dialogs/client_settings.ui:
