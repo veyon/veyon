@@ -556,7 +556,7 @@ void client::paintEvent( QPaintEvent * _pe )
 	QPen pen( Qt::black );
 	pen.setWidth( 1 );
 	p.setPen( pen );
-	p.setBrush( QColor( 255, 255, 255, 128 ) );
+	p.setBrush( QColor( 255, 255, 255, 160 ) );
 	p.drawRoundRect( QRectF( 0.5, 0.5, width()-1, height()-1),
 						1600/width(), 1600/height() );
 
