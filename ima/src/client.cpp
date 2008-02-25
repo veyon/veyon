@@ -2,7 +2,7 @@
  * client.cpp - code for client-windows, which are displayed in several
  *              instances in the main-window of iTALC
  *
- * Copyright (c) 2004-2007 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -29,8 +29,7 @@
 #include <QtGui/QMenu>
 #include <QtGui/QPainter>
 #include <QtGui/QPixmap>
-#include <QtGui/QToolBar>
-#include <QtGui/QWorkspace>
+#include <QtGui/QScrollArea>
 
 
 #include "main_window.h"
@@ -47,7 +46,10 @@
 
 
 const QSize DEFAULT_CLIENT_SIZE( 256, 192 );
-
+const int DECO_WIDTH = 4;
+const int TITLE_HEIGHT = 20;
+const QPoint CONTENT_OFFSET( DECO_WIDTH, DECO_WIDTH + TITLE_HEIGHT ); 
+const QSize CONTENT_SIZE_SUB( 2*DECO_WIDTH, 2*DECO_WIDTH + TITLE_HEIGHT ); 
 
 
 const client::clientCommand client::s_commands[client::Cmd_CmdCount] =
@@ -76,6 +78,66 @@ QHash<int, client *> client::s_clientIDs;
 bool client::s_reloadSnapshotList = FALSE;
 
 
+class closeButton : public QWidget
+{
+public:
+	closeButton( QWidget * _parent ) :
+		QWidget( _parent ),
+		m_mouseOver( FALSE )
+	{
+		setFixedSize( 18, 18 );
+	}
+	virtual ~closeButton()
+	{
+	}
+
+	virtual void enterEvent( QEvent * _fe )
+	{
+		m_mouseOver = TRUE;
+		QWidget::enterEvent( _fe );
+		update();
+	}
+	virtual void leaveEvent( QEvent * _fe )
+	{
+		m_mouseOver = FALSE;
+		QWidget::leaveEvent( _fe );
+		update();
+	}
+	virtual void paintEvent( QPaintEvent * _pe )
+	{
+		QPainter p( this );
+		p.setRenderHint( QPainter::Antialiasing, TRUE );
+		p.setPen( QColor( 128, 128, 128 ) );
+		p.setBrush( m_mouseOver ? Qt::white : Qt::gray );
+		p.drawRoundRect( QRectF( 0.5, 0.5, 16, 16 ), 20, 20 );
+		QPen pen( QColor( 64, 64, 64 ) );
+
+		pen.setWidth( 3 );
+		p.setPen( pen );
+		p.drawLine( QLineF( 4.5, 4.5,  12.5, 12.5 ) );
+		p.drawLine( QLineF( 4.5, 12.5, 12.5, 4.5 ) );
+	}
+
+	virtual void mousePressEvent( QMouseEvent * )
+	{
+	}
+
+	virtual void mouseReleaseEvent( QMouseEvent * _me )
+	{
+		if( rect().contains( _me->pos() ) )
+		{
+			parentWidget()->close();
+		}
+	}
+
+private:
+	bool m_mouseOver;
+
+} ;
+
+
+
+
 
 client::client( const QString & _local_ip, const QString & _remote_ip,
 		const QString & _mac, const QString & _name,
@@ -84,6 +146,8 @@ client::client( const QString & _local_ip, const QString & _remote_ip,
 	QWidget( _main_window->workspace() ),
 	m_mainWindow( _main_window ),
 	m_connection( NULL ),
+	m_clickPoint( -1, -1 ),
+	m_origPos( -1, -1 ),
 	m_name( _name ),
 	m_localIP( _local_ip ),
 	m_remoteIP( _remote_ip ),
@@ -94,13 +158,12 @@ client::client( const QString & _local_ip, const QString & _remote_ip,
 	m_user( "" ),
 	m_makeSnapshot( FALSE ),
 	m_state( State_Unkown ),
-	m_statePixmap(),
 	m_syncMutex(),
 	m_classRoomItem( NULL ),
 	m_contextMenu( NULL ),
 	m_updateThread( NULL )
 {
-	m_mainWindow->workspace()->addWindow( this );
+	new closeButton( this );
 
 	if( _id <= 0 || clientFromID( _id ) != NULL )
 	{
@@ -136,8 +199,6 @@ client::client( const QString & _local_ip, const QString & _remote_ip,
 
 	setFixedSize( DEFAULT_CLIENT_SIZE );
 	//resize( DEFAULT_CLIENT_SIZE );
-	setAttribute( Qt::WA_NoSystemBackground, TRUE );
-
 
 	QMenu * tb = new QMenu( this );
 	m_contextMenu = tb;
@@ -319,14 +380,7 @@ void client::resetConnection( void )
 
 void client::update( void )
 {
-	setWindowTitle( m_name + " (" + m_classRoomItem->parent()->text( 0 ) +
-									")" );
-	states cur_state = currentState();
-	if( cur_state != m_state )
-	{
-		m_state = cur_state;
-		updateStatePixmap();
-	}
+	m_state = currentState();
 	QWidget::update();
 }
 
@@ -369,60 +423,6 @@ void client::processCmdSlot( QAction * _action )
 		changeMode( static_cast<modes>( a - Cmd_CmdCount ),
 						m_mainWindow->localISD() );
 	}
-}
-
-
-
-
-void client::updateStatePixmap( void )
-{
-	m_statePixmap = QPixmap( size() );
-	QPainter p( &m_statePixmap );
-
-	QLinearGradient grad( 0, 0, 0, height() );
-	grad.setColorAt( 0, QColor( 240, 240, 240 ) );
-	grad.setColorAt( 1, QColor( 128, 128, 128 ) );
-	p.fillRect( rect(), grad );//QColor( 255, 255, 255 ) );
-
-	QPixmap pm = QPixmap( ":/resources/error.png" );
-	QString msg = tr( "Unknown state" );
-
-	switch( m_state )
-	{
-		case State_Overview:
-			return;
-		case State_NoUserLoggedIn:
-			pm = QPixmap( ":/resources/no_user.png" );
-			msg = tr( "No user logged in" );
-			break;
-		case State_Unreachable:
-			pm = QPixmap( ":/resources/host_unreachable.png" );
-			msg = tr( "Host unreachable" );
-			break;
-		case State_Demo:
-			pm = QPixmap( ":/resources/window_demo.png" );
-			msg = tr( "Demo running" );
-			break;
-		case State_Locked:
-			pm = QPixmap( ":/resources/locked.png" );
-			msg = tr( "Desktop locked" );
-			break;
-		default:
-			break;
-	}
-
-	QSize s( pm.size() );
-	s.scale( width() * 2 / 3, height() * 2 / 3, Qt::KeepAspectRatio );
-	p.drawImage( 5, 5, fastQImage( pm ).scaled( s ) );
-
-	QFont f = p.font();
-	f.setBold( TRUE );
-	f.setPointSize( f.pointSize() + 2 );
-	p.setFont( f );
-	p.setPen( QColor( 0, 0, 0 ) );
-	p.drawText( QRect( 5, 10 + s.height(), width() - 10,
-						height() - 15 - s.height() ),
-				Qt::TextWordWrap | Qt::AlignRight, msg );
 }
 
 
@@ -475,6 +475,48 @@ void client::hideEvent( QHideEvent * )
 
 
 
+void client::mousePressEvent( QMouseEvent * _me )
+{
+	if( _me->button() == Qt::LeftButton )
+	{
+		raise();
+		m_clickPoint = _me->globalPos();
+		m_origPos = pos();
+	}
+	else
+	{
+		QWidget::mousePressEvent( _me );
+	}
+}
+
+
+
+
+void client::mouseMoveEvent( QMouseEvent * _me )
+{
+	if( m_clickPoint.x() >= 0 )
+	{
+		move( m_origPos + _me->globalPos() - m_clickPoint );
+		parentWidget()->updateGeometry();
+	}
+	else
+	{
+		QWidget::mouseMoveEvent( _me );
+	}
+}
+
+
+
+
+void client::mouseReleaseEvent( QMouseEvent * _me )
+{
+	m_clickPoint = QPoint( -1, -1 );
+	QWidget::mouseReleaseEvent( _me );
+}
+
+
+
+
 void client::mouseDoubleClickEvent( QMouseEvent * _me )
 {
 	if( m_mainWindow->getClassroomManager()->clientDblClickAction() == 0 )
@@ -492,18 +534,98 @@ void client::mouseDoubleClickEvent( QMouseEvent * _me )
 
 void client::paintEvent( QPaintEvent * _pe )
 {
+	static QImage * img_unknown = NULL;
+	static QImage * img_no_user = NULL;
+	static QImage * img_host_unreachable = NULL;
+	static QImage * img_demo = NULL;
+	static QImage * img_locked = NULL;
+
+	if( img_unknown == NULL )
+		img_unknown = new QImage( ":/resources/error.png" );
+	if( img_no_user == NULL )
+		img_no_user = new QImage( ":/resources/no_user.png" );
+	if( img_host_unreachable == NULL )
+		img_host_unreachable = new QImage( ":/resources/host_unreachable.png" );
+	if( img_demo == NULL )
+		img_demo = new QImage( ":/resources/window_demo.png" );
+	if( img_locked == NULL )
+		img_locked = new QImage( ":/resources/locked.png" );
+
 	QPainter p( this );
+	p.setRenderHint( QPainter::Antialiasing, TRUE );
+	QPen pen( Qt::black );
+	pen.setWidth( 1 );
+	p.setPen( pen );
+	p.setBrush( QColor( 255, 255, 255, 128 ) );
+	p.drawRoundRect( QRectF( 0.5, 0.5, width()-1, height()-1),
+						1600/width(), 1600/height() );
+
+	const QString s = m_user != "" ? m_user :
+		( m_name + " (" + m_classRoomItem->parent()->text( 0 ) +
+									")" );
+	QFont f = p.font();
+	f.setBold( TRUE );
+	p.setFont( f );
+	p.setPen( Qt::white );
+	p.drawText( 11, TITLE_HEIGHT-3, s );
+	p.setPen( Qt::black );
+	p.drawText( 10, TITLE_HEIGHT-4, s );
 
 	if( m_connection->state() == ivsConnection::Connected &&
 						m_mode == Mode_Overview )
 	{
-		p.drawImage( _pe->rect().topLeft(),
-				m_connection->scaledScreen(), _pe->rect() );
+		p.drawImage( CONTENT_OFFSET, m_connection->scaledScreen());
 	}
 	else
 	{
-		p.drawPixmap( _pe->rect().topLeft(), m_statePixmap,
-								_pe->rect() );
+	/*	p.drawImage( _pe->rect().topLeft() + CONTENT_OFFSET,
+						m_statePixmap, _pe->rect() );*/
+	const int aw = width() - 2*DECO_WIDTH;
+	const int ah = height() - CONTENT_SIZE_SUB.height() - DECO_WIDTH;
+
+	QImage * pm = img_unknown;
+	QString msg = tr( "Unknown state" );
+
+	switch( m_state )
+	{
+		case State_Overview:
+			return;
+		case State_NoUserLoggedIn:
+			pm = img_no_user;
+			msg = tr( "No user logged in" );
+			break;
+		case State_Unreachable:
+			pm = img_host_unreachable;
+			msg = tr( "Host unreachable" );
+			break;
+		case State_Demo:
+			pm = img_demo;
+			msg = tr( "Demo running" );
+			break;
+		case State_Locked:
+			pm = img_locked;
+			msg = tr( "Desktop locked" );
+			break;
+		default:
+			break;
+	}
+
+	QFont f = p.font();
+	f.setBold( TRUE );
+	f.setPointSize( f.pointSize() + 1 );
+	p.setFont( f );
+
+	QRect r = p.boundingRect( QRect( 5, 0, aw-10, 10 ),
+				Qt::TextWordWrap | Qt::AlignCenter, msg );
+	QSize s( pm->size() );
+	s.scale( aw-10, ah-r.height()-20, Qt::KeepAspectRatio );
+	p.drawImage( ( aw-s.width() ) / 2, height()-ah,
+						fastQImage( *pm ).scaled( s ) );
+
+	p.setPen( QColor( 0, 0, 0 ) );
+	p.drawText( QRect( 5, height()-r.height()-10, aw - 10,
+						r.height() ),
+				Qt::TextWordWrap | Qt::AlignCenter, msg );
 	}
 
 	if( m_makeSnapshot )
@@ -521,15 +643,12 @@ void client::paintEvent( QPaintEvent * _pe )
 
 
 
-void client::resizeEvent( QResizeEvent * )
+void client::resizeEvent( QResizeEvent * _re )
 {
-	if( findChild<QToolBar *>() )
-	{
-		findChild<QToolBar *>()->setFixedWidth( width() );
-	}
-	m_connection->setScaledSize( size() );
+	findChildren<closeButton*>()[0]->move( width()-21, 4 );
+	m_connection->setScaledSize( size() - CONTENT_SIZE_SUB );
 	m_connection->rescaleScreen();
-	updateStatePixmap();
+	QWidget::resizeEvent( _re );
 }
 
 
@@ -549,8 +668,6 @@ void client::showEvent( QShowEvent * )
 
 void client::reload( const QString & _update )
 {
-	bool available = FALSE;
-
 	if( userLoggedIn() )
 	{
 		m_syncMutex.lock();
@@ -576,20 +693,6 @@ void client::reload( const QString & _update )
 
 		m_user = m_connection->user();
 		m_syncMutex.unlock();
-
-		if( m_user != "" )
-		{
-			available = TRUE;
-			if( toolTip() != m_user )
-			{
-				setToolTip( m_user );
-			}
-		}
-	}
-
-	if( available == FALSE )
-	{
-		setToolTip( "" );
 	}
 
 

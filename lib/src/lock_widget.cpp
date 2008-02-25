@@ -88,7 +88,7 @@ void lockWidget::paintEvent( QPaintEvent * )
 			break;
 
 		case Black:
-			p.fillRect( rect(), QColor( 0, 0, 0 ) );
+			p.fillRect( rect(), QColor( 64, 64, 64 ) );
 			p.drawPixmap( ( width() - m_background.width() ) / 2, 
 				( height() - m_background.height() ) / 2,
 								m_background );

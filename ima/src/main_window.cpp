@@ -37,6 +37,7 @@
 #include <QtGui/QMenu>
 #include <QtGui/QMenuBar>
 #include <QtGui/QMessageBox>
+#include <QtGui/QScrollArea>
 #include <QtGui/QSplashScreen>
 #include <QtGui/QSplitter>
 #include <QtGui/QToolBar>
@@ -122,8 +123,9 @@ mainWindow::mainWindow( int _rctrl_screen ) :
 
 
 
-	m_workspace = new QWorkspace( m_splitter );
-	m_workspace->setScrollBarsEnabled( TRUE );
+	QScrollArea * sa = new QScrollArea( m_splitter );
+	sa->setBackgroundRole( QPalette::Dark );
+	m_workspace = new clientWorkspace( sa );
 
 
 	QWidget * twp = m_sideBar->tabWidgetParent();
@@ -162,7 +164,7 @@ mainWindow::mainWindow( int _rctrl_screen ) :
 	addToolBar( Qt::TopToolBarArea, m_toolBar );
 
 	toolButton * scr = new toolButton(
-			QPixmap( ":/resources/tutorials.png" ),
+			QPixmap( ":/resources/classroom.png" ),
 			tr( "Classroom" ), QString::null,
 			tr( "Switch classroom" ),
 			tr( "Click this button to open a menu where you can "
@@ -497,6 +499,27 @@ void mainWindowUpdateThread::run( void )
 	exec();
 }
 
+
+
+
+
+clientWorkspace::clientWorkspace( QScrollArea * _parent ) :
+	QWidget( _parent )
+{
+	_parent->setWidget( this );
+	_parent->setWidgetResizable( TRUE );
+	setSizePolicy( QSizePolicy( QSizePolicy::MinimumExpanding,
+					QSizePolicy::MinimumExpanding ) );
+	show();
+
+}
+
+
+
+QSize clientWorkspace::sizeHint( void ) const
+{
+	return( childrenRect().size() );
+}
 
 
 

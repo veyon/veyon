@@ -1,3 +1,78 @@
+2008-02-25	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* setup/resources/page_artwork_welcome.png:
+	* ima/italc.qrc:
+	* ima/dialogs/client_settings.ui:
+	* ima/src/cmd_input_dialog.cpp:
+	* ima/data/italc.png:
+	* ima/data/italc.xpm:
+	* ima/data/italc.ico:
+	* ima/resources/demoquality.png:
+	* ima/resources/client_settings.png:
+	* ima/resources/info_22.png:
+	* ima/resources/viewmag.png:
+	* ima/resources/no_user.png:
+	* ima/resources/adjust_size.png:
+	* ima/resources/apply.png:
+	* ima/resources/client_add.png:
+	* ima/resources/reboot.png:
+	* ima/resources/client_remove.png:
+	* ima/resources/client_visible.png:
+	* ima/resources/clock.png:
+	* ima/resources/config.png:
+	* ima/resources/host_unreachable.png:
+	* ima/resources/classroom_manager_48.png:
+	* ima/resources/client-properties.png:
+	* ima/resources/ok.png:
+	* ima/resources/classroom_add.png:
+	* ima/resources/client.png:
+	* ima/resources/client_show.png:
+	* ima/resources/whatsthis.png:
+	* ima/resources/classroom_remove.png:
+	* ima/resources/tutorials.png:
+	* ima/resources/error.png:
+	* ima/resources/info.png:
+	* ima/resources/classroom_manager.png:
+	* ima/resources/logo.png:
+	* ima/resources/classroom_show.png:
+	* ima/resources/overview_mode.png:
+	* ima/resources/cancel.png:
+	* ima/resources/power_off.png:
+	* ima/resources/help.png:
+	* ima/resources/back.png:
+	* ima/resources/locked.png:
+	* ima/resources/fullscreen.png:
+	* ima/resources/toolbar.png:
+	* ima/resources/run.png:
+	* ima/resources/config_48.png:
+	* ima/resources/quit.png:
+	* ima/resources/client_hidden.png:
+	* ima/resources/splash.png:
+	* lib/src/lock_widget.cpp:
+	* lib/resources/icon22.png:
+	* lib/resources/locked_bg.png:
+	* lib/resources/icon32.png:
+	* lib/resources/icon16.png:
+	* lib/resources/ok.png:
+	* lib/resources/info.png:
+	- improved graphics to have one consistent theme and fixed wrong
+	  resource-references
+	- updated logo
+
+	* lib/src/fast_qimage.cpp:
+	added check for valid destination-size
+
+	* ima/src/main_window.h:
+	* ima/src/client.h:
+	* ima/src/main_window.cpp:
+	* ima/src/client.cpp:
+	* ima/src/classroom_manager.cpp:
+	- wrote own workspace- and workspace-window-concept which looks much
+	  cooler, provides a simpler UI and allows to have bigger
+	  preview-windows
+	- rewrote painting-code for client-windows
+	- improved auto-rearranger
+
 2008-02-23	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* ima/src/client.cpp:

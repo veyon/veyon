@@ -352,9 +352,9 @@ void classroomManager::saveSettingsOfChildren( QDomDocument & _doc,
 					client_element.setAttribute( "visible",
 						c->isVisible() ? "yes" : "no" );
 						client_element.setAttribute(
-			"x", QString::number( c->parentWidget()->pos().x() ) );
+			"x", QString::number( c->pos().x() ) );
  						client_element.setAttribute(
-			"y", QString::number( c->parentWidget()->pos().y() ) );
+			"y", QString::number( c->pos().y() ) );
 						client_element.setAttribute(
 			"w", QString::number( c->width() ) );
  						client_element.setAttribute(
@@ -566,7 +566,7 @@ void classroomManager::loadTree( classRoom * _parent_item,
 				{
 					continue;
 				}
-				c->parentWidget()->move(
+				c->move(
 			node.toElement().attribute( "x" ).toInt(),
 			node.toElement().attribute( "y" ).toInt() );
 				c->m_rasterX = node.toElement().attribute(
@@ -924,8 +924,8 @@ void classroomManager::sendMessage( void )
 
 
 
-const int decor_w = 8;
-const int decor_h = 34;
+const int decor_w = 2;
+const int decor_h = 2;
 
 
 void classroomManager::adjustWindows( void )
@@ -933,8 +933,10 @@ void classroomManager::adjustWindows( void )
 	QVector<client *> vc = visibleClients();
 	if( vc.size() )
 	{
-		const int avail_w = getMainWindow()->workspace()->width();
-		const int avail_h = getMainWindow()->workspace()->height();
+		const int avail_w = getMainWindow()->workspace()->
+						parentWidget()->width();
+		const int avail_h = getMainWindow()->workspace()->
+						parentWidget()->height();
 		float cw = vc[0]->width() + decor_w;// add width of decoration
 		float ch = vc[0]->height() + decor_h;// add height of titlebar
 
@@ -948,18 +950,18 @@ void classroomManager::adjustWindows( void )
 		{
 			ch = 192.0f;
 		}
-		int x_offset = vc[0]->parentWidget()->pos().x();
-		int y_offset = vc[0]->parentWidget()->pos().y();
+		int x_offset = vc[0]->pos().x();
+		int y_offset = vc[0]->pos().y();
 
 		foreach( client * cl, vc )
 		{
-			if( cl->parentWidget()->pos().x() < x_offset )
+			if( cl->pos().x() < x_offset )
 			{
-				x_offset = cl->parentWidget()->pos().x();
+				x_offset = cl->pos().x();
 			}
-			if( cl->parentWidget()->pos().y() < y_offset )
+			if( cl->pos().y() < y_offset )
 			{
-				y_offset = cl->parentWidget()->pos().y();
+				y_offset = cl->pos().y();
 			}
 		}
 
@@ -968,9 +970,9 @@ void classroomManager::adjustWindows( void )
 		foreach( client * cl, vc )
 		{
 			cl->m_rasterX = roundCorrect( (
-				cl->parentWidget()->pos().x()-x_offset ) / cw );
+					cl->pos().x()-x_offset ) / cw );
 			cl->m_rasterY = roundCorrect( (
-				cl->parentWidget()->pos().y()-y_offset ) / ch );
+					cl->pos().y()-y_offset ) / ch );
 			if( cl->m_rasterX > max_rx )
 			{
 				max_rx = cl->m_rasterX;
@@ -1002,10 +1004,10 @@ void classroomManager::adjustWindows( void )
 		foreach( client * cl, vc )
 		{
 			cl->setFixedSize( nw - decor_w, nh - decor_h );
-			cl->parentWidget()->move(
-				static_cast<int>( cl->m_rasterX * nw ),
+			cl->move( static_cast<int>( cl->m_rasterX * nw ),
 				static_cast<int>( cl->m_rasterY * nh ) );
 		}
+		getMainWindow()->workspace()->updateGeometry();
 	}
 }
 
@@ -1025,13 +1027,15 @@ void classroomManager::arrangeWindows( void )
 	QVector<client *> vc = visibleClients();
 	if( vc.size() )
 	{
-		const int avail_w = getMainWindow()->workspace()->width();
-		const int avail_h = getMainWindow()->workspace()->height();
+		const int avail_w = getMainWindow()->workspace()->
+						parentWidget()->width();
+		const int avail_h = getMainWindow()->workspace()->
+						parentWidget()->height();
 		const int w = avail_w;
 		const int h = avail_h;
-		const float s = sqrt( vc.size() * h / (float) w );
-		const int win_per_line = (int) round( vc.size() / round( s ) );
-		const int win_per_row = (int) round( s );
+		const float s = sqrt( vc.size() *3* w / (float) (4*h) );
+		int win_per_row = (int) ceil( vc.size() / s );
+		int win_per_line = (int) ceil( s );
 		const int ww = avail_w / win_per_line;
 		const int wh = avail_h / win_per_row;
 
@@ -1040,8 +1044,7 @@ void classroomManager::arrangeWindows( void )
 		int i = 0;
 		foreach( client * cl, vc )
 		{
-			cl->parentWidget()->move( ( i % win_per_line ) *
-							( ww + decor_w ),
+			cl->move( ( i % win_per_line ) * ( ww + decor_w ),
 						( i / win_per_line ) *
 							( wh + decor_h ) );
 			cl->setFixedSize( ww, wh );
@@ -1076,18 +1079,18 @@ void classroomManager::resizeClients( const int _new_width )
 			ch = 192.0f;
 		}
 
-		int x_offset = vc[0]->parentWidget()->pos().x();
-		int y_offset = vc[0]->parentWidget()->pos().y();
+		int x_offset = vc[0]->pos().x();
+		int y_offset = vc[0]->pos().y();
 
 		foreach( client * cl, vc )
 		{
-			if( cl->parentWidget()->pos().x() < x_offset )
+			if( cl->pos().x() < x_offset )
 			{
-				x_offset = cl->parentWidget()->pos().x();
+				x_offset = cl->pos().x();
 			}
-			if( cl->parentWidget()->pos().y() < y_offset )
+			if( cl->pos().y() < y_offset )
 			{
-				y_offset = cl->parentWidget()->pos().y();
+				y_offset = cl->pos().y();
 			}
 		}
 
@@ -1095,12 +1098,12 @@ void classroomManager::resizeClients( const int _new_width )
 		{
 			cl->setFixedSize( _new_width, _new_height );
 			const int xp = static_cast<int>( (
-				cl->parentWidget()->pos().x() - x_offset ) /
+				cl->pos().x() - x_offset ) /
 				cw * ( _new_width + decor_w ) ) + x_offset;
 			const int yp = static_cast<int>( (
-				cl->parentWidget()->pos().y() - y_offset ) /
+				cl->pos().y() - y_offset ) /
 				ch * ( _new_height + decor_h ) ) + y_offset;
-			cl->parentWidget()->move( xp, yp );
+			cl->move( xp, yp );
 		}
 	}
 }
@@ -1209,7 +1212,7 @@ void classroomManager::contextMenuRequest( const QPoint & _pos )
 					this, SLOT( showHideClient() ) );
 
 		context_menu->addAction(
-				QPixmap( ":/resources/client_settings.png" ),
+				QPixmap( ":/resources/config.png" ),
 						tr( "Edit settings" ), this,
 					SLOT( editClientSettings() ) );
 
@@ -1246,7 +1249,7 @@ void classroomManager::contextMenuRequest( const QPoint & _pos )
 				this, SLOT( hideTeacherClients() ) );
 
 		context_menu->addAction(
-				QPixmap( ":/resources/client_settings.png" ),
+				QPixmap( ":/resources/config.png" ),
 				tr( "Edit name" ),
 				this, SLOT( editClassRoomName() ) );
 
@@ -1696,7 +1699,7 @@ void classRoom::createActionMenu( QMenu * _m, bool _add_sub_menu )
 		{
 			this_classroom_submenu =
 				this_classroom_submenu->addMenu( QPixmap(
-					":/resources/client_settings.png" ),
+					":/resources/config.png" ),
 						tr( "Administration" ) );
 
 			connect( this_classroom_submenu,

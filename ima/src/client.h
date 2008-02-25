@@ -2,7 +2,7 @@
  * client.h - declaration of class client which represents a client, shows its
  *            display and allows controlling it in several ways
  *
- * Copyright (c) 2004-2007 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -285,12 +285,14 @@ public slots:
 
 
 private:
-	void updateStatePixmap( void );
 	bool userLoggedIn( void );
 
 	virtual void contextMenuEvent( QContextMenuEvent * _cme );
 	virtual void closeEvent( QCloseEvent * _ce );
 	virtual void hideEvent( QHideEvent * _he );
+	virtual void mousePressEvent( QMouseEvent * _me );
+	virtual void mouseMoveEvent( QMouseEvent * _me );
+	virtual void mouseReleaseEvent( QMouseEvent * _me );
 	virtual void mouseDoubleClickEvent( QMouseEvent * _me );
 	virtual void paintEvent( QPaintEvent * _pe );
 	virtual void resizeEvent( QResizeEvent * _re );
@@ -315,6 +317,8 @@ private:
 
 	mainWindow * m_mainWindow;
 	ivsConnection * m_connection;
+	QPoint m_clickPoint;
+	QPoint m_origPos;
 
 	QString m_name;
 	QString m_localIP;
@@ -328,7 +332,6 @@ private:
 	volatile bool m_makeSnapshot;
 
 	states m_state;
-	QPixmap m_statePixmap;
 
 	QMutex m_syncMutex;
 

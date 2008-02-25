@@ -14,7 +14,7 @@
    <string>Client settings</string>
   </property>
   <property name="windowIcon" >
-   <iconset resource="../italc.qrc" >:/resources/client-properties.png</iconset>
+   <iconset resource="../italc.qrc" >:/resources/client_settings.png</iconset>
   </property>
   <property name="modal" >
    <bool>true</bool>
@@ -48,7 +48,7 @@
         <string/>
        </property>
        <property name="pixmap" >
-        <pixmap resource="../italc.qrc" >:/resources/client-properties.png</pixmap>
+        <pixmap resource="../italc.qrc" >:/resources/client_settings.png</pixmap>
        </property>
        <property name="scaledContents" >
         <bool>false</bool>

@@ -31,16 +31,14 @@
 #include <QtGui/QButtonGroup>
 #include <QtGui/QMainWindow>
 #include <QtGui/QToolButton>
-#include <QtGui/QWhatsThis>
 
 #include "snapshot_list.h"
 
 
 class QMenu;
+class QScrollArea;
 class QSplashScreen;
 class QSplitter;
-class QWorkspace;
-
 class classroomManager;
 class configWidget;
 class toolBar;
@@ -50,7 +48,6 @@ class isdConnection;
 class overviewWidget;
 class remoteControlWidget;
 class userList;
-
 
 extern QString __demo_network_interface;
 extern QString __demo_master_ip;
@@ -78,6 +75,22 @@ private:
 } ;
 
 
+class clientWorkspace : public QWidget
+{
+public:
+	clientWorkspace( QScrollArea * _parent );
+	virtual ~clientWorkspace()
+	{
+	}
+
+	virtual QSize sizeHint( void ) const;
+
+private:
+
+} ;
+
+
+
 class mainWindow : public QMainWindow
 {
 	Q_OBJECT
@@ -85,7 +98,7 @@ public:
 	mainWindow( int _screen );
 	virtual ~mainWindow();
 
-	QWorkspace * workspace( void )
+	QWidget * workspace( void )
 	{
 		return( m_workspace );
 	}
@@ -140,11 +153,6 @@ protected:
 private slots:
 	void remoteControlWidgetClosed( QObject * );
 
-	void enterWhatsThisMode( void )
-	{
-		QWhatsThis::enterWhatsThisMode();
-	}
-
 	void aboutITALC( void );
 
 	void changeGlobalClientMode( int );
@@ -155,7 +163,7 @@ private:
 
 	mainWindowUpdateThread * m_updateThread;
 
-	QWorkspace * m_workspace;
+	clientWorkspace * m_workspace;
 
 	QButtonGroup * m_modeGroup;
 

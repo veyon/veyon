@@ -40,7 +40,7 @@ cmdInputDialog::cmdInputDialog( QString & _cmds_str, QWidget * _parent ) :
 	setWindowTitle( tr( "Run commands on client(s)" ) );
 
 	m_iconLbl = new QLabel( this );
-	m_iconLbl->setPixmap( QPixmap( ":/resources/client_exec_cmds.png" ) );
+	m_iconLbl->setPixmap( QPixmap( ":/resources/run.png" ) );
 	m_iconLbl->setGeometry( 10, 16, 48, 48 );
 
 	m_appNameLbl = new QLabel( tr( "Enter commands, which should be run "
