@@ -753,7 +753,6 @@ QImage & fastQImage::scaleTo( QImage & _dst ) const
 							"to Format_ARGB32" );
 		return( fastQImage( convertToFormat( Format_ARGB32 ) ).
 							scaleTo( _dst ) );
-		return;
 	}
 
 #ifdef USE_MMX
