@@ -49,7 +49,7 @@ remoteControlWidgetToolBar::remoteControlWidgetToolBar(
 	m_parent( _parent ),
 	m_disappear( FALSE ),
 	m_connecting( FALSE ),
-	m_icon( fastQImage( ":/resources/logo.png" ).
+	m_icon( fastQImage( QImage( ":/resources/logo.png" ) ).
 					scaled( QSize( 48, 48 ) ) ),
 	m_iconGray( fastQImage( m_icon ).toGray().darken( 50 ) ),
 	m_iconState()
