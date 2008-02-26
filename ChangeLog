@@ -7,6 +7,9 @@
 	directly use fastQImage::scaleTo(...) rather than
 	fastQImage::scaled(...) to avoid creating temporary images
 
+	* lib/src/fast_qimage.cpp:
+	check for format() == Format_Invalid and handle properly
+
 	* lib/include/fast_qimage.h:
 	* lib/src/fast_qimage.cpp:
 	in fastQImage::scaleTo(...) return reference to destination image for

@@ -746,6 +746,10 @@ QImage & fastQImage::scaleTo( QImage & _dst ) const
 	{
 		return( _dst = QImage() );
 	}
+	if( format() == Format_Invalid )
+	{
+		return( _dst );
+	}
 	if( format() != Format_ARGB32 && format() != Format_RGB32 &&
 				format() != Format_ARGB32_Premultiplied )
 	{
