@@ -54,20 +54,6 @@ static const char * tr_accels = QT_TRANSLATE_NOOP(
 #include <windows.h>
 #include <shlobj.h>
 #include <psapi.h>
-#include <winable.h>
-
-#if _WIN32_WINNT >= 0x500
-#define SHUTDOWN_FLAGS (EWX_FORCE | EWX_FORCEIFHUNG)
-#else
-#define SHUTDOWN_FLAGS (EWX_FORCE)
-#endif
-
-#if _WIN32_WINNT >= 0x501
-#include <reason.h>
-#define SHUTDOWN_REASON (SHTDN_REASON_MAJOR_SYSTEM/* SHTDN_REASON_MINOR_ENVIRONMENT*/)
-#else
-#define SHUTDOWN_REASON 0
-#endif
 
 
 
@@ -385,52 +371,6 @@ void broadcastWOLPacket( const QString & _mac )
 
 
 
-void powerDown( void )
-{
-#ifdef BUILD_WIN32
-	enablePrivilege( SE_SHUTDOWN_NAME, TRUE );
-	ExitWindowsEx( EWX_POWEROFF | SHUTDOWN_FLAGS, SHUTDOWN_REASON );
-/*	InitiateSystemShutdown( NULL,	// local machine
-				NULL,	// message for shutdown-box
-				0,	// no timeout or possibility to abort
-					// system-shutdown
-				TRUE,	// force closing all apps
-				FALSE	// do not reboot
-				);*/
-	enablePrivilege( SE_SHUTDOWN_NAME, FALSE );
-#else
-	QProcess::startDetached( "gdm-signal -h" ); // Gnome shutdown
-	QProcess::startDetached( "gnome-session-save --silent --kill" ); // Gnome logout
-	QProcess::startDetached( "dcop ksmserver ksmserver logout 0 2 0" ); // KDE shutdown
-#endif
-}
-
-
-
-
-void reboot( void )
-{
-#ifdef BUILD_WIN32
-	enablePrivilege( SE_SHUTDOWN_NAME, TRUE );
-	ExitWindowsEx( EWX_REBOOT | SHUTDOWN_FLAGS, SHUTDOWN_REASON );
-/*	InitiateSystemShutdown( NULL,	// local machine
-				NULL,	// message for shutdown-box
-				0,	// no timeout or possibility to abort
-					// system-shutdown
-				TRUE,	// force closing all apps
-				TRUE	// reboot
-				);*/
-	enablePrivilege( SE_SHUTDOWN_NAME, FALSE );
-#else
-	QProcess::startDetached( "gdm-signal -r" ); // Gnome reboot
-	QProcess::startDetached( "gnome-session-save --silent --kill" ); // Gnome logout
-	QProcess::startDetached( "dcop ksmserver ksmserver logout 0 1 0" ); // KDE reboot
-#endif
-}
-
-
-
-
 static inline void pressAndReleaseKey( int _key )
 {
 	__pressKey( _key, TRUE );
@@ -571,19 +511,6 @@ void logonUser( const QString & _uname, const QString & _passwd,
 #endif
 
 	pressAndReleaseKey( XK_Return );
-}
-
-
-
-
-void logoutUser( void )
-{
-#ifdef BUILD_WIN32
-	ExitWindowsEx( EWX_LOGOFF | SHUTDOWN_FLAGS, SHUTDOWN_REASON );
-#else
-	QProcess::startDetached( "gnome-session-save --silent --kill" ); // Gnome logout
-	QProcess::startDetached( "dcop ksmserver ksmserver logout 0 0 0" ); // KDE logout
-#endif
 }
 
 

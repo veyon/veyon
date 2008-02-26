@@ -56,12 +56,12 @@ namespace localSystem
 
 	void IC_DllExport broadcastWOLPacket( const QString & _mac );
 
-	void IC_DllExport powerDown( void );
-	void IC_DllExport reboot( void );
+	void /*IC_DllExport*/ powerDown( void );
+	void /*IC_DllExport*/ reboot( void );
 
 	void IC_DllExport logonUser( const QString & _uname, const QString & _pw,
 						const QString & _domain );
-	void IC_DllExport logoutUser( void );
+	void /*IC_DllExport*/ logoutUser( void );
 
 	QString /*IC_DllExport*/ currentUser( void );
 
