@@ -1,7 +1,7 @@
 /*
  *  remote_control_widget.cpp - widget containing a VNC-view and controls for it
  *
- *  Copyright (c) 2006-2007 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ *  Copyright (c) 2006-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *  
  *  This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -49,7 +49,8 @@ remoteControlWidgetToolBar::remoteControlWidgetToolBar(
 	m_parent( _parent ),
 	m_disappear( FALSE ),
 	m_connecting( FALSE ),
-	m_icon( QImage( ":/resources/logo.png" ) ),
+	m_icon( fastQImage( ":/resources/logo.png" ).
+					scaled( QSize( 48, 48 ) ) ),
 	m_iconGray( fastQImage( m_icon ).toGray().darken( 50 ) ),
 	m_iconState()
 {

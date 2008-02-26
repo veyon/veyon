@@ -1,3 +1,17 @@
+2008-02-26	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* ima/src/remote_control_widget.cpp:
+	scale logo (which is now rendered larger) to fit into toolbar
+
+	* lib/src/ivs_connection.cpp:
+	directly use fastQImage::scaleTo(...) rather than
+	fastQImage::scaled(...) to avoid creating temporary images
+
+	* lib/include/fast_qimage.h:
+	* lib/src/fast_qimage.cpp:
+	in fastQImage::scaleTo(...) return reference to destination image for
+	convenience
+
 2008-02-25	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* ica/ica.qrc:

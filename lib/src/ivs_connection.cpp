@@ -461,7 +461,12 @@ void ivsConnection::rescaleScreen( void )
 	if( m_scaledScreenNeedsUpdate )
 	{
 		QWriteLocker swl( &m_scaledImageLock );
-		m_scaledScreen = m_screen.scaled( m_scaledSize );
+		if( m_scaledSize.size() != m_scaledSize )
+		{
+			m_scaledScreen = QImage( m_scaledSize,
+					QImage::Format_ARGB32_Premultiplied );
+		}
+		m_screen.scaleTo( m_scaledScreen );
 		m_scaledScreenNeedsUpdate = FALSE;
 	}
 }

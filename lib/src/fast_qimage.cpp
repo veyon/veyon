@@ -736,24 +736,23 @@ static filter_fn filter_shrink_Y = filter_shrink_Y_C;
 static filter_fn filter_expand_X = filter_expand_X_C;
 static filter_fn filter_expand_Y = filter_expand_Y_C;
 
-void fastQImage::scaleTo( QImage & _dst ) const
+QImage & fastQImage::scaleTo( QImage & _dst ) const
 {
 	if( size() == _dst.size() )
 	{
-		_dst = *this;
-		return;
+		return( _dst = *this );
 	}
 	if( !_dst.size().isValid() )
 	{
-		_dst = QImage();
-		return;
+		return( _dst = QImage() );
 	}
 	if( format() != Format_ARGB32 && format() != Format_RGB32 &&
 				format() != Format_ARGB32_Premultiplied )
 	{
 		qWarning( "fastQImage::scaleTo(...): converting source-image "
 							"to Format_ARGB32" );
-		fastQImage( convertToFormat( Format_ARGB32 ) ).scaleTo( _dst );
+		return( fastQImage( convertToFormat( Format_ARGB32 ) ).
+							scaleTo( _dst ) );
 		return;
 	}
 
@@ -799,7 +798,7 @@ void fastQImage::scaleTo( QImage & _dst ) const
 		temppix = (Q_UINT8 *) aligned_malloc(temppitch * tempheight);
 		if (temppix == NULL)
 		{
-			    return;
+			return( _dst );
 		}
 	}
 
@@ -852,6 +851,8 @@ void fastQImage::scaleTo( QImage & _dst ) const
 	}
 
 	aligned_free( temppix );
+
+	return( _dst );
 }
 
 

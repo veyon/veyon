@@ -111,7 +111,7 @@ public:
 	}
 
 	// scales this image to the size, _dst has
-	void scaleTo( QImage & _dst ) const;
+	QImage & scaleTo( QImage & _dst ) const;
 
 	// overload horribly slow scaled()-method
 	inline QImage scaled( const QSize & size,
