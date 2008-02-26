@@ -464,7 +464,7 @@ void ivsConnection::rescaleScreen( void )
 		if( m_scaledScreen.size() != m_scaledSize )
 		{
 			m_scaledScreen = QImage( m_scaledSize,
-					QImage::Format_ARGB32_Premultiplied );
+							QImage::Format_RGB32 );
 		}
 		m_screen.scaleTo( m_scaledScreen );
 		m_scaledScreenNeedsUpdate = FALSE;
