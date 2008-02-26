@@ -49,7 +49,7 @@ demoClient::demoClient( const QString & _host, bool _fullscreen ) :
 	QVBoxLayout * toplevel_layout = new QVBoxLayout;//( m_toplevel );
 	toplevel_layout->setMargin( 0 );
 	toplevel_layout->setSpacing( 0 );
-	toplevel_layout->addWidget( new vncView( _host, m_toplevel ) );
+	toplevel_layout->addWidget( new vncView( _host, m_toplevel, TRUE ) );
 
 	m_toplevel->setLayout( toplevel_layout );
 

@@ -42,19 +42,25 @@
 
 
 
-vncView::vncView( const QString & _host, QWidget * _parent ) :
+vncView::vncView( const QString & _host, QWidget * _parent,
+						bool _progress_widget ) :
 	QWidget( _parent ),
 	m_connection( NULL ),
 	m_viewOnly( TRUE ),
 	m_viewOnlyFocus( TRUE ),
 	m_scaledView( TRUE ),
+	m_running( FALSE ),
 	m_viewOffset( QPoint( 0, 0 ) ),
 	m_buttonMask( 0 ),
+	m_establishingConnection( NULL ),
 	m_sysKeyTrapper( new systemKeyTrapper( FALSE ) )
 {
-	m_establishingConnection = new progressWidget(
-		tr( "Establishing connection to %1 ..." ).arg( _host ),
+	if( _progress_widget )
+	{
+		m_establishingConnection = new progressWidget(
+			tr( "Establishing connection to %1 ..." ).arg( _host ),
 					":/resources/watch%1.png", 16, this );
+	}
 
 	m_connection = new ivsConnection( _host, ivsConnection::QualityMedium,
 								FALSE, this );
@@ -158,9 +164,9 @@ void vncView::framebufferUpdate( void )
 
 	const QPoint mp = mapFromGlobal( QCursor::pos() );
 	// not yet connected or connection lost while handling messages?
-	if( m_connection->state() != ivsConnection::Connected &&
-					!m_establishingConnection->isVisible() )
+	if( m_connection->state() != ivsConnection::Connected && m_running )
 	{
+		m_running = FALSE;
 		// as the "establishing connection"-progress-widget is semi-
 		// transparent and has a non-rectangular shape, we have to
 		// disable paint-on-screen-capability as long as we display this
@@ -168,7 +174,10 @@ void vncView::framebufferUpdate( void )
 #ifndef BUILD_WIN32
 		setAttribute( Qt::WA_PaintOnScreen, false );
 #endif
-		m_establishingConnection->show();
+		if( m_establishingConnection )
+		{
+			m_establishingConnection->show();
+		}
 		emit startConnection();
 		QTimer::singleShot( 40, this, SLOT( framebufferUpdate() ) );
 		if( mp.y() < 2 )
@@ -180,12 +189,15 @@ void vncView::framebufferUpdate( void )
 		return;
 	}
 
-	if( m_connection->state() == ivsConnection::Connected &&
-					m_establishingConnection->isVisible() )
+	if( m_connection->state() == ivsConnection::Connected && !m_running )
 	{
-		m_establishingConnection->hide();
+		if( m_establishingConnection )
+		{
+			m_establishingConnection->hide();
+		}
+		m_running = TRUE;
 		emit connectionEstablished();
-	
+
 		// after we hid the progress-widget, we may use direct painting
 		// again
 #ifndef BUILD_WIN32
@@ -528,9 +540,9 @@ QRect vncView::mapFromFramebuffer( const QRect & _r )
 {
 	if( m_scaledView && m_connection )
 	{
-		const float dx = width() / 
+		const float dx = width() / (float)
 				m_connection->framebufferSize().width();
-		const float dy = height() /
+		const float dy = height() / (float)
 				m_connection->framebufferSize().height();
 		return( QRect( _r.x()*dx, _r.y()*dy,
 					_r.width()*dx, _r.height()*dy ) );
@@ -599,10 +611,10 @@ void vncView::paintEvent( QPaintEvent * _pe )
 	if( viewOnly() && !m_connection->cursorShape().isNull() )
 	{
 		const QImage & cursor = m_connection->cursorShape();
-		const QRect cursor_rect = QRect( m_connection->cursorPos() -
+		const QRect cursor_rect = mapFromFramebuffer(
+			QRect( m_connection->cursorPos() -
 						m_connection->cursorHotSpot(),
-					cursor.size() ).translated(
-								-m_viewOffset );
+							cursor.size() ) );
 		// parts of cursor within updated region?
 		if( _pe->rect().intersects( cursor_rect ) )
 		{
@@ -643,8 +655,10 @@ void vncView::resizeEvent( QResizeEvent * _re )
 		update();
 	}
 
-	m_establishingConnection->move( 10,
-			10 );//height() - 10 - m_establishingConnection->height() );
+	if( m_establishingConnection )
+	{
+		m_establishingConnection->move( 10, 10 );
+	}
 
 	QWidget::resizeEvent( _re );
 }
@@ -669,10 +683,7 @@ void vncView::customEvent( QEvent * _e )
 {
 	if( _e->type() == regionChangedEvent().type() )
 	{
-		const QRect r = mapFromFramebuffer(
-				dynamic_cast<regionChangedEvent *>( _e )->
-					changedRegion().boundingRect() );
-		QWidget::update(  );
+		update();
 		_e->accept();
 	}
 	else
@@ -777,8 +788,6 @@ vncWorker::vncWorker( vncView * _vv ) :
 	connect( t, SIGNAL( timeout() ), this,
 			SLOT( framebufferUpdate() ) );
 	t->start( 25 );
-
-//	framebufferUpdate();
 }
 
 

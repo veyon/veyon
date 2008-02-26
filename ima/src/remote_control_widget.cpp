@@ -260,7 +260,7 @@ remoteControlWidget::remoteControlWidget( const QString & _host,
 						bool _view_only,
 						mainWindow * _main_window ) :
 	QWidget( 0 ),
-	m_vncView( new vncView( _host, this ) ),
+	m_vncView( new vncView( _host, this, FALSE ) ),
 	m_toolBar( new remoteControlWidgetToolBar( this, _view_only ) ),
 	m_mainWindow( _main_window ),
 	m_extraStates( Qt::WindowMaximized )

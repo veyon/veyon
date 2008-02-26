@@ -1,5 +1,16 @@
 2008-02-26	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
+	* lib/src/vncview.cpp:
+	- fixed mapFromFramebuffer()-method
+	- fixed draw-position for cursor in scaled mode
+
+	* ica/src/demo_client.cpp:
+	* ima/src/remote_control_widget.cpp:
+	* lib/include/vncview.h:
+	* lib/src/vncview.cpp:
+	made progress-widget optional - do not use when remote-controlling to
+	speed things up
+
 	* ima/src/remote_control_widget.cpp:
 	scale logo (which is now rendered larger) to fit into toolbar
 

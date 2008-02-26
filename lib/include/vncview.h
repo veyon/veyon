@@ -48,7 +48,8 @@ class IC_DllExport vncView : public QWidget
 {
 	Q_OBJECT
 public:
-	vncView( const QString & _host, QWidget * _parent = 0 );
+	vncView( const QString & _host, QWidget * _parent,
+							bool _progress_widget );
 	virtual ~vncView();
 
 	inline bool viewOnly( void ) const
@@ -105,6 +106,7 @@ private:
 	bool m_viewOnly;
 	bool m_viewOnlyFocus;
 	bool m_scaledView;
+	bool m_running;
 
 	QPoint m_viewOffset;
 
