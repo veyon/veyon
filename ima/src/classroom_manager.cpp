@@ -1749,7 +1749,7 @@ void classRoom::processCmdOnAllClients( QAction * _action )
 
 		case client::Cmd_LogonUser:
 		{
-			remoteLogonDialog mld( this );
+			remoteLogonDialog mld( m_classroomManager );
 			if( mld.exec() == QDialog::Accepted &&
 				!mld.userName().isEmpty() &&
 					!mld.password().isEmpty() )
