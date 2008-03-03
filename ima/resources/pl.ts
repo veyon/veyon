@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="pl_PL">
+<defaultcodec></defaultcodec>
 <context>
     <name>about</name>
     <message>
@@ -50,7 +51,7 @@ p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Polską wersję opracował Robert Radko.&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Jeśli chcesz przetłumaczyć iTALC na inny język lub poprawić te tłumaczenie, skontaktuj się z twórcami iTALC.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Jeśli chcesz przetłumaczyć iTALC na inny język lub poprawić niniejsze tłumaczenie, skontaktuj się z twórcą iTALC Tobiasem Doerffelem.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/about.ui" line="90"/>
@@ -80,7 +81,7 @@ p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;iTALC - Intelligent Teaching And Learning with Computers (Inteligentne nauczanie i uczenie się z komputerami)&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;&quot;&gt;Copyright (c) 2004-2007 Tobias Doerffel&lt;/p&gt;&lt;/body&gt;&lt;/html&gt; {1&quot;?} {9p?} {400;?} {0p?} {0p?} {0p?} {0p?} {0;?} {0p?} {11p?} {0p?} {0p?} {0p?} {0p?} {0;?} {0p?} {11p?} {0p?} {0p?} {0p?} {0p?} {0;?} {0p?} {11p?} {2004-2008 ?}</translation>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;&quot;&gt;Copyright (c) 2004-2007 Tobias Doerffel&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
@@ -198,7 +199,7 @@ Popraw go lub usuń.</translation>
     <message>
         <location filename="../src/classroom_manager.cpp" line="1216"/>
         <source>Edit settings</source>
-        <translation>Zmień ustawienia</translation>
+        <translation>Edycja</translation>
     </message>
     <message>
         <location filename="../src/classroom_manager.cpp" line="1221"/>
@@ -472,7 +473,7 @@ Możesz zmienić wielkość tego i pozostałych widocznych okienek używając fu
     <message>
         <location filename="../dialogs/client_settings.ui" line="14"/>
         <source>Client settings</source>
-        <translation>Ustawienia klienta</translation>
+        <translation>Edycja klienta</translation>
     </message>
     <message>
         <location filename="../dialogs/client_settings.ui" line="109"/>
@@ -623,7 +624,7 @@ p, li { white-space: pre-wrap; }
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:20pt; font-weight:600; font-style:italic;&quot;&gt;Ustawienie klienta&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:20pt; font-weight:600; font-style:italic;&quot;&gt;Edycja klienta&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/client_settings.ui" line="124"/>
@@ -1016,7 +1017,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/main_window.cpp" line="188"/>
         <source>This is the default mode in iTALC and allows you to have an overview over all visible computers. Also click on this button for unlocking locked workstations or for leaving demo-mode.</source>
-        <translation>To jest domyślny tryb w iTALC. Pozwala on na podgląd wszystkich widocznych komputerów. Kliknij ten przycisk również aby odblokować zablokowane komputery lub pzrerwać tryb demo.</translation>
+        <translation>To jest domyślny tryb w iTALC. Pozwala on na podgląd wszystkich widocznych komputerów. Kliknij ten przycisk również aby odblokować zablokowane komputery lub przerwać tryb demo.</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="168"/>
@@ -1056,7 +1057,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/main_window.cpp" line="239"/>
         <source>Text message</source>
-        <translation>Wiadomość tekstowa</translation>
+        <translation>Wiadomość</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="248"/>
@@ -1108,7 +1109,7 @@ Stwórz nową parę kluczy używając ICA (dokumentacja na http://italc.sf.net/w
     <message>
         <location filename="../src/main_window.cpp" line="193"/>
         <source>Demo on</source>
-        <translation>Demo wł</translation>
+        <translation>Demo</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="193"/>
@@ -1118,7 +1119,7 @@ Stwórz nową parę kluczy używając ICA (dokumentacja na http://italc.sf.net/w
     <message>
         <location filename="../src/main_window.cpp" line="203"/>
         <source>Demo/window on</source>
-        <translation>Demo(okno) wł</translation>
+        <translation>Demo (okno)</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="203"/>
