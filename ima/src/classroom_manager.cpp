@@ -1747,6 +1747,20 @@ void classRoom::processCmdOnAllClients( QAction * _action )
 			break;
 		}
 
+		case client::Cmd_LogonUser:
+		{
+			remoteLogonDialog mld( this );
+			if( mld.exec() == QDialog::Accepted &&
+				!mld.userName().isEmpty() &&
+					!mld.password().isEmpty() )
+			{
+				u_data = mld.userName() + "*" + mld.password() +
+							"*" + mld.domain();
+				break;
+			}
+			return;
+		}
+
 		case client::Cmd_LogoutUser:
 		{
 			if( QMessageBox::question( m_classroomManager->window(),

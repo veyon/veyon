@@ -1,5 +1,8 @@
 2008-03-03	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
+	* ima/src/classroom_manager.cpp:
+	fixed logon-feature from classroom-action-menu
+
 	* ima/src/main_window.cpp:
 	* lib/src/isd_connection.cpp:
 	in case user accidently changed role but no keys exist for this role
