@@ -4,7 +4,7 @@
 	* lib/src/isd_connection.cpp:
 	in case user accidently changed role but no keys exist for this role
 	try teacher-role as fallback in order to make iTALC still usable in
-	such cases
+	such cases (Closes #1866440)
 
 	* italc.spec.in:
 	added missing library
