@@ -304,23 +304,34 @@ mainWindow::mainWindow( int _rctrl_screen ) :
 	restoreState( QByteArray::fromBase64(
 				m_classroomManager->winCfg().toUtf8() ) );
 
-	if( isdConnection::initAuthentication() == FALSE )
+	while( 1 )
 	{
-		if( splashScreen != NULL )
+		if( isdConnection::initAuthentication() == FALSE )
 		{
-			splashScreen->hide();
-		}
-		messageBox::information( tr( "No valid keys found" ),
+			if( __role != ISD::RoleTeacher )
+			{
+				__role = ISD::RoleTeacher;
+				continue;
+			}
+			if( splashScreen != NULL )
+			{
+				splashScreen->hide();
+			}
+			messageBox::information( tr( "No valid keys found" ),
 			tr( 	"No authentication-keys were found or your "
 				"old ones were broken. Please create a new "
 				"key-pair using ICA (see documentation at "
 		"http://italc.sf.net/wiki/index.php?title=Installation).\n"
 				"Otherwise you won't be able to access "
 						"computers using iTALC." ) );
+		}
+		else
+		{
+			break;
+		}
 	}
-
-	m_localISD = new isdConnection( QHostAddress( QHostAddress::LocalHost
-								).toString() +
+	m_localISD = new isdConnection( QHostAddress(
+				QHostAddress::LocalHost).toString() +
 					":" + QString::number( __isd_port ) );
 	if( m_localISD->open() != isdConnection::Connected )
 	{
@@ -330,11 +341,10 @@ mainWindow::mainWindow( int _rctrl_screen ) :
 				"aren't set up properly. The service is "
 				"required for running iTALC. Contact your "
 				"administrator for solving this problem." ),
-					QPixmap( ":/resources/stop.png" ) );
+				QPixmap( ":/resources/stop.png" ) );
 		return;
 	}
 
-	m_localISD->setRole( __role );
 	m_localISD->demoServerStop();
 	m_localISD->demoServerRun( __demo_quality, localSystem::freePort() );
 

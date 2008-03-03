@@ -85,7 +85,7 @@ bool isdConnection::initAuthentication( void )
 	{
 		qWarning( "isdConnection::initAuthentication(): private key "
 							"already initialized" );
-		return( TRUE );
+		delete privDSAKey;
 	}
 
 	const QString priv_key_file = localSystem::privateKeyPath( __role );

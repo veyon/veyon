@@ -1,5 +1,11 @@
 2008-03-03	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
+	* ima/src/main_window.cpp:
+	* lib/src/isd_connection.cpp:
+	in case user accidently changed role but no keys exist for this role
+	try teacher-role as fallback in order to make iTALC still usable in
+	such cases
+
 	* italc.spec.in:
 	added missing library
 
