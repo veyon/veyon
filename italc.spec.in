@@ -134,6 +134,7 @@ make DESTDIR=$RPM_BUILD_ROOT install
 %files client
 %defattr(-,root,root)
 %{_bindir}/ica
+%{_libdir}/italc/libitalc_core.so
 %{_datadir}/man/man1/ica.1.gz
 
 
@@ -148,6 +149,9 @@ make DESTDIR=$RPM_BUILD_ROOT install
 
 
 %changelog
+* Mon Mar 03 2008 Tobias Doerffel
+- added missing library
+
 * Sat Apr 12 2007 Tobias Doerffel
 - lot of updates for "new" iTALC
 
