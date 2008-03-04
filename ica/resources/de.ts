@@ -84,27 +84,27 @@
 <context>
     <name>isdServer</name>
     <message>
-        <location filename="../src/isd_server.cpp" line="754"/>
+        <location filename="../src/isd_server.cpp" line="768"/>
         <source>Message from teacher</source>
         <translation>Nachricht vom Lehrer</translation>
     </message>
     <message>
-        <location filename="../src/isd_server.cpp" line="556"/>
+        <location filename="../src/isd_server.cpp" line="570"/>
         <source>Somebody at host %1 tries to access your screen. Do you want to grant him/her access?</source>
         <translation>Jemand am Rechner %1 versucht auf Ihren Bildschirm zuzugreifen. Möchten Sie ihm/ihr Zugriff gewähren?</translation>
     </message>
     <message>
-        <location filename="../src/isd_server.cpp" line="559"/>
+        <location filename="../src/isd_server.cpp" line="573"/>
         <source>Never for this session</source>
         <translation>Nie für diese Sitzung</translation>
     </message>
     <message>
-        <location filename="../src/isd_server.cpp" line="561"/>
+        <location filename="../src/isd_server.cpp" line="575"/>
         <source>Always for this session</source>
         <translation>Immer für diese Sitzung</translation>
     </message>
     <message>
-        <location filename="../src/isd_server.cpp" line="553"/>
+        <location filename="../src/isd_server.cpp" line="567"/>
         <source>Confirm access</source>
         <translation>Zugriff bestätigen</translation>
     </message>
@@ -119,12 +119,12 @@
         <translation>Der ISD-Server konnte nicht gestartet werden, da Port %1 bereits verwendet wird. Bitte stellen Sie sicher, dass kein anderes Programm diesen Port benutzt und versuchen es erneut.</translation>
     </message>
     <message>
-        <location filename="../src/isd_server.cpp" line="806"/>
+        <location filename="../src/isd_server.cpp" line="824"/>
         <source>Authentication error</source>
         <translation>Authentifizierungsfehler</translation>
     </message>
     <message>
-        <location filename="../src/isd_server.cpp" line="809"/>
+        <location filename="../src/isd_server.cpp" line="827"/>
         <source>Somebody (IP: %1) tried to access this computer but could not authenticate itself successfully!</source>
         <translation>Jemand (IP:%1) hat versucht, auf diesen Computer zuzugreifen, konnte sich jedoch nicht erfolgreich authentifizieren!</translation>
     </message>
