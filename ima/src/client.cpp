@@ -108,7 +108,7 @@ public:
 		QPainter p( this );
 		p.setRenderHint( QPainter::Antialiasing, TRUE );
 		p.setPen( QColor( 128, 128, 128 ) );
-		p.setBrush( m_mouseOver ? Qt::white : Qt::gray );
+		p.setBrush( m_mouseOver ? Qt::gray : Qt::white );
 		p.drawRoundRect( QRectF( 0.5, 0.5, 16, 16 ), 20, 20 );
 		QPen pen( QColor( 64, 64, 64 ) );
 
@@ -139,7 +139,7 @@ private:
 
 
 
-client::client( const QString & _local_ip, const QString & _remote_ip,
+client::client( const QString & _local_ip,
 		const QString & _mac, const QString & _name,
 		types _type, classRoom * _class_room,
 					mainWindow * _main_window, int _id ) :
@@ -150,7 +150,6 @@ client::client( const QString & _local_ip, const QString & _remote_ip,
 	m_origPos( -1, -1 ),
 	m_name( _name ),
 	m_localIP( _local_ip ),
-	m_remoteIP( _remote_ip ),
 	m_mac( _mac ),
 	m_type( _type ),
 	m_reloadsAfterReset( 0 ),
@@ -174,12 +173,10 @@ client::client( const QString & _local_ip, const QString & _remote_ip,
 
 	m_classRoomItem = new classRoomItem( this, _class_room );
 
-	// make sure remote-ip is ok and set to local IP if neccessary
-	setRemoteIP( m_remoteIP );
-
 	m_connection = new ivsConnection( m_localIP,
 						ivsConnection::QualityLow );
 
+	setAttribute( Qt::WA_OpaquePaintEvent );
 	setWindowIcon( QPixmap( ":/resources/classroom_manager.png" ) );
 
 /*	setWhatsThis( tr( "This is a client-window. It either displays the "
@@ -552,13 +549,10 @@ void client::paintEvent( QPaintEvent * _pe )
 		img_locked = new QImage( ":/resources/locked.png" );
 
 	QPainter p( this );
+	p.setBrush( Qt::white );
+	p.setPen( Qt::black );
+	p.drawRect( QRect( 0, 0, width()-1, height()-1 ) );
 	p.setRenderHint( QPainter::Antialiasing, TRUE );
-	QPen pen( Qt::black );
-	pen.setWidth( 1 );
-	p.setPen( pen );
-	p.setBrush( QColor( 255, 255, 255, 160 ) );
-	p.drawRoundRect( QRectF( 0.5, 0.5, width()-1, height()-1),
-						1600/width(), 1600/height() );
 
 	const QString s = m_user != "" ? m_user :
 		( m_name + " (" + m_classRoomItem->parent()->text( 0 ) +
@@ -566,7 +560,7 @@ void client::paintEvent( QPaintEvent * _pe )
 	QFont f = p.font();
 	f.setBold( TRUE );
 	p.setFont( f );
-	p.setPen( Qt::white );
+	p.setPen( Qt::gray );
 	p.drawText( 11, TITLE_HEIGHT-3, s );
 	p.setPen( Qt::black );
 	p.drawText( 10, TITLE_HEIGHT-4, s );
@@ -693,6 +687,10 @@ void client::reload( const QString & _update )
 
 		m_user = m_connection->user();
 		m_syncMutex.unlock();
+	}
+	else
+	{
+		m_user = "";
 	}
 
 
