@@ -340,8 +340,6 @@ void classroomManager::saveSettingsOfChildren( QDomDocument & _doc,
 								c->name() );
 					client_element.setAttribute( "localip",
 								c->localIP() );
-					client_element.setAttribute( "remoteip",
-								c->remoteIP() );
 					client_element.setAttribute( "mac",
 								c->mac() );
 					client_element.setAttribute( "type",
@@ -542,15 +540,12 @@ void classroomManager::loadTree( classRoom * _parent_item,
 				// add new client
 				QString local_ip = node.toElement().attribute(
 								"localip" );
-
-				QString remote_ip = node.toElement().attribute(
-								"remoteip" );
 				QString mac = node.toElement().attribute(
 									"mac" );
 				QString name = node.toElement().attribute(
 								"name" );
 
-	c = new client( local_ip, remote_ip, mac, name,
+	c = new client( local_ip, mac, name,
 				(client::types) node.toElement().
 						attribute( "type" ).toInt(),
 			_parent_item, getMainWindow(), node.toElement().
@@ -1016,7 +1011,7 @@ void classroomManager::adjustWindows( void )
 
 bool clientIPSort( const client * _1, const client * _2 )
 {
-	return( _1->remoteIP() < _2->remoteIP() );
+	return( _1->localIP() < _2->localIP() );
 }
 
 
@@ -1861,8 +1856,7 @@ classRoomItem::classRoomItem( client * _client, QTreeWidgetItem * _parent ) :
 	}
 
 	setVisible( FALSE );
-	setText( 1, m_client->remoteIP() );
-// 	setText( 1, m_client->localIP() );
+	setText( 1, m_client->localIP() );
 }
 
 

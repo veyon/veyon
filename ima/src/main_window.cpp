@@ -125,6 +125,7 @@ mainWindow::mainWindow( int _rctrl_screen ) :
 
 	QScrollArea * sa = new QScrollArea( m_splitter );
 	sa->setBackgroundRole( QPalette::Dark );
+	m_splitter->setStretchFactor( m_splitter->indexOf( sa ), 10 );
 	m_workspace = new clientWorkspace( sa );
 
 

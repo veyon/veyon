@@ -84,7 +84,6 @@ clientSettingsDialog::clientSettingsDialog( client * _client,
 		nameEdit->setText( m_client->name() );
 		IPEdit->setText( m_client->localIP() );
 		macEdit->setText( m_client->mac() );
-		remoteIPEdit->setText( m_client->remoteIP() );
 		typeComboBox->setCurrentIndex( m_client->type() );
 	}
 }
@@ -125,7 +124,6 @@ void clientSettingsDialog::accept( void )
 	if( m_client == NULL )
 	{
 		m_client = new client( IPEdit->text(),
-					remoteIPEdit->text(),
 					macEdit->text(),
 					nameEdit->text(),
 				(client::types) typeComboBox->currentIndex(),
@@ -136,7 +134,6 @@ m_mainWindow->getClassroomManager()->m_classRooms[classRoomComboBox->currentInde
 	{
 		m_client->setName( nameEdit->text() );
 		m_client->setLocalIP( IPEdit->text() );
-		m_client->setRemoteIP( remoteIPEdit->text() );
 		m_client->setMac( macEdit->text() );
 		m_client->setType( (client::types)
 						typeComboBox->currentIndex() );

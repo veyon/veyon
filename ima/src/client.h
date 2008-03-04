@@ -155,7 +155,7 @@ public:
 		Type_Other
 	} ;
 
-	client( const QString & _local_ip, const QString & _remote_ip,
+	client( const QString & _local_ip,
 		const QString & _mac, const QString & _name, types _type,
 		classRoom * _class_room, mainWindow * _main_window,
 								int _id = -1 );
@@ -185,11 +185,6 @@ public:
 		return( m_localIP );
 	}
 
-	inline const QString & remoteIP( void ) const
-	{
-		return( m_remoteIP );
-	}
-
 	inline const QString & mac( void ) const
 	{
 		return( m_mac );
@@ -213,15 +208,6 @@ public:
 	inline void setLocalIP( const QString & _local_ip )
 	{
 		m_localIP = _local_ip;
-	}
-
-	inline void setRemoteIP( const QString & _remote_ip )
-	{
-		m_remoteIP = _remote_ip;
-		if( m_remoteIP == QString::null || m_remoteIP == "" )
-		{
-			m_remoteIP = m_localIP;
-		}
 	}
 
 	inline void setMac( const QString & _mac )
@@ -322,7 +308,6 @@ private:
 
 	QString m_name;
 	QString m_localIP;
-	QString m_remoteIP;
 	QString m_mac;
 	types m_type;
 	int m_reloadsAfterReset;
