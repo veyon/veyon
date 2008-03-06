@@ -50,7 +50,6 @@
 #include "dialogs.h"
 #include "italc_side_bar.h"
 #include "overview_widget.h"
-#include "user_list.h"
 #include "snapshot_list.h"
 #include "config_widget.h"
 #include "support_widget.h"
@@ -133,7 +132,6 @@ mainWindow::mainWindow( int _rctrl_screen ) :
 	// now create all sidebar-workspaces
 	m_overviewWidget = new overviewWidget( this, twp );
 	m_classroomManager = new classroomManager( this, twp );
-	m_userList = new userList( this, twp );
 	m_snapshotList = new snapshotList( this, twp );
 	m_configWidget = new configWidget( this, twp );
 	m_supportWidget = new supportWidget( this, twp );
@@ -142,7 +140,6 @@ mainWindow::mainWindow( int _rctrl_screen ) :
 	int id = 0;
 	m_sideBar->appendTab( m_overviewWidget, ++id );
 	m_sideBar->appendTab( m_classroomManager, ++id );
-	m_sideBar->appendTab( m_userList, ++id );
 	m_sideBar->appendTab( m_snapshotList, ++id );
 	m_sideBar->appendTab( m_configWidget, ++id );
 	m_sideBar->appendTab( m_supportWidget, ++id );
@@ -488,8 +485,6 @@ mainWindowUpdateThread::mainWindowUpdateThread( mainWindow * _main_window ) :
 void mainWindowUpdateThread::update( void )
 {
 	m_mainWindow->m_localISD->handleServerMessages();
-
-	m_mainWindow->m_userList->reload();
 
 	if( client::reloadSnapshotList() )
 	{

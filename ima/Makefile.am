@@ -27,8 +27,7 @@ italc_MOC =	./src/client.moc			\
 		./src/remote_control_widget.moc		\
 		./src/snapshot_list.moc			\
 		./src/support_widget.moc		\
-		./src/tool_button.moc			\
-		./src/user_list.moc
+		./src/tool_button.moc
 
 italc_UIC =	./dialogs/client_settings.uic		\
 		./dialogs/config.uic			\
@@ -66,7 +65,6 @@ italc_SOURCES = $(srcdir)/src/client.cpp			\
 		$(srcdir)/src/side_bar_widget.cpp		\
 		$(srcdir)/src/support_widget.cpp		\
 		$(srcdir)/src/tool_button.cpp			\
-		$(srcdir)/src/user_list.cpp			\
 		$(srcdir)/src/client.h				\
 		$(srcdir)/src/classroom_manager.h		\
 		$(srcdir)/src/cmd_input_dialog.h		\
@@ -84,7 +82,6 @@ italc_SOURCES = $(srcdir)/src/client.cpp			\
 		$(srcdir)/src/snapshot_list.h			\
 		$(srcdir)/src/side_bar_widget.h			\
 		$(srcdir)/src/tool_button.h			\
-		$(srcdir)/src/user_list.h			\
 		$(srcdir)/italc_qrc.cpp				\
 		$(srcdir)/italc.qrc				\
 		$(italc_TRANSLATIONS)				\

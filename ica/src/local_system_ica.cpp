@@ -376,6 +376,17 @@ QString currentUser( void )
 	}
 	if( pw_entry )
 	{
+		QString shell( pw_entry->pw_shell );
+
+		/* Skip not real users */
+		if ( shell.endsWith( "/false" ) ||
+				shell.endsWith( "/true" ) ||
+				shell.endsWith( "/null" ) ||
+				shell.endsWith( "/nologin") )
+		{
+			return( "" );
+		}
+
 		return( QString( "%1 (%2)" ).
 				arg( QString::fromUtf8( pw_entry->pw_gecos ) ).
 				arg( QString::fromUtf8( pw_entry->pw_name ) ) );

@@ -96,42 +96,7 @@ p, li { white-space: pre-wrap; }
       <item>
        <widget class="QLabel" name="label2" >
         <property name="text" >
-         <string>Using the classroom-manager you can manage your classrooms and computers.</string>
-        </property>
-        <property name="wordWrap" >
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </item>
-    <item>
-     <layout class="QHBoxLayout" >
-      <property name="margin" >
-       <number>0</number>
-      </property>
-      <property name="spacing" >
-       <number>15</number>
-      </property>
-      <item>
-       <widget class="QLabel" name="label8" >
-        <property name="sizePolicy" >
-         <sizepolicy>
-          <hsizetype>0</hsizetype>
-          <vsizetype>0</vsizetype>
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="pixmap" >
-         <pixmap resource="../italc.qrc" >:/resources/users_48.png</pixmap>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLabel" name="label3" >
-        <property name="text" >
-         <string>If you want to know which users are logged in you can open the user-list.</string>
+         <string>Using the classroom-manager you can manage your classrooms and computers. You can also see which users are logged in.</string>
         </property>
         <property name="wordWrap" >
          <bool>true</bool>

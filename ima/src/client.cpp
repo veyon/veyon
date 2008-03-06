@@ -55,19 +55,19 @@ const QSize CONTENT_SIZE_SUB( 2*DECO_WIDTH, 2*DECO_WIDTH + TITLE_HEIGHT );
 const client::clientCommand client::s_commands[client::Cmd_CmdCount] =
 {
 
-	{ Cmd_None,		NULL,				"",								"",			FALSE	},
-	{ Cmd_Reload,		&client::reload,		"",								"", 			TRUE	},
-	{ Cmd_ViewLive,		&client::viewLive,		QT_TRANSLATE_NOOP( "client", "View live" ),			"viewmag.png",		FALSE	},
-	{ Cmd_RemoteControl,	&client::remoteControl,		QT_TRANSLATE_NOOP( "client", "Remote control" ),		"remote_control.png",	FALSE	},
-	{ Cmd_ClientDemo,	&client::clientDemo,		QT_TRANSLATE_NOOP( "client", "Let student show demo" ),		"client_demo.png",	FALSE	},
-	{ Cmd_SendTextMessage,	&client::sendTextMessage,	QT_TRANSLATE_NOOP( "client", "Send text message" ),		"text_message.png",	TRUE	},
-	{ Cmd_LogonUser,	&client::logonUser,		QT_TRANSLATE_NOOP( "client", "Logon user" ),			"remotelogon.png",	FALSE	},
-	{ Cmd_LogoutUser,	&client::logoutUser,		QT_TRANSLATE_NOOP( "client", "Logout user" ),			"logout.png",		TRUE	},
-	{ Cmd_Snapshot,		&client::snapshot,		QT_TRANSLATE_NOOP( "client", "Take a snapshot" ),		"snapshot.png", 	TRUE	},
-	{ Cmd_PowerOn,		&client::powerOn,		QT_TRANSLATE_NOOP( "client", "Power on" ),			"power_on.png",		FALSE	},
-	{ Cmd_Reboot,		&client::reboot,		QT_TRANSLATE_NOOP( "client", "Reboot" ),			"reboot.png",		FALSE	},
-	{ Cmd_PowerDown,	&client::powerDown,		QT_TRANSLATE_NOOP( "client", "Power down" ),			"power_off.png",	FALSE	},
-	{ Cmd_ExecCmds,		&client::execCmds,		QT_TRANSLATE_NOOP( "client", "Execute commands" ),		"run.png", 		FALSE	}
+	{ Cmd_None,		NULL,				(char *) "",								(char *) "",			FALSE	},
+	{ Cmd_Reload,		&client::reload,		(char *) "",								(char *) "", 			TRUE	},
+	{ Cmd_ViewLive,		&client::viewLive,		(char *) QT_TRANSLATE_NOOP( "client", "View live" ),			(char *) "viewmag.png",		FALSE	},
+	{ Cmd_RemoteControl,	&client::remoteControl,		(char *) QT_TRANSLATE_NOOP( "client", "Remote control" ),		(char *) "remote_control.png",	FALSE	},
+	{ Cmd_ClientDemo,	&client::clientDemo,		(char *) QT_TRANSLATE_NOOP( "client", "Let student show demo" ),		(char *) "client_demo.png",	FALSE	},
+	{ Cmd_SendTextMessage,	&client::sendTextMessage,	(char *) QT_TRANSLATE_NOOP( "client", "Send text message" ),		(char *) "text_message.png",	TRUE	},
+	{ Cmd_LogonUser,	&client::logonUser,		(char *) QT_TRANSLATE_NOOP( "client", "Logon user" ),			(char *) "remotelogon.png",	FALSE	},
+	{ Cmd_LogoutUser,	&client::logoutUser,		(char *) QT_TRANSLATE_NOOP( "client", "Logout user" ),			(char *) "logout.png",		TRUE	},
+	{ Cmd_Snapshot,		&client::snapshot,		(char *) QT_TRANSLATE_NOOP( "client", "Take a snapshot" ),		(char *) "snapshot.png", 	TRUE	},
+	{ Cmd_PowerOn,		&client::powerOn,		(char *) QT_TRANSLATE_NOOP( "client", "Power on" ),			(char *) "power_on.png",		FALSE	},
+	{ Cmd_Reboot,		&client::reboot,		(char *) QT_TRANSLATE_NOOP( "client", "Reboot" ),			(char *) "reboot.png",		FALSE	},
+	{ Cmd_PowerDown,	&client::powerDown,		(char *) QT_TRANSLATE_NOOP( "client", "Power down" ),			(char *) "power_off.png",	FALSE	},
+	{ Cmd_ExecCmds,		&client::execCmds,		(char *) QT_TRANSLATE_NOOP( "client", "Execute commands" ),		(char *) "run.png", 		FALSE	}
 
 } ;
 
@@ -698,6 +698,11 @@ void client::reload( const QString & _update )
 	if( _update == CONFIRM_YES )
 	{
 		update();
+	}
+
+	if( m_classRoomItem )
+	{
+		m_classRoomItem->setUser( m_user );
 	}
 }
 

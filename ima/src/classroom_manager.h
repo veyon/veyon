@@ -32,6 +32,7 @@
 #include <QtGui/QPixmap>
 #include <QtGui/QMenu>
 #include <QtGui/QTreeWidget>
+#include <QtGui/QCheckBox>
 #include <QtXml/QtXml>
 
 #include "client.h"
@@ -68,6 +69,8 @@ public:
 	QVector<client *> visibleClients( void ) const;
 	static void getVisibleClients( QTreeWidgetItem * _p,
 						QVector<client *> & _vv );
+
+	QVector<client *> getLoggedInClients( void ) const;
 
 	void createActionMenu( QMenu * _m );
 
@@ -134,6 +137,10 @@ public slots:
 		m_clientDblClickAction = _a;
 	}
 
+	void showUserColumn( int _show );
+
+	// Export user list to file
+	void clickedExportToFile( void );
 
 private slots:
 	void itemDoubleClicked( QTreeWidgetItem * _i, int );
@@ -202,6 +209,9 @@ private:
 	friend class clientSettingsDialog;
 	friend class configWidget;
 
+	QPushButton * m_exportToFileBtn;
+	QCheckBox * m_showUserColumnCheckBox;
+
 } ;
 
 
@@ -259,6 +269,7 @@ public:
 	}
 
 	void setVisible( const bool _obs );
+	void setUser( const QString & _name );
 
 
 private:

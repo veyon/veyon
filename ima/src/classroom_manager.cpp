@@ -110,8 +110,9 @@ classroomManager::classroomManager( mainWindow * _main_window,
 					"in this list." ) );
 
 	QStringList columns;
-	columns << tr( "Classrooms/computers" ) << tr( "IP-address" );
+	columns << tr( "Classrooms/computers" ) << tr( "IP-address" ) << tr( "Usernames" );
 	m_view->setHeaderLabels( columns );
+	m_view->hideColumn( 2 );
 	m_view->setSelectionMode( QTreeWidget::ExtendedSelection );
 	m_view->setIconSize( QSize( 22, 22 ) );
 	m_view->header()->resizeSection( m_view->header()->logicalIndex( 0 ),
@@ -130,6 +131,14 @@ classroomManager::classroomManager( mainWindow * _main_window,
 
 	QFont f;
 	f.setPixelSize( 12 );
+
+	m_showUserColumnCheckBox = new QCheckBox( tr( "Show usernames" ),
+			contentParent() );
+	m_showUserColumnCheckBox->setFont( f );
+	contentParent()->layout()->addWidget( m_showUserColumnCheckBox );
+	connect( m_showUserColumnCheckBox, SIGNAL( stateChanged( int ) ),
+			this, SLOT( showUserColumn( int ) ) );
+
 	QLabel * help_txt = new QLabel(
 		tr( "\nUse the context-menu (right mouse-button) to add/remove "
 			"computers and/or classrooms.\n\n"
@@ -141,6 +150,25 @@ classroomManager::classroomManager( mainWindow * _main_window,
 	contentParent()->layout()->addWidget( help_txt );
 	help_txt->setWordWrap( TRUE );
 	help_txt->setFont( f );
+
+	m_exportToFileBtn = new QPushButton(
+			QPixmap( ":/resources/filesave.png" ),
+			tr( "Export to text-file" ),
+			contentParent() );
+	contentParent()->layout()->addWidget( m_exportToFileBtn );
+	connect( m_exportToFileBtn, SIGNAL( clicked() ),
+			this, SLOT( clickedExportToFile() ) );
+	m_exportToFileBtn->setWhatsThis( tr( "Use this button for exporting "
+				"this list of computers and usernames into "
+				"a text-file. You can use this file "
+				"later for collecting files "
+				"after an exam has finished. "
+				"This is sometimes neccessary, "
+				"because some users might have "
+				"finished and logged out "
+				"earlier and so you cannot "
+				"collect their files at the "
+				"end of the exam." ) );
 
 	loadGlobalClientConfig();
 	loadPersonalConfig();
@@ -267,6 +295,8 @@ void classroomManager::savePersonalConfig( void )
 					toolButton::toolTipsDisabled() );
 	globalsettings.setAttribute( "clientdoubleclickaction",
 						m_clientDblClickAction );
+	globalsettings.setAttribute( "showUserColumn",
+						m_showUserColumnCheckBox->isChecked() );
 
 	head.appendChild( globalsettings );
 
@@ -382,6 +412,25 @@ QVector<client *> classroomManager::visibleClients( void ) const
 
 
 
+QVector<client *> classroomManager::getLoggedInClients( void ) const
+{
+	QVector<client *> loggedClients;
+
+	// loop through all clients
+	foreach( client * it, visibleClients() )
+	{
+		const QString user = it->user();
+		if( user != "none" && !user.isEmpty() )
+		{
+			loggedClients.push_back( it );
+		}
+	}
+	return( loggedClients );
+}
+
+
+
+
 void classroomManager::getVisibleClients( QTreeWidgetItem * _p,
 						QVector<client *> & _vc )
 {
@@ -479,6 +528,8 @@ getMainWindow()->move( node.toElement().attribute( "win-x" ).toInt(),
 								toInt() );
 			m_clientDblClickAction = node.toElement().attribute(
 					"clientdoubleclickaction" ).toInt();
+			m_showUserColumnCheckBox->setChecked(
+				node.toElement().attribute( "showUserColumn" ).toInt() );
 			// if the attr did not exist, we got zero as value,
 			// which is not acceptable
 			if( m_clientUpdateInterval < 1 )
@@ -794,6 +845,34 @@ void classroomManager::updateClients( void )
 
 
 
+
+
+
+
+void classroomManager::clickedExportToFile( void )
+{
+	QString outfn = QFileDialog::getSaveFileName( this,
+			tr( "Select output-file" ),
+			QDir::homePath(),
+			tr( "Text files (*.txt)" ) );
+	if( outfn == "" )
+	{
+		return;
+	}
+
+	QString output = "# " + QDateTime::currentDateTime().toString() + "\n";
+
+	QVector<client *> clients = getLoggedInClients();
+	foreach( client * cl, clients) 
+	{
+		output += cl->user() + "\t@ " + cl->name() + " [" + cl->localIP() + "]\n";
+	}
+
+	QFile outfile( outfn );
+	outfile.open( QFile::WriteOnly );
+	outfile.write( output.toUtf8() );
+	outfile.close();
+}
 
 
 
@@ -1201,6 +1280,14 @@ void classroomManager::contextMenuRequest( const QPoint & _pos )
 
 	if( cri != NULL )
 	{
+		QMenu * single_clients_submenu = context_menu->addMenu(
+					QPixmap( ":/resources/client.png" ),
+							tr( "Actions" ) );
+
+		cri->getClient()->createActionMenu( single_clients_submenu );
+
+		context_menu->addSeparator();
+
 		context_menu->addAction(
 				QPixmap( ":/resources/client_show.png" ),
 						tr( "Show/hide" ),
@@ -1218,16 +1305,16 @@ void classroomManager::contextMenuRequest( const QPoint & _pos )
 
 		context_menu->addSeparator();
 
-		QMenu * single_clients_submenu = context_menu->addMenu(
-					QPixmap( ":/resources/client.png" ),
-							tr( "Actions" ) );
-
-		cri->getClient()->createActionMenu( single_clients_submenu );
-
-		context_menu->addSeparator();
 	}
 	else if( cr != NULL )
 	{
+		QMenu * actions_for_classroom_submenu = context_menu->addMenu(
+				QPixmap( ":/resources/classroom_opened.png" ),
+				tr( "Actions for %1" ).arg( cr->text( 0 ) ) );
+		cr->createActionMenu( actions_for_classroom_submenu, FALSE );
+
+		context_menu->addSeparator();
+
 		context_menu->addAction(
 				QPixmap( ":/resources/classroom_show.png" ),
 				tr( "Show all computers in classroom" ),
@@ -1252,13 +1339,6 @@ void classroomManager::contextMenuRequest( const QPoint & _pos )
 				QPixmap( ":/resources/classroom_remove.png" ),
 				tr("Remove classroom" ),
 				this, SLOT( removeClassRoom() ) );
-
-		context_menu->addSeparator();
-
-		QMenu * actions_for_classroom_submenu = context_menu->addMenu(
-				QPixmap( ":/resources/classroom_opened.png" ),
-				tr( "Actions for %1" ).arg( cr->text( 0 ) ) );
-		cr->createActionMenu( actions_for_classroom_submenu, FALSE );
 
 		context_menu->addSeparator();
 
@@ -1637,6 +1717,11 @@ void classroomManager::hideTeacherClients( void )
 
 
 
+void classroomManager::showUserColumn( int _show )
+{
+	m_view->showColumn( _show ? 2 : 1 );
+	m_view->hideColumn( _show ? 1 : 2 );
+}
 
 
 
@@ -1855,8 +1940,9 @@ classRoomItem::classRoomItem( client * _client, QTreeWidgetItem * _parent ) :
 					":/resources/client_visible.png" );
 	}
 
-	setVisible( FALSE );
+	setVisible( m_client->isVisible() );
 	setText( 1, m_client->localIP() );
+	setUser( m_client->user() );
 }
 
 
@@ -1880,6 +1966,14 @@ void classRoomItem::setVisible( const bool _obs )
 	{
 		setIcon( 0, *s_clientObservedPixmap );
 	}
+}
+
+
+
+
+void classRoomItem::setUser( const QString & _name )
+{
+	setText( 2, _name );
 }
 
 

@@ -1,3 +1,28 @@
+2008-03-06	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* ima/resources/de.ts:
+	updated
+
+	* ima/dialogs/support.ui:
+	* ima/resources/remote_control_16.png:
+	* ima/resources/remote_control.png:
+	new icon and other UI-fixes
+
+	* ica/src/local_system_ica.cpp:
+	* ima/dialogs/overview.ui:
+	* ima/src/user_list.cpp:
+	* ima/src/classroom_manager.h:
+	* ima/src/main_window.cpp:
+	* ima/src/client.cpp:
+	* ima/src/user_list.h:
+	* ima/src/classroom_manager.cpp:
+	* ima/Makefile.am:
+	applied patch by Andrei Krueger <anc/at/iki/dot/fi>:
+	- Merged userlist-view into classManager-view. Second column can show
+	  IP-address or username (selected by checkbox).  The computer name and
+	  IP are added to exported file.
+	- Moved actions submenus to the top of popup-menus
+
 2008-03-03	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* ima/dialogs/client_settings.ui:
