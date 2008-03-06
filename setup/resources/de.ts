@@ -14,14 +14,6 @@
     </message>
 </context>
 <context>
-    <name>QDialog</name>
-    <message>
-        <location filename="../src/dialogs.cpp" line="79"/>
-        <source>Program Files</source>
-        <translation type="obsolete">Programme</translation>
-    </message>
-</context>
-<context>
     <name>pageFinished</name>
     <message>
         <location filename="../dialogs/page_setup_finished.ui" line="43"/>
@@ -31,21 +23,6 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:13pt; font-weight:600;&quot;&gt;iTALC is now installed!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:13pt; font-weight:600;&quot;&gt;iTALC ist jetzt installiert!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <location filename="../dialogs/page_setup_finished.ui" line="61"/>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;iTALC is now completely installed. For using iTALC you either have to restart your computer or start the iTALC Client service manually.&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;If you use iTALC under Windows it&apos;s strongly recommended that you install DFMirage-driver from http://www.demoforge.com/dfmirage.htm for a better performance when using iTALC.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="obsolete">&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;p, li { white-space: pre-wrap; }&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;iTALC ist jetzt vollständig installiert. Um iTALC zu benutzen müssen Sie entweder den Computer neustarten oder den iTALC-Client-Dienst manuell starten.&lt;/p&gt;&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Wenn Sie iTALC unter Windows nutzen wird empfohlen, den DFMirage-Treiber von http://www.demoforge.com/dfmirage.htm installieren, um eine bessere Performance bei der Verwendung von iTALC zu erreichen.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <location filename="../dialogs/page_setup_finished.ui" line="61"/>
-        <source>iTALC is now completely installed. For using iTALC you either have to restart your computer or start the iTALC Client service manually.</source>
-        <translation type="obsolete">iTALC ist nun vollständig installiert. Um iTALC zu nutzen müssen Sie entweder den Computer neustarten oder den iTALC-Client-Dienst manuell starten.</translation>
     </message>
     <message>
         <location filename="../dialogs/page_setup_finished.ui" line="71"/>
@@ -349,16 +326,6 @@ Klicken Sie auf &apos;Weiter&apos;, um fortzufahren.</translation>
         <location filename="../src/dialogs.cpp" line="570"/>
         <source>The specified directory does not exist. Do you want to create it?</source>
         <translation>Das angegebene Verzeichnis existiert nicht. Möchten Sie es erstellen?</translation>
-    </message>
-    <message>
-        <location filename="../src/dialogs.cpp" line="445"/>
-        <source>Could not create directory</source>
-        <translation type="obsolete">Konnte Verzeichnis nicht erstellen</translation>
-    </message>
-    <message>
-        <location filename="../src/dialogs.cpp" line="449"/>
-        <source>Could not create directory %1! Make sure you have the neccessary rights and try again!</source>
-        <translation type="obsolete">Konnte das Verzeichnis %1 nicht erzeugen. Stellen Sie sicher, dass Sie die nötigen Rechte besitzen und versuchen es erneut!</translation>
     </message>
     <message>
         <location filename="../src/dialogs.cpp" line="592"/>

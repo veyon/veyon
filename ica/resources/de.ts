@@ -3,11 +3,6 @@
 <context>
     <name>QApplication</name>
     <message>
-        <location filename="../src/ica_main.cpp" line="300"/>
-        <source>iTALC Client on %1:%2</source>
-        <translation type="obsolete">iTALC Client auf %1:%2</translation>
-    </message>
-    <message>
         <location filename="../src/system_service.cpp" line="265"/>
         <source>Unable to register service &apos;%1&apos;.</source>
         <translation>Der Dienst &apos;%1&apos; konnte nicht registriert werden.</translation>
