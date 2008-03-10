@@ -760,6 +760,7 @@ QImage & fastQImage::scaleTo( QImage & _dst ) const
 	}
 
 #ifdef USE_MMX
+#if defined(__x86_64__)
 	static bool MMX_checked = false;
 	if( MMX_checked == false )
 	{
@@ -771,14 +772,17 @@ QImage & fastQImage::scaleTo( QImage & _dst ) const
 			: "=d"( features ) : : "%eax", "%ecx" );
 		if( features & 0x00800000 )
 		{
+#endif
 			filter_shrink_X = filter_shrink_X_MMX;
 			filter_shrink_Y = filter_shrink_Y_MMX;
 			filter_expand_X = filter_expand_X_MMX;
 			filter_expand_Y = filter_expand_Y_MMX;
+#if !defined(__x86_64__)
 		}
 
 		MMX_checked = true;
 	}
+#endif
 #endif
 	Q_UINT8* srcpix = (Q_UINT8*)bits();
 	Q_UINT8* dstpix = (Q_UINT8*)_dst.bits();
