@@ -151,8 +151,8 @@ bool systemService::install( void )
 #ifdef NO_GUI
 	if( isDebian() )
 	{
-		QProcess::execute( QString( "update-rc.d %1 defaults 50" ).
-								arg( m_name ) );
+		return( QProcess::execute( QString( "update-rc.d %1 defaults 50" ).
+								arg( m_name ) ) == 0 );
 	}
 #else
 	if( isDebian() )
@@ -166,8 +166,8 @@ bool systemService::install( void )
 			QFile f( "/etc/kde3/kdm/Xsetup" );
 			f.open( QFile::WriteOnly );
 			f.seek( f.size() );
-			f.write( QString( "%1 %2" ).arg( sn ).arg( "start" ).
-								toUtf8() );
+			return( f.write( QString( "%1 %2" ).arg( sn ).arg( "start" ).
+								toUtf8() ) > 0 );
 		}
 		else if( dm == "gdm" )
 		{
@@ -180,12 +180,14 @@ bool systemService::install( void )
 		}
 	}
 #endif
+	return( FALSE );
 }
 
 
 bool systemService::remove( void )
 {
 	// TODO
+	return( FALSE );
 }
 
 

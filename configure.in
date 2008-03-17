@@ -25,7 +25,7 @@ AC_LIBTOOL_WIN32_DLL
 AC_PROG_LIBTOOL
 
 
-EXTRAFLAGS="-g -O2 -Wall -fPIC"
+EXTRAFLAGS="-g -O2 -Wall -fPIC -fno-strict-aliasing"
 #-floop-optimize2 -fomit-frame-pointer"
 
 #if test "x`$CC --version|head -1|cut -d\  -f3|cut -d. -f1`" = "x4" ; then

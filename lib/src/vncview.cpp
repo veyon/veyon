@@ -544,8 +544,8 @@ QRect vncView::mapFromFramebuffer( const QRect & _r )
 				m_connection->framebufferSize().width();
 		const float dy = height() / (float)
 				m_connection->framebufferSize().height();
-		return( QRect( _r.x()*dx, _r.y()*dy,
-					_r.width()*dx, _r.height()*dy ) );
+		return( QRect( (int)(_r.x()*dx), (int)(_r.y()*dy),
+					(int)(_r.width()*dx), (int)(_r.height()*dy) ) );
 	}
 	return( _r.translated( -m_viewOffset ) );
 }
