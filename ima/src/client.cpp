@@ -472,6 +472,54 @@ void client::hideEvent( QHideEvent * )
 
 
 
+void client::enlarge()
+{
+	if ( m_origSize.isValid() ) 
+	{
+		QWidget * workspace = m_mainWindow->workspace();
+		QSize s = QSize( m_origSize );
+		
+		s.scale( workspace->parentWidget()->size(), Qt::KeepAspectRatio );
+		setFixedSize( s );
+
+		/* centralize */
+		QSize offset = ( workspace->parentWidget()->size() - s ) / 2;
+		move( offset.width() - workspace->x(),
+			offset.height() - workspace->y() );
+	}
+}
+
+
+
+
+void client::zoom()
+{
+	m_origPos = pos();
+	m_origSize = size();
+	/* Delay zooming before we are sure that
+	 * this is not just a fast click.
+	 */
+	QTimer::singleShot( 300, this,
+			SLOT( enlarge() ) );
+}
+
+
+
+
+void client::zoomBack()
+{
+	if ( m_origSize.isValid() )
+	{	
+		move( m_origPos );
+		setFixedSize( m_origSize );
+		/* reset value: */
+		m_origSize = QSize();
+	}
+}
+
+
+
+
 void client::mousePressEvent( QMouseEvent * _me )
 {
 	if( _me->button() == Qt::LeftButton )
@@ -479,6 +527,7 @@ void client::mousePressEvent( QMouseEvent * _me )
 		raise();
 		m_clickPoint = _me->globalPos();
 		m_origPos = pos();
+		zoom();
 	}
 	else
 	{
@@ -493,6 +542,7 @@ void client::mouseMoveEvent( QMouseEvent * _me )
 {
 	if( m_clickPoint.x() >= 0 )
 	{
+		zoomBack();
 		move( m_origPos + _me->globalPos() - m_clickPoint );
 		parentWidget()->updateGeometry();
 	}
@@ -507,6 +557,7 @@ void client::mouseMoveEvent( QMouseEvent * _me )
 
 void client::mouseReleaseEvent( QMouseEvent * _me )
 {
+	zoomBack();
 	m_clickPoint = QPoint( -1, -1 );
 	QWidget::mouseReleaseEvent( _me );
 }
@@ -568,7 +619,7 @@ void client::paintEvent( QPaintEvent * _pe )
 	if( m_connection->state() == ivsConnection::Connected &&
 						m_mode == Mode_Overview )
 	{
-		p.drawImage( CONTENT_OFFSET, m_connection->scaledScreen());
+		p.drawImage( CONTENT_OFFSET, m_connection->scaledScreen() );
 	}
 	else
 	{
@@ -639,7 +690,7 @@ void client::paintEvent( QPaintEvent * _pe )
 
 void client::resizeEvent( QResizeEvent * _re )
 {
-	findChildren<closeButton*>()[0]->move( width()-21, 4 );
+	findChild<closeButton*>()->move( width()-21, 4 );
 	m_connection->setScaledSize( size() - CONTENT_SIZE_SUB );
 	m_connection->rescaleScreen();
 	QWidget::resizeEvent( _re );

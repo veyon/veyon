@@ -1,3 +1,21 @@
+2008-03-17	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* lib/src/fast_qimage.cpp:
+	disabled MMX-optimized code on x86_64 for the time being as it crashes
+	sometimes - needs to be reviewed somewhen later
+
+	applied patches by Andrei Krueger <anc/at/iki/dot/fi>:
+
+	* configure.in:
+	* lib/src/vncview.cpp:
+	* ica/src/system_service.cpp:
+	* ima/src/client.cpp:
+	fixed compiler-warnings
+
+	* ima/src/client.h:
+	* ima/src/client.cpp:
+	added zoom-feature
+
 2008-03-10	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* lib/src/fast_qimage.cpp:

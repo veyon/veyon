@@ -245,6 +245,9 @@ public:
 	}
 
 
+	void zoom( void );
+	void zoomBack( void );
+
 
 	float m_rasterX;
 	float m_rasterY;
@@ -268,6 +271,10 @@ public:
 
 public slots:
 	void processCmdSlot( QAction * _action );
+
+
+private slots:
+	void enlarge( void );
 
 
 private:
@@ -305,6 +312,7 @@ private:
 	ivsConnection * m_connection;
 	QPoint m_clickPoint;
 	QPoint m_origPos;
+	QSize m_origSize;
 
 	QString m_name;
 	QString m_localIP;
