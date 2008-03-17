@@ -262,7 +262,7 @@ static void filter_expand_Y_C(Q_UINT8 *srcpix, Q_UINT8 *dstpix, unsigned int wid
 }
 
 
-#if defined(__GNUC__) && (defined(__i386__) || defined(__x86_64__))
+#if defined(__GNUC__) && defined(__i386__) /* || defined(__x86_64__))*/
 #define USE_MMX
 #endif
 
@@ -760,7 +760,7 @@ QImage & fastQImage::scaleTo( QImage & _dst ) const
 	}
 
 #ifdef USE_MMX
-#if defined(__x86_64__)
+#if !defined(__x86_64__)
 	static bool MMX_checked = false;
 	if( MMX_checked == false )
 	{
