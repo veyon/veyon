@@ -10,5 +10,6 @@
 		<file>resources/sl.qm</file>
 		<file>resources/uk.qm</file>
 		<file>resources/zh.qm</file>
+		<file>resources/fi.qm</file>
 	</qresource>
 </RCC>

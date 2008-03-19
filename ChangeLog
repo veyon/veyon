@@ -1,3 +1,19 @@
+2008-03-19	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* ica/ica.qrc:
+	* ica/resources/fi.ts:
+	* ica/resources/fi.qm:
+	* setup/setup.qrc:
+	* setup/resources/fi.ts:
+	* setup/resources/fi.qm:
+	* ima/italc.qrc:
+	* ima/resources/fi.ts:
+	* ima/resources/fi.qm:
+	* lib/italc_core.qrc:
+	* lib/resources/fi.ts:
+	* lib/resources/fi.qm:
+	added Finnish localization-files by Andrei Krueger <anc/at/iki/dot/fi>
+
 2008-03-17	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* lib/src/fast_qimage.cpp:
