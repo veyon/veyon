@@ -605,7 +605,8 @@ void client::paintEvent( QPaintEvent * _pe )
 	p.drawRect( QRect( 0, 0, width()-1, height()-1 ) );
 	p.setRenderHint( QPainter::Antialiasing, TRUE );
 
-	const QString s = m_user != "" ? m_user :
+	bool showUsername = m_mainWindow->getClassroomManager()->showUsername();
+	const QString s = (showUsername && m_user != "") ? m_user :
 		( m_name + " (" + m_classRoomItem->parent()->text( 0 ) +
 									")" );
 	QFont f = p.font();

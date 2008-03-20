@@ -105,6 +105,11 @@ public:
 		return( m_quickSwitchMenu );
 	}
 
+	bool showUsername( void ) const
+	{
+		return( m_showUsernameCheckBox->isChecked() );
+	}
+
 	void setStateOfClassRoom( classRoom * _cr, bool _shown );
 	QAction * addClassRoomToQuickSwitchMenu( classRoom * _cr );
 
@@ -210,7 +215,7 @@ private:
 	friend class configWidget;
 
 	QPushButton * m_exportToFileBtn;
-	QCheckBox * m_showUserColumnCheckBox;
+	QCheckBox * m_showUsernameCheckBox;
 
 } ;
 

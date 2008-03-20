@@ -132,11 +132,11 @@ classroomManager::classroomManager( mainWindow * _main_window,
 	QFont f;
 	f.setPixelSize( 12 );
 
-	m_showUserColumnCheckBox = new QCheckBox( tr( "Show usernames" ),
+	m_showUsernameCheckBox = new QCheckBox( tr( "Show usernames" ),
 			contentParent() );
-	m_showUserColumnCheckBox->setFont( f );
-	contentParent()->layout()->addWidget( m_showUserColumnCheckBox );
-	connect( m_showUserColumnCheckBox, SIGNAL( stateChanged( int ) ),
+	m_showUsernameCheckBox->setFont( f );
+	contentParent()->layout()->addWidget( m_showUsernameCheckBox );
+	connect( m_showUsernameCheckBox, SIGNAL( stateChanged( int ) ),
 			this, SLOT( showUserColumn( int ) ) );
 
 	QLabel * help_txt = new QLabel(
@@ -296,7 +296,7 @@ void classroomManager::savePersonalConfig( void )
 	globalsettings.setAttribute( "clientdoubleclickaction",
 						m_clientDblClickAction );
 	globalsettings.setAttribute( "showUserColumn",
-						m_showUserColumnCheckBox->isChecked() );
+						m_showUsernameCheckBox->isChecked() );
 
 	head.appendChild( globalsettings );
 
@@ -528,7 +528,7 @@ getMainWindow()->move( node.toElement().attribute( "win-x" ).toInt(),
 								toInt() );
 			m_clientDblClickAction = node.toElement().attribute(
 					"clientdoubleclickaction" ).toInt();
-			m_showUserColumnCheckBox->setChecked(
+			m_showUsernameCheckBox->setChecked(
 				node.toElement().attribute( "showUserColumn" ).toInt() );
 			// if the attr did not exist, we got zero as value,
 			// which is not acceptable
