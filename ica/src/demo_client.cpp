@@ -1,8 +1,8 @@
 /*
  * demo_client.cpp - client for demo-server
  *
- * Copyright (c) 2006-2007 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
- *  
+ * Copyright (c) 2006-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
  * This program is free software; you can redistribute it and/or
@@ -46,7 +46,7 @@ demoClient::demoClient( const QString & _host, bool _fullscreen ) :
 	m_toplevel->setAttribute( Qt::WA_DeleteOnClose, TRUE );
 	m_toplevel->resize( QApplication::desktop()->availableGeometry( m_toplevel ).size() );
 
-	QVBoxLayout * toplevel_layout = new QVBoxLayout;//( m_toplevel );
+	QVBoxLayout * toplevel_layout = new QVBoxLayout;
 	toplevel_layout->setMargin( 0 );
 	toplevel_layout->setSpacing( 0 );
 	toplevel_layout->addWidget( new vncView( _host, m_toplevel, TRUE ) );

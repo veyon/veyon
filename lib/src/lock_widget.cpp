@@ -1,7 +1,7 @@
 /*
  *  lock_widget.cpp - widget for locking a client
  *
- *  Copyright (c) 2006-2007 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ *  Copyright (c) 2006-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *  
  *  This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -36,6 +36,18 @@
 
 #include <X11/Xlib.h>
 
+#elif BUILD_WIN32
+
+#include <windows.h>
+
+static const UINT __ss_get_list[] = { SPI_GETLOWPOWERTIMEOUT,
+						SPI_GETPOWEROFFTIMEOUT,
+						SPI_GETSCREENSAVETIMEOUT };
+static const UINT __ss_set_list[] = { SPI_SETLOWPOWERTIMEOUT,
+						SPI_SETPOWEROFFTIMEOUT,
+						SPI_SETSCREENSAVETIMEOUT };
+static int __ss_val[3];
+
 #endif
 
 
@@ -66,6 +78,15 @@ lockWidget::lockWidget( types _type ) :
 	grabMouse();
 	grabKeyboard();
 	setCursor( Qt::BlankCursor );
+
+#ifdef BUILD_WIN32
+	// disable screensaver
+	for( int x = 0; x < 3; ++x )
+	{
+		SystemParametersInfo( __ss_get_list[x], 0, &__ss_val[x], 0 );
+		SystemParametersInfo( __ss_set_list[x], 0, NULL, 0 );
+	}
+#endif
 }
 
 
@@ -73,6 +94,13 @@ lockWidget::lockWidget( types _type ) :
 
 lockWidget::~lockWidget()
 {
+#ifdef BUILD_WIN32
+	// revert screensaver-settings
+	for( int x = 0; x < 3; ++x )
+	{
+		SystemParametersInfo( __ss_set_list[x], __ss_val[x], NULL, 0 );
+	}
+#endif
 }
 
 
