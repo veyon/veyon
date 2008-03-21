@@ -52,7 +52,6 @@
 #include "overview_widget.h"
 #include "snapshot_list.h"
 #include "config_widget.h"
-#include "support_widget.h"
 #include "messagebox.h"
 #include "tool_button.h"
 #include "tool_bar.h"
@@ -107,6 +106,7 @@ mainWindow::mainWindow( int _rctrl_screen ) :
 	QWidget * hbox = new QWidget( this );
 	QHBoxLayout * hbox_layout = new QHBoxLayout( hbox );
 	hbox_layout->setMargin( 0 );
+	hbox_layout->setSpacing( 0 );
 
 	// create splitter, which is used for splitting sidebar-workspaces
 	// from main-workspace
@@ -116,14 +116,13 @@ mainWindow::mainWindow( int _rctrl_screen ) :
 #endif
 
 	// create sidebar
-	m_sideBar = new italcSideBar( italcSideBar::Vertical, hbox,
-								m_splitter );
-	m_sideBar->setStyle( italcSideBar::VSNET/*KDEV3ICON*/ );
+	m_sideBar = new italcSideBar( italcSideBar::VSNET, hbox, m_splitter );
 
 
 
 	QScrollArea * sa = new QScrollArea( m_splitter );
 	sa->setBackgroundRole( QPalette::Dark );
+	sa->setFrameStyle( QFrame::NoFrame );
 	m_splitter->setStretchFactor( m_splitter->indexOf( sa ), 10 );
 	m_workspace = new clientWorkspace( sa );
 
@@ -134,7 +133,8 @@ mainWindow::mainWindow( int _rctrl_screen ) :
 	m_classroomManager = new classroomManager( this, twp );
 	m_snapshotList = new snapshotList( this, twp );
 	m_configWidget = new configWidget( this, twp );
-	m_supportWidget = new supportWidget( this, twp );
+
+	m_workspace->m_contextMenu = m_classroomManager->quickSwitchMenu();
 
 	// append sidebar-workspaces to sidebar
 	int id = 0;
@@ -142,7 +142,6 @@ mainWindow::mainWindow( int _rctrl_screen ) :
 	m_sideBar->appendTab( m_classroomManager, ++id );
 	m_sideBar->appendTab( m_snapshotList, ++id );
 	m_sideBar->appendTab( m_configWidget, ++id );
-	m_sideBar->appendTab( m_supportWidget, ++id );
 	m_sideBar->setPosition( italcSideBar::Left );
 	m_sideBar->setTab( m_openedTabInSideBar, TRUE );
 
@@ -269,23 +268,15 @@ mainWindow::mainWindow( int _rctrl_screen ) :
 				"according user on all visible computers." ),
 			m_classroomManager, SLOT( remoteLogon() ), m_toolBar );
 
+	toolButton * directsupport = new toolButton(
+			QPixmap( ":/resources/remote_control.png" ),
+			tr( "Support" ), QString::null,
+			tr( "Direct support" ),
+			tr( "If you need to support someone at a certain "
+				"computer you can click this button and enter "
+				"the according hostname or IP afterwards." ),
+			m_classroomManager, SLOT( directSupport() ), m_toolBar );
 
-	toolButton * adjust_size = new toolButton(
-			QPixmap( ":/resources/adjust_size.png" ),
-			tr( "Adjust/align" ), QString::null,
-			tr( "Adjust windows and their size" ),
-			tr( "When clicking this button the biggest possible "
-				"size for the client-windows is adjusted. "
-				"Furthermore all windows are aligned." ),
-			m_classroomManager, SLOT( adjustWindows() ), m_toolBar );
-
-	toolButton * auto_arrange = new toolButton(
-			QPixmap( ":/resources/auto_arrange.png" ),
-			tr( "Auto view" ), QString::null,
-			tr( "Auto re-arrange windows and their size" ),
-			tr( "When clicking this button all visible windows "
-				"are re-arranged and adjusted." ),
-			m_classroomManager, SLOT( arrangeWindows() ), m_toolBar );
 
 	m_toolBar->addWidget( scr );
 	m_toolBar->addWidget( overview_mode );
@@ -296,8 +287,7 @@ mainWindow::mainWindow( int _rctrl_screen ) :
 	m_toolBar->addWidget( power_on );
 	m_toolBar->addWidget( power_off );
 	m_toolBar->addWidget( remotelogon );
-	m_toolBar->addWidget( adjust_size );
-	m_toolBar->addWidget( auto_arrange );
+	m_toolBar->addWidget( directsupport );
 
 	restoreState( QByteArray::fromBase64(
 				m_classroomManager->winCfg().toUtf8() ) );
@@ -510,7 +500,8 @@ void mainWindowUpdateThread::run( void )
 
 
 clientWorkspace::clientWorkspace( QScrollArea * _parent ) :
-	QWidget( _parent )
+	QWidget( _parent ),
+	m_contextMenu( NULL )
 {
 	_parent->setWidget( this );
 	_parent->setWidgetResizable( TRUE );
@@ -526,6 +517,16 @@ QSize clientWorkspace::sizeHint( void ) const
 {
 	return( childrenRect().size() );
 }
+
+
+
+
+void clientWorkspace::contextMenuEvent( QContextMenuEvent * _event )
+{
+	m_contextMenu->exec( _event->globalPos() );
+	_event->accept();
+}
+
 
 
 

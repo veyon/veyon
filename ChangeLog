@@ -1,5 +1,36 @@
 2008-03-20	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
+	* ima/src/client.cpp:
+	set user-name as tooltip if hostname is displayed in titlebar
+
+	* ima/resources/sidebar.png:
+	* ima/italc.qrc:
+	* ima/src/italc_side_bar.h:
+	* ima/src/side_bar_widget.cpp:
+	* ima/src/italc_side_bar.cpp:
+	improved appearence of left toolbar
+
+	* ima/src/main_window.h:
+	* ima/src/classroom_manager.h:
+	* ima/src/main_window.cpp:
+	* ima/src/classroom_manager.cpp:
+	- moved auto-rearrange and adjust-buttons from toolbar into
+	  classroom-menu
+	- show classroom-menu as context-menu of workspace-area
+	- removed support-workspace and added Direct-Support-button in toolbar
+	  instead
+	- use spacing=0 for main-layout which removes odd vertical bar between
+	  left toolbar and working-space
+
+	* ima/src/kmultitabbar.cpp:
+	* ima/src/kmultitabbar.h:
+	updated KMultiTabBar from KDE-SVN
+
+	* ima/src/support_widget.cpp:
+	* ima/src/support_widget.h:
+	* ima/Makefile.am:
+	removed support_widget.*
+
 	* ima/src/classroom_manager.h:
 	* ima/src/client.cpp:
 	* ima/src/classroom_manager.cpp:

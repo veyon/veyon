@@ -42,7 +42,6 @@ class QSplitter;
 class classroomManager;
 class configWidget;
 class toolBar;
-class supportWidget;
 class italcSideBar;
 class isdConnection;
 class overviewWidget;
@@ -85,7 +84,13 @@ public:
 
 	virtual QSize sizeHint( void ) const;
 
+
 private:
+	virtual void contextMenuEvent( QContextMenuEvent * _event );
+
+	QMenu * m_contextMenu;
+
+	friend class mainWindow;
 
 } ;
 
@@ -189,7 +194,6 @@ private:
 	userList * m_userList;
 	snapshotList * m_snapshotList;
 	configWidget * m_configWidget;
-	supportWidget * m_supportWidget;
 
 	static bool s_atExit;
 

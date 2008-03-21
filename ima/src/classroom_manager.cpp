@@ -102,8 +102,11 @@ classroomManager::classroomManager( mainWindow * _main_window,
 	// which actually is assigned after this function returns
 	_main_window->m_classroomManager = this;
 
+	QVBoxLayout * l = dynamic_cast<QVBoxLayout *>(
+						contentParent()->layout() );
+
 	m_view = new QTreeWidget( contentParent() );
-	contentParent()->layout()->addWidget( m_view );
+	l->addWidget( m_view );
 	m_view->setWhatsThis( tr( "This is where computers and classrooms are "
 					"managed. You can add computers or "
 					"classrooms by clicking right "
@@ -133,29 +136,27 @@ classroomManager::classroomManager( mainWindow * _main_window,
 	f.setPixelSize( 12 );
 
 	m_showUsernameCheckBox = new QCheckBox( tr( "Show usernames" ),
-			contentParent() );
+							contentParent() );
 	m_showUsernameCheckBox->setFont( f );
-	contentParent()->layout()->addWidget( m_showUsernameCheckBox );
+	l->addWidget( m_showUsernameCheckBox );
 	connect( m_showUsernameCheckBox, SIGNAL( stateChanged( int ) ),
 			this, SLOT( showUserColumn( int ) ) );
 
+	l->addSpacing( 5 );
 	QLabel * help_txt = new QLabel(
-		tr( "\nUse the context-menu (right mouse-button) to add/remove "
-			"computers and/or classrooms.\n\n"
-			"Once you did so you can show or hide computers by "
-			"double-clicking them.\n\nFurther actions can be "
-			"found in the context-menu of a computer or "
-			"classroom.\n" ),
-							contentParent() );
-	contentParent()->layout()->addWidget( help_txt );
+		tr( "Use the context-menu (right mouse-button) to add/remove "
+			"computers and/or classrooms." ), contentParent() );
+	l->addWidget( help_txt );
 	help_txt->setWordWrap( TRUE );
 	help_txt->setFont( f );
 
+	l->addSpacing( 16 );
+
 	m_exportToFileBtn = new QPushButton(
-			QPixmap( ":/resources/filesave.png" ),
-			tr( "Export to text-file" ),
-			contentParent() );
-	contentParent()->layout()->addWidget( m_exportToFileBtn );
+				QPixmap( ":/resources/filesave.png" ),
+						tr( "Export to text-file" ),
+							contentParent() );
+	l->addWidget( m_exportToFileBtn );
 	connect( m_exportToFileBtn, SIGNAL( clicked() ),
 			this, SLOT( clickedExportToFile() ) );
 	m_exportToFileBtn->setWhatsThis( tr( "Use this button for exporting "
@@ -173,11 +174,21 @@ classroomManager::classroomManager( mainWindow * _main_window,
 	loadGlobalClientConfig();
 	loadPersonalConfig();
 
-	QAction * hide_teacher_clients =
-		m_quickSwitchMenu->addAction( tr( "Hide teacher computers" ) );
-	connect( hide_teacher_clients, SIGNAL( triggered( bool ) ),
+	m_quickSwitchMenu->addAction( tr( "Hide teacher computers" ),
 					this, SLOT( hideTeacherClients() ) );
 
+	m_quickSwitchMenu->addSeparator();
+
+	m_quickSwitchMenu->addAction( QPixmap( ":/resources/adjust_size.png" ),
+				tr( "Adjust windows and their size" ),
+						this, SLOT( adjustWindows() ) );
+
+	m_quickSwitchMenu->addAction(
+				QPixmap( ":/resources/auto_arrange.png" ),
+				tr( "Auto re-arrange windows" ),
+					this, SLOT( arrangeWindows() ) );
+
+	
 	show();
 }
 
@@ -982,6 +993,18 @@ void classroomManager::execCmds( void )
 
 
 
+void classroomManager::directSupport( void )
+{
+	const QString h = supportDialog::getHost( this );
+	if( !h.isEmpty() )
+	{
+		getMainWindow()->remoteControlDisplay( h );
+	}
+}
+
+
+
+
 void classroomManager::sendMessage( void )
 {
 	QString msg;
@@ -1078,8 +1101,8 @@ void classroomManager::adjustWindows( void )
 		foreach( client * cl, vc )
 		{
 			cl->setFixedSize( nw - decor_w, nh - decor_h );
-			cl->move( static_cast<int>( cl->m_rasterX * nw ),
-				static_cast<int>( cl->m_rasterY * nh ) );
+			cl->move( static_cast<int>( cl->m_rasterX * nw )+1,
+				static_cast<int>( cl->m_rasterY * nh )+1 );
 		}
 		getMainWindow()->workspace()->updateGeometry();
 	}
