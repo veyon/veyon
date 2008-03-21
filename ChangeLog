@@ -1,3 +1,10 @@
+2008-03-21	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* lib/include/vncview.h:
+	* lib/src/vncview.cpp:
+	in scaled view keep aspect ratio of screen and also do not expand
+	image if vncView-size > framebuffer-size
+
 2008-03-20	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* ima/src/client.cpp:

@@ -102,6 +102,22 @@ vncView::~vncView()
 
 
 
+QSize vncView::scaledSize( void ) const
+{
+	const QSize s = size();
+	QSize fbs = m_connection->framebufferSize();
+	if( ( s.width() >= fbs.width() && s.height() >= fbs.height() ) ||
+							m_scaledView == FALSE )
+	{
+		return( QSize() );
+	}
+	fbs.scale( s, Qt::KeepAspectRatio );
+	return( fbs );
+}
+
+
+
+
 void vncView::setViewOnly( bool _vo )
 {
 	if( _vo == m_viewOnly )
@@ -139,14 +155,7 @@ void vncView::setScaledView( bool _sv )
 	m_scaledView = _sv;
 	if( m_connection != NULL )
 	{
-		if( m_scaledView )
-		{
-			m_connection->setScaledSize( size() );
-		}
-		else
-		{
-			m_connection->setScaledSize( QSize() );
-		}
+		m_connection->setScaledSize( scaledSize() );
 	}
 	update();
 }
@@ -601,9 +610,12 @@ void vncView::paintEvent( QPaintEvent * _pe )
 		return;
 	}
 
+	const QSize ss = scaledSize();
+
 	// only paint requested region of image
 	p.drawImage( _pe->rect().topLeft(),
-			m_scaledView ? m_connection->scaledScreen() :
+			ss.isValid() ?
+				m_connection->scaledScreen() :
 						m_connection->screen(),
 			_pe->rect().translated( m_viewOffset ),
 			Qt::ThresholdDither );
@@ -623,19 +635,18 @@ void vncView::paintEvent( QPaintEvent * _pe )
 		}
 	}
 
-	if( m_scaledView == FALSE )
+	// draw black borders if neccessary
+	const int fbw = ss.isValid() ? ss.width() :
+				m_connection->framebufferSize().width();
+	if( fbw < width() )
 	{
-		// draw black borders if neccessary
-		const int fbw = m_connection->framebufferSize().width();
-		if( fbw < width() )
-		{
-			p.fillRect( fbw, 0, width() - fbw, height(), Qt::black );
-		}
-		const int fbh = m_connection->framebufferSize().height();
-		if( fbh < height() )
-		{
-			p.fillRect( 0, fbh, fbw, height() - fbh, Qt::black );
-		}
+		p.fillRect( fbw, 0, width() - fbw, height(), Qt::black );
+	}
+	const int fbh = ss.isValid() ? ss.height() :
+				m_connection->framebufferSize().height();
+	if( fbh < height() )
+	{
+		p.fillRect( 0, fbh, fbw, height() - fbh, Qt::black );
 	}
 }
 
@@ -644,7 +655,7 @@ void vncView::paintEvent( QPaintEvent * _pe )
 
 void vncView::resizeEvent( QResizeEvent * _re )
 {
-	m_connection->setScaledSize( size() );
+	m_connection->setScaledSize( scaledSize() );
 	const int max_x = m_connection->framebufferSize().width() - width();
 	const int max_y = m_connection->framebufferSize().height() - height();
 	if( m_viewOffset.x() > max_x || m_viewOffset.y() > max_y )

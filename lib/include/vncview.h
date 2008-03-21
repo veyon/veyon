@@ -62,6 +62,8 @@ public:
 		return( m_scaledView );
 	}
 
+	QSize scaledSize( void ) const;
+
 
 public slots:
 	void setViewOnly( bool _vo );
