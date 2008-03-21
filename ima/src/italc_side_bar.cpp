@@ -1,7 +1,7 @@
 /*
  * italc_side_bar.cpp - implementation iTALC's side-bar
  *
- * Copyright (c) 2004-2006 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -24,14 +24,21 @@
 
 
 #include "italc_side_bar.h"
+#include "fast_qimage.h"
+
+#include <QtGui/QPainter>
+
+#include <config.h>
 
 
 
-italcSideBar::italcSideBar( KMultiTabBarMode _bm, QWidget * _parent,
+italcSideBar::italcSideBar( KMultiTabBarStyle _style, QWidget * _parent,
 							QWidget * _splitter ) :
-	KMultiTabBar( _bm, _parent ),
+	KMultiTabBar( Left, _parent ),
 	m_openedTab( -1 )
 {
+	setAttribute( Qt::WA_OpaquePaintEvent, TRUE );
+	setStyle( _style );
 	m_tabWidgetParent = new QWidget( _splitter );
 	m_tabWidgetParent->hide();
 	QVBoxLayout * vl = new QVBoxLayout( m_tabWidgetParent );
@@ -74,8 +81,8 @@ void italcSideBar::setTab( const int _id, const bool _state )
 int italcSideBar::appendTab( sideBarWidget * _sbw, const int _id )
 {
 	int ret = KMultiTabBar::appendTab( _sbw->icon(), _id,
-						_sbw->description(),
-						_sbw->title()
+						_sbw->title(),
+						_sbw->description()
 						);
 	m_widgets[_id] = _sbw;
 	_sbw->hide();
@@ -114,4 +121,29 @@ void italcSideBar::tabClicked( int _id )
 		m_tabWidgetParent->show();
 	}
 }
+
+
+
+
+void italcSideBar::paintEvent( QPaintEvent * _pe )
+{
+	QWidget::paintEvent( _pe );
+
+	QPainter p( this );
+	QLinearGradient linearGrad( QPoint( 0, 0 ), QPoint( 0, height() ) );
+	linearGrad.setColorAt( 0.1, QColor( 0, 64, 192 ) );
+	linearGrad.setColorAt( 1, Qt::black );
+	p.fillRect( 0, 0, width(), height(), linearGrad  );
+
+	p.rotate( 270 );
+	p.drawImage( -height()+3, 3, fastQImage(
+			QImage( ":/resources/logo.png" ) ).scaled( 24, 24 ) );
+	QFont f = p.font();
+	f.setBold( TRUE );
+	f.setPointSize( 15 );
+	p.setFont( f );
+	p.setPen( QColor( 255, 216, 0 ) );
+	p.drawText( -height()+32, 22, QString( "iTALC %1" ).arg( PACKAGE_VERSION ) );
+}
+
 

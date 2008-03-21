@@ -71,7 +71,13 @@ void sideBarWidget::paintEvent( QPaintEvent * )
 
 	QPainter p( this );
 	p.fillRect( rect(), QColor( 255, 255, 255 ) );
-	p.fillRect( 0, 0, width(), 27, QColor( 0x00, 0x55, 0xDD ) );
+	p.fillRect( 0, 0, width(), 27+32, QColor( 0, 64, 192 ) );
+
+	p.setRenderHint( QPainter::Antialiasing, TRUE );
+	p.setPen( Qt::white );
+	p.setBrush( Qt::white );
+	p.drawRoundRect( QRect( 0, 27, 64, 64 ), 1000, 1000 );
+	p.fillRect( 32, 27, width()-32, 32, Qt::white );
 
 	QFont f;
 	f.setBold( TRUE );
@@ -79,7 +85,7 @@ void sideBarWidget::paintEvent( QPaintEvent * )
 
 	p.setFont( f );
 	p.setPen( QColor( 255, 216, 32 ) );
-	const int tx = /*m_icon.width()*/48 + 4;
+	const int tx = /*m_icon.width()*/48 + 8;
 	const int ty = 2 + TITLE_FONT_HEIGHT;
 	p.drawText( tx, ty, m_title );
 	//p.drawLine( tx, ty + 4, width() - 4, ty + 4 );
