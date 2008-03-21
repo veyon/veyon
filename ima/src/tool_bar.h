@@ -35,6 +35,10 @@ public:
 	toolBar( const QString & _title, QWidget * _parent );
 	virtual ~toolBar();
 
+
+private:
+	virtual void paintEvent( QPaintEvent * _pe );
+
 } ;
 
 

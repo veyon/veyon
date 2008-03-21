@@ -1,7 +1,7 @@
 /*
  *  tool_bar.cpp - extended toolbar
  *
- *  Copyright (c) 2007 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ *  Copyright (c) 2007-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *  
  *  This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -36,20 +36,20 @@ toolBar::toolBar( const QString & _title, QWidget * _parent ) :
 	QToolBar( _title, _parent )
 {
 	setMovable( FALSE );
-	//setAttribute( Qt::WA_NoSystemBackground, true );
+
 	move( 0, 0 );
 	show();
 
-	setFixedHeight( 56 );
+	setFixedHeight( 54 );
+
 	QPixmap bg( 100, height() );
 	QPainter p( &bg );
-	p.setRenderHint( QPainter::Antialiasing, true );
 	QLinearGradient lingrad( 0, 0, 0, height() );
-	lingrad.setColorAt( 0, QColor( 192, 224, 255 ) );
-	lingrad.setColorAt( 0.04, QColor( 64, 128, 255 ) );
-	lingrad.setColorAt( 0.38, QColor( 32, 64, 192 ) );
-	lingrad.setColorAt( 0.42, QColor( 16, 32, 128 ) );
-	lingrad.setColorAt( 1, QColor( 0, 16, 32 ) );
+	lingrad.setColorAt( 0, QColor( 224, 224, 255 ) );
+	lingrad.setColorAt( 0.04, QColor( 80, 160, 255 ) );
+	lingrad.setColorAt( 0.40, QColor( 32, 64, 192 ) );
+	lingrad.setColorAt( 0.42, QColor( 8, 16, 96 ) );
+	lingrad.setColorAt( 1, QColor( 0, 64, 224 ) );
 	p.fillRect( QRect( 0, 0, 100, height() ), lingrad );
 	p.end();
 
@@ -65,6 +65,13 @@ toolBar::toolBar( const QString & _title, QWidget * _parent ) :
 
 toolBar::~toolBar()
 {
+}
+
+void toolBar::paintEvent( QPaintEvent * _pe )
+{
+	QPainter p( this );
+	p.setPen( Qt::black );
+	p.drawLine( 0, 0, width(), 0 );
 }
 
 

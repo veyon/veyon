@@ -131,7 +131,7 @@ void italcSideBar::paintEvent( QPaintEvent * _pe )
 
 	QPainter p( this );
 	QLinearGradient linearGrad( QPoint( 0, 0 ), QPoint( 0, height() ) );
-	linearGrad.setColorAt( 0.1, QColor( 0, 64, 192 ) );
+	linearGrad.setColorAt( 0.1, QColor( 0, 64, 224 ) );
 	linearGrad.setColorAt( 1, Qt::black );
 	p.fillRect( 0, 0, width(), height(), linearGrad  );
 

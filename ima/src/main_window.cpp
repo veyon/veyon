@@ -154,6 +154,7 @@ mainWindow::mainWindow( int _rctrl_screen ) :
 
 	// create the action-toolbar
 	m_toolBar = new toolBar( tr( "Actions" ), this );
+	m_toolBar->layout()->setSpacing( 4 );
 	m_toolBar->setMovable( FALSE );
 	m_toolBar->setObjectName( "maintoolbar" );
 	m_toolBar->toggleViewAction()->setEnabled( FALSE );

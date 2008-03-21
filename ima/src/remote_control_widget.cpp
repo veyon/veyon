@@ -157,10 +157,10 @@ void remoteControlWidgetToolBar::paintEvent( QPaintEvent * _pe )
 	QPainter p( this );
 	p.setRenderHint( QPainter::Antialiasing, true );
 	QLinearGradient lingrad( 0, 0, 0, height() );
-	lingrad.setColorAt( 0, QColor( 64, 128, 255 ) );
+	lingrad.setColorAt( 0, QColor( 80, 160, 255 ) );
 	lingrad.setColorAt( 0.38, QColor( 32, 64, 192 ) );
-	lingrad.setColorAt( 0.42, QColor( 16, 32, 128 ) );
-	lingrad.setColorAt( 1, QColor( 0, 16, 32 ) );
+	lingrad.setColorAt( 0.42, QColor( 8, 16, 96 ) );
+	lingrad.setColorAt( 1, QColor( 0, 64, 224 ) );
 	p.fillRect( rect(), lingrad );
 
 	p.drawImage( 5, 2, m_icon );
@@ -265,7 +265,7 @@ remoteControlWidget::remoteControlWidget( const QString & _host,
 	m_mainWindow( _main_window ),
 	m_extraStates( Qt::WindowMaximized )
 {
-	setWindowIcon( QPixmap( ":/resources/display.png" ) );
+	setWindowIcon( QPixmap( ":/resources/remote_control.png" ) );
 	setAttribute( Qt::WA_DeleteOnClose, TRUE );
 	m_vncView->move( 0, 0 );
 	connect( m_vncView, SIGNAL( mouseAtTop() ), m_toolBar,

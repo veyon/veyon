@@ -1,5 +1,13 @@
 2008-03-21	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
+	* ima/src/remote_control_widget.cpp:
+	* ima/src/tool_bar.h:
+	* ima/src/italc_side_bar.cpp:
+	* ima/src/tool_bar.cpp:
+	* ima/src/tool_button.cpp:
+	* ima/src/main_window.cpp:
+	improved appearence of toolbar and tool-buttons
+
 	* lib/include/vncview.h:
 	* lib/src/vncview.cpp:
 	in scaled view keep aspect ratio of screen and also do not expand

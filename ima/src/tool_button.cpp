@@ -61,7 +61,7 @@ toolButton::toolButton( const QPixmap & _pixmap, const QString & _label,
 {
 	setAttribute( Qt::WA_NoSystemBackground, true );
 	QFont f = font();
-	f.setPointSize( 7 );
+	f.setPointSizeF( 7.5 );
 	setFont( f );
 	//setFixedWidth( qMax<int>( m_img.width(), fontMetrics().width( m_hintLabel ) )+20 );
 	//setFixedHeight( 48 );
@@ -178,16 +178,16 @@ void toolButton::paintEvent( QPaintEvent * _pe )
 	const bool active = isDown() || isChecked();
 	const QColor ctbl[2][4] = {
 				{
-					QColor( 64, 128, 255 ),
+					QColor( 80, 160, 255 ),
 					QColor( 32, 64, 192 ),
-					QColor( 16, 32, 128 ),
-					QColor( 0, 16, 64 )
+					QColor( 8, 16, 96 ),
+					QColor( 0, 64, 224 )
 				},
 				{
-					QColor( 255, 224, 0, m_colorizeLevel ),
-					QColor( 224, 192, 0, m_colorizeLevel ),
-					QColor( 192, 160, 0, m_colorizeLevel ),
-					QColor( 96, 48, 0, m_colorizeLevel )
+					QColor( 255, 224, 0, m_colorizeLevel*3/4 ),
+					QColor( 224, 192, 0, m_colorizeLevel*3/4 ),
+					QColor( 96, 48, 0, m_colorizeLevel*3/4 ),
+					QColor( 192, 160, 0, m_colorizeLevel*3/4 )
 				}
 				} ;
 
@@ -216,10 +216,10 @@ void toolButton::paintEvent( QPaintEvent * _pe )
 	}
 	p.setBrush( QBrush() );
 
-	p.fillRect( rect(), QColor( 0, 0, 0, active ? 160 : 0 ) );
+	p.fillRect( rect(), QColor( 0, 0, 0, active ? 128 : 0 ) );
 
-	QPen pen( QColor( 255, 255, 255, 128 ) );
-	pen.setWidthF( 1.3f );
+	QPen pen( QColor( 255, 255, 255, 96 ) );
+	pen.setWidthF( 1.4f );
 	p.setPen( pen );
 	p.drawRoundRect( 0, 0, width()-1, height()-1, 1000 / width(),
 							1000 / height() );
