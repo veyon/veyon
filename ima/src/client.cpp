@@ -714,6 +714,7 @@ void client::showEvent( QShowEvent * )
 
 void client::reload( const QString & _update )
 {
+	QString tooltip = "";
 	if( userLoggedIn() )
 	{
 		m_syncMutex.lock();
@@ -738,6 +739,12 @@ void client::reload( const QString & _update )
 		}
 
 		m_user = m_connection->user();
+		// at least set tooltip with user-name if it is not displayed
+		// in title-bar
+		if( !m_mainWindow->getClassroomManager()->showUsername() )
+		{
+			tooltip = m_user;
+		}
 		m_syncMutex.unlock();
 	}
 	else
@@ -745,6 +752,10 @@ void client::reload( const QString & _update )
 		m_user = "";
 	}
 
+	if( toolTip() != tooltip )
+	{
+		setToolTip( tooltip );
+	}
 
 	// if we are called out of main-thread, we may update...
 	if( _update == CONFIRM_YES )
