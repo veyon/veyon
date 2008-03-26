@@ -1,3 +1,12 @@
+2008-03-26	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* setup/resources/pl.qm:
+	* setup/resources/pl.ts:
+	* ima/resources/pl.qm:
+	* ima/resources/pl.ts:
+	updated Polish localization-files by
+	Robert Radko <robert/at/radko/dot/pl>
+
 2008-03-21	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* ima/src/remote_control_widget.cpp:
