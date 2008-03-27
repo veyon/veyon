@@ -8,62 +8,62 @@
         <translation type="obsolete">iTALC Client su %1:%2</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="265"/>
+        <location filename="../src/system_service.cpp" line="267"/>
         <source>Unable to register service &apos;%1&apos;.</source>
         <translation>Non è possibile registrare il servizio &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="293"/>
+        <location filename="../src/system_service.cpp" line="295"/>
         <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not registered.</source>
         <translation>Il gestore dei servizi (Service Control Manger) non può essere contattato (hai i diritti sufficienti?!) - il servizio &apos;%1&apos; non è stato registrato.</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="324"/>
+        <location filename="../src/system_service.cpp" line="326"/>
         <source>The service &apos;%1&apos; is already registered.</source>
         <translation>Il servizio &apos;%1&apos; è già registrato.</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="332"/>
+        <location filename="../src/system_service.cpp" line="334"/>
         <source>The service &apos;%1&apos; could not be registered.</source>
         <translation>Il servizio &apos;%1&apos; non può essere registrato.</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="367"/>
+        <location filename="../src/system_service.cpp" line="369"/>
         <source>The service &apos;%1&apos; was successfully registered.</source>
         <translation>Il servizio &apos;%1&apos; è stato registrato correttamente.</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="614"/>
+        <location filename="../src/system_service.cpp" line="616"/>
         <source>The service &apos;%1&apos; could not be stopped.</source>
         <translation>Il servizio &apos;%1&apos; non può essere fermato.</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="434"/>
+        <location filename="../src/system_service.cpp" line="436"/>
         <source>The service &apos;%1&apos; has been unregistered.</source>
         <translation>Il servizio &apos;%1&apos; è stato rimosso.</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="450"/>
+        <location filename="../src/system_service.cpp" line="452"/>
         <source>The service &apos;%1&apos; isn&apos;t registered and therefore can&apos;t be unregistered.</source>
         <translation>Il servizio &apos;%1&apos; non è registrato, pertanto non può essere rimosso.</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="460"/>
+        <location filename="../src/system_service.cpp" line="462"/>
         <source>The service &apos;%1&apos; could not be unregistered.</source>
         <translation>Il servizio &apos;%1&apos; non può essere rimosso.</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="628"/>
+        <location filename="../src/system_service.cpp" line="630"/>
         <source>The service &apos;%1&apos; could not be found.</source>
         <translation>Il servizio &apos;%1&apos; non è stato trovato.</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="487"/>
+        <location filename="../src/system_service.cpp" line="489"/>
         <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not unregistered.</source>
         <translation>Il gestore dei servizi (Service Control Manger) non può essere contattato (hai i diritti sufficienti?!) - il servizio &apos;%1&apos; non è stato rimosso.</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="644"/>
+        <location filename="../src/system_service.cpp" line="646"/>
         <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not stopped.</source>
         <translation>Il gestore dei servizi (Service Control Manger) non può essere contattato (hai i diritti sufficienti?!) - il servizio &apos;%1&apos; non è stato fermato.</translation>
     </message>
@@ -84,27 +84,27 @@
 <context>
     <name>isdServer</name>
     <message>
-        <location filename="../src/isd_server.cpp" line="553"/>
+        <location filename="../src/isd_server.cpp" line="567"/>
         <source>Confirm access</source>
         <translation>Conferma l&apos;accesso</translation>
     </message>
     <message>
-        <location filename="../src/isd_server.cpp" line="556"/>
+        <location filename="../src/isd_server.cpp" line="570"/>
         <source>Somebody at host %1 tries to access your screen. Do you want to grant him/her access?</source>
         <translation>Qualcuno dalla macchina %1 cerca di accedere al tuo video. Consenti l&apos;accesso?</translation>
     </message>
     <message>
-        <location filename="../src/isd_server.cpp" line="559"/>
+        <location filename="../src/isd_server.cpp" line="573"/>
         <source>Never for this session</source>
         <translation>Mai per questa sessione</translation>
     </message>
     <message>
-        <location filename="../src/isd_server.cpp" line="561"/>
+        <location filename="../src/isd_server.cpp" line="575"/>
         <source>Always for this session</source>
         <translation>Sempre per questa sessione</translation>
     </message>
     <message>
-        <location filename="../src/isd_server.cpp" line="754"/>
+        <location filename="../src/isd_server.cpp" line="768"/>
         <source>Message from teacher</source>
         <translation>Messaggio dall&apos;insegnante</translation>
     </message>
@@ -119,12 +119,12 @@
         <translation>Il server ISD non può essere avviato perché la porta %1 è già in uso. Assicurarsi che non ci siano altre applicazioni che usano questa porta e riprovare.</translation>
     </message>
     <message>
-        <location filename="../src/isd_server.cpp" line="806"/>
+        <location filename="../src/isd_server.cpp" line="824"/>
         <source>Authentication error</source>
         <translation>Errore di autenticazione</translation>
     </message>
     <message>
-        <location filename="../src/isd_server.cpp" line="809"/>
+        <location filename="../src/isd_server.cpp" line="827"/>
         <source>Somebody (IP: %1) tried to access this computer but could not authenticate itself successfully!</source>
         <translation>Qualcuno (IP: %1) cerca di accedere a questo computer ma non riesce ad autenticarsi!</translation>
     </message>
