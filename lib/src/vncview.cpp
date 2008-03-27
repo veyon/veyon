@@ -531,12 +531,12 @@ QPoint vncView::mapToFramebuffer( const QPoint & _pos )
 {
 	const int x = m_scaledView && m_connection ?
 			_pos.x() * m_connection->framebufferSize().width() /
-								width()
+							scaledSize().width()
 		:
 			_pos.x() + m_viewOffset.x();
 	const int y = m_scaledView && m_connection ?
 			_pos.y() * m_connection->framebufferSize().height() /
-								height()
+							scaledSize().height()
 		:
 			_pos.y() + m_viewOffset.y();
 	return( QPoint( x, y ) );
