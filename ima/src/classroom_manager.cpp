@@ -44,7 +44,7 @@
 #include <QtGui/QPixmap>
 #include <QtGui/QSplashScreen>
 #include <QtGui/QSplitter>
-#include <QtGui/QWorkspace>
+#include <QtGui/QPainter>
 #include <QtNetwork/QHostInfo>
 
 
@@ -105,7 +105,7 @@ classroomManager::classroomManager( mainWindow * _main_window,
 	QVBoxLayout * l = dynamic_cast<QVBoxLayout *>(
 						contentParent()->layout() );
 
-	m_view = new QTreeWidget( contentParent() );
+	m_view = new classTreeWidget( contentParent() );
 	l->addWidget( m_view );
 	m_view->setWhatsThis( tr( "This is where computers and classrooms are "
 					"managed. You can add computers or "
@@ -1734,6 +1734,96 @@ void classroomManager::showUserColumn( int _show )
 {
 	m_view->showColumn( _show ? 2 : 1 );
 	m_view->hideColumn( _show ? 1 : 2 );
+}
+
+
+
+
+
+
+
+
+classTreeWidget::classTreeWidget( QWidget * _parent ) :
+	QTreeWidget( _parent )
+{
+	m_clientPressed = NULL;
+	connect( this, SIGNAL( itemSelectionChanged( void ) ),
+		this, SLOT( itemSelectionChanged( void ) ) );
+}
+
+
+
+
+void classTreeWidget::mousePressEvent( QMouseEvent * _me )
+{
+	classRoomItem * item = dynamic_cast<classRoomItem *>(itemAt( _me->pos() ) );
+
+	if( item && _me->button() == Qt::LeftButton )
+	{
+		m_clientPressed = item->getClient();
+		m_clientPressed->zoom();
+	}
+
+	QTreeWidget::mousePressEvent( _me );
+}
+
+
+
+
+void classTreeWidget::mouseMoveEvent( QMouseEvent * _me )
+{
+	if ( m_clientPressed ) 
+	{
+		m_clientPressed->zoomBack();
+		m_clientPressed = NULL;
+	}
+
+	QTreeWidget::mouseMoveEvent( _me );
+}
+
+
+
+
+void classTreeWidget::mouseReleaseEvent( QMouseEvent * _me )
+{
+	if ( m_clientPressed ) 
+	{
+		m_clientPressed->zoomBack();
+		m_clientPressed = NULL;
+	}
+
+	QTreeWidget::mouseReleaseEvent( _me );
+}
+
+
+
+
+/* Update client windows quickly after selections have changed */
+void classTreeWidget::itemSelectionChanged( void )
+{
+
+	/* update old selections */
+	foreach( QTreeWidgetItem * item, m_selectedItems )
+	{
+		classRoomItem * cri = dynamic_cast<classRoomItem *>( item );
+		if ( cri )
+		{
+			cri->getClient()->update();
+		}
+	}
+
+	m_selectedItems = selectedItems();
+
+	/* update new selections - some clients may belong to both
+	 * lists and are updated here twice. */
+	foreach( QTreeWidgetItem * item, m_selectedItems )
+	{
+		classRoomItem * cri = dynamic_cast<classRoomItem *>( item );
+		if ( cri )
+		{
+			cri->getClient()->update();
+		}
+	}
 }
 
 

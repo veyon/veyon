@@ -43,6 +43,7 @@
 class QButtonGroup;
 class QMenu;
 
+class classTreeWidget;
 class classRoom;
 class classRoomItem;
 class clientSettingsDialog;
@@ -192,7 +193,7 @@ private:
 	void resizeClients( const int _new_width );
 
 
-	QTreeWidget * m_view;
+	classTreeWidget * m_view;
 
 	QVector<classRoom *> m_classRooms;
 	QVector<client *> m_clientsToRemove;
@@ -217,6 +218,31 @@ private:
 
 	QPushButton * m_exportToFileBtn;
 	QCheckBox * m_showUsernameCheckBox;
+
+} ;
+
+
+
+
+
+
+class classTreeWidget : public QTreeWidget
+{
+	Q_OBJECT
+public:
+	classTreeWidget( QWidget * _parent );
+	virtual ~classTreeWidget() { } ;
+
+private:
+	virtual void mousePressEvent( QMouseEvent * _me );
+	virtual void mouseMoveEvent( QMouseEvent * _me );
+	virtual void mouseReleaseEvent( QMouseEvent * _me );
+
+	client * m_clientPressed;
+	QList<QTreeWidgetItem *> m_selectedItems;
+
+private slots:
+	void itemSelectionChanged( void );
 
 } ;
 

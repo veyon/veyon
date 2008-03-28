@@ -47,7 +47,7 @@
 
 const QSize DEFAULT_CLIENT_SIZE( 256, 192 );
 const int DECO_WIDTH = 4;
-const int TITLE_HEIGHT = 20;
+const int TITLE_HEIGHT = 23;
 const QPoint CONTENT_OFFSET( DECO_WIDTH, DECO_WIDTH + TITLE_HEIGHT ); 
 const QSize CONTENT_SIZE_SUB( 2*DECO_WIDTH, 2*DECO_WIDTH + TITLE_HEIGHT ); 
 
@@ -486,6 +486,8 @@ void client::enlarge()
 		QSize offset = ( workspace->parentWidget()->size() - s ) / 2;
 		move( offset.width() - workspace->x(),
 			offset.height() - workspace->y() );
+
+		raise();
 	}
 }
 
@@ -527,6 +529,13 @@ void client::mousePressEvent( QMouseEvent * _me )
 		raise();
 		m_clickPoint = _me->globalPos();
 		m_origPos = pos();
+
+		if ( ! ( _me->modifiers() & Qt::ControlModifier ))
+		{
+			m_classRoomItem->treeWidget()->clearSelection();
+		}
+		m_classRoomItem->setSelected( ! m_classRoomItem->isSelected() );
+
 		zoom();
 	}
 	else
@@ -605,6 +614,13 @@ void client::paintEvent( QPaintEvent * _pe )
 	p.drawRect( QRect( 0, 0, width()-1, height()-1 ) );
 	p.setRenderHint( QPainter::Antialiasing, TRUE );
 
+	if ( m_classRoomItem->isSelected() )
+	{
+		p.setPen( Qt::white );
+		p.setBrush( palette().color( QPalette::Highlight ) );
+		p.drawRect( 1, 1, width()-2, TITLE_HEIGHT-2 );
+	}
+
 	bool showUsername = m_mainWindow->getClassroomManager()->showUsername();
 	const QString s = (showUsername && m_user != "") ? m_user :
 		( m_name + " (" + m_classRoomItem->parent()->text( 0 ) +
@@ -612,10 +628,10 @@ void client::paintEvent( QPaintEvent * _pe )
 	QFont f = p.font();
 	f.setBold( TRUE );
 	p.setFont( f );
-	p.setPen( Qt::gray );
-	p.drawText( 11, TITLE_HEIGHT-3, s );
+	p.setPen( m_classRoomItem->isSelected() ? Qt::blue : Qt::gray );
+	p.drawText( 11, TITLE_HEIGHT-6, s );
 	p.setPen( Qt::black );
-	p.drawText( 10, TITLE_HEIGHT-4, s );
+	p.drawText( 10, TITLE_HEIGHT-7, s );
 
 	if( m_connection->state() == ivsConnection::Connected &&
 						m_mode == Mode_Overview )
@@ -691,7 +707,7 @@ void client::paintEvent( QPaintEvent * _pe )
 
 void client::resizeEvent( QResizeEvent * _re )
 {
-	findChild<closeButton*>()->move( width()-21, 4 );
+	findChild<closeButton*>()->move( width()-21, 3 );
 	m_connection->setScaledSize( size() - CONTENT_SIZE_SUB );
 	m_connection->rescaleScreen();
 	QWidget::resizeEvent( _re );
@@ -1048,7 +1064,7 @@ void updateThread::update( void )
 		if( !m_client->m_mainWindow->remoteControlRunning() &&
 						!mainWindow::atExit() )
 		{
-			m_client->processCmd( client::Cmd_Reload, CONFIRM_NO );
+			m_client->reload();
 		}
 	}
 	else if( m_client->m_connection->state() == ivsConnection::Connected )

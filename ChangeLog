@@ -1,5 +1,14 @@
 2008-03-28	Andrei Krueger	<anc/at/iki/dot/fi>
 
+	* client.cpp:
+	client window if highlighted when selected
+
+	* classroom_manager.cpp:
+	* classroom_manager.h:
+	client window is zoomed when pressed on manager list
+
+2008-03-28	Andrei Krueger	<anc/at/iki/dot/fi>
+
 	* ima/src/classroom_manager.cpp:
 	arrange order is based on classroom manager list
 
