@@ -477,7 +477,11 @@ void KMultiTabBarTab::paintEvent(QPaintEvent*) {
 		// and get the transformations to get us in the right place
 		labelPaintArea = QRect(0, 0, labelArea.height(), labelArea.width());
 
+#if QT_VERSION >= 0x040300
 		QTransform tr;
+#else
+		QMatrix tr;
+#endif
 		
 		if (bottomIcon) {
 			tr.translate(labelArea.x(), labelPaintArea.width() + labelArea.y());
@@ -486,7 +490,12 @@ void KMultiTabBarTab::paintEvent(QPaintEvent*) {
 			tr.translate(labelPaintArea.height() + labelArea.x(), labelArea.y());
 			tr.rotate(90);
 		}
+		
+#if QT_VERSION >= 0x040300
 		painter.setTransform(tr);
+#else
+		painter.setWorldMatrix(tr);
+#endif
 	}
 	
 	style()->drawItemText(&painter, labelPaintArea, Qt::AlignLeading | Qt::AlignVCenter,
