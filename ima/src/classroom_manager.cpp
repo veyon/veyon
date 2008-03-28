@@ -1111,14 +1111,6 @@ void classroomManager::adjustWindows( void )
 
 
 
-bool clientIPSort( const client * _1, const client * _2 )
-{
-	return( _1->localIP() < _2->localIP() );
-}
-
-
-
-
 void classroomManager::arrangeWindows( void )
 {
 	QVector<client *> vc = visibleClients();
@@ -1135,8 +1127,6 @@ void classroomManager::arrangeWindows( void )
 		int win_per_line = (int) ceil( s );
 		const int ww = avail_w / win_per_line;
 		const int wh = avail_h / win_per_row;
-
-		qSort( vc.begin(), vc.end(), clientIPSort );
 
 		int i = 0;
 		foreach( client * cl, vc )
