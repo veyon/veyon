@@ -614,12 +614,10 @@ void client::paintEvent( QPaintEvent * _pe )
 	p.drawRect( QRect( 0, 0, width()-1, height()-1 ) );
 	p.setRenderHint( QPainter::Antialiasing, TRUE );
 
-	if ( m_classRoomItem->isSelected() )
-	{
-		p.setPen( Qt::white );
-		p.setBrush( palette().color( QPalette::Highlight ) );
-		p.drawRect( 1, 1, width()-2, TITLE_HEIGHT-2 );
-	}
+	p.fillRect( 1, 1, width()-2, TITLE_HEIGHT-2,
+			m_classRoomItem->isSelected() ?
+				QColor( 32, 80, 255 ) :
+						QColor( 224, 224, 224 ) );
 
 	bool showUsername = m_mainWindow->getClassroomManager()->showUsername();
 	const QString s = (showUsername && m_user != "") ? m_user :
@@ -628,8 +626,6 @@ void client::paintEvent( QPaintEvent * _pe )
 	QFont f = p.font();
 	f.setBold( TRUE );
 	p.setFont( f );
-	p.setPen( m_classRoomItem->isSelected() ? Qt::blue : Qt::gray );
-	p.drawText( 11, TITLE_HEIGHT-6, s );
 	p.setPen( Qt::black );
 	p.drawText( 10, TITLE_HEIGHT-7, s );
 
@@ -640,8 +636,6 @@ void client::paintEvent( QPaintEvent * _pe )
 	}
 	else
 	{
-	/*	p.drawImage( _pe->rect().topLeft() + CONTENT_OFFSET,
-						m_statePixmap, _pe->rect() );*/
 	const int aw = width() - 2*DECO_WIDTH;
 	const int ah = height() - CONTENT_SIZE_SUB.height() - DECO_WIDTH;
 
