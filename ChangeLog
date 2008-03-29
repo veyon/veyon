@@ -1,3 +1,12 @@
+2008-03-27	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* ima/src/side_bar_widget.cpp:
+	* ima/src/tool_button.cpp:
+	some color-fine-tunings
+
+	* ima/src/client.cpp:
+	improved painting of title-bar
+
 2008-03-28	Andrei Krueger	<anc/at/iki/dot/fi>
 
 	* client.cpp:

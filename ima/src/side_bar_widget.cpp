@@ -71,7 +71,7 @@ void sideBarWidget::paintEvent( QPaintEvent * )
 
 	QPainter p( this );
 	p.fillRect( rect(), QColor( 255, 255, 255 ) );
-	p.fillRect( 0, 0, width(), 27+32, QColor( 0, 64, 192 ) );
+	p.fillRect( 0, 0, width(), 27+32, QColor( 0, 64, 224 ) );
 
 	p.setRenderHint( QPainter::Antialiasing, TRUE );
 	p.setPen( Qt::white );

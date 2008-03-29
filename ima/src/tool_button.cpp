@@ -184,10 +184,10 @@ void toolButton::paintEvent( QPaintEvent * _pe )
 					QColor( 0, 64, 224 )
 				},
 				{
-					QColor( 255, 224, 0, m_colorizeLevel*3/4 ),
-					QColor( 224, 192, 0, m_colorizeLevel*3/4 ),
-					QColor( 96, 48, 0, m_colorizeLevel*3/4 ),
-					QColor( 192, 160, 0, m_colorizeLevel*3/4 )
+					QColor( 255, 255, 64, m_colorizeLevel ),
+					QColor( 192, 160, 32, m_colorizeLevel ),
+					QColor( 96, 48, 0, m_colorizeLevel ),
+					QColor( 192, 160, 0, m_colorizeLevel )
 				}
 				} ;
 
