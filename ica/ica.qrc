@@ -11,5 +11,6 @@
 		<file>resources/uk.qm</file>
 		<file>resources/zh.qm</file>
 		<file>resources/fi.qm</file>
+		<file>resources/pt_br.qm</file>
 	</qresource>
 </RCC>
