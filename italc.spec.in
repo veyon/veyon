@@ -1,4 +1,3 @@
-%define _suse		%(if [ -f /etc/SuSE-release ] ; then echo 1 ; else echo 0 ; fi)
 
 
 Name:		@PACKAGE@
@@ -10,13 +9,12 @@ License:	GPL
 URL:		http://italc.sourceforge.net/
 Group:		Applications/Networking
 Packager:	Tobias Doerffel <tobydox@users.sourceforge.net>
-Provides:	italc = %{version}-%{release}
-%if %_suse
+%if 0%{?suse_version} 
 BuildRequires:	gcc gcc-c++ libstdc++-devel autoconf automake make openssl openssl-devel zlib zlib-devel libjpeg libjpeg-devel
 BuildRequires:	libqt4-devel
 Requires:	libqt4 libqt4-x11 openssl zlib libjpeg
 %endif
-Source:		%{name}-%{version}.tar.gz
+Source:		%{name}-%{version}.tar.bz2
 BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 Prefix:		%{_prefix}
 
@@ -64,8 +62,7 @@ Weiterhin ist iTALC optimiert auf die Nutzung auf Mehrkern-Systemen (indem es in
 Summary:	software for iTALC-clients
 Summary(de):	Software fuer iTALC-Clients
 Group:		Applications/Networking
-Provides:	italc-client = %{version}-%{release}
-Requires:	italc = %{version}-%{release}
+Requires:	italc = %{version}
 
 %description client
 This package contains the software, needed by iTALC-clients.
@@ -84,9 +81,8 @@ Netzwerk finden Sie in /usr/share/italc/doc/INSTALL.
 Summary:	iTALC master software
 Summary(de):	iTALC-Master-Software
 Group:		Applications/Networking
-Provides:	italc-master = %{version}-%{release}
-Requires:	italc = %{version}-%{release}
-Requires:	italc-client = %{version}-%{release}
+Requires:	italc = %{version}
+Requires:	italc-client = %{version}
 
 %description master
 This package contains the actual master-software for accessing clients.
@@ -104,13 +100,13 @@ Netzwerk finden Sie in /usr/share/italc/doc/INSTALL.
 
 
 %prep
-%setup -n %{name}-%{version}
+%setup -q
 
 
 %build
 CFLAGS="$RPM_OPT_FLAGS" CXXFLAGS="$RPM_OPT_FLAGS" ./configure --prefix=%{prefix}
 
-make
+make %{?jobs:-j%jobs}
 
 
 %install
@@ -118,13 +114,6 @@ make DESTDIR=$RPM_BUILD_ROOT install
 
 %clean
 [ "$RPM_BUILD_ROOT" != "/" ] && rm -rf $RPM_BUILD_ROOT
-
-
-%pre
-%post
-%preun
-%postun
-
 
 %files
 %defattr(-,root,root)
@@ -135,13 +124,13 @@ make DESTDIR=$RPM_BUILD_ROOT install
 %defattr(-,root,root)
 %{_bindir}/ica
 %{_libdir}/italc/libitalc_core.so
-%{_datadir}/man/man1/ica.1.gz
+%doc %{_mandir}/man1/ica.1.gz
 
 
 %files master
 %defattr(-,root,root)
 %{_bindir}/italc
-%{_datadir}/man/man1/italc.1.gz
+%doc %{_mandir}/man1/italc.1.gz
 %{_datadir}/applications/italc.desktop
 %{_datadir}/menu/italc
 %{_datadir}/pixmaps/italc.xpm
