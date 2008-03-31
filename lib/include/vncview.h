@@ -62,7 +62,7 @@ public:
 		return( m_scaledView );
 	}
 
-	QSize scaledSize( void ) const;
+	QSize scaledSize( const QSize & _default = QSize() ) const;
 
 
 public slots:
