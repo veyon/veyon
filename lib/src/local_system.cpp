@@ -256,9 +256,13 @@ void initialize( p_pressKey _pk, const QString & _log_file )
 
 
 
-int freePort( void )
+int freePort( int _default_port )
 {
 	QTcpServer t;
+	if( t.listen( QHostAddress::LocalHost, _default_port ) )
+	{
+		return( _default_port );
+	}
 	t.listen( QHostAddress::LocalHost );
 	return( t.serverPort() );
 }

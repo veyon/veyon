@@ -46,7 +46,7 @@ namespace localSystem
 	typedef void (*p_pressKey)( int _key, bool _down );
 
 
-	int IC_DllExport freePort( void );
+	int IC_DllExport freePort( int _default_port );
 
 	void IC_DllExport initialize( p_pressKey _pk, const QString & _log_file );
 

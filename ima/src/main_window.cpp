@@ -335,7 +335,8 @@ mainWindow::mainWindow( int _rctrl_screen ) :
 	}
 
 	m_localISD->demoServerStop();
-	m_localISD->demoServerRun( __demo_quality, localSystem::freePort() );
+	m_localISD->demoServerRun( __demo_quality,
+						localSystem::freePort( 5858 ) );
 
 	QTimer::singleShot( 2000, m_classroomManager, SLOT( updateClients() ) );
 
