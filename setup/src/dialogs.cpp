@@ -194,8 +194,7 @@ void setupWizard::doInstallation( bool _quiet )
 		"QtNetwork4.dll"	<<
 		"QtXml4.dll"		<<
 		"vnchooks.dll"		<<
-		"italc_core.dll"	<<
-		"userinfo.exe"
+		"italc_core.dll"
 #else
 		"libssl.so.0.9.8"	<<
 		"libcrypto.so.0.9.8"	<<
@@ -280,8 +279,8 @@ void setupWizard::doInstallation( bool _quiet )
 	pd.setLabelText( tr( "Registering ICA as service..." ) );
 	qApp->processEvents();
 
-	QProcess::execute( d + "ica", QStringList() << quiet_opt <<
-							"-registerservice"  );
+	QProcess::execute( d + "ica", QStringList( quiet_opt ) <<
+							"-registerservice" );
 	if( did_overwrite_ica )
 	{
 		qApp->processEvents();
