@@ -268,7 +268,7 @@ ivsConnection::states ivsConnection::protocolInitialization( void )
 
 	m_screen = QImage( m_si.framebufferWidth, m_si.framebufferHeight,
 							QImage::Format_RGB32 );
-
+	m_screen.fill( Qt::black );
 
 	sendFramebufferUpdateRequest();
 	sendGetUserInformationRequest();
@@ -466,7 +466,14 @@ void ivsConnection::rescaleScreen( void )
 			m_scaledScreen = QImage( m_scaledSize,
 							QImage::Format_RGB32 );
 		}
-		m_screen.scaleTo( m_scaledScreen );
+		if( m_screen.size().isValid() )
+		{
+			m_screen.scaleTo( m_scaledScreen );
+		}
+		else
+		{
+			m_scaledScreen.fill( Qt::black );
+		}
 		m_scaledScreenNeedsUpdate = FALSE;
 	}
 }
