@@ -1,5 +1,37 @@
 2008-04-02	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
+	* lib/src/isd_connection.cpp:
+	made readFromServer() have a timeout - fixes hung processes/threads on
+	blocked connections (closes #1924390)
+
+	* lib/src/ivs_connection.cpp:
+	fill screen and scaled screen with black
+
+	* ima/src/client.cpp:
+	improved client-thread-destruction
+
+	* ima/src/main_window.cpp:
+	improved button-texts
+
+	* ima/src/classroom_manager.cpp:
+	* ima/src/classroom_manager.h:
+	- removed obsolete functions
+	- small optimizations by not using foreach
+
+	* ica/src/system_service.cpp:
+	use QString::toLocal8Bit() instead of QString::toUtf8() - hopefully
+	fixes #1898070
+
+	* ica/src/local_system_ica.cpp:
+	use SHTDN_REASON_MAJOR_OTHER instead of SHTDN_REASON_MAJOR_SYSTEM
+
+	* setup/src/dialogs.cpp:
+	- removed obsolete userinfo.exe
+	- misc fixes
+
+	* ima/src/italc_side_bar.cpp:
+	improved painting
+
 	* setup/src/dialogs.cpp:
 	* setup/src/dialogs.h:
 	fixed confirmation-dialog when closing setup-window via Alt+F4 or
