@@ -237,6 +237,10 @@ private:
 	virtual void mousePressEvent( QMouseEvent * _me );
 	virtual void mouseMoveEvent( QMouseEvent * _me );
 	virtual void mouseReleaseEvent( QMouseEvent * _me );
+	virtual void dragMoveEvent( QDragMoveEvent * _e );
+	virtual void dropEvent( QDropEvent * _e );
+
+	bool droppingOnItself( QTreeWidgetItem * _target );
 
 	client * m_clientPressed;
 	QList<QTreeWidgetItem *> m_selectedItems;

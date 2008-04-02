@@ -1744,9 +1744,14 @@ void classroomManager::showUserColumn( int _show )
 
 
 classTreeWidget::classTreeWidget( QWidget * _parent ) :
-	QTreeWidget( _parent )
+	QTreeWidget( _parent ),
+	m_clientPressed( NULL )
 {
-	m_clientPressed = NULL;
+	setDragEnabled( true );
+	setAcceptDrops( true );
+	setDropIndicatorShown( true ); 
+	setDragDropMode( QAbstractItemView::InternalMove );
+
 	connect( this, SIGNAL( itemSelectionChanged( void ) ),
 		this, SLOT( itemSelectionChanged( void ) ) );
 }
@@ -1793,6 +1798,112 @@ void classTreeWidget::mouseReleaseEvent( QMouseEvent * _me )
 	}
 
 	QTreeWidget::mouseReleaseEvent( _me );
+}
+
+
+
+
+bool classTreeWidget::droppingOnItself( QTreeWidgetItem * _target )
+{
+    QList<QTreeWidgetItem *> selected = selectedItems();
+    while ( _target )
+    {
+	    if ( selected.contains( _target ) )
+		    return true;
+	    _target = dynamic_cast<QTreeWidgetItem * >( _target->parent() );
+    }
+    return false;
+}
+
+
+
+
+void classTreeWidget::dragMoveEvent( QDragMoveEvent * _e )
+{
+	if ( _e->source() == this ) 
+	{
+		int clients_selected = 0;
+		foreach( QTreeWidgetItem * item, selectedItems() )
+		{
+			if ( dynamic_cast<classRoomItem *>( item ) )
+			{
+				clients_selected++;
+			}
+		}
+
+		QTreeWidgetItem * target = itemAt( _e->pos() );
+		classRoom * classRoomTarget = dynamic_cast<classRoom *>( target );
+		
+		/* Don't drop clients to the root nor
+		 * classroom to its own child */
+		if ( ( clients_selected && ! target ) ||
+			droppingOnItself( target ) )
+		{
+			_e->ignore();
+		}
+		else
+		{
+			_e->setDropAction( Qt::MoveAction );
+			_e->accept();
+		}
+	}
+}
+
+
+
+
+void classTreeWidget::dropEvent( QDropEvent * _e )
+{
+    if ( _e->source() == this &&
+    	dragDropMode() == QAbstractItemView::InternalMove )
+    {
+		QTreeWidgetItem * target = itemAt( _e->pos() );
+
+		/* Use client's parent as target */
+		if ( dynamic_cast<classRoomItem *>( target ))
+		{
+			target = target->parent();
+		}
+
+		QList<QTreeWidgetItem *> taken;
+
+		// Remove selected items
+		foreach ( QTreeWidgetItem * item, selectedItems() )
+		{
+			if ( item != target )
+			{
+				int idx = indexOfTopLevelItem( item );
+				if ( idx >= 0 )
+				{
+					taken.append( takeTopLevelItem( idx ));
+				} 
+				else
+				{
+					QTreeWidgetItem * parent = item->parent();
+					idx = parent->indexOfChild( item );
+					taken.append( parent->takeChild( idx ) );
+				}
+			}
+		}
+
+		// insert them back to their new positions
+		if ( target ) 
+		{
+			foreach ( QTreeWidgetItem * item, taken )
+			{
+				target->addChild( item );
+			}
+		}
+		else
+		{
+			foreach ( QTreeWidgetItem * item, taken )
+			{
+				addTopLevelItem( item );
+			}
+		}
+
+		_e->accept();
+    }
 }
 
 
@@ -2042,6 +2153,9 @@ classRoomItem::classRoomItem( client * _client, QTreeWidgetItem * _parent ) :
 		s_clientObservedPixmap = new QPixmap(
 					":/resources/client_visible.png" );
 	}
+
+	setFlags( Qt::ItemIsSelectable | Qt::ItemIsDragEnabled |
+		Qt::ItemIsEnabled );
 
 	setVisible( m_client->isVisible() );
 	setText( 1, m_client->localIP() );

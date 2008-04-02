@@ -1,3 +1,15 @@
+2008-04-02	Andrei Krueger	<anc/at/iki/dot/fi>
+
+	* ima/src/classroom_manager.h:
+	* ima/src/classroom_manager.cpp:
+	drag and drop support for classroom manager (closes #1886602)
+
+	* ica/resources/fi.ts:
+	* lib/resources/fi.ts:
+	* ima/resources/fi.ts:
+	* ima/resources/fi.qm:
+	updated Finnish localization-files
+
 2008-03-31	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* lib/include/vncview.h:

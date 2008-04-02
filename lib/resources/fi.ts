@@ -8,7 +8,7 @@
         <translation>KST (note for translators: the first three characters of this string are the accellerators (underlined characters) of the three input-fields in logon-dialog of windows - please keep this note as otherwise there are strange errors concerning logon-feature)</translation>
     </message>
     <message>
-        <location filename="../src/local_system.cpp" line="631"/>
+        <location filename="../src/local_system.cpp" line="635"/>
         <source>iTALC-snapshots</source>
         <translation>iTALC-kuvaruutukopiot</translation>
     </message>
@@ -29,7 +29,7 @@
 <context>
     <name>lockWidget</name>
     <message>
-        <location filename="../src/lock_widget.cpp" line="57"/>
+        <location filename="../src/lock_widget.cpp" line="69"/>
         <source>screen lock</source>
         <translation>Lukitse</translation>
     </message>

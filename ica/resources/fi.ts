@@ -71,7 +71,7 @@
 <context>
     <name>demoClient</name>
     <message>
-        <location filename="../src/demo_client.cpp" line="52"/>
+        <location filename="../src/demo_client.cpp" line="44"/>
         <source>iTALC Demo</source>
         <translation>iTALC esitys</translation>
     </message>
