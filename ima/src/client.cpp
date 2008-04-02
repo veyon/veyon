@@ -237,8 +237,12 @@ client::~client()
 {
 	changeMode( client::Mode_Overview, m_mainWindow->localISD() );
 	m_updateThread->quit();
-	m_updateThread->wait();
-	m_updateThread->update();
+	if( !m_updateThread->wait( 10000 ) )
+	{
+		qWarning("terminating thread %d\n", (int) m_updateThread );
+		m_updateThread->terminate();
+	}
+
 	delete m_updateThread;
 
 	m_syncMutex.lock();
@@ -1061,7 +1065,8 @@ void updateThread::update( void )
 			m_client->reload();
 		}
 	}
-	else if( m_client->m_connection->state() == ivsConnection::Connected )
+	else if( m_client->m_connection->state() == ivsConnection::Connected
+						&& !mainWindow::atExit() )
 	{
 		m_client->m_connection->close();
 	}
