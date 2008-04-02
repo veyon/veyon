@@ -28,6 +28,7 @@
 #endif
 
 #include <QtCore/QProcess>
+#include <QtGui/QCloseEvent>
 #include <QtGui/QCompleter>
 #include <QtGui/QDirModel>
 #include <QtGui/QFileDialog>
@@ -67,7 +68,8 @@ setupWizard::setupWizard() :
 	m_installDocs( FALSE ),
 	m_saveInstallSettings( FALSE ),
 	m_widgetStack(),
-	m_idx( 0 )
+	m_idx( 0 ),
+	m_closeOk( FALSE )
 {
 	setupUi( this );
 	DEFAULT_INSTALL_DIR =
@@ -397,6 +399,7 @@ void setupWizard::reject( void )
 			==
 						QMessageBox::Yes )
 	{
+		m_closeOk = TRUE;
 		QDialog::reject();
 	}
 }
@@ -480,6 +483,26 @@ void setupWizard::next( void )
 	}
 	nextButton->setFocus();
 }
+
+
+
+
+void setupWizard::closeEvent( QCloseEvent * _ev )
+{
+	if( m_closeOk )
+	{
+		QDialog::closeEvent( _ev );
+	}
+	else
+	{
+		reject();
+		if( !m_closeOk )
+		{
+			_ev->ignore();
+		}
+	}
+}
+
 
 
 

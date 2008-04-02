@@ -75,8 +75,11 @@ private slots:
 
 
 private:
+	virtual void closeEvent( QCloseEvent * _ev );
+
 	QList<setupWizardPage *> m_widgetStack;
 	int m_idx;
+	bool m_closeOk;
 
 
 	friend class setupWizardPage;
