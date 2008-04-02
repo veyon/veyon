@@ -414,6 +414,7 @@ bool isdConnection::readFromServer( char * _out, const unsigned int _n )
 	}
 
 	unsigned int bytes_done = 0;
+	int tries = 0;
 
 	while( bytes_done < _n )
 	{
@@ -431,7 +432,8 @@ bool isdConnection::readFromServer( char * _out, const unsigned int _n )
 		{
 			// could not read data because we're not connected
 			// anymore?
-			if( m_socket->state() != QTcpSocket::ConnectedState )
+			if( m_socket->state() != QTcpSocket::ConnectedState ||
+								++tries > 60 )
 			{
 				qWarning( "isdConnection::readFromServer(): "
 						"connection failed: %d",
@@ -441,7 +443,11 @@ bool isdConnection::readFromServer( char * _out, const unsigned int _n )
 			}
 			m_socket->waitForReadyRead( 50 );
 		}
-		bytes_done += bytes_read;
+		else
+		{
+			bytes_done += bytes_read;
+			tries /= 2;
+		}
 	}
 
 	return( TRUE );
@@ -475,7 +481,7 @@ bool isdConnection::writeToServer( const char * _buf, const unsigned int _n )
 		bytes_done += bytes_written;
 	}
 
-	return( m_socket->waitForBytesWritten( 50 ) );
+	return( m_socket->waitForBytesWritten( 100 ) );
 }
 
 
