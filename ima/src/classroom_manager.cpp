@@ -801,45 +801,6 @@ void classroomManager::loadPersonalConfig( void )
 
 
 
-void classroomManager::createActionMenu( QMenu * _m )
-{
-/*for( int i = 0; i < m_view->topLevelItemCount(); ++i )
-	{
-		QTreeWidgetItem * lvi = m_view->topLevelItem( i );
-		if( lvi->childCount() )
-		{
-			createActionMenu( lvi, _m );
-		}
-	}*/
-}
-
-
-
-
-void classroomManager::createActionMenu( QTreeWidgetItem * _p, QMenu * _m )
-{
-/*	QMenu * root = _m->addMenu( _p->text( 0 ) );
-
-	classRoomItem * l = NULL;
-
-	for( int i = 0; i < _p->childCount(); ++i )
-	{
-		QTreeWidgetItem * lvi = _p->child( i );
-		if( lvi->childCount() )
-		{
-			createActionMenu( lvi, root );
-		}
-		else if( ( l = dynamic_cast<classRoomItem *>( lvi ) ) != NULL )
-		{
-			l->getClient()->createActionMenu(
-				root->addMenu( l->getClient()->fullName() ) );
-		}
-	}*/
-}
-
-
-
-
 void classroomManager::updateClients( void )
 {
 	QVector<client *> vc = visibleClients();
@@ -853,9 +814,6 @@ void classroomManager::updateClients( void )
 	QTimer::singleShot( m_clientUpdateInterval * 1000, this,
 						SLOT( updateClients() ) );
 }
-
-
-
 
 
 
@@ -892,9 +850,9 @@ inline void classroomManager::cmdToVisibleClients( client::clientCmds _cmd,
 						const QString & _u_data )
 {
 	QVector<client *> vc = visibleClients();
-	foreach( client * cl, vc )
+	for( QVector<client *>::iterator it = vc.begin(); it != vc.end(); ++it )
 	{
-		cl->processCmd( _cmd, _u_data );
+		( *it )->processCmd( _cmd, _u_data );
 	}
 }
 
@@ -1832,7 +1790,7 @@ void classTreeWidget::dragMoveEvent( QDragMoveEvent * _e )
 		}
 
 		QTreeWidgetItem * target = itemAt( _e->pos() );
-		classRoom * classRoomTarget = dynamic_cast<classRoom *>( target );
+//		classRoom * classRoomTarget = dynamic_cast<classRoom *>( target );
 		
 		/* Don't drop clients to the root nor
 		 * classroom to its own child */

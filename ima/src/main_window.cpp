@@ -188,7 +188,7 @@ mainWindow::mainWindow( int _rctrl_screen ) :
 
 	toolButton * fsdemo_mode = new toolButton(
 			QPixmap( ":/resources/fullscreen_demo.png" ),
-			tr( "Demo on" ), tr( "Demo off" ),
+			tr( "Fullscreen Demo" ), tr( "Stop Demo" ),
 			tr( "Fullscreen demo" ),
 			tr( "In this mode your screen is being displayed on "
 				"all shown computers. Furthermore the users "
@@ -198,7 +198,7 @@ mainWindow::mainWindow( int _rctrl_screen ) :
 
 	toolButton * windemo_mode = new toolButton(
 			QPixmap( ":/resources/window_demo.png" ),
-			tr( "Demo/window on" ), tr( "Demo/window off" ),
+			tr( "Window Demo" ), tr( "Stop Demo" ),
 			tr( "Window demo" ),
 			tr( "In this mode your screen being displayed in a "
 				"window on all shown computers. The users are "

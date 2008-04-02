@@ -73,8 +73,6 @@ public:
 
 	QVector<client *> getLoggedInClients( void ) const;
 
-	void createActionMenu( QMenu * _m );
-
 	inline int updateInterval( void ) const
 	{
 		return( m_clientUpdateInterval );
@@ -178,8 +176,7 @@ private:
 	void saveSettingsOfChildren( QDomDocument & _doc, QDomElement & _root,
 						QTreeWidgetItem * _lvi,
 						bool _is_global_config );
-	void createActionMenu( QTreeWidgetItem * _p, QMenu * _m );
-	
+
 	void getHeaderInformation( const QDomElement & _header );
 	void loadTree( classRoom * _parentItem,
 					const QDomElement & _parentElement,
