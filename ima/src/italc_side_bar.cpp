@@ -136,14 +136,15 @@ void italcSideBar::paintEvent( QPaintEvent * _pe )
 	p.fillRect( 0, 0, width(), height(), linearGrad  );
 
 	p.rotate( 270 );
-	p.drawImage( -height()+3, 3, fastQImage(
+	p.drawImage( -height()+3, width()-22, fastQImage(
 			QImage( ":/resources/logo.png" ) ).scaled( 24, 24 ) );
 	QFont f = p.font();
 	f.setBold( TRUE );
 	f.setPointSize( 15 );
 	p.setFont( f );
 	p.setPen( QColor( 255, 216, 0 ) );
-	p.drawText( -height()+32, 22, QString( "iTALC %1" ).arg( PACKAGE_VERSION ) );
+	p.drawText( -height()+32, width()-3,
+				QString( "iTALC %1" ).arg( PACKAGE_VERSION ) );
 }
 
 
