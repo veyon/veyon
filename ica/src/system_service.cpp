@@ -273,7 +273,7 @@ bool systemService::install( void )
 	if( strlen( path ) + 4 + m_arg.length() < pathlength )
 	{
 		sprintf( servicecmd, "\"%s\" %s", path,
-						m_arg.toUtf8().constData() );
+					m_arg.toLocal8Bit().constData() );
 	}
 	else
 	{
@@ -300,8 +300,8 @@ bool systemService::install( void )
 	// Create an entry for the WinVNC service
 	SC_HANDLE hservice = CreateService(
 			hsrvmanager,		// SCManager database
-			m_name.toUtf8().constData(),	// name of service
-			m_displayName.toUtf8().constData(),// name to display
+			m_name.toLocal8Bit().constData(),	// name of service
+			m_displayName.toLocal8Bit().constData(),// name to display
 			SERVICE_ALL_ACCESS,	// desired access
 			SERVICE_WIN32_OWN_PROCESS | SERVICE_INTERACTIVE_PROCESS,
 						// service type
@@ -310,7 +310,7 @@ bool systemService::install( void )
 			servicecmd,		// service's binary
 			NULL,			// no load ordering group
 			NULL,			// no tag identifier
-			m_dependencies.toUtf8().constData(), // dependencies
+			NULL,//m_dependencies.toLocal8Bit().constData(), // dependencies
 			NULL,			// LocalSystem account
 			NULL );			// no password
 	if( hservice == NULL)
@@ -389,7 +389,7 @@ bool systemService::remove( void )
 	if( hsrvmanager )
 	{ 
 		SC_HANDLE hservice = OpenService( hsrvmanager,
-						m_name.toUtf8().constData(),
+						m_name.toLocal8Bit().constData(),
 							SERVICE_ALL_ACCESS );
 
 		if( hservice != NULL )
@@ -584,7 +584,7 @@ bool systemService::stop( void )
 	if( hsrvmanager )
 	{ 
 		SC_HANDLE hservice = OpenService( hsrvmanager,
-						m_name.toUtf8().constData(),
+					m_name.toLocal8Bit().constData(),
 							SERVICE_ALL_ACCESS );
 
 		if( hservice != NULL )
@@ -664,7 +664,7 @@ bool systemService::runAsService( void )
 	// Create a service entry table
 	SERVICE_TABLE_ENTRY dispatchTable[] =
 	{
-		{ m_name.toUtf8().data(), (LPSERVICE_MAIN_FUNCTION) main },
+		{ m_name.toLocal8Bit().data(), (LPSERVICE_MAIN_FUNCTION) main },
 		{ NULL, NULL }
 	} ;
 
@@ -715,7 +715,7 @@ void WINAPI systemService::main( DWORD _argc, char * * _argv )
 {
 	// register the service control handler
 	s_statusHandle = RegisterServiceCtrlHandler(
-					s_this->m_name.toUtf8().constData(),
+					s_this->m_name.toLocal8Bit().constData(),
 								serviceCtrl );
 
 	if( s_statusHandle == 0 )
