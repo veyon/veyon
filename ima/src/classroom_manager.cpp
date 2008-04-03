@@ -1790,7 +1790,6 @@ void classTreeWidget::dragMoveEvent( QDragMoveEvent * _e )
 		}
 
 		QTreeWidgetItem * target = itemAt( _e->pos() );
-//		classRoom * classRoomTarget = dynamic_cast<classRoom *>( target );
 		
 		/* Don't drop clients to the root nor
 		 * classroom to its own child */
@@ -1823,42 +1822,37 @@ void classTreeWidget::dropEvent( QDropEvent * _e )
 			target = target->parent();
 		}
 
-		QList<QTreeWidgetItem *> taken;
+		/* Workaround for Qt bug #155700 (fixed in Qt 4.3.4) */
+		bool sortingEnabled = isSortingEnabled();
+		setSortingEnabled( false );
 
-		// Remove selected items
+		/* Move selected items */
 		foreach ( QTreeWidgetItem * item, selectedItems() )
 		{
 			if ( item != target )
 			{
-				int idx = indexOfTopLevelItem( item );
-				if ( idx >= 0 )
+				QTreeWidgetItem * parent = item->parent();
+				if ( parent )
 				{
-					taken.append( takeTopLevelItem( idx ));
-				} 
+					parent->takeChild( parent->indexOfChild( item ) );
+				}
 				else
 				{
-					QTreeWidgetItem * parent = item->parent();
-					idx = parent->indexOfChild( item );
-					taken.append( parent->takeChild( idx ) );
+					takeTopLevelItem( indexOfTopLevelItem( item ) );
+				}
+
+				if ( target ) 
+				{
+					target->addChild( item );
+				}
+				else
+				{
+					addTopLevelItem( item );
 				}
 			}
 		}
 
-		// insert them back to their new positions
-		if ( target ) 
-		{
-			foreach ( QTreeWidgetItem * item, taken )
-			{
-				target->addChild( item );
-			}
-		}
-		else
-		{
-			foreach ( QTreeWidgetItem * item, taken )
-			{
-				addTopLevelItem( item );
-			}
-		}
+		setSortingEnabled( sortingEnabled );
 
 		_e->accept();
     }

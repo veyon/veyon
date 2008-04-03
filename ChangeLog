@@ -1,3 +1,8 @@
+2008-04-03	Andrei Krueger	<anc/at/iki/dot/fi>
+
+	* ima/src/classroom_manager.cpp:
+	drag'n'drop workaround for Qt bug #155700 (Qt < 4.3.4)
+
 2008-04-02	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* lib/src/isd_connection.cpp:
