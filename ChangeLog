@@ -1,3 +1,9 @@
+2008-04-03	Andriano Rino <rino-andr/at/users/dot/sourceforge/dot/net>
+
+	* ima/resources/it.qm:
+	* ima/resources/it.ts:
+	updated Italian localization
+
 2008-04-03	Andrei Krueger	<anc/at/iki/dot/fi>
 
 	* ima/src/classroom_manager.cpp:
