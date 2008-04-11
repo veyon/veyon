@@ -81,9 +81,9 @@ clientSettingsDialog::clientSettingsDialog( client * _client,
 
 	if( m_client != NULL )
 	{
-		nameEdit->setText( m_client->name() );
-		IPEdit->setText( m_client->localIP() );
+		hostnameEdit->setText( m_client->hostname() );
 		macEdit->setText( m_client->mac() );
+		nameEdit->setText( m_client->nickname() );
 		typeComboBox->setCurrentIndex( m_client->type() );
 	}
 }
@@ -93,14 +93,7 @@ clientSettingsDialog::clientSettingsDialog( client * _client,
 
 void clientSettingsDialog::accept( void )
 {
-	if( nameEdit->text() == "" )
-	{
-		messageBox::information( tr( "Missing name" ),
-			tr( "You didn't specify a name for the computer!" ),
-					QPixmap( ":/resources/stop.png" ) );
-		return;
-	}
-	if( IPEdit->text() == "" )
+	if( hostnameEdit->text() == "" )
 	{
 		messageBox::information( tr( "Missing IP-address/hostname" ),
 			tr( "You didn't specify an IP-address or hostname for "
@@ -123,7 +116,7 @@ void clientSettingsDialog::accept( void )
 
 	if( m_client == NULL )
 	{
-		m_client = new client( IPEdit->text(),
+		m_client = new client( hostnameEdit->text(),
 					macEdit->text(),
 					nameEdit->text(),
 				(client::types) typeComboBox->currentIndex(),
@@ -132,9 +125,9 @@ m_mainWindow->getClassroomManager()->m_classRooms[classRoomComboBox->currentInde
 	}
 	else
 	{
-		m_client->setName( nameEdit->text() );
-		m_client->setLocalIP( IPEdit->text() );
+		m_client->setHostname( hostnameEdit->text() );
 		m_client->setMac( macEdit->text() );
+		m_client->setNickname( nameEdit->text() );
 		m_client->setType( (client::types)
 						typeComboBox->currentIndex() );
 		m_client->setClassRoom(

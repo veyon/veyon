@@ -139,8 +139,8 @@ private:
 
 
 
-client::client( const QString & _local_ip,
-		const QString & _mac, const QString & _name,
+client::client( const QString & _hostname,
+		const QString & _mac, const QString & _nickname,
 		types _type, classRoom * _class_room,
 					mainWindow * _main_window, int _id ) :
 	QWidget( _main_window->workspace() ),
@@ -148,8 +148,8 @@ client::client( const QString & _local_ip,
 	m_connection( NULL ),
 	m_clickPoint( -1, -1 ),
 	m_origPos( -1, -1 ),
-	m_name( _name ),
-	m_localIP( _local_ip ),
+	m_hostname( _hostname ),
+	m_nickname( _nickname ),
 	m_mac( _mac ),
 	m_type( _type ),
 	m_reloadsAfterReset( 0 ),
@@ -173,7 +173,7 @@ client::client( const QString & _local_ip,
 
 	m_classRoomItem = new classRoomItem( this, _class_room );
 
-	m_connection = new ivsConnection( m_localIP,
+	m_connection = new ivsConnection( m_hostname,
 						ivsConnection::QualityLow );
 
 	setAttribute( Qt::WA_OpaquePaintEvent );
@@ -311,7 +311,7 @@ void client::changeMode( const modes _new_mode, isdConnection * _conn )
 				break;
 			case Mode_FullscreenDemo:
 			case Mode_WindowDemo:
-				_conn->demoServerDenyClient( m_localIP );
+				_conn->demoServerDenyClient( m_hostname );
 				m_updateThread->enqueueCommand(
 						updateThread::Cmd_StopDemo );
 				break;
@@ -327,7 +327,7 @@ void client::changeMode( const modes _new_mode, isdConnection * _conn )
 				break;
 			case Mode_FullscreenDemo:
 			case Mode_WindowDemo:
-				_conn->demoServerAllowClient( m_localIP );
+				_conn->demoServerAllowClient( m_hostname );
 				m_updateThread->enqueueCommand(
 						updateThread::Cmd_StartDemo,
 	QList<QVariant>()
@@ -350,7 +350,7 @@ void client::changeMode( const modes _new_mode, isdConnection * _conn )
 	{
 		if( _conn != NULL )
 		{
-			_conn->demoServerDenyClient( m_localIP );
+			_conn->demoServerDenyClient( m_hostname );
 		}
 		m_updateThread->enqueueCommand( updateThread::Cmd_StopDemo );
 		m_updateThread->enqueueCommand( updateThread::Cmd_UnlockScreen );
@@ -373,7 +373,7 @@ void client::setClassRoom( classRoom * _cr )
 void client::resetConnection( void )
 {
 	m_updateThread->enqueueCommand( updateThread::Cmd_ResetConnection,
-								m_localIP );
+								m_hostname );
 }
 
 
@@ -434,7 +434,7 @@ bool client::userLoggedIn( void )
 	QMutexLocker ml( &m_syncMutex );
 
 	return( m_connection->state() == ivsConnection::Connected ||
-		m_connection->reset( m_localIP, &m_reloadsAfterReset ) ==
+		m_connection->reset( m_hostname, &m_reloadsAfterReset ) ==
 						ivsConnection::Connected );
 }
 
@@ -625,7 +625,7 @@ void client::paintEvent( QPaintEvent * _pe )
 
 	bool showUsername = m_mainWindow->getClassroomManager()->showUsername();
 	const QString s = (showUsername && m_user != "") ? m_user :
-		( m_name + " (" + m_classRoomItem->parent()->text( 0 ) +
+		( name() + " (" + m_classRoomItem->parent()->text( 0 ) +
 									")" );
 	QFont f = p.font();
 	f.setBold( TRUE );
@@ -804,7 +804,7 @@ void client::clientDemo( const QString & )
 
 	//m_mainWindow->checkModeButton( client::Mode_FullscreenDemo );
 
-	m_mainWindow->remoteControlDisplay( m_localIP, TRUE, TRUE );
+	m_mainWindow->remoteControlDisplay( m_hostname, TRUE, TRUE );
 }
 
 
@@ -814,7 +814,7 @@ void client::viewLive( const QString & )
 {
 	changeMode( Mode_Overview, m_mainWindow->localISD() );
 
-	m_mainWindow->remoteControlDisplay( m_localIP, TRUE );
+	m_mainWindow->remoteControlDisplay( m_hostname, TRUE );
 }
 
 
@@ -824,7 +824,7 @@ void client::remoteControl( const QString & )
 {
 	changeMode( Mode_Overview, m_mainWindow->localISD() );
 
-	m_mainWindow->remoteControlDisplay( m_localIP );
+	m_mainWindow->remoteControlDisplay( m_hostname );
 }
 
 

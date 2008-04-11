@@ -155,7 +155,7 @@ public:
 		Type_Other
 	} ;
 
-	client( const QString & _local_ip,
+	client( const QString & _hostname,
 		const QString & _mac, const QString & _name, types _type,
 		classRoom * _class_room, mainWindow * _main_window,
 								int _id = -1 );
@@ -177,12 +177,17 @@ public:
 
 	inline QString name( void ) const
 	{
-		return( m_name );
+		return( m_nickname.isEmpty() ? m_hostname : m_nickname );
 	}
 
-	inline const QString & localIP( void ) const
+	inline const QString & hostname( void ) const
 	{
-		return( m_localIP );
+		return( m_hostname );
+	}
+
+	inline const QString & nickname( void ) const
+	{
+		return( m_nickname );
 	}
 
 	inline const QString & mac( void ) const
@@ -200,14 +205,14 @@ public:
 		return( m_user );
 	}
 
-	inline void setName( const QString & _name )
+	inline void setNickname( const QString & _nickname )
 	{
-		m_name = _name;
+		m_nickname = _nickname;
 	}
 
-	inline void setLocalIP( const QString & _local_ip )
+	inline void setHostname( const QString & _hostname )
 	{
-		m_localIP = _local_ip;
+		m_hostname = _hostname;
 	}
 
 	inline void setMac( const QString & _mac )
@@ -314,8 +319,8 @@ private:
 	QPoint m_origPos;
 	QSize m_origSize;
 
-	QString m_name;
-	QString m_localIP;
+	QString m_hostname;
+	QString m_nickname;
 	QString m_mac;
 	types m_type;
 	int m_reloadsAfterReset;

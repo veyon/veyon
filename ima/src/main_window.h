@@ -135,7 +135,7 @@ public:
 		return( s_atExit );
 	}
 
-	void remoteControlDisplay( const QString & _ip,
+	void remoteControlDisplay( const QString & _hostname,
 					bool _view_only = FALSE,
 					bool _stop_demo_afterwards = FALSE );
 

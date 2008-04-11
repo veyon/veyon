@@ -377,10 +377,10 @@ void classroomManager::saveSettingsOfChildren( QDomDocument & _doc,
 				client_element.setAttribute( "id", c->id() );
 				if( _is_global_config )
 				{
+					client_element.setAttribute( "hostname",
+								c->hostname() );
 					client_element.setAttribute( "name",
-								c->name() );
-					client_element.setAttribute( "localip",
-								c->localIP() );
+								c->nickname() );
 					client_element.setAttribute( "mac",
 								c->mac() );
 					client_element.setAttribute( "type",
@@ -574,8 +574,8 @@ void classroomManager::loadTree( classRoom * _parent_item,
 			if( _is_global_config )
 			{
 				// add new classroom
-				QString name = node.toElement().attribute(
-								"name" );
+				QDomElement e = node.toElement();
+				QString name = e.attribute( "name" );
 				if( _parent_item == NULL )
 				{
 					cur_item = new classRoom( name, this,
@@ -598,45 +598,41 @@ void classroomManager::loadTree( classRoom * _parent_item,
 		{
 			if( _is_global_config )
 			{
-                                client * c;
-				// add new client
-				QString local_ip = node.toElement().attribute(
-								"localip" );
-				QString mac = node.toElement().attribute(
-									"mac" );
-				QString name = node.toElement().attribute(
-								"name" );
+				QDomElement e = node.toElement();
+				QString hostname = e.hasAttribute( "hostname" )
+					? e.attribute( "hostname" )
+					: e.attribute( "localip" );
+				QString mac = e.attribute( "mac" );
+				QString nickname = e.attribute( "name" );
 
-	c = new client( local_ip, mac, name,
-				(client::types) node.toElement().
-						attribute( "type" ).toInt(),
-			_parent_item, getMainWindow(), node.toElement().
-						attribute( "id" ).toInt() );
+				// add new client
+                                client * c = new client( hostname,
+						mac,
+						nickname,
+						(client::types)e.attribute(
+							"type" ).toInt(),
+						_parent_item,
+						getMainWindow(),
+						e.attribute( "id" ).toInt() );
 				c->hide();
 			}
 			else
 			{
+				QDomElement e = node.toElement();
 				client * c = client::clientFromID(
-						node.toElement().attribute(
-							"id" ).toInt() );
+						e.attribute( "id" ).toInt() );
 				if( c == NULL )
 				{
 					continue;
 				}
-				c->move(
-			node.toElement().attribute( "x" ).toInt(),
-			node.toElement().attribute( "y" ).toInt() );
-				c->m_rasterX = node.toElement().attribute(
-								"x" ).toInt();
-				c->m_rasterY = node.toElement().attribute(
-								"y" ).toInt();
-				c->setFixedSize( node.toElement().attribute(
-								"w" ).toInt(),
-						node.toElement().attribute(
-								"h" ).toInt() );
+				c->move( e.attribute( "x" ).toInt(),
+					e.attribute( "y" ).toInt() );
+				c->m_rasterX = e.attribute( "x" ).toInt();
+				c->m_rasterY = e.attribute( "y" ).toInt();
+				c->setFixedSize( e.attribute( "w" ).toInt(),
+						e.attribute( "h" ).toInt() );
 
-				if( node.toElement().attribute( "visible" ) ==
-									"yes" )
+				if( e.attribute( "visible" ) == "yes" )
 				{
 					c->show();
 				}
@@ -834,7 +830,7 @@ void classroomManager::clickedExportToFile( void )
 	QVector<client *> clients = getLoggedInClients();
 	foreach( client * cl, clients) 
 	{
-		output += cl->user() + "\t@ " + cl->name() + " [" + cl->localIP() + "]\n";
+		output += cl->user() + "\t@ " + cl->name() + " [" + cl->hostname() + "]\n";
 	}
 
 	QFile outfile( outfn );
@@ -2110,7 +2106,7 @@ classRoomItem::classRoomItem( client * _client, QTreeWidgetItem * _parent ) :
 		Qt::ItemIsEnabled );
 
 	setVisible( m_client->isVisible() );
-	setText( 1, m_client->localIP() );
+	setText( 1, m_client->hostname() );
 	setUser( m_client->user() );
 }
 

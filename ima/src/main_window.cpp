@@ -394,7 +394,7 @@ void mainWindow::closeEvent( QCloseEvent * _ce )
 
 
 
-void mainWindow::remoteControlDisplay( const QString & _ip, bool _view_only,
+void mainWindow::remoteControlDisplay( const QString & _hostname, bool _view_only,
 						bool _stop_demo_afterwards )
 {
 	QWriteLocker wl( &m_rctrlLock );
@@ -402,7 +402,7 @@ void mainWindow::remoteControlDisplay( const QString & _ip, bool _view_only,
 	{
 		return;
 	}
-	m_remoteControlWidget = new remoteControlWidget( _ip, _view_only,
+	m_remoteControlWidget = new remoteControlWidget( _hostname, _view_only,
 									this );
 	int x = 0;
 	for( int i = 0; i < m_remoteControlScreen; ++i )

@@ -1,3 +1,15 @@
+2008-04-11	Andrei Krueger	<anc/at/iki/dot/fi>
+
+	* ima/dialogs/client_settings.ui:
+	* ima/src/main_window.h:
+	* ima/src/dialogs.cpp:
+	* ima/src/client.h:
+	* ima/src/main_window.cpp:
+	* ima/src/client.cpp:
+	* ima/src/classroom_manager.cpp:
+	Name (nickname) of the client is now optional,
+	hostname (ip) is used as default (closes #1886578)
+
 2008-04-03	Andriano Rino <rino-andr/at/users/dot/sourceforge/dot/net>
 
 	* ima/resources/it.qm:
