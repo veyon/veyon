@@ -1569,17 +1569,34 @@ void classroomManager::removeClassRoom( void )
 			continue;
 		}
 
+		removeClassRoom( cr );
+	}
+}
+
+
+
+
+void classroomManager::removeClassRoom( classRoom * cr )
+{
 		m_view->setItemHidden( cr, TRUE );
 
-		QVector<client *> vc;
-		getVisibleClients( cr, vc );
-		foreach( client * cl, vc )
+		for ( int i = 0 ; i < cr->childCount(); ++i )
 		{
-			cl->hide();
-			m_clientsToRemove.push_back( cl );
+			if ( classRoomItem * cri =
+					dynamic_cast<classRoomItem *>( cr->child( i ) ) )
+			{
+				client * cl = cri->getClient();
+				cl->hide();
+				m_clientsToRemove.push_back( cl );
+			}
+			else if ( classRoom * childCr =
+					dynamic_cast<classRoom *>( cr->child( i ) ) )
+			{
+				removeClassRoom( childCr );
+			}
 		}
+
 		m_classRoomsToRemove.push_back( cr );
-	}
 }
 
 
@@ -1643,14 +1660,22 @@ void classroomManager::addClassRoom( void )
 	if( ok && !classroom_name.isEmpty() )
 	{
 		classRoom * sel_cr = NULL;
-		foreach( classRoom * cr, m_classRooms )
+		foreach( QTreeWidgetItem * item, m_view->selectedItems() )
 		{
-			if( m_view->isItemSelected( cr ) )
+			sel_cr = dynamic_cast<classRoom *>( item );
+
+			if ( !sel_cr && dynamic_cast<classRoomItem *>( item ) )
 			{
-				sel_cr = cr;
+				sel_cr = dynamic_cast<classRoom *>( 
+					item->parent() );
+			}
+
+			if ( sel_cr )
+			{
 				break;
 			}
 		}
+
 		if( sel_cr != NULL )
 		{
 			m_classRooms.push_back( new classRoom( classroom_name,
@@ -1715,7 +1740,7 @@ classTreeWidget::classTreeWidget( QWidget * _parent ) :
 
 void classTreeWidget::mousePressEvent( QMouseEvent * _me )
 {
-	classRoomItem * item = dynamic_cast<classRoomItem *>(itemAt( _me->pos() ) );
+	classRoomItem * item = dynamic_cast<classRoomItem *>( itemAt( _me->pos() ) );
 
 	if( item && _me->button() == Qt::LeftButton )
 	{

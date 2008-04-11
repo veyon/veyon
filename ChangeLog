@@ -1,5 +1,12 @@
 2008-04-11	Andrei Krueger	<anc/at/iki/dot/fi>
 
+	* classroom_manager.cpp:
+	* classroom_manager.h:
+	Fixed removing of child classroom (closes #1936559)
+	Improved addClassRoom.
+
+2008-04-11	Andrei Krueger	<anc/at/iki/dot/fi>
+
 	* ima/dialogs/client_settings.ui:
 	* ima/src/main_window.h:
 	* ima/src/dialogs.cpp:

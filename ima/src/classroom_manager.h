@@ -189,6 +189,8 @@ private:
 
 	void resizeClients( const int _new_width );
 
+	void removeClassRoom( classRoom * _cr );
+
 
 	classTreeWidget * m_view;
 
