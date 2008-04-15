@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="pl_PL">
-<defaultcodec></defaultcodec>
 <context>
     <name>about</name>
     <message>
@@ -92,7 +91,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Administracja</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1806"/>
+        <location filename="../src/classroom_manager.cpp" line="1955"/>
         <source>Administration</source>
         <translation>Administracja</translation>
     </message>
@@ -172,131 +171,131 @@ Please edit it. Otherwise you should delete this file.</source>
 Popraw go lub usuń.</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1910"/>
+        <location filename="../src/classroom_manager.cpp" line="2059"/>
         <source>Power down computers</source>
         <translation>Wyłącz komputery</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1913"/>
+        <location filename="../src/classroom_manager.cpp" line="2062"/>
         <source>Are you sure want to power down all visible computers?</source>
         <translation>Czy chcesz wyłączyć wszystkie widoczne komputery?</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1870"/>
+        <location filename="../src/classroom_manager.cpp" line="2019"/>
         <source>Logout user</source>
         <translation>Wyloguj użytkownika</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1873"/>
+        <location filename="../src/classroom_manager.cpp" line="2022"/>
         <source>Are you sure want logout all users on all visible computers ?</source>
         <translation>Czy chcesz wylogować użytkowników na wszystkich widocznych komputerach?</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1316"/>
+        <location filename="../src/classroom_manager.cpp" line="1264"/>
         <source>Show/hide</source>
         <translation>Pokaż/ukryj</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1321"/>
+        <location filename="../src/classroom_manager.cpp" line="1269"/>
         <source>Edit settings</source>
         <translation>Edycja</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1326"/>
+        <location filename="../src/classroom_manager.cpp" line="1274"/>
         <source>Remove</source>
         <translation>Usuń</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1308"/>
+        <location filename="../src/classroom_manager.cpp" line="1256"/>
         <source>Actions</source>
         <translation>Polecenia</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1343"/>
+        <location filename="../src/classroom_manager.cpp" line="1291"/>
         <source>Show all computers in classroom</source>
         <translation>Pokaż wszystkie komputery w pracowni</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1348"/>
+        <location filename="../src/classroom_manager.cpp" line="1296"/>
         <source>Hide all computers in classroom</source>
         <translation>Ukryj wszystkie komputery w pracowni</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1358"/>
+        <location filename="../src/classroom_manager.cpp" line="1306"/>
         <source>Edit name</source>
         <translation>Zmień nazwę</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1617"/>
+        <location filename="../src/classroom_manager.cpp" line="1565"/>
         <source>Remove classroom</source>
         <translation>Usuń pracownię</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1336"/>
+        <location filename="../src/classroom_manager.cpp" line="1284"/>
         <source>Actions for %1</source>
         <translation>Polecenia dla %1</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1373"/>
+        <location filename="../src/classroom_manager.cpp" line="1321"/>
         <source>Action for whole classroom</source>
         <translation>Polecenie dla całej pracowni</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1682"/>
+        <location filename="../src/classroom_manager.cpp" line="1630"/>
         <source>Add computer</source>
         <translation>Dodaj komputer</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1389"/>
+        <location filename="../src/classroom_manager.cpp" line="1337"/>
         <source>Add classroom</source>
         <translation>Dodaj pracownię</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1593"/>
+        <location filename="../src/classroom_manager.cpp" line="1541"/>
         <source>New name for classroom</source>
         <translation>Nowa nazwa dla pracowni</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1595"/>
+        <location filename="../src/classroom_manager.cpp" line="1543"/>
         <source>Please enter a new name for classroom &quot;%1&quot;.</source>
         <translation>Wprowadź nową nazwę dla pracowni &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1620"/>
+        <location filename="../src/classroom_manager.cpp" line="1568"/>
         <source>Are you sure want to remove classroom &quot;%1&quot;?
 All computers in it will be removed as well!</source>
         <translation>Usunąć pracownię &quot;%1&quot; ? 
 Skasujesz również wszystkie komputery w niej!</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1649"/>
+        <location filename="../src/classroom_manager.cpp" line="1597"/>
         <source>Missing classroom</source>
         <translation>Brak pracowni</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1655"/>
+        <location filename="../src/classroom_manager.cpp" line="1603"/>
         <source>Before adding computers you have to create at least one classroom.
 Do you want to create a new classrom now?</source>
         <translation>Aby dodać komputery musisz stworzyć co najmniej jedną pracownię. 
 Chcesz stworzyć pracownię teraz?</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1698"/>
+        <location filename="../src/classroom_manager.cpp" line="1646"/>
         <source>New classroom</source>
         <translation>Nowa pracownia</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1697"/>
+        <location filename="../src/classroom_manager.cpp" line="1645"/>
         <source>Please enter the name of the classroom you want to create.</source>
         <translation>Wprowadz nazwę nowej pracowni.</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1897"/>
+        <location filename="../src/classroom_manager.cpp" line="2046"/>
         <source>Reboot computers</source>
         <translation>Zrestartuj komputery</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1899"/>
+        <location filename="../src/classroom_manager.cpp" line="2048"/>
         <source>Are you sure want to reboot all visible computers?</source>
         <translation>Czy chcesz usunąć wszystkie widoczne komputery?</translation>
     </message>
@@ -318,7 +317,7 @@ Dalsze działania znajdziesz w menu kontekstowym komputera lub pracowni.
 </translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1353"/>
+        <location filename="../src/classroom_manager.cpp" line="1301"/>
         <source>Hide teacher computers</source>
         <translation>Ukryj komputery personelu</translation>
     </message>
@@ -358,12 +357,12 @@ Dalsze działania znajdziesz w menu kontekstowym komputera lub pracowni.
         <translation>Rozmieść okna automatycznie</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="866"/>
+        <location filename="../src/classroom_manager.cpp" line="824"/>
         <source>Select output-file</source>
         <translation>Wybierz plik wyjściowy</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="868"/>
+        <location filename="../src/classroom_manager.cpp" line="826"/>
         <source>Text files (*.txt)</source>
         <translation>Pliki tekstowe (*.txt)</translation>
     </message>
@@ -431,27 +430,27 @@ Dalsze działania znajdziesz w menu kontekstowym komputera lub pracowni.
         <translation>Wykonaj polecenie</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="633"/>
+        <location filename="../src/client.cpp" line="647"/>
         <source>Unknown state</source>
         <translation>Stan nieznany</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="641"/>
+        <location filename="../src/client.cpp" line="655"/>
         <source>No user logged in</source>
         <translation>Brak zalogowanego użytkownika</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="645"/>
+        <location filename="../src/client.cpp" line="659"/>
         <source>Host unreachable</source>
         <translation>Komputer niedostępny</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="649"/>
+        <location filename="../src/client.cpp" line="663"/>
         <source>Demo running</source>
         <translation>Demo w trakcie</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="653"/>
+        <location filename="../src/client.cpp" line="667"/>
         <source>Desktop locked</source>
         <translation>Pulpit zablokowany</translation>
     </message>
@@ -1154,22 +1153,22 @@ Stwórz nową parę kluczy używając ICA (dokumentacja na http://italc.sf.net/w
     <message>
         <location filename="../src/main_window.cpp" line="191"/>
         <source>Demo on</source>
-        <translation>Demo</translation>
+        <translation type="obsolete">Demo</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="191"/>
         <source>Demo off</source>
-        <translation>WYŁĄCZ DEMO</translation>
+        <translation type="obsolete">WYŁĄCZ DEMO</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="201"/>
         <source>Demo/window on</source>
-        <translation>Demo (okno)</translation>
+        <translation type="obsolete">Demo (okno)</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="201"/>
         <source>Demo/window off</source>
-        <translation>WYŁĄCZ DEMO</translation>
+        <translation type="obsolete">WYŁĄCZ DEMO</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="211"/>
@@ -1210,6 +1209,21 @@ Stwórz nową parę kluczy używając ICA (dokumentacja na http://italc.sf.net/w
         <location filename="../src/main_window.cpp" line="278"/>
         <source>If you need to support someone at a certain computer you can click this button and enter the according hostname or IP afterwards.</source>
         <translation>Wpisz adres IP lub nazwę komputera, przy którym znajduje się osoba, której chcesz udzielić pomocy.</translation>
+    </message>
+    <message>
+        <location filename="../src/main_window.cpp" line="191"/>
+        <source>Fullscreen Demo</source>
+        <translation>Demo</translation>
+    </message>
+    <message>
+        <location filename="../src/main_window.cpp" line="201"/>
+        <source>Stop Demo</source>
+        <translation>WYŁĄCZ DEMO</translation>
+    </message>
+    <message>
+        <location filename="../src/main_window.cpp" line="201"/>
+        <source>Window Demo</source>
+        <translation>Demo (okno)</translation>
     </message>
 </context>
 <context>

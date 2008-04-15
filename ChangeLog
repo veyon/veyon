@@ -1,3 +1,25 @@
+2008-04-15	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* ica/ica.qrc:
+	* ica/resources/sk.qm:
+	* ica/resources/sk.ts:
+	* setup/setup.qrc:
+	* setup/resources/sk.ts:
+	* setup/resources/sk.qm:
+	* ima/italc.qrc:
+	* ima/resources/pl.qm:
+	* ima/resources/sk.ts:
+	* ima/resources/sk.qm:
+	* ima/resources/pl.ts:
+	* lib/italc_core.qrc:
+	* lib/resources/sk.ts:
+	* lib/resources/sk.qm:
+	added Slovakian localization-files by Jan Valuska
+	<jvaluska/at/gymzv8rocne/dot/edu/dot/sk>
+
+	* ima/src/main.cpp:
+	fixed loading of country-specific localizations
+
 2008-04-11	Andrei Krueger	<anc/at/iki/dot/fi>
 
 	* classroom_manager.cpp:
