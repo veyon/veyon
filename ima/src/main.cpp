@@ -53,7 +53,11 @@ int main( int argc, char * * argv )
 	app.connect( &app, SIGNAL( lastWindowClosed() ), SLOT( quit() ) );
 
 	// load translations
-	const QString loc = QLocale::system().name().left( 2 );
+	QString loc =  QLocale::system().name().toLower();
+	if( loc.left( 2 ) == loc.right( 2 ) )
+	{
+		loc = loc.left( 2 );
+	}
 
 	QTranslator app_tr;
 	app_tr.load( ":/resources/" + loc + ".qm" );
