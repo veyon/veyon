@@ -1,5 +1,12 @@
 2008-04-15	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
+	* ica/resources/pt_br.ts:
+	* setup/resources/pt_br.ts:
+	* ima/resources/pt_br.ts:
+	* ima/resources/pt_br.qm:
+	* lib/resources/pt_br.ts:
+	updated Brazilian Portuguese localization-files
+
 	* ica/ica.qrc:
 	* ica/resources/sk.qm:
 	* ica/resources/sk.ts:

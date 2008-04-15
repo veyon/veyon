@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="pt_BR">
+<defaultcodec></defaultcodec>
 <context>
     <name>about</name>
     <message>
@@ -35,7 +36,7 @@ p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Idioma atual não traduzido ainda (ou Inglês nativo).&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Se estiver interessado em traduzir iTALC para o seu idioma local ou outo idióma ou retificar/melhorar uma tradução existente favor entrar em contato com os desenvolvedores do iTALC!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Se estiver interessado em traduzir iTALC para o seu idioma local ou outro idióma ou retificar/melhorar uma tradução existente favor entrar em contato com os desenvolvedores do iTALC!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/about.ui" line="75"/>
@@ -71,7 +72,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>classRoom</name>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1886"/>
+        <location filename="../src/classroom_manager.cpp" line="1806"/>
         <source>Administration</source>
         <translation>Gerenciamento</translation>
     </message>
@@ -79,27 +80,27 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>classroomManager</name>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1363"/>
+        <location filename="../src/classroom_manager.cpp" line="1373"/>
         <source>Action for whole classroom</source>
         <translation>Acção para a sala inteira</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1298"/>
+        <location filename="../src/classroom_manager.cpp" line="1308"/>
         <source>Actions</source>
         <translation>Acções</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1326"/>
+        <location filename="../src/classroom_manager.cpp" line="1336"/>
         <source>Actions for %1</source>
         <translation>Acções para %1</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1379"/>
+        <location filename="../src/classroom_manager.cpp" line="1389"/>
         <source>Add classroom</source>
         <translation>Adicionar sala</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1672"/>
+        <location filename="../src/classroom_manager.cpp" line="1682"/>
         <source>Add computer</source>
         <translation>Adicionar computador</translation>
     </message>
@@ -109,22 +110,22 @@ p, li { white-space: pre-wrap; }
         <translation>Ajustar tamanho de janelas</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1953"/>
+        <location filename="../src/classroom_manager.cpp" line="1873"/>
         <source>Are you sure want logout all users on all visible computers ?</source>
         <translation>Tem certeza que quer fazer logof de todos os usuários visíveis?</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1993"/>
+        <location filename="../src/classroom_manager.cpp" line="1913"/>
         <source>Are you sure want to power down all visible computers?</source>
         <translation>Tem certeza que quer desligar tots os computadores visíveis?</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1979"/>
+        <location filename="../src/classroom_manager.cpp" line="1899"/>
         <source>Are you sure want to reboot all visible computers?</source>
         <translation>Tem certeza que quer reiniciar todos os computadores visíveis?</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1610"/>
+        <location filename="../src/classroom_manager.cpp" line="1620"/>
         <source>Are you sure want to remove classroom &quot;%1&quot;?
 All computers in it will be removed as well!</source>
         <translation>Tem certeza que quer remover sala  &quot;%1&quot;?
@@ -136,7 +137,7 @@ Todos os computadores desta sala serão removidos também!</translation>
         <translation>Re-arranjar janelas automaticamente</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1645"/>
+        <location filename="../src/classroom_manager.cpp" line="1655"/>
         <source>Before adding computers you have to create at least one classroom.
 Do you want to create a new classrom now?</source>
         <translation>Antes de adicionar computadores tem que criar pelo menos uma sala.
@@ -160,12 +161,12 @@ You will have to add at least one classroom and computers using the classroom-ma
 É necessário adicionar no mínimo uma sala e computadores usando o gerenciador de salas que se encontra no lado esquerdo do programa.</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1348"/>
+        <location filename="../src/classroom_manager.cpp" line="1358"/>
         <source>Edit name</source>
         <translation>Editar nome</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1311"/>
+        <location filename="../src/classroom_manager.cpp" line="1321"/>
         <source>Edit settings</source>
         <translation>Editar configurações</translation>
     </message>
@@ -193,12 +194,12 @@ Favor editar o arquivo. Senão deve deltar este arquivo.</translation>
         <translation>Exportar para arquivo de texto</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1338"/>
+        <location filename="../src/classroom_manager.cpp" line="1348"/>
         <source>Hide all computers in classroom</source>
         <translation>Esconder todos os computadores da sala</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1343"/>
+        <location filename="../src/classroom_manager.cpp" line="1353"/>
         <source>Hide teacher computers</source>
         <translation>Esconder computadores do professor</translation>
     </message>
@@ -208,22 +209,22 @@ Favor editar o arquivo. Senão deve deltar este arquivo.</translation>
         <translation>Endereço - IP</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1950"/>
+        <location filename="../src/classroom_manager.cpp" line="1870"/>
         <source>Logout user</source>
         <translation>Fazer logoff do usuário</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1639"/>
+        <location filename="../src/classroom_manager.cpp" line="1649"/>
         <source>Missing classroom</source>
         <translation>Sala não encontrada</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1688"/>
+        <location filename="../src/classroom_manager.cpp" line="1698"/>
         <source>New classroom</source>
         <translation>Nova sala</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1583"/>
+        <location filename="../src/classroom_manager.cpp" line="1593"/>
         <source>New name for classroom</source>
         <translation>Novo nome para a sala</translation>
     </message>
@@ -233,32 +234,32 @@ Favor editar o arquivo. Senão deve deltar este arquivo.</translation>
         <translation>ARquivo de configuração não encontrado</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1585"/>
+        <location filename="../src/classroom_manager.cpp" line="1595"/>
         <source>Please enter a new name for classroom &quot;%1&quot;.</source>
         <translation>Favor digitar um novo nome para a sala &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1687"/>
+        <location filename="../src/classroom_manager.cpp" line="1697"/>
         <source>Please enter the name of the classroom you want to create.</source>
         <translation>Favor digitar o nome da sala que deseja criar.</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1990"/>
+        <location filename="../src/classroom_manager.cpp" line="1910"/>
         <source>Power down computers</source>
         <translation>Desligar computadores</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1977"/>
+        <location filename="../src/classroom_manager.cpp" line="1897"/>
         <source>Reboot computers</source>
         <translation>Reiniciar computadores</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1316"/>
+        <location filename="../src/classroom_manager.cpp" line="1326"/>
         <source>Remove</source>
         <translation>Remover</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1607"/>
+        <location filename="../src/classroom_manager.cpp" line="1617"/>
         <source>Remove classroom</source>
         <translation>Remover sala</translation>
     </message>
@@ -268,7 +269,7 @@ Favor editar o arquivo. Senão deve deltar este arquivo.</translation>
         <translation>Selecionar arquivo de saida</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1333"/>
+        <location filename="../src/classroom_manager.cpp" line="1343"/>
         <source>Show all computers in classroom</source>
         <translation>Mostrar todos os computadores da sala</translation>
     </message>
@@ -278,7 +279,7 @@ Favor editar o arquivo. Senão deve deltar este arquivo.</translation>
         <translation>Mostrar nomes de usuários</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1306"/>
+        <location filename="../src/classroom_manager.cpp" line="1316"/>
         <source>Show/hide</source>
         <translation>Mostrar/Esconder</translation>
     </message>
@@ -316,12 +317,12 @@ Favor editar o arquivo. Senão deve deltar este arquivo.</translation>
 <context>
     <name>client</name>
     <message>
-        <location filename="../src/client.cpp" line="659"/>
+        <location filename="../src/client.cpp" line="649"/>
         <source>Demo running</source>
-        <translation>Demonstração em andamento</translation>
+        <translation>Demo em andamento</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="663"/>
+        <location filename="../src/client.cpp" line="653"/>
         <source>Desktop locked</source>
         <translation>Travar área de trabalho</translation>
     </message>
@@ -333,17 +334,17 @@ Favor editar o arquivo. Senão deve deltar este arquivo.</translation>
     <message>
         <location filename="../src/client.cpp" line="208"/>
         <source>Fullscreen demo</source>
-        <translation>Demonstração na tela inteira</translation>
+        <translation>Demo na tela inteira</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="655"/>
+        <location filename="../src/client.cpp" line="645"/>
         <source>Host unreachable</source>
         <translation>Host inacessível</translation>
     </message>
     <message>
         <location filename="../src/client.cpp" line="62"/>
         <source>Let student show demo</source>
-        <translation>Dexar o aluno mostrar o demo</translation>
+        <translation>Deixar o aluno mostrar um demo</translation>
     </message>
     <message>
         <location filename="../src/client.cpp" line="214"/>
@@ -361,7 +362,7 @@ Favor editar o arquivo. Senão deve deltar este arquivo.</translation>
         <translation>Fazer logoff do usuário</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="651"/>
+        <location filename="../src/client.cpp" line="641"/>
         <source>No user logged in</source>
         <translation>Nenhum usuário logado</translation>
     </message>
@@ -401,7 +402,7 @@ Favor editar o arquivo. Senão deve deltar este arquivo.</translation>
         <translation>Capturar tela</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="643"/>
+        <location filename="../src/client.cpp" line="633"/>
         <source>Unknown state</source>
         <translation>Em estado desconhecido</translation>
     </message>
@@ -413,7 +414,7 @@ Favor editar o arquivo. Senão deve deltar este arquivo.</translation>
     <message>
         <location filename="../src/client.cpp" line="211"/>
         <source>Window demo</source>
-        <translation>Demonstração na janela</translation>
+        <translation>Demo janela</translation>
     </message>
 </context>
 <context>
@@ -456,7 +457,7 @@ Favor editar o arquivo. Senão deve deltar este arquivo.</translation>
     <message>
         <location filename="../dialogs/client_settings.ui" line="451"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;When showing a demo to more than one host in a foreign network, it&apos;s meaningful to activate this option for at least one of the involved hosts. This way all data is only sent once to the demo-replicator which provides the data for all the other clients in the network. Especially on slow links usage of this option is essential. Normally you should enable this option on the subnet-gateway (see option above).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Enquanto fazer uma demonstração para pais de um computador na rede distante (v. g. outra escola) faz sentido ativar esta opção para no mínimo um computador desta subrede. Assim todos os dados são enviados singularmente para este repetitor de demonstrações que redistribui os dados para os outros computadores desta subrede. Especialmente em links devagares o uso desta opção torna se essencial. Normalmente deve escolher o computador gateway (veja opção acima).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Enquanto fazer um demo para mais de um computador numa rede distante (v. g. outra escola) faz sentido ativar esta opção para no mínimo um computador desta subrede. Assim todos os dados são enviados singularmente para este repetitor de demos que redistribui os dados para os outros computadores desta subrede. Especialmente em links devagares o uso desta opção torna se essencial. Normalmente deve escolher o computador gateway (veja opção acima).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/client_settings.ui" line="61"/>
@@ -661,7 +662,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../dialogs/config.ui" line="194"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Here you can select the network interface with the according IP-address which is used for demo-purposes. Actually this only concerns you if your computer has more than one network-card. Incorrect settings may result in being able to show a demo.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Aqui pode se selecionar a interface da rede referido ao endereço IP usado para fins de demonstração. Na verdade isso somente refere se o computador tem mais de uma placa de rede. Configurações incorretas podem inibir demonstrações.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Aqui pode se selecionar a interface da rede referido ao endereço IP usado para fins de demonstração (demo). Na verdade isso somente refere se o computador tem mais de uma placa de rede. Configurações incorretas podem inibir demonstrações.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/config.ui" line="98"/>
@@ -699,7 +700,7 @@ p, li { white-space: pre-wrap; }
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Aqui pode determinar a qualidade desejada da tela na demonstração. Qualidade baixa significa menos Uso da CPU e diminue trafego na rede enquanto qualidade alta pode deixar o seu computador lento e baixar a reiteração da tela da demnonstração. Você deve experimentar várias configurações para otimizar a visualizaçõ de demonstrações.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Aqui pode determinar a qualidade desejada da tela na demonstração (demo). Qualidade baixa significa menos Uso da CPU e diminue trafego na rede enquanto qualidade alta pode deixar o seu computador lento e baixar a reiteração da tela da demonstração. Você deve experimentar várias configurações para otimizar a visualizaçõ de demos.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/config.ui" line="101"/>
@@ -744,7 +745,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../dialogs/config.ui" line="161"/>
         <source>Network interface for demo-mode</source>
-        <translation>Interface de rede para modo de demonstração</translation>
+        <translation>Interface de rede para modo de demo</translation>
     </message>
     <message>
         <location filename="../dialogs/config.ui" line="388"/>
@@ -794,7 +795,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../dialogs/config.ui" line="422"/>
         <source>Your role (needs according keys!)</source>
-        <translation>Sua  fnção (referidos chaves necessarios!)</translation>
+        <translation>Sua  função (referidos chaves necessarios!)</translation>
     </message>
 </context>
 <context>
@@ -860,22 +861,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/main_window.cpp" line="191"/>
         <source>Demo off</source>
-        <translation>Parar demonstração</translation>
+        <translation>Parar demo</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="191"/>
         <source>Demo on</source>
-        <translation>Iniciar demonstração</translation>
+        <translation>Iniciar demo</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="201"/>
         <source>Demo/window off</source>
-        <translation>Parar demonstração na janela</translation>
+        <translation>Parar demo de janela</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="201"/>
         <source>Demo/window on</source>
-        <translation>Iniciar demonstração na janela</translation>
+        <translation>Iniciar demo de janela</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="275"/>
@@ -885,7 +886,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/main_window.cpp" line="192"/>
         <source>Fullscreen demo</source>
-        <translation>Demonstração na tela cheia</translation>
+        <translation>Demo em tela cheia</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="278"/>
@@ -1007,7 +1008,7 @@ Otherwise you won&apos;t be able to access computers using iTALC.</translation>
     <message>
         <location filename="../src/main_window.cpp" line="186"/>
         <source>This is the default mode in iTALC and allows you to have an overview over all visible computers. Also click on this button for unlocking locked workstations or for leaving demo-mode.</source>
-        <translation>Este é o modo padrão do iTALC e permite uma visão geral em todos os computadores visíveis. Também clique aqui para destravar computadores ou sair do modo de demonstração.</translation>
+        <translation>Este é o modo padrão do iTALC e permite uma visão geral em todos os computadores visíveis. Também clique aqui para destravar computadores ou sair do modo de demonstração (demo).</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="216"/>
@@ -1032,7 +1033,7 @@ Otherwise you won&apos;t be able to access computers using iTALC.</translation>
     <message>
         <location filename="../src/main_window.cpp" line="202"/>
         <source>Window demo</source>
-        <translation>Janela de demonstração</translation>
+        <translation>Demo de Janela</translation>
     </message>
 </context>
 <context>
