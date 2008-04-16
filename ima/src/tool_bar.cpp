@@ -23,10 +23,12 @@
 
 
 
+#include <QtGui/QMenu>
 #include <QtGui/QPainter>
 #include <QtGui/QPaintEvent>
 
 #include "tool_bar.h"
+#include "tool_button.h"
 
 
 
@@ -67,6 +69,26 @@ toolBar::~toolBar()
 {
 }
 
+
+
+
+void toolBar::contextMenuEvent( QContextMenuEvent * _e )
+{
+	QMenu m( this );
+	foreach( QAction * a, actions() )
+	{
+		QAction * ma = m.addAction( a->text() );
+		ma->setCheckable( TRUE );
+		ma->setChecked( a->isVisible() );
+	}
+	connect( &m, SIGNAL( triggered( QAction * ) ),
+				this, SLOT( toggleButton( QAction * ) ) );
+	m.exec( _e->globalPos() );
+}
+
+
+
+
 void toolBar::paintEvent( QPaintEvent * _pe )
 {
 	QPainter p( this );
@@ -74,5 +96,22 @@ void toolBar::paintEvent( QPaintEvent * _pe )
 	p.drawLine( 0, 0, width(), 0 );
 }
 
+
+
+
+void toolBar::toggleButton( QAction * _a )
+{
+	foreach( QAction * a, actions() )
+	{
+		if( a->text() == _a->text() )
+		{
+			a->setVisible( !a->isVisible() );
+			break;
+		}
+	}
+}
+
+
+#include "tool_bar.moc"
 
 

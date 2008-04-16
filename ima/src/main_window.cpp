@@ -278,20 +278,47 @@ mainWindow::mainWindow( int _rctrl_screen ) :
 				"the according hostname or IP afterwards." ),
 			m_classroomManager, SLOT( directSupport() ), m_toolBar );
 
+	toolButton * adjust_size = new toolButton(
+			QPixmap( ":/resources/adjust_size.png" ),
+			tr( "Adjust/align" ), QString::null,
+			tr( "Adjust windows and their size" ),
+			tr( "When clicking this button the biggest possible "
+				"size for the client-windows is adjusted. "
+				"Furthermore all windows are aligned." ),
+			m_classroomManager, SLOT( adjustWindows() ), m_toolBar );
 
-	m_toolBar->addWidget( scr );
-	m_toolBar->addWidget( overview_mode );
-	m_toolBar->addWidget( fsdemo_mode );
-	m_toolBar->addWidget( windemo_mode );
-	m_toolBar->addWidget( lock_mode );
-	m_toolBar->addWidget( text_msg );
-	m_toolBar->addWidget( power_on );
-	m_toolBar->addWidget( power_off );
-	m_toolBar->addWidget( remotelogon );
-	m_toolBar->addWidget( directsupport );
+	toolButton * auto_arrange = new toolButton(
+			QPixmap( ":/resources/auto_arrange.png" ),
+			tr( "Auto view" ), QString::null,
+			tr( "Auto re-arrange windows and their size" ),
+			tr( "When clicking this button all visible windows "
+					"are re-arranged and adjusted." ),
+			m_classroomManager, SLOT( arrangeWindows() ), m_toolBar );
+
+	scr->addTo( m_toolBar );
+	overview_mode->addTo( m_toolBar );
+	fsdemo_mode->addTo( m_toolBar );
+	windemo_mode->addTo( m_toolBar );
+	lock_mode->addTo( m_toolBar );
+	text_msg->addTo( m_toolBar );
+	power_on->addTo( m_toolBar );
+	power_off->addTo( m_toolBar );
+	remotelogon->addTo( m_toolBar );
+	directsupport->addTo( m_toolBar );
+	adjust_size->addTo( m_toolBar );
+	auto_arrange->addTo( m_toolBar );
 
 	restoreState( QByteArray::fromBase64(
 				m_classroomManager->winCfg().toUtf8() ) );
+	QStringList hidden_buttons = m_classroomManager->toolBarCfg().
+								split( '#' );
+	foreach( QAction * a, m_toolBar->actions() )
+	{
+		if( hidden_buttons.contains( a->text() ) )
+		{
+			a->setVisible( FALSE );
+		}
+	}
 
 	while( 1 )
 	{

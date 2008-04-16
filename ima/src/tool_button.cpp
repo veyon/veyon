@@ -1,7 +1,7 @@
 /*
  * tool_button.cpp - implementation of iTALC-tool-button
  *
- * Copyright (c) 2006-2007 Tobias Doerffel <tobydox/at/users.sourceforge.net>
+ * Copyright (c) 2006-2008 Tobias Doerffel <tobydox/at/users.sourceforge.net>
  * 
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -32,6 +32,7 @@
 #include <QtGui/QLayout>
 #include <QtGui/QLinearGradient>
 #include <QtGui/QPainter>
+#include <QtGui/QToolBar>
 
 #include "tool_button.h"
 #include "fast_qimage.h"
@@ -97,6 +98,15 @@ toolButton::toolButton( const QPixmap & _pixmap, const QString & _label,
 
 toolButton::~toolButton()
 {
+}
+
+
+
+
+void toolButton::addTo( QToolBar * _tb )
+{
+	QAction * a = _tb->addWidget( this );
+	a->setText( text() );
 }
 
 

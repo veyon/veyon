@@ -56,6 +56,7 @@
 #include "italc_side_bar.h"
 #include "local_system.h"
 #include "tool_button.h"
+#include "tool_bar.h"
 #include "messagebox.h"
 
 #define DEFAULT_WINDOW_WIDTH	1005
@@ -177,7 +178,7 @@ classroomManager::classroomManager( mainWindow * _main_window,
 	m_quickSwitchMenu->addAction( tr( "Hide teacher computers" ),
 					this, SLOT( hideTeacherClients() ) );
 
-	m_quickSwitchMenu->addSeparator();
+/*	m_quickSwitchMenu->addSeparator();
 
 	m_quickSwitchMenu->addAction( QPixmap( ":/resources/adjust_size.png" ),
 				tr( "Adjust windows and their size" ),
@@ -186,7 +187,7 @@ classroomManager::classroomManager( mainWindow * _main_window,
 	m_quickSwitchMenu->addAction(
 				QPixmap( ":/resources/auto_arrange.png" ),
 				tr( "Auto re-arrange windows" ),
-					this, SLOT( arrangeWindows() ) );
+					this, SLOT( arrangeWindows() ) );*/
 
 	
 	show();
@@ -222,8 +223,6 @@ void classroomManager::doCleanupWork( void )
 		delete m_classRoomsToRemove.first();
 		m_classRoomsToRemove.erase( m_classRoomsToRemove.begin() );
 	}
-	//savePersonalConfig();
-	//saveGlobalClientConfig();
 }
 
 
@@ -309,7 +308,19 @@ void classroomManager::savePersonalConfig( void )
 	globalsettings.setAttribute( "showUserColumn",
 						m_showUsernameCheckBox->isChecked() );
 
+	QStringList hidden_buttons;
+	foreach( QAction * a, getMainWindow()->
+				findChildren<toolBar *>()[0]->actions() )
+	{
+		if( !a->isVisible() )
+		{
+			hidden_buttons += a->text();
+		}
+	}
+	globalsettings.setAttribute( "toolbarcfg", hidden_buttons.join( "#" ) );
+
 	head.appendChild( globalsettings );
+
 
 
 	QDomElement root = doc.createElement( "body" );
@@ -512,6 +523,12 @@ getMainWindow()->move( node.toElement().attribute( "win-x" ).toInt(),
 			{
 				m_winCfg = node.toElement().attribute(
 								"wincfg" );
+			}
+			if( node.toElement().attribute( "toolbarcfg" ) !=
+								QString::null )
+			{
+				m_toolBarCfg = node.toElement().attribute(
+								"toolbarcfg" );
 			}
 			// for now we only set the network-interface over which
 			// the demo should run

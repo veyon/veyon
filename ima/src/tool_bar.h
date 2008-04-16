@@ -1,7 +1,7 @@
 /*
  *  too_bar.h - user-defined toolbar
  *
- *  Copyright (c) 2007 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ *  Copyright (c) 2007-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *  
  *  This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -31,13 +31,19 @@
 
 class toolBar : public QToolBar
 {
+	Q_OBJECT
 public:
 	toolBar( const QString & _title, QWidget * _parent );
 	virtual ~toolBar();
 
 
 private:
+	virtual void contextMenuEvent( QContextMenuEvent * _e );
 	virtual void paintEvent( QPaintEvent * _pe );
+
+
+private slots:
+	void toggleButton( QAction * );
 
 } ;
 

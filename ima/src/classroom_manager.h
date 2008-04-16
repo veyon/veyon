@@ -83,6 +83,11 @@ public:
 		return( m_winCfg );
 	}
 
+	inline const QString & toolBarCfg( void ) const
+	{
+		return( m_toolBarCfg );
+	}
+
 	client::modes globalClientMode( void ) const
 	{
 		return( m_globalClientMode );
@@ -209,6 +214,7 @@ private:
 
 	int m_clientUpdateInterval;
 	QString m_winCfg;
+	QString m_toolBarCfg;
 
 	int m_clientDblClickAction;
 

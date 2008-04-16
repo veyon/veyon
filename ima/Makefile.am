@@ -26,6 +26,7 @@ italc_MOC =	./src/client.moc			\
 		./src/overview_widget.moc		\
 		./src/remote_control_widget.moc		\
 		./src/snapshot_list.moc			\
+		./src/tool_bar.moc			\
 		./src/tool_button.moc
 
 italc_UIC =	./dialogs/client_settings.uic		\

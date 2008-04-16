@@ -1,5 +1,79 @@
 2008-04-15	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
+	* ima/Makefile.am:
+	* ima/src/tool_bar.h:
+	* ima/src/tool_button.h:
+	* ima/src/classroom_manager.h:
+	* ima/src/tool_bar.cpp:
+	* ima/src/tool_button.cpp:
+	* ima/src/main_window.cpp:
+	* ima/src/classroom_manager.cpp:
+	- reintroduced align- and auto-arrange-buttons
+	- made visibility of individual toolbar-buttons configurable via
+	  context-menu
+
+	* ica/resources/cs.ts:
+	* ica/resources/pt_br.ts:
+	* ica/resources/fr.ts:
+	* ica/resources/es.ts:
+	* ica/resources/nn.ts:
+	* ica/resources/pl.ts:
+	* ica/resources/sl.ts:
+	* ica/resources/uk.ts:
+	* ica/resources/zh.ts:
+	* ica/resources/de.ts:
+	* setup/resources/fi.ts:
+	* setup/resources/cs.ts:
+	* setup/resources/pt_br.ts:
+	* setup/resources/uk.ts:
+	* setup/resources/fr.ts:
+	* setup/resources/nn.ts:
+	* setup/resources/pl.ts:
+	* setup/resources/it.ts:
+	* setup/resources/sl.ts:
+	* setup/resources/zh.ts:
+	* setup/resources/de.ts:
+	* ima/resources/pl.qm:
+	* ima/resources/it.qm:
+	* ima/resources/sl.qm:
+	* ima/resources/cs.ts:
+	* ima/resources/es.ts:
+	* ima/resources/zh.qm:
+	* ima/resources/sk.ts:
+	* ima/resources/uk.ts:
+	* ima/resources/cs.qm:
+	* ima/resources/es.qm:
+	* ima/resources/sk.qm:
+	* ima/resources/uk.qm:
+	* ima/resources/fr.ts:
+	* ima/resources/nn.ts:
+	* ima/resources/de.ts:
+	* ima/resources/fi.ts:
+	* ima/resources/fr.qm:
+	* ima/resources/nn.qm:
+	* ima/resources/pt_br.ts:
+	* ima/resources/de.qm:
+	* ima/resources/fi.qm:
+	* ima/resources/pt_br.qm:
+	* ima/resources/pl.ts:
+	* ima/resources/it.ts:
+	* ima/resources/sl.ts:
+	* ima/resources/zh.ts:
+	* lib/resources/cs.ts:
+	* lib/resources/pt_br.ts:
+	* lib/resources/es.ts:
+	* lib/resources/uk.ts:
+	* lib/resources/fr.ts:
+	* lib/resources/nn.ts:
+	* lib/resources/pl.ts:
+	* lib/resources/it.ts:
+	* lib/resources/sl.ts:
+	* lib/resources/zh.ts:
+	* lib/resources/de.ts:
+	refreshed localization-files
+
+2008-04-15	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
 	* ica/resources/pt_br.ts:
 	* setup/resources/pt_br.ts:
 	* ima/resources/pt_br.ts:
