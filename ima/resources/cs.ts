@@ -91,7 +91,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Administrace</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1700"/>
+        <location filename="../src/classroom_manager.cpp" line="1987"/>
         <source>Administration</source>
         <translation type="unfinished"></translation>
     </message>
@@ -99,27 +99,27 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>classroomManager</name>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="123"/>
+        <location filename="../src/classroom_manager.cpp" line="128"/>
         <source>Classroom-Manager</source>
         <translation>Správce třídy</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="92"/>
+        <location filename="../src/classroom_manager.cpp" line="93"/>
         <source>Use this workspace to manage your computers and classrooms in an easy way.</source>
         <translation>V tomto rozhraní můžete snadno spravovat počítače a třídy.</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="110"/>
+        <location filename="../src/classroom_manager.cpp" line="114"/>
         <source>This is where computers and classrooms are managed. You can add computers or classrooms by clicking right in this list.</source>
         <translation>Zde se spravují počítače a učebny. Počítače přidáte kliknutím pravého tlačítka myši v seznamu.</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="113"/>
+        <location filename="../src/classroom_manager.cpp" line="117"/>
         <source>Classrooms/computers</source>
         <translation>Počítače/třídy</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="113"/>
+        <location filename="../src/classroom_manager.cpp" line="117"/>
         <source>IP-address</source>
         <translation>IP-adresa</translation>
     </message>
@@ -132,7 +132,7 @@ Once you did so you can show or hide computers by double-clicking them.
 
 Further actions can be found in the context-menu of a computer or classroom.
 </source>
-        <translation>
+        <translation type="obsolete">
 Pro přidání/odstranění počítačů a/nebo tříd použijte kontextovou nabídku (pravé tlačítko myši).
 
 Jakmile tak učiníte, budete moci počítače zobrazovat a přidávat pomocí dvojkliku na ně.
@@ -141,270 +141,305 @@ Další akce naleznete v kontextové nabídce daného počítače nebo třídy.
 </translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1245"/>
+        <location filename="../src/classroom_manager.cpp" line="1314"/>
         <source>Hide teacher computers</source>
         <translation>Skrýt učitelské počítače</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="617"/>
+        <location filename="../src/classroom_manager.cpp" line="687"/>
         <source>No configuration-file found</source>
         <translation>Nebyl nalezen žádný konfigurační soubor</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="626"/>
+        <location filename="../src/classroom_manager.cpp" line="696"/>
         <source>Could not open configuration file %1.
 You will have to add at least one classroom and computers using the classroom-manager which you&apos;ll find inside the program in the sidebar on the left side.</source>
         <translation>Nemohu otevřít konfigurační soubor %1.
 Budete muset přidat alespoň jednu učebny a počítače pomocí Správce tříd, kterého naleznete v programu na levém panelu.</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="703"/>
+        <location filename="../src/classroom_manager.cpp" line="773"/>
         <source>Error in configuration-file</source>
         <translation>Chyba v konfiguračním souboru</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="643"/>
+        <location filename="../src/classroom_manager.cpp" line="713"/>
         <source>Error while parsing configuration-file %1.
 Please edit it. Otherwise you should delete this file and have to add all classrooms and computers again.</source>
         <translation>Chyba při analýze konfiguračního souboru %1.
 Upravte ho prosím ručně. Nebo také můžete tento soubor smazat a přidat všechny třídy a počítače znovu.</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="708"/>
+        <location filename="../src/classroom_manager.cpp" line="778"/>
         <source>Error while parsing configuration-file %1.
 Please edit it. Otherwise you should delete this file.</source>
         <translation>Chyba při analýze konfiguračního souboru %1.
 Upravte ho prosím. Jinak byste tento soubor měli smazat.</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1790"/>
+        <location filename="../src/classroom_manager.cpp" line="2091"/>
         <source>Power down computers</source>
         <translation>Vypnout počítače</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1793"/>
+        <location filename="../src/classroom_manager.cpp" line="2094"/>
         <source>Are you sure want to power down all visible computers?</source>
         <translation>Opravdu si přejete vypnout všechny zobrazené počítače?</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1750"/>
+        <location filename="../src/classroom_manager.cpp" line="2051"/>
         <source>Logout user</source>
         <translation>Odhlásit uživatele</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1753"/>
+        <location filename="../src/classroom_manager.cpp" line="2054"/>
         <source>Are you sure want logout all users on all visible computers ?</source>
         <translation>Opravdu chcete odhlásit uživatele všech zobrazených počítačů?</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1208"/>
+        <location filename="../src/classroom_manager.cpp" line="1277"/>
         <source>Show/hide</source>
         <translation>Zobrazit/skrýt</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1213"/>
+        <location filename="../src/classroom_manager.cpp" line="1282"/>
         <source>Edit settings</source>
         <translation>Upravit nastavení</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1218"/>
+        <location filename="../src/classroom_manager.cpp" line="1287"/>
         <source>Remove</source>
         <translation>Odstranit</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1225"/>
+        <location filename="../src/classroom_manager.cpp" line="1269"/>
         <source>Actions</source>
         <translation>Akce</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1235"/>
+        <location filename="../src/classroom_manager.cpp" line="1304"/>
         <source>Show all computers in classroom</source>
         <translation>Zobrazit všechny počítače ve třídě</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1240"/>
+        <location filename="../src/classroom_manager.cpp" line="1309"/>
         <source>Hide all computers in classroom</source>
         <translation>Skrýt všechny počítače ve třídě</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1250"/>
+        <location filename="../src/classroom_manager.cpp" line="1319"/>
         <source>Edit name</source>
         <translation>Upravit jméno</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1516"/>
+        <location filename="../src/classroom_manager.cpp" line="1578"/>
         <source>Remove classroom</source>
         <translation>Odstranit třídu</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1262"/>
+        <location filename="../src/classroom_manager.cpp" line="1297"/>
         <source>Actions for %1</source>
         <translation>Akce pro %1</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1272"/>
+        <location filename="../src/classroom_manager.cpp" line="1334"/>
         <source>Action for whole classroom</source>
         <translation>Akce pro celou třídu</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1581"/>
+        <location filename="../src/classroom_manager.cpp" line="1660"/>
         <source>Add computer</source>
         <translation>Přidat počítač</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1288"/>
+        <location filename="../src/classroom_manager.cpp" line="1350"/>
         <source>Add classroom</source>
         <translation>Přidat třídu</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1492"/>
+        <location filename="../src/classroom_manager.cpp" line="1554"/>
         <source>New name for classroom</source>
         <translation>Nové jméno třídy</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1494"/>
+        <location filename="../src/classroom_manager.cpp" line="1556"/>
         <source>Please enter a new name for classroom &quot;%1&quot;.</source>
         <translation>Zadejte prosím nové jméno pro třídu &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1519"/>
+        <location filename="../src/classroom_manager.cpp" line="1581"/>
         <source>Are you sure want to remove classroom &quot;%1&quot;?
 All computers in it will be removed as well!</source>
         <translation>Opravdu si přejete odstranit třídu &quot;%1&quot;?
 Všechny počítače ve třídě budou odstraněny též!</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1548"/>
+        <location filename="../src/classroom_manager.cpp" line="1627"/>
         <source>Missing classroom</source>
         <translation>Chybí třída</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1554"/>
+        <location filename="../src/classroom_manager.cpp" line="1633"/>
         <source>Before adding computers you have to create at least one classroom.
 Do you want to create a new classrom now?</source>
         <translation>Před přidáním počítačů musíte vytvořit alespoň jednu třídu.
 Přejete si nyní vytvořit novou třídu?</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1597"/>
+        <location filename="../src/classroom_manager.cpp" line="1676"/>
         <source>New classroom</source>
         <translation>Nová třída</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1596"/>
+        <location filename="../src/classroom_manager.cpp" line="1675"/>
         <source>Please enter the name of the classroom you want to create.</source>
         <translation>Zadejte prosím jméno nové třídy, kterou si přejete vytvořit.</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1777"/>
+        <location filename="../src/classroom_manager.cpp" line="2078"/>
         <source>Reboot computers</source>
         <translation>Restartovat počítače</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1779"/>
+        <location filename="../src/classroom_manager.cpp" line="2080"/>
         <source>Are you sure want to reboot all visible computers?</source>
         <translation>Opravdu si přejete restartovat všechny zobrazené počítače?</translation>
+    </message>
+    <message>
+        <location filename="../src/classroom_manager.cpp" line="117"/>
+        <source>Usernames</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/classroom_manager.cpp" line="139"/>
+        <source>Show usernames</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/classroom_manager.cpp" line="149"/>
+        <source>Use the context-menu (right mouse-button) to add/remove computers and/or classrooms.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/classroom_manager.cpp" line="158"/>
+        <source>Export to text-file</source>
+        <translation type="unfinished">Exportovat do textového souboru</translation>
+    </message>
+    <message>
+        <location filename="../src/classroom_manager.cpp" line="173"/>
+        <source>Use this button for exporting this list of computers and usernames into a text-file. You can use this file later for collecting files after an exam has finished. This is sometimes neccessary, because some users might have finished and logged out earlier and so you cannot collect their files at the end of the exam.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/classroom_manager.cpp" line="837"/>
+        <source>Select output-file</source>
+        <translation type="unfinished">Vybrat výstupní soubor</translation>
+    </message>
+    <message>
+        <location filename="../src/classroom_manager.cpp" line="839"/>
+        <source>Text files (*.txt)</source>
+        <translation type="unfinished">Textové soubory (*.txt)</translation>
     </message>
 </context>
 <context>
     <name>client</name>
     <message>
-        <location filename="../src/client.cpp" line="58"/>
+        <location filename="../src/client.cpp" line="60"/>
         <source>View live</source>
         <translation>Zobrazit naživo</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="59"/>
+        <location filename="../src/client.cpp" line="61"/>
         <source>Remote control</source>
         <translation>Vzdálené ovládání</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="60"/>
+        <location filename="../src/client.cpp" line="62"/>
         <source>Let student show demo</source>
         <translation>Zobrazit studentům demo</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="61"/>
+        <location filename="../src/client.cpp" line="63"/>
         <source>Send text message</source>
         <translation>Poslat textovou zprávu</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="62"/>
+        <location filename="../src/client.cpp" line="64"/>
         <source>Logon user</source>
         <translation>Přihlásit uživatele</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="63"/>
+        <location filename="../src/client.cpp" line="65"/>
         <source>Logout user</source>
         <translation>Odhlásit uživatele</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="64"/>
+        <location filename="../src/client.cpp" line="66"/>
         <source>Take a snapshot</source>
         <translation>Sejmout obrazovku</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="65"/>
+        <location filename="../src/client.cpp" line="67"/>
         <source>Power on</source>
         <translation>Zapnout</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="66"/>
+        <location filename="../src/client.cpp" line="68"/>
         <source>Reboot</source>
         <translation>Restartovat</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="67"/>
+        <location filename="../src/client.cpp" line="69"/>
         <source>Power down</source>
         <translation>Vypnout</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="68"/>
+        <location filename="../src/client.cpp" line="70"/>
         <source>Execute commands</source>
         <translation>Vykonat příkaz</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="147"/>
+        <location filename="../src/client.cpp" line="205"/>
         <source>Overview</source>
         <translation>Přehled</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="150"/>
+        <location filename="../src/client.cpp" line="208"/>
         <source>Fullscreen demo</source>
         <translation>Demo přes celou obrazovku</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="153"/>
+        <location filename="../src/client.cpp" line="211"/>
         <source>Window demo</source>
         <translation>Demo v okně</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="156"/>
+        <location filename="../src/client.cpp" line="214"/>
         <source>Locked display</source>
         <translation>Obrazovka zamknuta</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="388"/>
+        <location filename="../src/client.cpp" line="647"/>
         <source>Unknown state</source>
         <translation>Neznámý stav</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="396"/>
+        <location filename="../src/client.cpp" line="655"/>
         <source>No user logged in</source>
         <translation>Žádný uživatel není přihlášen</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="400"/>
+        <location filename="../src/client.cpp" line="659"/>
         <source>Host unreachable</source>
         <translation>Počítač není  k dispozici</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="404"/>
+        <location filename="../src/client.cpp" line="663"/>
         <source>Demo running</source>
         <translation>Běžící demo</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="408"/>
+        <location filename="../src/client.cpp" line="667"/>
         <source>Desktop locked</source>
         <translation>Desktop zamknut</translation>
     </message>
@@ -485,7 +520,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../dialogs/client_settings.ui" line="258"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Name of the host which is displayed in iTALC.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Název počítače, které se bude zobrazovat v iTALC.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation type="obsolete">&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Název počítače, které se bude zobrazovat v iTALC.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/client_settings.ui" line="282"/>
@@ -565,27 +600,32 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../dialogs/client_settings.ui" line="477"/>
         <source>ThinClient</source>
-        <translation>Tenký klient</translation>
+        <translation type="obsolete">Tenký klient</translation>
     </message>
     <message>
         <location filename="../dialogs/client_settings.ui" line="500"/>
         <source>Remote IP</source>
-        <translation>Vzdálená IP</translation>
+        <translation type="obsolete">Vzdálená IP</translation>
     </message>
     <message>
         <location filename="../dialogs/client_settings.ui" line="531"/>
         <source>Use raw-encoding for demo-mode</source>
-        <translation>Použít surové kódování demo-módu</translation>
+        <translation type="obsolete">Použít surové kódování demo-módu</translation>
     </message>
     <message>
-        <location filename="../dialogs/client_settings.ui" line="603"/>
+        <location filename="../dialogs/client_settings.ui" line="528"/>
         <source>&amp;OK</source>
         <translation>&amp;OK</translation>
     </message>
     <message>
-        <location filename="../dialogs/client_settings.ui" line="624"/>
+        <location filename="../dialogs/client_settings.ui" line="549"/>
         <source>C&amp;ancel</source>
         <translation>Z&amp;rušit</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/client_settings.ui" line="258"/>
+        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Optional nickname of the host which is displayed in iTALC.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -593,30 +633,30 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/dialogs.cpp" line="99"/>
         <source>Missing name</source>
-        <translation>Chybí jméno</translation>
+        <translation type="obsolete">Chybí jméno</translation>
     </message>
     <message>
         <location filename="../src/dialogs.cpp" line="100"/>
         <source>You didn&apos;t specify a name for the computer!</source>
-        <translation>Nezadali jste jméno počítače!</translation>
+        <translation type="obsolete">Nezadali jste jméno počítače!</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="106"/>
+        <location filename="../src/dialogs.cpp" line="98"/>
         <source>Missing IP-address/hostname</source>
         <translation>Chybí IP-adresa/jméno počítače</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="108"/>
+        <location filename="../src/dialogs.cpp" line="100"/>
         <source>You didn&apos;t specify an IP-address or hostname for the computer!</source>
         <translation>Nezadali jste IP-adresu nebo jméno počítače!</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="117"/>
+        <location filename="../src/dialogs.cpp" line="109"/>
         <source>Invalid MAC-address</source>
         <translation>Neplatná MAC-adresa</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="120"/>
+        <location filename="../src/dialogs.cpp" line="112"/>
         <source>You specified an invalid MAC-address. Either leave the field blank or enter a valid MAC-address (use &quot;:&quot; as separator!).</source>
         <translation>Musíte zadat platnou MAC-adresu. Buď zadejte platnou MAC-adresu (oddělovačem je &quot;:&quot;), nebo nechte políčko prázdné.</translation>
     </message>
@@ -831,22 +871,22 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>mainWindow</name>
     <message>
-        <location filename="../src/main_window.cpp" line="90"/>
+        <location filename="../src/main_window.cpp" line="89"/>
         <source>iTALC</source>
         <translation>iTALC</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="99"/>
+        <location filename="../src/main_window.cpp" line="98"/>
         <source>No write-access</source>
         <translation>Bez možnosti zápisu</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="102"/>
+        <location filename="../src/main_window.cpp" line="101"/>
         <source>Could not read/write or create directory %1! For running iTALC, make sure you&apos;re permitted to create or write this directory.</source>
         <translation>Nemohu číst/zapisovat nebo vytvořit adresář %1! Pro spuštění iTALC je nutné, abyste měli oprávnění vytvářet a zapisovat do tohoto adresáře.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="157"/>
+        <location filename="../src/main_window.cpp" line="156"/>
         <source>Actions</source>
         <translation>Akce</translation>
     </message>
@@ -888,12 +928,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/main_window.cpp" line="191"/>
         <source>Demo on</source>
-        <translation>Zapnout ukázku</translation>
+        <translation type="obsolete">Zapnout ukázku</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="191"/>
         <source>Demo off</source>
-        <translation>Vypnout ukázku</translation>
+        <translation type="obsolete">Vypnout ukázku</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="192"/>
@@ -908,12 +948,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/main_window.cpp" line="201"/>
         <source>Demo/window on</source>
-        <translation>Zapnout ukázku/okno</translation>
+        <translation type="obsolete">Zapnout ukázku/okno</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="201"/>
         <source>Demo/window off</source>
-        <translation>Vypnout ukázku/okno</translation>
+        <translation type="obsolete">Vypnout ukázku/okno</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="202"/>
@@ -1006,56 +1046,86 @@ p, li { white-space: pre-wrap; }
         <translation>Kliknutím na toto tlačítko můžete zadat uživatelské jméno a heslo nutné pro odhlášení daného uživatele nebo dostupných počítačů.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="275"/>
+        <location filename="../src/main_window.cpp" line="283"/>
         <source>Adjust/align</source>
         <translation>Seřadit/uspořádat</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="276"/>
+        <location filename="../src/main_window.cpp" line="284"/>
         <source>Adjust windows and their size</source>
         <translation>Uspořádá okna a nastaví jejich velikosti</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="279"/>
+        <location filename="../src/main_window.cpp" line="287"/>
         <source>When clicking this button the biggest possible size for the client-windows is adjusted. Furthermore all windows are aligned.</source>
         <translation>Kliknutím na toto tlačítko bude nastavena ta největší možná velikost oken klientů. Kromě toho budou všechna okna srovnána.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="284"/>
+        <location filename="../src/main_window.cpp" line="292"/>
         <source>Auto view</source>
         <translation>Automatický pohled</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="285"/>
+        <location filename="../src/main_window.cpp" line="293"/>
         <source>Auto re-arrange windows and their size</source>
         <translation>Automaticky přenastaví okna a jejich velikosti</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="287"/>
+        <location filename="../src/main_window.cpp" line="295"/>
         <source>When clicking this button all visible windows are re-arranged and adjusted.</source>
         <translation>Kliknutím na toto tlačítko budou všechna okna přeuspořádána a přizpůsobena.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="311"/>
+        <location filename="../src/main_window.cpp" line="336"/>
         <source>No valid keys found</source>
         <translation>Nebyla nalezena žádná platná tlačítka</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="317"/>
+        <location filename="../src/main_window.cpp" line="342"/>
         <source>No authentication-keys were found or your old ones were broken. Please create a new key-pair using ICA (see documentation at http://italc.sf.net/wiki/index.php?title=Installation).
 Otherwise you won&apos;t be able to access computers using iTALC.</source>
         <translation>Nebyly nalezeny žádné autentizační klíče nebo jsou vaše klíče poškozeny. Prosím, vytvořte nový pár klíčů pomocí ICA (podívejte se na dokumentaci  http://italc.sf.net/wiki/index.php?title=Installation).
 Jinak nebudete moci přistupovat k počítačům pomocí iTALC.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="325"/>
+        <location filename="../src/main_window.cpp" line="354"/>
         <source>iTALC service not running</source>
         <translation>Služba iTALC neběží</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="330"/>
+        <location filename="../src/main_window.cpp" line="359"/>
         <source>There seems to be no iTALC service running on this computer or the authentication-keys aren&apos;t set up properly. The service is required for running iTALC. Contact your administrator for solving this problem.</source>
         <translation>Vypadá to, že služba iTALC běžící na tomto počítači nebo autentizační klíče nejsou nastaveny správně.Tato služba je pro spuštění iTALC vyžadována. Pro vyřešení tohoto problému kontaktujte svého administrátora.</translation>
+    </message>
+    <message>
+        <location filename="../src/main_window.cpp" line="191"/>
+        <source>Fullscreen Demo</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/main_window.cpp" line="201"/>
+        <source>Stop Demo</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/main_window.cpp" line="201"/>
+        <source>Window Demo</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/main_window.cpp" line="274"/>
+        <source>Support</source>
+        <translation>Podpora</translation>
+    </message>
+    <message>
+        <location filename="../src/main_window.cpp" line="275"/>
+        <source>Direct support</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/main_window.cpp" line="278"/>
+        <source>If you need to support someone at a certain computer you can click this button and enter the according hostname or IP afterwards.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1079,27 +1149,32 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../dialogs/overview.ui" line="99"/>
         <source>Using the classroom-manager you can manage your classrooms and computers.</source>
-        <translation>Pomocí Správce tříd můžete spravovat vaše třídy a počítače.</translation>
+        <translation type="obsolete">Pomocí Správce tříd můžete spravovat vaše třídy a počítače.</translation>
     </message>
     <message>
         <location filename="../dialogs/overview.ui" line="134"/>
         <source>If you want to know which users are logged in you can open the user-list.</source>
-        <translation>Pokud chcete vědět, kteří uživatelé jsou přihlášeni, otevřete si seznam uživatelů.</translation>
+        <translation type="obsolete">Pokud chcete vědět, kteří uživatelé jsou přihlášeni, otevřete si seznam uživatelů.</translation>
     </message>
     <message>
-        <location filename="../dialogs/overview.ui" line="169"/>
+        <location filename="../dialogs/overview.ui" line="134"/>
         <source>The snapshot-workspace is a very useful tool. It let&apos;s you manage the snapshots you made.</source>
         <translation>Plocha se snímky obrazovky je velmi užitečná. Umožní vám spravovat snímky, které provedete.</translation>
     </message>
     <message>
-        <location filename="../dialogs/overview.ui" line="204"/>
+        <location filename="../dialogs/overview.ui" line="169"/>
         <source>Of course you can configure iTALC. This is usually done using the configuration-workspace.</source>
         <translation>Samozřejmě, že můžete nastavovat iTALC. To se obvykle provádí pomocí konfigurační plochy.</translation>
     </message>
     <message>
-        <location filename="../dialogs/overview.ui" line="238"/>
+        <location filename="../dialogs/overview.ui" line="203"/>
         <source>About iTALC</source>
         <translation>O iTALC</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/overview.ui" line="99"/>
+        <source>Using the classroom-manager you can manage your classrooms and computers. You can also see which users are logged in.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1118,17 +1193,17 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>remoteControlWidget</name>
     <message>
-        <location filename="../src/remote_control_widget.cpp" line="304"/>
+        <location filename="../src/remote_control_widget.cpp" line="305"/>
         <source>View live (%1 at host %2)</source>
         <translation>Zobrazení naživo (%1 na počítači %2)</translation>
     </message>
     <message>
-        <location filename="../src/remote_control_widget.cpp" line="305"/>
+        <location filename="../src/remote_control_widget.cpp" line="306"/>
         <source>Remote control (%1 at host %2)</source>
         <translation>Vzdálené ovládání (%1 na počítači %2)</translation>
     </message>
     <message>
-        <location filename="../src/remote_control_widget.cpp" line="309"/>
+        <location filename="../src/remote_control_widget.cpp" line="310"/>
         <source>unknown user</source>
         <translation>neznámý uživatel</translation>
     </message>
@@ -1136,52 +1211,52 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>remoteControlWidgetToolBar</name>
     <message>
-        <location filename="../src/remote_control_widget.cpp" line="63"/>
+        <location filename="../src/remote_control_widget.cpp" line="64"/>
         <source>View only</source>
         <translation>Pouze prohlížet</translation>
     </message>
     <message>
-        <location filename="../src/remote_control_widget.cpp" line="63"/>
+        <location filename="../src/remote_control_widget.cpp" line="64"/>
         <source>Remote control</source>
         <translation>Vzdálené ovládání</translation>
     </message>
     <message>
-        <location filename="../src/remote_control_widget.cpp" line="68"/>
+        <location filename="../src/remote_control_widget.cpp" line="69"/>
         <source>Lock student</source>
         <translation>Zamknout studenta</translation>
     </message>
     <message>
-        <location filename="../src/remote_control_widget.cpp" line="68"/>
+        <location filename="../src/remote_control_widget.cpp" line="69"/>
         <source>Unlock student</source>
         <translation>Odemknout studenta</translation>
     </message>
     <message>
-        <location filename="../src/remote_control_widget.cpp" line="73"/>
+        <location filename="../src/remote_control_widget.cpp" line="74"/>
         <source>Snapshot</source>
         <translation>Snímek</translation>
     </message>
     <message>
-        <location filename="../src/remote_control_widget.cpp" line="78"/>
+        <location filename="../src/remote_control_widget.cpp" line="79"/>
         <source>Fullscreen</source>
         <translation>Celá obrazovka</translation>
     </message>
     <message>
-        <location filename="../src/remote_control_widget.cpp" line="78"/>
+        <location filename="../src/remote_control_widget.cpp" line="79"/>
         <source>Window</source>
         <translation>Okno</translation>
     </message>
     <message>
-        <location filename="../src/remote_control_widget.cpp" line="83"/>
+        <location filename="../src/remote_control_widget.cpp" line="84"/>
         <source>Quit</source>
         <translation>Ukončit</translation>
     </message>
     <message>
-        <location filename="../src/remote_control_widget.cpp" line="192"/>
+        <location filename="../src/remote_control_widget.cpp" line="193"/>
         <source>Connecting %1</source>
         <translation>Připojuji %1</translation>
     </message>
     <message>
-        <location filename="../src/remote_control_widget.cpp" line="197"/>
+        <location filename="../src/remote_control_widget.cpp" line="198"/>
         <source>Connected.</source>
         <translation>Připojeno.</translation>
     </message>
@@ -1317,7 +1392,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../dialogs/support.ui" line="49"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:20pt; font-weight:600; font-style:italic;&quot;&gt;Support&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:20pt; font-weight:600; font-style:italic;&quot;&gt;Podpora&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation type="obsolete">&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:20pt; font-weight:600; font-style:italic;&quot;&gt;Podpora&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/support.ui" line="79"/>
@@ -1334,28 +1409,33 @@ p, li { white-space: pre-wrap; }
         <source>Cancel</source>
         <translation>Zrušit</translation>
     </message>
+    <message>
+        <location filename="../dialogs/support.ui" line="49"/>
+        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:20pt; font-weight:600; font-style:italic;&quot;&gt;Support &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>supportWidget</name>
     <message>
         <location filename="../src/support_widget.cpp" line="39"/>
         <source>Support</source>
-        <translation>Podpora</translation>
+        <translation type="obsolete">Podpora</translation>
     </message>
     <message>
         <location filename="../src/support_widget.cpp" line="40"/>
         <source>Need to support someone? Open this workspace!</source>
-        <translation>Potřebujete někomu pomoct? Podívejte se na tuto plochu!</translation>
+        <translation type="obsolete">Potřebujete někomu pomoct? Podívejte se na tuto plochu!</translation>
     </message>
     <message>
         <location filename="../src/support_widget.cpp" line="49"/>
         <source>If you want to support someone at another host you can do this by clicking the button below.</source>
-        <translation>Pokud chcete někomu na druhém počítači pomoct, uděláte to kliknutím na tlačítko níže.</translation>
+        <translation type="obsolete">Pokud chcete někomu na druhém počítači pomoct, uděláte to kliknutím na tlačítko níže.</translation>
     </message>
     <message>
         <location filename="../src/support_widget.cpp" line="56"/>
         <source>Support someone</source>
-        <translation>Pomoci někomu</translation>
+        <translation type="obsolete">Pomoci někomu</translation>
     </message>
 </context>
 <context>
@@ -1401,37 +1481,37 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/user_list.cpp" line="43"/>
         <source>Logged in users</source>
-        <translation>Přihlášení uživatelé</translation>
+        <translation type="obsolete">Přihlášení uživatelé</translation>
     </message>
     <message>
         <location filename="../src/user_list.cpp" line="45"/>
         <source>Open this workspace if you want to see which users currently are logged in.</source>
-        <translation>Otevřením této pracovní plochy zobrazíte aktuálně přihlášené uživatele.</translation>
+        <translation type="obsolete">Otevřením této pracovní plochy zobrazíte aktuálně přihlášené uživatele.</translation>
     </message>
     <message>
         <location filename="../src/user_list.cpp" line="53"/>
         <source>Here you see the real names and the user-names of the users, logged in at currently visible clients.</source>
-        <translation>Zde vidíte skutečná a uživatelská jména uživatelů, kteří jsou aktuálně přihlášeni k dostupným klientům.</translation>
+        <translation type="obsolete">Zde vidíte skutečná a uživatelská jména uživatelů, kteří jsou aktuálně přihlášeni k dostupným klientům.</translation>
     </message>
     <message>
         <location filename="../src/user_list.cpp" line="64"/>
         <source>Export to text-file</source>
-        <translation>Exportovat do textového souboru</translation>
+        <translation type="obsolete">Exportovat do textového souboru</translation>
     </message>
     <message>
         <location filename="../src/user_list.cpp" line="79"/>
         <source>Use this button for exporting this user-list into a text-file. You can use this file later for collecting files after an exam has finished. This is sometimes neccessary, because some users might have finished and logged out earlier and so you cannot collect their files at the end of the exam.</source>
-        <translation>Pomocí tohoto tlačítka můžete exportovat seznam uživatelů do textového souboru. Tento soubor můžete také později použít pro sběr souborů po ukončení zkoušky. To se hodí např v situaci, kdy chcete vybrat soubory po vykonání zkoušky a přitom někteří studenti ukončí zkoušku a odejdou dříve než ostatní.</translation>
+        <translation type="obsolete">Pomocí tohoto tlačítka můžete exportovat seznam uživatelů do textového souboru. Tento soubor můžete také později použít pro sběr souborů po ukončení zkoušky. To se hodí např v situaci, kdy chcete vybrat soubory po vykonání zkoušky a přitom někteří studenti ukončí zkoušku a odejdou dříve než ostatní.</translation>
     </message>
     <message>
         <location filename="../src/user_list.cpp" line="182"/>
         <source>Select output-file</source>
-        <translation>Vybrat výstupní soubor</translation>
+        <translation type="obsolete">Vybrat výstupní soubor</translation>
     </message>
     <message>
         <location filename="../src/user_list.cpp" line="184"/>
         <source>Text files (*.txt)</source>
-        <translation>Textové soubory (*.txt)</translation>
+        <translation type="obsolete">Textové soubory (*.txt)</translation>
     </message>
 </context>
 </TS>

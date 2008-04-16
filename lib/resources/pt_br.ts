@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="pt_BR">
-<defaultcodec></defaultcodec>
 <context>
     <name>QObject</name>
     <message>
@@ -9,7 +8,7 @@
         <translation>UPL (note for translators: the first three characters of this string are the accellerators (underlined characters) of the three input-fields in logon-dialog of windows - please keep this note as otherwise there are strange errors concerning logon-feature)</translation>
     </message>
     <message>
-        <location filename="../src/local_system.cpp" line="631"/>
+        <location filename="../src/local_system.cpp" line="635"/>
         <source>iTALC-snapshots</source>
         <translation>iTALC-capturas</translation>
     </message>

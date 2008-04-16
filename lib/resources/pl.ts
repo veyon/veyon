@@ -8,7 +8,7 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/local_system.cpp" line="704"/>
+        <location filename="../src/local_system.cpp" line="635"/>
         <source>iTALC-snapshots</source>
         <translation>Zdjęcia iTALC</translation>
     </message>
@@ -37,7 +37,7 @@
 <context>
     <name>lockWidget</name>
     <message>
-        <location filename="../src/lock_widget.cpp" line="57"/>
+        <location filename="../src/lock_widget.cpp" line="69"/>
         <source>screen lock</source>
         <translation>blokada ekranu</translation>
     </message>
@@ -53,7 +53,7 @@
 <context>
     <name>vncView</name>
     <message>
-        <location filename="../src/vncview.cpp" line="56"/>
+        <location filename="../src/vncview.cpp" line="61"/>
         <source>Establishing connection to %1 ...</source>
         <translation>Ustanawiam połączenie z %1 ...</translation>
     </message>

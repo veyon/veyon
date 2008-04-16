@@ -91,7 +91,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Administrácia</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1970"/>
+        <location filename="../src/classroom_manager.cpp" line="1987"/>
         <source>Administration</source>
         <translation type="unfinished"></translation>
     </message>
@@ -99,27 +99,27 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>classroomManager</name>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="127"/>
+        <location filename="../src/classroom_manager.cpp" line="128"/>
         <source>Classroom-Manager</source>
         <translation>Správca triedy</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="92"/>
+        <location filename="../src/classroom_manager.cpp" line="93"/>
         <source>Use this workspace to manage your computers and classrooms in an easy way.</source>
         <translation>Tu môžete ľahko spravovať počítače a triedy.</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="113"/>
+        <location filename="../src/classroom_manager.cpp" line="114"/>
         <source>This is where computers and classrooms are managed. You can add computers or classrooms by clicking right in this list.</source>
         <translation>Tu sa ovládajú počítače a učebne. Počítače pridáte kliknutím pravého tlačidla myši v zozname.</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="116"/>
+        <location filename="../src/classroom_manager.cpp" line="117"/>
         <source>Classrooms/computers</source>
         <translation>Počítače/triedy</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="116"/>
+        <location filename="../src/classroom_manager.cpp" line="117"/>
         <source>IP-address</source>
         <translation>IP-adresa</translation>
     </message>
@@ -141,212 +141,207 @@ Daľšie akcie nájdete v kontextovej ponuke konkrétneho počítača alebo trie
 </translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1297"/>
+        <location filename="../src/classroom_manager.cpp" line="1314"/>
         <source>Hide teacher computers</source>
         <translation>Skryť učiteľské počítače</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="670"/>
+        <location filename="../src/classroom_manager.cpp" line="687"/>
         <source>No configuration-file found</source>
         <translation>Nebol nájdený žiadny konfiguračný súbor</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="679"/>
+        <location filename="../src/classroom_manager.cpp" line="696"/>
         <source>Could not open configuration file %1.
 You will have to add at least one classroom and computers using the classroom-manager which you&apos;ll find inside the program in the sidebar on the left side.</source>
         <translation>Nemôžem otvoriť konfiguračný súbor %1.
 Budete musieť pridať aspoň jednu učebnu a počítač pomocov Správcu tried, kterého nájdete v programe na ľavom paneli.</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="756"/>
+        <location filename="../src/classroom_manager.cpp" line="773"/>
         <source>Error in configuration-file</source>
         <translation>Chyba v konfiguračnom súbore</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="696"/>
+        <location filename="../src/classroom_manager.cpp" line="713"/>
         <source>Error while parsing configuration-file %1.
 Please edit it. Otherwise you should delete this file and have to add all classrooms and computers again.</source>
         <translation>Chyba pri analýze konfiguračného súboru %1.
 Upravte ho prosím ručne. Tiež môžete tento súbor zmazať a pridať všetky triedy a počítače znova.</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="761"/>
+        <location filename="../src/classroom_manager.cpp" line="778"/>
         <source>Error while parsing configuration-file %1.
 Please edit it. Otherwise you should delete this file.</source>
         <translation>Chyba pri analýze konfiguračného súboru %1.
 Upravte ho prosím. Inak byste tento súbor mali zmazať.</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="2074"/>
+        <location filename="../src/classroom_manager.cpp" line="2091"/>
         <source>Power down computers</source>
         <translation>Vypnúť počítače</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="2077"/>
+        <location filename="../src/classroom_manager.cpp" line="2094"/>
         <source>Are you sure want to power down all visible computers?</source>
         <translation>Naozaj si prajete vypnúť všetky zobrazené počítače?</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="2034"/>
+        <location filename="../src/classroom_manager.cpp" line="2051"/>
         <source>Logout user</source>
         <translation>Odhlásiť užívateľa</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="2037"/>
+        <location filename="../src/classroom_manager.cpp" line="2054"/>
         <source>Are you sure want logout all users on all visible computers ?</source>
         <translation>Opravdu chcete odhlásiť všetkých užívateľou?</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1260"/>
+        <location filename="../src/classroom_manager.cpp" line="1277"/>
         <source>Show/hide</source>
         <translation>Zobraziť/skryť</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1265"/>
+        <location filename="../src/classroom_manager.cpp" line="1282"/>
         <source>Edit settings</source>
         <translation>Upraviť nastavenie</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1270"/>
+        <location filename="../src/classroom_manager.cpp" line="1287"/>
         <source>Remove</source>
         <translation>Odstraniť</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1252"/>
+        <location filename="../src/classroom_manager.cpp" line="1269"/>
         <source>Actions</source>
         <translation>Akcia</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1287"/>
+        <location filename="../src/classroom_manager.cpp" line="1304"/>
         <source>Show all computers in classroom</source>
         <translation>Zobraziť všetky počítače v triede</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1292"/>
+        <location filename="../src/classroom_manager.cpp" line="1309"/>
         <source>Hide all computers in classroom</source>
         <translation>Skryť všetky počítače v triede</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1302"/>
+        <location filename="../src/classroom_manager.cpp" line="1319"/>
         <source>Edit name</source>
         <translation>Upraviť meno</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1561"/>
+        <location filename="../src/classroom_manager.cpp" line="1578"/>
         <source>Remove classroom</source>
         <translation>Odstraniť triedu</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1280"/>
+        <location filename="../src/classroom_manager.cpp" line="1297"/>
         <source>Actions for %1</source>
         <translation>Akcia pre %1</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1317"/>
+        <location filename="../src/classroom_manager.cpp" line="1334"/>
         <source>Action for whole classroom</source>
         <translation>Akcia pre celú triedu</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1643"/>
+        <location filename="../src/classroom_manager.cpp" line="1660"/>
         <source>Add computer</source>
         <translation>Pridať počítač</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1333"/>
+        <location filename="../src/classroom_manager.cpp" line="1350"/>
         <source>Add classroom</source>
         <translation>Pridať triedu</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1537"/>
+        <location filename="../src/classroom_manager.cpp" line="1554"/>
         <source>New name for classroom</source>
         <translation>Nové meno triedy</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1539"/>
+        <location filename="../src/classroom_manager.cpp" line="1556"/>
         <source>Please enter a new name for classroom &quot;%1&quot;.</source>
         <translation>Zadajte prosím nové meno pre triedu &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1564"/>
+        <location filename="../src/classroom_manager.cpp" line="1581"/>
         <source>Are you sure want to remove classroom &quot;%1&quot;?
 All computers in it will be removed as well!</source>
         <translation>Naozaj si prajete odstraniť triedu &quot;%1&quot;?
 Všetky počítače v triede budú odstránené!</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1610"/>
+        <location filename="../src/classroom_manager.cpp" line="1627"/>
         <source>Missing classroom</source>
         <translation>Chýba trieda</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1616"/>
+        <location filename="../src/classroom_manager.cpp" line="1633"/>
         <source>Before adding computers you have to create at least one classroom.
 Do you want to create a new classrom now?</source>
         <translation>Pred pridaním počítačov musíte vytvoriť aspoň jednu triedu.
 Prajete si teraz vytvoriť novú triedu?</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1659"/>
+        <location filename="../src/classroom_manager.cpp" line="1676"/>
         <source>New classroom</source>
         <translation>Nová trieda</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1658"/>
+        <location filename="../src/classroom_manager.cpp" line="1675"/>
         <source>Please enter the name of the classroom you want to create.</source>
         <translation>Zadajte prosím meno novej triedy, ktorú si prajete vytvoriť.</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="2061"/>
+        <location filename="../src/classroom_manager.cpp" line="2078"/>
         <source>Reboot computers</source>
         <translation>Reštartovať počítače</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="2063"/>
+        <location filename="../src/classroom_manager.cpp" line="2080"/>
         <source>Are you sure want to reboot all visible computers?</source>
         <translation>Naozaj si prajete reštartovať všetky zobrazené počítače?</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="116"/>
+        <location filename="../src/classroom_manager.cpp" line="117"/>
         <source>Usernames</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="138"/>
+        <location filename="../src/classroom_manager.cpp" line="139"/>
         <source>Show usernames</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="148"/>
+        <location filename="../src/classroom_manager.cpp" line="149"/>
         <source>Use the context-menu (right mouse-button) to add/remove computers and/or classrooms.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="157"/>
+        <location filename="../src/classroom_manager.cpp" line="158"/>
         <source>Export to text-file</source>
         <translation type="unfinished">Exportovat do textového súbora</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="172"/>
+        <location filename="../src/classroom_manager.cpp" line="173"/>
         <source>Use this button for exporting this list of computers and usernames into a text-file. You can use this file later for collecting files after an exam has finished. This is sometimes neccessary, because some users might have finished and logged out earlier and so you cannot collect their files at the end of the exam.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/classroom_manager.cpp" line="183"/>
         <source>Adjust windows and their size</source>
-        <translation type="unfinished">Usporiada okná a nastaví ich veľkosť</translation>
+        <translation type="obsolete">Usporiada okná a nastaví ich veľkosť</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="188"/>
-        <source>Auto re-arrange windows</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/classroom_manager.cpp" line="820"/>
+        <location filename="../src/classroom_manager.cpp" line="837"/>
         <source>Select output-file</source>
         <translation type="unfinished">Vybrať výstupný súbor</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="822"/>
+        <location filename="../src/classroom_manager.cpp" line="839"/>
         <source>Text files (*.txt)</source>
         <translation type="unfinished">Textové súbory (*.txt)</translation>
     </message>
@@ -1056,54 +1051,54 @@ p, li { white-space: pre-wrap; }
         <translation>Kliknutím na toto tlačidlo môžete zadať užívateľské meno a heslo potrebné pre odhlásenie daného užívateľa alebo dostupných počítačov.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="275"/>
+        <location filename="../src/main_window.cpp" line="283"/>
         <source>Adjust/align</source>
-        <translation type="obsolete">Usporiadať/zarovnať</translation>
-    </message>
-    <message>
-        <location filename="../src/main_window.cpp" line="276"/>
-        <source>Adjust windows and their size</source>
-        <translation type="obsolete">Usporiada okná a nastaví ich veľkosť</translation>
-    </message>
-    <message>
-        <location filename="../src/main_window.cpp" line="279"/>
-        <source>When clicking this button the biggest possible size for the client-windows is adjusted. Furthermore all windows are aligned.</source>
-        <translation type="obsolete">Kliknutím na toto tlačidlo bude nastavená ta najväčšia možná veľkosť okien klientov. Okrem toho budú všetky okná usporiadané.</translation>
+        <translation>Usporiadať/zarovnať</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="284"/>
-        <source>Auto view</source>
-        <translation type="obsolete">Automatický pohľad</translation>
-    </message>
-    <message>
-        <location filename="../src/main_window.cpp" line="285"/>
-        <source>Auto re-arrange windows and their size</source>
-        <translation type="obsolete">Automaticky prispôsobí okná aj ich veľkosť</translation>
+        <source>Adjust windows and their size</source>
+        <translation>Usporiada okná a nastaví ich veľkosť</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="287"/>
-        <source>When clicking this button all visible windows are re-arranged and adjusted.</source>
-        <translation type="obsolete">Kliknutím na toto tlačidlo budú všetky okná preusporiadané a prispôsobené.</translation>
+        <source>When clicking this button the biggest possible size for the client-windows is adjusted. Furthermore all windows are aligned.</source>
+        <translation>Kliknutím na toto tlačidlo bude nastavená ta najväčšia možná veľkosť okien klientov. Okrem toho budú všetky okná usporiadané.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="309"/>
+        <location filename="../src/main_window.cpp" line="292"/>
+        <source>Auto view</source>
+        <translation>Automatický pohľad</translation>
+    </message>
+    <message>
+        <location filename="../src/main_window.cpp" line="293"/>
+        <source>Auto re-arrange windows and their size</source>
+        <translation>Automaticky prispôsobí okná aj ich veľkosť</translation>
+    </message>
+    <message>
+        <location filename="../src/main_window.cpp" line="295"/>
+        <source>When clicking this button all visible windows are re-arranged and adjusted.</source>
+        <translation>Kliknutím na toto tlačidlo budú všetky okná preusporiadané a prispôsobené.</translation>
+    </message>
+    <message>
+        <location filename="../src/main_window.cpp" line="336"/>
         <source>No valid keys found</source>
         <translation>Neboli nájdené žiadne platné tlačidlá</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="315"/>
+        <location filename="../src/main_window.cpp" line="342"/>
         <source>No authentication-keys were found or your old ones were broken. Please create a new key-pair using ICA (see documentation at http://italc.sf.net/wiki/index.php?title=Installation).
 Otherwise you won&apos;t be able to access computers using iTALC.</source>
         <translation>Neboly najdené žiadne autentifikačné kľúče alebo sú vaše kľúče poškodené. Prosím, vytvorte nový pár kľúčov pomocou ICA (pozrite sa na dokumentáciu  http://italc.sf.net/wiki/index.php?title=Installation).
 Inak nebudete môct pristupovať k počítačom pomocou iTALC.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="327"/>
+        <location filename="../src/main_window.cpp" line="354"/>
         <source>iTALC service not running</source>
         <translation>Služba iTALC nebeží</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="332"/>
+        <location filename="../src/main_window.cpp" line="359"/>
         <source>There seems to be no iTALC service running on this computer or the authentication-keys aren&apos;t set up properly. The service is required for running iTALC. Contact your administrator for solving this problem.</source>
         <translation>Vyzerá to, že služba iTALC bežiaca na tomto počítaču alebo autentifikačné kľúče nie sú nastavené správne. Táto služba je pre spustenie iTALC potrebná. Pro vyriešenie tohoto problému kontaktujte svojho administrátora.</translation>
     </message>
@@ -1125,7 +1120,7 @@ Inak nebudete môct pristupovať k počítačom pomocou iTALC.</translation>
     <message>
         <location filename="../src/main_window.cpp" line="274"/>
         <source>Support</source>
-        <translation type="unfinished">Podpora</translation>
+        <translation>Podpora</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="275"/>

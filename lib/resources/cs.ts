@@ -8,7 +8,7 @@
         <translation>UPL</translation>
     </message>
     <message>
-        <location filename="../src/local_system.cpp" line="704"/>
+        <location filename="../src/local_system.cpp" line="635"/>
         <source>iTALC-snapshots</source>
         <translation>iTALC-snímky</translation>
     </message>
@@ -16,12 +16,12 @@
 <context>
     <name>ivsConnection</name>
     <message>
-        <location filename="../src/ivs_connection.cpp" line="307"/>
+        <location filename="../src/ivs_connection.cpp" line="308"/>
         <source>Snapshot</source>
         <translation>Snímek</translation>
     </message>
     <message>
-        <location filename="../src/ivs_connection.cpp" line="309"/>
+        <location filename="../src/ivs_connection.cpp" line="310"/>
         <source>Could not take a snapshot as directory %1 doesn&apos;t exist and couldn&apos;t be created.</source>
         <translation>Nemohu získat snímek, protože adresář %1 neexistuje a nelze ho vytvořit.</translation>
     </message>
@@ -29,7 +29,7 @@
 <context>
     <name>lockWidget</name>
     <message>
-        <location filename="../src/lock_widget.cpp" line="57"/>
+        <location filename="../src/lock_widget.cpp" line="69"/>
         <source>screen lock</source>
         <translation>zamknutí obrazovky</translation>
     </message>
@@ -37,7 +37,7 @@
 <context>
     <name>messageBox</name>
     <message>
-        <location filename="../src/messagebox.cpp" line="75"/>
+        <location filename="../src/messagebox.cpp" line="76"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
@@ -45,7 +45,7 @@
 <context>
     <name>vncView</name>
     <message>
-        <location filename="../src/vncview.cpp" line="55"/>
+        <location filename="../src/vncview.cpp" line="61"/>
         <source>Establishing connection to %1 ...</source>
         <translation>Připojuji se k %1 ...</translation>
     </message>

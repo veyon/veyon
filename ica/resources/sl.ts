@@ -8,62 +8,62 @@
         <translation>iTALC odjemalec %1 na %2:%3</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="265"/>
+        <location filename="../src/system_service.cpp" line="267"/>
         <source>Unable to register service &apos;%1&apos;.</source>
         <translation>Ne morem registrirati storitve &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="293"/>
+        <location filename="../src/system_service.cpp" line="295"/>
         <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not registered.</source>
         <translation>Storitev urejevalnika nadzora ne more biti povezana (imate ustrezne pravice?!) - storitev  &apos;%1&apos;  ni bila registrirana.</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="324"/>
+        <location filename="../src/system_service.cpp" line="326"/>
         <source>The service &apos;%1&apos; is already registered.</source>
         <translation>Storitev &apos;%1&apos; je že registrirana.</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="332"/>
+        <location filename="../src/system_service.cpp" line="334"/>
         <source>The service &apos;%1&apos; could not be registered.</source>
         <translation>Storitev &apos;%1&apos; ne more biti registrirana.</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="367"/>
+        <location filename="../src/system_service.cpp" line="369"/>
         <source>The service &apos;%1&apos; was successfully registered.</source>
         <translation>Storitev &apos;%1&apos; je bila uspešno registrirana.</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="614"/>
+        <location filename="../src/system_service.cpp" line="616"/>
         <source>The service &apos;%1&apos; could not be stopped.</source>
         <translation>Storitve &apos;%1&apos; ni možno ustaviti.</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="434"/>
+        <location filename="../src/system_service.cpp" line="436"/>
         <source>The service &apos;%1&apos; has been unregistered.</source>
         <translation>Storitev &apos;%1&apos; je bila neregistrirana.</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="450"/>
+        <location filename="../src/system_service.cpp" line="452"/>
         <source>The service &apos;%1&apos; isn&apos;t registered and therefore can&apos;t be unregistered.</source>
         <translation>Storitev &apos;%1&apos; ni registrirana in zato ne more biti neregistrirana.</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="460"/>
+        <location filename="../src/system_service.cpp" line="462"/>
         <source>The service &apos;%1&apos; could not be unregistered.</source>
         <translation>Storitev &apos;%1&apos; ne more biti neregistrirana.</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="628"/>
+        <location filename="../src/system_service.cpp" line="630"/>
         <source>The service &apos;%1&apos; could not be found.</source>
         <translation>Storitve &apos;%1&apos; ni mogoče najti.</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="487"/>
+        <location filename="../src/system_service.cpp" line="489"/>
         <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not unregistered.</source>
         <translation>Storitev urejevalnika nadzora ne more biti povezana (imate ustrezne pravice?!) - storitevi  &apos;%1&apos;  ni bila neregistrirana.</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="644"/>
+        <location filename="../src/system_service.cpp" line="646"/>
         <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not stopped.</source>
         <translation>Storitev urejevalnika nadzora ne more biti povezana (imate ustrezne pravice?!) - storitev  &apos;%1&apos;  ni bila ustavljena..</translation>
     </message>
@@ -89,37 +89,37 @@
         <translation>ISD - strežnika ni mogoče zagnati, ker so vrata %1 v uporabi. Prosim poskrbite, da ta vrata ne bodo uporabljena, in poskusite znova.</translation>
     </message>
     <message>
-        <location filename="../src/isd_server.cpp" line="553"/>
+        <location filename="../src/isd_server.cpp" line="567"/>
         <source>Confirm access</source>
         <translation>Potrdi dostop</translation>
     </message>
     <message>
-        <location filename="../src/isd_server.cpp" line="556"/>
+        <location filename="../src/isd_server.cpp" line="570"/>
         <source>Somebody at host %1 tries to access your screen. Do you want to grant him/her access?</source>
         <translation>Nekdo na gostitelju %1 poskuša dostopati do vašega namizja. Ali mu/ji želite j dovoliti dostop?</translation>
     </message>
     <message>
-        <location filename="../src/isd_server.cpp" line="559"/>
+        <location filename="../src/isd_server.cpp" line="573"/>
         <source>Never for this session</source>
         <translation>Nikoli za to sejo</translation>
     </message>
     <message>
-        <location filename="../src/isd_server.cpp" line="561"/>
+        <location filename="../src/isd_server.cpp" line="575"/>
         <source>Always for this session</source>
         <translation>Zmeraj za to sejo</translation>
     </message>
     <message>
-        <location filename="../src/isd_server.cpp" line="754"/>
+        <location filename="../src/isd_server.cpp" line="768"/>
         <source>Message from teacher</source>
         <translation>Sporočilo predavatelja</translation>
     </message>
     <message>
-        <location filename="../src/isd_server.cpp" line="806"/>
+        <location filename="../src/isd_server.cpp" line="824"/>
         <source>Authentication error</source>
         <translation>Napaka verodostojnosti</translation>
     </message>
     <message>
-        <location filename="../src/isd_server.cpp" line="809"/>
+        <location filename="../src/isd_server.cpp" line="827"/>
         <source>Somebody (IP: %1) tried to access this computer but could not authenticate itself successfully!</source>
         <translation>Nekdo iz (IP: %1) poskuša dostopati do tega računalnika, vendar ne more potrditi svoje verodostojnosti!</translation>
     </message>

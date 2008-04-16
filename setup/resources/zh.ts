@@ -255,72 +255,72 @@ Click &apos;Next&apos; to continue.</source>
 <context>
     <name>setupWizard</name>
     <message>
-        <location filename="../src/dialogs.cpp" line="153"/>
+        <location filename="../src/dialogs.cpp" line="155"/>
         <source>Confirm overwrite</source>
         <translation>覆盖确认</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="154"/>
+        <location filename="../src/dialogs.cpp" line="156"/>
         <source>Do you want to overwrite %1?</source>
         <translation>你确定要覆盖吗?</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="211"/>
+        <location filename="../src/dialogs.cpp" line="212"/>
         <source>Installing iTALC</source>
         <translation>正在安装 iTALC</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="213"/>
+        <location filename="../src/dialogs.cpp" line="214"/>
         <source>Copying files...</source>
         <translation>复制文件...</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="278"/>
+        <location filename="../src/dialogs.cpp" line="279"/>
         <source>Registering ICA as service...</source>
         <translation>注册 ICA 服务...</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="321"/>
+        <location filename="../src/dialogs.cpp" line="322"/>
         <source>Creating/importing keys...</source>
         <translation>创建/导入密钥...</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="353"/>
+        <location filename="../src/dialogs.cpp" line="354"/>
         <source>Creating shortcuts...</source>
         <translation>创建快捷方式...</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="375"/>
+        <location filename="../src/dialogs.cpp" line="376"/>
         <source>Could not create directory</source>
         <translation>不能创建目录</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="379"/>
+        <location filename="../src/dialogs.cpp" line="380"/>
         <source>Could not create directory %1! Make sure you have the neccessary rights and try again!</source>
         <translation>不能创建目录 %1 ！确认你拥有必要的权限并重试!</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="392"/>
+        <location filename="../src/dialogs.cpp" line="393"/>
         <source>Cancel setup</source>
         <translation>取消安装</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="394"/>
+        <location filename="../src/dialogs.cpp" line="395"/>
         <source>Are you sure want to quit setup? iTALC is not installed completely yet!</source>
         <translation>你确定要退出安装吗？ iTALC 还未安装完成!</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="414"/>
+        <location filename="../src/dialogs.cpp" line="416"/>
         <source>Next</source>
         <translation>下一步</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="473"/>
+        <location filename="../src/dialogs.cpp" line="475"/>
         <source>Finish</source>
         <translation>完成</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="479"/>
+        <location filename="../src/dialogs.cpp" line="481"/>
         <source>Quit</source>
         <translation>退出</translation>
     </message>
@@ -328,17 +328,17 @@ Click &apos;Next&apos; to continue.</source>
 <context>
     <name>setupWizardPageInstallDir</name>
     <message>
-        <location filename="../src/dialogs.cpp" line="568"/>
+        <location filename="../src/dialogs.cpp" line="590"/>
         <source>Directory does not exist</source>
         <translation>目录不存在</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="570"/>
+        <location filename="../src/dialogs.cpp" line="592"/>
         <source>The specified directory does not exist. Do you want to create it?</source>
         <translation>指定目录不存在。你想要创建它吗?</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="592"/>
+        <location filename="../src/dialogs.cpp" line="614"/>
         <source>Choose installation directory</source>
         <translation>选择安装目录</translation>
     </message>
@@ -346,17 +346,17 @@ Click &apos;Next&apos; to continue.</source>
 <context>
     <name>setupWizardPageKeyDirs</name>
     <message>
-        <location filename="../src/dialogs.cpp" line="826"/>
+        <location filename="../src/dialogs.cpp" line="848"/>
         <source>Choose public key directory</source>
         <translation>选择公共密钥目录</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="840"/>
+        <location filename="../src/dialogs.cpp" line="862"/>
         <source>Choose private key directory</source>
         <translation>选择私有密钥目录</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="854"/>
+        <location filename="../src/dialogs.cpp" line="876"/>
         <source>Choose public key export directory</source>
         <translation>选择公共密钥导出目录</translation>
     </message>
@@ -364,7 +364,7 @@ Click &apos;Next&apos; to continue.</source>
 <context>
     <name>setupWizardPageSecurityOptions</name>
     <message>
-        <location filename="../src/dialogs.cpp" line="728"/>
+        <location filename="../src/dialogs.cpp" line="750"/>
         <source>Choose directory for key-import</source>
         <translation>选择密钥导入目录</translation>
     </message>

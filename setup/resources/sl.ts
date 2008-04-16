@@ -255,72 +255,72 @@ Pritisnite &quot;Naprej&quot; za nadaljevanje.</translation>
 <context>
     <name>setupWizard</name>
     <message>
-        <location filename="../src/dialogs.cpp" line="153"/>
+        <location filename="../src/dialogs.cpp" line="155"/>
         <source>Confirm overwrite</source>
         <translation>Potrdi prepisovanje</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="154"/>
+        <location filename="../src/dialogs.cpp" line="156"/>
         <source>Do you want to overwrite %1?</source>
         <translation>Ali želite prepisati %1?</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="211"/>
+        <location filename="../src/dialogs.cpp" line="212"/>
         <source>Installing iTALC</source>
         <translation>Namestitev iTALC-a</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="213"/>
+        <location filename="../src/dialogs.cpp" line="214"/>
         <source>Copying files...</source>
         <translation>Kopiranje datotek...</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="278"/>
+        <location filename="../src/dialogs.cpp" line="279"/>
         <source>Registering ICA as service...</source>
         <translation>Registracija (IAO) kot storitev...</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="321"/>
+        <location filename="../src/dialogs.cpp" line="322"/>
         <source>Creating/importing keys...</source>
         <translation>Izdelava/uvažanje ključev...</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="353"/>
+        <location filename="../src/dialogs.cpp" line="354"/>
         <source>Creating shortcuts...</source>
         <translation>Izdelava bližnjic...</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="375"/>
+        <location filename="../src/dialogs.cpp" line="376"/>
         <source>Could not create directory</source>
         <translation>Ne morem kreirati mape</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="379"/>
+        <location filename="../src/dialogs.cpp" line="380"/>
         <source>Could not create directory %1! Make sure you have the neccessary rights and try again!</source>
         <translation>Ne morem kreirati mape %1! Prepričajte se, ali imate potrebne pravice, in poskusite znova!</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="392"/>
+        <location filename="../src/dialogs.cpp" line="393"/>
         <source>Cancel setup</source>
         <translation>Prekliči namestitev</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="394"/>
+        <location filename="../src/dialogs.cpp" line="395"/>
         <source>Are you sure want to quit setup? iTALC is not installed completely yet!</source>
         <translation>Ste prepričani, da želite zapustiti namestitev? iTALC še ni v celoti nameščen!</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="414"/>
+        <location filename="../src/dialogs.cpp" line="416"/>
         <source>Next</source>
         <translation>Naprej</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="473"/>
+        <location filename="../src/dialogs.cpp" line="475"/>
         <source>Finish</source>
         <translation>Končano</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="479"/>
+        <location filename="../src/dialogs.cpp" line="481"/>
         <source>Quit</source>
         <translation>Izhod</translation>
     </message>
@@ -328,17 +328,17 @@ Pritisnite &quot;Naprej&quot; za nadaljevanje.</translation>
 <context>
     <name>setupWizardPageInstallDir</name>
     <message>
-        <location filename="../src/dialogs.cpp" line="568"/>
+        <location filename="../src/dialogs.cpp" line="590"/>
         <source>Directory does not exist</source>
         <translation>Mapa ne obstaja</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="570"/>
+        <location filename="../src/dialogs.cpp" line="592"/>
         <source>The specified directory does not exist. Do you want to create it?</source>
         <translation>Izbrana mapa ne obstaja. Jo želite izdelati?</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="592"/>
+        <location filename="../src/dialogs.cpp" line="614"/>
         <source>Choose installation directory</source>
         <translation>Izberite mapo za namestitev</translation>
     </message>
@@ -346,17 +346,17 @@ Pritisnite &quot;Naprej&quot; za nadaljevanje.</translation>
 <context>
     <name>setupWizardPageKeyDirs</name>
     <message>
-        <location filename="../src/dialogs.cpp" line="826"/>
+        <location filename="../src/dialogs.cpp" line="848"/>
         <source>Choose public key directory</source>
         <translation>Izberite mapo za javni ključ</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="840"/>
+        <location filename="../src/dialogs.cpp" line="862"/>
         <source>Choose private key directory</source>
         <translation>Izberite mapo za privatni ključ</translation>
     </message>
     <message>
-        <location filename="../src/dialogs.cpp" line="854"/>
+        <location filename="../src/dialogs.cpp" line="876"/>
         <source>Choose public key export directory</source>
         <translation>Izberite mapo za izvoz javnega ključa</translation>
     </message>
@@ -364,7 +364,7 @@ Pritisnite &quot;Naprej&quot; za nadaljevanje.</translation>
 <context>
     <name>setupWizardPageSecurityOptions</name>
     <message>
-        <location filename="../src/dialogs.cpp" line="728"/>
+        <location filename="../src/dialogs.cpp" line="750"/>
         <source>Choose directory for key-import</source>
         <translation>Izberite mapo za uvoz ključa</translation>
     </message>

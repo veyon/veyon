@@ -3,62 +3,62 @@
 <context>
     <name>QApplication</name>
     <message>
-        <location filename="../src/system_service.cpp" line="265"/>
+        <location filename="../src/system_service.cpp" line="267"/>
         <source>Unable to register service &apos;%1&apos;.</source>
         <translation>Der Dienst &apos;%1&apos; konnte nicht registriert werden.</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="293"/>
+        <location filename="../src/system_service.cpp" line="295"/>
         <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not registered.</source>
         <translation>Es konnte keine Verbindung zum Service-Control-Manager hergestellt werden (haben Sie die nötigen Rechte?!) - der Dienst &apos;%1&apos; wurde nicht registriert.</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="324"/>
+        <location filename="../src/system_service.cpp" line="326"/>
         <source>The service &apos;%1&apos; is already registered.</source>
         <translation>Der Dienst &apos;%1&apos; ist bereits registriert.</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="332"/>
+        <location filename="../src/system_service.cpp" line="334"/>
         <source>The service &apos;%1&apos; could not be registered.</source>
         <translation>Der Dienst &apos;%1&apos; konnte nicht registriert werden.</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="367"/>
+        <location filename="../src/system_service.cpp" line="369"/>
         <source>The service &apos;%1&apos; was successfully registered.</source>
         <translation>Der Dienst &apos;%1&apos; wurde erfolgreich registriert.</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="614"/>
+        <location filename="../src/system_service.cpp" line="616"/>
         <source>The service &apos;%1&apos; could not be stopped.</source>
         <translation>Der Dienst &apos;%1&apos; konnte nicht gestoppt werden.</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="434"/>
+        <location filename="../src/system_service.cpp" line="436"/>
         <source>The service &apos;%1&apos; has been unregistered.</source>
         <translation>Der Dienst &apos;%1&apos; wurde entfernt.</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="450"/>
+        <location filename="../src/system_service.cpp" line="452"/>
         <source>The service &apos;%1&apos; isn&apos;t registered and therefore can&apos;t be unregistered.</source>
         <translation>Der Dienst &apos;%1&apos; ist nicht registriert und kann daher nicht entfernt werden.</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="460"/>
+        <location filename="../src/system_service.cpp" line="462"/>
         <source>The service &apos;%1&apos; could not be unregistered.</source>
         <translation>Der Dienst &apos;%1&apos; konnte nicht entfernt werden.</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="628"/>
+        <location filename="../src/system_service.cpp" line="630"/>
         <source>The service &apos;%1&apos; could not be found.</source>
         <translation>Der Dienst &apos;%1&apos; wurde nicht gefunden.</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="487"/>
+        <location filename="../src/system_service.cpp" line="489"/>
         <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not unregistered.</source>
         <translation>Es konnte keine Verbindung zum Service-Control-Manager hergestellt werden (haben Sie die nötigen Rechte?!) - der Dienst &apos;%1&apos; wurde nicht entfernt.</translation>
     </message>
     <message>
-        <location filename="../src/system_service.cpp" line="644"/>
+        <location filename="../src/system_service.cpp" line="646"/>
         <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not stopped.</source>
         <translation>Es konnte keine Verbindung zum Service-Control-Manager hergestellt werden (haben Sie die nötigen Rechte?!) - der Dienst &apos;%1&apos; wurde nicht beendet.</translation>
     </message>
