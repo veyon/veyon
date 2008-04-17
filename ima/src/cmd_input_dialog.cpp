@@ -53,10 +53,10 @@ cmdInputDialog::cmdInputDialog( QString & _cmds_str, QWidget * _parent ) :
 	m_cmdInputTextEdit->setGeometry( 10, 64, 460, 256 );
 	m_cmdInputTextEdit->setWordWrapMode( QTextOption::NoWrap );
 
-	m_cancelBtn = new QPushButton( QPixmap( ":/resources/cancel.png" ),
-							tr( "Cancel" ), this );
 	m_okBtn = new QPushButton( QPixmap( ":/resources/apply.png" ),
 							tr( "&Run!" ), this );
+	m_cancelBtn = new QPushButton( QPixmap( ":/resources/cancel.png" ),
+							tr( "Cancel" ), this );
 	connect( m_okBtn, SIGNAL( clicked() ), this, SLOT( accept() ) );
 	connect( m_cancelBtn, SIGNAL( clicked() ), this, SLOT( reject() ) );
 
@@ -88,10 +88,10 @@ void cmdInputDialog::resizeEvent( QResizeEvent * _re )
 {
 	m_cmdInputTextEdit->setGeometry( 10, 90, _re->size().width()-20,
 						_re->size().height()-140 );
-	m_okBtn->setGeometry( _re->size().width()-120, _re->size().height()-40,
-								110, 30 );
-	m_cancelBtn->setGeometry( _re->size().width()-240,
+	m_okBtn->setGeometry( _re->size().width()-240,
 					_re->size().height()-40, 110, 30 );
+	m_cancelBtn->setGeometry( _re->size().width()-120, _re->size().height()-40,
+								110, 30 );
 }
 
 
