@@ -207,6 +207,8 @@ void vncView::framebufferUpdate( void )
 		m_running = TRUE;
 		emit connectionEstablished();
 
+		m_connection->setScaledSize( scaledSize() );
+
 		// after we hid the progress-widget, we may use direct painting
 		// again
 #ifndef BUILD_WIN32
