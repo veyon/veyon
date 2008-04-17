@@ -303,37 +303,37 @@ Do you want to create a new classrom now?</source>
     <message>
         <location filename="../src/classroom_manager.cpp" line="117"/>
         <source>Usernames</source>
-        <translation type="unfinished"></translation>
+        <translation>Імена користувачів</translation>
     </message>
     <message>
         <location filename="../src/classroom_manager.cpp" line="139"/>
         <source>Show usernames</source>
-        <translation type="unfinished"></translation>
+        <translation>Показати імена користувачів</translation>
     </message>
     <message>
         <location filename="../src/classroom_manager.cpp" line="149"/>
         <source>Use the context-menu (right mouse-button) to add/remove computers and/or classrooms.</source>
-        <translation type="unfinished"></translation>
+        <translation>Щоб додати або вилучити комп’ютери і/або класи, скористайтеся контекстним меню (клацання правою кнопкою).</translation>
     </message>
     <message>
         <location filename="../src/classroom_manager.cpp" line="158"/>
         <source>Export to text-file</source>
-        <translation type="unfinished">Експорт до текстового файла</translation>
+        <translation>Експорт до текстового файла</translation>
     </message>
     <message>
         <location filename="../src/classroom_manager.cpp" line="173"/>
         <source>Use this button for exporting this list of computers and usernames into a text-file. You can use this file later for collecting files after an exam has finished. This is sometimes neccessary, because some users might have finished and logged out earlier and so you cannot collect their files at the end of the exam.</source>
-        <translation type="unfinished"></translation>
+        <translation>Скористайтеся цієї кнопкою, щоб експортувати список комп’ютерів і імен користувачів до текстового файла. Пізніше Ви можете використати цей файл для збирання файлів після завершення контрольної. Іноді це просто необхідно, оскільки деякі користувачі можуть завершити роботу і вийти з системи раніше за інших, і Ви не зможете зібрати їх роботи після завершення контрольної.</translation>
     </message>
     <message>
         <location filename="../src/classroom_manager.cpp" line="837"/>
         <source>Select output-file</source>
-        <translation type="unfinished">Вибір файла виводу</translation>
+        <translation>Вибір файла виводу</translation>
     </message>
     <message>
         <location filename="../src/classroom_manager.cpp" line="839"/>
         <source>Text files (*.txt)</source>
-        <translation type="unfinished">Текстові файли (*.txt)</translation>
+        <translation>Текстові файли (*.txt)</translation>
     </message>
 </context>
 <context>
@@ -620,7 +620,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../dialogs/client_settings.ui" line="258"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Optional nickname of the host which is displayed in iTALC.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Додатковий псевдонім вузла, який показуватиме iTALC.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
@@ -1095,17 +1095,17 @@ Otherwise you won&apos;t be able to access computers using iTALC.</source>
     <message>
         <location filename="../src/main_window.cpp" line="191"/>
         <source>Fullscreen Demo</source>
-        <translation type="unfinished"></translation>
+        <translation>Повноекранне демо</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="201"/>
         <source>Stop Demo</source>
-        <translation type="unfinished"></translation>
+        <translation>Завершити демонстрацію</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="201"/>
         <source>Window Demo</source>
-        <translation type="unfinished"></translation>
+        <translation>Демо у вікні</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="274"/>
@@ -1115,12 +1115,12 @@ Otherwise you won&apos;t be able to access computers using iTALC.</source>
     <message>
         <location filename="../src/main_window.cpp" line="275"/>
         <source>Direct support</source>
-        <translation type="unfinished"></translation>
+        <translation>Прямий супровід</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="278"/>
         <source>If you need to support someone at a certain computer you can click this button and enter the according hostname or IP afterwards.</source>
-        <translation type="unfinished"></translation>
+        <translation>Якщо Вам потрібно супроводжувати чиїсь дії на одному з комп’ютерів, Ви можете натиснути цю кнопку і ввести назву вузла або IP-адресу відповідного комп’ютера.</translation>
     </message>
 </context>
 <context>
@@ -1169,7 +1169,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../dialogs/overview.ui" line="99"/>
         <source>Using the classroom-manager you can manage your classrooms and computers. You can also see which users are logged in.</source>
-        <translation type="unfinished"></translation>
+        <translation>За допомогою керування класом Ви можете керувати комп’ютерами і класами. Також Ви можете переглядати список користувачів, що працюють у системі.</translation>
     </message>
 </context>
 <context>
@@ -1382,7 +1382,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../dialogs/support.ui" line="13"/>
         <source>Support</source>
-        <translation>Підтримка</translation>
+        <translation>Супровід</translation>
     </message>
     <message>
         <location filename="../dialogs/support.ui" line="49"/>
@@ -1392,7 +1392,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../dialogs/support.ui" line="79"/>
         <source>Please enter the IP-address or the name of the host at which the person is sitting, you want to support.</source>
-        <translation>Будь ласка, введіть IP-адресу або ім’я комп’ютера, за яким сидить особа, якій Ви бажаєте надати підтримку.</translation>
+        <translation>Будь ласка, введіть IP-адресу або ім’я комп’ютера, за яким сидить особа, дії якої Ви бажаєте супроводжувати.</translation>
     </message>
     <message>
         <location filename="../dialogs/support.ui" line="136"/>
@@ -1407,7 +1407,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../dialogs/support.ui" line="49"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:20pt; font-weight:600; font-style:italic;&quot;&gt;Support &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:20pt; font-weight:600; font-style:italic;&quot;&gt;Супровід &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
