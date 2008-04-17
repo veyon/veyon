@@ -336,7 +336,7 @@ isdConnection::states isdConnection::open( void )
 
 	if( m_socket->state() != QTcpSocket::ConnectedState )
 	{
-		qWarning( "isdConnection::open(): unable to connect to server "
+		qDebug( "isdConnection::open(): unable to connect to server "
                                "on client %s:%i", m_host.toAscii().constData(),
 								m_port );
 		if( m_socket->error() == QTcpSocket::ConnectionRefusedError )

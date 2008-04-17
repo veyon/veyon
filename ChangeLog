@@ -1,5 +1,9 @@
 2008-04-17	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
+	* lib/src/isd_connection.cpp:
+	print connection-failure-messages via qDebug so that they normally do
+	not appear (closes #1945142)
+
 	* setup/resources/fr.qm:
 	* setup/resources/fr.ts:
 	* ima/resources/fr.ts:
