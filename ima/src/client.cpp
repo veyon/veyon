@@ -330,10 +330,8 @@ void client::changeMode( const modes _new_mode, isdConnection * _conn )
 				_conn->demoServerAllowClient( m_hostname );
 				m_updateThread->enqueueCommand(
 						updateThread::Cmd_StartDemo,
-	QList<QVariant>()
-			<< _conn->host() + ":" + QString::number(
-						_conn->demoServerPort() )
-			<< (int)( m_mode == Mode_FullscreenDemo ) );
+	QList<QVariant>() << QString::number( _conn->demoServerPort() )
+				<< (int)( m_mode == Mode_FullscreenDemo ) );
 				//m_mode = Mode_FullscreenDemo;
 				break;
 			case Mode_Locked:

@@ -29,7 +29,6 @@
 #include <QtGui/QComboBox>
 #include <QtGui/QMessageBox>
 #include <QtNetwork/QHostInfo>
-#include <QtNetwork/QNetworkInterface>
 
 
 #include "config_widget.h"
@@ -57,45 +56,6 @@ configWidget::configWidget( mainWindow * _main_window, QWidget * _parent ) :
 	getMainWindow()->getClassroomManager()->setUpdateIntervalSpinBox(
 							updateIntervalSB );
 
-
-	QList<QNetworkInterface> ifs = QNetworkInterface::allInterfaces();
-	for( QList<QNetworkInterface>::const_iterator it = ifs.begin();
-							it != ifs.end(); ++it )
-	{
-		QList<QNetworkAddressEntry> nae = it->addressEntries();
-		for( QList<QNetworkAddressEntry>::const_iterator it2 =
-								nae.begin();
-						it2 != nae.end(); ++it2 )
-		{
-			const QString txt = it->name() + ": " +
-						it2->ip().toString();
-			interfaceCB->addItem( txt );
-			if( __demo_network_interface == it->name() ||
-				( __demo_network_interface.isEmpty() &&
-							it->name() != "lo" ) )
-			{
-				if( nae.size() > 1 &&
-					!__demo_master_ip.isEmpty() &&
-					__demo_master_ip != it2->ip().toString() )
-				{
-					continue;
-				}
-				interfaceCB->setCurrentIndex(
-						interfaceCB->findText( txt ) );
-				__demo_network_interface = it->name();
-				__demo_master_ip = it2->ip().toString();
-			}
-		}
-	}
-
-	// as fallback use host-name
-	if( __demo_master_ip.isEmpty() )
-	{
-		__demo_master_ip = QHostInfo::localHostName();
-	}
-
-	connect( interfaceCB, SIGNAL( activated( const QString & ) ), this,
-				SLOT( interfaceSelected( const QString & ) ) );
 
 	demoQualityCB->setCurrentIndex( __demo_quality );
 
@@ -129,26 +89,6 @@ configWidget::configWidget( mainWindow * _main_window, QWidget * _parent ) :
 
 configWidget::~configWidget()
 {
-}
-
-
-
-
-void configWidget::interfaceSelected( const QString & _if_name )
-{
-	if( _if_name.section( ' ', -1 ) == "127.0.0.1" )
-	{
-		QMessageBox::warning( NULL,
-			tr( "Warning" ),
-			tr( "You are trying to use the local loopback-device "
-				"as network-interface. This will never work, "
-				"because the local loopback is just the last "
-				"alternative for running iTALC if no other "
-				"network-interface was found." ),
-				QMessageBox::Ok, QMessageBox::NoButton );
-	}
-	__demo_network_interface = _if_name.section( ':', 0, 0 );
-	__demo_master_ip = _if_name.section( ' ', -1 );
 }
 
 

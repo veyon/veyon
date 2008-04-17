@@ -2,7 +2,7 @@
  * isd_connection.h - declaration of class isdConnection, a client-
  *                    implementation for ISD (iTALC Service Daemon)
  *
- * Copyright (c) 2006-2007 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -88,13 +88,7 @@ public:
 
 	inline QString host( void ) const
 	{
-#if BUILD_ICA || BUILD_LIBRARY
 		return( m_host );
-#else
-		return( m_host == QHostAddress( QHostAddress::LocalHost ).
-								toString() ?
-					__demo_master_ip : m_host );
-#endif
 	}
 
 	inline int port( void ) const
@@ -112,7 +106,7 @@ public:
 
 	bool sendGetUserInformationRequest( void );
 	bool execCmds( const QString & _cmd );
-	bool startDemo( const QString & _master_ip, bool _full_screen = FALSE );
+	bool startDemo( const QString & _port, bool _full_screen = FALSE );
 	bool stopDemo( void );
 	bool lockDisplay( void );
 	bool unlockDisplay( void );

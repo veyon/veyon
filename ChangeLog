@@ -1,5 +1,21 @@
 2008-04-17	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
+	* ica/src/isd_server.cpp:
+	* ima/dialogs/config.ui:
+	* ima/src/config_widget.cpp:
+	* ima/src/main_window.h:
+	* ima/src/main.cpp:
+	* ima/src/config_widget.h:
+	* ima/src/client.cpp:
+	* ima/src/classroom_manager.cpp:
+	* lib/include/isd_connection.h:
+	* lib/src/isd_connection.cpp:
+	determine demo-master-IP via active master-client connection -
+	obsoletes network-interface-configuration in master-application
+
+	* ima/src/cmd_input_dialog.cpp:
+	fixed orientation of OK- and cancel-button
+
 	* lib/src/isd_connection.cpp:
 	print connection-failure-messages via qDebug so that they normally do
 	not appear (closes #1945142)

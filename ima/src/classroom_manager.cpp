@@ -295,9 +295,6 @@ void classroomManager::savePersonalConfig( void )
 	globalsettings.setAttribute( "wincfg", QString(
 				getMainWindow()->saveState().toBase64() ) );
 
-	globalsettings.setAttribute( "demo-net-iface",
-						__demo_network_interface );
-	globalsettings.setAttribute( "demo-master-ip", __demo_master_ip );
 	globalsettings.setAttribute( "defaultdomain", __default_domain );
 	globalsettings.setAttribute( "demoquality", __demo_quality );
 	globalsettings.setAttribute( "role", __role );
@@ -530,14 +527,6 @@ getMainWindow()->move( node.toElement().attribute( "win-x" ).toInt(),
 				m_toolBarCfg = node.toElement().attribute(
 								"toolbarcfg" );
 			}
-			// for now we only set the network-interface over which
-			// the demo should run
-			__demo_network_interface = node.toElement().
-						attribute( "demo-net-iface" );
-
-			__demo_master_ip = node.toElement().
-						attribute( "demo-master-ip" );
-
 			__demo_quality = node.toElement().
 					attribute( "demoquality" ).toInt();
 

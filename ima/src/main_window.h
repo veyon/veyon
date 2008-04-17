@@ -48,8 +48,6 @@ class overviewWidget;
 class remoteControlWidget;
 class userList;
 
-extern QString __demo_network_interface;
-extern QString __demo_master_ip;
 extern QString __default_domain;
 extern int __demo_quality;
 

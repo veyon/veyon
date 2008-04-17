@@ -760,7 +760,7 @@ bool isdConnection::execCmds( const QString & _cmd )
 
 
 
-bool isdConnection::startDemo( const QString & _master_ip, bool _full_screen )
+bool isdConnection::startDemo( const QString & _port, bool _full_screen )
 {
 	if( m_socket == NULL ||
 			m_socket->state() != QTcpSocket::ConnectedState )
@@ -770,7 +770,7 @@ bool isdConnection::startDemo( const QString & _master_ip, bool _full_screen )
 	}
 	return( ISD::msg( &m_socketDev, _full_screen ?
 			ISD::StartFullScreenDemo : ISD::StartWindowDemo ).
-					addArg( "ip", _master_ip ).send() );
+					addArg( "port", _port ).send() );
 }
 
 
@@ -878,26 +878,6 @@ bool isdConnection::collectFiles( const QString & _nfilter )
 	return( TRUE );
 }
 
-
-
-/*
-bool isdConnection::remoteControlDisplay( const QString & _ip, bool _view_only )
-{
-	if( m_socket == NULL ||
-			m_socket->state() != QTcpSocket::ConnectedState )
-	{
-		m_state = Disconnected;
-		return( FALSE );
-	}
-	if( _view_only )
-	{
-		return( ISD::msg( &m_socketDev, ISD::ViewRemoteDisplay ).
-						addArg( "ip", _ip ).send() );
-	}
-	return( ISD::msg( &m_socketDev, ISD::RemoteControlDisplay ).
-						addArg( "ip", _ip ).send() );
-}
-*/
 
 
 

@@ -153,10 +153,20 @@ int isdServer::processClient( socketDispatcher _sd, void * _user )
 
 		case ISD::StartFullScreenDemo:
 		case ISD::StartWindowDemo:
-/*		case ISD::ViewRemoteDisplay:
-		case ISD::RemoteControlDisplay:*/
-			action = msg_in.arg( "ip" ).toString();
+		{
+			const int MAX_HOST_LEN = 255;
+			char host[MAX_HOST_LEN+1];
+			_sd( host, MAX_HOST_LEN, SocketGetIPBoundTo,
+								_user );
+			host[MAX_HOST_LEN] = 0;
+			QString port = msg_in.arg( "port" ).toString();
+			if( port == "" )
+			{
+				port = "5858";
+			}
+			action = host + QString( ":" ) + port;
 			break;
+		}
 
 		case ISD::DisplayTextMessage:
 			action = msg_in.arg( "msg" ).toString();
@@ -951,10 +961,21 @@ public:
 
 			case ISD::StartFullScreenDemo:
 			case ISD::StartWindowDemo:
-				startDemo( msg_in.arg( "ip" ).toString(),
+			{
+				const int MAX_HOST_LEN = 255;
+				char host[MAX_HOST_LEN+1];
+				_sd( host, MAX_HOST_LEN, SocketGetIPBoundTo,
+									_user );
+				host[MAX_HOST_LEN] = 0;
+				QString port = msg_in.arg( "port" ).toString();
+				if( port == "" )
+				{
+					port = "5858";
+				}
+				startDemo( host + QString( ":" ) + port,
 					cmd == ISD::StartFullScreenDemo );
 				break;
-
+			}
 /*			case ISD::ViewRemoteDisplay:
 			case ISD::RemoteControlDisplay:
 				remoteControlDisplay( msg_in.arg( "ip" ).
