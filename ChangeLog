@@ -1,5 +1,13 @@
 2008-04-17	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
+	* setup/resources/fr.qm:
+	* setup/resources/fr.ts:
+	* ima/resources/fr.ts:
+	* ima/resources/fr.qm:
+	* lib/resources/fr.qm:
+	* lib/resources/fr.ts:
+	updated French localization-files
+
 	* ima/resources/uk.ts:
 	* ima/resources/uk.qm:
 	updated Ukrainian localization-files

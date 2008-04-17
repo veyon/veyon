@@ -14,14 +14,6 @@
     </message>
 </context>
 <context>
-    <name>QDialog</name>
-    <message>
-        <location filename="../src/dialogs.cpp" line="79"/>
-        <source>Program Files</source>
-        <translation type="obsolete">Programmes</translation>
-    </message>
-</context>
-<context>
     <name>pageFinished</name>
     <message>
         <location filename="../dialogs/page_setup_finished.ui" line="43"/>
@@ -33,11 +25,6 @@ p, li { white-space: pre-wrap; }
 p, li { white-space: pre-wrap; }&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:13pt; font-weight:600;&quot;&gt;iTALC est installé !&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="" line="1600481121"/>
-        <source>iTALC is now completely installed. For using iTALC you either have to restart your computer or start the iTALC Client service manually.</source>
-        <translation type="obsolete">iTALC est maintenant complètement installé. Pour l&apos;utiliser, vous devez soit redémarrer votre ordinateur soit lancer le service iTALC manuellement.</translation>
-    </message>
-    <message>
         <location filename="../dialogs/page_setup_finished.ui" line="71"/>
         <source>Save installation settings</source>
         <translation>Enregistrer les paramètres d&apos;installation</translation>
@@ -45,7 +32,7 @@ p, li { white-space: pre-wrap; }&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot;
     <message>
         <location filename="../dialogs/page_setup_finished.ui" line="61"/>
         <source>iTALC is now completely installed. If you installed the master application you can start it using the start-menu.</source>
-        <translation type="unfinished"></translation>
+        <translation>iTALC est maintenant complètement installé. Si vous avez installé l&apos;application maître, vous pouvez la lancer par le menu Démarrer.</translation>
     </message>
 </context>
 <context>
@@ -171,7 +158,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../dialogs/page_security_options.ui" line="152"/>
         <source>Keep all keys (only when updating existing installation!)</source>
-        <translation type="unfinished"></translation>
+        <translation>Conserver toutes les clés (seulement pour une mise à jour !)</translation>
     </message>
 </context>
 <context>

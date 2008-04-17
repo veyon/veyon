@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="fr_FR">
+<!DOCTYPE TS><TS version="1.1">
 <context>
     <name>QObject</name>
     <message>
@@ -10,7 +10,7 @@
     <message>
         <location filename="../src/local_system.cpp" line="635"/>
         <source>iTALC-snapshots</source>
-        <translation type="unfinished">Captures iTALC</translation>
+        <translation>Captures iTALC</translation>
     </message>
 </context>
 <context>
@@ -18,20 +18,12 @@
     <message>
         <location filename="../src/ivs_connection.cpp" line="308"/>
         <source>Snapshot</source>
-        <translation type="unfinished"></translation>
+        <translation>Capture</translation>
     </message>
     <message>
         <location filename="../src/ivs_connection.cpp" line="310"/>
         <source>Could not take a snapshot as directory %1 doesn&apos;t exist and couldn&apos;t be created.</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>localSystem::QObject</name>
-    <message>
-        <location filename="../src/local_system.cpp" line="621"/>
-        <source>iTALC-snapshots</source>
-        <translation type="obsolete">Captures iTALC</translation>
+        <translation>Impossible de prendre une capture : le répertoire %1 n&apos;existe pas et ne peut être créé.</translation>
     </message>
 </context>
 <context>
@@ -39,7 +31,7 @@
     <message>
         <location filename="../src/lock_widget.cpp" line="69"/>
         <source>screen lock</source>
-        <translation type="unfinished"></translation>
+        <translation>ver. écran</translation>
     </message>
 </context>
 <context>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="fr_FR">
+<!DOCTYPE TS><TS version="1.1">
 <context>
     <name>about</name>
     <message>
@@ -59,41 +59,21 @@ p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;iTALC - Intelligent Teaching And Learning with Computers&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;&quot;&gt;Copyright (c) 2004-2007 Tobias Doerffel&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="obsolete">&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;iTALC - Intelligent Teaching And Learning with Computers&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;&quot;&gt;Copyright (c) 2004-2007 Tobias Doerffel&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <location filename="../dialogs/about.ui" line="90"/>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;iTALC - Intelligent Teaching And Learning with Computers&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;&quot;&gt;Copyright (c) 2004-2008 Tobias Doerffel&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;iTALC - Intelligent Teaching And Learning with Computers&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;&quot;&gt;Copyright (c) 2004-2007 Tobias Doerffel&lt;/p&gt;&lt;/body&gt;&lt;/html&gt; {1&quot;?} {9p?} {400;?} {0p?} {0p?} {0p?} {0p?} {0;?} {0p?} {11p?} {0p?} {0p?} {0p?} {0p?} {0;?} {0p?} {11p?} {0p?} {0p?} {0p?} {0p?} {0;?} {0p?} {11p?} {2004-2008 ?}</translation>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;&quot;&gt;Copyright (c) 2004-2008 Tobias Doerffel&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
     <name>classRoom</name>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1700"/>
-        <source>Administation</source>
-        <translation type="obsolete">Administration</translation>
-    </message>
-    <message>
         <location filename="../src/classroom_manager.cpp" line="1987"/>
         <source>Administration</source>
-        <translation type="unfinished"></translation>
+        <translation>Administration</translation>
     </message>
 </context>
 <context>
@@ -122,19 +102,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../src/classroom_manager.cpp" line="117"/>
         <source>IP-address</source>
         <translation>Adresse IP</translation>
-    </message>
-    <message>
-        <location filename="../src/classroom_manager.cpp" line="136"/>
-        <source>
-Use the context-menu (right mouse-button) to add/remove computers and/or classrooms.
-
-Once you did so you can show or hide clients by double-clicking them.
-
-Further actions can be found in the context-menu of a computer or classroom.
-</source>
-        <translation type="obsolete">Utilisez le menu contextuel (clic droit) pour ajouter/enlever des ordinateurs ou des salles. 
-Par la suite, vous pouvez afficher ou cacher les clients en double-cliquant dessus. 
-Des actions supplémentaires sont disponibles dans le menu contextuel de chaque classe ou ordinateur.</translation>
     </message>
     <message>
         <location filename="../src/classroom_manager.cpp" line="687"/>
@@ -300,42 +267,43 @@ Voulez-vous en créer une maintenant ?</translation>
     <message>
         <location filename="../src/classroom_manager.cpp" line="1314"/>
         <source>Hide teacher computers</source>
-        <translation type="unfinished"></translation>
+        <translation>Cacher les ordinateurs des professeurs</translation>
     </message>
     <message>
         <location filename="../src/classroom_manager.cpp" line="117"/>
         <source>Usernames</source>
-        <translation type="unfinished"></translation>
+        <translation>Noms</translation>
     </message>
     <message>
         <location filename="../src/classroom_manager.cpp" line="139"/>
         <source>Show usernames</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficher les noms d&apos;utilisateurs</translation>
     </message>
     <message>
         <location filename="../src/classroom_manager.cpp" line="149"/>
         <source>Use the context-menu (right mouse-button) to add/remove computers and/or classrooms.</source>
-        <translation type="unfinished"></translation>
+        <translation>Utilisez le menu contextuel (bouton droit) pour ajouter/enlever des ordinateurs ou des salles.</translation>
     </message>
     <message>
         <location filename="../src/classroom_manager.cpp" line="158"/>
         <source>Export to text-file</source>
-        <translation type="unfinished">Exporter dans un fichier texte</translation>
+        <translation>Export�fichier texte</translation>
     </message>
     <message>
         <location filename="../src/classroom_manager.cpp" line="173"/>
         <source>Use this button for exporting this list of computers and usernames into a text-file. You can use this file later for collecting files after an exam has finished. This is sometimes neccessary, because some users might have finished and logged out earlier and so you cannot collect their files at the end of the exam.</source>
-        <translation type="unfinished"></translation>
+        <translation>Utilisez ce bouton pour exporter cette liste d&apos;ordinateurs et de noms d&apos;utilisateurs dans un fichier texte. 
+Vous pourrez utiliser ensuite ce fichier pour collecter des fichiers à la fin d&apos;un examen. C&apos;est parfois nécessaires, car certains étudiants peuvent terminer et se déconnecter en avance, ce qui vous empêche de collecter leurs fichiers.</translation>
     </message>
     <message>
         <location filename="../src/classroom_manager.cpp" line="837"/>
         <source>Select output-file</source>
-        <translation type="unfinished">Choisir le fichier de sortie</translation>
+        <translation>Choisir le fichier de sortie</translation>
     </message>
     <message>
         <location filename="../src/classroom_manager.cpp" line="839"/>
         <source>Text files (*.txt)</source>
-        <translation type="unfinished">Fichiers texte (*.txt)</translation>
+        <translation>Fichiers texte (*.txt)</translation>
     </message>
 </context>
 <context>
@@ -361,11 +329,6 @@ Voulez-vous en créer une maintenant ?</translation>
         <translation>Contrôle à distance</translation>
     </message>
     <message>
-        <location filename="" line="135009636"/>
-        <source>Send text-message</source>
-        <translation type="obsolete">Envoyer un message</translation>
-    </message>
-    <message>
         <location filename="../src/client.cpp" line="69"/>
         <source>Power down</source>
         <translation>Éteindre </translation>
@@ -389,11 +352,6 @@ Voulez-vous en créer une maintenant ?</translation>
         <location filename="../src/client.cpp" line="62"/>
         <source>Let student show demo</source>
         <translation>Laisser l&apos;étudiant faire une démo</translation>
-    </message>
-    <message>
-        <location filename="" line="135009636"/>
-        <source>Make a snapshot</source>
-        <translation type="obsolete">Faire une capture</translation>
     </message>
     <message>
         <location filename="../src/client.cpp" line="70"/>
@@ -426,61 +384,29 @@ Voulez-vous en créer une maintenant ?</translation>
         <translation>Bureau verrouillé</translation>
     </message>
     <message>
-        <location filename="" line="135009636"/>
-        <source>View live and fullscreen</source>
-        <translation type="obsolete">Voir en direct - plein écran</translation>
-    </message>
-    <message>
-        <location filename="" line="135009636"/>
-        <source>Snapshot</source>
-        <translation type="obsolete">Capture</translation>
-    </message>
-    <message>
-        <location filename="" line="135009636"/>
-        <source>Could not make a snapshot as directory %1 doesn&apos;t exist and couldn&apos;t be created.</source>
-        <translation type="obsolete">Impossible de lancer une capture : le répertoire %1 n&apos;existe pas et ne peut pas être créé.</translation>
-    </message>
-    <message>
         <location filename="../src/client.cpp" line="64"/>
         <source>Logon user</source>
         <translation>Connecter l&apos;utilisateur</translation>
     </message>
     <message>
-        <location filename="" line="135009636"/>
-        <source>Watch only (stops demo and unlocks screen)</source>
-        <translation type="obsolete">Regarder seulement (arrêter les démos et déverrouiller les écrans)</translation>
-    </message>
-    <message>
-        <location filename="" line="135009636"/>
-        <source>This is a client-window. It either displays the screen of the according client or a message about the state of this client (no user logged in/powered off) is shown. You can click with the right mouse-button and an action-menu for this client will appear. You can also close this client-window. To open it again, open the classroom-manager-workspace and search this client and double-click it.
-You can change the size of this (and all other visible) client-windows by using the functions for increasing, decreasing or optimizing the client-window-size.</source>
-        <translation type="obsolete">C&apos;est une fenêtre client. Elle affiche soit l&apos;écran du client correspondant, soit un simple message sur l&apos;état du client (aucun utilisateur connecté / éteint). Si vous faites un clic droit, un menu action apparaîtra pour ce client. Vous pouvez également fermer cette fenêtre client. Pour la ré-ouvrir, ouvrez le gestionnaire de salle, puis double-cliquez sur le client. 
-Vous pouvez changer la taille de cette fenêtre client (et des autres visibles) en utilisant les fonctions pour augmenter, diminuer ou optimiser la taille des fenêtres clients.</translation>
-    </message>
-    <message>
-        <location filename="../src/client.cpp" line="59"/>
-        <source>View live in fullscreen</source>
-        <translation type="obsolete">Voir en direct en plein écran</translation>
-    </message>
-    <message>
         <location filename="../src/client.cpp" line="63"/>
         <source>Send text message</source>
-        <translation type="unfinished">Envoyer un message</translation>
+        <translation>Envoyer un message textuel</translation>
     </message>
     <message>
         <location filename="../src/client.cpp" line="66"/>
         <source>Take a snapshot</source>
-        <translation type="unfinished"></translation>
+        <translation>Prendre une capture</translation>
     </message>
     <message>
         <location filename="../src/client.cpp" line="60"/>
         <source>View live</source>
-        <translation type="unfinished"></translation>
+        <translation>Voir en direct</translation>
     </message>
     <message>
         <location filename="../src/client.cpp" line="205"/>
         <source>Overview</source>
-        <translation type="unfinished">Aperçu</translation>
+        <translation>Aperçu</translation>
     </message>
 </context>
 <context>
@@ -494,11 +420,6 @@ Vous pouvez changer la taille de cette fenêtre client (et des autres visibles) 
         <location filename="../dialogs/client_settings.ui" line="109"/>
         <source>General</source>
         <translation>Général</translation>
-    </message>
-    <message>
-        <location filename="../dialogs/client_settings.ui" line="258"/>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Name of the host which is displayed in iTALC.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="obsolete">&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Nom de l&apos;hôte affiché dans iTALC.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/client_settings.ui" line="240"/>
@@ -608,21 +529,6 @@ Habituellement, les hôtes sont connectés sur un LAN 100MBits/s, mais il peut y
         <translation>Servir de &amp;réplicateur de démo</translation>
     </message>
     <message>
-        <location filename="../dialogs/client_settings.ui" line="477"/>
-        <source>ThinClient</source>
-        <translation type="obsolete">Client léger</translation>
-    </message>
-    <message>
-        <location filename="../dialogs/client_settings.ui" line="500"/>
-        <source>Remote IP</source>
-        <translation type="obsolete">IP distante</translation>
-    </message>
-    <message>
-        <location filename="../dialogs/client_settings.ui" line="531"/>
-        <source>Use raw-encoding for demo-mode</source>
-        <translation type="obsolete">Utiliser l&apos;encodage brut (raw) pour le mode démo</translation>
-    </message>
-    <message>
         <location filename="../dialogs/client_settings.ui" line="528"/>
         <source>&amp;OK</source>
         <translation>&amp;OK</translation>
@@ -645,41 +551,31 @@ p, li { white-space: pre-wrap; }&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot;
     <message>
         <location filename="../dialogs/client_settings.ui" line="124"/>
         <source>Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Type</translation>
     </message>
     <message>
         <location filename="../dialogs/client_settings.ui" line="135"/>
         <source>Student computer</source>
-        <translation type="unfinished"></translation>
+        <translation>Ordinateur étudiant</translation>
     </message>
     <message>
         <location filename="../dialogs/client_settings.ui" line="140"/>
         <source>Teacher computer</source>
-        <translation type="unfinished"></translation>
+        <translation>Ordinateur professeur</translation>
     </message>
     <message>
         <location filename="../dialogs/client_settings.ui" line="145"/>
         <source>Other/undefined computer</source>
-        <translation type="unfinished"></translation>
+        <translation>Ordinateur autre/indéfini</translation>
     </message>
     <message>
         <location filename="../dialogs/client_settings.ui" line="258"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Optional nickname of the host which is displayed in iTALC.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Surnom optionnel de l&apos;hôte affiché dans iTALC.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
     <name>clientSettingsDialog</name>
-    <message>
-        <location filename="../src/dialogs.cpp" line="99"/>
-        <source>Missing name</source>
-        <translation type="obsolete">Nom manquant</translation>
-    </message>
-    <message>
-        <location filename="../src/dialogs.cpp" line="100"/>
-        <source>You didn&apos;t specify a name for the computer!</source>
-        <translation type="obsolete">Vous n&apos;avez pas donné de nom pour l&apos;ordinateur !</translation>
-    </message>
     <message>
         <location filename="../src/dialogs.cpp" line="98"/>
         <source>Missing IP-address/hostname</source>
@@ -696,14 +592,9 @@ p, li { white-space: pre-wrap; }&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot;
         <translation>Adresse MAC invalide</translation>
     </message>
     <message>
-        <location filename="" line="135009636"/>
-        <source>You specified an invalid MAC-address. Either leave the field blank or enter a valid MAC-address.</source>
-        <translation type="obsolete">Vous avez donné une adresse MAC invalide. Laissez le champ vide, ou entrez une adresse MAC valide (6 octets héxadécimaux, type 00:1A:1B:2D:2E:2F).</translation>
-    </message>
-    <message>
         <location filename="../src/dialogs.cpp" line="112"/>
         <source>You specified an invalid MAC-address. Either leave the field blank or enter a valid MAC-address (use &quot;:&quot; as separator!).</source>
-        <translation type="unfinished"></translation>
+        <translation>Vous avez entré une adresse MAC invalide. Laissez le champ vide ou entrez une adresse valide (séparateur = &quot;:&quot;).</translation>
     </message>
 </context>
 <context>
@@ -981,11 +872,6 @@ p, li { white-space: pre-wrap; }
         <translation>Ajuster les fenêtres et leurs tailles</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="210"/>
-        <source>Lock desktops</source>
-        <translation type="obsolete">Verrouiller les bureaux</translation>
-    </message>
-    <message>
         <location filename="../src/main_window.cpp" line="216"/>
         <source>To have all user&apos;s full attention you can lock their desktops using this button. In this mode all input devices are locked and the screen is black.</source>
         <translation>Pour retenir l&apos;attention de tous les utilisateurs, vous pouvez verrouiller leurs bureaux avec ce bouton. 
@@ -1000,16 +886,6 @@ Dans ce mode, l&apos;écran est noir et les périphériques d&apos;entrée sont 
         <location filename="../src/main_window.cpp" line="101"/>
         <source>Could not read/write or create directory %1! For running iTALC, make sure you&apos;re permitted to create or write this directory.</source>
         <translation>Impossible de lire/écrire dans le répertoire %1, ou de le créer. Assurez-vous que vous avez les permissions nécessaires.</translation>
-    </message>
-    <message>
-        <location filename="../src/main_window.cpp" line="264"/>
-        <source>Multi logon</source>
-        <translation type="obsolete">Connexion multiple</translation>
-    </message>
-    <message>
-        <location filename="../src/main_window.cpp" line="267"/>
-        <source>After clicking this button you can enter a username and password for logging in the according user on all visible computers.</source>
-        <translation type="obsolete">Cette option vous permet d&apos;entrer un nom d&apos;utilisateur et un mot de passe pour connecter l&apos;utilisateur correspondant sur l&apos;ensemble des ordinateurs visibles.</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="287"/>
@@ -1061,21 +937,6 @@ Dans ce mode, l&apos;écran est noir et les périphériques d&apos;entrée sont 
         <location filename="../src/main_window.cpp" line="180"/>
         <source>Overview</source>
         <translation>Aperçu</translation>
-    </message>
-    <message>
-        <location filename="../src/main_window.cpp" line="189"/>
-        <source>Demo</source>
-        <translation type="obsolete">Démo</translation>
-    </message>
-    <message>
-        <location filename="../src/main_window.cpp" line="199"/>
-        <source>Demo/window</source>
-        <translation type="obsolete">Démo/fenêtre</translation>
-    </message>
-    <message>
-        <location filename="../src/main_window.cpp" line="209"/>
-        <source>Lock</source>
-        <translation type="obsolete">Verrouiller</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="237"/>
@@ -1133,42 +994,42 @@ Veuillez créer une nouvelle paire de clés à l&apos;aide d&apos;ICA (documenta
     <message>
         <location filename="../src/main_window.cpp" line="211"/>
         <source>Lock all</source>
-        <translation type="unfinished"></translation>
+        <translation>Tout verrouiller</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="211"/>
         <source>Unlock all</source>
-        <translation type="unfinished"></translation>
+        <translation>Tout déverrouiller</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="212"/>
         <source>Lock/unlock desktops</source>
-        <translation type="unfinished"></translation>
+        <translation>(Dé-)verrouiller les bureaux</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="266"/>
         <source>Remote logon</source>
-        <translation type="unfinished"></translation>
+        <translation>Connexion distante</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="269"/>
         <source>After clicking this button you can enter a username and password to log on the according user on all visible computers.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ce bouton vous permet d&apos;entrer un nom d&apos;utilisateur et un mot de passe pour vous connecter sur tous les ordinateurs visibles.</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="191"/>
         <source>Fullscreen Demo</source>
-        <translation type="unfinished"></translation>
+        <translation>Démo plein écran</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="201"/>
         <source>Stop Demo</source>
-        <translation type="unfinished"></translation>
+        <translation>Arrêter la démo</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="201"/>
         <source>Window Demo</source>
-        <translation type="unfinished"></translation>
+        <translation>Démo fenêtre</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="274"/>
@@ -1178,69 +1039,12 @@ Veuillez créer une nouvelle paire de clés à l&apos;aide d&apos;ICA (documenta
     <message>
         <location filename="../src/main_window.cpp" line="275"/>
         <source>Direct support</source>
-        <translation type="unfinished"></translation>
+        <translation>Assistance directe</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="278"/>
         <source>If you need to support someone at a certain computer you can click this button and enter the according hostname or IP afterwards.</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>multiLogon</name>
-    <message>
-        <location filename="../dialogs/multi_logon.ui" line="13"/>
-        <source>Multi logon</source>
-        <translation type="obsolete">Connexion multiple</translation>
-    </message>
-    <message>
-        <location filename="../dialogs/multi_logon.ui" line="46"/>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:20pt; font-weight:600; font-style:italic;&quot;&gt;Multi logon&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="obsolete">&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;(new line)p, li { white-space: pre-wrap; }(new line)&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:20pt; font-weight:600; font-style:italic;&quot;&gt;Connexion multiple&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <location filename="../dialogs/multi_logon.ui" line="122"/>
-        <source>Username</source>
-        <translation type="obsolete">Nom d&apos;utilisateur</translation>
-    </message>
-    <message>
-        <location filename="../dialogs/multi_logon.ui" line="129"/>
-        <source>Password</source>
-        <translation type="obsolete">Mot de passe</translation>
-    </message>
-    <message>
-        <location filename="../dialogs/multi_logon.ui" line="199"/>
-        <source>&amp;OK</source>
-        <translation type="obsolete">&amp;OK</translation>
-    </message>
-    <message>
-        <location filename="../dialogs/multi_logon.ui" line="205"/>
-        <source>Ctrl+Enter</source>
-        <translation type="obsolete">Ctrl+Entrée</translation>
-    </message>
-    <message>
-        <location filename="../dialogs/multi_logon.ui" line="212"/>
-        <source>Cancel</source>
-        <translation type="obsolete">Abandonner</translation>
-    </message>
-    <message>
-        <location filename="../dialogs/multi_logon.ui" line="218"/>
-        <source>Esc</source>
-        <translation type="obsolete">Esc</translation>
-    </message>
-    <message>
-        <location filename="../dialogs/multi_logon.ui" line="85"/>
-        <source>Use the fields below to enter the username, password and optional the domain-name. These information will be used to logon the computer(s).</source>
-        <translation type="obsolete">Dans les champs ci-dessous, entrez le nom d&apos;utilisateur, le mot de passe et éventuellement le nom de domaine. Ces informations seront utilisées pour la connexion à (aux) ordinateur(s).</translation>
-    </message>
-    <message>
-        <location filename="../dialogs/multi_logon.ui" line="136"/>
-        <source>Domain</source>
-        <translation type="obsolete">Domaine</translation>
+        <translation>Si vous voulez assister quelqu&apos;un sur un ordinateur, cliquez sur ce bouton puis entrez le nom d&apos;hôte ou son adresse IP.</translation>
     </message>
 </context>
 <context>
@@ -1263,11 +1067,6 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../dialogs/overview.ui" line="134"/>
-        <source>If you want to know which users are logged in you can open the user-list.</source>
-        <translation type="obsolete">Pour savoir quels sont les utilisateurs connectés, vous pouvez ouvrir la liste des utilisateurs.</translation>
-    </message>
-    <message>
-        <location filename="../dialogs/overview.ui" line="134"/>
         <source>The snapshot-workspace is a very useful tool. It let&apos;s you manage the snapshots you made.</source>
         <translation>L&apos;espace Capture vous permet de gérer toutes les captures d&apos;écran que vous avez effectuées.</translation>
     </message>
@@ -1283,13 +1082,8 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../dialogs/overview.ui" line="99"/>
-        <source>Using the classroom-manager you can manage your classrooms and computers.</source>
-        <translation type="obsolete">Avec le gestionnaire de salle, vous pouvez gérer vos salles et vos ordinateurs.</translation>
-    </message>
-    <message>
-        <location filename="../dialogs/overview.ui" line="99"/>
         <source>Using the classroom-manager you can manage your classrooms and computers. You can also see which users are logged in.</source>
-        <translation type="unfinished"></translation>
+        <translation>Avec le gestionnaire de salle, vous pouvez gérer les salles et les ordinateurs, et également voir qui est connecté.</translation>
     </message>
 </context>
 <context>
@@ -1308,29 +1102,19 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>remoteControlWidget</name>
     <message>
-        <location filename="" line="135009636"/>
-        <source>View live (host %1)</source>
-        <translation type="obsolete">Voir en direct (hôte %1)</translation>
-    </message>
-    <message>
-        <location filename="" line="135009636"/>
-        <source>Remote control (host %1)</source>
-        <translation type="obsolete">Contrôle à distance (hôte %1)</translation>
-    </message>
-    <message>
         <location filename="../src/remote_control_widget.cpp" line="305"/>
         <source>View live (%1 at host %2)</source>
-        <translation type="unfinished"></translation>
+        <translation>Voir en direct (%1 sur l&apos;hôte %2)</translation>
     </message>
     <message>
         <location filename="../src/remote_control_widget.cpp" line="306"/>
         <source>Remote control (%1 at host %2)</source>
-        <translation type="unfinished"></translation>
+        <translation>Contrôle à distance (%1 sur l&apos;hôte %2)</translation>
     </message>
     <message>
         <location filename="../src/remote_control_widget.cpp" line="310"/>
         <source>unknown user</source>
-        <translation type="unfinished"></translation>
+        <translation>utilisateur inconnu</translation>
     </message>
 </context>
 <context>
@@ -1378,12 +1162,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/remote_control_widget.cpp" line="69"/>
         <source>Unlock student</source>
-        <translation type="unfinished"></translation>
+        <translation>Déverrouiller l&apos;étudiant</translation>
     </message>
     <message>
         <location filename="../src/remote_control_widget.cpp" line="79"/>
         <source>Window</source>
-        <translation type="unfinished"></translation>
+        <translation>Fenêtre</translation>
     </message>
 </context>
 <context>
@@ -1391,7 +1175,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../dialogs/remote_logon.ui" line="13"/>
         <source>Remote Logon</source>
-        <translation type="unfinished"></translation>
+        <translation>Connexion distante</translation>
     </message>
     <message>
         <location filename="../dialogs/remote_logon.ui" line="46"/>
@@ -1399,7 +1183,10 @@ p, li { white-space: pre-wrap; }
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:20pt; font-weight:600; font-style:italic;&quot;&gt;Remote Logon&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:20pt; font-weight:600; font-style:italic;&quot;&gt;Connexion distante&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/remote_logon.ui" line="85"/>
@@ -1509,11 +1296,6 @@ p, li { white-space: pre-wrap; }
         <translation>Assistance</translation>
     </message>
     <message>
-        <location filename="../dialogs/support.ui" line="49"/>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:20pt; font-weight:600; font-style:italic;&quot;&gt;Support&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="obsolete">&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:20pt; font-weight:600; font-style:italic;&quot;&gt;Assistance&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
         <location filename="../dialogs/support.ui" line="79"/>
         <source>Please enter the IP-address or the name of the host at which the person is sitting, you want to support.</source>
         <translation>Veuillez entrez l&apos;adresse IP ou le nom d&apos;hôte utilisé par la personne que vous voulez assister.</translation>
@@ -1531,30 +1313,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../dialogs/support.ui" line="49"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:20pt; font-weight:600; font-style:italic;&quot;&gt;Support &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>supportWidget</name>
-    <message>
-        <location filename="../src/support_widget.cpp" line="39"/>
-        <source>Support</source>
-        <translation type="obsolete">Assistance</translation>
-    </message>
-    <message>
-        <location filename="../src/support_widget.cpp" line="40"/>
-        <source>Need to support someone? Open this workspace!</source>
-        <translation type="obsolete">Pour assister quelqu&apos;un, ouvrez cet espace !</translation>
-    </message>
-    <message>
-        <location filename="../src/support_widget.cpp" line="56"/>
-        <source>Support someone</source>
-        <translation type="obsolete">Assister quelqu&apos;un</translation>
-    </message>
-    <message>
-        <location filename="../src/support_widget.cpp" line="49"/>
-        <source>If you want to support someone at another host you can do this by clicking the button below.</source>
-        <translation type="obsolete">Si vous voulez assister quelqu&apos;un utilisant un autre client, cliquez sur le bouton ci-dessous.</translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:20pt; font-weight:600; font-style:italic;&quot;&gt;Assistance&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
@@ -1593,44 +1352,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../dialogs/text_message.ui" line="144"/>
         <source>Esc</source>
         <translation>Esc</translation>
-    </message>
-</context>
-<context>
-    <name>userList</name>
-    <message>
-        <location filename="../src/user_list.cpp" line="43"/>
-        <source>Logged in users</source>
-        <translation type="obsolete">Utilisateurs connectés</translation>
-    </message>
-    <message>
-        <location filename="../src/user_list.cpp" line="64"/>
-        <source>Export to text-file</source>
-        <translation type="obsolete">Exporter dans un fichier texte</translation>
-    </message>
-    <message>
-        <location filename="../src/user_list.cpp" line="182"/>
-        <source>Select output-file</source>
-        <translation type="obsolete">Choisir le fichier de sortie</translation>
-    </message>
-    <message>
-        <location filename="../src/user_list.cpp" line="53"/>
-        <source>Here you see the real names and the user-names of the users, logged in at currently visible clients.</source>
-        <translation type="obsolete">Ici vous voyez les noms réels et les noms d&apos;utilisateur de tous les utilisateurs connectés sur les clients visibles.</translation>
-    </message>
-    <message>
-        <location filename="../src/user_list.cpp" line="79"/>
-        <source>Use this button for exporting this user-list into a text-file. You can use this file later for collecting files after an exam has finished. This is sometimes neccessary, because some users might have finished and logged out earlier and so you cannot collect their files at the end of the exam.</source>
-        <translation type="obsolete">Utilisez ce bouton pour exporter cette liste d&apos;utilisateurs dans un fichier texte. Vous pouvez utiliser ensuite ce fichier pour récupérer les fichiers déposés à la fin d&apos;un examen. C&apos;est parfois nécessaire, car certains utilisateurs ont pu terminer plut tôt et s&apos;être déconnectés. Dans ce cas, vous ne pourriez pas récupérer leurs fichiers à la fin de l&apos;examen.</translation>
-    </message>
-    <message>
-        <location filename="../src/user_list.cpp" line="184"/>
-        <source>Text files (*.txt)</source>
-        <translation type="obsolete">Fichiers texte (*.txt)</translation>
-    </message>
-    <message>
-        <location filename="../src/user_list.cpp" line="45"/>
-        <source>Open this workspace if you want to see which users currently are logged in.</source>
-        <translation type="obsolete">Ouvrez cet espace si vous voulez connaître les utilisateurs connectés actuellement.</translation>
     </message>
 </context>
 </TS>
