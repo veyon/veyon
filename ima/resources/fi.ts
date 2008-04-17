@@ -615,7 +615,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../dialogs/client_settings.ui" line="258"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Optional nickname of the host which is displayed in iTALC.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Vaihtoehtoinen nimi koneelle iTALC:ssa.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
@@ -1104,17 +1104,17 @@ Otherwise you won&apos;t be able to access computers using iTALC.</source>
     <message>
         <location filename="../src/main_window.cpp" line="191"/>
         <source>Fullscreen Demo</source>
-        <translation type="unfinished"></translation>
+        <translation>Esitys koko näytöllä</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="201"/>
         <source>Stop Demo</source>
-        <translation type="unfinished"></translation>
+        <translation>Lopeta esitys</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="201"/>
         <source>Window Demo</source>
-        <translation type="unfinished"></translation>
+        <translation>Esitys ikkunassa</translation>
     </message>
 </context>
 <context>
