@@ -43,12 +43,20 @@ class demoServer : public QTcpServer
 {
 	Q_OBJECT
 public:
-	demoServer( IVS * _ivs_conn, int _quality = 0, quint16 _port = 0 );
+	demoServer( IVS * _ivs_conn, int _quality, quint16 _port,
+							QTcpSocket * _parent );
 	virtual ~demoServer();
+
+	static int numOfInstances( void )
+	{
+		return( s_numOfInstances );
+	}
 
 
 private:
 	virtual void incomingConnection( int _sd );
+
+	static int s_numOfInstances;
 
 	ivsConnection * m_conn;
 

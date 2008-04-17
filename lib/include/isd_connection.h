@@ -60,6 +60,7 @@ public:
 
 	virtual states open( void );
 	virtual void close( void );
+	void gracefulClose( void );
 	states reset( const QString & _host = "", int * _cnt = NULL );
 
 	states state( void ) const
@@ -124,7 +125,6 @@ public:
 
 	bool setRole( const ISD::userRoles _role );
 	bool demoServerRun( int _quality, int _port );
-	bool demoServerStop( void );
 	bool demoServerAllowClient( const QString & _client );
 	bool demoServerDenyClient( const QString & _client );
 

@@ -361,7 +361,6 @@ mainWindow::mainWindow( int _rctrl_screen ) :
 		return;
 	}
 
-	m_localISD->demoServerStop();
 	m_localISD->demoServerRun( __demo_quality,
 						localSystem::freePort( 5858 ) );
 
@@ -378,8 +377,6 @@ mainWindow::~mainWindow()
 	m_classroomManager->doCleanupWork();
 	delete m_workspace;
 
-
-	m_localISD->demoServerStop();
 	delete m_localISD;
 	m_localISD = NULL;
 }

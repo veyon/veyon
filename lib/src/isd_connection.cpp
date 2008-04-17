@@ -86,36 +86,17 @@ bool isdConnection::initAuthentication( void )
 		qWarning( "isdConnection::initAuthentication(): private key "
 							"already initialized" );
 		delete privDSAKey;
+		privDSAKey = NULL;
 	}
 
 	const QString priv_key_file = localSystem::privateKeyPath( __role );
-
+	if( priv_key_file == "" )
+	{
+		return( FALSE );
+	}
 	privDSAKey = new privateDSAKey( priv_key_file );
 
 	return( privDSAKey->isValid() );
-
-/*	// key valid (i.e. could be loaded)?
-	if( !privDSAKey->isValid() )
-	{
-		// no, then create a new one
-		delete privDSAKey;
-		// generate 1024bit RSA-key and save it
-		privDSAKey = new privateDSAKey( 1024 );
-		if( !privDSAKey->isValid() )
-		{
-			qCritical( "isdConnection::initAuthentication(): "
-						"key generation failed!" );
-			return( FALSE );
-		}
-		privDSAKey->save( priv_key_file );
-
-		// derive public key from private key and save it
-		publicDSAKey( *privDSAKey ).save(
-					localSystem::publicKeyPath( __role ) );
-
-		return( FALSE );
-	}
-	return( TRUE );*/
 }
 
 
@@ -374,6 +355,20 @@ void isdConnection::close( void )
 	}
 
 	m_user = "";
+}
+
+
+
+
+void isdConnection::gracefulClose( void )
+{
+	if( m_socket != NULL )
+	{
+		m_socket->close();
+		delete m_socket;
+		m_socket = NULL;
+	}
+	close();
 }
 
 
@@ -966,20 +961,6 @@ bool isdConnection::demoServerRun( int _quality, int _port )
 	return( ISD::msg( &m_socketDev, ISD::DemoServer_Run ).
 					addArg( "port", _port ).
 					addArg( "quality", _quality ).send() );
-}
-
-
-
-
-bool isdConnection::demoServerStop( void )
-{
-	if( m_socket == NULL ||
-			m_socket->state() != QTcpSocket::ConnectedState )
-	{
-		m_state = Disconnected;
-		return( FALSE );
-	}
-	return( ISD::msg( &m_socketDev, ISD::DemoServer_Stop ).send() );
 }
 
 

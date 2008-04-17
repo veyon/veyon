@@ -219,7 +219,6 @@ typedef struct
 		SetRole = 64,
 
 		DemoServer_Run = 80,
-		DemoServer_Stop,
 		DemoServer_AllowClient,
 		DemoServer_DenyClient
 

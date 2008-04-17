@@ -1,6 +1,33 @@
 2008-04-17	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* ica/src/isd_server.cpp:
+	cleanups
+
+	* lib/src/isd_connection.cpp:
+	do not load key-file from empty filename
+
+	* lib/include/isd_connection.h:
+	* lib/src/isd_connection.cpp:
+	added gracefulClose() which should be used whereever possible as this
+	gracefully closes the connection instead of aborting it - avoids
+	SIGPIPE-signals
+
+	* ica/src/demo_server.h:
+	* ica/src/demo_server.cpp:
+	* ica/src/isd_server.cpp:
+	* ica/src/isd_server.h:
+	* ima/src/main_window.cpp:
+	* lib/include/isd_connection.h:
+	* lib/include/isd_base.h:
+	* lib/src/isd_connection.cpp:
+	rewrote the way, demo-servers are instantiated, started, stopped and
+	destroyed - hopefully fixes crashs when using demo-mode heavily
+
+	* lib/src/vncview.cpp:
+	update scaled-size as soon as we have a connection - fixes buggy
+	demo-mode and remote-control
+
+	* ica/src/isd_server.cpp:
 	* ima/dialogs/config.ui:
 	* ima/src/config_widget.cpp:
 	* ima/src/main_window.h:

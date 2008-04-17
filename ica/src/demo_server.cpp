@@ -39,9 +39,12 @@
 
 const int CURSOR_UPDATE_TIME = 30;
 
+int demoServer::s_numOfInstances = 0;
 
-demoServer::demoServer( IVS * _ivs_conn, int _quality, quint16 _port ) :
-	QTcpServer(),
+
+demoServer::demoServer( IVS * _ivs_conn, int _quality, quint16 _port,
+							QTcpSocket * _parent ) :
+	QTcpServer( _parent ),
 	m_conn( new ivsConnection(
 			QHostAddress( QHostAddress::LocalHost ).toString() +
 					":" + QString::number(
@@ -52,6 +55,8 @@ demoServer::demoServer( IVS * _ivs_conn, int _quality, quint16 _port ) :
 				_ivs_conn->runningInSeparateProcess() ) ),
 	m_updaterThread( new updaterThread( m_conn ) )
 {
+	++s_numOfInstances;
+
 	if( listen( QHostAddress::Any, _port ) == FALSE )
 	{
 		qCritical( "demoServer::demoServer(): "
@@ -68,6 +73,8 @@ demoServer::demoServer( IVS * _ivs_conn, int _quality, quint16 _port ) :
 
 demoServer::~demoServer()
 {
+	--s_numOfInstances;
+
 	delete m_updaterThread;
 	delete m_conn;
 }
@@ -119,6 +126,7 @@ void demoServer::updaterThread::run( void )
 		msleep( 20 );
 		m_conn->handleServerMessages( ( i = ( i + 1 ) % 2 ) == 0 );
 	}
+	m_conn->gracefulClose();
 }
 
 

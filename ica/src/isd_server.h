@@ -1,7 +1,7 @@
 /*
  * isd_server.h - ISD Server
  *
- * Copyright (c) 2006-2007 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *  
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -28,6 +28,7 @@
 #include <QtCore/QList>
 #include <QtCore/QMutex>
 #include <QtCore/QPair>
+#include <QtCore/QSignalMapper>
 #include <QtCore/QStringList>
 #include <QtNetwork/QTcpServer>
 
@@ -38,7 +39,6 @@ class IVS;
 class demoClient;
 class demoServer;
 class lockWidget;
-//class remoteControlWidget;
 
 
 class isdServer : public QTcpServer
@@ -71,13 +71,11 @@ public:
 
 private slots:
 	void acceptNewConnection( void );
-	void cleanupDestroyedConnection( QObject * );
-	void processClients( void );
+	void processClient( QObject * _sock );
 
 	void checkForPendingActions( void );
 
 	void demoWindowClosed( QObject * );
-//	void remoteControlWidgetClosed( QObject * );
 
 	// client-functions
 	void startDemo( const QString & _master_host, bool _fullscreen );
@@ -87,8 +85,6 @@ private slots:
 	void unlockDisplay( void );
 
 	void displayTextMessage( const QString & _msg );
-
-//	void remoteControlDisplay( const QString & _ip, bool _view_only );
 
 
 private:
@@ -103,11 +99,11 @@ private:
 	QMutex m_actionMutex;
 	QList<QPair<ISD::commands, QString> > m_pendingActions;
 
+	QSignalMapper m_readyReadMapper;
+
 	IVS * m_ivs;
 	demoClient * m_demoClient;
-	demoServer * m_demoServer;
 	lockWidget * m_lockWidget;
-//	remoteControlWidget * m_remoteControlWidget;
 
 } ;
 

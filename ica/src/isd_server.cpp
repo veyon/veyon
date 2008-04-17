@@ -53,9 +53,9 @@ QStringList isdServer::s_allowedDemoClients;
 
 isdServer::isdServer( const quint16 _ivs_port, int _argc, char * * _argv ) :
 	QTcpServer(),
+	m_readyReadMapper( this ),
 	m_ivs( NULL ),
 	m_demoClient( NULL ),
-	m_demoServer( NULL ),
 	m_lockWidget( NULL )
 {
 	if( __isd_server ||
@@ -76,6 +76,9 @@ isdServer::isdServer( const quint16 _ivs_port, int _argc, char * * _argv ) :
 
 	connect( this, SIGNAL( newConnection() ),
 			this, SLOT( acceptNewConnection() ) );
+
+	connect( &m_readyReadMapper, SIGNAL( mapped( QObject * ) ),
+			this, SLOT( processClient( QObject * ) ) );
 
 	QTimer * t = new QTimer( this );
 	connect( t, SIGNAL( timeout() ), this,
@@ -98,7 +101,6 @@ isdServer::isdServer( const quint16 _ivs_port, int _argc, char * * _argv ) :
 isdServer::~isdServer()
 {
 	delete m_ivs;
-	delete m_demoServer;
 	delete m_lockWidget;
 	__isd_server = NULL;
 }
@@ -227,34 +229,24 @@ int isdServer::processClient( socketDispatcher _sd, void * _user )
 		}
 
 		case ISD::DemoServer_Run:
-			// make sure any running demo-server is destroyed
-			delete m_demoServer;
-			// start demo-server on local IVS
-			m_demoServer = new demoServer( m_ivs,
-					msg_in.arg( "quality" ).toInt(),
-					msg_in.arg( "port" ).toInt() );
 			if( _sd == &qtcpsocketDispatcher )
 			{
+				// start demo-server on local IVS and make it
+				// child of our socket so that it automatically
+				// gets destroyed as soon as the socket is
+				// closed and thus destroyed
 				QTcpSocket * ts = static_cast<QTcpSocket *>(
 								_user );
-				ts->setProperty( "demoserver",
-					QVariant::fromValue( (QObject *)
-							m_demoServer ) );
+				new demoServer( m_ivs,
+					msg_in.arg( "quality" ).toInt(),
+					msg_in.arg( "port" ).toInt(), ts );
 			}
-			break;
-
-		case ISD::DemoServer_Stop:
-		{
-			const QList<QTcpSocket *> sockets =
-						findChildren<QTcpSocket *>();
-			foreach( QTcpSocket * _ts, sockets )
+			else
 			{
-				cleanupDestroyedConnection( _ts );
+				qCritical( "socket-dispatcher is not a "
+						"qtcpsocketDispatcher!\n" );
 			}
-			//delete m_demoServer;
-			m_demoServer = NULL;
 			break;
-		}
 
 		case ISD::DemoServer_AllowClient:
 			allowDemoClient( msg_in.arg( "client" ).toString() );
@@ -265,7 +257,7 @@ int isdServer::processClient( socketDispatcher _sd, void * _user )
 			break;
 
 		default:
-			qCritical( "isdServer::processClients(...): "
+			qCritical( "isdServer::processClient(...): "
 					"cmd %d not implemented!", cmd );
 			break;
 	}
@@ -436,7 +428,7 @@ bool isdServer::authSecTypeItalc( socketDispatcher _sd, void * _user,
 				foreach( const QHostAddress a, addr )
 				{
 	if( allowed.contains( a.toString() ) ||
-			a.toString() == QHostAddress( QHostAddress::LocalHost ).toString() )
+		a.toString() == QHostAddress( QHostAddress::LocalHost ).toString() )
 					{
 						result = ItalcAuthOK;
 						break;
@@ -613,7 +605,7 @@ void isdServer::acceptNewConnection( void )
 	QTcpSocket * sock = nextPendingConnection();
 	socketDevice sd( qtcpsocketDispatcher, sock );
 
-	if( !protocolInitialization( sd, ItalcAuthLocalDSA) )
+	if( !protocolInitialization( sd, ItalcAuthLocalDSA ) )
 	{
 		delete sock;
 		return;
@@ -621,44 +613,22 @@ void isdServer::acceptNewConnection( void )
 
 	// now we're ready to start the normal interaction with the client,
 	// so make sure, we get informed about new requests
-	connect( sock, SIGNAL( disconnected() ), sock, SLOT( deleteLater() ) );
-	connect( sock, SIGNAL( readyRead() ), this, SLOT( processClients() ) );
-	connect( sock, SIGNAL( destroyed( QObject * ) ), this,
-			SLOT( cleanupDestroyedConnection( QObject * ) ) );
+	connect( sock, SIGNAL( readyRead() ),
+			&m_readyReadMapper, SLOT( map() ) );
+	connect( sock, SIGNAL( disconnected() ),
+			sock, SLOT( deleteLater() ) );
+	m_readyReadMapper.setMapping( sock, sock );
 }
 
 
 
 
-void isdServer::cleanupDestroyedConnection( QObject * _o )
+void isdServer::processClient( QObject * _sock )
 {
-	if( _o->property( "demoserver" ).isValid() )
+	QTcpSocket * sock = qobject_cast<QTcpSocket *>( _sock );
+	while( sock->bytesAvailable() > 0 )
 	{
-		demoServer * ds = dynamic_cast<demoServer *>(
-			_o->property( "demoserver" ).value<QObject *>() );
-		if( ds == m_demoServer )
-		{
-			m_demoServer = NULL;
-		}
-		delete ds;
-		_o->setProperty( "demoserver", QVariant() );
-	}
-}
-
-
-
-
-void isdServer::processClients( void )
-{
-	// check all open connections for available data
-	QList<QTcpSocket *> sockets = findChildren<QTcpSocket *>();
-	for( QList<QTcpSocket *>::iterator it = sockets.begin();
-						it != sockets.end(); ++it )
-	{
-		while( ( *it )->bytesAvailable() > 0 )
-		{
-			processClient( qtcpsocketDispatcher, *it );
-		}
+		processClient( qtcpsocketDispatcher, sock );
 	}
 }
 
@@ -695,12 +665,6 @@ void isdServer::checkForPendingActions( void )
 				displayTextMessage( data );
 				break;
 
-/*			case ISD::ViewRemoteDisplay:
-			case ISD::RemoteControlDisplay:
-				remoteControlDisplay( data,
-		( m_pendingActions.front().first == ISD::ViewRemoteDisplay ) );
-				break;
-*/
 			default:
 				qWarning( "isdServer::checkForPendingActions():"
 						" unhandled command %d",
@@ -729,7 +693,7 @@ void isdServer::startDemo( const QString & _master_host, bool _fullscreen )
 	// if a demo-server is started, it's likely that the demo was started
 	// on master-computer as well therefore we deny starting a demo on
 	// hosts on which a demo-server is running
-	if( m_demoServer )
+	if( demoServer::numOfInstances() > 0 )
 	{
 		return;
 	}
@@ -753,7 +717,7 @@ void isdServer::stopDemo( void )
 
 void isdServer::lockDisplay( void )
 {
-	if( m_demoServer )
+	if( demoServer::numOfInstances() )
 	{
 		return;
 	}
@@ -855,75 +819,6 @@ public:
 	{
 	}
 
-#if 0
-	bool handleServerMessage( Q_UINT8 _msg )
-	{
-		if( _msg != rfbItalcServiceResponse )
-		{
-			printf( "Unknown message type %d from server. Closing "
-				"connection. Will re-open it later.\n", _msg );
-			close();
-			return( FALSE );
-		}
-
-		Q_UINT8 cmd;
-		if( !readFromServer( (char *) &cmd, sizeof( cmd ) ) )
-		{
-			return( FALSE );
-		}
-		switch( cmd )
-		{
-			case ISD::UserInformation:
-			{
-				ISD::msg m( &socketDev() );
-				m.receive();
-				ISD::msg( &socketDev(), ISD::UserInformation ).
-						addArg( "username",
-							m.arg( "username" ) ).
-						addArg( "homedir",
-							m.arg( "homedir" ) ).
-									send();
-				break;
-			}
-
-/*			case ISD::DemoServer_PortInfo:
-			{
-				ISD::msg m( &socketDev() );
-				m.receive();
-				ISD::msg( &socketDev(),
-						ISD::DemoServer_PortInfo ).
-					addArg( "demoserverport",
-						m.arg( "demoserverport" ).
-							toInt() ).send();
-				break;
-			}*/
-
-			default:
-				printf( "Unknown server response %d\n",
-								(int) cmd );
-				return( FALSE );
-		}
-
-		return( TRUE );
-	}
-
-
-	void handleServerMessages( void )
-	{
-		printf("handle\n");
-		while( hasData() )
-		{
-			rfbServerToClientMsg msg;
-			if( !readFromServer( (char *) &msg,
-							sizeof( Q_UINT8 ) ) )
-			{
-				printf( "Reading message-type failed\n" );
-				continue;
-			}
-			handleServerMessage( msg.type );
-		}
-	}
-#endif
 
 	int processClient( socketDispatcher _sd, void * _user )
 	{
@@ -976,12 +871,6 @@ public:
 					cmd == ISD::StartFullScreenDemo );
 				break;
 			}
-/*			case ISD::ViewRemoteDisplay:
-			case ISD::RemoteControlDisplay:
-				remoteControlDisplay( msg_in.arg( "ip" ).
-								toString(),
-						cmd == ISD::ViewRemoteDisplay );
-				break;*/
 
 			case ISD::DisplayTextMessage:
 				displayTextMessage( msg_in.arg( "msg" ).
@@ -1026,10 +915,6 @@ public:
 			case ISD::DemoServer_Run:
 				demoServerRun( msg_in.arg( "quality" ).toInt(),
 						msg_in.arg( "port" ).toInt() );
-				break;
-
-			case ISD::DemoServer_Stop:
-				demoServerStop();
 				break;
 
 			case ISD::DemoServer_AllowClient:
