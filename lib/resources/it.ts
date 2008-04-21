@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="it_IT">
+<defaultcodec></defaultcodec>
 <context>
     <name>QObject</name>
     <message>
@@ -10,7 +11,7 @@
     <message>
         <location filename="../src/local_system.cpp" line="635"/>
         <source>iTALC-snapshots</source>
-        <translation type="unfinished">iTALC-foto</translation>
+        <translation>iTALC-foto</translation>
     </message>
 </context>
 <context>
