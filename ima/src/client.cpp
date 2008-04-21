@@ -239,7 +239,7 @@ client::~client()
 	m_updateThread->quit();
 	if( !m_updateThread->wait( 10000 ) )
 	{
-		qWarning("terminating thread %d\n", (int) m_updateThread );
+		//qWarning("terminating thread %d\n", (int) m_updateThread );
 		m_updateThread->terminate();
 	}
 
