@@ -1,3 +1,9 @@
+2008-04-23	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* lib/src/local_system.cpp:
+	added patch by Ben Dailey <bdailey/at/bhmsd/dot/k12/dot/in/dot/us>
+	which adds dates and times to logfiles
+
 2008-04-21	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* configure.in:

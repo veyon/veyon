@@ -34,6 +34,7 @@
 #include <QtCore/QMutex>
 #include <QtCore/QProcess>
 #include <QtCore/QSettings>
+#include <QtCore/QDateTime>
 #include <QtGui/QWidget>
 #include <QtNetwork/QTcpServer>
 
@@ -187,28 +188,28 @@ void msgHandler( QtMsgType _type, const char * _msg )
 		case QtDebugMsg:
 			if( localSystem::logLevel > 8)
 			{
-				out = QString( "[debug] %1" ).arg( _msg );
+				out = QDateTime::currentDateTime().toString() + QString( ": [debug] %1" ).arg( _msg ) + "\n";
 			}
 			break;
 		case QtWarningMsg:
 			if( localSystem::logLevel > 5 )
 			{
-				out = QString( "[warning] %1" ).arg( _msg );
+				out = QDateTime::currentDateTime().toString() + QString( ": [warning] %1" ).arg( _msg ) + "\n";
 			}
 			break;
 		case QtCriticalMsg:
 			if( localSystem::logLevel > 3 )
 			{
-				out = QString( "[critical] %1" ).arg( _msg );
+				out = QDateTime::currentDateTime().toString() + QString( ": [critical] %1" ).arg( _msg ) + "\n";
 			}
 			break;
 		case QtFatalMsg:
 			if( localSystem::logLevel > 1 )
 			{
-				out = QString( "[fatal] %1" ).arg( _msg );
+				out = QDateTime::currentDateTime().toString() + QString( ": [fatal] %1" ).arg( _msg ) + "\n";
 			}
 		default:
-			out = QString( "[unknown] %1" ).arg( _msg );
+			out = QDateTime::currentDateTime().toString() + QString( ": [unknown] %1" ).arg( _msg ) + "\n";
 			break;
 	}
 	if( out.trimmed().size() )
@@ -242,11 +243,10 @@ void initialize( p_pressKey _pk, const QString & _log_file )
 
 	QSettings settings( QSettings::SystemScope, "iTALC Solutions", "iTALC" );
 	
-	if( settings.contains( "settings/LogLevel" ) && 
-		   settings.value( "settings/LogLevel" ).toInt() != 0 )
+	if( settings.contains( "settings/LogLevel" ) )
 	{
 		logLevel = settings.value( "settings/LogLevel" ).toInt();
-	}	
+	}
 
 	qInstallMsgHandler( msgHandler );
 
