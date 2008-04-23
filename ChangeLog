@@ -4,6 +4,7 @@
 	* ica/src/isd_server.cpp:
 	* lib/include/isd_base.h:
 	* lib/src/isd_base.cpp:
+	* ica/win32/win32vnc.cpp:
 	- renamed SocketGetIPBoundTo to SocketGetPeerAddress
 	- fixed demo-mode on Linux-clients by not adding host-names twice
 	  because of isdForwarder

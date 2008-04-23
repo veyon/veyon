@@ -177,7 +177,7 @@ qint64 vsocketDispatcher( char * _buf, const qint64 _len,
 								_len : 0 );
 		case SocketWrite: return( sock->SendExact( _buf, _len ) ?
 						  		_len : 0 );
-		case SocketGetIPBoundTo:
+		case SocketGetPeerAddress:
 			strncpy( _buf, sock->GetPeerName(), _len );
 			return( 0 );
 	}
