@@ -156,17 +156,24 @@ int isdServer::processClient( socketDispatcher _sd, void * _user )
 		case ISD::StartFullScreenDemo:
 		case ISD::StartWindowDemo:
 		{
-			const int MAX_HOST_LEN = 255;
-			char host[MAX_HOST_LEN+1];
-			_sd( host, MAX_HOST_LEN, SocketGetIPBoundTo,
-								_user );
-			host[MAX_HOST_LEN] = 0;
 			QString port = msg_in.arg( "port" ).toString();
 			if( port == "" )
 			{
 				port = "5858";
 			}
-			action = host + QString( ":" ) + port;
+			if( !port.contains( ':' ) )
+			{
+				const int MAX_HOST_LEN = 255;
+				char host[MAX_HOST_LEN+1];
+				_sd( host, MAX_HOST_LEN, SocketGetPeerAddress,
+									_user );
+				host[MAX_HOST_LEN] = 0;
+				action = host + QString( ":" ) + port;
+			}
+			else
+			{
+				action = port;
+			}
 			break;
 		}
 
@@ -324,7 +331,7 @@ bool isdServer::protocolInitialization( socketDevice & _sd,
 
 	const int MAX_HOST_LEN = 255;
 	char host[MAX_HOST_LEN+1];
-	_sd.sockDispatcher()( host, MAX_HOST_LEN, SocketGetIPBoundTo,
+	_sd.sockDispatcher()( host, MAX_HOST_LEN, SocketGetPeerAddress,
 								_sd.user() );
 	host[MAX_HOST_LEN] = 0;
 
@@ -357,7 +364,7 @@ bool isdServer::authSecTypeItalc( socketDispatcher _sd, void * _user,
 	// find out IP of host - needed at several places
 	const int MAX_HOST_LEN = 255;
 	char host[MAX_HOST_LEN+1];
-	_sd( host, MAX_HOST_LEN, SocketGetIPBoundTo, _user );
+	_sd( host, MAX_HOST_LEN, SocketGetPeerAddress, _user );
 	host[MAX_HOST_LEN] = 0;
 	static QStringList __denied_hosts, __allowed_hosts;
 
@@ -859,7 +866,7 @@ public:
 			{
 				const int MAX_HOST_LEN = 255;
 				char host[MAX_HOST_LEN+1];
-				_sd( host, MAX_HOST_LEN, SocketGetIPBoundTo,
+				_sd( host, MAX_HOST_LEN, SocketGetPeerAddress,
 									_user );
 				host[MAX_HOST_LEN] = 0;
 				QString port = msg_in.arg( "port" ).toString();

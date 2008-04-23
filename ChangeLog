@@ -1,5 +1,13 @@
 2008-04-23	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
+	* ica/src/ivs.cpp:
+	* ica/src/isd_server.cpp:
+	* lib/include/isd_base.h:
+	* lib/src/isd_base.cpp:
+	- renamed SocketGetIPBoundTo to SocketGetPeerAddress
+	- fixed demo-mode on Linux-clients by not adding host-names twice
+	  because of isdForwarder
+
 	* lib/src/local_system.cpp:
 	added patch by Ben Dailey <bdailey/at/bhmsd/dot/k12/dot/in/dot/us>
 	which adds dates and times to logfiles

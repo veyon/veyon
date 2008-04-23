@@ -103,7 +103,7 @@ typedef enum
 {
 	SocketRead,
 	SocketWrite,
-	SocketGetIPBoundTo
+	SocketGetPeerAddress
 } socketOpCodes;
 
 

@@ -60,7 +60,7 @@ qint64 libvncClientDispatcher( char * _buf, const qint64 _len,
 		case SocketWrite:
 			return( rfbWriteExact( cl, _buf, _len ) == 1 ? _len :
 									0 );
-		case SocketGetIPBoundTo:
+		case SocketGetPeerAddress:
 			strncpy( _buf, cl->host, _len );
 			break;
 	}
