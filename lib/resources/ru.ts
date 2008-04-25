@@ -1631,7 +1631,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Could not take a snapshot as directory %1 doesn&apos;t exist and couldn&apos;t be created.</source>
-        <translation type="unfinished">Не возможно сделать снимок, так как директория %1 не существует и не может быть создана.</translation>
+        <translation type="unfinished">Невозможно сделать снимок экрана, так как директория %1 не существует и не может быть создана.</translation>
     </message>
     <message>
         <source>Snapshot</source>
