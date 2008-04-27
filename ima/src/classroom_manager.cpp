@@ -300,6 +300,8 @@ void classroomManager::savePersonalConfig( void )
 	globalsettings.setAttribute( "role", __role );
 	globalsettings.setAttribute( "notooltips",
 					toolButton::toolTipsDisabled() );
+	globalsettings.setAttribute( "icononlymode",
+					toolButton::iconOnlyMode() );
 	globalsettings.setAttribute( "clientdoubleclickaction",
 						m_clientDblClickAction );
 	globalsettings.setAttribute( "showUserColumn",
@@ -542,6 +544,9 @@ getMainWindow()->move( node.toElement().attribute( "win-x" ).toInt(),
 			}
 			toolButton::setToolTipsDisabled(
 				node.toElement().attribute( "notooltips" ).
+								toInt() );
+			toolButton::setIconOnlyMode(
+				node.toElement().attribute( "icononlymode" ).
 								toInt() );
 			m_clientDblClickAction = node.toElement().attribute(
 					"clientdoubleclickaction" ).toInt();

@@ -46,6 +46,13 @@ public:
 	virtual ~toolButton();
 
 
+	static void setIconOnlyMode( bool _enabled );
+
+	static bool iconOnlyMode( void )
+	{
+		return( s_iconOnlyMode );
+	}
+
 	static void setToolTipsDisabled( bool _disabled )
 	{
 		s_toolTipsDisabled = _disabled;
@@ -71,11 +78,16 @@ signals:
 
 
 private slots:
+	bool checkForLeaveEvent( void );
 	void updateColorLevel( void );
 
 
 private:
+	void updateSize( void );
+
+
 	static bool s_toolTipsDisabled;
+	static bool s_iconOnlyMode;
 
 	QPixmap m_pixmap;
 	fastQImage m_img;

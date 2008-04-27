@@ -162,6 +162,8 @@ public:
 
 	virtual ~client();
 
+	void quit( void );
+
 
 	int id( void ) const;
 	static client * clientFromID( int _id );

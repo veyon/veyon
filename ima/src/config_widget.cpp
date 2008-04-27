@@ -1,7 +1,7 @@
 /*
  * config_widget.cpp - implementation of configuration-widget for side-bar
  *
- * Copyright (c) 2004-2007 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -73,6 +73,10 @@ configWidget::configWidget( mainWindow * _main_window, QWidget * _parent ) :
 	connect( balloonToolTips, SIGNAL( toggled( bool ) ),
 			this, SLOT( toggleToolButtonTips( bool ) ) );
 
+	iconOnlyToolButtons->setChecked( toolButton::iconOnlyMode() );
+	connect( iconOnlyToolButtons, SIGNAL( toggled( bool ) ),
+			this, SLOT( toggleIconOnlyToolButtons( bool ) ) );
+
 	domainEdit->setText( __default_domain );
 	connect( domainEdit, SIGNAL( textChanged( const QString & ) ),
 			this, SLOT( domainChanged( const QString & ) ) );
@@ -113,6 +117,14 @@ void configWidget::roleSelected( int _role )
 void configWidget::toggleToolButtonTips( bool _on )
 {
 	toolButton::setToolTipsDisabled( _on );
+}
+
+
+
+
+void configWidget::toggleIconOnlyToolButtons( bool _on )
+{
+	toolButton::setIconOnlyMode( _on );
 }
 
 

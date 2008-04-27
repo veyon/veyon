@@ -43,6 +43,7 @@ const int MARGIN = 10;
 const int ROUNDED = 2000;
 
 bool toolButton::s_toolTipsDisabled = FALSE;
+bool toolButton::s_iconOnlyMode = FALSE;
 
 
 toolButton::toolButton( const QPixmap & _pixmap, const QString & _label,
@@ -66,14 +67,7 @@ toolButton::toolButton( const QPixmap & _pixmap, const QString & _label,
 	setFont( f );
 	//setFixedWidth( qMax<int>( m_img.width(), fontMetrics().width( m_hintLabel ) )+20 );
 	//setFixedHeight( 48 );
-	if( m_label.size() > 14 || m_altLabel.size() > 14 )
-	{
-		setFixedSize( 96, 48 );
-	}
-	else
-	{
-		setFixedSize( 88, 48 );
-	}
+	updateSize();
 
 	setText( m_title );
 	if( _receiver != NULL && _slot != NULL )
@@ -81,16 +75,6 @@ toolButton::toolButton( const QPixmap & _pixmap, const QString & _label,
 		connect( this, SIGNAL( clicked() ), _receiver, _slot );
 	}
 
-	// set mask
-	QBitmap b( size() );
-	b.clear();
-
-	QPainter p( &b );
-	p.setBrush( Qt::color1 );
-	p.setPen( Qt::color1 );
-	p.drawRoundRect( 0, 0, width() - 1, height() - 1,
-					1000 / width(), 1000 / height() );
-	setMask( b );
 }
 
 
@@ -98,6 +82,19 @@ toolButton::toolButton( const QPixmap & _pixmap, const QString & _label,
 
 toolButton::~toolButton()
 {
+}
+
+
+
+
+void toolButton::setIconOnlyMode( bool _enabled )
+{
+	s_iconOnlyMode = _enabled;
+	QList<toolButton *> tbl = QApplication::activeWindow()->findChildren<toolButton *>();
+	foreach( toolButton * tb, tbl )
+	{
+		tb->updateSize();
+	}
 }
 
 
@@ -162,13 +159,10 @@ void toolButton::enterEvent( QEvent * _e )
 
 void toolButton::leaveEvent( QEvent * _e )
 {
-	emit mouseLeftButton();
-	m_fadeBack = TRUE;
-	if( m_colorizeLevel == 255 )
+	if( checkForLeaveEvent() )
 	{
-		updateColorLevel();
+		QToolButton::leaveEvent( _e );
 	}
-	QToolButton::leaveEvent( _e );
 }
 
 
@@ -226,7 +220,7 @@ void toolButton::paintEvent( QPaintEvent * _pe )
 	}
 	p.setBrush( QBrush() );
 
-	p.fillRect( rect(), QColor( 0, 0, 0, active ? 128 : 0 ) );
+	p.fillRect( rect(), QColor( 0, 0, 0, active ? 64 : 0 ) );
 
 	QPen pen( QColor( 255, 255, 255, 96 ) );
 	pen.setWidthF( 1.4f );
@@ -243,9 +237,17 @@ void toolButton::paintEvent( QPaintEvent * _pe )
 							1000 / height() );
 
 	const int dd = isDown() ? 1 : 0;
-	const QPoint pt = QPoint( (width() - m_img.width() ) / 2 + dd, 3 + dd);
+	QPoint pt = QPoint( ( width() - m_img.width() ) / 2 + dd, 3 + dd );
+	if( s_iconOnlyMode )
+	{
+		pt.setY( ( height() - m_img.height() ) / 2 - 1 + dd );
+	}
 	p.drawImage( pt, m_img );
 
+	if( s_iconOnlyMode )
+	{
+		return;
+	}
 	const QString l = ( active && m_altLabel.isEmpty() == FALSE ) ?
 							m_altLabel : m_label;
 	const int w = p.fontMetrics().width( l );
@@ -255,6 +257,28 @@ void toolButton::paintEvent( QPaintEvent * _pe )
 	p.drawText( ( width() - w ) / 2 +dd, height() - 5+dd, l );
 }
 
+
+
+
+bool toolButton::checkForLeaveEvent( void )
+{
+	if( QRect( mapToGlobal( QPoint( 0, 0 ) ), size() ).
+					contains( QCursor::pos() ) )
+	{
+		QTimer::singleShot( 20, this, SLOT( checkForLeaveEvent() ) );
+	}
+	else
+	{
+		emit mouseLeftButton();
+		m_fadeBack = TRUE;
+		if( m_colorizeLevel == 255 )
+		{
+			updateColorLevel();
+		}
+		return( TRUE );
+	}
+	return( FALSE );
+}
 
 
 
@@ -278,6 +302,37 @@ void toolButton::updateColorLevel( void )
 		QTimer::singleShot( 10, this, SLOT( updateColorLevel() ) );
 	}
 }
+
+
+
+
+void toolButton::updateSize( void )
+{
+	if( s_iconOnlyMode )
+	{
+		setFixedSize( 52, 48 );
+	}
+	else if( m_label.size() > 14 || m_altLabel.size() > 14 )
+	{
+		setFixedSize( 96, 48 );
+	}
+	else
+	{
+		setFixedSize( 88, 48 );
+	}
+
+	// set mask
+	QBitmap b( size() );
+	b.clear();
+
+	QPainter p( &b );
+	p.setBrush( Qt::color1 );
+	p.setPen( Qt::color1 );
+	p.drawRoundRect( 0, 0, width() - 1, height() - 1,
+					1000 / width(), 1000 / height() );
+	setMask( b );
+}
+
 
 
 

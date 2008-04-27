@@ -235,22 +235,38 @@ client::client( const QString & _hostname,
 
 client::~client()
 {
-	changeMode( client::Mode_Overview, m_mainWindow->localISD() );
-	m_updateThread->quit();
-	if( !m_updateThread->wait( 10000 ) )
+	quit();
+
+	m_updateThread->wait(
+#ifdef BUILD_WIN32
+			2000
+#else
+			5000
+#endif
+				);
+	if( !m_updateThread->isFinished() )
 	{
-		//qWarning("terminating thread %d\n", (int) m_updateThread );
+		localSystem::sleep( 500 );
 		m_updateThread->terminate();
 	}
 
 	delete m_updateThread;
 
-	m_syncMutex.lock();
+//	m_syncMutex.lock();
 	delete m_connection;
 	m_connection = NULL;
-	m_syncMutex.unlock();
+//	m_syncMutex.unlock();
 
 	delete m_classRoomItem;
+}
+
+
+
+
+void client::quit( void )
+{
+	changeMode( client::Mode_Overview, m_mainWindow->localISD() );
+	m_updateThread->quit();
 }
 
 
@@ -503,8 +519,7 @@ void client::zoom()
 	/* Delay zooming before we are sure that
 	 * this is not just a fast click.
 	 */
-	QTimer::singleShot( 300, this,
-			SLOT( enlarge() ) );
+	QTimer::singleShot( 300, this, SLOT( enlarge() ) );
 }
 
 

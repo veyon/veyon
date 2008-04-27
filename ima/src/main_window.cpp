@@ -341,10 +341,7 @@ mainWindow::mainWindow( int _rctrl_screen ) :
 				"Otherwise you won't be able to access "
 						"computers using iTALC." ) );
 		}
-		else
-		{
-			break;
-		}
+		break;
 	}
 	m_localISD = new isdConnection( QHostAddress(
 				QHostAddress::LocalHost).toString() +
@@ -375,6 +372,12 @@ mainWindow::mainWindow( int _rctrl_screen ) :
 mainWindow::~mainWindow()
 {
 	m_classroomManager->doCleanupWork();
+
+#ifdef BUILD_WIN32
+	localSystem::sleep( 5000 );
+#endif
+
+	// also delets clients
 	delete m_workspace;
 
 	delete m_localISD;
@@ -408,6 +411,12 @@ void mainWindow::closeEvent( QCloseEvent * _ce )
 	m_updateThread->wait();
 	delete m_updateThread;
 	m_updateThread = NULL;
+
+	QList<client *> clients = m_workspace->findChildren<client *>();
+	foreach( client * c, clients )
+	{
+		c->quit();
+	}
 
 	m_classroomManager->savePersonalConfig();
 	m_classroomManager->saveGlobalClientConfig();
