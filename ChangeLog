@@ -1,3 +1,25 @@
+2008-04-27	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* ima/src/tool_button.h:
+	* ima/src/tool_button.cpp:
+	fixed tooltip flicker issue
+
+	* ima/dialogs/config.ui:
+	* ima/src/config_widget.h:
+	* ima/src/config_widget.cpp:
+	* ima/src/classroom_manager.cpp:
+	* ima/src/tool_button.h:
+	* ima/src/tool_button.cpp:
+	added option for making toolbar buttons only display icon
+
+	* ima/src/client.h:
+	* ima/src/main_window.cpp:
+	* ima/src/client.cpp:
+	better shutdown on exit - hopefully fixes threading-problems
+
+	* ima/src/main_window.cpp:
+	fixed endless loop when initializing keys
+
 2008-04-23	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* ica/src/ivs.cpp:
