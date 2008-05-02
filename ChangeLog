@@ -1,3 +1,8 @@
+2008-05-03	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* ica/win32/src/vncEncodeCoRRE.cpp:
+	included patch from TightVNC-bug-tracker
+
 2008-04-27	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* ima/src/tool_button.h:

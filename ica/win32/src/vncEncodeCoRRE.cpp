@@ -80,6 +80,13 @@ UINT vncEncodeCoRRE::RequiredBuffSize(UINT width, UINT height)
 {
 	RECT fullscreen;
 	UINT codedrects;
+	int savedmaxheight = m_maxheight;
+	int savedmaxwidth = m_maxwidth;
+
+	// Need to set worse case size in case we ever low the
+	// size to it.
+	m_maxheight = 8;
+	m_maxwidth = 8;
 
 	// Work out how many rectangles the entire screen would
 	// be re-encoded to...
@@ -88,6 +95,10 @@ UINT vncEncodeCoRRE::RequiredBuffSize(UINT width, UINT height)
 	fullscreen.right = width;
 	fullscreen.bottom = height;
 	codedrects = NumCodedRects(fullscreen);
+
+	// restore max width/height
+	m_maxwidth = savedmaxwidth;
+	m_maxheight = savedmaxheight;
 
 	// The buffer size required is the size of raw data for the whole
 	// screen plus enough space for the required number of rectangle
