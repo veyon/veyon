@@ -33,6 +33,7 @@
 #include <QtGui/QSystemTrayIcon>
 #include <QtGui/QToolButton>
 
+#include "client.h"
 #include "snapshot_list.h"
 
 
@@ -162,6 +163,23 @@ private slots:
 	void aboutITALC( void );
 
 	void changeGlobalClientMode( int );
+
+	void mapOverview( void )
+	{
+		changeGlobalClientMode( client::Mode_Overview );
+	}
+	void mapFullscreenDemo( void )
+	{
+		changeGlobalClientMode( client::Mode_FullscreenDemo );
+	}
+	void mapWindowDemo( void )
+	{
+		changeGlobalClientMode( client::Mode_WindowDemo );
+	}
+	void mapScreenLock( void )
+	{
+		changeGlobalClientMode( client::Mode_Locked );
+	}
 
 
 private:

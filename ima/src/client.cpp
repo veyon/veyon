@@ -497,7 +497,8 @@ void client::enlarge()
 		QWidget * workspace = m_mainWindow->workspace();
 		QSize s = QSize( m_origSize );
 		
-		s.scale( workspace->parentWidget()->size(), Qt::KeepAspectRatio );
+		s.scale( workspace->parentWidget()->size(),
+							Qt::KeepAspectRatio );
 		setFixedSize( s );
 
 		/* centralize */
@@ -1070,7 +1071,7 @@ void updateThread::update( void )
 	m_client->m_syncMutex.unlock();
 	m_queueMutex.unlock();
 
-	if( m_client->isVisible() )
+	if( m_client->m_classRoomItem->isVisible() )
 	{
 		if( !m_client->m_mainWindow->remoteControlRunning() &&
 						!mainWindow::atExit() )

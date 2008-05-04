@@ -190,7 +190,7 @@ mainWindow::mainWindow( int _rctrl_screen ) :
 				"computers. Also click on this button for "
 				"unlocking locked workstations or for leaving "
 				"demo-mode." ),
-			NULL, NULL, m_toolBar );
+			this, SLOT( mapOverview() ), m_toolBar );
 
 
 	a = new QAction( QIcon( ":/resources/fullscreen_demo.png" ),
@@ -202,7 +202,7 @@ mainWindow::mainWindow( int _rctrl_screen ) :
 				"all shown computers. Furthermore the users "
 				"aren't able to do something else as all input "
 				"devices are locked in this mode." ),
-			NULL, NULL, m_toolBar );
+			this, SLOT( mapFullscreenDemo() ), m_toolBar );
 
 	a = new QAction( QIcon( ":/resources/window_demo.png" ),
 						tr( "Window demo" ), this );
@@ -213,7 +213,7 @@ mainWindow::mainWindow( int _rctrl_screen ) :
 				"window on all shown computers. The users are "
 				"able to switch to other windows and thus "
 				"can continue to work." ),
-			NULL, NULL, m_toolBar );
+			this, SLOT( mapWindowDemo() ), m_toolBar );
 
 	a = new QAction( QIcon( ":/resources/locked.png" ),
 					tr( "Lock/unlock desktops" ), this );
@@ -224,7 +224,7 @@ mainWindow::mainWindow( int _rctrl_screen ) :
 				"their desktops using this button. "
 				"In this mode all input devices are locked and "
 				"the screen is black." ),
-			NULL, NULL, m_toolBar );
+			this, SLOT( mapScreenLock() ), m_toolBar );
 
 	overview_mode->setCheckable( TRUE );
 	fsdemo_mode->setCheckable( TRUE );
@@ -556,7 +556,8 @@ void mainWindow::remoteControlWidgetClosed( QObject * )
 	m_rctrlLock.unlock();
 	if( m_stopDemo )
 	{
-		m_classroomManager->changeGlobalClientMode( client::Mode_Overview );
+		m_classroomManager->changeGlobalClientMode(
+							client::Mode_Overview );
 		m_stopDemo = FALSE;
 	}
 }
