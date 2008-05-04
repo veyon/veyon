@@ -428,7 +428,7 @@ bool isdConnection::readFromServer( char * _out, const unsigned int _n )
 			// could not read data because we're not connected
 			// anymore?
 			if( m_socket->state() != QTcpSocket::ConnectedState ||
-								++tries > 60 )
+								++tries > 200 )
 			{
 				qWarning( "isdConnection::readFromServer(): "
 						"connection failed: %d",
@@ -991,6 +991,20 @@ bool isdConnection::demoServerDenyClient( const QString & _client )
 	}
 	return( ISD::msg( &m_socketDev, ISD::DemoServer_DenyClient ).
 					addArg( "client", _client ).send() );
+}
+
+
+
+
+bool isdConnection::hideTrayIcon( void )
+{
+	if( m_socket == NULL ||
+			m_socket->state() != QTcpSocket::ConnectedState )
+	{
+		m_state = Disconnected;
+		return( FALSE );
+	}
+	return( ISD::msg( &m_socketDev, ISD::HideTrayIcon ).send() );
 }
 
 
