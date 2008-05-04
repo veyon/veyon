@@ -91,7 +91,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Skrbništvo</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1987"/>
+        <location filename="../src/classroom_manager.cpp" line="1981"/>
         <source>Administration</source>
         <translation type="unfinished"></translation>
     </message>
@@ -140,133 +140,133 @@ Ko ste to naredili, jih lahko prikažete ali jih skrijete z dvojnim klikom na nj
 Več dejanj lahko najdete v kontekstnem meniju računalnika ali učilnice.</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1314"/>
+        <location filename="../src/classroom_manager.cpp" line="1308"/>
         <source>Hide teacher computers</source>
         <translation>Skrij učiteljeve računalnike</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="687"/>
+        <location filename="../src/classroom_manager.cpp" line="681"/>
         <source>No configuration-file found</source>
         <translation>Ne najdem nastavitvene datoteke</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="696"/>
+        <location filename="../src/classroom_manager.cpp" line="690"/>
         <source>Could not open configuration file %1.
 You will have to add at least one classroom and computers using the classroom-manager which you&apos;ll find inside the program in the sidebar on the left side.</source>
         <translation>Ne morem odpreti nastavitvene datoteke %1.
 Z uporabo upravitelja učilnice, ki ga najdete v levi stranski orodni vrstici, boste morali dodati najmanj eno učilnico in računalnike.</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="773"/>
+        <location filename="../src/classroom_manager.cpp" line="767"/>
         <source>Error in configuration-file</source>
         <translation>Napaka v nastavitveni datoteki</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="713"/>
+        <location filename="../src/classroom_manager.cpp" line="707"/>
         <source>Error while parsing configuration-file %1.
 Please edit it. Otherwise you should delete this file and have to add all classrooms and computers again.</source>
         <translation>Napaka pri anlizi nastavitvene datoteke %1.
 Prosim, uredite jo. Sicer boste morali to datoteko izbrisati in ponovno dodati vse učilnice in računalnike.</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="778"/>
+        <location filename="../src/classroom_manager.cpp" line="772"/>
         <source>Error while parsing configuration-file %1.
 Please edit it. Otherwise you should delete this file.</source>
         <translation>Napaka pri anlizi nastavitvene datoteke %1.
 Prosim, uredite jo. Sicer bi morali to datoteko izbrisati.</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="2091"/>
+        <location filename="../src/classroom_manager.cpp" line="2085"/>
         <source>Power down computers</source>
         <translation>Izključi računalnike</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="2094"/>
+        <location filename="../src/classroom_manager.cpp" line="2088"/>
         <source>Are you sure want to power down all visible computers?</source>
         <translation>Ste prepričani, da želite izključiti vse vidne računalnike?</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="2051"/>
+        <location filename="../src/classroom_manager.cpp" line="2045"/>
         <source>Logout user</source>
         <translation>Odjavi uporabnika</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="2054"/>
+        <location filename="../src/classroom_manager.cpp" line="2048"/>
         <source>Are you sure want logout all users on all visible computers ?</source>
         <translation>Ste prepričani, da želite odjaviti vse uporabnike na vseh vidnih računalnikih?</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1277"/>
+        <location filename="../src/classroom_manager.cpp" line="1271"/>
         <source>Show/hide</source>
         <translation>Prikaži/skrij</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1282"/>
+        <location filename="../src/classroom_manager.cpp" line="1276"/>
         <source>Edit settings</source>
         <translation>Uredi nastavitve</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1287"/>
+        <location filename="../src/classroom_manager.cpp" line="1281"/>
         <source>Remove</source>
         <translation>Odstrani</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1269"/>
+        <location filename="../src/classroom_manager.cpp" line="1263"/>
         <source>Actions</source>
         <translation>Dejanja</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1304"/>
+        <location filename="../src/classroom_manager.cpp" line="1298"/>
         <source>Show all computers in classroom</source>
         <translation>Prikaži vse računalnike v učilnici</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1309"/>
+        <location filename="../src/classroom_manager.cpp" line="1303"/>
         <source>Hide all computers in classroom</source>
         <translation>Skrij vse računalnike v učilnici</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1319"/>
+        <location filename="../src/classroom_manager.cpp" line="1313"/>
         <source>Edit name</source>
         <translation>Uredi ime</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1578"/>
+        <location filename="../src/classroom_manager.cpp" line="1572"/>
         <source>Remove classroom</source>
         <translation>Odstrani učilnico</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1297"/>
+        <location filename="../src/classroom_manager.cpp" line="1291"/>
         <source>Actions for %1</source>
         <translation>Dejanja za %1</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1334"/>
+        <location filename="../src/classroom_manager.cpp" line="1328"/>
         <source>Action for whole classroom</source>
         <translation>Dejanje za celo učilnico</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1660"/>
+        <location filename="../src/classroom_manager.cpp" line="1654"/>
         <source>Add computer</source>
         <translation>Dodaj računalnik</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1350"/>
+        <location filename="../src/classroom_manager.cpp" line="1344"/>
         <source>Add classroom</source>
         <translation>Dodaj učilnico</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1554"/>
+        <location filename="../src/classroom_manager.cpp" line="1548"/>
         <source>New name for classroom</source>
         <translation>Novo ime učilnice</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1556"/>
+        <location filename="../src/classroom_manager.cpp" line="1550"/>
         <source>Please enter a new name for classroom &quot;%1&quot;.</source>
         <translation>Prosim, vpišite novo ime učilnice &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1581"/>
+        <location filename="../src/classroom_manager.cpp" line="1575"/>
         <source>Are you sure want to remove classroom &quot;%1&quot;?
 All computers in it will be removed as well!</source>
         <translation>Ste prepričani, da želite odstraniti učilnico &quot;%1&quot;?
@@ -274,34 +274,34 @@ All computers in it will be removed as well!</source>
 Z njo bodo odstranjeni tudi vsi računalniki v njej!</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1627"/>
+        <location filename="../src/classroom_manager.cpp" line="1621"/>
         <source>Missing classroom</source>
         <translation>Manjka učilnica</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1633"/>
+        <location filename="../src/classroom_manager.cpp" line="1627"/>
         <source>Before adding computers you have to create at least one classroom.
 Do you want to create a new classrom now?</source>
         <translation>Pred dodajanjem računalnikov morate ustvariti vsaj eno učilnico.
 Jo želite ustvariti zdaj?</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1676"/>
+        <location filename="../src/classroom_manager.cpp" line="1670"/>
         <source>New classroom</source>
         <translation>Nova učilnica</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1675"/>
+        <location filename="../src/classroom_manager.cpp" line="1669"/>
         <source>Please enter the name of the classroom you want to create.</source>
         <translation>Prosim, vnesite ime učilnice, ki jo želite ustvariti.</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="2078"/>
+        <location filename="../src/classroom_manager.cpp" line="2072"/>
         <source>Reboot computers</source>
         <translation>Ponovno zaženi računalnike</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="2080"/>
+        <location filename="../src/classroom_manager.cpp" line="2074"/>
         <source>Are you sure want to reboot all visible computers?</source>
         <translation>Ste prepričani, da želite ponovno zagnati vse vidne računalnike?</translation>
     </message>
@@ -331,12 +331,12 @@ Jo želite ustvariti zdaj?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="837"/>
+        <location filename="../src/classroom_manager.cpp" line="831"/>
         <source>Select output-file</source>
         <translation type="unfinished">Izberite izhodno datoteko</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="839"/>
+        <location filename="../src/classroom_manager.cpp" line="833"/>
         <source>Text files (*.txt)</source>
         <translation type="unfinished">Besedilne datoteke (*.txt)</translation>
     </message>
@@ -419,27 +419,27 @@ Jo želite ustvariti zdaj?</translation>
         <translation>Zaklenjen zaslon</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="647"/>
+        <location filename="../src/client.cpp" line="661"/>
         <source>Unknown state</source>
         <translation>Neznano stanje</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="655"/>
+        <location filename="../src/client.cpp" line="669"/>
         <source>No user logged in</source>
         <translation>Noben uporabnik ni prijavljen</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="659"/>
+        <location filename="../src/client.cpp" line="673"/>
         <source>Host unreachable</source>
         <translation>Gostitelj ni dosegljiv</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="663"/>
+        <location filename="../src/client.cpp" line="677"/>
         <source>Demo running</source>
         <translation>Demo je zagnan</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="667"/>
+        <location filename="../src/client.cpp" line="681"/>
         <source>Desktop locked</source>
         <translation>Namizje je zaklenjeno</translation>
     </message>
@@ -674,12 +674,12 @@ p, li { white-space: pre-wrap; }
         <translation>Vnesite ukaze, ki naj bodo zagnani na odjemalci(ih):</translation>
     </message>
     <message>
-        <location filename="../src/cmd_input_dialog.cpp" line="57"/>
+        <location filename="../src/cmd_input_dialog.cpp" line="59"/>
         <source>Cancel</source>
         <translation>Prekliči</translation>
     </message>
     <message>
-        <location filename="../src/cmd_input_dialog.cpp" line="59"/>
+        <location filename="../src/cmd_input_dialog.cpp" line="57"/>
         <source>&amp;Run!</source>
         <translation>&amp;Zaženi!</translation>
     </message>
@@ -709,20 +709,20 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../dialogs/config.ui" line="161"/>
         <source>Network interface for demo-mode</source>
-        <translation>Omrežni vmesnik za demo način</translation>
+        <translation type="obsolete">Omrežni vmesnik za demo način</translation>
     </message>
     <message>
         <location filename="../dialogs/config.ui" line="194"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Here you can select the network interface with the according IP-address which is used for demo-purposes. Actually this only concerns you if your computer has more than one network-card. Incorrect settings may result in being able to show a demo.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Tukaj lahko izberete omrežni vmesnik s pripadajočim IP- naslovom, ki je namenjen za demo. V resnici vas to zadeva le če ima vaš računalnik več kot eno omrežno kartico. Nepravilne nastavitve lahko vplivajo na možnost prikazovanja demo strani. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation type="obsolete">&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Tukaj lahko izberete omrežni vmesnik s pripadajočim IP- naslovom, ki je namenjen za demo. V resnici vas to zadeva le če ima vaš računalnik več kot eno omrežno kartico. Nepravilne nastavitve lahko vplivajo na možnost prikazovanja demo strani. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/config.ui" line="239"/>
+        <location filename="../dialogs/config.ui" line="161"/>
         <source>Quality of demo-mode</source>
         <translation>Kakovost demo načina</translation>
     </message>
     <message>
-        <location filename="../dialogs/config.ui" line="272"/>
+        <location filename="../dialogs/config.ui" line="194"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
@@ -733,47 +733,47 @@ p, li { white-space: pre-wrap; }(new line)
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Tukaj lahko nastavite željeno kakovost prikaza demo načina. Nižja vrednost manj obremenjuje procesor in omrežje, višja vrednost lahko upočasni vaš računalnik in htros prikaza dema. Preizkušati boste morali za optimalne nastavitve.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/config.ui" line="279"/>
+        <location filename="../dialogs/config.ui" line="201"/>
         <source>Low (15 bit)</source>
         <translation>Nizka (15 bit)</translation>
     </message>
     <message>
-        <location filename="../dialogs/config.ui" line="287"/>
+        <location filename="../dialogs/config.ui" line="209"/>
         <source>Medium (18 bit)</source>
         <translation>Srednja (18 bit)</translation>
     </message>
     <message>
-        <location filename="../dialogs/config.ui" line="295"/>
+        <location filename="../dialogs/config.ui" line="217"/>
         <source>High (Truecolor)</source>
         <translation>Visoka (Truecolor)</translation>
     </message>
     <message>
-        <location filename="../dialogs/config.ui" line="336"/>
+        <location filename="../dialogs/config.ui" line="258"/>
         <source>User interface</source>
         <translation>Uporabniški vmesnik</translation>
     </message>
     <message>
-        <location filename="../dialogs/config.ui" line="382"/>
+        <location filename="../dialogs/config.ui" line="304"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Do not show balloon-tooltips for toolbar-buttons&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Ne prikaži namigov za gumbe orodne vrstice&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/config.ui" line="385"/>
+        <location filename="../dialogs/config.ui" line="307"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Check this option if you&apos;re annoyed by the balloon-tooltips appearing when moving mouse-cursor over toolbar-buttons.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Označite to možnost, če vas namigi, ki se prikazujejo, ko z miško pokažete na gumb, motijo..&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/config.ui" line="388"/>
+        <location filename="../dialogs/config.ui" line="310"/>
         <source>No balloon-tooltips</source>
         <translation>Brez namigov</translation>
     </message>
     <message>
-        <location filename="../dialogs/config.ui" line="422"/>
+        <location filename="../dialogs/config.ui" line="380"/>
         <source>Your role (needs according keys!)</source>
         <translation>Vaša vloga (zahteva ustrezne ključe!)</translation>
     </message>
     <message>
-        <location filename="../dialogs/config.ui" line="468"/>
+        <location filename="../dialogs/config.ui" line="426"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
@@ -784,42 +784,42 @@ p, li { white-space: pre-wrap; }(new line)
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Tukaj lahko izberete svojo vlogo. Spreminjajte, če resnično veste, kaj delate. Sicer ne boste mogli dostopati do odjemalcev dokler ne boste obnovili svoje stare vloge.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/config.ui" line="475"/>
+        <location filename="../dialogs/config.ui" line="433"/>
         <source>Teacher</source>
         <translation>Učitelj</translation>
     </message>
     <message>
-        <location filename="../dialogs/config.ui" line="480"/>
+        <location filename="../dialogs/config.ui" line="438"/>
         <source>Administrator</source>
         <translation>Administrator</translation>
     </message>
     <message>
-        <location filename="../dialogs/config.ui" line="485"/>
+        <location filename="../dialogs/config.ui" line="443"/>
         <source>Supporter</source>
         <translation>Pomočnik</translation>
     </message>
     <message>
-        <location filename="../dialogs/config.ui" line="490"/>
+        <location filename="../dialogs/config.ui" line="448"/>
         <source>Other</source>
         <translation>Drugo</translation>
     </message>
     <message>
-        <location filename="../dialogs/config.ui" line="533"/>
+        <location filename="../dialogs/config.ui" line="491"/>
         <source>Settings for multi-logon</source>
         <translation>Nastavitve za prijavo na več računalnikov</translation>
     </message>
     <message>
-        <location filename="../dialogs/config.ui" line="566"/>
+        <location filename="../dialogs/config.ui" line="524"/>
         <source>Domain</source>
         <translation>Domena</translation>
     </message>
     <message>
-        <location filename="../dialogs/config.ui" line="603"/>
+        <location filename="../dialogs/config.ui" line="561"/>
         <source>Double-click action for client-window</source>
         <translation>Dvjno kliknite dejanje za okno odjemalca</translation>
     </message>
     <message>
-        <location filename="../dialogs/config.ui" line="649"/>
+        <location filename="../dialogs/config.ui" line="607"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
@@ -830,98 +830,108 @@ p, li { white-space: pre-wrap; }(new line)
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Tukaj lahko vidite, kaj naj bi se zgodilo ob dvojnem kliku na okno odjemalca.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/config.ui" line="656"/>
+        <location filename="../dialogs/config.ui" line="614"/>
         <source>Remote control</source>
         <translation>Oddaljen nadzor</translation>
     </message>
     <message>
-        <location filename="../dialogs/config.ui" line="664"/>
+        <location filename="../dialogs/config.ui" line="622"/>
         <source>View live in fullscreen</source>
         <translation>Pogled v živo celozaslonsko</translation>
     </message>
     <message>
-        <location filename="../dialogs/config.ui" line="705"/>
+        <location filename="../dialogs/config.ui" line="663"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;Please note, that some changes won&apos;t take effect until you restart iTALC.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;Nekatere spremembe ne bodo stopile v veljavo, dokler ponovno ne zaženete iTALC.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/config.ui" line="343"/>
+        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Do not show texts on toolbar-buttons&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/config.ui" line="346"/>
+        <source>No texts on toolbar-buttons</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>configWidget</name>
     <message>
-        <location filename="../src/config_widget.cpp" line="45"/>
+        <location filename="../src/config_widget.cpp" line="44"/>
         <source>Your iTALC-configuration</source>
         <translation>Vaše iTALC nastavitve</translation>
     </message>
     <message>
-        <location filename="../src/config_widget.cpp" line="47"/>
+        <location filename="../src/config_widget.cpp" line="46"/>
         <source>In this workspace you can customize iTALC to fit your needs.</source>
         <translation>Tukaj lahko prilagodite iTALC vašim potrebam.</translation>
     </message>
     <message>
         <location filename="../src/config_widget.cpp" line="142"/>
         <source>Warning</source>
-        <translation>Opozorilo</translation>
+        <translation type="obsolete">Opozorilo</translation>
     </message>
     <message>
         <location filename="../src/config_widget.cpp" line="147"/>
         <source>You are trying to use the local loopback-device as network-interface. This will never work, because the local loopback is just the last alternative for running iTALC if no other network-interface was found.</source>
-        <translation>Poskušate uporabiti lokalno loopback napravo kot omrežni vmesnik. To ne bo delovalo, ker je lokalna loopback le zadnja alternativa za delovanje iTALC, če ni nobenega omrežnega vmesnika.</translation>
+        <translation type="obsolete">Poskušate uporabiti lokalno loopback napravo kot omrežni vmesnik. To ne bo delovalo, ker je lokalna loopback le zadnja alternativa za delovanje iTALC, če ni nobenega omrežnega vmesnika.</translation>
     </message>
 </context>
 <context>
     <name>mainWindow</name>
     <message>
-        <location filename="../src/main_window.cpp" line="89"/>
+        <location filename="../src/main_window.cpp" line="92"/>
         <source>iTALC</source>
         <translation>iTALC</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="98"/>
+        <location filename="../src/main_window.cpp" line="101"/>
         <source>No write-access</source>
         <translation>Ni pravic zapisovanja</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="101"/>
+        <location filename="../src/main_window.cpp" line="104"/>
         <source>Could not read/write or create directory %1! For running iTALC, make sure you&apos;re permitted to create or write this directory.</source>
         <translation>Ne morem brati/zapisati ali ustvariti mape %1! Za delovanje iTALC morate imeti dovoljenja za ustvarjanje ali pisanje v to mapo.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="156"/>
+        <location filename="../src/main_window.cpp" line="159"/>
         <source>Actions</source>
         <translation>Dejanja</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="166"/>
+        <location filename="../src/main_window.cpp" line="169"/>
         <source>Classroom</source>
         <translation>Učilnica</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="167"/>
+        <location filename="../src/main_window.cpp" line="170"/>
         <source>Switch classroom</source>
         <translation>Zamenjaj učilnico</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="169"/>
+        <location filename="../src/main_window.cpp" line="172"/>
         <source>Click this button to open a menu where you can choose the active classroom.</source>
         <translation>Kliknite ta gumb, da bi odprli meni, kjer lahko izberete aktivno učilnico.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="174"/>
+        <location filename="../src/main_window.cpp" line="177"/>
         <source>Click on this button, to switch between classrooms.</source>
         <translation>Kliknite ta gumb za zamenjavo učilnic.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="180"/>
+        <location filename="../src/main_window.cpp" line="187"/>
         <source>Overview</source>
         <translation>Pregled</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="181"/>
+        <location filename="../src/main_window.cpp" line="184"/>
         <source>Overview mode</source>
         <translation>Pregledni način</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="186"/>
+        <location filename="../src/main_window.cpp" line="192"/>
         <source>This is the default mode in iTALC and allows you to have an overview over all visible computers. Also click on this button for unlocking locked workstations or for leaving demo-mode.</source>
         <translation>To je privzeti način iTALC in vam omogoča imeti pregled nad vsemi vidnimi računalniki. Ta gumb kliknite tudi za odklepanje zaklenjenih delovnih postaj ali zapuščanje demo načina.</translation>
     </message>
@@ -936,12 +946,12 @@ p, li { white-space: pre-wrap; }(new line)
         <translation type="obsolete">Demo izključen</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="192"/>
+        <location filename="../src/main_window.cpp" line="197"/>
         <source>Fullscreen demo</source>
         <translation>Celozaslonski demo</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="196"/>
+        <location filename="../src/main_window.cpp" line="204"/>
         <source>In this mode your screen is being displayed on all shown computers. Furthermore the users aren&apos;t able to do something else as all input devices are locked in this mode.</source>
         <translation>V tem načinu je vaš zaslon prikazan na vseh prikazanih računalnikih. Še več, uporabniki ne morejo delati ničesar, ker so vse vhodne naprave zaklenjene.</translation>
     </message>
@@ -956,176 +966,191 @@ p, li { white-space: pre-wrap; }(new line)
         <translation type="obsolete">Demo/okno izključen</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="202"/>
+        <location filename="../src/main_window.cpp" line="208"/>
         <source>Window demo</source>
         <translation>Demo okno</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="206"/>
+        <location filename="../src/main_window.cpp" line="215"/>
         <source>In this mode your screen being displayed in a window on all shown computers. The users are able to switch to other windows and thus can continue to work.</source>
         <translation>V tem načinu je na vseh prikazanih računalnikih prikazan vaš zaslon v oknu. Uporabniki lahko zamenjajo okno in nadaljujejo z delom.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="211"/>
+        <location filename="../src/main_window.cpp" line="222"/>
         <source>Lock all</source>
         <translation>Zakleni vse</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="211"/>
+        <location filename="../src/main_window.cpp" line="222"/>
         <source>Unlock all</source>
         <translation>Odkleni vse</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="212"/>
+        <location filename="../src/main_window.cpp" line="219"/>
         <source>Lock/unlock desktops</source>
         <translation>Zakleni/odkleni namizja</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="216"/>
+        <location filename="../src/main_window.cpp" line="226"/>
         <source>To have all user&apos;s full attention you can lock their desktops using this button. In this mode all input devices are locked and the screen is black.</source>
         <translation>Da bi dosegli pozornost vseh uporabnikov lahko zaklenete njihova namizja z uporabo tega gumba. Vse njihove vhodne naprave so tedaj zaklenjene in njihovi zasloni črni.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="237"/>
+        <location filename="../src/main_window.cpp" line="249"/>
         <source>Text message</source>
         <translation>Besedilno sporočilo</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="238"/>
+        <location filename="../src/main_window.cpp" line="246"/>
         <source>Send text message</source>
         <translation>Pošlji besedilno sporočilo</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="240"/>
+        <location filename="../src/main_window.cpp" line="251"/>
         <source>Use this button to send a text message to all users e.g. to tell them new tasks etc.</source>
         <translation>Uporabite ta gumb za pošiljanje besedilnih sporočil vsem uporabnikom, npr. da jim pojasnite nova opravila itd.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="246"/>
+        <location filename="../src/main_window.cpp" line="259"/>
         <source>Power on</source>
         <translation>Vključi</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="247"/>
+        <location filename="../src/main_window.cpp" line="256"/>
         <source>Power on computers</source>
         <translation>Vključi računalnike</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="250"/>
+        <location filename="../src/main_window.cpp" line="262"/>
         <source>Click this button to power on all visible computers. This way you do not have to turn on each computer by hand.</source>
         <translation>Kliknite ta gumb za vključitev vseh vidnih računalnikov. Na ta način vam ni potrebno ročno vključevati vsakega računalnika posebej.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="255"/>
+        <location filename="../src/main_window.cpp" line="270"/>
         <source>Power down</source>
         <translation>Izključi</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="256"/>
+        <location filename="../src/main_window.cpp" line="267"/>
         <source>Power down computers</source>
         <translation>Izključi računalnike</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="259"/>
+        <location filename="../src/main_window.cpp" line="273"/>
         <source>To power down all shown computers (e.g. after the lesson has finished) you can click this button.</source>
         <translation>Za zaustavitev vseh prikazanih računalnikov (npr. ko je ura končana) lahko kliknete ta gumb.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="265"/>
+        <location filename="../src/main_window.cpp" line="279"/>
         <source>Logon</source>
         <translation>Prijava</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="266"/>
+        <location filename="../src/main_window.cpp" line="280"/>
         <source>Remote logon</source>
         <translation>Oddaljena prijava</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="269"/>
+        <location filename="../src/main_window.cpp" line="283"/>
         <source>After clicking this button you can enter a username and password to log on the according user on all visible computers.</source>
         <translation>Po kliku tega gumba lahko vpišete uporabniško ime in geslo ustreznega uporabnika, da bi se prijavili na vse vidne računalnike.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="283"/>
+        <location filename="../src/main_window.cpp" line="297"/>
         <source>Adjust/align</source>
         <translation>Prilagodi/poravnaj</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="284"/>
+        <location filename="../src/main_window.cpp" line="298"/>
         <source>Adjust windows and their size</source>
         <translation>Poravnaji okna in prilagodi njihovo velikost</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="287"/>
+        <location filename="../src/main_window.cpp" line="301"/>
         <source>When clicking this button the biggest possible size for the client-windows is adjusted. Furthermore all windows are aligned.</source>
         <translation>Po kliku tega gumba bo velikost oken odjemalca nastavljena na največjo mogočo. Vsa okna bodo poravnana.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="292"/>
+        <location filename="../src/main_window.cpp" line="306"/>
         <source>Auto view</source>
         <translation>Samodejni pogled</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="293"/>
+        <location filename="../src/main_window.cpp" line="307"/>
         <source>Auto re-arrange windows and their size</source>
         <translation>Preuredi okna in njihovo velikost</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="295"/>
+        <location filename="../src/main_window.cpp" line="309"/>
         <source>When clicking this button all visible windows are re-arranged and adjusted.</source>
         <translation>Po kliku tega gumba bodo vsa vidna okna preurejena in ponovno nastavljena.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="336"/>
+        <location filename="../src/main_window.cpp" line="350"/>
         <source>No valid keys found</source>
         <translation>Ne najdem veljavnih ključev</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="342"/>
+        <location filename="../src/main_window.cpp" line="356"/>
         <source>No authentication-keys were found or your old ones were broken. Please create a new key-pair using ICA (see documentation at http://italc.sf.net/wiki/index.php?title=Installation).
 Otherwise you won&apos;t be able to access computers using iTALC.</source>
         <translation>Ne najdem avtorizacijskih ključev ali so stari poškodovani. Prosim, ustvarite nov par ključev z uporabo ICA (glejte dokumentacijo na http://italc.sf.net/wiki/index.php?title=Installation).(new line)
 Sicer z uporabo iTALC ne boste mogli dostopati do računalnikov.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="354"/>
+        <location filename="../src/main_window.cpp" line="365"/>
         <source>iTALC service not running</source>
         <translation>iTALC storitev ne teče</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="359"/>
+        <location filename="../src/main_window.cpp" line="370"/>
         <source>There seems to be no iTALC service running on this computer or the authentication-keys aren&apos;t set up properly. The service is required for running iTALC. Contact your administrator for solving this problem.</source>
         <translation>Videti je, kot da na tem računalniku ne teče iTALC storitev ali avtorizacijska ključa nista nastavljena pravilno. Ta storitev je za pravilno delovanje iTALC potrebna. Za rešitev problema se posvetujte z administratorjem.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="191"/>
+        <location filename="../src/main_window.cpp" line="200"/>
         <source>Fullscreen Demo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="201"/>
+        <location filename="../src/main_window.cpp" line="211"/>
         <source>Stop Demo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="201"/>
+        <location filename="../src/main_window.cpp" line="211"/>
         <source>Window Demo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="274"/>
+        <location filename="../src/main_window.cpp" line="288"/>
         <source>Support</source>
         <translation>Podpora</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="275"/>
+        <location filename="../src/main_window.cpp" line="289"/>
         <source>Direct support</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="278"/>
+        <location filename="../src/main_window.cpp" line="292"/>
         <source>If you need to support someone at a certain computer you can click this button and enter the according hostname or IP afterwards.</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/main_window.cpp" line="386"/>
+        <source>iTALC Master Control</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/main_window.cpp" line="487"/>
+        <source>Remote control</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/main_window.cpp" line="503"/>
+        <source>Quit</source>
+        <translation type="unfinished">Zapusti</translation>
     </message>
 </context>
 <context>

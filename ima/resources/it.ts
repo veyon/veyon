@@ -69,7 +69,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Amministrazione</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1976"/>
+        <location filename="../src/classroom_manager.cpp" line="1981"/>
         <source>Administration</source>
         <translation>Amministrazione</translation>
     </message>
@@ -102,162 +102,162 @@ p, li { white-space: pre-wrap; }
         <translation>Indirizzo-IP</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="676"/>
+        <location filename="../src/classroom_manager.cpp" line="681"/>
         <source>No configuration-file found</source>
         <translation>Non è stato trovato un file di configurazione</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="685"/>
+        <location filename="../src/classroom_manager.cpp" line="690"/>
         <source>Could not open configuration file %1.
 You will have to add at least one classroom and computers using the classroom-manager which you&apos;ll find inside the program in the sidebar on the left side.</source>
         <translation>Non è possibile aprire il file di configurazione %1.
 E&apos; necessario configurare almeno un&apos;aula con i relativi computer utilizzando il menù contestuale nell&apos;area di lavoro Gestione-computer. Gestione-computer è disponibile nella barra applicazioni situata a sinistra all&apos;interno della finestra  del programma.</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="762"/>
+        <location filename="../src/classroom_manager.cpp" line="767"/>
         <source>Error in configuration-file</source>
         <translation>Errore nel file di configurazione</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="702"/>
+        <location filename="../src/classroom_manager.cpp" line="707"/>
         <source>Error while parsing configuration-file %1.
 Please edit it. Otherwise you should delete this file and have to add all classrooms and computers again.</source>
         <translation>Si è verificato un errore nell&apos;interpretazione del file di configurazione %1.
 Bisogna modificarlo con un editor. In alternativa, dovresti cancellarlo e riconfigurare aule e computer nuovamente.</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="767"/>
+        <location filename="../src/classroom_manager.cpp" line="772"/>
         <source>Error while parsing configuration-file %1.
 Please edit it. Otherwise you should delete this file.</source>
         <translation>Si è verificato un errore nell&apos;interpretazione del file di configurazione %1.
 Bisogna modificarlo con un editor. In alternativa, dovresti cancellarlo e riconfigurare aule e computer nuovamente.</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="2080"/>
+        <location filename="../src/classroom_manager.cpp" line="2085"/>
         <source>Power down computers</source>
         <translation>Spegni i computer</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="2083"/>
+        <location filename="../src/classroom_manager.cpp" line="2088"/>
         <source>Are you sure want to power down all visible computers?</source>
         <translation>Sei sicuro di voler spegnere tutti i computer visibili?</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="2040"/>
+        <location filename="../src/classroom_manager.cpp" line="2045"/>
         <source>Logout user</source>
         <translation>Disconnetti utente</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="2043"/>
+        <location filename="../src/classroom_manager.cpp" line="2048"/>
         <source>Are you sure want logout all users on all visible computers ?</source>
         <translation>Sei sicuro di voler disconnettere gli utenti su tutti i computer visibili?</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1266"/>
+        <location filename="../src/classroom_manager.cpp" line="1271"/>
         <source>Show/hide</source>
         <translation>Mostra/nascondi</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1271"/>
+        <location filename="../src/classroom_manager.cpp" line="1276"/>
         <source>Edit settings</source>
         <translation>Modifica Impostazioni</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1276"/>
+        <location filename="../src/classroom_manager.cpp" line="1281"/>
         <source>Remove</source>
         <translation>Rimuovi</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1258"/>
+        <location filename="../src/classroom_manager.cpp" line="1263"/>
         <source>Actions</source>
         <translation>Azioni</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1293"/>
+        <location filename="../src/classroom_manager.cpp" line="1298"/>
         <source>Show all computers in classroom</source>
         <translation>Mostra tutti i computer dell&apos;aula</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1298"/>
+        <location filename="../src/classroom_manager.cpp" line="1303"/>
         <source>Hide all computers in classroom</source>
         <translation>Nascondi tutti i computer dell&apos;aula</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1308"/>
+        <location filename="../src/classroom_manager.cpp" line="1313"/>
         <source>Edit name</source>
         <translation>Modifica nome</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1567"/>
+        <location filename="../src/classroom_manager.cpp" line="1572"/>
         <source>Remove classroom</source>
         <translation>Rimuovi l&apos;aula</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1286"/>
+        <location filename="../src/classroom_manager.cpp" line="1291"/>
         <source>Actions for %1</source>
         <translation>Azioni per %1</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1323"/>
+        <location filename="../src/classroom_manager.cpp" line="1328"/>
         <source>Action for whole classroom</source>
         <translation>Azioni per l&apos;intera aula</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1649"/>
+        <location filename="../src/classroom_manager.cpp" line="1654"/>
         <source>Add computer</source>
         <translation>Aggiungi un computer</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1339"/>
+        <location filename="../src/classroom_manager.cpp" line="1344"/>
         <source>Add classroom</source>
         <translation>Aggiungi un&apos;aula</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1543"/>
+        <location filename="../src/classroom_manager.cpp" line="1548"/>
         <source>New name for classroom</source>
         <translation>Nuovo nome per l&apos;aula</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1545"/>
+        <location filename="../src/classroom_manager.cpp" line="1550"/>
         <source>Please enter a new name for classroom &quot;%1&quot;.</source>
         <translation>Inserisci un nuovo nome per la aula &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1570"/>
+        <location filename="../src/classroom_manager.cpp" line="1575"/>
         <source>Are you sure want to remove classroom &quot;%1&quot;?
 All computers in it will be removed as well!</source>
         <translation>Sei sicuro di voler rimuovere l&apos;aula &quot;%1&quot;?.
 Attenzione: saranno rimossi anche i computer dell&apos;aula!</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1616"/>
+        <location filename="../src/classroom_manager.cpp" line="1621"/>
         <source>Missing classroom</source>
         <translation>Aula non presente</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1622"/>
+        <location filename="../src/classroom_manager.cpp" line="1627"/>
         <source>Before adding computers you have to create at least one classroom.
 Do you want to create a new classrom now?</source>
         <translation>Prima di aggiungere un computer, bisogna configurare almeno un&apos;aula.
 Vuoi creare un&apos;aula adesso?</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1665"/>
+        <location filename="../src/classroom_manager.cpp" line="1670"/>
         <source>New classroom</source>
         <translation>Nuova aula</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1664"/>
+        <location filename="../src/classroom_manager.cpp" line="1669"/>
         <source>Please enter the name of the classroom you want to create.</source>
         <translation>Inserisci il nome dell&apos;aula che vuoi creare.</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="2067"/>
+        <location filename="../src/classroom_manager.cpp" line="2072"/>
         <source>Reboot computers</source>
         <translation>Riavvia i computer</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="2069"/>
+        <location filename="../src/classroom_manager.cpp" line="2074"/>
         <source>Are you sure want to reboot all visible computers?</source>
         <translation>Sei sicuro di volere riavviare tutti i computer visibili?</translation>
     </message>
@@ -275,7 +275,7 @@ Una volta aggiunti i computer, potrai osservarli o nasconderli con un doppio-cli
 Sono disponibili ulteriori comandi nel menu contestuale dei computer e delle aule.</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1303"/>
+        <location filename="../src/classroom_manager.cpp" line="1308"/>
         <source>Hide teacher computers</source>
         <translation>Nascondi i computer di tipo Insegnante</translation>
     </message>
@@ -315,12 +315,12 @@ Sono disponibili ulteriori comandi nel menu contestuale dei computer e delle aul
         <translation type="obsolete">Ordina e adatta finestre</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="826"/>
+        <location filename="../src/classroom_manager.cpp" line="831"/>
         <source>Select output-file</source>
         <translation>Indica il file di output</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="828"/>
+        <location filename="../src/classroom_manager.cpp" line="833"/>
         <source>Text files (*.txt)</source>
         <translation>File di testo (*.txt)</translation>
     </message>
@@ -383,27 +383,27 @@ Sono disponibili ulteriori comandi nel menu contestuale dei computer e delle aul
         <translation>Blocca postazione</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="645"/>
+        <location filename="../src/client.cpp" line="661"/>
         <source>Unknown state</source>
         <translation>Stato sconosciuto</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="653"/>
+        <location filename="../src/client.cpp" line="669"/>
         <source>No user logged in</source>
         <translation>Nessun utente in linea</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="657"/>
+        <location filename="../src/client.cpp" line="673"/>
         <source>Host unreachable</source>
         <translation>PC non raggiungibile</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="661"/>
+        <location filename="../src/client.cpp" line="677"/>
         <source>Demo running</source>
         <translation>Presentazione in corso</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="665"/>
+        <location filename="../src/client.cpp" line="681"/>
         <source>Desktop locked</source>
         <translation>Desktop bloccato</translation>
     </message>
@@ -752,12 +752,12 @@ p, li { white-space: pre-wrap; }
         <translation>Nessun suggerimento (ballon-tooltips)</translation>
     </message>
     <message>
-        <location filename="../dialogs/config.ui" line="344"/>
+        <location filename="../dialogs/config.ui" line="380"/>
         <source>Your role (needs according keys!)</source>
         <translation>Il tuo ruolo (necessita di chiavi adeguate!)</translation>
     </message>
     <message>
-        <location filename="../dialogs/config.ui" line="390"/>
+        <location filename="../dialogs/config.ui" line="426"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
@@ -768,47 +768,47 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Qui si può impostare il tuo ruolo. Cambialo solo se sai ciò che stai facendo! Altrimenti non sarai più in grado di accedere ai computer client fino al ripristino del ruolo.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/config.ui" line="397"/>
+        <location filename="../dialogs/config.ui" line="433"/>
         <source>Teacher</source>
         <translation>Insegnante</translation>
     </message>
     <message>
-        <location filename="../dialogs/config.ui" line="402"/>
+        <location filename="../dialogs/config.ui" line="438"/>
         <source>Administrator</source>
         <translation>Amministratore</translation>
     </message>
     <message>
-        <location filename="../dialogs/config.ui" line="407"/>
+        <location filename="../dialogs/config.ui" line="443"/>
         <source>Supporter</source>
         <translation>Assistente</translation>
     </message>
     <message>
-        <location filename="../dialogs/config.ui" line="412"/>
+        <location filename="../dialogs/config.ui" line="448"/>
         <source>Other</source>
         <translation>Altro</translation>
     </message>
     <message>
-        <location filename="../dialogs/config.ui" line="455"/>
+        <location filename="../dialogs/config.ui" line="491"/>
         <source>Settings for multi-logon</source>
         <translation>Impostazioni per il multi-logon</translation>
     </message>
     <message>
-        <location filename="../dialogs/config.ui" line="488"/>
+        <location filename="../dialogs/config.ui" line="524"/>
         <source>Domain</source>
         <translation>Dominio</translation>
     </message>
     <message>
-        <location filename="../dialogs/config.ui" line="627"/>
+        <location filename="../dialogs/config.ui" line="663"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;Please note, that some changes won&apos;t take effect until you restart iTALC.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;Attenzione: alcune impostazioni non avranno effetto fino al prossimo riavvio di iTALC.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/config.ui" line="525"/>
+        <location filename="../dialogs/config.ui" line="561"/>
         <source>Double-click action for client-window</source>
         <translation>Azione del doppio-click sulla finestra client</translation>
     </message>
     <message>
-        <location filename="../dialogs/config.ui" line="571"/>
+        <location filename="../dialogs/config.ui" line="607"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
@@ -816,14 +816,24 @@ p, li { white-space: pre-wrap; }
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;(new line)p, li { white-space: pre-wrap; }(new line)&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;(new line)&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Qui puoi decidere cosa dovrà accadere con il doppio click sulla finestra (miniatura) del client.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/config.ui" line="578"/>
+        <location filename="../dialogs/config.ui" line="614"/>
         <source>Remote control</source>
         <translation>Controlla</translation>
     </message>
     <message>
-        <location filename="../dialogs/config.ui" line="586"/>
+        <location filename="../dialogs/config.ui" line="622"/>
         <source>View live in fullscreen</source>
         <translation>Osserva</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/config.ui" line="343"/>
+        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Do not show texts on toolbar-buttons&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/config.ui" line="346"/>
+        <source>No texts on toolbar-buttons</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -852,184 +862,184 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>mainWindow</name>
     <message>
-        <location filename="../src/main_window.cpp" line="89"/>
+        <location filename="../src/main_window.cpp" line="92"/>
         <source>iTALC</source>
         <translation>iTALC</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="98"/>
+        <location filename="../src/main_window.cpp" line="101"/>
         <source>No write-access</source>
         <translation>Nessuna accesso in scrittura</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="101"/>
+        <location filename="../src/main_window.cpp" line="104"/>
         <source>Could not read/write or create directory %1! For running iTALC, make sure you&apos;re permitted to create or write this directory.</source>
         <translation>Non è possibile leggere/scrivere o creare la cartella %1! Per autorizzare iTALC, devi essere sicuro di avere i permessi per modificare questa cartella.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="156"/>
+        <location filename="../src/main_window.cpp" line="159"/>
         <source>Actions</source>
         <translation>Azioni</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="174"/>
+        <location filename="../src/main_window.cpp" line="177"/>
         <source>Click on this button, to switch between classrooms.</source>
         <translation>Clicca su questo pulsante, per cambiare aula.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="181"/>
+        <location filename="../src/main_window.cpp" line="184"/>
         <source>Overview mode</source>
         <translation>Panoramica</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="186"/>
+        <location filename="../src/main_window.cpp" line="192"/>
         <source>This is the default mode in iTALC and allows you to have an overview over all visible computers. Also click on this button for unlocking locked workstations or for leaving demo-mode.</source>
         <translation>Questa è la modalità predefinita di iTALC e permette di avere una panoramica completa (in miniature) di tutti i computer gestiti. Si può anche utilizzare questo pulsante per sbloccare le postazioni o per uscire dalla modalità presentazione.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="192"/>
+        <location filename="../src/main_window.cpp" line="197"/>
         <source>Fullscreen demo</source>
         <translation>Presenta su schermo intero</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="196"/>
+        <location filename="../src/main_window.cpp" line="204"/>
         <source>In this mode your screen is being displayed on all shown computers. Furthermore the users aren&apos;t able to do something else as all input devices are locked in this mode.</source>
         <translation>In questa modalità il tuo schermo sarà visualizzato su tutti i computer client. Inoltre gli utenti non saranno in grado di svolgere altre azioni, in quanto le periferiche di input (mouse-tastiera) saranno bloccate.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="202"/>
+        <location filename="../src/main_window.cpp" line="208"/>
         <source>Window demo</source>
         <translation>Presenta in finestra</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="206"/>
+        <location filename="../src/main_window.cpp" line="215"/>
         <source>In this mode your screen being displayed in a window on all shown computers. The users are able to switch to other windows and thus can continue to work.</source>
         <translation>In questa modalità il tuo schermo sarà visualizzato in una finestra su tutti i computer client. Gli utenti, pertanto, potranno cambiare finestra e continuare il loro lavoro.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="216"/>
+        <location filename="../src/main_window.cpp" line="226"/>
         <source>To have all user&apos;s full attention you can lock their desktops using this button. In this mode all input devices are locked and the screen is black.</source>
         <translation>Per ottenere l&apos;attenzione dagli studenti si possono bloccare i desktop utilizzando questo pulsante. In questa modalità sui computer client le periferiche di input (mouse-tastiera) sono bloccate e lo schermo è nero (visualizza un lucchetto).</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="238"/>
+        <location filename="../src/main_window.cpp" line="246"/>
         <source>Send text message</source>
         <translation>Invia un messaggio di testo</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="240"/>
+        <location filename="../src/main_window.cpp" line="251"/>
         <source>Use this button to send a text message to all users e.g. to tell them new tasks etc.</source>
         <translation>Utilizza questo pulsante per inviare un messaggio di testo a tutti gli utenti. Ad esempio per avvisarli dell&apos;avvio di un nuovo lavoro, ecc.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="247"/>
+        <location filename="../src/main_window.cpp" line="256"/>
         <source>Power on computers</source>
         <translation>Accendi i computer</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="250"/>
+        <location filename="../src/main_window.cpp" line="262"/>
         <source>Click this button to power on all visible computers. This way you do not have to turn on each computer by hand.</source>
         <translation>Clicca su questo pulsante per accendere tutti i computer gestiti. In tal modo non sarà necessario accendere a mano ogni singolo PC dell&apos;aula.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="284"/>
+        <location filename="../src/main_window.cpp" line="298"/>
         <source>Adjust windows and their size</source>
         <translation>Adatta le finestre</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="287"/>
+        <location filename="../src/main_window.cpp" line="301"/>
         <source>When clicking this button the biggest possible size for the client-windows is adjusted. Furthermore all windows are aligned.</source>
         <translation>Cliccando su questo pulsante saranno ottimizzate automaticamente le dimensioni delle finestre-miniature dei computer client utilizzando tutto lo spazio disponibile. Inoltre le finestre saranno allineate.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="293"/>
+        <location filename="../src/main_window.cpp" line="307"/>
         <source>Auto re-arrange windows and their size</source>
         <translation>Ordina e adatta finestre</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="295"/>
+        <location filename="../src/main_window.cpp" line="309"/>
         <source>When clicking this button all visible windows are re-arranged and adjusted.</source>
         <translation>Utilizzando questo pulsante tutte le finestre visibili saranno ordinate e la loro dimensione ottimizzata per lo spazio disponibile.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="354"/>
+        <location filename="../src/main_window.cpp" line="365"/>
         <source>iTALC service not running</source>
         <translation>Il servizio iTALC non è in esecuzione</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="359"/>
+        <location filename="../src/main_window.cpp" line="370"/>
         <source>There seems to be no iTALC service running on this computer or the authentication-keys aren&apos;t set up properly. The service is required for running iTALC. Contact your administrator for solving this problem.</source>
         <translation>Sembra che il servizio iTALC non sia in esecuzione, oppure le chiavi di autenticazione non sono impostate correttamente. Il servizio &quot;iTALC Client&quot; è indispensabile per l&apos;esecuzione di iTALC. Contatta il tuo amministratore per risolvere il problema.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="180"/>
+        <location filename="../src/main_window.cpp" line="187"/>
         <source>Overview</source>
         <translation>Panoramica</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="237"/>
+        <location filename="../src/main_window.cpp" line="249"/>
         <source>Text message</source>
         <translation>Invia messaggio</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="246"/>
+        <location filename="../src/main_window.cpp" line="259"/>
         <source>Power on</source>
         <translation>Accendi</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="256"/>
+        <location filename="../src/main_window.cpp" line="267"/>
         <source>Power down computers</source>
         <translation>Spegni i computer</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="255"/>
+        <location filename="../src/main_window.cpp" line="270"/>
         <source>Power down</source>
         <translation>Spegni</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="259"/>
+        <location filename="../src/main_window.cpp" line="273"/>
         <source>To power down all shown computers (e.g. after the lesson has finished) you can click this button.</source>
         <translation>Puoi usare questo pulsante per spegnere tutti i computer gestiti (ad esempio a lezione terminata) . </translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="265"/>
+        <location filename="../src/main_window.cpp" line="279"/>
         <source>Logon</source>
         <translation>Accedi come</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="283"/>
+        <location filename="../src/main_window.cpp" line="297"/>
         <source>Adjust/align</source>
         <translation>Adatta</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="292"/>
+        <location filename="../src/main_window.cpp" line="306"/>
         <source>Auto view</source>
         <translation>Ordina</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="336"/>
+        <location filename="../src/main_window.cpp" line="350"/>
         <source>No valid keys found</source>
         <translation>Non sono state trovate chiavi valide</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="342"/>
+        <location filename="../src/main_window.cpp" line="356"/>
         <source>No authentication-keys were found or your old ones were broken. Please create a new key-pair using ICA (see documentation at http://italc.sf.net/wiki/index.php?title=Installation).
 Otherwise you won&apos;t be able to access computers using iTALC.</source>
         <translation>Non sono state trovate le chiavi di autenticazione oppure esse sono danneggiate. Si prega di creare una nuova coppia di chiavi utilizzando ICA (consultare la documentazione disponibile presso http://italc.sf.net/wiki/index.php?title=Installazione).
 Altrimenti non sarà possibile accedere ai computer utilizzando iTALC.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="166"/>
+        <location filename="../src/main_window.cpp" line="169"/>
         <source>Classroom</source>
         <translation>Aula</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="167"/>
+        <location filename="../src/main_window.cpp" line="170"/>
         <source>Switch classroom</source>
         <translation>Cambia aula</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="169"/>
+        <location filename="../src/main_window.cpp" line="172"/>
         <source>Click this button to open a menu where you can choose the active classroom.</source>
         <translation>Puoi usare questo pulsante per cambiare l&apos;aula da gestire.</translation>
     </message>
@@ -1054,59 +1064,74 @@ Altrimenti non sarà possibile accedere ai computer utilizzando iTALC.</translat
         <translation type="obsolete">Ferma Presentazione</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="211"/>
+        <location filename="../src/main_window.cpp" line="222"/>
         <source>Lock all</source>
         <translation>Blocca tutti</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="211"/>
+        <location filename="../src/main_window.cpp" line="222"/>
         <source>Unlock all</source>
         <translation>Sblocca tutti</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="212"/>
+        <location filename="../src/main_window.cpp" line="219"/>
         <source>Lock/unlock desktops</source>
         <translation>Blocca/Sblocca i desktop</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="266"/>
+        <location filename="../src/main_window.cpp" line="280"/>
         <source>Remote logon</source>
         <translation>Accedi come</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="269"/>
+        <location filename="../src/main_window.cpp" line="283"/>
         <source>After clicking this button you can enter a username and password to log on the according user on all visible computers.</source>
         <translation>Con questo pulsante potrai effettuare l&apos;accesso (logon) su tutti i computer gestiti, indicando username, password e dominio.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="274"/>
+        <location filename="../src/main_window.cpp" line="288"/>
         <source>Support</source>
         <translation>Assisti/Aiuta</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="275"/>
+        <location filename="../src/main_window.cpp" line="289"/>
         <source>Direct support</source>
         <translation>Assisti/Aiuta</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="278"/>
+        <location filename="../src/main_window.cpp" line="292"/>
         <source>If you need to support someone at a certain computer you can click this button and enter the according hostname or IP afterwards.</source>
         <translation>Con questo pulsante, hai la possibilità di indicare il nome (hostname) o l&apos;indirizzo IP del computer dove si trova la persona che necessita di assistenza/aiuto.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="191"/>
+        <location filename="../src/main_window.cpp" line="200"/>
         <source>Fullscreen Demo</source>
         <translation>Presenta</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="201"/>
+        <location filename="../src/main_window.cpp" line="211"/>
         <source>Stop Demo</source>
         <translation>Ferma Presentazione</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="201"/>
+        <location filename="../src/main_window.cpp" line="211"/>
         <source>Window Demo</source>
         <translation>Presenta in finestra</translation>
+    </message>
+    <message>
+        <location filename="../src/main_window.cpp" line="386"/>
+        <source>iTALC Master Control</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/main_window.cpp" line="487"/>
+        <source>Remote control</source>
+        <translation type="unfinished">Controlla</translation>
+    </message>
+    <message>
+        <location filename="../src/main_window.cpp" line="503"/>
+        <source>Quit</source>
+        <translation type="unfinished">Chiudi</translation>
     </message>
 </context>
 <context>

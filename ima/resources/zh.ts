@@ -91,7 +91,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">管理</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1987"/>
+        <location filename="../src/classroom_manager.cpp" line="1981"/>
         <source>Administration</source>
         <translation>管理</translation>
     </message>
@@ -141,167 +141,167 @@ Further actions can be found in the context-menu of a computer or classroom.
 </translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1314"/>
+        <location filename="../src/classroom_manager.cpp" line="1308"/>
         <source>Hide teacher computers</source>
         <translation>隐藏教师计算机</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="687"/>
+        <location filename="../src/classroom_manager.cpp" line="681"/>
         <source>No configuration-file found</source>
         <translation>配置文件没找到</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="696"/>
+        <location filename="../src/classroom_manager.cpp" line="690"/>
         <source>Could not open configuration file %1.
 You will have to add at least one classroom and computers using the classroom-manager which you&apos;ll find inside the program in the sidebar on the left side.</source>
         <translation>不能打开配置文件 %1 。
 你必须在班级管理中至少添加一个班级和计算机。班级管理在程序的左侧栏中。</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="773"/>
+        <location filename="../src/classroom_manager.cpp" line="767"/>
         <source>Error in configuration-file</source>
         <translation>错误在配置文件中</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="713"/>
+        <location filename="../src/classroom_manager.cpp" line="707"/>
         <source>Error while parsing configuration-file %1.
 Please edit it. Otherwise you should delete this file and have to add all classrooms and computers again.</source>
         <translation>分析配置文件 %1 时出错。
 请编辑它。否则，你将不得不删除该文件并重新添加所有的班级和计算机。</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="778"/>
+        <location filename="../src/classroom_manager.cpp" line="772"/>
         <source>Error while parsing configuration-file %1.
 Please edit it. Otherwise you should delete this file.</source>
         <translation>分析配置文件 %1 时出错。
 请编辑它。否则，你将不得不删除该文件。</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="2091"/>
+        <location filename="../src/classroom_manager.cpp" line="2085"/>
         <source>Power down computers</source>
         <translation>关闭计算机</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="2094"/>
+        <location filename="../src/classroom_manager.cpp" line="2088"/>
         <source>Are you sure want to power down all visible computers?</source>
         <translation>你确定要关闭全部可见的计算机吗?</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="2051"/>
+        <location filename="../src/classroom_manager.cpp" line="2045"/>
         <source>Logout user</source>
         <translation>用户登出</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="2054"/>
+        <location filename="../src/classroom_manager.cpp" line="2048"/>
         <source>Are you sure want logout all users on all visible computers ?</source>
         <translation>你确定要所有用户登出全部可见的计算机吗?</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1277"/>
+        <location filename="../src/classroom_manager.cpp" line="1271"/>
         <source>Show/hide</source>
         <translation>显示/隐藏</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1282"/>
+        <location filename="../src/classroom_manager.cpp" line="1276"/>
         <source>Edit settings</source>
         <translation>编辑设置</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1287"/>
+        <location filename="../src/classroom_manager.cpp" line="1281"/>
         <source>Remove</source>
         <translation>删除</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1269"/>
+        <location filename="../src/classroom_manager.cpp" line="1263"/>
         <source>Actions</source>
         <translation>动作</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1304"/>
+        <location filename="../src/classroom_manager.cpp" line="1298"/>
         <source>Show all computers in classroom</source>
         <translation>显示班级中的全部计算机</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1309"/>
+        <location filename="../src/classroom_manager.cpp" line="1303"/>
         <source>Hide all computers in classroom</source>
         <translation>隐藏班级中的全部计算机</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1319"/>
+        <location filename="../src/classroom_manager.cpp" line="1313"/>
         <source>Edit name</source>
         <translation>编辑名称</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1578"/>
+        <location filename="../src/classroom_manager.cpp" line="1572"/>
         <source>Remove classroom</source>
         <translation>删除班级</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1297"/>
+        <location filename="../src/classroom_manager.cpp" line="1291"/>
         <source>Actions for %1</source>
         <translation>%1 动作</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1334"/>
+        <location filename="../src/classroom_manager.cpp" line="1328"/>
         <source>Action for whole classroom</source>
         <translation>全班动作</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1660"/>
+        <location filename="../src/classroom_manager.cpp" line="1654"/>
         <source>Add computer</source>
         <translation>添加计算机</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1350"/>
+        <location filename="../src/classroom_manager.cpp" line="1344"/>
         <source>Add classroom</source>
         <translation>添加班级</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1554"/>
+        <location filename="../src/classroom_manager.cpp" line="1548"/>
         <source>New name for classroom</source>
         <translation>班级新名称</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1556"/>
+        <location filename="../src/classroom_manager.cpp" line="1550"/>
         <source>Please enter a new name for classroom &quot;%1&quot;.</source>
         <translation>请为班级 &quot;%1&quot; 输入一个新名称。</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1581"/>
+        <location filename="../src/classroom_manager.cpp" line="1575"/>
         <source>Are you sure want to remove classroom &quot;%1&quot;?
 All computers in it will be removed as well!</source>
         <translation>你确定要删除班级 &quot;%1&quot; 吗?
 该班级中的所有计算机也将被删除!</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1627"/>
+        <location filename="../src/classroom_manager.cpp" line="1621"/>
         <source>Missing classroom</source>
         <translation>缺少班级</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1633"/>
+        <location filename="../src/classroom_manager.cpp" line="1627"/>
         <source>Before adding computers you have to create at least one classroom.
 Do you want to create a new classrom now?</source>
         <translation>在添加计算机之前你必须至少创建一个班级。
 你现在要创建新班级吗?</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1676"/>
+        <location filename="../src/classroom_manager.cpp" line="1670"/>
         <source>New classroom</source>
         <translation>新班级</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1675"/>
+        <location filename="../src/classroom_manager.cpp" line="1669"/>
         <source>Please enter the name of the classroom you want to create.</source>
         <translation>请输入要创建班级的名称。</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="2078"/>
+        <location filename="../src/classroom_manager.cpp" line="2072"/>
         <source>Reboot computers</source>
         <translation>重新启动计算机</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="2080"/>
+        <location filename="../src/classroom_manager.cpp" line="2074"/>
         <source>Are you sure want to reboot all visible computers?</source>
         <translation>你确定要重新启动全部可见的计算机吗?</translation>
     </message>
@@ -331,12 +331,12 @@ Do you want to create a new classrom now?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="837"/>
+        <location filename="../src/classroom_manager.cpp" line="831"/>
         <source>Select output-file</source>
         <translation type="unfinished">选择输出文件</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="839"/>
+        <location filename="../src/classroom_manager.cpp" line="833"/>
         <source>Text files (*.txt)</source>
         <translation type="unfinished">文本文件(*.txt)</translation>
     </message>
@@ -419,27 +419,27 @@ Do you want to create a new classrom now?</source>
         <translation>锁定显示</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="647"/>
+        <location filename="../src/client.cpp" line="661"/>
         <source>Unknown state</source>
         <translation>未知状态</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="655"/>
+        <location filename="../src/client.cpp" line="669"/>
         <source>No user logged in</source>
         <translation>无用户登录</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="659"/>
+        <location filename="../src/client.cpp" line="673"/>
         <source>Host unreachable</source>
         <translation>主机不可到达</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="663"/>
+        <location filename="../src/client.cpp" line="677"/>
         <source>Demo running</source>
         <translation>演示进行中</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="667"/>
+        <location filename="../src/client.cpp" line="681"/>
         <source>Desktop locked</source>
         <translation>桌面锁定</translation>
     </message>
@@ -674,12 +674,12 @@ p, li { white-space: pre-wrap; }
         <translation>输入要在客户端运行的命令:</translation>
     </message>
     <message>
-        <location filename="../src/cmd_input_dialog.cpp" line="57"/>
+        <location filename="../src/cmd_input_dialog.cpp" line="59"/>
         <source>Cancel</source>
         <translation>取消</translation>
     </message>
     <message>
-        <location filename="../src/cmd_input_dialog.cpp" line="59"/>
+        <location filename="../src/cmd_input_dialog.cpp" line="57"/>
         <source>&amp;Run!</source>
         <translation>运行&amp;R!</translation>
     </message>
@@ -709,20 +709,20 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../dialogs/config.ui" line="161"/>
         <source>Network interface for demo-mode</source>
-        <translation>演示模式网络接口</translation>
+        <translation type="obsolete">演示模式网络接口</translation>
     </message>
     <message>
         <location filename="../dialogs/config.ui" line="194"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Here you can select the network interface with the according IP-address which is used for demo-purposes. Actually this only concerns you if your computer has more than one network-card. Incorrect settings may result in being able to show a demo.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;在这你可以依据IP-地址为演示选择网络接口。实际上这只有在你的计算机有多块网卡时才要考虑。错误的设置可能导致无法演示。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation type="obsolete">&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;在这你可以依据IP-地址为演示选择网络接口。实际上这只有在你的计算机有多块网卡时才要考虑。错误的设置可能导致无法演示。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/config.ui" line="239"/>
+        <location filename="../dialogs/config.ui" line="161"/>
         <source>Quality of demo-mode</source>
         <translation>演示模式画质</translation>
     </message>
     <message>
-        <location filename="../dialogs/config.ui" line="272"/>
+        <location filename="../dialogs/config.ui" line="194"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
@@ -733,47 +733,47 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;在这你可以设置在演示模式中想要的画质。低画质意味着低CPU占用和低网络传输，高画质将降低计算机速度并且将减少演示的帧率。你应该通过试验来优化设置。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/config.ui" line="279"/>
+        <location filename="../dialogs/config.ui" line="201"/>
         <source>Low (15 bit)</source>
         <translation>低 (15 bit)</translation>
     </message>
     <message>
-        <location filename="../dialogs/config.ui" line="287"/>
+        <location filename="../dialogs/config.ui" line="209"/>
         <source>Medium (18 bit)</source>
         <translation>中 (18 bit)</translation>
     </message>
     <message>
-        <location filename="../dialogs/config.ui" line="295"/>
+        <location filename="../dialogs/config.ui" line="217"/>
         <source>High (Truecolor)</source>
         <translation>高 (Truecolor)</translation>
     </message>
     <message>
-        <location filename="../dialogs/config.ui" line="336"/>
+        <location filename="../dialogs/config.ui" line="258"/>
         <source>User interface</source>
         <translation>用户界面</translation>
     </message>
     <message>
-        <location filename="../dialogs/config.ui" line="382"/>
+        <location filename="../dialogs/config.ui" line="304"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Do not show balloon-tooltips for toolbar-buttons&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;工具栏按钮不显示 冒泡提示&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/config.ui" line="385"/>
+        <location filename="../dialogs/config.ui" line="307"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Check this option if you&apos;re annoyed by the balloon-tooltips appearing when moving mouse-cursor over toolbar-buttons.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;如果你对鼠标移动到工具栏按钮上显示冒泡提示很生气，请选择该项。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/config.ui" line="388"/>
+        <location filename="../dialogs/config.ui" line="310"/>
         <source>No balloon-tooltips</source>
         <translation>禁用 冒泡提示</translation>
     </message>
     <message>
-        <location filename="../dialogs/config.ui" line="422"/>
+        <location filename="../dialogs/config.ui" line="380"/>
         <source>Your role (needs according keys!)</source>
         <translation>你的角色</translation>
     </message>
     <message>
-        <location filename="../dialogs/config.ui" line="468"/>
+        <location filename="../dialogs/config.ui" line="426"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
@@ -784,42 +784,42 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;在这你可以选择你的角色。只有在你知道你要做什么时才能改变，否则你将有可能无法访问客户端直到你恢复旧的角色。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/config.ui" line="475"/>
+        <location filename="../dialogs/config.ui" line="433"/>
         <source>Teacher</source>
         <translation>教师</translation>
     </message>
     <message>
-        <location filename="../dialogs/config.ui" line="480"/>
+        <location filename="../dialogs/config.ui" line="438"/>
         <source>Administrator</source>
         <translation>管理员</translation>
     </message>
     <message>
-        <location filename="../dialogs/config.ui" line="485"/>
+        <location filename="../dialogs/config.ui" line="443"/>
         <source>Supporter</source>
         <translation>协助者</translation>
     </message>
     <message>
-        <location filename="../dialogs/config.ui" line="490"/>
+        <location filename="../dialogs/config.ui" line="448"/>
         <source>Other</source>
         <translation>其他</translation>
     </message>
     <message>
-        <location filename="../dialogs/config.ui" line="533"/>
+        <location filename="../dialogs/config.ui" line="491"/>
         <source>Settings for multi-logon</source>
         <translation>多用户登录设置</translation>
     </message>
     <message>
-        <location filename="../dialogs/config.ui" line="566"/>
+        <location filename="../dialogs/config.ui" line="524"/>
         <source>Domain</source>
         <translation>域</translation>
     </message>
     <message>
-        <location filename="../dialogs/config.ui" line="603"/>
+        <location filename="../dialogs/config.ui" line="561"/>
         <source>Double-click action for client-window</source>
         <translation>客户端窗口双击动作</translation>
     </message>
     <message>
-        <location filename="../dialogs/config.ui" line="649"/>
+        <location filename="../dialogs/config.ui" line="607"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
@@ -830,98 +830,108 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;在这你可以设置双击客户端窗口时要发生的动作。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/config.ui" line="656"/>
+        <location filename="../dialogs/config.ui" line="614"/>
         <source>Remote control</source>
         <translation>远程控制</translation>
     </message>
     <message>
-        <location filename="../dialogs/config.ui" line="664"/>
+        <location filename="../dialogs/config.ui" line="622"/>
         <source>View live in fullscreen</source>
         <translation>全屏现场直播</translation>
     </message>
     <message>
-        <location filename="../dialogs/config.ui" line="705"/>
+        <location filename="../dialogs/config.ui" line="663"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;Please note, that some changes won&apos;t take effect until you restart iTALC.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;请注意，某些改变不能立即生效，需要重启 iTALC 。&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/config.ui" line="343"/>
+        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Do not show texts on toolbar-buttons&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/config.ui" line="346"/>
+        <source>No texts on toolbar-buttons</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>configWidget</name>
     <message>
-        <location filename="../src/config_widget.cpp" line="45"/>
+        <location filename="../src/config_widget.cpp" line="44"/>
         <source>Your iTALC-configuration</source>
         <translation>你的 iTALC 配置</translation>
     </message>
     <message>
-        <location filename="../src/config_widget.cpp" line="47"/>
+        <location filename="../src/config_widget.cpp" line="46"/>
         <source>In this workspace you can customize iTALC to fit your needs.</source>
         <translation>在这个工作空间中你可以定制 iTALC 适合你的需要。</translation>
     </message>
     <message>
         <location filename="../src/config_widget.cpp" line="142"/>
         <source>Warning</source>
-        <translation>警告</translation>
+        <translation type="obsolete">警告</translation>
     </message>
     <message>
         <location filename="../src/config_widget.cpp" line="147"/>
         <source>You are trying to use the local loopback-device as network-interface. This will never work, because the local loopback is just the last alternative for running iTALC if no other network-interface was found.</source>
-        <translation>你试图使用本地的回路设备作为网络接口。这是无用的，因为本地回路仅是在没有其他网络接口时作为运行 iTALC 所需的最后一个选择。</translation>
+        <translation type="obsolete">你试图使用本地的回路设备作为网络接口。这是无用的，因为本地回路仅是在没有其他网络接口时作为运行 iTALC 所需的最后一个选择。</translation>
     </message>
 </context>
 <context>
     <name>mainWindow</name>
     <message>
-        <location filename="../src/main_window.cpp" line="89"/>
+        <location filename="../src/main_window.cpp" line="92"/>
         <source>iTALC</source>
         <translation>iTALC</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="98"/>
+        <location filename="../src/main_window.cpp" line="101"/>
         <source>No write-access</source>
         <translation>非写访问</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="101"/>
+        <location filename="../src/main_window.cpp" line="104"/>
         <source>Could not read/write or create directory %1! For running iTALC, make sure you&apos;re permitted to create or write this directory.</source>
         <translation>不能读/写或创建目录 %1 ！为了运行 iTALC ，请确认你有创建或写该目录的权限。</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="156"/>
+        <location filename="../src/main_window.cpp" line="159"/>
         <source>Actions</source>
         <translation>动作</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="166"/>
+        <location filename="../src/main_window.cpp" line="169"/>
         <source>Classroom</source>
         <translation>班级</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="167"/>
+        <location filename="../src/main_window.cpp" line="170"/>
         <source>Switch classroom</source>
         <translation>切换班级</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="169"/>
+        <location filename="../src/main_window.cpp" line="172"/>
         <source>Click this button to open a menu where you can choose the active classroom.</source>
         <translation>点击按钮在菜单中选择要激活的班级。</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="174"/>
+        <location filename="../src/main_window.cpp" line="177"/>
         <source>Click on this button, to switch between classrooms.</source>
         <translation>点击按钮，切换班级。</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="180"/>
+        <location filename="../src/main_window.cpp" line="187"/>
         <source>Overview</source>
         <translation>概览</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="181"/>
+        <location filename="../src/main_window.cpp" line="184"/>
         <source>Overview mode</source>
         <translation>概览模式</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="186"/>
+        <location filename="../src/main_window.cpp" line="192"/>
         <source>This is the default mode in iTALC and allows you to have an overview over all visible computers. Also click on this button for unlocking locked workstations or for leaving demo-mode.</source>
         <translation>这是 iTALC 的默认模式，让你对所有可见的计算机有一个概览。点击这个按钮也能为工作站解锁或退出演示模式。</translation>
     </message>
@@ -936,12 +946,12 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">关闭演示</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="192"/>
+        <location filename="../src/main_window.cpp" line="197"/>
         <source>Fullscreen demo</source>
         <translation>全屏演示</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="196"/>
+        <location filename="../src/main_window.cpp" line="204"/>
         <source>In this mode your screen is being displayed on all shown computers. Furthermore the users aren&apos;t able to do something else as all input devices are locked in this mode.</source>
         <translation>在这个模式下你的屏幕将在所有可见的客户端计算机中显示，而且在该模式下客户端的所有输入设备都将被锁定，客户端用户不能做任何事。</translation>
     </message>
@@ -956,176 +966,191 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">关闭窗口演示</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="202"/>
+        <location filename="../src/main_window.cpp" line="208"/>
         <source>Window demo</source>
         <translation>窗口演示</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="206"/>
+        <location filename="../src/main_window.cpp" line="215"/>
         <source>In this mode your screen being displayed in a window on all shown computers. The users are able to switch to other windows and thus can continue to work.</source>
         <translation>在这个模式下你的屏幕将在所有可见的客户端计算机的一个窗口中显示。客户端用户可以切换到其他窗口，因此可以继续工作。</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="211"/>
+        <location filename="../src/main_window.cpp" line="222"/>
         <source>Lock all</source>
         <translation>全部锁定</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="211"/>
+        <location filename="../src/main_window.cpp" line="222"/>
         <source>Unlock all</source>
         <translation>全部解锁</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="212"/>
+        <location filename="../src/main_window.cpp" line="219"/>
         <source>Lock/unlock desktops</source>
         <translation>锁定/解锁桌面</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="216"/>
+        <location filename="../src/main_window.cpp" line="226"/>
         <source>To have all user&apos;s full attention you can lock their desktops using this button. In this mode all input devices are locked and the screen is black.</source>
         <translation>为了聚拢用户的注意力，你可以用这个按钮锁定他们的桌面。在该模式下客户端所有的输入设备将被锁定同时屏幕黑屏。</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="237"/>
+        <location filename="../src/main_window.cpp" line="249"/>
         <source>Text message</source>
         <translation>文字消息</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="238"/>
+        <location filename="../src/main_window.cpp" line="246"/>
         <source>Send text message</source>
         <translation>发送文字消息</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="240"/>
+        <location filename="../src/main_window.cpp" line="251"/>
         <source>Use this button to send a text message to all users e.g. to tell them new tasks etc.</source>
         <translation>使用这个按钮发送文字消息给全部用户。例如，告诉他们新的任务等等。</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="246"/>
+        <location filename="../src/main_window.cpp" line="259"/>
         <source>Power on</source>
         <translation>开机</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="247"/>
+        <location filename="../src/main_window.cpp" line="256"/>
         <source>Power on computers</source>
         <translation>开启计算机</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="250"/>
+        <location filename="../src/main_window.cpp" line="262"/>
         <source>Click this button to power on all visible computers. This way you do not have to turn on each computer by hand.</source>
         <translation>点击这个按钮开启全部可见的计算机。这使你不必手工开启每一台计算机。</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="255"/>
+        <location filename="../src/main_window.cpp" line="270"/>
         <source>Power down</source>
         <translation>关机</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="256"/>
+        <location filename="../src/main_window.cpp" line="267"/>
         <source>Power down computers</source>
         <translation>关闭计算机</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="259"/>
+        <location filename="../src/main_window.cpp" line="273"/>
         <source>To power down all shown computers (e.g. after the lesson has finished) you can click this button.</source>
         <translation>你可以点击这个按钮关闭全部可见的计算机（例如，下课时）。</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="265"/>
+        <location filename="../src/main_window.cpp" line="279"/>
         <source>Logon</source>
         <translation>登录</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="266"/>
+        <location filename="../src/main_window.cpp" line="280"/>
         <source>Remote logon</source>
         <translation>远程登录</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="269"/>
+        <location filename="../src/main_window.cpp" line="283"/>
         <source>After clicking this button you can enter a username and password to log on the according user on all visible computers.</source>
         <translation>点击这个按钮后你可以输入用户名和密码登录所有可见的计算机。</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="283"/>
+        <location filename="../src/main_window.cpp" line="297"/>
         <source>Adjust/align</source>
         <translation>调整/对齐</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="284"/>
+        <location filename="../src/main_window.cpp" line="298"/>
         <source>Adjust windows and their size</source>
         <translation>调整窗口和它们的大小</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="287"/>
+        <location filename="../src/main_window.cpp" line="301"/>
         <source>When clicking this button the biggest possible size for the client-windows is adjusted. Furthermore all windows are aligned.</source>
         <translation>点击这个按钮将以最大可能尺寸调整客户端窗口，同时对齐全部窗口。</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="292"/>
+        <location filename="../src/main_window.cpp" line="306"/>
         <source>Auto view</source>
         <translation>自动视图</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="293"/>
+        <location filename="../src/main_window.cpp" line="307"/>
         <source>Auto re-arrange windows and their size</source>
         <translation>自动重新排列窗口和调整大小</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="295"/>
+        <location filename="../src/main_window.cpp" line="309"/>
         <source>When clicking this button all visible windows are re-arranged and adjusted.</source>
         <translation>点击这个按钮重新安排和调整所有可见的窗口。</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="336"/>
+        <location filename="../src/main_window.cpp" line="350"/>
         <source>No valid keys found</source>
         <translation>未找到有效的密钥</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="342"/>
+        <location filename="../src/main_window.cpp" line="356"/>
         <source>No authentication-keys were found or your old ones were broken. Please create a new key-pair using ICA (see documentation at http://italc.sf.net/wiki/index.php?title=Installation).
 Otherwise you won&apos;t be able to access computers using iTALC.</source>
         <translation>未找到验证密钥或者旧密钥被损坏。请用 ICA 创建一个新的密钥对（查看文档 http://italc.sf.net/wiki/index.php?title=Installation）
 否则，你将不能使用 iTALC 访问计算机。</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="354"/>
+        <location filename="../src/main_window.cpp" line="365"/>
         <source>iTALC service not running</source>
         <translation>iTALC 服务未运行</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="359"/>
+        <location filename="../src/main_window.cpp" line="370"/>
         <source>There seems to be no iTALC service running on this computer or the authentication-keys aren&apos;t set up properly. The service is required for running iTALC. Contact your administrator for solving this problem.</source>
         <translation>似乎在这台计算机上没有运行 iTALC 服务或者验证密钥设置不正确。该服务是运行 iTALC 所必需的。联系你的管理员解决这个问题。</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="191"/>
+        <location filename="../src/main_window.cpp" line="200"/>
         <source>Fullscreen Demo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="201"/>
+        <location filename="../src/main_window.cpp" line="211"/>
         <source>Stop Demo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="201"/>
+        <location filename="../src/main_window.cpp" line="211"/>
         <source>Window Demo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="274"/>
+        <location filename="../src/main_window.cpp" line="288"/>
         <source>Support</source>
         <translation type="unfinished">协助</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="275"/>
+        <location filename="../src/main_window.cpp" line="289"/>
         <source>Direct support</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="278"/>
+        <location filename="../src/main_window.cpp" line="292"/>
         <source>If you need to support someone at a certain computer you can click this button and enter the according hostname or IP afterwards.</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/main_window.cpp" line="386"/>
+        <source>iTALC Master Control</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/main_window.cpp" line="487"/>
+        <source>Remote control</source>
+        <translation type="unfinished">远程控制</translation>
+    </message>
+    <message>
+        <location filename="../src/main_window.cpp" line="503"/>
+        <source>Quit</source>
+        <translation type="unfinished">退出</translation>
     </message>
 </context>
 <context>
