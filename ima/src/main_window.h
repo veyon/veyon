@@ -30,6 +30,7 @@
 #include <QtCore/QThread>
 #include <QtGui/QButtonGroup>
 #include <QtGui/QMainWindow>
+#include <QtGui/QSystemTrayIcon>
 #include <QtGui/QToolButton>
 
 #include "snapshot_list.h"
@@ -154,6 +155,8 @@ protected:
 
 
 private slots:
+	void handleSystemTrayEvent( QSystemTrayIcon::ActivationReason _r );
+	void remoteControlClient( QAction * _c );
 	void remoteControlWidgetClosed( QObject * );
 
 	void aboutITALC( void );
@@ -171,6 +174,8 @@ private:
 	QButtonGroup * m_modeGroup;
 
 	toolBar * m_toolBar;
+
+	QList<QAction *> m_sysTrayActions;
 
 	QSplitter * m_splitter;
 

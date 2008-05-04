@@ -43,6 +43,10 @@ public:
 				const QString & _title, 
 				const QString & _desc, QObject * _receiver, 
 				const char * _slot, QWidget * _parent );
+	toolButton( QAction * _a, const QString & _label,
+				const QString & _alt_label,
+				const QString & _desc, QObject * _receiver, 
+				const char * _slot, QWidget * _parent );
 	virtual ~toolButton();
 
 

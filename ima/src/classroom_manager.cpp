@@ -465,7 +465,7 @@ void classroomManager::getVisibleClients( QTreeWidgetItem * _p,
 			getVisibleClients( lvi, _vc );
 		}
 		else if( ( l = dynamic_cast<classRoomItem *>( lvi ) ) != NULL &&
-					l->getClient()->isVisible() )
+								l->isVisible() )
 		{
 			_vc.push_back( l->getClient() );
 		}
@@ -2125,6 +2125,7 @@ void classRoom::switchToClassRoom( void )
 
 classRoomItem::classRoomItem( client * _client, QTreeWidgetItem * _parent ) :
 	QTreeWidgetItem( _parent, QStringList( _client->name() ) ),
+	m_visible( FALSE ),
 	m_client( _client )
 {
 	if( s_clientPixmap == NULL )
@@ -2159,6 +2160,7 @@ classRoomItem::~classRoomItem()
 
 void classRoomItem::setVisible( const bool _obs )
 {
+	m_visible = _obs;
 	if( _obs == FALSE )
 	{
 		setIcon( 0, *s_clientPixmap );

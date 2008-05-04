@@ -50,7 +50,7 @@ toolButton::toolButton( const QPixmap & _pixmap, const QString & _label,
 				const QString & _alt_label,
 				const QString & _title, 
 				const QString & _desc, QObject * _receiver, 
-				const char * _slot,	QWidget * _parent ) :
+				const char * _slot, QWidget * _parent ) :
 	QToolButton( _parent ),
 	m_pixmap( _pixmap ),
 	m_img( fastQImage( _pixmap.toImage() ).scaled( 32, 32 ) ),
@@ -62,17 +62,43 @@ toolButton::toolButton( const QPixmap & _pixmap, const QString & _label,
 	m_descr( _desc )
 {
 	setAttribute( Qt::WA_NoSystemBackground, true );
-	QFont f = font();
-	f.setPointSizeF( 7.5 );
-	setFont( f );
-	//setFixedWidth( qMax<int>( m_img.width(), fontMetrics().width( m_hintLabel ) )+20 );
-	//setFixedHeight( 48 );
+	setText( m_title );
+
 	updateSize();
 
-	setText( m_title );
 	if( _receiver != NULL && _slot != NULL )
 	{
 		connect( this, SIGNAL( clicked() ), _receiver, _slot );
+	}
+
+}
+
+
+
+
+toolButton::toolButton( QAction * _a, const QString & _label,
+				const QString & _alt_label,
+				const QString & _desc, QObject * _receiver, 
+				const char * _slot, QWidget * _parent ) :
+	QToolButton( _parent ),
+	m_pixmap( _a->icon().pixmap( 128, 128 ) ),
+	m_img( fastQImage( m_pixmap.toImage() ).scaled( 32, 32 ) ),
+	m_colorizeLevel( 0 ),
+	m_fadeBack( FALSE ),
+	m_label( _label ),
+	m_altLabel( _alt_label ),
+	m_title( _a->text() ),
+	m_descr( _desc )
+{
+	setAttribute( Qt::WA_NoSystemBackground, true );
+	setText( m_title );
+
+	updateSize();
+
+	if( _receiver != NULL && _slot != NULL )
+	{
+		connect( this, SIGNAL( clicked() ), _receiver, _slot );
+		connect( _a, SIGNAL( triggered( bool ) ), _receiver, _slot );
 	}
 
 }
@@ -308,6 +334,10 @@ void toolButton::updateColorLevel( void )
 
 void toolButton::updateSize( void )
 {
+	QFont f = font();
+	f.setPointSizeF( 7.5 );
+	setFont( f );
+
 	if( s_iconOnlyMode )
 	{
 		setFixedSize( 52, 48 );

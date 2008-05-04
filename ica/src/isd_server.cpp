@@ -255,6 +255,30 @@ int isdServer::processClient( socketDispatcher _sd, void * _user )
 			}
 			break;
 
+		case ISD::HideTrayIcon:
+#ifdef SYSTEMTRAY_SUPPORT
+			if( _sd == &qtcpsocketDispatcher )
+			{
+				// start demo-server on local IVS and make it
+				// child of our socket so that it automatically
+				// gets destroyed as soon as the socket is
+				// closed and thus destroyed
+				QTcpSocket * ts = static_cast<QTcpSocket *>(
+								_user );
+				__systray_icon->hide();
+				connect( ts, SIGNAL( disconnected() ),
+					__systray_icon, SLOT( show() ) );
+			}
+			else
+			{
+				qCritical( "socket-dispatcher is not a "
+						"qtcpsocketDispatcher!\n" );
+			}
+#endif
+			break;
+
+			break;
+
 		case ISD::DemoServer_AllowClient:
 			allowDemoClient( msg_in.arg( "client" ).toString() );
 			break;

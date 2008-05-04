@@ -481,7 +481,7 @@ void client::hideEvent( QHideEvent * )
 		hide();
 	}
 
-	if( m_classRoomItem != NULL )
+	if( m_classRoomItem != NULL && m_mainWindow->isVisible() )
 	{
 		m_classRoomItem->setVisible( FALSE );
 	}
@@ -633,7 +633,7 @@ void client::paintEvent( QPaintEvent * _pe )
 
 	p.fillRect( 1, 1, width()-2, TITLE_HEIGHT-2,
 			m_classRoomItem->isSelected() ?
-				QColor( 32, 80, 255 ) :
+				QColor( 96, 96, 96 ) :
 						QColor( 224, 224, 224 ) );
 
 	bool showUsername = m_mainWindow->getClassroomManager()->showUsername();
@@ -643,7 +643,7 @@ void client::paintEvent( QPaintEvent * _pe )
 	QFont f = p.font();
 	f.setBold( TRUE );
 	p.setFont( f );
-	p.setPen( Qt::black );
+	p.setPen( m_classRoomItem->isSelected() ? Qt::white : Qt::black );
 	p.drawText( 10, TITLE_HEIGHT-7, s );
 
 	if( m_connection->state() == ivsConnection::Connected &&

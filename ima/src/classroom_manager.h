@@ -312,9 +312,14 @@ public:
 	void setVisible( const bool _obs );
 	void setUser( const QString & _name );
 
+	inline bool isVisible( void ) const
+	{
+		return( m_visible );
+	}
+
 
 private:
-	classroomManager * m_classroomManager;
+	bool m_visible;
 	client * m_client;
 
 	static QPixmap * s_clientPixmap;

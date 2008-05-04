@@ -1,5 +1,34 @@
 2008-05-04	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
+	* build_mingw32:
+	build with -fno-strict-aliasing as compiling with MinGW-GCC < 4.3.0
+	can lead to miscompilations without this flag
+
+	* ima/src/main_window.cpp:
+	added exit()-call in main-window-destructor when building for win32 -
+	hack which fixes bug
+
+	* lib/src/isd_connection.cpp:
+	increased timeout when reading from socket
+
+	* ima/src/client.cpp:
+	changed color of active titlebar
+
+	* ica/src/isd_server.cpp:
+	* ima/italc.qrc:
+	* ima/src/tool_button.h:
+	* ima/src/main_window.h:
+	* ima/src/main.cpp:
+	* ima/src/classroom_manager.h:
+	* ima/src/tool_button.cpp:
+	* ima/src/main_window.cpp:
+	* ima/src/classroom_manager.cpp:
+	* ima/resources/tray-menu-bg.png:
+	* lib/include/isd_connection.h:
+	* lib/include/isd_base.h:
+	* lib/src/isd_connection.cpp:
+	added support for controlling master-application via system-tray-icon
+
 	* README.LZO:
 	* lib/include/lzodefs.h:
 	* lib/include/lzoconf.h:

@@ -128,6 +128,8 @@ public:
 	bool demoServerAllowClient( const QString & _client );
 	bool demoServerDenyClient( const QString & _client );
 
+	bool hideTrayIcon( void );
+
 
 	// read private key and/or create new key-pair if necessary
 	static bool initAuthentication( void );

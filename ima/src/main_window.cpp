@@ -60,6 +60,9 @@
 #include "remote_control_widget.h"
 
 
+QSystemTrayIcon * __systray_icon = NULL;
+
+
 extern int __isd_port;
 
 
@@ -175,10 +178,13 @@ mainWindow::mainWindow( int _rctrl_screen ) :
 
 	m_modeGroup = new QButtonGroup( this );
 
+	QAction * a;
+
+	a = new QAction( QIcon( ":/resources/overview_mode.png" ),
+						tr( "Overview mode" ), this );
+	m_sysTrayActions << a;
 	toolButton * overview_mode = new toolButton(
-			QPixmap( ":/resources/overview_mode.png" ),
-			tr( "Overview" ), QString::null,
-			tr( "Overview mode" ),
+			a, tr( "Overview" ), QString::null,
 			tr( "This is the default mode in iTALC and allows you "
 				"to have an overview over all visible "
 				"computers. Also click on this button for "
@@ -186,30 +192,34 @@ mainWindow::mainWindow( int _rctrl_screen ) :
 				"demo-mode." ),
 			NULL, NULL, m_toolBar );
 
+
+	a = new QAction( QIcon( ":/resources/fullscreen_demo.png" ),
+						tr( "Fullscreen demo" ), this );
+	m_sysTrayActions << a;
 	toolButton * fsdemo_mode = new toolButton(
-			QPixmap( ":/resources/fullscreen_demo.png" ),
-			tr( "Fullscreen Demo" ), tr( "Stop Demo" ),
-			tr( "Fullscreen demo" ),
+			a, tr( "Fullscreen Demo" ), tr( "Stop Demo" ),
 			tr( "In this mode your screen is being displayed on "
 				"all shown computers. Furthermore the users "
 				"aren't able to do something else as all input "
 				"devices are locked in this mode." ),
 			NULL, NULL, m_toolBar );
 
+	a = new QAction( QIcon( ":/resources/window_demo.png" ),
+						tr( "Window demo" ), this );
+	m_sysTrayActions << a;
 	toolButton * windemo_mode = new toolButton(
-			QPixmap( ":/resources/window_demo.png" ),
-			tr( "Window Demo" ), tr( "Stop Demo" ),
-			tr( "Window demo" ),
+			a, tr( "Window Demo" ), tr( "Stop Demo" ),
 			tr( "In this mode your screen being displayed in a "
 				"window on all shown computers. The users are "
 				"able to switch to other windows and thus "
 				"can continue to work." ),
 			NULL, NULL, m_toolBar );
 
+	a = new QAction( QIcon( ":/resources/locked.png" ),
+					tr( "Lock/unlock desktops" ), this );
+	m_sysTrayActions << a;
 	toolButton * lock_mode = new toolButton(
-			QPixmap( ":/resources/locked.png" ),
-			tr( "Lock all" ), tr( "Unlock all" ),
-			tr( "Lock/unlock desktops" ),
+			a, tr( "Lock all" ), tr( "Unlock all" ),
 			tr( "To have all user's full attention you can lock "
 				"their desktops using this button. "
 				"In this mode all input devices are locked and "
@@ -232,28 +242,32 @@ mainWindow::mainWindow( int _rctrl_screen ) :
 
 
 
+	a = new QAction( QIcon( ":/resources/text_message.png" ),
+					tr( "Send text message" ), this );
+//	m_sysTrayActions << a;
 	toolButton * text_msg = new toolButton(
-			QPixmap( ":/resources/text_message.png" ),
-			tr( "Text message" ), QString::null,
-			tr( "Send text message" ),
+			a, tr( "Text message" ), QString::null,
 			tr( "Use this button to send a text message to all "
 				"users e.g. to tell them new tasks etc." ),
 			m_classroomManager, SLOT( sendMessage() ), m_toolBar );
 
 
+	a = new QAction( QIcon( ":/resources/power_on.png" ),
+					tr( "Power on computers" ), this );
+	m_sysTrayActions << a;
 	toolButton * power_on = new toolButton(
-			QPixmap( ":/resources/power_on.png" ),
-			tr( "Power on" ), QString::null,
-			tr( "Power on computers" ),
+			a, tr( "Power on" ), QString::null,
 			tr( "Click this button to power on all visible "
 				"computers. This way you do not have to turn "
 				"on each computer by hand." ),
-			m_classroomManager, SLOT( powerOnClients() ), m_toolBar );
+			m_classroomManager, SLOT( powerOnClients() ),
+								m_toolBar );
 
+	a = new QAction( QIcon( ":/resources/power_off.png" ),
+					tr( "Power down computers" ), this );
+	m_sysTrayActions << a;
 	toolButton * power_off = new toolButton(
-			QPixmap( ":/resources/power_off.png" ),
-			tr( "Power down" ), QString::null,
-			tr( "Power down computers" ),
+			a, tr( "Power down" ), QString::null,
 			tr( "To power down all shown computers (e.g. after "
 				"the lesson has finished) you can click this "
 				"button." ),
@@ -361,6 +375,22 @@ mainWindow::mainWindow( int _rctrl_screen ) :
 	m_localISD->demoServerRun( __demo_quality,
 						localSystem::freePort( 5858 ) );
 
+
+	m_localISD->hideTrayIcon();
+
+	QIcon icon( ":/resources/icon16.png" );
+	icon.addFile( ":/resources/icon22.png" );
+	icon.addFile( ":/resources/icon32.png" );
+
+	__systray_icon = new QSystemTrayIcon( icon, this );
+	__systray_icon->setToolTip( tr( "iTALC Master Control" ) );
+	__systray_icon->show();
+	connect( __systray_icon, SIGNAL( activated(
+					QSystemTrayIcon::ActivationReason ) ),
+		this, SLOT( handleSystemTrayEvent(
+					QSystemTrayIcon::ActivationReason ) ) );
+
+
 	QTimer::singleShot( 2000, m_classroomManager, SLOT( updateClients() ) );
 
 	m_updateThread = new mainWindowUpdateThread( this );
@@ -374,7 +404,7 @@ mainWindow::~mainWindow()
 	m_classroomManager->doCleanupWork();
 
 #ifdef BUILD_WIN32
-	localSystem::sleep( 5000 );
+	localSystem::sleep( 3000 );
 #endif
 
 	// also delets clients
@@ -382,6 +412,13 @@ mainWindow::~mainWindow()
 
 	delete m_localISD;
 	m_localISD = NULL;
+
+	__systray_icon->hide();
+	delete __systray_icon;
+
+#ifdef BUILD_WIN32
+	exit( 0 );
+#endif
 }
 
 
@@ -427,7 +464,68 @@ void mainWindow::closeEvent( QCloseEvent * _ce )
 
 
 
-void mainWindow::remoteControlDisplay( const QString & _hostname, bool _view_only,
+
+void mainWindow::handleSystemTrayEvent( QSystemTrayIcon::ActivationReason _r )
+{
+	switch( _r )
+	{
+		case QSystemTrayIcon::Trigger:
+			setVisible( !isVisible() );
+			break;
+		case QSystemTrayIcon::Context:
+		{
+			QMenu m( this );
+			m.addAction( __systray_icon->toolTip() )->setEnabled( FALSE );
+			foreach( QAction * a, m_sysTrayActions )
+			{
+				m.addAction( a );
+			}
+
+			m.addSeparator();
+
+			QMenu rcm( this );
+			QAction * rc = m.addAction( tr( "Remote control" ) );
+			rc->setMenu( &rcm );
+			foreach( client * c,
+					m_classroomManager->visibleClients() )
+			{
+				rcm.addAction( c->name() )->
+						setData( c->hostname() );
+			}
+			connect( &rcm, SIGNAL( triggered( QAction * ) ),
+				this,
+				SLOT( remoteControlClient( QAction * ) ) );
+
+			m.addSeparator();
+
+			QAction * qa = m.addAction(
+					QIcon( ":/resources/quit.png" ),
+					tr( "Quit" ) );
+			connect( qa, SIGNAL( triggered( bool ) ),
+					this, SLOT( close() ) );
+			m.exec( QCursor::pos() );
+			break;
+		}
+		default:
+			break;
+	}
+}
+
+
+
+
+void mainWindow::remoteControlClient( QAction * _a )
+{
+	show();
+	remoteControlDisplay( _a->data().toString(),
+				m_classroomManager->clientDblClickAction() );
+}
+
+
+
+
+void mainWindow::remoteControlDisplay( const QString & _hostname,
+						bool _view_only,
 						bool _stop_demo_afterwards )
 {
 	QWriteLocker wl( &m_rctrlLock );

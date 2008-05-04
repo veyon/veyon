@@ -220,7 +220,9 @@ typedef struct
 
 		DemoServer_Run = 80,
 		DemoServer_AllowClient,
-		DemoServer_DenyClient
+		DemoServer_DenyClient,
+
+		HideTrayIcon = 90
 
 	} ;
 
