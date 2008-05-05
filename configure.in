@@ -2,8 +2,8 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.50)
-AC_INIT(italc, 1.0.8, http://lmms.sourceforge.net/)
-AM_INIT_AUTOMAKE(italc, 1.0.8)
+AC_INIT(italc, 1.0.9-rc1, http://lmms.sourceforge.net/)
+AM_INIT_AUTOMAKE(italc, 1.0.9-rc1)
 AM_CONFIG_HEADER(config.h)
 AX_PREFIX_CONFIG_H([lib/include/rfb/rfbconfig.h])
 

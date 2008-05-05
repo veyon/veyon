@@ -270,7 +270,7 @@ Upravte ho prosím. Inak byste tento súbor mali zmazať.</translation>
         <location filename="../src/classroom_manager.cpp" line="1575"/>
         <source>Are you sure want to remove classroom &quot;%1&quot;?
 All computers in it will be removed as well!</source>
-        <translation>Naozaj si prajete odstraniť triedu &quot;%1&quot;?
+        <translation>Naozaj si prajete odstrániť triedu &quot;%1&quot;?
 Všetky počítače v triede budú odstránené!</translation>
     </message>
     <message>
@@ -770,7 +770,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../dialogs/config.ui" line="310"/>
         <source>No balloon-tooltips</source>
-        <translation>Bez tipů panelu nástrojů</translation>
+        <translation>Nepoužívať bublinovú pomoc.</translation>
     </message>
     <message>
         <location filename="../dialogs/config.ui" line="380"/>
@@ -1048,17 +1048,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/main_window.cpp" line="279"/>
         <source>Logon</source>
-        <translation>Odhlásiť</translation>
+        <translation>Prihlásiť</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="280"/>
         <source>Remote logon</source>
-        <translation>Vzdialené odhlásenie</translation>
+        <translation>Vzdialené prihlásenie</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="283"/>
         <source>After clicking this button you can enter a username and password to log on the according user on all visible computers.</source>
-        <translation>Kliknutím na toto tlačidlo môžete zadať užívateľské meno a heslo potrebné pre odhlásenie daného užívateľa alebo dostupných počítačov.</translation>
+        <translation>Kliknutím na toto tlačidlo môžete zadať užívateľské meno a heslo potrebné pre prihlásenie daného užívateľa na dostupných počítačoch.</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="297"/>
@@ -1360,7 +1360,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/snapshot_list.cpp" line="41"/>
         <source>Simply manage the snapshots you made using this workspace.</source>
-        <translation>Jednoducho spravuje vámi vytvorené zábery plôch.</translation>
+        <translation>Jednoducho spravuje vami vytvorené zábery plôch.</translation>
     </message>
 </context>
 <context>
