@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="it_IT">
+<defaultcodec></defaultcodec>
 <context>
     <name>about</name>
     <message>
@@ -35,7 +36,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Current language not translated yet (or native English).&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;If you&apos;re interested in translating iTALC into your local or another language or want to improve an existing translation, please contact an iTALC-developer!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Rino Andriano &amp;lt;rino/dot/andriano/at/istruzione/dot/it&amp;gt; &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
@@ -340,7 +341,7 @@ Sono disponibili ulteriori comandi nel menu contestuale dei computer e delle aul
     <message>
         <location filename="../src/client.cpp" line="64"/>
         <source>Logon user</source>
-        <translation type="unfinished">Accedi come...</translation>
+        <translation>Accedi come...</translation>
     </message>
     <message>
         <location filename="../src/client.cpp" line="65"/>
@@ -642,7 +643,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/dialogs.cpp" line="112"/>
         <source>You specified an invalid MAC-address. Either leave the field blank or enter a valid MAC-address (use &quot;:&quot; as separator!).</source>
-        <translation type="unfinished">E&apos; stato specificato un MAC-address non valido. Lasciare il campo vuoto o inserire un indirizzo MAC-address valido (utilizza&quot;:&quot; come separatore!)</translation>
+        <translation>E&apos; stato specificato un MAC-address non valido. Lasciare il campo vuoto o inserire un indirizzo MAC-address valido (utilizza&quot;:&quot; come separatore!)</translation>
     </message>
 </context>
 <context>
@@ -828,12 +829,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../dialogs/config.ui" line="343"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Do not show texts on toolbar-buttons&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Non mostrare il testo nella barra degli strumenti&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/config.ui" line="346"/>
         <source>No texts on toolbar-buttons</source>
-        <translation type="unfinished"></translation>
+        <translation>Barra strumenti senza testo</translation>
     </message>
 </context>
 <context>
@@ -1121,17 +1122,17 @@ Altrimenti non sarà possibile accedere ai computer utilizzando iTALC.</translat
     <message>
         <location filename="../src/main_window.cpp" line="386"/>
         <source>iTALC Master Control</source>
-        <translation type="unfinished"></translation>
+        <translation>Gestione iTALC Master</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="487"/>
         <source>Remote control</source>
-        <translation type="unfinished">Controlla</translation>
+        <translation>Controlla</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="503"/>
         <source>Quit</source>
-        <translation type="unfinished">Chiudi</translation>
+        <translation>Chiudi</translation>
     </message>
 </context>
 <context>

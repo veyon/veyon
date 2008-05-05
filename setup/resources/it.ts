@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="it_IT">
+<defaultcodec></defaultcodec>
 <context>
-    <name></name>
+    <name>@default</name>
     <message>
         <location filename="../src/main.cpp" line="82"/>
         <source>File does not exist</source>
