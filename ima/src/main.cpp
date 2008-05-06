@@ -50,6 +50,7 @@ int main( int argc, char * * argv )
 	QApplication app( argc, argv );
 	app.connect( &app, SIGNAL( lastWindowClosed() ), SLOT( quit() ) );
 
+#if QT_VERSION >= 0x040300
 	app.setStyleSheet(
 		"QMenu { border:1px solid black; background-color: white; "
 			"background-image:url(:/resources/tray-menu-bg.png); "
@@ -65,6 +66,7 @@ int main( int argc, char * * argv )
 		"QMenu::item:disabled { color: white;  margin:0px; "
 			"background-color: rgba(0,0,0,192); font-size:14px;"
 			"font-weight:bold; padding: 4px 32px 4px 20px; }" );
+#endif
 
 	// load translations
 	QString loc =  QLocale::system().name().toLower();

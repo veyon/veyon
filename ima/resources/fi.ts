@@ -837,12 +837,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../dialogs/config.ui" line="343"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Do not show texts on toolbar-buttons&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Piilota painikkeiden tekstit työkalupalkissa&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/config.ui" line="346"/>
         <source>No texts on toolbar-buttons</source>
-        <translation type="unfinished"></translation>
+        <translation>Piilota työkalupalkin tekstit</translation>
     </message>
 </context>
 <context>
@@ -1129,17 +1129,17 @@ Otherwise you won&apos;t be able to access computers using iTALC.</source>
     <message>
         <location filename="../src/main_window.cpp" line="386"/>
         <source>iTALC Master Control</source>
-        <translation type="unfinished"></translation>
+        <translation>iTALC</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="487"/>
         <source>Remote control</source>
-        <translation type="unfinished"></translation>
+        <translation>Etähallitse</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="503"/>
         <source>Quit</source>
-        <translation type="unfinished">Poistu</translation>
+        <translation>Lopeta</translation>
     </message>
 </context>
 <context>
