@@ -428,7 +428,7 @@ bool isdConnection::readFromServer( char * _out, const unsigned int _n )
 			// could not read data because we're not connected
 			// anymore?
 			if( m_socket->state() != QTcpSocket::ConnectedState ||
-								++tries > 200 )
+								++tries > 400 )
 			{
 				qWarning( "isdConnection::readFromServer(): "
 						"connection failed: %d",
