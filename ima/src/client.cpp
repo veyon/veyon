@@ -481,7 +481,8 @@ void client::hideEvent( QHideEvent * )
 		hide();
 	}
 
-	if( m_classRoomItem != NULL && m_mainWindow->isVisible() )
+	if( m_classRoomItem != NULL && m_mainWindow->isVisible() &&
+						!m_mainWindow->isMinimized() )
 	{
 		m_classRoomItem->setVisible( FALSE );
 	}
