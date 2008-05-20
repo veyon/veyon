@@ -1,16 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="sk_SK">
 <context>
-    <name></name>
+    <name>@default</name>
     <message>
         <location filename="../src/main.cpp" line="82"/>
         <source>File does not exist</source>
-        <translation>Súbor neexistuje</translation>
+        <translation type="obsolete">Súbor neexistuje</translation>
     </message>
     <message>
         <location filename="../src/main.cpp" line="86"/>
         <source>The file %1 could not be found. Please check this and try again.</source>
-        <translation>Nemôžem nájsť súbor %1. Skontrolujte to prosím a skúste to znova.</translation>
+        <translation type="obsolete">Nemôžem nájsť súbor %1. Skontrolujte to prosím a skúste to znova.</translation>
+    </message>
+</context>
+<context>
+    <name>@default</name>
+    <message>
+        <location filename="../src/main.cpp" line="82"/>
+        <source>File does not exist</source>
+        <translation type="unfinished">Súbor neexistuje</translation>
+    </message>
+    <message>
+        <location filename="../src/main.cpp" line="86"/>
+        <source>The file %1 could not be found. Please check this and try again.</source>
+        <translation type="unfinished">Nemôžem nájsť súbor %1. Skontrolujte to prosím a skúste to znova.</translation>
     </message>
 </context>
 <context>

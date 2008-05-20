@@ -3,7 +3,7 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../src/local_system.cpp" line="51"/>
+        <location filename="../src/local_system.cpp" line="52"/>
         <source>UPL (note for translators: the first three characters of this string are the accellerators (underlined characters) of the three input-fields in logon-dialog of windows - please keep this note as otherwise there are strange errors concerning logon-feature)</source>
         <translation>UPL</translation>
     </message>

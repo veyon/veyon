@@ -424,27 +424,27 @@ Prajete si teraz vytvoriť novú triedu?</translation>
         <translation>Obrazovka zamknutá</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="661"/>
+        <location filename="../src/client.cpp" line="662"/>
         <source>Unknown state</source>
         <translation>Neznámy stav</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="669"/>
+        <location filename="../src/client.cpp" line="670"/>
         <source>No user logged in</source>
         <translation>Žiadny užívateľ nie je prihlásení</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="673"/>
+        <location filename="../src/client.cpp" line="674"/>
         <source>Host unreachable</source>
         <translation>Počítač nie je  k dispozícii</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="677"/>
+        <location filename="../src/client.cpp" line="678"/>
         <source>Demo running</source>
         <translation>Bežiace predvádzanie</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="681"/>
+        <location filename="../src/client.cpp" line="682"/>
         <source>Desktop locked</source>
         <translation>Desktop zamknutí</translation>
     </message>
@@ -1223,17 +1223,17 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>remoteControlWidget</name>
     <message>
-        <location filename="../src/remote_control_widget.cpp" line="305"/>
+        <location filename="../src/remote_control_widget.cpp" line="309"/>
         <source>View live (%1 at host %2)</source>
         <translation>Zobrazenie naživo (%1 na počítači %2)</translation>
     </message>
     <message>
-        <location filename="../src/remote_control_widget.cpp" line="306"/>
+        <location filename="../src/remote_control_widget.cpp" line="310"/>
         <source>Remote control (%1 at host %2)</source>
         <translation>Vzdialené ovládanie (%1 na počítači %2)</translation>
     </message>
     <message>
-        <location filename="../src/remote_control_widget.cpp" line="310"/>
+        <location filename="../src/remote_control_widget.cpp" line="314"/>
         <source>unknown user</source>
         <translation>neznámý užívateľ</translation>
     </message>
