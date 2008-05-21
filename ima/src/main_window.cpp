@@ -237,8 +237,6 @@ mainWindow::mainWindow( int _rctrl_screen ) :
 	m_modeGroup->addButton( lock_mode, client::Mode_Locked );
 
 	overview_mode->setChecked( TRUE );
-	connect( m_modeGroup, SIGNAL( buttonClicked( int ) ),
-			this, SLOT( changeGlobalClientMode( int ) ) );
 
 
 
