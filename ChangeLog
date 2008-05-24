@@ -1,3 +1,17 @@
+2008-05-24	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* ima/src/remote_control_widget.cpp:
+	reverted hotfix from 2008-05-20
+
+	* lib/src/vncview.cpp:
+	Qt::WA_PaintOnScreen-property seems to have changed in Qt >= 4.4.0 so
+	that widgets with this property set can't have overlapping
+	sibling-widgets - so do not use this property anymore which fixes
+	with toolbar in remote-control view
+
+	* acinclude.m4:
+	when cross-compiling, use non-native Qt-development-tools (moc, uic)
+
 2008-05-21	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* ima/src/main_window.cpp:

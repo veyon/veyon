@@ -216,10 +216,6 @@ void remoteControlWidgetToolBar::updatePosition( void )
 		again = y() < 0;
 	}
 
-#if QT_VERSION >= 0x040400
-	m_parent->m_vncView->move( m_parent->m_vncView->x(), y()+height() );
-#endif
-
 	update();
 
 	if( again )
