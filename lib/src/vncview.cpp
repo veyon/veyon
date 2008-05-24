@@ -176,13 +176,6 @@ void vncView::framebufferUpdate( void )
 	if( m_connection->state() != ivsConnection::Connected && m_running )
 	{
 		m_running = FALSE;
-		// as the "establishing connection"-progress-widget is semi-
-		// transparent and has a non-rectangular shape, we have to
-		// disable paint-on-screen-capability as long as we display this
-		// progress-widget
-#ifndef BUILD_WIN32
-		setAttribute( Qt::WA_PaintOnScreen, false );
-#endif
 		if( m_establishingConnection )
 		{
 			m_establishingConnection->show();
@@ -209,11 +202,6 @@ void vncView::framebufferUpdate( void )
 
 		m_connection->setScaledSize( scaledSize() );
 
-		// after we hid the progress-widget, we may use direct painting
-		// again
-#ifndef BUILD_WIN32
-		setAttribute( Qt::WA_PaintOnScreen, true );
-#endif
 		if( parentWidget() )
 		{
 			// if we have a parent it's likely remoteControlWidget
