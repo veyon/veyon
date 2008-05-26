@@ -94,7 +94,7 @@ class textMessageDialog : public QDialog, private Ui::textMessage
 {
 	Q_OBJECT
 public:
-	textMessageDialog( QString & _msg_str, QWidget * _parent );
+	textMessageDialog( QString & _msg_str, QWidget * _parent = 0 );
 
 
 private slots:
@@ -113,7 +113,7 @@ class remoteLogonDialog : public QDialog, private Ui::remoteLogon
 {
 	Q_OBJECT
 public:
-	remoteLogonDialog( QWidget * _parent );
+	remoteLogonDialog( QWidget * _parent = 0 );
 
 	const QString & userName( void ) const
 	{

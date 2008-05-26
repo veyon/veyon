@@ -36,7 +36,7 @@ class cmdInputDialog : public QDialog
 {
 	Q_OBJECT
 public:
-	cmdInputDialog( QString & _cmds_str, QWidget * _parent );
+	cmdInputDialog( QString & _cmds_str, QWidget * _parent = 0 );
 	virtual ~cmdInputDialog();
 
 

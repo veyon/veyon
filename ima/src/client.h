@@ -38,8 +38,9 @@
 #include <QtCore/QVector>
 #include <QtGui/QWidget>
 #include <QtGui/QImage>
+#include <QtGui/QMenu>
 
-class QMenu;
+#include "fast_qimage.h"
 
 class classRoom;
 class classRoomItem;
@@ -107,28 +108,99 @@ private:
 
 
 
+
+class clientAction : public QAction
+{
+	Q_OBJECT
+public:
+	enum type
+	{
+		Overview,
+		FullscreenDemo,
+		WindowDemo,
+		Locked,
+		ViewLive,
+		RemoteControl,
+		ClientDemo,
+		SendTextMessage,
+		LogonUser,
+		LogoutUser,
+		Snapshot,
+		PowerOn,
+		Reboot,
+		PowerDown,
+		ExecCmds
+	} ;
+
+	enum targetGroup
+	{
+		Default,
+		SelectedClients,
+		VisibleClients
+	} ;
+
+	enum flags
+	{
+		None = 0,
+		FullMenu = 1
+	} ;
+
+	clientAction( type _type, QObject * _parent = 0, int _flags = 0 );
+	clientAction( type _type, const QIcon & _icon, const QString & _text,
+			QObject * _parent = 0, int _flags = 0 );
+	~clientAction() {};
+
+	void process( QVector<client *> _clients, targetGroup _target = Default );
+	static void process( QAction * _action,
+			QVector<client *> _clients, targetGroup _target = Default );
+
+	inline bool flags( int _mask = -1 )
+	{
+		return ( m_flags & _mask );
+	}
+
+private:
+	type m_type;
+	int m_flags;
+
+	bool confirmLogout( targetGroup _target ) const;
+	bool confirmReboot( targetGroup _target ) const;
+	bool confirmPowerDown( targetGroup _target ) const;
+
+} ;
+
+
+
+
+class clientMenu : public QMenu
+{
+	Q_OBJECT
+public:
+	static const bool FullMenu = TRUE;
+
+	clientMenu( const QString & _title, const QList<QAction *> _actions,
+			QWidget * _parent = 0, const bool _fullMenu = FALSE );
+
+	virtual ~clientMenu() {};
+
+	static QMenu * createDefault( QWidget * _parent );
+} ;
+
+
+
+
+inline QPixmap scaledIcon( const char * _name )
+{
+	return scaled( QString( ":/resources/" ) + _name, 16, 16 );
+}
+
+
+
+
 class client : public QWidget
 {
 	Q_OBJECT
 public:
-	enum clientCmds
-	{
-		Cmd_None,
-		Cmd_Reload,
-		Cmd_ViewLive,
-		Cmd_RemoteControl,
-		Cmd_ClientDemo,
-		Cmd_SendTextMessage,
-		Cmd_LogonUser,
-		Cmd_LogoutUser,
-		Cmd_Snapshot,
-		Cmd_PowerOn,
-		Cmd_Reboot,
-		Cmd_PowerDown,
-		Cmd_ExecCmds,
-		Cmd_CmdCount
-	} ;
-
 	enum modes
 	{
 		Mode_Overview,
@@ -174,7 +246,21 @@ public:
 		return( m_mode );
 	}
 
-	void changeMode( const modes _new_mode, isdConnection * _conn );
+	// action-handlers
+	void changeMode( const modes _new_mode );
+	void viewLive( void );
+	void remoteControl( void );
+	void clientDemo( void );
+	void sendTextMessage( const QString & _msg );
+	void logonUser( const QString & _username, const QString & _password,
+			const QString & _domain );
+	void logoutUser( void );
+	void snapshot( void );
+	void powerOn( void );
+	void reboot( void );
+	void powerDown( void );
+	void execCmds( const QString & _cmds );
+	void reload( void );
 
 
 	inline QString name( void ) const
@@ -236,11 +322,6 @@ public:
 
 	virtual void update( void );
 
-	void createActionMenu( QMenu * _m );
-
-
-	void processCmd( clientCmds _cmd, const QString & _u_data = "" );
-
 	static inline bool reloadSnapshotList( void )
 	{
 		return( s_reloadSnapshotList );
@@ -260,24 +341,7 @@ public:
 	float m_rasterY;
 
 
-	struct clientCommand
-	{
-		// stuff for cmd-exec
-		clientCmds	m_cmd;
-		execCmd 	m_exec;
-		// stuff for UI
-		char *		m_name;
-		char *		m_icon;
-		bool		m_insertSep;
-	} ;
-
-
-	static const clientCommand s_commands[Cmd_CmdCount];
-
-
-
 public slots:
-	void processCmdSlot( QAction * _action );
 
 
 private slots:
@@ -298,19 +362,6 @@ private:
 	virtual void resizeEvent( QResizeEvent * _re );
 	virtual void showEvent( QShowEvent * _se );
 
-	// action-handlers
-	void reload( const QString & _update = CONFIRM_YES );
-	void clientDemo( const QString & );
-	void viewLive( const QString & );
-	void remoteControl( const QString & );
-	void sendTextMessage( const QString & _msg );
-	void logonUser( const QString & _uname_and_pw );
-	void logoutUser( const QString & _confirm );
-	void snapshot( const QString & );
-	void powerOn( const QString & );
-	void reboot( const QString & _confirm );
-	void powerDown( const QString & _confirm );
-	void execCmds( const QString & _cmds );
 
 	states currentState( void ) const;
 
@@ -336,8 +387,6 @@ private:
 	QMutex m_syncMutex;
 
 	classRoomItem * m_classRoomItem;
-
-	QMenu * m_contextMenu;
 
 	updateThread * m_updateThread;
 

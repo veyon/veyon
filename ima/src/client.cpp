@@ -30,6 +30,7 @@
 #include <QtGui/QPainter>
 #include <QtGui/QPixmap>
 #include <QtGui/QScrollArea>
+#include <QtGui/QMessageBox>
 
 
 #include "main_window.h"
@@ -50,26 +51,6 @@ const int DECO_WIDTH = 4;
 const int TITLE_HEIGHT = 23;
 const QPoint CONTENT_OFFSET( DECO_WIDTH, DECO_WIDTH + TITLE_HEIGHT ); 
 const QSize CONTENT_SIZE_SUB( 2*DECO_WIDTH, 2*DECO_WIDTH + TITLE_HEIGHT ); 
-
-
-const client::clientCommand client::s_commands[client::Cmd_CmdCount] =
-{
-
-	{ Cmd_None,		NULL,				(char *) "",								(char *) "",			FALSE	},
-	{ Cmd_Reload,		&client::reload,		(char *) "",								(char *) "", 			TRUE	},
-	{ Cmd_ViewLive,		&client::viewLive,		(char *) QT_TRANSLATE_NOOP( "client", "View live" ),			(char *) "viewmag.png",		FALSE	},
-	{ Cmd_RemoteControl,	&client::remoteControl,		(char *) QT_TRANSLATE_NOOP( "client", "Remote control" ),		(char *) "remote_control.png",	FALSE	},
-	{ Cmd_ClientDemo,	&client::clientDemo,		(char *) QT_TRANSLATE_NOOP( "client", "Let student show demo" ),		(char *) "client_demo.png",	FALSE	},
-	{ Cmd_SendTextMessage,	&client::sendTextMessage,	(char *) QT_TRANSLATE_NOOP( "client", "Send text message" ),		(char *) "text_message.png",	TRUE	},
-	{ Cmd_LogonUser,	&client::logonUser,		(char *) QT_TRANSLATE_NOOP( "client", "Logon user" ),			(char *) "remotelogon.png",	FALSE	},
-	{ Cmd_LogoutUser,	&client::logoutUser,		(char *) QT_TRANSLATE_NOOP( "client", "Logout user" ),			(char *) "logout.png",		TRUE	},
-	{ Cmd_Snapshot,		&client::snapshot,		(char *) QT_TRANSLATE_NOOP( "client", "Take a snapshot" ),		(char *) "snapshot.png", 	TRUE	},
-	{ Cmd_PowerOn,		&client::powerOn,		(char *) QT_TRANSLATE_NOOP( "client", "Power on" ),			(char *) "power_on.png",		FALSE	},
-	{ Cmd_Reboot,		&client::reboot,		(char *) QT_TRANSLATE_NOOP( "client", "Reboot" ),			(char *) "reboot.png",		FALSE	},
-	{ Cmd_PowerDown,	&client::powerDown,		(char *) QT_TRANSLATE_NOOP( "client", "Power down" ),			(char *) "power_off.png",	FALSE	},
-	{ Cmd_ExecCmds,		&client::execCmds,		(char *) QT_TRANSLATE_NOOP( "client", "Execute commands" ),		(char *) "run.png", 		FALSE	}
-
-} ;
 
 
 // resolve static symbols...
@@ -138,6 +119,311 @@ private:
 
 
 
+clientAction::clientAction( type _type, QObject * _parent, int _flags ) : 
+	QAction( _parent ),
+	m_type( _type ),
+	m_flags( _flags )
+{
+}
+
+
+
+
+clientAction::clientAction( type _type, const QIcon & _icon, const QString & _text,
+				QObject * _parent, int _flags ) : 
+	QAction( _icon, _text, _parent ),
+	m_type( _type ),
+	m_flags( _flags )
+{
+}
+
+
+
+
+void clientAction::process( QVector<client *> _clients, targetGroup _target )
+{
+	switch ( m_type )
+	{
+		case Overview:
+			foreach( client * cl, _clients )
+			{
+				cl->changeMode( client::Mode_Overview );
+			}
+			break;
+			
+		case FullscreenDemo:
+			foreach( client * cl, _clients )
+			{
+				cl->changeMode( client::Mode_FullscreenDemo );
+			}
+			break;
+			
+		case WindowDemo:
+			foreach( client * cl, _clients )
+			{
+				cl->changeMode( client::Mode_WindowDemo );
+			}
+			break;
+			
+		case Locked:
+			foreach( client * cl, _clients )
+			{
+				cl->changeMode( client::Mode_Locked );
+			}
+			break;
+			
+		case ViewLive:
+			foreach( client * cl, _clients )
+			{
+				cl->viewLive();
+			}
+			break;
+			
+		case RemoteControl:
+			foreach( client * cl, _clients )
+			{
+				cl->remoteControl();
+			}
+			break;
+			
+		case ClientDemo:
+			foreach( client * cl, _clients )
+			{
+				cl->clientDemo();
+			}
+			break;
+			
+		case SendTextMessage:
+			{
+				QString msg;
+				textMessageDialog tmd( msg );
+
+				if( tmd.exec() == QDialog::Accepted &&
+					!msg.isEmpty() )
+				{ 
+					foreach( client * cl, _clients )
+					{
+						cl->sendTextMessage( msg );
+					}
+				}
+			}
+
+			break;
+
+		case LogonUser:
+			{
+				remoteLogonDialog mld;
+
+				if( mld.exec() == QDialog::Accepted &&
+					!mld.userName().isEmpty() &&
+					!mld.password().isEmpty() )
+				{
+					foreach( client * cl, _clients )
+					{
+						cl->logonUser( mld.userName(),
+							mld.password(), mld.domain() );
+					}
+				}
+
+			}
+			break;
+
+		case LogoutUser:
+			if ( confirmLogout( _target ) )
+			{
+				foreach( client * cl, _clients )
+				{
+					cl->logoutUser();
+				}
+			}
+			break;
+
+		case Snapshot:
+			foreach( client * cl, _clients )
+			{
+				cl->snapshot();
+			}
+			break;
+
+		case PowerOn:
+			foreach( client * cl, _clients )
+			{
+				cl->powerOn();
+			}
+			break;
+
+		case Reboot:
+			if ( confirmReboot( _target ) )
+			{
+				foreach( client * cl, _clients )
+				{
+					cl->reboot();
+				}
+			}
+			break;
+
+		case PowerDown:
+			if ( confirmPowerDown( _target ) )
+			{
+				foreach( client * cl, _clients )
+				{
+					cl->powerDown();
+				}
+			}
+			break;
+
+		case ExecCmds:
+			{
+				QString cmds;
+				cmdInputDialog cmd_input_dialog( cmds );
+
+				if( cmd_input_dialog.exec() == QDialog::Accepted &&
+					!cmds.isEmpty() )
+				{
+					foreach( client * cl, _clients )
+					{
+						cl->execCmds( cmds );
+					}
+				}
+			}
+			break;
+	}
+}
+
+
+
+
+void clientAction::process( QAction * _action, QVector<client *> _clients,
+			targetGroup _target )
+{
+	clientAction * action = dynamic_cast<clientAction *>( _action );
+	if ( action )
+	{
+		action->process( _clients, _target );
+	}
+}
+
+
+
+
+bool clientAction::confirmLogout( targetGroup _target ) const
+{
+	QString question = ( _target == VisibleClients ?
+		tr( "Are you sure want logout all users on all visible computers ?" ) :
+		tr( "Are you sure want logout all users on all selected computers ?" ) );
+	
+	return QMessageBox::question( NULL, tr( "Logout user" ),
+				question, QMessageBox::Yes, QMessageBox::No )
+		== QMessageBox::Yes;
+}
+
+
+
+
+bool clientAction::confirmReboot( targetGroup _target ) const
+{
+	QString question = ( _target == VisibleClients ?
+		tr( "Are you sure want to reboot all visible computers?" ) :
+		tr( "Are you sure want to reboot all selected computers?" ) );
+
+	return QMessageBox::question( NULL, tr( "Reboot computers" ),
+				question, QMessageBox::Yes, QMessageBox::No )
+		== QMessageBox::Yes;
+}
+
+
+
+
+bool clientAction::confirmPowerDown( targetGroup _target ) const
+{
+	QString question = ( _target == VisibleClients ?
+		tr( "Are you sure want to power down all visible computers?" ) :
+		tr( "Are you sure want to power down all selected computers?" ) );
+
+	return QMessageBox::question( NULL, tr( "Reboot computers" ),
+				question, QMessageBox::Yes, QMessageBox::No )
+		== QMessageBox::Yes;
+}
+
+
+
+
+clientMenu::clientMenu( const QString & _title, const QList<QAction *> _actions,
+			QWidget * _parent, const bool _fullMenu ) :
+	QMenu( _title, _parent )
+{
+	setIcon( scaledIcon( "client.png" ) );
+
+	foreach ( QAction * action, _actions )
+	{
+		clientAction * act = dynamic_cast<clientAction *>( action );
+		if ( act && act->flags( clientAction::FullMenu ) && ! _fullMenu )
+		{
+			continue;
+		}
+
+		addAction( action );
+	}
+}
+
+
+
+QMenu * clientMenu::createDefault( QWidget * _parent )
+{
+	QMenu * menu = new QMenu( _parent );
+
+	menu->addAction( new clientAction( clientAction::Overview,
+		scaledIcon( "overview_mode.png" ), tr( "Overview" ), menu ) );
+	menu->addAction( new clientAction( clientAction::FullscreenDemo,
+		scaledIcon( "fullscreen_demo.png" ), tr( "Fullscreen demo" ), menu ) );
+	menu->addAction( new clientAction( clientAction::WindowDemo,
+		scaledIcon( "window_demo.png" ), tr( "Window demo" ), menu ) );
+	menu->addAction( new clientAction(	clientAction::Locked,
+		scaledIcon( "locked.png" ), tr( "Locked display" ), menu ) );
+	menu->addSeparator();
+
+	menu->addAction( new clientAction( clientAction::ViewLive,
+		scaledIcon( "viewmag.png" ), tr( "View live" ), menu,
+		clientAction::FullMenu ) );
+	menu->addAction( new clientAction( clientAction::RemoteControl,
+		scaledIcon( "remote_control.png" ), tr( "Remote control" ), menu,
+		clientAction::FullMenu ) );
+	menu->addAction( new clientAction( clientAction::ClientDemo,
+		scaledIcon( "client_demo.png" ), tr( "Let student show demo" ), menu,
+		clientAction::FullMenu ) );
+
+	menu->addAction( new clientAction( clientAction::SendTextMessage,
+		scaledIcon( "text_message.png" ), tr( "Send text message" ), menu ) );
+	menu->addSeparator();
+
+	menu->addAction( new clientAction( clientAction::LogonUser,
+		scaledIcon( "remotelogon.png" ), tr( "Logon user" ), menu ) );
+	menu->addAction( new clientAction( clientAction::LogoutUser,
+		scaledIcon( "logout.png" ), tr( "Logout user" ), menu ) );
+	menu->addSeparator();
+
+	menu->addAction( new clientAction( clientAction::Snapshot,
+		scaledIcon( "snapshot.png" ), tr( "Take a snapshot" ), menu ) );
+	menu->addSeparator();
+
+	menu->addAction( new clientAction( clientAction::PowerOn,
+		scaledIcon( "power_on.png" ), tr( "Power on" ), menu ) );
+	menu->addAction( new clientAction( clientAction::Reboot,
+		scaledIcon( "reboot.png" ), tr( "Reboot" ), menu ) );
+	menu->addAction( new clientAction( clientAction::PowerDown,
+		scaledIcon( "power_off.png" ), tr( "Power down" ), menu ) );
+	menu->addAction( new clientAction( clientAction::ExecCmds,
+		scaledIcon( "run.png" ), tr( "Execute commands" ), menu ) );
+
+	return menu;
+}
+
+
+
+
+
+
+
 
 client::client( const QString & _hostname,
 		const QString & _mac, const QString & _nickname,
@@ -159,7 +445,6 @@ client::client( const QString & _hostname,
 	m_state( State_Unkown ),
 	m_syncMutex(),
 	m_classRoomItem( NULL ),
-	m_contextMenu( NULL ),
 	m_updateThread( NULL )
 {
 	new closeButton( this );
@@ -196,36 +481,6 @@ client::client( const QString & _hostname,
 
 	setFixedSize( DEFAULT_CLIENT_SIZE );
 	//resize( DEFAULT_CLIENT_SIZE );
-
-	QMenu * tb = new QMenu( this );
-	m_contextMenu = tb;
-	connect( tb, SIGNAL( triggered( QAction * ) ), this,
-					SLOT( processCmdSlot( QAction * ) ) );
-	tb->addAction( scaled( ":/resources/overview_mode.png", 16, 16 ),
-			tr( "Overview" ) )->
-					setData( Cmd_CmdCount + Mode_Overview );
-	tb->addAction( scaled( ":/resources/fullscreen_demo.png", 16, 16 ),
-						tr( "Fullscreen demo" ) )->
-				setData( Cmd_CmdCount + Mode_FullscreenDemo );
-	tb->addAction( scaled( ":/resources/window_demo.png", 16, 16 ),
-						tr( "Window demo" ) )->
-				setData( Cmd_CmdCount + Mode_WindowDemo );
-	tb->addAction( scaled( ":/resources/locked.png", 16, 16 ),
-						tr( "Locked display" ) )->
-				setData( Cmd_CmdCount + Mode_Locked );
-	tb->addSeparator();
-	for( int i = Cmd_ViewLive; i < Cmd_CmdCount; ++i )
-	{
-		QAction * a = tb->addAction( scaled(
-			QString( ":/resources/" ) + s_commands[i].m_icon,
-								16, 16 ),
-						tr( s_commands[i].m_name ) );
-		a->setData( i );
-		if( s_commands[i].m_insertSep )
-		{
-			tb->addSeparator();
-		}
-	}
 
 	m_updateThread = new updateThread( this );
 }
@@ -265,7 +520,7 @@ client::~client()
 
 void client::quit( void )
 {
-	changeMode( client::Mode_Overview, m_mainWindow->localISD() );
+	changeMode( Mode_Overview );
 	m_updateThread->quit();
 }
 
@@ -315,8 +570,10 @@ int client::freeID( void )
 
 
 
-void client::changeMode( const modes _new_mode, isdConnection * _conn )
+void client::changeMode( const modes _new_mode )
 {
+	isdConnection * conn = m_mainWindow->localISD();
+
 	if( _new_mode != m_mode )
 	{
 		//m_syncMutex.lock();
@@ -327,7 +584,7 @@ void client::changeMode( const modes _new_mode, isdConnection * _conn )
 				break;
 			case Mode_FullscreenDemo:
 			case Mode_WindowDemo:
-				_conn->demoServerDenyClient( m_hostname );
+				conn->demoServerDenyClient( m_hostname );
 				m_updateThread->enqueueCommand(
 						updateThread::Cmd_StopDemo );
 				break;
@@ -343,10 +600,10 @@ void client::changeMode( const modes _new_mode, isdConnection * _conn )
 				break;
 			case Mode_FullscreenDemo:
 			case Mode_WindowDemo:
-				_conn->demoServerAllowClient( m_hostname );
+				conn->demoServerAllowClient( m_hostname );
 				m_updateThread->enqueueCommand(
 						updateThread::Cmd_StartDemo,
-	QList<QVariant>() << QString::number( _conn->demoServerPort() )
+	QList<QVariant>() << QString::number( conn->demoServerPort() )
 				<< (int)( m_mode == Mode_FullscreenDemo ) );
 				//m_mode = Mode_FullscreenDemo;
 				break;
@@ -362,9 +619,9 @@ void client::changeMode( const modes _new_mode, isdConnection * _conn )
 	// why we offer this lines
 	else if( m_mode == Mode_Overview )
 	{
-		if( _conn != NULL )
+		if( conn != NULL )
 		{
-			_conn->demoServerDenyClient( m_hostname );
+			conn->demoServerDenyClient( m_hostname );
 		}
 		m_updateThread->enqueueCommand( updateThread::Cmd_StopDemo );
 		m_updateThread->enqueueCommand( updateThread::Cmd_UnlockScreen );
@@ -402,47 +659,6 @@ void client::update( void )
 
 
 
-void client::createActionMenu( QMenu * _m )
-{
-	connect( _m, SIGNAL( triggered( QAction * ) ), this,
-					SLOT( processCmdSlot( QAction * ) ) );
-	_m->addActions( m_contextMenu->actions() );
-}
-
-
-
-
-void client::processCmd( clientCmds _cmd, const QString & _u_data )
-{
-	if( _cmd < 0 || _cmd >= Cmd_CmdCount )
-	{
-		return;
-	}
-
-	( this->*( client::s_commands[_cmd].m_exec ) )( _u_data );
-}
-
-
-
-
-void client::processCmdSlot( QAction * _action )
-{
-	int a = _action->data().toInt();
-	if( a >= Cmd_ViewLive && a < Cmd_CmdCount )
-	{
-		processCmd( static_cast<clientCmds>( a ) );
-	}
-	else if( a >= Cmd_CmdCount+Mode_Overview &&
-						a < Cmd_CmdCount+Mode_Unknown )
-	{
-		changeMode( static_cast<modes>( a - Cmd_CmdCount ),
-						m_mainWindow->localISD() );
-	}
-}
-
-
-
-
 bool client::userLoggedIn( void )
 {
 	QMutexLocker ml( &m_syncMutex );
@@ -458,7 +674,7 @@ bool client::userLoggedIn( void )
 void client::closeEvent( QCloseEvent * _ce )
 {
 	// make sure, client isn't forgotten by teacher after being hidden
-	changeMode( Mode_Overview, m_mainWindow->localISD() );
+	changeMode( Mode_Overview );
 	hide();
 	_ce->ignore();
 }
@@ -468,7 +684,8 @@ void client::closeEvent( QCloseEvent * _ce )
 
 void client::contextMenuEvent( QContextMenuEvent * )
 {
-	m_contextMenu->exec( QCursor::pos() );
+	/* classRoomManager handles clientMenu */
+	m_mainWindow->getClassroomManager()->clientMenuRequest();
 }
 
 
@@ -543,24 +760,36 @@ void client::zoomBack()
 
 void client::mousePressEvent( QMouseEvent * _me )
 {
+	classTreeWidget * tree = static_cast<classTreeWidget *>(
+				m_classRoomItem->treeWidget() );
+
+	tree->setCurrentItem( m_classRoomItem );
+
 	if( _me->button() == Qt::LeftButton )
 	{
 		raise();
 		m_clickPoint = _me->globalPos();
 		m_origPos = pos();
 
-		if ( ! ( _me->modifiers() & Qt::ControlModifier ))
+		if ( ! ( _me->modifiers() & ( Qt::ControlModifier | Qt::ShiftModifier ) ))
 		{
-			m_classRoomItem->treeWidget()->clearSelection();
+			tree->clearSelection();
 		}
 		m_classRoomItem->setSelected( ! m_classRoomItem->isSelected() );
 
 		zoom();
+
+		_me->ignore();
 	}
-	else
+	else if ( _me->button() == Qt::RightButton )
 	{
-		QWidget::mousePressEvent( _me );
+		if ( ! m_classRoomItem->isSelected() ) {
+			tree->clearSelection();
+			m_classRoomItem->setSelected( TRUE );
+		}
 	}
+
+	QWidget::mousePressEvent( _me );
 }
 
 
@@ -597,11 +826,11 @@ void client::mouseDoubleClickEvent( QMouseEvent * _me )
 {
 	if( m_mainWindow->getClassroomManager()->clientDblClickAction() == 0 )
 	{
-		remoteControl( "" );
+		remoteControl();
 	}
 	else
 	{
-		viewLive( "" );
+		viewLive();
 	}
 }
 
@@ -741,7 +970,7 @@ void client::showEvent( QShowEvent * )
 
 
 
-void client::reload( const QString & _update )
+void client::reload()
 {
 	QString tooltip = "";
 	if( userLoggedIn() )
@@ -786,11 +1015,7 @@ void client::reload( const QString & _update )
 		setToolTip( tooltip );
 	}
 
-	// if we are called out of main-thread, we may update...
-	if( _update == CONFIRM_YES )
-	{
-		update();
-	}
+	update();
 
 	if( m_classRoomItem )
 	{
@@ -801,19 +1026,18 @@ void client::reload( const QString & _update )
 
 
 
-void client::clientDemo( const QString & )
+void client::clientDemo()
 {
 	classroomManager * cm = m_mainWindow->getClassroomManager();
 	cm->changeGlobalClientMode( Mode_Overview );
 
-	isdConnection * conn = m_mainWindow->localISD();
 	QVector<client *> vc = cm->visibleClients();
 
 	foreach( client * cl, vc )
 	{
 		if( cl != this )
 		{
-			cl->changeMode( Mode_FullscreenDemo, conn );
+			cl->changeMode( Mode_FullscreenDemo );
 		}
 	}
 
@@ -825,9 +1049,9 @@ void client::clientDemo( const QString & )
 
 
 
-void client::viewLive( const QString & )
+void client::viewLive()
 {
-	changeMode( Mode_Overview, m_mainWindow->localISD() );
+	changeMode( Mode_Overview );
 
 	m_mainWindow->remoteControlDisplay( m_hostname, TRUE );
 }
@@ -835,9 +1059,9 @@ void client::viewLive( const QString & )
 
 
 
-void client::remoteControl( const QString & )
+void client::remoteControl()
 {
-	changeMode( Mode_Overview, m_mainWindow->localISD() );
+	changeMode( Mode_Overview );
 
 	m_mainWindow->remoteControlDisplay( m_hostname );
 }
@@ -847,50 +1071,24 @@ void client::remoteControl( const QString & )
 
 void client::sendTextMessage( const QString & _msg )
 {
-	if( _msg.isEmpty() )
-	{
-		QString msg;
-
-		textMessageDialog tmd( msg, this );
-		if( tmd.exec() == QDialog::Accepted && msg != "" )
-		{
-			sendTextMessage( msg );
-		}
-	}
-	else
-	{
-		m_updateThread->enqueueCommand(
-				updateThread::Cmd_SendTextMessage, _msg );
-	}
+	m_updateThread->enqueueCommand(
+			updateThread::Cmd_SendTextMessage, _msg );
 }
 
 
 
 
-void client::logonUser( const QString & _uname_and_pw )
+void client::logonUser( const QString & _username, const QString & _password,
+			const QString & _domain )
 {
-
-	if( _uname_and_pw.isEmpty() )
-	{
-		remoteLogonDialog mld( this );
-		if( mld.exec() == QDialog::Accepted &&
-			!mld.userName().isEmpty() && !mld.password().isEmpty() )
-		{
-			logonUser( mld.userName() + "*" + mld.password() +
-							"*" + mld.domain() );
-		}
-	}
-	else
-	{
-		m_updateThread->enqueueCommand( updateThread::Cmd_LogonUser,
-								_uname_and_pw );
-	}
+	m_updateThread->enqueueCommand( updateThread::Cmd_LogonUser,
+		_username + "*" + _password + "*" + _domain );
 }
 
 
 
 
-void client::logoutUser( const QString & _confirm )
+void client::logoutUser()
 {
 	m_updateThread->enqueueCommand( updateThread::Cmd_LogoutUser );
 }
@@ -898,7 +1096,7 @@ void client::logoutUser( const QString & _confirm )
 
 
 
-void client::snapshot( const QString & )
+void client::snapshot()
 {
 	m_makeSnapshot = TRUE;
 }
@@ -907,7 +1105,7 @@ void client::snapshot( const QString & )
 
 
 
-void client::powerOn( const QString & )
+void client::powerOn()
 {
 	m_mainWindow->localISD()->wakeOtherComputer( m_mac );
 }
@@ -915,7 +1113,7 @@ void client::powerOn( const QString & )
 
 
 
-void client::reboot( const QString & _confirm )
+void client::reboot()
 {
 	m_updateThread->enqueueCommand( updateThread::Cmd_Reboot );
 }
@@ -924,7 +1122,7 @@ void client::reboot( const QString & _confirm )
 
 
 
-void client::powerDown( const QString & _confirm )
+void client::powerDown()
 {
 	m_updateThread->enqueueCommand( updateThread::Cmd_PowerDown );
 }
@@ -934,22 +1132,7 @@ void client::powerDown( const QString & _confirm )
 
 void client::execCmds( const QString & _cmds )
 {
-	if( _cmds.isEmpty() )
-	{
-		QString cmds;
-
-		cmdInputDialog cmd_input_dialog( cmds, this );
-		if( cmd_input_dialog.exec() == QDialog::Accepted &&
-							!cmds.isEmpty() )
-		{
-			execCmds( cmds );
-		}
-	}
-	else
-	{
-		m_updateThread->enqueueCommand( updateThread::Cmd_ExecCmds,
-									_cmds );
-	}
+	m_updateThread->enqueueCommand( updateThread::Cmd_ExecCmds, _cmds );
 }
 
 

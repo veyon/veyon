@@ -1,3 +1,23 @@
+2008-05-26	Andrei Krueger	<anc/at/iki/dot/fi>
+
+	* ima/src/client.h:
+	* ima/src/classroom_manager.h:
+	* ima/src/cmd_input_dialog.h:
+	* ima/src/client.cpp:
+	* ima/src/dialogs.h:
+	* ima/src/classroom_manager.cpp:
+	- added classes clientAction and clientMenu
+	- improved multiselection of clients and implemented
+	  execution of client actions on all selected items
+	- re-structured contextMenuRequest() of classmanager
+
+	* ima/src/classroom_manager.h:
+	* ima/src/classroom_manager.cpp:
+	- moved initialization of menus to setupMenus()
+	- simplified changeMode()
+	- removed m_domTree
+	- fixed show/hide menu action
+
 2008-05-24	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* ima/src/remote_control_widget.cpp:

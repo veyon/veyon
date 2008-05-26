@@ -130,8 +130,7 @@ classroomManager::classroomManager( mainWindow * _main_window,
 	connect( m_view, SIGNAL( itemDoubleClicked( QTreeWidgetItem *, int ) ),
 		this, SLOT( itemDoubleClicked( QTreeWidgetItem *, int ) ) );
 	connect( m_view, SIGNAL( customContextMenuRequested( const QPoint & ) ),
-			this, SLOT( contextMenuRequest( const QPoint & ) ) );
-
+		this, SLOT( contextMenuRequest( const QPoint & ) ) );
 
 	QFont f;
 	f.setPixelSize( 12 );
@@ -172,8 +171,24 @@ classroomManager::classroomManager( mainWindow * _main_window,
 				"collect their files at the "
 				"end of the exam." ) );
 
+	setupMenus();
+
 	loadGlobalClientConfig();
 	loadPersonalConfig();
+
+	show();
+}
+
+
+
+
+void classroomManager::setupMenus()
+{
+	QAction * act;
+	QAction * separator = new QAction( this );
+	separator->setSeparator( TRUE );
+
+	/*** quick workspace menu ***/
 
 	m_quickSwitchMenu->addAction( tr( "Hide teacher computers" ),
 					this, SLOT( hideTeacherClients() ) );
@@ -189,8 +204,76 @@ classroomManager::classroomManager( mainWindow * _main_window,
 				tr( "Auto re-arrange windows" ),
 					this, SLOT( arrangeWindows() ) );*/
 
+	/*** actions for single client in context Menu ***/
+
+	m_classRoomItemActionGroup = new QActionGroup( this );
+
+	act = m_classRoomItemActionGroup->addAction( 
+			QPixmap( ":/resources/client_show.png" ),
+			tr( "Show/hide" ) );
+	connect( act, SIGNAL( triggered() ), this, SLOT( showHideClient() ) );
+
+	act = m_classRoomItemActionGroup->addAction( 
+			QPixmap( ":/resources/config.png" ),
+			tr( "Edit settings" ) );
+	connect( act, SIGNAL( triggered() ), this, SLOT( editClientSettings() ) );
+
+	act = m_classRoomItemActionGroup->addAction(
+			QPixmap( ":/resources/client_remove.png" ),
+			tr( "Remove" ) );
+	connect( act, SIGNAL( triggered() ), this, SLOT( removeClient() ) );
+
+	m_classRoomItemActionGroup->addAction( "" )->setSeparator( TRUE );
+
+	/*** actions for single classroom in context Menu ***/
+
+	m_classRoomActionGroup = new QActionGroup( this );
+
+	act = m_classRoomActionGroup->addAction(
+			QPixmap( ":/resources/classroom_show.png" ),
+			tr( "Show all computers in classroom" ) );
+	connect( act, SIGNAL( triggered() ), this, SLOT( showSelectedClassRooms() ) );
+
+	act = m_classRoomActionGroup->addAction(
+			QPixmap( ":/resources/classroom_closed.png" ),
+			tr( "Hide all computers in classroom" ) );
+	connect( act, SIGNAL( triggered() ), this, SLOT( hideSelectedClassRooms() ) );
+
+	act = m_classRoomActionGroup->addAction(
+			QPixmap( ":/resources/no_user.png" ),
+			tr( "Hide teacher computers" ) );
+	connect( act, SIGNAL( triggered() ), this, SLOT( hideTeacherClients() ) );
+
+	act = m_classRoomActionGroup->addAction(
+			QPixmap( ":/resources/config.png" ),
+			tr( "Edit name" ) );
+	connect( act, SIGNAL( triggered() ), this, SLOT( editClassRoomName() ) );
+
+	act = m_classRoomActionGroup->addAction(
+			QPixmap( ":/resources/classroom_remove.png" ),
+			tr("Remove classroom" ) );
+	connect( act, SIGNAL( triggered() ), this, SLOT( removeClassRoom() ) );
+
+	m_classRoomActionGroup->addAction( "" )->setSeparator( TRUE );
+
+	/*** common actions in context menu ***/
+
+	m_contextActionGroup = new QActionGroup( this );
+
+	act = m_contextActionGroup->addAction(
+			QPixmap( ":/resources/client_add.png" ),
+			tr( "Add computer" ) );
+	connect( act, SIGNAL( triggered() ), this, SLOT( addClient() ) );
+
+	act = m_contextActionGroup->addAction(
+			QPixmap( ":/resources/classroom_add.png" ),
+			tr( "Add classroom" ) );
+	connect( act, SIGNAL( triggered() ), this, SLOT( addClassRoom() ) );
+
+	/*** Default client Menu ***/
+
+	m_clientMenu = clientMenu::createDefault( this );
 	
-	show();
 }
 
 
@@ -691,7 +774,9 @@ void classroomManager::loadGlobalClientConfig( void )
 		return;
 	}
 
-	if( !m_domTree.setContent( &cfg_file ) )
+	QDomDocument domTree;
+
+	if( !domTree.setContent( &cfg_file ) )
 	{
 		if( splashScreen != NULL )
 		{
@@ -713,7 +798,7 @@ void classroomManager::loadGlobalClientConfig( void )
 
 
 	// get the head information from the DOM
-	QDomElement root = m_domTree.documentElement();
+	QDomElement root = domTree.documentElement();
 	QDomNode node = root.firstChild();
 
 	// create the tree view out of the DOM
@@ -758,7 +843,9 @@ void classroomManager::loadPersonalConfig( void )
 		return;
 	}
 
-	if( !m_domTree.setContent( &cfg_file ) )
+	QDomDocument domTree;
+
+	if( !domTree.setContent( &cfg_file ) )
 	{
 		if( splashScreen != NULL )
 		{
@@ -779,7 +866,7 @@ void classroomManager::loadPersonalConfig( void )
 
 
 	// get the head information from the DOM
-	QDomElement root = m_domTree.documentElement();
+	QDomElement root = domTree.documentElement();
 	QDomNode node = root.firstChild();
 
 	while( !node.isNull() )
@@ -853,20 +940,6 @@ void classroomManager::clickedExportToFile( void )
 
 
 
-inline void classroomManager::cmdToVisibleClients( client::clientCmds _cmd,
-						const QString & _u_data )
-{
-	QVector<client *> vc = visibleClients();
-	for( QVector<client *>::iterator it = vc.begin(); it != vc.end(); ++it )
-	{
-		( *it )->processCmd( _cmd, _u_data );
-	}
-}
-
-
-
-
-
 void classroomManager::changeGlobalClientMode( int _mode )
 {
 	client::modes new_mode = static_cast<client::modes>( _mode );
@@ -874,12 +947,11 @@ void classroomManager::changeGlobalClientMode( int _mode )
 					new_mode == client::Mode_Overview )
 	{
 		m_globalClientMode = new_mode;
-		isdConnection * conn = getMainWindow()->localISD();
 		QVector<client *> vc = visibleClients();
 
 		foreach( client * cl, vc )
 		{
-			cl->changeMode( m_globalClientMode, conn );
+			cl->changeMode( m_globalClientMode );
 		}
 	}
 }
@@ -889,9 +961,8 @@ void classroomManager::changeGlobalClientMode( int _mode )
 
 void classroomManager::powerOnClients( void )
 {
-/*	progressInformation pi(
-		tr( "Please wait, while the clients are being turned on." ) );*/
-	cmdToVisibleClients( client::Cmd_PowerOn );
+	clientAction action( clientAction::PowerOn, this );
+	action.process( visibleClients(), clientAction::VisibleClients );
 }
 
 
@@ -899,14 +970,8 @@ void classroomManager::powerOnClients( void )
 
 void classroomManager::remoteLogon( void )
 {
-	remoteLogonDialog mld( this );
-	if( mld.exec() == QDialog::Accepted &&
-		!mld.userName().isEmpty() && !mld.password().isEmpty() )
-	{
-		cmdToVisibleClients( client::Cmd_LogonUser,
-				mld.userName() + "*" + mld.password() +
-							"*" + mld.domain() );
-	}
+	clientAction action( clientAction::LogonUser, this );
+	action.process( visibleClients(), clientAction::VisibleClients );
 }
 
 
@@ -914,45 +979,8 @@ void classroomManager::remoteLogon( void )
 
 void classroomManager::powerDownClients( void )
 {
-	if( QMessageBox::question( window(), tr( "Power down computers" ),
-					tr( "Are you sure want to power down "
-						"all visible computers?" ),
-					QMessageBox::Yes, QMessageBox::No ) ==
-							QMessageBox::Yes )
-	{
-		/*progressInformation pi( tr( "Please wait, while the computers "
-						"are being powered down." ) );*/
-		cmdToVisibleClients( client::Cmd_PowerDown );
-	}
-}
-
-
-
-
-void classroomManager::logoutUser( void )
-{
-	if( QMessageBox::question( window(), tr( "Logout user" ),
-			tr( "Are you sure want logout all users on all "
-							"visible computers ?" ),
-					QMessageBox::Yes, QMessageBox::No ) ==
-							QMessageBox::Yes )
-	{
-		cmdToVisibleClients( client::Cmd_LogoutUser );
-	}
-}
-
-
-
-
-void classroomManager::execCmds( void )
-{
-	QString cmds;
-
-	cmdInputDialog cmd_input_dialog( cmds, this );
-	if( cmd_input_dialog.exec() == QDialog::Accepted && cmds != "" )
-	{
-		cmdToVisibleClients( client::Cmd_ExecCmds, cmds );
-	}
+	clientAction action( clientAction::PowerDown, this );
+	action.process( visibleClients(), clientAction::VisibleClients );
 }
 
 
@@ -972,15 +1000,8 @@ void classroomManager::directSupport( void )
 
 void classroomManager::sendMessage( void )
 {
-	QString msg;
-
-	textMessageDialog tmd( msg, this );
-	if( tmd.exec() == QDialog::Accepted && msg != "" )
-	{
-		/*progressInformation pi(
-			tr( "Please wait, while the message is being sent." ) );*/
-		cmdToVisibleClients( client::Cmd_SendTextMessage, msg );
-	}
+	clientAction action( clientAction::SendTextMessage, this );
+	action.process( visibleClients(), clientAction::VisibleClients );
 }
 
 
@@ -1249,104 +1270,96 @@ void classroomManager::itemDoubleClicked( QTreeWidgetItem * _i, int )
 
 void classroomManager::contextMenuRequest( const QPoint & _pos )
 {
-	QMenu * context_menu = new QMenu( this );
-
 	QTreeWidgetItem * i = m_view->itemAt( _pos );
-	m_view->setCurrentItem( i );
 	classRoomItem * cri = dynamic_cast<classRoomItem *>( i );
 	classRoom * cr = dynamic_cast<classRoom *>( i );
 
-	if( cri != NULL )
+	QMenu * contextMenu = new QMenu( this );
+	QMenu * subMenu;
+
+	if ( m_view->selectedItems().size() > 1 )
 	{
-		QMenu * single_clients_submenu = context_menu->addMenu(
-					QPixmap( ":/resources/client.png" ),
-							tr( "Actions" ) );
-
-		cri->getClient()->createActionMenu( single_clients_submenu );
-
-		context_menu->addSeparator();
-
-		context_menu->addAction(
-				QPixmap( ":/resources/client_show.png" ),
-						tr( "Show/hide" ),
-					this, SLOT( showHideClient() ) );
-
-		context_menu->addAction(
-				QPixmap( ":/resources/config.png" ),
-						tr( "Edit settings" ), this,
-					SLOT( editClientSettings() ) );
-
-		context_menu->addAction(
-				QPixmap( ":/resources/client_remove.png" ),
-						tr( "Remove" ), this,
-						SLOT( removeClient() ) );
-
-		context_menu->addSeparator();
-
+		/* multiselection */
+		subMenu = new clientMenu( tr( "Actions for selected" ),
+			m_clientMenu->actions(), contextMenu );
+		connect( subMenu, SIGNAL( triggered( QAction * ) ),
+			this, SLOT( clientMenuTriggered( QAction * ) ) );
+		contextMenu->addMenu( subMenu );
+		contextMenu->addSeparator();
+	}
+	else if( cri != NULL )
+	{
+		/* single client */
+		subMenu = new clientMenu( tr( "Actions" ),
+			m_clientMenu->actions(), contextMenu, clientMenu::FullMenu );
+		connect( subMenu, SIGNAL( triggered( QAction * ) ),
+			this, SLOT( clientMenuTriggered( QAction * ) ) );
+		contextMenu->addMenu( subMenu );
+		contextMenu->addSeparator();
+		contextMenu->addActions( m_classRoomItemActionGroup->actions() );
 	}
 	else if( cr != NULL )
 	{
-		QMenu * actions_for_classroom_submenu = context_menu->addMenu(
-				QPixmap( ":/resources/classroom_opened.png" ),
-				tr( "Actions for %1" ).arg( cr->text( 0 ) ) );
-		cr->createActionMenu( actions_for_classroom_submenu, FALSE );
-
-		context_menu->addSeparator();
-
-		context_menu->addAction(
-				QPixmap( ":/resources/classroom_show.png" ),
-				tr( "Show all computers in classroom" ),
-				this, SLOT( showSelectedClassRooms() ) );
-
-		context_menu->addAction(
-				QPixmap( ":/resources/classroom_closed.png" ),
-				tr( "Hide all computers in classroom" ),
-				this, SLOT( hideSelectedClassRooms() ) );
-
-		context_menu->addAction(
-				QPixmap( ":/resources/no_user.png" ),
-				tr( "Hide teacher computers" ),
-				this, SLOT( hideTeacherClients() ) );
-
-		context_menu->addAction(
-				QPixmap( ":/resources/config.png" ),
-				tr( "Edit name" ),
-				this, SLOT( editClassRoomName() ) );
-
-		context_menu->addAction(
-				QPixmap( ":/resources/classroom_remove.png" ),
-				tr("Remove classroom" ),
-				this, SLOT( removeClassRoom() ) );
-
-		context_menu->addSeparator();
-
+		/* single classroom */
+		subMenu = new clientMenu( tr( "Actions for %1" ).arg( cr->text(0) ),
+			m_clientMenu->actions(), contextMenu );
+		connect( subMenu, SIGNAL( triggered( QAction * ) ),
+			cr, SLOT( clientMenuTriggered( QAction * ) ) );
+		contextMenu->addMenu( subMenu );
+		contextMenu->addSeparator();
+		contextMenu->addActions( m_classRoomActionGroup->actions() );
 	}
-	else if( m_classRooms.size() )
+	else
 	{ 
-		QMenu * actions_for_classroom_submenu = context_menu->addMenu(
-				QPixmap( ":/resources/classroom_closed.png" ),
-				tr( "Action for whole classroom" ) );
-		for( QVector<classRoom *>::iterator it = m_classRooms.begin();
-						it != m_classRooms.end(); ++it )
+		/* no items */
+		foreach ( classRoom * cr, m_classRooms )
 		{
-			( *it )->createActionMenu(
-						actions_for_classroom_submenu );
+			subMenu = new clientMenu( tr( "Actions for %1" ).arg( cr->text(0) ),
+				m_clientMenu->actions(), contextMenu );
+			connect( subMenu, SIGNAL( triggered( QAction * ) ),
+				cr, SLOT( clientMenuTriggered( QAction * ) ) );
+			contextMenu->addMenu( subMenu );
 		}
 
-		context_menu->addSeparator();
+		contextMenu->addSeparator();
 	}
 
-	context_menu->addAction( QPixmap( ":/resources/client_add.png" ),
-					tr( "Add computer" ),
-					this, SLOT( addClient() ) );
+	contextMenu->addActions( m_contextActionGroup->actions() );
 
-	context_menu->addAction( QPixmap( ":/resources/classroom_add.png" ),
-					tr( "Add classroom" ),
-					this, SLOT( addClassRoom() ) );
+	contextMenu->exec( QCursor::pos() );
 
-	context_menu->exec( QCursor::pos() );
+	delete contextMenu;
+}
 
-	delete context_menu;
+
+
+void classroomManager::clientMenuRequest()
+{
+	bool fullMenu = ( selectedItems().size() == 1 );
+
+	QMenu * menu = new clientMenu( tr( "Actions" ), m_clientMenu->actions(),
+					this, fullMenu );
+	connect( menu, SIGNAL( triggered( QAction * ) ),
+		this, SLOT( clientMenuTriggered( QAction * ) ) );
+
+	menu->exec( QCursor::pos() );
+
+	delete menu;
+}
+
+
+
+
+void classroomManager::clientMenuTriggered( QAction * _action )
+{
+	QVector<client *> clients;
+
+	foreach ( classRoomItem * cri, selectedItems() )
+	{
+		clients.append( cri->getClient() );
+	}
+
+	clientAction::process( _action, clients );
 }
 
 
@@ -1369,22 +1382,19 @@ QVector<classRoomItem *> classroomManager::selectedItems( void )
 
 void classroomManager::getSelectedItems( QTreeWidgetItem * _p,
 					QVector<classRoomItem *> & _vc,
-								bool _add_all )
+					bool _add_all )
 {
-	for( int i = 0; i < _p->childCount(); ++i )
+	bool select = _add_all || _p->isSelected();
+	if( _p->childCount() )
 	{
-		QTreeWidgetItem * lvi = _p->child( i );
-		if( lvi->childCount() )
+		for( int i = 0; i < _p->childCount(); ++i )
 		{
-			getSelectedItems( lvi, _vc,
-						m_view->isItemSelected( lvi ) );
+			getSelectedItems( _p->child( i ), _vc, select );
 		}
-		else if( _add_all ||
-			( dynamic_cast<classRoomItem *>( lvi ) != NULL &&
-					m_view->isItemSelected( lvi ) ) )
-		{
-			_vc.push_back( dynamic_cast<classRoomItem *>( lvi ) );
-		}
+	}
+	else if( dynamic_cast<classRoomItem *>( _p ) && select )
+	{
+		_vc.push_back( dynamic_cast<classRoomItem *>( _p ) );
 	}
 }
 
@@ -1401,7 +1411,7 @@ void classroomManager::showHideClient( void )
 		bool all_shown = TRUE;
 		foreach( classRoomItem * cri, si )
 		{
-			if( cri->getClient()->isVisible() == FALSE )
+			if( cri->getClient()->isVisible() )
 			{
 				all_shown = FALSE;
 				break;
@@ -1759,6 +1769,15 @@ void classTreeWidget::mousePressEvent( QMouseEvent * _me )
 		m_clientPressed->zoom();
 	}
 
+	if( item && _me->button() == Qt::RightButton )
+	{
+		if ( ! item->isSelected() )
+		{
+			clearSelection();
+			item->setSelected( TRUE );
+		}
+	}
+
 	QTreeWidget::mousePressEvent( _me );
 }
 
@@ -1924,6 +1943,25 @@ void classTreeWidget::itemSelectionChanged( void )
 
 
 
+/* Set to current but don't select it automatically */
+void classTreeWidget::setCurrentItem( QTreeWidgetItem * _item )
+{
+	QModelIndex index = indexFromItem( _item );
+
+	if ( index.isValid() )
+	{
+		selectionModel()->setCurrentIndex( index,
+				QItemSelectionModel::NoUpdate );
+	}
+}
+
+
+
+
+
+
+
+
 classRoom::classRoom( const QString & _name,
 					classroomManager * _classroom_manager,
 						QTreeWidgetItem * _parent ) :
@@ -1958,152 +1996,13 @@ classRoom::~classRoom()
 
 
 
-void classRoom::createActionMenu( QMenu * _m, bool _add_sub_menu )
+void classRoom::clientMenuTriggered( QAction * _action )
 {
-	QMenu * this_classroom_submenu = _m;
-	QMenu * orig_root = _m;
+	QVector<client *> clients;
+	classroomManager::getVisibleClients( this, clients );
 
-	if( _add_sub_menu )
-	{
-		orig_root = this_classroom_submenu;
-		this_classroom_submenu = _m->addMenu( text( 0 ) );
-	}
-	connect( this_classroom_submenu, SIGNAL( triggered( QAction * ) ),
-			this, SLOT( processCmdOnAllClients( QAction * ) ) );
-	for( int i = client::Cmd_SendTextMessage; i < client::Cmd_CmdCount;
-									++i )
-	{
-		if( i == client::Cmd_ExecCmds )
-		{
-			this_classroom_submenu =
-				this_classroom_submenu->addMenu( QPixmap(
-					":/resources/config.png" ),
-						tr( "Administration" ) );
-
-			connect( this_classroom_submenu,
-					SIGNAL( triggered( QAction * ) ),
-				this,
-				SLOT( processCmdOnAllClients( QAction * ) ) );
-		}
-		QAction * cur = this_classroom_submenu->addAction(
-				QPixmap( QString( ":/resources/" ) +
-						client::s_commands[i].m_icon ),
-				client::tr( client::s_commands[i].m_name ) );
-		cur->setData( i );
-
-		if( client::s_commands[i].m_insertSep )
-		{
-			this_classroom_submenu->addSeparator();
-		}
-	}
+	clientAction::process( _action, clients );
 }
-
-
-
-
-void classRoom::processCmdOnAllClients( QAction * _action )
-{
-	QVector<client *> vc;
-
-	// get all visible clients for this classroom
-	classroomManager::getVisibleClients( this, vc );
-
-	QString u_data = CONFIRM_NO;
-
-	int cmd = _action->data().toInt();
-
-	// may be we have to do something (e.g. confirm) before executing cmd
-	switch( static_cast<client::clientCmds>( cmd ) )
-	{
-		case client::Cmd_SendTextMessage:
-		{
-			textMessageDialog tmd( u_data, m_classroomManager );
-			if( tmd.exec() != QDialog::Accepted || u_data == "" )
-			{
-				return;
-			}
-			break;
-		}
-
-		case client::Cmd_LogonUser:
-		{
-			remoteLogonDialog mld( m_classroomManager );
-			if( mld.exec() == QDialog::Accepted &&
-				!mld.userName().isEmpty() &&
-					!mld.password().isEmpty() )
-			{
-				u_data = mld.userName() + "*" + mld.password() +
-							"*" + mld.domain();
-				break;
-			}
-			return;
-		}
-
-		case client::Cmd_LogoutUser:
-		{
-			if( QMessageBox::question( m_classroomManager->window(),
-					classroomManager::tr( "Logout user" ),
-				classroomManager::tr( "Are you sure want logout "
-							"all users on all "
-							"visible computers ?" ),
-						QMessageBox::Yes,
-						QMessageBox::No ) ==
-							QMessageBox::No )
-			{
-				return;
-			}
-			break;
-		}
-
-		case client::Cmd_ExecCmds:
-		{
-			cmdInputDialog cmd_input_dialog( u_data, NULL );
-			if( cmd_input_dialog.exec() != QDialog::Accepted ||
-								u_data == "" )
-			{
-				return;
-			}
-			break;
-		}
-
-		case client::Cmd_Reboot:
-		{
-			if( QMessageBox::question( m_classroomManager->window(),
-				classroomManager::tr( "Reboot computers" ),
-				classroomManager::tr( "Are you sure want to "
-					"reboot all visible computers?" ),
-					QMessageBox::Yes, QMessageBox::No ) ==
-							QMessageBox::No )
-			{
-				return;
-			}
-			break;
-		}
-		case client::Cmd_PowerDown:
-		{
-			if( QMessageBox::question( m_classroomManager->window(),
-				classroomManager::tr( "Power down computers" ),
-				classroomManager::tr( "Are you sure want to "
-						"power down all visible "
-								"computers?" ),
-					QMessageBox::Yes, QMessageBox::No ) ==
-							QMessageBox::No )
-			{
-				return;
-			}
-			break;
-		}
-		default:
-			break;
-	}
-
-	for( QVector<client *>::iterator it = vc.begin(); it != vc.end(); ++it )
-	{
-		( *it )->processCmd( static_cast<client::clientCmds>( cmd ),
-								u_data );
-	}
-}
-
 
 
 

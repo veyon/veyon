@@ -117,18 +117,19 @@ public:
 	void setStateOfClassRoom( classRoom * _cr, bool _shown );
 	QAction * addClassRoomToQuickSwitchMenu( classRoom * _cr );
 
-
 public slots:
 	void updateClients( void );
 
+	// slots for context menu
+	void clientMenuRequest( void );
+	void clientMenuTriggered( QAction * _action );
+
 	// slots for toolbar-actions
 	void changeGlobalClientMode( int );
-	void logoutUser( void );
 	void sendMessage( void );
 	void powerOnClients( void );
 	void powerDownClients( void );
 	void remoteLogon( void );
-	void execCmds( void );
 	void directSupport( void );
 
 	// slots for actions in view-menu
@@ -175,8 +176,7 @@ private slots:
 
 
 private:
-	void cmdToVisibleClients( client::clientCmds _cmd,
-					const QString & _u_data = CONFIRM_NO );
+	void setupMenus( void );
 
 	void saveSettingsOfChildren( QDomDocument & _doc, QDomElement & _root,
 						QTreeWidgetItem * _lvi,
@@ -186,7 +186,6 @@ private:
 	void loadTree( classRoom * _parentItem,
 					const QDomElement & _parentElement,
 					bool _is_global_config );
-
 	QVector<classRoomItem *> selectedItems( void );
 	void getSelectedItems( QTreeWidgetItem * _p,
 						QVector<classRoomItem *> & _vv,
@@ -196,16 +195,21 @@ private:
 
 	void removeClassRoom( classRoom * _cr );
 
-
 	classTreeWidget * m_view;
 
 	QVector<classRoom *> m_classRooms;
 	QVector<client *> m_clientsToRemove;
 	QVector<classRoom *> m_classRoomsToRemove;
-	QDomDocument m_domTree;
 
 	const QString m_personalConfiguration;
 	const QString m_globalClientConfiguration;
+
+	/* context menu: */
+	QActionGroup * m_classRoomItemActionGroup;
+	QActionGroup * m_classRoomActionGroup;
+	QActionGroup * m_contextActionGroup;
+
+	QMenu * m_clientMenu; /* template */
 
 	QSpinBox * m_updateIntervalSpinBox;
 	QMenu * m_quickSwitchMenu;
@@ -223,7 +227,6 @@ private:
 
 	QPushButton * m_exportToFileBtn;
 	QCheckBox * m_showUsernameCheckBox;
-
 } ;
 
 
@@ -237,6 +240,8 @@ class classTreeWidget : public QTreeWidget
 public:
 	classTreeWidget( QWidget * _parent );
 	virtual ~classTreeWidget() { } ;
+
+	void setCurrentItem( QTreeWidgetItem * _item );
 
 private:
 	virtual void mousePressEvent( QMouseEvent * _me );
@@ -270,8 +275,6 @@ public:
 						QTreeWidgetItem * _parent );
 	virtual ~classRoom();
 
-	void createActionMenu( QMenu * _m, bool _add_sub_menu = TRUE );
-
 	void setMenuItemIcon( const QIcon & _icon )
 	{
 		m_qsMenuAction->setIcon( _icon );
@@ -280,13 +283,12 @@ public:
 		m_qsMenuAction->setFont( f );
 	}
 
-
 public slots:
 	void switchToClassRoom( void );
+	void clientMenuTriggered( QAction * _action );
 
 
 private slots:
-	void processCmdOnAllClients( QAction * _action );
 
 
 private:
