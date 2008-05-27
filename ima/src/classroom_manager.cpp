@@ -420,6 +420,10 @@ void classroomManager::savePersonalConfig( void )
 									FALSE );
 	}
 
+	foreach ( QDomNode node, m_customMenuConfiguration )
+	{
+		root.appendChild( node.cloneNode() );
+	}
 
 	QString xml = "<?xml version=\"1.0\"?>\n" + doc.toString( 2 );
 	if( mainWindow::ensureConfigPathExists() == FALSE )
@@ -742,7 +746,74 @@ void classroomManager::loadTree( classRoom * _parent_item,
 				}
 			}
 		}
-        }
+		else if( node.nodeName() == "menu" )
+		{
+			m_customMenuConfiguration.append( node.cloneNode() );
+			loadMenuElement( node.toElement() );
+		}
+	}
+}
+
+
+
+
+void classroomManager::loadMenuElement( QDomElement _e )
+{
+	if ( _e.hasAttribute( "hide" ) )
+	{
+		foreach( QAction * act, m_clientMenu->actions() )
+		{
+			if ( act->text() == _e.attribute( "hide" ) )
+			{
+				act->setVisible( FALSE );
+			}
+		}
+	}
+	else
+	{
+		QString name = _e.attribute( "remote-cmd",
+				_e.attribute( "local-cmd" ) );
+		QString icon = _e.attribute( "icon", ":resources/run.png" );
+		QString before = _e.attribute( "before" );
+
+		if ( name.isEmpty() )
+		{
+			return;
+		}
+
+		clientAction::type type = _e.hasAttribute( "remote-cmd" ) ?
+			clientAction::RemoteScript : clientAction::LocalScript;
+
+		QAction * act = new clientAction( type,
+				QIcon( icon ), name, m_clientMenu );
+
+		QString cmd;
+		for( QDomNode n = _e.firstChild(); ! n.isNull();
+			n = n.nextSibling() )
+		{
+			if ( n.isCharacterData() )
+			{
+				cmd.append( n.toCharacterData().data() );
+			}
+		}
+		act->setData( cmd );
+
+		QAction * before_act = 0;
+		if ( ! before.isEmpty() )
+		{
+			foreach( QAction * a, m_clientMenu->actions() )
+			{
+				if ( a->text() == before )
+				{
+					before_act = a;
+					break;
+				}
+			}
+		}
+
+		/* equal to addAction if before_act = 0 */
+		m_clientMenu->insertAction( before_act, act );
+	}
 }
 
 
@@ -1378,6 +1449,14 @@ QVector<classRoomItem *> classroomManager::selectedItems( void )
 	for( int i = 0; i < m_view->topLevelItemCount(); ++i )
 	{
 		getSelectedItems( m_view->topLevelItem( i ), vc );
+	}
+
+	/* Move the currentItem to the beginning of the list */
+	classRoomItem * current = dynamic_cast<classRoomItem *>( m_view->currentItem() );
+	if ( vc.contains( current ) )
+	{
+		vc.remove( vc.indexOf( current ));
+		vc.push_front( current );
 	}
 
 	return( vc );

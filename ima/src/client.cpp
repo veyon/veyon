@@ -287,7 +287,46 @@ void clientAction::process( QVector<client *> _clients, targetGroup _target )
 				}
 			}
 			break;
+
+		case RemoteScript:
+			{
+				QString script = dataExpanded( _clients );
+				foreach( client * cl, _clients )
+				{
+					cl->execCmds( script );
+				}
+				break;
+			}
+
+		case LocalScript:
+			{
+				QString script = dataExpanded( _clients );
+				QProcess::startDetached( script );
+				break;
+			}
 	}
+}
+
+
+
+
+QString clientAction::dataExpanded( QVector<client *> _clients ) const
+{
+	static QRegExp s_reITALC_HOSTS( "\\$ITALC_HOSTS\\b" );
+
+	QString script = data().toString();
+
+	if ( script.contains( s_reITALC_HOSTS ) )
+	{
+		QStringList hosts;
+		foreach ( client *cl, _clients )
+		{
+			hosts << cl->hostname();
+		}
+		script.replace( s_reITALC_HOSTS, hosts.join( " " ) );
+	}
+
+	return script;
 }
 
 

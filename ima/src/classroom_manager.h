@@ -186,6 +186,8 @@ private:
 	void loadTree( classRoom * _parentItem,
 					const QDomElement & _parentElement,
 					bool _is_global_config );
+	void loadMenuElement( QDomElement _e );
+
 	QVector<classRoomItem *> selectedItems( void );
 	void getSelectedItems( QTreeWidgetItem * _p,
 						QVector<classRoomItem *> & _vv,
@@ -210,6 +212,7 @@ private:
 	QActionGroup * m_contextActionGroup;
 
 	QMenu * m_clientMenu; /* template */
+	QVector<QDomNode> m_customMenuConfiguration;
 
 	QSpinBox * m_updateIntervalSpinBox;
 	QMenu * m_quickSwitchMenu;

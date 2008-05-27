@@ -1,5 +1,14 @@
 2008-05-27	Andrei Krueger	<anc/at/iki/dot/fi>
 
+	* ima/src/client.h:
+	* ima/src/classroom_manager.h:
+	* ima/src/client.cpp:
+	* ima/src/classroom_manager.cpp:
+	customized menus - user can hide existing client-menu items
+	and add own commands to the menu (added menu-element to personalconfig)
+
+2008-05-27	Andrei Krueger	<anc/at/iki/dot/fi>
+
 	* ima/src/main_window.h:
 	* ima/src/kmultitabbar.cpp:
 	* ima/src/italc_side_bar.cpp:

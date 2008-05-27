@@ -129,7 +129,9 @@ public:
 		PowerOn,
 		Reboot,
 		PowerDown,
-		ExecCmds
+		ExecCmds,
+		RemoteScript,
+		LocalScript
 	} ;
 
 	enum targetGroup
@@ -166,6 +168,7 @@ private:
 	bool confirmLogout( targetGroup _target ) const;
 	bool confirmReboot( targetGroup _target ) const;
 	bool confirmPowerDown( targetGroup _target ) const;
+	QString dataExpanded( QVector<client *> _clients ) const;
 
 } ;
 
