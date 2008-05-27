@@ -128,6 +128,16 @@ public:
 		}
 	}
 
+	inline toolBar * getToolBar( void )
+	{
+		return( m_toolBar );
+	}
+
+	inline italcSideBar * getSideBar( void )
+	{
+		return( m_sideBar );
+	}
+
 	static bool ensureConfigPathExists( void );
 
 	static inline bool atExit( void )

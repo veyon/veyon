@@ -27,6 +27,8 @@
 #include "fast_qimage.h"
 
 #include <QtGui/QPainter>
+#include <QtGui/QMenu>
+#include <QtGui/QContextMenuEvent>
 
 #include <config.h>
 
@@ -104,10 +106,6 @@ void italcSideBar::tabClicked( int _id )
 		{
 			setTab( it.key(), FALSE );
 		}
-		if( m_widgets[it.key()] != NULL )
-		{
-			m_widgets[it.key()]->hide();
-		}
 	}
 
 	setTab( _id, isTabRaised( _id ) );
@@ -146,5 +144,58 @@ void italcSideBar::paintEvent( QPaintEvent * _pe )
 	p.drawText( -height()+32, width()-3,
 				QString( "iTALC %1" ).arg( PACKAGE_VERSION ) );
 }
+
+
+
+
+void italcSideBar::contextMenuEvent( QContextMenuEvent * _e )
+{
+	QMenu m( this );
+	foreach( KMultiTabBarTab * tab, tabs() )
+	{
+		QAction * ma = m.addAction( tab->text() );
+		ma->setCheckable( TRUE );
+		ma->setChecked( tab->isTabVisible() );
+	}
+	connect( &m, SIGNAL( triggered( QAction * ) ),
+			this, SLOT( toggleButton( QAction * ) ) );
+	m.exec( _e->globalPos() );
+}
+
+
+
+
+void italcSideBar::toggleButton( QAction * _a )
+{
+	foreach( KMultiTabBarTab * tab, tabs() )
+	{
+		if( tab->text() == _a->text() )
+		{
+			if (tab->isTabVisible())
+			{
+				tab->setTabVisible(FALSE);
+				if ( m_openedTab == tab->id() )
+				{
+					setTab( tab->id(), FALSE );
+					m_tabWidgetParent->hide();
+				}
+			}
+			else
+			{
+				tab->setTabVisible(TRUE);
+				if ( m_openedTab == -1 )
+				{
+					setTab( tab->id(), TRUE );
+				}
+			}
+			break;
+		}
+	}
+	update();
+}
+
+
+
+
 
 

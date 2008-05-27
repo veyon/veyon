@@ -243,6 +243,7 @@ KMultiTabBarTab::KMultiTabBarTab(const QPixmap& pic, const QString& text,
 	: KMultiTabBarButton(pic, text, desc, id, parent), m_style(style), d(0)
 {
 	m_position=pos;
+	m_tabVisible = TRUE;
 //	setToolTip(text);	
 	setCheckable(true);
 	setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
@@ -346,7 +347,9 @@ QSize KMultiTabBarTab::computeSizeHint(bool withText) const
 	size.setWidth (size.width()  + 2*majorMargin);
 	size.setHeight(size.height() + 2*minorMargin);
 
-	if (withText)
+	if (m_tabVisible == FALSE)
+		size.setWidth(0);
+	else if (withText)
 		// Add enough room for the text, and an extra major margin.
 		size.setWidth(size.width() + textSize.width() + majorMargin);
 
@@ -372,6 +375,12 @@ void KMultiTabBarTab::setIcon(const QString& icon)
 void KMultiTabBarTab::setIcon(const QPixmap& icon)
 {
 	QPushButton::setIcon(icon);
+}
+
+void KMultiTabBarTab::setTabVisible(bool visible)
+{
+	m_tabVisible = visible;
+	updateGeometry();
 }
 
 bool KMultiTabBarTab::shouldDrawText() const
@@ -589,6 +598,11 @@ KMultiTabBarButton* KMultiTabBar::button(int id) const
 KMultiTabBarTab* KMultiTabBar::tab(int id) const
 {
     return d->m_internal->tab(id);
+}
+
+QList<KMultiTabBarTab *> KMultiTabBar::tabs() const
+{
+	return *(d->m_internal->tabs());
 }
 
 void KMultiTabBar::removeButton(int id)

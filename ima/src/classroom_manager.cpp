@@ -391,12 +391,18 @@ void classroomManager::savePersonalConfig( void )
 						m_showUsernameCheckBox->isChecked() );
 
 	QStringList hidden_buttons;
-	foreach( QAction * a, getMainWindow()->
-				findChildren<toolBar *>()[0]->actions() )
+	foreach( QAction * a, getMainWindow()->getToolBar()->actions() )
 	{
 		if( !a->isVisible() )
 		{
 			hidden_buttons += a->text();
+		}
+	}
+	foreach( KMultiTabBarTab * tab, getMainWindow()->getSideBar()->tabs() )
+	{
+		if( !tab->isTabVisible() )
+		{
+			hidden_buttons += tab->text();
 		}
 	}
 	globalsettings.setAttribute( "toolbarcfg", hidden_buttons.join( "#" ) );

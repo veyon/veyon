@@ -332,6 +332,14 @@ mainWindow::mainWindow( int _rctrl_screen ) :
 		}
 	}
 
+	foreach( KMultiTabBarTab * tab, m_sideBar->tabs() )
+	{
+		if( hidden_buttons.contains( tab->text() ) )
+		{
+			tab->setTabVisible( FALSE );
+		}
+	}
+
 	while( 1 )
 	{
 		if( isdConnection::initAuthentication() == FALSE )

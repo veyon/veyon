@@ -62,9 +62,12 @@ private slots:
 	virtual void paintEvent( QPaintEvent * _pe );
 
 	void tabClicked( int _id );
+	void toggleButton( QAction * _a );
 
 
 private:
+	virtual void contextMenuEvent( QContextMenuEvent * _e );
+
 	QWidget * m_tabWidgetParent;
 	QMap<int, QWidget *> m_widgets;
 	int m_openedTab;

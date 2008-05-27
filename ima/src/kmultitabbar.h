@@ -112,6 +112,11 @@ public:
     class KMultiTabBarTab *tab(int id) const;
 
     /**
+     * get list of all tabs
+     */
+    QList<class KMultiTabBarTab *> tabs(void) const;
+
+    /**
      * set the real position of the widget.
      * @param pos if the mode is horizontal, only use top, bottom, if it is vertical use left or right
      */
@@ -215,11 +220,14 @@ public Q_SLOTS:
 
     void setIcon(const QString&);
     void setIcon(const QPixmap&);
+    void setTabVisible(bool visible);
+    bool isTabVisible(){return m_tabVisible;}
 protected:
     virtual void paintEvent(QPaintEvent *);
 private:
     KMultiTabBar::KMultiTabBarPosition m_position;
     KMultiTabBar::KMultiTabBarStyle m_style;
+    bool m_tabVisible;
     
     void  computeMargins (int* hMargin, int* vMargin) const;
     QSize computeSizeHint(bool withText) const;

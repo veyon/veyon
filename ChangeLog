@@ -1,3 +1,15 @@
+2008-05-27	Andrei Krueger	<anc/at/iki/dot/fi>
+
+	* ima/src/main_window.h:
+	* ima/src/kmultitabbar.cpp:
+	* ima/src/italc_side_bar.cpp:
+	* ima/src/main_window.cpp:
+	* ima/src/kmultitabbar.h:
+	* ima/src/italc_side_bar.h:
+	* ima/src/classroom_manager.cpp:
+	made visibility of individual sidebar-buttons configurable via
+	context-menu
+
 2008-05-26	Andrei Krueger	<anc/at/iki/dot/fi>
 
 	* ima/src/client.h:
