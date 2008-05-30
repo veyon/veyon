@@ -14,5 +14,6 @@
 		<file>resources/sk.qm</file>
 		<file>resources/ru.qm</file>
 		<file>resources/pt_br.qm</file>
+		<file>resources/el.qm</file>
 	</qresource>
 </RCC>

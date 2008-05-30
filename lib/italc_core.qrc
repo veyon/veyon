@@ -17,6 +17,7 @@
 		<file alias="resources/ru-core.qm">resources/ru.qm</file>
 		<file alias="resources/sk-core.qm">resources/sk.qm</file>
 		<file alias="resources/pt_br-core.qm">resources/pt_br.qm</file>
+		<file alias="resources/el-core.qm">resources/el.qm</file>
 		<file>resources/locked_bg.png</file>
 		<file>resources/icon16.png</file>
 		<file>resources/icon22.png</file>

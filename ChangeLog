@@ -1,3 +1,19 @@
+2008-05-30	Andrei Krueger	<anc/at/iki/dot/fi>
+
+	* ica/ica.qrc:
+	* ica/resources/el.ts:
+	* ica/resources/el.qm:
+	* setup/setup.qrc:
+	* setup/resources/el.ts:
+	* setup/resources/el.qm:
+	* lib/italc_core.qrc:
+	* lib/resources/el.ts:
+	* lib/resources/el.qm:
+	* ima/italc.qrc:
+	* ima/resources/el.ts:
+	* ima/resources/el.qm:
+	added Greek localization-files by Giorgos Nikolaidis
+
 2008-05-27	Andrei Krueger	<anc/at/iki/dot/fi>
 
 	* ima/src/client.h:
