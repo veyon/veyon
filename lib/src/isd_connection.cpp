@@ -308,11 +308,14 @@ isdConnection::states isdConnection::open( void )
 			m_socket->error() == QTcpSocket::NetworkError )
 #endif
 	{
+#ifdef BUILD_WIN32
+		sleep( 2000 );
+#endif
 		return( m_state = HostUnreachable );
 	}
 
 #ifndef NO_QTCPSOCKET_CONNECT
-	m_socket->waitForConnected( 3000 );
+	m_socket->waitForConnected( 5000 );
 #endif
 
 	if( m_socket->state() != QTcpSocket::ConnectedState )
