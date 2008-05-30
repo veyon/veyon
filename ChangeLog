@@ -1,3 +1,26 @@
+2008-05-30	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* lib/src/lock_widget.cpp:
+	additionally set blank cursor before showing in fullscreen
+
+	* lib/src/system_key_trapper.cpp:
+	disable and hide taskbar while being locked
+
+	* lib/src/isd_connection.cpp:
+	- if connection failed, sleep for 2 seconds for not reaching
+	  max-connection limit of WinXP/SP2 instantly
+	- increased timeout when waiting for new connection to 5 seconds
+
+	* ima/src/main_window.cpp:
+	more graceful shutdown under win32
+
+	* ica/src/ivs.cpp:
+	- forward stdout and stderr or x11vnc to ICA's stdout/stderr
+	- pass "-dbg" option to x11vnc
+
+	* configure.in:
+	1.0.9-rc2 release
+
 2008-05-30	Andrei Krueger	<anc/at/iki/dot/fi>
 
 	* ica/ica.qrc:

@@ -68,6 +68,7 @@ lockWidget::lockWidget( types _type ) :
 	m_sysKeyTrapper.disableAllKeys( TRUE );
 	setWindowTitle( tr( "screen lock" ) );
 	setWindowIcon( QIcon( ":/resources/icon32.png" ) );
+	setCursor( Qt::BlankCursor );
 	showFullScreen();
 	move( 0, 0 );
 	setFixedSize( QApplication::desktop()->screenGeometry( this ).size() );
