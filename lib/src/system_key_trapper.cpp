@@ -230,8 +230,9 @@ void systemKeyTrapper::setEnabled( bool _on )
 
 			enableStickyKeys( FALSE );
 
-			//EnableWindow( FindWindow( "Shell_traywnd", NULL ),
-			//						FALSE );
+			EnableWindow( FindWindow( "Shell_traywnd", NULL ),
+									FALSE );
+			ShowWindow( FindWindow( "Shell_traywnd", NULL ), SW_HIDE );
 
 			Inject();
 		}
@@ -253,9 +254,10 @@ void systemKeyTrapper::setEnabled( bool _on )
 			g_hHookKbdLL = NULL;
 
 			enableStickyKeys( TRUE );
-			//EnableWindow( FindWindow( "Shell_traywnd", NULL ),
-			//						TRUE );
+			EnableWindow( FindWindow( "Shell_traywnd", NULL ),
+									TRUE );
 
+			ShowWindow( FindWindow( "Shell_traywnd", NULL ), SW_NORMAL );
 			Eject();
 		}
 #endif
