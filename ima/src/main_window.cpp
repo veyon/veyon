@@ -410,11 +410,14 @@ mainWindow::~mainWindow()
 	m_classroomManager->doCleanupWork();
 
 #ifdef BUILD_WIN32
+	qApp->processEvents( QEventLoop::AllEvents, 3000 );
 	localSystem::sleep( 3000 );
 #endif
 
 	// also delets clients
 	delete m_workspace;
+
+	m_localISD->gracefulClose();
 
 	delete m_localISD;
 	m_localISD = NULL;
@@ -423,6 +426,8 @@ mainWindow::~mainWindow()
 	delete __systray_icon;
 
 #ifdef BUILD_WIN32
+	qApp->processEvents( QEventLoop::AllEvents, 3000 );
+	localSystem::sleep( 3000 );
 	exit( 0 );
 #endif
 }
