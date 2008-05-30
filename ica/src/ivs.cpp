@@ -177,6 +177,7 @@ void IVS::run( void )
 		while( 1 )
 		{
 			QProcess p;
+			p.setProcessChannelMode( QProcess::ForwardedChannels );
 			p.start( QCoreApplication::applicationFilePath() +
 					" -rx11vs " + cmdline.join( " " ) );
 			m_restart = FALSE;
@@ -194,6 +195,7 @@ void IVS::run( void )
 		}
 		return;
 	}
+	cmdline	<< "-dbg";// << "-o" << "/tmp/italc_client_x11vnc.log";
 
 	char * old_av = m_argv[0];
 	m_argv = new char *[cmdline.size()+1];
