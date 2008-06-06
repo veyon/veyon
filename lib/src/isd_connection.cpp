@@ -309,7 +309,7 @@ isdConnection::states isdConnection::open( void )
 #endif
 	{
 #ifdef BUILD_WIN32
-		sleep( 2000 );
+		localSystem::sleep( 2000 );
 #endif
 		return( m_state = HostUnreachable );
 	}
