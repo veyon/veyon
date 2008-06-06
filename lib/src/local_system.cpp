@@ -143,6 +143,13 @@ void msgHandler( QtMsgType _type, const char * _msg )
 	{
 		return ;
 	}
+#ifdef BUILD_WIN32
+	if( QString( _msg ).contains( "timers cannot be stopped",
+							Qt::CaseInsensitive ) )
+	{
+		exit( 0 );
+	}
+#endif
 	if( __debug_out == NULL )
 	{
 		QString tmp_path = QDir::rootPath() +
