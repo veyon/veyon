@@ -63,7 +63,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/classroom_manager.cpp" line="1981"/>
         <source>Administration</source>
-        <translation>Ylläpito</translation>
+        <translation type="obsolete">Ylläpito</translation>
     </message>
 </context>
 <context>
@@ -121,7 +121,7 @@ Lisää toiminnallisuuksia löytyy koneiden ponnahdusvalikoista (hiiren oikea n�
 <byte value="x9"/></translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="158"/>
+        <location filename="../src/classroom_manager.cpp" line="157"/>
         <source>Export to text-file</source>
         <translation>Vie tekstitiedostoksi</translation>
     </message>
@@ -131,179 +131,179 @@ Lisää toiminnallisuuksia löytyy koneiden ponnahdusvalikoista (hiiren oikea n�
         <translation type="obsolete">Paina tätä viedäksesi lista tietokoneista ja käyttäjistä tekstitiedostoon. Voit käyttää tiedostoa myöhemmin kerätäksesi tiedostoja kokeen loputtua. Tätä tarvitaan joskus, koska jotkut käyttäjät saattavat kirjautua ulos muita aikaisemmin ja tiedostojen suora kopiointi ei enää onnistu.</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1308"/>
+        <location filename="../src/classroom_manager.cpp" line="244"/>
         <source>Hide teacher computers</source>
         <translation>Piilota opettajan koneet</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="681"/>
+        <location filename="../src/classroom_manager.cpp" line="841"/>
         <source>No configuration-file found</source>
         <translation>Asetustiedostoa ei löytynyt</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="690"/>
+        <location filename="../src/classroom_manager.cpp" line="850"/>
         <source>Could not open configuration file %1.
 You will have to add at least one classroom and computers using the classroom-manager which you&apos;ll find inside the program in the sidebar on the left side.</source>
         <translation>Asetustiedoston %1 avaaminen epäonnistui.
 Sinun tulee lisätä ainakin yksi luokkahuone ja yksi tietokone käyttämällä hallintanäkymää, jonka löydät iTALC:n vasemmasta sivupalkista.</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="767"/>
+        <location filename="../src/classroom_manager.cpp" line="931"/>
         <source>Error in configuration-file</source>
         <translation>Virhe asetustiedostossa</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="707"/>
+        <location filename="../src/classroom_manager.cpp" line="869"/>
         <source>Error while parsing configuration-file %1.
 Please edit it. Otherwise you should delete this file and have to add all classrooms and computers again.</source>
         <translation>Virhe asetustiedostossa %1.
 Ole hyvä ja korjaa se. Vaihtoehtoisesta voit poistaa tiedoston ja luoda uudestaan luokkahuoneet ja tietokoneet.</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="772"/>
+        <location filename="../src/classroom_manager.cpp" line="936"/>
         <source>Error while parsing configuration-file %1.
 Please edit it. Otherwise you should delete this file.</source>
         <translation>Virhe asetustiedossa %1.
 Ole hyvä ja korjaa se. Vaihtoehtoisesti voit poistaa tiedoston.</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="831"/>
+        <location filename="../src/classroom_manager.cpp" line="995"/>
         <source>Select output-file</source>
         <translation>Tallenna tiedostoksi</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="833"/>
+        <location filename="../src/classroom_manager.cpp" line="997"/>
         <source>Text files (*.txt)</source>
         <translation>Tekstitiedostot (*.txt)</translation>
     </message>
     <message>
         <location filename="../src/classroom_manager.cpp" line="2085"/>
         <source>Power down computers</source>
-        <translation>Sammuta tietokoneet</translation>
+        <translation type="obsolete">Sammuta tietokoneet</translation>
     </message>
     <message>
         <location filename="../src/classroom_manager.cpp" line="2088"/>
         <source>Are you sure want to power down all visible computers?</source>
-        <translation>Halutako varmasti sammuttaa kaikki näkyvät tietokoneet?</translation>
+        <translation type="obsolete">Halutako varmasti sammuttaa kaikki näkyvät tietokoneet?</translation>
     </message>
     <message>
         <location filename="../src/classroom_manager.cpp" line="2045"/>
         <source>Logout user</source>
-        <translation>Kirjaa ulos</translation>
+        <translation type="obsolete">Kirjaa ulos</translation>
     </message>
     <message>
         <location filename="../src/classroom_manager.cpp" line="2048"/>
         <source>Are you sure want logout all users on all visible computers ?</source>
-        <translation>Haluatko varmasti kirjata käyttäjät ulos kaikilta näkyviltä tietokoneilta?</translation>
+        <translation type="obsolete">Haluatko varmasti kirjata käyttäjät ulos kaikilta näkyviltä tietokoneilta?</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1263"/>
+        <location filename="../src/classroom_manager.cpp" line="1417"/>
         <source>Actions</source>
         <translation>Toiminnot</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1271"/>
+        <location filename="../src/classroom_manager.cpp" line="213"/>
         <source>Show/hide</source>
         <translation>Näytä/piilota</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1276"/>
+        <location filename="../src/classroom_manager.cpp" line="218"/>
         <source>Edit settings</source>
         <translation>Muokkaa asetuksia</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1281"/>
+        <location filename="../src/classroom_manager.cpp" line="223"/>
         <source>Remove</source>
         <translation>Poista</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1291"/>
+        <location filename="../src/classroom_manager.cpp" line="1394"/>
         <source>Actions for %1</source>
         <translation>Suorita %1:lle</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1298"/>
+        <location filename="../src/classroom_manager.cpp" line="234"/>
         <source>Show all computers in classroom</source>
         <translation>Näytä kaikki luokkahuoneen koneet</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1303"/>
+        <location filename="../src/classroom_manager.cpp" line="239"/>
         <source>Hide all computers in classroom</source>
         <translation>Piilota kaikki luokkahuoneen koneet</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1313"/>
+        <location filename="../src/classroom_manager.cpp" line="249"/>
         <source>Edit name</source>
         <translation>Muokkaa nimeä</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1572"/>
+        <location filename="../src/classroom_manager.cpp" line="1667"/>
         <source>Remove classroom</source>
         <translation>Poista luokkahuone</translation>
     </message>
     <message>
         <location filename="../src/classroom_manager.cpp" line="1328"/>
         <source>Action for whole classroom</source>
-        <translation>Luokkahuoneen toiminnot</translation>
+        <translation type="obsolete">Luokkahuoneen toiminnot</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1654"/>
+        <location filename="../src/classroom_manager.cpp" line="1749"/>
         <source>Add computer</source>
         <translation>Lisää tietokone</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1344"/>
+        <location filename="../src/classroom_manager.cpp" line="270"/>
         <source>Add classroom</source>
         <translation>Lisää luokkahuone</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1548"/>
+        <location filename="../src/classroom_manager.cpp" line="1643"/>
         <source>New name for classroom</source>
         <translation>Nimeä luokkahuone</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1550"/>
+        <location filename="../src/classroom_manager.cpp" line="1645"/>
         <source>Please enter a new name for classroom &quot;%1&quot;.</source>
         <translation>Kirjoita luokkahuoneen &quot;%1&quot; uusi nimi.</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1575"/>
+        <location filename="../src/classroom_manager.cpp" line="1670"/>
         <source>Are you sure want to remove classroom &quot;%1&quot;?
 All computers in it will be removed as well!</source>
         <translation>Haluatko varmasti poistaa luokkahuoneen &quot;%1&quot;?
 Samalla poistuvat kaikki luokkahuoneen sisältämät tietokoneet!</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1621"/>
+        <location filename="../src/classroom_manager.cpp" line="1716"/>
         <source>Missing classroom</source>
         <translation>Luokkahuone puuttuu</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1627"/>
+        <location filename="../src/classroom_manager.cpp" line="1722"/>
         <source>Before adding computers you have to create at least one classroom.
 Do you want to create a new classrom now?</source>
         <translation>Sinun tulee luoda vähintään yksi luokkahuone ennen tietokoneiden lisäämistä.
 Haluatko luoda uuden luokkahuoneen?</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1670"/>
+        <location filename="../src/classroom_manager.cpp" line="1765"/>
         <source>New classroom</source>
         <translation>Uusi luokkahuone</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1669"/>
+        <location filename="../src/classroom_manager.cpp" line="1764"/>
         <source>Please enter the name of the classroom you want to create.</source>
         <translation>Kirjoita uuden luokkahuoneen nimi.</translation>
     </message>
     <message>
         <location filename="../src/classroom_manager.cpp" line="2072"/>
         <source>Reboot computers</source>
-        <translation>Uudelleenkäynnistä tietokoneet</translation>
+        <translation type="obsolete">Uudelleenkäynnistä tietokoneet</translation>
     </message>
     <message>
         <location filename="../src/classroom_manager.cpp" line="2074"/>
         <source>Are you sure want to reboot all visible computers?</source>
-        <translation>Haluatko varmasti uudelleenkäynnistää kaikki näkyvät tietokoneet?</translation>
+        <translation type="obsolete">Haluatko varmasti uudelleenkäynnistää kaikki näkyvät tietokoneet?</translation>
     </message>
     <message>
         <location filename="../src/classroom_manager.cpp" line="117"/>
@@ -311,17 +311,17 @@ Haluatko luoda uuden luokkahuoneen?</translation>
         <translation>Käyttäjänimet</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="139"/>
+        <location filename="../src/classroom_manager.cpp" line="138"/>
         <source>Show usernames</source>
         <translation>Näytä kayttäjänimet</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="173"/>
+        <location filename="../src/classroom_manager.cpp" line="172"/>
         <source>Use this button for exporting this list of computers and usernames into a text-file. You can use this file later for collecting files after an exam has finished. This is sometimes neccessary, because some users might have finished and logged out earlier and so you cannot collect their files at the end of the exam.</source>
         <translation>Käytä tätä luodaksesi tekstitiedoston tietokoneista ja käyttäjistä. Voit käyttää tiedostoa myöhemmin kerätäksesi tiedostoja kokeen loputtua. Tätä tarvitaan, jos jotkut käyttäjät kirjautuvat ulos muita aikaisemmin ja tiedostojen suora kopiointi ei enää onnistu.</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="149"/>
+        <location filename="../src/classroom_manager.cpp" line="148"/>
         <source>Use the context-menu (right mouse-button) to add/remove computers and/or classrooms.</source>
         <translation>Käytä ponnahdusvalikkoa (hiiren oikea näppäin) lisätäksesi tai poistaaksesi luokkahuoneita ja tietokoneita.</translation>
     </message>
@@ -335,108 +335,234 @@ Haluatko luoda uuden luokkahuoneen?</translation>
         <source>Auto re-arrange windows</source>
         <translation type="obsolete">Järjestä ja sovita ikkunat</translation>
     </message>
+    <message>
+        <location filename="../src/classroom_manager.cpp" line="1360"/>
+        <source>Actions for selected</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>client</name>
     <message>
         <location filename="../src/client.cpp" line="60"/>
         <source>View live</source>
-        <translation>Avaa näkymä</translation>
+        <translation type="obsolete">Avaa näkymä</translation>
     </message>
     <message>
         <location filename="../src/client.cpp" line="61"/>
         <source>Remote control</source>
-        <translation>Etähallitse</translation>
+        <translation type="obsolete">Etähallitse</translation>
     </message>
     <message>
         <location filename="../src/client.cpp" line="62"/>
         <source>Let student show demo</source>
-        <translation>Oppilaan esitys</translation>
+        <translation type="obsolete">Oppilaan esitys</translation>
     </message>
     <message>
         <location filename="../src/client.cpp" line="63"/>
         <source>Send text message</source>
-        <translation>Lähetä viesti</translation>
+        <translation type="obsolete">Lähetä viesti</translation>
     </message>
     <message>
         <location filename="../src/client.cpp" line="64"/>
         <source>Logon user</source>
-        <translation>Kirjaudu</translation>
+        <translation type="obsolete">Kirjaudu</translation>
     </message>
     <message>
         <location filename="../src/client.cpp" line="65"/>
         <source>Logout user</source>
-        <translation>Kirjaudu ulos</translation>
+        <translation type="obsolete">Kirjaudu ulos</translation>
     </message>
     <message>
         <location filename="../src/client.cpp" line="66"/>
         <source>Take a snapshot</source>
-        <translation>Ota kuvaruutukopio</translation>
+        <translation type="obsolete">Ota kuvaruutukopio</translation>
     </message>
     <message>
         <location filename="../src/client.cpp" line="67"/>
         <source>Power on</source>
-        <translation>Käynnistä tietokone</translation>
+        <translation type="obsolete">Käynnistä tietokone</translation>
     </message>
     <message>
         <location filename="../src/client.cpp" line="68"/>
         <source>Reboot</source>
-        <translation>Uudelleenkäynnistä tietokone</translation>
+        <translation type="obsolete">Uudelleenkäynnistä tietokone</translation>
     </message>
     <message>
         <location filename="../src/client.cpp" line="69"/>
         <source>Power down</source>
-        <translation>Sammuta tietokone</translation>
+        <translation type="obsolete">Sammuta tietokone</translation>
     </message>
     <message>
         <location filename="../src/client.cpp" line="70"/>
         <source>Execute commands</source>
-        <translation>Suorita komento</translation>
+        <translation type="obsolete">Suorita komento</translation>
     </message>
     <message>
         <location filename="../src/client.cpp" line="205"/>
         <source>Overview</source>
-        <translation>Normaali näkymä</translation>
+        <translation type="obsolete">Normaali näkymä</translation>
     </message>
     <message>
         <location filename="../src/client.cpp" line="208"/>
         <source>Fullscreen demo</source>
-        <translation>Esitys koko näytöllä</translation>
+        <translation type="obsolete">Esitys koko näytöllä</translation>
     </message>
     <message>
         <location filename="../src/client.cpp" line="211"/>
         <source>Window demo</source>
-        <translation>Esitys ikkunassa</translation>
+        <translation type="obsolete">Esitys ikkunassa</translation>
     </message>
     <message>
         <location filename="../src/client.cpp" line="214"/>
         <source>Locked display</source>
-        <translation>Lukitse</translation>
+        <translation type="obsolete">Lukitse</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="661"/>
+        <location filename="../src/client.cpp" line="930"/>
         <source>Unknown state</source>
         <translation>Tuntematon tila</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="669"/>
+        <location filename="../src/client.cpp" line="938"/>
         <source>No user logged in</source>
         <translation>Ei käyttäjää</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="673"/>
+        <location filename="../src/client.cpp" line="942"/>
         <source>Host unreachable</source>
         <translation>Ei yhteyttä koneeseen</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="677"/>
+        <location filename="../src/client.cpp" line="946"/>
         <source>Demo running</source>
         <translation>Esitys käynnissä</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="681"/>
+        <location filename="../src/client.cpp" line="950"/>
         <source>Desktop locked</source>
         <translation>Työpöytä lukittu</translation>
+    </message>
+</context>
+<context>
+    <name>clientAction</name>
+    <message>
+        <location filename="../src/client.cpp" line="351"/>
+        <source>Are you sure want logout all users on all visible computers ?</source>
+        <translation type="unfinished">Haluatko varmasti kirjata käyttäjät ulos kaikilta näkyviltä tietokoneilta?</translation>
+    </message>
+    <message>
+        <location filename="../src/client.cpp" line="352"/>
+        <source>Are you sure want logout all users on all selected computers ?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/client.cpp" line="354"/>
+        <source>Logout user</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/client.cpp" line="365"/>
+        <source>Are you sure want to reboot all visible computers?</source>
+        <translation type="unfinished">Haluatko varmasti uudelleenkäynnistää kaikki näkyvät tietokoneet?</translation>
+    </message>
+    <message>
+        <location filename="../src/client.cpp" line="366"/>
+        <source>Are you sure want to reboot all selected computers?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/client.cpp" line="382"/>
+        <source>Reboot computers</source>
+        <translation type="unfinished">Uudelleenkäynnistä tietokoneet</translation>
+    </message>
+    <message>
+        <location filename="../src/client.cpp" line="379"/>
+        <source>Are you sure want to power down all visible computers?</source>
+        <translation type="unfinished">Halutako varmasti sammuttaa kaikki näkyvät tietokoneet?</translation>
+    </message>
+    <message>
+        <location filename="../src/client.cpp" line="380"/>
+        <source>Are you sure want to power down all selected computers?</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>clientMenu</name>
+    <message>
+        <location filename="../src/client.cpp" line="415"/>
+        <source>Overview</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/client.cpp" line="417"/>
+        <source>Fullscreen demo</source>
+        <translation type="unfinished">Esitys koko näytöllä</translation>
+    </message>
+    <message>
+        <location filename="../src/client.cpp" line="419"/>
+        <source>Window demo</source>
+        <translation type="unfinished">Esitys ikkunassa</translation>
+    </message>
+    <message>
+        <location filename="../src/client.cpp" line="421"/>
+        <source>Locked display</source>
+        <translation type="unfinished">Lukitse</translation>
+    </message>
+    <message>
+        <location filename="../src/client.cpp" line="425"/>
+        <source>View live</source>
+        <translation type="unfinished">Avaa näkymä</translation>
+    </message>
+    <message>
+        <location filename="../src/client.cpp" line="428"/>
+        <source>Remote control</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/client.cpp" line="431"/>
+        <source>Let student show demo</source>
+        <translation type="unfinished">Oppilaan esitys</translation>
+    </message>
+    <message>
+        <location filename="../src/client.cpp" line="435"/>
+        <source>Send text message</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/client.cpp" line="439"/>
+        <source>Logon user</source>
+        <translation type="unfinished">Kirjaudu</translation>
+    </message>
+    <message>
+        <location filename="../src/client.cpp" line="441"/>
+        <source>Logout user</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/client.cpp" line="445"/>
+        <source>Take a snapshot</source>
+        <translation type="unfinished">Ota kuvaruutukopio</translation>
+    </message>
+    <message>
+        <location filename="../src/client.cpp" line="449"/>
+        <source>Power on</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/client.cpp" line="451"/>
+        <source>Reboot</source>
+        <translation type="unfinished">Uudelleenkäynnistä tietokone</translation>
+    </message>
+    <message>
+        <location filename="../src/client.cpp" line="453"/>
+        <source>Power down</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/client.cpp" line="455"/>
+        <source>Execute commands</source>
+        <translation type="unfinished">Suorita komento</translation>
     </message>
 </context>
 <context>
@@ -986,128 +1112,128 @@ p, li { white-space: pre-wrap; }
         <translation>Saadaksesi käyttäjien täyden huomion, voit lukita heidän työtilansa painamalla tätä. Tässä tilassa käyttäjien koneet on lukittu ja näyttö pimennetty.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="249"/>
+        <location filename="../src/main_window.cpp" line="247"/>
         <source>Text message</source>
         <translation>Viesti</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="246"/>
+        <location filename="../src/main_window.cpp" line="244"/>
         <source>Send text message</source>
         <translation>Lähetä viesti</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="251"/>
+        <location filename="../src/main_window.cpp" line="249"/>
         <source>Use this button to send a text message to all users e.g. to tell them new tasks etc.</source>
         <translation>Käytä tätä lähettääksesi viestin kaikille käyttäjille, esim. antaaksesi heille tehtävän, tms.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="259"/>
+        <location filename="../src/main_window.cpp" line="257"/>
         <source>Power on</source>
         <translation>Käynnistä</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="256"/>
+        <location filename="../src/main_window.cpp" line="254"/>
         <source>Power on computers</source>
         <translation>Käynnistä tietokone</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="262"/>
+        <location filename="../src/main_window.cpp" line="260"/>
         <source>Click this button to power on all visible computers. This way you do not have to turn on each computer by hand.</source>
         <translation>Painamalla tätä käynnistät kaikki näkyvät tietokoneet. Tällä tavalla sinun ei tarvitse käydä käynnistämässä niitä jokaista käsin (MAC-osoite tulee olla määritetty koneen asetuksissa!).</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="270"/>
+        <location filename="../src/main_window.cpp" line="268"/>
         <source>Power down</source>
         <translation>Sammuta</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="267"/>
+        <location filename="../src/main_window.cpp" line="265"/>
         <source>Power down computers</source>
         <translation>Sammuta tietokone</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="273"/>
+        <location filename="../src/main_window.cpp" line="271"/>
         <source>To power down all shown computers (e.g. after the lesson has finished) you can click this button.</source>
         <translation>Painamalla tätä voit sammuttaa kaikki näkyvät tietokoneet (esim. oppitunnin päättyessä).</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="279"/>
+        <location filename="../src/main_window.cpp" line="277"/>
         <source>Logon</source>
         <translation>Kirjaudu</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="280"/>
+        <location filename="../src/main_window.cpp" line="278"/>
         <source>Remote logon</source>
         <translation>Kirjaudu</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="283"/>
+        <location filename="../src/main_window.cpp" line="281"/>
         <source>After clicking this button you can enter a username and password to log on the according user on all visible computers.</source>
         <translation>Painamalla tätä voit antaa käyttäjätunnuksen ja salasanan, jolla kirjaudutaan kaikille näkyville koneille.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="297"/>
+        <location filename="../src/main_window.cpp" line="295"/>
         <source>Adjust/align</source>
         <translation>Sovita</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="298"/>
+        <location filename="../src/main_window.cpp" line="296"/>
         <source>Adjust windows and their size</source>
         <translation>Sovita ikkunat</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="301"/>
+        <location filename="../src/main_window.cpp" line="299"/>
         <source>When clicking this button the biggest possible size for the client-windows is adjusted. Furthermore all windows are aligned.</source>
         <translation>Painamalla tätä kaikki ikkunat sovitetaan ruudulle mahdollisimman isokokoisina.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="306"/>
+        <location filename="../src/main_window.cpp" line="304"/>
         <source>Auto view</source>
         <translation>Järjestä</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="307"/>
+        <location filename="../src/main_window.cpp" line="305"/>
         <source>Auto re-arrange windows and their size</source>
         <translation>Järjestä ja sovita ikkunat</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="309"/>
+        <location filename="../src/main_window.cpp" line="307"/>
         <source>When clicking this button all visible windows are re-arranged and adjusted.</source>
         <translation>Painamalla tätä uudelleenjärjestetään ja sovitetaaan kaikki näkyvät ikkunat.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="350"/>
+        <location filename="../src/main_window.cpp" line="356"/>
         <source>No valid keys found</source>
         <translation>Ei oikeaa avainta</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="356"/>
+        <location filename="../src/main_window.cpp" line="362"/>
         <source>No authentication-keys were found or your old ones were broken. Please create a new key-pair using ICA (see documentation at http://italc.sf.net/wiki/index.php?title=Installation).
 Otherwise you won&apos;t be able to access computers using iTALC.</source>
         <translation>Oikeaa autentikointiavainta ei löytynyt tai se ei ole kelvollinen. Luo uusi avainpari käyttämällä ICA-ohjelmaa (katso ohjeistus http://italc.sf.net/wiki/index.php?title=Installation). Muuten iTALC ei pysty kommunikoimaan muiden koneiden kanssa.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="365"/>
+        <location filename="../src/main_window.cpp" line="371"/>
         <source>iTALC service not running</source>
         <translation>iTALC palvelu ei ole käynnissä</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="370"/>
+        <location filename="../src/main_window.cpp" line="376"/>
         <source>There seems to be no iTALC service running on this computer or the authentication-keys aren&apos;t set up properly. The service is required for running iTALC. Contact your administrator for solving this problem.</source>
         <translation>iTALC palvelu (ICA-ohjelma) ei näyttäisi olevan käynnissä tässä tietokoneessa tai autentikointiavaimet eivät ole oikein. Ota yhteyttä ylläpitoon ratkaistaksesi ongelman, tai voit yrittää käynnistää ICA-palvelun itse.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="288"/>
+        <location filename="../src/main_window.cpp" line="286"/>
         <source>Support</source>
         <translation>Tukitoiminto</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="289"/>
+        <location filename="../src/main_window.cpp" line="287"/>
         <source>Direct support</source>
         <translation>Etätuki koneelle</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="292"/>
+        <location filename="../src/main_window.cpp" line="290"/>
         <source>If you need to support someone at a certain computer you can click this button and enter the according hostname or IP afterwards.</source>
         <translation>Tällä voit etähallita jotain vierasta konetta antamalla sen verkkonimi tai IP-osoite.</translation>
     </message>
@@ -1127,17 +1253,17 @@ Otherwise you won&apos;t be able to access computers using iTALC.</source>
         <translation>Esitys ikkunassa</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="386"/>
+        <location filename="../src/main_window.cpp" line="392"/>
         <source>iTALC Master Control</source>
         <translation>iTALC</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="487"/>
+        <location filename="../src/main_window.cpp" line="498"/>
         <source>Remote control</source>
         <translation>Etähallitse</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="503"/>
+        <location filename="../src/main_window.cpp" line="514"/>
         <source>Quit</source>
         <translation>Lopeta</translation>
     </message>

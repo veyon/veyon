@@ -94,37 +94,37 @@
         <translation>ISD-tenaren kunne ikkje startas fordi port %1 allereie er i bruk. Kontroller at ingen andre program nyttar porten og prøv igjen.</translation>
     </message>
     <message>
-        <location filename="../src/isd_server.cpp" line="567"/>
+        <location filename="../src/isd_server.cpp" line="600"/>
         <source>Confirm access</source>
         <translation>Bekret tilgang</translation>
     </message>
     <message>
-        <location filename="../src/isd_server.cpp" line="570"/>
+        <location filename="../src/isd_server.cpp" line="603"/>
         <source>Somebody at host %1 tries to access your screen. Do you want to grant him/her access?</source>
         <translation>Nokon på verten %1 ynskjer å få tilgang til skjermbilete. Ynskjer du å gje han/ho tilgang?</translation>
     </message>
     <message>
-        <location filename="../src/isd_server.cpp" line="573"/>
+        <location filename="../src/isd_server.cpp" line="606"/>
         <source>Never for this session</source>
         <translation>Aldri for denne økta</translation>
     </message>
     <message>
-        <location filename="../src/isd_server.cpp" line="575"/>
+        <location filename="../src/isd_server.cpp" line="608"/>
         <source>Always for this session</source>
         <translation>Alltid denne økta</translation>
     </message>
     <message>
-        <location filename="../src/isd_server.cpp" line="768"/>
+        <location filename="../src/isd_server.cpp" line="773"/>
         <source>Message from teacher</source>
         <translation>Beskjed frå lærar</translation>
     </message>
     <message>
-        <location filename="../src/isd_server.cpp" line="824"/>
+        <location filename="../src/isd_server.cpp" line="829"/>
         <source>Authentication error</source>
         <translation>Autentiseringsfeil</translation>
     </message>
     <message>
-        <location filename="../src/isd_server.cpp" line="827"/>
+        <location filename="../src/isd_server.cpp" line="832"/>
         <source>Somebody (IP: %1) tried to access this computer but could not authenticate itself successfully!</source>
         <translation>Nokon (IP: %1) prøvde å få tilgang til denne maskina men kunne ikkje autentisera seg!</translation>
     </message>

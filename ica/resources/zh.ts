@@ -94,37 +94,37 @@
         <translation>ISD-服务器 不能启动，因为端口 %1 已经被占用。请确认没有其他程序在使用该端口并重试。</translation>
     </message>
     <message>
-        <location filename="../src/isd_server.cpp" line="567"/>
+        <location filename="../src/isd_server.cpp" line="600"/>
         <source>Confirm access</source>
         <translation>访问确认</translation>
     </message>
     <message>
-        <location filename="../src/isd_server.cpp" line="570"/>
+        <location filename="../src/isd_server.cpp" line="603"/>
         <source>Somebody at host %1 tries to access your screen. Do you want to grant him/her access?</source>
         <translation>在主机 %1 上有人试图访问你的屏幕。你同意他／她访问吗?</translation>
     </message>
     <message>
-        <location filename="../src/isd_server.cpp" line="573"/>
+        <location filename="../src/isd_server.cpp" line="606"/>
         <source>Never for this session</source>
         <translation>从不使用这个会话</translation>
     </message>
     <message>
-        <location filename="../src/isd_server.cpp" line="575"/>
+        <location filename="../src/isd_server.cpp" line="608"/>
         <source>Always for this session</source>
         <translation>一直使用这个会话</translation>
     </message>
     <message>
-        <location filename="../src/isd_server.cpp" line="768"/>
+        <location filename="../src/isd_server.cpp" line="773"/>
         <source>Message from teacher</source>
         <translation>来自教师的消息</translation>
     </message>
     <message>
-        <location filename="../src/isd_server.cpp" line="824"/>
+        <location filename="../src/isd_server.cpp" line="829"/>
         <source>Authentication error</source>
         <translation>验证错误</translation>
     </message>
     <message>
-        <location filename="../src/isd_server.cpp" line="827"/>
+        <location filename="../src/isd_server.cpp" line="832"/>
         <source>Somebody (IP: %1) tried to access this computer but could not authenticate itself successfully!</source>
         <translation>有人（IP: %1 ）试图访问这台计算机但未能通过验证!</translation>
     </message>

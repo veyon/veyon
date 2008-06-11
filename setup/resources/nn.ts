@@ -1,16 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1">
 <context>
-    <name></name>
+    <name>@default</name>
     <message>
         <location filename="../src/main.cpp" line="82"/>
         <source>File does not exist</source>
-        <translation>Klarer ikkje finne fila</translation>
+        <translation type="obsolete">Klarer ikkje finne fila</translation>
     </message>
     <message>
         <location filename="../src/main.cpp" line="86"/>
         <source>The file %1 could not be found. Please check this and try again.</source>
-        <translation>Klarte ikkje finne fila %1, kontroller at den finnes og prøv igjen.</translation>
+        <translation type="obsolete">Klarte ikkje finne fila %1, kontroller at den finnes og prøv igjen.</translation>
+    </message>
+</context>
+<context>
+    <name>@default</name>
+    <message>
+        <location filename="../src/main.cpp" line="82"/>
+        <source>File does not exist</source>
+        <translation type="unfinished">Klarer ikkje finne fila</translation>
+    </message>
+    <message>
+        <location filename="../src/main.cpp" line="86"/>
+        <source>The file %1 could not be found. Please check this and try again.</source>
+        <translation type="unfinished">Klarte ikkje finne fila %1, kontroller at den finnes og prøv igjen.</translation>
     </message>
 </context>
 <context>

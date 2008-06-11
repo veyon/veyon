@@ -1,3 +1,125 @@
+2008-06-11	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* ica/resources/cs.qm:
+	* ica/resources/pt_br.qm:
+	* ica/resources/fi.ts:
+	* ica/resources/fr.qm:
+	* ica/resources/es.qm:
+	* ica/resources/nn.qm:
+	* ica/resources/pl.qm:
+	* ica/resources/it.qm:
+	* ica/resources/cs.ts:
+	* ica/resources/sl.qm:
+	* ica/resources/uk.qm:
+	* ica/resources/pt_br.ts:
+	* ica/resources/es.ts:
+	* ica/resources/fr.ts:
+	* ica/resources/zh.qm:
+	* ica/resources/nn.ts:
+	* ica/resources/pl.ts:
+	* ica/resources/it.ts:
+	* ica/resources/ru.qm:
+	* ica/resources/sl.ts:
+	* ica/resources/uk.ts:
+	* ica/resources/zh.ts:
+	* ica/resources/fi.qm:
+	* ica/resources/ru.ts:
+	* ica/resources/el.qm:
+	* setup/resources/fr.qm:
+	* setup/resources/fi.ts:
+	* setup/resources/nn.qm:
+	* setup/resources/pl.qm:
+	* setup/resources/sl.qm:
+	* setup/resources/cs.ts:
+	* setup/resources/pt_br.ts:
+	* setup/resources/zh.qm:
+	* setup/resources/sk.ts:
+	* setup/resources/uk.ts:
+	* setup/resources/fi.qm:
+	* setup/resources/ru.ts:
+	* setup/resources/cs.qm:
+	* setup/resources/pt_br.qm:
+	* setup/resources/el.ts:
+	* setup/resources/uk.qm:
+	* setup/resources/fr.ts:
+	* setup/resources/nn.ts:
+	* setup/resources/pl.ts:
+	* setup/resources/it.ts:
+	* setup/resources/ru.qm:
+	* setup/resources/sl.ts:
+	* setup/resources/zh.ts:
+	* setup/resources/el.qm:
+	* ima/resources/pl.qm:
+	* ima/resources/it.qm:
+	* ima/resources/cs.ts:
+	* ima/resources/sl.qm:
+	* ima/resources/es.ts:
+	* ima/resources/zh.qm:
+	* ima/resources/sk.ts:
+	* ima/resources/uk.ts:
+	* ima/resources/cs.qm:
+	* ima/resources/es.qm:
+	* ima/resources/sk.qm:
+	* ima/resources/uk.qm:
+	* ima/resources/fr.ts:
+	* ima/resources/nn.ts:
+	* ima/resources/de.ts:
+	* ima/resources/fi.ts:
+	* ima/resources/fr.qm:
+	* ima/resources/nn.qm:
+	* ima/resources/pt_br.ts:
+	* ima/resources/de.qm:
+	* ima/resources/fi.qm:
+	* ima/resources/ru.ts:
+	* ima/resources/pt_br.qm:
+	* ima/resources/el.ts:
+	* ima/resources/pl.ts:
+	* ima/resources/it.ts:
+	* ima/resources/ru.qm:
+	* ima/resources/sl.ts:
+	* ima/resources/zh.ts:
+	* ima/resources/el.qm:
+	* lib/resources/fr.qm:
+	* lib/resources/fi.ts:
+	* lib/resources/nn.qm:
+	* lib/resources/pl.qm:
+	* lib/resources/it.qm:
+	* lib/resources/sl.qm:
+	* lib/resources/cs.ts:
+	* lib/resources/pt_br.ts:
+	* lib/resources/es.ts:
+	* lib/resources/zh.qm:
+	* lib/resources/sk.ts:
+	* lib/resources/uk.ts:
+	* lib/resources/fi.qm:
+	* lib/resources/ru.ts:
+	* lib/resources/cs.qm:
+	* lib/resources/pt_br.qm:
+	* lib/resources/es.qm:
+	* lib/resources/el.ts:
+	* lib/resources/uk.qm:
+	* lib/resources/fr.ts:
+	* lib/resources/nn.ts:
+	* lib/resources/pl.ts:
+	* lib/resources/it.ts:
+	* lib/resources/ru.qm:
+	* lib/resources/sl.ts:
+	* lib/resources/zh.ts:
+	* lib/resources/el.qm:
+	refreshed localization-files
+
+2008-06-06	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* ica/x11/x11vnc/inet.c:
+	renamed deprecated member-variable
+
+	* lib/src/isd_connection.cpp:
+	fixed sleep()-call
+
+	* lib/src/local_system.cpp:
+	immediately exit application when encountering messages containing
+	timer-threading-problem under win32
+
 2008-05-30	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* lib/src/lock_widget.cpp:

@@ -89,37 +89,37 @@
         <translation>Сервер ISD неможливо запустити, оскільки порт %1 вже використовується. Будь ласка, переконайтеся, що жодна інша програма не використовує цей порт і спробуйте ще раз.</translation>
     </message>
     <message>
-        <location filename="../src/isd_server.cpp" line="567"/>
+        <location filename="../src/isd_server.cpp" line="600"/>
         <source>Confirm access</source>
         <translation>Підтвердження доступу</translation>
     </message>
     <message>
-        <location filename="../src/isd_server.cpp" line="570"/>
+        <location filename="../src/isd_server.cpp" line="603"/>
         <source>Somebody at host %1 tries to access your screen. Do you want to grant him/her access?</source>
         <translation>Хтось за комп’ютером %1 намагається отримати доступ до зображення з Вашого екрану. Чи бажаєте Ви надати йому або їй такий доступ?</translation>
     </message>
     <message>
-        <location filename="../src/isd_server.cpp" line="573"/>
+        <location filename="../src/isd_server.cpp" line="606"/>
         <source>Never for this session</source>
         <translation>Ніколи протягом цього сеансу</translation>
     </message>
     <message>
-        <location filename="../src/isd_server.cpp" line="575"/>
+        <location filename="../src/isd_server.cpp" line="608"/>
         <source>Always for this session</source>
         <translation>Завжди протягом цього сеансу</translation>
     </message>
     <message>
-        <location filename="../src/isd_server.cpp" line="768"/>
+        <location filename="../src/isd_server.cpp" line="773"/>
         <source>Message from teacher</source>
         <translation>Повідомлення від вчителя</translation>
     </message>
     <message>
-        <location filename="../src/isd_server.cpp" line="824"/>
+        <location filename="../src/isd_server.cpp" line="829"/>
         <source>Authentication error</source>
         <translation>Помилка автентифікації</translation>
     </message>
     <message>
-        <location filename="../src/isd_server.cpp" line="827"/>
+        <location filename="../src/isd_server.cpp" line="832"/>
         <source>Somebody (IP: %1) tried to access this computer but could not authenticate itself successfully!</source>
         <translation>Хтось (IP: %1) намагався отримати доступ до цього комп’ютера, але не зміг пройти автентифікацію!</translation>
     </message>

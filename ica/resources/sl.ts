@@ -89,37 +89,37 @@
         <translation>ISD - strežnika ni mogoče zagnati, ker so vrata %1 v uporabi. Prosim poskrbite, da ta vrata ne bodo uporabljena, in poskusite znova.</translation>
     </message>
     <message>
-        <location filename="../src/isd_server.cpp" line="567"/>
+        <location filename="../src/isd_server.cpp" line="600"/>
         <source>Confirm access</source>
         <translation>Potrdi dostop</translation>
     </message>
     <message>
-        <location filename="../src/isd_server.cpp" line="570"/>
+        <location filename="../src/isd_server.cpp" line="603"/>
         <source>Somebody at host %1 tries to access your screen. Do you want to grant him/her access?</source>
         <translation>Nekdo na gostitelju %1 poskuša dostopati do vašega namizja. Ali mu/ji želite j dovoliti dostop?</translation>
     </message>
     <message>
-        <location filename="../src/isd_server.cpp" line="573"/>
+        <location filename="../src/isd_server.cpp" line="606"/>
         <source>Never for this session</source>
         <translation>Nikoli za to sejo</translation>
     </message>
     <message>
-        <location filename="../src/isd_server.cpp" line="575"/>
+        <location filename="../src/isd_server.cpp" line="608"/>
         <source>Always for this session</source>
         <translation>Zmeraj za to sejo</translation>
     </message>
     <message>
-        <location filename="../src/isd_server.cpp" line="768"/>
+        <location filename="../src/isd_server.cpp" line="773"/>
         <source>Message from teacher</source>
         <translation>Sporočilo predavatelja</translation>
     </message>
     <message>
-        <location filename="../src/isd_server.cpp" line="824"/>
+        <location filename="../src/isd_server.cpp" line="829"/>
         <source>Authentication error</source>
         <translation>Napaka verodostojnosti</translation>
     </message>
     <message>
-        <location filename="../src/isd_server.cpp" line="827"/>
+        <location filename="../src/isd_server.cpp" line="832"/>
         <source>Somebody (IP: %1) tried to access this computer but could not authenticate itself successfully!</source>
         <translation>Nekdo iz (IP: %1) poskuša dostopati do tega računalnika, vendar ne more potrditi svoje verodostojnosti!</translation>
     </message>

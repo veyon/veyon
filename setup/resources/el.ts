@@ -1,19 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="it_IT">
 <context>
-    <name></name>
-    <message>
-        <location filename="../src/main.cpp" line="82"/>
-        <source>File does not exist</source>
-        <translation type="unfinished">Το αρχείο δεν υπάρχει</translation>
-    </message>
-    <message>
-        <location filename="../src/main.cpp" line="86"/>
-        <source>The file %1 could not be found. Please check this and try again.</source>
-        <translation type="unfinished">Το αρχείο %1 δε βρέθηκε. Παρακαλώ ελέγξτε και προσπαθήστε ξανά.</translation>
-    </message>
-</context>
-<context>
     <name>@default</name>
     <message>
         <location filename="../src/main.cpp" line="82"/>
@@ -24,6 +11,19 @@
         <location filename="../src/main.cpp" line="86"/>
         <source>The file %1 could not be found. Please check this and try again.</source>
         <translation type="obsolete">Το αρχείο %1 δε βρέθηκε. Παρακαλώ ελέγξτε και προσπαθήστε ξανά.</translation>
+    </message>
+</context>
+<context>
+    <name>@default</name>
+    <message>
+        <location filename="../src/main.cpp" line="82"/>
+        <source>File does not exist</source>
+        <translation type="unfinished">Το αρχείο δεν υπάρχει</translation>
+    </message>
+    <message>
+        <location filename="../src/main.cpp" line="86"/>
+        <source>The file %1 could not be found. Please check this and try again.</source>
+        <translation type="unfinished">Το αρχείο %1 δε βρέθηκε. Παρακαλώ ελέγξτε και προσπαθήστε ξανά.</translation>
     </message>
 </context>
 <context>

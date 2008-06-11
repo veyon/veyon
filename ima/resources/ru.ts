@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="ru_RU">
-<defaultcodec></defaultcodec>
 <context>
     <name>about</name>
     <message>
@@ -88,7 +87,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/classroom_manager.cpp" line="1981"/>
         <source>Administration</source>
-        <translation>Администрация</translation>
+        <translation type="obsolete">Администрация</translation>
     </message>
 </context>
 <context>
@@ -96,52 +95,52 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/classroom_manager.cpp" line="1328"/>
         <source>Action for whole classroom</source>
-        <translation>Действие для всего класса</translation>
+        <translation type="obsolete">Действие для всего класса</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1263"/>
+        <location filename="../src/classroom_manager.cpp" line="1417"/>
         <source>Actions</source>
         <translation>Действия</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1291"/>
+        <location filename="../src/classroom_manager.cpp" line="1394"/>
         <source>Actions for %1</source>
         <translation>Действия для %1</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1344"/>
+        <location filename="../src/classroom_manager.cpp" line="270"/>
         <source>Add classroom</source>
         <translation>Добавить класс</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1654"/>
+        <location filename="../src/classroom_manager.cpp" line="1749"/>
         <source>Add computer</source>
         <translation>Добавить компьютер</translation>
     </message>
     <message>
         <location filename="../src/classroom_manager.cpp" line="2048"/>
         <source>Are you sure want logout all users on all visible computers ?</source>
-        <translation>Вы уверены, что хотите завершить работу всех пользователей на всех видимых компьютерах?</translation>
+        <translation type="obsolete">Вы уверены, что хотите завершить работу всех пользователей на всех видимых компьютерах?</translation>
     </message>
     <message>
         <location filename="../src/classroom_manager.cpp" line="2088"/>
         <source>Are you sure want to power down all visible computers?</source>
-        <translation>Вы уверены, что хотите выключить все видимые компьютеры?</translation>
+        <translation type="obsolete">Вы уверены, что хотите выключить все видимые компьютеры?</translation>
     </message>
     <message>
         <location filename="../src/classroom_manager.cpp" line="2074"/>
         <source>Are you sure want to reboot all visible computers?</source>
-        <translation>Вы уверены, что хотите перезагрузить все видимые компьютеры?</translation>
+        <translation type="obsolete">Вы уверены, что хотите перезагрузить все видимые компьютеры?</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1575"/>
+        <location filename="../src/classroom_manager.cpp" line="1670"/>
         <source>Are you sure want to remove classroom &quot;%1&quot;?
 All computers in it will be removed as well!</source>
         <translation>Вы уверены, что хотите удалить класс &quot;%1&quot;?
 Все компьютеры в нем будут также удалены!</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1627"/>
+        <location filename="../src/classroom_manager.cpp" line="1722"/>
         <source>Before adding computers you have to create at least one classroom.
 Do you want to create a new classrom now?</source>
         <translation>Перед добавление компьютеров вы должны создать хотя бы один класс
@@ -158,53 +157,53 @@ Do you want to create a new classrom now?</source>
         <translation>Классы/компьютеры</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="690"/>
+        <location filename="../src/classroom_manager.cpp" line="850"/>
         <source>Could not open configuration file %1.
 You will have to add at least one classroom and computers using the classroom-manager which you&apos;ll find inside the program in the sidebar on the left side.</source>
         <translation>Не могу открыть файл конфигурации  %1.
 Вы должны добавить хотя бы один класс и компьютеры используя менеджер классов, который можно найти в программе не панели слева.</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1313"/>
+        <location filename="../src/classroom_manager.cpp" line="249"/>
         <source>Edit name</source>
         <translation>Редактировать имя</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1276"/>
+        <location filename="../src/classroom_manager.cpp" line="218"/>
         <source>Edit settings</source>
         <translation>Редактировать параметры</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="767"/>
+        <location filename="../src/classroom_manager.cpp" line="931"/>
         <source>Error in configuration-file</source>
         <translation>Ошибка в файле конфигурации</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="772"/>
+        <location filename="../src/classroom_manager.cpp" line="936"/>
         <source>Error while parsing configuration-file %1.
 Please edit it. Otherwise you should delete this file.</source>
         <translation>Ошибка обработки файла конфигурации %1.
 Отредактируйте его. Иначе вы должны его удалить.</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="707"/>
+        <location filename="../src/classroom_manager.cpp" line="869"/>
         <source>Error while parsing configuration-file %1.
 Please edit it. Otherwise you should delete this file and have to add all classrooms and computers again.</source>
         <translation>Ошибка обработки файла конфигурации %1.
 Отредактируйте его. Иначе вы должны его удалить и добавить все классы и компьютеры снова.</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="158"/>
+        <location filename="../src/classroom_manager.cpp" line="157"/>
         <source>Export to text-file</source>
         <translation>Экспорт в текстовый файл</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1303"/>
+        <location filename="../src/classroom_manager.cpp" line="239"/>
         <source>Hide all computers in classroom</source>
         <translation>Скрыть все компьютеры в классе</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1308"/>
+        <location filename="../src/classroom_manager.cpp" line="244"/>
         <source>Hide teacher computers</source>
         <translation>Скрыть компьютер учителя</translation>
     </message>
@@ -216,80 +215,80 @@ Please edit it. Otherwise you should delete this file and have to add all classr
     <message>
         <location filename="../src/classroom_manager.cpp" line="2045"/>
         <source>Logout user</source>
-        <translation>Завершить работу</translation>
+        <translation type="obsolete">Завершить работу</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1621"/>
+        <location filename="../src/classroom_manager.cpp" line="1716"/>
         <source>Missing classroom</source>
         <translation>Отсутствующий класс</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1670"/>
+        <location filename="../src/classroom_manager.cpp" line="1765"/>
         <source>New classroom</source>
         <translation>Новый класс</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1548"/>
+        <location filename="../src/classroom_manager.cpp" line="1643"/>
         <source>New name for classroom</source>
         <translation>Новое имя для класса</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="681"/>
+        <location filename="../src/classroom_manager.cpp" line="841"/>
         <source>No configuration-file found</source>
         <translation>Не найден файл конфигурации</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1550"/>
+        <location filename="../src/classroom_manager.cpp" line="1645"/>
         <source>Please enter a new name for classroom &quot;%1&quot;.</source>
         <translation>Пожалуйста введите новое имя для класса &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1669"/>
+        <location filename="../src/classroom_manager.cpp" line="1764"/>
         <source>Please enter the name of the classroom you want to create.</source>
         <translation>Пожалуйста введите имя класса, который хотите создать.</translation>
     </message>
     <message>
         <location filename="../src/classroom_manager.cpp" line="2085"/>
         <source>Power down computers</source>
-        <translation>Выключить компьютеры</translation>
+        <translation type="obsolete">Выключить компьютеры</translation>
     </message>
     <message>
         <location filename="../src/classroom_manager.cpp" line="2072"/>
         <source>Reboot computers</source>
-        <translation>Перезагрузить компьютеры</translation>
+        <translation type="obsolete">Перезагрузить компьютеры</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1281"/>
+        <location filename="../src/classroom_manager.cpp" line="223"/>
         <source>Remove</source>
         <translation>Удалить</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1572"/>
+        <location filename="../src/classroom_manager.cpp" line="1667"/>
         <source>Remove classroom</source>
         <translation>Удалить класс</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="831"/>
+        <location filename="../src/classroom_manager.cpp" line="995"/>
         <source>Select output-file</source>
         <translation>Выберите файл для вывода</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1298"/>
+        <location filename="../src/classroom_manager.cpp" line="234"/>
         <source>Show all computers in classroom</source>
         <translation>Показать все компьютеры в классе</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1271"/>
+        <location filename="../src/classroom_manager.cpp" line="213"/>
         <source>Show/hide</source>
         <translation>Показать/скрыть</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="139"/>
+        <location filename="../src/classroom_manager.cpp" line="138"/>
         <source>Show usernames</source>
         <translation>Показать имена пользователей</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="833"/>
+        <location filename="../src/classroom_manager.cpp" line="997"/>
         <source>Text files (*.txt)</source>
         <translation>Текстовый файл (*.txt)</translation>
     </message>
@@ -304,7 +303,7 @@ Please edit it. Otherwise you should delete this file and have to add all classr
         <translation>Имена пользователей</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="149"/>
+        <location filename="../src/classroom_manager.cpp" line="148"/>
         <source>Use the context-menu (right mouse-button) to add/remove computers and/or classrooms.</source>
         <translation>Используйте контекстное меню (правая кнопка мышки) для добавления/удаления компьютеров и/или классов.</translation>
     </message>
@@ -326,7 +325,7 @@ Further actions can be found in the context-menu of a computer or classroom.
 </translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="173"/>
+        <location filename="../src/classroom_manager.cpp" line="172"/>
         <source>Use this button for exporting this list of computers and usernames into a text-file. You can use this file later for collecting files after an exam has finished. This is sometimes neccessary, because some users might have finished and logged out earlier and so you cannot collect their files at the end of the exam.</source>
         <translation>Используйте эту кнопку для экспорта этого списока компьютеров и пользователей в текстовый файл. Вы можете использовать этот файл позже для сбора файлов после завершения экзамена. Иногда это необходимо, потому что некоторые пользователи могли завершить работу и выполнить выход раньше и поэтому вы не сможете собрать их файлы в конце экзамена.</translation>
     </message>
@@ -335,108 +334,234 @@ Further actions can be found in the context-menu of a computer or classroom.
         <source>Use this workspace to manage your computers and classrooms in an easy way.</source>
         <translation>Используйте это пространство для управления вашими компьютерами и классами самым простым способом.</translation>
     </message>
+    <message>
+        <location filename="../src/classroom_manager.cpp" line="1360"/>
+        <source>Actions for selected</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>client</name>
     <message>
-        <location filename="../src/client.cpp" line="677"/>
+        <location filename="../src/client.cpp" line="946"/>
         <source>Demo running</source>
         <translation>Запущенное демо</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="681"/>
+        <location filename="../src/client.cpp" line="950"/>
         <source>Desktop locked</source>
         <translation>Рабочий стол заблокирован</translation>
     </message>
     <message>
         <location filename="../src/client.cpp" line="70"/>
         <source>Execute commands</source>
-        <translation>Запустить команду</translation>
+        <translation type="obsolete">Запустить команду</translation>
     </message>
     <message>
         <location filename="../src/client.cpp" line="208"/>
         <source>Fullscreen demo</source>
-        <translation>Полноэкранное демо</translation>
+        <translation type="obsolete">Полноэкранное демо</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="673"/>
+        <location filename="../src/client.cpp" line="942"/>
         <source>Host unreachable</source>
         <translation>Компьютер недоступен</translation>
     </message>
     <message>
         <location filename="../src/client.cpp" line="62"/>
         <source>Let student show demo</source>
-        <translation>Разрешить учащемуся показать демо</translation>
+        <translation type="obsolete">Разрешить учащемуся показать демо</translation>
     </message>
     <message>
         <location filename="../src/client.cpp" line="214"/>
         <source>Locked display</source>
-        <translation>Заблокированный дисплей</translation>
+        <translation type="obsolete">Заблокированный дисплей</translation>
     </message>
     <message>
         <location filename="../src/client.cpp" line="64"/>
         <source>Logon user</source>
-        <translation>Начать работу</translation>
+        <translation type="obsolete">Начать работу</translation>
     </message>
     <message>
         <location filename="../src/client.cpp" line="65"/>
         <source>Logout user</source>
-        <translation>Завершить работу</translation>
+        <translation type="obsolete">Завершить работу</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="669"/>
+        <location filename="../src/client.cpp" line="938"/>
         <source>No user logged in</source>
         <translation>Нет начавших работу пользователей</translation>
     </message>
     <message>
         <location filename="../src/client.cpp" line="205"/>
         <source>Overview</source>
-        <translation>Обзор</translation>
+        <translation type="obsolete">Обзор</translation>
     </message>
     <message>
         <location filename="../src/client.cpp" line="69"/>
         <source>Power down</source>
-        <translation>Выключить</translation>
+        <translation type="obsolete">Выключить</translation>
     </message>
     <message>
         <location filename="../src/client.cpp" line="67"/>
         <source>Power on</source>
-        <translation>Включить</translation>
+        <translation type="obsolete">Включить</translation>
     </message>
     <message>
         <location filename="../src/client.cpp" line="68"/>
         <source>Reboot</source>
-        <translation>Перезагрузить</translation>
+        <translation type="obsolete">Перезагрузить</translation>
     </message>
     <message>
         <location filename="../src/client.cpp" line="61"/>
         <source>Remote control</source>
-        <translation>Удаленное управление</translation>
+        <translation type="obsolete">Удаленное управление</translation>
     </message>
     <message>
         <location filename="../src/client.cpp" line="63"/>
         <source>Send text message</source>
-        <translation>Послать текстовое сообщение</translation>
+        <translation type="obsolete">Послать текстовое сообщение</translation>
     </message>
     <message>
         <location filename="../src/client.cpp" line="66"/>
         <source>Take a snapshot</source>
-        <translation>Сделать снимок экрана</translation>
+        <translation type="obsolete">Сделать снимок экрана</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="661"/>
+        <location filename="../src/client.cpp" line="930"/>
         <source>Unknown state</source>
         <translation>Неизвестное состояние</translation>
     </message>
     <message>
         <location filename="../src/client.cpp" line="60"/>
         <source>View live</source>
-        <translation>Прямая трансляция</translation>
+        <translation type="obsolete">Прямая трансляция</translation>
     </message>
     <message>
         <location filename="../src/client.cpp" line="211"/>
         <source>Window demo</source>
-        <translation>Демо в окне</translation>
+        <translation type="obsolete">Демо в окне</translation>
+    </message>
+</context>
+<context>
+    <name>clientAction</name>
+    <message>
+        <location filename="../src/client.cpp" line="351"/>
+        <source>Are you sure want logout all users on all visible computers ?</source>
+        <translation type="unfinished">Вы уверены, что хотите завершить работу всех пользователей на всех видимых компьютерах?</translation>
+    </message>
+    <message>
+        <location filename="../src/client.cpp" line="352"/>
+        <source>Are you sure want logout all users on all selected computers ?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/client.cpp" line="354"/>
+        <source>Logout user</source>
+        <translation type="unfinished">Завершить работу</translation>
+    </message>
+    <message>
+        <location filename="../src/client.cpp" line="365"/>
+        <source>Are you sure want to reboot all visible computers?</source>
+        <translation type="unfinished">Вы уверены, что хотите перезагрузить все видимые компьютеры?</translation>
+    </message>
+    <message>
+        <location filename="../src/client.cpp" line="366"/>
+        <source>Are you sure want to reboot all selected computers?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/client.cpp" line="382"/>
+        <source>Reboot computers</source>
+        <translation type="unfinished">Перезагрузить компьютеры</translation>
+    </message>
+    <message>
+        <location filename="../src/client.cpp" line="379"/>
+        <source>Are you sure want to power down all visible computers?</source>
+        <translation type="unfinished">Вы уверены, что хотите выключить все видимые компьютеры?</translation>
+    </message>
+    <message>
+        <location filename="../src/client.cpp" line="380"/>
+        <source>Are you sure want to power down all selected computers?</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>clientMenu</name>
+    <message>
+        <location filename="../src/client.cpp" line="415"/>
+        <source>Overview</source>
+        <translation type="unfinished">Обзор</translation>
+    </message>
+    <message>
+        <location filename="../src/client.cpp" line="417"/>
+        <source>Fullscreen demo</source>
+        <translation type="unfinished">Полноэкранное демо</translation>
+    </message>
+    <message>
+        <location filename="../src/client.cpp" line="419"/>
+        <source>Window demo</source>
+        <translation type="unfinished">Демо в окне</translation>
+    </message>
+    <message>
+        <location filename="../src/client.cpp" line="421"/>
+        <source>Locked display</source>
+        <translation type="unfinished">Заблокированный дисплей</translation>
+    </message>
+    <message>
+        <location filename="../src/client.cpp" line="425"/>
+        <source>View live</source>
+        <translation type="unfinished">Прямая трансляция</translation>
+    </message>
+    <message>
+        <location filename="../src/client.cpp" line="428"/>
+        <source>Remote control</source>
+        <translation type="unfinished">Удаленное управление</translation>
+    </message>
+    <message>
+        <location filename="../src/client.cpp" line="431"/>
+        <source>Let student show demo</source>
+        <translation type="unfinished">Разрешить учащемуся показать демо</translation>
+    </message>
+    <message>
+        <location filename="../src/client.cpp" line="435"/>
+        <source>Send text message</source>
+        <translation type="unfinished">Послать текстовое сообщение</translation>
+    </message>
+    <message>
+        <location filename="../src/client.cpp" line="439"/>
+        <source>Logon user</source>
+        <translation type="unfinished">Начать работу</translation>
+    </message>
+    <message>
+        <location filename="../src/client.cpp" line="441"/>
+        <source>Logout user</source>
+        <translation type="unfinished">Завершить работу</translation>
+    </message>
+    <message>
+        <location filename="../src/client.cpp" line="445"/>
+        <source>Take a snapshot</source>
+        <translation type="unfinished">Сделать снимок экрана</translation>
+    </message>
+    <message>
+        <location filename="../src/client.cpp" line="449"/>
+        <source>Power on</source>
+        <translation type="unfinished">Включить</translation>
+    </message>
+    <message>
+        <location filename="../src/client.cpp" line="451"/>
+        <source>Reboot</source>
+        <translation type="unfinished">Перезагрузить</translation>
+    </message>
+    <message>
+        <location filename="../src/client.cpp" line="453"/>
+        <source>Power down</source>
+        <translation type="unfinished">Выключить</translation>
+    </message>
+    <message>
+        <location filename="../src/client.cpp" line="455"/>
+        <source>Execute commands</source>
+        <translation type="unfinished">Запустить команду</translation>
     </message>
 </context>
 <context>
@@ -881,27 +1006,27 @@ p, li { white-space: pre-wrap; }
         <translation>Действия</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="297"/>
+        <location filename="../src/main_window.cpp" line="295"/>
         <source>Adjust/align</source>
         <translation>Подогнать/выровнять</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="298"/>
+        <location filename="../src/main_window.cpp" line="296"/>
         <source>Adjust windows and their size</source>
         <translation>Подогнать окно под его размер</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="283"/>
+        <location filename="../src/main_window.cpp" line="281"/>
         <source>After clicking this button you can enter a username and password to log on the according user on all visible computers.</source>
         <translation>После нажатия этой кнопки вы можете ввести имя пользователя и пароль для входа под соответствующим пользователем на всех видимых компьютерах.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="307"/>
+        <location filename="../src/main_window.cpp" line="305"/>
         <source>Auto re-arrange windows and their size</source>
         <translation>Автоматическая расстановка окон и подгонка размеров</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="306"/>
+        <location filename="../src/main_window.cpp" line="304"/>
         <source>Auto view</source>
         <translation>Авто вид</translation>
     </message>
@@ -921,7 +1046,7 @@ p, li { white-space: pre-wrap; }
         <translation>Нажмите эту кнопку для открытия меню в котором можно выбрать активную классную комнату.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="262"/>
+        <location filename="../src/main_window.cpp" line="260"/>
         <source>Click this button to power on all visible computers. This way you do not have to turn on each computer by hand.</source>
         <translation>Нажмите эту кнопку для включения всех видимых компьютеров. Это позволит вам не включать каждый компьютер вручную.</translation>
     </message>
@@ -951,7 +1076,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Демо-вікно увімкнено</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="289"/>
+        <location filename="../src/main_window.cpp" line="287"/>
         <source>Direct support</source>
         <translation>Прямая поддержка</translation>
     </message>
@@ -966,7 +1091,7 @@ p, li { white-space: pre-wrap; }
         <translation>Полноэкранное Демо</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="292"/>
+        <location filename="../src/main_window.cpp" line="290"/>
         <source>If you need to support someone at a certain computer you can click this button and enter the according hostname or IP afterwards.</source>
         <translation type="unfinished">Если вам нужно поддерживать какой-нибудь пользователя на определенном компьютере, вы можете нажать на эту кнопку и ввести соответствующее имя компьютера или IP.</translation>
     </message>
@@ -986,12 +1111,12 @@ p, li { white-space: pre-wrap; }
         <translation>iTALC</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="386"/>
+        <location filename="../src/main_window.cpp" line="392"/>
         <source>iTALC Master Control</source>
         <translation>Основной Контроль iTALC</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="365"/>
+        <location filename="../src/main_window.cpp" line="371"/>
         <source>iTALC service not running</source>
         <translation>Сервис iTALC не запущен</translation>
     </message>
@@ -1006,19 +1131,19 @@ p, li { white-space: pre-wrap; }
         <translation>Блокировать/разблокировать компьютеры</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="279"/>
+        <location filename="../src/main_window.cpp" line="277"/>
         <source>Logon</source>
         <translation>Вход в систему</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="356"/>
+        <location filename="../src/main_window.cpp" line="362"/>
         <source>No authentication-keys were found or your old ones were broken. Please create a new key-pair using ICA (see documentation at http://italc.sf.net/wiki/index.php?title=Installation).
 Otherwise you won&apos;t be able to access computers using iTALC.</source>
         <translation>Не  найдены ключи авторизации или ваши старые были повреждены. Создайте новую пару ключей, используя ICA (см. документацию на http://italc.sf.net/wiki/index.php?title=Installation). 
 В противном случае вы не сможете получить доступ к компьютерам с помощью iTALC.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="350"/>
+        <location filename="../src/main_window.cpp" line="356"/>
         <source>No valid keys found</source>
         <translation>Не найдено верных ключей</translation>
     </message>
@@ -1038,42 +1163,42 @@ Otherwise you won&apos;t be able to access computers using iTALC.</source>
         <translation>Режим обзора</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="270"/>
+        <location filename="../src/main_window.cpp" line="268"/>
         <source>Power down</source>
         <translation>Выключить</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="267"/>
+        <location filename="../src/main_window.cpp" line="265"/>
         <source>Power down computers</source>
         <translation>Выключить компьютеры</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="259"/>
+        <location filename="../src/main_window.cpp" line="257"/>
         <source>Power on</source>
         <translation>Включить</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="256"/>
+        <location filename="../src/main_window.cpp" line="254"/>
         <source>Power on computers</source>
         <translation>Включить компьютеры</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="503"/>
+        <location filename="../src/main_window.cpp" line="514"/>
         <source>Quit</source>
         <translation>Выход</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="487"/>
+        <location filename="../src/main_window.cpp" line="498"/>
         <source>Remote control</source>
         <translation>Удаленное управление</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="280"/>
+        <location filename="../src/main_window.cpp" line="278"/>
         <source>Remote logon</source>
         <translation>Удаленный вход</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="246"/>
+        <location filename="../src/main_window.cpp" line="244"/>
         <source>Send text message</source>
         <translation>Послать текстовое сообщение</translation>
     </message>
@@ -1083,7 +1208,7 @@ Otherwise you won&apos;t be able to access computers using iTALC.</source>
         <translation>Остановить Демо</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="288"/>
+        <location filename="../src/main_window.cpp" line="286"/>
         <source>Support</source>
         <translation>Поддержка</translation>
     </message>
@@ -1093,12 +1218,12 @@ Otherwise you won&apos;t be able to access computers using iTALC.</source>
         <translation>Переключить класс</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="249"/>
+        <location filename="../src/main_window.cpp" line="247"/>
         <source>Text message</source>
         <translation>Текстовое сообщение</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="370"/>
+        <location filename="../src/main_window.cpp" line="376"/>
         <source>There seems to be no iTALC service running on this computer or the authentication-keys aren&apos;t set up properly. The service is required for running iTALC. Contact your administrator for solving this problem.</source>
         <translation>Возможно служба iTALC не запущена на этом компьютере or или ключи аутенфикации неправильно настроены. Требуется запустить службу iTALC. Решите данную проблему с вашим администратором .</translation>
     </message>
@@ -1113,7 +1238,7 @@ Otherwise you won&apos;t be able to access computers using iTALC.</source>
         <translation>Вы можете использовать эту кнопку для привлечения полного внимания всех пользователей и блокировки их настольных компьютеров. В этом режиме блокируются все устройства ввода и гасится экран монитора.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="273"/>
+        <location filename="../src/main_window.cpp" line="271"/>
         <source>To power down all shown computers (e.g. after the lesson has finished) you can click this button.</source>
         <translation>Вы должны нажать эту кнопку для выключения всех отображаемых компьютеров (например после завершения урока).</translation>
     </message>
@@ -1123,17 +1248,17 @@ Otherwise you won&apos;t be able to access computers using iTALC.</source>
         <translation>Разблокировать все</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="251"/>
+        <location filename="../src/main_window.cpp" line="249"/>
         <source>Use this button to send a text message to all users e.g. to tell them new tasks etc.</source>
         <translation>Используйте эту кнопку для посылки текстового сообщения всем пользователям, например сказав им о новых задачах.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="309"/>
+        <location filename="../src/main_window.cpp" line="307"/>
         <source>When clicking this button all visible windows are re-arranged and adjusted.</source>
         <translation>При нажатии на эту кнопку все видимые окна будут перераспределены и подогнаны по размеру.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="301"/>
+        <location filename="../src/main_window.cpp" line="299"/>
         <source>When clicking this button the biggest possible size for the client-windows is adjusted. Furthermore all windows are aligned.</source>
         <translation>При нажатии этой кнопки окна клиентов станут максимально возможного размера. Также все окна будут перерасположены.</translation>
     </message>

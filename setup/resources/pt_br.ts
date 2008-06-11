@@ -1,16 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="pt_BR">
 <context>
-    <name></name>
+    <name>@default</name>
     <message>
         <location filename="../src/main.cpp" line="82"/>
         <source>File does not exist</source>
-        <translation>Este arquivo não existe</translation>
+        <translation type="obsolete">Este arquivo não existe</translation>
     </message>
     <message>
         <location filename="../src/main.cpp" line="86"/>
         <source>The file %1 could not be found. Please check this and try again.</source>
-        <translation>O arquivo %1 não foi encontrado. Corrige este erro e tente novamente.</translation>
+        <translation type="obsolete">O arquivo %1 não foi encontrado. Corrige este erro e tente novamente.</translation>
+    </message>
+</context>
+<context>
+    <name>@default</name>
+    <message>
+        <location filename="../src/main.cpp" line="82"/>
+        <source>File does not exist</source>
+        <translation type="unfinished">Este arquivo não existe</translation>
+    </message>
+    <message>
+        <location filename="../src/main.cpp" line="86"/>
+        <source>The file %1 could not be found. Please check this and try again.</source>
+        <translation type="unfinished">O arquivo %1 não foi encontrado. Corrige este erro e tente novamente.</translation>
     </message>
 </context>
 <context>

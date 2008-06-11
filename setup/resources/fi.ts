@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="fi_FI">
 <context>
-    <name></name>
+    <name>@default</name>
     <message>
         <location filename="../src/main.cpp" line="82"/>
         <source>File does not exist</source>
-        <translation>Tiedostoa ei ole olemassa</translation>
+        <translation type="unfinished">Tiedostoa ei ole olemassa</translation>
     </message>
     <message>
         <location filename="../src/main.cpp" line="86"/>
         <source>The file %1 could not be found. Please check this and try again.</source>
-        <translation>Tiedostoa %1 ei löytynyt. Tarkista ja yritä uudelleen.</translation>
+        <translation type="unfinished">Tiedostoa %1 ei löytynyt. Tarkista ja yritä uudelleen.</translation>
     </message>
 </context>
 <context>

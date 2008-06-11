@@ -90,11 +90,6 @@ p, li { white-space: pre-wrap; }
         <source>Administation</source>
         <translation type="obsolete">Administrasjon</translation>
     </message>
-    <message>
-        <location filename="../src/classroom_manager.cpp" line="1981"/>
-        <source>Administration</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>classroomManager</name>
@@ -141,31 +136,31 @@ Det er og fleire handlingar i oppsprettmenyen for maskinar og klasserom.
 </translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="681"/>
+        <location filename="../src/classroom_manager.cpp" line="841"/>
         <source>No configuration-file found</source>
         <translation>Klarte ikkje finna oppsettsfila</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="690"/>
+        <location filename="../src/classroom_manager.cpp" line="850"/>
         <source>Could not open configuration file %1.
 You will have to add at least one classroom and computers using the classroom-manager which you&apos;ll find inside the program in the sidebar on the left side.</source>
         <translation>Klarte ikkje opne oppsettfila %1. 
 Du må leggje til minst eit klasserom og ein maskin i klasseromshandteraren.</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="767"/>
+        <location filename="../src/classroom_manager.cpp" line="931"/>
         <source>Error in configuration-file</source>
         <translation>Oppsettsfila inneheld feil</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="707"/>
+        <location filename="../src/classroom_manager.cpp" line="869"/>
         <source>Error while parsing configuration-file %1.
 Please edit it. Otherwise you should delete this file and have to add all classrooms and computers again.</source>
         <translation>Feil med gjennomgang av oppsetts-fila %1. 
 Endre den eller slett den og legg til maskinar og klasserom igjen.</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="772"/>
+        <location filename="../src/classroom_manager.cpp" line="936"/>
         <source>Error while parsing configuration-file %1.
 Please edit it. Otherwise you should delete this file.</source>
         <translation>Feil med gjennomgang av oppsetts-fila %1. 
@@ -174,134 +169,134 @@ Endre den eller slett.</translation>
     <message>
         <location filename="../src/classroom_manager.cpp" line="2085"/>
         <source>Power down computers</source>
-        <translation>Skru av maskiner</translation>
+        <translation type="obsolete">Skru av maskiner</translation>
     </message>
     <message>
         <location filename="../src/classroom_manager.cpp" line="2088"/>
         <source>Are you sure want to power down all visible computers?</source>
-        <translation>Er du sikker på at du vil skru av alle dei synlege maskinane?</translation>
+        <translation type="obsolete">Er du sikker på at du vil skru av alle dei synlege maskinane?</translation>
     </message>
     <message>
         <location filename="../src/classroom_manager.cpp" line="2045"/>
         <source>Logout user</source>
-        <translation>Logg av brukar</translation>
+        <translation type="obsolete">Logg av brukar</translation>
     </message>
     <message>
         <location filename="../src/classroom_manager.cpp" line="2048"/>
         <source>Are you sure want logout all users on all visible computers ?</source>
-        <translation>Er du sikker på at du vil logge av brukarane på dei synlege maskinane ?</translation>
+        <translation type="obsolete">Er du sikker på at du vil logge av brukarane på dei synlege maskinane ?</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1271"/>
+        <location filename="../src/classroom_manager.cpp" line="213"/>
         <source>Show/hide</source>
         <translation>Vis / Gøym</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1276"/>
+        <location filename="../src/classroom_manager.cpp" line="218"/>
         <source>Edit settings</source>
         <translation>Endre innstillingar</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1281"/>
+        <location filename="../src/classroom_manager.cpp" line="223"/>
         <source>Remove</source>
         <translation>Fjern</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1263"/>
+        <location filename="../src/classroom_manager.cpp" line="1417"/>
         <source>Actions</source>
         <translation>Handlingar</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1298"/>
+        <location filename="../src/classroom_manager.cpp" line="234"/>
         <source>Show all computers in classroom</source>
         <translation>Vis alle maskinane i klasseromet</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1303"/>
+        <location filename="../src/classroom_manager.cpp" line="239"/>
         <source>Hide all computers in classroom</source>
         <translation>Gøym alle maskinane frå klasseromet</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1313"/>
+        <location filename="../src/classroom_manager.cpp" line="249"/>
         <source>Edit name</source>
         <translation>Endre namn</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1572"/>
+        <location filename="../src/classroom_manager.cpp" line="1667"/>
         <source>Remove classroom</source>
         <translation>Fjern klasserom</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1291"/>
+        <location filename="../src/classroom_manager.cpp" line="1394"/>
         <source>Actions for %1</source>
         <translation>Handlingar for %1</translation>
     </message>
     <message>
         <location filename="../src/classroom_manager.cpp" line="1328"/>
         <source>Action for whole classroom</source>
-        <translation>Handlingar for heile klasserommet</translation>
+        <translation type="obsolete">Handlingar for heile klasserommet</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1654"/>
+        <location filename="../src/classroom_manager.cpp" line="1749"/>
         <source>Add computer</source>
         <translation>Legg til maskin</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1344"/>
+        <location filename="../src/classroom_manager.cpp" line="270"/>
         <source>Add classroom</source>
         <translation>Legg til klasserom</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1548"/>
+        <location filename="../src/classroom_manager.cpp" line="1643"/>
         <source>New name for classroom</source>
         <translation>Endre namn på klasserom</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1550"/>
+        <location filename="../src/classroom_manager.cpp" line="1645"/>
         <source>Please enter a new name for classroom &quot;%1&quot;.</source>
         <translation>Skriv inn nytt namn for klasserom &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1575"/>
+        <location filename="../src/classroom_manager.cpp" line="1670"/>
         <source>Are you sure want to remove classroom &quot;%1&quot;?
 All computers in it will be removed as well!</source>
         <translation>Vil du verkeleg slette klasserom &quot;%1&quot;?
 Alle maskiner i klasserom blir også fjerna!</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1621"/>
+        <location filename="../src/classroom_manager.cpp" line="1716"/>
         <source>Missing classroom</source>
         <translation>Mangler klasserom</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1627"/>
+        <location filename="../src/classroom_manager.cpp" line="1722"/>
         <source>Before adding computers you have to create at least one classroom.
 Do you want to create a new classrom now?</source>
         <translation>Før du kan leggje til maskiner må du ha minst eit klasserom.
 Vil du lage eit klasserom no?</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1670"/>
+        <location filename="../src/classroom_manager.cpp" line="1765"/>
         <source>New classroom</source>
         <translation>Nytt klasserom</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1669"/>
+        <location filename="../src/classroom_manager.cpp" line="1764"/>
         <source>Please enter the name of the classroom you want to create.</source>
         <translation>Skriv inn namn på klasserommet du lager.</translation>
     </message>
     <message>
         <location filename="../src/classroom_manager.cpp" line="2072"/>
         <source>Reboot computers</source>
-        <translation>Start maskinane om at</translation>
+        <translation type="obsolete">Start maskinane om at</translation>
     </message>
     <message>
         <location filename="../src/classroom_manager.cpp" line="2074"/>
         <source>Are you sure want to reboot all visible computers?</source>
-        <translation>Vil du starte alle dei synlege maskinane om at?</translation>
+        <translation type="obsolete">Vil du starte alle dei synlege maskinane om at?</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1308"/>
+        <location filename="../src/classroom_manager.cpp" line="244"/>
         <source>Hide teacher computers</source>
         <translation type="unfinished"></translation>
     </message>
@@ -311,34 +306,39 @@ Vil du lage eit klasserom no?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="139"/>
+        <location filename="../src/classroom_manager.cpp" line="138"/>
         <source>Show usernames</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="149"/>
+        <location filename="../src/classroom_manager.cpp" line="148"/>
         <source>Use the context-menu (right mouse-button) to add/remove computers and/or classrooms.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="158"/>
+        <location filename="../src/classroom_manager.cpp" line="157"/>
         <source>Export to text-file</source>
         <translation type="unfinished">Eksporter til tekstfil</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="173"/>
+        <location filename="../src/classroom_manager.cpp" line="172"/>
         <source>Use this button for exporting this list of computers and usernames into a text-file. You can use this file later for collecting files after an exam has finished. This is sometimes neccessary, because some users might have finished and logged out earlier and so you cannot collect their files at the end of the exam.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="831"/>
+        <location filename="../src/classroom_manager.cpp" line="995"/>
         <source>Select output-file</source>
         <translation type="unfinished">Vel filnamn</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="833"/>
+        <location filename="../src/classroom_manager.cpp" line="997"/>
         <source>Text files (*.txt)</source>
         <translation type="unfinished">Tekstfil (*.txt)</translation>
+    </message>
+    <message>
+        <location filename="../src/classroom_manager.cpp" line="1360"/>
+        <source>Actions for selected</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -351,12 +351,12 @@ Vil du lage eit klasserom no?</translation>
     <message>
         <location filename="../src/client.cpp" line="61"/>
         <source>Remote control</source>
-        <translation>Fjernkontroll</translation>
+        <translation type="obsolete">Fjernkontroll</translation>
     </message>
     <message>
         <location filename="../src/client.cpp" line="62"/>
         <source>Let student show demo</source>
-        <translation>La elev vise demonstrasjon</translation>
+        <translation type="obsolete">La elev vise demonstrasjon</translation>
     </message>
     <message>
         <location filename="../src/client.cpp" line="62"/>
@@ -366,12 +366,12 @@ Vil du lage eit klasserom no?</translation>
     <message>
         <location filename="../src/client.cpp" line="64"/>
         <source>Logon user</source>
-        <translation>Logg på brukar</translation>
+        <translation type="obsolete">Logg på brukar</translation>
     </message>
     <message>
         <location filename="../src/client.cpp" line="65"/>
         <source>Logout user</source>
-        <translation>Logg ut brukar</translation>
+        <translation type="obsolete">Logg ut brukar</translation>
     </message>
     <message>
         <location filename="../src/client.cpp" line="65"/>
@@ -381,22 +381,22 @@ Vil du lage eit klasserom no?</translation>
     <message>
         <location filename="../src/client.cpp" line="67"/>
         <source>Power on</source>
-        <translation>Skru på</translation>
+        <translation type="obsolete">Skru på</translation>
     </message>
     <message>
         <location filename="../src/client.cpp" line="68"/>
         <source>Reboot</source>
-        <translation>Start om att</translation>
+        <translation type="obsolete">Start om att</translation>
     </message>
     <message>
         <location filename="../src/client.cpp" line="69"/>
         <source>Power down</source>
-        <translation>Skru av</translation>
+        <translation type="obsolete">Skru av</translation>
     </message>
     <message>
         <location filename="../src/client.cpp" line="70"/>
         <source>Execute commands</source>
-        <translation>Køyr kommando</translation>
+        <translation type="obsolete">Køyr kommando</translation>
     </message>
     <message>
         <location filename="../src/client.cpp" line="146"/>
@@ -406,62 +406,173 @@ Vil du lage eit klasserom no?</translation>
     <message>
         <location filename="../src/client.cpp" line="208"/>
         <source>Fullscreen demo</source>
-        <translation>Fullskjerm demonstrasjon</translation>
+        <translation type="obsolete">Fullskjerm demonstrasjon</translation>
     </message>
     <message>
         <location filename="../src/client.cpp" line="211"/>
         <source>Window demo</source>
-        <translation>Demonstrasjon i vindauge</translation>
+        <translation type="obsolete">Demonstrasjon i vindauge</translation>
     </message>
     <message>
         <location filename="../src/client.cpp" line="214"/>
         <source>Locked display</source>
-        <translation>Lås skjermbilete</translation>
+        <translation type="obsolete">Lås skjermbilete</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="661"/>
+        <location filename="../src/client.cpp" line="930"/>
         <source>Unknown state</source>
         <translation type="unfinished">Ukjend status</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="669"/>
+        <location filename="../src/client.cpp" line="938"/>
         <source>No user logged in</source>
         <translation>Ingen brukarar logga på</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="673"/>
+        <location filename="../src/client.cpp" line="942"/>
         <source>Host unreachable</source>
         <translation>Verten er utilgjengeleg</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="677"/>
+        <location filename="../src/client.cpp" line="946"/>
         <source>Demo running</source>
         <translation>Køyrer demonstrasjon</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="681"/>
+        <location filename="../src/client.cpp" line="950"/>
         <source>Desktop locked</source>
         <translation>Skrivebordet er låst</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="60"/>
-        <source>View live</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../src/client.cpp" line="63"/>
         <source>Send text message</source>
-        <translation type="unfinished">Send tekstmelding</translation>
-    </message>
-    <message>
-        <location filename="../src/client.cpp" line="66"/>
-        <source>Take a snapshot</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Send tekstmelding</translation>
     </message>
     <message>
         <location filename="../src/client.cpp" line="205"/>
         <source>Overview</source>
+        <translation type="obsolete">Oversikt</translation>
+    </message>
+</context>
+<context>
+    <name>clientAction</name>
+    <message>
+        <location filename="../src/client.cpp" line="351"/>
+        <source>Are you sure want logout all users on all visible computers ?</source>
+        <translation type="unfinished">Er du sikker på at du vil logge av brukarane på dei synlege maskinane ?</translation>
+    </message>
+    <message>
+        <location filename="../src/client.cpp" line="352"/>
+        <source>Are you sure want logout all users on all selected computers ?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/client.cpp" line="354"/>
+        <source>Logout user</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/client.cpp" line="365"/>
+        <source>Are you sure want to reboot all visible computers?</source>
+        <translation type="unfinished">Vil du starte alle dei synlege maskinane om at?</translation>
+    </message>
+    <message>
+        <location filename="../src/client.cpp" line="366"/>
+        <source>Are you sure want to reboot all selected computers?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/client.cpp" line="382"/>
+        <source>Reboot computers</source>
+        <translation type="unfinished">Start maskinane om at</translation>
+    </message>
+    <message>
+        <location filename="../src/client.cpp" line="379"/>
+        <source>Are you sure want to power down all visible computers?</source>
+        <translation type="unfinished">Er du sikker på at du vil skru av alle dei synlege maskinane?</translation>
+    </message>
+    <message>
+        <location filename="../src/client.cpp" line="380"/>
+        <source>Are you sure want to power down all selected computers?</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>clientMenu</name>
+    <message>
+        <location filename="../src/client.cpp" line="415"/>
+        <source>Overview</source>
         <translation type="unfinished">Oversikt</translation>
+    </message>
+    <message>
+        <location filename="../src/client.cpp" line="417"/>
+        <source>Fullscreen demo</source>
+        <translation type="unfinished">Fullskjerm demonstrasjon</translation>
+    </message>
+    <message>
+        <location filename="../src/client.cpp" line="419"/>
+        <source>Window demo</source>
+        <translation type="unfinished">Demonstrasjon i vindauge</translation>
+    </message>
+    <message>
+        <location filename="../src/client.cpp" line="421"/>
+        <source>Locked display</source>
+        <translation type="unfinished">Lås skjermbilete</translation>
+    </message>
+    <message>
+        <location filename="../src/client.cpp" line="425"/>
+        <source>View live</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/client.cpp" line="428"/>
+        <source>Remote control</source>
+        <translation type="unfinished">Fjernkontroll</translation>
+    </message>
+    <message>
+        <location filename="../src/client.cpp" line="431"/>
+        <source>Let student show demo</source>
+        <translation type="unfinished">La elev vise demonstrasjon</translation>
+    </message>
+    <message>
+        <location filename="../src/client.cpp" line="435"/>
+        <source>Send text message</source>
+        <translation type="unfinished">Send tekstmelding</translation>
+    </message>
+    <message>
+        <location filename="../src/client.cpp" line="439"/>
+        <source>Logon user</source>
+        <translation type="unfinished">Logg på brukar</translation>
+    </message>
+    <message>
+        <location filename="../src/client.cpp" line="441"/>
+        <source>Logout user</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/client.cpp" line="445"/>
+        <source>Take a snapshot</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/client.cpp" line="449"/>
+        <source>Power on</source>
+        <translation type="unfinished">Skru på</translation>
+    </message>
+    <message>
+        <location filename="../src/client.cpp" line="451"/>
+        <source>Reboot</source>
+        <translation type="unfinished">Start om att</translation>
+    </message>
+    <message>
+        <location filename="../src/client.cpp" line="453"/>
+        <source>Power down</source>
+        <translation type="unfinished">Skru av</translation>
+    </message>
+    <message>
+        <location filename="../src/client.cpp" line="455"/>
+        <source>Execute commands</source>
+        <translation type="unfinished">Køyr kommando</translation>
     </message>
 </context>
 <context>
@@ -974,52 +1085,52 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="249"/>
+        <location filename="../src/main_window.cpp" line="247"/>
         <source>Text message</source>
         <translation>Tekstmelding</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="246"/>
+        <location filename="../src/main_window.cpp" line="244"/>
         <source>Send text message</source>
         <translation>Send tekstmelding</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="251"/>
+        <location filename="../src/main_window.cpp" line="249"/>
         <source>Use this button to send a text message to all users e.g. to tell them new tasks etc.</source>
         <translation>Bruk denne knappen for å sende tekstmeldingar til alle brukarane td. gje beskjed om ei ny oppgåve.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="259"/>
+        <location filename="../src/main_window.cpp" line="257"/>
         <source>Power on</source>
         <translation>Skru på</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="256"/>
+        <location filename="../src/main_window.cpp" line="254"/>
         <source>Power on computers</source>
         <translation>Skru på maskinar</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="262"/>
+        <location filename="../src/main_window.cpp" line="260"/>
         <source>Click this button to power on all visible computers. This way you do not have to turn on each computer by hand.</source>
         <translation>Trykk denne knappen for å skru på alle dei synlege maskinane på ein gong.</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="270"/>
+        <location filename="../src/main_window.cpp" line="268"/>
         <source>Power down</source>
         <translation>Skru av</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="267"/>
+        <location filename="../src/main_window.cpp" line="265"/>
         <source>Power down computers</source>
         <translation>Skru av maskinar</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="273"/>
+        <location filename="../src/main_window.cpp" line="271"/>
         <source>To power down all shown computers (e.g. after the lesson has finished) you can click this button.</source>
         <translation>Trykk her for å skru av alle synlege maskinar (td. etter ein time eller i slutten av dagen).</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="279"/>
+        <location filename="../src/main_window.cpp" line="277"/>
         <source>Logon</source>
         <translation>Logg på</translation>
     </message>
@@ -1029,53 +1140,53 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Logg på fleire</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="297"/>
+        <location filename="../src/main_window.cpp" line="295"/>
         <source>Adjust/align</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="298"/>
+        <location filename="../src/main_window.cpp" line="296"/>
         <source>Adjust windows and their size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="301"/>
+        <location filename="../src/main_window.cpp" line="299"/>
         <source>When clicking this button the biggest possible size for the client-windows is adjusted. Furthermore all windows are aligned.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="306"/>
+        <location filename="../src/main_window.cpp" line="304"/>
         <source>Auto view</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="307"/>
+        <location filename="../src/main_window.cpp" line="305"/>
         <source>Auto re-arrange windows and their size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="309"/>
+        <location filename="../src/main_window.cpp" line="307"/>
         <source>When clicking this button all visible windows are re-arranged and adjusted.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="350"/>
+        <location filename="../src/main_window.cpp" line="356"/>
         <source>No valid keys found</source>
         <translation>Klarte ikkje finne ein / fleire gyldige nøklar</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="356"/>
+        <location filename="../src/main_window.cpp" line="362"/>
         <source>No authentication-keys were found or your old ones were broken. Please create a new key-pair using ICA (see documentation at http://italc.sf.net/wiki/index.php?title=Installation).
 Otherwise you won&apos;t be able to access computers using iTALC.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="365"/>
+        <location filename="../src/main_window.cpp" line="371"/>
         <source>iTALC service not running</source>
         <translation>iTALC tenesta køyrar ikkje</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="370"/>
+        <location filename="../src/main_window.cpp" line="376"/>
         <source>There seems to be no iTALC service running on this computer or the authentication-keys aren&apos;t set up properly. The service is required for running iTALC. Contact your administrator for solving this problem.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1095,12 +1206,12 @@ Otherwise you won&apos;t be able to access computers using iTALC.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="280"/>
+        <location filename="../src/main_window.cpp" line="278"/>
         <source>Remote logon</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="283"/>
+        <location filename="../src/main_window.cpp" line="281"/>
         <source>After clicking this button you can enter a username and password to log on the according user on all visible computers.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1120,32 +1231,32 @@ Otherwise you won&apos;t be able to access computers using iTALC.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="288"/>
+        <location filename="../src/main_window.cpp" line="286"/>
         <source>Support</source>
         <translation type="unfinished">Støtte</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="289"/>
+        <location filename="../src/main_window.cpp" line="287"/>
         <source>Direct support</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="292"/>
+        <location filename="../src/main_window.cpp" line="290"/>
         <source>If you need to support someone at a certain computer you can click this button and enter the according hostname or IP afterwards.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="386"/>
+        <location filename="../src/main_window.cpp" line="392"/>
         <source>iTALC Master Control</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="487"/>
+        <location filename="../src/main_window.cpp" line="498"/>
         <source>Remote control</source>
         <translation type="unfinished">Fjernkontroll</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="503"/>
+        <location filename="../src/main_window.cpp" line="514"/>
         <source>Quit</source>
         <translation type="unfinished">Avslutt</translation>
     </message>

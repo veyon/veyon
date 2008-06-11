@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="ru_RU">
-<defaultcodec></defaultcodec>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../src/local_system.cpp" line="51"/>
+        <location filename="../src/local_system.cpp" line="52"/>
         <source>UPL (note for translators: the first three characters of this string are the accellerators (underlined characters) of the three input-fields in logon-dialog of windows - please keep this note as otherwise there are strange errors concerning logon-feature)</source>
         <translation>UPL (заметка для переводчиков: первые три символа этой строки являются акселераторами (подчеркнутыми символами) трех полей ввода в диалоговом окне входа - имейте это ввиду, иначе можете получить странные ошибки относительно возможностей входа)</translation>
     </message>
     <message>
-        <location filename="../src/local_system.cpp" line="635"/>
+        <location filename="../src/local_system.cpp" line="642"/>
         <source>iTALC-snapshots</source>
         <translation>Снимки экрана iTALC</translation>
     </message>

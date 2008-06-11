@@ -5,19 +5,6 @@
     <message>
         <location filename="../src/main.cpp" line="82"/>
         <source>File does not exist</source>
-        <translation type="obsolete">Súbor neexistuje</translation>
-    </message>
-    <message>
-        <location filename="../src/main.cpp" line="86"/>
-        <source>The file %1 could not be found. Please check this and try again.</source>
-        <translation type="obsolete">Nemôžem nájsť súbor %1. Skontrolujte to prosím a skúste to znova.</translation>
-    </message>
-</context>
-<context>
-    <name>@default</name>
-    <message>
-        <location filename="../src/main.cpp" line="82"/>
-        <source>File does not exist</source>
         <translation type="unfinished">Súbor neexistuje</translation>
     </message>
     <message>

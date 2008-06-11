@@ -102,31 +102,31 @@ p, li { white-space: pre-wrap; }
         <translation>Διεύθυνση IP</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="770"/>
+        <location filename="../src/classroom_manager.cpp" line="841"/>
         <source>No configuration-file found</source>
         <translation>Δε βρέθηκε αρχείο εγκατάστασης</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="779"/>
+        <location filename="../src/classroom_manager.cpp" line="850"/>
         <source>Could not open configuration file %1.
 You will have to add at least one classroom and computers using the classroom-manager which you&apos;ll find inside the program in the sidebar on the left side.</source>
         <translation>Αδύνατο το άνοιγμα αρχείου εγκατάστασης %1.
 Πρέπει να προσθέσετε τουλάχιστον μία τάξη και υπολογιστές με τη Διαχείριση Τάξης που θα βρείτε στην αριστερή μπάρα του προγράμματος.</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="860"/>
+        <location filename="../src/classroom_manager.cpp" line="931"/>
         <source>Error in configuration-file</source>
         <translation>Σφάλμα στο αρχείο εγκατάστασης</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="798"/>
+        <location filename="../src/classroom_manager.cpp" line="869"/>
         <source>Error while parsing configuration-file %1.
 Please edit it. Otherwise you should delete this file and have to add all classrooms and computers again.</source>
         <translation>Σφάλμα κατά την επεξεργασία του αρχείου εγκατάστασης %1.
 Παρακαλώ διορθώστε το. Διαφορετικά, θα πρέπει να διαγράψετε το αρχείο και να προσθέσετε όλες τις τάξεις και υπολογιστές πάλι.</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="865"/>
+        <location filename="../src/classroom_manager.cpp" line="936"/>
         <source>Error while parsing configuration-file %1.
 Please edit it. Otherwise you should delete this file.</source>
         <translation>Σφάλμα κατά την επεξεργασία του αρχείου εγκατάστασης %1.
@@ -168,7 +168,7 @@ Please edit it. Otherwise you should delete this file.</source>
         <translation>Διαγραφή</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1346"/>
+        <location filename="../src/classroom_manager.cpp" line="1417"/>
         <source>Actions</source>
         <translation>Ενέργειες</translation>
     </message>
@@ -188,12 +188,12 @@ Please edit it. Otherwise you should delete this file.</source>
         <translation>Επεξεργασία ονόματος</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1588"/>
+        <location filename="../src/classroom_manager.cpp" line="1667"/>
         <source>Remove classroom</source>
         <translation>Διαγραφή τάξης</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1323"/>
+        <location filename="../src/classroom_manager.cpp" line="1394"/>
         <source>Actions for %1</source>
         <translation>Ενέργειες για %1</translation>
     </message>
@@ -203,7 +203,7 @@ Please edit it. Otherwise you should delete this file.</source>
         <translation type="obsolete">Ενέργειες για όλη την τάξη</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1670"/>
+        <location filename="../src/classroom_manager.cpp" line="1749"/>
         <source>Add computer</source>
         <translation>Πρόσθεση υπολογιστή</translation>
     </message>
@@ -213,41 +213,41 @@ Please edit it. Otherwise you should delete this file.</source>
         <translation>Πρόσθεση τάξης</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1564"/>
+        <location filename="../src/classroom_manager.cpp" line="1643"/>
         <source>New name for classroom</source>
         <translation>Νέο όνομα για τάξη</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1566"/>
+        <location filename="../src/classroom_manager.cpp" line="1645"/>
         <source>Please enter a new name for classroom &quot;%1&quot;.</source>
         <translation>Παρακαλώ εισάγετε νέο όνομα για την τάξη &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1591"/>
+        <location filename="../src/classroom_manager.cpp" line="1670"/>
         <source>Are you sure want to remove classroom &quot;%1&quot;?
 All computers in it will be removed as well!</source>
         <translation>Είστε σίγουρος/η ότι θέλετε να διαγράψετε την τάξη &quot;%1&quot;;
 Προσοχή! Όλοι οι υπολογιστές της τάξης θα διαγραφούν!</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1637"/>
+        <location filename="../src/classroom_manager.cpp" line="1716"/>
         <source>Missing classroom</source>
         <translation>Κενή τάξη</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1643"/>
+        <location filename="../src/classroom_manager.cpp" line="1722"/>
         <source>Before adding computers you have to create at least one classroom.
 Do you want to create a new classrom now?</source>
         <translation>Πριν την πρόσθεση υπολογιστών πρέπει να δημιουργήσετε τουλάχιστον μία τάξη.
 Θέλετε να δημιουργήσετε μία νέα τάξη τώρα;</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1686"/>
+        <location filename="../src/classroom_manager.cpp" line="1765"/>
         <source>New classroom</source>
         <translation>Νέα τάξη</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1685"/>
+        <location filename="../src/classroom_manager.cpp" line="1764"/>
         <source>Please enter the name of the classroom you want to create.</source>
         <translation>Παρακαλώ εισάγετε το όνομα της τάξης που θέλετε να δημιουργήσετε.</translation>
     </message>
@@ -315,17 +315,17 @@ Sono disponibili ulteriori comandi nel menu contestuale dei computer e delle aul
         <translation type="obsolete">Ordina e adatta finestre</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="924"/>
+        <location filename="../src/classroom_manager.cpp" line="995"/>
         <source>Select output-file</source>
         <translation>Επιλέξτε αρχείο εξόδου</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="926"/>
+        <location filename="../src/classroom_manager.cpp" line="997"/>
         <source>Text files (*.txt)</source>
         <translation>Αρχεία κειμένου (*.txt)</translation>
     </message>
     <message>
-        <location filename="../src/classroom_manager.cpp" line="1289"/>
+        <location filename="../src/classroom_manager.cpp" line="1360"/>
         <source>Actions for selected</source>
         <translation type="unfinished"></translation>
     </message>
@@ -388,27 +388,27 @@ Sono disponibili ulteriori comandi nel menu contestuale dei computer e delle aul
         <translation type="obsolete">Κλειδωμένη οθόνη</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="891"/>
+        <location filename="../src/client.cpp" line="930"/>
         <source>Unknown state</source>
         <translation>Άγνωστη κατάσταση</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="899"/>
+        <location filename="../src/client.cpp" line="938"/>
         <source>No user logged in</source>
         <translation>Κανείς χρήστης συνδεδεμένος</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="903"/>
+        <location filename="../src/client.cpp" line="942"/>
         <source>Host unreachable</source>
         <translation>Υπολογιστής εκτός σύνδεσης</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="907"/>
+        <location filename="../src/client.cpp" line="946"/>
         <source>Demo running</source>
         <translation>Επίδειξη σε εκτέλεση</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="911"/>
+        <location filename="../src/client.cpp" line="950"/>
         <source>Desktop locked</source>
         <translation>Επιφάνεια εργασίας κλειδωμένη</translation>
     </message>
@@ -436,42 +436,42 @@ Sono disponibili ulteriori comandi nel menu contestuale dei computer e delle aul
 <context>
     <name>clientAction</name>
     <message>
-        <location filename="../src/client.cpp" line="312"/>
+        <location filename="../src/client.cpp" line="351"/>
         <source>Are you sure want logout all users on all visible computers ?</source>
         <translation type="unfinished">Είστε σίγουρος/η ότι θέλετε να αποσυνδεθούν οι χρήστες στους ορατούς υπολογιστές;</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="313"/>
+        <location filename="../src/client.cpp" line="352"/>
         <source>Are you sure want logout all users on all selected computers ?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="315"/>
+        <location filename="../src/client.cpp" line="354"/>
         <source>Logout user</source>
         <translation type="unfinished">Αποσύνδεση χρήστη</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="326"/>
+        <location filename="../src/client.cpp" line="365"/>
         <source>Are you sure want to reboot all visible computers?</source>
         <translation type="unfinished">Είστε σίγουρος/η ότι θέλετε να επανεκκινήσετε όλους τους ορατούς υπολογιστές;</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="327"/>
+        <location filename="../src/client.cpp" line="366"/>
         <source>Are you sure want to reboot all selected computers?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="343"/>
+        <location filename="../src/client.cpp" line="382"/>
         <source>Reboot computers</source>
         <translation type="unfinished">Επανεκκίνηση υπολογιστών</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="340"/>
+        <location filename="../src/client.cpp" line="379"/>
         <source>Are you sure want to power down all visible computers?</source>
         <translation type="unfinished">Είστε σίγουρος/η ότι θέλετε να τερματίσουν όλοι οι ορατοί υπολογιστές;</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="341"/>
+        <location filename="../src/client.cpp" line="380"/>
         <source>Are you sure want to power down all selected computers?</source>
         <translation type="unfinished"></translation>
     </message>
@@ -479,77 +479,77 @@ Sono disponibili ulteriori comandi nel menu contestuale dei computer e delle aul
 <context>
     <name>clientMenu</name>
     <message>
-        <location filename="../src/client.cpp" line="376"/>
+        <location filename="../src/client.cpp" line="415"/>
         <source>Overview</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="378"/>
+        <location filename="../src/client.cpp" line="417"/>
         <source>Fullscreen demo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="380"/>
+        <location filename="../src/client.cpp" line="419"/>
         <source>Window demo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="382"/>
+        <location filename="../src/client.cpp" line="421"/>
         <source>Locked display</source>
         <translation type="unfinished">Κλειδωμένη οθόνη</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="386"/>
+        <location filename="../src/client.cpp" line="425"/>
         <source>View live</source>
         <translation type="unfinished">Ζωντανή παρακολούθηση</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="389"/>
+        <location filename="../src/client.cpp" line="428"/>
         <source>Remote control</source>
         <translation type="unfinished">Απομακρυσμένος έλεγχος</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="392"/>
+        <location filename="../src/client.cpp" line="431"/>
         <source>Let student show demo</source>
         <translation type="unfinished">Επίδειξη οθόνης μαθητή</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="396"/>
+        <location filename="../src/client.cpp" line="435"/>
         <source>Send text message</source>
         <translation type="unfinished">Αποστολή μηνύματος κειμένου</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="400"/>
+        <location filename="../src/client.cpp" line="439"/>
         <source>Logon user</source>
         <translation type="unfinished">Σύνδεση χρήστη</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="402"/>
+        <location filename="../src/client.cpp" line="441"/>
         <source>Logout user</source>
         <translation type="unfinished">Αποσύνδεση χρήστη</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="406"/>
+        <location filename="../src/client.cpp" line="445"/>
         <source>Take a snapshot</source>
         <translation type="unfinished">Βγάλε ένα στιγμιότυπο</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="410"/>
+        <location filename="../src/client.cpp" line="449"/>
         <source>Power on</source>
         <translation type="unfinished">Εκκίνηση</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="412"/>
+        <location filename="../src/client.cpp" line="451"/>
         <source>Reboot</source>
         <translation type="unfinished">Επανεκκίνηση</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="414"/>
+        <location filename="../src/client.cpp" line="453"/>
         <source>Power down</source>
         <translation type="unfinished">Τερματισμός</translation>
     </message>
     <message>
-        <location filename="../src/client.cpp" line="416"/>
+        <location filename="../src/client.cpp" line="455"/>
         <source>Execute commands</source>
         <translation type="unfinished">Εκτέλεση εντολών</translation>
     </message>
@@ -1250,12 +1250,12 @@ Otherwise you won&apos;t be able to access computers using iTALC.</source>
         <translation>iTALC Πίνακας Ελέγχου</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="493"/>
+        <location filename="../src/main_window.cpp" line="498"/>
         <source>Remote control</source>
         <translation>Απομακρυσμένος έλεγχος</translation>
     </message>
     <message>
-        <location filename="../src/main_window.cpp" line="509"/>
+        <location filename="../src/main_window.cpp" line="514"/>
         <source>Quit</source>
         <translation>Τερματισμός</translation>
     </message>

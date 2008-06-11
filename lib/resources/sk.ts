@@ -8,7 +8,7 @@
         <translation>UPL</translation>
     </message>
     <message>
-        <location filename="../src/local_system.cpp" line="635"/>
+        <location filename="../src/local_system.cpp" line="642"/>
         <source>iTALC-snapshots</source>
         <translation>iTALC-záber</translation>
     </message>
