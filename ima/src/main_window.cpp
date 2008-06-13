@@ -64,6 +64,7 @@ QSystemTrayIcon * __systray_icon = NULL;
 
 
 extern int __isd_port;
+extern QString __isd_host;
 
 
 bool mainWindow::ensureConfigPathExists( void )
@@ -364,7 +365,7 @@ mainWindow::mainWindow( int _rctrl_screen ) :
 		break;
 	}
 	m_localISD = new isdConnection( QHostAddress(
-				QHostAddress::LocalHost).toString() +
+				__isd_host ).toString() +
 					":" + QString::number( __isd_port ) );
 	if( m_localISD->open() != isdConnection::Connected )
 	{

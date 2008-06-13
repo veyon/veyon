@@ -1,3 +1,13 @@
+2008-06-13	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* ica/src/isd_server.cpp:
+	* ima/src/main.cpp:
+	* ima/src/main_window.cpp:
+	* ima/italc.1:
+	applied patch by Stephane Graber <stgraber/at/gmail/dot/com> which
+	adds -isdhost option in order to connect to local ISD's in
+	TC-environments
+
 2008-06-11	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* ica/resources/cs.qm:

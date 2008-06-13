@@ -42,6 +42,7 @@ QString __default_domain;
 int __demo_quality = 0;
 
 int __isd_port = PortOffsetISD;
+QString __isd_host = "127.0.0.1";
 
 
 // good old main-function... initializes qt-app and starts iTALC
@@ -148,6 +149,11 @@ int main( int argc, char * * argv )
 		{
 			__isd_port = arg_it.next().toInt();
 		}
+		else if( a == "-isdhost" && arg_it.hasNext() )
+		{
+			__isd_host = arg_it.next();
+		}
+
 	}
 
 

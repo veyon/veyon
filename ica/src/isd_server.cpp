@@ -59,7 +59,7 @@ isdServer::isdServer( const quint16 _ivs_port, int _argc, char * * _argv ) :
 	m_lockWidget( NULL )
 {
 	if( __isd_server ||
-			listen( QHostAddress::LocalHost, __isd_port ) == FALSE )
+			listen( QHostAddress::Any, __isd_port ) == FALSE )
 	{
 		// uh oh, already an ISD running or port isn't available...
 		qCritical( "isdServer::isdServer(...): "
