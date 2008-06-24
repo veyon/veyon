@@ -59,10 +59,11 @@ enum mark_8bpp_modes {
 	MARK_8BPP_TOP
 };
 
+
 #define NCOLOR 256
 
 static Colormap root_cmap = 0;
-static unsigned int root_rgb[NCOLOR];
+static unsigned int *root_rgb = NULL;
 
 static void set_root_cmap(void) {
 #if NO_X11
@@ -72,10 +73,24 @@ static void set_root_cmap(void) {
 	static time_t last_set = 0;
 	time_t now = time(NULL);
 	XWindowAttributes attr;
-	static XColor color[NCOLOR];
+	static XColor *color = NULL;
 	int redo = 0;
+	int ncolor = 0;
 
 	RAWFB_RET_VOID
+
+	if (depth > 8) {
+		ncolor = 1 << depth;
+	} else {
+		ncolor = NCOLOR;
+	}
+
+	if (!root_rgb) {
+		root_rgb = (unsigned int *) malloc(ncolor * sizeof(unsigned int));
+	}
+	if (!color) {
+		color = (XColor *) malloc(ncolor * sizeof(XColor));
+	}
 
 	if (now > last_set + 10) {
 		redo = 1;
@@ -87,7 +102,11 @@ static void set_root_cmap(void) {
 			return;
 		}
 		if (attr.colormap) {
-			int i, ncells = NCOLOR;
+			int i, ncells = ncolor;
+
+			if (depth < 8) {
+				ncells = CellsOfScreen(ScreenOfDisplay(dpy, scr));
+			}
 			for (i=0; i < ncells; i++) {
 				color[i].pixel = i;
 				color[i].pad = 0;
@@ -236,7 +255,11 @@ static void set_poll_fb(void) {
 		return;		/* this saves a bit of RAM */
 	}
 	pfb(4, &poll24_fb, &poll24_fb_w, &poll24_fb_h);
-	pfb(1, &poll8_fb,  &poll8_fb_w,  &poll8_fb_h);
+	if (depth > 8) {
+		pfb(2, &poll8_fb,  &poll8_fb_w,  &poll8_fb_h);	/* 2X for rare 16bpp colormap case */
+	} else {
+		pfb(1, &poll8_fb,  &poll8_fb_w,  &poll8_fb_h);
+	}
 }
 
 int MV_glob = 0;
@@ -428,7 +451,7 @@ if (db24 > 2) fprintf(stderr, " check_for_multivis: %.4f\n", now - last_call);
 		if (check_depth(win, win, doall)) {
 			/*
 			 * returns 1 if no need to recurse down e.g. It
-			 * is 8bpp and we assume all lower one are too.
+			 * is 8bpp and we assume all lower ones are too.
 			 */
 			continue;
 		}
@@ -529,7 +552,7 @@ if (0) fprintf(stderr, "MV_count: %d hit: %d %.4f  %10.2f\n", MV_count, MV_hit, 
 		mark_8bpp(MARK_8BPP_ALL);
 		last_poll = now;
 
-	} else if (depth == 8 && multivis_24count) {
+	} else if (depth <= 16 && multivis_24count) {
 		static double last_check = 0.0;
 		if (now > last_check + 0.4) {
 			last_check = now;
@@ -656,8 +679,7 @@ static int check_depth_win(Window win, Window top, XWindowAttributes *attr) {
 	if (attr->depth > 0) {
 		if (depth == 24 && attr->depth != 24) {
 			store_it = 1;
-		} else if (depth == 8 && root_cmap && attr->colormap !=
-		    root_cmap) {
+		} else if (depth <= 16 && root_cmap && attr->colormap != root_cmap) {
 			store_it = 1;
 		}
 	}
@@ -759,6 +781,7 @@ if (db24 > 1) fprintf(stderr, "          ------------ 0x%lx i=%d\n", windows_8bp
 	return 0;
 }
 
+/* polling line XImage */
 static XImage *p_xi(XImage *xi, Visual *visual, int win_depth, int *w) {
 	RAWFB_RET(NULL)
 
@@ -771,8 +794,12 @@ static XImage *p_xi(XImage *xi, Visual *visual, int win_depth, int *w) {
 		if (xi) {
 			XDestroyImage(xi);
 		}
-		if (win_depth == 8) {
-			d = (char *) malloc(dpy_x * 1);
+		if (win_depth != 24) {
+			if (win_depth > 8) {
+				d = (char *) malloc(dpy_x * 2);
+			} else {
+				d = (char *) malloc(dpy_x * 1);
+			}
 		} else {
 			d = (char *) malloc(dpy_x * 4);
 		}
@@ -837,14 +864,18 @@ static int poll_line(int x1, int x2, int y1, int n, sraRegionPtr mod) {
 		last_win = win;
 	}
 
-	if (attr.depth != 8 && attr.depth != 24) {
+	if (attr.depth > 16 && attr.depth != 24) {
 		X_UNLOCK;
 		return 1;
-	} else if (attr.depth == 8) {
-		xi = xi8 = p_xi(xi8, attr.visual, 8, &xi8_w);
+	} else if (attr.depth <= 16) {
+		xi = xi8 = p_xi(xi8, attr.visual, attr.depth, &xi8_w);
 
 		poll_fb = poll8_fb;
-		fac = 1;
+		if (attr.depth > 8) {
+			fac = 2;
+		} else {
+			fac = 1;
+		}
 		n_off = poll8_fb_w * y1 + x1;
 	} else {
 		xi = xi24 = p_xi(xi24, attr.visual, 24, &xi24_w);
@@ -1280,7 +1311,7 @@ if (db24 > 1) fprintf(stderr, "subtract:  0x%lx %d -- %d %d %d %d\n", swin, k, s
 					break;
 				}
 			}
-			if (! seen && attr.depth == 8) {
+			if (!seen && attr.depth <= 16) {
 				/* store only new ones: */
 				cmaps[ncmaps++] = attr.colormap;
 			}
@@ -1292,10 +1323,11 @@ if (db24 > 1) fprintf(stderr, "subtract:  0x%lx %d -- %d %d %d %d\n", swin, k, s
 	return mapcount;
 }
 
-static XColor color[CMAPMAX][NCOLOR];
-static unsigned int rgb[CMAPMAX][NCOLOR];
+static XColor *color[CMAPMAX];
+static unsigned int *rgb[CMAPMAX];
 static int cmap_failed[CMAPMAX];
-int histo[256];
+static int color_init = 0;
+int histo[65536];
 
 static int get_cmap(int j, Colormap cmap) {
 #if NO_X11
@@ -1303,27 +1335,38 @@ static int get_cmap(int j, Colormap cmap) {
 	if (!j || !cmap) {}
 	return 0;
 #else
-	int i, ncells;
+	int i, ncells, ncolor;
 	XErrorHandler old_handler = NULL;
 
 	RAWFB_RET(0)
 
-	if (0) {
+	if (depth > 8) {
+		ncolor = 1 << depth;
+	} else {
+		ncolor = NCOLOR;
+	}
+	if (!color_init) {
+		int cm;
+		for (cm = 0; cm < CMAPMAX; cm++) {
+			color[cm] = (XColor *) malloc(ncolor * sizeof(XColor));
+			rgb[cm] = (unsigned int *) malloc(ncolor * sizeof(unsigned int));
+		}
+		color_init = 1;
+	}
+
+	if (depth <= 16) {
 		/* not working properly for depth 24... */
 		X_LOCK;
 		ncells = CellsOfScreen(ScreenOfDisplay(dpy, scr));
 		X_UNLOCK;
-	} else {
-		ncells = NCOLOR;
 	}
 if (db24 > 1) fprintf(stderr, "get_cmap: %d 0x%x\n", j, (unsigned int) cmap);
 
-	/* ncells should "always" be 256. */
-	if (ncells > NCOLOR) {
-		ncells = NCOLOR;
-	} else if (ncells == 8) {
-		/* hmmm. see set_colormap() */
-		ncells = NCOLOR;
+	if (ncells > ncolor) {
+		ncells = ncolor;
+	} else if (ncells == 8 && depth != 3) {
+		/* XXX. see set_colormap() */
+		ncells = 1 << depth;
 	}
 
 	/* initialize XColor array: */
@@ -1404,7 +1447,7 @@ if (db24 > 1) fprintf(stderr, "ncmaps: %d\n", ncmaps);
 		}
 	}
 
-	if (windows_8bpp[n].depth == 8) {	/* 24 won't have a cmap */
+	if (windows_8bpp[n].depth != 24) {	/* 24 won't have a cmap */
 		if (failed || cm == -1) {
 			return;
 		}
@@ -1448,17 +1491,18 @@ static XImage *cmap_xi(XImage *xi, Window win, int win_depth) {
 	if (! dpy || ! valid_window(win, &attr, 1)) {
 		return (XImage *) NULL;
 	}
-	if (attr.depth != win_depth) {
-		return (XImage *) NULL;
-	} else if (win_depth == 8) {
-		d = (char *) malloc(dpy_x * dpy_y * 1);
-	} else if (win_depth == 24) {
+	if (win_depth == 24) {
 		d = (char *) malloc(dpy_x * dpy_y * 4);
+	} else if (win_depth <= 16) {
+		if (win_depth > 8) {
+			d = (char *) malloc(dpy_x * dpy_y * 2);
+		} else {
+			d = (char *) malloc(dpy_x * dpy_y * 1);
+		}
 	} else {
 		return (XImage *) NULL;
 	}
-	return XCreateImage(dpy, attr.visual, win_depth, ZPixmap, 0, d, dpy_x,
-	    dpy_y, 8, 0);
+	return XCreateImage(dpy, attr.visual, win_depth, ZPixmap, 0, d, dpy_x, dpy_y, 8, 0);
 #endif	/* NO_X11 */
 }
 
@@ -1472,6 +1516,7 @@ static void transform_rect(sraRect rect, Window win, int win_depth, int cm) {
 
 	char *src, *dst, *poll;
 	unsigned int *ui;
+	unsigned short *us;
 	unsigned char *uc;
 	int ps, pixelsize = bpp/8;
 	int poll_Bpl;
@@ -1495,7 +1540,7 @@ if (db24 > 1) fprintf(stderr, "transform %4d %4d %4d %4d cm: %d\n", rect.x1, rec
 	h = rect.y2 - rect.y1;
 	w = rect.x2 - rect.x1;
 
-	if (depth == 8) {
+	if (depth != 24) {
 		/* need to fetch depth 24 data. */
 		do_getimage = 1;
 	}
@@ -1524,20 +1569,31 @@ if (db24 > 1) fprintf(stderr, "transform %4d %4d %4d %4d cm: %d\n", rect.x1, rec
 		X_LOCK;
 #define GETSUBIMAGE
 #ifdef GETSUBIMAGE
-		if (win_depth == 8) {
-			if (xi_8 == NULL || xi_8->width != dpy_x ||
-			    xi_8->height != dpy_y) {
-				xi_8 = cmap_xi(xi_8, win, 8);
-			}
-			xi = xi_8;
-		} else if (win_depth == 24) {
+		if (win_depth == 24) {
 			if (xi_24 == NULL || xi_24->width != dpy_x ||
 			    xi_24->height != dpy_y) {
 				xi_24 = cmap_xi(xi_24, win, 24);
 			}
 			xi = xi_24;
+		} else if (win_depth <= 16) {
+			if (xi_8 == NULL || xi_8->width != dpy_x ||
+			    xi_8->height != dpy_y) {
+				if (win_depth > 8) {
+					/* XXX */
+					xi_8 = cmap_xi(xi_8, win, 16);
+				} else {
+					xi_8 = cmap_xi(xi_8, win, 8);
+				}
+			}
+			xi = xi_8;
 		}
 #endif
+
+		if (xi == NULL) {
+			rfbLog("transform_rect: xi is NULL\n");
+			X_UNLOCK;
+			clean_up_exit(1);
+		}
 
 		old_handler = XSetErrorHandler(trap_xerror);
 		trapped_xerror = 0;
@@ -1578,7 +1634,7 @@ if (db24 > 1) fprintf(stderr, "xi: 0x%p  %d %d %d %d -- %d %d\n", (void *)xi, xo
 		}
 		trapped_xerror = 0;
 
-		if (xi->depth != 8 && xi->depth != 24) {
+		if (xi->depth > 16 && xi->depth != 24) {
 #ifndef GETSUBIMAGE
 			X_LOCK;
 			XDestroyImage(xi);
@@ -1590,56 +1646,21 @@ if (db24) fprintf(stderr, "xi: wrong depth: %d\n", xi->depth);
 
 		set_poll_fb();
 
-		if (xi->depth == 8) {
-			int ps1, ps2, fac;
-
-			if (depth == 8) {
-				ps1 = 1;
-				ps2 = 4;
-				fac = 4;
-			} else {
-				ps1 = 1;
-				ps2 = pixelsize;
-				fac = 1;
-			}
-
-			src = xi->data;
-			dst = cmap8to24_fb + fac * n_off;
-
-			poll = poll8_fb + poll8_fb_w * rect.y1 + rect.x1;
-			poll_Bpl = poll8_fb_w * 1;
-
-			/* line by line ... */
-			for (line = 0; line < h; line++) {
-				/* pixel by pixel... */
-				for (j = 0; j < w; j++) {
-
-					uc = (unsigned char *) (src + ps1 * j);
-					ui = (unsigned int *)  (dst + ps2 * j);
-
-					idx = (int) (*uc);
-
-					*ui = rgb[cm][idx];
-
-					*(poll + ps1 * j) = *uc;
-				}
-				src += xi->bytes_per_line;
-				dst += main_bytes_per_line * fac;
-				poll += poll_Bpl;
-			}
-		} else if (xi->depth == 24) {
+		if (xi->depth == 24) {
 			/* line by line ... */
 			int ps1 = 4, fac;
-			if (depth == 8) {
+			if (depth <= 8) {
 				fac = 4;
+			} else if (depth <= 16) {
+				fac = 2;
 			} else {
-				fac = 1;	/* will not happen */
+				fac = 1;	/* will not happen 24 on 24 */
 			}
 
 			src = xi->data;
 			dst = cmap8to24_fb + fac * n_off;
 
-			poll = poll24_fb + (poll24_fb_w * rect.y1 + rect.x1)*4;
+			poll = poll24_fb + (poll24_fb_w * rect.y1 + rect.x1) * 4;
 			poll_Bpl = poll24_fb_w * 4;
 
 			for (line = 0; line < h; line++) {
@@ -1648,6 +1669,53 @@ if (db24) fprintf(stderr, "xi: wrong depth: %d\n", xi->depth);
 
 				src += xi->bytes_per_line;
 				dst += main_bytes_per_line * fac;
+				poll += poll_Bpl;
+			}
+		} else if (xi->depth <= 16) {
+			int ps1, ps2, fac;
+
+			if (depth <= 8) {
+				ps1 = 1;
+				ps2 = 4;
+				fac = 4;
+			} else if (depth <= 16) {
+				ps1 = 2;
+				ps2 = 4;
+				fac = 4;
+			} else {
+				/* should be 24 case */
+				ps1 = 1;
+				ps2 = pixelsize;
+				fac = 1;
+			}
+
+			src = xi->data;
+			dst = cmap8to24_fb + (fac/ps1) * n_off;
+
+			poll = poll8_fb + poll8_fb_w * rect.y1 * ps1 + rect.x1 * ps1;
+			poll_Bpl = poll8_fb_w * ps1;
+
+			/* line by line ... */
+			for (line = 0; line < h; line++) {
+				/* pixel by pixel... */
+				for (j = 0; j < w; j++) {
+					if (ps1 == 2) {
+						unsigned short *ptmp;
+						us    = (unsigned short *) (src + ps1 * j);
+						idx   = (int) (*us);
+						ptmp  = (unsigned short *) (poll + ps1 * j);
+						*ptmp = *us;
+					} else {
+						uc  = (unsigned char *) (src + ps1 * j);
+						idx = (int) (*uc);
+						*(poll + ps1 * j) = *uc;
+					}
+					ui = (unsigned int *) (dst + ps2 * j);
+					*ui = rgb[cm][idx];
+
+				}
+				src += xi->bytes_per_line;
+				dst += main_bytes_per_line * (fac/ps1);
 				poll += poll_Bpl;
 			}
 		}
@@ -1661,11 +1729,12 @@ if (db24) fprintf(stderr, "xi: wrong depth: %d\n", xi->depth);
 	} else if (! do_getimage) {
 		int fac;
 
-		if (depth == 8) {
+		if (depth <= 16) {
 			/* cooked up depth 24 TrueColor  */
 			/* but currently disabled (high bits no useful?) */
 			ps = 4;
 			fac = 4;
+			/* XXX not correct for depth > 8, but do we ever come here in that case? */
 			src = cmap8to24_fb + 4 * n_off;
 		} else {
 			ps = pixelsize;
@@ -1697,6 +1766,7 @@ if (db24) fprintf(stderr, "xi: wrong depth: %d\n", xi->depth);
 void bpp8to24(int x1, int y1, int x2, int y2) {
 	char *src, *dst;
 	unsigned char *uc;
+	unsigned short *us;
 	unsigned int *ui;
 	int idx, pixelsize = bpp/8;
 	int line, k, i, j, h, w;
@@ -1741,18 +1811,34 @@ if (db24 > 1) fprintf(stderr, "bpp8to24 %d %d %d %d %.4f\n", x1, y1, x2, y2, dno
 	h = y2 - y1;
 	w = x2 - x1;
 
-	if (depth == 8) {
-		/* need to cook up to depth 24 TrueColor  */
-		/* pixelsize = 1 */
+	if (depth == 24) {
+		/* pixelsize = 4 */
+		n_off = main_bytes_per_line * y1 + pixelsize * x1;
 
+		src = main_fb      + n_off;
+		dst = cmap8to24_fb + n_off;
+
+		/* otherwise, the pixel data as is */
+		for (line = 0; line < h; line++) {
+			memcpy(dst, src, w * pixelsize);
+			src += main_bytes_per_line;
+			dst += main_bytes_per_line;
+		}
+	} else if (depth <= 16) {
+		/* need to cook up to depth 24 TrueColor  */
+		int ps1 = 1, ps2 = 4;
+		if (depth > 8) {
+			ps1 = 2;
+		}
+
+		/* pixelsize = 1, 2 */
 		n_off = main_bytes_per_line * y1 + pixelsize * x1;
 
 		src = main_fb + n_off;
-		dst = cmap8to24_fb + 4 * n_off;
+		dst = cmap8to24_fb + (4/ps1) * n_off;
 
 		set_root_cmap();
 		if (root_cmap) {
-			int ps1 = 1, ps2 = 4;
 #if 0
 			unsigned int hi;
 #endif
@@ -1761,11 +1847,14 @@ if (db24 > 1) fprintf(stderr, "bpp8to24 %d %d %d %d %.4f\n", x1, y1, x2, y2, dno
 			for (line = 0; line < h; line++) {
 				/* pixel by pixel... */
 				for (j = 0; j < w; j++) {
-
-					uc = (unsigned char *) (src + ps1 * j);
+					if (ps1 == 2) {
+						us = (unsigned short *) (src + ps1 * j);
+						idx = (int) (*us);
+					} else {
+						uc = (unsigned char *)  (src + ps1 * j);
+						idx = (int) (*uc);
+					}
 					ui = (unsigned int *)  (dst + ps2 * j);
-
-					idx = (int) (*uc);
 
 if (0 && line % 100 == 0 && j % 32 == 0) fprintf(stderr, "%d %d %u  x1=%d y1=%d\n", line, j, root_rgb[idx], x1, y1);
 #if 0
@@ -1779,23 +1868,10 @@ if (0 && line % 100 == 0 && j % 32 == 0) fprintf(stderr, "%d %d %u  x1=%d y1=%d\
 if (db24 > 2) histo[idx]++;
 				}
 				src += main_bytes_per_line;
-				dst += main_bytes_per_line * 4;
+				dst += main_bytes_per_line * (4/ps1);
 			}
 		}
 		
-	} else if (depth == 24) {
-		/* pixelsize = 4 */
-		n_off = main_bytes_per_line * y1 + pixelsize * x1;
-
-		src = main_fb      + n_off;
-		dst = cmap8to24_fb + n_off;
-
-		/* otherwise, the pixel data as is */
-		for (line = 0; line < h; line++) {
-			memcpy(dst, src, w * pixelsize);
-			src += main_bytes_per_line;
-			dst += main_bytes_per_line;
-		}
 	}
 
 	if (last_map_count > MAX_8BPP_WINDOWS/4) {
@@ -1871,7 +1947,7 @@ if (db24 > 1) fprintf(stderr, "bpp8to24 w=%d h=%d m=%p c=%p r=%p ncmaps=%d\n", w
 	 * now go back and transform and 8bpp regions to TrueColor in
 	 * cmap8to24_fb.
 	 */
-	if (last_map_count && (ncmaps || depth == 8)) {
+	if (last_map_count && (ncmaps || depth <= 16)) {
 		int i, j;
 		int win[MAX_8BPP_WINDOWS];
 		int did[MAX_8BPP_WINDOWS];

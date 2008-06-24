@@ -133,8 +133,6 @@ void selection_request(XEvent *ev, char *type) {
 		targets[0] = (Atom) xa_targets;
 		targets[1] = (Atom) XA_STRING;
 
-		data = (unsigned char *)str;
-
 		ret = XChangeProperty(ev->xselectionrequest.display,
 		    ev->xselectionrequest.requestor,
 		    ev->xselectionrequest.property,

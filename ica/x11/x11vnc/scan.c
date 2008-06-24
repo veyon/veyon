@@ -881,7 +881,10 @@ void scale_rect(double factor, int blend, int interpolate, int Bpp,
 	j1 = nfix(j1, ny);
 	j2 = nfix(j2, ny) + 1;
 
-	/* special case integer magnification with no blending */
+	/*
+	 * special case integer magnification with no blending.
+	 * vision impaired magnification usage is interested in this case.
+	 */
 	if (mark && ! blend && mag_int && Bpp != 3) {
 		int jmin, jmax, imin, imax;
 
@@ -1122,14 +1125,10 @@ void scale_rect(double factor, int blend, int interpolate, int Bpp,
 				 */
 				if (Bpp == 4) {
 					/* unroll the loops, can give 20% */
-					pixave[0] += w *
-					    ((unsigned char) *(src  ));
-					pixave[1] += w *
-					    ((unsigned char) *(src+1));
-					pixave[2] += w *
-					    ((unsigned char) *(src+2));
-					pixave[3] += w *
-					    ((unsigned char) *(src+3));
+					pixave[0] += w * ((unsigned char) *(src  ));
+					pixave[1] += w * ((unsigned char) *(src+1));
+					pixave[2] += w * ((unsigned char) *(src+2));
+					pixave[3] += w * ((unsigned char) *(src+3));
 				} else if (Bpp == 2) {
 					/*
 					 * 16bpp: trickier with green
@@ -1286,8 +1285,12 @@ void scale_and_mark_rect(int X1, int Y1, int X2, int Y2, int mark) {
 
 	if (cmap8to24 && cmap8to24_fb) {
 		src_fb = cmap8to24_fb;
-		if (scaling && depth == 8) {
-			fac = 4;
+		if (scaling) {
+			if (depth <= 8) {
+				fac = 4;
+			} else if (depth <= 16) {
+				fac = 2;
+			}
 		}
 	}
 	dst_fb = rfb_fb;

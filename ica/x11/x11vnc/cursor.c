@@ -976,8 +976,8 @@ static rfbCursorPtr pixels2curs(unsigned long *pixels, int w, int h,
 		first = 0;
 	}
 
-	if (cmap8to24 && cmap8to24_fb && depth == 8) {
-		if (Bpp == 1) {
+	if (cmap8to24 && cmap8to24_fb && depth <= 16) {
+		if (Bpp <= 2) {
 			Bpp = 4;
 		}
 	}

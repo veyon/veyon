@@ -195,7 +195,9 @@ void IVS::run( void )
 		}
 		return;
 	}
+#if 0
 	cmdline	<< "-dbg";// << "-o" << "/tmp/italc_client_x11vnc.log";
+#endif
 
 	char * old_av = m_argv[0];
 	m_argv = new char *[cmdline.size()+1];

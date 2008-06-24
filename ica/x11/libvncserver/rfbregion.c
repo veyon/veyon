@@ -620,8 +620,8 @@ rfbBool
 sraRgnPopRect(sraRegion *rgn, sraRect *rect, unsigned long flags) {
   sraSpan *vcurr, *hcurr;
   sraSpan *vend, *hend;
-  rfbBool right2left = flags & 2;
-  rfbBool bottom2top = flags & 1;
+  rfbBool right2left = (flags & 2) == 2;
+  rfbBool bottom2top = (flags & 1) == 1;
 
   /* - Pick correct order */
   if (bottom2top) {

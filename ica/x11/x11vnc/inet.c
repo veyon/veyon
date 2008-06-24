@@ -39,7 +39,7 @@ char *host2ip(char *host) {
 	}
 	memset(&addr, 0, sizeof(addr));
 	addr.sin_family = AF_INET;
-	addr.sin_addr.s_addr =  *(unsigned long *)hp->h_addr_list[0];
+	addr.sin_addr.s_addr =  *(unsigned long *)hp->h_addr;
 	str = strdup(inet_ntoa(addr.sin_addr));
 	return str;
 }

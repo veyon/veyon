@@ -1094,7 +1094,6 @@ rfbBool custom_passwd_check(rfbClientPtr cl, const char *response, int len) {
 }
 
 static void handle_one_http_request(void) {
-
 	rfbLog("handle_one_http_request: begin.\n");
 	if (inetd || screen->httpPort == 0) {
 		int port = find_free_port(5800, 5860);
@@ -1111,7 +1110,7 @@ static void handle_one_http_request(void) {
 	http_connections(1);
 	rfbInitServer(screen);
 
-	if (! inetd) {
+	if (!inetd) {
 		int conn = 0;
 		while (1) {
 			if (0) fprintf(stderr, "%d %d %d  %d\n", conn, screen->listenSock, screen->httpSock, screen->httpListenSock);
@@ -1136,6 +1135,7 @@ static void handle_one_http_request(void) {
 		rfbLog("handle_one_http_request: finished.\n");
 		return;
 	} else {
+		/* inetd case: */
 #if LIBVNCSERVER_HAVE_FORK
 		pid_t pid;
 		int s_in = screen->inetdSock;
@@ -1147,7 +1147,6 @@ static void handle_one_http_request(void) {
 		if (pid < 0) {
 			rfbLog("handle_one_http_request: could not fork.\n");
 			clean_up_exit(1);
-
 		} else if (pid > 0) {
 			int status;
 			pid_t pidw;
@@ -1162,7 +1161,6 @@ static void handle_one_http_request(void) {
 			}
 			rfbLog("handle_one_http_request: finished.\n");
 			return;
-			
 		} else {
 			int sock = rfbConnectToTcpAddr("127.0.0.1",
 			    screen->httpPort);
@@ -1322,149 +1320,20 @@ static void vnc_redirect_timeout (int sig) {
 	exit(0);
 }
 
-extern char find_display[];
-extern char create_display[];
-static XImage ximage_struct;
+static void do_chvt(int vt) {
+	char chvt[100];
+	sprintf(chvt, "chvt %d >/dev/null 2>/dev/null &", vt);
+	rfbLog("running: %s\n", chvt);
+	system(chvt);
+	sleep(2);
+}
 
-int wait_for_client(int *argc, char** argv, int http) {
-	XImage* fb_image;
-	int w = 640, h = 480, b = 32;
-	int w0, h0, i, chg_raw_fb = 0;
-	char *str, *q, *cmd = NULL;
-	int db = 0;
-	char tmp[] = "/tmp/x11vnc-find_display.XXXXXX";
-	int tmp_fd = -1, dt = 0;
-	char *create_cmd = NULL;
-	char *users_list_save = NULL;
-	int created_disp = 0;
-	int ncache_save;
-	int did_client_connect = 0;
-	int loop = 0;
-	time_t start;
-	char *vnc_redirect_host = "localhost";
-	int vnc_redirect_port = -1;
-	int vnc_redirect_cnt = 0;
-	char vnc_redirect_test[10];
-
-	vnc_redirect = 0;
-
-	if (! use_dpy || strstr(use_dpy, "WAIT:") != use_dpy) {
-		return 0;
-	}
-
-	if (getenv("WAIT_FOR_CLIENT_DB")) {
-		db = 1;
-	}
-
-	for (i=0; i < *argc; i++) {
-		if (!strcmp(argv[i], "-desktop")) {
-			dt = 1;
-		}
-		if (db) fprintf(stderr, "args %d %s\n", i, argv[i]);
-	}
-	if (!quiet && !strstr(use_dpy, "FINDDISPLAY-run")) {
-		rfbLog("wait_for_client: %s\n", use_dpy);
-	}
-
-	str = strdup(use_dpy);
-	str += strlen("WAIT");
-
-	xdmcp_insert = NULL;
-
-	/* get any leading geometry: */
-	q = strchr(str+1, ':');
-	if (q) {
-		*q = '\0';
-		if (sscanf(str+1, "%dx%d", &w0, &h0) == 2)  {
-			w = w0;
-			h = h0;
-			rfbLog("wait_for_client set: w=%d h=%d\n", w, h);
-		}
-		*q = ':';
-		str = q;
-	}
-
-	/* str currently begins with a ':' */
-	if (strstr(str, ":cmd=") == str) {
-		/* cmd=/path/to/mycommand */
-		str++;
-	} else if (strpbrk(str, "0123456789") == str+1) {
-		/* :0.0 */
-		;
-	} else {
-		/* hostname:0.0 */
-		str++;
-	}
-
-	if (db) fprintf(stderr, "str: %s\n", str);
-
-	if (strstr(str, "cmd=") == str) {
-		if (no_external_cmds || !cmd_ok("WAIT")) {
-			rfbLog("wait_for_client external cmds not allowed:"
-			    " %s\n", use_dpy);
-			clean_up_exit(1);
-		}
-
-		cmd = str + strlen("cmd=");
-		if (!strcmp(cmd, "FINDDISPLAY-print")) {
-			fprintf(stdout, "%s", find_display);
-			clean_up_exit(0);
-		}
-		if (!strcmp(cmd, "FINDDISPLAY-run")) {
-			char tmp[] = "/tmp/fd.XXXXXX";
-			char com[100];
-			int fd = mkstemp(tmp);
-			if (fd >= 0) {
-				write(fd, find_display, strlen(find_display));
-				close(fd);
-				set_env("FINDDISPLAY_run", "1");
-				sprintf(com, "/bin/sh %s -n; rm -f %s", tmp, tmp);
-				system(com);
-			}
-			unlink(tmp);
-			exit(0);
-		}
-		if (!strcmp(str, "FINDCREATEDISPLAY-print")) {
-			fprintf(stdout, "%s", create_display);
-			clean_up_exit(0);
-		}
-		if (db) fprintf(stderr, "cmd: %s\n", cmd);
-		if (strstr(str, "FINDCREATEDISPLAY") || strstr(str, "FINDDISPLAY")) {
-			if (strstr(str, "Xvnc.redirect") || strstr(str, "X.redirect")) {
-				vnc_redirect = 1;
-			}
-		}
-		if (strstr(cmd, "FINDDISPLAY-vnc_redirect") == cmd) {
-			int p;
-			char h[256];
-			if (strlen(cmd) >= 256) {
-				rfbLog("wait_for_client string too long: %s\n", str);
-				clean_up_exit(1);
-			}
-			h[0] = '\0';
-			if (sscanf(cmd, "FINDDISPLAY-vnc_redirect=%d", &p) == 1) {
-				;
-			} else if (sscanf(cmd, "FINDDISPLAY-vnc_redirect=%s %d", h, &p) == 2) {
-				;
-			} else {
-				rfbLog("wait_for_client bad string: %s\n", cmd);
-				clean_up_exit(1);
-			}
-			vnc_redirect_port = p;
-			if (strcmp(h, "")) {
-				vnc_redirect_host = strdup(h);
-			}
-			vnc_redirect = 2;
-			rfbLog("wait_for_client: vnc_redirect: %s:%d\n", vnc_redirect_host, vnc_redirect_port);
-		}
-	}
-	
+static void setup_fake_fb(XImage* fb_image, int w, int h, int b) {
 	if (fake_fb) {
 		free(fake_fb);
 	}
 	fake_fb = (char *) calloc(w*h*b/8, 1);
 
-	fb_image = &ximage_struct;
 	fb_image->data = fake_fb;
 	fb_image->format = ZPixmap;
 	fb_image->width  = w;
@@ -1483,64 +1352,9 @@ int wait_for_client(int *argc, char** argv, int http) {
 	dpy_y = wdpy_y = h;
 	off_x = 0;
 	off_y = 0;
+}
 
-	if (! dt) {
-		char *s;
-		argv[*argc] = strdup("-desktop");
-		*argc = (*argc) + 1;
-
-		if (cmd) {
-			char *q;
-			s = choose_title(":0");
-			q = strstr(s, ":0");
-			if (q) {
-				*q = '\0';
-			}
-		} else {
-			s = choose_title(str);
-		}
-		rfb_desktop_name = strdup(s);
-		argv[*argc] = s;
-		*argc = (*argc) + 1;
-	}
-
-	ncache_save = ncache;
-	ncache = 0;
-
-	initialize_allowed_input();
-
-	if (! multiple_cursors_mode) {
-		multiple_cursors_mode = strdup("default");
-	}
-	initialize_cursors_mode();
-	
-	initialize_screen(argc, argv, fb_image);
-
-	initialize_signals();
-
-	if (ssh_str != NULL) {
-		ssh_remote_tunnel(ssh_str, screen->port);
-	}
-
-	if (! raw_fb) {
-		chg_raw_fb = 1;
-		/* kludge to get RAWFB_RET with dpy == NULL guards */
-		raw_fb = (char *) 0x1;
-	}
-
-	if (cmd && !strcmp(cmd, "HTTPONCE")) {
-		handle_one_http_request();	
-		clean_up_exit(0);
-	}
-
-	if (http && check_httpdir()) {
-		http_connections(1);
-	}
-
-	if (cmd && unixpw) {
-		keep_unixpw = 1;
-	}
-
+static void setup_service(void) {
 	if (!inetd) {
 		if (!use_openssl) {
 			announce(screen->port, use_openssl, NULL);
@@ -1562,7 +1376,9 @@ int wait_for_client(int *argc, char** argv, int http) {
 		avahi_initialise();
 		avahi_advertise(name, this_host(), screen->port);
 	}
+}
 
+static void check_waitbg(void) {
 	if (getenv("WAITBG")) {
 #if LIBVNCSERVER_HAVE_FORK && LIBVNCSERVER_HAVE_SETSID
 		int p, n;
@@ -1594,91 +1410,9 @@ int wait_for_client(int *argc, char** argv, int http) {
 		clean_up_exit(1);
 #endif
 	}
+}
 
-	if (vnc_redirect) {
-		if (unixpw) {
-			rfbLog("wait_for_client: -unixpw and Xvnc.redirect not allowed\n");
-			clean_up_exit(1);
-		}
-		if (client_connect) {
-			rfbLog("wait_for_client: -connect and Xvnc.redirect not allowed\n");
-			clean_up_exit(1);
-		}
-		if (inetd) {
-			if (use_openssl) {
-				accept_openssl(OPENSSL_INETD, -1);
-			}
-		} else {
-			if (first_conn_timeout) {
-				if (first_conn_timeout < 0) {
-					first_conn_timeout = -first_conn_timeout;
-				}
-				signal(SIGALRM, vnc_redirect_timeout);
-				alarm(first_conn_timeout);
-			}
-			if (use_openssl) {
-				accept_openssl(OPENSSL_VNC, -1);
-			} else {
-				struct sockaddr_in addr;
-#ifdef __hpux
-				int addrlen = sizeof(addr);
-#else
-				socklen_t addrlen = sizeof(addr);
-#endif
-				if (screen->listenSock < 0) {
-					rfbLog("wait_for_client: Xvnc.redirect not listening... sock=%d port=%d\n", screen->listenSock, screen->port);
-					clean_up_exit(1);
-				}
-				vnc_redirect_sock = accept(screen->listenSock, (struct sockaddr *)&addr, &addrlen);
-			}
-			if (first_conn_timeout) {
-				alarm(0);
-			}
-		}
-		if (vnc_redirect_sock < 0) {
-			rfbLog("wait_for_client: vnc_redirect failed.\n");
-			clean_up_exit(1);
-		}
-		if (!inetd && use_openssl) {
-			/* check for Fetch Cert closing */
-			fd_set rfds;
-			struct timeval tv;
-			int nfds;
-
-			usleep(300*1000);
-
-			FD_ZERO(&rfds);
-			FD_SET(vnc_redirect_sock, &rfds);
-
-			tv.tv_sec = 0;
-			tv.tv_usec = 200000;
-			nfds = select(vnc_redirect_sock+1, &rfds, NULL, NULL, &tv);
-
-			rfbLog("wait_for_client: vnc_redirect nfds: %d\n", nfds);
-			if (nfds > 0) {
-				int n;
-				n = read(vnc_redirect_sock, vnc_redirect_test, 1);
-				if (n <= 0) {
-					close(vnc_redirect_sock);
-					vnc_redirect_sock = -1;
-					rfbLog("wait_for_client: waiting for 2nd connection (Fetch Cert?)\n");
-					accept_openssl(OPENSSL_VNC, -1);
-					if (vnc_redirect_sock < 0) {
-						rfbLog("wait_for_client: vnc_redirect failed.\n");
-						clean_up_exit(1);
-					}
-				} else {
-					vnc_redirect_cnt = n;
-				}
-			}
-		}
-		goto vnc_redirect_place;
-	}
-
-	if (inetd && use_openssl) {
-		accept_openssl(OPENSSL_INETD, -1);
-	}
-
+static void setup_client_connect(int *did_client_connect) {
 	if (client_connect != NULL) {
 		char *remainder = NULL;
 		if (inetd) {
@@ -1701,7 +1435,7 @@ int wait_for_client(int *argc, char** argv, int http) {
 			rfbLog("wait_for_client: reverse_connect(%s)\n",
 			    client_connect);
 			reverse_connect(client_connect);
-			did_client_connect = 1;
+			*did_client_connect = 1;
 		}
 		free(client_connect);
 		if (remainder != NULL) {
@@ -1711,11 +1445,14 @@ int wait_for_client(int *argc, char** argv, int http) {
 			client_connect = NULL;
 		}
 	}
+}
 
+static void loop_for_connect(int did_client_connect) {
+	int loop = 0;
+	time_t start = time(NULL);
 	if (first_conn_timeout < 0) {
 		first_conn_timeout = -first_conn_timeout;
 	}
-	start = time(NULL);
 
 	while (1) {
 		loop++;
@@ -1789,16 +1526,19 @@ int wait_for_client(int *argc, char** argv, int http) {
 		if (! use_threads) {
 			rfbPE(-1);
 		}
+
 		screen_check:
 		if (! screen || ! screen->clientHead) {
 			usleep(100 * 1000);
 			continue;
 		}
+
 		rfbLog("wait_for_client: got client\n");
 		break;
 	}
+}
 
-
+static void do_unixpw_loop(void) {
 	if (unixpw) {
 		if (! unixpw_in_progress) {
 			rfbLog("unixpw but no unixpw_in_progress\n");
@@ -1807,12 +1547,6 @@ int wait_for_client(int *argc, char** argv, int http) {
 		if (unixpw_client && unixpw_client->onHold) {
 			rfbLog("taking unixpw_client off hold.\n");
 			unixpw_client->onHold = FALSE;
-		}
-		if (cmd && strstr(cmd, "FINDCREATEDISPLAY") == cmd) {
-			if (users_list && strstr(users_list, "unixpw=") == users_list) {
-				users_list_save = users_list;
-				users_list = NULL;
-			}
 		}
 		while (1) {
 			if (shut_down) {
@@ -1831,482 +1565,803 @@ int wait_for_client(int *argc, char** argv, int http) {
 			break;
 		}
 	}
+}
 
-if (0) db = 1;
-
-	vnc_redirect_place:
-
-	if (vnc_redirect == 2) {
-		;
-	} else if (cmd) {
-		char line1[1024];
-		char line2[16384];
-		char *q;
-		int n;
-		int nodisp = 0;
-		int saw_xdmcp = 0;
-		char *usslpeer = NULL;
-
-		memset(line1, 0, 1024);
-		memset(line2, 0, 16384);
-
-		if (users_list && strstr(users_list, "sslpeer=") == users_list) {
-			int ok = 0;
-			char *u = NULL, *upeer = NULL;
-
-			if (certret_str) {
-				char *q, *p, *str = strdup(certret_str);
-				q = strstr(str, "Subject: ");
-				if (! q) return 0;
-				p = strstr(q, "\n");
-				if (p) *p = '\0';
-				q = strstr(q, "CN=");
-				if (! q) return 0;
-				if (! getenv("X11VNC_SSLPEER_CN")) {
-					p = q;
-					q = strstr(q, "/emailAddress=");
-					if (! q) q = strstr(p, "/Email=");
-					if (! q) return 0;
-				}
-				q = strstr(q, "=");
-				if (! q) return 0;
-				q++;
-				p = strstr(q, " ");
-				if (p) *p = '\0';
-				p = strstr(q, "@");
-				if (p) *p = '\0';
-				p = strstr(q, "/");
-				if (p) *p = '\0';
-				upeer = strdup(q);
-				if (strcmp(upeer, "")) {
-					p = upeer;
-					while (*p != '\0') {
-						char c = *p;
-						if (!isalnum((int) c)) {
-							*p = '\0';
-							break;
-						}
-						p++;
-					}
-					if (strcmp(upeer, "")) {
-						ok = 1;
-					}
-				}
-			}
-			if (! ok || !upeer) {
-				return 0;
-			}
-			rfbLog("sslpeer unix username extracted from x509 cert: %s\n", upeer);
-			u = (char *) malloc(strlen(upeer+2));
-			u[0] = '\0';
-			if (!strcmp(users_list, "sslpeer=")) {
-				sprintf(u, "+%s", upeer);
+static void vnc_redirect_loop(char *vnc_redirect_test, int *vnc_redirect_cnt) {
+	if (unixpw) {
+		rfbLog("wait_for_client: -unixpw and Xvnc.redirect not allowed\n");
+		clean_up_exit(1);
+	}
+	if (client_connect) {
+		rfbLog("wait_for_client: -connect and Xvnc.redirect not allowed\n");
+		clean_up_exit(1);
+	}
+	if (inetd) {
+		if (use_openssl) {
+			accept_openssl(OPENSSL_INETD, -1);
+		}
+	} else {
+		pid_t pid = 0;
+		if (screen->httpListenSock >= 0) {
+#if LIBVNCSERVER_HAVE_FORK
+			if ((pid = fork()) > 0) {
+				close(screen->httpListenSock);
+				screen->httpListenSock = -2;
+				usleep(500 * 1000);
 			} else {
-				char *p, *str = strdup(users_list);
-				p = strtok(str + strlen("sslpeer="), ",");
-				while (p) {
-					if (!strcmp(p, upeer)) {
-						sprintf(u, "+%s", upeer);
+				close(screen->listenSock);
+				screen->listenSock = -1;
+				while (1) {
+					usleep(10 * 1000);
+					rfbHttpCheckFds(screen);
+				}
+				exit(1);
+			}
+#else
+			clean_up_exit(1);
+#endif
+		}
+		if (first_conn_timeout) {
+			if (first_conn_timeout < 0) {
+				first_conn_timeout = -first_conn_timeout;
+			}
+			signal(SIGALRM, vnc_redirect_timeout);
+			alarm(first_conn_timeout);
+		}
+		if (use_openssl) {
+			int i;
+			if (pid == 0) {
+				accept_openssl(OPENSSL_VNC, -1);
+			} else {
+				for (i=0; i < 16; i++) {
+					accept_openssl(OPENSSL_VNC, -1);
+					rfbLog("iter %d: vnc_redirect_sock: %d\n", i, vnc_redirect_sock);
+					if (vnc_redirect_sock >= 0) {
 						break;
 					}
-					p = strtok(NULL, ",");
 				}
-				free(str);
 			}
-			if (u[0] == '\0') {
-				rfbLog("sslpeer cannot determine user: %s\n", upeer);
-				free(u);
-				return 0;
-			}
-			free(u);
-			usslpeer = upeer;
-		}
-
-		/* only sets environment variables: */
-		run_user_command("", latest_client, "env", NULL, 0, NULL);
-
-		if (program_name) {
-			set_env("X11VNC_PROG", program_name);
 		} else {
-			set_env("X11VNC_PROG", "x11vnc");
-		}
-
-		if (!strcmp(cmd, "FINDDISPLAY") ||
-		    strstr(cmd, "FINDCREATEDISPLAY") == cmd) {
-			char *nd = "";
-			tmp_fd = mkstemp(tmp);
-			if (tmp_fd < 0) {
-				rfbLog("wait_for_client: open failed: %s\n", tmp);
-				rfbLogPerror("mkstemp");
+			struct sockaddr_in addr;
+#ifdef __hpux
+			int addrlen = sizeof(addr);
+#else
+			socklen_t addrlen = sizeof(addr);
+#endif
+			if (screen->listenSock < 0) {
+				rfbLog("wait_for_client: Xvnc.redirect not listening... sock=%d port=%d\n", screen->listenSock, screen->port);
 				clean_up_exit(1);
 			}
-			chmod(tmp, 0644);
-			if (getenv("X11VNC_FINDDISPLAY_ALWAYS_FAILS")) {
-				char *s = "#!/bin/sh\necho _FAIL_\nexit 1\n";
-				write(tmp_fd, s, strlen(s));
-			} else {
-				write(tmp_fd, find_display, strlen(find_display));
-			}
-			close(tmp_fd);
-			nodisp = 1;
-
-			if (strstr(cmd, "FINDCREATEDISPLAY") == cmd) {
-				char *opts = strchr(cmd, '-');
-				char st[] = "";
-				char fdgeom[128], fdsess[128], fdopts[128], fdprog[128];
-				char fdxsrv[128], fdxdum[128], fdcups[128], fdesd[128];
-				char fdnas[128], fdsmb[128], fdtag[128];
-				if (opts) {
-					opts++;
-					if (strstr(opts, "xdmcp")) {
-						saw_xdmcp = 1;
-					}
-				} else {
-					opts = st;
-				}
-				sprintf(fdgeom, "NONE");
-				fdsess[0] = '\0';
-				fdgeom[0] = '\0';
-				fdopts[0] = '\0';
-				fdprog[0] = '\0';
-				fdxsrv[0] = '\0';
-				fdxdum[0] = '\0';
-				fdcups[0] = '\0';
-				fdesd[0]  = '\0';
-				fdnas[0]  = '\0';
-				fdsmb[0]  = '\0';
-				fdtag[0]  = '\0';
-
-				if (unixpw && keep_unixpw_opts && keep_unixpw_opts[0] != '\0') {
-					char *q, *p, *t = strdup(keep_unixpw_opts);
-					if (strstr(t, "gnome")) {
-						sprintf(fdsess, "gnome");
-					} else if (strstr(t, "kde")) {
-						sprintf(fdsess, "kde");
-					} else if (strstr(t, "twm")) {
-						sprintf(fdsess, "twm");
-					} else if (strstr(t, "fvwm")) {
-						sprintf(fdsess, "fvwm");
-					} else if (strstr(t, "mwm")) {
-						sprintf(fdsess, "mwm");
-					} else if (strstr(t, "cde")) {
-						sprintf(fdsess, "cde");
-					} else if (strstr(t, "dtwm")) {
-						sprintf(fdsess, "dtwm");
-					} else if (strstr(t, "xterm")) {
-						sprintf(fdsess, "xterm");
-					} else if (strstr(t, "wmaker")) {
-						sprintf(fdsess, "wmaker");
-					} else if (strstr(t, "xfce")) {
-						sprintf(fdsess, "xfce");
-					} else if (strstr(t, "enlightenment")) {
-						sprintf(fdsess, "enlightenment");
-					} else if (strstr(t, "Xsession")) {
-						sprintf(fdsess, "Xsession");
-					} else if (strstr(t, "failsafe")) {
-						sprintf(fdsess, "failsafe");
-					}
-
-					q = strstr(t, "ge=");
-					if (! q) q = strstr(t, "geom=");
-					if (! q) q = strstr(t, "geometry=");
-					if (q) {
-						int ok = 1;
-						q = strstr(q, "=");
-						q++;
-						p = strstr(q, ",");
-						if (p) *p = '\0';
-						p = q;
-						while (*p) {
-							if (*p == 'x') {
-								;
-							} else if (isdigit((int) *p)) {
-								;
-							} else {
-								ok = 0;
-								break;
-							}
-							p++;
-						}
-						if (ok && strlen(q) < 32) {
-							sprintf(fdgeom, q);
-							if (!quiet) {
-								rfbLog("set create display geom: %s\n", fdgeom);
-							}
-						}
-					}
-					q = strstr(t, "cups=");
-					if (q) {
-						int p;
-						if (sscanf(q, "cups=%d", &p) == 1) {
-							sprintf(fdcups, "%d", p);
-						}
-					}
-					q = strstr(t, "esd=");
-					if (q) {
-						int p;
-						if (sscanf(q, "esd=%d", &p) == 1) {
-							sprintf(fdesd, "%d", p);
-						}
-					}
-					free(t);
-				}
-				if (fdgeom[0] == '\0' && getenv("FD_GEOM")) {
-					snprintf(fdgeom,  120, "%s", getenv("FD_GEOM"));
-				}
-				if (fdsess[0] == '\0' && getenv("FD_SESS")) {
-					snprintf(fdsess, 120, "%s", getenv("FD_SESS"));
-				}
-				if (fdopts[0] == '\0' && getenv("FD_OPTS")) {
-					snprintf(fdopts, 120, "%s", getenv("FD_OPTS"));
-				}
-				if (fdprog[0] == '\0' && getenv("FD_PROG")) {
-					snprintf(fdprog, 120, "%s", getenv("FD_PROG"));
-				}
-				if (fdxsrv[0] == '\0' && getenv("FD_XSRV")) {
-					snprintf(fdxsrv, 120, "%s", getenv("FD_XSRV"));
-				}
-				if (fdcups[0] == '\0' && getenv("FD_CUPS")) {
-					snprintf(fdcups, 120, "%s", getenv("FD_CUPS"));
-				}
-				if (fdesd[0] == '\0' && getenv("FD_ESD")) {
-					snprintf(fdesd, 120, "%s", getenv("FD_ESD"));
-				}
-				if (fdnas[0] == '\0' && getenv("FD_NAS")) {
-					snprintf(fdnas, 120, "%s", getenv("FD_NAS"));
-				}
-				if (fdsmb[0] == '\0' && getenv("FD_SMB")) {
-					snprintf(fdsmb, 120, "%s", getenv("FD_SMB"));
-				}
-				if (fdtag[0] == '\0' && getenv("FD_TAG")) {
-					snprintf(fdtag, 120, "%s", getenv("FD_TAG"));
-				}
-				if (fdxdum[0] == '\0' && getenv("FD_XDUMMY_NOROOT")) {
-					snprintf(fdxdum, 120, "%s", getenv("FD_XDUMMY_NOROOT"));
-				}
-
-				set_env("FD_GEOM", fdgeom);
-				set_env("FD_OPTS", fdopts);
-				set_env("FD_PROG", fdprog);
-				set_env("FD_XSRV", fdxsrv);
-				set_env("FD_CUPS", fdcups);
-				set_env("FD_ESD",  fdesd);
-				set_env("FD_NAS",  fdnas);
-				set_env("FD_SMB",  fdsmb);
-				set_env("FD_TAG",  fdtag);
-				set_env("FD_XDUMMY_NOROOT", fdxdum);
-				set_env("FD_SESS", fdsess);
-
-				if (usslpeer || (unixpw && keep_unixpw_user)) {
-					char *uu = usslpeer;
-					if (!uu) {
-						uu = keep_unixpw_user;
-					}
-					create_cmd = (char *) malloc(strlen(tmp)+1
-					    + strlen("env USER='' ")
-					    + strlen("FD_GEOM='' ")
-					    + strlen("FD_OPTS='' ")
-					    + strlen("FD_PROG='' ")
-					    + strlen("FD_XSRV='' ")
-					    + strlen("FD_CUPS='' ")
-					    + strlen("FD_ESD='' ")
-					    + strlen("FD_NAS='' ")
-					    + strlen("FD_SMB='' ")
-					    + strlen("FD_TAG='' ")
-					    + strlen("FD_XDUMMY_NOROOT='' ")
-					    + strlen("FD_SESS='' /bin/sh ")
-					    + strlen(uu) + 1
-					    + strlen(fdgeom) + 1
-					    + strlen(fdopts) + 1
-					    + strlen(fdprog) + 1
-					    + strlen(fdxsrv) + 1
-					    + strlen(fdcups) + 1
-					    + strlen(fdesd) + 1
-					    + strlen(fdnas) + 1
-					    + strlen(fdsmb) + 1
-					    + strlen(fdtag) + 1
-					    + strlen(fdxdum) + 1
-					    + strlen(fdsess) + 1
-					    + strlen(opts) + 1);
-					sprintf(create_cmd, "env USER='%s' FD_GEOM='%s' FD_SESS='%s' "
-					    "FD_OPTS='%s' FD_PROG='%s' FD_XSRV='%s' FD_CUPS='%s' "
-					    "FD_ESD='%s' FD_NAS='%s' FD_SMB='%s' FD_TAG='%s' "
-					    "FD_XDUMMY_NOROOT='%s' /bin/sh %s %s",
-					    uu, fdgeom, fdsess, fdopts, fdprog, fdxsrv,
-					    fdcups, fdesd, fdnas, fdsmb, fdtag, fdxdum, tmp, opts);
-				} else {
-					create_cmd = (char *) malloc(strlen(tmp)
-					    + strlen("/bin/sh ") + 1 + strlen(opts) + 1);
-					sprintf(create_cmd, "/bin/sh %s %s", tmp, opts);
-				}
-
-if (db) fprintf(stderr, "create_cmd: %s\n", create_cmd);
-			}
-			if (getenv("X11VNC_SKIP_DISPLAY")) {
-				nd = strdup(getenv("X11VNC_SKIP_DISPLAY"));
-			}
-			if (unixpw && keep_unixpw_opts && keep_unixpw_opts[0] != '\0') {
-				char *q, *t = keep_unixpw_opts;
-				q = strstr(t, "nd=");
-				if (! q) q = strstr(t, "nodisplay=");
-				if (q) {
-					char *t2;
-					q = strchr(q, '=') + 1;
-					t = strdup(q);
-					q = t;
-					t2 = strchr(t, ',');
-					if (t2) *t2 = '\0';
-					while (*t != '\0') {
-						if (*t == '-') {
-							*t = ',';
-						}
-						t++;
-					}
-					if (!strchr(q, '\'')) {
-						if (! quiet) rfbLog("set X11VNC_SKIP_DISPLAY: %s\n", q);
-						nd = q;
-					}
-				}
-			}
-
-			cmd = (char *) malloc(strlen("env X11VNC_SKIP_DISPLAY='' ")
-			    + strlen(nd) + strlen(tmp) + strlen("/bin/sh ") + 1);
-			sprintf(cmd, "env X11VNC_SKIP_DISPLAY='%s' /bin/sh %s", nd, tmp);
+			vnc_redirect_sock = accept(screen->listenSock, (struct sockaddr *)&addr, &addrlen);
 		}
-
-		rfbLog("wait_for_client: running: %s\n", cmd);
-
-		if (unixpw) {
-			int res = 0, k, j, i;
-			char line[18000];
-
-			memset(line, 0, 18000);
-
-			if (keep_unixpw_user && keep_unixpw_pass) {
-				n = 18000;
-				res = su_verify(keep_unixpw_user,
-				    keep_unixpw_pass, cmd, line, &n, nodisp);
+		if (first_conn_timeout) {
+			alarm(0);
+		}
+		if (pid > 0) {
+#if LIBVNCSERVER_HAVE_FORK
+			int rc;
+			pid_t pidw;
+			rfbLog("wait_for_client: kill TERM: %d\n", (int) pid);
+			kill(pid, SIGTERM);
+			usleep(1000 * 1000);	/* 1.0 sec */
+			pidw = waitpid(pid, &rc, WNOHANG);
+			if (pidw <= 0) {
+				usleep(1000 * 1000);	/* 1.0 sec */
+				pidw = waitpid(pid, &rc, WNOHANG);
 			}
+#else
+			clean_up_exit(1);
+#endif
+		}
+	}
+	if (vnc_redirect_sock < 0) {
+		rfbLog("wait_for_client: vnc_redirect failed.\n");
+		clean_up_exit(1);
+	}
+	if (!inetd && use_openssl) {
+		/* check for Fetch Cert closing */
+		fd_set rfds;
+		struct timeval tv;
+		int nfds;
 
-if (db) {fprintf(stderr, "line: "); write(2, line, n); write(2, "\n", 1); fprintf(stderr, "res=%d n=%d\n", res, n);}
-			if (! res) {
-				rfbLog("wait_for_client: find display cmd failed\n");
-			}
+		usleep(300*1000);
 
-			if (! res && create_cmd) {
-				FILE *mt = fopen(tmp, "w");
-				if (! mt) {
-					rfbLog("wait_for_client: open failed: %s\n", tmp);
-					rfbLogPerror("fopen");
+		FD_ZERO(&rfds);
+		FD_SET(vnc_redirect_sock, &rfds);
+
+		tv.tv_sec = 0;
+		tv.tv_usec = 200000;
+		nfds = select(vnc_redirect_sock+1, &rfds, NULL, NULL, &tv);
+
+		rfbLog("wait_for_client: vnc_redirect nfds: %d\n", nfds);
+		if (nfds > 0) {
+			int n;
+			n = read(vnc_redirect_sock, vnc_redirect_test, 1);
+			if (n <= 0) {
+				close(vnc_redirect_sock);
+				vnc_redirect_sock = -1;
+				rfbLog("wait_for_client: waiting for 2nd connection (Fetch Cert?)\n");
+				accept_openssl(OPENSSL_VNC, -1);
+				if (vnc_redirect_sock < 0) {
+					rfbLog("wait_for_client: vnc_redirect failed.\n");
 					clean_up_exit(1);
 				}
-				fprintf(mt, "%s", create_display);
-				fclose(mt);
+			} else {
+				*vnc_redirect_cnt = n;
+			}
+		}
+	}
+}
 
-				findcreatedisplay = 1;
+static void do_vnc_redirect(int created_disp, char *vnc_redirect_host, int vnc_redirect_port,
+    int vnc_redirect_cnt, char *vnc_redirect_test) {
+	char *q = strchr(use_dpy, ':');
+	int vdpy = -1, sock = -1;
+	int s_in, s_out, i;
+	if (vnc_redirect == 2) {
+		char num[32];	
+		sprintf(num, ":%d", vnc_redirect_port);
+		q = num;
+	}
+	if (!q) {
+		rfbLog("wait_for_client: can't find number in X display: %s\n", use_dpy);
+		clean_up_exit(1);
+	}
+	if (sscanf(q+1, "%d", &vdpy) != 1) {
+		rfbLog("wait_for_client: can't find number in X display: %s\n", q);
+		clean_up_exit(1);
+	}
+	if (vdpy == -1 && vnc_redirect != 2) {
+		rfbLog("wait_for_client: can't find number in X display: %s\n", q);
+		clean_up_exit(1);
+	}
+	if (vnc_redirect == 2) {
+		if (vdpy < 0) {
+			vdpy = -vdpy;
+		} else if (vdpy < 200) {
+			vdpy += 5900;
+		}
+	} else {
+		vdpy += 5900;
+	}
+	if (created_disp) {
+		usleep(1000*1000);
+	}
+	for (i=0; i < 20; i++) {
+		sock = rfbConnectToTcpAddr(vnc_redirect_host, vdpy);
+		if (sock >= 0) {
+			break;
+		}
+		rfbLog("wait_for_client: ...\n");
+		usleep(500*1000);
+	}
+	if (sock < 0) {
+		rfbLog("wait_for_client: could not connect to a VNC Server at %s:%d\n", vnc_redirect_host, vdpy);
+		clean_up_exit(1);
+	}
+	if (inetd) {
+		s_in  = fileno(stdin);
+		s_out = fileno(stdout);
+	} else {
+		s_in = s_out = vnc_redirect_sock;
+	}
+	if (vnc_redirect_cnt > 0) {
+		write(vnc_redirect_sock, vnc_redirect_test, vnc_redirect_cnt);
+	}
+	rfbLog("wait_for_client: switching control to VNC Server at %s:%d\n", vnc_redirect_host, vdpy);
+	raw_xfer(sock, s_in, s_out);
+}
 
-				if (getuid() != 0) {
-					/* if not root, run as the other user... */
-					n = 18000;
-					close_exec_fds();
-					res = su_verify(keep_unixpw_user,
-					    keep_unixpw_pass, create_cmd, line, &n, nodisp);
-if (db) fprintf(stderr, "c-res=%d n=%d line: '%s'\n", res, n, line);
+extern char find_display[];
+extern char create_display[];
 
+char *setup_cmd(char *str, int *vnc_redirect, char **vnc_redirect_host, int *vnc_redirect_port, int db) {
+	char *cmd = NULL;
+	
+	if (no_external_cmds || !cmd_ok("WAIT")) {
+		rfbLog("wait_for_client external cmds not allowed:"
+		    " %s\n", use_dpy);
+		clean_up_exit(1);
+	}
+
+	cmd = str + strlen("cmd=");
+	if (!strcmp(cmd, "FINDDISPLAY-print")) {
+		fprintf(stdout, "%s", find_display);
+		clean_up_exit(0);
+	}
+	if (!strcmp(cmd, "FINDDISPLAY-run")) {
+		char tmp[] = "/tmp/fd.XXXXXX";
+		char com[100];
+		int fd = mkstemp(tmp);
+		if (fd >= 0) {
+			write(fd, find_display, strlen(find_display));
+			close(fd);
+			set_env("FINDDISPLAY_run", "1");
+			sprintf(com, "/bin/sh %s -n; rm -f %s", tmp, tmp);
+			system(com);
+		}
+		unlink(tmp);
+		exit(0);
+	}
+	if (!strcmp(str, "FINDCREATEDISPLAY-print")) {
+		fprintf(stdout, "%s", create_display);
+		clean_up_exit(0);
+	}
+	if (db) fprintf(stderr, "cmd: %s\n", cmd);
+	if (strstr(str, "FINDCREATEDISPLAY") || strstr(str, "FINDDISPLAY")) {
+		if (strstr(str, "Xvnc.redirect") || strstr(str, "X.redirect")) {
+			*vnc_redirect = 1;
+		}
+	}
+	if (strstr(cmd, "FINDDISPLAY-vnc_redirect") == cmd) {
+		int p;
+		char h[256];
+		if (strlen(cmd) >= 256) {
+			rfbLog("wait_for_client string too long: %s\n", str);
+			clean_up_exit(1);
+		}
+		h[0] = '\0';
+		if (sscanf(cmd, "FINDDISPLAY-vnc_redirect=%d", &p) == 1) {
+			;
+		} else if (sscanf(cmd, "FINDDISPLAY-vnc_redirect=%s %d", h, &p) == 2) {
+			;
+		} else {
+			rfbLog("wait_for_client bad string: %s\n", cmd);
+			clean_up_exit(1);
+		}
+		*vnc_redirect_port = p;
+		if (strcmp(h, "")) {
+			*vnc_redirect_host = strdup(h);
+		}
+		*vnc_redirect = 2;
+		rfbLog("wait_for_client: vnc_redirect: %s:%d\n", *vnc_redirect_host, *vnc_redirect_port);
+	}
+	return cmd;
+}
+
+static char *build_create_cmd(char *cmd, int *saw_xdmcp, char *usslpeer, char *tmp) {
+	char *create_cmd = NULL;
+	char *opts = strchr(cmd, '-');
+	char st[] = "";
+	char fdgeom[128], fdsess[128], fdopts[128], fdprog[128];
+	char fdxsrv[128], fdxdum[128], fdcups[128], fdesd[128];
+	char fdnas[128], fdsmb[128], fdtag[128];
+
+	if (opts) {
+		opts++;
+		if (strstr(opts, "xdmcp")) {
+			*saw_xdmcp = 1;
+		}
+	} else {
+		opts = st;
+	}
+	sprintf(fdgeom, "NONE");
+	fdsess[0] = '\0';
+	fdgeom[0] = '\0';
+	fdopts[0] = '\0';
+	fdprog[0] = '\0';
+	fdxsrv[0] = '\0';
+	fdxdum[0] = '\0';
+	fdcups[0] = '\0';
+	fdesd[0]  = '\0';
+	fdnas[0]  = '\0';
+	fdsmb[0]  = '\0';
+	fdtag[0]  = '\0';
+
+	if (unixpw && keep_unixpw_opts && keep_unixpw_opts[0] != '\0') {
+		char *q, *p, *t = strdup(keep_unixpw_opts);
+		if (strstr(t, "gnome")) {
+			sprintf(fdsess, "gnome");
+		} else if (strstr(t, "kde")) {
+			sprintf(fdsess, "kde");
+		} else if (strstr(t, "twm")) {
+			sprintf(fdsess, "twm");
+		} else if (strstr(t, "fvwm")) {
+			sprintf(fdsess, "fvwm");
+		} else if (strstr(t, "mwm")) {
+			sprintf(fdsess, "mwm");
+		} else if (strstr(t, "cde")) {
+			sprintf(fdsess, "cde");
+		} else if (strstr(t, "dtwm")) {
+			sprintf(fdsess, "dtwm");
+		} else if (strstr(t, "xterm")) {
+			sprintf(fdsess, "xterm");
+		} else if (strstr(t, "wmaker")) {
+			sprintf(fdsess, "wmaker");
+		} else if (strstr(t, "xfce")) {
+			sprintf(fdsess, "xfce");
+		} else if (strstr(t, "enlightenment")) {
+			sprintf(fdsess, "enlightenment");
+		} else if (strstr(t, "Xsession")) {
+			sprintf(fdsess, "Xsession");
+		} else if (strstr(t, "failsafe")) {
+			sprintf(fdsess, "failsafe");
+		}
+
+		q = strstr(t, "ge=");
+		if (! q) q = strstr(t, "geom=");
+		if (! q) q = strstr(t, "geometry=");
+		if (q) {
+			int ok = 1;
+			q = strstr(q, "=");
+			q++;
+			p = strstr(q, ",");
+			if (p) *p = '\0';
+			p = q;
+			while (*p) {
+				if (*p == 'x') {
+					;
+				} else if (isdigit((int) *p)) {
+					;
 				} else {
-					FILE *p;
-					close_exec_fds();
-					rfbLog("wait_for_client: running: %s\n", create_cmd);
-					p = popen(create_cmd, "r");
-					if (! p) {
-						rfbLog("wait_for_client: popen failed: %s\n", create_cmd);
-						res = 0;
-					} else if (fgets(line1, 1024, p) == NULL) {
-						rfbLog("wait_for_client: read failed: %s\n", create_cmd);
-						res = 0;
-					} else {
-						n = fread(line2, 1, 16384, p);
-						if (pclose(p) != 0) {
-							res = 0;
-						} else {
-							strncpy(line, line1, 100);
-							memcpy(line + strlen(line1), line2, n);
-if (db) fprintf(stderr, "line1: '%s'\n", line1);
-							n += strlen(line1);
-							created_disp = 1;
-							res = 1;
-						}
-					}
+					ok = 0;
+					break;
 				}
-				if (res && saw_xdmcp) {
-					xdmcp_insert = strdup(keep_unixpw_user);
+				p++;
+			}
+			if (ok && strlen(q) < 32) {
+				sprintf(fdgeom, q);
+				if (!quiet) {
+					rfbLog("set create display geom: %s\n", fdgeom);
 				}
 			}
+		}
+		q = strstr(t, "cups=");
+		if (q) {
+			int p;
+			if (sscanf(q, "cups=%d", &p) == 1) {
+				sprintf(fdcups, "%d", p);
+			}
+		}
+		q = strstr(t, "esd=");
+		if (q) {
+			int p;
+			if (sscanf(q, "esd=%d", &p) == 1) {
+				sprintf(fdesd, "%d", p);
+			}
+		}
+		free(t);
+	}
+	if (fdgeom[0] == '\0' && getenv("FD_GEOM")) {
+		snprintf(fdgeom,  120, "%s", getenv("FD_GEOM"));
+	}
+	if (fdsess[0] == '\0' && getenv("FD_SESS")) {
+		snprintf(fdsess, 120, "%s", getenv("FD_SESS"));
+	}
+	if (fdopts[0] == '\0' && getenv("FD_OPTS")) {
+		snprintf(fdopts, 120, "%s", getenv("FD_OPTS"));
+	}
+	if (fdprog[0] == '\0' && getenv("FD_PROG")) {
+		snprintf(fdprog, 120, "%s", getenv("FD_PROG"));
+	}
+	if (fdxsrv[0] == '\0' && getenv("FD_XSRV")) {
+		snprintf(fdxsrv, 120, "%s", getenv("FD_XSRV"));
+	}
+	if (fdcups[0] == '\0' && getenv("FD_CUPS")) {
+		snprintf(fdcups, 120, "%s", getenv("FD_CUPS"));
+	}
+	if (fdesd[0] == '\0' && getenv("FD_ESD")) {
+		snprintf(fdesd, 120, "%s", getenv("FD_ESD"));
+	}
+	if (fdnas[0] == '\0' && getenv("FD_NAS")) {
+		snprintf(fdnas, 120, "%s", getenv("FD_NAS"));
+	}
+	if (fdsmb[0] == '\0' && getenv("FD_SMB")) {
+		snprintf(fdsmb, 120, "%s", getenv("FD_SMB"));
+	}
+	if (fdtag[0] == '\0' && getenv("FD_TAG")) {
+		snprintf(fdtag, 120, "%s", getenv("FD_TAG"));
+	}
+	if (fdxdum[0] == '\0' && getenv("FD_XDUMMY_NOROOT")) {
+		snprintf(fdxdum, 120, "%s", getenv("FD_XDUMMY_NOROOT"));
+	}
 
+	set_env("FD_GEOM", fdgeom);
+	set_env("FD_OPTS", fdopts);
+	set_env("FD_PROG", fdprog);
+	set_env("FD_XSRV", fdxsrv);
+	set_env("FD_CUPS", fdcups);
+	set_env("FD_ESD",  fdesd);
+	set_env("FD_NAS",  fdnas);
+	set_env("FD_SMB",  fdsmb);
+	set_env("FD_TAG",  fdtag);
+	set_env("FD_XDUMMY_NOROOT", fdxdum);
+	set_env("FD_SESS", fdsess);
+
+	if (usslpeer || (unixpw && keep_unixpw_user)) {
+		char *uu = usslpeer;
+		if (!uu) {
+			uu = keep_unixpw_user;
+		}
+		create_cmd = (char *) malloc(strlen(tmp)+1
+		    + strlen("env USER='' ")
+		    + strlen("FD_GEOM='' ")
+		    + strlen("FD_OPTS='' ")
+		    + strlen("FD_PROG='' ")
+		    + strlen("FD_XSRV='' ")
+		    + strlen("FD_CUPS='' ")
+		    + strlen("FD_ESD='' ")
+		    + strlen("FD_NAS='' ")
+		    + strlen("FD_SMB='' ")
+		    + strlen("FD_TAG='' ")
+		    + strlen("FD_XDUMMY_NOROOT='' ")
+		    + strlen("FD_SESS='' /bin/sh ")
+		    + strlen(uu) + 1
+		    + strlen(fdgeom) + 1
+		    + strlen(fdopts) + 1
+		    + strlen(fdprog) + 1
+		    + strlen(fdxsrv) + 1
+		    + strlen(fdcups) + 1
+		    + strlen(fdesd) + 1
+		    + strlen(fdnas) + 1
+		    + strlen(fdsmb) + 1
+		    + strlen(fdtag) + 1
+		    + strlen(fdxdum) + 1
+		    + strlen(fdsess) + 1
+		    + strlen(opts) + 1);
+		sprintf(create_cmd, "env USER='%s' FD_GEOM='%s' FD_SESS='%s' "
+		    "FD_OPTS='%s' FD_PROG='%s' FD_XSRV='%s' FD_CUPS='%s' "
+		    "FD_ESD='%s' FD_NAS='%s' FD_SMB='%s' FD_TAG='%s' "
+		    "FD_XDUMMY_NOROOT='%s' /bin/sh %s %s",
+		    uu, fdgeom, fdsess, fdopts, fdprog, fdxsrv,
+		    fdcups, fdesd, fdnas, fdsmb, fdtag, fdxdum, tmp, opts);
+	} else {
+		create_cmd = (char *) malloc(strlen(tmp)
+		    + strlen("/bin/sh ") + 1 + strlen(opts) + 1);
+		sprintf(create_cmd, "/bin/sh %s %s", tmp, opts);
+	}
+	return create_cmd;
+}
+
+static char *certret_extract() {
+	char *q, *p, *str = strdup(certret_str);
+	char *upeer = NULL;
+	int ok = 0;
+
+	q = strstr(str, "Subject: ");
+	if (! q) return NULL;
+
+	p = strstr(q, "\n");
+	if (p) *p = '\0';
+
+	q = strstr(q, "CN=");
+	if (! q) return NULL;
+
+	if (! getenv("X11VNC_SSLPEER_CN")) {
+		p = q;
+		q = strstr(q, "/emailAddress=");
+		if (! q) q = strstr(p, "/Email=");
+		if (! q) return NULL;
+	}
+
+	q = strstr(q, "=");
+	if (! q) return NULL;
+
+	q++;
+	p = strstr(q, " ");
+	if (p) *p = '\0';
+	p = strstr(q, "@");
+	if (p) *p = '\0';
+	p = strstr(q, "/");
+	if (p) *p = '\0';
+
+	upeer = strdup(q);
+
+	if (strcmp(upeer, "")) {
+		p = upeer;
+		while (*p != '\0') {
+			char c = *p;
+			if (!isalnum((int) c)) {
+				*p = '\0';
+				break;
+			}
+			p++;
+		}
+		if (strcmp(upeer, "")) {
+			ok = 1;
+		}
+	}
+	if (! ok) {
+		upeer = NULL;
+	}
+	return upeer;
+}
+
+static void check_nodisplay(char **nd) {
+	if (unixpw && keep_unixpw_opts && keep_unixpw_opts[0] != '\0') {
+		char *q, *t = keep_unixpw_opts;
+		q = strstr(t, "nd=");
+		if (! q) q = strstr(t, "nodisplay=");
+		if (q) {
+			char *t2;
+			q = strchr(q, '=') + 1;
+			t = strdup(q);
+			q = t;
+			t2 = strchr(t, ',');
+			if (t2) *t2 = '\0';
+			while (*t != '\0') {
+				if (*t == '-') {
+					*t = ',';
+				}
+				t++;
+			}
+			if (!strchr(q, '\'')) {
+				if (! quiet) rfbLog("set X11VNC_SKIP_DISPLAY: %s\n", q);
+				*nd = q;
+			}
+		}
+	}
+}
+
+static char *get_usslpeer() {
+	char *u = NULL, *upeer = NULL;
+
+	if (certret_str) {
+		upeer = certret_extract();
+	}
+	if (!upeer) {
+		return NULL;
+	}
+	rfbLog("sslpeer unix username extracted from x509 cert: %s\n", upeer);
+
+	u = (char *) malloc(strlen(upeer+2));
+	u[0] = '\0';
+	if (!strcmp(users_list, "sslpeer=")) {
+		sprintf(u, "+%s", upeer);
+	} else {
+		char *p, *str = strdup(users_list);
+		p = strtok(str + strlen("sslpeer="), ",");
+		while (p) {
+			if (!strcmp(p, upeer)) {
+				sprintf(u, "+%s", upeer);
+				break;
+			}
+			p = strtok(NULL, ",");
+		}
+		free(str);
+	}
+	if (u[0] == '\0') {
+		rfbLog("sslpeer cannot determine user: %s\n", upeer);
+		free(u);
+		return NULL;
+	}
+	free(u);
+	return upeer;
+}
+
+static int do_run_cmd(char *cmd, char *create_cmd, char *users_list_save, int created_disp, int db) {
+	char tmp[] = "/tmp/x11vnc-find_display.XXXXXX";
+	char line1[1024], line2[16384];
+	char *q, *usslpeer = NULL;
+	int n, nodisp = 0, saw_xdmcp = 0;
+	int tmp_fd = -1;
+
+	memset(line1, 0, 1024);
+	memset(line2, 0, 16384);
+
+	if (users_list && strstr(users_list, "sslpeer=") == users_list) {
+		usslpeer = get_usslpeer();
+		if (! usslpeer) {
+			return 0;
+		}
+	}
+
+	/* only sets environment variables: */
+	run_user_command("", latest_client, "env", NULL, 0, NULL);
+
+	if (program_name) {
+		set_env("X11VNC_PROG", program_name);
+	} else {
+		set_env("X11VNC_PROG", "x11vnc");
+	}
+
+	if (!strcmp(cmd, "FINDDISPLAY") ||
+	    strstr(cmd, "FINDCREATEDISPLAY") == cmd) {
+		char *nd = "";
+		tmp_fd = mkstemp(tmp);
+		if (tmp_fd < 0) {
+			rfbLog("wait_for_client: open failed: %s\n", tmp);
+			rfbLogPerror("mkstemp");
+			clean_up_exit(1);
+		}
+		chmod(tmp, 0644);
+		if (getenv("X11VNC_FINDDISPLAY_ALWAYS_FAILS")) {
+			char *s = "#!/bin/sh\necho _FAIL_\nexit 1\n";
+			write(tmp_fd, s, strlen(s));
+		} else {
+			write(tmp_fd, find_display, strlen(find_display));
+		}
+		close(tmp_fd);
+		nodisp = 1;
+
+		if (strstr(cmd, "FINDCREATEDISPLAY") == cmd) {
+			create_cmd = build_create_cmd(cmd, &saw_xdmcp, usslpeer, tmp);
+			if (db) fprintf(stderr, "create_cmd: %s\n", create_cmd);
+		}
+		if (getenv("X11VNC_SKIP_DISPLAY")) {
+			nd = strdup(getenv("X11VNC_SKIP_DISPLAY"));
+		}
+		check_nodisplay(&nd);
+
+		cmd = (char *) malloc(strlen("env X11VNC_SKIP_DISPLAY='' ")
+		    + strlen(nd) + strlen(tmp) + strlen("/bin/sh ") + 1);
+		sprintf(cmd, "env X11VNC_SKIP_DISPLAY='%s' /bin/sh %s", nd, tmp);
+	}
+
+	rfbLog("wait_for_client: running: %s\n", cmd);
+
+	if (unixpw) {
+		int res = 0, k, j, i;
+		char line[18000];
+
+		memset(line, 0, 18000);
+
+		if (keep_unixpw_user && keep_unixpw_pass) {
+			n = 18000;
+			res = su_verify(keep_unixpw_user,
+			    keep_unixpw_pass, cmd, line, &n, nodisp);
+		}
+
+if (db) {fprintf(stderr, "line: "); write(2, line, n); write(2, "\n", 1); fprintf(stderr, "res=%d n=%d\n", res, n);}
+		if (! res) {
+			rfbLog("wait_for_client: find display cmd failed\n");
+		}
+
+		if (! res && create_cmd) {
+			FILE *mt = fopen(tmp, "w");
+			if (! mt) {
+				rfbLog("wait_for_client: open failed: %s\n", tmp);
+				rfbLogPerror("fopen");
+				clean_up_exit(1);
+			}
+			fprintf(mt, "%s", create_display);
+			fclose(mt);
+
+			findcreatedisplay = 1;
+
+			if (getuid() != 0) {
+				/* if not root, run as the other user... */
+				n = 18000;
+				close_exec_fds();
+				res = su_verify(keep_unixpw_user,
+				    keep_unixpw_pass, create_cmd, line, &n, nodisp);
+if (db) fprintf(stderr, "c-res=%d n=%d line: '%s'\n", res, n, line);
+
+			} else {
+				FILE *p;
+				close_exec_fds();
+				rfbLog("wait_for_client: running: %s\n", create_cmd);
+				p = popen(create_cmd, "r");
+				if (! p) {
+					rfbLog("wait_for_client: popen failed: %s\n", create_cmd);
+					res = 0;
+				} else if (fgets(line1, 1024, p) == NULL) {
+					rfbLog("wait_for_client: read failed: %s\n", create_cmd);
+					res = 0;
+				} else {
+					n = fread(line2, 1, 16384, p);
+					if (pclose(p) != 0) {
+						res = 0;
+					} else {
+						strncpy(line, line1, 100);
+						memcpy(line + strlen(line1), line2, n);
+if (db) fprintf(stderr, "line1: '%s'\n", line1);
+						n += strlen(line1);
+						created_disp = 1;
+						res = 1;
+					}
+				}
+			}
+			if (res && saw_xdmcp) {
+				xdmcp_insert = strdup(keep_unixpw_user);
+			}
+		}
+
+		if (tmp_fd >= 0) {
+			unlink(tmp);
+		}
+
+		if (! res) {
+			rfbLog("wait_for_client: cmd failed: %s\n", cmd);
+			unixpw_msg("No DISPLAY found.", 3);
+			clean_up_exit(1);
+		}
+
+		/*
+		 * we need to hunt for DISPLAY= since there may be
+		 * a login banner or something at the beginning.
+		 */
+		q = strstr(line, "DISPLAY=");
+		if (! q) {
+			q = line;
+		}
+		n -= (q - line);
+
+		for (k = 0; k < 1024; k++) {
+			line1[k] = q[k];
+			if (q[k] == '\n') {
+				k++;
+				break;
+			}
+		}
+		n -= k;
+		i = 0;
+		for (j = 0; j < 16384; j++) {
+			if (j < 16384 - 1) {
+				/* xauth data, assume pty added CR */
+				if (q[k+j] == '\r' && q[k+j+1] == '\n') {
+					continue;
+				}
+			}
+			
+			line2[i] = q[k+j];
+			i++;
+		}
+if (db) write(2, line, 100);
+if (db) fprintf(stderr, "\n");
+	} else {
+		FILE *p;
+		int rc;
+		close_exec_fds();
+
+		if (usslpeer) {
+			char *c;
+			if (getuid() == 0) {
+				c = (char *) malloc(strlen("su - '' -c \"")
+				    + strlen(usslpeer) + strlen(cmd) + 1 + 1);
+				sprintf(c, "su - '%s' -c \"%s\"", usslpeer, cmd);
+			} else {
+				c = strdup(cmd);
+			}
+			p = popen(c, "r");
+			free(c);
+			
+		} else {
+			p = popen(cmd, "r");
+		}
+		if (! p) {
+			rfbLog("wait_for_client: cmd failed: %s\n", cmd);
+			rfbLogPerror("popen");
 			if (tmp_fd >= 0) {
 				unlink(tmp);
 			}
+			clean_up_exit(1);
+		}
+		if (fgets(line1, 1024, p) == NULL) {
+			rfbLog("wait_for_client: read failed: %s\n", cmd);
+			rfbLogPerror("fgets");
+			if (tmp_fd >= 0) {
+				unlink(tmp);
+			}
+			clean_up_exit(1);
+		}
+		n = fread(line2, 1, 16384, p);
+		rc = pclose(p);
 
-			if (! res) {
-				rfbLog("wait_for_client: cmd failed: %s\n", cmd);
-				unixpw_msg("No DISPLAY found.", 3);
+		if (rc != 0) {
+			rfbLog("wait_for_client: find display cmd failed\n");
+		}
+
+		if (create_cmd && rc != 0) {
+			FILE *mt = fopen(tmp, "w");
+			if (! mt) {
+				rfbLog("wait_for_client: open failed: %s\n", tmp);
+				rfbLogPerror("fopen");
+				if (tmp_fd >= 0) {
+					unlink(tmp);
+				}
 				clean_up_exit(1);
 			}
+			fprintf(mt, "%s", create_display);
+			fclose(mt);
 
-			/*
-			 * we need to hunt for DISPLAY= since there may be
-			 * a login banner or something at the beginning.
-			 */
-			q = strstr(line, "DISPLAY=");
-			if (! q) {
-				q = line;
-			}
-			n -= (q - line);
+			findcreatedisplay = 1;
 
-			for (k = 0; k < 1024; k++) {
-				line1[k] = q[k];
-				if (q[k] == '\n') {
-					k++;
-					break;
-				}
-			}
-			n -= k;
-			i = 0;
-			for (j = 0; j < 16384; j++) {
-				if (j < 16384 - 1) {
-					/* xauth data, assume pty added CR */
-					if (q[k+j] == '\r' && q[k+j+1] == '\n') {
-						continue;
-					}
-				}
-				
-				line2[i] = q[k+j];
-				i++;
-			}
-if (db) write(2, line, 100);
-if (db) fprintf(stderr, "\n");
-		} else {
-			FILE *p;
-			int rc;
-			close_exec_fds();
+			rfbLog("wait_for_client: FINDCREATEDISPLAY cmd: %s\n", create_cmd);
 
-			if (usslpeer) {
-				char *c;
-				if (getuid() == 0) {
-					c = (char *) malloc(strlen("su - '' -c \"")
-					    + strlen(usslpeer) + strlen(cmd) + 1 + 1);
-					sprintf(c, "su - '%s' -c \"%s\"", usslpeer, cmd);
-				} else {
-					c = strdup(cmd);
-				}
-				p = popen(c, "r");
-				free(c);
-				
-			} else {
-				p = popen(cmd, "r");
-			}
+			p = popen(create_cmd, "r");
 			if (! p) {
-				rfbLog("wait_for_client: cmd failed: %s\n", cmd);
+				rfbLog("wait_for_client: cmd failed: %s\n", create_cmd);
 				rfbLogPerror("popen");
 				if (tmp_fd >= 0) {
 					unlink(tmp);
@@ -2314,7 +2369,7 @@ if (db) fprintf(stderr, "\n");
 				clean_up_exit(1);
 			}
 			if (fgets(line1, 1024, p) == NULL) {
-				rfbLog("wait_for_client: read failed: %s\n", cmd);
+				rfbLog("wait_for_client: read failed: %s\n", create_cmd);
 				rfbLogPerror("fgets");
 				if (tmp_fd >= 0) {
 					unlink(tmp);
@@ -2322,198 +2377,317 @@ if (db) fprintf(stderr, "\n");
 				clean_up_exit(1);
 			}
 			n = fread(line2, 1, 16384, p);
-			rc = pclose(p);
-
-			if (rc != 0) {
-				rfbLog("wait_for_client: find display cmd failed\n");
-			}
-
-			if (create_cmd && rc != 0) {
-				FILE *mt = fopen(tmp, "w");
-				if (! mt) {
-					rfbLog("wait_for_client: open failed: %s\n", tmp);
-					rfbLogPerror("fopen");
-					if (tmp_fd >= 0) {
-						unlink(tmp);
-					}
-					clean_up_exit(1);
-				}
-				fprintf(mt, "%s", create_display);
-				fclose(mt);
-
-				findcreatedisplay = 1;
-
-				rfbLog("wait_for_client: FINDCREATEDISPLAY cmd: %s\n", create_cmd);
-
-				p = popen(create_cmd, "r");
-				if (! p) {
-					rfbLog("wait_for_client: cmd failed: %s\n", create_cmd);
-					rfbLogPerror("popen");
-					if (tmp_fd >= 0) {
-						unlink(tmp);
-					}
-					clean_up_exit(1);
-				}
-				if (fgets(line1, 1024, p) == NULL) {
-					rfbLog("wait_for_client: read failed: %s\n", create_cmd);
-					rfbLogPerror("fgets");
-					if (tmp_fd >= 0) {
-						unlink(tmp);
-					}
-					clean_up_exit(1);
-				}
-				n = fread(line2, 1, 16384, p);
-			}
-			if (tmp_fd >= 0) {
-				unlink(tmp);
-			}
 		}
+		if (tmp_fd >= 0) {
+			unlink(tmp);
+		}
+	}
 
 if (db) fprintf(stderr, "line1=%s\n", line1);
 
-		if (strstr(line1, "DISPLAY=") != line1) {
-			rfbLog("wait_for_client: bad reply '%s'\n", line1);
-			if (unixpw) {
-				unixpw_msg("No DISPLAY found.", 3);
-			}
-			clean_up_exit(1);
+	if (strstr(line1, "DISPLAY=") != line1) {
+		rfbLog("wait_for_client: bad reply '%s'\n", line1);
+		if (unixpw) {
+			unixpw_msg("No DISPLAY found.", 3);
 		}
+		clean_up_exit(1);
+	}
 
 
-		if (strstr(line1, ",VT=")) {
-			int vt;
-			char *t = strstr(line1, ",VT=");
-			vt = atoi(t + strlen(",VT="));
-			*t = '\0';
-			if (7 <= vt && vt <= 15) {
-				char chvt[100];
-				sprintf(chvt, "chvt %d >/dev/null 2>/dev/null &", vt);
-				rfbLog("running: %s\n", chvt);
-				system(chvt);
-				sleep(2);
-			}
-		} else if (strstr(line1, ",XPID=")) {
-			int i, pvt, vt = -1;
-			char *t = strstr(line1, ",XPID=");
-			pvt = atoi(t + strlen(",XPID="));
-			*t = '\0';
-			if (pvt > 0) {
-				for (i=3; i <= 10; i++) {
-					int k;
-					char proc[100];
-					char buf[100];
-					sprintf(proc, "/proc/%d/fd/%d", pvt, i);
+	if (strstr(line1, ",VT=")) {
+		int vt;
+		char *t = strstr(line1, ",VT=");
+		vt = atoi(t + strlen(",VT="));
+		*t = '\0';
+		if (7 <= vt && vt <= 15) {
+			do_chvt(vt);
+		}
+	} else if (strstr(line1, ",XPID=")) {
+		int i, pvt, vt = -1;
+		char *t = strstr(line1, ",XPID=");
+		pvt = atoi(t + strlen(",XPID="));
+		*t = '\0';
+		if (pvt > 0) {
+			for (i=3; i <= 10; i++) {
+				int k;
+				char proc[100];
+				char buf[100];
+				sprintf(proc, "/proc/%d/fd/%d", pvt, i);
 if (db) fprintf(stderr, "%d -- %s\n", i, proc);
-					for (k=0; k < 100; k++) {
-						buf[k] = '\0';
-					}
-		
-					if (readlink(proc, buf, 100) != -1) {
-						buf[100-1] = '\0';
+				for (k=0; k < 100; k++) {
+					buf[k] = '\0';
+				}
+	
+				if (readlink(proc, buf, 100) != -1) {
+					buf[100-1] = '\0';
 if (db) fprintf(stderr, "%d -- %s -- %s\n", i, proc, buf);
-						if (strstr(buf, "/dev/tty") == buf) {
-							vt = atoi(buf + strlen("/dev/tty"));
-							if (vt > 0) {
-								break;
-							}
+					if (strstr(buf, "/dev/tty") == buf) {
+						vt = atoi(buf + strlen("/dev/tty"));
+						if (vt > 0) {
+							break;
 						}
 					}
 				}
 			}
-			if (7 <= vt && vt <= 12) {
-				char chvt[100];
-				sprintf(chvt, "chvt %d >/dev/null 2>/dev/null &", vt);
-				rfbLog("running: %s\n", chvt);
-				system(chvt);
-				sleep(2);
+		}
+		if (7 <= vt && vt <= 12) {
+			do_chvt(vt);
+		}
+	}
+
+	use_dpy = strdup(line1 + strlen("DISPLAY="));
+	q = use_dpy;
+	while (*q != '\0') {
+		if (*q == '\n' || *q == '\r') *q = '\0';
+		q++;
+	}
+	if (line2[0] != '\0') {
+		if (strstr(line2, "XAUTHORITY=") == line2) {
+			q = line2;
+			while (*q != '\0') {
+				if (*q == '\n' || *q == '\r') *q = '\0';
+				q++;
 			}
-		}
+			if (auth_file) {
+				free(auth_file);
+			}
+			auth_file = strdup(line2 + strlen("XAUTHORITY="));
 
-		use_dpy = strdup(line1 + strlen("DISPLAY="));
-		q = use_dpy;
-		while (*q != '\0') {
-			if (*q == '\n' || *q == '\r') *q = '\0';
-			q++;
-		}
-		if (line2[0] != '\0') {
-			if (strstr(line2, "XAUTHORITY=") == line2) {
-				q = line2;
-				while (*q != '\0') {
-					if (*q == '\n' || *q == '\r') *q = '\0';
-					q++;
-				}
-				if (auth_file) {
-					free(auth_file);
-				}
-				auth_file = strdup(line2 + strlen("XAUTHORITY="));
-
-			} else {
-				xauth_raw_data = (char *)malloc(n);
-				xauth_raw_len = n;
-				memcpy(xauth_raw_data, line2, n);
+		} else {
+			xauth_raw_data = (char *)malloc(n);
+			xauth_raw_len = n;
+			memcpy(xauth_raw_data, line2, n);
 if (db) {fprintf(stderr, "xauth_raw_len: %d\n", n);
 write(2, xauth_raw_data, n);
 fprintf(stderr, "\n");}
-			}
 		}
+	}
 
-		if (usslpeer) {
-			char *u = (char *) malloc(strlen(usslpeer+2));
-			sprintf(u, "+%s", usslpeer);
-			if (switch_user(u, 0)) {
-				rfbLog("sslpeer switched to user: %s\n", usslpeer);
-			} else {
-				rfbLog("sslpeer failed to switch to user: %s\n", usslpeer);
-			}
-			free(u);
-			
-		} else if (users_list_save && keep_unixpw_user) {
-			char *user = keep_unixpw_user;
-			char *u = (char *)malloc(strlen(user)+1); 
+	if (usslpeer) {
+		char *u = (char *) malloc(strlen(usslpeer+2));
+		sprintf(u, "+%s", usslpeer);
+		if (switch_user(u, 0)) {
+			rfbLog("sslpeer switched to user: %s\n", usslpeer);
+		} else {
+			rfbLog("sslpeer failed to switch to user: %s\n", usslpeer);
+		}
+		free(u);
+		
+	} else if (users_list_save && keep_unixpw_user) {
+		char *user = keep_unixpw_user;
+		char *u = (char *)malloc(strlen(user)+1); 
 
-			users_list = users_list_save;
+		users_list = users_list_save;
 
-			u[0] = '\0';
-			if (!strcmp(users_list, "unixpw=")) {
-				sprintf(u, "+%s", user);
-			} else {
-				char *p, *str = strdup(users_list);
-				p = strtok(str + strlen("unixpw="), ",");
-				while (p) {
-					if (!strcmp(p, user)) {
-						sprintf(u, "+%s", user);
-						break;
-					}
-					p = strtok(NULL, ",");
+		u[0] = '\0';
+		if (!strcmp(users_list, "unixpw=")) {
+			sprintf(u, "+%s", user);
+		} else {
+			char *p, *str = strdup(users_list);
+			p = strtok(str + strlen("unixpw="), ",");
+			while (p) {
+				if (!strcmp(p, user)) {
+					sprintf(u, "+%s", user);
+					break;
 				}
-				free(str);
+				p = strtok(NULL, ",");
 			}
-			
-			if (u[0] == '\0') {
-				rfbLog("unixpw_accept skipping switch to user: %s\n", user);
-			} else if (switch_user(u, 0)) {
-				rfbLog("unixpw_accept switched to user: %s\n", user);
-			} else {
-				rfbLog("unixpw_accept failed to switch to user: %s\n", user);
-			}
-			free(u);
+			free(str);
 		}
+		
+		if (u[0] == '\0') {
+			rfbLog("unixpw_accept skipping switch to user: %s\n", user);
+		} else if (switch_user(u, 0)) {
+			rfbLog("unixpw_accept switched to user: %s\n", user);
+		} else {
+			rfbLog("unixpw_accept failed to switch to user: %s\n", user);
+		}
+		free(u);
+	}
+
+	if (unixpw) {
+		char str[32];
+
+		if (keep_unixpw_user && keep_unixpw_pass) {
+			strzero(keep_unixpw_user);
+			strzero(keep_unixpw_pass);
+			keep_unixpw = 0;
+		}
+
+		if (created_disp) {
+			snprintf(str, 30, "Created DISPLAY %s", use_dpy);
+		} else {
+			snprintf(str, 30, "Using DISPLAY %s", use_dpy);
+		}
+		unixpw_msg(str, 2);
+	}
+	return 1;
+}
+
+static XImage ximage_struct;
+
+int wait_for_client(int *argc, char** argv, int http) {
+	/* ugh, here we go... */
+	XImage* fb_image;
+	int w = 640, h = 480, b = 32;
+	int w0, h0, i, chg_raw_fb = 0;
+	char *str, *q, *cmd = NULL;
+	int db = 0, dt = 0;
+	char *create_cmd = NULL;
+	char *users_list_save = NULL;
+	int created_disp = 0, ncache_save;
+	int did_client_connect = 0;
+	char *vnc_redirect_host = "localhost";
+	int vnc_redirect_port = -1, vnc_redirect_cnt = 0;
+	char vnc_redirect_test[10];
+
+	if (getenv("WAIT_FOR_CLIENT_DB")) {
+		db = 1;
+	}
+
+	vnc_redirect = 0;
+
+	if (! use_dpy || strstr(use_dpy, "WAIT:") != use_dpy) {
+		return 0;
+	}
+
+	for (i=0; i < *argc; i++) {
+		if (!strcmp(argv[i], "-desktop")) {
+			dt = 1;
+		}
+		if (db) fprintf(stderr, "args %d %s\n", i, argv[i]);
+	}
+	if (!quiet && !strstr(use_dpy, "FINDDISPLAY-run")) {
+		rfbLog("wait_for_client: %s\n", use_dpy);
+	}
+
+	str = strdup(use_dpy);
+	str += strlen("WAIT");
+
+	xdmcp_insert = NULL;
+
+	/* get any leading geometry: */
+	q = strchr(str+1, ':');
+	if (q) {
+		*q = '\0';
+		if (sscanf(str+1, "%dx%d", &w0, &h0) == 2)  {
+			w = w0;
+			h = h0;
+			rfbLog("wait_for_client set: w=%d h=%d\n", w, h);
+		}
+		*q = ':';
+		str = q;
+	}
+
+	/* str currently begins with a ':' */
+	if (strstr(str, ":cmd=") == str) {
+		/* cmd=/path/to/mycommand */
+		str++;
+	} else if (strpbrk(str, "0123456789") == str+1) {
+		/* :0.0 */
+		;
+	} else {
+		/* hostname:0.0 */
+		str++;
+	}
+
+	if (db) fprintf(stderr, "str: %s\n", str);
+
+	if (strstr(str, "cmd=") == str) {
+		cmd = setup_cmd(str, &vnc_redirect, &vnc_redirect_host, &vnc_redirect_port, db);
+	}
+	
+	fb_image = &ximage_struct;
+	setup_fake_fb(fb_image, w, h, b);
+
+	if (! dt) {
+		char *s;
+		argv[*argc] = strdup("-desktop");
+		*argc = (*argc) + 1;
+
+		if (cmd) {
+			char *q;
+			s = choose_title(":0");
+			q = strstr(s, ":0");
+			if (q) {
+				*q = '\0';
+			}
+		} else {
+			s = choose_title(str);
+		}
+		rfb_desktop_name = strdup(s);
+		argv[*argc] = s;
+		*argc = (*argc) + 1;
+	}
+
+	ncache_save = ncache;
+	ncache = 0;
+
+	initialize_allowed_input();
+
+	if (! multiple_cursors_mode) {
+		multiple_cursors_mode = strdup("default");
+	}
+	initialize_cursors_mode();
+	
+	initialize_screen(argc, argv, fb_image);
+
+	initialize_signals();
+
+	if (ssh_str != NULL) {
+		ssh_remote_tunnel(ssh_str, screen->port);
+	}
+
+	if (! raw_fb) {
+		chg_raw_fb = 1;
+		/* kludge to get RAWFB_RET with dpy == NULL guards */
+		raw_fb = (char *) 0x1;
+	}
+
+	if (cmd && !strcmp(cmd, "HTTPONCE")) {
+		handle_one_http_request();	
+		clean_up_exit(0);
+	}
+
+	if (http && check_httpdir()) {
+		http_connections(1);
+	}
+
+	if (cmd && unixpw) {
+		keep_unixpw = 1;
+	}
+
+	setup_service();
+
+	check_waitbg();
+
+	if (vnc_redirect) {
+		vnc_redirect_loop(vnc_redirect_test, &vnc_redirect_cnt);
+	} else {
+		if (inetd && use_openssl) {
+			accept_openssl(OPENSSL_INETD, -1);
+		}
+
+		setup_client_connect(&did_client_connect);
+
+		loop_for_connect(did_client_connect);
 
 		if (unixpw) {
-			char str[32];
-
-			if (keep_unixpw_user && keep_unixpw_pass) {
-				strzero(keep_unixpw_user);
-				strzero(keep_unixpw_pass);
-				keep_unixpw = 0;
+			if (cmd && strstr(cmd, "FINDCREATEDISPLAY") == cmd) {
+				if (users_list && strstr(users_list, "unixpw=") == users_list) {
+					users_list_save = users_list;
+					users_list = NULL;
+				}
 			}
+			do_unixpw_loop();
+		}
+	}
 
-			if (created_disp) {
-				snprintf(str, 30, "Created DISPLAY %s", use_dpy);
-			} else {
-				snprintf(str, 30, "Using DISPLAY %s", use_dpy);
-			}
-			unixpw_msg(str, 2);
+	if (vnc_redirect == 2) {
+		;
+	} else if (cmd) {
+		if (!do_run_cmd(cmd, create_cmd, users_list_save, created_disp, db)) {
+			return 0;
 		}
 	} else {
 		use_dpy = strdup(str);
@@ -2532,61 +2706,8 @@ fprintf(stderr, "\n");}
 	}
 
 	if (vnc_redirect) {
-		char *q = strchr(use_dpy, ':');
-		int vdpy = -1, sock = -1;
-		int s_in, s_out, i;
-		if (vnc_redirect == 2) {
-			char num[32];	
-			sprintf(num, ":%d", vnc_redirect_port);
-			q = num;
-		}
-		if (!q) {
-			rfbLog("wait_for_client: can't find number in X display: %s\n", use_dpy);
-			clean_up_exit(1);
-		}
-		if (sscanf(q+1, "%d", &vdpy) != 1) {
-			rfbLog("wait_for_client: can't find number in X display: %s\n", q);
-			clean_up_exit(1);
-		}
-		if (vdpy == -1 && vnc_redirect != 2) {
-			rfbLog("wait_for_client: can't find number in X display: %s\n", q);
-			clean_up_exit(1);
-		}
-		if (vnc_redirect == 2) {
-			if (vdpy < 0) {
-				vdpy = -vdpy;
-			} else if (vdpy < 200) {
-				vdpy += 5900;
-			}
-		} else {
-			vdpy += 5900;
-		}
-		if (created_disp) {
-			usleep(1000*1000);
-		}
-		for (i=0; i < 20; i++) {
-			sock = rfbConnectToTcpAddr(vnc_redirect_host, vdpy);
-			if (sock >= 0) {
-				break;
-			}
-			rfbLog("wait_for_client: ...\n");
-			usleep(500*1000);
-		}
-		if (sock < 0) {
-			rfbLog("wait_for_client: could not connect to a VNC Server at %s:%d\n", vnc_redirect_host, vdpy);
-			clean_up_exit(1);
-		}
-		if (inetd) {
-			s_in  = fileno(stdin);
-			s_out = fileno(stdout);
-		} else {
-			s_in = s_out = vnc_redirect_sock;
-		}
-		if (vnc_redirect_cnt > 0) {
-			write(vnc_redirect_sock, vnc_redirect_test, vnc_redirect_cnt);
-		}
-		rfbLog("wait_for_client: switching control to VNC Server at %s:%d\n", vnc_redirect_host, vdpy);
-		raw_xfer(sock, s_in, s_out);
+		do_vnc_redirect(created_disp, vnc_redirect_host, vnc_redirect_port,
+		    vnc_redirect_cnt, vnc_redirect_test);
 		clean_up_exit(0);
 	}
 

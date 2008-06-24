@@ -2631,7 +2631,7 @@ rfbSendFramebufferUpdate(rfbClientPtr cl,
 	    rows = (h-1)/cl->correMaxHeight+1;
 	    nUpdateRegionRects += rectsPerRow*rows;
         }
-	sraRgnReleaseIterator(i);
+	sraRgnReleaseIterator(i); i=NULL;
     } else if (cl->preferredEncoding == rfbEncodingUltra) {
         nUpdateRegionRects = 0;
         
@@ -2645,7 +2645,7 @@ rfbSendFramebufferUpdate(rfbClientPtr cl,
                 rfbScaledCorrection(cl->screen, cl->scaledScreen, &x, &y, &w, &h, "rfbSendFramebufferUpdate");
             nUpdateRegionRects += (((h-1) / (ULTRA_MAX_SIZE( w ) / w)) + 1);
           }
-        sraRgnReleaseIterator(i);
+        sraRgnReleaseIterator(i); i=NULL;
 #ifdef LIBVNCSERVER_HAVE_LIBZ
     } else if (cl->preferredEncoding == rfbEncodingZlib) {
 	nUpdateRegionRects = 0;
@@ -2660,7 +2660,7 @@ rfbSendFramebufferUpdate(rfbClientPtr cl,
                 rfbScaledCorrection(cl->screen, cl->scaledScreen, &x, &y, &w, &h, "rfbSendFramebufferUpdate");
 	    nUpdateRegionRects += (((h-1) / (ZLIB_MAX_SIZE( w ) / w)) + 1);
 	}
-	sraRgnReleaseIterator(i);
+	sraRgnReleaseIterator(i); i=NULL;
 #ifdef LIBVNCSERVER_HAVE_LIBJPEG
     } else if (cl->preferredEncoding == rfbEncodingTight) {
 	nUpdateRegionRects = 0;
@@ -2681,7 +2681,7 @@ rfbSendFramebufferUpdate(rfbClientPtr cl,
 	    }
 	    nUpdateRegionRects += n;
 	}
-	sraRgnReleaseIterator(i);
+	sraRgnReleaseIterator(i); i=NULL;
 #endif
 #endif
     } else {
@@ -2805,6 +2805,10 @@ rfbSendFramebufferUpdate(rfbClientPtr cl,
            break;
 #endif
         }
+    }
+    if (i) {
+        sraRgnReleaseIterator(i);
+        i = NULL;
     }
 
     if ( nUpdateRegionRects == 0xFFFF &&
@@ -3062,11 +3066,19 @@ rfbSendSetColourMapEntries(rfbClientPtr cl,
                            int nColours)
 {
     char buf[sz_rfbSetColourMapEntriesMsg + 256 * 3 * 2];
-    rfbSetColourMapEntriesMsg *scme = (rfbSetColourMapEntriesMsg *)buf;
-    uint16_t *rgb = (uint16_t *)(&buf[sz_rfbSetColourMapEntriesMsg]);
+    char *wbuf = buf;
+    rfbSetColourMapEntriesMsg *scme;
+    uint16_t *rgb;
     rfbColourMap* cm = &cl->screen->colourMap;
-    
     int i, len;
+
+    if (nColours > 256) {
+	/* some rare hardware has, e.g., 4096 colors cells: PseudoColor:12 */
+    	wbuf = (char *) malloc(sz_rfbSetColourMapEntriesMsg + nColours * 3 * 2);
+    }
+
+    scme = (rfbSetColourMapEntriesMsg *)wbuf;
+    rgb = (uint16_t *)(&wbuf[sz_rfbSetColourMapEntriesMsg]);
 
     scme->type = rfbSetColourMapEntries;
 
@@ -3091,13 +3103,15 @@ rfbSendSetColourMapEntries(rfbClientPtr cl,
 
     len += nColours * 3 * 2;
 
-    if (rfbWriteExact(cl, buf, len) < 0) {
+    if (rfbWriteExact(cl, wbuf, len) < 0) {
 	rfbLogPerror("rfbSendSetColourMapEntries: write");
 	rfbCloseClient(cl);
+        if (wbuf != buf) free(wbuf);
 	return FALSE;
     }
 
     rfbStatRecordMessageSent(cl, rfbSetColourMapEntries, len, len);
+    if (wbuf != buf) free(wbuf);
     return TRUE;
 }
 

@@ -81,6 +81,7 @@ int rawfb_vnc_reflect = 0;
  */
 #define NCOLOR 256
 
+/* this is only for rawfb */
 void set_greyscale_colormap(void) {
 	int i;
 	if (! screen) {
@@ -141,6 +142,8 @@ if (0) fprintf(stderr, "set_hi240_colormap: %s\n", raw_fb_pixfmt);
 
 	rfbSetClientColourMaps(screen, 0, 256);
 }
+
+/* this is only for rawfb */
 void unset_colormap(void) {
 	if (! screen) {
 		return;
@@ -153,35 +156,55 @@ void unset_colormap(void) {
 if (0) fprintf(stderr, "unset_colormap: %s\n", raw_fb_pixfmt);
 }
 
+/* this is X11 case */
 void set_colormap(int reset) {
+
 #if NO_X11
 	if (!reset) {}
 	return;
 #else
 	static int init = 1;
-	static XColor color[NCOLOR], prev[NCOLOR];
+	static XColor *color = NULL, *prev = NULL;
+	static int ncolor = 0;
 	Colormap cmap;
 	Visual *vis;
 	int i, ncells, diffs = 0;
 
 	if (reset) {
 		init = 1;
+		ncolor = 0;
 		if (screen->colourMap.data.shorts) {
 			free(screen->colourMap.data.shorts);
 			screen->colourMap.data.shorts = NULL;
 		}
+		if (color) {
+			free(color);
+			color = NULL;
+		}
+		if (prev) {
+			free(prev);
+			prev = NULL;
+		}
 	}
-if (0) fprintf(stderr, "unset_colormap: %d\n", reset);
 
 	if (init) {
-		screen->colourMap.count = NCOLOR;
+		if (depth > 8) {
+			ncolor = 1 << depth;
+		} else {
+			ncolor = NCOLOR;
+		}
+		screen->colourMap.count = ncolor;
 		screen->serverFormat.trueColour = FALSE;
 		screen->colourMap.is16 = TRUE;
 		screen->colourMap.data.shorts = (unsigned short *)
-			malloc(3*sizeof(unsigned short) * NCOLOR);
+			malloc(3*sizeof(unsigned short) * ncolor);
+	}
+	if (color == NULL) {
+		color = (XColor *) calloc(ncolor * sizeof(XColor), 1);
+		prev  = (XColor *) calloc(ncolor * sizeof(XColor), 1);
 	}
 
-	for (i=0; i < NCOLOR; i++) {
+	for (i=0; i < ncolor; i++) {
 		prev[i].red   = color[i].red;
 		prev[i].green = color[i].green;
 		prev[i].blue  = color[i].blue;
@@ -205,14 +228,14 @@ if (0) fprintf(stderr, "unset_colormap: %d\n", reset);
 		}
 	}
 
-	if (ncells != NCOLOR) {
-		if (init && ! quiet) {
-			rfbLog("set_colormap: number of cells is %d "
-			    "instead of %d.\n", ncells, NCOLOR);
-		}
+	if (ncells != ncolor) {
 		if (! shift_cmap) {
 			screen->colourMap.count = ncells;
 		}
+	}
+	if (init && ! quiet) {
+		rfbLog("set_colormap: number of cells: %d, "
+		    "ncolor(%d) is %d.\n", ncells, depth, ncolor);
 	}
 
 	if (flash_cmap && ! init) {
@@ -235,9 +258,9 @@ if (0) fprintf(stderr, "unset_colormap: %d\n", reset);
 			}
 		}
 	}
-	if (ncells > NCOLOR && ! quiet) {
+	if (ncells > ncolor && ! quiet) {
 		rfbLog("set_colormap: big problem: ncells=%d > %d\n",
-		    ncells, NCOLOR);
+		    ncells, ncolor);
 	}
 
 	if (vis->class == TrueColor || vis->class == DirectColor) {
@@ -247,7 +270,7 @@ if (0) fprintf(stderr, "unset_colormap: %d\n", reset);
 		 * mentioned in xdpyinfo.  Looks OK... perhaps fortuitously.
 		 */
 		if (ncells == 8 && ! shift_cmap) {
-			ncells = NCOLOR;
+			ncells = ncolor;
 		}
 	}
 
@@ -273,7 +296,7 @@ if (0) fprintf(stderr, "unset_colormap: %d\n", reset);
 			diffs++;
 		}
 
-		if (shift_cmap && k >= 0 && k < NCOLOR) {
+		if (shift_cmap && k >= 0 && k < ncolor) {
 			/* kludge to copy the colors to higher pixel values */
 			screen->colourMap.data.shorts[k*3+0] = color[i].red;
 			screen->colourMap.data.shorts[k*3+1] = color[i].green;
@@ -287,7 +310,7 @@ if (0) fprintf(stderr, "unset_colormap: %d\n", reset);
 			    "with uninitialized clients.\n");
 		}
 		if (shift_cmap) {
-			rfbSetClientColourMaps(screen, 0, NCOLOR);
+			rfbSetClientColourMaps(screen, 0, ncolor);
 		} else {
 			rfbSetClientColourMaps(screen, 0, ncells);
 		}
@@ -299,7 +322,8 @@ if (0) fprintf(stderr, "unset_colormap: %d\n", reset);
 
 static void debug_colormap(XImage *fb) {
 	static int debug_cmap = -1;
-	int i, k, histo[NCOLOR];
+	int i, k, *histo;
+	int ncolor;
 
 	if (debug_cmap < 0) {
 		if (getenv("DEBUG_CMAP") != NULL) {
@@ -314,11 +338,13 @@ static void debug_colormap(XImage *fb) {
 	if (! fb) {
 		return;
 	}
-	if (fb->bits_per_pixel > 8) {
+	if (fb->bits_per_pixel > 16) {
 		return;
 	}
+	ncolor = screen->colourMap.count;
+	histo = (int *) calloc(ncolor * sizeof(int), 1);
 
-	for (i=0; i < NCOLOR; i++) {
+	for (i=0; i < ncolor; i++) {
 		histo[i] = 0;
 	}
 	for (k = 0; k < fb->width * fb->height; k++) {
@@ -329,7 +355,7 @@ static void debug_colormap(XImage *fb) {
 		histo[n]++;
 	}
 	fprintf(stderr, "\nColormap histogram for current screen contents:\n");
-	for (i=0; i < NCOLOR; i++) {
+	for (i=0; i < ncolor; i++) {
 		unsigned short r = screen->colourMap.data.shorts[i*3+0];
 		unsigned short g = screen->colourMap.data.shorts[i*3+1];
 		unsigned short b = screen->colourMap.data.shorts[i*3+2];
@@ -340,6 +366,7 @@ static void debug_colormap(XImage *fb) {
 			fprintf(stderr, "\n");
 		}
 	}
+	free(histo);
 	fprintf(stderr, "\n");
 }
 
@@ -1355,7 +1382,7 @@ if (db) fprintf(stderr, "initialize_raw_fb reset\n");
 	raw_fb_addr = NULL;
 	raw_fb_offset = 0;
 	raw_fb_bytes_per_line = 0;
-/*	rawfb_vnc_reflect = 0;*/
+	rawfb_vnc_reflect = 0;
 
 	last_mode = 0;
 	if (last_file) {
@@ -1406,6 +1433,7 @@ if (db) fprintf(stderr, "initialize_raw_fb reset\n");
 		initialize_pipeinput();
 #endif
 	}
+
 	if (closedpy && !view_only && got_noviewonly) {
 		rfbLog("not closing X DISPLAY under -noviewonly option.\n");
 		closedpy = 0;
@@ -1936,11 +1964,37 @@ XImage *initialize_xdisplay_fb(void) {
 	if (xform24to32) {
 		if (DefaultDepth(dpy, scr) == 24) {
 			vis_str = strdup("TrueColor:32");
-			rfbLog("initialize_xdisplay_fb: vis_str set to: %s ",
+			rfbLog("initialize_xdisplay_fb: vis_str set to: %s\n",
 			    vis_str);
 			visual_id = (VisualID) 0;
 			visual_depth = 0;
 			set_visual_str_to_something = 1;
+		}
+	} else if (DefaultDepth(dpy, scr) < 8) {
+		/* check very low bpp case, e.g. mono or vga16 */
+		Screen *s = DefaultScreenOfDisplay(dpy);
+		XImage *xi = XGetImage_wr(dpy, DefaultRootWindow(dpy), 0, 0, 2, 2, AllPlanes,
+		    ZPixmap);
+		if (xi && xi->bits_per_pixel < 8) {
+			int lowbpp = xi->bits_per_pixel; 
+			if (!vis_str) {
+				char tmp[32];
+				sprintf(tmp, "0x%x:8", (int) s->root_visual->visualid);
+				vis_str = strdup(tmp);
+				rfbLog("initialize_xdisplay_fb: low bpp[%d], vis_str "
+				    "set to: %s\n", lowbpp, vis_str);
+			}
+			if (using_shm) {
+				using_shm = 0;
+				rfbLog("initialize_xdisplay_fb: low bpp[%d], "
+				    "disabling shm\n", lowbpp);
+			}
+			visual_id = (VisualID) 0;
+			visual_depth = 0;
+			set_visual_str_to_something = 1;
+		}
+		if (xi) {
+			XDestroyImage(xi);
 		}
 	}
 
@@ -2425,13 +2479,13 @@ void initialize_screen(int *argc, char **argv, XImage *fb) {
 				    " bpp != 32 with depth == 24\n");
 				cmap8to24 = 0;
 			}
-		} else if (depth == 8) {
+		} else if (depth <= 16) {
 			/* need to cook up the screen fb to be depth 24 */
 			fb_bpp = 32;
 			fb_depth = 24;
 		} else {
 			if (!quiet) rfbLog("disabling -8to24 mode:"
-			    " default depth not 24 or 8\n");
+			    " default depth not 16 or less\n");
 			cmap8to24 = 0;
 		}
 	}
@@ -2494,9 +2548,14 @@ void initialize_screen(int *argc, char **argv, XImage *fb) {
 	}
 #endif
 
-	if (cmap8to24 && depth == 8) {
-		rfb_bytes_per_line *= 4;
-		rot_bytes_per_line *= 4;
+	if (cmap8to24) {
+		if (depth <= 8) {
+			rfb_bytes_per_line *= 4;
+			rot_bytes_per_line *= 4;
+		} else if (depth <= 16) {
+			rfb_bytes_per_line *= 2;
+			rot_bytes_per_line *= 2;
+		}
 	}
 
 	/*
@@ -2601,7 +2660,7 @@ void initialize_screen(int *argc, char **argv, XImage *fb) {
 		have_masks = 0;
 	}
 
-	if (cmap8to24 && depth == 8 && dpy) {
+	if (cmap8to24 && depth <= 16 && dpy) {
 		XVisualInfo vinfo;
 		vinfo.red_mask = 0;
 		vinfo.green_mask = 0;
@@ -2643,13 +2702,14 @@ void initialize_screen(int *argc, char **argv, XImage *fb) {
 		free(fmt);
 	}
 
-	if (! have_masks && screen->serverFormat.bitsPerPixel == 8
+	if (! have_masks && screen->serverFormat.bitsPerPixel <= 16
 	    && dpy && CellsOfScreen(ScreenOfDisplay(dpy, scr))) {
-		/* indexed color */
+		/* indexed color. we let 1 <= bpp <= 16, but it is normally 8 */
 		if (!quiet) {
 			rfbLog("\n");
-			rfbLog("X display %s is 8bpp indexed color\n",
-			    DisplayString(dpy));
+			rfbLog("X display %s is %dbpp indexed color, depth=%d\n",
+			    DisplayString(dpy), screen->serverFormat.bitsPerPixel,
+			    screen->serverFormat.depth);
 			if (! flash_cmap && ! overlay) {
 				rfbLog("\n");
 				rfbLog("In 8bpp PseudoColor mode if you "
@@ -2661,6 +2721,18 @@ void initialize_screen(int *argc, char **argv, XImage *fb) {
 				rfbLog("\n");
 			}
 		}
+		if (screen->serverFormat.depth < 8) {
+			rfbLog("resetting serverFormat.depth %d -> 8.\n",
+			    screen->serverFormat.depth);
+			rfbLog("resetting serverFormat.bpp   %d -> 8.\n",
+			    screen->serverFormat.bitsPerPixel);
+			screen->serverFormat.depth = 8;
+			screen->serverFormat.bitsPerPixel = 8;
+		}
+		if (screen->serverFormat.depth > 8) {
+			rfbLog("WARNING: indexed color depth > 8, Tight encoding will crash.\n");
+		}
+
 		screen->serverFormat.trueColour = FALSE;
 		indexed_color = 1;
 		set_colormap(1);
@@ -2692,6 +2764,29 @@ void initialize_screen(int *argc, char **argv, XImage *fb) {
 		}
 
 		indexed_color = 0;
+
+		if (!have_masks) {
+			int M, B = bits_per_color;
+
+			if (3*B > fb_bpp) B--;
+			if (B < 1) B = 1;
+			M = (1 << B) - 1;
+
+			rfbLog("WARNING: all TrueColor RGB masks are zero!\n");
+			rfbLog("WARNING: cooking something up for VNC fb...  B=%d M=%d\n", B, M);
+			main_red_mask   = M;
+			main_green_mask = M;
+			main_blue_mask  = M;
+			main_red_mask   = main_red_mask   << (2*B);
+			main_green_mask = main_green_mask << (1*B);
+			main_blue_mask  = main_blue_mask  << (0*B);
+			fprintf(stderr, " red_mask:   0x%08lx  %s\n", main_red_mask,
+			    bitprint(main_red_mask, 32));
+			fprintf(stderr, " green_mask: 0x%08lx  %s\n", main_green_mask,
+			    bitprint(main_green_mask, 32));
+			fprintf(stderr, " blue_mask:  0x%08lx  %s\n", main_blue_mask,
+			    bitprint(main_blue_mask, 32));
+		}
 
 		/* convert masks to bit shifts and max # colors */
 		if (main_red_mask) {
@@ -2826,8 +2921,10 @@ void initialize_screen(int *argc, char **argv, XImage *fb) {
 
 		if (cmap8to24) {
 			int n = main_bytes_per_line * fb->height;
-			if (depth == 8) {
+			if (depth <= 8) {
 				n *= 4;
+			} else if (depth <= 16) {
+				n *= 2;
 			}
 			cmap8to24_fb = (char *) malloc(n);
 			memset(cmap8to24_fb, 0, n);

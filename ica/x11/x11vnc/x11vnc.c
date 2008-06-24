@@ -1,7 +1,7 @@
 /*
  * x11vnc: a VNC server for X displays.
  *
- * Copyright (c) 2002-2007 Karl J. Runge <runge@karlrunge.com>
+ * Copyright (c) 2002-2008 Karl J. Runge <runge@karlrunge.com>
  * All rights reserved.
  *
  *  This is free software; you can redistribute it and/or modify
@@ -2514,6 +2514,17 @@ int main(int argc, char* argv[]) {
 			shift_cmap = atoi(argv[++i]);
 		} else if (!strcmp(arg, "-notruecolor")) {
 			force_indexed_color = 1;
+		} else if (!strcmp(arg, "-advertise_truecolor")) {
+			advertise_truecolor = 1;
+			if (i < argc-1) {
+				char *s = argv[i+1];
+				if (s[0] != '-') {
+					if (strstr(s, "reset")) {
+						advertise_truecolor_reset = 1;
+					}
+					i++;
+				}
+			}
 		} else if (!strcmp(arg, "-overlay")) {
 			overlay = 1;
 		} else if (!strcmp(arg, "-overlay_nocursor")) {
@@ -2589,7 +2600,7 @@ int main(int argc, char* argv[]) {
 		} else if (!strcmp(arg, "-connect") ||
 		    !strcmp(arg, "-connect_or_exit")) {
 			CHECK_ARGC
-			if (strchr(argv[++i], '/')) {
+			if (strchr(argv[++i], '/' && !strstr(argv[i], "repeater://"))) {
 				client_connect_file = strdup(argv[i]);
 			} else {
 				client_connect = strdup(argv[i]);
@@ -3211,6 +3222,7 @@ int main(int argc, char* argv[]) {
 		} else if (!strcmp(arg, "-wait")) {
 			CHECK_ARGC
 			waitms = atoi(argv[++i]);
+			got_waitms = 1;
 		} else if (!strcmp(arg, "-wait_ui")) {
 			CHECK_ARGC
 			wait_ui = atof(argv[++i]);
@@ -3280,7 +3292,22 @@ int main(int argc, char* argv[]) {
 			}
 #if LIBVNCSERVER_HAVE_LIBPTHREAD
 		} else if (!strcmp(arg, "-threads")) {
+#if defined(X11VNC_THREADED)
 			use_threads = 1;
+#else
+			if (getenv("X11VNC_THREADED")) {
+				use_threads = 1;
+			} else {
+				rfbLog("\n");
+				rfbLog("The -threads mode is unstable and not tested or maintained.\n");
+				rfbLog("It is disabled in the source code.  If you really need\n");
+				rfbLog("the feature you can reenable it at build time by setting\n");
+				rfbLog("-DX11VNC_THREADED in CPPFLAGS. Or set X11VNC_THREADED=1\n");
+				rfbLog("in your runtime environment.\n");
+				rfbLog("\n");
+				usleep(500*1000);
+			}
+#endif
 		} else if (!strcmp(arg, "-nothreads")) {
 			use_threads = 0;
 #endif
@@ -3830,11 +3857,14 @@ int main(int argc, char* argv[]) {
 				if (! s) s = "SSH_CONNECTION";
 				fprintf(stderr, "\n");
 				rfbLog("Skipping -ssl/-stunnel constraint in"
-				    " -unixpw\n");
-				rfbLog("mode, assuming your SSH encryption"
-				    " is: %s\n", s);
+				    " -unixpw mode,\n");
+				rfbLog("assuming your SSH encryption"
+				    " is:\n");
+				rfbLog("   %s\n", s);
 				rfbLog("Setting -localhost in SSH + -unixpw"
 				    " mode.\n");
+				rfbLog("If you *actually* want SSL, restart"
+				    " with -ssl on the cmdline\n");
 				fprintf(stderr, "\n");
 				allow_list = strdup("127.0.0.1");
 				got_localhost = 1;
@@ -4202,6 +4232,9 @@ if (0) fprintf(stderr, "XA: %s\n", getenv("XAUTHORITY"));
 		if (! quiet) rfbLog("Using default X display.\n");
 	}
 
+	if (clip_str != NULL && dpy != NULL) {
+		check_xinerama_clip();
+	}
 
 	scr = DefaultScreen(dpy);
 	rootwin = RootWindow(dpy, scr);
@@ -4755,6 +4788,28 @@ if (0) fprintf(stderr, "XA: %s\n", getenv("XAUTHORITY"));
 	initialize_signals();
 
 	initialize_speeds();
+
+	if (speeds_read_rate_measured > 100) {
+		/* framebuffer read is fast at  > 100 MB/sec */
+		if (! got_waitms) {
+			waitms /= 2;
+			if (waitms < 10) {
+				waitms = 10;
+			}
+			if (!quiet) {
+				rfbLog("fast read: reset wait  ms to: %d\n", waitms);
+			}
+		}
+		if (! got_deferupdate && ! got_defer) {
+			if (defer_update > 15) {
+				defer_update = 15;
+				if (screen) {
+					screen->deferUpdateTime = defer_update;
+				}
+				rfbLog("fast read: reset defer ms to: %d\n", defer_update);
+			}
+		}
+	}
 
 	initialize_keyboard_and_pointer();
 

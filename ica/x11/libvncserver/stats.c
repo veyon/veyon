@@ -103,6 +103,7 @@ char *encodingName(uint32_t type, char *buf, int len) {
     case rfbEncodingZlibHex:            snprintf(buf, len, "zlibhex");     break;
     case rfbEncodingUltra:              snprintf(buf, len, "ultra");       break;
     case rfbEncodingZRLE:               snprintf(buf, len, "ZRLE");        break;
+    case rfbEncodingZYWRLE:             snprintf(buf, len, "ZYWRLE");      break;
     case rfbEncodingCache:              snprintf(buf, len, "cache");       break;
     case rfbEncodingCacheEnable:        snprintf(buf, len, "cacheEnable"); break;
     case rfbEncodingXOR_Zlib:           snprintf(buf, len, "xorZlib");     break;

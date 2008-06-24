@@ -1567,6 +1567,9 @@ void accept_openssl(int mode, int presock) {
 		if (screen->httpListenSock >= 0 && screen->httpPort > 0) {
 			have_httpd = 1;
 		}
+		if (screen->httpListenSock == -2) {
+			have_httpd = 1;
+		}
 		if (mode == OPENSSL_HTTPS && ! have_httpd) {
 			rfbLog("SSL: accept_openssl[%d]: no httpd socket for "
 			    "-https mode\n", getpid());
@@ -1695,10 +1698,11 @@ void accept_openssl(int mode, int presock) {
 			/* send the failure tag: */
 			strcpy(tbuf, uniq);
 
-			if (https_port_redir < 0) {
+			if (https_port_redir < 0 || (strstr(buf, "PORT=") || strstr(buf, "port="))) {
 				char *q = strstr(buf, "Host:");
-				int fport = 443;
+				int fport = 443, match = 0;
 				char num[16];
+
 				if (q && strstr(q, "\n")) {
 				    q += strlen("Host:") + 1;
 				    while (*q != '\n') {
@@ -1706,11 +1710,24 @@ void accept_openssl(int mode, int presock) {
 					if (*q == ':' && sscanf(q, ":%d", &p) == 1) {
 						if (p > 0 && p < 65536) {
 							fport = p;
+							match = 1;
 							break;
 						}
 					}
 					q++;
 				    }
+				}
+				if (!match || !https_port_redir) {
+					int p;
+					if (sscanf(buf, "PORT=%d,", &p) == 1) {
+						if (p > 0 && p < 65536) {
+							fport = p;
+						}
+					} else if (sscanf(buf, "port=%d,", &p) == 1) {
+						if (p > 0 && p < 65536) {
+							fport = p;
+						}
+					}
 				}
 				sprintf(num, "HP=%d,", fport);
 				strcat(tbuf, num);
@@ -2113,8 +2130,16 @@ if (db > 1) fprintf(stderr, "ssl_init: 4\n");
 			return 0;
 
 		} else if (rc < 0) {
+			unsigned long err;
+			int cnt = 0;
 
-			rfbLog("SSL: ssl_helper[%d]: SSL_accept() *FATAL: %d\n", getpid(), rc);
+			rfbLog("SSL: ssl_helper[%d]: SSL_accept() *FATAL: %d SSL FAILED\n", getpid(), rc);
+			while ((err = ERR_get_error()) != 0) {
+				rfbLog("SSL: %s\n", ERR_error_string(err, NULL));
+				if (cnt++ > 100) {
+					break;
+				}
+			}
 			return 0;
 
 		} else if (dnow() > start + 3.0) {
@@ -2157,9 +2182,18 @@ if (db > 1) fprintf(stderr, "ssl_init: 4\n");
 			}
 		} else {
 			rfbLog("SSL: ssl_helper[%d]: accepted client %s x509 cert is:\n", getpid(), name);
+#if LIBVNCSERVER_HAVE_X509_PRINT_EX_FP
 			X509_print_ex_fp(stderr, x, 0, XN_FLAG_MULTILINE);
+#endif
 			if (cr != NULL) {
+#if LIBVNCSERVER_HAVE_X509_PRINT_EX_FP
 				X509_print_ex_fp(cr, x, 0, XN_FLAG_MULTILINE);
+#else
+				rfbLog("** not compiled with libssl X509_print_ex_fp() function **\n");
+				if (users_list && strstr(users_list, "sslpeer=")) {
+					rfbLog("** -users sslpeer= will not work! **\n");
+				}
+#endif
 				fclose(cr);
 			}
 		}

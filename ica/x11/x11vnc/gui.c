@@ -558,8 +558,11 @@ void do_gui(char *opts, int sleep) {
 			if ((q = strchr(p, '=')) != NULL) {
 				icon_mode_font = strdup(q+1);
 			}
-		} else if (!strcmp(p, "full")) {
-			;
+		} else if (strstr(p, "full") == p) {
+			if (strstr(p, "setp") && 0) {
+				set_env("X11VNC_ICON_MODE", "2");
+				set_env("X11VNC_ICON_SETPASS", "2");
+			}
 		} else if (strstr(p, "tray") == p || strstr(p, "icon") == p) {
 			char *q;
 			icon_mode = 1;

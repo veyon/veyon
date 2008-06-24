@@ -114,6 +114,8 @@ int ping_interval = 0;		/* -ping */
 int flash_cmap = 0;		/* follow installed colormaps */
 int shift_cmap = 0;		/* ncells < 256 and needs shift of pixel values */
 int force_indexed_color = 0;	/* whether to force indexed color for 8bpp */
+int advertise_truecolor = 0;
+int advertise_truecolor_reset = 0;
 int cmap8to24 = 0;		/* -8to24 */
 int xform24to32 = 0;		/* -24to32 */
 char *cmap8to24_str = NULL;
@@ -351,6 +353,7 @@ int flip_byte_order = 0;	/* sometimes needed when using_shm = 0 */
  * poll times of 10-35ms, so maybe this value cuts the idle load by 2 or so.
  */
 int waitms = 20;
+int got_waitms = 0;
 double wait_ui = 2.0;
 double slow_fb = 0.0;
 double xrefresh = 0.0;
@@ -414,7 +417,7 @@ int verbose = 0;
 
 /* threaded vs. non-threaded (default) */
 #if LIBVNCSERVER_HAVE_LIBPTHREAD && defined(X11VNC_THREADED)
-int use_threads = 1;
+int use_threads = 0;	/* not 1. now X11VNC_THREADED means enable it at all. */
 #else
 int use_threads = 0;
 #endif

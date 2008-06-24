@@ -227,6 +227,76 @@ static void blackout_tiles(void) {
 	}
 }
 
+static int did_xinerama_clip = 0;
+
+void check_xinerama_clip(void) {
+#if LIBVNCSERVER_HAVE_LIBXINERAMA
+	int n, k, i, ev, er, juse = -1;
+	int score[32], is = 0;
+	XineramaScreenInfo *x;
+
+	if (!clip_str || !dpy) {
+		return;
+	}
+	if (sscanf(clip_str, "xinerama%d", &k) == 1) {
+		;
+	} else if (sscanf(clip_str, "screen%d", &k) == 1) {
+		;
+	} else {
+		return;
+	}
+
+	free(clip_str);
+	clip_str = NULL;
+
+	if (! XineramaQueryExtension(dpy, &ev, &er)) {
+		return;
+	}
+	if (! XineramaIsActive(dpy)) {
+		return;
+	}
+	x = XineramaQueryScreens(dpy, &n);
+	if (k < 0 || k >= n) {
+		XFree_wr(x);
+		return;
+	}
+	for (i=0; i < n; i++) {
+		score[is++] = nabs(x[i].x_org) + nabs(x[i].y_org);
+		if (is >= 32) {
+			break;
+		}
+	}
+	for (i=0; i <= k; i++) {
+		int j, jmon, mon = -1, mox = -1;
+		for (j=0; j < is; j++) {
+			if (mon < 0 || score[j] < mon) {
+				mon = score[j];
+				jmon = j;
+			}
+			if (mox < 0 || score[j] > mox) {
+				mox = score[j];
+			}
+		}
+		juse = jmon;
+		score[juse] = mox+1+i;
+	}
+
+	if (juse >= 0 && juse < n) {
+		char str[64];
+		sprintf(str, "%dx%d+%d+%d", x[juse].width, x[juse].height,
+		    x[juse].x_org, x[juse].y_org);
+		clip_str = strdup(str);
+		did_xinerama_clip = 1;
+	} else {
+		clip_str = strdup("");
+	}
+	XFree_wr(x);
+	if (!quiet) {
+		rfbLog("set -clip to '%s' for xinerama%d\n", clip_str, k);
+	}
+#endif
+}
+
 static void initialize_xinerama (void) {
 #if !LIBVNCSERVER_HAVE_LIBXINERAMA
 	rfbLog("Xinerama: Library libXinerama is not available to determine\n");
@@ -263,17 +333,17 @@ static void initialize_xinerama (void) {
 	rfbLog("\n");
 	rfbLog("Xinerama is present and active (e.g. multi-head).\n");
 
-	if (! use_xwarppointer && ! got_noxwarppointer) {
-		rfbLog("Xinerama: enabling -xwarppointer mode to try to correct\n");
-		rfbLog("Xinerama: mouse pointer motion. XTEST+XINERAMA bug.\n");
-		rfbLog("Xinerama: Use -noxwarppointer to force XTEST.\n");
-		use_xwarppointer = 1;
-	}
-
 	/* n.b. change to XineramaGetData() someday */
 	xineramas = XineramaQueryScreens(dpy, &n);
 	if (verbose) {
 		rfbLog("Xinerama: number of sub-screens: %d\n", n);
+	}
+
+	if (! use_xwarppointer && ! got_noxwarppointer && n > 1) {
+		rfbLog("Xinerama: enabling -xwarppointer mode to try to correct\n");
+		rfbLog("Xinerama: mouse pointer motion. XTEST+XINERAMA bug.\n");
+		rfbLog("Xinerama: Use -noxwarppointer to force XTEST.\n");
+		use_xwarppointer = 1;
 	}
 
 	if (n == 1) {
@@ -305,11 +375,16 @@ static void initialize_xinerama (void) {
 	}
 	XFree_wr(xineramas);
 
+
 	if (sraRgnEmpty(black_region)) {
 		rfbLog("Xinerama: no blackouts needed (screen fills"
 		    " rectangle)\n");
 		rfbLog("\n");
 		sraRgnDestroy(black_region);
+		return;
+	}
+	if (did_xinerama_clip) {
+		rfbLog("Xinerama: no blackouts due to -clip xinerama.\n");
 		return;
 	}
 

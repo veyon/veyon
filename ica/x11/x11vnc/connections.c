@@ -2149,15 +2149,95 @@ static int proxy_connect(char *host, int port) {
 	return psock;
 }
 
+char *get_repeater_string(char *str, int *len) {
+	int pren, which = 0;
+	int prestring_len = 0;	
+	char *prestring = NULL, *ptmp = NULL;
+	char *equals = strchr(str, '=');
+	char *plus   = strrchr(str, '+');
+
+	*len = 0;
+	if (!plus || !equals) {
+		return NULL;
+	}
+
+	*plus = '\0';
+	if (strstr(str, "repeater=") == str) {
+		/* ultravnc repeater http://www.uvnc.com/addons/repeater.html */
+		prestring_len = 250;
+		ptmp = (char *) calloc(prestring_len+1, 1);
+		snprintf(ptmp, 250, "%s", str + strlen("repeater="));
+		which = 1;
+	} else if (strstr(str, "pre=") == str) {
+		prestring_len = strlen(str + strlen("pre="));
+		ptmp = (char *) calloc(prestring_len+1, 1);
+		snprintf(ptmp, prestring_len+1, "%s", str + strlen("pre="));
+		which = 2;
+	} else if (sscanf(str, "pre%d=", &pren) == 1) {
+		if (pren > 0 && pren <= 16384) {
+			prestring_len = pren;
+			ptmp = (char *) calloc(prestring_len+1, 1);
+			snprintf(prestring, prestring_len, "%s", equals+1);
+			which = 3;
+		}
+	}
+	if (ptmp != NULL) {
+		int i, k = 0;
+		char *p = ptmp;
+		prestring = (char *)calloc(prestring_len+1, 1);
+		/* translate \n to newline, etc. */
+		for (i=0; i < prestring_len; i++) {
+			if (i < prestring_len-1 && *(p+i) == '\\') {
+				if (*(p+i+1) == 'r') {
+					prestring[k++] = '\r'; i++;
+				} else if (*(p+i+1) == 'n') {
+					prestring[k++] = '\n'; i++;
+				} else if (*(p+i+1) == 't') {
+					prestring[k++] = '\t'; i++;
+				} else if (*(p+i+1) == 'a') {
+					prestring[k++] = '\a'; i++;
+				} else if (*(p+i+1) == 'b') {
+					prestring[k++] = '\b'; i++;
+				} else if (*(p+i+1) == 'v') {
+					prestring[k++] = '\v'; i++;
+				} else if (*(p+i+1) == 'f') {
+					prestring[k++] = '\f'; i++;
+				} else if (*(p+i+1) == '\\') {
+					prestring[k++] = '\\'; i++;
+				} else if (*(p+i+1) == 'c') {
+					prestring[k++] = ','; i++;
+				} else {
+					prestring[k++] = *(p+i);
+				}
+			} else {
+				prestring[k++] = *(p+i);
+			}
+		}
+		if (which == 2) {
+			prestring_len = k;
+		}
+		if (!quiet) {
+			rfbLog("-connect prestring: '%s'\n", prestring);
+		}
+		free(ptmp);
+	}
+	*plus = '+';
+
+	*len = prestring_len;
+	return prestring;
+}
+
 /*
  * Do a reverse connect for a single "host" or "host:port"
  */
 
 extern int ssl_client_mode;
 
-static int do_reverse_connect(char *str) {
+static int do_reverse_connect(char *str_in) {
 	rfbClientPtr cl;
-	char *host, *p;
+	char *host, *p, *str = str_in, *s = NULL;
+	char *prestring = NULL;
+	int prestring_len = 0;
 	int rport = 5500, len = strlen(str);
 
 	if (len < 1) {
@@ -2172,6 +2252,24 @@ static int do_reverse_connect(char *str) {
 		return 0;
 	}
 	if (unixpw_in_progress) return 0;
+
+	/* look for repeater pre-string */
+	if (strchr(str, '=') && strrchr(str, '+')
+	    && (strstr(str, "pre") == str || strstr(str, "repeater=") == str)) {
+		prestring = get_repeater_string(str, &prestring_len);
+		str = strrchr(str, '+') + 1;
+	} else if (strrchr(str, '+') && strstr(str, "repeater://") == str) {
+		/* repeater://host:port+string */
+		/*   repeater=string+host:port */
+		char *plus = strrchr(str, '+');
+		str = (char *) malloc(strlen(str_in)+1);
+		s = str;
+		*plus = '\0';
+		sprintf(str, "repeater=%s+%s", plus+1, str_in + strlen("repeater://"));
+		prestring = get_repeater_string(str, &prestring_len);
+		str = strrchr(str, '+') + 1;
+		*plus = '+';
+	}
 
 	/* copy in to host */
 	host = (char *) malloc(len+1);
@@ -2204,10 +2302,15 @@ static int do_reverse_connect(char *str) {
 			rfbLog("reverse_connect: failed to connect to: %s\n", str);
 			return 0;
 		}
+		if (prestring != NULL) {
+			write(vncsock, prestring, prestring_len);
+			free(prestring);
+		}
 #define OPENSSL_REVERSE 4
 		openssl_init(1);
 		accept_openssl(OPENSSL_REVERSE, vncsock);
 		openssl_init(0);
+		free(host);
 		return 1;
 	}
 	if (use_stunnel) {
@@ -2220,17 +2323,17 @@ static int do_reverse_connect(char *str) {
 	}
 
 	if (unixpw) {
-		int is_localhost = 0, user_disabled = 0;
+		int is_localhost = 0, user_disabled_it = 0;
 
 		if(!strcmp(host, "localhost") || !strcmp(host, "127.0.0.1")) {
 			is_localhost = 1;
 		}
 		if (getenv("UNIXPW_DISABLE_LOCALHOST")) {
-			user_disabled = 1;
+			user_disabled_it = 1;
 		}
 
 		if (! is_localhost) {
-			if (user_disabled ) {
+			if (user_disabled_it) {
 				rfbLog("reverse_connect: warning disabling localhost constraint in -unixpw\n");
 			} else {
 				rfbLog("reverse_connect: error not localhost in -unixpw\n");
@@ -2242,6 +2345,19 @@ static int do_reverse_connect(char *str) {
 	if (connect_proxy != NULL) {
 		int sock = proxy_connect(host, rport);
 		if (sock >= 0) {
+			if (prestring != NULL) {
+				write(sock, prestring, prestring_len);
+				free(prestring);
+			}
+			cl = rfbNewClient(screen, sock);
+		} else {
+			return 0;
+		}
+	} else if (prestring != NULL) {
+		int sock = rfbConnectToTcpAddr(host, rport);
+		if (sock >= 0) {
+			write(sock, prestring, prestring_len);
+			free(prestring);
 			cl = rfbNewClient(screen, sock);
 		} else {
 			return 0;
@@ -2618,6 +2734,23 @@ void check_gui_inputs(void) {
 	}
 }
 
+static int turn_off_truecolor = 0;
+
+static void turn_off_truecolor_ad(rfbClientPtr client) {
+	if (turn_off_truecolor) {
+		rfbLog("turning off truecolor advertising.\n");
+		screen->serverFormat.trueColour = FALSE;
+		screen->displayHook = NULL;
+		screen->serverFormat.redShift   = 0;
+		screen->serverFormat.greenShift = 0;
+		screen->serverFormat.blueShift  = 0;
+		screen->serverFormat.redMax     = 0;
+		screen->serverFormat.greenMax   = 0;
+		screen->serverFormat.blueMax    = 0;
+		turn_off_truecolor = 0;
+	}
+}
+
 /*
  * libvncserver callback for when a new client connects
  */
@@ -2759,6 +2892,43 @@ enum rfbNewClientAction new_client(rfbClientPtr client) {
 
 	if (ncache) {
 		check_ncache(1, 0);
+	}
+
+	if (advertise_truecolor && indexed_color) {
+		int rs = 0, gs = 2, bs = 4;
+		int rm = 3, gm = 3, bm = 3;
+		if (bpp >= 24) {
+			rs = 0, gs = 8, bs = 16;
+			rm = 255, gm = 255, bm = 255;
+		} else if (bpp >= 16) {
+			rs = 0, gs = 5, bs = 10;
+			rm = 31, gm = 31, bm = 31;
+		}
+		rfbLog("advertising truecolor.\n");
+		if (getenv("ADVERT_BMSHIFT")) {
+			bm--;
+		}
+
+		client->format.trueColour = TRUE;
+		client->format.redShift   = rs;
+		client->format.greenShift = gs;
+		client->format.blueShift  = bs;
+		client->format.redMax     = rm;
+		client->format.greenMax   = gm;
+		client->format.blueMax    = bm;
+
+		rfbSetTranslateFunction(client);
+
+		screen->serverFormat.trueColour = TRUE;
+		screen->serverFormat.redShift   = rs;
+		screen->serverFormat.greenShift = gs;
+		screen->serverFormat.blueShift  = bs;
+		screen->serverFormat.redMax     = rm;
+		screen->serverFormat.greenMax   = gm;
+		screen->serverFormat.blueMax    = bm;
+		screen->displayHook = turn_off_truecolor_ad;
+
+		turn_off_truecolor = 1;
 	}
 
 	if (unixpw) {

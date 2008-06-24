@@ -41,16 +41,23 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  ********************************************************************/
 
+/* Change Log:
+     V0.02 : 2008/02/04 : Fix mis encode/decode when width != scanline
+	                     (Thanks Johannes Schindelin, author of LibVNC
+						  Server/Client)
+     V0.01 : 2007/02/06 : Initial release
+*/
+
 /* #define ZYWRLE_ENCODE */
 /* #define ZYWRLE_DECODE */
 #define ZYWRLE_QUANTIZE
 
 /*
-  [References]
-   PLHarr:
-     Senecal, J. G., P. Lindstrom, M. A. Duchaineau, and K. I. Joy, "An Improved N-Bit to N-Bit Reversible Haar-Like Transform," Pacific Graphics 2004, October 2004, pp. 371-380.
-   EZW:
-     Shapiro, JM: Embedded Image Coding Using Zerotrees of Wavelet Coefficients, IEEE Trans. Signal. Process., Vol.41, pp.3445-3462 (1993).
+[References]
+ PLHarr:
+   Senecal, J. G., P. Lindstrom, M. A. Duchaineau, and K. I. Joy, "An Improved N-Bit to N-Bit Reversible Haar-Like Transform," Pacific Graphics 2004, October 2004, pp. 371-380.
+ EZW:
+   Shapiro, JM: Embedded Image Coding Using Zerotrees of Wavelet Coefficients, IEEE Trans. Signal. Process., Vol.41, pp.3445-3462 (1993).
 */
 
 
@@ -67,8 +74,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #define ZYWRLE_LOAD_PIXEL __RFB_CONCAT2E(ZYWRLE_LOAD_PIXEL,BPP)
 #define ZYWRLE_SAVE_PIXEL __RFB_CONCAT2E(ZYWRLE_SAVE_PIXEL,BPP)
 
-/* Packing/Unpacking pixel stuffs. */
-/*   Endian conversion stuffs. */
+/* Packing/Unpacking pixel stuffs.
+   Endian conversion stuffs. */
 #undef S_0
 #undef S_1
 #undef L_0
@@ -147,11 +154,9 @@ const static unsigned int zywrleParam[3][3]={
 	{0x0000F000,0x00000000,0x00000000},
 	{0x0000C000,0x00F0F0F0,0x00000000},
 	{0x0000C000,0x00C0C0C0,0x00F0F0F0},
-/*
-	{0x0000FF00,0x00000000,0x00000000},
+/*	{0x0000FF00,0x00000000,0x00000000},
 	{0x0000FF00,0x00FFFFFF,0x00000000},
-	{0x0000FF00,0x00FFFFFF,0x00FFFFFF},
-*/
+	{0x0000FF00,0x00FFFFFF,0x00FFFFFF}, */
 };
 #  else
 /* Type B:Non liner quantization filter. */
@@ -305,8 +310,8 @@ static InlineX void Harr(signed char* pX0, signed char* pX1)
 {
 	/* Piecewise-Linear Harr(PLHarr) */
 	int X0 = (int)*pX0, X1 = (int)*pX1;
-	int orgX0=X0, orgX1=X1;
-	if ((X0^X1) & 0x80) {
+	int orgX0 = X0, orgX1 = X1;
+	if ((X0 ^ X1) & 0x80) {
 		/* differ sign */
 		X1 += X0;
 		if (((X1^orgX1)&0x80)==0) {
@@ -316,7 +321,7 @@ static InlineX void Harr(signed char* pX0, signed char* pX1)
 	} else {
 		/* same sign */
 		X0 -= X1;
-		if (((X0^orgX0) & 0x80) == 0) {
+		if (((X0 ^ orgX0) & 0x80) == 0) {
 			/* |X0| > |X1| */
 			X1 += X0;	/* L = A */
 		}
@@ -325,27 +330,26 @@ static InlineX void Harr(signed char* pX0, signed char* pX1)
 	*pX1 = (signed char)X0;
 }
 /*
-   1D-Wavelet transform.
+ 1D-Wavelet transform.
 
-   In coefficients array, the famous 'pyramid' decomposition is well used.
+ In coefficients array, the famous 'pyramid' decomposition is well used.
 
-   1D Model:
-     |L0L0L0L0|L0L0L0L0|H0H0H0H0|H0H0H0H0| : level 0
-     |L1L1L1L1|H1H1H1H1|H0H0H0H0|H0H0H0H0| : level 1
+ 1D Model:
+   |L0L0L0L0|L0L0L0L0|H0H0H0H0|H0H0H0H0| : level 0
+   |L1L1L1L1|H1H1H1H1|H0H0H0H0|H0H0H0H0| : level 1
 
-   But this method needs line buffer because H/L is different position from X0/X1.
-   So, I used 'interleave' decomposition instead of it.
+ But this method needs line buffer because H/L is different position from X0/X1.
+ So, I used 'interleave' decomposition instead of it.
 
-   1D Model:
-     |L0H0L0H0|L0H0L0H0|L0H0L0H0|L0H0L0H0| : level 0
-     |L1H0H1H0|L1H0H1H0|L1H0H1H0|L1H0H1H0| : level 1
+ 1D Model:
+   |L0H0L0H0|L0H0L0H0|L0H0L0H0|L0H0L0H0| : level 0
+   |L1H0H1H0|L1H0H1H0|L1H0H1H0|L1H0H1H0| : level 1
 
-   In this method, H/L and X0/X1 is always same position.
-   This lead us to more speed and less memory.
-   Of cause, the result of both method is quite same
-   because it's only difference that coefficient position.
+ In this method, H/L and X0/X1 is always same position.
+ This lead us to more speed and less memory.
+ Of cause, the result of both method is quite same
+ because it's only difference that coefficient position.
 */
-
 static InlineX void WaveletLevel(int* data, int size, int l, int SkipPixel)
 {
 	int s, ofs;
@@ -389,11 +393,11 @@ static InlineX void FilterWaveletSquare(int* pBuf, int width, int height, int le
 		for (y = 0; y < height / s; y++) {
 			for (x = 0; x < width / s; x++) {
 				/*
-				   these are same following code.
-				       pH[x] = pH[x] / (~pM[x]+1) * (~pM[x]+1);
-				       ( round pH[x] with pM[x] bit )
-				   '&' operator isn't 'round' but is 'floor'.
-				   So, we must offset when pH[x] is negative.
+				 these are same following code.
+				     pH[x] = pH[x] / (~pM[x]+1) * (~pM[x]+1);
+				     ( round pH[x] with pM[x] bit )
+				 '&' operator isn't 'round' but is 'floor'.
+				 So, we must offset when pH[x] is negative.
 				*/
 				if (((signed char*)pH)[0] & 0x80)
 					((signed char*)pH)[0] += ~((signed char*)pM)[0];
@@ -410,36 +414,35 @@ static InlineX void FilterWaveletSquare(int* pBuf, int width, int height, int le
 }
 #  else
 /*
-   Type B:Non liner quantization filter.
+ Type B:Non liner quantization filter.
 
-   Coefficients have Gaussian curve and smaller value which is
-   large part of coefficients isn't more important than larger value.
-   So, I use filter of Non liner quantize/dequantize table.
-   In general, Non liner quantize formula is explained as following.
+ Coefficients have Gaussian curve and smaller value which is
+ large part of coefficients isn't more important than larger value.
+ So, I use filter of Non liner quantize/dequantize table.
+ In general, Non liner quantize formula is explained as following.
 
-      y=f(x)   = sign(x)*round( ((abs(x)/(2^7))^ r   )* 2^(bo-1) )*2^(8-bo)
-      x=f-1(y) = sign(y)*round( ((abs(y)/(2^7))^(1/r))* 2^(bi-1) )*2^(8-bi)
-   ( r:power coefficient  bi:effective MSB in input  bo:effective MSB in output )
+    y=f(x)   = sign(x)*round( ((abs(x)/(2^7))^ r   )* 2^(bo-1) )*2^(8-bo)
+    x=f-1(y) = sign(y)*round( ((abs(y)/(2^7))^(1/r))* 2^(bi-1) )*2^(8-bi)
+ ( r:power coefficient  bi:effective MSB in input  bo:effective MSB in output )
 
-     r < 1.0 : Smaller value is more important than larger value.
-     r > 1.0 : Larger value is more important than smaller value.
-     r = 1.0 : Liner quantization which is same with EZW style.
+   r < 1.0 : Smaller value is more important than larger value.
+   r > 1.0 : Larger value is more important than smaller value.
+   r = 1.0 : Liner quantization which is same with EZW style.
 
-   r = 0.75 is famous non liner quantization used in MP3 audio codec.
-   In contrast to audio data, larger value is important in wavelet coefficients.
-   So, I select r = 2.0 table( quantize is x^2, dequantize sqrt(x) ).
+ r = 0.75 is famous non liner quantization used in MP3 audio codec.
+ In contrast to audio data, larger value is important in wavelet coefficients.
+ So, I select r = 2.0 table( quantize is x^2, dequantize sqrt(x) ).
 
-   As compared with EZW style liner quantization, this filter tended to be
-   more sharp edge and be more compression rate but be more blocking noise and be less quality.
-   Especially, the surface of graphic objects has distinguishable noise in middle quality mode.
+ As compared with EZW style liner quantization, this filter tended to be
+ more sharp edge and be more compression rate but be more blocking noise and be less quality.
+ Especially, the surface of graphic objects has distinguishable noise in middle quality mode.
 
-   We need only quantized-dequantized(filtered) value rather than quantized value itself
-   because all values are packed or palette-lized in later ZRLE section.
-   This lead us not to need to modify client decoder when we change
-   the filtering procedure in future.
-   Client only decodes coefficients given by encoder.
+ We need only quantized-dequantized(filtered) value rather than quantized value itself
+ because all values are packed or palette-lized in later ZRLE section.
+ This lead us not to need to modify client decoder when we change
+ the filtering procedure in future.
+ Client only decodes coefficients given by encoder.
 */
-
 static InlineX void FilterWaveletSquare(int* pBuf, int width, int height, int level, int l)
 {
 	int r, s;
@@ -485,7 +488,7 @@ static InlineX void Wavelet(int* pBuf, int width, int height, int level)
 		pTop = pBuf;
 		pEnd = pBuf+width;
 		s = 1<<l;
-		while(pTop < pEnd) {
+		while (pTop < pEnd) {
 			WaveletLevel(pTop, height,l, width);
 			pTop += s;
 		}
@@ -494,12 +497,13 @@ static InlineX void Wavelet(int* pBuf, int width, int height, int level)
 }
 #endif
 #ifdef ZYWRLE_DECODE
-static InlineX void InvWavelet(int* pBuf, int width, int height, int level) {
+static InlineX void InvWavelet(int* pBuf, int width, int height, int level)
+{
 	int l, s;
 	int* pTop;
 	int* pEnd;
 
-	for (l = level-1; l >= 0; l--) {
+	for (l = level - 1; l >= 0; l--) {
 		pTop = pBuf;
 		pEnd = pBuf+width;
 		s = 1<<l;
@@ -518,8 +522,8 @@ static InlineX void InvWavelet(int* pBuf, int width, int height, int level) {
 }
 #endif
 
-/* Load/Save coefficients stuffs. */
-/* Coefficients manages as 24 bits little-endian pixel. */
+/* Load/Save coefficients stuffs.
+ Coefficients manages as 24 bits little-endian pixel. */
 #define ZYWRLE_LOAD_COEFF(pSrc,R,G,B) { \
 	R = ((signed char*)pSrc)[2];	\
 	G = ((signed char*)pSrc)[1];	\
@@ -532,25 +536,22 @@ static InlineX void InvWavelet(int* pBuf, int width, int height, int level) {
 }
 
 /*
-   RGB <=> YUV conversion stuffs.
-   YUV coversion is explained as following formula in strict meaning:
-     Y =  0.299R + 0.587G + 0.114B (   0<=Y<=255)
-     U = -0.169R - 0.331G + 0.500B (-128<=U<=127)
-     V =  0.500R - 0.419G - 0.081B (-128<=V<=127)
+ RGB <=> YUV conversion stuffs.
+ YUV coversion is explained as following formula in strict meaning:
+   Y =  0.299R + 0.587G + 0.114B (   0<=Y<=255)
+   U = -0.169R - 0.331G + 0.500B (-128<=U<=127)
+   V =  0.500R - 0.419G - 0.081B (-128<=V<=127)
 
-   I use simple conversion RCT(reversible color transform) which is described
-   in JPEG-2000 specification.
-     Y = (R + 2G + B)/4 (   0<=Y<=255)
-     U = B-G (-256<=U<=255)
-     V = R-G (-256<=V<=255)
+ I use simple conversion RCT(reversible color transform) which is described
+ in JPEG-2000 specification.
+   Y = (R + 2G + B)/4 (   0<=Y<=255)
+   U = B-G (-256<=U<=255)
+   V = R-G (-256<=V<=255)
 */
-
 #define ROUND(x) (((x)<0)?0:(((x)>255)?255:(x)))
-	/*
-	   RCT is N-bit RGB to N-bit Y and N+1-bit UV.
-	   For make Same N-bit, UV is lossy.
-	   More exact PLHarr, we reduce to odd range(-127<=x<=127).
-	*/
+	/* RCT is N-bit RGB to N-bit Y and N+1-bit UV.
+	 For make Same N-bit, UV is lossy.
+	 More exact PLHarr, we reduce to odd range(-127<=x<=127). */
 #define ZYWRLE_RGBYUV1(R,G,B,Y,U,V,ymask,uvmask) { \
 	Y = (R+(G<<1)+B)>>2;	\
 	U =  B-G;	\
@@ -581,71 +582,77 @@ static InlineX void InvWavelet(int* pBuf, int width, int height, int level) {
 }
 
 /*
-   coefficient packing/unpacking stuffs.
-   Wavelet transform makes 4 sub coefficient image from 1 original image.
+ coefficient packing/unpacking stuffs.
+ Wavelet transform makes 4 sub coefficient image from 1 original image.
 
-   model with pyramid decomposition:
-     +------+------+
-     |      |      |
-     |  L   |  Hx  |
-     |      |      |
-     +------+------+
-     |      |      |
-     |  H   |  Hxy |
-     |      |      |
-     +------+------+
+ model with pyramid decomposition:
+   +------+------+
+   |      |      |
+   |  L   |  Hx  |
+   |      |      |
+   +------+------+
+   |      |      |
+   |  H   |  Hxy |
+   |      |      |
+   +------+------+
 
-   So, we must transfer each sub images individually in strict meaning.
-   But at least ZRLE meaning, following one decompositon image is same as
-   avobe individual sub image. I use this format.
-   (Strictly saying, transfer order is reverse(Hxy->Hy->Hx->L)
-    for simplified procedure for any wavelet level.)
+ So, we must transfer each sub images individually in strict meaning.
+ But at least ZRLE meaning, following one decompositon image is same as
+ avobe individual sub image. I use this format.
+ (Strictly saying, transfer order is reverse(Hxy->Hy->Hx->L)
+  for simplified procedure for any wavelet level.)
 
-     +------+------+
-     |      L      |
-     +------+------+
-     |      Hx     |
-     +------+------+
-     |      Hy     |
-     +------+------+
-     |      Hxy    |
-     +------+------+
+   +------+------+
+   |      L      |
+   +------+------+
+   |      Hx     |
+   +------+------+
+   |      Hy     |
+   +------+------+
+   |      Hxy    |
+   +------+------+
 */
+#define INC_PTR(data) \
+	data++;	\
+	if( data-pData >= (w+uw) ){	\
+		data += scanline-(w+uw);	\
+		pData = data;	\
+	}
 
-#define ZYWRLE_TRANSFER_COEFF(pBuf,data,r,width,height,level,TRANS)	\
+#define ZYWRLE_TRANSFER_COEFF(pBuf,data,r,w,h,scanline,level,TRANS)	\
 	pH = pBuf;	\
 	s = 2<<level;	\
 	if (r & 0x01)	\
 		pH +=  s>>1;	\
 	if (r & 0x02)	\
-		pH += (s>>1)*width;	\
-	pEnd = pH+height*width;	\
+		pH += (s>>1)*w;	\
+	pEnd = pH+h*w;	\
 	while (pH < pEnd) {	\
-		pLine = pH+width;	\
+		pLine = pH+w;	\
 		while (pH < pLine) {	\
 			TRANS	\
-			data++;	\
+			INC_PTR(data)	\
 			pH += s;	\
 		}	\
-		pH += (s-1)*width;	\
+		pH += (s-1)*w;	\
 	}
 
-#define ZYWRLE_PACK_COEFF(pBuf,data,r,width,height,level)	\
-	ZYWRLE_TRANSFER_COEFF(pBuf,data,r,width,height,level,ZYWRLE_LOAD_COEFF(pH,R,G,B);ZYWRLE_SAVE_PIXEL(data,R,G,B);)
+#define ZYWRLE_PACK_COEFF(pBuf,data,r,width,height,scanline,level)	\
+	ZYWRLE_TRANSFER_COEFF(pBuf,data,r,width,height,scanline,level,ZYWRLE_LOAD_COEFF(pH,R,G,B);ZYWRLE_SAVE_PIXEL(data,R,G,B);)
 
-#define ZYWRLE_UNPACK_COEFF(pBuf,data,r,width,height,level)	\
-	ZYWRLE_TRANSFER_COEFF(pBuf,data,r,width,height,level,ZYWRLE_LOAD_PIXEL(data,R,G,B);ZYWRLE_SAVE_COEFF(pH,R,G,B);)
+#define ZYWRLE_UNPACK_COEFF(pBuf,data,r,width,height,scanline,level)	\
+	ZYWRLE_TRANSFER_COEFF(pBuf,data,r,width,height,scanline,level,ZYWRLE_LOAD_PIXEL(data,R,G,B);ZYWRLE_SAVE_COEFF(pH,R,G,B);)
 
 #define ZYWRLE_SAVE_UNALIGN(data,TRANS)	\
 	pTop = pBuf+w*h;	\
-	pEnd = pTop + (w+uw)*(h+uh)-w*h;	\
+	pEnd = pBuf + (w+uw)*(h+uh);	\
 	while (pTop < pEnd) {	\
 		TRANS	\
-		data++;	\
+		INC_PTR(data)	\
 		pTop++;	\
 	}
 
-#define ZYWRLE_LOAD_UNALIGN(data,pData,TRANS)	\
+#define ZYWRLE_LOAD_UNALIGN(data,TRANS)	\
 	pTop = pBuf+w*h;	\
 	if (uw) {	\
 		pData=         data + w;	\
@@ -718,8 +725,7 @@ static InlineX void ZYWRLE_RGBYUV(int* pBuf, PIXEL_T* data, int width, int heigh
 }
 #endif
 #ifdef ZYWRLE_DECODE
-static InlineX void ZYWRLE_YUVRGB(int* pBuf, PIXEL_T* data, int width, int height, int scanline)
-{
+static InlineX void ZYWRLE_YUVRGB(int* pBuf, PIXEL_T* data, int width, int height, int scanline) {
 	int R, G, B;
 	int Y, U, V;
 	int* pLine;
@@ -740,15 +746,14 @@ static InlineX void ZYWRLE_YUVRGB(int* pBuf, PIXEL_T* data, int width, int heigh
 #endif
 
 #ifdef ZYWRLE_ENCODE
-PIXEL_T* ZYWRLE_ANALYZE (PIXEL_T* dst, PIXEL_T* src, int w, int h, int scanline, int level, int* pBuf)
-{
+PIXEL_T* ZYWRLE_ANALYZE(PIXEL_T* dst, PIXEL_T* src, int w, int h, int scanline, int level, int* pBuf) {
 	int l;
 	int uw = w;
 	int uh = h;
 	int* pTop;
 	int* pEnd;
 	int* pLine;
-	PIXEL_T* pSrc;
+	PIXEL_T* pData;
 	int R, G, B;
 	int s;
 	int* pH;
@@ -759,15 +764,16 @@ PIXEL_T* ZYWRLE_ANALYZE (PIXEL_T* dst, PIXEL_T* src, int w, int h, int scanline,
 	uw -= w;
 	uh -= h;
 
-	ZYWRLE_LOAD_UNALIGN(src,pSrc,*(PIXEL_T*)pTop=*pSrc;)
+	pData = dst;
+	ZYWRLE_LOAD_UNALIGN(src,*(PIXEL_T*)pTop=*pData;)
 	ZYWRLE_RGBYUV(pBuf, src, w, h, scanline);
 	Wavelet(pBuf, w, h, level);
 	for (l = 0; l < level; l++) {
-		ZYWRLE_PACK_COEFF(pBuf, dst, 3, w, h, l);
-		ZYWRLE_PACK_COEFF(pBuf, dst, 2, w, h, l);
-		ZYWRLE_PACK_COEFF(pBuf, dst, 1, w, h, l);
-		if (l == level-1) {
-			ZYWRLE_PACK_COEFF(pBuf, dst, 0, w, h, l);
+		ZYWRLE_PACK_COEFF(pBuf, dst, 3, w, h, scanline, l);
+		ZYWRLE_PACK_COEFF(pBuf, dst, 2, w, h, scanline, l);
+		ZYWRLE_PACK_COEFF(pBuf, dst, 1, w, h, scanline, l);
+		if (l == level - 1) {
+			ZYWRLE_PACK_COEFF(pBuf, dst, 0, w, h, scanline, l);
 		}
 	}
 	ZYWRLE_SAVE_UNALIGN(dst,*dst=*(PIXEL_T*)pTop;)
@@ -783,7 +789,7 @@ PIXEL_T* ZYWRLE_SYNTHESIZE(PIXEL_T* dst, PIXEL_T* src, int w, int h, int scanlin
 	int* pTop;
 	int* pEnd;
 	int* pLine;
-	PIXEL_T* pDst;
+	PIXEL_T* pData;
 	int R, G, B;
 	int s;
 	int* pH;
@@ -794,18 +800,19 @@ PIXEL_T* ZYWRLE_SYNTHESIZE(PIXEL_T* dst, PIXEL_T* src, int w, int h, int scanlin
 	uw -= w;
 	uh -= h;
 
+	pData = src;
 	for (l = 0; l < level; l++) {
-		ZYWRLE_UNPACK_COEFF(pBuf, src, 3, w, h, l);
-		ZYWRLE_UNPACK_COEFF(pBuf, src, 2, w, h, l);
-		ZYWRLE_UNPACK_COEFF(pBuf, src, 1, w, h, l);
-		if (l == level-1) {
-			ZYWRLE_UNPACK_COEFF(pBuf, src, 0, w, h, l);
+		ZYWRLE_UNPACK_COEFF(pBuf, src, 3, w, h, scanline, l);
+		ZYWRLE_UNPACK_COEFF(pBuf, src, 2, w, h, scanline, l);
+		ZYWRLE_UNPACK_COEFF(pBuf, src, 1, w, h, scanline, l);
+		if (l == level - 1) {
+			ZYWRLE_UNPACK_COEFF(pBuf, src, 0, w, h, scanline, l);
 		}
 	}
 	ZYWRLE_SAVE_UNALIGN(src,*(PIXEL_T*)pTop=*src;)
 	InvWavelet(pBuf, w, h, level);
 	ZYWRLE_YUVRGB(pBuf, dst, w, h, scanline);
-	ZYWRLE_LOAD_UNALIGN(dst,pDst,*pDst=*(PIXEL_T*)pTop;)
+	ZYWRLE_LOAD_UNALIGN(dst,*pData=*(PIXEL_T*)pTop;)
 	return src;
 }
 #endif

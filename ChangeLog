@@ -1,3 +1,34 @@
+2008-06-24	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* ica/src/ivs.cpp:
+	* ica/x11/x11vnc/userinput.c:
+	* ica/x11/x11vnc/inet.c:
+	* ica/x11/x11vnc/options.h:
+	* ica/x11/x11vnc/xinerama.c:
+	* ica/x11/x11vnc/user.c:
+	* ica/x11/x11vnc/8to24.c:
+	* ica/x11/x11vnc/connections.c:
+	* ica/x11/x11vnc/cursor.c:
+	* ica/x11/x11vnc/x11vnc_defs.c:
+	* ica/x11/x11vnc/tkx11vnc.h:
+	* ica/x11/x11vnc/scan.c:
+	* ica/x11/x11vnc/gui.c:
+	* ica/x11/x11vnc/selection.c:
+	* ica/x11/x11vnc/unixpw.c:
+	* ica/x11/x11vnc/screen.c:
+	* ica/x11/x11vnc/x11vnc.c:
+	* ica/x11/x11vnc/ssltools.h:
+	* ica/x11/x11vnc/sslhelper.c:
+	* ica/x11/x11vnc/help.c:
+	* ica/x11/x11vnc/options.c:
+	* ica/x11/libvncserver/stats.c:
+	* ica/x11/libvncserver/rfbregion.c:
+	* ica/x11/libvncserver/zywrletemplate.c:
+	* ica/x11/libvncserver/rfbserver.c:
+	- integrated latest x11vnc-version which fixes ICA-crahes when
+	  disconnecting in certain situations
+	- disabled x11vnc-debug-console per default
+
 2008-06-13	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* ica/src/isd_server.cpp:

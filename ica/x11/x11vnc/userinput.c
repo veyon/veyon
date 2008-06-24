@@ -790,8 +790,10 @@ static void draw_box(int x, int y, int w, int h, int restore) {
 	if (cmap8to24 && cmap8to24_fb) {
 		use_fb = cmap8to24_fb;
 		pixelsize = 4;
-		if (depth == 8) {
+		if (depth <= 8) {
 			use_Bpl *= 4;
+		} else if (depth <= 16) {
+			use_Bpl *= 2;
 		}
 	}
 
@@ -1882,9 +1884,14 @@ if (0 || debug_scroll > 1) fprintf(stderr, "<<<-rfbDoCopyRect req: %d mod: %d cp
 					}
 				}
 if (0) fprintf(stderr, "copyrect: cmap8to24_fb: mode=%d\n", mode);
-				if (cmap8to24 && depth == 8) {
-					Bpp = 4 * Bpp0;
-					stride = 4 * stride0;
+				if (cmap8to24) {
+					if (depth <= 8) {
+						Bpp    = 4 * Bpp0;
+						stride = 4 * stride0;
+					} else if (depth <= 16) {
+						Bpp    = 2 * Bpp0;
+						stride = 2 * stride0;
+					}
 				}
 				dst = cmap8to24_fb + y1*stride + x1*Bpp;
 				src = cmap8to24_fb + (y1-dy)*stride + (x1-dx)*Bpp;
@@ -3564,6 +3571,17 @@ void check_fixscreen(void) {
 			last_copyrect_fix = now;
 			last = now;
 			didfull = 1;
+		}
+	}
+	if (advertise_truecolor && advertise_truecolor_reset && indexed_color) {
+		/* this will reset framebuffer to correct colors, if needed */
+		static dlast = 0.0;
+		now = dnow();
+		if (now > last_client + 1.0 && now < last_client + 3.0 && now > dlast + 5.0) {
+			rfbLog("advertise truecolor reset framebuffer\n");
+			do_new_fb(1);
+			dlast = dnow();
+			return;
 		}
 	}
 }
@@ -8083,8 +8101,12 @@ void scale_mark_xrootpmap(void) {
 
 	if (cmap8to24 && cmap8to24_fb) {
 		src_fb = cmap8to24_fb;
-		if (scaling && depth == 8) {
-			fac = 4;
+		if (scaling) {
+			if (depth <= 8) {
+				fac = 4;
+			} else if (depth <= 16) {
+				fac = 2;
+			}
 		}
 	}
 	dst_fb = rfb_fb;
