@@ -691,6 +691,21 @@ void client::resetConnection( void )
 
 void client::update( void )
 {
+	// at least set tooltip with user-name if it is not displayed
+	// in title-bar
+	if( m_connection->state() == ivsConnection::Connected &&
+		!m_mainWindow->getClassroomManager()->showUsername() )
+	{
+		if( toolTip() != m_user )
+		{
+			setToolTip( m_user );
+		}
+	}
+	else
+	{
+		setToolTip( QString() );
+	}
+
 	m_state = currentState();
 	QWidget::update();
 }
@@ -1011,7 +1026,6 @@ void client::showEvent( QShowEvent * )
 
 void client::reload()
 {
-	QString tooltip = "";
 	if( userLoggedIn() )
 	{
 		m_syncMutex.lock();
@@ -1036,25 +1050,12 @@ void client::reload()
 		}
 
 		m_user = m_connection->user();
-		// at least set tooltip with user-name if it is not displayed
-		// in title-bar
-		if( !m_mainWindow->getClassroomManager()->showUsername() )
-		{
-			tooltip = m_user;
-		}
 		m_syncMutex.unlock();
 	}
 	else
 	{
 		m_user = "";
 	}
-
-	if( toolTip() != tooltip )
-	{
-		setToolTip( tooltip );
-	}
-
-	update();
 
 	if( m_classRoomItem )
 	{
