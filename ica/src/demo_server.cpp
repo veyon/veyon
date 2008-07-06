@@ -37,7 +37,7 @@
 #include "ivs.h"
 
 
-const int CURSOR_UPDATE_TIME = 30;
+const int CURSOR_UPDATE_TIME = 40;
 
 int demoServer::s_numOfInstances = 0;
 
@@ -73,6 +73,11 @@ demoServer::demoServer( IVS * _ivs_conn, int _quality, quint16 _port,
 
 demoServer::~demoServer()
 {
+	QList<demoServerClient *> l;
+	while( !( l = findChildren<demoServerClient *>() ).isEmpty() )
+	{
+		delete l.front();
+	}
 	--s_numOfInstances;
 
 	delete m_updaterThread;
@@ -84,7 +89,7 @@ demoServer::~demoServer()
 
 void demoServer::incomingConnection( int _sd )
 {
-	new demoServerClient( _sd, m_conn );
+	new demoServerClient( _sd, m_conn, this );
 }
 
 
@@ -139,8 +144,9 @@ void demoServer::updaterThread::run( void )
 
 
 
-demoServerClient::demoServerClient( int _sd, const ivsConnection * _conn ) :
-	QThread(),
+demoServerClient::demoServerClient( int _sd, const ivsConnection * _conn,
+							QObject * _parent ) :
+	QThread( _parent ),
 	m_dataMutex(),
 	m_changedRegion(),
 	m_lastCursorPos(),
@@ -155,8 +161,10 @@ demoServerClient::demoServerClient( int _sd, const ivsConnection * _conn ) :
 			    		( sizeof( lzo_align_t ) - 1 ) ) /
 				 		sizeof( lzo_align_t ) ) ] )
 {
-	QTimer::singleShot( CURSOR_UPDATE_TIME, this,
-					SLOT( checkForCursorMovement() ) );
+	QTimer * t = new QTimer( this );
+	connect( t, SIGNAL( timeout() ),
+			this, SLOT( checkForCursorMovement() ), Qt::DirectConnection );
+	t->start( CURSOR_UPDATE_TIME );
 	start();
 }
 
@@ -200,8 +208,8 @@ void demoServerClient::checkForCursorMovement( void )
 		m_cursorPosChanged = TRUE;
 	}
 	m_dataMutex.unlock();
-	QTimer::singleShot( CURSOR_UPDATE_TIME, this,
-					SLOT( checkForCursorMovement() ) );
+/*	QTimer::singleShot( CURSOR_UPDATE_TIME, this,
+					SLOT( checkForCursorMovement() ) );*/
 }
 
 
@@ -322,11 +330,11 @@ void demoServerClient::processClient( void )
 	Q_UINT8 rle_sub = 1;
 	Q_UINT8 * out = new Q_UINT8[w * h * sizeof( QRgb )+16];
 	Q_UINT8 * out_ptr = out;
-	for( Q_UINT16 y = it->y(); y < it->y() + h; ++y )
+	for( int y = it->y(); y < it->y() + h; ++y )
 	{
 		const QRgb * data = ( (const QRgb *) i.scanLine( y ) ) +
 									it->x();
-		for( Q_UINT16 x = 0; x < w; ++x )
+		for( int x = 0; x < w; ++x )
 		{
 			if( data[x] != last_pix || rle_cnt > 254 )
 			{
@@ -369,11 +377,11 @@ void demoServerClient::processClient( void )
 	if( m_otherEndianess )
 	{
 		Q_UINT32 * buf = new Q_UINT32[w];
-		for( Q_UINT16 y = 0; y < h; ++y )
+		for( int y = 0; y < h; ++y )
 		{
 			const QRgb * src = (const QRgb *) i.scanLine( it->y() + y ) +
 										it->x();
-			for( Q_UINT16 x = 0; x < w; ++x, ++src )
+			for( int x = 0; x < w; ++x, ++src )
 			{
 				buf[x] = swap32( *src );
 			}
@@ -383,7 +391,7 @@ void demoServerClient::processClient( void )
 	}
 	else
 	{
-		for( Q_UINT16 y = 0; y < h; ++y )
+		for( int y = 0; y < h; ++y )
 		{
 			m_sock->write( (const char *)
 				( (const QRgb *) i.scanLine( it->y() + y ) + it->x() ),
@@ -555,16 +563,16 @@ void demoServerClient::run( void )
 	updateRegion( m_conn->screen().rect() );
 
 	//connect( m_sock, SIGNAL( readyRead() ), this, SLOT( processClient() ) );
-	connect( m_sock, SIGNAL( disconnected() ), this,
-							SLOT( deleteLater() ) );
+	connect( m_sock, SIGNAL( disconnected() ),
+						this, SLOT( deleteLater() ) );
 
 	QTimer t;
-	connect( &t, SIGNAL( timeout() ), this, SLOT( moveCursor() ),
-							Qt::DirectConnection );
+	connect( &t, SIGNAL( timeout() ),
+			this, SLOT( moveCursor() ), Qt::DirectConnection );
 	t.start( CURSOR_UPDATE_TIME );
 	QTimer t2;
-	connect( &t2, SIGNAL( timeout() ), this, SLOT( processClient() ),
-							Qt::DirectConnection );
+	connect( &t2, SIGNAL( timeout() ),
+			this, SLOT( processClient() ), Qt::DirectConnection );
 	t2.start( 50 );
 	//moveCursor();
 	//processClient();

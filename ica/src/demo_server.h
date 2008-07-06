@@ -87,7 +87,8 @@ class demoServerClient : public QThread
 {
 	Q_OBJECT
 public:
-	demoServerClient( int _sd, const ivsConnection * _conn );
+	demoServerClient( int _sd, const ivsConnection * _conn,
+							QObject * _parent );
 	virtual ~demoServerClient();
 
 
@@ -125,8 +126,8 @@ private:
 	QMutex m_dataMutex;
 	QRegion m_changedRegion;
 	QPoint m_lastCursorPos;
-	bool m_cursorShapeChanged;
-	bool m_cursorPosChanged;
+	volatile bool m_cursorShapeChanged;
+	volatile bool m_cursorPosChanged;
 
 	int m_socketDescriptor;
 	QTcpSocket * m_sock;
