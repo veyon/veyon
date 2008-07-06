@@ -1,5 +1,23 @@
 2008-07-06	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
+	* configure.in:
+	made 1.0.9-rc4 release
+
+	* ica/src/demo_server.h:
+	* ica/src/demo_server.cpp:
+	use QTimer-objects instead of QTimer::singleShot() as Qt 4.4.0 crashes
+	quite often otherwise (for whatever reason)
+
+	* utils-win32/Makefile.am:
+	* utils-win32/userinfo.cpp:
+	removed obsolete files
+
+	* build_mingw32:
+	-fno-strict-aliasing is not neccessary anymore with GCC 4.3
+
+	* ima/src/main.cpp:
+	if custom ISD-port is used, apply at startup
+
 	* ica/x11/x11vnc/inet.c:
 	renamed deprecated member-variable as it's been reverted on 2008-06-24
 	
