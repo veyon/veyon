@@ -23,6 +23,18 @@
  */
 
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
+#ifdef BUILD_WIN32
+
+#define _WIN32_WINNT 0x0501
+#include <windows.h>
+#include <psapi.h>
+#endif
+
+
 #include <QtCore/QCoreApplication>
 #include <QtCore/QDir>
 #include <QtCore/QProcess>
@@ -43,7 +55,6 @@
 #include "demo_client.h"
 #include "demo_server.h"
 #include "ica_main.h"
-
 
 static isdServer * __isd_server = NULL;
 
@@ -148,7 +159,80 @@ int isdServer::processClient( socketDispatcher _sd, void * _user )
 			const QString cmds = msg_in.arg( "cmds" ).toString();
 			if( !cmds.isEmpty() )
 			{
+#ifdef BUILD_WIN32
+	// run process as the user which is logged on
+	DWORD aProcesses[1024], cbNeeded;
+
+	if( !EnumProcesses( aProcesses, sizeof( aProcesses ), &cbNeeded ) )
+	{
+		break;
+	}
+
+	DWORD cProcesses = cbNeeded / sizeof(DWORD);
+
+	for( DWORD i = 0; i < cProcesses; i++ )
+	{
+		HANDLE hProcess = OpenProcess( PROCESS_ALL_ACCESS,
+							false, aProcesses[i] );
+		HMODULE hMod;
+		if( hProcess == NULL ||
+			!EnumProcessModules( hProcess, &hMod, sizeof( hMod ),
+								&cbNeeded ) )
+	        {
+			continue;
+		}
+
+		TCHAR szProcessName[MAX_PATH];
+		GetModuleBaseName( hProcess, hMod, szProcessName, 
+                       		  sizeof( szProcessName ) / sizeof( TCHAR) );
+		for( TCHAR * ptr = szProcessName; *ptr; ++ptr )
+		{
+			*ptr = tolower( *ptr );
+		}
+
+		if( strcmp( szProcessName, "explorer.exe" ) )
+		{
+			CloseHandle( hProcess );
+			continue;
+		}
+	
+		HANDLE hToken;
+		OpenProcessToken( hProcess, MAXIMUM_ALLOWED, &hToken );
+		ImpersonateLoggedOnUser( hToken );
+
+		STARTUPINFO si;
+		PROCESS_INFORMATION pi;
+		ZeroMemory( &si, sizeof( STARTUPINFO ) );
+		si.cb= sizeof( STARTUPINFO );
+		si.lpDesktop = (CHAR *) "winsta0\\default";
+		HANDLE hNewToken = NULL;
+
+		DuplicateTokenEx( hToken, MAXIMUM_ALLOWED, NULL,
+					SecurityImpersonation, TokenPrimary,
+								&hNewToken );
+
+		CreateProcessAsUser(
+				hNewToken,            // client's access token
+				NULL,              // file to execute
+				(CHAR *)cmds.toAscii().constData(),     // command line
+				NULL,              // pointer to process SECURITY_ATTRIBUTES
+				NULL,              // pointer to thread SECURITY_ATTRIBUTES
+				FALSE,             // handles are not inheritable
+				NORMAL_PRIORITY_CLASS | CREATE_NEW_CONSOLE,   // creation flags
+				NULL,              // pointer to new environment block 
+				NULL,              // name of current directory 
+				&si,               // pointer to STARTUPINFO structure
+				&pi                // receives information about new process
+				); 
+		CloseHandle( hNewToken );
+		RevertToSelf();
+		CloseHandle( hToken );
+		CloseHandle( hProcess );
+		break;
+	}
+#else
 				QProcess::startDetached( cmds );
+#endif
 			}
 			break;
 		}

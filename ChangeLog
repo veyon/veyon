@@ -3,6 +3,12 @@
 	* configure.in:
 	made 1.0.9-rc4 release
 
+	* ica/src/isd_server.cpp:
+	win32: run processes with rights of logged on user
+
+	* lib/src/local_system.cpp:
+	win32: tried better way for logging on user but had no success
+
 	* ica/src/demo_server.h:
 	* ica/src/demo_server.cpp:
 	use QTimer-objects instead of QTimer::singleShot() as Qt 4.4.0 crashes
