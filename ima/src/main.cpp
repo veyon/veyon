@@ -96,6 +96,10 @@ int main( int argc, char * * argv )
 	localSystem::initialize();
 
 	__role = ISD::RoleTeacher;
+	if( localSystem::parameter( "isdport" ).toInt() > 0 )
+	{
+		__isd_port = localSystem::parameter( "isdport" ).toInt();
+	}
 
 	// parse arguments
 	QStringListIterator arg_it( QCoreApplication::arguments() );
