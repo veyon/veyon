@@ -437,6 +437,21 @@ void logonUser( const QString & _uname, const QString & _passwd,
 	{
 		return;
 	}
+/*
+ 	// does not work :(
+	enablePrivilege( SE_TCB_NAME, TRUE );
+	HANDLE hToken;
+	if( !LogonUser(
+		(CHAR *)_uname.toAscii().constData(),
+		(CHAR*)(_domain.isEmpty() ? "." : _domain.toAscii().constData()),
+		(CHAR *)_passwd.toAscii().constData(),
+		LOGON32_LOGON_INTERACTIVE,
+		LOGON32_PROVIDER_DEFAULT,
+		&hToken ) ) 
+	{
+		CloseHandle( hToken );
+	}
+	enablePrivilege( SE_TCB_NAME, FALSE );*/
 
 	// disable caps lock
 	if( GetKeyState( VK_CAPITAL ) & 1 )
