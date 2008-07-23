@@ -37,7 +37,7 @@
 #include "ivs.h"
 
 
-const int CURSOR_UPDATE_TIME = 40;
+const int CURSOR_UPDATE_TIME = 35;
 
 int demoServer::s_numOfInstances = 0;
 
@@ -66,6 +66,7 @@ demoServer::demoServer( IVS * _ivs_conn, int _quality, quint16 _port,
 
 	m_updaterThread->start(/* QThread::HighPriority*/ );
 
+	checkForCursorMovement();
 }
 
 
@@ -82,6 +83,21 @@ demoServer::~demoServer()
 
 	delete m_updaterThread;
 	delete m_conn;
+}
+
+
+
+
+void demoServer::checkForCursorMovement( void )
+{
+	m_cursorLock.lockForWrite();
+	if( m_cursorPos != QCursor::pos() )
+	{
+		m_cursorPos = QCursor::pos();
+	}
+	m_cursorLock.unlock();
+	QTimer::singleShot( CURSOR_UPDATE_TIME, this,
+					SLOT( checkForCursorMovement() ) );
 }
 
 
@@ -145,13 +161,12 @@ void demoServer::updaterThread::run( void )
 
 
 demoServerClient::demoServerClient( int _sd, const ivsConnection * _conn,
-							QObject * _parent ) :
+							demoServer * _parent ) :
 	QThread( _parent ),
+	m_ds( _parent ),
 	m_dataMutex(),
 	m_changedRegion(),
-	m_lastCursorPos(),
 	m_cursorShapeChanged( TRUE ),
-	m_cursorPosChanged( FALSE ),
 	m_socketDescriptor( _sd ),
 	m_sock( NULL ),
 	m_conn( _conn ),
@@ -161,10 +176,6 @@ demoServerClient::demoServerClient( int _sd, const ivsConnection * _conn,
 			    		( sizeof( lzo_align_t ) - 1 ) ) /
 				 		sizeof( lzo_align_t ) ) ] )
 {
-	QTimer * t = new QTimer( this );
-	connect( t, SIGNAL( timeout() ),
-			this, SLOT( checkForCursorMovement() ), Qt::DirectConnection );
-	t->start( CURSOR_UPDATE_TIME );
 	start();
 }
 
@@ -199,28 +210,13 @@ void demoServerClient::updateCursorShape( void )
 
 
 
-void demoServerClient::checkForCursorMovement( void )
-{
-	m_dataMutex.lock();
-	if( m_lastCursorPos != QCursor::pos() )
-	{
-		m_lastCursorPos = QCursor::pos();
-		m_cursorPosChanged = TRUE;
-	}
-	m_dataMutex.unlock();
-/*	QTimer::singleShot( CURSOR_UPDATE_TIME, this,
-					SLOT( checkForCursorMovement() ) );*/
-}
-
-
-
-
 void demoServerClient::moveCursor( void )
 {
-	m_dataMutex.lock();
-	if( m_cursorPosChanged )
+	QPoint p = m_ds->cursorPos();
+	if( p != m_lastCursorPos )
 	{
-		m_cursorPosChanged = FALSE;
+		m_dataMutex.lock();
+		m_lastCursorPos = p;
 		const rfbFramebufferUpdateMsg m =
 		{
 			rfbFramebufferUpdate,
@@ -245,9 +241,9 @@ void demoServerClient::moveCursor( void )
 		} ;
 
 		m_sock->write( (const char *) &rh, sizeof( rh ) );
-		m_sock->flush();
+		m_sock->waitForBytesWritten();
+		m_dataMutex.unlock();
 	}
-	m_dataMutex.unlock();
 }
 
 
@@ -316,8 +312,8 @@ void demoServerClient::processClient( void )
 			const QImage & i = m_conn->screen();
 			italcRectEncodingHeader hdr = { 0, 0, 0 } ;
 
-			const Q_UINT16 w = it->width();
-			const Q_UINT16 h = it->height();
+			const int w = it->width();
+			const int h = it->height();
 
 			// we only compress if it's enough data, otherwise
 			// there's too much overhead
@@ -355,8 +351,8 @@ void demoServerClient::processClient( void )
 	*( (QRgb *) out_ptr ) = last_pix;
 	*( out_ptr + 3 ) = rle_cnt;
 	out_ptr += 4;
-
 	hdr.bytesRLE = out_ptr - out;
+//printf("%d %d\n",hdr.bytesRLE, w*h*sizeof(QRgb)+16);
 	lzo_uint bytes_lzo = hdr.bytesRLE + hdr.bytesRLE / 16 + 67;
 	Q_UINT8 * comp = new Q_UINT8[bytes_lzo];
 	lzo1x_1_compress( (const unsigned char *) out, (lzo_uint) hdr.bytesRLE,
@@ -379,8 +375,9 @@ void demoServerClient::processClient( void )
 		Q_UINT32 * buf = new Q_UINT32[w];
 		for( int y = 0; y < h; ++y )
 		{
-			const QRgb * src = (const QRgb *) i.scanLine( it->y() + y ) +
-										it->x();
+			const QRgb * src = (const QRgb *) i.scanLine(
+								it->y() + y ) +
+									it->x();
 			for( int x = 0; x < w; ++x, ++src )
 			{
 				buf[x] = swap32( *src );
@@ -394,8 +391,9 @@ void demoServerClient::processClient( void )
 		for( int y = 0; y < h; ++y )
 		{
 			m_sock->write( (const char *)
-				( (const QRgb *) i.scanLine( it->y() + y ) + it->x() ),
-								w * sizeof( QRgb ) );
+				( (const QRgb *) i.scanLine( it->y() + y ) +
+								it->x() ),
+							w * sizeof( QRgb ) );
 		}
 	}
 			}
@@ -429,11 +427,9 @@ void demoServerClient::processClient( void )
 		m_changedRegion = QRegion();
 		m_cursorShapeChanged = FALSE;
 	}
-	//m_sock->waitForBytesWritten();
-	m_sock->flush();
+	m_sock->waitForBytesWritten();
 
 	m_dataMutex.unlock();
-	//QTimer::singleShot( 40, this, SLOT( processClient() ) );
 }
 
 
@@ -553,9 +549,11 @@ void demoServerClient::run( void )
 	// working
 
 	connect( m_conn, SIGNAL( cursorShapeChanged() ),
-				this, SLOT( updateCursorShape() ) );
+			this, SLOT( updateCursorShape() ),
+							Qt::QueuedConnection );
 	connect( m_conn, SIGNAL( regionUpdated( const QRegion & ) ),
-			this, SLOT( updateRegion( const QRegion & ) ) );
+			this, SLOT( updateRegion( const QRegion & ) ),
+							Qt::QueuedConnection );
 
 	ml.unlock();
 
@@ -573,7 +571,7 @@ void demoServerClient::run( void )
 	QTimer t2;
 	connect( &t2, SIGNAL( timeout() ),
 			this, SLOT( processClient() ), Qt::DirectConnection );
-	t2.start( 50 );
+	t2.start( 2*CURSOR_UPDATE_TIME );
 	//moveCursor();
 	//processClient();
 	// now run our own event-loop for optimal scheduling

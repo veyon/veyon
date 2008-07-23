@@ -29,6 +29,7 @@
 
 #include <QtCore/QMutex>
 #include <QtCore/QPair>
+#include <QtCore/QReadWriteLock>
 #include <QtCore/QThread>
 #include <QtNetwork/QTcpServer>
 
@@ -47,10 +48,26 @@ public:
 							QTcpSocket * _parent );
 	virtual ~demoServer();
 
+	inline QPoint cursorPos( void )
+	{
+		m_cursorLock.lockForRead();
+		QPoint p = m_cursorPos;
+		m_cursorLock.unlock();
+		return( p );
+	}
+
 	static int numOfInstances( void )
 	{
 		return( s_numOfInstances );
 	}
+
+
+private slots:
+	// checks whether cursor was moved and sets according flags and
+	// variables used by moveCursor() - connection has to be done in
+	// GUI-thread as we're calling QCursor::pos() which at least under X11
+	// must not be called from another thread than the GUI-thread
+	void checkForCursorMovement( void );
 
 
 private:
@@ -59,6 +76,8 @@ private:
 	static int s_numOfInstances;
 
 	ivsConnection * m_conn;
+	QReadWriteLock m_cursorLock;
+	QPoint m_cursorPos;
 
 	// this thread is just responsible for updating IVS-connection's screen
 	class updaterThread : public QThread
@@ -88,7 +107,7 @@ class demoServerClient : public QThread
 	Q_OBJECT
 public:
 	demoServerClient( int _sd, const ivsConnection * _conn,
-							QObject * _parent );
+							demoServer * _parent );
 	virtual ~demoServerClient();
 
 
@@ -101,12 +120,6 @@ private slots:
 
 	// called whenever ivsConnection::cursorShapeChanged() is emitted
 	void updateCursorShape( void );
-
-	// checks whether cursor was moved and sets according flags and
-	// variables used by moveCursor() - connection has to be done in
-	// GUI-thread as we're calling QCursor::pos() which at least under X11
-	// must not be called from another thread than the GUI-thread
-	void checkForCursorMovement( void );
 
 	// called regularly for sending pointer-movement-events detected by
 	// checkForCursorMovement() to clients - connection has to be done
@@ -123,11 +136,11 @@ private:
 	// event-loop of thread
 	virtual void run( void );
 
+	demoServer * m_ds;
 	QMutex m_dataMutex;
 	QRegion m_changedRegion;
 	QPoint m_lastCursorPos;
 	volatile bool m_cursorShapeChanged;
-	volatile bool m_cursorPosChanged;
 
 	int m_socketDescriptor;
 	QTcpSocket * m_sock;
