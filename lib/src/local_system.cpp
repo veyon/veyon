@@ -105,6 +105,7 @@ QString windowsConfigPath( int _type )
 #endif
 
 #include "local_system.h"
+#include "minilzo.h"
 
 
 
@@ -243,6 +244,8 @@ void initialize( p_pressKey _pk, const QString & _log_file )
 {
 	__pressKey = _pk;
 	__log_file = _log_file;
+
+	lzo_init();
 
 	QCoreApplication::setOrganizationName( "iTALC Solutions" );
 	QCoreApplication::setOrganizationDomain( "italcsolutions.org" );
