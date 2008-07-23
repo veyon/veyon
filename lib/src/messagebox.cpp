@@ -107,7 +107,7 @@ void messageBox::trySysTrayMessage( const QString & _title,
 					const QString & _msg,
 					MessageIcon _msg_icon )
 {
-	qWarning( _msg.toUtf8().constData() );
+	qWarning( "%s", _msg.toUtf8().constData() );
 	if( QThread::currentThreadId() !=
 		QCoreApplication::instance()->thread()->currentThreadId() )
 	{
