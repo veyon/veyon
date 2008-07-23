@@ -1,3 +1,27 @@
+2008-07-23	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* configure.in:
+	made 1.0.9 release
+
+	* ica/ica.rc.in:
+	* setup/setup.rc.in:
+	* ima/italc.rc.in:
+	fixed version-information (closes #2025199)
+
+	* ica/src/demo_server.h:
+	* ica/src/demo_server.cpp:
+	moved cursor-position queries to demoServer - workaround for an
+	unknown bug in Qt 4.4 (closes #1994549, #2006526, #2015845)
+
+	* lib/src/isd_base.cpp:
+	use QTcpSocket::waitForBytesWritten() rather than flush()
+
+	* lib/src/local_system.cpp:
+	initialize LZO-library on startup
+
+	* lib/src/messagebox.cpp:
+	fixed compiler warning
+
 2008-07-06	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* configure.in:
@@ -26,7 +50,7 @@
 
 	* ica/x11/x11vnc/inet.c:
 	renamed deprecated member-variable as it's been reverted on 2008-06-24
-	
+
 2008-06-26	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* ima/src/client.cpp:
