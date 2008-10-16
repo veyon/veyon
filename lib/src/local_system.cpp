@@ -28,6 +28,9 @@
 #include <config.h>
 #endif
 
+#ifdef BUILD_WIN32
+#define _WIN32_WINNT 0x0501
+#endif
 
 #include <QtCore/QCoreApplication>
 #include <QtCore/QDir>
@@ -51,7 +54,6 @@ static const char * tr_accels = QT_TRANSLATE_NOOP(
 		"please keep this note as otherwise there are strange errors "
 					"concerning logon-feature)" );
 
-#define _WIN32_WINNT 0x0501
 #include <windows.h>
 #include <shlobj.h>
 #include <psapi.h>

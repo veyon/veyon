@@ -1,3 +1,13 @@
+2008-10-16	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
+
+	* ica/src/system_service.cpp:
+	* ica/src/system_service.h:
+	* ica/src/local_system_ica.cpp:
+	* lib/include/local_system.h:
+	* lib/src/local_system.cpp:
+	applied patch by James Mitchell <James.P.Mitchell@education.nsw.gov.au>
+	for improved username detection on win32
+
 2008-07-23	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* configure.in:

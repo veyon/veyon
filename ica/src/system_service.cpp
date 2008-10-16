@@ -40,6 +40,10 @@
 #endif
 
 
+PFN_WTSQuerySessionInformation pfnWTSQuerySessionInformation = NULL;
+PFN_WTSFreeMemory pfnWTSFreeMemory = NULL;
+
+
 systemService::systemService(
 			const QString & _service_name,
 			const QString & _service_arg,
@@ -713,10 +717,19 @@ void systemService::serviceMainThread( void * _arg )
 
 void WINAPI systemService::main( DWORD _argc, char * * _argv )
 {
+	HMODULE hWTSAPI32 = LoadLibrary("wtsapi32.dll");
+	if( hWTSAPI32 )
+	{
+		pfnWTSQuerySessionInformation = (PFN_WTSQuerySessionInformation) 
+			GetProcAddress(hWTSAPI32,"WTSQuerySessionInformationA");
+		pfnWTSFreeMemory = (PFN_WTSFreeMemory) 
+      		GetProcAddress(hWTSAPI32,"WTSFreeMemory");
+	}
+	DWORD context = 1;
 	// register the service control handler
-	s_statusHandle = RegisterServiceCtrlHandler(
+	s_statusHandle = RegisterServiceCtrlHandlerEx(
 					s_this->m_name.toLocal8Bit().constData(),
-								serviceCtrl );
+								serviceCtrl, &context );
 
 	if( s_statusHandle == 0 )
 	{
@@ -748,8 +761,13 @@ void WINAPI systemService::main( DWORD _argc, char * * _argv )
 
 
 
+
+QString __sessCurUser;
+
 // Service control routine
-void WINAPI systemService::serviceCtrl( DWORD _ctrlcode )
+DWORD WINAPI systemService::serviceCtrl( DWORD _ctrlcode, DWORD dwEventType,
+							LPVOID lpEventData,
+							LPVOID lpContext )
 {
 	// What control code have we been sent?
 	switch( _ctrlcode )
@@ -768,6 +786,33 @@ void WINAPI systemService::serviceCtrl( DWORD _ctrlcode )
 		case SERVICE_CONTROL_INTERROGATE:
 			// Service control manager just wants to know our state
 			break;
+			
+		case SERVICE_CONTROL_SESSIONCHANGE:
+			WTSSESSION_NOTIFICATION wtsno;
+			CopyMemory( &wtsno, lpEventData,
+					sizeof( WTSSESSION_NOTIFICATION ) );
+			
+			switch( dwEventType )
+			{
+				case WTS_SESSION_LOGOFF:
+					__sessCurUser = "";
+					break;
+				case WTS_SESSION_LOGON:
+					LPTSTR pBuffer = NULL;
+					DWORD dwBufferLen;
+	BOOL bRes = (*pfnWTSQuerySessionInformation)( WTS_CURRENT_SERVER_HANDLE,
+							wtsno.dwSessionId,
+							WTSUserName,
+							&pBuffer,
+							&dwBufferLen );
+					if( bRes != FALSE )
+					{
+						__sessCurUser = pBuffer;
+					}
+					(*pfnWTSFreeMemory)( pBuffer );
+					break;
+			}
+			break;
 
 		default:
 			// Control code not recognised
@@ -776,6 +821,7 @@ void WINAPI systemService::serviceCtrl( DWORD _ctrlcode )
 
 	// Tell the control manager what we're up to.
 	reportStatus( s_status.dwCurrentState, NO_ERROR, 0 );
+	return NO_ERROR;
 }
 
 
@@ -795,7 +841,7 @@ bool systemService::reportStatus( DWORD _state, DWORD _exit_code,
 	}
 	else
 	{
-		s_status.dwControlsAccepted = SERVICE_ACCEPT_STOP;
+		s_status.dwControlsAccepted = SERVICE_ACCEPT_STOP | SERVICE_ACCEPT_SESSIONCHANGE;
 	}
 
 	// Save the new status we've been given

@@ -29,12 +29,15 @@
 #include <config.h>
 #endif
 
+#ifdef BUILD_WIN32
+#define _WIN32_WINNT 0x0501
+#endif
+
 #include <QtCore/QCoreApplication>
 #include <QtCore/QProcess>
 
 #ifdef BUILD_WIN32
 
-#define _WIN32_WINNT 0x0501
 #include <windows.h>
 #include <psapi.h>
 #include <lm.h>
@@ -59,8 +62,9 @@
 
 #include "local_system.h"
 #include "system_key_trapper.h"
+#include "system_service.h"
 
-
+/*
 
 void getUserName( char * * _str )
 {
@@ -275,7 +279,7 @@ static BOOL WINAPI consoleCtrlHandler( DWORD _dwCtrlType )
 		default: return FALSE;
 	}
 }
-
+*/
 
 
 #include "vncKeymap.h"
@@ -330,7 +334,7 @@ static inline void pressKey( int _key, bool _down )
 #endif
 
 
-
+extern QString __sessCurUser;
 
 namespace localSystem
 {
@@ -340,12 +344,13 @@ void initialize( void )
 {
 	initialize( pressKey, "italc_client.log" );
 #ifdef BUILD_WIN32
-	__user_poll_thread = new userPollThread();
+//	__user_poll_thread = new userPollThread();
 
-	SetConsoleCtrlHandler( consoleCtrlHandler, TRUE );
+//	SetConsoleCtrlHandler( consoleCtrlHandler, TRUE );
 #endif
 
 }
+
 
 
 
@@ -355,12 +360,13 @@ QString currentUser( void )
 	QString ret = "unknown";
 
 #ifdef BUILD_WIN32
-
+	return __sessCurUser;
+/*
 	if( __user_poll_thread && !__user_poll_thread->name().isEmpty() )
 	{
 		ret = __user_poll_thread->name();
 	}
-
+*/
 #else
 
 	char * user_name = getenv( "USER" );

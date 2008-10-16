@@ -29,6 +29,7 @@
 #include <QtCore/QString>
 
 #include "isd_base.h"
+#include "types.h"
 
 #ifdef BUILD_WIN32
 #include <windef.h>
