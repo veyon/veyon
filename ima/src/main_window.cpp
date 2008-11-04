@@ -306,7 +306,11 @@ mainWindow::mainWindow( int _rctrl_screen ) :
 			tr( "Auto re-arrange windows and their size" ),
 			tr( "When clicking this button all visible windows "
 					"are re-arranged and adjusted." ),
-			m_classroomManager, SLOT( arrangeWindows() ), m_toolBar );
+			NULL, NULL, m_toolBar );
+	auto_arrange->setCheckable( true );
+	auto_arrange->setChecked( m_classroomManager->isAutoArranged() );
+	connect( auto_arrange, SIGNAL( toggled( bool ) ), m_classroomManager,
+						 SLOT( arrangeWindowsToggle ( bool ) ) );
 
 	scr->addTo( m_toolBar );
 	overview_mode->addTo( m_toolBar );

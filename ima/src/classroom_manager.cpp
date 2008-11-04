@@ -97,7 +97,8 @@ classroomManager::classroomManager( mainWindow * _main_window,
 	m_quickSwitchMenu( new QMenu( this ) ),
 	m_qsmClassRoomSeparator( m_quickSwitchMenu->addSeparator() ),
 	m_globalClientMode( client::Mode_Overview ),
-	m_clientUpdateInterval( 1 )
+	m_clientUpdateInterval( 1 ),
+	m_autoArranged( false )
 {
 	// some code called out of this function relies on m_classroomManager
 	// which actually is assigned after this function returns
@@ -389,6 +390,8 @@ void classroomManager::savePersonalConfig( void )
 						m_clientDblClickAction );
 	globalsettings.setAttribute( "showUserColumn",
 						m_showUsernameCheckBox->isChecked() );
+	globalsettings.setAttribute( "autoarranged",
+					isAutoArranged() );
 
 	QStringList hidden_buttons;
 	foreach( QAction * a, getMainWindow()->getToolBar()->actions() )
@@ -622,6 +625,12 @@ getMainWindow()->move( node.toElement().attribute( "win-x" ).toInt(),
 				m_toolBarCfg = node.toElement().attribute(
 								"toolbarcfg" );
 			}
+			if( node.toElement().attribute( "autoarranged" ).
+								toInt() > 0 )
+			{
+				m_autoArranged = true;
+			}
+
 			__demo_quality = node.toElement().
 					attribute( "demoquality" ).toInt();
 
@@ -1168,6 +1177,18 @@ void classroomManager::adjustWindows( void )
 				static_cast<int>( cl->m_rasterY * nh )+1 );
 		}
 		getMainWindow()->workspace()->updateGeometry();
+	}
+}
+
+
+
+
+void classroomManager::arrangeWindowsToggle( bool _on )
+{
+	m_autoArranged = _on;
+	if( _on == true )
+	{
+		arrangeWindows();
 	}
 }
 
@@ -1819,6 +1840,17 @@ void classroomManager::showUserColumn( int _show )
 {
 	m_view->showColumn( _show ? 2 : 1 );
 	m_view->hideColumn( _show ? 1 : 2 );
+}
+
+
+
+
+void classroomManager::clientVisibleChanged( void )
+{
+	if( m_autoArranged == true )
+	{
+		arrangeWindows();
+	}
 }
 
 

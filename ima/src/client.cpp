@@ -757,6 +757,8 @@ void client::hideEvent( QHideEvent * )
 	{
 		m_classRoomItem->setVisible( FALSE );
 	}
+
+	m_mainWindow->getClassroomManager()->clientVisibleChanged();
 }
 
 
@@ -1019,6 +1021,8 @@ void client::showEvent( QShowEvent * )
 	{
 		m_classRoomItem->setVisible( TRUE );
 	}
+
+	m_mainWindow->getClassroomManager()->clientVisibleChanged();
 }
 
 

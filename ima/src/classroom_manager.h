@@ -117,6 +117,14 @@ public:
 	void setStateOfClassRoom( classRoom * _cr, bool _shown );
 	QAction * addClassRoomToQuickSwitchMenu( classRoom * _cr );
 
+	void clientVisibleChanged( void );
+
+	void arrangeWindows( void );
+	bool isAutoArranged ( )
+	{
+		return m_autoArranged;
+	}
+
 public slots:
 	void updateClients( void );
 
@@ -134,7 +142,7 @@ public slots:
 
 	// slots for actions in view-menu
 	void adjustWindows( void );
-	void arrangeWindows( void );
+	void arrangeWindowsToggle( bool _on );
 	void increaseClientSize( void );
 	void decreaseClientSize( void );
 
@@ -230,6 +238,8 @@ private:
 
 	QPushButton * m_exportToFileBtn;
 	QCheckBox * m_showUsernameCheckBox;
+
+	bool m_autoArranged;
 } ;
 
 
