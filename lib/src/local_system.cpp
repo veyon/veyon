@@ -680,7 +680,7 @@ QString globalConfigPath( void )
 QString personalConfigDir( void )
 {
 	QSettings settings;
-	const QString d = settings.value( "paths/personalconfig" ).toString();
+	const QString d = settings.value( "paths/personalconfigdir" ).toString();
 	return( d.isEmpty() ?
 #ifdef BUILD_WIN32
 				windowsConfigPath( CSIDL_APPDATA ) +
@@ -691,7 +691,7 @@ QString personalConfigDir( void )
 #endif
 				+ QDir::separator()
 		:
-				d );
+				d + QDir::separator() );
 }
 
 
