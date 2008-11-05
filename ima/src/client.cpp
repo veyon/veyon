@@ -215,8 +215,8 @@ void clientAction::process( QVector<client *> _clients, targetGroup _target )
 				remoteLogonDialog mld;
 
 				if( mld.exec() == QDialog::Accepted &&
-					!mld.userName().isEmpty() &&
-					!mld.password().isEmpty() )
+					!mld.userName().isEmpty()/* &&
+					!mld.password().isEmpty()*/ )
 				{
 					foreach( client * cl, _clients )
 					{
