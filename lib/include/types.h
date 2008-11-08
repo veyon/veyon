@@ -25,6 +25,8 @@
 #ifndef _TYPES_H
 #define _TYPES_H
 
+#include <stdint.h>
+
 typedef signed char             Q_INT8;         /* 8 bit signed */
 typedef unsigned char           Q_UINT8;        /* 8 bit unsigned */
 typedef short                   Q_INT16;        /* 16 bit signed */
