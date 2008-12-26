@@ -15,8 +15,8 @@ extern void check_padded_fb(void);
 extern void install_padded_fb(char *geom);
 extern XImage *initialize_xdisplay_fb(void);
 extern XImage *initialize_raw_fb(int);
-extern void parse_scale_string(char *str, double *factor, int *scaling, int *blend,
-    int *nomult4, int *pad, int *interpolate, int *numer, int *denom);
+extern void parse_scale_string(char *str, double *factor_x, double *factor_y, int *scaling, int *blend,
+    int *nomult4, int *pad, int *interpolate, int *numer, int *denom, int w_in, int h_in);
 extern int parse_rotate_string(char *str, int *mode);
 extern int scale_round(int len, double fac);
 extern void initialize_screen(int *argc, char **argv, XImage *fb);

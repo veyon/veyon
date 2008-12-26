@@ -739,7 +739,7 @@ if (db24 > 1) fprintf(stderr, "multivis: 0x%lx ms: %d j: %d no: %d nm: %d dep=%d
 			if (attr->map_state == IsViewable &&
 			    windows_8bpp[j].map_state != IsViewable) {
 				now_vis = 1;
-			} 
+			}
 if (db24 > 1) fprintf(stderr, "multivis: STORE 0x%lx j: %3d ms: %d dep=%d\n", win, j, attr->map_state, attr->depth);
 			windows_8bpp[j].win = win;
 			windows_8bpp[j].top = top;
@@ -1359,6 +1359,8 @@ static int get_cmap(int j, Colormap cmap) {
 		X_LOCK;
 		ncells = CellsOfScreen(ScreenOfDisplay(dpy, scr));
 		X_UNLOCK;
+	} else {
+		ncells = NCOLOR;
 	}
 if (db24 > 1) fprintf(stderr, "get_cmap: %d 0x%x\n", j, (unsigned int) cmap);
 

@@ -11,7 +11,7 @@ extern void free_tiles(void);
 extern void shm_delete(XShmSegmentInfo *shm);
 extern void shm_clean(XShmSegmentInfo *shm, XImage *xim);
 extern void initialize_polling_images(void);
-extern void scale_rect(double factor, int blend, int interpolate, int Bpp,
+extern void scale_rect(double factor_x, double factor_y, int blend, int interpolate, int Bpp,
     char *src_fb, int src_bytes_per_line, char *dst_fb, int dst_bytes_per_line,
     int Nx, int Ny, int nx, int ny, int X1, int Y1, int X2, int Y2, int mark);
 extern void scale_and_mark_rect(int X1, int Y1, int X2, int Y2, int mark);

@@ -333,10 +333,7 @@ char **create_str_list(char *cslist) {
 	}
 
 	/* the extra last one holds NULL */
-	list = (char **) malloc( (n+1)*sizeof(char *) );
-	for(i=0; i < n+1; i++) {
-		list[i] = NULL;
-	}
+	list = (char **) calloc((n+1)*sizeof(char *), 1);
 
 	p = strtok(str, ",");
 	i = 0;
@@ -388,7 +385,7 @@ double dnowx(void) {
 }
 
 double rnow(void) {
-	double t = dnowx();
+	double t = dnow();
 	t = t - ((int) t); 
 	if (t > 1.0) {
 		t = 1.0;
@@ -399,8 +396,23 @@ double rnow(void) {
 }
 
 double rfac(void) {
-	double f = (double) rand();
+	double f;
+	static int first = 1;
+
+	if (first) {
+		unsigned int s;
+		if (getenv("RAND_SEED")) {
+			s = (unsigned int) atoi(getenv("RAND_SEED"));
+		} else {
+			s = (unsigned int) ((int) getpid() + 100000 * rnow());
+		}
+		srand(s);
+		first = 0;
+	}
+
+	f = (double) rand();
 	f = f / ((double) RAND_MAX);
+
 	return f;
 }
 

@@ -54,4 +54,18 @@
 #define ROTATE_90Y		6
 #define ROTATE_270		7
 
+#define VENCRYPT_NONE		0
+#define VENCRYPT_SUPPORT	1
+#define VENCRYPT_SOLE		2
+#define VENCRYPT_FORCE		3
+
+#define VENCRYPT_BOTH		0
+#define VENCRYPT_NODH		1
+#define VENCRYPT_NOX509		2
+
+#define ANONTLS_NONE		0
+#define ANONTLS_SUPPORT		1
+#define ANONTLS_SOLE		2
+#define ANONTLS_FORCE		3
+
 #endif /* _X11VNC_PARAMS_H */

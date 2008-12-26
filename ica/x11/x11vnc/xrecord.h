@@ -25,6 +25,7 @@ extern Display *gdpy_ctrl;
 extern int xserver_grabbed;
 
 extern void initialize_xrecord(void);
+extern void zerodisp_xrecord(void);
 extern void shutdown_xrecord(void);
 extern int xrecord_skip_keysym(rfbKeySym keysym);
 extern int xrecord_skip_button(int new, int old);

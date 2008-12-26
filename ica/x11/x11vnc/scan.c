@@ -24,7 +24,7 @@ void free_tiles(void);
 void shm_delete(XShmSegmentInfo *shm);
 void shm_clean(XShmSegmentInfo *shm, XImage *xim);
 void initialize_polling_images(void);
-void scale_rect(double factor, int blend, int interpolate, int Bpp,
+void scale_rect(double factor_x, double factor_y, int blend, int interpolate, int Bpp,
     char *src_fb, int src_bytes_per_line, char *dst_fb, int dst_bytes_per_line,
     int Nx, int Ny, int nx, int ny, int X1, int Y1, int X2, int Y2, int mark);
 void scale_and_mark_rect(int X1, int Y1, int X2, int Y2, int mark);
@@ -341,11 +341,16 @@ static int shm_create(XShmSegmentInfo *shm, XImage **ximg_ptr, int w, int h,
 
 void shm_delete(XShmSegmentInfo *shm) {
 #if LIBVNCSERVER_HAVE_XSHM
+	if (getenv("X11VNC_SHM_DEBUG")) fprintf(stderr, "shm_delete:    0x%x\n", shm);
 	if (shm != NULL && shm->shmaddr != (char *) -1) {
 		shmdt(shm->shmaddr);
 	}
 	if (shm != NULL && shm->shmid != -1) {
 		shmctl(shm->shmid, IPC_RMID, 0);
+	}
+	if (shm != NULL) {
+		shm->shmaddr = (char *) -1;
+		shm->shmid = -1;
 	}
 #else
 	if (!shm) {}
@@ -428,7 +433,7 @@ void initialize_polling_images(void) {
 		if (! shm_create(&fullscreen_shm, &fullscreen, dpy_x,
 		    dpy_y/fs_factor, "fullscreen")) {
 			clean_up_exit(1);
-		} 
+		}
 	}
 	if (use_snapfb) {
 		if (! fs_factor) {
@@ -437,7 +442,7 @@ void initialize_polling_images(void) {
 		} else if (! shm_create(&snaprect_shm, &snaprect, dpy_x,
 		    dpy_y/fs_factor, "snaprect")) {
 			clean_up_exit(1);
-		} 
+		}
 	}
 
 	/*
@@ -737,7 +742,7 @@ weights for this scaled pixel are:
  * the loop over the 4 pixels.
  */
 
-void scale_rect(double factor, int blend, int interpolate, int Bpp,
+void scale_rect(double factor_x, double factor_y, int blend, int interpolate, int Bpp,
     char *src_fb, int src_bytes_per_line, char *dst_fb, int dst_bytes_per_line,
     int Nx, int Ny, int nx, int ny, int X1, int Y1, int X2, int Y2, int mark) {
 /*
@@ -773,7 +778,7 @@ void scale_rect(double factor, int blend, int interpolate, int Bpp,
 	int b, k;
 	double pixave[4];	/* for averaging pixel values */
 
-	if (factor <= 1.0) {
+	if (factor_x <= 1.0 && factor_y <= 1.0) {
 		shrink = 1;
 	} else {
 		shrink = 0;
@@ -787,8 +792,8 @@ void scale_rect(double factor, int blend, int interpolate, int Bpp,
 	 * This new way is probably the best we can do, take the inverse
 	 * of the scaling factor to double precision.
 	 */
-	dx = 1.0/factor;
-	dy = 1.0/factor;
+	dx = 1.0/factor_x;
+	dy = 1.0/factor_y;
 
 	/*
 	 * There is some speedup if the pixel weights are constant, so
@@ -797,15 +802,18 @@ void scale_rect(double factor, int blend, int interpolate, int Bpp,
 	 * If scale = 1/n and n divides Nx and Ny, the pixel weights
 	 * are constant (e.g. 1/2 => equal on 2x2 square).
 	 */
-	if (factor != last_factor || Nx != last_Nx || Ny != last_Ny) {
+	if (factor_x != last_factor || Nx != last_Nx || Ny != last_Ny) {
 		constant_weights = -1;
 		mag_int = -1;
 		last_Nx = Nx;
 		last_Ny = Ny;
-		last_factor = factor;
+		last_factor = factor_x;
 	}
+	if (constant_weights < 0 && factor_x != factor_y) {
+		constant_weights = 0;
+		mag_int = 0;
 
-	if (constant_weights < 0) {
+	} else if (constant_weights < 0) {
 		int n = 0;
 
 		constant_weights = 0;
@@ -814,7 +822,7 @@ void scale_rect(double factor, int blend, int interpolate, int Bpp,
 		for (i = 2; i<=128; i++) {
 			double test = ((double) 1)/ i;
 			double diff, eps = 1.0e-7;
-			diff = factor - test;
+			diff = factor_x - test;
 			if (-eps < diff && diff < eps) {
 				n = i;
 				break;
@@ -839,18 +847,18 @@ void scale_rect(double factor, int blend, int interpolate, int Bpp,
 		for (i = 2; i<=32; i++) {
 			double test = (double) i;
 			double diff, eps = 1.0e-7;
-			diff = factor - test;
+			diff = factor_x - test;
 			if (-eps < diff && diff < eps) {
 				n = i;
 				break;
 			}
 		}
-		if (! blend && factor > 1.0 && n) {
+		if (! blend && factor_x > 1.0 && n) {
 			mag_int = n;
 		}
 	}
 
-	if (mark && factor > 1.0 && blend) {
+	if (mark && factor_x > 1.0 && blend) {
 		/*
 		 * kludge: correct for interpolating blurring leaking
 		 * up or left 1 destination pixel.
@@ -1296,7 +1304,7 @@ void scale_and_mark_rect(int X1, int Y1, int X2, int Y2, int mark) {
 	dst_fb = rfb_fb;
 	dst_bpl = rfb_bytes_per_line;
 
-	scale_rect(scale_fac, scaling_blend, scaling_interpolate, fac * Bpp,
+	scale_rect(scale_fac_x, scale_fac_y, scaling_blend, scaling_interpolate, fac * Bpp,
 	    src_fb, fac * main_bytes_per_line, dst_fb, dst_bpl, dpy_x, dpy_y,
 	    scaled_x, scaled_y, X1, Y1, X2, Y2, mark);
 }
@@ -2623,7 +2631,7 @@ static void nap_set(int tile_cnt) {
 	if (! nap_ok && client_count) {
 		if(now > last_fb_bytes_sent + no_fbu_blank) {
 			if (debug_tiles > 1) {
-				printf("nap_set: nap_ok=1: now: %d last: %d\n",
+				fprintf(stderr, "nap_set: nap_ok=1: now: %d last: %d\n",
 				    (int) now, (int) last_fb_bytes_sent);
 			}
 			nap_ok = 1;
@@ -2661,6 +2669,27 @@ void nap_sleep(int ms, int split) {
 	}
 }
 
+static char *get_load(void) {
+	static char tmp[64];
+	static int count = 0;
+
+	if (count++ % 5 == 0) {
+		struct stat sb;
+		memset(tmp, 0, sizeof(tmp));
+		if (stat("/proc/loadavg", &sb) == 0) {
+			int d = open("/proc/loadavg", O_RDONLY);
+			if (d >= 0) {
+				read(d, tmp, 60);
+				close(d);
+			}
+		}
+		if (tmp[0] == '\0') {
+			strcat(tmp, "unknown");
+		}
+	}
+	return tmp;
+}
+
 /*
  * see if we should take a nap of some sort between polls
  */
@@ -2683,10 +2712,16 @@ static void nap_check(int tile_cnt) {
 		dt_fbu = (int) (now - last_fb_bytes_sent);
 		if (dt_fbu > screen_blank) {
 			/* sleep longer for no fb requests */
+			if (debug_tiles > 1) {
+				fprintf(stderr, "screen blank sleep1: %d ms / 16, load: %s\n", 2 * ms, get_load());
+			}
 			nap_sleep(2 * ms, 16);
 			return;
 		}
 		if (dt_ev > screen_blank) {
+			if (debug_tiles > 1) {
+				fprintf(stderr, "screen blank sleep2: %d ms / 8, load: %s\n", ms, get_load());
+			}
 			nap_sleep(ms, 8);
 			return;
 		}
@@ -2699,6 +2734,9 @@ static void nap_check(int tile_cnt) {
 		} else if (now - last_local_input <= 3) {
 			nap_ok = 0;
 		} else {
+			if (debug_tiles > 1) {
+				fprintf(stderr, "nap_check sleep: %d ms / 1, load: %s\n", ms, get_load());
+			}
 			nap_sleep(ms, 1);
 		}
 	}
@@ -3186,7 +3224,8 @@ int scan_for_updates(int count_only) {
 				static int bad = 0;
 				if (xd_misses > (5 * xd_samples) / 100) {
 					rfbLog("XDAMAGE is not working well... misses: %d/%d\n", xd_misses, xd_samples);
-					rfbLog("Maybe a OpenGL app like Beryl is the problem? Use -noxdamage\n");
+					rfbLog("Maybe an OpenGL app like Beryl or Compiz is the problem?\n");
+					rfbLog("Use x11vnc -noxdamage or disable the Beryl/Compiz app.\n");
 					rfbLog("To disable this check and warning specify -xdamage twice.\n");
 					if (++bad >= 10) {
 						rfbLog("XDAMAGE appears broken (OpenGL app?), turning it off.\n");

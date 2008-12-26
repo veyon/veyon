@@ -165,7 +165,7 @@ void selection_request(XEvent *ev, char *type) {
 		if (debug_sel) {
 			rfbLog("XSendEvent() -> %d\n", ret);
 		}
-	} 
+	}
 	if (trapped_xerror) {
 		rfbLog("selection_request: ignored XError while sending "
 		    "%s selection to 0x%x.\n", type, req_event->requestor);

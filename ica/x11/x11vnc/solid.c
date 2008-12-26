@@ -17,7 +17,7 @@ XImage *solid_root(char *color);
 static void solid_cde(char *color);
 static void solid_gnome(char *color);
 static void solid_kde(char *color);
-
+static void solid_macosx(int restore);
 
 static void usr_bin_path(int restore) {
 	static char *oldpath = NULL;
@@ -532,6 +532,12 @@ static void solid_gnome(char *color) {
 	    "/desktop/gnome/background/picture_options";
 	char set_option[] = "gconftool-2 --set "
 	    "/desktop/gnome/background/picture_options --type string '%s'";
+#if 0
+	char get_filename[] = "gconftool-2 --get "
+	    "/desktop/gnome/background/picture_filename";
+	char set_filename[] = "gconftool-2 --set "
+	    "/desktop/gnome/background/picture_filename --type string '%s'";
+#endif
 	static char *orig_color = NULL;
 	static char *orig_option = NULL;
 	char *cmd;
@@ -607,6 +613,14 @@ static void solid_gnome(char *color) {
 	sprintf(cmd, set_option, "none");
 	dt_cmd(cmd);
 	free(cmd);
+
+#if 0
+	cmd = (char *) malloc(strlen(set_filename) + strlen("none") + 1);
+	sprintf(cmd, set_filename, "none");
+	dt_cmd(cmd);
+	free(cmd);
+#endif
+
 #endif	/* NO_X11 */
 }
 
@@ -692,7 +706,7 @@ static char *dcop_session(void) {
 				} else {
 					if (sess2) {
 						free(sess2);
-					} 
+					}
 					sess2 = strdup(q);
 				}
 			}
@@ -900,6 +914,70 @@ void gnome_no_animate(void) {
 	;
 }
 
+static pid_t solid_macosx_pid = 0;
+extern char macosx_solid_background[];
+
+static void solid_macosx(int restore) {
+	char tmp[] = "/tmp/macosx_solid_background.XXXXXX";
+	pid_t pid, parent = getpid();
+
+	if (restore) {
+		rfbLog("restore pid: %d\n", (int) solid_macosx_pid);
+		if (solid_macosx_pid > 0) {
+			int i, status;
+			rfbLog("kill -TERM macosx_solid_background helper pid: %d\n", (int) solid_macosx_pid);
+			kill(solid_macosx_pid, SIGTERM);
+#if 0
+#if LIBVNCSERVER_HAVE_SYS_WAIT_H
+#if LIBVNCSERVER_HAVE_WAITPID
+			for (i=0; i < 7; i++) {
+				usleep(1000 * 1000);
+				waitpid(solid_macosx_pid, &status, WNOHANG); 
+				if (kill(solid_macosx_pid, 0) != 0) {
+					break;
+				}
+			}
+#endif
+#endif
+#endif
+			solid_macosx_pid = 0;
+		}
+		return;
+	}
+	if (no_external_cmds || !cmd_ok("dt")) {
+		return;
+	}
+#if LIBVNCSERVER_HAVE_FORK
+	pid = fork();
+
+	if (pid == -1) {
+		perror("fork");
+		return;
+	}
+	if (pid == 0) {
+		int fd = mkstemp(tmp);
+#if LIBVNCSERVER_HAVE_SETSID
+		setsid();
+#else
+		setpgrp();
+#endif
+		if (fd >= 0) {
+			char num[32];
+			write(fd, macosx_solid_background, strlen(macosx_solid_background));
+			close(fd);
+			sprintf(num, "%d", (int) parent);
+			set_env("SS_WATCH_PID", num);
+			execlp("/bin/sh", "/bin/sh", tmp, (char *) NULL);
+		}
+		exit(1);
+	}
+	solid_macosx_pid = pid;
+	rfbLog("macosx_solid_background helper pid: %d\n", (int) solid_macosx_pid);
+	usleep(2750 * 1000);
+	unlink(tmp);
+#endif
+}
+
 char *guess_desktop(void) {
 #if NO_X11
 	RAWFB_RET("root")
@@ -1004,12 +1082,17 @@ void solid_bg(int restore) {
 	static char *prev_str;
 	char *dtname, *color;
 
-	RAWFB_RET_VOID
-
 	if (started_as_root == 1 && users_list) {
 		/* we are still root, don't try. */
 		return;
 	}
+
+	if (macosx_console) {
+		solid_macosx(restore);
+		return;
+	}
+
+	RAWFB_RET_VOID
 
 	if (restore) {
 		if (! solid_on) {

@@ -30,7 +30,7 @@ XErrorEvent *trapped_xerror_event;
 int crash_debug = 0;
 
 void clean_shm(int quick);
-void clean_up_exit (int ret);
+void clean_up_exit(int ret);
 int trap_xerror(Display *d, XErrorEvent *error);
 int trap_xioerror(Display *d);
 int trap_getimage_xerror(Display *d, XErrorEvent *error);
@@ -110,7 +110,7 @@ static void clean_icon_mode(void) {
 /*
  * Normal exiting
  */
-void clean_up_exit (int ret) {
+void clean_up_exit(int ret) {
 	static int depth = 0;
 	exit_flag = 1;
 
@@ -149,6 +149,11 @@ void clean_up_exit (int ret) {
 		macosxCG_fini();
 	}
 #endif
+
+	if (pipeinput_fh != NULL) {
+		pclose(pipeinput_fh);
+		pipeinput_fh = NULL;
+	}
 
 	if (! dpy) exit(ret);	/* raw_rb hack */
 
@@ -226,6 +231,26 @@ int trap_getimage_xerror(Display *d, XErrorEvent *error) {
 
 static int Xerror(Display *d, XErrorEvent *error) {
 	X_UNLOCK;
+
+	if (getenv("X11VNC_PRINT_XERROR")) {
+		fprintf(stderr, "Xerror: major_opcode: %d minor_opcode: %d error_code: %d\n",
+		    error->request_code, error->minor_code, error->error_code);
+	}
+
+	if (xshm_opcode > 0 && error->request_code == xshm_opcode) {
+		if (error->minor_code == X_ShmAttach) {
+			char *dstr = DisplayString(dpy);
+			fprintf(stderr, "\nX11 MIT Shared Memory Attach failed:\n");
+			fprintf(stderr, "  Is your DISPLAY=%s on a remote machine?\n", dstr);
+			if (strstr(dstr, "localhost:")) {
+				fprintf(stderr, "  Note:   DISPLAY=localhost:N suggests a SSH X11 redir to a remote machine.\n");
+			} else if (dstr[0] != ':') {
+				fprintf(stderr, "  Note:   DISPLAY=hostname:N suggests a remote display.\n");
+			}
+			fprintf(stderr, "  Suggestion, use: x11vnc -display :0 ... for local display :0\n\n");
+		}
+	}
+
 	interrupted(0);
 
 	if (d) {} /* unused vars warning: */
@@ -234,7 +259,51 @@ static int Xerror(Display *d, XErrorEvent *error) {
 }
 
 static int XIOerr(Display *d) {
+	static int reopen = 0, rmax = 1;
 	X_UNLOCK;
+
+	if (getenv("X11VNC_REOPEN_DISPLAY")) {
+		rmax = atoi(getenv("X11VNC_REOPEN_DISPLAY"));
+	}
+
+#if !NO_X11
+	if (reopen < rmax && getenv("X11VNC_REOPEN_DISPLAY")) {
+		int db = getenv("X11VNC_REOPEN_DEBUG") ? 1 : 0;
+		Display *save_dpy = dpy;
+		char *dstr = DisplayString(save_dpy);
+		reopen++;	
+		rfbLog("*** XIO error: Trying to reopen[%d/%d] display '%s'\n", reopen, rmax, dstr);
+		rfbLog("*** XIO error: Note the reopened state may be unstable.\n");
+		usleep (3000 * 1000);
+		dpy = XOpenDisplay_wr(dstr);
+		if (dpy) {
+			rfbLog("*** XIO error: Reopened display '%s' successfully.\n", dstr);
+			if (db) rfbLog("*** XIO error: '%s' 0x%x\n", dstr, dpy);
+			scr = DefaultScreen(dpy);
+			rootwin = RootWindow(dpy, scr);
+			if (db) rfbLog("*** XIO error: disable_grabserver\n");
+			disable_grabserver(dpy, 0);
+			if (db) rfbLog("*** XIO error: xrecord\n");
+			zerodisp_xrecord();
+			initialize_xrecord();
+			if (db) rfbLog("*** XIO error: xdamage\n");
+			create_xdamage_if_needed(1);
+			if (db) rfbLog("*** XIO error: do_new_fb\n");
+			if (using_shm) {
+				if (db) rfbLog("*** XIO error: clean_shm\n");
+				clean_shm(1);
+			}
+			do_new_fb(1);
+			if (db) rfbLog("*** XIO error: check_xevents\n");
+			check_xevents(1);
+			/* sadly, we can never return... */
+			if (db) rfbLog("*** XIO error: watch_loop\n");
+			watch_loop();
+			clean_up_exit(1);	
+		}
+	}
+#endif
+
 	interrupted(-1);
 
 	if (d) {} /* unused vars warning: */

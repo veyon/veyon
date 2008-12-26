@@ -12,7 +12,7 @@ extern XErrorEvent *trapped_xerror_event;
 extern int crash_debug;
 
 extern void clean_shm(int quick);
-extern void clean_up_exit (int ret);
+extern void clean_up_exit(int ret);
 
 extern int trap_xerror(Display *d, XErrorEvent *error);
 extern int trap_xioerror(Display *d);

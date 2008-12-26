@@ -97,7 +97,7 @@ char *console_guess(char *str, int *fd) {
 		if (sscanf(in, "console%d", &n) != 1)  {
 			tty = n;
 			have_uinput = 0;
-		} 
+		}
 	}
 
 	if (! atparms) {

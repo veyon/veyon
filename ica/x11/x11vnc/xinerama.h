@@ -13,5 +13,6 @@ extern void push_sleep(int n);
 extern void push_black_screen(int n);
 extern void refresh_screen(int push);
 extern void zero_fb(int x1, int y1, int x2, int y2);
+extern void check_xinerama_clip(void);
 
 #endif /* _X11VNC_XINERAMA_H */

@@ -2700,7 +2700,7 @@ static void modifier_tweak_keyboard(rfbBool down, rfbKeySym keysym,
 		X_LOCK;
 		XTestFakeKeyEvent_wr(dpy, k, (Bool) down, CurrentTime);
 		X_UNLOCK;
-	} 
+	}
 
 	if ( tweak ) {
 		tweak_mod(modifiers[keysym], False);
@@ -2710,15 +2710,20 @@ static void modifier_tweak_keyboard(rfbBool down, rfbKeySym keysym,
 
 void initialize_keyboard_and_pointer(void) {
 
+#ifdef MACOSX
+	if (macosx_console) {
+		initialize_remap(remap_file);
+		initialize_pointer_map(pointer_remap);
+	}
+#endif
+
 	RAWFB_RET_VOID
 
 	if (use_modifier_tweak) {
 		initialize_modtweak();
 	}
-	if (remap_file != NULL) {
-		initialize_remap(remap_file);
-	}
 
+	initialize_remap(remap_file);
 	initialize_pointer_map(pointer_remap);
 
 	clear_modifiers(1);
@@ -2783,12 +2788,66 @@ if (0) fprintf(stderr, "GAI: %s - %s\n", str, cd->input);
 	}
 }
 
+static void apply_remap(rfbKeySym *keysym, int *isbutton) {
+	if (keyremaps) {
+		keyremap_t *remap = keyremaps;
+		while (remap != NULL) {
+			if (remap->before == *keysym) {
+				*keysym = remap->after;
+				*isbutton = remap->isbutton;
+				if (debug_keyboard) {
+					char *str1, *str2;
+					X_LOCK;
+					str1 = XKeysymToString(remap->before);
+					str2 = XKeysymToString(remap->after);
+					rfbLog("keyboard(): remapping keysym: "
+					    "0x%x \"%s\" -> 0x%x \"%s\"\n",
+					    (int) remap->before,
+					    str1 ? str1 : "null",
+					    (int) remap->after,
+					    remap->isbutton ? "button" :
+					    str2 ? str2 : "null");
+					X_UNLOCK;
+				}
+				break;
+			}
+			remap = remap->next;
+		}
+	}
+}
+
 /* for -pipeinput mode */
 static void pipe_keyboard(rfbBool down, rfbKeySym keysym, rfbClientPtr client) {
-	int can_input = 0, uid = 0;
+	int can_input = 0, uid = 0, isbutton = 0;
 	allowed_input_t input;
 	char *name;
 	ClientData *cd = (ClientData *) client->clientData;
+
+	apply_remap(&keysym, &isbutton);
+
+	if (isbutton) {
+		int mask, button = (int) keysym;
+		int x = cursor_x, y = cursor_y;
+		if (!down) {
+			return;
+		}
+		if (debug_keyboard) {
+			rfbLog("keyboard(): remapping keystroke to button %d"
+			    " click\n", button);
+		}
+		dtime0(&last_key_to_button_remap_time);
+
+		/*
+		 * This in principle can be a little dicey... i.e. even
+		 * remap the button click to keystroke sequences!
+		 * Usually just will simulate the button click.
+		 */
+		mask = 1<<(button-1);
+		pointer(mask, x, y, client);
+		mask = 0;
+		pointer(mask, x, y, client);
+		return;
+	}
 
 	if (pipeinput_int == PIPEINPUT_VID) {
 		v4l_key_command(down, keysym, client);
@@ -3149,6 +3208,7 @@ void keyboard(rfbBool down, rfbKeySym keysym, rfbClientPtr client) {
 				last_rfb_down = down;
 				last_rfb_keysym = keysym;
 				last_rfb_keytime = tnow;
+				last_rfb_key_injected = dnow();
 
 				got_user_input++;
 				got_keyboard_input++;
@@ -3176,37 +3236,15 @@ void keyboard(rfbBool down, rfbKeySym keysym, rfbClientPtr client) {
 	last_rfb_down = down;
 	last_rfb_keysym = keysym;
 	last_rfb_keytime = tnow;
+	last_rfb_key_injected = dnow();
 
 	got_user_input++;
 	got_keyboard_input++;
 	
 	RAWFB_RET_VOID
 
-	if (keyremaps) {
-		keyremap_t *remap = keyremaps;
-		while (remap != NULL) {
-			if (remap->before == keysym) {
-				keysym = remap->after;
-				isbutton = remap->isbutton;
-				if (debug_keyboard) {
-					char *str1, *str2;
-					X_LOCK;
-					str1 = XKeysymToString(remap->before);
-					str2 = XKeysymToString(remap->after);
-					rfbLog("keyboard(): remapping keysym: "
-					    "0x%x \"%s\" -> 0x%x \"%s\"\n",
-					    (int) remap->before,
-					    str1 ? str1 : "null",
-					    (int) remap->after,
-					    remap->isbutton ? "button" :
-					    str2 ? str2 : "null");
-					X_UNLOCK;
-				}
-				break;
-			}
-			remap = remap->next;
-		}
-	}
+
+	apply_remap(&keysym, &isbutton);
 
 	if (use_xrecord && ! xrecording && down) {
 

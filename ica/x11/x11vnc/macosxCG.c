@@ -31,6 +31,7 @@ int macosxCG_get_cursor_pos(int *x, int *y);
 int macosxCG_get_cursor(void);
 void macosxCG_init_key_table(void);
 void macosxCG_key_inject(int down, unsigned int keysym);
+void macosxCG_keycode_inject(int down, int keycode);
 
 CGDirectDisplayID displayID = 0;
 
@@ -145,7 +146,7 @@ extern void usleep(unsigned long usec);
 extern int usleep(useconds_t usec);
 #endif
 extern unsigned int sleep(unsigned int seconds);
-extern void clean_up_exit (int ret);
+extern void clean_up_exit(int ret);
 
 void macosxCG_event_loop(void) {
 	OSStatus rc;
@@ -595,6 +596,14 @@ void macosxCG_init_key_table(void) {
 }
 
 extern void init_key_table(void);
+extern int macosx_us_kbd;
+
+void macosxCG_keycode_inject(int down, int keycode) {
+	CGKeyCode keyCode = (CGKeyCode) keycode;
+	CGCharCode keyChar = 0;
+
+	CGPostKeyboardEvent(keyChar, keyCode, down);
+}
 
 void macosxCG_key_inject(int down, unsigned int keysym) {
 	CGKeyCode keyCode = keyTable[(unsigned short)keysym];
@@ -606,7 +615,7 @@ void macosxCG_key_inject(int down, unsigned int keysym) {
 
 	init_key_table();
 
-	if (keysym < 0xFF) {
+	if (keysym < 0xFF && macosx_us_kbd) {
 		keyChar = (CGCharCode) keysym;
 	}
 	if (keyCode == 0xFFFF) {

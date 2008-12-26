@@ -134,8 +134,30 @@
 #define PASSWD_UNLESS_NOPW 0
 #endif
 
+/* some -D macros for building with old LibVNCServer */
+#ifndef LIBVNCSERVER_HAS_STATS
+#define LIBVNCSERVER_HAS_STATS 1
+#endif
+
+#ifndef LIBVNCSERVER_HAS_SHUTDOWNSOCKETS
+#define LIBVNCSERVER_HAS_SHUTDOWNSOCKETS 1
+#endif
+
+#ifndef LIBVNCSERVER_HAS_TEXTCHAT
+#define LIBVNCSERVER_HAS_TEXTCHAT 1
+#endif
+
+#ifdef PRE_0_8_LIBVNCSERVER
+#undef  LIBVNCSERVER_WITH_TIGHTVNC_FILETRANSFER
+#undef  LIBVNCSERVER_HAS_STATS
+#undef  LIBVNCSERVER_HAS_SHUTDOWNSOCKETS
+#undef  LIBVNCSERVER_HAS_TEXTCHAT 
+#define LIBVNCSERVER_HAS_STATS 0
+#define LIBVNCSERVER_HAS_SHUTDOWNSOCKETS 0
+#define LIBVNCSERVER_HAS_TEXTCHAT 0
+#endif
+
 /* these are for delaying features: */
-#define xxNO_SSL_OR_UNIXPW
 #define xxNO_NCACHE
 
 /*
@@ -212,6 +234,10 @@
 #include <sys/ipc.h>
 #include <sys/shm.h>
 #include <X11/extensions/XShm.h>
+#endif
+#if LIBVNCSERVER_HAVE_SHMAT
+#include <sys/ipc.h>
+#include <sys/shm.h>
 #endif
 
 #include <dirent.h>
@@ -423,7 +449,8 @@ extern int raw_fb_bytes_per_line;	/* of actual raw region we poll, not our raw_f
 
 /* scaling parameters */
 extern char *scale_str;
-extern double scale_fac;
+extern double scale_fac_x;
+extern double scale_fac_y;
 extern int scaling;
 extern int scaling_blend;		/* for no blending option (very course) */
 extern int scaling_nomult4;		/* do not require width = n * 4 */
@@ -438,7 +465,8 @@ extern int rotating_cursors;
 
 /* scale cursor */
 extern char *scale_cursor_str;
-extern double scale_cursor_fac;
+extern double scale_cursor_fac_x;
+extern double scale_cursor_fac_y;
 extern int scaling_cursor;
 extern int scaling_cursor_blend;
 extern int scaling_cursor_interpolate;
@@ -456,7 +484,7 @@ extern unsigned char *tile_has_xdamage_diff, *tile_row_has_xdamage_diff;
 /* times of recent events */
 extern time_t last_event, last_input, last_client;
 extern time_t last_keyboard_input, last_pointer_input; 
-extern time_t last_local_input;
+extern time_t last_local_input;	/* macosx */
 extern time_t last_fb_bytes_sent;
 extern double last_keyboard_time;
 extern double last_pointer_time;
@@ -507,6 +535,8 @@ extern rfbBool last_rfb_down;
 extern rfbBool last_rfb_key_accepted;
 extern rfbKeySym last_rfb_keysym;
 extern double last_rfb_keytime;
+extern double last_rfb_key_injected;
+extern double last_rfb_ptr_injected;
 extern int fb_copy_in_progress;	
 extern int drag_in_progress;	
 extern int shut_down;	

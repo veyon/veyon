@@ -52,6 +52,7 @@ extern int known_xrandr_mode(char *s);
 			} \
 			trapped_getimage_xerror = 0; \
 			XSetErrorHandler(old_getimage_handler);	 \
+			XFlush_wr(dpy); \
 			check_xrandr_event(y); \
 			X_UNLOCK; \
 			return(x); \

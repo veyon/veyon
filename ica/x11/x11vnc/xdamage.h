@@ -23,7 +23,7 @@ extern int collect_non_X_xdamage(int x_in, int y_in, int w_in, int h_in, int cal
 extern int collect_xdamage(int scancnt, int call);
 extern int xdamage_hint_skip(int y);
 extern void initialize_xdamage(void);
-extern void create_xdamage_if_needed(void);
+extern void create_xdamage_if_needed(int force);
 extern void destroy_xdamage_if_needed(void);
 extern void check_xdamage_state(void);
 

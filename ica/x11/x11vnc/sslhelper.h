@@ -15,6 +15,8 @@ extern int https_sock;
 extern pid_t openssl_last_helper_pid;
 extern char *openssl_last_ip;
 extern char *certret_str;
+extern char *dhret_str;
+extern char *new_dh_params;
 
 extern void raw_xfer(int csock, int s_in, int s_out);
 

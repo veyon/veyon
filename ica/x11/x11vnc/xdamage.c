@@ -35,7 +35,7 @@ int collect_non_X_xdamage(int x_in, int y_in, int w_in, int h_in, int call);
 int collect_xdamage(int scancnt, int call);
 int xdamage_hint_skip(int y);
 void initialize_xdamage(void);
-void create_xdamage_if_needed(void);
+void create_xdamage_if_needed(int force);
 void destroy_xdamage_if_needed(void);
 void check_xdamage_state(void);
 
@@ -684,12 +684,12 @@ void initialize_xdamage(void) {
 	}
 }
 
-void create_xdamage_if_needed(void) {
+void create_xdamage_if_needed(int force) {
 
 	RAWFB_RET_VOID
 
 #if LIBVNCSERVER_HAVE_LIBXDAMAGE
-	if (! xdamage) {
+	if (! xdamage || force) {
 		X_LOCK;
 		xdamage = XDamageCreate(dpy, window, XDamageReportRawRectangles); 
 		XDamageSubtract(dpy, xdamage, None, None);
@@ -731,7 +731,7 @@ void check_xdamage_state(void) {
 	 * one if no clients are connected.
 	 */
 	if (client_count && use_xdamage) {
-		create_xdamage_if_needed();
+		create_xdamage_if_needed(0);
 		if (xdamage_scheduled_mark > 0.0 && dnow() >
 		    xdamage_scheduled_mark) {
 			if (xdamage_scheduled_mark_region) {

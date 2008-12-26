@@ -162,6 +162,8 @@ int check_xrandr_event(char *msg) {
 	if (! xrandr && ! xrandr_maybe) {
 		return 0;
 	}
+
+
 	if (xrandr_base_event_type && XCheckTypedEvent(dpy,
 	    xrandr_base_event_type + RRScreenChangeNotify, &xev)) {
 		int do_change, qout = 0;
@@ -172,7 +174,9 @@ int check_xrandr_event(char *msg) {
 
 		if (first && ! xrandr) {
 			fprintf(stderr, "\n");
-			qout = 1;
+			if (getenv("X11VNC_DEBUG_XRANDR") == NULL) {
+				qout = 1;
+			}
 		}
 		first = 0;
 			
@@ -230,11 +234,15 @@ int check_xrandr_event(char *msg) {
 		    XDisplayWidth(dpy, scr), XDisplayHeight(dpy, scr));
 		rfbLog("check_xrandr_event(): returning control to"
 		    " caller...\n");
+
+
 		return do_change;
 	}
 #else
 	xev.type = 0;
 #endif
+
+
 	return 0;
 }
 

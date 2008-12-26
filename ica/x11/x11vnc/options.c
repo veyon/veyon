@@ -30,9 +30,17 @@ int http_ssl = 0;
 int ssl_no_fail = 0;
 char *openssl_pem = NULL;
 char *ssl_certs_dir = NULL;
+char *enc_str = NULL;
+int vencrypt_mode = VENCRYPT_SUPPORT;
+int vencrypt_kx = VENCRYPT_BOTH;
+int vencrypt_enable_plain_login = 0;
+int anontls_mode = ANONTLS_SUPPORT;
+int create_fresh_dhparams = 0;
+char *dhparams_file = NULL;
 int https_port_num = -1;
 int https_port_redir = 0;
 char *ssl_verify = NULL;
+char *ssl_crl = NULL;
 int ssl_initialized = 0;
 int ssl_timeout_secs = -1;
 char *ssh_str = NULL;
@@ -109,6 +117,7 @@ int inetd = 0;			/* spawned from inetd(8) */
 #define TIGHTFILEXFER 0
 #endif
 int tightfilexfer = TIGHTFILEXFER; 
+int got_ultrafilexfer = 0; 
 int first_conn_timeout = 0;	/* -timeout */
 int ping_interval = 0;		/* -ping */
 int flash_cmap = 0;		/* follow installed colormaps */
@@ -241,6 +250,7 @@ int ncache_dt_change = 1;
 int ncache_keep_anims = 0;
 int ncache_old_wm = 0;
 int macosx_ncache_macmenu = 0;
+int macosx_us_kbd = 0;
 int ncache_beta_tester = 0;
 int ncdb = 0;
 
@@ -359,6 +369,7 @@ double slow_fb = 0.0;
 double xrefresh = 0.0;
 int wait_bog = 1;
 int defer_update = 20;	/* deferUpdateTime ms to wait before sends. */
+int set_defer = 1;
 int got_defer = 0;
 int got_deferupdate = 0;
 
@@ -386,6 +397,8 @@ int no_ultra_dpms = 0;
 int no_ultra_ext = 0;
 int saw_ultra_chat = 0;
 int saw_ultra_file = 0;
+int chat_window = 0;
+rfbClientPtr chat_window_client = NULL;
 
 int watch_selection = 1;	/* normal selection/cutbuffer maintenance */
 int watch_primary = 1;		/* more dicey, poll for changes in PRIMARY */

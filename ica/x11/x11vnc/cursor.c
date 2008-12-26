@@ -555,6 +555,7 @@ static void setup_cursors(void) {
 	rfbCursorPtr rfb_curs;
 	char *scale = NULL;
 	int i, j, n = 0;
+	int w_in = 0, h_in = 0;
 	static int first = 1;
 
 	if (verbose) {
@@ -689,17 +690,27 @@ static void setup_cursors(void) {
 	} else if (scaling && scale_str) {
 		scale = scale_str;
 	}
+	if (scale && sscanf(scale, "%dx%d", &i, &j) == 2) {
+		if (wdpy_x > 0) {
+			w_in = wdpy_x; 
+			h_in = wdpy_y; 
+		} else {
+			w_in = dpy_x; 
+			h_in = dpy_y; 
+		}
+	}
+
 	/* scale = NULL zeroes everything */
-	parse_scale_string(scale, &scale_cursor_fac, &scaling_cursor,
+	parse_scale_string(scale, &scale_cursor_fac_x, &scale_cursor_fac_y, &scaling_cursor,
 	    &scaling_cursor_blend, &j, &j, &scaling_cursor_interpolate,
-	    &scale_cursor_numer, &scale_cursor_denom);
+	    &scale_cursor_numer, &scale_cursor_denom, w_in, h_in);
 
 	for (i=0; i<n; i++) {
 		/* create rfbCursors for the special cursors: */
 
 		cursor_info_t *ci = cursors[i];
 
-		if (scaling_cursor && scale_cursor_fac != 1.0) {
+		if (scaling_cursor && (scale_cursor_fac_x != 1.0 || scale_cursor_fac_y != 1.0)) {
 			int w, h, x, y, k;
 			unsigned long *pixels;
 
@@ -982,7 +993,7 @@ static rfbCursorPtr pixels2curs(unsigned long *pixels, int w, int h,
 		}
 	}
 
-	if (scaling_cursor && scale_cursor_fac != 1.0) {
+	if (scaling_cursor && (scale_cursor_fac_x != 1.0 || scale_cursor_fac_y != 1.0)) {
 		int W, H;
 		char *pixels_use = (char *) pixels;
 		unsigned int *pixels32 = NULL;
@@ -990,8 +1001,8 @@ static rfbCursorPtr pixels2curs(unsigned long *pixels, int w, int h,
 		W = w;
 		H = h;
 
-		w = scale_round(W, scale_cursor_fac);
-		h = scale_round(H, scale_cursor_fac);
+		w = scale_round(W, scale_cursor_fac_x);
+		h = scale_round(H, scale_cursor_fac_y);
 
 		pixels_new = (char *) malloc(4*w*h);
 
@@ -1011,7 +1022,7 @@ static rfbCursorPtr pixels2curs(unsigned long *pixels, int w, int h,
 			pixels_use = (char *) pixels32;
 		}
 
-		scale_rect(scale_cursor_fac, scaling_cursor_blend,
+		scale_rect(scale_cursor_fac_x, scale_cursor_fac_y, scaling_cursor_blend,
 		    scaling_cursor_interpolate,
 		    4, pixels_use, 4*W, pixels_new, 4*w,
 		    W, H, w, h, 0, 0, W, H, 0);
@@ -1040,8 +1051,8 @@ static rfbCursorPtr pixels2curs(unsigned long *pixels, int w, int h,
 			
 		pixels = (unsigned long *) pixels_new;
 
-		xhot = scale_round(xhot, scale_cursor_fac);
-		yhot = scale_round(yhot, scale_cursor_fac);
+		xhot = scale_round(xhot, scale_cursor_fac_x);
+		yhot = scale_round(yhot, scale_cursor_fac_y);
 	}
 
 	len = w * h;

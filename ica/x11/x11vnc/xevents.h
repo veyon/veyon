@@ -7,6 +7,7 @@ extern int grab_buster;
 extern int grab_kbd;
 extern int grab_ptr;
 extern int grab_always;
+extern int grab_local;
 extern int sync_tod_delay;
 
 extern void initialize_vnc_connect_prop(void);

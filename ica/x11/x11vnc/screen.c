@@ -26,6 +26,7 @@
 #include "avahi.h"
 #include "solid.h"
 #include "inet.h"
+#include "xrandr.h"
 
 #include <rfb/rfbclient.h>
 
@@ -40,8 +41,8 @@ void free_old_fb(void);
 void check_padded_fb(void);
 void install_padded_fb(char *geom);
 XImage *initialize_xdisplay_fb(void);
-void parse_scale_string(char *str, double *factor, int *scaling, int *blend,
-    int *nomult4, int *pad, int *interpolate, int *numer, int *denom);
+void parse_scale_string(char *str, double *factor_x, double *factor_y, int *scaling, int *blend,
+    int *nomult4, int *pad, int *interpolate, int *numer, int *denom, int w_in, int h_in);
 int parse_rotate_string(char *str, int *mode);
 int scale_round(int len, double fac);
 void initialize_screen(int *argc, char **argv, XImage *fb);
@@ -56,6 +57,8 @@ rfbBool vnc_reflect_send_key(uint32_t key, rfbBool down);
 rfbBool vnc_reflect_send_cuttext(char *str, int len);
 #endif
 
+void watch_loop(void);
+
 static void debug_colormap(XImage *fb);
 static void set_visual(char *str);
 static void nofb_hook(rfbClientPtr cl);
@@ -66,6 +69,11 @@ XImage *initialize_raw_fb(int);
 static void initialize_clipshift(void);
 static int wait_until_mapped(Window win);
 static void setup_scaling(int *width_in, int *height_in);
+
+static void check_filexfer(void);
+static void record_last_fb_update(void);
+static void check_cursor_changes(void);
+static int choose_delay(double dt);
 
 int rawfb_reset = -1;
 int rawfb_dev_video = 0;
@@ -1104,9 +1112,11 @@ char *vnc_reflect_guess(char *str, char **raw_fb_addr) {
 	if (first) {
 		setup_cursors_and_push();
 
+#if 0
 		for (i=0; i<10; i++) {
 			vnc_reflect_process_client();
 		}
+#endif
 	}
 	first = 0;
 
@@ -1555,7 +1565,7 @@ if (db) fprintf(stderr, "initialize_raw_fb reset\n");
 
 	if (sscanf(str, "shm:%d", &shmid) == 1) {
 		/* shm:N */
-#if LIBVNCSERVER_HAVE_XSHM
+#if LIBVNCSERVER_HAVE_XSHM || LIBVNCSERVER_HAVE_SHMAT
 		raw_fb_addr = (char *) shmat(shmid, 0, SHM_RDONLY);
 		if (! raw_fb_addr) {
 			rfbLogEnable(1);
@@ -2200,14 +2210,15 @@ if (0) fprintf(stderr, "DefaultDepth: %d  visial_id: %d\n", depth, (int) visual_
 #endif	/* NO_X11 */
 }
 
-void parse_scale_string(char *str, double *factor, int *scaling, int *blend,
-    int *nomult4, int *pad, int *interpolate, int *numer, int *denom) {
+void parse_scale_string(char *str, double *factor_x, double *factor_y, int *scaling, int *blend,
+    int *nomult4, int *pad, int *interpolate, int *numer, int *denom, int w_in, int h_in) {
 
 	int m, n;
 	char *p, *tstr;
-	double f;
+	double f, f2;
 
-	*factor = 1.0;
+	*factor_x = 1.0;
+	*factor_y = 1.0;
 	*scaling = 0;
 	*blend = 1;
 	*nomult4 = 0;
@@ -2246,35 +2257,46 @@ void parse_scale_string(char *str, double *factor, int *scaling, int *blend,
 		}
 		*p = '\0';
 	}
+
 	if (strchr(tstr, '.') != NULL) {
 		double test, diff, eps = 1.0e-7;
-		if (sscanf(tstr, "%lf", &f) != 1) {
+		if (sscanf(tstr, "%lfx%lf", &f, &f2) == 2) {
+			*factor_x = (double) f;
+			*factor_y = (double) f2;
+		} else if (sscanf(tstr, "%lf", &f) != 1) {
 			rfbLogEnable(1);
 			rfbLog("invalid -scale arg: %s\n", tstr);
 			clean_up_exit(1);
+		} else {
+			*factor_x = (double) f;
+			*factor_y = (double) f;
 		}
-		*factor = (double) f;
 		/* look for common fractions from small ints: */
-		for (n=2; n<=10; n++) {
-			for (m=1; m<n; m++) {
-				test = ((double) m)/ n;
-				diff = *factor - test;
-				if (-eps < diff && diff < eps) {
-					*numer = m;
-					*denom = n;
+		if (*factor_x == *factor_y) {
+			for (n=2; n<=10; n++) {
+				for (m=1; m<n; m++) {
+					test = ((double) m)/ n;
+					diff = *factor_x - test;
+					if (-eps < diff && diff < eps) {
+						*numer = m;
+						*denom = n;
+						break;
+					
+					}
+				}
+				if (*denom) {
 					break;
-				
 				}
 			}
-			if (*denom) {
-				break;
+			if (*factor_x < 0.01) {
+				rfbLogEnable(1);
+				rfbLog("-scale factor too small: %f\n", *factor_x);
+				clean_up_exit(1);
 			}
 		}
-		if (*factor < 0.01) {
-			rfbLogEnable(1);
-			rfbLog("-scale factor too small: %f\n", scale_fac);
-			clean_up_exit(1);
-		}
+	} else if (sscanf(tstr, "%dx%d", &m, &n) == 2 && w_in > 0 && h_in > 0) {
+		*factor_x = ((double) m) / ((double) w_in);
+		*factor_y = ((double) n) / ((double) h_in);
 	} else {
 		if (sscanf(tstr, "%d/%d", &m, &n) != 2) {
 			if (sscanf(tstr, "%d", &m) != 1) {
@@ -2291,18 +2313,19 @@ void parse_scale_string(char *str, double *factor, int *scaling, int *blend,
 			rfbLog("invalid -scale arg: %s\n", tstr);
 			clean_up_exit(1);
 		}
-		*factor = ((double) m)/ n;
-		if (*factor < 0.01) {
+		*factor_x = ((double) m)/ n;
+		*factor_y = ((double) m)/ n;
+		if (*factor_x < 0.01) {
 			rfbLogEnable(1);
-			rfbLog("-scale factor too small: %f\n", *factor);
+			rfbLog("-scale factor too small: %f\n", *factor_x);
 			clean_up_exit(1);
 		}
 		*numer = m;
 		*denom = n;
 	}
-	if (*factor == 1.0) {
+	if (*factor_x == 1.0 && *factor_y == 1.0) {
 		if (! quiet) {
-			rfbLog("scaling disabled for factor %f\n", *factor);
+			rfbLog("scaling disabled for factor %f %f\n", *factor_x, *factor_y);
 		}
 	} else {
 		*scaling = 1;
@@ -2353,13 +2376,13 @@ static void setup_scaling(int *width_in, int *height_in) {
 	int width  = *width_in;
 	int height = *height_in;
 
-	parse_scale_string(scale_str, &scale_fac, &scaling, &scaling_blend,
+	parse_scale_string(scale_str, &scale_fac_x, &scale_fac_y, &scaling, &scaling_blend,
 	    &scaling_nomult4, &scaling_pad, &scaling_interpolate,
-	    &scale_numer, &scale_denom);
+	    &scale_numer, &scale_denom, *width_in, *height_in);
 
 	if (scaling) {
-		width  = scale_round(width,  scale_fac);
-		height = scale_round(height, scale_fac);
+		width  = scale_round(width,  scale_fac_x);
+		height = scale_round(height, scale_fac_y);
 		if (scale_denom && scaling_pad) {
 			/* it is not clear this padding is useful anymore */
 			rfbLog("width  %% denom: %d %% %d = %d\n", width,
@@ -2493,8 +2516,8 @@ void initialize_screen(int *argc, char **argv, XImage *fb) {
 	setup_scaling(&width, &height);
 
 	if (scaling) {
-		rfbLog("scaling screen: %dx%d -> %dx%d  scale_fac=%.5f\n",
-		    fb->width, fb->height, scaled_x, scaled_y, scale_fac);
+		rfbLog("scaling screen: %dx%d -> %dx%d\n", fb->width, fb->height, scaled_x, scaled_y);
+		rfbLog("scaling screen: scale_fac_x=%.5f scale_fac_y=%.5f\n", scale_fac_x, scale_fac_y);
 
 		rfb_bytes_per_line = (main_bytes_per_line / fb->width) * width;
 	} else {
@@ -3057,6 +3080,8 @@ void initialize_screen(int *argc, char **argv, XImage *fb) {
 	}
 	if (! got_deferupdate) {
 		screen->deferUpdateTime = defer_update;
+	} else {
+		defer_update = screen->deferUpdateTime;
 	}
 
 	rfbInitServer(screen);
@@ -3086,7 +3111,13 @@ void announce(int lport, int ssl, char *iface) {
 	if (! ssl) {
 		tvdt = "The VNC desktop is:     ";
 	} else {
-		tvdt = "The SSL VNC desktop is: ";
+		if (enc_str && !strcmp(enc_str, "none")) {
+			tvdt = "The VNC desktop is:     ";
+		} else if (enc_str) {
+			tvdt = "The ENC VNC desktop is: ";
+		} else {
+			tvdt = "The SSL VNC desktop is: ";
+		}
 	}
 
 	if (iface != NULL && *iface != '\0' && strcmp(iface, "any")) {
@@ -3137,7 +3168,9 @@ static void announce_http(int lport, int ssl, char *iface) {
 	char *host = this_host();
 	char *jvu;
 
-	if (ssl == 1) {
+	if (enc_str && !strcmp(enc_str, "none")) {
+		jvu = "Java viewer URL:         http";
+	} else if (ssl == 1) {
 		jvu = "Java SSL viewer URL:     https";
 	} else if (ssl == 2) {
 		jvu = "Java SSL viewer URL:     http";
@@ -3151,6 +3184,9 @@ static void announce_http(int lport, int ssl, char *iface) {
 	if (host != NULL) {
 		if (! inetd) {
 			fprintf(stderr, "%s://%s:%d/\n", jvu, host, lport);
+			if (screen && enc_str && !strcmp(enc_str, "none")) {
+				fprintf(stderr, "%s://%s:%d/\n", jvu, host, screen->port);
+			}
 		}
 	}
 }
@@ -3168,7 +3204,9 @@ void set_vnc_desktop_name(void) {
 				rfbLog("\n");
 				rfbLog("The URLs printed out below ('Java ... viewer URL') can\n");
 				rfbLog("be used for Java enabled Web browser connections.\n");
-				if (use_openssl || stunnel_port) {
+				if (enc_str && !strcmp(enc_str, "none")) {
+					;
+				} else if (use_openssl || stunnel_port) {
 					rfbLog("Here are some additional possibilities:\n");
 					rfbLog("\n");
 					rfbLog("https://host:port/proxy.vnc (MUST be used if Web Proxy used)\n");
@@ -3194,7 +3232,11 @@ void set_vnc_desktop_name(void) {
 		}
 		if (screen->httpListenSock > -1 && screen->httpPort) {
 			if (use_openssl) {
-				announce_http(screen->port, 1, listen_str);
+				if (enc_str && !strcmp(enc_str, "none")) {
+					;
+				} else {
+					announce_http(screen->port, 1, listen_str);
+				}
 				if (https_port_num >= 0) {
 					announce_http(https_port_num, 1,
 					    listen_str);
@@ -3215,7 +3257,13 @@ void set_vnc_desktop_name(void) {
 			if (stunnel_port) {
 				fprintf(stdout, "SSLPORT=%d\n", stunnel_port);
 			} else if (use_openssl) {
-				fprintf(stdout, "SSLPORT=%d\n", screen->port);
+				if (enc_str && !strcmp(enc_str, "none")) {
+					;
+				} else if (enc_str) {
+					fprintf(stdout, "ENCPORT=%d\n", screen->port);
+				} else {
+					fprintf(stdout, "SSLPORT=%d\n", screen->port);
+				}
 			}
 			fflush(stdout);	
 			if (flagfile) {
@@ -3235,6 +3283,625 @@ void set_vnc_desktop_name(void) {
 			}
 		}
 		fflush(stdout);	
+	}
+}
+
+static void check_cursor_changes(void) {
+	static double last_push = 0.0;
+
+	if (unixpw_in_progress) return;
+
+	cursor_changes += check_x11_pointer();
+
+	if (cursor_changes) {
+		double tm, max_push = 0.125, multi_push = 0.01, wait = 0.02;
+		int cursor_shape, dopush = 0, link, latency, netrate;
+
+		if (! all_clients_initialized()) {
+			/* play it safe */
+			return;
+		}
+
+		if (0) cursor_shape = cursor_shape_updates_clients(screen);
+	
+		dtime0(&tm);
+		link = link_rate(&latency, &netrate);
+		if (link == LR_DIALUP) {
+			max_push = 0.2;
+			wait = 0.05;
+		} else if (link == LR_BROADBAND) {
+			max_push = 0.075;
+			wait = 0.05;
+		} else if (link == LR_LAN) {
+			max_push = 0.01;
+		} else if (latency < 5 && netrate > 200) {
+			max_push = 0.01;
+		}
+		
+		if (tm > last_push + max_push) {
+			dopush = 1;
+		} else if (cursor_changes > 1 && tm > last_push + multi_push) {
+			dopush = 1;
+		}
+
+		if (dopush) { 
+			mark_rect_as_modified(0, 0, 1, 1, 1);
+			fb_push_wait(wait, FB_MOD);
+			last_push = tm;
+		} else {
+			rfbPE(0);
+		}
+	}
+	cursor_changes = 0;
+}
+
+/*
+ * These watch_loop() releated were moved from x11vnc.c so we could try
+ * to remove -O2 from its compilation.  TDB new file, e.g. watch.c.
+ */
+
+static void check_filexfer(void) {
+	static time_t last_check = 0;
+	rfbClientIteratorPtr iter;
+	rfbClientPtr cl;
+	int transferring = 0; 
+	
+	if (time(NULL) <= last_check) {
+		return;
+	}
+
+#if 0
+	if (getenv("NOFT")) {
+		return;
+	}
+#endif
+
+	iter = rfbGetClientIterator(screen);
+	while( (cl = rfbClientIteratorNext(iter)) ) {
+		if (cl->fileTransfer.receiving) {
+			transferring = 1;
+			break;
+		}
+		if (cl->fileTransfer.sending) {
+			transferring = 1;
+			break;
+		}
+	}
+	rfbReleaseClientIterator(iter);
+
+	if (transferring) {
+		double start = dnow();
+		while (dnow() < start + 0.5) {
+			rfbCFD(5000);
+			rfbCFD(1000);
+			rfbCFD(0);
+		}
+	} else {
+		last_check = time(NULL);
+	}
+}
+
+static void record_last_fb_update(void) {
+	static int rbs0 = -1;
+	static time_t last_call = 0;
+	time_t now = time(NULL);
+	int rbs = -1;
+	rfbClientIteratorPtr iter;
+	rfbClientPtr cl;
+
+	if (last_fb_bytes_sent == 0) {
+		last_fb_bytes_sent = now;
+		last_call = now;
+	}
+
+	if (now <= last_call + 1) {
+		/* check every second or so */
+		return;
+	}
+
+	if (unixpw_in_progress) return;
+
+	last_call = now;
+
+	if (! screen) {
+		return;
+	}
+
+	iter = rfbGetClientIterator(screen);
+	while( (cl = rfbClientIteratorNext(iter)) ) {
+#if 0
+		rbs += cl->rawBytesEquivalent;
+#else
+#if LIBVNCSERVER_HAS_STATS
+		rbs += rfbStatGetSentBytesIfRaw(cl);
+#endif
+#endif
+	}
+	rfbReleaseClientIterator(iter);
+
+	if (rbs != rbs0) {
+		rbs0 = rbs;
+		if (debug_tiles > 1) {
+			fprintf(stderr, "record_last_fb_update: %d %d\n",
+			    (int) now, (int) last_fb_bytes_sent);
+		}
+		last_fb_bytes_sent = now;
+	}
+}
+
+
+static int choose_delay(double dt) {
+	static double t0 = 0.0, t1 = 0.0, t2 = 0.0, now; 
+	static int x0, y0, x1, y1, x2, y2, first = 1;
+	int dx0, dy0, dx1, dy1, dm, i, msec = waitms;
+	double cut1 = 0.15, cut2 = 0.075, cut3 = 0.25;
+	double bogdown_time = 0.25, bave = 0.0;
+	int bogdown = 1, bcnt = 0;
+	int ndt = 8, nave = 3;
+	double fac = 1.0;
+	static int db = 0, did_set_defer = 0;
+	static double dts[8];
+	static int link = LR_UNSET, latency = -1, netrate = -1;
+	static double last_link = 0.0;
+
+	if (screen && did_set_defer) {
+		/* reset defer in case we changed it */
+		screen->deferUpdateTime = defer_update;
+	}
+	if (waitms == 0) {
+		return waitms;
+	}
+	if (nofb) {
+		return waitms;
+	}
+
+	if (first) {
+		for(i=0; i<ndt; i++) {
+			dts[i] = 0.0;
+		}
+		if (getenv("DEBUG_DELAY")) {
+			db = atoi(getenv("DEBUG_DELAY"));
+		}
+		if (getenv("SET_DEFER")) {
+			set_defer = atoi(getenv("SET_DEFER"));
+		}
+		first = 0;
+	}
+
+	now = dnow();
+
+	if (now > last_link + 30.0 || link == LR_UNSET) {
+		link = link_rate(&latency, &netrate);
+		last_link = now;
+	}
+
+	/*
+	 * first check for bogdown, e.g. lots of activity, scrolling text
+	 * from command output, etc.
+	 */
+	if (nap_ok) {
+		dt = 0.0;
+	}
+	if (! wait_bog) {
+		bogdown = 0;
+
+	} else if (button_mask || now < last_keyboard_time + 2*bogdown_time) {
+		/*
+		 * let scrolls & keyboard input through the normal way
+		 * otherwise, it will likely just annoy them.
+		 */
+		bogdown = 0;
+
+	} else if (dt > 0.0) {
+		/*
+		 * inspect recent dt's:
+		 * 0 1 2 3 4 5 6 7 dt
+		 *             ^ ^ ^
+		 */
+		for (i = ndt - (nave - 1); i < ndt; i++) {
+			bave += dts[i];
+			bcnt++;
+			if (dts[i] < bogdown_time) {
+				bogdown = 0;
+				break;
+			}
+		}
+		bave += dt;
+		bcnt++;
+		bave = bave / bcnt;
+		if (dt < bogdown_time) {
+			bogdown = 0;
+		}
+	} else {
+		bogdown = 0;
+	}
+	/* shift for next time */
+	for (i = 0; i < ndt-1; i++) {
+		dts[i] = dts[i+1];
+	}
+	dts[ndt-1] = dt;
+
+if (0 && dt > 0.0) fprintf(stderr, "dt: %.5f %.4f\n", dt, dnowx());
+	if (bogdown) {
+		if (use_xdamage) {
+			/* DAMAGE can queue ~1000 rectangles for a scroll */
+			clear_xdamage_mark_region(NULL, 0);
+		}
+		msec = (int) (1000 * 1.75 * bave);
+		if (dts[ndt - nave - 1] > 0.75 * bave) {
+			msec = 1.5 * msec;
+			set_xdamage_mark(0, 0, dpy_x, dpy_y);
+		}
+		if (msec > 1500) {
+			msec = 1500;
+		}
+		if (msec < waitms) {
+			msec = waitms;
+		}
+		db = (db || debug_tiles);
+		if (db) fprintf(stderr, "bogg[%d] %.3f %.3f %.3f %.3f\n",
+		    msec, dts[ndt-4], dts[ndt-3], dts[ndt-2], dts[ndt-1]);
+
+		return msec;
+	}
+
+	/* next check for pointer motion, keystrokes, to speed up */
+	t2 = dnow();
+	x2 = cursor_x;
+	y2 = cursor_y;
+
+	dx0 = nabs(x1 - x0);
+	dy0 = nabs(y1 - y0);
+	dx1 = nabs(x2 - x1);
+	dy1 = nabs(y2 - y1);
+
+	/* bigger displacement for most recent dt: */
+	if (dx1 > dy1) {
+		dm = dx1;
+	} else {
+		dm = dy1;
+	}
+
+	if ((dx0 || dy0) && (dx1 || dy1)) {
+		/* if mouse moved the previous two times: */
+		if (t2 < t0 + cut1 || t2 < t1 + cut2 || dm > 20) {
+			/*
+			 * if within 0.15s(0) or 0.075s(1) or mouse
+			 * moved > 20pixels, set and bump up the cut
+			 * down factor.
+			 */
+			fac = wait_ui * 1.5;
+		} else if ((dx1 || dy1) && dm > 40) {
+			fac = wait_ui;
+		} else {
+			/* still 1.0? */
+			if (db > 1) fprintf(stderr, "wait_ui: still 1.0\n");
+		}
+	} else if ((dx1 || dy1) && dm > 40) {
+		/* if mouse moved > 40 last time: */
+		fac = wait_ui;
+	}
+
+	if (fac == 1.0 && t2 < last_keyboard_time + cut3) {
+		/* if typed in last 0.25s set wait_ui */
+		fac = wait_ui;
+	}
+	if (fac != 1.0) {
+		if (link == LR_LAN || latency <= 3) {
+			fac *= 1.5;
+		}
+	}
+
+	msec = (int) (((double) waitms) / fac);
+	if (msec == 0) {
+		msec = 1;
+	}
+
+	if (set_defer && fac != 1.0 && screen) {
+		/* this is wait_ui mode, set defer to match wait: */
+		if (set_defer >= 1) {
+			screen->deferUpdateTime = msec;
+		} else if (set_defer <= -1) {
+			screen->deferUpdateTime = 0;
+		}
+		if (nabs(set_defer) == 2) {
+			urgent_update = 1;
+		}
+		did_set_defer = 1;
+	}
+
+	x0 = x1;
+	y0 = y1;
+	t0 = t1;
+
+	x1 = x2;
+	y1 = y2;
+	t1 = t2;
+
+	if (db > 1) fprintf(stderr, "wait: %2d defer[%02d]: %2d\n", msec, defer_update, screen->deferUpdateTime);
+
+	return msec;
+}
+
+/*
+ * main x11vnc loop: polls, checks for events, iterate libvncserver, etc.
+ */
+void watch_loop(void) {
+	int cnt = 0, tile_diffs = 0, skip_pe = 0, wait;
+	double tm, dtr, dt = 0.0;
+	time_t start = time(NULL);
+
+	if (use_threads) {
+		rfbRunEventLoop(screen, -1, TRUE);
+	}
+
+	while (1) {
+		char msg[] = "new client: %s taking unixpw client off hold.\n";
+
+		got_user_input = 0;
+		got_pointer_input = 0;
+		got_local_pointer_input = 0;
+		got_pointer_calls = 0;
+		got_keyboard_input = 0;
+		got_keyboard_calls = 0;
+		urgent_update = 0;
+
+		x11vnc_current = dnow();
+
+		if (! use_threads) {
+			dtime0(&tm);
+			if (! skip_pe) {
+				if (unixpw_in_progress) {
+					rfbClientPtr cl = unixpw_client;
+					if (cl && cl->onHold) {
+						rfbLog(msg, cl->host);
+						unixpw_client->onHold = FALSE;
+					}
+				} else {
+					measure_send_rates(1);
+				}
+
+				unixpw_in_rfbPE = 1;
+
+				/*
+				 * do a few more since a key press may
+				 * have induced a small change we want to
+				 * see quickly (just 1 rfbPE will likely
+				 * only process the subsequent "up" event)
+				 */
+				if (tm < last_keyboard_time + 0.16) {
+					rfbPE(0);
+					rfbPE(0);
+					rfbPE(-1);
+					rfbPE(0);
+					rfbPE(0);
+				} else {
+					rfbPE(-1);
+				}
+
+				unixpw_in_rfbPE = 0;
+
+				if (unixpw_in_progress) {
+					/* rfbPE loop until logged in. */
+					skip_pe = 0;
+					check_new_clients();
+					continue;
+				} else {
+					measure_send_rates(0);
+					fb_update_sent(NULL);
+				}
+			} else {
+				if (unixpw_in_progress) {
+					skip_pe = 0;
+					check_new_clients();
+					continue;
+				}
+			}
+			dtr = dtime(&tm);
+
+			if (! cursor_shape_updates) {
+				/* undo any cursor shape requests */
+				disable_cursor_shape_updates(screen);
+			}
+			if (screen && screen->clientHead) {
+				int ret = check_user_input(dt, dtr,
+				    tile_diffs, &cnt);
+				/* true: loop back for more input */
+				if (ret == 2) {
+					skip_pe = 1;
+				}
+				if (ret) {
+					if (debug_scroll) fprintf(stderr, "watch_loop: LOOP-BACK: %d\n", ret);
+					continue;
+				}
+			}
+			/* watch for viewonly input piling up: */
+			if ((got_pointer_calls > got_pointer_input) ||
+			    (got_keyboard_calls > got_keyboard_input)) {
+				eat_viewonly_input(10, 3);
+			}
+		} else {
+			/* -threads here. */
+			if (wireframe && button_mask) {
+				check_wireframe();
+			}
+		}
+		skip_pe = 0;
+
+		if (shut_down) {
+			clean_up_exit(0);
+		}
+
+		if (unixpw_in_progress) {
+			check_new_clients();
+			continue;
+		}
+
+		if (! urgent_update) {
+			if (do_copy_screen) {
+				do_copy_screen = 0;
+				copy_screen();
+			}
+
+			check_new_clients();
+			check_ncache(0, 0);
+			check_xevents(0);
+			check_autorepeat();
+			check_pm();
+			check_filexfer();
+			check_keycode_state();
+			check_connect_inputs();
+			check_gui_inputs();
+			check_stunnel();
+			check_openssl();
+			check_https();
+			record_last_fb_update();
+			check_padded_fb();
+			check_fixscreen();
+			check_xdamage_state();
+			check_xrecord_reset(0);
+			check_add_keysyms();
+			check_new_passwds(0);
+#ifdef ENABLE_GRABLOCAL
+			if (grab_local) {
+				check_local_grab();
+			}
+#endif
+			if (started_as_root) {
+				check_switched_user();
+			}
+
+			if (first_conn_timeout < 0) {
+				start = time(NULL);
+				first_conn_timeout = -first_conn_timeout;
+			}
+		}
+
+#if 0
+		if (rawfb_vnc_reflect) {
+			static time_t lastone = 0;
+			if (time(NULL) > lastone + 10) {
+				lastone = time(NULL);
+				vnc_reflect_process_client();
+			}
+		}
+#endif
+
+		if (! screen || ! screen->clientHead) {
+			/* waiting for a client */
+			if (first_conn_timeout) {
+				if (time(NULL) - start > first_conn_timeout) {
+					rfbLog("No client after %d secs.\n",
+					    first_conn_timeout);
+					shut_down = 1;
+				}
+			}
+			usleep(200 * 1000);
+			continue;
+		}
+
+		if (first_conn_timeout && all_clients_initialized()) {
+			first_conn_timeout = 0;
+		}
+
+		if (nofb) {
+			/* no framebuffer polling needed */
+			if (cursor_pos_updates) {
+				check_x11_pointer();
+			}
+#ifdef MACOSX
+			else check_x11_pointer();
+#endif
+			continue;
+		}
+
+		if (button_mask && (!show_dragging || pointer_mode == 0)) {
+			/*
+			 * if any button is pressed in this mode do
+			 * not update rfb screen, but do flush the
+			 * X11 display.
+			 */
+			X_LOCK;
+			XFlush_wr(dpy);
+			X_UNLOCK;
+			dt = 0.0;
+		} else {
+			static double last_dt = 0.0;
+			double xdamage_thrash = 0.4; 
+
+			check_cursor_changes();
+
+			/* for timing the scan to try to detect thrashing */
+
+			if (use_xdamage && last_dt > xdamage_thrash)  {
+				clear_xdamage_mark_region(NULL, 0);
+			}
+
+			if (unixpw_in_progress) continue;
+
+#if 0
+			if (rawfb_vnc_reflect) {
+				vnc_reflect_process_client();
+			}
+#endif
+			dtime0(&tm);
+
+#if !NO_X11
+			if (xrandr_present && !xrandr && xrandr_maybe) {
+				int delay = 180;
+				/*  there may be xrandr right after xsession start */
+				if (tm < x11vnc_start + delay || tm < last_client + delay) {
+					int tw = 20;
+					if (auth_file != NULL) {
+						tw = 120;
+					}
+					X_LOCK;
+					if (tm < x11vnc_start + tw || tm < last_client + tw) {
+						XSync(dpy, False);
+					} else {
+						XFlush_wr(dpy);
+					}
+					X_UNLOCK;
+				}
+				check_xrandr_event("before-scan");
+			}
+#endif
+			if (use_snapfb) {
+				int t, tries = 3;
+				copy_snap();
+				for (t=0; t < tries; t++) {
+					tile_diffs = scan_for_updates(0);
+				}
+			} else {
+				tile_diffs = scan_for_updates(0);
+			}
+			dt = dtime(&tm);
+			if (! nap_ok) {
+				last_dt = dt;
+			}
+
+			if ((debug_tiles || debug_scroll > 1 || debug_wireframe > 1)
+			    && (tile_diffs > 4 || debug_tiles > 1)) {
+				double rate = (tile_x * tile_y * bpp/8 * tile_diffs) / dt;
+				fprintf(stderr, "============================= TILES: %d  dt: %.4f"
+				    "  t: %.4f  %.2f MB/s nap_ok: %d\n", tile_diffs, dt,
+				    tm - x11vnc_start, rate/1000000.0, nap_ok);
+			}
+
+		}
+
+		/* sleep a bit to lessen load */
+		wait = choose_delay(dt);
+		if (urgent_update) {
+			;
+		} else if (wait > 2*waitms) {
+			/* bog case, break it up */
+			nap_sleep(wait, 10);
+		} else {
+			usleep(wait * 1000);
+		}
+
+		cnt++;
 	}
 }
 

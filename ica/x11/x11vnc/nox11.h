@@ -6663,3 +6663,9 @@ extern XIOErrorHandler XSetIOErrorHandler (
     XIOErrorHandler	/* handler */
 );
 
+#define X_ShmQueryVersion               0
+#define X_ShmAttach                     1
+#define X_ShmDetach                     2
+#define X_ShmPutImage                   3
+#define X_ShmGetImage                   4
+#define X_ShmCreatePixmap               5

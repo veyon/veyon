@@ -40,6 +40,7 @@ void set_client_input(char *str);
 void set_child_info(void);
 int cmd_ok(char *cmd);
 void client_gone(rfbClientPtr client);
+void client_gone_chat_helper(rfbClientPtr client);
 void reverse_connect(char *str);
 void set_vnc_connect_prop(char *str);
 void read_vnc_connect_prop(int);
@@ -48,6 +49,8 @@ void read_x11vnc_remote_prop(int);
 void check_connect_inputs(void);
 void check_gui_inputs(void);
 enum rfbNewClientAction new_client(rfbClientPtr client);
+enum rfbNewClientAction new_client_chat_helper(rfbClientPtr client);
+rfbBool password_check_chat_helper(rfbClientPtr cl, const char* response, int len);
 void start_client_info_sock(char *host_port_cookie);
 void send_client_info(char *str);
 void adjust_grabs(int grab, int quiet);
@@ -55,10 +58,10 @@ void check_new_clients(void);
 int accept_client(rfbClientPtr client);
 int run_user_command(char *cmd, rfbClientPtr client, char *mode, char *input,
     int len, FILE *output);
+int check_access(char *addr);
 
 static rfbClientPtr *client_match(char *str);
 static void free_client_data(rfbClientPtr client);
-static int check_access(char *addr);
 static void ugly_geom(char *p, int *x, int *y);
 static int ugly_window(char *addr, char *userhost, int X, int Y,
     int timeout, char *mode, int accept);
@@ -755,6 +758,10 @@ void client_gone(rfbClientPtr client) {
 
 	if (inetd && client == inetd_client) {
 		rfbLog("inetd viewer exited.\n");
+		if (gui_pid > 0) {
+			rfbLog("killing gui_pid %d\n", gui_pid);
+			kill(gui_pid, SIGTERM);
+		}
 		clean_up_exit(0);
 	}
 	if (connect_once) {
@@ -765,7 +772,8 @@ void client_gone(rfbClientPtr client) {
 		 */
 		if ((client->state == RFB_PROTOCOL_VERSION ||
 		     client->state == RFB_SECURITY_TYPE ||
-		     client->state == RFB_AUTHENTICATION) && accepted_client) {
+		     client->state == RFB_AUTHENTICATION ||
+		     client->state == RFB_INITIALISATION) && accepted_client) {
 			rfbLog("connect_once: invalid password or early "
 			   "disconnect.\n");
 			rfbLog("connect_once: waiting for next connection.\n"); 
@@ -779,6 +787,10 @@ void client_gone(rfbClientPtr client) {
 		}
 
 		rfbLog("viewer exited.\n");
+		if ((client_connect || connect_or_exit) && gui_pid > 0) {
+			rfbLog("killing gui_pid %d\n", gui_pid);
+			kill(gui_pid, SIGTERM);
+		}
 		clean_up_exit(0);
 	}
 #ifdef MACOSX
@@ -792,10 +804,14 @@ void client_gone(rfbClientPtr client) {
  * Simple routine to limit access via string compare.  A power user will
  * want to compile libvncserver with libwrap support and use /etc/hosts.allow.
  */
-static int check_access(char *addr) {
+int check_access(char *addr) {
 	int allowed = 0;
+	int ssl = 0;
 	char *p, *list;
 
+	if (use_openssl || use_stunnel) {
+		ssl = 1;
+	}
 	if (deny_all) {
 		rfbLog("check_access: new connections are currently "
 		    "blocked.\n");
@@ -834,6 +850,10 @@ static int check_access(char *addr) {
 			len2 = strlen(allow_once) + 2;
 			len += len2;
 		}
+		if (ssl) {
+			len2 = strlen("127.0.0.1") + 2;
+			len += len2;
+		}
 		list = (char *) malloc(len);
 		list[0] = '\0';
 		
@@ -861,10 +881,18 @@ static int check_access(char *addr) {
 			strcat(list, allow_once);
 			strcat(list, "\n");
 		}
+		if (ssl) {
+			strcat(list, "\n");
+			strcat(list, "127.0.0.1");
+			strcat(list, "\n");
+		}
 	} else {
 		int len = strlen(allow_list) + 1;
 		if (allow_once) {
 			len += strlen(allow_once) + 1;
+		}
+		if (ssl) {
+			len += strlen("127.0.0.1") + 1;
 		}
 		list = (char *) malloc(len);
 		list[0] = '\0';
@@ -872,6 +900,10 @@ static int check_access(char *addr) {
 		if (allow_once) {
 			strcat(list, ",");
 			strcat(list, allow_once);
+		}
+		if (ssl) {
+			strcat(list, ",");
+			strcat(list, "127.0.0.1");
 		}
 	}
 
@@ -2306,6 +2338,7 @@ static int do_reverse_connect(char *str_in) {
 			write(vncsock, prestring, prestring_len);
 			free(prestring);
 		}
+/* XXX use header */
 #define OPENSSL_REVERSE 4
 		openssl_init(1);
 		accept_openssl(OPENSSL_REVERSE, vncsock);
@@ -2313,6 +2346,7 @@ static int do_reverse_connect(char *str_in) {
 		free(host);
 		return 1;
 	}
+
 	if (use_stunnel) {
 		if(strcmp(host, "localhost") && strcmp(host, "127.0.0.1")) {
 			if (!getenv("STUNNEL_DISABLE_LOCALHOST")) {
@@ -2395,20 +2429,31 @@ void reverse_connect(char *str) {
 	int sleep_min = 1500, sleep_max = 4500, n_max = 5;
 	int n, tot, t, dt = 100, cnt = 0;
 	int nclients0 = client_count;
+	int lcnt, j;
+	char **list;
 
 	if (unixpw_in_progress) return;
 
 	tmp = strdup(str);
 
+	list = (char **) calloc( (strlen(tmp)+2) * sizeof (char *), 1);
+	lcnt = 0;
+
 	p = strtok(tmp, ", \t\r\n");
 	while (p) {
+		list[lcnt++] = strdup(p);
+		p = strtok(NULL, ", \t\r\n");
+	}
+	free(tmp);
+
+	for (j = 0; j < lcnt; j++) {
+		p = list[j];
+		
 		if ((n = do_reverse_connect(p)) != 0) {
 			rfbPE(-1);
 		}
 		cnt += n;
-
-		p = strtok(NULL, ", \t\r\n");
-		if (p) {
+		if (list[j+1] != NULL) {
 			t = 0;
 			while (t < sleep_between_host) {
 				usleep(dt * 1000);
@@ -2417,12 +2462,21 @@ void reverse_connect(char *str) {
 			}
 		}
 	}
-	free(tmp);
+
+	for (j = 0; j < lcnt; j++) {
+		p = list[j];
+		if (p) free(p);
+	}
+	free(list);
 
 	if (cnt == 0) {
 		if (connect_or_exit) {
 			rfbLogEnable(1);
 			rfbLog("exiting under -connect_or_exit\n");
+			if (gui_pid > 0) {
+				rfbLog("killing gui_pid %d\n", gui_pid);
+				kill(gui_pid, SIGTERM);
+			}
 			clean_up_exit(0);
 		}
 		return;
@@ -2437,7 +2491,7 @@ void reverse_connect(char *str) {
 	n = cnt;
 	if (n >= n_max) {
 		n = n_max; 
-	} 
+	}
 	t = sleep_max - sleep_min;
 	tot = sleep_min + ((n-1) * t) / (n_max-1);
 
@@ -2458,6 +2512,10 @@ void reverse_connect(char *str) {
 		if (client_count <= nclients0)  {
 			rfbLogEnable(1);
 			rfbLog("exiting under -connect_or_exit\n");
+			if (gui_pid > 0) {
+				rfbLog("killing gui_pid %d\n", gui_pid);
+				kill(gui_pid, SIGTERM);
+			}
 			clean_up_exit(0);
 		}
 	}
@@ -2699,6 +2757,9 @@ void check_gui_inputs(void) {
 	for (i=0; i<n; i++) {
 		int k, fd = icon_mode_socks[socks[i]];
 		char *p;
+		char **list;
+		int lind;
+
 		if (! FD_ISSET(fd, &fds)) {
 			continue;
 		}
@@ -2712,8 +2773,18 @@ void check_gui_inputs(void) {
 			continue;
 		}
 
+		list = (char **) calloc((strlen(buf)+2) * sizeof(char *), 1);
+
+		lind = 0;
 		p = strtok(buf, "\r\n");
 		while (p) {
+			list[lind++] = strdup(p);
+			p = strtok(NULL, "\r\n");
+		}
+
+		lind = 0;
+		while (list[lind] != NULL) {
+			p = list[lind++];
 			if (strstr(p, "cmd=") == p ||
 			    strstr(p, "qry=") == p) {
 				char *str = process_remote_cmd(p, 1);
@@ -2729,14 +2800,21 @@ void check_gui_inputs(void) {
 					break;
 				}
 			}
-			p = strtok(NULL, "\r\n");
 		}
+
+		lind = 0;
+		while (list[lind] != NULL) {
+			p = list[lind++];
+			if (p) free(p);
+		}
+		free(list);
 	}
 }
 
 static int turn_off_truecolor = 0;
 
 static void turn_off_truecolor_ad(rfbClientPtr client) {
+	if (client) {}
 	if (turn_off_truecolor) {
 		rfbLog("turning off truecolor advertising.\n");
 		screen->serverFormat.trueColour = FALSE;
@@ -2749,6 +2827,40 @@ static void turn_off_truecolor_ad(rfbClientPtr client) {
 		screen->serverFormat.blueMax    = 0;
 		turn_off_truecolor = 0;
 	}
+}
+
+/*
+ * some overrides for the local console text chat.
+ * could be useful in general for local helpers.
+ */
+
+rfbBool password_check_chat_helper(rfbClientPtr cl, const char* response, int len) {
+	if (cl != chat_window_client) {
+		rfbLog("invalid client during chat_helper login\n");
+		return FALSE;
+	} else {
+		if (!cl->host) {
+			rfbLog("empty cl->host during chat_helper login\n");
+			return FALSE;
+		}
+		if (strcmp(cl->host, "127.0.0.1")) {
+			rfbLog("invalid cl->host during chat_helper login: %s\n", cl->host);
+			return FALSE;
+		}
+		rfbLog("chat_helper login accepted\n");
+		return TRUE;
+	}
+}
+
+enum rfbNewClientAction new_client_chat_helper(rfbClientPtr client) {
+	client->clientGoneHook = client_gone_chat_helper;
+	rfbLog("new chat helper\n");
+	return(RFB_CLIENT_ACCEPT);
+}
+
+void client_gone_chat_helper(rfbClientPtr client) {
+	rfbLog("finished chat helper\n");
+	chat_window_client = NULL;
 }
 
 /*
@@ -3082,11 +3194,11 @@ void send_client_info(char *str) {
 				buf += n;
 				len -= n;
 				continue;
-			} 
+			}
 
 			if (n < 0 && errno == EINTR) {
 				continue;
-			} 
+			}
 			close(sock);
 			icon_mode_socks[i] = -1;
 			break;
@@ -3134,7 +3246,7 @@ void adjust_grabs(int grab, int quiet) {
 }
 
 void check_new_clients(void) {
-	static int last_count = 0;
+	static int last_count = -1;
 	rfbClientIteratorPtr iter;
 	rfbClientPtr cl;
 	int i, send_info = 0;
@@ -3169,7 +3281,9 @@ void check_new_clients(void) {
 		}
 	}
 	
-	if (client_count == last_count) {
+	if (last_count == -1) {
+		last_count = 0;
+	} else if (client_count == last_count) {
 		return;
 	}
 

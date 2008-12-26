@@ -1,0 +1,178 @@
+diff -upr x11vnc.orig/keyboard.c x11vnc/keyboard.c
+--- x11vnc.orig/keyboard.c	2008-06-24 20:44:47.000000000 +0200
++++ x11vnc/keyboard.c	2008-06-24 22:57:03.656794719 +0200
+@@ -2798,8 +2798,8 @@ static void pipe_keyboard(rfbBool down, 
+ 		uinput_key_command(down, keysym, client);
+ 	} else if (pipeinput_int == PIPEINPUT_MACOSX) {
+ 		macosx_key_command(down, keysym, client);
+-	} else if (pipeinput_int == PIPEINPUT_VNC) {
+-		vnc_reflect_send_key((uint32_t) keysym, down);
++/*	} else if (pipeinput_int == PIPEINPUT_VNC) {
++		vnc_reflect_send_key((uint32_t) keysym, down);*/
+ 	}
+ 	if (pipeinput_fh == NULL) {
+ 		return;
+diff -upr x11vnc.orig/keyboard.h x11vnc/keyboard.h
+--- x11vnc.orig/keyboard.h	2008-06-24 20:44:47.000000000 +0200
++++ x11vnc/keyboard.h	2008-06-24 22:51:39.084045179 +0200
+@@ -16,7 +16,7 @@ extern void check_add_keysyms(void);
+ extern int add_keysym(KeySym keysym);
+ extern void delete_added_keycodes(int bequiet);
+ extern void initialize_remap(char *infile);
+-extern int sloppy_key_check(int key, rfbBool down, rfbKeySym keysym, int *new);
++extern int sloppy_key_check(int key, rfbBool down, rfbKeySym keysym, int *_new);
+ extern void switch_to_xkb_if_better(void);
+ extern char *short_kmbcf(char *str);
+ extern void initialize_allowed_input(void);
+diff -upr x11vnc.orig/pointer.c x11vnc/pointer.c
+--- x11vnc.orig/pointer.c	2008-06-24 20:44:47.000000000 +0200
++++ x11vnc/pointer.c	2008-06-24 22:57:14.159812071 +0200
+@@ -559,8 +559,8 @@ static void pipe_pointer(int mask, int x
+ 		uinput_pointer_command(mask, x, y, client);
+ 	} else if (pipeinput_int == PIPEINPUT_MACOSX) {
+ 		macosx_pointer_command(mask, x, y, client);
+-	} else if (pipeinput_int == PIPEINPUT_VNC) {
+-		vnc_reflect_send_pointer(x, y, mask);
++/*	} else if (pipeinput_int == PIPEINPUT_VNC) {
++		vnc_reflect_send_pointer(x, y, mask);*/
+ 	}
+ 	if (pipeinput_fh == NULL) {
+ 		return;
+diff -upr x11vnc.orig/screen.c x11vnc/screen.c
+--- x11vnc.orig/screen.c	2008-06-24 20:44:47.000000000 +0200
++++ x11vnc/screen.c	2008-06-24 22:55:43.911794516 +0200
+@@ -48,11 +48,13 @@ void initialize_screen(int *argc, char *
+ void set_vnc_desktop_name(void);
+ void announce(int lport, int ssl, char *iface);
+ 
++#if 0
+ char *vnc_reflect_guess(char *str, char **raw_fb_addr);
+ void vnc_reflect_process_client(void);
+ rfbBool vnc_reflect_send_pointer(int x, int y, int mask);
+ rfbBool vnc_reflect_send_key(uint32_t key, rfbBool down);
+ rfbBool vnc_reflect_send_cuttext(char *str, int len);
++#endif
+ 
+ static void debug_colormap(XImage *fb);
+ static void set_visual(char *str);
+@@ -880,6 +882,7 @@ static void initialize_snap_fb(void) {
+ 	snap_fb = snap->data;
+ }
+ 
++#if 0
+ static rfbClient* client = NULL;
+ 
+ void vnc_reflect_bell(rfbClient *cl) {
+@@ -1156,6 +1159,7 @@ void vnc_reflect_process_client(void) {
+ 		}
+ 	}
+ }
++#endif
+ 
+ #define RAWFB_MMAP 1
+ #define RAWFB_FILE 2
+@@ -1414,6 +1418,7 @@ if (db) fprintf(stderr, "initialize_raw_
+ 		}
+ 		str = str2;
+ 		rfbLog("console_guess returned: %s\n", str);
++#if 0
+ 	} else if (strstr(str, "vnc:") == str) {
+ 		char *str2 = vnc_reflect_guess(str, &raw_fb_addr);
+ 
+@@ -1426,6 +1431,7 @@ if (db) fprintf(stderr, "initialize_raw_
+ 			pipeinput_str = strdup("VNC");
+ 		}
+ 		initialize_pipeinput();
++#endif
+ 	}
+ 
+ 	if (closedpy && !view_only && got_noviewonly) {
+diff -upr x11vnc.orig/sslhelper.c x11vnc/sslhelper.c
+--- x11vnc.orig/sslhelper.c	2008-06-24 20:44:47.000000000 +0200
++++ x11vnc/sslhelper.c	2008-06-24 22:53:16.640794361 +0200
+@@ -691,7 +691,7 @@ static char *get_ssl_verify_file(char *s
+ 	return tfile;
+ }
+ 
+-static int ssl_client_mode = 0;
++int ssl_client_mode = 0;
+ 
+ void openssl_init(int isclient) {
+ 	int db = 0, tmp_pem = 0, do_dh;
+diff -upr x11vnc.orig/x11vnc.c x11vnc/x11vnc.c
+--- x11vnc.orig/x11vnc.c	2008-06-24 20:44:47.000000000 +0200
++++ x11vnc/x11vnc.c	2008-06-24 22:58:12.130064017 +0200
+@@ -1282,13 +1282,13 @@ static void watch_loop(void) {
+ 			}
+ 		}
+ 
+-		if (rawfb_vnc_reflect) {
++/*		if (rawfb_vnc_reflect) {
+ 			static time_t lastone = 0;
+ 			if (time(NULL) > lastone + 10) {
+ 				lastone = time(NULL);
+ 				vnc_reflect_process_client();
+ 			}
+-		}
++		}*/
+ 
+ 		if (! screen || ! screen->clientHead) {
+ 			/* waiting for a client */
+@@ -1342,9 +1342,9 @@ static void watch_loop(void) {
+ 
+ 			if (unixpw_in_progress) continue;
+ 
+-			if (rawfb_vnc_reflect) {
++/*			if (rawfb_vnc_reflect) {
+ 				vnc_reflect_process_client();
+-			}
++			}*/
+ 			dtime0(&tm);
+ 
+ #if !NO_X11
+diff -upr x11vnc.orig/xevents.c x11vnc/xevents.c
+--- x11vnc.orig/xevents.c	2008-06-24 20:44:47.000000000 +0200
++++ x11vnc/xevents.c	2008-06-24 22:56:48.842060305 +0200
+@@ -1225,11 +1225,12 @@ void xcut_receive(char *text, int len, r
+ 		return;
+ 	}
+ #endif
+-
++#if 0
+ 	if (rawfb_vnc_reflect) {
+ 		vnc_reflect_send_cuttext(text, len);
+ 		return;
+ 	}
++#endif
+ 
+ 	RAWFB_RET_VOID
+ 
+diff -upr libvncserver.orig/auth.c libvncserver/auth.c
+--- libvncserver.orig/auth.c	2006-12-15 02:43:52.000000000 +0100
++++ libvncserver/auth.c	2008-06-24 22:52:49.494793612 +0200
+@@ -268,13 +268,14 @@ void
+ rfbAuthNewClient(rfbClientPtr cl)
+ {
+-
++#if 0
+     if (!cl->screen->authPasswdData || cl->reverseConnection) {
+ 	/* chk if this condition is valid or not. */
+     } else if (cl->screen->authPasswdData) {
+     }
++#endif
+ 
+     if (cl->protocolMajorVersion==3 && cl->protocolMinorVersion < 7)
+     {
+Index: x11vnc/inet.c
+===================================================================
+--- x11vnc/inet.c	(Revision 402)
++++ x11vnc/inet.c	(Arbeitskopie)
+@@ -39,7 +39,7 @@
+ 	}
+ 	memset(&addr, 0, sizeof(addr));
+ 	addr.sin_family = AF_INET;
+-	addr.sin_addr.s_addr =  *(unsigned long *)hp->h_addr;
++	addr.sin_addr.s_addr =  *(unsigned long *)hp->h_addr_list[0];
+ 	str = strdup(inet_ntoa(addr.sin_addr));
+ 	return str;
+ }
