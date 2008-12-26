@@ -41,8 +41,8 @@ QSplashScreen * splashScreen = NULL;
 QString __default_domain;
 int __demo_quality = 0;
 
-int __isd_port = PortOffsetISD;
-QString __isd_host = "127.0.0.1";
+int __ics_port = PortOffsetIVS;
+QString __ics_host = "127.0.0.1";
 
 
 // good old main-function... initializes qt-app and starts iTALC
@@ -95,10 +95,10 @@ int main( int argc, char * * argv )
 
 	localSystem::initialize();
 
-	__role = ISD::RoleTeacher;
-	if( localSystem::parameter( "isdport" ).toInt() > 0 )
+	__role = ItalcCore::RoleTeacher;
+	if( localSystem::parameter( "icsport" ).toInt() > 0 )
 	{
-		__isd_port = localSystem::parameter( "isdport" ).toInt();
+		__ics_port = localSystem::parameter( "icsport" ).toInt();
 	}
 
 	// parse arguments
@@ -129,15 +129,15 @@ int main( int argc, char * * argv )
 				const QString role = arg_it.next();
 				if( role == "teacher" )
 				{
-					__role = ISD::RoleTeacher;
+					__role = ItalcCore::RoleTeacher;
 				}
 				else if( role == "admin" )
 				{
-					__role = ISD::RoleAdmin;
+					__role = ItalcCore::RoleAdmin;
 				}
 				else if( role == "supporter" )
 				{
-					__role = ISD::RoleSupporter;
+					__role = ItalcCore::RoleSupporter;
 				}
 			}
 			else
@@ -149,13 +149,13 @@ int main( int argc, char * * argv )
 				return( -1 );
 			}
 		}
-		else if( a == "-isdport" && arg_it.hasNext() )
+		else if( a == "-icsport" && arg_it.hasNext() )
 		{
-			__isd_port = arg_it.next().toInt();
+			__ics_port = arg_it.next().toInt();
 		}
-		else if( a == "-isdhost" && arg_it.hasNext() )
+		else if( a == "-icshost" && arg_it.hasNext() )
 		{
-			__isd_host = arg_it.next();
+			__ics_host = arg_it.next();
 		}
 
 	}
@@ -165,12 +165,12 @@ int main( int argc, char * * argv )
 	splashScreen = new QSplashScreen( QPixmap( ":/resources/splash.png" ) );
 	splashScreen->show();
 
-
+/*
 	// now create the main-window
 	mainWindow * main_window = new mainWindow( screen );
 
-	if( !main_window->localISD() ||
-		main_window->localISD()->state() != isdConnection::Connected )
+	if( !main_window->localItalcCore() ||
+		main_window->localItalcCore()->state() != icsConnection::Connected )
 	{
 		return( -1 );
 	}
@@ -179,7 +179,7 @@ int main( int argc, char * * argv )
 	splashScreen->finish( main_window );
 
 	main_window->show();
-
+*/
 	// let's rock!!
 	return( app.exec() );
 }

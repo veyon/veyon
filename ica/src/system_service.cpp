@@ -1,7 +1,7 @@
 /*
  * system_service.cpp - implementation of systemService-class
  *
- * Copyright (c) 2006 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *  
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -35,13 +35,13 @@
 
 #include "system_service.h"
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
+#include <italcconfig.h>
 
 
+#ifdef ITALC_BUILD_WIN32
 PFN_WTSQuerySessionInformation pfnWTSQuerySessionInformation = NULL;
 PFN_WTSFreeMemory pfnWTSFreeMemory = NULL;
+#endif
 
 
 systemService::systemService(
@@ -125,7 +125,7 @@ bool systemService::evalArgs( int & _argc, char * * _argv )
 
 
 
-#ifdef BUILD_LINUX
+#ifdef ITALC_BUILD_LINUX
 
 
 #include <QtCore/QFile>
@@ -239,7 +239,7 @@ void systemService::serviceMainThread( void * _arg )
 
 
 
-#elif BUILD_WIN32
+#elif ITALC_BUILD_WIN32
 
 
 #include <stdio.h>

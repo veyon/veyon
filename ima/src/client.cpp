@@ -1331,6 +1331,3 @@ void updateThread::run( void )
 
 
 
-
-#include "client.moc"
-

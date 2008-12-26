@@ -23,12 +23,8 @@
  */
 
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
-
+#include <italcconfig.h>
 #include <math.h>
-
 
 #include <QtCore/QDateTime>
 #include <QtCore/QTextStream>
@@ -317,7 +313,7 @@ void classroomManager::saveGlobalClientConfig( void )
 	QDomDocument doc( "italc-config-file" );
 
 	QDomElement italc_config = doc.createElement( "globalclientconfig" );
-	italc_config.setAttribute( "version", VERSION );
+	italc_config.setAttribute( "version", ITALC_VERSION );
 	doc.appendChild( italc_config );
 
 	QDomElement root = doc.createElement( "body" );
@@ -358,7 +354,7 @@ void classroomManager::savePersonalConfig( void )
 	QDomDocument doc( "italc-config-file" );
 
 	QDomElement italc_config = doc.createElement( "personalconfig" );
-	italc_config.setAttribute( "version", VERSION );
+	italc_config.setAttribute( "version", ITALC_VERSION );
 	doc.appendChild( italc_config );
 
 	QDomElement head = doc.createElement( "head" );
@@ -2196,7 +2192,4 @@ void classRoomItem::setUser( const QString & _name )
 }
 
 
-
-
-#include "classroom_manager.moc"
 

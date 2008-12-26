@@ -27,9 +27,7 @@
 #ifndef _SYSTEM_KEY_TRAPPER_H
 #define _SYSTEM_KEY_TRAPPER_H
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
+#include <italcconfig.h>
 
 #include "italc_rfb_ext.h"
 

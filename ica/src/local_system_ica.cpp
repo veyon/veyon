@@ -25,18 +25,16 @@
  */
 
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
+#include <italcconfig.h>
 
-#ifdef BUILD_WIN32
+#ifdef ITALC_BUILD_WIN32
 #define _WIN32_WINNT 0x0501
 #endif
 
 #include <QtCore/QCoreApplication>
 #include <QtCore/QProcess>
 
-#ifdef BUILD_WIN32
+#ifdef ITALC_BUILD_WIN32
 
 #include <windows.h>
 #include <psapi.h>
@@ -279,10 +277,10 @@ static BOOL WINAPI consoleCtrlHandler( DWORD _dwCtrlType )
 		default: return FALSE;
 	}
 }
-*/
 
 
-#include "vncKeymap.h"
+
+/*#include "vncKeymap.h"
 
 extern vncServer * __server;
 extern __declspec(dllimport) BOOL __localInputsDisabled;
@@ -296,18 +294,23 @@ static inline void pressKey( int _key, bool _down )
 	vncKeymap::keyEvent( _key, _down, __server );
 	localSystem::sleep( 50 );
 }
+*/
+//extern __declspec(dllimport) BOOL __localInputsDisabled;
+static inline void pressKey( int _key, bool _down )
+{
+}
 
 #else
 
 #include "local_system.h"
 
-#ifdef HAVE_X11
+#ifdef ITALC_HAVE_X11
 #include <X11/Xlib.h>
 #else
 #define KeySym int
 #endif
 
-#ifdef HAVE_PWD_H
+#ifdef ITALC_HAVE_PWD_H
 #include <pwd.h>
 #endif
 
@@ -343,7 +346,7 @@ namespace localSystem
 void initialize( void )
 {
 	initialize( pressKey, "italc_client.log" );
-#ifdef BUILD_WIN32
+#ifdef ITALC_BUILD_WIN32
 //	__user_poll_thread = new userPollThread();
 
 //	SetConsoleCtrlHandler( consoleCtrlHandler, TRUE );
@@ -359,7 +362,7 @@ QString currentUser( void )
 {
 	QString ret = "unknown";
 
-#ifdef BUILD_WIN32
+#ifdef ITALC_BUILD_WIN32
 	return __sessCurUser;
 /*
 	if( __user_poll_thread && !__user_poll_thread->name().isEmpty() )
@@ -370,7 +373,7 @@ QString currentUser( void )
 #else
 
 	char * user_name = getenv( "USER" );
-#ifdef HAVE_PWD_H
+#ifdef ITALC_HAVE_PWD_H
 	struct passwd * pw_entry = NULL;
 	if( user_name )
 	{
@@ -413,7 +416,8 @@ QString currentUser( void )
 
 void disableLocalInputs( bool _disabled )
 {
-#ifdef BUILD_WIN32
+#if 0
+#ifdef ITALC_BUILD_WIN32
 	static systemKeyTrapper * __skt = NULL;
 	if( __localInputsDisabled != _disabled )
 	{
@@ -431,13 +435,14 @@ void disableLocalInputs( bool _disabled )
 #else
 #warning TODO
 #endif
+#endif
 }
 
 
 
 void powerDown( void )
 {
-#ifdef BUILD_WIN32
+#ifdef ITALC_BUILD_WIN32
 	enablePrivilege( SE_SHUTDOWN_NAME, TRUE );
 	ExitWindowsEx( EWX_POWEROFF | SHUTDOWN_FLAGS, SHUTDOWN_REASON );
 /*	InitiateSystemShutdown( NULL,	// local machine
@@ -467,7 +472,7 @@ void powerDown( void )
 
 void logoutUser( void )
 {
-#ifdef BUILD_WIN32
+#ifdef ITALC_BUILD_WIN32
 	ExitWindowsEx( EWX_LOGOFF | SHUTDOWN_FLAGS, SHUTDOWN_REASON );
 #else
 	QProcess::startDetached( "gnome-session-save --silent --kill" ); // Gnome logout
@@ -479,7 +484,7 @@ void logoutUser( void )
 
 void reboot( void )
 {
-#ifdef BUILD_WIN32
+#ifdef ITALC_BUILD_WIN32
 	enablePrivilege( SE_SHUTDOWN_NAME, TRUE );
 	ExitWindowsEx( EWX_REBOOT | SHUTDOWN_FLAGS, SHUTDOWN_REASON );
 /*	InitiateSystemShutdown( NULL,	// local machine

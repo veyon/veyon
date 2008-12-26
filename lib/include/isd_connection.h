@@ -31,14 +31,10 @@
 #include <QtNetwork/QHostInfo>
 #include <QtNetwork/QTcpSocket>
 
-#include "isd_base.h"
-
-#ifndef BUILD_ICA
-#include "main_window.h"
-#endif
+#include "italc_core.h"
 
 
-class isdConnection : public QObject
+class IC_DllExport isdConnection : public QObject
 {
 public:
 	enum states
@@ -123,7 +119,7 @@ public:
 	bool restartComputer( void );
 	bool disableLocalInputs( bool _disabled );
 
-	bool setRole( const ISD::userRoles _role );
+	bool setRole( const ItalcCore::UserRoles _role );
 	bool demoServerRun( int _quality, int _port );
 	bool demoServerAllowClient( const QString & _client );
 	bool demoServerDenyClient( const QString & _client );
@@ -142,7 +138,7 @@ protected:
 
 	virtual states protocolInitialization( void );
 
-	virtual states authAgainstServer( const italcAuthTypes _try_auth_type =
+	virtual states authAgainstServer( const ItalcAuthTypes _try_auth_type =
 								ItalcAuthNone );
 
 	states & state_ref( void )

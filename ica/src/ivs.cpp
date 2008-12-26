@@ -24,9 +24,7 @@
  */
 
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
+#include <italcconfig.h>
 
 #include <QtCore/QCoreApplication>
 #include <QtCore/QProcess>
@@ -36,7 +34,7 @@
 #include "ivs.h"
 
 
-#ifdef BUILD_LINUX
+#ifdef ITALC_BUILD_LINUX
 
 extern "C" int x11vnc_main( int argc, char * * argv );
 
@@ -48,8 +46,8 @@ extern "C" int x11vnc_main( int argc, char * * argv );
 rfbClientPtr __client = NULL;
 
 
-qint64 libvncClientDispatcher( char * _buf, const qint64 _len,
-				const socketOpCodes _op_code, void * _user )
+qint64 libvncServerDispatcher( char * _buf, const qint64 _len,
+				const SocketOpCodes _op_code, void * _user )
 {
 	rfbClientPtr cl = (rfbClientPtr) _user;
 	switch( _op_code )
@@ -69,26 +67,26 @@ qint64 libvncClientDispatcher( char * _buf, const qint64 _len,
 }
 
 
-rfbBool isdNewClient( struct _rfbClientRec *, void * * )
+static rfbBool isdNewClient( struct _rfbClientRec *, void * * )
 {
 	return( TRUE );
 }
 
 
-rfbBool isdHandleMessage( struct _rfbClientRec * _client, void * _data,
+static rfbBool isdHandleMessage( struct _rfbClientRec * _client, void * _data,
 				const rfbClientToServerMsg * _message )
 {
 	if( _message->type == rfbItalcServiceRequest )
 	{
-		return( processItalcClient( libvncClientDispatcher, _client ) );
+		return( processItalcClient( libvncServerDispatcher, _client ) );
 	}
 	return( FALSE );
 }
 
 
-void isdAuthAgainstServer( struct _rfbClientRec * _client )
+static void isdAuthItalcClient( struct _rfbClientRec * _client )
 {
-	if( isdServer::authSecTypeItalc( libvncClientDispatcher, _client,
+	if( isdServer::authSecTypeItalc( libvncServerDispatcher, _client,
 								ItalcAuthDSA ) )
 	{
 		_client->state = rfbClientRec::RFB_INITIALISATION;
@@ -98,8 +96,11 @@ void isdAuthAgainstServer( struct _rfbClientRec * _client )
 
 
 
-#elif BUILD_WIN32
+#elif ITALC_BUILD_WIN32
 
+#include <windows.h>
+
+extern bool Myinit( HINSTANCE hInstance );
 extern int WinVNCAppMain( void );
 
 #endif
@@ -132,7 +133,7 @@ IVS::~IVS()
 
 void IVS::run( void )
 {
-#ifdef BUILD_LINUX
+#ifdef ITALC_BUILD_LINUX
 	QStringList cmdline;
 
 	m_runningInSeparateProcess = TRUE;
@@ -226,13 +227,14 @@ void IVS::run( void )
 
 	// register handler for iTALC's security-type
 	rfbSecurityHandler sh = {
-			rfbSecTypeItalc, isdAuthAgainstServer, NULL };
+				rfbSecTypeItalc, isdAuthItalcClient, NULL };
 	rfbRegisterSecurityHandler( &sh );
 
 	// run x11vnc-server
 	x11vnc_main( m_argc, m_argv );
-#elif BUILD_WIN32
+#elif ITALC_BUILD_WIN32
 	// run winvnc-server
+	Myinit( GetModuleHandle( NULL ) );
 	WinVNCAppMain();
 #endif
 }

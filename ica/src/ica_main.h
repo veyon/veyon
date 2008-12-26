@@ -1,7 +1,7 @@
 /*
  * ica_main.h - declaration of ICAMain and other global stuff
  *           
- * Copyright (c) 2006 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *  
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -28,7 +28,7 @@
 
 int ICAMain( int _argc, char * * _argv );
 
-#ifdef BUILD_LINUX
+#ifdef ITALC_BUILD_LINUX
 
 #define ACCESS_DIALOG_ARG "-accessdialog"
 

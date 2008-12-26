@@ -28,10 +28,9 @@
 
 #include <QtCore/QString>
 
-#include "isd_base.h"
-#include "types.h"
+#include "italc_core.h"
 
-#ifdef BUILD_WIN32
+#ifdef ITALC_BUILD_WIN32
 #include <windef.h>
 #endif
 
@@ -66,15 +65,15 @@ namespace localSystem
 
 	QString /*IC_DllExport*/ currentUser( void );
 
-	QString IC_DllExport privateKeyPath( const ISD::userRoles _role,
+	QString IC_DllExport privateKeyPath( const ItalcCore::UserRoles _role,
 						bool _only_path = FALSE );
-	QString IC_DllExport publicKeyPath( const ISD::userRoles _role,
+	QString IC_DllExport publicKeyPath( const ItalcCore::UserRoles _role,
 						bool _only_path = FALSE );
 
 	void IC_DllExport setPrivateKeyPath( const QString & _path,
-						const ISD::userRoles _role );
+						const ItalcCore::UserRoles _role );
 	void IC_DllExport setPublicKeyPath( const QString & _path,
-						const ISD::userRoles _role );
+						const ItalcCore::UserRoles _role );
 
 	QString IC_DllExport snapshotDir( void );
 	QString IC_DllExport globalConfigPath( void );
@@ -89,11 +88,11 @@ namespace localSystem
 
 	QString IC_DllExport ip( void );
 
-	QString IC_DllExport userRoleName( const ISD::userRoles _role );
+	QString IC_DllExport userRoleName( const ItalcCore::UserRoles _role );
 
-#ifdef BUILD_WIN32
-	BOOL enablePrivilege( LPCTSTR lpszPrivilegeName, BOOL bEnable );
-	QString windowsConfigPath( int _type );
+#ifdef ITALC_BUILD_WIN32
+	BOOL IC_DllExport enablePrivilege( LPCTSTR lpszPrivilegeName, BOOL bEnable );
+	QString IC_DllExport windowsConfigPath( int _type );
 #endif
 
 	void IC_DllExport activateWindow( QWidget * _window );

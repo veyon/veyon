@@ -1,7 +1,7 @@
 /*
  * fast_qimage.h - class fastQImage providing fast inline-QImage-manips
  *
- * Copyright (c) 2006 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *  
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -32,7 +32,7 @@
 #include "types.h"
 
 
-class fastQImage : public QImage
+class IC_DllExport fastQImage : public QImage
 {
 public:
 	fastQImage() : QImage() { }
@@ -104,6 +104,7 @@ public:
 		QRgb * dst = (QRgb *) scanLine( dest_y ) + dest_x;
 		for( Q_UINT16 y = 0; y < rh; ++y )
 		{
+			// TODO: vectorize
 			memcpy( dst, src, rw * sizeof( QRgb ) );
 			src += img_width;
 			dst += img_width;
@@ -142,14 +143,15 @@ public:
 	// fill alpha-channel of image with certain value
 	inline fastQImage & alphaFill( const unsigned char _alpha )
 	{
-		unsigned char * ptr = bits() + 3;
+		QRgb * ptr = (QRgb *) bits();
 		const unsigned int pixels = width() * height();
+		const QRgb mask = ((unsigned int) _alpha ) << 24;
 		for( unsigned int i = 0; i < pixels; ++i )
 		{
-			*ptr = _alpha;
-			ptr += 4;
+			*ptr = ( *ptr & 0x00ffffff ) | mask;
+			++ptr;
 		}
-		return( *this );
+		return *this;
 	}
 
 
@@ -178,28 +180,28 @@ public:
 		const unsigned int pixels = width() * height();
 		for( unsigned int i = 0; i < pixels; ++i )
 		{
-			*ptr = ( *ptr * _coeff ) >> 8; ++ptr;
-			*ptr = ( *ptr * _coeff ) >> 8; ++ptr;
-			*ptr = ( *ptr * _coeff ) >> 8; ++ptr;
-			++ptr;
+			for( int j = 0; j < 4; ++j )
+			{
+				ptr[j] = (  ptr[j] * _coeff ) >> 8;
+			}
+			ptr += 4;
 		}
-		return( *this );
+		return *this;
 	}
 
 
 	inline fastQImage & toGray( void )
 	{
-		unsigned char * ptr = bits();
+		QRgb * ptr = (QRgb *) bits();
 		const unsigned int pixels = width() * height();
 		for( unsigned int i = 0; i < pixels; ++i )
 		{
-			const unsigned char gray = qGray( *( (QRgb *) ptr ) );
-			*ptr = gray; ++ptr;
-			*ptr = gray; ++ptr;
-			*ptr = gray; ++ptr;
+			const unsigned int gray = qGray( *ptr );
+			const QRgb g = gray | ( gray << 8 ) | ( gray << 16 ) | 0xff000000;
+			*ptr = g;
 			++ptr;
 		}
-		return( *this );
+		return *this;
 	}
 
 

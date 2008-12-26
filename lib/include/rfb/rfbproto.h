@@ -72,7 +72,9 @@
 
 #if !defined(WIN32) || defined(__MINGW32__)
 #ifndef __cplusplus
+#ifndef max
 #define max(a,b) (((a)>(b))?(a):(b))
+#endif
 #endif
 #ifdef LIBVNCSERVER_HAVE_SYS_TIME_H
 #include <sys/time.h>

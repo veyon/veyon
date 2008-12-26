@@ -1,3 +1,4 @@
+#if 0
 /*
  * demo_server.cpp - multi-threaded slim VNC-server for demo-purposes (optimized
  *                   for lot of clients accessing server in read-only-mode)
@@ -579,6 +580,4 @@ void demoServerClient::run( void )
 }
 
 
-
-#include "demo_server.moc"
-
+#endif

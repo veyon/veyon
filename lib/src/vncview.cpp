@@ -27,13 +27,11 @@
 #include "rfb/keysym.h"
 
 #include "vncview.h"
-#include "ivs_connection.h"
 #include "messagebox.h"
 #include "qt_user_events.h"
 #include "progress_widget.h"
 #include "system_key_trapper.h"
 #include "qt_features.h"
-#include "lock_widget.h"
 
 #include <QtCore/QTimer>
 #include <QtGui/QApplication>
@@ -45,32 +43,36 @@
 vncView::vncView( const QString & _host, QWidget * _parent,
 						bool _progress_widget ) :
 	QWidget( _parent ),
-	m_connection( NULL ),
+	m_vncConn( this ),
 	m_viewOnly( TRUE ),
 	m_viewOnlyFocus( TRUE ),
 	m_scaledView( TRUE ),
-	m_running( FALSE ),
+	m_initDone( FALSE ),
 	m_viewOffset( QPoint( 0, 0 ) ),
 	m_buttonMask( 0 ),
 	m_establishingConnection( NULL ),
 	m_sysKeyTrapper( new systemKeyTrapper( FALSE ) )
 {
-	if( _progress_widget )
+/*	if( _progress_widget )
 	{
 		m_establishingConnection = new progressWidget(
 			tr( "Establishing connection to %1 ..." ).arg( _host ),
 					":/resources/watch%1.png", 16, this );
-	}
+	}*/
 
-	m_connection = new ivsConnection( _host, ivsConnection::QualityMedium,
-								FALSE, this );
-	connect( m_connection, SIGNAL( cursorShapeChanged() ),
-					this, SLOT( updateCursorShape() ) );
-	setMouseTracking( TRUE );
+	m_vncConn.setHost( _host );
+	m_vncConn.setQuality( ItalcVncConnection::QualityHigh );
+	connect( &m_vncConn, SIGNAL( imageUpdated( int, int, int, int ) ),
+			this, SLOT( updateImage( int, int, int, int ) ),
+						Qt::BlockingQueuedConnection );
+
+/*	connect( m_connection, SIGNAL( cursorShapeChanged() ),
+					this, SLOT( updateCursorShape() ) );*/
+/*	setMouseTracking( TRUE );
 	//setWidgetAttribute( Qt::WA_OpaquePaintEvent );
 	setAttribute( Qt::WA_NoSystemBackground, true );
-	setAttribute( Qt::WA_DeleteOnClose, true );
-	showMaximized();
+	setAttribute( Qt::WA_DeleteOnClose, true );*/
+	show();
 
 	QSize parent_size = size();
 	if( parentWidget() != NULL )
@@ -82,9 +84,7 @@ vncView::vncView( const QString & _host, QWidget * _parent,
 	setFocusPolicy( Qt::StrongFocus );
 	setFocus();
 
-	new vncViewThread( this );
-
-	framebufferUpdate();
+	m_vncConn.start();
 }
 
 
@@ -92,11 +92,58 @@ vncView::vncView( const QString & _host, QWidget * _parent,
 
 vncView::~vncView()
 {
+	disconnect( &m_vncConn, SIGNAL( imageUpdated( int, int, int, int ) ),
+			this, SLOT( updateImage( int, int, int, int ) ) );
+
 	unpressModifiers();
-	findChild<vncViewThread *>()->quit();
-	findChild<vncViewThread *>()->wait();
-	delete m_connection;
 	delete m_sysKeyTrapper;
+
+	m_vncConn.stop();
+	m_vncConn.wait( 500 );
+}
+
+
+
+
+bool vncView::eventFilter(QObject *obj, QEvent *event)
+{
+	if( m_viewOnly )
+	{
+		if( event->type() == QEvent::KeyPress ||
+			event->type() == QEvent::KeyRelease ||
+			event->type() == QEvent::MouseButtonDblClick ||
+			event->type() == QEvent::MouseButtonPress ||
+			event->type() == QEvent::MouseButtonRelease ||
+			event->type() == QEvent::Wheel ||
+			event->type() == QEvent::MouseMove )
+		return true;
+	}
+
+	return QWidget::eventFilter(obj, event);
+}
+
+
+
+
+QSize vncView::framebufferSize() const
+{
+    return m_frame.size();
+}
+
+
+
+
+QSize vncView::sizeHint() const
+{
+    return size();
+}
+
+
+
+
+QSize vncView::minimumSizeHint() const
+{
+    return size();
 }
 
 
@@ -105,14 +152,14 @@ vncView::~vncView()
 QSize vncView::scaledSize( const QSize & _default ) const
 {
 	const QSize s = size();
-	QSize fbs = m_connection->framebufferSize();
+	QSize fbs = framebufferSize();//m_connection->framebufferSize();
 	if( ( s.width() >= fbs.width() && s.height() >= fbs.height() ) ||
 							m_scaledView == FALSE )
 	{
-		return( _default );
+		return _default;
 	}
 	fbs.scale( s, Qt::KeepAspectRatio );
-	return( fbs );
+	return fbs;
 }
 
 
@@ -124,7 +171,6 @@ void vncView::setViewOnly( bool _vo )
 	{
 		return;
 	}
-
 	m_viewOnly = _vo;
 
 	if( m_viewOnly )
@@ -135,14 +181,14 @@ void vncView::setViewOnly( bool _vo )
 	}
 	else
 	{
-#ifdef BUILD_LINUX
+#ifdef ITALC_BUILD_LINUX
 		// for some reason we have to grab mouse and then release
 		// again to make complete keyboard-grabbing working ... ??
 		grabMouse();
 		releaseMouse();
 #endif
 		grabKeyboard();
-		m_sysKeyTrapper->setEnabled( TRUE );
+//		m_sysKeyTrapper->setEnabled( TRUE );
 		updateCursorShape();
 	}
 }
@@ -153,17 +199,14 @@ void vncView::setViewOnly( bool _vo )
 void vncView::setScaledView( bool _sv )
 {
 	m_scaledView = _sv;
-	if( m_connection != NULL )
-	{
-		m_connection->setScaledSize( scaledSize() );
-	}
+	m_vncConn.setScaledSize( scaledSize() );
 	update();
 }
 
 
 
 
-void vncView::framebufferUpdate( void )
+/*void vncView::framebufferUpdate( void )
 {
 	if( m_connection == NULL )
 	{
@@ -267,43 +310,20 @@ void vncView::framebufferUpdate( void )
 	}
 
 	QTimer::singleShot( 40, this, SLOT( framebufferUpdate() ) );
-}
+}*/
 
 
 
 
 void vncView::updateCursorShape( void )
 {
-	if( !viewOnly() && !m_connection->cursorShape().isNull() )
+/*	if( !viewOnly() && !m_connection->cursorShape().isNull() )
 	{
 		setCursor( QCursor( QPixmap::fromImage(
 						m_connection->cursorShape() ),
 			m_connection->cursorHotSpot().x(),
 			m_connection->cursorHotSpot().y() ) );
-	}
-}
-
-
-
-
-// we have to filter key-events as QWidget's event()-implementation filters out
-// Tab and Shift-Tab for changing focus but as we need Tab, we have to do
-// key-event-dispatching on our own
-bool vncView::event( QEvent * e )
-{
-	if( !m_viewOnly )
-	{
-		switch( e->type() )
-		{
-			case QEvent::KeyPress:
-			case QEvent::KeyRelease:
-				keyEvent( (QKeyEvent *)( e ) );
-				return( e->isAccepted() );
-			default:
-				break;
-		}
-	}
-	return( QWidget::event( e ) );
+	}*/
 }
 
 
@@ -335,7 +355,7 @@ void vncView::focusOutEvent( QFocusEvent * _e )
 
 
 // our builtin keyboard-handler
-void vncView::keyEvent( QKeyEvent * _ke )
+void vncView::keyEventHandler( QKeyEvent * _ke )
 {
 	bool pressed = _ke->type() == QEvent::KeyPress;
 
@@ -470,7 +490,7 @@ void vncView::keyEvent( QKeyEvent * _ke )
 						key >= 64 && key < 0xF000 )
 	{
 		unpressModifiers();
-		emit keyEvent( XK_ISO_Level3_Shift, TRUE );
+		m_vncConn.keyEvent( XK_ISO_Level3_Shift, TRUE );
 	}
 #endif
 
@@ -494,7 +514,7 @@ void vncView::keyEvent( QKeyEvent * _ke )
 
 	if( key )
 	{
-		emit keyEvent( key, pressed );
+		m_vncConn.keyEvent( key, pressed );
 		_ke->accept();
 	}
 }
@@ -508,7 +528,7 @@ void vncView::unpressModifiers( void )
 	QList<unsigned int>::const_iterator it = keys.begin();
 	while( it != keys.end() )
 	{
-		emit keyEvent( *it, FALSE );
+		m_vncConn.keyEvent( *it, FALSE );
 		it++;
 	}
 	m_mods.clear();
@@ -519,13 +539,13 @@ void vncView::unpressModifiers( void )
 
 QPoint vncView::mapToFramebuffer( const QPoint & _pos )
 {
-	const QSize fbs = m_connection ? m_connection->framebufferSize() :
+	const QSize fbs = framebufferSize();//m_connection ? m_connection->framebufferSize() :
 									QSize();
 	const int x = m_scaledView && fbs.isValid() ?
 			_pos.x() * fbs.width() / scaledSize( fbs ).width()
 		:
 			_pos.x() + m_viewOffset.x();
-	const int y = m_scaledView && m_connection ?
+	const int y = m_scaledView && fbs.isValid() ?
 			_pos.y() * fbs.height() / scaledSize( fbs ).height()
 		:
 			_pos.y() + m_viewOffset.y();
@@ -537,12 +557,10 @@ QPoint vncView::mapToFramebuffer( const QPoint & _pos )
 
 QRect vncView::mapFromFramebuffer( const QRect & _r )
 {
-	if( m_scaledView && m_connection )
+	if( m_scaledView )
 	{
-		const float dx = width() / (float)
-				m_connection->framebufferSize().width();
-		const float dy = height() / (float)
-				m_connection->framebufferSize().height();
+		const float dx = width() / (float) framebufferSize().width();
+		const float dy = height() / (float) framebufferSize().height();
 		return( QRect( (int)(_r.x()*dx), (int)(_r.y()*dy),
 					(int)(_r.width()*dx), (int)(_r.height()*dy) ) );
 	}
@@ -551,66 +569,102 @@ QRect vncView::mapFromFramebuffer( const QRect & _r )
 
 
 
-
-void vncView::mouseMoveEvent( QMouseEvent * _me )
+bool vncView::event( QEvent * event )
 {
-	mouseEvent( _me );
-	_me->ignore();
+	switch( event->type() )
+	{
+		case QEvent::KeyPress:
+		case QEvent::KeyRelease:
+			keyEventHandler( static_cast<QKeyEvent*>( event ) );
+			return true;
+			break;
+		case QEvent::MouseButtonDblClick:
+		case QEvent::MouseButtonPress:
+		case QEvent::MouseButtonRelease:
+		case QEvent::MouseMove:
+			mouseEventHandler( static_cast<QMouseEvent*>( event ) );
+			return true;
+			break;
+		case QEvent::Wheel:
+			wheelEventHandler( static_cast<QWheelEvent*>( event ) );
+			return true;
+			break;
+		default:
+			return QWidget::event(event);
+	}
 }
-
-
-
-
-void vncView::mousePressEvent( QMouseEvent * _me )
-{
-	mouseEvent( _me );
-	_me->accept();
-}
-
-
-
-
-void vncView::mouseReleaseEvent( QMouseEvent * _me )
-{
-	mouseEvent( _me );
-	_me->accept();
-}
-
-
-
-
-void vncView::mouseDoubleClickEvent( QMouseEvent * _me )
-{
-	mouseEvent( _me );
-	_me->accept();
-}
-
 
 
 
 
 void vncView::paintEvent( QPaintEvent * _pe )
 {
-	QPainter p( this );
-
-	// avoid nasty through-shining-window-effect when not connected yet
-	if( m_connection->screen().isNull() )
+	if( m_frame.isNull() || m_frame.format() == QImage::Format_Invalid )
 	{
-		p.fillRect( _pe->rect(), Qt::black );
+		QWidget::paintEvent( _pe );
 		return;
 	}
 
+	_pe->accept();
+
+	QPainter p( this );
+
 	const QSize ss = scaledSize();
 
+	// avoid nasty through-shining-window-effect when not connected yet
+/*	if( !ss.isValid() && m_frame.isNull() )
+	{
+		p.fillRect( _pe->rect(), Qt::black );
+		return;
+	}*/
+
+	const float scale = ss.isValid() ?
+			(float) ss.width() / framebufferSize().width() : 1;
+	if( m_repaint )
+	{
+		if( ss.isValid() )
+		{
+			fastQImage i = m_frame;
+			p.drawImage( 0, 0, m_frame.scaled( ss ) );
+		}
+		else
+		{
+			p.drawImage( QRect( m_x, m_y, m_w, m_h ),
+					m_frame.copy( m_x, m_y, m_w, m_h ) );
+		}
+	}
+	else
+	{
+		QRect rect = _pe->rect();
+		if( rect.width() != m_frame.width() || rect.height() != m_frame.height() )
+		{
+			int sx = qRound( rect.x()/scale );
+			int sy = qRound( rect.y()/scale );
+			int sw = qRound( rect.width()/scale );
+			int sh = qRound( rect.height()/scale );
+			p.drawImage( rect, m_frame.copy( sx, sy, sw, sh ).
+				scaled( rect.width(), rect.height(),
+						Qt::IgnoreAspectRatio,
+						Qt::SmoothTransformation ) );
+		}
+		else
+		{
+			p.drawImage( QPoint( 0, 0 ),
+		m_frame.scaled( qRound( m_frame.width() * scale ),
+					qRound( m_frame.height()*scale ),
+			Qt::IgnoreAspectRatio, Qt::SmoothTransformation ) );
+		}
+	}
+/*
 	// only paint requested region of image
 	p.drawImage( _pe->rect().topLeft(),
 			ss.isValid() ?
-				m_connection->scaledScreen() :
-						m_connection->screen(),
+				m_frame. :
+						m_frame,
 			_pe->rect().translated( m_viewOffset ),
 			Qt::ThresholdDither );
-
-	if( viewOnly() && !m_connection->cursorShape().isNull() )
+*/
+/*	if( viewOnly() && !m_connection->cursorShape().isNull() )
 	{
 		const QImage & cursor = m_connection->cursorShape();
 		const QRect cursor_rect = mapFromFramebuffer(
@@ -623,21 +677,22 @@ void vncView::paintEvent( QPaintEvent * _pe )
 			// then repaint it
 			p.drawImage( cursor_rect.topLeft(), cursor );
 		}
-	}
+	}*/
 
 	// draw black borders if neccessary
 	const int fbw = ss.isValid() ? ss.width() :
-				m_connection->framebufferSize().width();
+				m_vncConn.framebufferSize().width();
 	if( fbw < width() )
 	{
 		p.fillRect( fbw, 0, width() - fbw, height(), Qt::black );
 	}
 	const int fbh = ss.isValid() ? ss.height() :
-				m_connection->framebufferSize().height();
+				m_vncConn.framebufferSize().height();
 	if( fbh < height() )
 	{
 		p.fillRect( 0, fbh, fbw, height() - fbh, Qt::black );
 	}
+
 }
 
 
@@ -645,9 +700,9 @@ void vncView::paintEvent( QPaintEvent * _pe )
 
 void vncView::resizeEvent( QResizeEvent * _re )
 {
-	m_connection->setScaledSize( scaledSize() );
-	const int max_x = m_connection->framebufferSize().width() - width();
-	const int max_y = m_connection->framebufferSize().height() - height();
+	m_vncConn.setScaledSize( scaledSize() );
+	const int max_x = framebufferSize().width() - width();
+	const int max_y = framebufferSize().height() - height();
 	if( m_viewOffset.x() > max_x || m_viewOffset.y() > max_y )
 	{
 		m_viewOffset = QPoint(
@@ -667,36 +722,18 @@ void vncView::resizeEvent( QResizeEvent * _re )
 
 
 
-void vncView::wheelEvent( QWheelEvent * _we )
+void vncView::wheelEventHandler( QWheelEvent * _we )
 {
 	const QPoint p = mapToFramebuffer( _we->pos() );
-	emit pointerEvent( p.x(), p.y(), m_buttonMask |
+	m_vncConn.mouseEvent( p.x(), p.y(), m_buttonMask |
 		( ( _we->delta() < 0 ) ? rfbButton5Mask : rfbButton4Mask ) );
-	emit pointerEvent( p.x(), p.y(), m_buttonMask );
-	
-	_we->accept();
+	m_vncConn.mouseEvent( p.x(), p.y(), m_buttonMask );
 }
 
 
 
 
-void vncView::customEvent( QEvent * _e )
-{
-	if( _e->type() == regionChangedEvent().type() )
-	{
-		update();
-		_e->accept();
-	}
-	else
-	{
-		QWidget::customEvent( _e );
-	}
-}
-
-
-
-
-void vncView::mouseEvent( QMouseEvent * _me )
+void vncView::mouseEventHandler( QMouseEvent * _me )
 {
 	struct buttonXlate
 	{
@@ -729,118 +766,61 @@ void vncView::mouseEvent( QMouseEvent * _me )
 	}
 
 	const QPoint p = mapToFramebuffer( _me->pos() );
-	emit pointerEvent( p.x(), p.y(), m_buttonMask );
+	m_vncConn.mouseEvent( p.x(), p.y(), m_buttonMask );
 }
 
 
 
 
 
-
-
-
-vncViewThread::vncViewThread( vncView * _vv ) :
-	QThread( _vv ),
-	m_vncView( _vv )
+void vncView::updateImage(int x, int y, int w, int h)
 {
-	start( QThread::HighPriority );
-}
+	m_x = x;
+	m_y = y;
+	m_w = w;
+	m_h = h;
 
-
-
-
-void vncViewThread::run( void )
-{
-	vncWorker vw( m_vncView );
-	exec();
-}
-
-
-
-
-
-
-vncWorker::vncWorker( vncView * _vv ) :
-	QObject(),
-	m_vncView( _vv )
-{
-	qRegisterMetaType<Q_UINT16>( "Q_UINT16" );
-	qRegisterMetaType<Q_UINT32>( "Q_UINT32" );
-	connect( m_vncView->m_sysKeyTrapper,
-				SIGNAL( keyEvent( Q_UINT32, bool ) ),
-				this, SLOT( sendKeyEvent( Q_UINT32, bool ) ) );
-
-	connect( m_vncView,
-		SIGNAL( pointerEvent( Q_UINT16, Q_UINT16, Q_UINT16 ) ),
-		this, SLOT( sendPointerEvent( Q_UINT16, Q_UINT16,
-								Q_UINT16 ) ) );
-	connect( m_vncView, SIGNAL( keyEvent( Q_UINT32, bool ) ),
-				this, SLOT( sendKeyEvent( Q_UINT32, bool ) ) );
-
-
-	ivsConnection * conn = m_vncView->m_connection;
-	QTimer * t = new QTimer( this );
-	connect( t, SIGNAL( timeout() ), conn,
-			SLOT( sendIncrementalFramebufferUpdateRequest() ),
-							Qt::DirectConnection );
-	t->start( 50 );
-
-	t = new QTimer( this );
-	connect( t, SIGNAL( timeout() ), this,
-			SLOT( framebufferUpdate() ) );
-	t->start( 25 );
-}
-
-
-
-
-vncWorker::~vncWorker()
-{
-	// have to close the connection here for destroying/closing everything
-	// within the same thread - otherwise Qt might complain or even let us
-	// crash...
-	m_vncView->m_connection->close();
-}
-
-
-
-
-void vncWorker::framebufferUpdate( void )
-{
-	ivsConnection * conn = m_vncView->m_connection;
-	if( conn->state() != ivsConnection::Connected ||
-				!conn->handleServerMessages( FALSE, 3 ) )
+	const QSize ss = scaledSize();
+	const float scale = ss.isValid() ?
+			(float) ss.width() / framebufferSize().width() : 1;
+	if( ss.isValid() )
 	{
-		conn->open();
+		m_x-=1;
+		m_y-=1;
+		m_w+=2;
+		m_h+=2;
 	}
+
+	m_frame = m_vncConn.image();
+
+    if (!m_initDone) {
+        setAttribute(Qt::WA_StaticContents);
+        setAttribute(Qt::WA_OpaquePaintEvent);
+	setCursor( Qt::BlankCursor );
+        installEventFilter(this);
+
+//        setCursor(((m_dotCursorState == CursorOn) || m_forceLocalCursor) ? localDotCursor() : Qt::BlankCursor);
+
+        setMouseTracking(true); // get mouse events even when there is no mousebutton pressed
+        setFocusPolicy(Qt::WheelFocus);
+//        resize(m_frame.width(), m_frame.height());
+//        setStatus(Connected);
+ /*       emit changeSize(m_frame.width(), m_frame.height());*/
+		m_vncConn.setScaledSize( scaledSize() );
+        emit connectionEstablished();
+        m_initDone = true;
+
+    }
+
+/*    if (!m_scale && (y == 0 && x == 0) && (m_frame.size() != size())) {
+        resize(m_frame.width(), m_frame.height());
+        emit changeSize(m_frame.width(), m_frame.height());
+    }*/
+
+	m_repaint = true;
+	repaint( qRound( m_x*scale ), qRound( m_y*scale ),
+			qRound( m_w*scale ), qRound( m_h*scale ) );
+	m_repaint = false;
 }
 
-
-
-
-void vncWorker::sendPointerEvent( Q_UINT16 _x, Q_UINT16 _y,
-							Q_UINT16 _button_mask )
-{
-	if( !m_vncView->viewOnly() )
-	{
-		m_vncView->m_connection->sendPointerEvent( _x, _y,
-								_button_mask );
-	}
-}
-
-
-
-
-void vncWorker::sendKeyEvent( Q_UINT32 _key, bool _down )
-{
-	if( !m_vncView->viewOnly() )
-	{
-		m_vncView->m_connection->sendKeyEvent( _key, _down );
-	}
-}
-
-
-
-
-#include "vncview.moc"
 

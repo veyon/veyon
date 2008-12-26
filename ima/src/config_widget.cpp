@@ -136,6 +136,3 @@ void configWidget::domainChanged( const QString & _domain )
 }
 
 
-
-#include "config_widget.moc"
-

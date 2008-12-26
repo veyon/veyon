@@ -23,12 +23,13 @@
  *
  */
 
-
-#ifdef HAVE_CONFIG_H
-#include <config.h>
+#ifdef BUILD_WIN32
+#define _WIN32_WINNT 0x0501
 #endif
 
-#ifdef BUILD_WIN32
+#include <italcconfig.h>
+
+#ifdef ITALC_BUILD_WIN32
 #define _WIN32_WINNT 0x0501
 #endif
 
@@ -42,7 +43,7 @@
 #include <QtNetwork/QTcpServer>
 
 
-#ifdef BUILD_WIN32
+#ifdef ITALC_BUILD_WIN32
 
 #include <QtCore/QLibrary>
 
@@ -86,23 +87,23 @@ QString windowsConfigPath( int _type )
 #endif
 
 
-#ifdef HAVE_PWD_H
+#ifdef ITALC_HAVE_PWD_H
 #include <pwd.h>
 #endif
 
-#ifdef HAVE_SYS_SOCKET_H
+#ifdef ITALC_HAVE_SYS_SOCKET_H
 #include <sys/socket.h>
 #endif
 
-#ifdef HAVE_ARPA_INET_H
+#ifdef ITALC_HAVE_ARPA_INET_H
 #include <arpa/inet.h>
 #endif
 
-#ifdef HAVE_NETINET_IN_H
+#ifdef ITALC_HAVE_NETINET_IN_H
 #include <netinet/in.h>
 #endif
 
-#ifdef HAVE_ERRNO_H
+#ifdef ITALC_HAVE_ERRNO_H
 #include <errno.h>
 #endif
 
@@ -123,18 +124,17 @@ static QString properLineEnding( QString _out )
 	{
 		_out += "\012";				
 	}
-#ifdef BUILD_WIN32
+#ifdef ITALC_BUILD_WIN32
 	if( _out.right( 1 ) != "\015" )
 	{
 		_out.replace( QString( "\012" ), QString( "\015\012" ) );
 	}
-#elif BUILD_LINUX
-#else
+#elif ITALC_BUILD_LINUX
 	if( _out.right( 1 ) != "\015" ) // MAC
 	{
 		_out.replace( QString( "\012" ), QString( "\015" ) );
 	}
-#endif			
+#endif
 	return( _out );
 }
 
@@ -146,7 +146,7 @@ void msgHandler( QtMsgType _type, const char * _msg )
 	{
 		return ;
 	}
-#ifdef BUILD_WIN32
+#ifdef ITALC_BUILD_WIN32
 	if( QString( _msg ).contains( "timers cannot be stopped",
 							Qt::CaseInsensitive ) )
 	{
@@ -156,7 +156,7 @@ void msgHandler( QtMsgType _type, const char * _msg )
 	if( __debug_out == NULL )
 	{
 		QString tmp_path = QDir::rootPath() +
-#ifdef BUILD_WIN32
+#ifdef ITALC_BUILD_WIN32
 						"temp"
 #else
 						"tmp"
@@ -284,7 +284,7 @@ int freePort( int _default_port )
 
 void sleep( const int _ms )
 {
-#ifdef BUILD_WIN32
+#ifdef ITALC_BUILD_WIN32
 	Sleep( static_cast<unsigned int>( _ms ) );
 #else
 	struct timespec ts = { _ms / 1000, ( _ms % 1000 ) * 1000 * 1000 } ;
@@ -298,7 +298,7 @@ void sleep( const int _ms )
 void execInTerminal( const QString & _cmds )
 {
 	QProcess::startDetached(
-#ifdef BUILD_WIN32
+#ifdef ITALC_BUILD_WIN32
 			"cmd " +
 #else
 			"xterm -e " +
@@ -343,7 +343,7 @@ void broadcastWOLPacket( const QString & _mac )
 		}
 	}
 
-#ifdef BUILD_WIN32
+#ifdef ITALC_BUILD_WIN32
 	WSADATA info;
 	if( WSAStartup( MAKEWORD( 1, 1 ), &info ) != 0 )
 	{
@@ -370,7 +370,7 @@ void broadcastWOLPacket( const QString & _mac )
 
 	sendto( sock, out_buf, sizeof( out_buf ), 0,
 			(struct sockaddr*) &my_addr, sizeof( my_addr ) );
-#ifdef BUILD_WIN32
+#ifdef ITALC_BUILD_WIN32
 	closesocket( sock );
 	WSACleanup();
 #else
@@ -379,7 +379,7 @@ void broadcastWOLPacket( const QString & _mac )
 
 
 #if 0
-#ifdef BUILD_LINUX
+#ifdef ITALC_BUILD_LINUX
 	QProcess::startDetached( "etherwake " + _mac );
 #endif
 #endif
@@ -397,7 +397,7 @@ static inline void pressAndReleaseKey( int _key )
 void logonUser( const QString & _uname, const QString & _passwd,
 						const QString & _domain )
 {
-#ifdef BUILD_WIN32
+#ifdef ITALC_BUILD_WIN32
 
 	// first check for process "explorer.exe" - if we find it, a user
 	// is logged in and we do not send our key-sequences as it probably
@@ -515,7 +515,7 @@ void logonUser( const QString & _uname, const QString & _passwd,
 		pressAndReleaseKey( _uname.utf16()[i] );
 	}
 
-#ifdef BUILD_WIN32
+#ifdef ITALC_BUILD_WIN32
 	__pressKey( XK_Alt_L, TRUE );
 	pressAndReleaseKey( accels[1] );
 	__pressKey( XK_Alt_L, FALSE );
@@ -528,7 +528,7 @@ void logonUser( const QString & _uname, const QString & _passwd,
 		pressAndReleaseKey( _passwd.utf16()[i] );
 	}
 
-#ifdef BUILD_WIN32
+#ifdef ITALC_BUILD_WIN32
 	if( !_domain.isEmpty() )
 	{
 		__pressKey( XK_Alt_L, TRUE );
@@ -557,27 +557,29 @@ static const QString userRoleNames[] =
 } ;
 
 
-QString userRoleName( const ISD::userRoles _role )
+QString userRoleName( const ItalcCore::UserRoles _role )
 {
 	return( userRoleNames[_role] );
 }
 
 
-inline QString keyPath( const ISD::userRoles _role, const QString _group,
+inline QString keyPath( const ItalcCore::UserRoles _role, const QString _group,
 							bool _only_path )
 {
 	QSettings settings( QSettings::SystemScope, "iTALC Solutions",
 								"iTALC" );
-	if( _role <= ISD::RoleNone || _role >= ISD::RoleCount )
+	if( _role <= ItalcCore::RoleNone || _role >= ItalcCore::RoleCount )
 	{
 		qWarning( "invalid role" );
 		return( "" );
 	}
 	const QString fallback_dir =
-#ifdef BUILD_LINUX
+#ifdef ITALC_BUILD_LINUX
 		"/etc/italc/keys/"
-#elif BUILD_WIN32
+#else
+#ifdef ITALC_BUILD_WIN32
 		"c:\\italc\\keys\\"
+#endif
 #endif
 		+ _group + QDir::separator() + userRoleNames[_role] +
 						QDir::separator() +
@@ -601,13 +603,13 @@ inline QString keyPath( const ISD::userRoles _role, const QString _group,
 }
 
 
-QString privateKeyPath( const ISD::userRoles _role, bool _only_path )
+QString privateKeyPath( const ItalcCore::UserRoles _role, bool _only_path )
 {
 	return( keyPath( _role, "private", _only_path ) );
 }
 
 
-QString publicKeyPath( const ISD::userRoles _role, bool _only_path )
+QString publicKeyPath( const ItalcCore::UserRoles _role, bool _only_path )
 {
 	return( keyPath( _role, "public", _only_path ) );
 }
@@ -615,7 +617,7 @@ QString publicKeyPath( const ISD::userRoles _role, bool _only_path )
 
 
 
-void setKeyPath( QString _path, const ISD::userRoles _role,
+void setKeyPath( QString _path, const ItalcCore::UserRoles _role,
 							const QString _group )
 {
 	_path = _path.left( 1 ) + _path.mid( 1 ).
@@ -624,7 +626,7 @@ void setKeyPath( QString _path, const ISD::userRoles _role,
 
 	QSettings settings( QSettings::SystemScope, "iTALC Solutions",
 								"iTALC" );
-	if( _role <= ISD::RoleNone || _role >= ISD::RoleCount )
+	if( _role <= ItalcCore::RoleNone || _role >= ItalcCore::RoleCount )
 	{
 		qWarning( "invalid role" );
 		return;
@@ -634,7 +636,7 @@ void setKeyPath( QString _path, const ISD::userRoles _role,
 }
 
 
-void setPrivateKeyPath( const QString & _path, const ISD::userRoles _role )
+void setPrivateKeyPath( const QString & _path, const ItalcCore::UserRoles _role )
 {
 	setKeyPath( _path, _role, "private" );
 }
@@ -642,7 +644,7 @@ void setPrivateKeyPath( const QString & _path, const ISD::userRoles _role )
 
 
 
-void setPublicKeyPath( const QString & _path, const ISD::userRoles _role )
+void setPublicKeyPath( const QString & _path, const ItalcCore::UserRoles _role )
 {
 	setKeyPath( _path, _role, "public" );
 }
@@ -654,7 +656,7 @@ QString snapshotDir( void )
 {
 	QSettings settings;
 	return( settings.value( "paths/snapshots",
-#ifdef BUILD_WIN32
+#ifdef ITALC_BUILD_WIN32
 				windowsConfigPath( CSIDL_PERSONAL ) +
 					QDir::separator() +
 					QObject::tr( "iTALC-snapshots" )
@@ -682,7 +684,7 @@ QString personalConfigDir( void )
 	QSettings settings;
 	const QString d = settings.value( "paths/personalconfigdir" ).toString();
 	return( d.isEmpty() ?
-#ifdef BUILD_WIN32
+#ifdef ITALC_BUILD_WIN32
 				windowsConfigPath( CSIDL_APPDATA ) +
 						QDir::separator() + "iTALC"
 #else
@@ -712,7 +714,7 @@ QString personalConfigPath( void )
 
 QString globalStartmenuDir( void )
 {
-#ifdef BUILD_WIN32
+#ifdef ITALC_BUILD_WIN32
 	return( windowsConfigPath( CSIDL_COMMON_STARTMENU ) +
 							QDir::separator() );
 #else
@@ -758,7 +760,7 @@ bool ensurePathExists( const QString & _path )
 
 
 
-#ifdef BUILD_WIN32
+#ifdef ITALC_BUILD_WIN32
 BOOL enablePrivilege( LPCTSTR lpszPrivilegeName, BOOL bEnable )
 {
 	HANDLE			hToken;
@@ -795,7 +797,7 @@ void activateWindow( QWidget * _w )
 {
 	_w->activateWindow();
 	_w->raise();
-#ifdef BUILD_WIN32
+#ifdef ITALC_BUILD_WIN32
 	SetWindowPos( _w->winId(), HWND_TOPMOST, 0, 0, 0, 0,
 						SWP_NOMOVE | SWP_NOSIZE );
 	SetWindowPos( _w->winId(), HWND_NOTOPMOST, 0, 0, 0, 0,

@@ -30,7 +30,7 @@
 #include <QtGui/QMenu>
 #include <QtGui/QContextMenuEvent>
 
-#include <config.h>
+#include <italcconfig.h>
 
 
 
@@ -142,7 +142,7 @@ void italcSideBar::paintEvent( QPaintEvent * _pe )
 	p.setFont( f );
 	p.setPen( QColor( 255, 216, 0 ) );
 	p.drawText( -height()+32, width()-3,
-				QString( "iTALC %1" ).arg( PACKAGE_VERSION ) );
+				QString( "iTALC %1" ).arg( ITALC_VERSION ) );
 }
 
 

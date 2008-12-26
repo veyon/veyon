@@ -1,3 +1,4 @@
+#if 0
 /*
  * ivs_connection.h - declaration of class ivsConnection, an implementation of
  *                    the RFB-protocol with iTALC-extensions for Qt
@@ -26,20 +27,15 @@
 #ifndef _IVS_CONNECTION_H
 #define _IVS_CONNECTION_H
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
+#include <italcconfig.h>
 
 #include <QtCore/QReadWriteLock>
 #include <QtGui/QImage>
 #include <QtGui/QRegion>
 
-
-#ifdef HAVE_LIBZ
 #include <zlib.h>
-#endif
 
-#ifdef HAVE_LIBJPEG
+
 namespace jpeglib
 {
 	extern "C"
@@ -47,7 +43,6 @@ namespace jpeglib
 		#include <jpeglib.h>
 	}
 }
-#endif
 
 #include "isd_connection.h"
 #include "rfb/rfbproto.h"
@@ -61,15 +56,16 @@ class IC_DllExport ivsConnection : public isdConnection
 {
 	Q_OBJECT
 public:
-	enum quality
-	{
-		QualityLow,
-		QualityMedium,
-		QualityHigh,
-		QualityDemoLow,
-		QualityDemoMedium,
-		QualityDemoHigh
-	} ;
+       enum quality
+       {
+               QualityLow,
+              QualityMedium,
+               QualityHigh,
+               QualityDemoLow,
+               QualityDemoMedium,
+               QualityDemoHigh
+       } ;
+
 
 
 	ivsConnection( const QString & _host, quality _q = QualityLow,
@@ -164,7 +160,6 @@ private:
 
 	bool handleCoRRE( Q_UINT16 rx, Q_UINT16 ry, Q_UINT16 rw, Q_UINT16 rh );
 
-#ifdef HAVE_LIBZ
 	bool handleZlib( Q_UINT16 rx, Q_UINT16 ry, Q_UINT16 rw, Q_UINT16 rh );
 	bool handleTight( Q_UINT16 rx, Q_UINT16 ry, Q_UINT16 rw, Q_UINT16 rh );
 	int initFilterCopy( Q_UINT16 rw, Q_UINT16 rh );
@@ -173,11 +168,8 @@ private:
 	void filterCopy( Q_UINT16 num_rows, Q_UINT32 * dest_buffer );
 	void filterPalette( Q_UINT16 num_rows, Q_UINT32 * dest_buffer );
 	void filterGradient( Q_UINT16 num_rows, Q_UINT32 * dest_buffer );
-#ifdef HAVE_LIBJPEG
 	bool decompressJpegRect( Q_UINT16 x, Q_UINT16 y, Q_UINT16 w,
 								Q_UINT16 h );
-#endif
-#endif
 	bool handleItalc( Q_UINT16 rx, Q_UINT16 ry, Q_UINT16 rw, Q_UINT16 rh );
 
 	bool m_isDemoServer;
@@ -214,15 +206,12 @@ private:
 	char m_buffer[BUFFER_SIZE];
 
 	// variables for the zlib-encoding
-#ifdef HAVE_LIBZ
 	int m_rawBufferSize;
 	char * m_rawBuffer;
 	z_stream m_decompStream;
 	bool m_decompStreamInited;
-#endif
 
 	// Variables for the ``tight'' encoding implementation.
-#ifdef HAVE_LIBZ
 
 	// Separate buffer for compressed data.
 	#define ZLIB_BUFFER_SIZE 512
@@ -237,12 +226,8 @@ private:
 	char m_tightPalette[256*4];
 	Q_UINT8 m_tightPrevRow[2048*3*sizeof(Q_UINT16)];
 
-#ifdef HAVE_LIBJPEG
 	// JPEG decoder state.
 	jpeglib::jpeg_source_mgr m_jpegSrcManager;
-#endif
-
-#endif
 
 
 	friend class demoServerClient;
@@ -255,4 +240,5 @@ signals:
 } ;
 
 
+#endif
 #endif

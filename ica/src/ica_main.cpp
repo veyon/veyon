@@ -23,9 +23,7 @@
  */
 
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
+#include <italcconfig.h>
 
 #include <QtCore/QLocale>
 #include <QtCore/QTranslator>
@@ -48,10 +46,10 @@
 #endif
 
 
-int __isd_port = PortOffsetISD;
+int __isd_port = PortOffsetIVS;
 int __ivs_port = PortOffsetIVS;
 
-#ifdef BUILD_LINUX
+#ifdef ITALC_BUILD_LINUX
 bool __rx11vs = FALSE;
 #endif
 
@@ -69,7 +67,7 @@ int serviceMain( systemService * _srv )
 }
 
 
-#ifdef BUILD_WIN32
+#ifdef ITALC_BUILD_WIN32
 
 // event-filter which makes ICA ignore quit- end end-session-messages for not
 // quitting at user logoff
@@ -89,7 +87,7 @@ bool eventFilter( void * _msg, long * _result )
 int ICAMain( int argc, char * * argv )
 {
 #ifdef DEBUG
-#ifdef BUILD_LINUX
+#ifdef ITALC_BUILD_LINUX
 	extern int _Xdebug;
 	_Xdebug = 1;
 #endif
@@ -132,7 +130,7 @@ int ICAMain( int argc, char * * argv )
 		app = a;
 	}
 
-#ifdef BUILD_WIN32
+#ifdef ITALC_BUILD_WIN32
 	app->setEventFilter( eventFilter );
 #endif
 
@@ -174,14 +172,15 @@ int ICAMain( int argc, char * * argv )
 		{
 			__ivs_port = arg_it.next().toInt();
 		}
-#ifdef BUILD_LINUX
+#ifdef ITALC_BUILD_LINUX
 		else if( a == "-rx11vs" )
 		{
 			__rx11vs = TRUE;
 		}
 		else if( a == ACCESS_DIALOG_ARG && arg_it.hasNext() )
 		{
-			return( isdServer::showAccessDialog( arg_it.next() ) );
+#warning TODO
+	//		return( isdServer::showAccessDialog( arg_it.next() ) );
 		}
 #endif
 		else if( a == "-role" )
@@ -191,15 +190,15 @@ int ICAMain( int argc, char * * argv )
 				const QString role = arg_it.next();
 				if( role == "teacher" )
 				{
-					__role = ISD::RoleTeacher;
+					__role = ItalcCore::RoleTeacher;
 				}
 				else if( role == "admin" )
 				{
-					__role = ISD::RoleAdmin;
+					__role = ItalcCore::RoleAdmin;
 				}
 				else if( role == "supporter" )
 				{
-					__role = ISD::RoleSupporter;
+					__role = ItalcCore::RoleSupporter;
 				}
 			}
 			else
@@ -213,8 +212,8 @@ int ICAMain( int argc, char * * argv )
 		}
 		else if( a == "-createkeypair" )
 		{
-			ISD::userRoles role = ( __role != ISD::RoleOther ) ?
-						__role : ISD::RoleTeacher;
+			ItalcCore::UserRoles role = ( __role != ItalcCore::RoleOther ) ?
+						__role : ItalcCore::RoleTeacher;
 			bool user_path = arg_it.hasNext();
 			QString priv = user_path ? arg_it.next() :
 					localSystem::privateKeyPath( role );
@@ -245,7 +244,7 @@ int ICAMain( int argc, char * * argv )
 				"iTALC.\n\n\n" );
 			return( 0 );
 		}
-#ifdef BUILD_LINUX
+#ifdef ITALC_BUILD_LINUX
 		else if( a == "-nosel" || a == "-nosetclipboard" ||
 				a == "-noshm" || a == "-solid" ||
 				a == "-xrandr" || a == "-onetile" )
@@ -259,7 +258,7 @@ int ICAMain( int argc, char * * argv )
 #endif
 		else if( a == "-v" || a == "--version" )
 		{
-			printf( "%s\n", PACKAGE_VERSION );
+			printf( "%s\n", ITALC_VERSION );
 			return( 0 );
 		}
 		else
@@ -270,7 +269,7 @@ int ICAMain( int argc, char * * argv )
 		}
 	}
 	
-#ifdef BUILD_LINUX
+#ifdef ITALC_BUILD_LINUX
 	if( __rx11vs )
 	{
 #if 1
@@ -293,13 +292,15 @@ int ICAMain( int argc, char * * argv )
 	__systray_icon = &sti;
 	__systray_icon->setToolTip(
 				QApplication::tr( "iTALC Client %1 on %2:%3" ).
-					arg( PACKAGE_VERSION ).
+					arg( ITALC_VERSION ).
 					arg( QHostInfo::localHostName() ).
 					arg( QString::number( __ivs_port ) ) );
 	__systray_icon->show();
 #endif
 
-	new isdServer( __ivs_port, argc, argv );
+	//new isdServer( __ivs_port, argc, argv );
+	IVS * m_ivs = new IVS( __ivs_port, argc, argv );
+	m_ivs->start( QThread::HighestPriority );
 
 	return( app->exec() );
 }
@@ -308,7 +309,7 @@ int ICAMain( int argc, char * * argv )
 
 // platform-specific startup-code follows
 
-#ifdef BUILD_WIN32
+#ifdef ITALC_BUILD_WIN32
 
 #include <windows.h>
 

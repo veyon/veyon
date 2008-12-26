@@ -27,9 +27,7 @@
 #ifndef _CLIENT_H
 #define _CLIENT_H
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
+#include <italcconfig.h>
 
 #include <QtCore/QHash>
 #include <QtCore/QMutex>

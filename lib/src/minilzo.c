@@ -43,6 +43,8 @@
  *   http://www.oberhumer.com/opensource/lzo/
  */
 
+#include "types.h"
+
 #define __LZO_IN_MINILZO
 #define LZO_BUILD
 
@@ -2475,6 +2477,7 @@ _lzo_config_check(void)
 int __lzo_init_done = 0;
 
 LZO_PUBLIC(int)
+IC_DllExport
 __lzo_init_v2(unsigned v, int s1, int s2, int s3, int s4, int s5,
                           int s6, int s7, int s8, int s9)
 {
@@ -3057,6 +3060,7 @@ match_done:
 }
 
 LZO_PUBLIC(int)
+IC_DllExport
 DO_COMPRESS      ( const lzo_bytep in , lzo_uint  in_len,
                          lzo_bytep out, lzo_uintp out_len,
                          lzo_voidp wrkmem )

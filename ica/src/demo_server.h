@@ -1,3 +1,4 @@
+#if 0
 /*
  * demo_server.h - multi-threaded slim VNC-server for demo-purposes (optimized
  *                 for lot of clients accessing server in read-only-mode)
@@ -33,7 +34,7 @@
 #include <QtCore/QThread>
 #include <QtNetwork/QTcpServer>
 
-#include "ivs_connection.h"
+#include "italc_vnc_connection.h"
 
 
 class IVS;
@@ -75,23 +76,9 @@ private:
 
 	static int s_numOfInstances;
 
-	ivsConnection * m_conn;
+	ItalcVncConnection m_conn;
 	QReadWriteLock m_cursorLock;
 	QPoint m_cursorPos;
-
-	// this thread is just responsible for updating IVS-connection's screen
-	class updaterThread : public QThread
-	{
-	public:
-		updaterThread( ivsConnection * _ic );
-		virtual ~updaterThread();
-
-	private:
-		virtual void run( void );
-		ivsConnection * m_conn;
-		volatile bool m_quit;
-	} * m_updaterThread;
-
 
 	friend class updaterThread;
 
@@ -152,4 +139,4 @@ private:
 
 
 #endif
-
+#endif

@@ -1,7 +1,7 @@
 /*
  * dialogs.h - declaration of dialog-classes
  *
- * Copyright (c) 2004-2006 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -26,11 +26,11 @@
 #ifndef _DIALOGS_H
 #define _DIALOGS_H
 
-#include "dialogs/about.uic"
-#include "dialogs/client_settings.uic"
-#include "dialogs/text_message.uic"
-#include "dialogs/support.uic"
-#include "dialogs/remote_logon.uic"
+#include "ui_about.h"
+#include "ui_client_settings.h"
+#include "ui_text_message.h"
+#include "ui_support.h"
+#include "ui_remote_logon.h"
 
 
 class client;

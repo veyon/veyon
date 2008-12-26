@@ -1,7 +1,7 @@
 /*
  *  lock_widget.h - widget for locking a client
  *
- *  Copyright (c) 2006 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ *  Copyright (c) 2006-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *  
  *  This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -25,9 +25,7 @@
 #ifndef _LOCK_WIDGET_H
 #define _LOCK_WIDGET_H
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
+#include <italcconfig.h>
 
 #include <QtGui/QWidget>
 #include <QtGui/QPixmap>
@@ -37,6 +35,7 @@
 
 class IC_DllExport lockWidget : public QWidget
 {
+	Q_OBJECT
 public:
 	enum types
 	{
@@ -49,7 +48,7 @@ public:
 
 private:
 	virtual void paintEvent( QPaintEvent * );
-#ifdef BUILD_LINUX
+#ifdef ITALC_BUILD_LINUX
 	virtual bool x11Event( XEvent * _e );
 #endif
 

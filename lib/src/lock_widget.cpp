@@ -32,11 +32,11 @@
 
 
 
-#ifdef BUILD_LINUX
+#ifdef ITALC_BUILD_LINUX
 
 #include <X11/Xlib.h>
 
-#elif BUILD_WIN32
+#elif ITALC_BUILD_WIN32
 
 #include <windows.h>
 
@@ -80,7 +80,7 @@ lockWidget::lockWidget( types _type ) :
 	grabKeyboard();
 	setCursor( Qt::BlankCursor );
 
-#ifdef BUILD_WIN32
+#ifdef ITALC_BUILD_WIN32
 	// disable screensaver
 	for( int x = 0; x < 3; ++x )
 	{
@@ -95,7 +95,7 @@ lockWidget::lockWidget( types _type ) :
 
 lockWidget::~lockWidget()
 {
-#ifdef BUILD_WIN32
+#ifdef ITALC_BUILD_WIN32
 	// revert screensaver-settings
 	for( int x = 0; x < 3; ++x )
 	{
@@ -130,7 +130,7 @@ void lockWidget::paintEvent( QPaintEvent * )
 
 
 
-#ifdef BUILD_LINUX
+#ifdef ITALC_BUILD_LINUX
 bool lockWidget::x11Event( XEvent * _e )
 {
 	switch( _e->type )

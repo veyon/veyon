@@ -112,6 +112,4 @@ void toolBar::toggleButton( QAction * _a )
 }
 
 
-#include "tool_bar.moc"
-
 

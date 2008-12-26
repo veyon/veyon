@@ -376,7 +376,6 @@ toolButtonTip::toolButtonTip( const QPixmap & _pixmap, const QString & _title,
 	m_icon( fastQImage( _pixmap ).scaled( 72, 72 ) ),
 	m_title( _title ),
 	m_description( _description ),
-	m_dissolveSize( 24 ),
 	m_toolButton( _tool_btn )
 {
 	setAttribute( Qt::WA_DeleteOnClose, TRUE );
@@ -500,35 +499,8 @@ void toolButtonTip::updateMask( void )
 			p.fillRect( dx, 0, 10, 10, Qt::color1 );
 		}
 	}
-/*	p.setBrush( Qt::color0 );
-	p.setPen( Qt::color0 );
-
-	if( m_dissolveSize > 0 )
-	{
-		const int size = 16;
-		for( Q_UINT16 y = 0; y < height() + size; y += size )
-		{
-			Q_INT16 s = m_dissolveSize * width() / 128;
-			for( Q_INT16 x = width(); x > -size; x -= size, s -= 2 )
-			{
-				if( s < 0 )
-				{
-					s = 0;
-				}
-				p.drawEllipse( x - s / 2, y - s / 2, s, s );
-			}
-		}
-	}*/
 
 	setMask( b );
-
-/*	if( --m_dissolveSize >= 0 )
-	{
-		QTimer::singleShot( 20, this, SLOT( updateMask() ) );
-	}*/
 }
 
 
-
-
-#include "tool_button.moc"

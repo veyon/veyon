@@ -26,22 +26,20 @@
 #ifndef _VNCVIEW_H
 #define _VNCVIEW_H
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
+#include <italcconfig.h>
 
 #include <QtCore/QEvent>
 #include <QtCore/QThread>
 #include <QtGui/QWidget>
 
 #include "types.h"
-#include "ivs_connection.h"
+#include "italc_vnc_connection.h"
+#include "fast_qimage.h"
 
 
 class progressWidget;
 class remoteControlWidget;
 class systemKeyTrapper;
-class vncWorker;
 
 
 class IC_DllExport vncView : public QWidget
@@ -62,7 +60,16 @@ public:
 		return( m_scaledView );
 	}
 
+	ItalcVncConnection & italcVncConnection( void )
+	{
+		return m_vncConn;
+	}
+
 	QSize scaledSize( const QSize & _default = QSize() ) const;
+
+	QSize framebufferSize() const;
+	QSize sizeHint() const;
+	QSize minimumSizeHint() const;
 
 
 public slots:
@@ -71,44 +78,41 @@ public slots:
 
 
 signals:
-	void pointerEvent( Q_UINT16 _x, Q_UINT16 _y, Q_UINT16 _button_mask );
-	void keyEvent( Q_UINT32 _key, bool _down );
 	void mouseAtTop( void );
 	void startConnection( void );
 	void connectionEstablished( void );
 
 
 private slots:
-	void framebufferUpdate( void );
 	void updateCursorShape( void );
+	void updateImage(int x, int y, int w, int h);
 
 
 private:
-	virtual void customEvent( QEvent * _user );
-	virtual bool event( QEvent * );
+	virtual bool eventFilter( QObject * _obj, QEvent * _event );
+	virtual bool event( QEvent * _ev );
 	virtual void focusInEvent( QFocusEvent * );
 	virtual void focusOutEvent( QFocusEvent * );
-	virtual void mouseMoveEvent( QMouseEvent * );
-	virtual void mousePressEvent( QMouseEvent * );
-	virtual void mouseReleaseEvent( QMouseEvent * );
-	virtual void mouseDoubleClickEvent( QMouseEvent * );
 	virtual void paintEvent( QPaintEvent * );
 	virtual void resizeEvent( QResizeEvent * );
-	virtual void wheelEvent( QWheelEvent * );
 
-	void keyEvent( QKeyEvent * );
-	void mouseEvent( QMouseEvent * );
+	void keyEventHandler( QKeyEvent * );
+	void mouseEventHandler( QMouseEvent * );
+	void wheelEventHandler( QWheelEvent * );
 	void unpressModifiers( void );
 
 	QPoint mapToFramebuffer( const QPoint & _pos );
 	QRect mapFromFramebuffer( const QRect & _rect );
 
 
-	ivsConnection * m_connection;
+	ItalcVncConnection m_vncConn;
+	int m_x, m_y, m_w, m_h;
+	bool m_repaint;
+	fastQImage m_frame;
 	bool m_viewOnly;
 	bool m_viewOnlyFocus;
 	bool m_scaledView;
-	bool m_running;
+	bool m_initDone;
 
 	QPoint m_viewOffset;
 
@@ -121,52 +125,9 @@ private:
 
 
 	friend class remoteControlWidget;
-	friend class vncWorker;
 
 } ;
 
-
-
-
-class vncWorker : public QObject
-{
-	Q_OBJECT
-public:
-	vncWorker( vncView * _vv );
-	~vncWorker();
-
-
-private slots:
-	void framebufferUpdate( void );
-	void sendPointerEvent( Q_UINT16 _x, Q_UINT16 _y,
-							Q_UINT16 _button_mask );
-	void sendKeyEvent( Q_UINT32 _key, bool _down );
-
-
-private:
-	vncView * m_vncView;
-
-} ;
-
-
-
-
-class vncViewThread : public QThread
-{
-	Q_OBJECT
-public:
-	vncViewThread( vncView * _vv );
-	virtual ~vncViewThread()
-	{
-	}
-
-
-private:
-	virtual void run( void );
-
-	vncView * m_vncView;
-
-} ;
 
 
 #endif

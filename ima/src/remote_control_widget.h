@@ -33,6 +33,7 @@
 
 
 class vncView;
+class ItalcCoreConnection;
 class remoteControlWidget;
 class mainWindow;
 
@@ -111,6 +112,7 @@ private slots:
 
 private:
 	vncView * m_vncView;
+	ItalcCoreConnection * m_icc;
 	remoteControlWidgetToolBar * m_toolBar;
 	mainWindow * m_mainWindow;
 

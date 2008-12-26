@@ -24,7 +24,6 @@
 
 #include "kmultitabbar.h"
 #include "tool_button.h"
-#include "kmultitabbar.moc"
 
 #include <QtGui/QActionEvent>
 #include <QtGui/QLayout>

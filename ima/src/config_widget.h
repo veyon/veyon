@@ -27,7 +27,7 @@
 #define _CONFIG_WIDGET_H
 
 #include "side_bar_widget.h"
-#include "dialogs/config.uic"
+#include "ui_config.h"
 
 
 class configWidget : public sideBarWidget, private Ui::config

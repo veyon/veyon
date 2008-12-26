@@ -1,3 +1,4 @@
+#if 0
 /*
  * ivs_connection.cpp - class ivsConnection, an implementation of the 
  *                      RFB-protocol with iTALC-extensions for Qt
@@ -24,9 +25,7 @@
  */
 
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
+#include <italcconfig.h>
 
 #include <cstring>
 
@@ -49,7 +48,7 @@ static const rfbPixelFormat __localDisplayFormat =
 {
 	32, 		// bit per pixel
 	32,		// depth
-#ifdef WORDS_BIGENDIAN
+#ifdef ITALC_WORDS_BIGENDIAN
 	1,		// big endian
 #else
 	0,		// big endian
@@ -76,7 +75,7 @@ static const rfbPixelFormat __localDisplayFormat =
 ivsConnection::ivsConnection( const QString & _host, quality _q,
 							bool _use_auth_file,
 							QObject * _parent ) :
-	isdConnection( ( _host.contains( ':' ) ? _host : _host + ":5900" ),
+	isdConnection( ( _host.contains( ':' ) ? _host : _host + ":11100" ),
 								_parent ),
 	m_isDemoServer( FALSE ),
 	m_useAuthFile( _use_auth_file ),
@@ -93,10 +92,8 @@ ivsConnection::ivsConnection( const QString & _host, quality _q,
 	m_rawBuffer( NULL ),
 	m_decompStreamInited( FALSE )
 {
-#ifdef HAVE_LIBZ
 	m_zlibStreamActive[0] = m_zlibStreamActive[1] = m_zlibStreamActive[2] =
 						m_zlibStreamActive[3] = FALSE;
-#endif
 }
 
 
@@ -212,12 +209,8 @@ ivsConnection::states ivsConnection::protocolInitialization( void )
 	}
 	else
 	{
-#ifdef HAVE_LIBZ
-#ifdef HAVE_LIBJPEG
 		encs[se->nEncodings++] = swap32IfLE( rfbEncodingTight );
-#endif
 		encs[se->nEncodings++] = swap32IfLE( rfbEncodingZlib );
-#endif
 		encs[se->nEncodings++] = swap32IfLE( rfbEncodingCoRRE );
 		encs[se->nEncodings++] = swap32IfLE( rfbEncodingCopyRect );
 		encs[se->nEncodings++] = swap32IfLE( rfbEncodingRaw );
@@ -225,8 +218,6 @@ ivsConnection::states ivsConnection::protocolInitialization( void )
 		//encs[se->nEncodings++] = swap32IfLE( rfbEncodingXCursor );
 		encs[se->nEncodings++] = swap32IfLE( rfbEncodingPointerPos );
 		//encs[se->nEncodings++] = swap32IfLE( rfbEncodingRRE );
-#ifdef HAVE_LIBZ
-#ifdef HAVE_LIBJPEG
 		switch( m_quality )
 		{
 			case QualityLow:
@@ -243,10 +234,8 @@ ivsConnection::states ivsConnection::protocolInitialization( void )
 			default:
 				break;
 		}
-#endif
 		encs[se->nEncodings++] = swap32IfLE(
 						rfbEncodingCompressLevel4 );
-#endif
 	}
 
 	//encs[se->nEncodings++] = swap32IfLE( rfbEncodingLastRect );
@@ -280,10 +269,8 @@ ivsConnection::states ivsConnection::protocolInitialization( void )
 
 void ivsConnection::close( void )
 {
-#ifdef HAVE_LIBZ
 	m_zlibStreamActive[0] = m_zlibStreamActive[1] = m_zlibStreamActive[2] =
 						m_zlibStreamActive[3] = FALSE;
-#endif
 	isdConnection::close();
 }
 
@@ -603,7 +590,6 @@ bool ivsConnection::handleServerMessages( bool _send_screen_update, int _tries )
 			return( FALSE );
 		}
 		break;
-#ifdef HAVE_LIBZ
 					case rfbEncodingZlib:
 		if( !handleZlib( rect.r.x, rect.r.y, rect.r.w, rect.r.h ) )
 		{
@@ -616,7 +602,6 @@ bool ivsConnection::handleServerMessages( bool _send_screen_update, int _tries )
 				return( FALSE );
 		}
 		break;
-#endif
 					case rfbEncodingPointerPos:
 		if( !handleCursorPos( rect.r.x, rect.r.y ) )
 		{
@@ -867,7 +852,6 @@ bool ivsConnection::handleRRE( Q_UINT16, Q_UINT16, Q_UINT16, Q_UINT16 )
     (((uint32_t)(b) & 0xFF) * __localDisplayFormat.blueMax + 127) / 255            \
     << __localDisplayFormat.blueShift)
 
-#ifdef HAVE_LIBZ
 
 
 bool ivsConnection::handleZlib( Q_UINT16 rx, Q_UINT16 ry, Q_UINT16 rw,
@@ -1044,11 +1028,7 @@ bool ivsConnection::handleTight( Q_UINT16 rx, Q_UINT16 ry, Q_UINT16 rw,
 
 	if( comp_ctl == rfbTightJpeg )
 	{
-#ifdef HAVE_LIBJPEG
 		return( decompressJpegRect( rx, ry, rw, rh ) );
-#else
-		return ( -1 );
-#endif
 	}
 
 
@@ -1415,7 +1395,6 @@ void ivsConnection::filterPalette( Q_UINT16 num_rows, Q_UINT32 * dst )
 }
 
 
-#ifdef HAVE_LIBJPEG
 /*----------------------------------------------------------------------------
  *
  * JPEG decompression.
@@ -1532,10 +1511,6 @@ bool ivsConnection::decompressJpegRect( Q_UINT16 x, Q_UINT16 y, Q_UINT16 w,
 
 	return( TRUE );
 }
-
-#endif	/* LIBJPEG */
-
-#endif	/* LIBZ */
 
 
 
@@ -1812,7 +1787,4 @@ bool ivsConnection::handleItalc( Q_UINT16 rx, Q_UINT16 ry, Q_UINT16 rw,
 	return( TRUE );
 }
 
-
-
-#include "ivs_connection.moc"
-
+#endif

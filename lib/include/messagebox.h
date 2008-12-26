@@ -37,6 +37,7 @@
 
 class IC_DllExport messageBox : public QDialog
 {
+	Q_OBJECT
 public:
 	enum MessageIcon
 	{

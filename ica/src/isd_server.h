@@ -32,7 +32,7 @@
 #include <QtCore/QStringList>
 #include <QtNetwork/QTcpServer>
 
-#include "isd_base.h"
+#include "italc_core.h"
 
 
 class IVS;
@@ -59,10 +59,10 @@ public:
 	int processClient( socketDispatcher _sd, void * _user );
 
 	static bool protocolInitialization( socketDevice & _sd,
-						italcAuthTypes _auth_type,
+						ItalcAuthTypes _auth_type,
 						bool _demo_server = FALSE );
 	static bool authSecTypeItalc( socketDispatcher _sd, void * _user,
-				italcAuthTypes _auth_type = ItalcAuthDSA );
+				ItalcAuthTypes _auth_type = ItalcAuthDSA );
 
 	static quint16 isdPort( void );
 
@@ -97,7 +97,7 @@ private:
 	static QStringList s_allowedDemoClients;
 
 	QMutex m_actionMutex;
-	QList<QPair<ISD::commands, QString> > m_pendingActions;
+	QList<QPair<ItalcCore::Commands, QString> > m_pendingActions;
 
 	QSignalMapper m_readyReadMapper;
 
@@ -113,4 +113,3 @@ int processItalcClient( socketDispatcher _sd, void * user );
 
 
 #endif
-

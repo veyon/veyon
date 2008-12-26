@@ -112,12 +112,12 @@ automatically when installing the package):
    doesn't take effect, so either edit /etc/kde3/kdm/Xsetup or
    /etc/X11/gdm/Xsetup
 
-You can easily test whether all is fine by running telnet on port 5900 of the
+You can easily test whether all is fine by running telnet on port 11100 of the
 according compter.
 
 example:
 
-telnet 192.168.1.2 5900
+telnet 192.168.1.2 11100
 
 
 You should see something like "RFB 003.008".

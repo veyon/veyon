@@ -84,5 +84,3 @@ void demoClient::viewDestroyed( QObject * _obj )
 }
 
 
-
-#include "demo_client.moc"

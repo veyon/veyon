@@ -2,7 +2,7 @@
  * italc_rfb_ext.h - an extension of the RFB-protocol, used for communication
  *                   between master and clients
  *
- * Copyright (c) 2004-2006 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -27,7 +27,7 @@
 #define _ITALC_RFB_EXT_H
 
 #include <rfb/rfbproto.h>
-
+#include <rfb/rfbclient.h>
 
 #include "types.h"
 
@@ -43,11 +43,11 @@
 #define rfbSecTypeItalc 19
 
 
-enum
+enum PortOffsets
 {
-	PortOffsetISD = 5800,
-	PortOffsetIVS = 5900
+	PortOffsetIVS = 11100
 } ;
+
 
 struct italcRectEncodingHeader
 {
@@ -57,7 +57,7 @@ struct italcRectEncodingHeader
 } ;
 
 
-enum italcAuthTypes
+enum ItalcAuthTypes
 {
 	// no authentication needed
 	ItalcAuthNone,
@@ -88,10 +88,19 @@ enum italcAuthTypes
 } ;
 
 
-enum italcAuthResults
+enum ItalcAuthResults
 {
 	ItalcAuthOK,
 	ItalcAuthFailed
 } ;
+
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+int handleSecTypeItalc( rfbClient * _cl );
+#ifdef __cplusplus
+}
+#endif
 
 #endif

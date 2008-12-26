@@ -2,7 +2,7 @@
  * system_key_trapper.cpp - class for trapping system-keys and -key-sequences
  *                          such as Alt+Ctrl+Del, Alt+Tab etc.
  *
- * Copyright (c) 2006-2007 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *  
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -24,12 +24,9 @@
  */
 
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
+#include <italcconfig.h>
 
-
-#ifdef BUILD_WIN32
+#ifdef ITALC_BUILD_WIN32
 
 #define _WIN32_WINNT 0x0500 // for KBDLLHOOKSTRUCT
 
@@ -55,7 +52,7 @@ QMutex systemKeyTrapper::s_refCntMutex;
 int systemKeyTrapper::s_refCnt = 0;
 
 
-#ifdef BUILD_WIN32
+#ifdef ITALC_BUILD_WIN32
 
 
 // some code for disabling system's hotkeys such as Alt+Ctrl+Del, Alt+Tab,
@@ -213,7 +210,7 @@ void systemKeyTrapper::setEnabled( bool _on )
 	m_enabled = _on;
 	if( _on )
 	{
-#if BUILD_WIN32
+#ifdef ITALC_BUILD_WIN32
 		if( !s_refCnt )
 		{
 			if( !g_hHookKbdLL )
@@ -247,7 +244,7 @@ void systemKeyTrapper::setEnabled( bool _on )
 	else
 	{
 		--s_refCnt;
-#if BUILD_WIN32
+#ifdef ITALC_BUILD_WIN32
 		if( !s_refCnt )
 		{
 			UnhookWindowsHookEx( g_hHookKbdLL );
@@ -306,6 +303,4 @@ void systemKeyTrapper::checkForTrappedKeys( void )
 	}
 }
 
-
-#include "system_key_trapper.moc"
 

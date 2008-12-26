@@ -2,7 +2,7 @@
  * inject.h - functions for injecting code into winlogon.exe for disabling
  *            SAS (Alt+Ctrl+Del)
  *           
- * Copyright (c) 2006 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *  
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -27,11 +27,9 @@
 #ifndef _INJECT_H
 #define _INJECT_H
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
+#include <italcconfig.h>
 
-#ifdef BUILD_WIN32
+#ifdef ITALC_BUILD_WIN32
 
 #include <windows.h>
 

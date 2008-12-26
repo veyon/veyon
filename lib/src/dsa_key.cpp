@@ -38,9 +38,7 @@
  *
  ****************************************************************************/
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
+#include <italcconfig.h>
 
 // project-headers
 #include "dsa_key.h"

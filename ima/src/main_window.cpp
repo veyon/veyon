@@ -23,9 +23,7 @@
  */
 
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
+#include <italcconfig.h>
 
 #include <QtCore/QDir>
 #include <QtCore/QDateTime>
@@ -90,7 +88,7 @@ mainWindow::mainWindow( int _rctrl_screen ) :
 				:
 				QApplication::desktop()->screenNumber( this ) )
 {
-	setWindowTitle( tr( "iTALC" ) + " " + VERSION );
+	setWindowTitle( tr( "iTALC" ) + " " + ITALC_VERSION );
 	setWindowIcon( QPixmap( ":/resources/logo.png" ) );
 
 	if( mainWindow::ensureConfigPathExists() == FALSE )
@@ -679,6 +677,3 @@ void clientWorkspace::contextMenuEvent( QContextMenuEvent * _event )
 
 
 
-
-#include "main_window.moc"
-#include "italc_side_bar.moc"

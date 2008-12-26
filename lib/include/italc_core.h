@@ -1,5 +1,5 @@
 /*
- * isd_base.h - basics concerning ISD (iTALC Service Daemon)
+ * italc_core.h - definitions for iTALC Core
  *
  * Copyright (c) 2006-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
@@ -22,10 +22,10 @@
  *
  */
 
-#ifndef _ISD_BASE_H
-#define _ISD_BASE_H
+#ifndef _ITALC_CORE_H
+#define _ITALC_CORE_H
 
-#include <config.h>
+#include <italcconfig.h>
 
 #include <QtCore/QtGlobal>
 #include <QtCore/QIODevice>
@@ -36,19 +36,20 @@
 #include "types.h"
 #include "italc_rfb_ext.h"
 #include "rfb/rfbproto.h"
+#include "rfb/rfbclient.h"
 
 
-// isd-server-stuff
-#define isdProtocolVersionFormat "ISD %03d.%03d\n"
-#define isdProtocolMajorVersion 1
-#define isdProtocolMinorVersion 0
+// iTALC Core Server stuff
+#define icsProtocolVersionFormat "ICS %03d.%03d\n"
+#define icsProtocolMajorVersion 1
+#define icsProtocolMinorVersion 0
 
-#define sz_isdProtocolVersionMsg sz_rfbProtocolVersionMsg
+#define sz_icsProtocolVersionMsg sz_rfbProtocolVersionMsg
 
-typedef char isdProtocolVersionMsg[sz_isdProtocolVersionMsg+1];
+typedef char icsProtocolVersionMsg[sz_icsProtocolVersionMsg+1];
 
 
-// demo-server-stuff
+// iTALC Demo Server stuff
 #define idsProtocolVersionFormat "IDS %03d.%03d\n"
 #define idsProtocolMajorVersion 1
 #define idsProtocolMinorVersion 0
@@ -104,19 +105,22 @@ typedef enum
 	SocketRead,
 	SocketWrite,
 	SocketGetPeerAddress
-} socketOpCodes;
+} SocketOpCodes;
 
 
 typedef qint64 ( * socketDispatcher )( char * _buffer, const qint64 _bytes,
-						const socketOpCodes _op_code,
+						const SocketOpCodes _op_code,
 						void * _user );
 
+
+extern qint64 libvncClientDispatcher( char * _buf, const qint64 _len,
+				const SocketOpCodes _op_code, void * _user );
 
 
 class socketDevice : public QIODevice
 {
 public:
-	inline socketDevice( socketDispatcher _sd, void * _user ) :
+	inline socketDevice( socketDispatcher _sd, void * _user = NULL ) :
 		QIODevice(),
 		m_socketDispatcher( _sd ),
 		m_user( _user )
@@ -183,17 +187,16 @@ private:
 } ;
 
 
-
+/*
 qint64 IC_DllExport qtcpsocketDispatcher( char * _buf, const qint64 _len,
 						const socketOpCodes _op_code,
-						void * _user );
-
+						void * _user );*/
 
 
 
 typedef struct
 {
-	enum commands
+	enum Commands
 	{
 		DummyCmd = rfbItalcServiceRequest + 1,
 		GetUserInformation,
@@ -230,17 +233,28 @@ typedef struct
 
 	class msg
 	{
-		commands m_cmd;
+		Commands m_cmd;
 		socketDevice * m_socketDevice;
 
 		typedef QMap<QString, QVariant> argMap;
 		argMap m_argMap;
 
 	public:
-		msg( socketDevice * _sd, const commands _cmd = DummyCmd ) :
+		msg( socketDevice * _sd, const Commands _cmd = DummyCmd ) :
 			m_cmd( _cmd ),
 			m_socketDevice( _sd )
 		{
+		}
+
+		msg( const Commands _cmd ) :
+			m_cmd( _cmd ),
+			m_socketDevice( NULL )
+		{
+		}
+
+		void setSocketDevice( socketDevice * _sd )
+		{
+			m_socketDevice = _sd;
 		}
 
 		msg & addArg( const QString & _name, const QVariant & _content )
@@ -273,7 +287,7 @@ typedef struct
 
 	} ;
 
-	enum userRoles
+	enum UserRoles
 	{
 		RoleNone,
 		RoleTeacher,
@@ -283,11 +297,12 @@ typedef struct
 		RoleCount
 	} ;
 
+	static void initAuthentication( void );
 
-} ISD;
+} ItalcCore;
 
 
-extern IC_DllExport ISD::userRoles __role;
+extern IC_DllExport ItalcCore::UserRoles __role;
 
 
 #endif

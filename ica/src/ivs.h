@@ -48,7 +48,7 @@ public:
 		return( m_runningInSeparateProcess );
 	}
 
-#ifdef BUILD_LINUX
+#ifdef ITALC_BUILD_LINUX
 	void restart( void )
 	{
 		m_restart = TRUE;
@@ -65,7 +65,7 @@ private:
 	quint16 m_port;
 	bool m_runningInSeparateProcess;
 
-#ifdef BUILD_LINUX
+#ifdef ITALC_BUILD_LINUX
 	bool m_restart;
 #endif
 

@@ -2,7 +2,7 @@
  * inject.cpp - functions for injecting code into winlogon.exe for disabling
  *              SAS (Alt+Ctrl+Del)
  *           
- * Copyright (c) 2006 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *  
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -27,7 +27,7 @@
 #include "inject.h"
 #include "local_system.h"
 
-#ifdef BUILD_WIN32
+#ifdef ITALC_BUILD_WIN32
 
 #include <ctype.h>
 #include <windows.h>

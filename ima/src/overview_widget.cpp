@@ -1,7 +1,7 @@
 /*
  * overview_widget.cpp - implementation of overview-widget for side-bar
  *
- * Copyright (c) 2004-2006 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -46,6 +46,4 @@ overviewWidget::overviewWidget( mainWindow * _main_window, QWidget * _parent ) :
 }
 
 
-
-#include "overview_widget.moc"
 

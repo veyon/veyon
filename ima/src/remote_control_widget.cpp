@@ -24,6 +24,7 @@
 
 #include "remote_control_widget.h"
 #include "vncview.h"
+#include "italc_core_connection.h"
 #include "local_system.h"
 #include "tool_button.h"
 #include "main_window.h"
@@ -261,6 +262,7 @@ remoteControlWidget::remoteControlWidget( const QString & _host,
 						mainWindow * _main_window ) :
 	QWidget( 0 ),
 	m_vncView( new vncView( _host, this, FALSE ) ),
+	m_icc( new ItalcCoreConnection( m_vncView->italcVncConnection() ) ),
 	m_toolBar( new remoteControlWidgetToolBar( this, _view_only ) ),
 	m_mainWindow( _main_window ),
 	m_extraStates( Qt::WindowMaximized )
@@ -270,10 +272,11 @@ remoteControlWidget::remoteControlWidget( const QString & _host,
 	m_vncView->move( 0, 0 );
 	connect( m_vncView, SIGNAL( mouseAtTop() ), m_toolBar,
 							SLOT( appear() ) );
-	connect( m_vncView, SIGNAL( keyEvent( Q_UINT32, bool ) ),
-				this, SLOT( checkKeyEvent( Q_UINT32, bool ) ) );
-	//showMaximized();
-	showFullScreen();
+/*	connect( m_vncView, SIGNAL( keyEvent( Q_UINT32, bool ) ),
+				this, SLOT( checkKeyEvent( Q_UINT32, bool ) ) );*/
+//	showMaximized();
+	//showFullScreen();
+	show();
 	localSystem::activateWindow( this );
 
 	toggleViewOnly( _view_only );
@@ -291,8 +294,9 @@ remoteControlWidget::~remoteControlWidget()
 
 QString remoteControlWidget::host( void ) const
 {
-	return( m_vncView->m_connection ? m_vncView->m_connection->host() :
-								QString::null );
+	return "blah";
+/*	return( m_vncView->m_connection ? m_vncView->m_connection->host() :
+								QString::null );*/
 }
 
 
@@ -304,7 +308,7 @@ void remoteControlWidget::updateWindowTitle( void )
 			tr( "View live (%1 at host %2)" )
 		:
 			tr( "Remote control (%1 at host %2)" );
-	QString u = m_vncView->m_connection->user();
+	QString u = m_icc->user();// = m_vncView->m_connection->user();
 	if( u.isEmpty() )
 	{
 		u = tr( "unknown user" );
@@ -330,8 +334,8 @@ void remoteControlWidget::resizeEvent( QResizeEvent * )
 
 void remoteControlWidget::checkKeyEvent( Q_UINT32 _key, bool _pressed )
 {
-	if( _pressed && _key == XK_Escape &&
-		m_vncView->m_connection->state() != ivsConnection::Connected )
+	if( _pressed && _key == XK_Escape/* &&
+		m_vncView->m_connection->state() != ivsConnection::Connected*/ )
 	{
 		close();
 	}
@@ -342,7 +346,7 @@ void remoteControlWidget::checkKeyEvent( Q_UINT32 _key, bool _pressed )
 
 void remoteControlWidget::lockStudent( bool _on )
 {
-	m_vncView->m_connection->disableLocalInputs( _on );
+	//m_vncView->m_connection->disableLocalInputs( _on );
 }
 
 
@@ -376,13 +380,11 @@ void remoteControlWidget::toggleViewOnly( bool _on )
 
 void remoteControlWidget::takeSnapshot( void )
 {
-	m_vncView->m_connection->takeSnapshot();
+/*	m_vncView->m_connection->takeSnapshot();
 	if( m_mainWindow )
 	{
 		m_mainWindow->reloadSnapshotList();
-	}
+	}*/
 }
 
-
-#include "remote_control_widget.moc"
 

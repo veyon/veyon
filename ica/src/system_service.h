@@ -1,7 +1,7 @@
 /*
  * system_service.h - convenient class for using app as system-service
  *           
- * Copyright (c) 2006 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *  
  * This file is part of iTALC - http://italc.sourceforge.net
  * This file is part of LUPUS - http://lupus.sourceforge.net
@@ -27,12 +27,9 @@
 #ifndef _SYSTEM_SERVICE_H
 #define _SYSTEM_SERVICE_H
 
+#include <italcconfig.h>
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
-
-#ifdef BUILD_WIN32
+#ifdef ITALC_BUILD_WIN32
 #include <windows.h>
 #include <QtCore/QFile>
 #include <QtCore/QTextStream>
@@ -179,7 +176,7 @@ private:
 
 	static void serviceMainThread( void * );
 
-#ifdef BUILD_WIN32
+#ifdef ITALC_BUILD_WIN32
 	static void WINAPI main( DWORD, char * * );
 	static DWORD WINAPI serviceCtrl( DWORD _ctrlcode, DWORD dwEventType, LPVOID lpEventData, LPVOID lpContext );
 	static bool reportStatus( DWORD _state, DWORD _exit_code,

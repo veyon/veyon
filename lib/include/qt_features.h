@@ -39,7 +39,7 @@
 #define SYSTEMTRAY_SUPPORT
 #endif
 
-#ifdef BUILD_LINUX
+#ifdef ITALC_BUILD_LINUX
 #define NATIVE_VIRTUAL_KEY_SUPPORT
 #endif
 

@@ -25,6 +25,7 @@
 #ifndef _TYPES_H
 #define _TYPES_H
 
+#include <italcconfig.h>
 #include <stdint.h>
 
 typedef signed char             Q_INT8;         /* 8 bit signed */
@@ -35,7 +36,7 @@ typedef int32_t			Q_INT32;        /* 32 bit signed */
 typedef uint32_t 		Q_UINT32;       /* 32 bit unsigned */
 
 
-#ifdef BUILD_WIN32
+#ifdef ITALC_BUILD_WIN32
 
 #ifdef BUILD_LIBRARY
 #define IC_DllExport __declspec(dllexport)

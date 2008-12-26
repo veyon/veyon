@@ -1,7 +1,7 @@
 /*
- *  lock_widget.cpp - widget for locking a client
+ *  progess_widget.cpp - widget for locking a client
  *
- *  Copyright (c) 2006 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ *  Copyright (c) 2006-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *  
  *  This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -103,8 +103,4 @@ void progressWidget::paintEvent( QPaintEvent * )
 	p.drawText( 14 + m_pixmaps[m_curFrame].width(), 24, m_txt );
 }
 
-
-
-
-#include "progress_widget.moc"
 

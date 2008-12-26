@@ -110,7 +110,6 @@ private:
 
 class toolButtonTip : public QWidget
 {
-	Q_OBJECT
 public:
 	toolButtonTip( const QPixmap & _pixmap, const QString & _title,
 				const QString & _description,
@@ -124,17 +123,14 @@ protected:
 	virtual void resizeEvent( QResizeEvent * _re );
 
 
-private slots:
+private:
 	void updateMask( void );
 
-
-private:
 	QImage m_icon;
 	QString m_title;
 	QString m_description;
 
 	QImage m_bg;
-	int m_dissolveSize;
 
 	QWidget * m_toolButton;
 

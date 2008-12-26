@@ -1,5 +1,6 @@
+#if 0
 /*
- * isd_connection.cpp - client-implementation for ISD (iTALC Service Daemon)
+ * isd_connection.cpp - client-implementation for ItalcCore (iTALC Service Daemon)
  *
  * Copyright (c) 2006-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
@@ -23,9 +24,7 @@
  */
 
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
+#include <italcconfig.h>
 
 /*#define NO_QTCPSOCKET_CONNECT*/
 
@@ -34,7 +33,7 @@
 
 #include <stdio.h>
 
-#ifdef BUILD_WIN32
+#ifdef ITALC_BUILD_WIN32
 
 #include <io.h>
 #include <winsock.h>
@@ -56,7 +55,7 @@
 
 #define lasterror errno
 
-#endif /* BUILD_WIN32 */
+#endif /* ITALC_BUILD_WIN32 */
 
 #include <sys/types.h>
 
@@ -74,9 +73,32 @@
 
 static privateDSAKey * privDSAKey = NULL;
 
-ISD::userRoles __role = ISD::RoleOther;
+ItalcCore::userRoles __role = ItalcCore::RoleOther;
 
 QByteArray __appInternalChallenge;
+
+
+qint64 libvncClientDispatcher( char * _buf, const qint64 _len,
+				const socketOpCodes _op_code, void * _user )
+{
+	rfbClientPtr cl = (rfbClientPtr) _user;
+	switch( _op_code )
+	{
+		case SocketRead:
+			return( rfbReadExact( cl, _buf, _len ) == 1 ? _len :
+									0 );
+		case SocketWrite:
+			return( rfbWriteExact( cl, _buf, _len ) == 1 ? _len :
+									0 );
+		case SocketGetPeerAddress:
+			strncpy( _buf, cl->host, _len );
+			break;
+	}
+	return( 0 );
+
+}
+
+
 
 
 bool isdConnection::initAuthentication( void )
@@ -109,7 +131,7 @@ isdConnection::isdConnection( const QString & _host, QObject * _parent ) :
 	m_state( Disconnected ),
 	m_socketDev( qtcpsocketDispatcher, NULL ),
 	m_host( _host ),
-	m_port( PortOffsetISD ),
+	m_port( PortOffsetItalcCore ),
 	m_demoServerPort( 0 ),
 	m_user( "" )
 {
@@ -139,7 +161,7 @@ bool connectToHost( const QString & _host, int _port, QTcpSocket * _sock )
 	if( initialized == FALSE )
 	{
 		initialized = TRUE;
-#ifdef BUILD_WIN32
+#ifdef ITALC_BUILD_WIN32
 		// Initialise WinPoxySockets on Win32
 		WORD wVersionRequested;
 		WSADATA wsaData;
@@ -225,7 +247,7 @@ bool connectToHost( const QString & _host, int _port, QTcpSocket * _sock )
 	if( res < 0 )
 	{
 		if( lasterror ==
-	#ifdef BUILD_WIN32
+	#ifdef ITALC_BUILD_WIN32
 				WSAEWOULDBLOCK
 	#else
 				EINPROGRESS
@@ -308,7 +330,7 @@ isdConnection::states isdConnection::open( void )
 			m_socket->error() == QTcpSocket::NetworkError )
 #endif
 	{
-#ifdef BUILD_WIN32
+#ifdef ITALC_BUILD_WIN32
 		localSystem::sleep( 2000 );
 #endif
 		return( m_state = HostUnreachable );
@@ -520,17 +542,17 @@ long isdConnection::readCompactLen( void )
 
 isdConnection::states isdConnection::protocolInitialization( void )
 {
-	isdProtocolVersionMsg protocol_version;
+	icsProtocolVersionMsg protocol_version;
 
-	if( !readFromServer( protocol_version, sz_isdProtocolVersionMsg ) )
+	if( !readFromServer( protocol_version, sz_icsProtocolVersionMsg ) )
 	{
 		return( m_state = ConnectionFailed );
 	}
 
-	protocol_version[sz_isdProtocolVersionMsg] = 0;
+	protocol_version[sz_icsProtocolVersionMsg] = 0;
 
 	int major, minor;
-	if( sscanf( protocol_version, isdProtocolVersionFormat, &major,
+	if( sscanf( protocol_version, icsProtocolVersionFormat, &major,
 							&minor ) != 2 )
 	{
 		qCritical( "isdConnection::protocolInitialization(): "
@@ -538,7 +560,7 @@ isdConnection::states isdConnection::protocolInitialization( void )
 		return( m_state = InvalidServer );
 	}
 
-	if( !writeToServer( protocol_version, sz_isdProtocolVersionMsg ) )
+	if( !writeToServer( protocol_version, sz_icsProtocolVersionMsg ) )
 	{
 		return( m_state = ConnectionFailed );
 	}
@@ -690,18 +712,18 @@ bool isdConnection::handleServerMessage( Q_UINT8 _msg )
 		}
 		switch( cmd )
 		{
-			case ISD::UserInformation:
+			case ItalcCore::UserInformation:
 			{
-				ISD::msg m( &m_socketDev );
+				ItalcCore::msg m( &m_socketDev );
 				m.receive();
 				m_user = m.arg( "username" ).toString();
 				m_userHomeDir = m.arg( "homedir" ).toString();
 				break;
 			}
 
-/*			case ISD::DemoServer_PortInfo:
+/*			case ItalcCore::DemoServer_PortInfo:
 			{
-				ISD::msg m( &m_socketDev );
+				ItalcCore::msg m( &m_socketDev );
 				m.receive();
 				m_demoServerPort =
 					m.arg( "demoserverport" ).toInt();
@@ -731,13 +753,14 @@ bool isdConnection::handleServerMessage( Q_UINT8 _msg )
 
 bool isdConnection::sendGetUserInformationRequest( void )
 {
+	return( TRUE );
 	if( m_socket == NULL ||
 			m_socket->state() != QTcpSocket::ConnectedState )
 	{
 		m_state = Disconnected;
 		return( FALSE );
 	}
-	return( ISD::msg( &m_socketDev, ISD::GetUserInformation ).send() );
+	return( ItalcCore::msg( &m_socketDev, ItalcCore::GetUserInformation ).send() );
 }
 
 
@@ -751,7 +774,7 @@ bool isdConnection::execCmds( const QString & _cmd )
 		m_state = Disconnected;
 		return( FALSE );
 	}
-	return( ISD::msg( &m_socketDev, ISD::ExecCmds ).
+	return( ItalcCore::msg( &m_socketDev, ItalcCore::ExecCmds ).
 					addArg( "cmds", _cmd ).send() );
 }
 
@@ -766,8 +789,8 @@ bool isdConnection::startDemo( const QString & _port, bool _full_screen )
 		m_state = Disconnected;
 		return( FALSE );
 	}
-	return( ISD::msg( &m_socketDev, _full_screen ?
-			ISD::StartFullScreenDemo : ISD::StartWindowDemo ).
+	return( ItalcCore::msg( &m_socketDev, _full_screen ?
+			ItalcCore::StartFullScreenDemo : ItalcCore::StartWindowDemo ).
 					addArg( "port", _port ).send() );
 }
 
@@ -782,7 +805,7 @@ bool isdConnection::stopDemo( void )
 		m_state = Disconnected;
 		return( FALSE );
 	}
-	return( ISD::msg( &m_socketDev, ISD::StopDemo ).send() );
+	return( ItalcCore::msg( &m_socketDev, ItalcCore::StopDemo ).send() );
 }
 
 
@@ -796,7 +819,7 @@ bool isdConnection::lockDisplay( void )
 		m_state = Disconnected;
 		return( FALSE );
 	}
-	return( ISD::msg( &m_socketDev, ISD::LockDisplay ).send() );
+	return( ItalcCore::msg( &m_socketDev, ItalcCore::LockDisplay ).send() );
 }
 
 
@@ -810,7 +833,7 @@ bool isdConnection::unlockDisplay( void )
 		m_state = Disconnected;
 		return( FALSE );
 	}
-	return( ISD::msg( &m_socketDev, ISD::UnlockDisplay ).send() );
+	return( ItalcCore::msg( &m_socketDev, ItalcCore::UnlockDisplay ).send() );
 }
 
 
@@ -825,7 +848,7 @@ bool isdConnection::logonUser( const QString & _uname, const QString & _pw,
 		m_state = Disconnected;
 		return( FALSE );
 	}
-	return( ISD::msg( &m_socketDev, ISD::LogonUserCmd ).
+	return( ItalcCore::msg( &m_socketDev, ItalcCore::LogonUserCmd ).
 				addArg( "uname", _uname ).
 				addArg( "passwd", _pw ).
 				addArg( "domain", _domain ).send() );
@@ -842,7 +865,7 @@ bool isdConnection::logoutUser( void )
 		m_state = Disconnected;
 		return( FALSE );
 	}
-	return( ISD::msg( &m_socketDev, ISD::LogoutUser ).send() );
+	return( ItalcCore::msg( &m_socketDev, ItalcCore::LogoutUser ).send() );
 }
 
 
@@ -856,7 +879,7 @@ bool isdConnection::displayTextMessage( const QString & _msg )
 		m_state = Disconnected;
 		return( FALSE );
 	}
-	return( ISD::msg( &m_socketDev, ISD::DisplayTextMessage ).
+	return( ItalcCore::msg( &m_socketDev, ItalcCore::DisplayTextMessage ).
 					addArg( "msg", _msg ).send() );
 }
 
@@ -887,7 +910,7 @@ bool isdConnection::wakeOtherComputer( const QString & _mac )
 		m_state = Disconnected;
 		return( FALSE );
 	}
-	return( ISD::msg( &m_socketDev, ISD::WakeOtherComputer ).
+	return( ItalcCore::msg( &m_socketDev, ItalcCore::WakeOtherComputer ).
 					addArg( "mac", _mac ).send() );
 }
 
@@ -902,7 +925,7 @@ bool isdConnection::powerDownComputer( void )
 		m_state = Disconnected;
 		return( FALSE );
 	}
-	return( ISD::msg( &m_socketDev, ISD::PowerDownComputer ).send() );
+	return( ItalcCore::msg( &m_socketDev, ItalcCore::PowerDownComputer ).send() );
 }
 
 
@@ -916,7 +939,7 @@ bool isdConnection::restartComputer( void )
 		m_state = Disconnected;
 		return( FALSE );
 	}
-	return( ISD::msg( &m_socketDev, ISD::RestartComputer ).send() );
+	return( ItalcCore::msg( &m_socketDev, ItalcCore::RestartComputer ).send() );
 }
 
 
@@ -930,14 +953,14 @@ bool isdConnection::disableLocalInputs( bool _disabled )
 		m_state = Disconnected;
 		return( FALSE );
 	}
-	return( ISD::msg( &m_socketDev, ISD::DisableLocalInputs ).
+	return( ItalcCore::msg( &m_socketDev, ItalcCore::DisableLocalInputs ).
 				addArg( "disabled", _disabled ).send() );
 }
 
 
 
 
-bool isdConnection::setRole( const ISD::userRoles _role )
+bool isdConnection::setRole( const ItalcCore::userRoles _role )
 {
 	if( m_socket == NULL ||
 			m_socket->state() != QTcpSocket::ConnectedState )
@@ -945,7 +968,7 @@ bool isdConnection::setRole( const ISD::userRoles _role )
 		m_state = Disconnected;
 		return( FALSE );
 	}
-	return( ISD::msg( &m_socketDev, ISD::SetRole ).
+	return( ItalcCore::msg( &m_socketDev, ItalcCore::SetRole ).
 					addArg( "role", _role ).send() );
 }
 
@@ -961,7 +984,7 @@ bool isdConnection::demoServerRun( int _quality, int _port )
 		return( FALSE );
 	}
 	m_demoServerPort = _port;
-	return( ISD::msg( &m_socketDev, ISD::DemoServer_Run ).
+	return( ItalcCore::msg( &m_socketDev, ItalcCore::DemoServer_Run ).
 					addArg( "port", _port ).
 					addArg( "quality", _quality ).send() );
 }
@@ -977,7 +1000,7 @@ bool isdConnection::demoServerAllowClient( const QString & _client )
 		m_state = Disconnected;
 		return( FALSE );
 	}
-	return( ISD::msg( &m_socketDev, ISD::DemoServer_AllowClient ).
+	return( ItalcCore::msg( &m_socketDev, ItalcCore::DemoServer_AllowClient ).
 					addArg( "client", _client ).send() );
 }
 
@@ -992,7 +1015,7 @@ bool isdConnection::demoServerDenyClient( const QString & _client )
 		m_state = Disconnected;
 		return( FALSE );
 	}
-	return( ISD::msg( &m_socketDev, ISD::DemoServer_DenyClient ).
+	return( ItalcCore::msg( &m_socketDev, ItalcCore::DemoServer_DenyClient ).
 					addArg( "client", _client ).send() );
 }
 
@@ -1007,7 +1030,7 @@ bool isdConnection::hideTrayIcon( void )
 		m_state = Disconnected;
 		return( FALSE );
 	}
-	return( ISD::msg( &m_socketDev, ISD::HideTrayIcon ).send() );
+	return( ItalcCore::msg( &m_socketDev, ItalcCore::HideTrayIcon ).send() );
 }
 
 
@@ -1036,7 +1059,4 @@ bool isdConnection::handleServerMessages( void )
 	return( TRUE );
 }
 
-
-
-#include "isd_connection.moc"
-
+#endif

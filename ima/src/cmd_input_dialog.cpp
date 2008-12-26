@@ -1,7 +1,7 @@
 /*
  * cmd_input_dialog.cpp - implementation of command-input-dialog
  *
- * Copyright (c) 2004-2006 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -103,6 +103,4 @@ void cmdInputDialog::accept( void )
 	QDialog::accept();
 }
 
-
-#include "cmd_input_dialog.moc"
 
