@@ -1,0 +1,9 @@
+CFLAGS=-v- -O2 -3 -tWD -xd- -q -w-8057 -w-8027
+
+VNCHooks.lib: VNCHooks.dll
+	implib.exe VNCHooks.lib VNCHooks.dll
+
+VNCHooks.dll: VNCHooks.cpp SharedData.cpp VNCHooks.h SharedData.h
+	copy /b VNCHooks-bcc32.def VNCHooks.def
+	bcc32.exe $(CFLAGS) VNCHooks.cpp SharedData.cpp
+	copy /b VNCHooks-vc.def VNCHooks.def

@@ -1,0 +1,2 @@
+#define BUILDTIMEMACRO #define BUILDTIME __DATE__ " " __TIME__ "\0"
+BUILDTIMEMACRO

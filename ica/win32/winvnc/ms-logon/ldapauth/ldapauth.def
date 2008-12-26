@@ -1,0 +1,5 @@
+LIBRARY   LDAPAuth
+
+             EXPORTS
+               CUGP
+			   
