@@ -45,6 +45,37 @@
 #define CARDBPP CONCAT3E(uint,BPP,_t)
 #define CARDREALBPP CONCAT3E(uint,REALBPP,_t)
 
+#define ENDIAN_LITTLE 0
+#define ENDIAN_BIG 1
+#define ENDIAN_NO 2
+#define ZYWRLE_ENDIAN ENDIAN_LITTLE
+#undef END_FIX
+#if ZYWRLE_ENDIAN == ENDIAN_LITTLE
+#  define END_FIX LE
+#elif ZYWRLE_ENDIAN == ENDIAN_BIG
+#  define END_FIX BE
+#else
+#  define END_FIX NE
+#endif
+#define __RFB_CONCAT3E(a,b,c) CONCAT3E(a,b,c)
+#define __RFB_CONCAT2E(a,b) CONCAT2E(a,b)
+#undef CPIXEL
+#if REALBPP != BPP
+#if UNCOMP == 0
+#define CPIXEL REALBPP
+#elif UNCOMP>0
+#define CPIXEL CONCAT2E(REALBPP,Down)
+#else
+#define CPIXEL CONCAT2E(REALBPP,Up)
+#endif
+#endif
+#define PIXEL_T __RFB_CONCAT3E(uint,BPP,_t)
+#if BPP!=8
+#define ZYWRLE_DECODE 1
+#include "../../ica/x11/libvncserver/zywrletemplate.c"
+#endif
+#undef CPIXEL
+
 static int HandleZRLETile(rfbClient* client,
 	uint8_t* buffer,size_t buffer_length,
 	int x,int y,int w,int h);
@@ -208,14 +239,30 @@ static int HandleZRLETile(rfbClient* client,
 	uint8_t* buffer_copy = buffer;
 	uint8_t* buffer_end = buffer+buffer_length;
 	uint8_t type;
+	uint8_t zywrle_level = (client->appData.qualityLevel & 0x80) ?
+		0 : (3 - client->appData.qualityLevel / 3);
 
 	if(buffer_length<1)
 		return -2;
 
 	type = *buffer;
 	buffer++;
-	switch(type) {
-		case 0: /* raw */
+	{
+		if( type == 0 ) /* raw */
+#if BPP!=8
+          if( zywrle_level > 0 ){
+			CARDBPP* pFrame = (CARDBPP*)client->frameBuffer + y*client->width+x;
+			int ret;
+			client->appData.qualityLevel |= 0x80;
+			ret = HandleZRLETile(client, buffer, buffer_end-buffer, x, y, w, h);
+		    client->appData.qualityLevel &= 0x7F;
+			if( ret < 0 ){
+				return ret;
+			}
+			ZYWRLE_SYNTHESIZE( pFrame, pFrame, w, h, client->width, zywrle_level, (int*)client->zlib_buffer );
+			buffer += ret;
+		  }else
+#endif
 		{
 #if REALBPP!=BPP
 			int i,j;
@@ -232,9 +279,8 @@ static int HandleZRLETile(rfbClient* client,
 			CopyRectangle(client, buffer, x, y, w, h);
 			buffer+=w*h*REALBPP/8;
 #endif
-			break;
 		}
-		case 1: /* solid */
+		else if( type == 1 ) /* solid */
 		{
 			CARDBPP color = UncompressCPixel(buffer);
 
@@ -245,9 +291,8 @@ static int HandleZRLETile(rfbClient* client,
 
 			buffer+=REALBPP/8;
 
-			break;
 		}
-		case 2 ... 127: /* packed Palette */
+		else if( (type >= 2)&&(type <= 127) ) /* packed Palette */
 		{
 			CARDBPP palette[16];
 			int i,j,shift,
@@ -276,10 +321,9 @@ static int HandleZRLETile(rfbClient* client,
 					buffer++;
 			}
 
-			break;
 		}
 		/* case 17 ... 127: not used, but valid */
-		case 128: /* plain RLE */
+		else if( type == 128 ) /* plain RLE */
 		{
 			int i=0,j=0;
 			while(j<h) {
@@ -312,13 +356,12 @@ static int HandleZRLETile(rfbClient* client,
 					rfbClientLog("Warning: possible ZRLE corruption\n");
 			}
 
-			break;
 		}
-		case 129: /* unused */
+		else if( type == 129 ) /* unused */
 		{
 			return -8;
 		}
-		case 130 ... 255: /* palette RLE */
+		else if( (type >= 130)&&(type <= 255) ) /* palette RLE */
 		{
 			CARDBPP palette[128];
 			int i,j;
@@ -364,8 +407,6 @@ static int HandleZRLETile(rfbClient* client,
 				if(length>0)
 					rfbClientLog("Warning: possible ZRLE corruption\n");
 			}
-
-			break;
 		}
 	}
 

@@ -29,9 +29,13 @@
 #define _BSD_SOURCE
 #define _POSIX_SOURCE
 #endif
+#ifndef WIN32
 #include <unistd.h>
+#else
+#define strncasecmp _strnicmp
+#endif
 #include <errno.h>
-#ifndef __MINGW32__
+#ifndef WIN32
 #include <pwd.h>
 #endif
 #include <rfb/rfbclient.h>
@@ -239,6 +243,7 @@ static void JpegSetSrcManager(j_decompress_ptr cinfo, uint8_t *compressedData,
                               int compressedLen);
 #endif
 static rfbBool HandleZRLE8(rfbClient* client, int rx, int ry, int rw, int rh);
+static rfbBool HandleZRLE15(rfbClient* client, int rx, int ry, int rw, int rh);
 static rfbBool HandleZRLE16(rfbClient* client, int rx, int ry, int rw, int rh);
 static rfbBool HandleZRLE24(rfbClient* client, int rx, int ry, int rw, int rh);
 static rfbBool HandleZRLE24Up(rfbClient* client, int rx, int ry, int rw, int rh);
@@ -725,6 +730,9 @@ SetFormatAndEncodings(rfbClient* client)
 	  requestCompressLevel = TRUE;
       } else if (strncasecmp(encStr,"zrle",encStrLen) == 0) {
 	encs[se->nEncodings++] = rfbClientSwap32IfLE(rfbEncodingZRLE);
+      } else if (strncasecmp(encStr,"zywrle",encStrLen) == 0) {
+	encs[se->nEncodings++] = rfbClientSwap32IfLE(rfbEncodingZYWRLE);
+	requestQualityLevel = TRUE;
 #endif
       } else if ((strncasecmp(encStr,"ultra",encStrLen) == 0) || (strncasecmp(encStr,"ultrazip",encStrLen) == 0)) {
         /* There are 2 encodings used in 'ultra' */
@@ -778,6 +786,7 @@ SetFormatAndEncodings(rfbClient* client)
 #ifdef LIBVNCSERVER_HAVE_LIBZ
     encs[se->nEncodings++] = rfbClientSwap32IfLE(rfbEncodingZlib);
     encs[se->nEncodings++] = rfbClientSwap32IfLE(rfbEncodingZRLE);
+    encs[se->nEncodings++] = rfbClientSwap32IfLE(rfbEncodingZYWRLE);
 #endif
     encs[se->nEncodings++] = rfbClientSwap32IfLE(rfbEncodingUltra);
     encs[se->nEncodings++] = rfbClientSwap32IfLE(rfbEncodingUltraZip);
@@ -1294,8 +1303,8 @@ HandleRFBServerMessage(rfbClient* client)
         if (client->GotCopyRect != NULL) {
           client->GotCopyRect(client, cr.srcX, cr.srcY, rect.r.w, rect.r.h,
               rect.r.x, rect.r.y);
-        }
-	CopyRectangleFromRectangle(client,
+        } else
+		CopyRectangleFromRectangle(client,
 				   cr.srcX, cr.srcY, rect.r.w, rect.r.h,
 				   rect.r.x, rect.r.y);
 
@@ -1437,6 +1446,10 @@ HandleRFBServerMessage(rfbClient* client)
       }
 #endif
       case rfbEncodingZRLE:
+	/* Fail safe for ZYWRLE unsupport VNC server. */
+	client->appData.qualityLevel = 9;
+	/* fall through */
+      case rfbEncodingZYWRLE:
       {
 	switch (client->format.bitsPerPixel) {
 	case 8:
@@ -1444,8 +1457,13 @@ HandleRFBServerMessage(rfbClient* client)
 	    return FALSE;
 	  break;
 	case 16:
-	  if (!HandleZRLE16(client, rect.r.x,rect.r.y,rect.r.w,rect.r.h))
-	    return FALSE;
+	  if (client->si.format.greenMax > 0x1F) {
+	    if (!HandleZRLE16(client, rect.r.x,rect.r.y,rect.r.w,rect.r.h))
+	      return FALSE;
+	  } else {
+	    if (!HandleZRLE15(client, rect.r.x,rect.r.y,rect.r.w,rect.r.h))
+	      return FALSE;
+	  }
 	  break;
 	case 32:
 	{
@@ -1656,6 +1674,8 @@ HandleRFBServerMessage(rfbClient* client)
 #include "ultra.c"
 #include "zlib.c"
 #include "tight.c"
+#include "zrle.c"
+#define REALBPP 15
 #include "zrle.c"
 #undef BPP
 #define BPP 32

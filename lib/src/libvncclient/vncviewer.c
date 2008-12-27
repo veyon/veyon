@@ -238,7 +238,7 @@ static rfbBool rfbInitConnection(rfbClient* client)
 rfbBool rfbInitClient(rfbClient* client,int* argc,char** argv) {
   int i,j;
 
-  if(argv>0 && argc && *argc) {
+  if(argv && argc && *argc) {
     if(client->programName==0)
       client->programName=argv[0];
 
