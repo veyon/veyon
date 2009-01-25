@@ -1,4 +1,4 @@
-MINGW=/opt/mingw
+MINGW=/opt/mingw32
 export PATH=$PATH:$MINGW/bin
 
 export CFLAGS="-march=native -mtune=native"
