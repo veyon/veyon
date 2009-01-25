@@ -369,7 +369,8 @@ vncEncodeMgr::SetEncoding(CARD32 encoding,BOOL reinitialize)
 	if (reinitialize)
 	{
 		encoding=m_encoding;
-		m_buffer->CheckBuffer();
+		if (!m_buffer->CheckBuffer())
+            return FALSE;
 	}
 	else m_encoding=encoding;
 
@@ -621,8 +622,7 @@ inline BOOL
 vncEncodeMgr::SetServerFormat()
 {
 	if (m_encoder) {
-		CheckBuffer();
-		return m_encoder->SetLocalFormat(
+		return CheckBuffer() && m_encoder->SetLocalFormat(
 			m_scrinfo.format,
 			m_scrinfo.framebufferWidth,
 			m_scrinfo.framebufferHeight);

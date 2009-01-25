@@ -83,6 +83,7 @@ public:
 	void LoadUserPrefsFromIniFile();
 	void SaveToIniFile();
 	void SaveUserPrefsToIniFile();
+    void ReloadDynamicSettings();
 
 	// Implementation
 protected:

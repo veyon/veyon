@@ -497,6 +497,23 @@ LaunchProcessWin()
     return bReturn;
 }
 //////////////////////////////////////////////////////////////////////////////
+
+void wait_for_existing_process()
+{
+#ifdef _DEBUG
+        OutputDebugString("Checking for preexisting tray icon\n");
+#endif
+    while ((hEvent = OpenEvent(EVENT_ALL_ACCESS, FALSE, "Global\\SessionEventUltra")) != NULL) {
+    	SetEvent(hEvent); // signal tray icon to shut down 
+        CloseHandle(hEvent);
+
+#ifdef _DEBUG
+        OutputDebugString("Waiting for existing tray icon to exit\n");
+#endif
+        Sleep(1000);
+    }
+}
+
 void monitor_sessions()
 {
 	pad2();
@@ -515,8 +532,8 @@ void monitor_sessions()
 	bool last_con=false;
 	//We use this event to notify the program that the session has changed
 	//The program need to end so the service can restart the program in the correct session
+    wait_for_existing_process();
 	hEvent = CreateEvent(NULL, FALSE, FALSE, "Global\\SessionEventUltra");
-	if (OlddwSessionId!=dwSessionId) SetEvent(hEvent);
 	Sleep(3000);
 	while(WaitForSingleObject(stopServiceEvent, 1000)==WAIT_TIMEOUT)
 	{
@@ -527,7 +544,7 @@ void monitor_sessions()
 		{
 			#ifdef _DEBUG
 					char			szText[256];
-					sprintf(szText," ++++++SetEvent \n");
+					sprintf(szText," ++++++SetEvent Session change: signal tray icon to shut down\n");
 					OutputDebugString(szText);		
 			#endif
 			SetEvent(hEvent);
@@ -543,6 +560,9 @@ void monitor_sessions()
 						{
 									Sleep(1000);
 									if (Slow_connect) Sleep(2000);
+#ifdef _DEBUG
+                            OutputDebugString("No Tray icon existed, starting first process\n");
+#endif
 									LaunchProcessWin();
 									win=false;
 									Slow_connect=false;
@@ -557,8 +577,15 @@ void monitor_sessions()
 										// Put a long timeout to give system time to start or logout
 										Sleep(2000);
 									}
+#if 0
 									Sleep(1000);
-									if (Slow_connect) Sleep(2000);
+									if (Slow_connect) Sleep(4000);
+#endif
+#ifdef _DEBUG
+                                    OutputDebugString("Waiting up to 15 seconds for tray icon process to exit\n");
+#endif
+
+                                    WaitForSingleObject(ProcessInfo.hProcess, 15000);
 									CloseHandle(ProcessInfo.hProcess);
 									CloseHandle(ProcessInfo.hThread);
 									LaunchProcessWin();
@@ -589,6 +616,9 @@ void monitor_sessions()
 							if (Slow_connect) Sleep(4000);
 							CloseHandle(ProcessInfo.hProcess);
 							CloseHandle(ProcessInfo.hThread);
+#ifdef _DEBUG
+                            OutputDebugString("Tray icon exited, starting new process\n");
+#endif
 							LaunchProcessWin();
 							win=false;
 							Slow_connect=false;
@@ -603,10 +633,21 @@ void monitor_sessions()
 	}//while
 	#ifdef _DEBUG
 					char			szText[256];
-					sprintf(szText," ++++++SetEvent \n");
+					sprintf(szText," ++++++SetEvent Service stopping: signal tray icon to shut down\n");
 					OutputDebugString(szText);		
 	#endif
 	SetEvent(hEvent);
+
+    if (ProcessInfo.hProcess)
+    {
+#ifdef _DEBUG
+    OutputDebugString("Waiting up to 15 seconds for tray icon process to exit\n");
+#endif
+        WaitForSingleObject(ProcessInfo.hProcess, 15000);
+	    CloseHandle(ProcessInfo.hProcess);
+	    CloseHandle(ProcessInfo.hThread);
+    }
+
 //	EndProcess();
 
 }

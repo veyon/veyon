@@ -500,6 +500,47 @@ vncClientId vncServer::AddClient(VSocket *socket,
 	return clientid;
 }
 
+char *vncDeskThreadError(DWORD code)
+{
+    // create default message
+    static char msg[255];
+    _snprintf(msg, sizeof msg, "Unknown error %u", code);
+    msg[sizeof msg - 1] = 0;
+
+    switch (code)
+    {
+        case ERROR_DESKTOP_NO_PALETTE:
+            return "Unable to determine color palette";
+        case ERROR_DESKTOP_INIT_FAILED:
+            return "Unable to select input desktop";
+        case ERROR_DESKTOP_UNSUPPORTED_PIXEL_ORGANIZATION:
+            return "Incompatible graphics device driver (planar pixel format)";
+        case ERROR_DESKTOP_UNSUPPORTED_PIXEL_FORMAT:
+            return "Unsupported true color pixel format";
+        case ERROR_DESKTOP_NO_HOOKWINDOW:
+            return "Unable to create hook window";
+        case ERROR_DESKTOP_NO_ROOTDC:
+        	return "Unable to create compatible device context";
+        case ERROR_DESKTOP_NO_BITBLT:
+        	return "Unsupported graphics device driver (no BitBlt)";
+        case ERROR_DESKTOP_NO_GETDIBITS:
+        	return "Unsupported graphics device driver (no GetDIBits)";
+		case ERROR_DESKTOP_NO_COMPATBITMAP:
+			return "Unable to create compatible bitmap";
+		case ERROR_DESKTOP_NO_DISPLAYFORMAT:
+			return 	"Unable to get Display format";
+        case ERROR_DESKTOP_OUT_OF_MEMORY:
+            return "Out of memory";
+        case ERROR_DESKTOP_NO_DESKTOPTHREAD:
+            return "Unable to create desktop hook thread";
+		case ERROR_DESKTOP_NO_DIBSECTION_OR_COMPATBITMAP:
+			return "Unable to create device independent bitmap or fallback bitmap";
+        default:
+            break;
+    }
+
+    return msg;
+}
 BOOL
 vncServer::Authenticated(vncClientId clientid)
 {
@@ -538,9 +579,10 @@ vncServer::Authenticated(vncClientId clientid)
 				else m_desktop->m_buffer.Display(-1);
 				if (Secundary()) m_desktop->m_buffer.Display(2);
 				else m_desktop->m_buffer.Display(-2);
-				if (!m_desktop->Init(this))
+                DWORD startup_status = 0;
+				if ((startup_status = m_desktop->Init(this)) != 0)
 				{
-					vnclog.Print(LL_INTINFO, VNCLOG("Desktop init failed, unlock in application mode ? \n"));
+					vnclog.Print(LL_INTINFO, VNCLOG("Desktop init failed (%s), unlock in application mode ? \n"), vncDeskThreadError(startup_status));
 					client->Kill();
 					authok = FALSE;
 					delete m_desktop;
@@ -1705,6 +1747,8 @@ vncServer::VerifyHost(const char *hostname) {
 		if ((_stricmp(current->_machineName, hostname) == 0) &&
 			(current->_blocked)) {
 			// Machine is blocked, so just reject it
+    		vnclog.Print(LL_CONNERR, VNCLOG("client %s rejected due to blacklist entry\n"), hostname);
+
 			return vncServer::aqrReject;
 		}
 
@@ -1788,6 +1832,8 @@ vncServer::VerifyHost(const char *hostname) {
 		}
 	}
 
+    vnclog.Print(LL_INTINFO, VNCLOG("client %s verifiedHost %u prior to adjustment\n"), hostname, verifiedHost);
+
 	// Based on the server's QuerySetting, adjust the verification result
 	switch (verifiedHost) {
 	case vncServer::aqrAccept:
@@ -1806,6 +1852,7 @@ vncServer::VerifyHost(const char *hostname) {
 		break;
 	};
 
+    vnclog.Print(LL_INTINFO, VNCLOG("client %s verifiedHost %u after adjustment\n"), hostname, verifiedHost);
 	return verifiedHost;
 }
 

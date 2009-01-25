@@ -127,6 +127,33 @@ bool DeleteFileOrDirectory(TCHAR *srcpath)
 }
 #include "Localization.h" // Act : add localization on messages
 
+bool replaceFile(const char *src, const char *dst)
+{
+    DWORD dwFileAttribs;
+    bool status;
+    
+    dwFileAttribs = GetFileAttributes(dst);
+    // make the file read/write if it's read only.
+    if (dwFileAttribs != INVALID_FILE_ATTRIBUTES && dwFileAttribs & FILE_ATTRIBUTE_READONLY)
+        SetFileAttributes(dst, dwFileAttribs & ~FILE_ATTRIBUTE_READONLY);
+
+    if (OSversion() == 3)
+    {
+        status = ::CopyFile(src, dst, false) ? true : false;
+        if (status)
+            ::DeleteFile(src);
+    }
+    else
+        status = ::MoveFileEx(src, dst, MOVEFILE_REPLACE_EXISTING) ? true : false;
+
+    // restore orginal file attributes, if we have them. We won't have them if
+    // the destination file didn't exist prior to the copy/move.
+    if (dwFileAttribs != INVALID_FILE_ATTRIBUTES)
+        SetFileAttributes(dst, dwFileAttribs);
+
+    return status;
+}
+
 typedef BOOL (WINAPI *PGETDISKFREESPACEEX)(LPCSTR,PULARGE_INTEGER, PULARGE_INTEGER, PULARGE_INTEGER);
 
 DWORD GetExplorerLogonPid();
@@ -784,8 +811,8 @@ vncClientThread::InitAuthenticate()
 	// If necessary, query the connection with a timed dialog
 	char username[UNLEN+1];
 	if (!vncService::CurrentUser(username, sizeof(username))) return false;
-	if ((strcmp(username, "") != 0)
-        || m_server->QueryIfNoLogon()) // marscha@2006 - Is AcceptDialog required even if no user is logged on
+	if ((strcmp(username, "") != 0) || m_server->QueryIfNoLogon()) // marscha@2006 - Is AcceptDialog required even if no user is logged on
+    {
 		if (verified == vncServer::aqrQuery) {
             // 10 Dec 2008 jdp reject/accept all incoming connections if the workstation is locked
             if (vncService::IsWSLocked()) {
@@ -827,6 +854,7 @@ vncClientThread::InitAuthenticate()
 				}
             }
 		}
+    }
 
 	if (verified == vncServer::aqrReject) {
 		CARD32 auth_val = Swap32IfLE(rfbConnFailed);
@@ -1029,12 +1057,18 @@ vncClientThread::InitAuthenticate()
 			{
 				vnclog.Print(LL_INTINFO, "password authentication");
 				if (!m_socket->SendExact(challenge, sizeof(challenge)))
+                {
+					vnclog.Print(LL_SOCKERR, VNCLOG("Failed to send challenge to client\n"));
 					return FALSE;
+                }
 
 
 				// Read the response
 				if (!m_socket->ReadExact(response, sizeof(response)))
+                {
+					vnclog.Print(LL_SOCKERR, VNCLOG("Failed to receive challenge response from client\n"));
 					return FALSE;
+                }
 				// Encrypt the challenge bytes
 				vncEncryptBytes((BYTE *)&challenge, plain);
 
@@ -1124,7 +1158,8 @@ vncClientThread::InitAuthenticate()
 		if (!m_socket->ReadExact((char *)&type, sizeof(type)))
 			return FALSE;
  		if( type != rfbSecTypeItalc ||
-			!isdServer::authSecTypeItalc( vsocketDispatcher,
+			!ItalcCoreServer::instance()->
+				authSecTypeItalc( vsocketDispatcher,
  							m_socket,
  							ItalcAuthDSA ) )
 		{
@@ -1171,6 +1206,7 @@ vncClientThread::InitAuthenticate()
 		}
 	}
 
+	vnclog.Print(LL_CLIENTS, VNCLOG("Leaving InitAuthenticate\n"));
 	// Tell the server that this client is ok
 	return m_server->Authenticated(m_client->GetClientId());
 }
@@ -3058,8 +3094,9 @@ vncClientThread::run(void *arg)
 			}
 			break;
 #endif
-		case rfbItalcServiceRequest:
-			if( !processItalcClient( vsocketDispatcher, m_socket ) )
+		case rfbItalcCoreRequest:
+			if( !ItalcCoreServer::instance()->
+				processClient( vsocketDispatcher, m_socket ) )
 			{
 				connected = FALSE;
 			}
@@ -4357,26 +4394,7 @@ void vncClient::FinishFileReception()
     {
         std::string realName = get_real_filename(m_szFullDestName);
         if (!m_fFileDownloadError && !bWasDir)
-        {
-            if (OSversion() == 3)
-            {
-                if (::CopyFile(m_szFullDestName, realName.c_str(), false))
-                    ::DeleteFile(m_szFullDestName);
-                else
-                {
-                    // TODO: what do we do here? the client thinks the transfer succeeded
-                    m_fFileDownloadError = true;
-                }
-            }
-            else 
-            {
-                if (!::MoveFileEx(m_szFullDestName, realName.c_str(), MOVEFILE_REPLACE_EXISTING))
-                {
-                    // TODO: what do we do here? the client thinks the transfer succeeded
-                    m_fFileDownloadError = true;
-                }
-            }            
-        }
+            m_fFileDownloadError = !replaceFile(m_szFullDestName, realName.c_str());
         if (m_fFileDownloadError)
             FTDownloadFailureHook();
         else

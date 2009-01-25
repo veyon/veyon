@@ -98,14 +98,14 @@ vncBuffer::~vncBuffer()
 	m_backbuffsize = 0;
 }
 
-void
+BOOL 
 vncBuffer::SetDesktop(vncDesktop *desktop)
 {
 	// Called from vncdesktop startup
 	// only possible on startup or reinitialization
 	// access is block by m_desktop->m_update_lock
 	m_desktop=desktop;
-	CheckBuffer();
+	return CheckBuffer();
 }
 
 rfb::Rect
@@ -141,7 +141,8 @@ BOOL vncBuffer::SetScale(int nScale)
 	{
 		//if (m_mainbuff)memcpy(m_ScaledBuff, m_mainbuff, m_desktop->ScreenBuffSize());
 		//else ZeroMemory(m_ScaledBuff, m_desktop->ScreenBuffSize());
-		CheckBuffer(); // added to remove scaled buffer
+		if (!CheckBuffer()) // added to remove scaled buffer
+            return FALSE;
 		if (m_mainbuff)memcpy(m_backbuff, m_mainbuff, m_desktop->ScreenBuffSize());
 		else ZeroMemory(m_ScaledBuff, m_desktop->ScreenBuffSize());
 	}
@@ -149,7 +150,8 @@ BOOL vncBuffer::SetScale(int nScale)
 	{
 		// sf@2002 - Idealy, we must do a ScaleRect of the whole screen here.
 		// ScaleRect(rfb::Rect(0, 0, m_scrinfo.framebufferWidth / m_nScale, m_scrinfo.framebufferHeight / m_nScale));
-		CheckBuffer();//added to create scaled buffer
+		if (!CheckBuffer())//added to create scaled buffer
+            return FALSE;
 		ZeroMemory(m_ScaledBuff, m_desktop->ScreenBuffSize());
 		ZeroMemory(m_backbuff, m_desktop->ScreenBuffSize());
 	}

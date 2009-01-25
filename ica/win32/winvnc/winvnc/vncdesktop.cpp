@@ -469,15 +469,15 @@ vncDesktop::TriggerUpdate()
 }
 
 // Routine to startup and install all the hooks and stuff
-BOOL
+DWORD
 vncDesktop::Startup()
 {
 	// Initialise the Desktop object
-
+    DWORD status;
 	if (!InitDesktop())
 		{
 			vnclog.Print(LL_INTINFO, VNCLOG("InitDesktop Failed\n"));
-			return FALSE;
+			return ERROR_DESKTOP_INIT_FAILED;
 		}
 
 	// Modif rdv@2002 - v1.1.x - videodriver
@@ -504,10 +504,10 @@ vncDesktop::Startup()
 	{
 		vnclog.Print(LL_INTINFO, VNCLOG("Break log\n"));
 	}
-	if (!InitBitmap())
+	if ((status = InitBitmap()) != 0)
 		{
 			vnclog.Print(LL_INTINFO, VNCLOG("InitBitmap Failed\n"));
-			return FALSE;
+			return status;
 		}
 
 	if (!ThunkBitmapInfo())
@@ -516,48 +516,48 @@ vncDesktop::Startup()
 			return FALSE;
 		}
 
-	//if (m_server->Driver()) 
-	EnableOptimisedBlits();
+	if (VideoBuffer())
+	{
+		vnclog.Print(LL_INTINFO, VNCLOG("Removing real Dib buffer and replace by driver communication buffer\n"));
+		if (m_membitmap != NULL)
+			{
+				DeleteObject(m_membitmap);
+				m_membitmap = NULL;
+			}
+		m_DIBbits=m_videodriver->myframebuffer;
+		pchanges_buf=m_videodriver->mypchangebuf;
+		InvalidateRect(NULL,NULL,TRUE);
+	}
+    else if ((status = EnableOptimisedBlits()) != 0)
+    {
+		vnclog.Print(LL_INTINFO, VNCLOG("EnableOptimisedBlits Failed\n"));
+		return status;
+    }
 
-	if (!SetPixFormat())
+	if ((status = SetPixFormat()) != 0)
 		{
 		vnclog.Print(LL_INTINFO, VNCLOG("SetPixFormat Failed\n"));
-		return FALSE;
+		return status;
 		}
 
 	if (!SetPixShifts())
 		{
 		vnclog.Print(LL_INTINFO, VNCLOG("SetPixShift Failed\n"));
-		return FALSE;
+		return ERROR_DESKTOP_UNSUPPORTED_PIXEL_FORMAT;
 		}
 	
 	if (!SetPalette())
 		{
 		vnclog.Print(LL_INTINFO, VNCLOG("SetPalette Failed\n"));
-		return FALSE;
+		return ERROR_DESKTOP_NO_PALETTE;
 		}
 	
 	if (!InitWindow())
 		{
 		vnclog.Print(LL_INTINFO, VNCLOG("InitWindow failed\n"));
-		return FALSE;
+		return ERROR_DESKTOP_NO_HOOKWINDOW;
 		}
 
-	if (VideoBuffer())
-	{
-		if (VideoBuffer())
-		{
-			vnclog.Print(LL_INTINFO, VNCLOG("Removing real Dib buffer and replace by driver communication buffer\n"));
-			if (m_membitmap != NULL)
-				{
-					DeleteObject(m_membitmap);
-					m_membitmap = NULL;
-				}
-			m_DIBbits=m_videodriver->myframebuffer;
-			pchanges_buf=m_videodriver->mypchangebuf;
-			InvalidateRect(NULL,NULL,TRUE);
-		}
-	}
 
 	// Start a timer to handle Polling Mode.  The timer will cause
 	// an "idle" event once every 1/10 second, which is necessary if Polling
@@ -566,7 +566,8 @@ vncDesktop::Startup()
 	m_timerid = SetTimer(m_hwnd, 1, 100, NULL);
 
 	// Initialise the buffer object
-	m_buffer.SetDesktop(this);
+	if (!m_buffer.SetDesktop(this))
+        return ERROR_DESKTOP_OUT_OF_MEMORY;
 	GetQuarterSize();
 #ifdef AVILOG
 	if(vnclog.GetVideo()){
@@ -587,8 +588,8 @@ vncDesktop::Startup()
 
 	}
 #endif
-	// Everything is ok, so return TRUE
-	return TRUE;
+	// Everything is ok, so return success
+	return 0;
 }
 
 // Routine to shutdown all the hooks and stuff
@@ -759,7 +760,7 @@ BOOL CALLBACK EnumWindowsHnd(HWND hwnd, LPARAM arg)
 }
 
 
-BOOL
+DWORD
 vncDesktop::InitBitmap()
 {	
 	// Get the device context for the whole screen and find it's size
@@ -853,7 +854,7 @@ vncDesktop::InitBitmap()
 		}
 		if (m_hrootdc == NULL) {
 				vnclog.Print(LL_INTERR, VNCLOG("Failed m_rootdc \n"));
-				return FALSE;
+				return ERROR_DESKTOP_NO_ROOTDC;
 		}
 		
 	}
@@ -865,7 +866,7 @@ vncDesktop::InitBitmap()
 	m_hmemdc = CreateCompatibleDC(m_hrootdc);
 	if (m_hmemdc == NULL) {
 		vnclog.Print(LL_INTERR, VNCLOG("failed to create compatibleDC(%d)\n"), GetLastError());
-		return FALSE;
+		return ERROR_DESKTOP_NO_ROOTDC;
 	}
 
 	// Check that the device capabilities are ok
@@ -878,7 +879,7 @@ vncDesktop::InitBitmap()
 			szAppName,
 			MB_ICONSTOP | MB_OK
 			);
-		return FALSE;
+		return ERROR_DESKTOP_NO_BITBLT;
 	}
 	if ((GetDeviceCaps(m_hmemdc, RASTERCAPS) & RC_DI_BITMAP) == 0)
 	{
@@ -889,14 +890,14 @@ vncDesktop::InitBitmap()
 			szAppName,
 			MB_ICONSTOP | MB_OK
 			);
-		return FALSE;
+		return ERROR_DESKTOP_NO_GETDIBITS;
 	}
 
 	// Create the bitmap to be compatible with the ROOT DC!!!
-	m_membitmap = CreateCompatibleBitmap(m_hrootdc, m_bmrect.br.x, m_bmrect.br.y);
+	m_membitmap = CreateCompatibleBitmap(m_hrootdc,1,1); //m_bmrect.br.x, m_bmrect.br.y);
 	if (m_membitmap == NULL) {
 		vnclog.Print(LL_INTERR, VNCLOG("failed to create memory bitmap(%d)\n"), GetLastError());
-		return FALSE;
+		return ERROR_DESKTOP_NO_COMPATBITMAP;
 	}
 	vnclog.Print(LL_INTINFO, VNCLOG("created memory bitmap\n"));
 
@@ -908,22 +909,27 @@ vncDesktop::InitBitmap()
 	result = ::GetDIBits(m_hmemdc, m_membitmap, 0, 1, NULL, &m_bminfo.bmi, DIB_RGB_COLORS);
 	if (result == 0) {
 		vnclog.Print(LL_INTERR, VNCLOG("unable to get display format\n"));
-		return FALSE;
+		return ERROR_DESKTOP_NO_DISPLAYFORMAT;
 	}
 	result = ::GetDIBits(m_hmemdc, m_membitmap,  0, 1, NULL, &m_bminfo.bmi, DIB_RGB_COLORS);
 	if (result == 0) {
 		vnclog.Print(LL_INTERR, VNCLOG("unable to get display colour info\n"));
-		return FALSE;
+		return ERROR_DESKTOP_NO_DISPLAYFORMAT;
 	}
 	vnclog.Print(LL_INTINFO, VNCLOG("got bitmap format\n"));
 
 	// Henceforth we want to use a top-down scanning representation
+    m_bminfo.bmi.bmiHeader.biWidth = m_bmrect.br.x;
+    m_bminfo.bmi.bmiHeader.biHeight = m_bmrect.br.y;
+    m_bminfo.bmi.bmiHeader.biSizeImage = abs((m_bminfo.bmi.bmiHeader.biWidth *
+				m_bminfo.bmi.bmiHeader.biHeight *
+				m_bminfo.bmi.bmiHeader.biBitCount)/ 8);
 	m_bminfo.bmi.bmiHeader.biHeight = - abs(m_bminfo.bmi.bmiHeader.biHeight);
 
 	// Is the bitmap palette-based or truecolour?
 	m_bminfo.truecolour = (GetDeviceCaps(m_hmemdc, RASTERCAPS) & RC_PALETTE) == 0;
 	InvalidateRect(NULL,NULL,TRUE);
-	return TRUE;
+	return 0;
 }
 
 BOOL
@@ -982,7 +988,7 @@ vncDesktop::ThunkBitmapInfo()
 	return TRUE;
 }
 
-BOOL
+DWORD
 vncDesktop::SetPixFormat()
 {
  // If we are using a memory bitmap then check how many planes it uses
@@ -1001,7 +1007,7 @@ vncDesktop::SetPixFormat()
 			  szAppName,
 			  MB_ICONSTOP | MB_OK
 			  );
-		  return FALSE;
+          return ERROR_DESKTOP_UNSUPPORTED_PIXEL_ORGANIZATION;
 	  }
   }
 	
@@ -1019,7 +1025,7 @@ vncDesktop::SetPixFormat()
 	// Calculate the number of bytes per row
 	m_bytesPerRow = m_scrinfo.framebufferWidth * m_scrinfo.format.bitsPerPixel / 8;
 
-	return TRUE;
+	return 0;
 }
 
 BOOL
@@ -1355,7 +1361,7 @@ vncDesktop::InitWindow()
 	return TRUE;
 }
 
-void
+DWORD
 vncDesktop::EnableOptimisedBlits()
 {
 	vnclog.Print(LL_INTINFO, VNCLOG("attempting to enable DIBsection blits\n"));
@@ -1366,8 +1372,16 @@ vncDesktop::EnableOptimisedBlits()
 	if (tempbitmap == NULL) {
 		vnclog.Print(LL_INTINFO, VNCLOG("failed to build DIB section - reverting to slow blits\n"));
 		m_DIBbits = NULL;
-		return;
+        tempbitmap = CreateCompatibleBitmap(m_hrootdc, m_bmrect.br.x, m_bmrect.br.y);
+	    if (tempbitmap == NULL) {
+		    vnclog.Print(LL_INTERR, VNCLOG("failed to create memory bitmap(%d)\n"), GetLastError());
+		    return ERROR_DESKTOP_NO_DIBSECTION_OR_COMPATBITMAP;
+	    }
+	    else
+	        vnclog.Print(LL_INTINFO, VNCLOG("enabled slow blits OK\n"));
 	}
+    else
+        vnclog.Print(LL_INTINFO, VNCLOG("enabled fast DIBsection blits OK\n"));
 
 	// Delete the old memory bitmap
 	if (m_membitmap != NULL) {
@@ -1377,10 +1391,10 @@ vncDesktop::EnableOptimisedBlits()
 
 	// Replace old membitmap with DIB section
 	m_membitmap = tempbitmap;
-	vnclog.Print(LL_INTINFO, VNCLOG("enabled fast DIBsection blits OK\n"));
+    return 0;
 }
 
-BOOL
+DWORD
 vncDesktop::Init(vncServer *server)
 {
 	vnclog.Print(LL_INTINFO, VNCLOG("initialising desktop handler\n"));
@@ -1402,7 +1416,7 @@ vncDesktop::Init(vncServer *server)
 	vncDesktopThread *thread = new vncDesktopThread;
 	if (thread == NULL) {
 		vnclog.Print(LL_INTERR, VNCLOG("failed to start hook thread\n"));
-		return FALSE;
+		return ERROR_DESKTOP_NO_DESKTOPTHREAD;
 	}
 	m_thread = thread;
 	//SINGEL WINDOW

@@ -652,6 +652,9 @@ LRESULT CALLBACK vncMenu::WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lP
 		// sf@2007 - Can't get the WTS_CONSOLE_CONNECT message work properly for now..
 		// So use a hack instead
 		break;
+        // jdp reread some ini settings
+        _this->m_properties.ReloadDynamicSettings();
+
 		if (G_1111==true)
 		{
 			if (_this->IsIconSet==true)

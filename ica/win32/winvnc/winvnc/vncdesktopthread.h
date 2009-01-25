@@ -56,7 +56,7 @@ protected:
 public:
 	virtual BOOL Init(vncDesktop *desktop, vncServer *server);
 	virtual void *run_undetached(void *arg);
-	virtual void ReturnVal(BOOL result);
+	virtual void ReturnVal(DWORD result);
 	void PollWindow(rfb::Region2D &rgn, HWND hwnd);
 	// Modif rdv@2002 - v1.1.x - videodriver
 	virtual BOOL handle_driver_changes(rfb::Region2D &rgncache,rfb::UpdateTracker &tracker);
@@ -70,7 +70,7 @@ protected:
 
 	omni_mutex m_returnLock;
 	omni_condition *m_returnsig;
-	BOOL m_return;
+	DWORD m_return;
 	BOOL m_returnset;
 	bool m_screen_moved;
 	bool lastsend;

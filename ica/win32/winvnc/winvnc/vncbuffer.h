@@ -56,7 +56,7 @@ public:
 	vncBuffer();
 	~vncBuffer();
 
-	void SetDesktop(vncDesktop *desktop);
+	BOOL SetDesktop(vncDesktop *desktop);
 
 	// BUFFER INFO
 	rfb::Rect GetSize();

@@ -229,12 +229,15 @@ vncDesktopThread::Init(vncDesktop *desktop, vncServer *server)
 			m_returnsig->wait();
 		}
 	}
-	if (m_return==0) g_DesktopThread_running=false;
+	if (m_return!=0) 
+    {
+        g_DesktopThread_running=false;
+    }
 	return m_return;
 }
 
 void
-vncDesktopThread::ReturnVal(BOOL result)
+vncDesktopThread::ReturnVal(DWORD result)
 {
 	omni_mutex_lock l(m_returnLock);
 	m_returnset = TRUE;
@@ -302,15 +305,16 @@ vncDesktopThread::run_undetached(void *arg)
         keybd_event(VK_CONTROL, 0, KEYEVENTF_KEYUP, 0);
 		Sleep(500); //Give screen some time to kill screensaver
 	}
-	if (!m_desktop->Startup())
+    DWORD startup_error;
+	if ((startup_error = m_desktop->Startup()) != 0)
 	{
 		//TAG14
 		vncService::SelectHDESK(home_desktop);
-		ReturnVal(FALSE);
+		ReturnVal(startup_error);
 		return NULL;
 	}
 	// Succeeded to initialise ok
-	ReturnVal(TRUE);
+	ReturnVal(0);
 
 	// sf@2003 - Done here to take into account if the driver is actually activated
 	m_desktop->InitHookSettings(); 

@@ -148,6 +148,20 @@ extern const char szDesktopSink[];
 #define MIRROR 1
 #define PSEUDO 2
 
+// initialization errors
+#define ERROR_DESKTOP_NO_PALETTE 					    1
+#define ERROR_DESKTOP_INIT_FAILED 					    2
+#define ERROR_DESKTOP_UNSUPPORTED_PIXEL_ORGANIZATION    3
+#define ERROR_DESKTOP_UNSUPPORTED_PIXEL_FORMAT 		    4
+#define ERROR_DESKTOP_NO_HOOKWINDOW 				    5
+#define ERROR_DESKTOP_NO_ROOTDC                         6
+#define ERROR_DESKTOP_NO_BITBLT                         7
+#define ERROR_DESKTOP_NO_GETDIBITS                      8
+#define ERROR_DESKTOP_NO_COMPATBITMAP                   9
+#define ERROR_DESKTOP_NO_DISPLAYFORMAT                  10
+#define ERROR_DESKTOP_OUT_OF_MEMORY                     11
+#define ERROR_DESKTOP_NO_DIBSECTION_OR_COMPATBITMAP     12
+#define ERROR_DESKTOP_NO_DESKTOPTHREAD                  13
 typedef struct DrvWatch
 {
 	HWND hwnd;
@@ -192,7 +206,7 @@ public:
 	vncDesktop();
 	~vncDesktop();
 
-	BOOL Init(vncServer *pSrv);
+	DWORD Init(vncServer *pSrv);
 
 	// Tell the desktop hooks to grab & update a particular rectangle
 	void QueueRect(const rfb::Rect &rect);
@@ -274,7 +288,7 @@ public:
 protected:
 
 	// Routines to hook and unhook us
-	BOOL Startup();
+	DWORD Startup();
 	BOOL Shutdown();
 	
 	// Init routines called by the child thread
@@ -282,10 +296,10 @@ protected:
 	void KillScreenSaver();
 //	void KillWallpaper();
 //	void RestoreWallpaper();
-	BOOL InitBitmap();
+	DWORD InitBitmap();
 	BOOL InitWindow();
 	BOOL ThunkBitmapInfo();
-	BOOL SetPixFormat();
+	DWORD SetPixFormat();
 	BOOL SetPixShifts();
 	BOOL InitHooks();
 	BOOL SetPalette();
@@ -296,7 +310,7 @@ protected:
 	bool CalcCopyRects(rfb::UpdateTracker &tracker);
 
 	// Routine to attempt enabling optimised DIBsection blits
-	void EnableOptimisedBlits();
+	DWORD EnableOptimisedBlits();
 
 	// Convert a bit mask eg. 00111000 to max=7, shift=3
 	static void MaskToMaxAndShift(DWORD mask, CARD16 &max, CARD8 &shift);
