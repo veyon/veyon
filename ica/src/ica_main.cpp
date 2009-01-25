@@ -25,6 +25,7 @@
 
 #include <italcconfig.h>
 
+#include <QtCore/QProcess>
 #include <QtCore/QLocale>
 #include <QtCore/QTranslator>
 #include <QtGui/QApplication>
@@ -33,8 +34,7 @@
 
 #include "ica_main.h"
 #include "system_service.h"
-#include "isd_server.h"
-#include "ivs.h"
+#include "italc_core_server.h"
 #include "local_system_ica.h"
 #include "debug.h"
 #include "system_key_trapper.h"
@@ -46,13 +46,6 @@
 #endif
 
 
-int __isd_port = PortOffsetIVS;
-int __ivs_port = PortOffsetIVS;
-
-#ifdef ITALC_BUILD_LINUX
-bool __rx11vs = FALSE;
-#endif
-
 QString __app_name = "iTALC Client";
 const QString SERVICE_ARG = "-service";
 
@@ -63,7 +56,7 @@ int serviceMain( systemService * _srv )
 	int c = 1;
 	char * * v = new char *[1];
 	v[0] = _srv->argv()[0];
-	return( ICAMain( c, v ) );
+	return ICAMain( c, v );
 }
 
 
@@ -76,12 +69,14 @@ bool eventFilter( void * _msg, long * _result )
 	DWORD msg = ( ( MSG *) _msg )->message;
 	if(/* msg == WM_QUIT ||*/msg == WM_ENDSESSION )
 	{
-		return( TRUE );
+		return true;
 	}
-	return( FALSE );
+	return false;
 }
 
 #endif
+
+
 
 
 int ICAMain( int argc, char * * argv )
@@ -94,39 +89,41 @@ int ICAMain( int argc, char * * argv )
 #endif
 
 	// decide whether to create a QCoreApplication or QApplication
-	bool core_app = FALSE;
+#ifdef ITALC_BUILD_LINUX
+	bool coreApp = true;
+
 	for( int i = 1; i < argc; ++i )
 	{
-		if( QString( argv[i] ) == "-rx11vs" ||
-			QString( argv[i] ) == "-createkeypair" ||
-			QString( argv[i] ) == "-h" ||
-			QString( argv[i] ) == "--version" ||
-			QString( argv[i] ) == "-v" )
+		if( ItalcCoreServer::guiOps.contains( argv[i] ) )
 		{
-			core_app = TRUE;
+			coreApp = true;
 		}
 	}
+#else
+	bool coreApp = false;
+#endif
 
-	if( !core_app )
+
+	if( !coreApp )
 	{
 		systemService s( "icas", SERVICE_ARG, __app_name,
 					"", serviceMain, argc, argv );
 		if( s.evalArgs( argc, argv ) || argc == 0 )
 		{
-			return( 0 );
+			return 0;
 		}
 	}
 
 	QCoreApplication * app = NULL;
 
-	if( core_app )
+	if( coreApp )
 	{
 		app = new QCoreApplication( argc, argv );
 	}
 	else
 	{
 		QApplication * a = new QApplication( argc, argv );
-		a->setQuitOnLastWindowClosed( FALSE );
+		a->setQuitOnLastWindowClosed( false );
 		app = a;
 	}
 
@@ -153,36 +150,29 @@ int ICAMain( int argc, char * * argv )
 	{
 		__ivs_port = localSystem::parameter( "ivsport" ).toInt();
 	}
-	if( localSystem::parameter( "isdport" ).toInt() > 0 )
-	{
-		__isd_port = localSystem::parameter( "isdport" ).toInt();
-	}
 
 	QStringListIterator arg_it( QCoreApplication::arguments() );
 	arg_it.next();
 	while( argc > 1 && arg_it.hasNext() )
 	{
 		const QString & a = arg_it.next();
-		if( a == "-isdport" && arg_it.hasNext() )
-		{
-			__isd_port = arg_it.next().toInt();
-		}
-		else if( ( a == "-ivsport" || a == "-rfbport" ) &&
+		if( ( a == "-ivsport" || a == "-rfbport" ) &&
 							arg_it.hasNext() )
 		{
 			__ivs_port = arg_it.next().toInt();
 		}
-#ifdef ITALC_BUILD_LINUX
-		else if( a == "-rx11vs" )
+		else if( ItalcCoreServer::guiOps.contains( a ) &&
+				( ItalcCoreServer::guiOps[a].hasArgs == false ||
+							arg_it.hasNext() ) )
 		{
-			__rx11vs = TRUE;
+			if( ItalcCoreServer::doGuiOp(
+					ItalcCoreServer::guiOps[a].cmd,
+					ItalcCoreServer::guiOps[a].hasArgs ?
+						arg_it.next() : QString() ) )
+			{
+				return 0;
+			}
 		}
-		else if( a == ACCESS_DIALOG_ARG && arg_it.hasNext() )
-		{
-#warning TODO
-	//		return( isdServer::showAccessDialog( arg_it.next() ) );
-		}
-#endif
 		else if( a == "-role" )
 		{
 			if( arg_it.hasNext() )
@@ -190,15 +180,15 @@ int ICAMain( int argc, char * * argv )
 				const QString role = arg_it.next();
 				if( role == "teacher" )
 				{
-					__role = ItalcCore::RoleTeacher;
+					ItalcCore::role = ItalcCore::RoleTeacher;
 				}
 				else if( role == "admin" )
 				{
-					__role = ItalcCore::RoleAdmin;
+					ItalcCore::role = ItalcCore::RoleAdmin;
 				}
 				else if( role == "supporter" )
 				{
-					__role = ItalcCore::RoleSupporter;
+					ItalcCore::role = ItalcCore::RoleSupporter;
 				}
 			}
 			else
@@ -207,13 +197,14 @@ int ICAMain( int argc, char * * argv )
 					"	teacher\n"
 					"	admin\n"
 					"	supporter\n\n" );
-				return( -1 );
+				return -1;
 			}
 		}
 		else if( a == "-createkeypair" )
 		{
-			ItalcCore::UserRoles role = ( __role != ItalcCore::RoleOther ) ?
-						__role : ItalcCore::RoleTeacher;
+			ItalcCore::UserRoles role =
+				( ItalcCore::role != ItalcCore::RoleOther ) ?
+					ItalcCore::role : ItalcCore::RoleTeacher;
 			bool user_path = arg_it.hasNext();
 			QString priv = user_path ? arg_it.next() :
 					localSystem::privateKeyPath( role );
@@ -227,7 +218,7 @@ int ICAMain( int argc, char * * argv )
 			if( !pkey.isValid() )
 			{
 				printf( "key generation failed!\n" );
-				return( -1 );
+				return -1;
 			}
 			pkey.save( priv );
 			publicDSAKey( pkey ).save( pub );
@@ -242,7 +233,7 @@ int ICAMain( int argc, char * * argv )
 				"by all members of a special group to which "
 				"all users belong who are\nallowed to use "
 				"iTALC.\n\n\n" );
-			return( 0 );
+			return 0;
 		}
 #ifdef ITALC_BUILD_LINUX
 		else if( a == "-nosel" || a == "-nosetclipboard" ||
@@ -253,36 +244,23 @@ int ICAMain( int argc, char * * argv )
 		else if( a == "-h" || a == "--help" )
 		{
 			QProcess::execute( "man ica" );
-			return( 0 );
+			return 0;
 		}
 #endif
 		else if( a == "-v" || a == "--version" )
 		{
 			printf( "%s\n", ITALC_VERSION );
-			return( 0 );
+			return 0;
 		}
 		else
 		{
 			printf( "Unrecognized commandline-argument %s\n",
 						a.toUtf8().constData() );
-			return( -1 );
+			return -1;
 		}
 	}
-	
-#ifdef ITALC_BUILD_LINUX
-	if( __rx11vs )
-	{
-#if 1
-		IVS( __ivs_port, argc, argv, TRUE );
-		return( 0 );
-#else
-		IVS * i = new IVS( __ivs_port, argc, argv );
-		i->start( IVS::HighestPriority );
-		return( app->exec() );
-#endif
-	}
-#endif
 
+#if 0	
 #ifdef SYSTEMTRAY_SUPPORT
 	QIcon icon( ":/resources/icon16.png" );
 	icon.addFile( ":/resources/icon22.png" );
@@ -297,12 +275,11 @@ int ICAMain( int argc, char * * argv )
 					arg( QString::number( __ivs_port ) ) );
 	__systray_icon->show();
 #endif
+#endif
 
-	//new isdServer( __ivs_port, argc, argv );
-	IVS * m_ivs = new IVS( __ivs_port, argc, argv );
-	m_ivs->start( QThread::HighestPriority );
+	ItalcCoreServer coreServer( argc, argv );
 
-	return( app->exec() );
+	return app->exec();
 }
 
 

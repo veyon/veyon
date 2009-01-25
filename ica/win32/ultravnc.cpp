@@ -1,5 +1,5 @@
 #include "stdhdrs.h"
-#include "isd_server.h"
+#include "italc_core_server.h"
 #include "ica_main.h"
 #include "vsocket.cpp"
 

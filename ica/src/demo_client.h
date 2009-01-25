@@ -1,7 +1,7 @@
 /*
  * demo_client.h - client for demo-server
  *           
- * Copyright (c) 2006 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *  
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -29,12 +29,12 @@
 #include <QtCore/QObject>
 
 
-class demoClient : public QObject
+class DemoClient : public QObject
 {
 	Q_OBJECT
 public:
-	demoClient( const QString & _host, bool _fullscreen );
-	virtual ~demoClient();
+	DemoClient( const QString & _host, bool _fullscreen );
+	virtual ~DemoClient();
 
 
 private slots:

@@ -34,22 +34,22 @@
 #include "local_system.h"
 
 
-demoClient::demoClient( const QString & _host, bool _fullscreen ) :
+DemoClient::DemoClient( const QString & _host, bool _fullscreen ) :
 	QObject(),
 	m_toplevel( _fullscreen ?
-			new lockWidget( lockWidget::NoBackground )
+			new LockWidget( LockWidget::NoBackground )
 			:
 			new QWidget() )
 {
 	m_toplevel->setWindowTitle( tr( "iTALC Demo" ) );
 	m_toplevel->setWindowIcon( QPixmap( ":/resources/display.png" ) );
-	m_toplevel->setAttribute( Qt::WA_DeleteOnClose, TRUE );
+	m_toplevel->setAttribute( Qt::WA_DeleteOnClose, true );
 	m_toplevel->resize( QApplication::desktop()->availableGeometry( m_toplevel ).size() );
 
 	QVBoxLayout * toplevel_layout = new QVBoxLayout;
 	toplevel_layout->setMargin( 0 );
 	toplevel_layout->setSpacing( 0 );
-	toplevel_layout->addWidget( new vncView( _host, m_toplevel, TRUE ) );
+	toplevel_layout->addWidget( new VncView( _host, m_toplevel, true ) );
 
 	m_toplevel->setLayout( toplevel_layout );
 
@@ -66,7 +66,7 @@ demoClient::demoClient( const QString & _host, bool _fullscreen ) :
 
 
 
-demoClient::~demoClient()
+DemoClient::~DemoClient()
 {
 	delete m_toplevel;
 }
@@ -74,7 +74,7 @@ demoClient::~demoClient()
 
 
 
-void demoClient::viewDestroyed( QObject * _obj )
+void DemoClient::viewDestroyed( QObject * _obj )
 {
 	if( m_toplevel == _obj )
 	{

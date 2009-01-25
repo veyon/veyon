@@ -28,16 +28,6 @@
 
 int ICAMain( int _argc, char * * _argv );
 
-#ifdef ITALC_BUILD_LINUX
-
-#define ACCESS_DIALOG_ARG "-accessdialog"
-
-extern bool __rx11vs;
-
-#endif
-
-
-extern int __isd_port;
 extern int __ivs_port;
 
 #endif

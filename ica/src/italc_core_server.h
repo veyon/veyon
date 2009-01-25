@@ -1,5 +1,5 @@
 /*
- * isd_server.h - ISD Server
+ * italc_core_server.h - ItalcCoreServer
  *
  * Copyright (c) 2006-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *  
@@ -22,60 +22,83 @@
  *
  */
 
-#ifndef _ISD_SERVER_H
-#define _ISD_SERVER_H
+#ifndef _ITALC_CORE_SERVER_H
+#define _ITALC_CORE_SERVER_H
 
 #include <QtCore/QList>
 #include <QtCore/QMutex>
 #include <QtCore/QPair>
 #include <QtCore/QSignalMapper>
 #include <QtCore/QStringList>
-#include <QtNetwork/QTcpServer>
 
 #include "italc_core.h"
 
 
+class QProcess;
 class IVS;
-class demoClient;
-class demoServer;
-class lockWidget;
+class DemoClient;
+class LockWidget;
 
-
-class isdServer : public QTcpServer
+class ItalcCoreServer : public QObject
 {
 	Q_OBJECT
 public:
-	enum accessDialogResult
+	enum AccessDialogResult
 	{
-		Yes,
-		No,
-		Always,
-		Never
+		AccessYes,
+		AccessNo,
+		AccessAlways,
+		AccessNever
 	} ;
 
-	isdServer( const quint16 _ivs_port, int _argc, char * * _argv );
-	virtual ~isdServer();
+	void earlyInit( void );
+
+	ItalcCoreServer( int _argc, char * * _argv );
+	virtual ~ItalcCoreServer();
+
+	static ItalcCoreServer * instance( void )
+	{
+		Q_ASSERT( this != NULL );
+		return _this;
+	}
 
 	int processClient( socketDispatcher _sd, void * _user );
 
-	static bool protocolInitialization( socketDevice & _sd,
-						ItalcAuthTypes _auth_type,
-						bool _demo_server = FALSE );
-	static bool authSecTypeItalc( socketDispatcher _sd, void * _user,
-				ItalcAuthTypes _auth_type = ItalcAuthDSA );
+	bool authSecTypeItalc( socketDispatcher _sd, void * _user,
+				ItalcAuthTypes _auth_type = ItalcAuthDSA,
+				const QStringList & _allowedHosts =
+								QStringList() );
 
-	static quint16 isdPort( void );
+	static int doGuiOp( ItalcCore::Commands _cmd, const QString & _param );
 
-	static accessDialogResult showAccessDialog( const QString & _host );
+	struct CommandProperties
+	{
+		CommandProperties() :
+			cmd( ItalcCore::DummyCmd ),
+			hasArgs( false ),
+			runDetached( false )
+		{
+		}
+
+		CommandProperties( ItalcCore::Commands _cmd,
+					bool _hasArgs,
+					bool _runDetached ) :
+			cmd( _cmd ),
+			hasArgs( _hasArgs ),
+			runDetached( _runDetached )
+		{
+		}
+		ItalcCore::Commands cmd;
+		bool hasArgs;
+		bool runDetached;
+	} ;
+
+	typedef QMap<QString, CommandProperties> GuiOpsMap;
+	static GuiOpsMap guiOps;
 
 
 private slots:
-	void acceptNewConnection( void );
-	void processClient( QObject * _sock );
-
 	void checkForPendingActions( void );
-
-	void demoWindowClosed( QObject * );
 
 	// client-functions
 	void startDemo( const QString & _master_host, bool _fullscreen );
@@ -86,30 +109,32 @@ private slots:
 
 	void displayTextMessage( const QString & _msg );
 
+	AccessDialogResult showAccessDialog( const QString & _host );
+
 
 private:
-	void allowDemoClient( const QString & _host );
-	void denyDemoClient( const QString & _host );
-
 	static void errorMsgAuth( const QString & _ip );
 
 
-	static QStringList s_allowedDemoClients;
+	static ItalcCoreServer * _this;
 
 	QMutex m_actionMutex;
 	QList<QPair<ItalcCore::Commands, QString> > m_pendingActions;
 
-	QSignalMapper m_readyReadMapper;
-
 	IVS * m_ivs;
-	demoClient * m_demoClient;
-	lockWidget * m_lockWidget;
+	DemoClient * m_demoClient;
+	LockWidget * m_lockWidget;
+
+	enum GuiProcs
+	{
+		ProcDemo,
+		ProcDisplayLock,
+		NumOfGuiProcs
+	} ;
+
+	QProcess * m_guiProcs[NumOfGuiProcs];
 
 } ;
-
-
-
-int processItalcClient( socketDispatcher _sd, void * user );
 
 
 #endif

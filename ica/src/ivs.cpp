@@ -32,14 +32,16 @@
 
 
 #include "ivs.h"
+#include "italc_rfb_ext.h"
 
+int __ivs_port = PortOffsetIVS;
 
 #ifdef ITALC_BUILD_LINUX
 
 extern "C" int x11vnc_main( int argc, char * * argv );
 
 #include "rfb/rfb.h"
-#include "isd_server.h"
+#include "italc_core_server.h"
 #include "local_system.h"
 
 
@@ -53,40 +55,48 @@ qint64 libvncServerDispatcher( char * _buf, const qint64 _len,
 	switch( _op_code )
 	{
 		case SocketRead:
-			return( rfbReadExact( cl, _buf, _len ) == 1 ? _len :
-									0 );
+			return rfbReadExact( cl, _buf, _len ) == 1 ? _len : 0;
 		case SocketWrite:
-			return( rfbWriteExact( cl, _buf, _len ) == 1 ? _len :
-									0 );
+			return rfbWriteExact( cl, _buf, _len ) == 1 ? _len : 0;
 		case SocketGetPeerAddress:
 			strncpy( _buf, cl->host, _len );
 			break;
 	}
-	return( 0 );
+	return 0;
 
 }
 
 
-static rfbBool isdNewClient( struct _rfbClientRec *, void * * )
+
+
+static rfbBool italcCoreNewClient( struct _rfbClientRec *, void * * )
 {
-	return( TRUE );
+	return true;
 }
 
 
-static rfbBool isdHandleMessage( struct _rfbClientRec * _client, void * _data,
-				const rfbClientToServerMsg * _message )
+
+
+static rfbBool italcCoreHandleMessage( struct _rfbClientRec * _client,
+					void * _data,
+					const rfbClientToServerMsg * _message )
 {
-	if( _message->type == rfbItalcServiceRequest )
+	if( _message->type == rfbItalcCoreRequest )
 	{
-		return( processItalcClient( libvncServerDispatcher, _client ) );
+		return ItalcCoreServer::instance()->
+				processClient( libvncServerDispatcher,
+								_client );
 	}
-	return( FALSE );
+	return false;
 }
 
 
-static void isdAuthItalcClient( struct _rfbClientRec * _client )
+
+
+static void italcCoreSecurityHandler( struct _rfbClientRec * _client )
 {
-	if( isdServer::authSecTypeItalc( libvncServerDispatcher, _client,
+	if( ItalcCoreServer::instance()->
+			authSecTypeItalc( libvncServerDispatcher, _client,
 								ItalcAuthDSA ) )
 	{
 		_client->state = rfbClientRec::RFB_INITIALISATION;
@@ -112,8 +122,7 @@ IVS::IVS( const quint16 _ivs_port, int _argc, char * * _argv,
 	QThread(),
 	m_argc( _argc ),
 	m_argv( _argv ),
-	m_port( _ivs_port ),
-	m_runningInSeparateProcess( FALSE )
+	m_port( _ivs_port )
 {
 	if( _no_threading )
 	{
@@ -136,8 +145,6 @@ void IVS::run( void )
 #ifdef ITALC_BUILD_LINUX
 	QStringList cmdline;
 
-	m_runningInSeparateProcess = TRUE;
-
 	// filter some options
 	for( int i = 0; i < m_argc; ++i )
 	{
@@ -146,10 +153,6 @@ void IVS::run( void )
 				option == "-xrandr" || option == "-onetile" )
 		{
 			cmdline.append( m_argv[i] );
-		}
-		else if( option == "-rx11vs" )
-		{
-			m_runningInSeparateProcess = FALSE;
 		}
 	}
 
@@ -170,35 +173,6 @@ void IVS::run( void )
 		<< "-rfbport" << QString::number( m_port )
 				// set port where the VNC-server should listen
 		;
-	if( m_runningInSeparateProcess )
-	{
-		cmdline << "-rx11vs" << "-isdport" <<
-				QString::number( isdServer::isdPort() ) <<
-				"-role" << localSystem::userRoleName( __role );
-		while( 1 )
-		{
-			QProcess p;
-			p.setProcessChannelMode( QProcess::ForwardedChannels );
-			p.start( QCoreApplication::applicationFilePath() +
-					" -rx11vs " + cmdline.join( " " ) );
-			m_restart = FALSE;
-			while( p.state() != QProcess::NotRunning )
-			{
-				sleep( 1 );
-				if( m_restart )
-				{
-					p.terminate();
-					sleep( 1 );
-					p.kill();
-					break;
-				}
-			}
-		}
-		return;
-	}
-#if 0
-	cmdline	<< "-dbg";// << "-o" << "/tmp/italc_client_x11vnc.log";
-#endif
 
 	char * old_av = m_argv[0];
 	m_argv = new char *[cmdline.size()+1];
@@ -214,11 +188,11 @@ void IVS::run( void )
 
 	// register iTALC-protocol-extension
 	rfbProtocolExtension pe;
-	pe.newClient = isdNewClient;
+	pe.newClient = italcCoreNewClient;
 	pe.init = NULL;
 	pe.enablePseudoEncoding = NULL;
 	pe.pseudoEncodings = NULL;
-	pe.handleMessage = isdHandleMessage;
+	pe.handleMessage = italcCoreHandleMessage;
 	pe.close = NULL;
 	pe.usage = NULL;
 	pe.processArgument = NULL;
@@ -226,17 +200,22 @@ void IVS::run( void )
 	rfbRegisterProtocolExtension( &pe );
 
 	// register handler for iTALC's security-type
-	rfbSecurityHandler sh = {
-				rfbSecTypeItalc, isdAuthItalcClient, NULL };
+	rfbSecurityHandler sh = { rfbSecTypeItalc,
+					italcCoreSecurityHandler,
+					NULL };
 	rfbRegisterSecurityHandler( &sh );
 
 	// run x11vnc-server
 	x11vnc_main( m_argc, m_argv );
+
 #elif ITALC_BUILD_WIN32
+
 	// run winvnc-server
 	Myinit( GetModuleHandle( NULL ) );
 	WinVNCAppMain();
+
 #endif
+
 }
 
 

@@ -1,8 +1,8 @@
 /*
- * ivs.h - class IVS, a VNC-server-abstraction for platform-independent
- *         VNC-server-usage
+ * ivs.h - class IVS, a VNC server abstraction for platform-independent
+ *         VNC server usage
  *           
- * Copyright (c) 2006-2007 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *  
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -30,12 +30,14 @@
 #include <QtCore/QThread>
 
 
+extern int __ivs_port;
+
 
 class IVS : public QThread
 {
 public:
 	IVS( const quint16 _ivs_port, int _argc, char * * _argv,
-						bool _no_threading = FALSE );
+						bool _no_threading = false );
 	virtual ~IVS();
 
 	quint16 serverPort( void ) const
@@ -45,13 +47,13 @@ public:
 
 	bool runningInSeparateProcess( void ) const
 	{
-		return( m_runningInSeparateProcess );
+		return m_runningInSeparateProcess;
 	}
 
 #ifdef ITALC_BUILD_LINUX
 	void restart( void )
 	{
-		m_restart = TRUE;
+		m_restart = true;
 	}
 #endif
 
