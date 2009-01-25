@@ -36,8 +36,6 @@
 
 class QWidget;
 
-extern IC_DllExport QByteArray __appInternalChallenge;
-
 
 namespace localSystem
 {

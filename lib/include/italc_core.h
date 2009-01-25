@@ -62,34 +62,34 @@ typedef char idsProtocolVersionMsg[sz_idsProtocolVersionMsg+1];
 
 inline const uint16_t swap16IfLE( const uint16_t & _val )
 {
-	return( QSysInfo::ByteOrder == QSysInfo::LittleEndian ?
-			( ( _val & 0xff ) << 8 ) |
-			( ( _val >> 8 ) & 0xff )
+	return QSysInfo::ByteOrder == QSysInfo::LittleEndian ?
+				( ( _val & 0xff ) << 8 ) |
+				( ( _val >> 8 ) & 0xff )
 			:
-			_val );
+				_val;
 }
 
 
 inline const uint32_t swap32( const uint32_t & _val )
 {
-	return( ( ( _val & 0xff000000 ) >> 24 ) |
+	return ( ( _val & 0xff000000 ) >> 24 ) |
 			( ( _val & 0x00ff0000 ) >> 8 ) |
 			( ( _val & 0x0000ff00 ) << 8 ) |
-			( ( _val & 0x000000ff ) << 24 ) );
+			( ( _val & 0x000000ff ) << 24 );
 }
 
 
 inline const uint32_t swap32IfLE( const uint32_t & _val )
 {
-	return( QSysInfo::ByteOrder == QSysInfo::LittleEndian ?
-						swap32( _val ) : _val );
+	return QSysInfo::ByteOrder == QSysInfo::LittleEndian ?
+						swap32( _val ) : _val;
 }
 
 
 inline const uint32_t swap32IfBE( const uint32_t & _val )
 {
-	return( QSysInfo::ByteOrder == QSysInfo::BigEndian ?
-						swap32( _val ) : _val );
+	return QSysInfo::ByteOrder == QSysInfo::BigEndian ?
+						swap32( _val ) : _val;
 }
 
 
@@ -117,10 +117,10 @@ extern qint64 libvncClientDispatcher( char * _buf, const qint64 _len,
 				const SocketOpCodes _op_code, void * _user );
 
 
-class socketDevice : public QIODevice
+class SocketDevice : public QIODevice
 {
 public:
-	inline socketDevice( socketDispatcher _sd, void * _user = NULL ) :
+	inline SocketDevice( socketDispatcher _sd, void * _user = NULL ) :
 		QIODevice(),
 		m_socketDispatcher( _sd ),
 		m_user( _user )
@@ -131,7 +131,7 @@ public:
 	inline QVariant read( void )
 	{
 		QDataStream d( this );
-		return( d );
+		return d;
 	}
 
 	inline void write( const QVariant & _v )
@@ -142,7 +142,7 @@ public:
 
 	inline socketDispatcher sockDispatcher( void )
 	{
-		return( m_socketDispatcher );
+		return m_socketDispatcher;
 	}
 
 	inline void * user( void )
@@ -157,26 +157,26 @@ public:
 
 	inline qint64 read( char * _buf, qint64 _bytes )
 	{
-		return( readData( _buf, _bytes ) );
+		return readData( _buf, _bytes );
 	}
 
 	inline qint64 write( const char * _buf, qint64 _bytes )
 	{
-		return( writeData( _buf, _bytes ) );
+		return writeData( _buf, _bytes );
 	}
 
 
 protected:
 	inline qint64 readData( char * _buf, qint64 _bytes )
 	{
-		return( m_socketDispatcher( _buf, _bytes, SocketRead,
-								m_user ) );
+		return m_socketDispatcher( _buf, _bytes, SocketRead,
+								m_user );
 	}
 
 	inline qint64 writeData( const char * _buf, qint64 _bytes )
 	{
-		return( m_socketDispatcher( const_cast<char *>( _buf ), _bytes,
-						SocketWrite, m_user ) );
+		return m_socketDispatcher( const_cast<char *>( _buf ), _bytes,
+							SocketWrite, m_user );
 	}
 
 
@@ -187,18 +187,13 @@ private:
 } ;
 
 
-/*
-qint64 IC_DllExport qtcpsocketDispatcher( char * _buf, const qint64 _len,
-						const socketOpCodes _op_code,
-						void * _user );*/
 
 
-
-typedef struct
+namespace ItalcCore
 {
 	enum Commands
 	{
-		DummyCmd = rfbItalcServiceRequest + 1,
+		DummyCmd,
 		GetUserInformation,
 		UserInformation,
 		StartFullScreenDemo,
@@ -209,8 +204,7 @@ typedef struct
 		LogonUserCmd,
 		LogoutUser,
 		DisplayTextMessage,
-		SendFile,
-		CollectFiles,
+		AccessDialog,
 		ExecCmds,
 
 		// system-stuff
@@ -219,71 +213,65 @@ typedef struct
 		RestartComputer,
 		DisableLocalInputs,
 
-		SetRole = 64,
-
-		DemoServer_Run = 80,
-		DemoServer_AllowClient,
-		DemoServer_DenyClient,
-
-		HideTrayIcon = 90
+		SetRole = 64
 
 	} ;
 
 
-
-	class msg
+	class Msg
 	{
-		Commands m_cmd;
-		socketDevice * m_socketDevice;
-
-		typedef QMap<QString, QVariant> argMap;
-		argMap m_argMap;
-
 	public:
-		msg( socketDevice * _sd, const Commands _cmd = DummyCmd ) :
+		Msg( SocketDevice * _sd, const Commands _cmd = DummyCmd ) :
 			m_cmd( _cmd ),
 			m_socketDevice( _sd )
 		{
 		}
 
-		msg( const Commands _cmd ) :
+		Msg( const Commands _cmd ) :
 			m_cmd( _cmd ),
 			m_socketDevice( NULL )
 		{
 		}
 
-		void setSocketDevice( socketDevice * _sd )
+		void setSocketDevice( SocketDevice * _sd )
 		{
 			m_socketDevice = _sd;
 		}
 
-		msg & addArg( const QString & _name, const QVariant & _content )
+		Msg & addArg( const QString & _name, const QVariant & _content )
 		{
 			m_argMap[_name] = _content;
-			return( *this );
+			return *this;
 		}
 
 		QVariant arg( const QString & _name ) const
 		{
-			return( m_argMap[_name] );
+			return m_argMap[_name];
 		}
 
 		bool send( void )
 		{
 			QDataStream d( m_socketDevice );
-			d << (Q_UINT8) rfbItalcServiceRequest;
+			d << (Q_UINT8) rfbItalcCoreRequest;
 			d << (Q_UINT8) m_cmd;
 			d << m_argMap;
-			return( TRUE );
+			return true;
 		}
 
-		msg & receive( void )
+		Msg & receive( void )
 		{
 			QDataStream d( m_socketDevice );
 			d >> m_argMap;
-			return( *this );
+			return *this;
 		}
 
+
+	private:
+		Commands m_cmd;
+		SocketDevice * m_socketDevice;
+
+		typedef QMap<QString, QVariant> argMap;
+		argMap m_argMap;
 
 	} ;
 
@@ -297,12 +285,13 @@ typedef struct
 		RoleCount
 	} ;
 
-	static void initAuthentication( void );
-
-} ItalcCore;
+	void initAuthentication( void );
 
 
-extern IC_DllExport ItalcCore::UserRoles __role;
+	extern IC_DllExport UserRoles role;
+
+}
+
 
 
 #endif

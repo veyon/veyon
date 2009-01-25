@@ -42,13 +42,13 @@ class remoteControlWidget;
 class systemKeyTrapper;
 
 
-class IC_DllExport vncView : public QWidget
+class IC_DllExport VncView : public QWidget
 {
 	Q_OBJECT
 public:
-	vncView( const QString & _host, QWidget * _parent,
+	VncView( const QString & _host, QWidget * _parent,
 							bool _progress_widget );
-	virtual ~vncView();
+	virtual ~VncView();
 
 	inline bool viewOnly( void ) const
 	{
@@ -60,9 +60,9 @@ public:
 		return( m_scaledView );
 	}
 
-	ItalcVncConnection & italcVncConnection( void )
+	ItalcVncConnection * vncConnection( void )
 	{
-		return m_vncConn;
+		return &m_vncConn;
 	}
 
 	QSize scaledSize( const QSize & _default = QSize() ) const;

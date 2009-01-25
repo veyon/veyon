@@ -33,17 +33,19 @@
 #include "system_key_trapper.h"
 
 
-class IC_DllExport lockWidget : public QWidget
+class IC_DllExport LockWidget : public QWidget
 {
 	Q_OBJECT
 public:
-	enum types
+	enum Modes
 	{
-		DesktopVisible, Black, NoBackground
+		DesktopVisible,
+		Black,
+		NoBackground
 	} ;
 
-	lockWidget( types _type = Black );
-	virtual ~lockWidget();
+	LockWidget( Modes _mode = Black );
+	virtual ~LockWidget();
 
 
 private:
@@ -53,7 +55,7 @@ private:
 #endif
 
 	QPixmap m_background;
-	types m_type;
+	Modes m_mode;
 	systemKeyTrapper m_sysKeyTrapper;
 
 } ;

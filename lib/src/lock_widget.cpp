@@ -52,20 +52,20 @@ static int __ss_val[3];
 
 
 
-lockWidget::lockWidget( types _type ) :
+LockWidget::LockWidget( Modes _mode ) :
 	QWidget( 0, Qt::X11BypassWindowManagerHint ),
 	m_background(
-		_type == Black ?
+		_mode == Black ?
 			QPixmap( ":/resources/locked_bg.png" )
 		:
-			_type == DesktopVisible ?
+			_mode == DesktopVisible ?
 				QPixmap::grabWindow( qApp->desktop()->winId() )
 			:
 				QPixmap() ),
-	m_type( _type ),
+	m_mode( _mode ),
 	m_sysKeyTrapper()
 {
-	m_sysKeyTrapper.disableAllKeys( TRUE );
+	m_sysKeyTrapper.disableAllKeys( true );
 	setWindowTitle( tr( "screen lock" ) );
 	setWindowIcon( QIcon( ":/resources/icon32.png" ) );
 	setCursor( Qt::BlankCursor );
@@ -93,7 +93,7 @@ lockWidget::lockWidget( types _type ) :
 
 
 
-lockWidget::~lockWidget()
+LockWidget::~LockWidget()
 {
 #ifdef ITALC_BUILD_WIN32
 	// revert screensaver-settings
@@ -107,10 +107,10 @@ lockWidget::~lockWidget()
 
 
 
-void lockWidget::paintEvent( QPaintEvent * )
+void LockWidget::paintEvent( QPaintEvent * )
 {
 	QPainter p( this );
-	switch( m_type )
+	switch( m_mode )
 	{
 		case DesktopVisible:
 			p.drawPixmap( 0, 0, m_background );
@@ -131,18 +131,18 @@ void lockWidget::paintEvent( QPaintEvent * )
 
 
 #ifdef ITALC_BUILD_LINUX
-bool lockWidget::x11Event( XEvent * _e )
+bool LockWidget::x11Event( XEvent * _e )
 {
 	switch( _e->type )
 	{
 		case KeyPress:
 		case ButtonPress:
 		case MotionNotify:
-			return( TRUE );
+			return true;
 		default:
 			break;
 	}
-	return( FALSE );
+	return false;
 }
 #endif
 

@@ -33,8 +33,8 @@
 
 // new rfb-command which tells server or client that an italc-request/response
 // is following
-#define rfbItalcServiceRequest		19
-#define rfbItalcServiceResponse		rfbItalcServiceRequest
+#define rfbItalcCoreRequest		19
+#define rfbItalcCoreResponse		rfbItalcCoreRequest
 
 
 #define rfbEncodingItalc 19
@@ -49,7 +49,7 @@ enum PortOffsets
 } ;
 
 
-struct italcRectEncodingHeader
+struct ItalcRectEncodingHeader
 {
 	Q_UINT8 compressed;
 	Q_UINT32 bytesLZO;

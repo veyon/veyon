@@ -101,7 +101,7 @@ private:
 
 
 
-rfbBool ItalcVncConnection::newclient( rfbClient * _cl )
+rfbBool ItalcVncConnection::hookNewClient( rfbClient * _cl )
 {
 	ItalcVncConnection * t = (ItalcVncConnection *)
 					rfbClientGetClientData( _cl, 0) ;
@@ -172,7 +172,7 @@ rfbBool ItalcVncConnection::newclient( rfbClient * _cl )
 
 
 
-void ItalcVncConnection::updatefb( rfbClient * _cl, int _x, int _y, int _w,
+void ItalcVncConnection::hookUpdateFB( rfbClient * _cl, int _x, int _y, int _w,
 									int _h )
 {
 	QImage img( _cl->frameBuffer, _cl->width, _cl->height,
@@ -193,7 +193,7 @@ void ItalcVncConnection::updatefb( rfbClient * _cl, int _x, int _y, int _w,
 
 
 
-void ItalcVncConnection::cuttext( rfbClient * _cl, const char * _text,
+void ItalcVncConnection::hookCutText( rfbClient * _cl, const char * _text,
 								int _textlen )
 {
 	QString cutText = QString::fromUtf8( _text, _textlen );
@@ -208,7 +208,7 @@ void ItalcVncConnection::cuttext( rfbClient * _cl, const char * _text,
 
 
 
-void ItalcVncConnection::outputHandler( const char *format, ... )
+void ItalcVncConnection::hookOutputHandler( const char *format, ... )
 {
 	va_list args;
 	va_start( args, format );
@@ -253,6 +253,7 @@ ItalcVncConnection::ItalcVncConnection( QObject * _parent ) :
 	QThread( _parent ),
 	frameBuffer( NULL ),
 	m_stopped( false ),
+	m_connected( false ),
 	m_quality( QualityMedium ),
 	m_port( PortOffsetIVS ),
 	m_image(),
@@ -275,7 +276,6 @@ ItalcVncConnection::ItalcVncConnection( QObject * _parent ) :
 ItalcVncConnection::~ItalcVncConnection()
 {
 	stop();
-	wait( 500 );
 
 	delete [] frameBuffer;
 }
@@ -295,9 +295,32 @@ void ItalcVncConnection::checkOutputErrorMessage()
 
 
 
+void ItalcVncConnection::stop( void )
+{
+	QMutexLocker locker( &m_mutex );
+	m_stopped = true;
+	if( !wait( 500 ) )
+	{
+		terminate();
+	}
+}
+
+
+
+
+void ItalcVncConnection::reset( const QString & _host )
+{
+	stop();
+	setHost( _host );
+	start();
+}
+
+
+
+
 void ItalcVncConnection::setHost( const QString & _host )
 {
-	QMutexLocker locker(&m_mutex);
+	QMutexLocker locker( &m_mutex );
 	m_host = _host;
 	if( m_host.contains( ':' ) )
 	{
@@ -382,15 +405,6 @@ void ItalcVncConnection::emitGotCut( const QString & _text )
 
 
 
-void ItalcVncConnection::stop()
-{
-	QMutexLocker locker( &m_mutex );
-	m_stopped = true;
-}
-
-
-
-
 void ItalcVncConnection::run( void )
 {
 	QMutexLocker locker( &m_mutex );
@@ -399,13 +413,13 @@ void ItalcVncConnection::run( void )
 	{
 //		m_passwordError = false;
 
-		rfbClientLog = outputHandler;
-		rfbClientErr = outputHandler;
+		rfbClientLog = hookOutputHandler;
+		rfbClientErr = hookOutputHandler;
 		m_cl = rfbGetClient( 8, 3, 4 );
-		m_cl->MallocFrameBuffer = newclient;
+		m_cl->MallocFrameBuffer = hookNewClient;
 		m_cl->canHandleNewFBSize = true;
-		m_cl->GotFrameBufferUpdate = updatefb;
-		m_cl->GotXCutText = cuttext;
+		m_cl->GotFrameBufferUpdate = hookUpdateFB;
+		m_cl->GotXCutText = hookCutText;
 		rfbClientSetClientData( m_cl, 0, this );
 
 		m_cl->serverHost = strdup( m_host.toUtf8().constData() );
@@ -429,14 +443,11 @@ void ItalcVncConnection::run( void )
 			break;
 		}
 		continue;
-/*		if( m_passwordError )
-		{
-			continue;
-		}*/
-
 	}
 
 	locker.unlock();
+
+	m_connected = true;
 
 	// Main VNC event loop
 	while( !m_stopped )
@@ -450,7 +461,6 @@ void ItalcVncConnection::run( void )
 		{
 			if( !HandleRFBServerMessage( m_cl ) )
 			{
-printf("bad handle\n");
 				break;
 			}
 		}
@@ -466,7 +476,8 @@ printf("bad handle\n");
 
 		locker.unlock();
 	}
-printf("stopped\n");
+
+	m_connected = false;
 
 	// Cleanup allocated resources
 	locker.relock();

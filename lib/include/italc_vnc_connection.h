@@ -40,6 +40,7 @@ extern "C"
 	#include <rfb/rfbclient.h>
 }
 
+
 class ClientEvent
 {
 public:
@@ -65,39 +66,45 @@ public:
 		QualityDemoHigh
 	} ;
 
-	explicit ItalcVncConnection( QObject *parent = 0 );
+	explicit ItalcVncConnection( QObject * parent = 0 );
 	virtual ~ItalcVncConnection();
 	const QImage image( int x = 0, int y = 0, int w = 0, int h = 0 );
 	void setImage( const QImage & _img );
 	void emitUpdated( int x, int y, int w, int h );
 	void emitGotCut( const QString & text );
 	void stop( void );
+	void reset( const QString & _host );
 	void setHost( const QString & _host );
 	void setPort( int _port );
 
-	void setQuality( QualityLevels _q )
+	inline bool isConnected( void ) const
+	{
+		return m_connected;
+	}
+
+	inline void setQuality( QualityLevels _q )
 	{
 		m_quality = _q;
 	}
 
-	QualityLevels quality( void ) const
+	inline QualityLevels quality( void ) const
 	{
 		return m_quality;
 	}
 
 	void enqueueEvent( ClientEvent * _e );
 
-	rfbClient * getRfbClient( void )
+	inline rfbClient * getRfbClient( void )
 	{
 		return m_cl;
 	}
 
-	QSize framebufferSize( void ) const
+	inline QSize framebufferSize( void ) const
 	{
 		return m_image.size();
 	}
 
-	void setScaledSize( const QSize & _s )
+	inline void setScaledSize( const QSize & _s )
 	{
 		m_scaledSize = _s;
 		m_scaledScreenNeedsUpdate = true;
@@ -106,7 +113,7 @@ public:
 	QImage scaledScreen( void )
 	{
 		rescaleScreen();
-		return( m_scaledScreen );
+		return m_scaledScreen;
 	}
 
 	void rescaleScreen( void );
@@ -134,11 +141,12 @@ protected:
 
 
 private:
-	static rfbBool newclient( rfbClient * _cl );
-	static void updatefb( rfbClient * _cl, int x, int y, int w, int h );
-	static void cuttext( rfbClient *cl, const char *text, int textlen );
-	static void outputHandler( const char *format, ... );
-	static rfbBool handleItalcMessage( rfbClient * _cl,
+	// hooks for LibVNCClient
+	static rfbBool hookNewClient( rfbClient * _cl );
+	static void hookUpdateFB( rfbClient * _cl, int x, int y, int w, int h );
+	static void hookCutText( rfbClient *cl, const char *text, int textlen );
+	static void hookOutputHandler( const char *format, ... );
+	static rfbBool hookHandleItalcMessage( rfbClient * _cl,
 						rfbServerToClientMsg * _msg );
 
 	rfbClient * m_cl;
@@ -153,6 +161,7 @@ private:
 	QImage m_scaledScreen;
 	QSize m_scaledSize;
 
+	volatile bool m_connected;
 	volatile bool m_stopped;
 
 

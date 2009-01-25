@@ -580,7 +580,7 @@ void privateDSAKey::load( const QString & _file, QString _passphrase )
 	}
 
 	// QFile::handle() of Qt >= 4.3.0 returns -1 under win32
-#if QT_VERSION < 0x040300 || !BUILD_WIN32
+//#if QT_VERSION < 0x040300 || !BUILD_WIN32
 	QFile infile( _file );
 	if( !QFileInfo( _file ).exists() || !infile.open( QFile::ReadOnly ) )
 	{
@@ -589,9 +589,9 @@ void privateDSAKey::load( const QString & _file, QString _passphrase )
 		return;
 	}
 	FILE * fp = fdopen( infile.handle(), "r" );
-#else
+/*#else
 	FILE * fp = fopen( _file.toAscii().constData(), "r" );
-#endif
+#endif*/
 	if( fp == NULL )
 	{
 		qCritical( "privateDSAKey::load( ... ): fdopen failed" );
@@ -646,7 +646,7 @@ void privateDSAKey::save( const QString & _file, QString _passphrase ) const
 		}
 	}
 	// QFile::handle() of Qt >= 4.3.0 returns -1 under win32
-#if QT_VERSION < 0x040300 || !BUILD_WIN32
+//#if QT_VERSION < 0x040300 || !BUILD_WIN32
 	if( !outfile.open( QFile::WriteOnly | QFile::Truncate ) )
 	{
 		qCritical( "could not save private key in %s",
@@ -654,9 +654,9 @@ void privateDSAKey::save( const QString & _file, QString _passphrase ) const
 		return;
 	}
 	FILE * fp = fdopen( outfile.handle(), "w" );
-#else
+/*#else
 	FILE * fp = fopen( _file.toAscii().constData(), "w" );
-#endif
+#endif*/
 	if( fp == NULL )
 	{
 		qCritical( "fdopen failed." );

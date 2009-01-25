@@ -40,7 +40,7 @@
 
 
 
-vncView::vncView( const QString & _host, QWidget * _parent,
+VncView::VncView( const QString & _host, QWidget * _parent,
 						bool _progress_widget ) :
 	QWidget( _parent ),
 	m_vncConn( this ),
@@ -90,7 +90,7 @@ vncView::vncView( const QString & _host, QWidget * _parent,
 
 
 
-vncView::~vncView()
+VncView::~VncView()
 {
 	disconnect( &m_vncConn, SIGNAL( imageUpdated( int, int, int, int ) ),
 			this, SLOT( updateImage( int, int, int, int ) ) );
@@ -105,7 +105,7 @@ vncView::~vncView()
 
 
 
-bool vncView::eventFilter(QObject *obj, QEvent *event)
+bool VncView::eventFilter(QObject *obj, QEvent *event)
 {
 	if( m_viewOnly )
 	{
@@ -125,7 +125,7 @@ bool vncView::eventFilter(QObject *obj, QEvent *event)
 
 
 
-QSize vncView::framebufferSize() const
+QSize VncView::framebufferSize() const
 {
     return m_frame.size();
 }
@@ -133,7 +133,7 @@ QSize vncView::framebufferSize() const
 
 
 
-QSize vncView::sizeHint() const
+QSize VncView::sizeHint() const
 {
     return size();
 }
@@ -141,7 +141,7 @@ QSize vncView::sizeHint() const
 
 
 
-QSize vncView::minimumSizeHint() const
+QSize VncView::minimumSizeHint() const
 {
     return size();
 }
@@ -149,7 +149,7 @@ QSize vncView::minimumSizeHint() const
 
 
 
-QSize vncView::scaledSize( const QSize & _default ) const
+QSize VncView::scaledSize( const QSize & _default ) const
 {
 	const QSize s = size();
 	QSize fbs = framebufferSize();//m_connection->framebufferSize();
@@ -165,7 +165,7 @@ QSize vncView::scaledSize( const QSize & _default ) const
 
 
 
-void vncView::setViewOnly( bool _vo )
+void VncView::setViewOnly( bool _vo )
 {
 	if( _vo == m_viewOnly )
 	{
@@ -196,7 +196,7 @@ void vncView::setViewOnly( bool _vo )
 
 
 
-void vncView::setScaledView( bool _sv )
+void VncView::setScaledView( bool _sv )
 {
 	m_scaledView = _sv;
 	m_vncConn.setScaledSize( scaledSize() );
@@ -206,7 +206,7 @@ void vncView::setScaledView( bool _sv )
 
 
 
-/*void vncView::framebufferUpdate( void )
+/*void VncView::framebufferUpdate( void )
 {
 	if( m_connection == NULL )
 	{
@@ -315,7 +315,7 @@ void vncView::setScaledView( bool _sv )
 
 
 
-void vncView::updateCursorShape( void )
+void VncView::updateCursorShape( void )
 {
 /*	if( !viewOnly() && !m_connection->cursorShape().isNull() )
 	{
@@ -329,7 +329,7 @@ void vncView::updateCursorShape( void )
 
 
 
-void vncView::focusInEvent( QFocusEvent * _e )
+void VncView::focusInEvent( QFocusEvent * _e )
 {
 	if( !m_viewOnlyFocus )
 	{
@@ -341,7 +341,7 @@ void vncView::focusInEvent( QFocusEvent * _e )
 
 
 
-void vncView::focusOutEvent( QFocusEvent * _e )
+void VncView::focusOutEvent( QFocusEvent * _e )
 {
 	m_viewOnlyFocus = viewOnly();
 	if( !viewOnly() )
@@ -355,7 +355,7 @@ void vncView::focusOutEvent( QFocusEvent * _e )
 
 
 // our builtin keyboard-handler
-void vncView::keyEventHandler( QKeyEvent * _ke )
+void VncView::keyEventHandler( QKeyEvent * _ke )
 {
 	bool pressed = _ke->type() == QEvent::KeyPress;
 
@@ -522,7 +522,7 @@ void vncView::keyEventHandler( QKeyEvent * _ke )
 
 
 
-void vncView::unpressModifiers( void )
+void VncView::unpressModifiers( void )
 {
 	QList<unsigned int> keys = m_mods.keys();
 	QList<unsigned int>::const_iterator it = keys.begin();
@@ -537,7 +537,7 @@ void vncView::unpressModifiers( void )
 
 
 
-QPoint vncView::mapToFramebuffer( const QPoint & _pos )
+QPoint VncView::mapToFramebuffer( const QPoint & _pos )
 {
 	const QSize fbs = framebufferSize();//m_connection ? m_connection->framebufferSize() :
 									QSize();
@@ -555,7 +555,7 @@ QPoint vncView::mapToFramebuffer( const QPoint & _pos )
 
 
 
-QRect vncView::mapFromFramebuffer( const QRect & _r )
+QRect VncView::mapFromFramebuffer( const QRect & _r )
 {
 	if( m_scaledView )
 	{
@@ -569,7 +569,7 @@ QRect vncView::mapFromFramebuffer( const QRect & _r )
 
 
 
-bool vncView::event( QEvent * event )
+bool VncView::event( QEvent * event )
 {
 	switch( event->type() )
 	{
@@ -597,7 +597,7 @@ bool vncView::event( QEvent * event )
 
 
 
-void vncView::paintEvent( QPaintEvent * _pe )
+void VncView::paintEvent( QPaintEvent * _pe )
 {
 	if( m_frame.isNull() || m_frame.format() == QImage::Format_Invalid )
 	{
@@ -698,7 +698,7 @@ void vncView::paintEvent( QPaintEvent * _pe )
 
 
 
-void vncView::resizeEvent( QResizeEvent * _re )
+void VncView::resizeEvent( QResizeEvent * _re )
 {
 	m_vncConn.setScaledSize( scaledSize() );
 	const int max_x = framebufferSize().width() - width();
@@ -722,7 +722,7 @@ void vncView::resizeEvent( QResizeEvent * _re )
 
 
 
-void vncView::wheelEventHandler( QWheelEvent * _we )
+void VncView::wheelEventHandler( QWheelEvent * _we )
 {
 	const QPoint p = mapToFramebuffer( _we->pos() );
 	m_vncConn.mouseEvent( p.x(), p.y(), m_buttonMask |
@@ -733,7 +733,7 @@ void vncView::wheelEventHandler( QWheelEvent * _we )
 
 
 
-void vncView::mouseEventHandler( QMouseEvent * _me )
+void VncView::mouseEventHandler( QMouseEvent * _me )
 {
 	struct buttonXlate
 	{
@@ -773,7 +773,7 @@ void vncView::mouseEventHandler( QMouseEvent * _me )
 
 
 
-void vncView::updateImage(int x, int y, int w, int h)
+void VncView::updateImage(int x, int y, int w, int h)
 {
 	m_x = x;
 	m_y = y;

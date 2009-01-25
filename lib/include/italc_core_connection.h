@@ -33,22 +33,32 @@ class IC_DllExport ItalcCoreConnection : public QObject
 {
 	Q_OBJECT
 public:
-	ItalcCoreConnection( ItalcVncConnection & _ivc );
+	ItalcCoreConnection( ItalcVncConnection * _ivc );
 	~ItalcCoreConnection();
+
+	ItalcVncConnection * vncConnection( void )
+	{
+		return m_ivc;
+	}
+
+	inline bool isConnected( void ) const
+	{
+		return m_ivc->isConnected();
+	}
 
 	inline const QString & user( void ) const
 	{
-		return( m_user );
+		return m_user;
 	}
 
 	inline const QString & userHomeDir( void ) const
 	{
-		return( m_userHomeDir );
+		return m_userHomeDir;
 	}
 
 	void sendGetUserInformationRequest( void );
 	void execCmds( const QString & _cmd );
-	void startDemo( const QString & _port, bool _full_screen = FALSE );
+	void startDemo( int _port, bool _full_screen = false );
 	void stopDemo( void );
 	void lockDisplay( void );
 	void unlockDisplay( void );
@@ -65,11 +75,6 @@ public:
 	void disableLocalInputs( bool _disabled );
 
 	void setRole( const ItalcCore::UserRoles _role );
-	void demoServerRun( int _quality, int _port );
-	void demoServerAllowClient( const QString & _client );
-	void demoServerDenyClient( const QString & _client );
-
-	void hideTrayIcon( void );
 
 
 private slots:
@@ -81,11 +86,11 @@ private:
 						rfbServerToClientMsg * _msg );
 
 	bool handleServerMessage( Q_UINT8 _msg );
-	void enqueueMessage( const ItalcCore::msg & _msg );
+	void enqueueMessage( const ItalcCore::Msg & _msg );
 
 
-	ItalcVncConnection & m_ivc;
-	socketDevice m_socketDev;
+	ItalcVncConnection * m_ivc;
+	SocketDevice m_socketDev;
 
 	QString m_user;
 	QString m_userHomeDir;

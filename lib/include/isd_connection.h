@@ -1,3 +1,4 @@
+#if 0
 /*
  * isd_connection.h - declaration of class isdConnection, a client-
  *                    implementation for ISD (iTALC Service Daemon)
@@ -167,5 +168,5 @@ private:
 
 } ;
 
-
+#endif
 #endif

@@ -29,7 +29,7 @@
 class ItalcMessageEvent : public ClientEvent
 {
 public:
-	ItalcMessageEvent( const ItalcCore::msg & _m ) :
+	ItalcMessageEvent( const ItalcCore::Msg & _m ) :
 		m_msg( _m )
 	{
 	}
@@ -41,18 +41,18 @@ public:
 
 
 private:
-	ItalcCore::msg m_msg;
+	ItalcCore::Msg m_msg;
 
 } ;
 
 
 
 static rfbClientProtocolExtension * __italc_ext = NULL;
-static void * ItalcCoreConnectionTag = (void *) PortOffsetIVS;
+static void * ItalcCoreConnectionTag = (void *) PortOffsetIVS; // an unique ID
 
 
 
-ItalcCoreConnection::ItalcCoreConnection( ItalcVncConnection & _ivc ) :
+ItalcCoreConnection::ItalcCoreConnection( ItalcVncConnection * _ivc ) :
 	m_ivc( _ivc ),
 	m_socketDev( libvncClientDispatcher ),
 	m_user(),
@@ -68,7 +68,7 @@ ItalcCoreConnection::ItalcCoreConnection( ItalcVncConnection & _ivc ) :
 		rfbClientRegisterExtension( __italc_ext );
 	}
 
-	connect( &m_ivc, SIGNAL( newClient( rfbClient * ) ),
+	connect( m_ivc, SIGNAL( newClient( rfbClient * ) ),
 			this, SLOT( initNewClient( rfbClient * ) ),
 							Qt::DirectConnection );
 }
@@ -106,10 +106,10 @@ rfbBool ItalcCoreConnection::handleItalcMessage( rfbClient * _cl,
 
 bool ItalcCoreConnection::handleServerMessage( Q_UINT8 _msg )
 {
-	if( _msg == rfbItalcServiceResponse )
+	if( _msg == rfbItalcCoreResponse )
 	{
 		Q_UINT8 cmd;
-		if( !ReadFromRFBServer( m_ivc.getRfbClient(),
+		if( !ReadFromRFBServer( m_ivc->getRfbClient(),
 					(char *) &cmd, sizeof( cmd ) ) )
 		{
 			return false;
@@ -118,21 +118,12 @@ bool ItalcCoreConnection::handleServerMessage( Q_UINT8 _msg )
 		{
 			case ItalcCore::UserInformation:
 			{
-				ItalcCore::msg m( &m_socketDev );
+				ItalcCore::Msg m( &m_socketDev );
 				m.receive();
 				m_user = m.arg( "username" ).toString();
 				m_userHomeDir = m.arg( "homedir" ).toString();
 				break;
 			}
-
-/*			case ItalcCore::DemoServer_PortInfo:
-			{
-				ItalcCore::msg m( &m_socketDev );
-				m.receive();
-				m_demoServerPort =
-					m.arg( "demoserverport" ).toInt();
-				break;
-			}*/
 
 			default:
 	qCritical( "ItalcCoreConnection::handleServerMessage(): unknown server "
@@ -156,7 +147,7 @@ bool ItalcCoreConnection::handleServerMessage( Q_UINT8 _msg )
 
 void ItalcCoreConnection::sendGetUserInformationRequest( void )
 {
-	enqueueMessage( ItalcCore::msg( ItalcCore::GetUserInformation ) );
+	enqueueMessage( ItalcCore::Msg( ItalcCore::GetUserInformation ) );
 }
 
 
@@ -164,16 +155,16 @@ void ItalcCoreConnection::sendGetUserInformationRequest( void )
 
 void ItalcCoreConnection::execCmds( const QString & _cmd )
 {
-	enqueueMessage( ItalcCore::msg( ItalcCore::ExecCmds ).
+	enqueueMessage( ItalcCore::Msg( ItalcCore::ExecCmds ).
 						addArg( "cmds", _cmd ) );
 }
 
 
 
 
-void ItalcCoreConnection::startDemo( const QString & _port, bool _full_screen )
+void ItalcCoreConnection::startDemo( int _port, bool _full_screen )
 {
-	enqueueMessage( ItalcCore::msg( _full_screen ?
+	enqueueMessage( ItalcCore::Msg( _full_screen ?
 				ItalcCore::StartFullScreenDemo
 					:
 				ItalcCore::StartWindowDemo ).
@@ -185,7 +176,7 @@ void ItalcCoreConnection::startDemo( const QString & _port, bool _full_screen )
 
 void ItalcCoreConnection::stopDemo( void )
 {
-	enqueueMessage( ItalcCore::msg( ItalcCore::StopDemo ) );
+	enqueueMessage( ItalcCore::Msg( ItalcCore::StopDemo ) );
 }
 
 
@@ -193,7 +184,7 @@ void ItalcCoreConnection::stopDemo( void )
 
 void ItalcCoreConnection::lockDisplay( void )
 {
-	enqueueMessage( ItalcCore::msg( ItalcCore::LockDisplay ) );
+	enqueueMessage( ItalcCore::Msg( ItalcCore::LockDisplay ) );
 }
 
 
@@ -201,7 +192,7 @@ void ItalcCoreConnection::lockDisplay( void )
 
 void ItalcCoreConnection::unlockDisplay( void )
 {
-	enqueueMessage( ItalcCore::msg( ItalcCore::UnlockDisplay ) );
+	enqueueMessage( ItalcCore::Msg( ItalcCore::UnlockDisplay ) );
 }
 
 
@@ -211,7 +202,7 @@ void ItalcCoreConnection::logonUser( const QString & _uname,
 						const QString & _pw,
 						const QString & _domain )
 {
-	enqueueMessage( ItalcCore::msg( ItalcCore::LogonUserCmd ).
+	enqueueMessage( ItalcCore::Msg( ItalcCore::LogonUserCmd ).
 						addArg( "uname", _uname ).
 						addArg( "passwd", _pw ).
 						addArg( "domain", _domain ) );
@@ -222,7 +213,7 @@ void ItalcCoreConnection::logonUser( const QString & _uname,
 
 void ItalcCoreConnection::logoutUser( void )
 {
-	enqueueMessage( ItalcCore::msg( ItalcCore::LogoutUser ) );
+	enqueueMessage( ItalcCore::Msg( ItalcCore::LogoutUser ) );
 }
 
 
@@ -230,7 +221,7 @@ void ItalcCoreConnection::logoutUser( void )
 
 void ItalcCoreConnection::displayTextMessage( const QString & _msg )
 {
-	enqueueMessage( ItalcCore::msg( ItalcCore::DisplayTextMessage ).
+	enqueueMessage( ItalcCore::Msg( ItalcCore::DisplayTextMessage ).
 						addArg( "msg", _msg ) );
 }
 
@@ -253,7 +244,7 @@ void ItalcCoreConnection::collectFiles( const QString & _nfilter )
 
 void ItalcCoreConnection::wakeOtherComputer( const QString & _mac )
 {
-	enqueueMessage( ItalcCore::msg( ItalcCore::WakeOtherComputer ).
+	enqueueMessage( ItalcCore::Msg( ItalcCore::WakeOtherComputer ).
 						addArg( "mac", _mac ) );
 }
 
@@ -262,7 +253,7 @@ void ItalcCoreConnection::wakeOtherComputer( const QString & _mac )
 
 void ItalcCoreConnection::powerDownComputer( void )
 {
-	enqueueMessage( ItalcCore::msg( ItalcCore::PowerDownComputer ) );
+	enqueueMessage( ItalcCore::Msg( ItalcCore::PowerDownComputer ) );
 }
 
 
@@ -270,7 +261,7 @@ void ItalcCoreConnection::powerDownComputer( void )
 
 void ItalcCoreConnection::restartComputer( void )
 {
-	enqueueMessage( ItalcCore::msg( ItalcCore::RestartComputer ) );
+	enqueueMessage( ItalcCore::Msg( ItalcCore::RestartComputer ) );
 }
 
 
@@ -278,7 +269,7 @@ void ItalcCoreConnection::restartComputer( void )
 
 void ItalcCoreConnection::disableLocalInputs( bool _disabled )
 {
-	enqueueMessage( ItalcCore::msg( ItalcCore::DisableLocalInputs ).
+	enqueueMessage( ItalcCore::Msg( ItalcCore::DisableLocalInputs ).
 					addArg( "disabled", _disabled ) );
 }
 
@@ -287,55 +278,18 @@ void ItalcCoreConnection::disableLocalInputs( bool _disabled )
 
 void ItalcCoreConnection::setRole( const ItalcCore::UserRoles _role )
 {
-	enqueueMessage( ItalcCore::msg( ItalcCore::SetRole ).
+	enqueueMessage( ItalcCore::Msg( ItalcCore::SetRole ).
 						addArg( "role", _role ) );
 }
 
 
 
 
-void ItalcCoreConnection::demoServerRun( int _quality, int _port )
+void ItalcCoreConnection::enqueueMessage( const ItalcCore::Msg & _msg )
 {
-	//m_demoServerPort = _port;
-	enqueueMessage( ItalcCore::msg( ItalcCore::DemoServer_Run ).
-						addArg( "port", _port ).
-						addArg( "quality", _quality ) );
-}
-
-
-
-
-void ItalcCoreConnection::demoServerAllowClient( const QString & _client )
-{
-	enqueueMessage( ItalcCore::msg( ItalcCore::DemoServer_AllowClient ).
-						addArg( "client", _client ) );
-}
-
-
-
-
-void ItalcCoreConnection::demoServerDenyClient( const QString & _client )
-{
-	enqueueMessage( ItalcCore::msg( ItalcCore::DemoServer_DenyClient ).
-						addArg( "client", _client ) );
-}
-
-
-
-
-void ItalcCoreConnection::hideTrayIcon( void )
-{
-	enqueueMessage( ItalcCore::msg( ItalcCore::HideTrayIcon ) );
-}
-
-
-
-
-void ItalcCoreConnection::enqueueMessage( const ItalcCore::msg & _msg )
-{
-	ItalcCore::msg m( _msg );
+	ItalcCore::Msg m( _msg );
 	m.setSocketDevice( &m_socketDev );
-	m_ivc.enqueueEvent( new ItalcMessageEvent( m ) );
+	m_ivc->enqueueEvent( new ItalcMessageEvent( m ) );
 }
 
 
