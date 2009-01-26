@@ -363,7 +363,7 @@ void vncHTTPConnectThread::DoHTTP(VSocket *socket)
 			if (GetComputerName(desktopname, &desktopnamelen))
 			{
 				// Make the name lowercase
-				for (int x=0; x<strlen(desktopname); x++)
+				for (size_t x=0; x<strlen(desktopname); x++)
 				{
 					desktopname[x] = tolower(desktopname[x]);
 				}

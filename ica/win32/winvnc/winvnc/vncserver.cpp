@@ -1692,7 +1692,7 @@ MatchStringToTemplate(const char *addr, UINT addrlen,
 		return 1;
 	if (addrlen < filtlen)
 		return 0;
-	for (int x = 0; x < filtlen; x++) {
+	for (UINT x = 0; x < filtlen; x++) {
 		if (addr[x] != filtstr[x])
 			return 0;
 	}

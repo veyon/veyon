@@ -441,9 +441,9 @@ protected:
 
 	// sf@2002 
 	BYTE* m_pCacheZipBuf;
-	int m_nCacheZipBufSize;
+	unsigned long m_nCacheZipBufSize;
 	BYTE* m_pRawCacheZipBuf;
-	int m_nRawCacheZipBufSize;
+	unsigned long m_nRawCacheZipBufSize;
 
 	friend class TextChat; 
 	TextChat *m_pTextChat;	// Modif sf@2002 - Text Chat

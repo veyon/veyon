@@ -1828,7 +1828,7 @@ DesktopWndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 					char split[4][6];
 					strcpy(mytext,(LPCSTR)pMyCDS->lpData);
 					myptr=mytext;
-					for (int j =0; j<(mysize/20);j++)
+					for (DWORD j =0; j<(mysize/20);j++)
 					{
 						for (int i=0;i<4;i++)
 							{

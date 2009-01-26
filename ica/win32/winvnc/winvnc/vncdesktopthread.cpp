@@ -154,7 +154,7 @@ vncDesktopThread::handle_driver_changes(rfb::Region2D &rgncache,rfb::UpdateTrack
 	if (m_server->SingleWindow()) m_screen_moved=true;
 	if (oldaantal<counter)
 		{
-			for (ULONG i =oldaantal+1; i<=counter;i++)
+			for (int i =oldaantal+1; i<=counter;i++)
 				{
 					copy_bitmaps_to_buffer(i,rgncache,tracker);
 				}
@@ -162,7 +162,7 @@ vncDesktopThread::handle_driver_changes(rfb::Region2D &rgncache,rfb::UpdateTrack
 		}
 	else
 		{
-		    ULONG i = 0;
+		    int i = 0;
 			for (i =oldaantal+1;i<MAXCHANGES_BUF;i++)
 				{
 					copy_bitmaps_to_buffer(i,rgncache,tracker);

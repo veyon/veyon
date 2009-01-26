@@ -55,7 +55,7 @@ vncDesktopThread::Handle_Ringbuffer(mystruct *ringbuffer,rfb::Region2D &rgncache
 
 	if (g_Oldcounter<counter)
 	{
-		for (ULONG i =g_Oldcounter+1; i<=counter;i++)
+		for (short i =g_Oldcounter+1; i<=counter;i++)
 		{
 			if (ringbuffer->type[i]==0)
 			{
@@ -94,7 +94,7 @@ vncDesktopThread::Handle_Ringbuffer(mystruct *ringbuffer,rfb::Region2D &rgncache
 	}
 	else
 	{
-		ULONG i = 0;
+		short i = 0;
 		for (i =g_Oldcounter+1;i<2000;i++)
 		{
 			if (ringbuffer->type[i]==0 )

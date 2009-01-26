@@ -185,7 +185,7 @@ bool isDirectory(const char *name)
     struct _stat statbuf;
 
     _stat(name, &statbuf);
-    return statbuf.st_mode & _S_IFDIR == _S_IFDIR;
+    return (statbuf.st_mode & _S_IFDIR) == _S_IFDIR;
 }
 bool isDirectoryTransfer(const char *szFileName)
 {
@@ -815,7 +815,7 @@ vncClientThread::InitAuthenticate()
     {
 		if (verified == vncServer::aqrQuery) {
             // 10 Dec 2008 jdp reject/accept all incoming connections if the workstation is locked
-            if (vncService::IsWSLocked()) {
+            if (vncService::IsWSLocked() && !m_server->QueryIfNoLogon()) {
                 verified = m_server->QueryAccept() == 1 ? vncServer::aqrAccept : verified = vncServer::aqrReject;
             } else {
 
@@ -1434,7 +1434,7 @@ vncClientThread::run(void *arg)
 	if (GetComputerName(desktopname, &desktopnamelen))
 	{
 		// Make the name lowercase
-		for (int x=0; x<strlen(desktopname); x++)
+		for (size_t x=0; x<strlen(desktopname); x++)
 		{
 			desktopname[x] = tolower(desktopname[x]);
 		}
@@ -1588,7 +1588,7 @@ vncClientThread::run(void *arg)
                     {
                         static time_t lastrecv = 0;
                         time_t now = time(&now);
-                        int delta = now - lastrecv;
+                        time_t delta = now - lastrecv;
                         lastrecv = now;
                         char msg[255];
                         sprintf(msg, "keepalive received %u seconds since last one\n", delta);
@@ -2721,7 +2721,7 @@ vncClientThread::run(void *arg)
 								{
 								TCHAR szDrivesList[256]; // Format when filled : "C:\<NULL>D:\<NULL>....Z:\<NULL><NULL>
 								DWORD dwLen;
-								int nIndex = 0;
+								DWORD nIndex = 0;
 								int nType = 0;
 								TCHAR szDrive[4];
 								dwLen = GetLogicalDriveStrings(256, szDrivesList);
@@ -3908,7 +3908,7 @@ vncClient::SendPalette()
 	}
 
 	// Now send the actual colour data...
-	for (int i=0; i<ncolours; i++)
+	for (UINT i=0; i<ncolours; i++)
 	{
 		struct _PIXELDATA {
 			CARD16 r, g, b;
@@ -4895,7 +4895,7 @@ void vncClient::SendKeepAlive(bool bForce)
     {
         static time_t lastSent = 0;
         time_t now = time(&now);
-        int delta = now - lastSent;
+        time_t delta = now - lastSent;
         if (!bForce && delta < m_server->GetKeepAliveInterval())
             return;
 

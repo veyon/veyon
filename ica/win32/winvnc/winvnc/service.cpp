@@ -660,7 +660,16 @@ bool IsAnyRDPSessionActive()
     DWORD   nSessions(0);
     DWORD   rdpSessionExists = false;
 
-    if (WTSEnumerateSessions(WTS_CURRENT_SERVER_HANDLE, 0, 1, &pSessions, &nSessions)) 
+    typedef BOOL (WINAPI *pfnWTSEnumerateSessions)(HANDLE,DWORD,DWORD,PWTS_SESSION_INFO*,DWORD*);
+    typedef VOID (WINAPI *pfnWTSFreeMemory)(PVOID);
+
+    helper::DynamicFn<pfnWTSEnumerateSessions> pWTSEnumerateSessions("wtsapi32","WTSEnumerateSessionsA");
+    helper::DynamicFn<pfnWTSFreeMemory> pWTSFreeMemory("wtsapi32", "WTSFreeMemory");
+
+    if (pWTSEnumerateSessions.isValid() && pWTSFreeMemory.isValid())
+
+
+    if ((*pWTSEnumerateSessions)(WTS_CURRENT_SERVER_HANDLE, 0, 1, &pSessions, &nSessions)) 
     {
         for (DWORD i(0); i < nSessions && !rdpSessionExists; ++i)
         {
@@ -674,7 +683,7 @@ bool IsAnyRDPSessionActive()
             }
         }
 
-        WTSFreeMemory(pSessions);
+        (*pWTSFreeMemory)(pSessions);
     }
 
     return rdpSessionExists ? true : false;

@@ -2124,7 +2124,7 @@ void vncProperties::LoadFromIniFile()
 	myIniFile.ReadString("admin", "path", temp,512);
 	vnclog.SetPath(temp);
 	vnclog.SetLevel(myIniFile.ReadInt("admin", "DebugLevel", 0));
-	vnclog.SetVideo(myIniFile.ReadInt("admin", "Avilog", 0));
+	vnclog.SetVideo(myIniFile.ReadInt("admin", "Avilog", 0) ? true : false);
 
 	// Disable Tray Icon
 	m_server->SetDisableTrayIcon(myIniFile.ReadInt("admin", "DisableTrayIcon", false));

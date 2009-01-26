@@ -149,7 +149,7 @@ BOOL CALLBACK vncConnDialog::vncConnDlgProc(HWND hwnd,
 			{
 				if (id) 
 					{	
-						for (int i = 0; i < strlen(idcode); i++)
+						for (size_t i = 0; i < strlen(idcode); i++)
 						{
 							idcode[i] = toupper(idcode[i]);
 						} 
