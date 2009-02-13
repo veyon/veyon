@@ -178,7 +178,6 @@ typedef BOOL (WINAPI* pEnumDisplayDevices)(PVOID,DWORD,PVOID,DWORD);
 				{
 				deviceName = (LPSTR)&dd.DeviceName[0];
 				m_hrootdc = CreateDC("DISPLAY",deviceName,NULL,NULL);	
-				if (m_hrootdc) DeleteDC(m_hrootdc);
 				}
 			}
 		if (hUser32) FreeLibrary(hUser32);

@@ -2102,6 +2102,8 @@ vncClientThread::run(void *arg)
 			{
 				// Allocate storage for the text
 				const UINT length = Swap32IfLE(msg.cct.length);
+				if (length > 104857600) // 100 MBytes max
+					break;
 				char *text = new char [length+1];
 				if (text == NULL)
 					break;
@@ -2813,9 +2815,9 @@ vncClientThread::run(void *arg)
 									ft.contentType = rfbDirPacket;
 									ft.contentParam = rfbADirectory; // or rfbAFile...
 
-									SetErrorMode(SEM_FAILCRITICALERRORS); // No popup please !
+									DWORD errmode = SetErrorMode(SEM_FAILCRITICALERRORS); // No popup please !
 									ff = FindFirstFile(szDir, &fd);
-									SetErrorMode( 0 );
+									SetErrorMode( errmode );
 									
 									// Case of media not accessible
 									if (ff == INVALID_HANDLE_VALUE || fShortError)
@@ -3122,6 +3124,7 @@ vncClientThread::run(void *arg)
         FlushFileBuffers(m_client->m_hDestFile);
         m_client->FTDownloadFailureHook();
         m_client->m_fFileDownloadRunning = false;
+        helper::close_handle(m_client->m_hDestFile);
     }
         
     if (m_client->m_fFileUploadRunning)
@@ -3130,6 +3133,7 @@ vncClientThread::run(void *arg)
         FlushFileBuffers(m_client->m_hSrcFile);
         m_client->FTUploadFailureHook();
         m_client->m_fFileUploadRunning = false;
+        helper::close_handle(m_client->m_hSrcFile);
     }
 
   
@@ -4222,6 +4226,9 @@ int vncClient::GenerateFileChecksums(HANDLE hFile, char* lpCSBuffer, int nCSBuff
 // 
 bool vncClient::ReceiveDestinationFileChecksums(int nSize, int nLen)
 {
+	if (nLen < 0 || nLen > 104857600) // 100 MBytes max
+		return false;
+
 	m_lpCSBuffer = new char [nLen+1];
 	if (m_lpCSBuffer == NULL) 
 	{
@@ -4251,6 +4258,9 @@ bool vncClient::ReceiveFileChunk(int nLen, int nSize)
 		FinishFileReception();
 		return connected;
 	}
+
+	if (nLen < 0)
+		return false;
 
 	if (nLen > sz_rfbBlockSize) return connected;
 
@@ -4735,9 +4745,9 @@ bool vncClient::MyGetFileSize(char* szFilePath, ULARGE_INTEGER *n2FileSize)
 	WIN32_FIND_DATA fd;
 	HANDLE ff;
 
-	SetErrorMode(SEM_FAILCRITICALERRORS); // No popup please !
+    DWORD errmode = SetErrorMode(SEM_FAILCRITICALERRORS); // No popup please !
 	ff = FindFirstFile(szFilePath, &fd);
-	SetErrorMode( 0 );
+	SetErrorMode( errmode );
 
 	if (ff == INVALID_HANDLE_VALUE)
 	{

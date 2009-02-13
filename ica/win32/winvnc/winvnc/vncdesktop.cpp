@@ -496,6 +496,7 @@ vncDesktop::Startup()
 							InitVideoDriver();
 						}
 				}
+    else
 	vnclog.Print(LL_INTINFO, VNCLOG("Driver option disabled \n"));
 	if (m_Origpolling) m_server->PollFullScreen(m_Origpolling);
 	m_OrigpollingSet=false;
@@ -650,6 +651,7 @@ vncDesktop::Shutdown()
 		m_membitmap = NULL;
 	}
 
+    m_DIBbits = NULL;
 	// Modif rdv@2002 - v1.1.x - videodriver
 	ShutdownVideoDriver();
 
@@ -1094,6 +1096,8 @@ vncDesktop::SetPalette()
 {
 	// Lock the current display palette into the memory DC we're holding
 	// *** CHECK THIS FOR LEAKS!
+    if (VideoBuffer())
+        return TRUE;
 	if (!m_bminfo.truecolour)
 	{
 		if (!m_DIBbits)
@@ -1188,17 +1192,23 @@ vncDesktop::SetPalette()
 			HBITMAP old_bitmap = (HBITMAP)::SelectObject(bitmapDC, m_membitmap);
 			if (!old_bitmap) {
 				vnclog.Print(LL_INTERR, VNCLOG("unable to select DIB section into temporary DC"), GetLastError());
+                DeleteDC(bitmapDC);
 				return FALSE;
 			}
 			UINT entries_set = ::SetDIBColorTable(bitmapDC, 0, 256, dibpalette);
 			if (entries_set == 0) {
 				vnclog.Print(LL_INTERR, VNCLOG("unable to set DIB section palette"), GetLastError());
-				return FALSE;
+//				return FALSE;
 			}
 			if (!::SelectObject(bitmapDC, old_bitmap)) {
 				vnclog.Print(LL_INTERR, VNCLOG("unable to restore temporary DC bitmap"), GetLastError());
+                DeleteObject(old_bitmap);
+                DeleteDC(bitmapDC);
 				return FALSE;
 			}
+            DeleteObject(old_bitmap);
+            DeleteDC(bitmapDC);
+            return TRUE;
 		}
     }
  

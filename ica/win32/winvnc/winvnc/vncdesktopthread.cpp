@@ -496,8 +496,9 @@ vncDesktopThread::run_undetached(void *arg)
 												break;
 											}					
 										bool fHookDriverWanted = (FALSE != m_desktop->m_hookdriver);
+                                        Sleep(1000);
 										vnclog.Print(LL_INTERR, VNCLOG("m_desktop->Startup"));
-										if (!m_desktop->Startup())
+										if (m_desktop->Startup() != 0)
 											{
 												vnclog.Print(LL_INTERR, VNCLOG("Startup KillAuthClients\n"));
 												m_server->KillAuthClients();
