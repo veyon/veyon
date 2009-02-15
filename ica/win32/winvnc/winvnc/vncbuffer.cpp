@@ -195,54 +195,48 @@ vncBuffer::CheckBuffer()
 			}
 		}
 
-		if (m_backbuff != NULL)
-		{
-			delete [] m_backbuff;
-			m_backbuff = NULL;
-		}
-
 		if (m_cachebuff != NULL)
 		{
 			delete [] m_cachebuff;
 			m_cachebuff = NULL;
 		}
 
-		// Modif sf@2002 - Scaling
-		if (m_ScaledBuff != NULL)
-		{
-			delete [] m_ScaledBuff;
-			m_ScaledBuff = NULL;
-		}
-		m_ScaledSize = 0;
-		//
-
-		m_backbuffsize = 0;
-
 		// Check whether or not the vncDesktop is using fast blits
 		// Modif rdv@2002 - v1.1.x - Videodriver
 		
-			m_mainbuff = (BYTE *)m_desktop->OptimisedBlitBuffer();
-			if (m_mainbuff) {
-				// Prevent us from freeing the DIBsection buffer
-				m_freemainbuff = FALSE;
-				vnclog.Print(LL_INTINFO, VNCLOG("fast blits detected - using DIBsection buffer\n"));
-			} else {
-				// Create our own buffer to copy blits through
-				m_freemainbuff = TRUE;
-				if ((m_mainbuff = new BYTE [m_desktop->ScreenBuffSize()]) == NULL)
-				{
-					vnclog.Print(LL_INTERR, VNCLOG("unable to allocate main buffer[%d]\n"), m_desktop->ScreenBuffSize());
-					return FALSE;
-				}
-				memset(m_mainbuff, 0, m_desktop->ScreenBuffSize());
+		m_mainbuff = (BYTE *)m_desktop->OptimisedBlitBuffer();
+		if (m_mainbuff) {
+			// Prevent us from freeing the DIBsection buffer
+			m_freemainbuff = FALSE;
+			vnclog.Print(LL_INTINFO, VNCLOG("fast blits detected - using DIBsection buffer\n"));
+		} else {
+			// Create our own buffer to copy blits through
+			m_freemainbuff = TRUE;
+			if ((m_mainbuff = new BYTE [m_desktop->ScreenBuffSize()]) == NULL)
+			{
+				vnclog.Print(LL_INTERR, VNCLOG("unable to allocate main buffer[%d]\n"), m_desktop->ScreenBuffSize());
+				return FALSE;
 			}
+			memset(m_mainbuff, 0, m_desktop->ScreenBuffSize());
+		}
 
 		// Always create a back buffer
-		if ((m_backbuff = new BYTE [m_desktop->ScreenBuffSize()]) == NULL)
-		{
-			vnclog.Print(LL_INTERR, VNCLOG("unable to allocate back buffer[%d]\n"), m_desktop->ScreenBuffSize());
-			return FALSE;
-		}
+        if (m_backbuffsize != m_desktop->ScreenBuffSize())
+        {
+		    if (m_backbuff != NULL)
+		    {
+			    delete [] m_backbuff;
+			    m_backbuff = NULL;
+        		m_backbuffsize = 0;
+		    }
+
+		    if ((m_backbuff = new BYTE [m_desktop->ScreenBuffSize()]) == NULL)
+		    {
+			    vnclog.Print(LL_INTERR, VNCLOG("unable to allocate back buffer[%d]\n"), m_desktop->ScreenBuffSize());
+			    return FALSE;
+		    }
+    		m_backbuffsize = m_desktop->ScreenBuffSize();
+        }
 
 		if (m_use_cache)
 		{
@@ -255,23 +249,34 @@ vncBuffer::CheckBuffer()
 		}
 
 		memset(m_backbuff, 0, m_desktop->ScreenBuffSize());
-		m_backbuffsize = m_desktop->ScreenBuffSize();
 
 		/// If scale==1 we don't need to allocate the memory
 		if (m_nScale > 1) 
 		{
-			// Modif sf@2002 - Scaling
-			if ((m_ScaledBuff = new BYTE [m_desktop->ScreenBuffSize()]) == NULL)
-			{
-				vnclog.Print(LL_INTERR, VNCLOG("unable to allocate scaled buffer[%d]\n"), m_desktop->ScreenBuffSize());
-				return FALSE;
-			}
-			m_ScaledSize = m_desktop->ScreenBuffSize();
+            if (m_ScaledSize != m_desktop->ScreenBuffSize())
+            {
+		        // Modif sf@2002 - Scaling
+		        if (m_ScaledBuff != NULL)
+		        {
+			        delete [] m_ScaledBuff;
+			        m_ScaledBuff = NULL;
+            		m_ScaledSize = 0;
+		        }
+
+                // Modif sf@2002 - Scaling
+			    if ((m_ScaledBuff = new BYTE [m_desktop->ScreenBuffSize()]) == NULL)
+			    {
+				    vnclog.Print(LL_INTERR, VNCLOG("unable to allocate scaled buffer[%d]\n"), m_desktop->ScreenBuffSize());
+				    return FALSE;
+			    }
+			    m_ScaledSize = m_desktop->ScreenBuffSize();
+            }
 		}
 		else
 		{
 			delete [] m_ScaledBuff;
 			m_ScaledBuff = NULL;
+    		m_ScaledSize = 0;
 		}
 
 		if (m_nScale > 1) 
