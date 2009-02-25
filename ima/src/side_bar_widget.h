@@ -1,0 +1,85 @@
+/*
+ * side_bar_widget.h - base-class for all side-bar-widgets
+ *
+ * Copyright (c) 2004-2006 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ *
+ * This file is part of iTALC - http://italc.sourceforge.net
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public
+ * License along with this program (see COPYING); if not, write to the
+ * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+ * Boston, MA 02111-1307, USA.
+ *
+ */
+
+
+#ifndef _SIDE_BAR_WIDGET_H
+#define _SIDE_BAR_WIDGET_H
+
+#include <QtGui/QWidget>
+#include <QtGui/QPixmap>
+
+
+class mainWindow;
+
+
+class sideBarWidget : public QWidget
+{
+public:
+	sideBarWidget( const QPixmap & _icon, const QString & _title,
+			const QString & _description,
+				mainWindow * _main_window, QWidget * _parent );
+	virtual ~sideBarWidget();
+
+	inline const QPixmap & icon( void ) const
+	{
+		return( m_icon );
+	}
+
+	inline const QString & title( void ) const
+	{
+		return( m_title );
+	}
+
+	inline const QString & description( void ) const
+	{
+		return( m_description );
+	}
+
+
+protected:
+	virtual void paintEvent( QPaintEvent * _pe );
+	virtual void resizeEvent( QResizeEvent * _re );
+
+	inline QWidget * contentParent( void )
+	{
+		return( m_contents );
+	}
+
+	inline mainWindow * getMainWindow( void )
+	{
+		return( m_mainWindow );
+	}
+
+
+private:
+	mainWindow * m_mainWindow;
+	QWidget * m_contents;
+	QPixmap m_icon;
+	QString m_title;
+	QString m_description;
+
+} ;
+
+
+#endif

@@ -1,0 +1,59 @@
+iTALC 0.9.8 - Intelligent Teaching and Learning with Computers
+===============================================================
+
+
+Copyright (c) 2004-2006 Tobias Doerffel and others
+
+
+
+The whole program with all its components is free software; you can
+redistribute it and/or modify it under the terms of the GNU General Public
+License as published by the Free Software Foundation; either version 2 of
+the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program; if not, write to the Free Software Foundation, Inc., 59 Temple
+Place - Suite 330, Boston, MA  02111-1307, USA
+
+
+
+What is iTALC?
+----------------
+
+iTALC is a use- and powerful tool which lets you observe and remote-control
+other clients in a Linux-network.  It aims to be a free and OpenSource version
+of commercial and expensive programs like MasterEye.
+iTALC was designed for usage in school. With iTALC, the teacher is able to see,
+what the students are doing on their computers, without any need to walk around
+in the classroom... You can also control the clients. For example you can show
+a demo, help a person, lock/unlock the screen, halt/reboot, execute a sequence
+of commands or login with SSH and much more...
+
+
+How to compile iTALC
+---------------------
+
+See INSTALL for details.
+
+
+
+How to install and setup iTALC
+------------------------------
+
+see INSTALL for details.
+
+
+
+Help developing iTALC
+-----------------------
+
+If you want to help developing iTALC, have any problems or anything else,
+feel free to e-mail me!
+
+My e-mail-adress: tobydox/at/users/dot/sf/dot/net
+
+

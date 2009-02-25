@@ -1,0 +1,55 @@
+9
+
+dir
+397
+https://ultravnc.svn.sourceforge.net/svnroot/ultravnc/UltraVNC%20Project%20Root/UltraVNC/winvnc/ms-logon
+https://ultravnc.svn.sourceforge.net/svnroot/ultravnc
+
+
+
+2008-08-01T14:51:23.219574Z
+303
+flyfishr64
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+0bd26501-c230-0410-ab9e-a7946180fe3b
+
+testauth
+dir
+
+workgrpdomnt4
+dir
+
+ldapauth
+dir
+
+ldapauth9x
+dir
+
+logging
+dir
+
+authSSP
+dir
+
+ldapauthNT4
+dir
+
+authadmin
+dir
+
+MSLogonACL
+dir
+

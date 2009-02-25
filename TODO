@@ -1,0 +1,31 @@
+- about-dialog: /AUTHORS/LICENSE
+- support for client-demo
+- support for demo-gateway for classrooms connected via VPN
+- add support-workspace for entering IP-address of host to connect to manually
+- remove sidebar-background and draw it
+- make screenshot-stuff working again
+- common naming-conventions
+- show version in about-dlg
+
+TODO
+=====
+
+master:
+- clientManager::cmdToVisibleClients: progressdialog-ptr as param
+
+todo for 1.0.0:
+
+- read browser-names and game-names out of text-file and provide settings-dialog for this
+- highlight duplicate items in user-list -> you can see instantly if several users logged in with the same account
+- make iTALC more stable and fix bugs...
+
+
+todo after 1.0.0:
+- file-collecting and -distributing
+- audio- and video-streaming support (mplayer/xine already implement something like that, maybe we can use them via an API...)
+- modules for importing information about clients (name, IP, MAC-addres) -> LDAP, NIS, Subnet-Scan, XML- and CSV-file ...
+- setup-application for configuring and installing clients
+- Chat-Management-System
+- add support for FreeNX
+
+

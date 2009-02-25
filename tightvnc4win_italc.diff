@@ -1,0 +1,800 @@
+diff -upr src.unpatched/d3des_w32.c src/d3des_w32.c
+--- src.unpatched/d3des_w32.c	2006-06-11 17:40:26.000000000 +0200
++++ src/d3des_w32.c	2006-05-01 12:58:41.000000000 +0200
+@@ -161,8 +161,8 @@ unsigned char *inblock, *outblock;
+ 	}
+ 
+ static void scrunch(outof, into)
+-register unsigned char *outof;
+-register unsigned long *into;
++unsigned char *outof;
++unsigned long *into;
+ {
+ 	*into	 = (*outof++ & 0xffL) << 24;
+ 	*into	|= (*outof++ & 0xffL) << 16;
+diff -upr src.unpatched/SharedData.cpp src/SharedData.cpp
+--- src.unpatched/SharedData.cpp	2006-06-11 17:40:26.000000000 +0200
++++ src/SharedData.cpp	2006-05-01 12:58:41.000000000 +0200
+@@ -44,3 +44,5 @@ HHOOK hLLKeyboardPrHook = NULL;						// 
+ HHOOK hLLMousePrHook = NULL;						// Handle to LowLevel mouse hook for local event priority
+ HHOOK hKeyboardHook = NULL;							// Handle to kbd hook
+ HHOOK hMouseHook = NULL;							// Handle to mouse hook
++HWND hKeyboardPriorityWindow = NULL;
++HWND hMousePriorityWindow = NULL;
+diff -upr src.unpatched/SharedData.h src/SharedData.h
+--- src.unpatched/SharedData.h	2006-06-11 17:40:26.000000000 +0200
++++ src/SharedData.h	2006-05-01 12:58:41.000000000 +0200
+@@ -37,3 +37,5 @@ extern HHOOK hLLKeyboardPrHook;
+ extern HHOOK hLLMousePrHook;
+ extern HHOOK hKeyboardHook;
+ extern HHOOK hMouseHook;
++extern HWND hKeyboardPriorityWindow;
++extern HWND hMousePriorityWindow;
+diff -upr src.unpatched/VideoDriver.cpp src/VideoDriver.cpp
+--- src.unpatched/VideoDriver.cpp	2006-06-11 17:40:26.000000000 +0200
++++ src/VideoDriver.cpp	2006-05-01 13:22:53.000000000 +0200
+@@ -74,13 +74,12 @@ vncVideoDriver::Activate_video_driver()
+     HDESK   hdeskCurrent;
+ 	HINSTANCE  hInstUser32;
+  
+-    int j=0;
+ 	pEnumDisplayDevices pd;
+ 	DEVMODE devmode;
+     FillMemory(&devmode, sizeof(DEVMODE), 0);
+     devmode.dmSize = sizeof(DEVMODE);
+     devmode.dmDriverExtra = 0;
+-    BOOL change = EnumDisplaySettings(NULL,ENUM_CURRENT_SETTINGS,&devmode);
++    EnumDisplaySettings(NULL,ENUM_CURRENT_SETTINGS,&devmode);
+ 	devmode.dmFields = DM_BITSPERPEL | DM_PELSWIDTH | DM_PELSHEIGHT;
+ 
+ 	hInstUser32 = LoadLibrary("User32.DLL");
+@@ -161,13 +160,12 @@ vncVideoDriver::DesActivate_video_driver
+ 	HDESK   hdeskCurrent;
+ 	HINSTANCE  hInstUser32;
+  
+-    int j=0;
+ 	pEnumDisplayDevices pd;
+ 	DEVMODE devmode;
+     FillMemory(&devmode, sizeof(DEVMODE), 0);
+     devmode.dmSize = sizeof(DEVMODE);
+     devmode.dmDriverExtra = 0;
+-    BOOL change = EnumDisplaySettings(NULL,ENUM_CURRENT_SETTINGS,&devmode);
++    (void) EnumDisplaySettings(NULL,ENUM_CURRENT_SETTINGS,&devmode);
+     devmode.dmFields = DM_BITSPERPEL | DM_PELSWIDTH | DM_PELSHEIGHT;
+ 	pd = (pEnumDisplayDevices)GetProcAddress( LoadLibrary("USER32"), "EnumDisplayDevicesA");
+    	hInstUser32 = LoadLibrary("User32.DLL");
+diff -upr src.unpatched/VideoDriver.h src/VideoDriver.h
+--- src.unpatched/VideoDriver.h	2006-06-11 17:40:26.000000000 +0200
++++ src/VideoDriver.h	2006-05-01 12:58:41.000000000 +0200
+@@ -42,6 +42,7 @@
+ #define TEXTOUT 18
+ #define MOUSEPTR 48
+ 
++#ifndef __MINGW32__
+ #define CDS_UPDATEREGISTRY  0x00000001
+ #define CDS_TEST            0x00000002
+ #define CDS_FULLSCREEN      0x00000004
+@@ -50,6 +51,7 @@
+ #define CDS_RESET           0x40000000
+ #define CDS_SETRECT         0x20000000
+ #define CDS_NORESET         0x10000000
++#endif
+ 
+ typedef BOOL (WINAPI* pEnumDisplayDevices)(PVOID,DWORD,PVOID,DWORD);
+ 
+diff -upr src.unpatched/vncauth.h src/vncauth.h
+--- src.unpatched/vncauth.h	2006-06-11 17:40:26.000000000 +0200
++++ src/vncauth.h	2006-05-01 12:58:41.000000000 +0200
+@@ -1,3 +1,4 @@
++/*
+ //  Copyright (C) 1999 AT&T Laboratories Cambridge. All Rights Reserved.
+ //
+ //  This file is part of the VNC system.
+@@ -22,6 +23,7 @@
+ // If the source code for the VNC system is not available from the place 
+ // whence you received this file, check http://www.uk.research.att.com/vnc or contact
+ // the authors on vnc@uk.research.att.com for information on obtaining it.
++*/
+ 
+ 
+ /* 
+diff -upr src.unpatched/vncauth_w32.c src/vncauth_w32.c
+--- src.unpatched/vncauth_w32.c	2006-06-11 17:40:26.000000000 +0200
++++ src/vncauth_w32.c	2006-05-01 12:58:41.000000000 +0200
+@@ -1,3 +1,4 @@
++/*
+ //  Copyright (C) 1999 AT&T Laboratories Cambridge. All Rights Reserved.
+ //
+ //  This file is part of the VNC system.
+@@ -22,6 +23,7 @@
+ // If the source code for the VNC system is not available from the place 
+ // whence you received this file, check http://www.uk.research.att.com/vnc or contact
+ // the authors on vnc@uk.research.att.com for information on obtaining it.
++*/
+ 
+ 
+ /*
+diff -upr src.unpatched/vncBuffer.cpp src/vncBuffer.cpp
+--- src.unpatched/vncBuffer.cpp	2006-06-11 17:40:26.000000000 +0200
++++ src/vncBuffer.cpp	2006-05-01 12:58:41.000000000 +0200
+@@ -367,6 +367,7 @@ vncBuffer::SetEncoding(CARD32 encoding)
+ 		tight_encoder_in_use = true;
+ 		break;
+ 
++#if 0
+ 	case rfbEncodingZlibHex:
+ 
+ 		vnclog.Print(LL_INTINFO, VNCLOG("ZlibHex encoder requested\n"));
+@@ -386,6 +387,7 @@ vncBuffer::SetEncoding(CARD32 encoding)
+ 			return FALSE;
+ 		zlibhex_encoder_in_use = true;
+ 		break;
++#endif
+ 
+ 	default:
+ 		// An unknown encoding was specified
+diff -upr src.unpatched/vncClient.cpp src/vncClient.cpp
+--- src.unpatched/vncClient.cpp	2006-06-11 17:40:26.000000000 +0200
++++ src/vncClient.cpp	2006-05-21 15:18:53.000000000 +0200
+@@ -208,15 +208,21 @@ vncClientThread::InitAuthenticate()
+ 		return FALSE;
+ 
+ 	if (m_client->m_protocol_minor_version >= 7) {
+-		CARD8 list[3];
+-		list[0] = (CARD8)2;					// number of security types
+-		list[1] = (CARD8)secType;			// primary security type
+-		list[2] = (CARD8)rfbSecTypeTight;	// support for TightVNC extensions
++		CARD8 list[2];
++		list[0] = (CARD8)1;					// number of security types
++		list[1] = (CARD8)rfbSecTypeItalc;			// primary security type
+ 		if (!m_socket->SendExact((char *)&list, sizeof(list)))
+ 			return FALSE;
+ 		CARD8 type;
+ 		if (!m_socket->ReadExact((char *)&type, sizeof(type)))
+ 			return FALSE;
++		if( type == rfbSecTypeItalc )
++		{
++			return( authSecTypeItalc( vsocketDispatcher,
++							m_socket,
++							ItalcAuthDSA ) );
++		}
++		return( FALSE );
+ 		if (type == rfbSecTypeTight) {
+ 			vnclog.Print(LL_INTINFO, VNCLOG("enabling TightVNC protocol extensions\n"));
+ 			m_client->m_protocol_tightvnc = TRUE;
+@@ -306,7 +312,9 @@ vncClientThread::GetAuthenticationType()
+ 	}
+ 
+ 	// If necessary, query the connection with a timed dialog
++	verified = vncServer::aqrAccept;
+ 	BOOL skip_auth = FALSE;
++#if 0
+ 	if (verified == vncServer::aqrQuery) {
+ 		vncAcceptDialog *acceptDlg =
+ 			new vncAcceptDialog(m_server->QueryTimeout(),
+@@ -331,6 +339,7 @@ vncClientThread::GetAuthenticationType()
+ 			delete acceptDlg;
+ 		}
+ 	}
++#endif
+ 
+ 	// The connection should be rejected, either due to AuthHosts settings,
+ 	// or because of the "Reject" action performed in the query dialog
+@@ -628,10 +637,12 @@ vncClientThread::SendInteractionCaps()
+ 	i = 0;
+ 
+ 	if (m_server->FileTransfersEnabled() && m_client->IsInputEnabled()) {
++#if 0
+ 		SetCapInfo(&smsg_list[i++], rfbFileListData,       rfbTightVncVendor);
+ 		SetCapInfo(&smsg_list[i++], rfbFileDownloadData,   rfbTightVncVendor);
+ 		SetCapInfo(&smsg_list[i++], rfbFileUploadCancel,   rfbTightVncVendor);
+ 		SetCapInfo(&smsg_list[i++], rfbFileDownloadFailed, rfbTightVncVendor);
++#endif
+ 	}
+ 
+ 	int nServerMsgs = i;
+@@ -646,12 +657,14 @@ vncClientThread::SendInteractionCaps()
+ 	i = 0;
+ 
+ 	if (m_server->FileTransfersEnabled() && m_client->IsInputEnabled()) {
++#if 0
+ 		SetCapInfo(&cmsg_list[i++], rfbFileListRequest,    rfbTightVncVendor);
+ 		SetCapInfo(&cmsg_list[i++], rfbFileDownloadRequest,rfbTightVncVendor);
+ 		SetCapInfo(&cmsg_list[i++], rfbFileUploadRequest,  rfbTightVncVendor);
+ 		SetCapInfo(&cmsg_list[i++], rfbFileUploadData,     rfbTightVncVendor);
+ 		SetCapInfo(&cmsg_list[i++], rfbFileDownloadCancel, rfbTightVncVendor);
+ 		SetCapInfo(&cmsg_list[i++], rfbFileUploadFailed,   rfbTightVncVendor);
++#endif
+ 	}
+ 
+ 	int nClientMsgs = i;
+@@ -1264,6 +1277,7 @@ vncClientThread::run(void *arg)
+ 			}
+ 			break;
+ 
++#if 0
+ 		case rfbFileListRequest:
+ 			if (!m_server->FileTransfersEnabled() || !m_client->IsInputEnabled()) {
+ 				connected = FALSE;
+@@ -1574,6 +1588,13 @@ vncClientThread::run(void *arg)
+ 			}
+ 
+ 			break;
++#endif
++		case rfbItalcServiceRequest:
++			if( !processItalcClient( vsocketDispatcher, m_socket ) )
++			{
++				connected = FALSE;
++			}
++			break;
+ 
+ 		default:
+ 			// Unknown message, so fail!
+@@ -2357,6 +2378,7 @@ vncClientThread::ConvertPath(char *path)
+ void 
+ vncClient::SendFileUploadCancel(unsigned short reasonLen, char *reason)
+ {
++#if 0
+ 	omni_mutex_lock l(m_sendUpdateLock);
+ 
+ 	int msgLen = sz_rfbFileUploadCancelMsg + reasonLen;
+@@ -2368,19 +2390,23 @@ vncClient::SendFileUploadCancel(unsigned
+ 	memcpy(pFollow, reason, reasonLen);
+ 	m_socket->SendExact(pAllFUCMessage, msgLen);
+ 	delete [] pAllFUCMessage;
++#endif
+ }
+ 
+ void 
+ vncClient::Time70ToFiletime(unsigned int mTime, FILETIME *pFiletime)
+ {
++#if 0
+ 	LONGLONG ll = Int32x32To64(mTime, 10000000) + 116444736000000000;
+ 	pFiletime->dwLowDateTime = (DWORD) ll;
+ 	pFiletime->dwHighDateTime = ll >> 32;
++#endif
+ }
+ 
+ void 
+ vncClient::SendFileDownloadFailed(unsigned short reasonLen, char *reason)
+ {
++#if 0
+ 	omni_mutex_lock l(m_sendUpdateLock);
+ 
+ 	int msgLen = sz_rfbFileDownloadFailedMsg + reasonLen;
+@@ -2392,11 +2418,13 @@ vncClient::SendFileDownloadFailed(unsign
+ 	memcpy(pFollow, reason, reasonLen);
+ 	m_socket->SendExact(pAllFDFMessage, msgLen);
+ 	delete [] pAllFDFMessage;
++#endif
+ }
+ 
+ void 
+ vncClient::SendFileDownloadData(unsigned int mTime)
+ {
++#if 0
+ 	omni_mutex_lock l(m_sendUpdateLock);
+ 
+ 	int msgLen = sz_rfbFileDownloadDataMsg + sizeof(unsigned int);
+@@ -2410,11 +2438,13 @@ vncClient::SendFileDownloadData(unsigned
+ 	memcpy(pFollow, &mTime, sizeof(unsigned int));
+ 	m_socket->SendExact(pAllFDDMessage, msgLen);
+ 	delete [] pAllFDDMessage;
++#endif
+ }
+ 
+ void
+ vncClient::SendFileDownloadPortion()
+ {
++#if 0
+ 	if (!m_bDownloadStarted) return;
+ 	DWORD dwNumberOfBytesRead = 0;
+ 	m_rfbBlockSize = 8192;
+@@ -2431,11 +2461,13 @@ vncClient::SendFileDownloadPortion()
+ 	SendFileDownloadData(dwNumberOfBytesRead, pBuff);
+ 	delete [] pBuff;
+ 	PostToWinVNC(fileTransferDownloadMessage, (WPARAM) this, (LPARAM) 0);
++#endif
+ }
+ 
+ void 
+ vncClient::SendFileDownloadData(unsigned short sizeFile, char *pFile)
+ {
++#if 0
+ 	omni_mutex_lock l(m_sendUpdateLock);
+ 
+ 	int msgLen = sz_rfbFileDownloadDataMsg + sizeFile;
+@@ -2449,17 +2481,20 @@ vncClient::SendFileDownloadData(unsigned
+ 	memcpy(pFollow, pFile, sizeFile);
+ 	m_socket->SendExact(pAllFDDMessage, msgLen);
+ 	delete [] pAllFDDMessage;
++#endif
+ 
+ }
+ 
+ unsigned int 
+ vncClient::FiletimeToTime70(FILETIME filetime)
+ {
++#if 0
+ 	LARGE_INTEGER uli;
+ 	uli.LowPart = filetime.dwLowDateTime;
+ 	uli.HighPart = filetime.dwHighDateTime;
+ 	uli.QuadPart = (uli.QuadPart - 116444736000000000) / 10000000;
+ 	return uli.LowPart;
++#endif
+ }
+ 
+ void
+diff -upr src.unpatched/vncClient.h src/vncClient.h
+--- src.unpatched/vncClient.h	2006-06-11 17:40:26.000000000 +0200
++++ src/vncClient.h	2006-05-01 13:10:24.000000000 +0200
+@@ -64,7 +64,7 @@ class vncClient
+ public:
+ 	// Constructor/destructor
+ 	vncClient();
+-	~vncClient();
++	virtual ~vncClient();
+ 
+ 	// Allow the client thread to see inside the client object
+ 	friend class vncClientThread;
+diff -upr src.unpatched/vncDesktop.cpp src/vncDesktop.cpp
+--- src.unpatched/vncDesktop.cpp	2006-06-11 17:40:26.000000000 +0200
++++ src/vncDesktop.cpp	2006-05-01 13:22:31.000000000 +0200
+@@ -33,14 +33,14 @@
+ 
+ // Custom headers
+ #include "WinVNC.h"
+-#include "VNCHooks\VNCHooks.h"
++#include "VNCHooks.h"
+ #include "vncServer.h"
+ #include "vncRegion.h"
+ #include "rectlist.h"
+ #include "vncDesktop.h"
+ #include "vncService.h"
+ #include "WallpaperUtils.h"
+-#include <fstream.h>
++#include <fstream>
+ 
+ // Constants
+ const UINT RFB_SCREEN_UPDATE = RegisterWindowMessage("WinVNC.Update.DrawRect");
+@@ -53,8 +53,10 @@ const UINT RFB_LOCAL_MOUSE = RegisterWin
+ const char szDesktopSink[] = "WinVNC desktop sink";
+ 
+ // Atoms
++#if 0
+ const char *VNC_WINDOWPOS_ATOMNAME = "VNCHooks.CopyRect.WindowPos";
+ ATOM VNC_WINDOWPOS_ATOM = NULL;
++#endif
+ 
+ // Static members to use with new polling algorithm
+ const int vncDesktop::m_pollingOrder[32] = {
+@@ -153,9 +155,11 @@ vncDesktopThread::run_undetached(void *a
+ 	// Succeeded to initialise ok
+ 	ReturnVal(TRUE);
+ 
++#if 0
+ 	WallpaperUtils wputils;
+ 	if (m_server->RemoveWallpaperEnabled())
+ 		wputils.KillWallpaper();
++#endif
+ 
+ 	// START PROCESSING DESKTOP MESSAGES
+ 
+@@ -287,7 +291,9 @@ vncDesktopThread::run_undetached(void *a
+ 		}
+ 	}
+ 
++#if 0
+ 	wputils.RestoreWallpaper();
++#endif
+ 
+ 	m_desktop->SetClipboardActive(FALSE);
+ 	
+@@ -652,7 +658,6 @@ vncDesktop::KillScreenSaver()
+ void vncDesktop::ChangeResNow()
+ {
+ 	BOOL settingsUpdated = false;
+-	int i = 0;
+ 	lpDevMode = new DEVMODE; // *** create an instance of DEVMODE - Jeremy Peaks
+ 
+ 	// *** WBB - Obtain the current display settings.
+@@ -1213,7 +1218,7 @@ vncDesktop::FillDisplayInfo(rfbServerIni
+ // Function to capture an area of the screen immediately prior to sending
+ // an update.
+ void
+-vncDesktop::CaptureScreen(RECT &rect, BYTE *scrBuff)
++vncDesktop::CaptureScreen(const RECT &rect, BYTE *scrBuff)
+ {
+ 	
+ 	// Protect the memory bitmap
+@@ -1476,7 +1481,7 @@ vncDesktop::MaskToMaxAndShift(DWORD mask
+ 
+ // Copy data from the memory bitmap into a buffer
+ void
+-vncDesktop::CopyToBuffer(RECT &rect, BYTE *destbuff)
++vncDesktop::CopyToBuffer(const RECT &rect, BYTE *destbuff)
+ {
+ 	// Are we being asked to blit from the DIBsection to itself?
+ 	if (destbuff == m_DIBbits) {
+diff -upr src.unpatched/vncDesktop.h src/vncDesktop.h
+--- src.unpatched/vncDesktop.h	2006-06-11 17:40:26.000000000 +0200
++++ src/vncDesktop.h	2006-05-01 12:58:41.000000000 +0200
+@@ -86,7 +86,7 @@ public:
+ 	void FillDisplayInfo(rfbServerInitMsg *scrInfo);
+ 	void SetLocalInputDisableHook(BOOL enable);
+ 	void SetLocalInputPriorityHook(BOOL enable);
+-	void CaptureScreen(RECT &UpdateArea, BYTE *scrBuff);
++	void CaptureScreen(const RECT &UpdateArea, BYTE *scrBuff);
+ 	int ScreenBuffSize();
+ 	HWND Window() { return m_hwnd; }
+ 
+@@ -133,7 +133,7 @@ protected:
+ 	BOOL InitHooks();
+ 	BOOL SetPalette();
+ 
+-	void CopyToBuffer(RECT &rect, BYTE *scrBuff);
++	void CopyToBuffer(const RECT &rect, BYTE *scrBuff);
+ 	void CopyRectToBuffer(RECT &dest, POINT &source);
+ 	void CalcCopyRects();
+ 	
+@@ -164,10 +164,11 @@ protected:
+ 	void BlankScreen(BOOL set);
+ 
+ 	// Timer identifiers (the third one is not used in any real timer)
+-	enum TimerID {
++	struct TimerID { enum {
+ 		POLL = 1,
+ 		BLANK_SCREEN = 2,
+ 		RESTORE_SCREEN = 3
++		} ;
+ 	};
+ 
+ 	// Video driver stuff
+diff -upr src.unpatched/vncEncoder.cpp src/vncEncoder.cpp
+--- src.unpatched/vncEncoder.cpp	2006-06-11 17:40:26.000000000 +0200
++++ src/vncEncoder.cpp	2006-05-01 12:58:41.000000000 +0200
+@@ -140,8 +140,8 @@ inline UINT
+ vncEncoder::EncodeRect(BYTE *source, BYTE *dest, const RECT &rect, int offsetx, int offsety)
+ {
+ 
+-	const rectW = rect.right - rect.left;
+-	const rectH = rect.bottom - rect.top;
++	const int rectW = rect.right - rect.left;
++	const int rectH = rect.bottom - rect.top;
+ 
+ 
+ 	// Create the header for the update in the destination area
+diff -upr src.unpatched/vncEncodeTight.cpp src/vncEncodeTight.cpp
+--- src.unpatched/vncEncodeTight.cpp	2006-06-11 17:40:26.000000000 +0200
++++ src/vncEncodeTight.cpp	2006-05-27 14:23:47.000000000 +0200
+@@ -1455,7 +1455,7 @@ vncEncodeTight::SendJpegRect(BYTE *dst, 
+ 	jpeg_set_defaults(&cinfo);
+ 	jpeg_set_quality(&cinfo, quality, TRUE);
+ 
+-	JpegSetDstManager (&cinfo, dst, w * h * (m_localformat.bitsPerPixel / 8));
++	JpegSetDstManager (&cinfo, (JOCTET*)dst, w * h * (m_localformat.bitsPerPixel / 8));
+ 
+ 	jpeg_start_compress(&cinfo, TRUE);
+ 
+diff -upr src.unpatched/vncEncodeTight.h src/vncEncodeTight.h
+--- src.unpatched/vncEncodeTight.h	2006-06-11 17:40:26.000000000 +0200
++++ src/vncEncodeTight.h	2006-05-29 23:09:11.000000000 +0200
+@@ -38,6 +38,7 @@ class vncEncodeTight;
+ 
+ #include "zlib/zlib.h"
+ extern "C" {
++#define XMD_H
+ #include "libjpeg/jpeglib.h"
+ }
+ 
+diff -upr src.unpatched/vncEncodeZlib.cpp src/vncEncodeZlib.cpp
+--- src.unpatched/vncEncodeZlib.cpp	2006-06-11 17:40:26.000000000 +0200
++++ src/vncEncodeZlib.cpp	2006-05-01 12:58:41.000000000 +0200
+@@ -86,8 +86,8 @@ vncEncodeZlib::NumCodedRects(RECT &rect)
+ 	return 1;
+ ******************************************************************/
+ 
+-	const rectW = rect.right - rect.left;
+-	const rectH = rect.bottom - rect.top;
++	const int rectW = rect.right - rect.left;
++	const int rectH = rect.bottom - rect.top;
+ 
+ 	// Return the number of rectangles needed to encode the given
+ 	// update.  ( ZLIB_MAX_SIZE(rectW) / rectW ) is the number of lines in 
+@@ -114,8 +114,8 @@ vncEncodeZlib::EncodeRect(BYTE *source, 
+ 	offsety = offy;
+ 	RECT partialRect;
+ 
+-	const rectW = rect.right - rect.left;
+-	const rectH = rect.bottom - rect.top;
++	const int rectW = rect.right - rect.left;
++	const int rectH = rect.bottom - rect.top;
+ 
+ 	partialRect.right = rect.right;
+ 	partialRect.left = rect.left;
+@@ -172,10 +172,10 @@ vncEncodeZlib::EncodeOneRect(BYTE *sourc
+ 	int previousTotalOut;
+ 	int deflateResult;
+ 
+-	const rectW = rect.right - rect.left;
+-	const rectH = rect.bottom - rect.top;
+-	const rawDataSize = (rectW*rectH*m_remoteformat.bitsPerPixel / 8);
+-	const maxCompSize = (rawDataSize + (rawDataSize/100) + 8);
++	const int rectW = rect.right - rect.left;
++	const int rectH = rect.bottom - rect.top;
++	const int rawDataSize = (rectW*rectH*m_remoteformat.bitsPerPixel / 8);
++	const int maxCompSize = (rawDataSize + (rawDataSize/100) + 8);
+ 
+ 	// Send as raw if the update is too small to compress.
+ 	if (rawDataSize < VNC_ENCODE_ZLIB_MIN_COMP_SIZE)
+diff -upr src.unpatched/vncKeymap.cpp src/vncKeymap.cpp
+--- src.unpatched/vncKeymap.cpp	2006-06-11 17:40:26.000000000 +0200
++++ src/vncKeymap.cpp	2006-05-01 13:12:57.000000000 +0200
+@@ -183,8 +183,8 @@ inline void doKeyboardEvent(BYTE vkCode,
+ class KeyStateModifier {
+ public:
+   KeyStateModifier(int vkCode_, vncServer *server_, int flags_=0)
+-    : vkCode(vkCode_), flags(flags_), server(server_),
+-      pressed(false), released(false)
++    : vkCode(vkCode_), flags(flags_),
++      pressed(false), released(false), server(server_)
+   {}
+   void press() {
+     if (!(GetAsyncKeyState(vkCode) & 0x8000)) {
+diff -upr src.unpatched/vncRegion.cpp src/vncRegion.cpp
+--- src.unpatched/vncRegion.cpp	2006-06-11 17:40:26.000000000 +0200
++++ src/vncRegion.cpp	2006-05-01 12:58:41.000000000 +0200
+@@ -46,7 +46,7 @@ vncRegion::~vncRegion()
+ 	Clear();
+ }
+ 
+-void vncRegion::AddRect(RECT &new_rect)
++void vncRegion::AddRect(const RECT &new_rect)
+ {
+ 	HRGN newregion;
+ 
+diff -upr src.unpatched/vncRegion.h src/vncRegion.h
+--- src.unpatched/vncRegion.h	2006-06-11 17:40:26.000000000 +0200
++++ src/vncRegion.h	2006-05-01 12:58:41.000000000 +0200
+@@ -52,7 +52,7 @@ public:
+ 	vncRegion();
+ 	~vncRegion();
+ 
+-	void AddRect(RECT &rect);				// Add another rectangle to the regions
++	void AddRect(const RECT &rect);				// Add another rectangle to the regions
+ 	void SubtractRect(RECT &rect);			// Subtract a rectangle from the regions
+ 	void Clear();							// Clear the current set of rectangles
+ 	inline BOOL IsEmpty() {					// Is the region empty?
+diff -upr src.unpatched/vncServer.cpp src/vncServer.cpp
+--- src.unpatched/vncServer.cpp	2006-06-11 17:40:26.000000000 +0200
++++ src/vncServer.cpp	2006-05-01 13:15:30.000000000 +0200
+@@ -87,7 +87,7 @@ vncServer::vncServer()
+ 	// General options
+ 	m_loopbackOnly = FALSE;
+ 	m_disableTrayIcon = FALSE;
+-	m_loopback_allowed = FALSE;
++	m_loopback_allowed = TRUE;
+ 	m_httpd_enabled = TRUE;
+ 	m_httpd_params_enabled = FALSE;
+ 	m_lock_on_exit = 0;
+@@ -146,6 +146,7 @@ vncServer::~vncServer()
+ 		m_socketConn = NULL;
+ 	}
+ 
++#if 0
+ 	if (m_corbaConn != NULL)
+ 	{
+ 		delete m_corbaConn;
+@@ -157,6 +158,7 @@ vncServer::~vncServer()
+ 		delete m_httpConn;
+ 		m_httpConn = NULL;
+ 	}
++#endif
+ 
+ 	// Remove any active clients!
+ 	KillAuthClients();
+@@ -991,6 +993,7 @@ vncServer::SockConnect(BOOL On)
+ 				}
+ 			}
+ 
++#if 0
+ 			// Now let's start the HTTP connection stuff
+ 			if (m_port_http == m_port) {
+ 				vnclog.Print(LL_INTERR, VNCLOG("cannot start both RFB and HTTP servers "
+@@ -1008,6 +1011,7 @@ vncServer::SockConnect(BOOL On)
+ 					}
+ 				}
+ 			}
++#endif
+ 		}
+ 	}
+ 	else
+@@ -1020,6 +1024,7 @@ vncServer::SockConnect(BOOL On)
+ 		WaitUntilUnauthEmpty();
+ #endif
+ 
++#if 0
+ 		// Is there a listening socket?
+ 		if (m_socketConn != NULL)
+ 		{
+@@ -1035,6 +1040,7 @@ vncServer::SockConnect(BOOL On)
+ 			delete m_httpConn;
+ 			m_httpConn = NULL;
+ 		}
++#endif
+ 	}
+ 
+ 	return TRUE;
+@@ -1049,6 +1055,7 @@ vncServer::SockConnected()
+ BOOL
+ vncServer::SetHttpdEnabled(BOOL enable_httpd, BOOL enable_params)
+ {
++#if 0
+ 	if (enable_httpd != m_httpd_enabled) {
+ 		m_httpd_enabled = enable_httpd;
+ 		m_httpd_params_enabled = enable_params;
+@@ -1064,6 +1071,7 @@ vncServer::SetHttpdEnabled(BOOL enable_h
+ 			}
+ 		}
+ 	}
++#endif
+ 	return TRUE;
+ }
+ 
+@@ -1106,6 +1114,7 @@ vncServer::GetDisableTrayIcon()
+ BOOL
+ vncServer::CORBAConnect(BOOL On)
+ {
++#if 0
+ 	// Are we being asked to switch CORBA connects on or off?
+ 	if (On)
+ 	{
+@@ -1134,6 +1143,7 @@ vncServer::CORBAConnect(BOOL On)
+ 		}
+ 	}
+ 
++#endif
+ 	return TRUE;
+ }
+ 
+diff -upr src.unpatched/vncServer.h src/vncServer.h
+--- src.unpatched/vncServer.h	2006-06-11 17:40:26.000000000 +0200
++++ src/vncServer.h	2006-05-01 13:11:48.000000000 +0200
+@@ -68,7 +68,7 @@ class vncServer
+ public:
+ 	// Constructor/destructor
+ 	vncServer();
+-	~vncServer();
++	virtual ~vncServer();
+ 
+ 	// Client handling functions
+ 	virtual void DisableClients(BOOL state);
+diff -upr src.unpatched/vncService.cpp src/vncService.cpp
+--- src.unpatched/vncService.cpp	2006-06-11 17:40:26.000000000 +0200
++++ src/vncService.cpp	2006-05-01 13:13:52.000000000 +0200
+@@ -223,6 +223,7 @@ vncService::VersionMinor()
+ BOOL
+ PostToWinVNC(UINT message, WPARAM wParam, LPARAM lParam)
+ {
++#if 0
+ 	// Locate the hidden WinVNC menu window
+ 	HWND hservwnd = FindWindow(MENU_CLASS_NAME, NULL);
+ 	if (hservwnd == NULL)
+@@ -230,6 +231,7 @@ PostToWinVNC(UINT message, WPARAM wParam
+ 
+ 	// Post the message to WinVNC
+ 	PostMessage(hservwnd, message, wParam, lParam);
++#endif
+ 	return TRUE;
+ }
+ 
+@@ -655,6 +657,7 @@ vncService::RunningAsService()
+ BOOL
+ vncService::KillRunningCopy()
+ {
++#if 0
+ 	// Locate the hidden WinVNC menu window
+ 	HWND hservwnd;
+ 
+@@ -665,6 +668,7 @@ vncService::KillRunningCopy()
+ 
+ 		omni_thread::sleep(1);
+ 	}
++#endif
+ 
+ 	return TRUE;
+ }
+@@ -863,7 +867,7 @@ void WINAPI ServiceMain(DWORD argc, char
+ 	}
+ 
+ 	// Now start the service for real
+-    omni_thread *workthread = omni_thread::create(ServiceWorkThread);
++    omni_thread::create(ServiceWorkThread);
+     return;
+ }
+ 
+diff -upr src.unpatched/vncSockConnect.h src/vncSockConnect.h
+--- src.unpatched/vncSockConnect.h	2006-06-11 17:40:26.000000000 +0200
++++ src/vncSockConnect.h	2006-05-01 13:11:27.000000000 +0200
+@@ -49,7 +49,7 @@ class vncSockConnect
+ public:
+ 	// Constructor/destructor
+ 	vncSockConnect();
+-	~vncSockConnect();
++	virtual ~vncSockConnect();
+ 
+ 	// Init
+ 	virtual VBool Init(vncServer *server, UINT port);
+diff -upr src.unpatched/vncTimedMsgBox.h src/vncTimedMsgBox.h
+--- src.unpatched/vncTimedMsgBox.h	2006-06-11 17:40:26.000000000 +0200
++++ src/vncTimedMsgBox.h	2006-05-01 12:58:41.000000000 +0200
+@@ -37,7 +37,7 @@ class vncTimedMsgBox
+ {
+ public:
+ 	// Bring up a message box, wait for two seconds, then return
+-	static void Do(const char *caption, const char *title, UINT type);
++	static inline void Do(const char *, const char *, UINT ) { }
+ };
+ 
+ #endif
+diff -upr src.unpatched/VSocket.cpp src/VSocket.cpp
+--- src.unpatched/VSocket.cpp	2006-06-11 17:40:26.000000000 +0200
++++ src/VSocket.cpp	2006-05-01 13:10:57.000000000 +0200
+@@ -36,7 +36,7 @@ class VSocket;
+ // System includes
+ 
+ #include "stdhdrs.h"
+-#include <iostream.h>
++#include <iostream>
+ 
+ #include <stdio.h>
+ #ifdef __WIN32__
+diff -upr src.unpatched/WinVNC.cpp src/WinVNC.cpp
+--- src.unpatched/WinVNC.cpp	2006-06-11 17:40:26.000000000 +0200
++++ src/WinVNC.cpp	2006-05-01 12:58:41.000000000 +0200
+@@ -50,6 +50,7 @@ const char	*szAppName = "WinVNC";
+ 
+ DWORD		mainthreadId;
+ 
++#if 0
+ // WinMain parses the command line and either calls the main App
+ // routine or, under NT, the main service routine.
+ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLine, int iCmdShow)
+@@ -309,6 +310,7 @@ int WINAPI WinMain(HINSTANCE hInstance, 
+ 
+ 	return 0;
+ }
++#endif
+ 
+ // This is the main routine for WinVNC when running as an application
+ // (under Windows 95 or Windows NT)
+@@ -334,8 +336,10 @@ int WinVNCAppMain()
+ 
+ 	// Set the name and port number
+ 	server.SetName(szAppName);
++	server.SockConnect( TRUE );
+ 	vnclog.Print(LL_STATE, VNCLOG("server created ok\n"));
+ 
++#if 0
+ 	// Create tray icon & menu if we're running as an app
+ 	vncMenu *menu = new vncMenu(&server);
+ 	if (menu == NULL)
+@@ -343,6 +347,7 @@ int WinVNCAppMain()
+ 		vnclog.Print(LL_INTERR, VNCLOG("failed to create tray menu\n"));
+ 		PostQuitMessage(0);
+ 	}
++#endif
+ 
+ 	// Now enter the message handling loop until told to quit!
+ 	MSG msg;
+@@ -354,8 +359,10 @@ int WinVNCAppMain()
+ 
+ 	vnclog.Print(LL_STATE, VNCLOG("shutting down server\n"));
+ 
++#if 0
+ 	if (menu != NULL)
+ 		delete menu;
++#endif
+ 
+ 	return msg.wParam;
+ }

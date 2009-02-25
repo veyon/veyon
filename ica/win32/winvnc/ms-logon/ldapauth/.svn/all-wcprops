@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svnroot/ultravnc/!svn/ver/289/UltraVNC%20Project%20Root/UltraVNC/winvnc/ms-logon/ldapauth
+END
+ldapauth.def
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svnroot/ultravnc/!svn/ver/7/UltraVNC%20Project%20Root/UltraVNC/winvnc/ms-logon/ldapauth/ldapauth.def
+END
+ldapauth_vs90_Release_Win32.lnt
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svnroot/ultravnc/!svn/ver/241/UltraVNC%20Project%20Root/UltraVNC/winvnc/ms-logon/ldapauth/ldapauth_vs90_Release_Win32.lnt
+END
+ldapAuth.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svnroot/ultravnc/!svn/ver/7/UltraVNC%20Project%20Root/UltraVNC/winvnc/ms-logon/ldapauth/ldapAuth.cpp
+END
+ldapauth.vcproj
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svnroot/ultravnc/!svn/ver/289/UltraVNC%20Project%20Root/UltraVNC/winvnc/ms-logon/ldapauth/ldapauth.vcproj
+END
+ldapauthvs2005.vcproj
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svnroot/ultravnc/!svn/ver/259/UltraVNC%20Project%20Root/UltraVNC/winvnc/ms-logon/ldapauth/ldapauthvs2005.vcproj
+END
+ldapAuth.rc
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svnroot/ultravnc/!svn/ver/7/UltraVNC%20Project%20Root/UltraVNC/winvnc/ms-logon/ldapauth/ldapAuth.rc
+END
+ldapauth.dsp
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svnroot/ultravnc/!svn/ver/7/UltraVNC%20Project%20Root/UltraVNC/winvnc/ms-logon/ldapauth/ldapauth.dsp
+END
+ldapauth_vs90_Debug_Win32.lnt
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svnroot/ultravnc/!svn/ver/241/UltraVNC%20Project%20Root/UltraVNC/winvnc/ms-logon/ldapauth/ldapauth_vs90_Debug_Win32.lnt
+END
+ldapAuth.h
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svnroot/ultravnc/!svn/ver/7/UltraVNC%20Project%20Root/UltraVNC/winvnc/ms-logon/ldapauth/ldapAuth.h
+END
+resource.h
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svnroot/ultravnc/!svn/ver/7/UltraVNC%20Project%20Root/UltraVNC/winvnc/ms-logon/ldapauth/resource.h
+END
+ldapauth.dsw
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svnroot/ultravnc/!svn/ver/7/UltraVNC%20Project%20Root/UltraVNC/winvnc/ms-logon/ldapauth/ldapauth.dsw
+END

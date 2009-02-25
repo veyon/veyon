@@ -1,0 +1,260 @@
+Microsoft Developer Studio Workspace File, Format Version 6.00
+# WARNING: DO NOT EDIT OR DELETE THIS WORKSPACE FILE!
+
+###############################################################################
+
+Project: "MSLogonACL"=".\ms-logon\MSLogonACL\MSLogonACL.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "Xregion"="..\Xregion\Xregion.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "authSSP"=".\ms-logon\authSSP\authSSP.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "authadmin"=".\ms-logon\authadmin\authadmin.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "ldapauth"=".\ms-logon\ldapauth\ldapauth.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "ldapauth9x"=".\ms-logon\ldapauth9x\ldapauth9x.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "ldapauthnt4"=".\ms-logon\ldapauthNT4\ldapauthnt4.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "libjpeg"="..\libjpeg\libjpeg.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "logging"=".\ms-logon\logging\logging.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "logmessages"=".\logger\logmessages.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "omnithread"=".\omnithread\omnithread.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "rdr"="..\rdr\rdr.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "testauth"=".\ms-logon\testauth\testauth.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "vnchooks"=".\vnchooks\vnchooks.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "winvnc"=".\winvnc\winvnc.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name omnithread
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name zlib
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name pointstat
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name libjpeg
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name Xregion
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name authadmin
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name ldapauth
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name ldapauth9x
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name ldapauthnt4
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name logging
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name testauth
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name workgrpdomnt4
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name rdr
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "workgrpdomnt4"=".\ms-logon\workgrpdomnt4\workgrpdomnt4.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "zlib"="..\zlib\zlib.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Global:
+
+Package=<5>
+{{{
+}}}
+
+Package=<3>
+{{{
+}}}
+
+###############################################################################
+
