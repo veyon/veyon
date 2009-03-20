@@ -1,9 +1,0 @@
-K 10
-svn:ignore
-V 36
-Debug
-winvnc.ncb
-winvnc.opt
-Release
-
-END
