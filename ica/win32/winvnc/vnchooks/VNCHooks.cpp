@@ -1054,7 +1054,8 @@ void ReadSettings() {
 BOOL InitInstance() 
 {
 	// Create the global atoms
-	VNC_POPUPSELN_ATOM = GlobalAddAtom(VNC_POPUPSELN_ATOMNAME);
+	if (VNC_POPUPSELN_ATOM == NULL)
+    	VNC_POPUPSELN_ATOM = GlobalAddAtom(VNC_POPUPSELN_ATOMNAME);
 	if (VNC_POPUPSELN_ATOM == NULL)
 		return FALSE;
 
@@ -1100,7 +1101,7 @@ BOOL ExitInstance()
 	// Free the created atoms
 	if (VNC_POPUPSELN_ATOM != NULL)
 	{
-		// GlobalDeleteAtom(VNC_POPUPSELN_ATOM);
+		GlobalDeleteAtom(VNC_POPUPSELN_ATOM);
 		VNC_POPUPSELN_ATOM = NULL;
 	}
 

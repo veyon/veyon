@@ -244,6 +244,10 @@ VIDEODRIVER::Mirror_driver_Vista(DWORD dwAttach,int x,int y,int w,int h)
           }
           devNum++;
         }
+#if defined(MIRROR_24)
+		if (devmode.dmBitsPerPel == 24)
+			devmode.dmBitsPerPel = 32;
+#endif
 		if (devmode.dmBitsPerPel!=8 && devmode.dmBitsPerPel!=16 && devmode.dmBitsPerPel!=32) 
 		{
 			if (hUser32) FreeLibrary(hUser32);
@@ -555,6 +559,11 @@ VIDEODRIVER::Mirror_driver_detach_XP()
 				RegCloseKey(hKeyDevice);
 		}
 
+        FillMemory(&devmode, sizeof(DEVMODE), 0);
+
+        devmode.dmSize = sizeof(DEVMODE);
+        devmode.dmDriverExtra = 0;
+
         StringCbCopy((LPSTR)&devmode.dmDeviceName[0], sizeof(devmode.dmDeviceName), "mv2");
         deviceName = (LPSTR)&dispDevice.DeviceName[0];
 		devmode.dmBitsPerPel=32;
@@ -622,6 +631,11 @@ VIDEODRIVER::Mirror_driver_attach_XP(int x,int y,int w,int h)
 					   DM_POSITION |
                        DM_PELSHEIGHT;
 
+#if defined(MIRROR_24)
+	// for 24 bit mode, have the mirror driver use 32 bit.
+	if (devmode.dmBitsPerPel == 24)
+		devmode.dmBitsPerPel = 32;
+#endif
 	if (devmode.dmBitsPerPel!=8 && devmode.dmBitsPerPel!=16 && devmode.dmBitsPerPel!=32)
 	{
 		if (hUser32) FreeLibrary(hUser32);
@@ -724,7 +738,17 @@ VIDEODRIVER::Mirror_driver_attach_XP(int x,int y,int w,int h)
            return false;
         }
 
+        FillMemory(&devmode, sizeof(DEVMODE), 0);
+
+        devmode.dmSize = sizeof(DEVMODE);
+        devmode.dmDriverExtra = 0;
+
         StringCbCopy((LPSTR)&devmode.dmDeviceName[0], 32, "mv2");
+
+        devmode.dmFields = DM_BITSPERPEL |
+                           DM_PELSWIDTH | 
+		    			   DM_POSITION |
+                           DM_PELSHEIGHT;
         deviceName = (LPSTR)&dispDevice.DeviceName[0];
 		devmode.dmPelsWidth=w;
 		devmode.dmPelsHeight=h;

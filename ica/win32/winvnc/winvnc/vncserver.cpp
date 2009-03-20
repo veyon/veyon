@@ -582,7 +582,7 @@ vncServer::Authenticated(vncClientId clientid)
                 DWORD startup_status = 0;
 				if ((startup_status = m_desktop->Init(this)) != 0)
 				{
-					vnclog.Print(LL_INTINFO, VNCLOG("Desktop init failed (%s), unlock in application mode ? \n"), vncDeskThreadError(startup_status));
+					vnclog.Print(LL_INTINFO, VNCLOG("Desktop init failed, unlock in application mode ? \n"));
 					client->Kill();
 					authok = FALSE;
 					delete m_desktop;

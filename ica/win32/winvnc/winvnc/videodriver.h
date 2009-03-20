@@ -60,7 +60,7 @@ public:
 	PCHAR myframebuffer;
 	PCHANGES_BUF mypchangebuf;
 	BOOL blocked;
-	int shared_buffer_size;
+	DWORD shared_buffer_size;
 	
 
 protected:

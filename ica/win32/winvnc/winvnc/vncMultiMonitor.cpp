@@ -19,6 +19,7 @@
 #include "mmsystem.h" // sf@2002
 #include "TextChat.h" // sf@2002
 #include "vncdesktopthread.h"
+#include "common/win32_helpers.h"
 
 void 
 vncDesktop::Checkmonitors()
@@ -65,15 +66,15 @@ vncDesktop::GetNrMonitors()
 	if(OSversion()==3 || OSversion()==5) return 1;
 	int i;
     int j=0;
-	pEnumDisplayDevices pd;
-    pd = (pEnumDisplayDevices)GetProcAddress( LoadLibrary("USER32"), "EnumDisplayDevicesA");
+    
+    helper::DynamicFn<pEnumDisplayDevices> pd("USER32","EnumDisplayDevicesA");
 
-    if (pd)
+    if (pd.isValid())
     {
         DISPLAY_DEVICE dd;
         ZeroMemory(&dd, sizeof(dd));
         dd.cb = sizeof(dd);
-        for (i=0; (pd)(NULL, i, &dd, 0); i++)
+        for (i=0; (*pd)(NULL, i, &dd, 0); i++)
 			{
 				if (dd.StateFlags & DISPLAY_DEVICE_ATTACHED_TO_DESKTOP)
 					if (!(dd.StateFlags & DISPLAY_DEVICE_MIRRORING_DRIVER))j++;
@@ -87,15 +88,14 @@ vncDesktop::GetPrimaryDevice()
 {
 	int i;
     int j=0;
-	pEnumDisplayDevices pd;
-    pd = (pEnumDisplayDevices)GetProcAddress( LoadLibrary("USER32"), "EnumDisplayDevicesA");
+    helper::DynamicFn<pEnumDisplayDevices> pd("USER32","EnumDisplayDevicesA");
 
-    if (pd)
+    if (pd.isValid())
     {
         DISPLAY_DEVICE dd;
         ZeroMemory(&dd, sizeof(dd));
         dd.cb = sizeof(dd);
-        for (i=0; (pd)(NULL, i, &dd, 0); i++)
+        for (i=0; (*pd)(NULL, i, &dd, 0); i++)
 			{
 				if (dd.StateFlags & DISPLAY_DEVICE_ATTACHED_TO_DESKTOP)
 					if (dd.StateFlags & DISPLAY_DEVICE_PRIMARY_DEVICE)
@@ -113,15 +113,14 @@ vncDesktop::GetSecondaryDevice()
 {
 	int i;
     int j=0;
-	pEnumDisplayDevices pd;
-    pd = (pEnumDisplayDevices)GetProcAddress( LoadLibrary("USER32"), "EnumDisplayDevicesA");
+    helper::DynamicFn<pEnumDisplayDevices> pd("USER32","EnumDisplayDevicesA");
 
-    if (pd)
+    if (pd.isValid())
     {
         DISPLAY_DEVICE dd;
         ZeroMemory(&dd, sizeof(dd));
         dd.cb = sizeof(dd);
-        for (i=0; (pd)(NULL, i, &dd, 0); i++)
+        for (i=0; (*pd)(NULL, i, &dd, 0); i++)
 			{
 				if (dd.StateFlags & DISPLAY_DEVICE_ATTACHED_TO_DESKTOP)
 					if (!(dd.StateFlags & DISPLAY_DEVICE_PRIMARY_DEVICE))

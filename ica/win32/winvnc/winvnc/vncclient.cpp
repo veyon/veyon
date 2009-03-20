@@ -488,7 +488,7 @@ vncClientUpdateThread::run_undetached(void *arg)
 		// Block waiting for an update to send
 		{
 			omni_mutex_lock l(m_client->GetUpdateLock());
-			m_client->m_incr_rgn = m_client->m_incr_rgn.union_(clipregion);
+			m_client->m_incr_rgn.assign_union(clipregion);
 
 			// We block as long as updates are disabled, or the client
 			// isn't interested in them, unless this thread is killed.
@@ -790,7 +790,7 @@ vncClientThread::InitVersion()
 BOOL
 vncClientThread::InitAuthenticate()
 {
-	vnclog.Print(LL_INTINFO, "Entered InitAuthenticate");
+	vnclog.Print(LL_INTINFO, "Entered InitAuthenticate\n");
 #if 0
 	// Retrieve the local password
 	char password[MAXPWLEN];
@@ -816,7 +816,7 @@ vncClientThread::InitAuthenticate()
 		if (verified == vncServer::aqrQuery) {
             // 10 Dec 2008 jdp reject/accept all incoming connections if the workstation is locked
             if (vncService::IsWSLocked() && !m_server->QueryIfNoLogon()) {
-                verified = m_server->QueryAccept() == 1 ? vncServer::aqrAccept : verified = vncServer::aqrReject;
+                verified = m_server->QueryAccept() == 1 ? vncServer::aqrAccept : vncServer::aqrReject;
             } else {
 
 			vncAcceptDialog *acceptDlg = new vncAcceptDialog(m_server->QueryTimeout(),m_server->QueryAccept(), m_socket->GetPeerName());
@@ -1329,6 +1329,7 @@ vncClientThread::run(void *arg)
 
 	// IMPORTANT : ALWAYS call RemoveClient on the server before quitting
 	// this thread.
+    SetErrorMode(SEM_FAILCRITICALERRORS|SEM_NOOPENFILEERRORBOX);
 
 	vnclog.Print(LL_CLIENTS, VNCLOG("client connected : %s (%hd)\n"),
 								m_client->GetClientName(),
@@ -1909,7 +1910,7 @@ vncClientThread::run(void *arg)
 					omni_mutex_lock l(m_client->GetUpdateLock());
 
 					// Add the requested area to the incremental update cliprect
-					m_client->m_incr_rgn = m_client->m_incr_rgn.union_(update_rgn);
+					m_client->m_incr_rgn.assign_union(update_rgn);
 
 					// Is this request for a full update?
 					if (!msg.fur.incremental)
@@ -2048,7 +2049,7 @@ vncClientThread::run(void *arg)
 						}
 					else
 						{//second or spanned
-							if (m_client->Sendinput)
+							if (m_client->Sendinput.isValid())
 							{							
 								INPUT evt;
 								evt.type = INPUT_MOUSE;
@@ -2060,7 +2061,7 @@ vncClientThread::run(void *arg)
 								evt.mi.dwExtraInfo = 0;
 								evt.mi.mouseData = wheel_movement;
 								evt.mi.time = 0;
-								m_client->Sendinput(1, &evt, sizeof(evt));
+								(*m_client->Sendinput)(1, &evt, sizeof(evt));
 							}
 							else
 							{
@@ -2292,28 +2293,7 @@ vncClientThread::run(void *arg)
                         // make a temp file name
                         strcpy(m_client->m_szFullDestName, make_temp_filename(m_client->m_szFullDestName).c_str());
                         
-						// sf@2004 - Directory Delta Transfer
-						// If the offered file is a zipped directory, we test if it already exists here
-						// and create the zip accordingly. This way we can generate the checksums for it.
-						// m_client->CheckAndZipDirectoryForChecksuming(m_client->m_szFullDestName);
-
-						// Create Local Dest file
-						m_client->m_hDestFile = CreateFile(m_client->m_szFullDestName, 
-															GENERIC_WRITE | GENERIC_READ,
-															FILE_SHARE_READ | FILE_SHARE_WRITE, 
-															NULL,
-															OPEN_ALWAYS,
-															FILE_FLAG_SEQUENTIAL_SCAN,
-															NULL);
-
-						// sf@2004 - Delta Transfer
-						bool fAlreadyExists = (GetLastError() == ERROR_ALREADY_EXISTS);
-
 						DWORD dwDstSize = (DWORD)0; // Dummy size, actually a return value
-						if (m_client->m_hDestFile == INVALID_HANDLE_VALUE)
-							dwDstSize = 0xFFFFFFFF;
-						else
-							dwDstSize = 0x00;
 
 						// Also check the free space on destination drive
 						ULARGE_INTEGER lpFreeBytesAvailable;
@@ -2361,6 +2341,28 @@ vncClientThread::run(void *arg)
 						ft.type = rfbFileTransfer;
 
 						// sf@2004 - Delta Transfer
+						bool fAlreadyExists = false;
+                        if (dwDstSize != 0xFFFFFFFF)
+                        {
+						    // sf@2004 - Directory Delta Transfer
+						    // If the offered file is a zipped directory, we test if it already exists here
+						    // and create the zip accordingly. This way we can generate the checksums for it.
+						    // m_client->CheckAndZipDirectoryForChecksuming(m_client->m_szFullDestName);
+
+						    // Create Local Dest file
+						    m_client->m_hDestFile = CreateFile(m_client->m_szFullDestName,
+															    GENERIC_WRITE | GENERIC_READ,
+															    FILE_SHARE_READ | FILE_SHARE_WRITE,
+															    NULL,
+															    OPEN_ALWAYS,
+															    FILE_FLAG_SEQUENTIAL_SCAN,
+															    NULL);
+                            fAlreadyExists = (GetLastError() == ERROR_ALREADY_EXISTS);
+						    if (m_client->m_hDestFile == INVALID_HANDLE_VALUE)
+							    dwDstSize = 0xFFFFFFFF;
+						    else
+							    dwDstSize = 0x00;
+                        }
 						if (fAlreadyExists && dwDstSize != 0xFFFFFFFF)
 						{
 							ULARGE_INTEGER n2SrcSize;
@@ -2418,7 +2420,7 @@ vncClientThread::run(void *arg)
 						m_client->m_fFileDownloadError = false;
 						m_client->m_fFileDownloadRunning = true;
                         m_client->FTDownloadStartHook();
-                        m_socket->SetRecvTimeout(m_server->GetFTTimeout());
+                        m_socket->SetRecvTimeout(m_server->GetFTTimeout()*1000);
 
 						}
 						break;
@@ -3073,7 +3075,7 @@ vncClientThread::run(void *arg)
 					rfb::Region2D update_rgn = update;
 
 					// Add the requested area to the incremental update cliprect
-					m_client->m_incr_rgn = m_client->m_incr_rgn.union_(update_rgn);
+					m_client->m_incr_rgn.assign_union(update_rgn);
 
 					// Yes, so add the region to the update tracker
 					m_client->m_update_tracker.add_changed(update_rgn);
@@ -3199,7 +3201,7 @@ vncClientThread::run(void *arg)
 
 // The vncClient itself
 
-vncClient::vncClient()
+vncClient::vncClient() : Sendinput("USER32", "SendInput")
 {
 	vnclog.Print(LL_INTINFO, VNCLOG("vncClient() executing...\n"));
 
@@ -3303,8 +3305,6 @@ vncClient::vncClient()
 		  timearray[i][j]=0;
 		  sizearray[i][j]=0;
 		}*/
-	Sendinput=0;
-	Sendinput=(pSendinput) GetProcAddress(LoadLibrary("user32.dll"),"SendInput");
 // Modif cs@2005
 #ifdef DSHOW
 	m_hmtxEncodeAccess = CreateMutex(NULL, FALSE, NULL);

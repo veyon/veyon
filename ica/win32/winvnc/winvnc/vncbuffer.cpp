@@ -319,7 +319,7 @@ void vncBuffer::CheckRect(rfb::Region2D &dest, rfb::Region2D &cacheRgn, const rf
 	if (!FastCheckMainbuffer())
 		return;
 
-	const UINT bytesPerPixel = m_scrinfo.format.bitsPerPixel / 8;
+	const UINT bytesPerPixel = m_scrinfo.format.bitsPerPixel >> 3; // divide by 8
 
 	rfb::Rect new_rect;
 	rfb::Rect srect = srcrect;
@@ -331,7 +331,8 @@ void vncBuffer::CheckRect(rfb::Region2D &dest, rfb::Region2D &cacheRgn, const rf
 	ScaledRect.tl.x = srect.tl.x / m_nScale;
 	ScaledRect.br.x = srect.br.x / m_nScale;
 
-	int x, y, ay, by;
+	int x, y;
+	UINT ay, by;
 
 	// DWORD align the incoming rectangle.  (bPP will be 8, 16 or 32)
 	if (bytesPerPixel < 4) {
@@ -361,14 +362,16 @@ void vncBuffer::CheckRect(rfb::Region2D &dest, rfb::Region2D &cacheRgn, const rf
 	else
 		nOptimizedBlockSize = BLOCK_SIZE * 2;
 
+	ptrdiff_t ptrBlockOffset = (ScaledRect.tl.y * m_bytesPerRow) + (ScaledRect.tl.x * bytesPerPixel);
+
 	if (m_use_cache && !m_desktop->m_UltraEncoder_used && m_cachebuff)
 	{
 	// Scan down the rectangle
-	unsigned char *o_topleft_ptr = m_backbuff  + (ScaledRect.tl.y * m_bytesPerRow) + (ScaledRect.tl.x * bytesPerPixel);
-	unsigned char *c_topleft_ptr = m_cachebuff + (ScaledRect.tl.y * m_bytesPerRow) + (ScaledRect.tl.x * bytesPerPixel);
-	unsigned char *n_topleft_ptr = TheBuffer   + (ScaledRect.tl.y * m_bytesPerRow) + (ScaledRect.tl.x * bytesPerPixel);
-
-	for (y = ScaledRect.tl.y; y < ScaledRect.br.y; y += nOptimizedBlockSize)
+		unsigned char *o_topleft_ptr = m_backbuff  + ptrBlockOffset;
+		unsigned char *c_topleft_ptr = m_cachebuff + ptrBlockOffset;
+		unsigned char *n_topleft_ptr = TheBuffer   + ptrBlockOffset;
+		int last_x, last_y;
+		for (y = ScaledRect.tl.y, last_y = ScaledRect.br.y; y < last_y; y += nOptimizedBlockSize)
 	{
 		// Work out way down the bitmap
 		unsigned char * o_row_ptr = o_topleft_ptr;
@@ -376,7 +379,7 @@ void vncBuffer::CheckRect(rfb::Region2D &dest, rfb::Region2D &cacheRgn, const rf
 		unsigned char * c_row_ptr = c_topleft_ptr;
 
 		const UINT blockbottom = min(y + nOptimizedBlockSize, ScaledRect.br.y);
-		for (x = ScaledRect.tl.x; x < ScaledRect.br.x; x += nOptimizedBlockSize)
+			for (x = ScaledRect.tl.x, last_x = ScaledRect.br.x; x < last_x; x += nOptimizedBlockSize)
 		{
 			// Work our way across the row
 			unsigned char *n_block_ptr = n_row_ptr;
@@ -386,7 +389,7 @@ void vncBuffer::CheckRect(rfb::Region2D &dest, rfb::Region2D &cacheRgn, const rf
 			const UINT blockright = min(x + nOptimizedBlockSize, ScaledRect.br.x);
 			const UINT bytesPerBlockRow = (blockright-x) * bytesPerPixel;
 
-			BOOL fCache = TRUE; // RDV@2002
+				bool fCache = true; // RDV@2002
 			// Modif sf@2002 - v1.1.0
 			// int nRowIndex = 0; // We don't reinit nRowIndex for each rect -> we don't always miss the same changed pixels
 			int nOffset = (int)(bytesPerBlockRow / m_nAccuracyDiv);
@@ -398,12 +401,8 @@ void vncBuffer::CheckRect(rfb::Region2D &dest, rfb::Region2D &cacheRgn, const rf
 			// Scan this block
 			for (ay = y; ay < blockbottom; ay++)
 			{
-				if (
-					memcmp(	n_block_ptr + (nRowIndex * nOffset),
-							o_block_ptr + (nRowIndex * nOffset),
-							nOffset
-						  ) != 0
-				   )
+					int nBlockOffset =  nRowIndex * nOffset;
+					if (memcmp(n_block_ptr + nBlockOffset, o_block_ptr + nBlockOffset, nOffset) != 0)
 				{
 					// A pixel has changed, so this block needs updating
 					if (fSmallRect) // Ignore unchanged first rows (samll rect : less chance to miss changes when using nAccuracy div)
@@ -426,9 +425,11 @@ void vncBuffer::CheckRect(rfb::Region2D &dest, rfb::Region2D &cacheRgn, const rf
 						// So test the next row
 						// TODO: send the common part as cached rect and the rest as changed rect
 						if (fCache)
+							{
 							if (memcmp(y_n_ptr, y_c_ptr, bytesPerBlockRow) != 0)
 							{
-								fCache = FALSE; // New rect and cached rect differ
+									fCache = false; // New rect and cached rect differ
+								}
 							}
 						memcpy(y_c_ptr, y_o_ptr, bytesPerBlockRow); // Save back buffer rect in cache
 						memcpy(y_o_ptr, y_n_ptr, bytesPerBlockRow); // Save new rect in back buffer
@@ -438,11 +439,11 @@ void vncBuffer::CheckRect(rfb::Region2D &dest, rfb::Region2D &cacheRgn, const rf
 					}
 					if (fCache) // The Rect was in the cache
 					{
-						cacheRgn = cacheRgn.union_(rfb::Region2D(new_rect));
+							cacheRgn.assign_union(rfb::Region2D(new_rect));
 					}
 					else // The Rect wasn't in the cache
 					{
-						dest = dest.union_ (new_rect);
+							dest.assign_union(new_rect);
 					}
 
 					break;
@@ -468,8 +469,8 @@ void vncBuffer::CheckRect(rfb::Region2D &dest, rfb::Region2D &cacheRgn, const rf
 	else
 	{
 	// Scan down the rectangle
-	unsigned char *o_topleft_ptr = m_backbuff + (ScaledRect.tl.y * m_bytesPerRow) + (ScaledRect.tl.x * bytesPerPixel);
-	unsigned char *n_topleft_ptr = TheBuffer  + (ScaledRect.tl.y * m_bytesPerRow) + (ScaledRect.tl.x * bytesPerPixel);
+		unsigned char *o_topleft_ptr = m_backbuff + ptrBlockOffset;
+		unsigned char *n_topleft_ptr = TheBuffer  + ptrBlockOffset;
 	for (y = ScaledRect.tl.y; y < ScaledRect.br.y; y += nOptimizedBlockSize)
 	{
 		// Work out way down the bitmap
@@ -496,11 +497,8 @@ void vncBuffer::CheckRect(rfb::Region2D &dest, rfb::Region2D &cacheRgn, const rf
 			// Scan this block
 			for (ay = y; ay < blockbottom; ay++)
 			{
-				if (memcmp(	n_block_ptr + (nRowIndex * nOffset),
-							o_block_ptr + (nRowIndex * nOffset),
-							nOffset
-						  ) != 0
-				 )
+					int nBlockOffset =  nRowIndex * nOffset;
+					if (memcmp(n_block_ptr + nBlockOffset, o_block_ptr + nBlockOffset, nOffset) != 0)
 				{
 					// A pixel has changed, so this block needs updating
 					if (fSmallRect) // Ignore unchanged first rows (samll rect : less chance to miss changes when using nAccuracy div)
@@ -516,7 +514,7 @@ void vncBuffer::CheckRect(rfb::Region2D &dest, rfb::Region2D &cacheRgn, const rf
 					new_rect.tl.x = x * m_nScale;
 					new_rect.br.x = (blockright * m_nScale);
 					new_rect.br.y = (blockbottom * m_nScale);
-					dest = dest.union_(new_rect);
+						dest.assign_union(new_rect);
 
 					// Copy the changes to the back buffer
 					for (by = ((fSmallRect) ? ay : y); by < blockbottom; by++)
@@ -572,14 +570,14 @@ vncBuffer::GrabRegion(rfb::Region2D &src,BOOL driver)
 	//
 	//************ Added extra cliprect check
 	int x,y,w,h;
-	for (i = rects.begin(); i != rects.end(); i++)
+	for (i = rects.begin(); i != rects.end(); ++i)
 	{
 		rfb::Rect rect = *i;
 		x=rect.tl.x;
 		y=rect.tl.y;
 		w=rect.br.x-rect.tl.x;
 		h=rect.br.y-rect.tl.y;
-		src.subtract(rect);
+		src.assign_subtract(rect); // should htis be assign_subtract?
 		if (ClipRect(&x, &y, &w, &h, m_desktop->m_Cliprect.tl.x, m_desktop->m_Cliprect.tl.y,
 				m_desktop->m_Cliprect.br.x-m_desktop->m_Cliprect.tl.x, m_desktop->m_Cliprect.br.y-m_desktop->m_Cliprect.tl.y))
 			{
@@ -587,7 +585,7 @@ vncBuffer::GrabRegion(rfb::Region2D &src,BOOL driver)
 				rect.tl.y=y;
 				rect.br.x=x+w;
 				rect.br.y=y+h;
-				src.union_(rect);
+				src.assign_union(rect); // should this be assign_union ?
 			}
 	}
 	src.get_rects(rects, 1, 1);
@@ -633,7 +631,7 @@ vncBuffer::CheckRegion(rfb::Region2D &dest,rfb::Region2D &cacheRgn ,const rfb::R
 	//
 	// Block desactivation mainbuff while running
 	// No Lock Needed, only called from vncdesktopthread
-	for (i = rects.begin(); i != rects.end(); i++)
+	for (i = rects.begin(); i != rects.end(); ++i)
 	{
 		CheckRect(dest,cacheRgn, *i);
 	}
@@ -676,8 +674,8 @@ void vncBuffer::ScaleRect(rfb::Rect &rect)
 
     // this construct is faster than the old method -- it has no jumps, so there's no chance of
     // branch mispredictions, and it generates better asm code .
-    fCanReduceColors = ((m_scrinfo.format.redMax ^ m_scrinfo.format.blueMax ^ 
-                        m_scrinfo.format.greenMax ^ 0xff == 0)  && m_fGreyPalette);
+    fCanReduceColors = (((m_scrinfo.format.redMax ^ m_scrinfo.format.blueMax ^ 
+                        m_scrinfo.format.greenMax ^ 0xff) == 0)  && m_fGreyPalette);
 
 #if 0
 	if ((m_scrinfo.format.redMax == 255) 
@@ -744,12 +742,12 @@ void vncBuffer::ScaleRect(rfb::Rect &rect)
 				lBlue  = 0;
 				// Take a m_Scale*m_nScale square of pixels in the Main Buffer
 				// and get the global Red, Green, Blue values for this square
-				for (int r = 0; r < m_nScale; r++)
+				for (UINT r = 0; r < m_nScale; r++)
 				{
-					for (int c = 0; c < m_nScale; c++)
+					for (UINT c = 0; c < m_nScale; c++)
 					{
 						lScaledPixel = 0;
-						for (int b = 0; b < nBytesPerPixel; b++)
+						for (UINT b = 0; b < nBytesPerPixel; b++)
 						{
 							lScaledPixel += (pMain[(((x * m_nScale) + c) * nBytesPerPixel) + (r * m_bytesPerRow) + b]) << (8 * b);
 						}
@@ -776,7 +774,7 @@ void vncBuffer::ScaleRect(rfb::Rect &rect)
 				} 
 				
 				// Copy the resulting pixel in the Scaled Buffer
-				for (int b = 0; b < nBytesPerPixel; b++)
+				for (UINT b = 0; b < nBytesPerPixel; b++)
 				{
 					pScaled[(x * nBytesPerPixel) + b] = (lScaledPixel >> (8 * b)) & 0xFF;
 				}
@@ -810,6 +808,9 @@ void vncBuffer::ScaleRect(rfb::Rect &rect)
 void vncBuffer::GreyScaleRect(rfb::Rect &rect)
 {
 	bool fCanReduceColors = true;
+    fCanReduceColors = (((m_scrinfo.format.redMax ^ m_scrinfo.format.blueMax ^ 
+                        m_scrinfo.format.greenMax ^ 0xff) == 0)  && m_fGreyPalette);
+#if 0
     //JK 26th Jan, 2005: Color conversion to 8 shades of gray added,
 	//at the moment only works if server has 24/32-bit color
 	if ((m_scrinfo.format.redMax == 255) 
@@ -824,7 +825,7 @@ void vncBuffer::GreyScaleRect(rfb::Rect &rect)
 	else
 		fCanReduceColors = false;
 	//End JK
-
+#endif
 	if (!fCanReduceColors) return;
 	// if (!m_scrinfo.format.trueColour) return;
 	
@@ -844,7 +845,7 @@ void vncBuffer::GreyScaleRect(rfb::Rect &rect)
 		for (int x = 0; x < (rect.br.x - rect.tl.x); x++)
 		{
 			lPixel = 0;
-			for (int b = 0; b < nBytesPerPixel; b++)
+			for (UINT b = 0; b < nBytesPerPixel; b++)
 				lPixel += ((pMain[(x * nBytesPerPixel) + b]) << (8 * b));
 
 			lRed   = (lPixel >> m_scrinfo.format.redShift) & m_scrinfo.format.redMax;
@@ -852,7 +853,7 @@ void vncBuffer::GreyScaleRect(rfb::Rect &rect)
 			lBlue  = (lPixel >> m_scrinfo.format.blueShift) & m_scrinfo.format.blueMax;
 			lPixel = To8GreyColors(lRed, lGreen, lBlue);
 			
-			for (int bb = 0; bb < nBytesPerPixel; bb++)
+			for (UINT bb = 0; bb < nBytesPerPixel; bb++)
 				pMain[(x * nBytesPerPixel) + bb] = (lPixel >> (8 * bb)) & 0xFF;
 		}
 		pMain += m_bytesPerRow;

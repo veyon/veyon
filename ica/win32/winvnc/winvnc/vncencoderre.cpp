@@ -270,7 +270,7 @@ vncEncodeRRE::EncodeRect(BYTE *source, BYTE *dest, const rfb::Rect &rect)
 	surh->encoding = Swap32IfLE(rfbEncodingRRE);
 	
 	// create a space big enough for the RRE encoded pixels
-	if (m_bufflen < (rectW*rectH*m_remoteformat.bitsPerPixel / 8))
+	if (m_bufflen < (int)(rectW*rectH*m_remoteformat.bitsPerPixel / 8))
 	{
 		if (m_buffer != NULL)
 		{

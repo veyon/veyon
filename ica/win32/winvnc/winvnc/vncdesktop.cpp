@@ -48,6 +48,7 @@
 #include "TextChat.h" // sf@2002
 #include "vncdesktopthread.h"
 #include "common/win32_helpers.h"
+#include <algorithm>
 
 
 
@@ -111,8 +112,8 @@ vncDesktop::CapturePixel(int x,int y)
 	memcpy(&cr ,m_DIBbits,m_scrinfo.format.bitsPerPixel / 8);
 	return cr;
 }
-void
-vncDesktop::FastDetectChanges(rfb::Region2D &rgn, rfb::Rect &rect, int nZone, bool fTurbo)
+
+void vncDesktop::FastDetectChanges(rfb::Region2D &rgn, rfb::Rect &rect, int nZone, bool fTurbo)
 {
 	RGBPixelList::iterator iPixelColor;
 	RGBPixelList *pThePixelGrid;
@@ -133,9 +134,7 @@ vncDesktop::FastDetectChanges(rfb::Region2D &rgn, rfb::Rect &rect, int nZone, bo
 	// one grid has changed -> later)
 	// Otherwise we only clear it each time the Grid cycle loops -> Less updates, less framerate,
 	// less CPU, less bandwidth
-	if (fTurbo)
-		m_lWList.clear();
-	else if (m_nGridCycle == 0)
+	if (fTurbo || (m_nGridCycle == 0))
 		m_lWList.clear();
 
 	// Create all the Grids (for all the 5 zones (4 quarter screens + 1 full screen)
@@ -157,15 +156,11 @@ vncDesktop::FastDetectChanges(rfb::Region2D &rgn, rfb::Rect &rect, int nZone, bo
 	// We test one zone at a time 
 	// vnclog.Print(LL_INTINFO, VNCLOG("### Polling Grid %d - SubGrid %d\n"), nZone, m_nGridCycle); 
 	GridsList::iterator iGrid;
-	int nIndex = 0;
 	int nGridPos = (nZone * PIXEL_BLOCK_SIZE / GRID_OFFSET) + m_nGridCycle;
+	int nIndex = nGridPos;
 
 	iGrid = m_lGridsList.begin();
-	while (nIndex != nGridPos)
-	{
-		iGrid++;
-		nIndex++;
-	}
+    std::advance(iGrid, nGridPos);
 
 	iPixelColor = ((RGBPixelList*)(*iGrid))->begin();
 	pThePixelGrid = (RGBPixelList*) *iGrid;
@@ -183,6 +178,7 @@ vncDesktop::FastDetectChanges(rfb::Region2D &rgn, rfb::Rect &rect, int nZone, bo
 	}
 
 	int nOffset = GRID_OFFSET * m_nGridCycle;
+	HWND hDeskWnd = GetDesktopWindow();
 
 	// We walk our way through the Grids
 	for (y = rect.tl.y; y < rect.br.y; y += PIXEL_BLOCK_SIZE)
@@ -193,21 +189,17 @@ vncDesktop::FastDetectChanges(rfb::Region2D &rgn, rfb::Rect &rect, int nZone, bo
 		{
 			xo = x + nOffset;
 
+			// Read the pixel's color on the screen
+            COLORREF PixelColor = (OSversion()==2 ) ? CapturePixel( xo, yo) : GetPixel(m_hrootdc, xo, yo);
+
 			// If init list
 			if (fInitGrid)
 			{
-			   COLORREF PixelColor;
-			   if (OSversion()==2) PixelColor= CapturePixel( xo, yo);
-			   else PixelColor= GetPixel(m_hrootdc, xo, yo);
 			   pThePixelGrid->push_back(PixelColor);
 			   // vnclog.Print(LL_INTINFO, VNCLOG("### PixelsGrid Init : Pixel xo=%d - yo=%d - C=%ld\n"), xo, yo, (long)PixelColor); 
 			   continue;
 			}
 
-			// Read the pixel's color on the screen
-			COLORREF PixelColor=0;
-		    if (OSversion()==2 ) PixelColor = CapturePixel( xo, yo);
-			else PixelColor = GetPixel(m_hrootdc, xo, yo);
 //			vnclog.Print(LL_INTINFO, VNCLOG("### GetPixel %i\n"),OSversion());
 			// If the pixel has changed
 			if (*iPixelColor != PixelColor )
@@ -224,22 +216,16 @@ vncDesktop::FastDetectChanges(rfb::Region2D &rgn, rfb::Rect &rect, int nZone, bo
 
 				// Find the smallest, non-hidden, non-disabled Window containing this pixel
 				// REM: We don't use ChildWindowFromPoint because we don't want of hidden windows
-				HWND hDeskWnd = GetDesktopWindow();
 				HWND hwnd = WindowFromPoint(point);
-				bool fAlready = false;
 
 				// Look if we've already detected this window
-				for (iWindow = m_lWList.begin(); iWindow != m_lWList.end(); iWindow++)
-				{
-					if (*iWindow == hwnd)
-					{
-						fAlready = true;
-						break;
-					}
-				}
-				
-				// Add the corresponding rect to the cache region 
-				if (!fAlready && (hwnd != hDeskWnd) && GetWindowRect(hwnd, &rect))
+                if (hwnd != hDeskWnd)
+                {
+				    // Look if we've already detected this window
+                    if (std::find(m_lWList.begin(), m_lWList.end(), hwnd) == m_lWList.end())
+                    {			    
+						// Add the corresponding rect to the cache region 
+						if (GetWindowRect(hwnd, &rect))
 				{
 					//Buffer coordinates
 					rect.left-=m_ScreenOffsetx;
@@ -249,17 +235,15 @@ vncDesktop::FastDetectChanges(rfb::Region2D &rgn, rfb::Rect &rect, int nZone, bo
 					rfb::Rect wrect = rfb::Rect(rect).intersect(m_Cliprect);
 					if (!wrect.is_empty())
 					{
-						rgn = rgn.union_(wrect);
-						m_lWList.push_back(hwnd);
+								rgn.assign_union(wrect);
+								m_lWList.push_back(hwnd);
+							}
+						}
 					}
-					// char szName[64];
-					// GetWindowText(hwnd, szName, 64);
-					// vnclog.Print(LL_INTINFO, VNCLOG("### Changed Window : %s (at x=%d - y=%d)\n"), szName, x, y); 
-					// return;
 				}
 			}
 
-			iPixelColor++; // Next PixelColor in the list
+			++iPixelColor; // Next PixelColor in the list
 		}
 	}
 
@@ -652,6 +636,17 @@ vncDesktop::Shutdown()
 	}
 
     m_DIBbits = NULL;
+
+    if (m_hcursor)
+    {
+        DeleteObject(m_hcursor);
+        m_hcursor = NULL;
+    }
+    if (m_hOldcursor)
+    {
+        DeleteObject(m_hOldcursor);
+        m_hOldcursor = NULL;
+    }
 	// Modif rdv@2002 - v1.1.x - videodriver
 	ShutdownVideoDriver();
 
@@ -1895,8 +1890,8 @@ DesktopWndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 		// The palette colours have changed, so tell the server
 
 		// Get the system palette
-		if (!_this->SetPalette())
-			PostQuitMessage(0);
+            // better to use the wrong colors than close the connection
+		_this->SetPalette();
 
 		// Update any palette-based clients, too
 		_this->m_server->UpdatePalette();
@@ -2118,16 +2113,17 @@ void vncDesktop::SetSW(int x,int y)
 
 	if (m_Single_hWnd==GetDesktopWindow())
 		{
-			LPGETMONITORINFO GetMonitorInfo=NULL;
-			LPMONITOTFROMPOINT MonitorFromPoint=NULL;
 			MONITORINFO monitorinfo;
 			monitorinfo.cbSize=sizeof(MONITORINFO);
-			GetMonitorInfo=(LPGETMONITORINFO) GetProcAddress(LoadLibrary("user32.dll"), "GetMonitorInfoA");
-			MonitorFromPoint=(LPMONITOTFROMPOINT) GetProcAddress(LoadLibrary("user32.dll"), "MonitorFromPointA");
-			if (GetMonitorInfo && MonitorFromPoint)
+
+            helper::DynamicFn<LPGETMONITORINFO> GetMonitorInfo("USER32","GetMonitorInfoA");
+            helper::DynamicFn<LPMONITOTFROMPOINT> MonitorFromPoint("USER32","MonitorFromPointA");
+
+
+			if (GetMonitorInfo.isValid() && MonitorFromPoint.isValid())
 			{
-				HMONITOR hmonitor=MonitorFromPoint(point,MONITOR_DEFAULTTONEAREST);
-				GetMonitorInfo(hmonitor,&monitorinfo);
+				HMONITOR hmonitor= (*MonitorFromPoint)(point,MONITOR_DEFAULTTONEAREST);
+				(*GetMonitorInfo)(hmonitor,&monitorinfo);
 				if (monitorinfo.dwFlags ==MONITORINFOF_PRIMARY) 
 				{
 					m_buffer.Display(1);
@@ -2471,11 +2467,18 @@ void vncDesktop::InitHookSettings()
 	SethookMechanism(m_server->Hook(),m_server->Driver());
 }
 
+
 void vncDesktop::SetBlockInputState(bool newstate)
 {
-	SetBlankMonitor(newstate);
-    SetDisableInput(newstate);
-    m_bIsInputDisabledByClient = newstate;
+	if (m_server->BlankMonitorEnabled())
+    {
+        SetBlankMonitor(newstate);
+        SetDisableInput(newstate);
+        m_bIsInputDisabledByClient = newstate;
+    }
+
+ CARD32 state = m_bIsInputDisabledByClient ? rfbServerState_Disabled : rfbServerState_Enabled;
+ m_server->NotifyClients_StateChange(rfbServerRemoteInputsState, state);
 }
 
 bool vncDesktop::block_input(bool enabled)

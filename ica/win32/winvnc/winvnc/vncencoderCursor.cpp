@@ -78,7 +78,10 @@ vncEncoder::SendCursorShape(VSocket *outConn, vncDesktop *desktop)
 	// NOTE: they say we should use GetDIBits() instead of GetBitmapBits().
 	BYTE *mbits = new BYTE[bmMask.bmWidthBytes * bmMask.bmHeight];
 	if (mbits == NULL)
+    {
+		DeleteObject(IconInfo.hbmMask);
 		return FALSE;
+    }
 
 	BOOL success = GetBitmapBits(IconInfo.hbmMask,
 								 bmMask.bmWidthBytes * bmMask.bmHeight, mbits);

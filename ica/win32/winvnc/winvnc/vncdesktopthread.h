@@ -37,7 +37,6 @@ public:
 		g_DesktopThread_running=true;
 
 		m_lLastMouseMoveTime = 0L;
-		m_lLastUpdateTime = 0L;
 		
 		hUser32 = LoadLibrary("user32.dll");
 		CHANGEWINDOWMESSAGEFILTER pfnFilter = NULL;
@@ -53,6 +52,10 @@ protected:
 		g_DesktopThread_running=false;
 		if (hUser32) FreeLibrary(hUser32);
 	};
+private:
+	bool handle_display_change(HANDLE& threadhandle, rfb::Region2D& rgncache, rfb::SimpleUpdateTracker& clipped_updates, rfb::ClippedUpdateTracker& updates);
+	void do_polling(HANDLE& threadHandle, rfb::Region2D& rgncache, int& fullpollcounter, bool cursormoved);
+
 public:
 	virtual BOOL Init(vncDesktop *desktop, vncServer *server);
 	virtual void *run_undetached(void *arg);
@@ -79,7 +82,6 @@ protected:
 	bool XRichCursorEnabled;
 	DWORD newtick,oldtick;
 
-	DWORD m_lLastUpdateTime;
 	DWORD m_lLastMouseMoveTime;
 	HMODULE  hUser32;
 

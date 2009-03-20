@@ -2211,7 +2211,7 @@ void vncProperties::LoadFromIniFile()
 	m_allowproperties = myIniFile.ReadInt("admin", "AllowProperties", m_allowproperties);
 	m_alloweditclients = myIniFile.ReadInt("admin", "AllowEditClients", m_alloweditclients);
 
-    m_ftTimeout = myIniFile.ReadInt("admin", "FileTransferTimeout", m_ftTimeout / 1000) * 1000;
+    m_ftTimeout = myIniFile.ReadInt("admin", "FileTransferTimeout", m_ftTimeout);
     if (m_ftTimeout > 60)
         m_ftTimeout = 60;
 

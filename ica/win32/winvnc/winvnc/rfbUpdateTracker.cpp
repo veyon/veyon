@@ -26,9 +26,7 @@
 //
 
 #include "stdhdrs.h"
-
 #include <assert.h>
-
 #include "rfbUpdateTracker.h"
 
 using namespace rfb;
@@ -76,11 +74,11 @@ SimpleUpdateTracker::~SimpleUpdateTracker() {
 }
 
 void SimpleUpdateTracker::add_changed(const Region2D &region) {
-	changed = changed.union_(region);
+	changed.assign_union(region);
 }
 
 void SimpleUpdateTracker::add_cached(const Region2D &region) {
-	cached = cached.union_(region);
+	cached.assign_union(region);
 }
 
 
@@ -113,7 +111,9 @@ void SimpleUpdateTracker::add_copied(const Region2D &dest, const Point &delta) {
 			// RealVNC 336 change 
 			Region2D invalid = src.intersect(changed);
 			invalid.translate(delta);
-			changed = changed.union_(invalid).union_(copied);
+			changed.assign_union(invalid);
+			changed.assign_union(copied);
+//			changed = changed.union_(invalid).union_(copied);
 			copied = dest.subtract(invalid);
 			copy_delta = delta;
 			/*
@@ -133,7 +133,10 @@ void SimpleUpdateTracker::add_copied(const Region2D &dest, const Point &delta) {
 	// RealVNC 336 change
 	Region2D valid = overlap.subtract(changed);
 	valid.translate(delta);
-	changed = changed.union_(copied).union_(dest).subtract(valid);
+	changed.assign_union(copied);
+	changed.assign_union(dest);
+	changed.assign_subtract(valid);
+//	changed = changed.union_(copied).union_(dest).subtract(valid);
 	copied = valid;
 	copy_delta = copy_delta.translate(delta);
 	
@@ -155,7 +158,7 @@ void SimpleUpdateTracker::add_copied(const Region2D &dest, const Point &delta) {
 }
 
 void SimpleUpdateTracker::flush_update(UpdateInfo &info, const Region2D &cliprgn) {
-	copied = copied.subtract(changed);
+	copied.assign_subtract(changed);
 
 	// Ensure the UpdateInfo structure is empty
 	info.copied.clear();
@@ -165,15 +168,15 @@ void SimpleUpdateTracker::flush_update(UpdateInfo &info, const Region2D &cliprgn
 
 	// Clip the changed region to the clip region
 	Region2D updatergn = changed.intersect(cliprgn);
-	changed = changed.subtract(updatergn);
+	changed.assign_subtract(updatergn);
 
 	// Clip the copyrect region to the display
 	Region2D copyrgn = copied.intersect(cliprgn);
-	copied = copied.subtract(copyrgn);
+	copied.assign_subtract(copyrgn);
 
 	// Clip the cacherect region to the display
 	Region2D cachedrgn = cached.intersect(cliprgn);
-	cached = cached.subtract(cachedrgn);
+	cached.assign_subtract(cachedrgn);
 
 	// Save the update and copyrect rectangles info the UpdateInfo
 	updatergn.get_rects(info.changed, 1, 1);
@@ -185,9 +188,9 @@ void SimpleUpdateTracker::flush_update(UpdateTracker &info, const Region2D &clip
 	Region2D copied_clipped = copied.intersect(cliprgn);
 	Region2D changed_clipped = changed.intersect(cliprgn);
 	Region2D cached_clipped = cached.intersect(cliprgn);
-	copied = copied.subtract(copied_clipped);
-	changed = changed.subtract(changed_clipped);
-	cached = cached.subtract(cached_clipped);
+	copied.assign_subtract(copied_clipped);
+	changed.assign_subtract(changed_clipped);
+	cached.assign_subtract(cached_clipped);
 	if (!copied_clipped.is_empty()) {
 		info.add_copied(copied_clipped, copy_delta);
 	}

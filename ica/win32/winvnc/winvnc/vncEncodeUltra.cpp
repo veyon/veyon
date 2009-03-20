@@ -267,7 +267,7 @@ vncEncodeUltra::EncodeOneRect(BYTE *source, BYTE *dest, const RECT &rect,VSocket
 			if (lzo_init() == LZO_E_OK) lzo=true;
 		}
 	lzo1x_1_compress(m_buffer,rawDataSize,dest+sz_rfbFramebufferUpdateRectHeader+sz_rfbZlibHeader,&out_len,wrkmem);
-	if (out_len>rawDataSize)
+	if (out_len > (lzo_uint)rawDataSize)
 				{
 					return vncEncoder::EncodeRect(source, dest, rect);
 				}
@@ -306,7 +306,7 @@ vncEncodeUltra::AddToQueu2(BYTE *source,int sizerect,VSocket *outConn,int update
 	BYTE *databegin=m_QueueCompressedbuffer+sz_rfbFramebufferUpdateRectHeader+sz_rfbZlibHeader;
 	rfbFramebufferUpdateRectHeader *CacheRectsHeader=(rfbFramebufferUpdateRectHeader*)m_QueueCompressedbuffer;
 	rfbZlibHeader *CacheZipHeader=(rfbZlibHeader*)m_QueueCompressedbuffer+sz_rfbFramebufferUpdateRectHeader;
-	const int rawDataSize = (sizerect);
+	const lzo_uint rawDataSize = (sizerect);
 	lzo1x_1_compress(source,rawDataSize,databegin,&out_len,wrkmem);
 
 	if (out_len>rawDataSize)
@@ -344,7 +344,7 @@ void
 vncEncodeUltra::SendUltrarects(VSocket *outConn)
 {
 	int NRects=m_nNbRects;
-	const int rawDataSize = (m_Queuelen);
+	const lzo_uint rawDataSize = (m_Queuelen);
 
 	if (NRects==0) return; // NO update
 	if (m_nNbRects<3 && !must_be_zipped) 

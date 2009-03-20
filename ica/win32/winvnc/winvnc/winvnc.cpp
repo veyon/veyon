@@ -692,6 +692,7 @@ DWORD WINAPI imp_desktop_thread(LPVOID lpParam)
 				else
 				{
 					vnclog.Print(LL_INTERR, VNCLOG("getusername error %d\n"), GetLastError());
+                	CloseDesktop(desktop);
 					return FALSE;
 				}
 			}

@@ -55,7 +55,7 @@ vncDesktopThread::Handle_Ringbuffer(mystruct *ringbuffer,rfb::Region2D &rgncache
 
 	if (g_Oldcounter<counter)
 	{
-		for (short i =g_Oldcounter+1; i<=counter;i++)
+		for (int i =g_Oldcounter+1; i<=counter;i++)
 		{
 			if (ringbuffer->type[i]==0)
 			{
@@ -72,7 +72,7 @@ vncDesktopThread::Handle_Ringbuffer(mystruct *ringbuffer,rfb::Region2D &rgncache
 				rect = rect.intersect(m_desktop->m_Cliprect);
 				if (!rect.is_empty())
 				{
-					rgncache = rgncache.union_(rect);
+					rgncache.assign_union(rect);
 				}
 			}
 			if (ringbuffer->type[i]==2 || ringbuffer->type[i]==4)
@@ -94,7 +94,7 @@ vncDesktopThread::Handle_Ringbuffer(mystruct *ringbuffer,rfb::Region2D &rgncache
 	}
 	else
 	{
-		short i = 0;
+		int  i = 0;
 		for (i =g_Oldcounter+1;i<2000;i++)
 		{
 			if (ringbuffer->type[i]==0 )
@@ -112,7 +112,7 @@ vncDesktopThread::Handle_Ringbuffer(mystruct *ringbuffer,rfb::Region2D &rgncache
 				rect = rect.intersect(m_desktop->m_Cliprect);
 				if (!rect.is_empty())
 				{
-					rgncache = rgncache.union_(rect);
+					rgncache.assign_union(rect);
 				}
 			}
 			if (ringbuffer->type[i]==2 || ringbuffer->type[i]==4)
@@ -146,7 +146,7 @@ vncDesktopThread::Handle_Ringbuffer(mystruct *ringbuffer,rfb::Region2D &rgncache
 				rect = rect.intersect(m_desktop->m_Cliprect);
 				if (!rect.is_empty())
 				{
-					rgncache = rgncache.union_(rect);
+					rgncache.assign_union(rect);
 				}
 			}
 			if (ringbuffer->type[i]==2 || ringbuffer->type[i]==4)

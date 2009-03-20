@@ -197,10 +197,13 @@ void VNCLog::ReallyPrint(const char* format, va_list ap)
     _vsnprintf(line, LINE_BUFFER_SIZE, format, ap);
 	SetLastError(0);
     if (dwErrorCode != 0) {
-	    FormatMessage( 
+	    if (FormatMessage( 
              FORMAT_MESSAGE_FROM_SYSTEM, NULL, dwErrorCode,
              MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),(char *)&szErrorMsg,
-             LINE_BUFFER_SIZE, NULL);
+             LINE_BUFFER_SIZE, NULL) == 0)
+        {
+            sprintf(szErrorMsg, "error code 0x%08X", dwErrorCode);
+        }
 	strcat(line," --");
 	strcat(line,szErrorMsg);
     }

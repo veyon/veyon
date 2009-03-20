@@ -129,7 +129,7 @@ vncEncodeCoRRE::NumCodedRects(const rfb::Rect &rect)
 	}
 
 	// Now return the number of rects that this one would encode to
-    if ((rect.br.y-rect.tl.y) > m_maxheight)
+    if ((UINT)(rect.br.y-rect.tl.y) > m_maxheight)
 	{
 		rfb::Rect subrect1, subrect2;
 
@@ -147,7 +147,7 @@ vncEncodeCoRRE::NumCodedRects(const rfb::Rect &rect)
 		return NumCodedRects(subrect1) + NumCodedRects(subrect2);
 	}
 
-    if ((rect.br.x-rect.tl.x) > m_maxwidth)
+    if ((UINT)(rect.br.x-rect.tl.x) > m_maxwidth)
 	{
 		rfb::Rect subrect1, subrect2;
 
@@ -220,7 +220,7 @@ vncEncodeCoRRE::InternalEncodeRect(BYTE *source, BYTE *dest, const rfb::Rect &re
 {
 	int size = 0;
 
-    if ((rect.br.y-rect.tl.y) > m_maxheight)
+    if ((UINT)(rect.br.y-rect.tl.y) > m_maxheight)
 	{
 		rfb::Rect subrect;
 
@@ -240,7 +240,7 @@ vncEncodeCoRRE::InternalEncodeRect(BYTE *source, BYTE *dest, const rfb::Rect &re
 		return size;
     }
 
-    if ((rect.br.x-rect.tl.x) > m_maxwidth)
+    if ((UINT)(rect.br.x-rect.tl.x) > m_maxwidth)
 	{
 		rfb::Rect subrect;
 
@@ -296,7 +296,7 @@ vncEncodeCoRRE::EncodeSmallRect(BYTE *source, BYTE *dest, const rfb::Rect &rect)
 	surh->encoding = Swap32IfLE(rfbEncodingCoRRE);
 	
 	// create a space big enough for the CoRRE encoded pixels
-	if (m_bufflen < (rectW*rectH*m_remoteformat.bitsPerPixel / 8))
+	if (m_bufflen < (int)(rectW*rectH*m_remoteformat.bitsPerPixel / 8))
 	{
 		if (m_buffer != NULL)
 		{

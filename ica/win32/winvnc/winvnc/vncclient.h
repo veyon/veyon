@@ -48,6 +48,7 @@ typedef SHORT vncClientId;
 #include <list>
 #include <string>
 #include <vector>
+#include "common/win32_helpers.h"
 
 typedef std::list<vncClientId> vncClientList;
 
@@ -441,9 +442,9 @@ protected:
 
 	// sf@2002 
 	BYTE* m_pCacheZipBuf;
-	unsigned long m_nCacheZipBufSize;
+	unsigned int m_nCacheZipBufSize;
 	BYTE* m_pRawCacheZipBuf;
-	unsigned long m_nRawCacheZipBufSize;
+	unsigned int m_nRawCacheZipBufSize;
 
 	friend class TextChat; 
 	TextChat *m_pTextChat;	// Modif sf@2002 - Text Chat
@@ -457,7 +458,7 @@ protected:
 	//stats
 	int totalraw;
 
-	pSendinput Sendinput;
+    helper::DynamicFn<pSendinput> Sendinput;
 	// Modif cs@2005
 #ifdef DSHOW
 	HANDLE m_hmtxEncodeAccess;
