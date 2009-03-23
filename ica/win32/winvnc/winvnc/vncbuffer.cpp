@@ -577,7 +577,7 @@ vncBuffer::GrabRegion(rfb::Region2D &src,BOOL driver)
 		y=rect.tl.y;
 		w=rect.br.x-rect.tl.x;
 		h=rect.br.y-rect.tl.y;
-		src.assign_subtract(rect); // should htis be assign_subtract?
+		src=src.subtract(rect);
 		if (ClipRect(&x, &y, &w, &h, m_desktop->m_Cliprect.tl.x, m_desktop->m_Cliprect.tl.y,
 				m_desktop->m_Cliprect.br.x-m_desktop->m_Cliprect.tl.x, m_desktop->m_Cliprect.br.y-m_desktop->m_Cliprect.tl.y))
 			{
@@ -585,7 +585,7 @@ vncBuffer::GrabRegion(rfb::Region2D &src,BOOL driver)
 				rect.tl.y=y;
 				rect.br.x=x+w;
 				rect.br.y=y+h;
-				src.assign_union(rect); // should this be assign_union ?
+				src=src.union_(rect);
 			}
 	}
 	src.get_rects(rects, 1, 1);

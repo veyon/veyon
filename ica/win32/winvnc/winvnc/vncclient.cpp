@@ -2186,16 +2186,22 @@ vncClientThread::run(void *arg)
                 vnclog.Print(LL_INTINFO, VNCLOG("rfbSetServerInput: inputs %s\n"), (msg.sim.status==1) ? "disabled" : "enabled");
 
                 // only allow change if this is the client that originally changed the input state
-                if (m_server->GetDesktopPointer()->GetBlockInputState() && !m_client->m_bClientHasBlockedInput) 
-                {
-                    CARD32 state = m_server->GetDesktopPointer()->GetBlockInputState() ? rfbServerState_Disabled : rfbServerState_Enabled;
-                    m_server->NotifyClients_StateChange(rfbServerRemoteInputsState, state);
-                }
-                else
-                {
-                    m_client->m_encodemgr.m_buffer->m_desktop->SetBlockInputState(msg.sim.status==1);
-                    m_client->m_bClientHasBlockedInput = (msg.sim.status==1);
-                }
+				/// fix by PGM (pgmoney)
+				if (!m_server->GetDesktopPointer()->GetBlockInputState() && !m_client->m_bClientHasBlockedInput && msg.sim.status==1) 
+					{ 
+						CARD32 state = rfbServerState_Enabled;
+						m_server->NotifyClients_StateChange(rfbServerRemoteInputsState, state); 
+						m_client->m_encodemgr.m_buffer->m_desktop->SetBlockInputState(true); 
+						m_client->m_bClientHasBlockedInput = (true);
+					} 
+				if (m_server->GetDesktopPointer()->GetBlockInputState() && m_client->m_bClientHasBlockedInput && msg.sim.status==0)
+					{
+						CARD32 state = rfbServerState_Disabled; 
+						m_server->NotifyClients_StateChange(rfbServerRemoteInputsState, state);
+						m_client->m_encodemgr.m_buffer->m_desktop->SetBlockInputState(FALSE);
+						m_client->m_bClientHasBlockedInput = (FALSE); 
+					} 
+
 				}
 			break;
 
