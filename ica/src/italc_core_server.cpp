@@ -269,7 +269,7 @@ int ItalcCoreServer::processClient( socketDispatcher _sd, void * _user )
 #endif
 		}
 	}
-	else if( cmd == ItalcCore::LogonUser )
+	else if( cmd == ItalcCore::LogonUserCmd )
 	{
 		localSystem::logonUser( msgIn.arg( "uname" ),
 					msgIn.arg( "passwd" ),

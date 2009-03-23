@@ -195,7 +195,7 @@ void ItalcCoreConnection::logonUser( const QString & _uname,
 						const QString & _pw,
 						const QString & _domain )
 {
-	enqueueMessage( ItalcCore::Msg( ItalcCore::LogonUser ).
+	enqueueMessage( ItalcCore::Msg( ItalcCore::LogonUserCmd ).
 						addArg( "uname", _uname ).
 						addArg( "passwd", _pw ).
 						addArg( "domain", _domain ) );

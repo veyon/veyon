@@ -197,22 +197,22 @@ namespace ItalcCore
 								CommandList;
 
 	// static commands
-	extern const Command GetUserInformation;
-	extern const Command UserInformation;
-	extern const Command StartDemo;
-	extern const Command StopDemo;
-	extern const Command LockDisplay;
-	extern const Command UnlockDisplay;
-	extern const Command LogonUser;
-	extern const Command LogoutUser;
-	extern const Command DisplayTextMessage;
-	extern const Command AccessDialog;
-	extern const Command ExecCmds;
-	extern const Command WakeOtherComputer;
-	extern const Command PowerDownComputer;
-	extern const Command RestartComputer;
-	extern const Command DisableLocalInputs;
-	extern const Command SetRole;
+	extern IC_DllExport const Command GetUserInformation;
+	extern IC_DllExport const Command UserInformation;
+	extern IC_DllExport const Command StartDemo;
+	extern IC_DllExport const Command StopDemo;
+	extern IC_DllExport const Command LockDisplay;
+	extern IC_DllExport const Command UnlockDisplay;
+	extern IC_DllExport const Command LogonUserCmd;
+	extern IC_DllExport const Command LogoutUser;
+	extern IC_DllExport const Command DisplayTextMessage;
+	extern IC_DllExport const Command AccessDialog;
+	extern IC_DllExport const Command ExecCmds;
+	extern IC_DllExport const Command WakeOtherComputer;
+	extern IC_DllExport const Command PowerDownComputer;
+	extern IC_DllExport const Command RestartComputer;
+	extern IC_DllExport const Command DisableLocalInputs;
+	extern IC_DllExport const Command SetRole;
 
 	class Msg
 	{
