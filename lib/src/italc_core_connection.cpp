@@ -1,7 +1,7 @@
 /*
  * italc_core_connection.cpp - implementation of ItalcCoreConnection
  *
- * Copyright (c) 2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2008-2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -22,6 +22,8 @@
  *
  */
 
+
+#include <QtCore/QDebug>
 
 #include "italc_core_connection.h"
 
@@ -108,27 +110,20 @@ bool ItalcCoreConnection::handleServerMessage( Q_UINT8 _msg )
 {
 	if( _msg == rfbItalcCoreResponse )
 	{
-		Q_UINT8 cmd;
-		if( !ReadFromRFBServer( m_ivc->getRfbClient(),
-					(char *) &cmd, sizeof( cmd ) ) )
+		ItalcCore::Msg m( &m_socketDev );
+		m.receive();
+		if( m.cmd() == ItalcCore::UserInformation )
 		{
-			return false;
+			m_user = m.arg( "username" );
+			m_userHomeDir = m.arg( "homedir" );
 		}
-		switch( cmd )
+		// TODO: plugin hook
+		else
 		{
-			case ItalcCore::UserInformation:
-			{
-				ItalcCore::Msg m( &m_socketDev );
-				m.receive();
-				m_user = m.arg( "username" ).toString();
-				m_userHomeDir = m.arg( "homedir" ).toString();
-				break;
-			}
-
-			default:
-	qCritical( "ItalcCoreConnection::handleServerMessage(): unknown server "
-						"response %d", (int) cmd );
-				return false;
+			qCritical() << "ItalcCoreConnection::"
+				"handleServerMessage(): unknown server "
+				"response" << m.cmd();
+			return false;
 		}
 	}
 	else
@@ -164,11 +159,9 @@ void ItalcCoreConnection::execCmds( const QString & _cmd )
 
 void ItalcCoreConnection::startDemo( int _port, bool _full_screen )
 {
-	enqueueMessage( ItalcCore::Msg( _full_screen ?
-				ItalcCore::StartFullScreenDemo
-					:
-				ItalcCore::StartWindowDemo ).
-						addArg( "port", _port ) );
+	enqueueMessage( ItalcCore::Msg( ItalcCore::StartDemo ).
+					addArg( "port", _port ).
+					addArg( "fullscreen", _full_screen ) );
 }
 
 
@@ -202,7 +195,7 @@ void ItalcCoreConnection::logonUser( const QString & _uname,
 						const QString & _pw,
 						const QString & _domain )
 {
-	enqueueMessage( ItalcCore::Msg( ItalcCore::LogonUserCmd ).
+	enqueueMessage( ItalcCore::Msg( ItalcCore::LogonUser ).
 						addArg( "uname", _uname ).
 						addArg( "passwd", _pw ).
 						addArg( "domain", _domain ) );
@@ -222,7 +215,7 @@ void ItalcCoreConnection::logoutUser( void )
 void ItalcCoreConnection::displayTextMessage( const QString & _msg )
 {
 	enqueueMessage( ItalcCore::Msg( ItalcCore::DisplayTextMessage ).
-						addArg( "msg", _msg ) );
+						addArg( "text", _msg ) );
 }
 
 

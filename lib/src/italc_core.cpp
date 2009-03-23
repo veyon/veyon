@@ -1,7 +1,7 @@
 /*
  * italc_core.cpp - implementation of iTALC Core
  *
- * Copyright (c) 2006-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -120,4 +120,27 @@ int handleSecTypeItalc( rfbClient * _cl )
 }
 
 
+
+
+namespace ItalcCore
+{
+
+const Command GetUserInformation = "GetUserInformation";
+const Command UserInformation = "UserInformation";
+const Command StartDemo = "StartDemo";
+const Command StopDemo = "StopDemo";
+const Command LockDisplay = "LockDisplay";
+const Command UnlockDisplay = "UnlockDisplay";
+const Command LogonUser = "LogonUser";
+const Command LogoutUser = "LogoutUser";
+const Command DisplayTextMessage = "DisplayTextMessage";
+const Command AccessDialog = "AccessDialog";
+const Command ExecCmds = "ExecCmds";
+const Command WakeOtherComputer = "WakeOtherComputer";
+const Command PowerDownComputer = "PowerDownComputer";
+const Command RestartComputer = "RestartComputer";
+const Command DisableLocalInputs = "DisableLocalInputs";
+const Command SetRole = "SetRole";
+
+} ;
 

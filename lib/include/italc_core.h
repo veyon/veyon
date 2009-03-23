@@ -1,7 +1,7 @@
 /*
  * italc_core.h - definitions for iTALC Core
  *
- * Copyright (c) 2006-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -191,46 +191,52 @@ private:
 
 namespace ItalcCore
 {
-	enum Commands
-	{
-		DummyCmd,
-		GetUserInformation,
-		UserInformation,
-		StartFullScreenDemo,
-		StartWindowDemo,
-		StopDemo,
-		LockDisplay,
-		UnlockDisplay,
-		LogonUserCmd,
-		LogoutUser,
-		DisplayTextMessage,
-		AccessDialog,
-		ExecCmds,
+	typedef QString Command;
+	typedef QMap<QString, QVariant> CommandArgs;
+	typedef QList<QPair<ItalcCore::Command, ItalcCore::CommandArgs> >
+								CommandList;
 
-		// system-stuff
-		WakeOtherComputer = 48,
-		PowerDownComputer,
-		RestartComputer,
-		DisableLocalInputs,
-
-		SetRole = 64
-
-	} ;
-
+	// static commands
+	extern const Command GetUserInformation;
+	extern const Command UserInformation;
+	extern const Command StartDemo;
+	extern const Command StopDemo;
+	extern const Command LockDisplay;
+	extern const Command UnlockDisplay;
+	extern const Command LogonUser;
+	extern const Command LogoutUser;
+	extern const Command DisplayTextMessage;
+	extern const Command AccessDialog;
+	extern const Command ExecCmds;
+	extern const Command WakeOtherComputer;
+	extern const Command PowerDownComputer;
+	extern const Command RestartComputer;
+	extern const Command DisableLocalInputs;
+	extern const Command SetRole;
 
 	class Msg
 	{
 	public:
-		Msg( SocketDevice * _sd, const Commands _cmd = DummyCmd ) :
-			m_cmd( _cmd ),
-			m_socketDevice( _sd )
+		Msg( SocketDevice * _sd, const Command & _cmd = Command() ) :
+			m_socketDevice( _sd ),
+			m_cmd( _cmd )
 		{
 		}
 
-		Msg( const Commands _cmd ) :
-			m_cmd( _cmd ),
-			m_socketDevice( NULL )
+		Msg( const Command & _cmd ) :
+			m_socketDevice( NULL ),
+			m_cmd( _cmd )
 		{
+		}
+
+		inline const Command & cmd( void ) const
+		{
+			return m_cmd;
+		}
+
+		inline const CommandArgs & args( void ) const
+		{
+			return m_args;
 		}
 
 		void setSocketDevice( SocketDevice * _sd )
@@ -238,40 +244,46 @@ namespace ItalcCore
 			m_socketDevice = _sd;
 		}
 
-		Msg & addArg( const QString & _name, const QVariant & _content )
+		Msg & addArg( const QString & _key, const QString & _value )
 		{
-			m_argMap[_name] = _content;
+			m_args[_key.toLower()] = _value;
 			return *this;
 		}
 
-		QVariant arg( const QString & _name ) const
+		Msg & addArg( const QString & _key, const int _value )
 		{
-			return m_argMap[_name];
+			m_args[_key.toLower()] = QString::number( _value );
+			return *this;
+		}
+
+		QString arg( const QString & _key ) const
+		{
+			return m_args[_key.toLower()].toString();
 		}
 
 		bool send( void )
 		{
 			QDataStream d( m_socketDevice );
 			d << (Q_UINT8) rfbItalcCoreRequest;
-			d << (Q_UINT8) m_cmd;
-			d << m_argMap;
+			d << m_cmd;
+			d << m_args;
 			return true;
 		}
 
 		Msg & receive( void )
 		{
 			QDataStream d( m_socketDevice );
-			d >> m_argMap;
+			d >> m_cmd;
+			d >> m_args;
 			return *this;
 		}
 
 
 	private:
-		Commands m_cmd;
 		SocketDevice * m_socketDevice;
 
-		typedef QMap<QString, QVariant> argMap;
-		argMap m_argMap;
+		Command m_cmd;
+		CommandArgs m_args;
 
 	} ;
 

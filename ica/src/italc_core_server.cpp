@@ -1,7 +1,7 @@
 /*
  * italc_core_server.cpp - ItalcCoreServer
  *
- * Copyright (c) 2006-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *  
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -54,7 +54,7 @@
 
 
 ItalcCoreServer * ItalcCoreServer::_this = NULL;
-ItalcCoreServer::GuiOpsMap ItalcCoreServer::guiOps;
+QList<ItalcCore::Command> ItalcCoreServer::externalActions;
 
 
 
@@ -125,13 +125,13 @@ qint64 qtcpsocketDispatcher( char * _buf, const qint64 _len,
 
 void ItalcCoreServer::earlyInit( void )
 {
-	guiOps["fullscreendemo"] = CommandProperties( ItalcCore::StartFullScreenDemo, true, true );
-	guiOps["windowdemo"] = CommandProperties( ItalcCore::StartWindowDemo, true, true );
-	guiOps["stopdemo"] = CommandProperties( ItalcCore::StopDemo, true, true );
-	guiOps["lockdisplay"] = CommandProperties( ItalcCore::LockDisplay, false, true );
-	guiOps["unlockdisplay"] = CommandProperties( ItalcCore::UnlockDisplay, false, true );
-	guiOps["displaytextmessage"] = CommandProperties( ItalcCore::DisplayTextMessage, true, true );
-	guiOps["accessdialog"] = CommandProperties( ItalcCore::AccessDialog, true, false );
+	externalActions << ItalcCore::StartDemo
+			<< ItalcCore::StopDemo
+			<< ItalcCore::DisplayTextMessage
+			<< ItalcCore::LockDisplay
+			<< ItalcCore::UnlockDisplay;
+
+	// TODO: init pugins
 }
 
 
@@ -146,11 +146,6 @@ ItalcCoreServer::ItalcCoreServer( int _argc, char * * _argv ) :
 {
 	Q_ASSERT( _this == NULL );
 	_this = this;
-
-	for( int i = 0; i < NumOfGuiProcs; ++i )
-	{
-		m_guiProcs[i] = NULL;
-	}
 
 	QTimer * t = new QTimer( this );
 	connect( t, SIGNAL( timeout() ), this,
@@ -180,45 +175,32 @@ ItalcCoreServer::~ItalcCoreServer()
 int ItalcCoreServer::processClient( socketDispatcher _sd, void * _user )
 {
 	SocketDevice sdev( _sd, _user );
-	char cmd;
-	if( sdev.read( &cmd, sizeof( cmd ) ) == 0 )
+
+	// receive message
+	ItalcCore::Msg msgIn( &sdev );
+	msgIn.receive();
+
+	const QString cmd = msgIn.cmd();
+	if( cmd == ItalcCore::GetUserInformation )
 	{
-		qCritical( "ItalcCoreServer::processClient(...): couldn't read "
-					"command from client..." );
-		return false;
-	}
-
-	// in every case receive message-arguments, even if it's an empty list
-	// because this is at leat the int32 with number of items in the list
-	ItalcCore::Msg msg_in( &sdev, static_cast<ItalcCore::Commands>( cmd ) );
-	msg_in.receive();
-
-	QString action;
-
-	switch( cmd )
-	{
-		case ItalcCore::GetUserInformation:
-		{
-			ItalcCore::Msg( &sdev, ItalcCore::UserInformation ).
+		ItalcCore::Msg( &sdev, ItalcCore::UserInformation ).
 					addArg( "username",
 						localSystem::currentUser() ).
 					addArg( "homedir", QDir::homePath() ).
 									send();
-			break;
-		}
-
-		case ItalcCore::ExecCmds:
+	}
+	else if( cmd == ItalcCore::ExecCmds )
+	{
+		const QString cmds = msgIn.arg( "cmds" );
+		if( !cmds.isEmpty() )
 		{
-			const QString cmds = msg_in.arg( "cmds" ).toString();
-			if( !cmds.isEmpty() )
-			{
 #ifdef ITALC_BUILD_WIN32
 	// run process as the user which is logged on
 	DWORD aProcesses[1024], cbNeeded;
 
 	if( !EnumProcesses( aProcesses, sizeof( aProcesses ), &cbNeeded ) )
 	{
-		break;
+		return false;
 	}
 
 	DWORD cProcesses = cbNeeded / sizeof(DWORD);
@@ -281,86 +263,46 @@ int ItalcCoreServer::processClient( socketDispatcher _sd, void * _user )
 		RevertToSelf();
 		CloseHandle( hToken );
 		CloseHandle( hProcess );
-		break;
 	}
 #else
 				QProcess::startDetached( cmds );
 #endif
-			}
-			break;
 		}
-
-		case ItalcCore::StartFullScreenDemo:
-		case ItalcCore::StartWindowDemo:
+	}
+	else if( cmd == ItalcCore::LogonUser )
+	{
+		localSystem::logonUser( msgIn.arg( "uname" ),
+					msgIn.arg( "passwd" ),
+					msgIn.arg( "domain" ) );
+	}
+	else if( cmd == ItalcCore::LogoutUser )
+	{
+		localSystem::logoutUser();
+	}
+	else if( cmd == ItalcCore::WakeOtherComputer )
+	{
+		localSystem::broadcastWOLPacket( msgIn.arg( "mac" ) );
+	}
+	else if( cmd == ItalcCore::PowerDownComputer )
+	{
+		localSystem::powerDown();
+	}
+	else if( cmd == ItalcCore::RestartComputer )
+	{
+		localSystem::reboot();
+	}
+	else if( cmd == ItalcCore::DisableLocalInputs )
+	{
+		localSystem::disableLocalInputs(
+					msgIn.arg( "disabled" ).toInt() );
+	}
+	else if( cmd == ItalcCore::SetRole )
+	{
+		const int role = msgIn.arg( "role" ).toInt();
+		if( role > ItalcCore::RoleNone && role < ItalcCore::RoleCount )
 		{
-			QString port = msg_in.arg( "port" ).toString();
-			if( port == "" )
-			{
-				port = "5858";
-			}
-			if( !port.contains( ':' ) )
-			{
-				const int MAX_HOST_LEN = 255;
-				char host[MAX_HOST_LEN+1];
-				_sd( host, MAX_HOST_LEN, SocketGetPeerAddress,
-									_user );
-				host[MAX_HOST_LEN] = 0;
-				action = host + QString( ":" ) + port;
-			}
-			else
-			{
-				action = port;
-			}
-			break;
-		}
-
-		case ItalcCore::DisplayTextMessage:
-			action = msg_in.arg( "msg" ).toString();
-			break;
-
-		case ItalcCore::LockDisplay:
-		case ItalcCore::UnlockDisplay:
-		case ItalcCore::StopDemo:
-			action = "123";	// something to make the action being
-					// added to action-list processed by
-					// GUI-thread
-			break;
-
-		case ItalcCore::LogonUserCmd:
-			localSystem::logonUser(
-					msg_in.arg( "uname" ).toString(),
-					msg_in.arg( "passwd" ).toString(),
-					msg_in.arg( "domain" ).toString() );
-			break;
-
-		case ItalcCore::LogoutUser:
-			localSystem::logoutUser();
-			break;
-
-		case ItalcCore::WakeOtherComputer:
-			localSystem::broadcastWOLPacket( 
-					msg_in.arg( "mac" ).toString() );
-			break;
-
-		case ItalcCore::PowerDownComputer:
-			localSystem::powerDown();
-			break;
-
-		case ItalcCore::RestartComputer:
-			localSystem::reboot();
-			break;
-
-		case ItalcCore::DisableLocalInputs:
-			localSystem::disableLocalInputs(
-					msg_in.arg( "disabled" ).toBool() );
-			break;
-
-		case ItalcCore::SetRole:
-		{
-			const int role = msg_in.arg( "role" ).toInt();
-			if( role > ItalcCore::RoleNone && role < ItalcCore::RoleCount )
-			{
-				ItalcCore::role = static_cast<ItalcCore::UserRoles>( role );
+			ItalcCore::role =
+				static_cast<ItalcCore::UserRoles>( role );
 #ifdef ITALC_BUILD_LINUX
 				// under Linux/X11, IVS runs in separate process
 				// therefore we need to restart it with new
@@ -368,22 +310,48 @@ int ItalcCoreServer::processClient( socketDispatcher _sd, void * _user )
 				// for the time being
 				m_ivs->restart();
 #endif
-			}
-			break;
 		}
-
-		default:
-			qCritical( "ItalcCoreServer::processClient(...): "
-					"cmd %d not implemented!", cmd );
-			break;
 	}
-
-	if( !action.isEmpty() )
+	else if( cmd == ItalcCore::StartDemo ||
+			cmd == ItalcCore::StopDemo ||
+			cmd == ItalcCore::DisplayTextMessage ||
+			cmd == ItalcCore::LockDisplay ||
+			cmd == ItalcCore::UnlockDisplay )
 	{
+		// edit arguments if neccessary
+		ItalcCore::CommandArgs args = msgIn.args();
+		if( cmd == ItalcCore::StartDemo )
+		{
+			QString host;
+			QString port = args["port"].toString();
+			if( port == "" )
+			{
+				port = "5858";
+			}
+			if( !port.contains( ':' ) )
+			{
+				const int MAX_HOST_LEN = 255;
+				char hostArr[MAX_HOST_LEN+1];
+				_sd( hostArr, MAX_HOST_LEN,
+					SocketGetPeerAddress, _user );
+				hostArr[MAX_HOST_LEN] = 0;
+				host = hostArr + QString( ":" ) + port;
+			}
+			else
+			{
+				host = port;
+			}
+			args["host"] = host;
+		}
 		m_actionMutex.lock();
-		m_pendingActions.push_back( qMakePair(
-				static_cast<ItalcCore::Commands>( cmd ), action ) );
+		m_pendingActions.push_back( qMakePair( cmd, args ) );
 		m_actionMutex.unlock();
+	}
+	// TODO: handle plugins
+	else
+	{
+		qCritical() << "ItalcCoreServer::processClient(...): "
+				"could not handle cmd" << cmd;
 	}
 
 	return true;
@@ -492,7 +460,7 @@ printf("auth sec %d\n", (int)_auth_type );
 			if( ItalcCore::role != ItalcCore::RoleOther &&
 					_auth_type != ItalcAuthLocalDSA )
 			{
-				if( __denied_hosts.contains( host ) )
+			/*	if( __denied_hosts.contains( host ) )
 				{
 					result = ItalcAuthFailed;
 					break;
@@ -518,7 +486,7 @@ printf("auth sec %d\n", (int)_auth_type );
 						break;
 					}
 				}
-				else
+				else*/
 				{
 					result = ItalcAuthFailed;
 				}
@@ -549,112 +517,71 @@ printf("dsa: %d\n", (int)result);
 
 
 
-int ItalcCoreServer::doGuiOp( ItalcCore::Commands _cmd, const QString & _arg )
+int ItalcCoreServer::doGuiOp( const ItalcCore::Command & _cmd,
+					const ItalcCore::CommandArgs & _args )
 {
 	bool extProc = ( _this != NULL );
 
 	if( extProc )
 	{
-		QString procArg;
-		bool runDetached = false;
-		foreach( const QString & str, guiOps.keys() )
+		bool runDetached = ( _cmd == ItalcCore::AccessDialog ) ?
+								false : true;
+		QString procArgs = _cmd;
+		for( ItalcCore::CommandArgs::ConstIterator it = _args.begin();
+						it != _args.end(); ++it )
 		{
-			if( guiOps[str].cmd == _cmd )
-			{
-				runDetached = guiOps[str].runDetached;
-				procArg = str;
-				break;
-			}
+			procArgs += "," + it.key() + "=" +
+							it.value().toString();
 		}
-		if( procArg.isEmpty() )
-		{
-			qCritical( "ItalcCoreServer::doGuiOp(): unhandled "
-							"ItalcCore::Command" );
-			return -1;
-		}
-
 		if( runDetached )
 		{
 			QProcess * p = new QProcess( _this );
-
-			// kill old processes
-			switch( _cmd )
+			if( _this->m_guiProcs.contains( _cmd ) )
 			{
-				case ItalcCore::StartWindowDemo:
-				case ItalcCore::StartFullScreenDemo:
-				case ItalcCore::StopDemo:
-					if( _this->m_guiProcs[ProcDemo] )
-					{
-						_this->m_guiProcs[ProcDemo]->terminate();
-						delete _this->m_guiProcs[ProcDemo];
-						_this->m_guiProcs[ProcDemo] = NULL;
-					}
-					break;
-
-				case ItalcCore::LockDisplay:
-				case ItalcCore::UnlockDisplay:
-					if( _this->m_guiProcs[ProcDisplayLock] )
-					{
-						_this->m_guiProcs[ProcDisplayLock]->terminate();
-						delete _this->m_guiProcs[ProcDisplayLock];
-						_this->m_guiProcs[ProcDisplayLock] = NULL;
-					}
-					break;
-
-				default:
-					break;
+				QProcess * oldProc = _this->m_guiProcs[_cmd];
+				if( oldProc )
+				{
+					oldProc->terminate();
+					delete oldProc;
+					_this->m_guiProcs[_cmd] = NULL;
+				}
 			}
 
-			// save pointer to new process or return
-			switch( _cmd )
-			{
-				case ItalcCore::StartWindowDemo:
-				case ItalcCore::StartFullScreenDemo:
-					_this->m_guiProcs[ProcDemo] = p;
-					break;
-
-				case ItalcCore::LockDisplay:
-					_this->m_guiProcs[ProcDisplayLock] = p;
-					break;
-
-				default:
-					return 0;
-			}
+			_this->m_guiProcs[_cmd] = p;
 			p->start( QCoreApplication::applicationFilePath(),
-					QStringList() << procArg << _arg );
+					QStringList() << procArgs );
 			return 0;
 		}
 		else
 		{
 			return QProcess::execute(
 				QCoreApplication::applicationFilePath(),
-					QStringList() << procArg << _arg );
+					QStringList() << procArgs );
 		}
 	}
 
-	switch( _cmd )
+	if( _cmd == ItalcCore::AccessDialog )
 	{
-		case ItalcCore::AccessDialog:
-			return _this->showAccessDialog( _arg );
-			break;
-
-		case ItalcCore::StartFullScreenDemo:
-		case ItalcCore::StartWindowDemo:
-			_this->startDemo( _arg, _cmd == ItalcCore::StartFullScreenDemo );
-			break;
-
-		case ItalcCore::LockDisplay:
-			_this->lockDisplay();
-			break;
-
-		case ItalcCore::DisplayTextMessage:
-			_this->displayTextMessage( _arg );
-			break;
-
-		default:
-			qWarning( "ItalcCoreServer::doGuiOp():"
-					" unhandled command %d", (int) _cmd );
-			break;
+		return _this->showAccessDialog( _args["host"].toString() );
+	}
+	else if( _cmd == ItalcCore::StartDemo )
+	{
+		_this->startDemo( _args["host"].toString(),
+					_args["fullscreen"].toInt() );
+	}
+	else if( _cmd == ItalcCore::LockDisplay )
+	{
+		_this->lockDisplay();
+	}
+	else if( _cmd == ItalcCore::DisplayTextMessage )
+	{
+		_this->displayTextMessage( _args["text"].toString() );
+	}
+	else
+	{
+		// TODO: handle plugins
+		qWarning() << "ItalcCoreServer::doGuiOp():"
+				" unhandled command" << _cmd;
 	}
 	return 0;
 }
@@ -705,8 +632,8 @@ void ItalcCoreServer::checkForPendingActions( void )
 	QMutexLocker ml( &m_actionMutex );
 	while( !m_pendingActions.isEmpty() )
 	{
-		QString data = m_pendingActions.front().second;
-		doGuiOp( m_pendingActions.front().first, data );
+		doGuiOp( m_pendingActions.front().first,
+				m_pendingActions.front().second );
 		m_pendingActions.removeFirst();
 	}
 }

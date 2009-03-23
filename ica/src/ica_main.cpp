@@ -1,7 +1,7 @@
 /*
  * ica_main.cpp - main-file for ICA (iTALC Client Application)
  *
- * Copyright (c) 2006-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *  
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -91,12 +91,11 @@ int ICAMain( int argc, char * * argv )
 	// decide whether to create a QCoreApplication or QApplication
 #ifdef ITALC_BUILD_LINUX
 	bool coreApp = true;
-
 	for( int i = 1; i < argc; ++i )
 	{
-		if( ItalcCoreServer::guiOps.contains( argv[i] ) )
+		if( ItalcCoreServer::externalActions.contains( argv[i] ) )
 		{
-			coreApp = true;
+			coreApp = false;
 		}
 	}
 #else
@@ -161,15 +160,29 @@ int ICAMain( int argc, char * * argv )
 		{
 			__ivs_port = arg_it.next().toInt();
 		}
-		else if( ItalcCoreServer::guiOps.contains( a ) &&
-				( ItalcCoreServer::guiOps[a].hasArgs == false ||
-							arg_it.hasNext() ) )
+		else if( a == "-cmd" && arg_it.hasNext() )
 		{
-			if( ItalcCoreServer::doGuiOp(
-					ItalcCoreServer::guiOps[a].cmd,
-					ItalcCoreServer::guiOps[a].hasArgs ?
-						arg_it.next() : QString() ) )
+			const QStringList fullCmd = arg_it.next().split( ',' );
+			if( fullCmd.size() < 1 )
 			{
+				qCritical( "Invalid argument" );
+				return -1;
+			}
+			const ItalcCore::Command cmd = fullCmd[0];
+			if( ItalcCoreServer::externalActions.contains( cmd ) )
+			{
+				ItalcCore::CommandArgs cmdArgs;
+				for( int i = 1; i < fullCmd.size(); ++i )
+				{
+					QStringList arg = fullCmd[i].split( '=' );
+					if( arg.size() != 2 )
+					{
+						qCritical( "Invalid argument" );
+						return -1;
+					}
+					cmdArgs[arg[0]] = arg[1];
+				}
+				ItalcCoreServer::doGuiOp( cmd, cmdArgs );
 				return 0;
 			}
 		}

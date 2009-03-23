@@ -1,7 +1,7 @@
 /*
  * italc_core_server.h - ItalcCoreServer
  *
- * Copyright (c) 2006-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *  
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -43,6 +43,8 @@ class ItalcCoreServer : public QObject
 {
 	Q_OBJECT
 public:
+	static QList<ItalcCore::Command> externalActions;
+
 	enum AccessDialogResult
 	{
 		AccessYes,
@@ -69,32 +71,8 @@ public:
 				const QStringList & _allowedHosts =
 								QStringList() );
 
-	static int doGuiOp( ItalcCore::Commands _cmd, const QString & _param );
-
-	struct CommandProperties
-	{
-		CommandProperties() :
-			cmd( ItalcCore::DummyCmd ),
-			hasArgs( false ),
-			runDetached( false )
-		{
-		}
-
-		CommandProperties( ItalcCore::Commands _cmd,
-					bool _hasArgs,
-					bool _runDetached ) :
-			cmd( _cmd ),
-			hasArgs( _hasArgs ),
-			runDetached( _runDetached )
-		{
-		}
-		ItalcCore::Commands cmd;
-		bool hasArgs;
-		bool runDetached;
-	} ;
-
-	typedef QMap<QString, CommandProperties> GuiOpsMap;
-	static GuiOpsMap guiOps;
+	static int doGuiOp( const ItalcCore::Command & _cmd,
+					const ItalcCore::CommandArgs & _args );
 
 
 private slots:
@@ -119,20 +97,13 @@ private:
 	static ItalcCoreServer * _this;
 
 	QMutex m_actionMutex;
-	QList<QPair<ItalcCore::Commands, QString> > m_pendingActions;
+	ItalcCore::CommandList m_pendingActions;
 
 	IVS * m_ivs;
 	DemoClient * m_demoClient;
 	LockWidget * m_lockWidget;
 
-	enum GuiProcs
-	{
-		ProcDemo,
-		ProcDisplayLock,
-		NumOfGuiProcs
-	} ;
-
-	QProcess * m_guiProcs[NumOfGuiProcs];
+	QMap<QString, QProcess *> m_guiProcs;
 
 } ;
 
