@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="nn">
+<!DOCTYPE TS>
+<TS version="2.0" language="nn">
 <context>
     <name>QObject</name>
     <message>
@@ -10,7 +11,7 @@
     <message>
         <location filename="../src/local_system.cpp" line="642"/>
         <source>iTALC-snapshots</source>
-        <translation type="unfinished">iTALC-Skjermskot</translation>
+        <translation>iTALC-Skjermbilete</translation>
     </message>
 </context>
 <context>
@@ -18,7 +19,7 @@
     <message>
         <location filename="../src/ivs_connection.cpp" line="308"/>
         <source>Snapshot</source>
-        <translation>Skjermskot</translation>
+        <translation>Skjermbilete</translation>
     </message>
     <message>
         <location filename="../src/ivs_connection.cpp" line="311"/>
@@ -28,7 +29,7 @@
     <message>
         <location filename="../src/ivs_connection.cpp" line="310"/>
         <source>Could not take a snapshot as directory %1 doesn&apos;t exist and couldn&apos;t be created.</source>
-        <translation>Klarte ikkje lage skjermskot då katalogen %1 verken finnes eller kunne opprettast.</translation>
+        <translation>Klarte ikkje lagre skjermbilete då katalogen %1 enten ikkje finst eller kunne opprettast.</translation>
     </message>
 </context>
 <context>
@@ -44,7 +45,7 @@
     <message>
         <location filename="../src/lock_widget.cpp" line="69"/>
         <source>screen lock</source>
-        <translation type="unfinished"></translation>
+        <translation>skjermlås</translation>
     </message>
 </context>
 <context>
@@ -60,7 +61,7 @@
     <message>
         <location filename="../src/vncview.cpp" line="61"/>
         <source>Establishing connection to %1 ...</source>
-        <translation>Kobler til %1 ...</translation>
+        <translation>Koplar til %1 ...</translation>
     </message>
 </context>
 </TS>

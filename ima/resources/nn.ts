@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="nn">
+<!DOCTYPE TS>
+<TS version="2.0" language="nn">
 <context>
     <name>about</name>
     <message>
@@ -75,12 +76,12 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;iTALC - Intelligent Teaching And Learning with Computers&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;&quot;&gt;Copyright (c) 2004-2008 Tobias Doerffel&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;iTALC - Intelligent Teaching And Learning with Computers&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;&quot;&gt;Copyright (c) 2004-2007 Tobias Doerffel&lt;/p&gt;&lt;/body&gt;&lt;/html&gt; {1&quot;?} {9p?} {400;?} {0p?} {0p?} {0p?} {0p?} {0;?} {0p?} {11p?} {0p?} {0p?} {0p?} {0p?} {0;?} {0p?} {11p?} {0p?} {0p?} {0p?} {0p?} {0;?} {0p?} {11p?} {2004-2008 ?}</translation>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;&quot;&gt;Copyright (c) 2004-2008 Tobias Doerffel&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
@@ -283,7 +284,7 @@ Vil du lage eit klasserom no?</translation>
     <message>
         <location filename="../src/classroom_manager.cpp" line="1764"/>
         <source>Please enter the name of the classroom you want to create.</source>
-        <translation>Skriv inn namn på klasserommet du lager.</translation>
+        <translation>Skriv inn namn på klasserommet du opprettar.</translation>
     </message>
     <message>
         <location filename="../src/classroom_manager.cpp" line="2072"/>
@@ -298,47 +299,47 @@ Vil du lage eit klasserom no?</translation>
     <message>
         <location filename="../src/classroom_manager.cpp" line="244"/>
         <source>Hide teacher computers</source>
-        <translation type="unfinished"></translation>
+        <translation>Skjul lærarmaskiner</translation>
     </message>
     <message>
         <location filename="../src/classroom_manager.cpp" line="117"/>
         <source>Usernames</source>
-        <translation type="unfinished"></translation>
+        <translation>Brukarnamn</translation>
     </message>
     <message>
         <location filename="../src/classroom_manager.cpp" line="138"/>
         <source>Show usernames</source>
-        <translation type="unfinished"></translation>
+        <translation>Vis brukarnamn</translation>
     </message>
     <message>
         <location filename="../src/classroom_manager.cpp" line="148"/>
         <source>Use the context-menu (right mouse-button) to add/remove computers and/or classrooms.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bruk oppsprettmenyen (høgre musetast) for å leggje til / fjerne maskiner og/eller klasserom.</translation>
     </message>
     <message>
         <location filename="../src/classroom_manager.cpp" line="157"/>
         <source>Export to text-file</source>
-        <translation type="unfinished">Eksporter til tekstfil</translation>
+        <translation>Eksporter til tekstfil</translation>
     </message>
     <message>
         <location filename="../src/classroom_manager.cpp" line="172"/>
         <source>Use this button for exporting this list of computers and usernames into a text-file. You can use this file later for collecting files after an exam has finished. This is sometimes neccessary, because some users might have finished and logged out earlier and so you cannot collect their files at the end of the exam.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bruk denne knappen for å eksportere ei liste over maskiner og brukarnamn til ei teksfil. Dukan bruke fila seinere for å samle filer etter at f.eks ei prøve er ferdig. Dette kan vere nødvendig fordi noke brukarar kan ha gjordt seg ferdig tidleg og logga av. Då klarar du ikkje å samle inn filene på slutten av prøva.</translation>
     </message>
     <message>
         <location filename="../src/classroom_manager.cpp" line="995"/>
         <source>Select output-file</source>
-        <translation type="unfinished">Vel filnamn</translation>
+        <translation>Vel filnamn</translation>
     </message>
     <message>
         <location filename="../src/classroom_manager.cpp" line="997"/>
         <source>Text files (*.txt)</source>
-        <translation type="unfinished">Tekstfil (*.txt)</translation>
+        <translation>Tekstfil (*.txt)</translation>
     </message>
     <message>
         <location filename="../src/classroom_manager.cpp" line="1360"/>
         <source>Actions for selected</source>
-        <translation type="unfinished"></translation>
+        <translation>Handlingar for valde</translation>
     </message>
 </context>
 <context>
@@ -421,7 +422,7 @@ Vil du lage eit klasserom no?</translation>
     <message>
         <location filename="../src/client.cpp" line="930"/>
         <source>Unknown state</source>
-        <translation type="unfinished">Ukjend status</translation>
+        <translation>Ukjend status</translation>
     </message>
     <message>
         <location filename="../src/client.cpp" line="938"/>
@@ -459,42 +460,42 @@ Vil du lage eit klasserom no?</translation>
     <message>
         <location filename="../src/client.cpp" line="351"/>
         <source>Are you sure want logout all users on all visible computers ?</source>
-        <translation type="unfinished">Er du sikker på at du vil logge av brukarane på dei synlege maskinane ?</translation>
+        <translation>Er du sikker på at du vil logge av alle brukarane på dei synlege maskinane ?</translation>
     </message>
     <message>
         <location filename="../src/client.cpp" line="352"/>
         <source>Are you sure want logout all users on all selected computers ?</source>
-        <translation type="unfinished"></translation>
+        <translation>Er du sikker på du vil logge ut alle brukarar på dei valde maskinene ?</translation>
     </message>
     <message>
         <location filename="../src/client.cpp" line="354"/>
         <source>Logout user</source>
-        <translation type="unfinished"></translation>
+        <translation>Logg av brukar</translation>
     </message>
     <message>
         <location filename="../src/client.cpp" line="365"/>
         <source>Are you sure want to reboot all visible computers?</source>
-        <translation type="unfinished">Vil du starte alle dei synlege maskinane om at?</translation>
+        <translation>Er du sikker på du vil starte alle dei synlege maskinene om at?</translation>
     </message>
     <message>
         <location filename="../src/client.cpp" line="366"/>
         <source>Are you sure want to reboot all selected computers?</source>
-        <translation type="unfinished"></translation>
+        <translation>Er du sikker på du vil starte dei valde maskinene om att?</translation>
     </message>
     <message>
         <location filename="../src/client.cpp" line="382"/>
         <source>Reboot computers</source>
-        <translation type="unfinished">Start maskinane om at</translation>
+        <translation>Start maskinene om at</translation>
     </message>
     <message>
         <location filename="../src/client.cpp" line="379"/>
         <source>Are you sure want to power down all visible computers?</source>
-        <translation type="unfinished">Er du sikker på at du vil skru av alle dei synlege maskinane?</translation>
+        <translation>Er du sikker på du vil skru av alle dei synlege maskinane?</translation>
     </message>
     <message>
         <location filename="../src/client.cpp" line="380"/>
         <source>Are you sure want to power down all selected computers?</source>
-        <translation type="unfinished"></translation>
+        <translation>Er du sikker på du vil slå av alle dei valde maskinene?</translation>
     </message>
 </context>
 <context>
@@ -502,77 +503,77 @@ Vil du lage eit klasserom no?</translation>
     <message>
         <location filename="../src/client.cpp" line="415"/>
         <source>Overview</source>
-        <translation type="unfinished">Oversikt</translation>
+        <translation>Oversikt</translation>
     </message>
     <message>
         <location filename="../src/client.cpp" line="417"/>
         <source>Fullscreen demo</source>
-        <translation type="unfinished">Fullskjerm demonstrasjon</translation>
+        <translation>Fullskjermdemonstrasjon</translation>
     </message>
     <message>
         <location filename="../src/client.cpp" line="419"/>
         <source>Window demo</source>
-        <translation type="unfinished">Demonstrasjon i vindauge</translation>
+        <translation>Demonstrasjon i vindauge</translation>
     </message>
     <message>
         <location filename="../src/client.cpp" line="421"/>
         <source>Locked display</source>
-        <translation type="unfinished">Lås skjermbilete</translation>
+        <translation>Låst skjermbilete</translation>
     </message>
     <message>
         <location filename="../src/client.cpp" line="425"/>
         <source>View live</source>
-        <translation type="unfinished"></translation>
+        <translation>Sjå i sanntid</translation>
     </message>
     <message>
         <location filename="../src/client.cpp" line="428"/>
         <source>Remote control</source>
-        <translation type="unfinished">Fjernkontroll</translation>
+        <translation>Fjernstyring</translation>
     </message>
     <message>
         <location filename="../src/client.cpp" line="431"/>
         <source>Let student show demo</source>
-        <translation type="unfinished">La elev vise demonstrasjon</translation>
+        <translation>La elev vise demonstrasjon</translation>
     </message>
     <message>
         <location filename="../src/client.cpp" line="435"/>
         <source>Send text message</source>
-        <translation type="unfinished">Send tekstmelding</translation>
+        <translation>Send tekstmelding</translation>
     </message>
     <message>
         <location filename="../src/client.cpp" line="439"/>
         <source>Logon user</source>
-        <translation type="unfinished">Logg på brukar</translation>
+        <translation>Logg på brukar</translation>
     </message>
     <message>
         <location filename="../src/client.cpp" line="441"/>
         <source>Logout user</source>
-        <translation type="unfinished"></translation>
+        <translation>Logg av brukar</translation>
     </message>
     <message>
         <location filename="../src/client.cpp" line="445"/>
         <source>Take a snapshot</source>
-        <translation type="unfinished"></translation>
+        <translation>Ta ei skjermbilete</translation>
     </message>
     <message>
         <location filename="../src/client.cpp" line="449"/>
         <source>Power on</source>
-        <translation type="unfinished">Skru på</translation>
+        <translation>Skru på</translation>
     </message>
     <message>
         <location filename="../src/client.cpp" line="451"/>
         <source>Reboot</source>
-        <translation type="unfinished">Start om att</translation>
+        <translation>Omstart</translation>
     </message>
     <message>
         <location filename="../src/client.cpp" line="453"/>
         <source>Power down</source>
-        <translation type="unfinished">Skru av</translation>
+        <translation>Skru av</translation>
     </message>
     <message>
         <location filename="../src/client.cpp" line="455"/>
         <source>Execute commands</source>
-        <translation type="unfinished">Køyr kommando</translation>
+        <translation>Køyr kommando</translation>
     </message>
 </context>
 <context>
@@ -580,7 +581,7 @@ Vil du lage eit klasserom no?</translation>
     <message>
         <location filename="../dialogs/client_settings.ui" line="14"/>
         <source>Client settings</source>
-        <translation>Klient oppsett</translation>
+        <translation>Klientinstillingar</translation>
     </message>
     <message>
         <location filename="../dialogs/client_settings.ui" line="61"/>
@@ -588,12 +589,15 @@ Vil du lage eit klasserom no?</translation>
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:20pt; font-weight:600; font-style:italic;&quot;&gt;Client settings&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:20pt; font-weight:600; font-style:italic;&quot;&gt;Klientinstillingar&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/client_settings.ui" line="109"/>
         <source>General</source>
-        <translation type="unfinished"></translation>
+        <translation>Generelt</translation>
     </message>
     <message>
         <location filename="../dialogs/client_settings.ui" line="240"/>
@@ -603,17 +607,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../dialogs/client_settings.ui" line="225"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Hardware/MAC-address of client - only used for powering on client&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Maskinvare/MAC-Adressa til klient vert nytta kun til å slå på klienten&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/client_settings.ui" line="215"/>
         <source>IP/hostname</source>
-        <translation>IP / Vertnamn</translation>
+        <translation>IP / Vertsnamn</translation>
     </message>
     <message>
         <location filename="../dialogs/client_settings.ui" line="200"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;enter an IP-address or hostname under which iTALC can reach the client (use &apos;:&apos; for specifying an optional port-number)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;fyll inn ei IP-Adresse eller eit vertsnamn som iTALC kan bruke for å nå klienten (bruk &apos;:&apos; (semikolon) for å spesifisere portnummer)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/client_settings.ui" line="190"/>
@@ -633,17 +637,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../dialogs/client_settings.ui" line="313"/>
         <source>Connection</source>
-        <translation>Tilkobling</translation>
+        <translation>Tilkopling</translation>
     </message>
     <message>
         <location filename="../dialogs/client_settings.ui" line="350"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;connection to hosts on the same level&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;tilkopling til vert på same nivå&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/client_settings.ui" line="353"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Here you can specify how this host is connected to the iTALC-network, i.e. hosts on the same level. Normally clients are connected via 100 MBit/s LAN, but there might be special hosts such as gateways to other iTALC-networks in foreign schools or a student&apos;s home-computer. In such cases iTALC tries to optimize its bandwidth utilization.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Her kan du spesifisere korleis verten er tilbopla iTALC-nettverket, f.eks. vert på same nivå. Normalt sett er klientmaskinene tilkopla via 100 MBit/s LAN, men det kan vere spesielle vertar som er IP-Port(gateway) for andre iTALC nettverk til andre skular eller til ein elev si heimemaskin. I slike tilfelle vil iTALC prøve å optimalisere bruken av bandbreidda.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/client_settings.ui" line="363"/>
@@ -678,27 +682,27 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../dialogs/client_settings.ui" line="435"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Check if the host is the gateway for the subnet.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Hak av dersom verten er IP-port(gateway) for dette nettverket(subnet).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/client_settings.ui" line="438"/>
         <source>Host is &amp;gateway for subnet</source>
-        <translation type="unfinished"></translation>
+        <translation>Tenaren er &amp;IP-port(gateway) for dette nettverket(subnet)</translation>
     </message>
     <message>
         <location filename="../dialogs/client_settings.ui" line="448"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Activate this option for at least one host in a subnet.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Hak av her dersom det er minst ein tenar i dette nettverket(subnet).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/client_settings.ui" line="451"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;When showing a demo to more than one host in a foreign network, it&apos;s meaningful to activate this option for at least one of the involved hosts. This way all data is only sent once to the demo-replicator which provides the data for all the other clients in the network. Especially on slow links usage of this option is essential. Normally you should enable this option on the subnet-gateway (see option above).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Når ein demo visast til meir enn ein tenar i eit ukjent nettverk, er det lurt å hake av dette valet for minst ein av dei involverte tenarane. På den måten blir all data sendt ein gong til demo-replikatoren som formidlar data vidare til alle andre klientar i nettverket. Spesiellt på &apos;låg bandbreidde&apos; brukarar er denne funksjonen nyttig. Vanlegvis bør du aktivere denne funksjonen for IP-Porten(gateway) på det nettverket(sjå ovanfor)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/client_settings.ui" line="454"/>
         <source>Act as &amp;demo replicator</source>
-        <translation type="unfinished"></translation>
+        <translation>Funger som &amp;Demo-replikator</translation>
     </message>
     <message>
         <location filename="../dialogs/client_settings.ui" line="477"/>
@@ -718,27 +722,27 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../dialogs/client_settings.ui" line="124"/>
         <source>Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Type</translation>
     </message>
     <message>
         <location filename="../dialogs/client_settings.ui" line="135"/>
         <source>Student computer</source>
-        <translation type="unfinished"></translation>
+        <translation>Elevmaskin</translation>
     </message>
     <message>
         <location filename="../dialogs/client_settings.ui" line="140"/>
         <source>Teacher computer</source>
-        <translation type="unfinished"></translation>
+        <translation>Lærarmaskin</translation>
     </message>
     <message>
         <location filename="../dialogs/client_settings.ui" line="145"/>
         <source>Other/undefined computer</source>
-        <translation type="unfinished"></translation>
+        <translation>Anna/Uspesifisert maskin</translation>
     </message>
     <message>
         <location filename="../dialogs/client_settings.ui" line="258"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Optional nickname of the host which is displayed in iTALC.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Valfritt kallenamn på vertsmaskina, dette blir vist i iTALC.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
@@ -761,7 +765,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/dialogs.cpp" line="100"/>
         <source>You didn&apos;t specify an IP-address or hostname for the computer!</source>
-        <translation>Du skreiv ikkje inn IP-adresse eller vertnamn på maskinen!</translation>
+        <translation>Du skreiv ikkje inn IP-adresse eller vertsnamn på maskina!</translation>
     </message>
     <message>
         <location filename="../src/dialogs.cpp" line="109"/>
@@ -776,7 +780,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/dialogs.cpp" line="112"/>
         <source>You specified an invalid MAC-address. Either leave the field blank or enter a valid MAC-address (use &quot;:&quot; as separator!).</source>
-        <translation type="unfinished"></translation>
+        <translation>Du skreiv ikkje inn ei gyldig MAC-adresse. La felte stå tomt eller skriv ei gyldig MAC-adresse (skriv slik:&quot;00:aa:11:bb:22:cc)</translation>
     </message>
 </context>
 <context>
@@ -789,7 +793,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/cmd_input_dialog.cpp" line="47"/>
         <source>Enter commands, which should be run on client(s):</source>
-        <translation>Skriv inn kommando som klient(en/ane) skal køyra:</translation>
+        <translation>Skriv inn kommando som klient(en/ane) skal køyre:</translation>
     </message>
     <message>
         <location filename="../src/cmd_input_dialog.cpp" line="59"/>
@@ -812,7 +816,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../dialogs/config.ui" line="98"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Here you can set the interval between updates of clients. Higher values result in lower network-traffic and lower CPU-usage on this computer.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Her kan du sette intervallet mellom oppdateringar av klienten. Høgare verdiar resulterar i lågare nettverkstrafikk og lågare CPU-bruk på denne maskina. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/config.ui" line="101"/>
@@ -822,7 +826,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../dialogs/config.ui" line="104"/>
         <source> seconds</source>
-        <translation> sekunder</translation>
+        <translation> sekund</translation>
     </message>
     <message>
         <location filename="../dialogs/config.ui" line="161"/>
@@ -840,7 +844,10 @@ p, li { white-space: pre-wrap; }
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Here you can setup the desired screen-quality in demo-mode. Lower quality results in less CPU-usage and lower network-traffic while high quality might slow down your computer and decrease framerate of demo. You should experiment with this for optimal settings.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Her kan du endre kvalieten på skjermbilete i demomodus. Lågare kvalitet resulterar i lågare CPU-bruk og lågare nettverkstrafikk. Høg kvalitet kan gjere maskina di treg og gi ein hakkete oppleving av bilete under demonstrasjonen. Du bør eksperimentere med instillingane for å finne den beste.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/config.ui" line="201"/>
@@ -860,7 +867,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../dialogs/config.ui" line="258"/>
         <source>User interface</source>
-        <translation>Brukergrensesnitt</translation>
+        <translation>Brukargrensesnitt</translation>
     </message>
     <message>
         <location filename="../dialogs/config.ui" line="304"/>
@@ -870,7 +877,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../dialogs/config.ui" line="307"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Check this option if you&apos;re annoyed by the balloon-tooltips appearing when moving mouse-cursor over toolbar-buttons.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Kontroller denne instillinga hvis du er plaga av ballongtips som kjem opp medan du beveger muspeikaren over knappar.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Kontroller denne instillinga dersom du er plaga av ballongtips som kjem opp medan du bevegar muspeikaren over knappar.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/config.ui" line="310"/>
@@ -880,7 +887,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../dialogs/config.ui" line="380"/>
         <source>Your role (needs according keys!)</source>
-        <translation>Din rolle (treng tilsvarande nøklar!)</translation>
+        <translation>Di rolle (treng tilsvarande nøklar!)</translation>
     </message>
     <message>
         <location filename="../dialogs/config.ui" line="426"/>
@@ -888,7 +895,10 @@ p, li { white-space: pre-wrap; }
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Here you can select your role. Only change this if you know what you&apos;re doing. Otherwise you won&apos;t be able to access any clients until you restore your old role.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Her kan du velje di rolle. Gjer kun endringar her dersom du veit kva du gjer. Ellers kan det hende du ikkje får tilgang til klientane før du sett tilbake til d gamle rolle.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/config.ui" line="433"/>
@@ -923,7 +933,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../dialogs/config.ui" line="561"/>
         <source>Double-click action for client-window</source>
-        <translation>Dobbelklikk handling for klient-vindauge</translation>
+        <translation>Handling for dobbeltklikk i klientvindauget</translation>
     </message>
     <message>
         <location filename="../dialogs/config.ui" line="607"/>
@@ -931,12 +941,12 @@ p, li { white-space: pre-wrap; }
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Here you can set what should happen if you double-click a client-window.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;p, li { white-space: pre-wrap; }&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Her vel du kva som skal skje når du dobbeltklikker på ei klient-vindauge.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;p, li { white-space: pre-wrap; }&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Her vel du kva som skal skje når du dobbeltklikker i eit klientvindauge.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/config.ui" line="614"/>
         <source>Remote control</source>
-        <translation>Fjernkontroll</translation>
+        <translation>Fjernstyring</translation>
     </message>
     <message>
         <location filename="../dialogs/config.ui" line="622"/>
@@ -951,12 +961,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../dialogs/config.ui" line="343"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Do not show texts on toolbar-buttons&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Ikkje vis teksten på verktøylinjeknappane&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/config.ui" line="346"/>
         <source>No texts on toolbar-buttons</source>
-        <translation type="unfinished"></translation>
+        <translation>Ingen tekst på verktøylinjeknappane</translation>
     </message>
 </context>
 <context>
@@ -997,7 +1007,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/main_window.cpp" line="104"/>
         <source>Could not read/write or create directory %1! For running iTALC, make sure you&apos;re permitted to create or write this directory.</source>
-        <translation>Klarte ikkje lesa/skriva eller lage katalog %1! Kontroller at du har nødvendig tilgang for å lage eller skrive til denne katalogen før du køyrer iTALC.</translation>
+        <translation>Klarte ikkje lesa/skriva eller opprette katalog %1! Kontroller at du har nødvendig tilgang for å opprette eller skrive til denne katalogen før du køyrer iTALC.</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="159"/>
@@ -1017,7 +1027,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/main_window.cpp" line="172"/>
         <source>Click this button to open a menu where you can choose the active classroom.</source>
-        <translation>Trykk her for å opne meny med val av aktivt klasserom.</translation>
+        <translation>Trykk her for å opne meny for val av aktivt klasserom.</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="177"/>
@@ -1037,7 +1047,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/main_window.cpp" line="192"/>
         <source>This is the default mode in iTALC and allows you to have an overview over all visible computers. Also click on this button for unlocking locked workstations or for leaving demo-mode.</source>
-        <translation type="unfinished"></translation>
+        <translation>Dette er standardmodus i iTALC. Det gir deg ei oversikt over alle synlege maskiner. Du kan også trykke på denne knappen for å låse opp låste arbeidsstasjonar eller for å gå ut av demonstrasjonsmodus.</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="189"/>
@@ -1047,12 +1057,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/main_window.cpp" line="197"/>
         <source>Fullscreen demo</source>
-        <translation>Fullskjerm demonstrasjon</translation>
+        <translation>Fullskjermdemonstrasjon</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="204"/>
         <source>In this mode your screen is being displayed on all shown computers. Furthermore the users aren&apos;t able to do something else as all input devices are locked in this mode.</source>
-        <translation type="unfinished"></translation>
+        <translation>I denne modusen blir skjermen din vist på alle maskiner. Brukerane kan ikkje gjere andre ting samtidig ettersom alle inngåande enheter (mus/tastatus) på klientmaskina blir låst.</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="199"/>
@@ -1067,7 +1077,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/main_window.cpp" line="215"/>
         <source>In this mode your screen being displayed in a window on all shown computers. The users are able to switch to other windows and thus can continue to work.</source>
-        <translation type="unfinished"></translation>
+        <translation>I denne modusen blir skjermen din vist i eit vindauge på alle maskiner. Brukerane kan byte mellom vidauga og kan dermed jobbe med andre ting samtidig.</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="209"/>
@@ -1082,7 +1092,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/main_window.cpp" line="226"/>
         <source>To have all user&apos;s full attention you can lock their desktops using this button. In this mode all input devices are locked and the screen is black.</source>
-        <translation type="unfinished"></translation>
+        <translation>For å få full oppmerksamheit frå alle brukarane kan du låse skrivebordet deira med denne knappen. I denn modusen er alle inngåande enheter (mus/tastatus) på klientmaskina låst og skjermen er svart.</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="247"/>
@@ -1112,7 +1122,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/main_window.cpp" line="260"/>
         <source>Click this button to power on all visible computers. This way you do not have to turn on each computer by hand.</source>
-        <translation>Trykk denne knappen for å skru på alle dei synlege maskinane på ein gong.</translation>
+        <translation>Trykk denne knappen for å skru på alle dei synlege maskinane samtidig.</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="268"/>
@@ -1122,7 +1132,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/main_window.cpp" line="265"/>
         <source>Power down computers</source>
-        <translation>Skru av maskinar</translation>
+        <translation>Skru av maskiner</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="271"/>
@@ -1142,43 +1152,44 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/main_window.cpp" line="295"/>
         <source>Adjust/align</source>
-        <translation type="unfinished"></translation>
+        <translation>Juster/still opp</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="296"/>
         <source>Adjust windows and their size</source>
-        <translation type="unfinished"></translation>
+        <translation>Juster vindauga og størrelsen deira</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="299"/>
         <source>When clicking this button the biggest possible size for the client-windows is adjusted. Furthermore all windows are aligned.</source>
-        <translation type="unfinished"></translation>
+        <translation>Når du trykkjer på denne knappen blir klientvindauga juster til maks størrelse. I tillegg blir alle vindauga stillt opp.</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="304"/>
         <source>Auto view</source>
-        <translation type="unfinished"></translation>
+        <translation>Automatisk oppsett</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="305"/>
         <source>Auto re-arrange windows and their size</source>
-        <translation type="unfinished"></translation>
+        <translation>Automatisk omjustering av vindauga og størrelsen deira</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="307"/>
         <source>When clicking this button all visible windows are re-arranged and adjusted.</source>
-        <translation type="unfinished"></translation>
+        <translation>Når du trykkjer på denne knappen blir alle vindauga omjusterte og stillt opp.</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="356"/>
         <source>No valid keys found</source>
-        <translation>Klarte ikkje finne ein / fleire gyldige nøklar</translation>
+        <translation>Klarte ikkje finne ein eller fleire gyldige nøklar</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="362"/>
         <source>No authentication-keys were found or your old ones were broken. Please create a new key-pair using ICA (see documentation at http://italc.sf.net/wiki/index.php?title=Installation).
 Otherwise you won&apos;t be able to access computers using iTALC.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ingen autentiseringsnøkkel blei funnen eller dei eksisterande nøklane er øydelagde. Ver vennleg å lag eit nytt nøkkelpar ved hjelp av ICA (sjå dokumentasjonen på  http://italc.sf.net/wiki/index.php?title=Installation).
+Ellers vil du ikkje klare å kople deg til maskiner ved hjelp av iTALC.</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="371"/>
@@ -1188,77 +1199,77 @@ Otherwise you won&apos;t be able to access computers using iTALC.</source>
     <message>
         <location filename="../src/main_window.cpp" line="376"/>
         <source>There seems to be no iTALC service running on this computer or the authentication-keys aren&apos;t set up properly. The service is required for running iTALC. Contact your administrator for solving this problem.</source>
-        <translation type="unfinished"></translation>
+        <translation>Det ser ut til at inga iTALC teneste køyrer på denne maskina eller at autentiseringsnøkklane ikkje er satt opp korrekt. Tenesta er nødvendig for å køyre iTALC. Kontakt din administrator for å løyse problemet.</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="222"/>
         <source>Lock all</source>
-        <translation type="unfinished"></translation>
+        <translation>Lås alle</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="222"/>
         <source>Unlock all</source>
-        <translation type="unfinished"></translation>
+        <translation>Lås opp alle</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="219"/>
         <source>Lock/unlock desktops</source>
-        <translation type="unfinished"></translation>
+        <translation>Lås/lås opp maskiner</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="278"/>
         <source>Remote logon</source>
-        <translation type="unfinished"></translation>
+        <translation>Fjernstyrt pålogging</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="281"/>
         <source>After clicking this button you can enter a username and password to log on the according user on all visible computers.</source>
-        <translation type="unfinished"></translation>
+        <translation>Etter du har trykkt på denne knappen kan du skrive inn brukernamn og passord for å logge på ein angitt brukar på alle synlege maskiner.</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="200"/>
         <source>Fullscreen Demo</source>
-        <translation type="unfinished"></translation>
+        <translation>Demonstrasjon i fullskjerm</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="211"/>
         <source>Stop Demo</source>
-        <translation type="unfinished"></translation>
+        <translation>Stop demonstrasjon</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="211"/>
         <source>Window Demo</source>
-        <translation type="unfinished"></translation>
+        <translation>Demonstrasjon i vindauge</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="286"/>
         <source>Support</source>
-        <translation type="unfinished">Støtte</translation>
+        <translation>Støtte</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="287"/>
         <source>Direct support</source>
-        <translation type="unfinished"></translation>
+        <translation>Direkte støtte</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="290"/>
         <source>If you need to support someone at a certain computer you can click this button and enter the according hostname or IP afterwards.</source>
-        <translation type="unfinished"></translation>
+        <translation>Dersom du treng å støtte nokon på ei spesifikk maskin, kan du trykkje på denne knappen og skrive riktig vertsnamn eller IP-adresse.</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="392"/>
         <source>iTALC Master Control</source>
-        <translation type="unfinished"></translation>
+        <translation>iTALC Hovedkontrol</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="498"/>
         <source>Remote control</source>
-        <translation type="unfinished">Fjernkontroll</translation>
+        <translation>Fjernstyring</translation>
     </message>
     <message>
         <location filename="../src/main_window.cpp" line="514"/>
         <source>Quit</source>
-        <translation type="unfinished">Avslutt</translation>
+        <translation>Avslutt</translation>
     </message>
 </context>
 <context>
@@ -1330,7 +1341,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../dialogs/overview.ui" line="64"/>
         <source>Here you see the working-bar which contains several buttons. Each button is connected to a workspace. Just take a look at the available workspaces by clicking on the corresponding button.</source>
-        <translation>Dette er dei forskjellege arbeidsråda. Kvar knapp er kobla opp mot eit arbeidsområde. Trykk på knappane for å sjå gjennom dei.</translation>
+        <translation>Dette er dei forskjellege arbeidsområda. Kvar knapp er kopla opp mot eit arbeidsområde. Trykk på knappane for å sjå igjennom dei.</translation>
     </message>
     <message>
         <location filename="../dialogs/overview.ui" line="99"/>
@@ -1345,7 +1356,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../dialogs/overview.ui" line="134"/>
         <source>The snapshot-workspace is a very useful tool. It let&apos;s you manage the snapshots you made.</source>
-        <translation>Skjermskot arbeidsområdet lar deg behandle og sjå skjermskot du har laga.</translation>
+        <translation>i arbeidsområdet Skjermbilete kan du behandle og sjå skjermbilete du har teke.</translation>
     </message>
     <message>
         <location filename="../dialogs/overview.ui" line="169"/>
@@ -1360,7 +1371,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../dialogs/overview.ui" line="99"/>
         <source>Using the classroom-manager you can manage your classrooms and computers. You can also see which users are logged in.</source>
-        <translation type="unfinished"></translation>
+        <translation>I arbeidsområdet for Klasserom, kan du endre på klasserom og maskiner. Du kan også kva for brukarar som er pålogga.</translation>
     </message>
 </context>
 <context>
@@ -1391,7 +1402,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/remote_control_widget.cpp" line="310"/>
         <source>unknown user</source>
-        <translation>Ukjent brukar</translation>
+        <translation>Ukjend brukar</translation>
     </message>
 </context>
 <context>
@@ -1409,7 +1420,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/remote_control_widget.cpp" line="74"/>
         <source>Snapshot</source>
-        <translation>Skjermskot</translation>
+        <translation>Skjermbilete</translation>
     </message>
     <message>
         <location filename="../src/remote_control_widget.cpp" line="79"/>
@@ -1429,22 +1440,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/remote_control_widget.cpp" line="198"/>
         <source>Connected.</source>
-        <translation>Tilkobla.</translation>
+        <translation>Tilkopla.</translation>
     </message>
     <message>
         <location filename="../src/remote_control_widget.cpp" line="64"/>
         <source>Remote control</source>
-        <translation>Fjernkontroll</translation>
+        <translation>Fjernstyring</translation>
     </message>
     <message>
         <location filename="../src/remote_control_widget.cpp" line="69"/>
         <source>Unlock student</source>
-        <translation type="unfinished"></translation>
+        <translation>Lås elev/student</translation>
     </message>
     <message>
         <location filename="../src/remote_control_widget.cpp" line="79"/>
         <source>Window</source>
-        <translation type="unfinished"></translation>
+        <translation>Vindauge</translation>
     </message>
 </context>
 <context>
@@ -1452,7 +1463,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../dialogs/remote_logon.ui" line="13"/>
         <source>Remote Logon</source>
-        <translation type="unfinished"></translation>
+        <translation>Fjernstyrt pålogging</translation>
     </message>
     <message>
         <location filename="../dialogs/remote_logon.ui" line="46"/>
@@ -1460,12 +1471,15 @@ p, li { white-space: pre-wrap; }
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:20pt; font-weight:600; font-style:italic;&quot;&gt;Remote Logon&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:20pt; font-weight:600; font-style:italic;&quot;&gt;Fjernstyrt pålogging&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/remote_logon.ui" line="85"/>
         <source>Use the fields below to enter the username, password and optional the domain-name. These information will be used to logon the computer(s).</source>
-        <translation>Bruk felta under her til å skrive inn brukarnamn, passord og eventuelt domenenamn. Denne informasjonen vert brukt til å logga på maskinane.</translation>
+        <translation>Bruk felta under til å skrive inn brukarnamn, passord og eventuelt domenenamn. Denne informasjonen vert brukt til å logge på maskinene.</translation>
     </message>
     <message>
         <location filename="../dialogs/remote_logon.ui" line="122"/>
@@ -1508,12 +1522,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/snapshot_list.cpp" line="39"/>
         <source>Snapshots</source>
-        <translation>Skjermskot</translation>
+        <translation>Skjermbilete</translation>
     </message>
     <message>
         <location filename="../src/snapshot_list.cpp" line="41"/>
         <source>Simply manage the snapshots you made using this workspace.</source>
-        <translation>Dette arbeidsområdet er til å handtere skjermskot.</translation>
+        <translation>Dette arbeidsområdet er til å handtere skjermbilete.</translation>
     </message>
 </context>
 <context>
@@ -1524,7 +1538,7 @@ p, li { white-space: pre-wrap; }
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;All snapshots you made are listed here. You can make snapshots by selecting the according entry in the context-menu of a client-window. These snapshosts can be managed using the buttons below.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;p, li { white-space: pre-wrap; }&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Alle skjermskota du har laga er her. Lag fleire skjermskot med hjelp av oppsprettmenyen på klient-vindauge. Knappane under er til å handtera skjermskota. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;p, li { white-space: pre-wrap; }&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Alle skjermskota du har laga er her. Lag fleire skjermskot med oppsprettmenyen på klient-vindauge. Knappane under er til å handtera skjermskota. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/snapshots.ui" line="55"/>
@@ -1549,12 +1563,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../dialogs/snapshots.ui" line="94"/>
         <source>Show snapshot</source>
-        <translation>Vis skjermskot</translation>
+        <translation>Vis skjermbilete</translation>
     </message>
     <message>
         <location filename="../dialogs/snapshots.ui" line="104"/>
         <source>Delete snapshot</source>
-        <translation>Fjern skjermskot</translation>
+        <translation>Fjern skjermbilete</translation>
     </message>
     <message>
         <location filename="../dialogs/snapshots.ui" line="114"/>
@@ -1577,7 +1591,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../dialogs/support.ui" line="79"/>
         <source>Please enter the IP-address or the name of the host at which the person is sitting, you want to support.</source>
-        <translation>Skriv inn IP-adresse eller namnet på verten der personen du ynskjer å støtta sitt.</translation>
+        <translation>Skriv inn IP-adressa eller namnet på maskina der personen du ynskjer å støtte sitt.</translation>
     </message>
     <message>
         <location filename="../dialogs/support.ui" line="136"/>
@@ -1592,7 +1606,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../dialogs/support.ui" line="49"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:20pt; font-weight:600; font-style:italic;&quot;&gt;Support &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:20pt; font-weight:600; font-style:italic;&quot;&gt;Støtte &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
@@ -1633,7 +1647,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../dialogs/text_message.ui" line="68"/>
         <source>Use the field below to type your message which will be sent to all selected users.</source>
-        <translation>Skriv beskjed til alle valte brukarar i feltet under her.</translation>
+        <translation>Skriv beskjed til alle valte brukarar i feltet under.</translation>
     </message>
     <message>
         <location filename="../dialogs/text_message.ui" line="125"/>

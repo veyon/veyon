@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1">
+<!DOCTYPE TS>
+<TS version="2.0" language="nn_NO">
 <context>
     <name>@default</name>
     <message>
@@ -12,18 +13,15 @@
         <source>The file %1 could not be found. Please check this and try again.</source>
         <translation type="obsolete">Klarte ikkje finne fila %1, kontroller at den finnes og prøv igjen.</translation>
     </message>
-</context>
-<context>
-    <name>@default</name>
     <message>
         <location filename="../src/main.cpp" line="82"/>
         <source>File does not exist</source>
-        <translation type="unfinished">Klarer ikkje finne fila</translation>
+        <translation>Klarer ikkje å finne fila</translation>
     </message>
     <message>
         <location filename="../src/main.cpp" line="86"/>
         <source>The file %1 could not be found. Please check this and try again.</source>
-        <translation type="unfinished">Klarte ikkje finne fila %1, kontroller at den finnes og prøv igjen.</translation>
+        <translation>Klarte ikkje å finne fila %1, kontroller at den finst og prøv igjen.</translation>
     </message>
 </context>
 <context>
@@ -317,7 +315,7 @@ Trykk &apos;Neste &gt;&apos; for å gå videre.</translation>
     <message>
         <location filename="../src/dialogs.cpp" line="590"/>
         <source>Directory does not exist</source>
-        <translation>Katalogen eksisterer ikkje</translation>
+        <translation>Katalogen eksisterar ikkje</translation>
     </message>
     <message>
         <location filename="../src/dialogs.cpp" line="592"/>
