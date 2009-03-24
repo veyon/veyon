@@ -43,7 +43,7 @@
  *   http://www.oberhumer.com/opensource/lzo/
  */
 
-#include "types.h"
+#include "Types.h"
 
 #define __LZO_IN_MINILZO
 #define LZO_BUILD

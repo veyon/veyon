@@ -23,7 +23,7 @@
  * rfbproto.c - functions to deal with client side of RFB protocol.
  */
 
-#include "italc_rfb_ext.h"
+#include "ItalcRfbExt.h"
 
 #ifdef __STRICT_ANSI__
 #define _BSD_SOURCE
