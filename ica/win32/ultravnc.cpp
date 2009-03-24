@@ -1,8 +1,8 @@
 #include <algorithm>
 
 #include "stdhdrs.h"
-#include "italc_core_server.h"
-#include "ica_main.h"
+#include "ItalcCoreServer.h"
+#include "IcaMain.h"
 #include "vsocket.cpp"
 
 // UltraVNC specific extensions of RFB protocol
