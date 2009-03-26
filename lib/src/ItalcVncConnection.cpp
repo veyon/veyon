@@ -442,7 +442,6 @@ void ItalcVncConnection::run( void )
 		{
 			break;
 		}
-		continue;
 	}
 
 	locker.unlock();
