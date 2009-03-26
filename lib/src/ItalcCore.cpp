@@ -62,7 +62,7 @@ qint64 libvncClientDispatcher( char * _buf, const qint64 _len,
 
 
 
-void ItalcCore::initAuthentication( void )
+bool ItalcCore::initAuthentication( void )
 {
 	if( privDSAKey != NULL )
 	{
@@ -72,14 +72,14 @@ void ItalcCore::initAuthentication( void )
 		privDSAKey = NULL;
 	}
 
-	const QString priv_key_file = LocalSystem::privateKeyPath( role );
-	if( priv_key_file == "" )
+	const QString privKeyFile = LocalSystem::privateKeyPath( role );
+	if( privKeyFile == "" )
 	{
-		return;
+		return false;
 	}
-	privDSAKey = new PrivateDSAKey( priv_key_file );
+	privDSAKey = new PrivateDSAKey( privKeyFile );
 
-//	return privDSAKey->isValid();
+	return privDSAKey->isValid();
 }
 
 
