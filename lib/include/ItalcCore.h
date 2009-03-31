@@ -27,8 +27,8 @@
 
 #include <italcconfig.h>
 
-#include <QtCore/QtGlobal>
 #include <QtCore/QIODevice>
+#include <QtCore/QPair>
 #include <QtCore/QString>
 #include <QtCore/QSysInfo>
 #include <QtCore/QVariant>
