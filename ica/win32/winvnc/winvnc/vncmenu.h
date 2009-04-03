@@ -123,6 +123,7 @@ protected:
 	int IconFaultCounter;
 	HMODULE hUser32;
 	//HANDLE hEvent;
+	OSVERSIONINFO	osvi;
 
 };
 

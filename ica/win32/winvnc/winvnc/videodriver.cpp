@@ -316,9 +316,11 @@ VIDEODRIVER::Mirror_driver_Vista(DWORD dwAttach,int x,int y,int w,int h)
             StringCbCopy(&deviceNum[0], sizeof(deviceNum), ++deviceSub);
 
         // Reset the devmode for mirror driver use:
+		int depth=devmode.dmBitsPerPel;
         FillMemory(&devmode, sizeof(DEVMODE), 0);
         devmode.dmSize = sizeof(DEVMODE);
         devmode.dmDriverExtra = 0;
+		devmode.dmBitsPerPel=depth;
 
         devmode.dmFields = DM_BITSPERPEL |
                            DM_PELSWIDTH | 
@@ -559,6 +561,7 @@ VIDEODRIVER::Mirror_driver_detach_XP()
 				RegCloseKey(hKeyDevice);
 		}
 
+
         FillMemory(&devmode, sizeof(DEVMODE), 0);
 
         devmode.dmSize = sizeof(DEVMODE);
@@ -737,6 +740,7 @@ VIDEODRIVER::Mirror_driver_attach_XP(int x,int y,int w,int h)
 		   if (hUser32) FreeLibrary(hUser32);
            return false;
         }
+		int depth=devmode.dmBitsPerPel;
 
         FillMemory(&devmode, sizeof(DEVMODE), 0);
 
@@ -754,6 +758,7 @@ VIDEODRIVER::Mirror_driver_attach_XP(int x,int y,int w,int h)
 		devmode.dmPelsHeight=h;
 		devmode.dmPosition.x=x;
 		devmode.dmPosition.y=y;
+		devmode.dmBitsPerPel=depth;
 
 		hdeskCurrent = GetThreadDesktop(GetCurrentThreadId());
 				if (hdeskCurrent != NULL)

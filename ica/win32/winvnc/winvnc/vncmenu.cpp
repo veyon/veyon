@@ -26,8 +26,7 @@
 
 // vncMenu
 
-// Implementation of a system tray icon & menu for WinVNC
-
+// Implementation of a system tray icon & menu for WinVNC 
 #define _WIN32_IE 0x500
 
 #include "stdhdrs.h"
@@ -280,7 +279,6 @@ vncMenu::vncMenu(vncServer *server)
 //	m_winvnc_icon = LoadIcon(hAppInstance, MAKEINTRESOURCE(IDI_WINVNC));
 //	m_flash_icon = LoadIcon(hAppInstance, MAKEINTRESOURCE(IDI_FLASH));
 	{
-		OSVERSIONINFO	osvi;
 	osvi.dwOSVersionInfoSize = sizeof(osvi);
 	GetVersionEx(&osvi);
 /*if (osvi.dwPlatformId==VER_PLATFORM_WIN32_NT)
@@ -447,8 +445,15 @@ vncMenu::AddTrayIcon()
 		{
 			vnclog.Print(LL_INTERR, VNCLOG("########### vncMenu::AddTrayIcon - ADD Tray Icon call\n"));
 		}
-
-		// if ( ! m_server->GetDisableTrayIcon())
+		if (osvi.dwPlatformId==VER_PLATFORM_WIN32_NT && osvi.dwMinorVersion==0 && osvi.dwMajorVersion==5)
+		{
+			if ( ! m_server->GetDisableTrayIcon())
+				{
+					vnclog.Print(LL_INTERR, VNCLOG("########### No Shell_TrayWnd found %i\n"),IsIconSet);
+					SendTrayMsg(NIM_ADD, FALSE);
+				}
+		}
+		else
 		{
 			vnclog.Print(LL_INTERR, VNCLOG("########### No Shell_TrayWnd found %i\n"),IsIconSet);
 			SendTrayMsg(NIM_ADD, FALSE);
