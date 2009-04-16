@@ -589,51 +589,6 @@ int WINAPI WinMainVNC(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLi
 
 
 // rdv&sf@2007 - New TrayIcon impuDEsktop/impersonation thread stuff
-// Todo: cleanup
-HINSTANCE hInst_;
-HWND hwnd_;
-HANDLE Token_;
-HANDLE process_;
-
-// Todo: use same security.cpp function instead
-DWORD GetCurrentUserToken_()
-{
-	HWND tray = FindWindow(("Shell_TrayWnd"), 0);
-	if (!tray)
-		return 0;
-	
-	DWORD processId = 0;
-	GetWindowThreadProcessId(tray, &processId);
-	if (!processId)
-		return 0;
-	
-	process_ = OpenProcess(MAXIMUM_ALLOWED, FALSE, processId);
-	if (!process_)
-		return 0;
-	
-	OpenProcessToken(process_, MAXIMUM_ALLOWED, &Token_);
-	return 2;
-	
-}
-
-// Todo: use same security.cpp function instead
-bool ImpersonateCurrentUser_()
-{
-  SetLastError(0);
-  process_=0;
-  Token_=NULL;
-  if (GetCurrentUserToken_()==0)
-  {
-	 vnclog.Print(LL_INTERR, VNCLOG("!GetCurrentUserToken_ \n"));
-     return false;
-  }
-  bool test=(FALSE != ImpersonateLoggedOnUser(Token_));
-  if (test==1) vnclog.Print(LL_INTERR, VNCLOG("ImpersonateLoggedOnUser OK \n"));
-  if (process_) CloseHandle(process_);
-  if (Token_) CloseHandle(Token_);
-  return test;
-}
-
 
 DWORD WINAPI imp_desktop_thread(LPVOID lpParam)
 {
@@ -686,12 +641,10 @@ DWORD WINAPI imp_desktop_thread(LPVOID lpParam)
 			if (GetUserName(m_username, &length) == 0)
 			{
 				UINT error = GetLastError();
-				if (error == ERROR_NOT_LOGGED_ON)
-				{
-				}
-				else
+				if (error != ERROR_NOT_LOGGED_ON)
 				{
 					vnclog.Print(LL_INTERR, VNCLOG("getusername error %d\n"), GetLastError());
+					SetThreadDesktop(old_desktop);
                 	CloseDesktop(desktop);
 					return FALSE;
 				}
@@ -737,6 +690,7 @@ DWORD WINAPI imp_desktop_thread(LPVOID lpParam)
 		delete menu;*/
 
 	//vnclog.Print(LL_INTERR, VNCLOG("GetMessage stop \n"));
+	SetThreadDesktop(old_desktop);
 	CloseDesktop(desktop);
 //	RevertToSelf();
 	return 0;
@@ -798,6 +752,7 @@ int WinVNCAppMain()
 	
 	if (!instancehan->Init())
 	{	
+    	vnclog.Print(LL_INTINFO, VNCLOG("%s -- exiting\n"), sz_ID_ANOTHER_INST);
 		// We don't allow multiple instances!
 	if (!fRunningFromExternalService)
 		MessageBox(NULL, sz_ID_ANOTHER_INST, szAppName, MB_OK);
@@ -856,6 +811,7 @@ int WinVNCAppMain()
 		vnclog.Print(LL_STATE, VNCLOG("################## Closing Imp Thread\n"));
 	}
 
+	KillSDTimer();
 	if (instancehan!=NULL)
 		delete instancehan;
 

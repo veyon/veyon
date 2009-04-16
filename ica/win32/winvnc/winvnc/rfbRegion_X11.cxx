@@ -26,9 +26,7 @@
 #include <Xregion/region.h>
 #include <assert.h>
 
-//using namespace rfb;
-namespace rfb
-{
+using namespace rfb;
 
 class _RectRegion {
 public:
@@ -109,7 +107,7 @@ void Region::translate(const Point& delta) {
 
 void Region::setOrderedRects(const std::vector<Rect>& rects) {
   std::vector<Rect>::const_iterator i;
-  for (i=rects.begin(); i != rects.end(); i++) {
+  for (i=rects.begin(); i != rects.end(); ++i) {
     _RectRegion rr(*i);
     XUnionRegion(&rr.region, Xrgn, Xrgn);
   }
@@ -209,5 +207,3 @@ int Region::Numrects()
   Xrgn = newrgn;
   return tmp;
 }*/
-
-}

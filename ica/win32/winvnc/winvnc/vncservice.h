@@ -69,7 +69,7 @@ public:
 
 	// Routine to set the current thread into the named desktop,
 	// or the input desktop if no name is given
-	static BOOL SelectDesktop(char *name);
+	static BOOL SelectDesktop(char *name, HDESK *desktop);
 
 	// Routine to switch the service process across to the currently
 	// visible Window Station and back to its home window station again

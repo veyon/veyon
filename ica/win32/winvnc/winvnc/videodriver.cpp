@@ -23,7 +23,7 @@ VIDEODRIVER::VIDEODRIVER_start(int x,int y,int w,int h)
 	oldaantal=1;
 	mypVideoMemory=NULL;
 	OSVER=OSVersion();
-	if (OSVER==OSWIN2000||OSVER==OSWIN2003||OSVER==OSWINXP)
+	if (OSVER==OSWIN2000||OSVER==OSWIN2003||OSVER==OSWINXP||OSVER==OSWINXP64)
 	{
 		if (Mirror_driver_attach_XP(x,y,w,h))
 		{

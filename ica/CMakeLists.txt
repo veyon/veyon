@@ -69,7 +69,6 @@ IF(ITALC_BUILD_WIN32)
 		${CMAKE_CURRENT_SOURCE_DIR}/win32/winvnc/winvnc/Timer.cpp 
 		${CMAKE_CURRENT_SOURCE_DIR}/win32/winvnc/winvnc/vncconndialog.cpp 
 		${CMAKE_CURRENT_SOURCE_DIR}/win32/winvnc/winvnc/vncencoderCursor.cpp 
-		${CMAKE_CURRENT_SOURCE_DIR}/win32/winvnc/winvnc/rfbRegion_X11.cxx
 		${CMAKE_CURRENT_SOURCE_DIR}/win32/winvnc/winvnc/vncencoder.cpp 
 		${CMAKE_CURRENT_SOURCE_DIR}/win32/winvnc/winvnc/vnclog.cpp 
 		${CMAKE_CURRENT_SOURCE_DIR}/win32/winvnc/winvnc/translate.cpp 

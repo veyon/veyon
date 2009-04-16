@@ -311,6 +311,7 @@ DWORD WINAPI BlackWindow(LPVOID lpParam)
 		DispatchMessage(&msg);
 	}
 	vnclog.Print(LL_INTERR, VNCLOG("end BlackWindow \n"));
+	SetThreadDesktop(old_desktop);
 	CloseDesktop(desktop);
 
 	return 0;

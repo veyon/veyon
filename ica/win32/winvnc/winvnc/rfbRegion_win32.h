@@ -33,32 +33,58 @@ namespace rfb {
 	//
 	// See the rfbRegion.h header for documentation.
 
-	class Region2D {
-	public:
-		Region2D();
-		Region2D(int x1, int y1, int x2, int y2);
-		Region2D(const Rect &r);
-		Region2D(const Region2D &r);
-		~Region2D();
+  class Region {
+  public:
+    // Create an empty region
+    Region();
+    // Create a rectangular region
+    Region(int x1, int y1, int x2, int y2);
+    Region(const Rect& r);
 
-		Region2D intersect(const Region2D &src) const;
-		Region2D union_(const Region2D &src) const;
-		Region2D subtract(const Region2D &src) const;
-		Region2D &operator=(const Region2D &src);
-		void reset(int x1, int y1, int x2, int y2);
-		void translate(const rfb::Point &p);
-		bool get_rects(rfb::RectVector &rects, bool left2right, bool topdown) const;
-		Rect get_bounding_rect() const;
+    Region(const Region& r);
+    Region &operator=(const Region& src);
 
-		void clear();
+    ~Region();
 
-		bool equals(const Region2D &b) const;
-		bool is_empty() const;
+    // the following methods alter the region in place:
 
-    HRGN getHandle() const {return hRgn;};
-	private:
-		HRGN hRgn;
-	};
+    void clear();
+    void reset(const Rect& r);
+    void translate(const rfb::Point& delta);
+    void setOrderedRects(const std::vector<Rect>& rects);
+
+	void name(const char *n)
+	{
+		free(m_name);
+		m_name = _strdup(n);
+	}
+
+    void assign_intersect(const Region& r);
+    void assign_union(const Region& r);
+    void assign_subtract(const Region& r);
+
+    // the following three operations return a new region:
+
+    Region intersect(const Region& r) const;
+    Region union_(const Region& r) const;
+    Region subtract(const Region& r) const;
+
+    bool equals(const Region& b) const;
+    bool is_empty() const;
+
+    bool get_rects(std::vector<Rect>& rects, bool left2right=true,
+                   bool topdown=true) const;
+    Rect get_bounding_rect() const;
+	int Numrects();
+
+    void debug_print(const char *prefix) const;
+
+  protected:
+	  HRGN rgn;
+	  char *m_name;
+  };
+  typedef Region Region2D;
+
 };
 
 #endif

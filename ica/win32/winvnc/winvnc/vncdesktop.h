@@ -53,6 +53,7 @@ class vncServer;
 
 // Modif sf@2002 - v1.1.0
 #include <list>
+#include <set>
 #include "TextChat.h"
 #ifdef AVILOG
 #include "avilog/avilog/AVIGenerator.h"
@@ -131,11 +132,11 @@ typedef LPMONITORINFOEXA LPMONITORINFOEX;
 #endif
 #endif
 
-typedef std::list<COLORREF> RGBPixelList;   // List of RGB values (pixels)
+typedef std::vector<COLORREF> RGBPixelList;   // List of RGB values (pixels)
 // sf@2002 - Generates ClassName lenght warning in debug mode compile.
 // typedef std::list<RGBPixelList*> GridsList; // List of Grids of pixels
-typedef std::list<void*> GridsList; // List of Grids of pixels
-typedef std::list<HWND> WindowsList;       // List of windows handles
+typedef std::vector<RGBPixelList*> GridsList; // List of Grids of pixels
+typedef std::set<HWND> WindowsList;       // List of windows handles
 
 
 // Constants
@@ -467,6 +468,9 @@ bool m_bIsInputDisabledByClient; // 28 March 2008 jdp
 CAVIGenerator *AviGen;
 #endif
 
+private:
+	HDESK m_input_desktop;
+	HDESK m_home_desktop;
 };
 
 #endif // _WINVNC_VNCDESKTOP

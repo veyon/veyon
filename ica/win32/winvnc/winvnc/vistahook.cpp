@@ -237,6 +237,7 @@ DWORD WINAPI Cadthread(LPVOID lpParam)
 
 	}
 
+	SetThreadDesktop(old_desktop);
 	CloseDesktop(desktop);
 	return 0;
 }

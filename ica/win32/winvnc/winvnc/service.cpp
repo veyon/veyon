@@ -75,8 +75,8 @@ extern HANDLE stopServiceEvent;
 static char app_path[MAX_PATH];
 typedef DWORD (*WTSGETACTIVECONSOLESESSIONID)();
 typedef bool (*WTSQUERYUSERTOKEN)(ULONG,PHANDLE);
-WTSGETACTIVECONSOLESESSIONID lpfnWTSGetActiveConsoleSessionId=NULL;
-WTSQUERYUSERTOKEN lpfnWTSQueryUserToken = NULL;
+helper::DynamicFn<WTSGETACTIVECONSOLESESSIONID> lpfnWTSGetActiveConsoleSessionId("kernel32", "WTSGetActiveConsoleSessionId");
+helper::DynamicFn<WTSQUERYUSERTOKEN> lpfnWTSQueryUserToken("Wtsapi32.dll", "WTSQueryUserToken");
 PROCESS_INFORMATION  ProcessInfo;
 int counter=0;
 extern char cmdtext[256];
@@ -228,7 +228,7 @@ get_winlogon_handle(OUT LPHANDLE  lphUserToken)
 	HANDLE hAccessToken = NULL;
 	HANDLE hTokenThis = NULL;
 	DWORD ID_session=0;
-	if (lpfnWTSGetActiveConsoleSessionId!=NULL) ID_session=lpfnWTSGetActiveConsoleSessionId();
+	if (lpfnWTSGetActiveConsoleSessionId.isValid()) ID_session=(*lpfnWTSGetActiveConsoleSessionId)();
 	DWORD Id=0;
 	if (W2K==0) Id=Find_winlogon(ID_session);
 	else Id=GetwinlogonPid();
@@ -294,7 +294,7 @@ GetSessionUserTokenWin(OUT LPHANDLE  lphUserToken)
   BOOL   bResult = FALSE;
   HANDLE hImpersonationToken = INVALID_HANDLE_VALUE;
   DWORD ID=0;
-  if (lpfnWTSGetActiveConsoleSessionId!=NULL) ID=lpfnWTSGetActiveConsoleSessionId();
+  if (lpfnWTSGetActiveConsoleSessionId.isValid()) ID=(*lpfnWTSGetActiveConsoleSessionId)();
   HANDLE hTokenThis = NULL;
   
   if (lphUserToken != NULL) {   
@@ -309,12 +309,12 @@ GetSessionUserTokenDefault(OUT LPHANDLE  lphUserToken)
   BOOL   bResult = FALSE;
   HANDLE hImpersonationToken = INVALID_HANDLE_VALUE;
   DWORD ID=0;
-  if (lpfnWTSGetActiveConsoleSessionId!=NULL) ID=lpfnWTSGetActiveConsoleSessionId();
+  if (lpfnWTSGetActiveConsoleSessionId.isValid()) ID=(*lpfnWTSGetActiveConsoleSessionId)();
 
   HANDLE hTokenThis = NULL;
   
   if (lphUserToken != NULL) {   
-      if (lpfnWTSQueryUserToken (ID, &hImpersonationToken)) 
+      if ((*lpfnWTSQueryUserToken)(ID, &hImpersonationToken)) 
       {
         bResult = DuplicateTokenEx(hImpersonationToken,
                                    0,
@@ -401,7 +401,7 @@ LaunchProcessWin()
 								if (WinStationConnectF!=NULL && WinStationConnectF!=NULL)
 									{
 											DWORD ID=0;
-											if (lpfnWTSGetActiveConsoleSessionId!=NULL) ID=lpfnWTSGetActiveConsoleSessionId();
+											if (lpfnWTSGetActiveConsoleSessionId.isValid()) ID=(*lpfnWTSGetActiveConsoleSessionId)();
 											WinStationConnectF(0, 0, ID, L"", 0);
 											LockWorkStationF();
 									}
@@ -471,7 +471,7 @@ LaunchProcessWin()
 								if (WinStationConnectF!=NULL && WinStationConnectF!=NULL)
 									{
 											DWORD ID=0;
-											if (lpfnWTSGetActiveConsoleSessionId!=NULL) ID=lpfnWTSGetActiveConsoleSessionId();
+											if (lpfnWTSGetActiveConsoleSessionId.isValid()) ID=(*lpfnWTSGetActiveConsoleSessionId)();
 											WinStationConnectF(0, 0, ID, L"", 0);
 											LockWorkStationF();
 									}
@@ -518,11 +518,7 @@ void monitor_sessions()
 {
 	pad2();
 	HANDLE hTokenNew = NULL, hTokenDup = NULL;
-	HMODULE  hmod = LoadLibrary("kernel32.dll");
-	HMODULE  hmod2 = LoadLibrary("Wtsapi32.dll");
 
-	lpfnWTSGetActiveConsoleSessionId = (WTSGETACTIVECONSOLESESSIONID)GetProcAddress(hmod,"WTSGetActiveConsoleSessionId"); 
-	lpfnWTSQueryUserToken = (WTSQUERYUSERTOKEN)GetProcAddress(hmod2,"WTSQueryUserToken");
 
 	DWORD dwSessionId=0;
 	DWORD OlddwSessionId=99;
@@ -538,8 +534,8 @@ void monitor_sessions()
 	while(WaitForSingleObject(stopServiceEvent, 1000)==WAIT_TIMEOUT)
 	{
 
-		if (lpfnWTSGetActiveConsoleSessionId!=NULL)
-		dwSessionId = lpfnWTSGetActiveConsoleSessionId();
+		if (lpfnWTSGetActiveConsoleSessionId.isValid())
+			dwSessionId = (*lpfnWTSGetActiveConsoleSessionId)();
 		if (OlddwSessionId!=dwSessionId)
 		{
 			#ifdef _DEBUG
@@ -650,6 +646,7 @@ void monitor_sessions()
 
 //	EndProcess();
 
+	CloseHandle(hEvent);
 }
 
 // 20 April 2008 jdp paquette@atnetsend.net
@@ -715,7 +712,7 @@ void disconnect_remote_sessions()
 	if (WinStationConnectF!=NULL && WinStationConnectF!=NULL)
 		{
 				DWORD ID=0;
-				if (lpfnWTSGetActiveConsoleSessionId!=NULL) ID=lpfnWTSGetActiveConsoleSessionId();
+				if (lpfnWTSGetActiveConsoleSessionId.isValid()) ID=(*lpfnWTSGetActiveConsoleSessionId)();
 				WinStationConnectF(0, 0, ID, L"", 0);
 				// sleep to allow the system to finish the connect/disconnect process. If we don't
 				// then the workstation won't get locked every time.

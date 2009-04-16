@@ -379,6 +379,7 @@ LRESULT CALLBACK TextChat::DoDialogThread(LPVOID lpParameter)
 	 //						NULL, (DLGPROC) TextChatDlgProc, (LONG) _this);
  	 DialogBoxParam(hInstResDLL, MAKEINTRESOURCE(IDD_TEXTCHAT_DLG), 
 	 						NULL, (DLGPROC) TextChatDlgProc, (LONG) _this);
+	 SetThreadDesktop(old_desktop);
 	 CloseDesktop(desktop);
 	 return 0;
 }

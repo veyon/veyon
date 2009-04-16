@@ -4305,7 +4305,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\winvnc.exe.x86.manifest"
+				RelativePath=".\winvnc.exe.x64.manifest"
 				>
 			</File>
 			<File

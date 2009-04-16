@@ -2,14 +2,12 @@
 #include "lmcons.h"
 #include "vncservice.h"
 #include "vncOSVersion.h"
+#include "common/ScopeGuard.h"
 
 
 typedef BOOL (WINAPI *pWTSQueryUserToken_proto)(ULONG, PHANDLE);
-HANDLE Token;
-HANDLE process;
 
-DWORD 
-GetCurrentUserToken()
+DWORD GetCurrentUserToken(HANDLE& process, HANDLE &Token)
 {
 	if(OSversion()==4 || OSversion()==5) return 1;
 	if (!vncService::RunningAsService())
@@ -36,15 +34,19 @@ GetCurrentUserToken()
 	return 2;
 }
 
-bool
-ImpersonateCurrentUser() {
+bool ImpersonateCurrentUser() {
   SetLastError(0);
-   process=0;
-  Token=NULL;
-  GetCurrentUserToken();
+  HANDLE process=0;
+  HANDLE Token=NULL;
+
+  GetCurrentUserToken(process, Token);
+
+  // Auto close process and token when leaving scope
+  ON_BLOCK_EXIT(CloseHandle, process);
+  ON_BLOCK_EXIT(CloseHandle, Token);
+
   bool test=(FALSE != ImpersonateLoggedOnUser(Token));
-  if (process) CloseHandle(process);
-  if (Token) CloseHandle(Token);
+
   return test;
 }
 
@@ -61,9 +63,13 @@ bool RunningAsAdministrator ()
  DWORD  dwGroup;
  PSID   psidAdmin;
  SetLastError(0);
- process=0;
- Token=NULL;
- if (GetCurrentUserToken()==1) return true;
+ HANDLE process=0;
+ HANDLE Token=NULL;
+
+ if (GetCurrentUserToken(process, Token)==1) return true;
+
+ ON_BLOCK_EXIT(CloseHandle, process);
+ ON_BLOCK_EXIT(CloseHandle, Token);
 
  SID_IDENTIFIER_AUTHORITY SystemSidAuthority= SECURITY_NT_AUTHORITY;
 
@@ -124,7 +130,5 @@ bool RunningAsAdministrator ()
  // Before we exit we must explicity deallocate the SID we created.
 
  FreeSid ( psidAdmin);
- if (process) CloseHandle(process);
- if (Token) CloseHandle(Token);
  return (FALSE != fAdmin);
 }

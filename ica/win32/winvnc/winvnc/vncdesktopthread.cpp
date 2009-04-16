@@ -585,7 +585,7 @@ vncDesktopThread::run_undetached(void *arg)
 	//*******************************************************
 	vnclog.Print(LL_INTERR, VNCLOG("Hook changed 1\n"));
 	// Save the thread's "home" desktop, under NT (no effect under 9x)
-	HDESK home_desktop = GetThreadDesktop(GetCurrentThreadId());
+	m_desktop->m_home_desktop = GetThreadDesktop(GetCurrentThreadId());
     vnclog.Print(LL_INTERR, VNCLOG("Hook changed 2\n"));
 	// Attempt to initialise and return success or failure
 	m_desktop->KillScreenSaver();
@@ -598,7 +598,9 @@ vncDesktopThread::run_undetached(void *arg)
 	if ((startup_error = m_desktop->Startup()) != 0)
 	{
 		//TAG14
-		vncService::SelectHDESK(home_desktop);
+		vncService::SelectHDESK(m_desktop->m_home_desktop);
+		if (m_desktop->m_input_desktop)
+			CloseDesktop(m_desktop->m_input_desktop);
 		ReturnVal(startup_error);
 		return NULL;
 	}
@@ -1109,7 +1111,6 @@ vncDesktopThread::run_undetached(void *arg)
 	
 	// Clear all the hooks and close windows, etc.
     m_desktop->SetBlockInputState(false);
-	m_desktop->Shutdown();
 	m_server->SingleWindow(false);
 	
 	// Clear the shift modifier keys, now that there are no remote clients
@@ -1117,9 +1118,9 @@ vncDesktopThread::run_undetached(void *arg)
 	
 	// Switch back into our home desktop, under NT (no effect under 9x)
 	//TAG14
-	vncService::SelectHDESK(home_desktop);
 	g_DesktopThread_running=false;
 	HWND mywin=FindWindow("blackscreen",NULL);
-	if (mywin)PostMessage(mywin,WM_CLOSE, 0, 0);
+	if (mywin)SendMessage(mywin,WM_CLOSE, 0, 0);
+	m_desktop->Shutdown();
 	return NULL;
 }

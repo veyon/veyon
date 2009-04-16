@@ -432,14 +432,6 @@ protected:
 	bool			m_fPalmVNCScaling;
 	bool			fFTRequest;
 
-	// sf@2002 - DSM Plugin Rects alignement buffer
-	BYTE* m_pNetRectBuf;
-	bool m_fReadFromNetRectBuf;  // 
-	bool m_fWriteToNetRectBuf;
-	int m_nNetRectBufOffset;
-	int m_nReadSize;
-	int m_nNetRectBufSize;
-
 	// sf@2002 
 	BYTE* m_pCacheZipBuf;
 	unsigned int m_nCacheZipBufSize;

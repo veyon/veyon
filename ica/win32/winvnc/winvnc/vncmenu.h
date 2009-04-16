@@ -121,7 +121,6 @@ protected:
 
 	bool IsIconSet;
 	int IconFaultCounter;
-	HMODULE hUser32;
 	//HANDLE hEvent;
 	OSVERSIONINFO	osvi;
 

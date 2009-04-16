@@ -82,6 +82,8 @@ namespace rfb {
 		}
 		Rect union_boundary(const Rect &r) const {
 			Rect result;
+			if (is_empty()) return r;
+			if (r.is_empty()) return *this;
 			result.tl.x = min(tl.x, r.tl.x);
 			result.tl.y = min(tl.y, r.tl.y);
 			result.br.x = max(br.x, r.br.x);

@@ -251,8 +251,7 @@ GetCurrentUser(char *buffer, UINT size) // RealVNC 336 change
 
 		// Get the current user SID size
 		DWORD usersize;
-		GetUserObjectInformation(station,
-			UOI_USER_SID, NULL, 0, &usersize);
+		GetUserObjectInformation(station, UOI_USER_SID, NULL, 0, &usersize);
 		DWORD  dwErrorCode = GetLastError();
 		SetLastError(0);
 
@@ -375,13 +374,14 @@ BOOL vncService::IsWSLocked()
 		else
 			sName[0]='\0';
 
-		CloseDesktop(hDesk);
 
 		if (_stricmp(sName,"Default") != 0)
 			 bLocked = true; // WS is locked or screen saver active
 		else
 			 bLocked = false ;
 	}
+	if (hDesk != NULL)
+		CloseDesktop(hDesk);
 
 	return bLocked;
 }
@@ -472,7 +472,7 @@ vncService::SelectHDESK(HDESK new_desktop)
 // Calling with a valid desktop name will place the thread in that desktop.
 // Calling with a NULL name will place the thread in the current input desktop.
 BOOL
-vncService::SelectDesktop(char *name)
+vncService::SelectDesktop(char *name, HDESK *new_desktop)
 {
 	//return false;
 	// Are we running on NT?
@@ -514,6 +514,14 @@ vncService::SelectDesktop(char *name)
 			if (!CloseDesktop(desktop))
 				vnclog.Print(LL_INTERR, VNCLOG("SelectDesktop failed to close desktop\n"));
 			return FALSE;
+		}
+
+
+		if (new_desktop)
+		{
+			if (*new_desktop)
+				CloseDesktop(*new_desktop);
+			*new_desktop = desktop;
 		}
 
 		// We successfully switched desktops!
@@ -622,9 +630,9 @@ void *
 SimulateCtrlAltDelThreadFn(void *context)
 {
 	HDESK old_desktop = GetThreadDesktop(GetCurrentThreadId());
-
+	HDESK winlogon_desk = 0;
 	// Switch into the Winlogon desktop
-	if (!vncService::SelectDesktop("Winlogon"))
+	if (!vncService::SelectDesktop("Winlogon", &winlogon_desk))
 	{
 		vnclog.Print(LL_INTERR, VNCLOG("failed to select logon desktop\n"));
 		vncTimedMsgBox::Do(
@@ -646,7 +654,10 @@ SimulateCtrlAltDelThreadFn(void *context)
 
 	// Switch back to our original desktop
 	if (old_desktop != NULL)
+	{
 			vncService::SelectHDESK(old_desktop);
+		CloseDesktop(winlogon_desk);
+	}
 	return NULL;
 }
 

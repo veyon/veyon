@@ -90,33 +90,66 @@ DWORD WINAPI BlackWindow(LPVOID lpParam);
 // 
 // 
 //
-COLORREF
-vncDesktop::CapturePixel(int x,int y)
+
+class PixelCaptureEngine
 {
+public:
+	PixelCaptureEngine(HDC rootdc, HDC memdc, HBITMAP membitmap, bool bCaptureAlpha, void *dibbits, int bpp, int bpr) 
+		: m_hmemdc(memdc), m_membitmap(membitmap),  
+		  m_oldbitmap(0), m_DIBbits(dibbits), m_bIsVista(OSversion()==2),
+		  m_bCaptureAlpha(bCaptureAlpha), m_hrootdc(rootdc), m_bytesPerPixel(bpp), m_bytesPerRow(bpr)
+	{}
+	~PixelCaptureEngine() {}
 
-	// Select the memory bitmap into the memory DC
-	HBITMAP oldbitmap;
-	if ((oldbitmap = (HBITMAP) SelectObject(m_hmemdc, m_membitmap)) == NULL)
-		return 0;
+	/*
+	 * Prepare a rectangle to be captured. Blit's the rectangle to 
+	 */
+	bool CaptureRect(const rfb::Rect& rect)
+	{
+		m_rect = rect;
+		if ((m_oldbitmap = (HBITMAP) SelectObject(m_hmemdc, m_membitmap)) == NULL)
+			return false;
 
-	// Capture screen into bitmap
-	BOOL blitok = BitBlt(m_hmemdc, 0, 0,
-		1,
-		1,
-		m_hrootdc,x, y, (m_fCaptureAlphaBlending && !m_Black_window_active) ? (CAPTUREBLT | SRCCOPY) : SRCCOPY);
+		// Capture screen into bitmap
+		BOOL blitok = BitBlt(m_hmemdc, 0, 0, rect.width(), rect.height(), m_hrootdc, rect.tl.x, rect.tl.y, 
+			                 m_bCaptureAlpha ? (CAPTUREBLT | SRCCOPY) : SRCCOPY);
 
-	// Select the old bitmap back into the memory DC
-	SelectObject(m_hmemdc, oldbitmap);
-	int bytesPerPixel = m_scrinfo.format.bitsPerPixel / 8;
-	COLORREF cr=0;
-	memcpy(&cr ,m_DIBbits,m_scrinfo.format.bitsPerPixel / 8);
-	return cr;
-}
 
+		return blitok ? true : false;
+	}
+
+	COLORREF CapturePixel(int x, int y)
+	{
+		COLORREF cr = 0;
+		int tx = x - m_rect.tl.x;
+		int ty = y - m_rect.tl.y;
+
+		unsigned int index = (m_bytesPerRow * y) + (m_bytesPerPixel * x);
+		memcpy(&cr, ((char*)m_DIBbits)+index, m_bytesPerPixel);
+
+		return cr;
+	}
+	void ReleaseCapture()
+	{
+		// Select the old bitmap back into the memory DC
+		SelectObject(m_hmemdc, m_oldbitmap);
+		m_oldbitmap = 0;
+	}
+
+private:
+	HDC			m_hrootdc;
+	HDC			m_hmemdc;
+	HBITMAP		m_membitmap;
+	HBITMAP		m_oldbitmap;
+	void		*m_DIBbits;
+	rfb::Rect	m_rect;
+	bool		m_bIsVista;
+	bool		m_bCaptureAlpha;
+	int			m_bytesPerPixel;
+	int			m_bytesPerRow;
+};
 void vncDesktop::FastDetectChanges(rfb::Region2D &rgn, rfb::Rect &rect, int nZone, bool fTurbo)
 {
-	RGBPixelList::iterator iPixelColor;
-	RGBPixelList *pThePixelGrid;
 	bool fInitGrid = false;
 	bool fIncCycle = false;
 	// For more accuracy, we could use 24 or even 16
@@ -145,6 +178,7 @@ void vncDesktop::FastDetectChanges(rfb::Region2D &rgn, rfb::Rect &rect, int nZon
 		for (int i = 0; i < (5 * PIXEL_BLOCK_SIZE / GRID_OFFSET); i++)
 		{
 			RGBPixelList *pList = new RGBPixelList;
+			pList->reserve((rect.height() / PIXEL_BLOCK_SIZE) * (rect.width() / PIXEL_BLOCK_SIZE));
 			if (pList != NULL)
 			{
 				m_lGridsList.push_back(pList);
@@ -153,6 +187,8 @@ void vncDesktop::FastDetectChanges(rfb::Region2D &rgn, rfb::Rect &rect, int nZon
 		}
 	}
 
+	PixelCaptureEngine PixelEngine(m_hrootdc, m_hmemdc, m_membitmap, m_fCaptureAlphaBlending && !m_Black_window_active, 
+		                           m_DIBbits, m_scrinfo.format.bitsPerPixel / 8, m_bytesPerRow);
 	// We test one zone at a time 
 	// vnclog.Print(LL_INTINFO, VNCLOG("### Polling Grid %d - SubGrid %d\n"), nZone, m_nGridCycle); 
 	GridsList::iterator iGrid;
@@ -162,8 +198,8 @@ void vncDesktop::FastDetectChanges(rfb::Region2D &rgn, rfb::Rect &rect, int nZon
 	iGrid = m_lGridsList.begin();
     std::advance(iGrid, nGridPos);
 
-	iPixelColor = ((RGBPixelList*)(*iGrid))->begin();
-	pThePixelGrid = (RGBPixelList*) *iGrid;
+	RGBPixelList *pThePixelGrid  =  *iGrid;
+	RGBPixelList::iterator iPixelColor =  pThePixelGrid->begin();
 
 	if (nZone == 0 || nZone == 4)
 	{
@@ -180,6 +216,7 @@ void vncDesktop::FastDetectChanges(rfb::Region2D &rgn, rfb::Rect &rect, int nZon
 	int nOffset = GRID_OFFSET * m_nGridCycle;
 	HWND hDeskWnd = GetDesktopWindow();
 
+	PixelEngine.CaptureRect(rect);
 	// We walk our way through the Grids
 	for (y = rect.tl.y; y < rect.br.y; y += PIXEL_BLOCK_SIZE)
 	{
@@ -190,7 +227,7 @@ void vncDesktop::FastDetectChanges(rfb::Region2D &rgn, rfb::Rect &rect, int nZon
 			xo = x + nOffset;
 
 			// Read the pixel's color on the screen
-            COLORREF PixelColor = (OSversion()==2 ) ? CapturePixel( xo, yo) : GetPixel(m_hrootdc, xo, yo);
+			COLORREF PixelColor = PixelEngine.CapturePixel(xo, yo);
 
 			// If init list
 			if (fInitGrid)
@@ -236,7 +273,7 @@ void vncDesktop::FastDetectChanges(rfb::Region2D &rgn, rfb::Rect &rect, int nZon
 					if (!wrect.is_empty())
 					{
 								rgn.assign_union(wrect);
-								m_lWList.push_back(hwnd);
+								m_lWList.insert(hwnd);
 							}
 						}
 					}
@@ -246,6 +283,7 @@ void vncDesktop::FastDetectChanges(rfb::Region2D &rgn, rfb::Rect &rect, int nZon
 			++iPixelColor; // Next PixelColor in the list
 		}
 	}
+	PixelEngine.ReleaseCapture();
 
 	if (fIncCycle)
 	{
@@ -364,6 +402,8 @@ vncDesktop::vncDesktop()
 
 	current_monitor=3;
     m_bIsInputDisabledByClient = false;
+	m_input_desktop = 0;
+	m_home_desktop = 0;
 }
 
 vncDesktop::~vncDesktop()
@@ -388,12 +428,6 @@ vncDesktop::~vncDesktop()
 		m_thread = NULL;
 	}
 
-	//	[v1.0.2-jp1 fix] Blank Monitor
-//	if(m_server->GammaGray() && m_grayed){
-//		HDC hDC = GetDC(NULL);
-//		SetDeviceGammaRamp(hDC, bk_gamma);
-//		ReleaseDC(NULL, hDC);
-//	}
 
 
 	// added jeff
@@ -598,7 +632,6 @@ vncDesktop::Shutdown()
 	{	
 		// Remove the system hooks
 		if (UnSetHook) UnSetHook(m_hwnd);
-		else if (UnSetHooks) UnSetHooks(GetCurrentThreadId());
 
 		// The window is being closed - remove it from the viewer list
 		ChangeClipboardChain(m_hwnd, m_hnextviewer);
@@ -608,6 +641,7 @@ vncDesktop::Shutdown()
 		m_hwnd = NULL;
 		m_hnextviewer = NULL;
 	}
+	if (UnSetHooks) UnSetHooks(GetCurrentThreadId());
 
 	// Now free all the bitmap stuff
 	if (m_hrootdc != NULL)
@@ -650,6 +684,14 @@ vncDesktop::Shutdown()
 	// Modif rdv@2002 - v1.1.x - videodriver
 	ShutdownVideoDriver();
 
+	if (m_home_desktop)
+		vncService::SelectHDESK(m_home_desktop);
+	if (m_input_desktop)
+	{
+		if (!CloseDesktop(m_input_desktop))
+			vnclog.Print(LL_INTERR, VNCLOG("failed to close desktop\n"));
+		m_input_desktop = 0;
+	}
 	return TRUE;
 }
 
@@ -660,7 +702,7 @@ vncDesktop::InitDesktop()
 {
 	if (vncService::InputDesktopSelected())
 		return TRUE;
-	return vncService::SelectDesktop(NULL);
+	return vncService::SelectDesktop(NULL, &m_input_desktop);
 }
 
 // Routine used to close the screen saver, if it's active...
@@ -1463,12 +1505,33 @@ vncDesktop::CaptureScreen(const rfb::Rect &rect, BYTE *scrBuff, UINT scrBuffSize
 	if ((oldbitmap = (HBITMAP) SelectObject(m_hmemdc, m_membitmap)) == NULL)
 		return;
 
+#if defined(_DEBUG)
+	DWORD t = timeGetTime();
+#endif
 	// Capture screen into bitmap
 	BOOL blitok = BitBlt(m_hmemdc, rect.tl.x, rect.tl.y,
 		(rect.br.x-rect.tl.x),
 		(rect.br.y-rect.tl.y),
 		m_hrootdc, rect.tl.x, rect.tl.y, (m_fCaptureAlphaBlending && !m_Black_window_active) ? (CAPTUREBLT | SRCCOPY) : SRCCOPY);
-
+#if defined(_DEBUG)
+	DWORD e = timeGetTime() - t;
+	vnclog.Print(LL_INTWARN, VNCLOG("Blit (%u,%u - %u,%u) (%ux%u took %ums\n"), 
+		rect.tl.x, rect.tl.y, rect.br.x, rect.br.y,
+		rect.width(), rect.height(), e);
+#endif
+#if 0
+	//*******************************
+	static int cycle(0);
+	static COLORREF c[] = {RGB(0xFF,0,0), RGB(0,0xFF,0),RGB(0,0,0xFF), RGB(0xFF, 0,0xFF), RGB(0,0xFF,0xFF)};
+HPEN pen = CreatePen(PS_SOLID|PS_INSIDEFRAME, 2, c[cycle]);
+HPEN oldpen = (HPEN)SelectObject(m_hmemdc, pen);
+SelectObject(m_hmemdc, GetStockObject(HOLLOW_BRUSH));
+Rectangle(m_hmemdc, rect.tl.x, rect.tl.y, rect.br.x, rect.br.y);
+SelectObject(m_hmemdc, oldpen);
+DeleteObject(pen);
+	cycle = (cycle + 1) % (sizeof c / sizeof c[0]);
+	//*******************************
+#endif
 	// Select the old bitmap back into the memory DC
 	SelectObject(m_hmemdc, oldbitmap);
 
@@ -1484,7 +1547,7 @@ void
 vncDesktop::CaptureMouse(BYTE *scrBuff, UINT scrBuffSize)
 {
 	POINT CursorPos;
-	ICONINFO IconInfo;
+	ICONINFO IconInfo = {0};
 
 	// If the mouse cursor handle is invalid then forget it
 	if (m_hcursor == NULL)
