@@ -7,6 +7,7 @@
 #include "vncservice.h"
 #include "mmsystem.h"
 #include "IPC.h"
+#include "CpuUsage.h"
 
 typedef struct _CURSORINFO
 {
@@ -44,6 +45,11 @@ public:
 		if (pfnFilter) pfnFilter(RFB_SCREEN_UPDATE, MSGFLT_ADD);
 		if (pfnFilter) pfnFilter(RFB_COPYRECT_UPDATE, MSGFLT_ADD);
 		if (pfnFilter) pfnFilter(RFB_MOUSE_UPDATE, MSGFLT_ADD);
+		cpuUsage=0;
+		MIN_UPDATE_INTERVAL=33;
+		MIN_UPDATE_INTERVAL_MAX=500;
+		MIN_UPDATE_INTERVAL_MIN=33;
+		MAX_CPU_USAGE=20;
 	};
 protected:
 	~vncDesktopThread() {
@@ -84,6 +90,12 @@ protected:
 
 	DWORD m_lLastMouseMoveTime;
 	HMODULE  hUser32;
+	CProcessorUsage usage;
+	short cpuUsage;
+	DWORD MIN_UPDATE_INTERVAL;
+	DWORD MIN_UPDATE_INTERVAL_MAX;
+	DWORD MIN_UPDATE_INTERVAL_MIN;
+	DWORD MAX_CPU_USAGE;
 
 };
 #endif

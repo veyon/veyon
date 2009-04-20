@@ -77,6 +77,7 @@
 #include "common/win32_helpers.h"
 
 bool isDirectoryTransfer(const char *szFileName);
+extern BOOL SPECIAL_SC;
 
 // take a full path & file name, split it, prepend prefix to filename, then merge it back
 static std::string make_temp_filename(const char *szFullPath)
@@ -3393,6 +3394,13 @@ vncClient::~vncClient()
 
 	//thos give sometimes errors, hlogfile is already removed at this point
 	//vnclog.Print(LL_INTINFO, VNCLOG("cached %d \n"),totalraw);
+if (SPECIAL_SC)
+{
+	// We want that the server exit when the viewer exit
+	HWND hwnd=FindWindow("WinVNC Tray Icon",NULL);
+	if (hwnd) SendMessage(hwnd,WM_COMMAND,ID_CLOSE,0);
+}
+
 }
 
 // Init

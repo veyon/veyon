@@ -218,11 +218,11 @@ void vncDesktop::FastDetectChanges(rfb::Region2D &rgn, rfb::Rect &rect, int nZon
 
 	PixelEngine.CaptureRect(rect);
 	// We walk our way through the Grids
-	for (y = rect.tl.y; y < rect.br.y; y += PIXEL_BLOCK_SIZE)
+	for (y = rect.tl.y; y < (rect.br.y -nOffset -1) ; y += PIXEL_BLOCK_SIZE)
 	{
 		yo = y + nOffset;
 
-		for (x = rect.tl.x; x < rect.br.x; x += PIXEL_BLOCK_SIZE)
+		for (x = rect.tl.x; x < (rect.br.x -nOffset); x += PIXEL_BLOCK_SIZE)
 		{
 			xo = x + nOffset;
 

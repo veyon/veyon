@@ -729,6 +729,14 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\CpuUsage.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\CpuUsage.h"
+				>
+			</File>
+			<File
 				RelativePath="d3des.c"
 				>
 				<FileConfiguration
@@ -4305,7 +4313,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\winvnc.exe.x64.manifest"
+				RelativePath=".\winvnc.exe.x86.manifest"
 				>
 			</File>
 			<File

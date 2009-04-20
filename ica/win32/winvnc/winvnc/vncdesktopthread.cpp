@@ -667,23 +667,38 @@ vncDesktopThread::run_undetached(void *arg)
 	HANDLE threadHandle=NULL;
 	stop_hookwatch=false;
 	/////////////////////
-
-    DWORD MIN_UPDATE_INTERVAL=33;
+	// We use a dynmiac value based on cpu usage
+    //DWORD MIN_UPDATE_INTERVAL=33;
 	/////////////////////
 	MSG msg;
 	while (TRUE)
 	{
 		if (!PeekMessage(&msg, NULL, NULL, NULL, PM_REMOVE)) 
 		{
+			//measure current cpu usage of winvnc
+			cpuUsage = usage.GetUsage();
+			if (cpuUsage > MAX_CPU_USAGE) 
+				MIN_UPDATE_INTERVAL+=10;
+			else MIN_UPDATE_INTERVAL-=10;
+			if (MIN_UPDATE_INTERVAL<MIN_UPDATE_INTERVAL_MIN) MIN_UPDATE_INTERVAL=MIN_UPDATE_INTERVAL_MIN;
+			if (MIN_UPDATE_INTERVAL>MIN_UPDATE_INTERVAL_MAX) MIN_UPDATE_INTERVAL=MIN_UPDATE_INTERVAL_MAX;
 //			vnclog.Print(LL_INTERR, VNCLOG("!PeekMessage \n"));
 			// MAX 30fps
-			newtick = timeGetTime(); // Better resolution than GetTickCount ;)		
+			newtick = timeGetTime(); // Better resolution than GetTickCount ;)
 			if ((newtick-oldtick)<MIN_UPDATE_INTERVAL)
 			{
 				Sleep(MIN_UPDATE_INTERVAL-(newtick-oldtick));
-				continue;
+				//continue;  Verify, this can cause screen lockup
+				// We need another PeekMessage, but this is only done
+				// by hookdll and viewer asking for new update
+				// can cause a very long wait time
 			}	
 			oldtick=newtick;
+			#ifdef _DEBUG
+					char			szText[256];
+					sprintf(szText," cpu2: %d %i\n",cpuUsage,MIN_UPDATE_INTERVAL);
+					OutputDebugString(szText);		
+			#endif
 
 			if (m_desktop->VideoBuffer() && m_desktop->m_hookdriver) handle_driver_changes(rgncache,updates);
 			m_desktop->m_update_triggered = FALSE;

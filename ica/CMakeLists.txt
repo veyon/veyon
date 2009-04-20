@@ -101,6 +101,7 @@ IF(ITALC_BUILD_WIN32)
 		${CMAKE_CURRENT_SOURCE_DIR}/win32/winvnc/winvnc/helpers.cpp 
 		${CMAKE_CURRENT_SOURCE_DIR}/win32/winvnc/winvnc/service_motor.cpp 
 		${CMAKE_CURRENT_SOURCE_DIR}/win32/winvnc/winvnc/service.cpp
+		${CMAKE_CURRENT_SOURCE_DIR}/win32/winvnc/winvnc/CpuUsage.cpp
 		${CMAKE_CURRENT_SOURCE_DIR}/win32/winvnc/omnithread/nt.cpp
 		${CMAKE_CURRENT_SOURCE_DIR}/win32/winvnc/Xregion/Region.c
 		${CMAKE_CURRENT_SOURCE_DIR}/win32/winvnc/DSMPlugin/DSMPlugin.cpp

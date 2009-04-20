@@ -102,6 +102,7 @@ bool GetServiceName(TCHAR *pszAppPath, TCHAR *pszServiceName);
 
 // [v1.0.2-jp1 fix] Load resouce from dll
 HINSTANCE	hInstResDLL;
+BOOL SPECIAL_SC=false;
 
 // winvnc.exe will also be used for helper exe
 // This allow us to minimize the number of seperate exe
@@ -162,6 +163,7 @@ int WINAPI WinMainVNC(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLi
 #ifdef CRASHRPT
 	Install(NULL, _T("ultravnc@skynet.be"), _T(""));
 #endif
+	SPECIAL_SC=false;
 	SetOSVersion();
 	setbuf(stderr, 0);
 
@@ -426,6 +428,13 @@ int WINAPI WinMainVNC(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLi
 			// WinVNC is being run as a user-level program
 			if (!Myinit(hInstance)) return 0;
 			return WinVNCAppMain();
+		}
+
+		if (strncmp(&szCmdLine[i], winvncSC, strlen(winvncSC)) == 0)
+		{
+			SPECIAL_SC=true;
+			i+=strlen(winvncSC);
+			continue;
 		}
 
 		if (strncmp(&szCmdLine[i], winvncAutoReconnect, strlen(winvncAutoReconnect)) == 0)
