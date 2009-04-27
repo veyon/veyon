@@ -90,21 +90,30 @@ DWORD WINAPI BlackWindow(LPVOID lpParam);
 // 
 // 
 //
-
-class PixelCaptureEngine
+PixelCaptureEngine::~PixelCaptureEngine()
 {
-public:
-	PixelCaptureEngine(HDC rootdc, HDC memdc, HBITMAP membitmap, bool bCaptureAlpha, void *dibbits, int bpp, int bpr) 
-		: m_hmemdc(memdc), m_membitmap(membitmap),  
-		  m_oldbitmap(0), m_DIBbits(dibbits), m_bIsVista(OSversion()==2),
-		  m_bCaptureAlpha(bCaptureAlpha), m_hrootdc(rootdc), m_bytesPerPixel(bpp), m_bytesPerRow(bpr)
-	{}
-	~PixelCaptureEngine() {}
+}
 
-	/*
-	 * Prepare a rectangle to be captured. Blit's the rectangle to 
-	 */
-	bool CaptureRect(const rfb::Rect& rect)
+PixelCaptureEngine::PixelCaptureEngine()
+	{
+		if (OSversion()==2) m_bIsVista=true;
+		else m_bIsVista=false;
+	}
+void
+PixelCaptureEngine::PixelCaptureEngineInit(HDC rootdc, HDC memdc, HBITMAP membitmap, bool bCaptureAlpha, void *dibbits, int bpp, int bpr)
+	{
+		m_hmemdc=memdc;
+		m_membitmap=membitmap;
+		m_oldbitmap=0;
+		m_DIBbits=dibbits;
+		m_bCaptureAlpha=bCaptureAlpha;
+		m_hrootdc=rootdc;
+		m_bytesPerPixel=bpp;
+		m_bytesPerRow=bpr;
+	}
+
+bool
+PixelCaptureEngine::CaptureRect(const rfb::Rect& rect)
 	{
 		m_rect = rect;
 		if ((m_oldbitmap = (HBITMAP) SelectObject(m_hmemdc, m_membitmap)) == NULL)
@@ -118,7 +127,8 @@ public:
 		return blitok ? true : false;
 	}
 
-	COLORREF CapturePixel(int x, int y)
+COLORREF
+PixelCaptureEngine::CapturePixel(int x, int y)
 	{
 		COLORREF cr = 0;
 		int tx = x - m_rect.tl.x;
@@ -129,25 +139,16 @@ public:
 
 		return cr;
 	}
-	void ReleaseCapture()
+
+void
+PixelCaptureEngine::ReleaseCapture()
 	{
 		// Select the old bitmap back into the memory DC
 		SelectObject(m_hmemdc, m_oldbitmap);
 		m_oldbitmap = 0;
 	}
 
-private:
-	HDC			m_hrootdc;
-	HDC			m_hmemdc;
-	HBITMAP		m_membitmap;
-	HBITMAP		m_oldbitmap;
-	void		*m_DIBbits;
-	rfb::Rect	m_rect;
-	bool		m_bIsVista;
-	bool		m_bCaptureAlpha;
-	int			m_bytesPerPixel;
-	int			m_bytesPerRow;
-};
+
 void vncDesktop::FastDetectChanges(rfb::Region2D &rgn, rfb::Rect &rect, int nZone, bool fTurbo)
 {
 	bool fInitGrid = false;
@@ -187,7 +188,7 @@ void vncDesktop::FastDetectChanges(rfb::Region2D &rgn, rfb::Rect &rect, int nZon
 		}
 	}
 
-	PixelCaptureEngine PixelEngine(m_hrootdc, m_hmemdc, m_membitmap, m_fCaptureAlphaBlending && !m_Black_window_active, 
+	PixelEngine.PixelCaptureEngineInit(m_hrootdc, m_hmemdc, m_membitmap, m_fCaptureAlphaBlending && !m_Black_window_active, 
 		                           m_DIBbits, m_scrinfo.format.bitsPerPixel / 8, m_bytesPerRow);
 	// We test one zone at a time 
 	// vnclog.Print(LL_INTINFO, VNCLOG("### Polling Grid %d - SubGrid %d\n"), nZone, m_nGridCycle); 
@@ -217,6 +218,9 @@ void vncDesktop::FastDetectChanges(rfb::Region2D &rgn, rfb::Rect &rect, int nZon
 	HWND hDeskWnd = GetDesktopWindow();
 
 	PixelEngine.CaptureRect(rect);
+	// Try to detect if screen is almost idle
+	// no need to poll static screens very fast, it only use cpu
+	change_found=0;
 	// We walk our way through the Grids
 	for (y = rect.tl.y; y < (rect.br.y -nOffset -1) ; y += PIXEL_BLOCK_SIZE)
 	{
@@ -241,6 +245,7 @@ void vncDesktop::FastDetectChanges(rfb::Region2D &rgn, rfb::Rect &rect, int nZon
 			// If the pixel has changed
 			if (*iPixelColor != PixelColor )
 			{
+				change_found=1;
 				// Save the new Pixel in the list
 				*iPixelColor = PixelColor;
 
@@ -263,19 +268,19 @@ void vncDesktop::FastDetectChanges(rfb::Region2D &rgn, rfb::Rect &rect, int nZon
                     {			    
 						// Add the corresponding rect to the cache region 
 						if (GetWindowRect(hwnd, &rect))
-				{
-					//Buffer coordinates
-					rect.left-=m_ScreenOffsetx;
-					rect.right-=m_ScreenOffsetx;
-					rect.top-=m_ScreenOffsety;
-					rect.bottom-=m_ScreenOffsety;
-					rfb::Rect wrect = rfb::Rect(rect).intersect(m_Cliprect);
-					if (!wrect.is_empty())
-					{
-								rgn.assign_union(wrect);
-								m_lWList.insert(hwnd);
+							{
+								//Buffer coordinates
+								rect.left-=m_ScreenOffsetx;
+								rect.right-=m_ScreenOffsetx;
+								rect.top-=m_ScreenOffsety;
+								rect.bottom-=m_ScreenOffsety;
+								rfb::Rect wrect = rfb::Rect(rect).intersect(m_Cliprect);
+								if (!wrect.is_empty())
+									{
+										rgn.assign_union(wrect);
+										m_lWList.insert(hwnd);
+									}
 							}
-						}
 					}
 				}
 			}
@@ -284,6 +289,25 @@ void vncDesktop::FastDetectChanges(rfb::Region2D &rgn, rfb::Rect &rect, int nZon
 		}
 	}
 	PixelEngine.ReleaseCapture();
+	///////////////////////
+	// We coun the number of idle detects
+	// after x time, force some timeout
+	if (change_found)
+	{
+		idle_counter=0;
+	}
+	else
+	{
+		idle_counter++;
+	}
+	if (idle_counter>20) 
+	{
+		//Beep(100,idle_counter);
+		Sleep (idle_counter);
+	}
+	// 250 increased to 500, possible even 1000 will still have a good reaction time
+	if (idle_counter>500) idle_counter=500;
+	///////////////////////
 
 	if (fIncCycle)
 	{
@@ -404,6 +428,7 @@ vncDesktop::vncDesktop()
     m_bIsInputDisabledByClient = false;
 	m_input_desktop = 0;
 	m_home_desktop = 0;
+	idle_counter=0;
 }
 
 vncDesktop::~vncDesktop()

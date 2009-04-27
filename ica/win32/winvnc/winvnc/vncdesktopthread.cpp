@@ -682,6 +682,8 @@ vncDesktopThread::run_undetached(void *arg)
 			else MIN_UPDATE_INTERVAL-=10;
 			if (MIN_UPDATE_INTERVAL<MIN_UPDATE_INTERVAL_MIN) MIN_UPDATE_INTERVAL=MIN_UPDATE_INTERVAL_MIN;
 			if (MIN_UPDATE_INTERVAL>MIN_UPDATE_INTERVAL_MAX) MIN_UPDATE_INTERVAL=MIN_UPDATE_INTERVAL_MAX;
+
+
 //			vnclog.Print(LL_INTERR, VNCLOG("!PeekMessage \n"));
 			// MAX 30fps
 			newtick = timeGetTime(); // Better resolution than GetTickCount ;)
@@ -693,13 +695,13 @@ vncDesktopThread::run_undetached(void *arg)
 				// by hookdll and viewer asking for new update
 				// can cause a very long wait time
 			}	
-			oldtick=newtick;
-			#ifdef _DEBUG
+			
+			/*#ifdef _DEBUG
 					char			szText[256];
-					sprintf(szText," cpu2: %d %i\n",cpuUsage,MIN_UPDATE_INTERVAL);
+					sprintf(szText," cpu2: %d %i %i\n",cpuUsage,MIN_UPDATE_INTERVAL,newtick-oldtick);
 					OutputDebugString(szText);		
-			#endif
-
+			#endif*/
+			oldtick=newtick;
 			if (m_desktop->VideoBuffer() && m_desktop->m_hookdriver) handle_driver_changes(rgncache,updates);
 			m_desktop->m_update_triggered = FALSE;
 			g_update_triggered = FALSE;

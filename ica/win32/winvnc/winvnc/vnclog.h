@@ -62,7 +62,8 @@ public:
 	VNCLog();
 
     inline void Print(int level, const char* format, ...) {
-        if (level > m_level) return;
+        if ( level > m_level ) return;
+		if (!m_todebug && !m_toconsole && !m_tofile) return;
         va_list ap;
         va_start(ap, format);
         ReallyPrint(format, ap);

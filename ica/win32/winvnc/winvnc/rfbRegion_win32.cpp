@@ -211,6 +211,7 @@ bool Region::get_rects(std::vector<Rect>& rects,
 	   return false;
    }
 
+   rects.clear();
    rects.reserve(nRects);
    RECT *pRectangles = reinterpret_cast<RECT*>(&region_data->Buffer[0]);
 
@@ -238,7 +239,9 @@ bool Region::get_rects(std::vector<Rect>& rects,
 		   Rect r(pRectangles[i].left, pRectangles[i].top,
 			   pRectangles[i].right, pRectangles[i].bottom);
 
-		   vnclog.Print(LL_INTWARN, VNCLOG("           (%u,%u - %u,%u)\n"), r.tl.x, r.tl.y, r.br.x, r.br.y);
+#if defined(_DEBUG)
+		   vnclog.Print(LL_INTWARN, VNCLOG("           (%u,%u - %u,%u) %ux%u\n"), r.tl.x, r.tl.y, r.br.x, r.br.y, r.width(), r.height());
+#endif
 		   rects.push_back(r);
 		   i += xInc;
 		   nRectsInBand--;

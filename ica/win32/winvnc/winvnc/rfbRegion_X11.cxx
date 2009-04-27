@@ -20,7 +20,7 @@
 // the authors on info@realvnc.com for information on obtaining it.
 
 // Cross-platform Region class based on the X11 region implementation
-
+/*
 #include "stdhdrs.h"
 #include "rfbRegion_X11.h"
 #include <Xregion/region.h>
@@ -165,6 +165,7 @@ bool Region::get_rects(std::vector<Rect>& rects,
   int yInc = topdown ? 1 : -1;
   int i = topdown ? 0 : nRects-1;
 
+  rects.clear();
   while (nRects > 0) {
     int firstInNextBand = i;
     int nRectsInBand = 0;
@@ -201,7 +202,7 @@ rfb::Rect Region::get_bounding_rect() const {
 int Region::Numrects()
 {
 	return Xrgn->numRects;
-}
+}*/
 /*XRegion Region::replaceXrgn(XRegion newrgn) {
   XRegion tmp = Xrgn;
   Xrgn = newrgn;

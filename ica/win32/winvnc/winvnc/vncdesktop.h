@@ -191,6 +191,30 @@ struct monitor
 	int offsety;
 };
 
+
+class PixelCaptureEngine
+{
+public:
+	PixelCaptureEngine();
+	~PixelCaptureEngine();
+	void PixelCaptureEngineInit(HDC rootdc, HDC memdc, HBITMAP membitmap, bool bCaptureAlpha, void *dibbits, int bpp, int bpr);
+	bool CaptureRect(const rfb::Rect& rect);
+	COLORREF CapturePixel(int x, int y);
+	void ReleaseCapture();
+
+private:
+	HDC			m_hrootdc;
+	HDC			m_hmemdc;
+	HBITMAP		m_membitmap;
+	HBITMAP		m_oldbitmap;
+	void		*m_DIBbits;
+	rfb::Rect	m_rect;
+	bool		m_bIsVista;
+	bool		m_bCaptureAlpha;
+	int			m_bytesPerPixel;
+	int			m_bytesPerRow;
+};
+
 class vncDesktop
 {
 
@@ -471,6 +495,9 @@ CAVIGenerator *AviGen;
 private:
 	HDESK m_input_desktop;
 	HDESK m_home_desktop;
+	PixelCaptureEngine PixelEngine;
+	int idle_counter;
+	bool change_found;
 };
 
 #endif // _WINVNC_VNCDESKTOP

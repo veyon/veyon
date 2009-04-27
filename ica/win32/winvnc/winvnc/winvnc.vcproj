@@ -88,6 +88,7 @@
 				ProgramDatabaseFile=".\..\Debug/winvnc.pdb"
 				SubSystem="2"
 				RandomizedBaseAddress="1"
+				FixedBaseAddress="1"
 				DataExecutionPrevention="0"
 				TargetMachine="1"
 			/>
@@ -1098,6 +1099,10 @@
 			</File>
 			<File
 				RelativePath=".\read_write_ini.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\rfbRegion_win32.cpp"
 				>
 			</File>
 			<File
@@ -4375,6 +4380,10 @@
 		</File>
 		<File
 			RelativePath="res\SessionRecorder.class"
+			>
+		</File>
+		<File
+			RelativePath=".\VTune\winvnc.vpj"
 			>
 		</File>
 	</Files>
