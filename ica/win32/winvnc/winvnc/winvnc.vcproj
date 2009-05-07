@@ -912,6 +912,18 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\Dtwinver.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Dtwinver.h"
+				>
+			</File>
+			<File
+				RelativePath=".\getinfo.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\helpers.cpp"
 				>
 			</File>
@@ -4294,11 +4306,11 @@
 				>
 			</File>
 			<File
-				RelativePath="vnc.bmp"
+				RelativePath="res\vnc.bmp"
 				>
 			</File>
 			<File
-				RelativePath="res\vnc.bmp"
+				RelativePath="vnc.bmp"
 				>
 			</File>
 			<File
@@ -4339,11 +4351,11 @@
 			>
 		</File>
 		<File
-			RelativePath="..\..\BUILDING.txt"
+			RelativePath="..\building.txt"
 			>
 		</File>
 		<File
-			RelativePath="..\building.txt"
+			RelativePath="..\..\BUILDING.txt"
 			>
 		</File>
 		<File
@@ -4352,6 +4364,10 @@
 		</File>
 		<File
 			RelativePath="res\DH.class"
+			>
+		</File>
+		<File
+			RelativePath=".\res\ding_dong.wav"
 			>
 		</File>
 		<File

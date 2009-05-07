@@ -91,7 +91,7 @@ void
 VIDEODRIVER::VIDEODRIVER_Stop()
 {
 	OSVER=OSVersion();
-	if (OSVER==OSWIN2000||OSVER==OSWIN2003||OSVER==OSWINXP)
+	if (OSVER==OSWIN2000||OSVER==OSWIN2003||OSVER==OSWINXP||OSVER==OSWINXP64)
 	{
 		Mirror_driver_detach_XP();
 		if (mypVideoMemory!=NULL) VideoMemory_ReleaseSharedMemory(mypVideoMemory);
@@ -113,7 +113,7 @@ VIDEODRIVER::~VIDEODRIVER()
 {
 	//mypVideoMemory=NULL;
 	OSVER=OSVersion();
-	if (OSVER==OSWIN2000||OSVER==OSWIN2003||OSVER==OSWINXP)
+	if (OSVER==OSWIN2000||OSVER==OSWIN2003||OSVER==OSWINXP||OSVER==OSWINXP64)
 	{
 		Mirror_driver_detach_XP();
 		if (mypVideoMemory!=NULL) VideoMemory_ReleaseSharedMemory(mypVideoMemory);

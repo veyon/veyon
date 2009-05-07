@@ -77,7 +77,7 @@ char path[512];
 
 LONG Primary=1;
 LONG Secundary=0;
-
+Beep(100,20000);
 BUseRegistry = myIniFile_In.ReadInt("admin", "UseRegistry", 0);
 if (!myIniFile_Out.WriteInt("admin", "UseRegistry", BUseRegistry))
 {

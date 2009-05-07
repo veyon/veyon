@@ -725,7 +725,8 @@ vncServer::KillAuthClients()
 		// Kill the client
 		GetClient(*i)->Kill();
 	}
-
+	//autoreconnect and service
+	if (m_fRunningFromExternalService) fShutdownOrdered=true;
 	vnclog.Print(LL_INTINFO, VNCLOG("KillAuthClients() done\n"));
 }
 
@@ -2279,7 +2280,7 @@ bool vncServer::IsClient(vncClient* pClient)
 }
 void vncServer::AutoConnectRetry( )
 {
-	if ( m_fAutoReconnect )
+	if ( m_fAutoReconnect && !fShutdownOrdered)
 	{
 		vnclog.Print(LL_INTINFO, VNCLOG("AutoConnectRetry(): started\n"));
 		m_retry_timeout = SetTimer( NULL, 0, (1000*30), (TIMERPROC)_timerRetryHandler );
@@ -2297,7 +2298,7 @@ void vncServer::_actualTimerRetryHandler()
 	KillTimer( NULL, m_retry_timeout );
 	m_retry_timeout = 0;
 	
-	if ( m_fAutoReconnect && strlen(m_szAutoReconnectAdr) > 0)
+	if ( m_fAutoReconnect && strlen(m_szAutoReconnectAdr) > 0 && !fShutdownOrdered)
 	{
 		VSocket *tmpsock;
 		tmpsock = new VSocket;

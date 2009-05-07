@@ -47,6 +47,39 @@ extern HINSTANCE	hAppInstance;
 //
 //
 //
+#include <Mmsystem.h>
+BOOL PlayResource(LPSTR lpName)
+{
+    BOOL bRtn;
+    LPSTR lpRes;
+    HANDLE hRes;
+    HRSRC hResInfo;
+
+    /* Find the WAVE resource. */
+    hResInfo= FindResource(hAppInstance,MAKEINTRESOURCE(IDR_WAVE1),"WAVE");
+    if(hResInfo == NULL)
+       return FALSE;
+    /* Load the WAVE resource. */
+
+    hRes = LoadResource(hAppInstance,hResInfo);
+    if (hRes == NULL)
+      return FALSE;
+
+    /* Lock the WAVE resource and play it. */
+    lpRes=(LPSTR)LockResource(hRes);
+    if(lpRes==NULL)
+      return FALSE;
+
+    bRtn = sndPlaySound(lpRes, SND_MEMORY | SND_SYNC);
+    if(bRtn == NULL)
+      return FALSE;
+
+    /* Free the WAVE resource and return success or failure. */
+    FreeResource(hRes);
+    return TRUE;
+}
+
+///////////////////////////////////////////////////////
 TextChat::TextChat(vncClient *pCC)
 {
 	m_hDlg=NULL;
@@ -165,6 +198,7 @@ void TextChat::ProcessTextChatMsg(int nTO)
 	
 	if (len == CHAT_OPEN)
 	{
+		PlayResource("IDR_WAVE1");
 		if (m_fTextChatRunning) return;
 		// PostMessage(m_pCC->m_server->GetDesktopPointer()->Window(), WM_USER+888, 0, (LPARAM)this);
 		DisplayTextChat();

@@ -125,7 +125,13 @@ LONG Secundary=0;
 
 
 BUseRegistry = myIniFile_In.ReadInt("admin", "UseRegistry", 0);
-myIniFile_Out.WriteInt("admin", "UseRegistry", BUseRegistry);
+if (!myIniFile_Out.WriteInt("admin", "UseRegistry", BUseRegistry))
+{
+		//error
+		char temp[10];
+		DWORD error=GetLastError();
+		MessageBox(NULL,"Permission denied:Uncheck [_] Protect my computer... in run as dialog" ,myIniFile_Out.myInifile,MB_ICONERROR);
+}
 
 MSLogonRequired=myIniFile_In.ReadInt("admin", "MSLogonRequired", false);
 myIniFile_Out.WriteInt("admin", "MSLogonRequired", MSLogonRequired);

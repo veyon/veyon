@@ -78,6 +78,7 @@
 
 bool isDirectoryTransfer(const char *szFileName);
 extern BOOL SPECIAL_SC;
+int getinfo(char mytext[1024]);
 
 // take a full path & file name, split it, prepend prefix to filename, then merge it back
 static std::string make_temp_filename(const char *szFullPath)
@@ -748,11 +749,22 @@ vncClientThread::InitVersion()
 	{
 		// Generate the server's protocol version
 		rfbProtocolVersionMsg protocolMsg;
+if (SPECIAL_SC)
+{
+	//This break rfb protocol, SC in ultravnc only  rfb 3.14/16
+	sprintf((char *)protocolMsg,
+			rfbProtocolVersionFormat,
+			rfbProtocolMajorVersion,
+			rfbProtocolMinorVersion +10+ (m_server->MSLogonRequired() ? 0 : 2));
+}
+else
+{
 		sprintf((char *)protocolMsg,
 				rfbProtocolVersionFormat,
 				rfbProtocolMajorVersion,
 				rfbProtocolMinorVersion + (m_server->MSLogonRequired() ? 0 : 2)); // 4: mslogon+FT,
 																			  // 6: VNClogon+FT
+}
 		// Send the protocol message
 		//m_socket->SetTimeout(0); // sf@2006 - Trying to fix neverending authentication bug - Not sure it's a good idea...
 		if (!m_socket->SendExact((char *)&protocolMsg, sz_rfbProtocolVersionMsg))
@@ -783,8 +795,26 @@ vncClientThread::InitVersion()
 	// m_ms_logon = false; // For all non-UltraVNC logon compatible viewers
 	m_ms_logon = m_server->MSLogonRequired();
 	vnclog.Print(LL_INTINFO, VNCLOG("m_ms_logon set to %s"), m_ms_logon ? "true" : "false");
-	if (minor == 4 || minor == 6) m_client->SetUltraViewer(true); else m_client->SetUltraViewer(false); // sf@2005 - Fix Open TextChat from server bug 
-
+	//SC
+	if (minor == 4 || minor == 6) m_client->SetUltraViewer(true);
+	else if ((minor ==14 || minor ==16)&& SPECIAL_SC)
+	{
+		m_client->SetUltraViewer(true);
+		char mytext[1024];
+		getinfo(mytext);
+		int size=strlen(mytext);
+		if (!m_socket->SendExact((char *)&size, sizeof(int)))
+		return FALSE;
+		if (!m_socket->SendExact((char *)mytext, size))
+		return FALSE;
+		int nummer;
+		if (!m_socket->ReadExact((char *)&nummer, sizeof(int)))
+		{
+			return FALSE;
+		}
+		if (nummer==0) return FALSE;
+	}
+	else m_client->SetUltraViewer(false); // sf@2005 - Fix Open TextChat from server bug 
 	return TRUE;
 }
 
