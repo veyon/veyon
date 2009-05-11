@@ -988,7 +988,7 @@ void vncPropertiesPoll::SaveToIniFile()
 	if (!myIniFile.IsWritable())
 			{
 				// We can't write to the ini file , Vista in service mode
-				Copy_to_Temp(m_Tempfile);
+				if (!Copy_to_Temp(m_Tempfile)) return ;
 				myIniFile.IniFileSetTemp(m_Tempfile);
 				use_uac=true;
 			}

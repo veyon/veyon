@@ -753,6 +753,7 @@ vncService::PostAddNewClient(unsigned long ipaddress, unsigned short port)
 		//Little hack, seems postmessage fail in some cases on some os.
 		//permission proble
 		//use G_var + WM_time to reconnect
+		vnclog.Print(LL_INTERR, VNCLOG("PostAddNewClient failed\n"));
 		if (port==1111 && ipaddress==1111) G_1111=true;
 		return FALSE;
 	}

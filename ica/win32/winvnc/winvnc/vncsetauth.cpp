@@ -612,7 +612,14 @@ vncSetAuth::DialogProc(HWND hwnd,
 				if (!_this->myIniFile.IsWritable() || vncService::RunningAsService() )
 				{
 					// We can't write to the ini file , Vista in service mode
-					Copy_to_Temp(_this->m_Tempfile);
+					if (!Copy_to_Temp(_this->m_Tempfile))
+					{
+						// temp is not writable, we need to close else
+						// ini get overwritten by default
+						EndDialog(hwnd, TRUE);
+						_this->m_dlgvisible = FALSE;
+						return TRUE;
+					}
 					_this->myIniFile.IniFileSetTemp(_this->m_Tempfile);
 					use_uac=true;
 				}

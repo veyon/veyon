@@ -130,7 +130,7 @@ if (!myIniFile_Out.WriteInt("admin", "UseRegistry", BUseRegistry))
 		//error
 		char temp[10];
 		DWORD error=GetLastError();
-		MessageBox(NULL,"Permission denied:Uncheck [_] Protect my computer... in run as dialog" ,myIniFile_Out.myInifile,MB_ICONERROR);
+		MessageBox(NULL,"Permission denied:Uncheck [_] Protect my computer... in run as dialog or use user with write permission." ,myIniFile_Out.myInifile,MB_ICONERROR);
 }
 
 MSLogonRequired=myIniFile_In.ReadInt("admin", "MSLogonRequired", false);

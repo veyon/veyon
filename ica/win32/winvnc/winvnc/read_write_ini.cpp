@@ -1,7 +1,7 @@
 
 #include "inifile.h"
 
-void do_copy (IniFile& myIniFile_In, IniFile& myIniFile_Out)
+bool do_copy (IniFile& myIniFile_In, IniFile& myIniFile_Out)
 {
 
 TCHAR *group1=new char[150];
@@ -77,7 +77,7 @@ char path[512];
 
 LONG Primary=1;
 LONG Secundary=0;
-Beep(100,20000);
+//Beep(100,20000);
 BUseRegistry = myIniFile_In.ReadInt("admin", "UseRegistry", 0);
 if (!myIniFile_Out.WriteInt("admin", "UseRegistry", BUseRegistry))
 {
@@ -85,6 +85,7 @@ if (!myIniFile_Out.WriteInt("admin", "UseRegistry", BUseRegistry))
 		char temp[10];
 		DWORD error=GetLastError();
 		MessageBox(NULL,myIniFile_Out.myInifile,_itoa(error,temp,10),MB_ICONERROR);
+		return false;
 }
 
 MSLogonRequired=myIniFile_In.ReadInt("admin", "MSLogonRequired", false);
@@ -241,26 +242,27 @@ myIniFile_Out.WriteInt("poll", "EnableVirtual", Virtual);
 
 myIniFile_Out.WriteInt("poll", "SingleWindow", SingleWindow);
 myIniFile_Out.WriteString("poll", "SingleWindowName", SingleWindowName);
+return true;
 }
 
-void Copy_to_Temp(char *tempfile)
+bool Copy_to_Temp(char *tempfile)
 {
 IniFile myIniFile_In;
 IniFile myIniFile_Out;
 myIniFile_In.IniFileSetSecure();
 myIniFile_Out.IniFileSetTemp(tempfile);
 
-do_copy(myIniFile_In, myIniFile_Out);
+return do_copy(myIniFile_In, myIniFile_Out);
 
 }
 
 
-void Copy_to_Secure_from_temp(char *tempfile)
+bool Copy_to_Secure_from_temp(char *tempfile)
 {
 IniFile myIniFile_In;
 IniFile myIniFile_Out;
 myIniFile_Out.IniFileSetSecure();
 myIniFile_In.IniFileSetTemp(tempfile);
 
-do_copy(myIniFile_In, myIniFile_Out);
+return do_copy(myIniFile_In, myIniFile_Out);
 }

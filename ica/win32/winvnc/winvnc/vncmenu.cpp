@@ -487,7 +487,17 @@ vncMenu::FlashTrayIcon(BOOL flash)
 // Get the local ip addresses as a human-readable string.
 // If more than one, then with \n between them.
 // If not available, then gets a message to that effect.
+// The ip address is not likely to change while running
+// this function is an overhead, each time calculating the ip
+// the ip is just used in the tray tip
+char old_buffer[512];
+char old_buflen=0;
 void GetIPAddrString(char *buffer, int buflen) {
+	if (old_buflen!=0)
+	{
+		strcpy(buffer,old_buffer);
+		return;
+	}
     char namebuf[256];
 
     if (gethostname(namebuf, 256) != 0) {
@@ -512,6 +522,11 @@ void GetIPAddrString(char *buffer, int buflen) {
 		if (ph->h_addr_list[i+1] != 0)
 			strncat(buffer, ", ", (buflen-1)-strlen(buffer));
     }
+	if (strlen(buffer)<512) // just in case it would be bigger then our buffer
+	{
+	old_buflen=strlen(buffer);
+	strncpy(old_buffer,buffer,strlen(buffer));
+	}
 }
 
 void
