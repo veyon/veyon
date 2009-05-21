@@ -34,7 +34,9 @@
 
 
 class Client;
-
+#ifndef ITALC3
+class MainWindow;
+#endif
 
 
 class AboutDialog : public QDialog, private Ui::About
@@ -50,12 +52,19 @@ class ClientSettingsDialog : public QDialog, private Ui::ClientSettings
 {
 	Q_OBJECT
 public:
-	ClientSettingsDialog( Client * _c, const QString & _classroom );
+	ClientSettingsDialog( Client * _c,
+#ifndef ITALC3
+				MainWindow * _main_window,
+#endif
+				const QString & _classroom );
 
 private:
 	virtual void accept( void );
 
 	Client * m_client;
+#ifndef ITALC3
+	MainWindow * m_mainWindow;
+#endif
 
 } ;
 

@@ -113,6 +113,21 @@ ToolButton::~ToolButton()
 
 
 
+#ifndef ITALC3
+void ToolButton::setIconOnlyMode( bool _enabled )
+{
+        s_iconOnlyMode = _enabled;
+        QList<ToolButton *> tbl = QApplication::activeWindow()->findChildren<ToolButton *>();
+        foreach( ToolButton * tb, tbl )
+        {
+                tb->updateSize();
+        }
+}
+#endif
+
+
+
+
 void ToolButton::addTo( QToolBar * _tb )
 {
 	QAction * a = _tb->addWidget( this );

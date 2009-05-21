@@ -33,22 +33,23 @@
 #include <QtGui/QSystemTrayIcon>
 #include <QtGui/QToolButton>
 
-#include "client.h"
-#include "snapshot_list.h"
+#include "Client.h"
+#include "SnapshotList.h"
 
 
 class QMenu;
 class QScrollArea;
 class QSplashScreen;
 class QSplitter;
-class classroomManager;
-class configWidget;
-class toolBar;
-class italcSideBar;
-class isdConnection;
-class overviewWidget;
-class remoteControlWidget;
-class userList;
+class ClassroomManager;
+class ConfigWidget;
+class ToolBar;
+class ItalcSideBar;
+class OverviewWidget;
+class RemoteControlWidget;
+class UserList;
+class ItalcCoreConnection;
+class ItalcVncConnection;
 
 extern QString __default_domain;
 extern int __demo_quality;
@@ -61,7 +62,7 @@ class mainWindowUpdateThread : public QThread
 {
 	Q_OBJECT
 public:
-	mainWindowUpdateThread( mainWindow * _main_window );
+	mainWindowUpdateThread( MainWindow * _main_window );
 
 private slots:
 	void update( void );
@@ -69,7 +70,7 @@ private slots:
 private:
 	virtual void run( void );
 
-	mainWindow * m_mainWindow;
+	MainWindow * m_mainWindow;
 
 } ;
 
@@ -90,30 +91,30 @@ private:
 
 	QMenu * m_contextMenu;
 
-	friend class mainWindow;
+	friend class MainWindow;
 
 } ;
 
 
 
-class mainWindow : public QMainWindow
+class MainWindow : public QMainWindow
 {
 	Q_OBJECT
 public:
-	mainWindow( int _screen );
-	virtual ~mainWindow();
+	MainWindow( int _screen );
+	virtual ~MainWindow();
 
 	QWidget * workspace( void )
 	{
 		return( m_workspace );
 	}
 
-	classroomManager * getClassroomManager( void )
+	ClassroomManager * getClassroomManager( void )
 	{
 		return( m_classroomManager );
 	}
 
-	isdConnection * localISD( void )
+	ItalcCoreConnection * localISD( void )
 	{
 		return( m_localISD );
 	}
@@ -128,12 +129,12 @@ public:
 		}
 	}
 
-	inline toolBar * getToolBar( void )
+	inline ToolBar * getToolBar( void )
 	{
 		return( m_toolBar );
 	}
 
-	inline italcSideBar * getSideBar( void )
+	inline ItalcSideBar * getSideBar( void )
 	{
 		return( m_sideBar );
 	}
@@ -176,19 +177,19 @@ private slots:
 
 	void mapOverview( void )
 	{
-		changeGlobalClientMode( client::Mode_Overview );
+		changeGlobalClientMode( Client::Mode_Overview );
 	}
 	void mapFullscreenDemo( void )
 	{
-		changeGlobalClientMode( client::Mode_FullscreenDemo );
+		changeGlobalClientMode( Client::Mode_FullscreenDemo );
 	}
 	void mapWindowDemo( void )
 	{
-		changeGlobalClientMode( client::Mode_WindowDemo );
+		changeGlobalClientMode( Client::Mode_WindowDemo );
 	}
 	void mapScreenLock( void )
 	{
-		changeGlobalClientMode( client::Mode_Locked );
+		changeGlobalClientMode( Client::Mode_Locked );
 	}
 
 
@@ -201,35 +202,35 @@ private:
 
 	QButtonGroup * m_modeGroup;
 
-	toolBar * m_toolBar;
+	ToolBar * m_toolBar;
 
 	QList<QAction *> m_sysTrayActions;
 
 	QSplitter * m_splitter;
 
 	QWidget * m_sideBarWidget;
-	italcSideBar * m_sideBar;
+	ItalcSideBar * m_sideBar;
 	int m_openedTabInSideBar;
 
 
-	isdConnection * m_localISD;
+	ItalcCoreConnection * m_localISD;
 
 
 	QReadWriteLock m_rctrlLock;
-	remoteControlWidget * m_remoteControlWidget;
+	RemoteControlWidget * m_remoteControlWidget;
 	bool m_stopDemo;
 	int m_remoteControlScreen;
 
-	overviewWidget * m_overviewWidget;
-	classroomManager * m_classroomManager;
-	userList * m_userList;
-	snapshotList * m_snapshotList;
-	configWidget * m_configWidget;
+	OverviewWidget * m_overviewWidget;
+	ClassroomManager * m_classroomManager;
+	UserList * m_userList;
+	SnapshotList * m_snapshotList;
+	ConfigWidget * m_configWidget;
 
 	static bool s_atExit;
 
 	friend class mainWindowUpdateThread;
-	friend class classroomManager;
+	friend class ClassroomManager;
 
 } ;
 

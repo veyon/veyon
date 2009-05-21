@@ -119,7 +119,7 @@ ConfigWidget::ConfigWidget( MainWindow * _main_window, QWidget * _parent ) :
 					SLOT( demoQualitySelected( int ) ) );
 
 
-	roleCB->setCurrentIndex( __role - 1 );
+	roleCB->setCurrentIndex( ItalcCore::role - 1 );
 
 	connect( roleCB, SIGNAL( activated( int ) ), this,
 						SLOT( roleSelected( int ) ) );
