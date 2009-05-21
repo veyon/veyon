@@ -1,7 +1,7 @@
 /*
- * snapshot_list.h - declaration of snapshot-list for side-bar
+ * SnapshotList.h - declaration of snapshot-list for side-bar
  *
- * Copyright (c) 2004-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -28,8 +28,8 @@
 
 #include <QtGui/QWidget>
 
-#include "side_bar_widget.h"
-#include "ui_snapshots.h"
+#include "SideBarWidget.h"
+#include "ui_Snapshots.h"
 
 
 class QLabel;
@@ -37,12 +37,12 @@ class QPushButton;
 class QListWidget;
 
 
-class snapshotList : public sideBarWidget, private Ui::snapshots
+class SnapshotList : public SideBarWidget, private Ui::Snapshots
 {
 	Q_OBJECT
 public:
-	snapshotList( mainWindow * _main_window, QWidget * _parent );
-	virtual ~snapshotList();
+	SnapshotList( MainWindow * _main_window, QWidget * _parent );
+	virtual ~SnapshotList();
 
 
 public slots:

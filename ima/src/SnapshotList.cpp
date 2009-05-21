@@ -1,7 +1,7 @@
 /*
  * snapshot_list.cpp - implementation of snapshot-list for side-bar
  *
- * Copyright (c) 2004-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -28,14 +28,14 @@
 #include <QtGui/QScrollArea>
 
 
-#include "snapshot_list.h"
-#include "client.h"
-#include "local_system.h"
+#include "SnapshotList.h"
+#include "Client.h"
+#include "LocalSystem.h"
 
 
 
-snapshotList::snapshotList( mainWindow * _main_window, QWidget * _parent ) :
-	sideBarWidget( QPixmap( ":/resources/snapshot.png" ),
+SnapshotList::SnapshotList( MainWindow * _main_window, QWidget * _parent ) :
+	SideBarWidget( QPixmap( ":/resources/snapshot.png" ),
 			tr( "Snapshots" ),
 			tr( "Simply manage the snapshots you made using this "
 				"workspace." ),
@@ -49,19 +49,19 @@ snapshotList::snapshotList( mainWindow * _main_window, QWidget * _parent ) :
 	connect( list, SIGNAL( itemActivated( QListWidgetItem * ) ), this,
 			SLOT( snapshotActivated( QListWidgetItem * ) ) );
 
-	previewLbl->setScaledContents( TRUE );
+	previewLbl->setScaledContents( true );
 
 	QFont f = userDescLbl->font();
-	f.setBold( TRUE );
-	f.setItalic( TRUE );
+	f.setBold( true );
+	f.setItalic( true );
 
 	userDescLbl->setFont( f );
 	dateDescLbl->setFont( f );
 	timeDescLbl->setFont( f );
 	hostDescLbl->setFont( f );
 
-	f.setBold( FALSE );
-	f.setItalic( FALSE );
+	f.setBold( false );
+	f.setItalic( false );
 
 	connect( showBtn, SIGNAL( clicked() ), this,
 						SLOT( showSnapshot() ) );
@@ -76,7 +76,7 @@ snapshotList::snapshotList( mainWindow * _main_window, QWidget * _parent ) :
 
 
 
-snapshotList::~snapshotList()
+SnapshotList::~SnapshotList()
 {
 }
 
@@ -84,9 +84,9 @@ snapshotList::~snapshotList()
 
 
 
-void snapshotList::snapshotSelected( const QString & _s )
+void SnapshotList::snapshotSelected( const QString & _s )
 {
-	previewLbl->setPixmap( localSystem::snapshotDir() + _s );
+	previewLbl->setPixmap( LocalSystem::snapshotDir() + _s );
 	previewLbl->setFixedHeight( previewLbl->width() * 3 / 4 );
 	userLbl->setText( _s.section( '_', 0, 0 ) );
  	hostLbl->setText( _s.section( '_', 1, 1 ) );
@@ -99,7 +99,7 @@ void snapshotList::snapshotSelected( const QString & _s )
 
 
 
-void snapshotList::snapshotDoubleClicked( const QString & _s )
+void SnapshotList::snapshotDoubleClicked( const QString & _s )
 {
 	// maybe the user clicked on "show snapshot" and selected no
 	// snapshot...
@@ -109,7 +109,7 @@ void snapshotList::snapshotDoubleClicked( const QString & _s )
 	}
 
 	QLabel * img_label = new QLabel;
-	img_label->setPixmap( localSystem::snapshotDir() + _s );
+	img_label->setPixmap( LocalSystem::snapshotDir() + _s );
 	if( img_label->pixmap() != NULL )
 	{
 		img_label->setFixedSize( img_label->pixmap()->width(),
@@ -117,7 +117,7 @@ void snapshotList::snapshotDoubleClicked( const QString & _s )
 	}
 
 	QScrollArea * sa = new QScrollArea;
-	sa->setAttribute( Qt::WA_DeleteOnClose, TRUE );
+	sa->setAttribute( Qt::WA_DeleteOnClose, true );
 	sa->move( 0, 0 );
 	sa->setWidget( img_label );
 	sa->setWindowTitle( _s );
@@ -127,7 +127,7 @@ void snapshotList::snapshotDoubleClicked( const QString & _s )
 
 
 
-void snapshotList::showSnapshot( void )
+void SnapshotList::showSnapshot( void )
 {
 	if( list->currentItem() )
 	{
@@ -138,7 +138,7 @@ void snapshotList::showSnapshot( void )
 
 
 
-void snapshotList::deleteSnapshot( void )
+void SnapshotList::deleteSnapshot( void )
 {
 	if( !list->currentItem() )
 	{
@@ -154,7 +154,7 @@ void snapshotList::deleteSnapshot( void )
 		return;
 	}
 
-	QFile( localSystem::snapshotDir() + s ).remove();
+	QFile( LocalSystem::snapshotDir() + s ).remove();
 
 	reloadList();
 }
@@ -162,9 +162,9 @@ void snapshotList::deleteSnapshot( void )
 
 
 
-void snapshotList::reloadList( void )
+void SnapshotList::reloadList( void )
 {
-	QDir sdir( localSystem::snapshotDir(), "*.png",
+	QDir sdir( LocalSystem::snapshotDir(), "*.png",
 						QDir::Name | QDir::IgnoreCase,
 						QDir::Files | QDir::Readable );
 
