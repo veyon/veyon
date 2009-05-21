@@ -235,9 +235,9 @@ void ItalcCoreConnection::collectFiles( const QString & _nfilter )
 
 
 
-void ItalcCoreConnection::wakeOtherComputer( const QString & _mac )
+void ItalcCoreConnection::powerOnComputer( const QString & _mac )
 {
-	enqueueMessage( ItalcCore::Msg( ItalcCore::WakeOtherComputer ).
+	enqueueMessage( ItalcCore::Msg( ItalcCore::PowerOnComputer ).
 						addArg( "mac", _mac ) );
 }
 

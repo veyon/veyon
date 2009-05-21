@@ -208,7 +208,7 @@ namespace ItalcCore
 	extern IC_DllExport const Command DisplayTextMessage;
 	extern IC_DllExport const Command AccessDialog;
 	extern IC_DllExport const Command ExecCmds;
-	extern IC_DllExport const Command WakeOtherComputer;
+	extern IC_DllExport const Command PowerOnComputer;
 	extern IC_DllExport const Command PowerDownComputer;
 	extern IC_DllExport const Command RestartComputer;
 	extern IC_DllExport const Command DisableLocalInputs;

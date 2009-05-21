@@ -69,7 +69,7 @@ public:
 	void sendFile( const QString & _fname );
 	void collectFiles( const QString & _nfilter );
 
-	void wakeOtherComputer( const QString & _mac );
+	void powerOnComputer( const QString & _mac );
 	void powerDownComputer( void );
 	void restartComputer( void );
 	void disableLocalInputs( bool _disabled );
