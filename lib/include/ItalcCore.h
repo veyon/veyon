@@ -298,7 +298,7 @@ namespace ItalcCore
 	} ;
 	typedef UserRoles UserRole;
 
-	bool initAuthentication( void );
+	bool IC_DllExport initAuthentication( void );
 
 
 	extern IC_DllExport UserRoles role;
