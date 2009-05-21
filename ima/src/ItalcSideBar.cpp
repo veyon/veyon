@@ -1,7 +1,7 @@
 /*
- * italc_side_bar.cpp - implementation iTALC's side-bar
+ * ItalcSideBar.cpp - implementation iTALC's side-bar
  *
- * Copyright (c) 2004-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -23,8 +23,8 @@
  */
 
 
-#include "italc_side_bar.h"
-#include "fast_qimage.h"
+#include "ItalcSideBar.h"
+#include "FastQImage.h"
 
 #include <QtGui/QPainter>
 #include <QtGui/QMenu>
@@ -34,12 +34,12 @@
 
 
 
-italcSideBar::italcSideBar( KMultiTabBarStyle _style, QWidget * _parent,
+ItalcSideBar::ItalcSideBar( KMultiTabBarStyle _style, QWidget * _parent,
 							QWidget * _splitter ) :
 	KMultiTabBar( Left, _parent ),
 	m_openedTab( -1 )
 {
-	setAttribute( Qt::WA_OpaquePaintEvent, TRUE );
+	setAttribute( Qt::WA_OpaquePaintEvent, true );
 	setStyle( _style );
 	m_tabWidgetParent = new QWidget( _splitter );
 	m_tabWidgetParent->hide();
@@ -51,14 +51,14 @@ italcSideBar::italcSideBar( KMultiTabBarStyle _style, QWidget * _parent,
 
 
 
-italcSideBar::~italcSideBar()
+ItalcSideBar::~ItalcSideBar()
 {
 }
 
 
 
 
-void italcSideBar::setTab( const int _id, const bool _state )
+void ItalcSideBar::setTab( const int _id, const bool _state )
 {
 	if( m_widgets[_id] != NULL )
 	{
@@ -80,7 +80,7 @@ void italcSideBar::setTab( const int _id, const bool _state )
 
 
 
-int italcSideBar::appendTab( sideBarWidget * _sbw, const int _id )
+int ItalcSideBar::appendTab( SideBarWidget * _sbw, const int _id )
 {
 	int ret = KMultiTabBar::appendTab( _sbw->icon(), _id,
 						_sbw->title(),
@@ -96,7 +96,7 @@ int italcSideBar::appendTab( sideBarWidget * _sbw, const int _id )
 
 
 
-void italcSideBar::tabClicked( int _id )
+void ItalcSideBar::tabClicked( int _id )
 {
 	// disable all other tabbar-buttons 
 	QMap<int, QWidget *>::Iterator it;
@@ -104,7 +104,7 @@ void italcSideBar::tabClicked( int _id )
 	{
 		if( it.key() != _id )
 		{
-			setTab( it.key(), FALSE );
+			setTab( it.key(), false );
 		}
 	}
 
@@ -123,7 +123,7 @@ void italcSideBar::tabClicked( int _id )
 
 
 
-void italcSideBar::paintEvent( QPaintEvent * _pe )
+void ItalcSideBar::paintEvent( QPaintEvent * _pe )
 {
 	QWidget::paintEvent( _pe );
 
@@ -134,10 +134,10 @@ void italcSideBar::paintEvent( QPaintEvent * _pe )
 	p.fillRect( 0, 0, width(), height(), linearGrad  );
 
 	p.rotate( 270 );
-	p.drawImage( -height()+3, width()-22, fastQImage(
+	p.drawImage( -height()+3, width()-22, FastQImage(
 			QImage( ":/resources/logo.png" ) ).scaled( 24, 24 ) );
 	QFont f = p.font();
-	f.setBold( TRUE );
+	f.setBold( true );
 	f.setPointSize( 15 );
 	p.setFont( f );
 	p.setPen( QColor( 255, 216, 0 ) );
@@ -148,13 +148,13 @@ void italcSideBar::paintEvent( QPaintEvent * _pe )
 
 
 
-void italcSideBar::contextMenuEvent( QContextMenuEvent * _e )
+void ItalcSideBar::contextMenuEvent( QContextMenuEvent * _e )
 {
 	QMenu m( this );
 	foreach( KMultiTabBarTab * tab, tabs() )
 	{
 		QAction * ma = m.addAction( tab->text() );
-		ma->setCheckable( TRUE );
+		ma->setCheckable( true );
 		ma->setChecked( tab->isTabVisible() );
 	}
 	connect( &m, SIGNAL( triggered( QAction * ) ),
@@ -165,27 +165,27 @@ void italcSideBar::contextMenuEvent( QContextMenuEvent * _e )
 
 
 
-void italcSideBar::toggleButton( QAction * _a )
+void ItalcSideBar::toggleButton( QAction * _a )
 {
 	foreach( KMultiTabBarTab * tab, tabs() )
 	{
 		if( tab->text() == _a->text() )
 		{
-			if (tab->isTabVisible())
+			if( tab->isTabVisible() )
 			{
-				tab->setTabVisible(FALSE);
+				tab->setTabVisible( false );
 				if ( m_openedTab == tab->id() )
 				{
-					setTab( tab->id(), FALSE );
+					setTab( tab->id(), false );
 					m_tabWidgetParent->hide();
 				}
 			}
 			else
 			{
-				tab->setTabVisible(TRUE);
+				tab->setTabVisible( true );
 				if ( m_openedTab == -1 )
 				{
-					setTab( tab->id(), TRUE );
+					setTab( tab->id(), true );
 				}
 			}
 			break;

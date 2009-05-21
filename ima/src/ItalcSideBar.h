@@ -1,7 +1,7 @@
 /*
- * italc_side_bar.h - header iTALC's side-bar
+ * ItalcSideBar.h - header of iTALC's side-bar
  *
- * Copyright (c) 2004-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -30,31 +30,31 @@
 #include <QtCore/QMap>
 #include <QtGui/QBoxLayout>
 
-#include "kmultitabbar.h"
-#include "side_bar_widget.h"
+#include "KMultiTabBar.h"
+#include "SideBarWidget.h"
 
 
-class italcSideBar : public KMultiTabBar
+class ItalcSideBar : public KMultiTabBar
 {
 	Q_OBJECT
 public:
-	italcSideBar( KMultiTabBarStyle _style, QWidget * _parent,
+	ItalcSideBar( KMultiTabBarStyle _style, QWidget * _parent,
 							QWidget * _splitter );
 
-	virtual ~italcSideBar();
+	virtual ~ItalcSideBar();
 
 	inline int openedTab( void ) const
 	{
-		return( m_openedTab );
+		return m_openedTab;
 	}
 
 	virtual void setTab( const int _id, const bool _state );
 
-	int appendTab( sideBarWidget * _sbw, const int _id );
+	int appendTab( SideBarWidget * _sbw, const int _id );
 
 	inline QWidget * tabWidgetParent( void )
 	{
-		return( m_tabWidgetParent );
+		return m_tabWidgetParent;
 	}
 
 
