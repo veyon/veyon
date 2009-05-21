@@ -1,7 +1,7 @@
 /*
- * side_bar_widget.h - base-class for all side-bar-widgets
+ * SideBarWidget.h - base-class for all side-bar-widgets
  *
- * Copyright (c) 2004-2006 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -30,30 +30,30 @@
 #include <QtGui/QPixmap>
 
 
-class mainWindow;
+class MainWindow;
 
 
-class sideBarWidget : public QWidget
+class SideBarWidget : public QWidget
 {
 public:
-	sideBarWidget( const QPixmap & _icon, const QString & _title,
+	SideBarWidget( const QPixmap & _icon, const QString & _title,
 			const QString & _description,
-				mainWindow * _main_window, QWidget * _parent );
-	virtual ~sideBarWidget();
+				MainWindow * _main_window, QWidget * _parent );
+	virtual ~SideBarWidget();
 
 	inline const QPixmap & icon( void ) const
 	{
-		return( m_icon );
+		return m_icon;
 	}
 
 	inline const QString & title( void ) const
 	{
-		return( m_title );
+		return m_title;
 	}
 
 	inline const QString & description( void ) const
 	{
-		return( m_description );
+		return m_description;
 	}
 
 
@@ -63,17 +63,17 @@ protected:
 
 	inline QWidget * contentParent( void )
 	{
-		return( m_contents );
+		return m_contents;
 	}
 
-	inline mainWindow * getMainWindow( void )
+	inline MainWindow * getMainWindow( void )
 	{
-		return( m_mainWindow );
+		return m_mainWindow;
 	}
 
 
 private:
-	mainWindow * m_mainWindow;
+	MainWindow * m_mainWindow;
 	QWidget * m_contents;
 	QPixmap m_icon;
 	QString m_title;

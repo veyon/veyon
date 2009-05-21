@@ -1,7 +1,7 @@
 /*
- * side_bar_widget.cpp - implementation of base-widget for side-bar
+ * SideBarWidget.cpp - implementation of SideBarWidget
  *
- * Copyright (c) 2004-2006 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -31,15 +31,15 @@
 #include <QtGui/QLayout>
 
 
-#include "side_bar_widget.h"
-#include "fast_qimage.h"
+#include "SideBarWidget.h"
+#include "FastQImage.h"
 
 
 
-sideBarWidget::sideBarWidget( const QPixmap & _icon,
+SideBarWidget::SideBarWidget( const QPixmap & _icon,
 				const QString & _title,
 				const QString & _description,
-				mainWindow * _main_window, QWidget * _parent ) :
+				MainWindow * _main_window, QWidget * _parent ) :
 	QWidget( _parent ),
 	m_mainWindow( _main_window ),
 	m_icon( _icon ),
@@ -58,14 +58,14 @@ sideBarWidget::sideBarWidget( const QPixmap & _icon,
 
 
 
-sideBarWidget::~sideBarWidget()
+SideBarWidget::~SideBarWidget()
 {
 }
 
 
 
 
-void sideBarWidget::paintEvent( QPaintEvent * )
+void SideBarWidget::paintEvent( QPaintEvent * )
 {
 	const int TITLE_FONT_HEIGHT = 16;
 
@@ -73,14 +73,14 @@ void sideBarWidget::paintEvent( QPaintEvent * )
 	p.fillRect( rect(), QColor( 255, 255, 255 ) );
 	p.fillRect( 0, 0, width(), 27+32, QColor( 0, 64, 224 ) );
 
-	p.setRenderHint( QPainter::Antialiasing, TRUE );
+	p.setRenderHint( QPainter::Antialiasing, true );
 	p.setPen( Qt::white );
 	p.setBrush( Qt::white );
 	p.drawRoundRect( QRect( 0, 27, 64, 64 ), 1000, 1000 );
 	p.fillRect( 32, 27, width()-32, 32, Qt::white );
 
 	QFont f;
-	f.setBold( TRUE );
+	f.setBold( true );
 	f.setPixelSize( TITLE_FONT_HEIGHT );
 
 	p.setFont( f );
@@ -90,13 +90,13 @@ void sideBarWidget::paintEvent( QPaintEvent * )
 	p.drawText( tx, ty, m_title );
 	//p.drawLine( tx, ty + 4, width() - 4, ty + 4 );
 
-	p.drawImage( 2, 2, fastQImage( m_icon ).scaled( 48, 48 ) );
+	p.drawImage( 2, 2, FastQImage( m_icon ).scaled( 48, 48 ) );
 }
 
 
 
 
-void sideBarWidget::resizeEvent( QResizeEvent * )
+void SideBarWidget::resizeEvent( QResizeEvent * )
 {
 	const int MARGIN = 6;
 	m_contents->setGeometry( MARGIN, 40 + MARGIN, width() - MARGIN * 2,
