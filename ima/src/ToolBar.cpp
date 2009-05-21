@@ -1,7 +1,7 @@
 /*
- *  tool_bar.cpp - extended toolbar
+ *  ToolBar.cpp - visually advanced toolbar
  *
- *  Copyright (c) 2007-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ *  Copyright (c) 2007-2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *  
  *  This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -27,17 +27,17 @@
 #include <QtGui/QPainter>
 #include <QtGui/QPaintEvent>
 
-#include "tool_bar.h"
-#include "tool_button.h"
+#include "ToolBar.h"
+#include "ToolButton.h"
 
 
 
 
 // toolbar for remote-control-widget
-toolBar::toolBar( const QString & _title, QWidget * _parent ) :
+ToolBar::ToolBar( const QString & _title, QWidget * _parent ) :
 	QToolBar( _title, _parent )
 {
-	setMovable( FALSE );
+	setMovable( false );
 
 	move( 0, 0 );
 	show();
@@ -55,7 +55,7 @@ toolBar::toolBar( const QString & _title, QWidget * _parent ) :
 	p.fillRect( QRect( 0, 0, 100, height() ), lingrad );
 	p.end();
 
-	setAutoFillBackground( TRUE );
+	setAutoFillBackground( true );
 	QPalette pal = palette();
 	pal.setBrush( backgroundRole(), bg );
 	pal.setBrush( foregroundRole(), bg );
@@ -65,20 +65,20 @@ toolBar::toolBar( const QString & _title, QWidget * _parent ) :
 
 
 
-toolBar::~toolBar()
+ToolBar::~ToolBar()
 {
 }
 
 
 
 
-void toolBar::contextMenuEvent( QContextMenuEvent * _e )
+void ToolBar::contextMenuEvent( QContextMenuEvent * _e )
 {
 	QMenu m( this );
 	foreach( QAction * a, actions() )
 	{
 		QAction * ma = m.addAction( a->text() );
-		ma->setCheckable( TRUE );
+		ma->setCheckable( true );
 		ma->setChecked( a->isVisible() );
 	}
 	connect( &m, SIGNAL( triggered( QAction * ) ),
@@ -89,7 +89,7 @@ void toolBar::contextMenuEvent( QContextMenuEvent * _e )
 
 
 
-void toolBar::paintEvent( QPaintEvent * _pe )
+void ToolBar::paintEvent( QPaintEvent * _pe )
 {
 	QPainter p( this );
 	p.setPen( Qt::black );
@@ -99,7 +99,7 @@ void toolBar::paintEvent( QPaintEvent * _pe )
 
 
 
-void toolBar::toggleButton( QAction * _a )
+void ToolBar::toggleButton( QAction * _a )
 {
 	foreach( QAction * a, actions() )
 	{
