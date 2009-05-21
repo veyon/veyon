@@ -1,7 +1,7 @@
 /*
- * config_widget.cpp - implementation of configuration-widget for side-bar
+ * ConfigWidget.cpp - implementation of configuration-widget for side-bar
  *
- * Copyright (c) 2004-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -22,7 +22,6 @@
  *
  */
 
-
 #include <QtGui/QLabel>
 #include <QtGui/QLayout>
 #include <QtGui/QCheckBox>
@@ -30,17 +29,19 @@
 #include <QtGui/QMessageBox>
 #include <QtNetwork/QHostInfo>
 
+#include "ConfigWidget.h"
+#include "ClassroomManager.h"
+#include "ItalcCore.h"
+#include "MainWindow.h"
+#include "ToolButton.h"
+#ifdef ITALC3
+#include "MasterCore.h"
+#include "PersonalConfig.h"
+#endif
 
-#include "config_widget.h"
-#include "classroom_manager.h"
-#include "main_window.h"
-#include "tool_button.h"
-#include "isd_base.h"
 
-
-
-configWidget::configWidget( mainWindow * _main_window, QWidget * _parent ) :
-	sideBarWidget( QPixmap( ":/resources/config.png" ),
+ConfigWidget::ConfigWidget( MainWindow * _main_window, QWidget * _parent ) :
+	SideBarWidget( QPixmap( ":/resources/config.png" ),
 			tr( "Your iTALC-configuration" ),
 			tr( "In this workspace you can customize iTALC to "
 				"fit your needs." ),
@@ -49,7 +50,62 @@ configWidget::configWidget( mainWindow * _main_window, QWidget * _parent ) :
 	setupUi( contentParent() );
 	contentParent()->layout()->addWidget( layoutWidget );
 
+#ifdef ITALC3
 
+#define LOAD_AND_CONNECT_PROPERTY(property,type,widget,setvalue,signal,slot) \
+		widget->setvalue( MasterCore::personalConfig->property() );  \
+		connect( widget, SIGNAL(signal(type)),                       \
+			MasterCore::personalConfig, SLOT(slot(type)) );
+
+	LOAD_AND_CONNECT_PROPERTY(clientUpdateInterval,
+					int,
+					updateIntervalSB,
+					setValue,
+					valueChanged,
+					setClientUpdateInterval);
+
+	LOAD_AND_CONNECT_PROPERTY(demoQuality,
+					int,
+					demoQualityCB,
+					setCurrentIndex,
+					activated,
+					setDemoQuality);
+
+	LOAD_AND_CONNECT_PROPERTY(defaultRole,
+					int,
+					roleCB,
+					setCurrentIndex,
+					activated,
+					setDefaultRole);
+
+	LOAD_AND_CONNECT_PROPERTY(defaultDomain,
+					const QString &,
+					domainEdit,
+					setText,
+					textChanged,
+					setDefaultDomain);
+
+	LOAD_AND_CONNECT_PROPERTY(clientDoubleClickAction,
+					int,
+					clientDoubleClickActionCB,
+					setCurrentIndex,
+					activated,
+					setClientDoubleClickAction);
+
+	LOAD_AND_CONNECT_PROPERTY(toolButtonIconOnlyMode,
+					bool,
+					iconOnlyToolButtons,
+					setChecked,
+					toggled,
+					setToolButtonIconOnlyMode);
+
+	LOAD_AND_CONNECT_PROPERTY(noToolTips,
+					bool,
+					balloonToolTips,
+					setChecked,
+					toggled,
+					setNoToolTips);
+#else
 	connect( updateIntervalSB, SIGNAL( valueChanged( int ) ),
 			getMainWindow()->getClassroomManager(),
 					SLOT( updateIntervalChanged( int ) ) );
@@ -69,11 +125,11 @@ configWidget::configWidget( mainWindow * _main_window, QWidget * _parent ) :
 						SLOT( roleSelected( int ) ) );
 
 
-	balloonToolTips->setChecked( toolButton::toolTipsDisabled() );
+	balloonToolTips->setChecked( ToolButton::toolTipsDisabled() );
 	connect( balloonToolTips, SIGNAL( toggled( bool ) ),
 			this, SLOT( toggleToolButtonTips( bool ) ) );
 
-	iconOnlyToolButtons->setChecked( toolButton::iconOnlyMode() );
+	iconOnlyToolButtons->setChecked( ToolButton::iconOnlyMode() );
 	connect( iconOnlyToolButtons, SIGNAL( toggled( bool ) ),
 			this, SLOT( toggleIconOnlyToolButtons( bool ) ) );
 
@@ -86,19 +142,29 @@ configWidget::configWidget( mainWindow * _main_window, QWidget * _parent ) :
 	connect( clientDoubleClickActionCB, SIGNAL( activated( int ) ),
 			getMainWindow()->getClassroomManager(),
 				SLOT( setClientDblClickAction( int ) ) );
+#endif
 }
 
 
 
 
-configWidget::~configWidget()
+ConfigWidget::~ConfigWidget()
 {
 }
 
 
 
 
-void configWidget::demoQualitySelected( int _q )
+void ConfigWidget::roleSelected( int _role )
+{
+	ItalcCore::role = static_cast<ItalcCore::UserRole>( _role );
+}
+
+
+
+
+#ifndef ITALC3
+void ConfigWidget::demoQualitySelected( int _q )
 {
 	__demo_quality = _q;
 }
@@ -106,33 +172,29 @@ void configWidget::demoQualitySelected( int _q )
 
 
 
-void configWidget::roleSelected( int _role )
+void ConfigWidget::toggleToolButtonTips( bool _on )
 {
-	__role = static_cast<ISD::userRoles>( _role+1 );
+	ToolButton::setToolTipsDisabled( _on );
 }
 
 
 
 
-void configWidget::toggleToolButtonTips( bool _on )
+void ConfigWidget::toggleIconOnlyToolButtons( bool _on )
 {
-	toolButton::setToolTipsDisabled( _on );
+	ToolButton::setIconOnlyMode( _on );
 }
 
 
 
 
-void configWidget::toggleIconOnlyToolButtons( bool _on )
-{
-	toolButton::setIconOnlyMode( _on );
-}
-
-
-
-
-void configWidget::domainChanged( const QString & _domain )
+void ConfigWidget::domainChanged( const QString & _domain )
 {
 	__default_domain = _domain;
 }
+
+#endif
+
+
 
 

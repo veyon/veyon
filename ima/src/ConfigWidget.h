@@ -1,7 +1,7 @@
 /*
- * config_widget.h - configuration-widget for side-bar
+ * ConfigWidget.h - configuration-widget for side-bar
  *
- * Copyright (c) 2004-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -26,24 +26,26 @@
 #ifndef _CONFIG_WIDGET_H
 #define _CONFIG_WIDGET_H
 
-#include "side_bar_widget.h"
-#include "ui_config.h"
+#include "SideBarWidget.h"
+#include "ui_Config.h"
 
 
-class configWidget : public sideBarWidget, private Ui::config
+class ConfigWidget : public SideBarWidget, private Ui::Config
 {
 	Q_OBJECT
 public:
-	configWidget( mainWindow * _main_window, QWidget * _parent );
-	virtual ~configWidget();
+	ConfigWidget( MainWindow * _main_window, QWidget * _parent );
+	virtual ~ConfigWidget();
 
 
 protected slots:
-	void demoQualitySelected( int );
 	void roleSelected( int );
+#ifndef ITALC3
+	void demoQualitySelected( int );
 	void toggleToolButtonTips( bool _on );
 	void toggleIconOnlyToolButtons( bool _on );
 	void domainChanged( const QString & _domain );
+#endif
 
 } ;
 
