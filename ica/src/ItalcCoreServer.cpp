@@ -279,7 +279,7 @@ int ItalcCoreServer::processClient( socketDispatcher _sd, void * _user )
 	{
 		LocalSystem::logoutUser();
 	}
-	else if( cmd == ItalcCore::WakeOtherComputer )
+	else if( cmd == ItalcCore::PowerOnComputer )
 	{
 		LocalSystem::broadcastWOLPacket( msgIn.arg( "mac" ) );
 	}
