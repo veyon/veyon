@@ -1,7 +1,7 @@
 /*
- * local_system_ima.h - misc. platform-specific stuff
+ * LocalSystemIma.h - misc. platform-specific stuff
  *
- * Copyright (c) 2007 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2007-2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -26,9 +26,9 @@
 #ifndef _LOCAL_SYSTEM_IMA_H
 #define _LOCAL_SYSTEM_IMA_H
 
-#include "local_system.h"
+#include "LocalSystem.h"
 
-namespace localSystem
+namespace LocalSystem
 {
 	void initialize( void );
 }

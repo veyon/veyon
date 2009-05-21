@@ -1,9 +1,9 @@
 /*
- * local_system_ima.cpp - namespace localSystem, providing an interface for
- *                        transparent usage of operating-system-specific
- *                        functions
+ * LocalSystemIma.cpp - namespace localSystem, providing an interface for
+ *                      transparent usage of operating-system-specific
+ *                      functions
  *
- * Copyright (c) 2006-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -27,18 +27,18 @@
 
 #include <italcconfig.h>
 
-#include "local_system_ima.h"
+#include "LocalSystemIma.h"
 
 #include <QtCore/QDir>
 
 
-namespace localSystem
+namespace LocalSystem
 {
 
 
 void initialize( void )
 {
-	localSystem::initialize( NULL, "italc_master.log" );
+	LocalSystem::initialize( NULL, "italc_master.log" );
 
 #ifdef BUILD_WIN32
 	if( QDir( "C:\\WINDOWS" ).exists() == FALSE )
@@ -49,5 +49,5 @@ void initialize( void )
 }
 
 
-} // end of namespace localSystem
+} // end of namespace LocalSystem
 
