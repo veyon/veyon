@@ -52,7 +52,7 @@ public:
 } ;
 
 
-class ItalcVncConnection: public QThread
+class IC_DllExport ItalcVncConnection: public QThread
 {
 	Q_OBJECT
 public:
@@ -79,7 +79,7 @@ public:
 
 	inline bool isConnected( void ) const
 	{
-		return m_connected;
+		return m_connected && isRunning();
 	}
 
 	inline void setQuality( QualityLevels _q )
