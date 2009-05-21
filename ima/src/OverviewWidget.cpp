@@ -1,7 +1,7 @@
 /*
- * overview_widget.cpp - implementation of overview-widget for side-bar
+ * OverviewWidget.cpp - implementation of overview-widget for side-bar
  *
- * Copyright (c) 2004-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -27,13 +27,13 @@
 #include <QtGui/QLayout>
 #include <QtGui/QPushButton>
 
-#include "overview_widget.h"
-#include "main_window.h"
+#include "OverviewWidget.h"
+#include "MainWindow.h"
 
 
 
-overviewWidget::overviewWidget( mainWindow * _main_window, QWidget * _parent ) :
-	sideBarWidget( QPixmap( ":/resources/overview.png" ),
+OverviewWidget::OverviewWidget( MainWindow * _main_window, QWidget * _parent ) :
+	SideBarWidget( QPixmap( ":/resources/overview.png" ),
 			tr( "Overview" ),
 			tr( "Some basic information on iTALC and how to use "
 				"it." ), _main_window, _parent )
