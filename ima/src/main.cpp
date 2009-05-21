@@ -1,7 +1,7 @@
 /*
- * main.cpp - main-file for iTALC-Application
+ * main.cpp - main-file for iTALC Master Application
  *
- * Copyright (c) 2004-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -29,20 +29,25 @@
 #include <QtGui/QApplication>
 #include <QtGui/QSplashScreen>
 
-#include "main_window.h"
-#include "ivs_connection.h"
-#include "local_system_ima.h"
-#include "remote_control_widget.h"
+#ifdef ITALC3
+#include "MasterCore.h"
+#endif
+#include "MainWindow.h"
+#include "ItalcCoreConnection.h"
+#include "LocalSystemIma.h"
+#include "RemoteControlWidget.h"
 
 
 
 QSplashScreen * splashScreen = NULL;
 
+#ifndef ITALC3
 QString __default_domain;
 int __demo_quality = 0;
 
 int __ics_port = PortOffsetIVS;
 QString __ics_host = "127.0.0.1";
+#endif
 
 
 // good old main-function... initializes qt-app and starts iTALC
@@ -51,7 +56,6 @@ int main( int argc, char * * argv )
 	QApplication app( argc, argv );
 	app.connect( &app, SIGNAL( lastWindowClosed() ), SLOT( quit() ) );
 
-#if QT_VERSION >= 0x040300
 	app.setStyleSheet(
 		"QMenu { border:1px solid black; background-color: white; "
 			"background-image:url(:/resources/tray-menu-bg.png); "
@@ -67,7 +71,6 @@ int main( int argc, char * * argv )
 		"QMenu::item:disabled { color: white;  margin:0px; "
 			"background-color: rgba(0,0,0,192); font-size:14px;"
 			"font-weight:bold; padding: 4px 32px 4px 20px; }" );
-#endif
 
 	// load translations
 	QString loc =  QLocale::system().name().toLower();
@@ -93,12 +96,13 @@ int main( int argc, char * * argv )
 	qRegisterMetaType<quint16>( "quint16" );
 
 
-	localSystem::initialize();
+	LocalSystem::initialize();
 
-	__role = ItalcCore::RoleTeacher;
-	if( localSystem::parameter( "icsport" ).toInt() > 0 )
+	ItalcCore::role = ItalcCore::RoleTeacher;
+	if( LocalSystem::parameter( "ivsport" ).toInt() > 0 )
 	{
-		__ics_port = localSystem::parameter( "icsport" ).toInt();
+		MasterCore::localDisplayPort =
+				LocalSystem::parameter( "ivsport" ).toInt();
 	}
 
 	// parse arguments
@@ -114,9 +118,9 @@ int main( int argc, char * * argv )
 			bool view_only = arg_it.hasNext() ?
 						arg_it.next().toInt()
 					:
-						FALSE;
-			new remoteControlWidget( host, view_only );
-			return( app.exec() );
+						false;
+			new RemoteControlWidget( host, view_only );
+			return app.exec();
 		}
 		else if( a == "-screen" && arg_it.hasNext() )
 		{
@@ -129,15 +133,15 @@ int main( int argc, char * * argv )
 				const QString role = arg_it.next();
 				if( role == "teacher" )
 				{
-					__role = ItalcCore::RoleTeacher;
+					ItalcCore::role = ItalcCore::RoleTeacher;
 				}
 				else if( role == "admin" )
 				{
-					__role = ItalcCore::RoleAdmin;
+					ItalcCore::role = ItalcCore::RoleAdmin;
 				}
 				else if( role == "supporter" )
 				{
-					__role = ItalcCore::RoleSupporter;
+					ItalcCore::role = ItalcCore::RoleSupporter;
 				}
 			}
 			else
@@ -146,41 +150,40 @@ int main( int argc, char * * argv )
 					"	teacher\n"
 					"	admin\n"
 					"	supporter\n\n" );
-				return( -1 );
+				return -1;
 			}
 		}
-		else if( a == "-icsport" && arg_it.hasNext() )
+		else if( a == "-ivsport" && arg_it.hasNext() )
 		{
-			__ics_port = arg_it.next().toInt();
+			MasterCore::localDisplayPort = arg_it.next().toInt();
 		}
-		else if( a == "-icshost" && arg_it.hasNext() )
-		{
-			__ics_host = arg_it.next();
-		}
-
 	}
 
 
+	QSplashScreen splashScreen( QPixmap( ":/resources/splash.png" ) );
+	splashScreen.show();
 
-	splashScreen = new QSplashScreen( QPixmap( ":/resources/splash.png" ) );
-	splashScreen->show();
+	MasterCore::init();
 
-/*
 	// now create the main-window
-	mainWindow * main_window = new mainWindow( screen );
+	MainWindow mainWindow( screen );
 
-	if( !main_window->localItalcCore() ||
-		main_window->localItalcCore()->state() != icsConnection::Connected )
+	if( !MasterCore::localDisplay->isConnected() )
 	{
-		return( -1 );
+		// TODO: message
+		return -1;
 	}
 
 	// hide splash-screen as soon as main-window is shown
-	splashScreen->finish( main_window );
+	splashScreen.finish( &mainWindow );
 
-	main_window->show();
-*/
+	mainWindow.show();
+
 	// let's rock!!
-	return( app.exec() );
+	int ret = app.exec();
+
+	MasterCore::deinit();
+
+	return ret;
 }
 
