@@ -1,5 +1,6 @@
 <ui version="4.0" >
- <class>snapshots</class>
+ <author>Tobias Doerffel</author>
+ <class>Snapshots</class>
  <widget class="QWidget" name="snapshots" >
   <property name="geometry" >
    <rect>

@@ -1,5 +1,6 @@
 <ui version="4.0" >
- <class>config</class>
+ <author>Tobias Doerffel</author>
+ <class>Config</class>
  <widget class="QWidget" name="config" >
   <property name="geometry" >
    <rect>

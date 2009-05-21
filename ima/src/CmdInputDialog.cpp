@@ -1,7 +1,7 @@
 /*
- * cmd_input_dialog.cpp - implementation of command-input-dialog
+ * CmdInputDialog.cpp - implementation of command-input-dialog
  *
- * Copyright (c) 2004-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -29,11 +29,11 @@
 #include <QtGui/QResizeEvent>
 #include <QtGui/QTextEdit>
 
-#include "cmd_input_dialog.h"
+#include "CmdInputDialog.h"
 
 
 
-cmdInputDialog::cmdInputDialog( QString & _cmds_str, QWidget * _parent ) :
+CmdInputDialog::CmdInputDialog( QString & _cmds_str, QWidget * _parent ) :
 	QDialog( _parent ),
 	m_cmdsStr( _cmds_str )
 {
@@ -66,14 +66,14 @@ cmdInputDialog::cmdInputDialog( QString & _cmds_str, QWidget * _parent ) :
 
 
 
-cmdInputDialog::~cmdInputDialog()
+CmdInputDialog::~CmdInputDialog()
 {
 }
 
 
 
 
-void cmdInputDialog::keyPressEvent( QKeyEvent * _ke )
+void CmdInputDialog::keyPressEvent( QKeyEvent * _ke )
 {
 	if( _ke->key() == Qt::Key_Escape )
 	{
@@ -84,7 +84,7 @@ void cmdInputDialog::keyPressEvent( QKeyEvent * _ke )
 
 
 
-void cmdInputDialog::resizeEvent( QResizeEvent * _re )
+void CmdInputDialog::resizeEvent( QResizeEvent * _re )
 {
 	m_cmdInputTextEdit->setGeometry( 10, 90, _re->size().width()-20,
 						_re->size().height()-140 );
@@ -97,7 +97,7 @@ void cmdInputDialog::resizeEvent( QResizeEvent * _re )
 
 
 
-void cmdInputDialog::accept( void )
+void CmdInputDialog::accept( void )
 {
 	m_cmdsStr = m_cmdInputTextEdit->toPlainText();
 	QDialog::accept();

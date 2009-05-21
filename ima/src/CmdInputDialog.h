@@ -1,7 +1,7 @@
 /*
- * cmd_input_dialog.h - declaration of class cmdInputDialog
+ * CmdInputDialog.h - declaration of class CmdInputDialog
  *
- * Copyright (c) 2004-2006 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -32,12 +32,12 @@ class QPushButton;
 class QTextEdit;
 
 
-class cmdInputDialog : public QDialog
+class CmdInputDialog : public QDialog
 {
 	Q_OBJECT
 public:
-	cmdInputDialog( QString & _cmds_str, QWidget * _parent = 0 );
-	virtual ~cmdInputDialog();
+	CmdInputDialog( QString & _cmds_str, QWidget * _parent = 0 );
+	virtual ~CmdInputDialog();
 
 
 private slots:

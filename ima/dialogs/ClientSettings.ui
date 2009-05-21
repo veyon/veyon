@@ -1,6 +1,6 @@
 <ui version="4.0" >
  <author>Tobias Doerffel</author>
- <class>clientSettings</class>
+ <class>ClientSettings</class>
  <widget class="QDialog" name="clientSettings" >
   <property name="geometry" >
    <rect>

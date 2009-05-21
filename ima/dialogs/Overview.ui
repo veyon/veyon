@@ -1,5 +1,6 @@
 <ui version="4.0" >
- <class>overview</class>
+ <author>Tobias Doerffel</author>
+ <class>Overview</class>
  <widget class="QWidget" name="overview" >
   <property name="geometry" >
    <rect>

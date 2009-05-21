@@ -1,5 +1,6 @@
 <ui version="4.0" >
- <class>textMessage</class>
+ <author>Tobias Doerffel</author>
+ <class>TextMessage</class>
  <widget class="QDialog" name="textMessage" >
   <property name="geometry" >
    <rect>

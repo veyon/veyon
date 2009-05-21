@@ -1,5 +1,6 @@
 <ui version="4.0" >
- <class>remoteLogon</class>
+ <author>Tobias Doerffel</author>
+ <class>RemoteLogon</class>
  <widget class="QDialog" name="remoteLogon" >
   <property name="geometry" >
    <rect>

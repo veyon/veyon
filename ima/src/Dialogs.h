@@ -1,7 +1,7 @@
 /*
- * dialogs.h - declaration of dialog-classes
+ * Dialogs.h - declaration of dialog-classes
  *
- * Copyright (c) 2004-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -26,49 +26,46 @@
 #ifndef _DIALOGS_H
 #define _DIALOGS_H
 
-#include "ui_about.h"
-#include "ui_client_settings.h"
-#include "ui_text_message.h"
-#include "ui_support.h"
-#include "ui_remote_logon.h"
+#include "ui_About.h"
+#include "ui_ClientSettings.h"
+#include "ui_TextMessage.h"
+#include "ui_Support.h"
+#include "ui_RemoteLogon.h"
 
 
-class client;
-class mainWindow;
+class Client;
 
 
 
-class aboutDialog : public QDialog, private Ui::about
+class AboutDialog : public QDialog, private Ui::About
 {
 public:
-	aboutDialog( QWidget * _parent );
+	AboutDialog( QWidget * _parent );
 
 } ;
 
 
 
-class clientSettingsDialog : public QDialog, private Ui::clientSettings
+class ClientSettingsDialog : public QDialog, private Ui::ClientSettings
 {
 	Q_OBJECT
 public:
-	clientSettingsDialog( client * _c, mainWindow * _main_window,
-						const QString & _classroom );
+	ClientSettingsDialog( Client * _c, const QString & _classroom );
 
 private:
 	virtual void accept( void );
 
-	client * m_client;
-	mainWindow * m_mainWindow;
+	Client * m_client;
 
 } ;
 
 
 
 
-class supportDialog : public QDialog, private Ui::support
+class SupportDialog : public QDialog, private Ui::Support
 {
 public:
-	supportDialog( QWidget * _parent ) :
+	SupportDialog( QWidget * _parent ) :
 		QDialog( _parent ? _parent->window() : 0 )
 	{
 		setupUi( this );
@@ -76,13 +73,13 @@ public:
 
 	static QString getHost( QWidget * _parent )
 	{
-		supportDialog sd( _parent );
+		SupportDialog sd( _parent );
 		if( sd.exec() == Accepted )
 		
 		{
-			return( sd.hostEdit->text() );
+			return sd.hostEdit->text();
 		}
-		return( "" );
+		return QString();
 	}
 
 } ;
@@ -90,11 +87,11 @@ public:
 
 
 
-class textMessageDialog : public QDialog, private Ui::textMessage
+class TextMessageDialog : public QDialog, private Ui::TextMessage
 {
 	Q_OBJECT
 public:
-	textMessageDialog( QString & _msg_str, QWidget * _parent = 0 );
+	TextMessageDialog( QString & _msg_str, QWidget * _parent = 0 );
 
 
 private slots:
@@ -109,25 +106,25 @@ private:
 
 
 
-class remoteLogonDialog : public QDialog, private Ui::remoteLogon
+class RemoteLogonDialog : public QDialog, private Ui::RemoteLogon
 {
 	Q_OBJECT
 public:
-	remoteLogonDialog( QWidget * _parent = 0 );
+	RemoteLogonDialog( QWidget * _parent = 0 );
 
 	const QString & userName( void ) const
 	{
-		return( m_userName );
+		return m_userName;
 	}
 
 	const QString & password( void ) const
 	{
-		return( m_password );
+		return m_password;
 	}
 
 	const QString & domain( void ) const
 	{
-		return( m_domain );
+		return m_domain;
 	}
 
 

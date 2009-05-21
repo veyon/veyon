@@ -1,5 +1,6 @@
 <ui version="4.0" >
- <class>support</class>
+ <author>Tobias Doerffel</author>
+ <class>Support</class>
  <widget class="QDialog" name="support" >
   <property name="geometry" >
    <rect>
