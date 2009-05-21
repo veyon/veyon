@@ -1,8 +1,8 @@
 /*
- *  remote_control_widget.h - widget containing a VNC-view and controls for it
+ *  RemoteControlWidget.h - widget containing a VNC-view and controls for it
  *
- *  Copyright (c) 2006-2007 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
- *  
+ *  Copyright (c) 2006-2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ *
  *  This file is part of iTALC - http://italc.sourceforge.net
  *
  *  This is free software; you can redistribute it and/or modify
@@ -25,27 +25,25 @@
 #ifndef _REMOTE_CONTROL_WIDGET_H
 #define _REMOTE_CONTROL_WIDGET_H
 
-
 #include <QtCore/QTime>
 #include <QtGui/QWidget>
 
-#include "fast_qimage.h"
+#include "FastQImage.h"
 
 
-class vncView;
+class VncView;
 class ItalcCoreConnection;
-class remoteControlWidget;
-class mainWindow;
+class RemoteControlWidget;
+class MainWindow;
 
 
-
-class remoteControlWidgetToolBar : public QWidget
+class RemoteControlWidgetToolBar : public QWidget
 {
 	Q_OBJECT
 public:
-	remoteControlWidgetToolBar( remoteControlWidget * _parent,
+	RemoteControlWidgetToolBar( RemoteControlWidget * _parent,
 							bool _view_only );
-	virtual ~remoteControlWidgetToolBar();
+	virtual ~RemoteControlWidgetToolBar();
 
 
 public slots:
@@ -70,11 +68,11 @@ private slots:
 
 
 private:
-	remoteControlWidget * m_parent;
+	RemoteControlWidget * m_parent;
 	bool m_disappear;
 	bool m_connecting;
 	QImage m_icon;
-	fastQImage m_iconGray;
+	FastQImage m_iconGray;
 	QTime m_iconState;
 
 } ;
@@ -83,13 +81,13 @@ private:
 
 
 
-class remoteControlWidget : public QWidget
+class RemoteControlWidget : public QWidget
 {
 	Q_OBJECT
 public:
-	remoteControlWidget( const QString & _host, bool _view_only = FALSE,
-						mainWindow * _main_window = NULL );
-	virtual ~remoteControlWidget();
+	RemoteControlWidget( const QString & _host, bool _view_only = false,
+						MainWindow * _main_window = NULL );
+	virtual ~RemoteControlWidget();
 
 	QString host( void ) const;
 
@@ -111,14 +109,14 @@ private slots:
 
 
 private:
-	vncView * m_vncView;
+	VncView * m_vncView;
 	ItalcCoreConnection * m_icc;
-	remoteControlWidgetToolBar * m_toolBar;
-	mainWindow * m_mainWindow;
+	RemoteControlWidgetToolBar * m_toolBar;
+	MainWindow * m_mainWindow;
 
 	Qt::WindowStates m_extraStates;
 
-	friend class remoteControlWidgetToolBar;
+	friend class RemoteControlWidgetToolBar;
 
 } ;
 

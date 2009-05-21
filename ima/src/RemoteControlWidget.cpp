@@ -1,8 +1,8 @@
 /*
- *  remote_control_widget.cpp - widget containing a VNC-view and controls for it
+ *  RemoteControlWidget.cpp - widget containing a VNC-view and controls for it
  *
- *  Copyright (c) 2006-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
- *  
+ *  Copyright (c) 2006-2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ *
  *  This file is part of iTALC - http://italc.sourceforge.net
  *
  *  This is free software; you can redistribute it and/or modify
@@ -22,12 +22,12 @@
  */
 
 
-#include "remote_control_widget.h"
-#include "vncview.h"
-#include "italc_core_connection.h"
-#include "local_system.h"
-#include "tool_button.h"
-#include "main_window.h"
+#include "RemoteControlWidget.h"
+#include "VncView.h"
+#include "ItalcCoreConnection.h"
+#include "LocalSystem.h"
+#include "ToolButton.h"
+#include "MainWindow.h"
 
 #include <math.h>
 
@@ -44,15 +44,15 @@
 
 
 // toolbar for remote-control-widget
-remoteControlWidgetToolBar::remoteControlWidgetToolBar(
-			remoteControlWidget * _parent, bool _view_only ) :
+RemoteControlWidgetToolBar::RemoteControlWidgetToolBar(
+			RemoteControlWidget * _parent, bool _view_only ) :
 	QWidget( _parent ),
 	m_parent( _parent ),
-	m_disappear( FALSE ),
-	m_connecting( FALSE ),
-	m_icon( fastQImage( QImage( ":/resources/logo.png" ) ).
+	m_disappear( false ),
+	m_connecting( false ),
+	m_icon( FastQImage( QImage( ":/resources/logo.png" ) ).
 					scaled( QSize( 48, 48 ) ) ),
-	m_iconGray( fastQImage( m_icon ).toGray().darken( 50 ) ),
+	m_iconGray( FastQImage( m_icon ).toGray().darken( 50 ) ),
 	m_iconState()
 {
 	setAttribute( Qt::WA_NoSystemBackground, true );
@@ -60,36 +60,36 @@ remoteControlWidgetToolBar::remoteControlWidgetToolBar(
 	show();
 	startConnection();
 
-	toolButton * vo_btn = new toolButton(
+	ToolButton * vo_btn = new ToolButton(
 				QPixmap( ":/resources/overview_mode.png" ),
 				tr( "View only" ), tr( "Remote control" ),
 				QString::null, QString::null, 0, 0,
 				this );
-	toolButton * ls_btn = new toolButton(
+	ToolButton * ls_btn = new ToolButton(
 				QPixmap( ":/resources/no_mouse.png" ),
 				tr( "Lock student" ), tr( "Unlock student" ),
 				QString::null, QString::null, 0, 0,
 				this );
-	toolButton * ss_btn = new toolButton(
+	ToolButton * ss_btn = new ToolButton(
 				QPixmap( ":/resources/snapshot.png" ),
 				tr( "Snapshot" ), QString::null,
 				QString::null, QString::null, 0, 0,
 				this );
-	toolButton * fs_btn = new toolButton(
+	ToolButton * fs_btn = new ToolButton(
 				QPixmap( ":/resources/fullscreen.png" ),
 				tr( "Fullscreen" ), tr( "Window" ),
 				QString::null, QString::null, 0, 0,
 				this );
-	toolButton * quit_btn = new toolButton(
+	ToolButton * quit_btn = new ToolButton(
 				QPixmap( ":/resources/quit.png" ),
 				tr( "Quit" ), QString::null,
 				QString::null, QString::null, 0, 0,
 				this );
-	vo_btn->setCheckable( TRUE );
-	ls_btn->setCheckable( TRUE );
-	fs_btn->setCheckable( TRUE );
+	vo_btn->setCheckable( true );
+	ls_btn->setCheckable( true );
+	fs_btn->setCheckable( true );
 	vo_btn->setChecked( _view_only );
-	fs_btn->setChecked( TRUE );
+	fs_btn->setChecked( true );
 
 	connect( vo_btn, SIGNAL( toggled( bool ) ),
 				_parent, SLOT( toggleViewOnly( bool ) ) );
@@ -119,16 +119,16 @@ remoteControlWidgetToolBar::remoteControlWidgetToolBar(
 
 
 
-remoteControlWidgetToolBar::~remoteControlWidgetToolBar()
+RemoteControlWidgetToolBar::~RemoteControlWidgetToolBar()
 {
 }
 
 
 
 
-void remoteControlWidgetToolBar::appear( void )
+void RemoteControlWidgetToolBar::appear( void )
 {
-	m_disappear = FALSE;
+	m_disappear = false;
 	if( y() <= -height() )
 	{
 		updatePosition();
@@ -138,11 +138,11 @@ void remoteControlWidgetToolBar::appear( void )
 
 
 
-void remoteControlWidgetToolBar::disappear( void )
+void RemoteControlWidgetToolBar::disappear( void )
 {
 	if( !m_connecting )
 	{
-		m_disappear = TRUE;
+		m_disappear = true;
 		if( y() == 0 )
 		{
 			updatePosition();
@@ -153,7 +153,7 @@ void remoteControlWidgetToolBar::disappear( void )
 
 
 
-void remoteControlWidgetToolBar::paintEvent( QPaintEvent * _pe )
+void RemoteControlWidgetToolBar::paintEvent( QPaintEvent * _pe )
 {
 	QPainter p( this );
 	p.setRenderHint( QPainter::Antialiasing, true );
@@ -168,7 +168,7 @@ void remoteControlWidgetToolBar::paintEvent( QPaintEvent * _pe )
 
 	QFont f = p.font();
 	f.setPointSize( 12 );
-	f.setBold( TRUE );
+	f.setBold( true );
 	p.setFont( f );
 
 	p.setPen( QColor( 255, 212, 0 ) );
@@ -181,7 +181,7 @@ void remoteControlWidgetToolBar::paintEvent( QPaintEvent * _pe )
 
 	if( m_connecting )
 	{
-		fastQImage tmp = m_iconGray;
+		FastQImage tmp = m_iconGray;
 		tmp.alphaFillMax( (int)( 150 + 90.0 *
 				sin( m_iconState.elapsed()*3.141592/900 ) ) );
 		p.drawImage( 5, 2, tmp );
@@ -203,7 +203,7 @@ void remoteControlWidgetToolBar::paintEvent( QPaintEvent * _pe )
 
 
 
-void remoteControlWidgetToolBar::updatePosition( void )
+void RemoteControlWidgetToolBar::updatePosition( void )
 {
 	bool again;
 	if( m_disappear )
@@ -228,9 +228,9 @@ void remoteControlWidgetToolBar::updatePosition( void )
 
 
 
-void remoteControlWidgetToolBar::startConnection( void )
+void RemoteControlWidgetToolBar::startConnection( void )
 {
-	m_connecting = TRUE;
+	m_connecting = true;
 	m_iconState.restart();
 	appear();
 	update();
@@ -239,9 +239,9 @@ void remoteControlWidgetToolBar::startConnection( void )
 
 
 
-void remoteControlWidgetToolBar::connectionEstablished( void )
+void RemoteControlWidgetToolBar::connectionEstablished( void )
 {
-	m_connecting = FALSE;
+	m_connecting = false;
 	QTimer::singleShot( 3000, this, SLOT( disappear() ) );
 	// within the next 1000ms the username should be known and therefore
 	// we update
@@ -257,18 +257,18 @@ void remoteControlWidgetToolBar::connectionEstablished( void )
 
 
 
-remoteControlWidget::remoteControlWidget( const QString & _host,
+RemoteControlWidget::RemoteControlWidget( const QString & _host,
 						bool _view_only,
-						mainWindow * _main_window ) :
+						MainWindow * _main_window ) :
 	QWidget( 0 ),
-	m_vncView( new vncView( _host, this, FALSE ) ),
-	m_icc( new ItalcCoreConnection( m_vncView->italcVncConnection() ) ),
-	m_toolBar( new remoteControlWidgetToolBar( this, _view_only ) ),
+	m_vncView( new VncView( _host, this, false ) ),
+	m_icc( new ItalcCoreConnection( m_vncView->vncConnection() ) ),
+	m_toolBar( new RemoteControlWidgetToolBar( this, _view_only ) ),
 	m_mainWindow( _main_window ),
 	m_extraStates( Qt::WindowMaximized )
 {
 	setWindowIcon( QPixmap( ":/resources/remote_control.png" ) );
-	setAttribute( Qt::WA_DeleteOnClose, TRUE );
+	setAttribute( Qt::WA_DeleteOnClose, true );
 	m_vncView->move( 0, 0 );
 	connect( m_vncView, SIGNAL( mouseAtTop() ), m_toolBar,
 							SLOT( appear() ) );
@@ -277,7 +277,7 @@ remoteControlWidget::remoteControlWidget( const QString & _host,
 //	showMaximized();
 	//showFullScreen();
 	show();
-	localSystem::activateWindow( this );
+	LocalSystem::activateWindow( this );
 
 	toggleViewOnly( _view_only );
 }
@@ -285,14 +285,14 @@ remoteControlWidget::remoteControlWidget( const QString & _host,
 
 
 
-remoteControlWidget::~remoteControlWidget()
+RemoteControlWidget::~RemoteControlWidget()
 {
 }
 
 
 
 
-QString remoteControlWidget::host( void ) const
+QString RemoteControlWidget::host( void ) const
 {
 	return "blah";
 /*	return( m_vncView->m_connection ? m_vncView->m_connection->host() :
@@ -302,7 +302,7 @@ QString remoteControlWidget::host( void ) const
 
 
 
-void remoteControlWidget::updateWindowTitle( void )
+void RemoteControlWidget::updateWindowTitle( void )
 {
 	const QString s = m_vncView->viewOnly() ?
 			tr( "View live (%1 at host %2)" )
@@ -323,7 +323,7 @@ void remoteControlWidget::updateWindowTitle( void )
 
 
 
-void remoteControlWidget::resizeEvent( QResizeEvent * )
+void RemoteControlWidget::resizeEvent( QResizeEvent * )
 {
 	m_vncView->resize( size() );
 	m_toolBar->setFixedSize( width(), 52 );
@@ -332,7 +332,7 @@ void remoteControlWidget::resizeEvent( QResizeEvent * )
 
 
 
-void remoteControlWidget::checkKeyEvent( Q_UINT32 _key, bool _pressed )
+void RemoteControlWidget::checkKeyEvent( Q_UINT32 _key, bool _pressed )
 {
 	if( _pressed && _key == XK_Escape/* &&
 		m_vncView->m_connection->state() != ivsConnection::Connected*/ )
@@ -344,7 +344,7 @@ void remoteControlWidget::checkKeyEvent( Q_UINT32 _key, bool _pressed )
 
 
 
-void remoteControlWidget::lockStudent( bool _on )
+void RemoteControlWidget::lockStudent( bool _on )
 {
 	//m_vncView->m_connection->disableLocalInputs( _on );
 }
@@ -352,7 +352,7 @@ void remoteControlWidget::lockStudent( bool _on )
 
 
 
-void remoteControlWidget::toggleFullScreen( bool _on )
+void RemoteControlWidget::toggleFullScreen( bool _on )
 {
 	if( _on )
 	{
@@ -369,7 +369,7 @@ void remoteControlWidget::toggleFullScreen( bool _on )
 
 
 
-void remoteControlWidget::toggleViewOnly( bool _on )
+void RemoteControlWidget::toggleViewOnly( bool _on )
 {
 	m_vncView->setViewOnly( _on );
 	m_toolBar->update();
@@ -378,7 +378,7 @@ void remoteControlWidget::toggleViewOnly( bool _on )
 
 
 
-void remoteControlWidget::takeSnapshot( void )
+void RemoteControlWidget::takeSnapshot( void )
 {
 /*	m_vncView->m_connection->takeSnapshot();
 	if( m_mainWindow )
