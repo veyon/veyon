@@ -22,8 +22,12 @@
     Boston, MA 02110-1301, USA.
  ***************************************************************************/
 
-#include "kmultitabbar.h"
-#include "tool_button.h"
+#include "KMultiTabBar.h"
+#include "ToolButton.h"
+#ifdef ITALC3
+#include "MasterCore.h"
+#include "PersonalConfig.h"
+#endif
 
 #include <QtGui/QActionEvent>
 #include <QtGui/QLayout>
@@ -186,7 +190,11 @@ void KMultiTabBarButton::enterEvent( QEvent * _e )
 			QApplication::desktop()->screenNumber( this );
 
 	QPushButton::enterEvent( _e );
-	if( toolButton::toolTipsDisabled() )
+#ifdef ITALC3
+	if( MasterCore::personalConfig->noToolTips() )
+#else
+	if( ToolButton::toolTipsDisabled() )
+#endif
 	{
 		return;
 	}
@@ -197,7 +205,7 @@ void KMultiTabBarButton::enterEvent( QEvent * _e )
 	QRect screen = QApplication::desktop()->screenGeometry( scr );
 #endif
 
-	toolButtonTip * tbt = new toolButtonTip( m_origIcon, text(),
+	ToolButtonTip * tbt = new ToolButtonTip( m_origIcon, text(),
 						m_description,
 				QApplication::desktop()->screen( scr ) );
 	connect( this, SIGNAL( mouseLeftButton() ), tbt, SLOT( close() ) );

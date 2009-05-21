@@ -1,8 +1,8 @@
 /*
- * tool_button.cpp - implementation of iTALC-tool-button
+ * ToolButton.cpp - implementation of iTALC-tool-button
  *
- * Copyright (c) 2006-2008 Tobias Doerffel <tobydox/at/users.sourceforge.net>
- * 
+ * Copyright (c) 2006-2009 Tobias Doerffel <tobydox/at/users.sourceforge.net>
+ *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
  * This program is free software; you can redistribute it and/or
@@ -34,26 +34,26 @@
 #include <QtGui/QPainter>
 #include <QtGui/QToolBar>
 
-#include "tool_button.h"
-#include "fast_qimage.h"
-
+#include "ToolButton.h"
 
 
 const int MARGIN = 10;
 const int ROUNDED = 2000;
 
-bool toolButton::s_toolTipsDisabled = FALSE;
-bool toolButton::s_iconOnlyMode = FALSE;
+#ifndef ITALC3
+bool ToolButton::s_toolTipsDisabled = FALSE;
+bool ToolButton::s_iconOnlyMode = FALSE;
+#endif
 
 
-toolButton::toolButton( const QPixmap & _pixmap, const QString & _label,
+ToolButton::ToolButton( const QPixmap & _pixmap, const QString & _label,
 				const QString & _alt_label,
 				const QString & _title, 
 				const QString & _desc, QObject * _receiver, 
 				const char * _slot, QWidget * _parent ) :
 	QToolButton( _parent ),
 	m_pixmap( _pixmap ),
-	m_img( fastQImage( _pixmap.toImage() ).scaled( 32, 32 ) ),
+	m_img( FastQImage( _pixmap.toImage() ).scaled( 32, 32 ) ),
 	m_colorizeLevel( 0 ),
 	m_fadeBack( FALSE ),
 	m_label( _label ),
@@ -76,13 +76,13 @@ toolButton::toolButton( const QPixmap & _pixmap, const QString & _label,
 
 
 
-toolButton::toolButton( QAction * _a, const QString & _label,
+ToolButton::ToolButton( QAction * _a, const QString & _label,
 				const QString & _alt_label,
 				const QString & _desc, QObject * _receiver, 
 				const char * _slot, QWidget * _parent ) :
 	QToolButton( _parent ),
 	m_pixmap( _a->icon().pixmap( 128, 128 ) ),
-	m_img( fastQImage( m_pixmap.toImage() ).scaled( 32, 32 ) ),
+	m_img( FastQImage( m_pixmap.toImage() ).scaled( 32, 32 ) ),
 	m_colorizeLevel( 0 ),
 	m_fadeBack( FALSE ),
 	m_label( _label ),
@@ -106,27 +106,14 @@ toolButton::toolButton( QAction * _a, const QString & _label,
 
 
 
-toolButton::~toolButton()
+ToolButton::~ToolButton()
 {
 }
 
 
 
 
-void toolButton::setIconOnlyMode( bool _enabled )
-{
-	s_iconOnlyMode = _enabled;
-	QList<toolButton *> tbl = QApplication::activeWindow()->findChildren<toolButton *>();
-	foreach( toolButton * tb, tbl )
-	{
-		tb->updateSize();
-	}
-}
-
-
-
-
-void toolButton::addTo( QToolBar * _tb )
+void ToolButton::addTo( QToolBar * _tb )
 {
 	QAction * a = _tb->addWidget( this );
 	a->setText( text() );
@@ -135,7 +122,7 @@ void toolButton::addTo( QToolBar * _tb )
 
 
 
-void toolButton::enterEvent( QEvent * _e )
+void ToolButton::enterEvent( QEvent * _e )
 {
 	m_fadeBack = FALSE;
 	if( m_colorizeLevel == 0 )
@@ -156,7 +143,7 @@ void toolButton::enterEvent( QEvent * _e )
 		QRect screen = QApplication::desktop()->screenGeometry( scr );
 #endif
 
-		toolButtonTip * tbt = new toolButtonTip( m_pixmap, m_title,
+		ToolButtonTip * tbt = new ToolButtonTip( m_pixmap, m_title,
 							m_descr,
 				QApplication::desktop()->screen( scr ), this );
 		connect( this, SIGNAL( mouseLeftButton() ),
@@ -183,7 +170,7 @@ void toolButton::enterEvent( QEvent * _e )
 
 
 
-void toolButton::leaveEvent( QEvent * _e )
+void ToolButton::leaveEvent( QEvent * _e )
 {
 	if( checkForLeaveEvent() )
 	{
@@ -194,7 +181,7 @@ void toolButton::leaveEvent( QEvent * _e )
 
 
 
-void toolButton::mousePressEvent( QMouseEvent * _me )
+void ToolButton::mousePressEvent( QMouseEvent * _me )
 {
 	emit mouseLeftButton();
 	QToolButton::mousePressEvent( _me );
@@ -203,7 +190,7 @@ void toolButton::mousePressEvent( QMouseEvent * _me )
 
 
 
-void toolButton::paintEvent( QPaintEvent * _pe )
+void ToolButton::paintEvent( QPaintEvent * _pe )
 {
 	const bool active = isDown() || isChecked();
 	const QColor ctbl[2][4] = {
@@ -286,7 +273,7 @@ void toolButton::paintEvent( QPaintEvent * _pe )
 
 
 
-bool toolButton::checkForLeaveEvent( void )
+bool ToolButton::checkForLeaveEvent( void )
 {
 	if( QRect( mapToGlobal( QPoint( 0, 0 ) ), size() ).
 					contains( QCursor::pos() ) )
@@ -309,7 +296,7 @@ bool toolButton::checkForLeaveEvent( void )
 
 
 
-void toolButton::updateColorLevel( void )
+void ToolButton::updateColorLevel( void )
 {
 	bool again;
 	if( m_fadeBack )
@@ -332,7 +319,7 @@ void toolButton::updateColorLevel( void )
 
 
 
-void toolButton::updateSize( void )
+void ToolButton::updateSize( void )
 {
 	QFont f = font();
 	f.setPointSizeF( 7.5 );
@@ -369,11 +356,11 @@ void toolButton::updateSize( void )
 
 
 
-toolButtonTip::toolButtonTip( const QPixmap & _pixmap, const QString & _title,
+ToolButtonTip::ToolButtonTip( const QPixmap & _pixmap, const QString & _title,
 				const QString & _description,
 				QWidget * _parent, QWidget * _tool_btn ) :
 	QWidget( _parent, Qt::ToolTip ),
-	m_icon( fastQImage( _pixmap ).scaled( 72, 72 ) ),
+	m_icon( FastQImage( _pixmap ).scaled( 72, 72 ) ),
 	m_title( _title ),
 	m_description( _description ),
 	m_toolButton( _tool_btn )
@@ -388,7 +375,7 @@ toolButtonTip::toolButtonTip( const QPixmap & _pixmap, const QString & _title,
 
 
 
-QSize toolButtonTip::sizeHint( void ) const
+QSize ToolButtonTip::sizeHint( void ) const
 {
 	QFont f = font();
 	f.setBold( TRUE );
@@ -406,7 +393,7 @@ QSize toolButtonTip::sizeHint( void ) const
 
 
 
-void toolButtonTip::paintEvent( QPaintEvent * _pe )
+void ToolButtonTip::paintEvent( QPaintEvent * _pe )
 {
 	QPainter p( this );
 	p.drawImage( 0, 0, m_bg );
@@ -415,7 +402,7 @@ void toolButtonTip::paintEvent( QPaintEvent * _pe )
 
 
 
-void toolButtonTip::resizeEvent( QResizeEvent * _re )
+void ToolButtonTip::resizeEvent( QResizeEvent * _re )
 {
 	const QColor color_frame = QColor( 48, 48, 48 );
 	m_bg = QImage( size(), QImage::Format_ARGB32 );
@@ -476,7 +463,7 @@ void toolButtonTip::resizeEvent( QResizeEvent * _re )
 
 
 
-void toolButtonTip::updateMask( void )
+void ToolButtonTip::updateMask( void )
 {
 	// as this widget has not a rectangular shape AND is a top
 	// level widget (which doesn't allow painting only particular

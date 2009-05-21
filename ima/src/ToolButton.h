@@ -1,8 +1,8 @@
 /*
- * tool_button.h - declaration of class toolButton 
+ * ToolButton.h - declaration of class ToolButton
  *
- * Copyright (c) 2006-2008 Tobias Doerffel <tobydox/at/users.sourceforge.net>
- * 
+ * Copyright (c) 2006-2009 Tobias Doerffel <tobydox/at/users.sourceforge.net>
+ *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
  * This program is free software; you can redistribute it and/or
@@ -28,28 +28,29 @@
 
 #include <QtGui/QToolButton>
 
-#include "fast_qimage.h"
+#include "FastQImage.h"
 
 
 class QToolBar;
 
 
-class toolButton : public QToolButton
+class ToolButton : public QToolButton
 {
 	Q_OBJECT
 public:
-	toolButton( const QPixmap & _pixmap, const QString & _label,
+	ToolButton( const QPixmap & _pixmap, const QString & _label,
 				const QString & _alt_label,
 				const QString & _title, 
 				const QString & _desc, QObject * _receiver, 
 				const char * _slot, QWidget * _parent );
-	toolButton( QAction * _a, const QString & _label,
+	ToolButton( QAction * _a, const QString & _label,
 				const QString & _alt_label,
 				const QString & _desc, QObject * _receiver, 
 				const char * _slot, QWidget * _parent );
-	virtual ~toolButton();
+	virtual ~ToolButton();
 
 
+#ifndef ITALC3
 	static void setIconOnlyMode( bool _enabled );
 
 	static bool iconOnlyMode( void )
@@ -66,6 +67,7 @@ public:
 	{
 		return( s_toolTipsDisabled );
 	}
+#endif
 
 	void addTo( QToolBar * );
 
@@ -90,11 +92,13 @@ private:
 	void updateSize( void );
 
 
+#ifndef ITALC3
 	static bool s_toolTipsDisabled;
 	static bool s_iconOnlyMode;
+#endif
 
 	QPixmap m_pixmap;
-	fastQImage m_img;
+	FastQImage m_img;
 	unsigned char m_colorizeLevel;
 	bool m_fadeBack;
 
@@ -108,10 +112,10 @@ private:
 
 
 
-class toolButtonTip : public QWidget
+class ToolButtonTip : public QWidget
 {
 public:
-	toolButtonTip( const QPixmap & _pixmap, const QString & _title,
+	ToolButtonTip( const QPixmap & _pixmap, const QString & _title,
 				const QString & _description,
 				QWidget * _parent, QWidget * _tool_btn = 0 );
 
