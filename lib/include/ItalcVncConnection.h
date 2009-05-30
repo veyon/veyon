@@ -106,11 +106,14 @@ public:
 
 	inline void setScaledSize( const QSize & _s )
 	{
-		m_scaledSize = _s;
-		m_scaledScreenNeedsUpdate = true;
+		if( m_scaledSize != _s )
+		{
+			m_scaledSize = _s;
+			m_scaledScreenNeedsUpdate = true;
+		}
 	}
 
-	QImage scaledScreen( void )
+	inline FastQImage scaledScreen( void )
 	{
 		rescaleScreen();
 		return m_scaledScreen;
@@ -156,9 +159,9 @@ private:
 	QMutex m_mutex;
 	QQueue<ClientEvent *> m_eventQueue;
 
-	QImage m_image;
+	FastQImage m_image;
 	bool m_scaledScreenNeedsUpdate;
-	QImage m_scaledScreen;
+	FastQImage m_scaledScreen;
 	QSize m_scaledSize;
 
 	volatile bool m_connected;
