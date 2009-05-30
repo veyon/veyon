@@ -368,20 +368,20 @@ void ItalcVncConnection::rescaleScreen( void )
 {
 	if( m_scaledScreenNeedsUpdate )
 	{
-/*		if( m_scaledScreen.size() != m_scaledSize )
+		QMutexLocker locker( &m_mutex );
+		if( m_scaledScreen.size() != m_scaledSize )
 		{
 			m_scaledScreen = QImage( m_scaledSize,
 							QImage::Format_RGB32 );
 		}
 		if( m_image.size().isValid() )
 		{
-printf("scale to %d %d\n", m_scaledSize.width(), m_scaledSize.height());
 			m_image.scaleTo( m_scaledScreen );
 		}
 		else
 		{
 			m_scaledScreen.fill( Qt::black );
-		}*/
+		}
 		m_scaledScreenNeedsUpdate = false;
 	}
 }
