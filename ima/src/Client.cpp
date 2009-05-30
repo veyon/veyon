@@ -521,6 +521,8 @@ Client::Client( const QString & _hostname,
 
 	setFixedSize( DEFAULT_CLIENT_SIZE );
 	//resize( DEFAULT_CLIENT_SIZE );
+
+	reload();
 }
 
 
@@ -1001,11 +1003,15 @@ void Client::showEvent( QShowEvent * )
 
 void Client::reload()
 {
+	QTimer::singleShot( 1000,
+				this,
+				SLOT( reload() ) );
 	if( !isVisible() )
 	{
 		if( m_connection->vncConnection()->isRunning() )
 		{
 			m_connection->vncConnection()->stop();
+			update();
 		}
 		return;
 	}
@@ -1032,6 +1038,7 @@ void Client::reload()
 		}
 
 		m_user = m_connection->user();
+		update();
 	}
 	else
 	{

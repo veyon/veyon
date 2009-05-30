@@ -1,8 +1,8 @@
 /*
- * client.h - declaration of class client which represents a client, shows its
+ * Client.h - declaration of class Client which represents a client, shows its
  *            display and allows controlling it in several ways
  *
- * Copyright (c) 2004-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -203,7 +203,6 @@ public:
 	void reboot( void );
 	void powerDown( void );
 	void execCmds( const QString & _cmds );
-	void reload( void );
 
 
 	inline QString name( void ) const
@@ -289,6 +288,7 @@ public slots:
 
 private slots:
 	void enlarge( void );
+	void reload( void );
 
 
 private:
