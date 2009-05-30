@@ -254,6 +254,7 @@ ItalcVncConnection::ItalcVncConnection( QObject * _parent ) :
 	frameBuffer( NULL ),
 	m_stopped( false ),
 	m_connected( false ),
+	m_cl( NULL ),
 	m_quality( QualityMedium ),
 	m_port( PortOffsetIVS ),
 	m_image(),
@@ -261,14 +262,7 @@ ItalcVncConnection::ItalcVncConnection( QObject * _parent ) :
 	m_scaledScreen(),
 	m_scaledSize()
 {
-	QMutexLocker locker( &m_mutex );
 	m_stopped = false;
-
-/*	QTimer * outputErrorMessagesCheckTimer = new QTimer( this );
-	outputErrorMessagesCheckTimer->setInterval( 500 );
-	connect( outputErrorMessagesCheckTimer, SIGNAL( timeout() ),
-			this, SLOT( checkOutputErrorMessage() ) );
-	outputErrorMessagesCheckTimer->start();*/
 }
 
 
@@ -297,7 +291,6 @@ void ItalcVncConnection::checkOutputErrorMessage()
 
 void ItalcVncConnection::stop( void )
 {
-	QMutexLocker locker( &m_mutex );
 	m_stopped = true;
 	if( !wait( 500 ) )
 	{
@@ -310,9 +303,16 @@ void ItalcVncConnection::stop( void )
 
 void ItalcVncConnection::reset( const QString & _host )
 {
-	stop();
-	setHost( _host );
-	start();
+	if( !m_connected && isRunning() )
+	{
+		setHost( _host );
+	}
+	else
+	{
+		stop();
+		setHost( _host );
+		start();
+	}
 }
 
 
@@ -343,8 +343,9 @@ void ItalcVncConnection::setPort( int _port )
 
 void ItalcVncConnection::setImage( const QImage & _img )
 {
-	QMutexLocker locker( &m_mutex );
+	m_imgLock.lockForWrite();
 	m_image = _img;
+	m_imgLock.unlock();
 }
 
 
@@ -352,7 +353,7 @@ void ItalcVncConnection::setImage( const QImage & _img )
 
 const QImage ItalcVncConnection::image( int _x, int _y, int _w, int _h )
 {
-	QMutexLocker locker( &m_mutex );
+	QReadLocker locker( &m_imgLock );
 
 	if( _w == 0 || _h == 0 ) // full image requested
 	{
@@ -368,12 +369,12 @@ void ItalcVncConnection::rescaleScreen( void )
 {
 	if( m_scaledScreenNeedsUpdate )
 	{
-		QMutexLocker locker( &m_mutex );
 		if( m_scaledScreen.size() != m_scaledSize )
 		{
 			m_scaledScreen = QImage( m_scaledSize,
 							QImage::Format_RGB32 );
 		}
+		QReadLocker locker( &m_imgLock );
 		if( m_image.size().isValid() )
 		{
 			m_image.scaleTo( m_scaledScreen );
@@ -407,14 +408,13 @@ void ItalcVncConnection::emitGotCut( const QString & _text )
 
 void ItalcVncConnection::run( void )
 {
-	QMutexLocker locker( &m_mutex );
+	m_stopped = false;
 
-	while( !m_stopped ) // try to connect as long as the server allows
+	rfbClientLog = hookOutputHandler;
+	rfbClientErr = hookOutputHandler;
+
+	while( !m_stopped && !m_connected ) // try to connect as long as the server allows
 	{
-//		m_passwordError = false;
-
-		rfbClientLog = hookOutputHandler;
-		rfbClientErr = hookOutputHandler;
 		m_cl = rfbGetClient( 8, 3, 4 );
 		m_cl->MallocFrameBuffer = hookNewClient;
 		m_cl->canHandleNewFBSize = true;
@@ -422,7 +422,7 @@ void ItalcVncConnection::run( void )
 		m_cl->GotXCutText = hookCutText;
 		rfbClientSetClientData( m_cl, 0, this );
 
-		m_cl->serverHost = strdup( m_host.toUtf8().constData() );
+		m_mutex.lock();
 
 		if( m_port < 0 ) // port is invalid or empty...
 		{
@@ -434,19 +434,20 @@ void ItalcVncConnection::run( void )
 			 // the user most likely used the short form (e.g. :1)
 			m_port += PortOffsetIVS;
 		}
+
+		m_cl->serverHost = strdup( m_host.toUtf8().constData() );
 		m_cl->serverPort = m_port;
+
+		m_mutex.unlock();
 
 		emit newClient( m_cl );
 
 		if( rfbInitClient( m_cl, 0, 0 ) )
 		{
-			break;
+			m_connected = true;
 		}
 	}
 
-	locker.unlock();
-
-	m_connected = true;
 
 	// Main VNC event loop
 	while( !m_stopped )
@@ -456,7 +457,7 @@ void ItalcVncConnection::run( void )
 		{
 			break;
 		}
-		if( i )
+		else if( i )
 		{
 			if( !HandleRFBServerMessage( m_cl ) )
 			{
@@ -464,7 +465,7 @@ void ItalcVncConnection::run( void )
 			}
 		}
 
-		locker.relock();
+		m_mutex.lock();
 
 		while( !m_eventQueue.isEmpty() )
 		{
@@ -473,14 +474,16 @@ void ItalcVncConnection::run( void )
 			delete clientEvent;
 		}
 
-		locker.unlock();
+		m_mutex.unlock();
 	}
 
-	m_connected = false;
+	if( m_connected )
+	{
+		rfbClientCleanup( m_cl );
+		m_connected = false;
+	}
 
 	// Cleanup allocated resources
-	locker.relock();
-	rfbClientCleanup( m_cl );
 	m_stopped = true;
 }
 

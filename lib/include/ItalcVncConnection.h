@@ -30,6 +30,7 @@
 
 #include <QtCore/QMutex>
 #include <QtCore/QQueue>
+#include <QtCore/QReadWriteLock>
 #include <QtCore/QThread>
 
 #include "ItalcCore.h"
@@ -157,6 +158,7 @@ private:
 	QString m_host;
 	int m_port;
 	QMutex m_mutex;
+	QReadWriteLock m_imgLock;
 	QQueue<ClientEvent *> m_eventQueue;
 
 	FastQImage m_image;
