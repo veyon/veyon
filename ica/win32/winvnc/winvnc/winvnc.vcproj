@@ -2192,6 +2192,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\vncdesktopsink.cpp"
+				>
+			</File>
+			<File
 				RelativePath="vncDesktopSW.cpp"
 				>
 				<FileConfiguration

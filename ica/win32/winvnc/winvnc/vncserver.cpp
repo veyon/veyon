@@ -726,7 +726,7 @@ vncServer::KillAuthClients()
 		GetClient(*i)->Kill();
 	}
 	//autoreconnect and service
-	if (m_fRunningFromExternalService) fShutdownOrdered=true;
+	//if (m_fRunningFromExternalService) fShutdownOrdered=true;
 	vnclog.Print(LL_INTINFO, VNCLOG("KillAuthClients() done\n"));
 }
 

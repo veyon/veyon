@@ -156,9 +156,10 @@ public:
 
 protected:
 	// Send a notification message
-	virtual void DoNotify(UINT message, WPARAM wparam, LPARAM lparam);
+	
 
 public:
+	virtual void DoNotify(UINT message, WPARAM wparam, LPARAM lparam);
 	// Update handling, used by the screen server
 	virtual rfb::UpdateTracker &GetUpdateTracker() {return m_update_tracker;};
 	virtual void UpdateMouse();

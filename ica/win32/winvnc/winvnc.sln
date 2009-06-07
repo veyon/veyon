@@ -51,6 +51,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "zip32", "..\zipunzip_src\zi
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Xregion", "..\Xregion\Xregion.vcproj", "{74900370-5ED2-4A5E-99A8-37EFE1D27552}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SCHook", "schook\SCHook.vcproj", "{615BBC95-8125-4FFD-B6D5-C7D851D72529}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		ASM Debug|Win32 = ASM Debug|Win32
@@ -547,6 +549,24 @@ Global
 		{74900370-5ED2-4A5E-99A8-37EFE1D27552}.Release|Win32.Build.0 = Release|Win32
 		{74900370-5ED2-4A5E-99A8-37EFE1D27552}.Release|x64.ActiveCfg = Release|x64
 		{74900370-5ED2-4A5E-99A8-37EFE1D27552}.Release|x64.Build.0 = Release|x64
+		{615BBC95-8125-4FFD-B6D5-C7D851D72529}.ASM Debug|Win32.ActiveCfg = Debug|Win32
+		{615BBC95-8125-4FFD-B6D5-C7D851D72529}.ASM Debug|Win32.Build.0 = Debug|Win32
+		{615BBC95-8125-4FFD-B6D5-C7D851D72529}.ASM Debug|x64.ActiveCfg = Debug|Win32
+		{615BBC95-8125-4FFD-B6D5-C7D851D72529}.ASM Release|Win32.ActiveCfg = Release|Win32
+		{615BBC95-8125-4FFD-B6D5-C7D851D72529}.ASM Release|Win32.Build.0 = Release|Win32
+		{615BBC95-8125-4FFD-B6D5-C7D851D72529}.ASM Release|x64.ActiveCfg = Release|Win32
+		{615BBC95-8125-4FFD-B6D5-C7D851D72529}.Debug|Win32.ActiveCfg = Debug|Win32
+		{615BBC95-8125-4FFD-B6D5-C7D851D72529}.Debug|Win32.Build.0 = Debug|Win32
+		{615BBC95-8125-4FFD-B6D5-C7D851D72529}.Debug|x64.ActiveCfg = Debug|Win32
+		{615BBC95-8125-4FFD-B6D5-C7D851D72529}.Http|Win32.ActiveCfg = Release|Win32
+		{615BBC95-8125-4FFD-B6D5-C7D851D72529}.Http|Win32.Build.0 = Release|Win32
+		{615BBC95-8125-4FFD-B6D5-C7D851D72529}.Http|x64.ActiveCfg = Release|Win32
+		{615BBC95-8125-4FFD-B6D5-C7D851D72529}.IPP|Win32.ActiveCfg = Release|Win32
+		{615BBC95-8125-4FFD-B6D5-C7D851D72529}.IPP|Win32.Build.0 = Release|Win32
+		{615BBC95-8125-4FFD-B6D5-C7D851D72529}.IPP|x64.ActiveCfg = Release|Win32
+		{615BBC95-8125-4FFD-B6D5-C7D851D72529}.Release|Win32.ActiveCfg = Release|Win32
+		{615BBC95-8125-4FFD-B6D5-C7D851D72529}.Release|Win32.Build.0 = Release|Win32
+		{615BBC95-8125-4FFD-B6D5-C7D851D72529}.Release|x64.ActiveCfg = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

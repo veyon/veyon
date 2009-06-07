@@ -1555,6 +1555,7 @@ vncClientThread::run(void *arg)
 		if (!m_client->IsFileTransBusy())
 		if (!vncService::InputDesktopSelected())
 		{
+			vnclog.Print(LL_INTINFO, VNCLOG("vncclient...\n"));
 			if (!vncService::SelectDesktop(NULL, &input_desktop)) 
 					break;
 		}
@@ -3248,7 +3249,7 @@ vncClientThread::run(void *arg)
 	m_server->RemoveClient(m_client->GetClientId());
 
 	// sf@2003 - AutoReconnection attempt if required
-	//if (!fShutdownOrdered)
+	if (!fShutdownOrdered)
 		if (m_server->AutoReconnect())
 		{
 			vnclog.Print(LL_INTERR, VNCLOG("PostAddNewClient II\n"));

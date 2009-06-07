@@ -36,6 +36,11 @@
 #define WM_SRV_CLIENT_CONNECT		WM_USER+2
 #define WM_SRV_CLIENT_AUTHENTICATED	WM_USER+3
 #define WM_SRV_CLIENT_DISCONNECT	WM_USER+4
+#define WM_SRV_DESKTOP_CHANGE		WM_USER+5
+#define WM_MOUSESHAPE				WM_USER+6
+#define WM_HOOKCHANGE				WM_USER+7
+#define WM_SHUTDOWN					WM_USER+8
+
 
 // Export the application details
 extern HINSTANCE	hAppInstance;

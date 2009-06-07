@@ -59,11 +59,11 @@ const UINT RFB_COPYRECT_UPDATE = RegisterWindowMessage("WinVNC.Update.CopyRect")
 const UINT RFB_MOUSE_UPDATE = RegisterWindowMessage("WinVNC.Update.Mouse");
 const char szDesktopSink[] = "WinVNC desktop sink";
 
-extern int counterwatch;//global var for driverwatch
 bool g_Desktop_running;
 extern bool g_DesktopThread_running;
 extern bool g_update_triggered;
 DWORD WINAPI BlackWindow(LPVOID lpParam);
+DWORD WINAPI InitWindowThread(LPVOID lpParam);
 
 //
 // // Modif sf@2002 - v1.1.0 - Optimization
@@ -329,7 +329,7 @@ vncDesktop::vncDesktop()
 #endif
 	m_Black_window_active=false;
 	m_hwnd = NULL;
-	m_timerid = 0;
+	//m_timerid = 0;
 	m_hnextviewer = NULL;
 	m_hcursor = NULL;
 	m_hOldcursor = NULL; // sf@2002
@@ -375,47 +375,7 @@ vncDesktop::vncDesktop()
 	m_hookdriver=false;
 
 	OldPowerOffTimeout=0;
-	hModule=NULL;
-	char szCurrentDir[MAX_PATH];
-		if (GetModuleFileName(NULL, szCurrentDir, MAX_PATH))
-		{
-			char* p = strrchr(szCurrentDir, '\\');
-			if (p == NULL) return;
-			*p = '\0';
-			strcat (szCurrentDir,"\\vnchooks.dll");
-		}
-	hSCModule=NULL;
-	char szCurrentDirSC[MAX_PATH];
-		if (GetModuleFileName(NULL, szCurrentDirSC, MAX_PATH))
-		{
-			char* p = strrchr(szCurrentDirSC, '\\');
-			if (p == NULL) return;
-			*p = '\0';
-			strcat (szCurrentDirSC,"\\schook.dll");
-		}
 
-	UnSetHooks=NULL;
-	SetMouseFilterHook=NULL;
-	SetKeyboardFilterHook=NULL;
-	SetHooks=NULL;
-
-	UnSetHook=NULL;
-	SetHook=NULL;
-
-	hModule = LoadLibrary(szCurrentDir);
-	hSCModule = LoadLibrary(szCurrentDirSC);
-	if (hModule)
-		{
-			UnSetHooks = (UnSetHooksFn) GetProcAddress( hModule, "UnSetHooks" );
-			SetMouseFilterHook  = (SetMouseFilterHookFn) GetProcAddress( hModule, "SetMouseFilterHook" );
-			SetKeyboardFilterHook  = (SetKeyboardFilterHookFn) GetProcAddress( hModule, "SetKeyboardFilterHook" );
-			SetHooks  = (SetHooksFn) GetProcAddress( hModule, "SetHooks" );
-		}
-	if (hSCModule)
-		{
-			UnSetHook = (UnSetHookFn) GetProcAddress( hSCModule, "UnSetHook" );
-			SetHook  = (SetHookFn) GetProcAddress( hSCModule, "SetHook" );
-		}
 	On_Off_hookdll=false;
 	g_Desktop_running=true;
 	hUser32=LoadLibrary("USER32");
@@ -429,6 +389,16 @@ vncDesktop::vncDesktop()
 	m_input_desktop = 0;
 	m_home_desktop = 0;
 	idle_counter=0;
+	trigger_events[0]=CreateEvent(NULL,FALSE,FALSE,"timer");
+	trigger_events[1]=CreateEvent(NULL,FALSE,FALSE,"screenupdate");
+	trigger_events[2]=CreateEvent(NULL,FALSE,FALSE,"mouseupdate");
+	trigger_events[3]=CreateEvent(NULL,FALSE,FALSE,"user1");
+	trigger_events[4]=CreateEvent(NULL,FALSE,FALSE,"user2");
+	trigger_events[5]=CreateEvent(NULL,FALSE,FALSE,"quit");
+	restart_event=CreateEvent(NULL,TRUE,TRUE,"restart");
+	rgnpump.clear();
+	lock_region_add=false;
+	InitWindowThreadh=NULL;
 }
 
 vncDesktop::~vncDesktop()
@@ -440,12 +410,12 @@ vncDesktop::~vncDesktop()
 	if(m_thread != NULL)
 	{
 		// Post a close message to quit our message handler thread
-		PostMessage(Window(), WM_QUIT, 0, 0);
+		if (Window()!=NULL) PostThreadMessage(pumpID, WM_QUIT, 0, 0);
 		vncDesktopThread *thread=(vncDesktopThread*)m_thread;
 		while (g_DesktopThread_running!=false)
 		{
-			PostMessage(Window(), WM_QUIT, 0, 0);
-			Sleep(200);
+			if (Window()!=NULL)PostThreadMessage(pumpID, WM_QUIT, 0, 0);
+			Sleep(1000);
 		}
 		// Join with the desktop handler thread
 		void *returnval;
@@ -477,10 +447,11 @@ vncDesktop::~vncDesktop()
 		}
 	}
 	m_lGridsList.clear();
-	if (hModule)FreeLibrary(hModule);
-	if (hSCModule)FreeLibrary(hSCModule);
 	if (hUser32) FreeLibrary(hUser32);
 	g_Desktop_running=false;
+	for (int i=0;i<6;i++)
+	CloseHandle(trigger_events[i]);
+	CloseHandle(restart_event);
 }
 
 
@@ -488,10 +459,8 @@ vncDesktop::~vncDesktop()
 void
 vncDesktop::QueueRect(const rfb::Rect &rect)
 {
-	ULONG vwParam = MAKELONG(rect.tl.x, rect.tl.y);
-	ULONG vlParam = MAKELONG(rect.br.x, rect.br.y);
-
-	PostMessage(Window(), RFB_SCREEN_UPDATE, vwParam, vlParam);
+	//Full screen Update
+	SetEvent(trigger_events[4]);
 }
 	
 // Kick the desktop hooks to perform an update
@@ -504,12 +473,10 @@ vncDesktop::TriggerUpdate()
 	if (!m_update_triggered) {
 		m_update_triggered = TRUE;
 		g_update_triggered = TRUE;
-		if (m_timerid != 0)
-		KillTimer(NULL, m_timerid);
-		m_timerid = NULL;
-		PostMessage(Window(), WM_TIMER, 0, 0);
+		SetEvent(trigger_events[0]);
 	}
 }
+
 
 // Routine to startup and install all the hooks and stuff
 DWORD
@@ -596,18 +563,12 @@ vncDesktop::Startup()
 		return ERROR_DESKTOP_NO_PALETTE;
 		}
 	
-	if (!InitWindow())
-		{
-		vnclog.Print(LL_INTINFO, VNCLOG("InitWindow failed\n"));
-		return ERROR_DESKTOP_NO_HOOKWINDOW;
-		}
-
+		InitWindowThreadh=CreateThread(NULL,0,InitWindowThread,this,0,&pumpID);
 
 	// Start a timer to handle Polling Mode.  The timer will cause
 	// an "idle" event once every 1/10 second, which is necessary if Polling
 	// Mode is being used, to cause TriggerUpdate to be called.
-	
-	m_timerid = SetTimer(m_hwnd, 1, 100, NULL);
+
 
 	// Initialise the buffer object
 	if (!m_buffer.SetDesktop(this))
@@ -648,25 +609,20 @@ vncDesktop::Shutdown()
 			AviGen=NULL;
 		}
 #endif
-	// If we created a timer then kill it
-	if (m_timerid != 0)
-		KillTimer(NULL, m_timerid);
 
 	// If we created a window then kill it and the hooks
 	if(m_hwnd != NULL)
 	{	
 		// Remove the system hooks
-		if (UnSetHook) UnSetHook(m_hwnd);
-
-		// The window is being closed - remove it from the viewer list
-		ChangeClipboardChain(m_hwnd, m_hnextviewer);
-
 		// Close the hook window
-		DestroyWindow(m_hwnd);
-		m_hwnd = NULL;
-		m_hnextviewer = NULL;
+		vnclog.Print(LL_INTERR, VNCLOG("m_hwnd destroy\n"));
+		PostThreadMessage(pumpID,WM_SHUTDOWN,0,0);
+		Sleep(1500);
+		//m_hwnd = NULL;
 	}
-	if (UnSetHooks) UnSetHooks(GetCurrentThreadId());
+
+	if (InitWindowThreadh) WaitForSingleObject(InitWindowThreadh,10000);
+	InitWindowThreadh=NULL;
 
 	// Now free all the bitmap stuff
 	if (m_hrootdc != NULL)
@@ -727,6 +683,7 @@ vncDesktop::InitDesktop()
 {
 	if (vncService::InputDesktopSelected())
 		return TRUE;
+	vnclog.Print(LL_INTINFO, VNCLOG("InitDesktop...\n"));
 	return vncService::SelectDesktop(NULL, &m_input_desktop);
 }
 
@@ -1303,7 +1260,7 @@ DWORD WINAPI Driverwatch(LPVOID lpParam)
 		{
 		if (WaitForSingleObject(event, 2000) == WAIT_OBJECT_0)
 			{
-				PostMessage(hwnd, WM_USER, 0, 0);
+				PostMessage(hwnd, WM_MOUSESHAPE, 0, 0);
 			}
 		if (!IsWindow(hwnd) || !g_Desktop_running)
 		{
@@ -1314,124 +1271,8 @@ DWORD WINAPI Driverwatch(LPVOID lpParam)
 	}
 	return 0;
 }
-////////////////////////////////////////////////////////////////////////////////
-DWORD WINAPI Driverwatch2(LPVOID lpParam)
-{
-	//new screen update
-	if (OSversion()==1 || OSversion()==2)
-	{
-		HANDLE event;
-		//DrvWatch *mywatch=(DrvWatch*)lpParam;
-		HWND hwnd=(HWND)lpParam;
-		event=NULL;
-		while (event==NULL)
-		{
-			event = OpenEvent (SYNCHRONIZE, FALSE, "VncEvent2") ;
-			Sleep(900);
-			if (!IsWindow(hwnd)) 
-			{
-				if (event) CloseHandle(event);
-				return 0;
-			}
-		}
-		SetThreadPriority(GetCurrentThread(), THREAD_PRIORITY_NORMAL);
-		counterwatch=0;
-		for (;;)
-		{
-		if (WaitForSingleObject(event, 50) == WAIT_OBJECT_0)
-			{
-				//if (!g_update_triggered)
-				PostMessage(hwnd, WM_TIMER, 0, 0);
-				Sleep(100);
-			}
-		else
-			{
-				counterwatch++;
-				if (counterwatch==100)
-					{
-						PostMessage(hwnd, WM_USER+2, 0, 0);
-						counterwatch=0;
-				}
-			}
-		if (!IsWindow(hwnd) || !g_Desktop_running) 
-			{
-				if (event) CloseHandle(event);
-				break;
-			}
-		}
-	}
-	return 0;
-}
-////////////////////////////////////////////////////////////////////////////////
-LRESULT CALLBACK DesktopWndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam);
 
-ATOM m_wndClass = 0;
 
-BOOL
-vncDesktop::InitWindow()
-{
-	if (m_wndClass == 0) {
-		// Create the window class
-		WNDCLASSEX wndclass;
-
-		wndclass.cbSize			= sizeof(wndclass);
-		wndclass.style			= 0;
-		wndclass.lpfnWndProc	= &DesktopWndProc;
-		wndclass.cbClsExtra		= 0;
-		wndclass.cbWndExtra		= 0;
-		wndclass.hInstance		= hAppInstance;
-		wndclass.hIcon			= NULL;
-		wndclass.hCursor		= NULL;
-		wndclass.hbrBackground	= (HBRUSH) GetStockObject(WHITE_BRUSH);
-		wndclass.lpszMenuName	= (const char *) NULL;
-		wndclass.lpszClassName	= szDesktopSink;
-		wndclass.hIconSm		= NULL;
-
-		// Register it
-		m_wndClass = RegisterClassEx(&wndclass);
-		if (!m_wndClass) {
-			vnclog.Print(LL_INTERR, VNCLOG("failed to register window class\n"));
-			return FALSE;
-		}
-	}
-
-	// And create a window
-	m_hwnd = CreateWindow(szDesktopSink,
-				"WinVNC",
-				WS_OVERLAPPEDWINDOW,
-				CW_USEDEFAULT,
-				CW_USEDEFAULT,
-				400, 200,
-				NULL,
-				NULL,
-				hAppInstance,
-				NULL);
-
-	if (m_hwnd == NULL) {
-		vnclog.Print(LL_INTERR, VNCLOG("failed to create hook window\n"));
-		return FALSE;
-	}
-
-	// Set the "this" pointer for the window
-    helper::SafeSetWindowUserData(m_hwnd, (long)this);
-
-	// Enable clipboard hooking
-	m_hnextviewer = SetClipboardViewer(m_hwnd);
-	StopDriverWatches=false;
-		DrvWatch mywatch;
-		mywatch.stop=&StopDriverWatches;
-		mywatch.hwnd=m_hwnd;
-	if (VideoBuffer())
-	{
-		DWORD myword;
-		HANDLE T1=CreateThread(NULL,0,Driverwatch,m_hwnd,0,&myword);
-//		HANDLE T2=CreateThread(NULL,0,Driverwatch2,m_hwnd,0,&myword);
-//		CloseHandle(T2);
-		CloseHandle(T1);
-	}
-
-	return TRUE;
-}
 
 DWORD
 vncDesktop::EnableOptimisedBlits()
@@ -1878,201 +1719,6 @@ vncDesktop::CalcCopyRects(rfb::UpdateTracker &tracker)
 	return false;
 }
 
-// Window procedure for the Desktop window
-LRESULT CALLBACK
-DesktopWndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
-{
-#ifndef _X64
-	vncDesktop *_this = (vncDesktop*)GetWindowLong(hwnd, GWL_USERDATA);
-#else
-	vncDesktop *_this = (vncDesktop*)GetWindowLongPtr(hwnd, GWLP_USERDATA);
-#endif
-	switch (iMsg)
-	{
-	///ddihook
-	case WM_SYSCOMMAND:
-		// User has clicked an item on the tray menu
-		switch (wParam)
-		{
-			case SC_MONITORPOWER:
-				vnclog.Print(LL_INTINFO, VNCLOG("Monitor22 %i\n"),lParam);
-		}
-		vnclog.Print(LL_INTINFO, VNCLOG("Monitor3 %i %i\n"),wParam,lParam);
-		return DefWindowProc(hwnd, iMsg, wParam, lParam);
-	case WM_POWER:
-	case WM_POWERBROADCAST:
-		// User has clicked an item on the tray menu
-		switch (wParam)
-		{
-			case SC_MONITORPOWER:
-				vnclog.Print(LL_INTINFO, VNCLOG("Monitor222 %i\n"),lParam);
-		}
-		vnclog.Print(LL_INTINFO, VNCLOG("Power3 %i %i\n"),wParam,lParam);
-		return DefWindowProc(hwnd, iMsg, wParam, lParam);
-
-	case WM_COPYDATA:
-        {
-			PCOPYDATASTRUCT pMyCDS = (PCOPYDATASTRUCT) lParam;
-			if (pMyCDS->dwData==112233)
-			{
-					DWORD mysize=pMyCDS->cbData;
-					char mytext[1024];
-					char *myptr;
-					char split[4][6];
-					strcpy(mytext,(LPCSTR)pMyCDS->lpData);
-					myptr=mytext;
-					for (DWORD j =0; j<(mysize/20);j++)
-					{
-						for (int i=0;i<4;i++)
-							{
-								strcpy(split[i],"     ");
-								strncpy(split[i],myptr,4);
-								myptr=myptr+5;
-							}
-						_this->QueueRect(rfb::Rect(atoi(split[0]), atoi(split[1]), atoi(split[2]), atoi(split[3])));
-					}
-					
-			}
-			//vnclog.Print(LL_INTINFO, VNCLOG("copydata\n"));	
-        }
-			return 0;
-
-	// GENERAL
-
-	case WM_DISPLAYCHANGE:
-		// The display resolution is changing
-		// We must kick off any clients since their screen size will be wrong
-		// WE change the clients screensize, if they support it.
-		vnclog.Print(LL_INTERR, VNCLOG("WM_DISPLAYCHANGE\n"));
-		// We First check if the Resolution changed is caused by a temp resolution switch
-		// For a temp resolution we don't use the driver, to fix the mirror driver
-		// to the new change, a resolution switch is needed, preventing screensaver locking.
-
-		if (_this->m_videodriver != NULL) //Video driver active
-		{
-			if (!_this->m_videodriver->blocked)
-			{
-				_this->m_displaychanged = TRUE;
-				_this->m_hookdriver=true;
-				_this->m_videodriver->blocked=true;
-				vnclog.Print(LL_INTERR, VNCLOG("Resolution switch detected, driver active\n"));	
-			}
-			else
-			{
-				//Remove display change, cause by driver activation
-				_this->m_videodriver->blocked=false;
-				vnclog.Print(LL_INTERR, VNCLOG("Resolution switch by driver activation removed\n"));
-			}
-		}
-		else 
-		{
-				_this->m_displaychanged = TRUE;
-				_this->m_hookdriver=true;
-				vnclog.Print(LL_INTERR, VNCLOG("Resolution switch detected, driver NOT active\n"));
-			
-		}
-		return 0;
-
-	case WM_SYSCOLORCHANGE:
-	case WM_PALETTECHANGED:
-		// The palette colours have changed, so tell the server
-
-		// Get the system palette
-            // better to use the wrong colors than close the connection
-		_this->SetPalette();
-
-		// Update any palette-based clients, too
-		_this->m_server->UpdatePalette();
-		return 0;
-
-		// CLIPBOARD MESSAGES
-
-	case WM_CHANGECBCHAIN:
-		// The clipboard chain has changed - check our nextviewer handle
-		if ((HWND)wParam == _this->m_hnextviewer)
-			_this->m_hnextviewer = (HWND)lParam;
-		else
-			if (_this->m_hnextviewer != NULL)
-				SendMessage(_this->m_hnextviewer,
-							WM_CHANGECBCHAIN,
-							wParam, lParam);
-
-		return 0;
-
-	case WM_DRAWCLIPBOARD:
-		// The clipboard contents have changed
-		if((GetClipboardOwner() != _this->Window()) &&
-		    _this->m_initialClipBoardSeen &&
-			_this->m_clipboard_active && !_this->m_server->IsThereFileTransBusy())
-		{
-			LPSTR cliptext = NULL;
-
-			// Open the clipboard
-			if (OpenClipboard(_this->Window()))
-			{
-				// Get the clipboard data
-				HGLOBAL cliphandle = GetClipboardData(CF_TEXT);
-				if (cliphandle != NULL)
-				{
-					LPSTR clipdata = (LPSTR) GlobalLock(cliphandle);
-
-					// Copy it into a new buffer
-					if (clipdata == NULL)
-						cliptext = NULL;
-					else
-						cliptext = _strdup(clipdata);
-
-					// Release the buffer and close the clipboard
-					GlobalUnlock(cliphandle);
-				}
-
-				CloseClipboard();
-			}
-
-			if (cliptext != NULL)
-			{
-				int cliplen = strlen(cliptext);
-				LPSTR unixtext = (char *)malloc(cliplen+1);
-
-				// Replace CR-LF with LF - never send CR-LF on the wire,
-				// since Unix won't like it
-				int unixpos=0;
-				for (int x=0; x<cliplen; x++)
-				{
-					if (cliptext[x] != '\x0d')
-					{
-						unixtext[unixpos] = cliptext[x];
-						unixpos++;
-					}
-				}
-				unixtext[unixpos] = 0;
-
-				// Free the clip text
-				free(cliptext);
-				cliptext = NULL;
-
-				// Now send the unix text to the server
-				_this->m_server->UpdateClipText(unixtext);
-
-				free(unixtext);
-			}
-		}
-
-		_this->m_initialClipBoardSeen = TRUE;
-
-		if (_this->m_hnextviewer != NULL)
-		{
-			// Pass the message to the next window in clipboard viewer chain.  
-			return SendMessage(_this->m_hnextviewer, WM_DRAWCLIPBOARD, 0,0); 
-		}
-
-		return 0;
-
-	default:
-		return DefWindowProc(hwnd, iMsg, wParam, lParam);
-	}
-	return 0;
-}
 
 // added jef
 void vncDesktop::SetBlankMonitor(bool enabled)
@@ -2497,53 +2143,8 @@ void vncDesktop::StartStopddihook(BOOL enabled)
 
 void vncDesktop::StartStophookdll(BOOL enabled)
 {
-	if (enabled)
-	{
-		if (SetHook)
-		{
-			SetHook(m_hwnd);
-			vnclog.Print(LL_INTERR, VNCLOG("set SC hooks OK\n"));
-			m_hookinited = TRUE;
-		}
-		else if (SetHooks)
-		{
-			if (!SetHooks(
-				GetCurrentThreadId(),
-				RFB_SCREEN_UPDATE,
-				RFB_COPYRECT_UPDATE,
-				RFB_MOUSE_UPDATE, ddihook
-				))
-			{
-				vnclog.Print(LL_INTERR, VNCLOG("failed to set system hooks\n"));
-				// Switch on full screen polling, so they can see something, at least...
-				m_server->PollFullScreen(TRUE);
-				m_hookinited = FALSE;
-			} 
-			else 
-			{
-				vnclog.Print(LL_INTERR, VNCLOG("set hooks OK\n"));
-				m_hookinited = TRUE;
-				// Start up the keyboard and mouse filters
-				if (SetKeyboardFilterHook) SetKeyboardFilterHook(m_server->LocalInputsDisabled());
-				if (SetMouseFilterHook) SetMouseFilterHook(m_server->LocalInputsDisabled());
-			}
-		}
-
-	}
-	else if (m_hookinited)
-	{
-		if (UnSetHook)
-		{
-			UnSetHook(m_hwnd);
-		}
-		else if (UnSetHooks)
-		{
-		if(!UnSetHooks(GetCurrentThreadId()) )
-			vnclog.Print(LL_INTERR, VNCLOG("Unsethooks Failed\n"));
-		else vnclog.Print(LL_INTERR, VNCLOG("Unsethooks OK\n"));
-		}
-		
-	}
+	vnclog.Print(LL_INTERR, VNCLOG("PostMessage(m_hwnd, WM_HOOKCHANGE \n"));
+	PostMessage(m_hwnd, WM_HOOKCHANGE, enabled, 0);
 }
 
 
