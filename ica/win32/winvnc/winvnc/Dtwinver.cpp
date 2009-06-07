@@ -165,17 +165,17 @@ to maintain a single distribution point for the source code.
 
 /////////////////////////////////  Includes  //////////////////////////////////
 #include <windows.h> 
+#include <ctype.h>
 #if defined(_WIN32) || defined(_WIN64)
 #include <tchar.h>
 #else
-#include <ctype.h>
 #include <stdlib.h>
 #include <shellapi.h>
 #endif
 #include <string.h>
 #include <stdio.h>
 #include <stdarg.h>
-#include "dtwinver.h"
+#include "Dtwinver.h"
 
 
 /////////////////////////////////  Local function / variables /////////////////

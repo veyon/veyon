@@ -6,7 +6,7 @@
 //#include <math.h>
 #include <stdio.h>    
 #include <string.h>
-#include "dtwinver.h"
+#include "Dtwinver.h"
 
 #if !defined(_WIN32) && !defined(_WIN64)
   #define _stprintf sprintf

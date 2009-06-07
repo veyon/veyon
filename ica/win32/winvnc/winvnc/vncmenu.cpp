@@ -676,6 +676,7 @@ LRESULT CALLBACK vncMenu::WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lP
 	{
 
 		// Every five seconds, a timer message causes the icon to update
+	case WM_SRV_DESKTOP_CHANGE:
 	case WM_TIMER:
 		// sf@2007 - Can't get the WTS_CONSOLE_CONNECT message work properly for now..
 		// So use a hack instead
@@ -1093,39 +1094,25 @@ LRESULT CALLBACK vncMenu::WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lP
 		
 	case WM_QUERYENDSESSION:
 		{
-		DWORD SessionID;
-		SessionID=GetCurrentSessionID();
-		if (SessionID!=0)
-		{
-			vnclog.Print(LL_INTERR, VNCLOG("WM_QUERYENDSESSION session!=0\n"));
-			vnclog.Print(LL_INTINFO, VNCLOG("KillAuthClients() ID_CLOSE \n"));
-			_this->m_server->KillAuthClients();
-			fShutdownOrdered=TRUE;
-			PostMessage(hwnd, WM_CLOSE, 0, 0);
-		}
-		else if((lParam & ENDSESSION_LOGOFF) != ENDSESSION_LOGOFF)
-		{
-			vnclog.Print(LL_INTERR, VNCLOG("WM_QUERYENDSESSION session==0\n"));
-			vnclog.Print(LL_INTINFO, VNCLOG("KillAuthClients() ID_CLOSE \n"));
-			_this->m_server->KillAuthClients();
-			fShutdownOrdered=TRUE;
-			PostMessage(hwnd, WM_CLOSE, 0, 0);
-		}
-
-
-		/*//_this->m_server->KillAuthClients();
-		//_this->m_server->KillSockConnect();
-		//_this->m_server->ShutdownServer();
-		//DestroyWindow(hwnd);
-
-		// [v1.0.2-jp1 fix] Shutdown slow probrem
-		RevertToSelf();
-		// [v1.0.2-jp2 fix] Shutdown slow probrem
-		if((lParam & ENDSESSION_LOGOFF) != ENDSESSION_LOGOFF){
-			_this->m_server->KillAuthClients();
-		}*/
-		}
-		
+			DWORD SessionID;
+			SessionID=GetCurrentSessionID();
+			if (SessionID!=0)
+			{
+				vnclog.Print(LL_INTERR, VNCLOG("WM_QUERYENDSESSION session!=0\n"));
+				vnclog.Print(LL_INTINFO, VNCLOG("KillAuthClients() ID_CLOSE \n"));
+				_this->m_server->KillAuthClients();
+				fShutdownOrdered=TRUE;
+				PostMessage(hwnd, WM_CLOSE, 0, 0);
+			}
+			else if((lParam & ENDSESSION_LOGOFF) != ENDSESSION_LOGOFF)
+			{
+				vnclog.Print(LL_INTERR, VNCLOG("WM_QUERYENDSESSION session==0\n"));
+				vnclog.Print(LL_INTINFO, VNCLOG("KillAuthClients() ID_CLOSE \n"));
+				_this->m_server->KillAuthClients();
+				fShutdownOrdered=TRUE;
+				PostMessage(hwnd, WM_CLOSE, 0, 0);
+			}
+		}		
 		break;
 		
 	case WM_ENDSESSION:

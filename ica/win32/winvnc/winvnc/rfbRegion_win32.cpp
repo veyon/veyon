@@ -31,7 +31,7 @@ using namespace rfb;
 void dump_rects(char *n, HRGN rgn, bool dbg = 0)
 {
 #if defined(_DEBUG)
-  vnclog.Print(LL_INTWARN, VNCLOG("Region %s %p contains rects:\n"), n, rgn);
+  //vnclog.Print(LL_INTWARN, VNCLOG("Region %s %p contains rects:\n"), n, rgn);
 	DWORD buffsize = GetRegionData(rgn, 0, NULL);
 	if (!buffsize)
 		return ;
@@ -58,9 +58,7 @@ void dump_rects(char *n, HRGN rgn, bool dbg = 0)
 	RECT *pRectangles = reinterpret_cast<RECT*>(&region_data->Buffer[0]);
 	for (DWORD i = 0; i < nRects; ++i)
 	{
-		vnclog.Print(LL_INTWARN, VNCLOG("           (%u,%u - %u,%u)\n"), 
-					 pRectangles[i].left, pRectangles[i].top,
-					 pRectangles[i].right, pRectangles[i].bottom);
+		//vnclog.Print(LL_INTWARN, VNCLOG("           (%u,%u - %u,%u)\n"), pRectangles[i].left, pRectangles[i].top,pRectangles[i].right, pRectangles[i].bottom);
 
 		if (stop_needed && enabled)
 		{
@@ -91,14 +89,14 @@ Region::Region(const Region& r) : m_name(_strdup("")) {
   rgn = CreateRectRgn(0,0,0,0);
   CombineRgn(rgn, r.rgn, r.rgn, RGN_COPY);
 #if defined(_DEBUG)
-  vnclog.Print(LL_INTWARN, VNCLOG("Copy-construct Region %p from %s %p\n"), rgn, r.m_name, r.rgn);
+  //vnclog.Print(LL_INTWARN, VNCLOG("Copy-construct Region %p from %s %p\n"), rgn, r.m_name, r.rgn);
   dump_rects(m_name, rgn);
 #endif
 }
 
 Region::~Region() {
 #if defined(_DEBUG)
-  vnclog.Print(LL_INTWARN, VNCLOG("Deleting Region %s %p\n"), m_name, rgn);
+  //vnclog.Print(LL_INTWARN, VNCLOG("Deleting Region %s %p\n"), m_name, rgn);
 #endif
   DeleteObject(rgn);
   free(m_name);
@@ -108,7 +106,7 @@ Region::~Region() {
 rfb::Region& Region::operator=(const Region& r) {
   clear();
 #if defined(_DEBUG)
-  vnclog.Print(LL_INTWARN, VNCLOG("Assign Region %s %p from %s %p\n"), m_name, rgn, r.m_name, r.rgn);
+  //vnclog.Print(LL_INTWARN, VNCLOG("Assign Region %s %p from %s %p\n"), m_name, rgn, r.m_name, r.rgn);
   dump_rects(m_name, rgn);
 #endif
   CombineRgn(rgn, r.rgn, r.rgn, RGN_COPY);
@@ -132,7 +130,7 @@ void Region::translate(const Point& delta) {
 void Region::assign_intersect(const Region& r) {
   CombineRgn(rgn, rgn, r.rgn, RGN_AND);
 #if defined(_DEBUG)
-  vnclog.Print(LL_INTWARN, VNCLOG("assign_intersect this %s %p, other %s %p\n"), m_name, rgn, r.m_name, r.rgn);
+  //vnclog.Print(LL_INTWARN, VNCLOG("assign_intersect this %s %p, other %s %p\n"), m_name, rgn, r.m_name, r.rgn);
   dump_rects(m_name, rgn);
 #endif
 }
@@ -140,7 +138,7 @@ void Region::assign_intersect(const Region& r) {
 void Region::assign_union(const Region& r) {
   CombineRgn(rgn, rgn, r.rgn, RGN_OR);
 #if defined(_DEBUG)
-  vnclog.Print(LL_INTWARN, VNCLOG("assign_union this %s %p, other %s %p\n"),  m_name, rgn, r.m_name, r.rgn);
+  //vnclog.Print(LL_INTWARN, VNCLOG("assign_union this %s %p, other %s %p\n"),  m_name, rgn, r.m_name, r.rgn);
   dump_rects(m_name, rgn, 1);
 #endif
 }
@@ -148,7 +146,7 @@ void Region::assign_union(const Region& r) {
 void Region::assign_subtract(const Region& r) {
   CombineRgn(rgn, rgn, r.rgn, RGN_DIFF);
 #if defined(_DEBUG)
-  vnclog.Print(LL_INTWARN, VNCLOG("assign_subtract %s %p, other %s %p\n"), m_name, rgn, r.m_name, r.rgn);
+  //vnclog.Print(LL_INTWARN, VNCLOG("assign_subtract %s %p, other %s %p\n"), m_name, rgn, r.m_name, r.rgn);
   dump_rects(m_name, rgn);
 #endif
 }
@@ -186,7 +184,7 @@ bool Region::get_rects(std::vector<Rect>& rects,
 					   bool left2right,
 					   bool topdown) const {
 #if defined(_DEBUG)
-   vnclog.Print(LL_INTWARN, VNCLOG("get_rects %s %p\n"), m_name, rgn);
+   //vnclog.Print(LL_INTWARN, VNCLOG("get_rects %s %p\n"), m_name, rgn);
 #endif
 
    DWORD buffsize = GetRegionData(rgn, 0, NULL);
@@ -219,7 +217,7 @@ bool Region::get_rects(std::vector<Rect>& rects,
    int yInc = topdown ? 1 : -1;
    int i = topdown ? 0 : nRects-1;
 #if defined(_DEBUG)
-   vnclog.Print(LL_INTWARN, VNCLOG("Region %s %p contains rects:\n"), m_name, rgn);
+   //vnclog.Print(LL_INTWARN, VNCLOG("Region %s %p contains rects:\n"), m_name, rgn);
 #endif
 
    while (nRects > 0) {
@@ -240,7 +238,7 @@ bool Region::get_rects(std::vector<Rect>& rects,
 			   pRectangles[i].right, pRectangles[i].bottom);
 
 #if defined(_DEBUG)
-		   vnclog.Print(LL_INTWARN, VNCLOG("           (%u,%u - %u,%u) %ux%u\n"), r.tl.x, r.tl.y, r.br.x, r.br.y, r.width(), r.height());
+		   //vnclog.Print(LL_INTWARN, VNCLOG("           (%u,%u - %u,%u) %ux%u\n"), r.tl.x, r.tl.y, r.br.x, r.br.y, r.width(), r.height());
 #endif
 		   rects.push_back(r);
 		   i += xInc;

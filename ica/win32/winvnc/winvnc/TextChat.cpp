@@ -47,7 +47,7 @@ extern HINSTANCE	hAppInstance;
 //
 //
 //
-#include <Mmsystem.h>
+#include <mmsystem.h>
 BOOL PlayResource(LPSTR lpName)
 {
     BOOL bRtn;
@@ -444,7 +444,6 @@ HWND TextChat::DisplayTextChat()
 //
 void TextChat::KillDialog()
 {
-	// DestroyWindow(m_hDlg);
 	m_fTextChatRunning = false;
     if (m_Thread != INVALID_HANDLE_VALUE)
     {

@@ -173,11 +173,13 @@ typedef BOOL (*SetHooksFn)(DWORD thread_id,UINT UpdateMsg,UINT CopyMsg,UINT Mous
 typedef BOOL (*UnSetHooksFn)(DWORD thread_id);
 typedef BOOL (*SetKeyboardFilterHookFn)(BOOL activate);	
 typedef BOOL (*SetMouseFilterHookFn)(BOOL activate);
+typedef BOOL (*SetHookFn)(HWND hwnd);
+typedef BOOL (*UnSetHookFn)(HWND hwnd);
+
 typedef BOOL (WINAPI*  pBlockInput) (BOOL);
 typedef BOOL (WINAPI* LPGETMONITORINFO)(HMONITOR, LPMONITORINFO);
 typedef HMONITOR (WINAPI* LPMONITOTFROMPOINT) (POINT,DWORD);
-typedef BOOL (*SetHookFn)(HWND hwnd);
-typedef BOOL (*UnSetHookFn)(HWND hwnd);
+
 
 // Class definition
 // multi monitor
@@ -308,6 +310,12 @@ public:
     void SetBlockInputState(bool newstate);
     bool GetBlockInputState() { return m_bIsInputDisabledByClient; }
     bool block_input(bool enabled);
+	BOOL InitWindow();
+	HANDLE trigger_events[6];
+	HANDLE restart_event;
+	DWORD pumpID;
+	rfb::Region2D rgnpump;
+	bool lock_region_add;
 
 	// Implementation
 protected:
@@ -322,7 +330,6 @@ protected:
 //	void KillWallpaper();
 //	void RestoreWallpaper();
 	DWORD InitBitmap();
-	BOOL InitWindow();
 	BOOL ThunkBitmapInfo();
 	DWORD SetPixFormat();
 	BOOL SetPixShifts();
@@ -366,7 +373,7 @@ protected:
 	vncServer 		*m_server;
 	omni_thread 	*m_thread;
 	HWND			m_hwnd;
-	UINT			m_timerid;
+	//UINT			m_timerid;
 	HWND			m_hnextviewer;
 	BOOL			m_clipboard_active;
 
@@ -475,6 +482,7 @@ protected:
 	BOOL m_Origpolling;
 /*	BOOL Check24bit();*/
 	COLORREF CapturePixel(int x,int y);
+	HANDLE InitWindowThreadh;
 
 	
 BOOL DriverWanted;

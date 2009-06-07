@@ -561,6 +561,13 @@ int WINAPI WinMainVNC(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLi
 						address_vcard=address;
 						}
 					}
+					else
+					{
+						//ask for host,port
+						PostAddNewClient_bool=true;
+						port_int=0;
+						address_vcard=0;
+					}
 				}
 				i=end;
 				continue;
