@@ -3,6 +3,9 @@
 #include "vncdesktop.h"
 #include "vncservice.h"
 
+#define MSGFLT_ADD		1
+typedef BOOL (WINAPI *CHANGEWINDOWMESSAGEFILTER)(UINT message, DWORD dwFlag);
+int OSversion();
 DWORD WINAPI Driverwatch(LPVOID lpParam);
 
 DWORD WINAPI
@@ -29,49 +32,15 @@ DesktopWndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 										OutputDebugString(szText);
 										//vnclog.Print(LL_INTERR, VNCLOG("%i  \n"),iMsg);
 			#endif
-	if (RFB_SCREEN_UPDATE==iMsg)
-	{
-			rfb::Rect rect;
-			rect.tl = rfb::Point((SHORT)LOWORD(wParam), (SHORT)HIWORD(wParam));
-			rect.br = rfb::Point((SHORT)LOWORD(lParam), (SHORT)HIWORD(lParam));
-			//Buffer coordinates
-			rect.tl.x-=_this->m_ScreenOffsetx;
-			rect.br.x-=_this->m_ScreenOffsetx;
-			rect.tl.y-=_this->m_ScreenOffsety;
-			rect.br.y-=_this->m_ScreenOffsety;
-//			vnclog.Print(LL_INTERR, VNCLOG("REct %i %i %i %i  \n"),rect.tl.x,rect.br.x,rect.tl.y,rect.br.y);
-			
-			rect = rect.intersect(_this->m_Cliprect);
-			if (!rect.is_empty())
-			{
-				while (_this->lock_region_add) Sleep(5);
-				_this->rgnpump.assign_union(rect);
-				SetEvent(_this->trigger_events[1]);
-			}
-			
-	}
-
-	else if (RFB_MOUSE_UPDATE==iMsg)
-	{
-		_this->SetCursor((HCURSOR) wParam);
-		SetEvent(_this->trigger_events[2]);
-	}
-	else
-	{
 	switch (iMsg)
 	{
 	case WM_CREATE:
 		vnclog.Print(LL_INTERR, VNCLOG("wmcreate  \n"));
 		break;
 	case WM_TIMER:
-		SetEvent(_this->trigger_events[0]);
-		break;
-	case WM_MOUSESHAPE:
-		SetEvent(_this->trigger_events[3]);
-		break;
-	case WM_HOOKCHANGE:
-		if (wParam==1)
-			{
+		if (wParam==100)
+		{
+				KillTimer(hwnd, 100); 
 				if (_this->SetHook)
 				{
 					_this->SetHook(hwnd);
@@ -101,7 +70,16 @@ DesktopWndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 						if (_this->SetMouseFilterHook) _this->SetMouseFilterHook(_this->m_server->LocalInputsDisabled());
 					}
 				}
-
+		}
+		else SetEvent(_this->trigger_events[0]);
+		break;
+	case WM_MOUSESHAPE:
+		SetEvent(_this->trigger_events[3]);
+		break;
+	case WM_HOOKCHANGE:
+		if (wParam==1)
+			{
+				SetTimer(hwnd,100,4000,NULL);
 			}
 			else if (_this->m_hookinited)
 			{
@@ -119,12 +97,41 @@ DesktopWndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 				
 			}
 		return true;
+
+	case WM_QUERYENDSESSION:
+
+		if (OSversion()==2) 
+		{
+		if (_this->m_hnextviewer!=NULL) ChangeClipboardChain(hwnd, _this->m_hnextviewer);
+		_this->m_hnextviewer=NULL;
+		if (_this->m_hookinited)
+			{
+				if (_this->UnSetHook)
+				{
+					vnclog.Print(LL_INTERR, VNCLOG("unset SC hooks OK\n"));
+					_this->UnSetHook(hwnd);
+				}
+				else if (_this->UnSetHooks)
+				{
+				if(!_this->UnSetHooks(GetCurrentThreadId()) )
+					vnclog.Print(LL_INTERR, VNCLOG("Unsethooks Failed\n"));
+				else vnclog.Print(LL_INTERR, VNCLOG("Unsethooks OK\n"));
+				}
+				
+			}
+		vnclog.Print(LL_INTERR, VNCLOG("WM_QUERYENDSESSION\n"));
+		PostQuitMessage(0);
+		SetEvent(_this->trigger_events[5]);
+		}
+		return DefWindowProc(hwnd, iMsg, wParam, lParam);
+
 	case WM_CLOSE:
 		if (_this->m_hnextviewer!=NULL) ChangeClipboardChain(hwnd, _this->m_hnextviewer);
 		_this->m_hnextviewer=NULL;
 		DestroyWindow(hwnd);
 		break;
 	case WM_DESTROY:		
+		KillTimer(hwnd, 100); 
 		if (_this->m_hnextviewer!=NULL) ChangeClipboardChain(hwnd, _this->m_hnextviewer);
 		_this->m_hnextviewer=NULL;
 		if (_this->m_hookinited)
@@ -326,7 +333,6 @@ DesktopWndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 	default:
 		return DefWindowProc(hwnd, iMsg, wParam, lParam);
 	}
-	}
 	return 0;
 }
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -367,6 +373,15 @@ vncDesktop::InitWindow()
 	{
 		vnclog.Print(LL_INTERR, VNCLOG("InitWindow:SelectHDESK:!SetThreadDesktop \n"));
 	}
+
+	HMODULE  hUser32 = LoadLibrary("user32.dll");
+	CHANGEWINDOWMESSAGEFILTER pfnFilter = NULL;
+	pfnFilter =(CHANGEWINDOWMESSAGEFILTER)GetProcAddress(hUser32,"ChangeWindowMessageFilter");
+	if (pfnFilter) pfnFilter(RFB_SCREEN_UPDATE, MSGFLT_ADD);
+	if (pfnFilter) pfnFilter(RFB_COPYRECT_UPDATE, MSGFLT_ADD);
+	if (pfnFilter) pfnFilter(RFB_MOUSE_UPDATE, MSGFLT_ADD);
+	if (pfnFilter) pfnFilter(WM_QUIT, MSGFLT_ADD);
+	if (pfnFilter) pfnFilter(WM_SHUTDOWN, MSGFLT_ADD);
 
 
 	
@@ -491,6 +506,33 @@ vncDesktop::InitWindow()
 					vnclog.Print(LL_INTERR, VNCLOG("OOOOOOOOOOOO called wm_user+4\n"));
 					DestroyWindow(m_hwnd);
 					break;
+				}
+			else if (msg.message==RFB_SCREEN_UPDATE)
+				{
+					vnclog.Print(LL_INTERR, VNCLOG("RFB_SCREEN_UPDATE  \n"));
+					rfb::Rect rect;
+					rect.tl = rfb::Point((SHORT)LOWORD(msg.wParam), (SHORT)HIWORD(msg.wParam));
+					rect.br = rfb::Point((SHORT)LOWORD(msg.lParam), (SHORT)HIWORD(msg.lParam));
+					//Buffer coordinates
+					rect.tl.x-=m_ScreenOffsetx;
+					rect.br.x-=m_ScreenOffsetx;
+					rect.tl.y-=m_ScreenOffsety;
+					rect.br.y-=m_ScreenOffsety;
+					vnclog.Print(LL_INTERR, VNCLOG("REct %i %i %i %i  \n"),rect.tl.x,rect.br.x,rect.tl.y,rect.br.y);
+				
+					rect = rect.intersect(m_Cliprect);
+					if (!rect.is_empty())
+						{
+							while (lock_region_add) Sleep(5);
+							rgnpump.assign_union(rect);
+							SetEvent(trigger_events[1]);
+						}
+				}
+			else if (msg.message==RFB_MOUSE_UPDATE)
+				{
+					vnclog.Print(LL_INTERR, VNCLOG("RFB_MOUSE_UPDATE  \n"));
+					SetCursor((HCURSOR) msg.wParam);
+					SetEvent(trigger_events[2]);
 				}
 			else
 				{

@@ -573,10 +573,10 @@ void monitor_sessions()
 										// Put a long timeout to give system time to start or logout
 										Sleep(2000);
 									}
-#if 0
+//#if 0
 									Sleep(1000);
 									if (Slow_connect) Sleep(4000);
-#endif
+//#endif
 #ifdef _DEBUG
                                     OutputDebugString("Waiting up to 15 seconds for tray icon process to exit\n");
 #endif

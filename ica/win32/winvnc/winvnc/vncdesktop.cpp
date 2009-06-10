@@ -403,19 +403,46 @@ vncDesktop::vncDesktop()
 
 vncDesktop::~vncDesktop()
 {
-	vnclog.Print(LL_INTINFO, VNCLOG("killing screen server\n"));
+	vnclog.Print(LL_INTINFO, VNCLOG("~vncDesktop \n"));
 
 	// If we created a thread then here we delete it
 	// The thread itself does most of the cleanup
 	if(m_thread != NULL)
 	{
 		// Post a close message to quit our message handler thread
-		if (Window()!=NULL) PostThreadMessage(pumpID, WM_QUIT, 0, 0);
+		if (Window()!=NULL)
+		{
+			vnclog.Print(LL_INTINFO, VNCLOG("~vncDesktop::Tell initwindowthread to close \n"));
+			PostThreadMessage(pumpID, WM_QUIT, 0, 0);
+			DWORD status=WaitForSingleObject(InitWindowThreadh,2000);
+			if (status==WAIT_TIMEOUT)
+			{
+				vnclog.Print(LL_INTERR, VNCLOG("~vncDesktop::ERROR:  messageloop blocked \n"));
+				// WE need to kill the thread to prevent a winvnc lock
+				TerminateThread(InitWindowThreadh,0);
+				CloseHandle(InitWindowThreadh);
+				m_hwnd=NULL;
+				InitWindowThreadh=NULL;
+			}
+		}
+		else
+		{
+			vnclog.Print(LL_INTINFO, VNCLOG("initwindowthread already closed \n"));
+		}
 		vncDesktopThread *thread=(vncDesktopThread*)m_thread;
+		int counter=0;
 		while (g_DesktopThread_running!=false)
 		{
+			vnclog.Print(LL_INTINFO, VNCLOG("Desktop thread running, try to close \n"));
 			if (Window()!=NULL)PostThreadMessage(pumpID, WM_QUIT, 0, 0);
+			if (Window()==NULL)SetEvent(trigger_events[5]);;
 			Sleep(1000);
+			counter++;
+			if (counter>5) 
+			{
+				vnclog.Print(LL_INTINFO, VNCLOG("Desktop thread running, force close \n"));
+				SetEvent(trigger_events[5]);
+			}
 		}
 		// Join with the desktop handler thread
 		void *returnval;
@@ -611,18 +638,31 @@ vncDesktop::Shutdown()
 #endif
 
 	// If we created a window then kill it and the hooks
+	// m_hwnd==NULL when InitWindowThreadh is finished 
 	if(m_hwnd != NULL)
 	{	
 		// Remove the system hooks
 		// Close the hook window
-		vnclog.Print(LL_INTERR, VNCLOG("m_hwnd destroy\n"));
+		vnclog.Print(LL_INTERR, VNCLOG("send WM_SHUTDOWN\n"));
 		PostThreadMessage(pumpID,WM_SHUTDOWN,0,0);
-		Sleep(1500);
-		//m_hwnd = NULL;
+		Sleep(1000);
 	}
 
-	if (InitWindowThreadh) WaitForSingleObject(InitWindowThreadh,10000);
-	InitWindowThreadh=NULL;
+	if (InitWindowThreadh) 
+	{
+		// 2 seconds should be enough to let WM_SHUTDOWN close the thread
+		DWORD status=WaitForSingleObject(InitWindowThreadh,2000);
+		if (status==WAIT_TIMEOUT)
+		{
+			vnclog.Print(LL_INTERR, VNCLOG("ERROR:  messageloop blocked \n"));
+			// WE need to kill the thread to prevent a winvnc lock
+			TerminateThread(InitWindowThreadh,0);
+
+		}
+		CloseHandle(InitWindowThreadh);
+		InitWindowThreadh=NULL;
+	}
+		vnclog.Print(LL_INTERR, VNCLOG("InitwindowThread proper closed\n"));
 
 	// Now free all the bitmap stuff
 	if (m_hrootdc != NULL)
