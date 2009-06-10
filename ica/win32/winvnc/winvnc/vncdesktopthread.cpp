@@ -1109,7 +1109,7 @@ vncDesktopThread::run_undetached(void *arg)
 	stop_hookwatch=true;
 	if (threadHandle)
 	{
-		WaitForSingleObject( threadHandle, INFINITE );
+		WaitForSingleObject( threadHandle, 5000 );
 		CloseHandle(threadHandle);
 	}
 	
@@ -1125,9 +1125,9 @@ vncDesktopThread::run_undetached(void *arg)
 	
 	// Switch back into our home desktop, under NT (no effect under 9x)
 	//TAG14
-	g_DesktopThread_running=false;
 	HWND mywin=FindWindow("blackscreen",NULL);
 	if (mywin)SendMessage(mywin,WM_CLOSE, 0, 0);
+	g_DesktopThread_running=false;
 	m_desktop->Shutdown();
 	return NULL;
 }

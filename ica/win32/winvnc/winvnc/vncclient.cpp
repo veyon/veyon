@@ -1555,7 +1555,6 @@ vncClientThread::run(void *arg)
 		if (!m_client->IsFileTransBusy())
 		if (!vncService::InputDesktopSelected())
 		{
-			vnclog.Print(LL_INTINFO, VNCLOG("vncclient...\n"));
 			if (!vncService::SelectDesktop(NULL, &input_desktop)) 
 					break;
 		}
