@@ -48,7 +48,7 @@ DWORD WINAPI hookwatch(LPVOID lpParam)
 bool
 vncDesktopThread::Handle_Ringbuffer(mystruct *ringbuffer,rfb::Region2D &rgncache)
 {
-	vnclog.Print(LL_INTERR, VNCLOG("counter,g_Oldcounter %i %i  \n"),ringbuffer->counter,g_Oldcounter);
+	//vnclog.Print(LL_INTERR, VNCLOG("counter,g_Oldcounter %i %i  \n"),ringbuffer->counter,g_Oldcounter);
 	if (ringbuffer->counter==g_Oldcounter) return 0;
 	int counter=ringbuffer->counter;
 	if (counter<1 || counter>1999) return 0;
@@ -171,8 +171,6 @@ vncDesktopThread::Handle_Ringbuffer(mystruct *ringbuffer,rfb::Region2D &rgncache
 DWORD WINAPI Cadthread(LPVOID lpParam)
 {
 	HDESK desktop;
-	//vnclog.Print(LL_INTERR, VNCLOG("SelectDesktop \n"));
-	//vnclog.Print(LL_INTERR, VNCLOG("OpenInputdesktop2 NULL\n"));
 	desktop = OpenInputDesktop(0, FALSE,
 								DESKTOP_CREATEMENU | DESKTOP_CREATEWINDOW |
 								DESKTOP_ENUMERATE | DESKTOP_HOOKCONTROL |

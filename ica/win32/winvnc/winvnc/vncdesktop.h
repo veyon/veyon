@@ -483,6 +483,10 @@ protected:
 /*	BOOL Check24bit();*/
 	COLORREF CapturePixel(int x,int y);
 	HANDLE InitWindowThreadh;
+	void StopInitWindowthread();
+	void StartInitWindowthread();
+	void ShutdownInitWindowthread();
+	bool can_be_hooked;
 
 	
 BOOL DriverWanted;

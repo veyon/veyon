@@ -2,11 +2,109 @@
 #include "vncserver.h"
 #include "vncdesktop.h"
 #include "vncservice.h"
+#include <string.h>
 
 #define MSGFLT_ADD		1
 typedef BOOL (WINAPI *CHANGEWINDOWMESSAGEFILTER)(UINT message, DWORD dwFlag);
 int OSversion();
 DWORD WINAPI Driverwatch(LPVOID lpParam);
+DWORD WINAPI InitWindowThread(LPVOID lpParam);
+
+void
+vncDesktop::ShutdownInitWindowthread()
+{
+	// we keep the sink window running
+	// but ignore info
+	can_be_hooked=false;
+	vnclog.Print(LL_INTINFO, VNCLOG("ShutdownInitWindowthread \n"));
+}
+
+void
+vncDesktop::StopInitWindowthread()
+{
+	//vndesktopthread is closing, all threads need to be stopped
+	//else winvnc wil stay running in background on exit
+		can_be_hooked=true;
+		if (InitWindowThreadh)
+		{
+			vnclog.Print(LL_INTINFO, VNCLOG("~vncDesktop::Tell initwindowthread to close \n"));
+			PostThreadMessage(pumpID, WM_QUIT, 0, 0);
+			DWORD status=WaitForSingleObject(InitWindowThreadh,2000);
+			if (status==WAIT_TIMEOUT)
+			{
+				vnclog.Print(LL_INTERR, VNCLOG("~vncDesktop::ERROR:  messageloop blocked \n"));
+				// WE need to kill the thread to prevent a winvnc lock
+				TerminateThread(InitWindowThreadh,0);
+				CloseHandle(InitWindowThreadh);
+				m_hwnd=NULL;
+				InitWindowThreadh=NULL;
+			}
+			else
+			{
+				vnclog.Print(LL_INTERR, VNCLOG("~vncDesktop:: iniwindowthread proper closed \n"));
+				CloseHandle(InitWindowThreadh);
+				InitWindowThreadh=NULL;
+			}
+		}
+		else
+		{
+			vnclog.Print(LL_INTINFO, VNCLOG("initwindowthread already closed \n"));
+		}
+}
+
+void
+vncDesktop::StartInitWindowthread()
+{
+	// Check if the input desktop == Default desktop
+	// Hooking the winlogon is not needed, no clipboard
+	// see if the threaddesktop== Default
+	HDESK desktop = GetThreadDesktop(GetCurrentThreadId());
+	DWORD dummy;
+	char new_name[256];
+	can_be_hooked=false;
+	vnclog.Print(LL_INTINFO, VNCLOG("StartInitWindowthread \n"));
+	if (GetUserObjectInformation(desktop, UOI_NAME, &new_name, 256, &dummy))
+	{
+		if (strcmp(new_name,"Default")==NULL)
+		{
+			vnclog.Print(LL_INTINFO, VNCLOG("StartInitWindowthread default desk\n"));
+			if (InitWindowThreadh==NULL)
+			{
+				ResetEvent(restart_event);
+				InitWindowThreadh=CreateThread(NULL,0,InitWindowThread,this,0,&pumpID);
+				DWORD status=WaitForSingleObject(restart_event,10000);
+				if (status==WAIT_TIMEOUT)
+				{
+					vnclog.Print(LL_INTINFO, VNCLOG("ERROR: initwindowthread failed to start \n"));
+					if (InitWindowThreadh!=NULL)
+					{
+						TerminateThread(InitWindowThreadh,0);
+						CloseHandle(InitWindowThreadh);
+						m_hwnd=NULL;
+						InitWindowThreadh=NULL;
+					}
+					can_be_hooked=false;
+				}
+				else
+				{
+					vnclog.Print(LL_INTINFO, VNCLOG("StartInitWindowthread started\n"));
+					can_be_hooked=true;
+				}
+			}
+			else
+			{
+				// initwindowthread is still running
+				// make it back active
+				vnclog.Print(LL_INTINFO, VNCLOG("StartInitWindowthread reactivate\n"));
+				can_be_hooked=true;
+			}
+		}
+		else
+		{
+			vnclog.Print(LL_INTINFO, VNCLOG("StartInitWindowthread no default desk\n"));
+		}
+	}
+}
 
 DWORD WINAPI
 InitWindowThread(LPVOID lpParam)
@@ -38,51 +136,59 @@ DesktopWndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 		vnclog.Print(LL_INTERR, VNCLOG("wmcreate  \n"));
 		break;
 	case WM_TIMER:
-		if (wParam==100)
+		if (_this->can_be_hooked)
 		{
-				KillTimer(hwnd, 100); 
-				if (_this->SetHook)
-				{
-					_this->SetHook(hwnd);
-					vnclog.Print(LL_INTERR, VNCLOG("set SC hooks OK\n"));
-					_this->m_hookinited = TRUE;
-				}
-				else if (_this->SetHooks)
-				{
-					if (!_this->SetHooks(
-						GetCurrentThreadId(),
-						RFB_SCREEN_UPDATE,
-						RFB_COPYRECT_UPDATE,
-						RFB_MOUSE_UPDATE, 0
-						))
+			if (wParam==100)
+			{
+					KillTimer(hwnd, 100); 
+					if (_this->SetHook)
 					{
-						vnclog.Print(LL_INTERR, VNCLOG("failed to set system hooks\n"));
-						// Switch on full screen polling, so they can see something, at least...
-						_this->m_server->PollFullScreen(TRUE);
-						_this->m_hookinited = FALSE;
-					} 
-					else 
-					{
-						vnclog.Print(LL_INTERR, VNCLOG("set hooks OK\n"));
+						_this->SetHook(hwnd);
+						vnclog.Print(LL_INTERR, VNCLOG("set SC hooks OK\n"));
 						_this->m_hookinited = TRUE;
-						// Start up the keyboard and mouse filters
-						if (_this->SetKeyboardFilterHook) _this->SetKeyboardFilterHook(_this->m_server->LocalInputsDisabled());
-						if (_this->SetMouseFilterHook) _this->SetMouseFilterHook(_this->m_server->LocalInputsDisabled());
 					}
-				}
+					else if (_this->SetHooks)
+					{
+						if (!_this->SetHooks(
+							GetCurrentThreadId(),
+							RFB_SCREEN_UPDATE,
+							RFB_COPYRECT_UPDATE,
+							RFB_MOUSE_UPDATE, 0
+							))
+						{
+							vnclog.Print(LL_INTERR, VNCLOG("failed to set system hooks\n"));
+							// Switch on full screen polling, so they can see something, at least...
+							_this->m_server->PollFullScreen(TRUE);
+							_this->m_hookinited = FALSE;
+						} 
+						else 
+						{
+							vnclog.Print(LL_INTERR, VNCLOG("set hooks OK\n"));
+							_this->m_hookinited = TRUE;
+							// Start up the keyboard and mouse filters
+							if (_this->SetKeyboardFilterHook) _this->SetKeyboardFilterHook(_this->m_server->LocalInputsDisabled());
+							if (_this->SetMouseFilterHook) _this->SetMouseFilterHook(_this->m_server->LocalInputsDisabled());
+						}
+					}
+			}
+			else SetEvent(_this->trigger_events[0]);
 		}
-		else SetEvent(_this->trigger_events[0]);
 		break;
 	case WM_MOUSESHAPE:
-		SetEvent(_this->trigger_events[3]);
+		if (_this->can_be_hooked)
+		{
+			SetEvent(_this->trigger_events[3]);
+		}
 		break;
 	case WM_HOOKCHANGE:
 		if (wParam==1)
 			{
+				if (_this->m_hookinited==FALSE)
 				SetTimer(hwnd,100,4000,NULL);
 			}
 			else if (_this->m_hookinited)
 			{
+				_this->m_hookinited=FALSE;
 				if (_this->UnSetHook)
 				{
 					vnclog.Print(LL_INTERR, VNCLOG("unset SC hooks OK\n"));
@@ -100,12 +206,13 @@ DesktopWndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 
 	case WM_QUERYENDSESSION:
 
-		if (OSversion()==2) 
+		/*if (OSversion()==2) 
 		{
 		if (_this->m_hnextviewer!=NULL) ChangeClipboardChain(hwnd, _this->m_hnextviewer);
 		_this->m_hnextviewer=NULL;
 		if (_this->m_hookinited)
 			{
+				_this->m_hookinited=FALSE;
 				if (_this->UnSetHook)
 				{
 					vnclog.Print(LL_INTERR, VNCLOG("unset SC hooks OK\n"));
@@ -122,7 +229,7 @@ DesktopWndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 		vnclog.Print(LL_INTERR, VNCLOG("WM_QUERYENDSESSION\n"));
 		PostQuitMessage(0);
 		SetEvent(_this->trigger_events[5]);
-		}
+		}*/
 		return DefWindowProc(hwnd, iMsg, wParam, lParam);
 
 	case WM_CLOSE:
@@ -136,6 +243,7 @@ DesktopWndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 		_this->m_hnextviewer=NULL;
 		if (_this->m_hookinited)
 			{
+				_this->m_hookinited=FALSE;
 				if (_this->UnSetHook)
 				{
 					vnclog.Print(LL_INTERR, VNCLOG("unset SC hooks OK\n"));
@@ -262,70 +370,73 @@ DesktopWndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 		return 0;
 
 	case WM_DRAWCLIPBOARD:
-		// The clipboard contents have changed
-		if((GetClipboardOwner() != _this->Window()) &&
-		    _this->m_initialClipBoardSeen &&
-			_this->m_clipboard_active && !_this->m_server->IsThereFileTransBusy())
+		if (_this->can_be_hooked)
 		{
-			LPSTR cliptext = NULL;
-
-			// Open the clipboard
-			if (OpenClipboard(_this->Window()))
+			// The clipboard contents have changed
+			if((GetClipboardOwner() != _this->Window()) &&
+				_this->m_initialClipBoardSeen &&
+				_this->m_clipboard_active && !_this->m_server->IsThereFileTransBusy())
 			{
-				// Get the clipboard data
-				HGLOBAL cliphandle = GetClipboardData(CF_TEXT);
-				if (cliphandle != NULL)
+				LPSTR cliptext = NULL;
+
+				// Open the clipboard
+				if (OpenClipboard(_this->Window()))
 				{
-					LPSTR clipdata = (LPSTR) GlobalLock(cliphandle);
-
-					// Copy it into a new buffer
-					if (clipdata == NULL)
-						cliptext = NULL;
-					else
-						cliptext = _strdup(clipdata);
-
-					// Release the buffer and close the clipboard
-					GlobalUnlock(cliphandle);
-				}
-
-				CloseClipboard();
-			}
-
-			if (cliptext != NULL)
-			{
-				int cliplen = strlen(cliptext);
-				LPSTR unixtext = (char *)malloc(cliplen+1);
-
-				// Replace CR-LF with LF - never send CR-LF on the wire,
-				// since Unix won't like it
-				int unixpos=0;
-				for (int x=0; x<cliplen; x++)
-				{
-					if (cliptext[x] != '\x0d')
+					// Get the clipboard data
+					HGLOBAL cliphandle = GetClipboardData(CF_TEXT);
+					if (cliphandle != NULL)
 					{
-						unixtext[unixpos] = cliptext[x];
-						unixpos++;
+						LPSTR clipdata = (LPSTR) GlobalLock(cliphandle);
+
+						// Copy it into a new buffer
+						if (clipdata == NULL)
+							cliptext = NULL;
+						else
+							cliptext = _strdup(clipdata);
+
+						// Release the buffer and close the clipboard
+						GlobalUnlock(cliphandle);
 					}
+
+					CloseClipboard();
 				}
-				unixtext[unixpos] = 0;
 
-				// Free the clip text
-				free(cliptext);
-				cliptext = NULL;
+				if (cliptext != NULL)
+				{
+					int cliplen = strlen(cliptext);
+					LPSTR unixtext = (char *)malloc(cliplen+1);
 
-				// Now send the unix text to the server
-				_this->m_server->UpdateClipText(unixtext);
+					// Replace CR-LF with LF - never send CR-LF on the wire,
+					// since Unix won't like it
+					int unixpos=0;
+					for (int x=0; x<cliplen; x++)
+					{
+						if (cliptext[x] != '\x0d')
+						{
+							unixtext[unixpos] = cliptext[x];
+							unixpos++;
+						}
+					}
+					unixtext[unixpos] = 0;
 
-				free(unixtext);
+					// Free the clip text
+					free(cliptext);
+					cliptext = NULL;
+
+					// Now send the unix text to the server
+					_this->m_server->UpdateClipText(unixtext);
+
+					free(unixtext);
+				}
 			}
-		}
 
-		_this->m_initialClipBoardSeen = TRUE;
+			_this->m_initialClipBoardSeen = TRUE;
 
-		if (_this->m_hnextviewer != NULL)
-		{
-			// Pass the message to the next window in clipboard viewer chain.  
-			return SendMessage(_this->m_hnextviewer, WM_DRAWCLIPBOARD, 0,0); 
+			if (_this->m_hnextviewer != NULL)
+			{
+				// Pass the message to the next window in clipboard viewer chain.  
+				return SendMessage(_this->m_hnextviewer, WM_DRAWCLIPBOARD, 0,0); 
+			}
 		}
 
 		return 0;
@@ -343,7 +454,7 @@ BOOL
 vncDesktop::InitWindow()
 {
 	vnclog.Print(LL_INTERR, VNCLOG("InitWindow called\n"));
-
+	
 	HDESK desktop;
 	desktop = OpenInputDesktop(0, FALSE,
 								DESKTOP_CREATEMENU | DESKTOP_CREATEWINDOW |
@@ -406,6 +517,7 @@ vncDesktop::InitWindow()
 		m_wndClass = RegisterClassEx(&wndclass);
 		if (!m_wndClass) {
 			vnclog.Print(LL_INTERR, VNCLOG("failed to register window class\n"));
+			SetEvent(restart_event);
 			return FALSE;
 		}
 	}
@@ -424,6 +536,7 @@ vncDesktop::InitWindow()
 
 	if (m_hwnd == NULL) {
 		vnclog.Print(LL_INTERR, VNCLOG("failed to create hook window\n"));
+		SetEvent(restart_event);
 		return FALSE;
 	}
 
@@ -494,7 +607,7 @@ vncDesktop::InitWindow()
 		if (PeekMessage(&msg,NULL,0,0,PM_REMOVE))
 		{
 			vnclog.Print(LL_INTERR, VNCLOG("OOOOOOOOOOOO %i %i\n"),msg.message,msg.hwnd);
-			if (msg.message==WM_QUIT)		
+			if (msg.message==WM_QUIT || fShutdownOrdered)		
 				{
 					vnclog.Print(LL_INTERR, VNCLOG("OOOOOOOOOOOO called wm_quit\n"));
 					DestroyWindow(m_hwnd);
@@ -509,6 +622,8 @@ vncDesktop::InitWindow()
 				}
 			else if (msg.message==RFB_SCREEN_UPDATE)
 				{
+					if (can_be_hooked)
+					{
 					vnclog.Print(LL_INTERR, VNCLOG("RFB_SCREEN_UPDATE  \n"));
 					rfb::Rect rect;
 					rect.tl = rfb::Point((SHORT)LOWORD(msg.wParam), (SHORT)HIWORD(msg.wParam));
@@ -527,12 +642,16 @@ vncDesktop::InitWindow()
 							rgnpump.assign_union(rect);
 							SetEvent(trigger_events[1]);
 						}
+					}
 				}
 			else if (msg.message==RFB_MOUSE_UPDATE)
 				{
+					if (can_be_hooked)
+					{
 					vnclog.Print(LL_INTERR, VNCLOG("RFB_MOUSE_UPDATE  \n"));
 					SetCursor((HCURSOR) msg.wParam);
 					SetEvent(trigger_events[2]);
+					}
 				}
 			else
 				{
@@ -551,6 +670,5 @@ vncDesktop::InitWindow()
 	///////////////////////
 	vnclog.Print(LL_INTERR, VNCLOG("OOOOOOOOOOOO end dispatch\n"));
 	m_hwnd = NULL;
-	//m_server->DoNotify(WM_SRV_DESKTOP_CHANGE, 0, 0);
 	return TRUE;
 }

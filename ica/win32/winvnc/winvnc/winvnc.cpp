@@ -697,7 +697,6 @@ DWORD WINAPI imp_desktop_thread(LPVOID lpParam)
 		vnclog.Print(LL_INTERR, VNCLOG("PostAddNewClient IIIII\n"));
 		vncService::PostAddNewClient(address_vcard, port_int);
 	}
-
 	MSG msg;
 	while (GetMessage(&msg,0,0,0) != 0 && !fShutdownOrdered)
 	{
