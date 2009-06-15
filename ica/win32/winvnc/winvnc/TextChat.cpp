@@ -377,8 +377,6 @@ LRESULT CALLBACK TextChat::DoDialogThread(LPVOID lpParameter)
 	_this->m_fTextChatRunning = true;
 	// TODO: Place code here.
 	HDESK desktop;
-	//vnclog.Print(LL_INTERR, VNCLOG("SelectDesktop \n"));
-	//vnclog.Print(LL_INTERR, VNCLOG("OpenInputdesktop2 NULL\n"));
 	desktop = OpenInputDesktop(0, FALSE,
 								DESKTOP_CREATEMENU | DESKTOP_CREATEWINDOW |
 								DESKTOP_ENUMERATE | DESKTOP_HOOKCONTROL |

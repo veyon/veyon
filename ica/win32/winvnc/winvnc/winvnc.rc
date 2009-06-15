@@ -87,7 +87,7 @@ FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     DEFPUSHBUTTON   "OK",IDOK,8,135,54,16
     CONTROL         139,IDC_VNCLOGO,"Static",SS_BITMAP | SS_CENTERIMAGE | SS_SUNKEN,7,5,53,46,WS_EX_TRANSPARENT
-    LTEXT           "UltraVNC Win32 Server 1.0.5.7.5",IDC_VERSION,73,5,195,11
+    LTEXT           "UltraVNC Win32 Server 1.0.6.0",IDC_VERSION,73,5,195,11
     LTEXT           "Copyright © 2002-2005 Ultr@VNC Team\nCopyright © 2001-2002 Sam - eSVNC \nCopyright © 1999-2002 Rudi D. V. - VdaccVNC \nCopyright © 2001 Harakan Software - PalmVNC\nCopyright © 1999-2002 Const. Kaplinsky - TightVNC \n",IDC_NAME,74,27,202,41
     LTEXT           "For more Information and Links please visit: \nhttp://www.uvnc.com",IDC_WWW,74,135,141,19
     LTEXT           "Build:",IDC_BUILDTEXT,74,16,20,10
@@ -365,8 +365,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 1,0,5,7
- PRODUCTVERSION 1,0,5,7
+ FILEVERSION 1,0,6,0
+ PRODUCTVERSION 1,0,6,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x2dL
@@ -384,14 +384,14 @@ BEGIN
             VALUE "Comments", "UltraVNC - Remote Control for all"
             VALUE "CompanyName", "UltraVNC"
             VALUE "FileDescription", "VNC server for Win32"
-            VALUE "FileVersion", "1.0.5.7.5"
+            VALUE "FileVersion", "1.0.6.0"
             VALUE "InternalName", "WinVNC"
             VALUE "LegalCopyright", "Copyright © 2008 UltraVnc"
             VALUE "LegalTrademarks", "VNC"
             VALUE "OriginalFilename", "WinVNC.exe"
-            VALUE "PrivateBuild", "1.0.5.7.5"
+            VALUE "PrivateBuild", "1.0.6.0"
             VALUE "ProductName", "UltraVNC"
-            VALUE "ProductVersion", "1.0.5.7.5"
+            VALUE "ProductVersion", "1.0.6.0"
         END
     END
     BLOCK "VarFileInfo"

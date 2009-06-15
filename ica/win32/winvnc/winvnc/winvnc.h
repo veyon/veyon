@@ -30,16 +30,16 @@
 // Application specific messages
 
 // Message used for system tray notifications
-#define WM_TRAYNOTIFY				WM_USER+1
+#define WM_TRAYNOTIFY				WM_APP+1
 
 // Messages used for the server object to notify windows of things
-#define WM_SRV_CLIENT_CONNECT		WM_USER+2
-#define WM_SRV_CLIENT_AUTHENTICATED	WM_USER+3
-#define WM_SRV_CLIENT_DISCONNECT	WM_USER+4
-#define WM_SRV_DESKTOP_CHANGE		WM_USER+5
-#define WM_MOUSESHAPE				WM_USER+6
-#define WM_HOOKCHANGE				WM_USER+7
-#define WM_SHUTDOWN					WM_USER+8
+#define WM_SRV_CLIENT_CONNECT		WM_APP+2
+#define WM_SRV_CLIENT_AUTHENTICATED	WM_APP+3
+#define WM_SRV_CLIENT_DISCONNECT	WM_APP+4
+
+#define WM_MOUSESHAPE				WM_APP+6
+#define WM_HOOKCHANGE				WM_APP+7
+#define WM_SHUTDOWN					WM_APP+8
 
 
 // Export the application details

@@ -675,8 +675,7 @@ LRESULT CALLBACK vncMenu::WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lP
 	switch (iMsg)
 	{
 
-		// Every five seconds, a timer message causes the icon to update
-	case WM_SRV_DESKTOP_CHANGE:
+	// Every five seconds, a timer message causes the icon to update
 	case WM_TIMER:
 		// sf@2007 - Can't get the WTS_CONSOLE_CONNECT message work properly for now..
 		// So use a hack instead
@@ -694,51 +693,42 @@ LRESULT CALLBACK vncMenu::WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lP
 			}
 		}
 
-//if ( ! _this->m_server->GetDisableTrayIcon())
+
+		vnclog.Print(LL_INTERR, VNCLOG("########### vncMenu::TIMER TrayIcon 5s hack\n"));
+
+		if (_this->m_server->RunningFromExternalService())
 			{
-				vnclog.Print(LL_INTERR, VNCLOG("########### vncMenu::TIMER TrayIcon 5s hack\n"));
-
-				if (_this->m_server->RunningFromExternalService())
+				strcpy(newuser,"");
+				if (vncService::CurrentUser((char *) &newuser, sizeof(newuser)))
 				{
-					strcpy(newuser,"");
-					if (vncService::CurrentUser((char *) &newuser, sizeof(newuser)))
+					// Check whether the user name has changed!
+					if (_stricmp(newuser, _this->m_username) != 0 || _this->IconFaultCounter>10)
 					{
-//						vnclog.Print(LL_INTINFO,
-//							VNCLOG("############### Usernames change: old=\"%s\", new=\"%s\"\n"),
-//							_this->m_username, newuser);
-
-						// Check whether the user name has changed!
-						if (_stricmp(newuser, _this->m_username) != 0 || _this->IconFaultCounter>10)
-						{
-							Sleep(1000);
-							vnclog.Print(LL_INTINFO,
-								VNCLOG("user name has changed\n"));
-
-							// User has changed!
-							strcpy(_this->m_username, newuser);
-
-							vnclog.Print(LL_INTINFO,
-								VNCLOG("############## Kill vncMenu thread\n"));
-
-							// Order impersonation thread killing
-							PostQuitMessage(0);
-						}
+						Sleep(1000);
+						vnclog.Print(LL_INTINFO,
+						VNCLOG("user name has changed\n"));
+						// User has changed!
+						strcpy(_this->m_username, newuser);
+						vnclog.Print(LL_INTINFO,
+						VNCLOG("############## Kill vncMenu thread\n"));
+						// Order impersonation thread killing
+						PostQuitMessage(0);
+						break;
 					}
 				}
-
-				// *** HACK for running servicified
-				if (vncService::RunningAsService())
-				{
-					vnclog.Print(LL_INTERR, VNCLOG("########### vncMenu::TIMER TrayIcon 5s hack call - Runningasservice\n"));
-					// Attempt to add the icon if it's not already there
-					_this->AddTrayIcon();
-					// Trigger a check of the current user
-					PostMessage(hwnd, WM_USERCHANGED, 0, 0);
-				}
-
-				// Update the icon
-				_this->FlashTrayIcon(_this->m_server->AuthClientCount() != 0);
 			}
+
+		// *** HACK for running servicified
+		if (vncService::RunningAsService())
+			{
+				vnclog.Print(LL_INTERR, VNCLOG("########### vncMenu::TIMER TrayIcon 5s hack call - Runningasservice\n"));
+				// Attempt to add the icon if it's not already there
+				_this->AddTrayIcon();
+				// Trigger a check of the current user
+				PostMessage(hwnd, WM_USERCHANGED, 0, 0);
+			}
+		// Update the icon
+		_this->FlashTrayIcon(_this->m_server->AuthClientCount() != 0);
 		break;
 
 		// DEAL WITH NOTIFICATIONS FROM THE SERVER:
@@ -1094,8 +1084,21 @@ LRESULT CALLBACK vncMenu::WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lP
 		
 	case WM_QUERYENDSESSION:
 		{
+			//shutdown or reboot
+			if((lParam & ENDSESSION_LOGOFF) != ENDSESSION_LOGOFF)
+			{
+				vnclog.Print(LL_INTERR, VNCLOG("SHUTDOWN OS detected\n"));
+				vnclog.Print(LL_INTINFO, VNCLOG("KillAuthClients() ID_CLOSE \n"));
+				_this->m_server->KillAuthClients();
+				fShutdownOrdered=TRUE;
+				PostMessage(hwnd, WM_CLOSE, 0, 0);
+				break;
+			}
+
+
 			DWORD SessionID;
 			SessionID=GetCurrentSessionID();
+			vnclog.Print(LL_INTERR, VNCLOG("Session ID %i\n"),SessionID);
 			if (SessionID!=0)
 			{
 				vnclog.Print(LL_INTERR, VNCLOG("WM_QUERYENDSESSION session!=0\n"));
@@ -1104,15 +1107,7 @@ LRESULT CALLBACK vncMenu::WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lP
 				fShutdownOrdered=TRUE;
 				PostMessage(hwnd, WM_CLOSE, 0, 0);
 			}
-			else if((lParam & ENDSESSION_LOGOFF) != ENDSESSION_LOGOFF)
-			{
-				vnclog.Print(LL_INTERR, VNCLOG("WM_QUERYENDSESSION session==0\n"));
-				vnclog.Print(LL_INTINFO, VNCLOG("KillAuthClients() ID_CLOSE \n"));
-				_this->m_server->KillAuthClients();
-				fShutdownOrdered=TRUE;
-				PostMessage(hwnd, WM_CLOSE, 0, 0);
-			}
-		}		
+		}	
 		break;
 		
 	case WM_ENDSESSION:

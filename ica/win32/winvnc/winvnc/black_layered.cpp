@@ -272,8 +272,6 @@ DWORD WINAPI BlackWindow(LPVOID lpParam)
 {
  	// TODO: Place code here.
 	HDESK desktop;
-	//vnclog.Print(LL_INTERR, VNCLOG("SelectDesktop \n"));
-	//vnclog.Print(LL_INTERR, VNCLOG("OpenInputdesktop2 NULL\n"));
 	desktop = OpenInputDesktop(0, FALSE,
 								DESKTOP_CREATEMENU | DESKTOP_CREATEWINDOW |
 								DESKTOP_ENUMERATE | DESKTOP_HOOKCONTROL |
