@@ -66,7 +66,8 @@ pProcessIdToSessionId WTSProcessIdToSessionIdF=NULL;
 #define SM_REMOTESESSION 0X1000
 #endif
 
-extern BOOL SPECIAL_SC;
+extern BOOL SPECIAL_SC_EXIT;
+extern BOOL SPECIAL_SC_PROMPT;
 
 void ClearKeyState(BYTE key);
 DWORD GetCurrentSessionID()
@@ -569,7 +570,7 @@ BOOL
 vncService::InputDesktopSelected()
 {
 //Running as SC we want to keep the viewer open in case UAC or screensaver jump in
-if (SPECIAL_SC)return true;
+if (SPECIAL_SC_EXIT || SPECIAL_SC_PROMPT)return true;
 
 //	vnclog.Print(LL_INTERR, VNCLOG("InputDesktopSelected()\n"));
 	// Are we running on NT?

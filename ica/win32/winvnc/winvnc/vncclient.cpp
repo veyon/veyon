@@ -77,7 +77,8 @@
 #include "common/win32_helpers.h"
 
 bool isDirectoryTransfer(const char *szFileName);
-extern BOOL SPECIAL_SC;
+extern BOOL SPECIAL_SC_PROMPT;
+extern BOOL SPECIAL_SC_EXIT;
 int getinfo(char mytext[1024]);
 
 // take a full path & file name, split it, prepend prefix to filename, then merge it back
@@ -749,7 +750,7 @@ vncClientThread::InitVersion()
 	{
 		// Generate the server's protocol version
 		rfbProtocolVersionMsg protocolMsg;
-if (SPECIAL_SC)
+if (SPECIAL_SC_PROMPT)
 {
 	//This break rfb protocol, SC in ultravnc only  rfb 3.14/16
 	sprintf((char *)protocolMsg,
@@ -797,7 +798,7 @@ else
 	vnclog.Print(LL_INTINFO, VNCLOG("m_ms_logon set to %s"), m_ms_logon ? "true" : "false");
 	//SC
 	if (minor == 4 || minor == 6) m_client->SetUltraViewer(true);
-	else if ((minor ==14 || minor ==16)&& SPECIAL_SC)
+	else if ((minor ==14 || minor ==16)&& SPECIAL_SC_PROMPT)
 	{
 		m_client->SetUltraViewer(true);
 		char mytext[1024];
@@ -3434,7 +3435,7 @@ vncClient::~vncClient()
 
 	//thos give sometimes errors, hlogfile is already removed at this point
 	//vnclog.Print(LL_INTINFO, VNCLOG("cached %d \n"),totalraw);
-if (SPECIAL_SC)
+if (SPECIAL_SC_EXIT)
 {
 	// We want that the server exit when the viewer exit
 	HWND hwnd=FindWindow("WinVNC Tray Icon",NULL);
