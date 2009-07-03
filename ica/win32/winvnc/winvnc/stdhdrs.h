@@ -21,7 +21,8 @@
 // If the source code for the VNC system is not available from the place 
 // whence you received this file, check http://www.uk.research.att.com/vnc or contact
 // the authors on vnc@uk.research.att.com for information on obtaining it.
-
+//need to be added for VS 2005
+//#define _WIN32_IE 0x0500
 #define WIN32_LEAN_AND_MEAN
 #ifndef STRICT
 #define STRICT

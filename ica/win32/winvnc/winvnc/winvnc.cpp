@@ -104,6 +104,7 @@ bool GetServiceName(TCHAR *pszAppPath, TCHAR *pszServiceName);
 HINSTANCE	hInstResDLL;
 BOOL SPECIAL_SC_EXIT=false;
 BOOL SPECIAL_SC_PROMPT=false;
+BOOL multi=false;
 
 // winvnc.exe will also be used for helper exe
 // This allow us to minimize the number of seperate exe
@@ -446,6 +447,13 @@ int WINAPI WinMainVNC(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLi
 			continue;
 		}
 
+		if (strncmp(&szCmdLine[i], winvncmulti, strlen(winvncmulti)) == 0)
+		{
+			multi=true;
+			i+=strlen(winvncmulti);
+			continue;
+		}
+
 		if (strncmp(&szCmdLine[i], winvncAutoReconnect, strlen(winvncAutoReconnect)) == 0)
 		{
 			// Note that this "autoreconnect" param MUST be BEFORE the "connect" one
@@ -654,7 +662,7 @@ DWORD WINAPI imp_desktop_thread(LPVOID lpParam)
 
 //	ImpersonateCurrentUser_();
 
-	char m_username[200];
+	char m_username[UNLEN+1];
 	HWINSTA station = GetProcessWindowStation();
 	if (station != NULL)
 	{
@@ -664,7 +672,7 @@ DWORD WINAPI imp_desktop_thread(LPVOID lpParam)
 		SetLastError(0);
 		if (usersize != 0)
 		{
-			DWORD length = usersize;
+			DWORD length = sizeof(m_username);
 			if (GetUserName(m_username, &length) == 0)
 			{
 				UINT error = GetLastError();
@@ -673,6 +681,7 @@ DWORD WINAPI imp_desktop_thread(LPVOID lpParam)
 					vnclog.Print(LL_INTERR, VNCLOG("getusername error %d\n"), GetLastError());
 					SetThreadDesktop(old_desktop);
                 	CloseDesktop(desktop);
+					Sleep(500);
 					return FALSE;
 				}
 			}
@@ -779,14 +788,16 @@ int WinVNCAppMain()
 	// Set this process to be the last application to be shut down.
 	// Check for previous instances of WinVNC!
 	vncInstHandler *instancehan=new vncInstHandler;
-	
-	if (!instancehan->Init())
-	{	
-    	vnclog.Print(LL_INTINFO, VNCLOG("%s -- exiting\n"), sz_ID_ANOTHER_INST);
-		// We don't allow multiple instances!
-	if (!fRunningFromExternalService)
-		MessageBox(NULL, sz_ID_ANOTHER_INST, szAppName, MB_OK);
-		return 0;
+	if (!multi) // this allow to overwrite the multiple instance check
+	{
+		if (!instancehan->Init())
+		{	
+    		vnclog.Print(LL_INTINFO, VNCLOG("%s -- exiting\n"), sz_ID_ANOTHER_INST);
+			// We don't allow multiple instances!
+		if (!fRunningFromExternalService)
+			MessageBox(NULL, sz_ID_ANOTHER_INST, szAppName, MB_OK);
+			return 0;
+		}
 	}
 
 	// Initialise the VSocket system

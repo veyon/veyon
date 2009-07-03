@@ -49,6 +49,7 @@ public:
 		MIN_UPDATE_INTERVAL=33;
 		MIN_UPDATE_INTERVAL_MAX=500;
 		MIN_UPDATE_INTERVAL_MIN=33;
+		// replaced by macpu ini setting
 		MAX_CPU_USAGE=20;
 	};
 protected:

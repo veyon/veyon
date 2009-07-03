@@ -515,7 +515,7 @@ int getinfo(char mytext[1024])
            
   
 
-	char UserName[256 + 1]="";
+	char UserName[256+1]="";
 	DWORD Size=256+1;
 	if (GetUserName(UserName,&Size)!=0)
 	{
