@@ -667,6 +667,8 @@ vncDesktop::Shutdown()
 			vnclog.Print(LL_INTERR, VNCLOG("failed to close desktop\n"));
 		m_input_desktop = 0;
 	}
+	m_lGridsList.clear();
+	m_foreground_window_rect.clear();
 	return TRUE;
 }
 
@@ -1674,15 +1676,29 @@ vncDesktop::CalcCopyRects(rfb::UpdateTracker &tracker)
 		// Get the window rectangle
 		if (IsWindowVisible(foreground) && GetWindowRect(foreground, &destrect))
 		{
+			//vnclog.Print(LL_INTERR, VNCLOG("foreground %i %i %i %i\n"),destrect.left,destrect.right,destrect.top,destrect.bottom);
 			//screen to buffer coordinates
 			destrect.left-=m_ScreenOffsetx;
 			destrect.right-=m_ScreenOffsetx;
 			destrect.top-=m_ScreenOffsety;
 			destrect.bottom-=m_ScreenOffsety;
+			//vnclog.Print(LL_INTERR, VNCLOG("foreground %i %i %i %i\n"),destrect.left,destrect.right,destrect.top,destrect.bottom);
+
+			//We cant have negative coordinates
+			//move window on desktop 1 and show desktop 2
+			if (destrect.left<0 || destrect.right<0 || destrect.top<0 || destrect.bottom<0) return false;
+			// we also can have to big coordinates
+			// move window on desktop2 and show desktop 1
+			if (destrect.left > m_Cliprect.br.x ||destrect.right > m_Cliprect.br.x ||destrect.top > m_Cliprect.br.y ||destrect.bottom > m_Cliprect.br.y)
+			return false;
+
 
 			rfb::Rect old_foreground_window_rect = m_foreground_window_rect;
 			source = m_foreground_window_rect.tl;
 			m_foreground_window_rect = dest = destrect;
+			//vnclog.Print(LL_INTERR, VNCLOG("dest %i %i %i %i\n"),dest.tl.x,dest.br.x,dest.tl.y,dest.br.y);
+			//vnclog.Print(LL_INTERR, VNCLOG("source %i %i \n"),source.x,source.y);
+
 			if (!dest.is_empty() && !old_foreground_window_rect.is_empty())
 			{
 				// Got the destination position.  Now send to clients!
@@ -1691,14 +1707,21 @@ vncDesktop::CalcCopyRects(rfb::UpdateTracker &tracker)
 					rfb::Point delta;
 					delta= rfb::Point(dest.tl.x-source.x, dest.tl.y-source.y);
 				//	if (dest.tl.x-source.x==0 || dest.tl.y-source.y==0) return false;
+					//vnclog.Print(LL_INTERR, VNCLOG("delta %i %i \n"),delta.x,delta.y);
 
 					// Clip the destination rectangle
 					dest = dest.intersect(m_bmrect);
+					//vnclog.Print(LL_INTERR, VNCLOG("dest2 %i %i %i %i\n"),dest.tl.x,dest.br.x,dest.tl.y,dest.br.y);
 					if (dest.is_empty()) return false;
 					// Clip the source rectangle
 					dest = dest.translate(delta.negate()).intersect(m_bmrect);
+					//vnclog.Print(LL_INTERR, VNCLOG("dest3 %i %i %i %i\n"),dest.tl.x,dest.br.x,dest.tl.y,dest.br.y);
+					if (dest.tl.x<0 || dest.br.x<0 || dest.tl.y<0 || dest.br.y<0) return false;
+					if (dest.tl.x > m_Cliprect.br.x ||dest.br.x > m_Cliprect.br.x ||dest.tl.y > m_Cliprect.br.y ||dest.br.y > m_Cliprect.br.y)
+					return false;
 					m_buffer.ClearCacheRect(dest);
 					dest = dest.translate(delta);
+					//vnclog.Print(LL_INTERR, VNCLOG("dest4 %i %i %i %i\n"),dest.tl.x,dest.br.x,dest.tl.y,dest.br.y);
 					m_buffer.ClearCacheRect(dest);
 					if (!dest.is_empty()) {
 						tracker.add_copied(dest, delta);

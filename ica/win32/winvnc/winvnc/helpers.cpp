@@ -122,13 +122,13 @@ char path[512];
 
 LONG Primary=1;
 LONG Secundary=0;
+LONG MaxCpu=20;
 
 
 BUseRegistry = myIniFile_In.ReadInt("admin", "UseRegistry", 0);
 if (!myIniFile_Out.WriteInt("admin", "UseRegistry", BUseRegistry))
 {
 		//error
-		char temp[10];
 		DWORD error=GetLastError();
 		MessageBox(NULL,"Permission denied:Uncheck [_] Protect my computer... in run as dialog or use user with write permission." ,myIniFile_Out.myInifile,MB_ICONERROR);
 }
@@ -268,6 +268,7 @@ PollForeground=myIniFile_In.ReadInt("poll", "PollForeground", 0);
 PollFullScreen=myIniFile_In.ReadInt("poll", "PollFullScreen", 0);
 PollConsoleOnly=myIniFile_In.ReadInt("poll", "OnlyPollConsole", 0);
 PollOnEventOnly=myIniFile_In.ReadInt("poll", "OnlyPollOnEvent", 0);
+MaxCpu=myIniFile_In.ReadInt("poll", "MaxCpu", 0);
 Driver=myIniFile_In.ReadInt("poll", "EnableDriver", 0);
 Hook=myIniFile_In.ReadInt("poll", "EnableHook", 0);
 Virtual=myIniFile_In.ReadInt("poll", "EnableVirtual", 0);
@@ -281,6 +282,7 @@ myIniFile_Out.WriteInt("poll", "PollForeground", PollForeground);
 myIniFile_Out.WriteInt("poll", "PollFullScreen", PollFullScreen);
 myIniFile_Out.WriteInt("poll", "OnlyPollConsole",PollConsoleOnly);
 myIniFile_Out.WriteInt("poll", "OnlyPollOnEvent", PollOnEventOnly);
+myIniFile_Out.WriteInt("poll", "MaxCpu", MaxCpu);
 myIniFile_Out.WriteInt("poll", "EnableDriver", Driver);
 myIniFile_Out.WriteInt("poll", "EnableHook", Hook);
 myIniFile_Out.WriteInt("poll", "EnableVirtual", Virtual);

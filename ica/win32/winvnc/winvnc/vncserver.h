@@ -187,6 +187,8 @@ public:
 	virtual BOOL PollConsoleOnly() {return m_poll_consoleonly;};
 	virtual void PollOnEventOnly(BOOL enable) {m_poll_oneventonly = enable;};
 	virtual BOOL PollOnEventOnly() {return m_poll_oneventonly;};
+	virtual void MaxCpu(LONG maxcpu) {m_MaxCpu = maxcpu;};
+	virtual LONG MaxCpu() {return m_MaxCpu;};
 
 	// Client manipulation of the clipboard
 	virtual void UpdateLocalClipText(LPSTR text);
@@ -472,6 +474,7 @@ protected:
 	BOOL				m_poll_undercursor;
 
 	BOOL				m_poll_oneventonly;
+	LONG				m_MaxCpu;
 	BOOL				m_poll_consoleonly;
 
 	BOOL				m_driver;

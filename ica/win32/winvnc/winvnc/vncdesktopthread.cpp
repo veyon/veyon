@@ -6,6 +6,7 @@ DWORD WINAPI hookwatch(LPVOID lpParam);
 extern bool stop_hookwatch;
 
 
+
 inline bool
 ClipRect(int *x, int *y, int *w, int *h,
 	    int cx, int cy, int cw, int ch) {
@@ -698,7 +699,7 @@ vncDesktopThread::run_undetached(void *arg)
 							{
 								//measure current cpu usage of winvnc
 								cpuUsage = usage.GetUsage();
-								if (cpuUsage > MAX_CPU_USAGE) 
+								if (cpuUsage > m_server->MaxCpu()) 
 									MIN_UPDATE_INTERVAL+=10;
 								else MIN_UPDATE_INTERVAL-=10;
 								if (MIN_UPDATE_INTERVAL<MIN_UPDATE_INTERVAL_MIN) MIN_UPDATE_INTERVAL=MIN_UPDATE_INTERVAL_MIN;
