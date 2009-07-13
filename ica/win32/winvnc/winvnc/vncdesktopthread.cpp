@@ -718,11 +718,11 @@ vncDesktopThread::run_undetached(void *arg)
 									// can cause a very long wait time
 								}	
 								
-								/*#ifdef _DEBUG
-										char			szText[256];
-										sprintf(szText," cpu2: %d %i %i\n",cpuUsage,MIN_UPDATE_INTERVAL,newtick-oldtick);
-										OutputDebugString(szText);		
-								#endif*/
+								//#ifdef _DEBUG
+								//		char			szText[256];
+								//		sprintf(szText," cpu2: %d %i %i\n",cpuUsage,MIN_UPDATE_INTERVAL,newtick-oldtick);
+								//		OutputDebugString(szText);		
+								//#endif
 								oldtick=newtick;
 								if (m_desktop->VideoBuffer() && m_desktop->m_hookdriver) handle_driver_changes(rgncache,updates);
 								m_desktop->m_update_triggered = FALSE;

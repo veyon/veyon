@@ -739,7 +739,7 @@ LABELUSERSETTINGS:
 	m_pref_PollFullScreen= ((vncService::VersionMajor() >= 6) ? FALSE : TRUE);
 	m_pref_PollConsoleOnly=FALSE;
 	m_pref_PollOnEventOnly=TRUE;
-	m_pref_MaxCpu=20;
+	m_pref_MaxCpu=40;
 	m_pref_Driver=CheckVideoDriver(0);
 	m_pref_Hook=TRUE;
 	m_pref_Virtual=FALSE;
@@ -954,7 +954,7 @@ void vncPropertiesPoll::LoadFromIniFile()
 	m_pref_PollFullScreen= ((vncService::VersionMajor() >= 6) ? FALSE : TRUE);
 	m_pref_PollConsoleOnly=FALSE;
 	m_pref_PollOnEventOnly=TRUE;
-	m_pref_MaxCpu=20;
+	m_pref_MaxCpu=40;
 	m_pref_Driver=CheckVideoDriver(0);
 	m_pref_Hook=TRUE;
 	m_pref_Virtual=FALSE;

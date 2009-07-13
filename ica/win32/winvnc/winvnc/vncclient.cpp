@@ -4722,15 +4722,21 @@ int vncClient::ZipPossibleDirectory(LPSTR szSrcFileName)
 		// sf@2004 - Improving Directory Transfer: Avoids ReadOnly media problem
 		char szDirZipPath[MAX_PATH];
 		char szWorkingDir[MAX_PATH];
-		if (GetModuleFileName(NULL, szWorkingDir, MAX_PATH))
-		{
-			char* p = strrchr(szWorkingDir, '\\');
-			if (p == NULL)
+		::GetTempPath(MAX_PATH,szWorkingDir); //PGM Use Windows Temp folder
+		if (szWorkingDir == NULL) //PGM 
+		{ //PGM
+			if (GetModuleFileName(NULL, szWorkingDir, MAX_PATH))
+			{
+				char* p = strrchr(szWorkingDir, '\\');
+				if (p == NULL)
+					return -1;
+				*(p+1) = '\0';
+			}
+			else
+			{
 				return -1;
-			*(p+1) = '\0';
-		}
-		else
-			return -1;
+			}
+		}//PGM
 
 		char szPath[MAX_PATH];
 		char szDirectoryName[MAX_PATH];

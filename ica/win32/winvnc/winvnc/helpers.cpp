@@ -122,7 +122,7 @@ char path[512];
 
 LONG Primary=1;
 LONG Secundary=0;
-LONG MaxCpu=20;
+LONG MaxCpu=40;
 
 
 BUseRegistry = myIniFile_In.ReadInt("admin", "UseRegistry", 0);
