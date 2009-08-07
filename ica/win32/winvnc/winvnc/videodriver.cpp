@@ -839,7 +839,7 @@ VIDEODRIVER::OSVersion()
 
       // Test for the specific product.
 
-      if ( osvi.dwMajorVersion == 6 && osvi.dwMinorVersion == 0 )
+      if ( osvi.dwMajorVersion == 6)
       {
          return OSVISTA;
       }

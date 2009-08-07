@@ -2132,7 +2132,10 @@ vncClientThread::run(void *arg)
 					m_client->m_remoteevent = TRUE;
 
 					// Tell the desktop hook system to grab the screen...
-					m_client->m_encodemgr.m_buffer->m_desktop->TriggerUpdate();
+					// removed, terrible performance
+					// Why do we grap the screen after any inch a mouse move
+					// Removing it doesn't seems to have any missing update 
+					// m_client->m_encodemgr.m_buffer->m_desktop->TriggerUpdate();
 				}
 			}	
 			break;

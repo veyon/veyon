@@ -509,7 +509,17 @@ vncDesktop::Startup()
 					vnclog.Print(LL_INTINFO, VNCLOG("Driver option enabled \n"));
 					if(OSversion()==1 || OSversion()==2 )
 						{
-							InitVideoDriver();
+							//Enable only the video driver for the Default desktop
+							HDESK desktop = GetThreadDesktop(GetCurrentThreadId());
+							DWORD dummy;
+							char new_name[256];
+							if (GetUserObjectInformation(desktop, UOI_NAME, &new_name, 256, &dummy))
+								{
+									if (strcmp(new_name,"Default")==NULL)
+										{
+											InitVideoDriver();
+										}
+								}
 						}
 				}
     else
