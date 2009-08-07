@@ -507,7 +507,9 @@ echo "$RPMSOURCEDIR"
 AM_CONDITIONAL(HAVE_RPM, test "$RPMSOURCEDIR" != "NOT-FOUND")
 AC_SUBST(RPMSOURCEDIR)
 
-docdir="$datadir/$PACKAGE/doc"
+if test "x$docdir" = "x"; then
+	docdir="$datadir/$PACKAGE/doc"
+fi
 AC_SUBST(docdir)
 
 #AC_CONFIG_SUBDIRS(lupus)
