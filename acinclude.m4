@@ -44,7 +44,7 @@ AC_MSG_RESULT([$QT_INCLUDES])
 if test -z "$QTHOSTDIR" ; then
 	case "${prefix}" in
 		/opt/mingw*)
-			QTHOSTDIR=/opt/mingw/
+			QTHOSTDIR=/opt/mingw32/
 			;;
 		*)
 			if test -n "$QTDIR" ; then
@@ -121,7 +121,7 @@ case "${host}" in
 	QT_LIB="-L$QTDIR/bin -lQtCore4 -lQtXml4 -lQtNetwork4 -lws2_32"
 	QT_LIB_GUI="-lQtGui4"
 	# Check that windres is in path
-	AC_PATH_PROGS([WINDRES],[i586-mingw32-windres windres],,[${prefix}/bin:$PATH])
+	AC_PATH_PROGS([WINDRES],[i586-pc-mingw32-windres windres],,[${prefix}/bin:$PATH])
 	if test x$WINDRES = x ; then
 		AC_MSG_ERROR([*** not found! Make sure you have mingw32 binutils installed!])
 	fi

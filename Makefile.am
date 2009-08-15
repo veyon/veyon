@@ -44,22 +44,22 @@ win32-pkg: all
 	cp setup/.libs/setup.exe tmp/italc
 #	cp lupus/lupus/lupus.exe tmp/italc
 #	cp lupus/service/lupus_service.exe tmp/italc
-	cp /opt/mingw/bin/QtCore4.dll tmp/italc
-	cp /opt/mingw/bin/QtGui4.dll tmp/italc
-	cp /opt/mingw/bin/QtNetwork4.dll tmp/italc
-	cp /opt/mingw/bin/QtXml4.dll tmp/italc
-	cp /opt/mingw/bin/libeay32.dll tmp/italc
-	cp /opt/mingw/bin/libjpeg.dll tmp/italc
-	cp /opt/mingw/bin/libssl32.dll tmp/italc
-	cp /opt/mingw/bin/libz.dll tmp/italc
-	cp /opt/mingw/i586-mingw32/bin/mingwm10.dll tmp/italc
+	cp /opt/mingw32/bin/QtCore4.dll tmp/italc
+	cp /opt/mingw32/bin/QtGui4.dll tmp/italc
+	cp /opt/mingw32/bin/QtNetwork4.dll tmp/italc
+	cp /opt/mingw32/bin/QtXml4.dll tmp/italc
+	cp /opt/mingw32/bin/libeay32.dll tmp/italc
+	cp /opt/mingw32/bin/libjpeg.dll tmp/italc
+	cp /opt/mingw32/bin/libssl32.dll tmp/italc
+	cp /opt/mingw32/bin/libz.dll tmp/italc
+	cp /opt/mingw32/i586-pc-mingw32/bin/mingwm10.dll tmp/italc
 	cp -L COPYING tmp/italc/LICENSE.TXT
 	cp -L README tmp/italc/README.TXT
-	/opt/mingw/bin/i586-mingw32-strip tmp/italc/ica.exe
-	/opt/mingw/bin/i586-mingw32-strip tmp/italc/italc.exe
-	/opt/mingw/bin/i586-mingw32-strip tmp/italc/setup.exe
-#	/opt/mingw/bin/i586-mingw32-strip tmp/italc/lupus.exe
-#	/opt/mingw/bin/i586-mingw32-strip tmp/italc/lupus_service.exe
+	/opt/mingw32/bin/i586-pc-mingw32-strip tmp/italc/ica.exe
+	/opt/mingw32/bin/i586-pc-mingw32-strip tmp/italc/italc.exe
+	/opt/mingw32/bin/i586-pc-mingw32-strip tmp/italc/setup.exe
+#	/opt/mingw32/bin/i586-pc-mingw32-strip tmp/italc/lupus.exe
+#	/opt/mingw32/bin/i586-pc-mingw32-strip tmp/italc/lupus_service.exe
 	mv tmp/italc tmp/italc-$(VERSION)
 	cd tmp && zip -9 ../$(PACKAGE)-$(VERSION)-bin-win32.zip italc-$(VERSION)/*
 	rm -rf tmp
