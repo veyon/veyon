@@ -43,6 +43,7 @@
         <file>resources/pt_br.qm</file>
         <file>resources/el.qm</file>
         <file>resources/tr.qm</file>
+        <file>resources/zh_cn.qm</file>
         <file>resources/demoquality.png</file>
         <file>resources/error.png</file>
         <file>resources/filesave.png</file>
@@ -81,8 +82,6 @@
         <file>resources/qt_pl.qm</file>
         <file>resources/qt_ru.qm</file>
         <file>resources/qt_sk.qm</file>
-        <file>resources/qt_zh.qm</file>
-        <file>resources/qt_zh_CN.qm</file>
         <file>resources/reboot.png</file>
         <file>resources/reload.png</file>
         <file>resources/remote_control.png</file>
