@@ -979,8 +979,11 @@ void client::paintEvent( QPaintEvent * _pe )
 				Qt::TextWordWrap | Qt::AlignCenter, msg );
 	QSize s( pm->size() );
 	s.scale( aw-10, ah-r.height()-20, Qt::KeepAspectRatio );
-	p.drawImage( ( aw-s.width() ) / 2, height()-ah,
+	if( s.width() > 0 && s.height() > 0 )
+	{
+		p.drawImage( ( aw-s.width() ) / 2, height()-ah,
 						fastQImage( *pm ).scaled( s ) );
+	}
 
 	p.setPen( QColor( 0, 0, 0 ) );
 	p.drawText( QRect( 5, height()-r.height()-10, aw - 10,
