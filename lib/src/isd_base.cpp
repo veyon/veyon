@@ -85,7 +85,7 @@ qint64 qtcpsocketDispatcher( char * _buf, const qint64 _len,
 			break;
 		case SocketGetPeerAddress:
 			strncpy( _buf,
-		sock->peerAddress().toString().toAscii().constData(), _len );
+		sock->peerAddress().toString().toUtf8().constData(), _len );
 			break;
 	}
 	return( ret );

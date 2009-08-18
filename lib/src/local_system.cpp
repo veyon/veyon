@@ -317,7 +317,7 @@ void broadcastWOLPacket( const QString & _mac )
 	unsigned char mac[MAC_SIZE];
 	char out_buf[OUTBUF_SIZE];
 
-	if( sscanf( _mac.toAscii().constData(),
+	if( sscanf( _mac.toUtf8().constData(),
 				"%2x:%2x:%2x:%2x:%2x:%2x",
 				(unsigned int *) &mac[0],
 				(unsigned int *) &mac[1],
@@ -447,9 +447,9 @@ void logonUser( const QString & _uname, const QString & _passwd,
 	enablePrivilege( SE_TCB_NAME, TRUE );
 	HANDLE hToken;
 	if( !LogonUser(
-		(CHAR *)_uname.toAscii().constData(),
-		(CHAR*)(_domain.isEmpty() ? "." : _domain.toAscii().constData()),
-		(CHAR *)_passwd.toAscii().constData(),
+		(CHAR *)_uname.toUtf8().constData(),
+		(CHAR*)(_domain.isEmpty() ? "." : _domain.toUtf8().constData()),
+		(CHAR *)_passwd.toUtf8().constData(),
 		LOGON32_LOGON_INTERACTIVE,
 		LOGON32_PROVIDER_DEFAULT,
 		&hToken ) ) 

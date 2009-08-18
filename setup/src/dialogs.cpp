@@ -297,9 +297,9 @@ void setupWizard::doInstallation( bool _quiet )
 				"AuthorizedApplications\\List",
                     NULL, KEY_SET_VALUE, &hKey );
 
-	RegSetValueEx( hKey, QString( d + "ica.exe" ).toAscii().constData(),
+	RegSetValueEx( hKey, QString( d + "ica.exe" ).toUtf8().constData(),
 			0, REG_SZ,
-			(LPBYTE) QString( val ).toAscii().constData(),
+			(LPBYTE) QString( val ).toUtf8().constData(),
 			val.size()+1 );
 	RegCloseKey( hKey );
 	RegOpenKeyEx( HKEY_LOCAL_MACHINE,
@@ -308,9 +308,9 @@ void setupWizard::doInstallation( bool _quiet )
 				"AuthorizedApplications\\List",
                     NULL, KEY_SET_VALUE, &hKey );
 
-	RegSetValueEx( hKey, QString( d + "ica.exe" ).toAscii().constData(),
+	RegSetValueEx( hKey, QString( d + "ica.exe" ).toUtf8().constData(),
 			0, REG_SZ,
-			(LPBYTE) QString( val ).toAscii().constData(),
+			(LPBYTE) QString( val ).toUtf8().constData(),
 			val.size()+1 );
 	RegCloseKey( hKey );
 #endif

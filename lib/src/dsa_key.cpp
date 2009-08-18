@@ -587,12 +587,12 @@ void privateDSAKey::load( const QString & _file, QString _passphrase )
 	if( !QFileInfo( _file ).exists() || !infile.open( QFile::ReadOnly ) )
 	{
 		qCritical( "privateDSAKey::load( ... ): could not open file %s",
-						_file.toAscii().constData() );
+						_file.toUtf8().constData() );
 		return;
 	}
 	FILE * fp = fdopen( infile.handle(), "r" );
 #else
-	FILE * fp = fopen( _file.toAscii().constData(), "r" );
+	FILE * fp = fopen( _file.toUtf8().constData(), "r" );
 #endif
 	if( fp == NULL )
 	{
@@ -601,7 +601,7 @@ void privateDSAKey::load( const QString & _file, QString _passphrase )
 	}
 
 	EVP_PKEY * pk = PEM_read_PrivateKey( fp, NULL, NULL,
-						_passphrase.toAscii().data() );
+						_passphrase.toUtf8().data() );
 	if( pk == NULL )
 	{
 		qCritical( "PEM_read_PrivateKey failed" );
@@ -644,7 +644,7 @@ void privateDSAKey::save( const QString & _file, QString _passphrase ) const
 		if( !outfile.remove() )
 		{
 			qWarning( "could not remove %s",
-						_file.toAscii().constData() );
+						_file.toUtf8().constData() );
 		}
 	}
 	// QFile::handle() of Qt >= 4.3.0 returns -1 under win32
@@ -652,12 +652,12 @@ void privateDSAKey::save( const QString & _file, QString _passphrase ) const
 	if( !outfile.open( QFile::WriteOnly | QFile::Truncate ) )
 	{
 		qCritical( "could not save private key in %s",
-						_file.toAscii().constData() );
+						_file.toUtf8().constData() );
 		return;
 	}
 	FILE * fp = fdopen( outfile.handle(), "w" );
 #else
-	FILE * fp = fopen( _file.toAscii().constData(), "w" );
+	FILE * fp = fopen( _file.toUtf8().constData(), "w" );
 #endif
 	if( fp == NULL )
 	{
@@ -669,7 +669,7 @@ void privateDSAKey::save( const QString & _file, QString _passphrase ) const
 						NULL : EVP_des_ede3_cbc();
 
 	PEM_write_DSAPrivateKey( fp, m_dsa, cipher, _passphrase.isEmpty() ?
-			NULL : (unsigned char *) _passphrase.toAscii().data(),
+			NULL : (unsigned char *) _passphrase.toUtf8().data(),
 					_passphrase.length(), NULL, NULL );
 	fclose( fp );
 	outfile.close();
@@ -769,7 +769,7 @@ void publicDSAKey::load( const QString & _file, QString )
 	if( !QFileInfo( _file ).exists() || !infile.open( QFile::ReadOnly ) )
 	{
 		qCritical( "could not open file %s",
-						_file.toAscii().constData() );
+						_file.toUtf8().constData() );
 		return;
 	}
 
@@ -788,7 +788,7 @@ void publicDSAKey::load( const QString & _file, QString )
 				continue;
 			}
 			m_dsa = keyFromBlob( QByteArray::fromBase64(
-					line.section( ' ', 1, 1 ).toAscii() ) );
+					line.section( ' ', 1, 1 ).toUtf8() ) );
 			if( m_dsa == NULL )
 			{
 				qCritical( "publicDSAKey::load(): "
@@ -826,7 +826,7 @@ void publicDSAKey::save( const QString & _file, QString ) const
 	if( !outfile.open( QFile::WriteOnly | QFile::Truncate ) )
 	{
 		qCritical( "could not save public key in %s",
-						_file.toAscii().constData() );
+						_file.toUtf8().constData() );
 		return;
 	}
 

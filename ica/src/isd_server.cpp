@@ -214,7 +214,7 @@ int isdServer::processClient( socketDispatcher _sd, void * _user )
 		CreateProcessAsUser(
 				hNewToken,            // client's access token
 				NULL,              // file to execute
-				(CHAR *)cmds.toAscii().constData(),     // command line
+				(CHAR *)cmds.toUtf8().constData(),     // command line
 				NULL,              // pointer to process SECURITY_ATTRIBUTES
 				NULL,              // pointer to thread SECURITY_ATTRIBUTES
 				FALSE,             // handles are not inheritable

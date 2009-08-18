@@ -180,14 +180,14 @@ bool connectToHost( const QString & _host, int _port, QTcpSocket * _sock )
 
 	// Fill in the address if possible
 	addr.sin_family = AF_INET;
-	addr.sin_addr.s_addr = inet_addr( _host.toAscii().constData() );
+	addr.sin_addr.s_addr = inet_addr( _host.toUtf8().constData() );
 
 	// Was the string a valid IP address?
 	if( (signed int) addr.sin_addr.s_addr == -1 )
 	{
 		// No, so get the actual IP address of the host name specified
 		struct hostent *pHost;
-		pHost = gethostbyname( _host.toAscii().constData() );
+		pHost = gethostbyname( _host.toUtf8().constData() );
 		if( pHost != NULL )
 		{
 			if( pHost->h_addr == NULL )
@@ -321,7 +321,7 @@ isdConnection::states isdConnection::open( void )
 	if( m_socket->state() != QTcpSocket::ConnectedState )
 	{
 		qDebug( "isdConnection::open(): unable to connect to server "
-                               "on client %s:%i", m_host.toAscii().constData(),
+                               "on client %s:%i", m_host.toUtf8().constData(),
 								m_port );
 		if( m_socket->error() == QTcpSocket::ConnectionRefusedError )
 		{
