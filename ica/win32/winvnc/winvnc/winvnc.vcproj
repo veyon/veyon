@@ -4017,6 +4017,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\dpi.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\DSMPlugin\DSMPlugin.h"
 				>
 			</File>

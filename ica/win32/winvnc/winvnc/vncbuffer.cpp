@@ -552,7 +552,7 @@ void vncBuffer::CheckRect(rfb::Region2D &dest, rfb::Region2D &cacheRgn, const rf
 
 //rdv modif scaled and videodriver
 void
-vncBuffer::GrabRegion(rfb::Region2D &src,BOOL driver)
+vncBuffer::GrabRegion(rfb::Region2D &src,BOOL driver,BOOL capture)
 {
 	rfb::RectVector rects;
 	rfb::RectVector::iterator i;
@@ -604,7 +604,7 @@ vncBuffer::GrabRegion(rfb::Region2D &src,BOOL driver)
 		if (current.tl.y > grabRect.br.y)
 		{
 			// If the existing rect is non-null the capture it
-			if (!grabRect.is_empty()) GrabRect(grabRect,driver);
+			if (!grabRect.is_empty()) GrabRect(grabRect,driver,capture);
 
 			grabRect = current;
 		} else {
@@ -613,7 +613,7 @@ vncBuffer::GrabRegion(rfb::Region2D &src,BOOL driver)
 	}
 
 	// If there are still some rects to be done then do them
-	if (!grabRect.is_empty()) GrabRect(grabRect,driver);
+	if (!grabRect.is_empty()) GrabRect(grabRect,driver,capture);
 }
 
 void
@@ -862,12 +862,12 @@ void vncBuffer::GreyScaleRect(rfb::Rect &rect)
 
 
 void
-vncBuffer::GrabRect(const rfb::Rect &rect,BOOL driver)
+vncBuffer::GrabRect(const rfb::Rect &rect,BOOL driver,BOOL capture)
 {
 	//no lock needed
 	if (!FastCheckMainbuffer()) return;
 
-	if (!driver) m_desktop->CaptureScreen(rect, m_mainbuff, m_backbuffsize);
+	if (!driver) m_desktop->CaptureScreen(rect, m_mainbuff, m_backbuffsize,capture);
 
 	// Modif sf@2002 - Scaling
 	// Only use scaledbuffer if necessary !

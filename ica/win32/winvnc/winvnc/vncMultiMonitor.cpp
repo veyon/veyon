@@ -20,6 +20,7 @@
 #include "TextChat.h" // sf@2002
 #include "vncdesktopthread.h"
 #include "common/win32_helpers.h"
+extern CDPI g_dpi;
 
 void 
 vncDesktop::Checkmonitors()
@@ -50,10 +51,11 @@ vncDesktop::Checkmonitors()
 	mymonitor[1].Depth=devMode.dmBitsPerPel;
   }
 	///
-    mymonitor[2].offsetx=GetSystemMetrics(SM_XVIRTUALSCREEN);
-    mymonitor[2].offsety=GetSystemMetrics(SM_YVIRTUALSCREEN);
-    mymonitor[2].Width=GetSystemMetrics(SM_CXVIRTUALSCREEN);
-    mymonitor[2].Height=GetSystemMetrics(SM_CYVIRTUALSCREEN);
+	g_dpi.Invalidate();
+    mymonitor[2].offsetx=g_dpi.ScaledScreenVirtualX();
+    mymonitor[2].offsety=g_dpi.ScaledScreenVirtualY();
+    mymonitor[2].Width=g_dpi.ScaledScreenVirtualWidth();
+    mymonitor[2].Height=g_dpi.ScaledScreenVirtualHeight();
 	mymonitor[2].Depth=mymonitor[0].Depth;//depth primary monitor is used
 
 }

@@ -234,6 +234,7 @@ public:
 	virtual bool LocalInputsDisabled();
 	virtual BOOL JapInputEnabled();
 	virtual void EnableJapInput(BOOL enable);
+	virtual void Clearconsole(BOOL enable);
 
 	// General connection handling
 	virtual void SetConnectPriority(UINT priority) {m_connect_pri = priority;};
@@ -564,6 +565,7 @@ protected:
     bool m_fEnableKeepAlive;
     int m_ftTimeout;
     int m_keepAliveInterval;
+	bool clearconsole;
 };
 
 #endif

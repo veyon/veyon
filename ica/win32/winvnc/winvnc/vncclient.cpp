@@ -80,6 +80,7 @@ bool isDirectoryTransfer(const char *szFileName);
 extern BOOL SPECIAL_SC_PROMPT;
 extern BOOL SPECIAL_SC_EXIT;
 int getinfo(char mytext[1024]);
+extern CDPI g_dpi;
 
 // take a full path & file name, split it, prepend prefix to filename, then merge it back
 static std::string make_temp_filename(const char *szFullPath)
@@ -483,11 +484,13 @@ vncClientUpdateThread::run_undetached(void *arg)
 
 	vnclog.Print(LL_INTINFO, VNCLOG("starting update thread\n"));
 
-	// Set client update threads to high priority
-	// *** set_priority(omni_thread::PRIORITY_HIGH);
-
 	while (1)
 	{
+#ifdef _DEBUG
+										char			szText[256];
+										sprintf(szText," run_undetached loop \n");
+										OutputDebugString(szText);		
+#endif
 		// Block waiting for an update to send
 		{
 			omni_mutex_lock l(m_client->GetUpdateLock());
@@ -595,6 +598,11 @@ vncClientUpdateThread::run_undetached(void *arg)
 			// Fetch the incremental region
 			clipregion = m_client->m_incr_rgn;
 			m_client->m_incr_rgn.clear();
+#ifdef _DEBUG
+										char			szText[256];
+										sprintf(szText," UpdateWanted clear \n");
+										OutputDebugString(szText);		
+#endif
 
 			// Get the clipboard data, if any
 			if (m_client->m_clipboard_text) {
@@ -1537,7 +1545,11 @@ vncClientThread::run(void *arg)
 	}
 
 	// MAIN LOOP
-
+#ifdef _DEBUG
+										char			szText[256];
+										sprintf(szText," MAIN LOOP \n");
+										OutputDebugString(szText);		
+#endif
 	// Set the input thread to a high priority
 	set_priority(omni_thread::PRIORITY_HIGH);
 
@@ -1617,7 +1629,11 @@ vncClientThread::run(void *arg)
 				break;
 			}
 		}
-
+#ifdef _DEBUG
+										char			szText[256];
+										sprintf(szText," msg.type %i \n",msg.type);
+										OutputDebugString(szText);		
+#endif
 		// What to do is determined by the message id
 		switch(msg.type)
 		{
@@ -1889,6 +1905,11 @@ vncClientThread::run(void *arg)
 			
 		case rfbFramebufferUpdateRequest:
 			// Read the rest of the message:
+#ifdef _DEBUG
+										char			szText[256];
+										sprintf(szText," rfbFramebufferUpdateRequest \n");
+										OutputDebugString(szText);		
+#endif
 			if (!m_socket->ReadExact(((char *) &msg)+nTO, sz_rfbFramebufferUpdateRequestMsg-nTO))
 			{
 				connected = FALSE;
@@ -1996,6 +2017,7 @@ vncClientThread::run(void *arg)
 					m_client->m_remoteevent = TRUE;
 				}
 			}
+			m_client->m_encodemgr.m_buffer->m_desktop->TriggerUpdate();
 			break;
 
 		case rfbPointerEvent:
@@ -2078,6 +2100,8 @@ vncClientThread::run(void *arg)
 					// offset for multi display
 					int screenX, screenY, screenDepth;
 					m_server->GetScreenInfo(screenX, screenY, screenDepth);
+					//screenX=GetSystemMetrics(SM_CXVIRTUALSCREEN)*2;
+					//screenY=GetSystemMetrics(SM_CYVIRTUALSCREEN)*2;
 //					vnclog.Print(LL_INTINFO, VNCLOG("########mouse :%i %i %i %i \n"),screenX, screenY,m_client->m_ScreenOffsetx,m_client->m_ScreenOffsety );
 					if (m_client->m_display_type==1)
 						{//primary display always have (0,0) as corner
@@ -2093,10 +2117,10 @@ vncClientThread::run(void *arg)
 							{							
 								INPUT evt;
 								evt.type = INPUT_MOUSE;
-								msg.pe.x=msg.pe.x-GetSystemMetrics(SM_XVIRTUALSCREEN);
-								msg.pe.y=msg.pe.y-GetSystemMetrics(SM_YVIRTUALSCREEN);
-								evt.mi.dx = (msg.pe.x * 65535) / (GetSystemMetrics(SM_CXVIRTUALSCREEN)-1);
-								evt.mi.dy = (msg.pe.y* 65535) / (GetSystemMetrics(SM_CYVIRTUALSCREEN)-1);
+								msg.pe.x=msg.pe.x-g_dpi.ScaledScreenVirtualX();
+								msg.pe.y=msg.pe.y-g_dpi.ScaledScreenVirtualY();
+								evt.mi.dx = (msg.pe.x * 65535) / (g_dpi.ScaledScreenVirtualWidth()-1);
+								evt.mi.dy = (msg.pe.y* 65535) / (g_dpi.ScaledScreenVirtualHeight()-1);
 								evt.mi.dwFlags = flags | MOUSEEVENTF_VIRTUALDESK;
 								evt.mi.dwExtraInfo = 0;
 								evt.mi.mouseData = wheel_movement;
@@ -2106,6 +2130,8 @@ vncClientThread::run(void *arg)
 							else
 							{
 								POINT cursorPos; GetCursorPos(&cursorPos);
+								cursorPos.x=g_dpi.UnscaleX(cursorPos.x);
+								cursorPos.y=g_dpi.UnscaleY(cursorPos.y);
 								ULONG oldSpeed, newSpeed = 10;
 								ULONG mouseInfo[3];
 								if (flags & MOUSEEVENTF_MOVE) 
@@ -2135,7 +2161,7 @@ vncClientThread::run(void *arg)
 					// removed, terrible performance
 					// Why do we grap the screen after any inch a mouse move
 					// Removing it doesn't seems to have any missing update 
-					// m_client->m_encodemgr.m_buffer->m_desktop->TriggerUpdate();
+					 m_client->m_encodemgr.m_buffer->m_desktop->TriggerUpdate();
 				}
 			}	
 			break;
@@ -3534,6 +3560,8 @@ vncClient::UpdateMouse()
 	if (m_use_PointerPos && !m_cursor_pos_changed) {
 		POINT cursorPos;
 		GetCursorPos(&cursorPos);
+		cursorPos.x=g_dpi.UnscaleX(cursorPos.x);
+		cursorPos.y=g_dpi.UnscaleY(cursorPos.y);
 		//vnclog.Print(LL_INTINFO, VNCLOG("UpdateMouse m_cursor_pos(%d, %d), new(%d, %d)\n"), 
 		//  m_cursor_pos.x, m_cursor_pos.y, cursorPos.x, cursorPos.y);
 		if (cursorPos.x != m_cursor_pos.x || cursorPos.y != m_cursor_pos.y) {

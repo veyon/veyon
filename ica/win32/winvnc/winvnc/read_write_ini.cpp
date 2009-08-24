@@ -57,6 +57,8 @@ LONG EnableRemoteInputs;
 LONG LockSettings;
 LONG DisableLocalInputs;
 LONG EnableJapInput;
+LONG kickrdp;
+LONG clearconsole;
 
 #define MAXPWLEN 8
 char passwd[MAXPWLEN];
@@ -212,10 +214,15 @@ EnableRemoteInputs=myIniFile_In.ReadInt("admin", "InputsEnabled", 0);
 LockSettings=myIniFile_In.ReadInt("admin", "LockSetting", 0);
 DisableLocalInputs=myIniFile_In.ReadInt("admin", "LocalInputsDisabled", 0);
 EnableJapInput=myIniFile_In.ReadInt("admin", "EnableJapInput", 0);
+kickrdp=myIniFile_In.ReadInt("admin", "kickrdp", 0);
+clearconsole=myIniFile_In.ReadInt("admin", "clearconsole", 0);
+
 myIniFile_Out.WriteInt("admin", "InputsEnabled", EnableRemoteInputs);
 myIniFile_Out.WriteInt("admin", "LockSetting", LockSettings);
 myIniFile_Out.WriteInt("admin", "LocalInputsDisabled", DisableLocalInputs);	
-myIniFile_Out.WriteInt("admin", "EnableJapInput", EnableJapInput);	
+myIniFile_Out.WriteInt("admin", "EnableJapInput", EnableJapInput);
+myIniFile_Out.WriteInt("admin", "kickrdp", kickrdp);
+myIniFile_Out.WriteInt("admin", "clearconsole", clearconsole);
 
 
 TurboMode = myIniFile_In.ReadInt("poll", "TurboMode", 0);

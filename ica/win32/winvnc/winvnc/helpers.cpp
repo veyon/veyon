@@ -100,9 +100,11 @@ LONG QueryAccept;
 LONG QueryIfNoLogon;
 
 LONG EnableRemoteInputs=1;
-LONG LockSettings;
-LONG DisableLocalInputs;
-LONG EnableJapInput;
+LONG LockSettings=0;
+LONG DisableLocalInputs=0;
+LONG EnableJapInput=0;
+LONG kickrdp=0;
+LONG clearconsole=0;
 
 #define MAXPWLEN 8
 char passwd[MAXPWLEN];
@@ -254,11 +256,15 @@ EnableRemoteInputs=myIniFile_In.ReadInt("admin", "InputsEnabled", 0);
 LockSettings=myIniFile_In.ReadInt("admin", "LockSetting", 0);
 DisableLocalInputs=myIniFile_In.ReadInt("admin", "LocalInputsDisabled", 0);
 EnableJapInput=myIniFile_In.ReadInt("admin", "EnableJapInput", 0);
+kickrdp=myIniFile_In.ReadInt("admin", "kickrdp", 0);
+clearconsole=myIniFile_In.ReadInt("admin", "clearconsole", 0);
 
 myIniFile_Out.WriteInt("admin", "InputsEnabled", EnableRemoteInputs);
 myIniFile_Out.WriteInt("admin", "LockSetting", LockSettings);
 myIniFile_Out.WriteInt("admin", "LocalInputsDisabled", DisableLocalInputs);	
 myIniFile_Out.WriteInt("admin", "EnableJapInput", EnableJapInput);	
+myIniFile_Out.WriteInt("admin", "kickrdp", kickrdp);
+myIniFile_Out.WriteInt("admin", "clearconsole", clearconsole);
 
 
 

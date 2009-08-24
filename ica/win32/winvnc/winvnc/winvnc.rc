@@ -87,7 +87,7 @@ FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     DEFPUSHBUTTON   "OK",IDOK,8,135,54,16
     CONTROL         139,IDC_VNCLOGO,"Static",SS_BITMAP | SS_CENTERIMAGE | SS_SUNKEN,7,5,53,46,WS_EX_TRANSPARENT
-    LTEXT           "UltraVNC Win32 Server 1.0.6.4",IDC_VERSION,73,5,195,11
+    LTEXT           "UltraVNC Win32 Server 1.0.7.6",IDC_VERSION,73,5,195,11
     LTEXT           "Copyright © 2002-2009 Ultr@VNC Team\nCopyright © 2001-2002 Sam - eSVNC \nCopyright © 1999-2002 Rudi D. V. - VdaccVNC \nCopyright © 2001 Harakan Software - PalmVNC\nCopyright © 1999-2002 Const. Kaplinsky - TightVNC \n",IDC_NAME,74,27,202,41
     LTEXT           "For more Information and Links please visit: \nhttp://www.uvnc.com",IDC_WWW,74,135,141,19
     LTEXT           "Build:",IDC_BUILDTEXT,74,16,20,10
@@ -164,7 +164,6 @@ BEGIN
     CONTROL         "Auto",IDC_PORTNO_AUTO,"Button",BS_AUTORADIOBUTTON,101,54,31,9
     RTEXT           "Main:",IDC_STATIC,45,55,18,8
     EDITTEXT        IDC_PORTRFB,66,53,29,12,ES_AUTOHSCROLL
-
     RTEXT           "Http:",IDC_STATIC,36,67,27,8
     EDITTEXT        IDC_PORTHTTP,66,65,29,12,ES_AUTOHSCROLL
     CONTROL         "Enable JavaViewer (Http Connect)",IDC_CONNECT_HTTP,
@@ -366,8 +365,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 1,0,6,4
- PRODUCTVERSION 1,0,6,4
+ FILEVERSION 1,0,6,5
+ PRODUCTVERSION 1,0,6,5
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x2dL
@@ -384,15 +383,15 @@ BEGIN
         BEGIN
             VALUE "Comments", "UltraVNC - Remote Control for all"
             VALUE "CompanyName", "UltraVNC"
-            VALUE "FileDescription", "VNC server for Win32"
-            VALUE "FileVersion", "1.0.6.4"
+            VALUE "FileDescription", "VNC server for X64/win32"
+            VALUE "FileVersion", "1.0.7.6"
             VALUE "InternalName", "WinVNC"
             VALUE "LegalCopyright", "Copyright © 2009 UltraVNC"
             VALUE "LegalTrademarks", "VNC"
             VALUE "OriginalFilename", "WinVNC.exe"
-            VALUE "PrivateBuild", "1.0.6.4"
+            VALUE "PrivateBuild", "1.0.7.6"
             VALUE "ProductName", "UltraVNC"
-            VALUE "ProductVersion", "1.0.6.4"
+            VALUE "ProductVersion", "1.0.7.6"
         END
     END
     BLOCK "VarFileInfo"
@@ -530,25 +529,6 @@ END
 
 
 /////////////////////////////////////////////////////////////////////////////
-// Dutch (Netherlands) resources
-
-#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NLD)
-#ifdef _WIN32
-LANGUAGE LANG_DUTCH, SUBLANG_DUTCH
-#pragma code_page(1252)
-#endif //_WIN32
-
-/////////////////////////////////////////////////////////////////////////////
-//
-// WAVE
-//
-
-IDR_WAVE1               WAVE                    "res\\ding_dong.wav"
-#endif    // Dutch (Netherlands) resources
-/////////////////////////////////////////////////////////////////////////////
-
-
-/////////////////////////////////////////////////////////////////////////////
 // English (U.K.) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENG)
@@ -673,7 +653,6 @@ IDI_FLASH               ICON                    "res\\icon2.ico"
 //
 
 IDB_LOGO64              BITMAP                  "res\\vnc-1.bmp"
-IDB_BITMAP3             BITMAP                  "res\\runas.bmp"
 #endif    // Dutch (Belgium) resources
 /////////////////////////////////////////////////////////////////////////////
 

@@ -18,6 +18,7 @@ char service_name[256]="uvnc_service";
 char *app_name = "UltraVNC";
 void disconnect_remote_sessions();
 char cmdtext[256];
+extern int clear_console;
 bool IsWin2000()
 {
 	OSVERSIONINFO OSversion;
@@ -116,7 +117,7 @@ static DWORD WINAPI control_handler_ex(DWORD controlCode, DWORD dwEventType, LPV
             if (dwEventType == WTS_REMOTE_DISCONNECT)
             {
                 // disconnect rdp, and reconnect to the console
-                disconnect_remote_sessions();
+                if ( clear_console) disconnect_remote_sessions();
             }
         }
         break;

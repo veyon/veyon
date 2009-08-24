@@ -148,6 +148,18 @@ PCHAR VIDEODRIVER::VideoMemory_GetSharedMemory(void)
 	   DWORD size1=GetFileSize(hFile1,NULL);
 	   if (size0==shared_buffer_size) hFile=hFile0;
 	   if (size1==shared_buffer_size) hFile=hFile1;
+	    if (size1==shared_buffer_size && size0==shared_buffer_size)
+		{
+			//find last modification time
+			FILETIME createt0, lastWriteTime0, lastAccessTime0;
+			GetFileTime( hFile0, &createt0, &lastAccessTime0, &lastWriteTime0);
+			FILETIME createt1, lastWriteTime1, lastAccessTime1;
+			GetFileTime( hFile0, &createt1, &lastAccessTime1, &lastWriteTime1);
+			LONG result=CompareFileTime(&lastWriteTime0,&lastWriteTime1);
+			if (result==0 || result== 1) hFile=hFile0;
+			else hFile=hFile1;
+
+		}
 
    }
 

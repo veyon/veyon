@@ -1675,6 +1675,7 @@ LABELUSERSETTINGS:
 	m_pref_EnableRemoteInputs=TRUE;
 	m_pref_DisableLocalInputs=FALSE;
 	m_pref_EnableJapInput=FALSE;
+	m_pref_clearconsole=FALSE;
 	m_pref_LockSettings=-1;
 
 	m_pref_RemoveWallpaper=TRUE;
@@ -1819,6 +1820,7 @@ vncProperties::LoadUserPrefs(HKEY appkey)
 	m_pref_LockSettings=LoadInt(appkey, "LockSetting", m_pref_LockSettings);
 	m_pref_DisableLocalInputs=LoadInt(appkey, "LocalInputsDisabled", m_pref_DisableLocalInputs);
 	m_pref_EnableJapInput=LoadInt(appkey, "EnableJapInput", m_pref_EnableJapInput);
+	m_pref_clearconsole=LoadInt(appkey, "clearconsole", m_pref_clearconsole);
 }
 
 void
@@ -1860,6 +1862,7 @@ vncProperties::ApplyUserPrefs()
 		m_server->DisableLocalInputs(m_pref_DisableLocalInputs);
 	if (m_pref_EnableJapInput)
 		m_server->EnableJapInput(m_pref_EnableJapInput);
+	m_server->Clearconsole(m_pref_clearconsole);
 
 	// Update the password
 	m_server->SetPassword(m_pref_passwd);
@@ -1878,6 +1881,7 @@ vncProperties::ApplyUserPrefs()
 	m_server->SetLockSettings(m_pref_LockSettings);
 	m_server->DisableLocalInputs(m_pref_DisableLocalInputs);
 	m_server->EnableJapInput(m_pref_EnableJapInput);
+	m_server->Clearconsole(m_pref_clearconsole);
 
 	// DSM Plugin prefs
 	m_server->EnableDSMPlugin(m_pref_UseDSMPlugin);
@@ -2186,6 +2190,7 @@ void vncProperties::LoadFromIniFile()
 	m_pref_EnableRemoteInputs=TRUE;
 	m_pref_DisableLocalInputs=FALSE;
 	m_pref_EnableJapInput=FALSE;
+	m_pref_clearconsole=FALSE;
 	m_pref_LockSettings=-1;
 
 	m_pref_RemoveWallpaper=TRUE;
@@ -2276,6 +2281,7 @@ void vncProperties::LoadUserPrefsFromIniFile()
 	m_pref_LockSettings=myIniFile.ReadInt("admin", "LockSetting", m_pref_LockSettings);
 	m_pref_DisableLocalInputs=myIniFile.ReadInt("admin", "LocalInputsDisabled", m_pref_DisableLocalInputs);
 	m_pref_EnableJapInput=myIniFile.ReadInt("admin", "EnableJapInput", m_pref_EnableJapInput);
+	m_pref_clearconsole=myIniFile.ReadInt("admin", "clearconsole", m_pref_clearconsole);
 }
 
 
