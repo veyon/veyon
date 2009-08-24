@@ -121,9 +121,14 @@ static inline BOOL LoadDM(VOID)
 
 
 
-
+bool disable_aero_set=false;
 static inline VOID DisableAero(VOID) 
  { 
+	     if (disable_aero_set)
+		 {
+			 vnclog.Print(LL_INTINFO, VNCLOG("DisableAero already done %i \n"),AeroWasEnabled);
+			 return;
+		 }
          BOOL pfnDwmEnableCompositiond = FALSE; 
          AeroWasEnabled = FALSE; 
   
@@ -135,19 +140,22 @@ static inline VOID DisableAero(VOID)
          else 
                  return; 
   
-         if ((AeroWasEnabled = pfnDwmEnableCompositiond)) 
-                 ; 
-         else 
-                 return; 
+         AeroWasEnabled = pfnDwmEnableCompositiond;
+		 disable_aero_set=true;
+		 vnclog.Print(LL_INTINFO, VNCLOG("DisableAero %i \n"),AeroWasEnabled);
+          if (!AeroWasEnabled)
+			  return; 
   
          if (pfnDwmEnableComposition && SUCCEEDED(pfnDwmEnableComposition(FALSE))) 
                  ; 
          else 
-                 ; 
+                 ;
+		 
  } 
   
  static inline VOID ResetAero(VOID) 
  { 
+	     vnclog.Print(LL_INTINFO, VNCLOG("Reset %i \n"),AeroWasEnabled);
          if (pfnDwmEnableComposition && AeroWasEnabled) 
          { 
                  if (SUCCEEDED(pfnDwmEnableComposition(AeroWasEnabled))) 
@@ -155,6 +163,7 @@ static inline VOID DisableAero(VOID)
                  else 
                          ; 
          } 
+		 disable_aero_set=false;
          UnloadDM(); 
  } 
 
@@ -1052,7 +1061,7 @@ LRESULT CALLBACK vncMenu::WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lP
 				// double click: execute first menu item
 				SendMessage(_this->m_nid.hWnd,
 							WM_COMMAND, 
-							GetMenuItemID(submenu, 0),
+							GetMenuItemID(submenu, 3),
 							0);
 			}
 

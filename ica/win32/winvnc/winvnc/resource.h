@@ -39,8 +39,6 @@
 #define IDR_FTPFRAME_CLASS              148
 #define IDR_DH_CLASS                    149
 #define IDR_FTPFRAMESTRCOMP_CLASS       151
-#define IDB_BITMAP3                     153
-#define IDR_WAVE1                       154
 #define IDD_USER_NAME                   604
 #define IDD_PASSWORD                    608
 #define IDR_MESSAGES_PROPERTIES         900

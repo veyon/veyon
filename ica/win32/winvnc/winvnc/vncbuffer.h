@@ -73,7 +73,7 @@ public:
 	// SCREEN CAPTURE
 	void CopyRect(const rfb::Rect &dest, const rfb::Point &delta);
 	void GrabMouse();
-	void GrabRegion(rfb::Region2D &src,BOOL driver);
+	void GrabRegion(rfb::Region2D &src,BOOL driver,BOOL capture);
 	void GetMousePos(rfb::Rect &rect);
 
 	// CACHE RDV
@@ -113,7 +113,7 @@ protected:
 	BOOL FastCheckMainbuffer();
 	
 	// Fetch pixel data to the main buffer from the screen
-	void GrabRect(const rfb::Rect &rect,BOOL driver);
+	void GrabRect(const rfb::Rect &rect,BOOL driver,BOOL capture);
 
 	BOOL		m_freemainbuff;
 

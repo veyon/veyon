@@ -97,6 +97,7 @@ protected:
 	DWORD MIN_UPDATE_INTERVAL_MAX;
 	DWORD MIN_UPDATE_INTERVAL_MIN;
 	DWORD MAX_CPU_USAGE;
+	bool capture;
 
 };
 #endif

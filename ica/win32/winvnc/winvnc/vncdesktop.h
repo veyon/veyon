@@ -203,6 +203,7 @@ public:
 	bool CaptureRect(const rfb::Rect& rect);
 	COLORREF CapturePixel(int x, int y);
 	void ReleaseCapture();
+	bool		m_bIsVista;
 
 private:
 	HDC			m_hrootdc;
@@ -211,7 +212,6 @@ private:
 	HBITMAP		m_oldbitmap;
 	void		*m_DIBbits;
 	rfb::Rect	m_rect;
-	bool		m_bIsVista;
 	bool		m_bCaptureAlpha;
 	int			m_bytesPerPixel;
 	int			m_bytesPerRow;
@@ -249,7 +249,7 @@ public:
 
 	// Screen translation, capture, info
 	void FillDisplayInfo(rfbServerInitMsg *scrInfo);
-	void CaptureScreen(const rfb::Rect &UpdateArea, BYTE *scrBuff, UINT scrBuffSize);
+	void CaptureScreen(const rfb::Rect &UpdateArea, BYTE *scrBuff, UINT scrBuffSize,BOOL capture);
 	int ScreenBuffSize();
 	HWND Window() {return m_hwnd;};
 
@@ -351,7 +351,7 @@ protected:
 	void SetClipboardActive(BOOL active) {m_clipboard_active = active;};
 
 	// Modif sf@2002 - v1.1.0 - FastDetectChanges stuff
-	void FastDetectChanges(rfb::Region2D &rgn, rfb::Rect &rect, int nZone, bool fTurbo);
+	bool FastDetectChanges(rfb::Region2D &rgn, rfb::Rect &rect, int nZone, bool fTurbo);
 	GridsList    m_lGridsList;   // List of changes detection grids
 	WindowsList  m_lWList;		 // List of Windows handles  
 	// HDC	         m_hDC;			 // Local Screen Device context to capture our Grid of pixels 

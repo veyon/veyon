@@ -47,7 +47,9 @@
 #include "Localization.h" // ACT : Add localization on messages
 bool g_Server_running;
 extern bool g_Desktop_running;
+extern bool g_DesktopThread_running;
 void*	vncServer::pThis;
+extern CDPI g_dpi;
 
 // vncServer::UpdateTracker routines
 
@@ -1046,7 +1048,7 @@ vncServer::RemoveClient(vncClientId clientid)
 		if (!AutoRestartFlag())
 		{
 			// Are there locksettings set?
-			if (LockSettings() == 1)
+			if (LockSettings() == 1 || clearconsole)
 			{
 				// Yes - lock the machine on disconnect!
 				vncService::LockWorkstation();
@@ -1336,6 +1338,14 @@ vncServer::EnableJapInput(BOOL enable)
 	}
 }
 
+void
+vncServer::Clearconsole(BOOL enable)
+{
+	clearconsole=enable;
+}
+
+
+
 void 
 vncServer::KillSockConnect()
 {
@@ -1578,8 +1588,8 @@ vncServer::GetScreenInfo(int &width, int &height, int &depth)
 		}
 		else
 		{
-			scrinfo.framebufferWidth = GetDeviceCaps(hrootdc, HORZRES);
-			scrinfo.framebufferHeight = GetDeviceCaps(hrootdc, VERTRES);
+			scrinfo.framebufferWidth = g_dpi.UnscaleX(GetDeviceCaps(hrootdc, HORZRES));
+			scrinfo.framebufferHeight = g_dpi.UnscaleY(GetDeviceCaps(hrootdc, VERTRES));
 			HBITMAP membitmap = CreateCompatibleBitmap(hrootdc, scrinfo.framebufferWidth, scrinfo.framebufferHeight);
 			if (membitmap == NULL) {
 				scrinfo.framebufferWidth = 0;

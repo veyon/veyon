@@ -1250,7 +1250,11 @@ rfbBool rfbSendDirContent(rfbClientPtr cl, int length, char *buffer)
                 /*
                 rfbLog("rfbProcessFileTransfer() rfbDirContentRequest: rfbRDirContent: Sending \"%s\"\n", (char *)win32filename.cFileName);
                 */
-                if (rfbSendFileTransferMessage(cl, rfbDirPacket, rfbADirectory, 0, nOptLen, (char *)&win32filename)==FALSE) return FALSE;
+                if (rfbSendFileTransferMessage(cl, rfbDirPacket, rfbADirectory, 0, nOptLen, (char *)&win32filename)==FALSE)
+				{
+					closedir(dirp);
+					return FALSE;
+				}
             }
         }
     }

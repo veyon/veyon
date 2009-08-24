@@ -50,22 +50,22 @@ extern HINSTANCE	hAppInstance;
 #include <mmsystem.h>
 BOOL PlayResource(LPSTR lpName)
 {
-    BOOL bRtn;
+    /*BOOL bRtn;
     LPSTR lpRes;
     HANDLE hRes;
     HRSRC hResInfo;
 
-    /* Find the WAVE resource. */
+    // Find the WAVE resource. 
     hResInfo= FindResource(hAppInstance,MAKEINTRESOURCE(IDR_WAVE1),"WAVE");
     if(hResInfo == NULL)
        return FALSE;
-    /* Load the WAVE resource. */
+    // Load the WAVE resource. 
 
     hRes = LoadResource(hAppInstance,hResInfo);
     if (hRes == NULL)
       return FALSE;
 
-    /* Lock the WAVE resource and play it. */
+    // Lock the WAVE resource and play it. 
     lpRes=(LPSTR)LockResource(hRes);
     if(lpRes==NULL)
       return FALSE;
@@ -74,9 +74,34 @@ BOOL PlayResource(LPSTR lpName)
     if(bRtn == NULL)
       return FALSE;
 
-    /* Free the WAVE resource and return success or failure. */
+    // Free the WAVE resource and return success or failure. 
     FreeResource(hRes);
-    return TRUE;
+    return TRUE;*/
+
+	char szWavFile[MAX_PATH]; //PGM 
+
+	if (GetModuleFileName(NULL, szWavFile, MAX_PATH)) //PGM 
+
+	{ // PGM 
+
+		char* p = strrchr(szWavFile, '\\'); //PGM 
+
+		*p = '\0'; //PGM 
+
+		strcat(szWavFile,"\\"); //PGM 
+
+	} //PGM 
+
+	strcat(szWavFile,"ding_dong.wav"); //PGM 
+
+	if(::PlaySound(szWavFile, NULL, SND_APPLICATION | SND_FILENAME | SND_ASYNC | SND_NOWAIT)!= ERROR_SUCCESS) //PGM
+
+		return FALSE; //PGM 
+
+	else //PGM 
+
+		return TRUE; //PGM 
+
 }
 
 ///////////////////////////////////////////////////////

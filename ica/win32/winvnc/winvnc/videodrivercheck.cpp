@@ -66,13 +66,13 @@ TEXT("\\StringFileInfo\\040904b0\\ProductVersion"),
    if( resultValue )
    {
       strncpy(vBuffer, (char *) lpBuffer, size);
-      delete versionInfo;
+      delete[] versionInfo;
       return(TRUE);
    }
    else
    {
       *vBuffer = '\0';
-      delete versionInfo;
+      delete[] versionInfo;
       return(FALSE);
    }
 }
