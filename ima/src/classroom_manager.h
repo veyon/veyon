@@ -340,6 +340,8 @@ private:
 	static QPixmap * s_clientPixmap;
 	static QPixmap * s_clientObservedPixmap;
 
+	virtual bool operator<( const QTreeWidgetItem & other ) const;
+
 } ;
 
 

@@ -2198,5 +2198,31 @@ void classRoomItem::setUser( const QString & _name )
 
 
 
+bool classRoomItem::operator<( const QTreeWidgetItem & other ) const
+{
+	int column = treeWidget()->sortColumn();
+	const QString str1 = text( column ).toLower();
+	const QString str2 = other.text( column ).toLower();
+	// check for numbered computers and sort them numerically correct (instead
+	// lexically correct) - example:
+	// * PC 1
+	// * PC 2
+	// * ...
+	// * PC 10
+	// * PC 11
+	// -> with lexical sorting, PC 10, PC 11... would appear after PC 1 and
+	// before PC 2, but we want PC 1, PC 2, ..., PC 10, PC 11
+	QRegExp rx1( "^([^\\d]*)(\\d+)$" );
+	QRegExp rx2( "^([^\\d]*)(\\d+)$" );
+	if( rx1.indexIn( str1 ) == 0 && rx2.indexIn( str2 ) == 0 &&
+			rx1.cap( 1 ) == rx2.cap( 1 ) )
+	{
+		return rx1.cap( 2 ).toInt() < rx2.cap( 2 ).toInt();
+	}
+	return str1 < str2;
+}
+
+
+
 #include "classroom_manager.moc"
 
