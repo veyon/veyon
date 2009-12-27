@@ -40,8 +40,10 @@
 #endif
 
 
+#ifdef BUILD_WIN32
 PFN_WTSQuerySessionInformation pfnWTSQuerySessionInformation = NULL;
 PFN_WTSFreeMemory pfnWTSFreeMemory = NULL;
+#endif
 
 
 systemService::systemService(
