@@ -55,10 +55,8 @@ toolBar::toolBar( const QString & _title, QWidget * _parent ) :
 	p.fillRect( QRect( 0, 0, 100, height() ), lingrad );
 	p.end();
 
-	setAutoFillBackground( TRUE );
 	QPalette pal = palette();
 	pal.setBrush( backgroundRole(), bg );
-	pal.setBrush( foregroundRole(), bg );
 	setPalette( pal );
 }
 
@@ -93,6 +91,7 @@ void toolBar::paintEvent( QPaintEvent * _pe )
 {
 	QPainter p( this );
 	p.setPen( Qt::black );
+	p.fillRect( rect(), palette().brush( backgroundRole() ) );
 	p.drawLine( 0, 0, width(), 0 );
 }
 
