@@ -5,6 +5,7 @@ AC_PREREQ(2.50)
 AC_INIT(italc, 1.0.9.1, http://lmms.sourceforge.net/)
 AM_INIT_AUTOMAKE(italc, 1.0.9.1)
 AM_CONFIG_HEADER(config.h)
+AC_CONFIG_MACRO_DIR([m4])
 AX_PREFIX_CONFIG_H([lib/include/rfb/rfbconfig.h])
 
 
@@ -454,15 +455,15 @@ AC_HEADER_TIME
 AC_TYPE_OFF_T
 AC_CREATE_STDINT_H(lib/include/rfb/rfbint.h)
 AC_CACHE_CHECK([for in_addr_t],
-        inaddrt, [
+        _cv_inaddrt, [
                 AC_TRY_COMPILE([#include <sys/types.h>
 #include <netinet/in.h>],
                         [in_addr_t foo; return 0;],
-                                        [inaddrt=yes],
-                                        [inaddrt=no]),
+                                        [_cv_inaddrt=yes],
+                                        [_cv_inaddrt=no]),
         ])
 AH_TEMPLATE(NEED_INADDR_T, [Need a typedef for in_addr_t])
-if test $inaddrt = no ; then
+if test $_cv_inaddrt = no ; then
   AC_DEFINE(NEED_INADDR_T)
 fi
 

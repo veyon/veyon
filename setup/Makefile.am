@@ -1,3 +1,5 @@
+AUTOMAKE_OPTIONS = foreign
+
 INCLUDES = -I$(srcdir)/../lib/include -Isrc
 
 noinst_PROGRAMS = setup
@@ -68,5 +70,5 @@ endif
 setup_LDADD = $(QT_LDADD) $(QT_LIB_GUI) $(LIBSSL_LDADD) -ljpeg $(PLATFORM_LDADD)
 setup_LDFLAGS = $(LDFLAGS) -mwindows
 
-AM_CXXFLAGS := $(AM_CXXFLAGS) $(QT_CXXFLAGS)
+AM_CXXFLAGS = $(QT_CXXFLAGS)
 

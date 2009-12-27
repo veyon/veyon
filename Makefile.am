@@ -2,6 +2,8 @@ AUTOMAKE_OPTIONS = foreign 1.4
 
 SUBDIRS = lib ica ima setup $(subdirs) $(EXTRA_TARGETS)
 
+ACLOCAL_AMFLAGS = -I m4
+
 EXTRA_DIST = build_mingw32 tightvnc4win_integrate tightvnc4win_italc.diff README.LZO
 
 nobase_doc_DATA = AUTHORS ChangeLog COPYING INSTALL README README.LZO TODO

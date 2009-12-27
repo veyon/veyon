@@ -1,3 +1,4 @@
+AUTOMAKE_OPTIONS = foreign
 
 %.moc: $(srcdir)/%.h
 	$(MOC) -o $@ $<
@@ -110,7 +111,7 @@ libitalc_core_so_SOURCES =
 endif
 
 
-AM_CXXFLAGS := $(AM_CXXFLAGS) $(QT_CXXFLAGS) -O2 -DBUILD_ICA -DBUILD_LIBRARY $(CXXFLAGS_ADD)
+AM_CXXFLAGS = $(QT_CXXFLAGS) -O2 -DBUILD_ICA -DBUILD_LIBRARY $(CXXFLAGS_ADD)
 
 INCLUDES = -I$(srcdir)/include -I$(top_srcdir)
 
