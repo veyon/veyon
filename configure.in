@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.50)
-AC_INIT(italc, 1.0.9.1, http://lmms.sourceforge.net/)
+AC_INIT(italc, 1.0.9.1, http://italc.sourceforge.net/)
 AM_INIT_AUTOMAKE(italc, 1.0.9.1)
 AM_CONFIG_HEADER(config.h)
 AC_CONFIG_MACRO_DIR([m4])
