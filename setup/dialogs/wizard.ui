@@ -1,7 +1,8 @@
-<ui version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <class>wizard</class>
- <widget class="QDialog" name="wizard" >
-  <property name="geometry" >
+ <widget class="QDialog" name="wizard">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
@@ -9,51 +10,44 @@
     <height>300</height>
    </rect>
   </property>
-  <property name="sizePolicy" >
-   <sizepolicy>
-    <hsizetype>5</hsizetype>
-    <vsizetype>5</vsizetype>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
     <horstretch>0</horstretch>
     <verstretch>0</verstretch>
    </sizepolicy>
   </property>
-  <property name="windowTitle" >
-   <string>iTALC-Setup</string>
+  <property name="windowTitle">
+   <string>iTALC setup tool</string>
   </property>
-  <property name="windowIcon" >
-   <iconset resource="../setup.qrc" >:/resources/setup.png</iconset>
+  <property name="windowIcon">
+   <iconset resource="../setup.qrc">
+    <normaloff>:/resources/setup.png</normaloff>:/resources/setup.png</iconset>
   </property>
-  <layout class="QVBoxLayout" >
-   <property name="margin" >
-    <number>9</number>
-   </property>
-   <property name="spacing" >
+  <layout class="QVBoxLayout" name="_2">
+   <property name="spacing">
     <number>6</number>
    </property>
    <item>
-    <widget class="QWidget" native="1" name="contentWidget" />
+    <widget class="QWidget" name="contentWidget" native="true"/>
    </item>
    <item>
-    <widget class="Line" name="line" >
-     <property name="orientation" >
+    <widget class="Line" name="line">
+     <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
     </widget>
    </item>
    <item>
-    <layout class="QHBoxLayout" >
-     <property name="margin" >
-      <number>0</number>
-     </property>
-     <property name="spacing" >
+    <layout class="QHBoxLayout" name="_3">
+     <property name="spacing">
       <number>6</number>
      </property>
      <item>
       <spacer>
-       <property name="orientation" >
+       <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
-       <property name="sizeHint" >
+       <property name="sizeHint" stdset="0">
         <size>
          <width>0</width>
          <height>0</height>
@@ -62,34 +56,37 @@
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="cancelButton" >
-       <property name="text" >
+      <widget class="QPushButton" name="cancelButton">
+       <property name="text">
         <string>Cancel</string>
        </property>
-       <property name="icon" >
-        <iconset resource="../setup.qrc" >:/resources/cancel.png</iconset>
+       <property name="icon">
+        <iconset resource="../setup.qrc">
+         <normaloff>:/resources/cancel.png</normaloff>:/resources/cancel.png</iconset>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="backButton" >
-       <property name="text" >
+      <widget class="QPushButton" name="backButton">
+       <property name="text">
         <string>Back</string>
        </property>
-       <property name="icon" >
-        <iconset resource="../setup.qrc" >:/resources/back.png</iconset>
+       <property name="icon">
+        <iconset resource="../setup.qrc">
+         <normaloff>:/resources/back.png</normaloff>:/resources/back.png</iconset>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="nextButton" >
-       <property name="text" >
+      <widget class="QPushButton" name="nextButton">
+       <property name="text">
         <string>Next</string>
        </property>
-       <property name="icon" >
-        <iconset resource="../setup.qrc" >:/resources/next.png</iconset>
+       <property name="icon">
+        <iconset resource="../setup.qrc">
+         <normaloff>:/resources/next.png</normaloff>:/resources/next.png</iconset>
        </property>
-       <property name="default" >
+       <property name="default">
         <bool>true</bool>
        </property>
       </widget>
@@ -99,7 +96,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="../setup.qrc" />
+  <include location="../setup.qrc"/>
  </resources>
  <connections>
   <connection>
@@ -108,11 +105,11 @@
    <receiver>wizard</receiver>
    <slot>reject()</slot>
    <hints>
-    <hint type="sourcelabel" >
+    <hint type="sourcelabel">
      <x>308</x>
      <y>274</y>
     </hint>
-    <hint type="destinationlabel" >
+    <hint type="destinationlabel">
      <x>298</x>
      <y>169</y>
     </hint>

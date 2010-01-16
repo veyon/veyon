@@ -1,7 +1,8 @@
-<ui version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <class>pageKeyDirs</class>
- <widget class="QWidget" name="pageKeyDirs" >
-  <property name="geometry" >
+ <widget class="QWidget" name="pageKeyDirs">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
@@ -9,57 +10,128 @@
     <height>403</height>
    </rect>
   </property>
-  <layout class="QHBoxLayout" >
-   <property name="margin" >
-    <number>0</number>
-   </property>
-   <property name="spacing" >
+  <layout class="QHBoxLayout" name="_2">
+   <property name="spacing">
     <number>6</number>
    </property>
+   <property name="margin">
+    <number>0</number>
+   </property>
    <item>
-    <widget class="QLabel" name="label" >
-     <property name="pixmap" >
-      <pixmap resource="../setup.qrc" >:/resources/page_security_options.png</pixmap>
+    <widget class="QLabel" name="label">
+     <property name="palette">
+      <palette>
+       <active>
+        <colorrole role="Base">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>255</red>
+           <green>255</green>
+           <blue>255</blue>
+          </color>
+         </brush>
+        </colorrole>
+        <colorrole role="Window">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>255</red>
+           <green>255</green>
+           <blue>255</blue>
+          </color>
+         </brush>
+        </colorrole>
+       </active>
+       <inactive>
+        <colorrole role="Base">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>252</red>
+           <green>252</green>
+           <blue>252</blue>
+          </color>
+         </brush>
+        </colorrole>
+        <colorrole role="Window">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>255</red>
+           <green>255</green>
+           <blue>255</blue>
+          </color>
+         </brush>
+        </colorrole>
+       </inactive>
+       <disabled>
+        <colorrole role="Base">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>255</red>
+           <green>255</green>
+           <blue>255</blue>
+          </color>
+         </brush>
+        </colorrole>
+        <colorrole role="Window">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>255</red>
+           <green>255</green>
+           <blue>255</blue>
+          </color>
+         </brush>
+        </colorrole>
+       </disabled>
+      </palette>
+     </property>
+     <property name="autoFillBackground">
+      <bool>true</bool>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="../setup.qrc">:/resources/page_security_options.png</pixmap>
      </property>
     </widget>
    </item>
    <item>
-    <layout class="QVBoxLayout" >
-     <property name="margin" >
-      <number>0</number>
-     </property>
-     <property name="spacing" >
+    <layout class="QVBoxLayout">
+     <property name="spacing">
       <number>6</number>
      </property>
+     <property name="margin">
+      <number>0</number>
+     </property>
      <item>
-      <widget class="QLabel" name="label_2" >
-       <property name="text" >
-        <string>&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
-p, li { white-space: pre-wrap; }
-&lt;/style>&lt;/head>&lt;body style=" font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;">
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-size:13pt; font-weight:600;">Directories for keys&lt;/span>&lt;/p>&lt;/body>&lt;/html></string>
+      <widget class="QLabel" name="label_2">
+       <property name="font">
+        <font>
+         <pointsize>14</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Key directories</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="label_3" >
-       <property name="text" >
+      <widget class="QLabel" name="label_3">
+       <property name="text">
         <string>The newly created or imported key(s) need to be installed somewhere. It's recommended to leave the suggested directories.</string>
        </property>
-       <property name="wordWrap" >
+       <property name="wordWrap">
         <bool>true</bool>
        </property>
       </widget>
      </item>
      <item>
       <spacer>
-       <property name="orientation" >
+       <property name="orientation">
         <enum>Qt::Vertical</enum>
        </property>
-       <property name="sizeType" >
+       <property name="sizeType">
         <enum>QSizePolicy::Fixed</enum>
        </property>
-       <property name="sizeHint" >
+       <property name="sizeHint" stdset="0">
         <size>
          <width>387</width>
          <height>16</height>
@@ -68,29 +140,29 @@ p, li { white-space: pre-wrap; }
       </spacer>
      </item>
      <item>
-      <widget class="QLabel" name="label_5" >
-       <property name="text" >
+      <widget class="QLabel" name="label_5">
+       <property name="text">
         <string>Directory to store public key in</string>
        </property>
       </widget>
      </item>
      <item>
-      <layout class="QHBoxLayout" >
-       <property name="margin" >
-        <number>4</number>
-       </property>
-       <property name="spacing" >
+      <layout class="QHBoxLayout">
+       <property name="spacing">
         <number>6</number>
+       </property>
+       <property name="margin">
+        <number>4</number>
        </property>
        <item>
         <spacer>
-         <property name="orientation" >
+         <property name="orientation">
           <enum>Qt::Horizontal</enum>
          </property>
-         <property name="sizeType" >
+         <property name="sizeType">
           <enum>QSizePolicy::Fixed</enum>
          </property>
-         <property name="sizeHint" >
+         <property name="sizeHint" stdset="0">
           <size>
            <width>40</width>
            <height>21</height>
@@ -99,14 +171,15 @@ p, li { white-space: pre-wrap; }
         </spacer>
        </item>
        <item>
-        <widget class="QLineEdit" name="pubKeyDirLineEdit" />
+        <widget class="QLineEdit" name="pubKeyDirLineEdit"/>
        </item>
        <item>
-        <widget class="QPushButton" name="openPubKeyDirButton" >
-         <property name="icon" >
-          <iconset resource="../setup.qrc" >:/resources/fileopen.png</iconset>
+        <widget class="QPushButton" name="openPubKeyDirButton">
+         <property name="icon">
+          <iconset resource="../setup.qrc">
+           <normaloff>:/resources/fileopen.png</normaloff>:/resources/fileopen.png</iconset>
          </property>
-         <property name="iconSize" >
+         <property name="iconSize">
           <size>
            <width>22</width>
            <height>22</height>
@@ -118,13 +191,13 @@ p, li { white-space: pre-wrap; }
      </item>
      <item>
       <spacer>
-       <property name="orientation" >
+       <property name="orientation">
         <enum>Qt::Vertical</enum>
        </property>
-       <property name="sizeType" >
+       <property name="sizeType">
         <enum>QSizePolicy::Fixed</enum>
        </property>
-       <property name="sizeHint" >
+       <property name="sizeHint" stdset="0">
         <size>
          <width>387</width>
          <height>16</height>
@@ -133,38 +206,38 @@ p, li { white-space: pre-wrap; }
       </spacer>
      </item>
      <item>
-      <widget class="QWidget" native="1" name="newKeyDirWidgets" >
-       <layout class="QVBoxLayout" >
-        <property name="margin" >
-         <number>0</number>
-        </property>
-        <property name="spacing" >
+      <widget class="QWidget" name="newKeyDirWidgets" native="true">
+       <layout class="QVBoxLayout">
+        <property name="spacing">
          <number>6</number>
         </property>
+        <property name="margin">
+         <number>0</number>
+        </property>
         <item>
-         <widget class="QLabel" name="label_8" >
-          <property name="text" >
+         <widget class="QLabel" name="label_8">
+          <property name="text">
            <string>Directory to store private key in</string>
           </property>
          </widget>
         </item>
         <item>
-         <layout class="QHBoxLayout" >
-          <property name="margin" >
-           <number>4</number>
-          </property>
-          <property name="spacing" >
+         <layout class="QHBoxLayout">
+          <property name="spacing">
            <number>6</number>
+          </property>
+          <property name="margin">
+           <number>4</number>
           </property>
           <item>
            <spacer>
-            <property name="orientation" >
+            <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
-            <property name="sizeType" >
+            <property name="sizeType">
              <enum>QSizePolicy::Fixed</enum>
             </property>
-            <property name="sizeHint" >
+            <property name="sizeHint" stdset="0">
              <size>
               <width>40</width>
               <height>21</height>
@@ -173,14 +246,15 @@ p, li { white-space: pre-wrap; }
            </spacer>
           </item>
           <item>
-           <widget class="QLineEdit" name="privKeyDirLineEdit" />
+           <widget class="QLineEdit" name="privKeyDirLineEdit"/>
           </item>
           <item>
-           <widget class="QPushButton" name="openPrivKeyDirButton" >
-            <property name="icon" >
-             <iconset resource="../setup.qrc" >:/resources/fileopen.png</iconset>
+           <widget class="QPushButton" name="openPrivKeyDirButton">
+            <property name="icon">
+             <iconset resource="../setup.qrc">
+              <normaloff>:/resources/fileopen.png</normaloff>:/resources/fileopen.png</iconset>
             </property>
-            <property name="iconSize" >
+            <property name="iconSize">
              <size>
               <width>22</width>
               <height>22</height>
@@ -192,13 +266,13 @@ p, li { white-space: pre-wrap; }
         </item>
         <item>
          <spacer>
-          <property name="orientation" >
+          <property name="orientation">
            <enum>Qt::Vertical</enum>
           </property>
-          <property name="sizeType" >
+          <property name="sizeType">
            <enum>QSizePolicy::Fixed</enum>
           </property>
-          <property name="sizeHint" >
+          <property name="sizeHint" stdset="0">
            <size>
             <width>387</width>
             <height>16</height>
@@ -207,39 +281,40 @@ p, li { white-space: pre-wrap; }
          </spacer>
         </item>
         <item>
-         <widget class="QLabel" name="label_9" >
-          <property name="text" >
-           <string>You can choose a directory in which to export the public key, e.g. a USB-drive or a network share.</string>
+         <widget class="QLabel" name="label_9">
+          <property name="text">
+           <string>You can choose a directory in which to export the public key, e.g. an USB drive or a network share.</string>
           </property>
-          <property name="wordWrap" >
+          <property name="wordWrap">
            <bool>true</bool>
           </property>
          </widget>
         </item>
         <item>
-         <layout class="QHBoxLayout" >
-          <property name="margin" >
-           <number>5</number>
-          </property>
-          <property name="spacing" >
+         <layout class="QHBoxLayout">
+          <property name="spacing">
            <number>6</number>
           </property>
+          <property name="margin">
+           <number>5</number>
+          </property>
           <item>
-           <widget class="QLabel" name="label_4" >
-            <property name="pixmap" >
-             <pixmap resource="../setup.qrc" >:/resources/usbdrive.png</pixmap>
+           <widget class="QLabel" name="label_4">
+            <property name="pixmap">
+             <pixmap resource="../setup.qrc">:/resources/usbdrive.png</pixmap>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="keyExportDirLineEdit" />
+           <widget class="QLineEdit" name="keyExportDirLineEdit"/>
           </item>
           <item>
-           <widget class="QPushButton" name="openExportKeyDirButton" >
-            <property name="icon" >
-             <iconset resource="../setup.qrc" >:/resources/fileopen.png</iconset>
+           <widget class="QPushButton" name="openExportKeyDirButton">
+            <property name="icon">
+             <iconset resource="../setup.qrc">
+              <normaloff>:/resources/fileopen.png</normaloff>:/resources/fileopen.png</iconset>
             </property>
-            <property name="iconSize" >
+            <property name="iconSize">
              <size>
               <width>22</width>
               <height>22</height>
@@ -253,18 +328,18 @@ p, li { white-space: pre-wrap; }
       </widget>
      </item>
      <item>
-      <widget class="QCheckBox" name="checkBox" >
-       <property name="text" >
+      <widget class="QCheckBox" name="checkBox">
+       <property name="text">
         <string>Export private key too</string>
        </property>
       </widget>
      </item>
      <item>
       <spacer>
-       <property name="orientation" >
+       <property name="orientation">
         <enum>Qt::Vertical</enum>
        </property>
-       <property name="sizeHint" >
+       <property name="sizeHint" stdset="0">
         <size>
          <width>387</width>
          <height>16</height>
@@ -277,7 +352,8 @@ p, li { white-space: pre-wrap; }
   </layout>
  </widget>
  <resources>
-  <include location="../setup.qrc" />
+  <include location="../setup.qrc"/>
+  <include location="../../../../../.designer/setup.qrc"/>
  </resources>
  <connections/>
 </ui>

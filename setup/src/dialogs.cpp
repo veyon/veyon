@@ -1,7 +1,7 @@
 /*
  * dialogs.cpp - implementation of dialogs
  *
- * Copyright (c) 2006-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -22,7 +22,6 @@
  *
  */
 
-
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif
@@ -34,7 +33,6 @@
 #include <QtGui/QFileDialog>
 #include <QtGui/QLayout>
 #include <QtGui/QMessageBox>
-#include <QtGui/QProgressDialog>
 #include <QtXml/QtXml>
 
 #ifdef BUILD_WIN32
@@ -50,43 +48,23 @@
 
 const QString PUBLIC_KEY_FILE_NAME = "italc_dsa_key.pub";
 const QString KEEP_SETTINGS = ":keep-settings:";
-QString DEFAULT_INSTALL_DIR;
 
 
-setupWizard::setupWizard() :
+setupWizard::setupWizard( const QString & installDir ) :
 	QDialog(),
 	Ui::wizard(),
-	m_installDir(),
+	m_installDir( installDir ),
 	m_keyImportDir( QDir::homePath().replace( "/", QDir::separator() ) +
 							QDir::separator() ),
 	m_keyExportDir( m_keyImportDir ),
 	m_pubKeyDir( localSystem::publicKeyPath( ISD::RoleTeacher, TRUE ) ),
 	m_privKeyDir( localSystem::privateKeyPath( ISD::RoleTeacher, TRUE ) ),
-	m_installClient( TRUE ),
-	m_installMaster( FALSE ),
-	m_installLUPUS( FALSE ),
-	m_installDocs( FALSE ),
 	m_saveInstallSettings( FALSE ),
 	m_widgetStack(),
 	m_idx( 0 ),
 	m_closeOk( FALSE )
 {
 	setupUi( this );
-	DEFAULT_INSTALL_DIR =
-#ifdef BUILD_WIN32
-			"c:\\italc"
-#else
-					"/opt/italc"
-#endif
-					;
-	m_installDir =
-#ifdef BUILD_WIN32
-			localSystem::windowsConfigPath( CSIDL_PROGRAM_FILES ) +
-								"\\iTALC"
-#else
-					"/opt/italc"
-#endif
-					;
 
 	connect( backButton, SIGNAL( clicked() ), this, SLOT( back() ) );
 	connect( nextButton, SIGNAL( clicked() ), this, SLOT( next() ) );
@@ -99,9 +77,6 @@ setupWizard::setupWizard() :
 	hboxLayout->setSpacing( 0 );
 
 	m_widgetStack << new setupWizardPageWelcome( this );
-	m_widgetStack << new setupWizardPageLicenseAgreement( this );
-	m_widgetStack << new setupWizardPageInstallDir( this );
-	m_widgetStack << new setupWizardPageSelectComponents( this );
 	m_widgetStack << new setupWizardPageSecurityOptions( this );
 	m_widgetStack << new setupWizardPageKeyDirs( this );
 	m_widgetStack << new setupWizardPageFinished( this );
@@ -141,10 +116,6 @@ void setupWizard::loadSettings( const QString & _install_settings )
 	m_keyExportDir = root.attribute( "keyexportdir" );
 	m_pubKeyDir = root.attribute( "pubkeydir" );
 	m_privKeyDir = root.attribute( "privkeydir" );
-	m_installClient = root.attribute( "installclient" ).toInt();
-	m_installMaster = root.attribute( "installmaster" ).toInt();
-	m_installLUPUS= root.attribute( "installlupus" ).toInt();
-	m_installDocs = root.attribute( "installdocs" ).toInt();
 }
 
 
@@ -152,13 +123,13 @@ void setupWizard::loadSettings( const QString & _install_settings )
 
 int setupWizard::askOverwrite( const QString & _file, bool _all )
 {
-	return( QMessageBox::question( window(), tr( "Confirm overwrite" ),
+	return QMessageBox::question( window(), tr( "Confirm overwrite" ),
 			tr( "Do you want to overwrite %1?" ).arg( _file ),
 			QMessageBox::Yes | QMessageBox::No |
 			( _all ?
 				( QMessageBox::YesToAll | QMessageBox::NoToAll )
 						: QMessageBox::NoButton )
-							, QMessageBox::Yes ) );
+							, QMessageBox::Yes );
 }
 
 
@@ -173,120 +144,15 @@ static const QString _exe_ext = "";
 void setupWizard::doInstallation( bool _quiet )
 {
 	const QString & d = m_installDir + QDir::separator();
-	createInstallationPath( d );
 	QStringList quiet_opt;
 	if( _quiet )
 	{
 		quiet_opt << "-quiet";
 	}
-	QStringList files;
-	files <<
-		"ica" + _exe_ext	<<
-		"italc" + _exe_ext	<<
-#ifdef BUILD_WIN32
-		"libeay32.dll" 		<<
-		"libjpeg.dll" 		<<
-		"libssl32.dll" 		<<
-		"libz.dll" 		<<
-		"mingwm10.dll" 		<<
-		"QtCore4.dll"		<<
-		"QtGui4.dll"		<<
-		"QtNetwork4.dll"	<<
-		"QtXml4.dll"		<<
-		"vnchooks.dll"		<<
-		"italc_core.dll"
-#else
-		"libssl.so.0.9.8"	<<
-		"libcrypto.so.0.9.8"	<<
-		"libz.so.1"		<<
-		"libjpeg.so.62"		<<
-		"libpng12.so.0"		<<
-		"QtCore.so.4"		<<
-		"QtGui.so.4"		<<
-		"QtNetwork.so.4"	<<
-		"QtXml.so.4"
-#endif
-		;
-	QProgressDialog pd( window() );
 
-	pd.setWindowTitle( tr( "Installing iTALC" ) );
-
-	pd.setLabelText( tr( "Copying files..." ) );
-	qApp->processEvents();
-
-	bool overwrite_all = _quiet;
-	bool overwrite_none = FALSE;
-	bool did_overwrite_ica = FALSE;
-	int i = 0;
-	foreach( const QString & file, files )
-	{
-		if( ( file.left( 3 ) == "ica" && !m_installClient )
-			||
-		( file == "italc"+_exe_ext && !m_installMaster )
-			||
-			( file.left( 5 ) == "lupus" &&
-						!m_installLUPUS ) )
-		{
-			continue;
-		}
-		if( QFileInfo( d + file ).exists() && !overwrite_all )
-		{
-			if( overwrite_none )
-			{
-				continue;
-			}
-			int res = askOverwrite( d + file, TRUE );
-			switch( res )
-			{
-				case QMessageBox::YesToAll:
-					overwrite_all = TRUE;
-					break;
-				case QMessageBox::NoToAll:
-					overwrite_none = TRUE;
-				case QMessageBox::No:
-					continue;
-			}
-		}
-		if( file == ( "ica" + _exe_ext ) )
-		{
-			QProcess::execute( d + file,
-					QStringList() << "-stopservice" );
-#ifdef BUILD_WIN32
-			QProcess::execute( "net stop icas" );
-#endif
-			QProcess::execute( d + file,
-					QStringList() << quiet_opt <<
-							"-unregisterservice" );
-			did_overwrite_ica = TRUE;
-		}
-		QFile( d + file ).remove();
-		QFile( QCoreApplication::applicationDirPath()+QDir::separator()+file ).copy( d + file );
-		pd.setValue( ++i * 90 / files.size() );
-		qApp->processEvents();
-		if( pd.wasCanceled() )
-		{
-			return;
-		}
-	}
-	
 	QSettings settings( QSettings::SystemScope, "iTALC Solutions", "iTALC" );
 	settings.setValue( "settings/LogLevel", 6 );
 	
-	const int remaining_steps = 1;
-	const int remaining_percent = 10;
-	int step = 0;
-
-	pd.setLabelText( tr( "Registering ICA as service..." ) );
-	qApp->processEvents();
-
-	QProcess::execute( d + "ica", QStringList( quiet_opt ) <<
-							"-registerservice" );
-	if( did_overwrite_ica )
-	{
-		qApp->processEvents();
-		localSystem::sleep( 2000 );
-	}
-
 #ifdef BUILD_WIN32
 	// disable firewall for ICA-process
 	HKEY hKey; 
@@ -315,12 +181,6 @@ void setupWizard::doInstallation( bool _quiet )
 	RegCloseKey( hKey );
 #endif
 
-	QProcess::execute( d + "ica", QStringList() << "-startservice" );
-	++step;
-	pd.setValue( 90 + remaining_percent*step/remaining_steps );
-
-	pd.setLabelText( tr( "Creating/importing keys..." ) );
-	qApp->processEvents();
 	const QString add = QDir::separator() + QString( "key" );
 	const QString add2 = QDir::separator() + PUBLIC_KEY_FILE_NAME;
 	localSystem::setPrivateKeyPath( m_privKeyDir + add,
@@ -351,48 +211,17 @@ void setupWizard::doInstallation( bool _quiet )
 	QFile::setPermissions( m_pubKeyDir + add,
 				QFile::ReadOwner | QFile::ReadUser |
 				QFile::ReadGroup | QFile::ReadOther );
-	pd.setLabelText( tr( "Creating shortcuts..." ) );
-	qApp->processEvents();
-	if( m_installMaster )
-	{
-#ifdef BUILD_WIN32
-		QFile( d + "italc" + _exe_ext ).link(
-			localSystem::globalStartmenuDir() +
-							"iTALC.lnk" );
-#else
-		// TODO: create desktop-file under Linux
-#endif
-	}
 }
 
 
 
 
-bool setupWizard::createInstallationPath( const QString & _dir )
-{
-	if( !localSystem::ensurePathExists( _dir ) )
-	{
-		QMessageBox::critical( window(),
-			tr( "Could not create directory" ),
-			tr( "Could not create directory %1! "
-				"Make sure you have the "
-				"neccessary rights and try "
-				"again!" ).arg( _dir ),
-			QMessageBox::Ok );
-		return( FALSE );
-	}
-	return( TRUE );
-}
-
-
-
-
-void setupWizard::reject( void )
+void setupWizard::reject()
 {
 	if( QMessageBox::question( window(),
 			tr( "Cancel setup" ),
 			tr( "Are you sure want to quit setup? iTALC is not "
-				"installed completely yet!" ),
+				"set up completely yet!" ),
 			QMessageBox::Yes | QMessageBox::No,
 						QMessageBox::Yes )
 			==
@@ -406,7 +235,7 @@ void setupWizard::reject( void )
 
 
 
-void setupWizard::back( void )
+void setupWizard::back()
 {
 	if( m_idx > 0 )
 	{
@@ -421,7 +250,7 @@ void setupWizard::back( void )
 
 
 
-void setupWizard::next( void )
+void setupWizard::next()
 {
 	if( !m_widgetStack[m_idx]->nextPage() )
 	{
@@ -449,10 +278,6 @@ void setupWizard::next( void )
 			root.setAttribute( "keyexportdir", m_keyExportDir );
 			root.setAttribute( "pubkeydir", m_pubKeyDir );
 			root.setAttribute( "privkeydir", m_privKeyDir );
-			root.setAttribute( "installclient", m_installClient );
-			root.setAttribute( "installmaster", m_installMaster );
-			root.setAttribute( "installlupus", m_installLUPUS );
-			root.setAttribute( "installdocs", m_installDocs );
 			doc.appendChild( root );
 			QFile out( "installsettings.xml" );
 			out.open( QIODevice::WriteOnly | QIODevice::Truncate );
@@ -527,170 +352,6 @@ setupWizardPageWelcome::setupWizardPageWelcome( setupWizard * _wiz ) :
 
 
 
-
-// setupWizardPageLicenseAgreement
-setupWizardPageLicenseAgreement::setupWizardPageLicenseAgreement(
-							setupWizard * _wiz ) :
-	setupWizardPage( _wiz ),
-	Ui::pageLicenseAgreement()
-{
-	setupUi( this );
-
-        QFile copying_rc( ":/COPYING" );
-	copying_rc.open( QFile::ReadOnly );
-	licenseView->setHtml( QString( "<font size='3'><pre>%1</pre></font>" ).
-				arg( QString( copying_rc.readAll() ) ) );
-
-	connect( agreeRadioButton, SIGNAL( toggled( bool ) ),
-			this, SLOT( agreeRadioButtonToggled( bool ) ) );
-}
-
-
-
-
-void setupWizardPageLicenseAgreement::agreeRadioButtonToggled( bool _on )
-{
-	m_setupWizard->setNextPageDisabled( !_on );
-}
-
-
-
-
-
-
-// setupWizardPageInstallDir
-setupWizardPageInstallDir::setupWizardPageInstallDir( setupWizard * _wiz ) :
-	setupWizardPage( _wiz ),
-	Ui::pageInstallDir()
-{
-	setupUi( this );
-
-	installDirLineEdit->setText( m_setupWizard->m_installDir );
-
-	QCompleter * completer = new QCompleter( this );
-	completer->setModel( new QDirModel( completer ) );
- 	installDirLineEdit->setCompleter( completer );
-
-	connect( openDirButton, SIGNAL( clicked() ), this, SLOT( openDir() ) );
-	connect( installDirLineEdit, SIGNAL( returnPressed() ),
-						this, SLOT( returnPressed() ) );
-	connect( installDirLineEdit, SIGNAL( textChanged( const QString & ) ),
-			this, SLOT( setInstallDir( const QString & ) ) );
-}
-
-
-
-
-bool setupWizardPageInstallDir::returnPressed( void )
-{
-	QString d = m_setupWizard->m_installDir + QDir::separator();
-	if( !QDir( d ).exists() )
-	{
-		if( QMessageBox::question( window(),
-				tr( "Directory does not exist" ),
-				tr( "The specified directory does not exist. "
-					"Do you want to create it?" ),
-				QMessageBox::Yes | QMessageBox::No,
-							QMessageBox::Yes )
-				==
-							QMessageBox::Yes )
-		{
-			return( m_setupWizard->createInstallationPath( d ) );
-		}
-		else
-		{
-			return( FALSE );
-		}
-	}
-	return( TRUE );
-}
-
-
-
-
-void setupWizardPageInstallDir::openDir( void )
-{
-	QString dir = QFileDialog::getExistingDirectory( window(),
-					tr( "Choose installation directory" ),
-					m_setupWizard->m_installDir );
-	if( !dir.isEmpty() )
-	{
-		setInstallDir( dir );
-	}
-}
-
-
-
-
-void setupWizardPageInstallDir::setInstallDir( const QString & _dir )
-{
-	m_setupWizard->m_installDir = _dir;
-	if( installDirLineEdit->text() != _dir )
-	{
-		installDirLineEdit->setText( _dir );
-	}
-}
-
-
-
-
-
-
-// setupWizardPageSelectComponents
-setupWizardPageSelectComponents::setupWizardPageSelectComponents(
-							setupWizard * _wiz ) :
-	setupWizardPage( _wiz ),
-	Ui::pageSelectComponents()
-{
-	setupUi( this );
-
-	connect( componentClient, SIGNAL( toggled( bool ) ),
-			this, SLOT( toggleComponentClient( bool ) ) );
-	connect( componentMaster, SIGNAL( toggled( bool ) ),
-			this, SLOT( toggleComponentMaster( bool ) ) );
-	connect( componentLUPUS, SIGNAL( toggled( bool ) ),
-			this, SLOT( toggleComponentLUPUS( bool ) ) );
-	connect( componentDocs, SIGNAL( toggled( bool ) ),
-			this, SLOT( toggleComponentDocs( bool ) ) );
-}
-
-
-
-
-void setupWizardPageSelectComponents::toggleComponentClient( bool _on )
-{
-	m_setupWizard->m_installClient = _on;
-}
-
-
-
-void setupWizardPageSelectComponents::toggleComponentMaster( bool _on )
-{
-	m_setupWizard->m_installMaster = _on;
-}
-
-
-
-
-void setupWizardPageSelectComponents::toggleComponentLUPUS( bool _on )
-{
-	m_setupWizard->m_installLUPUS = _on;
-}
-
-
-
-
-void setupWizardPageSelectComponents::toggleComponentDocs( bool _on )
-{
-	m_setupWizard->m_installDocs = _on;
-}
-
-
-
-
-
-
-
 // setupWizardPageSecurityOptions
 setupWizardPageSecurityOptions::setupWizardPageSecurityOptions(
 							setupWizard * _wiz ) :
@@ -719,35 +380,35 @@ setupWizardPageSecurityOptions::setupWizardPageSecurityOptions(
 
 
 
-bool setupWizardPageSecurityOptions::nextPageDisabled( void )
+bool setupWizardPageSecurityOptions::nextPageDisabled()
 {
 	if( createKeysRadioButton->isChecked() )
 	{
 		m_setupWizard->m_keyImportDir.clear();
-		return( FALSE );
+		return FALSE;
 	}
 	if( keepKeysRadioButton->isChecked() )
 	{
 		m_setupWizard->m_keyImportDir = KEEP_SETTINGS;
-		return( FALSE );
+		return FALSE;
 	}
 	m_setupWizard->m_keyImportDir = keyImportDirLineEdit->text();
 	if( m_setupWizard->m_keyImportDir.isEmpty() )
 	{
-		return( TRUE );
+		return TRUE;
 	}
-	return( !publicDSAKey( m_setupWizard->m_keyImportDir +
+	return !publicDSAKey( m_setupWizard->m_keyImportDir +
 					QDir::separator() +
-					PUBLIC_KEY_FILE_NAME ).isValid() );
+					PUBLIC_KEY_FILE_NAME ).isValid();
 }
 
 
 
 
-void setupWizardPageSecurityOptions::openKeyImportDir( void )
+void setupWizardPageSecurityOptions::openKeyImportDir()
 {
 	QString dir = QFileDialog::getExistingDirectory( window(),
-					tr( "Choose directory for key-import" ),
+					tr( "Choose directory for key import" ),
 					m_setupWizard->m_keyImportDir );
 	if( !dir.isEmpty() )
 	{
@@ -829,20 +490,20 @@ setupWizardPageKeyDirs::setupWizardPageKeyDirs( setupWizard * _wiz ) :
 
 
 
-bool setupWizardPageKeyDirs::nextPageDisabled( void )
+bool setupWizardPageKeyDirs::nextPageDisabled()
 {
 	newKeyDirWidgets->setVisible( m_setupWizard->m_keyImportDir.isEmpty() );
-	setPubKeyDir( m_setupWizard->m_pubKeyDir.replace( DEFAULT_INSTALL_DIR,
+	/*setPubKeyDir( m_setupWizard->m_pubKeyDir.replace( DEFAULT_INSTALL_DIR,
 						m_setupWizard->m_installDir ) );
 	setPrivKeyDir( m_setupWizard->m_privKeyDir.replace( DEFAULT_INSTALL_DIR,
-						m_setupWizard->m_installDir ) );
-	return( FALSE );
+						m_setupWizard->m_installDir ) );*/
+	return FALSE;
 }
 
 
 
 
-void setupWizardPageKeyDirs::openPubKeyDir( void )
+void setupWizardPageKeyDirs::openPubKeyDir()
 {
 	QString dir = QFileDialog::getExistingDirectory( window(),
 					tr( "Choose public key directory" ),
@@ -856,7 +517,7 @@ void setupWizardPageKeyDirs::openPubKeyDir( void )
 
 
 
-void setupWizardPageKeyDirs::openPrivKeyDir( void )
+void setupWizardPageKeyDirs::openPrivKeyDir()
 {
 	QString dir = QFileDialog::getExistingDirectory( window(),
 					tr( "Choose private key directory" ),
@@ -870,7 +531,7 @@ void setupWizardPageKeyDirs::openPrivKeyDir( void )
 
 
 
-void setupWizardPageKeyDirs::openKeyExportDir( void )
+void setupWizardPageKeyDirs::openKeyExportDir()
 {
 	QString dir = QFileDialog::getExistingDirectory( window(),
 				tr( "Choose public key export directory" ),

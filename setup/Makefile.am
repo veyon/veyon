@@ -12,7 +12,7 @@ noinst_PROGRAMS = setup
 	$(UIC) -o $@ $<
 
 %.ts: 
-	$(LUPDATE) $(srcdir)/src/*.cpp $(srcdir)/dialogs/*.ui -ts $(srcdir)/resources/$@
+	$(LUPDATE) $(srcdir)/src/*.cpp $(srcdir)/dialogs/*.ui -ts $(srcdir)/resources/$@ -locations none -no-obsolete
 	
 %.qm: %.ts
 	$(LRELEASE) $(srcdir)/resources/$< -qm $(srcdir)/resources/$@
@@ -20,9 +20,6 @@ noinst_PROGRAMS = setup
 setup_MOC =	./src/dialogs.moc
 setup_UIC =	./dialogs/wizard.uic			\
 		./dialogs/page_welcome.uic		\
-		./dialogs/page_license_agreement.uic	\
-		./dialogs/page_install_dir.uic		\
-		./dialogs/page_select_components.uic	\
 		./dialogs/page_security_options.uic	\
 		./dialogs/page_setup_finished.uic	\
 		./dialogs/page_key_dirs.uic

@@ -1,7 +1,7 @@
 /*
- * main.cpp - main-file for iTALC-setup-application
+ * main.cpp - main file for iTALC setup tool
  *
- * Copyright (c) 2006-2007 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -21,7 +21,6 @@
  * Boston, MA 02111-1307, USA.
  *
  */
-
 
 #include <QtCore/QFileInfo>
 #include <QtCore/QLocale>
@@ -55,7 +54,12 @@ int main( int argc, char * * argv )
 	qt_tr.load( ":/resources/qt_" + loc + ".qm" );
 	app.installTranslator( &qt_tr );
 
-	setupWizard sw;
+	QString installDir = QCoreApplication::applicationDirPath();
+	if( app.arguments().size() > 1 && QFileInfo( app.arguments()[1] ).isDir() )
+	{
+		installDir = app.arguments()[1];
+	}
+	setupWizard sw( installDir );
 
 	if( app.arguments().size() > 1 )
 	{
@@ -79,8 +83,8 @@ int main( int argc, char * * argv )
 		else
 		{
 			QMessageBox::information( NULL,
-					app.tr( "File does not exist" ),
-					app.tr( "The file %1 could not be "
+					setupWizard::tr( "File does not exist" ),
+					setupWizard::tr( "The file %1 could not be "
 						"found. Please check this and "
 						"try again." ).
 						arg( app.arguments()[1] ) );
@@ -91,7 +95,6 @@ int main( int argc, char * * argv )
 		sw.show();
 	}
 
-	// let's rock!!
-	return( app.exec() );
+	return app.exec();
 }
 

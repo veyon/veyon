@@ -21,10 +21,7 @@
         <file>resources/fileopen.png</file>
         <file>resources/next.png</file>
         <file>resources/page_artwork_welcome.png</file>
-        <file>resources/page_install_dir.png</file>
-        <file>resources/page_license_agreement.png</file>
         <file>resources/page_security_options.png</file>
-        <file>resources/page_select_components.png</file>
         <file>resources/page_setup_finished.png</file>
         <file>resources/setup.png</file>
         <file>resources/usbdrive.png</file>

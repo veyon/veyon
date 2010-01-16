@@ -1,7 +1,7 @@
 /*
  * dialogs.h - declaration of dialog-classes
  *
- * Copyright (c) 2006-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -30,9 +30,6 @@
 
 #include "dialogs/wizard.uic"
 #include "dialogs/page_welcome.uic"
-#include "dialogs/page_license_agreement.uic"
-#include "dialogs/page_install_dir.uic"
-#include "dialogs/page_select_components.uic"
 #include "dialogs/page_security_options.uic"
 #include "dialogs/page_key_dirs.uic"
 #include "dialogs/page_setup_finished.uic"
@@ -45,7 +42,7 @@ class setupWizard : public QDialog, private Ui::wizard
 {
 	Q_OBJECT
 public:
-	setupWizard();
+	setupWizard( const QString & installDir );
 
 	QString m_installDir;
 	QString m_keyImportDir;
@@ -53,25 +50,20 @@ public:
 	QString m_pubKeyDir;
 	QString m_privKeyDir;
 
-	bool m_installClient;
-	bool m_installMaster;
-	bool m_installLUPUS;
-	bool m_installDocs;
 	bool m_saveInstallSettings;
 
 	void setNextPageDisabled( bool );
 
 	void loadSettings( const QString & _install_settings );
-	bool createInstallationPath( const QString & _dir );
 	void doInstallation( bool _quiet = FALSE);
 
 	int askOverwrite( const QString & _file, bool _all = FALSE );
 
 
 private slots:
-	virtual void reject( void );
-	void back( void );
-	void next( void );
+	virtual void reject();
+	void back();
+	void next();
 
 
 private:
@@ -93,12 +85,12 @@ class setupWizardPage : public QWidget
 public:
 	setupWizardPage( setupWizard * _wiz );
 
-	virtual bool nextPage( void )
+	virtual bool nextPage()
 	{
 		return( !nextPageDisabled() );
 	}
 
-	virtual bool nextPageDisabled( void )
+	virtual bool nextPageDisabled()
 	{
 		return( FALSE );
 	}
@@ -122,69 +114,6 @@ public:
 
 
 
-class setupWizardPageLicenseAgreement : public setupWizardPage,
-						public Ui::pageLicenseAgreement
-{
-	Q_OBJECT
-public:
-	setupWizardPageLicenseAgreement( setupWizard * _wiz );
-
-	virtual bool nextPageDisabled( void )
-	{
-		return( !agreeRadioButton->isChecked() );
-	}
-
-
-private slots:
-	void agreeRadioButtonToggled( bool );
-
-} ;
-
-
-
-
-class setupWizardPageInstallDir : public setupWizardPage,
-						public Ui::pageInstallDir
-{
-	Q_OBJECT
-public:
-	setupWizardPageInstallDir( setupWizard * _wiz );
-
-	virtual bool nextPage( void )
-	{
-		return( returnPressed() );
-	}
-
-
-private slots:
-	bool returnPressed( void );
-	void openDir( void );
-	void setInstallDir( const QString & _dir );
-
-} ;
-
-
-
-
-class setupWizardPageSelectComponents : public setupWizardPage,
-						public Ui::pageSelectComponents
-{
-	Q_OBJECT
-public:
-	setupWizardPageSelectComponents( setupWizard * _wiz );
-
-
-private slots:
-	void toggleComponentClient( bool );
-	void toggleComponentMaster( bool );
-	void toggleComponentLUPUS( bool );
-	void toggleComponentDocs( bool );
-
-} ;
-
-
-
-
 class setupWizardPageSecurityOptions : public setupWizardPage,
 						public Ui::pageSecurityOptions
 {
@@ -192,11 +121,11 @@ class setupWizardPageSecurityOptions : public setupWizardPage,
 public:
 	setupWizardPageSecurityOptions( setupWizard * _wiz );
 
-	virtual bool nextPageDisabled( void );
+	virtual bool nextPageDisabled();
 
 
 private slots:
-	void openKeyImportDir( void );
+	void openKeyImportDir();
 	void setKeyImportDir( const QString & _dir );
 	void createKeysRadioButtonToggled( bool );
 	void keepKeysRadioButtonToggled( bool );
@@ -213,13 +142,13 @@ class setupWizardPageKeyDirs : public setupWizardPage, public Ui::pageKeyDirs
 public:
 	setupWizardPageKeyDirs( setupWizard * _wiz );
 
-	virtual bool nextPageDisabled( void );
+	virtual bool nextPageDisabled();
 
 
 private slots:
-	void openPubKeyDir( void );
-	void openPrivKeyDir( void );
-	void openKeyExportDir( void );
+	void openPubKeyDir();
+	void openPrivKeyDir();
+	void openKeyExportDir();
 	void setPubKeyDir( const QString & _dir );
 	void setPrivKeyDir( const QString & _dir );
 	void setKeyExportDir( const QString & _dir );
