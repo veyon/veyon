@@ -404,8 +404,14 @@ vncBuffer::SetEncoding(CARD32 encoding)
 			m_scrinfo.format,
 			m_scrinfo.framebufferWidth,
 			m_scrinfo.framebufferHeight);
+
+	// Duplicate our member fields in new Encoder.
 	m_encoder->SetCompressLevel(m_compresslevel);
 	m_encoder->SetQualityLevel(m_qualitylevel);
+	m_encoder->EnableXCursor(m_use_xcursor);
+	m_encoder->EnableRichCursor(m_use_richcursor);
+	m_encoder->EnableLastRect(m_use_lastrect);
+
 	if (m_clientfmtset)
 		if (!m_encoder->SetRemoteFormat(m_clientformat))
 		{

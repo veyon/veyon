@@ -1,5 +1,6 @@
 //  Copyright (C) 2002 RealVNC Ltd. All Rights Reserved.
 //  Copyright (C) 1999 AT&T Laboratories Cambridge. All Rights Reserved.
+//  Copyright (C) 2009 GlavSoft LLC. All Rights Reserved.
 //
 //  This file is part of the VNC system.
 //
@@ -52,7 +53,8 @@ void LogErrorMsg(char *message);
 vncService init;
 
 DWORD	g_platform_id;
-BOOL	g_impersonating_user = 0;
+BOOL	g_impersonating_user = FALSE;
+HANDLE	g_impersonation_token = 0;
 DWORD	g_version_major;
 DWORD	g_version_minor;
 
@@ -77,6 +79,14 @@ vncService::vncService()
 
 }
 
+vncService::~vncService()
+{
+	if (g_impersonating_user) {
+		g_impersonating_user = FALSE;
+		CloseHandle(g_impersonation_token);
+		g_impersonation_token = 0;
+	}
+}
 
 #ifdef HORIZONLIVE
 void
@@ -120,6 +130,8 @@ vncService::GetCurrentUser(char *buffer, UINT size)
 			// No user is logged in - ensure we're not impersonating anyone
 			RevertToSelf();
 			g_impersonating_user = FALSE;
+			CloseHandle(g_impersonation_token);
+			g_impersonation_token = 0;
 
 			// Return "" as the name...
 			if (strlen("") >= size)
@@ -396,9 +408,13 @@ SimulateCtrlAltDelThreadFn(void *context)
 
 	vnclog.Print(LL_ALL, VNCLOG("generating ctrl-alt-del\n"));
 
-	// Fake a hotkey event to any windows we find there.... :(
-	// Winlogon uses hotkeys to trap Ctrl-Alt-Del...
-	PostMessage(HWND_BROADCAST, WM_HOTKEY, 0, MAKELONG(MOD_ALT | MOD_CONTROL, VK_DELETE));
+	HWND hwndCtrlAltDel = FindWindow("SAS window class", "SAS window");
+	if (hwndCtrlAltDel == NULL) {
+		vnclog.Print(LL_INTERR, VNCLOG("\"SAS window\" not found\n"));
+		hwndCtrlAltDel = HWND_BROADCAST;
+	}
+
+	PostMessage(hwndCtrlAltDel, WM_HOTKEY, 0, MAKELONG(MOD_ALT | MOD_CONTROL, VK_DELETE));
 
 	// Switch back to our original desktop
 	if (old_desktop != NULL)
@@ -419,10 +435,8 @@ vncService::SimulateCtrlAltDel()
 	{
 		vnclog.Print(LL_ALL, VNCLOG("spawn ctrl-alt-del thread...\n"));
 
-		// *** This is an unpleasant hack.  Oh dear.
-
-		// I simulate CtrAltDel by posting a WM_HOTKEY message to all
-		// the windows on the Winlogon desktop.
+		// We simulate Ctrl+Alt+Del by posting a WM_HOTKEY message to the
+		// "SAS window" on the Winlogon desktop.
 		// This requires that the current thread is part of the Winlogon desktop.
 		// But the current thread has hooks set & a window open, so it can't
 		// switch desktops, so I instead spawn a new thread & let that do the work...
@@ -763,7 +777,7 @@ vncService::PostReloadMessage()
 
 // ROUTINE TO PROCESS AN INCOMING INSTANCE OF THE ABOVE MESSAGE
 BOOL
-vncService::ProcessUserHelperMessage(WPARAM wParam, LPARAM lParam) {
+vncService::ProcessUserHelperMessage(DWORD processId) {
 	// - Check the platform type
 	if (!IsWinNT() || !vncService::RunningAsService())
 		return TRUE;
@@ -778,9 +792,11 @@ vncService::ProcessUserHelperMessage(WPARAM wParam, LPARAM lParam) {
 	// - Revert to our own identity
 	RevertToSelf();
 	g_impersonating_user = FALSE;
+	CloseHandle(g_impersonation_token);
+	g_impersonation_token = 0;
 
 	// - Open the specified process
-	HANDLE processHandle = OpenProcess(PROCESS_QUERY_INFORMATION, FALSE, (DWORD)lParam);
+	HANDLE processHandle = OpenProcess(PROCESS_QUERY_INFORMATION, FALSE, processId);
 	if (processHandle == NULL) {
 		vnclog.Print(LL_INTERR, VNCLOG("failed to open specified process, error=%d\n"),
 					 GetLastError());
@@ -804,13 +820,37 @@ vncService::ProcessUserHelperMessage(WPARAM wParam, LPARAM lParam) {
 		CloseHandle(userToken);
 		return FALSE;
 	}
-	CloseHandle(userToken);
 
 	g_impersonating_user = TRUE;
+	g_impersonation_token = userToken;
 	vnclog.Print(LL_INTINFO, VNCLOG("impersonating logged on user\n"));
 	return TRUE;
 }
 
+bool vncService::tryImpersonate()
+{
+	if (!IsWinNT() || !vncService::RunningAsService())
+		return true;
+
+	if (!g_impersonating_user) {
+		vnclog.Print(LL_INTERR, VNCLOG("impersonation failure, user unknown\n"));
+		return false;
+	}
+	if (!ImpersonateLoggedOnUser(g_impersonation_token)) {
+		vnclog.Print(LL_INTERR, VNCLOG("user impersonation failure, error=%d\n"),
+					 GetLastError());
+		return false;
+	}
+
+	vnclog.Print(LL_INTINFO, VNCLOG("impersonated logged on user\n"));
+	return true;
+}
+
+void vncService::undoImpersonate()
+{
+	RevertToSelf();
+	vnclog.Print(LL_INTINFO, VNCLOG("reverted impersonation\n"));
+}
 
 // SERVICE MAIN ROUTINE
 int
@@ -841,13 +881,13 @@ vncService::WinVNCServiceMain()
 				break;
 
 			// Register this process with the OS as a service!
-			RegisterService((DWORD)NULL, RSP_SIMPLE_SERVICE);
+			RegisterService(NULL, RSP_SIMPLE_SERVICE);
 
 			// Run the service itself
 			WinVNCAppMain();
 
 			// Then remove the service from the system service table
-			RegisterService((DWORD)NULL, RSP_UNREGISTER_SERVICE);
+			RegisterService(NULL, RSP_UNREGISTER_SERVICE);
 
 			// Free the kernel library
 			FreeLibrary(kerneldll);
@@ -907,7 +947,7 @@ void WINAPI ServiceMain(DWORD argc, char**argv)
 	}
 
 	// Now start the service for real
-    omni_thread::create(ServiceWorkThread);
+    omni_thread *workthread = omni_thread::create(ServiceWorkThread);
     return;
 }
 
@@ -929,7 +969,7 @@ void ServiceWorkThread(void *arg)
 	WinVNCAppMain();
 
 	// Mark that we're no longer running
-	g_servicethread = (DWORD) NULL;
+	g_servicethread = NULL;
 
 	// Tell the service manager that we've stopped.
     ReportStatus(
@@ -942,7 +982,7 @@ void ServiceWorkThread(void *arg)
 void ServiceStop()
 {
 	// Post a quit message to the main service thread
-	if (g_servicethread != (DWORD) NULL)
+	if (g_servicethread != NULL)
 	{
 		vnclog.Print(LL_INTINFO, VNCLOG("quitting from ServiceStop\n"));
 		PostThreadMessage(g_servicethread, WM_QUIT, 0, 0);
@@ -951,9 +991,9 @@ void ServiceStop()
 
 // SERVICE INSTALL ROUTINE
 int
-vncService::ReinstallService() {
+vncService::ReinstallService(BOOL silent) {
 	RemoveService(1);
-	InstallService(0);
+	InstallService(silent);
 	return 0;
 }
 
