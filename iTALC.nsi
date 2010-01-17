@@ -10,7 +10,7 @@
 !define VERSION "1.00.10.00"
 !define COPYRIGHT "© Tobias Doerffel 2004-2010"
 !define DESCRIPTION "Intelligent Teaching and Learning with Computers"
-!define LICENSE_TXT "COPYING.txt"
+!define LICENSE_TXT "COPYING"
 !define INSTALLER_NAME "italc-1.0.10-setup.exe"
 !define MAIN_APP_EXE "italc.exe"
 !define INSTALL_TYPE "SetShellVarContext all"
