@@ -7,11 +7,11 @@
 !define APP_NAME "iTALC"
 !define COMP_NAME "iTALC Solutions Inc."
 !define WEB_SITE "http://italc.sf.net"
-!define VERSION "1.00.10.00"
+!define VERSION "@VERSION@"
 !define COPYRIGHT "© Tobias Doerffel 2004-2010"
 !define DESCRIPTION "Intelligent Teaching and Learning with Computers"
 !define LICENSE_TXT "COPYING"
-!define INSTALLER_NAME "italc-1.0.10-setup.exe"
+!define INSTALLER_NAME "italc-${VERSION}-setup.exe"
 !define MAIN_APP_EXE "italc.exe"
 !define INSTALL_TYPE "SetShellVarContext all"
 !define REG_ROOT "HKLM"
@@ -30,7 +30,6 @@ VIAddVersionKey "FileVersion"  "${VERSION}"
 ######################################################################
 
 SetCompressor /SOLID Lzma
-#SetCompressor zlib
 Name "${APP_NAME}"
 Caption "${APP_NAME}"
 OutFile "${INSTALLER_NAME}"
@@ -38,7 +37,7 @@ BrandingText "${APP_NAME}"
 XPStyle on
 InstallDirRegKey "${REG_ROOT}" "${REG_APP_PATH}" ""
 InstallDir "$PROGRAMFILES\iTALC"
-
+ShowInstDetails show
 
 ######################################################################
 
@@ -53,11 +52,11 @@ InstallDir "$PROGRAMFILES\iTALC"
 
 !insertmacro MUI_PAGE_WELCOME
 
-!ifdef LICENSE_TXT
 !insertmacro MUI_PAGE_LICENSE "${LICENSE_TXT}"
-!endif
 
 !insertmacro MUI_PAGE_DIRECTORY
+
+!insertmacro MUI_PAGE_COMPONENTS
 
 !ifdef REG_START_MENU
 !define MUI_STARTMENUPAGE_NODISABLE
@@ -69,6 +68,10 @@ InstallDir "$PROGRAMFILES\iTALC"
 !endif
 
 !insertmacro MUI_PAGE_INSTFILES
+
+!define MUI_FINISHPAGE_RUN
+!define MUI_FINISHPAGE_RUN_TEXT "Run key setup tool now"
+!define MUI_FINISHPAGE_RUN_FUNCTION "RunKeySetupTool"
 
 !insertmacro MUI_PAGE_FINISH
 
@@ -140,30 +143,51 @@ FunctionEnd
 
 Section -MainProgram
 ${INSTALL_TYPE}
-#ExecWait '"net" stop icas'
-ExecWait '"$INSTDIR/ica.exe" -quiet -unregisterservice'
+ExecWait '"$INSTDIR\ica.exe" -quiet -unregisterservice'
 SetOverwrite ifnewer
 SetOutPath "$INSTDIR"
-File "italc-1.0.10/ica.exe"
-File "italc-1.0.10/libjpeg.dll"
-File "italc-1.0.10/QtXml4.dll"
-File "italc-1.0.10/libeay32.dll"
-File "italc-1.0.10/QtNetwork4.dll"
-File "italc-1.0.10/QtCore4.dll"
-File "italc-1.0.10/libssl32.dll"
-File "italc-1.0.10/LICENSE.TXT"
-File "italc-1.0.10/vnchooks.dll"
-File "italc-1.0.10/setup.exe"
-File "italc-1.0.10/italc.exe"
-File "italc-1.0.10/libz.dll"
-File "italc-1.0.10/README.TXT"
-File "italc-1.0.10/mingwm10.dll"
-File "italc-1.0.10/italc_core.dll"
-File "italc-1.0.10/QtGui4.dll"
-ExecWait '"$INSTDIR/ica.exe" -quiet -registerservice'
-ExecWait '"$INSTDIR/ica.exe" -quiet -startservice'
-#ExecWait '"net" start icas'
+File "italc-${VERSION}\ica.exe"
+File "italc-${VERSION}\libjpeg.dll"
+File "italc-${VERSION}\QtXml4.dll"
+File "italc-${VERSION}\libeay32.dll"
+File "italc-${VERSION}\QtNetwork4.dll"
+File "italc-${VERSION}\QtCore4.dll"
+File "italc-${VERSION}\libssl32.dll"
+File "italc-${VERSION}\LICENSE.TXT"
+File "italc-${VERSION}\vnchooks.dll"
+File "italc-${VERSION}\setup.exe"
+File "italc-${VERSION}\libz.dll"
+File "italc-${VERSION}\README.TXT"
+File "italc-${VERSION}\mingwm10.dll"
+File "italc-${VERSION}\italc_core.dll"
+File "italc-${VERSION}\QtGui4.dll"
+ExecWait '"$INSTDIR\ica.exe" -quiet -registerservice'
+ExecWait '"$INSTDIR\ica.exe" -quiet -startservice'
 SectionEnd
+
+Section "iTALC Master"
+${INSTALL_TYPE}
+SetOutPath "$INSTDIR"
+File "italc-${VERSION}\italc.exe"
+
+!ifdef REG_START_MENU
+!insertmacro MUI_STARTMENU_WRITE_BEGIN Application
+CreateDirectory "$SMPROGRAMS\$SM_Folder"
+CreateShortCut "$SMPROGRAMS\$SM_Folder\${APP_NAME}.lnk" "$INSTDIR\${MAIN_APP_EXE}"
+CreateShortCut "$DESKTOP\${APP_NAME}.lnk" "$INSTDIR\${MAIN_APP_EXE}"
+!insertmacro MUI_STARTMENU_WRITE_END
+!endif
+
+!ifndef REG_START_MENU
+CreateDirectory "$SMPROGRAMS\iTALC"
+CreateShortCut "$SMPROGRAMS\iTALC\${APP_NAME}.lnk" "$INSTDIR\${MAIN_APP_EXE}"
+CreateShortCut "$DESKTOP\${APP_NAME}.lnk" "$INSTDIR\${MAIN_APP_EXE}"
+!endif
+SectionEnd
+
+Function RunKeySetupTool
+	Exec '"$INSTDIR\setup.exe"'
+FunctionEnd
 
 ######################################################################
 
@@ -174,88 +198,73 @@ WriteUninstaller "$INSTDIR\uninstall.exe"
 !ifdef REG_START_MENU
 !insertmacro MUI_STARTMENU_WRITE_BEGIN Application
 CreateDirectory "$SMPROGRAMS\$SM_Folder"
-CreateShortCut "$SMPROGRAMS\$SM_Folder\${APP_NAME}.lnk" "$INSTDIR\${MAIN_APP_EXE}"
-CreateShortCut "$DESKTOP\${APP_NAME}.lnk" "$INSTDIR\${MAIN_APP_EXE}"
-CreateShortCut "$SMPROGRAMS\$SM_Folder\Uninstall ${APP_NAME}.lnk" "$INSTDIR\uninstall.exe"
-
-!ifdef WEB_SITE
-WriteIniStr "$INSTDIR\${APP_NAME} website.url" "InternetShortcut" "URL" "${WEB_SITE}"
-CreateShortCut "$SMPROGRAMS\$SM_Folder\${APP_NAME} Website.lnk" "$INSTDIR\${APP_NAME} website.url"
-!endif
+CreateShortCut "$SMPROGRAMS\$SM_Folder\iTALC Key Setup Tool.lnk" "$INSTDIR\setup.exe"
+CreateShortCut "$SMPROGRAMS\$SM_Folder\Uninstall iTALC.lnk" "$INSTDIR\uninstall.exe"
+WriteIniStr "$INSTDIR\iTALC website.url" "InternetShortcut" "URL" "${WEB_SITE}"
+CreateShortCut "$SMPROGRAMS\$SM_Folder\iTALC Website.lnk" "$INSTDIR\iTALC website.url"
 !insertmacro MUI_STARTMENU_WRITE_END
 !endif
 
 !ifndef REG_START_MENU
 CreateDirectory "$SMPROGRAMS\iTALC"
-CreateShortCut "$SMPROGRAMS\iTALC\${APP_NAME}.lnk" "$INSTDIR\${MAIN_APP_EXE}"
-CreateShortCut "$DESKTOP\${APP_NAME}.lnk" "$INSTDIR\${MAIN_APP_EXE}"
-CreateShortCut "$SMPROGRAMS\iTALC\Uninstall ${APP_NAME}.lnk" "$INSTDIR\uninstall.exe"
-
-!ifdef WEB_SITE
-WriteIniStr "$INSTDIR\${APP_NAME} website.url" "InternetShortcut" "URL" "${WEB_SITE}"
-CreateShortCut "$SMPROGRAMS\iTALC\${APP_NAME} Website.lnk" "$INSTDIR\${APP_NAME} website.url"
-!endif
+CreateShortCut "$SMPROGRAMS\iTALC\iTALC Key Setup Tool.lnk" "$INSTDIR\setup.exe"
+CreateShortCut "$SMPROGRAMS\iTALC\Uninstall iTALC.lnk" "$INSTDIR\uninstall.exe"
+WriteIniStr "$INSTDIR\iTALC website.url" "InternetShortcut" "URL" "${WEB_SITE}"
+CreateShortCut "$SMPROGRAMS\iTALC\iTALC Website.lnk" "$INSTDIR\iTALC website.url"
 !endif
 
 WriteRegStr ${REG_ROOT} "${REG_APP_PATH}" "" "$INSTDIR\${MAIN_APP_EXE}"
-WriteRegStr ${REG_ROOT} "${UNINSTALL_PATH}"  "DisplayName" "${APP_NAME}"
+WriteRegStr ${REG_ROOT} "${UNINSTALL_PATH}"  "DisplayName" "iTALC"
 WriteRegStr ${REG_ROOT} "${UNINSTALL_PATH}"  "UninstallString" "$INSTDIR\uninstall.exe"
 WriteRegStr ${REG_ROOT} "${UNINSTALL_PATH}"  "DisplayIcon" "$INSTDIR\${MAIN_APP_EXE}"
 WriteRegStr ${REG_ROOT} "${UNINSTALL_PATH}"  "DisplayVersion" "${VERSION}"
 WriteRegStr ${REG_ROOT} "${UNINSTALL_PATH}"  "Publisher" "${COMP_NAME}"
-
-!ifdef WEB_SITE
 WriteRegStr ${REG_ROOT} "${UNINSTALL_PATH}"  "URLInfoAbout" "${WEB_SITE}"
-!endif
 SectionEnd
 
 ######################################################################
 
 Section Uninstall
 ${INSTALL_TYPE}
-ExecWait '"$INSTDIR/ica.exe" -quiet -unregisterservice'
-Delete "$INSTDIR/ica.exe"
-Delete "$INSTDIR/libjpeg.dll"
-Delete "$INSTDIR/QtXml4.dll"
-Delete "$INSTDIR/libeay32.dll"
-Delete "$INSTDIR/QtNetwork4.dll"
-Delete "$INSTDIR/QtCore4.dll"
-Delete "$INSTDIR/libssl32.dll"
-Delete "$INSTDIR/LICENSE.TXT"
-Delete "$INSTDIR/vnchooks.dll"
-Delete "$INSTDIR/setup.exe"
-Delete "$INSTDIR/italc.exe"
-Delete "$INSTDIR/libz.dll"
-Delete "$INSTDIR/README.TXT"
-Delete "$INSTDIR/mingwm10.dll"
-Delete "$INSTDIR/italc_core.dll"
-Delete "$INSTDIR/QtGui4.dll"
-Delete "$INSTDIR/uninstall.exe"
-!ifdef WEB_SITE
-Delete "$INSTDIR\${APP_NAME} website.url"
-!endif
+ExecWait '"$INSTDIR\ica.exe" -quiet -unregisterservice'
+Delete "$INSTDIR\ica.exe"
+Delete "$INSTDIR\libjpeg.dll"
+Delete "$INSTDIR\QtXml4.dll"
+Delete "$INSTDIR\libeay32.dll"
+Delete "$INSTDIR\QtNetwork4.dll"
+Delete "$INSTDIR\QtCore4.dll"
+Delete "$INSTDIR\libssl32.dll"
+Delete "$INSTDIR\LICENSE.TXT"
+Delete "$INSTDIR\vnchooks.dll"
+Delete "$INSTDIR\setup.exe"
+Delete "$INSTDIR\italc.exe"
+Delete "$INSTDIR\libz.dll"
+Delete "$INSTDIR\README.TXT"
+Delete "$INSTDIR\mingwm10.dll"
+Delete "$INSTDIR\italc_core.dll"
+Delete "$INSTDIR\QtGui4.dll"
+Delete "$INSTDIR\uninstall.exe"
+Delete "$INSTDIR\iTALC website.url"
 
 RmDir "$INSTDIR"
 
 !ifdef REG_START_MENU
 !insertmacro MUI_STARTMENU_GETFOLDER "Application" $SM_Folder
-Delete "$SMPROGRAMS\$SM_Folder\${APP_NAME}.lnk"
-Delete "$SMPROGRAMS\$SM_Folder\Uninstall ${APP_NAME}.lnk"
-!ifdef WEB_SITE
-Delete "$SMPROGRAMS\$SM_Folder\${APP_NAME} Website.lnk"
-!endif
-Delete "$DESKTOP\${APP_NAME}.lnk"
+Delete "$SMPROGRAMS\$SM_Folder\iTALC.lnk"
+Delete "$SMPROGRAMS\$SM_Folder\Uninstall iTALC.lnk"
+Delete "$SMPROGRAMS\$SM_Folder\iTALC Key Setup Tool.lnk"
+Delete "$SMPROGRAMS\$SM_Folder\iTALC Website.lnk"
+Delete "$DESKTOP\iTALC.lnk"
 
 RmDir "$SMPROGRAMS\$SM_Folder"
 !endif
 
 !ifndef REG_START_MENU
-Delete "$SMPROGRAMS\iTALC\${APP_NAME}.lnk"
-Delete "$SMPROGRAMS\iTALC\Uninstall ${APP_NAME}.lnk"
-!ifdef WEB_SITE
-Delete "$SMPROGRAMS\iTALC\${APP_NAME} Website.lnk"
-!endif
-Delete "$DESKTOP\${APP_NAME}.lnk"
+Delete "$SMPROGRAMS\iTALC\iTALC.lnk"
+Delete "$SMPROGRAMS\iTALC\iTALC Key Setup Tool.lnk"
+Delete "$SMPROGRAMS\iTALC\Uninstall iTALC.lnk"
+Delete "$SMPROGRAMS\iTALC\iTALC Website.lnk"
+Delete "$DESKTOP\iTALC.lnk"
 
 RmDir "$SMPROGRAMS\iTALC"
 !endif

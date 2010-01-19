@@ -527,6 +527,7 @@ AC_SUBST(docdir)
 
 AC_CONFIG_FILES([Makefile
 		 italc.spec
+		 iTALC.nsi
 		 lib/Makefile
 		 ica/Makefile
 		 ima/Makefile
