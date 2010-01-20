@@ -65,4 +65,9 @@ win32-pkg: all
 	mv tmp/italc tmp/italc-$(VERSION)
 	cd tmp && zip -9 ../$(PACKAGE)-$(VERSION)-bin-win32.zip italc-$(VERSION)/*
 	rm -rf tmp
+
+win32-nsi: win32-pkg
+	unzip $(PACKAGE)-$(VERSION)-bin-win32.zip
+	makensis iTALC.nsi
+	rm -rf italc-$(VERSION)
 endif
