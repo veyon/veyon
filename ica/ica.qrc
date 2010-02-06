@@ -2,6 +2,7 @@
 	<qresource>
 		<file>resources/de.qm</file>
 		<file>resources/cs.qm</file>
+		<file>resources/il.qm</file>
 		<file>resources/it.qm</file>
 		<file>resources/es.qm</file>
 		<file>resources/fr.qm</file>
