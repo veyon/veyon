@@ -5,7 +5,7 @@
 		<file>resources/ok.png</file>
 		<file alias="resources/de-core.qm">resources/de.qm</file>
 		<file alias="resources/cs-core.qm">resources/cs.qm</file>
-		<file alias="resources/il-core.qm">resources/il.qm</file>
+		<file alias="resources/he-core.qm">resources/he.qm</file>
 		<file alias="resources/it-core.qm">resources/it.qm</file>
 		<file alias="resources/es-core.qm">resources/es.qm</file>
 		<file alias="resources/fr-core.qm">resources/fr.qm</file>
