@@ -11,7 +11,7 @@
     <message>
         <location filename="../src/local_system.cpp" line="660"/>
         <source>iTALC-snapshots</source>
-        <translation>iTALC-צילומי מסך</translation>
+        <translation>צילומי מסך</translation>
     </message>
 </context>
 <context>
@@ -24,7 +24,8 @@
     <message>
         <location filename="../src/ivs_connection.cpp" line="309"/>
         <source>Could not take a snapshot as directory %1 doesn&apos;t exist and couldn&apos;t be created.</source>
-        <translation>לא ניתן היה לבצע צילום מסך מאחר ותיקייה %1 אינה קיימת או שאינה ניתנת ליצירה.</translation>
+        <translation>לא ניתן היה לבצע צילום מסך מאחר והתיקייה הבאה אינה קיימת או שאינה ניתנת ליצירה
+%1</translation>
     </message>
 </context>
 <context>
@@ -48,7 +49,8 @@
     <message>
         <location filename="../src/vncview.cpp" line="61"/>
         <source>Establishing connection to %1 ...</source>
-        <translation>מבצע התחברות ל- %1 ...</translation>
+        <translation>מבצע התחברות ל
+%1</translation>
     </message>
 </context>
 </TS>
