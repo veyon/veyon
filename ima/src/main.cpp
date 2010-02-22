@@ -1,7 +1,7 @@
 /*
  * main.cpp - main-file for iTALC-Application
  *
- * Copyright (c) 2004-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -88,6 +88,11 @@ int main( int argc, char * * argv )
 	qt_tr.load( ":/resources/qt_" + loc + ".qm" );
 	app.installTranslator( &qt_tr );
 
+	if( QLocale::system().language() == QLocale::Hebrew ||
+		QLocale::system().language() == QLocale::Arabic )
+	{
+		QApplication::setLayoutDirection( Qt::RightToLeft );
+	}
 
 	qRegisterMetaType<QModelIndex>( "QModelIndex" );
 	qRegisterMetaType<quint16>( "quint16" );

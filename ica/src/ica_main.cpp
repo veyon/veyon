@@ -1,7 +1,7 @@
 /*
  * ica_main.cpp - main-file for ICA (iTALC Client Application)
  *
- * Copyright (c) 2006-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *  
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -129,6 +129,11 @@ int ICAMain( int argc, char * * argv )
 	{
 		QApplication * a = new QApplication( argc, argv );
 		a->setQuitOnLastWindowClosed( FALSE );
+		if( QLocale::system().language() == QLocale::Hebrew ||
+			QLocale::system().language() == QLocale::Arabic )
+		{
+			QApplication::setLayoutDirection( Qt::RightToLeft );
+		}
 		app = a;
 	}
 
