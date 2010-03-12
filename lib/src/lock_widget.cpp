@@ -22,6 +22,12 @@
  */
 
 
+#include <config.h>
+
+#ifdef BUILD_WIN32
+#include <windows.h>
+#endif
+
 #include "lock_widget.h"
 #include "local_system.h"
 
@@ -37,8 +43,6 @@
 #include <X11/Xlib.h>
 
 #elif BUILD_WIN32
-
-#include <windows.h>
 
 static const UINT __ss_get_list[] = { SPI_GETLOWPOWERTIMEOUT,
 						SPI_GETPOWEROFFTIMEOUT,
