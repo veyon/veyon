@@ -36,7 +36,7 @@
 #ifdef HORIZONLIVE
 const char mutexname [] = "AppShareHost_Instance_Mutex";
 #else
-const char mutexname [] = "WinVNC_Win32_Instance_Mutex";
+const char mutexname [] = "iTALC_Service_Win32_Instance_Mutex";
 #endif
 // The class methods
 
