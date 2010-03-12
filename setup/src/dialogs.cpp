@@ -48,6 +48,13 @@
 
 const QString PUBLIC_KEY_FILE_NAME = "italc_dsa_key.pub";
 const QString KEEP_SETTINGS = ":keep-settings:";
+const QString DEFAULT_INSTALL_DIR =
+#ifdef BUILD_WIN32
+									"c:\\italc"
+#else
+									"/opt/italc"
+#endif
+												;
 
 
 setupWizard::setupWizard( const QString & installDir ) :
@@ -493,10 +500,10 @@ setupWizardPageKeyDirs::setupWizardPageKeyDirs( setupWizard * _wiz ) :
 bool setupWizardPageKeyDirs::nextPageDisabled()
 {
 	newKeyDirWidgets->setVisible( m_setupWizard->m_keyImportDir.isEmpty() );
-	/*setPubKeyDir( m_setupWizard->m_pubKeyDir.replace( DEFAULT_INSTALL_DIR,
+	setPubKeyDir( m_setupWizard->m_pubKeyDir.replace( DEFAULT_INSTALL_DIR,
 						m_setupWizard->m_installDir ) );
 	setPrivKeyDir( m_setupWizard->m_privKeyDir.replace( DEFAULT_INSTALL_DIR,
-						m_setupWizard->m_installDir ) );*/
+						m_setupWizard->m_installDir ) );
 	return FALSE;
 }
 
