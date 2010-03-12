@@ -20,7 +20,7 @@
 
 ######################################################################
 
-VIProductVersion  "${VERSION}"
+VIProductVersion  "${VERSION}.0"
 VIAddVersionKey "ProductName"  "${APP_NAME}"
 VIAddVersionKey "CompanyName"  "${COMP_NAME}"
 VIAddVersionKey "LegalCopyright"  "${COPYRIGHT}"
@@ -141,7 +141,8 @@ FunctionEnd
 
 ######################################################################
 
-Section -MainProgram
+Section "iTALC Service"
+SectionIn RO
 ${INSTALL_TYPE}
 ExecWait '"$INSTDIR\ica.exe" -quiet -unregisterservice'
 SetOverwrite ifnewer
@@ -158,7 +159,6 @@ File "italc-${VERSION}\vnchooks.dll"
 File "italc-${VERSION}\setup.exe"
 File "italc-${VERSION}\libz.dll"
 File "italc-${VERSION}\README.TXT"
-File "italc-${VERSION}\mingwm10.dll"
 File "italc-${VERSION}\italc_core.dll"
 File "italc-${VERSION}\QtGui4.dll"
 ExecWait '"$INSTDIR\ica.exe" -quiet -registerservice'
@@ -240,7 +240,6 @@ Delete "$INSTDIR\setup.exe"
 Delete "$INSTDIR\italc.exe"
 Delete "$INSTDIR\libz.dll"
 Delete "$INSTDIR\README.TXT"
-Delete "$INSTDIR\mingwm10.dll"
 Delete "$INSTDIR\italc_core.dll"
 Delete "$INSTDIR\QtGui4.dll"
 Delete "$INSTDIR\uninstall.exe"
