@@ -190,8 +190,7 @@ qint64 IC_DllExport qtcpsocketDispatcher( char * _buf, const qint64 _len,
 
 
 
-
-typedef struct
+struct ISD
 {
 	enum commands
 	{
@@ -284,7 +283,7 @@ typedef struct
 	} ;
 
 
-} ISD;
+};
 
 
 extern IC_DllExport ISD::userRoles __role;
