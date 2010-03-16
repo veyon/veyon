@@ -64,7 +64,7 @@ else
 PLATFORM_LDADD = ../lib/libitalc_core-static.a
 endif
 
-setup_LDADD = $(QT_LDADD) $(QT_LIB_GUI) $(LIBSSL_LDADD) -ljpeg $(PLATFORM_LDADD)
+setup_LDADD = $(PLATFORM_LDADD) $(QT_LDADD) $(QT_LIB_GUI) $(LIBSSL_LDADD) -ljpeg
 setup_LDFLAGS = $(LDFLAGS) -mwindows
 
 AM_CXXFLAGS = $(QT_CXXFLAGS)
