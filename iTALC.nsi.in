@@ -8,7 +8,7 @@
 !define COMP_NAME "iTALC Solutions Inc."
 !define WEB_SITE "http://italc.sf.net"
 !define VERSION "@VERSION@"
-!define COPYRIGHT "© Tobias Doerffel 2004-2010"
+!define COPYRIGHT "Â© Tobias Doerffel 2004-2010"
 !define DESCRIPTION "Intelligent Teaching and Learning with Computers"
 !define LICENSE_TXT "COPYING"
 !define INSTALLER_NAME "italc-${VERSION}-setup.exe"
@@ -227,6 +227,8 @@ SectionEnd
 Section Uninstall
 ${INSTALL_TYPE}
 ExecWait '"$INSTDIR\ica.exe" -quiet -unregisterservice'
+# make sure the service is stopped and all file handles are released
+Sleep 2000
 Delete "$INSTDIR\ica.exe"
 Delete "$INSTDIR\libjpeg.dll"
 Delete "$INSTDIR\QtXml4.dll"
