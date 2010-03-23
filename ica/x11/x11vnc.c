@@ -1,5 +1,3 @@
-#define _XOPEN_SOURCE
-
 #include <rfb/rfbconfig.h>
 #include <rfb/keysym.h>
 

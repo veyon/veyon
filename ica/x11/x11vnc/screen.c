@@ -1,3 +1,35 @@
+/*
+   Copyright (C) 2002-2010 Karl J. Runge <runge@karlrunge.com> 
+   All rights reserved.
+
+This file is part of x11vnc.
+
+x11vnc is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or (at
+your option) any later version.
+
+x11vnc is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with x11vnc; if not, write to the Free Software
+Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA
+or see <http://www.gnu.org/licenses/>.
+
+In addition, as a special exception, Karl J. Runge
+gives permission to link the code of its release of x11vnc with the
+OpenSSL project's "OpenSSL" library (or with modified versions of it
+that use the same license as the "OpenSSL" library), and distribute
+the linked executables.  You must obey the GNU General Public License
+in all respects for all of the code used other than "OpenSSL".  If you
+modify this file, you may extend this exception to your version of the
+file, but you are not obligated to do so.  If you do not wish to do
+so, delete this exception statement from your version.
+*/
+
 /* -- screen.c -- */
 
 #include "x11vnc.h"
@@ -26,6 +58,9 @@
 #include "avahi.h"
 #include "solid.h"
 #include "inet.h"
+#include "xrandr.h"
+#include "xrecord.h"
+#include "pm.h"
 
 #include <rfb/rfbclient.h>
 
@@ -40,21 +75,19 @@ void free_old_fb(void);
 void check_padded_fb(void);
 void install_padded_fb(char *geom);
 XImage *initialize_xdisplay_fb(void);
-void parse_scale_string(char *str, double *factor, int *scaling, int *blend,
-    int *nomult4, int *pad, int *interpolate, int *numer, int *denom);
+void parse_scale_string(char *str, double *factor_x, double *factor_y, int *scaling, int *blend,
+    int *nomult4, int *pad, int *interpolate, int *numer, int *denom, int w_in, int h_in);
 int parse_rotate_string(char *str, int *mode);
 int scale_round(int len, double fac);
 void initialize_screen(int *argc, char **argv, XImage *fb);
 void set_vnc_desktop_name(void);
 void announce(int lport, int ssl, char *iface);
 
-#if 0
 char *vnc_reflect_guess(char *str, char **raw_fb_addr);
 void vnc_reflect_process_client(void);
 rfbBool vnc_reflect_send_pointer(int x, int y, int mask);
 rfbBool vnc_reflect_send_key(uint32_t key, rfbBool down);
 rfbBool vnc_reflect_send_cuttext(char *str, int len);
-#endif
 
 static void debug_colormap(XImage *fb);
 static void set_visual(char *str);
@@ -66,6 +99,11 @@ XImage *initialize_raw_fb(int);
 static void initialize_clipshift(void);
 static int wait_until_mapped(Window win);
 static void setup_scaling(int *width_in, int *height_in);
+
+static void check_filexfer(void);
+static void record_last_fb_update(void);
+static void check_cursor_changes(void);
+static int choose_delay(double dt);
 
 int rawfb_reset = -1;
 int rawfb_dev_video = 0;
@@ -87,6 +125,7 @@ void set_greyscale_colormap(void) {
 	if (! screen) {
 		return;
 	}
+	/* mutex */
 	if (screen->colourMap.data.shorts) {
 		free(screen->colourMap.data.shorts);
 		screen->colourMap.data.shorts = NULL;
@@ -116,6 +155,7 @@ void set_hi240_colormap(void) {
 	if (! screen) {
 		return;
 	}
+	/* mutex */
 if (0) fprintf(stderr, "set_hi240_colormap: %s\n", raw_fb_pixfmt);
 	if (screen->colourMap.data.shorts) {
 		free(screen->colourMap.data.shorts);
@@ -173,6 +213,7 @@ void set_colormap(int reset) {
 	if (reset) {
 		init = 1;
 		ncolor = 0;
+		/* mutex */
 		if (screen->colourMap.data.shorts) {
 			free(screen->colourMap.data.shorts);
 			screen->colourMap.data.shorts = NULL;
@@ -188,11 +229,14 @@ void set_colormap(int reset) {
 	}
 
 	if (init) {
-		if (depth > 8) {
+		if (depth > 16) {
+			ncolor = NCOLOR;
+		} else if (depth > 8) {
 			ncolor = 1 << depth;
 		} else {
 			ncolor = NCOLOR;
 		}
+		/* mutex */
 		screen->colourMap.count = ncolor;
 		screen->serverFormat.trueColour = FALSE;
 		screen->colourMap.is16 = TRUE;
@@ -609,6 +653,7 @@ void set_raw_fb_params(int restore) {
 
 		if (! dpy && raw_fb_orig_dpy) {
 			dpy = XOpenDisplay_wr(raw_fb_orig_dpy);
+			last_open_xdisplay = time(NULL);
 			if (dpy) {
 				if (! quiet) rfbLog("reopened DISPLAY: %s\n",
 				    raw_fb_orig_dpy);
@@ -736,6 +781,7 @@ static void nofb_hook(rfbClientPtr cl) {
 	}
 	main_fb = fb->data;
 	rfb_fb = main_fb;
+	/* mutex */
 	screen->frameBuffer = rfb_fb;
 	screen->displayHook = NULL;
 }
@@ -772,13 +818,214 @@ void free_old_fb(void) {
 	}
 }
 
+static char _lcs_tmp[128];
+static int _bytes0_size = 128, _bytes0[128];
+
+static char *lcs(rfbClientPtr cl) {
+	sprintf(_lcs_tmp, "%d/%d/%d/%d/%d-%d/%d/%d",
+		!!(cl->newFBSizePending),
+		!!(cl->cursorWasChanged),
+		!!(cl->cursorWasMoved),
+		!!(cl->reverseConnection),
+		cl->state,
+		cl->modifiedRegion  ? !!(sraRgnEmpty(cl->modifiedRegion))  : 2,
+		cl->requestedRegion ? !!(sraRgnEmpty(cl->requestedRegion)) : 2,
+		cl->copyRegion      ? !!(sraRgnEmpty(cl->copyRegion))      : 2
+	);
+	return _lcs_tmp;
+}
+
+static int lock_client_sends(int lock) {
+	static rfbClientPtr *cls = NULL;
+	static int cls_len = 0;
+	static int blocked = 0;
+	static int state = 0;
+	rfbClientIteratorPtr iter;
+	rfbClientPtr cl;
+	char *s;
+
+	if (!use_threads || !screen) {
+		return 0;
+	}
+	if (lock < 0) {
+		return state;
+	}
+	state = lock;
+
+	if (lock) {
+		if (cls_len < client_count + 128) {
+			if (cls != NULL) {
+				free(cls);
+			}
+			cls_len = client_count + 256;
+			cls = (rfbClientPtr *) calloc(cls_len * sizeof(rfbClientPtr), 1);
+		}
+		
+		iter = rfbGetClientIterator(screen);
+		blocked = 0;
+		while ((cl = rfbClientIteratorNext(iter)) != NULL) {
+			s = lcs(cl);
+			SEND_LOCK(cl);
+			rfbLog("locked client:   %p  %.6f %s\n", cl, dnowx(), s);
+			cls[blocked++] = cl;
+		}
+		rfbReleaseClientIterator(iter);
+	} else {
+		int i;
+		for (i=0; i < blocked; i++) {
+			cl = cls[i];
+			if (cl != NULL) {
+				s = lcs(cl);
+				SEND_UNLOCK(cl)
+				rfbLog("unlocked client: %p  %.6f %s\n", cl, dnowx(), s);
+			}
+			cls[i] = NULL;
+		}
+		blocked = 0;
+	}
+	return state;
+}
+
+static void settle_clients(int init) {
+	rfbClientIteratorPtr iter;
+	rfbClientPtr cl;
+	int fb_pend, i, ms = 1000;
+	char *s;
+
+	if (!use_threads || !screen) {
+		return;
+	}
+
+	if (init) {
+		iter = rfbGetClientIterator(screen);
+		i = 0;
+		while ((cl = rfbClientIteratorNext(iter)) != NULL) {
+			if (i < _bytes0_size) {
+				_bytes0[i] = rfbStatGetSentBytesIfRaw(cl);
+			}
+			i++;
+		}
+		rfbReleaseClientIterator(iter);
+
+		if (getenv("X11VNC_THREADS_NEW_FB_SLEEP")) {
+			ms = atoi(getenv("X11VNC_THREADS_NEW_FB_SLEEP"));
+		} else if (subwin) {
+			ms = 250;
+		} else {
+			ms = 500;
+		}
+		usleep(ms * 1000);
+		return;
+	}
+
+	if (getenv("X11VNC_THREADS_NEW_FB_SLEEP")) {
+		ms = atoi(getenv("X11VNC_THREADS_NEW_FB_SLEEP"));
+	} else if (subwin) {
+		ms = 500;
+	} else {
+		ms = 1000;
+	}
+	usleep(ms * 1000);
+
+	for (i=0; i < 5; i++) {
+		fb_pend = 0;
+		iter = rfbGetClientIterator(screen);
+		while ((cl = rfbClientIteratorNext(iter)) != NULL) {
+			s = lcs(cl);
+			if (cl->newFBSizePending) {
+				fb_pend++;
+				rfbLog("pending fb size: %p  %.6f %s\n", cl, dnowx(), s);
+			}
+		}
+		rfbReleaseClientIterator(iter);
+		if (fb_pend > 0) {
+			rfbLog("do_new_fb: newFBSizePending extra -threads sleep (%d)\n", i+1); 
+			usleep(ms * 1000);
+		} else {
+			break;
+		}
+	}
+	for (i=0; i < 5; i++) {
+		int stuck = 0, tot = 0, j = 0;
+		iter = rfbGetClientIterator(screen);
+		while ((cl = rfbClientIteratorNext(iter)) != NULL) {
+			if (j < _bytes0_size) {
+				int db = rfbStatGetSentBytesIfRaw(cl) - _bytes0[j];
+				int Bpp = cl->format.bitsPerPixel / 8;
+
+				s = lcs(cl);
+				rfbLog("addl bytes sent: %p  %.6f %s  %d  %d\n",
+				    cl, dnowx(), s, db, _bytes0[j]);
+
+				if (i==0) {
+					if (db < Bpp * dpy_x * dpy_y) {
+						stuck++;
+					}
+				} else if (i==1) {
+					if (db < 0.5 * Bpp * dpy_x * dpy_y) {
+						stuck++;
+					}
+				} else {
+					if (db <= 0) {
+						stuck++;
+					}
+				}
+			}
+			tot++;
+			j++;
+		}
+		rfbReleaseClientIterator(iter);
+		if (stuck > 0) {
+			rfbLog("clients stuck:  %d/%d  sleep(%d)\n", stuck, tot, i);
+			usleep(2 * ms * 1000);
+		} else {
+			break;
+		}
+	}
+}
+
+static void prep_clients_for_new_fb(void) {
+	rfbClientIteratorPtr iter;
+	rfbClientPtr cl;
+
+	if (!use_threads || !screen) {
+		return;
+	}
+	iter = rfbGetClientIterator(screen);
+	while ((cl = rfbClientIteratorNext(iter)) != NULL) {
+		if (!cl->newFBSizePending) {
+			rfbLog("** set_new_fb_size_pending client:   %p\n", cl);
+			cl->newFBSizePending = TRUE;
+		}
+		cl->cursorWasChanged = FALSE;
+		cl->cursorWasMoved = FALSE;
+	}
+	rfbReleaseClientIterator(iter);
+}
+
 void do_new_fb(int reset_mem) {
 	XImage *fb;
 
 	/* for threaded we really should lock libvncserver out. */
 	if (use_threads) {
-		rfbLog("warning: changing framebuffers while threaded may\n");
-		rfbLog(" not work, do not use -threads if problems arise.\n");
+		int ms = 1000;
+		if (getenv("X11VNC_THREADS_NEW_FB_SLEEP")) {
+			ms = atoi(getenv("X11VNC_THREADS_NEW_FB_SLEEP"));
+		} else if (subwin) {
+			ms = 500;
+		} else {
+			ms = 1000;
+		}
+		rfbLog("Warning: changing framebuffers in threaded mode may be unstable.\n");
+		threads_drop_input = 1;
+		usleep(ms * 1000);
+	}
+
+	INPUT_LOCK;
+	lock_client_sends(1);
+
+	if (use_threads) {
+		settle_clients(1);
 	}
 
 	if (reset_mem == 1) {
@@ -801,6 +1048,16 @@ void do_new_fb(int reset_mem) {
 	if (ncache) {
 		check_ncache(1, 0);
 	}
+
+	prep_clients_for_new_fb();
+	lock_client_sends(0);
+	INPUT_UNLOCK;
+
+	if (use_threads) {
+		/* need to let things settle... */
+		settle_clients(0);
+		threads_drop_input = 0;
+	}
 }
 
 static void remove_fake_fb(void) {
@@ -818,17 +1075,28 @@ static void remove_fake_fb(void) {
 	fake_fb = NULL;
 }
 
+static void rfb_new_framebuffer(rfbScreenInfoPtr rfbScreen, char *framebuffer,
+    int width,int height, int bitsPerSample,int samplesPerPixel,
+    int bytesPerPixel) {
+
+	rfbNewFramebuffer(rfbScreen, framebuffer, width, height, bitsPerSample,
+	    samplesPerPixel, bytesPerPixel);
+
+}
+
 static void install_fake_fb(int w, int h, int bpp) {
 	int bpc;
 	if (! screen) {
 		return;
 	}
+	lock_client_sends(1);
 	if (fake_fb) {
 		free(fake_fb);
 	}
 	fake_fb = (char *) calloc(w*h*bpp/8, 1);
 	if (! fake_fb) {
 		rfbLog("could not create fake fb: %dx%d %d\n", w, h, bpp);
+		lock_client_sends(0);
 		return;
 	}
 	bpc = guess_bits_per_color(bpp);
@@ -836,7 +1104,8 @@ static void install_fake_fb(int w, int h, int bpp) {
 	rfbLog("rfbNewFramebuffer(0x%x, 0x%x, %d, %d, %d, %d, %d)\n",
 	    screen, fake_fb, w, h, bpc, 1, bpp/8);
 
-	rfbNewFramebuffer(screen, fake_fb, w, h, bpc, 1, bpp/8);
+	rfb_new_framebuffer(screen, fake_fb, w, h, bpc, 1, bpp/8);
+	lock_client_sends(0);
 }
 
 void check_padded_fb(void) {
@@ -882,7 +1151,6 @@ static void initialize_snap_fb(void) {
 	snap_fb = snap->data;
 }
 
-#if 0
 static rfbClient* client = NULL;
 
 void vnc_reflect_bell(rfbClient *cl) {
@@ -997,6 +1265,48 @@ void vnc_reflect_got_cursorshape(rfbClient *cl, int xhot, int yhot, int width, i
 	set_cursor(cursor_x, cursor_y, get_which_cursor());
 }
 
+static void from_libvncclient_CopyRectangleFromRectangle(rfbClient* client, int src_x, int src_y, int w, int h, int dest_x, int dest_y) {
+  int i,j;
+
+#define COPY_RECT_FROM_RECT(BPP) \
+  { \
+    uint##BPP##_t* _buffer=((uint##BPP##_t*)client->frameBuffer)+(src_y-dest_y)*client->width+src_x-dest_x; \
+    if (dest_y < src_y) { \
+      for(j = dest_y*client->width; j < (dest_y+h)*client->width; j += client->width) { \
+        if (dest_x < src_x) { \
+          for(i = dest_x; i < dest_x+w; i++) { \
+            ((uint##BPP##_t*)client->frameBuffer)[j+i]=_buffer[j+i]; \
+          } \
+        } else { \
+          for(i = dest_x+w-1; i >= dest_x; i--) { \
+            ((uint##BPP##_t*)client->frameBuffer)[j+i]=_buffer[j+i]; \
+          } \
+        } \
+      } \
+    } else { \
+      for(j = (dest_y+h-1)*client->width; j >= dest_y*client->width; j-=client->width) { \
+        if (dest_x < src_x) { \
+          for(i = dest_x; i < dest_x+w; i++) { \
+            ((uint##BPP##_t*)client->frameBuffer)[j+i]=_buffer[j+i]; \
+          } \
+        } else { \
+          for(i = dest_x+w-1; i >= dest_x; i--) { \
+            ((uint##BPP##_t*)client->frameBuffer)[j+i]=_buffer[j+i]; \
+          } \
+        } \
+      } \
+    } \
+  }
+
+  switch(client->format.bitsPerPixel) {
+  case  8: COPY_RECT_FROM_RECT(8);  break;
+  case 16: COPY_RECT_FROM_RECT(16); break;
+  case 32: COPY_RECT_FROM_RECT(32); break;
+  default:
+    rfbClientLog("Unsupported bitsPerPixel: %d\n",client->format.bitsPerPixel);
+  }
+}
+
 void vnc_reflect_got_copyrect(rfbClient *cl, int src_x, int src_y, int w, int h, int dest_x, int dest_y) {
 	sraRegionPtr reg;
 	int dx, dy, rc = -1;
@@ -1014,13 +1324,15 @@ void vnc_reflect_got_copyrect(rfbClient *cl, int src_x, int src_y, int w, int h,
 	if (dx != last_dx || dy != last_dy) {
 		rc = fb_push_wait(0.05, FB_COPY|FB_MOD);
 	}
-	if (0) fprintf(stderr, "vnc_reflect_got_copyrect: %dx%d+%d+%d   %d %d  rc=%d\n", dest_x, dest_y, w, h, dx, dy, rc);
+	if (0) fprintf(stderr, "vnc_reflect_got_copyrect: %03dx%03d+%03d+%03d   %3d %3d  rc=%d\n", dest_x, dest_y, w, h, dx, dy, rc);
 	reg = sraRgnCreateRect(dest_x, dest_y, dest_x + w, dest_y + h);
 	do_copyregion(reg, dx, dy, 0);
 	sraRgnDestroy(reg);
 
 	last_dx = dx;
 	last_dy = dy;
+
+	from_libvncclient_CopyRectangleFromRectangle(cl, src_x, src_y, w, h, dest_x, dest_y);
 }
 
 rfbBool vnc_reflect_resize(rfbClient *cl)  {
@@ -1034,6 +1346,41 @@ rfbBool vnc_reflect_resize(rfbClient *cl)  {
 	}
 	first = 0;
 	return cl->frameBuffer ? TRUE : FALSE;
+}
+
+static char* vnc_reflect_get_password(rfbClient* client) {
+	char *q, *p, *str = getenv("X11VNC_REFLECT_PASSWORD");
+	int len = 110;
+
+	if (client) {}
+
+	if (str) {
+		len += 2*strlen(str);	
+	}
+	p = (char *) calloc(len, 1);
+	if (!str || strlen(str) == 0) {
+		fprintf(stderr, "VNC Reflect Password: ");
+		fgets(p, 100, stdin);
+	} else {
+		if (strstr(str, "file:") == str) {
+			FILE *f = fopen(str + strlen("file:"), "r");
+			if (f) {
+				fgets(p, 100, f);
+				fclose(f);
+			}
+		}
+		if (p[0] == '\0') {
+			strncpy(p, str, 100);
+		}
+	}
+	q = p;
+	while (*q != '\0') {
+		if (*q == '\n') {
+			*q = '\0';
+		}
+		q++;
+	}
+	return p;
 }
 
 char *vnc_reflect_guess(char *str, char **raw_fb_addr) {
@@ -1066,6 +1413,10 @@ char *vnc_reflect_guess(char *str, char **raw_fb_addr) {
 	client->MallocFrameBuffer = vnc_reflect_resize;
 	client->canHandleNewFBSize = TRUE;
 	client->GotFrameBufferUpdate = vnc_reflect_got_update;
+
+	if (getenv("X11VNC_REFLECT_PASSWORD")) {
+		client->GetPassword = vnc_reflect_get_password;
+	}
 
 	if (first) {
 		argv[argc++] = "x11vnc_rawfb_vnc";
@@ -1121,6 +1472,11 @@ rfbBool vnc_reflect_send_pointer(int x, int y, int mask) {
 		last_pointer_time = time(NULL);
 	}
 
+	if (clipshift) {
+		x += coff_x;
+		y += coff_y;
+	}
+
 	if (cursor_x != x || cursor_y != y) {
 		last_pointer_motion_time = dnow();
 	}
@@ -1159,14 +1515,31 @@ void vnc_reflect_process_client(void) {
 		}
 	}
 }
-#endif
+
+void linux_dev_fb_msg(char* q) {
+	if (strstr(q, "/dev/fb") && strstr(UT.sysname, "Linux")) {
+		rfbLog("\n");
+		rfbLog("On Linux you may need to load a kernel module to enable\n");
+		rfbLog("the framebuffer device /dev/fb*; e.g.:\n");
+		rfbLog("   vga=0x303 (and others) kernel boot parameter\n");
+		rfbLog("   modprobe uvesafb\n");
+		rfbLog("   modprobe radeonfb (card specific)\n");
+		rfbLog("   modprobe nvidiafb (card specific, others)\n");
+		rfbLog("   modprobe vesafb (?)\n");
+		rfbLog("   modprobe vga16fb\n");
+		rfbLog("\n");
+		rfbLog("You may also need root permission to open /dev/fb*\n");
+		rfbLog("and/or /dev/tty*.\n");
+		rfbLog("\n");
+	}
+}
 
 #define RAWFB_MMAP 1
 #define RAWFB_FILE 2
 #define RAWFB_SHM  3
 
 XImage *initialize_raw_fb(int reset) {
-	char *str, *q;
+	char *str, *rstr, *q;
 	int w, h, b, shmid = 0;
 	unsigned long rm = 0, gm = 0, bm = 0, tm;
 	static XImage ximage_struct;	/* n.b.: not (XImage *) */
@@ -1253,23 +1626,33 @@ if (db) fprintf(stderr, "initialize_raw_fb reset\n");
 		return NULL;
 	}
 
+	if (raw_fb_str[0] == '+') {
+		rstr = strdup(raw_fb_str+1);
+		closedpy = 0;
+		if (! window) {
+			window = rootwin;
+		}
+	} else {
+		rstr = strdup(raw_fb_str);
+	}
+
 	/* testing aliases */
-	if (!strcasecmp(raw_fb_str, "NULL") || !strcasecmp(raw_fb_str, "ZERO")
-	    || !strcasecmp(raw_fb_str, "NONE")) {
-		raw_fb_str = strdup("map:/dev/zero@640x480x32");
-	} else if (!strcasecmp(raw_fb_str, "NULLBIG") || !strcasecmp(raw_fb_str, "NONEBIG")) {
-		raw_fb_str = strdup("map:/dev/zero@1024x768x32");
+	if (!strcasecmp(rstr, "NULL") || !strcasecmp(rstr, "ZERO")
+	    || !strcasecmp(rstr, "NONE")) {
+		rstr = strdup("map:/dev/zero@640x480x32");
+	} else if (!strcasecmp(rstr, "NULLBIG") || !strcasecmp(rstr, "NONEBIG")) {
+		rstr = strdup("map:/dev/zero@1024x768x32");
 	}
-	if (!strcasecmp(raw_fb_str, "RAND")) {
-		raw_fb_str = strdup("file:/dev/urandom@128x128x16");
-	} else if (!strcasecmp(raw_fb_str, "RANDBIG")) {
-		raw_fb_str = strdup("file:/dev/urandom@640x480x16");
-	} else if (!strcasecmp(raw_fb_str, "RANDHUGE")) {
-		raw_fb_str = strdup("file:/dev/urandom@1024x768x16");
+	if (!strcasecmp(rstr, "RAND")) {
+		rstr = strdup("file:/dev/urandom@128x128x16");
+	} else if (!strcasecmp(rstr, "RANDBIG")) {
+		rstr = strdup("file:/dev/urandom@640x480x16");
+	} else if (!strcasecmp(rstr, "RANDHUGE")) {
+		rstr = strdup("file:/dev/urandom@1024x768x16");
 	}
-	if (strstr(raw_fb_str, "solid=") == raw_fb_str) {
-		char *n = raw_fb_str + strlen("solid=");
-		char tmp[] = "/tmp/solid.XXXXXX";
+	if (strstr(rstr, "solid=") == rstr) {
+		char *n = rstr + strlen("solid=");
+		char tmp[] = "/tmp/rawfb_solid.XXXXXX";
 		char str[100];
 		unsigned int vals[1024], val;
 		int x, y, fd, w = 1024, h = 768;
@@ -1295,9 +1678,9 @@ if (db) fprintf(stderr, "initialize_raw_fb reset\n");
 		fd = open(tmp, O_WRONLY);
 		unlink_me = strdup(tmp);
 		sprintf(str, "map:%s@%dx%dx32", tmp, w, h);
-		raw_fb_str = strdup(str);
-	} else if (strstr(raw_fb_str, "swirl") == raw_fb_str) {
-		char tmp[] = "/tmp/solid.XXXXXX";
+		rstr = strdup(str);
+	} else if (strstr(rstr, "swirl") == rstr) {
+		char tmp[] = "/tmp/rawfb_swirl.XXXXXX";
 		char str[100];
 		unsigned int val[1024];
 		unsigned int c1, c2, c3, c4;
@@ -1317,11 +1700,11 @@ if (db) fprintf(stderr, "initialize_raw_fb reset\n");
 		fd = open(tmp, O_WRONLY);
 		unlink_me = strdup(tmp);
 		sprintf(str, "map:%s@%dx%dx32", tmp, w, h);
-		raw_fb_str = strdup(str);
+		rstr = strdup(str);
 	}
 
 
-	if ( (q = strstr(raw_fb_str, "setup:")) == raw_fb_str) {
+	if ( (q = strstr(rstr, "setup:")) == rstr) {
 		FILE *pipe;
 		char line[1024], *t;
 
@@ -1363,16 +1746,7 @@ if (db) fprintf(stderr, "initialize_raw_fb reset\n");
 		rfbLog("setup command returned: %s\n", str);
 
 	} else {
-		str = strdup(raw_fb_str);
-	}
-	if (str[0] == '+') {
-		char *t = strdup(str+1);
-		free(str);
-		str = t;
-		closedpy = 0;
-		if (! window) {
-			window = rootwin;
-		}
+		str = strdup(rstr);
 	}
 
 	raw_fb_shm = 0;
@@ -1410,7 +1784,7 @@ if (db) fprintf(stderr, "initialize_raw_fb reset\n");
 	} else if (strstr(str, "dev/video")) {
 		rawfb_dev_video = 1;
 	} else if (strstr(str, "console") == str || strstr(str, "fb") == str ||
-	    strstr(str, "/dev/fb") == str) {
+	    strstr(str, "/dev/fb") == str || strstr(str, "vt") == str) {
 		char *str2 = console_guess(str, &raw_fb_fd);
 		if (str2 == NULL) {
 			rfbLog("console_guess failed for: %s\n", str);
@@ -1418,7 +1792,6 @@ if (db) fprintf(stderr, "initialize_raw_fb reset\n");
 		}
 		str = str2;
 		rfbLog("console_guess returned: %s\n", str);
-#if 0
 	} else if (strstr(str, "vnc:") == str) {
 		char *str2 = vnc_reflect_guess(str, &raw_fb_addr);
 
@@ -1431,7 +1804,6 @@ if (db) fprintf(stderr, "initialize_raw_fb reset\n");
 			pipeinput_str = strdup("VNC");
 		}
 		initialize_pipeinput();
-#endif
 	}
 
 	if (closedpy && !view_only && got_noviewonly) {
@@ -1464,6 +1836,11 @@ if (db) fprintf(stderr, "initialize_raw_fb reset\n");
 	 * -rawfb map:/path/to/file@640x480x32:ff/ff00/ff0000
 	 * -rawfb file:/path/to/file@640x480x32:ff/ff00/ff0000
 	 */
+
+	if (raw_fb_full_str) {
+		free(raw_fb_full_str);
+	}
+	raw_fb_full_str = strdup(str);
 
 
 	/* +O offset */
@@ -1506,6 +1883,93 @@ if (db) fprintf(stderr, "initialize_raw_fb reset\n");
 		clean_up_exit(1);
 	}
 	*q = '\0';
+
+	if (rm == 0 && gm == 0 && bm == 0) {
+		/* guess masks... */
+		if (b == 24 || b == 32) {
+			rm = 0xff0000;
+			gm = 0x00ff00;
+			bm = 0x0000ff;
+		} else if (b == 16) {
+			rm = 0xf800;
+			gm = 0x07e0;
+			bm = 0x001f;
+		} else if (b == 8) {
+			rm = 0x07;
+			gm = 0x38;
+			bm = 0xc0;
+		}
+	}
+	/* we can fake -flipbyteorder to some degree... */
+	if (flip_byte_order) {
+		if (b == 24 || b == 32) {
+			tm = rm;
+			rm = bm;
+			bm = tm;
+		} else if (b == 16) {
+			unsigned short s1, s2;
+			s1 = (unsigned short) rm;
+			s2 = ((0xff & s1) << 8) | ((0xff00 & s1) >> 8);
+			rm = (unsigned long) s2;
+			s1 = (unsigned short) gm;
+			s2 = ((0xff & s1) << 8) | ((0xff00 & s1) >> 8);
+			gm = (unsigned long) s2;
+			s1 = (unsigned short) bm;
+			s2 = ((0xff & s1) << 8) | ((0xff00 & s1) >> 8);
+			bm = (unsigned long) s2;
+		}
+	}
+
+	/* native fb stuff for bpp < 8 only */
+	raw_fb_native_bpp = b;
+	raw_fb_native_red_mask = rm;
+	raw_fb_native_green_mask = gm;
+	raw_fb_native_blue_mask = bm;
+	raw_fb_native_red_shift = 100;
+	raw_fb_native_green_shift = 100;
+	raw_fb_native_blue_shift = 100;
+	raw_fb_native_red_max = 1;
+	raw_fb_native_green_max = 1;
+	raw_fb_native_blue_max = 1;
+	m = 1;
+	for (i=0; i<32; i++)  {
+		if (raw_fb_native_red_mask & m) {
+			if (raw_fb_native_red_shift == 100) {
+				raw_fb_native_red_shift = i;
+			}
+			raw_fb_native_red_max *= 2;
+		}
+		if (raw_fb_native_green_mask & m) {
+			if (raw_fb_native_green_shift == 100) {
+				raw_fb_native_green_shift = i;
+			}
+			raw_fb_native_green_max *= 2;
+		}
+		if (raw_fb_native_blue_mask & m) {
+			if (raw_fb_native_blue_shift == 100) {
+				raw_fb_native_blue_shift = i;
+			}
+			raw_fb_native_blue_max *= 2;
+		}
+		m = m << 1;
+	}
+	raw_fb_native_red_max -= 1;
+	raw_fb_native_green_max -= 1;
+	raw_fb_native_blue_max -= 1;
+
+	if (b < 8) {
+		/* e.g. VGA16 */
+		rfbLog("raw_fb_native_bpp: %d 0x%02lx 0x%02lx 0x%02lx %d/%d/%d %d/%d/%d\n", raw_fb_native_bpp,
+		    raw_fb_native_red_mask, raw_fb_native_green_mask, raw_fb_native_blue_mask,
+		    raw_fb_native_red_max, raw_fb_native_green_max, raw_fb_native_blue_max,
+		    raw_fb_native_red_shift, raw_fb_native_green_shift, raw_fb_native_blue_shift);
+		raw_fb_expand_bytes = 1;
+		b = 8;
+		rm = 0x07;
+		gm = 0x38;
+		bm = 0xc0;
+	}
+	/* end of stuff for bpp < 8 */
 
 	dpy_x = wdpy_x = w;
 	dpy_y = wdpy_y = h;
@@ -1555,7 +2019,7 @@ if (db) fprintf(stderr, "initialize_raw_fb reset\n");
 
 	if (sscanf(str, "shm:%d", &shmid) == 1) {
 		/* shm:N */
-#if LIBVNCSERVER_HAVE_XSHM
+#if LIBVNCSERVER_HAVE_XSHM || LIBVNCSERVER_HAVE_SHMAT
 		raw_fb_addr = (char *) shmat(shmid, 0, SHM_RDONLY);
 		if (! raw_fb_addr) {
 			rfbLogEnable(1);
@@ -1607,11 +2071,14 @@ if (db) fprintf(stderr, "initialize_raw_fb reset\n");
 			rfbLogEnable(1);
 			rfbLog("failed to open file: %s, %s\n", q, str);
 			rfbLogPerror("open");
+			linux_dev_fb_msg(q);
 			clean_up_exit(1);
 		}
 		raw_fb_fd = fd;
 
-		if (xform24to32) {
+		if (raw_fb_native_bpp < 8) {
+			size = w*h*raw_fb_native_bpp/8 + raw_fb_offset;
+		} else if (xform24to32) {
 			size = w*h*24/8 + raw_fb_offset;
 		} else {
 			size = w*h*b/8 + raw_fb_offset;
@@ -1648,14 +2115,20 @@ if (db) fprintf(stderr, "initialize_raw_fb reset\n");
 				rfbLog("failed to mmap file: %s, %s\n", q, str);
 				rfbLog("   raw_fb_addr: %p\n", raw_fb_addr);
 				rfbLogPerror("mmap");
-				clean_up_exit(1);
-			}
-			raw_fb_mmap = size;
 
-			rfbLog("rawfb: mmap file: %s\n", q);
-			rfbLog("   w: %d h: %d b: %d addr: %p sz: %d\n", w, h,
-			    b, raw_fb_addr, size);
-			last_mode = RAWFB_MMAP;
+				raw_fb_addr = NULL;
+				rfbLog("mmap(2) failed, trying slower lseek(2)\n");
+				raw_fb_seek = size;
+				last_mode = RAWFB_FILE;
+
+			} else {
+				raw_fb_mmap = size;
+
+				rfbLog("rawfb: mmap file: %s\n", q);
+				rfbLog("   w: %d h: %d b: %d addr: %p sz: %d\n", w, h,
+				    b, raw_fb_addr, size);
+				last_mode = RAWFB_MMAP;
+			}
 #else
 			rfbLog("mmap(2) not supported on system, using"
 			    " slower lseek(2)\n");
@@ -1737,42 +2210,6 @@ if (db) fprintf(stderr, "initialize_raw_fb reset\n");
 		snap->bitmap_unit = -1;
 	}
 
-	if (rm == 0 && gm == 0 && bm == 0) {
-		/* guess masks... */
-		if (b == 24 || b == 32) {
-			rm = 0xff0000;
-			gm = 0x00ff00;
-			bm = 0x0000ff;
-		} else if (b == 16) {
-			rm = 0xf800;
-			gm = 0x07e0;
-			bm = 0x001f;
-		} else if (b == 8) {
-			rm = 0x07;
-			gm = 0x38;
-			bm = 0xc0;
-		}
-	}
-	/* we can fake -flipbyteorder to some degree... */
-	if (flip_byte_order) {
-		if (b == 24 || b == 32) {
-			tm = rm;
-			rm = bm;
-			bm = tm;
-		} else if (b == 16) {
-			unsigned short s1, s2;
-			s1 = (unsigned short) rm;
-			s2 = ((0xff & s1) << 8) | ((0xff00 & s1) >> 8);
-			rm = (unsigned long) s2;
-			s1 = (unsigned short) gm;
-			s2 = ((0xff & s1) << 8) | ((0xff00 & s1) >> 8);
-			gm = (unsigned long) s2;
-			s1 = (unsigned short) bm;
-			s2 = ((0xff & s1) << 8) | ((0xff00 & s1) >> 8);
-			bm = (unsigned long) s2;
-		}
-	}
-
 
 	raw_fb_image->red_mask = rm;
 	raw_fb_image->green_mask = gm;
@@ -1792,6 +2229,9 @@ if (db) fprintf(stderr, "initialize_raw_fb reset\n");
 		}
 		m = m << 1;
 	}
+	if (raw_fb_native_bpp < 8) {
+		raw_fb_image->depth = raw_fb_expand_bytes * 8;
+	}
 	if (! raw_fb_image->depth) { 
 		raw_fb_image->depth = (b == 32) ? 24 : b;
 	}
@@ -1803,7 +2243,7 @@ if (db) fprintf(stderr, "initialize_raw_fb reset\n");
 		depth++;
 	}
 
-	if (clipshift) {
+	if (clipshift || raw_fb_native_bpp < 8) {
 		memset(raw_fb, 0xff, dpy_y * raw_fb_image->bytes_per_line);
 	} else if (raw_fb_addr && ! xform24to32) {
 		memcpy(raw_fb, raw_fb_addr + raw_fb_offset, dpy_y * raw_fb_image->bytes_per_line);
@@ -1812,7 +2252,6 @@ if (db) fprintf(stderr, "initialize_raw_fb reset\n");
 	}
 
 	if (verbose) {
-		
 		rfbLog("\n");
 		rfbLog("rawfb:  raw_fb  %p\n", raw_fb);
 		rfbLog("        format  %d\n", raw_fb_image->format);
@@ -1856,7 +2295,7 @@ static void initialize_clipshift(void) {
 			bad = 1;
 		}
 		if (bad) {
-			rfbLog("skipping invalid -clip WxH+X+Y: %s\n",
+			rfbLog("*** ignoring invalid -clip WxH+X+Y: %s\n",
 			    clip_str); 
 		} else {
 			/* OK, change geom behind everyone's back... */
@@ -2008,6 +2447,8 @@ if (0) fprintf(stderr, "vis_str %s\n", vis_str ? vis_str : "notset");
 
 	/* set up parameters for subwin or non-subwin cases: */
 
+	again:
+
 	if (! subwin) {
 		/* full screen */
 		window = rootwin;
@@ -2101,18 +2542,26 @@ if (0) fprintf(stderr, "DefaultDepth: %d  visial_id: %d\n", depth, (int) visual_
 		    (int) XVisualIDFromVisual(default_visual));
 	}
 
-	again:
 	if (subwin) {
-		int shift = 0;
+		int shift = 0, resize = 0;
 		int subwin_x, subwin_y;
 		int disp_x = DisplayWidth(dpy, scr);
 		int disp_y = DisplayHeight(dpy, scr);
 		Window twin;
 		/* subwins can be a dicey if they are changing size... */
 		trapped_xerror = 0;
-		old_handler = XSetErrorHandler(trap_xerror);
+		old_handler = XSetErrorHandler(trap_xerror);	/* reset in if(subwin) block below */
 		XTranslateCoordinates(dpy, window, rootwin, 0, 0, &subwin_x,
 		    &subwin_y, &twin);
+
+		if (wdpy_x > disp_x) {
+			resize = 1;
+			dpy_x = wdpy_x = disp_x - 4;
+		}
+		if (wdpy_y > disp_y) {
+			resize = 1;
+			dpy_y = wdpy_y = disp_y - 4;
+		}
 
 		if (subwin_x + wdpy_x > disp_x) {
 			shift = 1;
@@ -2131,12 +2580,17 @@ if (0) fprintf(stderr, "DefaultDepth: %d  visial_id: %d\n", depth, (int) visual_
 			subwin_y = 1;
 		}
 
+		if (resize) {
+			XResizeWindow(dpy, window, wdpy_x, wdpy_y);
+		}
 		if (shift) {
 			XMoveWindow(dpy, window, subwin_x, subwin_y);
+			off_x = subwin_x;
+			off_y = subwin_y;
 		}
 		XMapRaised(dpy, window);
 		XRaiseWindow(dpy, window);
-		XFlush_wr(dpy);
+		XSync(dpy, False);
 	}
 	try++;
 
@@ -2154,7 +2608,9 @@ if (0) fprintf(stderr, "DefaultDepth: %d  visial_id: %d\n", depth, (int) visual_
 		 */
 		fb = XCreateImage_wr(dpy, default_visual, depth, ZPixmap,
 		    0, NULL, dpy_x, dpy_y, BitmapPad(dpy), 0);
-		fb->data = (char *) malloc(fb->bytes_per_line * fb->height);
+		if (fb) {
+			fb->data = (char *) malloc(fb->bytes_per_line * fb->height);
+		}
 
 	} else {
 		fb = XGetImage_wr(dpy, window, 0, 0, dpy_x, dpy_y, AllPlanes,
@@ -2167,7 +2623,7 @@ if (0) fprintf(stderr, "DefaultDepth: %d  visial_id: %d\n", depth, (int) visual_
 
 	if (subwin) {
 		XSetErrorHandler(old_handler);
-		if (trapped_xerror) {
+		if (trapped_xerror || fb == NULL) {
 		    rfbLog("trapped GetImage at SUBWIN creation.\n");
 		    if (try < subwin_tries) {
 			usleep(250 * 1000);
@@ -2183,14 +2639,56 @@ if (0) fprintf(stderr, "DefaultDepth: %d  visial_id: %d\n", depth, (int) visual_
 		}
 		trapped_xerror = 0;
 
-	} else if (! fb && try == 1) {
-		/* try once more */
-		usleep(250 * 1000);
-		goto again;
+	} else if (fb == NULL) {
+		XEvent xev;
+		rfbLog("initialize_xdisplay_fb: *** fb creation failed: 0x%x try: %d\n", fb, try);
+#if LIBVNCSERVER_HAVE_LIBXRANDR
+		if (xrandr_present && xrandr_base_event_type) {
+			int cnt = 0;
+			while (XCheckTypedEvent(dpy, xrandr_base_event_type + RRScreenChangeNotify, &xev)) {
+				XRRScreenChangeNotifyEvent *rev;
+				rev = (XRRScreenChangeNotifyEvent *) &xev;
+
+				rfbLog("initialize_xdisplay_fb: XRANDR event while redoing fb[%d]:\n", cnt++);
+				rfbLog("  serial:          %d\n", (int) rev->serial);
+				rfbLog("  timestamp:       %d\n", (int) rev->timestamp);
+				rfbLog("  cfg_timestamp:   %d\n", (int) rev->config_timestamp);
+				rfbLog("  size_id:         %d\n", (int) rev->size_index);
+				rfbLog("  sub_pixel:       %d\n", (int) rev->subpixel_order);
+				rfbLog("  rotation:        %d\n", (int) rev->rotation);
+				rfbLog("  width:           %d\n", (int) rev->width);
+				rfbLog("  height:          %d\n", (int) rev->height);
+				rfbLog("  mwidth:          %d mm\n", (int) rev->mwidth);
+				rfbLog("  mheight:         %d mm\n", (int) rev->mheight);
+				rfbLog("\n");
+				rfbLog("previous WxH: %dx%d\n", wdpy_x, wdpy_y);
+
+				xrandr_width  = rev->width;
+				xrandr_height = rev->height;
+				xrandr_timestamp = rev->timestamp;
+				xrandr_cfg_time  = rev->config_timestamp;
+				xrandr_rotation = (int) rev->rotation;
+
+				rfbLog("initialize_xdisplay_fb: updating XRANDR config...\n");
+				XRRUpdateConfiguration(&xev);
+			}
+		}
+#endif
+		if (try < 5)  {
+			XFlush_wr(dpy);
+			usleep(250 * 1000);
+			if (try < 3) {
+				XSync(dpy, False);
+			} else if (try >= 3) {
+				XSync(dpy, True);
+			}
+			goto again;
+		}
 	}
 	if (use_snapfb) {
 		initialize_snap_fb();
 	}
+
 	X_UNLOCK;
 
 	if (fb->bits_per_pixel == 24 && ! quiet) {
@@ -2200,14 +2698,15 @@ if (0) fprintf(stderr, "DefaultDepth: %d  visial_id: %d\n", depth, (int) visual_
 #endif	/* NO_X11 */
 }
 
-void parse_scale_string(char *str, double *factor, int *scaling, int *blend,
-    int *nomult4, int *pad, int *interpolate, int *numer, int *denom) {
+void parse_scale_string(char *str, double *factor_x, double *factor_y, int *scaling, int *blend,
+    int *nomult4, int *pad, int *interpolate, int *numer, int *denom, int w_in, int h_in) {
 
 	int m, n;
 	char *p, *tstr;
-	double f;
+	double f, f2;
 
-	*factor = 1.0;
+	*factor_x = 1.0;
+	*factor_y = 1.0;
 	*scaling = 0;
 	*blend = 1;
 	*nomult4 = 0;
@@ -2246,35 +2745,46 @@ void parse_scale_string(char *str, double *factor, int *scaling, int *blend,
 		}
 		*p = '\0';
 	}
+
 	if (strchr(tstr, '.') != NULL) {
 		double test, diff, eps = 1.0e-7;
-		if (sscanf(tstr, "%lf", &f) != 1) {
+		if (sscanf(tstr, "%lfx%lf", &f, &f2) == 2) {
+			*factor_x = (double) f;
+			*factor_y = (double) f2;
+		} else if (sscanf(tstr, "%lf", &f) != 1) {
 			rfbLogEnable(1);
 			rfbLog("invalid -scale arg: %s\n", tstr);
 			clean_up_exit(1);
+		} else {
+			*factor_x = (double) f;
+			*factor_y = (double) f;
 		}
-		*factor = (double) f;
 		/* look for common fractions from small ints: */
-		for (n=2; n<=10; n++) {
-			for (m=1; m<n; m++) {
-				test = ((double) m)/ n;
-				diff = *factor - test;
-				if (-eps < diff && diff < eps) {
-					*numer = m;
-					*denom = n;
+		if (*factor_x == *factor_y) {
+			for (n=2; n<=10; n++) {
+				for (m=1; m<n; m++) {
+					test = ((double) m)/ n;
+					diff = *factor_x - test;
+					if (-eps < diff && diff < eps) {
+						*numer = m;
+						*denom = n;
+						break;
+					
+					}
+				}
+				if (*denom) {
 					break;
-				
 				}
 			}
-			if (*denom) {
-				break;
+			if (*factor_x < 0.01) {
+				rfbLogEnable(1);
+				rfbLog("-scale factor too small: %f\n", *factor_x);
+				clean_up_exit(1);
 			}
 		}
-		if (*factor < 0.01) {
-			rfbLogEnable(1);
-			rfbLog("-scale factor too small: %f\n", scale_fac);
-			clean_up_exit(1);
-		}
+	} else if (sscanf(tstr, "%dx%d", &m, &n) == 2 && w_in > 0 && h_in > 0) {
+		*factor_x = ((double) m) / ((double) w_in);
+		*factor_y = ((double) n) / ((double) h_in);
 	} else {
 		if (sscanf(tstr, "%d/%d", &m, &n) != 2) {
 			if (sscanf(tstr, "%d", &m) != 1) {
@@ -2291,18 +2801,19 @@ void parse_scale_string(char *str, double *factor, int *scaling, int *blend,
 			rfbLog("invalid -scale arg: %s\n", tstr);
 			clean_up_exit(1);
 		}
-		*factor = ((double) m)/ n;
-		if (*factor < 0.01) {
+		*factor_x = ((double) m)/ n;
+		*factor_y = ((double) m)/ n;
+		if (*factor_x < 0.01) {
 			rfbLogEnable(1);
-			rfbLog("-scale factor too small: %f\n", *factor);
+			rfbLog("-scale factor too small: %f\n", *factor_x);
 			clean_up_exit(1);
 		}
 		*numer = m;
 		*denom = n;
 	}
-	if (*factor == 1.0) {
+	if (*factor_x == 1.0 && *factor_y == 1.0) {
 		if (! quiet) {
-			rfbLog("scaling disabled for factor %f\n", *factor);
+			rfbLog("scaling disabled for factor %f %f\n", *factor_x, *factor_y);
 		}
 	} else {
 		*scaling = 1;
@@ -2353,13 +2864,13 @@ static void setup_scaling(int *width_in, int *height_in) {
 	int width  = *width_in;
 	int height = *height_in;
 
-	parse_scale_string(scale_str, &scale_fac, &scaling, &scaling_blend,
+	parse_scale_string(scale_str, &scale_fac_x, &scale_fac_y, &scaling, &scaling_blend,
 	    &scaling_nomult4, &scaling_pad, &scaling_interpolate,
-	    &scale_numer, &scale_denom);
+	    &scale_numer, &scale_denom, *width_in, *height_in);
 
 	if (scaling) {
-		width  = scale_round(width,  scale_fac);
-		height = scale_round(height, scale_fac);
+		width  = scale_round(width,  scale_fac_x);
+		height = scale_round(height, scale_fac_y);
 		if (scale_denom && scaling_pad) {
 			/* it is not clear this padding is useful anymore */
 			rfbLog("width  %% denom: %d %% %d = %d\n", width,
@@ -2439,9 +2950,11 @@ static rfbBool set_xlate_wrapper(rfbClientPtr cl) {
 	} else if (ncache) {
 		int save = ncache_xrootpmap;
 		rfbLog("set_xlate_wrapper: clearing -ncache for new pixel format.\n");
+		INPUT_LOCK;
 		ncache_xrootpmap = 0;
 		check_ncache(1, 0);
 		ncache_xrootpmap = save;
+		INPUT_UNLOCK;
 	}
 	return rfbSetTranslateFunction(cl);	
 }
@@ -2456,7 +2969,8 @@ void initialize_screen(int *argc, char **argv, XImage *fb) {
 	int create_screen = screen ? 0 : 1;
 	int bits_per_color;
 	int fb_bpp, fb_Bpl, fb_depth;
-	
+	int locked_sends = 0;
+
 	bpp = fb->bits_per_pixel;
 
 	fb_bpp   = (int) fb->bits_per_pixel;
@@ -2493,8 +3007,8 @@ void initialize_screen(int *argc, char **argv, XImage *fb) {
 	setup_scaling(&width, &height);
 
 	if (scaling) {
-		rfbLog("scaling screen: %dx%d -> %dx%d  scale_fac=%.5f\n",
-		    fb->width, fb->height, scaled_x, scaled_y, scale_fac);
+		rfbLog("scaling screen: %dx%d -> %dx%d\n", fb->width, fb->height, scaled_x, scaled_y);
+		rfbLog("scaling screen: scale_fac_x=%.5f scale_fac_y=%.5f\n", scale_fac_x, scale_fac_y);
 
 		rfb_bytes_per_line = (main_bytes_per_line / fb->width) * width;
 	} else {
@@ -2565,12 +3079,23 @@ void initialize_screen(int *argc, char **argv, XImage *fb) {
 	 */
 	bits_per_color = guess_bits_per_color(fb_bpp);
 
+	if (lock_client_sends(-1) == 0) {
+		lock_client_sends(1);
+		locked_sends = 1;
+	}
+
 	/* n.b. samplesPerPixel (set = 1 here) seems to be unused. */
 	if (create_screen) {
-		if (use_openssl) {
-			openssl_init(0);
-		} else if (use_stunnel) {
+		if (use_stunnel) {
 			setup_stunnel(0, argc, argv);
+		}
+		if (use_openssl) {
+			if (use_stunnel && enc_str && !strcmp(enc_str, "none")) {
+				/* emulating HTTPS oneport */
+				;
+			} else {
+				openssl_init(0);
+			}
 		}
 		screen = rfbGetScreen(argc, argv, width, height,
 		    bits_per_color, 1, fb_bpp/8);
@@ -2586,7 +3111,7 @@ void initialize_screen(int *argc, char **argv, XImage *fb) {
 		screen->bitsPerPixel = fb_bpp;
 		screen->depth = fb_depth;
 
-		rfbNewFramebuffer(screen, NULL, width, height,
+		rfb_new_framebuffer(screen, NULL, width, height,
 		    bits_per_color, 1, (int) fb_bpp/8);
 	}
 	if (! screen) {
@@ -2971,7 +3496,6 @@ void initialize_screen(int *argc, char **argv, XImage *fb) {
 	/* may need, bpp, main_red_max, etc. */
 	parse_wireframe();
 	parse_scroll_copyrect();
-
 	setup_cursors_and_push();
 
 	if (scaling || rotating || cmap8to24) {
@@ -2994,9 +3518,13 @@ void initialize_screen(int *argc, char **argv, XImage *fb) {
 		}
 		rfbReleaseClientIterator(iter);
 		if (!quiet) rfbLog("  done.\n");
-		do_copy_screen = 1;
 		
 		/* done for framebuffer change case */
+		if (locked_sends) {
+			lock_client_sends(0);
+		}
+
+		do_copy_screen = 1;
 		return;
 	}
 
@@ -3057,6 +3585,8 @@ void initialize_screen(int *argc, char **argv, XImage *fb) {
 	}
 	if (! got_deferupdate) {
 		screen->deferUpdateTime = defer_update;
+	} else {
+		defer_update = screen->deferUpdateTime;
 	}
 
 	rfbInitServer(screen);
@@ -3069,6 +3599,11 @@ void initialize_screen(int *argc, char **argv, XImage *fb) {
 	}
 
 	install_passwds();
+
+	if (locked_sends) {
+		lock_client_sends(0);
+	}
+	return;
 }
 
 #define DO_AVAHI \
@@ -3083,10 +3618,20 @@ void announce(int lport, int ssl, char *iface) {
 	char *host = this_host();
 	char *tvdt;
 
+	if (remote_direct) {
+		return;
+	}
+
 	if (! ssl) {
 		tvdt = "The VNC desktop is:     ";
 	} else {
-		tvdt = "The SSL VNC desktop is: ";
+		if (enc_str && !strcmp(enc_str, "none")) {
+			tvdt = "The VNC desktop is:     ";
+		} else if (enc_str) {
+			tvdt = "The ENC VNC desktop is: ";
+		} else {
+			tvdt = "The SSL VNC desktop is: ";
+		}
 	}
 
 	if (iface != NULL && *iface != '\0' && strcmp(iface, "any")) {
@@ -3132,26 +3677,104 @@ void announce(int lport, int ssl, char *iface) {
 	}
 }
 
-static void announce_http(int lport, int ssl, char *iface) {
+static void announce_http(int lport, int ssl, char *iface, char *extra) {
 	
 	char *host = this_host();
 	char *jvu;
+	int http = 0;
 
-	if (ssl == 1) {
+	if (enc_str && !strcmp(enc_str, "none") && !use_stunnel) {
+		jvu = "Java viewer URL:         http";
+		http = 1;
+	} else if (ssl == 1) {
 		jvu = "Java SSL viewer URL:     https";
 	} else if (ssl == 2) {
 		jvu = "Java SSL viewer URL:     http";
+		http = 1;
 	} else {
 		jvu = "Java viewer URL:         http";
+		http = 1;
 	}
 
 	if (iface != NULL && *iface != '\0' && strcmp(iface, "any")) {
 		host = iface;
 	}
+	if (http && getenv("X11VNC_HTTP_LISTEN_LOCALHOST")) {
+		host = "localhost";
+	}
 	if (host != NULL) {
 		if (! inetd) {
-			fprintf(stderr, "%s://%s:%d/\n", jvu, host, lport);
+			fprintf(stderr, "%s://%s:%d/%s\n", jvu, host, lport, extra);
 		}
+	}
+}
+
+void do_announce_http(void) {
+	if (!screen) {
+		return;
+	}
+	if (remote_direct) {
+		return;
+	}
+
+	if (screen->httpListenSock > -1 && screen->httpPort) {
+		int enc_none = (enc_str && !strcmp(enc_str, "none"));
+		char *SPORT = "   (single port)";
+		if (use_openssl && ! enc_none) {
+			announce_http(screen->port, 1, listen_str, SPORT);
+			if (https_port_num >= 0) {
+				announce_http(https_port_num, 1,
+				    listen_str, "");
+			}
+			announce_http(screen->httpPort, 2, listen_str, "");
+		} else if (use_stunnel) {
+			char pmsg[100];
+			pmsg[0] = '\0';
+			if (stunnel_port) {
+				sprintf(pmsg, "?PORT=%d", stunnel_port);
+			}
+			announce_http(screen->httpPort, 2, listen_str, pmsg);
+			if (stunnel_http_port > 0) {
+				announce_http(stunnel_http_port, 1, NULL, pmsg);
+			}
+			if (enc_none) {
+				strcat(pmsg, SPORT);
+				announce_http(stunnel_port, 1, NULL, pmsg);
+			}
+		} else {
+			announce_http(screen->httpPort, 0, listen_str, "");
+			if (enc_none) {
+				announce_http(screen->port, 1, NULL, SPORT);
+			}
+		}
+	}
+}
+
+void do_mention_java_urls(void) {
+	if (! quiet && screen) {
+		if (screen->httpListenSock > -1 && screen->httpPort) {
+			rfbLog("\n");
+			rfbLog("The URLs printed out below ('Java ... viewer URL') can\n");
+			rfbLog("be used for Java enabled Web browser connections.\n");
+			if (!stunnel_port && enc_str && !strcmp(enc_str, "none")) {
+				;
+			} else if (use_openssl || stunnel_port) {
+				rfbLog("Here are some additional possibilities:\n");
+				rfbLog("\n");
+				rfbLog("https://host:port/proxy.vnc (MUST be used if Web Proxy used)\n");
+				rfbLog("\n");
+				rfbLog("https://host:port/ultra.vnc (Use UltraVNC Java Viewer)\n");
+				rfbLog("https://host:port/ultraproxy.vnc (Web Proxy with UltraVNC)\n");
+				rfbLog("https://host:port/ultrasigned.vnc (Signed UltraVNC Filexfer)\n");
+				rfbLog("\n");
+				rfbLog("Where you replace \"host:port\" with that printed below, or\n");
+				rfbLog("whatever is needed to reach the host e.g. Internet IP number\n");
+				rfbLog("\n");
+				rfbLog("Append ?GET=1 to a URL for faster loading or supply:\n");
+				rfbLog("-env X11VNC_EXTRA_HTTPS_PARAMS='?GET=1' to cmdline.\n");
+			}
+		}
+		rfbLog("\n");
 	}
 }
 
@@ -3161,28 +3784,12 @@ void set_vnc_desktop_name(void) {
 		sprintf(vnc_desktop_name, "%s/inetd-no-further-clients",
 		    this_host());
 	}
+	if (remote_direct) {
+		return;
+	}
 	if (screen->port) {
 
-		if (! quiet) {
-			if (screen->httpListenSock > -1 && screen->httpPort) {
-				rfbLog("\n");
-				rfbLog("The URLs printed out below ('Java ... viewer URL') can\n");
-				rfbLog("be used for Java enabled Web browser connections.\n");
-				if (use_openssl || stunnel_port) {
-					rfbLog("Here are some additional possibilities:\n");
-					rfbLog("\n");
-					rfbLog("https://host:port/proxy.vnc (MUST be used if Web Proxy used)\n");
-					rfbLog("\n");
-					rfbLog("https://host:port/ultra.vnc (Use UltraVNC Java Viewer)\n");
-					rfbLog("https://host:port/ultraproxy.vnc (Web Proxy with UltraVNC)\n");
-					rfbLog("https://host:port/ultrasigned.vnc (Signed UltraVNC Filexfer)\n");
-					rfbLog("\n");
-					rfbLog("Where you replace \"host:port\" with that printed below, or\n");
-					rfbLog("whatever is needed to reach the host e.g. Internet IP number\n");
-				}
-			}
-			rfbLog("\n");
-		}
+		do_mention_java_urls();
 
 		if (use_openssl) {
 			announce(screen->port, 1, listen_str);
@@ -3192,20 +3799,8 @@ void set_vnc_desktop_name(void) {
 		if (stunnel_port) {
 			announce(stunnel_port, 1, NULL);
 		}
-		if (screen->httpListenSock > -1 && screen->httpPort) {
-			if (use_openssl) {
-				announce_http(screen->port, 1, listen_str);
-				if (https_port_num >= 0) {
-					announce_http(https_port_num, 1,
-					    listen_str);
-				}
-				announce_http(screen->httpPort, 2, listen_str);
-			} else if (use_stunnel) {
-				announce_http(screen->httpPort, 2, listen_str);
-			} else {
-				announce_http(screen->httpPort, 0, listen_str);
-			}
-		}
+
+		do_announce_http();
 		
 		fflush(stderr);	
 		if (inetd) {
@@ -3215,7 +3810,13 @@ void set_vnc_desktop_name(void) {
 			if (stunnel_port) {
 				fprintf(stdout, "SSLPORT=%d\n", stunnel_port);
 			} else if (use_openssl) {
-				fprintf(stdout, "SSLPORT=%d\n", screen->port);
+				if (enc_str && !strcmp(enc_str, "none")) {
+					;
+				} else if (enc_str) {
+					fprintf(stdout, "ENCPORT=%d\n", screen->port);
+				} else {
+					fprintf(stdout, "SSLPORT=%d\n", screen->port);
+				}
 			}
 			fflush(stdout);	
 			if (flagfile) {
@@ -3233,8 +3834,724 @@ void set_vnc_desktop_name(void) {
 					    flagfile);
 				}
 			}
+			if (rm_flagfile) {
+				int create = 0;
+				struct stat sb;
+				if (strstr(rm_flagfile, "create:") == rm_flagfile) {
+					char *s = rm_flagfile;
+					create = 1;
+					rm_flagfile = strdup(rm_flagfile + strlen("create:"));
+					free(s);
+				}
+				if (strstr(rm_flagfile, "nocreate:") == rm_flagfile) {
+					char *s = rm_flagfile;
+					create = 0;
+					rm_flagfile = strdup(rm_flagfile + strlen("nocreate:"));
+					free(s);
+				} else if (stat(rm_flagfile, &sb) != 0) {
+					create = 1;
+				}
+				if (create) {
+					FILE *flag = fopen(rm_flagfile, "w");
+					if (flag) {
+						fprintf(flag, "%d\n", getpid());
+						fclose(flag);
+					}
+				}
+			}
 		}
 		fflush(stdout);	
+	}
+}
+
+static void check_cursor_changes(void) {
+	static double last_push = 0.0;
+
+	if (unixpw_in_progress) return;
+
+	cursor_changes += check_x11_pointer();
+
+	if (cursor_changes) {
+		double tm, max_push = 0.125, multi_push = 0.01, wait = 0.02;
+		int cursor_shape, dopush = 0, link, latency, netrate;
+
+		if (! all_clients_initialized()) {
+			/* play it safe */
+			return;
+		}
+
+		if (0) cursor_shape = cursor_shape_updates_clients(screen);
+	
+		dtime0(&tm);
+		link = link_rate(&latency, &netrate);
+		if (link == LR_DIALUP) {
+			max_push = 0.2;
+			wait = 0.05;
+		} else if (link == LR_BROADBAND) {
+			max_push = 0.075;
+			wait = 0.05;
+		} else if (link == LR_LAN) {
+			max_push = 0.01;
+		} else if (latency < 5 && netrate > 200) {
+			max_push = 0.01;
+		}
+		
+		if (tm > last_push + max_push) {
+			dopush = 1;
+		} else if (cursor_changes > 1 && tm > last_push + multi_push) {
+			dopush = 1;
+		}
+
+		if (dopush) { 
+			mark_rect_as_modified(0, 0, 1, 1, 1);
+			fb_push_wait(wait, FB_MOD);
+			last_push = tm;
+		} else {
+			rfbPE(0);
+		}
+	}
+	cursor_changes = 0;
+}
+
+/*
+ * These watch_loop() releated were moved from x11vnc.c so we could try
+ * to remove -O2 from its compilation.  TDB new file, e.g. watch.c.
+ */
+
+static void check_filexfer(void) {
+	static time_t last_check = 0;
+	rfbClientIteratorPtr iter;
+	rfbClientPtr cl;
+	int transferring = 0; 
+	
+	if (time(NULL) <= last_check) {
+		return;
+	}
+
+#if 0
+	if (getenv("NOFT")) {
+		return;
+	}
+#endif
+
+	iter = rfbGetClientIterator(screen);
+	while( (cl = rfbClientIteratorNext(iter)) ) {
+		if (cl->fileTransfer.receiving) {
+			transferring = 1;
+			break;
+		}
+		if (cl->fileTransfer.sending) {
+			transferring = 1;
+			break;
+		}
+	}
+	rfbReleaseClientIterator(iter);
+
+	if (transferring) {
+		double start = dnow();
+		while (dnow() < start + 0.5) {
+			rfbCFD(5000);
+			rfbCFD(1000);
+			rfbCFD(0);
+		}
+	} else {
+		last_check = time(NULL);
+	}
+}
+
+static void record_last_fb_update(void) {
+	static int rbs0 = -1;
+	static time_t last_call = 0;
+	time_t now = time(NULL);
+	int rbs = -1;
+	rfbClientIteratorPtr iter;
+	rfbClientPtr cl;
+
+	if (last_fb_bytes_sent == 0) {
+		last_fb_bytes_sent = now;
+		last_call = now;
+	}
+
+	if (now <= last_call + 1) {
+		/* check every second or so */
+		return;
+	}
+
+	if (unixpw_in_progress) return;
+
+	last_call = now;
+
+	if (! screen) {
+		return;
+	}
+
+	iter = rfbGetClientIterator(screen);
+	while( (cl = rfbClientIteratorNext(iter)) ) {
+#if 0
+		rbs += cl->rawBytesEquivalent;
+#else
+#if LIBVNCSERVER_HAS_STATS
+		rbs += rfbStatGetSentBytesIfRaw(cl);
+#endif
+#endif
+	}
+	rfbReleaseClientIterator(iter);
+
+	if (rbs != rbs0) {
+		rbs0 = rbs;
+		if (debug_tiles > 1) {
+			fprintf(stderr, "record_last_fb_update: %d %d\n",
+			    (int) now, (int) last_fb_bytes_sent);
+		}
+		last_fb_bytes_sent = now;
+	}
+}
+
+
+static int choose_delay(double dt) {
+	static double t0 = 0.0, t1 = 0.0, t2 = 0.0, now; 
+	static int x0, y0, x1, y1, x2, y2, first = 1;
+	int dx0, dy0, dx1, dy1, dm, i, msec = waitms;
+	double cut1 = 0.15, cut2 = 0.075, cut3 = 0.25;
+	double bogdown_time = 0.25, bave = 0.0;
+	int bogdown = 1, bcnt = 0;
+	int ndt = 8, nave = 3;
+	double fac = 1.0;
+	static int db = 0, did_set_defer = 0;
+	static double dts[8];
+	static int link = LR_UNSET, latency = -1, netrate = -1;
+	static double last_link = 0.0;
+
+	if (screen && did_set_defer) {
+		/* reset defer in case we changed it */
+		screen->deferUpdateTime = defer_update;
+	}
+	if (waitms == 0) {
+		return waitms;
+	}
+	if (nofb) {
+		return waitms;
+	}
+
+	if (first) {
+		for(i=0; i<ndt; i++) {
+			dts[i] = 0.0;
+		}
+		if (getenv("DEBUG_DELAY")) {
+			db = atoi(getenv("DEBUG_DELAY"));
+		}
+		if (getenv("SET_DEFER")) {
+			set_defer = atoi(getenv("SET_DEFER"));
+		}
+		first = 0;
+	}
+
+	now = dnow();
+
+	if (now > last_link + 30.0 || link == LR_UNSET) {
+		link = link_rate(&latency, &netrate);
+		last_link = now;
+	}
+
+	/*
+	 * first check for bogdown, e.g. lots of activity, scrolling text
+	 * from command output, etc.
+	 */
+	if (nap_ok) {
+		dt = 0.0;
+	}
+	if (! wait_bog) {
+		bogdown = 0;
+
+	} else if (button_mask || now < last_keyboard_time + 2*bogdown_time) {
+		/*
+		 * let scrolls & keyboard input through the normal way
+		 * otherwise, it will likely just annoy them.
+		 */
+		bogdown = 0;
+
+	} else if (dt > 0.0) {
+		/*
+		 * inspect recent dt's:
+		 * 0 1 2 3 4 5 6 7 dt
+		 *             ^ ^ ^
+		 */
+		for (i = ndt - (nave - 1); i < ndt; i++) {
+			bave += dts[i];
+			bcnt++;
+			if (dts[i] < bogdown_time) {
+				bogdown = 0;
+				break;
+			}
+		}
+		bave += dt;
+		bcnt++;
+		bave = bave / bcnt;
+		if (dt < bogdown_time) {
+			bogdown = 0;
+		}
+	} else {
+		bogdown = 0;
+	}
+	/* shift for next time */
+	for (i = 0; i < ndt-1; i++) {
+		dts[i] = dts[i+1];
+	}
+	dts[ndt-1] = dt;
+
+if (0 && dt > 0.0) fprintf(stderr, "dt: %.5f %.4f\n", dt, dnowx());
+	if (bogdown) {
+		if (use_xdamage) {
+			/* DAMAGE can queue ~1000 rectangles for a scroll */
+			clear_xdamage_mark_region(NULL, 0);
+		}
+		msec = (int) (1000 * 1.75 * bave);
+		if (dts[ndt - nave - 1] > 0.75 * bave) {
+			msec = 1.5 * msec;
+			set_xdamage_mark(0, 0, dpy_x, dpy_y);
+		}
+		if (msec > 1500) {
+			msec = 1500;
+		}
+		if (msec < waitms) {
+			msec = waitms;
+		}
+		db = (db || debug_tiles);
+		if (db) fprintf(stderr, "bogg[%d] %.3f %.3f %.3f %.3f\n",
+		    msec, dts[ndt-4], dts[ndt-3], dts[ndt-2], dts[ndt-1]);
+
+		return msec;
+	}
+
+	/* next check for pointer motion, keystrokes, to speed up */
+	t2 = dnow();
+	x2 = cursor_x;
+	y2 = cursor_y;
+
+	dx0 = nabs(x1 - x0);
+	dy0 = nabs(y1 - y0);
+	dx1 = nabs(x2 - x1);
+	dy1 = nabs(y2 - y1);
+
+	/* bigger displacement for most recent dt: */
+	if (dx1 > dy1) {
+		dm = dx1;
+	} else {
+		dm = dy1;
+	}
+
+	if ((dx0 || dy0) && (dx1 || dy1)) {
+		/* if mouse moved the previous two times: */
+		if (t2 < t0 + cut1 || t2 < t1 + cut2 || dm > 20) {
+			/*
+			 * if within 0.15s(0) or 0.075s(1) or mouse
+			 * moved > 20pixels, set and bump up the cut
+			 * down factor.
+			 */
+			fac = wait_ui * 1.5;
+		} else if ((dx1 || dy1) && dm > 40) {
+			fac = wait_ui;
+		} else {
+			/* still 1.0? */
+			if (db > 1) fprintf(stderr, "wait_ui: still 1.0\n");
+		}
+	} else if ((dx1 || dy1) && dm > 40) {
+		/* if mouse moved > 40 last time: */
+		fac = wait_ui;
+	}
+
+	if (fac == 1.0 && t2 < last_keyboard_time + cut3) {
+		/* if typed in last 0.25s set wait_ui */
+		fac = wait_ui;
+	}
+	if (fac != 1.0) {
+		if (link == LR_LAN || latency <= 3) {
+			fac *= 1.5;
+		}
+	}
+
+	msec = (int) (((double) waitms) / fac);
+	if (msec == 0) {
+		msec = 1;
+	}
+
+	if (set_defer && fac != 1.0 && screen) {
+		/* this is wait_ui mode, set defer to match wait: */
+		if (set_defer >= 1) {
+			screen->deferUpdateTime = msec;
+		} else if (set_defer <= -1) {
+			screen->deferUpdateTime = 0;
+		}
+		if (nabs(set_defer) == 2) {
+			urgent_update = 1;
+		}
+		did_set_defer = 1;
+	}
+
+	x0 = x1;
+	y0 = y1;
+	t0 = t1;
+
+	x1 = x2;
+	y1 = y2;
+	t1 = t2;
+
+	if (db > 1) fprintf(stderr, "wait: %2d defer[%02d]: %2d\n", msec, defer_update, screen->deferUpdateTime);
+
+	return msec;
+}
+
+/*
+ * main x11vnc loop: polls, checks for events, iterate libvncserver, etc.
+ */
+void watch_loop(void) {
+	int cnt = 0, tile_diffs = 0, skip_pe = 0, wait;
+	double tm, dtr, dt = 0.0;
+	time_t start = time(NULL);
+
+	if (use_threads && !started_rfbRunEventLoop) {
+		started_rfbRunEventLoop = 1;
+		rfbRunEventLoop(screen, -1, TRUE);
+	}
+
+	while (1) {
+		char msg[] = "new client: %s taking unixpw client off hold.\n";
+		int skip_scan_for_updates = 0;
+
+		got_user_input = 0;
+		got_pointer_input = 0;
+		got_local_pointer_input = 0;
+		got_pointer_calls = 0;
+		got_keyboard_input = 0;
+		got_keyboard_calls = 0;
+		urgent_update = 0;
+
+		x11vnc_current = dnow();
+
+		if (! use_threads) {
+			dtime0(&tm);
+			if (! skip_pe) {
+				if (unixpw_in_progress) {
+					rfbClientPtr cl = unixpw_client;
+					if (cl && cl->onHold) {
+						rfbLog(msg, cl->host);
+						unixpw_client->onHold = FALSE;
+					}
+				} else {
+					measure_send_rates(1);
+				}
+
+				unixpw_in_rfbPE = 1;
+
+				/*
+				 * do a few more since a key press may
+				 * have induced a small change we want to
+				 * see quickly (just 1 rfbPE will likely
+				 * only process the subsequent "up" event)
+				 */
+				if (tm < last_keyboard_time + 0.20) {
+					rfbPE(0);
+					rfbPE(0);
+					rfbPE(-1);
+					rfbPE(0);
+					rfbPE(0);
+				} else {
+					if (extra_fbur > 0) {
+						int i;
+						for (i=0; i < extra_fbur; i++) {
+							rfbPE(0);
+						}
+					}
+					rfbPE(-1);
+				}
+				if (x11vnc_current < last_new_client + 0.5) {
+					urgent_update = 1;
+				}
+
+				unixpw_in_rfbPE = 0;
+
+				if (unixpw_in_progress) {
+					/* rfbPE loop until logged in. */
+					skip_pe = 0;
+					check_new_clients();
+					continue;
+				} else {
+					measure_send_rates(0);
+					fb_update_sent(NULL);
+				}
+			} else {
+				if (unixpw_in_progress) {
+					skip_pe = 0;
+					check_new_clients();
+					continue;
+				}
+			}
+			dtr = dtime(&tm);
+
+			if (! cursor_shape_updates) {
+				/* undo any cursor shape requests */
+				disable_cursor_shape_updates(screen);
+			}
+			if (screen && screen->clientHead) {
+				int ret = check_user_input(dt, dtr, tile_diffs, &cnt);
+				/* true: loop back for more input */
+				if (ret == 2) {
+					skip_pe = 1;
+				}
+				if (ret) {
+					if (debug_scroll) fprintf(stderr, "watch_loop: LOOP-BACK: %d\n", ret);
+					continue;
+				}
+			}
+			/* watch for viewonly input piling up: */
+			if ((got_pointer_calls > got_pointer_input) ||
+			    (got_keyboard_calls > got_keyboard_input)) {
+				eat_viewonly_input(10, 3);
+			}
+		} else {
+			/* -threads here. */
+			if (unixpw_in_progress) {
+				rfbClientPtr cl = unixpw_client;
+				if (cl && cl->onHold) {
+					rfbLog(msg, cl->host);
+					unixpw_client->onHold = FALSE;
+				}
+			}
+			if (use_xrecord) {
+				check_xrecord();
+			}
+			if (wireframe && button_mask) {
+				check_wireframe();
+			}
+		}
+		skip_pe = 0;
+
+		if (shut_down) {
+			clean_up_exit(0);
+		}
+
+		if (unixpw_in_progress) {
+			check_new_clients();
+			continue;
+		}
+
+		if (! urgent_update) {
+			if (do_copy_screen) {
+				do_copy_screen = 0;
+				copy_screen();
+			}
+
+			check_new_clients();
+			check_ncache(0, 0);
+			check_xevents(0);
+			check_autorepeat();
+			check_pm();
+			check_filexfer();
+			check_keycode_state();
+			check_connect_inputs();
+			check_gui_inputs();
+			check_stunnel();
+			check_openssl();
+			check_https();
+			record_last_fb_update();
+			check_padded_fb();
+			check_fixscreen();
+			check_xdamage_state();
+			check_xrecord_reset(0);
+			check_add_keysyms();
+			check_new_passwds(0);
+#ifdef ENABLE_GRABLOCAL
+			if (grab_local) {
+				check_local_grab();
+			}
+#endif
+			if (started_as_root) {
+				check_switched_user();
+			}
+
+			if (first_conn_timeout < 0) {
+				start = time(NULL);
+				first_conn_timeout = -first_conn_timeout;
+			}
+		}
+
+		if (rawfb_vnc_reflect) {
+			static time_t lastone = 0;
+			if (time(NULL) > lastone + 10) {
+				lastone = time(NULL);
+				vnc_reflect_process_client();
+			}
+		}
+
+		if (first_conn_timeout) {
+			int t = first_conn_timeout;
+			if (!clients_served) {
+				if (time(NULL) - start > first_conn_timeout) {
+					rfbLog("No client after %d secs.\n", t);
+					shut_down = 1;
+				}
+			} else {
+				if (!client_normal_count) {
+					if (time(NULL) - start > t + 3) {
+						rfbLog("No valid client after %d secs.\n", t + 3);
+						shut_down = 1;
+					}
+				}
+			}
+		}
+
+		if (! screen || ! screen->clientHead) {
+			/* waiting for a client */
+			usleep(200 * 1000);
+			continue;
+		}
+
+		if (first_conn_timeout && all_clients_initialized()) {
+			first_conn_timeout = 0;
+		}
+
+		if (nofb) {
+			/* no framebuffer polling needed */
+			if (cursor_pos_updates) {
+				check_x11_pointer();
+			}
+#ifdef MACOSX
+			else check_x11_pointer();
+#endif
+			continue;
+		}
+		if (x11vnc_current < last_new_client + 0.5 && !all_clients_initialized()) {
+			continue;
+		}
+		if (subwin && freeze_when_obscured) {
+			/* XXX not working */
+			X_LOCK;
+			XFlush_wr(dpy);
+			X_UNLOCK;
+			check_xevents(0);
+			if (subwin_obscured) {
+				skip_scan_for_updates = 1;
+			}
+		}
+
+		if (skip_scan_for_updates) {
+			;
+		} else if (button_mask && (!show_dragging || pointer_mode == 0)) {
+			/*
+			 * if any button is pressed in this mode do
+			 * not update rfb screen, but do flush the
+			 * X11 display.
+			 */
+			X_LOCK;
+			XFlush_wr(dpy);
+			X_UNLOCK;
+			dt = 0.0;
+		} else {
+			static double last_dt = 0.0;
+			double xdamage_thrash = 0.4; 
+			static int tilecut = -1;
+
+			check_cursor_changes();
+
+			/* for timing the scan to try to detect thrashing */
+
+			if (use_xdamage && last_dt > xdamage_thrash)  {
+				clear_xdamage_mark_region(NULL, 0);
+			}
+
+			if (unixpw_in_progress) continue;
+
+			if (rawfb_vnc_reflect) {
+				vnc_reflect_process_client();
+			}
+
+			dtime0(&tm);
+
+#if !NO_X11
+			if (xrandr_present && !xrandr && xrandr_maybe) {
+				int delay = 180;
+				/*  there may be xrandr right after xsession start */
+				if (tm < x11vnc_start + delay || tm < last_client + delay) {
+					int tw = 20;
+					if (auth_file != NULL) {
+						tw = 120;
+					}
+					X_LOCK;
+					if (tm < x11vnc_start + tw || tm < last_client + tw) {
+						XSync(dpy, False);
+					} else {
+						XFlush_wr(dpy);
+					}
+					X_UNLOCK;
+				}
+				X_LOCK;
+				check_xrandr_event("before-scan");
+				X_UNLOCK;
+			}
+#endif
+			if (use_snapfb) {
+				int t, tries = 3;
+				copy_snap();
+				for (t=0; t < tries; t++) {
+					tile_diffs = scan_for_updates(0);
+				}
+			} else {
+				tile_diffs = scan_for_updates(0);
+			}
+			dt = dtime(&tm);
+			if (! nap_ok) {
+				last_dt = dt;
+			}
+
+			if (tilecut < 0) {
+				if (getenv("TILECUT")) {
+					tilecut = atoi(getenv("TILECUT"));
+				}
+				if (tilecut < 0) tilecut = 4;
+			}
+
+			if ((debug_tiles || debug_scroll > 1 || debug_wireframe > 1)
+			    && (tile_diffs > tilecut || debug_tiles > 1)) {
+				double rate = (tile_x * tile_y * bpp/8 * tile_diffs) / dt;
+				fprintf(stderr, "============================= TILES: %d  dt: %.4f"
+				    "  t: %.4f  %.2f MB/s nap_ok: %d\n", tile_diffs, dt,
+				    tm - x11vnc_start, rate/1000000.0, nap_ok);
+			}
+
+		}
+
+		/* sleep a bit to lessen load */
+		wait = choose_delay(dt);
+
+		if (urgent_update) {
+			;
+		} else if (wait > 2*waitms) {
+			/* bog case, break it up */
+			nap_sleep(wait, 10);
+		} else {
+			double t1, t2;
+			int idt;
+			if (extra_fbur > 0) {
+				int i;
+				for (i=0; i <= extra_fbur; i++) {
+					int r = rfbPE(0);
+					if (!r) break;
+				}
+			}
+
+			/* sometimes the sleep is too short, so measure it: */
+			t1 = dnow();
+			usleep(wait * 1000);
+			t2 = dnow();
+
+			idt = (int) (1000. * (t2 - t1));
+			if (idt > 0 && idt < wait) {
+				/* try to sleep the remainder */
+				usleep((wait - idt) * 1000);
+			}
+		}
+
+		cnt++;
 	}
 }
 

@@ -242,7 +242,7 @@ rfbDefaultLog(const char *format, ...)
 
     time(&log_clock);
     strftime(buf, 255, "%d/%m/%Y %X ", localtime(&log_clock));
-    fprintf(stderr,buf);
+    fprintf(stderr, "%s", buf);
 
     vfprintf(stderr, format, args);
     fflush(stderr);
@@ -444,22 +444,34 @@ clientOutput(void *data)
     while (1) {
         haveUpdate = false;
         while (!haveUpdate) {
-            if (cl->sock == -1) {
-                /* Client has disconnected. */
-                return NULL;
-            }
-	    LOCK(cl->updateMutex);
-	    haveUpdate = FB_UPDATE_PENDING(cl);
-	    if(!haveUpdate) {
-		updateRegion = sraRgnCreateRgn(cl->modifiedRegion);
-		haveUpdate = sraRgnAnd(updateRegion,cl->requestedRegion);
-		sraRgnDestroy(updateRegion);
-	    }
+		if (cl->sock == -1) {
+			/* Client has disconnected. */
+			return NULL;
+		}
+		if (cl->state != RFB_NORMAL || cl->onHold) {
+			/* just sleep until things get normal */
+			usleep(cl->screen->deferUpdateTime * 1000);
+			continue;
+		}
 
-            if (!haveUpdate) {
-                WAIT(cl->updateCond, cl->updateMutex);
-            }
-	    UNLOCK(cl->updateMutex);
+		LOCK(cl->updateMutex);
+
+		if (sraRgnEmpty(cl->requestedRegion)) {
+			; /* always require a FB Update Request (otherwise can crash.) */
+		} else {
+			haveUpdate = FB_UPDATE_PENDING(cl);
+			if(!haveUpdate) {
+				updateRegion = sraRgnCreateRgn(cl->modifiedRegion);
+				haveUpdate   = sraRgnAnd(updateRegion,cl->requestedRegion);
+				sraRgnDestroy(updateRegion);
+			}
+		}
+
+		if (!haveUpdate) {
+			WAIT(cl->updateCond, cl->updateMutex);
+		}
+
+		UNLOCK(cl->updateMutex);
         }
         
         /* OK, now, to save bandwidth, wait a little while for more
@@ -476,7 +488,9 @@ clientOutput(void *data)
 
         /* Now actually send the update. */
 	rfbIncrClientRef(cl);
+        LOCK(cl->sendMutex);
         rfbSendFramebufferUpdate(cl, updateRegion);
+        UNLOCK(cl->sendMutex);
 	rfbDecrClientRef(cl);
 
 	sraRgnDestroy(updateRegion);

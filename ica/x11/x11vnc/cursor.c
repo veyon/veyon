@@ -1,3 +1,35 @@
+/*
+   Copyright (C) 2002-2010 Karl J. Runge <runge@karlrunge.com> 
+   All rights reserved.
+
+This file is part of x11vnc.
+
+x11vnc is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or (at
+your option) any later version.
+
+x11vnc is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with x11vnc; if not, write to the Free Software
+Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA
+or see <http://www.gnu.org/licenses/>.
+
+In addition, as a special exception, Karl J. Runge
+gives permission to link the code of its release of x11vnc with the
+OpenSSL project's "OpenSSL" library (or with modified versions of it
+that use the same license as the "OpenSSL" library), and distribute
+the linked executables.  You must obey the GNU General Public License
+in all respects for all of the code used other than "OpenSSL".  If you
+modify this file, you may extend this exception to your version of the
+file, but you are not obligated to do so.  If you do not wish to do
+so, delete this exception statement from your version.
+*/
+
 /* -- cursor.c -- */
 
 #include "x11vnc.h"
@@ -9,6 +41,7 @@
 #include "macosx.h"
 
 int xfixes_present = 0;
+int xfixes_first_initialized = 0;
 int use_xfixes = 1;
 int got_xfixes_cursor_notify = 0;
 int cursor_changes = 0;
@@ -543,7 +576,9 @@ void first_cursor(void) {
 		return;
 	}
 	if (! show_cursor) {
+		LOCK(screen->cursorMutex);
 		screen->cursor = NULL;
+		UNLOCK(screen->cursorMutex);
 	} else {
 		got_xfixes_cursor_notify++;
 		set_rfb_cursor(get_which_cursor());
@@ -555,9 +590,10 @@ static void setup_cursors(void) {
 	rfbCursorPtr rfb_curs;
 	char *scale = NULL;
 	int i, j, n = 0;
+	int w_in = 0, h_in = 0;
 	static int first = 1;
 
-	if (verbose) {
+	if (verbose || use_threads) {
 		rfbLog("setting up %d cursors...\n", CURS_MAX);
 	}
 
@@ -569,8 +605,8 @@ static void setup_cursors(void) {
 	first = 0;
 
 	if (screen) {
-		screen->cursor = NULL;
 		LOCK(screen->cursorMutex);
+		screen->cursor = NULL;
 	}
 
 	for (i=0; i<CURS_MAX; i++) {
@@ -689,17 +725,27 @@ static void setup_cursors(void) {
 	} else if (scaling && scale_str) {
 		scale = scale_str;
 	}
+	if (scale && sscanf(scale, "%dx%d", &i, &j) == 2) {
+		if (wdpy_x > 0) {
+			w_in = wdpy_x; 
+			h_in = wdpy_y; 
+		} else {
+			w_in = dpy_x; 
+			h_in = dpy_y; 
+		}
+	}
+
 	/* scale = NULL zeroes everything */
-	parse_scale_string(scale, &scale_cursor_fac, &scaling_cursor,
+	parse_scale_string(scale, &scale_cursor_fac_x, &scale_cursor_fac_y, &scaling_cursor,
 	    &scaling_cursor_blend, &j, &j, &scaling_cursor_interpolate,
-	    &scale_cursor_numer, &scale_cursor_denom);
+	    &scale_cursor_numer, &scale_cursor_denom, w_in, h_in);
 
 	for (i=0; i<n; i++) {
 		/* create rfbCursors for the special cursors: */
 
 		cursor_info_t *ci = cursors[i];
 
-		if (scaling_cursor && scale_cursor_fac != 1.0) {
+		if (scaling_cursor && (scale_cursor_fac_x != 1.0 || scale_cursor_fac_y != 1.0)) {
 			int w, h, x, y, k;
 			unsigned long *pixels;
 
@@ -854,8 +900,6 @@ static void tree_descend_cursor(int *depth, Window *w, win_str_info_t *winfo) {
 
 	RAWFB_RET_VOID
 
-	X_LOCK;
-
 	if (!strcmp(s, "default") || !strcmp(s, "X") || !strcmp(s, "arrow")) {
 		nm_info = 0;
 	}
@@ -864,6 +908,9 @@ static void tree_descend_cursor(int *depth, Window *w, win_str_info_t *winfo) {
 	*(winfo->res_name)  = '\0';
 	*(winfo->res_class) = '\0';
 
+	for (i=0; i < maxtries; i++) {
+		wins[i] = None;
+	}
 
 	/* some times a window can go away before we get to it */
 	trapped_xerror = 0;
@@ -935,8 +982,6 @@ static void tree_descend_cursor(int *depth, Window *w, win_str_info_t *winfo) {
 	XSetErrorHandler(old_handler);
 	trapped_xerror = 0;
 
-	X_UNLOCK;
-
 	*depth = descend;
 	*w = wins[descend];
 #endif	/* NO_X11 */
@@ -953,6 +998,7 @@ void initialize_xfixes(void) {
 			XFixesSelectCursorInput(dpy, rootwin, 0);
 		}
 		X_UNLOCK;
+		xfixes_first_initialized = 1;
 	}
 #endif
 }
@@ -982,7 +1028,7 @@ static rfbCursorPtr pixels2curs(unsigned long *pixels, int w, int h,
 		}
 	}
 
-	if (scaling_cursor && scale_cursor_fac != 1.0) {
+	if (scaling_cursor && (scale_cursor_fac_x != 1.0 || scale_cursor_fac_y != 1.0)) {
 		int W, H;
 		char *pixels_use = (char *) pixels;
 		unsigned int *pixels32 = NULL;
@@ -990,8 +1036,8 @@ static rfbCursorPtr pixels2curs(unsigned long *pixels, int w, int h,
 		W = w;
 		H = h;
 
-		w = scale_round(W, scale_cursor_fac);
-		h = scale_round(H, scale_cursor_fac);
+		w = scale_round(W, scale_cursor_fac_x);
+		h = scale_round(H, scale_cursor_fac_y);
 
 		pixels_new = (char *) malloc(4*w*h);
 
@@ -1011,7 +1057,7 @@ static rfbCursorPtr pixels2curs(unsigned long *pixels, int w, int h,
 			pixels_use = (char *) pixels32;
 		}
 
-		scale_rect(scale_cursor_fac, scaling_cursor_blend,
+		scale_rect(scale_cursor_fac_x, scale_cursor_fac_y, scaling_cursor_blend,
 		    scaling_cursor_interpolate,
 		    4, pixels_use, 4*W, pixels_new, 4*w,
 		    W, H, w, h, 0, 0, W, H, 0);
@@ -1040,8 +1086,8 @@ static rfbCursorPtr pixels2curs(unsigned long *pixels, int w, int h,
 			
 		pixels = (unsigned long *) pixels_new;
 
-		xhot = scale_round(xhot, scale_cursor_fac);
-		yhot = scale_round(yhot, scale_cursor_fac);
+		xhot = scale_round(xhot, scale_cursor_fac_x);
+		yhot = scale_round(yhot, scale_cursor_fac_y);
 	}
 
 	len = w * h;
@@ -1280,25 +1326,27 @@ static int get_exact_cursor(int init) {
 		if (last_idx) {
 			which = last_idx;
 		}
+		if (! xfixes_first_initialized) {
+			return which;
+		}
 
+		X_LOCK;
 		if (! got_xfixes_cursor_notify && xfixes_base_event_type) {
 			/* try again for XFixesCursorNotify event */
 			XEvent xev;
-			X_LOCK;
 			if (XCheckTypedEvent(dpy, xfixes_base_event_type +
 			    XFixesCursorNotify, &xev)) {
 				got_xfixes_cursor_notify++;
 			}
-			X_UNLOCK;
 		}
 		if (! got_xfixes_cursor_notify) {
 			/* evidently no cursor change, just return last one */
+			X_UNLOCK;
 			return which;
 		}
 		got_xfixes_cursor_notify = 0;
 
 		/* retrieve the cursor info + pixels from server: */
-		X_LOCK;
 		xfc = XFixesGetCursorImage(dpy);
 		X_UNLOCK;
 		if (! xfc) {
@@ -1468,7 +1516,9 @@ void initialize_cursors_mode(void) {
 		}
 	} else {
 		if (screen) {
+			LOCK(screen->cursorMutex);
 			screen->cursor = NULL;
+			UNLOCK(screen->cursorMutex);
 			set_cursor_was_changed(screen);
 		}
 	}
@@ -1479,7 +1529,7 @@ int get_which_cursor(void) {
 	int db = 0;
 
 	if (show_multiple_cursors) {
-		int depth = 0;
+		int depth = 0, rint;
 		static win_str_info_t winfo;
 		static int first = 1, depth_cutoff = -1;
 		Window win = None;
@@ -1507,12 +1557,14 @@ int get_which_cursor(void) {
 		}
 
 		if (rawfb_vnc_reflect && mode > -1) {
-			return get_exact_cursor(0);
+			rint = get_exact_cursor(0);
+			return rint;
 		}
 		if (mode == 3) {
 			if ((xfixes_present && use_xfixes) || macosx_console) {
 				if (db) fprintf(stderr, "get_which_cursor call get_exact_cursor\n");
-				return get_exact_cursor(0);
+				rint = get_exact_cursor(0);
+				return rint;
 			}
 		}
 
@@ -1532,7 +1584,9 @@ int get_which_cursor(void) {
 		}
 		first = 0;
 		
+		X_LOCK;
 		tree_descend_cursor(&depth, &win, &winfo);
+		X_UNLOCK;
 
 		if (depth <= depth_cutoff && !subwin) {
 			which = CURS_ROOT;
@@ -1608,9 +1662,11 @@ static void set_cursor_was_changed(rfbScreenInfoPtr s) {
 		return;
 	}
 	iter = rfbGetClientIterator(s);
+	LOCK(screen->cursorMutex);
 	while( (cl = rfbClientIteratorNext(iter)) ) {
 		cl->cursorWasChanged = TRUE;
 	}
+	UNLOCK(screen->cursorMutex);
 	rfbReleaseClientIterator(iter);
 }
 
@@ -1896,7 +1952,7 @@ int check_x11_pointer(void) {
 	Window root_w, child_w;
 	rfbBool ret = 0;
 	int root_x, root_y, win_x, win_y;
-	int x, y;
+	int x, y, rint;
 	unsigned int mask;
 
 	if (unixpw_in_progress) return 0;
@@ -1963,6 +2019,7 @@ if (0) fprintf(stderr, "check_x11_pointer %d %d\n", root_x, root_y);
 	cursor_position(x, y);
 
 	/* change the cursor shape if necessary */
-	return set_cursor(x, y, get_which_cursor());
+	rint = set_cursor(x, y, get_which_cursor());
+	return rint;
 }
 

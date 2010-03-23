@@ -24,7 +24,8 @@ int rfbDrawChar(rfbScreenInfoPtr rfbScreen,rfbFontDataPtr font,
 	d=*data;
 	data++;
       }
-      if(d&0x80)
+      if(d&0x80 && y+j >= 0 && y+j < rfbScreen->height &&
+          x+i >= 0 && x+i < rfbScreen->width)
 	memcpy(rfbScreen->frameBuffer+(y+j)*rowstride+(x+i)*bpp,colour,bpp);
       d<<=1;
     }

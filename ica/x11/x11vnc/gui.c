@@ -1,3 +1,35 @@
+/*
+   Copyright (C) 2002-2010 Karl J. Runge <runge@karlrunge.com> 
+   All rights reserved.
+
+This file is part of x11vnc.
+
+x11vnc is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or (at
+your option) any later version.
+
+x11vnc is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with x11vnc; if not, write to the Free Software
+Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA
+or see <http://www.gnu.org/licenses/>.
+
+In addition, as a special exception, Karl J. Runge
+gives permission to link the code of its release of x11vnc with the
+OpenSSL project's "OpenSSL" library (or with modified versions of it
+that use the same license as the "OpenSSL" library), and distribute
+the linked executables.  You must obey the GNU General Public License
+in all respects for all of the code used other than "OpenSSL".  If you
+modify this file, you may extend this exception to your version of the
+file, but you are not obligated to do so.  If you do not wish to do
+so, delete this exception statement from your version.
+*/
+
 /* -- gui.c -- */
 
 #include "x11vnc.h"
@@ -25,6 +57,7 @@ Window tray_request = None;
 Window tray_window = None;
 int tray_unembed = 0;
 pid_t run_gui_pid = 0;
+pid_t gui_pid = 0;
 
 
 char *get_gui_code(void);
@@ -49,6 +82,10 @@ static Window tweak_tk_window_id(Window win) {
 #else
 	char *name = NULL;
 	Window parent, new;
+
+	if (getenv("NO_TWEAK_TK_WINDOW_ID")) {
+		return win;
+	}
 
 	/* hack for tk, does not report outermost window */
 	new = win;
@@ -224,15 +261,19 @@ static void sigusr1 (int sig) {
 	if (0) sig = 0;
 }
 
+/* Most of the following mess is for wish on Solaris: */
+
+static char *extra_path = ":/usr/local/bin:/usr/bin/X11:/usr/sfw/bin"
+	    ":/usr/X11R6/bin:/usr/openwin/bin:/usr/dt/bin:/opt/sfw/bin";
+static char *wishes[] = {"wish8.4", "wish", "wish8.3", "wish8.5", "wish8.6", "wish8.7", "wishx", "wish8.0", NULL};
+
 static void run_gui(char *gui_xdisplay, int connect_to_x11vnc, int start_x11vnc,
     int simple_gui, pid_t parent, char *gui_opts) {
 	char *x11vnc_xdisplay = NULL;
-	char extra_path[] = ":/usr/local/bin:/usr/bin/X11:/usr/sfw/bin"
-	    ":/usr/X11R6/bin:/usr/openwin/bin:/usr/dt/bin";
 	char cmd[100];
 	char *wish = NULL, *orig_path, *full_path, *tpath, *p;
 	char *old_xauth = NULL;
-	int try_max = 4, sleep = 300, totms;
+	int try_max = 4, sleep = 300, totms, rc = 0;
 	pid_t mypid = getpid();
 	FILE *pipe, *tmpf;
 
@@ -250,7 +291,7 @@ if (0) fprintf(stderr, "run_gui: %s -- %d %d\n", gui_xdisplay, connect_to_x11vnc
 		x11vnc_xdisplay = strdup(use_dpy);
 	}
 	if (connect_to_x11vnc) {
-		int rc, i;
+		int i;
 		rfbLogEnable(1);
 		if (! client_connect_file) {
 			if (getenv("XAUTHORITY") != NULL) {
@@ -378,17 +419,18 @@ if (0) fprintf(stderr, "run_gui: %s -- %d %d\n", gui_xdisplay, connect_to_x11vnc
 	while (p) {
 		char *try;
 		struct stat sbuf;
-		char *wishes[] = {"wish", "wish8.3", "wish8.4", "wish8.5",
-		    "wish8.0"};
-		int nwishes = 3, i;
+		int i;
 
 		try = (char *) malloc(strlen(p) + 1 + strlen("wish8.4") + 1);
-		for (i=0; i<nwishes; i++) {
+		i = 0;
+		while (wishes[i] != NULL) {
 			sprintf(try, "%s/%s", p, wishes[i]);
 			if (stat(try, &sbuf) == 0) {
 				/* assume executable, should check mode */
 				wish = wishes[i];
+				break;
 			}
+			i++;
 		}
 		free(try);
 		if (wish) {
@@ -399,6 +441,15 @@ if (0) fprintf(stderr, "run_gui: %s -- %d %d\n", gui_xdisplay, connect_to_x11vnc
 	free(tpath);
 	if (!wish) {
 		wish = strdup("wish");
+	}
+	if (getenv("WISH")) {
+		char *w = getenv("WISH");
+		if (strcmp(w, "")) {
+			wish = strdup(w);
+		}
+	}
+	if (getenv("DEBUG_WISH")) {
+		fprintf(stderr, "wish: %s\n", wish);
 	}
 	set_env("PATH", full_path);
 	set_env("DISPLAY", gui_xdisplay);
@@ -437,6 +488,9 @@ if (0) fprintf(stderr, "run_gui: %s -- %d %d\n", gui_xdisplay, connect_to_x11vnc
 			while (p) {
 				if(strstr(p, "setp") == p) {
 					set_env("X11VNC_ICON_SETPASS", "1");
+					if (rc != 0) {
+						set_env("X11VNC_SETPASS_FAIL", "1");
+					}
 				} else if(strstr(p, "noadvanced") == p) {
 					set_env("X11VNC_ICON_NOADVANCED", "1");
 				} else if(strstr(p, "minimal") == p) {
@@ -513,6 +567,7 @@ void do_gui(char *opts, int sleep) {
 	int start_x11vnc = 1;
 	int connect_to_x11vnc = 0;
 	int simple_gui = 0, none_gui = 0;
+	int portprompt = 0;
 	Display *test_dpy;
 
 	if (opts) {
@@ -548,6 +603,10 @@ void do_gui(char *opts, int sleep) {
 			connect_to_x11vnc = 0;
 		} else if (!strcmp(p, "none")) {
 			none_gui = 1;
+		} else if (!strcmp(p, "portprompt")) {
+			start_x11vnc = 0;
+			connect_to_x11vnc = 0;
+			portprompt = 1;
 		} else if (!strcmp(p, "conn") || !strcmp(p, "connect")) {
 			start_x11vnc = 0;
 			connect_to_x11vnc = 1;
@@ -598,6 +657,7 @@ void do_gui(char *opts, int sleep) {
 		connect_to_x11vnc = 1;
 	}
 
+
 #ifdef MACOSX
 	goto startit;
 #endif
@@ -617,7 +677,7 @@ void do_gui(char *opts, int sleep) {
 		    " to display on.\n");
 		exit(1);
 	}
-	if (!quiet) {
+	if (!quiet && !portprompt) {
 		fprintf(stderr, "starting gui, trying display: %s\n",
 		    gui_xdisplay);
 	}
@@ -653,6 +713,156 @@ void do_gui(char *opts, int sleep) {
 #ifdef MACOSX
 	startit:
 #endif
+	if (portprompt) {
+		char *cmd, *p, *p2, *p1, *p0 = getenv("PATH");
+		char tf1[] = "/tmp/x11vnc_port_prompt.2XXXXXX";
+		char tf2[] = "/tmp/x11vnc_port_prompt.1XXXXXX";
+		int fd;
+		char *dstr = "", *wish = NULL;
+		char line[128];
+		FILE *fp;
+
+		if (no_external_cmds || !cmd_ok("gui")) {
+			return;
+		}
+
+		if (gui_xdisplay) {
+			dstr = gui_xdisplay;
+			if (strchr(gui_xdisplay, '\'')) {
+				return;
+			}
+		}
+		if (!p0) {
+			p0 = "";
+		}
+		if (strchr(p0, '\'')) {
+			return;
+		}
+
+		fd = mkstemp(tf2);
+		if (fd < 0) {
+			return;
+		}
+		close(fd);
+
+		fd = mkstemp(tf1);
+		if (fd < 0) {
+			unlink(tf2);
+			return;
+		}
+
+		write(fd, gui_code, strlen(gui_code));
+		close(fd);
+
+		p1 = (char *) malloc(10 + strlen(p0) + strlen(extra_path));
+		sprintf(p1, "%s:%s", p0, extra_path);
+		p2 = strdup(p1);
+		p = strtok(p2, ":");
+
+		while (p) {
+			char *try;
+			struct stat sbuf;
+			int i;
+
+			try = (char *) malloc(strlen(p) + 1 + strlen("wish8.4") + 1);
+			i = 0;
+			while (wishes[i] != NULL) {
+				sprintf(try, "%s/%s", p, wishes[i]);
+				if (stat(try, &sbuf) == 0) {
+					/* assume executable, should check mode */
+					wish = wishes[i];
+					break;
+				}
+				i++;
+			}
+			free(try);
+			if (wish) {
+				break;
+			}
+			p = strtok(NULL, ":");
+		}
+		free(p2);
+
+		if (!wish) {
+			wish = "wish";
+		}
+
+		cmd = (char *) malloc(200 + strlen(dstr) + strlen(p1));
+
+		if (!strcmp(dstr, "")) {
+			sprintf(cmd, "env PATH='%s' %s %s -name x11vnc_port_prompt -portprompt > %s", p1, wish, tf1, tf2);
+		} else {
+			sprintf(cmd, "env PATH='%s' DISPLAY='%s' %s %s -name x11vnc_port_prompt -portprompt > %s", p1, dstr, wish, tf1, tf2);
+		}
+		if (getenv("X11VNC_DEBUG_PORTPROMPT")) {
+			fprintf(stderr, "cmd=%s\n", cmd);
+		}
+		if (use_openssl) {
+			set_env("X11VNC_SSL_ENABLED", "1");
+		}
+		if (allow_list && !strcmp(allow_list, "127.0.0.1")) {
+			set_env("X11VNC_LOCALHOST_ENABLED", "1");
+		}
+		if (got_ultrafilexfer) {
+			set_env("X11VNC_FILETRANSFER_ENABLED", "ultra");
+		} else if (tightfilexfer) {
+			set_env("X11VNC_FILETRANSFER_ENABLED", "tight");
+		}
+		system(cmd);
+		free(cmd);
+		free(p1);
+
+		fp = fopen(tf2, "r");
+		memset(line, 0, sizeof(line));
+		if (fp) {
+			fgets(line, 128, fp);
+			fclose(fp);
+			if (line[0] != '\0') {
+				int readport = atoi(line);
+				if (readport > 0) {
+					got_rfbport_val = readport;
+				}
+			}
+		}
+
+		if (strstr(line, "ssl0")) {
+			if (use_openssl) use_openssl = 0;
+		} else if (strstr(line, "ssl1")) {
+			if (!use_openssl) {
+				use_openssl = 1;
+				openssl_pem = strdup("SAVE_NOPROMPT");
+				set_env("X11VNC_GOT_SSL", "1");
+			}
+		}
+
+		if (strstr(line, "localhost0")) {
+			if (allow_list && !strcmp(allow_list, "127.0.0.1")) {
+				allow_list = NULL;
+			}
+		} else if (strstr(line, "localhost1")) {
+			allow_list = strdup("127.0.0.1");
+		}
+
+		if (strstr(line, "ft_ultra")) {
+			got_ultrafilexfer = 1;
+			tightfilexfer = 0;
+		} else if (strstr(line, "ft_tight")) {
+			got_ultrafilexfer = 0;
+			tightfilexfer = 1;
+		} else if (strstr(line, "ft_none")) {
+			got_ultrafilexfer = 0;
+			tightfilexfer = 0;
+		}
+
+		unlink(tf1);
+		unlink(tf2);
+
+		if (old_xauth) {
+			set_env("XAUTHORITY", old_xauth);
+		}
+
+		return;
+	}
 
 	if (start_x11vnc) {
 
@@ -662,30 +872,29 @@ void do_gui(char *opts, int sleep) {
 		pid_t parent = getpid();
 
 		if (icon_mode) {
-			char tf[100]; 
-			double dn = dnow();
-			struct stat sbuf;
-			/* FIXME */
-			dn = dn - ((int) dn);
-			sprintf(tf, "/tmp/x11vnc.tray%d%d", (int) (1000000*dn),
-			    (int) getpid());
-			unlink(tf);
-			/* race begins.. */
-			if (stat(tf, &sbuf) == 0) {
+			char tf[] = "/tmp/x11vnc.tray.XXXXXX"; 
+			int fd;
+
+			fd = mkstemp(tf);
+			if (fd < 0) {
 				icon_mode = 0;
 			} else {
+				close(fd);
 				icon_mode_fh = fopen(tf, "w");
 				if (! icon_mode_fh) {
 					icon_mode = 0;
 				} else {
 					chmod(tf, 0400);
 					icon_mode_file = strdup(tf);
+					rfbLog("icon_mode_file=%s\n", icon_mode_file);
 					fprintf(icon_mode_fh, "none\n");
 					fprintf(icon_mode_fh, "none\n");
 					fflush(icon_mode_fh);
 					if (! got_connect_once) {
-						/* want -forever for tray */
-						connect_once = 0;
+						if (!client_connect && !connect_or_exit) {
+							/* want -forever for tray? */
+							connect_once = 0;
+						}
 					}
 				}
 			}
@@ -707,6 +916,7 @@ void do_gui(char *opts, int sleep) {
 		}
 		if (connect_to_x11vnc) {
 			run_gui_pid = p;
+			gui_pid = p;
 		}
 #else
 		fprintf(stderr, "system does not support fork: start "

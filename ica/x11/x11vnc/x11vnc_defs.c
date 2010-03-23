@@ -1,3 +1,35 @@
+/*
+   Copyright (C) 2002-2010 Karl J. Runge <runge@karlrunge.com> 
+   All rights reserved.
+
+This file is part of x11vnc.
+
+x11vnc is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or (at
+your option) any later version.
+
+x11vnc is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with x11vnc; if not, write to the Free Software
+Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA
+or see <http://www.gnu.org/licenses/>.
+
+In addition, as a special exception, Karl J. Runge
+gives permission to link the code of its release of x11vnc with the
+OpenSSL project's "OpenSSL" library (or with modified versions of it
+that use the same license as the "OpenSSL" library), and distribute
+the linked executables.  You must obey the GNU General Public License
+in all respects for all of the code used other than "OpenSSL".  If you
+modify this file, you may extend this exception to your version of the
+file, but you are not obligated to do so.  If you do not wish to do
+so, delete this exception statement from your version.
+*/
+
 /* -- x11vnc_defs.c -- */
 
 #include "x11vnc.h"
@@ -15,7 +47,7 @@ int xtrap_base_event_type = 0;
 int xdamage_base_event_type = 0;
 
 /*               date +'lastmod: %Y-%m-%d' */
-char lastmod[] = "0.9.4 lastmod: 2008-06-24";
+char lastmod[] = "0.9.10 lastmod: 2010-03-20";
 
 /* X display info */
 
@@ -75,6 +107,12 @@ int raw_fb_seek = 0;
 int raw_fb_fd = -1;
 int raw_fb_back_to_X = 0;	/* kludge for testing rawfb -> X */
 
+int raw_fb_native_bpp = 0;
+int raw_fb_expand_bytes = 1;
+unsigned long  raw_fb_native_red_mask = 0,  raw_fb_native_green_mask = 0,  raw_fb_native_blue_mask = 0;
+unsigned short raw_fb_native_red_max = 0,   raw_fb_native_green_max = 0,   raw_fb_native_blue_max = 0;
+unsigned short raw_fb_native_red_shift = 0, raw_fb_native_green_shift = 0, raw_fb_native_blue_shift = 0;
+
 int rfb_bytes_per_line = 0;
 int main_bytes_per_line = 0;
 int rot_bytes_per_line = 0;
@@ -86,7 +124,8 @@ int raw_fb_bytes_per_line = 0;
 
 /* scaling parameters */
 char *scale_str = NULL;
-double scale_fac = 1.0;
+double scale_fac_x = 1.0;
+double scale_fac_y = 1.0;
 int scaling = 0;
 int scaling_blend = 1;		/* for no blending option (very course) */
 int scaling_nomult4 = 0;	/* do not require width = n * 4 */
@@ -101,7 +140,8 @@ int rotating_cursors = 0;
 
 /* scale cursor */
 char *scale_cursor_str = NULL;
-double scale_cursor_fac = 1.0;
+double scale_cursor_fac_x = 1.0;
+double scale_cursor_fac_y = 1.0;
 int scaling_cursor = 0;
 int scaling_cursor_blend = 1;
 int scaling_cursor_interpolate = 0;
@@ -117,7 +157,7 @@ unsigned char *tile_has_diff = NULL, *tile_tried = NULL, *tile_copied = NULL;
 unsigned char *tile_has_xdamage_diff = NULL, *tile_row_has_xdamage_diff = NULL;
 
 /* times of recent events */
-time_t last_event = 0, last_input = 0, last_client = 0;
+time_t last_event = 0, last_input = 0, last_client = 0, last_open_xdisplay = 0;
 time_t last_local_input = 0;
 time_t last_keyboard_input = 0, last_pointer_input = 0; 
 time_t last_fb_bytes_sent = 0;
@@ -147,6 +187,7 @@ int hack_val = 0;
 rfbClientPtr last_pointer_client = NULL;
 rfbClientPtr latest_client = NULL;
 double last_client_gone = 0.0;
+double last_new_client = 0.0;
 
 int waited_for_client = 0;
 int findcreatedisplay = 0;
@@ -154,6 +195,7 @@ char *terminal_services_daemon = NULL;
 
 int client_count = 0;
 int clients_served = 0;
+int client_normal_count = 0;
 
 /* more transient kludge variables: */
 int cursor_x = 0, cursor_y = 0;		/* x and y from the viewer(s) */
@@ -170,6 +212,8 @@ rfbBool last_rfb_down = FALSE;
 rfbBool last_rfb_key_accepted = FALSE;
 rfbKeySym last_rfb_keysym = 0;
 double last_rfb_keytime = 0.0;
+double last_rfb_key_injected = 0.0;
+double last_rfb_ptr_injected = 0.0;
 int fb_copy_in_progress = 0;	
 int drag_in_progress = 0;	
 int shut_down = 0;	

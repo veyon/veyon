@@ -1,3 +1,35 @@
+/*
+   Copyright (C) 2002-2010 Karl J. Runge <runge@karlrunge.com> 
+   All rights reserved.
+
+This file is part of x11vnc.
+
+x11vnc is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or (at
+your option) any later version.
+
+x11vnc is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with x11vnc; if not, write to the Free Software
+Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA
+or see <http://www.gnu.org/licenses/>.
+
+In addition, as a special exception, Karl J. Runge
+gives permission to link the code of its release of x11vnc with the
+OpenSSL project's "OpenSSL" library (or with modified versions of it
+that use the same license as the "OpenSSL" library), and distribute
+the linked executables.  You must obey the GNU General Public License
+in all respects for all of the code used other than "OpenSSL".  If you
+modify this file, you may extend this exception to your version of the
+file, but you are not obligated to do so.  If you do not wish to do
+so, delete this exception statement from your version.
+*/
+
 /* -- cleanup.c -- */
 
 #include "x11vnc.h"
@@ -15,6 +47,9 @@
 #include "macosx.h"
 #include "macosxCG.h"
 #include "avahi.h"
+#include "screen.h"
+#include "xrecord.h"
+#include "xevents.h"
 
 /*
  * Exiting and error handling routines
@@ -30,7 +65,7 @@ XErrorEvent *trapped_xerror_event;
 int crash_debug = 0;
 
 void clean_shm(int quick);
-void clean_up_exit (int ret);
+void clean_up_exit(int ret);
 int trap_xerror(Display *d, XErrorEvent *error);
 int trap_xioerror(Display *d);
 int trap_getimage_xerror(Display *d, XErrorEvent *error);
@@ -110,7 +145,7 @@ static void clean_icon_mode(void) {
 /*
  * Normal exiting
  */
-void clean_up_exit (int ret) {
+void clean_up_exit(int ret) {
 	static int depth = 0;
 	exit_flag = 1;
 
@@ -150,7 +185,18 @@ void clean_up_exit (int ret) {
 	}
 #endif
 
-	if (! dpy) exit(ret);	/* raw_rb hack */
+	if (pipeinput_fh != NULL) {
+		pclose(pipeinput_fh);
+		pipeinput_fh = NULL;
+	}
+
+	if (! dpy) {	/* raw_rb hack */
+		if (rm_flagfile) {
+			unlink(rm_flagfile);
+			rm_flagfile = NULL;
+		}
+		exit(ret);
+	}
 
 	/* X keyboard cleanups */
 	delete_added_keycodes(0);
@@ -190,6 +236,12 @@ void clean_up_exit (int ret) {
 	X_UNLOCK;
 
 	fflush(stderr);
+
+	if (rm_flagfile) {
+		unlink(rm_flagfile);
+		rm_flagfile = NULL;
+	}
+
 	exit(ret);
 }
 
@@ -224,8 +276,35 @@ int trap_getimage_xerror(Display *d, XErrorEvent *error) {
 	return 0;
 }
 
+/* Are silly Xorg people removing X_ShmAttach from XShm.h? */
+/* INDEED!  What stupid, myopic morons...  */
+/* Maintenance Monkeys busy typing at their keyboards... */
+#ifndef X_ShmAttach
+#define X_ShmAttach 1
+#endif
+
 static int Xerror(Display *d, XErrorEvent *error) {
 	X_UNLOCK;
+
+	if (getenv("X11VNC_PRINT_XERROR")) {
+		fprintf(stderr, "Xerror: major_opcode: %d minor_opcode: %d error_code: %d\n",
+		    error->request_code, error->minor_code, error->error_code);
+	}
+
+	if (xshm_opcode > 0 && error->request_code == xshm_opcode) {
+		if (error->minor_code == X_ShmAttach) {
+			char *dstr = DisplayString(dpy);
+			fprintf(stderr, "\nX11 MIT Shared Memory Attach failed:\n");
+			fprintf(stderr, "  Is your DISPLAY=%s on a remote machine?\n", dstr);
+			if (strstr(dstr, "localhost:")) {
+				fprintf(stderr, "  Note:   DISPLAY=localhost:N suggests a SSH X11 redir to a remote machine.\n");
+			} else if (dstr[0] != ':') {
+				fprintf(stderr, "  Note:   DISPLAY=hostname:N suggests a remote display.\n");
+			}
+			fprintf(stderr, "  Suggestion, use: x11vnc -display :0 ... for local display :0\n\n");
+		}
+	}
+
 	interrupted(0);
 
 	if (d) {} /* unused vars warning: */
@@ -233,8 +312,66 @@ static int Xerror(Display *d, XErrorEvent *error) {
 	return (*Xerror_def)(d, error);
 }
 
+void watch_loop(void);
+
 static int XIOerr(Display *d) {
+	static int reopen = 0, rmax = 1;
 	X_UNLOCK;
+
+	if (getenv("X11VNC_REOPEN_DISPLAY")) {
+		rmax = atoi(getenv("X11VNC_REOPEN_DISPLAY"));
+	}
+
+#if !NO_X11
+	if (reopen < rmax && getenv("X11VNC_REOPEN_DISPLAY")) {
+		int db = getenv("X11VNC_REOPEN_DEBUG") ? 1 : 0;
+		int sleepmax = 10, i;
+		Display *save_dpy = dpy;
+		char *dstr = strdup(DisplayString(save_dpy));
+		reopen++;	
+		if (getenv("X11VNC_REOPEN_SLEEP_MAX")) {
+			sleepmax = atoi(getenv("X11VNC_REOPEN_SLEEP_MAX"));
+		}
+		rfbLog("*** XIO error: Trying to reopen[%d/%d] display '%s'\n", reopen, rmax, dstr);
+		rfbLog("*** XIO error: Note the reopened state may be unstable.\n");
+		for (i=0; i < sleepmax; i++) {
+			usleep (1000 * 1000);
+			dpy = XOpenDisplay_wr(dstr);
+			rfbLog("dpy[%d/%d]: %p\n", i+1, sleepmax, dpy);
+			if (dpy) {
+				break;
+			}
+		}
+		last_open_xdisplay = time(NULL);
+		if (dpy) {
+			rfbLog("*** XIO error: Reopened display '%s' successfully.\n", dstr);
+			if (db) rfbLog("*** XIO error: '%s' 0x%x\n", dstr, dpy);
+			scr = DefaultScreen(dpy);
+			rootwin = RootWindow(dpy, scr);
+			if (db) rfbLog("*** XIO error: disable_grabserver\n");
+			disable_grabserver(dpy, 0);
+			if (db) rfbLog("*** XIO error: xrecord\n");
+			zerodisp_xrecord();
+			initialize_xrecord();
+			if (db) rfbLog("*** XIO error: xdamage\n");
+			create_xdamage_if_needed(1);
+			if (db) rfbLog("*** XIO error: do_new_fb\n");
+			if (using_shm) {
+				if (db) rfbLog("*** XIO error: clean_shm\n");
+				clean_shm(1);
+			}
+			do_new_fb(1);
+			if (db) rfbLog("*** XIO error: check_xevents\n");
+			check_xevents(1);
+
+			/* sadly, we can never return... */
+			if (db) rfbLog("*** XIO error: watch_loop\n");
+			watch_loop();
+			clean_up_exit(1);	
+		}
+	}
+#endif
+
 	interrupted(-1);
 
 	if (d) {} /* unused vars warning: */
@@ -383,6 +520,10 @@ static void interrupted (int sig) {
 		} else if (exit_flag <= 2) {
 			return;
 		}
+		if (rm_flagfile) {
+			unlink(rm_flagfile);
+			rm_flagfile = NULL;
+		}
 		exit(4);
 	}
 	exit_flag++;
@@ -413,6 +554,10 @@ static void interrupted (int sig) {
 
 	if (sig == -1) {
 		/* not worth trying any more cleanup, X server probably gone */
+		if (rm_flagfile) {
+			unlink(rm_flagfile);
+			rm_flagfile = NULL;
+		}
 		exit(3);
 	}
 
@@ -443,6 +588,10 @@ static void interrupted (int sig) {
 	}
 
 	if (sig) {
+		if (rm_flagfile) {
+			unlink(rm_flagfile);
+			rm_flagfile = NULL;
+		}
 		exit(2);
 	}
 }

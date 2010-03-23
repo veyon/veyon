@@ -1,3 +1,35 @@
+/*
+   Copyright (C) 2002-2010 Karl J. Runge <runge@karlrunge.com> 
+   All rights reserved.
+
+This file is part of x11vnc.
+
+x11vnc is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or (at
+your option) any later version.
+
+x11vnc is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with x11vnc; if not, write to the Free Software
+Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA
+or see <http://www.gnu.org/licenses/>.
+
+In addition, as a special exception, Karl J. Runge
+gives permission to link the code of its release of x11vnc with the
+OpenSSL project's "OpenSSL" library (or with modified versions of it
+that use the same license as the "OpenSSL" library), and distribute
+the linked executables.  You must obey the GNU General Public License
+in all respects for all of the code used other than "OpenSSL".  If you
+modify this file, you may extend this exception to your version of the
+file, but you are not obligated to do so.  If you do not wish to do
+so, delete this exception statement from your version.
+*/
+
 /* -- options.c -- */
 
 #define _X11VNC_OPTIONS_H
@@ -17,11 +49,14 @@ int set_visual_str_to_something = 0;
 char *logfile = NULL;		/* -o, -logfile */
 int logfile_append = 0;
 char *flagfile = NULL;		/* -flag */
+char *rm_flagfile = NULL;	/* -rmflag */
 char *passwdfile = NULL;	/* -passwdfile */
 int unixpw = 0;			/* -unixpw */
 int unixpw_nis = 0;		/* -unixpw_nis */
 char *unixpw_list = NULL;
 char *unixpw_cmd = NULL;
+int unixpw_system_greeter = 0;
+int unixpw_system_greeter_active = 0;
 int use_stunnel = 0;		/* -stunnel */
 int stunnel_port = 0;
 char *stunnel_pem = NULL;
@@ -30,9 +65,19 @@ int http_ssl = 0;
 int ssl_no_fail = 0;
 char *openssl_pem = NULL;
 char *ssl_certs_dir = NULL;
+char *enc_str = NULL;
+int vencrypt_mode = VENCRYPT_SUPPORT;
+int vencrypt_kx = VENCRYPT_BOTH;
+int vencrypt_enable_plain_login = 0;
+int anontls_mode = ANONTLS_SUPPORT;
+int create_fresh_dhparams = 0;
+char *dhparams_file = NULL;
+int http_try_it = 0;
+int stunnel_http_port = 0;
 int https_port_num = -1;
 int https_port_redir = 0;
 char *ssl_verify = NULL;
+char *ssl_crl = NULL;
 int ssl_initialized = 0;
 int ssl_timeout_secs = -1;
 char *ssh_str = NULL;
@@ -66,11 +111,14 @@ int connect_once = 1;		/* disconnect after first connection session. */
 int connect_once = 0;
 #endif
 int got_connect_once = 0;
+int got_findauth = 0;
 int deny_all = 0;		/* global locking of new clients */
 #ifndef REMOTE_DEFAULT
 #define REMOTE_DEFAULT 1
 #endif
 int accept_remote_cmds = REMOTE_DEFAULT;	/* -noremote */
+char *remote_prefix = NULL;
+int remote_direct = 0;
 int query_default = 0;
 int safe_remote_only = 1;	/* -unsafe */
 int priv_remote = 0;		/* -privremote */
@@ -109,6 +157,7 @@ int inetd = 0;			/* spawned from inetd(8) */
 #define TIGHTFILEXFER 0
 #endif
 int tightfilexfer = TIGHTFILEXFER; 
+int got_ultrafilexfer = 0; 
 int first_conn_timeout = 0;	/* -timeout */
 int ping_interval = 0;		/* -ping */
 int flash_cmap = 0;		/* follow installed colormaps */
@@ -136,6 +185,7 @@ int clear_mods = 0;		/* -clear_mods (1) and -clear_keys (2) -clear_locks (3) */
 int nofb = 0;			/* do not send any fb updates */
 char *raw_fb_str = NULL;	/* used under -rawfb */
 char *raw_fb_pixfmt = NULL;
+char *raw_fb_full_str = NULL;
 char *freqtab = NULL;
 char *pipeinput_str = NULL;	/* -pipeinput [tee,reopen,keycodes:]cmd */
 char *pipeinput_opts = NULL;
@@ -157,6 +207,8 @@ int macosx_icon_anim_time = 450;
 
 unsigned long subwin = 0x0;	/* -id, -sid */
 int subwin_wait_mapped = 0;
+int freeze_when_obscured = 0;
+int subwin_obscured = 0;
 
 int debug_xevents = 0;		/* -R debug_xevents:1 */
 int debug_xdamage = 0;		/* -R debug_xdamage:1 or 2 ... */
@@ -241,6 +293,7 @@ int ncache_dt_change = 1;
 int ncache_keep_anims = 0;
 int ncache_old_wm = 0;
 int macosx_ncache_macmenu = 0;
+int macosx_us_kbd = 0;
 int ncache_beta_tester = 0;
 int ncdb = 0;
 
@@ -300,7 +353,7 @@ char **scroll_skip_all = NULL;
 char **scroll_skip_key = NULL;
 char **scroll_skip_mouse = NULL;
 char *scroll_skip_str = NULL;
-char *scroll_skip_str0 = "##Soffice.bin,##StarOffice";
+char *scroll_skip_str0 = "##Soffice.bin,##StarOffice,##OpenOffice";
 /*	"##Konsole,"	 * no problems, known heuristics do not work */
 
 char **scroll_term = NULL;
@@ -358,7 +411,9 @@ double wait_ui = 2.0;
 double slow_fb = 0.0;
 double xrefresh = 0.0;
 int wait_bog = 1;
+int extra_fbur = 1;
 int defer_update = 20;	/* deferUpdateTime ms to wait before sends. */
+int set_defer = 1;
 int got_defer = 0;
 int got_deferupdate = 0;
 
@@ -386,6 +441,8 @@ int no_ultra_dpms = 0;
 int no_ultra_ext = 0;
 int saw_ultra_chat = 0;
 int saw_ultra_file = 0;
+int chat_window = 0;
+rfbClientPtr chat_window_client = NULL;
 
 int watch_selection = 1;	/* normal selection/cutbuffer maintenance */
 int watch_primary = 1;		/* more dicey, poll for changes in PRIMARY */
@@ -416,11 +473,9 @@ int quiet = 0;
 int verbose = 0;
 
 /* threaded vs. non-threaded (default) */
-#if LIBVNCSERVER_HAVE_LIBPTHREAD && defined(X11VNC_THREADED)
-int use_threads = 0;	/* not 1. now X11VNC_THREADED means enable it at all. */
-#else
 int use_threads = 0;
-#endif
+int started_rfbRunEventLoop = 0;
+int threads_drop_input = 0;
 
 /* info about command line opts */
 int got_noxwarppointer = 0;
