@@ -1,7 +1,12 @@
-#define _XOPEN_SOURCE
-
 #include <rfb/rfbconfig.h>
 #include <rfb/keysym.h>
+
+#include "libvncclient/cursor.c"
+#include "libvncclient/tls.c"
+#include "libvncclient/listen.c"
+#include "libvncclient/rfbproto.c"
+#include "libvncclient/sockets.c"
+#include "libvncclient/vncviewer.c"
 
 #include "x11vnc/avahi.c"
 #include "x11vnc/pm.c"

@@ -1,3 +1,35 @@
+/*
+   Copyright (C) 2002-2010 Karl J. Runge <runge@karlrunge.com> 
+   All rights reserved.
+
+This file is part of x11vnc.
+
+x11vnc is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or (at
+your option) any later version.
+
+x11vnc is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with x11vnc; if not, write to the Free Software
+Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA
+or see <http://www.gnu.org/licenses/>.
+
+In addition, as a special exception, Karl J. Runge
+gives permission to link the code of its release of x11vnc with the
+OpenSSL project's "OpenSSL" library (or with modified versions of it
+that use the same license as the "OpenSSL" library), and distribute
+the linked executables.  You must obey the GNU General Public License
+in all respects for all of the code used other than "OpenSSL".  If you
+modify this file, you may extend this exception to your version of the
+file, but you are not obligated to do so.  If you do not wish to do
+so, delete this exception statement from your version.
+*/
+
 /* -- pointer.c -- */
 
 #include "x11vnc.h"
@@ -44,9 +76,6 @@ typedef struct ptrremap {
 	int up;
 } prtremap_t;
 
-#ifdef LIBVNCSERVER_HAVE_LIBPTHREAD
-MUTEX(pointerMutex);
-#endif
 #define MAX_BUTTON_EVENTS 50
 static prtremap_t pointer_map[MAX_BUTTONS+1][MAX_BUTTON_EVENTS];
 
@@ -54,7 +83,7 @@ static prtremap_t pointer_map[MAX_BUTTONS+1][MAX_BUTTON_EVENTS];
  * For parsing the -buttonmap sections, e.g. "4" or ":Up+Up+Up:"
  */
 static void buttonparse(int from, char **s) {
-#if NO_X11
+#if (0 && NO_X11)
 	if (!from || !s) {}
 	return;
 #else
@@ -130,7 +159,11 @@ static void buttonparse(int from, char **s) {
 				 */
 				char *str;
 				X_LOCK;
+#if NO_X11
+				kcode = NoSymbol;
+#else
 				kcode = XKeysymToKeycode(dpy, ksym);
+#endif
 
 				pointer_map[from][n].keysym  = ksym;
 				pointer_map[from][n].keycode = kcode;
@@ -216,10 +249,6 @@ static void buttonparse(int from, char **s) {
  * process the -buttonmap string
  */
 void initialize_pointer_map(char *pointer_remap) {
-#if NO_X11
-	if (!pointer_remap) {}
-	return;
-#else
 	unsigned char map[MAX_BUTTONS];
 	int i, k;
 	/*
@@ -230,11 +259,17 @@ void initialize_pointer_map(char *pointer_remap) {
 	 */
 	
 	if (!raw_fb_str) {
+#if NO_X11
+		num_buttons = 5;
+#else
 		X_LOCK;
 		num_buttons = XGetPointerMapping(dpy, map, MAX_BUTTONS);
 		X_UNLOCK;
+		rfbLog("The X server says there are %d mouse buttons.\n", num_buttons);
+#endif
 	} else {
 		num_buttons = 5;
+		rfbLog("Manually set num_buttons to: %d\n", num_buttons);
 	}
 
 	if (num_buttons < 0) {
@@ -295,7 +330,6 @@ void initialize_pointer_map(char *pointer_remap) {
 		}
 		free(remap);
 	}
-#endif	/* NO_X11 */
 }
 
 /*
@@ -308,11 +342,22 @@ void update_x11_pointer_position(int x, int y) {
 	return;
 #else
 	int rc;
+	static int watch_dx_dy = -1;
 
 	RAWFB_RET_VOID
 
+	if (watch_dx_dy == -1) {
+		if (getenv("X11VNC_WATCH_DX_DY")) {
+			watch_dx_dy = 1;
+		} else {
+			watch_dx_dy = 0;
+		}
+	}
+
 	X_LOCK;
-	if (use_xwarppointer) {
+	if (watch_dx_dy && cursor_x == x && cursor_y == y) {
+		;
+	} else if (use_xwarppointer) {
 		/*
 		 * off_x and off_y not needed with XWarpPointer since
 		 * window is used:
@@ -559,8 +604,8 @@ static void pipe_pointer(int mask, int x, int y, rfbClientPtr client) {
 		uinput_pointer_command(mask, x, y, client);
 	} else if (pipeinput_int == PIPEINPUT_MACOSX) {
 		macosx_pointer_command(mask, x, y, client);
-/*	} else if (pipeinput_int == PIPEINPUT_VNC) {
-		vnc_reflect_send_pointer(x, y, mask);*/
+	} else if (pipeinput_int == PIPEINPUT_VNC) {
+		vnc_reflect_send_pointer(x, y, mask);
 	}
 	if (pipeinput_fh == NULL) {
 		return;
@@ -628,6 +673,10 @@ void pointer(int mask, int x, int y, rfbClientPtr client) {
 	int sent = 0, buffer_it = 0;
 	double now;
 
+	if (threads_drop_input) {
+		return;
+	}
+
 	if (mask >= 0) {
 		got_pointer_calls++;
 	}
@@ -675,6 +724,8 @@ void pointer(int mask, int x, int y, rfbClientPtr client) {
 		y = nfix(y, dpy_y);
 	}
 
+	INPUT_LOCK;
+
 	if ((pipeinput_fh != NULL || pipeinput_int) && mask >= 0) {
 		pipe_pointer(mask, x, y, client);	/* MACOSX here. */
 		if (! pipeinput_tee) {
@@ -690,11 +741,16 @@ void pointer(int mask, int x, int y, rfbClientPtr client) {
 				button_mask_prev = button_mask;
 				button_mask = mask;
 			}
+			if (!view_only && (input.motion || input.button)) {
+				last_rfb_ptr_injected = dnow();
+			}
+			INPUT_UNLOCK;
 			return;
 		}
 	}
 
 	if (view_only) {
+		INPUT_UNLOCK;
 		return;
 	}
 
@@ -706,6 +762,7 @@ void pointer(int mask, int x, int y, rfbClientPtr client) {
 		 * to flush the event queue; there is no real pointer event.
 		 */
 		if (! input.motion && ! input.button) {
+			INPUT_UNLOCK;
 			return;
 		}
 
@@ -714,6 +771,7 @@ void pointer(int mask, int x, int y, rfbClientPtr client) {
 		last_pointer_client = client;
 
 		last_pointer_time = now;
+		last_rfb_ptr_injected = dnow();
 
 		if (blackout_ptr && blackouts) {
 			int b, ok = 1;
@@ -736,6 +794,7 @@ void pointer(int mask, int x, int y, rfbClientPtr client) {
 					blackr[b].x1, blackr[b].y1,
 					blackr[b].x2, blackr[b].y2);
 				}
+				INPUT_UNLOCK;
 				return;
 			}
 		}
@@ -750,17 +809,11 @@ void pointer(int mask, int x, int y, rfbClientPtr client) {
 	if ((use_threads && pointer_mode != 1) || pointer_flush_delay > 0.0) {
 #		define NEV 32
 		/* storage for the event queue */
-		static int mutex_init = 0;
 		static int nevents = 0;
 		static int ev[NEV][3];
 		int i;
 		/* timer things */
 		static double dt = 0.0, tmr = 0.0, maxwait = 0.4;
-
-		if (! mutex_init) {
-			INIT_MUTEX(pointerMutex);
-			mutex_init = 1;
-		}
 
 		if (pointer_flush_delay > 0.0) {
 			maxwait = pointer_flush_delay;
@@ -771,7 +824,7 @@ void pointer(int mask, int x, int y, rfbClientPtr client) {
 			}
 		}
 
-		LOCK(pointerMutex);
+		POINTER_LOCK;
 
 		/* 
 		 * If the framebuffer is being copied in another thread
@@ -806,11 +859,12 @@ void pointer(int mask, int x, int y, rfbClientPtr client) {
 					ev[i][1] = -1;
 					ev[i][2] = -1;
 				}
-				UNLOCK(pointerMutex);
 				if (debug_pointer) {
 					rfbLog("pointer(): deferring event %d"
 					    " %.4f\n", i, tmr - x11vnc_start);
 				}
+				POINTER_UNLOCK;
+				INPUT_UNLOCK;
 				return;
 			}
 		}
@@ -862,13 +916,14 @@ void pointer(int mask, int x, int y, rfbClientPtr client) {
 		dt = 0.0;
 		dtime0(&tmr);
 
-		UNLOCK(pointerMutex);
+		POINTER_UNLOCK;
 	}
 	if (mask < 0) {		/* -1 just means flush the event queue */
 		if (debug_pointer) {
 			rfbLog("pointer(): flush only.  %.4f\n",
 			    dnowx());
 		}
+		INPUT_UNLOCK;
 		return;
 	}
 
@@ -905,6 +960,7 @@ void pointer(int mask, int x, int y, rfbClientPtr client) {
 		XFlush_wr(dpy);	
 		X_UNLOCK;
 	}
+	INPUT_UNLOCK;
 }
 
 void initialize_pipeinput(void) {
@@ -986,6 +1042,8 @@ if (0) fprintf(stderr, "initialize_pipeinput: %s -- %s\n", pipeinput_str, p);
 		} else {
 			rfbLog("pipeinput: could not open: %s\n", dev);
 			rfbLogPerror("open");
+			rfbLog("You may need to be root to open %s.\n", dev);
+			rfbLog("\n");
 		}
 		return;
 	} else if (strstr(p, "UINPUT") == p) {

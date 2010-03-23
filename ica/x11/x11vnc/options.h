@@ -1,3 +1,35 @@
+/*
+   Copyright (C) 2002-2010 Karl J. Runge <runge@karlrunge.com> 
+   All rights reserved.
+
+This file is part of x11vnc.
+
+x11vnc is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or (at
+your option) any later version.
+
+x11vnc is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with x11vnc; if not, write to the Free Software
+Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA
+or see <http://www.gnu.org/licenses/>.
+
+In addition, as a special exception, Karl J. Runge
+gives permission to link the code of its release of x11vnc with the
+OpenSSL project's "OpenSSL" library (or with modified versions of it
+that use the same license as the "OpenSSL" library), and distribute
+the linked executables.  You must obey the GNU General Public License
+in all respects for all of the code used other than "OpenSSL".  If you
+modify this file, you may extend this exception to your version of the
+file, but you are not obligated to do so.  If you do not wish to do
+so, delete this exception statement from your version.
+*/
+
 #ifndef _X11VNC_OPTIONS_H
 #define _X11VNC_OPTIONS_H
 
@@ -17,11 +49,14 @@ extern int set_visual_str_to_something;
 extern char *logfile;
 extern int logfile_append;
 extern char *flagfile;
+extern char *rm_flagfile;
 extern char *passwdfile;
 extern int unixpw;
 extern int unixpw_nis;
 extern char *unixpw_list;
 extern char *unixpw_cmd;
+extern int unixpw_system_greeter;
+extern int unixpw_system_greeter_active;
 extern int use_stunnel;
 extern int stunnel_port;
 extern char *stunnel_pem;
@@ -30,9 +65,19 @@ extern int http_ssl;
 extern int ssl_no_fail;
 extern char *openssl_pem;
 extern char *ssl_certs_dir;
+extern char *enc_str;
+extern int vencrypt_mode;
+extern int vencrypt_kx;
+extern int vencrypt_enable_plain_login;
+extern int anontls_mode;
+extern int create_fresh_dhparams;
+extern char *dhparams_file;
+extern int http_try_it;
+extern int stunnel_http_port;
 extern int https_port_num;
 extern int https_port_redir;
 extern char *ssl_verify;
+extern char *ssl_crl;
 extern int ssl_initialized;
 extern int ssl_timeout_secs;
 extern char *ssh_str;
@@ -57,8 +102,11 @@ extern int opts_bg;
 extern int shared;
 extern int connect_once;
 extern int got_connect_once;
+extern int got_findauth;
 extern int deny_all;
 extern int accept_remote_cmds;
+extern char *remote_prefix;
+extern int remote_direct;
 extern int query_default;
 extern int safe_remote_only;
 extern int priv_remote;
@@ -84,6 +132,7 @@ extern char **passwd_list;
 extern int begin_viewonly;
 extern int inetd;
 extern int tightfilexfer; 
+extern int got_ultrafilexfer; 
 extern int first_conn_timeout;
 extern int ping_interval;
 extern int flash_cmap;
@@ -108,6 +157,7 @@ extern int clear_mods;
 extern int nofb;
 extern char *raw_fb_str;
 extern char *raw_fb_pixfmt;
+extern char *raw_fb_full_str;
 extern char *freqtab;
 extern char *pipeinput_str;
 extern char *pipeinput_opts;
@@ -129,6 +179,8 @@ extern int macosx_icon_anim_time;
 
 extern unsigned long subwin;
 extern int subwin_wait_mapped;
+extern int freeze_when_obscured;
+extern int subwin_obscured;
 
 extern int debug_xevents;
 extern int debug_xdamage;
@@ -182,6 +234,7 @@ extern int ncache_xrootpmap;
 extern int ncache_keep_anims;
 extern int ncache_old_wm;
 extern int macosx_ncache_macmenu;
+extern int macosx_us_kbd;
 extern int ncache_beta_tester;
 extern int ncdb;
 
@@ -263,7 +316,9 @@ extern double wait_ui;
 extern double slow_fb;
 extern double xrefresh;
 extern int wait_bog;
+extern int extra_fbur;
 extern int defer_update;
+extern int set_defer;
 extern int got_defer;
 extern int got_deferupdate;
 
@@ -285,6 +340,8 @@ extern int no_ultra_dpms;
 extern int no_ultra_ext;
 extern int saw_ultra_chat;
 extern int saw_ultra_file;
+extern int chat_window;
+extern rfbClientPtr chat_window_client;
 
 extern int watch_selection;
 extern int watch_primary;
@@ -312,6 +369,8 @@ extern int quiet;
 extern int verbose;
 
 extern int use_threads;
+extern int started_rfbRunEventLoop;
+extern int threads_drop_input;
 
 extern int got_noxwarppointer;
 extern int got_rfbport;

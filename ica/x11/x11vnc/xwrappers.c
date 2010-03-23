@@ -1,3 +1,35 @@
+/*
+   Copyright (C) 2002-2010 Karl J. Runge <runge@karlrunge.com> 
+   All rights reserved.
+
+This file is part of x11vnc.
+
+x11vnc is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or (at
+your option) any later version.
+
+x11vnc is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with x11vnc; if not, write to the Free Software
+Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA
+or see <http://www.gnu.org/licenses/>.
+
+In addition, as a special exception, Karl J. Runge
+gives permission to link the code of its release of x11vnc with the
+OpenSSL project's "OpenSSL" library (or with modified versions of it
+that use the same license as the "OpenSSL" library), and distribute
+the linked executables.  You must obey the GNU General Public License
+in all respects for all of the code used other than "OpenSSL".  If you
+modify this file, you may extend this exception to your version of the
+file, but you are not obligated to do so.  If you do not wish to do
+so, delete this exception statement from your version.
+*/
+
 /* -- xwrappers.c -- */
 
 #include "x11vnc.h"
@@ -9,6 +41,7 @@
 #include "macosx.h"
 
 int xshm_present = 0;
+int xshm_opcode = 0;
 int xtest_present = 0;
 int xtrap_present = 0;
 int xrecord_present = 0;
@@ -32,6 +65,7 @@ XImage *XShmCreateImage_wr(Display* disp, Visual* vis, unsigned int depth,
 Status XShmAttach_wr(Display *disp, XShmSegmentInfo *shminfo);
 Status XShmDetach_wr(Display *disp, XShmSegmentInfo *shminfo);
 Bool XShmQueryExtension_wr(Display *disp);
+int XShmGetEventBase_wr(Display *disp);
 
 XImage *xreadscreen(Display *disp, Drawable d, int x, int y,
     unsigned int width, unsigned int height, Bool show_cursor);
@@ -187,6 +221,7 @@ Status XShmAttach_wr(Display *disp, XShmSegmentInfo *shminfo) {
 
 Status XShmDetach_wr(Display *disp, XShmSegmentInfo *shminfo) {
 #if LIBVNCSERVER_HAVE_XSHM
+	if (getenv("X11VNC_SHM_DEBUG")) fprintf(stderr, "XShmDetach_wr: %p disp: %p\n", (void *)shminfo, (void *)disp);
 	return XShmDetach(disp, shminfo);
 #else
 	if (!disp || !shminfo) {}
@@ -200,6 +235,15 @@ Bool XShmQueryExtension_wr(Display *disp) {
 #else
 	if (!disp) {}
 	return False;
+#endif
+}
+
+int XShmGetEventBase_wr(Display *disp) {
+#if LIBVNCSERVER_HAVE_XSHM
+	return XShmGetEventBase(disp);
+#else
+	if (!disp) {}
+	return 0;
 #endif
 }
 
@@ -224,7 +268,7 @@ XImage *xreadscreen(Display *disp, Drawable d, int x, int y,
 	}
 #  else
 	/* unused vars warning: */
-	if (disp || d || x || y || width || height || show_cursor) {} 
+	if (disp || d || x || y || width || height || show_cursor) {}
 
 	return NULL;
 #  endif
@@ -340,6 +384,160 @@ XImage *XCreateImage_wr(Display *disp, Visual *visual, unsigned int depth,
 #endif	/* NO_X11 */
 }
 
+static void copy_raw_fb_low_bpp(XImage *dest, int x, int y, unsigned int w,
+    unsigned int h) {
+	char *src, *dst;
+	unsigned int line;
+	static char *buf = NULL;
+	static int buflen = -1;
+	int bpl = wdpy_x * raw_fb_native_bpp / 8;
+	int n, ix, len, del, sz = wdpy_x * raw_fb_expand_bytes;
+
+	unsigned int rm_n = raw_fb_native_red_mask;
+	unsigned int gm_n = raw_fb_native_green_mask;
+	unsigned int bm_n = raw_fb_native_blue_mask;
+	unsigned int rm_f = main_red_mask;
+	unsigned int gm_f = main_green_mask;
+	unsigned int bm_f = main_blue_mask;
+
+	unsigned int rs_n = raw_fb_native_red_shift;
+	unsigned int gs_n = raw_fb_native_green_shift;
+	unsigned int bs_n = raw_fb_native_blue_shift;
+	unsigned int rs_f = main_red_shift;
+	unsigned int gs_f = main_green_shift;
+	unsigned int bs_f = main_blue_shift;
+
+	unsigned int rx_n = raw_fb_native_red_max;
+	unsigned int gx_n = raw_fb_native_green_max;
+	unsigned int bx_n = raw_fb_native_blue_max;
+	unsigned int rx_f = main_red_max;
+	unsigned int gx_f = main_green_max;
+	unsigned int bx_f = main_blue_max;
+
+	static unsigned int msk[8];
+	static int last_bpp = -1;
+	static int cga = -1;
+
+	if (rm_f | gm_f | bm_f) {}
+
+	if (cga < 0) {
+		if (getenv("RAWFB_CGA")) {
+			cga = 1;
+		} else {
+			cga = 0;
+		}
+	}
+
+	if (sz > buflen || buf == NULL) {
+		if (buf) {
+			free(buf);
+		}
+		buflen = sz + 1000;
+		buf = (char *) malloc(buflen);
+	}
+
+	if (clipshift && ! use_snapfb) {
+		x += coff_x;
+		y += coff_y;
+	}
+
+	if (last_bpp != raw_fb_native_bpp) {
+		int br;
+		for (br = 0; br < 8; br++) {
+			unsigned int pbit, k, m = 0;
+			
+			for (k=0; k < (unsigned int) raw_fb_native_bpp; k++) {
+				pbit = 1 << (br+k);
+				m |= pbit;
+			}
+			msk[br] = m;
+		}
+		last_bpp = raw_fb_native_bpp;
+	}
+
+	dst = dest->data;
+if (0) fprintf(stderr, "x=%d y=%d w=%d h=%d bpl=%d d_bpl=%d-%dx%dx%d/%d %p\n",
+    x, y, w, h, bpl, dest->bytes_per_line, dest->width, dest->height, dest->bits_per_pixel, dest->depth, dst);
+
+	for (line = 0; line < h; line++) {
+
+		if (! raw_fb_seek) {
+			/* mmap */
+			src = raw_fb_addr + raw_fb_offset + bpl*(y+line);
+
+			memcpy(buf, src, bpl);
+		} else {
+			/* lseek */
+			off_t off;
+			off = (off_t) (raw_fb_offset + bpl*(y+line));
+
+			lseek(raw_fb_fd, off, SEEK_SET);
+
+			len = bpl;
+			del = 0;
+			while (len > 0) {
+				n = read(raw_fb_fd, buf + del, len);
+
+				if (n > 0) {
+					del += n;
+					len -= n;
+				} else if (n == 0) {
+					break;
+				} else if (errno != EINTR && errno != EAGAIN) {
+					break;
+				}
+			}
+		}
+		for (ix = 0; ix < (int) w; ix++) {
+			int bx = (x + ix) * raw_fb_native_bpp;
+			int ib = bx / 8;
+			int br = bx - ib * 8;
+			unsigned char val;
+
+			val = *((unsigned char*) (buf + ib));
+
+			val = msk[br] & val;
+			val = val >> br;
+
+			if (cga) {
+				/* this is expt for CGA */
+				double r, g, b;
+				int ir, ig, ib;
+				r = (2./3)*(val & 4) + (1./3)*(val & 8);
+				g = (2./3)*(val & 2) + (1./3)*(val & 8);
+				b = (2./3)*(val & 1) + (1./3)*(val & 8);
+				if (val == 6) {
+					g = g/2.;
+				}
+				ir = rx_f * r;
+				ig = gx_f * g;
+				ib = bx_f * b;
+				val = (ib << bs_f) | (ig << gs_f) | (ir << rs_f);
+			} else {
+				unsigned char rval, gval, bval;
+				
+				rval = (val & rm_n) >> rs_n;
+				gval = (val & gm_n) >> gs_n;
+				bval = (val & bm_n) >> bs_n;
+
+				rval = (rx_f * rval) / rx_n;
+				gval = (gx_f * gval) / gx_n;
+				bval = (bx_f * bval) / bx_n;
+
+				rval = rval << rs_f;
+				gval = gval << gs_f;
+				bval = bval << bs_f;
+
+				val = rval | gval | bval;
+			}
+
+			*(dst+ix) = (char) val;
+		}
+
+		dst += dest->bytes_per_line;
+	}
+}
+
 static void copy_raw_fb_24_to_32(XImage *dest, int x, int y, unsigned int w,
     unsigned int h) {
 	/*
@@ -403,6 +601,9 @@ static void copy_raw_fb_24_to_32(XImage *dest, int x, int y, unsigned int w,
 	} else if (! raw_fb_seek) {
 		/* mmap */
 		bpl = raw_fb_bytes_per_line;
+		if (clipshift && wdpy_x != cdpy_x) {
+			bpl = wdpy_x * 3;
+		}
 		src = raw_fb_addr + raw_fb_offset + bpl*y + 3*x;
 		dst = dest->data;
 
@@ -428,6 +629,9 @@ static void copy_raw_fb_24_to_32(XImage *dest, int x, int y, unsigned int w,
 		/* lseek */
 		off_t off;
 		bpl = raw_fb_bytes_per_line;
+		if (clipshift && wdpy_x != cdpy_x) {
+			bpl = wdpy_x * 3;
+		}
 		off = (off_t) (raw_fb_offset + bpl*y + 3*x);
 
 		lseek(raw_fb_fd, off, SEEK_SET);
@@ -473,11 +677,22 @@ void copy_raw_fb(XImage *dest, int x, int y, unsigned int w, unsigned int h) {
 	char *src, *dst;
 	unsigned int line;
 	int pixelsize = bpp/8;
-	int bpl = wdpy_x * pixelsize;
+	static int db = -1;
 
 	if (xform24to32) {
 		copy_raw_fb_24_to_32(dest, x, y, w, h);
 		return;
+	}
+	if (raw_fb_native_bpp < 8) {
+		copy_raw_fb_low_bpp(dest, x, y, w, h);
+		return;
+	}
+	if (db < 0) {
+		if (getenv("DEBUG_COPY_RAW_FB")) {
+			db = atoi(getenv("DEBUG_COPY_RAW_FB"));
+		} else {
+			db = 0;
+		}
 	}
 
 	if (clipshift && ! use_snapfb) {
@@ -485,10 +700,13 @@ void copy_raw_fb(XImage *dest, int x, int y, unsigned int w, unsigned int h) {
 		y += coff_y;
 	}
 
+
 	if (use_snapfb && dest != snap) {
 		/* snapfb src */
 		src = snap->data + snap->bytes_per_line*y + pixelsize*x;
 		dst = dest->data;
+
+if (db) fprintf(stderr, "snap->bytes_per_line: %d, dest->bytes_per_line: %d, w: %d h: %d dpy_x: %d wdpy_x: %d cdpy_x: %d\n", snap->bytes_per_line, dest->bytes_per_line, w, h, dpy_x, wdpy_x, cdpy_x);
 
 		for (line = 0; line < h; line++) {
 			memcpy(dst, src, w * pixelsize);
@@ -498,9 +716,16 @@ void copy_raw_fb(XImage *dest, int x, int y, unsigned int w, unsigned int h) {
 
 	} else if (! raw_fb_seek) {
 		/* mmap */
-		bpl = raw_fb_bytes_per_line;
+		int bpl = raw_fb_bytes_per_line;
+
+		if (clipshift && wdpy_x != cdpy_x) {
+			bpl = wdpy_x * pixelsize;
+		}
+
 		src = raw_fb_addr + raw_fb_offset + bpl*y + pixelsize*x;
 		dst = dest->data;
+
+if (db) fprintf(stderr, "bpl: %d, dest->bytes_per_line: %d, w: %d h: %d dpy_x: %d wdpy_x: %d cdpy_x: %d\n", bpl, dest->bytes_per_line, w, h, dpy_x, wdpy_x, cdpy_x);
 
 		for (line = 0; line < h; line++) {
 			memcpy(dst, src, w * pixelsize);
@@ -512,20 +737,24 @@ void copy_raw_fb(XImage *dest, int x, int y, unsigned int w, unsigned int h) {
 		/* lseek */
 		int n, len, del, sz = w * pixelsize;
 		off_t off;
-		bpl = raw_fb_bytes_per_line;
+		int bpl = raw_fb_bytes_per_line;
+
+		if (clipshift && wdpy_x != cdpy_x) {
+			bpl = wdpy_x * pixelsize;
+		}
+
 		off = (off_t) (raw_fb_offset + bpl*y + pixelsize*x);
 
 		lseek(raw_fb_fd, off, SEEK_SET);
 		dst = dest->data;
 
-if (0) fprintf(stderr, "lseek 0 ps: %d  sz: %d off: %d bpl: %d\n", pixelsize, sz, (int) off, bpl);
+if (db) fprintf(stderr, "lseek 0 ps: %d  sz: %d off: %d bpl: %d\n", pixelsize, sz, (int) off, bpl);
 
 		for (line = 0; line < h; line++) {
 			len = sz;
 			del = 0;
 			while (len > 0) {
 				n = read(raw_fb_fd, dst + del, len);
-if (0) fprintf(stderr, "len: %d n: %d\n", len, n);
 
 				if (n > 0) {
 					del += n;
@@ -537,7 +766,6 @@ if (0) fprintf(stderr, "len: %d n: %d\n", len, n);
 				}
 			}
 			if (bpl > sz) {
-if (0) fprintf(stderr, "bpl>sz %d %d\n", bpl, sz);
 				off = (off_t) (bpl - sz);
 				lseek(raw_fb_fd, off, SEEK_CUR);
 			}
@@ -631,7 +859,7 @@ void XTRAP_FakeKeyEvent_wr(Display* dpy, KeyCode key, Bool down,
 		return;
 	}
 	/* unused vars warning: */
-	if (key || down || delay) {} 
+	if (key || down || delay) {}
 
 # if LIBVNCSERVER_HAVE_LIBXTRAP
 	XESimulateXEventRequest(trap_ctx, down ? KeyPress : KeyRelease,
@@ -722,7 +950,7 @@ void XTRAP_FakeButtonEvent_wr(Display* dpy, unsigned int button, Bool is_press,
 		return;
 	}
 	/* unused vars warning: */
-	if (button || is_press || delay) {} 
+	if (button || is_press || delay) {}
 
 #if LIBVNCSERVER_HAVE_LIBXTRAP
 	XESimulateXEventRequest(trap_ctx,
@@ -788,7 +1016,7 @@ void XTRAP_FakeMotionEvent_wr(Display* dpy, int screen, int x, int y,
 		return;
 	}
 	/* unused vars warning: */
-	if (dpy || screen || x || y || delay) {} 
+	if (dpy || screen || x || y || delay) {}
 
 #if LIBVNCSERVER_HAVE_LIBXTRAP
 	XESimulateXEventRequest(trap_ctx, MotionNotify, 0, x, y, 0);
@@ -891,7 +1119,7 @@ Bool XETrapQueryExtension_wr(Display *dpy, int *ev, int *er, int *op) {
 	    (INT32 *)op);
 #else
 	/* unused vars warning: */
-	if (ev || er || op) {} 
+	if (ev || er || op) {}
 	return False;
 #endif
 }
@@ -913,7 +1141,7 @@ int XTestGrabControl_wr(Display *dpy, Bool impervious) {
 int XTRAP_GrabControl_wr(Display *dpy, Bool impervious) {
 	if (! xtrap_present) {
 		/* unused vars warning: */
-		if (dpy || impervious) {} 
+		if (dpy || impervious) {}
 		return 0;
 	}
 	RAWFB_RET(0)
@@ -1091,6 +1319,24 @@ Display *XOpenDisplay_wr(char *display_name) {
 
 	d = XOpenDisplay(display_name);
 	if (db) fprintf(stderr, "XOpenDisplay_wr: %s  %p\n", display_name, (void *)d);
+
+	if (d == NULL) {
+	    if (!getenv("NO_XAUTHLOCALHOSTNAME")) {
+		if (!getenv("XAUTHLOCALHOSTNAME")) {
+			rfbLog("XOpenDisplay(\"%s\") failed.\n",
+			    display_name ? display_name : "");
+			rfbLog("Trying again with XAUTHLOCALHOSTNAME=localhost ...\n");
+			set_env("XAUTHLOCALHOSTNAME", "localhost");
+			d = XOpenDisplay(display_name);
+			if (0) {
+				char *ptr = getenv("XAUTHLOCALHOSTNAME");
+				if (ptr) {
+					*(ptr-2) = '_';	/* yow */
+				}
+			}
+		}
+	    }
+	}
 
 	xauth_raw(0);
 

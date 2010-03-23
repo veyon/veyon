@@ -8,6 +8,7 @@ if BUILD_LINUX
 IVS_INCLUDES = -I$(srcdir)/x11 -I$(srcdir)/x11/x11vnc -I$(srcdir)/x11/libvncserver
 
 IVS_SRCS =	$(srcdir)/x11/x11vnc.c				\
+		$(srcdir)/x11/x11vnc/appshare.c			\
 		$(srcdir)/x11/libvncserver/auth.c		\
 		$(srcdir)/x11/libvncserver/cargs.c		\
 		$(srcdir)/x11/libvncserver/corre.c		\
@@ -29,8 +30,6 @@ IVS_SRCS =	$(srcdir)/x11/x11vnc.c				\
 		$(srcdir)/x11/libvncserver/translate.c		\
 		$(srcdir)/x11/libvncserver/ultra.c		\
 		$(srcdir)/x11/libvncserver/vncauth.c		\
-		$(srcdir)/x11/rfb/rfbregion.h			\
-		$(srcdir)/x11/rfb/default8x16.h			\
 		$(srcdir)/x11/libvncserver/d3des.h		\
 		$(srcdir)/x11/libvncserver/private.h		\
 		$(srcdir)/x11/libvncserver/scale.h		\
@@ -41,7 +40,9 @@ IVS_SRCS =	$(srcdir)/x11/x11vnc.c				\
 		$(srcdir)/x11/libvncserver/zrle.c		\
 		$(srcdir)/x11/libvncserver/zrleoutstream.c	\
 		$(srcdir)/x11/libvncserver/zrlepalettehelper.c	\
-		$(srcdir)/x11/libvncserver/tight.c
+		$(srcdir)/x11/libvncserver/tight.c		\
+		$(srcdir)/x11/rfb/rfbregion.h			\
+		$(srcdir)/x11/rfb/default8x16.h
 
 
 if HAVE_LIBPTHREAD

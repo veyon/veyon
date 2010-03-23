@@ -269,6 +269,18 @@ typedef char rfbProtocolVersionMsg[13];	/* allow extra byte for null */
 #define rfbTight 16
 #define rfbUltra 17
 #define rfbTLS 18
+#define rfbVeNCrypt 19
+#define rfbMSLogon 0xfffffffa
+
+#define rfbVeNCryptPlain 256
+#define rfbVeNCryptTLSNone 257
+#define rfbVeNCryptTLSVNC 258
+#define rfbVeNCryptTLSPlain 259
+#define rfbVeNCryptX509None 260
+#define rfbVeNCryptX509VNC 261
+#define rfbVeNCryptX509Plain 262
+#define rfbVeNCryptX509SASL 263
+#define rfbVeNCryptTLSSASL 264
 
 /*
  * rfbConnFailed:	For some reason the connection failed (e.g. the server

@@ -191,3 +191,18 @@ rfbEncryptBytes(unsigned char *bytes, char *passwd)
 	rfbDes(bytes+i, bytes+i);
     }
 }
+
+void
+rfbEncryptBytes2(unsigned char *where, const int length, unsigned char *key) {
+  int i, j;
+  rfbDesKey(key, EN0);
+  for (i = 0; i< 8; i++)
+    where[i] ^= key[i];
+  rfbDes(where, where);
+  for (i = 8; i < length; i += 8) {
+    for (j = 0; j < 8; j++)
+      where[i + j] ^= where[i + j - 8];
+      rfbDes(where + i, where + i);
+  }
+}
+

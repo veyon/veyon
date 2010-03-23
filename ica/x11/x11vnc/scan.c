@@ -1,3 +1,35 @@
+/*
+   Copyright (C) 2002-2010 Karl J. Runge <runge@karlrunge.com> 
+   All rights reserved.
+
+This file is part of x11vnc.
+
+x11vnc is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or (at
+your option) any later version.
+
+x11vnc is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with x11vnc; if not, write to the Free Software
+Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA
+or see <http://www.gnu.org/licenses/>.
+
+In addition, as a special exception, Karl J. Runge
+gives permission to link the code of its release of x11vnc with the
+OpenSSL project's "OpenSSL" library (or with modified versions of it
+that use the same license as the "OpenSSL" library), and distribute
+the linked executables.  You must obey the GNU General Public License
+in all respects for all of the code used other than "OpenSSL".  If you
+modify this file, you may extend this exception to your version of the
+file, but you are not obligated to do so.  If you do not wish to do
+so, delete this exception statement from your version.
+*/
+
 /* -- scan.c -- */
 
 #include "x11vnc.h"
@@ -24,7 +56,7 @@ void free_tiles(void);
 void shm_delete(XShmSegmentInfo *shm);
 void shm_clean(XShmSegmentInfo *shm, XImage *xim);
 void initialize_polling_images(void);
-void scale_rect(double factor, int blend, int interpolate, int Bpp,
+void scale_rect(double factor_x, double factor_y, int blend, int interpolate, int Bpp,
     char *src_fb, int src_bytes_per_line, char *dst_fb, int dst_bytes_per_line,
     int Nx, int Ny, int nx, int ny, int X1, int Y1, int X2, int Y2, int mark);
 void scale_and_mark_rect(int X1, int Y1, int X2, int Y2, int mark);
@@ -341,11 +373,16 @@ static int shm_create(XShmSegmentInfo *shm, XImage **ximg_ptr, int w, int h,
 
 void shm_delete(XShmSegmentInfo *shm) {
 #if LIBVNCSERVER_HAVE_XSHM
+	if (getenv("X11VNC_SHM_DEBUG")) fprintf(stderr, "shm_delete:    %p\n", (void *) shm);
 	if (shm != NULL && shm->shmaddr != (char *) -1) {
 		shmdt(shm->shmaddr);
 	}
 	if (shm != NULL && shm->shmid != -1) {
 		shmctl(shm->shmid, IPC_RMID, 0);
+	}
+	if (shm != NULL) {
+		shm->shmaddr = (char *) -1;
+		shm->shmid = -1;
 	}
 #else
 	if (!shm) {}
@@ -428,7 +465,7 @@ void initialize_polling_images(void) {
 		if (! shm_create(&fullscreen_shm, &fullscreen, dpy_x,
 		    dpy_y/fs_factor, "fullscreen")) {
 			clean_up_exit(1);
-		} 
+		}
 	}
 	if (use_snapfb) {
 		if (! fs_factor) {
@@ -437,7 +474,7 @@ void initialize_polling_images(void) {
 		} else if (! shm_create(&snaprect_shm, &snaprect, dpy_x,
 		    dpy_y/fs_factor, "snaprect")) {
 			clean_up_exit(1);
-		} 
+		}
 	}
 
 	/*
@@ -737,7 +774,7 @@ weights for this scaled pixel are:
  * the loop over the 4 pixels.
  */
 
-void scale_rect(double factor, int blend, int interpolate, int Bpp,
+void scale_rect(double factor_x, double factor_y, int blend, int interpolate, int Bpp,
     char *src_fb, int src_bytes_per_line, char *dst_fb, int dst_bytes_per_line,
     int Nx, int Ny, int nx, int ny, int X1, int Y1, int X2, int Y2, int mark) {
 /*
@@ -773,7 +810,7 @@ void scale_rect(double factor, int blend, int interpolate, int Bpp,
 	int b, k;
 	double pixave[4];	/* for averaging pixel values */
 
-	if (factor <= 1.0) {
+	if (factor_x <= 1.0 && factor_y <= 1.0) {
 		shrink = 1;
 	} else {
 		shrink = 0;
@@ -787,8 +824,8 @@ void scale_rect(double factor, int blend, int interpolate, int Bpp,
 	 * This new way is probably the best we can do, take the inverse
 	 * of the scaling factor to double precision.
 	 */
-	dx = 1.0/factor;
-	dy = 1.0/factor;
+	dx = 1.0/factor_x;
+	dy = 1.0/factor_y;
 
 	/*
 	 * There is some speedup if the pixel weights are constant, so
@@ -797,15 +834,18 @@ void scale_rect(double factor, int blend, int interpolate, int Bpp,
 	 * If scale = 1/n and n divides Nx and Ny, the pixel weights
 	 * are constant (e.g. 1/2 => equal on 2x2 square).
 	 */
-	if (factor != last_factor || Nx != last_Nx || Ny != last_Ny) {
+	if (factor_x != last_factor || Nx != last_Nx || Ny != last_Ny) {
 		constant_weights = -1;
 		mag_int = -1;
 		last_Nx = Nx;
 		last_Ny = Ny;
-		last_factor = factor;
+		last_factor = factor_x;
 	}
+	if (constant_weights < 0 && factor_x != factor_y) {
+		constant_weights = 0;
+		mag_int = 0;
 
-	if (constant_weights < 0) {
+	} else if (constant_weights < 0) {
 		int n = 0;
 
 		constant_weights = 0;
@@ -814,7 +854,7 @@ void scale_rect(double factor, int blend, int interpolate, int Bpp,
 		for (i = 2; i<=128; i++) {
 			double test = ((double) 1)/ i;
 			double diff, eps = 1.0e-7;
-			diff = factor - test;
+			diff = factor_x - test;
 			if (-eps < diff && diff < eps) {
 				n = i;
 				break;
@@ -839,18 +879,18 @@ void scale_rect(double factor, int blend, int interpolate, int Bpp,
 		for (i = 2; i<=32; i++) {
 			double test = (double) i;
 			double diff, eps = 1.0e-7;
-			diff = factor - test;
+			diff = factor_x - test;
 			if (-eps < diff && diff < eps) {
 				n = i;
 				break;
 			}
 		}
-		if (! blend && factor > 1.0 && n) {
+		if (! blend && factor_x > 1.0 && n) {
 			mag_int = n;
 		}
 	}
 
-	if (mark && factor > 1.0 && blend) {
+	if (mark && factor_x > 1.0 && blend) {
 		/*
 		 * kludge: correct for interpolating blurring leaking
 		 * up or left 1 destination pixel.
@@ -1296,7 +1336,7 @@ void scale_and_mark_rect(int X1, int Y1, int X2, int Y2, int mark) {
 	dst_fb = rfb_fb;
 	dst_bpl = rfb_bytes_per_line;
 
-	scale_rect(scale_fac, scaling_blend, scaling_interpolate, fac * Bpp,
+	scale_rect(scale_fac_x, scale_fac_y, scaling_blend, scaling_interpolate, fac * Bpp,
 	    src_fb, fac * main_bytes_per_line, dst_fb, dst_bpl, dpy_x, dpy_y,
 	    scaled_x, scaled_y, X1, Y1, X2, Y2, mark);
 }
@@ -1735,6 +1775,7 @@ static int copy_tiles(int tx, int ty, int nt) {
 	/* read in the whole tile run at once: */
 	copy_image(tile_row[nt], x, y, size_x, size_y);
 	XRANDR_CHK_TRAP_RET(-1, "copy_tile-chk");
+
 
 	X_UNLOCK;
 
@@ -2413,6 +2454,226 @@ int copy_screen(void) {
 	return 0;
 }
 
+#include <rfb/default8x16.h>
+
+/*
+ * Color values from the vcsadump program.
+ * void dumpcss(FILE *fp, char *attribs_used)
+ * char *colormap[] = {
+ *    "#000000", "#0000AA", "#00AA00", "#00AAAA", "#AA0000", "#AA00AA", "#AA5500", "#AAAAAA",
+ *    "#555555", "#5555AA", "#55FF55", "#55FFFF", "#FF5555", "#FF55FF", "#FFFF00", "#FFFFFF" };
+ */
+
+static unsigned char console_cmap[16*3]={
+/*  0 */	0x00, 0x00, 0x00,
+/*  1 */	0x00, 0x00, 0xAA,
+/*  2 */	0x00, 0xAA, 0x00,
+/*  3 */	0x00, 0xAA, 0xAA,
+/*  4 */	0xAA, 0x00, 0x00,
+/*  5 */	0xAA, 0x00, 0xAA,
+/*  6 */	0xAA, 0x55, 0x00,
+/*  7 */	0xAA, 0xAA, 0xAA,
+/*  8 */	0x55, 0x55, 0x55,
+/*  9 */	0x55, 0x55, 0xAA,
+/* 10 */	0x55, 0xFF, 0x55,
+/* 11 */	0x55, 0xFF, 0xFF,
+/* 12 */	0xFF, 0x55, 0x55,
+/* 13 */	0xFF, 0x55, 0xFF,
+/* 14 */	0xFF, 0xFF, 0x00,
+/* 15 */	0xFF, 0xFF, 0xFF
+};
+  
+static void snap_vcsa_rawfb(void) {
+	int n;
+	char *dst;
+	char buf[32];
+	int i, len, del;
+	unsigned char rows, cols, xpos, ypos;
+	static int prev_rows = -1, prev_cols = -1;
+	static unsigned char prev_xpos = -1, prev_ypos = -1;
+	static char *vcsabuf  = NULL;
+	static char *vcsabuf0 = NULL;
+	static unsigned int color_tab[16];
+	static int Cw = 8, Ch = 16;
+	static int db = -1, first = 1;
+	int created = 0;
+	rfbScreenInfo s;
+	rfbScreenInfoPtr fake_screen = &s;
+	int Bpp = raw_fb_native_bpp / 8;
+
+	if (db < 0) {
+		if (getenv("X11VNC_DEBUG_VCSA")) {
+			db = atoi(getenv("X11VNC_DEBUG_VCSA"));
+		} else {
+			db = 0;
+		}
+	}
+
+	if (first) {
+		unsigned int rm = raw_fb_native_red_mask;
+		unsigned int gm = raw_fb_native_green_mask;
+		unsigned int bm = raw_fb_native_blue_mask;
+		unsigned int rs = raw_fb_native_red_shift;
+		unsigned int gs = raw_fb_native_green_shift;
+		unsigned int bs = raw_fb_native_blue_shift;
+		unsigned int rx = raw_fb_native_red_max;
+		unsigned int gx = raw_fb_native_green_max;
+		unsigned int bx = raw_fb_native_blue_max;
+
+		for (i=0; i < 16; i++) {
+			int r = console_cmap[3*i+0];
+			int g = console_cmap[3*i+1];
+			int b = console_cmap[3*i+2];
+			r = rx * r / 255;
+			g = gx * g / 255;
+			b = bx * b / 255;
+			color_tab[i] = (r << rs) | (g << gs) | (b << bs);
+			if (db) fprintf(stderr, "cmap[%02d] 0x%08x  %04d %04d %04d\n", i, color_tab[i], r, g, b); 
+			if (i != 0 && getenv("RAWFB_VCSA_BW")) {
+				color_tab[i] = rm | gm | bm;
+			}
+		}
+	}
+	first = 0;
+
+	lseek(raw_fb_fd, 0, SEEK_SET);
+	len = 4;
+	del = 0;
+	memset(buf, 0, sizeof(buf));
+	while (len > 0) {
+		n = read(raw_fb_fd, buf + del, len);
+		if (n > 0) {
+			del += n;
+			len -= n;
+		} else if (n == 0) {
+			break;
+		} else if (errno != EINTR && errno != EAGAIN) {
+			break;
+		}
+	}
+
+	rows = (unsigned char) buf[0];
+	cols = (unsigned char) buf[1];
+	xpos = (unsigned char) buf[2];
+	ypos = (unsigned char) buf[3];
+
+	if (db) fprintf(stderr, "rows=%d cols=%d xpos=%d ypos=%d Bpp=%d\n", rows, cols, xpos, ypos, Bpp);
+	if (rows == 0 || cols == 0) {
+		usleep(100 * 1000);
+		return;
+	}
+
+	if (vcsabuf == NULL || prev_rows != rows || prev_cols != cols) {
+		if (vcsabuf) {
+			free(vcsabuf);
+			free(vcsabuf0);
+		}
+		vcsabuf  = (char *) calloc(2 * rows * cols, 1);
+		vcsabuf0 = (char *) calloc(2 * rows * cols, 1);
+		created = 1;
+
+		if (prev_rows != -1 && prev_cols != -1) {
+			do_new_fb(1);
+		}
+
+		prev_rows = rows;
+		prev_cols = cols;
+	}
+
+	if (!rfbEndianTest) {
+		unsigned char tc = rows;
+		rows = cols;
+		cols = tc;
+
+		tc = xpos;
+		xpos = ypos;
+		ypos = tc;
+	}
+
+	len = 2 * rows * cols;
+	del = 0;
+	memset(vcsabuf, 0, len);
+	while (len > 0) {
+		n = read(raw_fb_fd, vcsabuf + del, len);
+		if (n > 0) {
+			del += n;
+			len -= n;
+		} else if (n == 0) {
+			break;
+		} else if (errno != EINTR && errno != EAGAIN) {
+			break;
+		}
+	}
+
+	fake_screen->frameBuffer = snap->data;
+	fake_screen->paddedWidthInBytes = snap->bytes_per_line;
+	fake_screen->serverFormat.bitsPerPixel = raw_fb_native_bpp;
+	fake_screen->width = snap->width;
+	fake_screen->height = snap->height;
+
+	for (i=0; i < rows * cols; i++) {
+		int ix, iy, x, y, w, h;
+		unsigned char chr = 0;
+		unsigned char attr;
+		unsigned int fore, back;
+		unsigned short *usp;
+		unsigned int *uip;
+		chr  = (unsigned char) vcsabuf[2*i];
+		attr = vcsabuf[2*i+1];
+
+		iy = i / cols;
+		ix = i - iy * cols;
+
+		if (ix == prev_xpos && iy == prev_ypos) {
+			;
+		} else if (ix == xpos && iy == ypos) {
+			;
+		} else if (!created && chr == vcsabuf0[2*i] && attr == vcsabuf0[2*i+1]) {
+			continue;
+		}
+
+		if (!rfbEndianTest) {
+			unsigned char tc = chr;
+			chr = attr;
+			attr = tc;
+		}
+
+		y = iy * Ch;
+		x = ix * Cw;
+		dst = snap->data + y * snap->bytes_per_line + x * Bpp;
+
+		fore = color_tab[attr & 0xf];
+		back = color_tab[(attr >> 4) & 0x7];
+
+		if (ix == xpos && iy == ypos) {
+			unsigned int ti = fore;
+			fore = back;
+			back = ti;
+		}
+
+		for (h = 0; h < Ch; h++) {
+			if (Bpp == 1) {
+				memset(dst, back, Cw);
+			} else if (Bpp == 2) {
+				for (w = 0; w < Cw; w++) {
+					usp = (unsigned short *) (dst + w*Bpp); 
+					*usp = (unsigned short) back;
+				}
+			} else if (Bpp == 4) {
+				for (w = 0; w < Cw; w++) {
+					uip = (unsigned int *) (dst + w*Bpp); 
+					*uip = (unsigned int) back;
+				}
+			}
+			dst += snap->bytes_per_line;
+		}
+		rfbDrawChar(fake_screen, &default8x16Font, x, y + Ch, chr, fore);
+	}
+	memcpy(vcsabuf0, vcsabuf, 2 * rows * cols); 
+	prev_xpos = xpos;
+	prev_ypos = ypos;
+}
+
 static void snap_all_rawfb(void) {
 	int pixelsize = bpp/8;
 	int n, sz;
@@ -2505,7 +2766,9 @@ int copy_snap(void) {
 		if (raw_fb_bytes_per_line != snap->bytes_per_line) {
 			read_all_at_once = 0;
 		}
-		if (read_all_at_once) {
+		if (raw_fb_full_str && strstr(raw_fb_full_str, "/dev/vcsa")) {
+			snap_vcsa_rawfb();
+		} else if (read_all_at_once) {
 			snap_all_rawfb();
 		} else {
 			/* this goes line by line, XXX not working for video */
@@ -2546,6 +2809,7 @@ if (db && snapcnt++ < 5) rfbLog("rawfb copy_snap took: %.5f secs\n", dnow() - st
 	}
 
 	X_UNLOCK;
+
 	dt = dtime(&dt);
 	if (first) {
 		rfbLog("copy_snap: time for -snapfb snapshot: %.3f sec\n", dt);
@@ -2623,7 +2887,7 @@ static void nap_set(int tile_cnt) {
 	if (! nap_ok && client_count) {
 		if(now > last_fb_bytes_sent + no_fbu_blank) {
 			if (debug_tiles > 1) {
-				printf("nap_set: nap_ok=1: now: %d last: %d\n",
+				fprintf(stderr, "nap_set: nap_ok=1: now: %d last: %d\n",
 				    (int) now, (int) last_fb_bytes_sent);
 			}
 			nap_ok = 1;
@@ -2661,6 +2925,27 @@ void nap_sleep(int ms, int split) {
 	}
 }
 
+static char *get_load(void) {
+	static char tmp[64];
+	static int count = 0;
+
+	if (count++ % 5 == 0) {
+		struct stat sb;
+		memset(tmp, 0, sizeof(tmp));
+		if (stat("/proc/loadavg", &sb) == 0) {
+			int d = open("/proc/loadavg", O_RDONLY);
+			if (d >= 0) {
+				read(d, tmp, 60);
+				close(d);
+			}
+		}
+		if (tmp[0] == '\0') {
+			strcat(tmp, "unknown");
+		}
+	}
+	return tmp;
+}
+
 /*
  * see if we should take a nap of some sort between polls
  */
@@ -2683,10 +2968,16 @@ static void nap_check(int tile_cnt) {
 		dt_fbu = (int) (now - last_fb_bytes_sent);
 		if (dt_fbu > screen_blank) {
 			/* sleep longer for no fb requests */
+			if (debug_tiles > 1) {
+				fprintf(stderr, "screen blank sleep1: %d ms / 16, load: %s\n", 2 * ms, get_load());
+			}
 			nap_sleep(2 * ms, 16);
 			return;
 		}
 		if (dt_ev > screen_blank) {
+			if (debug_tiles > 1) {
+				fprintf(stderr, "screen blank sleep2: %d ms / 8, load: %s\n", ms, get_load());
+			}
 			nap_sleep(ms, 8);
 			return;
 		}
@@ -2699,6 +2990,9 @@ static void nap_check(int tile_cnt) {
 		} else if (now - last_local_input <= 3) {
 			nap_ok = 0;
 		} else {
+			if (debug_tiles > 1) {
+				fprintf(stderr, "nap_check sleep: %d ms / 1, load: %s\n", ms, get_load());
+			}
 			nap_sleep(ms, 1);
 		}
 	}
@@ -3087,7 +3381,7 @@ int scan_for_updates(int count_only) {
 		scan_count %= NSCAN;
 
 		/* some periodic maintenance */
-		if (subwin) {
+		if (subwin && scan_count % 4 == 0) {
 			set_offset();	/* follow the subwindow */
 		}
 		if (indexed_color && scan_count % 4 == 0) {
@@ -3184,9 +3478,10 @@ int scan_for_updates(int count_only) {
 			last_xd_check = time(NULL);
 			if (xd_samples > 200) {
 				static int bad = 0;
-				if (xd_misses > (5 * xd_samples) / 100) {
+				if (xd_misses > (20 * xd_samples) / 100) {
 					rfbLog("XDAMAGE is not working well... misses: %d/%d\n", xd_misses, xd_samples);
-					rfbLog("Maybe a OpenGL app like Beryl is the problem? Use -noxdamage\n");
+					rfbLog("Maybe an OpenGL app like Beryl or Compiz is the problem?\n");
+					rfbLog("Use x11vnc -noxdamage or disable the Beryl/Compiz app.\n");
 					rfbLog("To disable this check and warning specify -xdamage twice.\n");
 					if (++bad >= 10) {
 						rfbLog("XDAMAGE appears broken (OpenGL app?), turning it off.\n");

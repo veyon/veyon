@@ -1,3 +1,35 @@
+/*
+   Copyright (C) 2002-2010 Karl J. Runge <runge@karlrunge.com> 
+   All rights reserved.
+
+This file is part of x11vnc.
+
+x11vnc is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or (at
+your option) any later version.
+
+x11vnc is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with x11vnc; if not, write to the Free Software
+Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA
+or see <http://www.gnu.org/licenses/>.
+
+In addition, as a special exception, Karl J. Runge
+gives permission to link the code of its release of x11vnc with the
+OpenSSL project's "OpenSSL" library (or with modified versions of it
+that use the same license as the "OpenSSL" library), and distribute
+the linked executables.  You must obey the GNU General Public License
+in all respects for all of the code used other than "OpenSSL".  If you
+modify this file, you may extend this exception to your version of the
+file, but you are not obligated to do so.  If you do not wish to do
+so, delete this exception statement from your version.
+*/
+
 /* -- sslcmds.c -- */
 
 #include "x11vnc.h"
@@ -15,16 +47,13 @@
 #endif
 #endif
 
-#ifdef NO_SSL_OR_UNIXPW
-#undef SSLCMDS
-#endif
-
 
 void check_stunnel(void);
-int start_stunnel(int stunnel_port, int x11vnc_port);
+int start_stunnel(int stunnel_port, int x11vnc_port, int hport, int x11vnc_hport);
 void stop_stunnel(void);
 void setup_stunnel(int rport, int *argc, char **argv);
 char *get_Cert_dir(char *cdir_in, char **tmp_in);
+void sslScripts(void);
 void sslGenCA(char *cdir);
 void sslGenCert(char *ty, char *nm);
 void sslEncKey(char *path, int info_only);
@@ -58,13 +87,14 @@ void check_stunnel(void) {
 	}
 }
 
-int start_stunnel(int stunnel_port, int x11vnc_port) {
+int start_stunnel(int stunnel_port, int x11vnc_port, int hport, int x11vnc_hport) {
 #ifdef SSLCMDS
 	char extra[] = ":/usr/sbin:/usr/local/sbin:/dist/sbin";
 	char *path, *p, *exe;
 	char *stunnel_path = NULL;
 	struct stat verify_buf;
-	int status;
+	struct stat crl_buf;
+	int status, tmp_pem = 0;
 
 	if (stunnel_pid) {
 		stop_stunnel();
@@ -138,11 +168,41 @@ int start_stunnel(int stunnel_port, int x11vnc_port) {
 			    " saved PEM.\n");	
 			clean_up_exit(1);
 		}
+	} else if (!stunnel_pem) {
+		stunnel_pem = create_tmp_pem(NULL, 0);
+		if (! stunnel_pem) {
+			rfbLog("start_stunnel: could not create temporary,"
+			    " self-signed PEM.\n");	
+			clean_up_exit(1);
+		}
+		tmp_pem = 1;
+		if (getenv("X11VNC_SHOW_TMP_PEM")) {
+			FILE *in = fopen(stunnel_pem, "r");
+			if (in != NULL) {
+				char line[128];
+				fprintf(stderr, "\n");
+				while (fgets(line, 128, in) != NULL) {
+					fprintf(stderr, "%s", line);
+				}
+				fprintf(stderr, "\n");
+				fclose(in);
+			}
+		}
 	}
 
 	if (ssl_verify) {
+		char *file = get_ssl_verify_file(ssl_verify);
+		if (file) {
+			ssl_verify = file;
+		}
 		if (stat(ssl_verify, &verify_buf) != 0) {
 			rfbLog("stunnel: %s does not exist.\n", ssl_verify);
+			clean_up_exit(1);
+		}
+	}
+	if (ssl_crl) {
+		if (stat(ssl_crl, &crl_buf) != 0) {
+			rfbLog("stunnel: %s does not exist.\n", ssl_crl);
 			clean_up_exit(1);
 		}
 	}
@@ -180,6 +240,11 @@ int start_stunnel(int stunnel_port, int x11vnc_port) {
 					a = "-A";
 				}
 			}
+
+			if (ssl_crl) {
+				rfbLog("stunnel: stunnel3 does not support CRL. %s\n", ssl_crl);
+				clean_up_exit(1);
+			}
 			
 			if (stunnel_pem && ssl_verify) {
 				/* XXX double check -v 2 */
@@ -205,10 +270,18 @@ int start_stunnel(int stunnel_port, int x11vnc_port) {
 		if (! in) {
 			exit(1);
 		}
+
 		fprintf(in, "foreground = yes\n");
 		fprintf(in, "pid =\n");
 		if (stunnel_pem) {
 			fprintf(in, "cert = %s\n", stunnel_pem);
+		}
+		if (ssl_crl) {
+			if(S_ISDIR(crl_buf.st_mode)) {
+				fprintf(in, "CRLpath = %s\n", ssl_crl);
+			} else {
+				fprintf(in, "CRLfile = %s\n", ssl_crl);
+			}
 		}
 		if (ssl_verify) {
 			if(S_ISDIR(verify_buf.st_mode)) {
@@ -216,7 +289,6 @@ int start_stunnel(int stunnel_port, int x11vnc_port) {
 			} else {
 				fprintf(in, "CAfile = %s\n", ssl_verify);
 			}
-			/* XXX double check -v 2 */
 			fprintf(in, "verify = 2\n");
 		}
 		fprintf(in, ";debug = 7\n\n");
@@ -224,8 +296,24 @@ int start_stunnel(int stunnel_port, int x11vnc_port) {
 		fprintf(in, "accept = %d\n", stunnel_port);
 		fprintf(in, "connect = %d\n", x11vnc_port);
 
+		if (hport > 0 && x11vnc_hport > 0) {
+			fprintf(in, "\n[x11vnc_http]\n");
+			fprintf(in, "accept = %d\n", hport);
+			fprintf(in, "connect = %d\n", x11vnc_hport);
+		}
+
 		fflush(in);
 		rewind(in);
+
+		if (getenv("STUNNEL_DEBUG")) {
+			char line[1000];
+			fprintf(stderr, "\nstunnel config contents:\n\n");
+			while (fgets(line, sizeof(line), in) != NULL) {
+				fprintf(stderr, "%s", line);
+			}
+			fprintf(stderr, "\n");
+			rewind(in);
+		}
 		
 		sprintf(fd, "%d", fileno(in));
 		execlp(stunnel_path, stunnel_path, "-fd", fd, (char *) NULL);
@@ -233,9 +321,21 @@ int start_stunnel(int stunnel_port, int x11vnc_port) {
 	}
 
 	free(exe);
-	usleep(500 * 1000);
+	usleep(750 * 1000);
 
 	waitpid(stunnel_pid, &status, WNOHANG); 
+
+	if (ssl_verify && strstr(ssl_verify, "/sslverify-tmp-load-")) {
+		/* temporary file */
+		usleep(1000 * 1000);
+		unlink(ssl_verify);
+	}
+	if (tmp_pem) {
+		/* temporary cert */
+		usleep(1500 * 1000);
+		unlink(stunnel_pem);
+	}
+
 	if (kill(stunnel_pid, 0) != 0) {
 		waitpid(stunnel_pid, &status, WNOHANG); 
 		stunnel_pid = 0;
@@ -268,13 +368,13 @@ void stop_stunnel(void) {
 }
 
 void setup_stunnel(int rport, int *argc, char **argv) {
-	int i, xport = 0;
+	int i, xport = 0, hport = 0, xhport = 0;
+
 	if (! rport && argc && argv) {
 		for (i=0; i< *argc; i++) {
 			if (argv[i] && !strcmp(argv[i], "-rfbport")) {
 				if (i < *argc - 1) {
 					rport = atoi(argv[i+1]);
-					break;
 				}
 			}
 		}
@@ -293,7 +393,36 @@ void setup_stunnel(int rport, int *argc, char **argv) {
 		goto stunnel_fail; 
 	}
 
-	if (start_stunnel(rport, xport)) {
+	if (https_port_num > 0) {
+		hport = https_port_num;
+	}
+
+	if (! hport && argc && argv) {
+		for (i=0; i< *argc; i++) {
+			if (argv[i] && !strcmp(argv[i], "-httpport")) {
+				if (i < *argc - 1) {
+					hport = atoi(argv[i+1]);
+				}
+			}
+		}
+	}
+
+	if (! hport && http_try_it) {
+		hport = find_free_port(rport-100, rport-1);
+		if (! hport) {
+			goto stunnel_fail;
+		}
+	}
+	if (hport) {
+		xhport = find_free_port(5850, 5899);
+		if (! xhport) {
+			goto stunnel_fail; 
+		}
+		stunnel_http_port = hport;
+	}
+	
+
+	if (start_stunnel(rport, xport, hport, xhport)) {
 		int tweaked = 0;
 		char tmp[30];
 		sprintf(tmp, "%d", xport);
@@ -428,6 +557,15 @@ static char *getsslscript(char *cdir, char *name, char *script) {
 	set_env("OPENSSL", openssl);
 
 	return scr;
+}
+
+void sslScripts(void) {
+	fprintf(stdout, "======================================================\n");
+	fprintf(stdout, "genCA script for '-sslGenCA':\n\n");
+	fprintf(stdout, "%s\n", genCA);
+	fprintf(stdout, "======================================================\n");
+	fprintf(stdout, "genCert script for '-sslGenCert', etc.:\n\n");
+	fprintf(stdout, "%s\n", genCert);
 }
 
 void sslGenCA(char *cdir) {

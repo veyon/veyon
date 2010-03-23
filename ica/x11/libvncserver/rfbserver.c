@@ -327,6 +327,7 @@ rfbNewTCPOrUDPClient(rfbScreenInfoPtr rfbScreen,
 
       INIT_MUTEX(cl->outputMutex);
       INIT_MUTEX(cl->refCountMutex);
+      INIT_MUTEX(cl->sendMutex);
       INIT_COND(cl->deleteCond);
 
       cl->state = RFB_PROTOCOL_VERSION;
@@ -484,7 +485,7 @@ rfbClientConnectionGone(rfbClientPtr cl)
     if (cl->next)
         cl->next->prev = cl->prev;
 
-    if(cl->sock>0)
+    if(cl->sock>=0)
 	close(cl->sock);
 
     if (cl->scaledScreen!=NULL)
@@ -549,6 +550,10 @@ rfbClientConnectionGone(rfbClientPtr cl)
     LOCK(cl->outputMutex);
     UNLOCK(cl->outputMutex);
     TINI_MUTEX(cl->outputMutex);
+
+    LOCK(cl->sendMutex);
+    UNLOCK(cl->sendMutex);
+    TINI_MUTEX(cl->sendMutex);
 
 #ifdef CORBA
     destroyConnection(cl);
@@ -1102,9 +1107,11 @@ rfbBool rfbSendFileTransferMessage(rfbClientPtr cl, uint8_t contentType, uint8_t
     /*
     rfbLog("rfbSendFileTransferMessage( %dtype, %dparam, %dsize, %dlen, %p)\n", contentType, contentParam, size, length, buffer);
     */
+    LOCK(cl->sendMutex);
     if (rfbWriteExact(cl, (char *)&ft, sz_rfbFileTransferMsg) < 0) {
         rfbLogPerror("rfbSendFileTransferMessage: write");
         rfbCloseClient(cl);
+        UNLOCK(cl->sendMutex);
         return FALSE;
     }
 
@@ -1113,9 +1120,11 @@ rfbBool rfbSendFileTransferMessage(rfbClientPtr cl, uint8_t contentType, uint8_t
         if (rfbWriteExact(cl, buffer, length) < 0) {
             rfbLogPerror("rfbSendFileTransferMessage: write");
             rfbCloseClient(cl);
+            UNLOCK(cl->sendMutex);
             return FALSE;
         }
     }
+    UNLOCK(cl->sendMutex);
 
     rfbStatRecordMessageSent(cl, rfbFileTransfer, sz_rfbFileTransferMsg+length, sz_rfbFileTransferMsg+length);
 
@@ -1525,12 +1534,15 @@ rfbBool rfbProcessFileTransfer(rfbClientPtr cl, uint8_t contentType, uint8_t con
 
         /* TODO: finish 64-bit file size support */
         sizeHtmp = 0;        
+        LOCK(cl->sendMutex);
         if (rfbWriteExact(cl, (char *)&sizeHtmp, 4) < 0) {
           rfbLogPerror("rfbProcessFileTransfer: write");
           rfbCloseClient(cl);
+          UNLOCK(cl->sendMutex);
           if (buffer!=NULL) free(buffer);
           return FALSE;
         }
+        UNLOCK(cl->sendMutex);
         break;
 
     case rfbFileHeader:
@@ -2122,6 +2134,7 @@ rfbProcessClientNormalMessage(rfbClientPtr cl)
 	    if (!cl->format.trueColour) {
 		if (!rfbSetClientColourMap(cl, 0, 0)) {
 		    sraRgnDestroy(tmpRegion);
+		    TSIGNAL(cl->updateCond);
 		    UNLOCK(cl->updateMutex);
 		    return;
 		}
@@ -3103,12 +3116,15 @@ rfbSendSetColourMapEntries(rfbClientPtr cl,
 
     len += nColours * 3 * 2;
 
+    LOCK(cl->sendMutex);
     if (rfbWriteExact(cl, wbuf, len) < 0) {
 	rfbLogPerror("rfbSendSetColourMapEntries: write");
 	rfbCloseClient(cl);
         if (wbuf != buf) free(wbuf);
+        UNLOCK(cl->sendMutex);
 	return FALSE;
     }
+    UNLOCK(cl->sendMutex);
 
     rfbStatRecordMessageSent(cl, rfbSetColourMapEntries, len, len);
     if (wbuf != buf) free(wbuf);
@@ -3129,10 +3145,12 @@ rfbSendBell(rfbScreenInfoPtr rfbScreen)
     i = rfbGetClientIterator(rfbScreen);
     while((cl=rfbClientIteratorNext(i))) {
 	b.type = rfbBell;
+        LOCK(cl->sendMutex);
 	if (rfbWriteExact(cl, (char *)&b, sz_rfbBellMsg) < 0) {
 	    rfbLogPerror("rfbSendBell: write");
 	    rfbCloseClient(cl);
 	}
+        UNLOCK(cl->sendMutex);
     }
     rfbStatRecordMessageSent(cl, rfbBell, sz_rfbBellMsg, sz_rfbBellMsg);
     rfbReleaseClientIterator(i);
@@ -3154,16 +3172,19 @@ rfbSendServerCutText(rfbScreenInfoPtr rfbScreen,char *str, int len)
     while ((cl = rfbClientIteratorNext(iterator)) != NULL) {
         sct.type = rfbServerCutText;
         sct.length = Swap32IfLE(len);
+        LOCK(cl->sendMutex);
         if (rfbWriteExact(cl, (char *)&sct,
                        sz_rfbServerCutTextMsg) < 0) {
             rfbLogPerror("rfbSendServerCutText: write");
             rfbCloseClient(cl);
+            UNLOCK(cl->sendMutex);
             continue;
         }
         if (rfbWriteExact(cl, str, len) < 0) {
             rfbLogPerror("rfbSendServerCutText: write");
             rfbCloseClient(cl);
         }
+        UNLOCK(cl->sendMutex);
         rfbStatRecordMessageSent(cl, rfbServerCutText, sz_rfbServerCutTextMsg+len, sz_rfbServerCutTextMsg+len);
     }
     rfbReleaseClientIterator(iterator);

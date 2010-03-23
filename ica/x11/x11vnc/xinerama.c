@@ -1,3 +1,35 @@
+/*
+   Copyright (C) 2002-2010 Karl J. Runge <runge@karlrunge.com> 
+   All rights reserved.
+
+This file is part of x11vnc.
+
+x11vnc is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or (at
+your option) any later version.
+
+x11vnc is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with x11vnc; if not, write to the Free Software
+Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA
+or see <http://www.gnu.org/licenses/>.
+
+In addition, as a special exception, Karl J. Runge
+gives permission to link the code of its release of x11vnc with the
+OpenSSL project's "OpenSSL" library (or with modified versions of it
+that use the same license as the "OpenSSL" library), and distribute
+the linked executables.  You must obey the GNU General Public License
+in all respects for all of the code used other than "OpenSSL".  If you
+modify this file, you may extend this exception to your version of the
+file, but you are not obligated to do so.  If you do not wish to do
+so, delete this exception statement from your version.
+*/
+
 /* -- xinerama.c -- */
 
 #include "x11vnc.h"
@@ -267,7 +299,7 @@ void check_xinerama_clip(void) {
 		}
 	}
 	for (i=0; i <= k; i++) {
-		int j, jmon, mon = -1, mox = -1;
+		int j, jmon = 0, mon = -1, mox = -1;
 		for (j=0; j < is; j++) {
 			if (mon < 0 || score[j] < mon) {
 				mon = score[j];
@@ -312,12 +344,14 @@ static void initialize_xinerama (void) {
 
 	RAWFB_RET_VOID
 
+	X_LOCK;
 	if (! XineramaQueryExtension(dpy, &ev, &er)) {
 		if (verbose) {
 			rfbLog("Xinerama: disabling: display does not support it.\n");
 		}
 		xinerama = 0;
 		xinerama_present = 0;
+		X_UNLOCK;
 		return;
 	}
 	if (! XineramaIsActive(dpy)) {
@@ -327,8 +361,9 @@ static void initialize_xinerama (void) {
 		}
 		xinerama = 0;
 		xinerama_present = 0;
+		X_UNLOCK;
 		return;
-	} 
+	}
 	xinerama_present = 1;
 	rfbLog("\n");
 	rfbLog("Xinerama is present and active (e.g. multi-head).\n");
@@ -353,6 +388,7 @@ static void initialize_xinerama (void) {
 			rfbLog("\n");
 		}
 		XFree_wr(xineramas);
+		X_UNLOCK;
 		return;		/* must be OK w/o change */
 	}
 
@@ -374,6 +410,7 @@ static void initialize_xinerama (void) {
 		sc++;
 	}
 	XFree_wr(xineramas);
+	X_UNLOCK;
 
 
 	if (sraRgnEmpty(black_region)) {
