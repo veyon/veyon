@@ -1,3 +1,35 @@
+/*
+   Copyright (C) 2002-2010 Karl J. Runge <runge@karlrunge.com> 
+   All rights reserved.
+
+This file is part of x11vnc.
+
+x11vnc is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or (at
+your option) any later version.
+
+x11vnc is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with x11vnc; if not, write to the Free Software
+Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA
+or see <http://www.gnu.org/licenses/>.
+
+In addition, as a special exception, Karl J. Runge
+gives permission to link the code of its release of x11vnc with the
+OpenSSL project's "OpenSSL" library (or with modified versions of it
+that use the same license as the "OpenSSL" library), and distribute
+the linked executables.  You must obey the GNU General Public License
+in all respects for all of the code used other than "OpenSSL".  If you
+modify this file, you may extend this exception to your version of the
+file, but you are not obligated to do so.  If you do not wish to do
+so, delete this exception statement from your version.
+*/
+
 /* -- util.c -- */
 
 #include "x11vnc.h"
@@ -43,7 +75,7 @@ double dnowx(void);
 double rnow(void);
 double rfac(void);
 
-void rfbPE(long usec);
+int rfbPE(long usec);
 void rfbCFD(long usec);
 
 double rect_overlap(int x1, int y1, int x2, int y2, int X1, int Y1,
@@ -139,6 +171,26 @@ void strzero(char *str) {
 			p++;
 		}
 	}
+}
+
+int is_decimal(char *str) {
+	char *p = str;
+	if (p != NULL) {
+		int first = 1;
+		while (*p != '\0') {
+			if (first && *p == '-') {
+				;
+			} else if (isdigit((int) *p)) {
+				;
+			} else {
+				return 0;
+			}
+			first = 0;
+			p++;
+		}
+		return 1;
+	}
+	return 0;
 }
 
 int scan_hexdec(char *str, unsigned long *num) {
@@ -418,23 +470,35 @@ double rfac(void) {
 
 void check_allinput_rate(void) {
 	static double last_all_input_check = 0.0;
-	static int set = 0;
+	static int set = 0, verb = -1;
+
+	if (use_threads) {
+		return;
+	}
+	if (verb < 0) {
+		verb = 0;
+		if (getenv("RATE_VERB")) verb = 1;
+	}
 	if (! set) {
 		set = 1;
 		last_all_input_check = dnow();
 	} else {
-		int dt = 4;
+		int dt = 5;
 		if (x11vnc_current > last_all_input_check + dt) {
 			int n, nq = 0;
 			while ((n = rfbCheckFds(screen, 0))) {
 				nq += n;
 			}
-			fprintf(stderr, "nqueued: %d\n", nq);
-			if (0 && nq > 25 * dt) {
+			if (verb) fprintf(stderr, "nqueued: %d\n", nq);
+			if (getenv("CHECK_RATE") && nq > 18 * dt) {
 				double rate = nq / dt;
-				rfbLog("Client is sending %.1f extra requests per second for the\n", rate);
-				rfbLog("past %d seconds! Switching to -allpinput mode. (queued: %d)\n", dt, nq);
-				all_input = 1;
+				if (verb) rfbLog("check_allinput_rate:\n");
+				if (verb) rfbLog("Client is sending %.1f extra requests per second for the\n", rate);
+				if (verb) rfbLog("past %d seconds! (queued: %d)\n", dt, nq);
+				if (strstr(getenv("CHECK_RATE"), "allinput") && !all_input) {
+					rfbLog("Switching to -allpinput mode.\n");
+					all_input = 1;
+				}
 			}
 			set = 0;
 		}
@@ -443,11 +507,14 @@ void check_allinput_rate(void) {
 
 static void do_allinput(long usec) {
 	static double last = 0.0;
-	static int meas = 0;
-	int n, f = 1, cnt = 0;
+	static int meas = 0, verb = -1;
+	int n, f = 1, cnt = 0, m = 0;
 	long usec0;
 	double now;
 	if (!screen || !screen->clientHead) {
+		return;
+	}
+	if (use_threads) {
 		return;
 	}
 	if (usec < 0) {
@@ -457,21 +524,26 @@ static void do_allinput(long usec) {
 	if (last == 0.0) {
 		last = dnow();
 	}
+	if (verb < 0) {
+		verb = 0;
+		if (getenv("RATE_VERB")) verb = 1;
+	}
 	while ((n = rfbCheckFds(screen, usec)) > 0) {
 		if (f) {
-			fprintf(stderr, " *");
+			if (verb) fprintf(stderr, " *");
 			f = 0;
 		}
 		if (cnt++ > 30) {
 			break;
 		}
 		meas += n;
+		m += n;
 	}
-	fprintf(stderr, "-%d", cnt);
+	if (verb) fprintf(stderr, "+%d/%d", cnt, m);
 	now = dnow();
 	if (now > last + 2.0) {
 		double rate = meas / (now - last);
-		fprintf(stderr, "\n%.2f ", rate);
+		if (verb) fprintf(stderr, "\n allinput rate: %.2f ", rate);
 		meas = 0;
 		last = dnow();
 	}
@@ -482,15 +554,16 @@ static void do_allinput(long usec) {
  * checks that we are not in threaded mode.
  */
 #define USEC_MAX 999999		/* libvncsever assumes < 1 second */
-void rfbPE(long usec) {
+int rfbPE(long usec) {
 	int uip0 = unixpw_in_progress;
 	static int check_rate = -1;
+	int res = 0;
 	if (! screen) {
-		return;
+		return res;
 	}
  	if (unixpw && unixpw_in_progress && !unixpw_in_rfbPE) {
 		rfbLog("unixpw_in_rfbPE: skipping rfbPE\n");
- 		return;
+ 		return res;
  	}
 
 	if (debug_tiles > 2) {
@@ -503,7 +576,11 @@ void rfbPE(long usec) {
 		usec = USEC_MAX;
 	}
 	if (! use_threads) {
-		rfbProcessEvents(screen, usec);
+		rfbBool r;
+		r = rfbProcessEvents(screen, usec);
+		if (r) {
+			res = 1;
+		}
 	}
 
  	if (unixpw && unixpw_in_progress && !uip0) {
@@ -528,6 +605,7 @@ void rfbPE(long usec) {
 	if (all_input) {
 		do_allinput(usec);
 	}
+	return res;
 }
 
 void rfbCFD(long usec) {
@@ -536,7 +614,18 @@ void rfbCFD(long usec) {
 		return;
 	}
  	if (unixpw && unixpw_in_progress && !unixpw_in_rfbPE) {
-		rfbLog("unixpw_in_rfbPE: skipping rfbCFD\n");
+		static int msgs = 0;
+		static double last_reset = 0.0;
+		if (dnow() > last_reset + 5.0) {
+			msgs = 0;
+			last_reset = dnow();
+		}
+		if (msgs++ < 10) {
+			rfbLog("unixpw_in_rfbPE: skipping rfbCFD\n");
+			if (msgs == 10) {
+				rfbLog("unixpw_in_rfbPE: skipping rfbCFD ...\n");
+			}
+		}
  		return;
  	}
 	if (usec > USEC_MAX) {
@@ -549,9 +638,6 @@ void rfbCFD(long usec) {
 		    (int) usec, tm - x11vnc_start);
 	}
 
-#if 0
-fprintf(stderr, "handleEventsEagerly: %d\n", screen->handleEventsEagerly);
-#endif
 
 	if (! use_threads) {
 		if (all_input) {
@@ -618,7 +704,7 @@ double rect_overlap(int x1, int y1, int x2, int y2, int X1, int Y1,
 char *choose_title(char *display) {
 	static char title[(MAXN+10)];	
 
-	memset(title, 0, MAXN+10);
+	memset(title, 0, sizeof(title));
 	strcpy(title, "x11vnc");
 
 	if (display == NULL) {
@@ -635,17 +721,39 @@ char *choose_title(char *display) {
 		}
 	}
 	strncat(title, display, MAXN - strlen(title));
+	X_LOCK;
 	if (subwin && dpy && valid_window(subwin, NULL, 0)) {
 #if !NO_X11
 		char *name = NULL;
+		int do_appshare = getenv("X11VNC_APPSHARE_ACTIVE") ? 1 : 0;
+		if (0 && do_appshare) {
+			title[0] = '\0';
+		}
 		if (XFetchName(dpy, subwin, &name)) {
 			if (name) {
-				strncat(title, " ",  MAXN - strlen(title));
+				if (title[0] != '\0') {
+					strncat(title, " ",  MAXN - strlen(title));
+				}
 				strncat(title, name, MAXN - strlen(title));
 				free(name);
 			}
 		}
+		if (do_appshare) {
+			Window c;
+			int x, y;
+			if (xtranslate(subwin, rootwin, 0, 0, &x, &y, &c, 1)) {
+				char tmp[32];
+				if (scaling) {
+					x *= scale_fac_x;
+					y *= scale_fac_y;
+				}
+				sprintf(tmp, " XY=%d,%d", x, y);
+				strncat(title, tmp, MAXN - strlen(title));
+			}
+			rfbLog("appshare title: %s\n", title);
+		}
 #endif	/* NO_X11 */
 	}
+	X_UNLOCK;
 	return title;
 }

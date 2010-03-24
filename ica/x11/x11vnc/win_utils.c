@@ -1,3 +1,35 @@
+/*
+   Copyright (C) 2002-2010 Karl J. Runge <runge@karlrunge.com> 
+   All rights reserved.
+
+This file is part of x11vnc.
+
+x11vnc is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or (at
+your option) any later version.
+
+x11vnc is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with x11vnc; if not, write to the Free Software
+Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA
+or see <http://www.gnu.org/licenses/>.
+
+In addition, as a special exception, Karl J. Runge
+gives permission to link the code of its release of x11vnc with the
+OpenSSL project's "OpenSSL" library (or with modified versions of it
+that use the same license as the "OpenSSL" library), and distribute
+the linked executables.  You must obey the GNU General Public License
+in all respects for all of the code used other than "OpenSSL".  If you
+modify this file, you may extend this exception to your version of the
+file, but you are not obligated to do so.  If you do not wish to do
+so, delete this exception statement from your version.
+*/
+
 /* -- win_utils.c -- */
 
 #include "x11vnc.h"
@@ -6,6 +38,7 @@
 #include "cleanup.h"
 #include "xwrappers.h"
 #include "connections.h"
+#include "xrandr.h"
 #include "macosx.h"
 
 winattr_t *stack_list = NULL;
@@ -17,7 +50,7 @@ Window parent_window(Window win, char **name);
 int valid_window(Window win, XWindowAttributes *attr_ret, int bequiet);
 Bool xtranslate(Window src, Window dst, int src_x, int src_y, int *dst_x,
     int *dst_y, Window *child, int bequiet);
-int get_window_size(Window win, int *x, int *y);
+int get_window_size(Window win, int *w, int *h);
 void snapshot_stack_list(int free_only, double allowed_age);
 int get_boff(void);
 int get_bwin(void);
@@ -26,6 +59,7 @@ Window query_pointer(Window start);
 unsigned int mask_state(void);
 int pick_windowid(unsigned long *num);
 Window descend_pointer(int depth, Window start, char *name_info, int len);
+void id_cmd(char *cmd);
 
 
 Window parent_window(Window win, char **name) {
@@ -152,12 +186,12 @@ Bool xtranslate(Window src, Window dst, int src_x, int src_y, int *dst_x,
 #endif	/* NO_X11 */
 }
 
-int get_window_size(Window win, int *x, int *y) {
+int get_window_size(Window win, int *w, int *h) {
 	XWindowAttributes attr;
 	/* valid_window? */
 	if (valid_window(win, &attr, 1)) {
-		*x = attr.width;
-		*y = attr.height;
+		*w = attr.width;
+		*h = attr.height;
 		return 1;
 	} else {
 		return 0;
@@ -575,5 +609,163 @@ Window descend_pointer(int depth, Window start, char *name_info, int len) {
 
 	return clast;
 #endif	/* NO_X11 */
+}
+
+void id_cmd(char *cmd) {
+	int rc, dx = 0, dy = 0, dw = 0, dh = 0;
+	int x0, y0, w0, h0;
+	int x, y, w, h, do_move = 0, do_resize = 0;
+	int disp_x = DisplayWidth(dpy, scr);
+	int disp_y = DisplayHeight(dpy, scr);
+	Window win = subwin;
+	XWindowAttributes attr;
+	XErrorHandler old_handler = NULL;
+	Window twin;
+
+	if (!cmd || !strcmp(cmd, "")) { 
+		return;
+	}
+	if (strstr(cmd, "win=") == cmd) {
+		if (! scan_hexdec(cmd + strlen("win="), &win)) {
+			rfbLog("id_cmd: incorrect win= hex/dec number: %s\n", cmd);
+			return;
+		} else {
+			char *q = strchr(cmd, ':');
+			if (!q) {
+				rfbLog("id_cmd: incorrect win=...: hex/dec number: %s\n", cmd);
+				return;
+			}
+			rfbLog("id_cmd:%s set window id to 0x%lx\n", cmd, win);
+			cmd = q+1;
+		}
+	}
+	if (!win) {
+		rfbLog("id_cmd:%s not in sub-window mode or no win=0xNNNN.\n", cmd);
+		return;
+	}
+#if !NO_X11
+	X_LOCK;
+	if (!valid_window(win, &attr, 1)) {
+		X_UNLOCK;
+		return;
+	}
+	w0 = w = attr.width;
+	h0 = h = attr.height;
+	old_handler = XSetErrorHandler(trap_xerror);
+	trapped_xerror = 0;
+	XTranslateCoordinates(dpy, win, rootwin, 0, 0, &x, &y, &twin);
+	x0 = x;
+	y0 = y;
+	if (strstr(cmd, "move:") == cmd) {
+		if (sscanf(cmd, "move:%d%d", &dx, &dy) == 2) {
+			x = x + dx;
+			y = y + dy;
+			do_move = 1;
+		}
+	} else if (strstr(cmd, "resize:") == cmd) {
+		if (sscanf(cmd, "resize:%d%d", &dw, &dh) == 2) {
+			w = w + dw;
+			h = h + dh;
+			do_move = 1;
+			do_resize = 1;
+		}
+	} else if (strstr(cmd, "geom:") == cmd) {
+		if (parse_geom(cmd+strlen("geom:"), &w, &h, &x, &y, disp_x, disp_y)) {
+			do_move = 1;
+			do_resize = 1;
+			if (w <= 0) {
+				w = w0;
+			}
+			if (h <= 0) {
+				h = h0;
+			}
+			if (scaling && getenv("X11VNC_APPSHARE_ACTIVE")) {
+				x /= scale_fac_x;
+				y /= scale_fac_y;
+			}
+		}
+	} else if (!strcmp(cmd, "raise")) {
+		rc = XRaiseWindow(dpy, win);
+		rfbLog("id_cmd:%s rc=%d\n", cmd, rc);
+	} else if (!strcmp(cmd, "lower")) {
+		rc = XLowerWindow(dpy, win);
+		rfbLog("id_cmd:%s rc=%d\n", cmd, rc);
+	} else if (!strcmp(cmd, "map")) {
+		rc= XMapRaised(dpy, win);
+		rfbLog("id_cmd:%s rc=%d\n", cmd, rc);
+	} else if (!strcmp(cmd, "unmap")) {
+		rc= XUnmapWindow(dpy, win);
+		rfbLog("id_cmd:%s rc=%d\n", cmd, rc);
+	} else if (!strcmp(cmd, "iconify")) {
+		rc= XIconifyWindow(dpy, win, scr);
+		rfbLog("id_cmd:%s rc=%d\n", cmd, rc);
+	} else if (strstr(cmd, "wm_name:") == cmd) {
+		rc= XStoreName(dpy, win, cmd+strlen("wm_name:"));
+		rfbLog("id_cmd:%s rc=%d\n", cmd, rc);
+	} else if (strstr(cmd, "icon_name:") == cmd) {
+		rc= XSetIconName(dpy, win, cmd+strlen("icon_name:"));
+		rfbLog("id_cmd:%s rc=%d\n", cmd, rc);
+	} else if (!strcmp(cmd, "wm_delete")) {
+		XClientMessageEvent ev;
+		memset(&ev, 0, sizeof(ev));
+		ev.type = ClientMessage;
+		ev.send_event = True;
+		ev.display = dpy;
+		ev.window = win;
+		ev.message_type = XInternAtom(dpy, "WM_PROTOCOLS", False);
+		ev.format = 32;
+		ev.data.l[0] = XInternAtom(dpy, "WM_DELETE_WINDOW", False);
+		rc = XSendEvent(dpy, win, False, 0, (XEvent *) &ev);
+		rfbLog("id_cmd:%s rc=%d\n", cmd, rc);
+	} else {
+		rfbLog("id_cmd:%s unrecognized command.\n", cmd);
+	}
+	if (do_move || do_resize) {
+		if (w >= disp_x) {
+			w = disp_x - 4;
+		}
+		if (h >= disp_y) {
+			h = disp_y - 4;
+		}
+		if (w < 1) {
+			w = 1;
+		}
+		if (h < 1) {
+			h = 1;
+		}
+		if (x + w > disp_x) {
+			x = disp_x - w - 1;
+		}
+		if (y + h > disp_y) {
+			y = disp_y - h - 1;
+		}
+		if (x < 0) {
+			x = 1;
+		}
+		if (y < 0) {
+			y = 1;
+		}
+		rc = 0;
+		rc += XMoveWindow(dpy, win, x, y);
+		off_x = x;
+		off_y = y;
+
+		rc += XResizeWindow(dpy, win, w, h);
+
+		rfbLog("id_cmd:%s rc=%d dx=%d dy=%d dw=%d dh=%d %dx%d+%d+%d -> %dx%d+%d+%d\n",
+		    cmd, rc, dx, dy, dw, dh, w0, h0, x0, y0, w, h, x, h);
+	}
+	XSync(dpy, False);
+	XSetErrorHandler(old_handler);
+	if (trapped_xerror) {
+		rfbLog("id_cmd:%s trapped_xerror.\n", cmd);
+	}
+	trapped_xerror = 0;
+	if (do_resize) {
+		rfbLog("id_cmd:%s calling check_xrandr_event.\n", cmd);
+		check_xrandr_event("id_cmd");
+	}
+	X_UNLOCK;
+#endif
 }
 

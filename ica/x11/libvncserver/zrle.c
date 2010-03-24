@@ -97,14 +97,12 @@
  */
 
 /* TODO: put into rfbClient struct */
+
 static char zrleBeforeBuf[rfbZRLETileWidth * rfbZRLETileHeight * 4 + 4];
-
-
 
 /*
  * rfbSendRectEncodingZRLE - send a given rectangle using ZRLE encoding.
  */
-
 
 rfbBool rfbSendRectEncodingZRLE(rfbClientPtr cl, int x, int y, int w, int h)
 {
@@ -112,6 +110,12 @@ rfbBool rfbSendRectEncodingZRLE(rfbClientPtr cl, int x, int y, int w, int h)
   rfbFramebufferUpdateRectHeader rect;
   rfbZRLEHeader hdr;
   int i;
+  char *zrleBeforeBuf;
+
+  if (cl->zrleBeforeBuf == NULL) {
+	cl->zrleBeforeBuf = (char *) malloc(rfbZRLETileWidth * rfbZRLETileHeight * 4 + 4);
+  }
+  zrleBeforeBuf = cl->zrleBeforeBuf;
 
   if (cl->preferredEncoding == rfbEncodingZYWRLE) {
 	  if (cl->tightQualityLevel < 0) {
@@ -238,8 +242,19 @@ rfbBool rfbSendRectEncodingZRLE(rfbClientPtr cl, int x, int y, int w, int h)
 
 void rfbFreeZrleData(rfbClientPtr cl)
 {
-  if (cl->zrleData)
-    zrleOutStreamFree(cl->zrleData);
-  cl->zrleData = NULL;
+	if (cl->zrleData) {
+		zrleOutStreamFree(cl->zrleData);
+	}
+	cl->zrleData = NULL;
+
+	if (cl->zrleBeforeBuf) {
+		free(cl->zrleBeforeBuf);
+	}
+	cl->zrleBeforeBuf = NULL;
+
+	if (cl->paletteHelper) {
+		free(cl->paletteHelper);
+	}
+	cl->paletteHelper = NULL;
 }
 

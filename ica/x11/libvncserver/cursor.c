@@ -410,7 +410,7 @@ void rfbMakeXCursorFromRichCursor(rfbScreenInfoPtr rfbScreen,rfbCursorPtr cursor
 	for(i=0,bit=0x80;i<cursor->width;i++,bit=(bit&1)?0x80:bit>>1) {
 		if (interp) {
 			int r = 0, g = 0, b = 0, grey;
-			char *p = cursor->richSource+j*width+i*bpp;
+			unsigned char *p = cursor->richSource+j*width+i*bpp;
 			if (bpp == 1) {
 				unsigned char*  uc = (unsigned char*)  p;
 				SETRGB(uc);
@@ -693,10 +693,13 @@ void rfbRedrawAfterHideCursor(rfbClientPtr cl,sraRegionPtr updateRegion)
 	if(sraClipRect2(&x,&y,&x2,&y2,0,0,s->width,s->height)) {
 	    sraRegionPtr rect;
 	    rect = sraRgnCreateRect(x,y,x2,y2);
-	    if(updateRegion)
+	    if(updateRegion) {
 	    	sraRgnOr(updateRegion,rect);
-	    else
+	    } else {
+		    LOCK(cl->updateMutex);
 		    sraRgnOr(cl->modifiedRegion,rect);
+		    UNLOCK(cl->updateMutex);
+	    }
 	    sraRgnDestroy(rect);
 	}
     }

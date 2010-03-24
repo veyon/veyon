@@ -30,6 +30,7 @@
 #include <string.h>
 #include <time.h>
 #include <rfb/rfbclient.h>
+#include "tls.h"
 
 static void Dummy(rfbClient* client) {
 }
@@ -43,6 +44,9 @@ static void DummyRect(rfbClient* client, int x, int y, int w, int h) {
 static char* NoPassword(rfbClient* client) {
   return strdup("");
 }
+#undef SOCKET
+#include <winsock2.h>
+#define close closesocket
 #else
 #include <stdio.h>
 #include <termios.h>
@@ -111,11 +115,13 @@ rfbClient* rfbGetClient(int bitsPerSample,int samplesPerPixel,
     return NULL;
   }
   initAppData(&client->appData);
-  client->programName = NULL;
   client->endianTest = 1;
   client->programName="";
-  client->serverHost="";
+  client->serverHost=strdup("");
   client->serverPort=5900;
+
+  client->destHost = NULL;
+  client->destPort = 5900;
   
   client->CurrentKeyboardLedState = 0;
   client->HandleKeyboardLedState = (HandleKeyboardLedStateProc)DummyPoint;
@@ -174,12 +180,22 @@ rfbClient* rfbGetClient(int bitsPerSample,int samplesPerPixel,
   client->SoftCursorLockArea = DummyRect;
   client->SoftCursorUnlockScreen = Dummy;
   client->GotFrameBufferUpdate = DummyRect;
+  client->FinishedFrameBufferUpdate = NULL;
   client->GetPassword = ReadPassword;
   client->MallocFrameBuffer = MallocFrameBuffer;
   client->Bell = Dummy;
   client->CurrentKeyboardLedState = 0;
   client->HandleKeyboardLedState = (HandleKeyboardLedStateProc)DummyPoint;
 
+  client->authScheme = 0;
+  client->subAuthScheme = 0;
+  client->GetCredential = NULL;
+#ifdef LIBVNCSERVER_WITH_CLIENT_TLS
+  client->tlsSession = NULL;
+#endif
+  client->sock = -1;
+  client->listenSock = -1;
+  client->clientAuthSchemes = NULL;
   return client;
 }
 
@@ -189,8 +205,15 @@ static rfbBool rfbInitConnection(rfbClient* client)
      given VNC server */
 
   if (!client->listenSpecified) {
-    if (!client->serverHost || !ConnectToRFBServer(client,client->serverHost,client->serverPort))
+    if (!client->serverHost)
       return FALSE;
+    if (client->destHost) {
+      if (!ConnectToRFBRepeater(client,client->serverHost,client->serverPort,client->destHost,client->destPort))
+        return FALSE;
+    } else {
+      if (!ConnectToRFBServer(client,client->serverHost,client->serverPort))
+        return FALSE;
+    }
   }
 
   /* Initialise the VNC connection, including reading the password */
@@ -247,6 +270,9 @@ rfbBool rfbInitClient(rfbClient* client,int* argc,char** argv) {
       if (strcmp(argv[i], "-listen") == 0) {
 	listenForIncomingConnections(client);
 	break;
+      } else if (strcmp(argv[i], "-listennofork") == 0) {
+	listenForIncomingConnectionsNoFork(client, -1);
+	break;
       } else if (strcmp(argv[i], "-play") == 0) {
 	client->serverPort = -1;
 	j++;
@@ -262,18 +288,34 @@ rfbBool rfbInitClient(rfbClient* client,int* argc,char** argv) {
       } else if (i+1<*argc && strcmp(argv[i], "-scale") == 0) {
         client->appData.scaleSetting = atoi(argv[i+1]);
         j+=2;
+      } else if (i+1<*argc && strcmp(argv[i], "-repeaterdest") == 0) {
+	char* colon=strchr(argv[i+1],':');
+
+	if(client->destHost)
+	  free(client->destHost);
+        client->destPort = 5900;
+
+	client->destHost = strdup(argv[i+1]);
+	if(colon) {
+	  client->destHost[(int)(colon-argv[i+1])] = '\0';
+	  client->destPort = atoi(colon+1);
+	}
+        j+=2;
       } else {
 	char* colon=strchr(argv[i],':');
 
+	if(client->serverHost)
+	  free(client->serverHost);
+
 	if(colon) {
-	  client->serverHost=strdup(argv[i]);
-	  client->serverHost[(int)(colon-argv[i])]='\0';
-	  client->serverPort=atoi(colon+1);
+	  client->serverHost = strdup(argv[i]);
+	  client->serverHost[(int)(colon-argv[i])] = '\0';
+	  client->serverPort = atoi(colon+1);
 	} else {
-	  client->serverHost=strdup(argv[i]);
+	  client->serverHost = strdup(argv[i]);
 	}
-	if(client->serverPort>=0 && client->serverPort<5900)
-	  client->serverPort+=5900;
+	if(client->serverPort >= 0 && client->serverPort < 5900)
+	  client->serverPort += 5900;
       }
       /* purge arguments */
       if (j>i) {
@@ -316,7 +358,18 @@ void rfbClientCleanup(rfbClient* client) {
 #endif
 #endif
 
+#ifdef LIBVNCSERVER_WITH_CLIENT_TLS
+  FreeTLS(client);
+#endif
+  if (client->sock >= 0)
+    close(client->sock);
+  if (client->listenSock >= 0)
+    close(client->listenSock);
   free(client->desktopName);
   free(client->serverHost);
+  if (client->destHost)
+    free(client->destHost);
+  if (client->clientAuthSchemes)
+    free(client->clientAuthSchemes);
   free(client);
 }

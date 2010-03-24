@@ -638,7 +638,7 @@ rfbListenOnTCPPort(int port,
 	closesocket(sock);
 	return -1;
     }
-    if (listen(sock, 5) < 0) {
+    if (listen(sock, 32) < 0) {
 	closesocket(sock);
 	return -1;
     }

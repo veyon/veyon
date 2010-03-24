@@ -1,3 +1,35 @@
+/*
+   Copyright (C) 2002-2010 Karl J. Runge <runge@karlrunge.com> 
+   All rights reserved.
+
+This file is part of x11vnc.
+
+x11vnc is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or (at
+your option) any later version.
+
+x11vnc is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with x11vnc; if not, write to the Free Software
+Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA
+or see <http://www.gnu.org/licenses/>.
+
+In addition, as a special exception, Karl J. Runge
+gives permission to link the code of its release of x11vnc with the
+OpenSSL project's "OpenSSL" library (or with modified versions of it
+that use the same license as the "OpenSSL" library), and distribute
+the linked executables.  You must obey the GNU General Public License
+in all respects for all of the code used other than "OpenSSL".  If you
+modify this file, you may extend this exception to your version of the
+file, but you are not obligated to do so.  If you do not wish to do
+so, delete this exception statement from your version.
+*/
+
 /* -- connections.c -- */
 
 #include "x11vnc.h"
@@ -16,9 +48,12 @@
 #include "sslhelper.h"
 #include "xwrappers.h"
 #include "xevents.h"
+#include "win_utils.h"
 #include "macosx.h"
 #include "macosxCG.h"
 #include "userinput.h"
+#include "pointer.h"
+#include "xrandr.h"
 
 /*
  * routines for handling incoming, outgoing, etc connections
@@ -48,6 +83,7 @@ void set_x11vnc_remote_prop(char *str);
 void read_x11vnc_remote_prop(int);
 void check_connect_inputs(void);
 void check_gui_inputs(void);
+rfbClientPtr create_new_client(int sock, int start_thread);
 enum rfbNewClientAction new_client(rfbClientPtr client);
 enum rfbNewClientAction new_client_chat_helper(rfbClientPtr client);
 rfbBool password_check_chat_helper(rfbClientPtr cl, const char* response, int len);
@@ -59,6 +95,12 @@ int accept_client(rfbClientPtr client);
 int run_user_command(char *cmd, rfbClientPtr client, char *mode, char *input,
     int len, FILE *output);
 int check_access(char *addr);
+void client_set_net(rfbClientPtr client);
+char *get_xprop(char *prop, Window win);
+int set_xprop(char *prop, Window win, char *value);
+char *bcx_xattach(char *str, int *pg_init, int *kg_init);
+void grab_state(int *ptr_grabbed, int *kbd_grabbed);
+char *wininfo(Window win, int show_children);
 
 static rfbClientPtr *client_match(char *str);
 static void free_client_data(rfbClientPtr client);
@@ -86,7 +128,8 @@ int all_clients_initialized(void) {
 	while( (cl = rfbClientIteratorNext(iter)) ) {
 		if (cl->state != RFB_NORMAL) {
 			ok = 0;
-			break;
+		} else {
+			client_normal_count++;
 		}
 	}
 	rfbReleaseClientIterator(iter);
@@ -106,6 +149,7 @@ char *list_clients(void) {
 
 	iter = rfbGetClientIterator(screen);
 	while( (cl = rfbClientIteratorNext(iter)) ) {
+		client_set_net(cl);
 		count++;
 	}
 	rfbReleaseClientIterator(iter);
@@ -124,6 +168,7 @@ char *list_clients(void) {
 	iter = rfbGetClientIterator(screen);
 	while( (cl = rfbClientIteratorNext(iter)) ) {
 		ClientData *cd = (ClientData *) cl->clientData;
+
 		if (! cd) {
 			continue;
 		}
@@ -213,10 +258,10 @@ static rfbClientPtr *client_match(char *str) {
 	i = 0;
 	iter = rfbGetClientIterator(screen);
 	while( (cl = rfbClientIteratorNext(iter)) ) {
+		ClientData *cd = (ClientData *) cl->clientData;
 		if (strstr(str, "0x") == str) {
 			unsigned int in;
 			int id;
-			ClientData *cd = (ClientData *) cl->clientData;
 			if (! cd) {
 				continue;
 			}
@@ -233,25 +278,52 @@ static rfbClientPtr *client_match(char *str) {
 				cl_list[i++] = cl;
 			}
 		} else {
-			char *rstr = str;
+			int port = -1;
+			char *rstr = strdup(str);
+			char *q = strrchr(rstr, ':');
+			if (q) {
+				port = atoi(q+1);
+				*q = '\0';
+				if (port == 0 && q[1] != '0') {
+					port = -1;
+				} else if (port < 0) {
+					port = -port;
+				} else if (port < 200) {
+					port = 5500 + port;
+				}
+			}
 			if (! dotted_ip(str))  {
-				rstr = host2ip(str);
+				char *orig = rstr;
+				rstr = host2ip(rstr);
+				free(orig);
 				if (rstr == NULL || *rstr == '\0') {
 					if (host_warn++) {
 						continue;
 					}
-					rfbLog("skipping bad lookup: \"%s\"\n",
-					    str);
+					rfbLog("skipping bad lookup: \"%s\"\n", str);
 					continue;
 				}
-				rfbLog("lookup: %s -> %s\n", str, rstr);
+				rfbLog("lookup: %s -> %s port=%d\n", str, rstr, port);
 			}
 			if (!strcmp(rstr, cl->host)) {
-				cl_list[i++] = cl;
+				int ok = 1;
+				if (port > 0) {
+					if (cd != NULL && cd->client_port > 0) {
+						if (cd->client_port != port) {
+							ok = 0;
+						}
+					} else {
+						int cport = get_remote_port(cl->sock);
+						if (cport != port) {
+							ok = 0;
+						}
+					}
+				}
+				if (ok) {
+					cl_list[i++] = cl;
+				}
 			}
-			if (rstr != str) {
-				free(rstr);
-			}
+			free(rstr);
 		}
 		if (i >= n - 1) {
 			break;
@@ -379,6 +451,7 @@ int run_user_command(char *cmd, rfbClientPtr client, char *mode, char *input,
 	char str[100];
 	int rc, ok;
 	ClientData *cd = NULL;
+	client_set_net(client);
 	if (client != NULL) {
 		cd = (ClientData *) client->clientData;
 		addr = client->host;
@@ -537,18 +610,57 @@ int run_user_command(char *cmd, rfbClientPtr client, char *mode, char *input,
 	close_exec_fds();
 
 	if (output != NULL) {
-		FILE *ph = popen(cmd, "r");
+		FILE *ph;
 		char line[1024];
+		char *cmd2 = NULL;
+		char tmp[] = "/tmp/x11vnc-tmp.XXXXXX";
+		int deltmp = 0;
+
+		if (input != NULL) {
+			int tmp_fd = mkstemp(tmp);
+			if (tmp_fd < 0) {
+				rfbLog("mkstemp failed on: %s\n", tmp);
+				clean_up_exit(1);
+			}
+			write(tmp_fd, input, len);
+			close(tmp_fd);
+			deltmp = 1;
+			cmd2 = (char *) malloc(100 + strlen(tmp) + strlen(cmd));
+			sprintf(cmd2, "/bin/cat %s | %s", tmp, cmd);
+			
+			ph = popen(cmd2, "r");
+		} else {
+			ph = popen(cmd, "r");
+		}
 		if (ph == NULL) {
 			rfbLog("popen(%s) failed", cmd);
 			rfbLogPerror("popen");
 			clean_up_exit(1);
 		}
-		while (fgets(line, 1024, ph) != NULL) {
+		memset(line, 0, sizeof(line));
+		while (fgets(line, sizeof(line), ph) != NULL) {
+			int j, k = -1;
 			if (0) fprintf(stderr, "line: %s", line);
-			fprintf(output, "%s", line);
+			/* take care to handle embedded nulls */
+			for (j=0; j < (int) sizeof(line); j++) {
+				if (line[j] != '\0') {
+					k = j;
+				}
+			}
+			if (k >= 0) {
+				write(fileno(output), line, k+1);
+			}
+			memset(line, 0, sizeof(line));
 		}
+
 		rc = pclose(ph);
+
+		if (cmd2 != NULL) {
+			free(cmd2);
+		}
+		if (deltmp) {
+			unlink(tmp);
+		}
 		goto got_rc;
 	} else if (input != NULL) {
 		FILE *ph = popen(cmd, "w");
@@ -668,6 +780,8 @@ static int accepted_client = 0;
 void client_gone(rfbClientPtr client) {
 	ClientData *cd = NULL;
 
+	CLIENT_LOCK;
+
 	client_count--;
 	if (client_count < 0) client_count = 0;
 
@@ -680,6 +794,7 @@ void client_gone(rfbClientPtr client) {
 	if (unixpw_in_progress && unixpw_client) {
 		if (client == unixpw_client) {
 			unixpw_in_progress = 0;
+			/* mutex */
 			screen->permitFileTransfer = unixpw_file_xfer_save;
 			if ((tightfilexfer = unixpw_tightvnc_xfer_save)) {
 #ifdef LIBVNCSERVER_WITH_TIGHTVNC_FILETRANSFER
@@ -750,7 +865,7 @@ void client_gone(rfbClientPtr client) {
 			free(userhost);
 		} else {
 			rfbLog("client_gone: using cmd: %s\n", client->host);
-			run_user_command(gone_cmd, client, "gone", NULL,0,NULL);
+			run_user_command(gone_cmd, client, "gone", NULL, 0, NULL);
 		}
 	}
 
@@ -764,6 +879,7 @@ void client_gone(rfbClientPtr client) {
 		}
 		clean_up_exit(0);
 	}
+
 	if (connect_once) {
 		/*
 		 * This non-exit is done for a bad passwd to be consistent
@@ -777,12 +893,17 @@ void client_gone(rfbClientPtr client) {
 			rfbLog("connect_once: invalid password or early "
 			   "disconnect.\n");
 			rfbLog("connect_once: waiting for next connection.\n"); 
-			accepted_client = 0;
+			accepted_client--;
+			if (accepted_client < 0) {
+				accepted_client = 0;
+			}
+			CLIENT_UNLOCK;
 			return;
 		}
 		if (shared && client_count > 0)  {
 			rfbLog("connect_once: other shared clients still "
 			    "connected, not exiting.\n");
+			CLIENT_UNLOCK;
 			return;
 		}
 
@@ -791,6 +912,7 @@ void client_gone(rfbClientPtr client) {
 			rfbLog("killing gui_pid %d\n", gui_pid);
 			kill(gui_pid, SIGTERM);
 		}
+		CLIENT_UNLOCK;
 		clean_up_exit(0);
 	}
 #ifdef MACOSX
@@ -798,6 +920,7 @@ void client_gone(rfbClientPtr client) {
 		macosxCG_refresh_callback_off();
 	}
 #endif
+	CLIENT_UNLOCK;
 }
 
 /*
@@ -1576,14 +1699,20 @@ static void check_connect_file(char *file) {
 	FILE *in;
 	char line[VNC_CONNECT_MAX], host[VNC_CONNECT_MAX];
 	static int first_warn = 1, truncate_ok = 1;
-	static time_t last_time = 0; 
-	time_t now = time(NULL);
+	static double last_time = 0.0, delay = 0.5; 
+	double now = dnow();
+	struct stat sbuf;
 
-	if (last_time == 0) {
-		last_time = now;
+	if (last_time == 0.0) {
+		if (!getenv("X11VNC_APPSHARE_ACTIVE")) {
+			/* skip first */
+			last_time = now;
+		} else {
+			delay = 0.25;
+		}
 	}
-	if (now - last_time < 1) {
-		/* check only once a second */
+	if (now - last_time < delay) {
+		/* check only about once a second */
 		return;
 	}
 	last_time = now;
@@ -1593,6 +1722,13 @@ static void check_connect_file(char *file) {
 		if (access(file, W_OK) == 0) {
 			truncate_ok = 1;
 		} else {
+			return;
+		}
+	}
+
+	if (stat(file, &sbuf) == 0) {
+		/* skip empty file directly */
+		if (sbuf.st_size == 0) {
 			return;
 		}
 	}
@@ -2259,11 +2395,23 @@ char *get_repeater_string(char *str, int *len) {
 	return prestring;
 }
 
+#ifndef USE_TIMEOUT_INTERRUPT
+#define USE_TIMEOUT_INTERRUPT 0
+#endif
+
+static void reverse_connect_timeout (int sig) {
+	rfbLog("sig: %d, reverse_connect_timeout.\n", sig);
+#if USE_TIMEOUT_INTERRUPT
+	rfbLog("reverse_connect_timeout proceeding assuming connect(2) interrupt.\n");
+#else
+	clean_up_exit(0);
+#endif
+}
+
+
 /*
  * Do a reverse connect for a single "host" or "host:port"
  */
-
-extern int ssl_client_mode;
 
 static int do_reverse_connect(char *str_in) {
 	rfbClientPtr cl;
@@ -2271,6 +2419,7 @@ static int do_reverse_connect(char *str_in) {
 	char *prestring = NULL;
 	int prestring_len = 0;
 	int rport = 5500, len = strlen(str);
+	int set_alarm = 0;
 
 	if (len < 1) {
 		return 0;
@@ -2341,7 +2490,19 @@ static int do_reverse_connect(char *str_in) {
 /* XXX use header */
 #define OPENSSL_REVERSE 4
 		openssl_init(1);
+
+		if (first_conn_timeout > 0) {
+			set_alarm = 1;
+			signal(SIGALRM, reverse_connect_timeout);
+#if USE_TIMEOUT_INTERRUPT
+			siginterrupt(SIGALRM, 1);
+#endif
+			rfbLog("reverse_connect: using alarm() timeout of %d seconds.\n", first_conn_timeout);
+			alarm(first_conn_timeout);
+		}
 		accept_openssl(OPENSSL_REVERSE, vncsock);
+		if (set_alarm) {alarm(0); signal(SIGALRM, SIG_DFL);}
+
 		openssl_init(0);
 		free(host);
 		return 1;
@@ -2376,28 +2537,45 @@ static int do_reverse_connect(char *str_in) {
 		}
 	}
 
+	if (first_conn_timeout > 0) {
+		set_alarm = 1;
+		signal(SIGALRM, reverse_connect_timeout);
+#if USE_TIMEOUT_INTERRUPT
+		siginterrupt(SIGALRM, 1);
+#endif
+		rfbLog("reverse_connect: using alarm() timeout of %d seconds.\n", first_conn_timeout);
+		alarm(first_conn_timeout);
+	}
+
 	if (connect_proxy != NULL) {
 		int sock = proxy_connect(host, rport);
+		if (set_alarm) {alarm(0); signal(SIGALRM, SIG_DFL);}
 		if (sock >= 0) {
 			if (prestring != NULL) {
 				write(sock, prestring, prestring_len);
 				free(prestring);
 			}
-			cl = rfbNewClient(screen, sock);
+			cl = create_new_client(sock, 1);
 		} else {
 			return 0;
 		}
 	} else if (prestring != NULL) {
 		int sock = rfbConnectToTcpAddr(host, rport);
+		if (set_alarm) {alarm(0); signal(SIGALRM, SIG_DFL);}
 		if (sock >= 0) {
 			write(sock, prestring, prestring_len);
 			free(prestring);
-			cl = rfbNewClient(screen, sock);
+			cl = create_new_client(sock, 1);
 		} else {
 			return 0;
 		}
 	} else {
 		cl = rfbReverseConnection(screen, host, rport);
+		if (set_alarm) {alarm(0); signal(SIGALRM, SIG_DFL);}
+		if (cl != NULL && use_threads) {
+			cl->onHold = FALSE;
+			rfbStartOnHoldClient(cl);
+		}
 	}
 
 	free(host);
@@ -2431,6 +2609,12 @@ void reverse_connect(char *str) {
 	int nclients0 = client_count;
 	int lcnt, j;
 	char **list;
+	int do_appshare = 0;
+
+	if (!getenv("X11VNC_REVERSE_USE_OLD_SLEEP")) {
+		sleep_min = 500;
+		sleep_max = 2500;
+	}
 
 	if (unixpw_in_progress) return;
 
@@ -2446,18 +2630,56 @@ void reverse_connect(char *str) {
 	}
 	free(tmp);
 
+	if (subwin && getenv("X11VNC_APPSHARE_ACTIVE")) {
+		do_appshare = 1;
+		sleep_between_host = 0;	/* too agressive??? */
+	}
+	if (getenv("X11VNC_REVERSE_SLEEP_BETWEEN_HOST")) {
+		sleep_between_host = atoi(getenv("X11VNC_REVERSE_SLEEP_BETWEEN_HOST"));
+	}
+
+	if (do_appshare) {
+		if (screen && dpy) {
+			char *s = choose_title(DisplayString(dpy));
+
+			/* mutex */
+			screen->desktopName = s;
+			if (rfb_desktop_name) {
+				free(rfb_desktop_name);
+			}
+			rfb_desktop_name = strdup(s);
+		}
+	}
+
 	for (j = 0; j < lcnt; j++) {
 		p = list[j];
 		
 		if ((n = do_reverse_connect(p)) != 0) {
-			rfbPE(-1);
+			int i;
+			progress_client();
+			for (i=0; i < 3; i++) {
+				rfbPE(-1);
+			}
 		}
 		cnt += n;
 		if (list[j+1] != NULL) {
 			t = 0;
 			while (t < sleep_between_host) {
+				double t1, t2;
+				int i;
+				t1 = dnow();
+				for (i=0; i < 8; i++) {
+					rfbPE(-1);
+					if (do_appshare && t == 0) {
+						rfbPE(-1);
+					}
+				}
+				t2 = dnow();
+				t += (int) (1000 * (t2 - t1));
+				if (t >= sleep_between_host) {
+					break;
+				}
 				usleep(dt * 1000);
-				rfbPE(-1);
 				t += dt;
 			}
 		}
@@ -2479,6 +2701,9 @@ void reverse_connect(char *str) {
 			}
 			clean_up_exit(0);
 		}
+		if (xrandr || xrandr_maybe) {
+			check_xrandr_event("reverse_connect1");
+		}
 		return;
 	}
 
@@ -2486,6 +2711,8 @@ void reverse_connect(char *str) {
 	 * XXX: we need to process some of the initial handshaking
 	 * events, otherwise the client can get messed up (why??) 
 	 * so we send rfbProcessEvents() all over the place.
+	 *
+	 * How much is this still needed?
 	 */
 
 	n = cnt;
@@ -2495,17 +2722,42 @@ void reverse_connect(char *str) {
 	t = sleep_max - sleep_min;
 	tot = sleep_min + ((n-1) * t) / (n_max-1);
 
+	if (do_appshare) {
+		tot /= 3;
+		if (tot < dt) {
+			tot = dt;
+		}
+		tot = 0;	/* too agressive??? */
+	}
+
+	if (getenv("X11VNC_REVERSE_SLEEP_MAX")) {
+		tot = atoi(getenv("X11VNC_REVERSE_SLEEP_MAX"));
+	}
+
 	t = 0;
 	while (t < tot) {
-		rfbPE(-1);
-		rfbPE(-1);
+		int i;
+		double t1, t2;
+		t1 = dnow();
+		for (i=0; i < 8; i++) {
+			rfbPE(-1);
+			if (t == 0) rfbPE(-1);
+		}
+		t2 = dnow();
+		t += (int) (1000 * (t2 - t1));
+		if (t >= tot) {
+			break;
+		}
 		usleep(dt * 1000);
 		t += dt;
 	}
 	if (connect_or_exit) {
 		if (client_count <= nclients0)  {
 			for (t = 0; t < 10; t++) {
-				rfbPE(-1);
+				int i;
+				for (i=0; i < 3; i++) {
+					rfbPE(-1);
+				}
 				usleep(100 * 1000);
 			}
 		}
@@ -2519,6 +2771,9 @@ void reverse_connect(char *str) {
 			clean_up_exit(0);
 		}
 	}
+	if (xrandr || xrandr_maybe) {
+		check_xrandr_event("reverse_connect2");
+	}
 }
 
 /*
@@ -2528,6 +2783,7 @@ void reverse_connect(char *str) {
 void set_vnc_connect_prop(char *str) {
 	RAWFB_RET_VOID
 #if !NO_X11
+	if (vnc_connect_prop == None) return;
 	XChangeProperty(dpy, rootwin, vnc_connect_prop, XA_STRING, 8,
 	    PropModeReplace, (unsigned char *)str, strlen(str));
 #else
@@ -2538,6 +2794,7 @@ void set_vnc_connect_prop(char *str) {
 void set_x11vnc_remote_prop(char *str) {
 	RAWFB_RET_VOID
 #if !NO_X11
+	if (x11vnc_remote_prop == None) return;
 	XChangeProperty(dpy, rootwin, x11vnc_remote_prop, XA_STRING, 8,
 	    PropModeReplace, (unsigned char *)str, strlen(str));
 #else
@@ -2664,6 +2921,508 @@ void read_x11vnc_remote_prop(int nomsg) {
 	} else {
 		rfbLog("read X11VNC_REMOTE: %s\n", x11vnc_remote_str);
 	}
+#endif	/* NO_X11 */
+}
+
+void grab_state(int *ptr_grabbed, int *kbd_grabbed) {
+	int rcp, rck;
+	double t0, t1;
+	double ta, tb, tc;
+	*ptr_grabbed = -1;
+	*kbd_grabbed = -1;
+
+	if (!dpy) {
+		return;
+	}
+	*ptr_grabbed = 0;
+	*kbd_grabbed = 0;
+
+#if !NO_X11
+	X_LOCK;
+
+	XSync(dpy, False);
+
+	ta = t0 = dnow();
+
+	rcp = XGrabPointer(dpy, window, False, 0, GrabModeAsync, GrabModeAsync, None, None, CurrentTime);
+	XUngrabPointer(dpy, CurrentTime);
+
+	tb = dnow();
+	
+	rck = XGrabKeyboard(dpy, window, False, GrabModeAsync, GrabModeAsync, CurrentTime);
+	XUngrabKeyboard(dpy, CurrentTime);
+
+	tc = dnow();
+
+	XSync(dpy, False);
+
+	t1 = dnow();
+
+	X_UNLOCK;
+	if (rcp == AlreadyGrabbed || rcp == GrabFrozen) {
+		*ptr_grabbed = 1;
+	}
+	if (rck == AlreadyGrabbed || rck == GrabFrozen) {
+		*kbd_grabbed = 1;
+	}
+	rfbLog("grab_state: checked %d,%d in %.6f sec (%.6f %.6f)\n",
+	    *ptr_grabbed, *kbd_grabbed, t1-t0, tb-ta, tc-tb);
+#endif
+}
+
+static void pmove(int x, int y) {
+	if (x < 0 || y < 0) {
+		rfbLog("pmove: skipping negative x or y: %d %d\n", x, y);
+		return;
+	}
+	rfbLog("pmove: x y: %d %d\n", x, y);
+	pointer(0, x, y, NULL);
+	X_LOCK;
+	XFlush_wr(dpy);
+	X_UNLOCK;
+}
+
+
+char *bcx_xattach(char *str, int *pg_init, int *kg_init) {
+	int grab_check = 1;
+	int shift = 20;
+	int final_x = 30, final_y = 30;
+	int extra_x = -1, extra_y = -1;
+	int t1, t2, dt = 40 * 1000;
+	int ifneeded = 0;
+	char *dir = "none", *flip = "none", *q;
+	int pg1, kg1, pg2, kg2;
+	char _bcx_res[128];
+	
+	/* str:[up,down,left,right]+nograbcheck+shift=n+final=x+y+extra_move=x+y+[master_to_slave,slave_to_master,M2S,S2M]+dt=n+retry=n+ifneeded */
+
+	if (strstr(str, "up")) {
+		dir = "up";
+	} else if (strstr(str, "down")) {
+		dir = "down";
+	} else if (strstr(str, "left")) {
+		dir = "left";
+	} else if (strstr(str, "right")) {
+		dir = "right";
+	} else {
+		return strdup("FAIL,NO_DIRECTION_SPECIFIED");
+	}
+
+	if (strstr(str, "master_to_slave") || strstr(str, "M2S")) {
+		flip = "M2S";
+	} else if (strstr(str, "slave_to_master") || strstr(str, "S2M")) {
+		flip = "S2M";
+	} else {
+		return strdup("FAIL,NO_MODE_CHANGE_SPECIFIED");
+	}
+
+	if (strstr(str, "nograbcheck")) {
+		grab_check = 0;
+	}
+	if (strstr(str, "ifneeded")) {
+		ifneeded = 1;
+	}
+	q = strstr(str, "shift=");
+	if (q && sscanf(q, "shift=%d", &t1) == 1) {
+		shift = t1;
+	}
+	q = strstr(str, "final=");
+	if (q && sscanf(q, "final=%d+%d", &t1, &t2) == 2) {
+		final_x = t1;
+		final_y = t2;
+	}
+	q = strstr(str, "extra_move=");
+	if (q && sscanf(q, "extra_move=%d+%d", &t1, &t2) == 2) {
+		extra_x = t1;
+		extra_y = t2;
+	}
+	q = strstr(str, "dt=");
+	if (q && sscanf(q, "dt=%d", &t1) == 1) {
+		dt = t1 * 1000;
+	}
+
+	if (grab_check) {
+		int read_init = 0;
+
+		if (*pg_init >=0 && *kg_init >=0)  {
+			pg1 = *pg_init;
+			kg1 = *kg_init;
+			read_init = 1;
+		} else {
+			grab_state(&pg1, &kg1);
+			read_init = 0;
+		}
+
+		if (!strcmp(flip, "M2S")) {
+			if (ifneeded && pg1 == 1 && kg1 == 1) {
+				rfbLog("bcx_xattach: M2S grab state is already what we want, skipping moves:  %d,%d\n", pg1, kg1);
+				return strdup("DONE,GRAB_OK");
+			}
+		} else if (!strcmp(flip, "S2M")) {
+			if (ifneeded && pg1 == 0 && kg1 == 0) {
+				rfbLog("bcx_xattach: S2M grab state is already what we want, skipping moves:  %d,%d\n", pg1, kg1);
+				return strdup("DONE,GRAB_OK");
+			}
+		}
+
+		if (read_init) {
+			;
+		} else if (!strcmp(flip, "M2S")) {
+			if (pg1 != 0 || kg1 != 0) {
+				rfbLog("bcx_xattach: M2S init grab state incorrect:  %d,%d\n", pg1, kg1);
+				usleep(2*dt);
+				grab_state(&pg1, &kg1);
+				rfbLog("bcx_xattach: slept and retried, grab is now: %d,%d\n", pg1, kg1);
+			}
+		} else if (!strcmp(flip, "S2M")) {
+			if (pg1 != 1 || kg1 != 1) {
+				rfbLog("bcx_xattach: S2M init grab state incorrect:  %d,%d\n", pg1, kg1);
+				usleep(2*dt);
+				grab_state(&pg1, &kg1);
+				rfbLog("bcx_xattach: slept and retried, grab is now: %d,%d\n", pg1, kg1);
+			}
+		}
+		if (!read_init) {
+			*pg_init = pg1;
+			*kg_init = kg1;
+		}
+	}
+
+	/*
+	 * A guide for BARCO xattach:
+	 *
+	 *   For -cursor_rule 'b(0):%:t(1),t(1):%:b(0)'
+	 *	down+M2S  up+S2M
+	 *   For -cursor_rule 'r(0):%:l(1),l(1):%:r(0)'
+	 *	right+M2S  left+S2M
+	 *
+	 *   For -cursor_rule 't(0):%:b(1),b(1):%:t(0)'
+	 *	up+M2S  down+S2M
+	 *   For -cursor_rule 'l(0):%:r(1),r(1):%:l(0)'
+	 *	left+M2S  right+S2M
+	 *   For -cursor_rule 'l(0):%:r(1),r(1):%:l(0),r(0):%:l(1),l(1):%:r(0)'
+	 *	left+M2S  right+S2M  (we used to do both 'right')
+	 */
+
+	if (!strcmp(flip, "M2S")) {
+		if (!strcmp(dir, "up")) {
+			pmove(shift, 0);		/* go to top edge */
+			usleep(dt);
+			pmove(shift+1, 0);		/* move 1 for MotionNotify */
+		} else if (!strcmp(dir, "down")) {
+			pmove(shift,   dpy_y-1);	/* go to bottom edge */
+			usleep(dt);
+			pmove(shift+1, dpy_y-1);	/* move 1 for MotionNotify */
+		} else if (!strcmp(dir, "left")) {
+			pmove(0, shift);		/* go to left edge */
+			usleep(dt);
+			pmove(0, shift+1);		/* move 1 for MotionNotify */
+		} else if (!strcmp(dir, "right")) {
+			pmove(dpy_x-1, shift);		/* go to right edge */
+			usleep(dt);
+			pmove(dpy_x-1, shift+1);	/* move 1 for Motion Notify  */
+		}
+	} else if (!strcmp(flip, "S2M")) {
+		int dts = dt/2;
+		if (!strcmp(dir, "up")) {
+			pmove(shift, 2);		/* Approach top edge in 3 moves.  1st move */
+			usleep(dts);
+			pmove(shift, 1);		/* 2nd move */
+			usleep(dts);
+			pmove(shift, 0);		/* 3rd move */
+			usleep(dts);
+			pmove(shift+1, 0);		/* move 1 for MotionNotify */
+			usleep(dts);
+			pmove(shift+1, dpy_y-2);	/* go to height-2 for extra pixel (slave y now == 0?) */
+			usleep(dts);
+			pmove(shift,   dpy_y-2);	/* move 1 for MotionNotify */
+			usleep(dts);
+			pmove(shift, 1);		/* go to 1 to be sure slave y == 0 */
+			usleep(dts);
+			pmove(shift+1, 1);		/* move 1 for MotionNotify */
+		} else if (!strcmp(dir, "down")) {
+			pmove(shift,   dpy_y-3);	/* Approach bottom edge in 3 moves.  1st move */
+			usleep(dts);
+			pmove(shift,   dpy_y-2);	/* 2nd move */
+			usleep(dts);
+			pmove(shift,   dpy_y-1);	/* 3rd move */
+			usleep(dts);
+			pmove(shift+1, dpy_y-1);	/* move 1 for MotionNotify */
+			usleep(dts);
+			pmove(shift+1, 1);		/* go to 1 for extra pixel (slave y now == dpy_y-1?) */
+			usleep(dts);
+			pmove(shift, 1);		/* move 1 for MotionNotify */
+			usleep(dts);
+			pmove(shift,   dpy_y-2);	/* go to dpy_y-2 to be sure slave y == dpy_y-1 */
+			usleep(dts);
+			pmove(shift+1, dpy_y-2);	/* move 1 for MotionNotify */
+		} else if (!strcmp(dir, "left")) {
+			pmove(2, shift);		/* Approach left edge in 3 moves.  1st move */
+			usleep(dts);
+			pmove(1, shift);		/* 2nd move */
+			usleep(dts);
+			pmove(0, shift);		/* 3rd move */
+			usleep(dts);
+			pmove(0, shift+1);		/* move 1 for MotionNotify */
+			usleep(dts);
+			pmove(dpy_x-2, shift+1);	/* go to width-2 for extra pixel (slave x now == 0?) */
+			usleep(dts);
+			pmove(dpy_x-2, shift);		/* move 1 for MotionNotify */
+			usleep(dts);
+			pmove(1, shift);		/* go to 1 to be sure slave x == 0 */
+			usleep(dts);
+			pmove(1, shift+1);		/* move 1 for MotionNotify */
+		} else if (!strcmp(dir, "right")) {
+			pmove(dpy_x-3, shift);		/* Approach right edge in 3 moves.  1st move */
+			usleep(dts);
+			pmove(dpy_x-2, shift);		/* 2nd move */
+			usleep(dts);
+			pmove(dpy_x-1, shift);		/* 3rd move */
+			usleep(dts);
+			pmove(dpy_x-1, shift+1);	/* move 1 for MotionNotify */
+			usleep(dts);
+			pmove(1, shift+1);		/* go to 1 to extra pixel (slave x now == dpy_x-1?) */
+			usleep(dts);
+			pmove(1, shift);		/* move 1 for MotionNotify */
+			usleep(dts);
+			pmove(dpy_x-2, shift);		/* go to dpy_x-2 to be sure slave x == dpy_x-1 */
+			usleep(dts);
+			pmove(dpy_x-2, shift+1);	/* move 1 for MotionNotify */
+		}
+	}
+
+	usleep(dt);
+	pmove(final_x, final_y);
+	usleep(dt);
+
+	if (extra_x >= 0 && extra_y >= 0) {
+		pmove(extra_x, extra_y);
+		usleep(dt);
+	}
+
+	strcpy(_bcx_res, "DONE");
+
+	if (grab_check) {
+		char st[64];
+
+		usleep(3*dt);
+		grab_state(&pg2, &kg2);
+
+		if (!strcmp(flip, "M2S")) {
+			if (pg2 != 1 || kg2 != 1) {
+				rfbLog("bcx_xattach: M2S fini grab state incorrect:  %d,%d\n", pg2, kg2);
+				usleep(2*dt);
+				grab_state(&pg2, &kg2);
+				rfbLog("bcx_xattach: slept and retried, grab is now: %d,%d\n", pg2, kg2);
+			}
+		} else if (!strcmp(flip, "S2M")) {
+			if (pg2 != 0 || kg2 != 0) {
+				rfbLog("bcx_xattach: S2M fini grab state incorrect:  %d,%d\n", pg2, kg2);
+				usleep(2*dt);
+				grab_state(&pg2, &kg2);
+				rfbLog("bcx_xattach: slept and retried, grab is now: %d,%d\n", pg2, kg2);
+			}
+		}
+
+		sprintf(st, ":%d,%d-%d,%d", pg1, kg1, pg2, kg2);
+
+		if (getenv("GRAB_CHECK_LOOP")) {
+			int i, n = atoi(getenv("GRAB_CHECK_LOOP"));
+			rfbLog("grab st: %s\n", st);
+			for (i=0; i < n; i++) {
+				usleep(dt);
+				grab_state(&pg2, &kg2);
+				sprintf(st, ":%d,%d-%d,%d", pg1, kg1, pg2, kg2);
+				rfbLog("grab st: %s\n", st);
+			}
+		}
+
+		if (!strcmp(flip, "M2S")) {
+			if (pg1 == 0 && kg1 == 0 && pg2 == 1 && kg2 == 1) {
+				strcat(_bcx_res, ",GRAB_OK");
+			} else {
+				rfbLog("bcx_xattach: M2S grab state incorrect: %d,%d -> %d,%d\n", pg1, kg1, pg2, kg2);
+				strcat(_bcx_res, ",GRAB_FAIL");
+				if (pg2 == 1 && kg2 == 1) {
+					strcat(_bcx_res, "_INIT");
+				} else if (pg1 == 0 && kg1 == 0) {
+					strcat(_bcx_res, "_FINAL");
+				}
+				strcat(_bcx_res, st);
+			}
+		} else if (!strcmp(flip, "S2M")) {
+			if (pg1 == 1 && kg1 == 1 && pg2 == 0 && kg2 == 0) {
+				strcat(_bcx_res, ",GRAB_OK");
+			} else {
+				rfbLog("bcx_xattach: S2M grab state incorrect: %d,%d -> %d,%d\n", pg1, kg1, pg2, kg2);
+				strcat(_bcx_res, ",GRAB_FAIL");
+				if (pg2 == 0 && kg2 == 0) {
+					strcat(_bcx_res, "_INIT");
+				} else if (pg1 == 1 && kg1 == 1) {
+					strcat(_bcx_res, "_FINAL");
+				}
+				strcat(_bcx_res, st);
+			}
+		}
+	}
+	return strdup(_bcx_res);
+}
+
+int set_xprop(char *prop, Window win, char *value) {
+	int rc = -1;
+#if !NO_X11
+	Atom aprop;
+
+	RAWFB_RET(rc)
+
+	if (!prop || !value) {
+		return rc;
+	}
+	if (win == None) {
+		win = rootwin;
+	}
+	aprop = XInternAtom(dpy, prop, False);
+	if (aprop == None) {
+		return rc;
+	}
+	rc = XChangeProperty(dpy, win, aprop, XA_STRING, 8,
+	    PropModeReplace, (unsigned char *)value, strlen(value));
+	return rc;
+#else
+	RAWFB_RET(rc)
+	if (!prop || !win || !value) {}
+	return rc;
+#endif	/* NO_X11 */
+}
+
+char *get_xprop(char *prop, Window win) {
+#if NO_X11
+	RAWFB_RET(NULL)
+	if (!prop || !win) {}
+	return NULL;
+#else
+	Atom type, aprop;
+	int format, slen, dlen;
+	unsigned long nitems = 0, bytes_after = 0;
+	unsigned char* data = NULL;
+	char get_str[VNC_CONNECT_MAX+1];
+
+	RAWFB_RET(NULL)
+
+	if (prop == NULL || !strcmp(prop, "")) {
+		return NULL;
+	}
+	if (win == None) {
+		win = rootwin;
+	}
+	aprop = XInternAtom(dpy, prop, True);
+	if (aprop == None) {
+		return NULL;
+	}
+
+	get_str[0] = '\0';
+	slen = 0;
+
+	/* read the property value into get_str: */
+	do {
+		if (XGetWindowProperty(dpy, win, aprop, nitems/4,
+		    VNC_CONNECT_MAX/16, False, AnyPropertyType, &type,
+		    &format, &nitems, &bytes_after, &data) == Success) {
+
+			dlen = nitems * (format/8);
+			if (slen + dlen > VNC_CONNECT_MAX) {
+				/* too big */
+				rfbLog("get_xprop: warning: truncating large '%s'"
+				   " string > %d bytes.\n", prop, VNC_CONNECT_MAX);
+				XFree_wr(data);
+				break;
+			}
+			memcpy(get_str+slen, data, dlen);
+			slen += dlen;
+			get_str[slen] = '\0';
+			XFree_wr(data);
+		}
+	} while (bytes_after > 0);
+
+	get_str[VNC_CONNECT_MAX] = '\0';
+	rfbLog("get_prop: read: '%s' = '%s'\n", prop, get_str);
+
+	return strdup(get_str);
+#endif	/* NO_X11 */
+}
+
+static char _win_fmt[1000];
+
+static char *win_fmt(Window win, XWindowAttributes a) {
+	memset(_win_fmt, 0, sizeof(_win_fmt));
+	sprintf(_win_fmt, "0x%lx:%dx%dx%d+%d+%d-map:%d-bw:%d-cl:%d-vis:%d-bs:%d/%d",
+	    win, a.width, a.height, a.depth, a.x, a.y, a.map_state, a.border_width, a.class,
+	    (int) ((a.visual)->visualid), a.backing_store, a.save_under);
+	return _win_fmt;
+}
+
+char *wininfo(Window win, int show_children) {
+#if NO_X11
+	RAWFB_RET(NULL)
+	if (!win || !show_children) {}
+	return NULL;
+#else
+	XWindowAttributes attr;
+	int n, size = X11VNC_REMOTE_MAX;
+	char get_str[X11VNC_REMOTE_MAX+1];
+	unsigned int nchildren;
+	Window rr, pr, *children; 
+
+	RAWFB_RET(NULL)
+
+	if (win == None) {
+		return strdup("None");
+	}
+
+	X_LOCK;
+	if (!valid_window(win, &attr, 1)) {
+		X_UNLOCK;
+		return strdup("Invalid");
+	}
+	get_str[0] = '\0';
+
+	if (show_children) {
+		XQueryTree_wr(dpy, win, &rr, &pr, &children, &nchildren);
+	} else {
+		nchildren = 1;
+		children = (Window *) calloc(2 * sizeof(Window), 1);
+		children[0] = win;
+	}
+	for (n=0; n < (int) nchildren; n++) {
+		char tmp[32];
+		char *str = "Invalid";
+		Window w = children[n];
+		if (valid_window(w, &attr, 1)) {
+			if (!show_children) {
+				str = win_fmt(w, attr);
+			} else {
+				sprintf(tmp, "0x%lx", w);
+				str = tmp;
+			}
+		}
+		if ((int) (strlen(get_str) + 1 + strlen(str)) >= size) {
+			break;
+		}
+		if (n > 0) {
+			strcat(get_str, ",");
+		}
+		strcat(get_str, str);
+	}
+	get_str[size] = '\0';
+	if (!show_children) {
+		free(children);
+	} else if (nchildren) {
+		XFree_wr(children);
+	}
+	rfbLog("wininfo computed: %s\n", get_str);
+	X_UNLOCK;
+
+	return strdup(get_str);
 #endif	/* NO_X11 */
 }
 
@@ -2811,12 +3570,34 @@ void check_gui_inputs(void) {
 	}
 }
 
+rfbClientPtr create_new_client(int sock, int start_thread) {
+	rfbClientPtr cl;
+
+	if (!screen) {
+		return NULL;
+	}
+
+	cl = rfbNewClient(screen, sock);
+
+	if (cl == NULL) {
+		return NULL;	
+	}
+	if (use_threads) {
+		cl->onHold = FALSE;
+		if (start_thread) {
+			rfbStartOnHoldClient(cl);
+		}
+	}
+	return cl;
+}
+
 static int turn_off_truecolor = 0;
 
 static void turn_off_truecolor_ad(rfbClientPtr client) {
 	if (client) {}
 	if (turn_off_truecolor) {
 		rfbLog("turning off truecolor advertising.\n");
+		/* mutex */
 		screen->serverFormat.trueColour = FALSE;
 		screen->displayHook = NULL;
 		screen->serverFormat.redShift   = 0;
@@ -2835,6 +3616,7 @@ static void turn_off_truecolor_ad(rfbClientPtr client) {
  */
 
 rfbBool password_check_chat_helper(rfbClientPtr cl, const char* response, int len) {
+	if (response || len) {}
 	if (cl != chat_window_client) {
 		rfbLog("invalid client during chat_helper login\n");
 		return FALSE;
@@ -2853,21 +3635,43 @@ rfbBool password_check_chat_helper(rfbClientPtr cl, const char* response, int le
 }
 
 enum rfbNewClientAction new_client_chat_helper(rfbClientPtr client) {
+	if (client) {}
 	client->clientGoneHook = client_gone_chat_helper;
 	rfbLog("new chat helper\n");
 	return(RFB_CLIENT_ACCEPT);
 }
 
 void client_gone_chat_helper(rfbClientPtr client) {
+	if (client) {}
 	rfbLog("finished chat helper\n");
 	chat_window_client = NULL;
 }
 
+void client_set_net(rfbClientPtr client) {
+	ClientData *cd; 
+	if (client == NULL) {
+		return;
+	}
+	cd = (ClientData *) client->clientData;
+	if (cd == NULL) {
+		return;
+	}
+	if (cd->client_port < 0) {
+		double dt = dnow();
+		cd->client_port = get_remote_port(client->sock);
+		cd->server_port = get_local_port(client->sock);
+		cd->server_ip   = get_local_host(client->sock);
+		cd->hostname = ip2host(client->host);
+		rfbLog("client_set_net: %s  %.4f\n", client->host, dnow() - dt);
+	}
+}
 /*
  * libvncserver callback for when a new client connects
  */
 enum rfbNewClientAction new_client(rfbClientPtr client) {
 	ClientData *cd; 
+
+	CLIENT_LOCK;
 
 	last_event = last_input = time(NULL);
 
@@ -2890,36 +3694,39 @@ enum rfbNewClientAction new_client(rfbClientPtr client) {
 		if (! ssl_initialized) {
 			rfbLog("denying additional client: %s ssl not setup"
 			    " yet.\n", client->host);
+			CLIENT_UNLOCK;
 			return(RFB_CLIENT_REFUSE);
 		}
 	}
 	if (unixpw_in_progress) {
 		rfbLog("denying additional client: %s during -unixpw login.\n",
 		     client->host);
+		CLIENT_UNLOCK;
 		return(RFB_CLIENT_REFUSE);
 	}
 	if (connect_once) {
 		if (screen->dontDisconnect && screen->neverShared) {
 			if (! shared && accepted_client) {
-				rfbLog("denying additional client: %s\n",
-				     client->host);
+				rfbLog("denying additional client: %s:%d\n",
+				     client->host, get_remote_port(client->sock));
+				CLIENT_UNLOCK;
 				return(RFB_CLIENT_REFUSE);
 			}
 		}
 	}
+
 	if (! check_access(client->host)) {
 		rfbLog("denying client: %s does not match %s\n", client->host,
 		    allow_list ? allow_list : "(null)" );
+		CLIENT_UNLOCK;
 		return(RFB_CLIENT_REFUSE);
 	}
 
 	client->clientData = (void *) calloc(sizeof(ClientData), 1);
 	cd = (ClientData *) client->clientData;
 
-	cd->client_port = get_remote_port(client->sock);
-	cd->server_port = get_local_port(client->sock);
-	cd->server_ip   = get_local_host(client->sock);
-	cd->hostname = ip2host(client->host);
+	/* see client_set_net() we delay the DNS lookups during handshake */
+	cd->client_port = -1;
 	cd->username = strdup("");
 	cd->unixname = strdup("");
 
@@ -2941,8 +3748,11 @@ enum rfbNewClientAction new_client(rfbClientPtr client) {
 
 		free_client_data(client);
 
+		CLIENT_UNLOCK;
 		return(RFB_CLIENT_REFUSE);
 	}
+
+	/* We will RFB_CLIENT_ACCEPT or RFB_CLIENT_ON_HOLD from here on. */
 
 	if (passwdfile) {
 		if (strstr(passwdfile, "read:") == passwdfile ||
@@ -2955,6 +3765,7 @@ enum rfbNewClientAction new_client(rfbClientPtr client) {
 			}
 		} else if (strstr(passwdfile, "custom:") == passwdfile) {
 			if (screen) {
+				/* mutex */
 				screen->passwordCheck = custom_passwd_check;
 			}
 		}
@@ -2992,14 +3803,16 @@ enum rfbNewClientAction new_client(rfbClientPtr client) {
 		install_padded_fb(pad_geometry);
 	}
 
-	cd->timer = dnow();
+	cd->timer = last_new_client = dnow();
 	cd->send_cmp_rate = 0.0;
 	cd->send_raw_rate = 0.0;
 	cd->latency = 0.0;
 	cd->cmp_bytes_sent = 0;
 	cd->raw_bytes_sent = 0;
 
-	accepted_client = 1;
+	accepted_client++;
+	rfbLog("incr accepted_client=%d for %s:%d  sock=%d\n", accepted_client,
+	    client->host, get_remote_port(client->sock), client->sock);
 	last_client = time(NULL);
 
 	if (ncache) {
@@ -3021,6 +3834,8 @@ enum rfbNewClientAction new_client(rfbClientPtr client) {
 			bm--;
 		}
 
+		if (use_threads) LOCK(client->updateMutex);
+
 		client->format.trueColour = TRUE;
 		client->format.redShift   = rs;
 		client->format.greenShift = gs;
@@ -3029,8 +3844,11 @@ enum rfbNewClientAction new_client(rfbClientPtr client) {
 		client->format.greenMax   = gm;
 		client->format.blueMax    = bm;
 
+		if (use_threads) UNLOCK(client->updateMutex);
+
 		rfbSetTranslateFunction(client);
 
+		/* mutex */
 		screen->serverFormat.trueColour = TRUE;
 		screen->serverFormat.redShift   = rs;
 		screen->serverFormat.greenShift = gs;
@@ -3061,7 +3879,7 @@ enum rfbNewClientAction new_client(rfbClientPtr client) {
 			unixpw_login_viewonly = 1;
 			client->viewOnly = FALSE;
 		}
-		unixpw_last_try_time = time(NULL);
+		unixpw_last_try_time = time(NULL) + 10;
 
 		unixpw_screen(1);
 		unixpw_keystroke(0, 0, 1);
@@ -3070,10 +3888,17 @@ enum rfbNewClientAction new_client(rfbClientPtr client) {
 			rfbLog("new client: %s in non-unixpw_in_rfbPE.\n",
 			     client->host);
 		}
-		/* always put client on hold even if unixpw_in_rfbPE is true */
-		return(RFB_CLIENT_ON_HOLD);
+		CLIENT_UNLOCK;
+		if (!use_threads) {
+			/* always put client on hold even if unixpw_in_rfbPE is true */
+			return(RFB_CLIENT_ON_HOLD);
+		} else {
+			/* unixpw threads is still in testing mode, disabled by default. See UNIXPW_THREADS */
+			return(RFB_CLIENT_ACCEPT);
+		}
 	}
 
+	CLIENT_UNLOCK;
 	return(RFB_CLIENT_ACCEPT);
 }
 
@@ -3253,11 +4078,16 @@ void check_new_clients(void) {
 	int run_after_accept = 0;
 
 	if (unixpw_in_progress) {
+		static double lping = 0.0;
+		if (lping < dnow() + 5) {
+			mark_rect_as_modified(0, 0, 1, 1, 1);
+			lping = dnow();
+		}
 		if (unixpw_client && unixpw_client->viewOnly) {
 			unixpw_login_viewonly = 1;
 			unixpw_client->viewOnly = FALSE;
 		}
-		if (time(NULL) > unixpw_last_try_time + 25) {
+		if (time(NULL) > unixpw_last_try_time + 45) {
 			rfbLog("unixpw_deny: timed out waiting for reply.\n");
 			unixpw_deny();
 		}
@@ -3313,6 +4143,7 @@ void check_new_clients(void) {
 		ClientData *cd = (ClientData *) cl->clientData;
 		char *s;
 
+		client_set_net(cl);
 		if (! cd) {
 			continue;
 		}

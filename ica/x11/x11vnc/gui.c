@@ -1,3 +1,35 @@
+/*
+   Copyright (C) 2002-2010 Karl J. Runge <runge@karlrunge.com> 
+   All rights reserved.
+
+This file is part of x11vnc.
+
+x11vnc is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or (at
+your option) any later version.
+
+x11vnc is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with x11vnc; if not, write to the Free Software
+Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA
+or see <http://www.gnu.org/licenses/>.
+
+In addition, as a special exception, Karl J. Runge
+gives permission to link the code of its release of x11vnc with the
+OpenSSL project's "OpenSSL" library (or with modified versions of it
+that use the same license as the "OpenSSL" library), and distribute
+the linked executables.  You must obey the GNU General Public License
+in all respects for all of the code used other than "OpenSSL".  If you
+modify this file, you may extend this exception to your version of the
+file, but you are not obligated to do so.  If you do not wish to do
+so, delete this exception statement from your version.
+*/
+
 /* -- gui.c -- */
 
 #include "x11vnc.h"
@@ -229,9 +261,11 @@ static void sigusr1 (int sig) {
 	if (0) sig = 0;
 }
 
+/* Most of the following mess is for wish on Solaris: */
+
 static char *extra_path = ":/usr/local/bin:/usr/bin/X11:/usr/sfw/bin"
-	    ":/usr/X11R6/bin:/usr/openwin/bin:/usr/dt/bin";
-static char *wishes[] = {"wish8.4", "wish", "wish8.3", "wish8.5", "wish8.0", NULL};
+	    ":/usr/X11R6/bin:/usr/openwin/bin:/usr/dt/bin:/opt/sfw/bin";
+static char *wishes[] = {"wish8.4", "wish", "wish8.3", "wish8.5", "wish8.6", "wish8.7", "wishx", "wish8.0", NULL};
 
 static void run_gui(char *gui_xdisplay, int connect_to_x11vnc, int start_x11vnc,
     int simple_gui, pid_t parent, char *gui_opts) {
@@ -407,6 +441,15 @@ if (0) fprintf(stderr, "run_gui: %s -- %d %d\n", gui_xdisplay, connect_to_x11vnc
 	free(tpath);
 	if (!wish) {
 		wish = strdup("wish");
+	}
+	if (getenv("WISH")) {
+		char *w = getenv("WISH");
+		if (strcmp(w, "")) {
+			wish = strdup(w);
+		}
+	}
+	if (getenv("DEBUG_WISH")) {
+		fprintf(stderr, "wish: %s\n", wish);
 	}
 	set_env("PATH", full_path);
 	set_env("DISPLAY", gui_xdisplay);
@@ -674,7 +717,7 @@ void do_gui(char *opts, int sleep) {
 		char *cmd, *p, *p2, *p1, *p0 = getenv("PATH");
 		char tf1[] = "/tmp/x11vnc_port_prompt.2XXXXXX";
 		char tf2[] = "/tmp/x11vnc_port_prompt.1XXXXXX";
-		int fd, i, port;
+		int fd;
 		char *dstr = "", *wish = NULL;
 		char line[128];
 		FILE *fp;
@@ -831,7 +874,6 @@ void do_gui(char *opts, int sleep) {
 		if (icon_mode) {
 			char tf[] = "/tmp/x11vnc.tray.XXXXXX"; 
 			int fd;
-			struct stat sbuf;
 
 			fd = mkstemp(tf);
 			if (fd < 0) {

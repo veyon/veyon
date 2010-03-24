@@ -1,8 +1,3 @@
-#define __USE_GNU
-#include <string.h>
-
-#define _XOPEN_SOURCE
-
 #include <rfb/rfbconfig.h>
 #include <rfb/keysym.h>
 
