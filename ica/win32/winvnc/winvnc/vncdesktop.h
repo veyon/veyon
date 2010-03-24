@@ -317,6 +317,9 @@ public:
 	rfb::Region2D rgnpump;
 	bool lock_region_add;
 
+	// The current mouse position
+	rfb::Rect		m_cursorpos;
+
 	// Implementation
 protected:
 
@@ -408,8 +411,6 @@ protected:
 
 	// Handle of the basic arrow cursor
 	HCURSOR			m_hdefcursor;
-	// The current mouse position
-	rfb::Rect		m_cursorpos;
 
 	// Boolean flag to indicate when the display resolution has changed
 	BOOL			m_displaychanged;
@@ -496,8 +497,8 @@ BOOL DriverWantedSet;
 //Multi monitor
 monitor mymonitor[3];
 int nr_monitors;
-int current_monitor;
-int asked_display;
+bool multi_monitor;
+bool requested_multi_monitor;
 
 bool m_bIsInputDisabledByClient; // 28 March 2008 jdp
 #ifdef AVILOG

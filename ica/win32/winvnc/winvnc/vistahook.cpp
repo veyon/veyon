@@ -63,10 +63,10 @@ vncDesktopThread::Handle_Ringbuffer(mystruct *ringbuffer,rfb::Region2D &rgncache
 				rect.tl = rfb::Point(ringbuffer->rect1[i].left, ringbuffer->rect1[i].top);
 				rect.br = rfb::Point(ringbuffer->rect1[i].right, ringbuffer->rect1[i].bottom);
 				//Buffer coordinates
-				rect.tl.x-=m_desktop->m_ScreenOffsetx;
-				rect.br.x-=m_desktop->m_ScreenOffsetx;
-				rect.tl.y-=m_desktop->m_ScreenOffsety;
-				rect.br.y-=m_desktop->m_ScreenOffsety;
+				//rect.tl.x-=(m_desktop->m_SWOffsetx);
+				//rect.br.x-=(m_desktop->m_SWOffsetx);
+				//rect.tl.y-=(m_desktop->m_SWOffsety);
+				//rect.br.y-=(m_desktop->m_SWOffsety);
 				//vnclog.Print(LL_INTERR, VNCLOG("REct %i %i %i %i  \n"),rect.tl.x,rect.br.x,rect.tl.y,rect.br.y);
 				
 				rect = rect.intersect(m_desktop->m_Cliprect);
@@ -103,10 +103,10 @@ vncDesktopThread::Handle_Ringbuffer(mystruct *ringbuffer,rfb::Region2D &rgncache
 				rect.tl = rfb::Point(ringbuffer->rect1[i].left, ringbuffer->rect1[i].top);
 				rect.br = rfb::Point(ringbuffer->rect1[i].right, ringbuffer->rect1[i].bottom);
 				//Buffer coordinates
-				rect.tl.x-=m_desktop->m_ScreenOffsetx;
-				rect.br.x-=m_desktop->m_ScreenOffsetx;
-				rect.tl.y-=m_desktop->m_ScreenOffsety;
-				rect.br.y-=m_desktop->m_ScreenOffsety;
+				//rect.tl.x-=m_desktop->m_ScreenOffsetx;
+				//rect.br.x-=m_desktop->m_ScreenOffsetx;
+				//rect.tl.y-=m_desktop->m_ScreenOffsety;
+				//rect.br.y-=m_desktop->m_ScreenOffsety;
 				//vnclog.Print(LL_INTERR, VNCLOG("REct %i %i %i %i  \n"),rect.tl.x,rect.br.x,rect.tl.y,rect.br.y);
 				
 				rect = rect.intersect(m_desktop->m_Cliprect);
@@ -137,10 +137,10 @@ vncDesktopThread::Handle_Ringbuffer(mystruct *ringbuffer,rfb::Region2D &rgncache
 				rect.tl = rfb::Point(ringbuffer->rect1[i].left, ringbuffer->rect1[i].top);
 				rect.br = rfb::Point(ringbuffer->rect1[i].right, ringbuffer->rect1[i].bottom);
 				//Buffer coordinates
-				rect.tl.x-=m_desktop->m_ScreenOffsetx;
-				rect.br.x-=m_desktop->m_ScreenOffsetx;
-				rect.tl.y-=m_desktop->m_ScreenOffsety;
-				rect.br.y-=m_desktop->m_ScreenOffsety;
+				//rect.tl.x-=m_desktop->m_ScreenOffsetx;
+				//rect.br.x-=m_desktop->m_ScreenOffsetx;
+				//rect.tl.y-=m_desktop->m_ScreenOffsety;
+				//rect.br.y-=m_desktop->m_ScreenOffsety;
 				//vnclog.Print(LL_INTERR, VNCLOG("REct %i %i %i %i  \n"),rect.tl.x,rect.br.x,rect.tl.y,rect.br.y);
 				
 				rect = rect.intersect(m_desktop->m_Cliprect);

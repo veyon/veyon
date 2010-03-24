@@ -55,6 +55,10 @@ extern bool G_1111;
 const UINT MENU_ADD_CLIENT_MSG = RegisterWindowMessage("WinVNC.AddClient.Message");
 const UINT MENU_AUTO_RECONNECT_MSG = RegisterWindowMessage("WinVNC.AddAutoClient.Message");
 const UINT MENU_REPEATER_ID_MSG = RegisterWindowMessage("WinVNC.AddRepeaterID.Message");
+// adzm 2009-07-05 - Tray icon balloon tips
+// adzm 2010-02-10 - Changed this window message (added 2) to prevent receiving the same message from older UltraVNC builds 
+// which will send this message between processes with process-local pointers to strings as the wParam and lParam
+const UINT MENU_TRAYICON_BALLOON_MSG = RegisterWindowMessage("WinVNC.TrayIconBalloon2.Message");
  
 
 const UINT FileTransferSendPacketMessage = RegisterWindowMessage("UltraVNC.Viewer.FileTransferSendPacketMessage");
@@ -67,6 +71,8 @@ bool RunningAsAdministrator ();
 extern HINSTANCE	hInstResDLL;
 
 extern bool			fShutdownOrdered;
+
+extern BOOL SPECIAL_SC_PROMPT;
 
 // sf@2007 - WTS notifications stuff
 #define NOTIFY_FOR_THIS_SESSION 0
@@ -87,12 +93,12 @@ void Set_stop_service_as_admin();
 void Set_start_service_as_admin();
 
 DWORD GetCurrentSessionID();
-
+static unsigned int WM_TASKBARCREATED = 0;
+void Open_homepage();
+void Open_forum();
 
 #define MSGFLT_ADD		1
 typedef BOOL (WINAPI *CHANGEWINDOWMESSAGEFILTER)(UINT message, DWORD dwFlag);
-
-
 
 
 
@@ -171,7 +177,16 @@ static inline VOID DisableAero(VOID)
 
 static void KillWallpaper()
 {
-	//HideDesktop();
+#if 0
+	//only kill wallpaper if desktop is user desktop
+	HDESK desktop = GetThreadDesktop(GetCurrentThreadId());
+	DWORD dummy;
+	char new_name[256];
+	if (GetUserObjectInformation(desktop, UOI_NAME, &new_name, 256, &dummy))
+	{
+		if (strcmp(new_name,"Default")==NULL) HideDesktop();
+	}	
+#endif
 }
 
 static void RestoreWallpaper()
@@ -196,8 +211,14 @@ vncMenu::vncMenu(vncServer *server)
 	if (pfnFilter) pfnFilter(MENU_ADD_CLIENT_MSG, MSGFLT_ADD);
 	if (pfnFilter) pfnFilter(MENU_AUTO_RECONNECT_MSG, MSGFLT_ADD);
 	if (pfnFilter) pfnFilter(MENU_REPEATER_ID_MSG, MSGFLT_ADD);
+	// adzm 2009-07-05 - Tray icon balloon tips
+	if (pfnFilter) pfnFilter(MENU_TRAYICON_BALLOON_MSG, MSGFLT_ADD);
+
     FreeLibrary (hUser32);
 	
+	// adzm 2009-07-05 - Tray icon balloon tips
+	m_BalloonInfo = NULL;
+	m_BalloonTitle = NULL;
 
 	// Save the server pointer
 	m_server = server;
@@ -397,6 +418,17 @@ vncMenu::vncMenu(vncServer *server)
 vncMenu::~vncMenu()
 {
 	vnclog.Print(LL_INTERR, VNCLOG("vncmenu killed\n"));
+
+	// adzm 2009-07-05 - Tray icon balloon tips
+	if (m_BalloonInfo) {		
+		free(m_BalloonInfo);
+		m_BalloonInfo = NULL;
+	}
+	if (m_BalloonTitle) {
+		free(m_BalloonTitle);
+		m_BalloonTitle = NULL;
+	}
+
 	if (hWTSDll)
 	{
 		WTSUNREGISTERSESSIONNOTIFICATION FunctionWTSUnRegisterSessionNotification;
@@ -461,13 +493,13 @@ vncMenu::AddTrayIcon()
 		{
 			if ( ! m_server->GetDisableTrayIcon())
 				{
-					vnclog.Print(LL_INTERR, VNCLOG("########### No Shell_TrayWnd found %i\n"),IsIconSet);
+					vnclog.Print(LL_INTERR, VNCLOG("########### Shell_TrayWnd found %i\n"),IsIconSet);
 					SendTrayMsg(NIM_ADD, FALSE);
 				}
 		}
 		else
 		{
-			vnclog.Print(LL_INTERR, VNCLOG("########### No Shell_TrayWnd found %i\n"),IsIconSet);
+			vnclog.Print(LL_INTERR, VNCLOG("########### Shell_TrayWnd found %i\n"),IsIconSet);
 			SendTrayMsg(NIM_ADD, FALSE);
 		}
 		if (m_server->AuthClientCount() != 0) { //PGM @ Advantig
@@ -541,6 +573,9 @@ void GetIPAddrString(char *buffer, int buflen) {
 void
 vncMenu::SendTrayMsg(DWORD msg, BOOL flash)
 {
+	// adzm 2009-07-05
+	omni_mutex_lock sync(m_mutexTrayIcon);
+
 	// Create the tray icon message
 	m_nid.hWnd = m_hwnd;
 	m_nid.cbSize = sizeof(m_nid);
@@ -558,6 +593,33 @@ vncMenu::SendTrayMsg(DWORD msg, BOOL flash)
 		m_nid.dwState = 0;
 		m_nid.dwStateMask = NIS_HIDDEN;
 
+	}
+
+	// adzm 2009-07-05 - Tray icon balloon tips
+
+	if (m_BalloonInfo && (strlen(m_BalloonInfo) > 0)) {
+		m_nid.uFlags |= NIF_INFO;
+		strncpy(m_nid.szInfo, m_BalloonInfo, 255);
+		m_nid.szInfo[255] = '\0';
+
+		if (m_BalloonTitle && (strlen(m_BalloonTitle) > 0)) {
+			strncpy(m_nid.szInfoTitle, m_BalloonTitle, 63);
+			m_nid.szInfoTitle[63] = '\0';
+		} else {
+			strcpy(m_nid.szInfoTitle, "Remote Connection");
+		}
+
+		m_nid.uTimeout=10000; // minimum
+		m_nid.dwInfoFlags=NIIF_INFO;
+	}
+	
+	if (m_BalloonInfo) {		
+		free(m_BalloonInfo);
+		m_BalloonInfo = NULL;
+	}
+	if (m_BalloonTitle) {
+		free(m_BalloonTitle);
+		m_BalloonTitle = NULL;
 	}
 
 	//vnclog.Print(LL_INTINFO, VNCLOG("SendTRaymesg\n"));
@@ -613,10 +675,20 @@ vncMenu::SendTrayMsg(DWORD msg, BOOL flash)
 			EnableMenuItem(m_hmenu, ID_OUTGOING_CONN,
 			m_properties.AllowEditClients() ? MF_ENABLED : MF_GRAYED);
 
-			EnableMenuItem(m_hmenu, ID_CLOSE_SERVICE,vncService::RunningAsService() ? MF_ENABLED : MF_GRAYED);
-			EnableMenuItem(m_hmenu, ID_START_SERVICE,(vncService::IsInstalled() && !vncService::RunningAsService()) ? MF_ENABLED : MF_GRAYED);
-			EnableMenuItem(m_hmenu, ID_RUNASSERVICE,(!vncService::IsInstalled() &&!vncService::RunningAsService()) ? MF_ENABLED : MF_GRAYED);
-			EnableMenuItem(m_hmenu, ID_UNINSTALL_SERVICE,vncService::IsInstalled() ? MF_ENABLED : MF_GRAYED);
+			EnableMenuItem(m_hmenu, ID_CLOSE_SERVICE,(vncService::RunningAsService()&&m_properties.AllowShutdown()) ? MF_ENABLED : MF_GRAYED);
+			EnableMenuItem(m_hmenu, ID_START_SERVICE,(vncService::IsInstalled() && !vncService::RunningAsService() && m_properties.AllowShutdown()) ? MF_ENABLED : MF_GRAYED);
+			EnableMenuItem(m_hmenu, ID_RUNASSERVICE,(!vncService::IsInstalled() &&!vncService::RunningAsService() && m_properties.AllowShutdown()) ? MF_ENABLED : MF_GRAYED);
+			EnableMenuItem(m_hmenu, ID_UNINSTALL_SERVICE,(vncService::IsInstalled()&&m_properties.AllowShutdown()) ? MF_ENABLED : MF_GRAYED);
+
+			// adzm 2009-07-05
+			if (SPECIAL_SC_PROMPT) {
+				RemoveMenu(m_hmenu, ID_ADMIN_PROPERTIES, MF_BYCOMMAND);
+
+				RemoveMenu(m_hmenu, ID_CLOSE_SERVICE, MF_BYCOMMAND);
+				RemoveMenu(m_hmenu, ID_START_SERVICE, MF_BYCOMMAND);
+				RemoveMenu(m_hmenu, ID_RUNASSERVICE, MF_BYCOMMAND);
+				RemoveMenu(m_hmenu, ID_UNINSTALL_SERVICE, MF_BYCOMMAND);
+			}
 
 			if (msg == NIM_ADD)
 			{
@@ -681,6 +753,23 @@ LRESULT CALLBACK vncMenu::WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lP
 	//	Beep(100,10);
 	//	vnclog.Print(LL_INTINFO, VNCLOG("iMsg 0x%x \n"),iMsg);
 
+	 if (iMsg==WM_TASKBARCREATED)
+	 {
+		 if (_this->m_server->RunningFromExternalService())
+			{
+				Sleep(1000);
+				vnclog.Print(LL_INTINFO,
+				VNCLOG("WM_TASKBARCREATED \n"));
+				// User has changed!
+				strcpy(_this->m_username, newuser);
+				vnclog.Print(LL_INTINFO,
+				VNCLOG("############## Kill vncMenu thread\n"));
+				// Order impersonation thread killing
+				KillTimer(hwnd,1);
+				PostQuitMessage(0);
+			}
+	 }
+
 	switch (iMsg)
 	{
 
@@ -692,11 +781,12 @@ LRESULT CALLBACK vncMenu::WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lP
         // jdp reread some ini settings
         _this->m_properties.ReloadDynamicSettings();
 
+		// G_1111==true --> reconnect
 		if (G_1111==true)
 		{
 			if (_this->IsIconSet==true)
 			{
-				vnclog.Print(LL_INTERR, VNCLOG("IconSET\n"));
+				vnclog.Print(LL_INTERR, VNCLOG("Add client reconnect from timer\n"));
 				G_1111=false;
 				PostMessage(hwnd,MENU_ADD_CLIENT_MSG,1111,1111);
 			}
@@ -711,7 +801,7 @@ LRESULT CALLBACK vncMenu::WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lP
 				if (vncService::CurrentUser((char *) &newuser, sizeof(newuser)))
 				{
 					// Check whether the user name has changed!
-					if (_stricmp(newuser, _this->m_username) != 0 || _this->IconFaultCounter>10)
+					if (_stricmp(newuser, _this->m_username) != 0 || _this->IconFaultCounter>2)
 					{
 						Sleep(1000);
 						vnclog.Print(LL_INTINFO,
@@ -770,6 +860,7 @@ LRESULT CALLBACK vncMenu::WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lP
 
 		// STANDARD MESSAGE HANDLING
 	case WM_CREATE:
+		WM_TASKBARCREATED = RegisterWindowMessage("TaskbarCreated");
 		return 0;
 
 	case WM_COMMAND:
@@ -825,11 +916,92 @@ LRESULT CALLBACK vncMenu::WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lP
 			_this->m_about.Show(TRUE);
 			break;
 
+		case ID_VISITUSONLINE_HOMEPAGE:
+			{
+						HANDLE hProcess,hPToken;
+						DWORD id=GetExplorerLogonPid();
+						if (id!=0) 
+						{
+							hProcess = OpenProcess(MAXIMUM_ALLOWED,FALSE,id);
+							if(!OpenProcessToken(hProcess,TOKEN_ADJUST_PRIVILEGES|TOKEN_QUERY
+													|TOKEN_DUPLICATE|TOKEN_ASSIGN_PRIMARY|TOKEN_ADJUST_SESSIONID
+													|TOKEN_READ|TOKEN_WRITE,&hPToken)) break;
+
+							char dir[MAX_PATH];
+							char exe_file_name[MAX_PATH];
+							GetModuleFileName(0, exe_file_name, MAX_PATH);
+							strcpy(dir, exe_file_name);
+							strcat(dir, " -openhomepage");
+				
+							{
+								STARTUPINFO          StartUPInfo;
+								PROCESS_INFORMATION  ProcessInfo;
+								ZeroMemory(&StartUPInfo,sizeof(STARTUPINFO));
+								ZeroMemory(&ProcessInfo,sizeof(PROCESS_INFORMATION));
+								StartUPInfo.wShowWindow = SW_SHOW;
+								StartUPInfo.lpDesktop = "Winsta0\\Default";
+								StartUPInfo.cb = sizeof(STARTUPINFO);
+						
+								CreateProcessAsUser(hPToken,NULL,dir,NULL,NULL,FALSE,DETACHED_PROCESS,NULL,NULL,&StartUPInfo,&ProcessInfo);
+								DWORD error=GetLastError();
+                                if (ProcessInfo.hThread) CloseHandle(ProcessInfo.hThread);
+                                if (ProcessInfo.hProcess) CloseHandle(ProcessInfo.hProcess);
+								//if (error==1314)
+								//	{
+								//		Open_homepage();
+								//	}
+
+							}
+						}
+			}
+			break;
+
+		case ID_VISITUSONLINE_FORUM:
+			{
+						HANDLE hProcess,hPToken;
+						DWORD id=GetExplorerLogonPid();
+						if (id!=0) 
+						{
+							hProcess = OpenProcess(MAXIMUM_ALLOWED,FALSE,id);
+							if(!OpenProcessToken(hProcess,TOKEN_ADJUST_PRIVILEGES|TOKEN_QUERY
+													|TOKEN_DUPLICATE|TOKEN_ASSIGN_PRIMARY|TOKEN_ADJUST_SESSIONID
+													|TOKEN_READ|TOKEN_WRITE,&hPToken)) break;
+
+							char dir[MAX_PATH];
+							char exe_file_name[MAX_PATH];
+							GetModuleFileName(0, exe_file_name, MAX_PATH);
+							strcpy(dir, exe_file_name);
+							strcat(dir, " -openforum");
+				
+							{
+								STARTUPINFO          StartUPInfo;
+								PROCESS_INFORMATION  ProcessInfo;
+								ZeroMemory(&StartUPInfo,sizeof(STARTUPINFO));
+								ZeroMemory(&ProcessInfo,sizeof(PROCESS_INFORMATION));
+								StartUPInfo.wShowWindow = SW_SHOW;
+								StartUPInfo.lpDesktop = "Winsta0\\Default";
+								StartUPInfo.cb = sizeof(STARTUPINFO);
+						
+								CreateProcessAsUser(hPToken,NULL,dir,NULL,NULL,FALSE,DETACHED_PROCESS,NULL,NULL,&StartUPInfo,&ProcessInfo);
+								DWORD error=GetLastError();
+                                if (ProcessInfo.hThread) CloseHandle(ProcessInfo.hThread);
+                                if (ProcessInfo.hProcess) CloseHandle(ProcessInfo.hProcess);
+								//if (error==1314)
+								//	{
+								//		Open_forum();
+								//	}
+
+							}
+						}
+			}
+			break;
+
 		case ID_CLOSE:
 			// User selected Close from the tray menu
+			fShutdownOrdered=TRUE;
+			Sleep(1000);
 			vnclog.Print(LL_INTINFO, VNCLOG("KillAuthClients() ID_CLOSE \n"));
 			_this->m_server->KillAuthClients();
-			fShutdownOrdered=TRUE;
 			PostMessage(hwnd, WM_CLOSE, 0, 0);
 			break;
 		case ID_UNINSTALL_SERVICE:
@@ -861,18 +1033,18 @@ LRESULT CALLBACK vncMenu::WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lP
 					StartUPInfo.cb = sizeof(STARTUPINFO);
 			
 					CreateProcessAsUser(hPToken,NULL,dir,NULL,NULL,FALSE,DETACHED_PROCESS,NULL,NULL,&StartUPInfo,&ProcessInfo);
-					DWORD error=GetLastError();
+					DWORD errorcode=GetLastError();
 					if (process) CloseHandle(process);
 					if (Token) CloseHandle(Token);
-					if (error==1314)
+					if (errorcode==1314)
 					{
 						Set_uninstall_service_as_admin();
 					}
 
 					}
-					vnclog.Print(LL_INTINFO, VNCLOG("KillAuthClients() ID_CLOSE \n"));
-					_this->m_server->KillAuthClients();
 					fShutdownOrdered=TRUE;
+					vnclog.Print(LL_INTINFO, VNCLOG("KillAuthClients() ID_CLOSE \n"));
+					_this->m_server->KillAuthClients();					
 					PostMessage(hwnd, WM_CLOSE, 0, 0);
 				}
 			}
@@ -914,9 +1086,10 @@ LRESULT CALLBACK vncMenu::WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lP
 						Set_install_service_as_admin();
 					}
 				}
+			fShutdownOrdered=TRUE;
+			Sleep(1000);
 			vnclog.Print(LL_INTINFO, VNCLOG("KillAuthClients() ID_CLOSE \n"));
 			_this->m_server->KillAuthClients();
-			fShutdownOrdered=TRUE;
 			PostMessage(hwnd, WM_CLOSE, 0, 0);
 			}
 			break;
@@ -1006,9 +1179,10 @@ LRESULT CALLBACK vncMenu::WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lP
 					{
 						Set_start_service_as_admin();
 					}
+					fShutdownOrdered=TRUE;
+					Sleep(1000);
 					vnclog.Print(LL_INTINFO, VNCLOG("KillAuthClients() ID_CLOSE \n"));
 					_this->m_server->KillAuthClients();
-					fShutdownOrdered=TRUE;
 					PostMessage(hwnd, WM_CLOSE, 0, 0);
 				}
 			}
@@ -1061,7 +1235,7 @@ LRESULT CALLBACK vncMenu::WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lP
 				// double click: execute first menu item
 				SendMessage(_this->m_nid.hWnd,
 							WM_COMMAND, 
-							GetMenuItemID(submenu, 3),
+							GetMenuItemID(submenu, 0),
 							0);
 			}
 
@@ -1082,6 +1256,7 @@ LRESULT CALLBACK vncMenu::WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lP
 			ResetAero();
 
 		vnclog.Print(LL_INTERR, VNCLOG("vncMenu WM_CLOSE call - All cleanup done\n"));
+		Sleep(2000);
 		DestroyWindow(hwnd);
 		break;
 		
@@ -1096,10 +1271,11 @@ LRESULT CALLBACK vncMenu::WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lP
 			//shutdown or reboot
 			if((lParam & ENDSESSION_LOGOFF) != ENDSESSION_LOGOFF)
 			{
+				fShutdownOrdered=TRUE;
+				Sleep(1000);
 				vnclog.Print(LL_INTERR, VNCLOG("SHUTDOWN OS detected\n"));
 				vnclog.Print(LL_INTINFO, VNCLOG("KillAuthClients() ID_CLOSE \n"));
-				_this->m_server->KillAuthClients();
-				fShutdownOrdered=TRUE;
+				_this->m_server->KillAuthClients();				
 				PostMessage(hwnd, WM_CLOSE, 0, 0);
 				break;
 			}
@@ -1110,10 +1286,11 @@ LRESULT CALLBACK vncMenu::WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lP
 			vnclog.Print(LL_INTERR, VNCLOG("Session ID %i\n"),SessionID);
 			if (SessionID!=0)
 			{
+				fShutdownOrdered=TRUE;
+				Sleep(1000);
 				vnclog.Print(LL_INTERR, VNCLOG("WM_QUERYENDSESSION session!=0\n"));
 				vnclog.Print(LL_INTINFO, VNCLOG("KillAuthClients() ID_CLOSE \n"));
-				_this->m_server->KillAuthClients();
-				fShutdownOrdered=TRUE;
+				_this->m_server->KillAuthClients();				
 				PostMessage(hwnd, WM_CLOSE, 0, 0);
 			}
 		}	
@@ -1223,6 +1400,20 @@ LRESULT CALLBACK vncMenu::WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lP
 			// Add Client message.  This message includes an IP address
 			// of a listening client, to which we should connect.
 
+			//adzm 2009-06-20 - Check for special add repeater client message
+			if (wParam == 0xFFFFFFFF && lParam == 0xFFFFFFFF) {
+				vncConnDialog *newconn = new vncConnDialog(_this->m_server);
+				if (newconn)
+				{
+					if (IDOK != newconn->DoDialog()) {
+						if (SPECIAL_SC_PROMPT && _this->m_server->AuthClientCount() == 0 && _this->m_server->UnauthClientCount() == 0) {
+							PostMessage(hwnd, WM_COMMAND, ID_CLOSE, 0);
+						}
+					}
+				}
+				return 0;
+			}
+
 			// If there is no IP address then show the connection dialog
 			if (!lParam) {
 				vncConnDialog *newconn = new vncConnDialog(_this->m_server);
@@ -1297,9 +1488,16 @@ LRESULT CALLBACK vncMenu::WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lP
 						// Set the ID for this client -- code taken from vncconndialog.cpp (ln:142)
 						tmpsock->Send(szId,250);
 						tmpsock->SetTimeout(0);
+						
+						// adzm 2009-07-05 - repeater IDs
+						// Add the new client to this server
+						// adzm 2009-08-02
+						_this->m_server->AddClient(tmpsock, TRUE, TRUE, 0, NULL, szId, szAdrName, nport);
+					} else {
+						// Add the new client to this server
+						// adzm 2009-08-02
+						_this->m_server->AddClient(tmpsock, TRUE, TRUE, 0, NULL, NULL, szAdrName, nport);
 					}
-					// Add the new client to this server
-					_this->m_server->AddClient(tmpsock, TRUE, TRUE);
 				} else {
 					delete tmpsock;
 					_this->m_server->AutoConnectRetry();
@@ -1316,8 +1514,69 @@ LRESULT CALLBACK vncMenu::WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lP
 		  if (_this->m_server->IsClient(pClient)) pClient->SendFileChunk();
 		}
 
+		// adzm 2009-07-05 - Tray icon balloon tips
+		if (iMsg == MENU_TRAYICON_BALLOON_MSG) {
+			try {
+				omni_mutex_lock sync(_this->m_mutexTrayIcon);
+
+				// adzm 2009-07-05 - Tray icon balloon tips
+				if (_this->m_BalloonInfo) {		
+					free(_this->m_BalloonInfo);
+					_this->m_BalloonInfo = NULL;
+				}
+				if (_this->m_BalloonTitle) {
+					free(_this->m_BalloonTitle);
+					_this->m_BalloonTitle = NULL;
+				}
+
+				char* szInfo = (char*)wParam;
+				char* szTitle = (char*)lParam;
+				
+				if (szInfo && (strlen(szInfo) > 0) ) {
+					_this->m_BalloonInfo = _strdup(szInfo);
+				}
+				if (szTitle && (strlen(szTitle) > 0) ) {
+					_this->m_BalloonTitle = _strdup(szTitle);
+				}
+
+				if (szInfo) {
+					free(szInfo);
+				}
+				if (szTitle) {
+					free(szTitle);
+				}
+
+				if (_this->IsIconSet) {
+					_this->SendTrayMsg(NIM_MODIFY, _this->m_nid.hIcon == _this->m_winvnc_icon ? FALSE : TRUE);
+				}
+			} catch (...) {
+				// just in case
+				vnclog.Print(LL_INTWARN,
+					VNCLOG("Warning: exception handling balloon message\n"));
+			}
+		}
 	}
 
 	// Message not recognised
 	return DefWindowProc(hwnd, iMsg, wParam, lParam);
+}
+
+// adzm 2009-07-05 - Tray icon balloon tips
+BOOL vncMenu::NotifyBalloon(char* szInfo, char* szTitle)
+{
+	char* szInfoCopy = _strdup(szInfo); // TOFIX memory leak;
+	char* szTitleCopy = _strdup(szTitle);
+
+	//adzm 2010-02-10 - Only posts to the same process
+	BOOL returnvalue= PostToThisWinVNC(MENU_TRAYICON_BALLOON_MSG, (WPARAM)szInfoCopy, (LPARAM)szTitleCopy);
+	if (returnvalue==FALSE)
+	{
+			if (szInfoCopy) {
+				free(szInfoCopy);
+			}
+			if (szTitleCopy) {
+				free(szTitleCopy);
+			}
+	}
+	return returnvalue;
 }

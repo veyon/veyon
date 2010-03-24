@@ -589,6 +589,17 @@ typedef struct _rfbClientRec {
     int progressiveSliceY;
 
     rfbExtensionData* extensions;
+
+    /* for threaded zrle */
+    char *zrleBeforeBuf;
+    void *paletteHelper;
+
+    /* for thread safety for rfbSendFBUpdate() */
+#ifdef LIBVNCSERVER_HAVE_LIBPTHREAD
+#define LIBVNCSERVER_SEND_MUTEX
+    MUTEX(sendMutex);
+#endif
+
 } rfbClientRec, *rfbClientPtr;
 
 /*

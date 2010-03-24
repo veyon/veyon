@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9,00"
+	Version="9.00"
 	Name="vnchooks"
 	ProjectGUID="{1D18E045-6B72-43F4-ACBD-3E679A3DE349}"
 	TargetFrameworkVersion="131072"
@@ -267,6 +267,7 @@
 				ModuleDefinitionFile=".\VNCHooks.def"
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile=".\..\Release/vnchooks.pdb"
+				OptimizeReferences="2"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
 				ImportLibrary=".\..\Release/vnchooks.lib"

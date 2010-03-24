@@ -1,6 +1,40 @@
+/*
+   Copyright (C) 2002-2010 Karl J. Runge <runge@karlrunge.com> 
+   All rights reserved.
+
+This file is part of x11vnc.
+
+x11vnc is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or (at
+your option) any later version.
+
+x11vnc is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with x11vnc; if not, write to the Free Software
+Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA
+or see <http://www.gnu.org/licenses/>.
+
+In addition, as a special exception, Karl J. Runge
+gives permission to link the code of its release of x11vnc with the
+OpenSSL project's "OpenSSL" library (or with modified versions of it
+that use the same license as the "OpenSSL" library), and distribute
+the linked executables.  You must obey the GNU General Public License
+in all respects for all of the code used other than "OpenSSL".  If you
+modify this file, you may extend this exception to your version of the
+file, but you are not obligated to do so.  If you do not wish to do
+so, delete this exception statement from your version.
+*/
+
 /* -- avahi.c -- */
 
 #include "x11vnc.h"
+#include "connections.h"
+#include "cleanup.h"
 
 void avahi_initialise(void);
 void avahi_advertise(const char *name, const char *host, const uint16_t port);
@@ -20,6 +54,8 @@ static int try_avahi_helper(const char *name, const char *host, const uint16_t p
 #if LIBVNCSERVER_HAVE_FORK
 	char *cmd, *p, *path = getenv("PATH"), portstr[32];
 	int i;
+
+	if (!name || !host || !port) {}
 
 	/* avahi-publish */
 	if (no_external_cmds || !cmd_ok("zeroconf")) {
@@ -133,6 +169,10 @@ void avahi_cleanup(void) {
 #include <avahi-client/client.h>
 #include <avahi-client/publish.h>
 
+#include <avahi-common/malloc.h>
+#include <avahi-common/error.h>
+
+
 static AvahiThreadedPoll *_poll = NULL;
 static AvahiClient *_client = NULL;
 static AvahiEntryGroup *_group = NULL;
@@ -238,6 +278,8 @@ if (db) fprintf(stderr, "in  _avahi_entry_group_callback %d 0x%p\n", state, svc)
 		rfbLog("Avahi Entry group failure: %s\n",
 		    avahi_strerror(avahi_client_errno(
 		    avahi_entry_group_get_client(g))));
+		break;
+	default:
 		break;
 	}
 if (db) fprintf(stderr, "out _avahi_entry_group_callback\n");

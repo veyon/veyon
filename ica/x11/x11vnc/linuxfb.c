@@ -1,3 +1,35 @@
+/*
+   Copyright (C) 2002-2010 Karl J. Runge <runge@karlrunge.com> 
+   All rights reserved.
+
+This file is part of x11vnc.
+
+x11vnc is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or (at
+your option) any later version.
+
+x11vnc is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with x11vnc; if not, write to the Free Software
+Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA
+or see <http://www.gnu.org/licenses/>.
+
+In addition, as a special exception, Karl J. Runge
+gives permission to link the code of its release of x11vnc with the
+OpenSSL project's "OpenSSL" library (or with modified versions of it
+that use the same license as the "OpenSSL" library), and distribute
+the linked executables.  You must obey the GNU General Public License
+in all respects for all of the code used other than "OpenSSL".  If you
+modify this file, you may extend this exception to your version of the
+file, but you are not obligated to do so.  If you do not wish to do
+so, delete this exception statement from your version.
+*/
+
 /* -- linuxfb.c -- */
 
 #include "x11vnc.h"
@@ -22,6 +54,9 @@ char *console_guess(char *str, int *fd);
 void console_key_command(rfbBool down, rfbKeySym keysym, rfbClientPtr client);
 void console_pointer_command(int mask, int x, int y, rfbClientPtr client);
 
+
+void linux_dev_fb_msg(char *);
+
 char *console_guess(char *str, int *fd) {
 	char *q, *in = strdup(str);
 	char *atparms = NULL, *file = NULL;
@@ -40,6 +75,10 @@ char *console_guess(char *str, int *fd) {
 		free(in);
 		in = (char *) malloc(strlen("console:/dev/") + strlen(str) + 1);
 		sprintf(in, "console:/dev/%s", str);
+	} else if (strstr(in, "vt") == in) {
+		free(in);
+		in = (char *) malloc(strlen("console_") + strlen(str) + 1);
+		sprintf(in, "console_%s", str);
 	}
 
 	if (strstr(in, "console") != in) {
@@ -75,7 +114,6 @@ char *console_guess(char *str, int *fd) {
 			file = strdup("/dev/fb0");
 		}
 	}
-	rfbLog("console_guess: file is %s\n", file);
 
 	do_input = 1;
 	if (pipeinput_str) {
@@ -84,8 +122,14 @@ char *console_guess(char *str, int *fd) {
 	} else {
 		have_uinput = check_uinput();
 	}
+	if (strstr(in, "console_vt")) {
+		have_uinput = 0;
+	}
 
 	if (!strcmp(in, "consolex")) {
+		do_input = 0;
+	} else if (strstr(in, "console_vtx")) {
+		have_uinput = 0;
 		do_input = 0;
 	} else if (!strcmp(in, "console")) {
 		/* current active VT: */
@@ -94,11 +138,44 @@ char *console_guess(char *str, int *fd) {
 		}
 	} else {
 		int n;
-		if (sscanf(in, "console%d", &n) != 1)  {
+		if (sscanf(in, "console%d", &n) == 1)  {
+			tty = n;
+			have_uinput = 0;
+		} else if (sscanf(in, "console_vt%d", &n) == 1)  {
 			tty = n;
 			have_uinput = 0;
 		}
 	}
+	if (strstr(in, "console_vt") == in) {
+		char tmp[100];
+		int fd, rows = 30, cols = 80, w, h;
+		sprintf(tmp, "/dev/vcsa%d", tty);
+		file = strdup(tmp);
+		fd = open(file, O_RDWR);
+		if (fd >= 0) {
+			read(fd, tmp, 4);
+			rows = (unsigned char) tmp[0];
+			cols = (unsigned char) tmp[1];
+			close(fd);
+		}
+		w = cols * 8;
+		h = rows * 16;
+		rfbLog("%s %dx%d\n", file, cols, rows);
+		if (getenv("RAWFB_VCSA_BPP")) {
+			/* 8bpp, etc */
+			int bt = atoi(getenv("RAWFB_VCSA_BPP"));
+			if (bt > 0 && bt <=32) {
+				sprintf(tmp, "%dx%dx%d", w, h, bt);
+			} else {
+				sprintf(tmp, "%dx%dx16", w, h);
+			}
+		} else {
+			/* default 16bpp */
+			sprintf(tmp, "%dx%dx16", w, h);
+		}
+		atparms = strdup(tmp);
+	}
+	rfbLog("console_guess: file is %s\n", file);
 
 	if (! atparms) {
 #if LIBVNCSERVER_HAVE_LINUX_FB_H
@@ -126,6 +203,13 @@ char *console_guess(char *str, int *fd) {
 					gm = 0x38;
 					bm = 0xc0;
 				}
+				if (b <= 8 && (rm == gm && gm == bm)) {
+					if (b == 4) {
+						rm = 0x07;
+						gm = 0x38;
+						bm = 0xc0;
+					}
+				}
 				
 				/* @66666x66666x32:0xffffffff:... */
 				atparms = (char *) malloc(200);
@@ -138,7 +222,8 @@ char *console_guess(char *str, int *fd) {
 			}
 		} else {
 			rfbLog("could not open: %s\n", file);
-			perror("open");
+			rfbLogPerror("open");
+			linux_dev_fb_msg(file);
 			close(d);
 		}
 #endif
@@ -174,8 +259,12 @@ char *console_guess(char *str, int *fd) {
 		return NULL;
 	}
 
-	q = (char *) malloc(strlen("map:") + strlen(file) + 1 + strlen(atparms) + 1);
-	sprintf(q, "map:%s@%s", file, atparms);
+	q = (char *) malloc(strlen("mmap:") + strlen(file) + 1 + strlen(atparms) + 1);
+	if (strstr(in, "console_vt")) {
+		sprintf(q, "snap:%s@%s", file, atparms);
+	} else {
+		sprintf(q, "map:%s@%s", file, atparms);
+	}
 	return q;
 }
 

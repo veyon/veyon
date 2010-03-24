@@ -1,3 +1,35 @@
+/*
+   Copyright (C) 2002-2010 Karl J. Runge <runge@karlrunge.com> 
+   All rights reserved.
+
+This file is part of x11vnc.
+
+x11vnc is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or (at
+your option) any later version.
+
+x11vnc is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with x11vnc; if not, write to the Free Software
+Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA
+or see <http://www.gnu.org/licenses/>.
+
+In addition, as a special exception, Karl J. Runge
+gives permission to link the code of its release of x11vnc with the
+OpenSSL project's "OpenSSL" library (or with modified versions of it
+that use the same license as the "OpenSSL" library), and distribute
+the linked executables.  You must obey the GNU General Public License
+in all respects for all of the code used other than "OpenSSL".  If you
+modify this file, you may extend this exception to your version of the
+file, but you are not obligated to do so.  If you do not wish to do
+so, delete this exception statement from your version.
+*/
+
 /* -- keyboard.c -- */
 
 #include "x11vnc.h"
@@ -365,13 +397,12 @@ void autorepeat(int restore, int bequiet) {
 			return;		/* nothing to restore */
 		}
 		global_auto_repeat = get_autorepeat_state();
-		X_LOCK;
 		/* read state and skip restore if equal (e.g. no clients) */
 		if (global_auto_repeat == save_auto_repeat) {
-			X_UNLOCK;
 			return;
 		}
 
+		X_LOCK;
 		kctrl.auto_repeat_mode = save_auto_repeat;
 		XChangeKeyboardControl(dpy, KBAutoRepeatMode, &kctrl);
 		XFlush_wr(dpy);
@@ -1083,7 +1114,8 @@ void switch_to_xkb_if_better(void) {
 	n = k;
 
 	XFree_wr(keymap);
-	if (missing_noxkb == 0 && syms_gt_4 >= 8) {
+	if (missing_noxkb == 0 && syms_per_keycode > 4 && syms_gt_4 >= 0) {
+		/* we used to have syms_gt_4 >= 8, now always on. */
 		if (! raw_fb_str) {
 			rfbLog("\n");
 			rfbLog("XKEYBOARD: number of keysyms per keycode %d is greater\n", syms_per_keycode);
@@ -1092,6 +1124,7 @@ void switch_to_xkb_if_better(void) {
 			rfbLog("  If this makes the key mapping worse you can\n");
 			rfbLog("  disable it with the \"-noxkb\" option.\n");
 			rfbLog("  Also, remember \"-remap DEAD\" for accenting characters.\n");
+			rfbLog("\n");
 		}
 
 		use_xkb_modtweak = 1;
@@ -1104,6 +1137,7 @@ void switch_to_xkb_if_better(void) {
 			rfbLog("  Not automatically switching to -xkb mode.\n");
 			rfbLog("  If some keys still cannot be typed, try using -xkb.\n");
 			rfbLog("  Also, remember \"-remap DEAD\" for accenting characters.\n");
+			rfbLog("\n");
 		}
 		return;
 	}
@@ -1186,6 +1220,7 @@ void switch_to_xkb_if_better(void) {
 		rfbLog("  Also, remember \"-remap DEAD\" for accenting"
 		    " characters.\n");
 	}
+	rfbLog("\n");
 }
 
 /* sets up all the keymapping info via Xkb API */
@@ -2014,7 +2049,7 @@ static void xkb_tweak_keyboard(rfbBool down, rfbKeySym keysym,
 		 * why nothing needs to be done with the modifier, see below.
 		 *
 		 * sentmods[] is the corresponding keycode to use
-		 * to acheive the needmods[] requirement for the bit.
+		 * to achieve the needmods[] requirement for the bit.
 		 */
 
 		for (i=0; i<8; i++) {
@@ -2609,6 +2644,7 @@ static void tweak_mod(signed char mod, rfbBool down) {
 	    XTestFakeKeyEvent_wr(dpy, altgr, dn, CurrentTime);
 	}
 	X_UNLOCK;
+
 	if (debug_keyboard) {
 		rfbLog("tweak_mod: Finish: down=%d index=%d mod_state=0x%x"
 		    " is_shift=%d\n", down, (int) mod, (int) mod_state,
@@ -2726,6 +2762,7 @@ void initialize_keyboard_and_pointer(void) {
 	initialize_remap(remap_file);
 	initialize_pointer_map(pointer_remap);
 
+	X_LOCK;
 	clear_modifiers(1);
 	if (clear_mods == 1) {
 		clear_modifiers(0);
@@ -2733,6 +2770,7 @@ void initialize_keyboard_and_pointer(void) {
 	if (clear_mods == 3) {
 		clear_locks();
 	}
+	X_UNLOCK;
 }
 
 void get_allowed_input(rfbClientPtr client, allowed_input_t *input) {
@@ -2746,6 +2784,11 @@ void get_allowed_input(rfbClientPtr client, allowed_input_t *input) {
 	input->files     = 0;
 
 	if (! client) {
+		input->keystroke = 1;
+		input->motion    = 1;
+		input->button    = 1;
+		input->clipboard = 1;
+		input->files     = 1;
 		return;
 	}
 
@@ -2828,6 +2871,8 @@ static void pipe_keyboard(rfbBool down, rfbKeySym keysym, rfbClientPtr client) {
 	if (isbutton) {
 		int mask, button = (int) keysym;
 		int x = cursor_x, y = cursor_y;
+		char *b, bstr[32];
+
 		if (!down) {
 			return;
 		}
@@ -2842,10 +2887,23 @@ static void pipe_keyboard(rfbBool down, rfbKeySym keysym, rfbClientPtr client) {
 		 * remap the button click to keystroke sequences!
 		 * Usually just will simulate the button click.
 		 */
-		mask = 1<<(button-1);
-		pointer(mask, x, y, client);
-		mask = 0;
-		pointer(mask, x, y, client);
+
+		/* loop over possible multiclicks: Button123 */
+		sprintf(bstr, "%d", button);
+		b = bstr;
+		while (*b != '\0') {
+			char t[2];
+			int butt;
+			t[0] = *b;
+			t[1] = '\0';
+			if (sscanf(t, "%d", &butt) == 1) {
+				mask = 1<<(butt-1);
+				pointer(mask, x, y, client);
+				mask = 0;
+				pointer(mask, x, y, client);
+			}
+			b++;
+		}
 		return;
 	}
 
@@ -2857,8 +2915,8 @@ static void pipe_keyboard(rfbBool down, rfbKeySym keysym, rfbClientPtr client) {
 		uinput_key_command(down, keysym, client);
 	} else if (pipeinput_int == PIPEINPUT_MACOSX) {
 		macosx_key_command(down, keysym, client);
-/*	} else if (pipeinput_int == PIPEINPUT_VNC) {
-		vnc_reflect_send_key((uint32_t) keysym, down);*/
+	} else if (pipeinput_int == PIPEINPUT_VNC) {
+		vnc_reflect_send_key((uint32_t) keysym, down);
 	}
 	if (pipeinput_fh == NULL) {
 		return;
@@ -3002,6 +3060,10 @@ void keyboard(rfbBool down, rfbKeySym keysym, rfbClientPtr client) {
 	static double max_keyrepeat_last_time = 0.0;
 	static double max_keyrepeat_always = -1.0;
 
+	if (threads_drop_input) {
+		return;
+	}
+
 	dtime0(&tnow);
 	got_keyboard_calls++;
 
@@ -3070,6 +3132,8 @@ void keyboard(rfbBool down, rfbKeySym keysym, rfbClientPtr client) {
 			keysym = XK_period; 
 		}
 	}
+
+	INPUT_LOCK;
 
 	last_down = down;
 	last_keysym = keysym;
@@ -3161,6 +3225,7 @@ void keyboard(rfbBool down, rfbKeySym keysym, rfbClientPtr client) {
 			if (db) rfbLog("--- scroll keyrate skipping 0x%lx %s "
 			    "%.4f  %.4f\n", keysym, down ? "down":"up  ",
 			    tnow - x11vnc_start, tnow - max_keyrepeat_last_time); 
+			INPUT_UNLOCK;
 			return;
 		}
 	}
@@ -3183,6 +3248,7 @@ void keyboard(rfbBool down, rfbKeySym keysym, rfbClientPtr client) {
 			    tnow - x11vnc_start, tnow - max_keyrepeat_last_time); 
 			max_keyrepeat_last_keysym = keysym;
 			skipped_last_down = 1;
+			INPUT_UNLOCK;
 			return;
 		} else {
 			if (db) rfbLog("--- scroll keyrate KEEPING  0x%lx %s "
@@ -3213,15 +3279,18 @@ void keyboard(rfbBool down, rfbKeySym keysym, rfbClientPtr client) {
 				got_user_input++;
 				got_keyboard_input++;
 			}
+			INPUT_UNLOCK;
 			return;
 		}
 	}
 
 	if (view_only) {
+		INPUT_UNLOCK;
 		return;
 	}
 	get_allowed_input(client, &input);
 	if (! input.keystroke) {
+		INPUT_UNLOCK;
 		return;
 	}
 
@@ -3270,7 +3339,10 @@ void keyboard(rfbBool down, rfbKeySym keysym, rfbClientPtr client) {
 
 	if (isbutton) {
 		int mask, button = (int) keysym;
+		char *b, bstr[32];
+
 		if (! down) {
+			INPUT_UNLOCK;
 			return;	/* nothing to send */
 		}
 		if (debug_keyboard) {
@@ -3285,12 +3357,26 @@ void keyboard(rfbBool down, rfbKeySym keysym, rfbClientPtr client) {
 		 * remap the button click to keystroke sequences!
 		 * Usually just will simulate the button click.
 		 */
-		mask = 1<<(button-1);
-		do_button_mask_change(mask, button);	/* down */
-		mask = 0;
-		do_button_mask_change(mask, button);	/* up */
+
+		/* loop over possible multiclicks: Button123 */
+		sprintf(bstr, "%d", button);
+		b = bstr;
+		while (*b != '\0') {
+			char t[2];
+			int butt;
+			t[0] = *b;
+			t[1] = '\0';
+			if (sscanf(t, "%d", &butt) == 1) {
+				mask = 1<<(butt-1);
+				do_button_mask_change(mask, butt);	/* down */
+				mask = 0;
+				do_button_mask_change(mask, butt);	/* up */
+			}
+			b++;
+		}
 		XFlush_wr(dpy);
 		X_UNLOCK;
+		INPUT_UNLOCK;
 		return;
 	}
 
@@ -3299,6 +3385,7 @@ void keyboard(rfbBool down, rfbKeySym keysym, rfbClientPtr client) {
 		X_LOCK;
 		XFlush_wr(dpy);
 		X_UNLOCK;
+		INPUT_UNLOCK;
 		return;
 	}
 
@@ -3325,6 +3412,7 @@ void keyboard(rfbBool down, rfbKeySym keysym, rfbClientPtr client) {
 	}
 
 	X_UNLOCK;
+	INPUT_UNLOCK;
 }
 
 

@@ -160,8 +160,11 @@ short CProcessorUsage::GetUsage()
    s_userTime = userTime;
    s_kernelTimeProcess = kernelTimeProcess;
    s_userTimeProcess = userTimeProcess;
-   s_cpu[(s_index ++) %5] = cpu;
-   s_cpuProcess[(s_index++) %5] = cpuProcess;
+   s_cpu[s_index] = cpu;
+	s_cpuProcess[s_index] = cpuProcess;
+	s_index++;
+	s_index%=5;
+
    s_count ++;
 
    if(s_count > 5)
@@ -178,7 +181,7 @@ short CProcessorUsage::GetUsage()
 
    cpu /= s_count;
    cpuProcess /= s_count;
-   s_lastCpu = cpu;
+   s_lastCpu = cpuProcess;
    sLastCpu = s_lastCpu;
    s_TickMark = ::GetTickCount();
    if (m_bLocked) ::LeaveCriticalSection( &m_cs );

@@ -56,8 +56,8 @@ vncBuffer::vncBuffer()
 
 	nRowIndex = 0;
 	m_cursorpending = false;
-	m_display_prim=1;
-	m_display_sec=0;
+	m_single_monitor=1;
+	m_multi_monitor=0;
 
 	// sf@2005 - Grey Palette
 	m_fGreyPalette = false;
@@ -137,7 +137,10 @@ BOOL vncBuffer::SetScale(int nScale)
 	// case rfbSetScale:  Lock Added OK
 
 	m_nScale = nScale;
-	if (m_nScale == 1)
+
+	// Problem, driver buffer is not writable
+	// so we always need a m_scalednuff
+	/*if (m_nScale == 1)
 	{
 		//if (m_mainbuff)memcpy(m_ScaledBuff, m_mainbuff, m_desktop->ScreenBuffSize());
 		//else ZeroMemory(m_ScaledBuff, m_desktop->ScreenBuffSize());
@@ -147,6 +150,7 @@ BOOL vncBuffer::SetScale(int nScale)
 		else ZeroMemory(m_ScaledBuff, m_desktop->ScreenBuffSize());
 	}
 	else
+	*/
 	{
 		// sf@2002 - Idealy, we must do a ScaleRect of the whole screen here.
 		// ScaleRect(rfb::Rect(0, 0, m_scrinfo.framebufferWidth / m_nScale, m_scrinfo.framebufferHeight / m_nScale));
@@ -250,9 +254,11 @@ vncBuffer::CheckBuffer()
 
 		memset(m_backbuff, 0, m_desktop->ScreenBuffSize());
 
+		// Problem, driver buffer is not writable
+		// so we always need a m_scalednuff
 		/// If scale==1 we don't need to allocate the memory
-		if (m_nScale > 1) 
-		{
+		/*if (m_nScale > 1) 
+		{*/
             if (m_ScaledSize != m_desktop->ScreenBuffSize())
             {
 		        // Modif sf@2002 - Scaling
@@ -271,7 +277,7 @@ vncBuffer::CheckBuffer()
 			    }
 			    m_ScaledSize = m_desktop->ScreenBuffSize();
             }
-		}
+		/*}
 		else
 		{
 			delete [] m_ScaledBuff;
@@ -279,7 +285,7 @@ vncBuffer::CheckBuffer()
     		m_ScaledSize = 0;
 		}
 
-		if (m_nScale > 1) 
+		if (m_nScale > 1) */
 			memcpy(m_ScaledBuff, m_mainbuff, m_desktop->ScreenBuffSize());
 
 	}
@@ -343,10 +349,12 @@ void vncBuffer::CheckRect(rfb::Region2D &dest, rfb::Region2D &cacheRgn, const rf
 	}
 
 	// Modif sf@2002 - Scaling
+	// Problem, driver buffer is not writable
+	// so we always need a m_scalednuff
 	unsigned char *TheBuffer;
-	if (m_nScale == 1)
+	/*if (m_nScale == 1)
 		TheBuffer = m_mainbuff;
-	else
+	else*/
 		TheBuffer = m_ScaledBuff;
 
 	// sf@2004 - Optimization (attempt...)
@@ -827,24 +835,38 @@ void vncBuffer::GreyScaleRect(rfb::Rect &rect)
 	//End JK
 #endif
 	if (!fCanReduceColors) return;
-	// if (!m_scrinfo.format.trueColour) return;
-	
-	UINT nBytesPerPixel = (m_scrinfo.format.bitsPerPixel / 8);
-	
+	if (!FastCheckMainbuffer())
+		return;
+	///////////
+	rect.tl.y = (rect.tl.y - (rect.tl.y % m_nScale));
+	rect.br.y = (rect.br.y - (rect.br.y % m_nScale)) + m_nScale - 1;
+	rect.tl.x = (rect.tl.x - (rect.tl.x % m_nScale));
+	rect.br.x = (rect.br.x - (rect.br.x % m_nScale)) + m_nScale - 1;
+
+	rfb::Rect ScaledRect;
+	ScaledRect.tl.y = rect.tl.y / m_nScale;
+	ScaledRect.br.y = rect.br.y / m_nScale;
+	ScaledRect.tl.x = rect.tl.x / m_nScale;
+	ScaledRect.br.x = rect.br.x / m_nScale;
+
 	// Copy and scale data from screen Main buffer to Scaled buffer
 	BYTE *pMain   =	m_mainbuff + (rect.tl.y * m_bytesPerRow) + 
 					(rect.tl.x * m_scrinfo.format.bitsPerPixel / 8);
+	BYTE *pScaled = m_ScaledBuff + (ScaledRect.tl.y * m_bytesPerRow) +
+					(ScaledRect.tl.x * m_scrinfo.format.bitsPerPixel / 8);
+	
+	UINT nBytesPerPixel = (m_scrinfo.format.bitsPerPixel / 8);
 
 	unsigned long lRed;
 	unsigned long lGreen;
 	unsigned long lBlue;
 	unsigned long lPixel;
 
-	for (int y = rect.tl.y; y < rect.br.y; y++)
-	{
-		for (int x = 0; x < (rect.br.x - rect.tl.x); x++)
+		for (int y = ScaledRect.tl.y; y < ScaledRect.br.y; y++)
 		{
-			lPixel = 0;
+			for (int x = 0; x < (ScaledRect.br.x - ScaledRect.tl.x); x++)
+			{
+				lPixel = 0;
 			for (UINT b = 0; b < nBytesPerPixel; b++)
 				lPixel += ((pMain[(x * nBytesPerPixel) + b]) << (8 * b));
 
@@ -854,10 +876,12 @@ void vncBuffer::GreyScaleRect(rfb::Rect &rect)
 			lPixel = To8GreyColors(lRed, lGreen, lBlue);
 			
 			for (UINT bb = 0; bb < nBytesPerPixel; bb++)
-				pMain[(x * nBytesPerPixel) + bb] = (lPixel >> (8 * bb)) & 0xFF;
+				pScaled[(x * nBytesPerPixel) + bb] = (lPixel >> (8 * bb)) & 0xFF;
+			}
+			// Move the buffers' pointers to their next "line"
+			pMain   += (m_bytesPerRow * m_nScale); // Skip m_nScale lines of the mainbuffer's Rect
+			pScaled += m_bytesPerRow;
 		}
-		pMain += m_bytesPerRow;
-	}
 }
 
 
@@ -873,10 +897,15 @@ vncBuffer::GrabRect(const rfb::Rect &rect,BOOL driver,BOOL capture)
 	// Only use scaledbuffer if necessary !
 	rfb::Rect TheRect = rect;
 	// if (m_nScale > 1) ScaleRect(rfb::Rect(rect.tl.x, rect.tl.y, rect.br.x, rect.br.y)); // sf@2002 - Waste of time !!!
-	if (m_nScale > 1) 
+	// Problem, driver buffer is not writable
+	// so we always need a m_scalednuff
+	/*if (m_nScale > 1) 
 		ScaleRect(TheRect);
 	else if (m_fGreyPalette)
-		GreyScaleRect(TheRect);
+		GreyScaleRect(TheRect);*/
+	if (m_fGreyPalette)GreyScaleRect(TheRect);
+	else ScaleRect(TheRect);
+
 }
 
 
@@ -1024,7 +1053,10 @@ vncBuffer::GrabMouse()
 
 	// Modif sf@2002 - Scaling
 	rfb::Rect rect = m_desktop->MouseRect();
-	if (m_nScale > 1) 
+	
+	// Problem, driver buffer is not writable
+		// so we always need a m_scalednuff
+	/*if (m_nScale > 1) */
 		ScaleRect(rect);
 }
 
@@ -1100,22 +1132,17 @@ vncBuffer::IsShapeCleared()
 }
 
 void
-vncBuffer::Display(int number)
+vncBuffer::MultiMonitors(int number)
 {
-	if (number==1) m_display_prim=true;
-	if (number==-1) m_display_prim=false;
-	if (number==2) m_display_sec=true;
-	if (number==-2) m_display_sec=false;
+	if (number==1) {m_single_monitor=true;m_multi_monitor=false;}
+	if (number==2) {m_single_monitor=false;m_multi_monitor=true;}
 }
 
-int
-vncBuffer::GetDisplay()
+bool
+vncBuffer::IsMultiMonitor()
 {
-	if ((FALSE == m_display_prim) && (FALSE == m_display_sec)) return 1;//we need at least 1 display
-	if ((FALSE != m_display_prim) && (FALSE == m_display_sec)) return 1;
-	if ((FALSE == m_display_prim) && (FALSE != m_display_sec)) return 2;
-	if ((FALSE != m_display_prim) && (FALSE != m_display_sec)) return 3;
-	return 1;
+	if (m_single_monitor) return false;//we need at least 1 display
+	else return true;
 }
 
 

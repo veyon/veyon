@@ -114,8 +114,8 @@ public:
 	// These all lock the UpdateLock themselves
 	virtual void UpdateMouse();
 	virtual void UpdateClipText(const char* text);
-	virtual void UpdatePalette();
-	virtual void UpdateLocalFormat();
+	virtual void UpdatePalette(bool lock);
+	virtual void UpdateLocalFormat(bool lock);
 
 	// Is the client waiting on an update?
 	// YES IFF there is an incremental update region,
@@ -161,6 +161,8 @@ public:
 	// Disable/enable protocol messages to the client
 	virtual void DisableProtocol();
 	virtual void EnableProtocol();
+	virtual void DisableProtocol_no_mutex();
+	virtual void EnableProtocol_no_mutex();
 	// resize desktop
 	virtual BOOL SetNewSWSize(long w,long h,BOOL desktop);
 	virtual void SetSWOffset(int x,int y);
@@ -183,6 +185,43 @@ public:
 	void Clear_Update_Tracker();
 	void TriggerUpdate();
 	void UpdateCursorShape();
+
+	// adzm 2009-07-05 - repeater IDs
+	void SetRepeaterID(char* szid)
+	{
+		if (m_szRepeaterID) {
+			free(m_szRepeaterID);
+		}
+
+		m_szRepeaterID = NULL;
+
+		if (szid != NULL && strlen(szid) > 0) {
+			m_szRepeaterID = _strdup(szid);
+		}
+	};
+	char* GetRepeaterID() {return m_szRepeaterID;};
+
+	// adzm 2009-08-02
+	void SetHost(char* szHost)
+	{
+		if (m_szHost) {
+			free(m_szHost);
+		}
+
+		m_szHost = NULL;
+
+		if (szHost != NULL && strlen(szHost) > 0) {
+			m_szHost = _strdup(szHost);
+		}
+	};
+	char* GetHost() {return m_szHost;};
+
+	void SetHostPort(int port) {
+		m_hostPort = port;
+	};
+	int GetHostPort() {
+		return m_hostPort;
+	};
 
 	// sf@2004 - Asynchronous FileTransfer - Delta Transfer
 	int  GenerateFileChecksums(HANDLE hFile, char* lpCSBuffer, int nCSBufferSize);
@@ -351,6 +390,12 @@ protected:
 
 	// The client thread
 	omni_thread		*m_thread;
+
+	// adzm 2009-07-05
+	char*			m_szRepeaterID;
+	// adzm 2009-08-02
+	char*			m_szHost;
+	int				m_hostPort;
 
 
 	// Count to indicate whether updates, clipboards, etc can be sent

@@ -39,12 +39,15 @@
 
 //	[v1.0.2-jp1 fix] Load resouce from dll
 extern HINSTANCE	hInstResDLL;
+extern BOOL SPECIAL_SC_PROMPT;
 
 // Constructor
 
 vncConnDialog::vncConnDialog(vncServer *server)
 {
 	m_server = server;
+	m_hicon = NULL;
+	m_hfont = NULL;
 }
 
 // Destructor
@@ -55,13 +58,15 @@ vncConnDialog::~vncConnDialog()
 
 // Routine called to activate the dialog and, once it's done, delete it
 
-void vncConnDialog::DoDialog()
+INT_PTR vncConnDialog::DoDialog()
 {
 	//	[v1.0.2-jp1 fix]
-	//DialogBoxParam(hAppInstance, MAKEINTRESOURCE(IDD_OUTGOING_CONN), 
-	DialogBoxParam(hInstResDLL, MAKEINTRESOURCE(IDD_OUTGOING_CONN), 
+	//DialogBoxParam(hAppInstance, MAKEINTRESOURCE(IDD_OUTGOING_CONN), 	
+	//adzm 2009-06-20 - Return the result
+	INT_PTR nResult = DialogBoxParam(hInstResDLL, MAKEINTRESOURCE(IDD_OUTGOING_CONN), 
 		NULL, (DLGPROC) vncConnDlgProc, (LONG) this);
 	delete this;
+	return nResult;
 }
 
 // Callback function - handles messages sent to the dialog box
@@ -76,6 +81,61 @@ BOOL CALLBACK vncConnDialog::vncConnDlgProc(HWND hwnd,
 	// as follows:
      vncConnDialog *_this = helper::SafeGetWindowUserData<vncConnDialog>(hwnd);
 	switch (uMsg) {
+	case WM_PAINT:
+		{
+			//adzm 2009-06-20
+			if (GetUpdateRect(hwnd, NULL, TRUE)) {
+				PAINTSTRUCT ps;
+				HDC hdc = BeginPaint(hwnd, &ps);
+
+				{
+					RECT rcIcon;
+					rcIcon.top = 0;
+					rcIcon.left = 0;
+					rcIcon.bottom = 48;
+					rcIcon.right = 48;
+					
+					RECT rcClient;
+					if (GetClientRect(hwnd, &rcClient)) {
+						int nDifference = (rcClient.bottom - rcIcon.bottom) / 2;
+						if (nDifference > 0) {
+							rcIcon.top += nDifference;
+							rcIcon.bottom += nDifference;
+						}
+					}
+
+					RECT rcLabel;
+					HWND hwndLabel = GetDlgItem(hwnd, IDC_CONNECTION_NUMBER_STATIC);
+					if (GetWindowRect(hwndLabel, &rcLabel)) {
+						LPRECT lprcLabel = &rcLabel;
+						ScreenToClient(hwnd, (LPPOINT)lprcLabel);
+						ScreenToClient(hwnd, ((LPPOINT)lprcLabel)+1);
+
+						int nAdjustment = (rcLabel.left - rcIcon.right) / 2;
+
+						rcIcon.left += nAdjustment;
+						rcIcon.right += nAdjustment;
+					}
+
+					RECT rcIntersect;
+
+					if (IntersectRect(&rcIntersect, &rcIcon, &(ps.rcPaint))) {
+						if (_this->m_hicon == NULL) {
+							_this->m_hicon = (HICON)LoadImage(hInstResDLL, MAKEINTRESOURCE(IDI_WINVNC), IMAGE_ICON,
+							   48, 48, 0);
+						}
+						if (_this->m_hicon) {
+							HBRUSH hbr = (HBRUSH)SendMessage(hwnd, WM_CTLCOLORDLG, (WPARAM)hdc, (WPARAM)hwnd);
+							DrawIconEx(hdc, rcIcon.left, rcIcon.top, _this->m_hicon, 48, 48, 0, hbr, DI_NORMAL);
+						}
+					}
+				}
+
+				EndPaint(hwnd, &ps);
+			}
+
+			return 0;
+		}
 
 		// Dialog has just been created
 	case WM_INITDIALOG:
@@ -85,12 +145,78 @@ BOOL CALLBACK vncConnDialog::vncConnDlgProc(HWND hwnd,
             helper::SafeSetWindowUserData(hwnd, lParam);
 
             vncConnDialog *_this = (vncConnDialog *) lParam;
-            
-			// Make the text entry box active
-			SetFocus(GetDlgItem(hwnd, IDC_HOSTNAME_EDIT));
+
+			//adzm 2009-06-20
+			if (g_szRepeaterHost) {
+				SetDlgItemText(hwnd, IDC_HOSTNAME_EDIT, g_szRepeaterHost);
+
+				//adzm 2009-06-20
+				if (SPECIAL_SC_PROMPT) {
+					HWND hwndChild = GetDlgItem(hwnd, IDC_HOSTNAME_EDIT);
+					if (hwndChild) {
+						ShowWindow(hwndChild, SW_HIDE);
+					}
+					hwndChild = GetDlgItem(hwnd, IDC_HOSTNAME_STATIC);
+					if (hwndChild) {
+						ShowWindow(hwndChild, SW_HIDE);
+					}
+
+					HWND hwndEdit = GetDlgItem(hwnd, IDC_IDCODE);
+					HWND hwndLabel = GetDlgItem(hwnd, IDC_CONNECTION_NUMBER_STATIC);
+
+					RECT rcEdit;
+					RECT rcLabel;
+					GetWindowRect(hwndEdit, &rcEdit);
+					GetWindowRect(hwndLabel, &rcLabel);
+
+					LPRECT lprcEdit = &rcEdit;
+					LPRECT lprcLabel = &rcLabel;
+
+					ScreenToClient(hwnd, (LPPOINT)lprcEdit);
+					ScreenToClient(hwnd, ((LPPOINT)lprcEdit)+1);
+					
+					ScreenToClient(hwnd, (LPPOINT)lprcLabel);
+					ScreenToClient(hwnd, ((LPPOINT)lprcLabel)+1);
+
+					RECT rcClient;
+					GetClientRect(hwnd, &rcClient);
+
+					long nTotalHeight = rcEdit.bottom - rcLabel.top;
+
+					long nAdjustedTop = (rcClient.bottom - nTotalHeight) / 2;
+
+					long nAdjustment = nAdjustedTop - rcLabel.top;
+
+					MoveWindow(hwndLabel, rcLabel.left, rcLabel.top + nAdjustment, rcLabel.right - rcLabel.left, rcLabel.bottom - rcLabel.top, TRUE);
+					MoveWindow(hwndEdit, rcEdit.left, rcEdit.top + nAdjustment, rcEdit.right - rcEdit.left, rcEdit.bottom - rcEdit.top, TRUE);
+
+					HWND hwndCaption = GetDlgItem(hwnd, IDC_CAPTION_STATIC);
+					HFONT hFont = (HFONT)SendMessage(hwndCaption, WM_GETFONT, 0, 0);
+					if (hFont) {
+						LOGFONT lf;
+						if (GetObject(hFont, sizeof(LOGFONT), &lf)) {
+							lf.lfWidth = 0;
+							lf.lfHeight = (lf.lfHeight * 6) / 4;
+
+							_this->m_hfont = CreateFontIndirect(&lf);
+
+							if (_this->m_hfont) {
+								SendMessage(hwndCaption, WM_SETFONT, (WPARAM)_this->m_hfont, (LPARAM)TRUE);
+							}
+						}
+					}
+					SetWindowText(hwndCaption, "Connect to Technical Support");
+					ShowWindow(hwndCaption, SW_SHOWNA);
+				}
+
+				SetFocus(GetDlgItem(hwnd, IDC_IDCODE));
+			} else {            
+				// Make the text entry box active
+				SetFocus(GetDlgItem(hwnd, IDC_HOSTNAME_EDIT));
+			}
 			
 			SetForegroundWindow(hwnd);
-
+			
             // Return success!
 			return TRUE;
 		}
@@ -138,8 +264,9 @@ BOOL CALLBACK vncConnDialog::vncConnDlgProc(HWND hwnd,
 			// Attempt to create a new socket
 			VSocket *tmpsock;
 			tmpsock = new VSocket;
-			if (!tmpsock)
+			if (!tmpsock) {
 				return TRUE;
+			}
 			
 			// Connect out to the specified host on the VNCviewer listen port
 			// To be really good, we should allow a display number here but
@@ -148,12 +275,31 @@ BOOL CALLBACK vncConnDialog::vncConnDlgProc(HWND hwnd,
 			if (tmpsock->Connect(hostname, port))
 			{
 				if (id) 
-					{	
-						for (size_t i = 0; i < strlen(idcode); i++)
+					{							
+						char finalidcode[_MAX_PATH];
+
+						//adzm 2009-06-20
 						{
-							idcode[i] = toupper(idcode[i]);
-						} 
-						tmpsock->Send(idcode,250);
+							size_t i = 0;
+
+							for (i = 0; i < strlen(idcode); i++)
+							{
+								finalidcode[i] = toupper(idcode[i]);
+							} 
+							finalidcode[i] = 0;
+
+							if (0 != strncmp("ID:", idcode, 3)) {
+								strcpy(finalidcode, "ID:");
+								
+								for (i = 0; i < strlen(idcode); i++)
+								{
+									finalidcode[i+3] = toupper(idcode[i]);
+								} 
+								finalidcode[i+3] = 0;
+							}
+						}
+
+						tmpsock->Send(finalidcode,250);
 						tmpsock->SetTimeout(0);
 /*						if (strncmp(hostname,"ID",2)!=0)
 						{
@@ -166,10 +312,16 @@ BOOL CALLBACK vncConnDialog::vncConnDlgProc(HWND hwnd,
 							tmpsock->Send("1",1);
 						}
 						}*/
+						
+						// adzm 2009-07-05 - repeater IDs
+						// Add the new client to this server
+						// adzm 2009-08-02
+						_this->m_server->AddClient(tmpsock, TRUE, TRUE, 0, NULL, finalidcode, hostname, port);
+					} else {
+						// Add the new client to this server
+						// adzm 2009-08-02
+						_this->m_server->AddClient(tmpsock, TRUE, TRUE, 0, NULL, NULL, hostname, port);				
 					}
-				// Add the new client to this server
-				_this->m_server->AddClient(tmpsock, TRUE, TRUE);
-				
 				// And close the dialog
 				EndDialog(hwnd, TRUE);
 			}
@@ -195,6 +347,14 @@ BOOL CALLBACK vncConnDialog::vncConnDlgProc(HWND hwnd,
 
 	case WM_DESTROY:
 		EndDialog(hwnd, FALSE);
+		if (_this->m_hicon != NULL) {
+			DestroyIcon(_this->m_hicon);
+			_this->m_hicon = NULL;
+		}
+		if (_this->m_hfont != NULL) {
+			DeleteObject(_this->m_hfont);
+			_this->m_hfont = NULL;
+		}
 		return TRUE;
 	}
 	return 0;

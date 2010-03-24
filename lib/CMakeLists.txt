@@ -1,11 +1,12 @@
 FILE(GLOB ic_INCLUDES ${CMAKE_CURRENT_SOURCE_DIR}/include/*.h ${CMAKE_CURRENT_SOURCE_DIR}/include/Configuration/*.h)
-FILE(GLOB ic_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp ${CMAKE_CURRENT_SOURCE_DIR}/src/Configuration/*.cpp ${CMAKE_CURRENT_SOURCE_DIR}/src/*.c)
+FILE(GLOB ic_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp ${CMAKE_CURRENT_SOURCE_DIR}/src/Configuration/*.cpp)
 SET(LIBVNCCLIENT_SOURCES
-${CMAKE_CURRENT_SOURCE_DIR}/src/libvncclient/cursor.c
-${CMAKE_CURRENT_SOURCE_DIR}/src/libvncclient/listen.c
-${CMAKE_CURRENT_SOURCE_DIR}/src/libvncclient/rfbproto.c
-${CMAKE_CURRENT_SOURCE_DIR}/src/libvncclient/sockets.c
-${CMAKE_CURRENT_SOURCE_DIR}/src/libvncclient/vncviewer.c)
+${CMAKE_CURRENT_SOURCE_DIR}/../ica/x11/libvncclient/cursor.c
+${CMAKE_CURRENT_SOURCE_DIR}/../ica/x11/libvncclient/listen.c
+${CMAKE_CURRENT_SOURCE_DIR}/../ica/x11/libvncclient/minilzo.c
+${CMAKE_CURRENT_SOURCE_DIR}/../ica/x11/libvncclient/rfbproto.c
+${CMAKE_CURRENT_SOURCE_DIR}/../ica/x11/libvncclient/sockets.c
+${CMAKE_CURRENT_SOURCE_DIR}/../ica/x11/libvncclient/vncviewer.c)
 
 
 SET(QRC_FILE ${CMAKE_CURRENT_SOURCE_DIR}/italc_core.qrc)
@@ -18,7 +19,7 @@ IF(ITALC_BUILD_WIN32)
 	LINK_LIBRARIES(-lpsapi)
 ENDIF(ITALC_BUILD_WIN32)
 
-INCLUDE_DIRECTORIES(${CMAKE_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/include)
+INCLUDE_DIRECTORIES(${CMAKE_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/include ${CMAKE_CURRENT_SOURCE_DIR}/../ica/x11/libvncclient/)
 ADD_LIBRARY(italc_core MODULE ${ic_SOURCES} ${ic_INCLUDES} ${ic_MOC_out} ${ic_RCC_out} ${LIBVNCCLIENT_SOURCES})
 
 IF(ITALC_BUILD_WIN32)

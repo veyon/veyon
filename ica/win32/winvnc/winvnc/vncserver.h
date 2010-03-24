@@ -95,6 +95,13 @@ public:
 	virtual vncClientId AddClient(VSocket *socket,
 		BOOL auth, BOOL shared, int capability,
 		/*BOOL keysenabled, BOOL ptrenabled,*/rfbProtocolVersionMsg *protocolMsg);
+	
+	// adzm 2009-07-05
+	// adzm 2009-08-02
+	virtual vncClientId AddClient(VSocket *socket,
+		BOOL auth, BOOL shared, int capability,
+		/*BOOL keysenabled, BOOL ptrenabled,*/rfbProtocolVersionMsg *protocolMsg,VString szRepeaterID,VString szHost,VCard port);
+
 	virtual BOOL Authenticated(vncClientId client);
 	virtual void KillClient(vncClientId client);
 	virtual void KillClient(LPSTR szClientName); // sf@2002
@@ -108,6 +115,7 @@ public:
 	virtual void WaitUntilAuthEmpty();
 
 	virtual void KillUnauthClients();
+	virtual void ListUnauthClients(HWND hListBox); // adzm 2009-07-05
 	virtual void WaitUntilUnauthEmpty();
 
 	// Are any clients ready to send updates?
@@ -142,7 +150,7 @@ public:
 	virtual vncDesktop* GetDesktopPointer() {return m_desktop;}
 	virtual void SetNewSWSize(long w,long h,BOOL desktop);
 	virtual void SetSWOffset(int x,int y);
-	virtual void SetScreenOffset(int x,int y,int type);
+	virtual void SetScreenOffset(int x,int y,int type); //never locked
 
 	virtual BOOL All_clients_initialalized();
 
@@ -159,13 +167,14 @@ protected:
 	
 
 public:
+	int AutoReconnect_counter;
 	virtual void DoNotify(UINT message, WPARAM wparam, LPARAM lparam);
 	// Update handling, used by the screen server
 	virtual rfb::UpdateTracker &GetUpdateTracker() {return m_update_tracker;};
 	virtual void UpdateMouse();
 	virtual void UpdateClipText(const char* text);
-	virtual void UpdatePalette();
-	virtual void UpdateLocalFormat();
+	virtual void UpdatePalette(bool lock);
+	virtual void UpdateLocalFormat(bool lock);
 
 	// Polling mode handling
 	virtual void PollUnderCursor(BOOL enable) {m_poll_undercursor = enable;};
@@ -224,6 +233,8 @@ public:
 	// form, not the plaintext form.  The buffer passwed MUST be MAXPWLEN in size.
 	virtual void SetPassword(const char *passwd);
 	virtual void GetPassword(char *passwd);
+	virtual void SetPassword2(const char *passwd2); //PGM
+	virtual void GetPassword2(char *passwd2); //PGM
 
 	// Remote input handling
 	virtual void EnableRemoteInputs(BOOL enable);
@@ -315,6 +326,8 @@ public:
 	virtual BOOL EnableFileTransfer(BOOL fEnable);
 	virtual BOOL BlankMonitorEnabled() {return m_fBlankMonitorEnabled;};
 	virtual void BlankMonitorEnabled(BOOL fEnable) {m_fBlankMonitorEnabled = fEnable;};
+	virtual BOOL BlankInputsOnly() {return m_fBlankInputsOnly;}; //PGM
+	virtual void BlankInputsOnly(BOOL fEnable) {m_fBlankInputsOnly = fEnable;}; //PGM
 	virtual BOOL MSLogonRequired();
 	virtual BOOL RequireMSLogon(BOOL fEnable);
 	virtual BOOL GetNewMSLogon();
@@ -322,8 +335,8 @@ public:
 
 	virtual BOOL Primary() {return m_PrimaryEnabled;};
 	virtual void Primary(BOOL fEnable) {m_PrimaryEnabled = fEnable;};
-	virtual BOOL Secundary() {return m_SecundaryEnabled;};
-	virtual void Secundary(BOOL fEnable) {m_SecundaryEnabled = fEnable;};
+	virtual BOOL Secondary() {return m_SecondaryEnabled;};
+	virtual void Secondary(BOOL fEnable) {m_SecondaryEnabled = fEnable;};
 
 	// sf@2002 - DSM Plugin
 	virtual BOOL IsDSMPluginEnabled();
@@ -448,6 +461,7 @@ protected:
 //	UINT				m_port_http; // TightVNC 1.2.7
 	BOOL				m_autoportselect;
 	char				m_password[MAXPWLEN];
+	char				m_password2[MAXPWLEN]; //PGM
 	BOOL				m_passwd_required;
 	BOOL				m_loopback_allowed;
 	BOOL				m_loopbackOnly;
@@ -525,10 +539,11 @@ protected:
 	// BOOL    m_fQueuingEnabled;
 	BOOL    m_fFileTransferEnabled;
 	BOOL    m_fBlankMonitorEnabled;
+	BOOL    m_fBlankInputsOnly; //PGM
 	int     m_nDefaultScale;
 
 	BOOL m_PrimaryEnabled;
-	BOOL m_SecundaryEnabled;
+	BOOL m_SecondaryEnabled;
 
 	BOOL    m_fMSLogonRequired;
 	BOOL    m_fNewMSLogon;

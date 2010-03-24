@@ -1,3 +1,35 @@
+/*
+   Copyright (C) 2002-2010 Karl J. Runge <runge@karlrunge.com> 
+   All rights reserved.
+
+This file is part of x11vnc.
+
+x11vnc is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or (at
+your option) any later version.
+
+x11vnc is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with x11vnc; if not, write to the Free Software
+Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA
+or see <http://www.gnu.org/licenses/>.
+
+In addition, as a special exception, Karl J. Runge
+gives permission to link the code of its release of x11vnc with the
+OpenSSL project's "OpenSSL" library (or with modified versions of it
+that use the same license as the "OpenSSL" library), and distribute
+the linked executables.  You must obey the GNU General Public License
+in all respects for all of the code used other than "OpenSSL".  If you
+modify this file, you may extend this exception to your version of the
+file, but you are not obligated to do so.  If you do not wish to do
+so, delete this exception statement from your version.
+*/
+
 /* -- userinput.c -- */
 
 #include "x11vnc.h"
@@ -341,6 +373,7 @@ static void parse_wireframe_str(char *wf) {
 		Colormap cmap;
 		if (dpy && (bpp == 32 || bpp == 16)) {
 #if !NO_X11
+			X_LOCK;
 		 	cmap = DefaultColormap (dpy, scr);
 			if (XParseColor(dpy, cmap, str, &cdef) &&
 			    XAllocColor(dpy, cmap, &cdef)) {
@@ -357,6 +390,7 @@ static void parse_wireframe_str(char *wf) {
 				wireframe_shade = n;
 				ok = 1;
 			}
+			X_UNLOCK;
 #else
 			r = g = b = 0;
 			cmap = 0;
@@ -1810,10 +1844,12 @@ static void get_client_regions(int *req, int *mod, int *cpy, int *num)  {
 
 	i = rfbGetClientIterator(screen);
 	while( (cl = rfbClientIteratorNext(i)) ) {
+		if (use_threads) LOCK(cl->updateMutex);
 		*req += sraRgnCountRects(cl->requestedRegion);
 		*mod += sraRgnCountRects(cl->modifiedRegion);
 		*cpy += sraRgnCountRects(cl->copyRegion);
 		*num += 1;
+		if (use_threads) UNLOCK(cl->updateMutex);
 	}
 	rfbReleaseClientIterator(i);
 }
@@ -1992,7 +2028,9 @@ if (0) fprintf(stderr, "sb.. %d %d %d %d %d %d\n", sx1, sy1, sx2, sy2, sdx, sdy)
 
 			i = rfbGetClientIterator(screen);
 			while( (cl = rfbClientIteratorNext(i)) ) {
+				if (use_threads) LOCK(cl->updateMutex);
 				rfbSendCopyRegion(cl, r, sdx, sdy);
+				if (use_threads) UNLOCK(cl->updateMutex);
 			}
 			rfbReleaseClientIterator(i);
 			sraRgnDestroy(r);
@@ -2041,34 +2079,47 @@ void batch_copyregion(sraRegionPtr* region, int *dx, int *dy, int ncr, double de
 	if (delay < 0.0) {
 		delay = 0.1;
 	}
-	fb_push_wait(delay, FB_COPY|FB_MOD);
+	if (!fb_push_wait(delay, FB_COPY|FB_MOD)) {
+		if (use_threads) usleep(100 * 1000);
+		fb_push_wait(0.75, FB_COPY|FB_MOD);
+	}
 
 	t1 = dnow();
 
-#if 0
+	bad = 0;
 	i = rfbGetClientIterator(screen);
 	while( (cl = rfbClientIteratorNext(i)) ) {
+
+		if (use_threads) LOCK(cl->updateMutex);
+
 		if (cl->ublen != 0) {
 			fprintf(stderr, "batch_copyregion: *** BAD ublen != 0: %d\n", cl->ublen);
 			bad++;
 		}
+
+		if (use_threads) UNLOCK(cl->updateMutex);
 	}
 	rfbReleaseClientIterator(i);
 
 	if (bad) {
 		return;
 	}
-#endif
 
 	i = rfbGetClientIterator(screen);
 	while( (cl = rfbClientIteratorNext(i)) ) {
-		rfbFramebufferUpdateMsg *fu = (rfbFramebufferUpdateMsg *)cl->updateBuf;
+		rfbFramebufferUpdateMsg *fu;
+
+		if (use_threads) LOCK(cl->updateMutex);
+
+		fu = (rfbFramebufferUpdateMsg *)cl->updateBuf;
 		fu->nRects = Swap16IfLE((uint16_t)(nrects));
 		fu->type = rfbFramebufferUpdate;
 
-		if (cl->ublen != 0) fprintf(stderr, "batch_copyregion: *** BAD ublen != 0: %d\n", cl->ublen);
+		if (cl->ublen != 0) fprintf(stderr, "batch_copyregion: *** BAD-2 ublen != 0: %d\n", cl->ublen);
 
 		cl->ublen = sz_rfbFramebufferUpdateMsg;
+
+		if (use_threads) UNLOCK(cl->updateMutex);
 	}
 	rfbReleaseClientIterator(i);
 
@@ -2087,12 +2138,17 @@ void batch_copyregion(sraRegionPtr* region, int *dx, int *dy, int ncr, double de
 
 	i = rfbGetClientIterator(screen);
 	while( (cl = rfbClientIteratorNext(i)) ) {
+
+		if (use_threads) LOCK(cl->updateMutex);
+
 		if (!direct)  {
 			for (k=0; k < ncr; k++) {
 				rfbSendCopyRegion(cl, region[k], dx[k], dy[k]);
 			}
 		}
 		rfbSendUpdateBuf(cl);
+
+		if (use_threads) UNLOCK(cl->updateMutex);
 	}
 	rfbReleaseClientIterator(i);
 
@@ -2113,49 +2169,32 @@ void batch_push(int nreg, double delay) {
 	}
 }
 
-void fb_push0(void) {
-	char *httpdir = screen->httpDir;
-	int defer = screen->deferUpdateTime;
-	int req0, mod0, cpy0, req1, mod1, cpy1, ncli;
-	int db = (debug_scroll || debug_wireframe);
-
-	screen->httpDir = NULL;
-	screen->deferUpdateTime = 0;
-
-if (db)	get_client_regions(&req0, &mod0, &cpy0, &ncli);
-
-	rfbPE(0);
-
-	screen->httpDir = httpdir;
-	screen->deferUpdateTime = defer;
-
-if (db) {
-	get_client_regions(&req1, &mod1, &cpy1, &ncli);
-	fprintf(stderr, "\nFB_push: req: %d/%d  mod: %d/%d  cpy: %d/%d  %.4f\n",
-	req0, req1, mod0, mod1, cpy0, cpy1, dnowx());
-}
-
-}
-
 void fb_push(void) {
 	int req0, mod0, cpy0, req1, mod1, cpy1, ncli;
 	int db = (debug_scroll || debug_wireframe);
 	rfbClientIteratorPtr i;
 	rfbClientPtr cl;
+
+	if (use_threads) {
+		return;
+	}
 	
 if (db)	get_client_regions(&req0, &mod0, &cpy0, &ncli);
 
 	i = rfbGetClientIterator(screen);
 	while( (cl = rfbClientIteratorNext(i)) ) {
+		if (use_threads) LOCK(cl->updateMutex);
 		if (cl->sock >= 0 && !cl->onHold && FB_UPDATE_PENDING(cl) &&
 		    !sraRgnEmpty(cl->requestedRegion)) {
 			if (!rfbSendFramebufferUpdate(cl, cl->modifiedRegion)) {
 				fprintf(stderr, "*** rfbSendFramebufferUpdate *FAILED* #1\n");
 				if (cl->ublen) fprintf(stderr, "*** fb_push ublen not zero: %d\n", cl->ublen);
+				if (use_threads) UNLOCK(cl->updateMutex);
 				break;
 			}
 			if (cl->ublen) fprintf(stderr, "*** fb_push ublen NOT ZERO: %d\n", cl->ublen);
 		}
+		if (use_threads) UNLOCK(cl->updateMutex);
 	}
 	rfbReleaseClientIterator(i);
 
@@ -2165,37 +2204,6 @@ if (db) {
 	req0, req1, mod0, mod1, cpy0, cpy1, dnowx());
 }
 
-}
-
-int fb_push_wait0(double max_wait, int flags) {
-	double tm, dt = 0.0;
-	int req, mod, cpy, ncli;
-	int ok = 0;
-
-	dtime0(&tm);	
-	while (dt < max_wait) {
-		int done = 1;
-		rfbCFD(0);
-		get_client_regions(&req, &mod, &cpy, &ncli);
-		if (flags & FB_COPY && cpy) {
-			done = 0;
-		}
-		if (flags & FB_MOD && mod) {
-			done = 0;
-		}
-		if (flags & FB_REQ && req) {
-			done = 0;
-		}
-		if (done) {
-			ok = 1;
-			break;
-		}
-
-		usleep(1000);
-		fb_push();
-		dt += dtime(&tm);
-	}
-	return ok;
 }
 
 int fb_push_wait(double max_wait, int flags) {
@@ -3371,6 +3379,7 @@ if (db2 && saw_me) continue;
 			sraRgnSubtract(moved_win, tmp_win);
 			sraRgnDestroy(tmp_win);
 		}
+
 		X_UNLOCK;
 
 		if (extra_clip && ! sraRgnEmpty(extra_clip)) {
@@ -3825,7 +3834,8 @@ void ncache_pre_portions(Window orig_frame, Window frame, int *nidx_in, int try_
 			dx = 0;
 			dy = dpy_y;
 			sraRgnOffset(r2, dx, dy);
-if (ncdb) fprintf(stderr, "FB_COPY: %.4f 1) offscreen check:\n", dnow() - ntim);
+if (ncdb) fprintf(stderr, "FB_COPY: %.4f 1) offscreen:  dx, dy: %d, %d -> %d, %d orig %dx%d+%d+%d bs_xy: %d %d\n",
+    dnow() - ntim, bs_x - orig_x, bs_y - orig_y, dx, dy, orig_w, orig_h, orig_x, orig_y, bs_x, bs_y);
 
 			/* 0) save it in the invalid (offscreen) SU portion */
 			if (! *use_batch) {
@@ -4107,7 +4117,19 @@ void do_copyrect_drag_move(Window orig_frame, Window frame, int *nidx, int try_b
 	int dx, dy;
 	int use_batch = 0;
 	double ntim = dnow();
+	static int nob = -1;
 	sraRegionPtr r0, r1;
+
+	if (nob < 0) {
+		if (getenv("NOCRBATCH")) {
+			nob = 1;
+		} else {
+			nob = 0;
+		}
+	}
+	if (nob) {
+		try_batch = 0;
+	}
 
 	dx = x - now_x;
 	dy = y - now_y;
@@ -4125,6 +4147,13 @@ if (ncdb) fprintf(stderr, "do_COPY: now_xy: %d %d, orig_wh: %d %d, xy: %d %d, wh
 
 	dx = x - now_x;
 	dy = y - now_y;
+
+	/* make sure the source is on-screen too */
+	sraRgnOffset(r1, -dx, -dy);
+	sraRgnAnd(r1, r0);
+	sraRgnOffset(r1, +dx, +dy);
+	sraRgnAnd(r1, r0);	/* just to be sure, problably not needed */
+
 	if (! use_batch) {
 		do_copyregion(r1, dx, dy, 0);
 		if (!fb_push_wait(0.2, FB_COPY)) {
@@ -4545,6 +4574,9 @@ if (db) fprintf(stderr, "INTERIOR\n");
 	if (rotating) {
 		try_batch = 0;
 	}
+	if (use_threads && ncache > 0 && ncache_copyrect) {
+		try_batch = 0;
+	}
 
 	g = got_pointer_input;
 	gd = got_local_pointer_input;
@@ -4830,8 +4862,9 @@ if (0) fprintf(stderr, "*** NO GPI DRAW_BOX\n");
 						rfbPE(1000);
 					} else {
 #ifndef NO_NCACHE
+						int tb = use_threads ? 0 : try_batch;
 						do_copyrect_drag_move(orig_frame, frame, &nidx,
-						    try_batch, now_x, now_y, orig_w, orig_h, x, y, w, h,
+						    tb, now_x, now_y, orig_w, orig_h, x, y, w, h,
 						    copyrect_drag_delay);
 						now_x = x;
 						now_y = y;
@@ -4888,8 +4921,9 @@ if (db || db2) fprintf(stderr, "NO button_mask\n");
 		draw_box(0, 0, 0, 0, 1);
 		fb_push(); /* XXX Y */
 	} else {
+		int tb = use_threads ? 0 : try_batch;
 		do_copyrect_drag_move(orig_frame, frame, &nidx,
-		    try_batch, now_x, now_y, orig_w, orig_h, x, y, w, h, -1.0);
+		    tb, now_x, now_y, orig_w, orig_h, x, y, w, h, -1.0);
 		fb_push_wait(0.15, FB_COPY|FB_MOD);
 	}
 
@@ -4908,15 +4942,19 @@ if (db || db2) fprintf(stderr, "NO button_mask\n");
 	} else if (w != orig_w || h != orig_h) {
 		if (ncache > 0) {
 			try_to_fix_resize_su(orig_frame, orig_x, orig_y, orig_w, orig_h, x, y, w, h, try_batch);
+			X_LOCK;
 			clear_win_events(orig_frame, 1);
 			if (frame != orig_frame) {
 				clear_win_events(frame, 1);
 			}
+			X_UNLOCK;
 		}
 	} else if (dx == 0 && dy == 0) {
 		;
 	} else if (do_copyrect_drag > 0) {
+		X_LOCK;
 		clear_win_events(NPP_nwin, 0);
+		X_UNLOCK;
 	} else {
 		int spin_ms = (int) (spin * 1000 * 1000);
 		int obscured, sent_copyrect = 0;
@@ -4978,7 +5016,9 @@ if ((ncache || db) && ncdb) fprintf(stderr, "sent_copyrect: %d - obs: %d  frame:
 			}
 			ncache_post_portions(nidx, use_batch,
 			    orig_x, orig_y, orig_w, orig_h, x, y, w, h, -1.0, ntim);
+			X_LOCK;
 			clear_win_events(NPP_nwin, 0);
+			X_UNLOCK;
 
 			if (scaling && !use_batch) {
 				static double last_time = 0.0;
@@ -7546,6 +7586,7 @@ void block_stats(void) {
 			int h = cache_list[k].bs_h;
 			int rc = 0;
 			Window win = cache_list[k].win;
+
 			if (win == None) {
 				continue;
 			}
@@ -8738,7 +8779,11 @@ if (ncdb) fprintf(stderr, "*SCHED LOOKUP FAIL: i=%d 0x%lx\n", i, win);
 				}
 				/* XXX Y resp */
 				if (saw_desktop_change || freq % 5 == 0) {
-					if (!valid_window(win, &attr, 1)) {
+					int vret = 0;
+					X_LOCK;
+					vret = valid_window(win, &attr, 1);
+					X_UNLOCK;
+					if (!vret) {
 						continue;
 					}
 					STORE(i, win, attr);
@@ -8896,6 +8941,9 @@ int check_ncache(int reset, int mode) {
 	if (reset && (first || cache_list_len == 0)) {
 		return -1;
 	}
+	if (use_threads) {
+		try_batch = 0;
+	}
 
 	if (ncache0) {
 		if (reset) {
@@ -9015,7 +9063,7 @@ if (ncdb && c) fprintf(stderr, "check_ncache purged %d events\n", c);
 			    "If there are painting errors press 3 Alt_L's (Left \"Alt\" key) in a row to repaint the screen.",
 			    white_pixel());
 			rfbDrawString(screen, &default8x16Font, dx, ds + Dy+6*dy,
-			    "More info:  http://www.karlrunge.com/x11vnc/#faq-client-caching",
+			    "More info:  http://www.karlrunge.com/x11vnc/faq.html#faq-client-caching",
 			    white_pixel());
 
 			ds += 11 * dy;
@@ -9192,6 +9240,7 @@ if (ncdb) fprintf(stderr, "PRELOOP:  RepartNotify: 0x%lx %d idx=%d\n", win2, n1,
 			break;
 		}
 	}
+
 	X_UNLOCK;
 
 	if (got_NET_CURRENT_DESKTOP > 0.0) {
@@ -9651,7 +9700,9 @@ if (ncdb) fprintf(stderr, "skip%02d: ** SpecialSkip   0x%lx/0x%lx type: %s\n", i
 						valid = 1;
 						su_save(idx, nbatch, &attr, 0, &valid, 1);
 						STORE(idx, win2, attr);
+
 						X_LOCK;
+
 						if (! desktop_change) {
 							SCHED(win2, 1) 
 						}

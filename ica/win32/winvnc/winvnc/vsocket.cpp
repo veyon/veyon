@@ -62,7 +62,7 @@ class VSocket;
 // Custom includes
 
 #include "vtypes.h"
-
+extern int G_SENDBUFFER;
 ////////////////////////////////////////////////////////
 // *** Lovely hacks to make Win32 work.  Hurrah!
 
@@ -127,6 +127,8 @@ VSocket::VSocket()
 	sock = -1;
 	vnclog.Print(LL_SOCKINFO, VNCLOG("VSocket() m_pDSMPlugin = NULL \n"));
 	m_pDSMPlugin = NULL;
+	//adzm 2009-06-20
+	m_pPluginInterface = NULL;
 	m_fUsePlugin = false;
 	
 	m_pNetRectBuf = NULL;
@@ -206,6 +208,12 @@ VSocket::Close()
 #endif
       sock = -1;
     }
+
+  //adzm 2009-06-20
+  if (m_pPluginInterface) {
+    delete m_pPluginInterface;
+	m_pPluginInterface=NULL;
+  }
   return VTrue;
 }
 
@@ -334,6 +342,12 @@ VSocket::Accept()
   // Check this socket
   if (sock < 0)
     return NULL;
+
+  int optVal;
+  int optLen = sizeof(int);
+  getsockopt(sock, SOL_SOCKET, SO_SNDBUF, (char *)&optVal, &optLen); 
+  optVal=32000;
+  setsockopt(sock, SOL_SOCKET, SO_SNDBUF, (char *)&optVal, optLen); 
 
   // Accept an incoming connection
   if ((new_socket_id = accept(sock, NULL, 0)) < 0)
@@ -511,20 +525,20 @@ VSocket::Send(const char *buff, const VCard bufflen)
 	buff2=(char*)buff;
 	unsigned int bufflen2=bufflen;
 
-	if (newsize >8192)
+	if (newsize >G_SENDBUFFER)
 	{
-		    memcpy(queuebuffer+queuebuffersize,buff2,8192-queuebuffersize);
-			send(sock,queuebuffer,8192,0);
-//			vnclog.Print(LL_SOCKERR, VNCLOG("SEND  %i\n") ,8192);
-			buff2+=(8192-queuebuffersize);
-			bufflen2-=(8192-queuebuffersize);
+		    memcpy(queuebuffer+queuebuffersize,buff2,G_SENDBUFFER-queuebuffersize);
+			send(sock,queuebuffer,G_SENDBUFFER,0);
+//			vnclog.Print(LL_SOCKERR, VNCLOG("SEND  %i\n") ,G_SENDBUFFER);
+			buff2+=(G_SENDBUFFER-queuebuffersize);
+			bufflen2-=(G_SENDBUFFER-queuebuffersize);
 			queuebuffersize=0;
-			while (bufflen2 > 8192)
+			while (bufflen2 > G_SENDBUFFER)
 			{
-				if (!send(sock,buff2,8192,0)) return false;
-//				vnclog.Print(LL_SOCKERR, VNCLOG("SEND 1 %i\n") ,8192);
-				buff2+=8192;
-				bufflen2-=8192;
+				if (!send(sock,buff2,G_SENDBUFFER,0)) return false;
+//				vnclog.Print(LL_SOCKERR, VNCLOG("SEND 1 %i\n") ,G_SENDBUFFER);
+				buff2+=G_SENDBUFFER;
+				bufflen2-=G_SENDBUFFER;
 			}
 	}
 	memcpy(queuebuffer+queuebuffersize,buff2,bufflen2);
@@ -544,20 +558,20 @@ VSocket::SendQueued(const char *buff, const VCard bufflen)
 	buff2=(char*)buff;
 	unsigned int bufflen2=bufflen;
 
-	if (newsize >8192)
+	if (newsize >G_SENDBUFFER)
 	{
-		    memcpy(queuebuffer+queuebuffersize,buff2,8192-queuebuffersize);
-			send(sock,queuebuffer,8192,0);
-		//	vnclog.Print(LL_SOCKERR, VNCLOG("SEND Q  %i\n") ,8192);
-			buff2+=(8192-queuebuffersize);
-			bufflen2-=(8192-queuebuffersize);
+		    memcpy(queuebuffer+queuebuffersize,buff2,G_SENDBUFFER-queuebuffersize);
+			send(sock,queuebuffer,G_SENDBUFFER,0);
+		//	vnclog.Print(LL_SOCKERR, VNCLOG("SEND Q  %i\n") ,G_SENDBUFFER);
+			buff2+=(G_SENDBUFFER-queuebuffersize);
+			bufflen2-=(G_SENDBUFFER-queuebuffersize);
 			queuebuffersize=0;
-			while (bufflen2 > 8192)
+			while (bufflen2 > G_SENDBUFFER)
 			{
-				if (!send(sock,buff2,8192,0)) return false;
-			//	vnclog.Print(LL_SOCKERR, VNCLOG("SEND Q  %i\n") ,8192);
-				buff2+=8192;
-				bufflen2-=8192;
+				if (!send(sock,buff2,G_SENDBUFFER,0)) return false;
+			//	vnclog.Print(LL_SOCKERR, VNCLOG("SEND Q  %i\n") ,G_SENDBUFFER);
+				buff2+=G_SENDBUFFER;
+				bufflen2-=G_SENDBUFFER;
 			}
 	}
 	memcpy(queuebuffer+queuebuffersize,buff2,bufflen2);
@@ -607,7 +621,8 @@ VSocket::SendExact(const char *buff, const VCard bufflen)
 		else // Tell the plugin to transform data
 		{
 			int nTransDataLen = 0;
-			pBuffer = (char*)(m_pDSMPlugin->TransformBuffer((BYTE*)buff, bufflen, &nTransDataLen));
+			//adzm 2009-06-20
+			pBuffer = (char*)(TransformBuffer((BYTE*)buff, bufflen, &nTransDataLen));
 			if (pBuffer == NULL || (bufflen > 0 && nTransDataLen == 0))
 			{
 				// throw WarningException("SendExact: DSMPlugin-TransformBuffer Error.");
@@ -645,7 +660,8 @@ VSocket::SendExactQueue(const char *buff, const VCard bufflen)
 		else // Tell the plugin to transform data
 		{
 			int nTransDataLen = 0;
-			pBuffer = (char*)(m_pDSMPlugin->TransformBuffer((BYTE*)buff, bufflen, &nTransDataLen));
+			//adzm 2009-06-20
+			pBuffer = (char*)(TransformBuffer((BYTE*)buff, bufflen, &nTransDataLen));
 			if (pBuffer == NULL || (bufflen > 0 && nTransDataLen == 0))
 			{
 				// throw WarningException("SendExact: DSMPlugin-TransformBuffer Error.");
@@ -701,12 +717,15 @@ VSocket::ReadExact(char *buff, const VCard bufflen)
 	// sf@2002 - DSM Plugin
 	if (m_fUsePlugin && m_pDSMPlugin->IsEnabled())
 	{
-		omni_mutex_lock l(m_pDSMPlugin->m_RestMutex); 
+		//omni_mutex_lock l(m_pDSMPlugin->m_RestMutex); 
+		//adzm 2009-06-20 - don't lock if we are using the new interface
+		omni_mutex_conditional_lock l(m_pDSMPlugin->m_RestMutex, m_pPluginInterface ? false : true);
 
 		// Get the DSMPlugin destination buffer where to put transformed incoming data
 		// The number of bytes to read calculated from bufflen is given back in nTransDataLen
 		int nTransDataLen = 0;
-		BYTE* pTransBuffer = m_pDSMPlugin->RestoreBufferStep1(NULL, bufflen, &nTransDataLen);
+		//adzm 2009-06-20
+		BYTE* pTransBuffer = RestoreBufferStep1(NULL, bufflen, &nTransDataLen);
 		if (pTransBuffer == NULL)
 		{
 			// m_pDSMPlugin->RestoreBufferUnlock();
@@ -743,8 +762,9 @@ VSocket::ReadExact(char *buff, const VCard bufflen)
 		// Ask plugin to restore data from rest. buffer into inbuf
 		int nRestDataLen = 0;
 		nTransDataLen = nTransDataLenSave;
-		BYTE* pPipo = m_pDSMPlugin->RestoreBufferStep2((BYTE*)buff, nTransDataLen, &nRestDataLen);
-		
+		//adzm 2009-06-20
+		BYTE* pPipo = RestoreBufferStep2((BYTE*)buff, nTransDataLen, &nRestDataLen);
+
 		// Check if we actually get the real original data length
 		if ((VCard)nRestDataLen != bufflen)
 		{
@@ -785,6 +805,59 @@ return VTrue;
 //
 // sf@2002 - DSMPlugin
 // 
+
+//adzm 2009-06-20
+void VSocket::SetDSMPluginPointer(CDSMPlugin* pDSMPlugin)
+{
+	m_pDSMPlugin = pDSMPlugin;
+
+	if (m_pPluginInterface) {
+		delete m_pPluginInterface;
+		m_pPluginInterface = NULL;
+	}
+
+	if (m_pDSMPlugin && m_pDSMPlugin->SupportsMultithreaded()) {
+		m_pPluginInterface = m_pDSMPlugin->CreatePluginInterface();
+	}
+}
+
+//
+// Tell the plugin to do its transformation on the source data buffer
+// Return: pointer on the new transformed buffer (allocated by the plugin)
+// nTransformedDataLen is the number of bytes contained in the transformed buffer
+//adzm 2009-06-20
+BYTE* VSocket::TransformBuffer(BYTE* pDataBuffer, int nDataLen, int* pnTransformedDataLen)
+{
+	if (m_pPluginInterface) {
+		return m_pPluginInterface->TransformBuffer(pDataBuffer, nDataLen, pnTransformedDataLen);
+	} else {
+		return m_pDSMPlugin->TransformBuffer(pDataBuffer, nDataLen, pnTransformedDataLen);
+	}
+}
+
+
+// - If pRestoredDataBuffer = NULL, the plugin check its local buffer and return the pointer
+// - Otherwise, restore data contained in its rest. buffer and put the result in pRestoredDataBuffer
+//   pnRestoredDataLen is the number bytes put in pRestoredDataBuffers
+//adzm 2009-06-20
+BYTE* VSocket::RestoreBufferStep1(BYTE* pRestoredDataBuffer, int nDataLen, int* pnRestoredDataLen)
+{	
+	if (m_pPluginInterface) {
+		return m_pPluginInterface->RestoreBuffer(pRestoredDataBuffer, nDataLen, pnRestoredDataLen);
+	} else {
+		return m_pDSMPlugin->RestoreBufferStep1(pRestoredDataBuffer, nDataLen, pnRestoredDataLen);
+	}
+}
+
+//adzm 2009-06-20
+BYTE* VSocket::RestoreBufferStep2(BYTE* pRestoredDataBuffer, int nDataLen, int* pnRestoredDataLen)
+{	
+	if (m_pPluginInterface) {
+		return m_pPluginInterface->RestoreBuffer(pRestoredDataBuffer, nDataLen, pnRestoredDataLen);
+	} else {
+		return m_pDSMPlugin->RestoreBufferStep2(pRestoredDataBuffer, nDataLen, pnRestoredDataLen);
+	}
+}
 
 //
 // Ensures that the temporary "alignement" buffer in large enough 

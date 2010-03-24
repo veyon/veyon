@@ -47,9 +47,20 @@
 /* May be set to TRUE with "-lazytight" Xvnc option. */
 rfbBool rfbTightDisableGradient = FALSE;
 
-/* This variable is set on every rfbSendRectEncodingTight() call. */
-static rfbBool usePixelFormat24;
+/*
+ * There is so much access of the Tight encoding static data buffers
+ * that we resort to using thread local storage instead of having
+ * per-client data.
+ */
+#if LIBVNCSERVER_HAVE_LIBPTHREAD && LIBVNCSERVER_HAVE_TLS && !defined(TLS) && defined(__linux__)
+#define TLS __thread
+#endif
+#ifndef TLS
+#define TLS
+#endif
 
+/* This variable is set on every rfbSendRectEncodingTight() call. */
+static TLS rfbBool usePixelFormat24 = FALSE;
 
 /* Compression level stuff. The following array contains various
    encoder parameters for each of 10 compression levels (0..9).
@@ -77,8 +88,8 @@ static TIGHT_CONF tightConf[10] = {
     { 65536, 2048,  32,  8192, 9, 9, 9, 6, 200, 500,  96, 80,   200,   500 }
 };
 
-static int compressLevel;
-static int qualityLevel;
+static TLS int compressLevel = 0;
+static TLS int qualityLevel = 0;
 
 /* Stuff dealing with palettes. */
 
@@ -100,29 +111,33 @@ typedef struct PALETTE_s {
 } PALETTE;
 
 /* TODO: move into rfbScreen struct */
-static int paletteNumColors, paletteMaxColors;
-static uint32_t monoBackground, monoForeground;
-static PALETTE palette;
+static TLS int paletteNumColors = 0;
+static TLS int paletteMaxColors = 0;
+static TLS uint32_t monoBackground = 0;
+static TLS uint32_t monoForeground = 0;
+static TLS PALETTE palette;
 
 /* Pointers to dynamically-allocated buffers. */
 
-static int tightBeforeBufSize = 0;
-static char *tightBeforeBuf = NULL;
+static TLS int tightBeforeBufSize = 0;
+static TLS char *tightBeforeBuf = NULL;
 
-static int tightAfterBufSize = 0;
-static char *tightAfterBuf = NULL;
+static TLS int tightAfterBufSize = 0;
+static TLS char *tightAfterBuf = NULL;
 
-static int *prevRowBuf = NULL;
+static TLS int *prevRowBuf = NULL;
 
 void rfbTightCleanup(rfbScreenInfoPtr screen)
 {
   if(tightBeforeBufSize) {
     free(tightBeforeBuf);
     tightBeforeBufSize=0;
+    tightBeforeBuf = NULL;
   }
   if(tightAfterBufSize) {
     free(tightAfterBuf);
     tightAfterBufSize=0;
+    tightAfterBuf = NULL;
   }
 }
 
@@ -1627,9 +1642,9 @@ DEFINE_DETECT_FUNCTION(32)
  * JPEG compression stuff.
  */
 
-static struct jpeg_destination_mgr jpegDstManager;
-static rfbBool jpegError;
-static int jpegDstDataLen;
+static TLS struct jpeg_destination_mgr jpegDstManager;
+static TLS rfbBool jpegError = FALSE;
+static TLS int jpegDstDataLen = 0;
 
 static rfbBool
 SendJpegRect(rfbClientPtr cl, int x, int y, int w, int h, int quality)

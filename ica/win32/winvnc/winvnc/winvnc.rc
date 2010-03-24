@@ -66,18 +66,20 @@ BEGIN
     LTEXT           "",IDC_STATIC_SPLIT,5,127,298,8,SS_NOTIFY
 END
 
-IDD_LIST_DLG DIALOGEX 0, 0, 164, 116
+IDD_LIST_DLG DIALOGEX 0, 0, 288, 123
 STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_FIXEDSYS | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
 EXSTYLE WS_EX_TOOLWINDOW
 CAPTION " List of Clients - UltraVNC"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
+    DEFPUSHBUTTON   "Close",IDOK,118,94,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,118,78,50,14,NOT WS_VISIBLE
     LTEXT           " Currently Connected Clients :",IDC_STATIC,5,4,105,8
-    LISTBOX         IDC_VIEWERS_LISTBOX,7,16,91,93,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP,WS_EX_STATICEDGE
-    PUSHBUTTON      "Kill Client",IDC_KILL_B,106,17,50,14
-    PUSHBUTTON      "Chat with    Client",IDC_TEXTCHAT_B,106,35,50,22,BS_MULTILINE
-    PUSHBUTTON      "Cancel",IDCANCEL,106,78,50,14,NOT WS_VISIBLE
-    DEFPUSHBUTTON   "Close",IDOK,106,94,50,14
+    LISTBOX         IDC_VIEWERS_LISTBOX,7,16,103,93,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP,WS_EX_STATICEDGE
+    PUSHBUTTON      "Kill Client",IDC_KILL_B,118,17,50,14
+    PUSHBUTTON      "Chat with    Client",IDC_TEXTCHAT_B,118,35,50,22,BS_MULTILINE
+    LTEXT           "Pending Clients:",IDC_STATIC,173,4,105,8
+    LISTBOX         IDC_PENDING_LISTBOX,175,16,103,93,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP,WS_EX_STATICEDGE
 END
 
 IDD_ABOUT DIALOGEX 0, 0, 282, 158
@@ -87,7 +89,7 @@ FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     DEFPUSHBUTTON   "OK",IDOK,8,135,54,16
     CONTROL         139,IDC_VNCLOGO,"Static",SS_BITMAP | SS_CENTERIMAGE | SS_SUNKEN,7,5,53,46,WS_EX_TRANSPARENT
-    LTEXT           "UltraVNC Win32 Server 1.0.7.6",IDC_VERSION,73,5,195,11
+    LTEXT           "UltraVNC Win32 Server 1.0.8.2",IDC_VERSION,73,5,195,11
     LTEXT           "Copyright © 2002-2009 Ultr@VNC Team\nCopyright © 2001-2002 Sam - eSVNC \nCopyright © 1999-2002 Rudi D. V. - VdaccVNC \nCopyright © 2001 Harakan Software - PalmVNC\nCopyright © 1999-2002 Const. Kaplinsky - TightVNC \n",IDC_NAME,74,27,202,41
     LTEXT           "For more Information and Links please visit: \nhttp://www.uvnc.com",IDC_WWW,74,135,141,19
     LTEXT           "Build:",IDC_BUILDTEXT,74,16,20,10
@@ -96,19 +98,18 @@ BEGIN
     LTEXT           "Copyright © 1990-2002 Info-ZIP\nCopyright © 1996-2002 Markus Franz Xaver Johannes Oberhumer - Mini LZO library",IDC_STATIC,74,99,200,27
 END
 
-IDD_OUTGOING_CONN DIALOGEX 0, 0, 243, 78
+IDD_OUTGOING_CONN DIALOGEX 0, 0, 223, 102
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
-CAPTION "Initiate Outgoing Connection (Add New Client)"
+CAPTION "Initiate Connection"
 FONT 8, "MS Shell Dlg", 0, 0, 0x0
 BEGIN
-    RTEXT           "Host Name:",IDC_HOSTNAME_STATIC,7,6,43,14,SS_CENTERIMAGE
-    EDITTEXT        IDC_HOSTNAME_EDIT,55,6,130,14,ES_AUTOHSCROLL
-    LTEXT           "ID code",IDC_STATIC,17,33,27,8
-    EDITTEXT        IDC_IDCODE,55,29,130,14,ES_AUTOHSCROLL
-    CTEXT           "(NB:Host must be running VNCviewer in 'listen' mode)",IDC_NOTE_STATIC,0,48,178,11,SS_CENTERIMAGE
-    LTEXT           "If ID is used, Host=repetaer ip address",IDC_STATIC,6,61,125,9
-    DEFPUSHBUTTON   "OK",IDOK,193,30,46,14
-    PUSHBUTTON      "Cancel",IDCANCEL,193,48,46,14
+    CTEXT           "",IDC_CAPTION_STATIC,7,6,209,20,NOT WS_VISIBLE
+    LTEXT           "Host Name:",IDC_HOSTNAME_STATIC,90,9,58,8,SS_CENTERIMAGE
+    EDITTEXT        IDC_HOSTNAME_EDIT,90,22,121,14,ES_AUTOHSCROLL
+    LTEXT           "Connection #",IDC_CONNECTION_NUMBER_STATIC,90,43,58,8
+    EDITTEXT        IDC_IDCODE,90,56,121,14,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,90,78,46,14
+    PUSHBUTTON      "Cancel",IDCANCEL,165,78,46,14
 END
 
 IDD_ACCEPT_CONN DIALOG  0, 0, 186, 95
@@ -149,7 +150,7 @@ BEGIN
     PUSHBUTTON      "&Cancel",IDCANCEL,177,154,41,14
 END
 
-IDD_PROPERTIES1 DIALOGEX 0, 0, 390, 285
+IDD_PROPERTIES1 DIALOGEX 0, 0, 390, 297
 STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_FIXEDSYS | DS_CENTER | WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
 CAPTION " Ultr@VNC Server Property Page"
 FONT 8, "MS Shell Dlg", 0, 0, 0x0
@@ -191,48 +192,52 @@ BEGIN
     CONTROL         "Keep existing connections",IDC_MV2,"Button",BS_AUTORADIOBUTTON,255,81,104,10
     CONTROL         "Refuse the new connection",IDC_MV3,"Button",BS_AUTORADIOBUTTON,255,92,103,9
     CONTROL         "Refuse all new connection ",IDC_MV4,"Button",BS_AUTORADIOBUTTON,255,103,102,10
-    GROUPBOX        "Authentication",IDC_STATIC,6,122,210,77,BS_LEFT
-    LTEXT           "VNC Password:",IDC_PASSWORD_LABEL,12,135,50,11,SS_CENTERIMAGE
-    EDITTEXT        IDC_PASSWORD,66,135,74,13,ES_PASSWORD | ES_AUTOHSCROLL
+    GROUPBOX        "Authentication",IDC_STATIC,6,122,210,88,BS_LEFT
+    LTEXT           "VNC Password:",IDC_PASSWORD_LABEL,33,136,50,11,SS_CENTERIMAGE
+    EDITTEXT        IDC_PASSWORD,85,135,74,13,ES_PASSWORD | ES_AUTOHSCROLL
+    LTEXT           "View-Only Password:",IDC_PASSWORD_LABEL2,14,150,69,11,SS_CENTERIMAGE
+    EDITTEXT        IDC_PASSWORD2,85,150,74,13,ES_PASSWORD | ES_AUTOHSCROLL
     CONTROL         "Require MS Logon  (User/Pass./Domain)",IDC_MSLOGON_CHECKD,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,153,146,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,164,146,10
     CONTROL         "New MS Logon (supports multiple domains)",IDC_NEW_MSLOGON,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,25,164,153,11
-    PUSHBUTTON      "Configure MS Logon Groups",IDC_MSLOGON,13,179,195,12
-    GROUPBOX        "Misc.",IDC_STATIC,221,122,165,106,BS_LEFT
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,25,175,153,11
+    PUSHBUTTON      "Configure MS Logon Groups",IDC_MSLOGON,13,190,195,12
+    GROUPBOX        "Misc.",IDC_STATIC,221,122,165,116,BS_LEFT
     CONTROL         "Remove Aero (Vista)",IDC_REMOVE_Aero,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,228,130,81,10
     CONTROL         "Remove Wallpaper for Viewers",IDC_REMOVE_WALLPAPER,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,228,140,134,10
     CONTROL         "Enable Blank Monitor on Viewer Request",IDC_BLANK,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,228,150,144,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,228,151,144,10
+    CONTROL         "Disable Only Inputs on Blanking Request",IDC_BLANK2,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,239,161,142,10
     CONTROL         "Enable Alpha-Blending Monitor Blanking",IDC_ALPHABLACK,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,228,160,142,10
-    CONTROL         "Capture Alpha-Blending",IDC_ALPHA,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,228,170,99,10
-    CONTROL         "DisableTrayIcon",IDC_DISABLETRAY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,228,180,67,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,239,172,142,10
+    CONTROL         "Capture Alpha-Blending",IDC_ALPHA,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,228,183,99,10
+    CONTROL         "DisableTrayIcon",IDC_DISABLETRAY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,228,194,67,10
     CONTROL         "Disable clients options in tray icon menu",IDC_ALLOWEDITCLIENTS,
-                    "Button",BS_AUTOCHECKBOX | NOT WS_VISIBLE | WS_DISABLED | WS_TABSTOP,228,190,141,10
+                    "Button",BS_AUTOCHECKBOX | NOT WS_VISIBLE | WS_DISABLED | WS_TABSTOP,228,205,141,10
     CONTROL         "Forbid the user to close down WinVNC",IDC_ALLOWSHUTDOWN,
-                    "Button",BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,228,200,143,10
-    LTEXT           "Default Server Screen Scale:",IDC_STATIC,237,212,92,8
-    LTEXT           "1 / ",IDC_STATIC,335,213,12,8
-    EDITTEXT        IDC_SCALE,350,211,12,12,ES_AUTOHSCROLL
-    GROUPBOX        "File Transfer",IDC_STATIC,6,202,210,25
-    CONTROL         "Enable",IDC_FILETRANSFER,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,213,38,10
+                    "Button",BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,228,216,135,10
+    LTEXT           "Default Server Screen Scale:",IDC_STATIC,237,225,92,8
+    LTEXT           "1 / ",IDC_STATIC,348,225,12,8
+    EDITTEXT        IDC_SCALE,363,222,12,12,ES_AUTOHSCROLL
+    GROUPBOX        "File Transfer",IDC_STATIC,6,213,210,25
+    CONTROL         "Enable",IDC_FILETRANSFER,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,224,38,10
     CONTROL         "User impersonation (for Service only)",IDC_FTUSERIMPERSONATION_CHECK,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,71,213,133,10
-    GROUPBOX        "DSM Plugin",IDC_STATIC,5,230,211,32,BS_LEFT
-    CONTROL         "Use :",IDC_PLUGIN_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,244,31,10
-    COMBOBOX        IDC_PLUGINS_COMBO,45,242,129,86,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
-    PUSHBUTTON      "Config.",IDC_PLUGIN_BUTTON,179,242,29,12
-    GROUPBOX        "Logging",IDC_STATIC,221,231,165,49
-    CONTROL         "Log debug infos to the WinVNC.log file",IDC_LOG,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,228,240,139,10
-    CONTROL         "Log to video",IDC_VIDEO,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,228,251,58,10
-    PUSHBUTTON      "Clear avi encoder",IDC_CLEAR,297,251,75,9
-    LTEXT           "Path:",IDC_STATIC,229,265,18,8
-    EDITTEXT        IDC_EDIT_PATH,250,263,133,14,ES_AUTOHSCROLL
-    DEFPUSHBUTTON   "&OK",IDOK,32,266,43,14
-    PUSHBUTTON      "&Apply",IDC_APPLY,81,266,43,14
-    PUSHBUTTON      "&Cancel",IDCANCEL,129,266,44,14
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,71,224,133,10
+    GROUPBOX        "DSM Plugin",IDC_STATIC,5,241,211,32,BS_LEFT
+    CONTROL         "Use :",IDC_PLUGIN_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,255,31,10
+    COMBOBOX        IDC_PLUGINS_COMBO,45,253,129,86,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Config.",IDC_PLUGIN_BUTTON,179,253,29,12
+    GROUPBOX        "Logging",IDC_STATIC,221,241,165,51
+    CONTROL         "Log debug infos to the WinVNC.log file",IDC_LOG,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,228,251,139,10
+    CONTROL         "Log to video",IDC_VIDEO,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,228,262,58,10
+    PUSHBUTTON      "Clear avi encoder",IDC_CLEAR,297,262,75,9
+    LTEXT           "Path:",IDC_STATIC,229,276,18,8
+    EDITTEXT        IDC_EDIT_PATH,250,274,132,14,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "&OK",IDOK,32,279,43,14
+    PUSHBUTTON      "&Apply",IDC_APPLY,81,279,43,14
+    PUSHBUTTON      "&Cancel",IDCANCEL,129,279,44,14
     RTEXT           "N°",IDC_STATIC,53,42,9,8
 END
 
@@ -265,9 +270,9 @@ BEGIN
     IDD_LIST_DLG, DIALOG
     BEGIN
         LEFTMARGIN, 7
-        RIGHTMARGIN, 157
+        RIGHTMARGIN, 281
         TOPMARGIN, 7
-        BOTTOMMARGIN, 109
+        BOTTOMMARGIN, 116
     END
 
     IDD_ABOUT, DIALOG
@@ -294,13 +299,13 @@ BEGIN
     IDD_OUTGOING_CONN, DIALOG
     BEGIN
         LEFTMARGIN, 7
-        RIGHTMARGIN, 236
+        RIGHTMARGIN, 216
         VERTGUIDE, 50
         VERTGUIDE, 55
         VERTGUIDE, 185
         VERTGUIDE, 190
         TOPMARGIN, 6
-        BOTTOMMARGIN, 71
+        BOTTOMMARGIN, 95
         HORZGUIDE, 20
         HORZGUIDE, 49
     END
@@ -365,8 +370,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 1,0,6,5
- PRODUCTVERSION 1,0,6,5
+ FILEVERSION 1,0,8,2
+ PRODUCTVERSION 1,0,8,2
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x2dL
@@ -384,14 +389,14 @@ BEGIN
             VALUE "Comments", "UltraVNC - Remote Control for all"
             VALUE "CompanyName", "UltraVNC"
             VALUE "FileDescription", "VNC server for X64/win32"
-            VALUE "FileVersion", "1.0.7.6"
+            VALUE "FileVersion", "1.0.8.2"
             VALUE "InternalName", "WinVNC"
             VALUE "LegalCopyright", "Copyright © 2009 UltraVNC"
             VALUE "LegalTrademarks", "VNC"
             VALUE "OriginalFilename", "WinVNC.exe"
-            VALUE "PrivateBuild", "1.0.7.6"
+            VALUE "PrivateBuild", "1.0.8.2"
             VALUE "ProductName", "UltraVNC"
-            VALUE "ProductVersion", "1.0.7.6"
+            VALUE "ProductVersion", "1.0.8.2"
         END
     END
     BLOCK "VarFileInfo"
@@ -410,10 +415,15 @@ IDR_TRAYMENU MENU
 BEGIN
     POPUP "tray"
     BEGIN
-        MENUITEM "&About WinVNC",               ID_ABOUT
-        MENUITEM SEPARATOR
-        MENUITEM "&Admin Properties",           ID_ADMIN_PROPERTIES
         MENUITEM "&Properties",                 ID_PROPERTIES
+        MENUITEM "&Admin Properties",           ID_ADMIN_PROPERTIES
+        MENUITEM SEPARATOR
+        MENUITEM "&About WinVNC",               ID_ABOUT
+        POPUP "Visit our site"
+        BEGIN
+            MENUITEM "Homepage",                    ID_VISITUSONLINE_HOMEPAGE
+            MENUITEM "Forum",                       ID_VISITUSONLINE_FORUM
+        END
         MENUITEM SEPARATOR
         MENUITEM "Add &New Client",             ID_OUTGOING_CONN
         MENUITEM "&Kill All Clients",           ID_KILLCLIENTS

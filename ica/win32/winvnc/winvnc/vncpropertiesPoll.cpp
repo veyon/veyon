@@ -808,6 +808,7 @@ vncPropertiesPoll::LoadUserPrefsPoll(HKEY appkey)
 	m_pref_PollConsoleOnly=LoadInt(appkey, "OnlyPollConsole", m_pref_PollConsoleOnly);
 	m_pref_PollOnEventOnly=LoadInt(appkey, "OnlyPollOnEvent", m_pref_PollOnEventOnly);
 	m_pref_MaxCpu=LoadInt(appkey, "MaxCpu", m_pref_MaxCpu);
+	if (m_pref_MaxCpu==0) m_pref_MaxCpu=100;
 	m_pref_Driver=LoadInt(appkey, "EnableDriver", m_pref_Driver);
 	if (m_pref_Driver)m_pref_Driver=CheckVideoDriver(0);
 	m_pref_Hook=LoadInt(appkey, "EnableHook", m_pref_Hook);
@@ -977,6 +978,7 @@ void vncPropertiesPoll::LoadUserPrefsPollFromIniFile()
 	m_pref_PollConsoleOnly=myIniFile.ReadInt("poll", "OnlyPollConsole", m_pref_PollConsoleOnly);
 	m_pref_PollOnEventOnly=myIniFile.ReadInt("poll", "OnlyPollOnEvent", m_pref_PollOnEventOnly);
 	m_pref_MaxCpu=myIniFile.ReadInt("poll", "MaxCpu", m_pref_MaxCpu);
+	if (m_pref_MaxCpu==0) m_pref_MaxCpu=100;
 	m_pref_Driver=myIniFile.ReadInt("poll", "EnableDriver", m_pref_Driver);
 	if (m_pref_Driver)m_pref_Driver=CheckVideoDriver(0);
 	m_pref_Hook=myIniFile.ReadInt("poll", "EnableHook", m_pref_Hook);

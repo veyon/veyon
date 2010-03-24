@@ -64,6 +64,9 @@ const char	*szAppName = "WinVNC";
 DWORD		mainthreadId;
 BOOL		fRunningFromExternalService=false;
 
+//adzm 2009-06-20
+char* g_szRepeaterHost = NULL;
+
 // sf@2007 - New shutdown order handling stuff (with uvnc_service)
 bool			fShutdownOrdered = false;
 static HANDLE		hShutdownEvent = NULL;
@@ -79,6 +82,9 @@ bool PostAddAutoConnectClient_bool_null=false;
 
 bool PostAddConnectClient_bool=false;
 bool PostAddConnectClient_bool_null=false;
+
+//adzm 2009-06-20
+bool PostAddNewRepeaterClient_bool=false;
 
 char pszId_char[20];
 VCard32 address_vcard;
@@ -99,6 +105,8 @@ void Set_uninstall_service_as_admin();
 void Set_install_service_as_admin();
 void winvncSecurityEditorHelper_as_admin();
 bool GetServiceName(TCHAR *pszAppPath, TCHAR *pszServiceName);
+void Open_homepage();
+void Open_forum();
 
 // [v1.0.2-jp1 fix] Load resouce from dll
 HINSTANCE	hInstResDLL;
@@ -242,6 +250,7 @@ int WINAPI WinMainVNC(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLi
 
 		if (strncmp(&szCmdLine[i], winvncSettingshelper, strlen(winvncSettingshelper)) == 0)
 		{
+			Sleep(3000);
 			char mycommand[MAX_PATH];
 			i+=strlen(winvncSettingshelper);
 			strcpy( mycommand, &(szCmdLine[i+1]));
@@ -251,6 +260,7 @@ int WINAPI WinMainVNC(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLi
 
 		if (strncmp(&szCmdLine[i], winvncStopserviceHelper, strlen(winvncStopserviceHelper)) == 0)
 		{
+			Sleep(3000);
 			Set_stop_service_as_admin();
 			return 0;
 		}
@@ -261,34 +271,55 @@ int WINAPI WinMainVNC(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLi
 			hShutdownEvent = OpenEvent(EVENT_ALL_ACCESS, FALSE, "Global\\SessionEventUltra");
 			SetEvent(hShutdownEvent);
 			CloseHandle(hShutdownEvent);
-			HWND hservwnd;
-			hservwnd = FindWindow("WinVNC Tray Icon", NULL);
-			if (hservwnd!=NULL)
-			{
-				PostMessage(hservwnd, WM_COMMAND, 40002, 0);
-				PostMessage(hservwnd, WM_CLOSE, 0, 0);
-			}
+
+			//adzm 2010-02-10 - Finds the appropriate VNC window for any process. Sends this message to all of them!
+			HWND hservwnd = NULL;
+			do {
+				if (hservwnd!=NULL)
+				{
+					PostMessage(hservwnd, WM_COMMAND, 40002, 0);
+					PostMessage(hservwnd, WM_CLOSE, 0, 0);
+				}
+				hservwnd = FindWinVNCWindow(false);
+			} while (hservwnd!=NULL);
 			return 0;
 		}
 
+		if (strncmp(&szCmdLine[i], winvncopenhomepage, strlen(winvncopenhomepage)) == 0)
+		{
+			Open_homepage();
+			return 0;
+		}
+
+		if (strncmp(&szCmdLine[i], winvncopenforum, strlen(winvncopenforum)) == 0)
+		{
+			Open_forum();
+			return 0;
+		}
+
+
 		if (strncmp(&szCmdLine[i], winvncStartserviceHelper, strlen(winvncStartserviceHelper)) == 0)
 		{
+			Sleep(3000);
 			Set_start_service_as_admin();
 			return 0;
 		}
 
 		if (strncmp(&szCmdLine[i], winvncInstallServiceHelper, strlen(winvncInstallServiceHelper)) == 0)
 			{
+				Sleep(3000);
 				Set_install_service_as_admin();
 				return 0;
 			}
 		if (strncmp(&szCmdLine[i], winvncUnInstallServiceHelper, strlen(winvncUnInstallServiceHelper)) == 0)
 			{
+				Sleep(3000);
 				Set_uninstall_service_as_admin();
 				return 0;
 			}
 		if (strncmp(&szCmdLine[i], winvncSecurityEditorHelper, strlen(winvncSecurityEditorHelper)) == 0)
 			{
+				Sleep(3000);
 				winvncSecurityEditorHelper_as_admin();
 				return 0;
 			}
@@ -471,7 +502,7 @@ int WINAPI WinMainVNC(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLi
 			{
 				end = start;
 				while (szCmdLine[end] > ' ') end++;
-
+				
 				pszId = new char[ end - start + 1 ];
 				if (pszId != 0) 
 				{
@@ -496,7 +527,11 @@ int WINAPI WinMainVNC(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLi
 					PostAddAutoConnectClient_bool=false;
 				}
 				else
+				{
 					strcpy(pszId_char,pszId);
+					//memory leak fix
+					delete [] pszId;
+				}
 			}
 			continue;
 		}
@@ -528,7 +563,11 @@ int WINAPI WinMainVNC(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLi
 					PostAddConnectClient_bool=false;
 				}
 				else
+				{
 					strcpy(pszId_char,pszId);
+					//memory leak fix
+					delete [] pszId;
+				}
 				}
 			continue;
 		}
@@ -601,6 +640,62 @@ int WINAPI WinMainVNC(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLi
 				port_int=0;
 				address_vcard=0;
 				}
+			}
+			continue;
+		}
+
+		//adzm 2009-06-20
+		if (strncmp(&szCmdLine[i], winvncRepeater, strlen(winvncRepeater)) == 0)
+		{
+			// set the default repeater host
+			i+=strlen(winvncRepeater);
+
+			// First, we have to parse the command line to get the host to use
+			int start, end;
+			start=i;
+			while (szCmdLine[start] <= ' ' && szCmdLine[start] != 0) start++;
+			end = start;
+			while (szCmdLine[end] > ' ') end++;
+
+			// Was there a hostname (and optionally a port number) given?
+			if (end-start > 0)
+			{
+				if (g_szRepeaterHost) {
+					delete[] g_szRepeaterHost;
+					g_szRepeaterHost = NULL;
+				}
+				g_szRepeaterHost = new char[end-start+1];
+				if (g_szRepeaterHost != 0) {
+					strncpy(g_szRepeaterHost, &(szCmdLine[start]), end-start);
+					g_szRepeaterHost[end-start] = 0;
+					
+					// We can not contact a runnning service, permissions, so we must store the settings
+					// and process until the vncmenu has been started
+					vnclog.Print(LL_INTERR, VNCLOG("PostAddNewRepeaterClient I\n"));
+					if (!vncService::PostAddNewRepeaterClient())
+					{
+						PostAddNewRepeaterClient_bool=true;
+						port_int=0;
+						address_vcard=0;
+					}
+				}
+				i=end;
+				continue;
+			}
+			else 
+			{
+				/*
+				// Tell the server to show the Add New Client dialog
+				// We can not contact a runnning service, permissions, so we must store the settings
+				// and process until the vncmenu has been started
+				vnclog.Print(LL_INTERR, VNCLOG("PostAddNewClient IIII\n"));
+				if (!vncService::PostAddNewClient(0, 0))
+				{
+				PostAddNewClient_bool=true;
+				port_int=0;
+				address_vcard=0;
+				}
+				*/
 			}
 			continue;
 		}
@@ -715,6 +810,13 @@ DWORD WINAPI imp_desktop_thread(LPVOID lpParam)
 		vnclog.Print(LL_INTERR, VNCLOG("PostAddNewClient IIIII\n"));
 		vncService::PostAddNewClient(address_vcard, port_int);
 	}
+	//adzm 2009-06-20
+	if (PostAddNewRepeaterClient_bool)
+	{
+		PostAddNewRepeaterClient_bool=false;
+		vnclog.Print(LL_INTERR, VNCLOG("PostAddNewRepeaterClient II\n"));
+		vncService::PostAddNewRepeaterClient();
+	}
 	MSG msg;
 	while (GetMessage(&msg,0,0,0) != 0 && !fShutdownOrdered)
 	{
@@ -794,8 +896,8 @@ int WinVNCAppMain()
 		{	
     		vnclog.Print(LL_INTINFO, VNCLOG("%s -- exiting\n"), sz_ID_ANOTHER_INST);
 			// We don't allow multiple instances!
-		if (!fRunningFromExternalService)
-			MessageBox(NULL, sz_ID_ANOTHER_INST, szAppName, MB_OK);
+			if (!fRunningFromExternalService)
+				MessageBox(NULL, sz_ID_ANOTHER_INST, szAppName, MB_OK);
 			return 0;
 		}
 	}
@@ -858,5 +960,11 @@ int WinVNCAppMain()
 
 	if (hShutdownEvent)CloseHandle(hShutdownEvent);
 	vnclog.Print(LL_STATE, VNCLOG("################## SHUTING DOWN SERVER ####################\n"));
+
+	//adzm 2009-06-20
+	if (g_szRepeaterHost) {
+		delete[] g_szRepeaterHost;
+		g_szRepeaterHost = NULL;
+	}
 	return 1;
 };

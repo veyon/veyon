@@ -151,28 +151,30 @@ void vncDesktop::SWinit()
 rfb::Rect
 vncDesktop::GetSize()
 {
-//vnclog.Print(LL_INTINFO, VNCLOG("GetSize \n"));
-if (m_server->SingleWindow())
-	{
-	RECT rect;
-	rect.left=m_Cliprect.tl.x;
-	rect.top=m_Cliprect.tl.y;
-	rect.right=m_Cliprect.br.x;
-	rect.bottom=m_Cliprect.br.y;
-	return rfb::Rect(rect.left, rect.top, rect.right, rect.bottom);
-	
-	}
-else if (!m_videodriver)
-	{
-	m_SWOffsetx=0;
-	m_SWOffsety=0;
-	return rfb::Rect(0, 0, m_scrinfo.framebufferWidth, m_scrinfo.framebufferHeight);
-	}
- else
-	{
-//		vnclog.Print(LL_INTINFO, VNCLOG("GetSize \n"));
-		return rfb::Rect(0,0,mymonitor[current_monitor-1].Width,mymonitor[current_monitor-1].Height);											
-	}
+	//vnclog.Print(LL_INTINFO, VNCLOG("GetSize \n"));
+	if (m_server->SingleWindow())
+		{
+		RECT rect;
+		rect.left=m_Cliprect.tl.x;
+		rect.top=m_Cliprect.tl.y;
+		rect.right=m_Cliprect.br.x;
+		rect.bottom=m_Cliprect.br.y;
+		return rfb::Rect(rect.left, rect.top, rect.right, rect.bottom);
+		
+		}
+	else if (!m_videodriver)
+		{
+		m_SWOffsetx=0;
+		m_SWOffsety=0;
+		return rfb::Rect(0, 0, m_scrinfo.framebufferWidth, m_scrinfo.framebufferHeight);
+		}
+	 else
+		{
+			if (multi_monitor)
+				return rfb::Rect(0,0,mymonitor[2].Width,mymonitor[2].Height);	
+			else
+				return rfb::Rect(0,0,mymonitor[0].Width,mymonitor[0].Height);
+		}
 }
 
 rfb::Rect

@@ -43,6 +43,7 @@
 #include <atlbase.h> // ATL smart pointers
 #include <shlguid.h> // shell GUIDs
 #include <shlobj.h>  // IActiveDesktop
+#include "stdhdrs.h"
 
 struct __declspec(uuid("F490EB00-1240-11D1-9888-006097DEACF9")) IActiveDesktop;
 
@@ -212,6 +213,7 @@ void HideDesktop()
 	// Tell all applications that there is no wallpaper
 	// Note that this doesn't change the wallpaper registry setting!
 	// @@@efh On Win98 and Win95 this returns an error in the debug build (but not in release)...
+	vnclog.Print(LL_INTWARN, VNCLOG("Killwallpaper %i\n"),ISWallPaperHided);
 	if (!ISWallPaperHided)
 	{
 		SaveWallpaperStyle(); // Added Jef Fix
@@ -219,13 +221,17 @@ void HideDesktop()
 		SystemParametersInfo(SPI_SETDESKWALLPAPER, 0, "", SPIF_SENDCHANGE);
 		ADWasEnabled = HideActiveDesktop();
 		ISWallPaperHided=true;
+		vnclog.Print(LL_INTWARN, VNCLOG("Killwallpaper %i %i\n"),ISWallPaperHided,ADWasEnabled);
 	}
+	
 }
 
 void RestoreDesktop()
 {
+	vnclog.Print(LL_INTWARN, VNCLOG("Restorewallpaper %i\n"),ISWallPaperHided);
 	if (ISWallPaperHided)
 	{
+		vnclog.Print(LL_INTWARN, VNCLOG("Restorewallpaper %i %i\n"),ISWallPaperHided,ADWasEnabled);
 		if (ADWasEnabled)
 			ShowActiveDesktop();
 

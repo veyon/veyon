@@ -56,15 +56,13 @@ private:
             {
 				RECT rect;
 				GetClipBox(hdc,&rect);
-				int tt=GetSystemMetrics(SM_CXSCREEN);
-				HDC				hrootdc;
-				hrootdc = GetDC(NULL);
-				int ttt=GetDeviceCaps(hrootdc, HORZRES);
-				if (hrootdc != NULL) ReleaseDC(NULL, hrootdc);
 				int dpiwidth=GetSystemMetrics(SM_CXVIRTUALSCREEN);
 				int dpiheight=GetSystemMetrics(SM_CYVIRTUALSCREEN);
 				int fullwidth=rect.right-rect.left;
 				int fullheight=rect.bottom-rect.top;
+				// Seeme GetDC can return NULL, in that case fullwidth=0 and devide by 0
+				if (fullwidth==0) fullwidth=dpiwidth;
+				if (fullheight==0) fullheight=dpiheight;
 
                 _dpiX = dpiwidth*96/fullwidth;//GetDeviceCaps(hdc, LOGPIXELSX);
                 _dpiY = dpiheight*96/fullheight;//GetDeviceCaps(hdc, LOGPIXELSY);
