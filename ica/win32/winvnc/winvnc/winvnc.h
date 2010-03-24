@@ -63,6 +63,11 @@ const char winvncSCexit[]	= "-sc_exit";
 const char winvncSCprompt[]	= "-sc_prompt";
 const char winvncmulti[]	= "-multi";
 
+//adzm 2009-06-20
+// for use with -sc
+const char winvncRepeater[]	= "-repeater"; // set default repeater host
+extern char* g_szRepeaterHost;
+
 const char winvncSettingshelper[]		= "-settingshelper";
 const char winvncSettings[]				= "-settings";
 const char winvncStopserviceHelper[]	= "-stopservicehelper";
@@ -77,6 +82,8 @@ const char winvncUnInstallServiceHelper[]	= "-uninstallhelper";
 const char winvncSecurityEditorHelper[]		= "-securityeditorhelper";
 const char winvncSecurityEditor[]			= "-securityeditor";
 const char winvncKill[]						= "-kill";
+const char winvncopenhomepage[]				= "-openhomepage";
+const char winvncopenforum[]				= "-openforum";
 
 // Usage string
-const char winvncUsageText[]		= "winvnc [-sc_prompt] [-sc_exit] [-id:????] [-autoreconnect[ ID:????]] [-connect host[:display]] [-connect host[::port]] [-run]\n";
+const char winvncUsageText[]		= "winvnc [-sc_prompt] [-sc_exit] [-id:????] [-autoreconnect[ ID:????]] [-connect host[:display]] [-connect host[::port]] [-repeater host[:port]] [-run]\n";

@@ -43,6 +43,8 @@ class vncMenu;
 extern const UINT MENU_ADD_CLIENT_MSG;
 extern const UINT MENU_AUTO_RECONNECT_MSG;
 extern const UINT MENU_REPEATER_ID_MSG;
+// adzm 2009-07-05 - Tray icon balloon tips
+extern const UINT MENU_TRAYICON_BALLOON_MSG;
 extern const char *MENU_CLASS_NAME;
 
 // WTS Stuff for FastUserSwitching management
@@ -62,8 +64,6 @@ typedef BOOL (WINAPI *WTSUNREGISTERSESSIONNOTIFICATION)(HWND);
 
 extern const UINT FileTransferSendPacketMessage;
 
-
-
 // The tray menu class itself
 class vncMenu
 {
@@ -72,6 +72,9 @@ public:
 	~vncMenu();
 
 	void Shutdown(); // sf@2007
+
+	// adzm 2009-07-05 - Tray icon balloon tips
+	static BOOL NotifyBalloon(char* szInfo, char* szTitle);
 
 protected:
 	// Tray icon handling
@@ -105,6 +108,9 @@ protected:
 	HMENU			m_hmenu;
 
 	NOTIFYICONDATA	m_nid;
+	omni_mutex		m_mutexTrayIcon; // adzm 2009-07-05
+	char*			m_BalloonInfo;
+	char*			m_BalloonTitle;
 
 	char			m_username[UNLEN+1];
 

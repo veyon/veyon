@@ -84,8 +84,8 @@ public:
 	void EnableCache(BOOL enable);
 	BOOL IsCacheEnabled();
 	BOOL IsShapeCleared();
-	void Display(int number);
-	int GetDisplay();
+	void MultiMonitors(int number);
+	bool  IsMultiMonitor();
 
 	// sf@2005 - Grey Palette
 	void EnableGreyPalette(BOOL enable);
@@ -119,12 +119,10 @@ protected:
 
 	UINT		m_bytesPerRow;
 
-	rfbServerInitMsg	m_scrinfo;
-
 	// CACHE RDV
 	BOOL			m_use_cache;
-	BOOL			m_display_prim;
-	BOOL			m_display_sec;
+	BOOL			m_single_monitor;
+	BOOL			m_multi_monitor;
 
 	// Modif sf@2002 - Scaling
 	UINT		m_ScaledSize;
@@ -138,6 +136,7 @@ protected:
 	BOOL			m_cursorpending;
 
 public:
+	rfbServerInitMsg	m_scrinfo;
 	// vncEncodeMgr reads data from back buffer directly when encoding
 	BYTE		*m_backbuff;
 	UINT		m_backbuffsize;

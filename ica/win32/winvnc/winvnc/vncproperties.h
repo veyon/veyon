@@ -105,6 +105,8 @@ protected:
 	// Password handling
 	void LoadPassword(HKEY k, char *buffer);
 	void SavePassword(HKEY k, char *buffer);
+	void LoadPassword2(HKEY k, char *buffer); //PGM
+	void SavePassword2(HKEY k, char *buffer); //PGM
 
 	// String handling
 	char * LoadString(HKEY k, LPCSTR valname);
@@ -132,6 +134,7 @@ protected:
 	LONG m_pref_PortNumber;
 	LONG m_pref_HttpPortNumber;  // TightVNC 1.1.7
 	char m_pref_passwd[MAXPWLEN];
+	char m_pref_passwd2[MAXPWLEN]; //PGM
 	UINT m_pref_QuerySetting;
 	// Marscha@2006 - Is AcceptDialog required even if no user is logged on
 	UINT m_pref_QueryIfNoLogon;
@@ -152,6 +155,7 @@ protected:
 	BOOL m_pref_EnableFileTransfer;
 	BOOL m_pref_FTUserImpersonation;
 	BOOL m_pref_EnableBlankMonitor;
+	BOOL m_pref_BlankInputsOnly; //PGM
 	int  m_pref_DefaultScale;
 	BOOL m_pref_RequireMSLogon;
 	BOOL m_pref_CaptureAlphaBlending;
@@ -171,7 +175,7 @@ protected:
 	char m_pref_path111[500];
 	char m_Tempfile[MAX_PATH];
 	BOOL m_pref_Primary;
-	BOOL m_pref_Secundary;
+	BOOL m_pref_Secondary;
 
 private:
 	void InitPortSettings(HWND hwnd); // TightVNC 1.1.7

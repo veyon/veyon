@@ -417,6 +417,41 @@ vncService::VersionMinor()
 	return g_version_minor;
 }
 
+//adzm 2010-02-10 - Finds the appropriate VNC window
+HWND
+FindWinVNCWindow(bool bThisProcess)
+{
+	// Locate the hidden WinVNC menu window
+
+	if (!bThisProcess) {
+		// Find any window with the MENU_CLASS_NAME window class
+		return FindWindow(MENU_CLASS_NAME, NULL);
+	} else {
+		// Find one that matches the class and is the same process		
+		HWND hwndZ = NULL;
+		HWND hwndServer = NULL;
+		while (!hwndServer) {
+			hwndServer = FindWindowEx(NULL, hwndZ, MENU_CLASS_NAME, NULL);
+
+			if (hwndServer != NULL) {
+				DWORD dwProcessId = 0;
+				DWORD dwThreadId = GetWindowThreadProcessId(hwndServer, &dwProcessId);
+
+				if (dwProcessId == GetCurrentProcessId()) {
+					return hwndServer;
+				} else {
+					hwndZ = hwndServer;
+					hwndServer = NULL;
+				}
+			} else {
+				return NULL;
+			}
+		}
+	}
+
+	return NULL;
+}
+
 // Internal routine to find the WinVNC menu class window and
 // post a message to it!
 
@@ -424,7 +459,14 @@ BOOL
 PostToWinVNC(UINT message, WPARAM wParam, LPARAM lParam)
 {
 	// Locate the hidden WinVNC menu window
-	HWND hservwnd = FindWindow(MENU_CLASS_NAME, NULL);
+	// adzm 2010-02-10 - If we are in SC mode, then we know we want to only post messages to our own instance. This prevents
+	// conflicts if the user already has another copy of a WinVNC-derived application running.
+	if (SPECIAL_SC_EXIT || SPECIAL_SC_PROMPT) {
+		return PostToThisWinVNC(message, wParam, lParam);
+	}
+
+	//adzm 2010-02-10 - Finds the appropriate VNC window
+	HWND hservwnd = FindWinVNCWindow(false);
 	if (hservwnd == NULL)
 		return FALSE;
 
@@ -432,6 +474,21 @@ PostToWinVNC(UINT message, WPARAM wParam, LPARAM lParam)
 	PostMessage(hservwnd, message, wParam, lParam);
 	return TRUE;
 }
+
+//adzm 2010-02-10 - Only posts to the same process
+BOOL 
+PostToThisWinVNC(UINT message, WPARAM wParam, LPARAM lParam)
+{
+	//adzm 2010-02-10 - Finds the appropriate VNC window for this process
+	HWND hservwnd = FindWinVNCWindow(true);
+	if (hservwnd == NULL)
+		return FALSE;
+
+	// Post the message to WinVNC
+	PostMessage(hservwnd, message, wParam, lParam);
+	return TRUE;
+}
+
 
 // Static routines only used on Windows NT to ensure we're in the right desktop
 // These routines are generally available to any thread at any time.
@@ -756,6 +813,24 @@ vncService::PostAddNewClient(unsigned long ipaddress, unsigned short port)
 		//use G_var + WM_time to reconnect
 		vnclog.Print(LL_INTERR, VNCLOG("PostAddNewClient failed\n"));
 		if (port==1111 && ipaddress==1111) G_1111=true;
+		return FALSE;
+	}
+
+	return TRUE;
+}
+
+//adzm 2009-06-20
+// Static routine to tell a locally-running instance of the server
+// to prompt for a new ID to connect out to the repeater
+
+BOOL
+vncService::PostAddNewRepeaterClient()
+{
+	// assumes the -repeater command line set the repeater global variable.
+
+	// Post to the WinVNC menu window (usually expected to fail at program startup)
+	if (!PostToWinVNC(MENU_ADD_CLIENT_MSG, (WPARAM)0xFFFFFFFF, (LPARAM)0xFFFFFFFF))
+	{
 		return FALSE;
 	}
 

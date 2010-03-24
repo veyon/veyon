@@ -156,6 +156,12 @@ IniFile::ReadPassword(char *value,int valuesize)
 	GetPrivateProfileStruct("ultravnc","passwd",value,8,myInifile);
 }
 
+void //PGM
+IniFile::ReadPassword2(char *value,int valuesize) //PGM
+{ //PGM
+	GetPrivateProfileStruct("ultravnc","passwd2",value,8,myInifile); //PGM
+} //PGM
+
 bool
 IniFile::WritePassword(char *value)
 {
@@ -163,6 +169,12 @@ IniFile::WritePassword(char *value)
 		//vnclog.Print(LL_INTERR, VNCLOG("%s \n"),myInifile);
 		return (FALSE != WritePrivateProfileStruct("ultravnc","passwd", value,8,myInifile));
 }
+
+bool //PGM
+IniFile::WritePassword2(char *value) //PGM
+{ //PGM
+		return (FALSE != WritePrivateProfileStruct("ultravnc","passwd2", value,8,myInifile)); //PGM
+} //PGM
 
 bool IniFile::IsWritable()
 {

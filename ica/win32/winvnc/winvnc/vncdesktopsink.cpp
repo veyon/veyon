@@ -345,6 +345,8 @@ DesktopWndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 
 	case WM_SYSCOLORCHANGE:
 	case WM_PALETTECHANGED:
+		if (!_this->m_displaychanged)
+		{
 		// The palette colours have changed, so tell the server
 
 		// Get the system palette
@@ -352,7 +354,8 @@ DesktopWndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 		_this->SetPalette();
 
 		// Update any palette-based clients, too
-		_this->m_server->UpdatePalette();
+		_this->m_server->UpdatePalette(true);
+		}
 		return 0;
 
 		// CLIPBOARD MESSAGES
@@ -424,6 +427,7 @@ DesktopWndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 					cliptext = NULL;
 
 					// Now send the unix text to the server
+					omni_mutex_lock l(_this->m_update_lock);
 					_this->m_server->UpdateClipText(unixtext);
 
 					free(unixtext);
@@ -585,7 +589,7 @@ vncDesktop::InitWindow()
 	SetHook=NULL;
 
 	hModule = LoadLibrary(szCurrentDir);
-	hSCModule = LoadLibrary(szCurrentDirSC);
+	hSCModule = LoadLibrary(szCurrentDirSC);//TOFIX resource leak
 	if (hModule)
 		{
 			UnSetHooks = (UnSetHooksFn) GetProcAddress( hModule, "UnSetHooks" );

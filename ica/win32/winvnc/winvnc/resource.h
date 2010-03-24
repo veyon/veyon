@@ -56,7 +56,9 @@
 #define IDC_PASSWORD                    1009
 #define IDC_PASSWD_EDIT                 1009
 #define IDC_UPDATE_BORDER               1010
+#define IDC_PASSWORD_LABEL2             1010
 #define IDC_POLL_FULLSCREEN             1011
+#define IDC_PASSWORD2                   1011
 #define IDC_CONSOLE_ONLY                1012
 #define IDC_POLL_FOREGROUND             1013
 #define IDC_POLL_UNDER_CURSOR           1014
@@ -114,6 +116,8 @@
 #define IDC_VIEWERS_LISTBOX             1055
 #define IDC_SINGLE_WINDOW               1056
 #define IDC_CLIENTTEXT                  1056
+#define IDC_VIEWERS_LISTBOX2            1056
+#define IDC_PENDING_LISTBOX             1056
 #define IDC_KILL_B                      1057
 #define IDC_NAME_APPLI                  1058
 #define IDC_TEXTCHAT_B                  1058
@@ -129,6 +133,7 @@
 #define IDC_VIRTUAL                     1068
 #define IDC_CONNECT_XDMCP               1069
 #define IDC_BLANK                       1070
+#define IDC_BLANK2                      1071
 #define IDC_TURBOMODE                   1075
 #define IDC_SEND_B                      1078
 #define IDC_LOG                         1079
@@ -184,6 +189,9 @@
 #define IDC_VIDEO                       1125
 #define IDC_BUTTON1                     1126
 #define IDC_CLEAR                       1126
+#define IDC_CONNECTION_NUMBER_LABEL     1128
+#define IDC_CONNECTION_NUMBER_STATIC    1128
+#define IDC_CAPTION_STATIC              1129
 #define IDC_Path1                       1132
 #define IDC_Path2                       1133
 #define IDC_Path3                       1134
@@ -209,6 +217,9 @@
 #define ID_RUNASSERVICE                 40016
 #define ID_UNINSTALL_SERVICE            40017
 #define ID_START_SERVICE                40018
+#define ID_TRAY_VISITUSONLINE           40019
+#define ID_VISITUSONLINE_HOMEPAGE       40020
+#define ID_VISITUSONLINE_FORUM          40021
 #define ID_FAILED_INIT                  41000
 #define ID_WINVNC_USAGE                 41001
 #define ID_ANOTHER_INST                 41002
@@ -271,8 +282,8 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        155
-#define _APS_NEXT_COMMAND_VALUE         40019
-#define _APS_NEXT_CONTROL_VALUE         1127
+#define _APS_NEXT_COMMAND_VALUE         40022
+#define _APS_NEXT_CONTROL_VALUE         1130
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

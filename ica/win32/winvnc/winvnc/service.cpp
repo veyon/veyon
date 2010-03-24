@@ -84,6 +84,258 @@ int kickrdp=0;
 int clear_console=0;
 bool W2K=0;
 //////////////////////////////////////////////////////////////////////////////
+#define MAXSTRLENGTH    255
+BOOL Char2Wchar(WCHAR* pDest, char* pSrc, int nDestStrLen)
+{
+     int nSrcStrLen = 0;
+     int nOutputBuffLen = 0;
+     int retcode = 0;
+
+     if(pDest == NULL || pSrc == NULL)
+     {
+          return FALSE;
+     }
+
+     nSrcStrLen = strlen(pSrc);
+     if(nSrcStrLen == 0)
+     {  
+          return FALSE;
+     }
+
+     nDestStrLen = nSrcStrLen;
+
+     if (nDestStrLen > MAXSTRLENGTH - 1)
+     {
+          return FALSE;
+     }
+     memset(pDest,0,sizeof(TCHAR)*nDestStrLen);
+     nOutputBuffLen = MultiByteToWideChar(CP_ACP, MB_PRECOMPOSED, pSrc,nSrcStrLen, pDest, nDestStrLen);
+ 
+     if (nOutputBuffLen == 0)
+     {
+          retcode = GetLastError();
+          return FALSE;
+     }
+
+     pDest[nOutputBuffLen] = '\0';
+     return TRUE;
+}
+//////////////////////////////////////////////////////////////////////////////
+typedef BOOLEAN (WINAPI* pWinStationQueryInformationW)(
+  IN   HANDLE hServer,
+  IN   ULONG LogonId,
+  IN   DWORD /*WINSTATIONINFOCLASS*/ WinStationInformationClass,
+  OUT  PVOID pWinStationInformation,
+  IN   ULONG WinStationInformationLength,
+  OUT  PULONG pReturnLength
+);
+DWORD MarshallString(LPCWSTR    pszText, LPVOID, DWORD  dwMaxSize,LPBYTE*
+ppNextBuf, DWORD* pdwUsedBytes)
+{
+        DWORD   dwOffset = *pdwUsedBytes;
+        if(!pszText)
+                return 0;
+        DWORD   dwLen = (wcslen(pszText)+1)*sizeof(WCHAR);
+        if(*pdwUsedBytes + dwLen> dwMaxSize)
+                return 0;
+        memmove(*ppNextBuf, pszText , dwLen);
+        *pdwUsedBytes += dwLen;
+        *ppNextBuf += dwLen;
+        return dwOffset;
+
+}
+
+typedef struct _CPAU_PARAM{
+        DWORD   cbSize;
+        DWORD   dwProcessId;
+        BOOL    bUseDefaultToken;
+        HANDLE  hToken;
+        LPWSTR  lpApplicationName;
+        LPWSTR  lpCommandLine;
+        SECURITY_ATTRIBUTES     ProcessAttributes;
+        SECURITY_ATTRIBUTES ThreadAttributes;
+        BOOL bInheritHandles;
+        DWORD dwCreationFlags;
+        LPVOID lpEnvironment;
+        LPWSTR lpCurrentDirectory;
+        STARTUPINFOW StartupInfo;
+        PROCESS_INFORMATION     ProcessInformation;
+
+}CPAU_PARAM;
+
+typedef struct _CPAU_RET_PARAM{
+        DWORD   cbSize;
+        BOOL    bRetValue;
+        DWORD   dwLastErr;
+        PROCESS_INFORMATION     ProcInfo;
+
+}CPAU_RET_PARAM;
+
+BOOL CreateRemoteSessionProcess(
+        IN DWORD        dwSessionId,
+        IN BOOL         bUseDefaultToken,
+        IN HANDLE       hToken,
+        IN LPCWSTR      lpApplicationName,
+        IN LPSTR       A_lpCommandLine,
+        IN LPSECURITY_ATTRIBUTES lpProcessAttributes,
+        IN LPSECURITY_ATTRIBUTES lpThreadAttributes,
+        IN BOOL bInheritHandles,
+        IN DWORD dwCreationFlags,
+        IN LPVOID lpEnvironment,
+        IN LPCWSTR lpCurrentDirectory,
+        IN LPSTARTUPINFO A_lpStartupInfo,
+        OUT LPPROCESS_INFORMATION lpProcessInformation)
+{
+
+		WCHAR       lpCommandLine[255];
+		STARTUPINFOW StartupInfo;
+		Char2Wchar(lpCommandLine, A_lpCommandLine, 255);
+		ZeroMemory(&StartupInfo,sizeof(STARTUPINFOW));
+		StartupInfo.wShowWindow = SW_SHOW;
+		StartupInfo.lpDesktop = L"Winsta0\\Winlogon";
+		StartupInfo.cb = sizeof(STARTUPINFOW);
+
+        WCHAR           szWinStaPath[MAX_PATH];
+        BOOL            bGetNPName=FALSE;
+        WCHAR           szNamedPipeName[MAX_PATH]=L"";
+        DWORD           dwNameLen;
+        HINSTANCE       hInstWinSta;
+        HANDLE          hNamedPipe;
+        LPVOID          pData=NULL;
+        BOOL            bRet = FALSE;
+        DWORD           cbReadBytes,cbWriteBytes;
+        DWORD           dwEnvLen = 0;
+        union{
+                CPAU_PARAM      cpauData;
+                BYTE            bDump[0x2000];
+        };
+        CPAU_RET_PARAM  cpauRetData;
+        DWORD                   dwUsedBytes = sizeof(cpauData);
+        LPBYTE                  pBuffer = (LPBYTE)(&cpauData+1);
+        GetSystemDirectoryW(szWinStaPath, MAX_PATH);
+        lstrcatW(szWinStaPath,L"\\winsta.dll");
+        hInstWinSta = LoadLibraryW(szWinStaPath);
+
+        if(hInstWinSta)
+        {
+                pWinStationQueryInformationW pfWinStationQueryInformationW=(pWinStationQueryInformationW)GetProcAddress(hInstWinSta,"WinStationQueryInformationW");
+                if(pfWinStationQueryInformationW)
+                {
+                        bGetNPName = pfWinStationQueryInformationW(0, dwSessionId, 0x21,szNamedPipeName, sizeof(szNamedPipeName), &dwNameLen);
+                }
+                FreeLibrary(hInstWinSta);
+        }
+        if(!bGetNPName || szNamedPipeName[0] == '\0')
+        {
+                swprintf(szNamedPipeName, L"\\\\.\\Pipe\\TerminalServer\\SystemExecSrvr\\%d", dwSessionId);
+        }
+
+        do{
+                hNamedPipe = CreateFileW(szNamedPipeName, GENERIC_READ|GENERIC_WRITE,0, NULL, OPEN_EXISTING, 0, 0);
+                if(hNamedPipe == INVALID_HANDLE_VALUE)
+                {
+                        if(GetLastError() == ERROR_PIPE_BUSY)
+                        {
+                                if(!WaitNamedPipeW(szNamedPipeName, 30000))
+                                        return FALSE;
+                        }
+                        else
+                        {
+                                return FALSE;
+                        }
+                }
+        }while(hNamedPipe == INVALID_HANDLE_VALUE);
+
+        memset(&cpauData, 0, sizeof(cpauData));
+        cpauData.bInheritHandles        = bInheritHandles;
+        cpauData.bUseDefaultToken       = bUseDefaultToken;
+        cpauData.dwCreationFlags        = dwCreationFlags;
+        cpauData.dwProcessId            = GetCurrentProcessId();
+        cpauData.hToken                         = hToken;
+        cpauData.lpApplicationName      =(LPWSTR)MarshallString(lpApplicationName, &cpauData, sizeof(bDump),&pBuffer, &dwUsedBytes);
+        cpauData.lpCommandLine          = (LPWSTR)MarshallString(lpCommandLine,&cpauData, sizeof(bDump), &pBuffer, &dwUsedBytes);
+        cpauData.StartupInfo            = StartupInfo;
+        cpauData.StartupInfo.lpDesktop  =(LPWSTR)MarshallString(cpauData.StartupInfo.lpDesktop, &cpauData,sizeof(bDump), &pBuffer, &dwUsedBytes);
+        cpauData.StartupInfo.lpTitle    =(LPWSTR)MarshallString(cpauData.StartupInfo.lpTitle, &cpauData,sizeof(bDump), &pBuffer, &dwUsedBytes);
+
+        if(lpEnvironment)
+        {
+                if(dwCreationFlags & CREATE_UNICODE_ENVIRONMENT)
+                {
+                        while((dwEnvLen+dwUsedBytes <= sizeof(bDump)))
+                        {
+                                if(((LPWSTR)lpEnvironment)[dwEnvLen/2]=='\0' &&((LPWSTR)lpEnvironment)[dwEnvLen/2+1] == '\0')
+                                {
+                                        dwEnvLen+=2*sizeof(WCHAR);
+                                        break;
+                                }
+                                dwEnvLen+=sizeof(WCHAR);
+                        }
+                }
+                else
+                {
+                        while(dwEnvLen+dwUsedBytes <= sizeof(bDump))
+                        {
+                                if(((LPSTR)lpEnvironment)[dwEnvLen]=='\0' && ((LPSTR)lpEnvironment)[dwEnvLen+1]=='\0')
+                                {
+                                        dwEnvLen+=2;
+                                        break;
+                                }
+                                dwEnvLen++;
+                        }
+                }
+                if(dwEnvLen+dwUsedBytes <= sizeof(bDump))
+                {
+                        memmove(pBuffer, lpEnvironment, dwEnvLen);
+                        cpauData.lpEnvironment = (LPVOID)dwUsedBytes;
+                        pBuffer += dwEnvLen;
+                        dwUsedBytes += dwEnvLen;
+                }
+                else
+                {
+                        cpauData.lpEnvironment = NULL;
+                }
+        }
+        else
+        {
+                cpauData.lpEnvironment  = NULL;
+        }
+        cpauData.cbSize  = dwUsedBytes;
+
+		HANDLE hProcess=NULL;
+        if(WriteFile(hNamedPipe, &cpauData, cpauData.cbSize, &cbWriteBytes,NULL))
+		{
+			Sleep(250);
+			if (ReadFile(hNamedPipe, & cpauRetData, sizeof(cpauRetData),&cbReadBytes, NULL))
+			{
+				hProcess = OpenProcess(PROCESS_ALL_ACCESS, FALSE, cpauRetData.ProcInfo.dwProcessId);
+	#ifdef _DEBUG
+						char			szText[256];
+						sprintf(szText," ++++++cpau  %i  %i %i %i %i %i\n",cpauRetData.bRetValue,cpauRetData.ProcInfo.hProcess,cpauRetData.ProcInfo.dwProcessId,cpauRetData.ProcInfo.dwThreadId,cpauRetData.ProcInfo.hThread,hProcess);
+						OutputDebugString(szText);						
+	#endif
+					bRet = cpauRetData.bRetValue;
+					if(bRet)
+					{
+							*lpProcessInformation = cpauRetData.ProcInfo;
+					}
+					else
+							SetLastError(cpauRetData.dwLastErr);
+			}
+		}
+        else
+                bRet = FALSE;
+		// function sometimes fail, the use processid to get hprocess... bug MS
+		if (lpProcessInformation->hProcess==0) lpProcessInformation->hProcess=hProcess;
+		//this should never happen, looping connections
+		if (lpProcessInformation->hProcess==0) 
+			Sleep(5000);
+        CloseHandle(hNamedPipe);
+        return bRet;
+
+}
+//////////////////////////////////////////////////////////////////////////////
+
 static int pad2()
 {
 
@@ -333,7 +585,7 @@ GetSessionUserTokenDefault(OUT LPHANDLE  lphUserToken)
 //////////////////////////////////////////////////////////////////////////////
 // START the app as system 
 BOOL
-LaunchProcessWin()
+LaunchProcessWin(DWORD dwSessionId)
 {
   BOOL                 bReturn = FALSE;
   HANDLE               hToken;
@@ -410,6 +662,12 @@ LaunchProcessWin()
 								Sleep(3000);
 						}
 					}
+			else if (error==233)
+			{
+				CreateRemoteSessionProcess(dwSessionId,true,hToken,NULL,app_path,NULL,NULL,FALSE,CREATE_UNICODE_ENVIRONMENT |DETACHED_PROCESS,lpEnvironment,NULL,&StartUPInfo,&ProcessInfo);
+				counter=0;
+				bReturn = TRUE;
+			}
 		 }
 
          if (lpEnvironment) 
@@ -479,7 +737,13 @@ LaunchProcessWin()
 									}
 								Sleep(3000);
 						}
-					}
+			}
+			else if (error==233)
+			{
+				CreateRemoteSessionProcess(dwSessionId,true,hToken,NULL,app_path,NULL,NULL,FALSE,DETACHED_PROCESS,NULL,NULL,&StartUPInfo,&ProcessInfo);
+				counter=0;
+				bReturn = TRUE;
+			}
 	  }
         
 	}  //getsession
@@ -561,7 +825,7 @@ void monitor_sessions()
 #ifdef _DEBUG
                             OutputDebugString("No Tray icon existed, starting first process\n");
 #endif
-									LaunchProcessWin();
+									LaunchProcessWin(dwSessionId);
 									win=false;
 									Slow_connect=false;
 						}
@@ -586,7 +850,7 @@ void monitor_sessions()
                                     WaitForSingleObject(ProcessInfo.hProcess, 15000);
 									CloseHandle(ProcessInfo.hProcess);
 									CloseHandle(ProcessInfo.hThread);
-									LaunchProcessWin();
+									LaunchProcessWin(dwSessionId);
 									win=false;
 									Slow_connect=false;
 								}
@@ -612,12 +876,12 @@ void monitor_sessions()
 									}
 							Sleep(1000);
 							if (Slow_connect) Sleep(4000);
-							CloseHandle(ProcessInfo.hProcess);
-							CloseHandle(ProcessInfo.hThread);
+							if (ProcessInfo.hProcess) CloseHandle(ProcessInfo.hProcess);
+							if (ProcessInfo.hThread) CloseHandle(ProcessInfo.hThread);
 #ifdef _DEBUG
                             OutputDebugString("Tray icon exited, starting new process\n");
 #endif
-							LaunchProcessWin();
+							LaunchProcessWin(dwSessionId);
 							win=false;
 							Slow_connect=false;
 						}
@@ -642,8 +906,8 @@ void monitor_sessions()
     OutputDebugString("Waiting up to 15 seconds for tray icon process to exit\n");
 #endif
         WaitForSingleObject(ProcessInfo.hProcess, 15000);
-	    CloseHandle(ProcessInfo.hProcess);
-	    CloseHandle(ProcessInfo.hThread);
+	    if (ProcessInfo.hProcess) CloseHandle(ProcessInfo.hProcess);
+	    if (ProcessInfo.hThread) CloseHandle(ProcessInfo.hThread);
     }
 
 //	EndProcess();
@@ -714,8 +978,6 @@ void disconnect_remote_sessions()
 	   {
 		   LockWorkStationF=(pLockWorkStation)GetProcAddress(hlibuser32, "LockWorkStation"); 
 	   }
-	if (connect)
-	{
 	if (WinStationConnectF!=NULL && LockWorkStationF!=NULL)
 		{
 				DWORD ID=0;
@@ -733,7 +995,6 @@ void disconnect_remote_sessions()
 
 		}
 	Sleep(3000);
-	}
 
 	if (hlibwinsta)
         FreeLibrary(hlibwinsta);

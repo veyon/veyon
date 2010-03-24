@@ -55,6 +55,7 @@ extern HINSTANCE	hInstResDLL;
 typedef void (*vncEditSecurityFn) (HWND hwnd, HINSTANCE hInstance);
 vncEditSecurityFn vncEditSecurity = 0;
 DWORD GetExplorerLogonPid();
+int G_SENDBUFFER=8192;
 
 // Constructor & Destructor
 vncProperties::vncProperties()
@@ -69,7 +70,7 @@ vncProperties::vncProperties()
     m_ftTimeout = FT_RECV_TIMEOUT;
     m_keepAliveInterval = KEEPALIVE_INTERVAL;
 	m_pref_Primary=true;
-	m_pref_Secundary=false;
+	m_pref_Secondary=false;
 }
 
 vncProperties::~vncProperties()
@@ -444,6 +445,10 @@ vncProperties::DialogProc(HWND hwnd,
 		    SetDlgItemText(hwnd, IDC_PASSWORD, "~~~~~~~~");
 			EnableWindow(GetDlgItem(hwnd, IDC_PASSWORD), bConnectSock);
 
+			// Set the content of the view-only password field to a predefined string. //PGM
+		    SetDlgItemText(hwnd, IDC_PASSWORD2, "~~~~~~~~"); //PGM
+			EnableWindow(GetDlgItem(hwnd, IDC_PASSWORD2), bConnectSock); //PGM
+
 			// Set the initial keyboard focus
 			if (bConnectSock)
 			{
@@ -487,6 +492,9 @@ vncProperties::DialogProc(HWND hwnd,
 		   
 		   HWND hBlank = GetDlgItem(hwnd, IDC_BLANK);
            SendMessage(hBlank, BM_SETCHECK, _this->m_server->BlankMonitorEnabled(), 0);
+
+		   HWND hBlank2 = GetDlgItem(hwnd, IDC_BLANK2); //PGM
+           SendMessage(hBlank2, BM_SETCHECK, _this->m_server->BlankInputsOnly(), 0); //PGM
 
 		   HWND hAlpha = GetDlgItem(hwnd, IDC_ALPHA);
            SendMessage(hAlpha, BM_SETCHECK, _this->m_server->CaptureAlphaBlending(), 0);
@@ -753,6 +761,38 @@ vncProperties::DialogProc(HWND hwnd,
 					}
 				}
 
+				memset(passwd, '\0', MAXPWLEN+1); //PGM
+				len = 0; //PGM
+				len = GetDlgItemText(hwnd, IDC_PASSWORD2, (LPSTR) &passwd, MAXPWLEN+1); //PGM
+				if (strcmp(passwd, "~~~~~~~~") != 0) { //PGM
+					if (len == 0) //PGM
+					{ //PGM
+						vncPasswd::FromClear crypt2; //PGM
+						_this->m_server->SetPassword2(crypt2); //PGM
+					} //PGM
+					else //PGM
+					{ //PGM
+						vncPasswd::FromText crypt2(passwd); //PGM
+						_this->m_server->SetPassword2(crypt2); //PGM
+					} //PGM
+				} //PGM
+
+				memset(passwd, '\0', MAXPWLEN+1); //PGM
+				len = 0; //PGM
+				len = GetDlgItemText(hwnd, IDC_PASSWORD2, (LPSTR) &passwd, MAXPWLEN+1); //PGM
+				if (strcmp(passwd, "~~~~~~~~") != 0) { //PGM
+					if (len == 0) //PGM
+					{ //PGM
+						vncPasswd::FromClear crypt2; //PGM
+						_this->m_server->SetPassword2(crypt2); //PGM
+					} //PGM
+					else //PGM
+					{ //PGM
+						vncPasswd::FromText crypt2(passwd); //PGM
+						_this->m_server->SetPassword2(crypt2); //PGM
+					} //PGM
+				} //PGM
+
 				// Save the new settings to the server
 				int state = SendDlgItemMessage(hwnd, IDC_PORTNO_AUTO, BM_GETCHECK, 0, 0);
 				_this->m_server->SetAutoPortSelect(state == BST_CHECKED);
@@ -888,6 +928,8 @@ vncProperties::DialogProc(HWND hwnd,
 
 				HWND hBlank = GetDlgItem(hwnd, IDC_BLANK);
 				_this->m_server->BlankMonitorEnabled(SendMessage(hBlank, BM_GETCHECK, 0, 0) == BST_CHECKED);
+				HWND hBlank2 = GetDlgItem(hwnd, IDC_BLANK2); //PGM
+				_this->m_server->BlankInputsOnly(SendMessage(hBlank2, BM_GETCHECK, 0, 0) == BST_CHECKED); //PGM
 				HWND hAlpha = GetDlgItem(hwnd, IDC_ALPHA);
 				_this->m_server->CaptureAlphaBlending(SendMessage(hAlpha, BM_GETCHECK, 0, 0) == BST_CHECKED);
 				HWND hAlphab = GetDlgItem(hwnd, IDC_ALPHABLACK);
@@ -1024,8 +1066,19 @@ vncProperties::DialogProc(HWND hwnd,
                 HWND hBlank = ::GetDlgItem(hwnd, IDC_BLANK);
                 HWND hAlphab = ::GetDlgItem(hwnd, IDC_ALPHABLACK);
                 ::EnableWindow(hAlphab, ::SendMessage(hBlank, BM_GETCHECK, 0, 0) == BST_CHECKED);
+                HWND hBlank2 = ::GetDlgItem(hwnd, IDC_BLANK2); //PGM
+                ::EnableWindow(hBlank2, ::SendMessage(hBlank, BM_GETCHECK, 0, 0) == BST_CHECKED); //PGM
             }
             break;
+
+        case IDC_BLANK2: //PGM
+            { //PGM
+                // only enable alpha blanking if Disable Only Inputs is disabled //PGM
+                HWND hBlank = ::GetDlgItem(hwnd, IDC_BLANK2); //PGM
+                HWND hAlphab = ::GetDlgItem(hwnd, IDC_ALPHABLACK); //PGM
+                ::EnableWindow(hAlphab, ::SendMessage(hBlank, BM_GETCHECK, 0, 0) == BST_UNCHECKED); //PGM
+            } //PGM
+            break; //PGM
 
 		case IDC_VIDEO:
 			{
@@ -1413,6 +1466,28 @@ vncProperties::LoadPassword(HKEY key, char *buffer)
 	memcpy(buffer, inouttext, MAXPWLEN);
 }
 
+void //PGM
+vncProperties::LoadPassword2(HKEY key, char *buffer) //PGM
+{ //PGM
+	DWORD type = REG_BINARY; //PGM
+	int slen=MAXPWLEN; //PGM
+	char inouttext[MAXPWLEN]; //PGM
+
+	// Retrieve the encrypted password //PGM
+	if (RegQueryValueEx(key, //PGM
+		"Password2", //PGM
+		NULL, //PGM
+		&type, //PGM
+		(LPBYTE) &inouttext, //PGM
+		(LPDWORD) &slen) != ERROR_SUCCESS) //PGM
+		return; //PGM
+
+	if (slen > MAXPWLEN) //PGM
+		return; //PGM
+
+	memcpy(buffer, inouttext, MAXPWLEN); //PGM
+} //PGM
+
 char *
 vncProperties::LoadString(HKEY key, LPCSTR keyname)
 {
@@ -1777,12 +1852,13 @@ vncProperties::LoadUserPrefs(HKEY appkey)
 	m_pref_EnableFileTransfer = LoadInt(appkey, "FileTransferEnabled", m_pref_EnableFileTransfer);
 	m_pref_FTUserImpersonation = LoadInt(appkey, "FTUserImpersonation", m_pref_FTUserImpersonation); // sf@2005
 	m_pref_EnableBlankMonitor = LoadInt(appkey, "BlankMonitorEnabled", m_pref_EnableBlankMonitor);
+	m_pref_BlankInputsOnly = LoadInt(appkey, "BlankInputsOnly", m_pref_BlankInputsOnly); //PGM
 	m_pref_DefaultScale = LoadInt(appkey, "DefaultScale", m_pref_DefaultScale);
 	m_pref_CaptureAlphaBlending = LoadInt(appkey, "CaptureAlphaBlending", m_pref_CaptureAlphaBlending); // sf@2005
 	m_pref_BlackAlphaBlending = LoadInt(appkey, "BlackAlphaBlending", m_pref_BlackAlphaBlending); // sf@2005
 	
 	m_pref_Primary=LoadInt(appkey, "primary", m_pref_Primary);
-	m_pref_Secundary=LoadInt(appkey, "secundary", m_pref_Secundary);
+	m_pref_Secondary=LoadInt(appkey, "secondary", m_pref_Secondary);
 
 	m_pref_UseDSMPlugin = LoadInt(appkey, "UseDSMPlugin", m_pref_UseDSMPlugin);
 	LoadDSMPluginName(appkey, m_pref_szDSMPlugin);
@@ -1814,6 +1890,7 @@ vncProperties::LoadUserPrefs(HKEY appkey)
 
 	// Load the password
 	LoadPassword(appkey, m_pref_passwd);
+	LoadPassword2(appkey, m_pref_passwd2); //PGM
 
 	// Remote access prefs
 	m_pref_EnableRemoteInputs=LoadInt(appkey, "InputsEnabled", m_pref_EnableRemoteInputs);
@@ -1834,9 +1911,10 @@ vncProperties::ApplyUserPrefs()
 	m_server->CaptureAlphaBlending(m_pref_CaptureAlphaBlending); // sf@2005
 	m_server->BlackAlphaBlending(m_pref_BlackAlphaBlending); // sf@2005
 	m_server->Primary(m_pref_Primary);
-	m_server->Secundary(m_pref_Secundary);
+	m_server->Secondary(m_pref_Secondary);
 
 	m_server->BlankMonitorEnabled(m_pref_EnableBlankMonitor);
+	m_server->BlankInputsOnly(m_pref_BlankInputsOnly); //PGM
 	m_server->SetDefaultScale(m_pref_DefaultScale);
 
 	// Update the connection querying settings
@@ -1866,6 +1944,7 @@ vncProperties::ApplyUserPrefs()
 
 	// Update the password
 	m_server->SetPassword(m_pref_passwd);
+	m_server->SetPassword2(m_pref_passwd2); //PGM
 
 	// Now change the listening port settings
 	m_server->SetAutoPortSelect(m_pref_AutoPortSelect);
@@ -1909,6 +1988,11 @@ vncProperties::SavePassword(HKEY key, char *buffer)
 {
 	RegSetValueEx(key, "Password", 0, REG_BINARY, (LPBYTE) buffer, MAXPWLEN);
 }
+void //PGM
+vncProperties::SavePassword2(HKEY key, char *buffer) //PGM
+{ //PGM
+	RegSetValueEx(key, "Password2", 0, REG_BINARY, (LPBYTE) buffer, MAXPWLEN); //PGM
+} //PGM
 void
 vncProperties::SaveString(HKEY key,LPCSTR valname, const char *buffer)
 {
@@ -2048,10 +2132,11 @@ vncProperties::SaveUserPrefs(HKEY appkey)
 	SaveInt(appkey, "FileTransferEnabled", m_server->FileTransferEnabled());
 	SaveInt(appkey, "FTUserImpersonation", m_server->FTUserImpersonation()); // sf@2005
 	SaveInt(appkey, "BlankMonitorEnabled", m_server->BlankMonitorEnabled());
+	SaveInt(appkey, "BlankInputsOnly", m_server->BlankInputsOnly()); //PGM
 	SaveInt(appkey, "CaptureAlphaBlending", m_server->CaptureAlphaBlending()); // sf@2005
 	SaveInt(appkey, "BlackAlphaBlending", m_server->BlackAlphaBlending()); // sf@2005
 	SaveInt(appkey, "primary", m_server->Primary());
-	SaveInt(appkey, "secundary", m_server->Secundary());
+	SaveInt(appkey, "secondary", m_server->Secondary());
 
 	SaveInt(appkey, "DefaultScale", m_server->GetDefaultScale());
 
@@ -2089,6 +2174,9 @@ vncProperties::SaveUserPrefs(HKEY appkey)
 	char passwd[MAXPWLEN];
 	m_server->GetPassword(passwd);
 	SavePassword(appkey, passwd);
+	memset(passwd, '\0', MAXPWLEN); //PGM
+	m_server->GetPassword2(passwd); //PGM
+	SavePassword2(appkey, passwd); //PGM
 }
 
 
@@ -2238,6 +2326,7 @@ void vncProperties::LoadUserPrefsFromIniFile()
 	m_pref_EnableFileTransfer = myIniFile.ReadInt("admin", "FileTransferEnabled", m_pref_EnableFileTransfer);
 	m_pref_FTUserImpersonation = myIniFile.ReadInt("admin", "FTUserImpersonation", m_pref_FTUserImpersonation); // sf@2005
 	m_pref_EnableBlankMonitor = myIniFile.ReadInt("admin", "BlankMonitorEnabled", m_pref_EnableBlankMonitor);
+	m_pref_BlankInputsOnly = myIniFile.ReadInt("admin", "BlankInputsOnly", m_pref_BlankInputsOnly); //PGM
 	m_pref_DefaultScale = myIniFile.ReadInt("admin", "DefaultScale", m_pref_DefaultScale);
 	m_pref_CaptureAlphaBlending = myIniFile.ReadInt("admin", "CaptureAlphaBlending", m_pref_CaptureAlphaBlending); // sf@2005
 	m_pref_BlackAlphaBlending = myIniFile.ReadInt("admin", "BlackAlphaBlending", m_pref_BlackAlphaBlending); // sf@2005
@@ -2246,7 +2335,7 @@ void vncProperties::LoadUserPrefsFromIniFile()
 	myIniFile.ReadString("admin", "DSMPlugin",m_pref_szDSMPlugin,128);
 
 	m_pref_Primary = myIniFile.ReadInt("admin", "primary", m_pref_Primary);
-	m_pref_Secundary = myIniFile.ReadInt("admin", "secundary", m_pref_Secundary);
+	m_pref_Secondary = myIniFile.ReadInt("admin", "secondary", m_pref_Secondary);
 
 	// Connection prefs
 	m_pref_SockConnect=myIniFile.ReadInt("admin", "SocketConnect", m_pref_SockConnect);
@@ -2275,6 +2364,7 @@ void vncProperties::LoadUserPrefsFromIniFile()
 
 	// Load the password
 	myIniFile.ReadPassword(m_pref_passwd,MAXPWLEN);
+	myIniFile.ReadPassword2(m_pref_passwd2,MAXPWLEN); //PGM
 
 	// Remote access prefs
 	m_pref_EnableRemoteInputs=myIniFile.ReadInt("admin", "InputsEnabled", m_pref_EnableRemoteInputs);
@@ -2282,6 +2372,7 @@ void vncProperties::LoadUserPrefsFromIniFile()
 	m_pref_DisableLocalInputs=myIniFile.ReadInt("admin", "LocalInputsDisabled", m_pref_DisableLocalInputs);
 	m_pref_EnableJapInput=myIniFile.ReadInt("admin", "EnableJapInput", m_pref_EnableJapInput);
 	m_pref_clearconsole=myIniFile.ReadInt("admin", "clearconsole", m_pref_clearconsole);
+	G_SENDBUFFER=myIniFile.ReadInt("admin", "sendbuffer", G_SENDBUFFER);
 }
 
 
@@ -2339,6 +2430,7 @@ void vncProperties::SaveUserPrefsToIniFile()
 	myIniFile.WriteInt("admin", "FileTransferEnabled", m_server->FileTransferEnabled());
 	myIniFile.WriteInt("admin", "FTUserImpersonation", m_server->FTUserImpersonation()); // sf@2005
 	myIniFile.WriteInt("admin", "BlankMonitorEnabled", m_server->BlankMonitorEnabled());
+	myIniFile.WriteInt("admin", "BlankInputsOnly", m_server->BlankInputsOnly()); //PGM
 	myIniFile.WriteInt("admin", "CaptureAlphaBlending", m_server->CaptureAlphaBlending()); // sf@2005
 	myIniFile.WriteInt("admin", "BlackAlphaBlending", m_server->BlackAlphaBlending()); // sf@2005
 
@@ -2348,7 +2440,7 @@ void vncProperties::SaveUserPrefsToIniFile()
 	myIniFile.WriteString("admin", "DSMPlugin",m_server->GetDSMPluginName());
 
 	myIniFile.WriteInt("admin", "primary", m_server->Primary());
-	myIniFile.WriteInt("admin", "secundary", m_server->Secundary());
+	myIniFile.WriteInt("admin", "secondary", m_server->Secondary());
 
 	// Connection prefs
 	myIniFile.WriteInt("admin", "SocketConnect", m_server->SockConnected());
@@ -2381,6 +2473,9 @@ void vncProperties::SaveUserPrefsToIniFile()
 	char passwd[MAXPWLEN];
 	m_server->GetPassword(passwd);
 	myIniFile.WritePassword(passwd);
+	memset(passwd, '\0', MAXPWLEN); //PGM
+	m_server->GetPassword2(passwd); //PGM
+	myIniFile.WritePassword2(passwd); //PGM
 }
 
 

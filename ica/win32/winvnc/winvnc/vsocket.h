@@ -142,7 +142,8 @@ public:
   void ClearQueue();
 
   // sf@2002 - DSMPlugin
-  void SetDSMPluginPointer(CDSMPlugin* pDSMPlugin) {m_pDSMPlugin = pDSMPlugin;};
+  //adzm 2009-06-20
+  void SetDSMPluginPointer(CDSMPlugin* pDSMPlugin);
   void EnableUsePlugin(bool fEnable) { m_fUsePlugin = fEnable;};
   bool IsUsePluginEnabled(void) { return m_fUsePlugin;};
   void SetWriteToNetRectBuffer(bool fEnable) {m_fWriteToNetRectBuf = fEnable;}; 
@@ -163,10 +164,17 @@ protected:
   int sock;	      
 
   CDSMPlugin* m_pDSMPlugin; // sf@2002 - DSMPlugin
+  //adzm 2009-06-20
+  IPlugin* m_pPluginInterface;
   bool m_fUsePlugin;
   omni_mutex m_TransMutex;
   omni_mutex m_RestMutex;
   omni_mutex m_CheckMutex;
+
+  //adzm 2009-06-20
+  BYTE* TransformBuffer(BYTE* pDataBuffer, int nDataLen, int* nTransformedDataLen);
+  BYTE* RestoreBufferStep1(BYTE* pDataBuffer, int nDataLen, int* nRestoredDataLen);
+  BYTE* RestoreBufferStep2(BYTE* pDataBuffer, int nDataLen, int* nRestoredDataLen);
 
   // All this should be private with accessors -> later
   BYTE* m_pNetRectBuf;

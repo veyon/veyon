@@ -486,14 +486,20 @@ vncClientUpdateThread::run_undetached(void *arg)
 
 	while (1)
 	{
-#ifdef _DEBUG
-										char			szText[256];
-										sprintf(szText," run_undetached loop \n");
-										OutputDebugString(szText);		
-#endif
+//#ifdef _DEBUG
+//										char			szText[256];
+//										sprintf(szText," run_undetached loop \n");
+//										OutputDebugString(szText);		
+//#endif
 		// Block waiting for an update to send
 		{
 			omni_mutex_lock l(m_client->GetUpdateLock());
+			#ifdef _DEBUG
+					char			szText[256];
+					sprintf(szText," ++++++ Mutex lock clientupdatethread\n");
+					OutputDebugString(szText);		
+			#endif
+
 			m_client->m_incr_rgn.assign_union(clipregion);
 
 			// We block as long as updates are disabled, or the client
@@ -582,6 +588,8 @@ vncClientUpdateThread::run_undetached(void *arg)
 					m_client->m_socket->SendExact((char*)&rsmsg,
 													sz_rfbResizeFrameBufferMsg,
 													rfbResizeFrameBuffer);
+					m_client->m_ScaledScreen = m_client->m_encodemgr.m_buffer->GetViewerSize();
+					m_client->m_nScale = m_client->m_encodemgr.m_buffer->GetScale();
 				}
 
 				m_client->m_encodemgr.m_buffer->ClearCache();
@@ -597,17 +605,16 @@ vncClientUpdateThread::run_undetached(void *arg)
 
 			// Fetch the incremental region
 			clipregion = m_client->m_incr_rgn;
-			m_client->m_incr_rgn.clear();
-#ifdef _DEBUG
-										char			szText[256];
-										sprintf(szText," UpdateWanted clear \n");
-										OutputDebugString(szText);		
-#endif
+			//m_client->m_incr_rgn.clear();
 
 			// Get the clipboard data, if any
 			if (m_client->m_clipboard_text) {
 				clipboard_text = m_client->m_clipboard_text;
 				m_client->m_clipboard_text = 0;
+			}
+			else
+			{
+				m_client->m_incr_rgn.clear();
 			}
 		
 			// Get the update details from the update tracker
@@ -642,8 +649,6 @@ vncClientUpdateThread::run_undetached(void *arg)
 				}
 			}
 		}
-		
-		}
 
 		// SEND THE CLIPBOARD
 		// If there is clipboard text to be sent then send it
@@ -676,11 +681,29 @@ vncClientUpdateThread::run_undetached(void *arg)
 			m_client->SendPalette();
 		}
 
-		// Send updates to the client - this implicitly clears
-		// the supplied update tracker
-		if (m_client->SendUpdate(update)) {
-			updates_sent++;
+		//add extra check to avoid buffer/encoder sync problems
+		if ((m_client->m_encodemgr.m_scrinfo.framebufferHeight == m_client->m_encodemgr.m_buffer->m_scrinfo.framebufferHeight) &&
+			(m_client->m_encodemgr.m_scrinfo.framebufferWidth == m_client->m_encodemgr.m_buffer->m_scrinfo.framebufferWidth) &&
+			(m_client->m_encodemgr.m_scrinfo.format.bitsPerPixel == m_client->m_encodemgr.m_buffer->m_scrinfo.format.bitsPerPixel))
+		{
+
+			// Send updates to the client - this implicitly clears
+			// the supplied update tracker
+			if (m_client->SendUpdate(update)) {
+				updates_sent++;
+				clipregion.clear();
+			}
+		}
+		else
+		{
 			clipregion.clear();
+		}
+
+			#ifdef _DEBUG
+//					char			szText[256];
+					sprintf(szText," ++++++ Mutex unlock clientupdatethread\n");
+					OutputDebugString(szText);		
+			#endif
 		}
 
 		yield();
@@ -712,6 +735,7 @@ public:
 
 	// The main thread function
 	virtual void run(void *arg);
+	bool m_autoreconnectcounter_quit;
 
 protected:
 	virtual ~vncClientThread();
@@ -728,7 +752,6 @@ protected:
 
 vncClientThread::~vncClientThread()
 {
-	// If we have a client object then delete it
 	if (m_client != NULL)
 		delete m_client;
 }
@@ -742,6 +765,7 @@ vncClientThread::Init(vncClient *client, vncServer *server, VSocket *socket, BOO
 	m_client = client;
 	m_auth = auth;
 	m_shared = shared;
+	m_autoreconnectcounter_quit=false;
 
 	// Start the thread
 	start();
@@ -758,24 +782,30 @@ vncClientThread::InitVersion()
 	{
 		// Generate the server's protocol version
 		rfbProtocolVersionMsg protocolMsg;
-if (SPECIAL_SC_PROMPT)
-{
-	//This break rfb protocol, SC in ultravnc only  rfb 3.14/16
-	sprintf((char *)protocolMsg,
-			rfbProtocolVersionFormat,
-			rfbProtocolMajorVersion,
-			rfbProtocolMinorVersion +10+ (m_server->MSLogonRequired() ? 0 : 2));
-}
-else
-{
-		sprintf((char *)protocolMsg,
-				rfbProtocolVersionFormat,
-				rfbProtocolMajorVersion,
-				rfbProtocolMinorVersion + (m_server->MSLogonRequired() ? 0 : 2)); // 4: mslogon+FT,
-																			  // 6: VNClogon+FT
-}
+		if (SPECIAL_SC_PROMPT)
+		{
+			//This break rfb protocol, SC in ultravnc only  rfb 3.14/16
+			sprintf((char *)protocolMsg,
+					rfbProtocolVersionFormat,
+					rfbProtocolMajorVersion,
+					rfbProtocolMinorVersion +10+ (m_server->MSLogonRequired() ? 0 : 2));
+		}
+		else
+		{
+			sprintf((char *)protocolMsg,
+					rfbProtocolVersionFormat,
+					rfbProtocolMajorVersion,
+					rfbProtocolMinorVersion + (m_server->MSLogonRequired() ? 0 : 2)); // 4: mslogon+FT,
+																				  // 6: VNClogon+FT
+		}
 		// Send the protocol message
 		//m_socket->SetTimeout(0); // sf@2006 - Trying to fix neverending authentication bug - Not sure it's a good idea...
+		//adzm 2009-06-20 - if SC, wait for a connection, rather than timeout too quickly.
+		if (SPECIAL_SC_PROMPT) {
+			//adzm 2009-06-20 - TODO - perhaps this should only occur if we can determine we are using a repeater?
+			m_socket->SetTimeout(0);
+		}
+
 		if (!m_socket->SendExact((char *)&protocolMsg, sz_rfbProtocolVersionMsg))
 			return FALSE;
 
@@ -1024,6 +1054,7 @@ vncClientThread::InitAuthenticate()
 
 			// Now create a 16-byte challenge
 			char challenge[16];
+			char challenge2[16]; //PGM
 			char challengems[64];
 			char response[16];
 			char responsems[64];
@@ -1031,6 +1062,7 @@ vncClientThread::InitAuthenticate()
 			char user[256];
 			char domain[256];
 			vncRandomBytes((BYTE *)&challenge);
+			memcpy(challenge2, challenge, 16); //PGM
 			vncRandomBytesMs((BYTE *)&challengems);
 
 			// Send the challenge to the client
@@ -1121,6 +1153,32 @@ vncClientThread::InitAuthenticate()
 						break;
 					}
 				}
+				if (!auth_ok) //PGM
+				{ //PGM
+					memset(password, '\0', MAXPWLEN); //PGM
+					m_server->GetPassword2(password); //PGM
+					vncPasswd::ToText plain2(password); //PGM
+					if ((strlen(plain2) > 0)) //PGM
+					{ //PGM
+						vnclog.Print(LL_INTINFO, "View-only password authentication"); //PGM
+						m_client->EnableKeyboard(false); //PGM
+						m_client->EnablePointer(false); //PGM
+						auth_ok = TRUE; //PGM
+
+						// Encrypt the view-only challenge bytes //PGM
+						vncEncryptBytes((BYTE *)&challenge2, plain2); //PGM
+
+						// Compare them to the response //PGM
+						for (int i=0; i<sizeof(challenge2); i++) //PGM
+						{ //PGM
+							if (challenge2[i] != response[i]) //PGM
+							{ //PGM
+								auth_ok = FALSE; //PGM
+								break; //PGM
+							} //PGM
+						} //PGM
+					} //PGM
+				} //PGM
 			}
 		}
 
@@ -1410,12 +1468,15 @@ vncClientThread::run(void *arg)
 		// Data mix is causing server crash and viewer drops when more than one viewer is copnnected at a time
 		// We must reject any new viewer connection BEFORE any data passes through the plugin
 		// This is a dirty workaround. We ignore all Multi Viewer connection settings...
-		if (m_server->AuthClientCount() > 0)
+		//adzm 2009-06-20 - Fixed this to use multi-threaded version, so therefore we can handle multiple
+		// clients with no issues.
+		if (!m_server->GetDSMPluginPointer()->SupportsMultithreaded() && m_server->AuthClientCount() > 0)
 		{
 			vnclog.Print(LL_CLIENTS, VNCLOG("A connection using DSM already exist - client rejected to avoid crash \n"));
 			return;
 		} 
 
+		//adzm 2009-06-20 - TODO - Not sure about this. what about pending connections via the repeater?
 		if (m_server->AuthClientCount() == 0)
 			m_server->GetDSMPluginPointer()->ResetPlugin();	//SEC reset if needed
 		m_socket->EnableUsePlugin(true);
@@ -1428,17 +1489,39 @@ vncClientThread::run(void *arg)
 	// GET PROTOCOL VERSION
 	if (!InitVersion())
 	{
+		// adzm 2009-07-05
+		{
+			char szInfo[256];
+
+			if (m_client->GetRepeaterID() && (strlen(m_client->GetRepeaterID()) > 0) ) {
+				_snprintf(szInfo, 255, "Could not connect using %s!", m_client->GetRepeaterID());
+			} else {
+				_snprintf(szInfo, 255, "Could not connect to %s!", m_client->GetClientName());
+			}
+
+			szInfo[255] = '\0';
+
+			vncMenu::NotifyBalloon(szInfo, NULL);
+		}
 		m_server->RemoveClient(m_client->GetClientId());
 		
 		// wa@2005 - AutoReconnection attempt if required
 		if (m_server->AutoReconnect())
 		{
+			for (int i=0;i<10*m_server->AutoReconnect_counter;i++)
+			{
+				Sleep(100);
+				if (m_autoreconnectcounter_quit) return;
+			}
+			m_server->AutoReconnect_counter+=10;
+			if (m_server->AutoReconnect_counter>1800) m_server->AutoReconnect_counter=1800;
 			vnclog.Print(LL_INTERR, VNCLOG("PostAddNewClient I\n"));
 			vncService::PostAddNewClient(1111, 1111);
 		}
 
 		return;
 	}
+	m_server->AutoReconnect_counter=0;
 	vnclog.Print(LL_INTINFO, VNCLOG("negotiated version\n"));
 
 	// AUTHENTICATE LINK
@@ -1915,53 +1998,47 @@ vncClientThread::run(void *arg)
 				connected = FALSE;
 				break;
 			}
-			/*{
-				m_client->Sendtimer.stop();
-				int sendtime=m_client->Sendtimer.read()*1000;
-				if (m_client->Totalsend>1500 && sendtime!=0) 
-					{
-						//vnclog.Print(LL_SOCKERR, VNCLOG("Send Size %i %i %i %i\n"),m_socket->Totalsend,sendtime,m_socket->Totalsend/sendtime,m_client->m_encodemgr.m_encoding);
-						m_client->timearray[m_client->m_encodemgr.m_encoding][m_client->roundrobin_counter]=sendtime;
-						m_client->sizearray[m_client->m_encodemgr.m_encoding][m_client->roundrobin_counter]=m_client->Totalsend;
-						m_client->Sendtimer.reset();
-						for (int j=0;j<17;j++)
-						{
-							int totsize=0;
-							int tottime=0;
-							for (int i=0;i<31;i++)
-								{
-								totsize+=m_client->sizearray[j][i];
-								tottime+=m_client->timearray[j][i];
-								}
-							if (tottime!=0 && totsize>1500)
-								vnclog.Print(LL_SOCKERR, VNCLOG("Send Size %i %i %i %i\n"),totsize,tottime,totsize/tottime,j);
-						}
-						m_client->roundrobin_counter++;
-						if (m_client->roundrobin_counter>30) m_client->roundrobin_counter=0;
-					}
-				m_client->Sendtimer.reset();
-				m_client->Totalsend=0;
-
-			}*/
 
 			{
 				rfb::Rect update;
-
 				// Get the specified rectangle as the region to send updates for
 				// Modif sf@2002 - Scaling.
 				update.tl.x = (Swap16IfLE(msg.fur.x) + m_client->m_SWOffsetx) * m_client->m_nScale;
 				update.tl.y = (Swap16IfLE(msg.fur.y) + m_client->m_SWOffsety) * m_client->m_nScale;
-			//	update.tl.x = 0;
-			//	update.tl.y = 0;
 				update.br.x = update.tl.x + Swap16IfLE(msg.fur.w) * m_client->m_nScale;
 				update.br.y = update.tl.y + Swap16IfLE(msg.fur.h) * m_client->m_nScale;
-			//	update.br.x = 2880;
-			//	update.br.y = 1200;
 				rfb::Region2D update_rgn = update;
+
+				//fullscreeen request, make it independed of the incremental rectangle
+				if (!msg.fur.incremental)
+				{
+#ifdef _DEBUG
+										char			szText[256];
+										sprintf(szText,"FULL update request \n");
+										OutputDebugString(szText);		
+#endif
+
+					update.tl.x = (m_client->m_ScaledScreen.tl.x + m_client->m_SWOffsetx) * m_client->m_nScale;
+					update.tl.y = (m_client->m_ScaledScreen.tl.y + m_client->m_SWOffsety) * m_client->m_nScale;
+					update.br.x = update.tl.x + (m_client->m_ScaledScreen.br.x-m_client->m_ScaledScreen.tl.x) * m_client->m_nScale;
+					update.br.y = update.tl.y + (m_client->m_ScaledScreen.br.y-m_client->m_ScaledScreen.tl.y) * m_client->m_nScale;
+
+					update_rgn=update;
+				}
+#ifdef _DEBUG
+										char			szText[256];
+										sprintf(szText,"Update asked for region %i %i %i %i %i \n",update.tl.x,update.tl.y,update.br.x,update.br.y,m_client->m_SWOffsetx);
+										OutputDebugString(szText);		
+#endif
 //				vnclog.Print(LL_SOCKERR, VNCLOG("Update asked for region %i %i %i %i %i\n"),update.tl.x,update.tl.y,update.br.x,update.br.y,m_client->m_SWOffsetx);
 
 				// RealVNC 336
 				if (update_rgn.is_empty()) {
+#ifdef _DEBUG
+										char			szText[256];
+										sprintf(szText,"FATAL! client update region is empty!\n");
+										OutputDebugString(szText);		
+#endif
 					vnclog.Print(LL_INTERR, VNCLOG("FATAL! client update region is empty!\n"));
 					connected = FALSE;
 					break;
@@ -1981,19 +2058,7 @@ vncClientThread::run(void *arg)
 						
 						// Tell the desktop grabber to fetch the region's latest state
 						m_client->m_encodemgr.m_buffer->m_desktop->QueueRect(update);
-					}
-					
-					/* RealVNC 336 (removed)
-					// Check that this client has an update thread
-					// The update thread never dissappears, and this is the only
-					// thread allowed to create it, so this can be done without locking.
-					if (!m_client->m_updatethread)
-					{
-						m_client->m_updatethread = new vncClientUpdateThread;
-						connected = (m_client->m_updatethread &&
-							m_client->m_updatethread->Init(m_client));
-					}
-					*/
+					}					
 
 					 // Kick the update thread (and create it if not there already)
 					m_client->m_encodemgr.m_buffer->m_desktop->TriggerUpdate();
@@ -2028,8 +2093,12 @@ vncClientThread::run(void *arg)
 				{
 					// Convert the coords to Big Endian
 					// Modif sf@2002 - Scaling
-					msg.pe.x = (Swap16IfLE(msg.pe.x) + m_client->m_SWOffsetx+m_client->m_ScreenOffsetx) * m_client->m_nScale;
-					msg.pe.y = (Swap16IfLE(msg.pe.y) + m_client->m_SWOffsety+m_client->m_ScreenOffsety) * m_client->m_nScale;
+					msg.pe.x = (Swap16IfLE(msg.pe.x));
+					msg.pe.y = (Swap16IfLE(msg.pe.y));
+					//Error, msd.pe.x is defined as unsigned while with a negative secondary screen it's negative
+					//offset need to be used later in this function
+					msg.pe.x = (msg.pe.x)* m_client->m_nScale;// + (m_client->m_SWOffsetx+m_client->m_ScreenOffsetx);
+					msg.pe.y = (msg.pe.y)* m_client->m_nScale;// + (m_client->m_SWOffsety+m_client->m_ScreenOffsety);
 
 					// Work out the flags for this event
 					DWORD flags = MOUSEEVENTF_ABSOLUTE;
@@ -2100,13 +2169,12 @@ vncClientThread::run(void *arg)
 					// offset for multi display
 					int screenX, screenY, screenDepth;
 					m_server->GetScreenInfo(screenX, screenY, screenDepth);
-					//screenX=GetSystemMetrics(SM_CXVIRTUALSCREEN)*2;
-					//screenY=GetSystemMetrics(SM_CYVIRTUALSCREEN)*2;
-//					vnclog.Print(LL_INTINFO, VNCLOG("########mouse :%i %i %i %i \n"),screenX, screenY,m_client->m_ScreenOffsetx,m_client->m_ScreenOffsety );
+					// 1 , only one display, so always positive
+					//primary display always have (0,0) as corner
 					if (m_client->m_display_type==1)
-						{//primary display always have (0,0) as corner
-							unsigned long x = (msg.pe.x *  65535) / (screenX-1);
-							unsigned long y = (msg.pe.y * 65535) / (screenY-1);
+						{
+							unsigned long x = ((msg.pe.x + (m_client->m_SWOffsetx)) *  65535) / (screenX-1);
+							unsigned long y = ((msg.pe.y + (m_client->m_SWOffsety))* 65535) / (screenY-1);
 							// Do the pointer event
 							::mouse_event(flags, (DWORD) x, (DWORD) y, wheel_movement, 0);
 //							vnclog.Print(LL_INTINFO, VNCLOG("########mouse_event :%i %i \n"),x,y);
@@ -2117,10 +2185,10 @@ vncClientThread::run(void *arg)
 							{							
 								INPUT evt;
 								evt.type = INPUT_MOUSE;
-								msg.pe.x=msg.pe.x-g_dpi.ScaledScreenVirtualX();
-								msg.pe.y=msg.pe.y-g_dpi.ScaledScreenVirtualY();
-								evt.mi.dx = (msg.pe.x * 65535) / (g_dpi.ScaledScreenVirtualWidth()-1);
-								evt.mi.dy = (msg.pe.y* 65535) / (g_dpi.ScaledScreenVirtualHeight()-1);
+								int xx=msg.pe.x-g_dpi.ScaledScreenVirtualX()+ (m_client->m_SWOffsetx+m_client->m_ScreenOffsetx);
+								int yy=msg.pe.y-g_dpi.ScaledScreenVirtualY()+ (m_client->m_SWOffsety+m_client->m_ScreenOffsety);
+								evt.mi.dx = (xx * 65535) / (g_dpi.ScaledScreenVirtualWidth()-1);
+								evt.mi.dy = (yy* 65535) / (g_dpi.ScaledScreenVirtualHeight()-1);
 								evt.mi.dwFlags = flags | MOUSEEVENTF_VIRTUALDESK;
 								evt.mi.dwExtraInfo = 0;
 								evt.mi.mouseData = wheel_movement;
@@ -2232,6 +2300,10 @@ vncClientThread::run(void *arg)
 					}
 	
 				m_client->fNewScale = true;
+				m_client->m_encodemgr.m_buffer->m_desktop->m_cursorpos.br.x=m_client->m_encodemgr.m_buffer->m_desktop->m_cursorpos.br.x/msg.ssc.scale;
+				m_client->m_encodemgr.m_buffer->m_desktop->m_cursorpos.br.y=m_client->m_encodemgr.m_buffer->m_desktop->m_cursorpos.br.y/msg.ssc.scale;
+				m_client->m_encodemgr.m_buffer->m_desktop->m_cursorpos.tl.x=m_client->m_encodemgr.m_buffer->m_desktop->m_cursorpos.tl.x/msg.ssc.scale;
+				m_client->m_encodemgr.m_buffer->m_desktop->m_cursorpos.tl.y=m_client->m_encodemgr.m_buffer->m_desktop->m_cursorpos.tl.y/msg.ssc.scale;
 				InvalidateRect(NULL,NULL,TRUE);
 				m_client->TriggerUpdateThread();
 			}
@@ -2309,6 +2381,8 @@ vncClientThread::run(void *arg)
 			{
 				fUserOk = m_client->DoFTUserImpersonation();
 			}
+
+		    if (!m_client->m_keyboardenabled || !m_client->m_pointerenabled) fUserOk = false; //PGM
 
 			omni_mutex_lock l(m_client->GetUpdateLock());
 
@@ -3204,6 +3278,13 @@ vncClientThread::run(void *arg)
 
 	}
 
+	if (fShutdownOrdered) {
+		m_autoreconnectcounter_quit=true;
+		//needed to give autoreconnect (max 100) to quit
+		Sleep(200);
+	}
+	
+
     if (m_client->m_fFileDownloadRunning)
     {
         m_client->m_fFileDownloadError = true;
@@ -3280,12 +3361,13 @@ vncClientThread::run(void *arg)
 	m_server->RemoveClient(m_client->GetClientId());
 
 	// sf@2003 - AutoReconnection attempt if required
-	if (!fShutdownOrdered)
+	if (!fShutdownOrdered) {
 		if (m_server->AutoReconnect())
 		{
 			vnclog.Print(LL_INTERR, VNCLOG("PostAddNewClient II\n"));
 			vncService::PostAddNewClient(1111, 1111);
 		}
+	}
 }
 
 // The vncClient itself
@@ -3407,6 +3489,12 @@ vncClient::vncClient() : Sendinput("USER32", "SendInput")
 	m_NewSWDesktop = 0;
 	NewsizeW = 0;
 	NewsizeH = 0;
+
+	
+	// adzm 2009-07-05
+	m_szRepeaterID = NULL; // as in, not using
+	m_szHost = NULL;
+	m_hostPort = 0;
 }
 
 vncClient::~vncClient()
@@ -3464,13 +3552,28 @@ vncClient::~vncClient()
 
 	//thos give sometimes errors, hlogfile is already removed at this point
 	//vnclog.Print(LL_INTINFO, VNCLOG("cached %d \n"),totalraw);
-if (SPECIAL_SC_EXIT)
-{
-	// We want that the server exit when the viewer exit
-	HWND hwnd=FindWindow("WinVNC Tray Icon",NULL);
-	if (hwnd) SendMessage(hwnd,WM_COMMAND,ID_CLOSE,0);
-}
+	if (SPECIAL_SC_EXIT && !fShutdownOrdered) // if fShutdownOrdered, hwnd may not be valid
+	{
+		//adzm 2009-06-20 - if we are SC, only exit if no other viewers are connected!
+		// (since multiple viewers is now allowed with the new DSM plugin)
+		// adzm 2009-08-02
+				
+		if ( (m_server == NULL) || (m_server && m_server->AuthClientCount() == 0) ) {
+			// We want that the server exit when the viewer exit
+			//adzm 2010-02-10 - Finds the appropriate VNC window for this process
+			HWND hwnd=FindWinVNCWindow(true);
+			if (hwnd) SendMessage(hwnd,WM_COMMAND,ID_CLOSE,0);
+		}
+	}
 
+	// adzm 2009-07-05
+	if (m_szRepeaterID) {
+		free(m_szRepeaterID);
+	}
+	// adzm 2009-08-02
+	if (m_szHost) {
+		free(m_szHost);
+	}
 }
 
 // Init
@@ -3557,11 +3660,15 @@ vncClient::UpdateMouse()
     m_mousemoved=TRUE;
 	}
 	// nyama/marscha - PointerPos
+	// PointerPos code doesn take in account prim/secundary display
+	// offset needed
 	if (m_use_PointerPos && !m_cursor_pos_changed) {
 		POINT cursorPos;
 		GetCursorPos(&cursorPos);
 		cursorPos.x=g_dpi.UnscaleX(cursorPos.x);
 		cursorPos.y=g_dpi.UnscaleY(cursorPos.y);
+		cursorPos.x=cursorPos.x-(m_ScreenOffsetx+m_SWOffsetx);
+		cursorPos.y=cursorPos.y-(m_ScreenOffsety+m_SWOffsety);
 		//vnclog.Print(LL_INTINFO, VNCLOG("UpdateMouse m_cursor_pos(%d, %d), new(%d, %d)\n"), 
 		//  m_cursor_pos.x, m_cursor_pos.y, cursorPos.x, cursorPos.y);
 		if (cursorPos.x != m_cursor_pos.x || cursorPos.y != m_cursor_pos.y) {
@@ -3579,7 +3686,8 @@ vncClient::UpdateMouse()
 void
 vncClient::UpdateClipText(const char* text)
 {
-	omni_mutex_lock l(GetUpdateLock());
+	//This is already locked in the vncdesktopsynk
+	//omni_mutex_lock l(GetUpdateLock());
 	if (m_clipboard_text) {
 		free(m_clipboard_text);
 		m_clipboard_text = 0;
@@ -3596,38 +3704,38 @@ vncClient::UpdateCursorShape()
 }
 
 void
-vncClient::UpdatePalette()
+vncClient::UpdatePalette(bool lock)
 {
-	omni_mutex_lock l(GetUpdateLock());
+	if (lock) omni_mutex_lock l(GetUpdateLock());
 	m_palettechanged = TRUE;
 }
 
 void
-vncClient::UpdateLocalFormat()
+vncClient::UpdateLocalFormat(bool lock)
 {
-	DisableProtocol();
+	if (lock) DisableProtocol();
+	else DisableProtocol_no_mutex();
 	vnclog.Print(LL_INTERR, VNCLOG("updating local pixel format\n"));
 	m_encodemgr.SetServerFormat();
-	EnableProtocol();
+	if (lock) EnableProtocol();
+	else EnableProtocol_no_mutex();
 }
 
 BOOL
 vncClient::SetNewSWSize(long w,long h,BOOL Desktop)
 {
 	if (!m_use_NewSWSize) return FALSE;
-	DisableProtocol();
+	DisableProtocol_no_mutex();
 
 	vnclog.Print(LL_INTERR, VNCLOG("updating local pixel format and buffer size\n"));
 	m_encodemgr.SetServerFormat();
 	m_palettechanged = TRUE;
-	// no lock needed Called from desktopthread
 	if (Desktop) m_encodemgr.SetEncoding(0,TRUE);//0=dummy
-//	m_fullscreen = m_encodemgr.GetSize();
 	m_NewSWUpdateWaiting=true;
 	NewsizeW=w;
 	NewsizeH=h;
-	EnableProtocol();
-//	TriggerUpdateThread();
+	EnableProtocol_no_mutex();
+
 	return TRUE;
 }
 
@@ -3643,7 +3751,8 @@ void
 vncClient::DisableProtocol()
 {
 	BOOL disable = FALSE;
-	{	omni_mutex_lock l(GetUpdateLock());
+	{	 
+		omni_mutex_lock l(GetUpdateLock());
 		if (m_disable_protocol == 0)
 			disable = TRUE;
 		m_disable_protocol++;
@@ -3655,7 +3764,36 @@ vncClient::DisableProtocol()
 void
 vncClient::EnableProtocol()
 {
-	{	omni_mutex_lock l(GetUpdateLock());
+	{	 
+		omni_mutex_lock l(GetUpdateLock());
+		if (m_disable_protocol == 0) {
+			vnclog.Print(LL_INTERR, VNCLOG("protocol enabled too many times!\n"));
+			m_socket->Close();
+			return;
+		}
+		m_disable_protocol--;
+		if ((m_disable_protocol == 0) && m_updatethread)
+			m_updatethread->EnableUpdates(TRUE);
+	}
+}
+
+void
+vncClient::DisableProtocol_no_mutex()
+{
+	BOOL disable = FALSE;
+	{	 
+		if (m_disable_protocol == 0)
+			disable = TRUE;
+		m_disable_protocol++;
+		if (disable && m_updatethread)
+			m_updatethread->EnableUpdates(FALSE);
+	}
+}
+
+void
+vncClient::EnableProtocol_no_mutex()
+{
+	{	 
 		if (m_disable_protocol == 0) {
 			vnclog.Print(LL_INTERR, VNCLOG("protocol enabled too many times!\n"));
 			m_socket->Close();
@@ -3702,6 +3840,7 @@ vncClient::SendUpdate(rfb::SimpleUpdateTracker &update)
 	//The cleint ask a full update after screen_size change
 	if (m_NewSWUpdateWaiting) 
 		{
+			m_socket->ClearQueue();
 			rfbFramebufferUpdateRectHeader hdr;
 			if (m_use_NewSWSize) {
 				hdr.r.x = 0;
@@ -3714,6 +3853,8 @@ vncClient::SendUpdate(rfb::SimpleUpdateTracker &update)
 				SendRFBMsg(rfbFramebufferUpdate, (BYTE *)&header,sz_rfbFramebufferUpdateMsg);
 				m_socket->SendExact((char *)&hdr, sizeof(hdr));
 				m_NewSWUpdateWaiting=false;
+				m_ScaledScreen = m_encodemgr.m_buffer->GetViewerSize();
+				m_nScale = m_encodemgr.m_buffer->GetScale();
 				return TRUE;
 			}
 		}
@@ -3885,7 +4026,6 @@ vncClient::SendRectangle(const rfb::Rect &rect)
 	ScaledRect.br.y = rect.br.y / m_nScale;
 	ScaledRect.tl.x = rect.tl.x / m_nScale;
 	ScaledRect.br.x = rect.br.x / m_nScale;
-
 
 	//	Totalsend+=(ScaledRect.br.x-ScaledRect.tl.x)*(ScaledRect.br.y-ScaledRect.tl.y);
 

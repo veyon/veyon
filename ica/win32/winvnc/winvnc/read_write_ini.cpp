@@ -33,6 +33,7 @@ LONG AllowEditClients;
 LONG FileTransferEnabled;
 LONG FTUserImpersonation;
 LONG BlankMonitorEnabled ;
+LONG BlankInputsOnly; //PGM
 LONG DefaultScale ;
 LONG CaptureAlphaBlending ;
 LONG BlackAlphaBlending ;
@@ -79,7 +80,7 @@ LONG FTTimeout = 30;
 char path[512];
 
 LONG Primary=1;
-LONG Secundary=0;
+LONG Secondary=0;
 //Beep(100,20000);
 BUseRegistry = myIniFile_In.ReadInt("admin", "UseRegistry", 0);
 if (!myIniFile_Out.WriteInt("admin", "UseRegistry", BUseRegistry))
@@ -156,25 +157,27 @@ myIniFile_Out.WriteInt("admin", "AllowEditClients" ,AllowEditClients);
 FileTransferEnabled=myIniFile_In.ReadInt("admin", "FileTransferEnabled", true);
 FTUserImpersonation=myIniFile_In.ReadInt("admin", "FTUserImpersonation", true);
 BlankMonitorEnabled = myIniFile_In.ReadInt("admin", "BlankMonitorEnabled", true);
+BlankInputsOnly = myIniFile_In.ReadInt("admin", "BlankInputsOnly", false); //PGM
 DefaultScale = myIniFile_In.ReadInt("admin", "DefaultScale", 1);
 CaptureAlphaBlending = myIniFile_In.ReadInt("admin", "CaptureAlphaBlending", false); // sf@2005
 BlackAlphaBlending = myIniFile_In.ReadInt("admin", "BlackAlphaBlending", false); // sf@2005
 FTTimeout = myIniFile_In.ReadInt("admin", "FileTransferTimeout", 30);
 
 Primary = myIniFile_In.ReadInt("admin", "primary", true);
-Secundary = myIniFile_In.ReadInt("admin", "secundary", false);
+Secondary = myIniFile_In.ReadInt("admin", "secondary", false);
 
 
 myIniFile_Out.WriteInt("admin", "FileTransferEnabled", FileTransferEnabled);
 myIniFile_Out.WriteInt("admin", "FTUserImpersonation", FTUserImpersonation);
 myIniFile_Out.WriteInt("admin", "BlankMonitorEnabled", BlankMonitorEnabled);
+myIniFile_Out.WriteInt("admin", "BlankInputsOnly", BlankInputsOnly); //PGM
 myIniFile_Out.WriteInt("admin", "DefaultScale", DefaultScale);
 myIniFile_Out.WriteInt("admin", "CaptureAlphaBlending", CaptureAlphaBlending);
 myIniFile_Out.WriteInt("admin", "BlackAlphaBlending", BlackAlphaBlending);
 myIniFile_Out.WriteInt("admin", "FileTransferTimeout", 30);
 
 myIniFile_Out.WriteInt("admin", "primary", Primary);
-myIniFile_Out.WriteInt("admin", "secundary", Secundary);
+myIniFile_Out.WriteInt("admin", "secondary", Secondary);
 
 	// Connection prefs
 SocketConnect=myIniFile_In.ReadInt("admin", "SocketConnect", true);
@@ -209,6 +212,9 @@ myIniFile_Out.WriteInt("admin", "QueryIfNoLogon", QueryIfNoLogon);
 
 myIniFile_In.ReadPassword(passwd,MAXPWLEN);
 myIniFile_Out.WritePassword(passwd);
+memset(passwd, '\0', MAXPWLEN); //PGM 
+myIniFile_In.ReadPassword2(passwd,MAXPWLEN); //PGM
+myIniFile_Out.WritePassword2(passwd); //PGM
 
 EnableRemoteInputs=myIniFile_In.ReadInt("admin", "InputsEnabled", 0);
 LockSettings=myIniFile_In.ReadInt("admin", "LockSetting", 0);

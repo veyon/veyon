@@ -93,8 +93,12 @@ BOOL CALLBACK vncListDlg::DialogProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM
 			HWND hList = GetDlgItem(hwnd, IDC_VIEWERS_LISTBOX);
 
 			_this->m_pServer->ListAuthClients(hList);
-
 			SendMessage(hList, LB_SETCURSEL, -1, 0);
+
+			// adzm 2009-07-05
+			HWND hPendingList = GetDlgItem(hwnd, IDC_PENDING_LISTBOX);
+			_this->m_pServer->ListUnauthClients(hPendingList);
+
 			SetForegroundWindow(hwnd);
 			_this->m_dlgvisible = TRUE;
 			if (!_this->m_pServer->GetAllowEditClients())
