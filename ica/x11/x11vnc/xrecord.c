@@ -32,13 +32,11 @@ Display *rdpy_data = NULL;		/* Data connection for RECORD */
 Display *rdpy_ctrl = NULL;		/* Control connection for RECORD */
 
 Display *gdpy_ctrl = NULL;
-Display *gdpy_data = NULL;
 int xserver_grabbed = 0;
 
 int trap_record_xerror(Display *, XErrorEvent *);
 
 void initialize_xrecord(void);
-void zerodisp_xrecord(void);
 void shutdown_xrecord(void);
 int xrecord_skip_keysym(rfbKeySym keysym);
 int xrecord_skip_button(int new, int old);
@@ -59,6 +57,7 @@ static XRecordContext rc_grab;
 static XRecordClientSpec rcs_grab;
 #endif
 static XErrorEvent *trapped_record_xerror_event;
+static Display *gdpy_data = NULL;
 
 static void xrecord_grabserver(int start);
 static int xrecord_vi_scroll_keysym(rfbKeySym keysym);
@@ -143,13 +142,6 @@ static void xrecord_grabserver(int start) {
 	if (debug_grabs) {
 		fprintf(stderr, "xrecord_grabserver-done: %.5f\n", dnowx());
 	}
-}
-
-void zerodisp_xrecord(void) {
-	rdpy_data = NULL;
-	rdpy_ctrl = NULL;
-	gdpy_data = NULL;
-	gdpy_ctrl = NULL;
 }
 
 void initialize_xrecord(void) {
@@ -380,7 +372,7 @@ int xrecord_skip_keysym(rfbKeySym keysym) {
 
 int xrecord_skip_button(int new, int old) {
 	/* unused vars warning: */
-	if (new || old) {}
+	if (new || old) {} 
 
 	return 0;
 }
@@ -1317,7 +1309,7 @@ static void record_grab(XPointer ptr, XRecordInterceptData *rec_data) {
 	XRecordFreeData(rec_data);
 
 	/* unused vars warning: */
-	if (ptr) {}
+	if (ptr) {} 
 }
 #endif
 

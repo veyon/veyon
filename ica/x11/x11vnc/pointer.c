@@ -54,7 +54,7 @@ static prtremap_t pointer_map[MAX_BUTTONS+1][MAX_BUTTON_EVENTS];
  * For parsing the -buttonmap sections, e.g. "4" or ":Up+Up+Up:"
  */
 static void buttonparse(int from, char **s) {
-#if (0 && NO_X11)
+#if NO_X11
 	if (!from || !s) {}
 	return;
 #else
@@ -130,11 +130,7 @@ static void buttonparse(int from, char **s) {
 				 */
 				char *str;
 				X_LOCK;
-#if NO_X11
-				kcode = NoSymbol;
-#else
 				kcode = XKeysymToKeycode(dpy, ksym);
-#endif
 
 				pointer_map[from][n].keysym  = ksym;
 				pointer_map[from][n].keycode = kcode;
@@ -220,6 +216,10 @@ static void buttonparse(int from, char **s) {
  * process the -buttonmap string
  */
 void initialize_pointer_map(char *pointer_remap) {
+#if NO_X11
+	if (!pointer_remap) {}
+	return;
+#else
 	unsigned char map[MAX_BUTTONS];
 	int i, k;
 	/*
@@ -230,13 +230,9 @@ void initialize_pointer_map(char *pointer_remap) {
 	 */
 	
 	if (!raw_fb_str) {
-#if NO_X11
-		num_buttons = 5;
-#else
 		X_LOCK;
 		num_buttons = XGetPointerMapping(dpy, map, MAX_BUTTONS);
 		X_UNLOCK;
-#endif
 	} else {
 		num_buttons = 5;
 	}
@@ -299,6 +295,7 @@ void initialize_pointer_map(char *pointer_remap) {
 		}
 		free(remap);
 	}
+#endif	/* NO_X11 */
 }
 
 /*
@@ -693,9 +690,6 @@ void pointer(int mask, int x, int y, rfbClientPtr client) {
 				button_mask_prev = button_mask;
 				button_mask = mask;
 			}
-			if (!view_only && (input.motion || input.button)) {
-				last_rfb_ptr_injected = dnow();
-			}
 			return;
 		}
 	}
@@ -720,7 +714,6 @@ void pointer(int mask, int x, int y, rfbClientPtr client) {
 		last_pointer_client = client;
 
 		last_pointer_time = now;
-		last_rfb_ptr_injected = dnow();
 
 		if (blackout_ptr && blackouts) {
 			int b, ok = 1;

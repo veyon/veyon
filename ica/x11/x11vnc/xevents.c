@@ -24,7 +24,6 @@ int grab_buster = 0;
 int grab_kbd = 0;
 int grab_ptr = 0;
 int grab_always = 0;
-int grab_local = 0;
 int sync_tod_delay = 20;
 
 void initialize_vnc_connect_prop(void);
@@ -134,7 +133,6 @@ static void initialize_xevents(int reset) {
 		selwin = XCreateSimpleWindow(dpy, rootwin, 0, 0, 1, 1, 0, 0, 0);
 		X_UNLOCK;
 		did_xcreate_simple_window = 1;
-		if (0) rfbLog("selwin: 0x%lx\n", selwin);
 	}
 
 	if ((xrandr || xrandr_maybe) && !did_xrandr) {
@@ -695,96 +693,6 @@ void check_keycode_state(void) {
 		last_check = now;
 	}
 }
-
-/*
- * To use the experimental -grablocal option configure like this:
- * env CPPFLAGS=-DENABLE_GRABLOCAL LDFLAGS=-lXss ./configure
- */
-#ifdef ENABLE_GRABLOCAL
-#include <X11/extensions/scrnsaver.h>
-
-void check_local_grab(void) {
-	static double last_check = 0.0;
-	double now;
-
-	if (grab_local <= 0) {
-		return;
-	}
-	if (! client_count) {
-		return;
-	}
-	if (unixpw_in_progress) return;
-
-	if (last_rfb_key_injected <= 0.0 && last_rfb_ptr_injected <= 0.0) {
-		return;
-	}
-
-	RAWFB_RET_VOID
-
-	now = dnow();
-
-	if (now > last_check + 0.1)   {
-#if !NO_X11
-		int ret;
-		double idle;
-		XScreenSaverInfo info;
-		static int save_viewonly = -1, local_is_idle = -1, db = -1;
-
-		if (debug_keyboard) db = debug_keyboard;
-		if (debug_pointer ) db = debug_pointer;
-
-		if (db < 0) {
-			if (getenv("LOCAL_GRAB_DEBUG")) {
-				db = atoi(getenv("LOCAL_GRAB_DEBUG"));
-			} else {
-				db = 0;
-			}
-		}
-
-		ret = XScreenSaverQueryInfo(dpy, RootWindowOfScreen(
-		    ScreenOfDisplay(dpy, 0)), &info);
-
-		if (ret) {
-			double tlatest_rfb = 0.0;
-
-			idle = ((double) info.idle)/1000.0;
-			now = dnow();
-
-			if (last_rfb_key_injected > 0.0) {
-				tlatest_rfb = last_rfb_key_injected;
-			}
-			if (last_rfb_ptr_injected > tlatest_rfb) {
-				tlatest_rfb = last_rfb_ptr_injected;
-			}
-			if (db > 1) fprintf(stderr, "idle: %.4f latest: %.4f dt: %.4f\n", idle, now - tlatest_rfb, idle - (now - tlatest_rfb));
-
-			if (now - tlatest_rfb <= idle + 0.005) {
-				/* 0.005 is 5ms tolerance */
-			} else if (idle < grab_local) {
-				if (local_is_idle < 0 || local_is_idle) {
-					save_viewonly = view_only;
-					view_only = 1;
-					if (db) {
-						rfbLog("check_local_grab: set viewonly\n");
-					}
-				}
-				
-				local_is_idle = 0;
-			} else {
-				if (!local_is_idle && save_viewonly >= 0) {
-					view_only = save_viewonly;
-					if (db) {
-						rfbLog("check_local_grab: restored viewonly; %d\n", view_only);
-					}
-				}
-				local_is_idle = 1;
-			}
-		}
-#endif
-		last_check = dnow();
-	}
-}
-#endif
 
 void check_autorepeat(void) {
 	static time_t last_check = 0;
@@ -1496,144 +1404,25 @@ void set_server_input(rfbClientPtr cl, int grab) {
 #endif
 }
 
-static int wsock_timeout_sock = -1;
-
-static void wsock_timeout (int sig) {
-	rfbLog("sig: %d, wsock_timeout.\n", sig);
-	if (wsock_timeout_sock >= 0) {
-		close(wsock_timeout_sock);
-		wsock_timeout_sock = -1;
-	}
-}
-
-static void try_local_chat_window(void) {
-	int i, port, lsock;
-	char cmd[100];
-	struct sockaddr_in addr;
-	pid_t pid = -1;
-#ifdef __hpux
-	int addrlen = sizeof(addr);
-#else
-	socklen_t addrlen = sizeof(addr);
-#endif
-
-	for (i = 0; i < 90; i++)  {
-		/* find an open port */
-		port = 7300 + i;
-		lsock = rfbListenOnTCPPort(port, htonl(INADDR_LOOPBACK));
-		if (lsock >= 0) {
-			break;
-		}
-		port = 0;
-	}
-
-	if (port == 0) {
-		return;
-	}
-
-	/* have ssvncvncviewer connect back to us (n.b. sockpair fails) */
-
-	sprintf(cmd, "ssvnc -cmd VNC://localhost:%d -chatonly", port);
-
-#if LIBVNCSERVER_HAVE_FORK
-	pid = fork();
-#endif
-
-	if (pid == -1) {
-		perror("fork");
-		return;
-	} else if (pid == 0) {
-		char *args[4];
-		int d;
-		args[0] = "/bin/sh";
-		args[1] = "-c";
-		/* "ssvnc -cmd VNC://fd=0 -chatonly"; not working */
-		args[2] = cmd;
-		args[3] = NULL;
-
-		set_env("VNCVIEWER_PASSWORD", "moo");
-#if !NO_X11
-		if (dpy != NULL) {
-			set_env("DISPLAY", DisplayString(dpy));
-		}
-#endif
-		for (d = 3; d < 256; d++) {
-			close(d);
-		}
-
-		execvp(args[0], args);
-		perror("exec");
-		exit(1);
-	} else {
-		int i, sock = -1;
-		rfbNewClientHookPtr new_save;
-
-		signal(SIGALRM, wsock_timeout);
-		wsock_timeout_sock = lsock;
-		
-		alarm(10);
-		sock = accept(lsock, (struct sockaddr *)&addr, &addrlen);
-		alarm(0);
-
-		signal(SIGALRM, SIG_DFL);
-		close(lsock);
-
-		if (sock < 0) {
-			return;
-		}
-
-		new_save = screen->newClientHook;
-		screen->newClientHook = new_client_chat_helper;
-
-		chat_window_client = rfbNewClient(screen, sock);
-
-		screen->newClientHook = new_save;
-
-		if (chat_window_client != NULL) {
-			rfbPasswordCheckProcPtr pwchk_save = screen->passwordCheck;
-			rfbBool save_shared1 = screen->alwaysShared;
-			rfbBool save_shared2 = screen->neverShared;
-
-			screen->alwaysShared = TRUE;
-			screen->neverShared  = FALSE;
-
-			screen->passwordCheck = password_check_chat_helper;
-			for (i=0; i<30; i++) {
-				rfbPE(-1);
-				if (!chat_window_client) {
-					break;
-				}
-				if (chat_window_client->state == RFB_NORMAL) {
-					break;
-				}
-			}
-
-			screen->passwordCheck = pwchk_save;
-			screen->alwaysShared  = save_shared1;
-			screen->neverShared   = save_shared2;
-		}
-	}
-}
-
 void set_text_chat(rfbClientPtr cl, int len, char *txt) {
 	int dochat = 1;
 	rfbClientIteratorPtr iter;
 	rfbClientPtr cl2;
-	unsigned int ulen = (unsigned int) len;
 
 	if (no_ultra_ext || ! dochat) {
 		return;
 	}
 
+#if 0
+	rfbLog("set_text_chat: len=%d\n", len);
+	rfbLog("set_text_chat: len=0x%x txt='", len);
+	if (0 < len && len < 10000) write(2, txt, len);
+	fprintf(stderr, "'\n");
+#endif
 	if (unixpw_in_progress) {
 		rfbLog("set_text_chat: unixpw_in_progress, dropping client.\n");
 		rfbCloseClient(cl);
 		return;
-	}
-#if LIBVNCSERVER_HAS_TEXTCHAT
-
-	if (chat_window && chat_window_client == NULL && ulen == rfbTextChatOpen) {
-		try_local_chat_window();
 	}
 
 	saw_ultra_chat = 1;
@@ -1644,15 +1433,10 @@ void set_text_chat(rfbClientPtr cl, int len, char *txt) {
 		if (cl2 == cl) {
 			continue;
 		}
-		if (cl2->state != RFB_NORMAL) {
-			continue;
-		}
 		if (ulen == rfbTextChatOpen) {
 			rfbSendTextChatMessage(cl2, rfbTextChatOpen, "");
 		} else if (ulen == rfbTextChatClose) {
 			rfbSendTextChatMessage(cl2, rfbTextChatClose, "");
-			/* not clear what is going on WRT close and finished... */
-			rfbSendTextChatMessage(cl2, rfbTextChatFinished, "");
 		} else if (ulen == rfbTextChatFinished) {
 			rfbSendTextChatMessage(cl2, rfbTextChatFinished, "");
 		} else if (len <= rfbTextMaxSize) {
@@ -1660,12 +1444,6 @@ void set_text_chat(rfbClientPtr cl, int len, char *txt) {
 		}
 	}
 	rfbReleaseClientIterator(iter);
-
-	if (ulen == rfbTextChatClose && cl != NULL) {
-		/* not clear what is going on WRT close and finished... */
-		rfbSendTextChatMessage(cl, rfbTextChatFinished, "");
-	}
-#endif
 }
 
 int get_keyboard_led_state_hook(rfbScreenInfoPtr s) {

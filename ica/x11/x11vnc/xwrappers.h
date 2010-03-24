@@ -4,7 +4,6 @@
 /* -- xwrappers.h -- */
 
 extern int xshm_present;
-extern int xshm_opcode;
 extern int xtest_present;
 extern int xtrap_present;
 extern int xrecord_present;
@@ -28,7 +27,6 @@ extern XImage *XShmCreateImage_wr(Display* disp, Visual* vis, unsigned int depth
 extern Status XShmAttach_wr(Display *disp, XShmSegmentInfo *shminfo);
 extern Status XShmDetach_wr(Display *disp, XShmSegmentInfo *shminfo);
 extern Bool XShmQueryExtension_wr(Display *disp);
-extern int XShmGetEventBase_wr(Display *disp);
 
 extern XImage *xreadscreen(Display *disp, Drawable d, int x, int y,
     unsigned int width, unsigned int height, Bool show_cursor);

@@ -26,7 +26,7 @@
 /*
  * user input handling heuristics
  */
-int defer_update_nofb = 4;	/* defer a shorter time under -nofb */
+int defer_update_nofb = 6;	/* defer a shorter time under -nofb */
 int last_scroll_type = SCR_NONE;
 
 
@@ -177,9 +177,9 @@ static double scr_key_bdpush_time, scr_mouse_bdpush_time;
 static void parse_scroll_copyrect_str(char *scr) {
 	char *p, *str;
 	int i;
-	char *part[16];
+	char *part[10];
 
-	for (i=0; i<16; i++) {
+	for (i=0; i<10; i++) {
 		part[i] = NULL;
 	}
 
@@ -194,7 +194,6 @@ static void parse_scroll_copyrect_str(char *scr) {
 	while (p) {
 		part[i++] = strdup(p);
 		p = strtok(NULL, ",");
-		if (i >= 16) break;
 	}
 	free(str);
 
@@ -302,9 +301,9 @@ static char *wireframe_mods = NULL;
 static void parse_wireframe_str(char *wf) {
 	char *p, *str;
 	int i;
-	char *part[16];
+	char *part[10];
 
-	for (i=0; i<16; i++) {
+	for (i=0; i<10; i++) {
 		part[i] = NULL;
 	}
 
@@ -328,7 +327,6 @@ static void parse_wireframe_str(char *wf) {
 	while (p) {
 		part[i++] = strdup(p);
 		p = strtok(NULL, ",");
-		if (i >= 16) break;
 	}
 	free(str);
 
@@ -2494,7 +2492,7 @@ static int check_xrecord_keys(void) {
 	get_out = 1;
 	if (got_keyboard_input) {
 		get_out = 0;
-	}
+	} 
 
 	dtime0(&tnow);
 	if (tnow < last_key_scroll + scroll_persist) {
@@ -2737,10 +2735,10 @@ static int check_xrecord_mouse(void) {
 	get_out = 1;
 	if (button_mask) {
 		get_out = 0;
-	}
+	} 
 	if (want_back_in) {
 		get_out = 0;
-	}
+	} 
 	dtime0(&tnow);
 if (0) fprintf(stderr, "check_xrecord_mouse: IN xrecording: %d\n", xrecording);
 
@@ -3577,7 +3575,7 @@ void check_fixscreen(void) {
 	}
 	if (advertise_truecolor && advertise_truecolor_reset && indexed_color) {
 		/* this will reset framebuffer to correct colors, if needed */
-		static double dlast = 0.0;
+		static dlast = 0.0;
 		now = dnow();
 		if (now > last_client + 1.0 && now < last_client + 3.0 && now > dlast + 5.0) {
 			rfbLog("advertise truecolor reset framebuffer\n");
@@ -5364,9 +5362,7 @@ int fb_update_sent(int *count) {
 #if 0
 		sent += cl->framebufferUpdateMessagesSent;
 #else
-#if LIBVNCSERVER_HAS_STATS
 		sent += rfbStatGetMessageCountSent(cl, rfbFramebufferUpdate);
-#endif
 #endif
 	}
 	rfbReleaseClientIterator(i);
@@ -7660,10 +7656,6 @@ void xselectinput(Window w, unsigned long evmask, int sync) {
 	XErrorHandler   old_handler1;
 	XIOErrorHandler old_handler2;
 
-	if (macosx_console || !dpy) {
-		return;
-	}
-
 	old_handler1 = XSetErrorHandler(trap_xerror);
 	old_handler2 = XSetIOErrorHandler(trap_xioerror);
 	trapped_xerror = 0;
@@ -8120,7 +8112,7 @@ void scale_mark_xrootpmap(void) {
 	dst_fb = rfb_fb;
 	dst_bpl = rfb_bytes_per_line;
 
-	scale_rect(scale_fac_x, scale_fac_y, scaling_blend, scaling_interpolate, fac * Bpp,
+	scale_rect(scale_fac, scaling_blend, scaling_interpolate, fac * Bpp,
 	    src_fb, fac * main_bytes_per_line, dst_fb, dst_bpl, dpy_x, yfac * dpy_y,
 	    scaled_x, yfac * scaled_y, 0, yn, dpy_x, yn + dpy_y, mark);
 }
@@ -8307,7 +8299,7 @@ void read_events(int *n_in) {
 					if (w_new != wd || h_new != ht) {
 						msg = "change size";
 						cfg_size = 1;
-					}
+					} 
 					if (x_new != x || y_new != y) {
 						if (!strcmp(msg, "")) {
 							msg = "change position";
@@ -8820,7 +8812,7 @@ if (ncdb) fprintf(stderr, "*VIS  BS_save: 0x%lx %d %d %d\n", win, cache_list[i].
 		last_sched_bs = dnow();
 	}
 #if !NO_X11
-	if (dpy && atom_XROOTPMAP_ID == None && now > last_pixmap + 5.0) {
+	if (atom_XROOTPMAP_ID == None && now > last_pixmap + 5.0) {
 		atom_XROOTPMAP_ID = XInternAtom(dpy, "_XROOTPMAP_ID", True);
 		last_pixmap = now;
 	}
@@ -9088,8 +9080,6 @@ if (hack_val == 2) {
 	for (k = 1; k <= 3; k++) {
 		int j, retry = 0;
 
-		if (retry) {}
-
 		nsave = n;
 
 		if (k > 1 && ncdb) fprintf(stderr, "read_events-%d\n", k);
@@ -9260,10 +9250,12 @@ if (ncdb) fprintf(stderr, "SKIPWINS: Ev_unmap/map: 0x%lx %d\n", twin, n2);
 		}
 	}
 	if (ncache_old_wm) {
+		int old_maps = 0; 
+		int old_unmaps = 0; 
 		int shifts = 0;
 		for (i=0; i < n; i++) {
 			XEvent ev;
-			int type, idx = -1;
+			int ns, skip = 0, type, idx = -1, state, valid;
 			int ik = Ev_order[i];
 			int x_new, y_new, w_new, h_new;
 			int x_old, y_old, w_old, h_old;
@@ -9525,7 +9517,7 @@ if (ncdb) fprintf(stderr, "UM Ev_order[%d] = %d oku=%d okm=%d\n", i, j, oku, okm
 		} else if (n_MN <= 2 && n_ON_st <= 1) {
 			for (i=0; i < n; i++) {
 				XEvent ev;
-				int type, idx = -1, state, valid;
+				int ns, skip = 0, type, idx = -1, state, valid;
 				int ik = Ev_order[i];
 
 				if (Ev_done[ik]) continue;
@@ -9943,14 +9935,14 @@ if (ncdb) fprintf(stderr, "----%02d: MapNotify        0x%lx  %3d\n", ik, win, id
 								save = 0;
 							}
 							sraRgnDestroy(r);
-						}
+						} 
 						if (missed_bs_restore) {
 							r = idx_create_rgn(r0, idx);
 							if (sraRgnAnd(r, missed_bs_restore_rgn)) {
 								save = 0;
 							}
 							sraRgnDestroy(r);
-						}
+						} 
 						if (save) {
 							valid = 0;
 							su_save(idx, nbatch, &attr, 1, &valid, 1);
@@ -10028,7 +10020,7 @@ if (ncdb) fprintf(stderr, "----%02d: UnmapNotify      0x%lx  %3d\n", ik, win, id
 
 #if 0
 /*
-				if (cache_list[idx].map_state == IsViewable || desktop_change || macosx_console)
+//				if (cache_list[idx].map_state == IsViewable || desktop_change || macosx_console)
  */
 #endif
 				if (1) {
@@ -10044,14 +10036,14 @@ if (ncdb) fprintf(stderr, "----%02d: UnmapNotify      0x%lx  %3d\n", ik, win, id
 								save = 0;
 							}
 							sraRgnDestroy(r);
-						}
+						} 
 						if (missed_bs_restore) {
 							r = idx_create_rgn(r0, idx);
 							if (sraRgnAnd(r, missed_bs_restore_rgn)) {
 								save = 0;
 							}
 							sraRgnDestroy(r);
-						}
+						} 
 						if (save) {
 							valid = 0;
 							bs_save(idx, nbatch, &attr, 1, 0, &valid, 1);

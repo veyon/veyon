@@ -377,10 +377,8 @@ void measure_send_rates(int init) {
 		}
 		rbs = cl->rawBytesEquivalent;
 #else
-#if LIBVNCSERVER_HAS_STATS
 		cbs = rfbStatGetSentBytes(cl);
 		rbs = rfbStatGetSentBytesIfRaw(cl);
-#endif
 #endif
 
 		if (init) {
@@ -483,9 +481,7 @@ if (db) fprintf(stderr, "dt2 calc: num rects req: %d/%d mod: %d/%d  "
 #if 0
     cl->framebufferUpdateMessagesSent,
 #else
-#if LIBVNCSERVER_HAS_STATS
     rfbStatGetMessageCountSent(cl, rfbFramebufferUpdate),
-#endif
 #endif
     dt, dt2, tm);
 			if (req1 != 0 && mod1 == 0) {
@@ -562,9 +558,7 @@ if (db) fprintf(stderr, "dt3 calc: num rects req: %d/%d mod: %d/%d  "
 #if 0
     cl->framebufferUpdateMessagesSent,
 #else
-#if LIBVNCSERVER_HAS_STATS
     rfbStatGetMessageCountSent(cl, rfbFramebufferUpdate),
-#endif
 #endif
     dt, dt3, tm);
 

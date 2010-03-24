@@ -56,6 +56,11 @@ extern char *crypt(const char*, const char *);
 #define IS_BSD
 #endif
 
+#ifdef NO_SSL_OR_UNIXPW
+#undef UNIXPW_SU
+#undef UNIXPW_CRYPT
+#endif
+
 int white_pixel(void);
 void unixpw_screen(int init);
 void unixpw_keystroke(rfbBool down, rfbKeySym keysym, int init);
@@ -65,11 +70,12 @@ void unixpw_msg(char *msg, int delay);
 int su_verify(char *user, char *pass, char *cmd, char *rbuf, int *rbuf_size, int nodisp);
 int crypt_verify(char *user, char *pass);
 int cmd_verify(char *user, char *pass);
-void unixpw_verify_screen(char *user, char *pass);
+
 
 static int text_x(void);
 static int text_y(void);
 static void set_db(void);
+static void unixpw_verify(char *user, char *pass);
 
 int unixpw_in_progress = 0;
 int unixpw_denied = 0;
@@ -149,8 +155,8 @@ void unixpw_screen(int init) {
 		y = dpy_y / 4;
 
 		if (scaling) {
-			x = (int) (x * scale_fac_x);
-			y = (int) (y * scale_fac_y);
+			x = (int) (x * scale_fac);
+			y = (int) (y * scale_fac);
 			x = nfix(x, scaled_x);
 			y = nfix(y, scaled_y);
 		}
@@ -1002,8 +1008,38 @@ int su_verify(char *user, char *pass, char *cmd, char *rbuf, int *rbuf_size, int
 #endif	/* UNIXPW_SU */
 }
 
-int unixpw_verify(char *user, char *pass) {
-	int ok = 0;
+static void unixpw_verify(char *user, char *pass) {
+	int x, y;
+	char li[] = "Login incorrect";
+	char log[] = "login: ";
+	char *colon = NULL;
+	ClientData *cd = NULL;
+	int ok;
+
+if (db) fprintf(stderr, "unixpw_verify: '%s' '%s'\n", user, db > 1 ? pass : "********");
+	rfbLog("unixpw_verify: '%s'\n", user ? user : "(null)");
+
+	if (user) {
+		colon = strchr(user, ':');
+	}
+	if (colon) {
+		*colon = '\0';
+		rfbLog("unixpw_verify: colon: '%s'\n", user);
+	}
+	if (unixpw_client) {
+		cd = (ClientData *) unixpw_client->clientData;
+		if (cd) {
+			char *str = (char *)malloc(strlen("UNIX:") +
+			    strlen(user) + 1);
+			sprintf(str, "UNIX:%s", user);	
+			if (cd->username) {
+				free(cd->username);
+			}
+			cd->username = str;
+		}
+	}
+
+	ok = 0;
 	if (unixpw_cmd) {
 		if (cmd_verify(user, pass)) {
 			rfbLog("unixpw_verify: cmd_verify login for '%s'"
@@ -1038,42 +1074,6 @@ int unixpw_verify(char *user, char *pass) {
 			ok = 0;
 		}
 	}
-	return ok;
-}
-
-
-void unixpw_verify_screen(char *user, char *pass) {
-	int x, y;
-	char li[] = "Login incorrect";
-	char log[] = "login: ";
-	char *colon = NULL;
-	ClientData *cd = NULL;
-	int ok;
-
-if (db) fprintf(stderr, "unixpw_verify: '%s' '%s'\n", user, db > 1 ? pass : "********");
-	rfbLog("unixpw_verify: '%s'\n", user ? user : "(null)");
-
-	if (user) {
-		colon = strchr(user, ':');
-	}
-	if (colon) {
-		*colon = '\0';
-		rfbLog("unixpw_verify: colon: '%s'\n", user);
-	}
-	if (unixpw_client) {
-		cd = (ClientData *) unixpw_client->clientData;
-		if (cd) {
-			char *str = (char *)malloc(strlen("UNIX:") +
-			    strlen(user) + 1);
-			sprintf(str, "UNIX:%s", user);	
-			if (cd->username) {
-				free(cd->username);
-			}
-			cd->username = str;
-		}
-	}
-
-	ok = unixpw_verify(user, pass);
 
 	if (ok) {
 		unixpw_accept(user);
@@ -1231,10 +1231,10 @@ void unixpw_keystroke(rfbBool down, rfbKeySym keysym, int init) {
 				x = text_x();
 				y = text_y();
 				if (scaling) {
-					int x2 = x / scale_fac_x;
-					int y2 = y / scale_fac_y;
-					int w2 = char_w / scale_fac_x;
-					int h2 = char_h / scale_fac_y;
+					int x2 = x / scale_fac;
+					int y2 = y / scale_fac;
+					int w2 = char_w / scale_fac;
+					int h2 = char_h / scale_fac;
 
 					x2 = nfix(x2, dpy_x);
 					y2 = nfix(y2, dpy_y);
@@ -1385,7 +1385,7 @@ if (db && db <= 2) fprintf(stderr, "u_cnt: %d %d/%d ks: 0x%x  '%s'\n", u_cnt, x,
 			in_passwd = 0;
 
 			pass[p_cnt++] = '\n';
-			unixpw_verify_screen(user, pass);
+			unixpw_verify(user, pass);
 			for (i=0; i<nmax; i++) {
 				user[i] = '\0';
 				pass[i] = '\0';

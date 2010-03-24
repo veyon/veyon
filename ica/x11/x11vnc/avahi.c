@@ -7,123 +7,18 @@ void avahi_advertise(const char *name, const char *host, const uint16_t port);
 void avahi_reset(void);
 void avahi_cleanup(void);
 
-static pid_t avahi_pid = 0;
-
-static void kill_avahi_pid(void) {
-	if (avahi_pid != 0) {
-		kill(avahi_pid, SIGTERM);
-		avahi_pid = 0;
-	}
-}
-
-static int try_avahi_helper(const char *name, const char *host, const uint16_t port) {
-#if LIBVNCSERVER_HAVE_FORK
-	char *cmd, *p, *path = getenv("PATH"), portstr[32];
-	int i;
-
-	/* avahi-publish */
-	if (no_external_cmds || !cmd_ok("zeroconf")) {
-		return 0;
-	}
-
-	if (!path) {
-		return 0;
-	}
-
-	path = strdup(path); 
-	cmd = (char *) malloc(strlen(path) + 100);
-	sprintf(portstr, "%d", (int) port);
-
-	p = strtok(path, ":");
-	while (p) {
-		struct stat sbuf;
-
-		sprintf(cmd, "%s/avahi-publish", p);
-		if (stat(cmd, &sbuf) == 0) {
-			break;
-		}
-		sprintf(cmd, "%s/dns-sd", p);
-		if (stat(cmd, &sbuf) == 0) {
-			break;
-		}
-		sprintf(cmd, "%s/mDNS", p);
-		if (stat(cmd, &sbuf) == 0) {
-			break;
-		}
-		cmd[0] = '\0';
-
-		p = strtok(NULL, ":");
-	}
-	free(path);
-
-	if (!strcmp(cmd, "")) {
-		free(cmd);
-		rfbLog("Could not find an external avahi/zeroconf helper program.\n");
-		return 0;
-	}
-
-	avahi_pid = fork();
-
-	if (avahi_pid < 0) {
-		rfbLogPerror("fork");
-		avahi_pid = 0;
-		free(cmd);
-		return 0;
-	}
-
-	if (avahi_pid != 0) {
-		int status;
-
-		usleep(500 * 1000);
-		waitpid(avahi_pid, &status, WNOHANG); 
-		if (kill(avahi_pid, 0) != 0) {
-			waitpid(avahi_pid, &status, WNOHANG); 
-			avahi_pid = 0;
-			free(cmd);
-			return 0;
-		}
-		if (! quiet) {
-			rfbLog("%s helper pid is: %d\n", cmd, (int) avahi_pid);
-		}
-		free(cmd);
-		return 1;
-	}
-
-	for (i=3; i<256; i++) {
-		close(i);
-	}
-
-	if (strstr(cmd, "/avahi-publish")) {
-		execlp(cmd, cmd, "-s", name, "_rfb._tcp", portstr, (char *) NULL);
-	} else {
-		execlp(cmd, cmd, "-R", name, "_rfb._tcp", ".", portstr, (char *) NULL);
-	}
-	exit(1);
-#else
-	if (!name || !host || !port) {}
-	return 0;
-#endif
-}
-
 #if !defined(LIBVNCSERVER_HAVE_AVAHI) || !defined(LIBVNCSERVER_HAVE_LIBPTHREAD)
 void avahi_initialise(void) {
 	rfbLog("avahi_initialise: no Avahi support at buildtime.\n");
 }
-
 void avahi_advertise(const char *name, const char *host, const uint16_t port) {
-	if (!try_avahi_helper(name, host, port)) {
-		rfbLog("avahi_advertise:  no Avahi support at buildtime.\n");
-		avahi = 0;
-	}
+	if (!name || !host || !port) {}
+	rfbLog("avahi_advertise:  no Avahi support at buildtime.\n");
 }
-
 void avahi_reset(void) {
-	kill_avahi_pid();
 	rfbLog("avahi_reset: no Avahi support at buildtime.\n");
 }
-
 void avahi_cleanup(void) {
-	kill_avahi_pid();
 	rfbLog("avahi_cleanup: no Avahi support at buildtime.\n");
 }
 #else

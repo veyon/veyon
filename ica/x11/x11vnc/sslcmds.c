@@ -15,6 +15,10 @@
 #endif
 #endif
 
+#ifdef NO_SSL_OR_UNIXPW
+#undef SSLCMDS
+#endif
+
 
 void check_stunnel(void);
 int start_stunnel(int stunnel_port, int x11vnc_port);
@@ -60,7 +64,6 @@ int start_stunnel(int stunnel_port, int x11vnc_port) {
 	char *path, *p, *exe;
 	char *stunnel_path = NULL;
 	struct stat verify_buf;
-	struct stat crl_buf;
 	int status;
 
 	if (stunnel_pid) {
@@ -143,12 +146,6 @@ int start_stunnel(int stunnel_port, int x11vnc_port) {
 			clean_up_exit(1);
 		}
 	}
-	if (ssl_crl) {
-		if (stat(ssl_crl, &crl_buf) != 0) {
-			rfbLog("stunnel: %s does not exist.\n", ssl_crl);
-			clean_up_exit(1);
-		}
-	}
 
 	stunnel_pid = fork();
 
@@ -183,11 +180,6 @@ int start_stunnel(int stunnel_port, int x11vnc_port) {
 					a = "-A";
 				}
 			}
-
-			if (ssl_crl) {
-				rfbLog("stunnel: stunnel3 does not support CRL. %s\n", ssl_crl);
-				clean_up_exit(1);
-			}
 			
 			if (stunnel_pem && ssl_verify) {
 				/* XXX double check -v 2 */
@@ -217,13 +209,6 @@ int start_stunnel(int stunnel_port, int x11vnc_port) {
 		fprintf(in, "pid =\n");
 		if (stunnel_pem) {
 			fprintf(in, "cert = %s\n", stunnel_pem);
-		}
-		if (ssl_crl) {
-			if(S_ISDIR(crl_buf.st_mode)) {
-				fprintf(in, "CRLpath = %s\n", ssl_crl);
-			} else {
-				fprintf(in, "CRLfile = %s\n", ssl_crl);
-			}
 		}
 		if (ssl_verify) {
 			if(S_ISDIR(verify_buf.st_mode)) {

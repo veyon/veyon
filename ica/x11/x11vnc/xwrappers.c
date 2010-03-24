@@ -9,7 +9,6 @@
 #include "macosx.h"
 
 int xshm_present = 0;
-int xshm_opcode = 0;
 int xtest_present = 0;
 int xtrap_present = 0;
 int xrecord_present = 0;
@@ -33,7 +32,6 @@ XImage *XShmCreateImage_wr(Display* disp, Visual* vis, unsigned int depth,
 Status XShmAttach_wr(Display *disp, XShmSegmentInfo *shminfo);
 Status XShmDetach_wr(Display *disp, XShmSegmentInfo *shminfo);
 Bool XShmQueryExtension_wr(Display *disp);
-int XShmGetEventBase_wr(Display *disp);
 
 XImage *xreadscreen(Display *disp, Drawable d, int x, int y,
     unsigned int width, unsigned int height, Bool show_cursor);
@@ -189,7 +187,6 @@ Status XShmAttach_wr(Display *disp, XShmSegmentInfo *shminfo) {
 
 Status XShmDetach_wr(Display *disp, XShmSegmentInfo *shminfo) {
 #if LIBVNCSERVER_HAVE_XSHM
-	if (getenv("X11VNC_SHM_DEBUG")) fprintf(stderr, "XShmDetach_wr: 0x%x disp: 0x%x\n", shminfo, disp);
 	return XShmDetach(disp, shminfo);
 #else
 	if (!disp || !shminfo) {}
@@ -203,15 +200,6 @@ Bool XShmQueryExtension_wr(Display *disp) {
 #else
 	if (!disp) {}
 	return False;
-#endif
-}
-
-int XShmGetEventBase_wr(Display *disp) {
-#if LIBVNCSERVER_HAVE_XSHM
-	return XShmGetEventBase(disp);
-#else
-	if (!disp) {}
-	return 0;
 #endif
 }
 
@@ -236,7 +224,7 @@ XImage *xreadscreen(Display *disp, Drawable d, int x, int y,
 	}
 #  else
 	/* unused vars warning: */
-	if (disp || d || x || y || width || height || show_cursor) {}
+	if (disp || d || x || y || width || height || show_cursor) {} 
 
 	return NULL;
 #  endif
@@ -643,7 +631,7 @@ void XTRAP_FakeKeyEvent_wr(Display* dpy, KeyCode key, Bool down,
 		return;
 	}
 	/* unused vars warning: */
-	if (key || down || delay) {}
+	if (key || down || delay) {} 
 
 # if LIBVNCSERVER_HAVE_LIBXTRAP
 	XESimulateXEventRequest(trap_ctx, down ? KeyPress : KeyRelease,
@@ -734,7 +722,7 @@ void XTRAP_FakeButtonEvent_wr(Display* dpy, unsigned int button, Bool is_press,
 		return;
 	}
 	/* unused vars warning: */
-	if (button || is_press || delay) {}
+	if (button || is_press || delay) {} 
 
 #if LIBVNCSERVER_HAVE_LIBXTRAP
 	XESimulateXEventRequest(trap_ctx,
@@ -800,7 +788,7 @@ void XTRAP_FakeMotionEvent_wr(Display* dpy, int screen, int x, int y,
 		return;
 	}
 	/* unused vars warning: */
-	if (dpy || screen || x || y || delay) {}
+	if (dpy || screen || x || y || delay) {} 
 
 #if LIBVNCSERVER_HAVE_LIBXTRAP
 	XESimulateXEventRequest(trap_ctx, MotionNotify, 0, x, y, 0);
@@ -903,7 +891,7 @@ Bool XETrapQueryExtension_wr(Display *dpy, int *ev, int *er, int *op) {
 	    (INT32 *)op);
 #else
 	/* unused vars warning: */
-	if (ev || er || op) {}
+	if (ev || er || op) {} 
 	return False;
 #endif
 }
@@ -925,7 +913,7 @@ int XTestGrabControl_wr(Display *dpy, Bool impervious) {
 int XTRAP_GrabControl_wr(Display *dpy, Bool impervious) {
 	if (! xtrap_present) {
 		/* unused vars warning: */
-		if (dpy || impervious) {}
+		if (dpy || impervious) {} 
 		return 0;
 	}
 	RAWFB_RET(0)
