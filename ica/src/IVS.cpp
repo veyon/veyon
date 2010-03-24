@@ -26,6 +26,10 @@
 
 #include <italcconfig.h>
 
+#ifdef ITALC_BUILD_WIN32
+#include <windows.h>
+#endif
+
 #include <QtCore/QCoreApplication>
 #include <QtCore/QProcess>
 #include <QtCore/QStringList>

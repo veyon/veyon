@@ -543,6 +543,7 @@ vncClientId vncServer::AddClient(VSocket *socket,
 
 			vncClient* client = GetClient(*i);
 			if (client->GetRepeaterID() && (strlen(client->GetRepeaterID()) > 0) ) {
+#define strncat_s(a,b,c,d) strncat(a,c,b)
 				strncat_s(szInfo, 255, client->GetRepeaterID(), _TRUNCATE);
 			} else {
 				strncat_s(szInfo, 255, client->GetClientName(), _TRUNCATE);

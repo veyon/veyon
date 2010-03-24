@@ -36,19 +36,6 @@
 #include "inifile.h"
 #include "common/win32_helpers.h"
 
-typedef struct _WTS_PROCESS_INFO {
-	DWORD SessionId;
-	DWORD ProcessId;
-	LPTSTR pProcessName;
-	PSID pUserSid;
-} WTS_PROCESS_INFO, *PWTS_PROCESS_INFO;
-
-typedef struct _WTS_SESSION_INFO {
-  DWORD SessionId;
-  LPTSTR pWinStationName;
-  WTS_CONNECTSTATE_CLASS State;
-} WTS_SESSION_INFO, *PWTS_SESSION_INFO;
-
 #define WTSEnumerateSessions WTSEnumerateSessionsA
 #define WTSEnumerateProcesses WTSEnumerateProcessesA
 extern "C"

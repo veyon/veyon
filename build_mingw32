@@ -1,8 +1,8 @@
 MINGW=/opt/mingw32
 export PATH=$PATH:$MINGW/bin
 
-export CFLAGS="-march=native -mtune=native"
-export CXXFLAGS="-march=native -mtune=native"
+export CFLAGS="-march=pentium3 -mtune=generic"
+export CXXFLAGS="-march=pentium3 -mtune=generic"
 
 cmake .. -DCMAKE_TOOLCHAIN_FILE=../cmake/modules/Win32Toolchain.cmake
 

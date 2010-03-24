@@ -1266,8 +1266,17 @@ vncClientThread::InitAuthenticate()
 	}
 	else
 	{
-/*		CARD32 authValue = Swap32IfLE(rfbNoAuth);
-		if (!m_socket->SendExact((char *)&authValue, sizeof(authValue)))*/
+#if 0
+		verified = vncServer::aqrAccept;
+ 		CARD8 list[2];
+ 		list[0] = (CARD8)1;					// number of security types
+ 		list[1] = (CARD8)rfbNoAuth;			// primary security type
+		if (!m_socket->SendExact((char *)&list, sizeof(list)))
+			return FALSE;
+		CARD32 authmsg;
+		authmsg = Swap32IfLE(rfbVncAuthOK);
+		if (!m_socket->SendExact((char *)&authmsg, sizeof(authmsg)))
+#endif
 			return FALSE;
 	}
 	// Read the client's initialisation message

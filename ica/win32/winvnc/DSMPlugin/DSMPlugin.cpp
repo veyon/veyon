@@ -55,6 +55,12 @@
 //	 - Reset()
 //
 // - Unloading of the current loaded plugin
+//
+//  (2009)
+//  Multithreaded DSM plugin framework created by Adam D. Walling aka adzm
+// - Creating a new (threadsafe) instance of a DSM plugin encryptor/decryptor
+//   - CreatePluginInterface -- returns a pointer to a new IPlugin-derived class,
+//       which is then used to transform and restore buffers in a threadsafe manner.
 // 
 // WARNING: For the moment, only ONE instance of this class must exist in Vncviewer and WinVNC
 // Consequently, WinVNc will impose all its clients to use the same plugin. Maybe we'll 
@@ -116,6 +122,7 @@ CDSMPlugin::CDSMPlugin()
 	m_hPDll = NULL;
 
 	// Plugin's functions pointers init
+	/*
 	STARTUP			m_PStartup = NULL;
 	SHUTDOWN		m_PShutdown = NULL;
 	SETPARAMS		m_PSetParams = NULL;
@@ -124,7 +131,23 @@ CDSMPlugin::CDSMPlugin()
 	RESTOREBUFFER	m_PRestoreBuffer = NULL;
 	TRANSFORMBUFFER	m_PFreeBuffer = NULL;
 	RESET			m_PReset = NULL;
+	//adzm - 2009-06-21
+	CREATEPLUGININTERFACE	m_PCreatePluginInterface = NULL;
+	*/
 
+	//adzm - 2009-07-05
+	// Plugin's functions pointers init
+	m_PDescription = NULL;
+	m_PStartup = NULL;
+	m_PShutdown = NULL;
+	m_PSetParams = NULL;
+	m_PGetParams = NULL;
+	m_PTransformBuffer = NULL;
+	m_PRestoreBuffer = NULL;
+	m_PFreeBuffer = NULL;
+	m_PReset = NULL;
+	//adzm - 2009-06-21
+	m_PCreatePluginInterface = NULL;
 }
 
 //
@@ -369,6 +392,8 @@ bool CDSMPlugin::LoadPlugin(char* szPlugin, bool fAllowMulti)
 	m_PRestoreBuffer   = (RESTOREBUFFER)   GetProcAddress(m_hPDll, "RestoreBuffer");
 	m_PFreeBuffer      = (FREEBUFFER)      GetProcAddress(m_hPDll, "FreeBuffer");
 	m_PReset           = (RESET)           GetProcAddress(m_hPDll, "Reset");
+	//adzm - 2009-06-21
+	m_PCreatePluginInterface	= (CREATEPLUGININTERFACE)	GetProcAddress(m_hPDll, "CreatePluginInterface");
 
 	if (m_PStartup == NULL || m_PShutdown == NULL || m_PSetParams == NULL || m_PGetParams == NULL
 		|| m_PTransformBuffer == NULL || m_PRestoreBuffer == NULL || m_PFreeBuffer == NULL)
@@ -409,6 +434,21 @@ bool CDSMPlugin::UnloadPlugin(void)
 	else
 		return false;
 	
+}
+
+//adzm - 2009-06-21
+IPlugin* CDSMPlugin::CreatePluginInterface()
+{
+	if (m_PCreatePluginInterface) {
+		return m_PCreatePluginInterface();
+	} else {
+		return NULL;
+	}
+}
+
+bool CDSMPlugin::SupportsMultithreaded()
+{
+	return m_PCreatePluginInterface != NULL;
 }
 
 

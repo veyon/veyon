@@ -43,6 +43,9 @@ class vncEncodeTight;
 #endif
 extern "C"
 {
+#include <objbase.h>
+#define HAVE_ALL_INTS
+#define HAVE_BOOLEAN
 #include <jpeglib.h>
 }
 
