@@ -1,7 +1,7 @@
 /*
  * system_service.cpp - implementation of systemService-class
  *
- * Copyright (c) 2006 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *  
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -843,7 +843,14 @@ bool systemService::reportStatus( DWORD _state, DWORD _exit_code,
 	}
 	else
 	{
-		s_status.dwControlsAccepted = SERVICE_ACCEPT_STOP | SERVICE_ACCEPT_SESSIONCHANGE;
+		if( QSysInfo::WindowsVersion == QSysInfo::WV_2000 )
+		{
+			s_status.dwControlsAccepted = SERVICE_ACCEPT_STOP;
+		}
+		else
+		{
+			s_status.dwControlsAccepted = SERVICE_ACCEPT_STOP | SERVICE_ACCEPT_SESSIONCHANGE;
+		}
 	}
 
 	// Save the new status we've been given
