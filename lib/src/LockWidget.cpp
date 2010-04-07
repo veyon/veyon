@@ -21,6 +21,10 @@
  *  USA.
  */
 
+#include <italcconfig.h>
+#ifdef ITALC_BUILD_WIN32
+#include <windows.h>
+#endif
 
 #include "LockWidget.h"
 #include "LocalSystem.h"
@@ -37,8 +41,6 @@
 #include <X11/Xlib.h>
 
 #elif ITALC_BUILD_WIN32
-
-#include <windows.h>
 
 static const UINT __ss_get_list[] = { SPI_GETLOWPOWERTIMEOUT,
 						SPI_GETPOWEROFFTIMEOUT,

@@ -1,3 +1,35 @@
+/*
+   Copyright (C) 2002-2010 Karl J. Runge <runge@karlrunge.com> 
+   All rights reserved.
+
+This file is part of x11vnc.
+
+x11vnc is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or (at
+your option) any later version.
+
+x11vnc is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with x11vnc; if not, write to the Free Software
+Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA
+or see <http://www.gnu.org/licenses/>.
+
+In addition, as a special exception, Karl J. Runge
+gives permission to link the code of its release of x11vnc with the
+OpenSSL project's "OpenSSL" library (or with modified versions of it
+that use the same license as the "OpenSSL" library), and distribute
+the linked executables.  You must obey the GNU General Public License
+in all respects for all of the code used other than "OpenSSL".  If you
+modify this file, you may extend this exception to your version of the
+file, but you are not obligated to do so.  If you do not wish to do
+so, delete this exception statement from your version.
+*/
+
 #ifndef _X11VNC_X11VNC_H
 #define _X11VNC_X11VNC_H
 
@@ -438,6 +470,12 @@ extern int raw_fb_seek;
 extern int raw_fb_fd;
 extern int raw_fb_back_to_X;
 
+extern int raw_fb_native_bpp;
+extern int raw_fb_expand_bytes;
+extern unsigned long  raw_fb_native_red_mask,  raw_fb_native_green_mask,  raw_fb_native_blue_mask;
+extern unsigned short raw_fb_native_red_max,   raw_fb_native_green_max,   raw_fb_native_blue_max;
+extern unsigned short raw_fb_native_red_shift, raw_fb_native_green_shift, raw_fb_native_blue_shift;
+
 extern int rfb_bytes_per_line;
 extern int main_bytes_per_line;
 extern int rot_bytes_per_line;
@@ -482,7 +520,7 @@ extern unsigned char *tile_has_diff, *tile_tried, *tile_copied;
 extern unsigned char *tile_has_xdamage_diff, *tile_row_has_xdamage_diff;
 
 /* times of recent events */
-extern time_t last_event, last_input, last_client;
+extern time_t last_event, last_input, last_client, last_open_xdisplay;
 extern time_t last_keyboard_input, last_pointer_input; 
 extern time_t last_local_input;	/* macosx */
 extern time_t last_fb_bytes_sent;
@@ -512,6 +550,7 @@ extern int hack_val;
 extern rfbClientPtr last_pointer_client;
 extern rfbClientPtr latest_client;
 extern double last_client_gone;
+extern double last_new_client;
 
 extern int waited_for_client;
 extern int findcreatedisplay;
@@ -519,6 +558,7 @@ extern char *terminal_services_daemon;
 
 extern int client_count;
 extern int clients_served;
+extern int client_normal_count;
 
 /* more transient kludge variables: */
 extern int cursor_x, cursor_y;		/* x and y from the viewer(s) */

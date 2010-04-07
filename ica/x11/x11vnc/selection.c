@@ -1,9 +1,42 @@
+/*
+   Copyright (C) 2002-2010 Karl J. Runge <runge@karlrunge.com> 
+   All rights reserved.
+
+This file is part of x11vnc.
+
+x11vnc is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or (at
+your option) any later version.
+
+x11vnc is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with x11vnc; if not, write to the Free Software
+Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA
+or see <http://www.gnu.org/licenses/>.
+
+In addition, as a special exception, Karl J. Runge
+gives permission to link the code of its release of x11vnc with the
+OpenSSL project's "OpenSSL" library (or with modified versions of it
+that use the same license as the "OpenSSL" library), and distribute
+the linked executables.  You must obey the GNU General Public License
+in all respects for all of the code used other than "OpenSSL".  If you
+modify this file, you may extend this exception to your version of the
+file, but you are not obligated to do so.  If you do not wish to do
+so, delete this exception statement from your version.
+*/
+
 /* -- selection.c -- */
 
 #include "x11vnc.h"
 #include "cleanup.h"
 #include "connections.h"
 #include "unixpw.h"
+#include "win_utils.h"
 #include "xwrappers.h"
 
 /*
@@ -16,7 +49,7 @@ int own_clipboard = 0;	/* whether we currently own CLIPBOARD or not */
 int set_clipboard = 1;
 int set_cutbuffer = 0;	/* to avoid bouncing the CutText right back */
 int sel_waittime = 15;	/* some seconds to skip before first send */
-Window selwin;		/* special window for our selection */
+Window selwin = None;	/* special window for our selection */
 Atom clipboard_atom = None;
 
 /*
@@ -31,6 +64,7 @@ void selection_request(XEvent *ev, char *type);
 int check_sel_direction(char *dir, char *label, char *sel, int len);
 void cutbuffer_send(void);
 void selection_send(XEvent *ev);
+void resend_selection(char *type);
 
 
 /*
@@ -43,6 +77,9 @@ void selection_send(XEvent *ev);
 static char cutbuffer_str[PROP_MAX+1];
 static char primary_str[PROP_MAX+1];
 static char clipboard_str[PROP_MAX+1];
+static int cutbuffer_len = 0;
+static int primary_len   = 0;
+static int clipboard_len = 0;
 
 /*
  * An X11 (not VNC) client on the local display has requested the selection
@@ -63,6 +100,7 @@ void selection_request(XEvent *ev, char *type) {
 	unsigned int length;
 	unsigned char *data;
 	static Atom xa_targets = None;
+	static int sync_it = -1;
 # ifndef XA_LENGTH
 	unsigned long XA_LENGTH;
 # endif
@@ -71,6 +109,14 @@ void selection_request(XEvent *ev, char *type) {
 # ifndef XA_LENGTH
 	XA_LENGTH = XInternAtom(dpy, "LENGTH", True);
 # endif
+
+	if (sync_it < 0) {
+		if (getenv("X11VNC_SENDEVENT_SYNC")) {
+			sync_it = 1;
+		} else {
+			sync_it = 0;
+		}
+	}
 
 	req_event = &(ev->xselectionrequest);
 	notify_event.type 	= SelectionNotify;
@@ -160,20 +206,53 @@ void selection_request(XEvent *ev, char *type) {
 	}
 
 	if (! trapped_xerror) {
-		int ret = XSendEvent(req_event->display, req_event->requestor, False, 0,
-		    (XEvent *)&notify_event);
+		int ret = -2, skip_it = 0, ms = 0;
+		double now = dnow();
+		static double last_check = 0.0;
+
+		if (now > last_check + 0.2) {
+			XFlush_wr(dpy);
+			if (!valid_window(req_event->requestor , NULL, 1)) {
+				sync_it = 1;
+				skip_it = 1;
+				if (debug_sel) {
+					rfbLog("selection_request: not a valid window: 0x%x\n",
+					    req_event->requestor);
+				}
+				ms = 10;
+			}
+			if (trapped_xerror) {
+				sync_it = 1;
+				skip_it = 1;
+			}
+			last_check = dnow();
+		}
+
+		if (!skip_it) {
+			ret = XSendEvent(req_event->display, req_event->requestor, False, 0,
+			    (XEvent *)&notify_event);
+		}
 		if (debug_sel) {
 			rfbLog("XSendEvent() -> %d\n", ret);
+		}
+		if (ms > 0) {
+			usleep(ms * 1000);
 		}
 	}
 	if (trapped_xerror) {
 		rfbLog("selection_request: ignored XError while sending "
 		    "%s selection to 0x%x.\n", type, req_event->requestor);
 	}
+
+	XFlush_wr(dpy);
+	if (sync_it) {
+		usleep(10 * 1000);
+		XSync(dpy, False);
+	}
+
 	XSetErrorHandler(old_handler);
 	trapped_xerror = 0;
 
-	XFlush_wr(dpy);
 #endif	/* NO_X11 */
 }
 
@@ -271,7 +350,7 @@ void cutbuffer_send(void) {
 	if (!screen) {
 		return;
 	}
-	len = strlen(cutbuffer_str);
+	cutbuffer_len = len = strlen(cutbuffer_str);
 	if (check_sel_direction("send", "cutbuffer_send", cutbuffer_str, len)) {
 		rfbSendServerCutText(screen, cutbuffer_str, len);
 	}
@@ -417,6 +496,49 @@ if (debug_sel) fprintf(stderr, "selection_send: data: '%s' dlen: %d nitems: %lu 
 	}
 
 	len = newlen;
+	if (ev->xselection.selection == XA_PRIMARY) {
+		primary_len = len;
+	} else if (clipboard_atom && ev->xselection.selection == clipboard_atom)  {
+		clipboard_len = len;
+	}
+	if (check_sel_direction("send", "selection_send", selection_str, len)) {
+		rfbSendServerCutText(screen, selection_str, len);
+	}
+#endif	/* NO_X11 */
+}
+
+void resend_selection(char *type) {
+#if NO_X11
+	RAWFB_RET_VOID
+	if (!type) {}
+	return;
+#else
+	char *selection_str = "";
+	int len = 0;
+
+	RAWFB_RET_VOID
+
+	if (! all_clients_initialized()) {
+		rfbLog("selection_send: no send: uninitialized clients\n");
+		return; /* some clients initializing, cannot send */ 
+	}
+	if (unixpw_in_progress) {
+		return;
+	}
+	if (!screen) {
+		return;
+	}
+
+	if (!strcmp(type, "cutbuffer")) {
+		selection_str = cutbuffer_str;
+		len = cutbuffer_len;
+	} else if (!strcmp(type, "clipboard")) {
+		selection_str = clipboard_str;
+		len = clipboard_len;
+	} else if (!strcmp(type, "primary")) {
+		selection_str = primary_str;
+		len = primary_len;
+	}
 	if (check_sel_direction("send", "selection_send", selection_str, len)) {
 		rfbSendServerCutText(screen, selection_str, len);
 	}

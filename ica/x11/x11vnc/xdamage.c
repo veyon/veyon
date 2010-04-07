@@ -1,3 +1,35 @@
+/*
+   Copyright (C) 2002-2010 Karl J. Runge <runge@karlrunge.com> 
+   All rights reserved.
+
+This file is part of x11vnc.
+
+x11vnc is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or (at
+your option) any later version.
+
+x11vnc is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with x11vnc; if not, write to the Free Software
+Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA
+or see <http://www.gnu.org/licenses/>.
+
+In addition, as a special exception, Karl J. Runge
+gives permission to link the code of its release of x11vnc with the
+OpenSSL project's "OpenSSL" library (or with modified versions of it
+that use the same license as the "OpenSSL" library), and distribute
+the linked executables.  You must obey the GNU General Public License
+in all respects for all of the code used other than "OpenSSL".  If you
+modify this file, you may extend this exception to your version of the
+file, but you are not obligated to do so.  If you do not wish to do
+so, delete this exception statement from your version.
+*/
+
 /* -- xdamage.c -- */
 
 #include "x11vnc.h"
@@ -24,6 +56,8 @@ int xdamage_max_area = 20000;	/* pixels */
 double xdamage_memory = 1.0;	/* in units of NSCAN */
 int xdamage_tile_count = 0, xdamage_direct_count = 0;
 double xdamage_scheduled_mark = 0.0;
+double xdamage_crazy_time = 0.0;
+double xdamage_crazy_delay = 300.0;
 sraRegionPtr xdamage_scheduled_mark_region = NULL;
 sraRegionPtr *xdamage_regions = NULL;
 int xdamage_ticker = 0;
@@ -368,6 +402,7 @@ int collect_xdamage(int scancnt, int call) {
 #define DUPSZ 32
 	int dup_x[DUPSZ], dup_y[DUPSZ], dup_w[DUPSZ], dup_h[DUPSZ];
 	double tm, dt;
+	int mark_all = 0, retries = 0, too_many = 1000, tot_ev = 0;
 
 	RAWFB_RET(0)
 
@@ -411,6 +446,9 @@ int collect_xdamage(int scancnt, int call) {
 	X_LOCK;
 if (0)	XFlush_wr(dpy);
 if (0)	XEventsQueued(dpy, QueuedAfterFlush);
+
+	come_back_for_more:
+
 	while (XCheckTypedEvent(dpy, xdamage_base_event_type+XDamageNotify, &ev)) {
 		/*
 		 * TODO max cut off time in this loop?
@@ -418,6 +456,26 @@ if (0)	XEventsQueued(dpy, QueuedAfterFlush);
 		 * screen.
 		 */
 		ecount++;
+		tot_ev++;
+
+		if (mark_all) {
+			continue;
+		}
+		if (ecount == too_many) {
+			int nqa = XEventsQueued(dpy, QueuedAlready);
+			if (nqa >= too_many) {
+				static double last_msg = 0.0;
+				tmpregion = sraRgnCreateRect(0, 0, dpy_x, dpy_y);
+				sraRgnOr(reg, tmpregion);
+				sraRgnDestroy(tmpregion);
+				if (dnow() > last_msg + xdamage_crazy_delay) {
+					rfbLog("collect_xdamage: too many xdamage events %d+%d\n", ecount, nqa);
+					last_msg = dnow();
+				}
+				mark_all = 1;
+			}
+		}
+
 		if (ev.type != xdamage_base_event_type + XDamageNotify) {
 			break;
 		}
@@ -505,11 +563,36 @@ if (0)	XEventsQueued(dpy, QueuedAfterFlush);
 		rect_count++;
 		ccount++;
 	}
+
+	if (mark_all) {
+		if (ecount + XEventsQueued(dpy, QueuedAlready) >= 3 * too_many && retries < 3) {
+			retries++;
+			XFlush_wr(dpy);
+			usleep(20 * 1000);
+			XFlush_wr(dpy);
+			ecount = 0;
+			goto come_back_for_more;
+		}
+	}
+
 	/* clear the whole damage region for next time. XXX check */
 	if (call == 1) {
 		XDamageSubtract(dpy, xdamage, None, None);
 	}
 	X_UNLOCK;
+
+	if (tot_ev > 20 * too_many) {
+		rfbLog("collect_xdamage: xdamage has gone crazy (screensaver or game?) ev: %d ret: %d\n", tot_ev, retries);
+		rfbLog("collect_xdamage: disabling xdamage for %d seconds.\n", (int) xdamage_crazy_delay);
+		destroy_xdamage_if_needed();
+		X_LOCK;
+		XSync(dpy, False);
+		while (XCheckTypedEvent(dpy, xdamage_base_event_type+XDamageNotify, &ev)) {
+			;
+		}
+		X_UNLOCK;
+		xdamage_crazy_time = dnow();
+	}
 
 	if (0 && xdamage_direct_count) {
 		fb_push();
@@ -688,13 +771,15 @@ void create_xdamage_if_needed(int force) {
 
 	RAWFB_RET_VOID
 
+	if (force) {}
+
 #if LIBVNCSERVER_HAVE_LIBXDAMAGE
 	if (! xdamage || force) {
 		X_LOCK;
 		xdamage = XDamageCreate(dpy, window, XDamageReportRawRectangles); 
 		XDamageSubtract(dpy, xdamage, None, None);
 		X_UNLOCK;
-		rfbLog("created xdamage object: 0x%lx\n", xdamage);
+		rfbLog("created   xdamage object: 0x%lx\n", xdamage);
 	}
 #endif
 }
@@ -730,6 +815,9 @@ void check_xdamage_state(void) {
 	 * Create or destroy the Damage object as needed, we don't want
 	 * one if no clients are connected.
 	 */
+	if (xdamage_crazy_time > 0.0 && dnow() < xdamage_crazy_time + xdamage_crazy_delay) {
+		return;
+	}
 	if (client_count && use_xdamage) {
 		create_xdamage_if_needed(0);
 		if (xdamage_scheduled_mark > 0.0 && dnow() >

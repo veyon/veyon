@@ -1,3 +1,35 @@
+/*
+   Copyright (C) 2002-2010 Karl J. Runge <runge@karlrunge.com> 
+   All rights reserved.
+
+This file is part of x11vnc.
+
+x11vnc is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or (at
+your option) any later version.
+
+x11vnc is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with x11vnc; if not, write to the Free Software
+Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA
+or see <http://www.gnu.org/licenses/>.
+
+In addition, as a special exception, Karl J. Runge
+gives permission to link the code of its release of x11vnc with the
+OpenSSL project's "OpenSSL" library (or with modified versions of it
+that use the same license as the "OpenSSL" library), and distribute
+the linked executables.  You must obey the GNU General Public License
+in all respects for all of the code used other than "OpenSSL".  If you
+modify this file, you may extend this exception to your version of the
+file, but you are not obligated to do so.  If you do not wish to do
+so, delete this exception statement from your version.
+*/
+
 /* -- 8to24.c -- */
 #include "x11vnc.h"
 #include "cleanup.h"
@@ -79,7 +111,9 @@ static void set_root_cmap(void) {
 
 	RAWFB_RET_VOID
 
-	if (depth > 8) {
+	if (depth > 16) {
+		ncolor = NCOLOR;
+	} else if (depth > 8) {
 		ncolor = 1 << depth;
 	} else {
 		ncolor = NCOLOR;
@@ -255,7 +289,7 @@ static void set_poll_fb(void) {
 		return;		/* this saves a bit of RAM */
 	}
 	pfb(4, &poll24_fb, &poll24_fb_w, &poll24_fb_h);
-	if (depth > 8) {
+	if (depth > 8 && depth <= 16) {
 		pfb(2, &poll8_fb,  &poll8_fb_w,  &poll8_fb_h);	/* 2X for rare 16bpp colormap case */
 	} else {
 		pfb(1, &poll8_fb,  &poll8_fb_w,  &poll8_fb_h);
@@ -333,7 +367,7 @@ if (db24 > 2) fprintf(stderr, " check_for_multivis: %.4f\n", now - last_call);
 		if (stack_old) {
 			free(stack_old);
 		}
-		stack_old = (Window *) malloc(n*sizeof(Window));
+		stack_old = (Window *) calloc(n*sizeof(Window), 1);
 		stack_old_len = n;
 	}
 
@@ -907,6 +941,7 @@ if (db24 > 2) fprintf(stderr, "avoid bad match...\n");
 	xi_r = XGetSubImage(dpy, win, xo, yo, w, 1, AllPlanes, ZPixmap, xi,
 	    0, 0);
 	XSetErrorHandler(old_handler);
+
 	X_UNLOCK;
 
 	if (! xi_r || trapped_xerror) {
@@ -1340,7 +1375,10 @@ static int get_cmap(int j, Colormap cmap) {
 
 	RAWFB_RET(0)
 
-	if (depth > 8) {
+	if (depth > 16) {
+		/* 24 */
+		ncolor = NCOLOR;
+	} else if (depth > 8) {
 		ncolor = 1 << depth;
 	} else {
 		ncolor = NCOLOR;
@@ -1362,9 +1400,10 @@ static int get_cmap(int j, Colormap cmap) {
 	} else {
 		ncells = NCOLOR;
 	}
-if (db24 > 1) fprintf(stderr, "get_cmap: %d 0x%x\n", j, (unsigned int) cmap);
 
-	if (ncells > ncolor) {
+	if (depth > 16) {
+		;
+	} else if (ncells > ncolor) {
 		ncells = ncolor;
 	} else if (ncells == 8 && depth != 3) {
 		/* XXX. see set_colormap() */
@@ -1376,6 +1415,7 @@ if (db24 > 1) fprintf(stderr, "get_cmap: %d 0x%x\n", j, (unsigned int) cmap);
 		color[j][i].pixel = i;
 		color[j][i].pad = 0;
 	}
+if (db24 > 1) fprintf(stderr, "get_cmap: %d 0x%x ncolor=%d ncells=%d\n", j, (unsigned int) cmap, ncolor, ncells);
 
 	/* try to query the colormap, trap errors */
 	X_LOCK;
@@ -1625,6 +1665,7 @@ if (db24 > 1) fprintf(stderr, "skipping due to potential bad match...\n");
 		    ZPixmap, xi, 0, 0);
 #endif
 		XSetErrorHandler(old_handler);
+
 		X_UNLOCK;
 
 		if (! xi_r || trapped_xerror) {
@@ -2061,7 +2102,7 @@ void mark_8bpp(int mode) {
 		}
 		if (windows_8bpp[i].map_state != IsViewable) {
 			XWindowAttributes attr;
-			int vw;
+			int vw = 0;
 
 			X_LOCK;
 			vw = valid_window(windows_8bpp[i].win, &attr, 1);

@@ -1,3 +1,35 @@
+/*
+   Copyright (C) 2002-2010 Karl J. Runge <runge@karlrunge.com> 
+   All rights reserved.
+
+This file is part of x11vnc.
+
+x11vnc is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or (at
+your option) any later version.
+
+x11vnc is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with x11vnc; if not, write to the Free Software
+Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA
+or see <http://www.gnu.org/licenses/>.
+
+In addition, as a special exception, Karl J. Runge
+gives permission to link the code of its release of x11vnc with the
+OpenSSL project's "OpenSSL" library (or with modified versions of it
+that use the same license as the "OpenSSL" library), and distribute
+the linked executables.  You must obey the GNU General Public License
+in all respects for all of the code used other than "OpenSSL".  If you
+modify this file, you may extend this exception to your version of the
+file, but you are not obligated to do so.  If you do not wish to do
+so, delete this exception statement from your version.
+*/
+
 /* -- user.c -- */
 
 #include "x11vnc.h"
@@ -13,6 +45,7 @@
 #include "keyboard.h"
 #include "cursor.h"
 #include "remote.h"
+#include "sslhelper.h"
 #include "avahi.h"
 
 void check_switched_user(void);
@@ -21,6 +54,7 @@ int switch_user(char *user, int fb_mode);
 int read_passwds(char *passfile);
 void install_passwds(void);
 void check_new_passwds(int force);
+void progress_client(void);
 int wait_for_client(int *argc, char** argv, int http);
 rfbBool custom_passwd_check(rfbClientPtr cl, const char *response, int len);
 char *xdmcp_insert = NULL;
@@ -274,6 +308,9 @@ static void user2uid(char *user, uid_t *uid, gid_t *gid, char **name, char **hom
 			if (strstr(user2group[i], user) == user2group[i]) {
 				char *w = user2group[i] + strlen(user);
 				if (*w == '.') {
+#if (SMALL_FOOTPRINT > 2)
+					gotgroup = 0;
+#else
 					struct group* gr = getgrnam(++w);
 					if (! gr) {
 						rfbLog("Invalid group: %s\n", w);
@@ -286,6 +323,7 @@ static void user2uid(char *user, uid_t *uid, gid_t *gid, char **name, char **hom
 						did[i] = 1;
 					}
 					gotgroup = 1;
+#endif
 				}
 			}
 			i++;
@@ -590,6 +628,7 @@ static int guess_user_and_switch(char *str, int fb_mode) {
 			free(t);
 			continue;
 		}
+
 		if (switch_user(user, fb_mode)) {
 			rfbLog("switched to guessed user: %s\n", user);
 			free(t);
@@ -684,6 +723,8 @@ int switch_user(char *user, int fb_mode) {
 		user++;
 	}
 
+	ssl_helper_pid(0, -2);	/* waitall */
+
 	if (strstr(user, "guess=") == user) {
 		return guess_user_and_switch(user, fb_mode);
 	}
@@ -724,7 +765,7 @@ static int switch_user_env(uid_t uid, gid_t gid, char *name, char *home, int fb_
 	return 0;
 #else
 	/*
-	 * OK tricky here, we need to free the shm... otherwise
+	 * OK, tricky here, we need to free the shm... otherwise
 	 * we won't be able to delete it as the other user...
 	 */
 	if (fb_mode == 1 && (using_shm && ! xform24to32)) {
@@ -736,11 +777,13 @@ static int switch_user_env(uid_t uid, gid_t gid, char *name, char *home, int fb_
 #if LIBVNCSERVER_HAVE_PWD_H
 	if (getpwuid(uid) != NULL && getenv("X11VNC_SINGLE_GROUP") == NULL) {
 		struct passwd *p = getpwuid(uid);
-		if (initgroups(p->pw_name, gid) == 0)  {
+		/* another possibility is p->pw_gid instead of gid */
+		if (setgid(gid) == 0 && initgroups(p->pw_name, gid) == 0)  {
 			grp_ok = 1;
 		} else {
 			rfbLogPerror("initgroups");
 		}
+		endgrent();
 	}
 #endif
 #endif
@@ -1042,6 +1085,7 @@ void install_passwds(void) {
 		passwds_new[0] = passwds_old[0];
 		passwds_new[1] = viewonly_passwd;
 		passwds_new[2] = NULL;
+		/* mutex */
 		screen->authPasswdData = (void*) passwds_new;
 	} else if (passwd_list) {
 		int i = 0;
@@ -1051,6 +1095,7 @@ void install_passwds(void) {
 		if (begin_viewonly < 0) {
 			begin_viewonly = i+1;
 		}
+		/* mutex */
 		screen->authPasswdData = (void*) passwd_list;
 		screen->authPasswdFirstViewOnly = begin_viewonly;
 	}
@@ -1124,6 +1169,7 @@ static void handle_one_http_request(void) {
 	if (inetd || screen->httpPort == 0) {
 		int port = find_free_port(5800, 5860);
 		if (port) {
+			/* mutex */
 			screen->httpPort = port;
 		} else {
 			rfbLog("handle_one_http_request: no http port.\n");
@@ -1216,6 +1262,7 @@ void user_supplied_opts(char *opts) {
 		"noncache", "nc",
 		"nodisplay", "nd",
 		"viewonly", "vo",
+		"tag",
 		NULL
 	};
 
@@ -1248,13 +1295,13 @@ void user_supplied_opts(char *opts) {
 			if (scale_str) free(scale_str);
 			scale_str = strdup(p);
 		} else if (ok) {
-			if (strstr(p, "display=") == p) {
+			if (0 && strstr(p, "display=") == p) {
 				if (use_dpy) free(use_dpy);
 				use_dpy = strdup(p + strlen("display="));
-			} else if (strstr(p, "auth=") == p) {
+			} else if (0 && strstr(p, "auth=") == p) {
 				if (auth_file) free(auth_file);
 				auth_file = strdup(p + strlen("auth="));
-			} else if (!strcmp(p, "shared")) {
+			} else if (0 && !strcmp(p, "shared")) {
 				shared = 1;
 			} else if (strstr(p, "scale=") == p) {
 				if (scale_str) free(scale_str);
@@ -1370,10 +1417,27 @@ static void setup_fake_fb(XImage* fb_image, int w, int h, int b) {
 	fb_image->bits_per_pixel = b;
 	fb_image->bytes_per_line = w*b/8;
 	fb_image->bitmap_unit = -1;
-	fb_image->depth = 24;
-	fb_image->red_mask   = 0xff0000;
-	fb_image->green_mask = 0x00ff00;
-	fb_image->blue_mask  = 0x0000ff;
+	if (b >= 24) {
+		fb_image->depth = 24;
+		fb_image->red_mask   = 0xff0000;
+		fb_image->green_mask = 0x00ff00;
+		fb_image->blue_mask  = 0x0000ff;
+	} else if (b >= 16) {
+		fb_image->depth = 16;
+		fb_image->red_mask   = 0x003f;
+		fb_image->green_mask = 0x07c0;
+		fb_image->blue_mask  = 0xf800;
+	} else if (b >= 2) {
+		fb_image->depth = 8;
+		fb_image->red_mask   = 0x07;
+		fb_image->green_mask = 0x38;
+		fb_image->blue_mask  = 0xc0;
+	} else {
+		fb_image->depth = 1;
+		fb_image->red_mask   = 0x1;
+		fb_image->green_mask = 0x1;
+		fb_image->blue_mask  = 0x1;
+	}
 
 	depth = fb_image->depth;
 
@@ -1383,8 +1447,16 @@ static void setup_fake_fb(XImage* fb_image, int w, int h, int b) {
 	off_y = 0;
 }
 
+void do_announce_http(void);
+void do_mention_java_urls(void);
+
 static void setup_service(void) {
+	if (remote_direct) {
+		return;
+	}
 	if (!inetd) {
+		do_mention_java_urls();
+		do_announce_http();
 		if (!use_openssl) {
 			announce(screen->port, use_openssl, NULL);
 			fprintf(stdout, "PORT=%d\n", screen->port);
@@ -1479,6 +1551,7 @@ static void setup_client_connect(int *did_client_connect) {
 static void loop_for_connect(int did_client_connect) {
 	int loop = 0;
 	time_t start = time(NULL);
+
 	if (first_conn_timeout < 0) {
 		first_conn_timeout = -first_conn_timeout;
 	}
@@ -1503,18 +1576,25 @@ static void loop_for_connect(int did_client_connect) {
 				goto screen_check;
 			}
 		}
-		if (use_openssl && !inetd) {
-			check_openssl();
-			check_https();
+		if ((use_openssl || use_stunnel) && !inetd) {
+			int enc_none = (enc_str && !strcmp(enc_str, "none"));
+			if (!use_stunnel || enc_none) {
+				check_openssl();
+				check_https();
+			}
 			/*
 			 * This is to handle an initial verify cert from viewer,
 			 * they disconnect right after fetching the cert.
 			 */
-			if (! use_threads) rfbPE(-1);
+			if (use_threads) {
+				usleep(10 * 1000);
+			} else {
+				rfbPE(-1);
+			}
 			if (screen && screen->clientHead) {
 				int i;
 				if (unixpw) {
-					if (! unixpw_in_progress) {
+					if (! unixpw_in_progress && !vencrypt_enable_plain_login) {
 						rfbLog("unixpw but no unixpw_in_progress\n");
 						clean_up_exit(1);
 					}
@@ -1553,7 +1633,9 @@ static void loop_for_connect(int did_client_connect) {
 			check_openssl();
 		}
 
-		if (! use_threads) {
+		if (use_threads) {
+			usleep(10 * 1000);
+		} else {
 			rfbPE(-1);
 		}
 
@@ -1570,7 +1652,7 @@ static void loop_for_connect(int did_client_connect) {
 
 static void do_unixpw_loop(void) {
 	if (unixpw) {
-		if (! unixpw_in_progress) {
+		if (! unixpw_in_progress && !vencrypt_enable_plain_login) {
 			rfbLog("unixpw but no unixpw_in_progress\n");
 			clean_up_exit(1);
 		}
@@ -1588,6 +1670,15 @@ static void do_unixpw_loop(void) {
 				unixpw_in_rfbPE = 0;
 			}
 			if (unixpw_in_progress) {
+				static double lping = 0.0;
+				if (lping < dnow() + 5) {
+					mark_rect_as_modified(0, 0, 1, 1, 1);
+					lping = dnow();
+				}
+				if (time(NULL) > unixpw_last_try_time + 45) {
+					rfbLog("unixpw_deny: timed out waiting for reply.\n");
+					unixpw_deny();
+				}
 				usleep(20 * 1000);
 				continue;
 			}
@@ -1616,6 +1707,7 @@ static void vnc_redirect_loop(char *vnc_redirect_test, int *vnc_redirect_cnt) {
 #if LIBVNCSERVER_HAVE_FORK
 			if ((pid = fork()) > 0) {
 				close(screen->httpListenSock);
+				/* mutex */
 				screen->httpListenSock = -2;
 				usleep(500 * 1000);
 			} else {
@@ -1804,11 +1896,20 @@ char *setup_cmd(char *str, int *vnc_redirect, char **vnc_redirect_host, int *vnc
 		char com[100];
 		int fd = mkstemp(tmp);
 		if (fd >= 0) {
+			int ret;
 			write(fd, find_display, strlen(find_display));
 			close(fd);
 			set_env("FINDDISPLAY_run", "1");
-			sprintf(com, "/bin/sh %s -n; rm -f %s", tmp, tmp);
-			system(com);
+			sprintf(com, "/bin/sh %s -n", tmp);
+			ret = system(com);
+			if (WIFEXITED(ret) && WEXITSTATUS(ret) != 0) {
+				if (got_findauth && !getenv("FD_XDM")) {
+					if (getuid() == 0 || geteuid() == 0) {
+						set_env("FD_XDM", "1");
+						system(com);
+					}
+				}
+			}
 		}
 		unlink(tmp);
 		exit(0);
@@ -1853,9 +1954,9 @@ static char *build_create_cmd(char *cmd, int *saw_xdmcp, char *usslpeer, char *t
 	char *create_cmd = NULL;
 	char *opts = strchr(cmd, '-');
 	char st[] = "";
-	char fdgeom[128], fdsess[128], fdopts[128], fdprog[128];
+	char fdgeom[128], fdsess[128], fdopts[128], fdextra[256], fdprog[128];
 	char fdxsrv[128], fdxdum[128], fdcups[128], fdesd[128];
-	char fdnas[128], fdsmb[128], fdtag[128];
+	char fdnas[128], fdsmb[128], fdtag[128], fdxdmcpif[128];
 	char cdout[128];
 
 	if (opts) {
@@ -1870,6 +1971,7 @@ static char *build_create_cmd(char *cmd, int *saw_xdmcp, char *usslpeer, char *t
 	fdsess[0] = '\0';
 	fdgeom[0] = '\0';
 	fdopts[0] = '\0';
+	fdextra[0] = '\0';
 	fdprog[0] = '\0';
 	fdxsrv[0] = '\0';
 	fdxdum[0] = '\0';
@@ -1878,6 +1980,7 @@ static char *build_create_cmd(char *cmd, int *saw_xdmcp, char *usslpeer, char *t
 	fdnas[0]  = '\0';
 	fdsmb[0]  = '\0';
 	fdtag[0]  = '\0';
+	fdxdmcpif[0]  = '\0';
 	cdout[0]  = '\0';
 
 	if (unixpw && keep_unixpw_opts && keep_unixpw_opts[0] != '\0') {
@@ -1886,6 +1989,8 @@ static char *build_create_cmd(char *cmd, int *saw_xdmcp, char *usslpeer, char *t
 			sprintf(fdsess, "gnome");
 		} else if (strstr(t, "kde")) {
 			sprintf(fdsess, "kde");
+		} else if (strstr(t, "lxde")) {
+			sprintf(fdsess, "lxde");
 		} else if (strstr(t, "twm")) {
 			sprintf(fdsess, "twm");
 		} else if (strstr(t, "fvwm")) {
@@ -1932,7 +2037,7 @@ static char *build_create_cmd(char *cmd, int *saw_xdmcp, char *usslpeer, char *t
 				p++;
 			}
 			if (ok && strlen(q) < 32) {
-				sprintf(fdgeom, q);
+				sprintf(fdgeom, "%s", q);
 				if (!quiet) {
 					rfbLog("set create display geom: %s\n", fdgeom);
 				}
@@ -1952,6 +2057,35 @@ static char *build_create_cmd(char *cmd, int *saw_xdmcp, char *usslpeer, char *t
 				sprintf(fdesd, "%d", p);
 			}
 		}
+		if (!getenv("FD_TAG")) {
+			char *s = NULL;
+
+			q = strstr(t, "tag=");
+			if (q) s = strchr(q, ',');
+			if (s) *s = '\0';
+
+			if (q && strlen(q) < 120) {
+				char *p;
+				int ok = 1;
+				q = strchr(q, '=') + 1;
+				p = q;
+				while (*p != '\0') {
+					char c = *p;
+					if (*p == '_' || *p == '-') {
+						;
+					} else if (!isalnum((int) c)) {
+						ok = 0;
+						rfbLog("bad tag char: '%c' in '%s'\n", c, q);
+						break;
+					}
+					p++;
+				}
+				if (ok) {
+					sprintf(fdtag, "%s", q);
+				}
+			}
+			if (s) *s = ',';
+		}
 		free(t);
 	}
 	if (fdgeom[0] == '\0' && getenv("FD_GEOM")) {
@@ -1962,6 +2096,11 @@ static char *build_create_cmd(char *cmd, int *saw_xdmcp, char *usslpeer, char *t
 	}
 	if (fdopts[0] == '\0' && getenv("FD_OPTS")) {
 		snprintf(fdopts, 120, "%s", getenv("FD_OPTS"));
+	}
+	if (fdextra[0] == '\0' && getenv("FD_EXTRA")) {
+		if (!strchr(getenv("FD_EXTRA"), '\'')) {
+			snprintf(fdextra, 250, "%s", getenv("FD_EXTRA"));
+		}
 	}
 	if (fdprog[0] == '\0' && getenv("FD_PROG")) {
 		snprintf(fdprog, 120, "%s", getenv("FD_PROG"));
@@ -1984,15 +2123,34 @@ static char *build_create_cmd(char *cmd, int *saw_xdmcp, char *usslpeer, char *t
 	if (fdtag[0] == '\0' && getenv("FD_TAG")) {
 		snprintf(fdtag, 120, "%s", getenv("FD_TAG"));
 	}
-	if (fdxdum[0] == '\0' && getenv("FD_XDUMMY_NOROOT")) {
-		snprintf(fdxdum, 120, "%s", getenv("FD_XDUMMY_NOROOT"));
+	if (fdxdmcpif[0] == '\0' && getenv("FD_XDMCP_IF")) {
+		snprintf(fdxdmcpif,  120, "%s", getenv("FD_XDMCP_IF"));
+	}
+	if (fdxdum[0] == '\0' && getenv("FD_XDUMMY_RUN_AS_ROOT")) {
+		snprintf(fdxdum, 120, "%s", getenv("FD_XDUMMY_RUN_AS_ROOT"));
 	}
 	if (getenv("CREATE_DISPLAY_OUTPUT")) {
 		snprintf(cdout, 120, "CREATE_DISPLAY_OUTPUT='%s'", getenv("CREATE_DISPLAY_OUTPUT"));
 	}
 
+	if (strchr(fdgeom, '\''))	fdgeom[0] = '\0';
+	if (strchr(fdopts, '\''))	fdopts[0] = '\0';
+	if (strchr(fdextra, '\''))	fdextra[0] = '\0';
+	if (strchr(fdprog, '\''))	fdprog[0] = '\0';
+	if (strchr(fdxsrv, '\''))	fdxsrv[0] = '\0';
+	if (strchr(fdcups, '\''))	fdcups[0] = '\0';
+	if (strchr(fdesd, '\''))	fdesd[0] = '\0';
+	if (strchr(fdnas, '\''))	fdnas[0] = '\0';
+	if (strchr(fdsmb, '\''))	fdsmb[0] = '\0';
+	if (strchr(fdtag, '\''))	fdtag[0] = '\0';
+	if (strchr(fdxdmcpif, '\''))	fdxdmcpif[0] = '\0';
+	if (strchr(fdxdum, '\''))	fdxdum[0] = '\0';
+	if (strchr(fdsess, '\''))	fdsess[0] = '\0';
+	if (strchr(cdout, '\''))	cdout[0] = '\0';
+
 	set_env("FD_GEOM", fdgeom);
 	set_env("FD_OPTS", fdopts);
+	set_env("FD_EXTRA", fdextra);
 	set_env("FD_PROG", fdprog);
 	set_env("FD_XSRV", fdxsrv);
 	set_env("FD_CUPS", fdcups);
@@ -2000,7 +2158,8 @@ static char *build_create_cmd(char *cmd, int *saw_xdmcp, char *usslpeer, char *t
 	set_env("FD_NAS",  fdnas);
 	set_env("FD_SMB",  fdsmb);
 	set_env("FD_TAG",  fdtag);
-	set_env("FD_XDUMMY_NOROOT", fdxdum);
+	set_env("FD_XDMCP_IF",  fdxdmcpif);
+	set_env("FD_XDUMMY_RUN_AS_ROOT", fdxdum);
 	set_env("FD_SESS", fdsess);
 
 	if (usslpeer || (unixpw && keep_unixpw_user)) {
@@ -2008,10 +2167,14 @@ static char *build_create_cmd(char *cmd, int *saw_xdmcp, char *usslpeer, char *t
 		if (!uu) {
 			uu = keep_unixpw_user;
 		}
+		if (strchr(uu, '\''))  {
+			uu = "";
+		}
 		create_cmd = (char *) malloc(strlen(tmp)+1
 		    + strlen("env USER='' ")
 		    + strlen("FD_GEOM='' ")
 		    + strlen("FD_OPTS='' ")
+		    + strlen("FD_EXTRA='' ")
 		    + strlen("FD_PROG='' ")
 		    + strlen("FD_XSRV='' ")
 		    + strlen("FD_CUPS='' ")
@@ -2019,11 +2182,13 @@ static char *build_create_cmd(char *cmd, int *saw_xdmcp, char *usslpeer, char *t
 		    + strlen("FD_NAS='' ")
 		    + strlen("FD_SMB='' ")
 		    + strlen("FD_TAG='' ")
-		    + strlen("FD_XDUMMY_NOROOT='' ")
+		    + strlen("FD_XDMCP_IF='' ")
+		    + strlen("FD_XDUMMY_RUN_AS_ROOT='' ")
 		    + strlen("FD_SESS='' /bin/sh ")
 		    + strlen(uu) + 1
 		    + strlen(fdgeom) + 1
 		    + strlen(fdopts) + 1
+		    + strlen(fdextra) + 1
 		    + strlen(fdprog) + 1
 		    + strlen(fdxsrv) + 1
 		    + strlen(fdcups) + 1
@@ -2031,16 +2196,17 @@ static char *build_create_cmd(char *cmd, int *saw_xdmcp, char *usslpeer, char *t
 		    + strlen(fdnas) + 1
 		    + strlen(fdsmb) + 1
 		    + strlen(fdtag) + 1
+		    + strlen(fdxdmcpif) + 1
 		    + strlen(fdxdum) + 1
 		    + strlen(fdsess) + 1
 		    + strlen(cdout) + 1
 		    + strlen(opts) + 1);
 		sprintf(create_cmd, "env USER='%s' FD_GEOM='%s' FD_SESS='%s' "
-		    "FD_OPTS='%s' FD_PROG='%s' FD_XSRV='%s' FD_CUPS='%s' "
-		    "FD_ESD='%s' FD_NAS='%s' FD_SMB='%s' FD_TAG='%s' "
-		    "FD_XDUMMY_NOROOT='%s' %s /bin/sh %s %s",
-		    uu, fdgeom, fdsess, fdopts, fdprog, fdxsrv,
-		    fdcups, fdesd, fdnas, fdsmb, fdtag, fdxdum, cdout, tmp, opts);
+		    "FD_OPTS='%s' FD_EXTRA='%s' FD_PROG='%s' FD_XSRV='%s' FD_CUPS='%s' "
+		    "FD_ESD='%s' FD_NAS='%s' FD_SMB='%s' FD_TAG='%s' FD_XDMCP_IF='%s' "
+		    "FD_XDUMMY_RUN_AS_ROOT='%s' %s /bin/sh %s %s",
+		    uu, fdgeom, fdsess, fdopts, fdextra, fdprog, fdxsrv,
+		    fdcups, fdesd, fdnas, fdsmb, fdtag, fdxdmcpif, fdxdum, cdout, tmp, opts);
 	} else {
 		create_cmd = (char *) malloc(strlen(tmp)
 		    + strlen("/bin/sh ") + 1 + strlen(opts) + 1);
@@ -2103,29 +2269,65 @@ static char *certret_extract() {
 	return upeer;
 }
 
-static void check_nodisplay(char **nd) {
-	if (unixpw && keep_unixpw_opts && keep_unixpw_opts[0] != '\0') {
-		char *q, *t = keep_unixpw_opts;
+static void check_nodisplay(char **nd, char **tag) {
+	if (unixpw && !getenv("X11VNC_NO_UNIXPW_OPTS") && keep_unixpw_opts && keep_unixpw_opts[0] != '\0') {
+		char *q, *t2, *t = keep_unixpw_opts;
 		q = strstr(t, "nd=");
 		if (! q) q = strstr(t, "nodisplay=");
 		if (q) {
-			char *t2;
 			q = strchr(q, '=') + 1;
 			t = strdup(q);
 			q = t;
 			t2 = strchr(t, ',');
 			if (t2) *t2 = '\0';
+
 			while (*t != '\0') {
-				if (*t == '-') {
+				if (*t == '+') {
 					*t = ',';
 				}
 				t++;
 			}
-			if (!strchr(q, '\'')) {
+			if (!strchr(q, '\'') && !strpbrk(q, "[](){}`'\"$&*|<>")) {
 				if (! quiet) rfbLog("set X11VNC_SKIP_DISPLAY: %s\n", q);
 				*nd = q;
 			}
 		}
+
+		q = strstr(keep_unixpw_opts, "tag=");
+		if (getenv("FD_TAG")) {
+			*tag = strdup(getenv("FD_TAG"));
+		} else if (q) {
+			q = strchr(q, '=') + 1;
+			t = strdup(q);
+			q = t;
+			t2 = strchr(t, ',');
+			if (t2) *t2 = '\0';
+
+			if (strlen(q) < 120) {
+				int ok = 1;
+				while (*t != '\0') {
+					char c = *t;
+					if (*t == '_' || *t == '-') {
+						;
+					} else if (!isalnum((int) c)) {
+						ok = 0;
+						rfbLog("bad tag char: '%c' in '%s'\n", c, q);
+						break;
+					}
+					t++;
+				}
+				if (ok) {
+					if (! quiet) rfbLog("set FD_TAG: %s\n", q);
+					*tag = q;
+				}
+			}
+		}
+	}
+	if (unixpw_system_greeter_active == 2) {
+		if (!keep_unixpw_user) {
+			clean_up_exit(1);
+		}
+		*nd = strdup("all");
 	}
 }
 
@@ -2165,15 +2367,65 @@ static char *get_usslpeer() {
 	return upeer;
 }
 
+static void do_try_switch(char *usslpeer, char *users_list_save) {
+	if (unixpw_system_greeter_active == 2) {
+		rfbLog("unixpw_system_greeter: not trying switch to user '%s'\n", usslpeer ? usslpeer : "");
+		return;
+	}
+	if (usslpeer) {
+		char *u = (char *) malloc(strlen(usslpeer+2));
+		sprintf(u, "+%s", usslpeer);
+		if (switch_user(u, 0)) {
+			rfbLog("sslpeer switched to user: %s\n", usslpeer);
+		} else {
+			rfbLog("sslpeer failed to switch to user: %s\n", usslpeer);
+		}
+		free(u);
+		
+	} else if (users_list_save && keep_unixpw_user) {
+		char *user = keep_unixpw_user;
+		char *u = (char *)malloc(strlen(user)+1); 
+
+		users_list = users_list_save;
+
+		u[0] = '\0';
+		if (!strcmp(users_list, "unixpw=")) {
+			sprintf(u, "+%s", user);
+		} else {
+			char *p, *str = strdup(users_list);
+			p = strtok(str + strlen("unixpw="), ",");
+			while (p) {
+				if (!strcmp(p, user)) {
+					sprintf(u, "+%s", user);
+					break;
+				}
+				p = strtok(NULL, ",");
+			}
+			free(str);
+		}
+		
+		if (u[0] == '\0') {
+			rfbLog("unixpw_accept skipping switch to user: %s (drc)\n", user);
+		} else if (switch_user(u, 0)) {
+			rfbLog("unixpw_accept switched to user: %s (drc)\n", user);
+		} else {
+			rfbLog("unixpw_accept failed to switch to user: %s (drc)\n", user);
+		}
+		free(u);
+	}
+}
+
 static int do_run_cmd(char *cmd, char *create_cmd, char *users_list_save, int created_disp, int db) {
 	char tmp[] = "/tmp/x11vnc-find_display.XXXXXX";
 	char line1[1024], line2[16384];
 	char *q, *usslpeer = NULL;
 	int n, nodisp = 0, saw_xdmcp = 0;
 	int tmp_fd = -1;
+	int internal_cmd = 0;
+	int tried_switch = 0;
 
-	memset(line1, 0, 1024);
-	memset(line2, 0, 16384);
+	memset(line1, 0, sizeof(line1));
+	memset(line2, 0, sizeof(line2));
 
 	if (users_list && strstr(users_list, "sslpeer=") == users_list) {
 		usslpeer = get_usslpeer();
@@ -2181,6 +2433,7 @@ static int do_run_cmd(char *cmd, char *create_cmd, char *users_list_save, int cr
 			return 0;
 		}
 	}
+	if (getenv("DEBUG_RUN_CMD")) db = 1;
 
 	/* only sets environment variables: */
 	run_user_command("", latest_client, "env", NULL, 0, NULL);
@@ -2194,8 +2447,13 @@ static int do_run_cmd(char *cmd, char *create_cmd, char *users_list_save, int cr
 	if (!strcmp(cmd, "FINDDISPLAY") ||
 	    strstr(cmd, "FINDCREATEDISPLAY") == cmd) {
 		char *nd = "";
+		char *tag = "";
 		char fdout[128];
+
+		internal_cmd = 1;
+
 		tmp_fd = mkstemp(tmp);
+
 		if (tmp_fd < 0) {
 			rfbLog("wait_for_client: open failed: %s\n", tmp);
 			rfbLogPerror("mkstemp");
@@ -2218,7 +2476,7 @@ static int do_run_cmd(char *cmd, char *create_cmd, char *users_list_save, int cr
 		if (getenv("X11VNC_SKIP_DISPLAY")) {
 			nd = strdup(getenv("X11VNC_SKIP_DISPLAY"));
 		}
-		check_nodisplay(&nd);
+		check_nodisplay(&nd, &tag);
 
 		fdout[0] = '\0';
 		if (getenv("FIND_DISPLAY_OUTPUT")) {
@@ -2226,27 +2484,40 @@ static int do_run_cmd(char *cmd, char *create_cmd, char *users_list_save, int cr
 		}
 
 		cmd = (char *) malloc(strlen("env X11VNC_SKIP_DISPLAY='' ")
-		    + strlen(nd) + strlen(tmp) + strlen("/bin/sh ") + strlen(fdout) + 1);
-		sprintf(cmd, "env X11VNC_SKIP_DISPLAY='%s' %s /bin/sh %s", nd, fdout, tmp);
+		    + strlen(nd) + strlen(" FD_TAG='' ") + strlen(tag) + strlen(tmp) + strlen("/bin/sh ") + strlen(fdout) + 1);
+
+		if (strcmp(tag, "")) {
+			sprintf(cmd, "env X11VNC_SKIP_DISPLAY='%s' FD_TAG='%s' %s /bin/sh %s", nd, tag, fdout, tmp);
+		} else {
+			sprintf(cmd, "env X11VNC_SKIP_DISPLAY='%s' %s /bin/sh %s", nd, fdout, tmp);
+		}
 	}
 
 	rfbLog("wait_for_client: running: %s\n", cmd);
 
-	if (unixpw) {
+	if (unixpw && !unixpw_nis) {
 		int res = 0, k, j, i;
 		char line[18000];
 
-		memset(line, 0, 18000);
+		memset(line, 0, sizeof(line));
 
-		if (keep_unixpw_user && keep_unixpw_pass) {
-			n = 18000;
-			res = su_verify(keep_unixpw_user,
-			    keep_unixpw_pass, cmd, line, &n, nodisp);
+		if (unixpw_system_greeter_active == 2) {
+			rfbLog("unixpw_system_greeter: forcing find display failure.\n");
+			res = 0;
+		} else if (keep_unixpw_user && keep_unixpw_pass) {
+			n = sizeof(line);
+			if (unixpw_cmd != NULL) {
+				res = unixpw_cmd_run(keep_unixpw_user,
+				    keep_unixpw_pass, cmd, line, &n);
+			} else {
+				res = su_verify(keep_unixpw_user,
+				    keep_unixpw_pass, cmd, line, &n, nodisp);
+			}
 		}
 
 if (db) {fprintf(stderr, "line: "); write(2, line, n); write(2, "\n", 1); fprintf(stderr, "res=%d n=%d\n", res, n);}
 		if (! res) {
-			rfbLog("wait_for_client: find display cmd failed\n");
+			rfbLog("wait_for_client: find display cmd failed.\n");
 		}
 
 		if (! res && create_cmd) {
@@ -2261,9 +2532,15 @@ if (db) {fprintf(stderr, "line: "); write(2, line, n); write(2, "\n", 1); fprint
 
 			findcreatedisplay = 1;
 
-			if (getuid() != 0) {
+			if (unixpw_cmd != NULL) {
+				/* let the external unixpw command do it: */
+				n = sizeof(line);
+				close_exec_fds();
+				res = unixpw_cmd_run(keep_unixpw_user,
+				    keep_unixpw_pass, create_cmd, line, &n);
+			} else if (getuid() != 0 && unixpw_system_greeter_active != 2) {
 				/* if not root, run as the other user... */
-				n = 18000;
+				n = sizeof(line);
 				close_exec_fds();
 				res = su_verify(keep_unixpw_user,
 				    keep_unixpw_pass, create_cmd, line, &n, nodisp);
@@ -2272,6 +2549,10 @@ if (db) fprintf(stderr, "c-res=%d n=%d line: '%s'\n", res, n, line);
 			} else {
 				FILE *p;
 				close_exec_fds();
+				if (unixpw_system_greeter_active == 2) {
+					rfbLog("unixpw_system_greeter: not trying su_verify() to run\n");
+					rfbLog("unixpw_system_greeter: create display command.\n");
+				}
 				rfbLog("wait_for_client: running: %s\n", create_cmd);
 				p = popen(create_cmd, "r");
 				if (! p) {
@@ -2294,7 +2575,7 @@ if (db) fprintf(stderr, "line1: '%s'\n", line1);
 					}
 				}
 			}
-			if (res && saw_xdmcp) {
+			if (res && saw_xdmcp && unixpw_system_greeter_active != 2) {
 				xdmcp_insert = strdup(keep_unixpw_user);
 			}
 		}
@@ -2341,6 +2622,7 @@ if (db) fprintf(stderr, "line1: '%s'\n", line1);
 		}
 if (db) write(2, line, 100);
 if (db) fprintf(stderr, "\n");
+
 	} else {
 		FILE *p;
 		int rc;
@@ -2358,9 +2640,22 @@ if (db) fprintf(stderr, "\n");
 			p = popen(c, "r");
 			free(c);
 			
+		} else if (unixpw_nis && keep_unixpw_user) {
+			char *c;
+			if (getuid() == 0) {
+				c = (char *) malloc(strlen("su - '' -c \"")
+				    + strlen(keep_unixpw_user) + strlen(cmd) + 1 + 1);
+				sprintf(c, "su - '%s' -c \"%s\"", keep_unixpw_user, cmd);
+			} else {
+				c = strdup(cmd);
+			}
+			p = popen(c, "r");
+			free(c);
+			
 		} else {
 			p = popen(cmd, "r");
 		}
+
 		if (! p) {
 			rfbLog("wait_for_client: cmd failed: %s\n", cmd);
 			rfbLogPerror("popen");
@@ -2381,7 +2676,7 @@ if (db) fprintf(stderr, "\n");
 		rc = pclose(p);
 
 		if (rc != 0) {
-			rfbLog("wait_for_client: find display cmd failed\n");
+			rfbLog("wait_for_client: find display cmd failed.\n");
 		}
 
 		if (create_cmd && rc != 0) {
@@ -2505,49 +2800,13 @@ fprintf(stderr, "\n");}
 		}
 	}
 
-	if (usslpeer) {
-		char *u = (char *) malloc(strlen(usslpeer+2));
-		sprintf(u, "+%s", usslpeer);
-		if (switch_user(u, 0)) {
-			rfbLog("sslpeer switched to user: %s\n", usslpeer);
-		} else {
-			rfbLog("sslpeer failed to switch to user: %s\n", usslpeer);
-		}
-		free(u);
-		
-	} else if (users_list_save && keep_unixpw_user) {
-		char *user = keep_unixpw_user;
-		char *u = (char *)malloc(strlen(user)+1); 
-
-		users_list = users_list_save;
-
-		u[0] = '\0';
-		if (!strcmp(users_list, "unixpw=")) {
-			sprintf(u, "+%s", user);
-		} else {
-			char *p, *str = strdup(users_list);
-			p = strtok(str + strlen("unixpw="), ",");
-			while (p) {
-				if (!strcmp(p, user)) {
-					sprintf(u, "+%s", user);
-					break;
-				}
-				p = strtok(NULL, ",");
-			}
-			free(str);
-		}
-		
-		if (u[0] == '\0') {
-			rfbLog("unixpw_accept skipping switch to user: %s\n", user);
-		} else if (switch_user(u, 0)) {
-			rfbLog("unixpw_accept switched to user: %s\n", user);
-		} else {
-			rfbLog("unixpw_accept failed to switch to user: %s\n", user);
-		}
-		free(u);
+	if (!tried_switch) {
+		do_try_switch(usslpeer, users_list_save);
+		tried_switch = 1;
 	}
 
 	if (unixpw) {
+		/* Some cleanup and messaging for -unixpw case: */
 		char str[32];
 
 		if (keep_unixpw_user && keep_unixpw_pass) {
@@ -2570,11 +2829,41 @@ void ssh_remote_tunnel(char *, int);
 
 static XImage ximage_struct;
 
+void progress_client(void) {
+	int i, j = 0, progressed = 0, db = 0;
+	double start = dnow();
+	if (getenv("PROGRESS_CLIENT_DBG")) {
+		rfbLog("progress_client: begin\n");
+		db = 1;
+	}
+	for (i = 0; i < 15; i++) {
+		if (latest_client) {
+			for (j = 0; j < 10; j++) {
+				if (latest_client->state != RFB_PROTOCOL_VERSION) {
+					progressed = 1;
+					break;
+				}
+				if (db) rfbLog("progress_client: calling-1 rfbCFD(1) %.6f\n", dnow()-start);
+				rfbCFD(1);
+			}
+		}
+		if (progressed) {
+			break;
+		}
+		if (db) rfbLog("progress_client: calling-2 rfbCFD(1) %.6f\n", dnow()-start);
+		rfbCFD(1);
+	}
+	if (!quiet) {
+		rfbLog("client progressed=%d in %d/%d %.6f s\n",
+		    progressed, i, j, dnow() - start);
+	}
+}
+
 int wait_for_client(int *argc, char** argv, int http) {
 	/* ugh, here we go... */
 	XImage* fb_image;
 	int w = 640, h = 480, b = 32;
-	int w0, h0, i, chg_raw_fb = 0;
+	int w0 = -1, h0 = -1, i, chg_raw_fb = 0;
 	char *str, *q, *cmd = NULL;
 	int db = 0, dt = 0;
 	char *create_cmd = NULL;
@@ -2602,7 +2891,9 @@ int wait_for_client(int *argc, char** argv, int http) {
 		if (db) fprintf(stderr, "args %d %s\n", i, argv[i]);
 	}
 	if (!quiet && !strstr(use_dpy, "FINDDISPLAY-run")) {
+		rfbLog("\n");
 		rfbLog("wait_for_client: %s\n", use_dpy);
+		rfbLog("\n");
 	}
 
 	str = strdup(use_dpy);
@@ -2618,9 +2909,31 @@ int wait_for_client(int *argc, char** argv, int http) {
 			w = w0;
 			h = h0;
 			rfbLog("wait_for_client set: w=%d h=%d\n", w, h);
+		} else {
+			w0 = -1;
+			h0 = -1;
 		}
 		*q = ':';
 		str = q;
+	}
+	if ((w0 == -1 || h0 == -1) && pad_geometry != NULL) {
+		int b0, del = 0;
+		char *s = pad_geometry;
+		if (strstr(s, "once:") == s) {
+			del = 1;
+			s += strlen("once:");
+		}
+		if (sscanf(s, "%dx%dx%d", &w0, &h0, &b0) == 3)  {
+			w = nabs(w0);
+			h = nabs(h0);
+			b = nabs(b0);
+		} else if (sscanf(s, "%dx%d", &w0, &h0) == 2)  {
+			w = nabs(w0);
+			h = nabs(h0);
+		}
+		if (del) {
+			pad_geometry = NULL;
+		}
 	}
 
 	/* str currently begins with a ':' */
@@ -2676,6 +2989,18 @@ int wait_for_client(int *argc, char** argv, int http) {
 	
 	initialize_screen(argc, argv, fb_image);
 
+	if (! inetd && ! use_openssl) {
+		if (! screen->port || screen->listenSock < 0) {
+			if (got_rfbport && got_rfbport_val == 0) {
+				;
+			} else {
+				rfbLogEnable(1);
+				rfbLog("Error: could not obtain listening port.\n");
+				clean_up_exit(1);
+			}
+		}
+	}
+
 	initialize_signals();
 
 	if (ssh_str != NULL) {
@@ -2708,6 +3033,12 @@ int wait_for_client(int *argc, char** argv, int http) {
 	if (vnc_redirect) {
 		vnc_redirect_loop(vnc_redirect_test, &vnc_redirect_cnt);
 	} else {
+
+		if (use_threads && !started_rfbRunEventLoop) {
+			started_rfbRunEventLoop = 1;
+			rfbRunEventLoop(screen, -1, TRUE);
+		}
+
 		if (inetd && use_openssl) {
 			accept_openssl(OPENSSL_INETD, -1);
 		}
@@ -2724,6 +3055,9 @@ int wait_for_client(int *argc, char** argv, int http) {
 				}
 			}
 			do_unixpw_loop();
+		} else if (cmd && !use_threads) {
+			/* try to get RFB proto done now. */
+			progress_client();
 		}
 	}
 

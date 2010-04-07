@@ -24,6 +24,9 @@
 // DSMPlugin.h: interface for the CDSMPlugin class.
 //
 //////////////////////////////////////////////////////////////////////
+//
+//  (2009)
+//  Multithreaded DSM plugin framework created by Adam D. Walling aka adzm
 
 #if !defined(CDSMPlugin_H)
 #define CDSMPlugin_H
@@ -41,6 +44,16 @@
 
 #include "windows.h"
 
+//adzm - 2009-06-21
+class IPlugin
+{
+public:
+	virtual ~IPlugin() {};
+
+	virtual BYTE* TransformBuffer(BYTE* pDataBuffer, int nDataLen, int* pnTransformedDataLen) = 0;
+	virtual BYTE* RestoreBuffer(BYTE* pTransBuffer, int nTransDataLen, int* pnRestoredDataLen) = 0;
+};
+
 // A plugin dll must export the following functions (with same convention)
 typedef char* (__cdecl  *DESCRIPTION)(void);
 typedef int   (__cdecl  *STARTUP)(void);
@@ -51,6 +64,8 @@ typedef BYTE* (__cdecl  *TRANSFORMBUFFER)(BYTE*, int, int*);
 typedef BYTE* (__cdecl  *RESTOREBUFFER)(BYTE*, int, int*);
 typedef void  (__cdecl  *FREEBUFFER)(BYTE*);
 typedef int   (__cdecl  *RESET)(void);
+//adzm - 2009-06-21
+typedef IPlugin* (__cdecl  *CREATEPLUGININTERFACE)(void);
 
 
 //
@@ -79,6 +94,11 @@ public:
 	char* GetPluginDate(void) { return m_szPluginDate; } ;
 	char* GetPluginAuthor(void) { return m_szPluginAuthor;} ;
 	char* GetPluginFileName(void) { return m_szPluginFileName;} ;
+
+	//adzm - 2009-06-21
+	IPlugin* CreatePluginInterface();
+	bool SupportsMultithreaded();
+
 	CDSMPlugin();
 	virtual ~CDSMPlugin();
 	bool ResetPlugin(void);
@@ -112,7 +132,11 @@ private:
 	RESTOREBUFFER	m_PRestoreBuffer;
 	FREEBUFFER		m_PFreeBuffer;
 	RESET			m_PReset;
+	//adzm - 2009-06-21
+	CREATEPLUGININTERFACE m_PCreatePluginInterface;
 
+
+	//adzm - 2009-06-21 - Please do not use these! Deprecated with multithreaded DSM
 	BYTE* m_pTransBuffer;
 	BYTE* m_pRestBuffer;
 

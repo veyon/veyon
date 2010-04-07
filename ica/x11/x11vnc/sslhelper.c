@@ -1,3 +1,35 @@
+/*
+   Copyright (C) 2002-2010 Karl J. Runge <runge@karlrunge.com> 
+   All rights reserved.
+
+This file is part of x11vnc.
+
+x11vnc is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or (at
+your option) any later version.
+
+x11vnc is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with x11vnc; if not, write to the Free Software
+Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA
+or see <http://www.gnu.org/licenses/>.
+
+In addition, as a special exception, Karl J. Runge
+gives permission to link the code of its release of x11vnc with the
+OpenSSL project's "OpenSSL" library (or with modified versions of it
+that use the same license as the "OpenSSL" library), and distribute
+the linked executables.  You must obey the GNU General Public License
+in all respects for all of the code used other than "OpenSSL".  If you
+modify this file, you may extend this exception to your version of the
+file, but you are not obligated to do so.  If you do not wish to do
+so, delete this exception statement from your version.
+*/
+
 /* -- sslhelper.c -- */
 
 #include "x11vnc.h"
@@ -8,6 +40,7 @@
 #include "connections.h"
 #include "sslcmds.h"
 #include "unixpw.h"
+#include "user.h"
 
 #define OPENSSL_INETD 1
 #define OPENSSL_VNC   2
@@ -40,80 +73,13 @@ char *new_dh_params = NULL;
 
 void raw_xfer(int csock, int s_in, int s_out);
 
-#if !LIBVNCSERVER_HAVE_LIBSSL
-int openssl_present(void) {return 0;}
-static void badnews(void) {
-	use_openssl = 0;
-	use_stunnel = 0;
-	rfbLog("** not compiled with libssl OpenSSL support **\n");
-	clean_up_exit(1);
-}
-void openssl_init(int isclient) {badnews();}
-void openssl_port(void) {badnews();}
-void https_port(void) {badnews();}
-void check_openssl(void) {if (use_openssl) badnews();}
-void check_https(void) {if (use_openssl) badnews();}
-void ssl_helper_pid(pid_t pid, int sock) {badnews(); sock = pid;}
-void accept_openssl(int mode, int presock) {mode = 0; presock = 0; badnews();}
-char *find_openssl_bin(void) {badnews(); return NULL;}
-char *get_saved_pem(char *string, int create) {badnews(); return NULL;}
-#else
-
-/*
- * This is because on older systems both zlib.h and ssl.h define
- * 'free_func' nothing we do below (currently) induces an external
- * dependency on 'free_func'.
- */
-#define free_func my_jolly_little_free_func
-
-#include <openssl/ssl.h>
-#include <openssl/err.h>
-#include <openssl/rand.h>
-
-int openssl_present(void);
-void openssl_init(int isclient);
-void openssl_port(void);
-void check_openssl(void);
-void check_https(void);
-void ssl_helper_pid(pid_t pid, int sock);
-void accept_openssl(int mode, int presock);
-char *find_openssl_bin(void);
+/* openssl(1) pem related functions: */
 char *get_saved_pem(char *string, int create);
+char *find_openssl_bin(void);
+char *get_ssl_verify_file(char *str_in);
+char *create_tmp_pem(char *path, int prompt);
 
-static SSL_CTX *ctx = NULL;
-static RSA *rsa_512 = NULL;
-static RSA *rsa_1024 = NULL;
-static SSL *ssl = NULL;
-static X509_STORE *revocation_store = NULL;
-
-
-static void init_prng(void);
-static void sslerrexit(void);
 static char *get_input(char *tag, char **in);
-static char *create_tmp_pem(char *path, int prompt);
-static int  ssl_init(int s_in, int s_out, int skip_vnc_tls);
-static void ssl_xfer(int csock, int s_in, int s_out, int is_https);
-
-#ifndef FORK_OK
-void openssl_init(int isclient) {
-	rfbLog("openssl_init: fork is not supported. cannot create"
-	    " ssl helper process.\n");
-	clean_up_exit(1);
-}
-int openssl_present(void) {return 0;}
-#else
-int openssl_present(void) {return 1;}
-
-static void sslerrexit(void) {
-	unsigned long err = ERR_get_error();
-	
-	if (err) {
-		char str[256];
-		ERR_error_string(err, str);
-		fprintf(stderr, "ssl error: %s\n", str);
-	}
-	clean_up_exit(1);
-}
 
 char *get_saved_pem(char *save, int create) {
 	char *s = NULL, *path, *cdir, *tmp;
@@ -230,7 +196,7 @@ char *find_openssl_bin(void) {
 	
 	gp = getenv("PATH");
 	if (! gp) {
-		fprintf(stderr, "could not find openssl(1) program in PATH.\n");
+		fprintf(stderr, "could not find openssl(1) program in PATH. (null)\n");
 		return NULL;
 	}
 
@@ -256,6 +222,7 @@ char *find_openssl_bin(void) {
 
 	if (! found_openssl) {
 		fprintf(stderr, "could not find openssl(1) program in PATH.\n");
+		fprintf(stderr, "PATH=%s\n", gp);
 		fprintf(stderr, "(also checked: %s)\n", extra);
 		return NULL;
 	}
@@ -264,7 +231,7 @@ char *find_openssl_bin(void) {
 
 /* uses /usr/bin/openssl to create a tmp cert */
 
-static char *create_tmp_pem(char *pathin, int prompt) {
+char *create_tmp_pem(char *pathin, int prompt) {
 	pid_t pid, pidw;
 	FILE *in, *out;
 	char cnf[] = "/tmp/x11vnc-cnf.XXXXXX";
@@ -378,6 +345,10 @@ static char *create_tmp_pem(char *pathin, int prompt) {
 		days = "30";
 	}
 
+#ifndef FORK_OK
+	rfbLog("not compiled with fork(2)\n");
+	clean_up_exit(1);
+#else
 	/* make RSA key */
 	pid = fork();
 	if (pid < 0) {
@@ -442,6 +413,8 @@ static char *create_tmp_pem(char *pathin, int prompt) {
 	fclose(in);
 	fclose(out);
 #endif
+
+#endif	/* FORK_OK */
 
 	unlink(cnf);
 	free(exe);
@@ -510,15 +483,22 @@ static char *create_tmp_pem(char *pathin, int prompt) {
 	}
 
 	if (show_cert) {
-		char cmd[100];
-		if (inetd) {
-			sprintf(cmd, "openssl x509 -text -in '%s' 1>&2", pem);
-		} else {
-			sprintf(cmd, "openssl x509 -text -in '%s'", pem);
+		exe = find_openssl_bin();
+		if (!exe) {
+			exe = strdup("openssl");
 		}
-		fprintf(stderr, "\n");
-		system(cmd);
-		fprintf(stderr, "\n");
+		if (strlen(pem) + strlen(exe) < 4000) {
+			char cmd[5000];
+			if (inetd) {
+				sprintf(cmd, "%s x509 -text -in '%s' 1>&2", exe, pem);
+			} else {
+				sprintf(cmd, "%s x509 -text -in '%s'", exe, pem);
+			}
+			fprintf(stderr, "\n");
+			system(cmd);
+			fprintf(stderr, "\n");
+		}
+		free(exe);
 	}
 
 	if (pathin) {
@@ -527,39 +507,6 @@ static char *create_tmp_pem(char *pathin, int prompt) {
 	} else {
 		return strdup(pem);
 	}
-}
-
-static int pem_passwd_callback(char *buf, int size, int rwflag,
-    void *userdata) {
-	char *q, line[1024];
-
-	if (! buf) {
-		exit(1);
-	}
-
-	fprintf(stderr, "\nA passphrase is needed to unlock an OpenSSL "
-	    "private key (PEM file).\n");
-	fprintf(stderr, "Enter passphrase> ");
-	system("stty -echo");
-	if(fgets(line, 1024, stdin) == NULL) {
-		fprintf(stdout, "\n");
-		system("stty echo");
-		exit(1);
-	}
-	system("stty echo");
-	fprintf(stdout, "\n\n");
-	q = strrchr(line, '\n');
-	if (q) {
-		*q = '\0';
-	}
-	line[1024 - 1] = '\0';
-	strncpy(buf, line, size);                                  
-	buf[size - 1] = '\0';
-
-	if (0) rwflag = 0;	/* compiler warning. */
-	if (0) userdata = 0;	/* compiler warning. */
-
-	return strlen(buf);
 }
 
 static int appendfile(FILE *out, char *infile) {
@@ -590,7 +537,7 @@ static int appendfile(FILE *out, char *infile) {
 	return 1;
 }
 	
-static char *get_ssl_verify_file(char *str_in) {
+char *get_ssl_verify_file(char *str_in) {
 	char *p, *str, *cdir, *tmp;
 	char *tfile, *tfile2;
 	FILE *file;
@@ -616,7 +563,7 @@ static char *get_ssl_verify_file(char *str_in) {
 	tfile  = (char *) malloc(strlen(tmp) + 1024);
 	tfile2 = (char *) malloc(strlen(tmp) + 1024);
 
-	sprintf(tfile, "%s/sslverify-load-%d.crts.XXXXXX", tmp, getpid());
+	sprintf(tfile, "%s/sslverify-tmp-load-%d.crts.XXXXXX", tmp, getpid());
 
 	fd = mkstemp(tfile);
 	if (fd < 0) {
@@ -707,6 +654,140 @@ static char *get_ssl_verify_file(char *str_in) {
 	rfbLog("sslverify: %s\n", tfile);
 
 	return tfile;
+}
+
+int openssl_present(void);
+void openssl_init(int isclient);
+void openssl_port(void);
+void https_port(void);
+void check_openssl(void);
+void check_https(void);
+void ssl_helper_pid(pid_t pid, int sock);
+void accept_openssl(int mode, int presock);
+
+static void lose_ram(void);
+#define ABSIZE 16384
+
+static int vencrypt_selected = 0;
+static int anontls_selected = 0;
+
+/* to test no openssl libssl */
+#if 0
+#undef LIBVNCSERVER_HAVE_LIBSSL
+#define LIBVNCSERVER_HAVE_LIBSSL 0
+#endif
+
+#if !LIBVNCSERVER_HAVE_LIBSSL
+
+static void badnews(char *name) {
+	use_openssl = 0;
+	use_stunnel = 0;
+	rfbLog("** %s: not compiled with libssl OpenSSL support **\n", name ? name : "???");
+	clean_up_exit(1);
+}
+
+int openssl_present(void) {return 0;}
+void openssl_init(int isclient) {badnews("openssl_init");}
+
+#define SSL_ERROR_NONE 0
+
+static int ssl_init(int s_in, int s_out, int skip_vnc_tls, double last_https) {
+	if (enc_str != NULL) {
+		return 1;
+	}
+	badnews("ssl_init");
+	return 0;
+}
+
+static void ssl_xfer(int csock, int s_in, int s_out, int is_https) {
+	if (enc_str != NULL && !strcmp(enc_str, "none")) {
+		usleep(250*1000);
+		rfbLog("doing '-enc none' raw transfer (no encryption)\n"); 
+		raw_xfer(csock, s_in, s_out);
+	} else {
+		badnews("ssl_xfer");
+	}
+}
+
+#else 	/* LIBVNCSERVER_HAVE_LIBSSL */
+
+/*
+ * This is because on older systems both zlib.h and ssl.h define
+ * 'free_func' nothing we do below (currently) induces an external
+ * dependency on 'free_func'.
+ */
+#define free_func my_jolly_little_free_func
+
+#include <openssl/ssl.h>
+#include <openssl/err.h>
+#include <openssl/rand.h>
+
+static SSL_CTX *ctx = NULL;
+static RSA *rsa_512 = NULL;
+static RSA *rsa_1024 = NULL;
+static SSL *ssl = NULL;
+static X509_STORE *revocation_store = NULL;
+
+
+static void init_prng(void);
+static void sslerrexit(void);
+static int  ssl_init(int s_in, int s_out, int skip_vnc_tls, double last_https);
+static void ssl_xfer(int csock, int s_in, int s_out, int is_https);
+
+#ifndef FORK_OK
+void openssl_init(int isclient) {
+	rfbLog("openssl_init: fork is not supported. cannot create"
+	    " ssl helper process.\n");
+	clean_up_exit(1);
+}
+int openssl_present(void) {return 0;}
+
+#else
+
+int openssl_present(void) {return 1;}
+
+static void sslerrexit(void) {
+	unsigned long err = ERR_get_error();
+	
+	if (err) {
+		char str[256];
+		ERR_error_string(err, str);
+		fprintf(stderr, "ssl error: %s\n", str);
+	}
+	clean_up_exit(1);
+}
+
+static int pem_passwd_callback(char *buf, int size, int rwflag,
+    void *userdata) {
+	char *q, line[1024];
+
+	if (! buf) {
+		exit(1);
+	}
+
+	fprintf(stderr, "\nA passphrase is needed to unlock an OpenSSL "
+	    "private key (PEM file).\n");
+	fprintf(stderr, "Enter passphrase> ");
+	system("stty -echo");
+	if(fgets(line, 1024, stdin) == NULL) {
+		fprintf(stdout, "\n");
+		system("stty echo");
+		exit(1);
+	}
+	system("stty echo");
+	fprintf(stdout, "\n\n");
+	q = strrchr(line, '\n');
+	if (q) {
+		*q = '\0';
+	}
+	line[1024 - 1] = '\0';
+	strncpy(buf, line, size);                                  
+	buf[size - 1] = '\0';
+
+	if (0) rwflag = 0;	/* compiler warning. */
+	if (0) userdata = 0;	/* compiler warning. */
+
+	return strlen(buf);
 }
 
 /* based on mod_ssl */
@@ -857,9 +938,6 @@ static int verify_callback(int ok, X509_STORE_CTX *callback_ctx) {
 #define rfbVencryptX509Vnc	261
 #define rfbVencryptX509Plain	262
 
-static int vencrypt_selected = 0;
-static int anontls_selected = 0;
-
 static int ssl_client_mode = 0;
 
 static int switch_to_anon_dh(void);
@@ -980,6 +1058,7 @@ void openssl_init(int isclient) {
 			    " be used in -sslCRL mode.\n");	
 			clean_up_exit(1);
 		}
+		/* n.b. new ctx */
 		if (!switch_to_anon_dh()) {
 			rfbLog("openssl_init: Anonymous Diffie-Hellman setup"
 			    " failed.\n");	
@@ -1134,7 +1213,7 @@ void openssl_init(int isclient) {
 		} else {
 			SSL_CTX_set_verify(ctx, lvl, verify_callback);
 		}
-		if (strstr(file, "tmp/sslverify-load-")) {
+		if (strstr(file, "/sslverify-tmp-load-")) {
 			/* temporary file */
 			unlink(file);
 		}
@@ -1145,518 +1224,62 @@ void openssl_init(int isclient) {
 	rfbLog("\n");
 }
 
-void openssl_port(void) {
-	int sock, shutdown = 0;
-	static int port = 0;
-	static in_addr_t iface = INADDR_ANY;
-	int db = 0;
-
-	if (! screen) {
-		rfbLog("openssl_port: no screen!\n");
-		clean_up_exit(1);
-	}
-	if (inetd) {
-		ssl_initialized = 1;
-		return;
-	}
-
-	if (screen->listenSock > -1 && screen->port > 0) {
-		port = screen->port;
-		shutdown = 1;
-	}
-	if (screen->listenInterface) {
-		iface = screen->listenInterface;
-	}
-
-	if (shutdown) {
-		if (db) fprintf(stderr, "shutting down %d/%d\n",
-		    port, screen->listenSock);
-#if LIBVNCSERVER_HAS_SHUTDOWNSOCKETS
-		rfbShutdownSockets(screen);
-#endif
-	}
-
-	sock = rfbListenOnTCPPort(port, iface);
+static int read_exact(int sock, char *buf, int len) {
+	int n, fail = 0;
 	if (sock < 0) {
-		rfbLog("openssl_port: could not reopen port %d\n", port);
-		clean_up_exit(1);
-	}
-	rfbLog("openssl_port: listen on port/sock %d/%d\n", port, sock);
-	if (!quiet) {
-		announce(port, 1, NULL);
-	}
-	openssl_sock = sock;
-	openssl_port_num = port;
-
-	ssl_initialized = 1;
-}
-
-
-void https_port(void) {
-	int sock;
-	static int port = 0;
-	static in_addr_t iface = INADDR_ANY;
-	int db = 0;
-
-	/* as openssl_port above: open a listening socket for pure https: */
-	if (https_port_num < 0) {
-		return;
-	}
-	if (! screen) {
-		rfbLog("https_port: no screen!\n");
-		clean_up_exit(1);
-	}
-	if (screen->listenInterface) {
-		iface = screen->listenInterface;
-	}
-
-	if (https_port_num == 0) {
-		https_port_num = find_free_port(5801, 5851);
-	}
-	if (https_port_num <= 0) {
-		rfbLog("https_port: could not find port %d\n", https_port_num);
-		clean_up_exit(1);
-	}
-	port = https_port_num;
-
-	sock = rfbListenOnTCPPort(port, iface);
-	if (sock < 0) {
-		rfbLog("https_port: could not open port %d\n", port);
-		clean_up_exit(1);
-	}
-	if (db) fprintf(stderr, "https_port: listen on port/sock %d/%d\n",
-	    port, sock);
-
-	https_sock = sock;
-}
-
-static void lose_ram(void) {
-	/*
-	 * for a forked child that will be around for a long time
-	 * without doing exec().  we really should re-exec, but a pain
-	 * to redo all SSL ctx.
-	 */
-	free_old_fb();
-
-	free_tiles();
-}
-
-/* utility to keep track of existing helper processes: */
-
-void ssl_helper_pid(pid_t pid, int sock) {
-#	define HPSIZE 256
-	static pid_t helpers[HPSIZE];
-	static int   sockets[HPSIZE], first = 1;
-	int i, empty, set, status, db = 0;
-
-	if (first) {
-		for (i=0; i < HPSIZE; i++)  {
-			helpers[i] = 0;
-			sockets[i] = 0;
-		}
-		first = 0;
-	}
-
-	if (pid == 0) {
-		/* killall */
-		for (i=0; i < HPSIZE; i++) {
-			if (helpers[i] == 0) {
-				sockets[i] = -1;
-				continue;
-			}
-			if (kill(helpers[i], 0) == 0) {
-				int kret = -2;
-				pid_t wret;
-				if (sock != -2) {
-					if (sockets[i] >= 0) {
-						close(sockets[i]);
-					}
-					kret = kill(helpers[i], SIGTERM);
-					if (kret == 0) {
-						usleep(20 * 1000);
-					}
-				}
-
-#if LIBVNCSERVER_HAVE_SYS_WAIT_H && LIBVNCSERVER_HAVE_WAITPID 
-if (db) fprintf(stderr, "waitpid(%d)\n", helpers[i]);
-				wret = waitpid(helpers[i], &status, WNOHANG); 
-				if (kret == 0 && wret != helpers[i]) {
-					int k;
-					for (k=0; k < 10; k++) {
-						usleep(100 * 1000);
-						wret = waitpid(helpers[i], &status, WNOHANG); 
-						if (wret == helpers[i]) {
-							break;
-						}
-					}
-				}
-#endif
-				if (sock == -2) {
-					continue;
-				}
-			}
-			helpers[i] = 0;
-			sockets[i] = -1;
-		}
-		return;
-	}
-
-if (db) fprintf(stderr, "ssl_helper_pid(%d, %d)\n", pid, sock);
-
-	/* add (or delete for sock == -1) */
-	set = 0;
-	empty = -1;
-	for (i=0; i < HPSIZE; i++) {
-		if (helpers[i] == pid) {
-			if (sock == -1) {
-
-#if LIBVNCSERVER_HAVE_SYS_WAIT_H && LIBVNCSERVER_HAVE_WAITPID 
-if (db) fprintf(stderr, "waitpid(%d) 2\n", helpers[i]);
-				waitpid(helpers[i], &status, WNOHANG); 
-#endif
-				helpers[i] = 0;
-			}
-			sockets[i] = sock;
-			set = 1;
-		} else if (empty == -1 && helpers[i] == 0) {
-			empty = i;
-		}
-	}
-	if (set || sock == -1) {
-		return;	/* done */
-	}
-
-	/* now try to store */
-	if (empty >= 0) {
-		helpers[empty] = pid;
-		sockets[empty] = sock;
-		return;
-	}
-	for (i=0; i < HPSIZE; i++) {
-		if (helpers[i] == 0) {
-			continue;
-		}
-		/* clear out stale pids: */
-		if (kill(helpers[i], 0) != 0) {
-			helpers[i] = 0;
-			sockets[i] = -1;
-			
-			if (empty == -1) {
-				empty = i;
-			}
-		}
-	}
-	if (empty >= 0) {
-		helpers[empty] = pid;
-		sockets[empty] = sock;
-	}
-}
-
-static int is_ssl_readable(int s_in, time_t last_https, char *last_get,
-    int mode) {
-	int nfd, db = 0;
-	struct timeval tv;
-	fd_set rd;
-
-	if (getenv("ACCEPT_OPENSSL_DEBUG")) {
-		db = atoi(getenv("ACCEPT_OPENSSL_DEBUG"));
-	}
-
-	/*
-	 * we'll do a select() on s_in for reading.  this is not an
-	 * absolute proof that SSL_read is ready (XXX use SSL utility).
-	 */
-	tv.tv_sec  = 2;
-	tv.tv_usec = 0;
-
-	if (mode == OPENSSL_INETD) {
-		/*
-		 * https via inetd is icky because x11vnc is restarted
-		 * for each socket (and some clients send requests
-		 * rapid fire).
-		 */
-		tv.tv_sec = 6;
-	}
-
-	/*
-	 * increase the timeout if we know HTTP traffic has occurred
-	 * recently:
-	 */
-	if (time(NULL) < last_https + 30) {
-		tv.tv_sec = 10;
-		if (last_get && strstr(last_get, "VncViewer")) {
-			tv.tv_sec = 5;
-		}
-	}
-	if (getenv("X11VNC_HTTPS_VS_VNC_TIMEOUT")) {
-		tv.tv_sec  = atoi(getenv("X11VNC_HTTPS_VS_VNC_TIMEOUT"));
-	}
-if (db) fprintf(stderr, "tv_sec: %d - %s\n", (int) tv.tv_sec, last_get);
-
-	FD_ZERO(&rd);
-	FD_SET(s_in, &rd);
-
-	do {
-		nfd = select(s_in+1, &rd, NULL, NULL, &tv);
-	} while (nfd < 0 && errno == EINTR);
-
-	if (db) fprintf(stderr, "https nfd: %d\n", nfd);
-
-	if (nfd <= 0 || ! FD_ISSET(s_in, &rd)) {
 		return 0;
 	}
-	return 1;
-}
-
-#define ABSIZE 16384
-static int watch_for_http_traffic(char *buf_a, int *n_a, int raw_sock) {
-	int is_http, err, n, n2;
-	char *buf;
-	int db = 0;
-	/*
-	 * sniff the first couple bytes of the stream and try to see
-	 * if it is http or not.  if we read them OK, we must read the
-	 * rest of the available data otherwise we may deadlock.
-	 * what has been read is returned in buf_a and n_a.
-	 * *buf_a is ABSIZE+1 long and zeroed.
-	 */
-	if (getenv("ACCEPT_OPENSSL_DEBUG")) {
-		db = atoi(getenv("ACCEPT_OPENSSL_DEBUG"));
-	}
-	if (! buf_a || ! n_a) {
-		return 0;
-	}
-
-	buf = (char *) calloc((ABSIZE+1), 1);
-	*n_a = 0;
-
-	if (enc_str && !strcmp(enc_str, "none")) {
-		n = read(raw_sock, buf, 2);
-		err = SSL_ERROR_NONE;
-	} else {
-		n = SSL_read(ssl, buf, 2);
-		err = SSL_get_error(ssl, n);
-	}
-
-	if (err != SSL_ERROR_NONE || n < 2) {
+	while (len > 0) {
+		n = read(sock, buf, len);
 		if (n > 0) {
-			strncpy(buf_a, buf, n);
-			*n_a = n;
+			buf += n;
+			len -= n;
+		} else if (n == 0) {
+			fail = 1;
+			break;
+		} else if (n < 0 && (errno == EAGAIN || errno == EWOULDBLOCK)) {
+			usleep(10*1000);
+		} else if (n < 0 && errno != EINTR) {
+			fail = 1;
+			break;
 		}
-		if (db) fprintf(stderr, "watch_for_http_traffic ssl err: %d/%d\n", err, n);
-		return -1;
 	}
-
-	/* look for GET, HEAD, POST, CONNECT */
-	is_http = 0;
-	if (!strncmp("GE", buf, 2)) {
-		is_http = 1;
-	} else if (!strncmp("HE", buf, 2)) {
-		is_http = 1;
-	} else if (!strncmp("PO", buf, 2)) {
-		is_http = 1;
-	} else if (!strncmp("CO", buf, 2)) {
-		is_http = 1;
-	}
-	if (db) fprintf(stderr, "watch_for_http_traffic read: '%s' %d\n", buf, n);
-
-	/*
-	 * better read all we can and fwd it along to avoid blocking
-	 * in ssl_xfer().
-	 */
-
-	if (enc_str && !strcmp(enc_str, "none")) {
-		n2 = read(raw_sock, buf + n, ABSIZE - n);
+	if (fail) {
+		return 0;
 	} else {
-		n2 = SSL_read(ssl, buf + n, ABSIZE - n);
-	}
-	if (n2 >= 0) {
-		n += n2;
-	}
-
-	*n_a = n;
-
-	if (db) fprintf(stderr, "watch_for_http_traffic readmore: %d\n", n2);
-
-	if (n > 0) {
-		memcpy(buf_a, buf, n);
-	}
-	if (db > 1) {
-		fprintf(stderr, "watch_for_http_traffic readmore: ");
-		write(2, buf_a, *n_a);
-		fprintf(stderr, "\n");
-	}
-	if (db) fprintf(stderr, "watch_for_http_traffic return: %d\n", is_http);
-	return is_http;
-}
-
-static int csock_timeout_sock = -1;
-
-static void csock_timeout (int sig) {
-	rfbLog("sig: %d, csock_timeout.\n", sig);
-	if (csock_timeout_sock >= 0) {
-		close(csock_timeout_sock);
-		csock_timeout_sock = -1;
+		return 1;
 	}
 }
 
-#define PROXY_HACK 0
-#if PROXY_HACK
-
-#define PROXY_HACK 0
-#if PROXY_HACK
-
-static int wait_conn(int sock) {
-	int conn;
-	struct sockaddr_in addr;
-#ifdef __hpux
-	int addrlen = sizeof(addr);
-#else
-	socklen_t addrlen = sizeof(addr);
-#endif
-
-	signal(SIGALRM, csock_timeout);
-	csock_timeout_sock = sock;
-	
-	alarm(15);
-	conn = accept(sock, (struct sockaddr *)&addr, &addrlen);
-	alarm(0);
-
-	signal(SIGALRM, SIG_DFL);
-	return conn;
-}
-
-/* no longer used */
-
-/* no longer used */
-
-int proxy_hack(int vncsock, int listen, int s_in, int s_out, char *cookie,
-    int mode) {
-	int sock1, db = 0;
-	char reply[] = "HTTP/1.1 200 OK\r\n"
-	    "Content-Type: octet-stream\r\n"
-	    "Pragma: no-cache\r\n\r\n";
-	char reply0[] = "HTTP/1.0 200 OK\r\n"
-	    "Content-Type: octet-stream\r\n"
-	    "Content-Length: 9\r\n"
-	    "Pragma: no-cache\r\n\r\nGO_AHEAD\n";
-
-	rfbLog("SSL: accept_openssl: detected https proxied connection"
-	    " request.\n");
-
-	if (getenv("ACCEPT_OPENSSL_DEBUG")) {
-		db = atoi(getenv("ACCEPT_OPENSSL_DEBUG"));
-	}
-
-	SSL_write(ssl, reply0, strlen(reply0));
-	SSL_shutdown(ssl);
-	SSL_shutdown(ssl);
-	close(s_in);
-	close(s_out);
-	SSL_free(ssl);
-
-	if (mode == OPENSSL_VNC) {
-		listen = openssl_sock;
-	} else if (mode == OPENSSL_HTTPS) {
-		listen = https_sock;
-	} else {
-		/* inetd */
+static int write_exact(int sock, char *buf, int len) {
+	int n, fail = 0;
+	if (sock < 0) {
 		return 0;
 	}
-
-	sock1 = wait_conn(listen);
-
-	if (csock_timeout_sock < 0 || sock1 < 0) {
-		close(sock1);
+	while (len > 0) {
+		n = write(sock, buf, len);
+		if (n > 0) {
+			buf += n;
+			len -= n;
+		} else if (n == 0) {
+			fail = 1;
+			break;
+		} else if (n < 0 && (errno == EAGAIN || errno == EWOULDBLOCK)) {
+			usleep(10*1000);
+		} else if (n < 0 && errno != EINTR) {
+			fail = 1;
+			break;
+		}
+	}
+	if (fail) {
 		return 0;
+	} else {
+		return 1;
 	}
-
-if (db) fprintf(stderr, "got applet input sock1: %d\n", sock1);
-
-	if (! ssl_init(sock1, sock1, 0)) {
-if (db) fprintf(stderr, "ssl_init FAILED\n");
-		exit(1);
-	}
-
-	SSL_write(ssl, reply, strlen(reply));
-
-	{
-		char *buf;
-		int n = 0, ptr = 0;
-	
-		buf  = (char *) calloc((8192+1), 1);
-		while (ptr < 8192) {
-			n = SSL_read(ssl, buf + ptr, 8192 - ptr);
-			if (n > 0) {
-				ptr += n;
-			}
-if (db) fprintf(stderr, "buf: '%s'\n", buf);
-			if (strstr(buf, "\r\n\r\n")) {
-				break;
-			}
-		}
-	}
-
-	if (cookie) {
-		write(vncsock, cookie, strlen(cookie));
-	}
-	ssl_xfer(vncsock, sock1, sock1, 0);
-
-	return 1;
-}
-#endif	/* PROXY_HACK */
-
-static int check_ssl_access(char *addr) {
-	static char *save_allow_once = NULL;
-	static time_t time_allow_once = 0;
-
-	/* due to "Fetch Cert" activities for SSL really need to "allow twice" */
-	if (allow_once != NULL) {
-		save_allow_once = strdup(allow_once);
-		time_allow_once = time(NULL);
-	} else if (save_allow_once != NULL) {
-		if (getenv("X11VNC_NO_SSL_ALLOW_TWICE")) {
-			;
-		} else if (time(NULL) < time_allow_once + 30) {
-			/* give them 30 secs to check and save the fetched cert. */
-			allow_once = save_allow_once; 
-			rfbLog("SSL: Permitting 30 sec grace period for allowonce.\n");
-			rfbLog("SSL: Set X11VNC_NO_SSL_ALLOW_TWICE=1 to disable.\n");
-		}
-		save_allow_once = NULL;
-		time_allow_once = 0;
-	}
-
-	return check_access(addr);
-}
-#endif	/* PROXY_HACK */
-
-static int check_ssl_access(char *addr) {
-	static char *save_allow_once = NULL;
-	static time_t time_allow_once = 0;
-
-	/* due to "Fetch Cert" activities for SSL really need to "allow twice" */
-	if (allow_once != NULL) {
-		save_allow_once = strdup(allow_once);
-		time_allow_once = time(NULL);
-	} else if (save_allow_once != NULL) {
-		if (getenv("X11VNC_NO_SSL_ALLOW_TWICE")) {
-			;
-		} else if (time(NULL) < time_allow_once + 30) {
-			/* give them 30 secs to check and save the fetched cert. */
-			allow_once = save_allow_once; 
-			rfbLog("SSL: Permitting 30 sec grace period for allowonce.\n");
-			rfbLog("SSL: Set X11VNC_NO_SSL_ALLOW_TWICE=1 to disable.\n");
-		}
-		save_allow_once = NULL;
-		time_allow_once = 0;
-	}
-
-	return check_access(addr);
 }
 
-static int write_exact(int sock, char *buf, int len);
-static int read_exact(int sock, char *buf, int len);
+/* XXX not in rfb.h: */
+void rfbClientSendString(rfbClientPtr cl, char *reason);
 
 static int finish_auth(rfbClientPtr client, char *type) {
 	int security_result, ret;
@@ -1754,898 +1377,6 @@ static int finish_vencrypt_auth(rfbClientPtr client, int subtype) {
 	}
 }
 
-
-void accept_openssl(int mode, int presock) {
-	int sock = -1, listen = -1, cport, csock, vsock;	
-	int peerport = 0;
-	int status, n, i, db = 0;
-	struct sockaddr_in addr;
-#ifdef __hpux
-	int addrlen = sizeof(addr);
-#else
-	socklen_t addrlen = sizeof(addr);
-#endif
-	rfbClientPtr client;
-	pid_t pid;
-	char uniq[] = "_evilrats_";
-	char cookie[256], rcookie[256], *name = NULL;
-	int vencrypt_sel = 0;
-	int anontls_sel = 0;
-	static time_t last_https = 0;
-	static char last_get[256];
-	static int first = 1;
-	unsigned char *rb;
-
-	openssl_last_helper_pid = 0;
-
-	/* zero buffers for use below. */
-	for (i=0; i<256; i++) {
-		if (first) {
-			last_get[i] = '\0';
-		}
-		cookie[i]  = '\0';
-		rcookie[i] = '\0';
-	}
-	first = 0;
-
-	if (getenv("ACCEPT_OPENSSL_DEBUG")) {
-		db = atoi(getenv("ACCEPT_OPENSSL_DEBUG"));
-	}
-
-	/* do INETD, VNC, or HTTPS cases (result is client socket or pipe) */
-	if (mode == OPENSSL_INETD) {
-		ssl_initialized = 1;
-
-	} else if (mode == OPENSSL_VNC) {
-		sock = accept(openssl_sock, (struct sockaddr *)&addr, &addrlen);
-		if (sock < 0)  {
-			rfbLog("SSL: accept_openssl: accept connection failed\n");
-			rfbLogPerror("accept");
-			if (ssl_no_fail) {
-				clean_up_exit(1);
-			}
-			return;
-		}
-		listen = openssl_sock;
-
-	} else if (mode == OPENSSL_REVERSE) {
-		sock = presock;
-		if (sock < 0)  {
-			rfbLog("SSL: accept_openssl: connection failed\n");
-			if (ssl_no_fail) {
-				clean_up_exit(1);
-			}
-			return;
-		}
-		listen = -1;
-
-	} else if (mode == OPENSSL_HTTPS) {
-		sock = accept(https_sock, (struct sockaddr *)&addr, &addrlen);
-		if (sock < 0)  {
-			rfbLog("SSL: accept_openssl: accept connection failed\n");
-			rfbLogPerror("accept");
-			if (ssl_no_fail) {
-				clean_up_exit(1);
-			}
-			return;
-		}
-		listen = https_sock;
-	}
-	if (db) fprintf(stderr, "SSL: accept_openssl: sock: %d\n", sock);
-
-	if (openssl_last_ip) {
-		free(openssl_last_ip);
-		openssl_last_ip = NULL;
-	}
-	if (mode == OPENSSL_INETD) {
-		openssl_last_ip = get_remote_host(fileno(stdin));
-	} else {
-		openssl_last_ip = get_remote_host(sock);
-	}
-
-	if (!check_ssl_access(openssl_last_ip)) {
-		rfbLog("SSL: accept_openssl: denying client %s\n", openssl_last_ip);
-		rfbLog("SSL: accept_openssl: does not match -allow (or other reason).\n");
-		close(sock);
-		sock = -1;
-		if (ssl_no_fail) {
-			clean_up_exit(1);
-		}
-		return;
-	}
-
-	if (!check_ssl_access(openssl_last_ip)) {
-		rfbLog("SSL: accept_openssl: denying client %s\n", openssl_last_ip);
-		rfbLog("SSL: accept_openssl: does not match -allow (or other reason).\n");
-		close(sock);
-		sock = -1;
-		if (ssl_no_fail) {
-			clean_up_exit(1);
-		}
-		return;
-	}
-
-	/* now make a listening socket for child to connect back to us by: */
-
-	cport = find_free_port(20000, 0);
-	if (! cport) {
-		rfbLog("SSL: accept_openssl: could not find open port.\n");
-		close(sock);
-		if (mode == OPENSSL_INETD || ssl_no_fail) {
-			clean_up_exit(1);
-		}
-		return;
-	}
-	if (db) fprintf(stderr, "accept_openssl: cport: %d\n", cport);
-
-	csock = rfbListenOnTCPPort(cport, htonl(INADDR_LOOPBACK));
-
-	if (csock < 0) {
-		rfbLog("SSL: accept_openssl: could not listen on port %d.\n",
-		    cport);
-		close(sock);
-		if (mode == OPENSSL_INETD || ssl_no_fail) {
-			clean_up_exit(1);
-		}
-		return;
-	}
-	if (db) fprintf(stderr, "accept_openssl: csock: %d\n", csock);
-
-	fflush(stderr);
-
-	/*
-	 * make a simple cookie to id the child socket, not foolproof
-	 * but hard to guess exactly (just worrying about local lusers
-	 * here, since we use INADDR_LOOPBACK).
-	 */
-	rb = (unsigned char *) calloc(6, 1);
-	RAND_bytes((char *)rb, 6);
-	sprintf(cookie, "RB=%d%d%d%d%d%d/%f%f/0x%x",
-	    rb[0], rb[1], rb[2], rb[3], rb[4], rb[5],
-            dnow() - x11vnc_start, x11vnc_start, rb);
-
-	if (mode != OPENSSL_INETD) {
-		name = get_remote_host(sock);
-		peerport = get_remote_port(sock);
-	} else {
-		openssl_last_ip = get_remote_host(fileno(stdin));
-		peerport = get_remote_port(fileno(stdin));
-		if (openssl_last_ip) {
-			name = strdup(openssl_last_ip);
-		} else {
-			name = strdup("unknown");
-		}
-	}
-	if (name) {
-		if (mode == OPENSSL_INETD) {
-			rfbLog("SSL: (inetd) spawning helper process "
-			    "to handle: %s:%d\n", name, peerport);
-		} else {
-			rfbLog("SSL: spawning helper process to handle: "
-			    "%s:%d\n", name, peerport);
-		}
-		free(name);
-		name = NULL;
-	}
-
-	if (certret) {
-		free(certret);
-	}
-	if (certret_str) {
-		free(certret_str);
-		certret_str = NULL;
-	}
-	certret = strdup("/tmp/x11vnc-certret.XXXXXX");
-	omode = umask(077);
-	certret_fd = mkstemp(certret);
-	umask(omode);
-	if (certret_fd < 0) {
-		free(certret);
-		certret = NULL;
-		certret_fd = -1;
-	}
-
-	if (dhret) {
-		free(dhret);
-	}
-	if (dhret_str) {
-		free(dhret_str);
-		dhret_str = NULL;
-	}
-	dhret = strdup("/tmp/x11vnc-dhret.XXXXXX");
-	omode = umask(077);
-	dhret_fd = mkstemp(dhret);
-	umask(omode);
-	if (dhret_fd < 0) {
-		free(dhret);
-		dhret = NULL;
-		dhret_fd = -1;
-	}
-
-	/* now fork the child to handle the SSL: */
-	pid = fork();
-
-	if (pid < 0) {
-		rfbLog("SSL: accept_openssl: could not fork.\n");
-		rfbLogPerror("fork");
-		close(sock);
-		close(csock);
-		if (mode == OPENSSL_INETD || ssl_no_fail) {
-			clean_up_exit(1);
-		}
-		return;
-
-	} else if (pid == 0) {
-		int s_in, s_out, httpsock = -1;
-		int vncsock;
-		int i, have_httpd = 0;
-		int f_in  = fileno(stdin);
-		int f_out = fileno(stdout);
-		int skip_vnc_tls = mode == OPENSSL_HTTPS ? 1 : 0;
-
-		if (db) fprintf(stderr, "helper pid in: %d %d %d %d\n", f_in, f_out, sock, listen);
-
-		/* reset all handlers to default (no interrupted() calls) */
-		unset_signals();
-
-		/* close all non-essential fd's */
-		for (i=0; i<256; i++) {
-			if (mode == OPENSSL_INETD) {
-				if (i == f_in || i == f_out) {
-					continue;
-				}
-			}
-			if (i == sock) {
-				continue;
-			}
-			if (i == 2) {
-				continue;
-			}
-			close(i);
-		}
-
-		/*
-		 * sadly, we are a long lived child and so the large
-		 * framebuffer memory areas will soon differ from parent.
-		 * try to free as much as possible.
-		 */
-		lose_ram();
-
-		/* now connect back to parent socket: */
-		vncsock = rfbConnectToTcpAddr("127.0.0.1", cport);
-		if (vncsock < 0) {
-			rfbLog("SSL: ssl_helper[%d]: could not connect"
-			    " back to: %d\n", getpid(), cport);
-			exit(1);
-		}
-		if (db) fprintf(stderr, "vncsock %d\n", vncsock);
-
-		/* try to initialize SSL with the remote client */
-
-		if (mode == OPENSSL_INETD) {
-			s_in  = fileno(stdin);
-			s_out = fileno(stdout);
-		} else {
-			s_in = s_out = sock;
-		}
-
-		if (! ssl_init(s_in, s_out, skip_vnc_tls)) {
-			close(vncsock);
-			exit(1);
-		}
-
-		if (vencrypt_selected != 0) {
-			char *tbuf;
-			tbuf = (char *) malloc(strlen(cookie) + 100);
-			sprintf(tbuf, "%s,VENCRYPT=%d,%s", uniq, vencrypt_selected, cookie);
-			write(vncsock, tbuf, strlen(cookie));
-			goto wrote_cookie;
-		} else if (anontls_selected != 0) {
-			char *tbuf;
-			tbuf = (char *) malloc(strlen(cookie) + 100);
-			sprintf(tbuf, "%s,ANONTLS=%d,%s", uniq, anontls_selected, cookie);
-			write(vncsock, tbuf, strlen(cookie));
-			goto wrote_cookie;
-		}
-
-		/*
-		 * things get messy below since we are trying to do
-		 * *both* VNC and Java applet httpd through the same
-		 * SSL socket.
-		 */
-
-		if (! screen) {
-			close(vncsock);
-			exit(1);
-		}
-		if (screen->httpListenSock >= 0 && screen->httpPort > 0) {
-			have_httpd = 1;
-		}
-		if (screen->httpListenSock == -2) {
-			have_httpd = 1;
-		}
-		if (mode == OPENSSL_HTTPS && ! have_httpd) {
-			rfbLog("SSL: accept_openssl[%d]: no httpd socket for "
-			    "-https mode\n", getpid());
-			close(vncsock);
-			exit(1);
-		}
-
-		if (have_httpd) {
-			int n = 0, is_http = 0;
-			int hport = screen->httpPort; 
-			char *iface = NULL;
-			char *buf, *tbuf;
-
-			buf  = (char *) calloc((ABSIZE+1), 1);
-			tbuf = (char *) calloc((2*ABSIZE+1), 1);
-
-			if (mode == OPENSSL_HTTPS) {
-				/*
-				 * for this mode we know it is HTTP traffic
-				 * so we skip trying to guess.
-				 */
-				is_http = 1;
-				n = 0;
-				goto connect_to_httpd;
-			}
-
-			/*
-			 * Check if there is stuff to read from remote end
-			 * if so it is likely a GET or HEAD.
-			 */
-			if (! is_ssl_readable(s_in, last_https, last_get,
-			    mode)) {
-				goto write_cookie;
-			}
-	
-			/* 
-			 * read first 2 bytes to try to guess.  sadly,
-			 * the user is often pondering a "non-verified
-			 * cert" dialog for a long time before the GET
-			 * is ever sent.  So often we timeout here.
-			 */
-
-			if (db) fprintf(stderr, "watch_for_http_traffic\n");
-
-			is_http = watch_for_http_traffic(buf, &n, s_in);
-
-			if (is_http < 0 || is_http == 0) {
-				/*
-				 * error or http not detected, fall back
-				 * to normal VNC socket.
-				 */
-				if (db) fprintf(stderr, "is_http err: %d n: %d\n", is_http, n);
-				write(vncsock, cookie, strlen(cookie));
-				if (n > 0) {
-					write(vncsock, buf, n);
-				}
-				goto wrote_cookie;
-			}
-
-			if (db) fprintf(stderr, "is_http: %d n: %d\n",
-			    is_http, n);
-			if (db) fprintf(stderr, "buf: '%s'\n", buf);
-
-			if (strstr(buf, "/request.https.vnc.connection")) {
-				char reply[] = "HTTP/1.0 200 OK\r\n"
-				    "Content-Type: octet-stream\r\n"
-				    "Connection: Keep-Alive\r\n"
-				    "Pragma: no-cache\r\n\r\n";
-				/*
-				 * special case proxy coming thru https
-				 * instead of a direct SSL connection.
-				 */
-				rfbLog("Handling VNC request via https GET. [%d]\n", getpid());
-				rfbLog("-- %s\n", buf);
-
-				if (strstr(buf, "/reverse.proxy")) {
-					char *buf2;
-					int n, ptr;
-					SSL_write(ssl, reply, strlen(reply));
-				
-					buf2  = (char *) calloc((8192+1), 1);
-					n = 0;
-					ptr = 0;
-					while (ptr < 8192) {
-						n = SSL_read(ssl, buf2 + ptr, 1);
-						if (n > 0) {
-							ptr += n;
-						}
-						if (db) fprintf(stderr, "buf2: '%s'\n", buf2);
-
-						if (strstr(buf2, "\r\n\r\n")) {
-							break;
-						}
-					}
-					free(buf2);
-				}
-				goto write_cookie;
-
-			} else if (strstr(buf, "/check.https.proxy.connection")) {
-				char reply[] = "HTTP/1.0 200 OK\r\n"
-				    "Connection: close\r\n"
-				    "Content-Type: octet-stream\r\n"
-				    "Pragma: no-cache\r\n\r\n";
-
-				rfbLog("Handling Check HTTPS request via https GET. [%d]\n", getpid());
-				rfbLog("-- %s\n", buf);
-
-				SSL_write(ssl, reply, strlen(reply));
-				SSL_shutdown(ssl);
-
-				strcpy(tbuf, uniq);
-				strcat(tbuf, cookie);
-				write(vncsock, tbuf, strlen(tbuf));
-				close(vncsock);
-
-				exit(0);
-			}
-			connect_to_httpd:
-
-			/*
-			 * Here we go... no turning back.  we have to
-			 * send failure to parent and close socket to have
-			 * http processed at all in a timely fashion...
-			 */
-
-			/* send the failure tag: */
-			strcpy(tbuf, uniq);
-
-			if (https_port_redir < 0 || (strstr(buf, "PORT=") || strstr(buf, "port="))) {
-				char *q = strstr(buf, "Host:");
-				int fport = 443, match = 0;
-				char num[16];
-
-				if (q && strstr(q, "\n")) {
-				    q += strlen("Host:") + 1;
-				    while (*q != '\n') {
-					int p;
-					if (*q == ':' && sscanf(q, ":%d", &p) == 1) {
-						if (p > 0 && p < 65536) {
-							fport = p;
-							match = 1;
-							break;
-						}
-					}
-					q++;
-				    }
-				}
-				if (!match || !https_port_redir) {
-					int p;
-					if (sscanf(buf, "PORT=%d,", &p) == 1) {
-						if (p > 0 && p < 65536) {
-							fport = p;
-						}
-					} else if (sscanf(buf, "port=%d,", &p) == 1) {
-						if (p > 0 && p < 65536) {
-							fport = p;
-						}
-					}
-				}
-				sprintf(num, "HP=%d,", fport);
-				strcat(tbuf, num);
-			}
-
-			if (strstr(buf, "HTTP/") != NULL)  {
-				char *q, *str;
-				/*
-				 * Also send back the GET line for heuristics.
-				 * (last_https, get file).
-				 */
-				str = strdup(buf);
-				q = strstr(str, "HTTP/");
-				if (q != NULL) {
-					*q = '\0';	
-					strcat(tbuf, str);
-				}
-				free(str);
-			}
-
-			/*
-			 * Also send the cookie to pad out the number of
-			 * bytes to more than the parent wants to read.
-			 * Since this is the failure case, it does not
-			 * matter that we send more than strlen(cookie).
-			 */
-			strcat(tbuf, cookie);
-			write(vncsock, tbuf, strlen(tbuf));
-
-			usleep(150*1000);
-			if (db) fprintf(stderr, "close vncsock: %d\n", vncsock);
-			close(vncsock);
-
-			/* now, finally, connect to the libvncserver httpd: */
-			if (screen->listenInterface == htonl(INADDR_ANY) ||
-			    screen->listenInterface == htonl(INADDR_NONE)) {
-				iface = "127.0.0.1";
-			} else {
-				struct in_addr in;
-				in.s_addr = screen->listenInterface;
-				iface = inet_ntoa(in);
-			}
-			if (iface == NULL || !strcmp(iface, "")) {
-				iface = "127.0.0.1";
-			}
-			if (db) fprintf(stderr, "iface: %s:%d\n", iface, hport);
-			usleep(150*1000);
-
-			httpsock = rfbConnectToTcpAddr(iface, hport);
-
-			if (httpsock < 0) {
-				/* UGH, after all of that! */
-				rfbLog("Could not connect to httpd socket!\n");
-				exit(1);
-			}
-			if (db) fprintf(stderr, "ssl_helper[%d]: httpsock: %d %d\n",
-			    getpid(), httpsock, n);
-
-			/*
-			 * send what we read to httpd, and then connect
-			 * the rest of the SSL session to it:
-			 */
-			if (n > 0) {
-				if (db) fprintf(stderr, "sending http buffer httpsock: %d\n'%s'\n", httpsock, buf);
-				write(httpsock, buf, n);
-			}
-			ssl_xfer(httpsock, s_in, s_out, is_http);
-			exit(0);
-		}
-
-		/*
-		 * ok, back from the above https mess, simply send the
-		 * cookie back to the parent (who will attach us to
-		 * libvncserver), and connect the rest of the SSL session
-		 * to it.
-		 */
-		write_cookie:
-		write(vncsock, cookie, strlen(cookie));
-
-		wrote_cookie:
-		ssl_xfer(vncsock, s_in, s_out, 0);
-
-		exit(0);
-	}
-	/* parent here */
-
-	if (mode != OPENSSL_INETD) {
-		close(sock);
-	}
-	if (db) fprintf(stderr, "helper process is: %d\n", pid);
-
-	/* accept connection from our child.  */
-	signal(SIGALRM, csock_timeout);
-	csock_timeout_sock = csock;
-	alarm(20);
-
-	vsock = accept(csock, (struct sockaddr *)&addr, &addrlen);
-
-	alarm(0);
-	signal(SIGALRM, SIG_DFL);
-	close(csock);
-
-
-	if (vsock < 0) {
-		rfbLog("SSL: accept_openssl: connection from ssl_helper FAILED.\n");
-		rfbLogPerror("accept");
-
-		kill(pid, SIGTERM);
-		waitpid(pid, &status, WNOHANG); 
-		if (mode == OPENSSL_INETD || ssl_no_fail) {
-			clean_up_exit(1);
-		}
-		if (certret_fd >= 0) {
-			close(certret_fd);
-			certret_fd = -1;
-		}
-		if (certret) {
-			unlink(certret);
-		}
-		if (dhret_fd >= 0) {
-			close(dhret_fd);
-			dhret_fd = -1;
-		}
-		if (dhret) {
-			unlink(dhret);
-		}
-		return;
-	}
-	if (db) fprintf(stderr, "accept_openssl: vsock: %d\n", vsock);
-
-	n = read(vsock, rcookie, strlen(cookie));
-	if (n < 0 && errno != 0) {
-		rfbLogPerror("read");
-	}
-
-	if (certret) {
-		struct stat sbuf;
-		sbuf.st_size = 0;
-		if (certret_fd >= 0 && stat(certret, &sbuf) == 0 && sbuf.st_size > 0) {
-			certret_str = (char *) calloc(sbuf.st_size+1, 1);
-			read(certret_fd, certret_str, sbuf.st_size);
-			close(certret_fd);
-			certret_fd = -1;
-		}
-		if (certret_fd >= 0) {
-			close(certret_fd);
-			certret_fd = -1;
-		}
-		unlink(certret);
-		if (certret_str && strstr(certret_str, "NOCERT") == certret_str) {
-			free(certret_str);
-			certret_str = NULL;
-		}
-		if (0 && certret_str) {
-			fprintf(stderr, "certret_str[%d]:\n%s\n", (int) sbuf.st_size, certret_str);
-		}
-	}
-
-	if (dhret) {
-		struct stat sbuf;
-		sbuf.st_size = 0;
-		if (dhret_fd >= 0 && stat(dhret, &sbuf) == 0 && sbuf.st_size > 0) {
-			dhret_str = (char *) calloc(sbuf.st_size+1, 1);
-			read(dhret_fd, dhret_str, sbuf.st_size);
-			close(dhret_fd);
-			dhret_fd = -1;
-		}
-		if (dhret_fd >= 0) {
-			close(dhret_fd);
-			dhret_fd = -1;
-		}
-		unlink(dhret);
-		if (dhret_str && strstr(dhret_str, "NOCERT") == dhret_str) {
-			free(dhret_str);
-			dhret_str = NULL;
-		}
-		if (dhret_str) {
-			if (new_dh_params == NULL) {
-				fprintf(stderr, "dhret_str[%d]:\n%s\n", (int) sbuf.st_size, dhret_str);
-				new_dh_params = strdup(dhret_str);
-			}
-		}
-	}
-
-	if (0) {
-		fprintf(stderr, "rcookie: %s\n", rcookie);
-		fprintf(stderr, "cookie:  %s\n", cookie);
-	}
-
-	if (strstr(rcookie, uniq) == rcookie) {
-		char *q = strstr(rcookie, "RB=");
-		if (q && strstr(cookie, q) == cookie) {
-			vencrypt_sel = 0;
-			anontls_sel = 0;
-			q = strstr(rcookie, "VENCRYPT=");
-			if (q && sscanf(q, "VENCRYPT=%d,", &vencrypt_sel) == 1) {
-				if (vencrypt_sel != 0) {
-					rfbLog("SSL: VENCRYPT mode=%d accepted.\n", vencrypt_sel);
-					goto accept_client;
-				}
-			}
-			q = strstr(rcookie, "ANONTLS=");
-			if (q && sscanf(q, "ANONTLS=%d,", &anontls_sel) == 1) {
-				if (anontls_sel != 0) {
-					rfbLog("SSL: ANONTLS mode=%d accepted.\n", anontls_sel);
-					goto accept_client;
-				}
-			}
-		}
-	}
-
-	if (n != (int) strlen(cookie) || strncmp(cookie, rcookie, n)) {
-		rfbLog("SSL: accept_openssl: cookie from ssl_helper FAILED. %d\n", n);
-		if (db) fprintf(stderr, "'%s'\n'%s'\n", cookie, rcookie);
-		close(vsock);
-
-		if (strstr(rcookie, uniq) == rcookie) {
-			int i;
-			rfbLog("SSL: BUT WAIT! HTTPS for helper process succeeded. Good.\n");
-			if (mode != OPENSSL_HTTPS) {
-				last_https = time(NULL);
-				for (i=0; i<256; i++) {
-					last_get[i] = '\0';
-				}
-				strncpy(last_get, rcookie, 100);
-				if (db) fprintf(stderr, "last_get: '%s'\n", last_get);
-			}
-			if (rcookie && strstr(rcookie, "VncViewer.class")) {
-				rfbLog("\n");
-				rfbLog("***********************************************************\n");
-				rfbLog("SSL: WARNING CLIENT ASKED FOR NONEXISTENT 'VncViewer.class'\n");
-				rfbLog("SSL: USER NEEDS TO **RESTART** HIS WEB BROWSER.\n");
-				rfbLog("***********************************************************\n");
-				rfbLog("\n");
-			}
-			ssl_helper_pid(pid, -2);
-
-			if (https_port_redir) {
-				double start;
-				int origport = screen->port;
-				int useport = screen->port;
-				/* to expand $PORT correctly in index.vnc */
-				if (https_port_redir < 0) {
-					char *q = strstr(rcookie, "HP=");
-					if (q) {
-						int p;
-						if (sscanf(q, "HP=%d,", &p) == 1) {
-							useport = p;
-						}
-					}
-				} else {
-					useport = https_port_redir;
-				}
-				screen->port = useport;
-				if (origport != useport) {
-					rfbLog("SSL: -httpsredir guess port: %d\n", screen->port);
-				}
-
-				start = dnow();
-				while (dnow() < start + 10.0) {
-					rfbPE(10000);
-					usleep(10000);
-					waitpid(pid, &status, WNOHANG); 
-					if (kill(pid, 0) != 0) {
-						rfbPE(10000);
-						rfbPE(10000);
-						break;
-					}
-				}
-				screen->port = origport;
-				rfbLog("SSL: guessing child https finished.\n");
-				if (mode == OPENSSL_INETD) {
-					clean_up_exit(1);
-				}
-			} else if (mode == OPENSSL_INETD) {
-				double start;
-				/* to expand $PORT correctly in index.vnc */
-				if (screen->port == 0) {
-					int fd = fileno(stdin);
-					if (getenv("X11VNC_INETD_PORT")) {
-						screen->port = atoi(getenv(
-						    "X11VNC_INETD_PORT"));
-					} else {
-						int tport = get_local_port(fd);
-						if (tport > 0) {
-							screen->port = tport;
-						}
-					}
-				}
-				rfbLog("SSL: screen->port %d\n", screen->port);
-
-				/* kludge for https fetch via inetd */
-				start = dnow();
-				while (dnow() < start + 10.0) {
-					rfbPE(10000);
-					usleep(10000);
-					waitpid(pid, &status, WNOHANG); 
-					if (kill(pid, 0) != 0) {
-						rfbPE(10000);
-						rfbPE(10000);
-						break;
-					}
-				}
-				rfbLog("SSL: OPENSSL_INETD guessing "
-				    "child https finished.\n");
-				clean_up_exit(1);
-			}
-			return;
-		}
-		kill(pid, SIGTERM);
-		waitpid(pid, &status, WNOHANG); 
-		if (mode == OPENSSL_INETD || ssl_no_fail) {
-			clean_up_exit(1);
-		}
-		return;
-	}
-
-	accept_client:
-
-	if (db) fprintf(stderr, "accept_openssl: cookie good: %s\n", cookie);
-
-	rfbLog("SSL: handshake with helper process succeeded.\n");
-
-	openssl_last_helper_pid = pid;
-	ssl_helper_pid(pid, vsock);
-
-	if (vnc_redirect) {
-		vnc_redirect_sock = vsock;
-		openssl_last_helper_pid = 0;
-		return;
-	}
-
-	client = rfbNewClient(screen, vsock);
-	openssl_last_helper_pid = 0;
-
-	if (client) {
-		if (db) fprintf(stderr, "accept_openssl: client %p\n", (void *) client);
-		if (db) fprintf(stderr, "accept_openssl: new_client %p\n", (void *) screen->newClientHook);
-		if (db) fprintf(stderr, "accept_openssl: new_client %p\n", (void *) new_client);
-		if (mode == OPENSSL_INETD) {
-			inetd_client = client;
-			client->clientGoneHook = client_gone;
-		}
-		if (openssl_last_ip &&
-		    strpbrk(openssl_last_ip, "0123456789") == openssl_last_ip) {
-			client->host = strdup(openssl_last_ip);
-		}
-		if (vencrypt_sel != 0) {
-			client->protocolMajorVersion = 3;
-			client->protocolMinorVersion = 8;
-			if (!finish_vencrypt_auth(client, vencrypt_sel)) {
-				rfbCloseClient(client);
-			}
-		} else if (anontls_sel != 0) {
-			client->protocolMajorVersion = 3;
-			client->protocolMinorVersion = 8;
-			rfbAuthNewClient(client);
-		}
-	} else {
-		rfbLog("SSL: accept_openssl: rfbNewClient failed.\n");
-		close(vsock);
-
-		kill(pid, SIGTERM);
-		waitpid(pid, &status, WNOHANG); 
-		if (mode == OPENSSL_INETD || ssl_no_fail) {
-			clean_up_exit(1);
-		}
-		return;
-	}
-}
-
-static int read_exact(int sock, char *buf, int len) {
-	int n, fail = 0;
-	if (sock < 0) {
-		return 0;
-	}
-	while (len > 0) {
-		n = read(sock, buf, len);
-		if (n > 0) {
-			buf += n;
-			len -= n;
-		} else if (n == 0) {
-			fail = 1;
-			break;
-		} else if (n < 0 && (errno == EAGAIN || errno == EWOULDBLOCK)) {
-			usleep(10*1000);
-		} else if (n < 0 && errno != EINTR) {
-			fail = 1;
-			break;
-		}
-	}
-	if (fail) {
-		return 0;
-	} else {
-		return 1;
-	}
-}
-
-static int write_exact(int sock, char *buf, int len) {
-	int n, fail = 0;
-	if (sock < 0) {
-		return 0;
-	}
-	while (len > 0) {
-		n = write(sock, buf, len);
-		if (n > 0) {
-			buf += n;
-			len -= n;
-		} else if (n == 0) {
-			fail = 1;
-			break;
-		} else if (n < 0 && (errno == EAGAIN || errno == EWOULDBLOCK)) {
-			usleep(10*1000);
-		} else if (n < 0 && errno != EINTR) {
-			fail = 1;
-			break;
-		}
-	}
-	if (fail) {
-		return 0;
-	} else {
-		return 1;
-	}
-}
 
 static int add_anon_dh(void) {
 	pid_t pid, pidw;
@@ -2787,9 +1518,16 @@ static int switch_to_anon_dh(void) {
 	rfbLog("Using Anonymous Diffie-Hellman mode.\n");
 	rfbLog("WARNING: Anonymous Diffie-Hellman uses encryption but is\n");
 	rfbLog("WARNING: susceptible to a Man-In-The-Middle attack.\n");
-	ctx = SSL_CTX_new( SSLv23_server_method() );
+	if (ssl_client_mode) {
+		ctx = SSL_CTX_new( SSLv23_client_method() );
+	} else {
+		ctx = SSL_CTX_new( SSLv23_server_method() );
+	}
 	if (ctx == NULL) {
 		return 0;
+	}
+	if (ssl_client_mode) {
+		return 1;
 	}
 	if (!SSL_CTX_set_cipher_list(ctx, "ADH:@STRENGTH")) {
 		return 0;
@@ -2813,6 +1551,7 @@ static int switch_to_anon_dh(void) {
 
 static int anontls_dialog(int s_in, int s_out) {
 
+	if (s_in || s_out) {}
 	anontls_selected = 1;
 
 	if (!switch_to_anon_dh()) {
@@ -2831,7 +1570,7 @@ static int anontls_dialog(int s_in, int s_out) {
 static int vencrypt_dialog(int s_in, int s_out) {
 	char buf[256], buf2[256];
 	int subtypes[16];
-	int n, i, ival, ok, db = 1, nsubtypes = 0;
+	int n, i, ival, ok, nsubtypes = 0;
 
 	vencrypt_selected = 0;
 
@@ -2862,7 +1601,7 @@ static int vencrypt_dialog(int s_in, int s_out) {
 	/* accept only 0.2 */
 	if (buf[0] != 0 || buf[1] != 2) {
 		rfbLog("vencrypt: unsupported VeNCrypt version, closing connection.\n");
-		buf[0] = 255;
+		buf[0] = (char) 255;
 		write_exact(s_out, buf, 1);
 		close(s_in); close(s_out);
 		return 0;
@@ -2981,8 +1720,8 @@ static int vencrypt_dialog(int s_in, int s_out) {
 	return 1;
 }
 
-static int check_vnc_tls_mode(int s_in, int s_out) {
-	double waited = 0.0, dt = 0.01, start = dnow();
+static int check_vnc_tls_mode(int s_in, int s_out, double last_https) {
+	double waited = 0.0, waitmax = 1.4, dt = 0.01, start = dnow();
 	struct timeval tv;
 	int input = 0, i, n, ok;
 	int major, minor, sectype = -1;
@@ -2998,12 +1737,14 @@ static int check_vnc_tls_mode(int s_in, int s_out) {
 		return 1;
 	}
 	if (ssl_client_mode) {
-		/* XXX check if this can be done in SSL client mode. */
 		if (vencrypt_mode == VENCRYPT_FORCE || anontls_mode == ANONTLS_FORCE) {
-			rfbLog("check_vnc_tls_mode: VENCRYPT_FORCE/ANONTLS_FORCE prevents normal SSL\n");
-			return 0;
+			rfbLog("check_vnc_tls_mode: VENCRYPT_FORCE/ANONTLS_FORCE in client\n");
+			rfbLog("check_vnc_tls_mode: connect mode.\n");
+			/* this is OK, continue on below for dialog. */
+		} else {
+			/* otherwise we must assume normal SSL (we send client hello) */
+			return 1;
 		}
-		return 1;
 	}
 	if (ssl_verify && vencrypt_mode != VENCRYPT_FORCE && anontls_mode == ANONTLS_FORCE) {
 		rfbLog("check_vnc_tls_mode: Cannot use ANONTLS_FORCE with -sslverify (Anon DH only)\n");
@@ -3011,7 +1752,20 @@ static int check_vnc_tls_mode(int s_in, int s_out) {
 		return 1;
 	}
 
-	while (waited < 1.1) {
+	if (last_https > 0.0) {
+		double now = dnow();
+		if (now < last_https + 5.0) {
+			waitmax = 20.0;
+		} else if (now < last_https + 15.0) {
+			waitmax = 10.0;
+		} else if (now < last_https + 30.0) {
+			waitmax = 5.0;
+		} else if (now < last_https + 60.0) {
+			waitmax = 2.5;
+		}
+	}
+
+	while (waited < waitmax) {
 		fd_set rfds;
 		FD_ZERO(&rfds);
 		FD_SET(s_in, &rfds);
@@ -3025,7 +1779,8 @@ static int check_vnc_tls_mode(int s_in, int s_out) {
 		usleep((int) (1000 * 1000 * dt));
 		waited += dt;
 	}
-	rfbLog("check_vnc_tls_mode: waited: %f input: %s\n", dnow() - start, input ? "SSL Handshake" : "(future) RFB Handshake");
+	rfbLog("check_vnc_tls_mode: waited: %f / %.2f input: %s\n",
+	    dnow() - start, waitmax, input ? "SSL Handshake" : "(future) RFB Handshake");
 
 	if (input) {
 		/* got SSL client hello, can only assume normal SSL */
@@ -3052,7 +1807,7 @@ static int check_vnc_tls_mode(int s_in, int s_out) {
 		int i;
 		rfbLog("check_vnc_tls_mode: abnormal handshake: '%s'\nbytes: ", buf);
 		for (i=0; i < 12; i++) {
-			fprintf(stderr, "%x.", (int) buf[i]);
+			fprintf(stderr, "%d.", (unsigned char) buf[i]);
 		}
 		fprintf(stderr, "\n");
 		close(s_in); close(s_out);
@@ -3135,6 +1890,8 @@ static void pr_ssl_info(int verb) {
 	SSL_SESSION *s;
 	char *proto = "unknown";
 
+	if (verb) {}
+
 	if (ssl == NULL) {
 		return;
 	}
@@ -3162,15 +1919,15 @@ static void pr_ssl_info(int verb) {
 static void ssl_timeout (int sig) {
 	int i;
 	rfbLog("sig: %d, ssl_init[%d] timed out.\n", sig, getpid());
-	for (i=0; i < 256; i) {
+	for (i=0; i < 256; i++) {
 		close(i);
 	}
 	exit(1);
 }
 
-static int ssl_init(int s_in, int s_out, int skip_vnc_tls) {
+static int ssl_init(int s_in, int s_out, int skip_vnc_tls, double last_https) {
 	unsigned char *sid = (unsigned char *) "x11vnc SID";
-	char *name;
+	char *name = NULL;
 	int peerport = 0;
 	int db = 0, rc, err;
 	int ssock = s_in;
@@ -3190,8 +1947,8 @@ static int ssl_init(int s_in, int s_out, int skip_vnc_tls) {
 
 	if (skip_vnc_tls) {
 		rfbLog("SSL: ssl_helper[%d]: HTTPS mode, skipping check_vnc_tls_mode()\n",
-		    getpid(), name, peerport);
-	} else if (!check_vnc_tls_mode(s_in, s_out)) {
+		    getpid());
+	} else if (!check_vnc_tls_mode(s_in, s_out, last_https)) {
 		return 0;
 	}
 
@@ -3235,14 +1992,15 @@ static int ssl_init(int s_in, int s_out, int skip_vnc_tls) {
 	if (db > 1) fprintf(stderr, "ssl_init: 4\n");
 
 	while (1) {
-		if (db) fprintf(stderr, "calling SSL_accept...\n");
 
 		signal(SIGALRM, ssl_timeout);
 		alarm(timeout);
 
 		if (ssl_client_mode) {
+			if (db) fprintf(stderr, "calling SSL_connect...\n");
 			rc = SSL_connect(ssl);
 		} else {
+			if (db) fprintf(stderr, "calling SSL_accept...\n");
 			rc = SSL_accept(ssl);
 		}
 		err = SSL_get_error(ssl, rc);
@@ -3250,7 +2008,11 @@ static int ssl_init(int s_in, int s_out, int skip_vnc_tls) {
 		alarm(0);
 		signal(SIGALRM, SIG_DFL);
 
-		if (db) fprintf(stderr, "SSL_accept %d/%d\n", rc, err);
+		if (ssl_client_mode) {
+			if (db) fprintf(stderr, "SSL_connect %d/%d\n", rc, err);
+		} else {
+			if (db) fprintf(stderr, "SSL_accept %d/%d\n", rc, err);
+		}
 		if (err == SSL_ERROR_NONE) {
 			break;
 		} else if (err == SSL_ERROR_WANT_READ) {
@@ -3324,7 +2086,11 @@ static int ssl_init(int s_in, int s_out, int skip_vnc_tls) {
 		usleep(10 * 1000);
 	}
 
-	rfbLog("SSL: ssl_helper[%d]: SSL_accept() succeeded for: %s:%d\n", getpid(), name, peerport);
+	if (ssl_client_mode) {
+		rfbLog("SSL: ssl_helper[%d]: SSL_connect() succeeded for: %s:%d\n", getpid(), name, peerport);
+	} else {
+		rfbLog("SSL: ssl_helper[%d]: SSL_accept() succeeded for: %s:%d\n", getpid(), name, peerport);
+	}
 
 	pr_ssl_info(0);
 
@@ -3365,7 +2131,7 @@ static int ssl_init(int s_in, int s_out, int skip_vnc_tls) {
 	return 1;
 }
 
-static symmetric_encryption_xfer(int csock, int s_in, int s_out);
+static void symmetric_encryption_xfer(int csock, int s_in, int s_out);
 
 static void ssl_xfer(int csock, int s_in, int s_out, int is_https) {
 	int dbxfer = 0, db = 0, check_pending, fdmax, nfd, n, i, err;
@@ -3381,7 +2147,7 @@ static void ssl_xfer(int csock, int s_in, int s_out, int is_https) {
 	 * time), but we also want the timeout shorter at the beginning
 	 * in case the client went away.
 	 */
-	time_t start;
+	double start, now;
 	int tv_https_early = 60;
 	int tv_https_later = 20;
 	int tv_vnc_early = 40;
@@ -3404,13 +2170,14 @@ static void ssl_xfer(int csock, int s_in, int s_out, int is_https) {
 		}
 		return;
 	}
+
 	if (getenv("SSL_DEBUG")) {
 		db = atoi(getenv("SSL_DEBUG"));
 	}
 
 	if (db) fprintf(stderr, "ssl_xfer begin\n");
 
-	start = time(NULL);
+	start = dnow();
 	if (is_https) {
 		tv_use = tv_https_early;
 	} else {
@@ -3529,7 +2296,8 @@ static void ssl_xfer(int csock, int s_in, int s_out, int is_https) {
 			}
 		}
 
-		if (tv_cutover && time(NULL) > start + tv_cutover) {
+		now = dnow();
+		if (tv_cutover && now > start + tv_cutover) {
 			rfbLog("SSL: ssl_xfer[%d]: tv_cutover: %d\n", getpid(),
 			    tv_cutover);
 			tv_cutover = 0;
@@ -3538,6 +2306,8 @@ static void ssl_xfer(int csock, int s_in, int s_out, int is_https) {
 			} else {
 				tv_use = tv_vnc_later;
 			}
+			/* try to clean out some zombies if we can. */
+			ssl_helper_pid(0, -2);
 		}
 		if (ssl_timeout_secs > 0) {
 			tv_use = ssl_timeout_secs;
@@ -3549,6 +2319,7 @@ static void ssl_xfer(int csock, int s_in, int s_out, int is_https) {
 			closing = 1;
 			tv_use = tv_closing;
 		}
+
 		tv.tv_sec  = tv_use;
 		tv.tv_usec = 0;
 
@@ -3563,11 +2334,13 @@ static void ssl_xfer(int csock, int s_in, int s_out, int is_https) {
 
 		if (db > 1) fprintf(stderr, "nfd: %d\n", nfd);
 
+if (0) fprintf(stderr, "nfd[%d]: %d  w/r csock: %d %d s_in: %d %d\n", getpid(), nfd, FD_ISSET(csock, &wr), FD_ISSET(csock, &rd), FD_ISSET(s_out, &wr), FD_ISSET(s_in, &rd)); 
+
 		if (nfd < 0) {
 			rfbLog("SSL: ssl_xfer[%d]: select error: %d\n", getpid(), nfd);
 			perror("select");
 			/* connection finished */
-			return;	
+			goto done;	
 		}
 
 		if (nfd == 0) {
@@ -3583,7 +2356,7 @@ static void ssl_xfer(int csock, int s_in, int s_out, int is_https) {
 			rfbLog("SSL: ssl_xfer[%d]: connection timedout. %d  tv_use: %d\n",
 			    getpid(), ndata, tv_use);
 			/* connection finished */
-			return;
+			goto done;
 		}
 
 		/* used to see if SSL_pending() should be checked: */
@@ -3598,12 +2371,12 @@ static void ssl_xfer(int csock, int s_in, int s_out, int is_https) {
 			if (n < 0) {
 				if (errno != EINTR) {
 					/* connection finished */
-					return;
+					goto done;
 				}
 				/* proceed */
 			} else if (n == 0) {
 				/* connection finished XXX double check */
-				return;
+				goto done;
 			} else {
 				/* shift over the data in sbuf by n */
 				memmove(sbuf, sbuf + n, sptr - n);
@@ -3651,7 +2424,7 @@ static void ssl_xfer(int csock, int s_in, int s_out, int is_https) {
 				} else if (err == SSL_ERROR_SYSCALL) {
 					if (n < 0 && errno != EINTR) {
 						/* connection finished */
-						return;
+						goto done;
 					}
 					/* proceed */
 				} else if (err == SSL_ERROR_ZERO_RETURN) {
@@ -3660,7 +2433,7 @@ static void ssl_xfer(int csock, int s_in, int s_out, int is_https) {
 					s_wr = 0;
 				} else if (err == SSL_ERROR_SSL) {
 					/* connection finished */
-					return;
+					goto done;
 				}
 			}
 		}
@@ -3675,7 +2448,7 @@ static void ssl_xfer(int csock, int s_in, int s_out, int is_https) {
 			if (n < 0) {
 				if (errno != EINTR) {
 					/* connection finished */
-					return;
+					goto done;
 				}
 				/* proceed */
 			} else if (n == 0) {
@@ -3720,7 +2493,7 @@ static void ssl_xfer(int csock, int s_in, int s_out, int is_https) {
 					if (n < 0) {
 						if(errno != EINTR) {
 							/* connection finished */
-							return;
+							goto done;
 						}
 						/* proceed */
 					} else {
@@ -3743,12 +2516,79 @@ static void ssl_xfer(int csock, int s_in, int s_out, int is_https) {
 					}
 				} else if (err == SSL_ERROR_SSL) {
 					/* connection finished */
-					return;
+					goto done;
 				}
 			}
 		}
 	}
+
+	done:
+	rfbLog("SSL: ssl_xfer[%d]: closing sockets %d, %d, %d\n",
+			    getpid(), csock, s_in, s_out);
+	close(csock);
+	close(s_in);
+	close(s_out);
+	return;
 }
+
+#define MSZ 4096
+static void init_prng(void) {
+	int db = 0, bytes, ubytes, fd;
+	char file[MSZ], dtmp[100];
+	unsigned int sr;
+
+	RAND_file_name(file, MSZ);
+
+	rfbLog("RAND_file_name: %s\n", file);
+
+	bytes = RAND_load_file(file, -1);
+	if (db) fprintf(stderr, "bytes read: %d\n", bytes);
+	
+	ubytes = RAND_load_file("/dev/urandom", 64);
+	bytes += ubytes;
+	if (db) fprintf(stderr, "bytes read: %d / %d\n", bytes, ubytes);
+
+	/* mix in more predictable stuff as well for fallback */
+	sprintf(dtmp, "/tmp/p%.8f.XXXXXX", dnow());
+	fd = mkstemp(dtmp);
+	RAND_add(dtmp, strlen(dtmp), 0);
+	if (fd >= 0) {
+		close(fd);
+		unlink(dtmp);
+	}
+	sprintf(dtmp, "%d-%.8f", (int) getpid(), dnow());
+	RAND_add(dtmp, strlen(dtmp), 0);
+
+	if (!RAND_status()) {
+		ubytes = -1;
+		rfbLog("calling RAND_poll()\n");
+		RAND_poll();
+	}
+	
+	RAND_bytes((unsigned char *)&sr, 4);
+	srand(sr);
+
+	if (bytes > 0) {
+		if (! quiet) {
+			rfbLog("initialized PRNG with %d random bytes.\n",
+			    bytes);
+		}
+		if (ubytes > 32 && rnow() < 0.25) {
+			RAND_write_file(file);
+		}
+		return;
+	}
+
+	bytes += RAND_load_file("/dev/random", 8);
+	if (db) fprintf(stderr, "bytes read: %d\n", bytes);
+	RAND_poll();
+
+	if (! quiet) {
+		rfbLog("initialized PRNG with %d random bytes.\n", bytes);
+	}
+}
+#endif	/* FORK_OK */
+#endif	/* LIBVNCSERVER_HAVE_LIBSSL */
 
 void check_openssl(void) {
 	fd_set fds;
@@ -3758,7 +2598,16 @@ void check_openssl(void) {
 	static double last_check = 0.0;
 	double now;
 
-	if (! use_openssl || openssl_sock < 0) {
+	if (! use_openssl) {
+		return;
+	}
+
+	if (time(NULL) > last_waitall + 120) {
+		last_waitall = time(NULL);
+		ssl_helper_pid(0, -2);	/* waitall */
+	}
+
+	if (openssl_sock < 0) {
 		return;
 	}
 
@@ -3767,11 +2616,6 @@ void check_openssl(void) {
 		return;
 	}
 	last_check = now;
-
-	if (time(NULL) > last_waitall + 150) {
-		last_waitall = time(NULL);
-		ssl_helper_pid(0, -2);	/* waitall */
-	}
 
 	FD_ZERO(&fds);
 	FD_SET(openssl_sock, &fds);
@@ -3821,60 +2665,1347 @@ void check_https(void) {
 	accept_openssl(OPENSSL_HTTPS, -1);
 }
 
-#define MSZ 4096
-static void init_prng(void) {
-	int db = 0, bytes, ubytes, fd;
-	char file[MSZ], dtmp[100];
+void openssl_port(void) {
+	int sock = -1, shutdown = 0;
+	static int port = -1;
+	static in_addr_t iface = INADDR_ANY;
+	int db = 0;
 
-	RAND_file_name(file, MSZ);
-
-	rfbLog("RAND_file_name: %s\n", file);
-
-	bytes = RAND_load_file(file, -1);
-	if (db) fprintf(stderr, "bytes read: %d\n", bytes);
-	
-	ubytes = RAND_load_file("/dev/urandom", 64);
-	bytes += ubytes;
-	if (db) fprintf(stderr, "bytes read: %d / %d\n", bytes, ubytes);
-
-	/* mix in more predictable stuff as well for fallback */
-	sprintf(dtmp, "/tmp/p%.8f.XXXXXX", dnow());
-	fd = mkstemp(dtmp);
-	RAND_add(dtmp, strlen(dtmp), 0);
-	if (fd >= 0) {
-		close(fd);
-		unlink(dtmp);
+	if (! screen) {
+		rfbLog("openssl_port: no screen!\n");
+		clean_up_exit(1);
 	}
-	sprintf(dtmp, "%d-%.8f", (int) getpid(), dnow());
-	RAND_add(dtmp, strlen(dtmp), 0);
-
-	if (!RAND_status()) {
-		ubytes = -1;
-		rfbLog("calling RAND_poll()\n");
-		RAND_poll();
+	if (inetd) {
+		ssl_initialized = 1;
+		return;
 	}
-	
-	if (bytes > 0) {
-		if (! quiet) {
-			rfbLog("initialized PRNG with %d random bytes.\n",
-			    bytes);
+
+	if (screen->listenSock > -1 && screen->port > 0) {
+		port = screen->port;
+		shutdown = 1;
+	} else if (screen->port == 0) {
+		port = screen->port;
+	}
+	if (screen->listenInterface) {
+		iface = screen->listenInterface;
+	}
+
+	if (shutdown) {
+		if (db) fprintf(stderr, "shutting down %d/%d\n",
+		    port, screen->listenSock);
+#if LIBVNCSERVER_HAS_SHUTDOWNSOCKETS
+		rfbShutdownSockets(screen);
+#endif
+	}
+
+	if (port < 0) {
+		rfbLog("openssl_port: could not obtain listening port %d\n", port);
+		clean_up_exit(1);
+	} else if (port == 0) {
+		/* no listen case, i.e. -connect */
+		sock = -1;
+	} else {
+		sock = rfbListenOnTCPPort(port, iface);
+		if (sock < 0) {
+			rfbLog("openssl_port: could not reopen port %d\n", port);
+			clean_up_exit(1);
 		}
-		if (ubytes > 32 && rnow() < 0.25) {
-			RAND_write_file(file);
+	}
+	rfbLog("openssl_port: listen on port/sock %d/%d\n", port, sock);
+	if (!quiet) {
+		announce(port, 1, NULL);
+	}
+	openssl_sock = sock;
+	openssl_port_num = port;
+
+	ssl_initialized = 1;
+}
+
+void https_port(void) {
+	int sock;
+	static int port = 0;
+	static in_addr_t iface = INADDR_ANY;
+	int db = 0;
+
+	/* as openssl_port above: open a listening socket for pure https: */
+	if (https_port_num < 0) {
+		return;
+	}
+	if (! screen) {
+		rfbLog("https_port: no screen!\n");
+		clean_up_exit(1);
+	}
+	if (screen->listenInterface) {
+		iface = screen->listenInterface;
+	}
+
+	if (https_port_num == 0) {
+		https_port_num = find_free_port(5801, 5851);
+	}
+	if (https_port_num <= 0) {
+		rfbLog("https_port: could not find port %d\n", https_port_num);
+		clean_up_exit(1);
+	}
+	port = https_port_num;
+
+	if (port <= 0) {
+		rfbLog("https_port: could not obtain listening port %d\n", port);
+		clean_up_exit(1);
+	}
+	sock = rfbListenOnTCPPort(port, iface);
+	if (sock < 0) {
+		rfbLog("https_port: could not open port %d\n", port);
+		clean_up_exit(1);
+	}
+	if (db) fprintf(stderr, "https_port: listen on port/sock %d/%d\n",
+	    port, sock);
+
+	https_sock = sock;
+}
+
+static void lose_ram(void) {
+	/*
+	 * for a forked child that will be around for a long time
+	 * without doing exec().  we really should re-exec, but a pain
+	 * to redo all SSL ctx.
+	 */
+	free_old_fb();
+
+	free_tiles();
+}
+
+/* utility to keep track of existing helper processes: */
+
+void ssl_helper_pid(pid_t pid, int sock) {
+#	define HPSIZE 256
+	static pid_t helpers[HPSIZE];
+	static int   sockets[HPSIZE], first = 1;
+	int i, empty, set, status;
+	static int db = 0;
+
+	if (first) {
+		for (i=0; i < HPSIZE; i++)  {
+			helpers[i] = 0;
+			sockets[i] = 0;
+		}
+		if (getenv("SSL_HELPER_PID_DB")) {
+			db = 1;
+		}
+		first = 0;
+	}
+
+
+	if (pid == 0) {
+		/* killall or waitall */
+		for (i=0; i < HPSIZE; i++) {
+			if (helpers[i] == 0) {
+				sockets[i] = -1;
+				continue;
+			}
+			if (kill(helpers[i], 0) == 0) {
+				int kret = -2;
+				pid_t wret;
+				if (sock != -2) {
+					if (sockets[i] >= 0) {
+						close(sockets[i]);
+					}
+					kret = kill(helpers[i], SIGTERM);
+					if (kret == 0) {
+						usleep(20 * 1000);
+					}
+				}
+
+#if LIBVNCSERVER_HAVE_SYS_WAIT_H && LIBVNCSERVER_HAVE_WAITPID 
+				wret = waitpid(helpers[i], &status, WNOHANG); 
+
+if (db) fprintf(stderr, "waitpid(%d)\n", helpers[i]);
+if (db) fprintf(stderr, "  waitret1=%d\n", wret);
+
+				if (kret == 0 && wret != helpers[i]) {
+					int k;
+					for (k=0; k < 10; k++) {
+						usleep(100 * 1000);
+						wret = waitpid(helpers[i], &status, WNOHANG); 
+if (db) fprintf(stderr, "  waitret2=%d\n", wret);
+						if (wret == helpers[i]) {
+							break;
+						}
+					}
+				}
+#endif
+				if (sock == -2) {
+					continue;
+				}
+			}
+			helpers[i] = 0;
+			sockets[i] = -1;
 		}
 		return;
 	}
 
-	bytes += RAND_load_file("/dev/random", 8);
-	if (db) fprintf(stderr, "bytes read: %d\n", bytes);
-	RAND_poll();
+if (db) fprintf(stderr, "ssl_helper_pid(%d, %d)\n", pid, sock);
 
-	if (! quiet) {
-		rfbLog("initialized PRNG with %d random bytes.\n", bytes);
+	/* add (or delete for sock == -1) */
+	set = 0;
+	empty = -1;
+	for (i=0; i < HPSIZE; i++) {
+		if (helpers[i] == pid) {
+			if (sock == -1) {
+#if LIBVNCSERVER_HAVE_SYS_WAIT_H && LIBVNCSERVER_HAVE_WAITPID 
+				pid_t wret;
+				wret = waitpid(helpers[i], &status, WNOHANG); 
+
+if (db) fprintf(stderr, "waitpid(%d) 2\n", helpers[i]);
+if (db) fprintf(stderr, "  waitret1=%d\n", wret);
+#endif
+				helpers[i] = 0;
+			}
+			sockets[i] = sock;
+			set = 1;
+		} else if (empty == -1 && helpers[i] == 0) {
+			empty = i;
+		}
+	}
+	if (set || sock == -1) {
+		return;	/* done */
+	}
+
+	/* now try to store */
+	if (empty >= 0) {
+		helpers[empty] = pid;
+		sockets[empty] = sock;
+		return;
+	}
+	for (i=0; i < HPSIZE; i++) {
+		if (helpers[i] == 0) {
+			continue;
+		}
+		/* clear out stale pids: */
+		if (kill(helpers[i], 0) != 0) {
+			helpers[i] = 0;
+			sockets[i] = -1;
+			
+			if (empty == -1) {
+				empty = i;
+			}
+		}
+	}
+	if (empty >= 0) {
+		helpers[empty] = pid;
+		sockets[empty] = sock;
 	}
 }
-#endif	/* FORK_OK */
-#endif	/* LIBVNCSERVER_HAVE_LIBSSL */
+
+static int is_ssl_readable(int s_in, double last_https, char *last_get,
+    int mode) {
+	int nfd, db = 0;
+	struct timeval tv;
+	fd_set rd;
+
+	if (getenv("ACCEPT_OPENSSL_DEBUG")) {
+		db = atoi(getenv("ACCEPT_OPENSSL_DEBUG"));
+	}
+
+	/*
+	 * we'll do a select() on s_in for reading.  this is not an
+	 * absolute proof that SSL_read is ready (XXX use SSL utility).
+	 */
+	tv.tv_sec  = 2;
+	tv.tv_usec = 0;
+
+	if (mode == OPENSSL_INETD) {
+		/*
+		 * https via inetd is icky because x11vnc is restarted
+		 * for each socket (and some clients send requests
+		 * rapid fire).
+		 */
+		tv.tv_sec = 4;
+	}
+
+	/*
+	 * increase the timeout if we know HTTP traffic has occurred
+	 * recently:
+	 */
+	if (dnow() < last_https + 30.0) {
+		tv.tv_sec = 10;
+		if (last_get && strstr(last_get, "VncViewer")) {
+			tv.tv_sec = 5;
+		}
+	}
+	if (getenv("X11VNC_HTTPS_VS_VNC_TIMEOUT")) {
+		tv.tv_sec  = atoi(getenv("X11VNC_HTTPS_VS_VNC_TIMEOUT"));
+	}
+if (db) fprintf(stderr, "tv_sec: %d - '%s'\n", (int) tv.tv_sec, last_get);
+
+	FD_ZERO(&rd);
+	FD_SET(s_in, &rd);
+
+	if (db) fprintf(stderr, "is_ssl_readable: begin  select(%d secs) %.6f\n", (int) tv.tv_sec, dnow());
+	do {
+		nfd = select(s_in+1, &rd, NULL, NULL, &tv);
+	} while (nfd < 0 && errno == EINTR);
+	if (db) fprintf(stderr, "is_ssl_readable: finish select(%d secs) %.6f\n", (int) tv.tv_sec, dnow());
+
+	if (db) fprintf(stderr, "https nfd: %d\n", nfd);
+
+	if (nfd <= 0 || ! FD_ISSET(s_in, &rd)) {
+		return 0;
+	}
+	return 1;
+}
+
+static int watch_for_http_traffic(char *buf_a, int *n_a, int raw_sock) {
+	int is_http, err, n, n2;
+	char *buf;
+	int db = 0;
+	/*
+	 * sniff the first couple bytes of the stream and try to see
+	 * if it is http or not.  if we read them OK, we must read the
+	 * rest of the available data otherwise we may deadlock.
+	 * what has been read is returned in buf_a and n_a.
+	 * *buf_a is ABSIZE+1 long and zeroed.
+	 */
+	if (getenv("ACCEPT_OPENSSL_DEBUG")) {
+		db = atoi(getenv("ACCEPT_OPENSSL_DEBUG"));
+	}
+	if (! buf_a || ! n_a) {
+		return 0;
+	}
+
+	buf = (char *) calloc((ABSIZE+1), 1);
+	*n_a = 0;
+
+	if (enc_str && !strcmp(enc_str, "none")) {
+		n = read(raw_sock, buf, 2);
+		err = SSL_ERROR_NONE;
+	} else {
+#if LIBVNCSERVER_HAVE_LIBSSL 
+		n = SSL_read(ssl, buf, 2);
+		err = SSL_get_error(ssl, n);
+#else
+		err = n = 0;
+		badnews("1 in watch_for_http_traffic");
+#endif
+	}
+
+	if (err != SSL_ERROR_NONE || n < 2) {
+		if (n > 0) {
+			strncpy(buf_a, buf, n);
+			*n_a = n;
+		}
+		if (db) fprintf(stderr, "watch_for_http_traffic ssl err: %d/%d\n", err, n);
+		return -1;
+	}
+
+	/* look for GET, HEAD, POST, CONNECT */
+	is_http = 0;
+	if (!strncmp("GE", buf, 2)) {
+		is_http = 1;
+	} else if (!strncmp("HE", buf, 2)) {
+		is_http = 1;
+	} else if (!strncmp("PO", buf, 2)) {
+		is_http = 1;
+	} else if (!strncmp("CO", buf, 2)) {
+		is_http = 1;
+	}
+	if (db) fprintf(stderr, "watch_for_http_traffic read: '%s' %d\n", buf, n);
+
+	/*
+	 * better read all we can and fwd it along to avoid blocking
+	 * in ssl_xfer().
+	 */
+
+	if (enc_str && !strcmp(enc_str, "none")) {
+		n2 = read(raw_sock, buf + n, ABSIZE - n);
+	} else {
+#if LIBVNCSERVER_HAVE_LIBSSL 
+		n2 = SSL_read(ssl, buf + n, ABSIZE - n);
+#else
+		n2 = 0;
+		badnews("2 in watch_for_http_traffic");
+#endif
+	}
+	if (n2 >= 0) {
+		n += n2;
+	}
+
+	*n_a = n;
+
+	if (db) fprintf(stderr, "watch_for_http_traffic readmore: %d\n", n2);
+
+	if (n > 0) {
+		memcpy(buf_a, buf, n);
+	}
+	if (db > 1) {
+		fprintf(stderr, "watch_for_http_traffic readmore: ");
+		write(2, buf_a, *n_a);
+		fprintf(stderr, "\n");
+	}
+	if (db) fprintf(stderr, "watch_for_http_traffic return: %d\n", is_http);
+	return is_http;
+}
+
+static int csock_timeout_sock = -1;
+
+static void csock_timeout (int sig) {
+	rfbLog("sig: %d, csock_timeout.\n", sig);
+	if (csock_timeout_sock >= 0) {
+		close(csock_timeout_sock);
+		csock_timeout_sock = -1;
+	}
+}
+
+static int check_ssl_access(char *addr) {
+	static char *save_allow_once = NULL;
+	static time_t time_allow_once = 0;
+
+	/* due to "Fetch Cert" activities for SSL really need to "allow twice" */
+	if (allow_once != NULL) {
+		save_allow_once = strdup(allow_once);
+		time_allow_once = time(NULL);
+	} else if (save_allow_once != NULL) {
+		if (getenv("X11VNC_NO_SSL_ALLOW_TWICE")) {
+			;
+		} else if (time(NULL) < time_allow_once + 30) {
+			/* give them 30 secs to check and save the fetched cert. */
+			allow_once = save_allow_once; 
+			rfbLog("SSL: Permitting 30 sec grace period for allowonce.\n");
+			rfbLog("SSL: Set X11VNC_NO_SSL_ALLOW_TWICE=1 to disable.\n");
+		}
+		save_allow_once = NULL;
+		time_allow_once = 0;
+	}
+
+	return check_access(addr);
+}
+
+void accept_openssl(int mode, int presock) {
+	int sock = -1, listen = -1, cport, csock, vsock;	
+	int peerport = 0;
+	int status, n, i, db = 0;
+	struct sockaddr_in addr;
+#ifdef __hpux
+	int addrlen = sizeof(addr);
+#else
+	socklen_t addrlen = sizeof(addr);
+#endif
+	rfbClientPtr client;
+	pid_t pid;
+	char uniq[] = "_evilrats_";
+	char cookie[256], rcookie[256], *name = NULL;
+	int vencrypt_sel = 0;
+	int anontls_sel = 0;
+	static double last_https = 0.0;
+	static char last_get[256];
+	static int first = 1;
+	unsigned char *rb;
+
+#if !LIBVNCSERVER_HAVE_LIBSSL 
+	if (enc_str == NULL || strcmp(enc_str, "none")) {
+		badnews("0 accept_openssl");
+	}
+#endif
+
+	openssl_last_helper_pid = 0;
+
+	/* zero buffers for use below. */
+	for (i=0; i<256; i++) {
+		if (first) {
+			last_get[i] = '\0';
+		}
+		cookie[i]  = '\0';
+		rcookie[i] = '\0';
+	}
+	first = 0;
+
+	if (getenv("ACCEPT_OPENSSL_DEBUG")) {
+		db = atoi(getenv("ACCEPT_OPENSSL_DEBUG"));
+	}
+
+	/* do INETD, VNC, or HTTPS cases (result is client socket or pipe) */
+	if (mode == OPENSSL_INETD) {
+		ssl_initialized = 1;
+
+	} else if (mode == OPENSSL_VNC) {
+		sock = accept(openssl_sock, (struct sockaddr *)&addr, &addrlen);
+		if (sock < 0)  {
+			rfbLog("SSL: accept_openssl: accept connection failed\n");
+			rfbLogPerror("accept");
+			if (ssl_no_fail) {
+				clean_up_exit(1);
+			}
+			return;
+		}
+		listen = openssl_sock;
+
+	} else if (mode == OPENSSL_REVERSE) {
+		sock = presock;
+		if (sock < 0)  {
+			rfbLog("SSL: accept_openssl: connection failed\n");
+			if (ssl_no_fail) {
+				clean_up_exit(1);
+			}
+			return;
+		}
+		listen = -1;
+
+	} else if (mode == OPENSSL_HTTPS) {
+		sock = accept(https_sock, (struct sockaddr *)&addr, &addrlen);
+		if (sock < 0)  {
+			rfbLog("SSL: accept_openssl: accept connection failed\n");
+			rfbLogPerror("accept");
+			if (ssl_no_fail) {
+				clean_up_exit(1);
+			}
+			return;
+		}
+		listen = https_sock;
+	}
+	if (db) fprintf(stderr, "SSL: accept_openssl: sock: %d\n", sock);
+
+	if (openssl_last_ip) {
+		free(openssl_last_ip);
+		openssl_last_ip = NULL;
+	}
+	if (mode == OPENSSL_INETD) {
+		openssl_last_ip = get_remote_host(fileno(stdin));
+	} else {
+		openssl_last_ip = get_remote_host(sock);
+	}
+
+	if (!check_ssl_access(openssl_last_ip)) {
+		rfbLog("SSL: accept_openssl: denying client %s\n", openssl_last_ip);
+		rfbLog("SSL: accept_openssl: does not match -allow (or other reason).\n");
+		close(sock);
+		sock = -1;
+		if (ssl_no_fail) {
+			clean_up_exit(1);
+		}
+		return;
+	}
+
+	/* now make a listening socket for child to connect back to us by: */
+
+	cport = find_free_port(20000, 0);
+	if (! cport) {
+		rfbLog("SSL: accept_openssl: could not find open port.\n");
+		close(sock);
+		if (mode == OPENSSL_INETD || ssl_no_fail) {
+			clean_up_exit(1);
+		}
+		return;
+	}
+	if (db) fprintf(stderr, "accept_openssl: cport: %d\n", cport);
+
+	csock = rfbListenOnTCPPort(cport, htonl(INADDR_LOOPBACK));
+
+	if (csock < 0) {
+		rfbLog("SSL: accept_openssl: could not listen on port %d.\n",
+		    cport);
+		close(sock);
+		if (mode == OPENSSL_INETD || ssl_no_fail) {
+			clean_up_exit(1);
+		}
+		return;
+	}
+	if (db) fprintf(stderr, "accept_openssl: csock: %d\n", csock);
+
+	fflush(stderr);
+
+	/*
+	 * make a simple cookie to id the child socket, not foolproof
+	 * but hard to guess exactly (just worrying about local lusers
+	 * here, since we use INADDR_LOOPBACK).
+	 */
+	rb = (unsigned char *) calloc(6, 1);
+#if LIBVNCSERVER_HAVE_LIBSSL 
+	RAND_bytes(rb, 6);
+#endif
+	sprintf(cookie, "RB=%d%d%d%d%d%d/%f%f/%p",
+	    rb[0], rb[1], rb[2], rb[3], rb[4], rb[5],
+            dnow() - x11vnc_start, x11vnc_start, (void *)rb);
+
+	if (mode != OPENSSL_INETD) {
+		name = get_remote_host(sock);
+		peerport = get_remote_port(sock);
+	} else {
+		openssl_last_ip = get_remote_host(fileno(stdin));
+		peerport = get_remote_port(fileno(stdin));
+		if (openssl_last_ip) {
+			name = strdup(openssl_last_ip);
+		} else {
+			name = strdup("unknown");
+		}
+	}
+	if (name) {
+		if (mode == OPENSSL_INETD) {
+			rfbLog("SSL: (inetd) spawning helper process "
+			    "to handle: %s:%d\n", name, peerport);
+		} else {
+			rfbLog("SSL: spawning helper process to handle: "
+			    "%s:%d\n", name, peerport);
+		}
+		free(name);
+		name = NULL;
+	}
+
+	if (certret) {
+		free(certret);
+	}
+	if (certret_str) {
+		free(certret_str);
+		certret_str = NULL;
+	}
+	certret = strdup("/tmp/x11vnc-certret.XXXXXX");
+	omode = umask(077);
+	certret_fd = mkstemp(certret);
+	umask(omode);
+	if (certret_fd < 0) {
+		free(certret);
+		certret = NULL;
+		certret_fd = -1;
+	}
+
+	if (dhret) {
+		free(dhret);
+	}
+	if (dhret_str) {
+		free(dhret_str);
+		dhret_str = NULL;
+	}
+	dhret = strdup("/tmp/x11vnc-dhret.XXXXXX");
+	omode = umask(077);
+	dhret_fd = mkstemp(dhret);
+	umask(omode);
+	if (dhret_fd < 0) {
+		free(dhret);
+		dhret = NULL;
+		dhret_fd = -1;
+	}
+
+	/* now fork the child to handle the SSL: */
+	pid = fork();
+
+	if (pid > 0) {
+		rfbLog("SSL: helper for peerport %d is pid %d: \n",
+		    peerport, (int) pid);
+	}
+
+	if (pid < 0) {
+		rfbLog("SSL: accept_openssl: could not fork.\n");
+		rfbLogPerror("fork");
+		close(sock);
+		close(csock);
+		if (mode == OPENSSL_INETD || ssl_no_fail) {
+			clean_up_exit(1);
+		}
+		return;
+
+	} else if (pid == 0) {
+		int s_in, s_out, httpsock = -1;
+		int vncsock;
+		int i, have_httpd = 0;
+		int f_in  = fileno(stdin);
+		int f_out = fileno(stdout);
+		int skip_vnc_tls = mode == OPENSSL_HTTPS ? 1 : 0;
+
+		if (db) fprintf(stderr, "helper pid in: %d %d %d %d\n", f_in, f_out, sock, listen);
+
+		/* reset all handlers to default (no interrupted() calls) */
+		unset_signals();
+
+		/* close all non-essential fd's */
+		for (i=0; i<256; i++) {
+			if (mode == OPENSSL_INETD) {
+				if (i == f_in || i == f_out) {
+					continue;
+				}
+			}
+			if (i == sock) {
+				continue;
+			}
+			if (i == 2) {
+				continue;
+			}
+			close(i);
+		}
+
+		/*
+		 * sadly, we are a long lived child and so the large
+		 * framebuffer memory areas will soon differ from parent.
+		 * try to free as much as possible.
+		 */
+		lose_ram();
+
+		/* now connect back to parent socket: */
+		vncsock = rfbConnectToTcpAddr("127.0.0.1", cport);
+		if (vncsock < 0) {
+			rfbLog("SSL: ssl_helper[%d]: could not connect"
+			    " back to: %d\n", getpid(), cport);
+			rfbLog("SSL: ssl_helper[%d]: exit case 1 (no local vncsock)\n", getpid());
+			exit(1);
+		}
+		if (db) fprintf(stderr, "vncsock %d\n", vncsock);
+
+		/* try to initialize SSL with the remote client */
+
+		if (mode == OPENSSL_INETD) {
+			s_in  = fileno(stdin);
+			s_out = fileno(stdout);
+		} else {
+			s_in = s_out = sock;
+		}
+
+		if (! ssl_init(s_in, s_out, skip_vnc_tls, last_https)) {
+			close(vncsock);
+			rfbLog("SSL: ssl_helper[%d]: exit case 2 (ssl_init failed)\n", getpid());
+			exit(1);
+		}
+
+		if (vencrypt_selected != 0) {
+			char *tbuf;
+			tbuf = (char *) malloc(strlen(cookie) + 100);
+			sprintf(tbuf, "%s,VENCRYPT=%d,%s", uniq, vencrypt_selected, cookie);
+			write(vncsock, tbuf, strlen(cookie));
+			goto wrote_cookie;
+		} else if (anontls_selected != 0) {
+			char *tbuf;
+			tbuf = (char *) malloc(strlen(cookie) + 100);
+			sprintf(tbuf, "%s,ANONTLS=%d,%s", uniq, anontls_selected, cookie);
+			write(vncsock, tbuf, strlen(cookie));
+			goto wrote_cookie;
+		}
+
+		/*
+		 * things get messy below since we are trying to do
+		 * *both* VNC and Java applet httpd through the same
+		 * SSL socket.
+		 */
+
+		if (! screen) {
+			close(vncsock);
+			exit(1);
+		}
+		if (screen->httpListenSock >= 0 && screen->httpPort > 0) {
+			have_httpd = 1;
+		}
+		if (screen->httpListenSock == -2) {
+			have_httpd = 1;
+		}
+		if (mode == OPENSSL_HTTPS && ! have_httpd) {
+			rfbLog("SSL: accept_openssl[%d]: no httpd socket for "
+			    "-https mode\n", getpid());
+			close(vncsock);
+			rfbLog("SSL: ssl_helper[%d]: exit case 3 (no httpd sock)\n", getpid());
+			exit(1);
+		}
+
+		if (have_httpd) {
+			int n = 0, is_http = 0;
+			int hport = screen->httpPort; 
+			char *iface = NULL;
+			char *buf, *tbuf;
+
+			buf  = (char *) calloc((ABSIZE+1), 1);
+			tbuf = (char *) calloc((2*ABSIZE+1), 1);
+
+			if (mode == OPENSSL_HTTPS) {
+				/*
+				 * for this mode we know it is HTTP traffic
+				 * so we skip trying to guess.
+				 */
+				is_http = 1;
+				n = 0;
+				goto connect_to_httpd;
+			}
+
+			/*
+			 * Check if there is stuff to read from remote end
+			 * if so it is likely a GET or HEAD.
+			 */
+			if (! is_ssl_readable(s_in, last_https, last_get,
+			    mode)) {
+				goto write_cookie;
+			}
+	
+			/* 
+			 * read first 2 bytes to try to guess.  sadly,
+			 * the user is often pondering a "non-verified
+			 * cert" dialog for a long time before the GET
+			 * is ever sent.  So often we timeout here.
+			 */
+
+			if (db) fprintf(stderr, "watch_for_http_traffic\n");
+
+			is_http = watch_for_http_traffic(buf, &n, s_in);
+
+			if (is_http < 0 || is_http == 0) {
+				/*
+				 * error or http not detected, fall back
+				 * to normal VNC socket.
+				 */
+				if (db) fprintf(stderr, "is_http err: %d n: %d\n", is_http, n);
+				write(vncsock, cookie, strlen(cookie));
+				if (n > 0) {
+					write(vncsock, buf, n);
+				}
+				goto wrote_cookie;
+			}
+
+			if (db) fprintf(stderr, "is_http: %d n: %d\n",
+			    is_http, n);
+			if (db) fprintf(stderr, "buf: '%s'\n", buf);
+
+			if (strstr(buf, "/request.https.vnc.connection")) {
+				char reply[] = "HTTP/1.0 200 OK\r\n"
+				    "Content-Type: octet-stream\r\n"
+				    "Connection: Keep-Alive\r\n"
+				    "VNC-Server: x11vnc\r\n"
+				    "Pragma: no-cache\r\n\r\n";
+				/*
+				 * special case proxy coming thru https
+				 * instead of a direct SSL connection.
+				 */
+				rfbLog("Handling VNC request via https GET. [%d]\n", getpid());
+				rfbLog("-- %s\n", buf);
+
+				if (strstr(buf, "/reverse.proxy")) {
+					char *buf2;
+					int n, ptr;
+#if !LIBVNCSERVER_HAVE_LIBSSL
+					write(s_out, reply, strlen(reply));
+#else
+					SSL_write(ssl, reply, strlen(reply));
+#endif
+				
+					buf2  = (char *) calloc((8192+1), 1);
+					n = 0;
+					ptr = 0;
+					while (ptr < 8192) {
+#if !LIBVNCSERVER_HAVE_LIBSSL
+						n = read(s_in, buf2 + ptr, 1);
+#else
+						n = SSL_read(ssl, buf2 + ptr, 1);
+#endif
+						if (n > 0) {
+							ptr += n;
+						}
+						if (db) fprintf(stderr, "buf2: '%s'\n", buf2);
+
+						if (strstr(buf2, "\r\n\r\n")) {
+							break;
+						}
+					}
+					free(buf2);
+				}
+				goto write_cookie;
+
+			} else if (strstr(buf, "/check.https.proxy.connection")) {
+				char reply[] = "HTTP/1.0 200 OK\r\n"
+				    "Connection: close\r\n"
+				    "Content-Type: octet-stream\r\n"
+				    "VNC-Server: x11vnc\r\n"
+				    "Pragma: no-cache\r\n\r\n";
+
+				rfbLog("Handling Check HTTPS request via https GET. [%d]\n", getpid());
+				rfbLog("-- %s\n", buf);
+
+#if !LIBVNCSERVER_HAVE_LIBSSL
+				write(s_out, reply, strlen(reply));
+#else
+				SSL_write(ssl, reply, strlen(reply));
+				SSL_shutdown(ssl);
+#endif
+
+				strcpy(tbuf, uniq);
+				strcat(tbuf, cookie);
+				write(vncsock, tbuf, strlen(tbuf));
+				close(vncsock);
+
+				rfbLog("SSL: ssl_helper[%d]: exit case 4 (check.https.proxy.connection)\n", getpid());
+				exit(0);
+			}
+			connect_to_httpd:
+
+			/*
+			 * Here we go... no turning back.  we have to
+			 * send failure to parent and close socket to have
+			 * http processed at all in a timely fashion...
+			 */
+
+			/* send the failure tag: */
+			strcpy(tbuf, uniq);
+
+			if (https_port_redir < 0 || (strstr(buf, "PORT=") || strstr(buf, "port="))) {
+				char *q = strstr(buf, "Host:");
+				int fport = 443, match = 0;
+				char num[16];
+
+				if (q && strstr(q, "\n")) {
+				    q += strlen("Host:") + 1;
+				    while (*q != '\n') {
+					int p;
+					if (*q == ':' && sscanf(q, ":%d", &p) == 1) {
+						if (p > 0 && p < 65536) {
+							fport = p;
+							match = 1;
+							break;
+						}
+					}
+					q++;
+				    }
+				}
+				if (!match || !https_port_redir) {
+					int p;
+					if (sscanf(buf, "PORT=%d,", &p) == 1) {
+						if (p > 0 && p < 65536) {
+							fport = p;
+						}
+					} else if (sscanf(buf, "port=%d,", &p) == 1) {
+						if (p > 0 && p < 65536) {
+							fport = p;
+						}
+					}
+				}
+				sprintf(num, "HP=%d,", fport);
+				strcat(tbuf, num);
+			}
+
+			if (strstr(buf, "HTTP/") != NULL)  {
+				char *q, *str;
+				/*
+				 * Also send back the GET line for heuristics.
+				 * (last_https, get file).
+				 */
+				str = strdup(buf);
+				q = strstr(str, "HTTP/");
+				if (q != NULL) {
+					*q = '\0';	
+					strcat(tbuf, str);
+				}
+				free(str);
+			}
+
+			/*
+			 * Also send the cookie to pad out the number of
+			 * bytes to more than the parent wants to read.
+			 * Since this is the failure case, it does not
+			 * matter that we send more than strlen(cookie).
+			 */
+			strcat(tbuf, cookie);
+			write(vncsock, tbuf, strlen(tbuf));
+
+			usleep(150*1000);
+			if (db) fprintf(stderr, "close vncsock: %d\n", vncsock);
+			close(vncsock);
+
+			/* now, finally, connect to the libvncserver httpd: */
+			if (screen->listenInterface == htonl(INADDR_ANY) ||
+			    screen->listenInterface == htonl(INADDR_NONE)) {
+				iface = "127.0.0.1";
+			} else {
+				struct in_addr in;
+				in.s_addr = screen->listenInterface;
+				iface = inet_ntoa(in);
+			}
+			if (iface == NULL || !strcmp(iface, "")) {
+				iface = "127.0.0.1";
+			}
+			if (db) fprintf(stderr, "iface: %s:%d\n", iface, hport);
+			usleep(150*1000);
+
+			httpsock = rfbConnectToTcpAddr(iface, hport);
+
+			if (httpsock < 0) {
+				/* UGH, after all of that! */
+				rfbLog("Could not connect to httpd socket!\n");
+				rfbLog("SSL: ssl_helper[%d]: exit case 5.\n", getpid());
+				exit(1);
+			}
+			if (db) fprintf(stderr, "ssl_helper[%d]: httpsock: %d %d\n",
+			    getpid(), httpsock, n);
+
+			/*
+			 * send what we read to httpd, and then connect
+			 * the rest of the SSL session to it:
+			 */
+			if (n > 0) {
+				char *s = getenv("X11VNC_EXTRA_HTTPS_PARAMS");
+				int did_extra = 0;
+
+				if (db) fprintf(stderr, "sending http buffer httpsock: %d n=%d\n'%s'\n", httpsock, n, buf);
+				if (s != NULL) {
+					char *q = strstr(buf, " HTTP/");
+					if (q) {
+						int m;
+						*q = '\0';
+						m = strlen(buf);
+						write(httpsock, buf, m);
+						write(httpsock, s, strlen(s));
+						*q = ' ';
+						write(httpsock, q, n-m);
+						did_extra = 1;
+					}
+				}
+				if (!did_extra) {
+					write(httpsock, buf, n);
+				}
+			}
+			ssl_xfer(httpsock, s_in, s_out, is_http);
+			rfbLog("SSL: ssl_helper[%d]: exit case 6 (https ssl_xfer done)\n", getpid());
+			exit(0);
+		}
+
+		/*
+		 * ok, back from the above https mess, simply send the
+		 * cookie back to the parent (who will attach us to
+		 * libvncserver), and connect the rest of the SSL session
+		 * to it.
+		 */
+		write_cookie:
+		write(vncsock, cookie, strlen(cookie));
+
+		wrote_cookie:
+		ssl_xfer(vncsock, s_in, s_out, 0);
+		rfbLog("SSL: ssl_helper[%d]: exit case 7 (ssl_xfer done)\n", getpid());
+		if (0) usleep(50 * 1000);
+		exit(0);
+	}
+	/* parent here */
+
+	if (mode != OPENSSL_INETD) {
+		close(sock);
+	}
+	if (db) fprintf(stderr, "helper process is: %d\n", pid);
+
+	/* accept connection from our child.  */
+	signal(SIGALRM, csock_timeout);
+	csock_timeout_sock = csock;
+	alarm(20);
+
+	vsock = accept(csock, (struct sockaddr *)&addr, &addrlen);
+
+	alarm(0);
+	signal(SIGALRM, SIG_DFL);
+	close(csock);
+
+
+	if (vsock < 0) {
+		rfbLog("SSL: accept_openssl: connection from ssl_helper[%d] FAILED.\n", pid);
+		rfbLogPerror("accept");
+
+		kill(pid, SIGTERM);
+		waitpid(pid, &status, WNOHANG); 
+		if (mode == OPENSSL_INETD || ssl_no_fail) {
+			clean_up_exit(1);
+		}
+		if (certret_fd >= 0) {
+			close(certret_fd);
+			certret_fd = -1;
+		}
+		if (certret) {
+			unlink(certret);
+		}
+		if (dhret_fd >= 0) {
+			close(dhret_fd);
+			dhret_fd = -1;
+		}
+		if (dhret) {
+			unlink(dhret);
+		}
+		return;
+	}
+	if (db) fprintf(stderr, "accept_openssl: vsock: %d\n", vsock);
+
+	n = read(vsock, rcookie, strlen(cookie));
+	if (n < 0 && errno != 0) {
+		rfbLogPerror("read");
+	}
+
+	if (certret) {
+		struct stat sbuf;
+		sbuf.st_size = 0;
+		if (certret_fd >= 0 && stat(certret, &sbuf) == 0 && sbuf.st_size > 0) {
+			certret_str = (char *) calloc(sbuf.st_size+1, 1);
+			read(certret_fd, certret_str, sbuf.st_size);
+			close(certret_fd);
+			certret_fd = -1;
+		}
+		if (certret_fd >= 0) {
+			close(certret_fd);
+			certret_fd = -1;
+		}
+		unlink(certret);
+		if (certret_str && strstr(certret_str, "NOCERT") == certret_str) {
+			free(certret_str);
+			certret_str = NULL;
+		}
+		if (0 && certret_str) {
+			fprintf(stderr, "certret_str[%d]:\n%s\n", (int) sbuf.st_size, certret_str);
+		}
+	}
+
+	if (dhret) {
+		struct stat sbuf;
+		sbuf.st_size = 0;
+		if (dhret_fd >= 0 && stat(dhret, &sbuf) == 0 && sbuf.st_size > 0) {
+			dhret_str = (char *) calloc(sbuf.st_size+1, 1);
+			read(dhret_fd, dhret_str, sbuf.st_size);
+			close(dhret_fd);
+			dhret_fd = -1;
+		}
+		if (dhret_fd >= 0) {
+			close(dhret_fd);
+			dhret_fd = -1;
+		}
+		unlink(dhret);
+		if (dhret_str && strstr(dhret_str, "NOCERT") == dhret_str) {
+			free(dhret_str);
+			dhret_str = NULL;
+		}
+		if (dhret_str) {
+			if (new_dh_params == NULL) {
+				fprintf(stderr, "dhret_str[%d]:\n%s\n", (int) sbuf.st_size, dhret_str);
+				new_dh_params = strdup(dhret_str);
+			}
+		}
+	}
+
+	if (0) {
+		fprintf(stderr, "rcookie: %s\n", rcookie);
+		fprintf(stderr, "cookie:  %s\n", cookie);
+	}
+
+	if (strstr(rcookie, uniq) == rcookie) {
+		char *q = strstr(rcookie, "RB=");
+		if (q && strstr(cookie, q) == cookie) {
+			vencrypt_sel = 0;
+			anontls_sel = 0;
+			q = strstr(rcookie, "VENCRYPT=");
+			if (q && sscanf(q, "VENCRYPT=%d,", &vencrypt_sel) == 1) {
+				if (vencrypt_sel != 0) {
+					rfbLog("SSL: VENCRYPT mode=%d accepted. helper[%d]\n", vencrypt_sel, pid);
+					goto accept_client;
+				}
+			}
+			q = strstr(rcookie, "ANONTLS=");
+			if (q && sscanf(q, "ANONTLS=%d,", &anontls_sel) == 1) {
+				if (anontls_sel != 0) {
+					rfbLog("SSL: ANONTLS mode=%d accepted. helper[%d]\n", anontls_sel, pid);
+					goto accept_client;
+				}
+			}
+		}
+	}
+
+	if (n != (int) strlen(cookie) || strncmp(cookie, rcookie, n)) {
+		rfbLog("SSL: accept_openssl: cookie from ssl_helper[%d] FAILED. %d\n", pid, n);
+		if (db) fprintf(stderr, "'%s'\n'%s'\n", cookie, rcookie);
+		close(vsock);
+
+		if (strstr(rcookie, uniq) == rcookie) {
+			int i;
+			double https_download_wait_time = 15.0;
+
+			if (getenv("X11VNC_HTTPS_DOWNLOAD_WAIT_TIME")) {
+				https_download_wait_time = atof(getenv("X11VNC_HTTPS_DOWNLOAD_WAIT_TIME"));
+			}
+
+			rfbLog("SSL: BUT WAIT! HTTPS for helper process[%d] succeeded. Good.\n", pid);
+			if (mode != OPENSSL_HTTPS) {
+				last_https = dnow();
+				for (i=0; i<256; i++) {
+					last_get[i] = '\0';
+				}
+				strncpy(last_get, rcookie, 100);
+				if (db) fprintf(stderr, "last_get: '%s'\n", last_get);
+			}
+			if (rcookie && strstr(rcookie, "VncViewer.class")) {
+				rfbLog("\n");
+				rfbLog("helper[%d]:\n", pid);
+				rfbLog("***********************************************************\n");
+				rfbLog("SSL: WARNING CLIENT ASKED FOR NONEXISTENT 'VncViewer.class'\n");
+				rfbLog("SSL: USER NEEDS TO **RESTART** HIS WEB BROWSER.\n");
+				rfbLog("***********************************************************\n");
+				rfbLog("\n");
+			}
+			ssl_helper_pid(pid, -2);
+
+			if (https_port_redir) {
+				double start;
+				int origport = screen->port;
+				int useport = screen->port;
+				int saw_httpsock = 0;
+				/* to expand $PORT correctly in index.vnc */
+				if (https_port_redir < 0) {
+					char *q = strstr(rcookie, "HP=");
+					if (q) {
+						int p;
+						if (sscanf(q, "HP=%d,", &p) == 1) {
+							useport = p;
+						}
+					}
+				} else {
+					useport = https_port_redir;
+				}
+				screen->port = useport;
+				if (origport != useport) {
+					rfbLog("SSL: -httpsredir guess port: %d  helper[%d]\n", screen->port, pid);
+				}
+
+				start = dnow();
+				while (dnow() < start + https_download_wait_time) {
+					if (screen->httpSock >= 0) saw_httpsock = 1;
+					rfbPE(10000);
+					usleep(10000);
+					if (screen->httpSock >= 0) saw_httpsock = 1;
+					waitpid(pid, &status, WNOHANG); 
+					if (kill(pid, 0) != 0) {
+						rfbLog("SSL: helper[%d] pid finished\n", pid);
+						break;
+					}
+					if (0 && saw_httpsock && screen->httpSock < 0) {
+						/* this check can kill the helper too soon. */
+						rfbLog("SSL: httpSock for helper[%d] went away\n", pid);
+						break;
+					}
+				}
+				rfbLog("SSL: guessing child helper[%d] https finished. dt=%.6f\n",
+				    pid, dnow() - start);
+
+				rfbPE(10000);
+				rfbPE(10000);
+				rfbPE(10000);
+
+				screen->port = origport;
+				ssl_helper_pid(0, -2);
+				if (mode == OPENSSL_INETD) {
+					clean_up_exit(1);
+				}
+			} else if (mode == OPENSSL_INETD) {
+				double start;
+				int saw_httpsock = 0;
+
+				/* to expand $PORT correctly in index.vnc */
+				if (screen->port == 0) {
+					int fd = fileno(stdin);
+					if (getenv("X11VNC_INETD_PORT")) {
+						/* mutex */
+						screen->port = atoi(getenv(
+						    "X11VNC_INETD_PORT"));
+					} else {
+						int tport = get_local_port(fd);
+						if (tport > 0) {
+							screen->port = tport;
+						}
+					}
+				}
+				rfbLog("SSL: screen->port %d for helper[%d]\n", screen->port, pid);
+
+				/* kludge for https fetch via inetd */
+				start = dnow();
+				while (dnow() < start + https_download_wait_time) {
+					if (screen->httpSock >= 0) saw_httpsock = 1;
+					rfbPE(10000);
+					usleep(10000);
+					if (screen->httpSock >= 0) saw_httpsock = 1;
+					waitpid(pid, &status, WNOHANG); 
+					if (kill(pid, 0) != 0) {
+						rfbLog("SSL: helper[%d] pid finished\n", pid);
+						break;
+					}
+					if (0 && saw_httpsock && screen->httpSock < 0) {
+						/* this check can kill the helper too soon. */
+						rfbLog("SSL: httpSock for helper[%d] went away\n", pid);
+						break;
+					}
+				}
+				rfbLog("SSL: OPENSSL_INETD guessing "
+				    "child helper[%d] https finished. dt=%.6f\n",
+				    pid, dnow() - start);
+
+				rfbPE(10000);
+				rfbPE(10000);
+				rfbPE(10000);
+
+				ssl_helper_pid(0, -2);
+				clean_up_exit(1);
+			}
+			/* this will actually only get earlier https */
+			ssl_helper_pid(0, -2);
+			return;
+		}
+		kill(pid, SIGTERM);
+		waitpid(pid, &status, WNOHANG); 
+		if (mode == OPENSSL_INETD || ssl_no_fail) {
+			clean_up_exit(1);
+		}
+		return;
+	}
+
+	accept_client:
+
+	if (db) fprintf(stderr, "accept_openssl: cookie good: %s\n", cookie);
+
+	rfbLog("SSL: handshake with helper process[%d] succeeded.\n", pid);
+
+	openssl_last_helper_pid = pid;
+	ssl_helper_pid(pid, vsock);
+
+	if (vnc_redirect) {
+		vnc_redirect_sock = vsock;
+		openssl_last_helper_pid = 0;
+		return;
+	}
+
+	client = create_new_client(vsock, 0);
+	openssl_last_helper_pid = 0;
+
+	if (client) {
+		if (db) fprintf(stderr, "accept_openssl: client %p\n", (void *) client);
+		if (db) fprintf(stderr, "accept_openssl: new_client %p\n", (void *) screen->newClientHook);
+		if (db) fprintf(stderr, "accept_openssl: new_client %p\n", (void *) new_client);
+		if (mode == OPENSSL_INETD) {
+			inetd_client = client;
+			client->clientGoneHook = client_gone;
+		}
+		if (openssl_last_ip &&
+		    strpbrk(openssl_last_ip, "0123456789") == openssl_last_ip) {
+			client->host = strdup(openssl_last_ip);
+		}
+		if (vencrypt_sel != 0) {
+			client->protocolMajorVersion = 3;
+			client->protocolMinorVersion = 8;
+#if LIBVNCSERVER_HAVE_LIBSSL
+			if (!finish_vencrypt_auth(client, vencrypt_sel)) {
+				rfbCloseClient(client);
+				client = NULL;
+			}
+#else
+			badnews("3 accept_openssl");
+#endif
+		} else if (anontls_sel != 0) {
+			client->protocolMajorVersion = 3;
+			client->protocolMinorVersion = 8;
+			rfbAuthNewClient(client);
+		}
+		if (use_threads && client != NULL) {
+			rfbStartOnHoldClient(client);
+		}
+		/* try to get RFB proto done now. */
+		progress_client();
+	} else {
+		rfbLog("SSL: accept_openssl: rfbNewClient failed.\n");
+		close(vsock);
+
+		kill(pid, SIGTERM);
+		waitpid(pid, &status, WNOHANG); 
+		if (mode == OPENSSL_INETD || ssl_no_fail) {
+			clean_up_exit(1);
+		}
+		return;
+	}
+}
 
 void raw_xfer(int csock, int s_in, int s_out) {
 	char buf0[8192];
@@ -3889,13 +4020,13 @@ void raw_xfer(int csock, int s_in, int s_out) {
 		/* change buf size some direction. */
 	}
 
-	/* this is for testing, no SSL just socket redir */
-	if (pid < 0) {
-		exit(1);
-	}
 	if (getenv("X11VNC_DEBUG_RAW_XFER")) {
 		db = atoi(getenv("X11VNC_DEBUG_RAW_XFER"));
 	}
+	if (pid < 0) {
+		exit(1);
+	}
+	/* this is for testing or special helper usage, no SSL just socket redir */
 	if (pid) {
 		if (db) rfbLog("raw_xfer start: %d -> %d/%d\n", csock, s_in, s_out);
 
@@ -3965,17 +4096,24 @@ if (db) rfbLog("raw_xfer bad write:  %d -> %d | %d/%d  errno=%d\n", csock, s_out
 #endif	/* FORK_OK */
 }
 
+/* compile with -DENC_HAVE_OPENSSL=0 to disable enc stuff but still have ssl */
+
 #define ENC_MODULE
+
 #if LIBVNCSERVER_HAVE_LIBSSL
+#ifndef ENC_HAVE_OPENSSL
 #define ENC_HAVE_OPENSSL 1
+#endif
 #else
 #define ENC_HAVE_OPENSSL 0
 #endif
+
 #include "enc.h"
 
-static symmetric_encryption_xfer(int csock, int s_in, int s_out) {
+static void symmetric_encryption_xfer(int csock, int s_in, int s_out) {
 	char tmp[100];
 	char *cipher, *keyfile, *q;
+
 	if (! enc_str) {
 		return;
 	}
@@ -3993,6 +4131,8 @@ static symmetric_encryption_xfer(int csock, int s_in, int s_out) {
 
 
 	/* TBD: s_in != s_out */
+	if (s_out) {}
+
 	sprintf(tmp, "fd=%d,%d", s_in, csock);
 
 	enc_do(cipher, keyfile, "-1", tmp);

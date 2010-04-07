@@ -40,12 +40,24 @@
  * raw encoding is used instead.
  */
 
-static int zlibBeforeBufSize = 0;
-static char *zlibBeforeBuf = NULL;
+/*
+ * Out of lazyiness, we use thread local storage for zlib as we did for
+ * tight.  N.B. ZRLE does it the traditional way with per-client storage
+ * (and so at least ZRLE will work threaded on older systems.)
+ */
+#if LIBVNCSERVER_HAVE_LIBPTHREAD && LIBVNCSERVER_HAVE_TLS && !defined(TLS) && defined(__linux__)
+#define TLS __thread
+#endif
+#ifndef TLS
+#define TLS
+#endif
 
-static int zlibAfterBufSize = 0;
-static char *zlibAfterBuf = NULL;
-static int zlibAfterBufLen;
+static TLS int zlibBeforeBufSize = 0;
+static TLS char *zlibBeforeBuf = NULL;
+
+static TLS int zlibAfterBufSize = 0;
+static TLS char *zlibAfterBuf = NULL;
+static TLS int zlibAfterBufLen = 0;
 
 void rfbZlibCleanup(rfbScreenInfoPtr screen)
 {
