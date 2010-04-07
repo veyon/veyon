@@ -27,7 +27,7 @@ Set_settings_as_admin(char *mycommand)
 
 	strcpy(commanline, winvncSettings);
 	strcat(commanline, ":");
-	strcat(commanline, mycommand);
+	strcat_s(commanline, 260, mycommand);
 
 	SHELLEXECUTEINFO shExecInfo;
 	shExecInfo.cbSize = sizeof(SHELLEXECUTEINFO);

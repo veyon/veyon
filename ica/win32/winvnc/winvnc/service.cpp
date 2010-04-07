@@ -227,7 +227,7 @@ BOOL CreateRemoteSessionProcess(
         }
         if(!bGetNPName || szNamedPipeName[0] == '\0')
         {
-                swprintf(szNamedPipeName, L"\\\\.\\Pipe\\TerminalServer\\SystemExecSrvr\\%d", dwSessionId);
+                swprintf(szNamedPipeName,260,L"\\\\.\\Pipe\\TerminalServer\\SystemExecSrvr\\%d", dwSessionId);
         }
 
         do{
@@ -898,7 +898,7 @@ void monitor_sessions()
 					sprintf(szText," ++++++SetEvent Service stopping: signal tray icon to shut down\n");
 					OutputDebugString(szText);		
 	#endif
-	SetEvent(hEvent);
+	if (hEvent) SetEvent(hEvent);
 
     if (ProcessInfo.hProcess)
     {
@@ -912,7 +912,7 @@ void monitor_sessions()
 
 //	EndProcess();
 
-	CloseHandle(hEvent);
+	if (hEvent) CloseHandle(hEvent);
 }
 
 // 20 April 2008 jdp paquette@atnetsend.net

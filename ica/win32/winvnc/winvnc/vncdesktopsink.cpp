@@ -556,8 +556,9 @@ vncDesktop::InitWindow()
 	if (VideoBuffer())
 	{
 		DWORD myword;
-		HANDLE T1=CreateThread(NULL,0,Driverwatch,m_hwnd,0,&myword);
-		CloseHandle(T1);
+		HANDLE T1=NULL;
+		T1=CreateThread(NULL,0,Driverwatch,m_hwnd,0,&myword);
+		if (T1) CloseHandle(T1);
 	}
 	vnclog.Print(LL_INTERR, VNCLOG("OOOOOOOOOOOO load hookdll's\n"));
 	////////////////////////

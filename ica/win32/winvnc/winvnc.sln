@@ -1,55 +1,47 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MSLogonACL", "ms-logon\MSLogonACL\MSLogonACL.vcproj", "{F4E39BD7-C841-4F21-B40C-293D7E017EA1}"
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MSLogonACL", "ms-logon\MSLogonACL\MSLogonACL.vcxproj", "{F4E39BD7-C841-4F21-B40C-293D7E017EA1}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "authSSP", "ms-logon\authSSP\authSSP.vcproj", "{2F5FBC3F-4CCD-4C26-9719-C9166D8B0C7D}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "authSSP", "ms-logon\authSSP\authSSP.vcxproj", "{2F5FBC3F-4CCD-4C26-9719-C9166D8B0C7D}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "authadmin", "ms-logon\authadmin\authadmin.vcproj", "{334467FD-E35E-4C3D-9410-69B2171C2BB2}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "authadmin", "ms-logon\authadmin\authadmin.vcxproj", "{334467FD-E35E-4C3D-9410-69B2171C2BB2}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ldapauth", "ms-logon\ldapauth\ldapauth.vcproj", "{BC78A3C8-2280-42AB-BB6F-14FB674E2A0C}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ldapauth", "ms-logon\ldapauth\ldapauth.vcxproj", "{BC78A3C8-2280-42AB-BB6F-14FB674E2A0C}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ldapauth9x", "ms-logon\ldapauth9x\ldapauth9x.vcproj", "{CAA83204-EBF8-4369-B152-011EA957784C}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ldapauth9x", "ms-logon\ldapauth9x\ldapauth9x.vcxproj", "{CAA83204-EBF8-4369-B152-011EA957784C}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ldapauthnt4", "ms-logon\ldapauthNT4\ldapauthnt4.vcproj", "{31AC9E7D-64B7-4301-ADE2-5EFF15AA6BDE}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ldapauthnt4", "ms-logon\ldapauthNT4\ldapauthnt4.vcxproj", "{31AC9E7D-64B7-4301-ADE2-5EFF15AA6BDE}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libjpeg", "..\libjpeg\libjpeg.vcproj", "{181769CB-5295-452F-A421-FE1F9ED2022A}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libjpeg", "..\libjpeg\libjpeg.vcxproj", "{181769CB-5295-452F-A421-FE1F9ED2022A}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "logging", "ms-logon\logging\logging.vcproj", "{D50AEB07-5F5E-4401-9B50-C1660E693833}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "logging", "ms-logon\logging\logging.vcxproj", "{D50AEB07-5F5E-4401-9B50-C1660E693833}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "logmessages", "logger\logmessages.vcproj", "{E543B602-5529-4B23-8D2A-3709857F5066}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "logmessages", "logger\logmessages.vcxproj", "{E543B602-5529-4B23-8D2A-3709857F5066}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "omnithread", "omnithread\omnithread.vcproj", "{E52B9956-FE67-47F7-BC4F-67CC5A64B708}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "omnithread", "omnithread\omnithread.vcxproj", "{E52B9956-FE67-47F7-BC4F-67CC5A64B708}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "rdr", "..\rdr\rdr.vcproj", "{F5244002-0FFF-4F19-A941-FCCE1861F132}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "rdr", "..\rdr\rdr.vcxproj", "{F5244002-0FFF-4F19-A941-FCCE1861F132}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "testauth", "ms-logon\testauth\testauth.vcproj", "{C05BE60B-FBDF-430F-B041-5089262E8FB5}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "testauth", "ms-logon\testauth\testauth.vcxproj", "{C05BE60B-FBDF-430F-B041-5089262E8FB5}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "vnchooks", "vnchooks\vnchooks.vcproj", "{1D18E045-6B72-43F4-ACBD-3E679A3DE349}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "vnchooks", "vnchooks\vnchooks.vcxproj", "{1D18E045-6B72-43F4-ACBD-3E679A3DE349}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "winvnc", "winvnc\winvnc.vcproj", "{C05AE605-1250-4F58-911B-EC99AE2C25AF}"
-	ProjectSection(ProjectDependencies) = postProject
-		{F5244002-0FFF-4F19-A941-FCCE1861F132} = {F5244002-0FFF-4F19-A941-FCCE1861F132}
-		{E52B9956-FE67-47F7-BC4F-67CC5A64B708} = {E52B9956-FE67-47F7-BC4F-67CC5A64B708}
-		{F9321962-FBED-4581-BF7D-D0EBC303D891} = {F9321962-FBED-4581-BF7D-D0EBC303D891}
-		{E8BA959F-B652-4BAB-9EA7-8E9FC8D7F39C} = {E8BA959F-B652-4BAB-9EA7-8E9FC8D7F39C}
-		{85445BB7-B95B-4DE1-BA52-7311AA700A27} = {85445BB7-B95B-4DE1-BA52-7311AA700A27}
-		{181769CB-5295-452F-A421-FE1F9ED2022A} = {181769CB-5295-452F-A421-FE1F9ED2022A}
-	EndProjectSection
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "winvnc", "winvnc\winvnc.vcxproj", "{C05AE605-1250-4F58-911B-EC99AE2C25AF}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "workgrpdomnt4", "ms-logon\workgrpdomnt4\workgrpdomnt4.vcproj", "{8D7757CB-5125-4633-AFB1-4B30ED24955F}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "workgrpdomnt4", "ms-logon\workgrpdomnt4\workgrpdomnt4.vcxproj", "{8D7757CB-5125-4633-AFB1-4B30ED24955F}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "zlib", "..\zlib\zlib.vcproj", "{85445BB7-B95B-4DE1-BA52-7311AA700A27}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "zlib", "..\zlib\zlib.vcxproj", "{85445BB7-B95B-4DE1-BA52-7311AA700A27}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "avilog", "..\avilog\avilog\avilog.vcproj", "{CD0D6EC9-D652-4D1B-B23B-18E1AC3AA683}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "avilog", "..\avilog\avilog\avilog.vcxproj", "{CD0D6EC9-D652-4D1B-B23B-18E1AC3AA683}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "unz32lib", "..\zipunzip_src\unzip\windll\vc6\lib\unz32lib.vcproj", "{F9321962-FBED-4581-BF7D-D0EBC303D891}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "unz32lib", "..\zipunzip_src\unzip\windll\vc6\lib\unz32lib.vcxproj", "{F9321962-FBED-4581-BF7D-D0EBC303D891}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "zip32", "..\zipunzip_src\zip20\windll\visualc\lib\zip32.vcproj", "{E8BA959F-B652-4BAB-9EA7-8E9FC8D7F39C}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "zip32", "..\zipunzip_src\zip20\windll\visualc\lib\zip32.vcxproj", "{E8BA959F-B652-4BAB-9EA7-8E9FC8D7F39C}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Xregion", "..\Xregion\Xregion.vcproj", "{74900370-5ED2-4A5E-99A8-37EFE1D27552}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Xregion", "..\Xregion\Xregion.vcxproj", "{74900370-5ED2-4A5E-99A8-37EFE1D27552}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "zlib_ipp", "..\ipp_zlib\ipp_zlib.vcproj", "{A708AF0E-C67F-4A3B-8642-9BD09A60F2ED}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "zlib_ipp", "..\ipp_zlib\ipp_zlib.vcxproj", "{A708AF0E-C67F-4A3B-8642-9BD09A60F2ED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

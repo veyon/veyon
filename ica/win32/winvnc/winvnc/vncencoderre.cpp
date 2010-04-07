@@ -115,7 +115,7 @@ subrectEncode##bpp(															\
     rfbRectangle subrect;													\
     int x,y;																\
     int i,j;																\
-    int hx,hy,vx,vy;														\
+    int hx=0,hy=0,vx=0,vy=0;														\
     int hyflag;																\
     CARD##bpp *seg;															\
     CARD##bpp *line;														\

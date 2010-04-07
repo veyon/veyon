@@ -207,14 +207,16 @@ vncMenu::vncMenu(vncServer *server)
 
 	HMODULE hUser32 = LoadLibrary("user32.dll");
 	CHANGEWINDOWMESSAGEFILTER pfnFilter = NULL;
+	if (hUser32)
+	{
 	pfnFilter =(CHANGEWINDOWMESSAGEFILTER)GetProcAddress(hUser32,"ChangeWindowMessageFilter");
 	if (pfnFilter) pfnFilter(MENU_ADD_CLIENT_MSG, MSGFLT_ADD);
 	if (pfnFilter) pfnFilter(MENU_AUTO_RECONNECT_MSG, MSGFLT_ADD);
 	if (pfnFilter) pfnFilter(MENU_REPEATER_ID_MSG, MSGFLT_ADD);
 	// adzm 2009-07-05 - Tray icon balloon tips
 	if (pfnFilter) pfnFilter(MENU_TRAYICON_BALLOON_MSG, MSGFLT_ADD);
-
     FreeLibrary (hUser32);
+	}
 	
 	// adzm 2009-07-05 - Tray icon balloon tips
 	m_BalloonInfo = NULL;
@@ -1036,6 +1038,8 @@ LRESULT CALLBACK vncMenu::WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lP
 					DWORD errorcode=GetLastError();
 					if (process) CloseHandle(process);
 					if (Token) CloseHandle(Token);
+					if (ProcessInfo.hProcess) CloseHandle(ProcessInfo.hProcess);
+					if (ProcessInfo.hThread) CloseHandle(ProcessInfo.hThread);
 					if (errorcode==1314)
 					{
 						Set_uninstall_service_as_admin();
@@ -1081,6 +1085,8 @@ LRESULT CALLBACK vncMenu::WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lP
 					DWORD error=GetLastError();
 					if (process) CloseHandle(process);
 					if (Token) CloseHandle(Token);
+					if (ProcessInfo.hProcess) CloseHandle(ProcessInfo.hProcess);
+					if (ProcessInfo.hThread) CloseHandle(ProcessInfo.hThread);
 					if (error==1314)
 					{
 						Set_install_service_as_admin();
@@ -1130,6 +1136,8 @@ LRESULT CALLBACK vncMenu::WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lP
 					if (process) CloseHandle(process);
 					if (Token) CloseHandle(Token);
 					if (hProcess) CloseHandle(hProcess);
+					if (ProcessInfo.hProcess) CloseHandle(ProcessInfo.hProcess);
+					if (ProcessInfo.hThread) CloseHandle(ProcessInfo.hThread);
 					if (error==1314)
 					{
 						Set_stop_service_as_admin();
@@ -1175,6 +1183,8 @@ LRESULT CALLBACK vncMenu::WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lP
 					if (process) CloseHandle(process);
 					if (Token) CloseHandle(Token);
 					if (hProcess) CloseHandle(hProcess);
+					if (ProcessInfo.hProcess) CloseHandle(ProcessInfo.hProcess);
+					if (ProcessInfo.hThread) CloseHandle(ProcessInfo.hThread);
 					if (error==1314)
 					{
 						Set_start_service_as_admin();

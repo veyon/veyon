@@ -396,7 +396,7 @@ vncDesktop::vncDesktop()
 	On_Off_hookdll=false;
 	g_Desktop_running=true;
 	hUser32=LoadLibrary("USER32");
-	pbi = (pBlockInput)GetProcAddress( hUser32, "BlockInput");
+	if (hUser32) pbi = (pBlockInput)GetProcAddress( hUser32, "BlockInput");
 	m_OrigpollingSet=false;
 	m_Origpolling=false;
 	DriverWantedSet=false;
@@ -842,7 +842,7 @@ vncDesktop::InitBitmap()
 		{	
 			if (VideoBuffer())
 				{
-					pEnumDisplayDevices pd;
+					pEnumDisplayDevices pd=NULL;
 					LPSTR driverName = "mv video hook driver2";
 					BOOL DriverFound;
 					DEVMODE devmode;
@@ -852,7 +852,7 @@ vncDesktop::InitBitmap()
 					BOOL change = EnumDisplaySettings(NULL,ENUM_CURRENT_SETTINGS,&devmode);
 					devmode.dmFields = DM_BITSPERPEL | DM_PELSWIDTH | DM_PELSHEIGHT;
 					HMODULE hUser32=LoadLibrary("USER32");
-					pd = (pEnumDisplayDevices)GetProcAddress( hUser32, "EnumDisplayDevicesA");
+					if (hUser32) pd = (pEnumDisplayDevices)GetProcAddress( hUser32, "EnumDisplayDevicesA");
 						if (pd)
 							{
 								LPSTR deviceName=NULL;
@@ -1587,16 +1587,20 @@ vncDesktop::GetRichCursorData(BYTE *databuf, HCURSOR hcursor, int width, int hei
 
 	// Prepare BITMAPINFO structure (copy most m_bminfo fields)
 	BITMAPINFO *bmi = (BITMAPINFO *)calloc(1, sizeof(BITMAPINFO) + 256 * sizeof(RGBQUAD));
+	int lines=0;
+	if (bmi)
+	{
 	memcpy(bmi, &m_bminfo.bmi, sizeof(BITMAPINFO) + 256 * sizeof(RGBQUAD));
 	bmi->bmiHeader.biWidth = width;
 	bmi->bmiHeader.biHeight = -height;
 
 	// Clear data buffer and extract RGB data
 	memset(databuf, 0x00, width * height * 4);
-	int lines = GetDIBits(m_hmemdc, membitmap, 0, height, databuf, bmi, DIB_RGB_COLORS);
+	lines = GetDIBits(m_hmemdc, membitmap, 0, height, databuf, bmi, DIB_RGB_COLORS);
 
 	// Cleanup
 	free(bmi);
+	}
 	DeleteObject(membitmap);
 
 	return (lines != 0);
@@ -1649,11 +1653,13 @@ void vncDesktop::SetClipText(char* rfbStr)
         LPSTR pMem = (char*)GlobalLock(hMem);
 
         // Get the data
-        strcpy(pMem, winStr);
-
-        // Tell the clipboard
-        GlobalUnlock(hMem);
-        SetClipboardData(CF_TEXT, hMem);
+		if (pMem)
+		{
+			strcpy(pMem, winStr);
+        	// Tell the clipboard
+        	GlobalUnlock(hMem);
+        	SetClipboardData(CF_TEXT, hMem);
+		}
       }
     }
   }
@@ -1837,9 +1843,9 @@ void vncDesktop::SetBlankMonitor(bool enabled)
 
 	// Added Jef Fix
 	typedef DWORD (WINAPI *PSLWA)(HWND, DWORD, BYTE, DWORD);
-	PSLWA pSetLayeredWindowAttributes;
+	PSLWA pSetLayeredWindowAttributes=NULL;
 	HMODULE hDLL = LoadLibrary ("user32");
-	pSetLayeredWindowAttributes = (PSLWA) GetProcAddress(hDLL,"SetLayeredWindowAttributes");
+	if (hDLL) pSetLayeredWindowAttributes = (PSLWA) GetProcAddress(hDLL,"SetLayeredWindowAttributes");
 	if (!pSetLayeredWindowAttributes) m_server->BlackAlphaBlending(false);
 	//if (VideoBuffer()) m_server->BlackAlphaBlending(false);
 
@@ -1862,10 +1868,10 @@ void vncDesktop::SetBlankMonitor(bool enabled)
 		    }
 		    else
 		    {
-			    HANDLE ThreadHandle2;
+			    HANDLE ThreadHandle2=NULL;
 			    DWORD dwTId;
 			    ThreadHandle2 = CreateThread(NULL, 0, BlackWindow, NULL, 0, &dwTId);
-			    CloseHandle(ThreadHandle2);
+			   if (ThreadHandle2)  CloseHandle(ThreadHandle2);
 			    m_Black_window_active=true;
 		    }
 	    }

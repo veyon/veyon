@@ -23,7 +23,7 @@ VIDEODRIVER::VIDEODRIVER_start(int x,int y,int w,int h)
 	oldaantal=1;
 	mypVideoMemory=NULL;
 	OSVER=OSVersion();
-	if (OSVER==OSWIN2000||OSVER==OSWIN2003||OSVER==OSWINXP||OSVER==OSWINXP64)
+	if (OSVER==OSWIN2000|| OSVER==OSWINXP64)
 	{
 		if (Mirror_driver_attach_XP(x,y,w,h))
 		{
@@ -91,7 +91,7 @@ void
 VIDEODRIVER::VIDEODRIVER_Stop()
 {
 	OSVER=OSVersion();
-	if (OSVER==OSWIN2000||OSVER==OSWIN2003||OSVER==OSWINXP||OSVER==OSWINXP64)
+	if (OSVER==OSWIN2000||OSVER==OSWINXP64)
 	{
 		Mirror_driver_detach_XP();
 		if (mypVideoMemory!=NULL) VideoMemory_ReleaseSharedMemory(mypVideoMemory);
@@ -113,7 +113,7 @@ VIDEODRIVER::~VIDEODRIVER()
 {
 	//mypVideoMemory=NULL;
 	OSVER=OSVersion();
-	if (OSVER==OSWIN2000||OSVER==OSWIN2003||OSVER==OSWINXP||OSVER==OSWINXP64)
+	if (OSVER==OSWIN2000|| OSVER==OSWINXP64)
 	{
 		Mirror_driver_detach_XP();
 		if (mypVideoMemory!=NULL) VideoMemory_ReleaseSharedMemory(mypVideoMemory);
@@ -188,12 +188,12 @@ PCHAR VIDEODRIVER::VideoMemory_GetSharedMemory(void)
 bool
 VIDEODRIVER::Mirror_driver_Vista(DWORD dwAttach,int x,int y,int w,int h)
 {
-	HDESK   hdeskInput;
-    HDESK   hdeskCurrent;
-	pEnumDisplayDevices pd;
+	HDESK   hdeskInput=NULL;
+    HDESK   hdeskCurrent=NULL;
+	pEnumDisplayDevices pd=NULL;
 	HMODULE hUser32=LoadLibrary("USER32");
-	pd = (pEnumDisplayDevices)GetProcAddress( hUser32, "EnumDisplayDevicesA");
-
+	if (hUser32) pd = (pEnumDisplayDevices)GetProcAddress( hUser32, "EnumDisplayDevicesA");
+	if (!pd) return false;
     BOOL  bED   = TRUE;
     DEVMODE devmode;
 
@@ -396,8 +396,8 @@ VIDEODRIVER::Mirror_driver_Vista(DWORD dwAttach,int x,int y,int w,int h)
                                            0,
                                            NULL);
 
-			SetThreadDesktop(hdeskCurrent);
-			CloseDesktop(hdeskInput);
+			if (hdeskCurrent) SetThreadDesktop(hdeskCurrent);
+			if (hdeskInput) CloseDesktop(hdeskInput);
 
 			if (code!=0)
 			{
@@ -419,12 +419,12 @@ VIDEODRIVER::Mirror_driver_Vista(DWORD dwAttach,int x,int y,int w,int h)
 void
 VIDEODRIVER::Mirror_driver_detach_XP()
 {
-	HDESK   hdeskInput;
-    HDESK   hdeskCurrent;
-	pEnumDisplayDevices pd;
+	HDESK   hdeskInput=NULL;
+    HDESK   hdeskCurrent=NULL;
+	pEnumDisplayDevices pd=NULL;
 	HMODULE hUser32=LoadLibrary("USER32");
-	pd = (pEnumDisplayDevices)GetProcAddress( hUser32, "EnumDisplayDevicesA");
-
+	if (hUser32) pd = (pEnumDisplayDevices)GetProcAddress( hUser32, "EnumDisplayDevicesA");
+	if (!pd) return;
 	DEVMODE devmode;
 
     FillMemory(&devmode, sizeof(DEVMODE), 0);
@@ -610,8 +610,8 @@ VIDEODRIVER::Mirror_driver_detach_XP()
                                 NULL
                                 );
    
-		SetThreadDesktop(hdeskCurrent);
-		CloseDesktop(hdeskInput);
+		if (hdeskCurrent) SetThreadDesktop(hdeskCurrent);
+		if (hdeskInput) CloseDesktop(hdeskInput);
 		
 	}
 if (hUser32) FreeLibrary(hUser32);
@@ -623,12 +623,13 @@ if (hUser32) FreeLibrary(hUser32);
 bool
 VIDEODRIVER::Mirror_driver_attach_XP(int x,int y,int w,int h)
 {
-	HDESK   hdeskInput;
-    HDESK   hdeskCurrent;
+	HDESK   hdeskInput=NULL;
+    HDESK   hdeskCurrent=NULL;
 
-	pEnumDisplayDevices pd;
+	pEnumDisplayDevices pd=NULL;
 	HMODULE hUser32=LoadLibrary("USER32");
-	pd = (pEnumDisplayDevices)GetProcAddress( hUser32, "EnumDisplayDevicesA");
+	if (hUser32) pd = (pEnumDisplayDevices)GetProcAddress( hUser32, "EnumDisplayDevicesA");
+	if (!pd) return false;
 
 	DEVMODE devmode;
 
@@ -804,8 +805,8 @@ VIDEODRIVER::Mirror_driver_attach_XP(int x,int y,int w,int h)
                                 NULL
                                 );
    
-		SetThreadDesktop(hdeskCurrent);
-		CloseDesktop(hdeskInput);
+		if (hdeskCurrent)SetThreadDesktop(hdeskCurrent);
+		if (hdeskInput)CloseDesktop(hdeskInput);
 
 		RegCloseKey(hKeyProfileMirror);
         RegCloseKey(hKeyDevice);
@@ -885,7 +886,7 @@ VIDEODRIVER::GetDcMirror()
 {
 typedef BOOL (WINAPI* pEnumDisplayDevices)(PVOID,DWORD,PVOID,DWORD);
 		HDC m_hrootdc=NULL;
-		pEnumDisplayDevices pd;
+		pEnumDisplayDevices pd=NULL;
 		LPSTR driverName = "mv video hook driver2";
 		BOOL DriverFound;
 		DEVMODE devmode;
@@ -895,7 +896,7 @@ typedef BOOL (WINAPI* pEnumDisplayDevices)(PVOID,DWORD,PVOID,DWORD);
 		BOOL change = EnumDisplaySettings(NULL,ENUM_CURRENT_SETTINGS,&devmode);
 		devmode.dmFields = DM_BITSPERPEL | DM_PELSWIDTH | DM_PELSHEIGHT;
 		HMODULE hUser32=LoadLibrary("USER32");
-		pd = (pEnumDisplayDevices)GetProcAddress( hUser32, "EnumDisplayDevicesA");
+		if (hUser32) pd = (pEnumDisplayDevices)GetProcAddress( hUser32, "EnumDisplayDevicesA");
 		if (pd)
 			{
 				LPSTR deviceName=NULL;

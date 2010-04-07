@@ -1730,9 +1730,9 @@ vncClientThread::run(void *arg)
                         time_t now = time(&now);
                         time_t delta = now - lastrecv;
                         lastrecv = now;
-                        char msg[255];
-                        sprintf(msg, "keepalive received %u seconds since last one\n", delta);
-                        OutputDebugString(msg);
+                        char msgg[255];
+                        sprintf(msgg, "keepalive received %u seconds since last one\n", delta);
+                        OutputDebugString(msgg);
 
                     }
 #endif
@@ -2402,7 +2402,7 @@ vncClientThread::run(void *arg)
                         break;
 					case rfbFileTransferOffer:
 						{
-						omni_mutex_lock l(m_client->GetUpdateLock());
+						omni_mutex_lock ll(m_client->GetUpdateLock());
 						if (!m_server->FileTransferEnabled() || !fUserOk) break;
 						// bool fError = false;
 						const UINT length = Swap32IfLE(msg.ft.length);
@@ -2584,7 +2584,7 @@ vncClientThread::run(void *arg)
 					// The client requests a File
 					case rfbFileTransferRequest:
 						{
-						omni_mutex_lock l(m_client->GetUpdateLock());
+						omni_mutex_lock ll(m_client->GetUpdateLock());
 						m_client->m_fCompressionEnabled = (Swap32IfLE(msg.ft.size) == 1);
 						const UINT length = Swap32IfLE(msg.ft.length);
 						memset(m_client->m_szSrcFileName, 0, sizeof(m_client->m_szSrcFileName));
@@ -2933,7 +2933,7 @@ vncClientThread::run(void *arg)
 									//omni_mutex_lock l(m_client->GetUpdateLock());
 
 									const UINT length = Swap32IfLE(msg.ft.length);
-									char szDir[MAX_PATH];
+									char szDir[MAX_PATH + 2];
 									if (length > sizeof(szDir)) break;
 
 									// Read in the Name of Dir to explore

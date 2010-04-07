@@ -55,7 +55,7 @@ extern HINSTANCE	hInstResDLL;
 typedef void (*vncEditSecurityFn) (HWND hwnd, HINSTANCE hInstance);
 vncEditSecurityFn vncEditSecurity = 0;
 DWORD GetExplorerLogonPid();
-int G_SENDBUFFER=8192;
+unsigned int G_SENDBUFFER=8192;
 
 // Constructor & Destructor
 vncProperties::vncProperties()
@@ -180,7 +180,8 @@ void
 vncProperties::ShowAdmin(BOOL show, BOOL usersettings)
 {
 //	if (Lock_service_helper) return;
-	HANDLE hProcess,hPToken;
+	HANDLE hProcess=NULL;
+	HANDLE hPToken=NULL;
 	DWORD id=GetExplorerLogonPid();
 	int iImpersonateResult=0;
 	{
@@ -227,8 +228,8 @@ vncProperties::ShowAdmin(BOOL show, BOOL usersettings)
 	if (!m_allowproperties) 
 	{
 		if(iImpersonateResult == ERROR_SUCCESS)RevertToSelf();
-		CloseHandle(hProcess);
-		CloseHandle(hPToken);
+		if (hProcess) CloseHandle(hProcess);
+		if (hPToken) CloseHandle(hPToken);
 		return;
 	}
 	/*if (!RunningAsAdministrator ())
@@ -283,7 +284,8 @@ vncProperties::ShowAdmin(BOOL show, BOOL usersettings)
 			else
 			{
 				// We're trying to edit the default local settings - verify that we can
-				HKEY hkLocal, hkDefault;
+				HKEY hkLocal=NULL;
+				HKEY hkDefault=NULL;
 				BOOL canEditDefaultPrefs = 1;
 				DWORD dw;
 				if (RegCreateKeyEx(HKEY_LOCAL_MACHINE,
@@ -302,8 +304,8 @@ vncProperties::ShowAdmin(BOOL show, BOOL usersettings)
 				if (!canEditDefaultPrefs) {
 					MessageBox(NULL, sz_ID_CANNOT_EDIT_DEFAULT_PREFS, sz_ID_WINVNC_ERROR, MB_OK | MB_ICONEXCLAMATION);
 					if(iImpersonateResult == ERROR_SUCCESS)RevertToSelf();
-					CloseHandle(hProcess);
-					CloseHandle(hPToken);
+					if (hProcess) CloseHandle(hProcess);
+					if (hPToken) CloseHandle(hPToken);
 					return;
 				}
 			}
@@ -392,8 +394,8 @@ vncProperties::ShowAdmin(BOOL show, BOOL usersettings)
 		}
 	}
 	if(iImpersonateResult == ERROR_SUCCESS)RevertToSelf();
-	CloseHandle(hProcess);
-	CloseHandle(hPToken);
+	if (hProcess) CloseHandle(hProcess);
+	if (hPToken) CloseHandle(hPToken);
 }
 
 BOOL CALLBACK
@@ -2118,8 +2120,8 @@ vncProperties::Save()
 	SaveInt(hkLocal, "UseDSMPlugin", m_server->IsDSMPluginEnabled());
 	SaveInt(hkLocal, "ConnectPriority", m_server->ConnectPriority());
 	SaveDSMPluginName(hkLocal, m_server->GetDSMPluginName());
-	RegCloseKey(hkDefault);
-	RegCloseKey(hkLocal);
+	if (hkDefault) RegCloseKey(hkDefault);
+	if (hkLocal) RegCloseKey(hkLocal);
 }
 
 void

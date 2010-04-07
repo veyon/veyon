@@ -985,7 +985,7 @@ vncDesktopThread::run_undetached(void *arg)
 
 									{
 										// Prevent any clients from accessing the Buffer
-										omni_mutex_lock l(m_desktop->m_update_lock);
+										omni_mutex_lock ll(m_desktop->m_update_lock);
 										
 										// CHECK FOR COPYRECTS
 										// This actually just checks where the Foreground window is

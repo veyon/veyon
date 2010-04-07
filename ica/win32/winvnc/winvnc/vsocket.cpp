@@ -62,12 +62,14 @@ class VSocket;
 // Custom includes
 
 #include "vtypes.h"
-extern int G_SENDBUFFER;
+extern unsigned int G_SENDBUFFER;
 ////////////////////////////////////////////////////////
 // *** Lovely hacks to make Win32 work.  Hurrah!
 
 #ifdef __WIN32__
+#ifndef EWOULDBLOCK
 #define EWOULDBLOCK WSAEWOULDBLOCK
+#endif
 #endif
 
 ////////////////////////////////////////////////////////
@@ -520,7 +522,7 @@ VBool VSocket::SetRecvTimeout(VCard32 msecs)
 VInt
 VSocket::Send(const char *buff, const VCard bufflen)
 {
-	int newsize=queuebuffersize+bufflen;
+	unsigned int newsize=queuebuffersize+bufflen;
 	char *buff2;
 	buff2=(char*)buff;
 	unsigned int bufflen2=bufflen;
@@ -553,7 +555,7 @@ VSocket::Send(const char *buff, const VCard bufflen)
 VInt
 VSocket::SendQueued(const char *buff, const VCard bufflen)
 {
-	int newsize=queuebuffersize+bufflen;
+	unsigned int newsize=queuebuffersize+bufflen;
 	char *buff2;
 	buff2=(char*)buff;
 	unsigned int bufflen2=bufflen;

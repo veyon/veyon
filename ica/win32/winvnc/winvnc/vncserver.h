@@ -373,8 +373,8 @@ public:
 	virtual void AutoReconnect(BOOL fEnabled){m_fAutoReconnect = fEnabled;};
 	virtual void IdReconnect(BOOL fEnabled){m_fIdReconnect = fEnabled;};
 	virtual void AutoReconnectPort(UINT nPort){m_AutoReconnectPort = nPort;};
-	virtual void AutoReconnectAdr(char* szAdr){strcpy(m_szAutoReconnectAdr, szAdr);}
-	virtual void AutoReconnectId(char* szId){strcpy(m_szAutoReconnectId, szId);}
+	virtual void AutoReconnectAdr(char* szAdr){strcpy_s(m_szAutoReconnectAdr,64, szAdr);}
+	virtual void AutoReconnectId(char* szId){strcpy_s(m_szAutoReconnectId,MAX_PATH, szId);}
 	virtual void AutoConnectRetry( );
 	static void CALLBACK _timerRetryHandler( HWND /*hWnd*/, UINT /*uMsg*/, UINT_PTR /*idEvent*/, DWORD /*dwTime*/ );
 	void _actualTimerRetryHandler();

@@ -102,7 +102,7 @@ private:
 	char m_filename[512];
 	bool m_append;
 	bool m_video;
-	char m_path[512];
+	char m_path[MAX_PATH];
 
 	time_t m_lastLogTime;
 	void GetLastErrorMsg(LPSTR szErrorMsg) const;

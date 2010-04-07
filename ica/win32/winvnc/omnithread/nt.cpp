@@ -614,7 +614,7 @@ omni_thread::start(void)
 
 #ifndef __BCPLUSPLUS__
     // MSVC++ or compatiable
-    unsigned int t;
+    unsigned int t=0;
     handle = (HANDLE)_beginthreadex(
                         NULL,
 			stack_size,

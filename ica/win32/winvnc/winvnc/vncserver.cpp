@@ -71,7 +71,7 @@ vncServer::ServerUpdateTracker::add_changed(const rfb::Region2D &rgn) {
 		// REalVNC 336 change
 		// m_server->GetClient(*i)->GetUpdateTracker().add_changed(rgn);
 		vncClient* client = m_server->GetClient(*i);
-		omni_mutex_lock l(client->GetUpdateLock());
+		omni_mutex_lock ll(client->GetUpdateLock());
 		client->GetUpdateTracker().add_changed(rgn);
 
 	}
@@ -90,7 +90,7 @@ vncServer::ServerUpdateTracker::add_cached(const rfb::Region2D &rgn) {
 		// RealVNC 336 change
 		// m_server->GetClient(*i)->GetUpdateTracker().add_cached(rgn);
 		vncClient* client = m_server->GetClient(*i);
-		omni_mutex_lock l(client->GetUpdateLock());
+		omni_mutex_lock ll(client->GetUpdateLock());
 		client->GetUpdateTracker().add_cached(rgn);
 	}
 }
@@ -112,7 +112,7 @@ vncServer::ServerUpdateTracker::add_copied(const rfb::Region2D &dest, const rfb:
 		// RealVNC 336 change
 		//m_server->GetClient(*i)->GetUpdateTracker().add_copied(dest, delta);
 		vncClient* client = m_server->GetClient(*i);
-		omni_mutex_lock l(client->GetUpdateLock());
+		omni_mutex_lock ll(client->GetUpdateLock());
 		client->GetUpdateTracker().add_copied(dest, delta);
 
 	}
@@ -541,11 +541,11 @@ vncClientId vncServer::AddClient(VSocket *socket,
 		{
 
 
-			vncClient* client = GetClient(*i);
-			if (client->GetRepeaterID() && (strlen(client->GetRepeaterID()) > 0) ) {
-				strncat_s(szInfo, 255, client->GetRepeaterID(), _TRUNCATE);
+			vncClient* pclient = GetClient(*i);
+			if (pclient->GetRepeaterID() && (strlen(pclient->GetRepeaterID()) > 0) ) {
+				strncat_s(szInfo, 255, pclient->GetRepeaterID(), _TRUNCATE);
 			} else {
-				strncat_s(szInfo, 255, client->GetClientName(), _TRUNCATE);
+				strncat_s(szInfo, 255, pclient->GetClientName(), _TRUNCATE);
 			}			
 			
 			// adzm 2009-07-05			
@@ -1131,7 +1131,7 @@ vncServer::RemoveClient(vncClientId clientid)
 
 				// Yes, so remove the client and kill it
 				m_unauthClients.erase(i);
-				m_clientmap[clientid] = NULL;
+				if ( clientid>=0 && clientid< 512) m_clientmap[clientid] = NULL;
 				done = TRUE;
 				break;
 			}
@@ -1147,7 +1147,7 @@ vncServer::RemoveClient(vncClientId clientid)
 
 					// Yes, so remove the client and kill it
 					m_authClients.erase(i);
-					m_clientmap[clientid] = NULL;
+					if ( clientid>=0 && clientid< 512) m_clientmap[clientid] = NULL;
 
 					done = TRUE;
 					break;
@@ -1657,6 +1657,7 @@ vncServer::EnableXDMCPConnect(BOOL enable)
 		   ) 
 			{
 				m_xdmcpConn=NULL;
+				if (ppi.hThread) CloseHandle(ppi.hThread);
 			}
 			else
 			{
@@ -2205,7 +2206,7 @@ char* vncServer::GetDSMPluginName()
 
 void vncServer::SetDSMPluginName(char* szDSMPlugin)
 {
-	strcpy(m_szDSMPlugin, szDSMPlugin);
+	strcpy_s(m_szDSMPlugin, 128,szDSMPlugin);
 	return;
 }
 
