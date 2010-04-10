@@ -66,7 +66,7 @@ so, delete this exception statement from your version.
  * without using SSH or SSL.
  *
  * -----------------------------------------------------------------------
- * Copyright (C) 2008-2009 Karl J. Runge <runge@karlrunge.com>
+ * Copyright (C) 2008-2010 Karl J. Runge <runge@karlrunge.com>
  * All rights reserved.
  *
  *  This is free software; you can redistribute it and/or modify

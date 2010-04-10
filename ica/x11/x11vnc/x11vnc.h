@@ -316,6 +316,14 @@ extern int h_errno;
 #include <arpa/inet.h>
 #endif
 
+#ifndef X11VNC_IPV6
+#if defined(AF_INET6) || defined(PF_INET6)
+#define X11VNC_IPV6 1
+#else
+#define X11VNC_IPV6 0
+#endif
+#endif
+
 #if LIBVNCSERVER_HAVE_PWD_H
 #include <pwd.h>
 #include <grp.h>

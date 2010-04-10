@@ -331,9 +331,11 @@ void check_xinerama_clip(void) {
 
 static void initialize_xinerama (void) {
 #if !LIBVNCSERVER_HAVE_LIBXINERAMA
-	rfbLog("Xinerama: Library libXinerama is not available to determine\n");
-	rfbLog("Xinerama: the head geometries, consider using -blackout\n");
-	rfbLog("Xinerama: if the screen is non-rectangular.\n");
+	if (!raw_fb_str) {
+		rfbLog("Xinerama: Library libXinerama is not available to determine\n");
+		rfbLog("Xinerama: the head geometries, consider using -blackout\n");
+		rfbLog("Xinerama: if the screen is non-rectangular.\n");
+	}
 #else
 	XineramaScreenInfo *sc, *xineramas;
 	sraRegionPtr black_region, tmp_region;

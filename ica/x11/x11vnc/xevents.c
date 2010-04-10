@@ -50,6 +50,7 @@ so, delete this exception statement from your version.
 #include "pm.h"
 #include "pointer.h"
 #include "remote.h"
+#include "inet.h"
 
 /* XXX CHECK BEFORE RELEASE */
 int grab_buster = 0;
@@ -1962,7 +1963,8 @@ static void try_local_chat_window(void) {
 	for (i = 0; i < 90; i++)  {
 		/* find an open port */
 		port = 7300 + i;
-		lsock = rfbListenOnTCPPort(port, htonl(INADDR_LOOPBACK));
+		/* XXX ::1 fallback */
+		lsock = listen_tcp(port, htonl(INADDR_LOOPBACK), 0);
 		if (lsock >= 0) {
 			break;
 		}
