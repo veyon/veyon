@@ -2364,8 +2364,8 @@ int main(int argc, char* argv[]) {
 			overlay_cursor = 2;
 			continue;
 		}
-#if !SKIP_8TO24
 		if (!strcmp(arg, "-8to24")) {
+#if !SKIP_8TO24
 			cmap8to24 = 1;
 			if (i < argc-1) {
 				char *s = argv[i+1];
@@ -2374,9 +2374,9 @@ int main(int argc, char* argv[]) {
 					i++;
 				}
 			}
+#endif
 			continue;
 		}
-#endif
 		if (!strcmp(arg, "-24to32")) {
 			xform24to32 = 1;
 			continue;
@@ -2481,9 +2481,12 @@ int main(int argc, char* argv[]) {
 			continue;
 		}
 		if (!strcmp(arg, "-connect") ||
-		    !strcmp(arg, "-connect_or_exit")) {
+		    !strcmp(arg, "-connect_or_exit") ||
+		    !strcmp(arg, "-coe")) {
 			CHECK_ARGC
 			if (!strcmp(arg, "-connect_or_exit")) {
+				connect_or_exit = 1;
+			} else if (!strcmp(arg, "-coe")) {
 				connect_or_exit = 1;
 			}
 			if (strchr(argv[++i], '/') && !strstr(argv[i], "repeater://")) {
@@ -2522,20 +2525,27 @@ int main(int argc, char* argv[]) {
 			continue;
 		}
 		if (!strcmp(arg, "-listen6")) {
+#if X11VNC_IPV6
 			listen_str6 = strdup(argv[++i]);
+#endif
 			continue;
 		}
 		if (!strcmp(arg, "-nolookup")) {
 			host_lookup = 0;
 			continue;
 		}
-#if X11VNC_IPV6
 		if (!strcmp(arg, "-6")) {
+#if X11VNC_IPV6
 			ipv6_listen = 1;
+			got_ipv6_listen = 1;
+#endif
 			continue;
 		}
 		if (!strcmp(arg, "-no6")) {
+#if X11VNC_IPV6
 			ipv6_listen = 0;
+			got_ipv6_listen = 0;
+#endif
 			continue;
 		}
 		if (!strcmp(arg, "-noipv6")) {
@@ -2546,7 +2556,7 @@ int main(int argc, char* argv[]) {
 			noipv4 = 1;
 			continue;
 		}
-#endif
+
 		if (!strcmp(arg, "-input")) {
 			CHECK_ARGC
 			allowed_input_str = strdup(argv[++i]);
@@ -5785,7 +5795,7 @@ int main(int argc, char* argv[]) {
 			} else {
 				rfbLogEnable(1);
 				rfbLog("Error: could not obtain listening port.\n");
-				if (!got_rfbport) {
+				if (!got_rfbport && !got_ipv6_listen) {
 					rfbLog("If this system is IPv6-only, use the -6 option.\n");
 				}
 				clean_up_exit(1);

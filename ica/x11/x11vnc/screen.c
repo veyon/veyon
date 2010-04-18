@@ -3631,9 +3631,10 @@ void initialize_screen(int *argc, char **argv, XImage *fb) {
 			fd = listen6(screen->port);
 			if (fd < 0) {
 				ipv6_listen = 0;
+				rfbLog("Not listening on IPv6 interface.\n");
 			} else {
-				rfbLog("%slistening on IPv6 port=%d sock=%d\n",
-				    screen->listenSock < 0 ? "Only " : "Also ",
+				rfbLog("Listening %s on IPv6 port %d (socket %d)\n",
+				    screen->listenSock < 0 ? "only" : "also",
 				    screen->port, fd);
 				ipv6_listen_fd = fd;
 			}

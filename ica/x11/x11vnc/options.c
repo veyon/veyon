@@ -134,10 +134,12 @@ int no_external_cmds = 1;	/* cannot be turned back on. */
 char *allowed_external_cmds = NULL;
 int started_as_root = 0;
 int host_lookup = 1;
-#ifndef X11VNC_LISTEN6
-int ipv6_listen = 0;		/* -6 */
+#if X11VNC_LISTEN6
+int ipv6_listen = 1;		/* -6 / -no6 */
+int got_ipv6_listen = 1;
 #else
-int ipv6_listen = 1;
+int ipv6_listen = 0;		/* -6 / -no6 */
+int got_ipv6_listen = 0;
 #endif
 int ipv6_listen_fd = -1;
 int ipv6_http_fd = -1;
