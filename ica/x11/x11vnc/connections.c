@@ -308,7 +308,7 @@ static rfbClientPtr *client_match(char *str) {
 			}
 			if (ipv6_ip(str)) {
 				;
-			} else if (! dotted_ip(str)) {
+			} else if (! dotted_ip(str, 0)) {
 				char *orig = rstr;
 				rstr = host2ip(rstr);
 				free(orig);
@@ -385,7 +385,7 @@ void set_client_input(char *str) {
 		return;
 	}
 
-	p = strchr(str, ':');
+	p = strrchr(str, ':');
 	if (! p) {
 		return;
 	}
@@ -1067,7 +1067,7 @@ int check_access(char *addr) {
 		}
 		if (ipv6_ip(p)) {
 			chk = p;
-		} else if (! dotted_ip(p)) {
+		} else if (! dotted_ip(p, 1)) {
 			r = host2ip(p);
 			if (r == NULL || *r == '\0') {
 				rfbLog("check_access: bad lookup \"%s\"\n", p);
@@ -1837,9 +1837,8 @@ void check_ipv6_listen(long usec) {
 			screen->httpListenSock = save;	
 		}
 	}
-#else
-	if (usec) {}
 #endif
+	if (usec) {}
 }
 
 /*

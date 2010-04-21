@@ -516,8 +516,16 @@ void http_connections(int on) {
 		screen->httpInitDone = FALSE;
 		if (check_httpdir()) {
 			int fd6 = -1;
+			char *save = listen_str6;
+
 			screen->httpDir = http_dir;
+
 			rfb_http_init_sockets();
+
+			if (getenv("X11VNC_HTTP_LISTEN_LOCALHOST")) {
+				listen_str6 = "localhost";
+			}
+
 			if (screen->httpPort != 0 && screen->httpListenSock < 0) {
 				rfbLog("http_connections: failed to listen on http port: %d\n", screen->httpPort);
 				if (ipv6_listen) {
@@ -534,11 +542,12 @@ void http_connections(int on) {
 				}
 				ipv6_http_fd = fd6;
 				if (ipv6_http_fd >= 0) {
-					rfbLog("http_connections: %s listening on IPv6 port=%d sock=%d\n",
-					    screen->httpListenSock < 0 ? "Only" : "Also",
+					rfbLog("http_connections: Listening %s on IPv6 port %d (socket %d)\n",
+					    screen->httpListenSock < 0 ? "only" : "also",
 					    screen->httpPort, ipv6_http_fd);
 				}
 			}
+			listen_str6 = save;
 		}
 	} else {
 		rfbLog("http_connections: turning off http service.\n");

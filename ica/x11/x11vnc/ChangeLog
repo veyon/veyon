@@ -1,3 +1,16 @@
+2010-04-18  Karl Runge <runge@karlrunge.com>
+	* x11vnc/misc: improvements to demo scripts
+	* x11vnc: Alias -coe for -connect_or_exit.  more accurate
+	  dotted_ip() and -listen6.  Improvements to ipv6 mode.
+	  http interface for X11VNC_HTTP_LISTEN_LOCALHOST.  Print
+	  warning about missing Xvfb, Xdummy, or Xvnc in -create.
+	  Fix __LINUX_VIDEODEV2_H / HAVE_V4L2.	Always print out info
+	  about Xinerama screens.
+	* x11vnc/misc/enhanced_tightvnc_viewer: check for host cmd.
+	  fix stunnel mode w/o proxy.  Update to stunnel 4.33, Fix
+	  build.unix with new stunnel on Solaris. ipv6 support for
+	  unix ssvncviewer
+
 2010-04-09  Karl Runge <runge@karlrunge.com>
 	* classes/ssl: debugging and workarounds for java viewer
 	* x11vnc/misc: sync ssvnc, improve util scripts.

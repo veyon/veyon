@@ -40,7 +40,7 @@ extern char *raw2host(char *raw, int len);
 extern char *raw2ip(char *raw);
 extern char *ip2host(char *ip);
 extern int ipv6_ip(char *host);
-extern int dotted_ip(char *host);
+extern int dotted_ip(char *host, int partial);
 extern int get_remote_port(int sock);
 extern int get_local_port(int sock);
 extern char *get_remote_host(int sock);

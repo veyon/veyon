@@ -116,6 +116,7 @@ extern char *allowed_external_cmds;
 extern int started_as_root;
 extern int host_lookup;
 extern int ipv6_listen;
+extern int got_ipv6_listen;
 extern int ipv6_listen_fd;
 extern int ipv6_http_fd;
 extern int noipv6;
