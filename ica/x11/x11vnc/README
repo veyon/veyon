@@ -2,7 +2,7 @@
 Copyright (C) 2002-2010 Karl J. Runge <runge@karlrunge.com>
 All rights reserved.
 
-x11vnc README file                         Date: Thu Apr  8 23:54:19 EDT 2010
+x11vnc README file                         Date: Sun Apr 18 17:09:43 EDT 2010
 
 The following information is taken from these URLs:
 
@@ -438,15 +438,21 @@ nc -localhost -display :0'
    could be used for normal, unencrypted connections and also for SSL
    encrypted ones.
 
-   The the VNC displays to enter in the VNC viewer would be, say,
+   The VNC displays to enter in the VNC viewer would be, say,
    "far-away.east:0" to reach jills-pc and "far-away.east:1" to reach
    freds-pc. We assume above that x11vnc is using port 5900 (and any
    Host-Level-firewalls on jills-pc has been configured to let that port
-   in.)
+   in.) Use the "-rfbport" option to tell which port x11vnc should listen
+   on.
 
    For a home system one likely does not have a hostname and would have
    to use the IP address, say, "24.56.78.93:0". E.g.:
   vncviewer 24.56.78.93:0
+
+   You may want to choose a more obscure port on the router side, e.g.
+   5944, to avoid a lot of port scans finding your VNC server. For 5944
+   you would tell the viewer to use:
+  vncviewer 24.56.78.93:44
 
    The IP address would need to be communicated to the person running the
    VNC Viewer. The site http://www.whatismyip.com/ can help here.
@@ -912,18 +918,18 @@ make
        always supported chained SSL certificates (simply put the
        intermediate certificates, in order, after the server certificate
        in the pem file.)
-     * A demo CGI script desktop.cgi shows how to create a multi-user
-       x11vnc web login desktop service. The script requires x11vnc
-       version 0.9.10. The user logs into a secure web site and gets
-       his/her own virtual desktop (Xvfb.) x11vnc's SSL enabled Java
-       Viewer Applet is launched by the web browser for secure viewing
-       (and so no software needs to be installed on the viewer-side.) One
-       can use the desktop.cgi script for ideas to create their own
-       fancier or customized web login desktop service (e.g.
-       user-creation, PHP, SQL, specialized desktop application, etc.)
-       More info here. There is also an optional 'port redirection' mode
-       that allows redirection to other SSL enabled VNC servers running
-       inside the firewall.
+     * A demo CGI script desktop.cgi shows how to create an SSL
+       encrypted, multi-user x11vnc web login desktop service. The script
+       requires x11vnc version 0.9.10. The user logs into a secure web
+       site and gets his/her own virtual desktop (Xvfb.) x11vnc's SSL
+       enabled Java Viewer Applet is launched by the web browser for
+       secure viewing (and so no software needs to be installed on the
+       viewer-side.) One can use the desktop.cgi script for ideas to
+       create their own fancier or customized web login desktop service
+       (e.g. user-creation, PHP, SQL, specialized desktop application,
+       etc.) More info here. There is also an optional 'port redirection'
+       mode that allows redirection to other SSL enabled VNC servers
+       running inside the firewall.
      * Built-in support for IPv6 (128 bit internet addresses) is now
        provided. See the -6 and -connect options for details.
        Additionally, in case there are still problems with built-in IPv6
@@ -2346,8 +2352,7 @@ typedef unsigned int in_addr_t;
    http://www.focv.com/ Debian: (.deb) http://packages.debian.org/x11vnc
    Redhat/Fedora: (.rpm) http://packages.sw.be/x11vnc RPMforge
    http://dag.wieers.com/rpm/packages/x11vnc/ (N.B.: unmaintained after
-   0.9.3) Solaris: (pkg) http://www.sunfreeware.com/ (N.B: very old;
-   better to compile from source)
+   0.9.3) Solaris: (pkg) http://www.sunfreeware.com/
 
    If the above binaries don't work and building x11vnc on your OS fails
    (and all else fails!) you can try one of My Collection of x11vnc
@@ -8869,8 +8874,8 @@ or:
    Q-129: Does x11vnc work with IPv6?
 
    Update: as of Apr/2010 in the 0.9.10 x11vnc development tarball, there
-   is now some built-in support for IPv6 (128 bit internet addresses.)
-   See the -6 and -connect options for details.
+   is now built-in support for IPv6 (128 bit internet addresses.) See the
+   -6 and -connect options for details.
 
    The remainder of this FAQ entry shows how to do with this with pre
    0.9.10 x11vnc using IPv6 helper tools.
@@ -11937,20 +11942,20 @@ r
       On Mac OS X? Use "ssvnc_no_windows".
       On Windows? Use "ssvnc_windows_only".
   ssvnc_windows_only-1.0.26.zip      Windows Binaries Only.  No source included
- (6.0MB)
+ (6.2MB)
   ssvnc_no_windows-1.0.26.tar.gz     Unix and Mac OS X Only. No Windows binarie
-s.  Source included. (9.8MB)
+s.  Source included. (10.1MB)
   ssvnc_unix_only-1.0.26.tar.gz      Unix Binaries Only.     No source included
-. (7.0MB)
+. (7.2MB)
   ssvnc_unix_minimal-1.0.26.tar.gz   Unix Minimal.  You must supply your own vn
 cviewer and stunnel. (0.2MB)
 
   ssvnc-1.0.26.tar.gz                All Unix, Mac OS X, and Windows binaries a
-nd source TGZ. (15.5MB)
+nd source TGZ. (16.1MB)
   ssvnc-1.0.26.zip                   All Unix, Mac OS X, and Windows binaries a
-nd source ZIP. (15.5MB)
+nd source ZIP. (16.4MB)
   ssvnc_all-1.0.26.zip               All Unix, Mac OS X, and Windows binaries a
-nd source AND full archives in the zip dir. (18.3MB)
+nd source AND full archives in the zip dir. (19.2MB)
 
 
    Here is a conventional source tarball:
@@ -11973,7 +11978,7 @@ nd source AND full archives in the zip dir. (18.3MB)
    directory to recompile for your operating system.
 
    Here are the corresponding 1.0.27 development bundles (Please help
-   testing them):
+   test them):
 
   ssvnc_windows_only-1.0.27.zip
   ssvnc_no_windows-1.0.27.tar.gz
@@ -12022,10 +12027,10 @@ nd source AND full archives in the zip dir. (18.3MB)
     SunOS.i86pc
     Darwin.Power.Macintosh
     Darwin.i386
-    HP-UX.9000     X
-    FreeBSD.i386   X
-    NetBSD.i386    X
-    OpenBSD.i386   X
+    HP-UX.9000     X (removed)
+    FreeBSD.i386   X (removed)
+    NetBSD.i386    X (removed)
+    OpenBSD.i386   X (removed)
 
    (some of these are out of date, marked with 'X' above, because I no
    longer have access to machines running those OS's. Use the
@@ -12071,105 +12076,105 @@ x11vnc: a VNC server for real X displays
    Here are all of x11vnc command line options:
 % x11vnc -opts      (see below for -help long descriptions)
 
-x11vnc: allow VNC connections to real X11 displays. 0.9.10 lastmod: 2010-04-08
+x11vnc: allow VNC connections to real X11 displays. 0.9.10 lastmod: 2010-04-18
 
 x11vnc options:
   -display disp            -auth file               -N                     
   -autoport n              -rfbport str             -6                     
-  -noipv6                  -noipv4                  -reopen                
-  -reflect host:N          -id windowid             -sid windowid          
-  -appshare                -clip WxH+X+Y            -flashcmap             
-  -shiftcmap n             -notruecolor             -advertise_truecolor   
-  -visual n                -overlay                 -overlay_nocursor      
-  -8to24 [opts]            -24to32                  -scale fraction        
-  -geometry WxH            -scale_cursor frac       -viewonly              
-  -shared                  -once                    -forever               
-  -loop                    -timeout n               -sleepin n             
-  -inetd                   -tightfilexfer           -ultrafilexfer         
-  -http                    -http_ssl                -avahi                 
-  -mdns                    -zeroconf                -connect string        
-  -connect_or_exit str     -proxy string            -vncconnect            
-  -novncconnect            -allow host1[,host2..]   -localhost             
-  -listen6 str             -nolookup                -input string          
-  -grabkbd                 -grabptr                 -grabalways            
-  -viewpasswd string       -passwdfile filename     -showrfbauth filename  
-  -unixpw [list]           -unixpw_nis [list]       -unixpw_cmd cmd        
-  -find                    -finddpy                 -listdpy               
-  -findauth [disp]         -create                  -xdummy                
-  -xvnc                    -xvnc_redirect           -xdummy_xvfb           
-  -create_xsrv str         -svc                     -svc_xdummy            
-  -svc_xvnc                -svc_xdummy_xvfb         -xdmsvc                
-  -sshxdmsvc               -unixpw_system_greeter   -redirect port         
-  -display WAIT:...        -vencrypt mode           -anontls mode          
-  -sslonly                 -dhparams file           -nossl                 
-  -ssl [pem]               -ssltimeout n            -sslnofail             
-  -ssldir dir              -sslverify path          -sslCRL path           
-  -sslGenCA [dir]          -sslGenCert type name    -sslEncKey pem         
-  -sslCertInfo pem         -sslDelCert pem          -sslScripts            
-  -stunnel [pem]           -stunnel3  [pem]         -enc cipher:keyfile    
-  -https [port]            -httpsredir [port]       -http_oneport          
-  -ssh user@host:disp      -usepw                   -storepasswd pass file 
-  -nopw                    -accept string           -afteraccept string    
-  -gone string             -users list              -noshm                 
-  -flipbyteorder           -onetile                 -solid [color]         
-  -blackout string         -xinerama                -noxinerama            
-  -xtrap                   -xrandr [mode]           -rotate string         
-  -padgeom WxH             -o logfile               -flag file             
-  -rmflag file             -rc filename             -norc                  
-  -env VAR=VALUE           -prog /path/to/x11vnc    -h, -help              
-  -?, -opts                -V, -version             -license               
-  -dbg                     -q, -quiet               -v, -verbose           
-  -bg                      -modtweak                -nomodtweak            
-  -xkb                     -noxkb                   -capslock              
-  -skip_lockkeys           -noskip_lockkeys         -skip_keycodes string  
-  -sloppy_keys             -skip_dups               -noskip_dups           
-  -add_keysyms             -noadd_keysyms           -clear_mods            
-  -clear_keys              -clear_all               -remap string          
-  -norepeat                -repeat                  -nofb                  
-  -nobell                  -nosel                   -noprimary             
-  -nosetprimary            -noclipboard             -nosetclipboard        
-  -seldir string           -cursor [mode]           -nocursor              
-  -cursor_drag             -arrow n                 -noxfixes              
-  -alphacut n              -alphafrac fraction      -alpharemove           
-  -noalphablend            -nocursorshape           -cursorpos             
-  -nocursorpos             -xwarppointer            -noxwarppointer        
-  -buttonmap string        -nodragging              -ncache n              
-  -ncache_cr               -ncache_no_moveraise     -ncache_no_dtchange    
-  -ncache_no_rootpixmap    -ncache_keep_anims       -ncache_old_wm         
-  -ncache_pad n            -debug_ncache            -wireframe [str]       
-  -nowireframe             -nowireframelocal        -wirecopyrect mode     
-  -nowirecopyrect          -debug_wireframe         -scrollcopyrect mode   
-  -noscrollcopyrect        -scr_area n              -scr_skip list         
-  -scr_inc list            -scr_keys list           -scr_term list         
-  -scr_keyrepeat lo-hi     -scr_parms string        -fixscreen string      
-  -debug_scroll            -noxrecord               -grab_buster           
-  -nograb_buster           -debug_grabs             -debug_sel             
-  -pointer_mode n          -input_skip n            -allinput              
-  -input_eagerly           -speeds rd,bw,lat        -wmdt string           
-  -debug_pointer           -debug_keyboard          -defer time            
-  -wait time               -extra_fbur n            -wait_ui factor        
-  -setdefer n              -nowait_bog              -slow_fb time          
-  -xrefresh time           -nap                     -nonap                 
-  -sb time                 -readtimeout n           -ping n                
-  -nofbpm                  -fbpm                    -nodpms                
-  -dpms                    -forcedpms               -clientdpms            
-  -noserverdpms            -noultraext              -chatwindow            
-  -noxdamage               -xd_area A               -xd_mem f              
-  -sigpipe string          -threads                 -nothreads             
-  -fs f                    -gaps n                  -grow n                
-  -fuzz n                  -debug_tiles             -snapfb                
-  -rawfb string            -freqtab file            -pipeinput cmd         
-  -macnodim                -macnosleep              -macnosaver            
-  -macnowait               -macwheel n              -macnoswap             
-  -macnoresize             -maciconanim n           -macmenu               
-  -macuskbd                -gui [gui-opts]          -remote command        
-  -query variable          -QD variable             -sync                  
-  -query_retries str       -remote_prefix str       -noremote              
-  -yesremote               -unsafe                  -safer                 
-  -privremote              -nocmds                  -allowedcmds list      
-  -deny_all              
+  -no6                     -noipv6                  -noipv4                
+  -reopen                  -reflect host:N          -id windowid           
+  -sid windowid            -appshare                -clip WxH+X+Y          
+  -flashcmap               -shiftcmap n             -notruecolor           
+  -advertise_truecolor     -visual n                -overlay               
+  -overlay_nocursor        -8to24 [opts]            -24to32                
+  -scale fraction          -geometry WxH            -scale_cursor frac     
+  -viewonly                -shared                  -once                  
+  -forever                 -loop                    -timeout n             
+  -sleepin n               -inetd                   -tightfilexfer         
+  -ultrafilexfer           -http                    -http_ssl              
+  -avahi                   -mdns                    -zeroconf              
+  -connect string          -connect_or_exit str     -proxy string          
+  -vncconnect              -novncconnect            -allow host1[,host2..] 
+  -localhost               -listen6 str             -nolookup              
+  -input string            -grabkbd                 -grabptr               
+  -grabalways              -viewpasswd string       -passwdfile filename   
+  -showrfbauth filename    -unixpw [list]           -unixpw_nis [list]     
+  -unixpw_cmd cmd          -find                    -finddpy               
+  -listdpy                 -findauth [disp]         -create                
+  -xdummy                  -xvnc                    -xvnc_redirect         
+  -xdummy_xvfb             -create_xsrv str         -svc                   
+  -svc_xdummy              -svc_xvnc                -svc_xdummy_xvfb       
+  -xdmsvc                  -sshxdmsvc               -unixpw_system_greeter 
+  -redirect port           -display WAIT:...        -vencrypt mode         
+  -anontls mode            -sslonly                 -dhparams file         
+  -nossl                   -ssl [pem]               -ssltimeout n          
+  -sslnofail               -ssldir dir              -sslverify path        
+  -sslCRL path             -sslGenCA [dir]          -sslGenCert type name  
+  -sslEncKey pem           -sslCertInfo pem         -sslDelCert pem        
+  -sslScripts              -stunnel [pem]           -stunnel3  [pem]       
+  -enc cipher:keyfile      -https [port]            -httpsredir [port]     
+  -http_oneport            -ssh user@host:disp      -usepw                 
+  -storepasswd pass file   -nopw                    -accept string         
+  -afteraccept string      -gone string             -users list            
+  -noshm                   -flipbyteorder           -onetile               
+  -solid [color]           -blackout string         -xinerama              
+  -noxinerama              -xtrap                   -xrandr [mode]         
+  -rotate string           -padgeom WxH             -o logfile             
+  -flag file               -rmflag file             -rc filename           
+  -norc                    -env VAR=VALUE           -prog /path/to/x11vnc  
+  -h, -help                -?, -opts                -V, -version           
+  -license                 -dbg                     -q, -quiet             
+  -v, -verbose             -bg                      -modtweak              
+  -nomodtweak              -xkb                     -noxkb                 
+  -capslock                -skip_lockkeys           -noskip_lockkeys       
+  -skip_keycodes string    -sloppy_keys             -skip_dups             
+  -noskip_dups             -add_keysyms             -noadd_keysyms         
+  -clear_mods              -clear_keys              -clear_all             
+  -remap string            -norepeat                -repeat                
+  -nofb                    -nobell                  -nosel                 
+  -noprimary               -nosetprimary            -noclipboard           
+  -nosetclipboard          -seldir string           -cursor [mode]         
+  -nocursor                -cursor_drag             -arrow n               
+  -noxfixes                -alphacut n              -alphafrac fraction    
+  -alpharemove             -noalphablend            -nocursorshape         
+  -cursorpos               -nocursorpos             -xwarppointer          
+  -noxwarppointer          -buttonmap string        -nodragging            
+  -ncache n                -ncache_cr               -ncache_no_moveraise   
+  -ncache_no_dtchange      -ncache_no_rootpixmap    -ncache_keep_anims     
+  -ncache_old_wm           -ncache_pad n            -debug_ncache          
+  -wireframe [str]         -nowireframe             -nowireframelocal      
+  -wirecopyrect mode       -nowirecopyrect          -debug_wireframe       
+  -scrollcopyrect mode     -noscrollcopyrect        -scr_area n            
+  -scr_skip list           -scr_inc list            -scr_keys list         
+  -scr_term list           -scr_keyrepeat lo-hi     -scr_parms string      
+  -fixscreen string        -debug_scroll            -noxrecord             
+  -grab_buster             -nograb_buster           -debug_grabs           
+  -debug_sel               -pointer_mode n          -input_skip n          
+  -allinput                -input_eagerly           -speeds rd,bw,lat      
+  -wmdt string             -debug_pointer           -debug_keyboard        
+  -defer time              -wait time               -extra_fbur n          
+  -wait_ui factor          -setdefer n              -nowait_bog            
+  -slow_fb time            -xrefresh time           -nap                   
+  -nonap                   -sb time                 -readtimeout n         
+  -ping n                  -nofbpm                  -fbpm                  
+  -nodpms                  -dpms                    -forcedpms             
+  -clientdpms              -noserverdpms            -noultraext            
+  -chatwindow              -noxdamage               -xd_area A             
+  -xd_mem f                -sigpipe string          -threads               
+  -nothreads               -fs f                    -gaps n                
+  -grow n                  -fuzz n                  -debug_tiles           
+  -snapfb                  -rawfb string            -freqtab file          
+  -pipeinput cmd           -macnodim                -macnosleep            
+  -macnosaver              -macnowait               -macwheel n            
+  -macnoswap               -macnoresize             -maciconanim n         
+  -macmenu                 -macuskbd                -gui [gui-opts]        
+  -remote command          -query variable          -QD variable           
+  -sync                    -query_retries str       -remote_prefix str     
+  -noremote                -yesremote               -unsafe                
+  -safer                   -privremote              -nocmds                
+  -allowedcmds list        -deny_all              
 
-libvncserver options:
+LibVNCServer options:
 -rfbport port          TCP port for RFB protocol
 -rfbwait time          max time in ms to wait for RFB client
 -rfbauth passwd-file   use authentication on RFB protocol
@@ -12201,7 +12206,7 @@ libvncserver-tight-extension options:
 
 % x11vnc -help
 
-x11vnc: allow VNC connections to real X11 displays. 0.9.10 lastmod: 2010-04-08
+x11vnc: allow VNC connections to real X11 displays. 0.9.10 lastmod: 2010-04-18
 
 (type "x11vnc -opts" to just list the options.)
 
@@ -12287,26 +12292,38 @@ Options:
                        The default is to start probing at 5900.  Use this to
                        stay away from other VNC servers near 5900.
 
--rfbport str           The VNC port to listen on (a libvncserver option), e.g.
+-rfbport str           The VNC port to listen on (a LibVNCServer option), e.g.
                        5900, 5901, etc.  If specified as "-rfbport PROMPT"
                        then the x11vnc -gui is used to prompt the user to
                        enter the port number.
 
 -6                     IPv6 listening support.  In addition to IPv4, the
                        IPv6 address is listened on for incoming connections.
-                       The same port as IPv4 is used to listen.  If you have
-                       trouble compiling for this mode, set -DX11VNC_IPV6=0
-                       in CPPFLAGS when configuring.
+                       The same port as IPv4 is used.
 
-                       Currently, the machine may need to have some IPv4
-                       support, at the least for the loopback interface, for
-                       everything to work correctly.  However for most usage
-                       modes IPv4 support is not required.
+                       NOTE:  This x11vnc binary was compiled to have the
+                       "-6" IPv6 listening mode ENABLED by default (CPPFLAGS
+                       -DX11VNC_LISTEN6=1).  So to disable IPv6 listening mode
+                       you MUST supply the "-no6" option (see below.)
 
-                       The -6 mode works for both normal connections and
+                       The "-6" mode works for both normal connections and
                        -ssl encrypted ones.  Nearly everything is supported
                        for the IPv6 case, but there are a few exceptions.
                        See -stunnel for its IPv6 support.
+
+                       Currently, for absolutely everything to work correctly
+                       the machine may need to have some IPv4 support, at the
+                       least for the loopback interface.  However, for nearly
+                       all usage modes no IPv4 support is required. See -nopiv4
+.
+
+                       If you have trouble compiling or running in IPv6 mode,
+                       set -DX11VNC_IPV6=0 in CPPFLAGS when configuring to
+                       disable IPv6 support.
+
+-no6                   Disable IPv6 listening support (only useful if the
+                       "-6" mode is compiled in to be the default; see the
+                       X11VNC_LISTEN6 description above under "-6".)
 
 -noipv6                Do not try to use IPv6 for any listening or connecting
                        sockets.  This includes both the listening service
@@ -12664,7 +12681,7 @@ Options:
                        Also, tightfilexfer is disabled in -unixpw mode.
 
 -ultrafilexfer         Note: to enable UltraVNC filetransfer and to get it to
-                       work you probably need to supply these libvncserver
+                       work you probably need to supply these LibVNCServer
                        options: "-rfbversion 3.6 -permitfiletransfer"
                        "-ultrafilexfer" is an alias for this combination.
 
@@ -12777,6 +12794,8 @@ Options:
 -connect_or_exit str   As with -connect, except if none of the reverse
                        connections succeed, then x11vnc shuts down immediately
 
+                       An easier to type alias for this option is '-coe'
+
                        By the way, if you do not want x11vnc to listen on
                        ANY interface use -rfbport 0  which is handy for the
                        -connect_or_exit mode.
@@ -12867,7 +12886,7 @@ Options:
                        the comma separated list of hostnames or IP addresses.
                        Can also be a numerical IP prefix, e.g. "192.168.100."
                        to match a simple subnet, for more control build
-                       libvncserver with libwrap support (See the FAQ).  If the
+                       LibVNCServer with libwrap support (See the FAQ).  If the
                        list contains a "/" it instead is a interpreted
                        as a file containing addresses or prefixes that is
                        re-read each time a new client connects.  Lines can be
@@ -12900,10 +12919,11 @@ Options:
                        IPv6: if IPv6 is supported, this option automatically
                        implies the IPv6 loopback address '::1' as well.
 
--listen6 str           When in IPv6 listen mode "-6", only listen on the
-                       network interface with address "str".  It currently
-                       does not work for link scope addresses or non-numeric
-                       hostname strings.
+-listen6 str           When in IPv6 listen mode "-6", listen only on the
+                       network interface with address "str".  It also works
+                       for link scope addresses (fe80::219:dbff:fee5:3f92%eth0)
+                       and IPv6 hostname strings (e.g. ipv6.google.com.)
+                       Use LibVNCServer -listen option for the IPv4 interface.
 
 -nolookup              Do not use gethostbyname() or gethostbyaddr() to look up
                        host names or IP numbers.  Use this if name resolution
@@ -12952,7 +12972,7 @@ Options:
 -viewpasswd string     Supply a 2nd password for view-only logins.  The -passwd
                        (full-access) password must also be supplied.
 
--passwdfile filename   Specify the libvncserver password via the first line
+-passwdfile filename   Specify the LibVNCServer password via the first line
                        of the file "filename" (instead of via -passwd on
                        the command line where others might see it via ps(1)).
 
@@ -14629,10 +14649,10 @@ Options:
                        the network (i.e. you just want the single VNC/HTTPS
                        port, e.g. 5900, open for connections) then specify the
                        option -env X11VNC_HTTP_LISTEN_LOCALHOST=1  This way
-                       the connection to the libvncserver httpd server will
+                       the connection to the LibVNCServer httpd server will
                        only be available on localhost (note that in -ssl mode,
                        HTTPS requests are redirected from SSL to the non-SSL
-                       libvncserver HTTP server.)
+                       LibVNCServer HTTP server.)
 
 -http_oneport          For UN-encrypted connections mode (i.e. no -ssl,
                        -stunnel, or -enc options), allow the Java VNC Viewer
@@ -14666,7 +14686,7 @@ Options:
 
                        Note that the -env X11VNC_HTTP_LISTEN_LOCALHOST=1
                        option described above under -httpsredir applies for
-                       the libvncserver httpd server in all cases (ssl or not.)
+                       the LibVNCServer httpd server in all cases (ssl or not.)
 
 -ssh user@host:disp    Create a remote listening port on machine "host"
                        via a SSH tunnel using the -R rport:localhost:lport
@@ -14681,7 +14701,7 @@ Options:
                        username differs from the current one.
 
                        By default the remote sshd is usually configured to
-                       only listen on localhost for rport, so the viewer may
+                       listen only on localhost for rport, so the viewer may
                        need to ssh -L redir to "host" as well (See SSVNC to
                        automate this).  The sshd setting GatewayPorts enables
                        listening on all interfaces for rport; viewers can
@@ -15015,7 +15035,7 @@ t
                        where you resize often.  It is best to be viewing with a
                        vncviewer that supports the NewFBSize encoding, since it
                        knows how to react to screen size changes.  Otherwise,
-                       libvncserver tries to do so something reasonable for
+                       LibVNCServer tries to do so something reasonable for
                        viewers that cannot do this (portions of the screen
                        may be clipped, unused, etc).
 
@@ -15459,7 +15479,7 @@ t
                        alpha factor. (useful for light colored semi-transparent
                        cursors).
 -noalphablend          In XFIXES mode do not send cursor alpha channel data
-                       to libvncserver.  The default is to send it.  The
+                       to LibVNCServer.  The default is to send it.  The
                        alphablend effect will only be visible in -nocursorshape
                        mode or for clients with cursorshapeupdates turned
                        off. (However there is a hack for 32bpp with depth 24,
@@ -16105,9 +16125,9 @@ t
                        to really throttle down the screen polls (i.e. sleep
                        for about 1.5 secs). Use 0 to disable.  Default: 60
 
--readtimeout n         Set libvncserver rfbMaxClientWait to n seconds. On
+-readtimeout n         Set LibVNCServer rfbMaxClientWait to n seconds. On
                        slow links that take a long time to paint the first
-                       screen libvncserver may hit the timeout and drop the
+                       screen LibVNCServer may hit the timeout and drop the
                        connection.  Default: 20 seconds.
 -ping n                Send a 1x1 framebuffer update to all clients every n
                        seconds (e.g. to try to keep a network connection alive)
@@ -16177,7 +16197,7 @@ t
                        skip powering off the monitor.
 
 -noultraext            Disable the following UltraVNC extensions: SingleWindow
-                       and ServerInput.  The others managed by libvncserver
+                       and ServerInput.  The others managed by LibVNCServer
                        (textchat, 1/n scaling, rfbEncodingUltra) are not.
 
 -chatwindow            Place a local UltraVNC chat window on the X11 display
@@ -16231,12 +16251,12 @@ t
                        (perhaps useful on a slow machine).
 
 -sigpipe string        Broken pipe (SIGPIPE) handling.  "string" can be
-                       "ignore" or "exit".  For "ignore" libvncserver
+                       "ignore" or "exit".  For "ignore" LibVNCServer
                        will handle the abrupt loss of a client and continue,
                        for "exit" x11vnc will cleanup and exit at the 1st
                        broken connection.
 
-                       This option is not really needed since libvncserver
+                       This option is not really needed since LibVNCServer
                        is doing the correct thing now for quite some time.
                        However, for convenience you can use it to ignore other
                        signals, e.g. "-sigpipe ignore:HUP,INT,TERM" in case
@@ -16246,7 +16266,7 @@ t
                        for this option if you don't like the 'pipe'. Example:
                        -sig ignore:INT,TERM,exit:USR1
 
--threads               Whether or not to use the threaded libvncserver
+-threads               Whether or not to use the threaded LibVNCServer
 -nothreads             algorithm [rfbRunEventLoop] if libpthread is available.
                        In this mode new threads (one for input and one
                        for output) are created to handle each new client.
@@ -16506,7 +16526,7 @@ er
                        view and possibly interact with the Linux text/graphics
                        console (i.e. not X11 XFree86/Xorg)
 
-                       Note: If the libvncserver LinuxVNC program is on your
+                       Note: If the LibVNCServer LinuxVNC program is on your
                        system you may want to use that instead of the following
                        method because it will be faster and more accurate
                        for the Linux text console and includes mouse support.
@@ -17285,7 +17305,7 @@ n
                        uinput_thresh:n set uinput_thresh to n.
                        uinput_reset:n  set uinput_reset to n ms.
                        uinput_always:n set uinput_always to 1/0.
-                       progressive:n   set libvncserver -progressive slice
+                       progressive:n   set LibVNCServer -progressive slice
                                        height parameter to n.
                        desktop:str     set -desktop name to str for new clients
 .
@@ -17667,7 +17687,7 @@ n
 
 
 
-These options are passed to libvncserver:
+These options are passed to LibVNCServer:
 
 -rfbport port          TCP port for RFB protocol
 -rfbwait time          max time in ms to wait for RFB client

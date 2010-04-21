@@ -372,9 +372,7 @@ static void initialize_xinerama (void) {
 
 	/* n.b. change to XineramaGetData() someday */
 	xineramas = XineramaQueryScreens(dpy, &n);
-	if (verbose) {
-		rfbLog("Xinerama: number of sub-screens: %d\n", n);
-	}
+	rfbLog("Xinerama: number of sub-screens: %d\n", n);
 
 	if (! use_xwarppointer && ! got_noxwarppointer && n > 1) {
 		rfbLog("Xinerama: enabling -xwarppointer mode to try to correct\n");
@@ -384,11 +382,8 @@ static void initialize_xinerama (void) {
 	}
 
 	if (n == 1) {
-		if (verbose) {
-			rfbLog("Xinerama: no blackouts needed (only one"
-			    " sub-screen)\n");
-			rfbLog("\n");
-		}
+		rfbLog("Xinerama: no blackouts needed (only one sub-screen)\n");
+		rfbLog("\n");
 		XFree_wr(xineramas);
 		X_UNLOCK;
 		return;		/* must be OK w/o change */
@@ -404,6 +399,8 @@ static void initialize_xinerama (void) {
 		y = sc->y_org;
 		w = sc->width;
 		h = sc->height;
+
+		rfbLog("Xinerama: sub-screen[%d]  %dx%d+%d+%d\n", i, w, h, x, y);
 
 		tmp_region = sraRgnCreateRect(x, y, x + w, y + h);
 

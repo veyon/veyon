@@ -36,6 +36,7 @@ so, delete this exception statement from your version.
 #include "cleanup.h"
 #include "win_utils.h"
 #include "unixpw.h"
+#include "connections.h"
 
 struct timeval _mysleep;
 

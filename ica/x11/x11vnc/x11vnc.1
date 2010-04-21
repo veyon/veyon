@@ -2,7 +2,7 @@
 .TH X11VNC "1" "April 2010" "x11vnc " "User Commands"
 .SH NAME
 x11vnc - allow VNC connections to real X11 displays
-         version: 0.9.10, lastmod: 2010-04-08
+         version: 0.9.10, lastmod: 2010-04-18
 .SH SYNOPSIS
 .B x11vnc
 [OPTION]...
@@ -105,7 +105,7 @@ stay away from other VNC servers near 5900.
 .PP
 \fB-rfbport\fR \fIstr\fR
 .IP
-The VNC port to listen on (a libvncserver option), e.g.
+The VNC port to listen on (a LibVNCServer option), e.g.
 5900, 5901, etc.  If specified as "\fB-rfbport\fR \fIPROMPT\fR"
 then the x11vnc \fB-gui\fR is used to prompt the user to
 enter the port number.
@@ -114,19 +114,32 @@ enter the port number.
 .IP
 IPv6 listening support.  In addition to IPv4, the
 IPv6 address is listened on for incoming connections.
-The same port as IPv4 is used to listen.  If you have
-trouble compiling for this mode, set \fB-DX11VNC_IPV6=0\fR
-in CPPFLAGS when configuring.
+The same port as IPv4 is used.
 .IP
-Currently, the machine may need to have some IPv4
-support, at the least for the loopback interface, for
-everything to work correctly.  However for most usage
-modes IPv4 support is not required.
+NOTE:  This x11vnc binary was compiled to have the
+"-6" IPv6 listening mode ENABLED by default (CPPFLAGS
+\fB-DX11VNC_LISTEN6=1).\fR  So to disable IPv6 listening mode
+you MUST supply the "\fB-no6\fR" option (see below.)
 .IP
-The -6 mode works for both normal connections and
+The "-6" mode works for both normal connections and
 \fB-ssl\fR encrypted ones.  Nearly everything is supported
 for the IPv6 case, but there are a few exceptions.
 See \fB-stunnel\fR for its IPv6 support.
+.IP
+Currently, for absolutely everything to work correctly
+the machine may need to have some IPv4 support, at the
+least for the loopback interface.  However, for nearly
+all usage modes no IPv4 support is required. See \fB-nopiv4.\fR
+.IP
+If you have trouble compiling or running in IPv6 mode,
+set \fB-DX11VNC_IPV6=0\fR in CPPFLAGS when configuring to
+disable IPv6 support.
+.PP
+\fB-no6\fR
+.IP
+Disable IPv6 listening support (only useful if the
+"-6" mode is compiled in to be the default; see the
+X11VNC_LISTEN6 description above under "-6".)
 .PP
 \fB-noipv6\fR
 .IP
@@ -562,7 +575,7 @@ Also, tightfilexfer is disabled in \fB-unixpw\fR mode.
 \fB-ultrafilexfer\fR
 .IP
 Note: to enable UltraVNC filetransfer and to get it to
-work you probably need to supply these libvncserver
+work you probably need to supply these LibVNCServer
 options: "\fB-rfbversion\fR \fI3.6 \fB-permitfiletransfer\fR"\fR
 "\fB-ultrafilexfer\fR" is an alias for this combination.
 .IP
@@ -696,6 +709,8 @@ included inet6to4 script or the \fB-proxy\fR option.
 As with \fB-connect,\fR except if none of the reverse
 connections succeed, then x11vnc shuts down immediately
 .IP
+An easier to type alias for this option is '-coe'
+.IP
 By the way, if you do not want x11vnc to listen on
 ANY interface use \fB-rfbport\fR 0  which is handy for the
 \fB-connect_or_exit\fR mode.
@@ -796,7 +811,7 @@ Only allow client connections from hosts matching
 the comma separated list of hostnames or IP addresses.
 Can also be a numerical IP prefix, e.g. "192.168.100."
 to match a simple subnet, for more control build
-libvncserver with libwrap support (See the FAQ).  If the
+LibVNCServer with libwrap support (See the FAQ).  If the
 list contains a "/" it instead is a interpreted
 as a file containing addresses or prefixes that is
 re-read each time a new client connects.  Lines can be
@@ -833,10 +848,11 @@ implies the IPv6 loopback address '::1' as well.
 .PP
 \fB-listen6\fR \fIstr\fR
 .IP
-When in IPv6 listen mode "-6", only listen on the
-network interface with address \fIstr\fR.  It currently
-does not work for link scope addresses or non-numeric
-hostname strings.
+When in IPv6 listen mode "-6", listen only on the
+network interface with address \fIstr\fR.  It also works
+for link scope addresses (fe80::219:dbff:fee5:3f92%eth0)
+and IPv6 hostname strings (e.g. ipv6.google.com.)
+Use LibVNCServer \fB-listen\fR option for the IPv4 interface.
 .PP
 \fB-nolookup\fR
 .IP
@@ -905,7 +921,7 @@ Supply a 2nd password for view-only logins.  The \fB-passwd\fR
 .PP
 \fB-passwdfile\fR \fIfilename\fR
 .IP
-Specify the libvncserver password via the first line
+Specify the LibVNCServer password via the first line
 of the file \fIfilename\fR (instead of via \fB-passwd\fR on
 the command line where others might see it via 
 .IR ps (1)
@@ -2735,10 +2751,10 @@ If you do not want to expose the non-SSL HTTP port to
 the network (i.e. you just want the single VNC/HTTPS
 port, e.g. 5900, open for connections) then specify the
 option \fB-env\fR X11VNC_HTTP_LISTEN_LOCALHOST=1  This way
-the connection to the libvncserver httpd server will
+the connection to the LibVNCServer httpd server will
 only be available on localhost (note that in \fB-ssl\fR mode,
 HTTPS requests are redirected from SSL to the non-SSL
-libvncserver HTTP server.)
+LibVNCServer HTTP server.)
 .PP
 \fB-http_oneport\fR
 .IP
@@ -2774,7 +2790,7 @@ port redirections.
 .IP
 Note that the \fB-env\fR X11VNC_HTTP_LISTEN_LOCALHOST=1
 option described above under \fB-httpsredir\fR applies for
-the libvncserver httpd server in all cases (ssl or not.)
+the LibVNCServer httpd server in all cases (ssl or not.)
 .PP
 \fB-ssh\fR \fIuser@host:disp\fR
 .IP
@@ -2791,7 +2807,7 @@ viewer. "user@" is not needed unless the remote unix
 username differs from the current one.
 .IP
 By default the remote sshd is usually configured to
-only listen on localhost for rport, so the viewer may
+listen only on localhost for rport, so the viewer may
 need to ssh \fB-L\fR redir to "host" as well (See SSVNC to
 automate this).  The sshd setting GatewayPorts enables
 listening on all interfaces for rport; viewers can
@@ -3188,7 +3204,7 @@ screen PDA or laptop, or using a XRANDR-aware Desktop
 where you resize often.  It is best to be viewing with a
 vncviewer that supports the NewFBSize encoding, since it
 knows how to react to screen size changes.  Otherwise,
-libvncserver tries to do so something reasonable for
+LibVNCServer tries to do so something reasonable for
 viewers that cannot do this (portions of the screen
 may be clipped, unused, etc).
 .IP
@@ -3747,7 +3763,7 @@ cursors).
 \fB-noalphablend\fR
 .IP
 In XFIXES mode do not send cursor alpha channel data
-to libvncserver.  The default is to send it.  The
+to LibVNCServer.  The default is to send it.  The
 alphablend effect will only be visible in \fB-nocursorshape\fR
 mode or for clients with cursorshapeupdates turned
 off. (However there is a hack for 32bpp with depth 24,
@@ -4518,9 +4534,9 @@ for about 1.5 secs). Use 0 to disable.  Default: 60
 .PP
 \fB-readtimeout\fR \fIn\fR
 .IP
-Set libvncserver rfbMaxClientWait to n seconds. On
+Set LibVNCServer rfbMaxClientWait to n seconds. On
 slow links that take a long time to paint the first
-screen libvncserver may hit the timeout and drop the
+screen LibVNCServer may hit the timeout and drop the
 connection.  Default: 20 seconds.
 .PP
 \fB-ping\fR \fIn\fR
@@ -4608,7 +4624,7 @@ skip powering off the monitor.
 \fB-noultraext\fR
 .IP
 Disable the following UltraVNC extensions: SingleWindow
-and ServerInput.  The others managed by libvncserver
+and ServerInput.  The others managed by LibVNCServer
 (textchat, 1/n scaling, rfbEncodingUltra) are not.
 .PP
 \fB-chatwindow\fR
@@ -4673,12 +4689,12 @@ there are problems or decrease it to live on the edge
 \fB-sigpipe\fR \fIstring\fR
 .IP
 Broken pipe (SIGPIPE) handling.  \fIstring\fR can be
-"ignore" or "exit".  For "ignore" libvncserver
+"ignore" or "exit".  For "ignore" LibVNCServer
 will handle the abrupt loss of a client and continue,
 for "exit" x11vnc will cleanup and exit at the 1st
 broken connection.
 .IP
-This option is not really needed since libvncserver
+This option is not really needed since LibVNCServer
 is doing the correct thing now for quite some time.
 However, for convenience you can use it to ignore other
 signals, e.g. "\fB-sigpipe\fR \fIignore:HUP,INT,TERM\fR" in case
@@ -4690,7 +4706,7 @@ for this option if you don't like the 'pipe'. Example:
 .PP
 \fB-threads,\fR \fB-nothreads\fR
 .IP
-Whether or not to use the threaded libvncserver
+Whether or not to use the threaded LibVNCServer
 algorithm [rfbRunEventLoop] if libpthread is available.
 In this mode new threads (one for input and one
 for output) are created to handle each new client.
@@ -4985,7 +5001,7 @@ LINUX CONSOLE:  The following describes some ways to
 view and possibly interact with the Linux text/graphics
 console (i.e. not X11 XFree86/Xorg)
 .IP
-Note: If the libvncserver LinuxVNC program is on your
+Note: If the LibVNCServer LinuxVNC program is on your
 system you may want to use that instead of the following
 method because it will be faster and more accurate
 for the Linux text console and includes mouse support.
@@ -6082,7 +6098,7 @@ uinput_reset:n  set uinput_reset to n ms.
 .IP
 uinput_always:n set uinput_always to 1/0.
 .IP
-progressive:n   set libvncserver \fB-progressive\fR slice
+progressive:n   set LibVNCServer \fB-progressive\fR slice
 height parameter to n.
 .IP
 desktop:str     set \fB-desktop\fR name to str for new clients.
@@ -6546,7 +6562,7 @@ For use with \fB-remote\fR nodeny: start out denying all
 incoming clients until "\fB-remote\fR \fInodeny\fR" is used to
 let them in.
 .PP
-These options are passed to libvncserver:
+These options are passed to LibVNCServer:
 .PP
 \fB-rfbport\fR \fIport\fR
 .IP

@@ -2417,6 +2417,46 @@ static void do_try_switch(char *usslpeer, char *users_list_save) {
 	}
 }
 
+static void path_lookup(char *prog) {
+	/* see create_display script */
+	char *create_display_extra = "/usr/X11R6/bin:/usr/bin/X11:/usr/openwin/bin:/usr/dt/bin:/opt/kde4/bin:/opt/kde3/bin:/opt/gnome/bin:/usr/bin:/bin:/usr/sfw/bin:/usr/local/bin";
+	char *path, *try, *p;
+	int found = 0, len = strlen(create_display_extra);
+
+	if (getenv("PATH")) {
+		len += strlen(getenv("PATH")) + 1;
+		path = (char *) malloc((len+1) * sizeof(char));
+		sprintf(path, "%s:%s", getenv("PATH"), create_display_extra);
+	} else {
+		path = (char *) malloc((len+1) * sizeof(char));
+		sprintf(path, "%s", create_display_extra);
+	}
+	try = (char *) malloc((len+2+strlen(prog)) * sizeof(char));
+
+	p = strtok(path, ":");
+	while (p) {
+		struct stat sbuf;
+
+		sprintf(try, "%s/%s", p, prog);
+		if (stat(try, &sbuf) == 0) {
+			found = 1;
+			break;
+		}
+		p = strtok(NULL, ":");
+	}
+
+	free(path);
+	free(try);
+
+	if (!found) {
+		fprintf(stderr, "\n");
+		fprintf(stderr, "The program \"%s\" could not be found in PATH and standard locations.\n", prog);
+		fprintf(stderr, "You probably need to install a package that provides the \"%s\" program.\n", prog);
+		fprintf(stderr, "Without it FINDCREATEDISPLAY mode may not be able to create an X display.\n");
+		fprintf(stderr, "\n");
+	}
+}
+
 static int do_run_cmd(char *cmd, char *create_cmd, char *users_list_save, int created_disp, int db) {
 	char tmp[] = "/tmp/x11vnc-find_display.XXXXXX";
 	char line1[1024], line2[16384];
@@ -2496,6 +2536,18 @@ static int do_run_cmd(char *cmd, char *create_cmd, char *users_list_save, int cr
 	}
 
 	rfbLog("wait_for_client: running: %s\n", cmd);
+
+	if (create_cmd != NULL) {
+		if (strstr(create_cmd, "Xvfb")) {
+			path_lookup("Xvfb");
+		}
+		if (strstr(create_cmd, "Xvnc")) {
+			path_lookup("Xvnc");
+		}
+		if (strstr(create_cmd, "Xdummy")) {
+			path_lookup("Xdummy");
+		}
+	}
 
 	if (unixpw && !unixpw_nis) {
 		int res = 0, k, j, i;
@@ -2996,11 +3048,11 @@ int wait_for_client(int *argc, char** argv, int http) {
 			if (got_rfbport && got_rfbport_val == 0) {
 				;
 			} else if (ipv6_listen && ipv6_listen_fd >= 0) {
-				rfbLog("Info: listening only on IPv6 interface.\n");
+				rfbLog("Info: listening on IPv6 interface only.  (wait for client)\n");
 			} else {
 				rfbLogEnable(1);
-				rfbLog("Error: could not obtain listening port.\n");
-				if (!got_rfbport) {
+				rfbLog("Error: could not obtain listening port.  (wait for client)\n");
+				if (!got_rfbport && !got_ipv6_listen) {
 					rfbLog("If this system is IPv6-only, use the -6 option.\n");
 				}
 				clean_up_exit(1);

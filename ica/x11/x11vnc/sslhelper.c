@@ -2749,7 +2749,7 @@ void openssl_port(int restart) {
 
 	if (port < 0) {
 		rfbLog("openssl_port: could not obtain listening port %d\n", port);
-		if (!got_rfbport && !ipv6_listen) {
+		if (!got_rfbport && !got_ipv6_listen) {
 			rfbLog("openssl_port: if this system is IPv6-only, use the -6 option\n");
 		}
 		clean_up_exit(1);
@@ -2760,8 +2760,10 @@ void openssl_port(int restart) {
 		sock = listen_tcp(port, iface, 0);
 		if (ipv6_listen) {
 			fd6 = listen6(port);
-		} else if (!got_rfbport) {
-			rfbLog("openssl_port: if this system is IPv6-only, use the -6 option\n");
+		} else if (!got_rfbport && !got_ipv6_listen) {
+			if (sock < 0) {
+				rfbLog("openssl_port: if this system is IPv6-only, use the -6 option\n");
+			}
 		}
 		if (sock < 0) {
 			if (fd6 < 0) {
@@ -2770,7 +2772,7 @@ void openssl_port(int restart) {
 					clean_up_exit(1);
 				}
 			} else {
-				rfbLog("openssl_port: Info: only listening on IPv6\n");
+				rfbLog("openssl_port: Info: listening on IPv6 only.\n");
 			}
 		}
 	}

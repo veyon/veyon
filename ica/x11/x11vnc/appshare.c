@@ -1925,7 +1925,7 @@ int appshare_main(int argc, char *argv[]) {
 			id_opt = "-sid";
 			if (end) exiter("no -sid value supplied\n", 1);
 			app_str = strdup(argv[++i]);
-		} else if (!strcmp(s, "-connect") || !strcmp(s, "-connect_or_exit")) {
+		} else if (!strcmp(s, "-connect") || !strcmp(s, "-connect_or_exit") || !strcmp(s, "-coe")) {
 			if (end) exiter("no -connect value supplied\n", 1);
 			connect_to = strdup(argv[++i]);
 		} else if (!strcmp(s, "-control")) {
