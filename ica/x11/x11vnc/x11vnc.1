@@ -2,7 +2,7 @@
 .TH X11VNC "1" "April 2010" "x11vnc " "User Commands"
 .SH NAME
 x11vnc - allow VNC connections to real X11 displays
-         version: 0.9.10, lastmod: 2010-04-18
+         version: 0.9.10, lastmod: 2010-04-22
 .SH SYNOPSIS
 .B x11vnc
 [OPTION]...
@@ -114,7 +114,7 @@ enter the port number.
 .IP
 IPv6 listening support.  In addition to IPv4, the
 IPv6 address is listened on for incoming connections.
-The same port as IPv4 is used.
+The same port number as IPv4 is used.
 .IP
 NOTE:  This x11vnc binary was compiled to have the
 "-6" IPv6 listening mode ENABLED by default (CPPFLAGS
@@ -6004,6 +6004,8 @@ pointer_same    print XQueryPointer ptr on same screen.
 .IP
 pointer_root    print XQueryPointer curr ptr rootwin.
 .IP
+pointer_mask    print XQueryPointer button and mods mask
+.IP
 mouse_x         print x11vnc's idea of cursor position.
 .IP
 mouse_y         print x11vnc's idea of cursor position.
@@ -6411,9 +6413,10 @@ pipeinput clients client_count pid ext_xtest ext_xtrap
 ext_xrecord ext_xkb ext_xshm ext_xinerama ext_overlay
 ext_xfixes ext_xdamage ext_xrandr rootwin num_buttons
 button_mask mouse_x mouse_y grab_state pointer_pos
-pointer_x pointer_y pointer_same pointer_root bpp depth
-indexed_color dpy_x dpy_y wdpy_x wdpy_y off_x off_y
-cdpy_x cdpy_y coff_x coff_y rfbauth passwd viewpasswd
+pointer_x pointer_y pointer_same pointer_root
+pointer_mask bpp depth indexed_color dpy_x dpy_y wdpy_x
+wdpy_y off_x off_y cdpy_x cdpy_y coff_x coff_y rfbauth
+passwd viewpasswd
 .PP
 \fB-QD\fR \fIvariable\fR
 .IP

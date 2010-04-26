@@ -1,3 +1,7 @@
+2010-04-25  Karl Runge <runge@karlrunge.com>
+	* x11vnc: incorporate new ultravnc_dsm_helper.c, add pointer_mask
+	  remote control query.  Cut openssl default -ping delay.
+
 2010-04-18  Karl Runge <runge@karlrunge.com>
 	* x11vnc/misc: improvements to demo scripts
 	* x11vnc: Alias -coe for -connect_or_exit.  more accurate

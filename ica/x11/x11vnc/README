@@ -2,7 +2,7 @@
 Copyright (C) 2002-2010 Karl J. Runge <runge@karlrunge.com>
 All rights reserved.
 
-x11vnc README file                         Date: Sun Apr 18 17:09:43 EDT 2010
+x11vnc README file                         Date: Fri Apr 23 00:36:17 EDT 2010
 
 The following information is taken from these URLs:
 
@@ -11183,6 +11183,8 @@ Enhanced TightVNC Viewer   (SSVNC:   SSL/SSH VNC viewer)
        (-grab/-graball option).
      * Fix for Popup menu positioning for old window managers (-popupfix
        option).
+     * The VNC Viewer ssvncviewer supports IPv6 natively (no helpers
+       needed.)
 
    The list of 3rd party software bundled in the archive files:
      * TightVNC Viewer  (windows, unix, macosx)
@@ -12076,7 +12078,7 @@ x11vnc: a VNC server for real X displays
    Here are all of x11vnc command line options:
 % x11vnc -opts      (see below for -help long descriptions)
 
-x11vnc: allow VNC connections to real X11 displays. 0.9.10 lastmod: 2010-04-18
+x11vnc: allow VNC connections to real X11 displays. 0.9.10 lastmod: 2010-04-22
 
 x11vnc options:
   -display disp            -auth file               -N                     
@@ -12206,7 +12208,7 @@ libvncserver-tight-extension options:
 
 % x11vnc -help
 
-x11vnc: allow VNC connections to real X11 displays. 0.9.10 lastmod: 2010-04-18
+x11vnc: allow VNC connections to real X11 displays. 0.9.10 lastmod: 2010-04-22
 
 (type "x11vnc -opts" to just list the options.)
 
@@ -12299,7 +12301,7 @@ Options:
 
 -6                     IPv6 listening support.  In addition to IPv4, the
                        IPv6 address is listened on for incoming connections.
-                       The same port as IPv4 is used.
+                       The same port number as IPv4 is used.
 
                        NOTE:  This x11vnc binary was compiled to have the
                        "-6" IPv6 listening mode ENABLED by default (CPPFLAGS
@@ -17258,6 +17260,7 @@ n
                        pointer_y       print XQueryPointer y cursor position.
                        pointer_same    print XQueryPointer ptr on same screen.
                        pointer_root    print XQueryPointer curr ptr rootwin.
+                       pointer_mask    print XQueryPointer button and mods mask
                        mouse_x         print x11vnc's idea of cursor position.
                        mouse_y         print x11vnc's idea of cursor position.
                        noop            do nothing.
@@ -17567,9 +17570,11 @@ n
                        ext_xrecord ext_xkb ext_xshm ext_xinerama ext_overlay
                        ext_xfixes ext_xdamage ext_xrandr rootwin num_buttons
                        button_mask mouse_x mouse_y grab_state pointer_pos
-                       pointer_x pointer_y pointer_same pointer_root bpp depth
-                       indexed_color dpy_x dpy_y wdpy_x wdpy_y off_x off_y
-                       cdpy_x cdpy_y coff_x coff_y rfbauth passwd viewpasswd
+                       pointer_x pointer_y pointer_same pointer_root
+                       pointer_mask bpp depth indexed_color dpy_x dpy_y wdpy_x
+                       wdpy_y off_x off_y cdpy_x cdpy_y coff_x coff_y rfbauth
+                       passwd viewpasswd
+
 -QD variable           Just like -query variable, but returns the default
                        value for that parameter (no running x11vnc server
                        is consulted)

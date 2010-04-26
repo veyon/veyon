@@ -2717,6 +2717,19 @@ void openssl_port(int restart) {
 		return;
 	}
 
+	if (ipv6_listen && screen->port <= 0) {
+		if (got_rfbport) {
+			screen->port = got_rfbport_val;
+		} else {
+			int ap = 5900;
+			if (auto_port > 0) {
+				ap = auto_port;
+			}
+			screen->port = find_free_port6(ap, ap+200);
+		}
+		rfbLog("openssl_port: reset port from 0 => %d\n", screen->port);
+	}
+
 	if (restart) {
 		port = screen->port;
 	} else if (screen->listenSock > -1 && screen->port > 0) {
@@ -4278,6 +4291,8 @@ if (db) rfbLog("raw_xfer bad write:  %d -> %d | %d/%d  errno=%d\n", csock, s_out
 #else
 #define ENC_HAVE_OPENSSL 0
 #endif
+
+#define ENC_DISABLE_SHOW_CERT 
 
 #include "enc.h"
 
