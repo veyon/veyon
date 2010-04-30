@@ -1401,6 +1401,29 @@ void vncDesktop::CaptureScreen(const RECT &UpdateArea, BYTE *scrBuff)
 	else	CaptureScreenFromAdapterGeneral(UpdateArea, scrBuff);
 }
 
+
+static bool __hasLayeredWindows = false;
+
+static BOOL CALLBACK checkForLayeredWindow( HWND hwnd, LPARAM lParam )
+{
+	if( GetWindowLong( hwnd, GWL_EXSTYLE ) & WS_EX_LAYERED )
+	{
+		__hasLayeredWindows = true;
+		return false;
+	}
+	return true;
+}
+
+
+static bool useCaptureBlt()
+{
+	__hasLayeredWindows = false;
+	EnumWindows((WNDENUMPROC)checkForLayeredWindow, 0);
+	return __hasLayeredWindows;
+}
+
+
+
 void vncDesktop::CaptureScreenFromAdapterGeneral(RECT rect, BYTE *scrBuff)
 {
 // ASSUME rect related to virtual desktop
@@ -1428,7 +1451,7 @@ void vncDesktop::CaptureScreenFromAdapterGeneral(RECT rect, BYTE *scrBuff)
 		rect.bottom - rect.top,
 		m_hrootdc,
 		rect.left, rect.top,
-		SRCCOPY);
+		useCaptureBlt() ? ( SRCCOPY | CAPTUREBLT ) : SRCCOPY );
 
 	// Select the old bitmap back into the memory DC
 	SelectObject(m_hmemdc, oldbitmap);
