@@ -1,6 +1,7 @@
 <!DOCTYPE RCC><RCC version="1.0">
 	<qresource>
 		<file>resources/de.qm</file>
+		<file>resources/ca.qm</file>
 		<file>resources/cs.qm</file>
 		<file>resources/he.qm</file>
 		<file>resources/it.qm</file>
