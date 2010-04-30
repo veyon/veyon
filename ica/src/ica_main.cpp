@@ -38,6 +38,7 @@
 #include "isd_server.h"
 #include "ivs.h"
 #include "local_system_ica.h"
+#include "lock_widget.h"
 #include "debug.h"
 #include "system_key_trapper.h"
 #include "dsa_key.h"
@@ -266,6 +267,11 @@ int ICAMain( int argc, char * * argv )
 		{
 			printf( "%s\n", PACKAGE_VERSION );
 			return( 0 );
+		}
+		else if( a == "-l" || a == "--lock" )
+		{
+			lockWidget l;
+			return app->exec();
 		}
 		else
 		{

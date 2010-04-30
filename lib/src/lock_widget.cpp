@@ -37,7 +37,6 @@
 #include <QtGui/QPainter>
 
 
-
 #ifdef BUILD_LINUX
 
 #include <X11/Xlib.h>

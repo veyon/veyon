@@ -1,8 +1,8 @@
 /*
  * isd_server.cpp - ISD Server
  *
- * Copyright (c) 2006-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
- *  
+ * Copyright (c) 2006-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
  * This program is free software; you can redistribute it and/or
@@ -67,7 +67,14 @@ isdServer::isdServer( const quint16 _ivs_port, int _argc, char * * _argv ) :
 	m_readyReadMapper( this ),
 	m_ivs( NULL ),
 	m_demoClient( NULL ),
+#ifdef BUILD_WIN32
+	m_newDesktop( NULL ),
+	m_origThreadDesktop( NULL ),
+	m_origInputDesktop( NULL ),
+	m_lockProcess( NULL )
+#else
 	m_lockWidget( NULL )
+#endif
 {
 	if( __isd_server ||
 			listen( QHostAddress::Any, __isd_port ) == FALSE )
@@ -111,8 +118,10 @@ isdServer::isdServer( const quint16 _ivs_port, int _argc, char * * _argv ) :
 
 isdServer::~isdServer()
 {
+	// this unlocks display and frees resources
+	unlockDisplay();
+
 	delete m_ivs;
-	delete m_lockWidget;
 	__isd_server = NULL;
 }
 
@@ -829,24 +838,61 @@ void isdServer::stopDemo( void )
 
 
 
-
 void isdServer::lockDisplay( void )
 {
 	if( demoServer::numOfInstances() )
 	{
 		return;
 	}
+
+#ifdef BUILD_WIN32
+	m_origThreadDesktop = GetThreadDesktop( GetCurrentThreadId() );
+	m_origInputDesktop = OpenInputDesktop( 0, FALSE, DESKTOP_SWITCHDESKTOP );
+
+	char desktopName[] = "LockDesktop";
+	m_newDesktop = CreateDesktop( desktopName, NULL, NULL, 0, GENERIC_ALL, NULL );
+	SetThreadDesktop( m_newDesktop );
+
+	STARTUPINFO si;
+	PROCESS_INFORMATION pi;
+
+	ZeroMemory( &si, sizeof(si) );
+	si.cb = sizeof(si);
+	si.lpDesktop = desktopName;
+	ZeroMemory( &pi, sizeof(pi) );
+
+	char * cmdline = qstrdup( QString( QCoreApplication::applicationFilePath() +
+											" --lock" ).toAscii().constData() );
+	CreateProcess( NULL, cmdline, NULL, NULL, FALSE, 0, NULL, NULL, &si, &pi );
+	delete[] cmdline;
+
+	m_lockProcess = pi.hProcess;
+
+	// sleep a bit so switch to desktop with loaded screen locker runs smoothly
+	Sleep( 2000 );
+
+	SwitchDesktop( m_newDesktop );
+#else
 	delete m_lockWidget;
 	m_lockWidget = new lockWidget();
+#endif
 }
 
 
 
 
-void isdServer::unlockDisplay( void )
+void isdServer::unlockDisplay()
 {
+#ifdef BUILD_WIN32
+	SwitchDesktop( m_origInputDesktop );
+	SetThreadDesktop( m_origThreadDesktop );
+
+	TerminateProcess( m_lockProcess, 0 );
+	CloseDesktop( m_newDesktop );
+#else
 	delete m_lockWidget;
 	m_lockWidget = NULL;
+#endif
 }
 
 

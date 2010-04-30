@@ -1,8 +1,8 @@
 /*
  * isd_server.h - ISD Server
  *
- * Copyright (c) 2006-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
- *  
+ * Copyright (c) 2006-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
  * This program is free software; you can redistribute it and/or
@@ -24,6 +24,14 @@
 
 #ifndef _ISD_SERVER_H
 #define _ISD_SERVER_H
+
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
+#ifdef BUILD_WIN32
+#include <windows.h>
+#endif
 
 #include <QtCore/QList>
 #include <QtCore/QMutex>
@@ -103,7 +111,15 @@ private:
 
 	IVS * m_ivs;
 	demoClient * m_demoClient;
+
+#ifdef BUILD_WIN32
+	HDESK m_newDesktop;
+	HDESK m_origThreadDesktop;
+	HDESK m_origInputDesktop;
+	HANDLE m_lockProcess;
+#else
 	lockWidget * m_lockWidget;
+#endif
 
 } ;
 
