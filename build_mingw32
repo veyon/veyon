@@ -1,4 +1,4 @@
 MINGW=/opt/mingw32
 export PATH=$PATH:$MINGW/bin
 
-./configure --prefix=$MINGW --build=i586-pc-mingw32 CC=$MINGW/bin/i586-pc-mingw32-gcc CXX=$MINGW/bin/i586-pc-mingw32-g++ DLLTOOL=$MINGW/bin/i586-pc-mingw32-dlltool OBJDUMP=$MINGW/bin/i586-pc-mingw32-objdump RANLIB=$MINGW/bin/i586-pc-mingw32-ranlib AR=$MINGW/bin/i586-pc-mingw32-ar AS=$MINGW/bin/i586-pc-mingw32-as STRIP=$MINGW/bin/i586-pc-mingw32-strip --with-qtdir=$MINGW --with-win32 CFLAGS="-march=i686 -mtune=generic -mmmx -msse -ftree-vectorize -ftree-vectorizer-verbose=2" CXXFLAGS="-march=i686 -mtune=generic -mmmx -msse -ftree-vectorize -ftree-vectorizer-verbose=2"
+./configure --prefix=$MINGW --build=`./config.guess` --host=i586-pc-mingw32 --target=i586-pc-mingw32 --with-qtdir=$MINGW --with-win32 CFLAGS="-march=pentium3 -mtune=generic" CXXFLAGS="-march=pentium3 -mtune=generic"
