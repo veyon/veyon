@@ -44,8 +44,6 @@ win32-pkg: all
 	cp ica/vnchooks.dll tmp/italc
 	cp ima/.libs/italc.exe tmp/italc
 	cp setup/.libs/setup.exe tmp/italc
-#	cp lupus/lupus/lupus.exe tmp/italc
-#	cp lupus/service/lupus_service.exe tmp/italc
 	cp /opt/mingw32/bin/QtCore4.dll tmp/italc
 	cp /opt/mingw32/bin/QtGui4.dll tmp/italc
 	cp /opt/mingw32/bin/QtNetwork4.dll tmp/italc
@@ -60,8 +58,6 @@ win32-pkg: all
 	/opt/mingw32/bin/i586-pc-mingw32-strip tmp/italc/ica.exe
 	/opt/mingw32/bin/i586-pc-mingw32-strip tmp/italc/italc.exe
 	/opt/mingw32/bin/i586-pc-mingw32-strip tmp/italc/setup.exe
-#	/opt/mingw32/bin/i586-pc-mingw32-strip tmp/italc/lupus.exe
-#	/opt/mingw32/bin/i586-pc-mingw32-strip tmp/italc/lupus_service.exe
 	mv tmp/italc tmp/italc-$(VERSION)
 	cd tmp && zip -9 ../$(PACKAGE)-$(VERSION)-bin-win32.zip italc-$(VERSION)/*
 	rm -rf tmp
