@@ -15,16 +15,16 @@ italc_MOC =	./src/client.moc			\
 		./src/cmd_input_dialog.moc		\
 		./src/config_widget.moc			\
 		./src/dialogs.moc			\
-		./src/italc_side_bar.moc		\
-		./src/kmultitabbar.moc			\
-		./src/main_window.moc			\
+		./src/MainWindow.moc			\
 		./src/overview_widget.moc		\
 		./src/remote_control_widget.moc		\
+		./src/SideBar.moc			\
 		./src/snapshot_list.moc			\
-		./src/tool_bar.moc			\
+		./src/MainToolBar.moc			\
 		./src/tool_button.moc
 
 italc_UIC =	./dialogs/client_settings.uic		\
+		./dialogs/MainWindow.uic		\
 		./dialogs/config.uic			\
 		./dialogs/support.uic			\
 		./dialogs/text_message.uic		\
@@ -46,32 +46,30 @@ italc_SOURCES = $(srcdir)/src/client.cpp			\
 		$(srcdir)/src/cmd_input_dialog.cpp		\
 		$(srcdir)/src/config_widget.cpp			\
 		$(srcdir)/src/dialogs.cpp			\
-		$(srcdir)/src/tool_bar.cpp			\
-		$(srcdir)/src/italc_side_bar.cpp		\
-		$(srcdir)/src/main_window.cpp			\
-		$(srcdir)/src/kmultitabbar.cpp			\
+		$(srcdir)/src/MainToolBar.cpp			\
+		$(srcdir)/src/SideBar.cpp		\
+		$(srcdir)/src/SideBarWidget.cpp		\
+		$(srcdir)/src/MainWindow.cpp			\
 		$(srcdir)/src/local_system_ima.cpp		\
 		$(srcdir)/src/main.cpp				\
 		$(srcdir)/src/overview_widget.cpp		\
 		$(srcdir)/src/remote_control_widget.cpp		\
 		$(srcdir)/src/snapshot_list.cpp			\
-		$(srcdir)/src/side_bar_widget.cpp		\
 		$(srcdir)/src/tool_button.cpp			\
 		$(srcdir)/src/client.h				\
 		$(srcdir)/src/classroom_manager.h		\
 		$(srcdir)/src/cmd_input_dialog.h		\
 		$(srcdir)/src/config_widget.h 			\
-		$(srcdir)/src/tool_bar.h 			\
+		$(srcdir)/src/MainToolBar.h 			\
 		$(srcdir)/src/dialogs.h				\
 		$(srcdir)/src/local_system_ima.h		\
-		$(srcdir)/src/main_window.h			\
-		$(srcdir)/src/italc_side_bar.h			\
-		$(srcdir)/src/kmultitabbar.h			\
+		$(srcdir)/src/MainWindow.h			\
+		$(srcdir)/src/SideBar.h			\
+		$(srcdir)/src/SideBarWidget.h			\
 		$(srcdir)/src/overview_widget.h			\
 		$(srcdir)/src/qplatformdefs.h			\
 		$(srcdir)/src/remote_control_widget.h		\
 		$(srcdir)/src/snapshot_list.h			\
-		$(srcdir)/src/side_bar_widget.h			\
 		$(srcdir)/src/tool_button.h			\
 		$(srcdir)/italc_qrc.cpp				\
 		$(srcdir)/italc.qrc				\

@@ -1,7 +1,7 @@
 /*
- * main_window.cpp - main-file for iTALC-Application
+ * MainWindow.cpp - main file for iTALC Master Application
  *
- * Copyright (c) 2004-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -39,22 +39,19 @@
 #include <QtGui/QMessageBox>
 #include <QtGui/QScrollArea>
 #include <QtGui/QSplashScreen>
-#include <QtGui/QSplitter>
 #include <QtGui/QToolBar>
 #include <QtGui/QToolButton>
 #include <QtGui/QWorkspace>
 #include <QtNetwork/QHostAddress>
 
-#include "main_window.h"
+#include "MainWindow.h"
 #include "classroom_manager.h"
 #include "dialogs.h"
-#include "italc_side_bar.h"
 #include "overview_widget.h"
 #include "snapshot_list.h"
 #include "config_widget.h"
 #include "messagebox.h"
 #include "tool_button.h"
-#include "tool_bar.h"
 #include "isd_connection.h"
 #include "local_system.h"
 #include "remote_control_widget.h"
@@ -67,17 +64,17 @@ extern int __isd_port;
 extern QString __isd_host;
 
 
-bool mainWindow::ensureConfigPathExists( void )
+bool MainWindow::ensureConfigPathExists( void )
 {
 	return( localSystem::ensurePathExists(
 					localSystem::personalConfigDir() ) );
 }
 
 
-bool mainWindow::s_atExit = FALSE;
+bool MainWindow::s_atExit = FALSE;
 
 
-mainWindow::mainWindow( int _rctrl_screen ) :
+MainWindow::MainWindow( int _rctrl_screen ) :
 	QMainWindow(/* 0, Qt::FramelessWindowHint*/ ),
 	m_openedTabInSideBar( 1 ),
 	m_localISD( NULL ),
@@ -90,10 +87,11 @@ mainWindow::mainWindow( int _rctrl_screen ) :
 				:
 				QApplication::desktop()->screenNumber( this ) )
 {
-	setWindowTitle( tr( "iTALC" ) + " " + VERSION );
-	setWindowIcon( QPixmap( ":/resources/logo.png" ) );
+	setupUi( this );
 
-	if( mainWindow::ensureConfigPathExists() == FALSE )
+	setWindowTitle( tr( "iTALC" ) + " " + VERSION );
+
+	if( MainWindow::ensureConfigPathExists() == FALSE )
 	{
 		if( splashScreen != NULL )
 		{
@@ -107,59 +105,41 @@ mainWindow::mainWindow( int _rctrl_screen ) :
 		return;
 	}
 
-	QWidget * hbox = new QWidget( this );
-	QHBoxLayout * hbox_layout = new QHBoxLayout( hbox );
-	hbox_layout->setMargin( 0 );
-	hbox_layout->setSpacing( 0 );
+	// configure side bar
+	m_sideBar->setOrientation( Qt::Vertical );
 
-	// create splitter, which is used for splitting sidebar-workspaces
-	// from main-workspace
-	m_splitter = new QSplitter( Qt::Horizontal, hbox );
-#if QT_VERSION >= 0x030200
-	m_splitter->setChildrenCollapsible( FALSE );
-#endif
-
-	// create sidebar
-	m_sideBar = new italcSideBar( italcSideBar::VSNET, hbox, m_splitter );
+	// configure scroll area
+	m_scrollArea->setBackgroundRole( QPalette::Dark );
+	m_workspace = new clientWorkspace( m_scrollArea );
 
 
-
-	QScrollArea * sa = new QScrollArea( m_splitter );
-	sa->setBackgroundRole( QPalette::Dark );
-	sa->setFrameStyle( QFrame::NoFrame );
-	m_splitter->setStretchFactor( m_splitter->indexOf( sa ), 10 );
-	m_workspace = new clientWorkspace( sa );
-
-
-	QWidget * twp = m_sideBar->tabWidgetParent();
 	// now create all sidebar-workspaces
-	m_overviewWidget = new overviewWidget( this, twp );
-	m_classroomManager = new classroomManager( this, twp );
-	m_snapshotList = new snapshotList( this, twp );
-	m_configWidget = new configWidget( this, twp );
+	m_overviewWidget = new overviewWidget( this, m_centralWidget );
+	m_classroomManager = new classroomManager( this, m_centralWidget );
+	m_snapshotList = new snapshotList( this, m_centralWidget );
+	m_configWidget = new configWidget( this, m_centralWidget );
 
 	m_workspace->m_contextMenu = m_classroomManager->quickSwitchMenu();
 
 	// append sidebar-workspaces to sidebar
-	int id = 0;
-	m_sideBar->appendTab( m_overviewWidget, ++id );
-	m_sideBar->appendTab( m_classroomManager, ++id );
-	m_sideBar->appendTab( m_snapshotList, ++id );
-	m_sideBar->appendTab( m_configWidget, ++id );
-	m_sideBar->setPosition( italcSideBar::Left );
-	m_sideBar->setTab( m_openedTabInSideBar, TRUE );
+	m_sideBar->appendTab( m_overviewWidget );
+	m_sideBar->appendTab( m_classroomManager );
+	m_sideBar->appendTab( m_snapshotList );
+	m_sideBar->appendTab( m_configWidget );
 
-	setCentralWidget( hbox );
+	m_centralLayout->insertWidget( 0, m_overviewWidget );
+	m_centralLayout->insertWidget( 0, m_classroomManager );
+	m_centralLayout->insertWidget( 0, m_snapshotList );
+	m_centralLayout->insertWidget( 0, m_configWidget );
+/*	setCentralWidget( hbox );
 	hbox_layout->addWidget( m_sideBar );
-	hbox_layout->addWidget( m_splitter );
+	hbox_layout->addWidget( m_splitter );*/
 
 
 
 
-	// create the action-toolbar
-	m_toolBar = new toolBar( tr( "Actions" ), this );
+	// configure the MainToolBar
 	m_toolBar->layout()->setSpacing( 4 );
-	m_toolBar->setMovable( FALSE );
 	m_toolBar->setObjectName( "maintoolbar" );
 	m_toolBar->toggleViewAction()->setEnabled( FALSE );
 
@@ -337,11 +317,11 @@ mainWindow::mainWindow( int _rctrl_screen ) :
 		}
 	}
 
-	foreach( KMultiTabBarTab * tab, m_sideBar->tabs() )
+	foreach( QAbstractButton * btn, m_sideBar->tabs() )
 	{
-		if( hidden_buttons.contains( tab->text() ) )
+		if( hidden_buttons.contains( btn->text() ) )
 		{
-			tab->setTabVisible( FALSE );
+			btn->setVisible( false );
 		}
 	}
 
@@ -404,13 +384,13 @@ mainWindow::mainWindow( int _rctrl_screen ) :
 
 	QTimer::singleShot( 2000, m_classroomManager, SLOT( updateClients() ) );
 
-	m_updateThread = new mainWindowUpdateThread( this );
+	m_updateThread = new MainWindowUpdateThread( this );
 }
 
 
 
 
-mainWindow::~mainWindow()
+MainWindow::~MainWindow()
 {
 	m_classroomManager->doCleanupWork();
 
@@ -440,7 +420,7 @@ mainWindow::~mainWindow()
 
 
 
-void mainWindow::keyPressEvent( QKeyEvent * _e )
+void MainWindow::keyPressEvent( QKeyEvent * _e )
 {
 	if( _e->key() == Qt::Key_F11 )
 	{
@@ -456,7 +436,7 @@ void mainWindow::keyPressEvent( QKeyEvent * _e )
 
 
 
-void mainWindow::closeEvent( QCloseEvent * _ce )
+void MainWindow::closeEvent( QCloseEvent * _ce )
 {
 	s_atExit = TRUE;
 
@@ -481,7 +461,7 @@ void mainWindow::closeEvent( QCloseEvent * _ce )
 
 
 
-void mainWindow::handleSystemTrayEvent( QSystemTrayIcon::ActivationReason _r )
+void MainWindow::handleSystemTrayEvent( QSystemTrayIcon::ActivationReason _r )
 {
 	switch( _r )
 	{
@@ -530,7 +510,7 @@ void mainWindow::handleSystemTrayEvent( QSystemTrayIcon::ActivationReason _r )
 
 
 
-void mainWindow::remoteControlClient( QAction * _a )
+void MainWindow::remoteControlClient( QAction * _a )
 {
 	show();
 	remoteControlDisplay( _a->data().toString(),
@@ -540,7 +520,7 @@ void mainWindow::remoteControlClient( QAction * _a )
 
 
 
-void mainWindow::remoteControlDisplay( const QString & _hostname,
+void MainWindow::remoteControlDisplay( const QString & _hostname,
 						bool _view_only,
 						bool _stop_demo_afterwards )
 {
@@ -565,7 +545,7 @@ void mainWindow::remoteControlDisplay( const QString & _hostname,
 
 
 
-void mainWindow::remoteControlWidgetClosed( QObject * )
+void MainWindow::remoteControlWidgetClosed( QObject * )
 {
 	m_rctrlLock.lockForWrite();
 	m_remoteControlWidget = NULL;
@@ -581,7 +561,7 @@ void mainWindow::remoteControlWidgetClosed( QObject * )
 
 
 
-void mainWindow::aboutITALC( void )
+void MainWindow::aboutITALC( void )
 {
 	aboutDialog( this ).exec();
 }
@@ -589,7 +569,7 @@ void mainWindow::aboutITALC( void )
 
 
 
-void mainWindow::changeGlobalClientMode( int _mode )
+void MainWindow::changeGlobalClientMode( int _mode )
 {
 	client::modes new_mode = static_cast<client::modes>( _mode );
 	if( new_mode == m_classroomManager->globalClientMode()/* &&
@@ -612,7 +592,7 @@ void mainWindow::changeGlobalClientMode( int _mode )
 
 
 
-mainWindowUpdateThread::mainWindowUpdateThread( mainWindow * _main_window ) :
+MainWindowUpdateThread::MainWindowUpdateThread( MainWindow * _main_window ) :
 	QThread(),
 	m_mainWindow( _main_window )
 {
@@ -622,7 +602,7 @@ mainWindowUpdateThread::mainWindowUpdateThread( mainWindow * _main_window ) :
 
 
 
-void mainWindowUpdateThread::update( void )
+void MainWindowUpdateThread::update( void )
 {
 	m_mainWindow->m_localISD->handleServerMessages();
 
@@ -637,7 +617,7 @@ void mainWindowUpdateThread::update( void )
 }
 
 
-void mainWindowUpdateThread::run( void )
+void MainWindowUpdateThread::run( void )
 {
 	QTimer t;
 	connect( &t, SIGNAL( timeout() ), this, SLOT( update() ) );
@@ -653,6 +633,8 @@ clientWorkspace::clientWorkspace( QScrollArea * _parent ) :
 	QWidget( _parent ),
 	m_contextMenu( NULL )
 {
+	setStyleSheet( "background-image: url(:/resources/toolbar-background.png);" );
+
 	_parent->setWidget( this );
 	_parent->setWidgetResizable( TRUE );
 	setSizePolicy( QSizePolicy( QSizePolicy::MinimumExpanding,
@@ -680,5 +662,5 @@ void clientWorkspace::contextMenuEvent( QContextMenuEvent * _event )
 
 
 
-#include "main_window.moc"
-#include "italc_side_bar.moc"
+#include "MainWindow.moc"
+

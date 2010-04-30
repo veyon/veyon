@@ -1,7 +1,7 @@
 /*
- * side_bar_widget.h - base-class for all side-bar-widgets
+ * SideBarWidget.h - base-class for all side-bar-widgets
  *
- * Copyright (c) 2004-2006 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -22,7 +22,6 @@
  *
  */
 
-
 #ifndef _SIDE_BAR_WIDGET_H
 #define _SIDE_BAR_WIDGET_H
 
@@ -30,16 +29,16 @@
 #include <QtGui/QPixmap>
 
 
-class mainWindow;
+class MainWindow;
 
 
-class sideBarWidget : public QWidget
+class SideBarWidget : public QWidget
 {
 public:
-	sideBarWidget( const QPixmap & _icon, const QString & _title,
+	SideBarWidget( const QPixmap & _icon, const QString & _title,
 			const QString & _description,
-				mainWindow * _main_window, QWidget * _parent );
-	virtual ~sideBarWidget();
+				MainWindow * _main_window, QWidget * _parent );
+	virtual ~SideBarWidget();
 
 	inline const QPixmap & icon( void ) const
 	{
@@ -59,21 +58,20 @@ public:
 
 protected:
 	virtual void paintEvent( QPaintEvent * _pe );
-	virtual void resizeEvent( QResizeEvent * _re );
 
-	inline QWidget * contentParent( void )
+	inline QWidget * contentParent()
 	{
-		return( m_contents );
+		return m_contents;
 	}
 
-	inline mainWindow * getMainWindow( void )
+	inline MainWindow * mainWindow()
 	{
-		return( m_mainWindow );
+		return m_mainWindow;
 	}
 
 
 private:
-	mainWindow * m_mainWindow;
+	MainWindow * m_mainWindow;
 	QWidget * m_contents;
 	QPixmap m_icon;
 	QString m_title;

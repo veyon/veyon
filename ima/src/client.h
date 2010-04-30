@@ -47,7 +47,7 @@ class classRoomItem;
 class client;
 class isdConnection;
 class ivsConnection;
-class mainWindow;
+class MainWindow;
 
 
 typedef void( client:: * execCmd )( const QString & );
@@ -232,7 +232,7 @@ public:
 
 	client( const QString & _hostname,
 		const QString & _mac, const QString & _name, types _type,
-		classRoom * _class_room, mainWindow * _main_window,
+		classRoom * _class_room, MainWindow * _main_window,
 								int _id = -1 );
 
 	virtual ~client();
@@ -369,7 +369,7 @@ private:
 	states currentState( void ) const;
 
 
-	mainWindow * m_mainWindow;
+	MainWindow * m_mainWindow;
 	ivsConnection * m_connection;
 	QPoint m_clickPoint;
 	QPoint m_origPos;

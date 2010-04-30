@@ -1,7 +1,7 @@
 /*
- * overview_widget.h - declaration of overview-widget for side-bar
+ * overview_widget.h - declaration of overview widget for sidebar
  *
- * Copyright (c) 2004-2006 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -26,15 +26,15 @@
 #ifndef _OVERVIEW_WIDGET_H
 #define _OVERVIEW_WIDGET_H
 
-#include "side_bar_widget.h"
+#include "SideBarWidget.h"
 #include "dialogs/overview.uic"
 
 
-class overviewWidget : public sideBarWidget, private Ui::overview
+class overviewWidget : public SideBarWidget, private Ui::overview
 {
 	Q_OBJECT
 public:
-	overviewWidget( mainWindow * _main_window, QWidget * _parent );
+	overviewWidget( MainWindow * _main_window, QWidget * _parent );
 
 } ;
 

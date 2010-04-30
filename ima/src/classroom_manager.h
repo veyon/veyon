@@ -1,7 +1,7 @@
 /*
  * classroom_manager.h - include file for classroom-manager
  *
- * Copyright (c) 2004-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -36,7 +36,7 @@
 #include <QtXml/QtXml>
 
 #include "client.h"
-#include "side_bar_widget.h"
+#include "SideBarWidget.h"
 
 
 
@@ -48,14 +48,14 @@ class classRoom;
 class classRoomItem;
 class clientSettingsDialog;
 class configWidget;
-class mainWindow;
+class MainWindow;
 
 
-class classroomManager : public sideBarWidget
+class classroomManager : public SideBarWidget
 {
 	Q_OBJECT
 public:
-	classroomManager( mainWindow * _main_window, QWidget * _parent );
+	classroomManager( MainWindow * _main_window, QWidget * _parent );
 	virtual ~classroomManager();
 
 

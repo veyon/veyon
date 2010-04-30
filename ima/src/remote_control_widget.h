@@ -1,8 +1,8 @@
 /*
  *  remote_control_widget.h - widget containing a VNC-view and controls for it
  *
- *  Copyright (c) 2006-2007 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
- *  
+ *  Copyright (c) 2006-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ *
  *  This file is part of iTALC - http://italc.sourceforge.net
  *
  *  This is free software; you can redistribute it and/or modify
@@ -21,10 +21,8 @@
  *  USA.
  */
 
-
 #ifndef _REMOTE_CONTROL_WIDGET_H
 #define _REMOTE_CONTROL_WIDGET_H
-
 
 #include <QtCore/QTime>
 #include <QtGui/QWidget>
@@ -34,7 +32,7 @@
 
 class vncView;
 class remoteControlWidget;
-class mainWindow;
+class MainWindow;
 
 
 
@@ -87,7 +85,7 @@ class remoteControlWidget : public QWidget
 	Q_OBJECT
 public:
 	remoteControlWidget( const QString & _host, bool _view_only = FALSE,
-						mainWindow * _main_window = NULL );
+						MainWindow * _main_window = NULL );
 	virtual ~remoteControlWidget();
 
 	QString host( void ) const;
@@ -112,7 +110,7 @@ private slots:
 private:
 	vncView * m_vncView;
 	remoteControlWidgetToolBar * m_toolBar;
-	mainWindow * m_mainWindow;
+	MainWindow * m_mainWindow;
 
 	Qt::WindowStates m_extraStates;
 

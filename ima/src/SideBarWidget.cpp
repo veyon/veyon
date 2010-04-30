@@ -1,7 +1,7 @@
 /*
- * side_bar_widget.cpp - implementation of base-widget for side-bar
+ * SideBarWidget.cpp - implementation of base-widget for side-bar
  *
- * Copyright (c) 2004-2006 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -22,7 +22,6 @@
  *
  */
 
-
 #include <QtGui/QPainter>
 #include <QtGui/QFontMetrics>
 #include <QtGui/QPixmap>
@@ -31,75 +30,70 @@
 #include <QtGui/QLayout>
 
 
-#include "side_bar_widget.h"
+#include "SideBarWidget.h"
 #include "fast_qimage.h"
 
 
 
-sideBarWidget::sideBarWidget( const QPixmap & _icon,
+SideBarWidget::SideBarWidget( const QPixmap & _icon,
 				const QString & _title,
 				const QString & _description,
-				mainWindow * _main_window, QWidget * _parent ) :
+				MainWindow * _main_window, QWidget * _parent ) :
 	QWidget( _parent ),
 	m_mainWindow( _main_window ),
 	m_icon( _icon ),
 	m_title( _title ),
 	m_description( _description )
 {
-	_parent->layout()->addWidget( this );
+	QPixmap bg( ":/resources/toolbar-background.png" );
+	QPainter painter( &bg );
+	painter.fillRect( bg.rect(), QColor( 255, 255, 255, 160 ) );
 
-	m_contents = new QWidget( this );
-	QVBoxLayout * contents_layout = new QVBoxLayout( m_contents );
-	contents_layout->setSpacing( 5 );
-	contents_layout->setMargin( 5 );
-	contents_layout->addSpacing( 10 );
+	QPalette pal = palette();
+	pal.setBrush( backgroundRole(), bg );
+	setPalette( pal );
+
+	QVBoxLayout * layout = new QVBoxLayout( this );
+	layout->setSpacing( 10 );
+	layout->setMargin( 5 );
+	layout->addSpacing( 60 );
+
+	m_contents = new QWidget;
+	layout->addWidget( m_contents );
+
+	setMinimumWidth( 200 );
+	setMaximumWidth( 330 );
 }
 
 
 
 
-sideBarWidget::~sideBarWidget()
+SideBarWidget::~SideBarWidget()
 {
 }
 
 
 
 
-void sideBarWidget::paintEvent( QPaintEvent * )
+void SideBarWidget::paintEvent( QPaintEvent * )
 {
 	const int TITLE_FONT_HEIGHT = 16;
 
 	QPainter p( this );
-	p.fillRect( rect(), QColor( 255, 255, 255 ) );
-	p.fillRect( 0, 0, width(), 27+32, QColor( 0, 64, 224 ) );
-
-	p.setRenderHint( QPainter::Antialiasing, TRUE );
-	p.setPen( Qt::white );
-	p.setBrush( Qt::white );
-	p.drawRoundRect( QRect( 0, 27, 64, 64 ), 1000, 1000 );
-	p.fillRect( 32, 27, width()-32, 32, Qt::white );
+	p.fillRect( rect(), palette().brush( backgroundRole() ) );
 
 	QFont f;
 	f.setBold( TRUE );
 	f.setPixelSize( TITLE_FONT_HEIGHT );
 
 	p.setFont( f );
-	p.setPen( QColor( 255, 216, 32 ) );
+	p.setPen( Qt::black );
 	const int tx = /*m_icon.width()*/48 + 8;
 	const int ty = 2 + TITLE_FONT_HEIGHT;
 	p.drawText( tx, ty, m_title );
-	//p.drawLine( tx, ty + 4, width() - 4, ty + 4 );
+	p.drawLine( tx, ty + 4, width() - 4, ty + 4 );
 
 	p.drawImage( 2, 2, fastQImage( m_icon ).scaled( 48, 48 ) );
 }
 
-
-
-
-void sideBarWidget::resizeEvent( QResizeEvent * )
-{
-	const int MARGIN = 6;
-	m_contents->setGeometry( MARGIN, 40 + MARGIN, width() - MARGIN * 2,
-						height() - MARGIN * 2 - 40 );
-}
 

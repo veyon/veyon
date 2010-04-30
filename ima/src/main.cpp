@@ -26,7 +26,7 @@
 #include <QtGui/QApplication>
 #include <QtGui/QSplashScreen>
 
-#include "main_window.h"
+#include "MainWindow.h"
 #include "ivs_connection.h"
 #include "local_system_ima.h"
 #include "remote_control_widget.h"
@@ -150,20 +150,20 @@ int main( int argc, char * * argv )
 
 
 	// now create the main-window
-	mainWindow * main_window = new mainWindow( screen );
+	MainWindow * mainWindow = new MainWindow( screen );
 
-	if( !main_window->localISD() ||
-		main_window->localISD()->state() != isdConnection::Connected )
+	if( !mainWindow->localISD() ||
+		mainWindow->localISD()->state() != isdConnection::Connected )
 	{
-		return( -1 );
+		return -1;
 	}
 
 	// hide splash-screen as soon as main-window is shown
-	splashScreen->finish( main_window );
+	splashScreen->finish( mainWindow );
 
-	main_window->show();
+	mainWindow->show();
 
 	// let's rock!!
-	return( app.exec() );
+	return app.exec();
 }
 

@@ -1,7 +1,7 @@
 /*
  * dialogs.cpp - implementation of dialogs
  *
- * Copyright (c) 2006-2007 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -22,7 +22,6 @@
  *
  */
 
-
 #include <QtCore/QFile>
 #include <QtCore/QRegExp>
 
@@ -31,7 +30,7 @@
 
 
 aboutDialog::aboutDialog( QWidget * _parent ) :
-	QDialog( _parent ? _parent->window() : _parent )
+	QDialog( _parent )
 {
 	setupUi( this );
 
@@ -50,12 +49,12 @@ aboutDialog::aboutDialog( QWidget * _parent ) :
 
 #include "client.h"
 #include "classroom_manager.h"
-#include "main_window.h"
+#include "MainWindow.h"
 #include "messagebox.h"
 
 
 clientSettingsDialog::clientSettingsDialog( client * _client,
-						mainWindow * _main_window,
+						MainWindow * _main_window,
 						const QString & _classroom ) :
 	QDialog( _main_window ),
 	Ui::clientSettings(),
@@ -143,7 +142,7 @@ m_mainWindow->getClassroomManager()->m_classRooms[classRoomComboBox->currentInde
 
 
 textMessageDialog::textMessageDialog( QString & _msg_str, QWidget * _parent ) :
-	QDialog( _parent ? _parent->window() : 0 ),
+	QDialog( _parent ),
 	Ui::textMessage(),
 	m_msgStr( _msg_str )
 {
@@ -163,7 +162,7 @@ void textMessageDialog::accept( void )
 
 
 remoteLogonDialog::remoteLogonDialog( QWidget * _parent ) :
-	QDialog( _parent ? _parent->window() : 0 ),
+	QDialog( _parent ),
 	Ui::remoteLogon()
 {
 	setupUi( this );

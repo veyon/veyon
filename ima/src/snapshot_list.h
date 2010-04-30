@@ -28,7 +28,7 @@
 
 #include <QtGui/QWidget>
 
-#include "side_bar_widget.h"
+#include "SideBarWidget.h"
 #include "dialogs/snapshots.uic"
 
 
@@ -37,11 +37,11 @@ class QPushButton;
 class QListWidget;
 
 
-class snapshotList : public sideBarWidget, private Ui::snapshots
+class snapshotList : public SideBarWidget, private Ui::snapshots
 {
 	Q_OBJECT
 public:
-	snapshotList( mainWindow * _main_window, QWidget * _parent );
+	snapshotList( MainWindow * _main_window, QWidget * _parent );
 	virtual ~snapshotList();
 
 

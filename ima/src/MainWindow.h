@@ -1,7 +1,7 @@
 /*
- * main_window.h - main-window of iTALC
+ * MainWindow.h - main-window of iTALC
  *
- * Copyright (c) 2004-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -22,7 +22,6 @@
  *
  */
 
-
 #ifndef _MAIN_WINDOW_H
 #define _MAIN_WINDOW_H
 
@@ -32,6 +31,8 @@
 #include <QtGui/QMainWindow>
 #include <QtGui/QSystemTrayIcon>
 #include <QtGui/QToolButton>
+
+#include "dialogs/MainWindow.uic"
 
 #include "client.h"
 #include "snapshot_list.h"
@@ -43,8 +44,6 @@ class QSplashScreen;
 class QSplitter;
 class classroomManager;
 class configWidget;
-class toolBar;
-class italcSideBar;
 class isdConnection;
 class overviewWidget;
 class remoteControlWidget;
@@ -54,14 +53,14 @@ extern QString __default_domain;
 extern int __demo_quality;
 
 
-class mainWindow;
+class MainWindow;
 
 
-class mainWindowUpdateThread : public QThread
+class MainWindowUpdateThread : public QThread
 {
 	Q_OBJECT
 public:
-	mainWindowUpdateThread( mainWindow * _main_window );
+	MainWindowUpdateThread( MainWindow * _main_window );
 
 private slots:
 	void update( void );
@@ -69,7 +68,7 @@ private slots:
 private:
 	virtual void run( void );
 
-	mainWindow * m_mainWindow;
+	MainWindow * m_mainWindow;
 
 } ;
 
@@ -90,18 +89,18 @@ private:
 
 	QMenu * m_contextMenu;
 
-	friend class mainWindow;
+	friend class MainWindow;
 
 } ;
 
 
 
-class mainWindow : public QMainWindow
+class MainWindow : public QMainWindow, public Ui::MainWindow
 {
 	Q_OBJECT
 public:
-	mainWindow( int _screen );
-	virtual ~mainWindow();
+	MainWindow( int _screen );
+	virtual ~MainWindow();
 
 	QWidget * workspace( void )
 	{
@@ -128,14 +127,14 @@ public:
 		}
 	}
 
-	inline toolBar * getToolBar( void )
+	inline MainToolBar * toolBar()
 	{
-		return( m_toolBar );
+		return m_toolBar;
 	}
 
-	inline italcSideBar * getSideBar( void )
+	inline SideBar * sideBar()
 	{
-		return( m_sideBar );
+		return m_sideBar;
 	}
 
 	static bool ensureConfigPathExists( void );
@@ -195,20 +194,15 @@ private slots:
 private:
 	virtual void closeEvent( QCloseEvent * _ce );
 
-	mainWindowUpdateThread * m_updateThread;
+	MainWindowUpdateThread * m_updateThread;
 
 	clientWorkspace * m_workspace;
 
 	QButtonGroup * m_modeGroup;
 
-	toolBar * m_toolBar;
-
 	QList<QAction *> m_sysTrayActions;
 
-	QSplitter * m_splitter;
-
 	QWidget * m_sideBarWidget;
-	italcSideBar * m_sideBar;
 	int m_openedTabInSideBar;
 
 
@@ -228,7 +222,7 @@ private:
 
 	static bool s_atExit;
 
-	friend class mainWindowUpdateThread;
+	friend class MainWindowUpdateThread;
 	friend class classroomManager;
 
 } ;

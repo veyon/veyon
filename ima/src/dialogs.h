@@ -1,7 +1,7 @@
 /*
  * dialogs.h - declaration of dialog-classes
  *
- * Copyright (c) 2004-2006 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -22,7 +22,6 @@
  *
  */
 
-
 #ifndef _DIALOGS_H
 #define _DIALOGS_H
 
@@ -34,7 +33,7 @@
 
 
 class client;
-class mainWindow;
+class MainWindow;
 
 
 
@@ -51,14 +50,14 @@ class clientSettingsDialog : public QDialog, private Ui::clientSettings
 {
 	Q_OBJECT
 public:
-	clientSettingsDialog( client * _c, mainWindow * _main_window,
+	clientSettingsDialog( client * _c, MainWindow * _main_window,
 						const QString & _classroom );
 
 private:
 	virtual void accept( void );
 
 	client * m_client;
-	mainWindow * m_mainWindow;
+	MainWindow * m_mainWindow;
 
 } ;
 

@@ -1,8 +1,8 @@
 /*
  *  remote_control_widget.cpp - widget containing a VNC-view and controls for it
  *
- *  Copyright (c) 2006-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
- *  
+ *  Copyright (c) 2006-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ *
  *  This file is part of iTALC - http://italc.sourceforge.net
  *
  *  This is free software; you can redistribute it and/or modify
@@ -26,10 +26,9 @@
 #include "vncview.h"
 #include "local_system.h"
 #include "tool_button.h"
-#include "main_window.h"
+#include "MainWindow.h"
 
 #include <math.h>
-
 
 #include <QtCore/QTimer>
 #include <QtGui/QBitmap>
@@ -37,8 +36,6 @@
 #include <QtGui/QLayout>
 #include <QtGui/QPainter>
 #include <QtGui/QPaintEvent>
-
-
 
 
 
@@ -54,6 +51,10 @@ remoteControlWidgetToolBar::remoteControlWidgetToolBar(
 	m_iconGray( fastQImage( m_icon ).toGray().darken( 50 ) ),
 	m_iconState()
 {
+	QPalette pal = palette();
+	pal.setBrush( QPalette::Window, QPixmap( ":/resources/toolbar-background.png" ) );
+	setPalette( pal );
+
 	setAttribute( Qt::WA_NoSystemBackground, true );
 	move( 0, 0 );
 	show();
@@ -155,13 +156,8 @@ void remoteControlWidgetToolBar::disappear( void )
 void remoteControlWidgetToolBar::paintEvent( QPaintEvent * _pe )
 {
 	QPainter p( this );
-	p.setRenderHint( QPainter::Antialiasing, true );
-	QLinearGradient lingrad( 0, 0, 0, height() );
-	lingrad.setColorAt( 0, QColor( 80, 160, 255 ) );
-	lingrad.setColorAt( 0.38, QColor( 32, 64, 192 ) );
-	lingrad.setColorAt( 0.42, QColor( 8, 16, 96 ) );
-	lingrad.setColorAt( 1, QColor( 0, 64, 224 ) );
-	p.fillRect( rect(), lingrad );
+
+	p.fillRect( _pe->rect(), palette().brush( QPalette::Window ) );
 
 	p.drawImage( 5, 2, m_icon );
 
@@ -258,7 +254,7 @@ void remoteControlWidgetToolBar::connectionEstablished( void )
 
 remoteControlWidget::remoteControlWidget( const QString & _host,
 						bool _view_only,
-						mainWindow * _main_window ) :
+						MainWindow * _main_window ) :
 	QWidget( 0 ),
 	m_vncView( new vncView( _host, this, FALSE ) ),
 	m_toolBar( new remoteControlWidgetToolBar( this, _view_only ) ),

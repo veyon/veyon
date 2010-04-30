@@ -33,10 +33,6 @@
 
 #include "isd_base.h"
 
-#ifndef BUILD_ICA
-#include "main_window.h"
-#endif
-
 
 class isdConnection : public QObject
 {

@@ -2,7 +2,7 @@
  * client.cpp - code for client-windows, which are displayed in several
  *              instances in the main-window of iTALC
  *
- * Copyright (c) 2004-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -33,7 +33,7 @@
 #include <QtGui/QMessageBox>
 
 
-#include "main_window.h"
+#include "MainWindow.h"
 #include "client.h"
 #include "ivs_connection.h"
 #include "classroom_manager.h"
@@ -467,7 +467,7 @@ QMenu * clientMenu::createDefault( QWidget * _parent )
 client::client( const QString & _hostname,
 		const QString & _mac, const QString & _nickname,
 		types _type, classRoom * _class_room,
-					mainWindow * _main_window, int _id ) :
+					MainWindow * _main_window, int _id ) :
 	QWidget( _main_window->workspace() ),
 	m_mainWindow( _main_window ),
 	m_connection( NULL ),
@@ -1305,13 +1305,13 @@ void updateThread::update( void )
 	if( m_client->m_classRoomItem->isVisible() )
 	{
 		if( !m_client->m_mainWindow->remoteControlRunning() &&
-						!mainWindow::atExit() )
+						!MainWindow::atExit() )
 		{
 			m_client->reload();
 		}
 	}
 	else if( m_client->m_connection->state() == ivsConnection::Connected
-						&& !mainWindow::atExit() )
+						&& !MainWindow::atExit() )
 	{
 		m_client->m_connection->close();
 	}

@@ -1,7 +1,7 @@
 /*
  * config_widget.cpp - implementation of configuration-widget for side-bar
  *
- * Copyright (c) 2004-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -33,27 +33,25 @@
 
 #include "config_widget.h"
 #include "classroom_manager.h"
-#include "main_window.h"
+#include "MainWindow.h"
 #include "tool_button.h"
 #include "isd_base.h"
 
 
 
-configWidget::configWidget( mainWindow * _main_window, QWidget * _parent ) :
-	sideBarWidget( QPixmap( ":/resources/config.png" ),
+configWidget::configWidget( MainWindow * _main_window, QWidget * _parent ) :
+	SideBarWidget( QPixmap( ":/resources/config.png" ),
 			tr( "Your iTALC-configuration" ),
 			tr( "In this workspace you can customize iTALC to "
 				"fit your needs." ),
 			_main_window, _parent )
 {
 	setupUi( contentParent() );
-	contentParent()->layout()->addWidget( layoutWidget );
-
 
 	connect( updateIntervalSB, SIGNAL( valueChanged( int ) ),
-			getMainWindow()->getClassroomManager(),
+				mainWindow()->getClassroomManager(),
 					SLOT( updateIntervalChanged( int ) ) );
-	getMainWindow()->getClassroomManager()->setUpdateIntervalSpinBox(
+	mainWindow()->getClassroomManager()->setUpdateIntervalSpinBox(
 							updateIntervalSB );
 
 
@@ -81,10 +79,10 @@ configWidget::configWidget( mainWindow * _main_window, QWidget * _parent ) :
 	connect( domainEdit, SIGNAL( textChanged( const QString & ) ),
 			this, SLOT( domainChanged( const QString & ) ) );
 
-	clientDoubleClickActionCB->setCurrentIndex( getMainWindow()->
+	clientDoubleClickActionCB->setCurrentIndex( mainWindow()->
 				getClassroomManager()->clientDblClickAction() );
 	connect( clientDoubleClickActionCB, SIGNAL( activated( int ) ),
-			getMainWindow()->getClassroomManager(),
+				mainWindow()->getClassroomManager(),
 				SLOT( setClientDblClickAction( int ) ) );
 }
 
