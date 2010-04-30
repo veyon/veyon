@@ -1,7 +1,7 @@
 /*
  *  RemoteControlWidget.cpp - widget containing a VNC-view and controls for it
  *
- *  Copyright (c) 2006-2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ *  Copyright (c) 2006-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  *  This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -31,15 +31,12 @@
 
 #include <math.h>
 
-
 #include <QtCore/QTimer>
 #include <QtGui/QBitmap>
 #include <QtGui/QDesktopWidget>
 #include <QtGui/QLayout>
 #include <QtGui/QPainter>
 #include <QtGui/QPaintEvent>
-
-
 
 
 
@@ -55,6 +52,10 @@ RemoteControlWidgetToolBar::RemoteControlWidgetToolBar(
 	m_iconGray( FastQImage( m_icon ).toGray().darken( 50 ) ),
 	m_iconState()
 {
+	QPalette pal = palette();
+	pal.setBrush( QPalette::Window, QPixmap( ":/resources/toolbar-background.png" ) );
+	setPalette( pal );
+
 	setAttribute( Qt::WA_NoSystemBackground, true );
 	move( 0, 0 );
 	show();
@@ -156,13 +157,8 @@ void RemoteControlWidgetToolBar::disappear( void )
 void RemoteControlWidgetToolBar::paintEvent( QPaintEvent * _pe )
 {
 	QPainter p( this );
-	p.setRenderHint( QPainter::Antialiasing, true );
-	QLinearGradient lingrad( 0, 0, 0, height() );
-	lingrad.setColorAt( 0, QColor( 80, 160, 255 ) );
-	lingrad.setColorAt( 0.38, QColor( 32, 64, 192 ) );
-	lingrad.setColorAt( 0.42, QColor( 8, 16, 96 ) );
-	lingrad.setColorAt( 1, QColor( 0, 64, 224 ) );
-	p.fillRect( rect(), lingrad );
+
+	p.fillRect( _pe->rect(), palette().brush( QPalette::Window ) );
 
 	p.drawImage( 5, 2, m_icon );
 

@@ -1,7 +1,7 @@
 /*
  * OverviewWidget.cpp - implementation of overview-widget for side-bar
  *
- * Copyright (c) 2004-2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -22,7 +22,6 @@
  *
  */
 
-
 #include <QtGui/QLabel>
 #include <QtGui/QLayout>
 #include <QtGui/QPushButton>
@@ -39,9 +38,8 @@ OverviewWidget::OverviewWidget( MainWindow * _main_window, QWidget * _parent ) :
 				"it." ), _main_window, _parent )
 {
 	setupUi( contentParent() );
-	contentParent()->layout()->addWidget( layoutWidget );
 
-	connect( aboutButton, SIGNAL( clicked() ), getMainWindow(),
+	connect( aboutButton, SIGNAL( clicked() ), mainWindow(),
 							SLOT( aboutITALC() ) );
 }
 

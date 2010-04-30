@@ -1,7 +1,7 @@
 /*
  * ConfigWidget.h - configuration-widget for side-bar
  *
- * Copyright (c) 2004-2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -21,7 +21,6 @@
  * Boston, MA 02111-1307, USA.
  *
  */
-
 
 #ifndef _CONFIG_WIDGET_H
 #define _CONFIG_WIDGET_H

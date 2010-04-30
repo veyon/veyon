@@ -1,7 +1,7 @@
 /*
  * snapshot_list.cpp - implementation of snapshot-list for side-bar
  *
- * Copyright (c) 2004-2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -22,7 +22,6 @@
  *
  */
 
-
 #include <QtCore/QDir>
 #include <QtCore/QDate>
 #include <QtGui/QScrollArea>
@@ -42,7 +41,6 @@ SnapshotList::SnapshotList( MainWindow * _main_window, QWidget * _parent ) :
 			_main_window, _parent )
 {
 	setupUi( contentParent() );
-	contentParent()->layout()->addWidget( widget );
 
 	connect( list, SIGNAL( currentTextChanged( const QString & ) ), this,
 				SLOT( snapshotSelected( const QString & ) ) );

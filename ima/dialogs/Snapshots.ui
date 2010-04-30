@@ -1,145 +1,135 @@
-<ui version="4.0" >
- <author>Tobias Doerffel</author>
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <class>Snapshots</class>
- <widget class="QWidget" name="snapshots" >
-  <property name="geometry" >
+ <widget class="QWidget" name="Snapshots">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>274</width>
-    <height>550</height>
+    <width>236</width>
+    <height>448</height>
    </rect>
   </property>
-  <widget class="QWidget" name="" >
-   <property name="geometry" >
-    <rect>
-     <x>10</x>
-     <y>11</y>
-     <width>258</width>
-     <height>490</height>
-    </rect>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="spacing">
+    <number>6</number>
    </property>
-   <layout class="QVBoxLayout" >
-    <property name="margin" >
-     <number>4</number>
-    </property>
-    <property name="spacing" >
-     <number>12</number>
-    </property>
-    <item>
-     <widget class="QListWidget" name="list" >
-      <property name="whatsThis" >
-       <string>&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
+   <item>
+    <widget class="QListWidget" name="list">
+     <property name="whatsThis">
+      <string>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style>&lt;/head>&lt;body style=" font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;">
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">All snapshots you made are listed here. You can make snapshots by selecting the according entry in the context-menu of a client-window. These snapshosts can be managed using the buttons below.&lt;/p>&lt;/body>&lt;/html></string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLabel" name="previewLbl" />
-    </item>
-    <item>
-     <layout class="QGridLayout" >
-      <property name="margin" >
-       <number>10</number>
-      </property>
-      <property name="spacing" >
-       <number>4</number>
-      </property>
-      <item row="1" column="1" >
-       <widget class="QLabel" name="dateLbl" />
-      </item>
-      <item row="0" column="0" >
-       <widget class="QLabel" name="userDescLbl" >
-        <property name="text" >
-         <string>User:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1" >
-       <widget class="QLabel" name="userLbl" />
-      </item>
-      <item row="2" column="1" >
-       <widget class="QLabel" name="timeLbl" />
-      </item>
-      <item row="3" column="0" >
-       <widget class="QLabel" name="hostDescLbl" >
-        <property name="text" >
-         <string>Host:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0" >
-       <widget class="QLabel" name="dateDescLbl" >
-        <property name="text" >
-         <string>Date:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="1" >
-       <widget class="QLabel" name="hostLbl" />
-      </item>
-      <item row="2" column="0" >
-       <widget class="QLabel" name="timeDescLbl" >
-        <property name="text" >
-         <string>Time:</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </item>
-    <item>
-     <widget class="QPushButton" name="showBtn" >
-      <property name="text" >
-       <string>Show snapshot</string>
-      </property>
-      <property name="icon" >
-       <iconset resource="../italc.qrc" >:/resources/client_show.png</iconset>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QPushButton" name="deleteBtn" >
-      <property name="text" >
-       <string>Delete snapshot</string>
-      </property>
-      <property name="icon" >
-       <iconset resource="../italc.qrc" >:/resources/cancel.png</iconset>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QPushButton" name="reloadBtn" >
-      <property name="text" >
-       <string>Reload list</string>
-      </property>
-      <property name="icon" >
-       <iconset resource="../italc.qrc" >:/resources/reload.png</iconset>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <spacer>
-      <property name="orientation" >
-       <enum>Qt::Vertical</enum>
-      </property>
-      <property name="sizeType" >
-       <enum>QSizePolicy::Fixed</enum>
-      </property>
-      <property name="sizeHint" >
-       <size>
-        <width>16</width>
-        <height>30</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
-   </layout>
-  </widget>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;All snapshots you made are listed here. You can make snapshots by selecting the according entry in the context-menu of a client-window. These snapshosts can be managed using the buttons below.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="previewLbl"/>
+   </item>
+   <item>
+    <layout class="QGridLayout">
+     <property name="margin">
+      <number>10</number>
+     </property>
+     <property name="spacing">
+      <number>4</number>
+     </property>
+     <item row="1" column="1">
+      <widget class="QLabel" name="dateLbl"/>
+     </item>
+     <item row="0" column="0">
+      <widget class="QLabel" name="userDescLbl">
+       <property name="text">
+        <string>User:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLabel" name="userLbl"/>
+     </item>
+     <item row="2" column="1">
+      <widget class="QLabel" name="timeLbl"/>
+     </item>
+     <item row="3" column="0">
+      <widget class="QLabel" name="hostDescLbl">
+       <property name="text">
+        <string>Host:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="dateDescLbl">
+       <property name="text">
+        <string>Date:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="1">
+      <widget class="QLabel" name="hostLbl"/>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="timeDescLbl">
+       <property name="text">
+        <string>Time:</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QPushButton" name="showBtn">
+     <property name="text">
+      <string>Show snapshot</string>
+     </property>
+     <property name="icon">
+      <iconset resource="../italc.qrc">
+       <normaloff>:/resources/client_show.png</normaloff>:/resources/client_show.png</iconset>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="deleteBtn">
+     <property name="text">
+      <string>Delete snapshot</string>
+     </property>
+     <property name="icon">
+      <iconset resource="../italc.qrc">
+       <normaloff>:/resources/cancel.png</normaloff>:/resources/cancel.png</iconset>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="reloadBtn">
+     <property name="text">
+      <string>Reload list</string>
+     </property>
+     <property name="icon">
+      <iconset resource="../italc.qrc">
+       <normaloff>:/resources/reload.png</normaloff>:/resources/reload.png</iconset>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <spacer>
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeType">
+      <enum>QSizePolicy::Fixed</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>16</width>
+       <height>30</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+  </layout>
  </widget>
  <resources>
-  <include location="../italc.qrc" />
+  <include location="../italc.qrc"/>
  </resources>
  <connections/>
 </ui>

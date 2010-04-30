@@ -1,7 +1,7 @@
 /*
  * ClassroomManager.cpp - implementation of classroom-manager
  *
- * Copyright (c) 2004-2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -49,10 +49,8 @@
 #include "Client.h"
 #include "Dialogs.h"
 #include "CmdInputDialog.h"
-#include "ItalcSideBar.h"
 #include "LocalSystem.h"
 #include "ToolButton.h"
-#include "ToolBar.h"
 #include "DecoratedMessageBox.h"
 
 #define DEFAULT_WINDOW_WIDTH	1005
@@ -100,8 +98,7 @@ ClassroomManager::ClassroomManager( MainWindow * _main_window,
 	// which actually is assigned after this function returns
 	_main_window->m_classroomManager = this;
 
-	QVBoxLayout * l = dynamic_cast<QVBoxLayout *>(
-						contentParent()->layout() );
+	QVBoxLayout * l = new QVBoxLayout( contentParent() );
 
 	m_view = new classTreeWidget( contentParent() );
 	l->addWidget( m_view );
@@ -132,8 +129,7 @@ ClassroomManager::ClassroomManager( MainWindow * _main_window,
 	QFont f;
 	f.setPixelSize( 12 );
 
-	m_showUsernameCheckBox = new QCheckBox( tr( "Show usernames" ),
-							contentParent() );
+	m_showUsernameCheckBox = new QCheckBox( tr( "Show usernames" ), contentParent() );
 	m_showUsernameCheckBox->setFont( f );
 	l->addWidget( m_showUsernameCheckBox );
 	connect( m_showUsernameCheckBox, SIGNAL( stateChanged( int ) ),
@@ -363,17 +359,17 @@ void ClassroomManager::savePersonalConfig( void )
 	QDomElement globalsettings = doc.createElement( "globalsettings" );
 	globalsettings.setAttribute( "client-update-interval",
 						m_clientUpdateInterval );
-	globalsettings.setAttribute( "win-width", getMainWindow()->width() );
-	globalsettings.setAttribute( "win-height", getMainWindow()->height() );
-	globalsettings.setAttribute( "win-x", getMainWindow()->x() );
-	globalsettings.setAttribute( "win-y", getMainWindow()->y() );	
+	globalsettings.setAttribute( "win-width", mainWindow()->width() );
+	globalsettings.setAttribute( "win-height", mainWindow()->height() );
+	globalsettings.setAttribute( "win-x", mainWindow()->x() );
+	globalsettings.setAttribute( "win-y", mainWindow()->y() );	
 	globalsettings.setAttribute( "ismaximized",
-					getMainWindow()->isMaximized() );
+					mainWindow()->isMaximized() );
 	globalsettings.setAttribute( "opened-tab",
-				getMainWindow()->m_sideBar->openedTab() );
+				mainWindow()->sideBar()->activeTab() );
 
 	globalsettings.setAttribute( "wincfg", QString(
-				getMainWindow()->saveState().toBase64() ) );
+				mainWindow()->saveState().toBase64() ) );
 
 	globalsettings.setAttribute( "defaultdomain", __default_domain );
 	globalsettings.setAttribute( "demoquality", __demo_quality );
@@ -390,18 +386,18 @@ void ClassroomManager::savePersonalConfig( void )
 					isAutoArranged() );
 
 	QStringList hidden_buttons;
-	foreach( QAction * a, getMainWindow()->getToolBar()->actions() )
+	foreach( QAction * a, mainWindow()->toolBar()->actions() )
 	{
 		if( !a->isVisible() )
 		{
 			hidden_buttons += a->text();
 		}
 	}
-	foreach( KMultiTabBarTab * tab, getMainWindow()->getSideBar()->tabs() )
+	foreach( QAbstractButton * btn, mainWindow()->sideBar()->tabs() )
 	{
-		if( !tab->isTabVisible() )
+		if( !btn->isVisible() )
 		{
-			hidden_buttons += tab->text();
+			hidden_buttons += btn->text();
 		}
 	}
 	globalsettings.setAttribute( "toolbarcfg", hidden_buttons.join( "#" ) );
@@ -586,10 +582,10 @@ void ClassroomManager::getHeaderInformation( const QDomElement & _header )
 				node.toElement().attribute( "win-y" ) !=
 								QString::null )
 			{
-getMainWindow()->resize( node.toElement().attribute( "win-width" ).toInt(),
+mainWindow()->resize( node.toElement().attribute( "win-width" ).toInt(),
 			node.toElement().attribute("win-height" ).toInt() );
 
-getMainWindow()->move( node.toElement().attribute( "win-x" ).toInt(),
+mainWindow()->move( node.toElement().attribute( "win-x" ).toInt(),
 				node.toElement().attribute( "win-y" ).toInt() );
 			}
 			else
@@ -599,14 +595,14 @@ getMainWindow()->move( node.toElement().attribute( "win-x" ).toInt(),
 			if( node.toElement().attribute( "opened-tab" ) !=
 								QString::null )
 			{
-				getMainWindow()->m_openedTabInSideBar =
+				mainWindow()->m_openedTabInSideBar =
 						node.toElement().attribute(
 							"opened-tab" ).toInt();
 			}
 			if( node.toElement().attribute( "ismaximized" ).
 								toInt() > 0 )
 			{
-	getMainWindow()->setWindowState( getMainWindow()->windowState() |
+	mainWindow()->setWindowState( mainWindow()->windowState() |
 							Qt::WindowMaximized );
 			}
 			if( node.toElement().attribute( "wincfg" ) !=
@@ -721,7 +717,7 @@ void ClassroomManager::loadTree( classRoom * _parent_item,
 						(Client::Types)e.attribute(
 							"type" ).toInt(),
 						_parent_item,
-						getMainWindow(),
+						mainWindow(),
 						e.attribute( "id" ).toInt() );
 				c->hide();
 			}
@@ -903,8 +899,8 @@ void ClassroomManager::loadGlobalClientConfig( void )
 
 void ClassroomManager::setDefaultWindowsSizeAndPosition( void )
 {
-	getMainWindow()->resize( DEFAULT_WINDOW_WIDTH, DEFAULT_WINDOW_HEIGHT );
-	getMainWindow()->move( QPoint( 0, 0 ) );	
+	mainWindow()->resize( DEFAULT_WINDOW_WIDTH, DEFAULT_WINDOW_HEIGHT );
+	mainWindow()->move( QPoint( 0, 0 ) );	
 }
 
 
@@ -1076,7 +1072,7 @@ void ClassroomManager::directSupport( void )
 	const QString h = SupportDialog::getHost( this );
 	if( !h.isEmpty() )
 	{
-		getMainWindow()->remoteControlDisplay( h );
+		mainWindow()->remoteControlDisplay( h );
 	}
 }
 
@@ -1101,9 +1097,9 @@ void ClassroomManager::adjustWindows( void )
 	QVector<Client *> vc = visibleClients();
 	if( vc.size() )
 	{
-		const int avail_w = getMainWindow()->workspace()->
+		const int avail_w = mainWindow()->workspace()->
 						parentWidget()->width();
-		const int avail_h = getMainWindow()->workspace()->
+		const int avail_h = mainWindow()->workspace()->
 						parentWidget()->height();
 		float cw = vc[0]->width() + decor_w;// add width of decoration
 		float ch = vc[0]->height() + decor_h;// add height of titlebar
@@ -1175,7 +1171,7 @@ void ClassroomManager::adjustWindows( void )
 			cl->move( static_cast<int>( cl->m_rasterX * nw )+1,
 				static_cast<int>( cl->m_rasterY * nh )+1 );
 		}
-		getMainWindow()->workspace()->updateGeometry();
+		mainWindow()->workspace()->updateGeometry();
 	}
 }
 
@@ -1199,9 +1195,9 @@ void ClassroomManager::arrangeWindows( void )
 	QVector<Client *> vc = visibleClients();
 	if( vc.size() )
 	{
-		const int avail_w = getMainWindow()->workspace()->
+		const int avail_w = mainWindow()->workspace()->
 						parentWidget()->width();
-		const int avail_h = getMainWindow()->workspace()->
+		const int avail_h = mainWindow()->workspace()->
 						parentWidget()->height();
 		const int w = avail_w;
 		const int h = avail_h;
@@ -1541,7 +1537,7 @@ void ClassroomManager::editClientSettings( void )
 		foreach( classRoomItem * cri, si )
 		{
 			ClientSettingsDialog settingsDlg( cri->getClient(),
-					getMainWindow(),
+					mainWindow(),
 						cri->parent()->text( 0 ) );
 			settingsDlg.exec();
 		}
@@ -1764,8 +1760,7 @@ void ClassroomManager::addClient( void )
 		}
 	}
 
-	ClientSettingsDialog settingsDlg( NULL, getMainWindow(),
-							classroom_name );
+	ClientSettingsDialog settingsDlg( NULL, mainWindow(), classroom_name );
 	settingsDlg.setWindowTitle( tr( "Add computer" ) );
 	settingsDlg.exec();
 	saveGlobalClientConfig();
