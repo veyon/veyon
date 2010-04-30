@@ -19,12 +19,8 @@
 <context>
     <name>pageKeyDirs</name>
     <message>
-        <source>Key directories</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>The newly created or imported key(s) need to be installed somewhere. It&apos;s recommended to leave the suggested directories.</source>
-        <translation>Nové alebo importované kľúče je potrebné niekam nainštalovať. Doporučuje sa ponechať navrhnuté adresáre.</translation>
+        <translation>Nové vytvorené alebo importované klúče musia byť niekde nainštalované. Odporúčame nechať pôvodné adresáre.</translation>
     </message>
     <message>
         <source>Directory to store public key in</source>
@@ -35,16 +31,32 @@
         <translation>Adresár pre uloženie súkromných kľúčov</translation>
     </message>
     <message>
-        <source>You can choose a directory in which to export the public key, e.g. an USB drive or a network share.</source>
+        <source>Export private key too</source>
+        <translation>Exportovať tiež súkromný kľúč</translation>
+    </message>
+    <message>
+        <source>Key directories</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Export private key too</source>
-        <translation>Exportovať tiež súkromný kľúč</translation>
+        <source>You can choose a directory in which to export the public key, e.g. an USB drive or a network share.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>pageSecurityOptions</name>
+    <message>
+        <source>Import public key of master computer</source>
+        <translation>Importovat verejný kľúč hlavného počítača</translation>
+    </message>
+    <message>
+        <source>Choose location of exported public key:</source>
+        <translation>Zvoliť umiestnenie exportovaného verejného kľúča:</translation>
+    </message>
+    <message>
+        <source>Keep all keys (only when updating existing installation!)</source>
+        <translation>Zachovať všetky kľúče (len ak aktualizujete existujúcu inštaláciu!)</translation>
+    </message>
     <message>
         <source>Security options</source>
         <translation type="unfinished"></translation>
@@ -58,18 +70,6 @@ Therefore you either have to create a new key pair or import the public key crea
     <message>
         <source>Create a new key pair (only on master computer)</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Import public key of master computer</source>
-        <translation>Importovat verejný kľú hlavného počítača</translation>
-    </message>
-    <message>
-        <source>Choose location of exported public key:</source>
-        <translation>Zvoliť umiestnenie exportovaného verejného kľúča:</translation>
-    </message>
-    <message>
-        <source>Keep all keys (only when updating existing installation!)</source>
-        <translation>Zachovať všetky kľúče (len ak aktualizujete existujúcu inštaláciu!)</translation>
     </message>
 </context>
 <context>
@@ -100,10 +100,6 @@ Click &apos;Next&apos; to continue.</source>
         <translation>Zrušiť sprievodcu</translation>
     </message>
     <message>
-        <source>Are you sure want to quit setup? iTALC is not set up completely yet!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Next</source>
         <translation>Ďalší</translation>
     </message>
@@ -116,12 +112,16 @@ Click &apos;Next&apos; to continue.</source>
         <translation>Ukončiť</translation>
     </message>
     <message>
-        <source>File does not exist</source>
+        <source>Are you sure want to quit setup? iTALC is not set up completely yet!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>File does not exist</source>
+        <translation type="unfinished">Súbor neexistuje</translation>
+    </message>
+    <message>
         <source>The file %1 could not be found. Please check this and try again.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Súbor %1 nemôže byť nájdený. Skontrolujte to prosím a skúste to znova.</translation>
     </message>
 </context>
 <context>
@@ -149,10 +149,6 @@ Click &apos;Next&apos; to continue.</source>
 <context>
     <name>wizard</name>
     <message>
-        <source>iTALC setup tool</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Cancel</source>
         <translation>Zrušiť</translation>
     </message>
@@ -163,6 +159,10 @@ Click &apos;Next&apos; to continue.</source>
     <message>
         <source>Next</source>
         <translation>Ďalší</translation>
+    </message>
+    <message>
+        <source>iTALC setup tool</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

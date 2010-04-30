@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="sk_SK">
+<!DOCTYPE TS>
+<TS version="2.0" language="sk_SK">
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../src/local_system.cpp" line="52"/>
+        <location filename="../src/local_system.cpp" line="49"/>
         <source>UPL (note for translators: the first three characters of this string are the accellerators (underlined characters) of the three input-fields in logon-dialog of windows - please keep this note as otherwise there are strange errors concerning logon-feature)</source>
         <translation>UPL</translation>
     </message>
     <message>
-        <location filename="../src/local_system.cpp" line="642"/>
+        <location filename="../src/local_system.cpp" line="660"/>
         <source>iTALC-snapshots</source>
         <translation>iTALC-záber</translation>
     </message>
@@ -18,18 +19,18 @@
     <message>
         <location filename="../src/ivs_connection.cpp" line="308"/>
         <source>Snapshot</source>
-        <translation>Záber</translation>
+        <translation>Snímka</translation>
     </message>
     <message>
-        <location filename="../src/ivs_connection.cpp" line="310"/>
+        <location filename="../src/ivs_connection.cpp" line="309"/>
         <source>Could not take a snapshot as directory %1 doesn&apos;t exist and couldn&apos;t be created.</source>
-        <translation>Nemôžem získať snímok, pretože adresár %1 neexistuje a nedá sa vytvoriť.</translation>
+        <translation>Nemôžem zachytiť snímku, pretože %1 neexistuje alebo nemôže byť vytvorený.</translation>
     </message>
 </context>
 <context>
     <name>lockWidget</name>
     <message>
-        <location filename="../src/lock_widget.cpp" line="69"/>
+        <location filename="../src/lock_widget.cpp" line="72"/>
         <source>screen lock</source>
         <translation>uzamknutie obrazovky</translation>
     </message>
@@ -47,7 +48,7 @@
     <message>
         <location filename="../src/vncview.cpp" line="61"/>
         <source>Establishing connection to %1 ...</source>
-        <translation>Pripájam sa k %1 ...</translation>
+        <translation>Nadväzujem spojenie k %1 ...</translation>
     </message>
 </context>
 </TS>
