@@ -158,6 +158,21 @@ man_MANS=ica.1
 EXTRA_DIST =	$(man_MANS)						\
 		$(srcdir)/x11/README					\
 		$(srcdir)/win32/README					\
+		$(srcdir)/x11/libvncclient/corre.c			\
+		$(srcdir)/x11/libvncclient/cursor.c			\
+		$(srcdir)/x11/libvncclient/tls.h			\
+		$(srcdir)/x11/libvncclient/tls.c			\
+		$(srcdir)/x11/libvncclient/listen.c			\
+		$(srcdir)/x11/libvncclient/rfbproto.c		\
+		$(srcdir)/x11/libvncclient/sockets.c		\
+		$(srcdir)/x11/libvncclient/vncviewer.c		\
+		$(srcdir)/x11/libvncclient/hextile.c		\
+		$(srcdir)/x11/libvncclient/minilzo.c		\
+		$(srcdir)/x11/libvncclient/rre.c			\
+		$(srcdir)/x11/libvncclient/tight.c			\
+		$(srcdir)/x11/libvncclient/ultra.c			\
+		$(srcdir)/x11/libvncclient/zlib.c			\
+		$(srcdir)/x11/libvncclient/zrle.c			\
 		$(srcdir)/x11/libvncserver/tableinit24.c		\
 		$(srcdir)/x11/libvncserver/tableinittctemplate.c	\
 		$(srcdir)/x11/libvncserver/tabletranstemplate.c		\
