@@ -9,11 +9,11 @@
     </message>
     <message>
         <source>Unable to register service &apos;%1&apos;.</source>
-        <translation>Не вдалося зареєструвати службу &apos;%1&apos;.</translation>
+        <translation>Не вдалося зареєструвати службу «%1».</translation>
     </message>
     <message>
         <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not registered.</source>
-        <translation>Неможливо зв’язатися з Керуванням службою (можливо, у Вас недостатньо прав?!) - службу &apos;%1&apos; не зареєстровано.</translation>
+        <translation>Неможливо зв’язатися з Керуванням службою (можливо, у вас недостатньо прав?!) — службу &apos;%1&apos; не зареєстровано.</translation>
     </message>
     <message>
         <source>The service &apos;%1&apos; is already registered.</source>
@@ -49,11 +49,11 @@
     </message>
     <message>
         <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not unregistered.</source>
-        <translation>Неможливо зв’язатися з Керуванням службою (можливо, у Вас недостатньо прав?!) - реєстрацію служби &apos;%1&apos; не було скасовано.</translation>
+        <translation>Неможливо зв’язатися з Керуванням службою (можливо, у вас недостатньо прав?!) — реєстрацію служби «%1» не було скасовано.</translation>
     </message>
     <message>
         <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not stopped.</source>
-        <translation>Неможливо зв’язатися з Керуванням службою (можливо, у Вас недостатньо прав?!) - службу &apos;%1&apos; не було зупинено.</translation>
+        <translation>Неможливо зв’язатися з Керуванням службою (можливо, у вас недостатньо прав?!) — службу «%1» не було зупинено.</translation>
     </message>
 </context>
 <context>
@@ -64,7 +64,7 @@
     </message>
     <message>
         <source>iTALC-snapshots</source>
-        <translation>Знімки екрану iTALC</translation>
+        <translation>Знімки екранів iTALC</translation>
     </message>
 </context>
 <context>
@@ -88,12 +88,12 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;iTALC - Intelligent Teaching And Learning with Computers&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;&quot;&gt;Copyright (c) 2004-2010 Tobias Doerffel&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;iTALC - Продумане Навчання за Комп’ютерами&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;&quot;&gt;Право копіювання (c) 2004-2008 Tobias Doerffel&lt;/p&gt;&lt;/body&gt;&lt;/html&gt; {1&quot;?} {9p?} {400;?} {0p?} {0p?} {0p?} {0p?} {0;?} {0p?} {11p?} {0p?} {0p?} {0p?} {0p?} {0;?} {0p?} {11p?} {0p?} {0p?} {0p?} {0p?} {0;?} {0p?} {11p?} {2004-2010 ?}</translation>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;&quot;&gt;© Tobias Doerffel 2004–2010&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Authors</source>
@@ -115,7 +115,7 @@ p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Переклад українською — Юрій Чорноіван.&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Якщо Ви бажаєте перекласти iTALC Вашою рідною або іншою мовою або вдосконалити існуючий переклад, будь ласка, зв’яжіться з розробником iTALC!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Якщо ви бажаєте перекласти iTALC вашою рідною або іншою мовою або вдосконалити поточний переклад, будь ласка, зв’яжіться з розробником iTALC!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>License</source>
@@ -134,7 +134,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Use this workspace to manage your computers and classrooms in an easy way.</source>
-        <translation>Використовуйте цей робочий простір для того, щоб керувати Вашими комп’ютерами та класами з легкістю.</translation>
+        <translation>Використовуйте цей робочий простір для того, щоб керувати вашими комп’ютерами та класами з легкістю.</translation>
     </message>
     <message>
         <source>This is where computers and classrooms are managed. You can add computers or classrooms by clicking right in this list.</source>
@@ -159,8 +159,8 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Could not open configuration file %1.
 You will have to add at least one classroom and computers using the classroom-manager which you&apos;ll find inside the program in the sidebar on the left side.</source>
-        <translation>Неможливо відкрити файл налаштувань %1.
-Вам слід додати хоча б один клас та його комп’ютери за допомогою керування класами, яке знаходиться у програмі на боковій панелі ліворуч.</translation>
+        <translation>Не вдалося відкрити файл налаштувань %1.
+Вам слід додати хоча б один клас та його комп’ютери за допомогою керування класами, яке передбачено у програмі на боковій панелі ліворуч.</translation>
     </message>
     <message>
         <source>Error in configuration-file</source>
@@ -170,13 +170,13 @@ You will have to add at least one classroom and computers using the classroom-ma
         <source>Error while parsing configuration-file %1.
 Please edit it. Otherwise you should delete this file and have to add all classrooms and computers again.</source>
         <translation>Помилка під час розбору файла налаштувань %1.
-Будь ласка, змініть його. Якщо Ви не можете цього зробити, Вам слід вилучити цей файл і провести додавання всіх класів та комп’ютерів знову.</translation>
+Будь ласка, змініть його. Якщо ви не можете цього зробити, вам слід вилучити цей файл і виконати додавання всіх класів та комп’ютерів знову.</translation>
     </message>
     <message>
         <source>Error while parsing configuration-file %1.
 Please edit it. Otherwise you should delete this file.</source>
         <translation>Помилка під час розбору файла налаштувань %1.
-Будь ласка, змініть його. Якщо Ви не можете цього зробити, Вам слід вилучити цей файл.</translation>
+Будь ласка, змініть його. Якщо ви не можете цього зробити, вам слід вилучити цей файл.</translation>
     </message>
     <message>
         <source>Show/hide</source>
@@ -284,7 +284,7 @@ Do you want to create a new classrom now?</source>
     </message>
     <message>
         <source>Actions for selected</source>
-        <translation type="unfinished"></translation>
+        <translation>Дії для вибраних</translation>
     </message>
 </context>
 <context>
@@ -314,98 +314,98 @@ Do you want to create a new classrom now?</source>
     <name>clientAction</name>
     <message>
         <source>Are you sure want logout all users on all visible computers ?</source>
-        <translation type="unfinished">Ви справді бажаєте завершити роботу всіх користувачів на всіх видимих комп’ютерах?</translation>
+        <translation>Ви справді бажаєте завершити роботу всіх користувачів на всіх видимих комп’ютерах?</translation>
     </message>
     <message>
         <source>Are you sure want logout all users on all selected computers ?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ви справді бажаєте завершити роботу всіх користувачів на всіх вибраних комп’ютерах?</translation>
     </message>
     <message>
         <source>Logout user</source>
-        <translation type="unfinished">Завершити роботу</translation>
+        <translation>Завершити роботу користувача</translation>
     </message>
     <message>
         <source>Are you sure want to reboot all visible computers?</source>
-        <translation type="unfinished">Ви справді бажаєте перезавантажити всі видимі комп’ютери?</translation>
+        <translation>Ви справді бажаєте перезавантажити всі видимі комп’ютери?</translation>
     </message>
     <message>
         <source>Are you sure want to reboot all selected computers?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ви справді бажаєте перезавантажити всі вибрані комп’ютери?</translation>
     </message>
     <message>
         <source>Reboot computers</source>
-        <translation type="unfinished">Перезавантажити комп’ютери</translation>
+        <translation>Перезавантажити комп’ютери</translation>
     </message>
     <message>
         <source>Are you sure want to power down all visible computers?</source>
-        <translation type="unfinished">Ви справді бажаєте вимкнути всі видимі комп’ютери?</translation>
+        <translation>Ви справді бажаєте вимкнути всі видимі комп’ютери?</translation>
     </message>
     <message>
         <source>Are you sure want to power down all selected computers?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ви справді бажаєте вимкнути всі вибрані комп’ютери?</translation>
     </message>
 </context>
 <context>
     <name>clientMenu</name>
     <message>
         <source>Overview</source>
-        <translation type="unfinished"></translation>
+        <translation>Огляд</translation>
     </message>
     <message>
         <source>Fullscreen demo</source>
-        <translation type="unfinished">Повноекранне демо</translation>
+        <translation>Повноекранне демо</translation>
     </message>
     <message>
         <source>Window demo</source>
-        <translation type="unfinished">Демо у вікні</translation>
+        <translation>Демо у вікні</translation>
     </message>
     <message>
         <source>Locked display</source>
-        <translation type="unfinished">Заблокований дисплей</translation>
+        <translation>Заблокований дисплей</translation>
     </message>
     <message>
         <source>View live</source>
-        <translation type="unfinished">Перегляд наживо</translation>
+        <translation>Перегляд наживо</translation>
     </message>
     <message>
         <source>Remote control</source>
-        <translation type="unfinished">Віддалене керування</translation>
+        <translation>Віддалене керування</translation>
     </message>
     <message>
         <source>Let student show demo</source>
-        <translation type="unfinished">Дозволити учню показати демо</translation>
+        <translation>Дозволити учню показати демо</translation>
     </message>
     <message>
         <source>Send text message</source>
-        <translation type="unfinished">Надіслати текстове повідомлення</translation>
+        <translation>Надіслати текстове повідомлення</translation>
     </message>
     <message>
         <source>Logon user</source>
-        <translation type="unfinished">Почати роботу</translation>
+        <translation>Почати роботу</translation>
     </message>
     <message>
         <source>Logout user</source>
-        <translation type="unfinished">Завершити роботу</translation>
+        <translation>Завершити роботу</translation>
     </message>
     <message>
         <source>Take a snapshot</source>
-        <translation type="unfinished">Зробити знімок екрану</translation>
+        <translation>Зробити знімок екрана</translation>
     </message>
     <message>
         <source>Power on</source>
-        <translation type="unfinished">Увімкнути</translation>
+        <translation>Увімкнути</translation>
     </message>
     <message>
         <source>Reboot</source>
-        <translation type="unfinished">Перезавантажити</translation>
+        <translation>Перезавантажити</translation>
     </message>
     <message>
         <source>Power down</source>
-        <translation type="unfinished">Вимкнути</translation>
+        <translation>Вимкнути</translation>
     </message>
     <message>
         <source>Execute commands</source>
-        <translation type="unfinished">Виконати команди</translation>
+        <translation>Виконати команди</translation>
     </message>
 </context>
 <context>
@@ -522,7 +522,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;When showing a demo to more than one host in a foreign network, it&apos;s meaningful to activate this option for at least one of the involved hosts. This way all data is only sent once to the demo-replicator which provides the data for all the other clients in the network. Especially on slow links usage of this option is essential. Normally you should enable this option on the subnet-gateway (see option above).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Коли Ви показуєте демо для більш ніж одного комп’ютера у іншій мережі, має сенс активувати цей параметр хоча б для одного з включених до процесу комп’ютерів. Таким чином, всі дані будуть надсилатися лише до відтворювача демо, який потім надішле дані для всіх інших клієнтів своєї мережі. Цей параметр життєво необхідний за використання повільних з’єднань. Зазвичай Вам слід увімкнути його для шлюзу підмережі (див. параметр вище).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Коли ви показуєте демо для більш ніж одного комп’ютера у іншій мережі, має сенс позначити цей пункт хоча б для одного з включених до процесу комп’ютерів. Таким чином, всі дані будуть надсилатися лише до відтворювача демо, який потім надішле дані для всіх інших клієнтів своєї мережі. Цей пункт життєво необхідний за використання повільних з’єднань. Зазвичай вам слід позначити його для шлюзу підмережі (див. параметр вище).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Act as &amp;demo replicator</source>
@@ -609,7 +609,7 @@ p, li { white-space: pre-wrap; }
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Тут Ви можете задати потрібну якість зображення у режимі демо. Нижча якість призведе до меншого використання процесорного часу та зниження навантаження на мережу, в той час як висока якість може уповільнити Ваш комп’ютер і зменшити частоту кадрів демо. Вам слід підібрати оптимальну якість для Вашої конфігурації.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Тут ви можете задати потрібну якість зображення у режимі демо. Нижча якість призведе до меншого використання процесорного часу та зниження навантаження на мережу, в той час як висока якість може уповільнити Ваш комп’ютер і зменшити частоту кадрів демо. Вам слід підібрати оптимальну якість для вашої конфігурації.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Low (15 bit)</source>
@@ -633,7 +633,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Check this option if you&apos;re annoyed by the balloon-tooltips appearing when moving mouse-cursor over toolbar-buttons.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Позначте цей параметр, якщо Вас дратують виринаючі підказки, що з’являються, коли Ви пересуваєте вказівник миші над кнопками панелі інструментів.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Позначте цей параметр, якщо вас дратують контекстні підказки, що з’являються, коли ви пересуваєте вказівник миші над кнопками панелі інструментів.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>No balloon-tooltips</source>
@@ -651,7 +651,7 @@ p, li { white-space: pre-wrap; }
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Тут Ви можете обрати Вашу роль. Змінюйте цей параметр, лише якщо Ви розумієте що робите. У випадку неправильного вибору Ви не зможете отримати доступ до будь-яких клієнтів до того часу, коли Ви повернетеся до Вашої попередньої ролі.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Тут ви можете вибрати вашу роль. Змінюйте цей параметр, лише якщо ви розумієте, що робите. У випадку неправильного вибору ви не зможете отримати доступ до будь-яких клієнтів до того часу, коли ви повернетеся до вашої попередньої ролі.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Teacher</source>
@@ -689,7 +689,7 @@ p, li { white-space: pre-wrap; }
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Тут Ви можете визначити дію, яку буде виконано, якщо Ви двічі клацнете по віконечку клієнта.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Тут ви можете визначити дію, яку буде виконано, якщо Ви двічі клацнете по віконечку клієнта.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Remote control</source>
@@ -701,7 +701,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;Please note, that some changes won&apos;t take effect until you restart iTALC.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;Будь ласка, зауважте, що деякі зміни не набудуть чинності доки Ви не перезапустите iTALC.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;Будь ласка, зауважте, що деякі зміни не набудуть чинності, доки ви не перезапустите iTALC.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Do not show texts on toolbar-buttons&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
@@ -720,7 +720,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>In this workspace you can customize iTALC to fit your needs.</source>
-        <translation>У цьому робочому просторі Ви можете налаштувати iTALC для Ваших потреб.</translation>
+        <translation>У цьому робочому просторі ви можете налаштувати iTALC для ваших потреб.</translation>
     </message>
 </context>
 <context>
@@ -746,7 +746,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Somebody at host %1 tries to access your screen. Do you want to grant him/her access?</source>
-        <translation>Хтось за комп’ютером %1 намагається отримати доступ до зображення з Вашого екрану. Чи бажаєте Ви надати йому або їй такий доступ?</translation>
+        <translation>Хтось за комп’ютером %1 намагається отримати доступ до зображення з вашого екрана. Чи бажаєте ви надати йому або їй такий доступ?</translation>
     </message>
     <message>
         <source>Never for this session</source>
@@ -773,18 +773,18 @@ p, li { white-space: pre-wrap; }
     <name>ivsConnection</name>
     <message>
         <source>Snapshot</source>
-        <translation>Знімок екрану</translation>
+        <translation>Знімок екрана</translation>
     </message>
     <message>
         <source>Could not take a snapshot as directory %1 doesn&apos;t exist and couldn&apos;t be created.</source>
-        <translation>Неможливо зробити знімок екрану, оскільки теки %1 не існує або її неможливо створити.</translation>
+        <translation>Неможливо зробити знімок екрана, оскільки каталогу %1 не існує або його не вдалося створити.</translation>
     </message>
 </context>
 <context>
     <name>lockWidget</name>
     <message>
         <source>screen lock</source>
-        <translation>блокування екрану</translation>
+        <translation>блокування екрана</translation>
     </message>
 </context>
 <context>
@@ -799,7 +799,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Could not read/write or create directory %1! For running iTALC, make sure you&apos;re permitted to create or write this directory.</source>
-        <translation>Неможливо провести читання/запис або створити теку %1! Щоб запустити iTALC, переконайтеся, що Ви можете створити теку або провести запис до цієї теки.</translation>
+        <translation>Неможливо провести читання/запис або створити теку %1! Щоб запустити iTALC, переконайтеся, що ви можете створити теку або провести запис до цієї теки.</translation>
     </message>
     <message>
         <source>Actions</source>
@@ -815,7 +815,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Click this button to open a menu where you can choose the active classroom.</source>
-        <translation>Натисніть на цю кнопку, щоб відкрити меню, де Ви зможете обрати активний клас.</translation>
+        <translation>Натисніть на цю кнопку, щоб відкрити меню, за допомогою якого ви зможете обрати активний клас.</translation>
     </message>
     <message>
         <source>Click on this button, to switch between classrooms.</source>
@@ -831,7 +831,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>This is the default mode in iTALC and allows you to have an overview over all visible computers. Also click on this button for unlocking locked workstations or for leaving demo-mode.</source>
-        <translation>Це типовий режим iTALC, від дозволяє Вам вести спостереження за всіма видимими комп’ютерами. Також цю кнопку можна використовувати для розблокування заблокованих робочих станцій або для виходу з режиму демо.</translation>
+        <translation>Це типовий режим iTALC, від дозволяє вам вести спостереження за всіма видимими комп’ютерами. Також цю кнопку можна використовувати для розблокування заблокованих робочих станцій або для виходу з режиму демо.</translation>
     </message>
     <message>
         <source>Fullscreen demo</source>
@@ -839,7 +839,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>In this mode your screen is being displayed on all shown computers. Furthermore the users aren&apos;t able to do something else as all input devices are locked in this mode.</source>
-        <translation>У цьому режимі зображення з Вашого екрану відображатиметься на всіх видимих комп’ютерах. Крім того, користувачі не зможуть виконувати інших дій, оскільки у цьому режимі всі пристрої введення буде заблоковано.</translation>
+        <translation>У цьому режимі зображення з вашого екрана буде показано на всіх видимих комп’ютерах. Крім того, користувачі не зможуть виконувати інших дій, оскільки у цьому режимі всі пристрої введення буде заблоковано.</translation>
     </message>
     <message>
         <source>Window demo</source>
@@ -847,7 +847,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>In this mode your screen being displayed in a window on all shown computers. The users are able to switch to other windows and thus can continue to work.</source>
-        <translation>У цьому режимі зображення з Вашого екрану відображатиметься у вікні на всіх видимих комп’ютерах. Користувачі матимуть змогу перемикатися на інші вікна і, таким чином, продовжувати роботу.</translation>
+        <translation>У цьому режимі зображення з вашого екрана буде показано у вікні на всіх видимих комп’ютерах. Користувачі матимуть змогу перемикатися на інші вікна і, таким чином, продовжувати роботу.</translation>
     </message>
     <message>
         <source>Lock all</source>
@@ -863,7 +863,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>To have all user&apos;s full attention you can lock their desktops using this button. In this mode all input devices are locked and the screen is black.</source>
-        <translation>Щоб володіти увагою учнів, Ви можете заблокувати їхні стільниці за допомогою цієї кнопки. У цьому режимі всі пристрої вводу буде заблоковано, а екран стане чорним.</translation>
+        <translation>Щоб заволодіти увагою учнів, ви можете заблокувати їхні стільниці за допомогою цієї кнопки. У цьому режимі всі пристрої вводу буде заблоковано, а екран стане чорним.</translation>
     </message>
     <message>
         <source>Text message</source>
@@ -887,7 +887,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Click this button to power on all visible computers. This way you do not have to turn on each computer by hand.</source>
-        <translation>Натисніть на цю кнопку, щоб увімкнути всі видимі комп’ютери. Таким чином, Вам не потрібно буде вмикати кожен комп’ютер вручну.</translation>
+        <translation>Натисніть на цю кнопку, щоб увімкнути всі видимі комп’ютери. Таким чином, вам не потрібно буде вмикати кожен комп’ютер вручну.</translation>
     </message>
     <message>
         <source>Power down</source>
@@ -899,7 +899,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>To power down all shown computers (e.g. after the lesson has finished) you can click this button.</source>
-        <translation>Щоб вимкнути комп’ютери (наприклад, по завершенню уроку), Ви можете натиснути цю кнопку.</translation>
+        <translation>Щоб вимкнути комп’ютери (наприклад, по завершенню уроку), ви можете натиснути цю кнопку.</translation>
     </message>
     <message>
         <source>Logon</source>
@@ -911,7 +911,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>After clicking this button you can enter a username and password to log on the according user on all visible computers.</source>
-        <translation>Після натискання цієї кнопки Ви можете ввести ім’я користувача і пароль, щоб почати роботу цього користувача на всіх видимих комп’ютерах.</translation>
+        <translation>Після натискання цієї кнопки ви можете ввести ім’я користувача і пароль, щоб почати роботу цього користувача на всіх видимих комп’ютерах.</translation>
     </message>
     <message>
         <source>Adjust/align</source>
@@ -923,7 +923,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>When clicking this button the biggest possible size for the client-windows is adjusted. Furthermore all windows are aligned.</source>
-        <translation>Якщо Ви натиснете на цю кнопку, буде обрано найбільший можливий розмір вікна клієнта. Крім того, всі вікна буде вирівняно.</translation>
+        <translation>Якщо ви натиснете на цю кнопку, буде обрано найбільший можливий розмір вікна клієнта. Крім того, всі вікна буде вирівняно.</translation>
     </message>
     <message>
         <source>Auto view</source>
@@ -935,7 +935,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>When clicking this button all visible windows are re-arranged and adjusted.</source>
-        <translation>Якщо Ви натиснете на цю кнопку, всі видимі вікна буде перевпорядковано з підбиранням розміру.</translation>
+        <translation>Якщо ви натиснете на цю кнопку, всі видимі вікна буде перевпорядковано з підбиранням розміру.</translation>
     </message>
     <message>
         <source>No valid keys found</source>
@@ -944,8 +944,8 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>No authentication-keys were found or your old ones were broken. Please create a new key-pair using ICA (see documentation at http://italc.sf.net/wiki/index.php?title=Installation).
 Otherwise you won&apos;t be able to access computers using iTALC.</source>
-        <translation>Не знайдено ключів автентифікації або Ваші попередні ключі було пошкоджено. Будь ласка, створіть нові пари ключів за допомогою ICA (див. документацію на сайті http://italc.sf.net/wiki/index.php?title=Installation).
-Якщо Ви цього не зробите, Ви не зможете отримати доступ до комп’ютерів за допомогою iTALC.</translation>
+        <translation>Не знайдено ключів автентифікації або ваші попередні ключі було пошкоджено. Будь ласка, створіть нові пари ключів за допомогою ICA (див. документацію на сайті http://italc.sf.net/wiki/index.php?title=Installation).
+Якщо ви цього не зробите, ви не зможете отримати доступ до комп’ютерів за допомогою iTALC.</translation>
     </message>
     <message>
         <source>iTALC service not running</source>
@@ -953,7 +953,7 @@ Otherwise you won&apos;t be able to access computers using iTALC.</source>
     </message>
     <message>
         <source>There seems to be no iTALC service running on this computer or the authentication-keys aren&apos;t set up properly. The service is required for running iTALC. Contact your administrator for solving this problem.</source>
-        <translation>Здається, на цьому комп’ютері не запущено службу iTALC або ключі автентифікації встановлено неправильно. Для використання iTALC потрібен запуск служби. Зв’яжіться з Вашим адміністратором, щоб розв’язати цю проблему.</translation>
+        <translation>Здається, на цьому комп’ютері не запущено службу iTALC або ключі автентифікації встановлено неправильно. Для використання iTALC потрібен запуск служби. Зв’яжіться з вашим адміністратором, щоб розв’язати цю проблему.</translation>
     </message>
     <message>
         <source>Fullscreen Demo</source>
@@ -977,7 +977,7 @@ Otherwise you won&apos;t be able to access computers using iTALC.</source>
     </message>
     <message>
         <source>If you need to support someone at a certain computer you can click this button and enter the according hostname or IP afterwards.</source>
-        <translation>Якщо Вам потрібно супроводжувати чиїсь дії на одному з комп’ютерів, Ви можете натиснути цю кнопку і ввести назву вузла або IP-адресу відповідного комп’ютера.</translation>
+        <translation>Якщо вам потрібно супроводжувати чиїсь дії на одному з комп’ютерів, ви можете натиснути цю кнопку і ввести назву вузла або IP-адресу відповідного комп’ютера.</translation>
     </message>
     <message>
         <source>iTALC Master Control</source>
@@ -1013,15 +1013,15 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Here you see the working-bar which contains several buttons. Each button is connected to a workspace. Just take a look at the available workspaces by clicking on the corresponding button.</source>
-        <translation>Тут Ви бачите робочу панель, що містить декілька кнопок. Кожну кнопку з’єднано з робочим простором. Просто понатискайте кнопки, щоб побачити всі доступні робочі простори.</translation>
+        <translation>Тут ви бачите робочу панель, що містить декілька кнопок. Кожну кнопку з’єднано з робочим простором. Просто понатискайте кнопки, щоб побачити всі доступні робочі простори.</translation>
     </message>
     <message>
         <source>The snapshot-workspace is a very useful tool. It let&apos;s you manage the snapshots you made.</source>
-        <translation>Робочий простір знімків екрану є дуже корисним інструментом. Від дозволяє керувати зробленими Вами знімками екрану.</translation>
+        <translation>Робочий простір знімків екрана є дуже корисним інструментом. Від надає змогу керувати зробленими вами знімками екранів.</translation>
     </message>
     <message>
         <source>Of course you can configure iTALC. This is usually done using the configuration-workspace.</source>
-        <translation>Звичайно, Ви можете налаштувати iTALC. Це можна зробити за допомогою робочого простору налаштування.</translation>
+        <translation>Звичайно, ви можете налаштувати iTALC. Це можна зробити за допомогою робочого простору налаштування.</translation>
     </message>
     <message>
         <source>About iTALC</source>
@@ -1029,7 +1029,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Using the classroom-manager you can manage your classrooms and computers. You can also see which users are logged in.</source>
-        <translation>За допомогою керування класом Ви можете керувати комп’ютерами і класами. Також Ви можете переглядати список користувачів, що працюють у системі.</translation>
+        <translation>За допомогою керування класом Ви можете керувати комп’ютерами і класами. Також ви можете переглядати список користувачів, що працюють у системі.</translation>
     </message>
 </context>
 <context>
@@ -1047,22 +1047,22 @@ p, li { white-space: pre-wrap; }
     <name>pageFinished</name>
     <message>
         <source>iTALC is now ready to run!</source>
-        <translation type="unfinished"></translation>
+        <translation>iTALC готовий до запуску!</translation>
     </message>
     <message>
         <source>iTALC is now completely installed and set up. If you installed the master application you can start it now.</source>
-        <translation type="unfinished"></translation>
+        <translation>Встановлення iTALC повністю завершено, програму налаштовано. Якщо вами було встановлено основну програму, тепер її можна запустити.</translation>
     </message>
     <message>
         <source>Save key setup settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Зберегти ключові параметри налаштування</translation>
     </message>
 </context>
 <context>
     <name>pageKeyDirs</name>
     <message>
         <source>Key directories</source>
-        <translation type="unfinished"></translation>
+        <translation>Каталоги ключів</translation>
     </message>
     <message>
         <source>The newly created or imported key(s) need to be installed somewhere. It&apos;s recommended to leave the suggested directories.</source>
@@ -1078,7 +1078,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>You can choose a directory in which to export the public key, e.g. an USB drive or a network share.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ви можете вибрати каталог, до якого буде експортовано відкритий ключ, наприклад каталог на USB-диску або мережевому ресурсі спільного використання.</translation>
     </message>
     <message>
         <source>Export private key too</source>
@@ -1089,17 +1089,19 @@ p, li { white-space: pre-wrap; }
     <name>pageSecurityOptions</name>
     <message>
         <source>Security options</source>
-        <translation type="unfinished"></translation>
+        <translation>Параметри безпеки</translation>
     </message>
     <message>
         <source>iTALC has a sophisticated security-concept for preventing unauthorized access to computers having the iTALC client software installed.
 
 Therefore you either have to create a new key pair or import the public key created during the iTALC installation on the master computer.</source>
-        <translation type="unfinished"></translation>
+        <translation>У iTALC передбачено складну систему запобігання неуповноваженому доступу до комп’ютерів зі встановленою клієнтською частиною iTALC.
+
+Саме тому вам слід або створити нову пару ключів, або імпортувати відкритий ключ, створений на основному комп’ютері iTALC прід час встановлення.</translation>
     </message>
     <message>
         <source>Create a new key pair (only on master computer)</source>
-        <translation type="unfinished"></translation>
+        <translation>Створити нову пару ключів (лише на основному комп’ютері)</translation>
     </message>
     <message>
         <source>Import public key of master computer</source>
@@ -1111,20 +1113,22 @@ Therefore you either have to create a new key pair or import the public key crea
     </message>
     <message>
         <source>Keep all keys (only when updating existing installation!)</source>
-        <translation>Зберегти всі ключі (тільки якщо Ви оновлюєте програму!)</translation>
+        <translation>Зберегти всі ключі (тільки якщо ви оновлюєте програму!)</translation>
     </message>
 </context>
 <context>
     <name>pageWelcome</name>
     <message>
         <source>Welcome to iTALC</source>
-        <translation type="unfinished"></translation>
+        <translation>Вітаємо у iTALC</translation>
     </message>
     <message>
         <source>This tool will guide you through the process of setting up authentication keys for your iTALC environment.
 
 Click &apos;Next&apos; to continue.</source>
-        <translation type="unfinished"></translation>
+        <translation>За допомогою цієї програми ви зможете налаштувати ключі розпізнавання для вашого середовища iTALC.
+
+Щоб продовжити роботу, натисніть кнопку «Далі».</translation>
     </message>
 </context>
 <context>
@@ -1162,7 +1166,7 @@ Click &apos;Next&apos; to continue.</source>
     </message>
     <message>
         <source>Snapshot</source>
-        <translation>Знімок екрану</translation>
+        <translation>Знімок екрана</translation>
     </message>
     <message>
         <source>Fullscreen</source>
@@ -1250,7 +1254,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Are you sure want to quit setup? iTALC is not set up completely yet!</source>
-        <translation type="unfinished"></translation>
+        <translation>Ви справді бажаєте завершити роботу програми налаштування? Налаштування iTALC ще не завершено!</translation>
     </message>
     <message>
         <source>Next</source>
@@ -1266,11 +1270,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>File does not exist</source>
-        <translation type="unfinished"></translation>
+        <translation>Файла не існує</translation>
     </message>
     <message>
         <source>The file %1 could not be found. Please check this and try again.</source>
-        <translation type="unfinished"></translation>
+        <translation>Не вдалося знайти файл %1. Будь ласка, виправте помилку, а потім повторіть спробу.</translation>
     </message>
 </context>
 <context>
@@ -1292,18 +1296,18 @@ p, li { white-space: pre-wrap; }
     <name>setupWizardPageSecurityOptions</name>
     <message>
         <source>Choose directory for key import</source>
-        <translation type="unfinished"></translation>
+        <translation>Виберіть каталог для імпорту ключа</translation>
     </message>
 </context>
 <context>
     <name>snapshotList</name>
     <message>
         <source>Snapshots</source>
-        <translation>Знімки екрану</translation>
+        <translation>Знімки екранів</translation>
     </message>
     <message>
         <source>Simply manage the snapshots you made using this workspace.</source>
-        <translation>Ви можете легко керувати зробленими Вами знімками екрану за допомогою цього робочого простору.</translation>
+        <translation>Ви можете легко керувати зробленими вами знімками екранів за допомогою цього робочого простору.</translation>
     </message>
 </context>
 <context>
@@ -1316,7 +1320,7 @@ p, li { white-space: pre-wrap; }
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Тут показано список всіх зроблених Вами знімків екрану. Ви можете робити знімки екрану, вибираючи відповідний пункт з контекстного меню вікна клієнта. Керувати цими знімками екрану можна за допомогою кнопок, розміщених нижче.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Тут показано список всіх зроблених вами знімків екрана. Ви можете робити знімки екрана, вибираючи відповідний пункт з контекстного меню вікна клієнта. Керувати цими знімками екрана можна за допомогою кнопок, розміщених нижче.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>User:</source>
@@ -1412,7 +1416,7 @@ p, li { white-space: pre-wrap; }
     <name>wizard</name>
     <message>
         <source>iTALC setup tool</source>
-        <translation type="unfinished"></translation>
+        <translation>Програма налаштування iTALC</translation>
     </message>
     <message>
         <source>Cancel</source>
