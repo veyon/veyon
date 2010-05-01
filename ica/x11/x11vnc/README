@@ -2,7 +2,7 @@
 Copyright (C) 2002-2010 Karl J. Runge <runge@karlrunge.com>
 All rights reserved.
 
-x11vnc README file                         Date: Fri Apr 23 00:36:17 EDT 2010
+x11vnc README file                         Date: Fri Apr 30 00:43:58 EDT 2010
 
 The following information is taken from these URLs:
 
@@ -34,7 +34,8 @@ x11vnc: a VNC server for real X displays
    advertising; and TightVNC and UltraVNC file-transfer. It has also been
    extended to work with non-X devices: natively on Mac OS X Aqua/Quartz,
    webcams and TV tuner capture devices, and embedded Linux systems such
-   as Qtopia Core. More features are described here.
+   as Qtopia Core. Full IPv6 support is provided. More features are
+   described here.
 
    It also provides an encrypted Terminal Services mode (-create, -svc,
    or -xdmsvc options) based on Unix usernames and Unix passwords where
@@ -56,14 +57,10 @@ x11vnc: a VNC server for real X displays
    to many problems; and interesting applications, but nevertheless
    please feel free to contact me if you have problems or questions (and
    if I save you time or expense by giving you some of my time, please
-   consider a PayPal Donation.)
-
-   Do check the FAQ and this page first; I realize the pages are massive,
-   but you can often use your browser's find-in-page search action using
-   a keyword to find the answer to your problem or question.
-
-   Please help test the performance speedup feature using viewer-side
-   pixel caching "ncache".
+   consider a PayPal Donation.) Do check the FAQ and this page first; I
+   realize the pages are massive, but you can often use your browser's
+   find-in-page search action using a keyword to find the answer to your
+   problem or question.
 
    SSVNC:  An x11vnc side-project provides an Enhanced TightVNC Viewer
    package (SSVNC) for Unix, Windows, and Mac OS X with automatic SSL
@@ -948,14 +945,16 @@ make
        from being downloaded successfully in single-port HTTPS/VNC inetd
        mode. The env. var. X11VNC_HTTPS_DOWNLOAD_WAIT_TIME can be used to
        adjust for how many seconds a -inetd or -https httpd download is
-       waited for (default 15 seconds.)
-     * The TightVNC sercurity type (TightVNC features enabler) now works
+       waited for (default 15 seconds.) The applet will now autodetect
+       x11vnc and use GET=1 for faster connecting. Many other
+       improvements and fixes.
+     * The TightVNC security type (TightVNC features enabler) now works
        for RFB version 3.8.
      * The X property X11VNC_TRAP_XRANDR can be set on a desktop to force
        x11vnc to use the -xrandr screen size change trapping code.
      * New remote control query options: pointer_x, pointer_y,
-       pointer_same, and pointer_root. A demo script using them
-       misc/panner.pl is provided.
+       pointer_same, pointer_root, and pointer_mask. A demo script using
+       them misc/panner.pl is provided.
      * The -sslScripts option prints out the SSL certificate management
        scripts.
 
@@ -1567,7 +1566,9 @@ LAY
      * Using -threads can expose some bugs/crashes in libvncserver.
 
    Please feel free to contact me if you have any questions, problems, or
-   comments about x11vnc, etc.
+   comments about x11vnc, etc. Please be polite, thorough, and not
+   demanding (sadly, the number of people contacting me that are rude and
+   demanding is increasing dramatically.)
    Also, some people ask if they can make a donation, see this link for
    that.
 	
@@ -2234,8 +2235,8 @@ libssl.so      libcrypto.so    libcrypt.so
 
    This is most likely due to you not having a working build environment
    for the XTEST client library libXtst.so. The library is probably
-   present on your system, but the package installing the development
-   header file is missing.
+   present on your system, but the package installing the build header
+   file is missing.
 
    If you were watching carefully while configure was running you would
    have seen:
@@ -12078,7 +12079,7 @@ x11vnc: a VNC server for real X displays
    Here are all of x11vnc command line options:
 % x11vnc -opts      (see below for -help long descriptions)
 
-x11vnc: allow VNC connections to real X11 displays. 0.9.10 lastmod: 2010-04-22
+x11vnc: allow VNC connections to real X11 displays. 0.9.10 lastmod: 2010-04-28
 
 x11vnc options:
   -display disp            -auth file               -N                     
@@ -12208,7 +12209,7 @@ libvncserver-tight-extension options:
 
 % x11vnc -help
 
-x11vnc: allow VNC connections to real X11 displays. 0.9.10 lastmod: 2010-04-22
+x11vnc: allow VNC connections to real X11 displays. 0.9.10 lastmod: 2010-04-28
 
 (type "x11vnc -opts" to just list the options.)
 
@@ -12785,6 +12786,28 @@ Options:
 
                        See also the -proxy option below for additional ways
                        to plumb reverse connections.
+
+                       Reverse SSL: using -connect in -ssl mode makes x11vnc
+                       act as an SSL client (initiates SSL connection) rather
+                       than an SSL server.  The idea is x11vnc might be
+                       connecting to stunnel on the viewer side with the
+                       viewer in listening mode.  If you do not want this
+                       behavior, use -env X11VNC_DISABLE_SSL_CLIENT_MODE=1.
+                       With this the viewer side can act as the SSL client
+                       as it normally does for forward connections.
+
+                       Reverse SSL Repeater mode:  This will work, but note
+                       that if the VNC Client does any sort of a 'Fetch Cert'
+                       action before connecting, then the Repeater will
+                       likely drop the connection and both sides will need
+                       to restart.  Consider the use of -connect_or_exit
+                       and -loop300,2 to have x11vnc reconnect once to the
+                       repeater after the fetch.  You will probably also want
+                       to supply -sslonly to avoid x11vnc thinking the delay
+                       in response means the connection is VeNCrypt.  The env
+                       var X11VNC_DISABLE_SSL_CLIENT_MODE=1 discussed above
+                       may also be useful (i.e. the viewer can do a forward
+                       connection as it normally does.)
 
                        IPv6: as of x11vnc 0.9.10 the -connect option should
                        connect to IPv6 hosts properly.  If there are problems

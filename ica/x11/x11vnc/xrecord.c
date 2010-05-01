@@ -535,12 +535,13 @@ static double xrecord_start = 0.0;
 static void record_CA(XPointer ptr, XRecordInterceptData *rec_data) {
 	xCopyAreaReq *req;
 	Window src = None, dst = None, c;
-	XWindowAttributes attr;
-	int src_x, src_y, dst_x, dst_y, rx, ry;
-	int good = 1, dx, dy, k=0, i;
+	XWindowAttributes attr, attr2;
+	int src_x, src_y, dst_x, dst_y, rx, ry, rx2, ry2;
+	int good = 1, dx = 0, dy = 0, k=0, i;
 	unsigned int w, h;
 	int dba = 0, db = debug_scroll;
 	int cache_index, next_index, valid;
+	static int must_equal = -1;
 
 	if (dba || db) {
 		if (rec_data->category == XRecordFromClient) {
@@ -584,6 +585,13 @@ if (db > 1) fprintf(stderr, "record_CA-%d\n", k++);
 	}
 if (db > 1) fprintf(stderr, "record_CA-%d\n", k++);
 
+	if (must_equal < 0) {
+		must_equal = 0;
+		if (getenv("X11VNC_SCROLL_MUST_EQUAL")) {
+			must_equal = 1;
+		}
+	}
+
 /*
 
 xterm, gnome-terminal, others.
@@ -618,25 +626,36 @@ short period of time with a painting error: two cursors, one above the other.
 	h = req->height;
 
 	if (w*h < (unsigned int) scrollcopyrect_min_area) {
+		if (db > 1) fprintf(stderr, "record_CA scroll area too small.\n");
 		good = 0;
 	} else if (!src || !dst) {
-		good = 0;
-	} else if (src != dst) {
+		if (db > 1) fprintf(stderr, "record_CA null src or dst.\n");
 		good = 0;
 	} else if (scr_ev_cnt >= SCR_EV_MAX) {
+		if (db > 1) fprintf(stderr, "record_CA null too many scr events.\n");
+		good = 0;
+	} else if (must_equal && src != dst) {
+		if (db > 1) fprintf(stderr, "record_CA src not equal dst.\n");
 		good = 0;
 	}
 
-	dx = dst_x - src_x;
-	dy = dst_y - src_y;
+	if (src == dst) {
+		dx = dst_x - src_x;
+		dy = dst_y - src_y;
 
-	if (dx != 0 && dy != 0) {
-		good = 0;
+		if (dx != 0 && dy != 0) {
+			good = 0;
+		}
 	}
+
+if (!good && (dba || db > 1)) fprintf(stderr, "record_CA-x src_x: %d src_y: %d "
+	"dst_x: %d dst_y: %d w: %d h: %d scr_ev_cnt: %d 0x%lx/0x%lx\n",
+	src_x, src_y, dst_x, dst_y, w, h, scr_ev_cnt, src, dst);
 
 	if (! good) {
 		return;
 	}
+
 if (db > 1) fprintf(stderr, "record_CA-%d\n", k++);
 
 	/*
@@ -687,12 +706,82 @@ if (db > 1) fprintf(stderr, "record_CA-%d\n", k++);
 	}
 
 	if (! valid) {
+		if (db > 1) fprintf(stderr, "record_CA not valid-1.\n");
 		return;
 	}
 if (db > 1) fprintf(stderr, "record_CA-%d\n", k++);
 
 	if (attr.map_state != IsViewable) {
+		if (db > 1) fprintf(stderr, "record_CA not viewable-1.\n");
 		return;
+	}
+
+	/* recent gdk/gtk windows use different src and dst. for compositing? */
+	if (src != dst) {
+	    if (lookup_attr_cache(dst, &cache_index, &next_index)) {
+		i = cache_index;
+		attr2.x = scr_attr_cache[i].x;
+		attr2.y = scr_attr_cache[i].y;
+		attr2.width = scr_attr_cache[i].width;
+		attr2.height = scr_attr_cache[i].height;
+		attr2.map_state = scr_attr_cache[i].map_state;
+		rx2 = scr_attr_cache[i].rx;
+		ry2 = scr_attr_cache[i].ry;
+		valid = scr_attr_cache[i].valid;
+
+	    } else {
+		valid = valid_window(dst, &attr2, 1);
+
+		if (valid) {
+			if (!xtranslate(dst, rootwin, 0, 0, &rx2, &ry2, &c, 1)) {
+				valid = 0;
+			}
+		}
+		if (next_index >= 0) {
+			i = next_index;
+			scr_attr_cache[i].win = dst;
+			scr_attr_cache[i].fetched = 1;
+			scr_attr_cache[i].valid = valid;
+			scr_attr_cache[i].time = dnow();
+			if (valid) {
+				scr_attr_cache[i].x = attr2.x;
+				scr_attr_cache[i].y = attr2.y;
+				scr_attr_cache[i].width = attr2.width;
+				scr_attr_cache[i].height = attr2.height;
+				scr_attr_cache[i].border_width = attr2.border_width;
+				scr_attr_cache[i].depth = attr2.depth;
+				scr_attr_cache[i].class = attr2.class;
+				scr_attr_cache[i].backing_store =
+				    attr2.backing_store;
+				scr_attr_cache[i].map_state = attr2.map_state;
+
+				scr_attr_cache[i].rx = rx2;
+				scr_attr_cache[i].ry = ry2;
+			}
+		}
+	    }
+
+if (dba || db > 1) fprintf(stderr, "record_CA-? src_x: %d src_y: %d "
+	"dst_x: %d dst_y: %d w: %d h: %d scr_ev_cnt: %d 0x%lx/0x%lx\n",
+	src_x, src_y, dst_x, dst_y, w, h, scr_ev_cnt, src, dst);
+
+		if (! valid) {
+			if (db > 1) fprintf(stderr, "record_CA not valid-2.\n");
+			return;
+		}
+		if (attr2.map_state != IsViewable) {
+			if (db > 1) fprintf(stderr, "record_CA not viewable-2.\n");
+			return;
+		}
+		dst_x = dst_x - (rx - rx2);
+		dst_y = dst_y - (ry - ry2);
+
+		dx = dst_x - src_x;
+		dy = dst_y - src_y;
+
+		if (dx != 0 && dy != 0) {
+			return;
+		}
 	}
 
 
@@ -1546,14 +1635,30 @@ void check_xrecord_reset(int force) {
 #endif
 }
 
-#define RECORD_ERROR_MSG \
+#define RECORD_ERROR_MSG(tag) \
 	if (! quiet) { \
-		rfbLog("trapped RECORD XError: %s %d/%d/%d (0x%lx)\n", \
-		    xerror_string(trapped_record_xerror_event), \
-		    (int) trapped_record_xerror_event->error_code, \
-		    (int) trapped_record_xerror_event->request_code, \
-		    (int) trapped_record_xerror_event->minor_code, \
-		    (int) trapped_record_xerror_event->resourceid); \
+		static int cnt = 0; \
+		static time_t last = 0; \
+		int show = 0; \
+		cnt++; \
+		if (debug_scroll || cnt < 20) { \
+			show = 1; \
+		} else if (cnt == 20) { \
+			last = time(NULL); \
+			rfbLog("disabling RECORD XError messages for 600s\n"); \
+			show = 1; \
+		} else if (time(NULL) > last + 600) { \
+			cnt = 0; \
+			show = 1; \
+		} \
+		if (show) { \
+			rfbLog("trapped RECORD XError: %s %s %d/%d/%d (0x%lx)\n", \
+			    tag, xerror_string(trapped_record_xerror_event), \
+			    (int) trapped_record_xerror_event->error_code, \
+			    (int) trapped_record_xerror_event->request_code, \
+			    (int) trapped_record_xerror_event->minor_code, \
+			    (int) trapped_record_xerror_event->resourceid); \
+		} \
 	}
 
 void xrecord_watch(int start, int setby) {
@@ -1659,7 +1764,7 @@ if (db > 1) fprintf(stderr, "=== shutdown-scroll 0x%lx\n", rc_scroll);
 			XRecordProcessReplies(rdpy_data);
 
 			if (trapped_record_xerror) {
-				RECORD_ERROR_MSG;
+				RECORD_ERROR_MSG("shutdown");
 				last_error = now;
 			}
 
@@ -1683,7 +1788,7 @@ if (db > 1) fprintf(stderr, "=== disab-scroll 0x%lx 0x%lx\n", rc_scroll, rcs_scr
 				XRecordProcessReplies(rdpy_data);
 
 				if (trapped_record_xerror) {
-					RECORD_ERROR_MSG;
+					RECORD_ERROR_MSG("disable");
 
 					shutdown_record_context(rc_scroll,
 					    0, reopen_dpys);
@@ -1906,7 +2011,7 @@ if (db > 1) fprintf(stderr, "=-=   reg-scroll 0x%lx 0x%lx\n", rc_scroll, rcs_scr
 
 if (db) fprintf(stderr, "rc_scroll: 0x%lx\n", rc_scroll);
 	if (trapped_record_xerror) {
-		RECORD_ERROR_MSG;
+		RECORD_ERROR_MSG("register");
 	}
 
 	if (! rc_scroll) {
@@ -1955,7 +2060,7 @@ if (db) fprintf(stderr, "rc_scroll: 0x%lx\n", rc_scroll);
 			rfbLog("failed to enable RECORD context "
 			    "rc_scroll: 0x%lx rc: %d\n", rc_scroll, rc);
 			if (trapped_record_xerror) {
-				RECORD_ERROR_MSG;
+				RECORD_ERROR_MSG("enable-failed");
 			}
 		}
 		shutdown_record_context(rc_scroll, 0, reopen_dpys);

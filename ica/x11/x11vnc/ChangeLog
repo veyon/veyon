@@ -1,3 +1,12 @@
+2010-05-01  Karl Runge <runge@karlrunge.com>
+	* x11vnc: X11VNC_DISABLE_SSL_CLIENT_MODE option to disable SSL
+	  client role in reverse connections.  Improvements to logging in
+	  ultravnc_repeater, ULTRAVNC_REPEATER_NO_RFB option.  Increase
+	  SSL timeout and print message if 'repeater' mode is detected for
+	  reverse SSL connection.  Fix RECORD scroll XCopyArea detection
+	  with recent gtk/gdk library; set X11VNC_SCROLL_MUST_EQUAL
+	  to disable.  Limit logging of RECORD error messages.
+
 2010-04-25  Karl Runge <runge@karlrunge.com>
 	* x11vnc: incorporate new ultravnc_dsm_helper.c, add pointer_mask
 	  remote control query.  Cut openssl default -ping delay.

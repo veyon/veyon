@@ -2,7 +2,7 @@
 .TH X11VNC "1" "April 2010" "x11vnc " "User Commands"
 .SH NAME
 x11vnc - allow VNC connections to real X11 displays
-         version: 0.9.10, lastmod: 2010-04-22
+         version: 0.9.10, lastmod: 2010-04-28
 .SH SYNOPSIS
 .B x11vnc
 [OPTION]...
@@ -696,6 +696,28 @@ newline and carriage return.  "\\c" is expanded to
 .IP
 See also the \fB-proxy\fR option below for additional ways
 to plumb reverse connections.
+.IP
+Reverse SSL: using \fB-connect\fR in \fB-ssl\fR mode makes x11vnc
+act as an SSL client (initiates SSL connection) rather
+than an SSL server.  The idea is x11vnc might be
+connecting to stunnel on the viewer side with the
+viewer in listening mode.  If you do not want this
+behavior, use \fB-env\fR X11VNC_DISABLE_SSL_CLIENT_MODE=1.
+With this the viewer side can act as the SSL client
+as it normally does for forward connections.
+.IP
+Reverse SSL Repeater mode:  This will work, but note
+that if the VNC Client does any sort of a 'Fetch Cert'
+action before connecting, then the Repeater will
+likely drop the connection and both sides will need
+to restart.  Consider the use of \fB-connect_or_exit\fR
+and \fB-loop300,2\fR to have x11vnc reconnect once to the
+repeater after the fetch.  You will probably also want
+to supply \fB-sslonly\fR to avoid x11vnc thinking the delay
+in response means the connection is VeNCrypt.  The env
+var X11VNC_DISABLE_SSL_CLIENT_MODE=1 discussed above
+may also be useful (i.e. the viewer can do a forward
+connection as it normally does.)
 .IP
 IPv6: as of x11vnc 0.9.10 the \fB-connect\fR option should
 connect to IPv6 hosts properly.  If there are problems
