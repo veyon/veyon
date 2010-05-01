@@ -11,12 +11,6 @@ noinst_PROGRAMS = setup
 %.uic: %.ui
 	$(UIC) -o $@ $<
 
-%.ts: 
-	$(LUPDATE) $(srcdir)/src/*.cpp $(srcdir)/dialogs/*.ui -ts $(srcdir)/resources/$@ -locations none -no-obsolete
-	
-%.qm: %.ts
-	$(LRELEASE) $(srcdir)/resources/$< -qm $(srcdir)/resources/$@
-
 setup_MOC =	./src/dialogs.moc
 setup_UIC =	./dialogs/wizard.uic			\
 		./dialogs/page_welcome.uic		\
@@ -26,8 +20,6 @@ setup_UIC =	./dialogs/wizard.uic			\
 
 BUILT_SOURCES = $(setup_MOC) $(setup_UIC) ./setup_qrc.cpp
 
-
-setup_TRANSLATIONS = $(wildcard $(srcdir)/resources/*.qm $(srcdir)/resources/*.ts)
 
 
 ./setup_qrc.cpp: setup.qrc
@@ -39,7 +31,6 @@ setup_SOURCES = $(srcdir)/src/main.cpp				\
 		$(srcdir)/src/dialogs.h				\
 		$(srcdir)/setup_qrc.cpp				\
 		$(srcdir)/setup.qrc				\
-		$(setup_TRANSLATIONS)				\
 		$(wildcard $(srcdir)/dialogs/*.ui)		\
 		$(wildcard $(srcdir)/resources/*.png)
 

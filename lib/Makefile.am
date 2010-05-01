@@ -3,9 +3,16 @@ AUTOMAKE_OPTIONS = foreign
 %.moc: $(srcdir)/%.h
 	$(MOC) -o $@ $<
 
-
 %.ts: 
-	$(LUPDATE) $(wildcard $(srcdir)/src/*.cpp) -ts $(srcdir)/resources/$@
+	$(LUPDATE)							\
+		$(srcdir)/src/*.cpp				\
+		$(srcdir)/../ica/src/*.cpp		\
+		$(srcdir)/../ima/src/*.cpp		\
+		$(srcdir)/../ima/dialogs/*.ui	\
+		$(srcdir)/../setup/src/*.cpp	\
+		$(srcdir)/../setup/dialogs/*.ui	\
+		-ts $(srcdir)/resources/$@		\
+		-locations none -no-obsolete
 
 %.qm: %.ts
 	$(LRELEASE) $(srcdir)/resources/$< -qm $(srcdir)/resources/$@
@@ -103,7 +110,7 @@ if BUILD_LINUX
 shared-lib: libitalc_core.so
 
 libitalc_core.so: libitalc_core-static.a
-	$(CXX) *.o -shared -Wl,-no-undefined -Wl,-enable-runtime-pseudo-reloc -Wl,-soname,libitalc_core.so -o $@  $(QT_LDADD) $(QT_LIB_GUI) $(LIBSSL) -lz -ljpeg
+	$(CXX) *.o -shared -Wl,-no-undefined -Wl,-soname,libitalc_core.so -o $@  $(QT_LDADD) $(QT_LIB_GUI) $(LIBSSL) -lz -ljpeg
 
 pkglib_LTLIBRARIES = libitalc_core.so
 libitalc_core_so_SOURCES =

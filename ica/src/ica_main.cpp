@@ -27,8 +27,6 @@
 #include <config.h>
 #endif
 
-#include <QtCore/QLocale>
-#include <QtCore/QTranslator>
 #include <QtGui/QApplication>
 #include <QtNetwork/QHostInfo>
 
@@ -141,19 +139,6 @@ int ICAMain( int argc, char * * argv )
 #ifdef BUILD_WIN32
 	app->setEventFilter( eventFilter );
 #endif
-
-	const QString loc = QLocale::system().name().left( 2 );
-	QTranslator core_tr;
-	core_tr.load( ":/resources/" + loc + "-core.qm" );
-	app->installTranslator( &core_tr );
-
-	QTranslator app_tr;
-	app_tr.load( ":/resources/" + loc + ".qm" );
-	app->installTranslator( &app_tr );
-
-	QTranslator qt_tr;
-	qt_tr.load( ":/resources/qt_" + loc + ".qm" );
-	app->installTranslator( &qt_tr );
 
 	localSystem::initialize();
 

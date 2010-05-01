@@ -23,8 +23,6 @@
  */
 
 #include <QtCore/QFileInfo>
-#include <QtCore/QLocale>
-#include <QtCore/QTranslator>
 #include <QtCore/QDir>
 #include <QtGui/QApplication>
 #include <QtGui/QMessageBox>
@@ -42,17 +40,6 @@ int main( int argc, char * * argv )
 	app.connect( &app, SIGNAL( lastWindowClosed() ), SLOT( quit() ) );
 
 	localSystem::initialize( NULL, "italc_setup.log" );
-
-	// load translations
-	const QString loc = QLocale::system().name().left( 2 );
-
-	QTranslator app_tr;
-	app_tr.load( ":/resources/" + loc + ".qm" );
-	app.installTranslator( &app_tr );
-
-	QTranslator qt_tr;
-	qt_tr.load( ":/resources/qt_" + loc + ".qm" );
-	app.installTranslator( &qt_tr );
 
 	QString installDir = QCoreApplication::applicationDirPath();
 	if( app.arguments().size() > 1 && QFileInfo( app.arguments()[1] ).isDir() )

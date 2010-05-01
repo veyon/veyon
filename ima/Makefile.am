@@ -10,13 +10,6 @@ bin_PROGRAMS = italc
 %.uic: %.ui
 	$(UIC) -o $@ $<
 
-%.ts: 
-	$(LUPDATE) $(srcdir)/src/*.cpp $(srcdir)/dialogs/*.ui -ts $(srcdir)/resources/$@
-	
-%.qm: %.ts
-	$(LRELEASE) $(srcdir)/resources/$< -qm $(srcdir)/resources/$@
-
-
 italc_MOC =	./src/client.moc			\
 		./src/classroom_manager.moc		\
 		./src/cmd_input_dialog.moc		\
@@ -42,8 +35,6 @@ italc_UIC =	./dialogs/client_settings.uic		\
 
 BUILT_SOURCES = $(italc_MOC) $(italc_UIC) ./italc_qrc.cpp
 
-
-italc_TRANSLATIONS = $(wildcard $(srcdir)/resources/*.qm $(srcdir)/resources/*.ts)
 
 
 ./italc_qrc.cpp: italc.qrc
@@ -84,7 +75,6 @@ italc_SOURCES = $(srcdir)/src/client.cpp			\
 		$(srcdir)/src/tool_button.h			\
 		$(srcdir)/italc_qrc.cpp				\
 		$(srcdir)/italc.qrc				\
-		$(italc_TRANSLATIONS)				\
 		$(wildcard $(srcdir)/dialogs/*.ui)		\
 		$(wildcard $(srcdir)/resources/*.png)
 

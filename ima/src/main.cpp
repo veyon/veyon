@@ -22,10 +22,7 @@
  *
  */
 
-
-#include <QtCore/QLocale>
 #include <QtCore/QModelIndex>
-#include <QtCore/QTranslator>
 #include <QtGui/QApplication>
 #include <QtGui/QSplashScreen>
 
@@ -69,36 +66,17 @@ int main( int argc, char * * argv )
 			"font-weight:bold; padding: 4px 32px 4px 20px; }" );
 #endif
 
-	// load translations
-	QString loc =  QLocale::system().name().toLower();
-	if( loc.left( 2 ) == loc.right( 2 ) )
-	{
-		loc = loc.left( 2 );
-	}
+	qRegisterMetaType<QModelIndex>( "QModelIndex" );
+	qRegisterMetaType<quint16>( "quint16" );
 
-	QTranslator app_tr;
-	app_tr.load( ":/resources/" + loc + ".qm" );
-	app.installTranslator( &app_tr );
 
-	QTranslator core_tr;
-	core_tr.load( ":/resources/" + loc + "-core.qm" );
-	app.installTranslator( &core_tr );
-
-	QTranslator qt_tr;
-	qt_tr.load( ":/resources/qt_" + loc + ".qm" );
-	app.installTranslator( &qt_tr );
-
+	localSystem::initialize();
 	if( QLocale::system().language() == QLocale::Hebrew ||
 		QLocale::system().language() == QLocale::Arabic )
 	{
 		QApplication::setLayoutDirection( Qt::RightToLeft );
 	}
 
-	qRegisterMetaType<QModelIndex>( "QModelIndex" );
-	qRegisterMetaType<quint16>( "quint16" );
-
-
-	localSystem::initialize();
 
 	__role = ISD::RoleTeacher;
 	if( localSystem::parameter( "isdport" ).toInt() > 0 )

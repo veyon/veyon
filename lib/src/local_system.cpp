@@ -2,7 +2,7 @@
  * local_system.cpp - namespace localSystem, providing an interface for
  *                    transparent usage of operating-system-specific functions
  *
- * Copyright (c) 2006-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -23,7 +23,6 @@
  *
  */
 
-
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif
@@ -33,11 +32,13 @@
 #endif
 
 #include <QtCore/QCoreApplication>
+#include <QtCore/QDateTime>
 #include <QtCore/QDir>
+#include <QtCore/QLocale>
 #include <QtCore/QMutex>
 #include <QtCore/QProcess>
 #include <QtCore/QSettings>
-#include <QtCore/QDateTime>
+#include <QtCore/QTranslator>
 #include <QtGui/QWidget>
 #include <QtNetwork/QTcpServer>
 
@@ -231,11 +232,6 @@ void msgHandler( QtMsgType _type, const char * _msg )
 }
 
 
-void initResources( void )
-{
-	Q_INIT_RESOURCE(italc_core);
-}
-
 namespace localSystem
 {
 
@@ -262,7 +258,21 @@ void initialize( p_pressKey _pk, const QString & _log_file )
 
 	qInstallMsgHandler( msgHandler );
 
-	initResources();
+	// load translations
+	QString loc = QLocale::system().name().left( 2 );
+	if( loc.left( 2 ) == loc.right( 2 ) )
+	{
+		loc = loc.left( 2 );
+	}
+
+	static QTranslator appTr;
+	appTr.load( ":/resources/" + loc + ".qm" );
+	qApp->installTranslator( &appTr );
+
+	static QTranslator qtTr;
+	qtTr.load( ":/resources/qt_" + loc + ".qm" );
+	QCoreApplication::installTranslator( &qtTr );
+
 }
 
 

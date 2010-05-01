@@ -1,26 +1,43 @@
 <!DOCTYPE RCC><RCC version="1.0">
 	<qresource>
+		<file>resources/tr.qm</file>
+		<file>resources/fi.qm</file>
+		<file>resources/qt_pt.qm</file>
+		<file>resources/qt_sv.qm</file>
+		<file>resources/qt_sk.qm</file>
+		<file>resources/he.qm</file>
+		<file>resources/qt_pl.qm</file>
+		<file>resources/sl.qm</file>
+		<file>resources/pl.qm</file>
+		<file>resources/qt_sl.qm</file>
+		<file>resources/qt_de.qm</file>
+		<file>resources/qt_ca.qm</file>
+		<file>resources/uk.qm</file>
+		<file>resources/ru.qm</file>
+		<file>resources/qt_iw.qm</file>
+		<file>resources/qt_ru.qm</file>
+		<file>resources/qt_es.qm</file>
+		<file>resources/pt_br.qm</file>
+		<file>resources/qt_zh_CN.qm</file>
+		<file>resources/el.qm</file>
+		<file>resources/de.qm</file>
+		<file>resources/qt_da.qm</file>
+		<file>resources/es.qm</file>
+		<file>resources/qt_ar.qm</file>
+		<file>resources/zh_cn.qm</file>
+		<file>resources/cs.qm</file>
+		<file>resources/qt_fr.qm</file>
+		<file>resources/fr.qm</file>
+		<file>resources/qt_uk.qm</file>
+		<file>resources/qt_ja_JP.qm</file>
+		<file>resources/it.qm</file>
+		<file>resources/ca.qm</file>
+		<file>resources/sk.qm</file>
+		<file>resources/qt_zh_TW.qm</file>
+		<file>resources/nn.qm</file>
 		<file>resources/info.png</file>
 		<file>resources/message.png</file>
 		<file>resources/ok.png</file>
-		<file alias="resources/de-core.qm">resources/de.qm</file>
-		<file alias="resources/ca-core.qm">resources/ca.qm</file>
-		<file alias="resources/cs-core.qm">resources/cs.qm</file>
-		<file alias="resources/he-core.qm">resources/he.qm</file>
-		<file alias="resources/it-core.qm">resources/it.qm</file>
-		<file alias="resources/es-core.qm">resources/es.qm</file>
-		<file alias="resources/fr-core.qm">resources/fr.qm</file>
-		<file alias="resources/nn-core.qm">resources/nn.qm</file>
-		<file alias="resources/pl-core.qm">resources/pl.qm</file>
-		<file alias="resources/sl-core.qm">resources/sl.qm</file>
-		<file alias="resources/uk-core.qm">resources/uk.qm</file>
-		<file alias="resources/zh_cn-core.qm">resources/zh_cn.qm</file>
-		<file alias="resources/fi-core.qm">resources/fi.qm</file>
-		<file alias="resources/ru-core.qm">resources/ru.qm</file>
-		<file alias="resources/sk-core.qm">resources/sk.qm</file>
-		<file alias="resources/pt_br-core.qm">resources/pt_br.qm</file>
-		<file alias="resources/el-core.qm">resources/el.qm</file>
-		<file alias="resources/tr-core.qm">resources/tr.qm</file>
 		<file>resources/locked_bg.png</file>
 		<file>resources/icon16.png</file>
 		<file>resources/icon22.png</file>
