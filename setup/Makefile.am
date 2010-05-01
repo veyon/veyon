@@ -50,12 +50,10 @@ endif
 if BUILD_WIN32
 setup_win_resources.o: setup.rc
 	$(WINDRES) -o $@ $<
-PLATFORM_LDADD = setup_win_resources.o -L../lib/ -litalc_core
-else
-PLATFORM_LDADD = ../lib/libitalc_core-static.a
+PLATFORM_LDADD = setup_win_resources.o
 endif
 
-setup_LDADD = $(PLATFORM_LDADD) $(QT_LDADD) $(QT_LIB_GUI) $(LIBSSL_LDADD) -ljpeg
+setup_LDADD = $(PLATFORM_LDADD) -L../lib/ -litalc_core $(QT_LDADD) $(QT_LIB_GUI) $(LIBSSL_LDADD) -ljpeg
 setup_LDFLAGS = $(LDFLAGS) -mwindows
 
 AM_CXXFLAGS = $(QT_CXXFLAGS)
