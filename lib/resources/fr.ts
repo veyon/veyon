@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0">
+<TS version="2.0" language="fr_FR">
 <context>
     <name>QApplication</name>
     <message>
@@ -29,15 +29,15 @@
     </message>
     <message>
         <source>The service &apos;%1&apos; has been unregistered.</source>
-        <translation>Le service &apos;%1&apos; a été désenregistré.</translation>
+        <translation>Le service &apos;%1&apos; a été désactivé.</translation>
     </message>
     <message>
         <source>The service &apos;%1&apos; isn&apos;t registered and therefore can&apos;t be unregistered.</source>
-        <translation>Le service &apos;%1&apos; n&apos;est pas enregistré et ne peut donc pas être désenregistré.</translation>
+        <translation>Le service &apos;%1&apos; n&apos;est pas enregistré et ne peut donc pas être désactivé.</translation>
     </message>
     <message>
         <source>The service &apos;%1&apos; could not be unregistered.</source>
-        <translation>Le service &apos;%1&apos; ne peut pas être désenregistré.</translation>
+        <translation>Le service &apos;%1&apos; ne peut pas être désactivé.</translation>
     </message>
     <message>
         <source>The service &apos;%1&apos; could not be found.</source>
@@ -45,7 +45,7 @@
     </message>
     <message>
         <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not unregistered.</source>
-        <translation>Le contrôleur de service (SCM) ne répond pas (avez-vous les permissions nécessaires ?) - le service &apos;%1&apos; n&apos;a pas été désenregistré.</translation>
+        <translation>Le contrôleur de service (SCM) ne répond pas (avez-vous les permissions nécessaires ?) - le service &apos;%1&apos; n&apos;a pas été désactivé.</translation>
     </message>
     <message>
         <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not stopped.</source>
@@ -53,7 +53,7 @@
     </message>
     <message>
         <source>iTALC Client %1 on %2:%3</source>
-        <translation type="unfinished"></translation>
+        <translation>Client iTALC %1 sur %2:%3</translation>
     </message>
 </context>
 <context>
@@ -88,12 +88,12 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;iTALC - Intelligent Teaching And Learning with Computers&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;&quot;&gt;Copyright (c) 2004-2010 Tobias Doerffel&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;iTALC - Intelligent Teaching And Learning with Computers&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;&quot;&gt;Copyright (c) 2004-2008 Tobias Doerffel&lt;/p&gt;&lt;/body&gt;&lt;/html&gt; {1&quot;?} {9p?} {400;?} {0p?} {0p?} {0p?} {0p?} {0;?} {0p?} {11p?} {0p?} {0p?} {0p?} {0p?} {0;?} {0p?} {11p?} {0p?} {0p?} {0p?} {0p?} {0;?} {0p?} {11p?} {2004-2010 ?}</translation>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;&quot;&gt;Copyright (c) 2004-2008 Tobias Doerffel&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Authors</source>
@@ -121,7 +121,7 @@ p, li { white-space: pre-wrap; }
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Traduction française par Guillaume Allègre.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Traduction française par Guillaume Allègre et Jean-Louis Frucot&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Si vous êtes intéressé par la traduction d&apos;iTALC dans une nouvelle langue, merci de contacter un développeur iTALC.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
@@ -130,7 +130,7 @@ p, li { white-space: pre-wrap; }
     <name>classroomManager</name>
     <message>
         <source>Classroom-Manager</source>
-        <translation>Gestionnaire de salle</translation>
+        <translation>Gestionnaire de salles</translation>
     </message>
     <message>
         <source>Use this workspace to manage your computers and classrooms in an easy way.</source>
@@ -156,17 +156,16 @@ p, li { white-space: pre-wrap; }
         <source>Could not open configuration file %1.
 You will have to add at least one classroom and computers using the classroom-manager which you&apos;ll find inside the program in the sidebar on the left side.</source>
         <translation>Impossible d&apos;ouvrir le fichier de configuration %1. 
-Vous devez ajouter au moins une salle et un ordinateur, en utilisant le gestionnaire de salle dans la barre latérale gauche.</translation>
+Vous devez ajouter au moins une salle et un ordinateur, en utilisant le gestionnaire de salles dans la barre latérale gauche.</translation>
     </message>
     <message>
         <source>Error in configuration-file</source>
-        <translation>Erreur dans le fichier de configuration
-</translation>
+        <translation>Erreur dans le fichier de configuration</translation>
     </message>
     <message>
         <source>Error while parsing configuration-file %1.
 Please edit it. Otherwise you should delete this file and have to add all classrooms and computers again.</source>
-        <translation>Erreur pendant la lecture du fichier de configuration. 
+        <translation>Erreur pendant la lecture du fichier de configuration %1. 
 Veuillez le modifier, ou bien supprimer le fichier puis re-créer les salles et les ordinateurs.</translation>
     </message>
     <message>
@@ -261,20 +260,20 @@ Voulez-vous en créer une maintenant ?</translation>
     </message>
     <message>
         <source>Show usernames</source>
-        <translation>Afficher les noms d&apos;utilisateurs</translation>
+        <translation>Afficher les noms d&apos;utilisateur</translation>
     </message>
     <message>
         <source>Use the context-menu (right mouse-button) to add/remove computers and/or classrooms.</source>
-        <translation>Utilisez le menu contextuel (bouton droit) pour ajouter/enlever des ordinateurs ou des salles.</translation>
+        <translation>Utilisez le menu contextuel (bouton droit) pour ajouter/enlever des ordinateurs et/ou des salles.</translation>
     </message>
     <message>
         <source>Export to text-file</source>
-        <translation>Export�fichier texte</translation>
+        <translation>Exporter en fichier texte</translation>
     </message>
     <message>
         <source>Use this button for exporting this list of computers and usernames into a text-file. You can use this file later for collecting files after an exam has finished. This is sometimes neccessary, because some users might have finished and logged out earlier and so you cannot collect their files at the end of the exam.</source>
         <translation>Utilisez ce bouton pour exporter cette liste d&apos;ordinateurs et de noms d&apos;utilisateurs dans un fichier texte. 
-Vous pourrez utiliser ensuite ce fichier pour collecter des fichiers à la fin d&apos;un examen. C&apos;est parfois nécessaires, car certains étudiants peuvent terminer et se déconnecter en avance, ce qui vous empêche de collecter leurs fichiers.</translation>
+Vous pourrez ensuite utiliser ce fichier pour collecter des fichiers à la fin d&apos;un examen. C&apos;est parfois nécessaire, car certains étudiants peuvent terminer et se déconnecter en avance, ce qui vous empêche de recueillir leurs fichiers.</translation>
     </message>
     <message>
         <source>Select output-file</source>
@@ -286,7 +285,7 @@ Vous pourrez utiliser ensuite ce fichier pour collecter des fichiers à la fin d
     </message>
     <message>
         <source>Actions for selected</source>
-        <translation type="unfinished"></translation>
+        <translation>Actions sur la sélection</translation>
     </message>
 </context>
 <context>
@@ -305,7 +304,7 @@ Vous pourrez utiliser ensuite ce fichier pour collecter des fichiers à la fin d
     </message>
     <message>
         <source>Demo running</source>
-        <translation>Démo en cours</translation>
+        <translation>Démonstration en cours</translation>
     </message>
     <message>
         <source>Desktop locked</source>
@@ -316,98 +315,98 @@ Vous pourrez utiliser ensuite ce fichier pour collecter des fichiers à la fin d
     <name>clientAction</name>
     <message>
         <source>Are you sure want logout all users on all visible computers ?</source>
-        <translation type="unfinished">Voulez-vous vraiment déconnecter tous les utilisateurs de tous les ordinateurs visibles ?</translation>
+        <translation>Voulez-vous vraiment déconnecter tous les utilisateurs de tous les ordinateurs visibles ?</translation>
     </message>
     <message>
         <source>Are you sure want logout all users on all selected computers ?</source>
-        <translation type="unfinished"></translation>
+        <translation>Voulez-vous vraiment déconnecter les utilisateurs des ordinateurs sélectionnés ?</translation>
     </message>
     <message>
         <source>Logout user</source>
-        <translation type="unfinished">Déconnecter l&apos;utilisateur</translation>
+        <translation>Déconnecter l&apos;utilisateur</translation>
     </message>
     <message>
         <source>Are you sure want to reboot all visible computers?</source>
-        <translation type="unfinished">Voulez-vous vraiment redémarrer tous les ordinateurs visibles ?</translation>
+        <translation>Voulez-vous vraiment redémarrer tous les ordinateurs visibles ?</translation>
     </message>
     <message>
         <source>Are you sure want to reboot all selected computers?</source>
-        <translation type="unfinished"></translation>
+        <translation>Voulez-vous vraiment redémarrer tous les ordinateurs sélectionnés ?</translation>
     </message>
     <message>
         <source>Reboot computers</source>
-        <translation type="unfinished">Redémarrer les ordinateurs</translation>
+        <translation>Redémarrer les ordinateurs</translation>
     </message>
     <message>
         <source>Are you sure want to power down all visible computers?</source>
-        <translation type="unfinished">Voulez-vous vraiment éteindre tous les ordinateurs visibiles ?</translation>
+        <translation>Voulez-vous vraiment éteindre tous les ordinateurs visibiles ?</translation>
     </message>
     <message>
         <source>Are you sure want to power down all selected computers?</source>
-        <translation type="unfinished"></translation>
+        <translation>Voulez-vous vraiment éteindre tous les ordinateurs sélectionnés ?</translation>
     </message>
 </context>
 <context>
     <name>clientMenu</name>
     <message>
         <source>Overview</source>
-        <translation type="unfinished">Aperçu</translation>
+        <translation>Aperçu</translation>
     </message>
     <message>
         <source>Fullscreen demo</source>
-        <translation type="unfinished">Démo plein écran</translation>
+        <translation>Démonstration plein écran</translation>
     </message>
     <message>
         <source>Window demo</source>
-        <translation type="unfinished">Démo fenêtre</translation>
+        <translation>Démonstration en mode fenêtre</translation>
     </message>
     <message>
         <source>Locked display</source>
-        <translation type="unfinished">Affichage verrouillé</translation>
+        <translation>Affichage verrouillé</translation>
     </message>
     <message>
         <source>View live</source>
-        <translation type="unfinished">Voir en direct</translation>
+        <translation>Voir en direct</translation>
     </message>
     <message>
         <source>Remote control</source>
-        <translation type="unfinished">Contrôle à distance</translation>
+        <translation>Contrôle à distance</translation>
     </message>
     <message>
         <source>Let student show demo</source>
-        <translation type="unfinished">Laisser l&apos;étudiant faire une démo</translation>
+        <translation>Laisser l&apos;étudiant faire une démonstration</translation>
     </message>
     <message>
         <source>Send text message</source>
-        <translation type="unfinished">Envoyer un message</translation>
+        <translation>Envoyer un message</translation>
     </message>
     <message>
         <source>Logon user</source>
-        <translation type="unfinished">Connecter l&apos;utilisateur</translation>
+        <translation>Connecter l&apos;utilisateur</translation>
     </message>
     <message>
         <source>Logout user</source>
-        <translation type="unfinished">Déconnecter l&apos;utilisateur</translation>
+        <translation>Déconnecter l&apos;utilisateur</translation>
     </message>
     <message>
         <source>Take a snapshot</source>
-        <translation type="unfinished">Prendre une capture</translation>
+        <translation>Prendre une capture</translation>
     </message>
     <message>
         <source>Power on</source>
-        <translation type="unfinished">Allumer</translation>
+        <translation>Allumer</translation>
     </message>
     <message>
         <source>Reboot</source>
-        <translation type="unfinished">Redémarrer</translation>
+        <translation>Redémarrer</translation>
     </message>
     <message>
         <source>Power down</source>
-        <translation type="unfinished">Éteindre</translation>
+        <translation>Éteindre</translation>
     </message>
     <message>
         <source>Execute commands</source>
-        <translation type="unfinished">Exécuter des commandes</translation>
+        <translation>Exécuter des commandes</translation>
     </message>
 </context>
 <context>
@@ -426,7 +425,7 @@ Vous pourrez utiliser ensuite ce fichier pour collecter des fichiers à la fin d
     </message>
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Hardware/MAC-address of client - only used for powering on client&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Adresse MAC du client  - utilisée seulement pour l&apos;arrêt de la machine&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Adresse MAC du client (utilisée seulement pour l&apos;arrêt de la machine)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>IP/hostname</source>
@@ -460,7 +459,7 @@ Vous pourrez utiliser ensuite ce fichier pour collecter des fichiers à la fin d
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Here you can specify how this host is connected to the iTALC-network, i.e. hosts on the same level. Normally clients are connected via 100 MBit/s LAN, but there might be special hosts such as gateways to other iTALC-networks in foreign schools or a student&apos;s home-computer. In such cases iTALC tries to optimize its bandwidth utilization.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt; 
 Vous pouvez préciser ici comment cet hôte est connecté au réseau iTALC, c-à-d les hôtes de même niveau. 
-Habituellement, les hôtes sont connectés sur un LAN 100MBits/s, mais il peut y avoir des hôtes spéciaux, comme des passerelles vers d&apos;autres réseaux iTALC ou l&apos;ordinateur personnel d&apos;un utilisateur. Dans ce genre de cas, iTAL essaie d&apos;optimiser la bande passante.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+Habituellement, les hôtes sont connectés sur un LAN 100MBits/s, mais il peut y avoir des hôtes spéciaux, comme des passerelles vers d&apos;autres réseaux iTALC ou l&apos;ordinateur personnel d&apos;un utilisateur. Dans ce genre de cas, iTALC essaie d&apos;optimiser la bande passante.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Analog</source>
@@ -548,7 +547,7 @@ p, li { white-space: pre-wrap; }&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot;
     <name>clientSettingsDialog</name>
     <message>
         <source>Missing IP-address/hostname</source>
-        <translation>Adresse IP ou nom dhôte manquant</translation>
+        <translation>Adresse IP ou nom d&apos;hôte manquant</translation>
     </message>
     <message>
         <source>You didn&apos;t specify an IP-address or hostname for the computer!</source>
@@ -644,7 +643,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Your role (needs according keys!)</source>
-        <translation>Votre rôle (nécessite les clés correspondantes)</translation>
+        <translation>Votre rôle (nécessite les clés correspondantes !)</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -674,7 +673,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Quality of demo-mode</source>
-        <translation>Qualité du mode démo</translation>
+        <translation>Qualité du mode démonstration</translation>
     </message>
     <message>
         <source>Settings for multi-logon</source>
@@ -708,11 +707,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Do not show texts on toolbar-buttons&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Ne pas montrer le texte des boutons de la barre d&apos;outils&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>No texts on toolbar-buttons</source>
-        <translation type="unfinished"></translation>
+        <translation>Pas de texte sur les boutons de la barre d&apos;outils</translation>
     </message>
 </context>
 <context>
@@ -723,14 +722,14 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>In this workspace you can customize iTALC to fit your needs.</source>
-        <translation>Dans cet espace, vous pouvez paramétrer iTALC pour vos besoins.</translation>
+        <translation>Dans cet espace, vous pouvez paramétrer iTALC en fonction de vos besoins.</translation>
     </message>
 </context>
 <context>
     <name>demoClient</name>
     <message>
         <source>iTALC Demo</source>
-        <translation>Démo iTALC</translation>
+        <translation>Démonstration iTALC</translation>
     </message>
 </context>
 <context>
@@ -787,7 +786,7 @@ p, li { white-space: pre-wrap; }
     <name>lockWidget</name>
     <message>
         <source>screen lock</source>
-        <translation>ver. écran</translation>
+        <translation>verrouillez l&apos;écran</translation>
     </message>
 </context>
 <context>
@@ -798,11 +797,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Fullscreen demo</source>
-        <translation>Démo plein écran</translation>
+        <translation>Démonstration plein écran</translation>
     </message>
     <message>
         <source>Window demo</source>
-        <translation>Démo fenêtre</translation>
+        <translation>Démonstration en mode fenêtre</translation>
     </message>
     <message>
         <source>No write-access</source>
@@ -842,7 +841,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Adjust windows and their size</source>
-        <translation>Ajuster les fenêtres et leurs tailles</translation>
+        <translation>Ajuster les fenêtres et leur taille</translation>
     </message>
     <message>
         <source>To have all user&apos;s full attention you can lock their desktops using this button. In this mode all input devices are locked and the screen is black.</source>
@@ -867,7 +866,7 @@ Dans ce mode, l&apos;écran est noir et les périphériques d&apos;entrée sont 
     </message>
     <message>
         <source>When clicking this button all visible windows are re-arranged and adjusted.</source>
-        <translation>Toutes les fenêtres visibles sont ré-ordonnées et leurs tailles sont ajustées.</translation>
+        <translation>Toutes les fenêtres visibles sont ré-ordonnées et leur taille est ajustée.</translation>
     </message>
     <message>
         <source>iTALC service not running</source>
@@ -875,11 +874,11 @@ Dans ce mode, l&apos;écran est noir et les périphériques d&apos;entrée sont 
     </message>
     <message>
         <source>There seems to be no iTALC service running on this computer or the authentication-keys aren&apos;t set up properly. The service is required for running iTALC. Contact your administrator for solving this problem.</source>
-        <translation>Il semble qu&apos;aucun service iTALC ne s&apos;exécute sur cet ordinateur, ou bien les clefs d&apos;authentification font défaut. Le service est nécessaire pour lancer iTALC. Contactez votre administrateur pour régler ce problème.</translation>
+        <translation>Il semble qu&apos;aucun service iTALC ne s&apos;exécute sur cet ordinateur, ou bien les clefs d&apos;authentification font défaut. Ce service est nécessaire pour lancer iTALC. Contactez votre administrateur pour régler ce problème.</translation>
     </message>
     <message>
         <source>This is the default mode in iTALC and allows you to have an overview over all visible computers. Also click on this button for unlocking locked workstations or for leaving demo-mode.</source>
-        <translation>C&apos;est le mode par défaut d&apos;iTALC, qui vous fournit un aperçu de tous les ordinateurs visibles. Cliquez sur ce bouton pour déverrouiller les clients verrouillés ou pour quitter le mode démo.</translation>
+        <translation>C&apos;est le mode par défaut d&apos;iTALC, qui vous fournit un aperçu de tous les ordinateurs visibles. Cliquez sur ce bouton pour déverrouiller les clients verrouillés ou pour quitter le mode démonstration.</translation>
     </message>
     <message>
         <source>Classroom</source>
@@ -963,15 +962,15 @@ Veuillez créer une nouvelle paire de clés à l&apos;aide d&apos;ICA (documenta
     </message>
     <message>
         <source>Fullscreen Demo</source>
-        <translation>Démo plein écran</translation>
+        <translation>Démonstration plein écran</translation>
     </message>
     <message>
         <source>Stop Demo</source>
-        <translation>Arrêter la démo</translation>
+        <translation>Arrêter la démonstration</translation>
     </message>
     <message>
         <source>Window Demo</source>
-        <translation>Démo fenêtre</translation>
+        <translation>Démonstration en mode fenêtre</translation>
     </message>
     <message>
         <source>Support</source>
@@ -987,15 +986,15 @@ Veuillez créer une nouvelle paire de clés à l&apos;aide d&apos;ICA (documenta
     </message>
     <message>
         <source>iTALC Master Control</source>
-        <translation type="unfinished"></translation>
+        <translation>Contrôleur Maître d&apos;iTALC</translation>
     </message>
     <message>
         <source>Remote control</source>
-        <translation type="unfinished">Contrôle à distance</translation>
+        <translation>Contrôle à distance</translation>
     </message>
     <message>
         <source>Quit</source>
-        <translation type="unfinished">Quitter</translation>
+        <translation>Quitter</translation>
     </message>
 </context>
 <context>
@@ -1035,7 +1034,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Using the classroom-manager you can manage your classrooms and computers. You can also see which users are logged in.</source>
-        <translation>Avec le gestionnaire de salle, vous pouvez gérer les salles et les ordinateurs, et également voir qui est connecté.</translation>
+        <translation>Avec le gestionnaire de salles, vous pouvez gérer les salles et les ordinateurs, et également voir qui est connecté.</translation>
     </message>
 </context>
 <context>
@@ -1053,26 +1052,26 @@ p, li { white-space: pre-wrap; }
     <name>pageFinished</name>
     <message>
         <source>iTALC is now ready to run!</source>
-        <translation type="unfinished"></translation>
+        <translation>iTALC est prêt à être lancé !</translation>
     </message>
     <message>
         <source>iTALC is now completely installed and set up. If you installed the master application you can start it now.</source>
-        <translation type="unfinished"></translation>
+        <translation>iTALC est maintenant entièrement installé et configuré. Si vous avez installé l&apos;application maître, vous pouvez démarrer maintenant.</translation>
     </message>
     <message>
         <source>Save key setup settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Sauvegarder la configuration des clés</translation>
     </message>
 </context>
 <context>
     <name>pageKeyDirs</name>
     <message>
         <source>Key directories</source>
-        <translation type="unfinished"></translation>
+        <translation>Répertoires des clés</translation>
     </message>
     <message>
         <source>Directory to store public key in</source>
-        <translation>Répertoire qui contiendra les clés d&apos;authentification</translation>
+        <translation>Répertoire qui contiendra la clé publique d&apos;authentification</translation>
     </message>
     <message>
         <source>Directory to store private key in</source>
@@ -1080,7 +1079,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>You can choose a directory in which to export the public key, e.g. an USB drive or a network share.</source>
-        <translation type="unfinished"></translation>
+        <translation>Choisissez un répertoire pour exporter la clé publique, par exemple une clé USB ou un partage réseau.</translation>
     </message>
     <message>
         <source>The newly created or imported key(s) need to be installed somewhere. It&apos;s recommended to leave the suggested directories.</source>
@@ -1088,7 +1087,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Export private key too</source>
-        <translation>Exporter la clé privée vers</translation>
+        <translation>Exporter aussi la clé privée</translation>
     </message>
 </context>
 <context>
@@ -1099,21 +1098,23 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Import public key of master computer</source>
-        <translation>Importer la clé publique du maître</translation>
+        <translation>Importer la clé publique du poste maître</translation>
     </message>
     <message>
         <source>Security options</source>
-        <translation type="unfinished"></translation>
+        <translation>Options de sécurité</translation>
     </message>
     <message>
         <source>iTALC has a sophisticated security-concept for preventing unauthorized access to computers having the iTALC client software installed.
 
 Therefore you either have to create a new key pair or import the public key created during the iTALC installation on the master computer.</source>
-        <translation type="unfinished"></translation>
+        <translation>iTALC utilise des concepts de sécurité sophistiqués pour prévenir les accès non autorisés aux ordinateurs qui ont un client iTALC installé.
+
+C&apos;est pourquoi vous devrez créer une nouvelle paire de clés ou importer la clé publique créée lors de l&apos;installation sur le poste maitre.</translation>
     </message>
     <message>
         <source>Create a new key pair (only on master computer)</source>
-        <translation type="unfinished"></translation>
+        <translation>Créer une nouvelle paire de clés (seulement sur  le poste maitre)</translation>
     </message>
     <message>
         <source>Keep all keys (only when updating existing installation!)</source>
@@ -1124,13 +1125,15 @@ Therefore you either have to create a new key pair or import the public key crea
     <name>pageWelcome</name>
     <message>
         <source>Welcome to iTALC</source>
-        <translation type="unfinished"></translation>
+        <translation>Bienvenue dans iTALC</translation>
     </message>
     <message>
         <source>This tool will guide you through the process of setting up authentication keys for your iTALC environment.
 
 Click &apos;Next&apos; to continue.</source>
-        <translation type="unfinished"></translation>
+        <translation>Cet outil vous guidera lors du processus de configuration des clés d&apos;authentification pour votre environnement iTALC.
+
+Cliquez sur &apos;Suivant&apos; pour continuer.</translation>
     </message>
 </context>
 <context>
@@ -1168,7 +1171,7 @@ Click &apos;Next&apos; to continue.</source>
     </message>
     <message>
         <source>Connecting %1</source>
-        <translation>Connexion à %1...</translation>
+        <translation>En cours de connexion : %1</translation>
     </message>
     <message>
         <source>Connected.</source>
@@ -1248,7 +1251,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Are you sure want to quit setup? iTALC is not set up completely yet!</source>
-        <translation type="unfinished"></translation>
+        <translation>Êtes-vous sûr de vouloir abandonner l&apos;installation ? iTALC n&apos;est pas entièrement installé !</translation>
     </message>
     <message>
         <source>Next</source>
@@ -1256,7 +1259,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Finish</source>
-        <translation>Terminé</translation>
+        <translation>Terminer</translation>
     </message>
     <message>
         <source>Confirm overwrite</source>
@@ -1264,7 +1267,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Do you want to overwrite %1?</source>
-        <translation>Voulez-vous écraser le fichierMöchten %1 ?</translation>
+        <translation>Voulez-vous écraser le fichier %1 ?</translation>
     </message>
     <message>
         <source>Quit</source>
@@ -1272,11 +1275,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>File does not exist</source>
-        <translation type="unfinished"></translation>
+        <translation>Le fichier n&apos;existe pas</translation>
     </message>
     <message>
         <source>The file %1 could not be found. Please check this and try again.</source>
-        <translation type="unfinished"></translation>
+        <translation>Le fichier %1 n&apos;a pu être trouvé. Vérifiez et recommencez.</translation>
     </message>
 </context>
 <context>
@@ -1298,7 +1301,7 @@ p, li { white-space: pre-wrap; }
     <name>setupWizardPageSecurityOptions</name>
     <message>
         <source>Choose directory for key import</source>
-        <translation type="unfinished"></translation>
+        <translation>Choisissez un dossier pour l&apos;importation des clés</translation>
     </message>
 </context>
 <context>
@@ -1339,15 +1342,15 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Show snapshot</source>
-        <translation>Affiche capture</translation>
+        <translation>Affiche la capture</translation>
     </message>
     <message>
         <source>Delete snapshot</source>
-        <translation>Supprime capture</translation>
+        <translation>Supprime la capture</translation>
     </message>
     <message>
         <source>Reload list</source>
-        <translation>Recharge liste</translation>
+        <translation>Recharge la liste</translation>
     </message>
 </context>
 <context>
@@ -1408,14 +1411,14 @@ p, li { white-space: pre-wrap; }
     <name>vncView</name>
     <message>
         <source>Establishing connection to %1 ...</source>
-        <translation>Établissement de la connexion à %1 ...</translation>
+        <translation>Connexion en cours : %1 ...</translation>
     </message>
 </context>
 <context>
     <name>wizard</name>
     <message>
         <source>iTALC setup tool</source>
-        <translation type="unfinished"></translation>
+        <translation>Installateur d&apos;iTALC</translation>
     </message>
     <message>
         <source>Cancel</source>
