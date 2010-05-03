@@ -2644,7 +2644,9 @@ static int do_reverse_connect(char *str_in) {
 		}
 /* XXX use header */
 #define OPENSSL_REVERSE 6
-		openssl_init(1);
+		if (!getenv("X11VNC_DISABLE_SSL_CLIENT_MODE")) {
+			openssl_init(1);
+		}
 
 		if (first_conn_timeout > 0) {
 			set_alarm = 1;

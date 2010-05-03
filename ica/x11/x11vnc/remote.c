@@ -6126,10 +6126,10 @@ char *process_remote_cmd(char *cmd, int stringonly) {
 			}
 			goto qry;
 		}
-		if (!strcmp(p, "pointer_pos") || !strcmp(p, "pointer_x") || !strcmp(p, "pointer_y") || !strcmp(p, "pointer_same") || !strcmp(p, "pointer_root")) {
+		if (!strcmp(p, "pointer_pos") || !strcmp(p, "pointer_x") || !strcmp(p, "pointer_y") || !strcmp(p, "pointer_same") || !strcmp(p, "pointer_root") || !strcmp(p, "pointer_mask")) {
 			int px = -1, py = -1; 
 			int wx, wy;
-			unsigned int m;
+			unsigned int m = 0;
 			Window r, c;
 			Bool same_screen = True;
 			
@@ -6144,6 +6144,8 @@ char *process_remote_cmd(char *cmd, int stringonly) {
 				snprintf(buf, bufn, "aro=%s:%d", p, same_screen);
 			} else if (!strcmp(p, "pointer_root")) {		/* skip-cmd-list */
 				snprintf(buf, bufn, "aro=%s:0x%x", p, (unsigned int) rootwin);
+			} else if (!strcmp(p, "pointer_mask")) {		/* skip-cmd-list */
+				snprintf(buf, bufn, "aro=%s:0x%x", p, m);
 			} 
 			if (!dpy) {
 				goto qry;
@@ -6166,6 +6168,8 @@ char *process_remote_cmd(char *cmd, int stringonly) {
 				snprintf(buf, bufn, "aro=%s:%d", p, same_screen);
 			} else if (!strcmp(p, "pointer_root")) {		/* skip-cmd-list */
 				snprintf(buf, bufn, "aro=%s:0x%x", p, (unsigned int) r);
+			} else if (!strcmp(p, "pointer_mask")) {		/* skip-cmd-list */
+				snprintf(buf, bufn, "aro=%s:0x%x", p, m);
 			} 
 			if (rc_npieces < 10) {
 				rfbLog("remote_cmd: %s: %s\n", p, buf);
