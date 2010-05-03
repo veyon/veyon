@@ -1923,6 +1923,8 @@ static void pr_ssl_info(int verb) {
 static void ssl_timeout (int sig) {
 	int i;
 	rfbLog("sig: %d, ssl_init[%d] timed out.\n", sig, getpid());
+	rfbLog("To increase the SSL initialization timeout use, e.g.:\n");
+	rfbLog("   -env SSL_INIT_TIMEOUT=120        (for 120 seconds)\n");
 	for (i=0; i < 256; i++) {
 		close(i);
 	}
@@ -1944,10 +1946,17 @@ static int ssl_init(int s_in, int s_out, int skip_vnc_tls, double last_https) {
 	if (getenv("SSL_DEBUG")) {
 		db = atoi(getenv("SSL_DEBUG"));
 	}
+	usleep(100 * 1000);
 	if (getenv("SSL_INIT_TIMEOUT")) {
 		timeout = atoi(getenv("SSL_INIT_TIMEOUT"));
+	} else if (client_connect != NULL && strstr(client_connect, "repeater")) {
+		rfbLog("SSL: ssl_init[%d]: detected 'repeater' in connect string.\n", getpid());
+		rfbLog("SSL: setting timeout to 1 hour: -env SSL_INIT_TIMEOUT=3600\n");
+		rfbLog("SSL: use that option to set a different timeout value,\n");
+		rfbLog("SSL: however note that with Windows UltraVNC repeater it\n");
+		rfbLog("SSL: may timeout before your setting due to other reasons.\n");
+		timeout = 3600;
 	}
-	if (db) fprintf(stderr, "ssl_init: %d/%d\n", s_in, s_out);
 
 	if (skip_vnc_tls) {
 		rfbLog("SSL: ssl_helper[%d]: HTTPS mode, skipping check_vnc_tls_mode()\n",
@@ -1955,6 +1964,8 @@ static int ssl_init(int s_in, int s_out, int skip_vnc_tls, double last_https) {
 	} else if (!check_vnc_tls_mode(s_in, s_out, last_https)) {
 		return 0;
 	}
+	rfbLog("SSL: ssl_init[%d]: %d/%d initialization timeout: %d secs.\n",
+	    getpid(), s_in, s_out, timeout);
 
 	ssl = SSL_new(ctx);
 	if (ssl == NULL) {
@@ -2026,32 +2037,32 @@ static int ssl_init(int s_in, int s_out, int skip_vnc_tls, double last_https) {
 		} else if (err == SSL_ERROR_WANT_READ) {
 
 			if (db) fprintf(stderr, "got SSL_ERROR_WANT_READ\n");
-			rfbLog("SSL: ssl_helper[%d]: SSL_accept() failed for: %s:%d\n",
-			    getpid(), name, peerport);
+			rfbLog("SSL: ssl_helper[%d]: %s() failed for: %s:%d 1\n",
+			    getpid(), ssl_client_mode ? "SSL_connect" : "SSL_accept", name, peerport);
 			pr_ssl_info(1);
 			return 0;
 			
 		} else if (err == SSL_ERROR_WANT_WRITE) {
 
 			if (db) fprintf(stderr, "got SSL_ERROR_WANT_WRITE\n");
-			rfbLog("SSL: ssl_helper[%d]: SSL_accept() failed for: %s:%d\n",
-			    getpid(), name, peerport);
+			rfbLog("SSL: ssl_helper[%d]: %s() failed for: %s:%d 2\n",
+			    getpid(), ssl_client_mode ? "SSL_connect" : "SSL_accept", name, peerport);
 			pr_ssl_info(1);
 			return 0;
 
 		} else if (err == SSL_ERROR_SYSCALL) {
 
 			if (db) fprintf(stderr, "got SSL_ERROR_SYSCALL\n");
-			rfbLog("SSL: ssl_helper[%d]: SSL_accept() failed for: %s:%d\n",
-			    getpid(), name, peerport);
+			rfbLog("SSL: ssl_helper[%d]: %s() failed for: %s:%d 3\n",
+			    getpid(), ssl_client_mode ? "SSL_connect" : "SSL_accept", name, peerport);
 			pr_ssl_info(1);
 			return 0;
 
 		} else if (err == SSL_ERROR_ZERO_RETURN) {
 
 			if (db) fprintf(stderr, "got SSL_ERROR_ZERO_RETURN\n");
-			rfbLog("SSL: ssl_helper[%d]: SSL_accept() failed for: %s:%d\n",
-			    getpid(), name, peerport);
+			rfbLog("SSL: ssl_helper[%d]: %s() failed for: %s:%d 4\n",
+			    getpid(), ssl_client_mode ? "SSL_connect" : "SSL_accept", name, peerport);
 			pr_ssl_info(1);
 			return 0;
 
@@ -2059,7 +2070,8 @@ static int ssl_init(int s_in, int s_out, int skip_vnc_tls, double last_https) {
 			unsigned long err;
 			int cnt = 0;
 
-			rfbLog("SSL: ssl_helper[%d]: SSL_accept() *FATAL: %d SSL FAILED\n", getpid(), rc);
+			rfbLog("SSL: ssl_helper[%d]: %s() *FATAL: %d SSL FAILED\n",
+			    getpid(), ssl_client_mode ? "SSL_connect" : "SSL_accept", rc);
 			while ((err = ERR_get_error()) != 0) {
 				rfbLog("SSL: %s\n", ERR_error_string(err, NULL));
 				if (cnt++ > 100) {
@@ -2071,8 +2083,8 @@ static int ssl_init(int s_in, int s_out, int skip_vnc_tls, double last_https) {
 
 		} else if (dnow() > start + 3.0) {
 
-			rfbLog("SSL: ssl_helper[%d]: timeout looping SSL_accept() "
-			    "fatal.\n", getpid());
+			rfbLog("SSL: ssl_helper[%d]: timeout looping %s() "
+			    "fatal.\n", getpid(), ssl_client_mode ? "SSL_connect" : "SSL_accept");
 			pr_ssl_info(1);
 			return 0;
 
@@ -2715,6 +2727,19 @@ void openssl_port(int restart) {
 	if (inetd) {
 		ssl_initialized = 1;
 		return;
+	}
+
+	if (ipv6_listen && screen->port <= 0) {
+		if (got_rfbport) {
+			screen->port = got_rfbport_val;
+		} else {
+			int ap = 5900;
+			if (auto_port > 0) {
+				ap = auto_port;
+			}
+			screen->port = find_free_port6(ap, ap+200);
+		}
+		rfbLog("openssl_port: reset port from 0 => %d\n", screen->port);
 	}
 
 	if (restart) {
@@ -4278,6 +4303,8 @@ if (db) rfbLog("raw_xfer bad write:  %d -> %d | %d/%d  errno=%d\n", csock, s_out
 #else
 #define ENC_HAVE_OPENSSL 0
 #endif
+
+#define ENC_DISABLE_SHOW_CERT 
 
 #include "enc.h"
 
