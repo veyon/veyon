@@ -1,3 +1,7 @@
+2010-05-08  Karl Runge <runge@karlrunge.com>
+	* x11vnc: set cd->unixname in apply_opts.  Print message in
+	  vnc_reflect_resize.  Some tweaks to prepare_x11vnc_dist.sh
+
 2010-05-01  Karl Runge <runge@karlrunge.com>
 	* x11vnc: X11VNC_DISABLE_SSL_CLIENT_MODE option to disable SSL
 	  client role in reverse connections.  Improvements to logging in

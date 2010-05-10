@@ -2,7 +2,7 @@
 Copyright (C) 2002-2010 Karl J. Runge <runge@karlrunge.com>
 All rights reserved.
 
-x11vnc README file                         Date: Fri Apr 30 00:43:58 EDT 2010
+x11vnc README file                         Date: Sat May  8 19:32:50 EDT 2010
 
 The following information is taken from these URLs:
 
@@ -586,12 +586,12 @@ vncviewer -via $host localhost:0      # must be TightVNC vncviewer.
    SourceForge.net. I use libvncserver for all of the VNC aspects; I
    couldn't have done without it. The full source code may be found and
    downloaded (either file-release tarball or GIT tree) from the above
-   link. As of Dec 2009, the x11vnc-0.9.9.tar.gz source package is
-   released (recommended download). The x11vnc 0.9.9 release notes.
+   link. As of May 2010, the x11vnc-0.9.10.tar.gz source package is
+   released (recommended download). The x11vnc 0.9.10 release notes.
 
    The x11vnc package is the subset of the libvncserver package needed to
    build the x11vnc program. Also, you can get a copy of my latest,
-   bleeding edge x11vnc-0.9.10-dev.tar.gz tarball to build the most up to
+   bleeding edge x11vnc-0.9.11-dev.tar.gz tarball to build the most up to
    date one.
 
    Precompiled Binaries/Packages:  See the FAQ below for information
@@ -629,13 +629,13 @@ vncviewer -via $host localhost:0      # must be TightVNC vncviewer.
    default.) See this build FAQ for more details.
 
    If your OS has libjpeg.so and libz.so in standard locations you can
-   build as follows (example given for the 0.9.9 release of x11vnc:
+   build as follows (example given for the 0.9.10 release of x11vnc:
    replace with the version you downloaded):
 (un-tar the x11vnc+libvncserver tarball)
-# gzip -dc x11vnc-0.9.9.tar.gz | tar -xvf -
+# gzip -dc x11vnc-0.9.10.tar.gz | tar -xvf -
 
 (cd to the source directory)
-# cd x11vnc-0.9.9
+# cd x11vnc-0.9.10
 
 (run configure and then run make)
 # ./configure
@@ -885,13 +885,13 @@ make
    I'd appreciate any additional testing very much.
 
    Thanks to those who suggested features and helped beta test x11vnc
-   0.9.9 released in Dec 2009!
+   0.9.10 released in May 2010!
 
-   Please help test and debug the 0.9.10 version for release sometime in
-   Spring 2010.
+   Please help test and debug the 0.9.11 version for release sometime in
+   Summer 2010.
 
-   The version 0.9.10 beta tarball is kept here:
-   x11vnc-0.9.10-dev.tar.gz
+   The version 0.9.11 beta tarball is kept here:
+   x11vnc-0.9.11-dev.tar.gz
 
    There are also some Linux, Solaris, Mac OS X, and other OS test
    binaries here. Please kick the tires and report bugs, performance
@@ -908,7 +908,11 @@ make
    settings panel.)
 
 
-   Here are some features that will appear in the 0.9.10 release:
+   Here are some features that will appear in the 0.9.11 release:
+     * Coming Soon.
+
+
+   Here are some features that appeared in the 0.9.10 release:
      * The included SSL enabled Java applet viewer now supports Chained
        SSL Certificates. The debugCerts=yes applet parameter aids
        troubleshooting certificate validation. The x11vnc -ssl mode has
@@ -11213,7 +11217,7 @@ Unix and Mac OS X:
 
     Unpack the archive:
 
-        % gzip -dc ssvnc-1.0.27.tar.gz | tar xvf -
+        % gzip -dc ssvnc-1.0.28.tar.gz | tar xvf -
 
     Run the GUI:
 
@@ -11221,7 +11225,7 @@ Unix and Mac OS X:
 
         % ./ssvnc/MacOSX/ssvnc             (for Mac OS X)
 
-    The smaller file "ssvnc_no_windows-1.0.27.tar.gz"
+    The smaller file "ssvnc_no_windows-1.0.28.tar.gz"
     could have been used as well.
 
     On MacOSX you could also click on the SSVNC app icon in the Finder.
@@ -11267,8 +11271,8 @@ Unix/MacOSX Install:
 
     For the conventional source tarball it will compile and install, e.g.:
 
-       gzip -dc ssvnc-1.0.27.src.tar.gz | tar xvf -
-       cd ssvnc-1.0.27
+       gzip -dc ssvnc-1.0.28.src.tar.gz | tar xvf -
+       cd ssvnc-1.0.28
        make config
        make all
        make PREFIX=/my/install/dir install
@@ -11281,7 +11285,7 @@ Windows:
 
     Unzip, using WinZip or a similar utility, the zip file:
 
-        ssvnc-1.0.27.zip
+        ssvnc-1.0.28.zip
 
     Run the GUI, e.g.:
 
@@ -11293,7 +11297,7 @@ Windows:
 
     select Open, and then OK to launch it.
 
-    The smaller file "ssvnc_windows_only-1.0.27.zip"
+    The smaller file "ssvnc_windows_only-1.0.28.zip"
     could have been used as well.
 
     You can make a Windows shortcut to this program if you want to.
@@ -11495,13 +11499,13 @@ or:     PORT= vncserver :4; sleep 15
    From the -help output:
 SSVNC Viewer (based on TightVNC viewer version 1.3.9)
 
-Usage: ./vncviewer [<OPTIONS>] [<HOST>][:<DISPLAY#>]
-       ./vncviewer [<OPTIONS>] [<HOST>][::<PORT#>]
-       ./vncviewer [<OPTIONS>] exec=[CMD ARGS...]
-       ./vncviewer [<OPTIONS>] fd=n
-       ./vncviewer [<OPTIONS>] /path/to/unix/socket
-       ./vncviewer [<OPTIONS>] -listen [<DISPLAY#>]
-       ./vncviewer -help
+Usage: vncviewer [<OPTIONS>] [<HOST>][:<DISPLAY#>]
+       vncviewer [<OPTIONS>] [<HOST>][::<PORT#>]
+       vncviewer [<OPTIONS>] exec=[CMD ARGS...]
+       vncviewer [<OPTIONS>] fd=n
+       vncviewer [<OPTIONS>] /path/to/unix/socket
+       vncviewer [<OPTIONS>] -listen [<DISPLAY#>]
+       vncviewer -help
 
 <OPTIONS> are standard Xt options, or:
         -via <GATEWAY>
@@ -11781,6 +11785,10 @@ r
                     specify as many as you need on the command line.  For
                     example, -env SSVNC_MULTIPLE_LISTEN=MAX:5 -env EDITOR=vi
 
+     -noipv6        Disable all IPv6 sockets.  Same as VNCVIEWER_NO_IPV6=1.
+
+     -noipv4        Disable all IPv4 sockets.  Same as VNCVIEWER_NO_IPV4=1.
+
      -printres      Print out the Ssvnc X resources (appdefaults) and then exit
                     You can save them to a file and customize them (e.g. the
                     keybindings and Popup menu)  Then point to the file via
@@ -11791,6 +11799,18 @@ r
                     framebuffer update coming in.  Helps 'pipeline' the updates
 .
                     This is currently the default, use -nopipeline to disable.
+
+     -appshare      Enable features for use with x11vnc's -appshare mode where
+                    instead of sharing the full desktop only the application's
+                    windows are shared.  Viewer multilisten mode is used to
+                    create the multiple windows: -multilisten is implied.
+                    See 'x11vnc -appshare -help' more information on the mode.
+
+                    Features enabled in the viewer under -appshare are:
+                    Minimum extra text in the title, auto -ycrop is disabled,
+                    x11vnc -remote_prefix X11VNC_APPSHARE_CMD: message channel,
+                    x11vnc initial window position hints.  See also Escape Keys
+                    below for additional key and mouse bindings.
 
      -escape str    This sets the 'Escape Keys' modifier sequence and enables
                     escape keys mode.  When the modifier keys escape sequence
@@ -11944,25 +11964,25 @@ r
    "ssvnc_unix_only" (or "ssvnc_no_windows" to recompile).
       On Mac OS X? Use "ssvnc_no_windows".
       On Windows? Use "ssvnc_windows_only".
-  ssvnc_windows_only-1.0.26.zip      Windows Binaries Only.  No source included
+  ssvnc_windows_only-1.0.27.zip      Windows Binaries Only.  No source included
  (6.2MB)
-  ssvnc_no_windows-1.0.26.tar.gz     Unix and Mac OS X Only. No Windows binarie
+  ssvnc_no_windows-1.0.27.tar.gz     Unix and Mac OS X Only. No Windows binarie
 s.  Source included. (10.1MB)
-  ssvnc_unix_only-1.0.26.tar.gz      Unix Binaries Only.     No source included
+  ssvnc_unix_only-1.0.27.tar.gz      Unix Binaries Only.     No source included
 . (7.2MB)
-  ssvnc_unix_minimal-1.0.26.tar.gz   Unix Minimal.  You must supply your own vn
+  ssvnc_unix_minimal-1.0.27.tar.gz   Unix Minimal.  You must supply your own vn
 cviewer and stunnel. (0.2MB)
 
-  ssvnc-1.0.26.tar.gz                All Unix, Mac OS X, and Windows binaries a
+  ssvnc-1.0.27.tar.gz                All Unix, Mac OS X, and Windows binaries a
 nd source TGZ. (16.1MB)
-  ssvnc-1.0.26.zip                   All Unix, Mac OS X, and Windows binaries a
+  ssvnc-1.0.27.zip                   All Unix, Mac OS X, and Windows binaries a
 nd source ZIP. (16.4MB)
-  ssvnc_all-1.0.26.zip               All Unix, Mac OS X, and Windows binaries a
+  ssvnc_all-1.0.27.zip               All Unix, Mac OS X, and Windows binaries a
 nd source AND full archives in the zip dir. (19.2MB)
 
 
    Here is a conventional source tarball:
-  ssvnc-1.0.26.src.tar.gz            Conventional Source for SSVNC GUI and Unix
+  ssvnc-1.0.27.src.tar.gz            Conventional Source for SSVNC GUI and Unix
  VNCviewer  (0.5MB)
 
    it will be of use to those who do not want the SSVNC
@@ -11980,19 +12000,19 @@ nd source AND full archives in the zip dir. (19.2MB)
    "ssvnc_all", you may need to run the "./build.unix" script in the top
    directory to recompile for your operating system.
 
-   Here are the corresponding 1.0.27 development bundles (Please help
+   Here are the corresponding 1.0.28 development bundles (Please help
    test them):
 
-  ssvnc_windows_only-1.0.27.zip
-  ssvnc_no_windows-1.0.27.tar.gz
-  ssvnc_unix_only-1.0.27.tar.gz
-  ssvnc_unix_minimal-1.0.27.tar.gz
+  ssvnc_windows_only-1.0.28.zip
+  ssvnc_no_windows-1.0.28.tar.gz
+  ssvnc_unix_only-1.0.28.tar.gz
+  ssvnc_unix_minimal-1.0.28.tar.gz
 
-  ssvnc-1.0.27.tar.gz
-  ssvnc-1.0.27.zip
-  ssvnc_all-1.0.27.zip
+  ssvnc-1.0.28.tar.gz
+  ssvnc-1.0.28.zip
+  ssvnc_all-1.0.28.zip
 
-  ssvnc-1.0.27.src.tar.gz            Conventional Source for SSVNC GUI and Unix
+  ssvnc-1.0.28.src.tar.gz            Conventional Source for SSVNC GUI and Unix
  VNCviewer  (0.5MB)
 
 
@@ -12015,6 +12035,7 @@ nd source AND full archives in the zip dir. (19.2MB)
       Release 1.0.24 at Sourceforge.net
       Release 1.0.25 at Sourceforge.net
       Release 1.0.26 at Sourceforge.net
+      Release 1.0.27 at Sourceforge.net
 
 
    Please help test the UltraVNC File Transfer support in the native Unix
@@ -12079,7 +12100,7 @@ x11vnc: a VNC server for real X displays
    Here are all of x11vnc command line options:
 % x11vnc -opts      (see below for -help long descriptions)
 
-x11vnc: allow VNC connections to real X11 displays. 0.9.10 lastmod: 2010-04-28
+x11vnc: allow VNC connections to real X11 displays. 0.9.11 lastmod: 2010-05-08
 
 x11vnc options:
   -display disp            -auth file               -N                     
@@ -12209,7 +12230,7 @@ libvncserver-tight-extension options:
 
 % x11vnc -help
 
-x11vnc: allow VNC connections to real X11 displays. 0.9.10 lastmod: 2010-04-28
+x11vnc: allow VNC connections to real X11 displays. 0.9.11 lastmod: 2010-05-08
 
 (type "x11vnc -opts" to just list the options.)
 
