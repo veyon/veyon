@@ -1341,6 +1341,8 @@ rfbBool vnc_reflect_resize(rfbClient *cl)  {
 		free(cl->frameBuffer);
 	}
 	cl->frameBuffer= malloc(cl->width * cl->height * cl->format.bitsPerPixel/8);
+	rfbLog("vnc_reflect_resize: %dx%dx%d first=%d\n", cl->width, cl->height,
+	    cl->format.bitsPerPixel, first);
 	if (!first) {
 		do_new_fb(1);
 	}
