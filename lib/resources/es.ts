@@ -60,7 +60,7 @@
     <name>QObject</name>
     <message>
         <source>UPL (note for translators: the first three characters of this string are the accellerators (underlined characters) of the three input-fields in logon-dialog of windows - please keep this note as otherwise there are strange errors concerning logon-feature)</source>
-        <translation></translation>
+        <translation>NCT (note for translators: the first three characters of this string are the accellerators (underlined characters) of the three input-fields in logon-dialog of windows - please keep this note as otherwise there are strange errors concerning logon-feature)</translation>
     </message>
     <message>
         <source>iTALC-snapshots</source>
