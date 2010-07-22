@@ -2446,9 +2446,14 @@ rfbSendFramebufferUpdate(rfbClientPtr cl,
       fu->nRects = Swap16IfLE(1);
       cl->ublen = sz_rfbFramebufferUpdateMsg;
       if (!rfbSendNewFBSize(cl, cl->scaledScreen->width, cl->scaledScreen->height)) {
+	if(cl->screen->displayFinishedHook)
+	  cl->screen->displayFinishedHook(cl, FALSE);
         return FALSE;
       }
-      return rfbSendUpdateBuf(cl);
+      result = rfbSendUpdateBuf(cl);
+      if(cl->screen->displayFinishedHook)
+	cl->screen->displayFinishedHook(cl, result);
+      return result;
     }
     
     /*
@@ -2564,6 +2569,8 @@ rfbSendFramebufferUpdate(rfbClientPtr cl,
        !sendSupportedMessages && !sendSupportedEncodings && !sendServerIdentity) {
       sraRgnDestroy(updateRegion);
       UNLOCK(cl->updateMutex);
+      if(cl->screen->displayFinishedHook)
+	cl->screen->displayFinishedHook(cl, TRUE);
       return TRUE;
     }
 
@@ -2841,6 +2848,9 @@ updateFailed:
         sraRgnReleaseIterator(i);
     sraRgnDestroy(updateRegion);
     sraRgnDestroy(updateCopyRegion);
+
+    if(cl->screen->displayFinishedHook)
+      cl->screen->displayFinishedHook(cl, result);
     return result;
 }
 
