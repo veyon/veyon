@@ -37,12 +37,6 @@
 #include <QtCore/QFile>
 #include <QtCore/QTextStream>
 
-typedef struct tagWTSSESSION_NOTIFICATION
-{
-	DWORD cbSize;
-	DWORD dwSessionId;
-} WTSSESSION_NOTIFICATION, *PWTSSESSION_NOTIFICATION;
- 
 #define WTS_SESSION_LOGON 0x5
 #define WTS_SESSION_LOGOFF 0x6
 #define WTS_CURRENT_SERVER_HANDLE 0

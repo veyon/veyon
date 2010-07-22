@@ -148,7 +148,7 @@ ExecWait '"$INSTDIR\ica.exe" -quiet -unregisterservice'
 SetOverwrite ifnewer
 SetOutPath "$INSTDIR"
 File "italc-${VERSION}\ica.exe"
-File "italc-${VERSION}\libjpeg.dll"
+File "italc-${VERSION}\libjpeg-8.dll"
 File "italc-${VERSION}\QtXml4.dll"
 File "italc-${VERSION}\libeay32.dll"
 File "italc-${VERSION}\QtNetwork4.dll"

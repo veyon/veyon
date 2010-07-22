@@ -31,6 +31,7 @@
 
 #ifdef BUILD_WIN32
 #define _WIN32_WINNT 0x0501
+#include <winsock2.h>
 #endif
 
 #include <QtCore/QCoreApplication>

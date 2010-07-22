@@ -52,7 +52,7 @@
 #define LIBVNCSERVER_WORDS_BIGENDIAN
 #define rfbBool int
 #include <sys/timeb.h>
-#include <winsock.h>
+#include <winsock2.h>
 #undef SOCKET
 #define SOCKET int
 #else

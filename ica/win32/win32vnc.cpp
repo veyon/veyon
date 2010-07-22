@@ -4,6 +4,7 @@
 
 #define XMD_H
 #define _WIN32_WINNT 0x0500
+#include <winsock2.h>
 #include <windows.h>
 
 
@@ -194,6 +195,7 @@ qint64 vsocketDispatcher( char * _buf, const qint64 _len,
 #include "src/vncInstHandler.cpp"
 #include "src/vncServer.cpp"
 #include "src/vncClient.cpp"
+#include "src/vncDesktop.cpp"
 #include "src/stdhdrs.cpp"
 #include "src/omnithread/nt.cpp"
 #include "src/RectList.cpp"
@@ -206,13 +208,4 @@ qint64 vsocketDispatcher( char * _buf, const qint64 _len,
 #include "src/VideoDriver.cpp"
 //#include "src/TsSessions.cpp"
 //#include "src/DynamicFn.cpp"
-
-#ifndef _MAX_PATH
-#define _MAX_PATH 260
-#endif
-
-//#include "src/VNCHooks/VNCHooks.cpp"
-//#include "src/VNCHooks/SharedData.cpp"
-#include "src/VNCHooks/SharedData.h"
-#include "src/vncDesktop.cpp"
 

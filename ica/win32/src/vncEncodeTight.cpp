@@ -1440,7 +1440,7 @@ vncEncodeTight::SendJpegRect(BYTE *dst, int w, int h, int quality)
 	if (m_localformat.bitsPerPixel == 8)
 		return SendFullColorRect(dst, w, h);
 
-	BYTE *srcBuf = new byte[w * 3];
+	BYTE *srcBuf = new BYTE[w * 3];
 	JSAMPROW rowPointer[1];
 	rowPointer[0] = (JSAMPROW)srcBuf;
 

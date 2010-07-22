@@ -38,6 +38,7 @@ class vncPasswd;
 extern "C" {
 #include "vncauth.h"
 }
+#include <stdlib.h>
 
 // Password handling helper class
 class vncPasswd

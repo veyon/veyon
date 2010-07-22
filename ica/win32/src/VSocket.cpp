@@ -47,7 +47,6 @@ class VSocket;
 #include <stdio.h>
 #ifdef __WIN32__
 #include <io.h>
-#include <winsock.h>
 #else
 #include <sys/types.h>
 #include <sys/socket.h>
