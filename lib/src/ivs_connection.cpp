@@ -2,7 +2,7 @@
  * ivs_connection.cpp - class ivsConnection, an implementation of the 
  *                      RFB-protocol with iTALC-extensions for Qt
  *
- * Copyright (c) 2004-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -292,13 +292,19 @@ void ivsConnection::close( void )
 
 bool ivsConnection::takeSnapshot( void )
 {
-	if( user().isEmpty() || state() != ivsConnection::Connected )
+	if( state() != ivsConnection::Connected )
 	{
 		return( FALSE );
 	}
 
+	QString u = user();
+	if( u.isEmpty() )
+	{
+		u = tr( "unknown" );
+	}
+
 	// construct text
-	QString txt = user() + "@" + host() + " " +
+	QString txt = u + "@" + host() + " " +
 			QDate( QDate::currentDate() ).toString( Qt::ISODate ) +
 			" " + QTime( QTime::currentTime() ).
 							toString( Qt::ISODate );
