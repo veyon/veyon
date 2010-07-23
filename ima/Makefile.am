@@ -107,6 +107,10 @@ if BUILD_WIN32
 italc_win_resources.o: italc.rc
 	$(WINDRES) -o $@ $<
 WIN32_RES_LDADD = italc_win_resources.o
+# QtCore already contains libz
+LIBZ_LDADD =
+else
+LIBZ_LDADD = -lz
 endif
 
 if HAVE_LIBSSL
@@ -118,7 +122,7 @@ LIBSSL_LDADD = -leay32
 endif
 
 
-italc_LDADD = $(QT_LDADD) $(QT_LIB_GUI) -lz -ljpeg $(LIBSSL_LDADD) $(WIN32_RES_LDADD) -L../lib -litalc_core
+italc_LDADD = $(QT_LDADD) $(QT_LIB_GUI) $(LIBZ_LDADD) -ljpeg $(LIBSSL_LDADD) $(WIN32_RES_LDADD) -L../lib -litalc_core
 italc_LDFLAGS = $(LDFLAGS) -mwindows -rpath $(pkglibdir)
 
 AM_CXXFLAGS = $(QT_CXXFLAGS)
