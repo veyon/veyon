@@ -315,10 +315,11 @@ void remoteControlWidget::updateWindowTitle( void )
 
 
 
-void remoteControlWidget::resizeEvent( QResizeEvent * )
+void remoteControlWidget::resizeEvent( QResizeEvent * resizeEvent )
 {
 	m_vncView->resize( size() );
 	m_toolBar->setFixedSize( width(), 52 );
+	QWidget::resizeEvent( resizeEvent );
 }
 
 
