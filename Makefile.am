@@ -8,6 +8,13 @@ EXTRA_DIST = build_mingw32 tightvnc4win_integrate tightvnc4win_italc.diff README
 
 nobase_doc_DATA = AUTHORS ChangeLog COPYING INSTALL README README.LZO TODO
 
+%.ts:
+	cd lib && make $@
+
+%.qm:
+	cd lib && make $@
+
+
 dist-hook:
 	rm -rf `find $(distdir) -name *.moc`
 	rm -rf `find $(distdir) -name *_qrc.cpp`
