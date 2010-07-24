@@ -2,6 +2,222 @@
 <!DOCTYPE TS>
 <TS version="2.0">
 <context>
+    <name>MainToolBar</name>
+    <message>
+        <source>Actions</source>
+        <translation type="unfinished">Accions</translation>
+    </message>
+</context>
+<context>
+    <name>MainWindow</name>
+    <message>
+        <source>MainWindow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>toolBar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>iTALC</source>
+        <translation type="unfinished">iTALC</translation>
+    </message>
+    <message>
+        <source>No write-access</source>
+        <translation type="unfinished">Sense premís d&apos;escriptura</translation>
+    </message>
+    <message>
+        <source>Could not read/write or create directory %1! For running iTALC, make sure you&apos;re permitted to create or write this directory.</source>
+        <translation type="unfinished">No s&apos;ha pogut llegir/escriure o crear el directori %1! Per executar l&apos;iTALC assegureu-vos que teniu permisos per crear o escriure en aquest directori.</translation>
+    </message>
+    <message>
+        <source>Classroom</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Switch classroom</source>
+        <translation type="unfinished">Canvia de classe</translation>
+    </message>
+    <message>
+        <source>Click this button to open a menu where you can choose the active classroom.</source>
+        <translation type="unfinished">Feu clic en aquest botó per obrir un menú on pugueu seleccionar la classe activa.</translation>
+    </message>
+    <message>
+        <source>Click on this button, to switch between classrooms.</source>
+        <translation type="unfinished">Feu clic en aquest botó per canviar entre classes.</translation>
+    </message>
+    <message>
+        <source>Overview mode</source>
+        <translation type="unfinished">Mode de vista general</translation>
+    </message>
+    <message>
+        <source>Overview</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This is the default mode in iTALC and allows you to have an overview over all visible computers. Also click on this button for unlocking locked workstations or for leaving demo-mode.</source>
+        <translation type="unfinished">Aquest és el mode per defecte de l&apos;iTALC que us permet tenir una visió general de tots els ordinadors visibles. Feu també clic en aquest botó per desbloquejar estacions de traball o deixar el mode demo.</translation>
+    </message>
+    <message>
+        <source>Fullscreen demo</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fullscreen Demo</source>
+        <translation type="unfinished">Demo a pantalla completa</translation>
+    </message>
+    <message>
+        <source>Stop Demo</source>
+        <translation type="unfinished">Atura Demo</translation>
+    </message>
+    <message>
+        <source>In this mode your screen is being displayed on all shown computers. Furthermore the users aren&apos;t able to do something else as all input devices are locked in this mode.</source>
+        <translation type="unfinished">En aquest mode la vostra pantalla es visualitza en tots els ordinadors visibles. A més els usuaris no poden fer res més ja que tots els dispositius d&apos;entrada estan bloquejats en aquet mode.</translation>
+    </message>
+    <message>
+        <source>Window demo</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Window Demo</source>
+        <translation type="unfinished">Demo en finestra</translation>
+    </message>
+    <message>
+        <source>In this mode your screen being displayed in a window on all shown computers. The users are able to switch to other windows and thus can continue to work.</source>
+        <translation type="unfinished">En aquest mode la vostra pantalla es visualitza en un  finestra en tots els ordinadors visibles. Els usuaris es poden canviar a altres finestres i així continuar treballant.</translation>
+    </message>
+    <message>
+        <source>Lock/unlock desktops</source>
+        <translation type="unfinished">Bloqueja/desbloqueja escriptoris</translation>
+    </message>
+    <message>
+        <source>Lock all</source>
+        <translation type="unfinished">Bloqueja tot</translation>
+    </message>
+    <message>
+        <source>Unlock all</source>
+        <translation type="unfinished">Desbloqueja tots</translation>
+    </message>
+    <message>
+        <source>To have all user&apos;s full attention you can lock their desktops using this button. In this mode all input devices are locked and the screen is black.</source>
+        <translation type="unfinished">Per tenir l&apos;atenció completa de tots els usuaris podeu bloquejar els seus escriptoris usant aquest botó. En aquest mode tots els dispositius d&apos;entrada estan bloquejats i la pantalla en negre.</translation>
+    </message>
+    <message>
+        <source>Send text message</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Text message</source>
+        <translation type="unfinished">Missatge de text</translation>
+    </message>
+    <message>
+        <source>Use this button to send a text message to all users e.g. to tell them new tasks etc.</source>
+        <translation type="unfinished">Useu aquest botó per enviar un missatge de text a tots els usuaris. Per exemple, per informar-los de noves tasques.</translation>
+    </message>
+    <message>
+        <source>Power on computers</source>
+        <translation type="unfinished">Engega els ordinadors</translation>
+    </message>
+    <message>
+        <source>Power on</source>
+        <translation type="unfinished">Engega</translation>
+    </message>
+    <message>
+        <source>Click this button to power on all visible computers. This way you do not have to turn on each computer by hand.</source>
+        <translation type="unfinished">Feu clic en aquest botó per engegar tots els ordinadors visibles. D&apos;aquesta manera no heu d&apos;engegar cada ordinador a ma.</translation>
+    </message>
+    <message>
+        <source>Power down computers</source>
+        <translation type="unfinished">Apaga els ordinadors</translation>
+    </message>
+    <message>
+        <source>Power down</source>
+        <translation type="unfinished">Apaga</translation>
+    </message>
+    <message>
+        <source>To power down all shown computers (e.g. after the lesson has finished) you can click this button.</source>
+        <translation type="unfinished">Per apagar tots els ordinadors visibles (per exemple, després de finalitzar la lliçó) podeu fer clic en aquest botó.</translation>
+    </message>
+    <message>
+        <source>Logon</source>
+        <translation type="unfinished">Connecta</translation>
+    </message>
+    <message>
+        <source>Remote logon</source>
+        <translation type="unfinished">Connexió remota</translation>
+    </message>
+    <message>
+        <source>After clicking this button you can enter a username and password to log on the according user on all visible computers.</source>
+        <translation type="unfinished">Després de clicar aquest botó podeu introduir un nom d&apos;usuari i contrasenya per connectar-vos amb aquest nom d&apos;usuari a tots els ordinadors visibles.</translation>
+    </message>
+    <message>
+        <source>Support</source>
+        <translation type="unfinished">Suport</translation>
+    </message>
+    <message>
+        <source>Direct support</source>
+        <translation type="unfinished">Suport directe</translation>
+    </message>
+    <message>
+        <source>If you need to support someone at a certain computer you can click this button and enter the according hostname or IP afterwards.</source>
+        <translation type="unfinished">Si necessiteu donar suport a algú en un determinat ordinador podeu clicar aquest botó i introduir després el nom de l&apos;amfitrió o IP acordat.</translation>
+    </message>
+    <message>
+        <source>Adjust/align</source>
+        <translation type="unfinished">Ajusta/Alinea</translation>
+    </message>
+    <message>
+        <source>Adjust windows and their size</source>
+        <translation type="unfinished">Ajusta les finestres i la seva mida</translation>
+    </message>
+    <message>
+        <source>When clicking this button the biggest possible size for the client-windows is adjusted. Furthermore all windows are aligned.</source>
+        <translation type="unfinished">En clicar aquest botó la finestra dels clients s&apos;ajusta a la major mida possible. A més totes les finestres s&apos;alinien.</translation>
+    </message>
+    <message>
+        <source>Auto view</source>
+        <translation type="unfinished">Vista automàtica</translation>
+    </message>
+    <message>
+        <source>Auto re-arrange windows and their size</source>
+        <translation type="unfinished">Arranjament automàtic de les finestres i la seva mida</translation>
+    </message>
+    <message>
+        <source>When clicking this button all visible windows are re-arranged and adjusted.</source>
+        <translation type="unfinished">En clicar aquest botó totes les finestres visibles es reorganitzen i s&apos;ajusten.</translation>
+    </message>
+    <message>
+        <source>No valid keys found</source>
+        <translation type="unfinished">No s&apos;han trobat claus vàlides</translation>
+    </message>
+    <message>
+        <source>No authentication-keys were found or your old ones were broken. Please create a new key-pair using ICA (see documentation at http://italc.sf.net/wiki/index.php?title=Installation).
+Otherwise you won&apos;t be able to access computers using iTALC.</source>
+        <translation type="unfinished">No s&apos;ha trobat cap clau d&apos;autenticació o les velles eren invàlides. Creeu un nou parell de claus usant ICA (mireu la documentació en http://italc.sf.net/wiki/index.php?title=Installation).
+Si no, no podreu accedir als ordinadors usant l&apos;iTALC.</translation>
+    </message>
+    <message>
+        <source>iTALC service not running</source>
+        <translation type="unfinished">El servei iTALC no està funcionant</translation>
+    </message>
+    <message>
+        <source>There seems to be no iTALC service running on this computer or the authentication-keys aren&apos;t set up properly. The service is required for running iTALC. Contact your administrator for solving this problem.</source>
+        <translation type="unfinished">Sembla que no hi hagi cap servei ITALC funcionant en aquest ordinador o les claus d&apos;autenticació no estan correctament configurades. Es necessita el servei per executar iTALC. Contacteu amb el vostre administrador per resoldre aquest problema.</translation>
+    </message>
+    <message>
+        <source>iTALC Master Control</source>
+        <translation type="unfinished">Control principal de l&apos;iTALC</translation>
+    </message>
+    <message>
+        <source>Remote control</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Quit</source>
+        <translation type="unfinished">Surt</translation>
+    </message>
+</context>
+<context>
     <name>QApplication</name>
     <message>
         <source>Unable to register service &apos;%1&apos;.</source>
@@ -774,211 +990,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>screen lock</source>
         <translation>Bloqueja la pantalla</translation>
-    </message>
-</context>
-<context>
-    <name>mainWindow</name>
-    <message>
-        <source>Actions</source>
-        <translation>Accions</translation>
-    </message>
-    <message>
-        <source>Adjust/align</source>
-        <translation>Ajusta/Alinea</translation>
-    </message>
-    <message>
-        <source>Adjust windows and their size</source>
-        <translation>Ajusta les finestres i la seva mida</translation>
-    </message>
-    <message>
-        <source>After clicking this button you can enter a username and password to log on the according user on all visible computers.</source>
-        <translation>Després de clicar aquest botó podeu introduir un nom d&apos;usuari i contrasenya per connectar-vos amb aquest nom d&apos;usuari a tots els ordinadors visibles.</translation>
-    </message>
-    <message>
-        <source>Auto re-arrange windows and their size</source>
-        <translation>Arranjament automàtic de les finestres i la seva mida</translation>
-    </message>
-    <message>
-        <source>Auto view</source>
-        <translation>Vista automàtica</translation>
-    </message>
-    <message>
-        <source>Classroom</source>
-        <translation>Classe</translation>
-    </message>
-    <message>
-        <source>Click on this button, to switch between classrooms.</source>
-        <translation>Feu clic en aquest botó per canviar entre classes.</translation>
-    </message>
-    <message>
-        <source>Click this button to open a menu where you can choose the active classroom.</source>
-        <translation>Feu clic en aquest botó per obrir un menú on pugueu seleccionar la classe activa.</translation>
-    </message>
-    <message>
-        <source>Click this button to power on all visible computers. This way you do not have to turn on each computer by hand.</source>
-        <translation>Feu clic en aquest botó per engegar tots els ordinadors visibles. D&apos;aquesta manera no heu d&apos;engegar cada ordinador a ma.</translation>
-    </message>
-    <message>
-        <source>Could not read/write or create directory %1! For running iTALC, make sure you&apos;re permitted to create or write this directory.</source>
-        <translation>No s&apos;ha pogut llegir/escriure o crear el directori %1! Per executar l&apos;iTALC assegureu-vos que teniu permisos per crear o escriure en aquest directori.</translation>
-    </message>
-    <message>
-        <source>Fullscreen demo</source>
-        <translation>Demo en pantalla completa</translation>
-    </message>
-    <message>
-        <source>In this mode your screen being displayed in a window on all shown computers. The users are able to switch to other windows and thus can continue to work.</source>
-        <translation>En aquest mode la vostra pantalla es visualitza en un  finestra en tots els ordinadors visibles. Els usuaris es poden canviar a altres finestres i així continuar treballant.</translation>
-    </message>
-    <message>
-        <source>In this mode your screen is being displayed on all shown computers. Furthermore the users aren&apos;t able to do something else as all input devices are locked in this mode.</source>
-        <translation>En aquest mode la vostra pantalla es visualitza en tots els ordinadors visibles. A més els usuaris no poden fer res més ja que tots els dispositius d&apos;entrada estan bloquejats en aquet mode.</translation>
-    </message>
-    <message>
-        <source>iTALC</source>
-        <translation>iTALC</translation>
-    </message>
-    <message>
-        <source>iTALC service not running</source>
-        <translation>El servei iTALC no està funcionant</translation>
-    </message>
-    <message>
-        <source>Lock all</source>
-        <translation>Bloqueja tot</translation>
-    </message>
-    <message>
-        <source>Lock/unlock desktops</source>
-        <translation>Bloqueja/desbloqueja escriptoris</translation>
-    </message>
-    <message>
-        <source>Logon</source>
-        <translation>Connecta</translation>
-    </message>
-    <message>
-        <source>No authentication-keys were found or your old ones were broken. Please create a new key-pair using ICA (see documentation at http://italc.sf.net/wiki/index.php?title=Installation).
-Otherwise you won&apos;t be able to access computers using iTALC.</source>
-        <translation>No s&apos;ha trobat cap clau d&apos;autenticació o les velles eren invàlides. Creeu un nou parell de claus usant ICA (mireu la documentació en http://italc.sf.net/wiki/index.php?title=Installation).
-Si no, no podreu accedir als ordinadors usant l&apos;iTALC.</translation>
-    </message>
-    <message>
-        <source>No valid keys found</source>
-        <translation>No s&apos;han trobat claus vàlides</translation>
-    </message>
-    <message>
-        <source>No write-access</source>
-        <translation>Sense premís d&apos;escriptura</translation>
-    </message>
-    <message>
-        <source>Overview</source>
-        <translation>Vista general</translation>
-    </message>
-    <message>
-        <source>Overview mode</source>
-        <translation>Mode de vista general</translation>
-    </message>
-    <message>
-        <source>Power down</source>
-        <translation>Apaga</translation>
-    </message>
-    <message>
-        <source>Power down computers</source>
-        <translation>Apaga els ordinadors</translation>
-    </message>
-    <message>
-        <source>Power on</source>
-        <translation>Engega</translation>
-    </message>
-    <message>
-        <source>Power on computers</source>
-        <translation>Engega els ordinadors</translation>
-    </message>
-    <message>
-        <source>Remote logon</source>
-        <translation>Connexió remota</translation>
-    </message>
-    <message>
-        <source>Send text message</source>
-        <translation>Envia un missatge de text</translation>
-    </message>
-    <message>
-        <source>Switch classroom</source>
-        <translation>Canvia de classe</translation>
-    </message>
-    <message>
-        <source>Text message</source>
-        <translation>Missatge de text</translation>
-    </message>
-    <message>
-        <source>There seems to be no iTALC service running on this computer or the authentication-keys aren&apos;t set up properly. The service is required for running iTALC. Contact your administrator for solving this problem.</source>
-        <translation>Sembla que no hi hagi cap servei ITALC funcionant en aquest ordinador o les claus d&apos;autenticació no estan correctament configurades. Es necessita el servei per executar iTALC. Contacteu amb el vostre administrador per resoldre aquest problema.</translation>
-    </message>
-    <message>
-        <source>This is the default mode in iTALC and allows you to have an overview over all visible computers. Also click on this button for unlocking locked workstations or for leaving demo-mode.</source>
-        <translation>Aquest és el mode per defecte de l&apos;iTALC que us permet tenir una visió general de tots els ordinadors visibles. Feu també clic en aquest botó per desbloquejar estacions de traball o deixar el mode demo.</translation>
-    </message>
-    <message>
-        <source>To have all user&apos;s full attention you can lock their desktops using this button. In this mode all input devices are locked and the screen is black.</source>
-        <translation>Per tenir l&apos;atenció completa de tots els usuaris podeu bloquejar els seus escriptoris usant aquest botó. En aquest mode tots els dispositius d&apos;entrada estan bloquejats i la pantalla en negre.</translation>
-    </message>
-    <message>
-        <source>To power down all shown computers (e.g. after the lesson has finished) you can click this button.</source>
-        <translation>Per apagar tots els ordinadors visibles (per exemple, després de finalitzar la lliçó) podeu fer clic en aquest botó.</translation>
-    </message>
-    <message>
-        <source>Unlock all</source>
-        <translation>Desbloqueja tots</translation>
-    </message>
-    <message>
-        <source>Use this button to send a text message to all users e.g. to tell them new tasks etc.</source>
-        <translation>Useu aquest botó per enviar un missatge de text a tots els usuaris. Per exemple, per informar-los de noves tasques.</translation>
-    </message>
-    <message>
-        <source>When clicking this button all visible windows are re-arranged and adjusted.</source>
-        <translation>En clicar aquest botó totes les finestres visibles es reorganitzen i s&apos;ajusten.</translation>
-    </message>
-    <message>
-        <source>When clicking this button the biggest possible size for the client-windows is adjusted. Furthermore all windows are aligned.</source>
-        <translation>En clicar aquest botó la finestra dels clients s&apos;ajusta a la major mida possible. A més totes les finestres s&apos;alinien.</translation>
-    </message>
-    <message>
-        <source>Window demo</source>
-        <translation>Demo en finestra</translation>
-    </message>
-    <message>
-        <source>Fullscreen Demo</source>
-        <translation>Demo a pantalla completa</translation>
-    </message>
-    <message>
-        <source>Stop Demo</source>
-        <translation>Atura Demo</translation>
-    </message>
-    <message>
-        <source>Window Demo</source>
-        <translation>Demo en finestra</translation>
-    </message>
-    <message>
-        <source>Support</source>
-        <translation>Suport</translation>
-    </message>
-    <message>
-        <source>Direct support</source>
-        <translation>Suport directe</translation>
-    </message>
-    <message>
-        <source>If you need to support someone at a certain computer you can click this button and enter the according hostname or IP afterwards.</source>
-        <translation>Si necessiteu donar suport a algú en un determinat ordinador podeu clicar aquest botó i introduir després el nom de l&apos;amfitrió o IP acordat.</translation>
-    </message>
-    <message>
-        <source>iTALC Master Control</source>
-        <translation>Control principal de l&apos;iTALC</translation>
-    </message>
-    <message>
-        <source>Remote control</source>
-        <translation>Control remot</translation>
-    </message>
-    <message>
-        <source>Quit</source>
-        <translation>Surt</translation>
     </message>
 </context>
 <context>

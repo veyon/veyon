@@ -2,6 +2,222 @@
 <!DOCTYPE TS>
 <TS version="2.0" language="uk_UA">
 <context>
+    <name>MainToolBar</name>
+    <message>
+        <source>Actions</source>
+        <translation type="unfinished">Дії</translation>
+    </message>
+</context>
+<context>
+    <name>MainWindow</name>
+    <message>
+        <source>MainWindow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>toolBar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>iTALC</source>
+        <translation type="unfinished">iTALC</translation>
+    </message>
+    <message>
+        <source>No write-access</source>
+        <translation type="unfinished">Відсутній дозвіл на запис</translation>
+    </message>
+    <message>
+        <source>Could not read/write or create directory %1! For running iTALC, make sure you&apos;re permitted to create or write this directory.</source>
+        <translation type="unfinished">Неможливо провести читання/запис або створити теку %1! Щоб запустити iTALC, переконайтеся, що ви можете створити теку або провести запис до цієї теки.</translation>
+    </message>
+    <message>
+        <source>Classroom</source>
+        <translation type="unfinished">Клас</translation>
+    </message>
+    <message>
+        <source>Switch classroom</source>
+        <translation type="unfinished">Перемкнути клас</translation>
+    </message>
+    <message>
+        <source>Click this button to open a menu where you can choose the active classroom.</source>
+        <translation type="unfinished">Натисніть на цю кнопку, щоб відкрити меню, за допомогою якого ви зможете обрати активний клас.</translation>
+    </message>
+    <message>
+        <source>Click on this button, to switch between classrooms.</source>
+        <translation type="unfinished">Натисніть на цю кнопку, щоб перемикатися між класами.</translation>
+    </message>
+    <message>
+        <source>Overview mode</source>
+        <translation type="unfinished">Режим перегляду</translation>
+    </message>
+    <message>
+        <source>Overview</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This is the default mode in iTALC and allows you to have an overview over all visible computers. Also click on this button for unlocking locked workstations or for leaving demo-mode.</source>
+        <translation type="unfinished">Це типовий режим iTALC, від дозволяє вам вести спостереження за всіма видимими комп’ютерами. Також цю кнопку можна використовувати для розблокування заблокованих робочих станцій або для виходу з режиму демо.</translation>
+    </message>
+    <message>
+        <source>Fullscreen demo</source>
+        <translation type="unfinished">Повноекранне демо</translation>
+    </message>
+    <message>
+        <source>Fullscreen Demo</source>
+        <translation type="unfinished">Повноекранне демо</translation>
+    </message>
+    <message>
+        <source>Stop Demo</source>
+        <translation type="unfinished">Завершити демонстрацію</translation>
+    </message>
+    <message>
+        <source>In this mode your screen is being displayed on all shown computers. Furthermore the users aren&apos;t able to do something else as all input devices are locked in this mode.</source>
+        <translation type="unfinished">У цьому режимі зображення з вашого екрана буде показано на всіх видимих комп’ютерах. Крім того, користувачі не зможуть виконувати інших дій, оскільки у цьому режимі всі пристрої введення буде заблоковано.</translation>
+    </message>
+    <message>
+        <source>Window demo</source>
+        <translation type="unfinished">Демо у вікні</translation>
+    </message>
+    <message>
+        <source>Window Demo</source>
+        <translation type="unfinished">Демо у вікні</translation>
+    </message>
+    <message>
+        <source>In this mode your screen being displayed in a window on all shown computers. The users are able to switch to other windows and thus can continue to work.</source>
+        <translation type="unfinished">У цьому режимі зображення з вашого екрана буде показано у вікні на всіх видимих комп’ютерах. Користувачі матимуть змогу перемикатися на інші вікна і, таким чином, продовжувати роботу.</translation>
+    </message>
+    <message>
+        <source>Lock/unlock desktops</source>
+        <translation type="unfinished">Заблокувати/розблокувати стільниці</translation>
+    </message>
+    <message>
+        <source>Lock all</source>
+        <translation type="unfinished">Заблокувати всі</translation>
+    </message>
+    <message>
+        <source>Unlock all</source>
+        <translation type="unfinished">Розблокувати всі</translation>
+    </message>
+    <message>
+        <source>To have all user&apos;s full attention you can lock their desktops using this button. In this mode all input devices are locked and the screen is black.</source>
+        <translation type="unfinished">Щоб заволодіти увагою учнів, ви можете заблокувати їхні стільниці за допомогою цієї кнопки. У цьому режимі всі пристрої вводу буде заблоковано, а екран стане чорним.</translation>
+    </message>
+    <message>
+        <source>Send text message</source>
+        <translation type="unfinished">Надіслати текстове повідомлення</translation>
+    </message>
+    <message>
+        <source>Text message</source>
+        <translation type="unfinished">Текстове повідомлення</translation>
+    </message>
+    <message>
+        <source>Use this button to send a text message to all users e.g. to tell them new tasks etc.</source>
+        <translation type="unfinished">Використовуйте цю кнопку, щоб надіслати текстове повідомлення для всіх користувачів, наприклад, щоб повідомити їм про нове завдання та інше.</translation>
+    </message>
+    <message>
+        <source>Power on computers</source>
+        <translation type="unfinished">Увімкнути комп’ютери</translation>
+    </message>
+    <message>
+        <source>Power on</source>
+        <translation type="unfinished">Увімкнути</translation>
+    </message>
+    <message>
+        <source>Click this button to power on all visible computers. This way you do not have to turn on each computer by hand.</source>
+        <translation type="unfinished">Натисніть на цю кнопку, щоб увімкнути всі видимі комп’ютери. Таким чином, вам не потрібно буде вмикати кожен комп’ютер вручну.</translation>
+    </message>
+    <message>
+        <source>Power down computers</source>
+        <translation type="unfinished">Вимкнути комп’ютери</translation>
+    </message>
+    <message>
+        <source>Power down</source>
+        <translation type="unfinished">Вимкнути</translation>
+    </message>
+    <message>
+        <source>To power down all shown computers (e.g. after the lesson has finished) you can click this button.</source>
+        <translation type="unfinished">Щоб вимкнути комп’ютери (наприклад, по завершенню уроку), ви можете натиснути цю кнопку.</translation>
+    </message>
+    <message>
+        <source>Logon</source>
+        <translation type="unfinished">Почати роботу</translation>
+    </message>
+    <message>
+        <source>Remote logon</source>
+        <translation type="unfinished">Віддалений початок роботи</translation>
+    </message>
+    <message>
+        <source>After clicking this button you can enter a username and password to log on the according user on all visible computers.</source>
+        <translation type="unfinished">Після натискання цієї кнопки ви можете ввести ім’я користувача і пароль, щоб почати роботу цього користувача на всіх видимих комп’ютерах.</translation>
+    </message>
+    <message>
+        <source>Support</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Direct support</source>
+        <translation type="unfinished">Прямий супровід</translation>
+    </message>
+    <message>
+        <source>If you need to support someone at a certain computer you can click this button and enter the according hostname or IP afterwards.</source>
+        <translation type="unfinished">Якщо вам потрібно супроводжувати чиїсь дії на одному з комп’ютерів, ви можете натиснути цю кнопку і ввести назву вузла або IP-адресу відповідного комп’ютера.</translation>
+    </message>
+    <message>
+        <source>Adjust/align</source>
+        <translation type="unfinished">Підібрати/вирівняти</translation>
+    </message>
+    <message>
+        <source>Adjust windows and their size</source>
+        <translation type="unfinished">Підібрати розмір вікон та їх розташування</translation>
+    </message>
+    <message>
+        <source>When clicking this button the biggest possible size for the client-windows is adjusted. Furthermore all windows are aligned.</source>
+        <translation type="unfinished">Якщо ви натиснете на цю кнопку, буде обрано найбільший можливий розмір вікна клієнта. Крім того, всі вікна буде вирівняно.</translation>
+    </message>
+    <message>
+        <source>Auto view</source>
+        <translation type="unfinished">Авто-вигляд</translation>
+    </message>
+    <message>
+        <source>Auto re-arrange windows and their size</source>
+        <translation type="unfinished">Автоматично перевпорядкувати вікна та підібрати їх розмір</translation>
+    </message>
+    <message>
+        <source>When clicking this button all visible windows are re-arranged and adjusted.</source>
+        <translation type="unfinished">Якщо ви натиснете на цю кнопку, всі видимі вікна буде перевпорядковано з підбиранням розміру.</translation>
+    </message>
+    <message>
+        <source>No valid keys found</source>
+        <translation type="unfinished">Не знайдено коректних ключів</translation>
+    </message>
+    <message>
+        <source>No authentication-keys were found or your old ones were broken. Please create a new key-pair using ICA (see documentation at http://italc.sf.net/wiki/index.php?title=Installation).
+Otherwise you won&apos;t be able to access computers using iTALC.</source>
+        <translation type="unfinished">Не знайдено ключів автентифікації або ваші попередні ключі було пошкоджено. Будь ласка, створіть нові пари ключів за допомогою ICA (див. документацію на сайті http://italc.sf.net/wiki/index.php?title=Installation).
+Якщо ви цього не зробите, ви не зможете отримати доступ до комп’ютерів за допомогою iTALC.</translation>
+    </message>
+    <message>
+        <source>iTALC service not running</source>
+        <translation type="unfinished">Службу iTALC не запущено</translation>
+    </message>
+    <message>
+        <source>There seems to be no iTALC service running on this computer or the authentication-keys aren&apos;t set up properly. The service is required for running iTALC. Contact your administrator for solving this problem.</source>
+        <translation type="unfinished">Здається, на цьому комп’ютері не запущено службу iTALC або ключі автентифікації встановлено неправильно. Для використання iTALC потрібен запуск служби. Зв’яжіться з вашим адміністратором, щоб розв’язати цю проблему.</translation>
+    </message>
+    <message>
+        <source>iTALC Master Control</source>
+        <translation type="unfinished">Головне керування iTALC</translation>
+    </message>
+    <message>
+        <source>Remote control</source>
+        <translation type="unfinished">Віддалене керування</translation>
+    </message>
+    <message>
+        <source>Quit</source>
+        <translation type="unfinished">Вийти</translation>
+    </message>
+</context>
+<context>
     <name>QApplication</name>
     <message>
         <source>iTALC Client %1 on %2:%3</source>
@@ -785,211 +1001,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>screen lock</source>
         <translation>блокування екрана</translation>
-    </message>
-</context>
-<context>
-    <name>mainWindow</name>
-    <message>
-        <source>iTALC</source>
-        <translation>iTALC</translation>
-    </message>
-    <message>
-        <source>No write-access</source>
-        <translation>Відсутній дозвіл на запис</translation>
-    </message>
-    <message>
-        <source>Could not read/write or create directory %1! For running iTALC, make sure you&apos;re permitted to create or write this directory.</source>
-        <translation>Неможливо провести читання/запис або створити теку %1! Щоб запустити iTALC, переконайтеся, що ви можете створити теку або провести запис до цієї теки.</translation>
-    </message>
-    <message>
-        <source>Actions</source>
-        <translation>Дії</translation>
-    </message>
-    <message>
-        <source>Classroom</source>
-        <translation>Клас</translation>
-    </message>
-    <message>
-        <source>Switch classroom</source>
-        <translation>Перемкнути клас</translation>
-    </message>
-    <message>
-        <source>Click this button to open a menu where you can choose the active classroom.</source>
-        <translation>Натисніть на цю кнопку, щоб відкрити меню, за допомогою якого ви зможете обрати активний клас.</translation>
-    </message>
-    <message>
-        <source>Click on this button, to switch between classrooms.</source>
-        <translation>Натисніть на цю кнопку, щоб перемикатися між класами.</translation>
-    </message>
-    <message>
-        <source>Overview</source>
-        <translation>Перегляд</translation>
-    </message>
-    <message>
-        <source>Overview mode</source>
-        <translation>Режим перегляду</translation>
-    </message>
-    <message>
-        <source>This is the default mode in iTALC and allows you to have an overview over all visible computers. Also click on this button for unlocking locked workstations or for leaving demo-mode.</source>
-        <translation>Це типовий режим iTALC, від дозволяє вам вести спостереження за всіма видимими комп’ютерами. Також цю кнопку можна використовувати для розблокування заблокованих робочих станцій або для виходу з режиму демо.</translation>
-    </message>
-    <message>
-        <source>Fullscreen demo</source>
-        <translation>Повноекранне демо</translation>
-    </message>
-    <message>
-        <source>In this mode your screen is being displayed on all shown computers. Furthermore the users aren&apos;t able to do something else as all input devices are locked in this mode.</source>
-        <translation>У цьому режимі зображення з вашого екрана буде показано на всіх видимих комп’ютерах. Крім того, користувачі не зможуть виконувати інших дій, оскільки у цьому режимі всі пристрої введення буде заблоковано.</translation>
-    </message>
-    <message>
-        <source>Window demo</source>
-        <translation>Демо у вікні</translation>
-    </message>
-    <message>
-        <source>In this mode your screen being displayed in a window on all shown computers. The users are able to switch to other windows and thus can continue to work.</source>
-        <translation>У цьому режимі зображення з вашого екрана буде показано у вікні на всіх видимих комп’ютерах. Користувачі матимуть змогу перемикатися на інші вікна і, таким чином, продовжувати роботу.</translation>
-    </message>
-    <message>
-        <source>Lock all</source>
-        <translation>Заблокувати всі</translation>
-    </message>
-    <message>
-        <source>Unlock all</source>
-        <translation>Розблокувати всі</translation>
-    </message>
-    <message>
-        <source>Lock/unlock desktops</source>
-        <translation>Заблокувати/розблокувати стільниці</translation>
-    </message>
-    <message>
-        <source>To have all user&apos;s full attention you can lock their desktops using this button. In this mode all input devices are locked and the screen is black.</source>
-        <translation>Щоб заволодіти увагою учнів, ви можете заблокувати їхні стільниці за допомогою цієї кнопки. У цьому режимі всі пристрої вводу буде заблоковано, а екран стане чорним.</translation>
-    </message>
-    <message>
-        <source>Text message</source>
-        <translation>Текстове повідомлення</translation>
-    </message>
-    <message>
-        <source>Send text message</source>
-        <translation>Надіслати текстове повідомлення</translation>
-    </message>
-    <message>
-        <source>Use this button to send a text message to all users e.g. to tell them new tasks etc.</source>
-        <translation>Використовуйте цю кнопку, щоб надіслати текстове повідомлення для всіх користувачів, наприклад, щоб повідомити їм про нове завдання та інше.</translation>
-    </message>
-    <message>
-        <source>Power on</source>
-        <translation>Увімкнути</translation>
-    </message>
-    <message>
-        <source>Power on computers</source>
-        <translation>Увімкнути комп’ютери</translation>
-    </message>
-    <message>
-        <source>Click this button to power on all visible computers. This way you do not have to turn on each computer by hand.</source>
-        <translation>Натисніть на цю кнопку, щоб увімкнути всі видимі комп’ютери. Таким чином, вам не потрібно буде вмикати кожен комп’ютер вручну.</translation>
-    </message>
-    <message>
-        <source>Power down</source>
-        <translation>Вимкнути</translation>
-    </message>
-    <message>
-        <source>Power down computers</source>
-        <translation>Вимкнути комп’ютери</translation>
-    </message>
-    <message>
-        <source>To power down all shown computers (e.g. after the lesson has finished) you can click this button.</source>
-        <translation>Щоб вимкнути комп’ютери (наприклад, по завершенню уроку), ви можете натиснути цю кнопку.</translation>
-    </message>
-    <message>
-        <source>Logon</source>
-        <translation>Почати роботу</translation>
-    </message>
-    <message>
-        <source>Remote logon</source>
-        <translation>Віддалений початок роботи</translation>
-    </message>
-    <message>
-        <source>After clicking this button you can enter a username and password to log on the according user on all visible computers.</source>
-        <translation>Після натискання цієї кнопки ви можете ввести ім’я користувача і пароль, щоб почати роботу цього користувача на всіх видимих комп’ютерах.</translation>
-    </message>
-    <message>
-        <source>Adjust/align</source>
-        <translation>Підібрати/вирівняти</translation>
-    </message>
-    <message>
-        <source>Adjust windows and their size</source>
-        <translation>Підібрати розмір вікон та їх розташування</translation>
-    </message>
-    <message>
-        <source>When clicking this button the biggest possible size for the client-windows is adjusted. Furthermore all windows are aligned.</source>
-        <translation>Якщо ви натиснете на цю кнопку, буде обрано найбільший можливий розмір вікна клієнта. Крім того, всі вікна буде вирівняно.</translation>
-    </message>
-    <message>
-        <source>Auto view</source>
-        <translation>Авто-вигляд</translation>
-    </message>
-    <message>
-        <source>Auto re-arrange windows and their size</source>
-        <translation>Автоматично перевпорядкувати вікна та підібрати їх розмір</translation>
-    </message>
-    <message>
-        <source>When clicking this button all visible windows are re-arranged and adjusted.</source>
-        <translation>Якщо ви натиснете на цю кнопку, всі видимі вікна буде перевпорядковано з підбиранням розміру.</translation>
-    </message>
-    <message>
-        <source>No valid keys found</source>
-        <translation>Не знайдено коректних ключів</translation>
-    </message>
-    <message>
-        <source>No authentication-keys were found or your old ones were broken. Please create a new key-pair using ICA (see documentation at http://italc.sf.net/wiki/index.php?title=Installation).
-Otherwise you won&apos;t be able to access computers using iTALC.</source>
-        <translation>Не знайдено ключів автентифікації або ваші попередні ключі було пошкоджено. Будь ласка, створіть нові пари ключів за допомогою ICA (див. документацію на сайті http://italc.sf.net/wiki/index.php?title=Installation).
-Якщо ви цього не зробите, ви не зможете отримати доступ до комп’ютерів за допомогою iTALC.</translation>
-    </message>
-    <message>
-        <source>iTALC service not running</source>
-        <translation>Службу iTALC не запущено</translation>
-    </message>
-    <message>
-        <source>There seems to be no iTALC service running on this computer or the authentication-keys aren&apos;t set up properly. The service is required for running iTALC. Contact your administrator for solving this problem.</source>
-        <translation>Здається, на цьому комп’ютері не запущено службу iTALC або ключі автентифікації встановлено неправильно. Для використання iTALC потрібен запуск служби. Зв’яжіться з вашим адміністратором, щоб розв’язати цю проблему.</translation>
-    </message>
-    <message>
-        <source>Fullscreen Demo</source>
-        <translation>Повноекранне демо</translation>
-    </message>
-    <message>
-        <source>Stop Demo</source>
-        <translation>Завершити демонстрацію</translation>
-    </message>
-    <message>
-        <source>Window Demo</source>
-        <translation>Демо у вікні</translation>
-    </message>
-    <message>
-        <source>Support</source>
-        <translation>Підтримка</translation>
-    </message>
-    <message>
-        <source>Direct support</source>
-        <translation>Прямий супровід</translation>
-    </message>
-    <message>
-        <source>If you need to support someone at a certain computer you can click this button and enter the according hostname or IP afterwards.</source>
-        <translation>Якщо вам потрібно супроводжувати чиїсь дії на одному з комп’ютерів, ви можете натиснути цю кнопку і ввести назву вузла або IP-адресу відповідного комп’ютера.</translation>
-    </message>
-    <message>
-        <source>iTALC Master Control</source>
-        <translation>Головне керування iTALC</translation>
-    </message>
-    <message>
-        <source>Remote control</source>
-        <translation>Віддалене керування</translation>
-    </message>
-    <message>
-        <source>Quit</source>
-        <translation>Вийти</translation>
     </message>
 </context>
 <context>

@@ -2,6 +2,221 @@
 <!DOCTYPE TS>
 <TS version="2.0" language="fi_FI">
 <context>
+    <name>MainToolBar</name>
+    <message>
+        <source>Actions</source>
+        <translation type="unfinished">Toiminnot</translation>
+    </message>
+</context>
+<context>
+    <name>MainWindow</name>
+    <message>
+        <source>MainWindow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>toolBar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>iTALC</source>
+        <translation type="unfinished">iTALC</translation>
+    </message>
+    <message>
+        <source>No write-access</source>
+        <translation type="unfinished">Ei kirjoitusoikeutta</translation>
+    </message>
+    <message>
+        <source>Could not read/write or create directory %1! For running iTALC, make sure you&apos;re permitted to create or write this directory.</source>
+        <translation type="unfinished">Hakemiston %1 luku/kirjoitus tai luonti ei onnistu. Käyttääksesi iTALC:ia varmista, että sinulla on oikeudet luoda ja kirjoittaa tähän hakemistoon.</translation>
+    </message>
+    <message>
+        <source>Classroom</source>
+        <translation type="unfinished">Luokkahuone</translation>
+    </message>
+    <message>
+        <source>Switch classroom</source>
+        <translation type="unfinished">Vaihda luokkahuonetta</translation>
+    </message>
+    <message>
+        <source>Click this button to open a menu where you can choose the active classroom.</source>
+        <translation type="unfinished">Painamalla tätä voit valita käytettävän luokkahuoneen.</translation>
+    </message>
+    <message>
+        <source>Click on this button, to switch between classrooms.</source>
+        <translation type="unfinished">Painamalla tätä valitset eri luokkahuoneiden välillä.</translation>
+    </message>
+    <message>
+        <source>Overview mode</source>
+        <translation type="unfinished">Yleisnäkymä</translation>
+    </message>
+    <message>
+        <source>Overview</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This is the default mode in iTALC and allows you to have an overview over all visible computers. Also click on this button for unlocking locked workstations or for leaving demo-mode.</source>
+        <translation type="unfinished">Tämä on iTALC:n oletustila. Siinä näet kaikkien aktiivisten koneiden kuvaruudut. Painamalla tätä vapautat myös lukitut tietokoneet tai poistut esitystilasta.</translation>
+    </message>
+    <message>
+        <source>Fullscreen demo</source>
+        <translation type="unfinished">Esitys koko näytöllä</translation>
+    </message>
+    <message>
+        <source>Fullscreen Demo</source>
+        <translation type="unfinished">Esitys koko näytöllä</translation>
+    </message>
+    <message>
+        <source>Stop Demo</source>
+        <translation type="unfinished">Lopeta esitys</translation>
+    </message>
+    <message>
+        <source>In this mode your screen is being displayed on all shown computers. Furthermore the users aren&apos;t able to do something else as all input devices are locked in this mode.</source>
+        <translation type="unfinished">Tässä tilassa näyttösi pakotetaan kaikkien muiden koneiden näytölle. Tällöin muiden käyttäjien laitteet lukkiutuvat.</translation>
+    </message>
+    <message>
+        <source>Window demo</source>
+        <translation type="unfinished">Esitys ikkunassa</translation>
+    </message>
+    <message>
+        <source>Window Demo</source>
+        <translation type="unfinished">Esitys ikkunassa</translation>
+    </message>
+    <message>
+        <source>In this mode your screen being displayed in a window on all shown computers. The users are able to switch to other windows and thus can continue to work.</source>
+        <translation type="unfinished">Tässä tilassa näyttösi näytetään muiden koneilla omassa ikkunassaan. Käyttäjät voivat samanaikaisesti työskennellä muissa ikkunoissa.</translation>
+    </message>
+    <message>
+        <source>Lock/unlock desktops</source>
+        <translation type="unfinished">Lukitse/vapauta työtilat</translation>
+    </message>
+    <message>
+        <source>Lock all</source>
+        <translation type="unfinished">Lukitse kaikki</translation>
+    </message>
+    <message>
+        <source>Unlock all</source>
+        <translation type="unfinished">Vapauta kaikki</translation>
+    </message>
+    <message>
+        <source>To have all user&apos;s full attention you can lock their desktops using this button. In this mode all input devices are locked and the screen is black.</source>
+        <translation type="unfinished">Saadaksesi käyttäjien täyden huomion, voit lukita heidän työtilansa painamalla tätä. Tässä tilassa käyttäjien koneet on lukittu ja näyttö pimennetty.</translation>
+    </message>
+    <message>
+        <source>Send text message</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Text message</source>
+        <translation type="unfinished">Viesti</translation>
+    </message>
+    <message>
+        <source>Use this button to send a text message to all users e.g. to tell them new tasks etc.</source>
+        <translation type="unfinished">Käytä tätä lähettääksesi viestin kaikille käyttäjille, esim. antaaksesi heille tehtävän, tms.</translation>
+    </message>
+    <message>
+        <source>Power on computers</source>
+        <translation type="unfinished">Käynnistä tietokone</translation>
+    </message>
+    <message>
+        <source>Power on</source>
+        <translation type="unfinished">Käynnistä</translation>
+    </message>
+    <message>
+        <source>Click this button to power on all visible computers. This way you do not have to turn on each computer by hand.</source>
+        <translation type="unfinished">Painamalla tätä käynnistät kaikki näkyvät tietokoneet. Tällä tavalla sinun ei tarvitse käydä käynnistämässä niitä jokaista käsin (MAC-osoite tulee olla määritetty koneen asetuksissa!).</translation>
+    </message>
+    <message>
+        <source>Power down computers</source>
+        <translation type="unfinished">Sammuta tietokone</translation>
+    </message>
+    <message>
+        <source>Power down</source>
+        <translation type="unfinished">Sammuta</translation>
+    </message>
+    <message>
+        <source>To power down all shown computers (e.g. after the lesson has finished) you can click this button.</source>
+        <translation type="unfinished">Painamalla tätä voit sammuttaa kaikki näkyvät tietokoneet (esim. oppitunnin päättyessä).</translation>
+    </message>
+    <message>
+        <source>Logon</source>
+        <translation type="unfinished">Kirjaudu</translation>
+    </message>
+    <message>
+        <source>Remote logon</source>
+        <translation type="unfinished">Kirjaudu</translation>
+    </message>
+    <message>
+        <source>After clicking this button you can enter a username and password to log on the according user on all visible computers.</source>
+        <translation type="unfinished">Painamalla tätä voit antaa käyttäjätunnuksen ja salasanan, jolla kirjaudutaan kaikille näkyville koneille.</translation>
+    </message>
+    <message>
+        <source>Support</source>
+        <translation type="unfinished">Tukitoiminto</translation>
+    </message>
+    <message>
+        <source>Direct support</source>
+        <translation type="unfinished">Etätuki koneelle</translation>
+    </message>
+    <message>
+        <source>If you need to support someone at a certain computer you can click this button and enter the according hostname or IP afterwards.</source>
+        <translation type="unfinished">Tällä voit etähallita jotain vierasta konetta antamalla sen verkkonimi tai IP-osoite.</translation>
+    </message>
+    <message>
+        <source>Adjust/align</source>
+        <translation type="unfinished">Sovita</translation>
+    </message>
+    <message>
+        <source>Adjust windows and their size</source>
+        <translation type="unfinished">Sovita ikkunat</translation>
+    </message>
+    <message>
+        <source>When clicking this button the biggest possible size for the client-windows is adjusted. Furthermore all windows are aligned.</source>
+        <translation type="unfinished">Painamalla tätä kaikki ikkunat sovitetaan ruudulle mahdollisimman isokokoisina.</translation>
+    </message>
+    <message>
+        <source>Auto view</source>
+        <translation type="unfinished">Järjestä</translation>
+    </message>
+    <message>
+        <source>Auto re-arrange windows and their size</source>
+        <translation type="unfinished">Järjestä ja sovita ikkunat</translation>
+    </message>
+    <message>
+        <source>When clicking this button all visible windows are re-arranged and adjusted.</source>
+        <translation type="unfinished">Painamalla tätä uudelleenjärjestetään ja sovitetaaan kaikki näkyvät ikkunat.</translation>
+    </message>
+    <message>
+        <source>No valid keys found</source>
+        <translation type="unfinished">Ei oikeaa avainta</translation>
+    </message>
+    <message>
+        <source>No authentication-keys were found or your old ones were broken. Please create a new key-pair using ICA (see documentation at http://italc.sf.net/wiki/index.php?title=Installation).
+Otherwise you won&apos;t be able to access computers using iTALC.</source>
+        <translation type="unfinished">Oikeaa autentikointiavainta ei löytynyt tai se ei ole kelvollinen. Luo uusi avainpari käyttämällä ICA-ohjelmaa (katso ohjeistus http://italc.sf.net/wiki/index.php?title=Installation). Muuten iTALC ei pysty kommunikoimaan muiden koneiden kanssa.</translation>
+    </message>
+    <message>
+        <source>iTALC service not running</source>
+        <translation type="unfinished">iTALC palvelu ei ole käynnissä</translation>
+    </message>
+    <message>
+        <source>There seems to be no iTALC service running on this computer or the authentication-keys aren&apos;t set up properly. The service is required for running iTALC. Contact your administrator for solving this problem.</source>
+        <translation type="unfinished">iTALC palvelu (ICA-ohjelma) ei näyttäisi olevan käynnissä tässä tietokoneessa tai autentikointiavaimet eivät ole oikein. Ota yhteyttä ylläpitoon ratkaistaksesi ongelman, tai voit yrittää käynnistää ICA-palvelun itse.</translation>
+    </message>
+    <message>
+        <source>iTALC Master Control</source>
+        <translation type="unfinished">iTALC</translation>
+    </message>
+    <message>
+        <source>Remote control</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Quit</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>QApplication</name>
     <message>
         <source>iTALC Client %1 on %2:%3</source>
@@ -775,210 +990,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>screen lock</source>
         <translation>Lukitse</translation>
-    </message>
-</context>
-<context>
-    <name>mainWindow</name>
-    <message>
-        <source>iTALC</source>
-        <translation>iTALC</translation>
-    </message>
-    <message>
-        <source>No write-access</source>
-        <translation>Ei kirjoitusoikeutta</translation>
-    </message>
-    <message>
-        <source>Could not read/write or create directory %1! For running iTALC, make sure you&apos;re permitted to create or write this directory.</source>
-        <translation>Hakemiston %1 luku/kirjoitus tai luonti ei onnistu. Käyttääksesi iTALC:ia varmista, että sinulla on oikeudet luoda ja kirjoittaa tähän hakemistoon.</translation>
-    </message>
-    <message>
-        <source>Actions</source>
-        <translation>Toiminnot</translation>
-    </message>
-    <message>
-        <source>Classroom</source>
-        <translation>Luokkahuone</translation>
-    </message>
-    <message>
-        <source>Switch classroom</source>
-        <translation>Vaihda luokkahuonetta</translation>
-    </message>
-    <message>
-        <source>Click this button to open a menu where you can choose the active classroom.</source>
-        <translation>Painamalla tätä voit valita käytettävän luokkahuoneen.</translation>
-    </message>
-    <message>
-        <source>Click on this button, to switch between classrooms.</source>
-        <translation>Painamalla tätä valitset eri luokkahuoneiden välillä.</translation>
-    </message>
-    <message>
-        <source>Overview</source>
-        <translation>Yleisnäkymä</translation>
-    </message>
-    <message>
-        <source>Overview mode</source>
-        <translation>Yleisnäkymä</translation>
-    </message>
-    <message>
-        <source>This is the default mode in iTALC and allows you to have an overview over all visible computers. Also click on this button for unlocking locked workstations or for leaving demo-mode.</source>
-        <translation>Tämä on iTALC:n oletustila. Siinä näet kaikkien aktiivisten koneiden kuvaruudut. Painamalla tätä vapautat myös lukitut tietokoneet tai poistut esitystilasta.</translation>
-    </message>
-    <message>
-        <source>Fullscreen demo</source>
-        <translation>Esitys koko näytöllä</translation>
-    </message>
-    <message>
-        <source>In this mode your screen is being displayed on all shown computers. Furthermore the users aren&apos;t able to do something else as all input devices are locked in this mode.</source>
-        <translation>Tässä tilassa näyttösi pakotetaan kaikkien muiden koneiden näytölle. Tällöin muiden käyttäjien laitteet lukkiutuvat.</translation>
-    </message>
-    <message>
-        <source>Window demo</source>
-        <translation>Esitys ikkunassa</translation>
-    </message>
-    <message>
-        <source>In this mode your screen being displayed in a window on all shown computers. The users are able to switch to other windows and thus can continue to work.</source>
-        <translation>Tässä tilassa näyttösi näytetään muiden koneilla omassa ikkunassaan. Käyttäjät voivat samanaikaisesti työskennellä muissa ikkunoissa.</translation>
-    </message>
-    <message>
-        <source>Lock all</source>
-        <translation>Lukitse kaikki</translation>
-    </message>
-    <message>
-        <source>Unlock all</source>
-        <translation>Vapauta kaikki</translation>
-    </message>
-    <message>
-        <source>Lock/unlock desktops</source>
-        <translation>Lukitse/vapauta työtilat</translation>
-    </message>
-    <message>
-        <source>To have all user&apos;s full attention you can lock their desktops using this button. In this mode all input devices are locked and the screen is black.</source>
-        <translation>Saadaksesi käyttäjien täyden huomion, voit lukita heidän työtilansa painamalla tätä. Tässä tilassa käyttäjien koneet on lukittu ja näyttö pimennetty.</translation>
-    </message>
-    <message>
-        <source>Text message</source>
-        <translation>Viesti</translation>
-    </message>
-    <message>
-        <source>Send text message</source>
-        <translation>Lähetä viesti</translation>
-    </message>
-    <message>
-        <source>Use this button to send a text message to all users e.g. to tell them new tasks etc.</source>
-        <translation>Käytä tätä lähettääksesi viestin kaikille käyttäjille, esim. antaaksesi heille tehtävän, tms.</translation>
-    </message>
-    <message>
-        <source>Power on</source>
-        <translation>Käynnistä</translation>
-    </message>
-    <message>
-        <source>Power on computers</source>
-        <translation>Käynnistä tietokone</translation>
-    </message>
-    <message>
-        <source>Click this button to power on all visible computers. This way you do not have to turn on each computer by hand.</source>
-        <translation>Painamalla tätä käynnistät kaikki näkyvät tietokoneet. Tällä tavalla sinun ei tarvitse käydä käynnistämässä niitä jokaista käsin (MAC-osoite tulee olla määritetty koneen asetuksissa!).</translation>
-    </message>
-    <message>
-        <source>Power down</source>
-        <translation>Sammuta</translation>
-    </message>
-    <message>
-        <source>Power down computers</source>
-        <translation>Sammuta tietokone</translation>
-    </message>
-    <message>
-        <source>To power down all shown computers (e.g. after the lesson has finished) you can click this button.</source>
-        <translation>Painamalla tätä voit sammuttaa kaikki näkyvät tietokoneet (esim. oppitunnin päättyessä).</translation>
-    </message>
-    <message>
-        <source>Logon</source>
-        <translation>Kirjaudu</translation>
-    </message>
-    <message>
-        <source>Remote logon</source>
-        <translation>Kirjaudu</translation>
-    </message>
-    <message>
-        <source>After clicking this button you can enter a username and password to log on the according user on all visible computers.</source>
-        <translation>Painamalla tätä voit antaa käyttäjätunnuksen ja salasanan, jolla kirjaudutaan kaikille näkyville koneille.</translation>
-    </message>
-    <message>
-        <source>Adjust/align</source>
-        <translation>Sovita</translation>
-    </message>
-    <message>
-        <source>Adjust windows and their size</source>
-        <translation>Sovita ikkunat</translation>
-    </message>
-    <message>
-        <source>When clicking this button the biggest possible size for the client-windows is adjusted. Furthermore all windows are aligned.</source>
-        <translation>Painamalla tätä kaikki ikkunat sovitetaan ruudulle mahdollisimman isokokoisina.</translation>
-    </message>
-    <message>
-        <source>Auto view</source>
-        <translation>Järjestä</translation>
-    </message>
-    <message>
-        <source>Auto re-arrange windows and their size</source>
-        <translation>Järjestä ja sovita ikkunat</translation>
-    </message>
-    <message>
-        <source>When clicking this button all visible windows are re-arranged and adjusted.</source>
-        <translation>Painamalla tätä uudelleenjärjestetään ja sovitetaaan kaikki näkyvät ikkunat.</translation>
-    </message>
-    <message>
-        <source>No valid keys found</source>
-        <translation>Ei oikeaa avainta</translation>
-    </message>
-    <message>
-        <source>No authentication-keys were found or your old ones were broken. Please create a new key-pair using ICA (see documentation at http://italc.sf.net/wiki/index.php?title=Installation).
-Otherwise you won&apos;t be able to access computers using iTALC.</source>
-        <translation>Oikeaa autentikointiavainta ei löytynyt tai se ei ole kelvollinen. Luo uusi avainpari käyttämällä ICA-ohjelmaa (katso ohjeistus http://italc.sf.net/wiki/index.php?title=Installation). Muuten iTALC ei pysty kommunikoimaan muiden koneiden kanssa.</translation>
-    </message>
-    <message>
-        <source>iTALC service not running</source>
-        <translation>iTALC palvelu ei ole käynnissä</translation>
-    </message>
-    <message>
-        <source>There seems to be no iTALC service running on this computer or the authentication-keys aren&apos;t set up properly. The service is required for running iTALC. Contact your administrator for solving this problem.</source>
-        <translation>iTALC palvelu (ICA-ohjelma) ei näyttäisi olevan käynnissä tässä tietokoneessa tai autentikointiavaimet eivät ole oikein. Ota yhteyttä ylläpitoon ratkaistaksesi ongelman, tai voit yrittää käynnistää ICA-palvelun itse.</translation>
-    </message>
-    <message>
-        <source>Support</source>
-        <translation>Tukitoiminto</translation>
-    </message>
-    <message>
-        <source>Direct support</source>
-        <translation>Etätuki koneelle</translation>
-    </message>
-    <message>
-        <source>If you need to support someone at a certain computer you can click this button and enter the according hostname or IP afterwards.</source>
-        <translation>Tällä voit etähallita jotain vierasta konetta antamalla sen verkkonimi tai IP-osoite.</translation>
-    </message>
-    <message>
-        <source>Fullscreen Demo</source>
-        <translation>Esitys koko näytöllä</translation>
-    </message>
-    <message>
-        <source>Stop Demo</source>
-        <translation>Lopeta esitys</translation>
-    </message>
-    <message>
-        <source>Window Demo</source>
-        <translation>Esitys ikkunassa</translation>
-    </message>
-    <message>
-        <source>iTALC Master Control</source>
-        <translation>iTALC</translation>
-    </message>
-    <message>
-        <source>Remote control</source>
-        <translation>Etähallitse</translation>
-    </message>
-    <message>
-        <source>Quit</source>
-        <translation>Lopeta</translation>
     </message>
 </context>
 <context>

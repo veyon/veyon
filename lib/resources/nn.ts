@@ -2,6 +2,222 @@
 <!DOCTYPE TS>
 <TS version="2.0" language="nn">
 <context>
+    <name>MainToolBar</name>
+    <message>
+        <source>Actions</source>
+        <translation type="unfinished">Handlingar</translation>
+    </message>
+</context>
+<context>
+    <name>MainWindow</name>
+    <message>
+        <source>MainWindow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>toolBar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>iTALC</source>
+        <translation type="unfinished">iTALC</translation>
+    </message>
+    <message>
+        <source>No write-access</source>
+        <translation type="unfinished">Ingen skrivetilgang</translation>
+    </message>
+    <message>
+        <source>Could not read/write or create directory %1! For running iTALC, make sure you&apos;re permitted to create or write this directory.</source>
+        <translation type="unfinished">Klarte ikkje lesa/skriva eller opprette katalog %1! Kontroller at du har nødvendig tilgang for å opprette eller skrive til denne katalogen før du køyrer iTALC.</translation>
+    </message>
+    <message>
+        <source>Classroom</source>
+        <translation type="unfinished">Klasserom</translation>
+    </message>
+    <message>
+        <source>Switch classroom</source>
+        <translation type="unfinished">Bytt klasserom</translation>
+    </message>
+    <message>
+        <source>Click this button to open a menu where you can choose the active classroom.</source>
+        <translation type="unfinished">Trykk her for å opne meny for val av aktivt klasserom.</translation>
+    </message>
+    <message>
+        <source>Click on this button, to switch between classrooms.</source>
+        <translation type="unfinished">Trykk denne knappen for å byte mellom klasserom.</translation>
+    </message>
+    <message>
+        <source>Overview mode</source>
+        <translation type="unfinished">Oversiktsmodus</translation>
+    </message>
+    <message>
+        <source>Overview</source>
+        <translation type="unfinished">Oversikt</translation>
+    </message>
+    <message>
+        <source>This is the default mode in iTALC and allows you to have an overview over all visible computers. Also click on this button for unlocking locked workstations or for leaving demo-mode.</source>
+        <translation type="unfinished">Dette er standardmodus i iTALC. Det gir deg ei oversikt over alle synlege maskiner. Du kan også trykke på denne knappen for å låse opp låste arbeidsstasjonar eller for å gå ut av demonstrasjonsmodus.</translation>
+    </message>
+    <message>
+        <source>Fullscreen demo</source>
+        <translation type="unfinished">Fullskjermdemonstrasjon</translation>
+    </message>
+    <message>
+        <source>Fullscreen Demo</source>
+        <translation type="unfinished">Demonstrasjon i fullskjerm</translation>
+    </message>
+    <message>
+        <source>Stop Demo</source>
+        <translation type="unfinished">Stop demonstrasjon</translation>
+    </message>
+    <message>
+        <source>In this mode your screen is being displayed on all shown computers. Furthermore the users aren&apos;t able to do something else as all input devices are locked in this mode.</source>
+        <translation type="unfinished">I denne modusen blir skjermen din vist på alle maskiner. Brukerane kan ikkje gjere andre ting samtidig ettersom alle inngåande enheter (mus/tastatus) på klientmaskina blir låst.</translation>
+    </message>
+    <message>
+        <source>Window demo</source>
+        <translation type="unfinished">Demonstrasjon i vindauge</translation>
+    </message>
+    <message>
+        <source>Window Demo</source>
+        <translation type="unfinished">Demonstrasjon i vindauge</translation>
+    </message>
+    <message>
+        <source>In this mode your screen being displayed in a window on all shown computers. The users are able to switch to other windows and thus can continue to work.</source>
+        <translation type="unfinished">I denne modusen blir skjermen din vist i eit vindauge på alle maskiner. Brukerane kan byte mellom vidauga og kan dermed jobbe med andre ting samtidig.</translation>
+    </message>
+    <message>
+        <source>Lock/unlock desktops</source>
+        <translation type="unfinished">Lås/lås opp maskiner</translation>
+    </message>
+    <message>
+        <source>Lock all</source>
+        <translation type="unfinished">Lås alle</translation>
+    </message>
+    <message>
+        <source>Unlock all</source>
+        <translation type="unfinished">Lås opp alle</translation>
+    </message>
+    <message>
+        <source>To have all user&apos;s full attention you can lock their desktops using this button. In this mode all input devices are locked and the screen is black.</source>
+        <translation type="unfinished">For å få full oppmerksamheit frå alle brukarane kan du låse skrivebordet deira med denne knappen. I denn modusen er alle inngåande enheter (mus/tastatus) på klientmaskina låst og skjermen er svart.</translation>
+    </message>
+    <message>
+        <source>Send text message</source>
+        <translation type="unfinished">Send tekstmelding</translation>
+    </message>
+    <message>
+        <source>Text message</source>
+        <translation type="unfinished">Tekstmelding</translation>
+    </message>
+    <message>
+        <source>Use this button to send a text message to all users e.g. to tell them new tasks etc.</source>
+        <translation type="unfinished">Bruk denne knappen for å sende tekstmeldingar til alle brukarane td. gje beskjed om ei ny oppgåve.</translation>
+    </message>
+    <message>
+        <source>Power on computers</source>
+        <translation type="unfinished">Skru på maskinar</translation>
+    </message>
+    <message>
+        <source>Power on</source>
+        <translation type="unfinished">Skru på</translation>
+    </message>
+    <message>
+        <source>Click this button to power on all visible computers. This way you do not have to turn on each computer by hand.</source>
+        <translation type="unfinished">Trykk denne knappen for å skru på alle dei synlege maskinane samtidig.</translation>
+    </message>
+    <message>
+        <source>Power down computers</source>
+        <translation type="unfinished">Skru av maskiner</translation>
+    </message>
+    <message>
+        <source>Power down</source>
+        <translation type="unfinished">Skru av</translation>
+    </message>
+    <message>
+        <source>To power down all shown computers (e.g. after the lesson has finished) you can click this button.</source>
+        <translation type="unfinished">Trykk her for å skru av alle synlege maskinar (td. etter ein time eller i slutten av dagen).</translation>
+    </message>
+    <message>
+        <source>Logon</source>
+        <translation type="unfinished">Logg på</translation>
+    </message>
+    <message>
+        <source>Remote logon</source>
+        <translation type="unfinished">Fjernstyrt pålogging</translation>
+    </message>
+    <message>
+        <source>After clicking this button you can enter a username and password to log on the according user on all visible computers.</source>
+        <translation type="unfinished">Etter du har trykkt på denne knappen kan du skrive inn brukernamn og passord for å logge på ein angitt brukar på alle synlege maskiner.</translation>
+    </message>
+    <message>
+        <source>Support</source>
+        <translation type="unfinished">Støtte</translation>
+    </message>
+    <message>
+        <source>Direct support</source>
+        <translation type="unfinished">Direkte støtte</translation>
+    </message>
+    <message>
+        <source>If you need to support someone at a certain computer you can click this button and enter the according hostname or IP afterwards.</source>
+        <translation type="unfinished">Dersom du treng å støtte nokon på ei spesifikk maskin, kan du trykkje på denne knappen og skrive riktig vertsnamn eller IP-adresse.</translation>
+    </message>
+    <message>
+        <source>Adjust/align</source>
+        <translation type="unfinished">Juster/still opp</translation>
+    </message>
+    <message>
+        <source>Adjust windows and their size</source>
+        <translation type="unfinished">Juster vindauga og størrelsen deira</translation>
+    </message>
+    <message>
+        <source>When clicking this button the biggest possible size for the client-windows is adjusted. Furthermore all windows are aligned.</source>
+        <translation type="unfinished">Når du trykkjer på denne knappen blir klientvindauga juster til maks størrelse. I tillegg blir alle vindauga stillt opp.</translation>
+    </message>
+    <message>
+        <source>Auto view</source>
+        <translation type="unfinished">Automatisk oppsett</translation>
+    </message>
+    <message>
+        <source>Auto re-arrange windows and their size</source>
+        <translation type="unfinished">Automatisk omjustering av vindauga og størrelsen deira</translation>
+    </message>
+    <message>
+        <source>When clicking this button all visible windows are re-arranged and adjusted.</source>
+        <translation type="unfinished">Når du trykkjer på denne knappen blir alle vindauga omjusterte og stillt opp.</translation>
+    </message>
+    <message>
+        <source>No valid keys found</source>
+        <translation type="unfinished">Klarte ikkje finne ein eller fleire gyldige nøklar</translation>
+    </message>
+    <message>
+        <source>No authentication-keys were found or your old ones were broken. Please create a new key-pair using ICA (see documentation at http://italc.sf.net/wiki/index.php?title=Installation).
+Otherwise you won&apos;t be able to access computers using iTALC.</source>
+        <translation type="unfinished">Ingen autentiseringsnøkkel blei funnen eller dei eksisterande nøklane er øydelagde. Ver vennleg å lag eit nytt nøkkelpar ved hjelp av ICA (sjå dokumentasjonen på  http://italc.sf.net/wiki/index.php?title=Installation).
+Ellers vil du ikkje klare å kople deg til maskiner ved hjelp av iTALC.</translation>
+    </message>
+    <message>
+        <source>iTALC service not running</source>
+        <translation type="unfinished">iTALC tenesta køyrar ikkje</translation>
+    </message>
+    <message>
+        <source>There seems to be no iTALC service running on this computer or the authentication-keys aren&apos;t set up properly. The service is required for running iTALC. Contact your administrator for solving this problem.</source>
+        <translation type="unfinished">Det ser ut til at inga iTALC teneste køyrer på denne maskina eller at autentiseringsnøkklane ikkje er satt opp korrekt. Tenesta er nødvendig for å køyre iTALC. Kontakt din administrator for å løyse problemet.</translation>
+    </message>
+    <message>
+        <source>iTALC Master Control</source>
+        <translation type="unfinished">iTALC Hovedkontrol</translation>
+    </message>
+    <message>
+        <source>Remote control</source>
+        <translation type="unfinished">Fjernstyring</translation>
+    </message>
+    <message>
+        <source>Quit</source>
+        <translation type="unfinished">Avslutt</translation>
+    </message>
+</context>
+<context>
     <name>QApplication</name>
     <message>
         <source>Unable to register service &apos;%1&apos;.</source>
@@ -782,211 +998,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>screen lock</source>
         <translation>skjermlås</translation>
-    </message>
-</context>
-<context>
-    <name>mainWindow</name>
-    <message>
-        <source>iTALC</source>
-        <translation>iTALC</translation>
-    </message>
-    <message>
-        <source>No write-access</source>
-        <translation>Ingen skrivetilgang</translation>
-    </message>
-    <message>
-        <source>Could not read/write or create directory %1! For running iTALC, make sure you&apos;re permitted to create or write this directory.</source>
-        <translation>Klarte ikkje lesa/skriva eller opprette katalog %1! Kontroller at du har nødvendig tilgang for å opprette eller skrive til denne katalogen før du køyrer iTALC.</translation>
-    </message>
-    <message>
-        <source>Actions</source>
-        <translation>Handlingar</translation>
-    </message>
-    <message>
-        <source>Classroom</source>
-        <translation>Klasserom</translation>
-    </message>
-    <message>
-        <source>Switch classroom</source>
-        <translation>Bytt klasserom</translation>
-    </message>
-    <message>
-        <source>Click this button to open a menu where you can choose the active classroom.</source>
-        <translation>Trykk her for å opne meny for val av aktivt klasserom.</translation>
-    </message>
-    <message>
-        <source>Click on this button, to switch between classrooms.</source>
-        <translation>Trykk denne knappen for å byte mellom klasserom.</translation>
-    </message>
-    <message>
-        <source>Overview</source>
-        <translation>Oversikt</translation>
-    </message>
-    <message>
-        <source>Overview mode</source>
-        <translation>Oversiktsmodus</translation>
-    </message>
-    <message>
-        <source>This is the default mode in iTALC and allows you to have an overview over all visible computers. Also click on this button for unlocking locked workstations or for leaving demo-mode.</source>
-        <translation>Dette er standardmodus i iTALC. Det gir deg ei oversikt over alle synlege maskiner. Du kan også trykke på denne knappen for å låse opp låste arbeidsstasjonar eller for å gå ut av demonstrasjonsmodus.</translation>
-    </message>
-    <message>
-        <source>Fullscreen demo</source>
-        <translation>Fullskjermdemonstrasjon</translation>
-    </message>
-    <message>
-        <source>In this mode your screen is being displayed on all shown computers. Furthermore the users aren&apos;t able to do something else as all input devices are locked in this mode.</source>
-        <translation>I denne modusen blir skjermen din vist på alle maskiner. Brukerane kan ikkje gjere andre ting samtidig ettersom alle inngåande enheter (mus/tastatus) på klientmaskina blir låst.</translation>
-    </message>
-    <message>
-        <source>Window demo</source>
-        <translation>Demonstrasjon i vindauge</translation>
-    </message>
-    <message>
-        <source>In this mode your screen being displayed in a window on all shown computers. The users are able to switch to other windows and thus can continue to work.</source>
-        <translation>I denne modusen blir skjermen din vist i eit vindauge på alle maskiner. Brukerane kan byte mellom vidauga og kan dermed jobbe med andre ting samtidig.</translation>
-    </message>
-    <message>
-        <source>To have all user&apos;s full attention you can lock their desktops using this button. In this mode all input devices are locked and the screen is black.</source>
-        <translation>For å få full oppmerksamheit frå alle brukarane kan du låse skrivebordet deira med denne knappen. I denn modusen er alle inngåande enheter (mus/tastatus) på klientmaskina låst og skjermen er svart.</translation>
-    </message>
-    <message>
-        <source>Text message</source>
-        <translation>Tekstmelding</translation>
-    </message>
-    <message>
-        <source>Send text message</source>
-        <translation>Send tekstmelding</translation>
-    </message>
-    <message>
-        <source>Use this button to send a text message to all users e.g. to tell them new tasks etc.</source>
-        <translation>Bruk denne knappen for å sende tekstmeldingar til alle brukarane td. gje beskjed om ei ny oppgåve.</translation>
-    </message>
-    <message>
-        <source>Power on</source>
-        <translation>Skru på</translation>
-    </message>
-    <message>
-        <source>Power on computers</source>
-        <translation>Skru på maskinar</translation>
-    </message>
-    <message>
-        <source>Click this button to power on all visible computers. This way you do not have to turn on each computer by hand.</source>
-        <translation>Trykk denne knappen for å skru på alle dei synlege maskinane samtidig.</translation>
-    </message>
-    <message>
-        <source>Power down</source>
-        <translation>Skru av</translation>
-    </message>
-    <message>
-        <source>Power down computers</source>
-        <translation>Skru av maskiner</translation>
-    </message>
-    <message>
-        <source>To power down all shown computers (e.g. after the lesson has finished) you can click this button.</source>
-        <translation>Trykk her for å skru av alle synlege maskinar (td. etter ein time eller i slutten av dagen).</translation>
-    </message>
-    <message>
-        <source>Logon</source>
-        <translation>Logg på</translation>
-    </message>
-    <message>
-        <source>Adjust/align</source>
-        <translation>Juster/still opp</translation>
-    </message>
-    <message>
-        <source>Adjust windows and their size</source>
-        <translation>Juster vindauga og størrelsen deira</translation>
-    </message>
-    <message>
-        <source>When clicking this button the biggest possible size for the client-windows is adjusted. Furthermore all windows are aligned.</source>
-        <translation>Når du trykkjer på denne knappen blir klientvindauga juster til maks størrelse. I tillegg blir alle vindauga stillt opp.</translation>
-    </message>
-    <message>
-        <source>Auto view</source>
-        <translation>Automatisk oppsett</translation>
-    </message>
-    <message>
-        <source>Auto re-arrange windows and their size</source>
-        <translation>Automatisk omjustering av vindauga og størrelsen deira</translation>
-    </message>
-    <message>
-        <source>When clicking this button all visible windows are re-arranged and adjusted.</source>
-        <translation>Når du trykkjer på denne knappen blir alle vindauga omjusterte og stillt opp.</translation>
-    </message>
-    <message>
-        <source>No valid keys found</source>
-        <translation>Klarte ikkje finne ein eller fleire gyldige nøklar</translation>
-    </message>
-    <message>
-        <source>No authentication-keys were found or your old ones were broken. Please create a new key-pair using ICA (see documentation at http://italc.sf.net/wiki/index.php?title=Installation).
-Otherwise you won&apos;t be able to access computers using iTALC.</source>
-        <translation>Ingen autentiseringsnøkkel blei funnen eller dei eksisterande nøklane er øydelagde. Ver vennleg å lag eit nytt nøkkelpar ved hjelp av ICA (sjå dokumentasjonen på  http://italc.sf.net/wiki/index.php?title=Installation).
-Ellers vil du ikkje klare å kople deg til maskiner ved hjelp av iTALC.</translation>
-    </message>
-    <message>
-        <source>iTALC service not running</source>
-        <translation>iTALC tenesta køyrar ikkje</translation>
-    </message>
-    <message>
-        <source>There seems to be no iTALC service running on this computer or the authentication-keys aren&apos;t set up properly. The service is required for running iTALC. Contact your administrator for solving this problem.</source>
-        <translation>Det ser ut til at inga iTALC teneste køyrer på denne maskina eller at autentiseringsnøkklane ikkje er satt opp korrekt. Tenesta er nødvendig for å køyre iTALC. Kontakt din administrator for å løyse problemet.</translation>
-    </message>
-    <message>
-        <source>Lock all</source>
-        <translation>Lås alle</translation>
-    </message>
-    <message>
-        <source>Unlock all</source>
-        <translation>Lås opp alle</translation>
-    </message>
-    <message>
-        <source>Lock/unlock desktops</source>
-        <translation>Lås/lås opp maskiner</translation>
-    </message>
-    <message>
-        <source>Remote logon</source>
-        <translation>Fjernstyrt pålogging</translation>
-    </message>
-    <message>
-        <source>After clicking this button you can enter a username and password to log on the according user on all visible computers.</source>
-        <translation>Etter du har trykkt på denne knappen kan du skrive inn brukernamn og passord for å logge på ein angitt brukar på alle synlege maskiner.</translation>
-    </message>
-    <message>
-        <source>Fullscreen Demo</source>
-        <translation>Demonstrasjon i fullskjerm</translation>
-    </message>
-    <message>
-        <source>Stop Demo</source>
-        <translation>Stop demonstrasjon</translation>
-    </message>
-    <message>
-        <source>Window Demo</source>
-        <translation>Demonstrasjon i vindauge</translation>
-    </message>
-    <message>
-        <source>Support</source>
-        <translation>Støtte</translation>
-    </message>
-    <message>
-        <source>Direct support</source>
-        <translation>Direkte støtte</translation>
-    </message>
-    <message>
-        <source>If you need to support someone at a certain computer you can click this button and enter the according hostname or IP afterwards.</source>
-        <translation>Dersom du treng å støtte nokon på ei spesifikk maskin, kan du trykkje på denne knappen og skrive riktig vertsnamn eller IP-adresse.</translation>
-    </message>
-    <message>
-        <source>iTALC Master Control</source>
-        <translation>iTALC Hovedkontrol</translation>
-    </message>
-    <message>
-        <source>Remote control</source>
-        <translation>Fjernstyring</translation>
-    </message>
-    <message>
-        <source>Quit</source>
-        <translation>Avslutt</translation>
     </message>
 </context>
 <context>

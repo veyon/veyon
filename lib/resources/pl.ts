@@ -2,6 +2,222 @@
 <!DOCTYPE TS>
 <TS version="2.0" language="pl_PL">
 <context>
+    <name>MainToolBar</name>
+    <message>
+        <source>Actions</source>
+        <translation type="unfinished">Polecenia</translation>
+    </message>
+</context>
+<context>
+    <name>MainWindow</name>
+    <message>
+        <source>MainWindow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>toolBar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>iTALC</source>
+        <translation type="unfinished">iTALC</translation>
+    </message>
+    <message>
+        <source>No write-access</source>
+        <translation type="unfinished">Brak uprawnień do zapisu</translation>
+    </message>
+    <message>
+        <source>Could not read/write or create directory %1! For running iTALC, make sure you&apos;re permitted to create or write this directory.</source>
+        <translation type="unfinished">Odczyt/zapis do katalogu %1 niemożliwy, Aby iTALC działał musisz mieć uprawnienia aby go założyć lub przynajmniej prawo do zapisu.</translation>
+    </message>
+    <message>
+        <source>Classroom</source>
+        <translation type="unfinished">Pracownia</translation>
+    </message>
+    <message>
+        <source>Switch classroom</source>
+        <translation type="unfinished">Zmień pracownię</translation>
+    </message>
+    <message>
+        <source>Click this button to open a menu where you can choose the active classroom.</source>
+        <translation type="unfinished">Kliknij aby otworzyć menu umożliwiające wybór i zmianę pracowni.</translation>
+    </message>
+    <message>
+        <source>Click on this button, to switch between classrooms.</source>
+        <translation type="unfinished">Kliknij ten przycisk aby zmienić pracownię.</translation>
+    </message>
+    <message>
+        <source>Overview mode</source>
+        <translation type="unfinished">Tryb przeglądu</translation>
+    </message>
+    <message>
+        <source>Overview</source>
+        <translation type="unfinished">Przegląd</translation>
+    </message>
+    <message>
+        <source>This is the default mode in iTALC and allows you to have an overview over all visible computers. Also click on this button for unlocking locked workstations or for leaving demo-mode.</source>
+        <translation type="unfinished">To jest domyślny tryb w iTALC. Pozwala on na podgląd wszystkich widocznych komputerów. Kliknij ten przycisk również aby odblokować zablokowane komputery lub przerwać tryb demo.</translation>
+    </message>
+    <message>
+        <source>Fullscreen demo</source>
+        <translation type="unfinished">Demo pełnoekranowe</translation>
+    </message>
+    <message>
+        <source>Fullscreen Demo</source>
+        <translation type="unfinished">Demo</translation>
+    </message>
+    <message>
+        <source>Stop Demo</source>
+        <translation type="unfinished">WYŁĄCZ DEMO</translation>
+    </message>
+    <message>
+        <source>In this mode your screen is being displayed on all shown computers. Furthermore the users aren&apos;t able to do something else as all input devices are locked in this mode.</source>
+        <translation type="unfinished">W tym trybie Twój ekran jest wyświetlany na wszystkich widocznych komputerach a obraz zajmuje cały dostępny pulpit. Użytkownicy nie mogą nic zrobić ponieważ ich klawiatury i myszki są zablokowane.</translation>
+    </message>
+    <message>
+        <source>Window demo</source>
+        <translation type="unfinished">Demo okienkowe</translation>
+    </message>
+    <message>
+        <source>Window Demo</source>
+        <translation type="unfinished">Demo (okno)</translation>
+    </message>
+    <message>
+        <source>In this mode your screen being displayed in a window on all shown computers. The users are able to switch to other windows and thus can continue to work.</source>
+        <translation type="unfinished">W tym trybie Twój ekran jest wyświetlany w oknie na wszystkich widocznych komputerach. Użytkownicy mogą przełączyć się na inne okno i kontynuować swoją pracę.</translation>
+    </message>
+    <message>
+        <source>Lock/unlock desktops</source>
+        <translation type="unfinished">(Od)Blokuj pulpity</translation>
+    </message>
+    <message>
+        <source>Lock all</source>
+        <translation type="unfinished">Blokuj wszystkie</translation>
+    </message>
+    <message>
+        <source>Unlock all</source>
+        <translation type="unfinished">ODBLOKUJ</translation>
+    </message>
+    <message>
+        <source>To have all user&apos;s full attention you can lock their desktops using this button. In this mode all input devices are locked and the screen is black.</source>
+        <translation type="unfinished">Aby przyciągnąć uwagę możesz zablokować pulpity użytkowników naciskając ten przycisk. W tym trybie ich ekrany będą czarne, a klawiatury i myszy nie będą działały.</translation>
+    </message>
+    <message>
+        <source>Send text message</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Text message</source>
+        <translation type="unfinished">Wiadomość</translation>
+    </message>
+    <message>
+        <source>Use this button to send a text message to all users e.g. to tell them new tasks etc.</source>
+        <translation type="unfinished">Użyj tego przycisku aby wysłać wiadomość tekstową do wszystkich użytkowników, np. aby zwrócić im uwagę lub przekazać zadanie do wykonania.</translation>
+    </message>
+    <message>
+        <source>Power on computers</source>
+        <translation type="unfinished">Włącz komputery</translation>
+    </message>
+    <message>
+        <source>Power on</source>
+        <translation type="unfinished">Włącz</translation>
+    </message>
+    <message>
+        <source>Click this button to power on all visible computers. This way you do not have to turn on each computer by hand.</source>
+        <translation type="unfinished">Kliknij ten przycisk aby włączyć wszystkie widoczne komputery. Dzięki temu nie musisz włączać każdego z osobna.</translation>
+    </message>
+    <message>
+        <source>Power down computers</source>
+        <translation type="unfinished">Wyłącz komputery</translation>
+    </message>
+    <message>
+        <source>Power down</source>
+        <translation type="unfinished">Wyłącz</translation>
+    </message>
+    <message>
+        <source>To power down all shown computers (e.g. after the lesson has finished) you can click this button.</source>
+        <translation type="unfinished">Aby wyłączyć wszystkie widoczne komputery kliknij ten przycisk.</translation>
+    </message>
+    <message>
+        <source>Logon</source>
+        <translation type="unfinished">Logowanie</translation>
+    </message>
+    <message>
+        <source>Remote logon</source>
+        <translation type="unfinished">Zdalne logowanie</translation>
+    </message>
+    <message>
+        <source>After clicking this button you can enter a username and password to log on the according user on all visible computers.</source>
+        <translation type="unfinished">Kliknij aby wprowadzić nazwę użytkownika i hasło do zalogowania na wszystkich widocznych komputerach.</translation>
+    </message>
+    <message>
+        <source>Support</source>
+        <translation type="unfinished">Obsługa</translation>
+    </message>
+    <message>
+        <source>Direct support</source>
+        <translation type="unfinished">Pomoc zdalna</translation>
+    </message>
+    <message>
+        <source>If you need to support someone at a certain computer you can click this button and enter the according hostname or IP afterwards.</source>
+        <translation type="unfinished">Wpisz adres IP lub nazwę komputera, przy którym znajduje się osoba, której chcesz udzielić pomocy.</translation>
+    </message>
+    <message>
+        <source>Adjust/align</source>
+        <translation type="unfinished">Dopasuj/rozmieść</translation>
+    </message>
+    <message>
+        <source>Adjust windows and their size</source>
+        <translation type="unfinished">Dopasuj okna i ich wielkość</translation>
+    </message>
+    <message>
+        <source>When clicking this button the biggest possible size for the client-windows is adjusted. Furthermore all windows are aligned.</source>
+        <translation type="unfinished">Kliknięcie tego przycisku ustawi największy możliwy rozmiar okien dla komputerów-klientów. Wszystkie okna zostaną wyrównane.</translation>
+    </message>
+    <message>
+        <source>Auto view</source>
+        <translation type="unfinished">Widok auto</translation>
+    </message>
+    <message>
+        <source>Auto re-arrange windows and their size</source>
+        <translation type="unfinished">Automatycznie rozmieść okna i dopasuj ich wielkość</translation>
+    </message>
+    <message>
+        <source>When clicking this button all visible windows are re-arranged and adjusted.</source>
+        <translation type="unfinished">Wszystkie widoczne okna są automatycznie rozmieszczane i wyrównywane.</translation>
+    </message>
+    <message>
+        <source>No valid keys found</source>
+        <translation type="unfinished">Brak ważnych kluczy</translation>
+    </message>
+    <message>
+        <source>No authentication-keys were found or your old ones were broken. Please create a new key-pair using ICA (see documentation at http://italc.sf.net/wiki/index.php?title=Installation).
+Otherwise you won&apos;t be able to access computers using iTALC.</source>
+        <translation type="unfinished">Brak ważnych kluczy do autoryzacji lub stare klucze zostały uszkodzone/skasowane. 
+Stwórz nową parę kluczy używając ICA (dokumentacja na http://italc.sf.net/wiki/index.php?title=Installation). Bez tego nie uzyskasz dostępu do komputerów używających iTALC.</translation>
+    </message>
+    <message>
+        <source>iTALC service not running</source>
+        <translation type="unfinished">Usługa iTALC nie działa</translation>
+    </message>
+    <message>
+        <source>There seems to be no iTALC service running on this computer or the authentication-keys aren&apos;t set up properly. The service is required for running iTALC. Contact your administrator for solving this problem.</source>
+        <translation type="unfinished">Prawdopodobnie usługa iTALC nie działa na tym komputerze lub klucze autoryzacji nie są poprawnie skonfigurowane. Ta usługa jest wymagana aby uruchomić iTALC. Skontaktuj się z administratorem aby naprawić ten problem.</translation>
+    </message>
+    <message>
+        <source>iTALC Master Control</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remote control</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Quit</source>
+        <translation type="unfinished">Wyjdź</translation>
+    </message>
+</context>
+<context>
     <name>QApplication</name>
     <message>
         <source>iTALC Client %1 on %2:%3</source>
@@ -785,211 +1001,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>screen lock</source>
         <translation>blokada ekranu</translation>
-    </message>
-</context>
-<context>
-    <name>mainWindow</name>
-    <message>
-        <source>iTALC</source>
-        <translation>iTALC</translation>
-    </message>
-    <message>
-        <source>Fullscreen demo</source>
-        <translation>Demo pełnoekranowe</translation>
-    </message>
-    <message>
-        <source>Window demo</source>
-        <translation>Demo okienkowe</translation>
-    </message>
-    <message>
-        <source>No write-access</source>
-        <translation>Brak uprawnień do zapisu</translation>
-    </message>
-    <message>
-        <source>Actions</source>
-        <translation>Polecenia</translation>
-    </message>
-    <message>
-        <source>Overview mode</source>
-        <translation>Tryb przeglądu</translation>
-    </message>
-    <message>
-        <source>In this mode your screen is being displayed on all shown computers. Furthermore the users aren&apos;t able to do something else as all input devices are locked in this mode.</source>
-        <translation>W tym trybie Twój ekran jest wyświetlany na wszystkich widocznych komputerach a obraz zajmuje cały dostępny pulpit. Użytkownicy nie mogą nic zrobić ponieważ ich klawiatury i myszki są zablokowane.</translation>
-    </message>
-    <message>
-        <source>In this mode your screen being displayed in a window on all shown computers. The users are able to switch to other windows and thus can continue to work.</source>
-        <translation>W tym trybie Twój ekran jest wyświetlany w oknie na wszystkich widocznych komputerach. Użytkownicy mogą przełączyć się na inne okno i kontynuować swoją pracę.</translation>
-    </message>
-    <message>
-        <source>Send text message</source>
-        <translation>Wyślij wiadomość tekstową</translation>
-    </message>
-    <message>
-        <source>Use this button to send a text message to all users e.g. to tell them new tasks etc.</source>
-        <translation>Użyj tego przycisku aby wysłać wiadomość tekstową do wszystkich użytkowników, np. aby zwrócić im uwagę lub przekazać zadanie do wykonania.</translation>
-    </message>
-    <message>
-        <source>Power on computers</source>
-        <translation>Włącz komputery</translation>
-    </message>
-    <message>
-        <source>Click this button to power on all visible computers. This way you do not have to turn on each computer by hand.</source>
-        <translation>Kliknij ten przycisk aby włączyć wszystkie widoczne komputery. Dzięki temu nie musisz włączać każdego z osobna.</translation>
-    </message>
-    <message>
-        <source>Adjust windows and their size</source>
-        <translation>Dopasuj okna i ich wielkość</translation>
-    </message>
-    <message>
-        <source>To have all user&apos;s full attention you can lock their desktops using this button. In this mode all input devices are locked and the screen is black.</source>
-        <translation>Aby przyciągnąć uwagę możesz zablokować pulpity użytkowników naciskając ten przycisk. W tym trybie ich ekrany będą czarne, a klawiatury i myszy nie będą działały.</translation>
-    </message>
-    <message>
-        <source>Click on this button, to switch between classrooms.</source>
-        <translation>Kliknij ten przycisk aby zmienić pracownię.</translation>
-    </message>
-    <message>
-        <source>Could not read/write or create directory %1! For running iTALC, make sure you&apos;re permitted to create or write this directory.</source>
-        <translation>Odczyt/zapis do katalogu %1 niemożliwy, Aby iTALC działał musisz mieć uprawnienia aby go założyć lub przynajmniej prawo do zapisu.</translation>
-    </message>
-    <message>
-        <source>When clicking this button the biggest possible size for the client-windows is adjusted. Furthermore all windows are aligned.</source>
-        <translation>Kliknięcie tego przycisku ustawi największy możliwy rozmiar okien dla komputerów-klientów. Wszystkie okna zostaną wyrównane.</translation>
-    </message>
-    <message>
-        <source>Auto re-arrange windows and their size</source>
-        <translation>Automatycznie rozmieść okna i dopasuj ich wielkość</translation>
-    </message>
-    <message>
-        <source>When clicking this button all visible windows are re-arranged and adjusted.</source>
-        <translation>Wszystkie widoczne okna są automatycznie rozmieszczane i wyrównywane.</translation>
-    </message>
-    <message>
-        <source>iTALC service not running</source>
-        <translation>Usługa iTALC nie działa</translation>
-    </message>
-    <message>
-        <source>There seems to be no iTALC service running on this computer or the authentication-keys aren&apos;t set up properly. The service is required for running iTALC. Contact your administrator for solving this problem.</source>
-        <translation>Prawdopodobnie usługa iTALC nie działa na tym komputerze lub klucze autoryzacji nie są poprawnie skonfigurowane. Ta usługa jest wymagana aby uruchomić iTALC. Skontaktuj się z administratorem aby naprawić ten problem.</translation>
-    </message>
-    <message>
-        <source>This is the default mode in iTALC and allows you to have an overview over all visible computers. Also click on this button for unlocking locked workstations or for leaving demo-mode.</source>
-        <translation>To jest domyślny tryb w iTALC. Pozwala on na podgląd wszystkich widocznych komputerów. Kliknij ten przycisk również aby odblokować zablokowane komputery lub przerwać tryb demo.</translation>
-    </message>
-    <message>
-        <source>Classroom</source>
-        <translation>Pracownia</translation>
-    </message>
-    <message>
-        <source>Switch classroom</source>
-        <translation>Zmień pracownię</translation>
-    </message>
-    <message>
-        <source>Click this button to open a menu where you can choose the active classroom.</source>
-        <translation>Kliknij aby otworzyć menu umożliwiające wybór i zmianę pracowni.</translation>
-    </message>
-    <message>
-        <source>Overview</source>
-        <translation>Przegląd</translation>
-    </message>
-    <message>
-        <source>Text message</source>
-        <translation>Wiadomość</translation>
-    </message>
-    <message>
-        <source>Power on</source>
-        <translation>Włącz</translation>
-    </message>
-    <message>
-        <source>Power down</source>
-        <translation>Wyłącz</translation>
-    </message>
-    <message>
-        <source>Power down computers</source>
-        <translation>Wyłącz komputery</translation>
-    </message>
-    <message>
-        <source>To power down all shown computers (e.g. after the lesson has finished) you can click this button.</source>
-        <translation>Aby wyłączyć wszystkie widoczne komputery kliknij ten przycisk.</translation>
-    </message>
-    <message>
-        <source>Logon</source>
-        <translation>Logowanie</translation>
-    </message>
-    <message>
-        <source>Adjust/align</source>
-        <translation>Dopasuj/rozmieść</translation>
-    </message>
-    <message>
-        <source>Auto view</source>
-        <translation>Widok auto</translation>
-    </message>
-    <message>
-        <source>No valid keys found</source>
-        <translation>Brak ważnych kluczy</translation>
-    </message>
-    <message>
-        <source>No authentication-keys were found or your old ones were broken. Please create a new key-pair using ICA (see documentation at http://italc.sf.net/wiki/index.php?title=Installation).
-Otherwise you won&apos;t be able to access computers using iTALC.</source>
-        <translation>Brak ważnych kluczy do autoryzacji lub stare klucze zostały uszkodzone/skasowane. 
-Stwórz nową parę kluczy używając ICA (dokumentacja na http://italc.sf.net/wiki/index.php?title=Installation). Bez tego nie uzyskasz dostępu do komputerów używających iTALC.</translation>
-    </message>
-    <message>
-        <source>Lock all</source>
-        <translation>Blokuj wszystkie</translation>
-    </message>
-    <message>
-        <source>Unlock all</source>
-        <translation>ODBLOKUJ</translation>
-    </message>
-    <message>
-        <source>Lock/unlock desktops</source>
-        <translation>(Od)Blokuj pulpity</translation>
-    </message>
-    <message>
-        <source>Remote logon</source>
-        <translation>Zdalne logowanie</translation>
-    </message>
-    <message>
-        <source>After clicking this button you can enter a username and password to log on the according user on all visible computers.</source>
-        <translation>Kliknij aby wprowadzić nazwę użytkownika i hasło do zalogowania na wszystkich widocznych komputerach.</translation>
-    </message>
-    <message>
-        <source>Support</source>
-        <translation>Obsługa</translation>
-    </message>
-    <message>
-        <source>Direct support</source>
-        <translation>Pomoc zdalna</translation>
-    </message>
-    <message>
-        <source>If you need to support someone at a certain computer you can click this button and enter the according hostname or IP afterwards.</source>
-        <translation>Wpisz adres IP lub nazwę komputera, przy którym znajduje się osoba, której chcesz udzielić pomocy.</translation>
-    </message>
-    <message>
-        <source>Fullscreen Demo</source>
-        <translation>Demo</translation>
-    </message>
-    <message>
-        <source>Stop Demo</source>
-        <translation>WYŁĄCZ DEMO</translation>
-    </message>
-    <message>
-        <source>Window Demo</source>
-        <translation>Demo (okno)</translation>
-    </message>
-    <message>
-        <source>iTALC Master Control</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Remote control</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Quit</source>
-        <translation type="unfinished">Wyjdź</translation>
     </message>
 </context>
 <context>

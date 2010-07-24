@@ -2,6 +2,222 @@
 <!DOCTYPE TS>
 <TS version="2.0" language="sk_SK">
 <context>
+    <name>MainToolBar</name>
+    <message>
+        <source>Actions</source>
+        <translation type="unfinished">Akcia</translation>
+    </message>
+</context>
+<context>
+    <name>MainWindow</name>
+    <message>
+        <source>MainWindow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>toolBar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>iTALC</source>
+        <translation type="unfinished">iTALC</translation>
+    </message>
+    <message>
+        <source>No write-access</source>
+        <translation type="unfinished">Bez možnosti zápisu</translation>
+    </message>
+    <message>
+        <source>Could not read/write or create directory %1! For running iTALC, make sure you&apos;re permitted to create or write this directory.</source>
+        <translation type="unfinished">Nemôžem čítať/zapisovať alebo vytvoriť adresár %1! Pre spustenie iTALC sa ujistite, že máte povolenie pre vytvorenie alebo úpravu tohto adresáru.</translation>
+    </message>
+    <message>
+        <source>Classroom</source>
+        <translation type="unfinished">Učebňa</translation>
+    </message>
+    <message>
+        <source>Switch classroom</source>
+        <translation type="unfinished">Prepnúť učebňu</translation>
+    </message>
+    <message>
+        <source>Click this button to open a menu where you can choose the active classroom.</source>
+        <translation type="unfinished">Kliknutím na toto tlačidlo sa zobrazí ponuka, kde si budete môct zvoliť aktívnu učebňu.</translation>
+    </message>
+    <message>
+        <source>Click on this button, to switch between classrooms.</source>
+        <translation type="unfinished">Kliknutím na toto tlačídlo môžte prepínať medzi učebňami.</translation>
+    </message>
+    <message>
+        <source>Overview mode</source>
+        <translation type="unfinished">Mód prezerania</translation>
+    </message>
+    <message>
+        <source>Overview</source>
+        <translation type="unfinished">Prehľad</translation>
+    </message>
+    <message>
+        <source>This is the default mode in iTALC and allows you to have an overview over all visible computers. Also click on this button for unlocking locked workstations or for leaving demo-mode.</source>
+        <translation type="unfinished">Toto je štandardný mód iTALC, ktorý vám umožní zobraziť prehľad všetkých dostupných počítačov. Kliknutím na toto tlačidlo odomknete zamknuté počítače alebo opustíte demo mód.</translation>
+    </message>
+    <message>
+        <source>Fullscreen demo</source>
+        <translation type="unfinished">Demo na celú obrazovku</translation>
+    </message>
+    <message>
+        <source>Fullscreen Demo</source>
+        <translation type="unfinished">Demo na celú obrazovku</translation>
+    </message>
+    <message>
+        <source>Stop Demo</source>
+        <translation type="unfinished">Zastaviť demo</translation>
+    </message>
+    <message>
+        <source>In this mode your screen is being displayed on all shown computers. Furthermore the users aren&apos;t able to do something else as all input devices are locked in this mode.</source>
+        <translation type="unfinished">V tomto móde bude vaša obrazovka zobrazená na všetkých dostupných počítačoch. Okrem toho, užívatelia nebudú môcť robiť nič, pretože budú mať uzamknuté vstupné zariadenia.</translation>
+    </message>
+    <message>
+        <source>Window demo</source>
+        <translation type="unfinished">Demo v okne</translation>
+    </message>
+    <message>
+        <source>Window Demo</source>
+        <translation type="unfinished">Demo v okne</translation>
+    </message>
+    <message>
+        <source>In this mode your screen being displayed in a window on all shown computers. The users are able to switch to other windows and thus can continue to work.</source>
+        <translation type="unfinished">V tomto móde bude vaša obrazovka zobrazená na všetkých dostupných počítačoch. Používatelia budú môcť prepínať medzi oknami, a tak pokračovať v práci.</translation>
+    </message>
+    <message>
+        <source>Lock/unlock desktops</source>
+        <translation type="unfinished">Zamknúť/odomknúť počítače</translation>
+    </message>
+    <message>
+        <source>Lock all</source>
+        <translation type="unfinished">Zamknúť všetko</translation>
+    </message>
+    <message>
+        <source>Unlock all</source>
+        <translation type="unfinished">Odomknúť všetko</translation>
+    </message>
+    <message>
+        <source>To have all user&apos;s full attention you can lock their desktops using this button. In this mode all input devices are locked and the screen is black.</source>
+        <translation type="unfinished">Ak potrebujete plnú pozornosť používateľov môžte zamknút ich počítače týmto tlačídlom. V tomto móde budú všetky vstupné zariadenia uzamknuté a obrazovky budú čierne.</translation>
+    </message>
+    <message>
+        <source>Send text message</source>
+        <translation type="unfinished">Poslať textovú správu</translation>
+    </message>
+    <message>
+        <source>Text message</source>
+        <translation type="unfinished">Textová správa</translation>
+    </message>
+    <message>
+        <source>Use this button to send a text message to all users e.g. to tell them new tasks etc.</source>
+        <translation type="unfinished">Pomocou tohto tlačidla môžete poslať správu všetkým užívateľom, napr. zadať im nové úlohy, atd.</translation>
+    </message>
+    <message>
+        <source>Power on computers</source>
+        <translation type="unfinished">Zapne počítače</translation>
+    </message>
+    <message>
+        <source>Power on</source>
+        <translation type="unfinished">Zapnúť</translation>
+    </message>
+    <message>
+        <source>Click this button to power on all visible computers. This way you do not have to turn on each computer by hand.</source>
+        <translation type="unfinished">Kliknutím na toto tlačidlo zapnete všetky viditeľné počítače. Takto nemusíte zapínať každý počítač ručne.</translation>
+    </message>
+    <message>
+        <source>Power down computers</source>
+        <translation type="unfinished">Vypne počítače</translation>
+    </message>
+    <message>
+        <source>Power down</source>
+        <translation type="unfinished">Vypnúť</translation>
+    </message>
+    <message>
+        <source>To power down all shown computers (e.g. after the lesson has finished) you can click this button.</source>
+        <translation type="unfinished">Pre vypnutie všetkých zobrazených počítačov (napr. na konci hodiny), stačí kliknút na toto tlačidlo.</translation>
+    </message>
+    <message>
+        <source>Logon</source>
+        <translation type="unfinished">Prihlásiť</translation>
+    </message>
+    <message>
+        <source>Remote logon</source>
+        <translation type="unfinished">Vzdialené prihlásenie</translation>
+    </message>
+    <message>
+        <source>After clicking this button you can enter a username and password to log on the according user on all visible computers.</source>
+        <translation type="unfinished">Kliknutím na toto tlačidlo môžete zadať užívateľské meno a heslo potrebné pre prihlásenie daného užívateľa na všetkých dostupných počítačoch.</translation>
+    </message>
+    <message>
+        <source>Support</source>
+        <translation type="unfinished">Podpora</translation>
+    </message>
+    <message>
+        <source>Direct support</source>
+        <translation type="unfinished">Priama podpora</translation>
+    </message>
+    <message>
+        <source>If you need to support someone at a certain computer you can click this button and enter the according hostname or IP afterwards.</source>
+        <translation type="unfinished">Ak potrebujete niekomu dať podporu na nejakom počítači, tak kliknite na toto tlačídlo a zadajte dané meno alebo IP adresu počítača.</translation>
+    </message>
+    <message>
+        <source>Adjust/align</source>
+        <translation type="unfinished">Regulovať/zarovnať</translation>
+    </message>
+    <message>
+        <source>Adjust windows and their size</source>
+        <translation type="unfinished">Reguluje okná a nastaví ich veľkosť</translation>
+    </message>
+    <message>
+        <source>When clicking this button the biggest possible size for the client-windows is adjusted. Furthermore all windows are aligned.</source>
+        <translation type="unfinished">Kliknutím na toto tlačídlo sa nastaví najväčšia možná velkosť okien klientov. Budú usporiadané aj všetky okná.</translation>
+    </message>
+    <message>
+        <source>Auto view</source>
+        <translation type="unfinished">Automatický pohľad</translation>
+    </message>
+    <message>
+        <source>Auto re-arrange windows and their size</source>
+        <translation type="unfinished">Automaticky prispôsobí okná aj ich veľkosť</translation>
+    </message>
+    <message>
+        <source>When clicking this button all visible windows are re-arranged and adjusted.</source>
+        <translation type="unfinished">Kliknutím na toto tlačidlo sa všetky viditeľné okná usporiadajú a prispôsobia.</translation>
+    </message>
+    <message>
+        <source>No valid keys found</source>
+        <translation type="unfinished">Neboli nájdené žiadne platné tlačidlá</translation>
+    </message>
+    <message>
+        <source>No authentication-keys were found or your old ones were broken. Please create a new key-pair using ICA (see documentation at http://italc.sf.net/wiki/index.php?title=Installation).
+Otherwise you won&apos;t be able to access computers using iTALC.</source>
+        <translation type="unfinished">Neboli nájdené autentifikačné kľúče alebo staré boli poškodené. Prosím vytvorte nový párový-kľúč použitím ICA(pozrite dokumentáciu na http://italc.sf.net/wiki/index.php?title=Installation)
+Inak nebudete môcť pristúpiť k počítačom pomocou iTALC.</translation>
+    </message>
+    <message>
+        <source>iTALC service not running</source>
+        <translation type="unfinished">Služba iTALC nebeží</translation>
+    </message>
+    <message>
+        <source>There seems to be no iTALC service running on this computer or the authentication-keys aren&apos;t set up properly. The service is required for running iTALC. Contact your administrator for solving this problem.</source>
+        <translation type="unfinished">Na tomto počítači zrejme nebeží služba iTALC alebo autentifikačné kľúče niesu nastavené správne. Táto služba je potrebná na fungovanie iTALC. Kontaktujte administrátora pre riešenie tohto problému.</translation>
+    </message>
+    <message>
+        <source>iTALC Master Control</source>
+        <translation type="unfinished">Hlavné ovládanie iTALC</translation>
+    </message>
+    <message>
+        <source>Remote control</source>
+        <translation type="unfinished">Vzdialené ovládanie</translation>
+    </message>
+    <message>
+        <source>Quit</source>
+        <translation type="unfinished">Ukončiť</translation>
+    </message>
+</context>
+<context>
     <name>QApplication</name>
     <message>
         <source>iTALC Client %1 on %2:%3</source>
@@ -785,211 +1001,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>screen lock</source>
         <translation>uzamknutie obrazovky</translation>
-    </message>
-</context>
-<context>
-    <name>mainWindow</name>
-    <message>
-        <source>iTALC</source>
-        <translation>iTALC</translation>
-    </message>
-    <message>
-        <source>No write-access</source>
-        <translation>Bez možnosti zápisu</translation>
-    </message>
-    <message>
-        <source>Could not read/write or create directory %1! For running iTALC, make sure you&apos;re permitted to create or write this directory.</source>
-        <translation>Nemôžem čítať/zapisovať alebo vytvoriť adresár %1! Pre spustenie iTALC sa ujistite, že máte povolenie pre vytvorenie alebo úpravu tohto adresáru.</translation>
-    </message>
-    <message>
-        <source>Actions</source>
-        <translation>Akcia</translation>
-    </message>
-    <message>
-        <source>Classroom</source>
-        <translation>Učebňa</translation>
-    </message>
-    <message>
-        <source>Switch classroom</source>
-        <translation>Prepnúť učebňu</translation>
-    </message>
-    <message>
-        <source>Click this button to open a menu where you can choose the active classroom.</source>
-        <translation>Kliknutím na toto tlačidlo sa zobrazí ponuka, kde si budete môct zvoliť aktívnu učebňu.</translation>
-    </message>
-    <message>
-        <source>Click on this button, to switch between classrooms.</source>
-        <translation>Kliknutím na toto tlačídlo môžte prepínať medzi učebňami.</translation>
-    </message>
-    <message>
-        <source>Overview</source>
-        <translation>Prehľad</translation>
-    </message>
-    <message>
-        <source>Overview mode</source>
-        <translation>Mód prezerania</translation>
-    </message>
-    <message>
-        <source>This is the default mode in iTALC and allows you to have an overview over all visible computers. Also click on this button for unlocking locked workstations or for leaving demo-mode.</source>
-        <translation>Toto je štandardný mód iTALC, ktorý vám umožní zobraziť prehľad všetkých dostupných počítačov. Kliknutím na toto tlačidlo odomknete zamknuté počítače alebo opustíte demo mód.</translation>
-    </message>
-    <message>
-        <source>Fullscreen demo</source>
-        <translation>Demo na celú obrazovku</translation>
-    </message>
-    <message>
-        <source>In this mode your screen is being displayed on all shown computers. Furthermore the users aren&apos;t able to do something else as all input devices are locked in this mode.</source>
-        <translation>V tomto móde bude vaša obrazovka zobrazená na všetkých dostupných počítačoch. Okrem toho, užívatelia nebudú môcť robiť nič, pretože budú mať uzamknuté vstupné zariadenia.</translation>
-    </message>
-    <message>
-        <source>Window demo</source>
-        <translation>Demo v okne</translation>
-    </message>
-    <message>
-        <source>In this mode your screen being displayed in a window on all shown computers. The users are able to switch to other windows and thus can continue to work.</source>
-        <translation>V tomto móde bude vaša obrazovka zobrazená na všetkých dostupných počítačoch. Používatelia budú môcť prepínať medzi oknami, a tak pokračovať v práci.</translation>
-    </message>
-    <message>
-        <source>Lock all</source>
-        <translation>Zamknúť všetko</translation>
-    </message>
-    <message>
-        <source>Unlock all</source>
-        <translation>Odomknúť všetko</translation>
-    </message>
-    <message>
-        <source>Lock/unlock desktops</source>
-        <translation>Zamknúť/odomknúť počítače</translation>
-    </message>
-    <message>
-        <source>To have all user&apos;s full attention you can lock their desktops using this button. In this mode all input devices are locked and the screen is black.</source>
-        <translation>Ak potrebujete plnú pozornosť používateľov môžte zamknút ich počítače týmto tlačídlom. V tomto móde budú všetky vstupné zariadenia uzamknuté a obrazovky budú čierne.</translation>
-    </message>
-    <message>
-        <source>Text message</source>
-        <translation>Textová správa</translation>
-    </message>
-    <message>
-        <source>Send text message</source>
-        <translation>Poslať textovú správu</translation>
-    </message>
-    <message>
-        <source>Use this button to send a text message to all users e.g. to tell them new tasks etc.</source>
-        <translation>Pomocou tohto tlačidla môžete poslať správu všetkým užívateľom, napr. zadať im nové úlohy, atd.</translation>
-    </message>
-    <message>
-        <source>Power on</source>
-        <translation>Zapnúť</translation>
-    </message>
-    <message>
-        <source>Power on computers</source>
-        <translation>Zapne počítače</translation>
-    </message>
-    <message>
-        <source>Click this button to power on all visible computers. This way you do not have to turn on each computer by hand.</source>
-        <translation>Kliknutím na toto tlačidlo zapnete všetky viditeľné počítače. Takto nemusíte zapínať každý počítač ručne.</translation>
-    </message>
-    <message>
-        <source>Power down</source>
-        <translation>Vypnúť</translation>
-    </message>
-    <message>
-        <source>Power down computers</source>
-        <translation>Vypne počítače</translation>
-    </message>
-    <message>
-        <source>To power down all shown computers (e.g. after the lesson has finished) you can click this button.</source>
-        <translation>Pre vypnutie všetkých zobrazených počítačov (napr. na konci hodiny), stačí kliknút na toto tlačidlo.</translation>
-    </message>
-    <message>
-        <source>Logon</source>
-        <translation>Prihlásiť</translation>
-    </message>
-    <message>
-        <source>Remote logon</source>
-        <translation>Vzdialené prihlásenie</translation>
-    </message>
-    <message>
-        <source>After clicking this button you can enter a username and password to log on the according user on all visible computers.</source>
-        <translation>Kliknutím na toto tlačidlo môžete zadať užívateľské meno a heslo potrebné pre prihlásenie daného užívateľa na všetkých dostupných počítačoch.</translation>
-    </message>
-    <message>
-        <source>Adjust/align</source>
-        <translation>Regulovať/zarovnať</translation>
-    </message>
-    <message>
-        <source>Adjust windows and their size</source>
-        <translation>Reguluje okná a nastaví ich veľkosť</translation>
-    </message>
-    <message>
-        <source>When clicking this button the biggest possible size for the client-windows is adjusted. Furthermore all windows are aligned.</source>
-        <translation>Kliknutím na toto tlačídlo sa nastaví najväčšia možná velkosť okien klientov. Budú usporiadané aj všetky okná.</translation>
-    </message>
-    <message>
-        <source>Auto view</source>
-        <translation>Automatický pohľad</translation>
-    </message>
-    <message>
-        <source>Auto re-arrange windows and their size</source>
-        <translation>Automaticky prispôsobí okná aj ich veľkosť</translation>
-    </message>
-    <message>
-        <source>When clicking this button all visible windows are re-arranged and adjusted.</source>
-        <translation>Kliknutím na toto tlačidlo sa všetky viditeľné okná usporiadajú a prispôsobia.</translation>
-    </message>
-    <message>
-        <source>No valid keys found</source>
-        <translation>Neboli nájdené žiadne platné tlačidlá</translation>
-    </message>
-    <message>
-        <source>No authentication-keys were found or your old ones were broken. Please create a new key-pair using ICA (see documentation at http://italc.sf.net/wiki/index.php?title=Installation).
-Otherwise you won&apos;t be able to access computers using iTALC.</source>
-        <translation>Neboli nájdené autentifikačné kľúče alebo staré boli poškodené. Prosím vytvorte nový párový-kľúč použitím ICA(pozrite dokumentáciu na http://italc.sf.net/wiki/index.php?title=Installation)
-Inak nebudete môcť pristúpiť k počítačom pomocou iTALC.</translation>
-    </message>
-    <message>
-        <source>iTALC service not running</source>
-        <translation>Služba iTALC nebeží</translation>
-    </message>
-    <message>
-        <source>There seems to be no iTALC service running on this computer or the authentication-keys aren&apos;t set up properly. The service is required for running iTALC. Contact your administrator for solving this problem.</source>
-        <translation>Na tomto počítači zrejme nebeží služba iTALC alebo autentifikačné kľúče niesu nastavené správne. Táto služba je potrebná na fungovanie iTALC. Kontaktujte administrátora pre riešenie tohto problému.</translation>
-    </message>
-    <message>
-        <source>Fullscreen Demo</source>
-        <translation>Demo na celú obrazovku</translation>
-    </message>
-    <message>
-        <source>Stop Demo</source>
-        <translation>Zastaviť demo</translation>
-    </message>
-    <message>
-        <source>Window Demo</source>
-        <translation>Demo v okne</translation>
-    </message>
-    <message>
-        <source>Support</source>
-        <translation>Podpora</translation>
-    </message>
-    <message>
-        <source>Direct support</source>
-        <translation>Priama podpora</translation>
-    </message>
-    <message>
-        <source>If you need to support someone at a certain computer you can click this button and enter the according hostname or IP afterwards.</source>
-        <translation>Ak potrebujete niekomu dať podporu na nejakom počítači, tak kliknite na toto tlačídlo a zadajte dané meno alebo IP adresu počítača.</translation>
-    </message>
-    <message>
-        <source>iTALC Master Control</source>
-        <translation>Hlavné ovládanie iTALC</translation>
-    </message>
-    <message>
-        <source>Remote control</source>
-        <translation>Vzdialené ovládanie</translation>
-    </message>
-    <message>
-        <source>Quit</source>
-        <translation>Ukončiť</translation>
     </message>
 </context>
 <context>

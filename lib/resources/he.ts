@@ -2,6 +2,224 @@
 <!DOCTYPE TS>
 <TS version="2.0" language="he_IL" sourcelanguage="en">
 <context>
+    <name>MainToolBar</name>
+    <message>
+        <source>Actions</source>
+        <translation type="unfinished">פעולות</translation>
+    </message>
+</context>
+<context>
+    <name>MainWindow</name>
+    <message>
+        <source>MainWindow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>toolBar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>iTALC</source>
+        <translation type="unfinished">iTALC</translation>
+    </message>
+    <message>
+        <source>No write-access</source>
+        <translation type="unfinished">אין הרשאות כתיבה</translation>
+    </message>
+    <message>
+        <source>Could not read/write or create directory %1! For running iTALC, make sure you&apos;re permitted to create or write this directory.</source>
+        <translation type="unfinished">לא ניתן לקרוא, לכתוב או ליצור את התיקייה הבאה. על מנת להריץ את התוכנה,וודאו כי יש ברשותכם הרשאות מתאימות ליצירת תיקייה זו
+%1</translation>
+    </message>
+    <message>
+        <source>Classroom</source>
+        <translation type="unfinished">כיתה</translation>
+    </message>
+    <message>
+        <source>Switch classroom</source>
+        <translation type="unfinished">החלף כיתה</translation>
+    </message>
+    <message>
+        <source>Click this button to open a menu where you can choose the active classroom.</source>
+        <translation type="unfinished">לחיצה על כפתור זה תפתח תפריט שם ניתן לבחור את הכיתה הפעילה</translation>
+    </message>
+    <message>
+        <source>Click on this button, to switch between classrooms.</source>
+        <translation type="unfinished">לחיצה על כפתור זה תאפשר בחירה בין הכיתות</translation>
+    </message>
+    <message>
+        <source>Overview mode</source>
+        <translation type="unfinished">מצב צפייה ובקרה</translation>
+    </message>
+    <message>
+        <source>Overview</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This is the default mode in iTALC and allows you to have an overview over all visible computers. Also click on this button for unlocking locked workstations or for leaving demo-mode.</source>
+        <translation type="unfinished">זהו מצב ברירת מחדל בתוכנה ומאפשר סקירה של כלל העמדות המחוברות. בנוסף, לחיצה על כפתור זה תאפשר פתיחה של עמדות נעולות או לצורך יציאה ממצב הדגמה</translation>
+    </message>
+    <message>
+        <source>Fullscreen demo</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fullscreen Demo</source>
+        <translation type="unfinished">הצגת מסך המורה</translation>
+    </message>
+    <message>
+        <source>Stop Demo</source>
+        <translation type="unfinished">הפסק הצגה</translation>
+    </message>
+    <message>
+        <source>In this mode your screen is being displayed on all shown computers. Furthermore the users aren&apos;t able to do something else as all input devices are locked in this mode.</source>
+        <translation type="unfinished">במצב זה, המסך שלך מוקרן על גבי כל העמדות המחוברות. יתרה מזו, המשתמשים נעולים ואינם יכולים לבצע כל פעולה במחשב</translation>
+    </message>
+    <message>
+        <source>Window demo</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Window Demo</source>
+        <translation type="unfinished">הצגה בחלון</translation>
+    </message>
+    <message>
+        <source>In this mode your screen being displayed in a window on all shown computers. The users are able to switch to other windows and thus can continue to work.</source>
+        <translation type="unfinished">במצב זה, המסך שלך מוקרן בחלון הניתן למיזעור על גבי מסכי העמדות המחוברות. המשתמשים יכולים לעבור לחלונות אחרים ובכך להמשיך בעבודתם</translation>
+    </message>
+    <message>
+        <source>Lock/unlock desktops</source>
+        <translation type="unfinished">נעל/שחרר שולחנות עבודה</translation>
+    </message>
+    <message>
+        <source>Lock all</source>
+        <translation type="unfinished">נעל הכל</translation>
+    </message>
+    <message>
+        <source>Unlock all</source>
+        <translation type="unfinished">שחרר הכל</translation>
+    </message>
+    <message>
+        <source>To have all user&apos;s full attention you can lock their desktops using this button. In this mode all input devices are locked and the screen is black.</source>
+        <translation type="unfinished">על מנת לקבל את מלוא תשומת הלב של המשתמשים ניתן לנעול את שולחן העבודה שלהם על ידי לחיצה על כפתור זה. במצב זה, המשתמשים נעולים, אינם יכולים לבצע כל פעולה במחשב והמסך יוחשך</translation>
+    </message>
+    <message>
+        <source>Send text message</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Text message</source>
+        <translation type="unfinished">הודעת טקסט</translation>
+    </message>
+    <message>
+        <source>Use this button to send a text message to all users e.g. to tell them new tasks etc.</source>
+        <translation type="unfinished">לחיצה על כפתור זה מאפשרת שליחת הודעת טקסט לכל המשתמשים. למשל: הוראות למטלה חדשה וכדומה</translation>
+    </message>
+    <message>
+        <source>Power on computers</source>
+        <translation type="unfinished">הדלקת מחשבים</translation>
+    </message>
+    <message>
+        <source>Power on</source>
+        <translation type="unfinished">הדלקה</translation>
+    </message>
+    <message>
+        <source>Click this button to power on all visible computers. This way you do not have to turn on each computer by hand.</source>
+        <translation type="unfinished">לחיצה על כפתור זה תדליק את כל המחשבים הנשלטים בתוכנה. כך נחסך הצורך להדליק כל מחשב ידנית ובניפרד</translation>
+    </message>
+    <message>
+        <source>Power down computers</source>
+        <translation type="unfinished">כבה מחשבים</translation>
+    </message>
+    <message>
+        <source>Power down</source>
+        <translation type="unfinished">כיבוי</translation>
+    </message>
+    <message>
+        <source>To power down all shown computers (e.g. after the lesson has finished) you can click this button.</source>
+        <translation type="unfinished">לחיצה על כפתור זה תכבה את כל המחשבים. למשל: בסיום שיעור</translation>
+    </message>
+    <message>
+        <source>Logon</source>
+        <translation type="unfinished">התחברות</translation>
+    </message>
+    <message>
+        <source>Remote logon</source>
+        <translation type="unfinished">התחברות</translation>
+    </message>
+    <message>
+        <source>After clicking this button you can enter a username and password to log on the according user on all visible computers.</source>
+        <translation type="unfinished">לאחר לחיצה על כפתור זה ניתן להזין שם משתמש וסיסמה על מנת לבצע התחברות כל המחשבים הנשלטים בתוכנה לדומיין</translation>
+    </message>
+    <message>
+        <source>Support</source>
+        <translation type="unfinished">תמיכה</translation>
+    </message>
+    <message>
+        <source>Direct support</source>
+        <translation type="unfinished">תמיכה ישירה</translation>
+    </message>
+    <message>
+        <source>If you need to support someone at a certain computer you can click this button and enter the according hostname or IP afterwards.</source>
+        <translation type="unfinished">אם נידרשת תמיכה במשתמש ספציפי, יש ללחוץ על כפתור זה ולהזין את שם המחשב או כתובתו</translation>
+    </message>
+    <message>
+        <source>Adjust/align</source>
+        <translation type="unfinished">התאם/ישר</translation>
+    </message>
+    <message>
+        <source>Adjust windows and their size</source>
+        <translation type="unfinished">התאם חלונות וגודלם</translation>
+    </message>
+    <message>
+        <source>When clicking this button the biggest possible size for the client-windows is adjusted. Furthermore all windows are aligned.</source>
+        <translation type="unfinished">בלחיצה על כפתור זה, חלונות התצוגה של עמדות התלמידים יותאמו לגודל המרבי במסך</translation>
+    </message>
+    <message>
+        <source>Auto view</source>
+        <translation type="unfinished">סידור אוטומטי</translation>
+    </message>
+    <message>
+        <source>Auto re-arrange windows and their size</source>
+        <translation type="unfinished">כיוון וסידור מחדש של החלונות</translation>
+    </message>
+    <message>
+        <source>When clicking this button all visible windows are re-arranged and adjusted.</source>
+        <translation type="unfinished">בלחיצה על כפתור זה, כל החלונות המוצגים יסודרו מחדש באופן אוטומטי</translation>
+    </message>
+    <message>
+        <source>No valid keys found</source>
+        <translation type="unfinished">לא נמצאו מפתחות מתאימים</translation>
+    </message>
+    <message>
+        <source>No authentication-keys were found or your old ones were broken. Please create a new key-pair using ICA (see documentation at http://italc.sf.net/wiki/index.php?title=Installation).
+Otherwise you won&apos;t be able to access computers using iTALC.</source>
+        <translation type="unfinished">נמצאו מפתחות לא תקינים או לא נמצאו כלל. יש ליצור זוג מפתחות תוך שימוש ב- ICA. - ניתן להיעזר במסמך 
+ http://italc.sf.net/wiki/index.php?title=Installation.
+אחרת, לא ניתן יהיה לגשת למחשבים דרך התוכנה</translation>
+    </message>
+    <message>
+        <source>iTALC service not running</source>
+        <translation type="unfinished">שירות התוכנה אינו פועל</translation>
+    </message>
+    <message>
+        <source>There seems to be no iTALC service running on this computer or the authentication-keys aren&apos;t set up properly. The service is required for running iTALC. Contact your administrator for solving this problem.</source>
+        <translation type="unfinished">ניראה כי שירות התוכנה אינו פועל על מחשב זה או שהמפתחות אינם מותקנים כראוי. השירות הינו חיוני לפעולת התוכנה. יש ליצור קשר עם מנהל הרשת כדי לפתור בעייה זו</translation>
+    </message>
+    <message>
+        <source>iTALC Master Control</source>
+        <translation type="unfinished">שליטה ראשית בתוכנה</translation>
+    </message>
+    <message>
+        <source>Remote control</source>
+        <translation type="unfinished">שליטה מרחוק</translation>
+    </message>
+    <message>
+        <source>Quit</source>
+        <translation type="unfinished">יציאה</translation>
+    </message>
+</context>
+<context>
     <name>QApplication</name>
     <message>
         <source>iTALC Client %1 on %2:%3</source>
@@ -804,213 +1022,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>screen lock</source>
         <translation>נעל מסך</translation>
-    </message>
-</context>
-<context>
-    <name>mainWindow</name>
-    <message>
-        <source>iTALC</source>
-        <translation>iTALC</translation>
-    </message>
-    <message>
-        <source>No write-access</source>
-        <translation>אין הרשאות כתיבה</translation>
-    </message>
-    <message>
-        <source>Could not read/write or create directory %1! For running iTALC, make sure you&apos;re permitted to create or write this directory.</source>
-        <translation>לא ניתן לקרוא, לכתוב או ליצור את התיקייה הבאה. על מנת להריץ את התוכנה,וודאו כי יש ברשותכם הרשאות מתאימות ליצירת תיקייה זו
-%1</translation>
-    </message>
-    <message>
-        <source>Actions</source>
-        <translation>פעולות</translation>
-    </message>
-    <message>
-        <source>Classroom</source>
-        <translation>כיתה</translation>
-    </message>
-    <message>
-        <source>Switch classroom</source>
-        <translation>החלף כיתה</translation>
-    </message>
-    <message>
-        <source>Click this button to open a menu where you can choose the active classroom.</source>
-        <translation>לחיצה על כפתור זה תפתח תפריט שם ניתן לבחור את הכיתה הפעילה</translation>
-    </message>
-    <message>
-        <source>Click on this button, to switch between classrooms.</source>
-        <translation>לחיצה על כפתור זה תאפשר בחירה בין הכיתות</translation>
-    </message>
-    <message>
-        <source>Overview mode</source>
-        <translation>מצב צפייה ובקרה</translation>
-    </message>
-    <message>
-        <source>Overview</source>
-        <translation>צפייה ובקרה</translation>
-    </message>
-    <message>
-        <source>This is the default mode in iTALC and allows you to have an overview over all visible computers. Also click on this button for unlocking locked workstations or for leaving demo-mode.</source>
-        <translation>זהו מצב ברירת מחדל בתוכנה ומאפשר סקירה של כלל העמדות המחוברות. בנוסף, לחיצה על כפתור זה תאפשר פתיחה של עמדות נעולות או לצורך יציאה ממצב הדגמה</translation>
-    </message>
-    <message>
-        <source>Fullscreen demo</source>
-        <translation>הצגת מסך המורה</translation>
-    </message>
-    <message>
-        <source>Fullscreen Demo</source>
-        <translation>הצגת מסך המורה</translation>
-    </message>
-    <message>
-        <source>Stop Demo</source>
-        <translation>הפסק הצגה</translation>
-    </message>
-    <message>
-        <source>In this mode your screen is being displayed on all shown computers. Furthermore the users aren&apos;t able to do something else as all input devices are locked in this mode.</source>
-        <translation>במצב זה, המסך שלך מוקרן על גבי כל העמדות המחוברות. יתרה מזו, המשתמשים נעולים ואינם יכולים לבצע כל פעולה במחשב</translation>
-    </message>
-    <message>
-        <source>Window demo</source>
-        <translation>הצגה בחלון</translation>
-    </message>
-    <message>
-        <source>Window Demo</source>
-        <translation>הצגה בחלון</translation>
-    </message>
-    <message>
-        <source>In this mode your screen being displayed in a window on all shown computers. The users are able to switch to other windows and thus can continue to work.</source>
-        <translation>במצב זה, המסך שלך מוקרן בחלון הניתן למיזעור על גבי מסכי העמדות המחוברות. המשתמשים יכולים לעבור לחלונות אחרים ובכך להמשיך בעבודתם</translation>
-    </message>
-    <message>
-        <source>Lock/unlock desktops</source>
-        <translation>נעל/שחרר שולחנות עבודה</translation>
-    </message>
-    <message>
-        <source>Lock all</source>
-        <translation>נעל הכל</translation>
-    </message>
-    <message>
-        <source>Unlock all</source>
-        <translation>שחרר הכל</translation>
-    </message>
-    <message>
-        <source>To have all user&apos;s full attention you can lock their desktops using this button. In this mode all input devices are locked and the screen is black.</source>
-        <translation>על מנת לקבל את מלוא תשומת הלב של המשתמשים ניתן לנעול את שולחן העבודה שלהם על ידי לחיצה על כפתור זה. במצב זה, המשתמשים נעולים, אינם יכולים לבצע כל פעולה במחשב והמסך יוחשך</translation>
-    </message>
-    <message>
-        <source>Send text message</source>
-        <translation>שליחת הודעת טקסט</translation>
-    </message>
-    <message>
-        <source>Text message</source>
-        <translation>הודעת טקסט</translation>
-    </message>
-    <message>
-        <source>Use this button to send a text message to all users e.g. to tell them new tasks etc.</source>
-        <translation>לחיצה על כפתור זה מאפשרת שליחת הודעת טקסט לכל המשתמשים. למשל: הוראות למטלה חדשה וכדומה</translation>
-    </message>
-    <message>
-        <source>Power on computers</source>
-        <translation>הדלקת מחשבים</translation>
-    </message>
-    <message>
-        <source>Power on</source>
-        <translation>הדלקה</translation>
-    </message>
-    <message>
-        <source>Click this button to power on all visible computers. This way you do not have to turn on each computer by hand.</source>
-        <translation>לחיצה על כפתור זה תדליק את כל המחשבים הנשלטים בתוכנה. כך נחסך הצורך להדליק כל מחשב ידנית ובניפרד</translation>
-    </message>
-    <message>
-        <source>Power down computers</source>
-        <translation>כבה מחשבים</translation>
-    </message>
-    <message>
-        <source>Power down</source>
-        <translation>כיבוי</translation>
-    </message>
-    <message>
-        <source>To power down all shown computers (e.g. after the lesson has finished) you can click this button.</source>
-        <translation>לחיצה על כפתור זה תכבה את כל המחשבים. למשל: בסיום שיעור</translation>
-    </message>
-    <message>
-        <source>Logon</source>
-        <translation>התחברות</translation>
-    </message>
-    <message>
-        <source>Remote logon</source>
-        <translation>התחברות</translation>
-    </message>
-    <message>
-        <source>After clicking this button you can enter a username and password to log on the according user on all visible computers.</source>
-        <translation>לאחר לחיצה על כפתור זה ניתן להזין שם משתמש וסיסמה על מנת לבצע התחברות כל המחשבים הנשלטים בתוכנה לדומיין</translation>
-    </message>
-    <message>
-        <source>Support</source>
-        <translation>תמיכה</translation>
-    </message>
-    <message>
-        <source>Direct support</source>
-        <translation>תמיכה ישירה</translation>
-    </message>
-    <message>
-        <source>If you need to support someone at a certain computer you can click this button and enter the according hostname or IP afterwards.</source>
-        <translation>אם נידרשת תמיכה במשתמש ספציפי, יש ללחוץ על כפתור זה ולהזין את שם המחשב או כתובתו</translation>
-    </message>
-    <message>
-        <source>Adjust/align</source>
-        <translation>התאם/ישר</translation>
-    </message>
-    <message>
-        <source>Adjust windows and their size</source>
-        <translation>התאם חלונות וגודלם</translation>
-    </message>
-    <message>
-        <source>When clicking this button the biggest possible size for the client-windows is adjusted. Furthermore all windows are aligned.</source>
-        <translation>בלחיצה על כפתור זה, חלונות התצוגה של עמדות התלמידים יותאמו לגודל המרבי במסך</translation>
-    </message>
-    <message>
-        <source>Auto view</source>
-        <translation>סידור אוטומטי</translation>
-    </message>
-    <message>
-        <source>Auto re-arrange windows and their size</source>
-        <translation>כיוון וסידור מחדש של החלונות</translation>
-    </message>
-    <message>
-        <source>When clicking this button all visible windows are re-arranged and adjusted.</source>
-        <translation>בלחיצה על כפתור זה, כל החלונות המוצגים יסודרו מחדש באופן אוטומטי</translation>
-    </message>
-    <message>
-        <source>No valid keys found</source>
-        <translation>לא נמצאו מפתחות מתאימים</translation>
-    </message>
-    <message>
-        <source>No authentication-keys were found or your old ones were broken. Please create a new key-pair using ICA (see documentation at http://italc.sf.net/wiki/index.php?title=Installation).
-Otherwise you won&apos;t be able to access computers using iTALC.</source>
-        <translation>נמצאו מפתחות לא תקינים או לא נמצאו כלל. יש ליצור זוג מפתחות תוך שימוש ב- ICA. - ניתן להיעזר במסמך 
- http://italc.sf.net/wiki/index.php?title=Installation.
-אחרת, לא ניתן יהיה לגשת למחשבים דרך התוכנה</translation>
-    </message>
-    <message>
-        <source>iTALC service not running</source>
-        <translation>שירות התוכנה אינו פועל</translation>
-    </message>
-    <message>
-        <source>There seems to be no iTALC service running on this computer or the authentication-keys aren&apos;t set up properly. The service is required for running iTALC. Contact your administrator for solving this problem.</source>
-        <translation>ניראה כי שירות התוכנה אינו פועל על מחשב זה או שהמפתחות אינם מותקנים כראוי. השירות הינו חיוני לפעולת התוכנה. יש ליצור קשר עם מנהל הרשת כדי לפתור בעייה זו</translation>
-    </message>
-    <message>
-        <source>iTALC Master Control</source>
-        <translation>שליטה ראשית בתוכנה</translation>
-    </message>
-    <message>
-        <source>Remote control</source>
-        <translation>שליטה מרחוק</translation>
-    </message>
-    <message>
-        <source>Quit</source>
-        <translation>יציאה</translation>
     </message>
 </context>
 <context>

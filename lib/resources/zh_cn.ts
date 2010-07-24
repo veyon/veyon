@@ -2,6 +2,222 @@
 <!DOCTYPE TS>
 <TS version="2.0" language="zh_CN">
 <context>
+    <name>MainToolBar</name>
+    <message>
+        <source>Actions</source>
+        <translation type="unfinished">动作</translation>
+    </message>
+</context>
+<context>
+    <name>MainWindow</name>
+    <message>
+        <source>MainWindow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>toolBar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>iTALC</source>
+        <translation type="unfinished">iTALC</translation>
+    </message>
+    <message>
+        <source>No write-access</source>
+        <translation type="unfinished">非写访问</translation>
+    </message>
+    <message>
+        <source>Could not read/write or create directory %1! For running iTALC, make sure you&apos;re permitted to create or write this directory.</source>
+        <translation type="unfinished">不能读/写或创建目录 %1 ！为了运行 iTALC ，请确认你有创建或写该目录的权限。</translation>
+    </message>
+    <message>
+        <source>Classroom</source>
+        <translation type="unfinished">班级</translation>
+    </message>
+    <message>
+        <source>Switch classroom</source>
+        <translation type="unfinished">切换班级</translation>
+    </message>
+    <message>
+        <source>Click this button to open a menu where you can choose the active classroom.</source>
+        <translation type="unfinished">点击按钮在菜单中选择要激活的班级。</translation>
+    </message>
+    <message>
+        <source>Click on this button, to switch between classrooms.</source>
+        <translation type="unfinished">点击按钮，切换班级。</translation>
+    </message>
+    <message>
+        <source>Overview mode</source>
+        <translation type="unfinished">概览模式</translation>
+    </message>
+    <message>
+        <source>Overview</source>
+        <translation type="unfinished">概览</translation>
+    </message>
+    <message>
+        <source>This is the default mode in iTALC and allows you to have an overview over all visible computers. Also click on this button for unlocking locked workstations or for leaving demo-mode.</source>
+        <translation type="unfinished">这是 iTALC 的默认模式，让你对所有可见的计算机有一个概览。点击这个按钮也能为工作站解锁或退出演示模式。</translation>
+    </message>
+    <message>
+        <source>Fullscreen demo</source>
+        <translation type="unfinished">全屏演示</translation>
+    </message>
+    <message>
+        <source>Fullscreen Demo</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stop Demo</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>In this mode your screen is being displayed on all shown computers. Furthermore the users aren&apos;t able to do something else as all input devices are locked in this mode.</source>
+        <translation type="unfinished">在这个模式下你的屏幕将在所有可见的客户端计算机中显示，而且在该模式下客户端的所有输入设备都将被锁定，客户端用户不能做任何事。</translation>
+    </message>
+    <message>
+        <source>Window demo</source>
+        <translation type="unfinished">窗口演示</translation>
+    </message>
+    <message>
+        <source>Window Demo</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>In this mode your screen being displayed in a window on all shown computers. The users are able to switch to other windows and thus can continue to work.</source>
+        <translation type="unfinished">在这个模式下你的屏幕将在所有可见的客户端计算机的一个窗口中显示。客户端用户可以切换到其他窗口，因此可以继续工作。</translation>
+    </message>
+    <message>
+        <source>Lock/unlock desktops</source>
+        <translation type="unfinished">锁定/解锁桌面</translation>
+    </message>
+    <message>
+        <source>Lock all</source>
+        <translation type="unfinished">全部锁定</translation>
+    </message>
+    <message>
+        <source>Unlock all</source>
+        <translation type="unfinished">全部解锁</translation>
+    </message>
+    <message>
+        <source>To have all user&apos;s full attention you can lock their desktops using this button. In this mode all input devices are locked and the screen is black.</source>
+        <translation type="unfinished">为了聚拢用户的注意力，你可以用这个按钮锁定他们的桌面。在该模式下客户端所有的输入设备将被锁定同时屏幕黑屏。</translation>
+    </message>
+    <message>
+        <source>Send text message</source>
+        <translation type="unfinished">发送文字消息</translation>
+    </message>
+    <message>
+        <source>Text message</source>
+        <translation type="unfinished">文字消息</translation>
+    </message>
+    <message>
+        <source>Use this button to send a text message to all users e.g. to tell them new tasks etc.</source>
+        <translation type="unfinished">使用这个按钮发送文字消息给全部用户。例如，告诉他们新的任务等等。</translation>
+    </message>
+    <message>
+        <source>Power on computers</source>
+        <translation type="unfinished">开启计算机</translation>
+    </message>
+    <message>
+        <source>Power on</source>
+        <translation type="unfinished">开机</translation>
+    </message>
+    <message>
+        <source>Click this button to power on all visible computers. This way you do not have to turn on each computer by hand.</source>
+        <translation type="unfinished">点击这个按钮开启全部可见的计算机。这使你不必手工开启每一台计算机。</translation>
+    </message>
+    <message>
+        <source>Power down computers</source>
+        <translation type="unfinished">关闭计算机</translation>
+    </message>
+    <message>
+        <source>Power down</source>
+        <translation type="unfinished">关机</translation>
+    </message>
+    <message>
+        <source>To power down all shown computers (e.g. after the lesson has finished) you can click this button.</source>
+        <translation type="unfinished">你可以点击这个按钮关闭全部可见的计算机（例如，下课时）。</translation>
+    </message>
+    <message>
+        <source>Logon</source>
+        <translation type="unfinished">登录</translation>
+    </message>
+    <message>
+        <source>Remote logon</source>
+        <translation type="unfinished">远程登录</translation>
+    </message>
+    <message>
+        <source>After clicking this button you can enter a username and password to log on the according user on all visible computers.</source>
+        <translation type="unfinished">点击这个按钮后你可以输入用户名和密码登录所有可见的计算机。</translation>
+    </message>
+    <message>
+        <source>Support</source>
+        <translation type="unfinished">协助</translation>
+    </message>
+    <message>
+        <source>Direct support</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>If you need to support someone at a certain computer you can click this button and enter the according hostname or IP afterwards.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Adjust/align</source>
+        <translation type="unfinished">调整/对齐</translation>
+    </message>
+    <message>
+        <source>Adjust windows and their size</source>
+        <translation type="unfinished">调整窗口和它们的大小</translation>
+    </message>
+    <message>
+        <source>When clicking this button the biggest possible size for the client-windows is adjusted. Furthermore all windows are aligned.</source>
+        <translation type="unfinished">点击这个按钮将以最大可能尺寸调整客户端窗口，同时对齐全部窗口。</translation>
+    </message>
+    <message>
+        <source>Auto view</source>
+        <translation type="unfinished">自动视图</translation>
+    </message>
+    <message>
+        <source>Auto re-arrange windows and their size</source>
+        <translation type="unfinished">自动重新排列窗口和调整大小</translation>
+    </message>
+    <message>
+        <source>When clicking this button all visible windows are re-arranged and adjusted.</source>
+        <translation type="unfinished">点击这个按钮重新安排和调整所有可见的窗口。</translation>
+    </message>
+    <message>
+        <source>No valid keys found</source>
+        <translation type="unfinished">未找到有效的密钥</translation>
+    </message>
+    <message>
+        <source>No authentication-keys were found or your old ones were broken. Please create a new key-pair using ICA (see documentation at http://italc.sf.net/wiki/index.php?title=Installation).
+Otherwise you won&apos;t be able to access computers using iTALC.</source>
+        <translation type="unfinished">未找到验证密钥或者旧密钥被损坏。请用 ICA 创建一个新的密钥对（查看文档 http://italc.sf.net/wiki/index.php?title=Installation）
+否则，你将不能使用 iTALC 访问计算机。</translation>
+    </message>
+    <message>
+        <source>iTALC service not running</source>
+        <translation type="unfinished">iTALC 服务未运行</translation>
+    </message>
+    <message>
+        <source>There seems to be no iTALC service running on this computer or the authentication-keys aren&apos;t set up properly. The service is required for running iTALC. Contact your administrator for solving this problem.</source>
+        <translation type="unfinished">似乎在这台计算机上没有运行 iTALC 服务或者验证密钥设置不正确。该服务是运行 iTALC 所必需的。联系你的管理员解决这个问题。</translation>
+    </message>
+    <message>
+        <source>iTALC Master Control</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remote control</source>
+        <translation type="unfinished">远程控制</translation>
+    </message>
+    <message>
+        <source>Quit</source>
+        <translation type="unfinished">退出</translation>
+    </message>
+</context>
+<context>
     <name>QApplication</name>
     <message>
         <source>Unable to register service &apos;%1&apos;.</source>
@@ -785,211 +1001,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>screen lock</source>
         <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>mainWindow</name>
-    <message>
-        <source>iTALC</source>
-        <translation>iTALC</translation>
-    </message>
-    <message>
-        <source>No write-access</source>
-        <translation>非写访问</translation>
-    </message>
-    <message>
-        <source>Could not read/write or create directory %1! For running iTALC, make sure you&apos;re permitted to create or write this directory.</source>
-        <translation>不能读/写或创建目录 %1 ！为了运行 iTALC ，请确认你有创建或写该目录的权限。</translation>
-    </message>
-    <message>
-        <source>Actions</source>
-        <translation>动作</translation>
-    </message>
-    <message>
-        <source>Classroom</source>
-        <translation>班级</translation>
-    </message>
-    <message>
-        <source>Switch classroom</source>
-        <translation>切换班级</translation>
-    </message>
-    <message>
-        <source>Click this button to open a menu where you can choose the active classroom.</source>
-        <translation>点击按钮在菜单中选择要激活的班级。</translation>
-    </message>
-    <message>
-        <source>Click on this button, to switch between classrooms.</source>
-        <translation>点击按钮，切换班级。</translation>
-    </message>
-    <message>
-        <source>Overview</source>
-        <translation>概览</translation>
-    </message>
-    <message>
-        <source>Overview mode</source>
-        <translation>概览模式</translation>
-    </message>
-    <message>
-        <source>This is the default mode in iTALC and allows you to have an overview over all visible computers. Also click on this button for unlocking locked workstations or for leaving demo-mode.</source>
-        <translation>这是 iTALC 的默认模式，让你对所有可见的计算机有一个概览。点击这个按钮也能为工作站解锁或退出演示模式。</translation>
-    </message>
-    <message>
-        <source>Fullscreen demo</source>
-        <translation>全屏演示</translation>
-    </message>
-    <message>
-        <source>In this mode your screen is being displayed on all shown computers. Furthermore the users aren&apos;t able to do something else as all input devices are locked in this mode.</source>
-        <translation>在这个模式下你的屏幕将在所有可见的客户端计算机中显示，而且在该模式下客户端的所有输入设备都将被锁定，客户端用户不能做任何事。</translation>
-    </message>
-    <message>
-        <source>Window demo</source>
-        <translation>窗口演示</translation>
-    </message>
-    <message>
-        <source>In this mode your screen being displayed in a window on all shown computers. The users are able to switch to other windows and thus can continue to work.</source>
-        <translation>在这个模式下你的屏幕将在所有可见的客户端计算机的一个窗口中显示。客户端用户可以切换到其他窗口，因此可以继续工作。</translation>
-    </message>
-    <message>
-        <source>Lock all</source>
-        <translation>全部锁定</translation>
-    </message>
-    <message>
-        <source>Unlock all</source>
-        <translation>全部解锁</translation>
-    </message>
-    <message>
-        <source>Lock/unlock desktops</source>
-        <translation>锁定/解锁桌面</translation>
-    </message>
-    <message>
-        <source>To have all user&apos;s full attention you can lock their desktops using this button. In this mode all input devices are locked and the screen is black.</source>
-        <translation>为了聚拢用户的注意力，你可以用这个按钮锁定他们的桌面。在该模式下客户端所有的输入设备将被锁定同时屏幕黑屏。</translation>
-    </message>
-    <message>
-        <source>Text message</source>
-        <translation>文字消息</translation>
-    </message>
-    <message>
-        <source>Send text message</source>
-        <translation>发送文字消息</translation>
-    </message>
-    <message>
-        <source>Use this button to send a text message to all users e.g. to tell them new tasks etc.</source>
-        <translation>使用这个按钮发送文字消息给全部用户。例如，告诉他们新的任务等等。</translation>
-    </message>
-    <message>
-        <source>Power on</source>
-        <translation>开机</translation>
-    </message>
-    <message>
-        <source>Power on computers</source>
-        <translation>开启计算机</translation>
-    </message>
-    <message>
-        <source>Click this button to power on all visible computers. This way you do not have to turn on each computer by hand.</source>
-        <translation>点击这个按钮开启全部可见的计算机。这使你不必手工开启每一台计算机。</translation>
-    </message>
-    <message>
-        <source>Power down</source>
-        <translation>关机</translation>
-    </message>
-    <message>
-        <source>Power down computers</source>
-        <translation>关闭计算机</translation>
-    </message>
-    <message>
-        <source>To power down all shown computers (e.g. after the lesson has finished) you can click this button.</source>
-        <translation>你可以点击这个按钮关闭全部可见的计算机（例如，下课时）。</translation>
-    </message>
-    <message>
-        <source>Logon</source>
-        <translation>登录</translation>
-    </message>
-    <message>
-        <source>Remote logon</source>
-        <translation>远程登录</translation>
-    </message>
-    <message>
-        <source>After clicking this button you can enter a username and password to log on the according user on all visible computers.</source>
-        <translation>点击这个按钮后你可以输入用户名和密码登录所有可见的计算机。</translation>
-    </message>
-    <message>
-        <source>Adjust/align</source>
-        <translation>调整/对齐</translation>
-    </message>
-    <message>
-        <source>Adjust windows and their size</source>
-        <translation>调整窗口和它们的大小</translation>
-    </message>
-    <message>
-        <source>When clicking this button the biggest possible size for the client-windows is adjusted. Furthermore all windows are aligned.</source>
-        <translation>点击这个按钮将以最大可能尺寸调整客户端窗口，同时对齐全部窗口。</translation>
-    </message>
-    <message>
-        <source>Auto view</source>
-        <translation>自动视图</translation>
-    </message>
-    <message>
-        <source>Auto re-arrange windows and their size</source>
-        <translation>自动重新排列窗口和调整大小</translation>
-    </message>
-    <message>
-        <source>When clicking this button all visible windows are re-arranged and adjusted.</source>
-        <translation>点击这个按钮重新安排和调整所有可见的窗口。</translation>
-    </message>
-    <message>
-        <source>No valid keys found</source>
-        <translation>未找到有效的密钥</translation>
-    </message>
-    <message>
-        <source>No authentication-keys were found or your old ones were broken. Please create a new key-pair using ICA (see documentation at http://italc.sf.net/wiki/index.php?title=Installation).
-Otherwise you won&apos;t be able to access computers using iTALC.</source>
-        <translation>未找到验证密钥或者旧密钥被损坏。请用 ICA 创建一个新的密钥对（查看文档 http://italc.sf.net/wiki/index.php?title=Installation）
-否则，你将不能使用 iTALC 访问计算机。</translation>
-    </message>
-    <message>
-        <source>iTALC service not running</source>
-        <translation>iTALC 服务未运行</translation>
-    </message>
-    <message>
-        <source>There seems to be no iTALC service running on this computer or the authentication-keys aren&apos;t set up properly. The service is required for running iTALC. Contact your administrator for solving this problem.</source>
-        <translation>似乎在这台计算机上没有运行 iTALC 服务或者验证密钥设置不正确。该服务是运行 iTALC 所必需的。联系你的管理员解决这个问题。</translation>
-    </message>
-    <message>
-        <source>Fullscreen Demo</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Stop Demo</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Window Demo</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Support</source>
-        <translation type="unfinished">协助</translation>
-    </message>
-    <message>
-        <source>Direct support</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>If you need to support someone at a certain computer you can click this button and enter the according hostname or IP afterwards.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>iTALC Master Control</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Remote control</source>
-        <translation type="unfinished">远程控制</translation>
-    </message>
-    <message>
-        <source>Quit</source>
-        <translation type="unfinished">退出</translation>
     </message>
 </context>
 <context>

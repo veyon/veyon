@@ -2,6 +2,222 @@
 <!DOCTYPE TS>
 <TS version="2.0" language="el_GR">
 <context>
+    <name>MainToolBar</name>
+    <message>
+        <source>Actions</source>
+        <translation type="unfinished">Ενέργειες</translation>
+    </message>
+</context>
+<context>
+    <name>MainWindow</name>
+    <message>
+        <source>MainWindow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>toolBar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>iTALC</source>
+        <translation type="unfinished">iTALC</translation>
+    </message>
+    <message>
+        <source>No write-access</source>
+        <translation type="unfinished">Απαγόρευση εγγραφής</translation>
+    </message>
+    <message>
+        <source>Could not read/write or create directory %1! For running iTALC, make sure you&apos;re permitted to create or write this directory.</source>
+        <translation type="unfinished">Αδύνατη η ανάγνωση/εγγραφή ή δημιουργία φακέλου στο %1! Για να εκτελέσετε την εφαρμογή iTALC, παρακαλώ βεβαιωθείτε ότι επιτρέπεται να δημιουργήσετε/γράψετε αρχεία σε αυτό τον φάκελο.</translation>
+    </message>
+    <message>
+        <source>Classroom</source>
+        <translation type="unfinished">Τάξη</translation>
+    </message>
+    <message>
+        <source>Switch classroom</source>
+        <translation type="unfinished">Αλλαγη τάξης</translation>
+    </message>
+    <message>
+        <source>Click this button to open a menu where you can choose the active classroom.</source>
+        <translation type="unfinished">Πατήστε αυτό το κουμπί για να επιλέξετε την ενεργή τάξη.</translation>
+    </message>
+    <message>
+        <source>Click on this button, to switch between classrooms.</source>
+        <translation type="unfinished">Πατήστε το κουμπί για να μεταβείτε σε άλλες τάξεις.</translation>
+    </message>
+    <message>
+        <source>Overview mode</source>
+        <translation type="unfinished">Κατάσταση επισκόπησης</translation>
+    </message>
+    <message>
+        <source>Overview</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This is the default mode in iTALC and allows you to have an overview over all visible computers. Also click on this button for unlocking locked workstations or for leaving demo-mode.</source>
+        <translation type="unfinished">Αυτή είναι η προεπιλεγμένη κατάσταση στην εφαρμογή iTALC και σας επιτρέπει να έχετε μια επισκόπηση όλων των ορατών υπολογιστών. Πατήστε αυτό το κουμπί για να ξεκλειδώσετε κλειδωμένους υπολογιστές ή να τερματίσετε την κατάσταση επίδειξης.</translation>
+    </message>
+    <message>
+        <source>Fullscreen demo</source>
+        <translation type="unfinished">Κατάσταση επίδειξης πλήρους οθόνης</translation>
+    </message>
+    <message>
+        <source>Fullscreen Demo</source>
+        <translation type="unfinished">Επίδειξη Πλήρους Οθόνης</translation>
+    </message>
+    <message>
+        <source>Stop Demo</source>
+        <translation type="unfinished">Τερματισμός Επίδειξης</translation>
+    </message>
+    <message>
+        <source>In this mode your screen is being displayed on all shown computers. Furthermore the users aren&apos;t able to do something else as all input devices are locked in this mode.</source>
+        <translation type="unfinished">Σε αυτή την κατάσταση η οθόνη σας παρουσιάζεται σε όλους τους ορατούς υπολογιστές. Επιπλέον οι χρήστες δε μπορούν να κάνουν τίποτα άλλο καθώς οι συσκευές εισόδου είναι κλειδωμένες.</translation>
+    </message>
+    <message>
+        <source>Window demo</source>
+        <translation type="unfinished">Κατάσταση επίδειξης σε παράθυρο</translation>
+    </message>
+    <message>
+        <source>Window Demo</source>
+        <translation type="unfinished">Επίδειξη Παραθύρου</translation>
+    </message>
+    <message>
+        <source>In this mode your screen being displayed in a window on all shown computers. The users are able to switch to other windows and thus can continue to work.</source>
+        <translation type="unfinished">Σε αυτή την κατάσταση η οθόνη σας παρουσίαζεται σε όλους τους ορατούς υπολογιστές. Οι χρήστες μπορούν να μεταβούν σε άλλα παράθυρα και να συνεχίσουν την εργασία τους.</translation>
+    </message>
+    <message>
+        <source>Lock/unlock desktops</source>
+        <translation type="unfinished">Κλείδωμα/Ξεκλείδωμα επιφάνειας εργασίας</translation>
+    </message>
+    <message>
+        <source>Lock all</source>
+        <translation type="unfinished">Κλείδωμα όλων</translation>
+    </message>
+    <message>
+        <source>Unlock all</source>
+        <translation type="unfinished">Ξεκλείδωμα όλων</translation>
+    </message>
+    <message>
+        <source>To have all user&apos;s full attention you can lock their desktops using this button. In this mode all input devices are locked and the screen is black.</source>
+        <translation type="unfinished">Για να έχετε την προσοχή των χρηστών μπορείτε να κλειδώσετε την επιφάνεια εργασίας με αυτό το κουμπί. Όλες οι συσκευές εισόδου κλειδώνονται και η οθόνη γίνεται μαύρη.</translation>
+    </message>
+    <message>
+        <source>Send text message</source>
+        <translation type="unfinished">Αποστολή μηνύματος κειμένου</translation>
+    </message>
+    <message>
+        <source>Text message</source>
+        <translation type="unfinished">Μήνυμα κειμένου</translation>
+    </message>
+    <message>
+        <source>Use this button to send a text message to all users e.g. to tell them new tasks etc.</source>
+        <translation type="unfinished">Χρησιμοποιήστε αυτό το κουμπί για να στείλετε ένα μήνυμα κειμένου σε όλους τους χρήστες, π.χ. για να τους ανακοινώσετε μια νέα εργασία κλπ.</translation>
+    </message>
+    <message>
+        <source>Power on computers</source>
+        <translation type="unfinished">Εκκίνηση υπολογιστών</translation>
+    </message>
+    <message>
+        <source>Power on</source>
+        <translation type="unfinished">Εκκίνηση</translation>
+    </message>
+    <message>
+        <source>Click this button to power on all visible computers. This way you do not have to turn on each computer by hand.</source>
+        <translation type="unfinished">Πατήστε αυτό το κουμπί για να εκκινήσετε όλους τους ορατούς υπολογιστές. Έτσι αποφεύγετε να εκκινήσετε κάθε υπολογιστή χειροκίνητα.</translation>
+    </message>
+    <message>
+        <source>Power down computers</source>
+        <translation type="unfinished">Τερματισμός υπολογιστών</translation>
+    </message>
+    <message>
+        <source>Power down</source>
+        <translation type="unfinished">Τερματισμός</translation>
+    </message>
+    <message>
+        <source>To power down all shown computers (e.g. after the lesson has finished) you can click this button.</source>
+        <translation type="unfinished">Πατήστε αυτό το κουμπί για να τερματίσετε όλους τους υπολογιστές που εμφανίζονται (π.χ. μετά τη λήξη του μαθήματος).</translation>
+    </message>
+    <message>
+        <source>Logon</source>
+        <translation type="unfinished">Σύνδεση</translation>
+    </message>
+    <message>
+        <source>Remote logon</source>
+        <translation type="unfinished">Απομακρυσμένος έλεγχος</translation>
+    </message>
+    <message>
+        <source>After clicking this button you can enter a username and password to log on the according user on all visible computers.</source>
+        <translation type="unfinished">Πατώντας αυτό το κουμπί και εισάγετε όνομα και κωδικό χρήστη για να συνδεθείτε σε όλους τους ορατούς υπολογιστές.</translation>
+    </message>
+    <message>
+        <source>Support</source>
+        <translation type="unfinished">Βοήθεια</translation>
+    </message>
+    <message>
+        <source>Direct support</source>
+        <translation type="unfinished">Άμεση βοήθεια</translation>
+    </message>
+    <message>
+        <source>If you need to support someone at a certain computer you can click this button and enter the according hostname or IP afterwards.</source>
+        <translation type="unfinished">Αν πρέπει να βοηθήσετε κάποιον/α σε ένα συγκεκριμένο υπολογιστή, πατήστε αυτό το κουμπί και εισάγετε το όνομα ή τηn IP διεύθυνση υπολογιστή.</translation>
+    </message>
+    <message>
+        <source>Adjust/align</source>
+        <translation type="unfinished">Προσαρμογή/Ευθυγράμμιση</translation>
+    </message>
+    <message>
+        <source>Adjust windows and their size</source>
+        <translation type="unfinished">Προσαρμογή παραθύρων και του μεγέθους τους</translation>
+    </message>
+    <message>
+        <source>When clicking this button the biggest possible size for the client-windows is adjusted. Furthermore all windows are aligned.</source>
+        <translation type="unfinished">Πατώντας αυτό το κουμπί προσαρμόζεται το παράθυρο των μαθητών στο μεγαλύτερο δυνατό μέγεθος. Επιπλέον, όλα τα παράθυρα ευθυγραμμίζονται.</translation>
+    </message>
+    <message>
+        <source>Auto view</source>
+        <translation type="unfinished">Αυτόματη προβολή</translation>
+    </message>
+    <message>
+        <source>Auto re-arrange windows and their size</source>
+        <translation type="unfinished">Αυτόματη αναπροσαρμογή παραθύρων και του μεγέθους τους</translation>
+    </message>
+    <message>
+        <source>When clicking this button all visible windows are re-arranged and adjusted.</source>
+        <translation type="unfinished">Πατώντας αυτό το κουμπί όλα τα παράθυρα των μαθητών αναπροσαρμόζονται στο προεπιλεγμένο μέγεθος και ευθυγραμμίζονται.</translation>
+    </message>
+    <message>
+        <source>No valid keys found</source>
+        <translation type="unfinished">Δε βρέθηκαν έγκυρα κλειδιά</translation>
+    </message>
+    <message>
+        <source>No authentication-keys were found or your old ones were broken. Please create a new key-pair using ICA (see documentation at http://italc.sf.net/wiki/index.php?title=Installation).
+Otherwise you won&apos;t be able to access computers using iTALC.</source>
+        <translation type="unfinished">Δε βρέθηκαν κλειδιά ταυτοποίησης ή τα προηγούμενα έχουν χαλάσει. Παρακαλώ δημιουργήστε ένα νέο ζευγάρι κλειδιών χρησιμοποιώντας την ICA εφαρμογή iTALC μαθητή  (δείτε την τεκμηρίωση στο http://italc.sf.net/wiki/index.php?title=Installation).
+Διαφορετικά δε θα μπορείτε να προσπελάσετε υπολογιστές με την εφαρμογή iTALC.</translation>
+    </message>
+    <message>
+        <source>iTALC service not running</source>
+        <translation type="unfinished">Η υπηρεσία iTALC δεν εκτελείται</translation>
+    </message>
+    <message>
+        <source>There seems to be no iTALC service running on this computer or the authentication-keys aren&apos;t set up properly. The service is required for running iTALC. Contact your administrator for solving this problem.</source>
+        <translation type="unfinished">Φαίνεται ότι καμμία υπηρεσία iTALC δεν εκτελίται σε αυτόν τον υπολογιστή ή ότι τα κλειδιά ταυτοποίησης δεν έχουν οριστεί σωστά. Η υπηρεσία είναι απαραίτητη για να εκτελεστεί η εφαρμογή iTALC. Επικοινωνήστε με το διαχειριστή για να επιλυθεί το πρόβλημα.</translation>
+    </message>
+    <message>
+        <source>iTALC Master Control</source>
+        <translation type="unfinished">iTALC Πίνακας Ελέγχου</translation>
+    </message>
+    <message>
+        <source>Remote control</source>
+        <translation type="unfinished">Απομακρυσμένος έλεγχος</translation>
+    </message>
+    <message>
+        <source>Quit</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>QApplication</name>
     <message>
         <source>Unable to register service &apos;%1&apos;.</source>
@@ -775,211 +991,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>screen lock</source>
         <translation>Κλείδωμα οθόνης</translation>
-    </message>
-</context>
-<context>
-    <name>mainWindow</name>
-    <message>
-        <source>iTALC</source>
-        <translation>iTALC</translation>
-    </message>
-    <message>
-        <source>No write-access</source>
-        <translation>Απαγόρευση εγγραφής</translation>
-    </message>
-    <message>
-        <source>Could not read/write or create directory %1! For running iTALC, make sure you&apos;re permitted to create or write this directory.</source>
-        <translation>Αδύνατη η ανάγνωση/εγγραφή ή δημιουργία φακέλου στο %1! Για να εκτελέσετε την εφαρμογή iTALC, παρακαλώ βεβαιωθείτε ότι επιτρέπεται να δημιουργήσετε/γράψετε αρχεία σε αυτό τον φάκελο.</translation>
-    </message>
-    <message>
-        <source>Actions</source>
-        <translation>Ενέργειες</translation>
-    </message>
-    <message>
-        <source>Click on this button, to switch between classrooms.</source>
-        <translation>Πατήστε το κουμπί για να μεταβείτε σε άλλες τάξεις.</translation>
-    </message>
-    <message>
-        <source>Overview mode</source>
-        <translation>Κατάσταση επισκόπησης</translation>
-    </message>
-    <message>
-        <source>This is the default mode in iTALC and allows you to have an overview over all visible computers. Also click on this button for unlocking locked workstations or for leaving demo-mode.</source>
-        <translation>Αυτή είναι η προεπιλεγμένη κατάσταση στην εφαρμογή iTALC και σας επιτρέπει να έχετε μια επισκόπηση όλων των ορατών υπολογιστών. Πατήστε αυτό το κουμπί για να ξεκλειδώσετε κλειδωμένους υπολογιστές ή να τερματίσετε την κατάσταση επίδειξης.</translation>
-    </message>
-    <message>
-        <source>Fullscreen demo</source>
-        <translation>Κατάσταση επίδειξης πλήρους οθόνης</translation>
-    </message>
-    <message>
-        <source>In this mode your screen is being displayed on all shown computers. Furthermore the users aren&apos;t able to do something else as all input devices are locked in this mode.</source>
-        <translation>Σε αυτή την κατάσταση η οθόνη σας παρουσιάζεται σε όλους τους ορατούς υπολογιστές. Επιπλέον οι χρήστες δε μπορούν να κάνουν τίποτα άλλο καθώς οι συσκευές εισόδου είναι κλειδωμένες.</translation>
-    </message>
-    <message>
-        <source>Window demo</source>
-        <translation>Κατάσταση επίδειξης σε παράθυρο</translation>
-    </message>
-    <message>
-        <source>In this mode your screen being displayed in a window on all shown computers. The users are able to switch to other windows and thus can continue to work.</source>
-        <translation>Σε αυτή την κατάσταση η οθόνη σας παρουσίαζεται σε όλους τους ορατούς υπολογιστές. Οι χρήστες μπορούν να μεταβούν σε άλλα παράθυρα και να συνεχίσουν την εργασία τους.</translation>
-    </message>
-    <message>
-        <source>To have all user&apos;s full attention you can lock their desktops using this button. In this mode all input devices are locked and the screen is black.</source>
-        <translation>Για να έχετε την προσοχή των χρηστών μπορείτε να κλειδώσετε την επιφάνεια εργασίας με αυτό το κουμπί. Όλες οι συσκευές εισόδου κλειδώνονται και η οθόνη γίνεται μαύρη.</translation>
-    </message>
-    <message>
-        <source>Send text message</source>
-        <translation>Αποστολή μηνύματος κειμένου</translation>
-    </message>
-    <message>
-        <source>Use this button to send a text message to all users e.g. to tell them new tasks etc.</source>
-        <translation>Χρησιμοποιήστε αυτό το κουμπί για να στείλετε ένα μήνυμα κειμένου σε όλους τους χρήστες, π.χ. για να τους ανακοινώσετε μια νέα εργασία κλπ.</translation>
-    </message>
-    <message>
-        <source>Power on computers</source>
-        <translation>Εκκίνηση υπολογιστών</translation>
-    </message>
-    <message>
-        <source>Click this button to power on all visible computers. This way you do not have to turn on each computer by hand.</source>
-        <translation>Πατήστε αυτό το κουμπί για να εκκινήσετε όλους τους ορατούς υπολογιστές. Έτσι αποφεύγετε να εκκινήσετε κάθε υπολογιστή χειροκίνητα.</translation>
-    </message>
-    <message>
-        <source>Adjust windows and their size</source>
-        <translation>Προσαρμογή παραθύρων και του μεγέθους τους</translation>
-    </message>
-    <message>
-        <source>When clicking this button the biggest possible size for the client-windows is adjusted. Furthermore all windows are aligned.</source>
-        <translation>Πατώντας αυτό το κουμπί προσαρμόζεται το παράθυρο των μαθητών στο μεγαλύτερο δυνατό μέγεθος. Επιπλέον, όλα τα παράθυρα ευθυγραμμίζονται.</translation>
-    </message>
-    <message>
-        <source>Auto re-arrange windows and their size</source>
-        <translation>Αυτόματη αναπροσαρμογή παραθύρων και του μεγέθους τους</translation>
-    </message>
-    <message>
-        <source>When clicking this button all visible windows are re-arranged and adjusted.</source>
-        <translation>Πατώντας αυτό το κουμπί όλα τα παράθυρα των μαθητών αναπροσαρμόζονται στο προεπιλεγμένο μέγεθος και ευθυγραμμίζονται.</translation>
-    </message>
-    <message>
-        <source>iTALC service not running</source>
-        <translation>Η υπηρεσία iTALC δεν εκτελείται</translation>
-    </message>
-    <message>
-        <source>There seems to be no iTALC service running on this computer or the authentication-keys aren&apos;t set up properly. The service is required for running iTALC. Contact your administrator for solving this problem.</source>
-        <translation>Φαίνεται ότι καμμία υπηρεσία iTALC δεν εκτελίται σε αυτόν τον υπολογιστή ή ότι τα κλειδιά ταυτοποίησης δεν έχουν οριστεί σωστά. Η υπηρεσία είναι απαραίτητη για να εκτελεστεί η εφαρμογή iTALC. Επικοινωνήστε με το διαχειριστή για να επιλυθεί το πρόβλημα.</translation>
-    </message>
-    <message>
-        <source>Overview</source>
-        <translation>Επισκόπηση</translation>
-    </message>
-    <message>
-        <source>Text message</source>
-        <translation>Μήνυμα κειμένου</translation>
-    </message>
-    <message>
-        <source>Power on</source>
-        <translation>Εκκίνηση</translation>
-    </message>
-    <message>
-        <source>Power down computers</source>
-        <translation>Τερματισμός υπολογιστών</translation>
-    </message>
-    <message>
-        <source>Power down</source>
-        <translation>Τερματισμός</translation>
-    </message>
-    <message>
-        <source>To power down all shown computers (e.g. after the lesson has finished) you can click this button.</source>
-        <translation>Πατήστε αυτό το κουμπί για να τερματίσετε όλους τους υπολογιστές που εμφανίζονται (π.χ. μετά τη λήξη του μαθήματος).</translation>
-    </message>
-    <message>
-        <source>Logon</source>
-        <translation>Σύνδεση</translation>
-    </message>
-    <message>
-        <source>Adjust/align</source>
-        <translation>Προσαρμογή/Ευθυγράμμιση</translation>
-    </message>
-    <message>
-        <source>Auto view</source>
-        <translation>Αυτόματη προβολή</translation>
-    </message>
-    <message>
-        <source>No valid keys found</source>
-        <translation>Δε βρέθηκαν έγκυρα κλειδιά</translation>
-    </message>
-    <message>
-        <source>No authentication-keys were found or your old ones were broken. Please create a new key-pair using ICA (see documentation at http://italc.sf.net/wiki/index.php?title=Installation).
-Otherwise you won&apos;t be able to access computers using iTALC.</source>
-        <translation>Δε βρέθηκαν κλειδιά ταυτοποίησης ή τα προηγούμενα έχουν χαλάσει. Παρακαλώ δημιουργήστε ένα νέο ζευγάρι κλειδιών χρησιμοποιώντας την ICA εφαρμογή iTALC μαθητή  (δείτε την τεκμηρίωση στο http://italc.sf.net/wiki/index.php?title=Installation).
-Διαφορετικά δε θα μπορείτε να προσπελάσετε υπολογιστές με την εφαρμογή iTALC.</translation>
-    </message>
-    <message>
-        <source>Classroom</source>
-        <translation>Τάξη</translation>
-    </message>
-    <message>
-        <source>Switch classroom</source>
-        <translation>Αλλαγη τάξης</translation>
-    </message>
-    <message>
-        <source>Click this button to open a menu where you can choose the active classroom.</source>
-        <translation>Πατήστε αυτό το κουμπί για να επιλέξετε την ενεργή τάξη.</translation>
-    </message>
-    <message>
-        <source>Lock all</source>
-        <translation>Κλείδωμα όλων</translation>
-    </message>
-    <message>
-        <source>Unlock all</source>
-        <translation>Ξεκλείδωμα όλων</translation>
-    </message>
-    <message>
-        <source>Lock/unlock desktops</source>
-        <translation>Κλείδωμα/Ξεκλείδωμα επιφάνειας εργασίας</translation>
-    </message>
-    <message>
-        <source>Remote logon</source>
-        <translation>Απομακρυσμένος έλεγχος</translation>
-    </message>
-    <message>
-        <source>After clicking this button you can enter a username and password to log on the according user on all visible computers.</source>
-        <translation>Πατώντας αυτό το κουμπί και εισάγετε όνομα και κωδικό χρήστη για να συνδεθείτε σε όλους τους ορατούς υπολογιστές.</translation>
-    </message>
-    <message>
-        <source>Support</source>
-        <translation>Βοήθεια</translation>
-    </message>
-    <message>
-        <source>Direct support</source>
-        <translation>Άμεση βοήθεια</translation>
-    </message>
-    <message>
-        <source>If you need to support someone at a certain computer you can click this button and enter the according hostname or IP afterwards.</source>
-        <translation>Αν πρέπει να βοηθήσετε κάποιον/α σε ένα συγκεκριμένο υπολογιστή, πατήστε αυτό το κουμπί και εισάγετε το όνομα ή τηn IP διεύθυνση υπολογιστή.</translation>
-    </message>
-    <message>
-        <source>Fullscreen Demo</source>
-        <translation>Επίδειξη Πλήρους Οθόνης</translation>
-    </message>
-    <message>
-        <source>Stop Demo</source>
-        <translation>Τερματισμός Επίδειξης</translation>
-    </message>
-    <message>
-        <source>Window Demo</source>
-        <translation>Επίδειξη Παραθύρου</translation>
-    </message>
-    <message>
-        <source>iTALC Master Control</source>
-        <translation>iTALC Πίνακας Ελέγχου</translation>
-    </message>
-    <message>
-        <source>Remote control</source>
-        <translation>Απομακρυσμένος έλεγχος</translation>
-    </message>
-    <message>
-        <source>Quit</source>
-        <translation>Τερματισμός</translation>
     </message>
 </context>
 <context>
