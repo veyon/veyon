@@ -26,21 +26,6 @@ AC_LIBTOOL_WIN32_DLL
 AC_PROG_LIBTOOL
 
 
-EXTRAFLAGS="-g -O2 -Wall -fPIC -fno-strict-aliasing"
-#-floop-optimize2 -fomit-frame-pointer"
-
-#if test "x`$CC --version|head -1|cut -d\  -f3|cut -d. -f1`" = "x4" ; then
-#	EXTRAFLAGS="$EXTRAFLAGS -ftree-vectorize -ftree-loop-linear"
-#	if test "x`$CC --version|head -1|cut -d\  -f3|cut -d. -f2`" != "x0" ; then
-#		EXTRAFLAGS="$EXTRAFLAGS -funsafe-loop-optimizations -Wunsafe-loop-optimizations"
-#	fi	
-#fi
-#if test "x`$CC --version|head -1|cut -d\  -f3|cut -d. -f1`" = "x4" ; then
-#	EXTRAFLAGS="$EXTRAFLAGS -ftree-vectorize -funsafe-loop-optimizations -Wunsafe-loop-optimizations -ftree-loop-linear"
-#fi
-CFLAGS="$CFLAGS $EXTRAFLAGS"
-CXXFLAGS="$CXXFLAGS $EXTRAFLAGS"
-
 AH_TEMPLATE(BACKCHANNEL, [Enable BackChannel communication])
 AC_ARG_WITH(backchannel,
 	[  --without-backchannel	disable backchannel method],
@@ -65,25 +50,27 @@ AC_ARG_WITH(linux,
 AC_ARG_WITH(win32,
 	[  --with-win32		explicit build iTALC for Win32], [ build_win32=true ], [ build_win32=false ])
 AC_MSG_CHECKING([platform to build for])
+
+EXTRAFLAGS="-g -O2 -Wall"
 if test "x$build_win32" = "xtrue" ; then
 	AC_MSG_RESULT([Win32, will enable support for it])
 	AC_DEFINE(BUILD_WIN32)
 	AC_DEFINE(WIN32)
-	#WIN32_DEFINES="-D_WIN32_WINNT=Windows2000"
-	#AC_SUBST(WIN32_DEFINES)
 	build_linux="false"
 	build_win32="true"
 else
+	EXTRAFLAGS="$EXTRAFLAGS -fPIC"
+
 	if test `uname -s | tr -s 'LINUX' 'linux'` = "linux" -o "x$build_linux" = "xtrue" ; then
 		AC_MSG_RESULT([Linux, will enable support for it])
 		AC_DEFINE(BUILD_LINUX)
 		build_linux="true"
 		build_win32="false"
-#	if uname -s | grep MINGW32 ; then
-#	else
-#		AC_MSG_ERROR([*** non usable found... Run ./configure --help to see a list of available platforms, you can also specify explicit, if your platform was not recognized properly. Otherwise your platform isn't supported yet. In this case please contact the maintainer (see README)])
 	fi
 fi
+
+CFLAGS="$CFLAGS $EXTRAFLAGS"
+CXXFLAGS="$CXXFLAGS $EXTRAFLAGS"
 
 AM_CONDITIONAL(BUILD_WIN32, test "$build_win32" = "true")
 AM_CONDITIONAL(BUILD_LINUX, test "$build_linux" = "true")
