@@ -530,7 +530,7 @@ vncService::FindWindowByTitle(char *substr)
 		for (i = 0; i < len; i++) {
 			title[i] = tolower(title[i]);
 		}
-		DWORD style = GetWindowLong(hWindow, GWL_STYLE);
+		DWORD style = GetWindowLongPtr(hWindow, GWL_STYLE);
 		if ((style & WS_VISIBLE) != 0 && strstr(title, l_substr) != NULL) {
 			if (IsIconic(hWindow))
 				SendMessage(hWindow, WM_SYSCOMMAND, SC_RESTORE, 0);

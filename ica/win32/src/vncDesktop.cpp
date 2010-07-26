@@ -1278,7 +1278,7 @@ vncDesktop::InitWindow()
 	}
 
 	// Set the "this" pointer for the window
-	SetWindowLong(m_hwnd, GWL_USERDATA, (long)this);
+	SetWindowLongPtr(m_hwnd, GWLP_USERDATA, (LONG_PTR)this);
 
 	// Enable clipboard hooking
 	m_hnextviewer = SetClipboardViewer(m_hwnd);
@@ -1406,7 +1406,7 @@ static bool __hasLayeredWindows = false;
 
 static BOOL CALLBACK checkForLayeredWindow( HWND hwnd, LPARAM lParam )
 {
-	if( GetWindowLong( hwnd, GWL_EXSTYLE ) & WS_EX_LAYERED )
+	if( GetWindowLongPtr( hwnd, GWL_EXSTYLE ) & WS_EX_LAYERED )
 	{
 		__hasLayeredWindows = true;
 		return false;
@@ -1804,7 +1804,7 @@ EnumWindowsFnCopyRect(HWND hwnd, LPARAM arg)
 {
 
 	//For excluding the popup windows
-	if ((GetWindowLong( hwnd, GWL_STYLE) & WS_POPUP) ==0)
+	if ((GetWindowLongPtr( hwnd, GWL_STYLE) & WS_POPUP) ==0)
 	{
 	
 		HANDLE prop = GetProp(hwnd, (LPCTSTR) MAKELONG(VNC_WINDOWPOS_ATOM, 0));
@@ -1896,7 +1896,7 @@ vncDesktop::CalcCopyRects()
 LRESULT CALLBACK
 DesktopWndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 {
-	vncDesktop *_this = (vncDesktop*)GetWindowLong(hwnd, GWL_USERDATA);
+	vncDesktop *_this = (vncDesktop*)GetWindowLongPtr(hwnd, GWLP_USERDATA);
 
 	switch (iMsg)
 	{
@@ -3107,7 +3107,7 @@ bool	bDbgBmDump(
 		"%04u.%02u.%02u-%02u-%02u-%02u-0x%08x.bmp",
 		stm.wYear, stm.wMonth, stm.wDay,
 		stm.wHour, stm.wMinute, stm.wSecond,
-		(uint) ptr);
+		(uint)(intptr_t) ptr);
 
 	HANDLE hFile = CreateFile(
 		szFileName,

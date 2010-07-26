@@ -2,8 +2,8 @@
  * inject.cpp - functions for injecting code into winlogon.exe for disabling
  *              SAS (Alt+Ctrl+Del)
  *           
- * Copyright (c) 2006 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
- *  
+ * Copyright (c) 2006-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
  * This program is free software; you can redistribute it and/or
@@ -131,13 +131,13 @@ BYTE	*pSASWinProcRemote;	// The address of SASWindowProc() in the
 
 // INJDATA: Memory block passed to each remote injected function.
 // We pass every function address or string data in this block.
-typedef LONG	(WINAPI *SETWINDOWLONG)	  (HWND, int, LONG); 
+typedef LONG_PTR	(WINAPI *SETWINDOWLONGPTR)	  (HWND, int, LONG_PTR);
 typedef LRESULT	(WINAPI *CALLWINDOWPROC)  (WNDPROC, HWND, UINT, WPARAM, LPARAM);
 typedef HWND	(WINAPI *FINDWINDOW)	  (LPCTSTR, LPCTSTR);
 
 typedef struct
 {
-	SETWINDOWLONG	fnSetWindowLong;// Addr. of SetWindowLong()
+	SETWINDOWLONGPTR	fnSetWindowLongPtr;// Addr. of SetWindowLongPtr()
 	CALLWINDOWPROC	fnCallWindowProc;// Addr. of CallWindowProc()
 	FINDWINDOW	fnFindWindow;	// Addr. of FindWindow()
 	char		szClassName[50];// Class name = "SAS Window class"
@@ -195,8 +195,8 @@ static int AfterSASWindowProc( void )
 static DWORD WINAPI InjectFunc( INJDATA *pData )
 {
 	// Subclass window procedure
-	pData->fnOldSASWndProc = (WNDPROC) pData->fnSetWindowLong( pData->hwnd,
-				GWL_WNDPROC, (long)pData->fnSASWndProc );
+	pData->fnOldSASWndProc = (WNDPROC) pData->fnSetWindowLongPtr( pData->hwnd,
+				GWLP_WNDPROC, (LONG_PTR) pData->fnSASWndProc );
 
 	return( pData->fnOldSASWndProc != NULL );
 }
@@ -216,8 +216,8 @@ static int AfterInjectFunc( void )
 
 static DWORD WINAPI EjectFunc (INJDATA *pData) 
 {
-	return( pData->fnSetWindowLong( pData->hwnd, GWL_WNDPROC,
-					(long)pData->fnOldSASWndProc ) != 0 );
+	return( pData->fnSetWindowLongPtr( pData->hwnd, GWLP_WNDPROC,
+					(LONG_PTR) pData->fnOldSASWndProc ) != 0 );
 }
 
 
@@ -271,7 +271,7 @@ int InjectCode ()
 	BOOL		fUnicode;		// TRUE if remote process is
 						// Unicode
 	int		nSuccess = 0;		// Subclassing succeded?
-	DWORD		dwNumBytesCopied = 0;	// Number of bytes written to
+	SIZE_T dwNumBytesCopied = 0;	// Number of bytes written to
 						// the remote process.
 	DWORD		size;			// Calculated function size
 						// (= AfterFunc() - Func())
@@ -384,9 +384,9 @@ int InjectCode ()
 		fUnicode = IsWindowUnicode( hSASWnd );
 
 		// Initialize the INJDATA structure
-		DataLocal.fnSetWindowLong = (SETWINDOWLONG)
+		DataLocal.fnSetWindowLongPtr = (SETWINDOWLONGPTR)
 				GetProcAddress( hUser32, fUnicode ?
-					"SetWindowLongW" : "SetWindowLongA" );
+					"SetWindowLongPtrW" : "SetWindowLongPtrA" );
 		DataLocal.fnCallWindowProc = (CALLWINDOWPROC)
 				GetProcAddress( hUser32, fUnicode ?
 					"CallWindowProcW" : "CallWindowProcA" );
@@ -394,7 +394,7 @@ int InjectCode ()
 		DataLocal.fnSASWndProc = (WNDPROC) pSASWinProcRemote;
 		DataLocal.hwnd = hSASWnd;
 
-		if( DataLocal.fnSetWindowLong  == NULL ||
+		if( DataLocal.fnSetWindowLongPtr  == NULL ||
 					DataLocal.fnCallWindowProc == NULL )
 		{
 			break;		
@@ -527,7 +527,7 @@ int EjectCode( void )
 						// thread executing
 	DWORD		dwThreadId = 0;		// the remote EjectFunc().
 	int		nSuccess	= 0;	// EjectFunc() success ?
-	DWORD		dwNumBytesCopied = 0;	// Number of bytes written to
+	SIZE_T dwNumBytesCopied = 0;	// Number of bytes written to
 						// the remote process. 
 	DWORD		size;			// Calculated function size
 						// (= AfterFunc() - Func())

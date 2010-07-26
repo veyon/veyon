@@ -875,7 +875,7 @@ inline BOOL HookHandle(UINT MessageId, HWND hWnd, WPARAM wParam, LPARAM lParam)
 		PostMessage(
 			hVeneto,
 			MouseMoveMessage,
-			(ULONG) GetCursor(),
+			(ULONG_PTR) GetCursor(),
 			0
 		);
 		break;
