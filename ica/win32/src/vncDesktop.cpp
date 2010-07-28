@@ -1406,7 +1406,9 @@ static bool __hasLayeredWindows = false;
 
 static BOOL CALLBACK checkForLayeredWindow( HWND hwnd, LPARAM lParam )
 {
-	if( GetWindowLongPtr( hwnd, GWL_EXSTYLE ) & WS_EX_LAYERED )
+	if( ( GetWindowLongPtr( hwnd, GWL_EXSTYLE ) & WS_EX_LAYERED ) &&
+			IsWindowVisible( hwnd ) &&
+			!IsIconic( hwnd ) )
 	{
 		__hasLayeredWindows = true;
 		return false;
