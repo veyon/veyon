@@ -71,4 +71,35 @@ win32-nsi: win32-pkg
 	unzip $(PACKAGE)-$(VERSION)-bin-win32.zip
 	makensis iTALC.nsi
 	rm -rf italc-$(VERSION)
+	mv italc-$(VERSION)-setup.exe italc-$(VERSION)-win32-setup.exe
+
+
+win64-pkg: all
+	mkdir -p tmp/italc
+	cp lib/italc_core.dll tmp/italc
+	cp ica/.libs/ica.exe tmp/italc
+	cp ica/vnchooks.dll tmp/italc
+	cp ima/.libs/italc.exe tmp/italc
+	cp setup/.libs/setup.exe tmp/italc
+	cp /opt/mingw64/bin/QtCore4.dll tmp/italc
+	cp /opt/mingw64/bin/QtGui4.dll tmp/italc
+	cp /opt/mingw64/bin/QtNetwork4.dll tmp/italc
+	cp /opt/mingw64/bin/QtXml4.dll tmp/italc
+	cp /opt/mingw64/bin/libeay32.dll tmp/italc
+	cp /opt/mingw64/bin/libjpeg-8.dll tmp/italc
+	cp /opt/mingw64/bin/libssl32.dll tmp/italc
+	cp -L COPYING tmp/italc/LICENSE.TXT
+	cp -L README tmp/italc/README.TXT
+	/opt/mingw64/bin/x86_64-w64-mingw32-strip tmp/italc/ica.exe
+	/opt/mingw64/bin/x86_64-w64-mingw32-strip tmp/italc/italc.exe
+	/opt/mingw64/bin/x86_64-w64-mingw32-strip tmp/italc/setup.exe
+	mv tmp/italc tmp/italc-$(VERSION)
+	cd tmp && zip -9 ../$(PACKAGE)-$(VERSION)-bin-win64.zip italc-$(VERSION)/*
+	rm -rf tmp
+
+win64-nsi: win64-pkg
+	unzip $(PACKAGE)-$(VERSION)-bin-win64.zip
+	makensis iTALC.nsi
+	rm -rf italc-$(VERSION)
+	mv italc-$(VERSION)-setup.exe italc-$(VERSION)-win64-setup.exe
 endif
