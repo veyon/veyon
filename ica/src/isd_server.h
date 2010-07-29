@@ -114,7 +114,7 @@ private:
 	demoClient * m_demoClient;
 
 #ifdef BUILD_WIN32
-	HDESK m_newDesktop;
+	HDESK m_lockDesktop;
 	HDESK m_origThreadDesktop;
 	HDESK m_origInputDesktop;
 	HANDLE m_lockProcess;
