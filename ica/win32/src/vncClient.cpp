@@ -1640,11 +1640,14 @@ vncClientThread::run(void *arg)
 			break;
 #endif
 		case rfbItalcServiceRequest:
+		{
+			omni_mutex_lock l(m_client->m_sendUpdateLock);
 			if( !processItalcClient( vsocketDispatcher, m_socket ) )
 			{
 				connected = FALSE;
 			}
 			break;
+		}
 
 		default:
 			// Unknown message, so fail!
