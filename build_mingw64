@@ -1,0 +1,4 @@
+MINGW=/opt/mingw64
+export PATH=$PATH:$MINGW/bin
+
+./configure --prefix=$MINGW --build=`./config.guess` --host=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 --with-qtdir=$MINGW --with-win32 CFLAGS="-Wno-write-strings" CXXFLAGS="-Wno-write-strings"
