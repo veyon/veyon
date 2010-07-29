@@ -1,6 +1,10 @@
 #include <rfb/rfbconfig.h>
 #include <rfb/keysym.h>
 
+#ifdef LIBVNCSERVER_HAVE_RECORD
+#include <X11/Xproto.h>
+#endif
+
 #include "libvncclient/cursor.c"
 #include "libvncclient/tls.c"
 #include "libvncclient/listen.c"
