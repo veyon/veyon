@@ -526,7 +526,7 @@ bool ivsConnection::handleServerMessages( bool _send_screen_update, int _tries )
 			QRegion updated_region;
 
 			rfbFramebufferUpdateRectHeader rect;
-			for( Q_UINT16 i = 0; i < msg.fu.nRects; i++ )
+			for( int i = 0; i < msg.fu.nRects; i++ )
 			{
 				if( !readFromServer( (char *)&rect,
 							sizeof( rect ) ) )
