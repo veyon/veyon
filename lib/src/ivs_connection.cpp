@@ -302,6 +302,10 @@ bool ivsConnection::takeSnapshot( void )
 	{
 		u = tr( "unknown" );
 	}
+	if( !u.contains( '(' ) )
+	{
+		u = QString( "%1 (%2)" ).arg( u ).arg( u );
+	}
 
 	// construct text
 	QString txt = u + "@" + host() + " " +
@@ -323,7 +327,7 @@ bool ivsConnection::takeSnapshot( void )
 				"_" + QTime( QTime::currentTime() ).
 					toString( Qt::ISODate ) + ".png";
 	file_name.replace( ':', '-' );
-	file_name = dir + user().section( '(', 1, 1 ).section( ')', 0, 0 ) +
+	file_name = dir + u.section( '(', 1, 1 ).section( ')', 0, 0 ) +
 								file_name;
 	const int FONT_SIZE = 14;
 	const int RECT_MARGIN = 10;
