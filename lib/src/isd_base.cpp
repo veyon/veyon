@@ -1,8 +1,8 @@
 /*
  * isd_base.cpp - ISD-basics
  *
- * Copyright (c) 2006 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
- *  
+ * Copyright (c) 2006-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
  * This program is free software; you can redistribute it and/or
@@ -22,7 +22,7 @@
  *
  */
 
-
+#include <QtCore/QTime>
 #include <QtNetwork/QHostAddress>
 #include <QtNetwork/QTcpSocket>
 
@@ -34,13 +34,17 @@ qint64 qtcpsocketDispatcher( char * _buf, const qint64 _len,
 {
 	QTcpSocket * sock = static_cast<QTcpSocket *>( _user );
 	qint64 ret = 0;
+
+	QTime opStartTime;
+	opStartTime.start();
+
 	switch( _op_code )
 	{
 		case SocketRead:
 			while( ret < _len )
 			{
 				qint64 bytes_read = sock->read( _buf, _len );
-				if( bytes_read < 0 )
+				if( bytes_read < 0 || opStartTime.elapsed() > 5000 )
 				{
 	qDebug( "qtcpsocketDispatcher(...): connection closed while reading" );
 					return( 0 );
@@ -50,20 +54,24 @@ qint64 qtcpsocketDispatcher( char * _buf, const qint64 _len,
 					if( sock->state() !=
 						QTcpSocket::ConnectedState )
 					{
-	qDebug( "qtcpsocketDispatcher(...): connection failed while writing  "
+	qDebug( "qtcpsocketDispatcher(...): connection failed while reading "
 			"state:%d  error:%d", sock->state(), sock->error() );
 						return( 0 );
 					}
 					sock->waitForReadyRead( 10 );
 				}
-				ret += bytes_read;
+				else
+				{
+					ret += bytes_read;
+					opStartTime.restart();
+				}
 			}
 			break;
 		case SocketWrite:
 			while( ret < _len )
 			{
 				qint64 written = sock->write( _buf, _len );
-				if( written < 0 )
+				if( written < 0 || opStartTime.elapsed() > 5000 )
 				{
 	qDebug( "qtcpsocketDispatcher(...): connection closed while writing" );
 					return( 0 );
@@ -78,10 +86,14 @@ qint64 qtcpsocketDispatcher( char * _buf, const qint64 _len,
 						return( 0 );
 					}
 				}
-				ret += written;
+				else
+				{
+					ret += written;
+					opStartTime.restart();
+				}
 			}
 			//sock->flush();
-			sock->waitForBytesWritten();
+			sock->waitForBytesWritten( 5000 );
 			break;
 		case SocketGetPeerAddress:
 			strncpy( _buf,
