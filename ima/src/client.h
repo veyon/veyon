@@ -379,7 +379,6 @@ private:
 	QString m_nickname;
 	QString m_mac;
 	types m_type;
-	int m_reloadsAfterReset;
 
 	modes m_mode;
 	QString m_user;

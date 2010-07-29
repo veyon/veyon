@@ -1,7 +1,7 @@
 /*
  * isd_connection.cpp - client-implementation for ISD (iTALC Service Daemon)
  *
- * Copyright (c) 2006-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -377,7 +377,7 @@ void isdConnection::gracefulClose( void )
 
 
 
-isdConnection::states isdConnection::reset( const QString & _host, int * _cnt )
+isdConnection::states isdConnection::reset( const QString & _host )
 {
 	close();
 
@@ -391,12 +391,7 @@ isdConnection::states isdConnection::reset( const QString & _host, int * _cnt )
 		}
 	}
 
-	const states s = open();
-	if( s == Connected && _cnt != NULL )
-	{
-		*_cnt = 0;
-	}
-	return( s );
+	return open();
 }
 
 

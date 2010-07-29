@@ -2,7 +2,7 @@
  * isd_connection.h - declaration of class isdConnection, a client-
  *                    implementation for ISD (iTALC Service Daemon)
  *
- * Copyright (c) 2006-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -57,7 +57,7 @@ public:
 	virtual states open( void );
 	virtual void close( void );
 	void gracefulClose( void );
-	states reset( const QString & _host = "", int * _cnt = NULL );
+	states reset( const QString & _host = QString() );
 
 	states state( void ) const
 	{
