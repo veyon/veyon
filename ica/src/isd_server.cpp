@@ -128,6 +128,88 @@ isdServer::~isdServer()
 
 
 
+#ifdef BUILD_WIN32
+static HANDLE runProcessAsLoggedOnUser( const QString & _cmd,
+								const QString & _desktop = "winsta0\\default" )
+{
+	// run process as the user which is logged on
+	DWORD aProcesses[1024], cbNeeded;
+
+	if( !EnumProcesses( aProcesses, sizeof( aProcesses ), &cbNeeded ) )
+	{
+		return NULL;
+	}
+
+	DWORD cProcesses = cbNeeded / sizeof(DWORD);
+
+	for( DWORD i = 0; i < cProcesses; i++ )
+	{
+		HANDLE hProcess = OpenProcess( PROCESS_ALL_ACCESS, false, aProcesses[i] );
+		HMODULE hMod;
+		if( hProcess == NULL ||
+			!EnumProcessModules( hProcess, &hMod, sizeof( hMod ), &cbNeeded ) )
+        {
+			continue;
+		}
+
+		TCHAR szProcessName[MAX_PATH];
+		GetModuleBaseName( hProcess, hMod, szProcessName, 
+                       		  sizeof( szProcessName ) / sizeof( TCHAR) );
+		for( TCHAR * ptr = szProcessName; *ptr; ++ptr )
+		{
+			*ptr = tolower( *ptr );
+		}
+
+		if( strcmp( szProcessName, "explorer.exe" ) )
+		{
+			CloseHandle( hProcess );
+			continue;
+		}
+	
+		HANDLE hToken;
+		OpenProcessToken( hProcess, MAXIMUM_ALLOWED, &hToken );
+		ImpersonateLoggedOnUser( hToken );
+
+		STARTUPINFO si;
+		PROCESS_INFORMATION pi;
+		ZeroMemory( &si, sizeof( STARTUPINFO ) );
+		si.cb= sizeof( STARTUPINFO );
+		si.lpDesktop = (CHAR *) qstrdup( _desktop.toUtf8().constData() );
+		HANDLE hNewToken = NULL;
+
+		DuplicateTokenEx( hToken, MAXIMUM_ALLOWED, NULL,
+					SecurityImpersonation, TokenPrimary,
+								&hNewToken );
+
+		CreateProcessAsUser(
+				hNewToken,            // client's access token
+				NULL,              // file to execute
+				(CHAR *)_cmd.toUtf8().constData(),     // command line
+				NULL,              // pointer to process SECURITY_ATTRIBUTES
+				NULL,              // pointer to thread SECURITY_ATTRIBUTES
+				FALSE,             // handles are not inheritable
+				NORMAL_PRIORITY_CLASS | CREATE_NEW_CONSOLE,   // creation flags
+				NULL,              // pointer to new environment block 
+				NULL,              // name of current directory 
+				&si,               // pointer to STARTUPINFO structure
+				&pi                // receives information about new process
+				);
+
+		delete[] si.lpDesktop;
+
+		CloseHandle( hNewToken );
+		RevertToSelf();
+		CloseHandle( hToken );
+		CloseHandle( hProcess );
+
+		return pi.hProcess;
+	}
+
+	return NULL;
+}
+#endif
+
+
 int isdServer::processClient( socketDispatcher _sd, void * _user )
 {
 	socketDevice sdev( _sd, _user );
@@ -168,80 +250,18 @@ int isdServer::processClient( socketDispatcher _sd, void * _user )
 			const QString cmds = msg_in.arg( "cmds" ).toString();
 			if( !cmds.isEmpty() )
 			{
+				foreach( const QString & cmd, cmds.split( '\n' ) )
+				{
 #ifdef BUILD_WIN32
-	// run process as the user which is logged on
-	DWORD aProcesses[1024], cbNeeded;
-
-	if( !EnumProcesses( aProcesses, sizeof( aProcesses ), &cbNeeded ) )
-	{
-		break;
-	}
-
-	DWORD cProcesses = cbNeeded / sizeof(DWORD);
-
-	for( DWORD i = 0; i < cProcesses; i++ )
-	{
-		HANDLE hProcess = OpenProcess( PROCESS_ALL_ACCESS,
-							false, aProcesses[i] );
-		HMODULE hMod;
-		if( hProcess == NULL ||
-			!EnumProcessModules( hProcess, &hMod, sizeof( hMod ),
-								&cbNeeded ) )
-	        {
-			continue;
-		}
-
-		TCHAR szProcessName[MAX_PATH];
-		GetModuleBaseName( hProcess, hMod, szProcessName, 
-                       		  sizeof( szProcessName ) / sizeof( TCHAR) );
-		for( TCHAR * ptr = szProcessName; *ptr; ++ptr )
-		{
-			*ptr = tolower( *ptr );
-		}
-
-		if( strcmp( szProcessName, "explorer.exe" ) )
-		{
-			CloseHandle( hProcess );
-			continue;
-		}
-	
-		HANDLE hToken;
-		OpenProcessToken( hProcess, MAXIMUM_ALLOWED, &hToken );
-		ImpersonateLoggedOnUser( hToken );
-
-		STARTUPINFO si;
-		PROCESS_INFORMATION pi;
-		ZeroMemory( &si, sizeof( STARTUPINFO ) );
-		si.cb= sizeof( STARTUPINFO );
-		si.lpDesktop = (CHAR *) "winsta0\\default";
-		HANDLE hNewToken = NULL;
-
-		DuplicateTokenEx( hToken, MAXIMUM_ALLOWED, NULL,
-					SecurityImpersonation, TokenPrimary,
-								&hNewToken );
-
-		CreateProcessAsUser(
-				hNewToken,            // client's access token
-				NULL,              // file to execute
-				(CHAR *)cmds.toUtf8().constData(),     // command line
-				NULL,              // pointer to process SECURITY_ATTRIBUTES
-				NULL,              // pointer to thread SECURITY_ATTRIBUTES
-				FALSE,             // handles are not inheritable
-				NORMAL_PRIORITY_CLASS | CREATE_NEW_CONSOLE,   // creation flags
-				NULL,              // pointer to new environment block 
-				NULL,              // name of current directory 
-				&si,               // pointer to STARTUPINFO structure
-				&pi                // receives information about new process
-				); 
-		CloseHandle( hNewToken );
-		RevertToSelf();
-		CloseHandle( hToken );
-		CloseHandle( hProcess );
-		break;
-	}
+					HANDLE hProcess = runProcessAsLoggedOnUser( cmd );
+					if( hProcess )
+					{
+						CloseHandle( hProcess );
+					}
 #else
-				QProcess::startDetached( cmds );
+					QProcess::startDetached( cmd );
 #endif
+				}
 			}
 			break;
 		}
@@ -853,23 +873,14 @@ void isdServer::lockDisplay( void )
 	m_newDesktop = CreateDesktop( desktopName, NULL, NULL, 0, GENERIC_ALL, NULL );
 	SetThreadDesktop( m_newDesktop );
 
-	STARTUPINFO si;
-	PROCESS_INFORMATION pi;
-
-	ZeroMemory( &si, sizeof(si) );
-	si.cb = sizeof(si);
-	si.lpDesktop = desktopName;
-	ZeroMemory( &pi, sizeof(pi) );
-
-	char * cmdline = qstrdup( QString( QCoreApplication::applicationFilePath() +
-											" --lock" ).toAscii().constData() );
-	CreateProcess( NULL, cmdline, NULL, NULL, FALSE, 0, NULL, NULL, &si, &pi );
-	delete[] cmdline;
-
-	m_lockProcess = pi.hProcess;
+	m_lockProcess =
+		runProcessAsLoggedOnUser(
+					QCoreApplication::applicationFilePath().
+							replace( '/', QDir::separator() ) + " --lock",
+					desktopName );
 
 	// sleep a bit so switch to desktop with loaded screen locker runs smoothly
-	Sleep( 2000 );
+	Sleep( 1000 );
 
 	SwitchDesktop( m_newDesktop );
 #else
