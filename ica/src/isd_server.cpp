@@ -68,7 +68,7 @@ isdServer::isdServer( const quint16 _ivs_port, int _argc, char * * _argv ) :
 	m_ivs( NULL ),
 	m_demoClient( NULL ),
 #ifdef BUILD_WIN32
-	m_newDesktop( NULL ),
+	m_lockDesktop( NULL ),
 	m_origThreadDesktop( NULL ),
 	m_origInputDesktop( NULL ),
 	m_lockProcess( NULL )
@@ -817,6 +817,12 @@ void isdServer::checkForPendingActions( void )
 		}
 		m_pendingActions.removeFirst();
 	}
+#ifdef BUILD_WIN32
+	if( m_lockDesktop )
+	{
+		SwitchDesktop( m_lockDesktop );
+	}
+#endif
 }
 
 
@@ -870,8 +876,8 @@ void isdServer::lockDisplay( void )
 	m_origInputDesktop = OpenInputDesktop( 0, FALSE, DESKTOP_SWITCHDESKTOP );
 
 	char desktopName[] = "LockDesktop";
-	m_newDesktop = CreateDesktop( desktopName, NULL, NULL, 0, GENERIC_ALL, NULL );
-	SetThreadDesktop( m_newDesktop );
+	m_lockDesktop = CreateDesktop( desktopName, NULL, NULL, 0, GENERIC_ALL, NULL );
+	SetThreadDesktop( m_lockDesktop );
 
 	m_lockProcess =
 		runProcessAsLoggedOnUser(
@@ -879,10 +885,7 @@ void isdServer::lockDisplay( void )
 							replace( '/', QDir::separator() ) + " --lock",
 					desktopName );
 
-	// sleep a bit so switch to desktop with loaded screen locker runs smoothly
-	Sleep( 1000 );
-
-	SwitchDesktop( m_newDesktop );
+	SwitchDesktop( m_lockDesktop );
 #else
 	delete m_lockWidget;
 	m_lockWidget = new lockWidget();
@@ -899,7 +902,7 @@ void isdServer::unlockDisplay()
 	SetThreadDesktop( m_origThreadDesktop );
 
 	TerminateProcess( m_lockProcess, 0 );
-	CloseDesktop( m_newDesktop );
+	CloseDesktop( m_lockDesktop );
 #else
 	delete m_lockWidget;
 	m_lockWidget = NULL;
