@@ -90,18 +90,13 @@ LIBSSL_LDADD = -leay32
 endif
 
 if BUILD_WIN32
-
 ica_win_resources.o: ica.rc vnchooks.dll
 	$(WINDRES) -o $@ $<
 
 WIN32_RES_LDADD = ica_win_resources.o -L. -lvnchooks
-# QtCore already contains libz
-LIBZ_LDADD =
-else
-LIBZ_LDADD = -lz
 endif
 
-ica_LDADD = $(QT_LDADD) $(QT_LIB_GUI) $(LIBZ_LDADD) -ljpeg $(LIBSSL_LDADD) $(IVSLDADD) $(WIN32_RES_LDADD) -L../lib -litalc_core
+ica_LDADD = $(QT_LDADD) $(QT_LIB_GUI) -lz -ljpeg $(LIBSSL_LDADD) $(IVSLDADD) $(WIN32_RES_LDADD) -L../lib -litalc_core
 ica_LDFLAGS = $(LDFLAGS) -mwindows -rpath $(pkglibdir)
 
 AM_CXXFLAGS = $(QT_CXXFLAGS) -O2 -DBUILD_ICA $(CXXFLAGS_ADD)

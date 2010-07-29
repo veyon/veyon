@@ -58,6 +58,7 @@ win32-pkg: all
 	cp /opt/mingw32/bin/libeay32.dll tmp/italc
 	cp /opt/mingw32/bin/libjpeg-8.dll tmp/italc
 	cp /opt/mingw32/bin/libssl32.dll tmp/italc
+	cp /opt/mingw32/bin/zlib1.dll tmp/italc
 	cp -L COPYING tmp/italc/LICENSE.TXT
 	cp -L README tmp/italc/README.TXT
 	/opt/mingw32/bin/i686-w64-mingw32-strip tmp/italc/ica.exe
@@ -88,6 +89,7 @@ win64-pkg: all
 	cp /opt/mingw64/bin/libeay32.dll tmp/italc
 	cp /opt/mingw64/bin/libjpeg-8.dll tmp/italc
 	cp /opt/mingw64/bin/libssl32.dll tmp/italc
+	cp /opt/mingw64/bin/zlib1.dll tmp/italc
 	cp -L COPYING tmp/italc/LICENSE.TXT
 	cp -L README tmp/italc/README.TXT
 	/opt/mingw64/bin/x86_64-w64-mingw32-strip tmp/italc/ica.exe
