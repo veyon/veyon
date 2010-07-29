@@ -1,6 +1,10 @@
 #include <rfb/rfbconfig.h>
 #include <rfb/keysym.h>
 
+#ifdef LIBVNCSERVER_HAVE_RECORD
+#include <X11/Xproto.h>
+#endif
+
 #include "x11vnc/avahi.c"
 #include "x11vnc/pm.c"
 #include "x11vnc/rates.c"
