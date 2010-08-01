@@ -1,7 +1,7 @@
 /*
  *  LockWidget.cpp - widget for locking a client
  *
- *  Copyright (c) 2006-2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ *  Copyright (c) 2006-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  *  This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -38,6 +38,7 @@
 
 #elif ITALC_BUILD_WIN32
 
+#define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 
 static const UINT __ss_get_list[] = { SPI_GETLOWPOWERTIMEOUT,
