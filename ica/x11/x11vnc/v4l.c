@@ -46,6 +46,11 @@ so, delete this exception statement from your version.
 #include <sys/ioctl.h>
 #define CONFIG_VIDEO_V4L1_COMPAT
 #include <linux/videodev.h>
+#ifdef __LINUX_VIDEODEV2_H
+# ifndef HAVE_V4L2
+# define HAVE_V4L2 1
+# endif
+#endif
 #define V4L_OK
 #endif
 #endif

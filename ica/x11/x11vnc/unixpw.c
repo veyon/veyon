@@ -2005,9 +2005,6 @@ static void apply_opts (char *user) {
 	ClientData *cd;
 	int i, notmode = 0;
 
-	if (! unixpw_list) {
-		return;
-	}
 	if (! unixpw_client) {
 		rfbLog("apply_opts: unixpw_client is NULL\n");
 		clean_up_exit(1);
@@ -2024,8 +2021,12 @@ static void apply_opts (char *user) {
 			free(cd->unixname);
 		}
 		cd->unixname = strdup(user);
+		rfbLog("apply_opts: set unixname to: %s\n", cd->unixname);
 	}
 
+	if (! unixpw_list) {
+		return;
+	}
 	str = strdup(unixpw_list);
 
 	/* apply any per-user options. */

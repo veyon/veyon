@@ -68,6 +68,7 @@ extern void send_client_info(char *str);
 extern void adjust_grabs(int grab, int quiet);
 extern void check_new_clients(void);
 extern int accept_client(rfbClientPtr client);
+extern void check_ipv6_listen(long usec);
 extern int run_user_command(char *cmd, rfbClientPtr client, char *mode, char *input,
     int len, FILE *output);
 extern int check_access(char *addr);

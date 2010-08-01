@@ -92,6 +92,7 @@ void send_client_info(char *str);
 void adjust_grabs(int grab, int quiet);
 void check_new_clients(void);
 int accept_client(rfbClientPtr client);
+void check_ipv6_listen(long usec);
 int run_user_command(char *cmd, rfbClientPtr client, char *mode, char *input,
     int len, FILE *output);
 int check_access(char *addr);
@@ -159,15 +160,16 @@ char *list_clients(void) {
          * <id>:<ip>:<port>:<user>:<unix>:<hostname>:<input>:<loginview>:<time>,
 	 * 8+1+64+1+5+1+24+1+24+1+256+1+5+1+1+1+10+1
 	 * 123.123.123.123:60000/0x11111111-rw,
-	 * so count+1 * 500 must cover it.
+	 * so count+1 * 1000 must cover it.
 	 */
-	list = (char *) malloc((count+1)*500);
+	list = (char *) malloc((count+1)*1000);
 	
 	list[0] = '\0';
 
 	iter = rfbGetClientIterator(screen);
 	while( (cl = rfbClientIteratorNext(iter)) ) {
 		ClientData *cd = (ClientData *) cl->clientData;
+		char *tmp_host, *p;
 
 		if (! cd) {
 			continue;
@@ -177,7 +179,13 @@ char *list_clients(void) {
 		}
 		sprintf(tmp, "0x%x:", cd->uid);
 		strcat(list, tmp);
-		strcat(list, cl->host);
+		p = tmp_host = strdup(cl->host);
+		while (*p) {
+			if (*p == ':') *p = '#';
+			p++;
+		}
+		strcat(list, tmp_host);
+		free(tmp_host);
 		strcat(list, ":");
 		sprintf(tmp, "%d:", cd->client_port);
 		strcat(list, tmp);
@@ -197,7 +205,13 @@ char *list_clients(void) {
 			strcat(list, cd->unixname);
 		}
 		strcat(list, ":");
-		strcat(list, cd->hostname);
+		p = tmp_host = strdup(cd->hostname);
+		while (*p) {
+			if (*p == ':') *p = '#';
+			p++;
+		}
+		strcat(list, tmp_host);
+		free(tmp_host);
 		strcat(list, ":");
 		strcat(list, cd->input);
 		strcat(list, ":");
@@ -292,7 +306,9 @@ static rfbClientPtr *client_match(char *str) {
 					port = 5500 + port;
 				}
 			}
-			if (! dotted_ip(str))  {
+			if (ipv6_ip(str)) {
+				;
+			} else if (! dotted_ip(str, 0)) {
 				char *orig = rstr;
 				rstr = host2ip(rstr);
 				free(orig);
@@ -369,7 +385,7 @@ void set_client_input(char *str) {
 		return;
 	}
 
-	p = strchr(str, ':');
+	p = strrchr(str, ':');
 	if (! p) {
 		return;
 	}
@@ -891,13 +907,16 @@ void client_gone(rfbClientPtr client) {
 		     client->state == RFB_AUTHENTICATION ||
 		     client->state == RFB_INITIALISATION) && accepted_client) {
 			rfbLog("connect_once: invalid password or early "
-			   "disconnect.\n");
+			   "disconnect.  %d\n", client->state);
 			rfbLog("connect_once: waiting for next connection.\n"); 
 			accepted_client--;
 			if (accepted_client < 0) {
 				accepted_client = 0;
 			}
 			CLIENT_UNLOCK;
+			if (connect_or_exit) {
+				clean_up_exit(1);
+			}
 			return;
 		}
 		if (shared && client_count > 0)  {
@@ -913,7 +932,11 @@ void client_gone(rfbClientPtr client) {
 			kill(gui_pid, SIGTERM);
 		}
 		CLIENT_UNLOCK;
-		clean_up_exit(0);
+		if (connect_or_exit) {
+			clean_up_exit(1);
+		} else {
+			clean_up_exit(0);
+		}
 	}
 #ifdef MACOSX
 	if (macosx_console && client_count == 0) {
@@ -1042,7 +1065,9 @@ int check_access(char *addr) {
 			p = strtok(NULL, ", \t\n\r");
 			continue;	
 		}
-		if (! dotted_ip(p)) {
+		if (ipv6_ip(p)) {
+			chk = p;
+		} else if (! dotted_ip(p, 1)) {
 			r = host2ip(p);
 			if (r == NULL || *r == '\0') {
 				rfbLog("check_access: bad lookup \"%s\"\n", p);
@@ -1054,26 +1079,37 @@ int check_access(char *addr) {
 		} else {
 			chk = p;
 		}
+		if (getenv("X11VNC_DEBUG_ACCESS")) fprintf(stderr, "chk: %s  part: %s  addr: %s\n", chk, p, addr);
 
 		q = strstr(addr, chk);
-		if (chk[strlen(chk)-1] != '.') {
+		if (ipv6_ip(addr)) {
+			if (!strcmp(chk, "localhost") && !strcmp(addr, "::1")) {
+				rfbLog("check_access: client addr %s is local.\n", addr);
+				allowed = 1;
+			} else if (!strcmp(chk, "::1") && !strcmp(addr, "::1")) {
+				rfbLog("check_access: client addr %s is local.\n", addr);
+				allowed = 1;
+			} else if (!strcmp(chk, "127.0.0.1") && !strcmp(addr, "::1")) {
+				/* this if for host2ip("localhost") */
+				rfbLog("check_access: client addr %s is local.\n", addr);
+				allowed = 1;
+			} else if (q == addr) {
+				rfbLog("check_access: client %s matches pattern %s\n", addr, chk);
+				allowed = 1;
+			}
+		} else if (chk[strlen(chk)-1] != '.') {
 			if (!strcmp(addr, chk)) {
 				if (chk != p) {
-					rfbLog("check_access: client %s "
-					    "matches host %s=%s\n", addr,
-					    chk, p);
+					rfbLog("check_access: client %s " "matches host %s=%s\n", addr, chk, p);
 				} else {
-					rfbLog("check_access: client %s "
-					    "matches host %s\n", addr, chk);
+					rfbLog("check_access: client %s " "matches host %s\n", addr, chk);
 				}
 				allowed = 1;
-			} else if(!strcmp(chk, "localhost") &&
-			    !strcmp(addr, "127.0.0.1")) {
+			} else if(!strcmp(chk, "localhost") && !strcmp(addr, "127.0.0.1")) {
 				allowed = 1;
 			}
 		} else if (q == addr) {
-			rfbLog("check_access: client %s matches pattern %s\n",
-			    addr, chk);
+			rfbLog("check_access: client %s matches pattern %s\n", addr, chk);
 			allowed = 1;
 		}
 		p = strtok(NULL, ", \t\n\r");
@@ -1691,6 +1727,120 @@ int accept_client(rfbClientPtr client) {
 	/* return 0; NOTREACHED */
 }
 
+void check_ipv6_listen(long usec) {
+#if X11VNC_IPV6
+	fd_set fds;
+	struct timeval tv;
+	int nfds, csock = -1, one = 1;
+	struct sockaddr_in6 addr;
+	socklen_t addrlen = sizeof(addr);
+	rfbClientPtr cl;
+	int nmax = 0;
+	char *name;
+
+	if (!ipv6_listen || noipv6) {
+		return;
+	}
+	if (ipv6_listen_fd < 0 && ipv6_http_fd < 0) {
+		return;
+	}
+
+	FD_ZERO(&fds);
+	if (ipv6_listen_fd >= 0) {
+		FD_SET(ipv6_listen_fd, &fds);
+		nmax = ipv6_listen_fd;
+	}
+	if (ipv6_http_fd >= 0 && screen->httpSock < 0) {
+		FD_SET(ipv6_http_fd, &fds);
+		if (ipv6_http_fd > nmax) {
+			nmax = ipv6_http_fd;
+		}
+	}
+
+	tv.tv_sec = 0;
+	tv.tv_usec = 0;
+
+	nfds = select(nmax+1, &fds, NULL, NULL, &tv);
+
+	if (nfds <= 0) {
+		return;
+	}
+
+	if (ipv6_listen_fd >= 0 && FD_ISSET(ipv6_listen_fd, &fds)) {
+
+		csock = accept(ipv6_listen_fd, (struct sockaddr *)&addr, &addrlen);
+		if (csock < 0) {
+			rfbLogPerror("check_ipv6_listen: accept");
+			goto err1;
+		}
+		if (fcntl(csock, F_SETFL, O_NONBLOCK) < 0) {
+			rfbLogPerror("check_ipv6_listen: fcntl");
+			close(csock);
+			goto err1;
+		}
+		if (setsockopt(csock, IPPROTO_TCP, TCP_NODELAY,
+		    (char *)&one, sizeof(one)) < 0) {
+			rfbLogPerror("check_ipv6_listen: setsockopt");
+			close(csock);
+			goto err1;
+		}
+
+		name = ipv6_getipaddr((struct sockaddr *) &addr, addrlen);
+
+		ipv6_client_ip_str = name;
+		cl = rfbNewClient(screen, csock);
+		ipv6_client_ip_str = NULL;
+		if (cl == NULL) {
+			close(csock);
+			goto err1;
+		}
+
+		if (name) {
+			if (cl->host) {
+				free(cl->host);
+			}
+			cl->host = name;
+			rfbLog("ipv6 client: %s\n", name);
+		}
+	}
+
+	err1:
+
+	if (ipv6_http_fd >= 0 && FD_ISSET(ipv6_http_fd, &fds)) {
+
+		csock = accept(ipv6_http_fd, (struct sockaddr *)&addr, &addrlen);
+		if (csock < 0) {
+			rfbLogPerror("check_ipv6_listen: accept");
+			return;
+		}
+		if (fcntl(csock, F_SETFL, O_NONBLOCK) < 0) {
+			rfbLogPerror("check_ipv6_listen: fcntl");
+			close(csock);
+			return;
+		}
+		if (setsockopt(csock, IPPROTO_TCP, TCP_NODELAY,
+		    (char *)&one, sizeof(one)) < 0) {
+			rfbLogPerror("check_ipv6_listen: setsockopt");
+			close(csock);
+			return;
+		}
+
+		rfbLog("check_ipv6_listen: setting httpSock to %d\n", csock);
+		screen->httpSock = csock;
+
+		if (screen->httpListenSock < 0) {
+			/* this may not always work... */
+			int save = screen->httpListenSock;
+			screen->httpListenSock = ipv6_http_fd;	
+			rfbLog("check_ipv6_listen: no httpListenSock, calling rfbHttpCheckFds()\n");
+			rfbHttpCheckFds(screen);
+			screen->httpListenSock = save;	
+		}
+	}
+#endif
+	if (usec) {}
+}
+
 /*
  * For the -connect <file> option: periodically read the file looking for
  * a connect string.  If one is found set client_connect to it.
@@ -2093,7 +2243,7 @@ static int pconnect(int psock, char *host, int port, int type, char *http_path, 
 		}
 		if (newhost && newport > 0) {
 			rfbLog("proxy GET reconnect to: %s:%d\n", newhost, newport);
-			pxy_get_sock = rfbConnectToTcpAddr(newhost, newport);
+			pxy_get_sock = connect_tcp(newhost, newport);
 		}
 	}
 	free(req);
@@ -2263,10 +2413,10 @@ static int proxy_connect(char *host, int port) {
 			psock = -1;
 			goto pxy_clean;
 		}
-		psock = rfbConnectToTcpAddr("localhost", sport);
+		psock = connect_tcp("localhost", sport);
 
 	} else {
-		psock = rfbConnectToTcpAddr(pxy_h[0], pxy_p[0]);
+		psock = connect_tcp(pxy_h[0], pxy_p[0]);
 	}
 
 	if (psock < 0) {
@@ -2462,7 +2612,7 @@ static int do_reverse_connect(char *str_in) {
 	host[len] = '\0';
 
 	/* extract port, if any */
-	if ((p = strchr(host, ':')) != NULL) {
+	if ((p = strrchr(host, ':')) != NULL) {
 		rport = atoi(p+1);
 		if (rport < 0) {
 			rport = -rport;
@@ -2472,12 +2622,17 @@ static int do_reverse_connect(char *str_in) {
 		*p = '\0';
 	}
 
+	if (ipv6_client_ip_str) {
+		free(ipv6_client_ip_str);
+		ipv6_client_ip_str = NULL;
+	}
+
 	if (use_openssl) {
 		int vncsock;
 		if (connect_proxy) {
 			vncsock = proxy_connect(host, rport);
 		} else {
-			vncsock = rfbConnectToTcpAddr(host, rport);
+			vncsock = connect_tcp(host, rport);
 		}
 		if (vncsock < 0) {
 			rfbLog("reverse_connect: failed to connect to: %s\n", str);
@@ -2488,8 +2643,10 @@ static int do_reverse_connect(char *str_in) {
 			free(prestring);
 		}
 /* XXX use header */
-#define OPENSSL_REVERSE 4
-		openssl_init(1);
+#define OPENSSL_REVERSE 6
+		if (!getenv("X11VNC_DISABLE_SSL_CLIENT_MODE")) {
+			openssl_init(1);
+		}
 
 		if (first_conn_timeout > 0) {
 			set_alarm = 1;
@@ -2560,7 +2717,7 @@ static int do_reverse_connect(char *str_in) {
 			return 0;
 		}
 	} else if (prestring != NULL) {
-		int sock = rfbConnectToTcpAddr(host, rport);
+		int sock = connect_tcp(host, rport);
 		if (set_alarm) {alarm(0); signal(SIGALRM, SIG_DFL);}
 		if (sock >= 0) {
 			write(sock, prestring, prestring_len);
@@ -2571,6 +2728,12 @@ static int do_reverse_connect(char *str_in) {
 		}
 	} else {
 		cl = rfbReverseConnection(screen, host, rport);
+		if (cl == NULL) {
+			int sock = connect_tcp(host, rport);
+			if (sock >= 0) {
+				cl = create_new_client(sock, 1);
+			}
+		}
 		if (set_alarm) {alarm(0); signal(SIGALRM, SIG_DFL);}
 		if (cl != NULL && use_threads) {
 			cl->onHold = FALSE;
@@ -2579,6 +2742,12 @@ static int do_reverse_connect(char *str_in) {
 	}
 
 	free(host);
+
+	if (ipv6_client_ip_str) {
+		free(ipv6_client_ip_str);
+		ipv6_client_ip_str = NULL;
+	}
+
 
 	if (cl == NULL) {
 		if (quiet && connect_or_exit) {
@@ -2699,7 +2868,7 @@ void reverse_connect(char *str) {
 				rfbLog("killing gui_pid %d\n", gui_pid);
 				kill(gui_pid, SIGTERM);
 			}
-			clean_up_exit(0);
+			clean_up_exit(1);
 		}
 		if (xrandr || xrandr_maybe) {
 			check_xrandr_event("reverse_connect1");
@@ -2768,7 +2937,7 @@ void reverse_connect(char *str) {
 				rfbLog("killing gui_pid %d\n", gui_pid);
 				kill(gui_pid, SIGTERM);
 			}
-			clean_up_exit(0);
+			clean_up_exit(1);
 		}
 	}
 	if (xrandr || xrandr_maybe) {
@@ -2924,6 +3093,8 @@ void read_x11vnc_remote_prop(int nomsg) {
 #endif	/* NO_X11 */
 }
 
+extern int rc_npieces;
+
 void grab_state(int *ptr_grabbed, int *kbd_grabbed) {
 	int rcp, rck;
 	double t0, t1;
@@ -2965,8 +3136,10 @@ void grab_state(int *ptr_grabbed, int *kbd_grabbed) {
 	if (rck == AlreadyGrabbed || rck == GrabFrozen) {
 		*kbd_grabbed = 1;
 	}
-	rfbLog("grab_state: checked %d,%d in %.6f sec (%.6f %.6f)\n",
-	    *ptr_grabbed, *kbd_grabbed, t1-t0, tb-ta, tc-tb);
+	if (rc_npieces < 10) {
+		rfbLog("grab_state: checked %d,%d in %.6f sec (%.6f %.6f)\n",
+		    *ptr_grabbed, *kbd_grabbed, t1-t0, tb-ta, tc-tb);
+	}
 #endif
 }
 
@@ -3715,6 +3888,15 @@ enum rfbNewClientAction new_client(rfbClientPtr client) {
 		}
 	}
 
+	if (ipv6_client_ip_str != NULL) {
+		rfbLog("renaming client->host from '%s' to '%s'\n",
+		    client->host ? client->host : "", ipv6_client_ip_str);
+		if (client->host) {
+			free(client->host);
+		}
+		client->host = strdup(ipv6_client_ip_str);
+	}
+
 	if (! check_access(client->host)) {
 		rfbLog("denying client: %s does not match %s\n", client->host,
 		    allow_list ? allow_list : "(null)" );
@@ -3945,10 +4127,10 @@ void start_client_info_sock(char *host_port_cookie) {
 			free(host);
 			host = strdup("localhost");
 		}
-		sock = rfbConnectToTcpAddr(host, port);
+		sock = connect_tcp(host, port);
 		if (sock < 0) {
 			usleep(200 * 1000);
-			sock = rfbConnectToTcpAddr(host, port);
+			sock = connect_tcp(host, port);
 		}
 		if (sock >= 0) {
 			char *lst = list_clients();

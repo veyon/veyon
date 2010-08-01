@@ -1,7 +1,7 @@
 /*
  * x11vnc: a VNC server for X displays.
  *
- * Copyright (C) 2002-2009 Karl J. Runge <runge@karlrunge.com>
+ * Copyright (C) 2002-2010 Karl J. Runge <runge@karlrunge.com>
  * All rights reserved.
  *
  *  This file is part of x11vnc.
@@ -216,9 +216,9 @@ int tsdo(int port, int lsock, int *conn) {
 		if (db) rfbLog("tsdo: using existing csock: %d, port: %d\n", csock, port);
 	}
 
-	rsock = rfbConnectToTcpAddr("127.0.0.1", port);
+	rsock = connect_tcp("127.0.0.1", port);
 	if (rsock < 0) {
-		if (db) rfbLog("tsdo: rfbConnectToTcpAddr(port=%d) failed.\n", port);
+		if (db) rfbLog("tsdo: connect_tcp(port=%d) failed.\n", port);
 		close(csock);
 		return 2;
 	}
@@ -391,7 +391,8 @@ void terminal_services(char *list) {
 		XSync(dpy, False);
 
 		for (k=1; k <= 5; k++) {
-			socks[i] = rfbListenOnTCPPort(listen[i], htonl(INADDR_LOOPBACK));
+			/* XXX ::1 fallback? */
+			socks[i] = listen_tcp(listen[i], htonl(INADDR_LOOPBACK), 1);
 			if (socks[i] >= 0) {
 				if (db) fprintf(stderr, "     listen succeeded: %d\n", listen[i]);
 				break;
@@ -601,7 +602,7 @@ if (tstk[j] != 0) fprintf(stderr, "B redir[%d][%d] = %d  %s\n", i, j, tstk[j], t
 						redir[i][j] = 0;
 						continue;
 					}
-					s = rfbConnectToTcpAddr("127.0.0.1", p);
+					s = connect_tcp("127.0.0.1", p);
 					if (s < 0) {
 						redir[i][j] = 0;
 						if (db) fprintf(stderr, "tsdo[%d][%d] clean: connect failed: %d\n", i, j, p);
@@ -646,6 +647,7 @@ void do_tsd(void) {
 	char *cmd;
 	int n, sz = 0;
 	char *disp = DisplayString(dpy);
+	char *logfile = getenv("TS_REDIR_LOGFILE");
 	int db = 0;
 
 	if (getenv("TS_REDIR_DEBUG")) {
@@ -675,6 +677,12 @@ void do_tsd(void) {
 	sz += strlen("-env TSD_RESTART=1") + 1;
 	sz += strlen("</dev/null 1>/dev/null 2>&1") + 1;
 	sz += strlen(" &") + 1;
+	if (logfile) {
+		sz += strlen(logfile);
+	}
+	if (ipv6_listen) {
+		sz += strlen("-6") + 1;
+	}
 
 	cmd = (char *) malloc(sz);
 
@@ -684,7 +692,9 @@ void do_tsd(void) {
 			*(xauth-2) = '_';	/* yow */
 		}
 	}
-	sprintf(cmd, "%s -display %s -tsd '%s' -env TSD_RESTART=1 </dev/null 1>/dev/null 2>&1 &", program_name, disp, prop); 
+	sprintf(cmd, "%s -display %s -tsd '%s' -env TSD_RESTART=1 %s </dev/null 1>%s 2>&1 &",
+	    program_name, disp, prop, ipv6_listen ? "-6" : "",
+	    logfile ? logfile : "/dev/null" ); 
 	rfbLog("running: %s\n", cmd);
 
 #if LIBVNCSERVER_HAVE_FORK && LIBVNCSERVER_HAVE_SETSID
@@ -2354,8 +2364,8 @@ int main(int argc, char* argv[]) {
 			overlay_cursor = 2;
 			continue;
 		}
-#if !SKIP_8TO24
 		if (!strcmp(arg, "-8to24")) {
+#if !SKIP_8TO24
 			cmap8to24 = 1;
 			if (i < argc-1) {
 				char *s = argv[i+1];
@@ -2364,9 +2374,9 @@ int main(int argc, char* argv[]) {
 					i++;
 				}
 			}
+#endif
 			continue;
 		}
-#endif
 		if (!strcmp(arg, "-24to32")) {
 			xform24to32 = 1;
 			continue;
@@ -2471,9 +2481,12 @@ int main(int argc, char* argv[]) {
 			continue;
 		}
 		if (!strcmp(arg, "-connect") ||
-		    !strcmp(arg, "-connect_or_exit")) {
+		    !strcmp(arg, "-connect_or_exit") ||
+		    !strcmp(arg, "-coe")) {
 			CHECK_ARGC
 			if (!strcmp(arg, "-connect_or_exit")) {
+				connect_or_exit = 1;
+			} else if (!strcmp(arg, "-coe")) {
 				connect_or_exit = 1;
 			}
 			if (strchr(argv[++i], '/') && !strstr(argv[i], "repeater://")) {
@@ -2511,10 +2524,39 @@ int main(int argc, char* argv[]) {
 			got_localhost = 1;
 			continue;
 		}
+		if (!strcmp(arg, "-listen6")) {
+#if X11VNC_IPV6
+			listen_str6 = strdup(argv[++i]);
+#endif
+			continue;
+		}
 		if (!strcmp(arg, "-nolookup")) {
 			host_lookup = 0;
 			continue;
 		}
+		if (!strcmp(arg, "-6")) {
+#if X11VNC_IPV6
+			ipv6_listen = 1;
+			got_ipv6_listen = 1;
+#endif
+			continue;
+		}
+		if (!strcmp(arg, "-no6")) {
+#if X11VNC_IPV6
+			ipv6_listen = 0;
+			got_ipv6_listen = 0;
+#endif
+			continue;
+		}
+		if (!strcmp(arg, "-noipv6")) {
+			noipv6 = 1;
+			continue;
+		}
+		if (!strcmp(arg, "-noipv4")) {
+			noipv4 = 1;
+			continue;
+		}
+
 		if (!strcmp(arg, "-input")) {
 			CHECK_ARGC
 			allowed_input_str = strdup(argv[++i]);
@@ -3558,6 +3600,14 @@ int main(int argc, char* argv[]) {
 			all_input = 0;
 			continue;
 		}
+		if (!strcmp(arg, "-input_eagerly")) {
+			handle_events_eagerly = 1;
+			continue;
+		}
+		if (!strcmp(arg, "-noinput_eagerly")) {
+			handle_events_eagerly = 0;
+			continue;
+		}
 		if (!strcmp(arg, "-speeds")) {
 			CHECK_ARGC
 			speeds_str = strdup(argv[++i]);
@@ -4309,6 +4359,11 @@ int main(int argc, char* argv[]) {
 		}
 		if (n > 2) {
 			close(n);
+		}
+	}
+	if (ipv6_listen) {
+		if (inetd) {
+			ipv6_listen = 0;
 		}
 	}
 	if (inetd && quiet && !logfile) {
@@ -5735,9 +5790,14 @@ int main(int argc, char* argv[]) {
 		if (! screen->port || screen->listenSock < 0) {
 			if (got_rfbport && got_rfbport_val == 0) {
 				;
+			} else if (ipv6_listen && ipv6_listen_fd >= 0) {
+				rfbLog("Info: listening only on IPv6 interface.\n");
 			} else {
 				rfbLogEnable(1);
 				rfbLog("Error: could not obtain listening port.\n");
+				if (!got_rfbport && !got_ipv6_listen) {
+					rfbLog("If this system is IPv6-only, use the -6 option.\n");
+				}
 				clean_up_exit(1);
 			}
 		}
@@ -5776,7 +5836,6 @@ int main(int argc, char* argv[]) {
 			}
 			if (screen && screen->httpListenSock >= 0) {
 				close(screen->httpListenSock);
-				FD_CLR(screen->httpListenSock,&screen->allFds);
 				screen->httpListenSock = -1;
 			}
 			if (openssl_sock >= 0) {
@@ -5786,6 +5845,22 @@ int main(int argc, char* argv[]) {
 			if (https_sock >= 0) {
 				close(https_sock);
 				https_sock = -1;
+			}
+			if (openssl_sock6 >= 0) {
+				close(openssl_sock6);
+				openssl_sock6 = -1;
+			}
+			if (https_sock6 >= 0) {
+				close(https_sock6);
+				https_sock6 = -1;
+			}
+			if (ipv6_listen_fd >= 0) {
+				close(ipv6_listen_fd);
+				ipv6_listen_fd = -1;
+			}
+			if (ipv6_http_fd >= 0) {
+				close(ipv6_http_fd);
+				ipv6_http_fd = -1;
 			}
 		}
 		/* fork into the background now */

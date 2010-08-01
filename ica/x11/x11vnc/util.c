@@ -36,6 +36,7 @@ so, delete this exception statement from your version.
 #include "cleanup.h"
 #include "win_utils.h"
 #include "unixpw.h"
+#include "connections.h"
 
 struct timeval _mysleep;
 
@@ -495,7 +496,7 @@ void check_allinput_rate(void) {
 				if (verb) rfbLog("check_allinput_rate:\n");
 				if (verb) rfbLog("Client is sending %.1f extra requests per second for the\n", rate);
 				if (verb) rfbLog("past %d seconds! (queued: %d)\n", dt, nq);
-				if (strstr(getenv("CHECK_RATE"), "allinput") && !all_input) {
+				if (strstr(getenv("CHECK_RATE"), "allinput") && !all_input && !handle_events_eagerly) {
 					rfbLog("Switching to -allpinput mode.\n");
 					all_input = 1;
 				}
@@ -590,6 +591,9 @@ int rfbPE(long usec) {
 		}
  	}
 
+	if (ipv6_listen) {
+		check_ipv6_listen(usec);
+	}
 	if (check_rate != 0) {
 		if (check_rate < 0) {
 			if (getenv("CHECK_RATE")) {
@@ -643,8 +647,7 @@ void rfbCFD(long usec) {
 		if (all_input) {
 			do_allinput(usec);
 		} else {
-			/* XXX how for cmdline? */
-			if (all_input) {
+			if (handle_events_eagerly) {
 				screen->handleEventsEagerly = TRUE;
 			} else {
 				screen->handleEventsEagerly = FALSE;

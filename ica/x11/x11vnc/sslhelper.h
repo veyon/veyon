@@ -38,12 +38,16 @@ so, delete this exception statement from your version.
 
 #define OPENSSL_INETD   1
 #define OPENSSL_VNC     2
-#define OPENSSL_HTTPS   3
-#define OPENSSL_REVERSE 4
+#define OPENSSL_VNC6    3
+#define OPENSSL_HTTPS   4
+#define OPENSSL_HTTPS6  5
+#define OPENSSL_REVERSE 6
 
 extern int openssl_sock;
+extern int openssl_sock6;
 extern int openssl_port_num;
 extern int https_sock;
+extern int https_sock6;
 extern pid_t openssl_last_helper_pid;
 extern char *openssl_last_ip;
 extern char *certret_str;
@@ -54,8 +58,8 @@ extern void raw_xfer(int csock, int s_in, int s_out);
 
 extern int openssl_present(void);
 extern void openssl_init(int);
-extern void openssl_port(void);
-extern void https_port(void);
+extern void openssl_port(int);
+extern void https_port(int);
 extern void check_openssl(void);
 extern void check_https(void);
 extern void ssl_helper_pid(pid_t pid, int sock);

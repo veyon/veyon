@@ -44,14 +44,21 @@ char *host2ip(char *host);
 char *raw2host(char *raw, int len);
 char *raw2ip(char *raw);
 char *ip2host(char *ip);
-int dotted_ip(char *host);
+int ipv6_ip(char *host);
+int dotted_ip(char *host, int partial);
 int get_remote_port(int sock);
 int get_local_port(int sock);
 char *get_remote_host(int sock);
 char *get_local_host(int sock);
 char *ident_username(rfbClientPtr client);
 int find_free_port(int start, int end);
+int find_free_port6(int start, int end);
 int have_ssh_env(void);
+char *ipv6_getnameinfo(struct sockaddr *paddr, int addrlen);
+char *ipv6_getipaddr(struct sockaddr *paddr, int addrlen);
+int listen6(int port);
+int connect_tcp(char *host, int port);
+int listen_tcp(int port, in_addr_t iface, int try6);
 
 static int get_port(int sock, int remote);
 static char *get_host(int sock, int remote);
@@ -126,14 +133,70 @@ char *ip2host(char *ip) {
 	return str;
 }
 
-int dotted_ip(char *host) {
+int ipv6_ip(char *host_in) {
+	char *p, *host, a[2];
+	int ncol = 0, nhex = 0;
+
+	if (host_in[0] == '[')  {
+		host = host_in + 1;
+	} else {
+		host = host_in;
+	}
+
+	if (strstr(host, "::ffff:") == host || strstr(host, "::FFFF:") == host) {
+		return dotted_ip(host + strlen("::ffff:"), 0);
+	}
+
+	a[1] = '\0';
+
+	p = host;
+	while (*p != '\0' && *p != '%' && *p != ']') {
+		if (*p == ':') {
+			ncol++;
+		} else {
+			nhex++;
+		}
+		a[0] = *p;
+		if (strpbrk(a, ":abcdef0123456789") == a) {
+			p++;
+			continue;
+		}
+		return 0;
+	}
+	if (ncol < 2 || ncol > 8 || nhex == 0) {
+		return 0;
+	} else {
+		return 1;
+	}
+}
+
+int dotted_ip(char *host, int partial) {
+	int len, dots = 0;
 	char *p = host;
+
+	if (!host) {
+		return 0;
+	}
+
+	if (!isdigit((unsigned char) host[0])) {
+		return 0;
+	}
+
+	len = strlen(host);
+	if (!partial && !isdigit((unsigned char) host[len-1])) {
+		return 0;
+	}
+
 	while (*p != '\0') {
+		if (*p == '.') dots++;
 		if (*p == '.' || isdigit((unsigned char) (*p))) {
 			p++;
 			continue;
 		}
 		return 0;
+	}
+	if (!partial && dots != 3) {
+		return 0;	
 	}
 	return 1;
 }
@@ -209,7 +272,6 @@ char *ident_username(rfbClientPtr client) {
 		user = cd->username;
 	}
 	if (!user || *user == '\0') {
-		char msg[128];
 		int n, sock, ok = 0;
 		int block = 0;
 		int refused = 0;
@@ -251,7 +313,7 @@ char *ident_username(rfbClientPtr client) {
 			signal(SIGQUIT, SIG_DFL);
 			signal(SIGTERM, SIG_DFL);
 
-			if ((sock = rfbConnectToTcpAddr(client->host, 113)) < 0) {
+			if ((sock = connect_tcp(client->host, 113)) < 0) {
 				exit(1);
 			} else {
 				close(sock);
@@ -262,10 +324,11 @@ char *ident_username(rfbClientPtr client) {
 #endif
 		if (block || refused) {
 			;
-		} else if ((sock = rfbConnectToTcpAddr(client->host, 113)) < 0) {
+		} else if ((sock = connect_tcp(client->host, 113)) < 0) {
 			rfbLog("ident_username: could not connect to ident: %s:%d\n",
 			    client->host, 113);
 		} else {
+			char msg[128];
 			int ret;
 			fd_set rfds;
 			struct timeval tv;
@@ -277,14 +340,14 @@ char *ident_username(rfbClientPtr client) {
 
 			FD_ZERO(&rfds);
 			FD_SET(sock, &rfds);
-			tv.tv_sec  = 4;
+			tv.tv_sec  = 3;
 			tv.tv_usec = 0;
 			ret = select(sock+1, &rfds, NULL, NULL, &tv); 
 
 			if (ret > 0) {
 				int i;
 				char *q, *p;
-				for (i=0; i<128; i++) {
+				for (i=0; i < sizeof(msg); i++) {
 					msg[i] = '\0';
 				}
 				usleep(250*1000);
@@ -356,7 +419,25 @@ int find_free_port(int start, int end) {
 		end = 65530;
 	}
 	for (port = start; port <= end; port++)  {
-		int sock = rfbListenOnTCPPort(port, htonl(INADDR_ANY));
+		int sock = listen_tcp(port, htonl(INADDR_ANY), 0);
+		if (sock >= 0) {
+			close(sock);
+			return port;
+		}
+	}
+	return 0;
+}
+
+int find_free_port6(int start, int end) {
+	int port;
+	if (start <= 0) {
+		start = 1024;
+	}
+	if (end <= 0) {
+		end = 65530;
+	}
+	for (port = start; port <= end; port++)  {
+		int sock = listen6(port);
 		if (sock >= 0) {
 			close(sock);
 			return port;
@@ -426,5 +507,372 @@ if (0) fprintf(stderr, "%d/%d - '%s' '%s'\n", atoi(rport), atoi(lport), rhost, l
 	free(str);
 
 	return 0;
+}
+
+char *ipv6_getnameinfo(struct sockaddr *paddr, int addrlen) {
+#if X11VNC_IPV6
+	char name[200];
+	if (noipv6) {
+		return strdup("unknown");
+	}
+	if (getnameinfo(paddr, addrlen, name, sizeof(name), NULL, 0, 0) == 0) {
+		return strdup(name);
+	}
+#endif
+	return strdup("unknown");
+}
+
+char *ipv6_getipaddr(struct sockaddr *paddr, int addrlen) {
+#if X11VNC_IPV6 && defined(NI_NUMERICHOST)
+	char name[200];
+	if (noipv6) {
+		return strdup("unknown");
+	}
+	if (getnameinfo(paddr, addrlen, name, sizeof(name), NULL, 0, NI_NUMERICHOST) == 0) {
+		return strdup(name);
+	}
+#endif
+	return strdup("unknown");
+}
+
+int listen6(int port) {
+#if X11VNC_IPV6
+	struct sockaddr_in6 sin;
+	int fd = -1, one = 1;
+
+	if (noipv6) {
+		return -1;
+	}
+	if (port <= 0 || 65535 < port) {
+		/* for us, invalid port means do not listen. */
+		return -1;
+	}
+
+	fd = socket(AF_INET6, SOCK_STREAM, 0);
+	if (fd < 0) {
+		rfbLogPerror("listen6: socket");
+		rfbLog("(Ignore the above error if this system is IPv4-only.)\n");
+		return -1;
+	}
+
+	if (setsockopt(fd, SOL_SOCKET, SO_REUSEADDR, (char *)&one, sizeof(one)) < 0) {
+		rfbLogPerror("listen6: setsockopt SO_REUSEADDR"); 
+		close(fd);
+		return -1;
+	}
+
+#if defined(SOL_IPV6) && defined(IPV6_V6ONLY)
+	if (setsockopt(fd, SOL_IPV6, IPV6_V6ONLY, (char *)&one, sizeof(one)) < 0) {
+		rfbLogPerror("listen6: setsockopt IPV6_V6ONLY"); 
+		close(fd);
+		return -1;
+	}
+#endif
+
+	memset((char *)&sin, 0, sizeof(sin));
+	sin.sin6_family = AF_INET6;
+	sin.sin6_port   = htons(port);
+	sin.sin6_addr   = in6addr_any;
+
+	if (listen_str6) {
+		if (!strcmp(listen_str6, "localhost") || !strcmp(listen_str6, "::1")) {
+			sin.sin6_addr = in6addr_loopback;
+		} else {
+			int err;
+			struct addrinfo *ai;
+			struct addrinfo hints;
+			char service[32];
+
+			memset(&hints, 0, sizeof(hints));
+			sprintf(service, "%d", port);
+
+			hints.ai_family = AF_INET6;
+			hints.ai_socktype = SOCK_STREAM;
+#ifdef AI_ADDRCONFIG
+			hints.ai_flags |= AI_ADDRCONFIG;
+#endif
+#ifdef AI_NUMERICHOST
+			if(ipv6_ip(listen_str6)) {
+				hints.ai_flags |= AI_NUMERICHOST;
+			}
+#endif
+#ifdef AI_NUMERICSERV
+			hints.ai_flags |= AI_NUMERICSERV;
+#endif
+			err = getaddrinfo(listen_str6, service, &hints, &ai);
+			if (err == 0) {
+				struct addrinfo *ap = ai;
+				err = 1;
+				while (ap != NULL) {
+					char *s = ipv6_getipaddr(ap->ai_addr, ap->ai_addrlen);
+					if (!s) s = strdup("unknown");
+
+					rfbLog("listen6: checking: %s family: %d\n", s, ap->ai_family); 
+					if (ap->ai_family == AF_INET6) {
+						memcpy((char *)&sin, ap->ai_addr, sizeof(sin));
+						rfbLog("listen6: using:    %s scope_id: %d\n", s, sin.sin6_scope_id); 
+						err = 0;
+						free(s);
+						break;
+					}
+					free(s);
+					ap = ap->ai_next;
+				}
+				freeaddrinfo(ai);
+			}
+
+			if (err != 0) {
+				rfbLog("Invalid or Unsupported -listen6 string: %s\n", listen_str6);
+				close(fd);
+				return -1;
+			}
+		}
+	} else if (allow_list && !strcmp(allow_list, "127.0.0.1")) {
+		sin.sin6_addr = in6addr_loopback;
+	} else if (listen_str) {
+		if (!strcmp(listen_str, "localhost")) {
+			sin.sin6_addr = in6addr_loopback;
+		}
+	}
+
+	if (bind(fd, (struct sockaddr *) &sin, sizeof(sin)) < 0) {
+		rfbLogPerror("listen6: bind"); 
+		close(fd);
+		return -1;
+	}
+	if (listen(fd, 32) < 0) {
+		rfbLogPerror("listen6: listen");
+		close(fd);
+		return -1;
+	}
+	return fd;
+#else
+	if (port) {}
+	return -1;
+#endif
+}
+
+int connect_tcp(char *host, int port) {
+	double t0 = dnow();
+	int fd = -1;
+	int fail4 = noipv4;
+	if (getenv("IPV4_FAILS")) {
+		fail4 = 2;
+	}
+
+	rfbLog("connect_tcp: trying:   %s %d\n", host, port);
+
+	if (fail4) {
+		if (fail4 > 1) {
+			rfbLog("TESTING: IPV4_FAILS for connect_tcp.\n");
+		}
+	} else {
+		fd = rfbConnectToTcpAddr(host, port);
+	}
+
+	if (fd >= 0) {
+		return fd;
+	}
+	rfbLogPerror("connect_tcp: connection failed");
+
+	if (dnow() - t0 < 4.0) {
+		rfbLog("connect_tcp: re-trying %s %d\n", host, port);
+		usleep (100 * 1000);
+		if (!fail4) {
+			fd = rfbConnectToTcpAddr(host, port);
+		}
+		if (fd < 0) {
+			rfbLogPerror("connect_tcp: connection failed");
+		}
+	}
+
+	if (fd < 0 && !noipv6) {
+#if X11VNC_IPV6
+		int err;
+		struct addrinfo *ai;
+		struct addrinfo hints;
+		char service[32], *host2, *q;
+
+		rfbLog("connect_tcp: trying IPv6 %s %d\n", host, port);
+
+		memset(&hints, 0, sizeof(hints));
+		sprintf(service, "%d", port);
+
+		hints.ai_family = AF_UNSPEC;
+		hints.ai_socktype = SOCK_STREAM;
+#ifdef AI_ADDRCONFIG
+		hints.ai_flags |= AI_ADDRCONFIG;
+#endif
+		if(ipv6_ip(host)) {
+#ifdef AI_NUMERICHOST
+			rfbLog("connect_tcp[ipv6]: setting AI_NUMERICHOST for %s\n", host);
+			hints.ai_flags |= AI_NUMERICHOST;
+#endif
+		}
+#ifdef AI_NUMERICSERV
+		hints.ai_flags |= AI_NUMERICSERV;
+#endif
+
+		if (!strcmp(host, "127.0.0.1")) {
+			host2 = strdup("::1");
+		} else if (host[0] == '[') {
+			host2 = strdup(host+1);
+		} else {
+			host2 = strdup(host);
+		}
+		q = strrchr(host2, ']');
+		if (q) {
+			*q = '\0';
+		}
+
+		err = getaddrinfo(host2, service, &hints, &ai);
+		if (err != 0) {
+			rfbLog("connect_tcp[ipv6]: getaddrinfo[%d]: %s\n", err, gai_strerror(err));
+			usleep(100 * 1000);
+			err = getaddrinfo(host2, service, &hints, &ai);
+		}
+		free(host2);
+
+		if (err != 0) {
+			rfbLog("connect_tcp[ipv6]: getaddrinfo[%d]: %s\n", err, gai_strerror(err));
+		} else {
+			struct addrinfo *ap = ai;
+			while (ap != NULL) {
+				int sock;
+
+				if (fail4) {
+					struct sockaddr_in6 *s6ptr;
+					if (ap->ai_family != AF_INET6) {
+						rfbLog("connect_tcp[ipv6]: skipping AF_INET address under -noipv4\n");
+						ap = ap->ai_next;
+						continue;
+					}
+#ifdef IN6_IS_ADDR_V4MAPPED
+					s6ptr = (struct sockaddr_in6 *) ap->ai_addr;
+					if (IN6_IS_ADDR_V4MAPPED(&(s6ptr->sin6_addr))) {
+						rfbLog("connect_tcp[ipv6]: skipping V4MAPPED address under -noipv4\n");
+						ap = ap->ai_next;
+						continue;
+					}
+#endif
+				}
+
+				sock = socket(ap->ai_family, ap->ai_socktype, ap->ai_protocol);
+
+				if (sock == -1) {
+					rfbLogPerror("connect_tcp[ipv6]: socket");
+					if (0) rfbLog("(Ignore the above error if this system is IPv4-only.)\n");
+				} else {
+					int res = -1, dmsg = 0;
+					char *s = ipv6_getipaddr(ap->ai_addr, ap->ai_addrlen);
+					if (!s) s = strdup("unknown");
+
+					rfbLog("connect_tcp[ipv6]: trying sock=%d fam=%d proto=%d using %s\n",
+					    sock, ap->ai_family, ap->ai_protocol, s);
+					res = connect(sock, ap->ai_addr, ap->ai_addrlen);
+#if defined(SOL_IPV6) && defined(IPV6_V6ONLY)
+					if (res != 0) {
+						int zero = 0;
+						rfbLogPerror("connect_tcp[ipv6]: connect");
+						dmsg = 1;
+						if (setsockopt(sock, SOL_IPV6, IPV6_V6ONLY, (char *)&zero, sizeof(zero)) == 0) {
+							rfbLog("connect_tcp[ipv6]: trying again with IPV6_V6ONLY=0\n");
+							res = connect(sock, ap->ai_addr, ap->ai_addrlen);
+							dmsg = 0;
+						} else {
+							rfbLogPerror("connect_tcp[ipv6]: setsockopt IPV6_V6ONLY");
+						}
+					}
+#endif
+					if (res == 0) {
+						rfbLog("connect_tcp[ipv6]: connect OK\n");
+						fd = sock;
+						if (!ipv6_client_ip_str) {
+							ipv6_client_ip_str = strdup(s);
+						}
+						free(s);
+						break;
+					} else {
+						if (!dmsg) rfbLogPerror("connect_tcp[ipv6]: connect");
+						close(sock);
+					}
+					free(s);
+				}
+				ap = ap->ai_next;
+			}
+			freeaddrinfo(ai);
+		}
+#endif
+	}
+	if (fd < 0 && !fail4) {
+		/* this is a kludge for IPv4-only machines getting v4mapped string. */
+		char *q, *host2;
+		if (host[0] == '[') {
+			host2 = strdup(host+1);
+		} else {
+			host2 = strdup(host);
+		}
+		q = strrchr(host2, ']');
+		if (q) {
+			*q = '\0';
+		}
+		if (strstr(host2, "::ffff:") == host2 || strstr(host2, "::FFFF:") == host2) {
+			char *host3 = host2 + strlen("::ffff:");
+			if (dotted_ip(host3, 0)) {
+				rfbLog("connect_tcp[ipv4]: trying fallback to IPv4 for %s\n", host2);
+				fd = rfbConnectToTcpAddr(host3, port);
+				if (fd < 0) {
+					rfbLogPerror("connect_tcp[ipv4]: connection failed");
+				}
+			}
+		}
+		free(host2);
+	}
+	return fd;
+}
+
+int listen_tcp(int port, in_addr_t iface, int try6) {
+	int fd = -1;
+	int fail4 = noipv4;
+	if (getenv("IPV4_FAILS")) {
+		fail4 = 2;
+	}
+
+	if (port <= 0 || 65535 < port) {
+		/* for us, invalid port means do not listen. */
+		return -1;
+	}
+
+	if (fail4) {
+		if (fail4 > 1) {
+			rfbLog("TESTING: IPV4_FAILS for listen_tcp: port=%d try6=%d\n", port, try6);
+		}
+	} else {
+		fd = rfbListenOnTCPPort(port, iface);
+	}
+
+	if (fd >= 0) {
+		return fd;
+	}
+	if (fail4 > 1) {
+		rfbLogPerror("listen_tcp: listen failed");
+	}
+
+	if (fd < 0 && try6 && ipv6_listen && !noipv6) {
+#if X11VNC_IPV6
+		char *save = listen_str6;
+		if (iface == htonl(INADDR_LOOPBACK)) {
+			listen_str6 = "localhost";
+			rfbLog("listen_tcp: retrying on IPv6 in6addr_loopback ...\n");
+			fd = listen6(port);
+		} else if (iface == htonl(INADDR_ANY)) {
+			listen_str6 = NULL;
+			rfbLog("listen_tcp: retrying on IPv6 in6addr_any ...\n");
+			fd = listen6(port);
+		}
+		listen_str6 = save;
+#endif
+	}
+	return fd;
 }
 

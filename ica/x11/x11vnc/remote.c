@@ -59,6 +59,7 @@ so, delete this exception statement from your version.
 #include "uinput.h"
 #include "userinput.h"
 #include "avahi.h"
+#include "sslhelper.h"
 
 int send_remote_cmd(char *cmd, int query, int wait);
 int do_remote_query(char *remote_cmd, char *query_cmd, int remote_sync,
@@ -480,6 +481,15 @@ static void rfb_http_init_sockets(void) {
 		screen->listenInterface = htonl(INADDR_LOOPBACK);
 	}
 	rfbHttpInitSockets(screen);
+	if (noipv4 || getenv("IPV4_FAILS")) {
+		if (getenv("IPV4_FAILS")) {
+			rfbLog("TESTING: IPV4_FAILS for rfb_http_init_sockets()\n");
+		}
+		if (screen->httpListenSock > -1) {
+			close(screen->httpListenSock);
+			screen->httpListenSock = -1;
+		}
+	}
 	screen->listenInterface = iface;
 }
 
@@ -505,95 +515,178 @@ void http_connections(int on) {
 		}
 		screen->httpInitDone = FALSE;
 		if (check_httpdir()) {
+			int fd6 = -1;
+			char *save = listen_str6;
+
 			screen->httpDir = http_dir;
+
 			rfb_http_init_sockets();
+
+			if (getenv("X11VNC_HTTP_LISTEN_LOCALHOST")) {
+				listen_str6 = "localhost";
+			}
+
 			if (screen->httpPort != 0 && screen->httpListenSock < 0) {
 				rfbLog("http_connections: failed to listen on http port: %d\n", screen->httpPort);
-				clean_up_exit(1);
+				if (ipv6_listen) {
+					fd6 = listen6(screen->httpPort);
+				}
+				if (fd6 < 0) {
+					clean_up_exit(1);
+				}
+				rfbLog("http_connections: trying IPv6 only mode.\n");
 			}
+			if (ipv6_listen && screen->httpPort > 0) {
+				if (fd6 < 0) {
+					fd6 = listen6(screen->httpPort);
+				}
+				ipv6_http_fd = fd6;
+				if (ipv6_http_fd >= 0) {
+					rfbLog("http_connections: Listening %s on IPv6 port %d (socket %d)\n",
+					    screen->httpListenSock < 0 ? "only" : "also",
+					    screen->httpPort, ipv6_http_fd);
+				}
+			}
+			listen_str6 = save;
 		}
 	} else {
 		rfbLog("http_connections: turning off http service.\n");
 		if (screen->httpListenSock > -1) {
 			close(screen->httpListenSock);
+			screen->httpListenSock = -1;
 		}
-		screen->httpListenSock = -1;
 		screen->httpDir = NULL;
+		if (ipv6_http_fd >= 0) {
+			close(ipv6_http_fd);
+			ipv6_http_fd = -1;
+		}
 	}
 }
 
 static void reset_httpport(int old, int new) {
 	int hp = new;
-	if (hp < 0) {
+
+	if (! screen->httpDir) {
+		return;
+	} else if (inetd) {
+		rfbLog("reset_httpport: cannot set httpport: %d in inetd.\n", hp);
+		return;
+	} else if (!screen) {
+		rfbLog("reset_httpport: no screen.\n");
+		return;
+	} else if (hp < 0) {
 		rfbLog("reset_httpport: invalid httpport: %d\n", hp);
+		return;
 	} else if (hp == old) {
 		rfbLog("reset_httpport: unchanged httpport: %d\n", hp);
-	} else if (inetd) {
-		rfbLog("reset_httpport: cannot set httpport: %d"
-		    " in inetd.\n", hp);
-	} else if (screen) {
-		/* mutex */
-		screen->httpPort = hp;
-		screen->httpInitDone = FALSE;
-		if (screen->httpListenSock > -1) {
-			close(screen->httpListenSock);
+		return;
+	}
+
+	if (screen->httpListenSock > -1) {
+		close(screen->httpListenSock);
+		screen->httpListenSock = -1;
+	}
+
+	screen->httpPort = hp;
+	screen->httpInitDone = FALSE;
+
+	rfbLog("reset_httpport: setting httpport %d -> %d.\n",
+	    old == -1 ? hp : old, hp);
+
+	if (noipv4 || getenv("IPV4_FAILS")) {
+		if (getenv("IPV4_FAILS")) {
+			rfbLog("TESTING: IPV4_FAILS for reset_httpport()\n");
 		}
-		rfbLog("reset_httpport: setting httpport %d -> %d.\n",
-		    old == -1 ? hp : old, hp);
+	} else if (screen->httpPort == 0) {
+		;
+	} else {
 		rfb_http_init_sockets();
-		if (screen->httpPort != 0 && screen->httpListenSock < 0) {
-			rfbLog("reset_httpport: failed to listen on http port: %d\n", screen->httpPort);
-		}
+	}
+
+	if (screen->httpPort != 0 && screen->httpListenSock < 0) {
+		rfbLog("reset_httpport: failed to listen on http port: %d\n",
+		    screen->httpPort);
+	}
+
+	if (ipv6_http_fd >= 0) {
+		close(ipv6_http_fd);
+		ipv6_http_fd = -1;
+	}
+	if (ipv6_listen && screen->httpPort > 0) {
+		ipv6_http_fd = listen6(screen->httpPort);
+		rfbLog("reset_httpport: ipv6_http_fd: %d  port: %d\n",
+		    ipv6_http_fd, screen->httpPort);
 	}
 }
 
 static void reset_rfbport(int old, int new)  {
 	int rp = new;
-	if (rp < 0) {
+
+	if (inetd) {
+		rfbLog("reset_rfbport: cannot set rfbport: %d in inetd.\n", rp);
+		return;
+	} else if (!screen) {
+		rfbLog("reset_rfbport: no screen.\n");
+		return;
+	} else if (rp < 0) {
 		rfbLog("reset_rfbport: invalid rfbport: %d\n", rp);
+		return;
 	} else if (rp == old) {
 		rfbLog("reset_rfbport: unchanged rfbport: %d\n", rp);
-	} else if (inetd) {
-		rfbLog("reset_rfbport: cannot set rfbport: %d"
-		    " in inetd.\n", rp);
-	} else if (screen) {
-		rfbClientIteratorPtr iter;
-		rfbClientPtr cl;
-		int maxfd;
-		/* mutex */
-		if (rp == 0) {
-			screen->autoPort = TRUE;
+		return;
+	}
+
+	rfbLog("reset_rfbport: setting rfbport %d -> %d.\n", old == -1 ? rp : old, rp);
+
+	screen->port = rp;
+
+	if (use_openssl) {
+		openssl_port(1);
+		if (openssl_sock < 0 && openssl_sock6 < 0) {
+			rfbLog("reset_rfbport: warning could not listen on port: %d\n",
+			    screen->port);
 		} else {
-			screen->autoPort = FALSE;
+			set_vnc_desktop_name();
 		}
-		screen->port = rp;
-		screen->socketState = RFB_SOCKET_INIT;
-
-		if (screen->listenSock > -1) {
-			close(screen->listenSock);
+		if (https_port_num >= 0) {
+			https_port(1);
 		}
+		return;
+	}
 
-		rfbLog("reset_rfbport: setting rfbport %d -> %d.\n",
-		    old == -1 ? rp : old, rp);
-		rfbInitSockets(screen);
+	if (screen->listenSock >= 0) {
+		FD_CLR(screen->listenSock, &(screen->allFds));
+		close(screen->listenSock);
+		screen->listenSock = -1;
+	}
 
-		maxfd = screen->maxFd;
-		if (screen->udpSock > 0 && screen->udpSock > maxfd) {
-			maxfd = screen->udpSock;
+	if (noipv4 || getenv("IPV4_FAILS")) {
+		if (getenv("IPV4_FAILS")) {
+			rfbLog("TESTING: IPV4_FAILS for reset_rfbport()\n");
 		}
-		iter = rfbGetClientIterator(screen);
-		while( (cl = rfbClientIteratorNext(iter)) ) {
-			if (cl->sock > -1) {
-				FD_SET(cl->sock, &(screen->allFds));
-				if (cl->sock > maxfd) {
-					maxfd = cl->sock;
-				}
+	} else {
+		screen->listenSock = listen_tcp(screen->port, screen->listenInterface, 0);
+		if (screen->listenSock >= 0) {
+			if (screen->listenSock > screen->maxFd) {
+				screen->maxFd = screen->listenSock;
 			}
+			FD_SET(screen->listenSock, &(screen->allFds));
 		}
-		rfbReleaseClientIterator(iter);
+	}
 
-		screen->maxFd = maxfd;
+	if (ipv6_listen_fd >= 0) {
+		close(ipv6_listen_fd);
+		ipv6_listen_fd = -1;
+	}
+	if (ipv6_listen && screen->port > 0) {
+		ipv6_listen_fd = listen6(screen->port);
+		rfbLog("reset_rfbport: ipv6_listen_fd: %d  port: %d\n",
+		    ipv6_listen_fd, screen->port);
+	}
 
+	if (screen->listenSock < 0 && ipv6_listen_fd < 0) {
+		rfbLog("reset_rfbport: warning could not listen on port: %d\n", screen->port);
+	} else {
 		set_vnc_desktop_name();
 	}
 }
@@ -741,6 +834,8 @@ int remote_control_access_ok(void) {
 void macosxCG_keycode_inject(int down, int keycode);
 #endif
 
+int rc_npieces = 0;
+
 /*
  * Huge, ugly switch to handle all remote commands and queries
  * -remote/-R and -query/-Q.
@@ -876,6 +971,7 @@ char *process_remote_cmd(char *cmd, int stringonly) {
 			}
 			free(s);
 
+			rc_npieces = n;
 			strcpy(buf, "");
 			for (k=0; k < n; k++) {
 				res = process_remote_cmd(pieces[k], 1);
@@ -898,6 +994,7 @@ char *process_remote_cmd(char *cmd, int stringonly) {
 				free(pieces[k]);
 			}
 			free(pieces);
+			rc_npieces = 0;
 			goto qry;
 		}
 		p += strlen("qry=");
@@ -1779,6 +1876,74 @@ char *process_remote_cmd(char *cmd, int stringonly) {
 		free(before);
 		goto done;
 	}
+	if (!strcmp(p, "noipv6")) {
+		if (query) {
+			snprintf(buf, bufn, "ans=%s:%d", p, noipv6);
+			goto qry;
+		}
+		rfbLog("remote_cmd: enabling -noipv6 mode for future sockets.\n");
+		noipv6 = 1;
+		goto done;
+	}
+	if (!strcmp(p, "ipv6")) {
+		if (query) {
+			snprintf(buf, bufn, "ans=%s:%d", p, !noipv6);
+			goto qry;
+		}
+		rfbLog("remote_cmd: disabling -noipv6 mode for future sockets.\n");
+		noipv6 = 0;
+		goto done;
+	}
+	if (!strcmp(p, "noipv4")) {
+		if (query) {
+			snprintf(buf, bufn, "ans=%s:%d", p, noipv4);
+			goto qry;
+		}
+		rfbLog("remote_cmd: enabling -noipv4 mode for future sockets.\n");
+		noipv4 = 1;
+		goto done;
+	}
+	if (!strcmp(p, "ipv4")) {
+		if (query) {
+			snprintf(buf, bufn, "ans=%s:%d", p, !noipv4);
+			goto qry;
+		}
+		rfbLog("remote_cmd: disabling -noipv4 mode for future sockets.\n");
+		noipv4 = 0;
+		goto done;
+	}
+	if (!strcmp(p, "no6")) {
+		if (query) {
+			snprintf(buf, bufn, "ans=%s:%d", p, !ipv6_listen);
+			goto qry;
+		}
+		if (ipv6_listen) {
+			ipv6_listen = 0;
+			rfbLog("disabling -6 IPv6 listening mode.\n");
+			reset_rfbport(-1, screen->port);
+			reset_httpport(-1, screen->httpPort);
+			if (https_port_num > 0) {
+				https_port(1);
+			}
+		}
+		goto done;
+	}
+	if (!strcmp(p, "6")) {
+		if (query) {
+			snprintf(buf, bufn, "ans=%s:%d", p, ipv6_listen);
+			goto qry;
+		}
+		if (!ipv6_listen) {
+			ipv6_listen = 1;
+			rfbLog("enabling -6 IPv6 listening mode.\n");
+			reset_rfbport(-1, screen->port);
+			reset_httpport(-1, screen->httpPort);
+			if (https_port_num > 0) {
+				https_port(1);
+			}
+		}
+		goto done;
+	}
 	if (!strcmp(p, "localhost")) {
 		char *before, *old;
 		if (query) {
@@ -1818,9 +1983,7 @@ char *process_remote_cmd(char *cmd, int stringonly) {
 		rfbLog("listening on loopback network only.\n");
 		rfbLog("allow list is: '%s'\n", NONUL(allow_list));
 		reset_rfbport(-1, screen->port);
-		if (screen->httpListenSock > -1) {
-			reset_httpport(-1, screen->httpPort);
-		}
+		reset_httpport(-1, screen->httpPort);
 		goto done;
 	}
 	if (!strcmp(p, "nolocalhost")) {
@@ -1866,9 +2029,7 @@ char *process_remote_cmd(char *cmd, int stringonly) {
 		rfbLog("listening on ALL network interfaces.\n");
 		rfbLog("allow list is: '%s'\n", NONUL(allow_list));
 		reset_rfbport(-1, screen->port);
-		if (screen->httpListenSock > -1) {
-			reset_httpport(-1, screen->httpPort);
-		}
+		reset_httpport(-1, screen->httpPort);
 		goto done;
 	}
 	if (strstr(p, "listen") == p) {
@@ -1957,9 +2118,7 @@ char *process_remote_cmd(char *cmd, int stringonly) {
 		if (ok) {
 			rfbLog("allow list is: '%s'\n", NONUL(allow_list));
 			reset_rfbport(-1, screen->port);
-			if (screen->httpListenSock > -1) {
-				reset_httpport(-1, screen->httpPort);
-			}
+			reset_httpport(-1, screen->httpPort);
 			free(before);
 		} else {
 			rfbLog("invalid listen string: %s\n", listen_str);
@@ -3933,6 +4092,10 @@ char *process_remote_cmd(char *cmd, int stringonly) {
 		}
 		all_input = 1;
 		rfbLog("enabled allinput\n");
+		if (handle_events_eagerly) {
+			rfbLog("disabled input_eagerly\n");
+			handle_events_eagerly = 0;
+		}
 		goto done;
 	}
 	if (!strcmp(p, "noallinput")) {
@@ -3942,6 +4105,28 @@ char *process_remote_cmd(char *cmd, int stringonly) {
 		}
 		all_input = 0;
 		rfbLog("disabled allinput\n");
+		goto done;
+	}
+	if (!strcmp(p, "input_eagerly")) {
+		if (query) {
+			snprintf(buf, bufn, "ans=%s:%d", p, handle_events_eagerly);
+			goto qry;
+		}
+		handle_events_eagerly = 1;
+		rfbLog("enabled input_eagerly\n");
+		if (all_input) {
+			rfbLog("disabled allinput\n");
+			all_input = 0;
+		}
+		goto done;
+	}
+	if (!strcmp(p, "noinput_eagerly")) {
+		if (query) {
+			snprintf(buf, bufn, "ans=%s:%d", p, !handle_events_eagerly);
+			goto qry;
+		}
+		handle_events_eagerly = 0;
+		rfbLog("disabled input_eagerly\n");
 		goto done;
 	}
 	if (strstr(p, "input") == p) {
@@ -4941,24 +5126,24 @@ char *process_remote_cmd(char *cmd, int stringonly) {
 	}
 	if (strstr(p, "uinput_reset") == p) {
 		COLON_CHECK("uinput_reset:")
-		p += strlen("uinput_reset:");
 		if (query) {
 			snprintf(buf, bufn, "ans=%s%s%d", p, co,
 			    get_uinput_reset());
 			goto qry;
 		}
+		p += strlen("uinput_reset:");
 		rfbLog("set_uinput_reset: %s\n", p);
 		set_uinput_reset(atoi(p));
 		goto done;
 	}
 	if (strstr(p, "uinput_always") == p) {
 		COLON_CHECK("uinput_always:")
-		p += strlen("uinput_always:");
 		if (query) {
 			snprintf(buf, bufn, "ans=%s%s%d", p, co,
 			    get_uinput_always());
 			goto qry;
 		}
+		p += strlen("uinput_always:");
 		rfbLog("set_uinput_always: %s\n", p);
 		set_uinput_always(atoi(p));
 		goto done;
@@ -5002,7 +5187,7 @@ char *process_remote_cmd(char *cmd, int stringonly) {
 			snprintf(buf, bufn, "ans=%s:%d", p, (ls > -1));
 			goto qry;
 		}
-		if (screen->httpListenSock > -1) {
+		if (screen->httpListenSock > -1 || ipv6_http_fd > -1) {
 			rfbLog("already listening for http connections.\n");
 		} else {
 			rfbLog("turning on listening for http connections.\n");
@@ -5018,7 +5203,7 @@ char *process_remote_cmd(char *cmd, int stringonly) {
 			snprintf(buf, bufn, "ans=%s:%d", p, !(ls > -1));
 			goto qry;
 		}
-		if (screen->httpListenSock < 0) {
+		if (screen->httpListenSock < 0 && ipv6_http_fd < 0) {
 			rfbLog("already not listening for http connections.\n");
 		} else {
 			rfbLog("turning off listening for http connections.\n");
@@ -5936,15 +6121,15 @@ char *process_remote_cmd(char *cmd, int stringonly) {
 
 			grab_state(&ptr_grabbed, &kbd_grabbed);
 			snprintf(buf, bufn, "aro=%s:%d,%d", p, ptr_grabbed, kbd_grabbed);
-			if (dpy) {
+			if (dpy && rc_npieces < 10) {
 				rfbLog("remote_cmd: ptr,kbd: %s\n", buf);
 			}
 			goto qry;
 		}
-		if (!strcmp(p, "pointer_pos") || !strcmp(p, "pointer_x") || !strcmp(p, "pointer_y") || !strcmp(p, "pointer_same") || !strcmp(p, "pointer_root")) {
+		if (!strcmp(p, "pointer_pos") || !strcmp(p, "pointer_x") || !strcmp(p, "pointer_y") || !strcmp(p, "pointer_same") || !strcmp(p, "pointer_root") || !strcmp(p, "pointer_mask")) {
 			int px = -1, py = -1; 
 			int wx, wy;
-			unsigned int m;
+			unsigned int m = 0;
 			Window r, c;
 			Bool same_screen = True;
 			
@@ -5959,6 +6144,8 @@ char *process_remote_cmd(char *cmd, int stringonly) {
 				snprintf(buf, bufn, "aro=%s:%d", p, same_screen);
 			} else if (!strcmp(p, "pointer_root")) {		/* skip-cmd-list */
 				snprintf(buf, bufn, "aro=%s:0x%x", p, (unsigned int) rootwin);
+			} else if (!strcmp(p, "pointer_mask")) {		/* skip-cmd-list */
+				snprintf(buf, bufn, "aro=%s:0x%x", p, m);
 			} 
 			if (!dpy) {
 				goto qry;
@@ -5981,8 +6168,12 @@ char *process_remote_cmd(char *cmd, int stringonly) {
 				snprintf(buf, bufn, "aro=%s:%d", p, same_screen);
 			} else if (!strcmp(p, "pointer_root")) {		/* skip-cmd-list */
 				snprintf(buf, bufn, "aro=%s:0x%x", p, (unsigned int) r);
+			} else if (!strcmp(p, "pointer_mask")) {		/* skip-cmd-list */
+				snprintf(buf, bufn, "aro=%s:0x%x", p, m);
 			} 
-			rfbLog("remote_cmd: %s: %s\n", p, buf);
+			if (rc_npieces < 10) {
+				rfbLog("remote_cmd: %s: %s\n", p, buf);
+			}
 			goto qry;
 		}
 		if (!strcmp(p, "bpp")) {
