@@ -104,5 +104,6 @@
         <file>resources/window_demo.png</file>
         <file>resources/logo.png</file>
         <file>resources/greenled.png</file>
+        <file>resources/toolbar-background.png</file>
     </qresource>
 </RCC>

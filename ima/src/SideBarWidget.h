@@ -1,7 +1,7 @@
 /*
  * SideBarWidget.h - base-class for all side-bar-widgets
  *
- * Copyright (c) 2004-2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -21,7 +21,6 @@
  * Boston, MA 02111-1307, USA.
  *
  */
-
 
 #ifndef _SIDE_BAR_WIDGET_H
 #define _SIDE_BAR_WIDGET_H
@@ -59,14 +58,13 @@ public:
 
 protected:
 	virtual void paintEvent( QPaintEvent * _pe );
-	virtual void resizeEvent( QResizeEvent * _re );
 
-	inline QWidget * contentParent( void )
+	inline QWidget * contentParent()
 	{
 		return m_contents;
 	}
 
-	inline MainWindow * getMainWindow( void )
+	inline MainWindow * mainWindow()
 	{
 		return m_mainWindow;
 	}

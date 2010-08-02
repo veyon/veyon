@@ -1,7 +1,7 @@
 /*
  * MainWindow.cpp - implementation of MainWindow class
  *
- * Copyright (c) 2004-2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -37,7 +37,6 @@
 #include <QtGui/QMessageBox>
 #include <QtGui/QScrollArea>
 #include <QtGui/QSplashScreen>
-#include <QtGui/QSplitter>
 #include <QtGui/QToolBar>
 #include <QtGui/QToolButton>
 #include <QtGui/QWorkspace>
@@ -46,13 +45,11 @@
 #include "MainWindow.h"
 #include "ClassroomManager.h"
 #include "Dialogs.h"
-#include "ItalcSideBar.h"
 #include "OverviewWidget.h"
 #include "SnapshotList.h"
 #include "ConfigWidget.h"
 #include "DecoratedMessageBox.h"
 #include "ToolButton.h"
-#include "ToolBar.h"
 #include "ItalcCoreConnection.h"
 #include "ItalcVncConnection.h"
 #include "LocalSystem.h"
@@ -89,8 +86,9 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 				:
 				QApplication::desktop()->screenNumber( this ) )
 {
+	setupUi( this );
+
 	setWindowTitle( tr( "iTALC" ) + " " + ITALC_VERSION );
-	setWindowIcon( QPixmap( ":/resources/logo.png" ) );
 
 	if( MainWindow::ensureConfigPathExists() == FALSE )
 	{
@@ -106,59 +104,41 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 		return;
 	}
 
-	QWidget * hbox = new QWidget( this );
-	QHBoxLayout * hbox_layout = new QHBoxLayout( hbox );
-	hbox_layout->setMargin( 0 );
-	hbox_layout->setSpacing( 0 );
+	// configure side bar
+	m_sideBar->setOrientation( Qt::Vertical );
 
-	// create splitter, which is used for splitting sidebar-workspaces
-	// from main-workspace
-	m_splitter = new QSplitter( Qt::Horizontal, hbox );
-#if QT_VERSION >= 0x030200
-	m_splitter->setChildrenCollapsible( FALSE );
-#endif
-
-	// create sidebar
-	m_sideBar = new ItalcSideBar( ItalcSideBar::VSNET, hbox, m_splitter );
+	// configure scroll area
+	m_scrollArea->setBackgroundRole( QPalette::Dark );
+	m_workspace = new clientWorkspace( m_scrollArea );
 
 
-
-	QScrollArea * sa = new QScrollArea( m_splitter );
-	sa->setBackgroundRole( QPalette::Dark );
-	sa->setFrameStyle( QFrame::NoFrame );
-	m_splitter->setStretchFactor( m_splitter->indexOf( sa ), 10 );
-	m_workspace = new clientWorkspace( sa );
-
-
-	QWidget * twp = m_sideBar->tabWidgetParent();
 	// now create all sidebar-workspaces
-	m_overviewWidget = new OverviewWidget( this, twp );
-	m_classroomManager = new ClassroomManager( this, twp );
-	m_snapshotList = new SnapshotList( this, twp );
-	m_configWidget = new ConfigWidget( this, twp );
+	m_overviewWidget = new OverviewWidget( this, m_centralWidget );
+	m_classroomManager = new ClassroomManager( this, m_centralWidget );
+	m_snapshotList = new SnapshotList( this, m_centralWidget );
+	m_configWidget = new ConfigWidget( this, m_centralWidget );
 
 	m_workspace->m_contextMenu = m_classroomManager->quickSwitchMenu();
 
 	// append sidebar-workspaces to sidebar
-	int id = 0;
-	m_sideBar->appendTab( m_overviewWidget, ++id );
-	m_sideBar->appendTab( m_classroomManager, ++id );
-	m_sideBar->appendTab( m_snapshotList, ++id );
-	m_sideBar->appendTab( m_configWidget, ++id );
-	m_sideBar->setPosition( ItalcSideBar::Left );
-	m_sideBar->setTab( m_openedTabInSideBar, TRUE );
+	m_sideBar->appendTab( m_overviewWidget );
+	m_sideBar->appendTab( m_classroomManager );
+	m_sideBar->appendTab( m_snapshotList );
+	m_sideBar->appendTab( m_configWidget );
 
-	setCentralWidget( hbox );
+	m_centralLayout->insertWidget( 0, m_overviewWidget );
+	m_centralLayout->insertWidget( 0, m_classroomManager );
+	m_centralLayout->insertWidget( 0, m_snapshotList );
+	m_centralLayout->insertWidget( 0, m_configWidget );
+/*	setCentralWidget( hbox );
 	hbox_layout->addWidget( m_sideBar );
-	hbox_layout->addWidget( m_splitter );
+	hbox_layout->addWidget( m_splitter );*/
 
 
 
 
 	// create the action-toolbar
-	m_toolBar = new ToolBar( tr( "Actions" ), this );
 	m_toolBar->layout()->setSpacing( 4 );
-	m_toolBar->setMovable( FALSE );
 	m_toolBar->setObjectName( "maintoolbar" );
 	m_toolBar->toggleViewAction()->setEnabled( FALSE );
 
@@ -336,11 +316,11 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 		}
 	}
 
-	foreach( KMultiTabBarTab * tab, m_sideBar->tabs() )
+	foreach( QAbstractButton * btn, m_sideBar->tabs() )
 	{
-		if( hidden_buttons.contains( tab->text() ) )
+		if( hidden_buttons.contains( btn->text() ) )
 		{
-			tab->setTabVisible( FALSE );
+			btn->setVisible( false );
 		}
 	}
 
@@ -409,7 +389,7 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 
 	QTimer::singleShot( 2000, m_classroomManager, SLOT( updateClients() ) );
 
-	m_updateThread = new mainWindowUpdateThread( this );
+	m_updateThread = new MainWindowUpdateThread( this );
 }
 
 
@@ -616,7 +596,7 @@ void MainWindow::changeGlobalClientMode( int _mode )
 
 
 
-mainWindowUpdateThread::mainWindowUpdateThread( MainWindow * _main_window ) :
+MainWindowUpdateThread::MainWindowUpdateThread( MainWindow * _main_window ) :
 	QThread(),
 	m_mainWindow( _main_window )
 {
@@ -626,7 +606,7 @@ mainWindowUpdateThread::mainWindowUpdateThread( MainWindow * _main_window ) :
 
 
 
-void mainWindowUpdateThread::update( void )
+void MainWindowUpdateThread::update( void )
 {
 	if( Client::reloadSnapshotList() )
 	{
@@ -639,7 +619,7 @@ void mainWindowUpdateThread::update( void )
 }
 
 
-void mainWindowUpdateThread::run( void )
+void MainWindowUpdateThread::run( void )
 {
 	QTimer t;
 	connect( &t, SIGNAL( timeout() ), this, SLOT( update() ) );
@@ -655,6 +635,8 @@ clientWorkspace::clientWorkspace( QScrollArea * _parent ) :
 	QWidget( _parent ),
 	m_contextMenu( NULL )
 {
+	setStyleSheet( "background-image: url(:/resources/toolbar-background.png);" );
+
 	_parent->setWidget( this );
 	_parent->setWidgetResizable( TRUE );
 	setSizePolicy( QSizePolicy( QSizePolicy::MinimumExpanding,

@@ -1,7 +1,7 @@
 /*
- * main_window.h - main-window of iTALC
+ * MainWindow.h - main-window of iTALC
  *
- * Copyright (c) 2004-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -22,7 +22,6 @@
  *
  */
 
-
 #ifndef _MAIN_WINDOW_H
 #define _MAIN_WINDOW_H
 
@@ -32,6 +31,8 @@
 #include <QtGui/QMainWindow>
 #include <QtGui/QSystemTrayIcon>
 #include <QtGui/QToolButton>
+
+#include "ui_MainWindow.h"
 
 #include "Client.h"
 #include "SnapshotList.h"
@@ -43,8 +44,6 @@ class QSplashScreen;
 class QSplitter;
 class ClassroomManager;
 class ConfigWidget;
-class ToolBar;
-class ItalcSideBar;
 class OverviewWidget;
 class RemoteControlWidget;
 class UserList;
@@ -55,14 +54,14 @@ extern QString __default_domain;
 extern int __demo_quality;
 
 
-class mainWindow;
+class MainWindow;
 
 
-class mainWindowUpdateThread : public QThread
+class MainWindowUpdateThread : public QThread
 {
 	Q_OBJECT
 public:
-	mainWindowUpdateThread( MainWindow * _main_window );
+	MainWindowUpdateThread( MainWindow * _main_window );
 
 private slots:
 	void update( void );
@@ -97,7 +96,7 @@ private:
 
 
 
-class MainWindow : public QMainWindow
+class MainWindow : public QMainWindow, public Ui::MainWindow
 {
 	Q_OBJECT
 public:
@@ -129,14 +128,14 @@ public:
 		}
 	}
 
-	inline ToolBar * getToolBar( void )
+	inline MainToolBar * toolBar()
 	{
-		return( m_toolBar );
+		return m_toolBar;
 	}
 
-	inline ItalcSideBar * getSideBar( void )
+	inline SideBar * sideBar()
 	{
-		return( m_sideBar );
+		return m_sideBar;
 	}
 
 	static bool ensureConfigPathExists( void );
@@ -196,20 +195,15 @@ private slots:
 private:
 	virtual void closeEvent( QCloseEvent * _ce );
 
-	mainWindowUpdateThread * m_updateThread;
+	MainWindowUpdateThread * m_updateThread;
 
 	clientWorkspace * m_workspace;
 
 	QButtonGroup * m_modeGroup;
 
-	ToolBar * m_toolBar;
-
 	QList<QAction *> m_sysTrayActions;
 
-	QSplitter * m_splitter;
-
 	QWidget * m_sideBarWidget;
-	ItalcSideBar * m_sideBar;
 	int m_openedTabInSideBar;
 
 
@@ -229,7 +223,7 @@ private:
 
 	static bool s_atExit;
 
-	friend class mainWindowUpdateThread;
+	friend class MainWindowUpdateThread;
 	friend class ClassroomManager;
 
 } ;

@@ -1,8 +1,8 @@
 /*
- *  ToolBar.cpp - visually advanced toolbar
+ *  MainToolBar.cpp - MainToolBar for MainWindow
  *
- *  Copyright (c) 2007-2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
- *  
+ *  Copyright (c) 2007-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ *
  *  This file is part of iTALC - http://italc.sourceforge.net
  *
  *  This is free software; you can redistribute it and/or modify
@@ -22,84 +22,63 @@
  */
 
 
-
 #include <QtGui/QMenu>
 #include <QtGui/QPainter>
 #include <QtGui/QPaintEvent>
 
-#include "ToolBar.h"
-#include "ToolButton.h"
+#include "MainToolBar.h"
 
 
 
-
-// toolbar for remote-control-widget
-ToolBar::ToolBar( const QString & _title, QWidget * _parent ) :
-	QToolBar( _title, _parent )
+MainToolBar::MainToolBar( QWidget * _parent ) :
+	QToolBar( tr( "Actions" ), _parent )
 {
-	setMovable( false );
-
-	move( 0, 0 );
-	show();
-
-	setFixedHeight( 54 );
-
-	QPixmap bg( 100, height() );
-	QPainter p( &bg );
-	QLinearGradient lingrad( 0, 0, 0, height() );
-	lingrad.setColorAt( 0, QColor( 224, 224, 255 ) );
-	lingrad.setColorAt( 0.04, QColor( 80, 160, 255 ) );
-	lingrad.setColorAt( 0.40, QColor( 32, 64, 192 ) );
-	lingrad.setColorAt( 0.42, QColor( 8, 16, 96 ) );
-	lingrad.setColorAt( 1, QColor( 0, 64, 224 ) );
-	p.fillRect( QRect( 0, 0, 100, height() ), lingrad );
-	p.end();
-
-	setAutoFillBackground( true );
 	QPalette pal = palette();
-	pal.setBrush( backgroundRole(), bg );
-	pal.setBrush( foregroundRole(), bg );
+	pal.setBrush( QPalette::Window, QPixmap( ":/resources/toolbar-background.png" ) );
 	setPalette( pal );
 }
 
 
 
 
-ToolBar::~ToolBar()
+MainToolBar::~MainToolBar()
 {
 }
 
 
 
 
-void ToolBar::contextMenuEvent( QContextMenuEvent * _e )
+void MainToolBar::contextMenuEvent( QContextMenuEvent * _e )
 {
 	QMenu m( this );
 	foreach( QAction * a, actions() )
 	{
 		QAction * ma = m.addAction( a->text() );
-		ma->setCheckable( true );
+		ma->setCheckable( TRUE );
 		ma->setChecked( a->isVisible() );
 	}
 	connect( &m, SIGNAL( triggered( QAction * ) ),
 				this, SLOT( toggleButton( QAction * ) ) );
 	m.exec( _e->globalPos() );
+
 }
 
 
 
 
-void ToolBar::paintEvent( QPaintEvent * _pe )
+void MainToolBar::paintEvent( QPaintEvent * _pe )
 {
 	QPainter p( this );
-	p.setPen( Qt::black );
+	p.setPen( QColor( 48, 48, 48 ) );
+	p.fillRect( _pe->rect(), palette().brush( QPalette::Window ) );
 	p.drawLine( 0, 0, width(), 0 );
+	p.drawLine( 0, height()-1, width(), height()-1 );
 }
 
 
 
 
-void ToolBar::toggleButton( QAction * _a )
+void MainToolBar::toggleButton( QAction * _a )
 {
 	foreach( QAction * a, actions() )
 	{

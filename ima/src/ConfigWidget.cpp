@@ -1,7 +1,7 @@
 /*
  * ConfigWidget.cpp - implementation of configuration-widget for side-bar
  *
- * Copyright (c) 2004-2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -48,7 +48,6 @@ ConfigWidget::ConfigWidget( MainWindow * _main_window, QWidget * _parent ) :
 			_main_window, _parent )
 {
 	setupUi( contentParent() );
-	contentParent()->layout()->addWidget( layoutWidget );
 
 #ifdef ITALC3
 
@@ -107,9 +106,9 @@ ConfigWidget::ConfigWidget( MainWindow * _main_window, QWidget * _parent ) :
 					setNoToolTips);
 #else
 	connect( updateIntervalSB, SIGNAL( valueChanged( int ) ),
-			getMainWindow()->getClassroomManager(),
+				mainWindow()->getClassroomManager(),
 					SLOT( updateIntervalChanged( int ) ) );
-	getMainWindow()->getClassroomManager()->setUpdateIntervalSpinBox(
+	mainWindow()->getClassroomManager()->setUpdateIntervalSpinBox(
 							updateIntervalSB );
 
 
@@ -137,10 +136,10 @@ ConfigWidget::ConfigWidget( MainWindow * _main_window, QWidget * _parent ) :
 	connect( domainEdit, SIGNAL( textChanged( const QString & ) ),
 			this, SLOT( domainChanged( const QString & ) ) );
 
-	clientDoubleClickActionCB->setCurrentIndex( getMainWindow()->
+	clientDoubleClickActionCB->setCurrentIndex( mainWindow()->
 				getClassroomManager()->clientDblClickAction() );
 	connect( clientDoubleClickActionCB, SIGNAL( activated( int ) ),
-			getMainWindow()->getClassroomManager(),
+				mainWindow()->getClassroomManager(),
 				SLOT( setClientDblClickAction( int ) ) );
 #endif
 }

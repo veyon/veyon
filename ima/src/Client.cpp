@@ -2,7 +2,7 @@
  * Client.cpp - code for client-windows, which are displayed in several
  *              instances in the main-window of iTALC
  *
- * Copyright (c) 2004-2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -1193,7 +1193,6 @@ Client::States Client::currentState( void ) const
 
 	return State_Unkown;
 }
-
 
 
 

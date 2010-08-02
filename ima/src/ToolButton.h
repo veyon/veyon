@@ -1,7 +1,7 @@
 /*
  * ToolButton.h - declaration of class ToolButton
  *
- * Copyright (c) 2006-2009 Tobias Doerffel <tobydox/at/users.sourceforge.net>
+ * Copyright (c) 2006-2010 Tobias Doerffel <tobydox/at/users.sourceforge.net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -21,7 +21,6 @@
  * Boston, MA 02111-1307, USA.
  *
  */
-
 
 #ifndef _TOOL_BUTTON_H
 #define _TOOL_BUTTON_H 
@@ -80,16 +79,15 @@ protected:
 
 
 signals:
-	void mouseLeftButton( void );
+	void mouseLeftButton();
 
 
 private slots:
-	bool checkForLeaveEvent( void );
-	void updateColorLevel( void );
+	bool checkForLeaveEvent();
 
 
 private:
-	void updateSize( void );
+	void updateSize();
 
 
 #ifndef ITALC3
@@ -99,8 +97,7 @@ private:
 
 	QPixmap m_pixmap;
 	FastQImage m_img;
-	unsigned char m_colorizeLevel;
-	bool m_fadeBack;
+	bool m_mouseOver;
 
 	QString m_label;
 	QString m_altLabel;
