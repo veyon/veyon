@@ -27,6 +27,7 @@
 #include <config.h>
 #endif
 
+#include <QtCore/QLocale>
 #include <QtGui/QApplication>
 #include <QtNetwork/QHostInfo>
 
