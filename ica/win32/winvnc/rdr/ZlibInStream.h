@@ -16,41 +16,43 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307,
 // USA.
 
-
 //
-// ZlibOutStream streams to a compressed data stream (underlying), compressing
-// with zlib on the fly.
+// ZlibInStream streams from a compressed data stream ("underlying"),
+// decompressing with zlib on the fly.
 //
 
-#ifndef __RDR_ZLIBOUTSTREAM_H__
-#define __RDR_ZLIBOUTSTREAM_H__
+#ifndef __RDR_ZLIBINSTREAM_H__
+#define __RDR_ZLIBINSTREAM_H__
 
-#include "OutStream.h"
+#pragma once
+
+#include "InStream.h"
 
 struct z_stream_s;
 
 namespace rdr {
 
-  class ZlibOutStream : public OutStream {
+  class ZlibInStream : public InStream {
 
   public:
 
-    // adzm - 2010-07 - Custom compression level
-    ZlibOutStream(OutStream* os=0, int bufSize=0, int compressionLevel=-1); // Z_DEFAULT_COMPRESSION
-    virtual ~ZlibOutStream();
+    ZlibInStream(int bufSize=0);
+    virtual ~ZlibInStream();
 
-    void setUnderlying(OutStream* os);
-    void flush();
-    int length();
+    void setUnderlying(InStream* is, int bytesIn);
+    void reset();
+    int pos();
 
   private:
 
     int overrun(int itemSize, int nItems);
+    void decompress();
 
-    OutStream* underlying;
+    InStream* underlying;
     int bufSize;
     int offset;
     z_stream_s* zs;
+    int bytesIn;
     U8* start;
   };
 

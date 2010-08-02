@@ -1,6 +1,6 @@
 #include "stdhdrs.h"
 #include "videodriver.h"
-//#include <StrSafe.h>
+#include <strsafe.h>
 LPSTR driverName = "mv video hook driver2";
 
 #define MAP1 1030

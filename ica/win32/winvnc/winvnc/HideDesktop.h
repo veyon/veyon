@@ -44,4 +44,13 @@ void RestoreDesktop();			// restore it  (warning: uses some global state set by 
 bool HideActiveDesktop();		// returns true if the Active Desktop was enabled and has been hidden
 void ShowActiveDesktop();		// show it always (if Shell version >= 4.71)
 
+// adzm - 2010-07 - Disable more effects or font smoothing
+// UI Effects
+
+void DisableEffects();
+void EnableEffects();
+
+void DisableFontSmoothing();
+void EnableFontSmoothing();
+
 #endif

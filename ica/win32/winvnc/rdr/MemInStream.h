@@ -16,44 +16,32 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307,
 // USA.
 
+#ifndef __RDR_MEMINSTREAM_H__
+#define __RDR_MEMINSTREAM_H__
 
-//
-// ZlibOutStream streams to a compressed data stream (underlying), compressing
-// with zlib on the fly.
-//
-
-#ifndef __RDR_ZLIBOUTSTREAM_H__
-#define __RDR_ZLIBOUTSTREAM_H__
-
-#include "OutStream.h"
-
-struct z_stream_s;
+#include "InStream.h"
+#include "Exception.h"
 
 namespace rdr {
 
-  class ZlibOutStream : public OutStream {
+  class MemInStream : public InStream {
 
   public:
 
-    // adzm - 2010-07 - Custom compression level
-    ZlibOutStream(OutStream* os=0, int bufSize=0, int compressionLevel=-1); // Z_DEFAULT_COMPRESSION
-    virtual ~ZlibOutStream();
+    MemInStream(const void* data, int len) {
+      ptr = start = (const U8*)data;
+      end = start + len;
+    }
 
-    void setUnderlying(OutStream* os);
-    void flush();
-    int length();
+    int pos() { return ptr - start; }
+    void reposition(int pos) { ptr = start + pos; }
 
   private:
 
-    int overrun(int itemSize, int nItems);
-
-    OutStream* underlying;
-    int bufSize;
-    int offset;
-    z_stream_s* zs;
-    U8* start;
+    int overrun(int itemSize, int nItems) { throw EndOfStream("overrun"); }
+    const U8* start;
   };
 
-} // end of namespace rdr
+}
 
 #endif

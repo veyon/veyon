@@ -37,10 +37,10 @@
 #include <shlwapi.h>
 #include <windows.h>
 #include <wininet.h> // Shell object uses INTERNET_MAX_URL_LENGTH (go figure)
-#if _MSC_VER < 1400
+#if !__GNUC__ && _MSC_VER < 1400
 #define _WIN32_IE 0x0400
 #endif
-#include <atlbase.h> // ATL smart pointers
+#include <tchar.h>
 #include <shlguid.h> // shell GUIDs
 #include <shlobj.h>  // IActiveDesktop
 #include "stdhdrs.h"
@@ -123,6 +123,7 @@ BOOL SHDesktopHTML()
 static 
 HRESULT EnableActiveDesktop(bool enable)
 {
+#if 0
 	CoInitialize(NULL);
 	CComQIPtr<IActiveDesktop, &IID_IActiveDesktop>	pIActiveDesktop;
 	
@@ -146,6 +147,7 @@ HRESULT EnableActiveDesktop(bool enable)
 	hr = pIActiveDesktop->ApplyChanges(AD_APPLY_REFRESH);
 	CoUninitialize();
 	return hr;
+#endif
 }
 
 bool HideActiveDesktop()
@@ -218,7 +220,7 @@ void HideDesktop()
 	{
 		SaveWallpaperStyle(); // Added Jef Fix
 		SystemParametersInfo(SPI_GETDESKWALLPAPER,1024,SCREENNAME,NULL );
-		SystemParametersInfo(SPI_SETDESKWALLPAPER, 0, "", SPIF_SENDCHANGE);
+		SystemParametersInfo(SPI_SETDESKWALLPAPER, 0, NULL, SPIF_SENDCHANGE);
 		ADWasEnabled = HideActiveDesktop();
 		ISWallPaperHided=true;
 		vnclog.Print(LL_INTWARN, VNCLOG("Killwallpaper %i %i\n"),ISWallPaperHided,ADWasEnabled);
@@ -242,4 +244,183 @@ void RestoreDesktop()
 	ISWallPaperHided=false;
 
 	//SystemParametersInfo(SPI_SETDESKPATTERN, 0, DesktopPattern, SPIF_SENDCHANGE);
+}
+
+
+// adzm - 2010-07 - Disable more effects or font smoothing
+
+UINT spiParams[] = {
+	0x1024, //SPI_SETDROPSHADOW, 
+	SPI_GETCOMBOBOXANIMATION, 
+	SPI_GETMENUANIMATION, 
+	SPI_GETTOOLTIPANIMATION, 
+	SPI_GETSELECTIONFADE, 
+	SPI_GETLISTBOXSMOOTHSCROLLING, 
+};
+
+// future possibilities
+/*
+SPI_GETDISABLEOVERLAPPEDCONTENT	(>XP)
+SPI_GETCLIENTAREAANIMATION		(>XP)
+*/
+
+UINT spiSuggested[] = {
+	FALSE,
+	FALSE,
+	FALSE,
+	FALSE,
+	FALSE,
+	FALSE,
+};
+
+BOOL spiValues[(sizeof(spiParams) / sizeof(spiParams[0]))];
+
+static bool g_bEffectsDisabled = false;
+
+// adzm - 2010-07 - Disable more effects or font smoothing
+void DisableEffects()
+{
+	if (!g_bEffectsDisabled) {
+		g_bEffectsDisabled = true;
+
+		::ZeroMemory(spiValues, sizeof(spiValues));
+
+		int iParam = 0;
+		for (iParam = 0; iParam < (sizeof(spiParams) / sizeof(spiParams[0])); iParam++) {
+			if (!SystemParametersInfo(spiParams[iParam], 0, &(spiValues[iParam]), NULL)) {
+				vnclog.Print(LL_INTWARN, VNCLOG("Failed to get SPI value for 0x%04x (0x%08x)\n"), spiParams[iParam], GetLastError());
+			} else {
+				vnclog.Print(LL_INTINFO, VNCLOG("Retrieved SPI value for 0x%04x: 0x%08x\n"), spiParams[iParam], spiValues[iParam]);
+			}
+		}
+		for (iParam = 0; iParam < (sizeof(spiParams) / sizeof(spiParams[0])); iParam++) {
+			if (spiValues[iParam] != spiSuggested[iParam]) {
+				if (!SystemParametersInfo(spiParams[iParam]+1, 0, (PVOID)spiSuggested[iParam], SPIF_SENDCHANGE)) {				
+					vnclog.Print(LL_INTWARN, VNCLOG("Failed to set SPI value for 0x%04x to 0x%08x (0x%08x)\n"), spiParams[iParam]+1, spiSuggested[iParam], GetLastError());
+				} else {
+					vnclog.Print(LL_INTINFO, VNCLOG("Set SPI value for 0x%04x to 0x%08x\n"), spiParams[iParam]+1, spiSuggested[iParam]);
+				}
+			}
+		}
+	}
+}
+
+// adzm - 2010-07 - Disable more effects or font smoothing
+void EnableEffects()
+{
+	if (g_bEffectsDisabled) {
+		int iParam = 0;
+		for (iParam = 0; iParam < (sizeof(spiParams) / sizeof(spiParams[0])); iParam++) {
+			if (spiValues[iParam] != spiSuggested[iParam]) {
+				if (!SystemParametersInfo(spiParams[iParam]+1, 0, (PVOID)spiValues[iParam], SPIF_SENDCHANGE)) {
+					vnclog.Print(LL_INTWARN, VNCLOG("Failed to restore SPI value for 0x%04x (0x%08x)\n"), spiParams[iParam]+1, GetLastError());
+				} else {
+					vnclog.Print(LL_INTINFO, VNCLOG("Restored SPI value for 0x%04x to 0x%08x\n"), spiParams[iParam]+1, spiValues[iParam]);
+				}
+			}
+		}
+
+		::ZeroMemory(spiValues, sizeof(spiValues));
+	}
+
+	g_bEffectsDisabled = false;
+}
+
+
+
+// adzm - 2010-07 - Disable more effects or font smoothing
+//
+bool g_bDisabledFontSmoothing = false;
+
+bool g_bGotOldFontSmoothingValue = false;
+bool g_bGotFontSmoothingType = false;
+bool g_bGotClearType = false;
+BOOL g_bOldClearTypeValue = TRUE;
+BOOL g_bOldFontSmoothingValue = TRUE;
+UINT g_nOldFontSmoothingType = 0x0001; // FE_FONTSMOOTHINGSTANDARD
+
+// adzm - 2010-07 - Disable more effects or font smoothing
+void DisableFontSmoothing()
+{
+	if (!g_bDisabledFontSmoothing) {
+		
+		if (!g_bGotOldFontSmoothingValue) {
+			// there appears to be a delay between setting the SPI_SETFONTSMOOTHING value and SPI_GETFONTSMOOTHING returning that up-to-date value.
+			if (!SystemParametersInfo(SPI_GETFONTSMOOTHING, 0, &g_bOldFontSmoothingValue, NULL)) {
+				vnclog.Print(LL_INTWARN, VNCLOG("Failed to get SPI value for SPI_GETFONTSMOOTHING (0x%08x)\n"), GetLastError());
+				g_bGotOldFontSmoothingValue = false;
+			} else {
+				vnclog.Print(LL_INTINFO, VNCLOG("Retrieved SPI value for SPI_GETFONTSMOOTHING: 0x%08x\n"), g_bOldFontSmoothingValue);
+				g_bGotOldFontSmoothingValue = true;
+				
+				if (!SystemParametersInfo(0x200A /*SPI_GETFONTSMOOTHINGTYPE*/, 0, &g_nOldFontSmoothingType, NULL)) {
+					vnclog.Print(LL_INTWARN, VNCLOG("Failed to get SPI value for SPI_GETFONTSMOOTHINGTYPE (0x%08x)\n"), GetLastError());
+					g_bGotFontSmoothingType = false;
+				} else {
+					vnclog.Print(LL_INTINFO, VNCLOG("Retrieved SPI value for SPI_GETFONTSMOOTHINGTYPE: 0x%08x\n"), g_nOldFontSmoothingType);
+					g_bGotFontSmoothingType = true;
+				}
+				
+				if (!SystemParametersInfo(0x1048 /*SPI_GETCLEARTYPE*/, 0, &g_bOldClearTypeValue, NULL)) {
+					vnclog.Print(LL_INTWARN, VNCLOG("Failed to get SPI value for SPI_GETCLEARTYPE (0x%08x)\n"), GetLastError());
+					g_bGotClearType = false;
+				} else {
+					vnclog.Print(LL_INTINFO, VNCLOG("Retrieved SPI value for SPI_GETCLEARTYPE: 0x%08x\n"), g_bOldClearTypeValue);
+					g_bGotClearType = true;
+				}
+			}
+		}
+
+
+		if (g_bGotOldFontSmoothingValue && g_bOldFontSmoothingValue != FALSE) {
+			
+			if (g_bGotClearType && g_bOldClearTypeValue != FALSE) {
+				if (!SystemParametersInfo(0x1049 /*SPI_SETCLEARTYPE*/, 0, (PVOID)FALSE, SPIF_SENDCHANGE)) {				
+					vnclog.Print(LL_INTWARN, VNCLOG("Failed to set SPI value for SPI_SETCLEARTYPE (0x%08x)\n"), GetLastError());
+				} else {
+					g_bDisabledFontSmoothing = true; // ensure we reset even if SPI_SETFONTSMOOTHING fails for some reason
+					vnclog.Print(LL_INTINFO, VNCLOG("Set SPI value for SPI_SETCLEARTYPE: 0x%08x\n"), FALSE);
+				}
+			}
+
+			if (!SystemParametersInfo(SPI_SETFONTSMOOTHING, FALSE, NULL, SPIF_SENDCHANGE)) {				
+				vnclog.Print(LL_INTWARN, VNCLOG("Failed to set SPI value for SPI_SETFONTSMOOTHING (0x%08x)\n"), GetLastError());
+			} else {
+				g_bDisabledFontSmoothing = true;
+				vnclog.Print(LL_INTINFO, VNCLOG("Set SPI value for SPI_SETFONTSMOOTHING: 0x%08x\n"), FALSE);
+			}
+		}
+	}
+}
+
+// adzm - 2010-07 - Disable more effects or font smoothing
+void EnableFontSmoothing()
+{
+	if (g_bDisabledFontSmoothing && g_bGotOldFontSmoothingValue) {
+		if (g_bOldFontSmoothingValue != FALSE) {
+			if (!SystemParametersInfo(SPI_SETFONTSMOOTHING, g_bOldFontSmoothingValue, NULL, SPIF_SENDCHANGE)) {				
+				vnclog.Print(LL_INTWARN, VNCLOG("Failed to restore SPI value for SPI_SETFONTSMOOTHING (0x%08x)\n"), GetLastError());
+			} else {
+				vnclog.Print(LL_INTINFO, VNCLOG("Restored SPI value for SPI_SETFONTSMOOTHING: 0x%08x\n"), g_bOldFontSmoothingValue);
+
+				if (g_bGotClearType) {
+					if (!SystemParametersInfo(0x1049 /*SPI_SETCLEARTYPE*/, 0, (PVOID)g_bOldClearTypeValue, SPIF_SENDCHANGE)) {				
+						vnclog.Print(LL_INTWARN, VNCLOG("Failed to restore SPI value for SPI_SETCLEARTYPE (0x%08x)\n"), GetLastError());
+					} else {
+						vnclog.Print(LL_INTINFO, VNCLOG("Restored SPI value for SPI_SETCLEARTYPE: 0x%08x\n"), g_bOldClearTypeValue);
+					}
+				}
+
+				if (g_bGotFontSmoothingType) {
+					if (!SystemParametersInfo(0x200B /*SPI_SETFONTSMOOTHINGTYPE*/, 0, (PVOID)g_nOldFontSmoothingType, SPIF_SENDCHANGE)) {				
+						vnclog.Print(LL_INTWARN, VNCLOG("Failed to restore SPI value for SPI_SETFONTSMOOTHINGTYPE (0x%08x)\n"), GetLastError());
+					} else {
+						vnclog.Print(LL_INTINFO, VNCLOG("Restored SPI value for SPI_SETFONTSMOOTHINGTYPE: 0x%08x\n"), g_nOldFontSmoothingType);
+					}
+				}
+			}
+		}
+	}
+
+	g_bDisabledFontSmoothing = false;
 }
