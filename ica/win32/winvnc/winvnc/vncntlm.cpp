@@ -1,3 +1,5 @@
+#include "stdhdrs.h"
+#include <objbase.h>
 #include <windows.h>
 #include <stdio.h>
 #include <stdlib.h>

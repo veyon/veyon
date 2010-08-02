@@ -347,6 +347,8 @@ vncDesktop::vncDesktop()
 	m_Black_window_active=false;
 	m_hwnd = NULL;
 	//m_timerid = 0;
+	// adzm - 2010-07 - Fix clipboard hangs
+	m_settingClipboardViewer = false;
 	m_hnextviewer = NULL;
 	m_hcursor = NULL;
 	m_hOldcursor = NULL; // sf@2002
@@ -359,7 +361,8 @@ vncDesktop::vncDesktop()
 	m_hmemdc = NULL;
 	m_membitmap = NULL;
 
-	m_initialClipBoardSeen = FALSE;
+	// adzm - 2010-07 - Fix clipboard hangs
+	//m_initialClipBoardSeen = FALSE;
 
 	m_foreground_window = NULL;
 
@@ -544,7 +547,7 @@ vncDesktop::Startup()
 							char new_name[256];
 							if (GetUserObjectInformation(desktop, UOI_NAME, &new_name, 256, &dummy))
 								{
-									if (strcmp(new_name,"Default")==NULL)
+									if (strcmp(new_name,"Default")==0)
 										{
 											InitVideoDriver();
 										}
@@ -1628,25 +1631,14 @@ vncDesktop::SetCursor(HCURSOR cursor)
 // Manipulation of the clipboard
 void vncDesktop::SetClipText(char* rfbStr)
 {
-  int len = strlen(rfbStr);
-  char* winStr = new char[len*2+1];
-
-  int j = 0;
-  for (int i = 0; i < len; i++)
-  {
-    if (rfbStr[i] == 10)
-      winStr[j++] = 13;
-    winStr[j++] = rfbStr[i];
-  }
-  winStr[j++] = 0;
-
   // Open the system clipboard
   if (OpenClipboard(m_hwnd))
   {
     // Empty it
     if (EmptyClipboard())
     {
-      HANDLE hMem = GlobalAlloc(GMEM_MOVEABLE | GMEM_DDESHARE, j);
+	  // adzm - 2010-07 - Extended clipboard
+      HANDLE hMem = GlobalAlloc(GMEM_MOVEABLE | GMEM_DDESHARE, strlen(rfbStr) + 1);
 
       if (hMem != NULL)
       {
@@ -1655,7 +1647,7 @@ void vncDesktop::SetClipText(char* rfbStr)
         // Get the data
 		if (pMem)
 		{
-			strcpy(pMem, winStr);
+			strcpy(pMem, rfbStr);
         	// Tell the clipboard
         	GlobalUnlock(hMem);
         	SetClipboardData(CF_TEXT, hMem);
@@ -1664,10 +1656,31 @@ void vncDesktop::SetClipText(char* rfbStr)
     }
   }
 
-  delete [] winStr;
-
   // Now close it
   CloseClipboard();
+}
+
+// adzm - 2010-07 - Extended clipboard
+void vncDesktop::SetClipTextEx(ExtendedClipboardDataMessage& extendedClipboardDataMessage, vncClient* sourceClient)
+{
+	bool bRestored = false;
+	{
+		ClipboardData newClipboard;
+
+		if (newClipboard.Restore(Window(), extendedClipboardDataMessage)) {
+			vnclog.Print(LL_INTINFO, VNCLOG("Set extended clipboard data\n"));
+
+			bRestored = true;
+			newClipboard.FreeData();
+		} else {
+			vnclog.Print(LL_INTWARN, VNCLOG("Failed to set extended clipboard data\n"));
+		}
+	}
+
+	if (bRestored) {
+		// we may need to notify other connected clients about the change.
+		GetServerPointer()->UpdateClipTextEx(Window(), sourceClient);
+	}
 }
 
 // INTERNAL METHODS
@@ -2219,7 +2232,7 @@ void vncDesktop::StartStopddihook(BOOL enabled)
 		ZeroMemory( &ssi, sizeof(ssi) );
 		ssi.cb = sizeof(ssi);
 		// Start the child process. 
-		if( !CreateProcess( NULL,szCurrentDir, NULL,NULL,FALSE,NULL,NULL,NULL,&ssi,&ppi ) ) 
+		if( !CreateProcess( NULL,szCurrentDir, NULL,NULL,FALSE,0,NULL,NULL,&ssi,&ppi ) ) 
 		{
 			vnclog.Print(LL_INTERR, VNCLOG("set ddihooks Failed\n"));
 			ddihook=false;

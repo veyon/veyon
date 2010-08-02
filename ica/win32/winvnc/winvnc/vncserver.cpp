@@ -236,6 +236,10 @@ vncServer::vncServer()
 	m_fAutoRestart = false;
     m_ftTimeout = FT_RECV_TIMEOUT;
     m_keepAliveInterval = KEEPALIVE_INTERVAL;
+
+	
+	//adzm 2010-05-12 - dsmplugin config
+	m_szDSMPluginConfig[0] = '\0';
 }
 
 vncServer::~vncServer()
@@ -543,7 +547,6 @@ vncClientId vncServer::AddClient(VSocket *socket,
 
 			vncClient* pclient = GetClient(*i);
 			if (pclient->GetRepeaterID() && (strlen(pclient->GetRepeaterID()) > 0) ) {
-#define strncat_s(a,b,c,d) strncat(a,c,b)
 				strncat_s(szInfo, 255, pclient->GetRepeaterID(), _TRUNCATE);
 			} else {
 				strncat_s(szInfo, 255, pclient->GetClientName(), _TRUNCATE);
@@ -1264,6 +1267,8 @@ vncServer::UpdateMouse()
 	}
 }
 
+// adzm - 2010-07 - Extended clipboard
+/*
 void
 vncServer::UpdateClipText(const char* text)
 {
@@ -1276,6 +1281,30 @@ vncServer::UpdateClipText(const char* text)
 	{
 		// Post the update
 		GetClient(*i)->UpdateClipText(text);
+	}
+}
+*/
+
+
+// adzm - 2010-07 - Extended clipboard
+void
+vncServer::UpdateClipTextEx(HWND hwndOwner, vncClient* excludeClient)
+{
+	ClipboardData clipboardData;
+	if (clipboardData.Load(hwndOwner)) {
+		vncClientList::iterator i;
+		
+		omni_mutex_lock l(m_clientsLock);
+
+		// Post this update to all the connected clients
+		for (i = m_authClients.begin(); i != m_authClients.end(); i++)
+		{
+			// Post the update
+			vncClient* client = GetClient(*i);
+			if (client != excludeClient) {
+				client->UpdateClipTextEx(clipboardData);
+			}
+		}
 	}
 }
 
@@ -1332,6 +1361,18 @@ vncServer::UpdateLocalClipText(LPSTR text)
 
 	if (m_desktop != NULL)
 		m_desktop->SetClipText(text);
+}
+
+
+// adzm - 2010-07 - Extended clipboard
+void
+vncServer::UpdateLocalClipTextEx(ExtendedClipboardDataMessage& extendedClipboardDataMessage, vncClient* sourceClient)
+{
+//	vnclog.Print(LL_INTINFO, VNCLOG("Lock5\n"));
+	omni_mutex_lock l(m_desktopLock);
+
+	if (m_desktop != NULL)
+		m_desktop->SetClipTextEx(extendedClipboardDataMessage, sourceClient);
 }
 
 // Name and port number handling
@@ -1650,7 +1691,7 @@ vncServer::EnableXDMCPConnect(BOOL enable)
 		       NULL,             // Process handle not inheritable. 
 		        NULL,             // Thread handle not inheritable. 
 		       FALSE,            // Set handle inheritance to FALSE. 
-		       NULL,                // No creation flags. 
+		       0,                // No creation flags. 
 		       NULL,             // Use parent's environment block. 
 		       ".\\xdmcp",             // Use parent's starting directory. 
 		       &ssi,              // Pointer to STARTUPINFO structure.
@@ -2279,7 +2320,8 @@ BOOL vncServer::SetDSMPlugin(BOOL bForceReload)
 		vnclog.Print(LL_INTINFO, VNCLOG("$$$$$$$$$$ SetDSMPlugin - SetPluginParams call \n"));
 
 
-		if (m_pDSMPlugin->SetPluginParams(NULL, szParams/*vncDecryptPasswd((char *)password)*/))
+		//adzm 2010-05-12 - dsmplugin config
+		if (m_pDSMPlugin->SetPluginParams(NULL, szParams/*vncDecryptPasswd((char *)password)*/, GetDSMPluginConfig(), NULL))
 		{
 			m_pDSMPlugin->SetEnabled(true); // The plugin is ready to be used
 			vnclog.Print(LL_INTINFO, VNCLOG("DSMPlugin Params OK\n"));
@@ -2304,6 +2346,12 @@ BOOL vncServer::SetDSMPlugin(BOOL bForceReload)
 	*/
 
 	return TRUE;
+}
+
+//adzm 2010-05-12 - dsmplugin config
+void vncServer::SetDSMPluginConfig(char* szDSMPluginConfig)
+{
+	strncpy_s(m_szDSMPluginConfig, sizeof(m_szDSMPluginConfig) - 1, szDSMPluginConfig, _TRUNCATE);
 }
 
 //

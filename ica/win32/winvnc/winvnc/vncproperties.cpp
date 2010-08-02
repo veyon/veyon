@@ -71,6 +71,8 @@ vncProperties::vncProperties()
     m_keepAliveInterval = KEEPALIVE_INTERVAL;
 	m_pref_Primary=true;
 	m_pref_Secondary=false;
+
+	m_pref_DSMPluginConfig[0] = '\0';
 }
 
 vncProperties::~vncProperties()
@@ -999,6 +1001,9 @@ vncProperties::DialogProc(HWND hwnd,
 					}	
 				}
 
+				//adzm 2010-05-12 - dsmplugin config
+				_this->m_server->SetDSMPluginConfig(_this->m_pref_DSMPluginConfig);
+
 				// Query Window options - Taken from TightVNC advanced properties
 				char timeout[256];
 				if (GetDlgItemText(hwnd, IDQUERYTIMEOUT, (LPSTR) &timeout, 256) == 0)
@@ -1358,7 +1363,13 @@ vncProperties::DialogProc(HWND hwnd,
 						char szParams[32];
 						strcpy(szParams, "NoPassword,");
 						strcat(szParams, vncService::RunningAsService() ? "server-svc" : "server-app");
-						_this->m_server->GetDSMPluginPointer()->SetPluginParams(hwnd, szParams);
+						//adzm 2010-05-12 - dsmplugin config
+						char* szNewConfig = NULL;
+						if (_this->m_server->GetDSMPluginPointer()->SetPluginParams(hwnd, szParams, _this->m_pref_DSMPluginConfig, &szNewConfig)) {
+							if (szNewConfig != NULL && strlen(szNewConfig) > 0) {
+								strcpy_s(_this->m_pref_DSMPluginConfig, 511, szNewConfig);
+							}
+						}
 					}
 					else
 					{
@@ -1709,7 +1720,18 @@ vncProperties::Load(BOOL usersettings)
 	// sf@2003 - Moved DSM params here
 	m_pref_UseDSMPlugin=false;
 	m_pref_UseDSMPlugin = LoadInt(hkLocal, "UseDSMPlugin", m_pref_UseDSMPlugin);
-	LoadDSMPluginName(hkLocal, m_pref_szDSMPlugin);
+	LoadDSMPluginName(hkLocal, m_pref_szDSMPlugin);	
+	
+	//adzm 2010-05-12 - dsmplugin config
+	{
+		char* szBuffer = LoadString(hkLocal, "DSMPluginConfig");
+		if (szBuffer) {
+			strncpy_s(m_pref_DSMPluginConfig, sizeof(m_pref_DSMPluginConfig) - 1, szBuffer, _TRUNCATE);
+			delete[] szBuffer;
+		} else {
+			m_pref_DSMPluginConfig[0] = '\0';
+		}
+	}
 
 	if (m_server->LoopbackOnly()) m_server->SetLoopbackOk(true);
 	else m_server->SetLoopbackOk(LoadInt(hkLocal, "AllowLoopback", false));
@@ -1756,6 +1778,9 @@ LABELUSERSETTINGS:
 	m_pref_LockSettings=-1;
 
 	m_pref_RemoveWallpaper=TRUE;
+	// adzm - 2010-07 - Disable more effects or font smoothing
+	m_pref_RemoveEffects=FALSE;
+	m_pref_RemoveFontSmoothing=FALSE;
 	m_pref_RemoveAero=TRUE;
     m_alloweditclients = TRUE;
 	m_allowshutdown = TRUE;
@@ -1766,6 +1791,7 @@ LABELUSERSETTINGS:
 //	m_pref_SingleWindow = FALSE;
 	m_pref_UseDSMPlugin = FALSE;
 	*m_pref_szDSMPlugin = '\0';
+	m_pref_DSMPluginConfig[0] = '\0';
 
 	m_pref_EnableFileTransfer = TRUE;
 	m_pref_FTUserImpersonation = TRUE;
@@ -1876,6 +1902,9 @@ vncProperties::LoadUserPrefs(HKEY appkey)
 	m_pref_IdleTimeout=LoadInt(appkey, "IdleTimeout", m_pref_IdleTimeout);
 	
 	m_pref_RemoveWallpaper=LoadInt(appkey, "RemoveWallpaper", m_pref_RemoveWallpaper);
+	// adzm - 2010-07 - Disable more effects or font smoothing
+	m_pref_RemoveEffects=LoadInt(appkey, "RemoveEffects", m_pref_RemoveEffects);
+	m_pref_RemoveFontSmoothing=LoadInt(appkey, "RemoveFontSmoothing", m_pref_RemoveFontSmoothing);
 	m_pref_RemoveAero=LoadInt(appkey, "RemoveAero", m_pref_RemoveAero);
 
 	// Connection querying settings
@@ -1925,6 +1954,9 @@ vncProperties::ApplyUserPrefs()
 	m_server->SetQueryAccept(m_pref_QueryAccept);
 	m_server->SetAutoIdleDisconnectTimeout(m_pref_IdleTimeout);
 	m_server->EnableRemoveWallpaper(m_pref_RemoveWallpaper);
+	// adzm - 2010-07 - Disable more effects or font smoothing
+	m_server->EnableRemoveFontSmoothing(m_pref_RemoveFontSmoothing);
+	m_server->EnableRemoveEffects(m_pref_RemoveEffects);
 	m_server->EnableRemoveAero(m_pref_RemoveAero);
 
 	// Is the listening socket closing?
@@ -1967,6 +1999,10 @@ vncProperties::ApplyUserPrefs()
 	// DSM Plugin prefs
 	m_server->EnableDSMPlugin(m_pref_UseDSMPlugin);
 	m_server->SetDSMPluginName(m_pref_szDSMPlugin);
+	
+	//adzm 2010-05-12 - dsmplugin config
+	m_server->SetDSMPluginConfig(m_pref_DSMPluginConfig);
+
 	if (m_server->IsDSMPluginEnabled()) 
 	{
 		vnclog.Print(LL_INTINFO, VNCLOG("$$$$$$$$$$ ApplyUserPrefs - Plugin Enabled - Call SetDSMPlugin() \n"));
@@ -2119,7 +2155,11 @@ vncProperties::Save()
 	// sf@2003 - DSM params here
 	SaveInt(hkLocal, "UseDSMPlugin", m_server->IsDSMPluginEnabled());
 	SaveInt(hkLocal, "ConnectPriority", m_server->ConnectPriority());
-	SaveDSMPluginName(hkLocal, m_server->GetDSMPluginName());
+	SaveDSMPluginName(hkLocal, m_server->GetDSMPluginName());	
+	
+	//adzm 2010-05-12 - dsmplugin config
+	SaveString(hkLocal, "DSMPluginConfig", m_server->GetDSMPluginConfig());
+
 	if (hkDefault) RegCloseKey(hkDefault);
 	if (hkLocal) RegCloseKey(hkLocal);
 }
@@ -2144,6 +2184,8 @@ vncProperties::SaveUserPrefs(HKEY appkey)
 
 	SaveInt(appkey, "UseDSMPlugin", m_server->IsDSMPluginEnabled());
 	SaveDSMPluginName(appkey, m_server->GetDSMPluginName());
+	//adzm 2010-05-12 - dsmplugin config
+	SaveString(appkey, "DSMPluginConfig", m_server->GetDSMPluginConfig());
 
 	// Connection prefs
 	SaveInt(appkey, "SocketConnect", m_server->SockConnected());
@@ -2169,6 +2211,10 @@ vncProperties::SaveUserPrefs(HKEY appkey)
 
 	// Wallpaper removal
 	SaveInt(appkey, "RemoveWallpaper", m_server->RemoveWallpaperEnabled());
+	// UI Effects
+	// adzm - 2010-07 - Disable more effects or font smoothing
+	SaveInt(appkey, "RemoveEffects", m_server->RemoveEffectsEnabled());
+	SaveInt(appkey, "RemoveFontSmoothing", m_server->RemoveFontSmoothingEnabled());
 	// Composit desktop removal
 	SaveInt(appkey, "RemoveAero", m_server->RemoveAeroEnabled());
 
@@ -2240,6 +2286,9 @@ void vncProperties::LoadFromIniFile()
 	m_pref_UseDSMPlugin=false;
 	m_pref_UseDSMPlugin = myIniFile.ReadInt("admin", "UseDSMPlugin", m_pref_UseDSMPlugin);
 	myIniFile.ReadString("admin", "DSMPlugin",m_pref_szDSMPlugin,128);
+	
+	//adzm 2010-05-12 - dsmplugin config
+	myIniFile.ReadString("admin", "DSMPluginConfig", m_pref_DSMPluginConfig, 512);
 
 	if (m_server->LoopbackOnly()) m_server->SetLoopbackOk(true);
 	else m_server->SetLoopbackOk(myIniFile.ReadInt("admin", "AllowLoopback", false));
@@ -2284,6 +2333,9 @@ void vncProperties::LoadFromIniFile()
 	m_pref_LockSettings=-1;
 
 	m_pref_RemoveWallpaper=TRUE;
+	// adzm - 2010-07 - Disable more effects or font smoothing
+	m_pref_RemoveEffects=FALSE;
+	m_pref_RemoveFontSmoothing=FALSE;
 	m_pref_RemoveAero=TRUE;
     m_alloweditclients = TRUE;
 	m_allowshutdown = TRUE;
@@ -2293,6 +2345,7 @@ void vncProperties::LoadFromIniFile()
 	m_pref_SingleWindow = FALSE;
 	m_pref_UseDSMPlugin = FALSE;
 	*m_pref_szDSMPlugin = '\0';
+	m_pref_DSMPluginConfig[0] = '\0';
 
 	m_pref_EnableFileTransfer = TRUE;
 	m_pref_FTUserImpersonation = TRUE;
@@ -2335,7 +2388,10 @@ void vncProperties::LoadUserPrefsFromIniFile()
 
 	m_pref_UseDSMPlugin = myIniFile.ReadInt("admin", "UseDSMPlugin", m_pref_UseDSMPlugin);
 	myIniFile.ReadString("admin", "DSMPlugin",m_pref_szDSMPlugin,128);
-
+	
+	//adzm 2010-05-12 - dsmplugin config
+	myIniFile.ReadString("admin", "DSMPluginConfig", m_pref_DSMPluginConfig, 512);
+	
 	m_pref_Primary = myIniFile.ReadInt("admin", "primary", m_pref_Primary);
 	m_pref_Secondary = myIniFile.ReadInt("admin", "secondary", m_pref_Secondary);
 
@@ -2350,6 +2406,9 @@ void vncProperties::LoadUserPrefsFromIniFile()
 	m_pref_IdleTimeout=myIniFile.ReadInt("admin", "IdleTimeout", m_pref_IdleTimeout);
 	
 	m_pref_RemoveWallpaper=myIniFile.ReadInt("admin", "RemoveWallpaper", m_pref_RemoveWallpaper);
+	// adzm - 2010-07 - Disable more effects or font smoothing
+	m_pref_RemoveEffects=myIniFile.ReadInt("admin", "RemoveEffects", m_pref_RemoveEffects);
+	m_pref_RemoveFontSmoothing=myIniFile.ReadInt("admin", "RemoveFontSmoothing", m_pref_RemoveFontSmoothing);
 	m_pref_RemoveAero=myIniFile.ReadInt("admin", "RemoveAero", m_pref_RemoveAero);
 
 	// Connection querying settings
@@ -2415,6 +2474,9 @@ void vncProperties::SaveToIniFile()
 	myIniFile.WriteInt("admin", "ConnectPriority", m_server->ConnectPriority());
 	myIniFile.WriteString("admin", "DSMPlugin",m_server->GetDSMPluginName());
 
+	//adzm 2010-05-12 - dsmplugin config
+	myIniFile.WriteString("admin", "DSMPluginConfig", m_server->GetDSMPluginConfig());
+
 	if (use_uac==true)
 	{
 	myIniFile.copy_to_secure();
@@ -2440,6 +2502,9 @@ void vncProperties::SaveUserPrefsToIniFile()
 
 	myIniFile.WriteInt("admin", "UseDSMPlugin", m_server->IsDSMPluginEnabled());
 	myIniFile.WriteString("admin", "DSMPlugin",m_server->GetDSMPluginName());
+
+	//adzm 2010-05-12 - dsmplugin config
+	myIniFile.WriteString("admin", "DSMPluginConfig", m_server->GetDSMPluginConfig());
 
 	myIniFile.WriteInt("admin", "primary", m_server->Primary());
 	myIniFile.WriteInt("admin", "secondary", m_server->Secondary());
@@ -2468,6 +2533,10 @@ void vncProperties::SaveUserPrefsToIniFile()
 
 	// Wallpaper removal
 	myIniFile.WriteInt("admin", "RemoveWallpaper", m_server->RemoveWallpaperEnabled());
+	// UI Effects
+	// adzm - 2010-07 - Disable more effects or font smoothing
+	myIniFile.WriteInt("admin", "RemoveEffects", m_server->RemoveEffectsEnabled());
+	myIniFile.WriteInt("admin", "RemoveFontSmoothing", m_server->RemoveFontSmoothingEnabled());
 	// Composit desktop removal
 	myIniFile.WriteInt("admin", "RemoveAero", m_server->RemoveAeroEnabled());
 

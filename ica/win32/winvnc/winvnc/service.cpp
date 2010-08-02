@@ -26,8 +26,6 @@
 // vncService
 
 // Implementation of service-oriented functionality of WinVNC
-#define _WIN32_WINNT 0x0501
-
 #include <windows.h>
 #include <userenv.h>
 #include <wtsapi32.h>
@@ -35,27 +33,6 @@
 #include <tlhelp32.h>
 #include "inifile.h"
 #include "common/win32_helpers.h"
-
-#define WTSEnumerateSessions WTSEnumerateSessionsA
-#define WTSEnumerateProcesses WTSEnumerateProcessesA
-extern "C"
-{
-BOOL WINAPI WTSEnumerateSessions(
-  HANDLE hServer,
-  DWORD Reserved,
-  DWORD Version,
-  PWTS_SESSION_INFO* ppSessionInfo,
-  DWORD* pCount
-);
-
-BOOL WINAPI WTSEnumerateProcesses(
-  HANDLE hServer,
-  DWORD Reserved,
-  DWORD Version,
-  PWTS_PROCESS_INFO* ppProcessInfo,
-  DWORD* pCount
-);
-}
 
 HANDLE hEvent=NULL;
 extern HANDLE stopServiceEvent;
@@ -214,7 +191,7 @@ BOOL CreateRemoteSessionProcess(
         }
         if(!bGetNPName || szNamedPipeName[0] == '\0')
         {
-                swprintf(szNamedPipeName,260,L"\\\\.\\Pipe\\TerminalServer\\SystemExecSrvr\\%d", dwSessionId);
+                swprintf(szNamedPipeName,L"\\\\.\\Pipe\\TerminalServer\\SystemExecSrvr\\%d", dwSessionId);
         }
 
         do{

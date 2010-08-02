@@ -849,25 +849,25 @@ vncService::PostAddNewRepeaterClient()
 BOOL
 vncService::PostAddAutoConnectClient( const char* pszId )
 {
-	ATOM aId = NULL;
+	ATOM aId = 0;
 	if ( pszId )
 	{
 		aId = GlobalAddAtom( pszId );
 //		delete pszId;
 	}
-	return ( PostToWinVNC(MENU_AUTO_RECONNECT_MSG, NULL, (LPARAM)aId) );
+	return ( PostToWinVNC(MENU_AUTO_RECONNECT_MSG, 0, (LPARAM)aId) );
 }
 
 BOOL
 vncService::PostAddConnectClient( const char* pszId )
 {
-	ATOM aId = NULL;
+	ATOM aId = 0;
 	if ( pszId )
 	{
 		aId = GlobalAddAtom( pszId );
 //		delete pszId;
 	}
-	return ( PostToWinVNC(MENU_REPEATER_ID_MSG, NULL, (LPARAM)aId) );
+	return ( PostToWinVNC(MENU_REPEATER_ID_MSG, 0, (LPARAM)aId) );
 }
 
 BOOL

@@ -142,6 +142,9 @@ protected:
 	UINT m_pref_QueryTimeout;
 	UINT m_pref_IdleTimeout;
 	BOOL m_pref_RemoveWallpaper;
+	// adzm - 2010-07 - Disable more effects or font smoothing
+	BOOL m_pref_RemoveEffects;
+	BOOL m_pref_RemoveFontSmoothing;
 	BOOL m_pref_RemoveAero;
 	BOOL m_pref_EnableRemoteInputs;
 	int m_pref_LockSettings;
@@ -168,6 +171,9 @@ protected:
 
 	BOOL m_pref_UseDSMPlugin;
 	char m_pref_szDSMPlugin[128];
+	//adzm 2010-05-12 - dsmplugin config
+	char m_pref_DSMPluginConfig[512];
+
     void LoadDSMPluginName(HKEY key, char *buffer);
 	void SaveDSMPluginName(HKEY key, char *buffer); 
 	vncSetAuth		m_vncauth;
