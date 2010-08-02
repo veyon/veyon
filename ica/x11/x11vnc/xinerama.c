@@ -331,9 +331,11 @@ void check_xinerama_clip(void) {
 
 static void initialize_xinerama (void) {
 #if !LIBVNCSERVER_HAVE_LIBXINERAMA
-	rfbLog("Xinerama: Library libXinerama is not available to determine\n");
-	rfbLog("Xinerama: the head geometries, consider using -blackout\n");
-	rfbLog("Xinerama: if the screen is non-rectangular.\n");
+	if (!raw_fb_str) {
+		rfbLog("Xinerama: Library libXinerama is not available to determine\n");
+		rfbLog("Xinerama: the head geometries, consider using -blackout\n");
+		rfbLog("Xinerama: if the screen is non-rectangular.\n");
+	}
 #else
 	XineramaScreenInfo *sc, *xineramas;
 	sraRegionPtr black_region, tmp_region;
@@ -370,9 +372,7 @@ static void initialize_xinerama (void) {
 
 	/* n.b. change to XineramaGetData() someday */
 	xineramas = XineramaQueryScreens(dpy, &n);
-	if (verbose) {
-		rfbLog("Xinerama: number of sub-screens: %d\n", n);
-	}
+	rfbLog("Xinerama: number of sub-screens: %d\n", n);
 
 	if (! use_xwarppointer && ! got_noxwarppointer && n > 1) {
 		rfbLog("Xinerama: enabling -xwarppointer mode to try to correct\n");
@@ -382,11 +382,8 @@ static void initialize_xinerama (void) {
 	}
 
 	if (n == 1) {
-		if (verbose) {
-			rfbLog("Xinerama: no blackouts needed (only one"
-			    " sub-screen)\n");
-			rfbLog("\n");
-		}
+		rfbLog("Xinerama: no blackouts needed (only one sub-screen)\n");
+		rfbLog("\n");
 		XFree_wr(xineramas);
 		X_UNLOCK;
 		return;		/* must be OK w/o change */
@@ -402,6 +399,8 @@ static void initialize_xinerama (void) {
 		y = sc->y_org;
 		w = sc->width;
 		h = sc->height;
+
+		rfbLog("Xinerama: sub-screen[%d]  %dx%d+%d+%d\n", i, w, h, x, y);
 
 		tmp_region = sraRgnCreateRect(x, y, x + w, y + h);
 

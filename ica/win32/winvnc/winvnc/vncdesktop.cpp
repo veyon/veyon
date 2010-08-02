@@ -347,6 +347,8 @@ vncDesktop::vncDesktop()
 	m_Black_window_active=false;
 	m_hwnd = NULL;
 	//m_timerid = 0;
+	// adzm - 2010-07 - Fix clipboard hangs
+	m_settingClipboardViewer = false;
 	m_hnextviewer = NULL;
 	m_hcursor = NULL;
 	m_hOldcursor = NULL; // sf@2002
@@ -359,7 +361,8 @@ vncDesktop::vncDesktop()
 	m_hmemdc = NULL;
 	m_membitmap = NULL;
 
-	m_initialClipBoardSeen = FALSE;
+	// adzm - 2010-07 - Fix clipboard hangs
+	//m_initialClipBoardSeen = FALSE;
 
 	m_foreground_window = NULL;
 
@@ -396,7 +399,7 @@ vncDesktop::vncDesktop()
 	On_Off_hookdll=false;
 	g_Desktop_running=true;
 	hUser32=LoadLibrary("USER32");
-	pbi = (pBlockInput)GetProcAddress( hUser32, "BlockInput");
+	if (hUser32) pbi = (pBlockInput)GetProcAddress( hUser32, "BlockInput");
 	m_OrigpollingSet=false;
 	m_Origpolling=false;
 	DriverWantedSet=false;
@@ -544,7 +547,7 @@ vncDesktop::Startup()
 							char new_name[256];
 							if (GetUserObjectInformation(desktop, UOI_NAME, &new_name, 256, &dummy))
 								{
-									if (strcmp(new_name,"Default")==NULL)
+									if (strcmp(new_name,"Default")==0)
 										{
 											InitVideoDriver();
 										}
@@ -842,7 +845,7 @@ vncDesktop::InitBitmap()
 		{	
 			if (VideoBuffer())
 				{
-					pEnumDisplayDevices pd;
+					pEnumDisplayDevices pd=NULL;
 					LPSTR driverName = "mv video hook driver2";
 					BOOL DriverFound;
 					DEVMODE devmode;
@@ -852,7 +855,7 @@ vncDesktop::InitBitmap()
 					BOOL change = EnumDisplaySettings(NULL,ENUM_CURRENT_SETTINGS,&devmode);
 					devmode.dmFields = DM_BITSPERPEL | DM_PELSWIDTH | DM_PELSHEIGHT;
 					HMODULE hUser32=LoadLibrary("USER32");
-					pd = (pEnumDisplayDevices)GetProcAddress( hUser32, "EnumDisplayDevicesA");
+					if (hUser32) pd = (pEnumDisplayDevices)GetProcAddress( hUser32, "EnumDisplayDevicesA");
 						if (pd)
 							{
 								LPSTR deviceName=NULL;
@@ -1587,16 +1590,20 @@ vncDesktop::GetRichCursorData(BYTE *databuf, HCURSOR hcursor, int width, int hei
 
 	// Prepare BITMAPINFO structure (copy most m_bminfo fields)
 	BITMAPINFO *bmi = (BITMAPINFO *)calloc(1, sizeof(BITMAPINFO) + 256 * sizeof(RGBQUAD));
+	int lines=0;
+	if (bmi)
+	{
 	memcpy(bmi, &m_bminfo.bmi, sizeof(BITMAPINFO) + 256 * sizeof(RGBQUAD));
 	bmi->bmiHeader.biWidth = width;
 	bmi->bmiHeader.biHeight = -height;
 
 	// Clear data buffer and extract RGB data
 	memset(databuf, 0x00, width * height * 4);
-	int lines = GetDIBits(m_hmemdc, membitmap, 0, height, databuf, bmi, DIB_RGB_COLORS);
+	lines = GetDIBits(m_hmemdc, membitmap, 0, height, databuf, bmi, DIB_RGB_COLORS);
 
 	// Cleanup
 	free(bmi);
+	}
 	DeleteObject(membitmap);
 
 	return (lines != 0);
@@ -1624,44 +1631,56 @@ vncDesktop::SetCursor(HCURSOR cursor)
 // Manipulation of the clipboard
 void vncDesktop::SetClipText(char* rfbStr)
 {
-  int len = strlen(rfbStr);
-  char* winStr = new char[len*2+1];
-
-  int j = 0;
-  for (int i = 0; i < len; i++)
-  {
-    if (rfbStr[i] == 10)
-      winStr[j++] = 13;
-    winStr[j++] = rfbStr[i];
-  }
-  winStr[j++] = 0;
-
   // Open the system clipboard
   if (OpenClipboard(m_hwnd))
   {
     // Empty it
     if (EmptyClipboard())
     {
-      HANDLE hMem = GlobalAlloc(GMEM_MOVEABLE | GMEM_DDESHARE, j);
+	  // adzm - 2010-07 - Extended clipboard
+      HANDLE hMem = GlobalAlloc(GMEM_MOVEABLE | GMEM_DDESHARE, strlen(rfbStr) + 1);
 
       if (hMem != NULL)
       {
         LPSTR pMem = (char*)GlobalLock(hMem);
 
         // Get the data
-        strcpy(pMem, winStr);
-
-        // Tell the clipboard
-        GlobalUnlock(hMem);
-        SetClipboardData(CF_TEXT, hMem);
+		if (pMem)
+		{
+			strcpy(pMem, rfbStr);
+        	// Tell the clipboard
+        	GlobalUnlock(hMem);
+        	SetClipboardData(CF_TEXT, hMem);
+		}
       }
     }
   }
 
-  delete [] winStr;
-
   // Now close it
   CloseClipboard();
+}
+
+// adzm - 2010-07 - Extended clipboard
+void vncDesktop::SetClipTextEx(ExtendedClipboardDataMessage& extendedClipboardDataMessage, vncClient* sourceClient)
+{
+	bool bRestored = false;
+	{
+		ClipboardData newClipboard;
+
+		if (newClipboard.Restore(Window(), extendedClipboardDataMessage)) {
+			vnclog.Print(LL_INTINFO, VNCLOG("Set extended clipboard data\n"));
+
+			bRestored = true;
+			newClipboard.FreeData();
+		} else {
+			vnclog.Print(LL_INTWARN, VNCLOG("Failed to set extended clipboard data\n"));
+		}
+	}
+
+	if (bRestored) {
+		// we may need to notify other connected clients about the change.
+		GetServerPointer()->UpdateClipTextEx(Window(), sourceClient);
+	}
 }
 
 // INTERNAL METHODS
@@ -1837,9 +1856,9 @@ void vncDesktop::SetBlankMonitor(bool enabled)
 
 	// Added Jef Fix
 	typedef DWORD (WINAPI *PSLWA)(HWND, DWORD, BYTE, DWORD);
-	PSLWA pSetLayeredWindowAttributes;
+	PSLWA pSetLayeredWindowAttributes=NULL;
 	HMODULE hDLL = LoadLibrary ("user32");
-	pSetLayeredWindowAttributes = (PSLWA) GetProcAddress(hDLL,"SetLayeredWindowAttributes");
+	if (hDLL) pSetLayeredWindowAttributes = (PSLWA) GetProcAddress(hDLL,"SetLayeredWindowAttributes");
 	if (!pSetLayeredWindowAttributes) m_server->BlackAlphaBlending(false);
 	//if (VideoBuffer()) m_server->BlackAlphaBlending(false);
 
@@ -1862,10 +1881,10 @@ void vncDesktop::SetBlankMonitor(bool enabled)
 		    }
 		    else
 		    {
-			    HANDLE ThreadHandle2;
+			    HANDLE ThreadHandle2=NULL;
 			    DWORD dwTId;
 			    ThreadHandle2 = CreateThread(NULL, 0, BlackWindow, NULL, 0, &dwTId);
-			    CloseHandle(ThreadHandle2);
+			   if (ThreadHandle2)  CloseHandle(ThreadHandle2);
 			    m_Black_window_active=true;
 		    }
 	    }
@@ -2213,7 +2232,7 @@ void vncDesktop::StartStopddihook(BOOL enabled)
 		ZeroMemory( &ssi, sizeof(ssi) );
 		ssi.cb = sizeof(ssi);
 		// Start the child process. 
-		if( !CreateProcess( NULL,szCurrentDir, NULL,NULL,FALSE,NULL,NULL,NULL,&ssi,&ppi ) ) 
+		if( !CreateProcess( NULL,szCurrentDir, NULL,NULL,FALSE,0,NULL,NULL,&ssi,&ppi ) ) 
 		{
 			vnclog.Print(LL_INTERR, VNCLOG("set ddihooks Failed\n"));
 			ddihook=false;

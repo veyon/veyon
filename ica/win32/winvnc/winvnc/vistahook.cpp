@@ -170,7 +170,7 @@ vncDesktopThread::Handle_Ringbuffer(mystruct *ringbuffer,rfb::Region2D &rgncache
 
 DWORD WINAPI Cadthread(LPVOID lpParam)
 {
-	HDESK desktop;
+	HDESK desktop=NULL;
 	desktop = OpenInputDesktop(0, FALSE,
 								DESKTOP_CREATEMENU | DESKTOP_CREATEWINDOW |
 								DESKTOP_ENUMERATE | DESKTOP_HOOKCONTROL |
@@ -187,7 +187,8 @@ DWORD WINAPI Cadthread(LPVOID lpParam)
 	DWORD dummy;
 
 	char new_name[256];
-
+	if (desktop)
+	{
 	if (!GetUserObjectInformation(desktop, UOI_NAME, &new_name, 256, &dummy))
 	{
 		vnclog.Print(LL_INTERR, VNCLOG("!GetUserObjectInformation \n"));
@@ -198,6 +199,7 @@ DWORD WINAPI Cadthread(LPVOID lpParam)
 	if (!SetThreadDesktop(desktop))
 	{
 		vnclog.Print(LL_INTERR, VNCLOG("SelectHDESK:!SetThreadDesktop \n"));
+	}
 	}
 
 //Full path needed, sometimes it just default to system32
@@ -235,7 +237,7 @@ DWORD WINAPI Cadthread(LPVOID lpParam)
 
 	}
 
-	SetThreadDesktop(old_desktop);
-	CloseDesktop(desktop);
+	if (old_desktop) SetThreadDesktop(old_desktop);
+	if (desktop) CloseDesktop(desktop);
 	return 0;
 }

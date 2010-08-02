@@ -230,7 +230,7 @@ create_window(void)
                                NULL);
 		typedef DWORD (WINAPI *PSLWA)(HWND, DWORD, BYTE, DWORD);
 
-	PSLWA pSetLayeredWindowAttributes;
+	PSLWA pSetLayeredWindowAttributes=NULL;
 	/*
 	* Code that follows allows the program to run in 
 	* environment other than windows 2000
@@ -240,7 +240,7 @@ create_window(void)
 	* windows 2000
 	*/
 	HMODULE hDLL = LoadLibrary ("user32");
-	pSetLayeredWindowAttributes = (PSLWA) GetProcAddress(hDLL,"SetLayeredWindowAttributes");
+	if (hDLL) pSetLayeredWindowAttributes = (PSLWA) GetProcAddress(hDLL,"SetLayeredWindowAttributes");
 	/*
 	* Make the windows a layered window
 	*/
@@ -288,17 +288,19 @@ DWORD WINAPI BlackWindow(LPVOID lpParam)
 	DWORD dummy;
 
 	char new_name[256];
-
-	if (!GetUserObjectInformation(desktop, UOI_NAME, &new_name, 256, &dummy))
+	if (desktop)
 	{
-		vnclog.Print(LL_INTERR, VNCLOG("!GetUserObjectInformation \n"));
-	}
+		if (!GetUserObjectInformation(desktop, UOI_NAME, &new_name, 256, &dummy))
+		{
+			vnclog.Print(LL_INTERR, VNCLOG("!GetUserObjectInformation \n"));
+		}
 
-	vnclog.Print(LL_INTERR, VNCLOG("SelectHDESK to %s (%x) from %x\n"), new_name, desktop, old_desktop);
+		vnclog.Print(LL_INTERR, VNCLOG("SelectHDESK to %s (%x) from %x\n"), new_name, desktop, old_desktop);
 
-	if (!SetThreadDesktop(desktop))
-	{
-		vnclog.Print(LL_INTERR, VNCLOG("SelectHDESK:!SetThreadDesktop \n"));
+		if (!SetThreadDesktop(desktop))
+		{
+			vnclog.Print(LL_INTERR, VNCLOG("SelectHDESK:!SetThreadDesktop \n"));
+		}
 	}
 
 	create_window();
@@ -310,7 +312,7 @@ DWORD WINAPI BlackWindow(LPVOID lpParam)
 	}
 	vnclog.Print(LL_INTERR, VNCLOG("end BlackWindow \n"));
 	SetThreadDesktop(old_desktop);
-	CloseDesktop(desktop);
+	if (desktop) CloseDesktop(desktop);
 
 	return 0;
 }

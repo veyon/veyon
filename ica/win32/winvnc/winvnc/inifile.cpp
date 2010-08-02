@@ -37,7 +37,7 @@ char WORKDIR[MAX_PATH];
 void
 IniFile::IniFileSetTemp(char *lpCmdLine)
 {	
-	strcpy(myInifile,lpCmdLine);
+	strcpy_s(myInifile,260,lpCmdLine);
 }
 
 /*void
@@ -105,6 +105,8 @@ IniFile::copy_to_secure()
 		DWORD error=GetLastError();
 		if (process) CloseHandle(process);
 		if (Token) CloseHandle(Token);
+		if (ProcessInfo.hThread) CloseHandle (ProcessInfo.hThread);
+		if (ProcessInfo.hProcess) CloseHandle (ProcessInfo.hProcess);
 		if (error==1314)
 		{
 			Set_settings_as_admin(myInifile);

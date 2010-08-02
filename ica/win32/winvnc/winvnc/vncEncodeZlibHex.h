@@ -45,9 +45,9 @@ class vncEncodeZlibHex;
 #ifdef IPP
 #include "ipp_zlib/zlib.h"
 #else
-#include "zlib.h"
+#include "zlib/zlib.h"
 #endif
-#include "minilzo.h"
+#include "lzo/minilzo.h"
 
 // Minimum zlib rectangle size in bytes.  Anything smaller will
 // not compress well due to overhead.

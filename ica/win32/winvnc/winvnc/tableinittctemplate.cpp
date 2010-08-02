@@ -41,7 +41,7 @@ rfbInitTrueColourSingleTableOUTVNC (char **table, rfbPixelFormat *in,
 {
     int i;
     int inRed, inGreen, inBlue, outRed, outGreen, outBlue;
-    OUT_T *t;
+    OUT_T *t=NULL;
     int nEntries = 1 << in->bitsPerPixel;
 
     if (*table) free(*table);
@@ -58,11 +58,11 @@ rfbInitTrueColourSingleTableOUTVNC (char **table, rfbPixelFormat *in,
 	outGreen = (inGreen * out->greenMax + in->greenMax / 2) / in->greenMax;
 	outBlue  = (inBlue  * out->blueMax  + in->blueMax / 2)  / in->blueMax;
 
-	t[i] = ((outRed   << out->redShift)   |
+	if (t) t[i] = ((outRed   << out->redShift)   |
 		(outGreen << out->greenShift) |
 		(outBlue  << out->blueShift));
 #if (OUTVNC != 8)
-	if (out->bigEndian != in->bigEndian) {
+	if (t) if (out->bigEndian != in->bigEndian) {
 	    t[i] = SwapOUTVNC(t[i]);
 	}
 #endif

@@ -62,12 +62,14 @@ class VSocket;
 // Custom includes
 
 #include "vtypes.h"
-extern int G_SENDBUFFER;
+extern unsigned int G_SENDBUFFER;
 ////////////////////////////////////////////////////////
 // *** Lovely hacks to make Win32 work.  Hurrah!
 
 #ifdef __WIN32__
+#ifndef EWOULDBLOCK
 #define EWOULDBLOCK WSAEWOULDBLOCK
+#endif
 #endif
 
 ////////////////////////////////////////////////////////
@@ -129,6 +131,8 @@ VSocket::VSocket()
 	m_pDSMPlugin = NULL;
 	//adzm 2009-06-20
 	m_pPluginInterface = NULL;
+	//adzm 2010-05-10
+	m_pIntegratedPluginInterface = NULL;
 	m_fUsePlugin = false;
 	
 	m_pNetRectBuf = NULL;
@@ -213,6 +217,8 @@ VSocket::Close()
   if (m_pPluginInterface) {
     delete m_pPluginInterface;
 	m_pPluginInterface=NULL;
+	//adzm 2010-05-10
+	m_pIntegratedPluginInterface=NULL;
   }
   return VTrue;
 }
@@ -520,7 +526,7 @@ VBool VSocket::SetRecvTimeout(VCard32 msecs)
 VInt
 VSocket::Send(const char *buff, const VCard bufflen)
 {
-	int newsize=queuebuffersize+bufflen;
+	unsigned int newsize=queuebuffersize+bufflen;
 	char *buff2;
 	buff2=(char*)buff;
 	unsigned int bufflen2=bufflen;
@@ -553,7 +559,7 @@ VSocket::Send(const char *buff, const VCard bufflen)
 VInt
 VSocket::SendQueued(const char *buff, const VCard bufflen)
 {
-	int newsize=queuebuffersize+bufflen;
+	unsigned int newsize=queuebuffersize+bufflen;
 	char *buff2;
 	buff2=(char*)buff;
 	unsigned int bufflen2=bufflen;
@@ -814,10 +820,30 @@ void VSocket::SetDSMPluginPointer(CDSMPlugin* pDSMPlugin)
 	if (m_pPluginInterface) {
 		delete m_pPluginInterface;
 		m_pPluginInterface = NULL;
+		//adzm 2010-05-10
+		m_pIntegratedPluginInterface = NULL;
 	}
 
 	if (m_pDSMPlugin && m_pDSMPlugin->SupportsMultithreaded()) {
-		m_pPluginInterface = m_pDSMPlugin->CreatePluginInterface();
+		//adzm 2010-05-10
+		if (m_pDSMPlugin->SupportsIntegrated()) {
+			m_pIntegratedPluginInterface = m_pDSMPlugin->CreateIntegratedPluginInterface();
+			m_pPluginInterface = m_pIntegratedPluginInterface;
+		} else {
+			m_pIntegratedPluginInterface = NULL;
+			m_pPluginInterface = m_pDSMPlugin->CreatePluginInterface();
+		}
+	} else {
+		m_pPluginInterface = NULL;
+		m_pIntegratedPluginInterface = NULL;
+	}
+}
+
+//adzm 2010-05-12 - dsmplugin config
+void VSocket::SetDSMPluginConfig(char* szDSMPluginConfig)
+{
+	if (m_pIntegratedPluginInterface) {
+		m_pIntegratedPluginInterface->SetServerOptions(szDSMPluginConfig);
 	}
 }
 

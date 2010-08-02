@@ -1,3 +1,5 @@
+#include "stdhdrs.h"
+#include <objbase.h>
 #include <windows.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -515,7 +517,7 @@ int CheckUserGroupPasswordUni2(char * userin,char *password,const char *machine)
 	BOOL NT4OS=false;
 	BOOL W2KOS=false;
 	char clientname[256];
-	strcpy(clientname,machine);
+	strcpy_s(clientname,256,machine);
 	if (!CheckNetapi95() && !CheckNetApiNT())
 	{
 		return false;
@@ -1005,7 +1007,7 @@ if (strcmp(pszgroup3,"")!=0)
 
 // Marscha@2004 - authSSP: Is New MS-Logon activated?
 BOOL IsNewMSLogon(){
-	HKEY hkLocal=NULL;
+	HKEY hKLocal=NULL;
 	BOOL isNewMSLogon = FALSE;
 	LONG data;
 	ULONG type = REG_DWORD;
@@ -1019,10 +1021,10 @@ BOOL IsNewMSLogon(){
 				"Software\\ORL\\WinVNC3",
 				NULL,
 				KEY_QUERY_VALUE,
-				&hkLocal) != ERROR_SUCCESS)
+				&hKLocal) != ERROR_SUCCESS)
 				return false;
 			
-		if (RegQueryValueEx(hkLocal,
+		if (RegQueryValueEx(hKLocal,
 				"NewMSLogon",
 				NULL,
 				&type,
@@ -1035,7 +1037,7 @@ BOOL IsNewMSLogon(){
 				return false;
 			
 		isNewMSLogon = data;
-		if (hkLocal != NULL) RegCloseKey(hkLocal);
+		if (hKLocal != NULL) RegCloseKey(hKLocal);
 		return isNewMSLogon;
 	}
 	else

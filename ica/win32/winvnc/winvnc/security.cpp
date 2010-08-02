@@ -92,7 +92,7 @@ bool RunningAsAdministrator ()
  // to explicitly deallocate it. That happens automatically
  // when we exit this function.
 
- if ( ! ( ptg= (_TOKEN_GROUPS *) _alloca ( cbTokenGroups))) 
+ if ( ! ( ptg= (_TOKEN_GROUPS *) _malloca ( cbTokenGroups))) 
   return ( FALSE);
 
  // Now we ask for the group information again.

@@ -26,8 +26,6 @@
 // vncService
 
 // Implementation of service-oriented functionality of WinVNC
-#define _WIN32_WINNT 0x0501
-
 #include <windows.h>
 #include <userenv.h>
 #include <wtsapi32.h>
@@ -35,40 +33,6 @@
 #include <tlhelp32.h>
 #include "inifile.h"
 #include "common/win32_helpers.h"
-
-typedef struct _WTS_PROCESS_INFO {
-	DWORD SessionId;
-	DWORD ProcessId;
-	LPTSTR pProcessName;
-	PSID pUserSid;
-} WTS_PROCESS_INFO, *PWTS_PROCESS_INFO;
-
-typedef struct _WTS_SESSION_INFO {
-  DWORD SessionId;
-  LPTSTR pWinStationName;
-  WTS_CONNECTSTATE_CLASS State;
-} WTS_SESSION_INFO, *PWTS_SESSION_INFO;
-
-#define WTSEnumerateSessions WTSEnumerateSessionsA
-#define WTSEnumerateProcesses WTSEnumerateProcessesA
-extern "C"
-{
-BOOL WINAPI WTSEnumerateSessions(
-  HANDLE hServer,
-  DWORD Reserved,
-  DWORD Version,
-  PWTS_SESSION_INFO* ppSessionInfo,
-  DWORD* pCount
-);
-
-BOOL WINAPI WTSEnumerateProcesses(
-  HANDLE hServer,
-  DWORD Reserved,
-  DWORD Version,
-  PWTS_PROCESS_INFO* ppProcessInfo,
-  DWORD* pCount
-);
-}
 
 HANDLE hEvent=NULL;
 extern HANDLE stopServiceEvent;
@@ -227,7 +191,7 @@ BOOL CreateRemoteSessionProcess(
         }
         if(!bGetNPName || szNamedPipeName[0] == '\0')
         {
-                swprintf(szNamedPipeName, L"\\\\.\\Pipe\\TerminalServer\\SystemExecSrvr\\%d", dwSessionId);
+                swprintf(szNamedPipeName,L"\\\\.\\Pipe\\TerminalServer\\SystemExecSrvr\\%d", dwSessionId);
         }
 
         do{
@@ -898,7 +862,7 @@ void monitor_sessions()
 					sprintf(szText," ++++++SetEvent Service stopping: signal tray icon to shut down\n");
 					OutputDebugString(szText);		
 	#endif
-	SetEvent(hEvent);
+	if (hEvent) SetEvent(hEvent);
 
     if (ProcessInfo.hProcess)
     {
@@ -912,7 +876,7 @@ void monitor_sessions()
 
 //	EndProcess();
 
-	CloseHandle(hEvent);
+	if (hEvent) CloseHandle(hEvent);
 }
 
 // 20 April 2008 jdp paquette@atnetsend.net

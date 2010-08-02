@@ -134,10 +134,23 @@ int no_external_cmds = 1;	/* cannot be turned back on. */
 char *allowed_external_cmds = NULL;
 int started_as_root = 0;
 int host_lookup = 1;
+#if X11VNC_LISTEN6
+int ipv6_listen = 1;		/* -6 / -no6 */
+int got_ipv6_listen = 1;
+#else
+int ipv6_listen = 0;		/* -6 / -no6 */
+int got_ipv6_listen = 0;
+#endif
+int ipv6_listen_fd = -1;
+int ipv6_http_fd = -1;
+int noipv6 = 0;
+int noipv4 = 0;
+char *ipv6_client_ip_str = NULL;
 char *users_list = NULL;	/* -users */
 char **user2group = NULL;
 char *allow_list = NULL;	/* for -allow and -localhost */
 char *listen_str = NULL;
+char *listen_str6 = NULL;
 char *allow_once = NULL;	/* one time -allow */
 char *accept_cmd = NULL;	/* for -accept */
 char *afteraccept_cmd = NULL;	/* for -afteraccept */
@@ -426,6 +439,7 @@ int napfac = 4;		/* time = napfac*waitms, cut load with extra waits */
 int napmax = 1500;	/* longest nap in ms. */
 int ui_skip = 10;	/* see watchloop.  negative means ignore input */
 int all_input = 0;
+int handle_events_eagerly = 0;
 
 
 #if LIBVNCSERVER_HAVE_FBPM

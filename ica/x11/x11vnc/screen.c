@@ -1341,6 +1341,8 @@ rfbBool vnc_reflect_resize(rfbClient *cl)  {
 		free(cl->frameBuffer);
 	}
 	cl->frameBuffer= malloc(cl->width * cl->height * cl->format.bitsPerPixel/8);
+	rfbLog("vnc_reflect_resize: %dx%dx%d first=%d\n", cl->width, cl->height,
+	    cl->format.bitsPerPixel, first);
 	if (!first) {
 		do_new_fb(1);
 	}
@@ -1421,7 +1423,7 @@ char *vnc_reflect_guess(char *str, char **raw_fb_addr) {
 	if (first) {
 		argv[argc++] = "x11vnc_rawfb_vnc";
 		if (strstr(hp, "listen") == hp) {
-			char *q = strchr(hp, ':');
+			char *q = strrchr(hp, ':');
 			argv[argc++] = strdup("-listen");
 			if (q) {
 				client->listenPort = atoi(q+1);
@@ -3589,12 +3591,55 @@ void initialize_screen(int *argc, char **argv, XImage *fb) {
 		defer_update = screen->deferUpdateTime;
 	}
 
-	rfbInitServer(screen);
+	if (noipv4 || getenv("IPV4_FAILS")) {
+		rfbBool ap = screen->autoPort;
+		int port = screen->port;
+
+		if (getenv("IPV4_FAILS")) {
+			rfbLog("TESTING: IPV4_FAILS for rfbInitServer()\n");
+		}
+
+		screen->autoPort = FALSE;
+		screen->port = 0;
+
+		rfbInitServer(screen);
+
+		screen->autoPort = ap;
+		screen->port = port;
+		
+	} else {
+		rfbInitServer(screen);
+	}
 
 	if (use_openssl) {
-		openssl_port();
+		openssl_port(0);
 		if (https_port_num >= 0) {
-			https_port();
+			https_port(0);
+		}
+	} else {
+		if (ipv6_listen) {
+			int fd = -1;
+			if (screen->port <= 0) {
+				if (got_rfbport) {
+					screen->port = got_rfbport_val;
+				} else {
+					int ap = 5900;
+					if (auto_port > 0) {
+						ap = auto_port;
+					}
+					screen->port = find_free_port6(ap, ap+200);
+				}
+			}
+			fd = listen6(screen->port);
+			if (fd < 0) {
+				ipv6_listen = 0;
+				rfbLog("Not listening on IPv6 interface.\n");
+			} else {
+				rfbLog("Listening %s on IPv6 port %d (socket %d)\n",
+				    screen->listenSock < 0 ? "only" : "also",
+				    screen->port, fd);
+				ipv6_listen_fd = fd;
+			}
 		}
 	}
 
@@ -3717,7 +3762,8 @@ void do_announce_http(void) {
 		return;
 	}
 
-	if (screen->httpListenSock > -1 && screen->httpPort) {
+	/* XXX ipv6? */
+	if ((screen->httpListenSock > -1 || ipv6_http_fd > -1) && screen->httpPort) {
 		int enc_none = (enc_str && !strcmp(enc_str, "none"));
 		char *SPORT = "   (single port)";
 		if (use_openssl && ! enc_none) {
@@ -3752,6 +3798,7 @@ void do_announce_http(void) {
 
 void do_mention_java_urls(void) {
 	if (! quiet && screen) {
+		/* XXX ipv6? */
 		if (screen->httpListenSock > -1 && screen->httpPort) {
 			rfbLog("\n");
 			rfbLog("The URLs printed out below ('Java ... viewer URL') can\n");

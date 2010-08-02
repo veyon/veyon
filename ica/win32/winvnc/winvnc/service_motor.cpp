@@ -78,7 +78,7 @@ monitor_sessions();
         SetServiceStatus(serviceStatusHandle, &serviceStatus);
 
         /* do cleanup here */
-        CloseHandle(stopServiceEvent);
+        if (stopServiceEvent) CloseHandle(stopServiceEvent);
         stopServiceEvent=0;
 
         /* service is now stopped */
@@ -133,7 +133,7 @@ static DWORD WINAPI control_handler_ex(DWORD controlCode, DWORD dwEventType, LPV
 }
 ////////////////////////////////////////////////////////////////////////////////
 int start_service(char *cmd) {
-	strcpy(cmdtext,cmd);
+	strcpy_s(cmdtext,256,cmd);
     SERVICE_TABLE_ENTRY serviceTable[]={
 	 {service_name, service_main},
         {0, 0}

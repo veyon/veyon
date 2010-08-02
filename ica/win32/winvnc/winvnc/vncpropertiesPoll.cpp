@@ -84,7 +84,8 @@ vncPropertiesPoll::Init(vncServer *server)
 void
 vncPropertiesPoll::Show(BOOL show, BOOL usersettings)
 {
-	HANDLE hProcess,hPToken;
+	HANDLE hProcess=NULL;
+	HANDLE hPToken=NULL;
 	DWORD id=GetExplorerLogonPid();
 	int iImpersonateResult=0;
 	{
@@ -165,7 +166,8 @@ vncPropertiesPoll::Show(BOOL show, BOOL usersettings)
 				}
 			} else {
 				// We're trying to edit the default local settings - verify that we can
-				HKEY hkLocal, hkDefault;
+				HKEY hkLocal=NULL;
+				HKEY hkDefault=NULL;
 				BOOL canEditDefaultPrefs = 1;
 				DWORD dw;
 				if (RegCreateKeyEx(HKEY_LOCAL_MACHINE,
@@ -184,8 +186,8 @@ vncPropertiesPoll::Show(BOOL show, BOOL usersettings)
 				if (!canEditDefaultPrefs) {
 					MessageBox(NULL, sz_ID_CANNOT_EDIT_DEFAULT_PREFS, sz_ID_WINVNC_ERROR, MB_OK | MB_ICONEXCLAMATION);
 					if(iImpersonateResult == ERROR_SUCCESS)RevertToSelf();
-					CloseHandle(hProcess);
-					CloseHandle(hPToken);
+					if (hProcess) CloseHandle(hProcess);
+					if (hPToken) CloseHandle(hPToken);
 					return;
 				}
 			}
@@ -250,8 +252,8 @@ vncPropertiesPoll::Show(BOOL show, BOOL usersettings)
 		}
 	}
 	if(iImpersonateResult == ERROR_SUCCESS)RevertToSelf();
-	CloseHandle(hProcess);
-	CloseHandle(hPToken);
+	if (hProcess) CloseHandle(hProcess);
+	if (hPToken) CloseHandle(hPToken);
 }
 
 

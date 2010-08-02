@@ -204,16 +204,16 @@ vncEncoder::GetRemotePalette(RGBQUAD *quadlist, UINT ncolours)
 		// Fake BGR233...
 		vnclog.Print(LL_INTINFO, VNCLOG("generating BGR233 palette data\n"));
 
-		int ncolours = 1 << m_transformat.bitsPerPixel;
+		int ncolors = 1 << m_transformat.bitsPerPixel;
 		if (m_localpalette != NULL)
 			free(m_localpalette);
-		m_localpalette = (char *)malloc(ncolours * sizeof(RGBQUAD));
+		m_localpalette = (char *)malloc(ncolors * sizeof(RGBQUAD));
 		
 		if (m_localpalette != NULL)
 		{
 			RGBQUAD *colour = (RGBQUAD *)m_localpalette;
 
-			for (int i=0; i<ncolours; i++)
+			for (int i=0; i<ncolors; i++)
 			{
 				colour[i].rgbBlue = (((i >> m_transformat.blueShift) & m_transformat.blueMax) * 255) / m_transformat.blueMax;
 				colour[i].rgbRed = (((i >> m_transformat.redShift) & m_transformat.redMax) * 255) / m_transformat.redMax;

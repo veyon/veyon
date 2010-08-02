@@ -42,11 +42,12 @@ so, delete this exception statement from your version.
 /*
  * ultravnc_dsm_helper.c unix/openssl UltraVNC encryption encoder/decoder. 
  *                       (also a generic symmetric encryption tunnel)
+ *                       (also a generic TCP relay and supports IPv6)
  *
  * compile via:
 
-   cc       -O -o ultravnc_dsm_helper ultravnc_dsm_helper.c -lcrypto
-   cc -DDBG -O -o ultravnc_dsm_helper ultravnc_dsm_helper.c -lcrypto
+   cc       -O -o ultravnc_dsm_helper ultravnc_dsm_helper.c -lssl -lcrypto
+   cc -DDBG -O -o ultravnc_dsm_helper ultravnc_dsm_helper.c -lssl -lcrypto
 
  *
  * See usage below for how to run it.
@@ -65,8 +66,12 @@ so, delete this exception statement from your version.
  * e.g. to connect a non-ultra-dsm-vnc viewer to a non-ultra-dsm-vnc server
  * without using SSH or SSL.
  *
+ * It can also be used as a general TCP relay (no encryption.)
+ *
+ * It supports IPv6 and so can also be used as a IPv6 gateway.
+ *
  * -----------------------------------------------------------------------
- * Copyright (C) 2008-2009 Karl J. Runge <runge@karlrunge.com>
+ * Copyright (C) 2008-2010 Karl J. Runge <runge@karlrunge.com>
  * All rights reserved.
  *
  *  This is free software; you can redistribute it and/or modify
@@ -98,13 +103,28 @@ so, delete this exception statement from your version.
 
 static char *usage = 
     "\n"
-    "usage: ultravnc_dsm_helper cipher keyfile listenport remotehost:port\n"
+    "ultravnc_dsm_helper: a symmetric encryption tunnel. version 0.2\n"
+    "\n"
+    "       Created to enable encrypted VNC connections to UltraVNC, it can act as\n"
+    "       a general encrypted tunnel between any two applications.  It can also\n"
+    "       be used as a general TCP relay (i.e. no encryption) or an IPv6 gateway.\n"
+    "\n"
+    "Usage: ultravnc_dsm_helper cipher keyfile listenport remotehost:port\n"
+    "       ultravnc_dsm_helper relay listenport remotehost:port\n"
+    "       ultravnc_dsm_helper showcert remotehost:port\n"
     "\n"
     "e.g.:  ultravnc_dsm_helper arc4 ./arc4.key 5901 snoopy.net:5900\n"
     "\n"
-    "       cipher: specify 'msrc4', 'msrc4_sc', 'arc4', 'aesv2',\n"
-    "               'aes-cfb', 'aes256', 'blowfish', '3des',\n"
-    "               'securevnc'.\n"
+    "       IPv6 is supported: both IPv4 and IPv6 are attempted to listen on (port\n"
+    "               'listenport'.)  For connections to remotehost, if IPv4 fails\n"
+    "               then IPv6 is tried.  Set the env. var ULTRAVNC_DSM_HELPER_NOIPV6\n"
+    "               to completely disable the use of IPv6.\n"
+    "\n"
+    "\n"
+    "       cipher: specify 'msrc4', 'msrc4_sc', 'arc4', 'aesv2', 'aes-cfb',\n"
+    "               'aes256', 'blowfish', '3des', 'securevnc'.\n"
+    "\n"
+    "               Also 'none', 'relay', or 'showcert'.  See below for details.\n"
     "\n"
     "         'msrc4_sc' enables a workaround for UVNC SC -plugin use.\n"
     "            (it might not be required in SC circa 2009 and later; try 'msrc4'.)\n"
@@ -127,19 +147,22 @@ static char *usage =
     "         use 'rev:arc4', etc. to reverse the roles of encrypter and decrypter.\n"
     "           (i.e. if you want to use it for a vnc server, not vnc viewer)\n"
     "\n"
-    "         use 'noultra:...' to skip steps involving salt and IV to be compatible\n"
-    "           to be compatible with UltraVNC DSM, i.e. assume a normal symmetric\n"
-    "           cipher at the other end.\n"
+    "         use 'noultra:...' to skip steps involving salt and IV to try to be\n"
+    "           compatible with UltraVNC DSM, i.e. assume a normal symmetric cipher\n"
+    "           at the other end.\n"
     "\n"
     "         use 'noultra:rev:...' if both are to be supplied.\n"
+    "\n"
     "\n"
     "       keyfile: file holding the key (16 bytes for arc4 and aesv2, 87 for msrc4)\n"
     "           E.g. dd if=/dev/random of=./my.key bs=16 count=1\n"
     "           keyfile can also be pw=<string> to use \"string\" for the key.\n"
     "           Or for 'securevnc' the RSA keystore and/or ClientAuth file.\n"
     "\n"
+    "\n"
     "       listenport: port to listen for incoming connection on. (use 0 to connect\n"
-    "                   to stdio, use a negative value to force localhost)\n"
+    "                   to stdio, use a negative value to force localhost listening)\n"
+    "\n"
     "\n"
     "       remotehost:port: host and port to connect to. (e.g. ultravnc server)\n"
     "\n"
@@ -150,6 +173,39 @@ static char *usage =
     "\n"
     "       Use cipher@md+n,m to change the message digest. E.g. arc4@sha+8,16\n"
     "       Supported: 'md5', 'sha', 'sha1', 'ripemd160'.\n"
+    "\n"
+    "\n"
+    "       TCP Relay mode: to connect without any encryption use a cipher type of\n"
+    "       either 'relay' or 'none' (both are the equivalent):\n"
+    "\n"
+    "         ultravnc_dsm_helper relay listenport remotehost:port\n"
+    "         ultravnc_dsm_helper none  listenport remotehost:port\n"
+    "\n"
+    "       where 'relay' or 'none' is a literal string.\n"
+    "       Note that for this mode no keyfile is suppled.\n"
+    "       Note that this mode can act as an IPv4 to IPv6 gateway.\n"
+    "\n"
+    "         ultravnc_dsm_helper relay 8080 ipv6.beijing2008.cn:80\n"
+    "\n"
+    "\n"
+    "       SSL Show Certificate mode:  Set the cipher to 'showcert' to fetch\n"
+    "       the SSL certificate from remotehost:port and print it to the stdout.\n"
+    "       No certificate authentication or verification is performed.  E.g.\n"
+    "\n"
+    "         ultravnc_dsm_helper showcert www.verisign.com:443\n"
+    "\n"
+    "       (the output resembles that of 'openssl s_client ...')  Set the env var\n"
+    "       ULTRAVNC_DSM_HELPER_SHOWCERT_ADH=1 for Anonymous Diffie Hellman mode.\n"
+    "\n"
+    "\n"
+    "       Looping Mode:  Set the env. var. ULTRAVNC_DSM_HELPER_LOOP=1 to have it\n"
+    "       restart itself after every disconnection in an endless loop.  It pauses\n"
+    "       500 msec before restarting.  Use ULTRAVNC_DSM_HELPER_LOOP=N to set the\n"
+    "       pause to N msec.\n"
+    "\n"
+    "       You can also set the env. var. ULTRAVNC_DSM_HELPER_BG to have the\n"
+    "       program fork into the background for each connection, thereby acting\n"
+    "       as a simple daemon.\n"
 ;
 
 /*
@@ -200,6 +256,8 @@ static char *prog = "ultravnc_dsm_helper";
 #include <openssl/rand.h>
 #include <openssl/rsa.h>
 #include <openssl/err.h>
+#include <openssl/ssl.h>
+#include <openssl/rsa.h>
 static const EVP_CIPHER *Cipher;
 static const EVP_MD *Digest;
 #endif
@@ -291,7 +349,7 @@ extern void enc_do(char *ciph, char *keyfile, char *lport, char *rhp) {
 	struct stat sb;
 	char *q, *p, *connect_host;
 	char tmp[16];
-	int fd, len = 0, listen_port, connect_port, mbits;
+	int fd, len = 0, listen_port = 0, connect_port, mbits;
 
 	q = ciph;
 
@@ -336,6 +394,12 @@ extern void enc_do(char *ciph, char *keyfile, char *lport, char *rhp) {
 	} else if (strstr(q, "securevnc") == q) {
 		Cipher = EVP_aes_128_ofb();	cipher = "securevnc";
 		securevnc = 1;
+
+	} else if (strstr(q, "none") == q || strstr(q, "relay") == q) {
+		cipher = "none";
+
+	} else if (strstr(q, "showcert") == q) {
+		cipher = "showcert";
 
 	} else if (strstr(q, ".") == q) {
 		/* otherwise, try to guess cipher from key filename: */
@@ -433,7 +497,9 @@ extern void enc_do(char *ciph, char *keyfile, char *lport, char *rhp) {
 	}
 
 	/* port to listen on (0 => stdio, negative => localhost) */
-	listen_port = atoi(lport);
+	if (lport != NULL) {
+		listen_port = atoi(lport);
+	}
 
 	/* extract remote hostname and port */
 	q = strrchr(rhp, ':');
@@ -448,6 +514,13 @@ extern void enc_do(char *ciph, char *keyfile, char *lport, char *rhp) {
 
 	/* check for and read in the key file */
 	memset(keydata, 0, sizeof(keydata));
+
+	if (!strcmp(cipher, "none")) {
+		goto readed_in;
+	}
+	if (!strcmp(cipher, "showcert")) {
+		goto readed_in;
+	}
 
 	if (securevnc) {
 		/* note the keyfile for rsa verification later */
@@ -535,6 +608,81 @@ extern void enc_do(char *ciph, char *keyfile, char *lport, char *rhp) {
 	enc_connections(listen_port, connect_host, connect_port);
 }
 #endif
+
+static void enc_raw_xfer(int sock_fr, int sock_to) {
+
+	unsigned char buf[BSIZE];
+	unsigned char *psrc = NULL;
+	int len, m, n = 0;
+	
+	/* zero the buffers */
+	memset(buf, 0, BSIZE);
+
+	/* now loop forever processing the data stream */
+	while (1) {
+		errno = 0;
+
+		/* general case of loop, read some in: */
+		n = read(sock_fr, buf, BSIZE);
+
+		if (n == 0 || (n < 0 && errno != EINTR)) {
+			/* failure to read any data, it is EOF or fatal error */
+			int err = errno;
+
+			/* debug output: */
+			fprintf(stderr, "%s: input stream finished: n=%d, err=%d", prog, n, err);
+
+			/* EOF or fatal error */
+			break;
+
+		} else if (n > 0) {
+
+			/* write data to the other end: */
+			len = n;
+			psrc = buf;
+			while (len > 0) {
+				errno = 0;
+				m = write(sock_to, psrc, len);
+
+				if (m > 0) {
+					/* scoot them by how much was written: */
+					psrc += m;
+					len  -= m;
+				}
+				if (m < 0 && (errno == EINTR || errno == EAGAIN)) {
+					/* interrupted or blocked */
+					continue;
+				}
+				/* EOF or fatal error */
+				break;
+			}
+		} else {
+			/* this is EINTR */
+		}
+	}
+
+	/* transfer done (viewer exited or some error) */
+
+	fprintf(stderr, "\n%s: close sock_to\n", prog);
+	close(sock_to);
+
+	fprintf(stderr,   "%s: close sock_fr\n", prog);
+	close(sock_fr);
+
+	/* kill our partner after 1 secs. */
+	sleep(1);
+	if (child)  {
+		if (kill(child, SIGTERM) == 0) {
+			fprintf(stderr, "%s[%d]: killed my partner: %d\n",
+			    prog, (int) getpid(), (int) child);
+		}
+	} else {
+		if (kill(parent, SIGTERM) == 0) {
+			fprintf(stderr, "%s[%d]: killed my partner: %d\n",
+			    prog, (int) getpid(), (int) parent);
+		}
+	}
+}
 
 #if ENC_HAVE_OPENSSL
 /*
@@ -1368,20 +1516,171 @@ static void securevnc_setup(int conn1, int conn2) {
 		write(viewer, to_viewer, to_viewer_len);
 	}
 }
+
+#ifndef ENC_DISABLE_SHOW_CERT
+static void enc_sslerrexit(void) {
+	unsigned long err = ERR_get_error();
+
+	if (err) {
+		char str[256];
+		ERR_error_string(err, str);
+		fprintf(stdout, "ssl error: %s\n", str);
+	}
+	exit(1);
+}
+#endif
+
+static void show_cert(int sock) {
+#ifndef ENC_DISABLE_SHOW_CERT
+	SSL_CTX *ctx;
+	SSL *ssl = NULL;
+	STACK_OF(X509) *sk = NULL;
+	X509 *peer = NULL;
+	SSL_CIPHER *c;
+	BIO *bio;
+	unsigned char *sid =  (unsigned char *) "ultravnc_dsm_helper SID";
+	long mode;
+	int i;
+
+	fprintf(stdout, "CONNECTED(%08X)\n",sock);
+
+	SSL_library_init();
+	SSL_load_error_strings();
+
+	if (!RAND_status()) {
+		RAND_poll();
+	}
+	/* this is not for a secured connection. */
+	for (i=0; i < 100; i++) {
+		if (!RAND_status()) {
+			char tmp[32];
+			sprintf(tmp, "%d", getpid() * (17 + i));
+			RAND_add(tmp, strlen(tmp), 5);
+		} else {
+			break;
+		}
+	}
+
+	ctx = SSL_CTX_new( SSLv23_client_method() );
+	if (ctx == NULL) {
+		fprintf(stdout, "show_cert: SSL_CTX_new failed.\n");
+		close(sock);
+		enc_sslerrexit();
+	}
+
+	mode = 0;
+	mode |= SSL_MODE_ENABLE_PARTIAL_WRITE;
+	mode |= SSL_MODE_ACCEPT_MOVING_WRITE_BUFFER;
+	SSL_CTX_set_mode(ctx, mode);
+
+	if (getenv("ULTRAVNC_DSM_HELPER_SHOWCERT_ADH")) {
+		SSL_CTX_set_cipher_list(ctx, "ADH:@STRENGTH");
+		SSL_CTX_set_verify(ctx, SSL_VERIFY_NONE, NULL);
+	}
+
+	ssl = SSL_new(ctx);
+
+	if (ssl == NULL) {
+		fprintf(stdout, "show_cert: SSL_new failed.\n");
+		close(sock);
+		enc_sslerrexit();
+	}
+
+	SSL_set_session_id_context(ssl, sid, strlen((char *)sid));
+
+	if (! SSL_set_fd(ssl, sock)) {
+		fprintf(stdout, "show_cert: SSL_set_fd failed.\n");
+		close(sock);
+		enc_sslerrexit();
+	}
+
+	SSL_set_connect_state(ssl);
+
+	if (SSL_connect(ssl) <= 0) {
+		unsigned long err = ERR_get_error();
+		fprintf(stdout, "show_cert: SSL_connect failed.\n");
+		if (err) {
+			char str[256];
+			ERR_error_string(err, str);
+			fprintf(stdout, "ssl error: %s\n", str);
+		}
+	}
+
+	SSL_get_verify_result(ssl);
+
+	sk = SSL_get_peer_cert_chain(ssl);
+	if (sk != NULL) {
+		fprintf(stdout, "---\nCertificate chain\n");
+		for (i=0; i < sk_X509_num(sk); i++) {
+			char buf[2048];
+			X509_NAME_oneline(X509_get_subject_name(sk_X509_value(sk,i)), buf, sizeof buf);
+			fprintf(stdout, "%2d s:%s\n", i, buf);
+			X509_NAME_oneline(X509_get_issuer_name(sk_X509_value(sk,i)), buf, sizeof buf);
+			fprintf(stdout, "   i:%s\n", buf);
+		}
+	} else {
+		fprintf(stdout, "show_cert: SSL_get_peer_cert_chain failed.\n");
+	}
+	fprintf(stdout, "---\n");
+	peer = SSL_get_peer_certificate(ssl);
+	bio = BIO_new_fp(stdout, BIO_NOCLOSE);
+	if (peer != NULL) {
+		char buf[2048];
+		BIO_printf(bio,"Server certificate\n");
+		PEM_write_bio_X509(bio, peer);
+
+		X509_NAME_oneline(X509_get_subject_name(peer), buf, sizeof buf);
+		BIO_printf(bio,"subject=%s\n",buf);
+		X509_NAME_oneline(X509_get_issuer_name(peer), buf, sizeof buf);
+		BIO_printf(bio,"issuer=%s\n",buf);
+	} else {
+		fprintf(stdout, "show_cert: SSL_get_peer_certificate failed.\n");
+	}
+
+	c = SSL_get_current_cipher(ssl);
+	BIO_printf(bio,"---\nNew, %s, Cipher is %s\n", SSL_CIPHER_get_version(c), SSL_CIPHER_get_name(c));
+
+	if (peer != NULL) {
+		EVP_PKEY *pktmp;
+		pktmp = X509_get_pubkey(peer);
+		BIO_printf(bio,"Server public key is %d bit\n", EVP_PKEY_bits(pktmp));
+		EVP_PKEY_free(pktmp);
+	}
+	BIO_printf(bio,"---\nDONE\n---\n");
+	
+	fflush(stdout);
+
+#endif
+	close(sock);
+	exit(0);
+}
+
+#ifndef SOL_IPV6
+#ifdef  IPPROTO_IPV6
+#define SOL_IPV6 IPPROTO_IPV6
+#endif
+#endif
+
 /*
  * Listens on incoming port for a client, then connects to remote server.
  * Then forks into two processes one is the encrypter the other the
  * decrypter.
  */
 static void enc_connections(int listen_port, char *connect_host, int connect_port) {
-	int listen_fd, conn1, conn2, ret, one = 1;
+	int listen_fd = -1, listen_fd6 = -1, conn1 = -1, conn2 = -1, ret, one = 1;
 	socklen_t clen;
 	struct hostent *hp;
 	struct sockaddr_in client, server;
+	fd_set fds;
+	int maxfd = -1;
 
 	/* zero means use stdio (preferably from socketpair()) */
 	if (listen_port == 0) {
 		conn1 = fileno(stdin);
+		goto use_stdio;
+	}
+
+	if (!strcmp(cipher, "showcert")) {
 		goto use_stdio;
 	}
 
@@ -1405,25 +1704,95 @@ static void enc_connections(int listen_port, char *connect_host, int connect_por
 	listen_fd = socket(AF_INET, SOCK_STREAM, 0); 
 	if (listen_fd < 0) {
 		perror("socket");
-		exit(1);
+		goto try6;
 	}
 
 	ret = setsockopt(listen_fd, SOL_SOCKET, SO_REUSEADDR,
 	    (char *)&one, sizeof(one));
 	if (ret < 0) {
 		perror("setsockopt");
-		exit(1);
+		close(listen_fd);
+		listen_fd = -1;
+		goto try6;
 	}
 
 	ret = bind(listen_fd, (struct sockaddr *) &client, sizeof(client));
 	if (ret < 0) {
 		perror("bind");
-		exit(1);
+		close(listen_fd);
+		listen_fd = -1;
+		goto try6;
 	}
 
 	ret = listen(listen_fd, 2);
 	if (ret < 0) {
 		perror("listen");
+		close(listen_fd);
+		listen_fd = -1;
+		goto try6;
+	}
+
+	try6:
+#ifdef AF_INET6
+	if (!getenv("ULTRAVNC_DSM_HELPER_NOIPV6")) {
+		struct sockaddr_in6 sin;
+		int one = 1, sock = -1;
+
+		sock = socket(AF_INET6, SOCK_STREAM, 0);
+		if (sock < 0) {
+			perror("socket6");
+			goto fail;
+		}
+
+		if (setsockopt(sock, SOL_SOCKET, SO_REUSEADDR, (char *)&one, sizeof(one)) < 0) {
+			perror("setsockopt6 SO_REUSEADDR");
+			close(sock);
+			sock = -1;
+			goto fail;
+		}
+
+#if defined(SOL_IPV6) && defined(IPV6_V6ONLY)
+		if (setsockopt(sock, SOL_IPV6, IPV6_V6ONLY, (char *)&one, sizeof(one)) < 0) {
+			perror("setsockopt6 IPV6_V6ONLY");
+			close(sock);
+			sock = -1;
+			goto fail;
+		}
+#endif
+
+		memset((char *)&sin, 0, sizeof(sin));
+		sin.sin6_family = AF_INET6;
+
+		if (listen_port < 0) {
+			sin.sin6_addr = in6addr_loopback;
+			sin.sin6_port = htons(-listen_port);
+		} else {
+			sin.sin6_addr = in6addr_any;
+			sin.sin6_port = htons(listen_port);
+		}
+
+		if (bind(sock, (struct sockaddr *) &sin, sizeof(sin)) < 0) {
+			perror("bind6");
+			close(sock);
+			sock = -1;
+			goto fail;
+		}
+
+		if (listen(sock, 2) < 0) {
+			perror("listen6");
+			close(sock);
+			sock = -1;
+			goto fail;
+		}
+
+		fail:
+		listen_fd6 = sock;
+	}
+#endif
+
+	if (listen_fd < 0 && listen_fd6 < 0) {
+		fprintf(stderr, "%s: could not listen on port: %d\n",
+		    prog, listen_port);
 		exit(1);
 	}
 
@@ -1431,15 +1800,85 @@ static void enc_connections(int listen_port, char *connect_host, int connect_por
 	    prog, listen_port);
 
 	/* wait for a connection: */
-	clen = sizeof(client);
-	conn1 = accept(listen_fd, (struct sockaddr *) &client, &clen);
-	if (conn1 < 0) {
-		perror("accept");
+	FD_ZERO(&fds);
+	if (listen_fd >= 0) {
+		FD_SET(listen_fd, &fds);
+		if (listen_fd > maxfd) {
+			maxfd = listen_fd;
+		}
+	}
+	if (listen_fd6 >= 0) {
+		FD_SET(listen_fd6, &fds);
+		if (listen_fd6 > maxfd) {
+			maxfd = listen_fd6;
+		}
+	}
+	if (select(maxfd+1, &fds, NULL, NULL, NULL) <= 0) {
+		perror("select");
 		exit(1);
 	}
 
-	/* done with the listening socket: */
-	close(listen_fd);
+	if (FD_ISSET(listen_fd, &fds)) {
+		clen = sizeof(client);
+		conn1 = accept(listen_fd, (struct sockaddr *) &client, &clen);
+		if (conn1 < 0) {
+			perror("accept");
+			exit(1);
+		}
+	} else if (FD_ISSET(listen_fd6, &fds)) {
+#ifdef AF_INET6
+		struct sockaddr_in6 addr;
+		socklen_t addrlen = sizeof(addr);
+
+		conn1 = accept(listen_fd6, (struct sockaddr *) &addr, &addrlen);
+		if (conn1 < 0) {
+			perror("accept6");
+			exit(1);
+		}
+#else
+		fprintf(stderr, "No IPv6 / AF_INET6 support.\n");
+		exit(1);
+#endif
+	}
+
+	if (setsockopt(conn1, IPPROTO_TCP, TCP_NODELAY, (char *)&one, sizeof(one)) < 0) {
+		perror("setsockopt TCP_NODELAY");
+		exit(1);
+	}
+
+	/* done with the listening socket(s): */
+	if (listen_fd >= 0) {
+		close(listen_fd);
+	}
+	if (listen_fd6 >= 0) {
+		close(listen_fd6);
+	}
+
+	if (getenv("ULTRAVNC_DSM_HELPER_BG")) {
+		int p, n;
+		if ((p = fork()) > 0)  {
+			fprintf(stderr, "%s: putting child %d in background.\n",
+			    prog, p);
+			exit(0);
+		} else if (p == -1) {
+			fprintf(stderr, "%s: could not fork\n", prog);
+			perror("fork");
+			exit(1);
+		}
+		if (setsid() == -1) {
+			fprintf(stderr, "%s: setsid failed\n", prog);
+			perror("setsid");
+			exit(1);
+		}
+		/* adjust our stdio */
+		n = open("/dev/null", O_RDONLY);
+		dup2(n, 0);
+		dup2(n, 1);
+		dup2(n, 2);
+		if (n > 2) {
+			close(n);
+		}
+	}
 
 	use_stdio:
 
@@ -1453,8 +1892,7 @@ static void enc_connections(int listen_port, char *connect_host, int connect_por
 	if ((server.sin_addr.s_addr = inet_addr(connect_host)) == htonl(INADDR_NONE)) {
 		if (!(hp = gethostbyname(connect_host))) {
 			perror("gethostbyname");
-			close(conn1);
-			exit(1);
+			goto tryconn6;
 		}
 		server.sin_addr.s_addr = *(unsigned long *)hp->h_addr;
 	}
@@ -1462,17 +1900,91 @@ static void enc_connections(int listen_port, char *connect_host, int connect_por
 	conn2 = socket(AF_INET, SOCK_STREAM, 0);
 	if (conn2 < 0) {
 		perror("socket");
-		close(conn1);
-		exit(1);
+		goto tryconn6;
 	}
 
 	if (connect(conn2, (struct sockaddr *)&server, (sizeof(server))) < 0) {
 		perror("connect");
-		close(conn1);
+		goto tryconn6;
+	}
+
+	tryconn6:
+#ifdef AF_INET6
+	if (conn2 < 0 && !getenv("ULTRAVNC_DSM_HELPER_NOIPV6")) {
+		int err;
+		struct addrinfo *ai;
+		struct addrinfo hints;
+		char service[32];
+
+		fprintf(stderr, "connect[ipv6]: trying to connect via IPv6 to %s\n", connect_host);
+		conn2 = -1;
+
+		memset(&hints, 0, sizeof(hints));
+		sprintf(service, "%d", connect_port);
+
+		hints.ai_family = AF_UNSPEC;
+		hints.ai_socktype = SOCK_STREAM;
+#ifdef AI_ADDRCONFIG
+		hints.ai_flags |= AI_ADDRCONFIG;
+#endif
+#ifdef AI_NUMERICSERV
+		hints.ai_flags |= AI_NUMERICSERV;
+#endif
+
+		err = getaddrinfo(connect_host, service, &hints, &ai);
+		if (err != 0) {
+			fprintf(stderr, "getaddrinfo[%d]: %s\n", err, gai_strerror(err));
+		} else {
+			struct addrinfo *ap = ai;
+			while (ap != NULL) {
+				int fd = -1;
+				fd = socket(ap->ai_family, ap->ai_socktype, ap->ai_protocol);
+				if (fd == -1) {
+					perror("socket6");
+				} else {
+					int dmsg = 0; 
+					int res = connect(fd, ap->ai_addr, ap->ai_addrlen);
+#if defined(SOL_IPV6) && defined(IPV6_V6ONLY)
+					if (res != 0) {
+						int zero = 0;
+						perror("connect6");
+						dmsg = 1;
+						if (setsockopt(fd, SOL_IPV6, IPV6_V6ONLY, (char *)&zero, sizeof(zero)) == 0) {
+							fprintf(stderr, "connect[ipv6]: trying again with IPV6_V6ONLY=0\n");
+							res = connect(fd, ap->ai_addr, ap->ai_addrlen);
+							dmsg = 0;
+						}
+					}
+#endif
+					if (res == 0) {
+						conn2 = fd; 
+						break;
+					} else {
+						if (!dmsg) perror("connect6");
+						close(fd);
+					}
+				}
+				ap = ap->ai_next;
+			}
+			freeaddrinfo(ai);
+		}
+	}
+#endif
+	if (conn2 < 0) {
+		fprintf(stderr, "could not connect to %s\n", connect_host);
 		exit(1);
+	}
+	if (conn2 >= 0 && setsockopt(conn2, IPPROTO_TCP, TCP_NODELAY, (char *)&one, sizeof(one)) < 0) {
+		perror("setsockopt TCP_NODELAY");
 	}
 
 	use_input_fds:
+
+	if (!strcmp(cipher, "showcert")) {
+		show_cert(conn2);
+		close(conn2);
+		exit(0);
+	}
 
 	if (securevnc) {
 		securevnc_setup(conn1, conn2);
@@ -1495,18 +2007,74 @@ static void enc_connections(int listen_port, char *connect_host, int connect_por
 
 	if (child == 0) {
 		/* encrypter: local-viewer -> remote-server */
-		enc_xfer(conn1, conn2, 1);
+		if (!strcmp(cipher, "none") || !strcmp(cipher, "relay")) {
+			enc_raw_xfer(conn1, conn2);
+		} else {
+			enc_xfer(conn1, conn2, 1);
+		}
 	} else {
 		/* decrypter: remote-server -> local-viewer */
-		enc_xfer(conn2, conn1, 0);
+		if (!strcmp(cipher, "none") || !strcmp(cipher, "relay")) {
+			enc_raw_xfer(conn2, conn1);
+		} else {
+			enc_xfer(conn2, conn1, 0);
+		}
 	}
 }
 #endif /* ENC_HAVE_OPENSSL */
 
+static void doloop (int argc, char *argv[]) {
+	int ms = atoi(getenv("ULTRAVNC_DSM_HELPER_LOOP"));
+	if (ms > 0) {
+		char *cmd;
+		int i, len = 0;
+		for (i = 0; i < argc; i++) {
+			len += strlen(argv[i]) + 2;
+		}
+		cmd = (char *)malloc(len);
+		cmd[0] = '\0';
+		for (i = 0; i < argc; i++) {
+			strcat(cmd, argv[i]);
+			if (i < argc - 1) {
+				strcat(cmd, " ");
+			}
+		}
+
+		putenv("ULTRAVNC_DSM_HELPER_LOOP_SET=1");
+		if (ms == 1) {
+			ms = 500;
+		}
+		i = 0;
+		while (1) {
+			fprintf(stderr, "loop running[%d]: %s\n", ++i, cmd);
+			system(cmd);
+			usleep(1000 * ms);
+		}
+	}
+}
+
 extern int main (int argc, char *argv[]) {
 	char *kf, *q;
 
-	if (argc < 4) {
+	if (getenv("ULTRAVNC_DSM_HELPER_LOOP")) {
+		if (!getenv("ULTRAVNC_DSM_HELPER_LOOP_SET")) {
+			doloop(argc, argv);
+		}
+	}
+
+	if (argc == 3) {
+		if (!strcmp(argv[1], "showcert")) {
+			enc_do(argv[1], NULL, NULL, argv[2]);
+			return 0;
+		}
+	}
+	if (argc == 4) {
+		if (!strcmp(argv[1], "none") || !strcmp(argv[1], "relay")) {
+			enc_do(argv[1], NULL, argv[2], argv[3]);
+			return 0;
+		}
+	}
+	if (argc < 5) {
 		fprintf(stdout, "%s\n", usage);
 		exit(1);
 	}

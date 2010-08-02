@@ -65,6 +65,8 @@ typedef std::list<vncClientId> vncClientList;
 #include "vncencodemgr.h"
 #include "TextChat.h" // sf@2002 - TextChat
 //#include "timer.h"
+// adzm - 2010-07 - Extended clipboard
+#include "common/clipboard.h"
 
 // The vncClient class itself
 typedef UINT (WINAPI *pSendinput)(UINT,LPINPUT,INT);
@@ -113,7 +115,9 @@ public:
 	// Update handling functions
 	// These all lock the UpdateLock themselves
 	virtual void UpdateMouse();
-	virtual void UpdateClipText(const char* text);
+	//virtual void UpdateClipText(const char* text);
+	// adzm - 2010-07 - Extended clipboard
+	virtual void UpdateClipTextEx(ClipboardData& clipboardData, CARD32 overrideFlags = 0);
 	virtual void UpdatePalette(bool lock);
 	virtual void UpdateLocalFormat(bool lock);
 
@@ -255,6 +259,9 @@ public:
     void SendServerStateUpdate(CARD32 state, CARD32 value);
     void SendKeepAlive(bool bForce = false);
     void SendFTProtocolMsg();
+	// adzm - 2010-07 - Extended clipboard
+	void NotifyExtendedClipboardSupport();
+
 	// sf@2002 
 	// Update routines
 protected:
@@ -427,7 +434,8 @@ protected:
 	BOOL			m_remoteevent;
 
 	// Clipboard data
-	char*			m_clipboard_text;
+	//char*			m_clipboard_text;
+	Clipboard		m_clipboard;
 
 	//SINGLE WINDOW
 	BOOL			m_use_NewSWSize;

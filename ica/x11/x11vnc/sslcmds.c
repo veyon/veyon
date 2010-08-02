@@ -114,7 +114,7 @@ int start_stunnel(int stunnel_port, int x11vnc_port, int hport, int x11vnc_hport
 		strcat(path, extra);
 	}
 
-	exe = (char *) malloc(strlen(path) + 1 + strlen("stunnel") + 1);
+	exe = (char *) malloc(strlen(path) + 1 + strlen("stunnel4") + 1);
 
 	p = strtok(path, ":");
 
@@ -122,6 +122,14 @@ int start_stunnel(int stunnel_port, int x11vnc_port, int hport, int x11vnc_hport
 
 	while (p) {
 		struct stat sbuf;
+
+		sprintf(exe, "%s/%s", p, "stunnel4");
+		if (! stunnel_path && stat(exe, &sbuf) == 0) {
+			if (! S_ISDIR(sbuf.st_mode)) {
+				stunnel_path = exe;
+				break;
+			}
+		}
 
 		sprintf(exe, "%s/%s", p, "stunnel");
 		if (! stunnel_path && stat(exe, &sbuf) == 0) {
@@ -135,6 +143,12 @@ int start_stunnel(int stunnel_port, int x11vnc_port, int hport, int x11vnc_hport
 	}
 	if (path) {
 		free(path);
+	}
+
+	if (getenv("STUNNEL_PROG")) {
+		free(exe);
+		exe = strdup(getenv("STUNNEL_PROG"));
+		stunnel_path = exe;
 	}
 
 	if (! stunnel_path) {
@@ -219,6 +233,15 @@ int start_stunnel(int stunnel_port, int x11vnc_port, int hport, int x11vnc_hport
 		FILE *in;
 		char fd[20];
 		int i;
+		char *st_if = getenv("STUNNEL_LISTEN");
+
+		if (st_if == NULL) {
+			st_if = "";
+		} else {
+			st_if = (char *) malloc(strlen(st_if) + 2);
+			sprintf(st_if, "%s:", getenv("STUNNEL_LISTEN"));
+		}
+
 
 		for (i=3; i<256; i++) {
 			close(i);
@@ -293,12 +316,12 @@ int start_stunnel(int stunnel_port, int x11vnc_port, int hport, int x11vnc_hport
 		}
 		fprintf(in, ";debug = 7\n\n");
 		fprintf(in, "[x11vnc_stunnel]\n");
-		fprintf(in, "accept = %d\n", stunnel_port);
+		fprintf(in, "accept = %s%d\n", st_if, stunnel_port);
 		fprintf(in, "connect = %d\n", x11vnc_port);
 
 		if (hport > 0 && x11vnc_hport > 0) {
 			fprintf(in, "\n[x11vnc_http]\n");
-			fprintf(in, "accept = %d\n", hport);
+			fprintf(in, "accept = %s%d\n", st_if, hport);
 			fprintf(in, "connect = %d\n", x11vnc_hport);
 		}
 

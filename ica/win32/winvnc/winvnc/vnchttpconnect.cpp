@@ -181,7 +181,7 @@ public:
 	// Routines to handle HTTP requests
 	void Init(vncServer* svr) { m_server = svr; }
 	void DoHTTP(VSocket *socket);
-	char *ReadLine(VSocket *socket, char delimiter, int max);
+	char *ReadLine(VSocket *socket, char delimiter);
 protected:
 	vncServer	*m_server;
 };
@@ -203,7 +203,7 @@ public:
 #ifndef HTTP_SAMEPORT
 	// Routines to handle HTTP requests
 	virtual void DoHTTP(VSocket *socket);
-	virtual char *ReadLine(VSocket *socket, char delimiter, int max);
+	virtual char *ReadLine(VSocket *socket, char delimiter);
 #endif
 
 	// Fields used internally
@@ -296,7 +296,7 @@ void vncHTTPConnectThread::DoHTTP(VSocket *socket)
 	char *line;
 
 	// Read in the HTTP header
-	if ((line = ReadLine(socket, '\n', 1024)) == NULL)
+	if ((line = ReadLine(socket, '\n')) == NULL)
 		return;
 
 	// Scan the header for the filename and free the storage
@@ -456,11 +456,12 @@ void vncHTTPConnectThread::DoHTTP(VSocket *socket)
 		return;
 }
 #ifdef HTTP_SAMEPORT
-char *vncHTTPConnectThreadHelper::ReadLine(VSocket *socket, char delimiter, int max)
+char *vncHTTPConnectThreadHelper::ReadLine(VSocket *socket, char delimiter)
 #else
-char *vncHTTPConnectThread::ReadLine(VSocket *socket, char delimiter, int max)
+char *vncHTTPConnectThread::ReadLine(VSocket *socket, char delimiter)
 #endif
 {
+	int max=1024;
 	// Allocate the maximum required buffer
 	char *buffer = new char[max+1];
 	int buffpos = 0;

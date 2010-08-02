@@ -42,10 +42,12 @@ so, delete this exception statement from your version.
 #include "unixpw.h"
 #include "user.h"
 
-#define OPENSSL_INETD 1
-#define OPENSSL_VNC   2
-#define OPENSSL_HTTPS 3
-#define OPENSSL_REVERSE 4
+#define OPENSSL_INETD   1
+#define OPENSSL_VNC     2
+#define OPENSSL_VNC6    3
+#define OPENSSL_HTTPS   4
+#define OPENSSL_HTTPS6  5
+#define OPENSSL_REVERSE 6
 
 #define DO_DH 0
 
@@ -56,8 +58,10 @@ so, delete this exception statement from your version.
 #endif
 
 int openssl_sock = -1;
+int openssl_sock6 = -1;
 int openssl_port_num = 0;
 int https_sock = -1;
+int https_sock6 = -1;
 pid_t openssl_last_helper_pid = 0;
 char *openssl_last_ip = NULL;
 
@@ -658,8 +662,8 @@ char *get_ssl_verify_file(char *str_in) {
 
 int openssl_present(void);
 void openssl_init(int isclient);
-void openssl_port(void);
-void https_port(void);
+void openssl_port(int restart);
+void https_port(int restart);
 void check_openssl(void);
 void check_https(void);
 void ssl_helper_pid(pid_t pid, int sock);
@@ -1919,6 +1923,8 @@ static void pr_ssl_info(int verb) {
 static void ssl_timeout (int sig) {
 	int i;
 	rfbLog("sig: %d, ssl_init[%d] timed out.\n", sig, getpid());
+	rfbLog("To increase the SSL initialization timeout use, e.g.:\n");
+	rfbLog("   -env SSL_INIT_TIMEOUT=120        (for 120 seconds)\n");
 	for (i=0; i < 256; i++) {
 		close(i);
 	}
@@ -1940,10 +1946,17 @@ static int ssl_init(int s_in, int s_out, int skip_vnc_tls, double last_https) {
 	if (getenv("SSL_DEBUG")) {
 		db = atoi(getenv("SSL_DEBUG"));
 	}
+	usleep(100 * 1000);
 	if (getenv("SSL_INIT_TIMEOUT")) {
 		timeout = atoi(getenv("SSL_INIT_TIMEOUT"));
+	} else if (client_connect != NULL && strstr(client_connect, "repeater")) {
+		rfbLog("SSL: ssl_init[%d]: detected 'repeater' in connect string.\n", getpid());
+		rfbLog("SSL: setting timeout to 1 hour: -env SSL_INIT_TIMEOUT=3600\n");
+		rfbLog("SSL: use that option to set a different timeout value,\n");
+		rfbLog("SSL: however note that with Windows UltraVNC repeater it\n");
+		rfbLog("SSL: may timeout before your setting due to other reasons.\n");
+		timeout = 3600;
 	}
-	if (db) fprintf(stderr, "ssl_init: %d/%d\n", s_in, s_out);
 
 	if (skip_vnc_tls) {
 		rfbLog("SSL: ssl_helper[%d]: HTTPS mode, skipping check_vnc_tls_mode()\n",
@@ -1951,6 +1964,8 @@ static int ssl_init(int s_in, int s_out, int skip_vnc_tls, double last_https) {
 	} else if (!check_vnc_tls_mode(s_in, s_out, last_https)) {
 		return 0;
 	}
+	rfbLog("SSL: ssl_init[%d]: %d/%d initialization timeout: %d secs.\n",
+	    getpid(), s_in, s_out, timeout);
 
 	ssl = SSL_new(ctx);
 	if (ssl == NULL) {
@@ -1989,6 +2004,10 @@ static int ssl_init(int s_in, int s_out, int skip_vnc_tls, double last_https) {
 	name = get_remote_host(ssock);
 	peerport = get_remote_port(ssock);
 
+	if (!strcmp(name, "0.0.0.0") && openssl_last_ip != NULL) {
+		name = strdup(openssl_last_ip);
+	}
+
 	if (db > 1) fprintf(stderr, "ssl_init: 4\n");
 
 	while (1) {
@@ -2018,32 +2037,32 @@ static int ssl_init(int s_in, int s_out, int skip_vnc_tls, double last_https) {
 		} else if (err == SSL_ERROR_WANT_READ) {
 
 			if (db) fprintf(stderr, "got SSL_ERROR_WANT_READ\n");
-			rfbLog("SSL: ssl_helper[%d]: SSL_accept() failed for: %s:%d\n",
-			    getpid(), name, peerport);
+			rfbLog("SSL: ssl_helper[%d]: %s() failed for: %s:%d 1\n",
+			    getpid(), ssl_client_mode ? "SSL_connect" : "SSL_accept", name, peerport);
 			pr_ssl_info(1);
 			return 0;
 			
 		} else if (err == SSL_ERROR_WANT_WRITE) {
 
 			if (db) fprintf(stderr, "got SSL_ERROR_WANT_WRITE\n");
-			rfbLog("SSL: ssl_helper[%d]: SSL_accept() failed for: %s:%d\n",
-			    getpid(), name, peerport);
+			rfbLog("SSL: ssl_helper[%d]: %s() failed for: %s:%d 2\n",
+			    getpid(), ssl_client_mode ? "SSL_connect" : "SSL_accept", name, peerport);
 			pr_ssl_info(1);
 			return 0;
 
 		} else if (err == SSL_ERROR_SYSCALL) {
 
 			if (db) fprintf(stderr, "got SSL_ERROR_SYSCALL\n");
-			rfbLog("SSL: ssl_helper[%d]: SSL_accept() failed for: %s:%d\n",
-			    getpid(), name, peerport);
+			rfbLog("SSL: ssl_helper[%d]: %s() failed for: %s:%d 3\n",
+			    getpid(), ssl_client_mode ? "SSL_connect" : "SSL_accept", name, peerport);
 			pr_ssl_info(1);
 			return 0;
 
 		} else if (err == SSL_ERROR_ZERO_RETURN) {
 
 			if (db) fprintf(stderr, "got SSL_ERROR_ZERO_RETURN\n");
-			rfbLog("SSL: ssl_helper[%d]: SSL_accept() failed for: %s:%d\n",
-			    getpid(), name, peerport);
+			rfbLog("SSL: ssl_helper[%d]: %s() failed for: %s:%d 4\n",
+			    getpid(), ssl_client_mode ? "SSL_connect" : "SSL_accept", name, peerport);
 			pr_ssl_info(1);
 			return 0;
 
@@ -2051,7 +2070,8 @@ static int ssl_init(int s_in, int s_out, int skip_vnc_tls, double last_https) {
 			unsigned long err;
 			int cnt = 0;
 
-			rfbLog("SSL: ssl_helper[%d]: SSL_accept() *FATAL: %d SSL FAILED\n", getpid(), rc);
+			rfbLog("SSL: ssl_helper[%d]: %s() *FATAL: %d SSL FAILED\n",
+			    getpid(), ssl_client_mode ? "SSL_connect" : "SSL_accept", rc);
 			while ((err = ERR_get_error()) != 0) {
 				rfbLog("SSL: %s\n", ERR_error_string(err, NULL));
 				if (cnt++ > 100) {
@@ -2063,8 +2083,8 @@ static int ssl_init(int s_in, int s_out, int skip_vnc_tls, double last_https) {
 
 		} else if (dnow() > start + 3.0) {
 
-			rfbLog("SSL: ssl_helper[%d]: timeout looping SSL_accept() "
-			    "fatal.\n", getpid());
+			rfbLog("SSL: ssl_helper[%d]: timeout looping %s() "
+			    "fatal.\n", getpid(), ssl_client_mode ? "SSL_connect" : "SSL_accept");
 			pr_ssl_info(1);
 			return 0;
 
@@ -2593,7 +2613,7 @@ static void init_prng(void) {
 void check_openssl(void) {
 	fd_set fds;
 	struct timeval tv;
-	int nfds;
+	int nfds, nmax = openssl_sock;
 	static time_t last_waitall = 0;
 	static double last_check = 0.0;
 	double now;
@@ -2607,7 +2627,7 @@ void check_openssl(void) {
 		ssl_helper_pid(0, -2);	/* waitall */
 	}
 
-	if (openssl_sock < 0) {
+	if (openssl_sock < 0 && openssl_sock6 < 0) {
 		return;
 	}
 
@@ -2618,29 +2638,43 @@ void check_openssl(void) {
 	last_check = now;
 
 	FD_ZERO(&fds);
-	FD_SET(openssl_sock, &fds);
+	if (openssl_sock >= 0) {
+		FD_SET(openssl_sock, &fds);
+	}
+	if (openssl_sock6 >= 0) {
+		FD_SET(openssl_sock6, &fds);
+		if (openssl_sock6 > openssl_sock) {
+			nmax = openssl_sock6;
+		}
+	}
 
 	tv.tv_sec = 0;
 	tv.tv_usec = 0;
 
-	nfds = select(openssl_sock+1, &fds, NULL, NULL, &tv);
+	nfds = select(nmax+1, &fds, NULL, NULL, &tv);
 
 	if (nfds <= 0) {
 		return;
 	}
-	
-	rfbLog("SSL: accept_openssl(OPENSSL_VNC)\n");
-	accept_openssl(OPENSSL_VNC, -1);
+
+	if (openssl_sock >= 0 && FD_ISSET(openssl_sock, &fds)) {
+		rfbLog("SSL: accept_openssl(OPENSSL_VNC)\n");
+		accept_openssl(OPENSSL_VNC, -1);
+	}
+	if (openssl_sock6 >= 0 && FD_ISSET(openssl_sock6, &fds)) {
+		rfbLog("SSL: accept_openssl(OPENSSL_VNC6)\n");
+		accept_openssl(OPENSSL_VNC6, -1);
+	}
 }
 
 void check_https(void) {
 	fd_set fds;
 	struct timeval tv;
-	int nfds;
+	int nfds, nmax = https_sock;
 	static double last_check = 0.0;
 	double now;
 
-	if (! use_openssl || https_sock < 0) {
+	if (! use_openssl || (https_sock < 0 && https_sock6 < 0)) {
 		return;
 	}
 
@@ -2651,25 +2685,40 @@ void check_https(void) {
 	last_check = now;
 
 	FD_ZERO(&fds);
-	FD_SET(https_sock, &fds);
+	if (https_sock >= 0) {
+		FD_SET(https_sock, &fds);
+	}
+	if (https_sock6 >= 0) {
+		FD_SET(https_sock6, &fds);
+		if (https_sock6 > https_sock) {
+			nmax = https_sock6;
+		}
+	}
 
 	tv.tv_sec = 0;
 	tv.tv_usec = 0;
 
-	nfds = select(https_sock+1, &fds, NULL, NULL, &tv);
+	nfds = select(nmax+1, &fds, NULL, NULL, &tv);
 
 	if (nfds <= 0) {
 		return;
 	}
-	rfbLog("SSL: accept_openssl(OPENSSL_HTTPS)\n");
-	accept_openssl(OPENSSL_HTTPS, -1);
+
+	if (https_sock >= 0 && FD_ISSET(https_sock, &fds)) {
+		rfbLog("SSL: accept_openssl(OPENSSL_HTTPS)\n");
+		accept_openssl(OPENSSL_HTTPS, -1);
+	}
+	if (https_sock6 >= 0 && FD_ISSET(https_sock6, &fds)) {
+		rfbLog("SSL: accept_openssl(OPENSSL_HTTPS6)\n");
+		accept_openssl(OPENSSL_HTTPS6, -1);
+	}
 }
 
-void openssl_port(void) {
+void openssl_port(int restart) {
 	int sock = -1, shutdown = 0;
 	static int port = -1;
 	static in_addr_t iface = INADDR_ANY;
-	int db = 0;
+	int db = 0, fd6 = -1;
 
 	if (! screen) {
 		rfbLog("openssl_port: no screen!\n");
@@ -2680,15 +2729,31 @@ void openssl_port(void) {
 		return;
 	}
 
-	if (screen->listenSock > -1 && screen->port > 0) {
+	if (ipv6_listen && screen->port <= 0) {
+		if (got_rfbport) {
+			screen->port = got_rfbport_val;
+		} else {
+			int ap = 5900;
+			if (auto_port > 0) {
+				ap = auto_port;
+			}
+			screen->port = find_free_port6(ap, ap+200);
+		}
+		rfbLog("openssl_port: reset port from 0 => %d\n", screen->port);
+	}
+
+	if (restart) {
+		port = screen->port;
+	} else if (screen->listenSock > -1 && screen->port > 0) {
 		port = screen->port;
 		shutdown = 1;
+	} else if (ipv6_listen && screen->port > 0) {
+		port = screen->port;
 	} else if (screen->port == 0) {
 		port = screen->port;
 	}
-	if (screen->listenInterface) {
-		iface = screen->listenInterface;
-	}
+
+	iface = screen->listenInterface;
 
 	if (shutdown) {
 		if (db) fprintf(stderr, "shutting down %d/%d\n",
@@ -2698,21 +2763,58 @@ void openssl_port(void) {
 #endif
 	}
 
+	if (openssl_sock >= 0) {
+		close(openssl_sock);
+		openssl_sock = -1;
+	}
+	if (openssl_sock6 >= 0) {
+		close(openssl_sock6);
+		openssl_sock6 = -1;
+	}
+
 	if (port < 0) {
 		rfbLog("openssl_port: could not obtain listening port %d\n", port);
+		if (!got_rfbport && !got_ipv6_listen) {
+			rfbLog("openssl_port: if this system is IPv6-only, use the -6 option\n");
+		}
 		clean_up_exit(1);
 	} else if (port == 0) {
 		/* no listen case, i.e. -connect */
 		sock = -1;
 	} else {
-		sock = rfbListenOnTCPPort(port, iface);
+		sock = listen_tcp(port, iface, 0);
+		if (ipv6_listen) {
+			fd6 = listen6(port);
+		} else if (!got_rfbport && !got_ipv6_listen) {
+			if (sock < 0) {
+				rfbLog("openssl_port: if this system is IPv6-only, use the -6 option\n");
+			}
+		}
 		if (sock < 0) {
-			rfbLog("openssl_port: could not reopen port %d\n", port);
-			clean_up_exit(1);
+			if (fd6 < 0) {
+				rfbLog("openssl_port: could not reopen port %d\n", port);
+				if (!restart) {
+					clean_up_exit(1);
+				}
+			} else {
+				rfbLog("openssl_port: Info: listening on IPv6 only.\n");
+			}
 		}
 	}
 	rfbLog("openssl_port: listen on port/sock %d/%d\n", port, sock);
-	if (!quiet) {
+	if (ipv6_listen && port > 0) {
+		if (fd6 < 0) {
+			fd6 = listen6(port);
+		}
+		if (fd6 < 0) {
+			ipv6_listen = 0;
+		} else {
+			rfbLog("openssl_port: listen on port/sock %d/%d (ipv6)\n",
+			    port, fd6);
+			openssl_sock6 = fd6;
+		}
+	}
+	if (!quiet && sock >=0) {
 		announce(port, 1, NULL);
 	}
 	openssl_sock = sock;
@@ -2721,11 +2823,10 @@ void openssl_port(void) {
 	ssl_initialized = 1;
 }
 
-void https_port(void) {
-	int sock;
+void https_port(int restart) {
+	int sock, fd6 = -1;
 	static int port = 0;
 	static in_addr_t iface = INADDR_ANY;
-	int db = 0;
 
 	/* as openssl_port above: open a listening socket for pure https: */
 	if (https_port_num < 0) {
@@ -2735,12 +2836,18 @@ void https_port(void) {
 		rfbLog("https_port: no screen!\n");
 		clean_up_exit(1);
 	}
+	if (! screen->httpDir) {
+		return;
+	}
 	if (screen->listenInterface) {
 		iface = screen->listenInterface;
 	}
 
 	if (https_port_num == 0) {
 		https_port_num = find_free_port(5801, 5851);
+	}
+	if (ipv6_listen && https_port_num <= 0) {
+		https_port_num = find_free_port6(5801, 5851);
 	}
 	if (https_port_num <= 0) {
 		rfbLog("https_port: could not find port %d\n", https_port_num);
@@ -2750,17 +2857,54 @@ void https_port(void) {
 
 	if (port <= 0) {
 		rfbLog("https_port: could not obtain listening port %d\n", port);
-		clean_up_exit(1);
+		if (!restart) {
+			clean_up_exit(1);
+		} else {
+			return;
+		}
 	}
-	sock = rfbListenOnTCPPort(port, iface);
+	if (https_sock >= 0) {
+		close(https_sock);
+		https_sock = -1;
+	}
+	if (https_sock6 >= 0) {
+		close(https_sock6);
+		https_sock6 = -1;
+	}
+	sock = listen_tcp(port, iface, 0);
 	if (sock < 0) {
 		rfbLog("https_port: could not open port %d\n", port);
-		clean_up_exit(1);
+		if (ipv6_listen) {
+			fd6 = listen6(port);
+		} 
+		if (fd6 < 0) {
+			if (!restart) {
+				clean_up_exit(1);
+			}
+		}
+		rfbLog("https_port: trying IPv6 only mode.\n");
 	}
-	if (db) fprintf(stderr, "https_port: listen on port/sock %d/%d\n",
-	    port, sock);
-
+	rfbLog("https_port: listen on port/sock %d/%d\n", port, sock);
 	https_sock = sock;
+
+	if (ipv6_listen) {
+		if (fd6 < 0) {
+			fd6 = listen6(port);
+		}
+		if (fd6 < 0) {
+			;
+		} else {
+			rfbLog("https_port: listen on port/sock %d/%d (ipv6)\n",
+			    port, fd6);
+			https_sock6 = fd6;
+		}
+		if (fd6 < 0 && https_sock < 0) {
+			rfbLog("https_port: could not listen on either IPv4 or IPv6.\n");
+			if (!restart) {
+				clean_up_exit(1);
+			}
+		}
+	}
 }
 
 static void lose_ram(void) {
@@ -3095,6 +3239,7 @@ void accept_openssl(int mode, int presock) {
 	char cookie[256], rcookie[256], *name = NULL;
 	int vencrypt_sel = 0;
 	int anontls_sel = 0;
+	char *ipv6_name = NULL;
 	static double last_https = 0.0;
 	static char last_get[256];
 	static int first = 1;
@@ -3138,6 +3283,25 @@ void accept_openssl(int mode, int presock) {
 		}
 		listen = openssl_sock;
 
+	} else if (mode == OPENSSL_VNC6 || mode == OPENSSL_HTTPS6) {
+#if X11VNC_IPV6
+		struct sockaddr_in6 a6;
+		socklen_t a6len = sizeof(a6);
+		int fd = (mode == OPENSSL_VNC6 ? openssl_sock6 : https_sock6); 
+
+		sock = accept(fd, (struct sockaddr *)&a6, &a6len);
+		if (sock < 0)  {
+			rfbLog("SSL: accept_openssl: accept connection failed\n");
+			rfbLogPerror("accept");
+			if (ssl_no_fail) {
+				clean_up_exit(1);
+			}
+			return;
+		}
+		ipv6_name = ipv6_getipaddr((struct sockaddr *)&a6, a6len);
+		if (!ipv6_name) ipv6_name = strdup("unknown");
+		listen = fd;
+#endif
 	} else if (mode == OPENSSL_REVERSE) {
 		sock = presock;
 		if (sock < 0)  {
@@ -3146,6 +3310,10 @@ void accept_openssl(int mode, int presock) {
 				clean_up_exit(1);
 			}
 			return;
+		}
+		if (getenv("OPENSSL_REVERSE_DEBUG")) fprintf(stderr, "OPENSSL_REVERSE: ipv6_client_ip_str: %s\n", ipv6_client_ip_str);
+		if (ipv6_client_ip_str != NULL) {
+			ipv6_name = strdup(ipv6_client_ip_str);
 		}
 		listen = -1;
 
@@ -3169,13 +3337,17 @@ void accept_openssl(int mode, int presock) {
 	}
 	if (mode == OPENSSL_INETD) {
 		openssl_last_ip = get_remote_host(fileno(stdin));
+	} else if (mode == OPENSSL_VNC6 || mode == OPENSSL_HTTPS6) {
+		openssl_last_ip = ipv6_name;
+	} else if (mode == OPENSSL_REVERSE && ipv6_name != NULL) {
+		openssl_last_ip = ipv6_name;
 	} else {
 		openssl_last_ip = get_remote_host(sock);
 	}
 
 	if (!check_ssl_access(openssl_last_ip)) {
 		rfbLog("SSL: accept_openssl: denying client %s\n", openssl_last_ip);
-		rfbLog("SSL: accept_openssl: does not match -allow (or other reason).\n");
+		rfbLog("SSL: accept_openssl: does not match -allow or other reason.\n");
 		close(sock);
 		sock = -1;
 		if (ssl_no_fail) {
@@ -3186,7 +3358,12 @@ void accept_openssl(int mode, int presock) {
 
 	/* now make a listening socket for child to connect back to us by: */
 
-	cport = find_free_port(20000, 0);
+	cport = find_free_port(20000, 22000);
+	if (! cport && ipv6_listen) {
+		rfbLog("SSL: accept_openssl: seeking IPv6 port.\n");
+		cport = find_free_port6(20000, 22000);
+		rfbLog("SSL: accept_openssl: IPv6 port: %d\n", cport);
+	}
 	if (! cport) {
 		rfbLog("SSL: accept_openssl: could not find open port.\n");
 		close(sock);
@@ -3197,7 +3374,7 @@ void accept_openssl(int mode, int presock) {
 	}
 	if (db) fprintf(stderr, "accept_openssl: cport: %d\n", cport);
 
-	csock = rfbListenOnTCPPort(cport, htonl(INADDR_LOOPBACK));
+	csock = listen_tcp(cport, htonl(INADDR_LOOPBACK), 1);
 
 	if (csock < 0) {
 		rfbLog("SSL: accept_openssl: could not listen on port %d.\n",
@@ -3225,7 +3402,13 @@ void accept_openssl(int mode, int presock) {
 	    rb[0], rb[1], rb[2], rb[3], rb[4], rb[5],
             dnow() - x11vnc_start, x11vnc_start, (void *)rb);
 
-	if (mode != OPENSSL_INETD) {
+	if (mode == OPENSSL_VNC6) {
+		name = strdup(ipv6_name);
+		peerport = get_remote_port(sock);
+	} else if (mode == OPENSSL_REVERSE && ipv6_name != NULL) {
+		name = strdup(ipv6_name);
+		peerport = get_remote_port(sock);
+	} else if (mode != OPENSSL_INETD) {
 		name = get_remote_host(sock);
 		peerport = get_remote_port(sock);
 	} else {
@@ -3338,7 +3521,7 @@ void accept_openssl(int mode, int presock) {
 		lose_ram();
 
 		/* now connect back to parent socket: */
-		vncsock = rfbConnectToTcpAddr("127.0.0.1", cport);
+		vncsock = connect_tcp("127.0.0.1", cport);
 		if (vncsock < 0) {
 			rfbLog("SSL: ssl_helper[%d]: could not connect"
 			    " back to: %d\n", getpid(), cport);
@@ -3388,8 +3571,9 @@ void accept_openssl(int mode, int presock) {
 		}
 		if (screen->httpListenSock >= 0 && screen->httpPort > 0) {
 			have_httpd = 1;
-		}
-		if (screen->httpListenSock == -2) {
+		} else if (ipv6_http_fd >= 0) {
+			have_httpd = 1;
+		} else if (screen->httpListenSock == -2) {
 			have_httpd = 1;
 		}
 		if (mode == OPENSSL_HTTPS && ! have_httpd) {
@@ -3614,7 +3798,7 @@ void accept_openssl(int mode, int presock) {
 			if (db) fprintf(stderr, "iface: %s:%d\n", iface, hport);
 			usleep(150*1000);
 
-			httpsock = rfbConnectToTcpAddr(iface, hport);
+			httpsock = connect_tcp(iface, hport);
 
 			if (httpsock < 0) {
 				/* UGH, after all of that! */
@@ -3962,6 +4146,18 @@ void accept_openssl(int mode, int presock) {
 	openssl_last_helper_pid = 0;
 
 	if (client) {
+		int swt = 0;
+		if (mode == OPENSSL_VNC6 && openssl_last_ip != NULL) {
+			swt = 1;
+		} else if (mode == OPENSSL_REVERSE && ipv6_name != NULL && openssl_last_ip != NULL) {
+			swt = 1;
+		}
+		if (swt) {
+			if (client->host) {
+				free(client->host);
+			}
+			client->host = strdup(openssl_last_ip);
+		}
 		if (db) fprintf(stderr, "accept_openssl: client %p\n", (void *) client);
 		if (db) fprintf(stderr, "accept_openssl: new_client %p\n", (void *) screen->newClientHook);
 		if (db) fprintf(stderr, "accept_openssl: new_client %p\n", (void *) new_client);
@@ -4107,6 +4303,8 @@ if (db) rfbLog("raw_xfer bad write:  %d -> %d | %d/%d  errno=%d\n", csock, s_out
 #else
 #define ENC_HAVE_OPENSSL 0
 #endif
+
+#define ENC_DISABLE_SHOW_CERT 
 
 #include "enc.h"
 

@@ -39,12 +39,13 @@ class vncEncodeTight;
 #ifdef IPP
 #include "ipp_zlib/zlib.h"
 #else
-#include "zlib.h"
+#include "zlib/zlib.h"
 #endif
 extern "C"
 {
-#include <jpeglib.h>
+#include "libjpeg/jpeglib.h"
 }
+#include <math.h>
 
 // Minimum amount of data to be compressed. This value should not be
 // changed, doing so will break compatibility with existing clients.

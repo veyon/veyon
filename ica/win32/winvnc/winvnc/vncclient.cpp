@@ -476,7 +476,8 @@ vncClientUpdateThread::run_undetached(void *arg)
 {
 	rfb::SimpleUpdateTracker update;
 	rfb::Region2D clipregion;
-	char *clipboard_text = 0;
+	// adzm - 2010-07 - Extended clipboard
+	//char *clipboard_text = 0;
 	update.enable_copyrect(true);
 	BOOL send_palette = FALSE;
 
@@ -511,7 +512,8 @@ vncClientUpdateThread::run_undetached(void *arg)
 							m_client->m_update_tracker.get_changed_region().intersect(m_client->m_incr_rgn).is_empty() &&
 							m_client->m_update_tracker.get_copied_region().intersect(m_client->m_incr_rgn).is_empty() &&
 							m_client->m_update_tracker.get_cached_region().intersect(m_client->m_incr_rgn).is_empty() &&
-							!m_client->m_clipboard_text &&
+							// adzm - 2010-07 - Extended clipboard
+							!(m_client->m_clipboard.m_bNeedToProvide || m_client->m_clipboard.m_bNeedToNotify) &&
 							!m_client->m_cursor_pos_changed // nyama/marscha - PointerPos
 							)
 						)
@@ -532,7 +534,8 @@ vncClientUpdateThread::run_undetached(void *arg)
 							m_client->m_update_tracker.get_copied_region().intersect(m_client->m_incr_rgn).is_empty() &&
 							m_client->m_update_tracker.get_cached_region().intersect(m_client->m_incr_rgn).is_empty() &&
 							!m_client->m_encodemgr.IsCursorUpdatePending() &&
-							!m_client->m_clipboard_text &&
+							// adzm - 2010-07 - Extended clipboard
+							!(m_client->m_clipboard.m_bNeedToProvide || m_client->m_clipboard.m_bNeedToNotify) &&
 							!m_client->m_NewSWUpdateWaiting &&
 							!m_client->m_cursor_pos_changed // nyama/marscha - PointerPos
 							)
@@ -608,11 +611,8 @@ vncClientUpdateThread::run_undetached(void *arg)
 			//m_client->m_incr_rgn.clear();
 
 			// Get the clipboard data, if any
-			if (m_client->m_clipboard_text) {
-				clipboard_text = m_client->m_clipboard_text;
-				m_client->m_clipboard_text = 0;
-			}
-			else
+			// adzm - 2010-07 - Extended clipboard
+			if (!(m_client->m_clipboard.m_bNeedToProvide || m_client->m_clipboard.m_bNeedToNotify))
 			{
 				m_client->m_incr_rgn.clear();
 			}
@@ -654,21 +654,91 @@ vncClientUpdateThread::run_undetached(void *arg)
 		// If there is clipboard text to be sent then send it
 		// Also allow in loopbackmode
 		// Loopback mode with winvncviewer will cause a loping
-		// But ssh is back working
-        if (clipboard_text && !m_client->m_fFileSessionOpen){
-			rfbServerCutTextMsg message;
+		// But ssh is back working		
+		if (!m_client->m_fFileSessionOpen) {
 
-			message.length = Swap32IfLE(strlen(clipboard_text));
-			if (!m_client->SendRFBMsg(rfbServerCutText,
-				(BYTE *) &message, sizeof(message))) {
-				m_client->m_socket->Close();
+			// adzm - 2010-07 - Extended clipboard
+			// send any clipboard data that should be sent automatically
+			if (m_client->m_clipboard.m_bNeedToProvide) {
+				m_client->m_clipboard.m_bNeedToProvide = false;
+				if (m_client->m_clipboard.settings.m_bSupportsEx) {
+					
+					int actualLen = m_client->m_clipboard.extendedClipboardDataMessage.GetDataLength();
+
+					rfbServerCutTextMsg message;
+					memset(&message, 0, sizeof(rfbServerCutTextMsg));
+					message.type = rfbServerCutText;
+
+					message.length = Swap32IfLE(-actualLen);
+
+					if (!m_client->SendRFBMsg(rfbServerCutText,
+						(BYTE *) &message, sizeof(message))) {
+						m_client->m_socket->Close();
+					}
+					if (!m_client->m_socket->SendExact((char*)(m_client->m_clipboard.extendedClipboardDataMessage.GetData()), m_client->m_clipboard.extendedClipboardDataMessage.GetDataLength()))
+					{
+						m_client->m_socket->Close();
+					}
+				} else {
+					rfbServerCutTextMsg message;
+
+					const char* cliptext = m_client->m_clipboard.m_strLastCutText.c_str();
+					char* unixtext = new char[m_client->m_clipboard.m_strLastCutText.length() + 1];
+					
+					// Replace CR-LF with LF - never send CR-LF on the wire,
+					// since Unix won't like it
+					int unixpos=0;
+					int cliplen=strlen(cliptext);
+					for (int x=0; x<cliplen; x++)
+					{
+						if (cliptext[x] != '\x0d')
+						{
+							unixtext[unixpos] = cliptext[x];
+							unixpos++;
+						}
+					}
+					unixtext[unixpos] = 0;
+
+					message.length = Swap32IfLE(strlen(unixtext));
+					if (!m_client->SendRFBMsg(rfbServerCutText,
+						(BYTE *) &message, sizeof(message))) {
+						m_client->m_socket->Close();
+					}
+					if (!m_client->m_socket->SendExact(unixtext, strlen(unixtext)))
+					{
+						m_client->m_socket->Close();
+					}
+
+					delete[] unixtext;
+				}
+				m_client->m_clipboard.extendedClipboardDataMessage.Reset();
 			}
-			if (!m_client->m_socket->SendExact(clipboard_text, strlen(clipboard_text)))
-			{
-				m_client->m_socket->Close();
+			
+			// adzm - 2010-07 - Extended clipboard
+			// notify of any other formats
+			if (m_client->m_clipboard.m_bNeedToNotify) {
+				m_client->m_clipboard.m_bNeedToNotify = false;
+				if (m_client->m_clipboard.settings.m_bSupportsEx) {
+					
+					int actualLen = m_client->m_clipboard.extendedClipboardDataNotifyMessage.GetDataLength();
+
+					rfbServerCutTextMsg message;
+					memset(&message, 0, sizeof(rfbServerCutTextMsg));
+					message.type = rfbServerCutText;
+
+					message.length = Swap32IfLE(-actualLen);
+
+					if (!m_client->SendRFBMsg(rfbServerCutText,
+						(BYTE *) &message, sizeof(message))) {
+						m_client->m_socket->Close();
+					}
+					if (!m_client->m_socket->SendExact((char*)(m_client->m_clipboard.extendedClipboardDataNotifyMessage.GetData()), m_client->m_clipboard.extendedClipboardDataNotifyMessage.GetDataLength()))
+					{
+						m_client->m_socket->Close();
+					}
+				}
+				m_client->m_clipboard.extendedClipboardDataNotifyMessage.Reset();
 			}
-			free(clipboard_text);
-			clipboard_text = 0;
 		}
 
 		// SEND AN UPDATE
@@ -1021,7 +1091,166 @@ vncClientThread::InitAuthenticate()
 	}
 
 	// Authenticate the connection, if required
-	if (m_auth || (strlen(plain) == 0))
+	//adzm 2010-05-10	
+	if (m_socket->IsUsePluginEnabled() && m_server->GetDSMPluginPointer()->IsEnabled() && m_socket->GetIntegratedPlugin() != NULL)
+	{		
+		//adzm 2010-05-12 - dsmplugin config
+		m_socket->SetDSMPluginConfig(m_server->GetDSMPluginConfig());
+
+		BOOL auth_ok = FALSE;
+
+		// Send auth-required message
+		CARD32 auth_val = Swap32IfLE(rfbUltraVNC_SecureVNCPlugin);
+		if (!m_socket->SendExact((char *)&auth_val, sizeof(auth_val)))
+			return FALSE;
+
+		const char* plainPassword = plain;
+
+		if (!m_ms_logon && plainPassword && strlen(plainPassword) > 0) {
+			m_socket->GetIntegratedPlugin()->SetPasswordData((const BYTE*)plainPassword, strlen(plainPassword));
+		}
+
+		int nSequenceNumber = 0;
+		bool bSendChallenge = true;
+		do
+		{
+			BYTE* pChallenge = NULL;
+			int nChallengeLength = 0;
+
+			if (!m_socket->GetIntegratedPlugin()->GetChallenge(pChallenge, nChallengeLength, nSequenceNumber)) {
+				m_socket->GetIntegratedPlugin()->FreeMemory(pChallenge);
+				return FALSE;
+			}
+
+			WORD wChallengeLength = (WORD)nChallengeLength;
+
+			if (!m_socket->SendExact((const char*)&wChallengeLength, sizeof(wChallengeLength))) {
+				m_socket->GetIntegratedPlugin()->FreeMemory(pChallenge);
+				return FALSE;
+			}
+
+			if (!m_socket->SendExact((const char*)pChallenge, nChallengeLength)) {
+				m_socket->GetIntegratedPlugin()->FreeMemory(pChallenge);
+				return FALSE;
+			}
+
+			m_socket->GetIntegratedPlugin()->FreeMemory(pChallenge);
+
+			WORD wResponseLength = 0;
+			if (!m_socket->ReadExact((char*)&wResponseLength, sizeof(wResponseLength))) {
+				return FALSE;
+			}
+
+			BYTE* pResponseData = new BYTE[wResponseLength];
+			
+			if (!m_socket->ReadExact((char*)pResponseData, wResponseLength)) {
+				delete[] pResponseData;
+				return FALSE;
+			}
+
+			if (!m_socket->GetIntegratedPlugin()->HandleResponse(pResponseData, (int)wResponseLength, nSequenceNumber, bSendChallenge)) {
+				auth_ok = FALSE;
+				bSendChallenge = false;
+			} else if (!bSendChallenge) {
+				auth_ok = TRUE;
+			}
+
+			delete[] pResponseData;
+
+			nSequenceNumber++;
+		} while (bSendChallenge);
+
+		if (auth_ok && m_ms_logon) /*(mslogon && !oldmslogon) TODO*/
+		{
+			//adzm 2010-05-10 - this will set HandshakeComplete after sending the MsLogon authentication type packet
+			if (!AuthMsLogon())
+				auth_ok = FALSE;
+		} else {
+			// Did the authentication work?
+			CARD32 authmsg;
+			if (!auth_ok)
+			{
+				vnclog.Print(LL_CONNERR, VNCLOG("authentication failed\n"));
+				//////////////////
+				// LOG it also in the event
+				//////////////////
+				{
+					typedef BOOL (*LogeventFn)(char *machine);
+					LogeventFn Logevent = 0;
+					char szCurrentDir[MAX_PATH];
+					if (GetModuleFileName(NULL, szCurrentDir, MAX_PATH))
+						{
+							char* p = strrchr(szCurrentDir, '\\');
+							*p = '\0';
+							strcat (szCurrentDir,"\\logging.dll");
+						}
+					HMODULE hModule = LoadLibrary(szCurrentDir);
+					if (hModule)
+						{
+							BOOL result=false;
+							Logevent = (LogeventFn) GetProcAddress( hModule, "LOGFAILED" );
+							Logevent((char *)m_client->GetClientName());
+							FreeLibrary(hModule);
+						}
+				}
+
+				//adzm 2010-05-11 - Send an explanatory message for the failure (if any)
+
+				const char* errmsg = m_socket->GetIntegratedPlugin()->GetLastErrorString();
+				CARD32 errlen = Swap32IfLE(strlen(errmsg));
+
+				if (errlen > 0) {
+					authmsg = Swap32IfLE(rfbVncAuthFailedEx);
+					if (!m_socket->SendExact((char *)&authmsg, sizeof(authmsg)))
+						return FALSE;
+					if (!m_socket->SendExact((char *)&errlen, sizeof(errlen)))
+						return FALSE;
+					if (!m_socket->SendExact(errmsg, strlen(errmsg)))
+						return FALSE;
+				} else {
+					authmsg = Swap32IfLE(rfbVncAuthFailed);
+					if (!m_socket->SendExact((char *)&authmsg, sizeof(authmsg)))
+						return FALSE;
+				}
+
+				return FALSE;
+			}
+			else
+			{
+				// Tell the client we're ok
+				authmsg = Swap32IfLE(rfbVncAuthOK);
+				//////////////////
+				// LOG it also in the event
+				//////////////////
+				if (!m_ms_logon){
+					typedef BOOL (*LogeventFn)(char *machine);
+					LogeventFn Logevent = 0;
+					char szCurrentDir[MAX_PATH];
+					if (GetModuleFileName(NULL, szCurrentDir, MAX_PATH))
+						{
+							char* p = strrchr(szCurrentDir, '\\');
+							*p = '\0';
+							strcat (szCurrentDir,"\\logging.dll");
+						}
+					HMODULE hModule = LoadLibrary(szCurrentDir);
+					if (hModule)
+						{
+							BOOL result=false;
+							Logevent = (LogeventFn) GetProcAddress( hModule, "LOGLOGON" );
+							Logevent((char *)m_client->GetClientName());
+							FreeLibrary(hModule);
+						}
+				}
+				if (!m_socket->SendExact((char *)&authmsg, sizeof(authmsg)))
+					return FALSE;
+			}			
+
+			if (auth_ok) {			
+				m_socket->GetIntegratedPlugin()->SetHandshakeComplete();
+			}
+		}
+	}
+	else if (m_auth || (strlen(plain) == 0))
 	{
 		// Send no-auth-required message
 		CARD32 auth_val = Swap32IfLE(rfbNoAuth);
@@ -1266,8 +1495,17 @@ vncClientThread::InitAuthenticate()
 	}
 	else
 	{
-/*		CARD32 authValue = Swap32IfLE(rfbNoAuth);
-		if (!m_socket->SendExact((char *)&authValue, sizeof(authValue)))*/
+#if 0
+		verified = vncServer::aqrAccept;
+ 		CARD8 list[2];
+ 		list[0] = (CARD8)1;					// number of security types
+ 		list[1] = (CARD8)rfbNoAuth;			// primary security type
+		if (!m_socket->SendExact((char *)&list, sizeof(list)))
+			return FALSE;
+		CARD32 authmsg;
+		authmsg = Swap32IfLE(rfbVncAuthOK);
+		if (!m_socket->SendExact((char *)&authmsg, sizeof(authmsg)))
+#endif
 			return FALSE;
 	}
 	// Read the client's initialisation message
@@ -1319,6 +1557,12 @@ vncClientThread::AuthMsLogon() {
 	CARD32 auth_val = Swap32IfLE(rfbMsLogon);
 	if (!m_socket->SendExact((char *)&auth_val, sizeof(auth_val)))
 		return FALSE;
+
+
+	//adzm 2010-05-10
+	if (m_socket->IsUsePluginEnabled() && m_server->GetDSMPluginPointer()->IsEnabled() && m_socket->GetIntegratedPlugin() != NULL) {
+		m_socket->GetIntegratedPlugin()->SetHandshakeComplete();
+	}
 
 	DH dh;
 	char gen[8], mod[8], pub[8], resp[8];
@@ -1445,6 +1689,9 @@ vncClientThread::run(void *arg)
 	{
 		m_socket->SetDSMPluginPointer(m_server->GetDSMPluginPointer());
 		vnclog.Print(LL_INTINFO, VNCLOG("DSMPlugin Pointer to socket OK\n"));
+
+		//adzm 2010-05-12 - dsmplugin config
+		m_socket->SetDSMPluginConfig(m_server->GetDSMPluginConfig());
 	}
 	else
 	{
@@ -1642,6 +1889,8 @@ vncClientThread::run(void *arg)
     bool need_to_clear_keyboard = true;
     bool need_first_keepalive = false;
     bool need_ft_version_msg =  false;
+	// adzm - 2010-07 - Extended clipboard
+	bool need_notify_extended_clipboard = false;
 
 	while (connected)
 	{
@@ -1691,6 +1940,12 @@ vncClientThread::run(void *arg)
             m_client->SendFTProtocolMsg();
             need_ft_version_msg = false;
         }
+		// adzm - 2010-07 - Extended clipboard
+		if (need_notify_extended_clipboard)
+		{
+			m_client->NotifyExtendedClipboardSupport();
+			need_notify_extended_clipboard = false;
+		}
 		// sf@2002 - v1.1.2
 		int nTO = 1; // Type offset
 		// If DSM Plugin, we must read all the transformed incoming rfb messages (type included)
@@ -1730,9 +1985,9 @@ vncClientThread::run(void *arg)
                         time_t now = time(&now);
                         time_t delta = now - lastrecv;
                         lastrecv = now;
-                        char msg[255];
-                        sprintf(msg, "keepalive received %u seconds since last one\n", delta);
-                        OutputDebugString(msg);
+                        char msgg[255];
+                        sprintf(msgg, "keepalive received %u seconds since last one\n", delta);
+                        OutputDebugString(msgg);
 
                     }
 #endif
@@ -1932,6 +2187,14 @@ vncClientThread::run(void *arg)
                         need_ft_version_msg = true;
 						vnclog.Print(LL_INTINFO, VNCLOG("FTProtocolVersion protocol extension enabled\n"));
                         continue;
+					}
+
+					// adzm - 2010-07 - Extended clipboard
+					if (Swap32IfLE(encoding) == rfbEncodingExtendedClipboard) {
+						need_notify_extended_clipboard = true;
+						m_client->m_clipboard.settings.m_bSupportsEx = true;
+						vnclog.Print(LL_INTINFO, VNCLOG("Extended clipboard protocol extension enabled\n"));
+						continue;
 					}
 
 					// RDV - We try to detect which type of viewer tries to connect
@@ -2239,25 +2502,94 @@ vncClientThread::run(void *arg)
 			if (m_socket->ReadExact(((char *) &msg)+nTO, sz_rfbClientCutTextMsg-nTO))
 			{
 				// Allocate storage for the text
-				const UINT length = Swap32IfLE(msg.cct.length);
+				// adzm - 2010-07 - Extended clipboard
+				int length = Swap32IfLE(msg.cct.length);
 				if (length > 104857600) // 100 MBytes max
 					break;
-				char *text = new char [length+1];
-				if (text == NULL)
-					break;
-				text[length] = 0;
+				if (length < 0 && m_client->m_clipboard.settings.m_bSupportsEx) {
 
-				// Read in the text
-				if (!m_socket->ReadExact(text, length)) {
-					delete [] text;
+					length = abs(length);
+
+					ExtendedClipboardDataMessage extendedClipboardDataMessage;
+
+					extendedClipboardDataMessage.EnsureBufferLength(length, false);
+					
+					// Read in the data
+					if (!m_socket->ReadExact((char*)extendedClipboardDataMessage.GetBuffer(), length)) {
+						break;
+					}
+					
+					DWORD action = extendedClipboardDataMessage.GetFlags() & clipActionMask;
+
+					// clipCaps may be combined with other actions
+					if (action & clipCaps) {
+						action = clipCaps;
+					}
+
+					switch(action) {
+						case clipCaps:
+							m_client->m_clipboard.settings.HandleCapsPacket(extendedClipboardDataMessage);
+							break;
+						case clipProvide:
+							m_server->UpdateLocalClipTextEx(extendedClipboardDataMessage, m_client);
+							break;
+						case clipRequest:
+						case clipPeek:
+							{
+								omni_mutex_lock l(m_server->GetDesktopPointer()->GetUpdateLock());
+								ClipboardData clipboardData;
+								
+								if (clipboardData.Load(m_server->GetDesktopPointer()->Window())) {
+									m_client->UpdateClipTextEx(clipboardData, extendedClipboardDataMessage.GetFlags());
+								}
+							}
+							break;
+						case clipNotify:	// irrelevant coming from viewer
+						default:
+							// unsupported or not implemented
+							break;
+					}
+				} else if (length >= 0) {
+					char* winStr = NULL;
+					{
+						char *text = new char [length+1];
+						if (text == NULL)
+							break;
+						text[length] = 0;
+
+						// Read in the text
+						if (!m_socket->ReadExact(text, length)) {
+							delete [] text;
+							break;
+						}
+						
+						int len = strlen(text);
+						winStr = new char[len*2+1];
+
+						int j = 0;
+						for (int i = 0; i < len; i++)
+						{
+							if (text[i] == 10)
+								winStr[j++] = 13;
+							winStr[j++] = text[i];
+						}
+						winStr[j++] = 0;
+						
+						// Free the clip text we read
+						delete [] text;
+					}
+
+					if (winStr != NULL) {
+						m_client->m_clipboard.m_strLastCutText = winStr;
+						// Get the server to update the local clipboard
+						m_server->UpdateLocalClipText(winStr);
+
+						// Free the transformed clip text
+						delete [] winStr;
+					}
+				} else {
 					break;
 				}
-
-				// Get the server to update the local clipboard
-				m_server->UpdateLocalClipText(text);
-
-				// Free the clip text we read
-				delete [] text;
 			}
 			break;
 
@@ -2402,7 +2734,7 @@ vncClientThread::run(void *arg)
                         break;
 					case rfbFileTransferOffer:
 						{
-						omni_mutex_lock l(m_client->GetUpdateLock());
+						omni_mutex_lock ll(m_client->GetUpdateLock());
 						if (!m_server->FileTransferEnabled() || !fUserOk) break;
 						// bool fError = false;
 						const UINT length = Swap32IfLE(msg.ft.length);
@@ -2584,7 +2916,7 @@ vncClientThread::run(void *arg)
 					// The client requests a File
 					case rfbFileTransferRequest:
 						{
-						omni_mutex_lock l(m_client->GetUpdateLock());
+						omni_mutex_lock ll(m_client->GetUpdateLock());
 						m_client->m_fCompressionEnabled = (Swap32IfLE(msg.ft.size) == 1);
 						const UINT length = Swap32IfLE(msg.ft.length);
 						memset(m_client->m_szSrcFileName, 0, sizeof(m_client->m_szSrcFileName));
@@ -2933,7 +3265,7 @@ vncClientThread::run(void *arg)
 									//omni_mutex_lock l(m_client->GetUpdateLock());
 
 									const UINT length = Swap32IfLE(msg.ft.length);
-									char szDir[MAX_PATH];
+									char szDir[MAX_PATH + 2];
 									if (length > sizeof(szDir)) break;
 
 									// Read in the Name of Dir to explore
@@ -3372,7 +3704,8 @@ vncClientThread::run(void *arg)
 
 // The vncClient itself
 
-vncClient::vncClient() : Sendinput("USER32", "SendInput")
+// adzm - 2010-07 - Extended clipboard
+vncClient::vncClient() : Sendinput("USER32", "SendInput"), m_clipboard(ClipboardSettings::defaultServerCaps)
 {
 	vnclog.Print(LL_INTINFO, VNCLOG("vncClient() executing...\n"));
 
@@ -3395,7 +3728,8 @@ vncClient::vncClient() : Sendinput("USER32", "SendInput")
 
 	m_remoteevent = FALSE;
 
-	m_clipboard_text = 0;
+	// adzm - 2010-07 - Extended clipboard
+	//m_clipboard_text = 0;
 
 	// IMPORTANT: Initially, client is not protocol-ready.
 	m_disable_protocol = 1;
@@ -3536,9 +3870,10 @@ vncClient::~vncClient()
 			delete [] m_pCacheZipBuf;
 			m_pCacheZipBuf = NULL;
 		}
-	if (m_clipboard_text) {
+	// adzm - 2010-07 - Extended clipboard
+	/*if (m_clipboard_text) {
 		free(m_clipboard_text);
-	}
+	}*/
 // Modif cs@2005
 #ifdef DSHOW
 	CloseHandle(m_hmtxEncodeAccess);
@@ -3683,6 +4018,8 @@ vncClient::UpdateMouse()
 	}
 }
 
+// adzm - 2010-07 - Extended clipboard
+/*
 void
 vncClient::UpdateClipText(const char* text)
 {
@@ -3694,6 +4031,20 @@ vncClient::UpdateClipText(const char* text)
 	}
 	m_clipboard_text = _strdup(text);
 	TriggerUpdateThread();
+}
+*/
+
+// adzm - 2010-07 - Extended clipboard
+void
+vncClient::UpdateClipTextEx(ClipboardData& clipboardData, CARD32 overrideFlags)
+{
+	//This is already locked in the vncdesktopsynk
+	//But it's just a critical section, doesn't matter how often you lock it in the same thread
+	//as long as it is unlocked the same number of times.
+	omni_mutex_lock l(GetUpdateLock());
+	if (m_clipboard.UpdateClipTextEx(clipboardData, overrideFlags)) {
+		TriggerUpdateThread();
+	}
 }
 
 void
@@ -5199,4 +5550,19 @@ void vncClient::SendFTProtocolMsg()
     ft.contentParam = FT_PROTO_VERSION_3;
     m_socket->SendExact((char *)&ft, sz_rfbFileTransferMsg, rfbFileTransfer);
 
+}
+
+// adzm - 2010-07 - Extended clipboard
+void vncClient::NotifyExtendedClipboardSupport()
+{	
+	ExtendedClipboardDataMessage extendedDataMessage;
+	m_clipboard.settings.PrepareCapsPacket(extendedDataMessage);
+
+	rfbServerCutTextMsg msg;
+    memset(&msg, 0, sizeof(rfbServerCutTextMsg));
+	msg.type = rfbServerCutText;
+	msg.length = Swap32IfLE(-extendedDataMessage.GetDataLength());
+
+	m_socket->SendExact((char *)&msg, sz_rfbServerCutTextMsg, rfbServerCutText);
+	m_socket->SendExact((char *)(extendedDataMessage.GetData()), extendedDataMessage.GetDataLength());
 }

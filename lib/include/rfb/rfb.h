@@ -135,6 +135,7 @@ typedef rfbBool (*rfbSetTranslateFunctionProcPtr)(struct _rfbClientRec* cl);
 typedef rfbBool (*rfbPasswordCheckProcPtr)(struct _rfbClientRec* cl,const char* encryptedPassWord,int len);
 typedef enum rfbNewClientAction (*rfbNewClientHookPtr)(struct _rfbClientRec* cl);
 typedef void (*rfbDisplayHookPtr)(struct _rfbClientRec* cl);
+typedef void (*rfbDisplayFinishedHookPtr)(struct _rfbClientRec* cl, int result);
 /* support the capability to view the caps/num/scroll states of the X server */
 typedef int  (*rfbGetKeyboardLedStateHookPtr)(struct _rfbScreenInfo* screen);
 /* If x==1 and y==1 then set the whole display
@@ -351,6 +352,9 @@ typedef struct _rfbScreenInfo
 
     /* command line authorization of file transfers */
     rfbBool permitFileTransfer;
+
+    /* displayFinishedHook is called just after a frame buffer update */
+    rfbDisplayFinishedHookPtr displayFinishedHook;
 } rfbScreenInfo, *rfbScreenInfoPtr;
 
 
