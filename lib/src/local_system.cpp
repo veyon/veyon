@@ -75,11 +75,48 @@ QString windowsConfigPath( int _type )
 				library.resolve( "SHGetSpecialFolderPathA" );
 	if( SHGetSpecialFolderPath )
 	{
-	    char path[MAX_PATH];
-	    SHGetSpecialFolderPath( 0, path, _type, FALSE );
-	    result = QString::fromLocal8Bit( path );
+		char path[MAX_PATH];
+		SHGetSpecialFolderPath( 0, path, _type, FALSE );
+		result = QString::fromLocal8Bit( path );
 	}
 	return( result );
+}
+
+void killWisPtis()
+{
+	DWORD aProcesses[1024], cbNeeded;
+	if( !EnumProcesses( aProcesses, sizeof( aProcesses ), &cbNeeded ) )
+	{
+		return;
+	}
+
+	DWORD cProcesses = cbNeeded / sizeof(DWORD);
+
+	for( DWORD i = 0; i < cProcesses; i++ )
+	{
+		HANDLE hProcess = OpenProcess(
+							PROCESS_QUERY_INFORMATION | PROCESS_TERMINATE|
+								PROCESS_VM_READ,
+							false, aProcesses[i] );
+		HMODULE hMod;
+		if( hProcess == NULL ||
+			!EnumProcessModules( hProcess, &hMod, sizeof( hMod ),
+								&cbNeeded ) )
+		{
+			continue;
+		}
+		TCHAR szProcessName[MAX_PATH];
+		GetModuleBaseName( hProcess, hMod, szProcessName,
+							sizeof(szProcessName)/sizeof(TCHAR) );
+		for( TCHAR * ptr = szProcessName; *ptr; ++ptr )
+		{
+			*ptr = tolower( *ptr );
+		}
+		if( strcmp( szProcessName, "wisptis.exe" ) == 0 )
+		{
+			TerminateProcess( hProcess, 0 );
+		}
+	}
 }
 
 }
@@ -122,7 +159,7 @@ static QString properLineEnding( QString _out )
 {
 	if( _out.right( 1 ) != "\012" )
 	{
-		_out += "\012";				
+		_out += "\012";
 	}
 #ifdef BUILD_WIN32
 	if( _out.right( 1 ) != "\015" )
@@ -135,7 +172,7 @@ static QString properLineEnding( QString _out )
 	{
 		_out.replace( QString( "\012" ), QString( "\015" ) );
 	}
-#endif			
+#endif
 	return( _out );
 }
 
@@ -240,6 +277,9 @@ int IC_DllExport logLevel = 6;
 
 void initialize( p_pressKey _pk, const QString & _log_file )
 {
+#ifdef BUILD_WIN32
+	killWisPtis();
+#endif
 	__pressKey = _pk;
 	__log_file = _log_file;
 
@@ -250,7 +290,7 @@ void initialize( p_pressKey _pk, const QString & _log_file )
 	QCoreApplication::setApplicationName( "iTALC" );
 
 	QSettings settings( QSettings::SystemScope, "iTALC Solutions", "iTALC" );
-	
+
 	if( settings.contains( "settings/LogLevel" ) )
 	{
 		logLevel = settings.value( "settings/LogLevel" ).toInt();
@@ -267,7 +307,7 @@ void initialize( p_pressKey _pk, const QString & _log_file )
 
 	static QTranslator appTr;
 	appTr.load( ":/resources/" + loc + ".qm" );
-	qApp->installTranslator( &appTr );
+	QCoreApplication::installTranslator( &appTr );
 
 	static QTranslator qtTr;
 	qtTr.load( ":/resources/qt_" + loc + ".qm" );
@@ -342,7 +382,7 @@ void broadcastWOLPacket( const QString & _mac )
 
 	for( int i = 0; i < MAC_SIZE; ++i )
 	{
-		out_buf[i] = 0xff;	  
+		out_buf[i] = 0xff;
 	}
 
 	for( int i = 1; i < 17; ++i )
@@ -431,12 +471,12 @@ void logonUser( const QString & _uname, const QString & _passwd,
 		if( hProcess == NULL ||
 			!EnumProcessModules( hProcess, &hMod, sizeof( hMod ),
 								&cbNeeded ) )
-	        {
+		{
 			continue;
 		}
 		TCHAR szProcessName[MAX_PATH];
-		GetModuleBaseName( hProcess, hMod, szProcessName, 
-                             		  sizeof(szProcessName)/sizeof(TCHAR) );
+		GetModuleBaseName( hProcess, hMod, szProcessName,
+							sizeof(szProcessName)/sizeof(TCHAR) );
 		for( TCHAR * ptr = szProcessName; *ptr; ++ptr )
 		{
 			*ptr = tolower( *ptr );
@@ -462,7 +502,7 @@ void logonUser( const QString & _uname, const QString & _passwd,
 		(CHAR *)_passwd.toUtf8().constData(),
 		LOGON32_LOGON_INTERACTIVE,
 		LOGON32_PROVIDER_DEFAULT,
-		&hToken ) ) 
+		&hToken ) )
 	{
 		CloseHandle( hToken );
 	}
@@ -472,9 +512,9 @@ void logonUser( const QString & _uname, const QString & _passwd,
 	if( GetKeyState( VK_CAPITAL ) & 1 )
 	{
 		INPUT input[2];
-		ZeroMemory( input, sizeof( input ) );        
+		ZeroMemory( input, sizeof( input ) );
 		input[0].type = input[1].type = INPUT_KEYBOARD;
-		input[0].ki.wVk = input[1].ki.wVk = VK_CAPITAL;        
+		input[0].ki.wVk = input[1].ki.wVk = VK_CAPITAL;
 		input[1].ki.dwFlags = KEYEVENTF_KEYUP;
 		SendInput( 2, input, sizeof( INPUT ) );
 	}
