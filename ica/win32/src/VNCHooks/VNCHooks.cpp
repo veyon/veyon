@@ -69,11 +69,6 @@ HHOOK hMouseHook = NULL;							// Handle to mouse hook
 
 #endif // _MSC_VER
 
-#ifndef LLMHF_INJECTED
-/* from $prefix/include/wine/windows/winuser.h */
-#define LLMHF_INJECTED 0x000000001
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Per-instance DLL variables
 
@@ -139,6 +134,7 @@ extern "C" BOOL APIENTRY DllMain (HANDLE hInst, ULONG ul_reason_for_call, LPVOID
 
 		// Save the instance handle
 		hInstance = (HINSTANCE)hInst;
+
 		// Call the initialisation function
 		appHookedOK = InitInstance();
 
