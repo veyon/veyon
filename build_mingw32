@@ -1,4 +1,4 @@
 MINGW=/opt/mingw32
 export PATH=$PATH:$MINGW/bin
 
-./configure --prefix=$MINGW --build=`./config.guess` --host=i686-w64-mingw32 --target=i686-w64-mingw32 --with-qtdir=$MINGW --with-win32 CFLAGS="-march=pentium3 -mtune=generic -Wno-write-strings" CXXFLAGS="-march=pentium3 -mtune=generic -Wno-write-strings"
+./configure --prefix=$MINGW --build=`./config.guess` --host=i686-w64-mingw32 --target=i686-w64-mingw32 --with-qtdir=$MINGW --with-win32 CFLAGS="-ftree-vectorize -Wno-write-strings" CXXFLAGS="-ftree-vectorize -Wno-write-strings"
