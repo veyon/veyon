@@ -151,26 +151,6 @@ private:
 
 	typedef void ( * workThreadFunctionPtr )( void * );
 
-	class workThread : public QThread
-	{
-	public:
-		workThread( workThreadFunctionPtr _ptr, void * _user = NULL ) :
-			QThread(),
-			m_workThreadFunction( _ptr ),
-			m_user( _user )
-		{
-			start();
-		}
-		virtual void run( void )
-		{
-			m_workThreadFunction( m_user );
-			deleteLater();
-		}
-	private:
-		workThreadFunctionPtr m_workThreadFunction;
-		void * m_user;
-	} ;
-
 	static void serviceMainThread( void * );
 
 #ifdef BUILD_WIN32

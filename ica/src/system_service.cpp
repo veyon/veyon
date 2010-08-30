@@ -223,7 +223,6 @@ bool systemService::runAsService( void )
 	{
 		return( FALSE );
 	}
-	//new workThread( serviceMainThread );
 	m_serviceMain( this );
 	m_running = FALSE;
 	return( TRUE );
@@ -740,7 +739,11 @@ void WINAPI systemService::main( DWORD _argc, char * * _argv )
 
 	// Set up some standard service state values
 	s_status.dwServiceType = SERVICE_WIN32 | SERVICE_INTERACTIVE_PROCESS;
-	s_status.dwServiceSpecificExitCode = 0;
+	s_status.dwServiceSpecificExitCode = NO_ERROR;
+	s_status.dwControlsAccepted = 0;
+	s_status.dwWin32ExitCode = NO_ERROR;
+	s_status.dwCheckPoint = 0;
+	s_status.dwWaitHint = 0;
 
 	// Give this status to the SCM
 	if( !reportStatus(
@@ -754,11 +757,7 @@ void WINAPI systemService::main( DWORD _argc, char * * _argv )
 		return;
 	}
 
-	//serviceMainThread(0);
-	// now start the service for real
-	//omni_thread::create( serviceMainThread, s_this );
-	( new workThread( serviceMainThread, s_this ) )->start();
-	return;
+	serviceMainThread( s_this );
 }
 
 
