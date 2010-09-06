@@ -54,10 +54,6 @@
 #endif
 #endif
 
-#ifdef CORBA
-#include <vncserverctrl.h>
-#endif
-
 #ifdef DEBUGPROTO
 #undef DEBUGPROTO
 #define DEBUGPROTO(x) x

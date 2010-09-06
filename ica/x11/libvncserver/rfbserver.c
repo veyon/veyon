@@ -54,10 +54,6 @@
 #endif
 #endif
 
-#ifdef CORBA
-#include <vncserverctrl.h>
-#endif
-
 #ifdef DEBUGPROTO
 #undef DEBUGPROTO
 #define DEBUGPROTO(x) x
@@ -214,15 +210,11 @@ rfbNewClientConnection(rfbScreenInfoPtr rfbScreen,
     rfbClientPtr cl;
 
     cl = rfbNewClient(rfbScreen,sock);
-#ifdef CORBA
-    if(cl!=NULL)
-      newConnection(cl, (KEYBOARD_DEVICE|POINTER_DEVICE),1,1,1);
-#endif
 }
 
 
 /*
- * rfbReverseConnection is called by the CORBA stuff to make an outward
+ * rfbReverseConnection is called to make an outward
  * connection to a "listening" RFB client.
  */
 
@@ -554,10 +546,6 @@ rfbClientConnectionGone(rfbClientPtr cl)
     LOCK(cl->sendMutex);
     UNLOCK(cl->sendMutex);
     TINI_MUTEX(cl->sendMutex);
-
-#ifdef CORBA
-    destroyConnection(cl);
-#endif
 
     rfbPrintStats(cl);
 

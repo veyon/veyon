@@ -1078,9 +1078,6 @@ rfbProcessEvents(rfbScreenInfoPtr screen,long usec)
 
   rfbCheckFds(screen,usec);
   rfbHttpCheckFds(screen);
-#ifdef CORBA
-  corbaCheckFds(screen);
-#endif
 
   i = rfbGetClientIteratorWithClosed(screen);
   cl=rfbClientIteratorHead(i);
