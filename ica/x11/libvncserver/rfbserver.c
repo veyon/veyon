@@ -299,13 +299,10 @@ rfbNewTCPOrUDPClient(rfbScreenInfoPtr rfbScreen,
       }
       rfbReleaseClientIterator(iterator);
 
-#ifndef WIN32
-      if (fcntl(sock, F_SETFL, O_NONBLOCK) < 0) {
-	rfbLogPerror("fcntl failed");
+      if(!rfbSetNonBlocking(sock)) {
 	close(sock);
 	return NULL;
       }
-#endif
 
       if (setsockopt(sock, IPPROTO_TCP, TCP_NODELAY,
 		     (char *)&one, sizeof(one)) < 0) {
