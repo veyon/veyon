@@ -3550,7 +3550,7 @@ int scan_for_updates(int count_only) {
 			fb_copy_in_progress = 0;
 			SCAN_FATAL(cs);
 			if (use_threads && pointer_mode != 1) {
-				pointer(-1, 0, 0, NULL);
+				pointer_event(-1, 0, 0, NULL);
 			}
 			nap_check(tile_count);
 			return tile_count;
@@ -3637,7 +3637,7 @@ if (tile_count) fprintf(stderr, "XX copytile: %.4f  tile_count: %d\n", dnow() - 
 		 * tell the pointer handler it can process any queued
 		 * pointer events:
 		 */
-		pointer(-1, 0, 0, NULL);
+		pointer_event(-1, 0, 0, NULL);
 	}
 
 	if (blackouts) {

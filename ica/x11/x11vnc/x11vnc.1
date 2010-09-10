@@ -1,8 +1,8 @@
 .\" This file was automatically generated from x11vnc -help output.
-.TH X11VNC "1" "May 2010" "x11vnc " "User Commands"
+.TH X11VNC "1" "September 2010" "x11vnc " "User Commands"
 .SH NAME
 x11vnc - allow VNC connections to real X11 displays
-         version: 0.9.11, lastmod: 2010-05-08
+         version: 0.9.13, lastmod: 2010-09-10
 .SH SYNOPSIS
 .B x11vnc
 [OPTION]...
@@ -487,6 +487,12 @@ disconnects, opposite of \fB-forever.\fR This is the Default.
 .IP
 Keep listening for more connections rather than exiting
 as soon as the first client(s) disconnect. Same as \fB-many\fR
+.IP
+To get the standard non-shared VNC behavior where when
+a new VNC client connects the existing VNC client is
+dropped use:  \fB-nevershared\fR \fB-forever\fR   This method can
+also be used to guard against hung TCP connections that
+do not go away.
 .PP
 \fB-loop\fR
 .IP
@@ -616,6 +622,11 @@ this VNC server to the local network. (Related terms:
 Rendezvous, Bonjour).  Depending on your setup, you
 may need to start avahi-daemon and open udp port 5353
 in your firewall.
+.IP
+You can set X11VNC_AVAHI_NAME, X11VNC_AVAHI_HOST,
+and/or X11VNC_AVAHI_PORT environment variables
+to override the default values.  For example:
+\fB-env\fR X11VNC_AVAHI_NAME=wally
 .IP
 If the avahi API cannot be found at build time, a helper
 program like avahi-
@@ -1329,7 +1340,7 @@ virtual terminal of the X server.
 .IP
 Have the FINDDISPLAY program list all of your displays
 (i.e. all the X displays on the local machine that you
-have access rights to).
+have access rights to).  x11vnc then exits.
 .PP
 \fB-findauth\fR \fI[disp]\fR
 .IP
@@ -1337,7 +1348,7 @@ Apply the \fB-find/-finddpy\fR heuristics to try to guess
 the XAUTHORITY file for DISPLAY 'disp'.  If 'disp'
 is not supplied, then the value in the \fB-display\fR on
 the cmdline is used; failing that $DISPLAY is used;
-and failing that ":0" is used.
+and failing that ":0" is used.  x11vnc then exits.
 .IP
 If nothing is printed out, that means no XAUTHORITY was
 found for 'disp'; i.e. failure.  If "XAUTHORITY="
@@ -1611,8 +1622,19 @@ be ignored if the FD_TAG env. var. is already set or
 if the viewer-side supplied value is not completely
 composed of alphanumeric or '_' or '-' characters.
 .IP
+User preferences file: Instead of having the user type
+in geom=WxH,... etc. every time he logs in to find
+or create his X session, if you set FD_USERPREFS to
+a string that does not contain the "/" character,
+then the user's home directory is prepended to that
+string and if the file exists its first line is read
+and appended to any options he supplied at the login:
+prompt.  For example \fB-env\fR FD_USERPREFS=.x11vnc_create
+and the user put "geom=1600x1200" in his
+~/.x11vnc_create file.
+.IP
 To troubleshoot the FINDCREATEDISPLAY mechanism,
-set the following env. var. to an ouput log file,
+set the following env. var. to an output log file,
 e.g \fB-env\fR CREATE_DISPLAY_OUTPUT=/tmp/mydebug.txt
 .IP
 To disable the option setting set the environment
@@ -1706,6 +1728,8 @@ The option "\fB-create\fR" is an alias for this mode.
 .IP
 It will start looking for an open display number at :20
 Override via X11VNC_CREATE_STARTING_DISPLAY_NUMBER=n
+By default 80 X displays are allowed (i.e. going to :99)
+Override via X11VNC_CREATE_MAX_DISPLAYS=n
 .IP
 By default FINDCREATEDISPLAY will try Xvfb and then
 Xdummy:
@@ -2268,6 +2292,7 @@ commands 'openssl ca \fB-revoke\fR ...' and 'openssl ca
 .IP
 Generate your own Certificate Authority private key,
 certificate, and other files in directory [dir].
+x11vnc then exits.
 .IP
 If [dir] is not supplied, a \fB-ssldir\fR setting is used,
 or otherwise ~/.vnc/certs is used.
@@ -2279,7 +2304,7 @@ program must be installed on the system and available
 in PATH.
 .IP
 After the CA files and directories are created the
-command exits; the VNC server is not run.
+x11vnc command exits; the VNC server is not run.
 .IP
 You will be prompted for information to put into the CA
 certificate.  The info does not have to be accurate just
@@ -2311,8 +2336,8 @@ key pair signed by the CA created previously with
 program must be installed
 on the system and available in PATH.
 .IP
-After the Certificate is generated the command exits;
-the VNC server is not run.
+After the Certificate is generated x11vnc exits; the
+VNC server is not run.
 .IP
 The type of key to be generated is the string \fItype\fR.
 It is either "server" (i.e. for use by x11vnc) or
@@ -2431,7 +2456,7 @@ x11vnc \fB-sslGenCert\fR client roger
 scp ~/.vnc/certs/clients/roger.pem somehost:.
 rm  ~/.vnc/certs/clients/roger.pem
 .IP
-x11vnc is then started with the the option \fB-sslverify\fR
+x11vnc is then started with the option \fB-sslverify\fR
 ~/.vnc/certs/clients/roger.crt (or simply \fB-sslverify\fR
 roger), and on the viewer user on somehost could do
 for example:
@@ -2460,7 +2485,7 @@ The
 .IR openssl (1)
 program must be installed on the system
 and available in PATH.  After the Key file is encrypted
-the command exits; the VNC server is not run.
+the x11vnc command exits; the VNC server is not run.
 .IP
 Examples:
 x11vnc \fB-sslEncKey\fR /path/to/foo.pem
@@ -2475,6 +2500,9 @@ The
 .IR openssl (1)
 program must be in PATH. Basically the
 command "openssl x509 \fB-text"\fR is run on the pem.
+.IP
+After the info is printed the x11vnc command exits;
+the VNC server is not run.
 .IP
 The "SAVE" notation described under \fB-ssl\fR applies
 as well.
@@ -2503,15 +2531,15 @@ also be lowercase, e.g. "list".
 \fB-sslDelCert\fR \fIpem\fR
 .IP
 Prompts you to delete all .crt .pem .key .req files
-associated with [pem].  "SAVE" and lookups as in
-\fB-sslCertInfo\fR apply as well.
+associated with [pem].  x11vnc then exits. "SAVE"
+and lookups as in \fB-sslCertInfo\fR apply as well.
 .PP
 \fB-sslScripts\fR
 .IP
 Prints out both the 'genCA' and 'genCert' x11vnc
 openssl wrapper scripts for you to examine, modify, etc.
-The scripts are printed to stdout and then the program
-exits.
+The scripts are printed to stdout and then the x11vnc
+program exits.
 .PP
 \fB-stunnel\fR \fI[pem]\fR
 .IP
@@ -3142,6 +3170,9 @@ endianness.  Ignored unless \fB-noshm\fR is set.
 Do not use the new copy_tiles() framebuffer mechanism,
 just use 1 shm tile for polling.  Limits shm segments
 used to 3.
+.IP
+To disable any automatic shm reduction set the
+env. var. X11VNC_NO_LIMIT_SHM.
 .PP
 \fB-solid\fR \fI[color]\fR
 .IP
@@ -3457,7 +3488,7 @@ Nevertheless your capitalized letters come in over
 the wire and are applied correctly to the x11vnc-side
 X server.  Note this mode probably won't do what you
 want in \fB-nomodtweak\fR mode.  Also, a kludge for KP_n
-digits is always done it this mode: they are mapped to
+digits is always done in this mode: they are mapped to
 regular digit keysyms.  See also \fB-capslock\fR above.
 The default is \fB-noskip_lockkeys.\fR
 .PP
@@ -3817,6 +3848,36 @@ on touchscreens or other non-standard setups.
 It is also sometimes needed on XINERAMA displays and is
 enabled by default if XINERAMA is found to be active.
 To prevent this, use \fB-noxwarppointer.\fR
+.PP
+\fB-always_inject\fR
+.IP
+Even if there is no displacement (dx = dy = 0) for a
+VNC mouse event force the pointer to the indicated x,y
+position anyway.  Recent (2009) gui toolkits (gnome)
+have problems with x11vnc's original mouse input
+injection method.  So x11vnc's mouse input injection
+method has been modified.  To regain the OLD behavior
+use this option: \fB-always_inject.\fR  Then x11vnc will
+always force positioning the mouse to the x,y position
+even if that position has not changed since the previous
+VNC input event.
+.IP
+The first place this problem was noticed was in gnome
+terminal: if you pressed and released mouse button 3, a
+menu was posted and then its first element 'New Terminal
+Window' was activated.  This was because x11vnc injected
+the mouse position twice: once on ButtonPress and again
+on ButtonRelease.  The toolkit interpreted the 2nd one
+as mouse motion even though the mouse hadn't moved.
+So now by default x11vnc tries to avoid injecting the
+2nd one.
+.IP
+Note that with the new default x11vnc will be oblivious
+to applications moving the pointer (warping) or the
+user at the physical display moving it.  So it might,
+e.g., inject ButtonRelease at the wrong position.
+If this (or similar scenarios) causes problems in your
+environment, specify \fB-always_inject\fR for the old method.
 .PP
 \fB-buttonmap\fR \fIstring\fR
 .IP
@@ -4336,7 +4397,7 @@ tiny window for XGrabServer deadlock.  This is only if
 the whole-server grabbing application expects mouse or
 keyboard input before releasing the grab.  It is usually
 a window manager that does this.  x11vnc takes care to
-avoid the the problem, but if caught x11vnc will freeze.
+avoid the problem, but if caught x11vnc will freeze.
 Without \fB-grab_buster,\fR the only solution is to go the
 physical display and give it some input to satisfy the
 grabbing app.  Or manually kill and restart the window
@@ -5334,7 +5395,7 @@ keystroke insertion code based on a US keyboard.
 .PP
 \fB-gui\fR \fI[gui-opts]\fR
 .IP
-Start up a simple tcl/tk gui based on the the remote
+Start up a simple tcl/tk gui based on the remote
 control options \fB-remote/-query\fR described below.
 Requires the "wish" program to be installed on the
 machine.  "gui-opts" is not required: the default
@@ -5466,9 +5527,9 @@ Remotely control some aspects of an already running
 x11vnc server.  "\fB-R\fR" and "\fB-r\fR" are aliases for
 "\fB-remote\fR".  After the remote control command is
 sent to the running server the 'x11vnc \fB-remote\fR ...'
-command exits.  You can often use the \fB-query\fR command
-(see below) to see if the x11vnc server processed your
-\fB-remote\fR command.
+x11vnc command exits.  You can often use the \fB-query\fR
+command (see below) to see if the x11vnc server
+processed your \fB-remote\fR command.
 .IP
 The default communication channel is that of X
 properties (specifically X11VNC_REMOTE), and so this
@@ -5885,6 +5946,10 @@ nocursorpos     enable  \fB-nocursorpos\fR mode.
 xwarp           enable  \fB-xwarppointer\fR mode.
 .IP
 noxwarp         disable \fB-xwarppointer\fR mode.
+.IP
+always_inject   enable  \fB-always_inject\fR mode.
+.IP
+noalways_inject disable \fB-always_inject\fR mode.
 .IP
 buttonmap:str   set \fB-buttonmap\fR "str", empty to disable
 .IP
@@ -6376,11 +6441,11 @@ nobell sendbell sel nosel primary noprimary setprimary
 nosetprimary clipboard noclipboard setclipboard
 nosetclipboard seldir cursorshape nocursorshape
 cursorpos nocursorpos cursor_drag nocursor_drag cursor
-show_cursor noshow_cursor nocursor arrow xfixes
-noxfixes xdamage noxdamage xd_area xd_mem alphacut
-alphafrac alpharemove noalpharemove alphablend
-noalphablend xwarppointer xwarp noxwarppointer
-noxwarp buttonmap dragging nodragging ncache_cr
+show_cursor noshow_cursor nocursor arrow xfixes noxfixes
+xdamage noxdamage xd_area xd_mem alphacut alphafrac
+alpharemove noalpharemove alphablend noalphablend
+xwarppointer xwarp noxwarppointer noxwarp always_inject
+noalways_inject buttonmap dragging nodragging ncache_cr
 noncache_cr ncache_no_moveraise noncache_no_moveraise
 ncache_no_dtchange noncache_no_dtchange
 ncache_no_rootpixmap noncache_no_rootpixmap

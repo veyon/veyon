@@ -258,6 +258,7 @@ int cursor_drag_changes = CURSOR_DRAG;
 int cursor_pos_updates = 1;	/* cursor position updates -cursorpos */
 int cursor_shape_updates = 1;	/* cursor shape updates -nocursorshape */
 int use_xwarppointer = 0;	/* use XWarpPointer instead of XTestFake... */
+int always_inject = 0;		/* inject new mouse coordinates even if dx=dy=0 */
 int show_dragging = 1;		/* process mouse movement events */
 #ifndef WIREFRAME
 #define WIREFRAME 1

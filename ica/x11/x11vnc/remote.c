@@ -3443,6 +3443,24 @@ char *process_remote_cmd(char *cmd, int stringonly) {
 		use_xwarppointer = 0;
 		goto done;
 	}
+	if (strstr(p, "always_inject") == p) {
+		if (query) {
+			snprintf(buf, bufn, "ans=%s:%d", p, always_inject);
+			goto qry;
+		}
+		rfbLog("remote_cmd: turning on always_inject mode.\n");
+		always_inject = 1;
+		goto done;
+	}
+	if (strstr(p, "noalways_inject") == p) {
+		if (query) {
+			snprintf(buf, bufn, "ans=%s:%d", p, !always_inject);
+			goto qry;
+		}
+		rfbLog("remote_cmd: turning off always_inject mode.\n");
+		always_inject = 0;
+		goto done;
+	}
 	if (strstr(p, "buttonmap") == p) {
 		COLON_CHECK("buttonmap:")
 		if (query) {
@@ -4426,9 +4444,9 @@ char *process_remote_cmd(char *cmd, int stringonly) {
 		p += strlen("ptr:");
 		rfbLog("remote_cmd: insert pointer event: %s\n", p);
 		if (sscanf(p, "%d,%d,%d", &x, &y, &m) == 3) {
-			pointer(m, x, y, NULL);
+			pointer_event(m, x, y, NULL);
 		} else if (sscanf(p, "%d,%d", &x, &y) == 2) {
-			pointer(m, x, y, NULL);
+			pointer_event(m, x, y, NULL);
 		} else {
 			rfbLog("remote_cmd: bad ptr:x,y,mask\n");
 		}
@@ -4593,7 +4611,7 @@ char *process_remote_cmd(char *cmd, int stringonly) {
 		} else if (strstr(res, "GRAB_FAIL") && try < max_tries) {
 			rfbLog("bcx_xattach: failed grab check for '%s': %s.  Retrying[%d]...\n", p, res, try);
 			free(res);
-			pointer(0, dpy_x/2 + try, dpy_y/2 + try, NULL);
+			pointer_event(0, dpy_x/2 + try, dpy_y/2 + try, NULL);
 #if !NO_X11
 			X_LOCK;
 			XFlush_wr(dpy);

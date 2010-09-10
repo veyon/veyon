@@ -54,7 +54,7 @@ int pointer_queued_sent = 0;
 
 void initialize_pointer_map(char *pointer_remap);
 void do_button_mask_change(int mask, int button);
-void pointer(int mask, int x, int y, rfbClientPtr client);
+void pointer_event(int mask, int x, int y, rfbClientPtr client);
 void initialize_pipeinput(void);
 int check_pipeinput(void);
 void update_x11_pointer_position(int x, int y);
@@ -342,20 +342,11 @@ void update_x11_pointer_position(int x, int y) {
 	return;
 #else
 	int rc;
-	static int watch_dx_dy = -1;
 
 	RAWFB_RET_VOID
 
-	if (watch_dx_dy == -1) {
-		if (getenv("X11VNC_WATCH_DX_DY")) {
-			watch_dx_dy = 1;
-		} else {
-			watch_dx_dy = 0;
-		}
-	}
-
 	X_LOCK;
-	if (watch_dx_dy && cursor_x == x && cursor_y == y) {
+	if (!always_inject && cursor_x == x && cursor_y == y) {
 		;
 	} else if (use_xwarppointer) {
 		/*
@@ -668,7 +659,7 @@ static void pipe_pointer(int mask, int x, int y, rfbClientPtr client) {
  * This may queue pointer events rather than sending them immediately
  * to the X server. (see update_x11_pointer*())
  */
-void pointer(int mask, int x, int y, rfbClientPtr client) {
+void pointer_event(int mask, int x, int y, rfbClientPtr client) {
 	allowed_input_t input;
 	int sent = 0, buffer_it = 0;
 	double now;

@@ -37,7 +37,7 @@ so, delete this exception statement from your version.
 #include "cleanup.h"
 
 void avahi_initialise(void);
-void avahi_advertise(const char *name, const char *host, const uint16_t port);
+void avahi_advertise(char *name, char *host, uint16_t port);
 void avahi_reset(void);
 void avahi_cleanup(void);
 
@@ -45,12 +45,13 @@ static pid_t avahi_pid = 0;
 
 static void kill_avahi_pid(void) {
 	if (avahi_pid != 0) {
+		rfbLog("kill_avahi_pid: %d\n", (int) avahi_pid);
 		kill(avahi_pid, SIGTERM);
 		avahi_pid = 0;
 	}
 }
 
-static int try_avahi_helper(const char *name, const char *host, const uint16_t port) {
+static int try_avahi_helper(char *name, char *host, uint16_t port) {
 #if LIBVNCSERVER_HAVE_FORK
 	char *cmd, *p, *path = getenv("PATH"), portstr[32];
 	int i;
@@ -146,7 +147,12 @@ void avahi_initialise(void) {
 	rfbLog("avahi_initialise: no Avahi support at buildtime.\n");
 }
 
-void avahi_advertise(const char *name, const char *host, const uint16_t port) {
+void avahi_advertise(char *name, char *host, uint16_t port) {
+	char *t;
+	t = getenv("X11VNC_AVAHI_NAME"); if (t) name = t;
+	t = getenv("X11VNC_AVAHI_HOST"); if (t) host = t;
+	t = getenv("X11VNC_AVAHI_PORT"); if (t) port = atoi(t);
+
 	if (!try_avahi_helper(name, host, port)) {
 		rfbLog("avahi_advertise:  no Avahi support at buildtime.\n");
 		avahi = 0;
@@ -243,8 +249,8 @@ if (db) fprintf(stderr, "    avahi_initialise: poll not null\n");
 if (db) fprintf(stderr, "out avahi_initialise\n");
 }
 
-static void _avahi_create_services(const char *name, const char *host,
-    const uint16_t port);
+static void _avahi_create_services(char *name, char *host,
+    uint16_t port);
 
 static void _avahi_entry_group_callback(AvahiEntryGroup *g,
     AvahiEntryGroupState state, void *userdata) {
@@ -285,12 +291,11 @@ if (db) fprintf(stderr, "in  _avahi_entry_group_callback %d 0x%p\n", state, svc)
 if (db) fprintf(stderr, "out _avahi_entry_group_callback\n");
 }
 
-static void _avahi_create_services(const char *name, const char *host,
-    const uint16_t port) {
+static void _avahi_create_services(char *name, char *host, uint16_t port) {
 	avahi_service_t *svc = (avahi_service_t *)malloc(sizeof(avahi_service_t));
 	int ret = 0;
 
-if (db) fprintf(stderr, "in  _avahi_create_services  %s %s %d\n", name, host, port);
+if (db) fprintf(stderr, "in  _avahi_create_services  '%s' '%s' %d\n", name, host, port);
 	svc->name = name;
 	svc->host = host;
 	svc->port = port;
@@ -323,9 +328,14 @@ if (db) fprintf(stderr, "    _avahi_create_services create group\n");
 if (db) fprintf(stderr, "out _avahi_create_services\n");
 }
 
-void avahi_advertise(const char *name, const char *host, const uint16_t port) {
+void avahi_advertise(char *name, char *host, uint16_t port) {
 	int i;
-if (db) fprintf(stderr, "in  avahi_advertise: %s %s %d\n", name, host, port);
+	char *t;
+	t = getenv("X11VNC_AVAHI_NAME"); if (t) name = t;
+	t = getenv("X11VNC_AVAHI_HOST"); if (t) host = t;
+	t = getenv("X11VNC_AVAHI_PORT"); if (t) port = atoi(t);
+
+if (db) fprintf(stderr, "in  avahi_advertise: '%s' '%s' %d\n", name, host, port);
 	if (!_client) {
 if (db) fprintf(stderr, "    avahi_advertise client null\n");
 		return;
@@ -388,18 +398,34 @@ if (db) fprintf(stderr, "    avahi_reset client/group null\n");
 if (db) fprintf(stderr, "out avahi_reset\n");
 }
 
+static void avahi_timeout (int sig) {
+	int i;
+	rfbLog("sig: %d, avahi_cleanup timed out.\n", sig);
+	exit(1);
+}
+
+
 void avahi_cleanup(void) {
 if (db) fprintf(stderr, "in  avahi_cleanup\n");
 	if (!_client) {
 if (db) fprintf(stderr, "    avahi_cleanup client null\n");
 		return;
 	}
+if (db) fprintf(stderr, "    avahi_cleanup poll_lock\n");
 	avahi_threaded_poll_lock(_poll);
-	avahi_threaded_poll_stop(_poll);
+if (db) fprintf(stderr, "    avahi_cleanup poll_stop\n");
 
+	signal(SIGALRM, avahi_timeout);
+	alarm(3);
+	avahi_threaded_poll_stop(_poll);
+	alarm(0);
+	signal(SIGALRM, SIG_DFL);
+
+if (db) fprintf(stderr, "    avahi_cleanup client_free\n");
 	avahi_client_free(_client);
 	_client = NULL;
 
+if (db) fprintf(stderr, "    avahi_cleanup poll_free\n");
 	avahi_threaded_poll_free(_poll);
 	_poll = NULL;
 if (db) fprintf(stderr, "out avahi_cleanup\n");

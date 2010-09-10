@@ -165,9 +165,6 @@ void clean_up_exit(int ret) {
 		ssl_helper_pid(0, 0);	/* killall */
 	}
 
-	if (avahi) {
-		avahi_cleanup();
-	}
 	if (ssh_pid > 0) {
 		kill(ssh_pid, SIGTERM);
 		ssh_pid = 0;
@@ -240,6 +237,11 @@ void clean_up_exit(int ret) {
 	if (rm_flagfile) {
 		unlink(rm_flagfile);
 		rm_flagfile = NULL;
+	}
+
+	if (avahi) {
+		avahi_cleanup();
+		fflush(stderr);
 	}
 
 	exit(ret);

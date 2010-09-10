@@ -932,11 +932,7 @@ void client_gone(rfbClientPtr client) {
 			kill(gui_pid, SIGTERM);
 		}
 		CLIENT_UNLOCK;
-		if (connect_or_exit) {
-			clean_up_exit(1);
-		} else {
-			clean_up_exit(0);
-		}
+		clean_up_exit(0);
 	}
 #ifdef MACOSX
 	if (macosx_console && client_count == 0) {
@@ -3149,7 +3145,7 @@ static void pmove(int x, int y) {
 		return;
 	}
 	rfbLog("pmove: x y: %d %d\n", x, y);
-	pointer(0, x, y, NULL);
+	pointer_event(0, x, y, NULL);
 	X_LOCK;
 	XFlush_wr(dpy);
 	X_UNLOCK;

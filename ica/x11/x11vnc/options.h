@@ -222,6 +222,7 @@ extern int cursor_drag_changes;
 extern int cursor_pos_updates;
 extern int cursor_shape_updates;
 extern int use_xwarppointer;
+extern int always_inject;
 extern int show_dragging;
 extern int wireframe;
 extern int wireframe_local;
