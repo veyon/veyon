@@ -116,12 +116,8 @@ rfbInitSockets(rfbScreenInfoPtr rfbScreen)
     if (rfbScreen->inetdSock != -1) {
 	const int one = 1;
 
-#ifndef WIN32
-	if (fcntl(rfbScreen->inetdSock, F_SETFL, O_NONBLOCK) < 0) {
-	    rfbLogPerror("fcntl");
+        if(!rfbSetNonBlocking(rfbScreen->inetdSock))
 	    return;
-	}
-#endif
 
 	if (setsockopt(rfbScreen->inetdSock, IPPROTO_TCP, TCP_NODELAY,
 		       (char *)&one, sizeof(one)) < 0) {
@@ -270,13 +266,10 @@ rfbCheckFds(rfbScreenInfoPtr rfbScreen,long usec)
 		return -1;
 	    }
 
-#ifndef WIN32
-	    if (fcntl(sock, F_SETFL, O_NONBLOCK) < 0) {
-		rfbLogPerror("rfbCheckFds: fcntl");
-		closesocket(sock);
+            if(!rfbSetNonBlocking(sock)) {
+	        closesocket(sock);
 		return -1;
 	    }
-#endif
 
 	    if (setsockopt(sock, IPPROTO_TCP, TCP_NODELAY,
 			(char *)&one, sizeof(one)) < 0) {
@@ -418,13 +411,10 @@ rfbConnect(rfbScreenInfoPtr rfbScreen,
 	return -1;
     }
 
-#ifndef WIN32
-    if (fcntl(sock, F_SETFL, O_NONBLOCK) < 0) {
-	rfbLogPerror("fcntl failed");
-	closesocket(sock);
+    if(!rfbSetNonBlocking(sock)) {
+        closesocket(sock);
 	return -1;
     }
-#endif
 
     if (setsockopt(sock, IPPROTO_TCP, TCP_NODELAY,
 		   (char *)&one, sizeof(one)) < 0) {
@@ -704,4 +694,24 @@ rfbListenOnUDPPort(int port,
     }
 
     return sock;
+}
+
+/*
+ * rfbSetNonBlocking sets a socket into non-blocking mode.
+ */
+rfbBool
+rfbSetNonBlocking(int sock)
+{
+#ifdef WIN32
+  unsigned long block=1;
+  if(ioctlsocket(sock, FIONBIO, &block) == SOCKET_ERROR) {
+    errno=WSAGetLastError();
+#else
+  int flags = fcntl(sock, F_GETFL);
+  if(flags < 0 || fcntl(sock, F_SETFL, flags | O_NONBLOCK) < 0) {
+#endif
+    rfbLogPerror("Setting socket to non-blocking failed");
+    return FALSE;
+  }
+  return TRUE;
 }

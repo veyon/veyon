@@ -1,3 +1,20 @@
+2010-09-10  Karl Runge <runge@karlrunge.com>
+	* x11vnc: update classes/ssl jars, patches, and script. 
+	  update prepare_x11vnc_dist.sh to 0.9.13. Makefile.am no top_srcdir
+	  Allow user to set avahi name and port via env. vars.  Add
+	  avahi_timeout() sigalarm.  Rename pointer() to pointer_event()
+	  because Xdefs.h is included for some unknown reason. Add
+	  -always_inject option.  Add vnc_reflect_cursor_pos() for -reflect
+	  mode.  Attempt at libvncclient VeNCrypt (disabled.)  Fix bug
+	  with --with-system-libvncserver missing FinishedFrameBufferUpdate.
+	  More info in VncViewer.class http warning.  Look for gdm* in
+	  find display heuristics (e.g. gdm3).  More heuristics with
+	  XAUTHLOCALHOSTNAME attempts.  X11VNC_CREATE_MAX_DISPLAYS: let user
+	  specify max number of -create displays.  FD_USERPREFS modes for
+	  -unixpw (user conf file.) Document all exiting behavior.  Let
+	  user set X11VNC_NO_LIMIT_SHM to avoid autoreduction.  Look for
+	  kdm when avoiding being killed by dm, change timings too.
+
 2010-05-08  Karl Runge <runge@karlrunge.com>
 	* x11vnc: set cd->unixname in apply_opts.  Print message in
 	  vnc_reflect_resize.  Some tweaks to prepare_x11vnc_dist.sh

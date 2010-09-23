@@ -3008,7 +3008,7 @@ if (db) fprintf(stderr, "check_xrecord: BUTTON-UP-KEEP-GOING:  %.3f/%.3f %d/%d %
 	pointer_queued_sent = 0;
 	last_x = cursor_x;
 	last_y = cursor_y;
-	pointer(-1, 0, 0, NULL);
+	pointer_event(-1, 0, 0, NULL);
 	pointer_flush_delay = 0.0;
 
 	if (xrecording && pointer_queued_sent && button_mask_save &&
@@ -4565,7 +4565,7 @@ if (db) fprintf(stderr, "INTERIOR\n");
 	/* -threads support for check_wireframe() is rough... crash? */
 	if (use_threads) {
 		/* purge any stored up pointer events: */
-		pointer(-1, 0, 0, NULL);
+		pointer_event(-1, 0, 0, NULL);
 	}
 
 	if (cursor_noshape_updates_clients(screen)) {

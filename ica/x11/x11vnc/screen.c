@@ -1265,6 +1265,28 @@ void vnc_reflect_got_cursorshape(rfbClient *cl, int xhot, int yhot, int width, i
 	set_cursor(cursor_x, cursor_y, get_which_cursor());
 }
 
+rfbBool vnc_reflect_cursor_pos(rfbClient *cl, int x, int y) {
+	if (cl) {}
+	if (debug_pointer) {
+		rfbLog("vnc_reflect_cursor_pos: %d %d\n", x, y);
+	}
+	if (unixpw_in_progress) {
+		if (debug_pointer) {
+			rfbLog("vnc_reflect_cursor_pos: unixpw_in_progress%d\n", unixpw_in_progress);
+		}
+		return TRUE;
+	}
+	if (! all_clients_initialized()) {
+		rfbLog("vnc_reflect_cursor_pos: no send: uninitialized clients\n");
+		return TRUE; /* some clients initializing, cannot send */ 
+	}
+
+	cursor_position(x, y);
+	set_cursor(x, y, get_which_cursor());
+
+	return TRUE;
+}
+
 static void from_libvncclient_CopyRectangleFromRectangle(rfbClient* client, int src_x, int src_y, int w, int h, int dest_x, int dest_y) {
   int i,j;
 
@@ -1350,6 +1372,49 @@ rfbBool vnc_reflect_resize(rfbClient *cl)  {
 	return cl->frameBuffer ? TRUE : FALSE;
 }
 
+#ifdef rfbCredentialTypeX509
+static rfbCredential* vnc_reflect_get_credential(rfbClient* client, int type) {
+	char *pass = getenv("X11VNC_REFLECT_PASSWORD");
+	char *user = getenv("X11VNC_REFLECT_USER");
+	char *cert = getenv("X11VNC_REFLECT_CACERT");
+	char *ccrl = getenv("X11VNC_REFLECT_CACRL");
+	char *clic = getenv("X11VNC_REFLECT_CLIENTCERT");
+	char *clik = getenv("X11VNC_REFLECT_CLIENTKEY");
+	int db = 0;
+	if (client) {}
+if (db) fprintf(stderr, "type: %d\n", type);
+#ifdef rfbCredentialTypeUser
+	if (type == rfbCredentialTypeUser) {
+		if (!pass && !user) {
+			return NULL;
+		} else {
+			rfbCredential *rc = (rfbCredential *) calloc(sizeof(rfbCredential), 1);
+			rc->userCredential.username = (user ? strdup(user) : NULL);
+			rc->userCredential.password = (pass ? strdup(pass) : NULL);
+			return rc;
+		}
+	}
+#endif
+	if (type == rfbCredentialTypeX509) {
+if (db) fprintf(stderr, "cert: %s\n", cert);
+if (db) fprintf(stderr, "ccrl: %s\n", ccrl);
+if (db) fprintf(stderr, "clic: %s\n", clic);
+if (db) fprintf(stderr, "clik: %s\n", clik);
+		if (!cert && !ccrl && !clic && !clik) {
+			return NULL;
+		} else {
+			rfbCredential *rc = (rfbCredential *) calloc(sizeof(rfbCredential), 1);
+			rc->x509Credential.x509CACertFile     = (cert ? strdup(cert) : NULL);
+			rc->x509Credential.x509CACrlFile      = (ccrl ? strdup(ccrl) : NULL);
+			rc->x509Credential.x509ClientCertFile = (clic ? strdup(clic) : NULL);
+			rc->x509Credential.x509ClientKeyFile  = (clik ? strdup(clik) : NULL);
+			return rc;
+		}
+	}
+	return NULL;
+}
+#endif
+
 static char* vnc_reflect_get_password(rfbClient* client) {
 	char *q, *p, *str = getenv("X11VNC_REFLECT_PASSWORD");
 	int len = 110;
@@ -1408,17 +1473,32 @@ char *vnc_reflect_guess(char *str, char **raw_fb_addr) {
 	}
 
 	client->appData.useRemoteCursor = TRUE;
-	client->Bell = vnc_reflect_bell;
-	client->GotXCutText = vnc_reflect_recv_cuttext;
-	client->GotCopyRect = vnc_reflect_got_copyrect;
-	client->GotCursorShape = vnc_reflect_got_cursorshape;
-	client->MallocFrameBuffer = vnc_reflect_resize;
 	client->canHandleNewFBSize = TRUE;
+
+	client->HandleCursorPos = vnc_reflect_cursor_pos;
 	client->GotFrameBufferUpdate = vnc_reflect_got_update;
+	client->MallocFrameBuffer = vnc_reflect_resize;
+	client->Bell = vnc_reflect_bell;
+#if 0
+	client->SoftCursorLockArea = NULL;
+	client->SoftCursorUnlockScreen = NULL;
+	client->FinishedFrameBufferUpdate = NULL;
+	client->HandleKeyboardLedState = NULL;
+	client->HandleTextChat = NULL;
+#endif
+	client->GotXCutText = vnc_reflect_recv_cuttext;
+	client->GotCursorShape = vnc_reflect_got_cursorshape;
+	client->GotCopyRect = vnc_reflect_got_copyrect;
 
 	if (getenv("X11VNC_REFLECT_PASSWORD")) {
 		client->GetPassword = vnc_reflect_get_password;
 	}
+#ifdef rfbCredentialTypeX509
+	client->GetCredential = NULL;
+	if (0 || getenv("LIBVNCCLIENT_GET_CREDENTIAL")) {
+		client->GetCredential = vnc_reflect_get_credential;
+	}
+#endif
 
 	if (first) {
 		argv[argc++] = "x11vnc_rawfb_vnc";
@@ -3538,7 +3618,7 @@ void initialize_screen(int *argc, char **argv, XImage *fb) {
 	/* event callbacks: */
 	screen->newClientHook = new_client;
 	screen->kbdAddEvent = keyboard;
-	screen->ptrAddEvent = pointer;
+	screen->ptrAddEvent = pointer_event;
 	screen->setXCutText = xcut_receive;
 	screen->setTranslateFunction = set_xlate_wrapper;
 

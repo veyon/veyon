@@ -4009,7 +4009,11 @@ void accept_openssl(int mode, int presock) {
 				rfbLog("helper[%d]:\n", pid);
 				rfbLog("***********************************************************\n");
 				rfbLog("SSL: WARNING CLIENT ASKED FOR NONEXISTENT 'VncViewer.class'\n");
-				rfbLog("SSL: USER NEEDS TO **RESTART** HIS WEB BROWSER.\n");
+				rfbLog("SSL: USER NEEDS TO MAKE SURE THE JAVA PLUGIN IS INSTALLED\n");
+				rfbLog("SSL: AND WORKING PROPERLY (e.g. a test-java-plugin page.)\n");
+				rfbLog("SSL: AND/OR USER NEEDS TO **RESTART** HIS WEB BROWSER.\n");
+				rfbLog("SSL: SOMETIMES THE BROWSER 'REMEMBERS' FAILED APPLET DOWN-\n");
+				rfbLog("SSL: LOADS AND RESTARTING IT IS THE ONLY WAY TO FIX THINGS.\n");
 				rfbLog("***********************************************************\n");
 				rfbLog("\n");
 			}

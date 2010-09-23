@@ -1320,22 +1320,25 @@ Display *XOpenDisplay_wr(char *display_name) {
 	d = XOpenDisplay(display_name);
 	if (db) fprintf(stderr, "XOpenDisplay_wr: %s  %p\n", display_name, (void *)d);
 
-	if (d == NULL) {
-	    if (!getenv("NO_XAUTHLOCALHOSTNAME")) {
-		if (!getenv("XAUTHLOCALHOSTNAME")) {
+	if (d == NULL && !getenv("NO_XAUTHLOCALHOSTNAME")) {
+		char *xalhn = getenv("XAUTHLOCALHOSTNAME");
+		if (1 || !xalhn) {
 			rfbLog("XOpenDisplay(\"%s\") failed.\n",
 			    display_name ? display_name : "");
 			rfbLog("Trying again with XAUTHLOCALHOSTNAME=localhost ...\n");
 			set_env("XAUTHLOCALHOSTNAME", "localhost");
 			d = XOpenDisplay(display_name);
-			if (0) {
+			if (d == NULL && xalhn) {
 				char *ptr = getenv("XAUTHLOCALHOSTNAME");
 				if (ptr) {
 					*(ptr-2) = '_';	/* yow */
+					rfbLog("XOpenDisplay(\"%s\") failed.\n",
+					    display_name ? display_name : "");
+					rfbLog("Trying again with unset XAUTHLOCALHOSTNAME ...\n");
+					d = XOpenDisplay(display_name);
 				}
 			}
 		}
-	    }
 	}
 
 	xauth_raw(0);

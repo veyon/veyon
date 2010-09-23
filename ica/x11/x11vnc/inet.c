@@ -347,7 +347,7 @@ char *ident_username(rfbClientPtr client) {
 			if (ret > 0) {
 				int i;
 				char *q, *p;
-				for (i=0; i < sizeof(msg); i++) {
+				for (i=0; i < (int) sizeof(msg); i++) {
 					msg[i] = '\0';
 				}
 				usleep(250*1000);

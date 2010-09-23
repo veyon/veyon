@@ -238,6 +238,7 @@ Pointer
 	buttonmap:
 	--
 	xwarppointer
+	always_inject
 
 Misc
 	=GD-C:full,icon,tray WindowView:

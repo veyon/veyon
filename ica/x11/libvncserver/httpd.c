@@ -181,7 +181,6 @@ rfbHttpCheckFds(rfbScreenInfoPtr rfbScreen)
     }
 
     if (FD_ISSET(rfbScreen->httpListenSock, &fds)) {
-        int flags;
 	if (rfbScreen->httpSock >= 0) close(rfbScreen->httpSock);
 
 	if ((rfbScreen->httpSock = accept(rfbScreen->httpListenSock,
@@ -189,35 +188,21 @@ rfbHttpCheckFds(rfbScreenInfoPtr rfbScreen)
 	    rfbLogPerror("httpCheckFds: accept");
 	    return;
 	}
-#ifdef __MINGW32__
-	rfbErr("O_NONBLOCK on MinGW32 NOT IMPLEMENTED");
-#else
 #ifdef USE_LIBWRAP
 	if(!hosts_ctl("vnc",STRING_UNKNOWN,inet_ntoa(addr.sin_addr),
 		      STRING_UNKNOWN)) {
 	  rfbLog("Rejected HTTP connection from client %s\n",
 		 inet_ntoa(addr.sin_addr));
-#else
-	flags = fcntl(rfbScreen->httpSock, F_GETFL);
-
-	if (flags < 0 || fcntl(rfbScreen->httpSock, F_SETFL, flags | O_NONBLOCK) == -1) {
-	    rfbLogPerror("httpCheckFds: fcntl");
-#endif
-	    close(rfbScreen->httpSock);
-	    rfbScreen->httpSock = -1;
-	    return;
-	}
-
-	flags=fcntl(rfbScreen->httpSock,F_GETFL);
-	if(flags==-1 ||
-	   fcntl(rfbScreen->httpSock,F_SETFL,flags|O_NONBLOCK)==-1) {
-	  rfbLogPerror("httpCheckFds: fcntl");
 	  close(rfbScreen->httpSock);
 	  rfbScreen->httpSock=-1;
 	  return;
 	}
 #endif
-
+        if(!rfbSetNonBlocking(rfbScreen->httpSock)) {
+	    close(rfbScreen->httpSock);
+	    rfbScreen->httpSock=-1;
+	    return;
+	}
 	/*AddEnabledDevice(httpSock);*/
     }
 }
