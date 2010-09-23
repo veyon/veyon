@@ -1,8 +1,8 @@
 /*
- * client.h - declaration of class client which represents a client, shows its
+ * Client.h - declaration of class Client which represents a client, shows its
  *            display and allows controlling it in several ways
  *
- * Copyright (c) 2004-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -30,7 +30,6 @@
 #include <italcconfig.h>
 
 #include <QtCore/QHash>
-#include <QtCore/QMutex>
 #include <QtCore/QThread>
 #include <QtCore/QQueue>
 #include <QtCore/QVector>
@@ -38,80 +37,25 @@
 #include <QtGui/QImage>
 #include <QtGui/QMenu>
 
-#include "fast_qimage.h"
+#include "FastQImage.h"
 
 class classRoom;
 class classRoomItem;
-class client;
-class isdConnection;
-class ivsConnection;
-class mainWindow;
+class Client;
+class MainWindow;
+class ItalcCoreConnection;
 
-
-typedef void( client:: * execCmd )( const QString & );
+typedef void( Client:: * execCmd )( const QString & );
 
 const QString CONFIRM_NO = "n";
 const QString CONFIRM_YES = "y";
 
 
-class updateThread : public QThread
+class ClientAction : public QAction
 {
 	Q_OBJECT
 public:
-	enum queueableCommands
-	{
-		Cmd_ResetConnection,
-		Cmd_StartDemo,
-		Cmd_StopDemo,
-		Cmd_LockScreen,
-		Cmd_UnlockScreen,
-		Cmd_SendTextMessage,
-		Cmd_LogonUser,
-		Cmd_LogoutUser,
-		Cmd_Reboot,
-		Cmd_PowerDown,
-		Cmd_ExecCmds
-	} ;
-
-	updateThread( client * _client );
-	virtual ~updateThread()
-	{
-	}
-
-	inline void enqueueCommand( queueableCommands _cmd,
-					const QVariant & _data =
-							QVariant() )
-	{
-		m_queueMutex.lock();
-		m_queue.enqueue( qMakePair( _cmd, _data ) );
-		m_queueMutex.unlock();
-	}
-
-
-private slots:
-	void update( void );
-
-
-private:
-	virtual void run( void );
-
-	client * m_client;
-	QMutex m_queueMutex;
-	typedef QPair<queueableCommands, QVariant> queueItem;
-	QQueue<queueItem> m_queue;
-
-	friend class client;
-
-} ;
-
-
-
-
-class clientAction : public QAction
-{
-	Q_OBJECT
-public:
-	enum type
+	enum Type
 	{
 		Overview,
 		FullscreenDemo,
@@ -132,27 +76,27 @@ public:
 		LocalScript
 	} ;
 
-	enum targetGroup
+	enum TargetGroup
 	{
 		Default,
 		SelectedClients,
 		VisibleClients
 	} ;
 
-	enum flags
+	enum Flags
 	{
 		None = 0,
 		FullMenu = 1
 	} ;
 
-	clientAction( type _type, QObject * _parent = 0, int _flags = 0 );
-	clientAction( type _type, const QIcon & _icon, const QString & _text,
+	ClientAction( Type _type, QObject * _parent = 0, int _flags = 0 );
+	ClientAction( Type _type, const QIcon & _icon, const QString & _text,
 			QObject * _parent = 0, int _flags = 0 );
-	~clientAction() {};
+	~ClientAction() {};
 
-	void process( QVector<client *> _clients, targetGroup _target = Default );
+	void process( QVector<Client *> _clients, TargetGroup _target = Default );
 	static void process( QAction * _action,
-			QVector<client *> _clients, targetGroup _target = Default );
+			QVector<Client *> _clients, TargetGroup _target = Default );
 
 	inline bool flags( int _mask = -1 )
 	{
@@ -160,13 +104,13 @@ public:
 	}
 
 private:
-	type m_type;
+	Type m_type;
 	int m_flags;
 
-	bool confirmLogout( targetGroup _target ) const;
-	bool confirmReboot( targetGroup _target ) const;
-	bool confirmPowerDown( targetGroup _target ) const;
-	QString dataExpanded( QVector<client *> _clients ) const;
+	bool confirmLogout( TargetGroup _target ) const;
+	bool confirmReboot( TargetGroup _target ) const;
+	bool confirmPowerDown( TargetGroup _target ) const;
+	QString dataExpanded( QVector<Client *> _clients ) const;
 
 } ;
 
@@ -198,11 +142,11 @@ inline QPixmap scaledIcon( const char * _name )
 
 
 
-class client : public QWidget
+class Client : public QWidget
 {
 	Q_OBJECT
 public:
-	enum modes
+	enum Modes
 	{
 		Mode_Overview,
 		Mode_FullscreenDemo,
@@ -211,7 +155,7 @@ public:
 		Mode_Unknown
 	} ;
 
-	enum states
+	enum States
 	{
 		State_Unreachable,
 		State_NoUserLoggedIn,
@@ -221,34 +165,32 @@ public:
 		State_Unkown
 	} ;
 
-	enum types
+	enum Types
 	{
 		Type_Student,
 		Type_Teacher,
 		Type_Other
 	} ;
 
-	client( const QString & _hostname,
-		const QString & _mac, const QString & _name, types _type,
-		classRoom * _class_room, mainWindow * _main_window,
+	Client( const QString & _hostname,
+		const QString & _mac, const QString & _name, Types _type,
+		classRoom * _class_room, MainWindow * _main_window,
 								int _id = -1 );
 
-	virtual ~client();
-
-	void quit( void );
+	virtual ~Client();
 
 
 	int id( void ) const;
-	static client * clientFromID( int _id );
+	static Client * clientFromID( int _id );
 
 
-	inline modes mode( void ) const
+	inline Modes mode( void ) const
 	{
 		return( m_mode );
 	}
 
 	// action-handlers
-	void changeMode( const modes _new_mode );
+	void changeMode( const Modes _new_mode );
 	void viewLive( void );
 	void remoteControl( void );
 	void clientDemo( void );
@@ -261,7 +203,6 @@ public:
 	void reboot( void );
 	void powerDown( void );
 	void execCmds( const QString & _cmds );
-	void reload( void );
 
 
 	inline QString name( void ) const
@@ -284,7 +225,7 @@ public:
 		return( m_mac );
 	}
 
-	inline types type( void ) const
+	inline Types type( void ) const
 	{
 		return( m_type );
 	}
@@ -309,7 +250,7 @@ public:
 		m_mac = _mac;
 	}
 
-	inline void setType( types _type )
+	inline void setType( Types _type )
 	{
 		if( _type >= Type_Student && _type <= Type_Other )
 		{
@@ -347,6 +288,7 @@ public slots:
 
 private slots:
 	void enlarge( void );
+	void reload( void );
 
 
 private:
@@ -364,11 +306,11 @@ private:
 	virtual void showEvent( QShowEvent * _se );
 
 
-	states currentState( void ) const;
+	States currentState( void ) const;
 
 
-	mainWindow * m_mainWindow;
-	ivsConnection * m_connection;
+	MainWindow * m_mainWindow;
+	ItalcCoreConnection * m_connection;
 	QPoint m_clickPoint;
 	QPoint m_origPos;
 	QSize m_origSize;
@@ -376,32 +318,27 @@ private:
 	QString m_hostname;
 	QString m_nickname;
 	QString m_mac;
-	types m_type;
+	Types m_type;
 	int m_reloadsAfterReset;
 
-	modes m_mode;
+	Modes m_mode;
 	QString m_user;
 	volatile bool m_makeSnapshot;
 
-	states m_state;
-
-	QMutex m_syncMutex;
+	States m_state;
 
 	classRoomItem * m_classRoomItem;
-
-	updateThread * m_updateThread;
 
 
 	// static data
 	static bool s_reloadSnapshotList;
 
-	static QHash<int, client *> s_clientIDs;
+	static QHash<int, Client *> s_clientIDs;
 
 	// static members
 	static int freeID( void );
 
 
-	friend class updateThread;
 	friend class classRoomItem;
 
 } ;

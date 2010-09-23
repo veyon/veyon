@@ -206,7 +206,7 @@ void TextChat::SetTextFormat(bool bBold /*= false */, bool bItalic /*= false*/
 		}
 		cf.crTextColor = dwColor;					// set color in AABBGGRR mode (alpha-RGB)
 		cf.yHeight = nSize;							// set size in points
-		strcpy( cf.szFaceName, szFaceName);
+		strcpy_s( cf.szFaceName, 32, szFaceName);
 													
 		SendDlgItemMessage( m_hDlg, IDC_CHATAREA_EDIT, EM_SETCHARFORMAT, SCF_SELECTION, (LPARAM)&cf );
 	}
@@ -418,17 +418,19 @@ LRESULT CALLBACK TextChat::DoDialogThread(LPVOID lpParameter)
 	DWORD dummy;
 
 	char new_name[256];
-
-	if (!GetUserObjectInformation(desktop, UOI_NAME, &new_name, 256, &dummy))
+	if (desktop)
 	{
-		vnclog.Print(LL_INTERR, VNCLOG("!GetUserObjectInformation \n"));
-	}
+		if (!GetUserObjectInformation(desktop, UOI_NAME, &new_name, 256, &dummy))
+		{
+			vnclog.Print(LL_INTERR, VNCLOG("!GetUserObjectInformation \n"));
+		}
 
-	vnclog.Print(LL_INTERR, VNCLOG("SelectHDESK to %s (%x) from %x\n"), new_name, desktop, old_desktop);
+		vnclog.Print(LL_INTERR, VNCLOG("SelectHDESK to %s (%x) from %x\n"), new_name, desktop, old_desktop);
 
-	if (!SetThreadDesktop(desktop))
-	{
-		vnclog.Print(LL_INTERR, VNCLOG("SelectHDESK:!SetThreadDesktop \n"));
+		if (!SetThreadDesktop(desktop))
+		{
+			vnclog.Print(LL_INTERR, VNCLOG("SelectHDESK:!SetThreadDesktop \n"));
+		}
 	}
 
 	 //	[v1.0.2-jp1 fix]
@@ -437,7 +439,7 @@ LRESULT CALLBACK TextChat::DoDialogThread(LPVOID lpParameter)
  	 DialogBoxParam(hInstResDLL, MAKEINTRESOURCE(IDD_TEXTCHAT_DLG), 
 	 						NULL, (DLGPROC) TextChatDlgProc, (LONG) _this);
 	 SetThreadDesktop(old_desktop);
-	 CloseDesktop(desktop);
+	 if (desktop) CloseDesktop(desktop);
 	 return 0;
 }
 
@@ -457,7 +459,7 @@ HWND TextChat::DisplayTextChat()
 {
 	DWORD threadID;
 	m_Thread = CreateThread(NULL,0,(LPTHREAD_START_ROUTINE)(TextChat::DoDialogThread),(LPVOID)this, 0, &threadID);
-	ResumeThread(m_Thread);
+	if (m_Thread) ResumeThread(m_Thread);
 	return (HWND)0;
 
 }

@@ -21,21 +21,22 @@
 #ifdef IPP
 #include "../ipp_zlib/zlib.h"
 #else
-#include <zlib.h>
+#include "../zlib/zlib.h"
 #endif
 
 using namespace rdr;
 
 enum { DEFAULT_BUF_SIZE = 16384 };
 
-ZlibOutStream::ZlibOutStream(OutStream* os, int bufSize_)
+// adzm - 2010-07 - Custom compression level
+ZlibOutStream::ZlibOutStream(OutStream* os, int bufSize_, int compressionLevel)
   : underlying(os), bufSize(bufSize_ ? bufSize_ : DEFAULT_BUF_SIZE), offset(0)
 {
   zs = new z_stream;
   zs->zalloc    = Z_NULL;
   zs->zfree     = Z_NULL;
   zs->opaque    = Z_NULL;
-  if (deflateInit(zs, Z_DEFAULT_COMPRESSION) != Z_OK) {
+  if (deflateInit(zs, compressionLevel) != Z_OK) {
     delete zs;
     throw Exception("ZlibOutStream: deflateInit failed");
   }

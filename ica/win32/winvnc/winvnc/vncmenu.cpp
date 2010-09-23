@@ -38,6 +38,7 @@
 #include <wininet.h>
 #include <shlobj.h>
 #include <imm.h>
+#include "common/win32_helpers.h"
 
 // Header
 
@@ -173,25 +174,56 @@ static inline VOID DisableAero(VOID)
          UnloadDM(); 
  } 
 
-
-
-static void KillWallpaper()
+// adzm - 2010-07 - Disable more effects or font smoothing
+static bool IsUserDesktop()
 {
-#if 0
 	//only kill wallpaper if desktop is user desktop
 	HDESK desktop = GetThreadDesktop(GetCurrentThreadId());
 	DWORD dummy;
 	char new_name[256];
 	if (GetUserObjectInformation(desktop, UOI_NAME, &new_name, 256, &dummy))
 	{
-		if (strcmp(new_name,"Default")==NULL) HideDesktop();
+		if (strcmp(new_name,"Default")==0) {
+			return true;
+		}
 	}	
-#endif
+
+	return false;
+}
+
+// adzm - 2010-07 - Disable more effects or font smoothing
+static void KillWallpaper()
+{
+	//HideDesktop();
 }
 
 static void RestoreWallpaper()
 {
 //  RestoreDesktop();
+}
+
+// adzm - 2010-07 - Disable more effects or font smoothing
+static void KillEffects()
+{
+	DisableEffects();
+}
+
+// adzm - 2010-07 - Disable more effects or font smoothing
+static void RestoreEffects()
+{
+	EnableEffects();
+}
+
+// adzm - 2010-07 - Disable more effects or font smoothing
+static void KillFontSmoothing()
+{
+	DisableFontSmoothing();
+}
+
+// adzm - 2010-07 - Disable more effects or font smoothing
+static void RestoreFontSmoothing()
+{
+	EnableFontSmoothing();
 }
 
 // Implementation
@@ -207,14 +239,16 @@ vncMenu::vncMenu(vncServer *server)
 
 	HMODULE hUser32 = LoadLibrary("user32.dll");
 	CHANGEWINDOWMESSAGEFILTER pfnFilter = NULL;
+	if (hUser32)
+	{
 	pfnFilter =(CHANGEWINDOWMESSAGEFILTER)GetProcAddress(hUser32,"ChangeWindowMessageFilter");
 	if (pfnFilter) pfnFilter(MENU_ADD_CLIENT_MSG, MSGFLT_ADD);
 	if (pfnFilter) pfnFilter(MENU_AUTO_RECONNECT_MSG, MSGFLT_ADD);
 	if (pfnFilter) pfnFilter(MENU_REPEATER_ID_MSG, MSGFLT_ADD);
 	// adzm 2009-07-05 - Tray icon balloon tips
 	if (pfnFilter) pfnFilter(MENU_TRAYICON_BALLOON_MSG, MSGFLT_ADD);
-
     FreeLibrary (hUser32);
+	}
 	
 	// adzm 2009-07-05 - Tray icon balloon tips
 	m_BalloonInfo = NULL;
@@ -459,6 +493,11 @@ vncMenu::~vncMenu()
 
 	if (m_server->RemoveWallpaperEnabled())
 		RestoreWallpaper();
+	// adzm - 2010-07 - Disable more effects or font smoothing
+	if (m_server->RemoveEffectsEnabled())
+		RestoreEffects();
+	if (m_server->RemoveFontSmoothingEnabled())
+		RestoreFontSmoothing();
 	if (m_server->RemoveAeroEnabled())
 		ResetAero();
 }
@@ -503,8 +542,15 @@ vncMenu::AddTrayIcon()
 			SendTrayMsg(NIM_ADD, FALSE);
 		}
 		if (m_server->AuthClientCount() != 0) { //PGM @ Advantig
-			if (m_server->RemoveWallpaperEnabled()) //PGM @ Advantig
-				KillWallpaper(); //PGM @ Advantig
+			// adzm - 2010-07 - Disable more effects or font smoothing
+			if (IsUserDesktop()) {				
+				if (m_server->RemoveWallpaperEnabled()) //PGM @ Advantig
+					KillWallpaper(); //PGM @ Advantig
+				if (m_server->RemoveEffectsEnabled())
+					KillEffects();
+				if (m_server->RemoveFontSmoothingEnabled())
+					KillFontSmoothing();
+			}
 			if (m_server->RemoveAeroEnabled()) //PGM @ Advantig
 				DisableAero(); //PGM @ Advantig
 		} //PGM @ Advantig
@@ -837,8 +883,15 @@ LRESULT CALLBACK vncMenu::WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lP
 		_this->FlashTrayIcon(_this->m_server->AuthClientCount() != 0);
 
 		if (_this->m_server->AuthClientCount() != 0) {
-			if (_this->m_server->RemoveWallpaperEnabled())
-				KillWallpaper();
+			// adzm - 2010-07 - Disable more effects or font smoothing
+			if (IsUserDesktop()) {
+				if (_this->m_server->RemoveWallpaperEnabled())
+					KillWallpaper();
+				if (_this->m_server->RemoveEffectsEnabled())
+					KillEffects();
+				if (_this->m_server->RemoveFontSmoothingEnabled())
+					KillFontSmoothing();
+			}
 			if (_this->m_server->RemoveAeroEnabled()) // Moved, redundant if //PGM @ Advantig
 				DisableAero(); // Moved, redundant if //PGM @ Advantig
 		} else {
@@ -848,7 +901,13 @@ LRESULT CALLBACK vncMenu::WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lP
 				Sleep(2000); // Added 2 second delay to help wallpaper restore //PGM @ Advantig
 				RestoreWallpaper();
 			} //PGM @ Advantig
-		}
+			// adzm - 2010-07 - Disable more effects or font smoothing
+			if (_this->m_server->RemoveEffectsEnabled()) {
+				RestoreEffects();
+			}
+			if (_this->m_server->RemoveFontSmoothingEnabled()) {
+				RestoreFontSmoothing();
+			}
 //PGM @ Advantig		if (_this->m_server->AuthClientCount() != 0) {
 //PGM @ Advantig			if (_this->m_server->RemoveAeroEnabled())
 //PGM @ Advantig				DisableAero();
@@ -1036,6 +1095,8 @@ LRESULT CALLBACK vncMenu::WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lP
 					DWORD errorcode=GetLastError();
 					if (process) CloseHandle(process);
 					if (Token) CloseHandle(Token);
+					if (ProcessInfo.hProcess) CloseHandle(ProcessInfo.hProcess);
+					if (ProcessInfo.hThread) CloseHandle(ProcessInfo.hThread);
 					if (errorcode==1314)
 					{
 						Set_uninstall_service_as_admin();
@@ -1081,6 +1142,8 @@ LRESULT CALLBACK vncMenu::WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lP
 					DWORD error=GetLastError();
 					if (process) CloseHandle(process);
 					if (Token) CloseHandle(Token);
+					if (ProcessInfo.hProcess) CloseHandle(ProcessInfo.hProcess);
+					if (ProcessInfo.hThread) CloseHandle(ProcessInfo.hThread);
 					if (error==1314)
 					{
 						Set_install_service_as_admin();
@@ -1130,6 +1193,8 @@ LRESULT CALLBACK vncMenu::WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lP
 					if (process) CloseHandle(process);
 					if (Token) CloseHandle(Token);
 					if (hProcess) CloseHandle(hProcess);
+					if (ProcessInfo.hProcess) CloseHandle(ProcessInfo.hProcess);
+					if (ProcessInfo.hThread) CloseHandle(ProcessInfo.hThread);
 					if (error==1314)
 					{
 						Set_stop_service_as_admin();
@@ -1175,6 +1240,8 @@ LRESULT CALLBACK vncMenu::WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lP
 					if (process) CloseHandle(process);
 					if (Token) CloseHandle(Token);
 					if (hProcess) CloseHandle(hProcess);
+					if (ProcessInfo.hProcess) CloseHandle(ProcessInfo.hProcess);
+					if (ProcessInfo.hThread) CloseHandle(ProcessInfo.hThread);
 					if (error==1314)
 					{
 						Set_start_service_as_admin();
@@ -1252,6 +1319,12 @@ LRESULT CALLBACK vncMenu::WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lP
 		// tnatsni Wallpaper fix
 		if (_this->m_server->RemoveWallpaperEnabled())
 			RestoreWallpaper();
+		// adzm - 2010-07 - Disable more effects or font smoothing
+		if (_this->m_server->RemoveEffectsEnabled())
+			RestoreEffects();
+		if (_this->m_server->RemoveFontSmoothingEnabled())
+			RestoreFontSmoothing();
+		}
 		if (_this->m_server->RemoveAeroEnabled())
 			ResetAero();
 

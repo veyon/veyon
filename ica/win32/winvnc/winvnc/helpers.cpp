@@ -1,7 +1,7 @@
+#include <algorithm>
 #include "stdhdrs.h"
 #include "inifile.h"
 #include <string>
-#include <algorithm>
 #include <cctype>
 
 //  We first use shellexecute with "runas"
@@ -27,7 +27,7 @@ Set_settings_as_admin(char *mycommand)
 
 	strcpy(commanline, winvncSettings);
 	strcat(commanline, ":");
-	strcat(commanline, mycommand);
+	strcat_s(commanline, 260, mycommand);
 
 	SHELLEXECUTEINFO shExecInfo;
 	shExecInfo.cbSize = sizeof(SHELLEXECUTEINFO);
@@ -123,6 +123,10 @@ LONG SingleWindow=0;
 char SingleWindowName[32];
 char path[512];
 
+//adzm 2010-05-30 - dsmplugin config
+char DSMPluginConfig[512];
+*DSMPluginConfig = '\0';
+
 LONG Primary=1;
 LONG Secondary=0;
 LONG MaxCpu=40;
@@ -189,6 +193,10 @@ myIniFile_In.ReadString("admin", "AuthHosts",authhosts,150);
 
 myIniFile_Out.WriteString("admin", "DSMPlugin",DSMPlugin);
 myIniFile_Out.WriteString("admin", "AuthHosts",authhosts);
+
+//adzm 2010-05-30 - dsmplugin config
+myIniFile_In.ReadString("admin", "DSMPluginConfig",DSMPluginConfig,512);
+myIniFile_Out.WriteString("admin", "DSMPluginConfig",DSMPluginConfig);
 
 AllowShutdown=myIniFile_In.ReadInt("admin", "AllowShutdown", true);
 AllowProperties=myIniFile_In.ReadInt("admin", "AllowProperties", true);

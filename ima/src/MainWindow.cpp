@@ -1,7 +1,7 @@
 /*
- * main_window.cpp - main-file for iTALC-Application
+ * MainWindow.cpp - implementation of MainWindow class
  *
- * Copyright (c) 2004-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -37,45 +37,43 @@
 #include <QtGui/QMessageBox>
 #include <QtGui/QScrollArea>
 #include <QtGui/QSplashScreen>
-#include <QtGui/QSplitter>
 #include <QtGui/QToolBar>
 #include <QtGui/QToolButton>
 #include <QtGui/QWorkspace>
 #include <QtNetwork/QHostAddress>
 
-#include "main_window.h"
-#include "classroom_manager.h"
-#include "dialogs.h"
-#include "italc_side_bar.h"
-#include "overview_widget.h"
-#include "snapshot_list.h"
-#include "config_widget.h"
-#include "messagebox.h"
-#include "tool_button.h"
-#include "tool_bar.h"
-#include "isd_connection.h"
-#include "local_system.h"
-#include "remote_control_widget.h"
+#include "MainWindow.h"
+#include "ClassroomManager.h"
+#include "Dialogs.h"
+#include "OverviewWidget.h"
+#include "SnapshotList.h"
+#include "ConfigWidget.h"
+#include "DecoratedMessageBox.h"
+#include "ToolButton.h"
+#include "ItalcCoreConnection.h"
+#include "ItalcVncConnection.h"
+#include "LocalSystem.h"
+#include "RemoteControlWidget.h"
 
 
 QSystemTrayIcon * __systray_icon = NULL;
 
 
-extern int __isd_port;
-extern QString __isd_host;
+extern int __ivs_port;
+extern QString __ivs_host;
 
 
-bool mainWindow::ensureConfigPathExists( void )
+bool MainWindow::ensureConfigPathExists( void )
 {
-	return( localSystem::ensurePathExists(
-					localSystem::personalConfigDir() ) );
+	return( LocalSystem::ensurePathExists(
+					LocalSystem::personalConfigDir() ) );
 }
 
 
-bool mainWindow::s_atExit = FALSE;
+bool MainWindow::s_atExit = FALSE;
 
 
-mainWindow::mainWindow( int _rctrl_screen ) :
+MainWindow::MainWindow( int _rctrl_screen ) :
 	QMainWindow(/* 0, Qt::FramelessWindowHint*/ ),
 	m_openedTabInSideBar( 1 ),
 	m_localISD( NULL ),
@@ -88,82 +86,65 @@ mainWindow::mainWindow( int _rctrl_screen ) :
 				:
 				QApplication::desktop()->screenNumber( this ) )
 {
-	setWindowTitle( tr( "iTALC" ) + " " + ITALC_VERSION );
-	setWindowIcon( QPixmap( ":/resources/logo.png" ) );
+	setupUi( this );
 
-	if( mainWindow::ensureConfigPathExists() == FALSE )
+	setWindowTitle( tr( "iTALC" ) + " " + ITALC_VERSION );
+
+	if( MainWindow::ensureConfigPathExists() == FALSE )
 	{
 		if( splashScreen != NULL )
 		{
 			splashScreen->hide();
 		}
-		messageBox::information( tr( "No write-access" ),
+		DecoratedMessageBox::information( tr( "No write-access" ),
 			tr( "Could not read/write or create directory %1! "
 			"For running iTALC, make sure you're permitted to "
 			"create or write this directory." ).arg(
-					localSystem::personalConfigDir() ) );
+					LocalSystem::personalConfigDir() ) );
 		return;
 	}
 
-	QWidget * hbox = new QWidget( this );
-	QHBoxLayout * hbox_layout = new QHBoxLayout( hbox );
-	hbox_layout->setMargin( 0 );
-	hbox_layout->setSpacing( 0 );
+	// configure side bar
+	m_sideBar->setOrientation( Qt::Vertical );
 
-	// create splitter, which is used for splitting sidebar-workspaces
-	// from main-workspace
-	m_splitter = new QSplitter( Qt::Horizontal, hbox );
-#if QT_VERSION >= 0x030200
-	m_splitter->setChildrenCollapsible( FALSE );
-#endif
-
-	// create sidebar
-	m_sideBar = new italcSideBar( italcSideBar::VSNET, hbox, m_splitter );
+	// configure scroll area
+	m_scrollArea->setBackgroundRole( QPalette::Dark );
+	m_workspace = new clientWorkspace( m_scrollArea );
 
 
-
-	QScrollArea * sa = new QScrollArea( m_splitter );
-	sa->setBackgroundRole( QPalette::Dark );
-	sa->setFrameStyle( QFrame::NoFrame );
-	m_splitter->setStretchFactor( m_splitter->indexOf( sa ), 10 );
-	m_workspace = new clientWorkspace( sa );
-
-
-	QWidget * twp = m_sideBar->tabWidgetParent();
 	// now create all sidebar-workspaces
-	m_overviewWidget = new overviewWidget( this, twp );
-	m_classroomManager = new classroomManager( this, twp );
-	m_snapshotList = new snapshotList( this, twp );
-	m_configWidget = new configWidget( this, twp );
+	m_overviewWidget = new OverviewWidget( this, m_centralWidget );
+	m_classroomManager = new ClassroomManager( this, m_centralWidget );
+	m_snapshotList = new SnapshotList( this, m_centralWidget );
+	m_configWidget = new ConfigWidget( this, m_centralWidget );
 
 	m_workspace->m_contextMenu = m_classroomManager->quickSwitchMenu();
 
 	// append sidebar-workspaces to sidebar
-	int id = 0;
-	m_sideBar->appendTab( m_overviewWidget, ++id );
-	m_sideBar->appendTab( m_classroomManager, ++id );
-	m_sideBar->appendTab( m_snapshotList, ++id );
-	m_sideBar->appendTab( m_configWidget, ++id );
-	m_sideBar->setPosition( italcSideBar::Left );
-	m_sideBar->setTab( m_openedTabInSideBar, TRUE );
+	m_sideBar->appendTab( m_overviewWidget );
+	m_sideBar->appendTab( m_classroomManager );
+	m_sideBar->appendTab( m_snapshotList );
+	m_sideBar->appendTab( m_configWidget );
 
-	setCentralWidget( hbox );
+	m_centralLayout->insertWidget( 0, m_overviewWidget );
+	m_centralLayout->insertWidget( 0, m_classroomManager );
+	m_centralLayout->insertWidget( 0, m_snapshotList );
+	m_centralLayout->insertWidget( 0, m_configWidget );
+/*	setCentralWidget( hbox );
 	hbox_layout->addWidget( m_sideBar );
-	hbox_layout->addWidget( m_splitter );
+	hbox_layout->addWidget( m_splitter );*/
 
 
 
 
 	// create the action-toolbar
-	m_toolBar = new toolBar( tr( "Actions" ), this );
 	m_toolBar->layout()->setSpacing( 4 );
-	m_toolBar->setMovable( FALSE );
 	m_toolBar->setObjectName( "maintoolbar" );
 	m_toolBar->toggleViewAction()->setEnabled( FALSE );
 
 	addToolBar( Qt::TopToolBarArea, m_toolBar );
 
-	toolButton * scr = new toolButton(
+	ToolButton * scr = new ToolButton(
 			QPixmap( ":/resources/classroom.png" ),
 			tr( "Classroom" ), QString::null,
 			tr( "Switch classroom" ),
@@ -171,7 +152,7 @@ mainWindow::mainWindow( int _rctrl_screen ) :
 				"choose the active classroom." ),
 			NULL, NULL, m_toolBar );
 	scr->setMenu( m_classroomManager->quickSwitchMenu() );
-	scr->setPopupMode( toolButton::InstantPopup );
+	scr->setPopupMode( ToolButton::InstantPopup );
 	scr->setWhatsThis( tr( "Click on this button, to switch between "
 							"classrooms." ) );
 
@@ -182,7 +163,7 @@ mainWindow::mainWindow( int _rctrl_screen ) :
 	a = new QAction( QIcon( ":/resources/overview_mode.png" ),
 						tr( "Overview mode" ), this );
 	m_sysTrayActions << a;
-	toolButton * overview_mode = new toolButton(
+	ToolButton * overview_mode = new ToolButton(
 			a, tr( "Overview" ), QString::null,
 			tr( "This is the default mode in iTALC and allows you "
 				"to have an overview over all visible "
@@ -195,7 +176,7 @@ mainWindow::mainWindow( int _rctrl_screen ) :
 	a = new QAction( QIcon( ":/resources/fullscreen_demo.png" ),
 						tr( "Fullscreen demo" ), this );
 	m_sysTrayActions << a;
-	toolButton * fsdemo_mode = new toolButton(
+	ToolButton * fsdemo_mode = new ToolButton(
 			a, tr( "Fullscreen Demo" ), tr( "Stop Demo" ),
 			tr( "In this mode your screen is being displayed on "
 				"all shown computers. Furthermore the users "
@@ -206,7 +187,7 @@ mainWindow::mainWindow( int _rctrl_screen ) :
 	a = new QAction( QIcon( ":/resources/window_demo.png" ),
 						tr( "Window demo" ), this );
 	m_sysTrayActions << a;
-	toolButton * windemo_mode = new toolButton(
+	ToolButton * windemo_mode = new ToolButton(
 			a, tr( "Window Demo" ), tr( "Stop Demo" ),
 			tr( "In this mode your screen being displayed in a "
 				"window on all shown computers. The users are "
@@ -217,7 +198,7 @@ mainWindow::mainWindow( int _rctrl_screen ) :
 	a = new QAction( QIcon( ":/resources/locked.png" ),
 					tr( "Lock/unlock desktops" ), this );
 	m_sysTrayActions << a;
-	toolButton * lock_mode = new toolButton(
+	ToolButton * lock_mode = new ToolButton(
 			a, tr( "Lock all" ), tr( "Unlock all" ),
 			tr( "To have all user's full attention you can lock "
 				"their desktops using this button. "
@@ -230,10 +211,10 @@ mainWindow::mainWindow( int _rctrl_screen ) :
 	windemo_mode->setCheckable( TRUE );
 	lock_mode->setCheckable( TRUE );
 
-	m_modeGroup->addButton( overview_mode, client::Mode_Overview );
-	m_modeGroup->addButton( fsdemo_mode, client::Mode_FullscreenDemo );
-	m_modeGroup->addButton( windemo_mode, client::Mode_WindowDemo );
-	m_modeGroup->addButton( lock_mode, client::Mode_Locked );
+	m_modeGroup->addButton( overview_mode, Client::Mode_Overview );
+	m_modeGroup->addButton( fsdemo_mode, Client::Mode_FullscreenDemo );
+	m_modeGroup->addButton( windemo_mode, Client::Mode_WindowDemo );
+	m_modeGroup->addButton( lock_mode, Client::Mode_Locked );
 
 	overview_mode->setChecked( TRUE );
 
@@ -242,7 +223,7 @@ mainWindow::mainWindow( int _rctrl_screen ) :
 	a = new QAction( QIcon( ":/resources/text_message.png" ),
 					tr( "Send text message" ), this );
 //	m_sysTrayActions << a;
-	toolButton * text_msg = new toolButton(
+	ToolButton * text_msg = new ToolButton(
 			a, tr( "Text message" ), QString::null,
 			tr( "Use this button to send a text message to all "
 				"users e.g. to tell them new tasks etc." ),
@@ -252,7 +233,7 @@ mainWindow::mainWindow( int _rctrl_screen ) :
 	a = new QAction( QIcon( ":/resources/power_on.png" ),
 					tr( "Power on computers" ), this );
 	m_sysTrayActions << a;
-	toolButton * power_on = new toolButton(
+	ToolButton * power_on = new ToolButton(
 			a, tr( "Power on" ), QString::null,
 			tr( "Click this button to power on all visible "
 				"computers. This way you do not have to turn "
@@ -263,7 +244,7 @@ mainWindow::mainWindow( int _rctrl_screen ) :
 	a = new QAction( QIcon( ":/resources/power_off.png" ),
 					tr( "Power down computers" ), this );
 	m_sysTrayActions << a;
-	toolButton * power_off = new toolButton(
+	ToolButton * power_off = new ToolButton(
 			a, tr( "Power down" ), QString::null,
 			tr( "To power down all shown computers (e.g. after "
 				"the lesson has finished) you can click this "
@@ -271,7 +252,7 @@ mainWindow::mainWindow( int _rctrl_screen ) :
 			m_classroomManager,
 					SLOT( powerDownClients() ), m_toolBar );
 
-	toolButton * remotelogon = new toolButton(
+	ToolButton * remotelogon = new ToolButton(
 			QPixmap( ":/resources/remotelogon.png" ),
 			tr( "Logon" ), QString::null,
 			tr( "Remote logon" ),
@@ -280,7 +261,7 @@ mainWindow::mainWindow( int _rctrl_screen ) :
 				"according user on all visible computers." ),
 			m_classroomManager, SLOT( remoteLogon() ), m_toolBar );
 
-	toolButton * directsupport = new toolButton(
+	ToolButton * directsupport = new ToolButton(
 			QPixmap( ":/resources/remote_control.png" ),
 			tr( "Support" ), QString::null,
 			tr( "Direct support" ),
@@ -289,7 +270,7 @@ mainWindow::mainWindow( int _rctrl_screen ) :
 				"the according hostname or IP afterwards." ),
 			m_classroomManager, SLOT( directSupport() ), m_toolBar );
 
-	toolButton * adjust_size = new toolButton(
+	ToolButton * adjust_size = new ToolButton(
 			QPixmap( ":/resources/adjust_size.png" ),
 			tr( "Adjust/align" ), QString::null,
 			tr( "Adjust windows and their size" ),
@@ -298,7 +279,7 @@ mainWindow::mainWindow( int _rctrl_screen ) :
 				"Furthermore all windows are aligned." ),
 			m_classroomManager, SLOT( adjustWindows() ), m_toolBar );
 
-	toolButton * auto_arrange = new toolButton(
+	ToolButton * auto_arrange = new ToolButton(
 			QPixmap( ":/resources/auto_arrange.png" ),
 			tr( "Auto view" ), QString::null,
 			tr( "Auto re-arrange windows and their size" ),
@@ -335,28 +316,29 @@ mainWindow::mainWindow( int _rctrl_screen ) :
 		}
 	}
 
-	foreach( KMultiTabBarTab * tab, m_sideBar->tabs() )
+	foreach( QAbstractButton * btn, m_sideBar->tabs() )
 	{
-		if( hidden_buttons.contains( tab->text() ) )
+		if( hidden_buttons.contains( btn->text() ) )
 		{
-			tab->setTabVisible( FALSE );
+			btn->setVisible( false );
 		}
 	}
 
 	while( 1 )
 	{
-		if( isdConnection::initAuthentication() == FALSE )
+		if( ItalcCore::initAuthentication() == FALSE )
 		{
-			if( __role != ISD::RoleTeacher )
+			if( ItalcCore::role != ItalcCore::RoleTeacher )
 			{
-				__role = ISD::RoleTeacher;
+				ItalcCore::role = ItalcCore::RoleTeacher;
 				continue;
 			}
 			if( splashScreen != NULL )
 			{
 				splashScreen->hide();
 			}
-			messageBox::information( tr( "No valid keys found" ),
+			DecoratedMessageBox::information(
+				tr( "No valid keys found" ),
 			tr( 	"No authentication-keys were found or your "
 				"old ones were broken. Please create a new "
 				"key-pair using ICA (see documentation at "
@@ -366,12 +348,17 @@ mainWindow::mainWindow( int _rctrl_screen ) :
 		}
 		break;
 	}
-	m_localISD = new isdConnection( QHostAddress(
-				__isd_host ).toString() +
-					":" + QString::number( __isd_port ) );
-	if( m_localISD->open() != isdConnection::Connected )
+
+	ItalcVncConnection * conn = new ItalcVncConnection( this );
+	conn->setHost( QHostAddress( __ivs_host ).toString() );
+	conn->setPort( __ivs_port );
+	conn->start();
+
+	m_localISD = new ItalcCoreConnection( conn );
+	if( 0 )//##ITALC2: m_localISD->open() != isdConnection::Connected )
 	{
-		messageBox::information( tr( "iTALC service not running" ),
+		DecoratedMessageBox::information(
+			tr( "iTALC service not running" ),
 			tr( 	"There seems to be no iTALC service running "
 				"on this computer or the authentication-keys "
 				"aren't set up properly. The service is "
@@ -381,11 +368,11 @@ mainWindow::mainWindow( int _rctrl_screen ) :
 		return;
 	}
 
-	m_localISD->demoServerRun( __demo_quality,
-						localSystem::freePort( 5858 ) );
+/*	##ITALC2: m_localISD->demoServerRun( __demo_quality,
+						LocalSystem::freePort( 5858 ) );*/
 
 
-	m_localISD->hideTrayIcon();
+//	##ITALC2: m_localISD->hideTrayIcon();
 
 	QIcon icon( ":/resources/icon16.png" );
 	icon.addFile( ":/resources/icon22.png" );
@@ -402,26 +389,25 @@ mainWindow::mainWindow( int _rctrl_screen ) :
 
 	QTimer::singleShot( 2000, m_classroomManager, SLOT( updateClients() ) );
 
-	m_updateThread = new mainWindowUpdateThread( this );
+	m_updateThread = new MainWindowUpdateThread( this );
 }
 
 
 
 
-mainWindow::~mainWindow()
+MainWindow::~MainWindow()
 {
 	m_classroomManager->doCleanupWork();
 
 #ifdef BUILD_WIN32
 	qApp->processEvents( QEventLoop::AllEvents, 3000 );
-	localSystem::sleep( 3000 );
+	LocalSystem::sleep( 3000 );
 #endif
 
 	// also delets clients
 	delete m_workspace;
 
-	m_localISD->gracefulClose();
-
+	delete m_localISD->vncConnection();
 	delete m_localISD;
 	m_localISD = NULL;
 
@@ -430,7 +416,7 @@ mainWindow::~mainWindow()
 
 #ifdef BUILD_WIN32
 	qApp->processEvents( QEventLoop::AllEvents, 3000 );
-	localSystem::sleep( 3000 );
+	LocalSystem::sleep( 3000 );
 	exit( 0 );
 #endif
 }
@@ -438,7 +424,7 @@ mainWindow::~mainWindow()
 
 
 
-void mainWindow::keyPressEvent( QKeyEvent * _e )
+void MainWindow::keyPressEvent( QKeyEvent * _e )
 {
 	if( _e->key() == Qt::Key_F11 )
 	{
@@ -454,7 +440,7 @@ void mainWindow::keyPressEvent( QKeyEvent * _e )
 
 
 
-void mainWindow::closeEvent( QCloseEvent * _ce )
+void MainWindow::closeEvent( QCloseEvent * _ce )
 {
 	s_atExit = TRUE;
 
@@ -463,11 +449,11 @@ void mainWindow::closeEvent( QCloseEvent * _ce )
 	delete m_updateThread;
 	m_updateThread = NULL;
 
-	QList<client *> clients = m_workspace->findChildren<client *>();
-	foreach( client * c, clients )
+	/*ÜQList<Client *> clients = m_workspace->findChildren<Client *>();
+	foreach( Client * c, clients )
 	{
 		c->quit();
-	}
+	}*/
 
 	m_classroomManager->savePersonalConfig();
 	m_classroomManager->saveGlobalClientConfig();
@@ -479,7 +465,7 @@ void mainWindow::closeEvent( QCloseEvent * _ce )
 
 
 
-void mainWindow::handleSystemTrayEvent( QSystemTrayIcon::ActivationReason _r )
+void MainWindow::handleSystemTrayEvent( QSystemTrayIcon::ActivationReason _r )
 {
 	switch( _r )
 	{
@@ -500,7 +486,7 @@ void mainWindow::handleSystemTrayEvent( QSystemTrayIcon::ActivationReason _r )
 			QMenu rcm( this );
 			QAction * rc = m.addAction( tr( "Remote control" ) );
 			rc->setMenu( &rcm );
-			foreach( client * c,
+			foreach( Client * c,
 					m_classroomManager->visibleClients() )
 			{
 				rcm.addAction( c->name() )->
@@ -528,7 +514,7 @@ void mainWindow::handleSystemTrayEvent( QSystemTrayIcon::ActivationReason _r )
 
 
 
-void mainWindow::remoteControlClient( QAction * _a )
+void MainWindow::remoteControlClient( QAction * _a )
 {
 	show();
 	remoteControlDisplay( _a->data().toString(),
@@ -538,7 +524,7 @@ void mainWindow::remoteControlClient( QAction * _a )
 
 
 
-void mainWindow::remoteControlDisplay( const QString & _hostname,
+void MainWindow::remoteControlDisplay( const QString & _hostname,
 						bool _view_only,
 						bool _stop_demo_afterwards )
 {
@@ -547,7 +533,7 @@ void mainWindow::remoteControlDisplay( const QString & _hostname,
 	{
 		return;
 	}
-	m_remoteControlWidget = new remoteControlWidget( _hostname, _view_only,
+	m_remoteControlWidget = new RemoteControlWidget( _hostname, _view_only,
 									this );
 	int x = 0;
 	for( int i = 0; i < m_remoteControlScreen; ++i )
@@ -563,7 +549,7 @@ void mainWindow::remoteControlDisplay( const QString & _hostname,
 
 
 
-void mainWindow::remoteControlWidgetClosed( QObject * )
+void MainWindow::remoteControlWidgetClosed( QObject * )
 {
 	m_rctrlLock.lockForWrite();
 	m_remoteControlWidget = NULL;
@@ -571,7 +557,7 @@ void mainWindow::remoteControlWidgetClosed( QObject * )
 	if( m_stopDemo )
 	{
 		m_classroomManager->changeGlobalClientMode(
-							client::Mode_Overview );
+							Client::Mode_Overview );
 		m_stopDemo = FALSE;
 	}
 }
@@ -579,23 +565,23 @@ void mainWindow::remoteControlWidgetClosed( QObject * )
 
 
 
-void mainWindow::aboutITALC( void )
+void MainWindow::aboutITALC( void )
 {
-	aboutDialog( this ).exec();
+	AboutDialog( this ).exec();
 }
 
 
 
 
-void mainWindow::changeGlobalClientMode( int _mode )
+void MainWindow::changeGlobalClientMode( int _mode )
 {
-	client::modes new_mode = static_cast<client::modes>( _mode );
+	Client::Modes new_mode = static_cast<Client::Modes>( _mode );
 	if( new_mode == m_classroomManager->globalClientMode()/* &&
-					new_mode != client::Mode_Overview*/ )
+					new_mode != Client::Mode_Overview*/ )
 	{
 		m_classroomManager->changeGlobalClientMode(
-							client::Mode_Overview );
-		m_modeGroup->button( client::Mode_Overview )->setChecked(
+							Client::Mode_Overview );
+		m_modeGroup->button( Client::Mode_Overview )->setChecked(
 									TRUE );
 	}
 	else
@@ -610,7 +596,7 @@ void mainWindow::changeGlobalClientMode( int _mode )
 
 
 
-mainWindowUpdateThread::mainWindowUpdateThread( mainWindow * _main_window ) :
+MainWindowUpdateThread::MainWindowUpdateThread( MainWindow * _main_window ) :
 	QThread(),
 	m_mainWindow( _main_window )
 {
@@ -620,22 +606,20 @@ mainWindowUpdateThread::mainWindowUpdateThread( mainWindow * _main_window ) :
 
 
 
-void mainWindowUpdateThread::update( void )
+void MainWindowUpdateThread::update( void )
 {
-	m_mainWindow->m_localISD->handleServerMessages();
-
-	if( client::reloadSnapshotList() )
+	if( Client::reloadSnapshotList() )
 	{
 		m_mainWindow->m_snapshotList->reloadList();
 	}
-	client::resetReloadOfSnapshotList();
+	Client::resetReloadOfSnapshotList();
 
 	// now do cleanup-work
 	m_mainWindow->getClassroomManager()->doCleanupWork();
 }
 
 
-void mainWindowUpdateThread::run( void )
+void MainWindowUpdateThread::run( void )
 {
 	QTimer t;
 	connect( &t, SIGNAL( timeout() ), this, SLOT( update() ) );
@@ -651,6 +635,8 @@ clientWorkspace::clientWorkspace( QScrollArea * _parent ) :
 	QWidget( _parent ),
 	m_contextMenu( NULL )
 {
+	setStyleSheet( "background-image: url(:/resources/toolbar-background.png);" );
+
 	_parent->setWidget( this );
 	_parent->setWidgetResizable( TRUE );
 	setSizePolicy( QSizePolicy( QSizePolicy::MinimumExpanding,

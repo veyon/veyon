@@ -267,10 +267,10 @@ int WINAPI WinMainVNC(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLi
 
 		if (strncmp(&szCmdLine[i], winvncKill, strlen(winvncKill)) == 0)
 		{
-			static HANDLE		hShutdownEvent;
-			hShutdownEvent = OpenEvent(EVENT_ALL_ACCESS, FALSE, "Global\\SessionEventUltra");
-			SetEvent(hShutdownEvent);
-			CloseHandle(hShutdownEvent);
+			static HANDLE		hShutdownEventTmp;
+			hShutdownEventTmp = OpenEvent(EVENT_ALL_ACCESS, FALSE, "Global\\SessionEventUltra");
+			SetEvent(hShutdownEventTmp);
+			CloseHandle(hShutdownEventTmp);
 
 			//adzm 2010-02-10 - Finds the appropriate VNC window for any process. Sends this message to all of them!
 			HWND hservwnd = NULL;
@@ -370,11 +370,11 @@ int WINAPI WinMainVNC(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLi
                 // rest of command line service name, if provided.
                 char *pServiceName = &szCmdLine[i];
                 // skip over command switch, find next whitepace
-                while (*pServiceName && !isspace(*pServiceName))
+                while (*pServiceName && !isspace(*(unsigned char*)pServiceName))
                     ++pServiceName;
 
                 // skip past whitespace to service name
-                while (*pServiceName && isspace(*pServiceName))
+                while (*pServiceName && isspace(*(unsigned char*)pServiceName))
                     ++pServiceName;
 
                 // strip off any quotes
@@ -409,11 +409,11 @@ int WINAPI WinMainVNC(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLi
                 // rest of command line service name, if provided.
                 char *pServiceName = &szCmdLine[i];
                 // skip over command switch, find next whitepace
-                while (*pServiceName && !isspace(*pServiceName))
+                while (*pServiceName && !isspace(*(unsigned char*)pServiceName))
                     ++pServiceName;
 
                 // skip past whitespace to service name
-                while (*pServiceName && isspace(*pServiceName))
+                while (*pServiceName && isspace(*(unsigned char*)pServiceName))
                     ++pServiceName;
 
                 // strip off any quotes
@@ -860,7 +860,7 @@ void InitSDTimer()
 {
 	if (mmRes != -1) return;
 	vnclog.Print(LL_INTERR, VNCLOG("****************** Init SDTimer\n"));
-	mmRes = timeSetEvent( 2000, 0, (LPTIMECALLBACK)fpTimer, NULL, TIME_PERIODIC );
+	mmRes = timeSetEvent( 2000, 0, (LPTIMECALLBACK)fpTimer, 0, TIME_PERIODIC );
 }
 
 
@@ -949,8 +949,11 @@ int WinVNCAppMain()
 		DWORD dwTId;
 		threadHandle = CreateThread(NULL, 0, imp_desktop_thread, &server, 0, &dwTId);
 
-		WaitForSingleObject( threadHandle, INFINITE );
-		CloseHandle(threadHandle);
+		if (threadHandle)  
+		{
+			WaitForSingleObject( threadHandle, INFINITE );
+			CloseHandle(threadHandle);
+		}
 		vnclog.Print(LL_STATE, VNCLOG("################## Closing Imp Thread\n"));
 	}
 

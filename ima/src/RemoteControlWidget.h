@@ -1,7 +1,7 @@
 /*
  *  RemoteControlWidget.h - widget containing a VNC-view and controls for it
  *
- *  Copyright (c) 2006-2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ *  Copyright (c) 2006-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  *  This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -21,7 +21,6 @@
  *  USA.
  */
 
-
 #ifndef _REMOTE_CONTROL_WIDGET_H
 #define _REMOTE_CONTROL_WIDGET_H
 
@@ -29,7 +28,6 @@
 #include <QtGui/QWidget>
 
 #include "FastQImage.h"
-
 
 class VncView;
 class ItalcCoreConnection;

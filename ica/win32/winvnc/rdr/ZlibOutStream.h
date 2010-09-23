@@ -35,7 +35,8 @@ namespace rdr {
 
   public:
 
-    ZlibOutStream(OutStream* os=0, int bufSize=0);
+    // adzm - 2010-07 - Custom compression level
+    ZlibOutStream(OutStream* os=0, int bufSize=0, int compressionLevel=-1); // Z_DEFAULT_COMPRESSION
     virtual ~ZlibOutStream();
 
     void setUnderlying(OutStream* os);

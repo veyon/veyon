@@ -1,7 +1,7 @@
 /*
- * classroom_manager.h - include file for classroom-manager
- *
- * Copyright (c) 2004-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+* ClassroomManager.h - include file for classroom-manager
+*
+ * Copyright (c) 2004-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -35,28 +35,29 @@
 #include <QtGui/QCheckBox>
 #include <QtXml/QtXml>
 
-#include "client.h"
-#include "side_bar_widget.h"
+#include "Client.h"
+#include "SideBarWidget.h"
 
 
 
 class QButtonGroup;
 class QMenu;
+class QPushButton;
 
 class classTreeWidget;
 class classRoom;
 class classRoomItem;
-class clientSettingsDialog;
-class configWidget;
-class mainWindow;
+class ClientSettingsDialog;
+class ConfigWidget;
+class MainWindow;
 
 
-class classroomManager : public sideBarWidget
+class ClassroomManager : public SideBarWidget
 {
 	Q_OBJECT
 public:
-	classroomManager( mainWindow * _main_window, QWidget * _parent );
-	virtual ~classroomManager();
+	ClassroomManager( MainWindow * _main_window, QWidget * _parent );
+	virtual ~ClassroomManager();
 
 
 	void doCleanupWork( void );
@@ -67,11 +68,11 @@ public:
 	void savePersonalConfig( void );
 	void setDefaultWindowsSizeAndPosition( void );
 
-	QVector<client *> visibleClients( void ) const;
+	QVector<Client *> visibleClients( void ) const;
 	static void getVisibleClients( QTreeWidgetItem * _p,
-						QVector<client *> & _vv );
+						QVector<Client *> & _vv );
 
-	QVector<client *> getLoggedInClients( void ) const;
+	QVector<Client *> getLoggedInClients( void ) const;
 
 	inline int updateInterval( void ) const
 	{
@@ -88,7 +89,7 @@ public:
 		return( m_toolBarCfg );
 	}
 
-	client::modes globalClientMode( void ) const
+	Client::Modes globalClientMode( void ) const
 	{
 		return( m_globalClientMode );
 	}
@@ -208,7 +209,7 @@ private:
 	classTreeWidget * m_view;
 
 	QVector<classRoom *> m_classRooms;
-	QVector<client *> m_clientsToRemove;
+	QVector<Client *> m_clientsToRemove;
 	QVector<classRoom *> m_classRoomsToRemove;
 
 	const QString m_personalConfiguration;
@@ -225,7 +226,7 @@ private:
 	QSpinBox * m_updateIntervalSpinBox;
 	QMenu * m_quickSwitchMenu;
 	QAction * m_qsmClassRoomSeparator;
-	client::modes m_globalClientMode;
+	Client::Modes m_globalClientMode;
 
 	int m_clientUpdateInterval;
 	QString m_winCfg;
@@ -233,8 +234,8 @@ private:
 
 	int m_clientDblClickAction;
 
-	friend class clientSettingsDialog;
-	friend class configWidget;
+	friend class ClientSettingsDialog;
+	friend class ConfigWidget;
 
 	QPushButton * m_exportToFileBtn;
 	QCheckBox * m_showUsernameCheckBox;
@@ -265,7 +266,7 @@ private:
 
 	bool droppingOnItself( QTreeWidgetItem * _target );
 
-	client * m_clientPressed;
+	Client * m_clientPressed;
 	QList<QTreeWidgetItem *> m_selectedItems;
 
 private slots:
@@ -282,9 +283,9 @@ class classRoom : public QObject, public QTreeWidgetItem
 {
 	Q_OBJECT
 public:
-	classRoom( const QString & _name, classroomManager * _classroom_manager,
+	classRoom( const QString & _name, ClassroomManager * _classroom_manager,
 							QTreeWidget * _parent );
-	classRoom( const QString & _name, classroomManager * _classroom_manager,
+	classRoom( const QString & _name, ClassroomManager * _classroom_manager,
 						QTreeWidgetItem * _parent );
 	virtual ~classRoom();
 
@@ -305,7 +306,7 @@ private slots:
 
 
 private:
-	classroomManager * m_classroomManager;
+	ClassroomManager * m_classroomManager;
 	QAction * m_qsMenuAction;
 
 } ;
@@ -316,10 +317,10 @@ private:
 class classRoomItem : public QTreeWidgetItem
 {
 public:
-	classRoomItem( client * _client, QTreeWidgetItem * _parent );
+	classRoomItem( Client * _client, QTreeWidgetItem * _parent );
 	virtual ~classRoomItem();
 
-	inline client * getClient( void )
+	inline Client * getClient( void )
 	{
 		return( m_client );
 	}
@@ -335,7 +336,7 @@ public:
 
 private:
 	bool m_visible;
-	client * m_client;
+	Client * m_client;
 
 	static QPixmap * s_clientPixmap;
 	static QPixmap * s_clientObservedPixmap;

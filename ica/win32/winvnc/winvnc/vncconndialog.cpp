@@ -80,6 +80,7 @@ BOOL CALLBACK vncConnDialog::vncConnDlgProc(HWND hwnd,
 	// WM_INITDIALOG, which we therafter store with the window and retrieve
 	// as follows:
      vncConnDialog *_this = helper::SafeGetWindowUserData<vncConnDialog>(hwnd);
+
 	switch (uMsg) {
 	case WM_PAINT:
 		{
@@ -231,6 +232,7 @@ BOOL CALLBACK vncConnDialog::vncConnDlgProc(HWND hwnd,
 			// sf@2002 - host:num & host::num analyse.
 			// Compatible with both RealVNC and TightVNC methods
 			char hostname[_MAX_PATH];
+			char actualhostname[_MAX_PATH];
 			char idcode[_MAX_PATH];
 			char *portp;
 			int port;
@@ -242,9 +244,64 @@ BOOL CALLBACK vncConnDialog::vncConnDlgProc(HWND hwnd,
 			if (strcmp(idcode,"")==0) id=false;
 			else id=true;
 
+			strcpy(actualhostname, hostname);
+			
+			//adzm 2010-02-15 - Multiple repeaters chosen by modulo of ID
+
+			char finalidcode[_MAX_PATH];
+
+			//adzm 2009-06-20
+			if (id) {
+				size_t i = 0;
+
+				for (i = 0; i < strlen(idcode); i++)
+				{
+					finalidcode[i] = toupper(idcode[i]);
+				} 
+				finalidcode[i] = 0;
+
+				if (0 != strncmp("ID:", idcode, 3)) {
+					strcpy(finalidcode, "ID:");
+					
+					for (i = 0; i < strlen(idcode); i++)
+					{
+						finalidcode[i+3] = toupper(idcode[i]);
+					} 
+					finalidcode[i+3] = 0;
+				}
+
+				
+				//adzm 2010-02-15 - At this point, finalidcode is of the form "ID:#####"
+				int numericId = atoi(finalidcode + 3);
+
+				int numberOfHosts = 1;
+				for (i = 0; i < strlen(hostname); i++) {
+					if (hostname[i] == ';') {
+						numberOfHosts++;
+					}
+				}
+
+				if (numberOfHosts <= 1) {
+					// then hostname == actualhostname
+				} else {
+					int modulo = numericId % numberOfHosts;
+
+					char* szToken = strtok(hostname, ";");
+					while (szToken) {
+						if (modulo == 0) {
+							strcpy(actualhostname, szToken);
+							break;
+						}
+
+						modulo--;
+						szToken = strtok(NULL, ";");
+					}
+				}
+			}
+
 			// Calculate the Display and Port offset.
 			port = INCOMING_PORT_OFFSET;
-			portp = strchr(hostname, ':');
+			portp = strchr(actualhostname, ':');
 			if (portp)
 			{
 				*portp++ = '\0';
@@ -260,6 +317,8 @@ BOOL CALLBACK vncConnDialog::vncConnDlgProc(HWND hwnd,
 						port = atoi(portp);	    // If > 100 after ":" -> Port number
 				}
 			}
+
+
 			
 			// Attempt to create a new socket
 			VSocket *tmpsock;
@@ -272,32 +331,11 @@ BOOL CALLBACK vncConnDialog::vncConnDlgProc(HWND hwnd,
 			// To be really good, we should allow a display number here but
 			// for now we'll just assume we're connecting to display zero
 			tmpsock->Create();
-			if (tmpsock->Connect(hostname, port))
+			if (tmpsock->Connect(actualhostname, port))
 			{
 				if (id) 
 					{							
-						char finalidcode[_MAX_PATH];
-
-						//adzm 2009-06-20
-						{
-							size_t i = 0;
-
-							for (i = 0; i < strlen(idcode); i++)
-							{
-								finalidcode[i] = toupper(idcode[i]);
-							} 
-							finalidcode[i] = 0;
-
-							if (0 != strncmp("ID:", idcode, 3)) {
-								strcpy(finalidcode, "ID:");
-								
-								for (i = 0; i < strlen(idcode); i++)
-								{
-									finalidcode[i+3] = toupper(idcode[i]);
-								} 
-								finalidcode[i+3] = 0;
-							}
-						}
+						
 
 						tmpsock->Send(finalidcode,250);
 						tmpsock->SetTimeout(0);
@@ -316,11 +354,11 @@ BOOL CALLBACK vncConnDialog::vncConnDlgProc(HWND hwnd,
 						// adzm 2009-07-05 - repeater IDs
 						// Add the new client to this server
 						// adzm 2009-08-02
-						_this->m_server->AddClient(tmpsock, TRUE, TRUE, 0, NULL, finalidcode, hostname, port);
+						_this->m_server->AddClient(tmpsock, TRUE, TRUE, 0, NULL, finalidcode, actualhostname, port);
 					} else {
 						// Add the new client to this server
 						// adzm 2009-08-02
-						_this->m_server->AddClient(tmpsock, TRUE, TRUE, 0, NULL, NULL, hostname, port);				
+						_this->m_server->AddClient(tmpsock, TRUE, TRUE, 0, NULL, NULL, actualhostname, port);				
 					}
 				// And close the dialog
 				EndDialog(hwnd, TRUE);

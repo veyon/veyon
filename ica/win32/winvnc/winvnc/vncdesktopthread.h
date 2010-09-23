@@ -41,10 +41,13 @@ public:
 		
 		hUser32 = LoadLibrary("user32.dll");
 		CHANGEWINDOWMESSAGEFILTER pfnFilter = NULL;
+		if (hUser32)
+		{
 		pfnFilter =(CHANGEWINDOWMESSAGEFILTER)GetProcAddress(hUser32,"ChangeWindowMessageFilter");
 		if (pfnFilter) pfnFilter(RFB_SCREEN_UPDATE, MSGFLT_ADD);
 		if (pfnFilter) pfnFilter(RFB_COPYRECT_UPDATE, MSGFLT_ADD);
 		if (pfnFilter) pfnFilter(RFB_MOUSE_UPDATE, MSGFLT_ADD);
+		}
 		cpuUsage=0;
 		MIN_UPDATE_INTERVAL=33;
 		MIN_UPDATE_INTERVAL_MAX=500;

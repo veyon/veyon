@@ -1,7 +1,7 @@
 /*
  * Dialogs.cpp - implementation of dialogs
  *
- * Copyright (c) 2006-2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -21,7 +21,6 @@
  * Boston, MA 02111-1307, USA.
  *
  */
-
 
 #include <QtCore/QFile>
 #include <QtCore/QRegExp>
@@ -63,7 +62,11 @@ ClientSettingsDialog::ClientSettingsDialog( Client * _client,
 						MainWindow * _main_window,
 #endif
 						const QString & _classroom ) :
+#ifdef ITALC3
 	QDialog( MasterUI::mainWindow ),
+#else
+	QDialog( _main_window ),
+#endif
 	Ui::ClientSettings(),
 	m_client( _client )
 #ifndef ITALC3
@@ -145,26 +148,33 @@ void ClientSettingsDialog::accept( void )
 
 	if( m_client == NULL )
 	{
+#ifdef ITALC3
 		m_client = new Client( hostnameEdit->text(),
 					macEdit->text(),
 					nameEdit->text(),
 				(Client::Types) typeComboBox->currentIndex() );
+#else
+		m_client = new Client( hostnameEdit->text(),
+					macEdit->text(),
+					nameEdit->text(),
+				(Client::Types) typeComboBox->currentIndex(),
+m_mainWindow->getClassroomManager()->m_classRooms[classRoomComboBox->currentIndex()],
+					m_mainWindow );
+#endif
 	}
 	else
 	{
 		m_client->setMac( macEdit->text() );
+		m_client->setType( (Client::Types)
+                                                typeComboBox->currentIndex() );
 #ifdef ITALC3
 		m_client->setHost( hostnameEdit->text() );
 		m_client->setDisplayName( nameEdit->text() );
-		m_client->setType( (Client::Types)
-						typeComboBox->currentIndex() );
 		m_client->closeConnection();
 		m_client->openConnection();
 #else
 		m_client->setHostname( hostnameEdit->text() );
 		m_client->setNickname( nameEdit->text() );
-		m_client->setType( (client::types)
-                                                typeComboBox->currentIndex() );
 		m_client->setClassRoom(
 m_mainWindow->getClassroomManager()->m_classRooms[classRoomComboBox->currentIndex()] );
 		m_client->resetConnection();

@@ -28,8 +28,6 @@
 #define STRICT
 #endif
 
-#define _WIN32_WINNT 0x0501
-
 #include <winsock2.h>
 #include <windows.h>
 #include <shellapi.h>
@@ -72,24 +70,14 @@ extern VNCLog vnclog;
 // Log everything, including internal table setup, etc.
 #define LL_ALL		10
 
+#define strcat_s(dst,num,src) strncat(dst,src,num)
+#define strncat_s(a,b,c,d) strncat(a,c,b)
+#define strcpy_s(dst,num,src)	strncpy(dst,src,num)
+#define strncpy_s(dst,num,src,x)	strncpy(dst,src,num)
+
 // Macros for sticking in the current file name
 #define VNCLOG(s)	(__FILE__ " : " s)
-#ifndef TOKEN_ADJUST_SESSIONID
-#define TOKEN_ADJUST_SESSIONID 0x0100
-#endif
-
-#ifndef STRING_CB_COPY
-#define STRING_CB_COPY
-inline HRESULT StringCbCopy( LPTSTR pszDest, size_t cbDest, LPCTSTR pszSrc )
-{
-	strncpy( pszDest, pszSrc, cbDest );
-	pszDest[cbDest-1] = 0;
-	return( S_OK );
-}
-#endif
-
-
-#ifndef __GNUC__
+#if MSC_VER > 12
 #ifndef _X64
 #pragma comment(linker,"/manifestdependency:\"type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='x86' publicKeyToken='6595b64144ccf1df' language='*'\"")
 #else

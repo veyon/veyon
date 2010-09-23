@@ -146,6 +146,9 @@ public:
   void SetDSMPluginPointer(CDSMPlugin* pDSMPlugin);
   void EnableUsePlugin(bool fEnable) { m_fUsePlugin = fEnable;};
   bool IsUsePluginEnabled(void) { return m_fUsePlugin;};
+  //adzm 2010-05-12 - dsmplugin config
+  void SetDSMPluginConfig(char* szDSMPluginConfig);
+
   void SetWriteToNetRectBuffer(bool fEnable) {m_fWriteToNetRectBuf = fEnable;}; 
   bool GetWriteToNetRectBuffer(void) {return m_fWriteToNetRectBuf;};
   int  GetNetRectBufOffset(void) {return m_nNetRectBufOffset;};
@@ -154,6 +157,9 @@ public:
   void CheckNetRectBufferSize(int nBufSize);
   VBool SendExactHTTP(const char *buff, const VCard bufflen);
   VBool ReadExactHTTP(char *buff, const VCard bufflen);
+
+  //adzm 2010-05-10
+  IIntegratedPlugin* GetIntegratedPlugin() { return m_pIntegratedPluginInterface; };
 
 
 
@@ -166,6 +172,8 @@ protected:
   CDSMPlugin* m_pDSMPlugin; // sf@2002 - DSMPlugin
   //adzm 2009-06-20
   IPlugin* m_pPluginInterface;
+  //adzm 2010-05-10
+  IIntegratedPlugin* m_pIntegratedPluginInterface;
   bool m_fUsePlugin;
   omni_mutex m_TransMutex;
   omni_mutex m_RestMutex;

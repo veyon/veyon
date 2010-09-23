@@ -66,13 +66,13 @@ TEXT("\\StringFileInfo\\040904b0\\ProductVersion"),
    if( resultValue )
    {
       strncpy(vBuffer, (char *) lpBuffer, size);
-      delete[] versionInfo;
+      delete []versionInfo;
       return(TRUE);
    }
    else
    {
       *vBuffer = '\0';
-      delete[] versionInfo;
+      delete []versionInfo;
       return(FALSE);
    }
 }
@@ -84,7 +84,7 @@ CheckVideoDriver(bool Box)
 {
 		typedef BOOL (WINAPI* pEnumDisplayDevices)(PVOID,DWORD,PVOID,DWORD);
 		HDC m_hrootdc=NULL;
-		pEnumDisplayDevices pd;
+		pEnumDisplayDevices pd=NULL;
 		LPSTR driverName = "mv video hook driver2";
 		BOOL DriverFound;
 		DEVMODE devmode;
@@ -94,7 +94,7 @@ CheckVideoDriver(bool Box)
 		BOOL change = EnumDisplaySettings(NULL,ENUM_CURRENT_SETTINGS,&devmode);
 		devmode.dmFields = DM_BITSPERPEL | DM_PELSWIDTH | DM_PELSHEIGHT;
 		HMODULE hUser32=LoadLibrary("USER32");
-		pd = (pEnumDisplayDevices)GetProcAddress( hUser32, "EnumDisplayDevicesA");
+		if (hUser32) pd = (pEnumDisplayDevices)GetProcAddress( hUser32, "EnumDisplayDevicesA");
 		if (pd)
 			{
 				LPSTR deviceName=NULL;

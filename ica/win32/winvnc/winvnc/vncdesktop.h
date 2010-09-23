@@ -58,6 +58,8 @@ class vncServer;
 #ifdef AVILOG
 #include "avilog/avilog/AVIGenerator.h"
 #endif
+// adzm - 2010-07 - Extended clipboard
+#include "common/clipboard.h"
 //#define COMPILE_MULTIMON_STUBS
 //#include "Multimon.h"
 #ifndef SM_CMONITORS
@@ -263,12 +265,15 @@ public:
 
 	// Clipboard manipulation
 	void SetClipText(LPSTR text);
+	// adzm - 2010-07 - Extended clipboard
+	void SetClipTextEx(ExtendedClipboardDataMessage& extendedClipboardDataMessage, vncClient* sourceClient);
 
 	// Method to obtain the DIBsection buffer if fast blits are enabled
 	// If they're disabled, it'll return NULL
 	inline VOID *OptimisedBlitBuffer() {return m_DIBbits;};
 
-	BOOL	m_initialClipBoardSeen;
+	// adzm - 2010-07 - Extended clipboard
+	//BOOL	m_initialClipBoardSeen;
 
 	// Handler for pixel data grabbing and region change checking
 	vncBuffer		m_buffer;
@@ -378,6 +383,8 @@ protected:
 	HWND			m_hwnd;
 	//UINT			m_timerid;
 	HWND			m_hnextviewer;
+	// adzm - 2010-07 - Fix clipboard hangs
+	bool			m_settingClipboardViewer;
 	BOOL			m_clipboard_active;
 
 	// device contexts for memory and the screen

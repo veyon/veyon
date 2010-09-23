@@ -1,7 +1,7 @@
 /*
  * main.cpp - main-file for iTALC Master Application
  *
- * Copyright (c) 2004-2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -45,8 +45,8 @@ QSplashScreen * splashScreen = NULL;
 QString __default_domain;
 int __demo_quality = 0;
 
-int __ics_port = PortOffsetIVS;
-QString __ics_host = "127.0.0.1";
+int __ivs_port = PortOffsetIVS;
+QString __ivs_host = "127.0.0.1";
 #endif
 
 
@@ -101,8 +101,7 @@ int main( int argc, char * * argv )
 	ItalcCore::role = ItalcCore::RoleTeacher;
 	if( LocalSystem::parameter( "ivsport" ).toInt() > 0 )
 	{
-		MasterCore::localDisplayPort =
-				LocalSystem::parameter( "ivsport" ).toInt();
+		__ivs_port = LocalSystem::parameter( "ivsport" ).toInt();
 	}
 
 	// parse arguments
@@ -155,7 +154,11 @@ int main( int argc, char * * argv )
 		}
 		else if( a == "-ivsport" && arg_it.hasNext() )
 		{
-			MasterCore::localDisplayPort = arg_it.next().toInt();
+			__ivs_port = arg_it.next().toInt();
+		}
+		else if( a == "-ivshost" && arg_it.hasNext() )
+		{
+			__ivs_host = arg_it.next();
 		}
 	}
 
@@ -163,14 +166,12 @@ int main( int argc, char * * argv )
 	QSplashScreen splashScreen( QPixmap( ":/resources/splash.png" ) );
 	splashScreen.show();
 
-	MasterCore::init();
-
 	// now create the main-window
 	MainWindow mainWindow( screen );
 
-	if( !MasterCore::localDisplay->isConnected() )
+	if( !mainWindow.localISD() ||
+		mainWindow.localISD()->isConnected() )
 	{
-		// TODO: message
 		return -1;
 	}
 
@@ -180,10 +181,6 @@ int main( int argc, char * * argv )
 	mainWindow.show();
 
 	// let's rock!!
-	int ret = app.exec();
-
-	MasterCore::deinit();
-
-	return ret;
+	return app.exec();
 }
 

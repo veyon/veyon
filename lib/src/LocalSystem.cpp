@@ -2,7 +2,7 @@
  * LocalSystem.cpp - namespace LocalSystem, providing an interface for
  *                   transparent usage of operating-system-specific functions
  *
- * Copyright (c) 2006-2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -23,7 +23,7 @@
  *
  */
 
-#ifdef BUILD_WIN32
+#ifdef ITALC_BUILD_WIN32
 #define _WIN32_WINNT 0x0501
 #endif
 

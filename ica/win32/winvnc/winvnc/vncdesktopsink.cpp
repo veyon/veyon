@@ -65,7 +65,7 @@ vncDesktop::StartInitWindowthread()
 	vnclog.Print(LL_INTINFO, VNCLOG("StartInitWindowthread \n"));
 	if (GetUserObjectInformation(desktop, UOI_NAME, &new_name, 256, &dummy))
 	{
-		if (strcmp(new_name,"Default")==NULL)
+		if (strcmp(new_name,"Default")==0)
 		{
 			vnclog.Print(LL_INTINFO, VNCLOG("StartInitWindowthread default desk\n"));
 			if (InitWindowThreadh==NULL)
@@ -365,21 +365,32 @@ DesktopWndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 		if ((HWND)wParam == _this->m_hnextviewer)
 			_this->m_hnextviewer = (HWND)lParam;
 		else
-			if (_this->m_hnextviewer != NULL)
-				SendMessage(_this->m_hnextviewer,
+			if (_this->m_hnextviewer != NULL) {				
+				// adzm - 2010-07 - Fix clipboard hangs
+				// use SendNotifyMessage instead of SendMessage so misbehaving or hung applications
+				// won't cause our thread to hang.
+				SendNotifyMessage(_this->m_hnextviewer,
 							WM_CHANGECBCHAIN,
 							wParam, lParam);
+			}
 
 		return 0;
 
 	case WM_DRAWCLIPBOARD:
-		if (_this->can_be_hooked)
+		// adzm - 2010-07 - Fix clipboard hangs
+		if (_this->can_be_hooked && !_this->m_settingClipboardViewer)
 		{
 			// The clipboard contents have changed
 			if((GetClipboardOwner() != _this->Window()) &&
-				_this->m_initialClipBoardSeen &&
+				//_this->m_initialClipBoardSeen &&
 				_this->m_clipboard_active && !_this->m_server->IsThereFileTransBusy())
 			{
+				// adzm - 2010-07 - Extended clipboard
+				{
+					omni_mutex_lock l(_this->m_update_lock);
+					_this->m_server->UpdateClipTextEx(_this->Window());
+				}
+				/*
 				LPSTR cliptext = NULL;
 
 				// Open the clipboard
@@ -432,15 +443,20 @@ DesktopWndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 
 					free(unixtext);
 				}
+				*/
 			}
 
-			_this->m_initialClipBoardSeen = TRUE;
+			//_this->m_initialClipBoardSeen = TRUE;
+		}
 
-			if (_this->m_hnextviewer != NULL)
-			{
-				// Pass the message to the next window in clipboard viewer chain.  
-				return SendMessage(_this->m_hnextviewer, WM_DRAWCLIPBOARD, 0,0); 
-			}
+		if (_this->m_hnextviewer != NULL)
+		{
+			// adzm - 2010-07 - Fix clipboard hangs
+			// Pass the message to the next window in clipboard viewer chain.  
+			
+			// use SendNotifyMessage instead of SendMessage so misbehaving or hung applications
+			// won't cause our thread to hang.
+			return SendNotifyMessage(_this->m_hnextviewer, WM_DRAWCLIPBOARD, wParam, lParam); 
 		}
 
 		return 0;
@@ -548,7 +564,10 @@ vncDesktop::InitWindow()
     helper::SafeSetWindowUserData(m_hwnd, (long)this);
 
 	// Enable clipboard hooking
+	// adzm - 2010-07 - Fix clipboard hangs
+	m_settingClipboardViewer = true;
 	m_hnextviewer = SetClipboardViewer(m_hwnd);
+	m_settingClipboardViewer = false;
 	StopDriverWatches=false;
 		DrvWatch mywatch;
 		mywatch.stop=&StopDriverWatches;
@@ -556,8 +575,9 @@ vncDesktop::InitWindow()
 	if (VideoBuffer())
 	{
 		DWORD myword;
-		HANDLE T1=CreateThread(NULL,0,Driverwatch,m_hwnd,0,&myword);
-		CloseHandle(T1);
+		HANDLE T1=NULL;
+		T1=CreateThread(NULL,0,Driverwatch,m_hwnd,0,&myword);
+		if (T1) CloseHandle(T1);
 	}
 	vnclog.Print(LL_INTERR, VNCLOG("OOOOOOOOOOOO load hookdll's\n"));
 	////////////////////////

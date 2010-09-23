@@ -54,15 +54,13 @@ ToolButton::ToolButton( const QPixmap & _pixmap, const QString & _label,
 	QToolButton( _parent ),
 	m_pixmap( _pixmap ),
 	m_img( FastQImage( _pixmap.toImage() ).scaled( 32, 32 ) ),
-	m_colorizeLevel( 0 ),
-	m_fadeBack( FALSE ),
+	m_mouseOver( false ),
 	m_label( _label ),
 	m_altLabel( _alt_label ),
 	m_title( _title ),
 	m_descr( _desc )
 {
 	setAttribute( Qt::WA_NoSystemBackground, true );
-	setText( m_title );
 
 	updateSize();
 
@@ -83,15 +81,13 @@ ToolButton::ToolButton( QAction * _a, const QString & _label,
 	QToolButton( _parent ),
 	m_pixmap( _a->icon().pixmap( 128, 128 ) ),
 	m_img( FastQImage( m_pixmap.toImage() ).scaled( 32, 32 ) ),
-	m_colorizeLevel( 0 ),
-	m_fadeBack( FALSE ),
+	m_mouseOver( false ),
 	m_label( _label ),
 	m_altLabel( _alt_label ),
 	m_title( _a->text() ),
 	m_descr( _desc )
 {
 	setAttribute( Qt::WA_NoSystemBackground, true );
-	setText( m_title );
 
 	updateSize();
 
@@ -113,10 +109,25 @@ ToolButton::~ToolButton()
 
 
 
+#ifndef ITALC3
+void ToolButton::setIconOnlyMode( bool _enabled )
+{
+        s_iconOnlyMode = _enabled;
+        QList<ToolButton *> tbl = QApplication::activeWindow()->findChildren<ToolButton *>();
+        foreach( ToolButton * tb, tbl )
+        {
+                tb->updateSize();
+        }
+}
+#endif
+
+
+
+
 void ToolButton::addTo( QToolBar * _tb )
 {
 	QAction * a = _tb->addWidget( this );
-	a->setText( text() );
+	a->setText( m_title );
 }
 
 
@@ -124,11 +135,7 @@ void ToolButton::addTo( QToolBar * _tb )
 
 void ToolButton::enterEvent( QEvent * _e )
 {
-	m_fadeBack = FALSE;
-	if( m_colorizeLevel == 0 )
-	{
-		updateColorLevel();
-	}
+	m_mouseOver = true;
 	if( !s_toolTipsDisabled && !m_title.isEmpty() && !m_descr.isEmpty() )
 	{
 		QPoint p = mapToGlobal( QPoint( 0, 0 ) );
@@ -161,9 +168,10 @@ void ToolButton::enterEvent( QEvent * _e )
 			p.setX( screen.x() );
 		if( p.y() + tbt->height() > screen.y() + screen.height() )
 			p.setY( screen.y() + screen.height() - tbt->height() );
-		tbt->move( p += QPoint( -4, 46 ) );
+		tbt->move( p += QPoint( -4, height() ) );
 		tbt->show();
 	}
+
 	QToolButton::enterEvent( _e );
 }
 
@@ -193,87 +201,69 @@ void ToolButton::mousePressEvent( QMouseEvent * _me )
 void ToolButton::paintEvent( QPaintEvent * _pe )
 {
 	const bool active = isDown() || isChecked();
-	const QColor ctbl[2][4] = {
-				{
-					QColor( 80, 160, 255 ),
-					QColor( 32, 64, 192 ),
-					QColor( 8, 16, 96 ),
-					QColor( 0, 64, 224 )
-				},
-				{
-					QColor( 255, 255, 64, m_colorizeLevel ),
-					QColor( 192, 160, 32, m_colorizeLevel ),
-					QColor( 96, 48, 0, m_colorizeLevel ),
-					QColor( 192, 160, 0, m_colorizeLevel )
-				}
-				} ;
 
-	QPainter p( this );
-	p.fillRect( rect(), Qt::black );
-	p.setRenderHint( QPainter::Antialiasing );
-	QLinearGradient lingrad( 0, 0, 0, height() );
-	lingrad.setColorAt( 0, ctbl[0][0] );
-	lingrad.setColorAt( 0.38, ctbl[0][1] );
-	lingrad.setColorAt( 0.42, ctbl[0][2] );
-	lingrad.setColorAt( 1, ctbl[0][3] );
-	p.setBrush( lingrad );
-	p.drawRoundRect( 1, 1, width()-2, height()-2, 1000 / width(),
-							1000 / height() );
+	QPainter painter(this);
+	painter.setRenderHint(QPainter::SmoothPixmapTransform);
+	painter.setRenderHint(QPainter::Antialiasing);
+	painter.setPen(Qt::NoPen);
 
-	if( m_colorizeLevel )
+	QLinearGradient outlinebrush(0, 0, 0, height());
+	QLinearGradient brush(0, 0, 0, height());
+
+	brush.setSpread(QLinearGradient::PadSpread);
+	QColor highlight(255, 255, 255, 70);
+	QColor shadow(0, 0, 0, 70);
+	QColor sunken(220, 220, 220, 30);
+	QColor normal1(255, 255, 245, 60);
+	QColor normal2(255, 255, 235, 10);
+
+	if( active )
 	{
-		lingrad = QLinearGradient( 0, 0, 0, height() );
-		lingrad.setColorAt( 0, ctbl[1][0] );
-		lingrad.setColorAt( 0.38, ctbl[1][1] );
-		lingrad.setColorAt( 0.42, ctbl[1][2] );
-		lingrad.setColorAt( 1, ctbl[1][3] );
-		p.setBrush( lingrad );
-		p.drawRoundRect( 1, 1, width()-2, height()-2, 1000 / width(),
-							1000 / height() );
+		outlinebrush.setColorAt(0.0f, shadow);
+		outlinebrush.setColorAt(1.0f, highlight);
+		brush.setColorAt(0.0f, sunken);
+		painter.setPen(Qt::NoPen);
 	}
-	p.setBrush( QBrush() );
+	else
+	{
+		outlinebrush.setColorAt(1.0f, shadow);
+		outlinebrush.setColorAt(0.0f, highlight);
+		brush.setColorAt(0.0f, normal1);
+		if( m_mouseOver == false )
+		{
+			brush.setColorAt(1.0f, normal2);
+		}
+		painter.setPen(QPen(outlinebrush, 1));
+	}
 
-	p.fillRect( rect(), QColor( 0, 0, 0, active ? 64 : 0 ) );
+	painter.setBrush(brush);
 
-	QPen pen( QColor( 255, 255, 255, 96 ) );
-	pen.setWidthF( 1.4f );
-	p.setPen( pen );
-	p.drawRoundRect( 0, 0, width()-1, height()-1, 1000 / width(),
-							1000 / height() );
-	QPen pen2 = pen;
-	pen.setColor( QColor( 0, 0, 0, 128 ) );
-	p.setPen( pen );
-	p.drawRoundRect( 1, 1, width()-3, height()-3, 1000 / width(),
-							1000 / height() );
-	p.setPen( pen2 );
-	p.drawRoundRect( 2, 2, width()-2, height()-2, 1000 / width(),
-							1000 / height() );
+	painter.drawRoundedRect( 0, 0, width(), height(), 5, 5 );
 
-	const int dd = isDown() ? 1 : 0;
+	const int dd = active ? 1 : 0;
 	QPoint pt = QPoint( ( width() - m_img.width() ) / 2 + dd, 3 + dd );
 	if( s_iconOnlyMode )
 	{
 		pt.setY( ( height() - m_img.height() ) / 2 - 1 + dd );
 	}
-	p.drawImage( pt, m_img );
+	painter.drawImage( pt, m_img );
 
-	if( s_iconOnlyMode )
+	if( s_iconOnlyMode == false )
 	{
-		return;
+		const QString l = ( active && m_altLabel.isEmpty() == FALSE ) ?
+								m_altLabel : m_label;
+		const int w = painter.fontMetrics().width( l );
+		painter.setPen( Qt::black );
+		painter.drawText( ( width() - w ) / 2 +1+dd, height() - 4+dd, l );
+		painter.setPen( Qt::white );
+		painter.drawText( ( width() - w ) / 2 +dd, height() - 5+dd, l );
 	}
-	const QString l = ( active && m_altLabel.isEmpty() == FALSE ) ?
-							m_altLabel : m_label;
-	const int w = p.fontMetrics().width( l );
-	p.setPen( Qt::black );
-	p.drawText( ( width() - w ) / 2 +1+dd, height() - 4+dd, l );
-	p.setPen( Qt::white );
-	p.drawText( ( width() - w ) / 2 +dd, height() - 5+dd, l );
 }
 
 
 
 
-bool ToolButton::checkForLeaveEvent( void )
+bool ToolButton::checkForLeaveEvent()
 {
 	if( QRect( mapToGlobal( QPoint( 0, 0 ) ), size() ).
 					contains( QCursor::pos() ) )
@@ -283,46 +273,20 @@ bool ToolButton::checkForLeaveEvent( void )
 	else
 	{
 		emit mouseLeftButton();
-		m_fadeBack = TRUE;
-		if( m_colorizeLevel == 255 )
-		{
-			updateColorLevel();
-		}
-		return( TRUE );
+		m_mouseOver = false;
+
+		return true;
 	}
-	return( FALSE );
+	return false;
 }
 
 
 
 
-void ToolButton::updateColorLevel( void )
-{
-	bool again;
-	if( m_fadeBack )
-	{
-		m_colorizeLevel = qMax( 0, m_colorizeLevel - 10 );
-		again = m_colorizeLevel > 0;
-	}
-	else
-	{
-		m_colorizeLevel = qMin( 255, m_colorizeLevel + 10 );
-		again = m_colorizeLevel < 255;
-	}
-	update();
-	if( again )
-	{
-		QTimer::singleShot( 10, this, SLOT( updateColorLevel() ) );
-	}
-}
-
-
-
-
-void ToolButton::updateSize( void )
+void ToolButton::updateSize()
 {
 	QFont f = font();
-	f.setPointSizeF( 7.5 );
+	f.setPointSizeF( 8 );
 	setFont( f );
 
 	if( s_iconOnlyMode )
@@ -337,17 +301,6 @@ void ToolButton::updateSize( void )
 	{
 		setFixedSize( 88, 48 );
 	}
-
-	// set mask
-	QBitmap b( size() );
-	b.clear();
-
-	QPainter p( &b );
-	p.setBrush( Qt::color1 );
-	p.setPen( Qt::color1 );
-	p.drawRoundRect( 0, 0, width() - 1, height() - 1,
-					1000 / width(), 1000 / height() );
-	setMask( b );
 }
 
 
