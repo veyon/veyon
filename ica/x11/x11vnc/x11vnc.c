@@ -992,6 +992,9 @@ static int limit_shm(void) {
 	if (UT.sysname == NULL) {
 		return 0;
 	}
+	if (getenv("X11VNC_NO_LIMIT_SHM")) {
+		return 0;
+	}
 	if (!strcmp(UT.sysname, "SunOS")) {
 		char *r = UT.release;
 		if (*r == '5' && *(r+1) == '.') {
@@ -1554,6 +1557,7 @@ static void print_settings(int try_http, int bg, char *gui_str) {
 	fprintf(stderr, " cursorshape:%d\n", cursor_shape_updates);
 	fprintf(stderr, " cursorpos:  %d\n", cursor_pos_updates);
 	fprintf(stderr, " xwarpptr:   %d\n", use_xwarppointer);
+	fprintf(stderr, " alwaysinj:  %d\n", always_inject);
 	fprintf(stderr, " buttonmap:  %s\n", pointer_remap
 	    ? pointer_remap : "null");
 	fprintf(stderr, " dragging:   %d\n", show_dragging);
@@ -2280,7 +2284,7 @@ int main(int argc, char* argv[]) {
 		}
 		if (!strcmp(arg, "-reflect")) {
 			CHECK_ARGC
-			raw_fb_str = (char *) malloc(4 + strlen(argv[i]) + 1);
+			raw_fb_str = (char *) malloc(4 + strlen(argv[i+1]) + 1);
 			sprintf(raw_fb_str, "vnc:%s", argv[++i]);
 			shared = 1;
 			continue;
@@ -3395,6 +3399,10 @@ int main(int argc, char* argv[]) {
 		if (!strcmp(arg, "-noxwarppointer")) {
 			use_xwarppointer = 0;
 			got_noxwarppointer = 1;
+			continue;
+		}
+		if (!strcmp(arg, "-always_inject")) {
+			always_inject = 1;
 			continue;
 		}
 		if (!strcmp(arg, "-buttonmap")) {

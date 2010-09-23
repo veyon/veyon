@@ -36,7 +36,7 @@ so, delete this exception statement from your version.
 /* -- avahi.h -- */
 
 extern void avahi_initialise(void);
-extern void avahi_advertise(const char *name, const char *host, const uint16_t port);
+extern void avahi_advertise(char *name, char *host, uint16_t port);
 extern void avahi_reset(void);
 extern void avahi_cleanup(void);
 

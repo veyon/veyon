@@ -148,25 +148,34 @@ void initialize_clipboard_atom(void) {
      18 gdm_string: Gdm-simple-greeter
      24 gdm_string: metacity
      36 gdm_string: gdm-simple-greeter
+
+	kdmgreet
+	Kdmgreet
  */
 
-static int gdm_string(char *str) {
+static int dm_string(char *str) {
+	char *s = getenv("DEBUG_WM_RUNNING");
 	if (str == NULL) {
 		return 0;
 	}
 	if (str[0] == '\0') {
 		return 0;
 	}
-	if (0) fprintf(stderr, "gdm_string: %s\n", str);
+	if (0) fprintf(stderr, "dm_string: %s\n", str);
 	if (strstr(str, "gdm-") == str || strstr(str, "Gdm-") == str) {
 		if (strstr(str, "-greeter") != NULL) {
+			if (s) rfbLog("dm_string: %s\n", str);
 			return 1;
 		}
+	}
+	if (!strcmp(str, "kdmgreet") || !strcmp(str, "Kdmgreet")) {
+		if (s) rfbLog("dm_string: %s\n", str);
+		return 1;
 	}
 	return 0;
 }
 
-static int gdm_still_running(void) {
+static int dm_still_running(void) {
 #if NO_X11
 	return 0;
 #else
@@ -195,7 +204,7 @@ static int gdm_still_running(void) {
 		char *name = NULL;
 		Window w = winlist[i];
 		if (XFetchName(dpy, w, &name) && name != NULL) {
-			saw_gdm_name += gdm_string(name);
+			saw_gdm_name += dm_string(name);
 			XFree_wr(name);
 		}
 		classhint->res_name = NULL;
@@ -203,12 +212,12 @@ static int gdm_still_running(void) {
 		if (XGetClassHint(dpy, w, classhint)) {
 			name = classhint->res_name;
 			if (name != NULL) {
-				saw_gdm_name += gdm_string(name);
+				saw_gdm_name += dm_string(name);
 				XFree_wr(name);
 			}
 			name = classhint->res_class;
 			if (name != NULL) {
-				saw_gdm_name += gdm_string(name);
+				saw_gdm_name += dm_string(name);
 				XFree_wr(name);
 			}
 		}
@@ -230,6 +239,7 @@ static int gdm_still_running(void) {
 
 static int wm_running(void) {
 	char *s = getenv("DEBUG_WM_RUNNING");
+	int ret = 0;
 	RAWFB_RET(0)
 #if NO_X11
 	return 0;
@@ -238,30 +248,36 @@ static int wm_running(void) {
 	 * Unfortunately with recent GDM (v2.28), they run gnome-session,
 	 * dbus-launch, and metacity for the Login greeter!  So the simple
 	 * XInternAtom checks below no longer work.
+         * We also see a similar thing with KDE.
 	 */
-	if (gdm_still_running()) {
+	if (dm_still_running()) {
 		return 0;
 	}
 
 	/* we are xlocked. */
 	if (XInternAtom(dpy, "_NET_SUPPORTED", True) != None) {
 		if (s) rfbLog("wm is running (_NET_SUPPORTED).\n");
-		return 1;
+		ret++;
 	}
 	if (XInternAtom(dpy, "_WIN_PROTOCOLS", True) != None) {
 		if (s) rfbLog("wm is running (_WIN_PROTOCOLS).\n");
-		return 1;
+		ret++;
 	}
 	if (XInternAtom(dpy, "_XROOTPMAP_ID", True) != None) {
 		if (s) rfbLog("wm is running (_XROOTPMAP_ID).\n");
-		return 1;
+		ret++;
 	}
 	if (XInternAtom(dpy, "_MIT_PRIORITY_COLORS", True) != None) {
 		if (s) rfbLog("wm is running (_MIT_PRIORITY_COLORS).\n");
+		ret++;
+	}
+	if (!ret) {
+		if (s) rfbLog("wm is not running.\n");
+		return 0;
+	} else {
+		if (s) rfbLog("wm is running ret=%d.\n", ret);
 		return 1;
 	}
-	if (s) rfbLog("wm is not running.\n");
-	return 0;
 #endif	/* NO_X11 */
 	
 }
@@ -306,6 +322,9 @@ int guess_dm_gone(int t1, int t2) {
 			}
 		}
 		X_UNLOCK;
+	}
+	if (getenv("DEBUG_WM_RUNNING")) {
+		rfbLog("guess_dm_gone: wait=%d\n", wait);
 	}
 	/* we assume they've logged in OK after wait seconds... */
 	if (time(NULL) <= tcheck + wait)  {
@@ -365,7 +384,7 @@ static void initialize_xevents(int reset) {
 		 * We try to delay creating selwin until we are past
 		 * any GDM, (or other KillInitClients=true) manager.
 		 */
-		if (guess_dm_gone(5, 45)) {
+		if (guess_dm_gone(8, 45)) {
 			X_LOCK;
 			selwin = XCreateSimpleWindow(dpy, rootwin, 3, 2, 1, 1, 0, 0, 0);
 			X_UNLOCK;
@@ -400,7 +419,7 @@ static void initialize_xevents(int reset) {
 		 * we are past the display manager, due to Xorg bug:
 		 * http://bugs.freedesktop.org/show_bug.cgi?id=18451
 		 */
-		if (guess_dm_gone(5, 45)) {
+		if (guess_dm_gone(8, 45)) {
 			initialize_xfixes();
 			did_xfixes = 1;
 			if (! quiet) rfbLog("called initialize_xfixes()\n");

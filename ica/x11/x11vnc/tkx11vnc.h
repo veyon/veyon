@@ -249,6 +249,7 @@ char gui_code[] = "";
 "	buttonmap:\n"
 "	--\n"
 "	xwarppointer\n"
+"	always_inject\n"
 "\n"
 "Misc\n"
 "	=GD-C:full,icon,tray WindowView:\n"

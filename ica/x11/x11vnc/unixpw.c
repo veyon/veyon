@@ -1512,6 +1512,52 @@ static void progress_skippy(void) {
 	usleep(50*1000);
 }
 
+void check_unixpw_userprefs(void) {
+	char *prefs = getenv("FD_USERPREFS");
+	if (keep_unixpw_user == NULL || keep_unixpw_opts == NULL) {
+		return;
+	}
+#if LIBVNCSERVER_HAVE_PWD_H
+	if (prefs != NULL && !strchr(prefs, '/')) {
+		struct passwd *pw = getpwnam(keep_unixpw_user);
+		if (pw != NULL) {
+			char *file;
+			FILE *f;
+
+			file = (char *) malloc(strlen(pw->pw_dir) + 1 + strlen(prefs) + 1);
+			sprintf(file, "%s/%s", pw->pw_dir, prefs);
+
+			f = fopen(file, "r");
+			if (f) {
+				char *t, *q, buf[1024];
+				memset(buf, 0, sizeof(buf));
+
+				fgets(buf, 1024, f);
+				fclose(f);
+
+				q = strchr(buf, '\n');
+				if (q) *q = '\0';
+				q = strchr(buf, '\r');
+				if (q) *q = '\0';
+
+				rfbLog("read user prefs %s: %s\n", file, buf);
+
+				if (buf[0] == '#') buf[0] = '\0';
+
+				t = (char *) malloc(strlen(keep_unixpw_opts) + 1 + strlen(buf) + 1);
+				sprintf(t, "%s,%s", keep_unixpw_opts, buf); 
+				free(keep_unixpw_opts);
+				keep_unixpw_opts = t;
+			} else {
+				rfbLog("could not read user prefs %s\n", file);
+				rfbLogPerror("fopen");
+			}
+			free(file);
+		}
+	}
+#endif
+}
+
 
 void unixpw_verify_screen(char *user, char *pass) {
 	int x, y;
@@ -1569,7 +1615,9 @@ if (db) fprintf(stderr, "unixpw_verify: '%s' '%s'\n", user, db > 1 ? pass : "***
 			} else {
 				keep_unixpw_opts = strdup("");
 			}
+			check_unixpw_userprefs();
 		}
+
 		if (colon) *colon = ':';
 
 		return;
@@ -1759,6 +1807,7 @@ void unixpw_keystroke(rfbBool down, rfbKeySym keysym, int init) {
 			} else {
 				keep_unixpw_opts = strdup("");
 			}
+			check_unixpw_userprefs();
 		}
 		unixpw_system_greeter_active = 2;
 		set_env("X11VNC_XDM_ONLY", "1");

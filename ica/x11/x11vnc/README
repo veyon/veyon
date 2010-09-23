@@ -2,7 +2,7 @@
 Copyright (C) 2002-2010 Karl J. Runge <runge@karlrunge.com>
 All rights reserved.
 
-x11vnc README file                         Date: Sat May  8 19:32:50 EDT 2010
+x11vnc README file                         Date: Fri Sep 10 12:29:36 EDT 2010
 
 The following information is taken from these URLs:
 
@@ -586,12 +586,12 @@ vncviewer -via $host localhost:0      # must be TightVNC vncviewer.
    SourceForge.net. I use libvncserver for all of the VNC aspects; I
    couldn't have done without it. The full source code may be found and
    downloaded (either file-release tarball or GIT tree) from the above
-   link. As of May 2010, the x11vnc-0.9.10.tar.gz source package is
-   released (recommended download). The x11vnc 0.9.10 release notes.
+   link. As of Sep 2010, the x11vnc-0.9.12.tar.gz source package is
+   released (recommended download). The x11vnc 0.9.12 release notes.
 
    The x11vnc package is the subset of the libvncserver package needed to
    build the x11vnc program. Also, you can get a copy of my latest,
-   bleeding edge x11vnc-0.9.11-dev.tar.gz tarball to build the most up to
+   bleeding edge x11vnc-0.9.13-dev.tar.gz tarball to build the most up to
    date one.
 
    Precompiled Binaries/Packages:  See the FAQ below for information
@@ -629,13 +629,13 @@ vncviewer -via $host localhost:0      # must be TightVNC vncviewer.
    default.) See this build FAQ for more details.
 
    If your OS has libjpeg.so and libz.so in standard locations you can
-   build as follows (example given for the 0.9.10 release of x11vnc:
+   build as follows (example given for the 0.9.12 release of x11vnc:
    replace with the version you downloaded):
 (un-tar the x11vnc+libvncserver tarball)
-# gzip -dc x11vnc-0.9.10.tar.gz | tar -xvf -
+# gzip -dc x11vnc-0.9.12.tar.gz | tar -xvf -
 
 (cd to the source directory)
-# cd x11vnc-0.9.10
+# cd x11vnc-0.9.12
 
 (run configure and then run make)
 # ./configure
@@ -885,13 +885,13 @@ make
    I'd appreciate any additional testing very much.
 
    Thanks to those who suggested features and helped beta test x11vnc
-   0.9.10 released in May 2010!
+   0.9.12 released in Sep 2010!
 
-   Please help test and debug the 0.9.11 version for release sometime in
-   Summer 2010.
+   Please help test and debug the 0.9.13 version for release sometime in
+   Winter 2010.
 
-   The version 0.9.11 beta tarball is kept here:
-   x11vnc-0.9.11-dev.tar.gz
+   The version 0.9.13 beta tarball is kept here:
+   x11vnc-0.9.13-dev.tar.gz
 
    There are also some Linux, Solaris, Mac OS X, and other OS test
    binaries here. Please kick the tires and report bugs, performance
@@ -908,11 +908,40 @@ make
    settings panel.)
 
 
-   Here are some features that will appear in the 0.9.11 release:
-     * Coming Soon.
+   Here are some features that will appear in the 0.9.13 release:
+     * Coming Soon!
 
 
-   Here are some features that appeared in the 0.9.10 release:
+   Here are some features that appeared in the 0.9.12 release:
+     * One can now specify the maximum number of displays that can be
+       created in -create mode via the env. var.
+       X11VNC_CREATE_MAX_DISPLAYS
+     * The X11VNC_NO_LIMIT_SHM env. var. is added to skip any automatic
+       shared memory reduction.
+     * The kdm display manager is now detected when trying not to get
+       killed by the display manager.
+     * A compile time bug is fixed so that configuring using
+       --with-system-libvncserver pointing to LibVNCServer 0.9.7 works
+       again. A bug from forced used of Xdefs.h is worked around.
+
+
+   Here are some features that appeared in the 0.9.11 release (Aug/2010):
+     * The source tree is synchronized with the most recent libvncclient
+       (this only affects -reflect mode.) Build is fixed for
+       incompatibilities when using an external LibVNCServer (e.g.
+       ./configure --with-system-libvncserver...) Please help test these
+       build and runtime aspects and report back what you find, thanks.
+     * The SSL enabled Java VNC Viewer Makefile has been modified so that
+       the jar files that are built are compatible back to Java 1.4.
+     * In -create/-unixpw mode, the env. var. FD_USERPREFS may be set to
+       a filename in the user's home directory that includes default
+       username:options values (so the options do not need to be typed
+       every time at the login prompt.)
+     * In -reflect mode cursor position updates are now handled
+       correctly.
+
+
+   Here are some features that appeared in the 0.9.10 release (May/2010):
      * The included SSL enabled Java applet viewer now supports Chained
        SSL Certificates. The debugCerts=yes applet parameter aids
        troubleshooting certificate validation. The x11vnc -ssl mode has
@@ -1982,7 +2011,7 @@ http://www.karlrunge.com/x11vnc/faq.html:
    Q-109: Help! x11vnc and my KDE screensaver keep switching each other
    on and off every few seconds. 
 
-   Q-110: I am running the beryl 3D window manager (or compiz, MythTv,
+   Q-110: I am running the compiz 3D window manager (or beryl, MythTv,
    Google Earth, or some other OpenGL app) and I do not get screen
    updates in x11vnc. 
 
@@ -5702,12 +5731,12 @@ ied)
      * On Firefox/Mozilla (and anything else) turn off "Smooth Scroll"
        animations. In Firefox put in the URL "about:config" and set
        general.smoothScroll to false.
-     * On XFree86 turn on the Shadow Framebuffer to speed up reading.
-       (Option "ShadowFB" "true" in the Device section of
+     * On Xorg/XFree86 turn on the Shadow Framebuffer to speed up
+       reading. (Option "ShadowFB" "true" in the Device section of
        /etc/X11/XF86Config) This disables 2D acceleration on the physical
-       display and so may not be worth it, but could be of use in some
-       situations. If the link is very slow, this speedup may not be
-       noticed.
+       display and so may not be worth it (if you play games, etc), but
+       could be of use in some situations. Note: If the network link is
+       very slow, this speedup may not be noticed.
 
      VNC viewer parameters:
      * Use a TightVNC enabled viewer! (Actually, RealVNC 4.x viewer with
@@ -5726,7 +5755,7 @@ ied)
      * Try other VNC encodings via -encodings (tight may be the fastest,
        but you should compare it to zrle and maybe some of the others)
      * On the machine where vncviewer is run, make sure Backing Store is
-       enabled (XFree86/Xorg disables it by default causing re-exposures
+       enabled (Xorg/XFree86 disables it by default causing re-exposures
        of vncviewer to be very slow) Option "backingstore" in config
        file.
 
@@ -6192,8 +6221,9 @@ EndSection
    shared) client-side caching is that one needs to extend the VNC
    protocol, modify a viewer and then also convince users to adopt your
    modified VNC Viewer (or get the new features to be folded into the
-   main VNC viewers, patches accepted, etc... likely takes years before
-   they might be deployed in the field)
+   main VNC viewers, patches accepted, etc... likely takes many years
+   before they might be deployed in the field.) So it is convenient that
+   the "-ncache n" works with any unaltered VNC viewer.
 
    A drawback of the "-ncache n" method is that in the VNC Viewer you can
    scroll down and actually see the cached pixel data. So it looks like
@@ -6292,13 +6322,14 @@ Section "Device"
 EndSection
 
    No problems like this have been observed with Windows VNC Viewers:
-   they all seem to keep their entire framebuffer in local memory. Gotcha
-   for KDE krdc VNC Viewer: One user found that KDE's krdc viewer has
-   some sort of hardwired limit on the maximum size of the framebuffer
-   (64MB?). It fails quickly saying "The connection to the host has been
-   interrupted." The workaround for his 1280x1024 x11vnc-side display was
-   to run with "-ncache 10", i.e. a smaller value to be under the krdc
-   threshold.
+   they all seem to keep their entire framebuffer in local memory.
+
+   Gotcha for KDE krdc VNC Viewer: One user found that KDE's krdc viewer
+   has some sort of hardwired limit on the maximum size of the
+   framebuffer (64MB?). It fails quickly saying "The connection to the
+   host has been interrupted." The workaround for his 1280x1024
+   x11vnc-side display was to run with "-ncache 10", i.e. a smaller value
+   to be under the krdc threshold.
 
    Although this scheme is not as quick (nor as compressed) as
    nx/nomachine, say, it does provide a good step in the direction of
@@ -7337,18 +7368,18 @@ EndSection
    the screensaver.) Feel free to file a bug against kdesktop_lock with
    KDE.
 
-   Q-110: I am running the beryl 3D window manager (or compiz, MythTv,
+   Q-110: I am running the compiz 3D window manager (or beryl, MythTv,
    Google Earth, or some other OpenGL app) and I do not get screen
    updates in x11vnc.
 
    This appears to be because the 3D OpenGL/GLX hardware screen updates
    do not get reported via the XDAMAGE mechanism. So this is a bug in
-   beryl/compiz or XDAMAGE/Xorg or the (possibly 3rd party) video card
+   compiz/beryl or XDAMAGE/Xorg or the (possibly 3rd party) video card
    driver.
 
    As a workaround apply the -noxdamage option. As of Feb/2007 x11vnc
    will try to autodetect the problem and disable XDAMAGE if is appears
-   to be missing a lot of updates. But if you know you are using beryl
+   to be missing a lot of updates. But if you know you are using compiz
    you might as well always supply -noxdamage. Thanks to this user who
    reported the problem and discovered the workaround.
 
@@ -7360,6 +7391,10 @@ EndSection
    this: running x11vnc with -noxdamage disables a nice improvement in
    responsiveness (especially for typing) and also leads to unnecessary
    CPU and memory I/O load due to the extra polling.
+
+   Update: as of May/2010 NVIDIA may have fixed this problem in their
+   proprietary drivers. See the NVIDIA Release Notes. (look for
+   'x11vnc'.)
 
    Q-111: Can I use x11vnc to view my VMWare session remotely?
 
@@ -8035,6 +8070,22 @@ rm -f $tmp
    command for you.) Then once you are connected via VNC, iconify the
    Terminal windows (you can't delete them since that will kill x11vnc.)
 
+   Update Aug/2010: A user reports the following useful information:
+This is not a problem on Mac OS X 10.6.x when connecting via ssh to
+start x11vnc.  And, on Mac OS X 10.5.x, the problem can be permanently
+eliminated by doing this:
+
+
+sudo /usr/libexec/PlistBuddy -c 'delete :LimitLoadToSessionType' \
+   -c 'add :LimitLoadToSessionType string Background' \
+   /System/Library/LaunchAgents/com.apple.pboard.plist
+# ignore any 'Delete: Entry, ":LimitLoadToSessionType", Does Not Exist' message
+
+and then restarting (yes, you must restart not just log off).  But
+ONLY do that for Mac OS X 10.5.x and NOT for 10.6.x (which doesn't
+need it anyway).
+
+
    Q-118: Can x11vnc be used as a VNC reflector/repeater to improve
    performance for the case of a large number of simultaneous VNC viewers
    (e.g. classroom broadcasting or a large demo)?
@@ -8367,7 +8418,6 @@ rm -f $tmp
      * SingleWindow: "Select Single Window..."
      * TextChat: "Open Chat..."
      * 1/n Server Scaling
-     * rfbEncodingUltra compression encoding
 
    The SSVNC Unix VNC viewer supports these UltraVNC extensions.
 
@@ -9105,6 +9155,31 @@ x11vnc-remote.o := CFLAGS += -O0
    compiler. If you are using a different compiler you will need to find
    the command line option to disable optimization, or otherwise have the
    lines set CFLAGS to the empty string.
+     _________________________________________________________________
+
+   Broken Thread Local Storage on SuSE 9.2: Starting with x11vnc 0.9.8
+   the bundled libvncserver uses the __thread keyword to make some of the
+   encodings (i.e. tight) thread safe (multiple VNC clients can be using
+   tight at the same time in x11vnc -threads mode.) Evidently on the old
+   SuSE 9.2 system the compiler does not support the thread local storage
+   properly. Here is an example build failure:
+tight.c:1126: error: unrecognizable insn:
+(insn:HI 11 10 13 0 (nil) (set (reg/f:SI 59)
+        (const:SI (plus:SI (symbol_ref:SI ("%lpalette"))
+                (const_int 2048 [0x800])))) -1 (nil)
+    (expr_list:REG_EQUAL (const:SI (plus:SI (symbol_ref:SI ("%lpalette"))
+                (const_int 2048 [0x800])))
+        (nil)))
+tight.c:1126: internal compiler error: in extract_insn, at recog.c:2175
+Please submit a full bug report,
+with preprocessed source if appropriate.
+See URL:http://www.suse.de/feedback for instructions.
+
+   The workaround is to disable thread local storage at configure time
+   like this:
+env CPPFLAGS="-DTLS=''" ./configure
+
+   and then build it.
      _________________________________________________________________
 	
 =======================================================================
@@ -11029,10 +11104,6 @@ Enhanced TightVNC Viewer   (SSVNC:   SSL/SSH VNC viewer)
    simplified Terminal-Services mode (tsvnc) for use with x11vnc on the
    remote side.
 
-   It is also possible (although not recommended) to disable encryption:
-   -noenc cmdline option; Ctrl-E toggle; or Vnc:// host prefix; see the
-   online Help for details.
-
    The tool has many additional features; see the descriptions below.
 
    It is a self-contained bundle, you could carry it around on, say, a
@@ -11217,7 +11288,7 @@ Unix and Mac OS X:
 
     Unpack the archive:
 
-        % gzip -dc ssvnc-1.0.28.tar.gz | tar xvf -
+        % gzip -dc ssvnc-1.0.29.tar.gz | tar xvf -
 
     Run the GUI:
 
@@ -11225,7 +11296,7 @@ Unix and Mac OS X:
 
         % ./ssvnc/MacOSX/ssvnc             (for Mac OS X)
 
-    The smaller file "ssvnc_no_windows-1.0.28.tar.gz"
+    The smaller file "ssvnc_no_windows-1.0.29.tar.gz"
     could have been used as well.
 
     On MacOSX you could also click on the SSVNC app icon in the Finder.
@@ -11271,8 +11342,8 @@ Unix/MacOSX Install:
 
     For the conventional source tarball it will compile and install, e.g.:
 
-       gzip -dc ssvnc-1.0.28.src.tar.gz | tar xvf -
-       cd ssvnc-1.0.28
+       gzip -dc ssvnc-1.0.29.src.tar.gz | tar xvf -
+       cd ssvnc-1.0.29
        make config
        make all
        make PREFIX=/my/install/dir install
@@ -11285,7 +11356,7 @@ Windows:
 
     Unzip, using WinZip or a similar utility, the zip file:
 
-        ssvnc-1.0.28.zip
+        ssvnc-1.0.29.zip
 
     Run the GUI, e.g.:
 
@@ -11297,7 +11368,7 @@ Windows:
 
     select Open, and then OK to launch it.
 
-    The smaller file "ssvnc_windows_only-1.0.28.zip"
+    The smaller file "ssvnc_windows_only-1.0.29.zip"
     could have been used as well.
 
     You can make a Windows shortcut to this program if you want to.
@@ -11964,25 +12035,25 @@ r
    "ssvnc_unix_only" (or "ssvnc_no_windows" to recompile).
       On Mac OS X? Use "ssvnc_no_windows".
       On Windows? Use "ssvnc_windows_only".
-  ssvnc_windows_only-1.0.27.zip      Windows Binaries Only.  No source included
+  ssvnc_windows_only-1.0.28.zip      Windows Binaries Only.  No source included
  (6.2MB)
-  ssvnc_no_windows-1.0.27.tar.gz     Unix and Mac OS X Only. No Windows binarie
+  ssvnc_no_windows-1.0.28.tar.gz     Unix and Mac OS X Only. No Windows binarie
 s.  Source included. (10.1MB)
-  ssvnc_unix_only-1.0.27.tar.gz      Unix Binaries Only.     No source included
+  ssvnc_unix_only-1.0.28.tar.gz      Unix Binaries Only.     No source included
 . (7.2MB)
-  ssvnc_unix_minimal-1.0.27.tar.gz   Unix Minimal.  You must supply your own vn
+  ssvnc_unix_minimal-1.0.28.tar.gz   Unix Minimal.  You must supply your own vn
 cviewer and stunnel. (0.2MB)
 
-  ssvnc-1.0.27.tar.gz                All Unix, Mac OS X, and Windows binaries a
+  ssvnc-1.0.28.tar.gz                All Unix, Mac OS X, and Windows binaries a
 nd source TGZ. (16.1MB)
-  ssvnc-1.0.27.zip                   All Unix, Mac OS X, and Windows binaries a
+  ssvnc-1.0.28.zip                   All Unix, Mac OS X, and Windows binaries a
 nd source ZIP. (16.4MB)
-  ssvnc_all-1.0.27.zip               All Unix, Mac OS X, and Windows binaries a
+  ssvnc_all-1.0.28.zip               All Unix, Mac OS X, and Windows binaries a
 nd source AND full archives in the zip dir. (19.2MB)
 
 
    Here is a conventional source tarball:
-  ssvnc-1.0.27.src.tar.gz            Conventional Source for SSVNC GUI and Unix
+  ssvnc-1.0.28.src.tar.gz            Conventional Source for SSVNC GUI and Unix
  VNCviewer  (0.5MB)
 
    it will be of use to those who do not want the SSVNC
@@ -12000,19 +12071,19 @@ nd source AND full archives in the zip dir. (19.2MB)
    "ssvnc_all", you may need to run the "./build.unix" script in the top
    directory to recompile for your operating system.
 
-   Here are the corresponding 1.0.28 development bundles (Please help
+   Here are the corresponding 1.0.29 development bundles (Please help
    test them):
 
-  ssvnc_windows_only-1.0.28.zip
-  ssvnc_no_windows-1.0.28.tar.gz
-  ssvnc_unix_only-1.0.28.tar.gz
-  ssvnc_unix_minimal-1.0.28.tar.gz
+  ssvnc_windows_only-1.0.29.zip
+  ssvnc_no_windows-1.0.29.tar.gz
+  ssvnc_unix_only-1.0.29.tar.gz
+  ssvnc_unix_minimal-1.0.29.tar.gz
 
-  ssvnc-1.0.28.tar.gz
-  ssvnc-1.0.28.zip
-  ssvnc_all-1.0.28.zip
+  ssvnc-1.0.29.tar.gz
+  ssvnc-1.0.29.zip
+  ssvnc_all-1.0.29.zip
 
-  ssvnc-1.0.28.src.tar.gz            Conventional Source for SSVNC GUI and Unix
+  ssvnc-1.0.29.src.tar.gz            Conventional Source for SSVNC GUI and Unix
  VNCviewer  (0.5MB)
 
 
@@ -12036,6 +12107,7 @@ nd source AND full archives in the zip dir. (19.2MB)
       Release 1.0.25 at Sourceforge.net
       Release 1.0.26 at Sourceforge.net
       Release 1.0.27 at Sourceforge.net
+      Release 1.0.28 at Sourceforge.net
 
 
    Please help test the UltraVNC File Transfer support in the native Unix
@@ -12100,7 +12172,7 @@ x11vnc: a VNC server for real X displays
    Here are all of x11vnc command line options:
 % x11vnc -opts      (see below for -help long descriptions)
 
-x11vnc: allow VNC connections to real X11 displays. 0.9.11 lastmod: 2010-05-08
+x11vnc: allow VNC connections to real X11 displays. 0.9.13 lastmod: 2010-09-10
 
 x11vnc options:
   -display disp            -auth file               -N                     
@@ -12162,41 +12234,42 @@ x11vnc options:
   -noxfixes                -alphacut n              -alphafrac fraction    
   -alpharemove             -noalphablend            -nocursorshape         
   -cursorpos               -nocursorpos             -xwarppointer          
-  -noxwarppointer          -buttonmap string        -nodragging            
-  -ncache n                -ncache_cr               -ncache_no_moveraise   
-  -ncache_no_dtchange      -ncache_no_rootpixmap    -ncache_keep_anims     
-  -ncache_old_wm           -ncache_pad n            -debug_ncache          
-  -wireframe [str]         -nowireframe             -nowireframelocal      
-  -wirecopyrect mode       -nowirecopyrect          -debug_wireframe       
-  -scrollcopyrect mode     -noscrollcopyrect        -scr_area n            
-  -scr_skip list           -scr_inc list            -scr_keys list         
-  -scr_term list           -scr_keyrepeat lo-hi     -scr_parms string      
-  -fixscreen string        -debug_scroll            -noxrecord             
-  -grab_buster             -nograb_buster           -debug_grabs           
-  -debug_sel               -pointer_mode n          -input_skip n          
-  -allinput                -input_eagerly           -speeds rd,bw,lat      
-  -wmdt string             -debug_pointer           -debug_keyboard        
-  -defer time              -wait time               -extra_fbur n          
-  -wait_ui factor          -setdefer n              -nowait_bog            
-  -slow_fb time            -xrefresh time           -nap                   
-  -nonap                   -sb time                 -readtimeout n         
-  -ping n                  -nofbpm                  -fbpm                  
-  -nodpms                  -dpms                    -forcedpms             
-  -clientdpms              -noserverdpms            -noultraext            
-  -chatwindow              -noxdamage               -xd_area A             
-  -xd_mem f                -sigpipe string          -threads               
-  -nothreads               -fs f                    -gaps n                
-  -grow n                  -fuzz n                  -debug_tiles           
-  -snapfb                  -rawfb string            -freqtab file          
-  -pipeinput cmd           -macnodim                -macnosleep            
-  -macnosaver              -macnowait               -macwheel n            
-  -macnoswap               -macnoresize             -maciconanim n         
-  -macmenu                 -macuskbd                -gui [gui-opts]        
-  -remote command          -query variable          -QD variable           
-  -sync                    -query_retries str       -remote_prefix str     
-  -noremote                -yesremote               -unsafe                
-  -safer                   -privremote              -nocmds                
-  -allowedcmds list        -deny_all              
+  -noxwarppointer          -always_inject           -buttonmap string      
+  -nodragging              -ncache n                -ncache_cr             
+  -ncache_no_moveraise     -ncache_no_dtchange      -ncache_no_rootpixmap  
+  -ncache_keep_anims       -ncache_old_wm           -ncache_pad n          
+  -debug_ncache            -wireframe [str]         -nowireframe           
+  -nowireframelocal        -wirecopyrect mode       -nowirecopyrect        
+  -debug_wireframe         -scrollcopyrect mode     -noscrollcopyrect      
+  -scr_area n              -scr_skip list           -scr_inc list          
+  -scr_keys list           -scr_term list           -scr_keyrepeat lo-hi   
+  -scr_parms string        -fixscreen string        -debug_scroll          
+  -noxrecord               -grab_buster             -nograb_buster         
+  -debug_grabs             -debug_sel               -pointer_mode n        
+  -input_skip n            -allinput                -input_eagerly         
+  -speeds rd,bw,lat        -wmdt string             -debug_pointer         
+  -debug_keyboard          -defer time              -wait time             
+  -extra_fbur n            -wait_ui factor          -setdefer n            
+  -nowait_bog              -slow_fb time            -xrefresh time         
+  -nap                     -nonap                   -sb time               
+  -readtimeout n           -ping n                  -nofbpm                
+  -fbpm                    -nodpms                  -dpms                  
+  -forcedpms               -clientdpms              -noserverdpms          
+  -noultraext              -chatwindow              -noxdamage             
+  -xd_area A               -xd_mem f                -sigpipe string        
+  -threads                 -nothreads               -fs f                  
+  -gaps n                  -grow n                  -fuzz n                
+  -debug_tiles             -snapfb                  -rawfb string          
+  -freqtab file            -pipeinput cmd           -macnodim              
+  -macnosleep              -macnosaver              -macnowait             
+  -macwheel n              -macnoswap               -macnoresize           
+  -maciconanim n           -macmenu                 -macuskbd              
+  -gui [gui-opts]          -remote command          -query variable        
+  -QD variable             -sync                    -query_retries str     
+  -remote_prefix str       -noremote                -yesremote             
+  -unsafe                  -safer                   -privremote            
+  -nocmds                  -allowedcmds list        -deny_all              
+
 
 LibVNCServer options:
 -rfbport port          TCP port for RFB protocol
@@ -12230,7 +12303,7 @@ libvncserver-tight-extension options:
 
 % x11vnc -help
 
-x11vnc: allow VNC connections to real X11 displays. 0.9.11 lastmod: 2010-05-08
+x11vnc: allow VNC connections to real X11 displays. 0.9.13 lastmod: 2010-09-10
 
 (type "x11vnc -opts" to just list the options.)
 
@@ -12633,6 +12706,12 @@ Options:
 -forever               Keep listening for more connections rather than exiting
                        as soon as the first client(s) disconnect. Same as -many
 
+                       To get the standard non-shared VNC behavior where when
+                       a new VNC client connects the existing VNC client is
+                       dropped use:  -nevershared -forever   This method can
+                       also be used to guard against hung TCP connections that
+                       do not go away.
+
 -loop                  Create an outer loop restarting the x11vnc process
                        whenever it terminates.  -bg and -inetd are ignored
                        in this mode (however see -loopbg below).
@@ -12739,6 +12818,11 @@ Options:
                        Rendezvous, Bonjour).  Depending on your setup, you
                        may need to start avahi-daemon and open udp port 5353
                        in your firewall.
+
+                       You can set X11VNC_AVAHI_NAME, X11VNC_AVAHI_HOST,
+                       and/or X11VNC_AVAHI_PORT environment variables
+                       to override the default values.  For example:
+                       -env X11VNC_AVAHI_NAME=wally
 
                        If the avahi API cannot be found at build time, a helper
                        program like avahi-publish(1) or dns-sd(1) will be tried
@@ -13366,13 +13450,13 @@ Options:
                        virtual terminal of the X server.
 -listdpy               Have the FINDDISPLAY program list all of your displays
                        (i.e. all the X displays on the local machine that you
-                       have access rights to).
+                       have access rights to).  x11vnc then exits.
 
 -findauth [disp]       Apply the -find/-finddpy heuristics to try to guess
                        the XAUTHORITY file for DISPLAY 'disp'.  If 'disp'
                        is not supplied, then the value in the -display on
                        the cmdline is used; failing that $DISPLAY is used;
-                       and failing that ":0" is used.
+                       and failing that ":0" is used.  x11vnc then exits.
 
                        If nothing is printed out, that means no XAUTHORITY was
                        found for 'disp'; i.e. failure.  If "XAUTHORITY="
@@ -13608,8 +13692,19 @@ Options:
                        if the viewer-side supplied value is not completely
                        composed of alphanumeric or '_' or '-' characters.
 
+                       User preferences file: Instead of having the user type
+                       in geom=WxH,... etc. every time he logs in to find
+                       or create his X session, if you set FD_USERPREFS to
+                       a string that does not contain the "/" character,
+                       then the user's home directory is prepended to that
+                       string and if the file exists its first line is read
+                       and appended to any options he supplied at the login:
+                       prompt.  For example -env FD_USERPREFS=.x11vnc_create
+                       and the user put "geom=1600x1200" in his
+                       ~/.x11vnc_create file.
+
                        To troubleshoot the FINDCREATEDISPLAY mechanism,
-                       set the following env. var. to an ouput log file,
+                       set the following env. var. to an output log file,
                        e.g -env CREATE_DISPLAY_OUTPUT=/tmp/mydebug.txt
 
                        To disable the option setting set the environment
@@ -13699,6 +13794,8 @@ Options:
 
                        It will start looking for an open display number at :20
                        Override via X11VNC_CREATE_STARTING_DISPLAY_NUMBER=n
+                       By default 80 X displays are allowed (i.e. going to :99)
+                       Override via X11VNC_CREATE_MAX_DISPLAYS=n
 
                        By default FINDCREATEDISPLAY will try Xvfb and then
                        Xdummy:
@@ -14221,6 +14318,7 @@ Options:
 
 -sslGenCA [dir]        Generate your own Certificate Authority private key,
                        certificate, and other files in directory [dir].
+                       x11vnc then exits.
 
                        If [dir] is not supplied, a -ssldir setting is used,
                        or otherwise ~/.vnc/certs is used.
@@ -14231,7 +14329,7 @@ Options:
                        in PATH.
 
                        After the CA files and directories are created the
-                       command exits; the VNC server is not run.
+                       x11vnc command exits; the VNC server is not run.
 
                        You will be prompted for information to put into the CA
                        certificate.  The info does not have to be accurate just
@@ -14259,8 +14357,8 @@ Options:
                        -sslGenCA.  The openssl(1) program must be installed
                        on the system and available in PATH.
 
-                       After the Certificate is generated the command exits;
-                       the VNC server is not run.
+                       After the Certificate is generated x11vnc exits; the
+                       VNC server is not run.
 
                        The type of key to be generated is the string "type".
                        It is either "server" (i.e. for use by x11vnc) or
@@ -14379,7 +14477,7 @@ Options:
                                scp ~/.vnc/certs/clients/roger.pem somehost:.
                                rm  ~/.vnc/certs/clients/roger.pem
 
-                       x11vnc is then started with the the option -sslverify
+                       x11vnc is then started with the option -sslverify
                        ~/.vnc/certs/clients/roger.crt (or simply -sslverify
                        roger), and on the viewer user on somehost could do
                        for example:
@@ -14402,7 +14500,7 @@ Options:
 
                        The openssl(1) program must be installed on the system
                        and available in PATH.  After the Key file is encrypted
-                       the command exits; the VNC server is not run.
+                       the x11vnc command exits; the VNC server is not run.
 
                        Examples:
                                x11vnc -sslEncKey /path/to/foo.pem
@@ -14413,6 +14511,9 @@ Options:
                        In addition the public certificate is also printed.
                        The openssl(1) program must be in PATH. Basically the
                        command "openssl x509 -text" is run on the pem.
+
+                       After the info is printed the x11vnc command exits;
+                       the VNC server is not run.
 
                        The "SAVE" notation described under -ssl applies
                        as well.
@@ -14439,13 +14540,13 @@ Options:
                        also be lowercase, e.g. "list".
 
 -sslDelCert pem        Prompts you to delete all .crt .pem .key .req files
-                       associated with [pem].  "SAVE" and lookups as in
-                       -sslCertInfo apply as well.
+                       associated with [pem].  x11vnc then exits. "SAVE"
+                       and lookups as in -sslCertInfo apply as well.
 
 -sslScripts            Prints out both the 'genCA' and 'genCert' x11vnc
                        openssl wrapper scripts for you to examine, modify, etc.
-                       The scripts are printed to stdout and then the program
-                       exits.
+                       The scripts are printed to stdout and then the x11vnc
+                       program exits.
 
 
 -stunnel [pem]         Use the stunnel(8) (stunnel.mirt.net) to provide an
@@ -15015,6 +15116,9 @@ t
                        just use 1 shm tile for polling.  Limits shm segments
                        used to 3.
 
+                       To disable any automatic shm reduction set the
+                       env. var. X11VNC_NO_LIMIT_SHM.
+
 -solid [color]         To improve performance, when VNC clients are connected
                        try to change the desktop background to a solid color.
                        The [color] is optional: the default color is "cyan4".
@@ -15265,7 +15369,7 @@ t
                        the wire and are applied correctly to the x11vnc-side
                        X server.  Note this mode probably won't do what you
                        want in -nomodtweak mode.  Also, a kludge for KP_n
-                       digits is always done it this mode: they are mapped to
+                       digits is always done in this mode: they are mapped to
                        regular digit keysyms.  See also -capslock above.
                        The default is -noskip_lockkeys.
 
@@ -15547,6 +15651,34 @@ t
                        It is also sometimes needed on XINERAMA displays and is
                        enabled by default if XINERAMA is found to be active.
                        To prevent this, use -noxwarppointer.
+
+-always_inject         Even if there is no displacement (dx = dy = 0) for a
+                       VNC mouse event force the pointer to the indicated x,y
+                       position anyway.  Recent (2009) gui toolkits (gnome)
+                       have problems with x11vnc's original mouse input
+                       injection method.  So x11vnc's mouse input injection
+                       method has been modified.  To regain the OLD behavior
+                       use this option: -always_inject.  Then x11vnc will
+                       always force positioning the mouse to the x,y position
+                       even if that position has not changed since the previous
+                       VNC input event.
+
+                       The first place this problem was noticed was in gnome
+                       terminal: if you pressed and released mouse button 3, a
+                       menu was posted and then its first element 'New Terminal
+                       Window' was activated.  This was because x11vnc injected
+                       the mouse position twice: once on ButtonPress and again
+                       on ButtonRelease.  The toolkit interpreted the 2nd one
+                       as mouse motion even though the mouse hadn't moved.
+                       So now by default x11vnc tries to avoid injecting the
+                       2nd one.
+
+                       Note that with the new default x11vnc will be oblivious
+                       to applications moving the pointer (warping) or the
+                       user at the physical display moving it.  So it might,
+                       e.g., inject ButtonRelease at the wrong position.
+                       If this (or similar scenarios) causes problems in your
+                       environment, specify -always_inject for the old method.
 
 -buttonmap string      String to remap mouse buttons.  Format: IJK-LMN, this
                        maps buttons I -> L, etc., e.g.  -buttonmap 13-31
@@ -16005,7 +16137,7 @@ t
                        the whole-server grabbing application expects mouse or
                        keyboard input before releasing the grab.  It is usually
                        a window manager that does this.  x11vnc takes care to
-                       avoid the the problem, but if caught x11vnc will freeze.
+                       avoid the problem, but if caught x11vnc will freeze.
                        Without -grab_buster, the only solution is to go the
                        physical display and give it some input to satisfy the
                        grabbing app.  Or manually kill and restart the window
@@ -16845,7 +16977,7 @@ er
 -macuskbd              For the native MacOSX server, use the original
                        keystroke insertion code based on a US keyboard.
 
--gui [gui-opts]        Start up a simple tcl/tk gui based on the the remote
+-gui [gui-opts]        Start up a simple tcl/tk gui based on the remote
                        control options -remote/-query described below.
                        Requires the "wish" program to be installed on the
                        machine.  "gui-opts" is not required: the default
@@ -16976,9 +17108,9 @@ n
                        x11vnc server.  "-R" and "-r" are aliases for
                        "-remote".  After the remote control command is
                        sent to the running server the 'x11vnc -remote ...'
-                       command exits.  You can often use the -query command
-                       (see below) to see if the x11vnc server processed your
-                       -remote command.
+                       x11vnc command exits.  You can often use the -query
+                       command (see below) to see if the x11vnc server
+                       processed your -remote command.
 
                        The default communication channel is that of X
                        properties (specifically X11VNC_REMOTE), and so this
@@ -17231,6 +17363,8 @@ n
                        nocursorpos     enable  -nocursorpos mode.
                        xwarp           enable  -xwarppointer mode.
                        noxwarp         disable -xwarppointer mode.
+                       always_inject   enable  -always_inject mode.
+                       noalways_inject disable -always_inject mode.
                        buttonmap:str   set -buttonmap "str", empty to disable
                        dragging        disable -nodragging mode.
                        nodragging      enable  -nodragging mode.
@@ -17555,11 +17689,11 @@ n
                        nosetprimary clipboard noclipboard setclipboard
                        nosetclipboard seldir cursorshape nocursorshape
                        cursorpos nocursorpos cursor_drag nocursor_drag cursor
-                       show_cursor noshow_cursor nocursor arrow xfixes
-                       noxfixes xdamage noxdamage xd_area xd_mem alphacut
-                       alphafrac alpharemove noalpharemove alphablend
-                       noalphablend xwarppointer xwarp noxwarppointer
-                       noxwarp buttonmap dragging nodragging ncache_cr
+                       show_cursor noshow_cursor nocursor arrow xfixes noxfixes
+                       xdamage noxdamage xd_area xd_mem alphacut alphafrac
+                       alpharemove noalpharemove alphablend noalphablend
+                       xwarppointer xwarp noxwarppointer noxwarp always_inject
+                       noalways_inject buttonmap dragging nodragging ncache_cr
                        noncache_cr ncache_no_moveraise noncache_no_moveraise
                        ncache_no_dtchange noncache_no_dtchange
                        ncache_no_rootpixmap noncache_no_rootpixmap

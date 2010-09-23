@@ -1985,8 +1985,9 @@ static char *build_create_cmd(char *cmd, int *saw_xdmcp, char *usslpeer, char *t
 	fdxdmcpif[0]  = '\0';
 	cdout[0]  = '\0';
 
-	if (unixpw && keep_unixpw_opts && keep_unixpw_opts[0] != '\0') {
+	if (unixpw && keep_unixpw_opts && !getenv("X11VNC_NO_UNIXPW_OPTS")) {
 		char *q, *p, *t = strdup(keep_unixpw_opts);
+
 		if (strstr(t, "gnome")) {
 			sprintf(fdsess, "gnome");
 		} else if (strstr(t, "kde")) {

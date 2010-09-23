@@ -412,7 +412,7 @@ if (db24 > 2) fprintf(stderr, " check_for_multivis: %.4f\n", now - last_call);
 
 	/*
 	 * every 10 seconds we try to clean out and also refresh the window
-	 * info in the the 8bpp window table:
+	 * info in the 8bpp window table:
 	 */
 	if (now > last_clear + 10) {
 		last_clear = now;
