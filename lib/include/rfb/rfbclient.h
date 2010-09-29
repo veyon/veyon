@@ -313,6 +313,9 @@ typedef struct _rfbClient {
 	/* When the server is a repeater, this specifies the final destination */
 	char *destHost;
 	int destPort;
+
+        /* the QoS IP DSCP for this client */
+        int QoS_DSCP;
 } rfbClient;
 
 /* cursor.c */
@@ -388,6 +391,7 @@ extern int ConnectClientToTcpAddr6(const char *hostname, int port);
 extern int ConnectClientToUnixSock(const char *sockFile);
 extern int AcceptTcpConnection(int listenSock);
 extern rfbBool SetNonBlocking(int sock);
+extern rfbBool SetDSCP(int sock, int dscp);
 
 extern rfbBool StringToIPAddr(const char *str, unsigned int *addr);
 extern rfbBool SameMachine(int sock);
