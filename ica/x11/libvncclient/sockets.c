@@ -566,6 +566,55 @@ SetNonBlocking(int sock)
 }
 
 
+
+/*
+ * SetDSCP sets a socket's IP QoS parameters aka Differentiated Services Code Point field
+ */
+
+rfbBool
+SetDSCP(int sock, int dscp)
+{
+#ifdef WIN32
+  rfbClientErr("Setting of QoS IP DSCP not implemented for Windows\n");
+  return TRUE;
+#else
+  int level, cmd;
+  struct sockaddr addr;
+  socklen_t addrlen = sizeof(addr);
+
+  if(getsockname(sock, &addr, &addrlen) != 0) {
+    rfbClientErr("Setting socket QoS failed while getting socket address: %s\n",strerror(errno));
+    return FALSE;
+  }
+
+  switch(addr.sa_family)
+    {
+#ifdef LIBVNCSERVER_IPv6
+    case AF_INET6:
+      level = IPPROTO_IPV6;
+      cmd = IPV6_TCLASS;
+      break;
+#endif
+    case AF_INET:
+      level = IPPROTO_IP;
+      cmd = IP_TOS;
+      break;
+    default:
+      rfbClientErr("Setting socket QoS failed: Not bound to IP address");
+      return FALSE;
+    }
+
+  if(setsockopt(sock, level, cmd, (void*)&dscp, sizeof(dscp)) != 0) {
+    rfbClientErr("Setting socket QoS failed: %s\n", strerror(errno));
+    return FALSE;
+  }
+
+  return TRUE;
+#endif
+}
+
+
+
 /*
  * StringToIPAddr - convert a host string to an IP address.
  */
