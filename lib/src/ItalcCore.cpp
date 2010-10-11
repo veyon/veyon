@@ -85,7 +85,7 @@ bool ItalcCore::initAuthentication( void )
 
 
 
-int handleSecTypeItalc( rfbClient * _cl )
+rfbBool handleSecTypeItalc( rfbClient * _cl )
 {
 	SocketDevice socketDev( libvncClientDispatcher, _cl );
 

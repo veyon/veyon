@@ -1,7 +1,7 @@
 /*
  * ItalcCoreConnection.h - declaration of class ItalcCoreConnection
  *
- * Copyright (c) 2008-2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2008-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -82,10 +82,10 @@ private slots:
 
 
 private:
-	static rfbBool handleItalcMessage( rfbClient * _cl,
-						rfbServerToClientMsg * _msg );
+	static rfbBool handleItalcMessage( rfbClient *cl,
+						rfbServerToClientMsg *msg );
 
-	bool handleServerMessage( Q_UINT8 _msg );
+	bool handleServerMessage( rfbClient *cl, Q_UINT8 msg );
 	void enqueueMessage( const ItalcCore::Msg & _msg );
 
 

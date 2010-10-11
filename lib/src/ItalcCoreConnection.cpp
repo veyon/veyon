@@ -49,7 +49,7 @@ private:
 
 
 
-static rfbClientProtocolExtension * __italc_ext = NULL;
+static rfbClientProtocolExtension * __italcProtocolExt = NULL;
 static void * ItalcCoreConnectionTag = (void *) PortOffsetIVS; // an unique ID
 
 
@@ -60,14 +60,14 @@ ItalcCoreConnection::ItalcCoreConnection( ItalcVncConnection * _ivc ) :
 	m_user(),
 	m_userHomeDir()
 {
-	if( __italc_ext == NULL )
+	if( __italcProtocolExt == NULL )
 	{
-		__italc_ext = new rfbClientProtocolExtension;
-		__italc_ext->encodings = NULL;
-		__italc_ext->handleEncoding = NULL;
-		__italc_ext->handleMessage = handleItalcMessage;
+		__italcProtocolExt = new rfbClientProtocolExtension;
+		__italcProtocolExt->encodings = NULL;
+		__italcProtocolExt->handleEncoding = NULL;
+		__italcProtocolExt->handleMessage = handleItalcMessage;
 
-		rfbClientRegisterExtension( __italc_ext );
+		rfbClientRegisterExtension( __italcProtocolExt );
 	}
 
 	connect( m_ivc, SIGNAL( newClient( rfbClient * ) ),
@@ -94,19 +94,18 @@ void ItalcCoreConnection::initNewClient( rfbClient * _cl )
 
 
 
-rfbBool ItalcCoreConnection::handleItalcMessage( rfbClient * _cl,
-						rfbServerToClientMsg * _msg )
+rfbBool ItalcCoreConnection::handleItalcMessage( rfbClient * cl,
+						rfbServerToClientMsg * msg )
 {
 	ItalcCoreConnection * icc = (ItalcCoreConnection *)
-				rfbClientGetClientData( _cl,
-						ItalcCoreConnectionTag );
-	return icc->handleServerMessage( _msg->type );
+				rfbClientGetClientData( cl, ItalcCoreConnectionTag );
+	return icc->handleServerMessage( cl, msg->type );
 }
 
 
 
 
-bool ItalcCoreConnection::handleServerMessage( Q_UINT8 _msg )
+bool ItalcCoreConnection::handleServerMessage( rfbClient *cl, Q_UINT8 _msg )
 {
 	if( _msg == rfbItalcCoreResponse )
 	{
