@@ -42,7 +42,7 @@ SetOSVersion()
 									 OSTYPE=1;
 								  if(OSversion.dwMajorVersion==5)
 									 OSTYPE=1;
-								  if(OSversion.dwMajorVersion==6)
+								  if(OSversion.dwMajorVersion>=6) // handle anything >= 6
 									 OSTYPE=2;
 								  if(OSversion.dwMajorVersion<=4) 	  
 								     OSTYPE=3;

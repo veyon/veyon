@@ -1661,7 +1661,7 @@ void vncDesktop::SetClipText(char* rfbStr)
 }
 
 // adzm - 2010-07 - Extended clipboard
-void vncDesktop::SetClipTextEx(ExtendedClipboardDataMessage& extendedClipboardDataMessage, vncClient* sourceClient)
+void vncDesktop::SetClipTextEx(ExtendedClipboardDataMessage& extendedClipboardDataMessage)
 {
 	bool bRestored = false;
 	{
@@ -1675,11 +1675,6 @@ void vncDesktop::SetClipTextEx(ExtendedClipboardDataMessage& extendedClipboardDa
 		} else {
 			vnclog.Print(LL_INTWARN, VNCLOG("Failed to set extended clipboard data\n"));
 		}
-	}
-
-	if (bRestored) {
-		// we may need to notify other connected clients about the change.
-		GetServerPointer()->UpdateClipTextEx(Window(), sourceClient);
 	}
 }
 

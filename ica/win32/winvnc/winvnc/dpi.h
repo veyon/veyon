@@ -26,7 +26,7 @@ public:
     int ScaledScreenVirtualY() { return _ScaledSystemMetricY(SM_YVIRTUALSCREEN); }
 
     // Scale rectangle from raw pixels to relative pixels.
-    void ScaleRect(RECT *pRect)
+    void ScaleRect(__inout RECT *pRect)
     {
         pRect->left = ScaleX(pRect->left);
         pRect->right = ScaleX(pRect->right);

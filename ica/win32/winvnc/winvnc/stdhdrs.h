@@ -38,6 +38,7 @@
 #include <process.h>
 #include <crtdbg.h>
 
+#define __inout
 #include "dpi.h"
 
 // LOGGING SUPPORT
@@ -75,14 +76,22 @@ extern VNCLog vnclog;
 #define strcpy_s(dst,num,src)	strncpy(dst,src,num)
 #define strncpy_s(dst,num,src,x)	strncpy(dst,src,num)
 
+#define KEEPALIVE_HEADROOM 1
+#define KEEPALIVE_INTERVAL 5
+#define FT_RECV_TIMEOUT    30
+
+// adzm 2010-08
+#define SOCKET_KEEPALIVE_TIMEOUT 10000
+#define SOCKET_KEEPALIVE_INTERVAL 1000
+
 // Macros for sticking in the current file name
 #define VNCLOG(s)	(__FILE__ " : " s)
-#if MSC_VER > 12
+//#if MSC_VER > 12
 #ifndef _X64
-#pragma comment(linker,"/manifestdependency:\"type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='x86' publicKeyToken='6595b64144ccf1df' language='*'\"")
+#pragma comment(linker,"/manifestdependency:\"type='Win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='X86' publicKeyToken='6595b64144ccf1df' language='*'\"")
 #else
-#pragma comment(linker,"/manifestdependency:\"type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='amd64' publicKeyToken='6595b64144ccf1df' language='*'\"")
+#pragma comment(linker,"/manifestdependency:\"type='Win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='amd64' publicKeyToken='6595b64144ccf1df' language='*'\"")
 #endif
-#endif
+//#endif
 //#define memcpy memcpy_amd
 //remove comment to compiler for >=athlon  or >=PIII

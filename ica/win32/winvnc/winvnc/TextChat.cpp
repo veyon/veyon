@@ -385,7 +385,8 @@ void TextChat::SendLocalText(void)
     rfbTextChatMsg tcm;
     tcm.type = rfbTextChat;
 	tcm.length = Swap32IfLE(strlen(m_szLocalText));
-    m_pCC->m_socket->SendExact((char *)&tcm, sz_rfbTextChatMsg, rfbTextChat);
+	//adzm 2010-09 - minimize packets. SendExact flushes the queue.
+    m_pCC->m_socket->SendExactQueue((char *)&tcm, sz_rfbTextChatMsg, rfbTextChat);
 	m_pCC->m_socket->SendExact((char *)m_szLocalText, strlen(m_szLocalText));
 
 	//and we clear the input box

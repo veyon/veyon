@@ -45,6 +45,7 @@ class VSocket;
 #ifdef __WIN32__
 #include <io.h>
 #include <winsock2.h>
+#include <mstcpip.h>
 #else
 #include <sys/types.h>
 #include <sys/socket.h>
@@ -61,6 +62,7 @@ class VSocket;
 ////////////////////////////////////////////////////////
 // Custom includes
 
+#include <assert.h>
 #include "vtypes.h"
 extern unsigned int G_SENDBUFFER;
 ////////////////////////////////////////////////////////
@@ -84,6 +86,7 @@ const VInt rfbMaxClientWait = 5000;
 ////////////////////////////
 // Socket implementation initialisation
 static WORD winsockVersion = 0;
+bool sendall(SOCKET RemoteSocket,char *buff,unsigned int bufflen,int dummy);
 
 VSocketSystem::VSocketSystem()
 {
@@ -123,6 +126,10 @@ VSocketSystem::~VSocketSystem()
 
 ////////////////////////////
 
+
+// adzm 2010-08
+int VSocket::m_defaultSocketKeepAliveTimeout = 10000;
+
 VSocket::VSocket()
 {
 	// Clear out the internal socket fields
@@ -140,6 +147,13 @@ VSocket::VSocket()
 	m_fWriteToNetRectBuf = false;
 	m_nNetRectBufOffset = 0;
 	queuebuffersize=0;
+	
+	//adzm 2010-08-01
+	m_LastSentTick = 0;
+
+	//adzm 2010-09
+	m_fPluginStreamingIn = false;
+	m_fPluginStreamingOut = false;
 }
 
 ////////////////////////////
@@ -187,10 +201,9 @@ VSocket::Create()
       return VFalse;
   }
   //#endif
-  if (setsockopt(sock, IPPROTO_TCP, TCP_NODELAY, (char *)&one, sizeof(one)))
-  {
-	  return VFalse;
-  }
+
+  // adzm 2010-08
+  SetDefaultSocketOptions();
 
   return VTrue;
 }
@@ -316,6 +329,10 @@ VSocket::Connect(const VString address, const VCard port)
 	return VFalse;
 #endif
 */
+  
+  // adzm 2010-08
+  SetDefaultSocketOptions();
+
   return VTrue;
 }
 
@@ -340,8 +357,6 @@ VSocket::Listen()
 VSocket *
 VSocket::Accept()
 {
-  const int one = 1;
-
   int new_socket_id;
   VSocket * new_socket;
 
@@ -369,10 +384,11 @@ VSocket::Accept()
   {
 	  shutdown(new_socket_id, SD_BOTH);
 	  closesocket(new_socket_id);
+	  return NULL;
   }
-
-  // Attempt to set the new socket's options
-  setsockopt(new_socket->sock, IPPROTO_TCP, TCP_NODELAY, (char *)&one, sizeof(one));
+  
+  // adzm 2010-08
+  new_socket->SetDefaultSocketOptions();
 
   // Put the socket into non-blocking mode
   return new_socket;
@@ -471,6 +487,52 @@ VSocket::Resolve(const VString address)
 
 ////////////////////////////
 
+// adzm 2010-08
+VBool
+VSocket::SetDefaultSocketOptions()
+{
+	VBool result = VTrue;
+
+	const int one = 1;
+
+	if (setsockopt(sock, IPPROTO_TCP, TCP_NODELAY, (const char *)&one, sizeof(one)))
+	{
+		result = VFalse;
+	}
+
+	int defaultSocketKeepAliveTimeout = m_defaultSocketKeepAliveTimeout;
+	if (defaultSocketKeepAliveTimeout > 0) {
+		if (setsockopt(sock, SOL_SOCKET, SO_KEEPALIVE, (const char *)&one, sizeof(one))) {
+			result = VFalse;
+		} else {
+			DWORD bytes_returned = 0;
+			tcp_keepalive keepalive_requested;
+			tcp_keepalive keepalive_returned;
+			ZeroMemory(&keepalive_requested, sizeof(keepalive_requested));
+			ZeroMemory(&keepalive_returned, sizeof(keepalive_returned));
+
+			keepalive_requested.onoff = 1;
+			keepalive_requested.keepalivetime = defaultSocketKeepAliveTimeout;
+			keepalive_requested.keepaliveinterval = 1000;
+			// 10 probes always used by default in Vista+; not changeable. 
+
+			if (0 != WSAIoctl(sock, SIO_KEEPALIVE_VALS, 
+					&keepalive_requested, sizeof(keepalive_requested), 
+					&keepalive_returned, sizeof(keepalive_returned), 
+					&bytes_returned, NULL, NULL))
+			{
+				result = VFalse;
+			}
+		}
+	}
+
+	assert(result);
+
+	return result;
+}
+
+////////////////////////////
+
 VBool
 VSocket::SetTimeout(VCard32 msecs)
 {
@@ -526,22 +588,27 @@ VBool VSocket::SetRecvTimeout(VCard32 msecs)
 VInt
 VSocket::Send(const char *buff, const VCard bufflen)
 {
+	//adzm 2010-08-01
+	m_LastSentTick = GetTickCount();
+
 	unsigned int newsize=queuebuffersize+bufflen;
 	char *buff2;
 	buff2=(char*)buff;
 	unsigned int bufflen2=bufflen;
 
-	if (newsize >G_SENDBUFFER)
+	// adzm 2010-09 - flush as soon as we have a full buffer, not if we have exceeded it.
+	if (newsize >= G_SENDBUFFER)
 	{
 		    memcpy(queuebuffer+queuebuffersize,buff2,G_SENDBUFFER-queuebuffersize);
-			send(sock,queuebuffer,G_SENDBUFFER,0);
+			if (!sendall(sock,queuebuffer,G_SENDBUFFER,0)) return FALSE;
 //			vnclog.Print(LL_SOCKERR, VNCLOG("SEND  %i\n") ,G_SENDBUFFER);
 			buff2+=(G_SENDBUFFER-queuebuffersize);
 			bufflen2-=(G_SENDBUFFER-queuebuffersize);
 			queuebuffersize=0;
-			while (bufflen2 > G_SENDBUFFER)
+			// adzm 2010-09 - flush as soon as we have a full buffer, not if we have exceeded it.
+			while (bufflen2 >= G_SENDBUFFER)
 			{
-				if (!send(sock,buff2,G_SENDBUFFER,0)) return false;
+				if (!sendall(sock,buff2,G_SENDBUFFER,0)) return false;
 //				vnclog.Print(LL_SOCKERR, VNCLOG("SEND 1 %i\n") ,G_SENDBUFFER);
 				buff2+=G_SENDBUFFER;
 				bufflen2-=G_SENDBUFFER;
@@ -549,8 +616,10 @@ VSocket::Send(const char *buff, const VCard bufflen)
 	}
 	memcpy(queuebuffer+queuebuffersize,buff2,bufflen2);
 	queuebuffersize+=bufflen2;
-	if (!send(sock,queuebuffer,queuebuffersize,0)) 
-        return false;
+	if (queuebuffersize > 0) {
+		if (!sendall(sock,queuebuffer,queuebuffersize,0)) 
+			return false;
+	}
 //	vnclog.Print(LL_SOCKERR, VNCLOG("SEND 2 %i\n") ,queuebuffersize);
 	queuebuffersize=0;
 	return bufflen;
@@ -563,18 +632,26 @@ VSocket::SendQueued(const char *buff, const VCard bufflen)
 	char *buff2;
 	buff2=(char*)buff;
 	unsigned int bufflen2=bufflen;
+	
+	// adzm 2010-09 - flush as soon as we have a full buffer, not if we have exceeded it.
+	if (newsize >= G_SENDBUFFER)
+	{	
+			//adzm 2010-08-01
+			m_LastSentTick = GetTickCount();
 
-	if (newsize >G_SENDBUFFER)
-	{
 		    memcpy(queuebuffer+queuebuffersize,buff2,G_SENDBUFFER-queuebuffersize);
-			send(sock,queuebuffer,G_SENDBUFFER,0);
+			if (!sendall(sock,queuebuffer,G_SENDBUFFER,0)) return FALSE;
 		//	vnclog.Print(LL_SOCKERR, VNCLOG("SEND Q  %i\n") ,G_SENDBUFFER);
 			buff2+=(G_SENDBUFFER-queuebuffersize);
 			bufflen2-=(G_SENDBUFFER-queuebuffersize);
-			queuebuffersize=0;
-			while (bufflen2 > G_SENDBUFFER)
+			queuebuffersize=0;			
+
+			// adzm 2010-09 - flush as soon as we have a full buffer, not if we have exceeded it.
+			while (bufflen2 >= G_SENDBUFFER)
 			{
-				if (!send(sock,buff2,G_SENDBUFFER,0)) return false;
+				if (!sendall(sock,buff2,G_SENDBUFFER,0)) return false;				
+				//adzm 2010-08-01
+				m_LastSentTick = GetTickCount();
 			//	vnclog.Print(LL_SOCKERR, VNCLOG("SEND Q  %i\n") ,G_SENDBUFFER);
 				buff2+=G_SENDBUFFER;
 				bufflen2-=G_SENDBUFFER;
@@ -591,7 +668,8 @@ VBool
 VSocket::SendExact(const char *buff, const VCard bufflen, unsigned char msgType)
 {
 	//vnclog.Print(LL_SOCKERR, VNCLOG("SendExactMsg %i\n") ,bufflen);
-	if (m_fUsePlugin && m_pDSMPlugin->IsEnabled())
+	// adzm 2010-09
+	if (!IsPluginStreamingOut() && m_fUsePlugin && m_pDSMPlugin->IsEnabled())
 	{
 		// Send the transformed message type first
 		char t = (char)msgType;
@@ -605,10 +683,35 @@ VSocket::SendExact(const char *buff, const VCard bufflen, unsigned char msgType)
 	return VTrue;
 }
 
+
+//adzm 2010-09 - minimize packets. SendExact flushes the queue.
+VBool 
+VSocket::SendExactQueue(const char *buff, const VCard bufflen, unsigned char msgType)
+{
+	//vnclog.Print(LL_SOCKERR, VNCLOG("SendExactMsg %i\n") ,bufflen);
+	// adzm 2010-09
+	if (!IsPluginStreamingOut() && m_fUsePlugin && m_pDSMPlugin->IsEnabled())
+	{
+		// Send the transformed message type first
+		char t = (char)msgType;
+		SendExactQueue(&t, 1);
+		// Then we send the transformed rfb message content
+		SendExactQueue(buff, bufflen);
+	}
+	else
+		SendExactQueue(buff, bufflen);
+
+	return VTrue;
+}
+
 //////////////////////////////////////////
 VBool
 VSocket::SendExact(const char *buff, const VCard bufflen)
-{
+{	
+	//adzm 2010-09
+	if (bufflen <=0) {
+		return VTrue;
+	}
 //	vnclog.Print(LL_SOCKERR, VNCLOG("SendExact %i\n") ,bufflen);
 	// sf@2002 - DSMPlugin
 	VCard nBufflen = bufflen;
@@ -647,6 +750,10 @@ VSocket::SendExact(const char *buff, const VCard bufflen)
 VBool
 VSocket::SendExactQueue(const char *buff, const VCard bufflen)
 {
+	//adzm 2010-09
+	if (bufflen <=0) {
+		return VTrue;
+	}
 //	vnclog.Print(LL_SOCKERR, VNCLOG("SendExactQueue %i %i\n") ,bufflen,queuebuffersize);
 //	vnclog.Print(LL_SOCKERR, VNCLOG("socket size %i\n") ,bufflen);
 	// sf@2002 - DSMPlugin
@@ -683,14 +790,19 @@ VSocket::SendExactQueue(const char *buff, const VCard bufflen)
   return result == (VInt)nBufflen;
 }
 ///////////////////////////////
-void
+VBool
 VSocket::ClearQueue()
 {
 	if (queuebuffersize!=0)
   {
-	send(sock,queuebuffer,queuebuffersize,0);
+	//adzm 2010-08-01
+	m_LastSentTick = GetTickCount();
+	//adzm 2010-09 - return a bool in ClearQueue
+	if (!sendall(sock,queuebuffer,queuebuffersize,0)) 
+		return VFalse;
 	queuebuffersize=0;
   }
+  return VTrue;
 }
 ////////////////////////////
 
@@ -716,7 +828,11 @@ VSocket::Read(char *buff, const VCard bufflen)
 
 VBool
 VSocket::ReadExact(char *buff, const VCard bufflen)
-{
+{	
+	//adzm 2010-09
+	if (bufflen <=0) {
+		return VTrue;
+	}
 	int n;
 	VCard currlen = bufflen;
     
@@ -970,6 +1086,40 @@ VSocket::ReadSelect(VCard to)
  	return false;
  }
 #endif
+
+extern bool			fShutdownOrdered;
+bool
+sendall(SOCKET RemoteSocket,char *buff,unsigned int bufflen,int dummy)
+{
+int val =0;
+	unsigned int totsend=0;
+	while (totsend <bufflen)
+	  {
+		struct fd_set write_fds;
+		struct timeval tm;
+		int count;
+		int aa=0;
+		do {
+			FD_ZERO(&write_fds);
+			FD_SET(RemoteSocket, &write_fds);
+			tm.tv_sec = 0;
+			tm.tv_usec = 150;
+			count = select(RemoteSocket+ 1, NULL, &write_fds, NULL, &tm);
+		} while (count == 0&& !fShutdownOrdered);
+		if (fShutdownOrdered) return 0;
+		if (count < 0 || count > 1) return 0;
+		if (FD_ISSET(RemoteSocket, &write_fds)) 
+		{
+			val=send(RemoteSocket, buff+totsend, bufflen-totsend, 0);
+		}
+		if (val==0) 
+			return false;
+		if (val==SOCKET_ERROR) 
+			return false;
+		totsend+=val;
+	  }
+	return 1;
+}
 
 
 

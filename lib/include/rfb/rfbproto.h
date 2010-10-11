@@ -321,8 +321,9 @@ typedef char rfbProtocolVersionMsg[13];	/* allow extra byte for null */
  * access to this client by disconnecting all other clients.
  */
 
-typedef struct {
+typedef union {
     uint8_t shared;
+    uint8_t flags;
 } rfbClientInitMsg;
 
 #define sz_rfbClientInitMsg 1

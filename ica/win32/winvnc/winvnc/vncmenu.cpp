@@ -128,16 +128,16 @@ static inline BOOL LoadDM(VOID)
 
 
 
-bool disable_aero_set=false;
+//bool disable_aero_set=false;
 static inline VOID DisableAero(VOID) 
  { 
-	     if (disable_aero_set)
+	    /* if (disable_aero_set)
 		 {
 			 vnclog.Print(LL_INTINFO, VNCLOG("DisableAero already done %i \n"),AeroWasEnabled);
 			 return;
-		 }
+		 }*/
          BOOL pfnDwmEnableCompositiond = FALSE; 
-         AeroWasEnabled = FALSE; 
+         //AeroWasEnabled = FALSE; 
   
          if (!LoadDM()) 
                  return; 
@@ -147,16 +147,15 @@ static inline VOID DisableAero(VOID)
          else 
                  return; 
   
-         AeroWasEnabled = pfnDwmEnableCompositiond;
-		 disable_aero_set=true;
-		 vnclog.Print(LL_INTINFO, VNCLOG("DisableAero %i \n"),AeroWasEnabled);
-          if (!AeroWasEnabled)
+		 //disable_aero_set=true;
+		 vnclog.Print(LL_INTINFO, VNCLOG("DisableAero %i \n"),pfnDwmEnableCompositiond);
+          if (!pfnDwmEnableCompositiond)
 			  return; 
+
   
-         if (pfnDwmEnableComposition && SUCCEEDED(pfnDwmEnableComposition(FALSE))) 
-                 ; 
-         else 
-                 ;
+		  if (pfnDwmEnableComposition && SUCCEEDED(pfnDwmEnableComposition(FALSE))) {			  
+			AeroWasEnabled = pfnDwmEnableCompositiond;
+		  }
 		 
  } 
   
@@ -170,7 +169,7 @@ static inline VOID DisableAero(VOID)
                  else 
                          ; 
          } 
-		 disable_aero_set=false;
+		 //disable_aero_set=false;
          UnloadDM(); 
  } 
 
@@ -194,12 +193,16 @@ static bool IsUserDesktop()
 // adzm - 2010-07 - Disable more effects or font smoothing
 static void KillWallpaper()
 {
-	//HideDesktop();
+#ifndef ULTRAVNC_ITALC_SUPPORT
+	HideDesktop();
+#endif
 }
 
 static void RestoreWallpaper()
 {
-//  RestoreDesktop();
+#ifndef ULTRAVNC_ITALC_SUPPORT
+  RestoreDesktop();
+#endif
 }
 
 // adzm - 2010-07 - Disable more effects or font smoothing
@@ -445,7 +448,9 @@ vncMenu::vncMenu(vncServer *server)
 	m_hmenu = LoadMenu(hInstResDLL, MAKEINTRESOURCE(IDR_TRAYMENU));
 
 	// Install the tray icon!
-//	AddTrayIcon();
+#ifndef ULTRAVNC_ITALC_SUPPORT
+	AddTrayIcon();
+#endif
 	CoUninitialize();
 }
 
@@ -823,7 +828,9 @@ LRESULT CALLBACK vncMenu::WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lP
 	case WM_TIMER:
 		// sf@2007 - Can't get the WTS_CONSOLE_CONNECT message work properly for now..
 		// So use a hack instead
+#ifdef ULTRAVNC_ITALC_SUPPORT
 		break;
+#endif
         // jdp reread some ini settings
         _this->m_properties.ReloadDynamicSettings();
 
@@ -908,6 +915,7 @@ LRESULT CALLBACK vncMenu::WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lP
 			if (_this->m_server->RemoveFontSmoothingEnabled()) {
 				RestoreFontSmoothing();
 			}
+		}
 //PGM @ Advantig		if (_this->m_server->AuthClientCount() != 0) {
 //PGM @ Advantig			if (_this->m_server->RemoveAeroEnabled())
 //PGM @ Advantig				DisableAero();
@@ -1324,7 +1332,6 @@ LRESULT CALLBACK vncMenu::WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lP
 			RestoreEffects();
 		if (_this->m_server->RemoveFontSmoothingEnabled())
 			RestoreFontSmoothing();
-		}
 		if (_this->m_server->RemoveAeroEnabled())
 			ResetAero();
 

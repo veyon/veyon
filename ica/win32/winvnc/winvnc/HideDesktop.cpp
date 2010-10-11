@@ -123,7 +123,7 @@ BOOL SHDesktopHTML()
 static 
 HRESULT EnableActiveDesktop(bool enable)
 {
-#if 0
+#ifndef ULTRAVNC_ITALC_SUPPORT
 	CoInitialize(NULL);
 	CComQIPtr<IActiveDesktop, &IID_IActiveDesktop>	pIActiveDesktop;
 	
@@ -248,23 +248,27 @@ void RestoreDesktop()
 
 
 // adzm - 2010-07 - Disable more effects or font smoothing
+// SPI_GETUIEFFECTS can enable/disable everything in one shot, but I'm sure we'll want finer control over this eventually.
 
 UINT spiParams[] = {
-	0x1024, //SPI_SETDROPSHADOW, 
+	0x1024, //SPI_GETDROPSHADOW, 
 	SPI_GETCOMBOBOXANIMATION, 
 	SPI_GETMENUANIMATION, 
 	SPI_GETTOOLTIPANIMATION, 
 	SPI_GETSELECTIONFADE, 
 	SPI_GETLISTBOXSMOOTHSCROLLING, 
+	SPI_GETHOTTRACKING,
+	SPI_GETGRADIENTCAPTIONS,
+	0x1042, //SPI_GETCLIENTAREAANIMATION
+	0x1043, //SPI_GETDISABLEOVERLAPPEDCONTENT
 };
 
-// future possibilities
-/*
-SPI_GETDISABLEOVERLAPPEDCONTENT	(>XP)
-SPI_GETCLIENTAREAANIMATION		(>XP)
-*/
 
 UINT spiSuggested[] = {
+	FALSE,
+	FALSE,
+	FALSE,
+	FALSE,
 	FALSE,
 	FALSE,
 	FALSE,

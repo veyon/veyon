@@ -279,7 +279,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/LTCG"
-				AdditionalDependencies="wsock32.lib winmm.lib version.lib comctl32.lib wtsapi32.lib userenv.lib"
+				AdditionalDependencies="ws2_32.lib winmm.lib version.lib comctl32.lib wtsapi32.lib userenv.lib"
 				OutputFile=".\..\Release/winvnc_32.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
@@ -378,7 +378,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="wsock32.lib winmm.lib version.lib comctl32.lib wtsapi32.lib userenv.lib"
+				AdditionalDependencies="ws2_32.lib winmm.lib version.lib comctl32.lib wtsapi32.lib userenv.lib"
 				OutputFile=".\..\Release/winvnc_64.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
@@ -478,7 +478,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/LTCG"
-				AdditionalDependencies="wsock32.lib winmm.lib version.lib comctl32.lib wtsapi32.lib userenv.lib ippjemerged.lib ippiemerged.lib ippsemerged.lib ippjmerged.lib ippimerged.lib ippsmerged.lib ippcorel.lib ippdcemerged.lib ippdcmerged.lib ippcpmerged.lib ippcpemerged.lib"
+				AdditionalDependencies="ws2_32.lib winmm.lib version.lib comctl32.lib wtsapi32.lib userenv.lib ippjemerged.lib ippiemerged.lib ippsemerged.lib ippjmerged.lib ippimerged.lib ippsmerged.lib ippcorel.lib ippdcemerged.lib ippdcmerged.lib ippcpmerged.lib ippcpemerged.lib"
 				OutputFile=".\..\Release/winvnc.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
@@ -574,7 +574,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="wsock32.lib winmm.lib version.lib comctl32.lib wtsapi32.lib userenv.lib"
+				AdditionalDependencies="ws2_32.lib winmm.lib version.lib comctl32.lib wtsapi32.lib userenv.lib"
 				OutputFile=".\..\Release/winvnc.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"

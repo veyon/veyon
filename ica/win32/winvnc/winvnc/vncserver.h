@@ -54,10 +54,6 @@ class vncServer;
 #include <omnithread.h>
 #include <list>
 
-#define KEEPALIVE_HEADROOM 1
-#define KEEPALIVE_INTERVAL 5
-#define FT_RECV_TIMEOUT    30
-
 // adzm - 2010-07 - Extended clipboard
 #include "common/clipboard.h"
 
@@ -433,6 +429,10 @@ public:
         m_keepAliveInterval = m_ftTimeout  - KEEPALIVE_HEADROOM;
     }
 
+	// adzm 2010-08
+	void SetSocketKeepAliveTimeout(int timeout)	{ m_socketKeepAliveTimeout = timeout > 0 ? timeout : 0; VSocket::SetSocketKeepAliveTimeoutDefault(m_socketKeepAliveTimeout); }
+	int GetSocketKeepAliveTimeout() { return m_socketKeepAliveTimeout; }
+
 	void TriggerUpdate();
 
 protected:
@@ -600,6 +600,8 @@ protected:
     bool m_fEnableKeepAlive;
     int m_ftTimeout;
     int m_keepAliveInterval;
+	// adzm 2010-08
+	int m_socketKeepAliveTimeout;
 	bool clearconsole;
 };
 

@@ -55,7 +55,9 @@ extern HINSTANCE	hInstResDLL;
 typedef void (*vncEditSecurityFn) (HWND hwnd, HINSTANCE hInstance);
 vncEditSecurityFn vncEditSecurity = 0;
 DWORD GetExplorerLogonPid();
-unsigned int G_SENDBUFFER=8192;
+// ethernet packet 1500 - 40 tcp/ip header - 8 PPPoE info
+//unsigned int G_SENDBUFFER=8192;
+unsigned int G_SENDBUFFER=1452;
 
 // Constructor & Destructor
 vncProperties::vncProperties()
@@ -69,6 +71,7 @@ vncProperties::vncProperties()
 	m_fUseRegistry = FALSE;
     m_ftTimeout = FT_RECV_TIMEOUT;
     m_keepAliveInterval = KEEPALIVE_INTERVAL;
+	m_socketKeepAliveTimeout = SOCKET_KEEPALIVE_TIMEOUT; // adzm 2010-08
 	m_pref_Primary=true;
 	m_pref_Secondary=false;
 
@@ -209,7 +212,8 @@ vncProperties::ShowAdmin(BOOL show, BOOL usersettings)
 			strcat(m_Tempfile,INIFILE_NAME);
 		}
 	}
-/*	if (id!=0) 
+#ifndef ULTRAVNC_ITALC_SUPPORT
+	if (id!=0) 
 			{
 				hProcess = OpenProcess(MAXIMUM_ALLOWED,FALSE,id);
 				if(OpenProcessToken(hProcess,TOKEN_ADJUST_PRIVILEGES|TOKEN_QUERY
@@ -225,7 +229,8 @@ vncProperties::ShowAdmin(BOOL show, BOOL usersettings)
 						strcat(m_Tempfile,INIFILE_NAME);
 					}
 				}
-	}*/
+	}
+#endif
 
 	if (!m_allowproperties) 
 	{
@@ -366,7 +371,9 @@ vncProperties::ShowAdmin(BOOL show, BOOL usersettings)
 				}
 
 				vnclog.Print(LL_INTERR, VNCLOG("warning - empty password\n"));
+#ifdef ULTRAVNC_ITALC_SUPPORT
 					break;
+#endif
 
 				// The password is empty, so if OK was used then redisplay the box,
 				// otherwise, if CANCEL was used, close down WinVNC
@@ -414,7 +421,7 @@ vncProperties::DialogProc(HWND hwnd,
 	{
 
 	case WM_INITDIALOG:
-		{
+		{			
 			vnclog.Print(LL_INTINFO, VNCLOG("INITDIALOG properties\n"));
 			// Retrieve the Dialog box parameter and use it as a pointer
 			// to the calling vncProperties object
@@ -1702,8 +1709,11 @@ vncProperties::Load(BOOL usersettings)
 	//vnclog.SetLevel(LoadInt(hkLocal, "DebugLevel", 0));
 
 	// Disable Tray Icon
-	m_server->SetDisableTrayIcon(1);//LoadInt(hkLocal, "DisableTrayIcon", false));
-
+#ifdef ULTRAVNC_ITALC_SUPPORT
+	m_server->SetDisableTrayIcon(1);
+#else
+	m_server->SetDisableTrayIcon(LoadInt(hkLocal, "DisableTrayIcon", false));
+#endif
 	// Authentication required, loopback allowed, loopbackOnly
 
 	m_server->SetLoopbackOnly(LoadInt(hkLocal, "LoopbackOnly", false));
@@ -1735,7 +1745,11 @@ vncProperties::Load(BOOL usersettings)
 
 	if (m_server->LoopbackOnly()) m_server->SetLoopbackOk(true);
 	else m_server->SetLoopbackOk(LoadInt(hkLocal, "AllowLoopback", false));
-	m_server->SetAuthRequired(0);//LoadInt(hkLocal, "AuthRequired", true));
+#ifdef ULTRAVNC_ITALC_SUPPORT
+	m_server->SetAuthRequired(0);
+#else
+	m_server->SetAuthRequired(LoadInt(hkLocal, "AuthRequired", true));
+#endif
 
 	m_server->SetConnectPriority(LoadInt(hkLocal, "ConnectPriority", 0));
 	if (!m_server->LoopbackOnly())
@@ -2292,7 +2306,11 @@ void vncProperties::LoadFromIniFile()
 
 	if (m_server->LoopbackOnly()) m_server->SetLoopbackOk(true);
 	else m_server->SetLoopbackOk(myIniFile.ReadInt("admin", "AllowLoopback", false));
-	m_server->SetAuthRequired(0);//myIniFile.ReadInt("admin", "AuthRequired", true));
+#ifdef ULTRAVNC_ITALC_SUPPORT
+	m_server->SetAuthRequired(0);
+#else
+	m_server->SetAuthRequired(myIniFile.ReadInt("admin", "AuthRequired", true));
+#endif
 
 	m_server->SetConnectPriority(myIniFile.ReadInt("admin", "ConnectPriority", 0));
 	if (!m_server->LoopbackOnly())
@@ -2367,8 +2385,13 @@ void vncProperties::LoadFromIniFile()
     if (m_keepAliveInterval >= (m_ftTimeout - KEEPALIVE_HEADROOM))
         m_keepAliveInterval = m_ftTimeout - KEEPALIVE_HEADROOM;
 
+	// adzm 2010-08
+	m_socketKeepAliveTimeout = myIniFile.ReadInt("admin", "SocketKeepAliveTimeout", m_socketKeepAliveTimeout); 
+	if (m_socketKeepAliveTimeout < 0) m_socketKeepAliveTimeout = 0;
+
     m_server->SetFTTimeout(m_ftTimeout);
     m_server->SetKeepAliveInterval(m_keepAliveInterval);
+	m_server->SetSocketKeepAliveTimeout(m_socketKeepAliveTimeout); // adzm 2010-08
     
 
 	ApplyUserPrefs();
@@ -2464,6 +2487,8 @@ void vncProperties::SaveToIniFile()
 	myIniFile.WriteInt("admin", "AllowEditClients", m_alloweditclients);
     myIniFile.WriteInt("admin", "FileTransferTimeout", m_ftTimeout);
     myIniFile.WriteInt("admin", "KeepAliveInterval", m_keepAliveInterval);
+	// adzm 2010-08
+    myIniFile.WriteInt("admin", "SocketKeepAliveTimeout", m_socketKeepAliveTimeout);
 
 	myIniFile.WriteInt("admin", "DisableTrayIcon", m_server->GetDisableTrayIcon());
 	myIniFile.WriteInt("admin", "MSLogonRequired", m_server->MSLogonRequired());

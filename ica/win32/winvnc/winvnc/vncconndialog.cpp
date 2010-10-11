@@ -249,6 +249,8 @@ BOOL CALLBACK vncConnDialog::vncConnDlgProc(HWND hwnd,
 			//adzm 2010-02-15 - Multiple repeaters chosen by modulo of ID
 
 			char finalidcode[_MAX_PATH];
+			//adzm 2010-08 - this was sending uninitialized data over the wire
+			ZeroMemory(finalidcode, sizeof(finalidcode));
 
 			//adzm 2009-06-20
 			if (id) {

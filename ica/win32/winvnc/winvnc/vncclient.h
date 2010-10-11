@@ -48,6 +48,7 @@ typedef SHORT vncClientId;
 #include <list>
 #include <string>
 #include <vector>
+#include <algorithm>
 #include "common/win32_helpers.h"
 
 typedef std::list<vncClientId> vncClientList;
@@ -261,12 +262,16 @@ public:
     void SendFTProtocolMsg();
 	// adzm - 2010-07 - Extended clipboard
 	void NotifyExtendedClipboardSupport();
+	// adzm 2010-09 - Notify streaming DSM plugin support
+	void NotifyPluginStreamingSupport();
 
 	// sf@2002 
 	// Update routines
 protected:
 	BOOL SendUpdate(rfb::SimpleUpdateTracker &update);
 	BOOL SendRFBMsg(CARD8 type, BYTE *buffer, int buflen);
+	//adzm 2010-09 - minimize packets. SendExact flushes the queue.
+	BOOL SendRFBMsgQueue(CARD8 type, BYTE *buffer, int buflen);
 	BOOL SendRectangles(const rfb::RectVector &rects);
 	BOOL SendRectangle(const rfb::Rect &rect);
 	BOOL SendCopyRect(const rfb::Rect &dest, const rfb::Point &source);
@@ -453,7 +458,9 @@ protected:
 
 	// Modif sf@2002 - FileTransfer 
 	BOOL m_fFileTransferRunning;
-//	CZipUnZip32		*m_pZipUnZip;
+#ifndef ULTRAVNC_ITALC_SUPPORT
+	CZipUnZip32		*m_pZipUnZip;
+#endif
 
 	char  m_szFullDestName[MAX_PATH + 64];
 	char  m_szFileTime[18];
@@ -523,4 +530,57 @@ protected:
     bool        m_wants_KeepAlive;
 };
 
+
+// vncClient thread class
+
+class vncClientThread : public omni_thread
+{
+public:
+
+	// Init
+	virtual BOOL Init(vncClient *client,
+		vncServer *server,
+		VSocket *socket,
+		BOOL auth,
+		BOOL shared);
+
+	// Sub-Init routines
+	virtual BOOL InitVersion();
+	virtual BOOL InitAuthenticate();
+	virtual BOOL AuthenticateClient(std::vector<CARD8>& current_auth);
+	virtual BOOL AuthenticateLegacyClient();
+
+	BOOL AuthSecureVNCPlugin(std::string& auth_message); // must SetHandshakeComplete after sending auth result!
+	BOOL AuthMsLogon(std::string& auth_message);
+	BOOL AuthVnc(std::string& auth_message);
+
+	BOOL FilterClients_Blacklist();
+	BOOL FilterClients_Ask_Permission();
+	BOOL CheckEmptyPasswd();
+	BOOL CheckLoopBack();
+	void LogAuthResult(bool success);
+	void SendConnFailed(const char* szMessage);
+
+	// adzm 2010-08
+	virtual bool InitSocket();
+	virtual bool TryReconnect();
+
+	// The main thread function
+	virtual void run(void *arg);
+	bool m_autoreconnectcounter_quit;
+
+protected:
+	virtual ~vncClientThread();
+
+	// Fields
+protected:
+	VSocket *m_socket;
+	vncServer *m_server;
+	vncClient *m_client;
+	BOOL m_auth;
+	BOOL m_shared;
+	BOOL m_ms_logon;
+	int m_major;
+	int m_minor;
+};
 #endif

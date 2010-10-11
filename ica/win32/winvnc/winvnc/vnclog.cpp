@@ -172,10 +172,14 @@ void VNCLog::CloseFile() {
 inline void VNCLog::ReallyPrintLine(const char* line) 
 {
     if (m_todebug) OutputDebugString(line);
-//    if (m_toconsole) {
+#ifndef ULTRAVNC_ITALC_SUPPORT
+    if (m_toconsole) {
+#endif
         DWORD byteswritten;
         WriteConsole(GetStdHandle(STD_OUTPUT_HANDLE), line, strlen(line), &byteswritten, NULL); 
-//    };
+#ifndef ULTRAVNC_ITALC_SUPPORT
+    };
+#endif
     if (m_tofile && (hlogfile != NULL)) {
         DWORD byteswritten;
         WriteFile(hlogfile, line, strlen(line), &byteswritten, NULL); 

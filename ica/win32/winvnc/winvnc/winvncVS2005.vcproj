@@ -180,7 +180,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="wsock32.lib winmm.lib version.lib comctl32.lib wtsapi32.lib userenv.lib"
+				AdditionalDependencies="ws2_32.lib winmm.lib version.lib comctl32.lib wtsapi32.lib userenv.lib"
 				OutputFile=".\..\Release/winvnc.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
@@ -377,7 +377,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="wsock32.lib winmm.lib version.lib comctl32.lib wtsapi32.lib userenv.lib"
+				AdditionalDependencies="ws2_32.lib winmm.lib version.lib comctl32.lib wtsapi32.lib userenv.lib"
 				OutputFile=".\..\Release/winvnc.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"

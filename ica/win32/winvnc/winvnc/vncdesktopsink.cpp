@@ -387,8 +387,9 @@ DesktopWndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 			{
 				// adzm - 2010-07 - Extended clipboard
 				{
+					// only need a window when setting clipboard data
 					omni_mutex_lock l(_this->m_update_lock);
-					_this->m_server->UpdateClipTextEx(_this->Window());
+					_this->m_server->UpdateClipTextEx(NULL);
 				}
 				/*
 				LPSTR cliptext = NULL;

@@ -150,11 +150,20 @@ Myinit(HINSTANCE hInstance)
 	}
 #endif
 
+#ifndef ULTRAVNC_ITALC_SUPPORT
 	// Save the application instance and main thread id
-/*	hAppInstance = hInstance;
-	mainthreadId = GetCurrentThreadId();*/
+	hAppInstance = hInstance;
+	mainthreadId = GetCurrentThreadId();
 
 
+	// Initialise the VSocket system
+	VSocketSystem socksys;
+	if (!socksys.Initialised())
+	{
+		MessageBox(NULL, sz_ID_FAILED_INIT, szAppName, MB_OK);
+		return 0;
+	}
+#endif
 	return 1;
 }
 //#define CRASHRPT
@@ -784,13 +793,15 @@ DWORD WINAPI imp_desktop_thread(LPVOID lpParam)
 	}
     vnclog.Print(LL_INTERR, VNCLOG("Username %s \n"),m_username);
 
+#ifndef ULTRAVNC_ITALC_SUPPORT
 	// Create tray icon and menu
-/*	vncMenu *menu = new vncMenu(server);
+	vncMenu *menu = new vncMenu(server);
 	if (menu == NULL)
 	{
 		vnclog.Print(LL_INTERR, VNCLOG("failed to create tray menu\n"));
 		PostQuitMessage(0);
-	}*/
+	}
+#endif
 
 	// This is a good spot to handle the old PostAdd messages
 	if (PostAddAutoConnectClient_bool)
@@ -824,11 +835,13 @@ DWORD WINAPI imp_desktop_thread(LPVOID lpParam)
 		DispatchMessage(&msg);
 	}
 
+#ifndef ULTRAVNC_ITALC_SUPPORT
 	// sf@2007 - Close all (vncMenu,tray icon, connections...)
-/*	menu->Shutdown();
+	menu->Shutdown();
 
 	if (menu != NULL)
-		delete menu;*/
+		delete menu;
+#endif
 
 	//vnclog.Print(LL_INTERR, VNCLOG("GetMessage stop \n"));
 	SetThreadDesktop(old_desktop);
