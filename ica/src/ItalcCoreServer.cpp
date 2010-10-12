@@ -1,7 +1,7 @@
 /*
  * ItalcCoreServer.cpp - ItalcCoreServer
  *
- * Copyright (c) 2006-2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -374,7 +374,7 @@ bool ItalcCoreServer::authSecTypeItalc( socketDispatcher _sd, void * _user,
 	SocketDevice sdev( _sd, _user );
 	sdev.write( QVariant( (int) _auth_type ) );
 
-	ItalcAuthResults result = ItalcAuthFailed;
+	uint32_t result = rfbVncAuthFailed;
 
 	ItalcAuthTypes chosen = static_cast<ItalcAuthTypes>(
 							sdev.read().toInt() );
@@ -389,13 +389,12 @@ bool ItalcCoreServer::authSecTypeItalc( socketDispatcher _sd, void * _user,
 				"client chose other auth-type than offered!" );
 		return( result );
 	}
-printf("auth sec %d\n", (int)_auth_type );
 
 	switch( _auth_type )
 	{
 		// no authentication
 		case ItalcAuthNone:
-			result = ItalcAuthOK;
+			result = rfbVncAuthOK;
 			break;
 
 		// host has to be in list of allowed hosts
@@ -419,7 +418,7 @@ printf("auth sec %d\n", (int)_auth_type );
 			{
 				if( allowed.contains( host ) )
 				{
-					result = ItalcAuthOK;
+					result = rfbVncAuthOK;
 				}
 			}
 			else
@@ -436,7 +435,7 @@ printf("auth sec %d\n", (int)_auth_type );
 	if( allowed.contains( a.toString() ) ||
 		a.toString() == QHostAddress( QHostAddress::LocalHost ).toString() )
 					{
-						result = ItalcAuthOK;
+						result = rfbVncAuthOK;
 						break;
 					}
 				}
@@ -488,7 +487,7 @@ printf("auth sec %d\n", (int)_auth_type );
 				}
 				else*/
 				{
-					result = ItalcAuthFailed;
+					result = rfbVncAuthFailed;
 				}
 			}
 
@@ -499,19 +498,18 @@ printf("auth sec %d\n", (int)_auth_type );
 			PublicDSAKey pub_key( LocalSystem::publicKeyPath(
 								urole ) );
 			result = pub_key.verifySignature( chall, sig ) ?
-						ItalcAuthOK : ItalcAuthFailed;
+						rfbVncAuthOK : rfbVncAuthFailed;
 			break;
 		}
 	}
-printf("dsa: %d\n", (int)result);
 
-	sdev.write( QVariant( (int) result ) );
-	if( result != ItalcAuthOK )
+	if( result != rfbVncAuthOK )
 	{
 		errorMsgAuth( host );
+		return false;
 	}
 
-	return( result == ItalcAuthOK );
+	return true;
 }
 
 

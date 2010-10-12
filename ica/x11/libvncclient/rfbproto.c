@@ -999,10 +999,8 @@ InitialiseRFBConnection(rfbClient* client)
     break;
 
   case rfbSecTypeItalc:
-    if( !handleSecTypeItalc( client ) )
-    {
-      return FALSE;
-    }
+    handleSecTypeItalc( client );
+    if (!rfbHandleAuthResult(client)) return FALSE;
     break;
 
   default:

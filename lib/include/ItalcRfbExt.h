@@ -2,7 +2,7 @@
  * ItalcRfbExt.h - an extension of the RFB-protocol, used for communication
  *                 between master and clients
  *
- * Copyright (c) 2004-2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -77,17 +77,11 @@ enum ItalcAuthTypes
 } ;
 
 
-enum ItalcAuthResults
-{
-	ItalcAuthOK,
-	ItalcAuthFailed
-} ;
-
 #ifdef __cplusplus
 extern "C"
 {
 #endif
-rfbBool handleSecTypeItalc( rfbClient * _cl );
+void handleSecTypeItalc( rfbClient * _cl );
 #ifdef __cplusplus
 }
 #endif

@@ -80,7 +80,7 @@ static rfbBool italcCoreNewClient( struct _rfbClientRec *, void * * )
 
 
 
-static rfbBool italcCoreHandleMessage( struct _rfbClientRec * _client,
+static rfbBool lvs_italcHandleMessage( struct _rfbClientRec * _client,
 					void * _data,
 					const rfbClientToServerMsg * _message )
 {
@@ -95,16 +95,27 @@ static rfbBool italcCoreHandleMessage( struct _rfbClientRec * _client,
 
 
 
+extern "C" void rfbClientSendString(rfbClientPtr cl, char *reason);
 
-static void italcCoreSecurityHandler( struct _rfbClientRec * _client )
+
+static void lvs_italcSecurityHandler( struct _rfbClientRec *cl )
 {
-	if( ItalcCoreServer::instance()->
-			authSecTypeItalc( libvncServerDispatcher, _client,
-								ItalcAuthDSA ) )
+	bool authOK = ItalcCoreServer::instance()->
+				authSecTypeItalc( libvncServerDispatcher, cl, ItalcAuthDSA );
+
+	uint32_t result = authOK ? rfbVncAuthOK : rfbVncAuthFailed;
+	result = Swap32IfLE( result );
+	rfbWriteExact( cl, (char *) &result, 4 );
+
+	if( authOK )
 	{
-		_client->state = rfbClientRec::RFB_INITIALISATION;
-		__client = _client;
+		cl->state = rfbClientRec::RFB_INITIALISATION;
+		__client = cl;
 	}
+	else
+	{
+		rfbClientSendString( cl, (char *) "Signature verification failed!" );
+    }
 }
 
 
@@ -196,7 +207,7 @@ void IVS::run( void )
 	pe.init = NULL;
 	pe.enablePseudoEncoding = NULL;
 	pe.pseudoEncodings = NULL;
-	pe.handleMessage = italcCoreHandleMessage;
+	pe.handleMessage = lvs_italcHandleMessage;
 	pe.close = NULL;
 	pe.usage = NULL;
 	pe.processArgument = NULL;
@@ -205,7 +216,7 @@ void IVS::run( void )
 
 	// register handler for iTALC's security-type
 	rfbSecurityHandler sh = { rfbSecTypeItalc,
-					italcCoreSecurityHandler,
+					lvs_italcSecurityHandler,
 					NULL };
 	rfbRegisterSecurityHandler( &sh );
 
