@@ -79,6 +79,11 @@ ItalcCoreConnection::ItalcCoreConnection( ItalcVncConnection * _ivc ) :
 
 ItalcCoreConnection::~ItalcCoreConnection()
 {
+	if( m_ivc )
+	{
+		m_ivc->stop();
+		delete m_ivc;
+	}
 }
 
 
