@@ -398,11 +398,6 @@ MainWindow::~MainWindow()
 {
 	m_classroomManager->doCleanupWork();
 
-#ifdef BUILD_WIN32
-	qApp->processEvents( QEventLoop::AllEvents, 3000 );
-	LocalSystem::sleep( 3000 );
-#endif
-
 	// also delets clients
 	delete m_workspace;
 
@@ -411,12 +406,6 @@ MainWindow::~MainWindow()
 
 	__systray_icon->hide();
 	delete __systray_icon;
-
-#ifdef BUILD_WIN32
-	qApp->processEvents( QEventLoop::AllEvents, 3000 );
-	LocalSystem::sleep( 3000 );
-	exit( 0 );
-#endif
 }
 
 
@@ -446,12 +435,6 @@ void MainWindow::closeEvent( QCloseEvent * _ce )
 	m_updateThread->wait();
 	delete m_updateThread;
 	m_updateThread = NULL;
-
-	/*ÜQList<Client *> clients = m_workspace->findChildren<Client *>();
-	foreach( Client * c, clients )
-	{
-		c->quit();
-	}*/
 
 	m_classroomManager->savePersonalConfig();
 	m_classroomManager->saveGlobalClientConfig();
