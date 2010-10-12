@@ -1,7 +1,7 @@
 /*
  * ItalcCoreConnection.cpp - implementation of ItalcCoreConnection
  *
- * Copyright (c) 2008-2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2008-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -21,7 +21,6 @@
  * Boston, MA 02111-1307, USA.
  *
  */
-
 
 #include <QtCore/QDebug>
 
@@ -105,7 +104,7 @@ rfbBool ItalcCoreConnection::handleItalcMessage( rfbClient * cl,
 
 
 
-bool ItalcCoreConnection::handleServerMessage( rfbClient *cl, Q_UINT8 _msg )
+bool ItalcCoreConnection::handleServerMessage( rfbClient *cl, uint8_t _msg )
 {
 	if( _msg == rfbItalcCoreResponse )
 	{

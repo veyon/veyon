@@ -1,7 +1,7 @@
 /*
  * ItalcCore.h - definitions for iTALC Core
  *
- * Copyright (c) 2006-2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -33,7 +33,6 @@
 #include <QtCore/QSysInfo>
 #include <QtCore/QVariant>
 
-#include "Types.h"
 #include "ItalcRfbExt.h"
 #include "rfb/rfbproto.h"
 #include "rfb/rfbclient.h"
@@ -197,22 +196,22 @@ namespace ItalcCore
 								CommandList;
 
 	// static commands
-	extern IC_DllExport const Command GetUserInformation;
-	extern IC_DllExport const Command UserInformation;
-	extern IC_DllExport const Command StartDemo;
-	extern IC_DllExport const Command StopDemo;
-	extern IC_DllExport const Command LockDisplay;
-	extern IC_DllExport const Command UnlockDisplay;
-	extern IC_DllExport const Command LogonUserCmd;
-	extern IC_DllExport const Command LogoutUser;
-	extern IC_DllExport const Command DisplayTextMessage;
-	extern IC_DllExport const Command AccessDialog;
-	extern IC_DllExport const Command ExecCmds;
-	extern IC_DllExport const Command PowerOnComputer;
-	extern IC_DllExport const Command PowerDownComputer;
-	extern IC_DllExport const Command RestartComputer;
-	extern IC_DllExport const Command DisableLocalInputs;
-	extern IC_DllExport const Command SetRole;
+	extern const Command GetUserInformation;
+	extern const Command UserInformation;
+	extern const Command StartDemo;
+	extern const Command StopDemo;
+	extern const Command LockDisplay;
+	extern const Command UnlockDisplay;
+	extern const Command LogonUserCmd;
+	extern const Command LogoutUser;
+	extern const Command DisplayTextMessage;
+	extern const Command AccessDialog;
+	extern const Command ExecCmds;
+	extern const Command PowerOnComputer;
+	extern const Command PowerDownComputer;
+	extern const Command RestartComputer;
+	extern const Command DisableLocalInputs;
+	extern const Command SetRole;
 
 	class Msg
 	{
@@ -264,7 +263,7 @@ namespace ItalcCore
 		bool send( void )
 		{
 			QDataStream d( m_socketDevice );
-			d << (Q_UINT8) rfbItalcCoreRequest;
+			d << (uint8_t) rfbItalcCoreRequest;
 			d << m_cmd;
 			d << m_args;
 			return true;
@@ -298,13 +297,11 @@ namespace ItalcCore
 	} ;
 	typedef UserRoles UserRole;
 
-	bool IC_DllExport initAuthentication( void );
+	bool initAuthentication( void );
 
 
-	extern IC_DllExport UserRoles role;
+	extern UserRoles role;
 
 }
-
-
 
 #endif

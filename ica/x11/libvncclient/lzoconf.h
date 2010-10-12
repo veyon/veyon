@@ -45,9 +45,6 @@
 #define LZO_VERSION_STRING      "2.03"
 #define LZO_VERSION_DATE        "Apr 30 2008"
 
-#include "Types.h"
-#define __LZO_EXPORT1 IC_DllExport
-
 /* internal Autoconf configuration file - only used when building LZO */
 #if defined(LZO_HAVE_CONFIG_H)
 #  include <config.h>

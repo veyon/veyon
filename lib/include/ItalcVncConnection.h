@@ -1,7 +1,7 @@
 /*
  * ItalcVncConnection.h - declaration of ItalcVncConnection class
  *
- * Copyright (c) 2008-2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2008-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -53,7 +53,7 @@ public:
 } ;
 
 
-class IC_DllExport ItalcVncConnection: public QThread
+class ItalcVncConnection: public QThread
 {
 	Q_OBJECT
 public:

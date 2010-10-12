@@ -1,7 +1,7 @@
 /*
  * FastQImage.cpp - class FastQImage providing fast inline-QImage-manips
  *
- * Copyright (c) 2006-2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -67,7 +67,7 @@ void aligned_free( void * _buf )
 
 
 
-void * aligned_malloc( Q_UINT32 _bytes )
+void * aligned_malloc( uint32_t _bytes )
 {
 	char *ptr,*ptr2,*aligned_ptr;
 	int align_mask = ALIGN_SIZE- 1;
@@ -87,7 +87,7 @@ void * aligned_malloc( Q_UINT32 _bytes )
 
 
 /* this function implements an area-averaging shrinking filter in the X-dimension */
-static void filter_shrink_X_C(Q_UINT8 *srcpix, Q_UINT8 *dstpix, unsigned int height, unsigned int srcpitch, unsigned int dstpitch, unsigned int srcwidth, unsigned int dstwidth)
+static void filter_shrink_X_C(uint8_t *srcpix, uint8_t *dstpix, unsigned int height, unsigned int srcpitch, unsigned int dstpitch, unsigned int srcwidth, unsigned int dstwidth)
 {
     const unsigned int srcdiff = srcpitch - (srcwidth * 4);
     const unsigned int dstdiff = dstpitch - (dstwidth * 4);
@@ -96,31 +96,31 @@ static void filter_shrink_X_C(Q_UINT8 *srcpix, Q_UINT8 *dstpix, unsigned int hei
     const unsigned int xrecip = (int) ((long long) 0x100000000LL / xspace);
     for (unsigned int y = 0; y < height; y++)
     {
-        Q_UINT32 accumulate[4] = {0,0,0,0};
+        uint32_t accumulate[4] = {0,0,0,0};
         unsigned int xcounter = xspace;
         for (unsigned int x = 0; x < srcwidth; x++)
         {
             if (xcounter > 0x10000)
             {
-                accumulate[0] += (Q_UINT32) *srcpix++;
-                accumulate[1] += (Q_UINT32) *srcpix++;
-                accumulate[2] += (Q_UINT32) *srcpix++;
-                accumulate[3] += (Q_UINT32) *srcpix++;
+                accumulate[0] += (uint32_t) *srcpix++;
+                accumulate[1] += (uint32_t) *srcpix++;
+                accumulate[2] += (uint32_t) *srcpix++;
+                accumulate[3] += (uint32_t) *srcpix++;
                 xcounter -= 0x10000;
             }
             else
             {
                 /* write out a destination pixel */
-                *dstpix++ = (Q_UINT8) (((accumulate[0] + ((srcpix[0] * xcounter) >> 16)) * xrecip) >> 16);
-                *dstpix++ = (Q_UINT8) (((accumulate[1] + ((srcpix[1] * xcounter) >> 16)) * xrecip) >> 16);
-                *dstpix++ = (Q_UINT8) (((accumulate[2] + ((srcpix[2] * xcounter) >> 16)) * xrecip) >> 16);
-                *dstpix++ = (Q_UINT8) (((accumulate[3] + ((srcpix[3] * xcounter) >> 16)) * xrecip) >> 16);
+                *dstpix++ = (uint8_t) (((accumulate[0] + ((srcpix[0] * xcounter) >> 16)) * xrecip) >> 16);
+                *dstpix++ = (uint8_t) (((accumulate[1] + ((srcpix[1] * xcounter) >> 16)) * xrecip) >> 16);
+                *dstpix++ = (uint8_t) (((accumulate[2] + ((srcpix[2] * xcounter) >> 16)) * xrecip) >> 16);
+                *dstpix++ = (uint8_t) (((accumulate[3] + ((srcpix[3] * xcounter) >> 16)) * xrecip) >> 16);
                 /* reload the accumulator with the remainder of this pixel */
                 const unsigned int xfrac = 0x10000 - xcounter;
-                accumulate[0] = (Q_UINT32) ((*srcpix++ * xfrac) >> 16);
-                accumulate[1] = (Q_UINT32) ((*srcpix++ * xfrac) >> 16);
-                accumulate[2] = (Q_UINT32) ((*srcpix++ * xfrac) >> 16);
-                accumulate[3] = (Q_UINT32) ((*srcpix++ * xfrac) >> 16);
+                accumulate[0] = (uint32_t) ((*srcpix++ * xfrac) >> 16);
+                accumulate[1] = (uint32_t) ((*srcpix++ * xfrac) >> 16);
+                accumulate[2] = (uint32_t) ((*srcpix++ * xfrac) >> 16);
+                accumulate[3] = (uint32_t) ((*srcpix++ * xfrac) >> 16);
                 xcounter = xspace - xfrac;
             }
         }
@@ -130,14 +130,14 @@ static void filter_shrink_X_C(Q_UINT8 *srcpix, Q_UINT8 *dstpix, unsigned int hei
 }
 
 /* this function implements an area-averaging shrinking filter in the Y-dimension */
-static void filter_shrink_Y_C(Q_UINT8 *srcpix, Q_UINT8 *dstpix, unsigned int width, unsigned int srcpitch, unsigned int dstpitch, unsigned int srcheight, unsigned int dstheight)
+static void filter_shrink_Y_C(uint8_t *srcpix, uint8_t *dstpix, unsigned int width, unsigned int srcpitch, unsigned int dstpitch, unsigned int srcheight, unsigned int dstheight)
 {
-    Q_UINT16 *templine;
+    uint16_t *templine;
     const unsigned int srcdiff = srcpitch - (width * 4);
     const unsigned int dstdiff = dstpitch - (width * 4);
 
     /* allocate and clear a memory area for storing the accumulator line */
-    templine = (Q_UINT16 *) aligned_malloc(dstpitch * 2);
+    templine = (uint16_t *) aligned_malloc(dstpitch * 2);
     if (templine == NULL) return;
     memset(templine, 0, dstpitch * 2);
 
@@ -146,15 +146,15 @@ static void filter_shrink_Y_C(Q_UINT8 *srcpix, Q_UINT8 *dstpix, unsigned int wid
     unsigned int ycounter = yspace;
     for (unsigned int y = 0; y < srcheight; y++)
     {
-        Q_UINT16 *accumulate = templine;
+        uint16_t *accumulate = templine;
         if (ycounter > 0x10000)
         {
             for (unsigned int x = 0; x < width; x++)
             {
-                *accumulate++ += (Q_UINT16) *srcpix++;
-                *accumulate++ += (Q_UINT16) *srcpix++;
-                *accumulate++ += (Q_UINT16) *srcpix++;
-                *accumulate++ += (Q_UINT16) *srcpix++;
+                *accumulate++ += (uint16_t) *srcpix++;
+                *accumulate++ += (uint16_t) *srcpix++;
+                *accumulate++ += (uint16_t) *srcpix++;
+                *accumulate++ += (uint16_t) *srcpix++;
             }
             ycounter -= 0x10000;
         }
@@ -163,10 +163,10 @@ static void filter_shrink_Y_C(Q_UINT8 *srcpix, Q_UINT8 *dstpix, unsigned int wid
             /* write out a destination line */
             for (unsigned int x = 0; x < width; x++)
             {
-                *dstpix++ = (Q_UINT8) (((*accumulate++ + ((*srcpix++ * ycounter) >> 16)) * yrecip) >> 16);
-                *dstpix++ = (Q_UINT8) (((*accumulate++ + ((*srcpix++ * ycounter) >> 16)) * yrecip) >> 16);
-                *dstpix++ = (Q_UINT8) (((*accumulate++ + ((*srcpix++ * ycounter) >> 16)) * yrecip) >> 16);
-                *dstpix++ = (Q_UINT8) (((*accumulate++ + ((*srcpix++ * ycounter) >> 16)) * yrecip) >> 16);
+                *dstpix++ = (uint8_t) (((*accumulate++ + ((*srcpix++ * ycounter) >> 16)) * yrecip) >> 16);
+                *dstpix++ = (uint8_t) (((*accumulate++ + ((*srcpix++ * ycounter) >> 16)) * yrecip) >> 16);
+                *dstpix++ = (uint8_t) (((*accumulate++ + ((*srcpix++ * ycounter) >> 16)) * yrecip) >> 16);
+                *dstpix++ = (uint8_t) (((*accumulate++ + ((*srcpix++ * ycounter) >> 16)) * yrecip) >> 16);
             }
             dstpix += dstdiff;
             /* reload the accumulator with the remainder of this line */
@@ -175,10 +175,10 @@ static void filter_shrink_Y_C(Q_UINT8 *srcpix, Q_UINT8 *dstpix, unsigned int wid
             const unsigned int yfrac = 0x10000 - ycounter;
             for (unsigned int x = 0; x < width; x++)
             {
-                *accumulate++ = (Q_UINT16) ((*srcpix++ * yfrac) >> 16);
-                *accumulate++ = (Q_UINT16) ((*srcpix++ * yfrac) >> 16);
-                *accumulate++ = (Q_UINT16) ((*srcpix++ * yfrac) >> 16);
-                *accumulate++ = (Q_UINT16) ((*srcpix++ * yfrac) >> 16);
+                *accumulate++ = (uint16_t) ((*srcpix++ * yfrac) >> 16);
+                *accumulate++ = (uint16_t) ((*srcpix++ * yfrac) >> 16);
+                *accumulate++ = (uint16_t) ((*srcpix++ * yfrac) >> 16);
+                *accumulate++ = (uint16_t) ((*srcpix++ * yfrac) >> 16);
             }
             ycounter = yspace - yfrac;
         }
@@ -191,7 +191,7 @@ static void filter_shrink_Y_C(Q_UINT8 *srcpix, Q_UINT8 *dstpix, unsigned int wid
 
 
 /* this function implements a bilinear filter in the X-dimension */
-static void filter_expand_X_C(Q_UINT8 *srcpix, Q_UINT8 *dstpix, unsigned int height, unsigned int srcpitch, unsigned int dstpitch, unsigned int srcwidth, unsigned int dstwidth)
+static void filter_expand_X_C(uint8_t *srcpix, uint8_t *dstpix, unsigned int height, unsigned int srcpitch, unsigned int dstpitch, unsigned int srcwidth, unsigned int dstwidth)
 {
     int dstdiff = dstpitch - (dstwidth * 4);
     int *xidx0, *xmult0, *xmult1;
@@ -220,16 +220,16 @@ static void filter_expand_X_C(Q_UINT8 *srcpix, Q_UINT8 *dstpix, unsigned int hei
     /* Do the scaling in raster order so we don't trash the cache */
     for (y = 0; y < height; y++)
     {
-        Q_UINT8 *srcrow0 = srcpix + y * srcpitch;
+        uint8_t *srcrow0 = srcpix + y * srcpitch;
         for (x = 0; x < dstwidth; x++)
         {
-            Q_UINT8 *src = srcrow0 + xidx0[x] * 4;
+            uint8_t *src = srcrow0 + xidx0[x] * 4;
             int xm0 = xmult0[x];
             int xm1 = xmult1[x];
-            *dstpix++ = (Q_UINT8) (((src[0] * xm0) + (src[4] * xm1)) >> 16);
-            *dstpix++ = (Q_UINT8) (((src[1] * xm0) + (src[5] * xm1)) >> 16);
-            *dstpix++ = (Q_UINT8) (((src[2] * xm0) + (src[6] * xm1)) >> 16);
-            *dstpix++ = (Q_UINT8) (((src[3] * xm0) + (src[7] * xm1)) >> 16);
+            *dstpix++ = (uint8_t) (((src[0] * xm0) + (src[4] * xm1)) >> 16);
+            *dstpix++ = (uint8_t) (((src[1] * xm0) + (src[5] * xm1)) >> 16);
+            *dstpix++ = (uint8_t) (((src[2] * xm0) + (src[6] * xm1)) >> 16);
+            *dstpix++ = (uint8_t) (((src[3] * xm0) + (src[7] * xm1)) >> 16);
         }
         dstpix += dstdiff;
     }
@@ -241,21 +241,21 @@ static void filter_expand_X_C(Q_UINT8 *srcpix, Q_UINT8 *dstpix, unsigned int hei
 }
 
 /* this function implements a bilinear filter in the Y-dimension */
-static void filter_expand_Y_C(Q_UINT8 *srcpix, Q_UINT8 *dstpix, unsigned int width, int unsigned srcpitch, unsigned int/* dstpitch*/, unsigned int srcheight, unsigned int dstheight)
+static void filter_expand_Y_C(uint8_t *srcpix, uint8_t *dstpix, unsigned int width, int unsigned srcpitch, unsigned int/* dstpitch*/, unsigned int srcheight, unsigned int dstheight)
 {
     for (unsigned int y = 0; y < dstheight; y++)
     {
         const unsigned int yidx0 = y * (srcheight - 1) / dstheight;
-        Q_UINT8 *srcrow0 = srcpix + yidx0 * srcpitch;
-        Q_UINT8 *srcrow1 = srcrow0 + srcpitch;
+        uint8_t *srcrow0 = srcpix + yidx0 * srcpitch;
+        uint8_t *srcrow1 = srcrow0 + srcpitch;
         unsigned int ymult1 = 0x10000 * ((y * (srcheight - 1)) % dstheight) / dstheight;
         unsigned int ymult0 = 0x10000 - ymult1;
         for (unsigned int x = 0; x < width; x++)
         {
-            *dstpix++ = (Q_UINT8) (((*srcrow0++ * ymult0) + (*srcrow1++ * ymult1)) >> 16);
-            *dstpix++ = (Q_UINT8) (((*srcrow0++ * ymult0) + (*srcrow1++ * ymult1)) >> 16);
-            *dstpix++ = (Q_UINT8) (((*srcrow0++ * ymult0) + (*srcrow1++ * ymult1)) >> 16);
-            *dstpix++ = (Q_UINT8) (((*srcrow0++ * ymult0) + (*srcrow1++ * ymult1)) >> 16);
+            *dstpix++ = (uint8_t) (((*srcrow0++ * ymult0) + (*srcrow1++ * ymult1)) >> 16);
+            *dstpix++ = (uint8_t) (((*srcrow0++ * ymult0) + (*srcrow1++ * ymult1)) >> 16);
+            *dstpix++ = (uint8_t) (((*srcrow0++ * ymult0) + (*srcrow1++ * ymult1)) >> 16);
+            *dstpix++ = (uint8_t) (((*srcrow0++ * ymult0) + (*srcrow1++ * ymult1)) >> 16);
         }
     }
 }
@@ -268,7 +268,7 @@ static void filter_expand_Y_C(Q_UINT8 *srcpix, Q_UINT8 *dstpix, unsigned int wid
 #ifdef USE_MMX
 
 /* this function implements an area-averaging shrinking filter in the X-dimension */
-static void filter_shrink_X_MMX(Q_UINT8 *srcpix, Q_UINT8 *dstpix, unsigned int height, unsigned int srcpitch, unsigned int dstpitch, unsigned int srcwidth, unsigned int dstwidth)
+static void filter_shrink_X_MMX(uint8_t *srcpix, uint8_t *dstpix, unsigned int height, unsigned int srcpitch, unsigned int dstpitch, unsigned int srcwidth, unsigned int dstwidth)
 {
     const unsigned int srcdiff = srcpitch - (srcwidth * 4);
     const unsigned int dstdiff = dstpitch - (dstwidth * 4);
@@ -391,14 +391,14 @@ static void filter_shrink_X_MMX(Q_UINT8 *srcpix, Q_UINT8 *dstpix, unsigned int h
 }
 
 /* this function implements an area-averaging shrinking filter in the Y-dimension */
-static void filter_shrink_Y_MMX(Q_UINT8 *srcpix, Q_UINT8 *dstpix, unsigned int width, unsigned int srcpitch, unsigned int dstpitch, unsigned int srcheight, unsigned int dstheight)
+static void filter_shrink_Y_MMX(uint8_t *srcpix, uint8_t *dstpix, unsigned int width, unsigned int srcpitch, unsigned int dstpitch, unsigned int srcheight, unsigned int dstheight)
 {
-    Q_UINT16 *templine;
+    uint16_t *templine;
     int srcdiff = srcpitch - (width * 4);
     int dstdiff = dstpitch - (width * 4);
 
     /* allocate and clear a memory area for storing the accumulator line */
-    templine = (Q_UINT16 *) aligned_malloc(dstpitch * 2);
+    templine = (uint16_t *) aligned_malloc(dstpitch * 2);
     if (templine == NULL) return;
     memset(templine, 0, dstpitch * 2);
 
@@ -541,7 +541,7 @@ static void filter_shrink_Y_MMX(Q_UINT8 *srcpix, Q_UINT8 *dstpix, unsigned int w
 
 
 /* this function implements a bilinear filter in the X-dimension */
-static void filter_expand_X_MMX(Q_UINT8 *srcpix, Q_UINT8 *dstpix, unsigned int height, unsigned int srcpitch, unsigned int dstpitch, unsigned int srcwidth, unsigned int dstwidth)
+static void filter_expand_X_MMX(uint8_t *srcpix, uint8_t *dstpix, unsigned int height, unsigned int srcpitch, unsigned int dstpitch, unsigned int srcwidth, unsigned int dstwidth)
 {
     int *xidx0, *xmult0, *xmult1;
     unsigned int x, y;
@@ -573,8 +573,8 @@ static void filter_expand_X_MMX(Q_UINT8 *srcpix, Q_UINT8 *dstpix, unsigned int h
     /* Do the scaling in raster order so we don't trash the cache */
     for (y = 0; y < height; y++)
     {
-        Q_UINT8 *srcrow0 = srcpix + y * srcpitch;
-        Q_UINT8 *dstrow = dstpix + y * dstpitch;
+        uint8_t *srcrow0 = srcpix + y * srcpitch;
+        uint8_t *dstrow = dstpix + y * dstpitch;
         int *xm0 = xmult0;
         int *x0 = xidx0;
 #if defined(__x86_64__)
@@ -651,16 +651,16 @@ static void filter_expand_X_MMX(Q_UINT8 *srcpix, Q_UINT8 *dstpix, unsigned int h
 }
 
 /* this function implements a bilinear filter in the Y-dimension */
-static void filter_expand_Y_MMX(Q_UINT8 *srcpix, Q_UINT8 *dstpix, unsigned int width, unsigned int srcpitch, unsigned int dstpitch, unsigned int srcheight, unsigned int dstheight)
+static void filter_expand_Y_MMX(uint8_t *srcpix, uint8_t *dstpix, unsigned int width, unsigned int srcpitch, unsigned int dstpitch, unsigned int srcheight, unsigned int dstheight)
 {
     for (unsigned int y = 0; y < dstheight; y++)
     {
         int yidx0 = y * (srcheight - 1) / dstheight;
-        Q_UINT8 *srcrow0 = srcpix + yidx0 * srcpitch;
-        Q_UINT8 *srcrow1 = srcrow0 + srcpitch;
+        uint8_t *srcrow0 = srcpix + yidx0 * srcpitch;
+        uint8_t *srcrow1 = srcrow0 + srcpitch;
         int ymult1 = 0x0100 * ((y * (srcheight - 1)) % dstheight) / dstheight;
         int ymult0 = 0x0100 - ymult1;
-        Q_UINT8 *dstrow = dstpix + y * dstpitch;
+        uint8_t *dstrow = dstpix + y * dstpitch;
 #if defined(__x86_64__)
         asm( " /* MMX code for inner loop of Y bilinear filter */ "
              " movl          %4,      %%ecx;                      "
@@ -728,7 +728,7 @@ static void filter_expand_Y_MMX(Q_UINT8 *srcpix, Q_UINT8 *dstpix, unsigned int w
 #endif
 
 
-typedef void (*filter_fn)(Q_UINT8*, Q_UINT8*, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int);
+typedef void (*filter_fn)(uint8_t*, uint8_t*, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int);
 
 static filter_fn filter_shrink_X = filter_shrink_X_C;
 static filter_fn filter_shrink_Y = filter_shrink_Y_C;
@@ -783,8 +783,8 @@ QImage & FastQImage::scaleTo( QImage & _dst ) const
 	}
 #endif
 #endif
-	Q_UINT8* srcpix = (Q_UINT8*)bits();
-	Q_UINT8* dstpix = (Q_UINT8*)_dst.bits();
+	uint8_t* srcpix = (uint8_t*)bits();
+	uint8_t* dstpix = (uint8_t*)_dst.bits();
 	int srcpitch = width()*4;
 	int dstpitch = _dst.width()*4;
 
@@ -794,14 +794,14 @@ QImage & FastQImage::scaleTo( QImage & _dst ) const
 	const int dstheight = _dst.height();
 
 	// Create a temporary processing buffer if we will be scaling both X and Y
-	Q_UINT8 *temppix = NULL;
+	uint8_t *temppix = NULL;
 	int tempwidth=0, temppitch=0, tempheight=0;
 	if (srcwidth != dstwidth && srcheight != dstheight)
 	{
 		tempwidth = dstwidth;
 		temppitch = tempwidth << 2;
 		tempheight = srcheight;
-		temppix = (Q_UINT8 *) aligned_malloc(temppitch * tempheight);
+		temppix = (uint8_t *) aligned_malloc(temppitch * tempheight);
 		if (temppix == NULL)
 		{
 			return _dst;

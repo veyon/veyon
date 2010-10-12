@@ -29,7 +29,7 @@
 #include "ItalcVncConnection.h"
 
 
-class IC_DllExport ItalcCoreConnection : public QObject
+class ItalcCoreConnection : public QObject
 {
 	Q_OBJECT
 public:
@@ -85,7 +85,7 @@ private:
 	static rfbBool handleItalcMessage( rfbClient *cl,
 						rfbServerToClientMsg *msg );
 
-	bool handleServerMessage( rfbClient *cl, Q_UINT8 msg );
+	bool handleServerMessage( rfbClient *cl, uint8_t msg );
 	void enqueueMessage( const ItalcCore::Msg & _msg );
 
 

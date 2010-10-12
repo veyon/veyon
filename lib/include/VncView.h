@@ -1,7 +1,7 @@
 /*
  * VncView.h - VNC-viewer-widget
  *
- * Copyright (c) 2006-2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -22,9 +22,8 @@
  *
  */
 
-
 #ifndef _VNC_VIEW_H
-#define _VNCVIEW_H
+#define _VNC_VIEW_H
 
 #include <italcconfig.h>
 
@@ -32,7 +31,6 @@
 #include <QtCore/QThread>
 #include <QtGui/QWidget>
 
-#include "Types.h"
 #include "ItalcVncConnection.h"
 #include "FastQImage.h"
 
@@ -42,7 +40,7 @@ class RemoteControlWidget;
 class SystemKeyTrapper;
 
 
-class IC_DllExport VncView : public QWidget
+class VncView : public QWidget
 {
 	Q_OBJECT
 public:
@@ -127,8 +125,6 @@ private:
 	friend class remoteControlWidget;
 
 } ;
-
-
 
 #endif
 

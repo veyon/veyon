@@ -103,7 +103,7 @@ protected:
 
 
 private slots:
-	void checkKeyEvent( Q_UINT32, bool );
+	void checkKeyEvent( uint32_t, bool );
 
 
 private:

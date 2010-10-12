@@ -1,7 +1,7 @@
 /*
  * FastQImage.h - class FastQImage providing fast inline-QImage-manips
  *
- * Copyright (c) 2006-2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -22,17 +22,16 @@
  *
  */
 
-
 #ifndef _FAST_QIMAGE_H
 #define _FAST_QIMAGE_H
+
+#include <stdint.h>
 
 #include <QtGui/QImage>
 #include <QtGui/QPixmap>
 
-#include "Types.h"
 
-
-class IC_DllExport FastQImage : public QImage
+class FastQImage : public QImage
 {
 public:
 	FastQImage() : QImage() { }
@@ -46,18 +45,18 @@ public:
 	}
 
 
-	inline void fillRect( const Q_UINT16 rx, const Q_UINT16 ry,
-				const Q_UINT16 rw, const Q_UINT16 rh,
+	inline void fillRect( const uint16_t rx, const uint16_t ry,
+				const uint16_t rw, const uint16_t rh,
 				const QRgb pix )
 	{
-		const Q_UINT16 img_width = width();
+		const uint16_t img_width = width();
 		QRgb * dst = (QRgb *) scanLine( ry ) + rx;
 		// TODO: is it faster to fill first line and then memcpy()
 		//       this line?
-		for( Q_UINT16 y = 0; y < rh; ++y )
+		for( uint16_t y = 0; y < rh; ++y )
 		{
 			//QRgb * dest = dst_base;
-			for( Q_UINT16 x = 0; x < rw; ++x )
+			for( uint16_t x = 0; x < rw; ++x )
 			{
 				dst[x] = pix;
 			}
@@ -67,15 +66,15 @@ public:
 
 
 
-	inline void copyRect( const Q_UINT16 rx, const Q_UINT16 ry,
-				const Q_UINT16 rw, const Q_UINT16 rh,
+	inline void copyRect( const uint16_t rx, const uint16_t ry,
+				const uint16_t rw, const uint16_t rh,
 				const QRgb * buf )
 	{
 		if( rh > 0 )
 		{
-			const Q_UINT16 img_width = width();
+			const uint16_t img_width = width();
 			QRgb * dst = (QRgb *) scanLine( ry ) + rx;
-			for( Q_UINT16 y = 0; y < rh; ++y )
+			for( uint16_t y = 0; y < rh; ++y )
 			{
 				memcpy( dst, buf, rw * sizeof( QRgb ) );
 				buf += rw;
@@ -90,19 +89,19 @@ public:
 
 
 
-	inline void copyExistingRect( const Q_UINT16 src_x,
-					const Q_UINT16 src_y,
-					const Q_UINT16 rw,
-					const Q_UINT16 rh,
-					const Q_UINT16 dest_x,
-					const Q_UINT16 dest_y )
+	inline void copyExistingRect( const uint16_t src_x,
+					const uint16_t src_y,
+					const uint16_t rw,
+					const uint16_t rh,
+					const uint16_t dest_x,
+					const uint16_t dest_y )
 	{
 		// TODO: check whether we need to handle if dest-rect is inside
 		//       src-rect
-		const Q_UINT16 img_width = width();
+		const uint16_t img_width = width();
 		const QRgb * src = (const QRgb *) scanLine( src_y ) + src_x;
 		QRgb * dst = (QRgb *) scanLine( dest_y ) + dest_x;
-		for( Q_UINT16 y = 0; y < rh; ++y )
+		for( uint16_t y = 0; y < rh; ++y )
 		{
 			// TODO: vectorize
 			memcpy( dst, src, rw * sizeof( QRgb ) );
@@ -174,7 +173,7 @@ public:
 
 
 	// darken whole image by _coeff (_coeff = [0;256])
-	inline FastQImage & darken( const Q_UINT16 _coeff )
+	inline FastQImage & darken( const uint16_t _coeff )
 	{
 		unsigned char * ptr = bits();
 		const unsigned int pixels = width() * height();

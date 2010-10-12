@@ -1,7 +1,7 @@
 /*
  *  LockWidget.h - widget for locking a client
  *
- *  Copyright (c) 2006-2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ *  Copyright (c) 2006-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  *  This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -21,7 +21,6 @@
  *  USA.
  */
 
-
 #ifndef _LOCK_WIDGET_H
 #define _LOCK_WIDGET_H
 
@@ -33,7 +32,7 @@
 #include "SystemKeyTrapper.h"
 
 
-class IC_DllExport LockWidget : public QWidget
+class LockWidget : public QWidget
 {
 	Q_OBJECT
 public:
@@ -59,7 +58,6 @@ private:
 	SystemKeyTrapper m_sysKeyTrapper;
 
 } ;
-
 
 #endif
 

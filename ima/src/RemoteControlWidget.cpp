@@ -21,7 +21,6 @@
  *  USA.
  */
 
-
 #include "RemoteControlWidget.h"
 #include "VncView.h"
 #include "ItalcCoreConnection.h"
@@ -328,7 +327,7 @@ void RemoteControlWidget::resizeEvent( QResizeEvent * )
 
 
 
-void RemoteControlWidget::checkKeyEvent( Q_UINT32 _key, bool _pressed )
+void RemoteControlWidget::checkKeyEvent( uint32_t _key, bool _pressed )
 {
 	if( _pressed && _key == XK_Escape/* &&
 		m_vncView->m_connection->state() != ivsConnection::Connected*/ )

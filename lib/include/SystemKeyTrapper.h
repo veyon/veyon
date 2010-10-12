@@ -2,7 +2,7 @@
  * SystemKeyTrapper.h - class for trapping system-keys and -key-sequences
  *                      such as Alt+Ctrl+Del, Alt+Tab etc.
  *
- * Copyright (c) 2006-2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -23,7 +23,6 @@
  *
  */
 
-
 #ifndef _SYSTEM_KEY_TRAPPER_H
 #define _SYSTEM_KEY_TRAPPER_H
 
@@ -35,7 +34,7 @@
 #include <QtCore/QObject>
 
 
-class IC_DllExport SystemKeyTrapper : public QObject
+class SystemKeyTrapper : public QObject
 {
 	Q_OBJECT
 public:
@@ -76,10 +75,9 @@ private slots:
 
 
 signals:
-	void keyEvent( Q_UINT32, bool );
+	void keyEvent( uint32_t, bool );
 
 } ;
-
 
 #endif
 

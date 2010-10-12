@@ -746,7 +746,7 @@ void VncView::mouseEventHandler( QMouseEvent * _me )
 
 	if( _me->type() != QEvent::MouseMove )
 	{
-		for( Q_UINT8 i = 0; i < sizeof(map)/sizeof(buttonXlate); ++i )
+		for( uint8_t i = 0; i < sizeof(map)/sizeof(buttonXlate); ++i )
 		{
 			if( _me->button() == map[i].qt )
 			{

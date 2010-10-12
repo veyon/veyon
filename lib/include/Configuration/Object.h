@@ -1,7 +1,7 @@
 /*
  * Configuration/Object.h - ConfigurationObject class
  *
- * Copyright (c) 2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2009-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -22,7 +22,6 @@
  *
  */
 
-
 #ifndef _CONFIGURATION_OBJECT_H
 #define _CONFIGURATION_OBJECT_H
 
@@ -33,7 +32,7 @@
 namespace Configuration
 {
 
-class IC_DllExport Object : public QObject
+class Object : public QObject
 {
 	Q_OBJECT
 public:

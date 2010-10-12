@@ -239,7 +239,7 @@ void initResources( void )
 namespace LocalSystem
 {
 
-int IC_DllExport logLevel = 6;
+int logLevel = 6;
 
 
 void initialize( p_pressKey _pk, const QString & _log_file )

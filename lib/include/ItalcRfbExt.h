@@ -29,8 +29,6 @@
 #include <rfb/rfbproto.h>
 #include <rfb/rfbclient.h>
 
-#include "Types.h"
-
 // new rfb-command which tells server or client that an italc-request/response
 // is following
 #define rfbItalcCoreRequest		30
@@ -51,9 +49,9 @@ enum PortOffsets
 
 struct ItalcRectEncodingHeader
 {
-	Q_UINT8 compressed;
-	Q_UINT32 bytesLZO;
-	Q_UINT32 bytesRLE;
+	uint8_t compressed;
+	uint32_t bytesLZO;
+	uint32_t bytesRLE;
 } ;
 
 

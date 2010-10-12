@@ -1,8 +1,8 @@
 /*
  * DsaKey.h - easy to use C++ classes for dealing with DSA-keys, -signatures
- *             etc.
+ *            etc.
  *
- * Copyright (c) 2006-2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -46,10 +46,8 @@
 
 #include <openssl/dsa.h>
 
-#include "Types.h"
 
-
-class IC_DllExport DsaKey
+class DsaKey
 {
 public:
 	enum KeyType
@@ -110,7 +108,7 @@ protected:
 
 
 
-class IC_DllExport PrivateDSAKey : public DsaKey
+class PrivateDSAKey : public DsaKey
 {
 public:
 	// constructor - load private key from file
@@ -137,7 +135,7 @@ public:
 
 
 
-class IC_DllExport PublicDSAKey : public DsaKey
+class PublicDSAKey : public DsaKey
 {
 public:
 	// constructor - load public key from file

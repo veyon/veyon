@@ -1,7 +1,7 @@
 /*
  * DecoratedMessageBox.h - decorated messagebox
  *
- * Copyright (c) 2006-2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -28,14 +28,13 @@
 #include <QtGui/QDialog>
 #include <QtGui/QPixmap>
 #include "QtFeatures.h"
-#include "Types.h"
 
 #ifdef SYSTEMTRAY_SUPPORT
 #include <QtGui/QSystemTrayIcon>
 #endif
 
 
-class IC_DllExport DecoratedMessageBox : public QDialog
+class DecoratedMessageBox : public QDialog
 {
 	Q_OBJECT
 public:
@@ -59,7 +58,7 @@ public:
 } ;
 
 #ifdef SYSTEMTRAY_SUPPORT
-extern IC_DllExport QSystemTrayIcon * __systray_icon;
+extern QSystemTrayIcon * __systray_icon;
 #endif
 
 #endif
