@@ -289,10 +289,10 @@ void ItalcVncConnection::checkOutputErrorMessage()
 
 
 
-void ItalcVncConnection::stop( void )
+void ItalcVncConnection::stop()
 {
 	m_stopped = true;
-	if( !wait( 500 ) )
+	if( !wait( 1000 ) )
 	{
 		terminate();
 	}
