@@ -22,7 +22,6 @@
  *
  */
 
-
 #include <italcconfig.h>
 
 #include <QtCore/QDir>
@@ -407,7 +406,6 @@ MainWindow::~MainWindow()
 	// also delets clients
 	delete m_workspace;
 
-	delete m_localISD->vncConnection();
 	delete m_localISD;
 	m_localISD = NULL;
 
