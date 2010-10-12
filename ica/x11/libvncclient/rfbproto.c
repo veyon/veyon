@@ -31,8 +31,6 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/stat.h>
-#else
-#define strncasecmp _strnicmp
 #endif
 #include <errno.h>
 #ifndef WIN32
