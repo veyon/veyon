@@ -857,6 +857,7 @@ static void check_redir_services(void) {
 }
 
 void ssh_remote_tunnel(char *instr, int lport) {
+#ifndef WIN32
 	char *q, *cmd, *ssh;
 	char *s = strdup(instr);
 	int sleep = 300, disp = 0, sport = 0;
@@ -981,6 +982,7 @@ void ssh_remote_tunnel(char *instr, int lport) {
 
 	free(cmd);
 	free(s);
+#endif
 }
 
 /* 
@@ -989,6 +991,7 @@ void ssh_remote_tunnel(char *instr, int lport) {
 static int limit_shm(void) {
 	int limit = 0;
 
+#ifndef WIN32
 	if (UT.sysname == NULL) {
 		return 0;
 	}
@@ -1009,6 +1012,7 @@ static int limit_shm(void) {
 		fprintf(stderr, "reducing shm usage on %s %s (adding "
 		    "-onetile)\n", UT.sysname, UT.release);
 	}
+#endif
 	return limit;
 }
 
@@ -1722,6 +1726,7 @@ static void check_loop_mode(int argc, char* argv[], int force) {
 extern int appshare_main(int argc, char* argv[]);
 
 static void check_appshare_mode(int argc, char* argv[]) {
+#ifndef WIN32
 	int i;
 
 	for (i=1; i < argc; i++) {
@@ -1734,9 +1739,11 @@ static void check_appshare_mode(int argc, char* argv[]) {
 			exit(0);
 		}
 	}
+#endif
 }
 
 static void store_homedir_passwd(char *file) {
+#ifndef WIN32
 	char str1[32], str2[32], *p, *h, *f;
 	struct stat sbuf;
 
@@ -1831,6 +1838,7 @@ static void store_homedir_passwd(char *file) {
 	}
 	fprintf(stdout, "Password written to: %s\n", f);
 	exit(0);
+#endif
 }
 
 void ncache_beta_tester_message(void) {
@@ -4158,8 +4166,10 @@ int main(int argc, char* argv[]) {
 		exit(0);
 	}
 
+#ifndef WIN32
 	/* set OS struct UT */
 	uname(&UT);
+#endif
 
 	orig_use_xdamage = use_xdamage;
 

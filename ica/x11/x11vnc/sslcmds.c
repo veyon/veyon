@@ -502,7 +502,11 @@ char *get_Cert_dir(char *cdir_in, char **tmp_in) {
 			sprintf(cdir, "%s%s", home, cases1[i]);
 			if (stat(cdir, &sbuf) != 0) {
 				rfbLog("creating dir: %s\n", cdir);
+#ifdef WIN32
+				if (mkdir(cdir) != 0) {
+#else
 				if (mkdir(cdir, 0755) != 0) {
+#endif
 					rfbLog("could not create directory %s\n", cdir);
 					rfbLogPerror("mkdir");
 					return NULL;
@@ -521,11 +525,15 @@ char *get_Cert_dir(char *cdir_in, char **tmp_in) {
 		sprintf(tmp, "%s%s", cdir, cases2[i]);
 		if (stat(tmp, &sbuf) != 0) {
 			rfbLog("creating dir: %s\n", tmp);
+#ifdef WIN32
+			ret = mkdir(tmp);
+#else
 			if (! strcmp(cases2[i], "/tmp")) {
 				ret = mkdir(tmp, 0700);
 			} else {
 				ret = mkdir(tmp, 0755);
 			}
+#endif
 				
 			if (ret != 0) {
 				rfbLog("could not create directory %s\n", tmp);

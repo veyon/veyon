@@ -450,11 +450,15 @@ void initialize_polling_images(void) {
 	 * (we cut down the size of the shm area to try avoid and shm segment
 	 * limits, e.g. the default 1MB on Solaris)
 	 */
+#ifdef WIN32
+	set_fs_factor(1 * MB);
+#else
 	if (UT.sysname && strstr(UT.sysname, "Linux")) {
 		set_fs_factor(10 * MB);
 	} else {
 		set_fs_factor(1 * MB);
 	}
+#endif
 	if (fs_frac >= 1.0) {
 		fs_frac = 1.1;
 		fs_factor = 0;

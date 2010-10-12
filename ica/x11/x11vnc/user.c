@@ -63,6 +63,10 @@ static void switch_user_task_dummy(void);
 static void switch_user_task_solid_bg(void);
 static char *get_login_list(int with_display);
 static char **user_list(char *user_str);
+#ifdef WIN32
+typedef int uid_t;
+typedef int gid_t;
+#endif
 static void user2uid(char *user, uid_t *uid, gid_t *gid, char **name, char **home);
 static int lurk(char **users);
 static int guess_user_and_switch(char *str, int fb_mode);
@@ -1882,6 +1886,7 @@ extern char create_display[];
 char *setup_cmd(char *str, int *vnc_redirect, char **vnc_redirect_host, int *vnc_redirect_port, int db) {
 	char *cmd = NULL;
 	
+#ifndef WIN32
 	if (no_external_cmds || !cmd_ok("WAIT")) {
 		rfbLog("wait_for_client external cmds not allowed:"
 		    " %s\n", use_dpy);
@@ -1949,6 +1954,7 @@ char *setup_cmd(char *str, int *vnc_redirect, char **vnc_redirect_host, int *vnc
 		*vnc_redirect = 2;
 		rfbLog("wait_for_client: vnc_redirect: %s:%d\n", *vnc_redirect_host, *vnc_redirect_port);
 	}
+#endif
 	return cmd;
 }
 
@@ -2459,6 +2465,7 @@ static void path_lookup(char *prog) {
 }
 
 static int do_run_cmd(char *cmd, char *create_cmd, char *users_list_save, int created_disp, int db) {
+#ifndef WIN32
 	char tmp[] = "/tmp/x11vnc-find_display.XXXXXX";
 	char line1[1024], line2[16384];
 	char *q, *usslpeer = NULL;
@@ -2877,6 +2884,7 @@ fprintf(stderr, "\n");}
 		}
 		unixpw_msg(str, 2);
 	}
+#endif
 	return 1;
 }
 

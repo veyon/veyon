@@ -225,6 +225,8 @@ int program_pid = 0;
 char *program_name = NULL;
 char *program_cmdline = NULL;
 
+#ifndef WIN32
 struct utsname UT;
+#endif
 
 

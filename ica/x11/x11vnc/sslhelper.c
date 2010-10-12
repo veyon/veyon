@@ -265,9 +265,14 @@ char *create_tmp_pem(char *pathin, int prompt) {
 ;
 
 	C = strdup("AU");
+#ifdef WIN32
+	L = strdup("Win32");
+	snprintf(line, 1024, "%s-%f", "unknown-node", dnow());
+#else
 	L = strdup(UT.sysname ? UT.sysname : "unknown-os");
 	snprintf(line, 1024, "%s-%f", UT.nodename ? UT.nodename :
 	    "unknown-node", dnow());
+#endif
 	line[1024-1] = '\0';
 
 	OU = strdup(line);
@@ -4310,7 +4315,7 @@ if (db) rfbLog("raw_xfer bad write:  %d -> %d | %d/%d  errno=%d\n", csock, s_out
 
 #define ENC_DISABLE_SHOW_CERT 
 
-#include "enc.h"
+//#include "enc.h"
 
 static void symmetric_encryption_xfer(int csock, int s_in, int s_out) {
 	char tmp[100];

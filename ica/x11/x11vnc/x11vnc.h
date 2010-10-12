@@ -49,8 +49,14 @@ so, delete this exception statement from your version.
 /* Standard includes and libvncserver */
 
 #include <unistd.h>
-#include <signal.h>
+#ifndef WIN32
 #include <sys/utsname.h>
+#else
+#include <ws2tcpip.h>
+#define _POSIX
+#define __USE_MINGW_ALARM
+#endif
+#include <signal.h>
 #ifdef __hpux
 /* to avoid select() compiler warning */
 #include <sys/time.h>
@@ -305,8 +311,11 @@ extern int xtrap_base_event_type;
 #include <sys/socket.h>
 #endif
 
+#ifndef WIN32
 #include <netdb.h>
-#ifndef _AIX
+#endif
+
+#if !defined(_AIX) && !defined(WIN32)
 extern int h_errno;
 #endif
 
