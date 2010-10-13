@@ -28,6 +28,8 @@
 
 #include "IcaSlave.h"
 
+class LockWidget;
+
 class ScreenLockSlave : public IcaSlave
 {
 public:
@@ -37,6 +39,8 @@ public:
 
 private:
 	virtual bool handleMessage( const Ipc::Msg &m );
+
+	LockWidget *m_lockWidget;
 
 } ;
 

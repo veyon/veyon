@@ -23,17 +23,25 @@
  *
  */
 
+#include "LockWidget.h"
 #include "ScreenLockSlave.h"
 
 
 ScreenLockSlave::ScreenLockSlave() :
-	IcaSlave()
+	IcaSlave(),
+	m_lockWidget( new LockWidget() )
 {
 }
 
+
+
+
 ScreenLockSlave::~ScreenLockSlave()
 {
+	delete m_lockWidget;
 }
+
+
 
 
 bool ScreenLockSlave::handleMessage( const Ipc::Msg &m )
