@@ -42,7 +42,6 @@
 #include "ItalcCoreServer.h"
 #include "DsaKey.h"
 #include "LocalSystemIca.h"
-#include "IcaMain.h"
 
 
 ItalcCoreServer * ItalcCoreServer::_this = NULL;

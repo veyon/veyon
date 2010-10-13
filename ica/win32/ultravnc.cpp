@@ -2,7 +2,6 @@
 
 #include "stdhdrs.h"
 #include "ItalcCoreServer.h"
-#include "IcaMain.h"
 #include "vsocket.cpp"
 
 // adzm 2010-09
