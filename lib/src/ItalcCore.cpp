@@ -34,6 +34,7 @@
 
 static PrivateDSAKey * privDSAKey = NULL;
 
+int ItalcCore::serverPort = PortOffsetIVS;
 ItalcCore::UserRoles ItalcCore::role = ItalcCore::RoleOther;
 
 

@@ -297,9 +297,10 @@ namespace ItalcCore
 	} ;
 	typedef UserRoles UserRole;
 
-	bool initAuthentication( void );
+	bool initAuthentication();
 
 
+	extern int serverPort;
 	extern UserRoles role;
 
 }
