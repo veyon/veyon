@@ -1,8 +1,8 @@
 /*
- * IVS.h - class IVS, a VNC server abstraction for platform-independent
- *         VNC server usage
+ * ItalcVncServer.h - class ItalcVncServer, a VNC server abstraction for
+ *                    platform-independent VNC server usage
  *
- * Copyright (c) 2006-2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -23,56 +23,29 @@
  *
  */
 
-
-#ifndef _IVS_H
-#define _IVS_H
+#ifndef _ITALC_VNC_SERVER_H
+#define _ITALC_VNC_SERVER_H
 
 #include <QtCore/QThread>
 
-
-extern int __ivs_port;
-
-
-class IVS : public QThread
+class ItalcVncServer : public QThread
 {
 public:
-	IVS( const quint16 _ivs_port, int _argc, char * * _argv,
-						bool _no_threading = false );
-	virtual ~IVS();
+	ItalcVncServer();
+	virtual ~ItalcVncServer();
 
-	quint16 serverPort( void ) const
+	int serverPort() const
 	{
-		return( m_port );
+		return m_port;
 	}
-
-	bool runningInSeparateProcess( void ) const
-	{
-		return m_runningInSeparateProcess;
-	}
-
-#ifdef ITALC_BUILD_LINUX
-	void restart( void )
-	{
-		m_restart = true;
-	}
-#endif
 
 
 private:
-	virtual void run( void );
+	virtual void run();
 
-	int m_argc;
-	char * * m_argv;
-
-	quint16 m_port;
-	bool m_runningInSeparateProcess;
-
-#ifdef ITALC_BUILD_LINUX
-	bool m_restart;
-#endif
+	int m_port;
 
 } ;
-
 
 #endif
 

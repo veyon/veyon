@@ -1,6 +1,6 @@
 /*
- * IVS.cpp - implementation of IVS, a VNC-server-abstraction for platform-
- *           independent VNC-server-usage
+ * ItalcVncServer.cpp - implementation of ItalcVncServer, a VNC-server-
+ *                      abstraction for platform independent VNC-server-usage
  *
  * Copyright (c) 2006-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
@@ -34,10 +34,9 @@
 #include <QtCore/QStringList>
 
 
-#include "IVS.h"
+#include "ItalcVncServer.h"
+#include "ItalcCore.h"
 #include "ItalcRfbExt.h"
-
-int __ivs_port = PortOffsetIVS;
 
 #ifdef ITALC_BUILD_LINUX
 
@@ -45,7 +44,6 @@ extern "C" int x11vnc_main( int argc, char * * argv );
 
 #include "rfb/rfb.h"
 #include "ItalcCoreServer.h"
-#include "LocalSystem.h"
 
 
 rfbClientPtr __client = NULL;
@@ -80,15 +78,14 @@ static rfbBool italcCoreNewClient( struct _rfbClientRec *, void * * )
 
 
 
-static rfbBool lvs_italcHandleMessage( struct _rfbClientRec * _client,
-					void * _data,
-					const rfbClientToServerMsg * _message )
+static rfbBool lvs_italcHandleMessage( struct _rfbClientRec *client,
+					void *data,
+					const rfbClientToServerMsg *message )
 {
-	if( _message->type == rfbItalcCoreRequest )
+	if( message->type == rfbItalcCoreRequest )
 	{
 		return ItalcCoreServer::instance()->
-				processClient( libvncServerDispatcher,
-								_client );
+				handleItalcClientMessage( libvncServerDispatcher, client );
 	}
 	return false;
 }
@@ -126,79 +123,69 @@ static void lvs_italcSecurityHandler( struct _rfbClientRec *cl )
 #include <windows.h>
 
 extern bool Myinit( HINSTANCE hInstance );
-extern int WinVNCAppMain( void );
+extern int WinVNCAppMain();
 
 #endif
 
 
 
-IVS::IVS( const quint16 _ivs_port, int _argc, char * * _argv,
-							bool _no_threading ) :
+ItalcVncServer::ItalcVncServer() :
 	QThread(),
-	m_argc( _argc ),
-	m_argv( _argv ),
-	m_port( _ivs_port )
-{
-	if( _no_threading )
-	{
-		run();
-	}
-}
-
-
-
-
-IVS::~IVS()
+	m_port( ItalcCore::serverPort )
 {
 }
 
 
 
 
-void IVS::run( void )
+ItalcVncServer::~ItalcVncServer()
+{
+}
+
+
+
+
+void ItalcVncServer::run()
 {
 #ifdef ITALC_BUILD_LINUX
 	QStringList cmdline;
 
-	// filter some options
-	for( int i = 0; i < m_argc; ++i )
+	QStringList acceptedArguments;
+	acceptedArguments
+			<< "-noshm"
+			<< "-solid"
+			<< "-xrandr"
+			<< "-onetile";
+
+	foreach( const QString & arg, QCoreApplication::arguments() )
 	{
-		QString option = m_argv[i];
-		if( option == "-noshm" || option == "-solid" ||
-				option == "-xrandr" || option == "-onetile" )
+		if( acceptedArguments.contains( arg ) )
 		{
-			cmdline.append( m_argv[i] );
+			cmdline.append( arg );
 		}
 	}
 
-	cmdline/* << "-forever"	// do not quit after 1st conn.
-		<< "-shared"	// allow multiple clients
-		<< "-nopw"	// do not display warning
-		<< "-repeat"	// do not disable autorepeat*/
+	cmdline
 		<< "-nosel"	// do not exchange clipboard-contents
 		<< "-nosetclipboard"	// do not exchange clipboard-contents
 /*		<< "-speeds" << ",5000,1"	// FB-rate: 7 MB/s
 						// LAN: 5 MB/s
 						// latency: 1 ms*/
-/*		<< "-wait" << "25"	// time between screen-pools*/
-/*		<< "-readtimeout" << "60" // timeout for disconn.*/
 /*			<< "-threads"	// enable threaded libvncserver*/
-/*		<< "-noremote"	// do not accept remote-cmds
-		<< "-nocmds"	// do not run ext. cmds*/
 		<< "-rfbport" << QString::number( m_port )
-				// set port where the VNC-server should listen
+				// set port where the VNC server should listen
 		;
 
-	char * old_av = m_argv[0];
-	m_argv = new char *[cmdline.size()+1];
-	m_argc = 1;
-	m_argv[0] = old_av;
+	// build new C-style command line array based on cmdline-QStringList
+	char **argv = new char *[cmdline.size()+1];
+	argv[0] = qstrdup( QCoreApplication::arguments()[0].toUtf8().constData() );
+	int argc = 1;
 
 	for( QStringList::iterator it = cmdline.begin();
-				it != cmdline.end(); ++it, ++m_argc )
+				it != cmdline.end(); ++it, ++argc )
 	{
-		m_argv[m_argc] = new char[it->length() + 1];
-		strcpy( m_argv[m_argc], it->toUtf8().constData() );
+		argv[argc] = new char[it->length() + 1];
+		strcpy( argv[argc], it->toUtf8().constData() );
 	}
 
 	// register iTALC-protocol-extension
@@ -221,7 +208,7 @@ void IVS::run( void )
 	rfbRegisterSecurityHandler( &sh );
 
 	// run x11vnc-server
-	x11vnc_main( m_argc, m_argv );
+	x11vnc_main( argc, argv );
 
 #elif ITALC_BUILD_WIN32
 
