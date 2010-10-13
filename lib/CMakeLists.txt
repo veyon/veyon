@@ -1,5 +1,11 @@
-FILE(GLOB ic_INCLUDES ${CMAKE_CURRENT_SOURCE_DIR}/include/*.h ${CMAKE_CURRENT_SOURCE_DIR}/include/Configuration/*.h)
-FILE(GLOB ic_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp ${CMAKE_CURRENT_SOURCE_DIR}/src/Configuration/*.cpp)
+FILE(GLOB ic_INCLUDES
+						${CMAKE_CURRENT_SOURCE_DIR}/include/*.h
+						${CMAKE_CURRENT_SOURCE_DIR}/include/Ipc/*.h
+						${CMAKE_CURRENT_SOURCE_DIR}/include/Configuration/*.h)
+FILE(GLOB ic_SOURCES
+						${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp
+						${CMAKE_CURRENT_SOURCE_DIR}/src/Ipc/*.cpp
+						${CMAKE_CURRENT_SOURCE_DIR}/src/Configuration/*.cpp)
 SET(LIBVNCCLIENT_SOURCES
 ${CMAKE_CURRENT_SOURCE_DIR}/../ica/x11/libvncclient/cursor.c
 ${CMAKE_CURRENT_SOURCE_DIR}/../ica/x11/libvncclient/listen.c
