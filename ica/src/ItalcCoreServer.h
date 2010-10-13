@@ -1,7 +1,7 @@
 /*
  * ItalcCoreServer.h - ItalcCoreServer
  *
- * Copyright (c) 2006-2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -32,62 +32,33 @@
 #include <QtCore/QStringList>
 
 #include "ItalcCore.h"
+#include "MasterProcess.h"
 
-
-class QProcess;
-class IVS;
-class DemoClient;
-class LockWidget;
 
 class ItalcCoreServer : public QObject
 {
 	Q_OBJECT
 public:
-	static QList<ItalcCore::Command> externalActions;
-
-	enum AccessDialogResult
-	{
-		AccessYes,
-		AccessNo,
-		AccessAlways,
-		AccessNever
-	} ;
-
-	void earlyInit( void );
-
-	ItalcCoreServer( int _argc, char * * _argv );
+	ItalcCoreServer();
 	virtual ~ItalcCoreServer();
 
-	static ItalcCoreServer * instance( void )
+	static ItalcCoreServer * instance()
 	{
 		Q_ASSERT( this != NULL );
 		return _this;
 	}
 
-	int processClient( socketDispatcher _sd, void * _user );
+	int handleItalcClientMessage( socketDispatcher sd, void *user );
 
 	bool authSecTypeItalc( socketDispatcher _sd, void * _user,
 				ItalcAuthTypes _auth_type = ItalcAuthDSA,
 				const QStringList & _allowedHosts =
 								QStringList() );
 
-	static int doGuiOp( const ItalcCore::Command & _cmd,
-					const ItalcCore::CommandArgs & _args );
-
-
-private slots:
-	void checkForPendingActions( void );
-
-	// client-functions
-	void startDemo( const QString & _master_host, bool _fullscreen );
-	void stopDemo( void );
-
-	void lockDisplay( void );
-	void unlockDisplay( void );
-
-	void displayTextMessage( const QString & _msg );
-
-	AccessDialogResult showAccessDialog( const QString & _host );
+	MasterProcess * masterProcess()
+	{
+		return &m_masterProcess;
+	}
 
 
 private:
@@ -96,14 +67,7 @@ private:
 
 	static ItalcCoreServer * _this;
 
-	QMutex m_actionMutex;
-	ItalcCore::CommandList m_pendingActions;
-
-	IVS * m_ivs;
-	DemoClient * m_demoClient;
-	LockWidget * m_lockWidget;
-
-	QMap<QString, QProcess *> m_guiProcs;
+	MasterProcess m_masterProcess;
 
 } ;
 

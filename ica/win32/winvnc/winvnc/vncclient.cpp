@@ -3827,7 +3827,7 @@ vncClientThread::run(void *arg)
 #ifdef ULTRAVNC_ITALC_SUPPORT
 		case rfbItalcCoreRequest:
 			if( !ItalcCoreServer::instance()->
-				processClient( vsocketDispatcher, m_socket ) )
+				handleItalcClientMessage( vsocketDispatcher, m_socket ) )
 			{
 				connected = FALSE;
 			}

@@ -22,34 +22,34 @@
  *
  */
 
-
 #include <italcconfig.h>
 
 #include <QtCore/QProcess>
 #include <QtCore/QLocale>
+#include <QtCore/QTime>
 #include <QtCore/QTranslator>
 #include <QtGui/QApplication>
 #include <QtNetwork/QHostInfo>
 
-
 #include "IcaMain.h"
 #include "SystemService.h"
 #include "ItalcCoreServer.h"
+#include "ItalcVncServer.h"
 #include "LocalSystemIca.h"
 #include "Debug.h"
-#include "SystemKeyTrapper.h"
 #include "DsaKey.h"
-#include "DecoratedMessageBox.h"
 
-#ifdef SYSTEMTRAY_SUPPORT
-#include <QtGui/QSystemTrayIcon>
-#endif
+#include "Ipc/Slave.h"
+
+#include "DemoClientSlave.h"
+#include "MessageBoxSlave.h"
+#include "ScreenLockSlave.h"
+#include "SystemTrayIconSlave.h"
 
 
 QString __app_name = "iTALC Client";
 const QString SERVICE_ARG = "-service";
 
-#include <QtCore/QProcess>
 
 int serviceMain( SystemService * _srv )
 {
@@ -78,119 +78,89 @@ bool eventFilter( void * _msg, long * _result )
 
 
 
-
-int ICAMain( int argc, char * * argv )
+int createKeyPair( int argc, char **argv )
 {
-#ifdef DEBUG
-#ifdef ITALC_BUILD_LINUX
-	extern int _Xdebug;
-	_Xdebug = 1;
-#endif
-#endif
-
-	// decide whether to create a QCoreApplication or QApplication
-#ifdef ITALC_BUILD_LINUX
-	bool coreApp = true;
-	for( int i = 1; i < argc; ++i )
+	const QString roleArg = argv[2];
+	ItalcCore::UserRoles role = ItalcCore::RoleTeacher;
+	if( roleArg == "admin" )
 	{
-		if( ItalcCoreServer::externalActions.contains( argv[i] ) )
-		{
-			coreApp = false;
-		}
+		role = ItalcCore::RoleAdmin;
 	}
-#else
-	bool coreApp = false;
-#endif
-
-
-	if( !coreApp )
+	else if( roleArg == "supporter" )
 	{
-		SystemService s( "icas", SERVICE_ARG, __app_name,
-					"", serviceMain, argc, argv );
-		if( s.evalArgs( argc, argv ) || argc == 0 )
-		{
-			return 0;
-		}
+		role = ItalcCore::RoleSupporter;
 	}
-
-	QCoreApplication * app = NULL;
-
-	if( coreApp )
+	else if( roleArg == "other" )
 	{
-		app = new QCoreApplication( argc, argv );
+		role = ItalcCore::RoleOther;
 	}
-	else
+	bool customPath = argc > 3;
+	QString priv = customPath ? argv[3] :
+					LocalSystem::privateKeyPath( role );
+	QString pub = customPath ?
+					( argc > 4 ? argv[4] : priv + ".pub" )
+				:
+					LocalSystem::publicKeyPath( role );
+	printf( "\n\ncreating new key-pair ... \n" );
+	PrivateDSAKey pkey( 1024 );
+	if( !pkey.isValid() )
 	{
-		QApplication * a = new QApplication( argc, argv );
-		a->setQuitOnLastWindowClosed( false );
-		app = a;
+		qCritical( "key generation failed!" );
+		return -1;
 	}
+	pkey.save( priv );
+	PublicDSAKey( pkey ).save( pub );
+	printf( "...done, saved key-pair in\n\n%s\n\nand\n\n%s",
+						priv.toUtf8().constData(),
+						pub.toUtf8().constData() );
+	printf( "\n\n\nFor now the file is only readable by "
+				"root and members of group root (if you\n"
+				"didn't ran this command as non-root).\n"
+				"I suggest changing the ownership of the "
+				"private key so that the file is\nreadable "
+				"by all members of a special group to which "
+				"all users belong who are\nallowed to use "
+				"iTALC.\n\n\n" );
+	return 0;
+}
 
-#ifdef ITALC_BUILD_WIN32
-	app->setEventFilter( eventFilter );
-#endif
 
+
+static bool initCoreApplication( QCoreApplication *app = NULL )
+{
 	const QString loc = QLocale::system().name().left( 2 );
-	QTranslator core_tr;
-	core_tr.load( ":/resources/" + loc + "-core.qm" );
-	app->installTranslator( &core_tr );
 
-	QTranslator app_tr;
-	app_tr.load( ":/resources/" + loc + ".qm" );
-	app->installTranslator( &app_tr );
-
-	QTranslator qt_tr;
-	qt_tr.load( ":/resources/qt_" + loc + ".qm" );
-	app->installTranslator( &qt_tr );
+	foreach( const QString & qm, QStringList()
+												<< loc + "-core"
+												<< loc
+												<< "qt_" + loc )
+	{
+		QTranslator * tr = new QTranslator( app );
+		tr->load( QString( ":/resources/%1.qm" ).arg( qm ) );
+		app->installTranslator( tr );
+	}
 
 	LocalSystem::initialize();
 
-	if( LocalSystem::parameter( "ivsport" ).toInt() > 0 )
+	if( LocalSystem::parameter( "serverport" ).toInt() > 0 )
 	{
-		__ivs_port = LocalSystem::parameter( "ivsport" ).toInt();
+		ItalcCore::serverPort = LocalSystem::parameter( "serverport" ).toInt();
 	}
 
-	QStringListIterator arg_it( QCoreApplication::arguments() );
-	arg_it.next();
-	while( argc > 1 && arg_it.hasNext() )
+	QStringListIterator argIt( QCoreApplication::arguments() );
+	argIt.next();	// skip application file name
+	while( argIt.hasNext() )
 	{
-		const QString & a = arg_it.next();
-		if( ( a == "-ivsport" || a == "-rfbport" ) &&
-							arg_it.hasNext() )
+		const QString & a = argIt.next();
+		if( a == "-port" && argIt.hasNext() )
 		{
-			__ivs_port = arg_it.next().toInt();
-		}
-		else if( a == "-cmd" && arg_it.hasNext() )
-		{
-			const QStringList fullCmd = arg_it.next().split( ',' );
-			if( fullCmd.size() < 1 )
-			{
-				qCritical( "Invalid argument" );
-				return -1;
-			}
-			const ItalcCore::Command cmd = fullCmd[0];
-			if( ItalcCoreServer::externalActions.contains( cmd ) )
-			{
-				ItalcCore::CommandArgs cmdArgs;
-				for( int i = 1; i < fullCmd.size(); ++i )
-				{
-					QStringList arg = fullCmd[i].split( '=' );
-					if( arg.size() != 2 )
-					{
-						qCritical( "Invalid argument" );
-						return -1;
-					}
-					cmdArgs[arg[0]] = arg[1];
-				}
-				ItalcCoreServer::doGuiOp( cmd, cmdArgs );
-				return 0;
-			}
+			ItalcCore::serverPort = argIt.next().toInt();
 		}
 		else if( a == "-role" )
 		{
-			if( arg_it.hasNext() )
+			if( argIt.hasNext() )
 			{
-				const QString role = arg_it.next();
+				const QString role = argIt.next();
 				if( role == "teacher" )
 				{
 					ItalcCore::role = ItalcCore::RoleTeacher;
@@ -210,45 +180,11 @@ int ICAMain( int argc, char * * argv )
 					"	teacher\n"
 					"	admin\n"
 					"	supporter\n\n" );
-				return -1;
+				return false;
 			}
-		}
-		else if( a == "-createkeypair" )
-		{
-			ItalcCore::UserRoles role =
-				( ItalcCore::role != ItalcCore::RoleOther ) ?
-					ItalcCore::role : ItalcCore::RoleTeacher;
-			bool user_path = arg_it.hasNext();
-			QString priv = user_path ? arg_it.next() :
-					LocalSystem::privateKeyPath( role );
-			QString pub = user_path ?
-					( arg_it.hasNext() ?
-						arg_it.next() : priv + ".pub" )
-				:
-					LocalSystem::publicKeyPath( role );
-			printf( "\n\ncreating new key-pair ... \n" );
-			PrivateDSAKey pkey( 1024 );
-			if( !pkey.isValid() )
-			{
-				printf( "key generation failed!\n" );
-				return -1;
-			}
-			pkey.save( priv );
-			PublicDSAKey( pkey ).save( pub );
-			printf( "...done, saved key-pair in\n\n%s\n\nand\n\n%s",
-						priv.toUtf8().constData(),
-						pub.toUtf8().constData() );
-			printf( "\n\n\nFor now the file is only readable by "
-				"root and members of group root (if you\n"
-				"didn't ran this command as non-root).\n"
-				"I suggest changing the ownership of the "
-				"private key so that the file is\nreadable "
-				"by all members of a special group to which "
-				"all users belong who are\nallowed to use "
-				"iTALC.\n\n\n" );
-			return 0;
 		}
 #ifdef ITALC_BUILD_LINUX
+		// accept these options for x11vnc
 		else if( a == "-nosel" || a == "-nosetclipboard" ||
 				a == "-noshm" || a == "-solid" ||
 				a == "-xrandr" || a == "-onetile" )
@@ -257,42 +193,129 @@ int ICAMain( int argc, char * * argv )
 		else if( a == "-h" || a == "--help" )
 		{
 			QProcess::execute( "man ica" );
-			return 0;
+			return false;
 		}
 #endif
 		else if( a == "-v" || a == "--version" )
 		{
 			printf( "%s\n", ITALC_VERSION );
-			return 0;
+			return false;
+		}
+		else if( a == "-slave" )
+		{
+			return true;
 		}
 		else
 		{
-			printf( "Unrecognized commandline-argument %s\n",
-						a.toUtf8().constData() );
-			return -1;
+			qWarning() << "Unrecognized commandline argument" << a;
+			return false;
 		}
 	}
 
-#if 0
-#ifdef SYSTEMTRAY_SUPPORT
-	QIcon icon( ":/resources/icon16.png" );
-	icon.addFile( ":/resources/icon22.png" );
-	icon.addFile( ":/resources/icon32.png" );
+	return true;
+}
 
-	QSystemTrayIcon sti( icon );
-	__systray_icon = &sti;
-	__systray_icon->setToolTip(
-				QApplication::tr( "iTALC Client %1 on %2:%3" ).
-					arg( ITALC_VERSION ).
-					arg( QHostInfo::localHostName() ).
-					arg( QString::number( __ivs_port ) ) );
-	__systray_icon->show();
-#endif
+
+
+
+static int runCoreServer( int argc, char **argv )
+{
+	QCoreApplication app( argc, argv );
+	initCoreApplication( &app );
+
+#ifdef ITALC_BUILD_WIN32
+	app.setEventFilter( eventFilter );
 #endif
 
-	ItalcCoreServer coreServer( argc, argv );
+	ItalcCoreServer coreServer;
+	ItalcVncServer vncServer;
 
-	return app->exec();
+	// start the SystemTrayIconSlave and set the default tooltip
+	coreServer.masterProcess()->setSystemTrayToolTip(
+		QApplication::tr( "iTALC Client %1 on %2:%3" ).
+							arg( ITALC_VERSION ).
+							arg( QHostInfo::localHostName() ).
+							arg( QString::number( vncServer.serverPort() ) ) );
+
+//	vncServer.run();
+	vncServer.start();
+
+	return app.exec();
+}
+
+
+
+template<class SlaveClass>
+static int runSlave( int argc, char **argv )
+{
+	QApplication app( argc, argv );
+	initCoreApplication( &app );
+
+	SlaveClass s;
+
+	return app.exec();
+}
+
+
+
+int ICAMain( int argc, char **argv )
+{
+	qsrand( QTime( 0, 0, 0 ).secsTo( QTime::currentTime() ) );
+
+	// decide whether to create a QCoreApplication or QApplication
+	if( argc >= 2 )
+	{
+		const QString arg1 = argv[1];
+		if( arg1 == "-service" )
+		{
+			SystemService s( "icas", SERVICE_ARG, __app_name,
+								"", serviceMain, argc, argv );
+			if( s.evalArgs( argc, argv ) )
+			{
+				return 0;
+			}
+		}
+		else if( arg1 == "-createkeypair" )
+		{
+			return createKeyPair( argc, argv );
+		}
+		else if( arg1 == "-slave" )
+		{
+			if( argc <= 2 )
+			{
+				qCritical( "Need to specify slave" );
+				return -1;
+			}
+			const QString arg2 = argv[2];
+			if( arg2 == MasterProcess::IdCoreServer )
+			{
+				return runCoreServer( argc, argv );
+			}
+			else if( arg2 == MasterProcess::IdDemoClient )
+			{
+				return runSlave<DemoClientSlave>( argc, argv );
+			}
+			else if( arg2 == MasterProcess::IdMessageBox )
+			{
+				return runSlave<MessageBoxSlave>( argc, argv );
+			}
+			else if( arg2 == MasterProcess::IdScreenLock )
+			{
+				return runSlave<ScreenLockSlave>( argc, argv );
+			}
+			else if( arg2 == MasterProcess::IdSystemTrayIcon )
+			{
+				return runSlave<SystemTrayIconSlave>( argc, argv );
+			}
+			else
+			{
+				qCritical( "Unknown slave" );
+				return -1;
+			}
+		}
+	}
+
+	return runCoreServer( argc, argv );
 }
 
 
@@ -327,7 +350,7 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	QStringList cmdline = QString( szCmdLine ).toLower().split( ' ' );
 	cmdline.push_front( path );
 
-	char * * argv = new char *[cmdline.size()];
+	char **argv = new char *[cmdline.size()];
 	int argc = 0;
 	for( QStringList::iterator it = cmdline.begin(); it != cmdline.end();
 								++it, ++argc )
@@ -336,16 +359,21 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance,
 		strcpy( argv[argc], it->toUtf8().constData() );
 	}
 
-	return( ICAMain( argc, argv ) );
+	return ICAMain( argc, argv );
 }
 
 
 #else
 
 
-int main( int argc, char * * argv )
+int main( int argc, char **argv )
 {
-	return( ICAMain( argc, argv ) );
+#ifdef DEBUG
+	extern int _Xdebug;
+	_Xdebug = 1;
+#endif
+
+	return ICAMain( argc, argv );
 }
 
 
