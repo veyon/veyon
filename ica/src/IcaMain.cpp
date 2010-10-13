@@ -370,7 +370,7 @@ int main( int argc, char **argv )
 {
 #ifdef DEBUG
 	extern int _Xdebug;
-	_Xdebug = 1;
+//	_Xdebug = 1;
 #endif
 
 	return ICAMain( argc, argv );
