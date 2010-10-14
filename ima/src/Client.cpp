@@ -35,6 +35,7 @@
 
 #include "MainWindow.h"
 #include "Client.h"
+#include "DemoServerMaster.h"
 #include "ItalcVncConnection.h"
 #include "ItalcCoreConnection.h"
 #include "ClassroomManager.h"
@@ -586,9 +587,6 @@ int Client::freeID( void )
 
 void Client::changeMode( const Modes _new_mode )
 {
-	// ##ITALC2:
-	//isdConnection * conn = m_mainWindow->localISD();
-
 	if( _new_mode != m_mode )
 	{
 		switch( m_mode )
@@ -598,7 +596,7 @@ void Client::changeMode( const Modes _new_mode )
 				break;
 			case Mode_FullscreenDemo:
 			case Mode_WindowDemo:
-			//	conn->demoServerDenyClient( m_hostname );
+				m_mainWindow->demoServerMaster()->unallowHost( m_hostname );
 				m_connection->stopDemo();
 				break;
 			case Mode_Locked:
@@ -612,13 +610,10 @@ void Client::changeMode( const Modes _new_mode )
 				break;
 			case Mode_FullscreenDemo:
 			case Mode_WindowDemo:
-		//		conn->demoServerAllowClient( m_hostname );
-			/*	m_updateThread->enqueueCommand(
-						updateThread::Cmd_StartDemo,
-	QList<QVariant>() << QString::number( conn->demoServerPort() )
-				<< (int)( m_mode == Mode_FullscreenDemo ) );*/
-				//m_connection->startDemo( ...  );
-				//m_mode = Mode_FullscreenDemo;
+				m_mainWindow->demoServerMaster()->allowHost( m_hostname );
+				m_connection->startDemo(
+								m_mainWindow->demoServerMaster()->serverPort(),
+								m_mode == Mode_FullscreenDemo );
 				break;
 			case Mode_Locked:
 				m_connection->lockDisplay();
