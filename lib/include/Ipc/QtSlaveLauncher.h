@@ -37,7 +37,7 @@ namespace Ipc
 class QtSlaveLauncher : public SlaveLauncher
 {
 public:
-	QtSlaveLauncher();
+	QtSlaveLauncher( const QString &applicationFilePath = QString() );
 	~QtSlaveLauncher();
 
 	virtual void start( const QStringList &arguments );

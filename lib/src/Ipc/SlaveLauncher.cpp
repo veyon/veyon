@@ -24,13 +24,20 @@
  *
  */
 
+#include <QtCore/QCoreApplication>
+
 #include "Ipc/SlaveLauncher.h"
 
 namespace Ipc
 {
 
-SlaveLauncher::SlaveLauncher()
+SlaveLauncher::SlaveLauncher( const QString &applicationFilePath ) :
+	m_applicationFilePath( applicationFilePath )
 {
+	if( m_applicationFilePath.isEmpty() )
+	{
+		m_applicationFilePath = QCoreApplication::applicationFilePath();
+	}
 }
 
 

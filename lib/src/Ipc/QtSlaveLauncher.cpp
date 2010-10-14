@@ -24,7 +24,6 @@
  *
  */
 
-#include <QtCore/QCoreApplication>
 #include <QtCore/QProcess>
 
 #include "Ipc/QtSlaveLauncher.h"
@@ -32,8 +31,8 @@
 namespace Ipc
 {
 
-QtSlaveLauncher::QtSlaveLauncher() :
-	SlaveLauncher(),
+QtSlaveLauncher::QtSlaveLauncher( const QString &applicationFilePath ) :
+	SlaveLauncher( applicationFilePath ),
 	m_process( NULL )
 {
 }
@@ -51,7 +50,7 @@ void QtSlaveLauncher::start( const QStringList &arguments )
 {
 	stop();
 	m_process = new QProcess;
-	m_process->start( QCoreApplication::applicationFilePath(), arguments );
+	m_process->start( applicationFilePath(), arguments );
 }
 
 
