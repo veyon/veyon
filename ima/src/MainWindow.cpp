@@ -352,6 +352,7 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 	ItalcVncConnection * conn = new ItalcVncConnection( this );
 	conn->setHost( QHostAddress( __ivs_host ).toString() );
 	conn->setPort( __ivs_port );
+	conn->setFramebufferUpdateInterval( -1 );
 	conn->start();
 
 	m_localISD = new ItalcCoreConnection( conn );
