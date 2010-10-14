@@ -33,6 +33,7 @@
 
 const Ipc::Id MasterProcess::IdCoreServer = "CoreServer";
 const Ipc::Id MasterProcess::IdDemoClient = "DemoClient";
+const Ipc::Id MasterProcess::IdDemoServer = "DemoServer";
 const Ipc::Id MasterProcess::IdMessageBox = "MessageBox";
 const Ipc::Id MasterProcess::IdScreenLock = "ScreenLock";
 const Ipc::Id MasterProcess::IdSystemTrayIcon = "SystemTrayIcon";
@@ -53,7 +54,7 @@ MasterProcess::~MasterProcess()
 
 
 
-void MasterProcess::startDemo( const QString &masterHost, bool fullscreen)
+void MasterProcess::startDemo( const QString &masterHost, bool fullscreen )
 {
 	createSlave( IdDemoClient );
 	sendMessage( IdDemoClient,

@@ -46,6 +46,7 @@ public:
 
 	static const Ipc::Id IdCoreServer;
 	static const Ipc::Id IdDemoClient;
+	static const Ipc::Id IdDemoServer;
 	static const Ipc::Id IdMessageBox;
 	static const Ipc::Id IdScreenLock;
 	static const Ipc::Id IdSystemTrayIcon;
