@@ -138,5 +138,18 @@ const Command RestartComputer = "RestartComputer";
 const Command DisableLocalInputs = "DisableLocalInputs";
 const Command SetRole = "SetRole";
 
+namespace Ipc
+{
+	namespace DemoServer
+	{
+		const ::Ipc::Command StartDemoServer = "StartDemoServer";
+		const ::Ipc::Argument SourcePort = "SourcePort";
+		const ::Ipc::Argument DestinationPort = "DestinationPort";
+
+		const ::Ipc::Command UpdateAllowedHosts = "UpdateAllowedHosts";
+		const ::Ipc::Argument AllowedHosts = "AllowedHosts";
+	}
+}
+
 } ;
 

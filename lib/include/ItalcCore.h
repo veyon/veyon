@@ -33,6 +33,8 @@
 #include <QtCore/QSysInfo>
 #include <QtCore/QVariant>
 
+#include "Ipc/Core.h"
+
 #include "ItalcRfbExt.h"
 #include "rfb/rfbproto.h"
 #include "rfb/rfbclient.h"
@@ -302,6 +304,20 @@ namespace ItalcCore
 
 	extern int serverPort;
 	extern UserRoles role;
+
+	// common IPC data between ICA and IMA
+	namespace Ipc
+	{
+		namespace DemoServer
+		{
+			extern const ::Ipc::Command StartDemoServer;
+			extern const ::Ipc::Argument SourcePort;
+			extern const ::Ipc::Argument DestinationPort;
+
+			extern const ::Ipc::Command UpdateAllowedHosts;
+			extern const ::Ipc::Argument AllowedHosts;
+		}
+	}
 
 }
 
