@@ -39,6 +39,7 @@
 #include "DsaKey.h"
 
 #include "DemoClientSlave.h"
+#include "DemoServerSlave.h"
 #include "MessageBoxSlave.h"
 #include "ScreenLockSlave.h"
 #include "SystemTrayIconSlave.h"
@@ -323,6 +324,10 @@ int main( int argc, char **argv )
 			else if( arg2 == MasterProcess::IdSystemTrayIcon )
 			{
 				return runSlave<SystemTrayIconSlave>( argc, argv );
+			}
+			else if( arg2 == MasterProcess::IdDemoServer )
+			{
+				return runSlave<DemoServerSlave>( argc, argv );
 			}
 			else
 			{
