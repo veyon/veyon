@@ -79,7 +79,7 @@ namespace Ipc
 			return m_args;
 		}
 
-		Msg & addArg( const QString &key, const QString &value )
+		Msg & addArg( const QString &key, const QVariant &value )
 		{
 			m_args[key] = value;
 			return *this;
@@ -94,6 +94,11 @@ namespace Ipc
 		QString arg( const QString &key ) const
 		{
 			return m_args[key].toString();
+		}
+
+		QVariant argV( const QString &key ) const
+		{
+			return m_args[key];
 		}
 
 		template<class QIOD>

@@ -87,15 +87,15 @@ bool DemoServerSlave::handleMessage( const Ipc::Msg &m )
 	if( m.cmd() == StartDemoServer )
 	{
 		ItalcCore::role =
-				static_cast<ItalcCore::UserRoles>( m.arg( UserRole ).toInt() );
+				static_cast<ItalcCore::UserRoles>( m.argV( UserRole ).toInt() );
 		m_demoServerThread = new DemoServerThread(
-				m.arg( SourcePort ).toInt(), m.arg( DestinationPort ).toInt() );
+			m.argV( SourcePort ).toInt(), m.argV( DestinationPort ).toInt() );
 		m_demoServerThread->start();
 		return true;
 	}
 	else if( m.cmd() == UpdateAllowedHosts )
 	{
-		const QStringList allowedHosts = m.args()[AllowedHosts].toStringList();
+		const QStringList allowedHosts = m.argV( AllowedHosts ).toStringList();
 		// resolve IP addresses of all hosts
 		QStringList allowedIPs;
 		foreach( const QString &host, allowedHosts )
