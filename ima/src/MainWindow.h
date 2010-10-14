@@ -44,6 +44,7 @@ class QSplashScreen;
 class QSplitter;
 class ClassroomManager;
 class ConfigWidget;
+class DemoServerMaster;
 class OverviewWidget;
 class RemoteControlWidget;
 class UserList;
@@ -103,19 +104,24 @@ public:
 	MainWindow( int _screen );
 	virtual ~MainWindow();
 
-	QWidget * workspace( void )
+	QWidget * workspace()
 	{
-		return( m_workspace );
+		return m_workspace;
 	}
 
-	ClassroomManager * getClassroomManager( void )
+	ClassroomManager *getClassroomManager()
 	{
-		return( m_classroomManager );
+		return m_classroomManager;
 	}
 
-	ItalcCoreConnection * localISD( void )
+	ItalcCoreConnection *localISD()
 	{
-		return( m_localISD );
+		return m_localISD;
+	}
+
+	DemoServerMaster *demoServerMaster()
+	{
+		return m_demoServerMaster;
 	}
 
 	void checkModeButton( int _id )
@@ -208,7 +214,7 @@ private:
 
 
 	ItalcCoreConnection * m_localISD;
-
+	DemoServerMaster *m_demoServerMaster;
 
 	QReadWriteLock m_rctrlLock;
 	RemoteControlWidget * m_remoteControlWidget;

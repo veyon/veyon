@@ -48,6 +48,7 @@
 #include "SnapshotList.h"
 #include "ConfigWidget.h"
 #include "DecoratedMessageBox.h"
+#include "DemoServerMaster.h"
 #include "ToolButton.h"
 #include "ItalcCoreConnection.h"
 #include "ItalcVncConnection.h"
@@ -358,7 +359,7 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 	{
 		DecoratedMessageBox::information(
 			tr( "iTALC service not running" ),
-			tr( 	"There seems to be no iTALC service running "
+			tr( "There seems to be no iTALC service running "
 				"on this computer or the authentication-keys "
 				"aren't set up properly. The service is "
 				"required for running iTALC. Contact your "
@@ -367,9 +368,9 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 		return;
 	}
 
-/*	##ITALC2: m_localISD->demoServerRun( __demo_quality,
-						LocalSystem::freePort( 5858 ) );*/
-
+	// create DemoServerMaster
+	m_demoServerMaster = new DemoServerMaster;
+	m_demoServerMaster->start( PortOffsetIVS, PortOffsetDemoServer );
 
 //	##ITALC2: m_localISD->hideTrayIcon();
 
