@@ -60,11 +60,4 @@ void SlaveLauncher::stop()
 }
 
 
-
-bool SlaveLauncher::isRunning() const
-{
-	return false;
-}
-
-
 }
