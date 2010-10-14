@@ -2150,6 +2150,7 @@ if (db) fprintf(stderr, "initialize_raw_fb reset\n");
 
 		last_file = strdup(q);
 
+#ifndef WIN32
 		fd = raw_fb_fd;
 		if (fd < 0 && rawfb_dev_video) {
 			fd = open(q, O_RDWR);
@@ -2165,6 +2166,7 @@ if (db) fprintf(stderr, "initialize_raw_fb reset\n");
 			clean_up_exit(1);
 		}
 		raw_fb_fd = fd;
+#endif
 
 		if (raw_fb_native_bpp < 8) {
 			size = w*h*raw_fb_native_bpp/8 + raw_fb_offset;
