@@ -120,6 +120,8 @@ public:
 		return m_scaledScreen;
 	}
 
+	void setFramebufferUpdateInterval( int interval );
+
 	void rescaleScreen( void );
 
 
@@ -157,6 +159,7 @@ private:
 	QualityLevels m_quality;
 	QString m_host;
 	int m_port;
+	int m_framebufferUpdateInterval;
 	QMutex m_mutex;
 	QReadWriteLock m_imgLock;
 	QQueue<ClientEvent *> m_eventQueue;

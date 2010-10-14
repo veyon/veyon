@@ -1274,6 +1274,13 @@ rfbBool
 SendFramebufferUpdateRequest(rfbClient* client, int x, int y, int w, int h, rfbBool incremental)
 {
   rfbFramebufferUpdateRequestMsg fur;
+	/* Tobias Doerffel, 2010/10 */
+	char *noUpdates = rfbClientGetClientData(client, (void *) 0x555);
+	if( noUpdates )
+	{
+		return;
+	}
+	/*                          */
 
   if (!SupportsClient2Server(client, rfbFramebufferUpdateRequest)) return TRUE;
   

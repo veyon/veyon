@@ -1,7 +1,7 @@
 /*
  * ItalcVncConnection.cpp - implementation of ItalcVncConnection class
  *
- * Copyright (c) 2008-2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2008-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -24,7 +24,6 @@
  * Boston, MA 02111-1307, USA.
  *
  */
-
 
 #include "ItalcVncConnection.h"
 
@@ -257,6 +256,7 @@ ItalcVncConnection::ItalcVncConnection( QObject * _parent ) :
 	m_cl( NULL ),
 	m_quality( QualityMedium ),
 	m_port( PortOffsetIVS ),
+	m_framebufferUpdateInterval( 0 ),
 	m_image(),
 	m_scaledScreenNeedsUpdate( false ),
 	m_scaledScreen(),
@@ -365,6 +365,14 @@ const QImage ItalcVncConnection::image( int _x, int _y, int _w, int _h )
 
 
 
+void ItalcVncConnection::setFramebufferUpdateInterval( int interval )
+{
+	m_framebufferUpdateInterval = interval;
+}
+
+
+
+
 void ItalcVncConnection::rescaleScreen( void )
 {
 	if( m_scaledScreenNeedsUpdate )
@@ -406,7 +414,7 @@ void ItalcVncConnection::emitGotCut( const QString & _text )
 
 
 
-void ItalcVncConnection::run( void )
+void ItalcVncConnection::run()
 {
 	m_stopped = false;
 
@@ -446,6 +454,10 @@ void ItalcVncConnection::run( void )
 		if( rfbInitClient( m_cl, 0, 0 ) )
 		{
 			m_connected = true;
+			if( m_framebufferUpdateInterval < 0 )
+			{
+				rfbClientSetClientData( m_cl, (void *) 0x555, (void *) 1 );
+			}
 		}
 	}
 
@@ -453,7 +465,12 @@ void ItalcVncConnection::run( void )
 	// Main VNC event loop
 	while( !m_stopped )
 	{
-		const int i = WaitForMessage( m_cl, 500 );
+		int timeout = 500;
+		if( m_framebufferUpdateInterval < 0 )
+		{
+			timeout = 100*1000;	// 100 ms
+		}
+		const int i = WaitForMessage( m_cl, timeout );
 		if( i < 0 )
 		{
 			break;
@@ -476,6 +493,11 @@ void ItalcVncConnection::run( void )
 		}
 
 		m_mutex.unlock();
+
+		if( m_framebufferUpdateInterval > 0 )
+		{
+			msleep( m_framebufferUpdateInterval );
+		}
 	}
 
 	if( m_connected )
