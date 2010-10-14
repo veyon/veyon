@@ -57,6 +57,8 @@ void DemoServerMaster::start( int sourcePort, int destinationPort )
 						addArg( ItalcCore::Ipc::DemoServer::UserRole, ItalcCore::role ).
 						addArg( ItalcCore::Ipc::DemoServer::SourcePort, sourcePort ).
 						addArg( ItalcCore::Ipc::DemoServer::DestinationPort, destinationPort ) );
+
+	m_serverPort = destinationPort;
 }
 
 
@@ -64,6 +66,15 @@ void DemoServerMaster::start( int sourcePort, int destinationPort )
 void DemoServerMaster::stop()
 {
 	stopSlave( ItalcCore::Ipc::IdDemoServer );
+}
+
+
+
+void DemoServerMaster::updateAllowedHosts()
+{
+	sendMessage( ItalcCore::Ipc::IdDemoServer,
+					Ipc::Msg( ItalcCore::Ipc::DemoServer::UpdateAllowedHosts ).
+						addArg( ItalcCore::Ipc::DemoServer::AllowedHosts, m_allowedHosts ) );
 }
 
 

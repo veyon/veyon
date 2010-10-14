@@ -36,10 +36,31 @@ public:
 
 	void start( int sourcePort, int destinationPort );
 	void stop();
+	void updateAllowedHosts();
+
+	void allowHost( const QString &host )
+	{
+		m_allowedHosts += host;
+		updateAllowedHosts();
+	}
+
+	void unallowHost( const QString &host )
+	{
+		m_allowedHosts.removeAll( host );
+		updateAllowedHosts();
+	}
+
+	int serverPort() const
+	{
+		return m_serverPort;
+	}
 
 
 private:
 	virtual bool handleMessage( const Ipc::Msg &m );
+
+	QStringList m_allowedHosts;
+	int m_serverPort;
 
 } ;
 
