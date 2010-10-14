@@ -1,5 +1,6 @@
 /*
- * IpcMaster.h - class Ipc::Master which manages Ipc::Slaves
+ * QtSlaveLauncher.cpp - class Ipc::QtSlaveLauncher providing mechanisms for
+ *                       launching a slave application via QProcess
  *
  * Copyright (c) 2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  * Copyright (c) 2010 Univention GmbH
@@ -23,57 +24,57 @@
  *
  */
 
-#ifndef _IPC_MASTER_H
-#define _IPC_MASTER_H
-
-#include "Ipc/Core.h"
-
+#include <QtCore/QCoreApplication>
 #include <QtCore/QProcess>
-#include <QtNetwork/QLocalServer>
 
+#include "Ipc/QtSlaveLauncher.h"
 
 namespace Ipc
 {
 
-class SlaveLauncher;
-
-class Master : public QLocalServer
+QtSlaveLauncher::QtSlaveLauncher() :
+	SlaveLauncher(),
+	m_process( NULL )
 {
-	Q_OBJECT
-public:
-	Master();
-	virtual ~Master();
-
-	void createSlave( const Ipc::Id &id, SlaveLauncher *slaveLauncher = NULL );
-	void stopSlave( const Ipc::Id &id );
-	bool isSlaveRunning( const Ipc::Id &id );
-
-	void sendMessage( const Ipc::Id &id, const Ipc::Msg &msg );
-	Ipc::Msg receiveMessage( const Ipc::Id &id );
-
-	virtual bool handleMessage( const Ipc::Msg &msg ) = 0;
-
-
-private slots:
-	void acceptConnection();
-	void receiveMessages();
-
-
-private:
-	Ipc::Id m_serverId;
-
-	struct ProcessInformation
-	{
-		QLocalSocket *sock;
-		SlaveLauncher *slaveLauncher;
-		QVector<Ipc::Msg> pendingMessages;
-	};
-
-	typedef QMap<Ipc::Id, ProcessInformation> ProcessMap;
-	ProcessMap m_processes;
-
-};
-
 }
 
-#endif // _IPC_MASTER_H
+
+
+QtSlaveLauncher::~QtSlaveLauncher()
+{
+	// base class destructor calls stop()
+}
+
+
+
+void QtSlaveLauncher::start( const QStringList &arguments )
+{
+	stop();
+	m_process = new QProcess;
+	m_process->start( QCoreApplication::applicationFilePath(), arguments );
+}
+
+
+
+void QtSlaveLauncher::stop()
+{
+	if( m_process )
+	{
+		if( !m_process->waitForFinished( 5000 ) )
+		{
+			m_process->terminate();
+		}
+
+		delete m_process;
+	}
+}
+
+
+
+bool QtSlaveLauncher::isRunning() const
+{
+	return m_process && m_process->state() == QProcess::Running;
+}
+
+
+}

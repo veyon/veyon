@@ -1,5 +1,6 @@
 /*
- * IpcMaster.h - class Ipc::Master which manages Ipc::Slaves
+ * IpcSlaveLauncher.cpp - class Ipc::SlaveLauncher providing mechanisms for
+ *                        launching a slave application
  *
  * Copyright (c) 2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  * Copyright (c) 2010 Univention GmbH
@@ -23,57 +24,40 @@
  *
  */
 
-#ifndef _IPC_MASTER_H
-#define _IPC_MASTER_H
-
-#include "Ipc/Core.h"
-
-#include <QtCore/QProcess>
-#include <QtNetwork/QLocalServer>
-
+#include "Ipc/SlaveLauncher.h"
 
 namespace Ipc
 {
 
-class SlaveLauncher;
-
-class Master : public QLocalServer
+SlaveLauncher::SlaveLauncher()
 {
-	Q_OBJECT
-public:
-	Master();
-	virtual ~Master();
-
-	void createSlave( const Ipc::Id &id, SlaveLauncher *slaveLauncher = NULL );
-	void stopSlave( const Ipc::Id &id );
-	bool isSlaveRunning( const Ipc::Id &id );
-
-	void sendMessage( const Ipc::Id &id, const Ipc::Msg &msg );
-	Ipc::Msg receiveMessage( const Ipc::Id &id );
-
-	virtual bool handleMessage( const Ipc::Msg &msg ) = 0;
-
-
-private slots:
-	void acceptConnection();
-	void receiveMessages();
-
-
-private:
-	Ipc::Id m_serverId;
-
-	struct ProcessInformation
-	{
-		QLocalSocket *sock;
-		SlaveLauncher *slaveLauncher;
-		QVector<Ipc::Msg> pendingMessages;
-	};
-
-	typedef QMap<Ipc::Id, ProcessInformation> ProcessMap;
-	ProcessMap m_processes;
-
-};
-
 }
 
-#endif // _IPC_MASTER_H
+
+
+SlaveLauncher::~SlaveLauncher()
+{
+	stop();
+}
+
+
+
+void SlaveLauncher::start( const QStringList & )
+{
+}
+
+
+
+void SlaveLauncher::stop()
+{
+}
+
+
+
+bool SlaveLauncher::isRunning() const
+{
+	return false;
+}
+
+
+}
