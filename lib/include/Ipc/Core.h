@@ -81,19 +81,19 @@ namespace Ipc
 
 		Msg & addArg( const QString &key, const QString &value )
 		{
-			m_args[key.toLower()] = value;
+			m_args[key] = value;
 			return *this;
 		}
 
 		Msg & addArg( const QString &key, const int value )
 		{
-			m_args[key.toLower()] = QString::number( value );
+			m_args[key] = QString::number( value );
 			return *this;
 		}
 
 		QString arg( const QString &key ) const
 		{
-			return m_args[key.toLower()].toString();
+			return m_args[key].toString();
 		}
 
 		template<class QIOD>
