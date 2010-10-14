@@ -435,6 +435,7 @@ void ItalcVncConnection::run( void )
 			m_port += PortOffsetIVS;
 		}
 
+		free( m_cl->serverHost );
 		m_cl->serverHost = strdup( m_host.toUtf8().constData() );
 		m_cl->serverPort = m_port;
 
