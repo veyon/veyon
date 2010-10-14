@@ -55,15 +55,19 @@ void Slave::receiveMessage()
 		Ipc::Msg m;
 		if( m.receive( this ).isValid() )
 		{
+			bool handled = false;
 			if( handleMessage( m ) )
 			{
-				// ok
+				handled = true;
 			}
-			else if( m.cmd() == Ipc::Commands::Quit )
+
+			if( m.cmd() == Ipc::Commands::Quit )
 			{
+				handled = true;
 				QCoreApplication::quit();
 			}
-			else
+
+			if( !handled )
 			{
 				Ipc::Msg( Ipc::Commands::UnknownCommand ).
 								addArg( "Command", m.cmd() ).send( this );
