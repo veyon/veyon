@@ -155,7 +155,7 @@ void Master::acceptConnection()
 			answer.cmd() == Ipc::Commands::Identify )
 	{
 		const Ipc::Id id = answer.arg( "id" );
-		if( m_processes.contains( id ) )
+		if( m_processes.contains( id ) && m_processes[id].sock == NULL )
 		{
 			m_processes[id].sock = s;
 
@@ -169,6 +169,10 @@ void Master::acceptConnection()
 			{
 				m.send( s );
 			}
+		}
+		else
+		{
+			delete s;
 		}
 	}
 }
