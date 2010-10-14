@@ -150,6 +150,7 @@ namespace Ipc
 	namespace DemoServer
 	{
 		const ::Ipc::Command StartDemoServer = "StartDemoServer";
+		const ::Ipc::Argument UserRole = "UserRole";
 		const ::Ipc::Argument SourcePort = "SourcePort";
 		const ::Ipc::Argument DestinationPort = "DestinationPort";
 

@@ -34,6 +34,7 @@ class DemoServerSlave : public IcaSlave
 {
 public:
 	static const Ipc::Command StartDemoServer;
+	static const Ipc::Argument UserRole;
 	static const Ipc::Argument SourcePort;
 	static const Ipc::Argument DestinationPort;
 

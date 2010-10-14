@@ -319,6 +319,7 @@ namespace ItalcCore
 		namespace DemoServer
 		{
 			extern const ::Ipc::Command StartDemoServer;
+			extern const ::Ipc::Argument UserRole;
 			extern const ::Ipc::Argument SourcePort;
 			extern const ::Ipc::Argument DestinationPort;
 

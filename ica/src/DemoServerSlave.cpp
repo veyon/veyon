@@ -31,6 +31,7 @@
 #include "ItalcVncServer.h"
 
 const Ipc::Command DemoServerSlave::StartDemoServer = ItalcCore::Ipc::DemoServer::StartDemoServer;
+const Ipc::Argument DemoServerSlave::UserRole = ItalcCore::Ipc::DemoServer::UserRole;
 const Ipc::Argument DemoServerSlave::SourcePort = ItalcCore::Ipc::DemoServer::SourcePort;
 const Ipc::Argument DemoServerSlave::DestinationPort = ItalcCore::Ipc::DemoServer::DestinationPort;
 
@@ -67,7 +68,8 @@ private:
 
 
 DemoServerSlave::DemoServerSlave() :
-	IcaSlave()
+	IcaSlave(),
+	m_demoServerThread( NULL )
 {
 }
 
@@ -84,9 +86,12 @@ bool DemoServerSlave::handleMessage( const Ipc::Msg &m )
 {
 	if( m.cmd() == StartDemoServer )
 	{
+		ItalcCore::role =
+				static_cast<ItalcCore::UserRoles>( m.arg( UserRole ).toInt() );
 		m_demoServerThread = new DemoServerThread(
-			m.args()[SourcePort].toInt(), m.args()[DestinationPort].toInt() );
+				m.arg( SourcePort ).toInt(), m.arg( DestinationPort ).toInt() );
 		m_demoServerThread->start();
+		return true;
 	}
 	else if( m.cmd() == UpdateAllowedHosts )
 	{
