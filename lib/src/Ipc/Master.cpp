@@ -154,7 +154,7 @@ void Master::acceptConnection()
 	if( answer.receive( s ).isValid() &&
 			answer.cmd() == Ipc::Commands::Identify )
 	{
-		const Ipc::Id id = answer.arg( "id" );
+		const Ipc::Id id = answer.arg( Ipc::Arguments::Id );
 		if( m_processes.contains( id ) && m_processes[id].sock == NULL )
 		{
 			m_processes[id].sock = s;
@@ -194,8 +194,9 @@ void Master::receiveMessages()
 			{
 				if( m.cmd() == Ipc::Commands::UnknownCommand )
 				{
-					qWarning() << "Slave" << it.key() <<
-						"could not handle command" << m.arg( "Command" );
+					qWarning() << "Slave" << it.key()
+						<< "could not handle command"
+						<< m.arg( Ipc::Arguments::Command );
 				}
 				else
 				{

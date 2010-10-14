@@ -44,6 +44,12 @@ namespace Ipc
 		extern const Command Quit;
 	}
 
+	namespace Arguments
+	{
+		extern const Argument Id;
+		extern const Argument Command;
+	}
+
 	class Msg
 	{
 	public:

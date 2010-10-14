@@ -40,7 +40,7 @@ Slave::Slave( const Ipc::Id &masterId, const Ipc::Id &slaveId) :
 		connect( this, SIGNAL( readyRead() ),
 					this, SLOT( receiveMessage() ) );
 		Ipc::Msg( Ipc::Commands::Identify ).
-				addArg( "id", slaveId ).
+				addArg( Ipc::Arguments::Id, slaveId ).
 			send( this );
 	}
 }
@@ -70,7 +70,7 @@ void Slave::receiveMessage()
 			if( !handled )
 			{
 				Ipc::Msg( Ipc::Commands::UnknownCommand ).
-								addArg( "Command", m.cmd() ).send( this );
+						addArg( Ipc::Arguments::Command, m.cmd() ).send( this );
 			}
 		}
 	}

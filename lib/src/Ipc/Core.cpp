@@ -30,10 +30,17 @@ namespace Ipc
 {
 	namespace Commands
 	{
-		const Command Identify = "IpcIdentify";
-		const Command UnknownCommand = "IpcUnknownCommand";
-		const Command Quit = "IpcQuit";
+		const Command Identify = "IpcCommandIdentify";
+		const Command UnknownCommand = "IpcCommandUnknownCommand";
+		const Command Quit = "IpcCommandQuit";
 
 	}
+
+	namespace Arguments
+	{
+		const Argument Id = "IpcArgumentId";
+		const Argument Command = "IpcArgumentCommand";
+	}
+
 }
 
