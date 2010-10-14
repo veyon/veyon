@@ -91,7 +91,11 @@ void Master::stopSlave( const Ipc::Id &id )
 		}
 
 		delete m_processes[id].process;
-		delete m_processes[id].sock;
+
+		// schedule deletion of socket - can't delete it here as this crashes
+		// Qt on Win32
+		m_processes[id].sock->deleteLater();
+
 		m_processes.remove( id );
 	}
 }
