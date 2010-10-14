@@ -25,6 +25,8 @@
 
 #include <italcconfig.h>
 
+#include "rfb/rfb.h"
+
 #ifdef ITALC_BUILD_WIN32
 #include <windows.h>
 #endif
@@ -33,17 +35,13 @@
 #include <QtCore/QProcess>
 #include <QtCore/QStringList>
 
-
 #include "ItalcVncServer.h"
 #include "ItalcCore.h"
+#include "ItalcCoreServer.h"
 #include "ItalcRfbExt.h"
 
-#ifdef ITALC_BUILD_LINUX
 
 extern "C" int x11vnc_main( int argc, char * * argv );
-
-#include "rfb/rfb.h"
-#include "ItalcCoreServer.h"
 
 
 rfbClientPtr __client = NULL;
@@ -91,7 +89,6 @@ static rfbBool lvs_italcHandleMessage( struct _rfbClientRec *client,
 }
 
 
-
 extern "C" void rfbClientSendString(rfbClientPtr cl, char *reason);
 
 
@@ -117,7 +114,7 @@ static void lvs_italcSecurityHandler( struct _rfbClientRec *cl )
 
 
 
-#elif ITALC_BUILD_WIN32
+#ifdef ITALC_BUILD_WIN32
 
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
@@ -137,11 +134,67 @@ ItalcVncServer::ItalcVncServer() :
 
 
 
-
 ItalcVncServer::~ItalcVncServer()
 {
 }
 
+
+
+static void runX11vnc( QStringList cmdline, int port, bool plainVnc )
+{
+	cmdline
+		<< "-nosel"	// do not exchange clipboard-contents
+		<< "-nosetclipboard"	// do not exchange clipboard-contents
+		<< "-rfbport" << QString::number( port )
+				// set port where the VNC server should listen
+		;
+
+	// build new C-style command line array based on cmdline-QStringList
+	char **argv = new char *[cmdline.size()+1];
+	argv[0] = qstrdup( QCoreApplication::arguments()[0].toUtf8().constData() );
+	int argc = 1;
+
+	for( QStringList::iterator it = cmdline.begin();
+				it != cmdline.end(); ++it, ++argc )
+	{
+		argv[argc] = new char[it->length() + 1];
+		strcpy( argv[argc], it->toUtf8().constData() );
+	}
+
+	if( plainVnc == false )
+	{
+		// register iTALC protocol extension
+		rfbProtocolExtension pe;
+		pe.newClient = italcCoreNewClient;
+		pe.init = NULL;
+		pe.enablePseudoEncoding = NULL;
+		pe.pseudoEncodings = NULL;
+		pe.handleMessage = lvs_italcHandleMessage;
+		pe.close = NULL;
+		pe.usage = NULL;
+		pe.processArgument = NULL;
+		pe.next = NULL;
+		rfbRegisterProtocolExtension( &pe );
+	}
+
+	// register handler for iTALC's security-type
+	rfbSecurityHandler sh = { rfbSecTypeItalc, lvs_italcSecurityHandler, NULL };
+	rfbRegisterSecurityHandler( &sh );
+
+	// run x11vnc-server
+	x11vnc_main( argc, argv );
+}
+
+
+
+void ItalcVncServer::runVncReflector( int srcPort, int dstPort )
+{
+	QStringList args;
+	args << "-reflect"
+		<< QString( "localhost:%1" ).arg( srcPort );
+
+	runX11vnc( args, dstPort, true );
+}
 
 
 
@@ -165,50 +218,7 @@ void ItalcVncServer::run()
 		}
 	}
 
-	cmdline
-		<< "-nosel"	// do not exchange clipboard-contents
-		<< "-nosetclipboard"	// do not exchange clipboard-contents
-/*		<< "-speeds" << ",5000,1"	// FB-rate: 7 MB/s
-						// LAN: 5 MB/s
-						// latency: 1 ms*/
-/*			<< "-threads"	// enable threaded libvncserver*/
-		<< "-rfbport" << QString::number( m_port )
-				// set port where the VNC server should listen
-		;
-
-	// build new C-style command line array based on cmdline-QStringList
-	char **argv = new char *[cmdline.size()+1];
-	argv[0] = qstrdup( QCoreApplication::arguments()[0].toUtf8().constData() );
-	int argc = 1;
-
-	for( QStringList::iterator it = cmdline.begin();
-				it != cmdline.end(); ++it, ++argc )
-	{
-		argv[argc] = new char[it->length() + 1];
-		strcpy( argv[argc], it->toUtf8().constData() );
-	}
-
-	// register iTALC-protocol-extension
-	rfbProtocolExtension pe;
-	pe.newClient = italcCoreNewClient;
-	pe.init = NULL;
-	pe.enablePseudoEncoding = NULL;
-	pe.pseudoEncodings = NULL;
-	pe.handleMessage = lvs_italcHandleMessage;
-	pe.close = NULL;
-	pe.usage = NULL;
-	pe.processArgument = NULL;
-	pe.next = NULL;
-	rfbRegisterProtocolExtension( &pe );
-
-	// register handler for iTALC's security-type
-	rfbSecurityHandler sh = { rfbSecTypeItalc,
-					lvs_italcSecurityHandler,
-					NULL };
-	rfbRegisterSecurityHandler( &sh );
-
-	// run x11vnc-server
-	x11vnc_main( argc, argv );
+	runX11vnc( cmdline, m_port, false );
 
 #elif ITALC_BUILD_WIN32
 
