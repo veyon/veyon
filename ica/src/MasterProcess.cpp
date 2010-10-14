@@ -28,6 +28,7 @@
 #include "DemoClientSlave.h"
 #include "MessageBoxSlave.h"
 #include "ScreenLockSlave.h"
+#include "ScreenLockSlaveLauncher.h"
 #include "SystemTrayIconSlave.h"
 
 const Ipc::Id MasterProcess::IdCoreServer = "CoreServer";
@@ -74,7 +75,7 @@ void MasterProcess::stopDemo()
 
 void MasterProcess::lockDisplay()
 {
-	createSlave( IdScreenLock );
+	createSlave( IdScreenLock, new ScreenLockSlaveLauncher );
 }
 
 
