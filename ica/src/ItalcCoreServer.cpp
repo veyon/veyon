@@ -115,6 +115,7 @@ qint64 qtcpsocketDispatcher( char * _buf, const qint64 _len,
 
 ItalcCoreServer::ItalcCoreServer() :
 	QObject(),
+	m_allowedIPs(),
 	m_masterProcess()
 {
 	Q_ASSERT( _this == NULL );
@@ -315,10 +316,8 @@ int ItalcCoreServer::handleItalcClientMessage( socketDispatcher sock,
 
 
 
-
 bool ItalcCoreServer::authSecTypeItalc( socketDispatcher _sd, void * _user,
-					ItalcAuthTypes _auth_type,
-					const QStringList & _allowedHosts )
+											ItalcAuthTypes _auth_type )
 {
 	// find out IP of host - needed at several places
 	const int MAX_HOST_LEN = 255;
@@ -356,46 +355,9 @@ bool ItalcCoreServer::authSecTypeItalc( socketDispatcher _sd, void * _user,
 		// host has to be in list of allowed hosts
 		case ItalcAuthHostBased:
 		{
-			if( _allowedHosts.isEmpty() )
+			if( doHostBasedAuth( host ) )
 			{
-				break;
-			}
-			QStringList allowed;
-			foreach( const QString a, _allowedHosts )
-			{
-				const QString h = a.split( ':' )[0];
-				if( !allowed.contains( h ) )
-				{
-					allowed.push_back( h );
-				}
-			}
-			// already valid IP?
-			if( QHostAddress().setAddress( host ) )
-			{
-				if( allowed.contains( host ) )
-				{
-					result = rfbVncAuthOK;
-				}
-			}
-			else
-			{
-			// create a list of all known addresses of host
-			QList<QHostAddress> addr =
-					QHostInfo::fromName( host ).addresses();
-			if( !addr.isEmpty() )
-			{
-				// check each address for existence in allowed-
-				// client-list
-				foreach( const QHostAddress a, addr )
-				{
-	if( allowed.contains( a.toString() ) ||
-		a.toString() == QHostAddress( QHostAddress::LocalHost ).toString() )
-					{
-						result = rfbVncAuthOK;
-						break;
-					}
-				}
-			}
+				result = rfbVncAuthOK;
 			}
 			break;
 		}
@@ -528,4 +490,41 @@ void ItalcCoreServer::errorMsgAuth( const QString &ip )
 }
 
 
+
+
+bool ItalcCoreServer::doHostBasedAuth( const QString &host )
+{
+	if( m_allowedIPs.isEmpty() )
+	{
+		return false;
+	}
+
+	// already valid IP?
+	if( QHostAddress().setAddress( host ) )
+	{
+		if( m_allowedIPs.contains( host ) )
+		{
+			return true;
+		}
+	}
+	else
+	{
+		// create a list of all known addresses of host
+		QList<QHostAddress> addr = QHostInfo::fromName( host ).addresses();
+
+		// check each address for existence in list of allowed clients
+		foreach( const QHostAddress a, addr )
+		{
+			if( m_allowedIPs.contains( a.toString() ) ||
+					a.toString() == QHostAddress( QHostAddress::LocalHost ).
+																	toString() )
+			{
+				return true;
+			}
+		}
+	}
+
+	// host-based authentication failed
+	return false;
+}
 

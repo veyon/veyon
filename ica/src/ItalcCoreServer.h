@@ -51,21 +51,27 @@ public:
 	int handleItalcClientMessage( socketDispatcher sd, void *user );
 
 	bool authSecTypeItalc( socketDispatcher _sd, void * _user,
-				ItalcAuthTypes _auth_type = ItalcAuthDSA,
-				const QStringList & _allowedHosts =
-								QStringList() );
+				ItalcAuthTypes _auth_type = ItalcAuthDSA );
 
 	MasterProcess * masterProcess()
 	{
 		return &m_masterProcess;
 	}
 
+	void setAllowedIPs( const QStringList &allowedIPs )
+	{
+		m_allowedIPs = allowedIPs;
+	}
+
 
 private:
 	static void errorMsgAuth( const QString & _ip );
 
+	bool doHostBasedAuth( const QString &host );
 
 	static ItalcCoreServer * _this;
+
+	QStringList m_allowedIPs;
 
 	MasterProcess m_masterProcess;
 
