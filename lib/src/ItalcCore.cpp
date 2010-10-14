@@ -140,6 +140,13 @@ const Command SetRole = "SetRole";
 
 namespace Ipc
 {
+	const ::Ipc::Id IdCoreServer = "CoreServer";
+	const ::Ipc::Id IdDemoClient = "DemoClient";
+	const ::Ipc::Id IdDemoServer = "DemoServer";
+	const ::Ipc::Id IdMessageBox = "MessageBox";
+	const ::Ipc::Id IdScreenLock = "ScreenLock";
+	const ::Ipc::Id IdSystemTrayIcon = "SystemTrayIcon";
+
 	namespace DemoServer
 	{
 		const ::Ipc::Command StartDemoServer = "StartDemoServer";

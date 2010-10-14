@@ -305,27 +305,27 @@ int main( int argc, char **argv )
 				return -1;
 			}
 			const QString arg2 = argv[2];
-			if( arg2 == MasterProcess::IdCoreServer )
+			if( arg2 == ItalcCore::Ipc::IdCoreServer )
 			{
 				return runCoreServer( argc, argv );
 			}
-			else if( arg2 == MasterProcess::IdDemoClient )
+			else if( arg2 == ItalcCore::Ipc::IdDemoClient )
 			{
 				return runSlave<DemoClientSlave>( argc, argv );
 			}
-			else if( arg2 == MasterProcess::IdMessageBox )
+			else if( arg2 == ItalcCore::Ipc::IdMessageBox )
 			{
 				return runSlave<MessageBoxSlave>( argc, argv );
 			}
-			else if( arg2 == MasterProcess::IdScreenLock )
+			else if( arg2 == ItalcCore::Ipc::IdScreenLock )
 			{
 				return runSlave<ScreenLockSlave>( argc, argv );
 			}
-			else if( arg2 == MasterProcess::IdSystemTrayIcon )
+			else if( arg2 == ItalcCore::Ipc::IdSystemTrayIcon )
 			{
 				return runSlave<SystemTrayIconSlave>( argc, argv );
 			}
-			else if( arg2 == MasterProcess::IdDemoServer )
+			else if( arg2 == ItalcCore::Ipc::IdDemoServer )
 			{
 				return runSlave<DemoServerSlave>( argc, argv );
 			}

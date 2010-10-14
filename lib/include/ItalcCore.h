@@ -308,6 +308,14 @@ namespace ItalcCore
 	// common IPC data between ICA and IMA
 	namespace Ipc
 	{
+
+		extern const ::Ipc::Id IdCoreServer;
+		extern const ::Ipc::Id IdDemoClient;
+		extern const ::Ipc::Id IdDemoServer;
+		extern const ::Ipc::Id IdMessageBox;
+		extern const ::Ipc::Id IdScreenLock;
+		extern const ::Ipc::Id IdSystemTrayIcon;
+
 		namespace DemoServer
 		{
 			extern const ::Ipc::Command StartDemoServer;
