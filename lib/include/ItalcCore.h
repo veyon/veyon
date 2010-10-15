@@ -40,61 +40,6 @@
 #include "rfb/rfbclient.h"
 
 
-// iTALC Core Server stuff
-#define icsProtocolVersionFormat "ICS %03d.%03d\n"
-#define icsProtocolMajorVersion 1
-#define icsProtocolMinorVersion 0
-
-#define sz_icsProtocolVersionMsg sz_rfbProtocolVersionMsg
-
-typedef char icsProtocolVersionMsg[sz_icsProtocolVersionMsg+1];
-
-
-// iTALC Demo Server stuff
-#define idsProtocolVersionFormat "IDS %03d.%03d\n"
-#define idsProtocolMajorVersion 1
-#define idsProtocolMinorVersion 0
-
-#define sz_idsProtocolVersionMsg sz_rfbProtocolVersionMsg
-
-typedef char idsProtocolVersionMsg[sz_idsProtocolVersionMsg+1];
-
-
-
-inline const uint16_t swap16IfLE( const uint16_t & _val )
-{
-	return QSysInfo::ByteOrder == QSysInfo::LittleEndian ?
-				( ( _val & 0xff ) << 8 ) |
-				( ( _val >> 8 ) & 0xff )
-			:
-				_val;
-}
-
-
-inline const uint32_t swap32( const uint32_t & _val )
-{
-	return ( ( _val & 0xff000000 ) >> 24 ) |
-			( ( _val & 0x00ff0000 ) >> 8 ) |
-			( ( _val & 0x0000ff00 ) << 8 ) |
-			( ( _val & 0x000000ff ) << 24 );
-}
-
-
-inline const uint32_t swap32IfLE( const uint32_t & _val )
-{
-	return QSysInfo::ByteOrder == QSysInfo::LittleEndian ?
-						swap32( _val ) : _val;
-}
-
-
-inline const uint32_t swap32IfBE( const uint32_t & _val )
-{
-	return QSysInfo::ByteOrder == QSysInfo::BigEndian ?
-						swap32( _val ) : _val;
-}
-
-
-
 /* ============================================================================
  * socket dispatching
  * ============================================================================
@@ -109,75 +54,73 @@ typedef enum
 } SocketOpCodes;
 
 
-typedef qint64 ( * socketDispatcher )( char * _buffer, const qint64 _bytes,
-						const SocketOpCodes _op_code,
-						void * _user );
+typedef qint64 ( * socketDispatcher )( char *buffer, const qint64 bytes,
+									const SocketOpCodes opCode, void *user );
 
 
-extern qint64 libvncClientDispatcher( char * _buf, const qint64 _len,
-				const SocketOpCodes _op_code, void * _user );
+extern qint64 libvncClientDispatcher( char *buffer, const qint64 bytes,
+									const SocketOpCodes opCode, void *user );
 
 
 class SocketDevice : public QIODevice
 {
 public:
-	inline SocketDevice( socketDispatcher _sd, void * _user = NULL ) :
+	inline SocketDevice( socketDispatcher sockDisp, void *user = NULL ) :
 		QIODevice(),
-		m_socketDispatcher( _sd ),
-		m_user( _user )
+		m_socketDispatcher( sockDisp ),
+		m_user( user )
 	{
 		open( ReadWrite | Unbuffered );
 	}
 
-	inline QVariant read( void )
+	inline QVariant read()
 	{
 		QDataStream d( this );
 		return d;
 	}
 
-	inline void write( const QVariant & _v )
+	inline void write( const QVariant &v )
 	{
 		QDataStream d( this );
-		d << _v;
+		d << v;
 	}
 
-	inline socketDispatcher sockDispatcher( void )
+	inline socketDispatcher sockDispatcher()
 	{
 		return m_socketDispatcher;
 	}
 
-	inline void * user( void )
+	inline void *user()
 	{
 		return m_user;
 	}
 
-	inline void setUser( void * _user )
+	inline void setUser( void *user )
 	{
-		m_user = _user;
+		m_user = user;
 	}
 
-	inline qint64 read( char * _buf, qint64 _bytes )
+	inline qint64 read( char *buf, qint64 bytes )
 	{
-		return readData( _buf, _bytes );
+		return readData( buf, bytes );
 	}
 
-	inline qint64 write( const char * _buf, qint64 _bytes )
+	inline qint64 write( const char *buf, qint64 bytes )
 	{
-		return writeData( _buf, _bytes );
+		return writeData( buf, bytes );
 	}
 
 
 protected:
-	inline qint64 readData( char * _buf, qint64 _bytes )
+	inline qint64 readData( char *buf, qint64 bytes )
 	{
-		return m_socketDispatcher( _buf, _bytes, SocketRead,
-								m_user );
+		return m_socketDispatcher( buf, bytes, SocketRead, m_user );
 	}
 
-	inline qint64 writeData( const char * _buf, qint64 _bytes )
+	inline qint64 writeData( const char *buf, qint64 bytes )
 	{
-		return m_socketDispatcher( const_cast<char *>( _buf ), _bytes,
-							SocketWrite, m_user );
+		return m_socketDispatcher( const_cast<char *>( buf ), bytes,
+												SocketWrite, m_user );
 	}
 
 
@@ -218,51 +161,51 @@ namespace ItalcCore
 	class Msg
 	{
 	public:
-		Msg( SocketDevice * _sd, const Command & _cmd = Command() ) :
-			m_socketDevice( _sd ),
-			m_cmd( _cmd )
+		Msg( SocketDevice *sockDev, const Command &cmd = Command() ) :
+			m_socketDevice( sockDev ),
+			m_cmd( cmd )
 		{
 		}
 
-		Msg( const Command & _cmd ) :
+		Msg( const Command &cmd ) :
 			m_socketDevice( NULL ),
-			m_cmd( _cmd )
+			m_cmd( cmd )
 		{
 		}
 
-		inline const Command & cmd( void ) const
+		inline const Command & cmd() const
 		{
 			return m_cmd;
 		}
 
-		inline const CommandArgs & args( void ) const
+		inline const CommandArgs & args() const
 		{
 			return m_args;
 		}
 
-		void setSocketDevice( SocketDevice * _sd )
+		void setSocketDevice( SocketDevice *sockDev )
 		{
-			m_socketDevice = _sd;
+			m_socketDevice = sockDev;
 		}
 
-		Msg & addArg( const QString & _key, const QString & _value )
+		Msg & addArg( const QString &key, const QString &value )
 		{
-			m_args[_key.toLower()] = _value;
+			m_args[key.toLower()] = value;
 			return *this;
 		}
 
-		Msg & addArg( const QString & _key, const int _value )
+		Msg & addArg( const QString & key, const int value )
 		{
-			m_args[_key.toLower()] = QString::number( _value );
+			m_args[key.toLower()] = QString::number( value );
 			return *this;
 		}
 
-		QString arg( const QString & _key ) const
+		QString arg( const QString & key ) const
 		{
-			return m_args[_key.toLower()].toString();
+			return m_args[key.toLower()].toString();
 		}
 
-		bool send( void )
+		bool send()
 		{
 			QDataStream d( m_socketDevice );
 			d << (uint8_t) rfbItalcCoreRequest;
@@ -271,7 +214,7 @@ namespace ItalcCore
 			return true;
 		}
 
-		Msg & receive( void )
+		Msg & receive()
 		{
 			QDataStream d( m_socketDevice );
 			d >> m_cmd;
