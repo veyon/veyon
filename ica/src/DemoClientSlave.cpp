@@ -24,6 +24,7 @@
  */
 
 #include "DemoClientSlave.h"
+#include "DemoClient.h"
 
 const Ipc::Command DemoClientSlave::StartDemo = "StartDemo";
 const Ipc::Argument DemoClientSlave::MasterHost = "MasterHost";
@@ -31,7 +32,8 @@ const Ipc::Argument DemoClientSlave::FullScreen = "FullScreen";
 
 
 DemoClientSlave::DemoClientSlave() :
-	IcaSlave()
+	IcaSlave(),
+	m_demoClient( NULL )
 {
 }
 
@@ -39,13 +41,17 @@ DemoClientSlave::DemoClientSlave() :
 
 DemoClientSlave::~DemoClientSlave()
 {
+	delete m_demoClient;
 }
+
 
 
 bool DemoClientSlave::handleMessage( const Ipc::Msg &m )
 {
 	if( m.cmd() == StartDemo )
 	{
+		m_demoClient = new DemoClient( m.arg( MasterHost ),
+										m.argV( FullScreen ).toInt() );
 		return true;
 	}
 

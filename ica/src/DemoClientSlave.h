@@ -28,6 +28,8 @@
 
 #include "IcaSlave.h"
 
+class DemoClient;
+
 class DemoClientSlave : public IcaSlave
 {
 public:
@@ -41,6 +43,8 @@ public:
 
 private:
 	virtual bool handleMessage( const Ipc::Msg &m );
+
+	DemoClient *m_demoClient;
 
 } ;
 
