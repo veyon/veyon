@@ -500,7 +500,7 @@ void ItalcVncConnection::run()
 		}
 	}
 
-	if( m_connected )
+	if( m_connected && m_cl )
 	{
 		rfbClientCleanup( m_cl );
 		m_connected = false;
