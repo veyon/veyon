@@ -89,8 +89,8 @@ signals:
 
 
 private slots:
-	void updateCursorShape();
-	void updateImage(int x, int y, int w, int h);
+	void updateCursorShape( const QImage &cursorShape, int xh, int yh );
+	void updateImage( int x, int y, int w, int h );
 
 
 private:
@@ -109,12 +109,18 @@ private:
 	QPoint mapToFramebuffer( const QPoint & _pos );
 	QRect mapFromFramebuffer( const QRect & _rect );
 
+	void updateLocalCursor();
+
 
 	ItalcVncConnection m_vncConn;
+
 	Mode m_mode;
 	int m_x, m_y, m_w, m_h;
 	bool m_repaint;
 	FastQImage m_frame;
+	FastQImage m_cursorShape;
+	int m_cursorHotX;
+	int m_cursorHotY;
 	bool m_viewOnly;
 	bool m_viewOnlyFocus;
 	bool m_scaledView;

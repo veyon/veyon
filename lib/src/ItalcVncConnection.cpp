@@ -115,6 +115,7 @@ rfbBool ItalcVncConnection::hookNewClient( rfbClient * _cl )
 	t->frameBuffer = new uint8_t[size];
 	_cl->frameBuffer = t->frameBuffer;
 	memset( _cl->frameBuffer, '\0', size );
+	_cl->appData.useRemoteCursor = TRUE;
 	_cl->format.bitsPerPixel = 32;
 	_cl->format.redShift = 16;
 	_cl->format.greenShift = 8;
@@ -189,6 +190,29 @@ void ItalcVncConnection::hookUpdateFB( rfbClient * _cl, int _x, int _y, int _w,
 	t->emitUpdated( _x, _y, _w, _h );
 }
 
+
+
+void ItalcVncConnection::hookCursorShape( rfbClient *cl, int xh, int yh,
+											int w, int h, int bpp )
+{
+	const int bytesPerRow = (w + 7) / 8;
+	for( int i = 0; i < w*h;++i )
+	{
+		if( cl->rcMask[i] )
+		{
+			cl->rcMask[i] = 255;
+		}
+	}
+	QImage alpha( cl->rcMask, w, h, QImage::Format_Indexed8 );
+
+	QImage cursorShape = QImage( cl->rcSource, w, h, QImage::Format_RGB32 );
+	cursorShape.convertToFormat( QImage::Format_ARGB32 );
+	cursorShape.setAlphaChannel( alpha );
+
+	ItalcVncConnection * t = (ItalcVncConnection *)
+					rfbClientGetClientData( cl, 0 );
+	t->emitCursorShapeUpdated( cursorShape, xh, yh );
+}
 
 
 
@@ -406,6 +430,15 @@ void ItalcVncConnection::emitUpdated( int _x, int _y, int _w, int _h )
 
 
 
+void ItalcVncConnection::emitCursorShapeUpdated( const QImage &cursorShape,
+														int xh, int yh )
+{
+	emit cursorShapeUpdated( cursorShape, xh, yh );
+}
+
+
+
+
 void ItalcVncConnection::emitGotCut( const QString & _text )
 {
 	emit gotCut( _text );
@@ -427,6 +460,7 @@ void ItalcVncConnection::run()
 		m_cl->MallocFrameBuffer = hookNewClient;
 		m_cl->canHandleNewFBSize = true;
 		m_cl->GotFrameBufferUpdate = hookUpdateFB;
+		m_cl->GotCursorShape = hookCursorShape;
 		m_cl->GotXCutText = hookCutText;
 		rfbClientSetClientData( m_cl, 0, this );
 

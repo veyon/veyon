@@ -72,6 +72,7 @@ public:
 	const QImage image( int x = 0, int y = 0, int w = 0, int h = 0 );
 	void setImage( const QImage &img );
 	void emitUpdated( int x, int y, int w, int h );
+	void emitCursorShapeUpdated( const QImage &cursorShape, int xh, int yh );
 	void emitGotCut( const QString & text );
 	void stop();
 	void reset( const QString &host );
@@ -141,6 +142,7 @@ public:
 signals:
 	void newClient( rfbClient *c );
 	void imageUpdated( int x, int y, int w, int h );
+	void cursorShapeUpdated( const QImage &cursorShape, int xh, int yh );
 	void gotCut( const QString &text );
 	void passwordRequest();
 	void outputErrorMessage( const QString &message );
@@ -160,6 +162,7 @@ private:
 	// hooks for LibVNCClient
 	static rfbBool hookNewClient( rfbClient *cl );
 	static void hookUpdateFB( rfbClient *cl, int x, int y, int w, int h );
+	static void hookCursorShape( rfbClient *cl, int xh, int yh, int w, int h, int bpp );
 	static void hookCutText( rfbClient *cl, const char *text, int textlen );
 	static void hookOutputHandler( const char *format, ... );
 	static rfbBool hookHandleItalcMessage( rfbClient *cl,
