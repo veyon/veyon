@@ -52,11 +52,17 @@ SystemTrayIconSlave::~SystemTrayIconSlave()
 }
 
 
+
 bool SystemTrayIconSlave::handleMessage( const Ipc::Msg &m )
 {
 	if( m.cmd() == SetToolTip )
 	{
 		m_systemTrayIcon.setToolTip( m.arg( ToolTipText ) );
+		return true;
+	}
+	else if( m.cmd() == ShowMessage )
+	{
+		m_systemTrayIcon.showMessage( m.arg( Title ), m.arg( Text ) );
 		return true;
 	}
 
