@@ -115,7 +115,6 @@ rfbBool ItalcVncConnection::hookNewClient( rfbClient * _cl )
 	t->frameBuffer = new uint8_t[size];
 	_cl->frameBuffer = t->frameBuffer;
 	memset( _cl->frameBuffer, '\0', size );
-	_cl->appData.useRemoteCursor = TRUE;
 	_cl->format.bitsPerPixel = 32;
 	_cl->format.redShift = 16;
 	_cl->format.greenShift = 8;
@@ -124,26 +123,28 @@ rfbBool ItalcVncConnection::hookNewClient( rfbClient * _cl )
 	_cl->format.greenMax = 0xff;
 	_cl->format.blueMax = 0xff;
 
+	// only use remote cursor for remote control
+	_cl->appData.useRemoteCursor = false;
+
 	switch( t->quality() )
 	{
-		case QualityDemoHigh:
-		case QualityDemoMedium:
-		case QualityDemoLow:
+		case SnapshotQuality:
 			_cl->appData.useBGR233 = 0;
 			_cl->appData.encodingsString = "raw";
 			_cl->appData.compressLevel = 0;
 			_cl->appData.qualityLevel = 9;
 			_cl->appData.enableJPEG = false;
 			break;
-		case QualityHigh:
+		case RemoteControlQuality:
 			_cl->appData.useBGR233 = 0;
 			_cl->appData.encodingsString = "zrle ultra copyrect "
 							"hextile zlib raw";
 			_cl->appData.compressLevel = 0;
 			_cl->appData.qualityLevel = 9;
 			_cl->appData.enableJPEG = false;
+			_cl->appData.useRemoteCursor = true;
 			break;
-		case QualityLow:
+		case ThumbnailQuality:
 			_cl->appData.useBGR233 = 1;
 			_cl->appData.encodingsString = "tight zrle ultra "
 							"copyrect hextile zlib "
@@ -152,8 +153,8 @@ rfbBool ItalcVncConnection::hookNewClient( rfbClient * _cl )
 			_cl->appData.qualityLevel = 4;
 			_cl->appData.enableJPEG = true;
 			break;
-		case QualityMedium:
 		default:
+		case DemoQuality:
 			_cl->appData.useBGR233 = 0;
 			_cl->appData.encodingsString = "tight zrle ultra "
 							"copyrect hextile zlib "
@@ -278,7 +279,7 @@ ItalcVncConnection::ItalcVncConnection( QObject * _parent ) :
 	m_stopped( false ),
 	m_connected( false ),
 	m_cl( NULL ),
-	m_quality( QualityMedium ),
+	m_quality( DemoQuality ),
 	m_port( PortOffsetIVS ),
 	m_framebufferUpdateInterval( 0 ),
 	m_image(),

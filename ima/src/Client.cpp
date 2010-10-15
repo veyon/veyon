@@ -498,7 +498,7 @@ Client::Client( const QString & _hostname,
 
 	ItalcVncConnection * conn = new ItalcVncConnection( this );
 	conn->setHost( m_hostname );
-	conn->setQuality( ItalcVncConnection::QualityLow );
+	conn->setQuality( ItalcVncConnection::ThumbnailQuality );
 
 	m_connection = new ItalcCoreConnection( conn );
 

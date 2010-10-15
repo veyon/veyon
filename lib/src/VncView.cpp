@@ -56,9 +56,9 @@ VncView::VncView( const QString &host, QWidget *parent, Mode mode ) :
 	m_sysKeyTrapper( new SystemKeyTrapper( false ) )
 {
 	m_vncConn.setHost( host );
-	m_vncConn.setQuality( ItalcVncConnection::QualityHigh );
 	if( m_mode == DemoMode )
 	{
+		m_vncConn.setQuality( ItalcVncConnection::DemoQuality );
 		m_vncConn.setItalcAuthType( ItalcAuthHostBased );
 		m_establishingConnection = new ProgressWidget(
 			tr( "Establishing connection to %1 ..." ).arg( host ),
@@ -66,6 +66,10 @@ VncView::VncView( const QString &host, QWidget *parent, Mode mode ) :
 		connect( &m_vncConn, SIGNAL( connected() ),
 					m_establishingConnection, SLOT( hide() ) );
 
+	}
+	else if( m_mode == RemoteControlMode )
+	{
+		m_vncConn.setQuality( ItalcVncConnection::RemoteControlQuality );
 	}
 
 	connect( &m_vncConn, SIGNAL( imageUpdated( int, int, int, int ) ),

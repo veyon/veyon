@@ -59,12 +59,11 @@ class ItalcVncConnection: public QThread
 public:
 	enum QualityLevels
 	{
-		QualityLow,
-		QualityMedium,
-		QualityHigh,
-		QualityDemoLow,
-		QualityDemoMedium,
-		QualityDemoHigh
+		ThumbnailQuality,
+		SnapshotQuality,
+		RemoteControlQuality,
+		DemoQuality,
+		NumQualityLevels
 	} ;
 
 	explicit ItalcVncConnection( QObject * parent = 0 );
