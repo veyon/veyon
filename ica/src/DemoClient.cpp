@@ -34,12 +34,10 @@
 #include "LocalSystem.h"
 
 
-DemoClient::DemoClient( const QString & _host, bool _fullscreen ) :
+DemoClient::DemoClient( const QString &host, bool fullscreen ) :
 	QObject(),
-	m_toplevel( _fullscreen ?
-			new LockWidget( LockWidget::NoBackground )
-			:
-			new QWidget() )
+	m_toplevel( fullscreen ? new LockWidget( LockWidget::NoBackground )
+							: new QWidget() )
 {
 	m_toplevel->setWindowTitle( tr( "iTALC Demo" ) );
 	m_toplevel->setWindowIcon( QPixmap( ":/resources/display.png" ) );
@@ -49,13 +47,14 @@ DemoClient::DemoClient( const QString & _host, bool _fullscreen ) :
 	QVBoxLayout * toplevel_layout = new QVBoxLayout;
 	toplevel_layout->setMargin( 0 );
 	toplevel_layout->setSpacing( 0 );
-	toplevel_layout->addWidget( new VncView( _host, m_toplevel, true ) );
+	toplevel_layout->addWidget(
+						new VncView( host, m_toplevel, VncView::DemoMode ) );
 
 	m_toplevel->setLayout( toplevel_layout );
 
 	connect( m_toplevel, SIGNAL( destroyed( QObject * ) ),
 			this, SLOT( viewDestroyed( QObject * ) ) );
-	if( !_fullscreen )
+	if( !fullscreen )
 	{
 		m_toplevel->showMaximized();
 		LocalSystem::activateWindow( m_toplevel );
