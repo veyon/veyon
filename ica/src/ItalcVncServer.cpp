@@ -33,7 +33,6 @@
 
 #include <QtCore/QCoreApplication>
 #include <QtCore/QProcess>
-#include <QtCore/QStringList>
 
 #include "ItalcVncServer.h"
 #include "ItalcCore.h"
@@ -147,6 +146,17 @@ static void runX11vnc( QStringList cmdline, int port, bool plainVnc )
 		<< "-rfbport" << QString::number( port )
 				// set port where the VNC server should listen
 		;
+
+#ifdef ITALC_BUILD_LINUX
+	// workaround for x11vnc when running in an NX session
+	foreach( const QString &s, QProcess::systemEnvironment() )
+	{
+		if( s.startsWith( "NXSESSIONID=" ) )
+		{
+			cmdline << "-noxdamage";
+		}
+	}
+#endif
 
 	// build new C-style command line array based on cmdline-QStringList
 	char **argv = new char *[cmdline.size()+1];
