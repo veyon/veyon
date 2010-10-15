@@ -761,6 +761,15 @@ void VncView::mouseEventHandler( QMouseEvent * _me )
 			}
 		}
 	}
+	else
+	{
+		if( _me->pos().y() < 2 )
+		{
+			// special signal for allowing parent-widgets to
+			// show a toolbar etc.
+			emit mouseAtTop();
+		}
+	}
 
 	const QPoint p = mapToFramebuffer( _me->pos() );
 	m_vncConn.mouseEvent( p.x(), p.y(), m_buttonMask );
