@@ -55,19 +55,19 @@ VncView::VncView( const QString &host, QWidget *parent, Mode mode ) :
 	m_establishingConnection( NULL ),
 	m_sysKeyTrapper( new SystemKeyTrapper( false ) )
 {
-/*	if( _progress_widget )
-	{
-		m_establishingConnection = new progressWidget(
-			tr( "Establishing connection to %1 ..." ).arg( _host ),
-					":/resources/watch%1.png", 16, this );
-	}*/
-
 	m_vncConn.setHost( host );
 	m_vncConn.setQuality( ItalcVncConnection::QualityHigh );
 	if( m_mode == DemoMode )
 	{
 		m_vncConn.setItalcAuthType( ItalcAuthHostBased );
+		m_establishingConnection = new ProgressWidget(
+			tr( "Establishing connection to %1 ..." ).arg( host ),
+					":/resources/watch%1.png", 16, this );
+		connect( &m_vncConn, SIGNAL( connected() ),
+					m_establishingConnection, SLOT( hide() ) );
+
 	}
+
 	connect( &m_vncConn, SIGNAL( imageUpdated( int, int, int, int ) ),
 			this, SLOT( updateImage( int, int, int, int ) ),
 						Qt::BlockingQueuedConnection );
