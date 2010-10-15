@@ -580,13 +580,16 @@ void VncView::updateLocalCursor()
 {
 	if( !isViewOnly() && !m_cursorShape.isNull() )
 	{
-		const float dx = width() / (float) framebufferSize().width();
-		const float dy = height() / (float) framebufferSize().height();
-		int cursorWidth = dx * m_cursorShape.width();
-		int cursorHeight = dy * m_cursorShape.height();
+		float scale = 1;
+		if( scaledSize().isValid() && framebufferSize().isValid() )
+		{
+			scale = (float) scaledSize().width() / framebufferSize().width();
+		}
+		int cursorWidth = scale * m_cursorShape.width();
+		int cursorHeight = scale * m_cursorShape.height();
 		setCursor( QCursor( QPixmap::fromImage(
 							m_cursorShape.scaled( cursorWidth, cursorHeight ) ),
-								m_cursorHotX*dx, m_cursorHotY*dy ) );
+								m_cursorHotX*scale, m_cursorHotY*scale ) );
 	}
 }
 
