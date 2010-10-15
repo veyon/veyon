@@ -245,10 +245,10 @@ static int runCoreServer( int argc, char **argv )
 
 
 
-template<class SlaveClass>
+template<class SlaveClass, class Application>
 static int runSlave( int argc, char **argv )
 {
-	QApplication app( argc, argv );
+	Application app( argc, argv );
 	initCoreApplication( &app );
 
 	SlaveClass s;
@@ -311,23 +311,23 @@ int main( int argc, char **argv )
 			}
 			else if( arg2 == ItalcCore::Ipc::IdDemoClient )
 			{
-				return runSlave<DemoClientSlave>( argc, argv );
+				return runSlave<DemoClientSlave, QApplication>( argc, argv );
 			}
 			else if( arg2 == ItalcCore::Ipc::IdMessageBox )
 			{
-				return runSlave<MessageBoxSlave>( argc, argv );
+				return runSlave<MessageBoxSlave, QApplication>( argc, argv );
 			}
 			else if( arg2 == ItalcCore::Ipc::IdScreenLock )
 			{
-				return runSlave<ScreenLockSlave>( argc, argv );
+				return runSlave<ScreenLockSlave, QApplication>( argc, argv );
 			}
 			else if( arg2 == ItalcCore::Ipc::IdSystemTrayIcon )
 			{
-				return runSlave<SystemTrayIconSlave>( argc, argv );
+				return runSlave<SystemTrayIconSlave, QApplication>( argc, argv );
 			}
 			else if( arg2 == ItalcCore::Ipc::IdDemoServer )
 			{
-				return runSlave<DemoServerSlave>( argc, argv );
+				return runSlave<DemoServerSlave, QCoreApplication>( argc, argv );
 			}
 			else
 			{
