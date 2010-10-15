@@ -487,6 +487,8 @@ void ItalcVncConnection::run()
 
 		if( rfbInitClient( m_cl, 0, 0 ) )
 		{
+			emit connected();
+
 			m_connected = true;
 			if( m_framebufferUpdateInterval < 0 )
 			{
