@@ -706,8 +706,9 @@ void VncView::resizeEvent( QResizeEvent * _re )
 		m_viewOffset = QPoint(
 				qMax( 0, qMin( m_viewOffset.x(), max_x ) ),
 				qMax( 0, qMin( m_viewOffset.y(), max_y ) ) );
-		update();
 	}
+
+	repaint();
 
 	if( m_establishingConnection )
 	{
