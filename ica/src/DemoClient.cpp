@@ -41,7 +41,7 @@ DemoClient::DemoClient( const QString &host, bool fullscreen ) :
 {
 	m_toplevel->setWindowTitle( tr( "iTALC Demo" ) );
 	m_toplevel->setWindowIcon( QPixmap( ":/resources/display.png" ) );
-	m_toplevel->setAttribute( Qt::WA_DeleteOnClose, true );
+	m_toplevel->setAttribute( Qt::WA_DeleteOnClose, false );
 	m_toplevel->resize( QApplication::desktop()->availableGeometry( m_toplevel ).size() );
 
 	QVBoxLayout * toplevel_layout = new QVBoxLayout;
@@ -58,7 +58,6 @@ DemoClient::DemoClient( const QString &host, bool fullscreen ) :
 	{
 		m_toplevel->showMaximized();
 		LocalSystem::activateWindow( m_toplevel );
-
 	}
 }
 
