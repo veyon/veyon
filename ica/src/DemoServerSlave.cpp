@@ -54,6 +54,7 @@ public:
 protected:
 	virtual void run()
 	{
+		ItalcCoreServer coreServer;	// required for authentication
 		ItalcVncServer::runVncReflector( m_srcPort, m_dstPort );
 	}
 
