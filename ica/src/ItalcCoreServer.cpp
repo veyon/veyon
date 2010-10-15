@@ -26,18 +26,14 @@
 #include <italcconfig.h>
 
 #ifdef ITALC_BUILD_WIN32
-
 #define _WIN32_WINNT 0x0501
 #include <windows.h>
 #include <psapi.h>
 #endif
 
-
 #include <QtCore/QCoreApplication>
 #include <QtCore/QDir>
-//#include <QtCore/QTemporaryFile>
 #include <QtNetwork/QHostInfo>
-#include <QtNetwork/QTcpSocket>
 
 #include "ItalcCoreServer.h"
 #include "DsaKey.h"
@@ -45,72 +41,6 @@
 
 
 ItalcCoreServer * ItalcCoreServer::_this = NULL;
-
-
-
-qint64 qtcpsocketDispatcher( char * _buf, const qint64 _len,
-				const SocketOpCodes _op_code, void * _user )
-{
-	QTcpSocket * sock = static_cast<QTcpSocket *>( _user );
-	qint64 ret = 0;
-	switch( _op_code )
-	{
-		case SocketRead:
-			while( ret < _len )
-			{
-				qint64 bytes_read = sock->read( _buf, _len );
-				if( bytes_read < 0 )
-				{
-	qDebug( "qtcpsocketDispatcher(...): connection closed while reading" );
-					return 0;
-				}
-				else if( bytes_read == 0 )
-				{
-					if( sock->state() !=
-						QTcpSocket::ConnectedState )
-					{
-	qDebug( "qtcpsocketDispatcher(...): connection failed while writing  "
-			"state:%d  error:%d", sock->state(), sock->error() );
-						return 0;
-					}
-					sock->waitForReadyRead( 10 );
-				}
-				ret += bytes_read;
-			}
-			break;
-		case SocketWrite:
-			while( ret < _len )
-			{
-				qint64 written = sock->write( _buf, _len );
-				if( written < 0 )
-				{
-	qDebug( "qtcpsocketDispatcher(...): connection closed while writing" );
-					return 0;
-				}
-				else if( written == 0 )
-				{
-					if( sock->state() !=
-						QTcpSocket::ConnectedState )
-					{
-	qDebug( "qtcpsocketDispatcher(...): connection failed while writing  "
-			"state:%d error:%d", sock->state(), sock->error() );
-						return 0;
-					}
-				}
-				ret += written;
-			}
-			//sock->flush();
-			sock->waitForBytesWritten();
-			break;
-		case SocketGetPeerAddress:
-			strncpy( _buf,
-		sock->peerAddress().toString().toAscii().constData(), _len );
-			break;
-	}
-	return ret;
-}
-
-
 
 
 ItalcCoreServer::ItalcCoreServer() :
