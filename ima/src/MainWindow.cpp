@@ -403,6 +403,8 @@ MainWindow::~MainWindow()
 	// also delets clients
 	delete m_workspace;
 
+	delete m_demoServerMaster;
+
 	delete m_localISD;
 	m_localISD = NULL;
 
