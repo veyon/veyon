@@ -1,7 +1,7 @@
 /*
- * VncView.cpp - VNC-viewer-widget
+ * VncView.cpp - VNC viewer widget
  *
- * Copyright (c) 2006-2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -22,7 +22,6 @@
  *
  */
 
-
 #define XK_KOREAN
 #include "rfb/keysym.h"
 
@@ -39,10 +38,10 @@
 
 
 
-VncView::VncView( const QString & _host, QWidget * _parent,
-						bool _progress_widget ) :
-	QWidget( _parent ),
+VncView::VncView( const QString &host, QWidget *parent, Mode mode ) :
+	QWidget( parent ),
 	m_vncConn( this ),
+	m_mode( mode ),
 	m_viewOnly( true ),
 	m_viewOnlyFocus( true ),
 	m_scaledView( true ),
@@ -59,8 +58,12 @@ VncView::VncView( const QString & _host, QWidget * _parent,
 					":/resources/watch%1.png", 16, this );
 	}*/
 
-	m_vncConn.setHost( _host );
+	m_vncConn.setHost( host );
 	m_vncConn.setQuality( ItalcVncConnection::QualityHigh );
+	if( m_mode == DemoMode )
+	{
+		m_vncConn.setItalcAuthType( ItalcAuthHostBased );
+	}
 	connect( &m_vncConn, SIGNAL( imageUpdated( int, int, int, int ) ),
 			this, SLOT( updateImage( int, int, int, int ) ),
 						Qt::BlockingQueuedConnection );
@@ -342,8 +345,8 @@ void VncView::focusInEvent( QFocusEvent * _e )
 
 void VncView::focusOutEvent( QFocusEvent * _e )
 {
-	m_viewOnlyFocus = viewOnly();
-	if( !viewOnly() )
+	m_viewOnlyFocus = isViewOnly();
+	if( !isViewOnly() )
 	{
 		setViewOnly( true );
 	}

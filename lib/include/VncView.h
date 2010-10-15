@@ -1,5 +1,5 @@
 /*
- * VncView.h - VNC-viewer-widget
+ * VncView.h - VNC viewer widget
  *
  * Copyright (c) 2006-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
@@ -44,21 +44,28 @@ class VncView : public QWidget
 {
 	Q_OBJECT
 public:
-	VncView( const QString & _host, QWidget * _parent,
-							bool _progress_widget );
+	enum Modes
+	{
+		RemoteControlMode,
+		DemoMode,
+		NumModes
+	} ;
+	typedef Modes Mode;
+
+	VncView( const QString &host, QWidget *parent, Mode mode );
 	virtual ~VncView();
 
-	inline bool viewOnly( void ) const
+	inline bool isViewOnly() const
 	{
-		return( m_viewOnly );
+		return m_viewOnly;
 	}
 
-	inline bool scaledView( void ) const
+	inline bool isScaledView() const
 	{
-		return( m_scaledView );
+		return m_scaledView;
 	}
 
-	ItalcVncConnection * vncConnection( void )
+	ItalcVncConnection * vncConnection()
 	{
 		return &m_vncConn;
 	}
@@ -76,13 +83,13 @@ public slots:
 
 
 signals:
-	void mouseAtTop( void );
-	void startConnection( void );
-	void connectionEstablished( void );
+	void mouseAtTop();
+	void startConnection();
+	void connectionEstablished();
 
 
 private slots:
-	void updateCursorShape( void );
+	void updateCursorShape();
 	void updateImage(int x, int y, int w, int h);
 
 
@@ -97,13 +104,14 @@ private:
 	void keyEventHandler( QKeyEvent * );
 	void mouseEventHandler( QMouseEvent * );
 	void wheelEventHandler( QWheelEvent * );
-	void unpressModifiers( void );
+	void unpressModifiers();
 
 	QPoint mapToFramebuffer( const QPoint & _pos );
 	QRect mapFromFramebuffer( const QRect & _rect );
 
 
 	ItalcVncConnection m_vncConn;
+	Mode m_mode;
 	int m_x, m_y, m_w, m_h;
 	bool m_repaint;
 	FastQImage m_frame;
