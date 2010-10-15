@@ -541,7 +541,10 @@ void VncView::unpressModifiers( void )
 QPoint VncView::mapToFramebuffer( const QPoint & _pos )
 {
 	const QSize fbs = framebufferSize();//m_connection ? m_connection->framebufferSize() :
-									QSize();
+	if( !fbs.isValid() )
+	{
+		return QPoint( 0, 0 );
+	}
 	const int x = m_scaledView && fbs.isValid() ?
 			_pos.x() * fbs.width() / scaledSize( fbs ).width()
 		:
@@ -550,7 +553,7 @@ QPoint VncView::mapToFramebuffer( const QPoint & _pos )
 			_pos.y() * fbs.height() / scaledSize( fbs ).height()
 		:
 			_pos.y() + m_viewOffset.y();
-	return( QPoint( x, y ) );
+	return QPoint( x, y );
 }
 
 
