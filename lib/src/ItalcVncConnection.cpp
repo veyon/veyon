@@ -373,7 +373,7 @@ void ItalcVncConnection::setFramebufferUpdateInterval( int interval )
 
 
 
-void ItalcVncConnection::rescaleScreen( void )
+void ItalcVncConnection::rescaleScreen()
 {
 	if( m_scaledScreenNeedsUpdate )
 	{

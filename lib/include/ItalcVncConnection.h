@@ -49,7 +49,7 @@ public:
 	{
 	}
 
-	virtual void fire( rfbClient * _c ) = 0;
+	virtual void fire( rfbClient *c ) = 0;
 } ;
 
 
@@ -70,51 +70,51 @@ public:
 	explicit ItalcVncConnection( QObject * parent = 0 );
 	virtual ~ItalcVncConnection();
 	const QImage image( int x = 0, int y = 0, int w = 0, int h = 0 );
-	void setImage( const QImage & _img );
+	void setImage( const QImage &img );
 	void emitUpdated( int x, int y, int w, int h );
 	void emitGotCut( const QString & text );
-	void stop( void );
-	void reset( const QString & _host );
-	void setHost( const QString & _host );
+	void stop();
+	void reset( const QString &host );
+	void setHost( const QString &host );
 	void setPort( int _port );
 
-	inline bool isConnected( void ) const
+	bool isConnected() const
 	{
 		return m_connected && isRunning();
 	}
 
-	inline void setQuality( QualityLevels _q )
+	void setQuality( QualityLevels _q )
 	{
 		m_quality = _q;
 	}
 
-	inline QualityLevels quality( void ) const
+	QualityLevels quality() const
 	{
 		return m_quality;
 	}
 
-	void enqueueEvent( ClientEvent * _e );
+	void enqueueEvent( ClientEvent *e );
 
-	inline rfbClient * getRfbClient( void )
+	rfbClient * getRfbClient()
 	{
 		return m_cl;
 	}
 
-	inline QSize framebufferSize( void ) const
+	QSize framebufferSize() const
 	{
 		return m_image.size();
 	}
 
-	inline void setScaledSize( const QSize & _s )
+	void setScaledSize( const QSize &s )
 	{
-		if( m_scaledSize != _s )
+		if( m_scaledSize != s )
 		{
-			m_scaledSize = _s;
+			m_scaledSize = s;
 			m_scaledScreenNeedsUpdate = true;
 		}
 	}
 
-	inline FastQImage scaledScreen( void )
+	FastQImage scaledScreen()
 	{
 		rescaleScreen();
 		return m_scaledScreen;
@@ -122,40 +122,40 @@ public:
 
 	void setFramebufferUpdateInterval( int interval );
 
-	void rescaleScreen( void );
+	void rescaleScreen();
 
 
 	uint8_t * frameBuffer;
 
 
 signals:
-	void newClient( rfbClient * _c );
+	void newClient( rfbClient *c );
 	void imageUpdated( int x, int y, int w, int h );
-	void gotCut( const QString & _text );
-	void passwordRequest( void );
-	void outputErrorMessage( const QString & _message );
+	void gotCut( const QString &text );
+	void passwordRequest();
+	void outputErrorMessage( const QString &message );
 
 
 public slots:
 	void mouseEvent( int x, int y, int buttonMask );
 	void keyEvent( int key, bool pressed );
-	void clientCut( const QString & text );
+	void clientCut( const QString &text );
 
 
 protected:
-	virtual void run( void );
+	virtual void run();
 
 
 private:
 	// hooks for LibVNCClient
-	static rfbBool hookNewClient( rfbClient * _cl );
-	static void hookUpdateFB( rfbClient * _cl, int x, int y, int w, int h );
+	static rfbBool hookNewClient( rfbClient *cl );
+	static void hookUpdateFB( rfbClient *cl, int x, int y, int w, int h );
 	static void hookCutText( rfbClient *cl, const char *text, int textlen );
 	static void hookOutputHandler( const char *format, ... );
-	static rfbBool hookHandleItalcMessage( rfbClient * _cl,
-						rfbServerToClientMsg * _msg );
+	static rfbBool hookHandleItalcMessage( rfbClient *cl,
+						rfbServerToClientMsg *msg );
 
-	rfbClient * m_cl;
+	rfbClient *m_cl;
 	QualityLevels m_quality;
 	QString m_host;
 	int m_port;
@@ -174,7 +174,7 @@ private:
 
 
 private slots:
-	void checkOutputErrorMessage( void );
+	void checkOutputErrorMessage();
 
 } ;
 
