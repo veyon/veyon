@@ -189,7 +189,8 @@ static void runX11vnc( QStringList cmdline, int port, bool plainVnc )
 void ItalcVncServer::runVncReflector( int srcPort, int dstPort )
 {
 	QStringList args;
-	args << "-reflect"
+	args << "-viewonly"
+		<< "-reflect"
 		<< QString( "localhost:%1" ).arg( srcPort );
 
 	runX11vnc( args, dstPort, true );
