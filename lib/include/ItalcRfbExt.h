@@ -67,13 +67,11 @@ enum ItalcAuthTypes
 	// client has to sign some data to verify it's authority
 	ItalcAuthDSA,
 
-	// almost the same as ItalcAuthDSA - suppresses checks concerning
-	// teacher-role when connecting to local ISD (otherwise a question
-	// would appear for confirming access when starting iTALC as teacher
-	// and ICA is running in teacher-mode as well)
-	ItalcAuthLocalDSA
+	NumItalcAuthTypes
 
 } ;
+
+typedef enum ItalcAuthTypes ItalcAuthType;
 
 
 #ifdef __cplusplus

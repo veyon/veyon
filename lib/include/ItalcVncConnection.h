@@ -83,6 +83,16 @@ public:
 		return m_connected && isRunning();
 	}
 
+	void setItalcAuthType( ItalcAuthType t )
+	{
+		m_italcAuthType = t;
+	}
+
+	ItalcAuthType italcAuthType() const
+	{
+		return m_italcAuthType;
+	}
+
 	void setQuality( QualityLevels _q )
 	{
 		m_quality = _q;
@@ -156,6 +166,7 @@ private:
 						rfbServerToClientMsg *msg );
 
 	rfbClient *m_cl;
+	ItalcAuthType m_italcAuthType;
 	QualityLevels m_quality;
 	QString m_host;
 	int m_port;

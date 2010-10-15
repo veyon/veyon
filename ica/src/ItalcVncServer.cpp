@@ -38,7 +38,6 @@
 #include "ItalcVncServer.h"
 #include "ItalcCore.h"
 #include "ItalcCoreServer.h"
-#include "ItalcRfbExt.h"
 
 
 extern "C" int x11vnc_main( int argc, char * * argv );
@@ -95,7 +94,7 @@ extern "C" void rfbClientSendString(rfbClientPtr cl, char *reason);
 static void lvs_italcSecurityHandler( struct _rfbClientRec *cl )
 {
 	bool authOK = ItalcCoreServer::instance()->
-				authSecTypeItalc( libvncServerDispatcher, cl, ItalcAuthDSA );
+								authSecTypeItalc( libvncServerDispatcher, cl );
 
 	uint32_t result = authOK ? rfbVncAuthOK : rfbVncAuthFailed;
 	result = Swap32IfLE( result );

@@ -50,8 +50,7 @@ public:
 
 	int handleItalcClientMessage( socketDispatcher sd, void *user );
 
-	bool authSecTypeItalc( socketDispatcher _sd, void * _user,
-				ItalcAuthTypes _auth_type = ItalcAuthDSA );
+	bool authSecTypeItalc( socketDispatcher sd, void *user );
 
 	MasterProcess * masterProcess()
 	{
@@ -67,6 +66,7 @@ public:
 private:
 	static void errorMsgAuth( const QString & _ip );
 
+	bool doKeyBasedAuth( SocketDevice &sdev );
 	bool doHostBasedAuth( const QString &host );
 
 	static ItalcCoreServer * _this;

@@ -316,36 +316,35 @@ int ItalcCoreServer::handleItalcClientMessage( socketDispatcher sock,
 
 
 
-bool ItalcCoreServer::authSecTypeItalc( socketDispatcher _sd, void * _user,
-											ItalcAuthTypes _auth_type )
+bool ItalcCoreServer::authSecTypeItalc( socketDispatcher sd, void *user )
 {
 	// find out IP of host - needed at several places
 	const int MAX_HOST_LEN = 255;
 	char host[MAX_HOST_LEN+1];
-	_sd( host, MAX_HOST_LEN, SocketGetPeerAddress, _user );
+	sd( host, MAX_HOST_LEN, SocketGetPeerAddress, user );
 	host[MAX_HOST_LEN] = 0;
 	static QStringList __denied_hosts, __allowed_hosts;
 
-	SocketDevice sdev( _sd, _user );
-	sdev.write( QVariant( (int) _auth_type ) );
+	SocketDevice sdev( sd, user );
+
+	// send list of supported authentication types - can't use QList<QVariant>
+	// here due to a strange bug in Qt
+	QMap<QString, QVariant> supportedAuthTypes;
+	supportedAuthTypes["ItalcAuthDSA"] = ItalcAuthDSA;
+	supportedAuthTypes["ItalcAuthHostBased"] = ItalcAuthHostBased;
+	sdev.write( supportedAuthTypes );
 
 	uint32_t result = rfbVncAuthFailed;
-
-	ItalcAuthTypes chosen = static_cast<ItalcAuthTypes>(
-							sdev.read().toInt() );
-	if( chosen == ItalcAuthDSA && _auth_type == ItalcAuthLocalDSA )
-	{
-		// this case is ok as well
-	}
-	else if( chosen != _auth_type )
+	ItalcAuthTypes chosen = static_cast<ItalcAuthTypes>( sdev.read().toInt() );
+	if( !supportedAuthTypes.values().contains( chosen ) )
 	{
 		errorMsgAuth( host );
 		qCritical( "ItalcCoreServer::authSecTypeItalc(...): "
-				"client chose other auth-type than offered!" );
-		return( result );
+				"client chose unsupported authentication type!" );
+		return result;
 	}
 
-	switch( _auth_type )
+	switch( chosen )
 	{
 		// no authentication
 		case ItalcAuthNone:
@@ -354,71 +353,22 @@ bool ItalcCoreServer::authSecTypeItalc( socketDispatcher _sd, void * _user,
 
 		// host has to be in list of allowed hosts
 		case ItalcAuthHostBased:
-		{
 			if( doHostBasedAuth( host ) )
 			{
 				result = rfbVncAuthOK;
 			}
 			break;
-		}
 
 		// authentication via DSA-challenge/-response
-		case ItalcAuthLocalDSA:
 		case ItalcAuthDSA:
-		{
-			// generate data to sign and send to client
-			const QByteArray chall = DsaKey::generateChallenge();
-			sdev.write( QVariant( chall ) );
-
-			// get user-role
-			const ItalcCore::UserRoles urole =
-				static_cast<ItalcCore::UserRoles>(
-							sdev.read().toInt() );
-			if( ItalcCore::role != ItalcCore::RoleOther &&
-					_auth_type != ItalcAuthLocalDSA )
+			if( doKeyBasedAuth( sdev ) )
 			{
-			/*	if( __denied_hosts.contains( host ) )
-				{
-					result = ItalcAuthFailed;
-					break;
-				}
-				if( !__allowed_hosts.contains( host ) )
-				{
-					bool failed = true;
-					switch( doGuiOp( ItalcCore::AccessDialog, host ) )
-					{
-						case AccessAlways:
-							__allowed_hosts += host;
-						case AccessYes:
-							failed = false;
-							break;
-						case AccessNever:
-							__denied_hosts += host;
-						case AccessNo:
-							break;
-					}
-					if( failed )
-					{
-						result = ItalcAuthFailed;
-						break;
-					}
-				}
-				else*/
-				{
-					result = rfbVncAuthFailed;
-				}
+				result = rfbVncAuthOK;
 			}
-
-			// now try to verify received signed data using public
-			// key of the user under which the client claims to run
-			const QByteArray sig = sdev.read().toByteArray();
-			// (publicKeyPath does range-checking of urole)
-			PublicDSAKey pub_key( LocalSystem::publicKeyPath(
-								urole ) );
-			result = pub_key.verifySignature( chall, sig ) ?
-						rfbVncAuthOK : rfbVncAuthFailed;
 			break;
-		}
+
+		default:
+			break;
 	}
 
 	if( result != rfbVncAuthOK )
@@ -487,6 +437,62 @@ void ItalcCoreServer::errorMsgAuth( const QString &ip )
 			tr( "Somebody (IP: %1) tried to access this computer "
 					"but could not authenticate itself "
 					"successfully!" ).arg( ip ) );
+}
+
+
+
+
+bool ItalcCoreServer::doKeyBasedAuth( SocketDevice &sdev )
+{
+	// generate data to sign and send to client
+	const QByteArray chall = DsaKey::generateChallenge();
+	sdev.write( QVariant( chall ) );
+
+	// get user-role
+	const ItalcCore::UserRoles urole =
+				static_cast<ItalcCore::UserRoles>( sdev.read().toInt() );
+	if( ItalcCore::role != ItalcCore::RoleOther )
+	{
+		/*	if( __denied_hosts.contains( host ) )
+			{
+				result = ItalcAuthFailed;
+				break;
+			}
+			if( !__allowed_hosts.contains( host ) )
+			{
+				bool failed = true;
+				switch( doGuiOp( ItalcCore::AccessDialog, host ) )
+				{
+					case AccessAlways:
+						__allowed_hosts += host;
+					case AccessYes:
+						failed = false;
+						break;
+					case AccessNever:
+						__denied_hosts += host;
+					case AccessNo:
+						break;
+				}
+				if( failed )
+				{
+					result = ItalcAuthFailed;
+					break;
+				}
+			}
+			else*/
+			{
+				return false;
+			}
+	}
+
+	// now try to verify received signed data using public key of the user
+	// under which the client claims to run
+	const QByteArray sig = sdev.read().toByteArray();
+
+	// (publicKeyPath does range-checking of urole)
+	PublicDSAKey pubKey( LocalSystem::publicKeyPath( urole ) );
+
+	return pubKey.verifySignature( chall, sig );
 }
 
 

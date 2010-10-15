@@ -29,6 +29,7 @@
 
 #include "ItalcCore.h"
 #include "DsaKey.h"
+#include "ItalcVncConnection.h"
 #include "LocalSystem.h"
 
 
@@ -85,19 +86,39 @@ bool ItalcCore::initAuthentication( void )
 
 
 
-void handleSecTypeItalc( rfbClient * _cl )
+void handleSecTypeItalc( rfbClient *client )
 {
-	SocketDevice socketDev( libvncClientDispatcher, _cl );
+	SocketDevice socketDev( libvncClientDispatcher, client );
 
-	int iat = socketDev.read().toInt();
-/*	if( _try_auth_type == ItalcAuthChallengeViaAuthFile ||
-	_try_auth_type == ItalcAuthAppInternalChallenge )
+	// read list of supported authentication types
+	QMap<QString, QVariant> supportedAuthTypes = socketDev.read().toMap();
+
+	int chosenAuthType = ItalcAuthDSA;
+	if( !supportedAuthTypes.isEmpty() )
 	{
-		iat = _try_auth_type;
-	}*/
-	socketDev.write( QVariant( iat ) );
+		chosenAuthType = supportedAuthTypes.values().first().toInt();
 
-	if( iat == ItalcAuthDSA || iat == ItalcAuthLocalDSA )
+		// look whether the ItalcVncConnection recommends a specific
+		// authentication type (e.g. ItalcAuthHostBased when running as
+		// demo client)
+		ItalcVncConnection *t = (ItalcVncConnection *)
+										rfbClientGetClientData( client, 0 );
+
+		if( t != NULL )
+		{
+			foreach( const QVariant &v, supportedAuthTypes )
+			{
+				if( t->italcAuthType() == v.toInt() )
+				{
+					chosenAuthType = v.toInt();
+				}
+			}
+		}
+	}
+
+	socketDev.write( QVariant( chosenAuthType ) );
+
+	if( chosenAuthType == ItalcAuthDSA )
 	{
 		QByteArray chall = socketDev.read().toByteArray();
 		socketDev.write( QVariant( (int) ItalcCore::role ) );
@@ -107,11 +128,14 @@ void handleSecTypeItalc( rfbClient * _cl )
 		}
 		socketDev.write( privDSAKey->sign( chall ) );
 	}
-	else if( iat == ItalcAuthHostBased )
+	else if( chosenAuthType == ItalcAuthHostBased )
 	{
+		// nothing to do - we just get accepted if our IP is in the list of
+		// allowed hosts
 	}
-	else if( iat == ItalcAuthNone )
+	else if( chosenAuthType == ItalcAuthNone )
 	{
+		// nothing to do - we just get accepted
 	}
 }
 

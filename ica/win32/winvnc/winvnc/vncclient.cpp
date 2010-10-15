@@ -1310,9 +1310,7 @@ BOOL vncClientThread::AuthenticateClient(std::vector<CARD8>& current_auth)
 	case rfbSecTypeItalc:
 		auth_success =
 			ItalcCoreServer::instance()->
-				authSecTypeItalc( vsocketDispatcher,
- 							m_socket,
- 							ItalcAuthDSA );
+				authSecTypeItalc( vsocketDispatcher, m_socket );
 		break;
 #endif
 	default:
