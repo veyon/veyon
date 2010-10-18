@@ -25,7 +25,6 @@
 
 #include <QtCore/QLocale>
 #include <QtCore/QModelIndex>
-#include <QtCore/QTime>
 #include <QtCore/QTranslator>
 #include <QtGui/QApplication>
 #include <QtGui/QSplashScreen>
@@ -54,8 +53,6 @@ QString __ivs_host = "127.0.0.1";
 // good old main-function... initializes qt-app and starts iTALC
 int main( int argc, char * * argv )
 {
-	qsrand( QTime( 0, 0, 0 ).secsTo( QTime::currentTime() ) );
-
 	QApplication app( argc, argv );
 	app.connect( &app, SIGNAL( lastWindowClosed() ), SLOT( quit() ) );
 

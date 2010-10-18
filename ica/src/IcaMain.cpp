@@ -26,7 +26,6 @@
 
 #include <QtCore/QProcess>
 #include <QtCore/QLocale>
-#include <QtCore/QTime>
 #include <QtCore/QTranslator>
 #include <QtGui/QApplication>
 #include <QtNetwork/QHostInfo>
@@ -277,8 +276,6 @@ int main( int argc, char **argv )
 	hAppInstance = GetModuleHandle( NULL );
 	mainthreadId = GetCurrentThreadId();
 #endif
-
-	qsrand( QTime( 0, 0, 0 ).secsTo( QTime::currentTime() ) );
 
 	// decide whether to create a QCoreApplication or QApplication
 	if( argc >= 2 )

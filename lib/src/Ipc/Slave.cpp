@@ -24,6 +24,7 @@
  */
 
 #include <QtCore/QCoreApplication>
+#include <QtNetwork/QHostAddress>
 
 #include "Ipc/Slave.h"
 
@@ -31,13 +32,13 @@ namespace Ipc
 {
 
 Slave::Slave( const Ipc::Id &masterId, const Ipc::Id &slaveId ) :
-	QLocalSocket(),
+	QTcpSocket(),
 	m_slaveId( slaveId )
 {
 	connect( this, SIGNAL( readyRead() ),
 				this, SLOT( receiveMessage() ) );
 
-	connectToServer( masterId );
+	connectToHost( QHostAddress::LocalHost, masterId.toInt() );
 }
 
 

@@ -24,7 +24,7 @@
  */
 
 #include <QtCore/QCoreApplication>
-#include <QtNetwork/QLocalSocket>
+#include <QtNetwork/QTcpSocket>
 
 #include "Ipc/Master.h"
 #include "Ipc/QtSlaveLauncher.h"
@@ -33,11 +33,11 @@ namespace Ipc
 {
 
 Master::Master() :
-	m_serverId( Ipc::Id( "Ipc::Master::%1").arg( qrand() ) ),
+	QTcpServer(),
 	m_socketReceiveMapper( this ),
 	m_processes()
 {
-	if( !listen( m_serverId ) )
+	if( !listen( QHostAddress::LocalHost ) )
 	{
 		qCritical( "Error in listen() in Ipc::Master::Master()" );
 	}
@@ -78,7 +78,8 @@ void Master::createSlave( const Ipc::Id &id, SlaveLauncher *slaveLauncher )
 	pi.sock = NULL;
 
 	pi.slaveLauncher = slaveLauncher;
-	pi.slaveLauncher->start( QStringList() << "-slave" << id << m_serverId );
+	pi.slaveLauncher->start( QStringList() << "-slave" << id <<
+											QString::number( serverPort() ) );
 
 	m_processes[id] = pi;
 }
@@ -160,7 +161,7 @@ Ipc::Msg Master::receiveMessage( const Ipc::Id &id )
 
 void Master::acceptConnection()
 {
-	QLocalSocket *s = nextPendingConnection();
+	QTcpSocket *s = nextPendingConnection();
 
 	// connect to readyRead() signal of new connection
 	connect( s, SIGNAL( readyRead() ),
@@ -178,7 +179,7 @@ void Master::acceptConnection()
 
 void Master::receiveMessage( QObject *sockObj )
 {
-	QLocalSocket *sock = qobject_cast<QLocalSocket *>( sockObj );
+	QTcpSocket *sock = qobject_cast<QTcpSocket *>( sockObj );
 	if( !sock )
 	{
 		return;

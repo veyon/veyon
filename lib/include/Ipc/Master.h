@@ -30,7 +30,7 @@
 
 #include <QtCore/QProcess>
 #include <QtCore/QSignalMapper>
-#include <QtNetwork/QLocalServer>
+#include <QtNetwork/QTcpServer>
 
 
 namespace Ipc
@@ -38,7 +38,7 @@ namespace Ipc
 
 class SlaveLauncher;
 
-class Master : public QLocalServer
+class Master : public QTcpServer
 {
 	Q_OBJECT
 public:
@@ -61,12 +61,11 @@ private slots:
 
 
 private:
-	Ipc::Id m_serverId;
 	QSignalMapper m_socketReceiveMapper;
 
 	struct ProcessInformation
 	{
-		QLocalSocket *sock;
+		QTcpSocket *sock;
 		SlaveLauncher *slaveLauncher;
 		QVector<Ipc::Msg> pendingMessages;
 	};
