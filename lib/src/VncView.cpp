@@ -545,7 +545,7 @@ void VncView::unpressModifiers()
 QPoint VncView::mapToFramebuffer( const QPoint &pos )
 {
 	const QSize fbs = framebufferSize();
-	if( !fbs.isValid() )
+	if( fbs.isEmpty() )
 	{
 		return QPoint( 0, 0 );
 	}
@@ -565,7 +565,7 @@ QPoint VncView::mapToFramebuffer( const QPoint &pos )
 
 QRect VncView::mapFromFramebuffer( const QRect &r )
 {
-	if( !framebufferSize().isValid() )
+	if( framebufferSize().isEmpty() )
 	{
 		return QRect();
 	}
@@ -586,7 +586,7 @@ void VncView::updateLocalCursor()
 	if( !isViewOnly() && !m_cursorShape.isNull() )
 	{
 		float scale = 1;
-		if( scaledSize().isValid() && framebufferSize().isValid() )
+		if( !scaledSize().isEmpty() && !framebufferSize().isEmpty() )
 		{
 			scale = (float) scaledSize().width() / framebufferSize().width();
 		}
@@ -640,20 +640,20 @@ void VncView::paintEvent( QPaintEvent *paintEvent )
 
 	QPainter p( this );
 
-	const QSize ss = scaledSize();
-	const float scale = ss.isValid() ?
-			(float) ss.width() / framebufferSize().width() : 1;
+	const QSize sSize = scaledSize();
+	const float scale = sSize.isNull() ? 1 :
+			(float) sSize.width() / framebufferSize().width();
 	if( m_repaint )
 	{
-		if( ss.isValid() )
-		{
-			FastQImage i = m_frame;
-			p.drawImage( 0, 0, m_frame.scaled( ss ) );
-		}
-		else
+		if( sSize.isNull() )
 		{
 			p.drawImage( QRect( m_x, m_y, m_w, m_h ),
 					m_frame.copy( m_x, m_y, m_w, m_h ) );
+		}
+		else
+		{
+			FastQImage i = m_frame;
+			p.drawImage( 0, 0, m_frame.scaled( sSize ) );
 		}
 	}
 	else
@@ -683,13 +683,13 @@ void VncView::paintEvent( QPaintEvent *paintEvent )
 	}
 
 	// draw black borders if neccessary
-	const int fbw = ss.isValid() ? ss.width() :
+	const int fbw = sSize.isValid() ? sSize.width() :
 				m_vncConn.framebufferSize().width();
 	if( fbw < width() )
 	{
 		p.fillRect( fbw, 0, width() - fbw, height(), Qt::black );
 	}
-	const int fbh = ss.isValid() ? ss.height() :
+	const int fbh = sSize.isValid() ? sSize.height() :
 				m_vncConn.framebufferSize().height();
 	if( fbh < height() )
 	{
@@ -795,10 +795,10 @@ void VncView::updateImage(int x, int y, int w, int h)
 	m_w = w;
 	m_h = h;
 
-	const QSize ss = scaledSize();
-	const float scale = ss.isValid() ?
-			(float) ss.width() / framebufferSize().width() : 1;
-	if( ss.isValid() )
+	const QSize sSize = scaledSize();
+	const float scale = sSize.isEmpty() ? 1 :
+			(float) sSize.width() / framebufferSize().width();
+	if( !sSize.isEmpty() )
 	{
 		m_x-=1;
 		m_y-=1;
