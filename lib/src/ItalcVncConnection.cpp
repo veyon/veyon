@@ -125,23 +125,18 @@ rfbBool ItalcVncConnection::hookNewClient( rfbClient * _cl )
 
 	// only use remote cursor for remote control
 	_cl->appData.useRemoteCursor = false;
+	_cl->appData.compressLevel = 0;
+	_cl->appData.useBGR233 = 0;
+	_cl->appData.qualityLevel = 9;
+	_cl->appData.enableJPEG = false;
 
 	switch( t->quality() )
 	{
 		case SnapshotQuality:
-			_cl->appData.useBGR233 = 0;
 			_cl->appData.encodingsString = "raw";
-			_cl->appData.compressLevel = 0;
-			_cl->appData.qualityLevel = 9;
-			_cl->appData.enableJPEG = false;
 			break;
 		case RemoteControlQuality:
-			_cl->appData.useBGR233 = 0;
-			_cl->appData.encodingsString = "zrle ultra copyrect "
-							"hextile zlib raw";
-			_cl->appData.compressLevel = 0;
-			_cl->appData.qualityLevel = 9;
-			_cl->appData.enableJPEG = false;
+			_cl->appData.encodingsString = "copyrect hextile raw";
 			_cl->appData.useRemoteCursor = true;
 			break;
 		case ThumbnailQuality:
@@ -149,19 +144,14 @@ rfbBool ItalcVncConnection::hookNewClient( rfbClient * _cl )
 			_cl->appData.encodingsString = "tight zrle ultra "
 							"copyrect hextile zlib "
 							"corre rre raw";
-			_cl->appData.compressLevel = 4;
-			_cl->appData.qualityLevel = 4;
+			_cl->appData.compressLevel = 9;
+			_cl->appData.qualityLevel = 5;
 			_cl->appData.enableJPEG = true;
 			break;
 		default:
 		case DemoQuality:
-			_cl->appData.useBGR233 = 0;
-			_cl->appData.encodingsString = "tight zrle ultra "
-							"copyrect hextile zlib "
-							"corre rre raw";
-			_cl->appData.compressLevel = 4;
-			_cl->appData.qualityLevel = 9;
-			_cl->appData.enableJPEG = true;
+			_cl->appData.encodingsString = "zrle ultra copyrect "
+							"hextile zlib corre rre raw";
 			break;
 	}
 
