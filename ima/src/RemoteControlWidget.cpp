@@ -257,7 +257,7 @@ RemoteControlWidget::RemoteControlWidget( const QString &host,
 											MainWindow *mainWindow ) :
 	QWidget( 0 ),
 	m_vncView( new VncView( host, this, VncView::RemoteControlMode ) ),
-	m_icc( new ItalcCoreConnection( m_vncView->vncConnection() ) ),
+	m_coreConnection( new ItalcCoreConnection( m_vncView->vncConnection() ) ),
 	m_toolBar( new RemoteControlWidgetToolBar( this, viewOnly ) ),
 	m_mainWindow( mainWindow ),
 	m_extraStates( Qt::WindowMaximized )
@@ -267,8 +267,8 @@ RemoteControlWidget::RemoteControlWidget( const QString &host,
 	m_vncView->move( 0, 0 );
 	connect( m_vncView, SIGNAL( mouseAtTop() ), m_toolBar,
 							SLOT( appear() ) );
-/*	connect( m_vncView, SIGNAL( keyEvent( Q_UINT32, bool ) ),
-				this, SLOT( checkKeyEvent( Q_UINT32, bool ) ) );*/
+	connect( m_vncView, SIGNAL( keyEvent( int, bool ) ),
+				this, SLOT( checkKeyEvent( int, bool ) ) );
 //	showMaximized();
 	//showFullScreen();
 	show();
@@ -303,7 +303,7 @@ void RemoteControlWidget::updateWindowTitle()
 			tr( "View live (%1 at host %2)" )
 		:
 			tr( "Remote control (%1 at host %2)" );
-	QString u = m_icc->user();// = m_vncView->m_connection->user();
+	QString u = m_coreConnection->user();
 	if( u.isEmpty() )
 	{
 		u = tr( "unknown user" );
@@ -327,10 +327,9 @@ void RemoteControlWidget::resizeEvent( QResizeEvent * )
 
 
 
-void RemoteControlWidget::checkKeyEvent( uint32_t _key, bool _pressed )
+void RemoteControlWidget::checkKeyEvent( int key, bool pressed )
 {
-	if( _pressed && _key == XK_Escape/* &&
-		m_vncView->m_connection->state() != ivsConnection::Connected*/ )
+	if( pressed && key == XK_Escape && !m_coreConnection->isConnected() )
 	{
 		close();
 	}

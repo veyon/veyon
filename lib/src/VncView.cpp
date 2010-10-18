@@ -512,7 +512,14 @@ void VncView::keyEventHandler( QKeyEvent * _ke )
 
 	if( key )
 	{
+		// forward key event to the VNC connection
 		m_vncConn.keyEvent( key, pressed );
+
+		// signal key event - used by RemoteControlWidget to close itself
+		// when pressing Esc
+		emit keyEvent( key, pressed );
+
+		// inform Qt that we handled the key event
 		_ke->accept();
 	}
 }

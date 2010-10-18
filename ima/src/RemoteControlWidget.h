@@ -103,12 +103,12 @@ protected:
 
 
 private slots:
-	void checkKeyEvent( uint32_t, bool );
+	void checkKeyEvent( int, bool );
 
 
 private:
 	VncView * m_vncView;
-	ItalcCoreConnection * m_icc;
+	ItalcCoreConnection *m_coreConnection;
 	RemoteControlWidgetToolBar * m_toolBar;
 	MainWindow * m_mainWindow;
 

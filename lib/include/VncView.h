@@ -84,6 +84,7 @@ public slots:
 
 signals:
 	void mouseAtTop();
+	void keyEvent( int, bool );
 	void startConnection();
 	void connectionEstablished();
 
