@@ -630,15 +630,15 @@ bool VncView::event( QEvent * event )
 
 void VncView::paintEvent( QPaintEvent *paintEvent )
 {
-	if( m_frame.isNull() || m_frame.format() == QImage::Format_Invalid )
-	{
-		QWidget::paintEvent( paintEvent );
-		return;
-	}
-
 	paintEvent->accept();
 
 	QPainter p( this );
+
+	if( m_frame.isNull() || m_frame.format() == QImage::Format_Invalid )
+	{
+		p.fillRect( paintEvent->rect(), Qt::black );
+		return;
+	}
 
 	const QSize sSize = scaledSize();
 	const float scale = sSize.isNull() ? 1 :
