@@ -191,12 +191,6 @@ void VncView::setViewOnly( bool _vo )
 	}
 	else
 	{
-#ifdef ITALC_BUILD_LINUX
-		// for some reason we have to grab mouse and then release
-		// again to make complete keyboard-grabbing working ... ??
-		grabMouse();
-		releaseMouse();
-#endif
 		grabKeyboard();
 		updateLocalCursor();
 	}
