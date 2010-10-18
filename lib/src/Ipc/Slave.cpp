@@ -30,19 +30,14 @@
 namespace Ipc
 {
 
-Slave::Slave( const Ipc::Id &masterId, const Ipc::Id &slaveId) :
-	QLocalSocket()
+Slave::Slave( const Ipc::Id &masterId, const Ipc::Id &slaveId ) :
+	QLocalSocket(),
+	m_slaveId( slaveId )
 {
+	connect( this, SIGNAL( readyRead() ),
+				this, SLOT( receiveMessage() ) );
+
 	connectToServer( masterId );
-	if( waitForConnected( 5000 ) &&
-		Ipc::Msg().receive( this ).cmd() == Ipc::Commands::Identify )
-	{
-		connect( this, SIGNAL( readyRead() ),
-					this, SLOT( receiveMessage() ) );
-		Ipc::Msg( Ipc::Commands::Identify ).
-				addArg( Ipc::Arguments::Id, slaveId ).
-			send( this );
-	}
 }
 
 
@@ -65,6 +60,13 @@ void Slave::receiveMessage()
 			{
 				handled = true;
 				QCoreApplication::quit();
+			}
+			else if( m.cmd() == Ipc::Commands::Identify )
+			{
+				Ipc::Msg( Ipc::Commands::Identify ).
+					addArg( Ipc::Arguments::Id, m_slaveId ).
+						send( this );
+				handled = true;
 			}
 
 			if( !handled )

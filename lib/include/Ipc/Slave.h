@@ -45,7 +45,11 @@ public:
 private slots:
 	void receiveMessage();
 
-};
+
+private:
+	const QString m_slaveId;
+
+} ;
 
 }
 

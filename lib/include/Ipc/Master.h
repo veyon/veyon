@@ -29,6 +29,7 @@
 #include "Ipc/Core.h"
 
 #include <QtCore/QProcess>
+#include <QtCore/QSignalMapper>
 #include <QtNetwork/QLocalServer>
 
 
@@ -56,11 +57,12 @@ public:
 
 private slots:
 	void acceptConnection();
-	void receiveMessages();
+	void receiveMessage( QObject *sock );
 
 
 private:
 	Ipc::Id m_serverId;
+	QSignalMapper m_socketReceiveMapper;
 
 	struct ProcessInformation
 	{

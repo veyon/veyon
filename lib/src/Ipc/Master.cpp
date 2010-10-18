@@ -34,12 +34,16 @@ namespace Ipc
 
 Master::Master() :
 	m_serverId( Ipc::Id( "Ipc::Master::%1").arg( qrand() ) ),
+	m_socketReceiveMapper( this ),
 	m_processes()
 {
 	if( !listen( m_serverId ) )
 	{
 		qCritical( "Error in listen() in Ipc::Master::Master()" );
 	}
+
+	connect( &m_socketReceiveMapper, SIGNAL( mapped( QObject *) ),
+				this, SLOT( receiveMessage( QObject * ) ) );
 
 	connect( this, SIGNAL( newConnection() ),
 			 this, SLOT( acceptConnection() ) );
@@ -95,9 +99,12 @@ void Master::stopSlave( const Ipc::Id &id )
 
 		delete m_processes[id].slaveLauncher;
 
-		// schedule deletion of socket - can't delete it here as this crashes
-		// Qt on Win32
-		m_processes[id].sock->deleteLater();
+		if( m_processes[id].sock != NULL )
+		{
+			// schedule deletion of socket - can't delete it here as this
+			// crashes Qt on Win32
+			m_processes[id].sock->deleteLater();
+		}
 
 		m_processes.remove( id );
 	}
@@ -154,61 +161,76 @@ Ipc::Msg Master::receiveMessage( const Ipc::Id &id )
 void Master::acceptConnection()
 {
 	QLocalSocket *s = nextPendingConnection();
+
+	// connect to readyRead() signal of new connection
+	connect( s, SIGNAL( readyRead() ),
+				&m_socketReceiveMapper, SLOT( map() ) );
+
+	// add mapping so we can identify the socket later
+	m_socketReceiveMapper.setMapping( s, s );
+
 	Ipc::Msg( Ipc::Commands::Identify ).send( s );
 
-	// check whether we got a proper identification message
-	Ipc::Msg answer;
-	if( answer.receive( s ).isValid() &&
-			answer.cmd() == Ipc::Commands::Identify )
-	{
-		const Ipc::Id id = answer.arg( Ipc::Arguments::Id );
-		if( m_processes.contains( id ) && m_processes[id].sock == NULL )
-		{
-			m_processes[id].sock = s;
-
-			// connect to our slot
-			connect( s, SIGNAL( readyRead() ),
-						this, SLOT( receiveMessages() ) );
-
-			// send all pending messages that were queued before the connection
-			// was established completely
-			foreach( const Ipc::Msg &m, m_processes[id].pendingMessages )
-			{
-				m.send( s );
-			}
-		}
-		else
-		{
-			delete s;
-		}
-	}
 }
 
 
 
 
-void Master::receiveMessages()
+void Master::receiveMessage( QObject *sockObj )
 {
-	// one or more sockets are ready to read
-	for( ProcessMap::Iterator it = m_processes.begin();
-								it != m_processes.end(); ++it )
+	QLocalSocket *sock = qobject_cast<QLocalSocket *>( sockObj );
+	if( !sock )
 	{
-		while( it->sock->bytesAvailable() > 0 )
+		return;
+	}
+
+	while( sock->bytesAvailable() > 0 )
+	{
+		// receive and handle message
+		Ipc::Msg m;
+		if( m.receive( sock ).isValid() )
 		{
-			// receive and handle message
-			Ipc::Msg m;
-			if( m.receive( it->sock ).isValid() )
+			if( m.cmd() == Ipc::Commands::UnknownCommand )
 			{
-				if( m.cmd() == Ipc::Commands::UnknownCommand )
+				// search for slave ID
+				Ipc::Id slaveId;
+				for( ProcessMap::ConstIterator it = m_processes.begin();
+							it != m_processes.end(); ++it )
 				{
-					qWarning() << "Slave" << it.key()
+					if( it->sock == sock )
+					{
+						slaveId = it.key();
+					}
+				}
+				qWarning() << "Slave" << slaveId
 						<< "could not handle command"
 						<< m.arg( Ipc::Arguments::Command );
+			}
+			else if( m.cmd() == Ipc::Commands::Identify )
+			{
+				// check whether we got a proper identification message
+				const Ipc::Id id = m.arg( Ipc::Arguments::Id );
+				if( m_processes.contains( id ) &&
+						m_processes[id].sock == NULL )
+				{
+					m_processes[id].sock = sock;
+
+					// send all pending messages that were queued before the
+					// connection was established completely
+					foreach( const Ipc::Msg &m, m_processes[id].pendingMessages )
+					{
+						m.send( sock );
+					}
 				}
 				else
 				{
-					handleMessage( m );
+					delete sock;
+					break;
 				}
+			}
+			else
+			{
+				handleMessage( m );
 			}
 		}
 	}

@@ -114,10 +114,6 @@ namespace Ipc
 		template<class QIOD>
 		Msg & receive( QIOD *d )
 		{
-			if( !d->waitForReadyRead( 1000 ) )
-			{
-				qDebug( "Ipc::Msg::receive(): waitForReadyRead() timed out" );
-			}
 			QDataStream ds( d );
 			ds >> m_cmd;
 			ds >> m_args;
