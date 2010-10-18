@@ -72,7 +72,7 @@ void QtSlaveLauncher::stop()
 
 bool QtSlaveLauncher::isRunning() const
 {
-	return m_process && m_process->state() == QProcess::Running;
+	return m_process && m_process->state() != QProcess::NotRunning;
 }
 
 
