@@ -531,8 +531,15 @@ void ItalcVncConnection::run()
 		while( !m_eventQueue.isEmpty() )
 		{
 			ClientEvent * clientEvent = m_eventQueue.dequeue();
+
+			// unlock the queue mutex during the runtime of ClientEvent::fire()
+			m_mutex.unlock();
+
 			clientEvent->fire( m_cl );
 			delete clientEvent;
+
+			// and lock it again
+			m_mutex.lock();
 		}
 
 		m_mutex.unlock();
