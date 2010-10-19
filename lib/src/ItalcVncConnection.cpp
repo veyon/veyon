@@ -264,9 +264,9 @@ void ItalcVncConnection::hookOutputHandler( const char *format, ... )
 ItalcVncConnection::ItalcVncConnection( QObject *parent ) :
 	QThread( parent ),
 	frameBuffer( NULL ),
-	m_stopped( false ),
-	m_connected( false ),
 	m_cl( NULL ),
+	m_state( Disconnected ),
+	m_stopped( false ),
 	m_quality( DemoQuality ),
 	m_port( PortOffsetIVS ),
 	m_framebufferUpdateInterval( 0 ),
@@ -275,7 +275,6 @@ ItalcVncConnection::ItalcVncConnection( QObject *parent ) :
 	m_scaledScreen(),
 	m_scaledSize()
 {
-	m_stopped = false;
 }
 
 
@@ -316,7 +315,7 @@ void ItalcVncConnection::stop()
 
 void ItalcVncConnection::reset( const QString &host )
 {
-	if( !m_connected && isRunning() )
+	if( m_state != Connected && isRunning() )
 	{
 		setHost( host );
 	}
@@ -438,12 +437,13 @@ void ItalcVncConnection::emitGotCut( const QString &text )
 
 void ItalcVncConnection::run()
 {
+	m_state = Disconnected;
 	m_stopped = false;
 
 	rfbClientLog = hookOutputHandler;
 	rfbClientErr = hookOutputHandler;
 
-	while( !m_stopped && !m_connected ) // try to connect as long as the server allows
+	while( !m_stopped && m_state != Connected ) // try to connect as long as the server allows
 	{
 		m_cl = rfbGetClient( 8, 3, 4 );
 		m_cl->MallocFrameBuffer = hookNewClient;
@@ -478,10 +478,28 @@ void ItalcVncConnection::run()
 		{
 			emit connected();
 
-			m_connected = true;
+			m_state = Connected;
 			if( m_framebufferUpdateInterval < 0 )
 			{
 				rfbClientSetClientData( m_cl, (void *) 0x555, (void *) 1 );
+			}
+		}
+		else
+		{
+			// guess reason why connection failed based on the state,
+			// libvncclient left the rfbClient structure
+			if( m_cl->sock < 0 )
+			{
+				m_state = HostUnreachable;
+			}
+			else if( m_cl->desktopName == NULL )
+			{
+				m_state = AuthenticationFailed;
+			}
+			else
+			{
+				// failed for an unknown reason
+				m_state = ConnectionFailed;
 			}
 		}
 	}
@@ -525,11 +543,12 @@ void ItalcVncConnection::run()
 		}
 	}
 
-	if( m_connected && m_cl )
+	if( m_state == Connected && m_cl )
 	{
 		rfbClientCleanup( m_cl );
-		m_connected = false;
 	}
+
+	m_state = Disconnected;
 
 	// Cleanup allocated resources
 	m_stopped = true;

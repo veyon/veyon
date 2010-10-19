@@ -66,6 +66,16 @@ public:
 		NumQualityLevels
 	} ;
 
+	enum States
+	{
+		Disconnected,
+		HostUnreachable,
+		AuthenticationFailed,
+		ConnectionFailed,
+		Connected
+	} ;
+	typedef States State;
+
 	explicit ItalcVncConnection( QObject *parent = 0 );
 	virtual ~ItalcVncConnection();
 
@@ -79,9 +89,14 @@ public:
 	void setHost( const QString &host );
 	void setPort( int port );
 
+	State state() const
+	{
+		return m_state;
+	}
+
 	bool isConnected() const
 	{
-		return m_connected && isRunning();
+		return state() == Connected && isRunning();
 	}
 
 	void setItalcAuthType( ItalcAuthType t )
@@ -184,7 +199,7 @@ private:
 	FastQImage m_scaledScreen;
 	QSize m_scaledSize;
 
-	volatile bool m_connected;
+	volatile State m_state;
 	volatile bool m_stopped;
 
 

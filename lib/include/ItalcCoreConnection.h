@@ -41,6 +41,11 @@ public:
 		return m_vncConn;
 	}
 
+	ItalcVncConnection::State state() const
+	{
+		return m_vncConn->state();
+	}
+
 	inline bool isConnected() const
 	{
 		return m_vncConn->isConnected();
