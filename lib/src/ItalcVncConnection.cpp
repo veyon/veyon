@@ -38,15 +38,15 @@ static QString outputErrorMessageString;
 class KeyClientEvent : public ClientEvent
 {
 public:
-	KeyClientEvent( int _key, int _pressed ) :
-		m_key( _key ),
-		m_pressed( _pressed )
+	KeyClientEvent( int key, int pressed ) :
+		m_key( key ),
+		m_pressed( pressed )
 	{
 	}
 
-	virtual void fire( rfbClient * _cl )
+	virtual void fire( rfbClient *cl )
 	{
-		SendKeyEvent( _cl, m_key, m_pressed );
+		SendKeyEvent( cl, m_key, m_pressed );
 	}
 
 private:
@@ -59,16 +59,16 @@ private:
 class PointerClientEvent : public ClientEvent
 {
 public:
-	PointerClientEvent( int _x, int _y, int _buttonMask ) :
-		m_x( _x ),
-		m_y( _y ),
-		m_buttonMask( _buttonMask )
+	PointerClientEvent( int x, int y, int buttonMask ) :
+		m_x( x ),
+		m_y( y ),
+		m_buttonMask( buttonMask )
 	{
 	}
 
-	virtual void fire( rfbClient * _cl )
+	virtual void fire( rfbClient *cl )
 	{
-		SendPointerEvent( _cl, m_x, m_y, m_buttonMask );
+		SendPointerEvent( cl, m_x, m_y, m_buttonMask );
 	}
 
 private:
@@ -82,14 +82,14 @@ private:
 class ClientCutEvent : public ClientEvent
 {
 public:
-	ClientCutEvent( char * _text ) :
-	    m_text( _text )
+	ClientCutEvent( char *text ) :
+	    m_text( text )
 	{
 	}
 
-	virtual void fire( rfbClient * _cl )
+	virtual void fire( rfbClient *cl )
 	{
-		SendClientCutText( _cl, m_text, qstrlen( m_text ) );
+		SendClientCutText( cl, m_text, qstrlen( m_text ) );
 	}
 
 private:
@@ -100,62 +100,62 @@ private:
 
 
 
-rfbBool ItalcVncConnection::hookNewClient( rfbClient * _cl )
+rfbBool ItalcVncConnection::hookNewClient( rfbClient *cl )
 {
 	ItalcVncConnection * t = (ItalcVncConnection *)
-					rfbClientGetClientData( _cl, 0) ;
+					rfbClientGetClientData( cl, 0) ;
 
-	const int size = (int) _cl->width * _cl->height *
-					( _cl->format.bitsPerPixel / 8 );
+	const int size = (int) cl->width * cl->height *
+					( cl->format.bitsPerPixel / 8 );
 	if( t->frameBuffer )
 	{
 		// do not leak if we get a new framebuffer size
 		delete [] t->frameBuffer;
 	}
 	t->frameBuffer = new uint8_t[size];
-	_cl->frameBuffer = t->frameBuffer;
-	memset( _cl->frameBuffer, '\0', size );
-	_cl->format.bitsPerPixel = 32;
-	_cl->format.redShift = 16;
-	_cl->format.greenShift = 8;
-	_cl->format.blueShift = 0;
-	_cl->format.redMax = 0xff;
-	_cl->format.greenMax = 0xff;
-	_cl->format.blueMax = 0xff;
+	cl->frameBuffer = t->frameBuffer;
+	memset( cl->frameBuffer, '\0', size );
+	cl->format.bitsPerPixel = 32;
+	cl->format.redShift = 16;
+	cl->format.greenShift = 8;
+	cl->format.blueShift = 0;
+	cl->format.redMax = 0xff;
+	cl->format.greenMax = 0xff;
+	cl->format.blueMax = 0xff;
 
 	// only use remote cursor for remote control
-	_cl->appData.useRemoteCursor = false;
-	_cl->appData.compressLevel = 0;
-	_cl->appData.useBGR233 = 0;
-	_cl->appData.qualityLevel = 9;
-	_cl->appData.enableJPEG = false;
+	cl->appData.useRemoteCursor = false;
+	cl->appData.compressLevel = 0;
+	cl->appData.useBGR233 = 0;
+	cl->appData.qualityLevel = 9;
+	cl->appData.enableJPEG = false;
 
 	switch( t->quality() )
 	{
 		case SnapshotQuality:
-			_cl->appData.encodingsString = "raw";
+			cl->appData.encodingsString = "raw";
 			break;
 		case RemoteControlQuality:
-			_cl->appData.encodingsString = "copyrect hextile raw";
-			_cl->appData.useRemoteCursor = true;
+			cl->appData.encodingsString = "copyrect hextile raw";
+			cl->appData.useRemoteCursor = true;
 			break;
 		case ThumbnailQuality:
-			_cl->appData.useBGR233 = 1;
-			_cl->appData.encodingsString = "tight zrle ultra "
+			cl->appData.useBGR233 = 1;
+			cl->appData.encodingsString = "tight zrle ultra "
 							"copyrect hextile zlib "
 							"corre rre raw";
-			_cl->appData.compressLevel = 9;
-			_cl->appData.qualityLevel = 5;
-			_cl->appData.enableJPEG = true;
+			cl->appData.compressLevel = 9;
+			cl->appData.qualityLevel = 5;
+			cl->appData.enableJPEG = true;
 			break;
 		default:
 		case DemoQuality:
-			_cl->appData.encodingsString = "zrle ultra copyrect "
+			cl->appData.encodingsString = "zrle ultra copyrect "
 							"hextile zlib corre rre raw";
 			break;
 	}
 
-	SetFormatAndEncodings( _cl );
+	SetFormatAndEncodings( cl );
 
 	return true;
 }
@@ -163,11 +163,9 @@ rfbBool ItalcVncConnection::hookNewClient( rfbClient * _cl )
 
 
 
-void ItalcVncConnection::hookUpdateFB( rfbClient * _cl, int _x, int _y, int _w,
-									int _h )
+void ItalcVncConnection::hookUpdateFB( rfbClient *cl, int x, int y, int w, int h )
 {
-	QImage img( _cl->frameBuffer, _cl->width, _cl->height,
-							QImage::Format_RGB32 );
+	QImage img( cl->frameBuffer, cl->width, cl->height, QImage::Format_RGB32 );
 
 	if( img.isNull() )
 	{
@@ -175,10 +173,10 @@ void ItalcVncConnection::hookUpdateFB( rfbClient * _cl, int _x, int _y, int _w,
 	}
 
 	ItalcVncConnection * t = (ItalcVncConnection *)
-					rfbClientGetClientData( _cl, 0 );
+					rfbClientGetClientData( cl, 0 );
 	t->setImage( img );
 	t->m_scaledScreenNeedsUpdate = true;
-	t->emitUpdated( _x, _y, _w, _h );
+	t->emitUpdated( x, y, w, h );
 }
 
 
@@ -207,14 +205,14 @@ void ItalcVncConnection::hookCursorShape( rfbClient *cl, int xh, int yh,
 
 
 
-void ItalcVncConnection::hookCutText( rfbClient * _cl, const char * _text,
-								int _textlen )
+void ItalcVncConnection::hookCutText( rfbClient *cl, const char *text,
+								int textlen )
 {
-	QString cutText = QString::fromUtf8( _text, _textlen );
+	QString cutText = QString::fromUtf8( text, textlen );
 	if( !cutText.isEmpty() )
 	{
 	        ItalcVncConnection * t = (ItalcVncConnection *)
-					rfbClientGetClientData( _cl, 0);
+					rfbClientGetClientData( cl, 0);
 		t->emitGotCut( cutText );
 	}
 }
@@ -263,8 +261,8 @@ void ItalcVncConnection::hookOutputHandler( const char *format, ... )
 
 
 
-ItalcVncConnection::ItalcVncConnection( QObject * _parent ) :
-	QThread( _parent ),
+ItalcVncConnection::ItalcVncConnection( QObject *parent ) :
+	QThread( parent ),
 	frameBuffer( NULL ),
 	m_stopped( false ),
 	m_connected( false ),
@@ -316,16 +314,16 @@ void ItalcVncConnection::stop()
 
 
 
-void ItalcVncConnection::reset( const QString & _host )
+void ItalcVncConnection::reset( const QString &host )
 {
 	if( !m_connected && isRunning() )
 	{
-		setHost( _host );
+		setHost( host );
 	}
 	else
 	{
 		stop();
-		setHost( _host );
+		setHost( host );
 		start();
 	}
 }
@@ -333,10 +331,10 @@ void ItalcVncConnection::reset( const QString & _host )
 
 
 
-void ItalcVncConnection::setHost( const QString & _host )
+void ItalcVncConnection::setHost( const QString &host )
 {
 	QMutexLocker locker( &m_mutex );
-	m_host = _host;
+	m_host = host;
 	if( m_host.contains( ':' ) )
 	{
 		m_port = m_host.section( ':', 1, 1 ).toInt();
@@ -347,34 +345,34 @@ void ItalcVncConnection::setHost( const QString & _host )
 
 
 
-void ItalcVncConnection::setPort( int _port )
+void ItalcVncConnection::setPort( int port )
 {
 	QMutexLocker locker( &m_mutex );
-	m_port = _port;
+	m_port = port;
 }
 
 
 
 
-void ItalcVncConnection::setImage( const QImage & _img )
+void ItalcVncConnection::setImage( const QImage & img )
 {
 	m_imgLock.lockForWrite();
-	m_image = _img;
+	m_image = img;
 	m_imgLock.unlock();
 }
 
 
 
 
-const QImage ItalcVncConnection::image( int _x, int _y, int _w, int _h )
+const QImage ItalcVncConnection::image( int x, int y, int w, int h )
 {
 	QReadLocker locker( &m_imgLock );
 
-	if( _w == 0 || _h == 0 ) // full image requested
+	if( w == 0 || h == 0 ) // full image requested
 	{
 		return m_image;
 	}
-	return m_image.copy( _x, _y, _w, _h );
+	return m_image.copy( x, y, w, h );
 }
 
 
@@ -413,9 +411,9 @@ void ItalcVncConnection::rescaleScreen()
 
 
 
-void ItalcVncConnection::emitUpdated( int _x, int _y, int _w, int _h )
+void ItalcVncConnection::emitUpdated( int x, int y, int w, int h )
 {
-	emit imageUpdated( _x, _y, _w, _h );
+	emit imageUpdated( x, y, w, h );
 }
 
 
@@ -430,9 +428,9 @@ void ItalcVncConnection::emitCursorShapeUpdated( const QImage &cursorShape,
 
 
 
-void ItalcVncConnection::emitGotCut( const QString & _text )
+void ItalcVncConnection::emitGotCut( const QString &text )
 {
-	emit gotCut( _text );
+	emit gotCut( text );
 }
 
 
@@ -540,7 +538,7 @@ void ItalcVncConnection::run()
 
 
 
-void ItalcVncConnection::enqueueEvent( ClientEvent * _e )
+void ItalcVncConnection::enqueueEvent( ClientEvent *e )
 {
 	QMutexLocker lock( &m_mutex );
 	if( m_stopped )
@@ -548,31 +546,31 @@ void ItalcVncConnection::enqueueEvent( ClientEvent * _e )
 		return;
 	}
 
-	m_eventQueue.enqueue( _e );
+	m_eventQueue.enqueue( e );
 }
 
 
 
 
-void ItalcVncConnection::mouseEvent( int _x, int _y, int _buttonMask )
+void ItalcVncConnection::mouseEvent( int x, int y, int buttonMask )
 {
-	enqueueEvent( new PointerClientEvent( _x, _y, _buttonMask ) );
+	enqueueEvent( new PointerClientEvent( x, y, buttonMask ) );
 }
 
 
 
 
-void ItalcVncConnection::keyEvent( int _key, bool _pressed )
+void ItalcVncConnection::keyEvent( int key, bool pressed )
 {
-	enqueueEvent( new KeyClientEvent( _key, _pressed ) );
+	enqueueEvent( new KeyClientEvent( key, pressed ) );
 }
 
 
 
 
-void ItalcVncConnection::clientCut( const QString & _text )
+void ItalcVncConnection::clientCut( const QString &text )
 {
-	enqueueEvent( new ClientCutEvent( strdup( _text.toUtf8() ) ) );
+	enqueueEvent( new ClientCutEvent( strdup( text.toUtf8() ) ) );
 }
 
 

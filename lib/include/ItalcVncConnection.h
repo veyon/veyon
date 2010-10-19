@@ -66,17 +66,18 @@ public:
 		NumQualityLevels
 	} ;
 
-	explicit ItalcVncConnection( QObject * parent = 0 );
+	explicit ItalcVncConnection( QObject *parent = 0 );
 	virtual ~ItalcVncConnection();
+
 	const QImage image( int x = 0, int y = 0, int w = 0, int h = 0 );
 	void setImage( const QImage &img );
 	void emitUpdated( int x, int y, int w, int h );
 	void emitCursorShapeUpdated( const QImage &cursorShape, int xh, int yh );
-	void emitGotCut( const QString & text );
+	void emitGotCut( const QString &text );
 	void stop();
 	void reset( const QString &host );
 	void setHost( const QString &host );
-	void setPort( int _port );
+	void setPort( int port );
 
 	bool isConnected() const
 	{
@@ -93,9 +94,9 @@ public:
 		return m_italcAuthType;
 	}
 
-	void setQuality( QualityLevels _q )
+	void setQuality( QualityLevels qualityLevel )
 	{
-		m_quality = _q;
+		m_quality = qualityLevel;
 	}
 
 	QualityLevels quality() const
