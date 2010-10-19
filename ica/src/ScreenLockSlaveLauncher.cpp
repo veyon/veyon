@@ -93,14 +93,23 @@ void ScreenLockSlaveLauncher::start( const QStringList &arguments )
 void ScreenLockSlaveLauncher::stop()
 {
 #ifdef ITALC_BUILD_WIN32
-	SwitchDesktop( m_origInputDesktop );
-	SetThreadDesktop( m_origThreadDesktop );
+	if( m_lockProcess )
+	{
+		SwitchDesktop( m_origInputDesktop );
+		SetThreadDesktop( m_origThreadDesktop );
 
-	TerminateProcess( m_lockProcess, 0 );
-	CloseDesktop( m_newDesktop );
+		TerminateProcess( m_lockProcess, 0 );
+		CloseDesktop( m_newDesktop );
+
+		m_lockProcess = NULL;
+	}
 #else
-	m_launcher->stop();
-	delete m_launcher;
+	if( m_launcher )
+	{
+		m_launcher->stop();
+		delete m_launcher;
+		m_launcher = NULL;
+	}
 #endif
 }
 
