@@ -136,3 +136,5 @@ LINK_LIBRARIES(ItalcCore)
 
 ADD_EXECUTABLE(ica ${ica_SOURCES} ${ica_INCLUDES} ${ica_MOC_out} ${ica_RCC_out} ${x11vnc_SOURCES} ${platform_SOURCES})
 
+INSTALL(TARGETS ica RUNTIME DESTINATION bin)
+

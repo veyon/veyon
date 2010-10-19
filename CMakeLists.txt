@@ -174,6 +174,7 @@ ADD_SUBDIRECTORY(lib)
 ADD_SUBDIRECTORY(ica)
 ADD_SUBDIRECTORY(ima)
 
+INSTALL()
 
 #
 # add tarball-target
@@ -183,7 +184,7 @@ ADD_CUSTOM_TARGET(dist
 			COMMAND make clean
 			COMMAND rm -rf ${TMP}
 			COMMAND mkdir -p ${TMP}
-			COMMAND cp AUTHORS build_mingw32 ChangeLog CMakeLists.txt configure COPYING INSTALL italcconfig.h.in README TODO ${TMP}
+			COMMAND cp AUTHORS build_mingw32 ChangeLog CMakeLists.txt COPYING INSTALL italcconfig.h.in italc.spec.in README TODO ${TMP}
 			COMMAND cp -r cmake lib ica ima ${TMP}
 			COMMAND rm -rf `find ${TMP} -type d -name ".svn"`  `find ${TMP} -name cmake_install.cmake` `find ${TMP} -name Makefile` `find ${TMP} -type d -name CMakeFiles` ${TMP}/CMakeCache.txt
 			COMMAND tar cjf italc-${VERSION}.tar.bz2 ${TMP}
