@@ -25,10 +25,7 @@
 
 #include "DemoClientSlave.h"
 #include "DemoClient.h"
-
-const Ipc::Command DemoClientSlave::StartDemo = "StartDemo";
-const Ipc::Argument DemoClientSlave::MasterHost = "MasterHost";
-const Ipc::Argument DemoClientSlave::FullScreen = "FullScreen";
+#include "ItalcSlaveManager.h"
 
 
 DemoClientSlave::DemoClientSlave() :
@@ -48,10 +45,10 @@ DemoClientSlave::~DemoClientSlave()
 
 bool DemoClientSlave::handleMessage( const Ipc::Msg &m )
 {
-	if( m.cmd() == StartDemo )
+	if( m.cmd() == ItalcSlaveManager::DemoClient::StartDemo )
 	{
-		m_demoClient = new DemoClient( m.arg( MasterHost ),
-										m.argV( FullScreen ).toInt() );
+		m_demoClient = new DemoClient( m.arg( ItalcSlaveManager::DemoClient::MasterHost ),
+										m.argV( ItalcSlaveManager::DemoClient::FullScreen ).toInt() );
 		return true;
 	}
 

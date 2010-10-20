@@ -248,29 +248,6 @@ namespace ItalcCore
 	extern int serverPort;
 	extern UserRoles role;
 
-	// common IPC data between ICA and IMA
-	namespace Ipc
-	{
-
-		extern const ::Ipc::Id IdCoreServer;
-		extern const ::Ipc::Id IdDemoClient;
-		extern const ::Ipc::Id IdDemoServer;
-		extern const ::Ipc::Id IdMessageBox;
-		extern const ::Ipc::Id IdScreenLock;
-		extern const ::Ipc::Id IdSystemTrayIcon;
-
-		namespace DemoServer
-		{
-			extern const ::Ipc::Command StartDemoServer;
-			extern const ::Ipc::Argument UserRole;
-			extern const ::Ipc::Argument SourcePort;
-			extern const ::Ipc::Argument DestinationPort;
-
-			extern const ::Ipc::Command UpdateAllowedHosts;
-			extern const ::Ipc::Argument AllowedHosts;
-		}
-	}
-
 }
 
 #endif

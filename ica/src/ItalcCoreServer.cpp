@@ -46,7 +46,7 @@ ItalcCoreServer * ItalcCoreServer::_this = NULL;
 ItalcCoreServer::ItalcCoreServer() :
 	QObject(),
 	m_allowedIPs(),
-	m_masterProcess()
+	m_slaveManager()
 {
 	Q_ASSERT( _this == NULL );
 	_this = this;
@@ -216,23 +216,23 @@ int ItalcCoreServer::handleItalcClientMessage( socketDispatcher sock,
 		{
 			host = port;
 		}
-		m_masterProcess.startDemo( host, msgIn.arg( "fullscreen" ).toInt() );
+		m_slaveManager.startDemo( host, msgIn.arg( "fullscreen" ).toInt() );
 	}
 	else if( cmd == ItalcCore::StopDemo )
 	{
-		m_masterProcess.stopDemo();
+		m_slaveManager.stopDemo();
 	}
 	else if( cmd == ItalcCore::DisplayTextMessage )
 	{
-		m_masterProcess.messageBox( msgIn.arg( "text" ) );
+		m_slaveManager.messageBox( msgIn.arg( "text" ) );
 	}
 	else if( cmd == ItalcCore::LockDisplay )
 	{
-		m_masterProcess.lockDisplay();
+		m_slaveManager.lockDisplay();
 	}
 	else if( cmd == ItalcCore::UnlockDisplay )
 	{
-		m_masterProcess.unlockDisplay();
+		m_slaveManager.unlockDisplay();
 	}
 	// TODO: handle plugins
 	else
@@ -362,7 +362,7 @@ bool ItalcCoreServer::authSecTypeItalc( socketDispatcher sd, void *user )
 
 void ItalcCoreServer::errorMsgAuth( const QString &ip )
 {
-	_this->m_masterProcess.systemTrayMessage(
+	_this->m_slaveManager.systemTrayMessage(
 			tr( "Authentication error" ),
 			tr( "Somebody (IP: %1) tried to access this computer "
 					"but could not authenticate itself "

@@ -23,10 +23,8 @@
  */
 
 #include "MessageBoxSlave.h"
+#include "ItalcSlaveManager.h"
 #include "DecoratedMessageBox.h"
-
-const Ipc::Command MessageBoxSlave::ShowMessageBox = "ShowMessageBox";
-const Ipc::Argument MessageBoxSlave::Text = "Text";
 
 
 MessageBoxSlave::MessageBoxSlave() :
@@ -44,10 +42,10 @@ MessageBoxSlave::~MessageBoxSlave()
 
 bool MessageBoxSlave::handleMessage( const Ipc::Msg &m )
 {
-	if( m.cmd() == ShowMessageBox )
+	if( m.cmd() == ItalcSlaveManager::MessageBoxSlave::ShowMessageBox )
 	{
 		new DecoratedMessageBox( tr( "Message from teacher" ),
-				m.arg( Text ),
+				m.arg( ItalcSlaveManager::MessageBoxSlave::Text ),
 				QPixmap( ":/resources/message.png" ) );
 
 		return true;

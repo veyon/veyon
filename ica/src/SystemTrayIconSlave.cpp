@@ -24,12 +24,7 @@
  */
 
 #include "SystemTrayIconSlave.h"
-
-const Ipc::Command SystemTrayIconSlave::ShowMessage = "ShowMessage";
-const Ipc::Argument SystemTrayIconSlave::Title = "Title";
-const Ipc::Argument SystemTrayIconSlave::Text = "Text";
-const Ipc::Command SystemTrayIconSlave::SetToolTip = "SetToolTip";
-const Ipc::Argument SystemTrayIconSlave::ToolTipText = "ToolTipText";
+#include "ItalcSlaveManager.h"
 
 
 SystemTrayIconSlave::SystemTrayIconSlave() :
@@ -55,14 +50,17 @@ SystemTrayIconSlave::~SystemTrayIconSlave()
 
 bool SystemTrayIconSlave::handleMessage( const Ipc::Msg &m )
 {
-	if( m.cmd() == SetToolTip )
+	if( m.cmd() == ItalcSlaveManager::SystemTrayIcon::SetToolTip )
 	{
-		m_systemTrayIcon.setToolTip( m.arg( ToolTipText ) );
+		m_systemTrayIcon.setToolTip(
+					m.arg( ItalcSlaveManager::SystemTrayIcon::ToolTipText ) );
 		return true;
 	}
-	else if( m.cmd() == ShowMessage )
+	else if( m.cmd() == ItalcSlaveManager::SystemTrayIcon::ShowMessage )
 	{
-		m_systemTrayIcon.showMessage( m.arg( Title ), m.arg( Text ) );
+		m_systemTrayIcon.showMessage(
+					m.arg( ItalcSlaveManager::SystemTrayIcon::Title ),
+					m.arg( ItalcSlaveManager::SystemTrayIcon::Text ) );
 		return true;
 	}
 

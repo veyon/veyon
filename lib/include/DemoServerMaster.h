@@ -1,5 +1,5 @@
 /*
- * ScreenLockSlaveLauncher.h - a SlaveLauncher for the ScreenLockSlave
+ * DemoServerMaster.h - DemoServerMaster which manages (GUI) slave apps
  *
  * Copyright (c) 2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  * Copyright (c) 2010 Univention GmbH
@@ -23,41 +23,47 @@
  *
  */
 
-#ifndef _SCREEN_LOCK_SLAVE_LAUNCHER_H
-#define _SCREEN_LOCK_SLAVE_LAUNCHER_H
+#ifndef _DEMO_SERVER_MASTER_H
+#define _DEMO_SERVER_MASTER_H
 
-#include <italcconfig.h>
+#include <QtCore/QStringList>
 
-#include "Ipc/SlaveLauncher.h"
+class ItalcSlaveManager;
 
-#ifdef ITALC_BUILD_WIN32
-#include <windows.h>
-#else
-#include "Ipc/QtSlaveLauncher.h"
-#endif
-
-class ScreenLockSlaveLauncher : public Ipc::SlaveLauncher
+class DemoServerMaster
 {
 public:
-	ScreenLockSlaveLauncher();
-	~ScreenLockSlaveLauncher();
+	DemoServerMaster( ItalcSlaveManager *slaveManager );
+	virtual ~DemoServerMaster();
 
-	virtual void start( const QStringList &arguments );
-	virtual void stop();
-	virtual bool isRunning() const;
+	void start( int sourcePort, int destinationPort );
+	void stop();
+	void updateAllowedHosts();
+
+	void allowHost( const QString &host )
+	{
+		m_allowedHosts += host;
+		updateAllowedHosts();
+	}
+
+	void unallowHost( const QString &host )
+	{
+		m_allowedHosts.removeAll( host );
+		updateAllowedHosts();
+	}
+
+	int serverPort() const
+	{
+		return m_serverPort;
+	}
 
 
 private:
-#ifdef ITALC_BUILD_WIN32
-	HDESK m_newDesktop;
-	HDESK m_origThreadDesktop;
-	HDESK m_origInputDesktop;
-	HANDLE m_lockProcess;
-#else
-	Ipc::QtSlaveLauncher *m_launcher;
-#endif
-};
+	ItalcSlaveManager *m_slaveManager;
 
+	QStringList m_allowedHosts;
+	int m_serverPort;
+
+} ;
 
 #endif
-

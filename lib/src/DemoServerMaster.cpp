@@ -23,16 +23,15 @@
  *
  */
 
-#include <QtCore/QCoreApplication>
-#include <QtCore/QDir>
-
 #include "DemoServerMaster.h"
-#include "Ipc/QtSlaveLauncher.h"
 #include "ItalcCore.h"
+#include "ItalcSlaveManager.h"
 
 
-DemoServerMaster::DemoServerMaster() :
-	Ipc::Master()
+DemoServerMaster::DemoServerMaster( ItalcSlaveManager *slaveManager ) :
+	m_slaveManager( slaveManager ),
+	m_allowedHosts(),
+	m_serverPort( -1 )
 {
 }
 
@@ -46,17 +45,12 @@ DemoServerMaster::~DemoServerMaster()
 
 void DemoServerMaster::start( int sourcePort, int destinationPort )
 {
-	// create a slave launcher for the ICA executable as it contains the
-	// DemoServerSlave
-	Ipc::QtSlaveLauncher *s = new Ipc::QtSlaveLauncher(
-		QCoreApplication::applicationDirPath() + QDir::separator() + "ica" );
-
-	createSlave( ItalcCore::Ipc::IdDemoServer, s );
-	sendMessage( ItalcCore::Ipc::IdDemoServer,
-					Ipc::Msg( ItalcCore::Ipc::DemoServer::StartDemoServer ).
-						addArg( ItalcCore::Ipc::DemoServer::UserRole, ItalcCore::role ).
-						addArg( ItalcCore::Ipc::DemoServer::SourcePort, sourcePort ).
-						addArg( ItalcCore::Ipc::DemoServer::DestinationPort, destinationPort ) );
+	m_slaveManager->createSlave( ItalcSlaveManager::IdDemoServer );
+	m_slaveManager->sendMessage( ItalcSlaveManager::IdDemoServer,
+					Ipc::Msg( ItalcSlaveManager::DemoServer::StartDemoServer ).
+						addArg( ItalcSlaveManager::DemoServer::UserRole, ItalcCore::role ).
+						addArg( ItalcSlaveManager::DemoServer::SourcePort, sourcePort ).
+						addArg( ItalcSlaveManager::DemoServer::DestinationPort, destinationPort ) );
 
 	m_serverPort = destinationPort;
 }
@@ -65,22 +59,16 @@ void DemoServerMaster::start( int sourcePort, int destinationPort )
 
 void DemoServerMaster::stop()
 {
-	stopSlave( ItalcCore::Ipc::IdDemoServer );
+	m_slaveManager->stopSlave( ItalcSlaveManager::IdDemoServer );
 }
 
 
 
 void DemoServerMaster::updateAllowedHosts()
 {
-	sendMessage( ItalcCore::Ipc::IdDemoServer,
-					Ipc::Msg( ItalcCore::Ipc::DemoServer::UpdateAllowedHosts ).
-						addArg( ItalcCore::Ipc::DemoServer::AllowedHosts, m_allowedHosts ) );
+	m_slaveManager->sendMessage( ItalcSlaveManager::IdDemoServer,
+					Ipc::Msg( ItalcSlaveManager::DemoServer::UpdateAllowedHosts ).
+						addArg( ItalcSlaveManager::DemoServer::AllowedHosts, m_allowedHosts ) );
 }
 
-
-
-bool DemoServerMaster::handleMessage( const Ipc::Msg &m )
-{
-	return false;
-}
 

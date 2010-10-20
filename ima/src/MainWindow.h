@@ -35,6 +35,7 @@
 #include "ui_MainWindow.h"
 
 #include "Client.h"
+#include "ItalcSlaveManager.h"
 #include "SnapshotList.h"
 
 
@@ -44,7 +45,6 @@ class QSplashScreen;
 class QSplitter;
 class ClassroomManager;
 class ConfigWidget;
-class DemoServerMaster;
 class OverviewWidget;
 class RemoteControlWidget;
 class UserList;
@@ -121,7 +121,7 @@ public:
 
 	DemoServerMaster *demoServerMaster()
 	{
-		return m_demoServerMaster;
+		return m_italcSlaveManager->demoServerMaster();
 	}
 
 	void checkModeButton( int _id )
@@ -214,7 +214,7 @@ private:
 
 
 	ItalcCoreConnection * m_localISD;
-	DemoServerMaster *m_demoServerMaster;
+	ItalcSlaveManager *m_italcSlaveManager;
 
 	QReadWriteLock m_rctrlLock;
 	RemoteControlWidget * m_remoteControlWidget;

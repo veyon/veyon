@@ -162,26 +162,6 @@ const Command RestartComputer = "RestartComputer";
 const Command DisableLocalInputs = "DisableLocalInputs";
 const Command SetRole = "SetRole";
 
-namespace Ipc
-{
-	const ::Ipc::Id IdCoreServer = "CoreServer";
-	const ::Ipc::Id IdDemoClient = "DemoClient";
-	const ::Ipc::Id IdDemoServer = "DemoServer";
-	const ::Ipc::Id IdMessageBox = "MessageBox";
-	const ::Ipc::Id IdScreenLock = "ScreenLock";
-	const ::Ipc::Id IdSystemTrayIcon = "SystemTrayIcon";
-
-	namespace DemoServer
-	{
-		const ::Ipc::Command StartDemoServer = "StartDemoServer";
-		const ::Ipc::Argument UserRole = "UserRole";
-		const ::Ipc::Argument SourcePort = "SourcePort";
-		const ::Ipc::Argument DestinationPort = "DestinationPort";
-
-		const ::Ipc::Command UpdateAllowedHosts = "UpdateAllowedHosts";
-		const ::Ipc::Argument AllowedHosts = "AllowedHosts";
-	}
-}
 
 } ;
 

@@ -42,8 +42,13 @@ class Master : public QTcpServer
 {
 	Q_OBJECT
 public:
-	Master();
+	Master( const QString &applicationFilePath );
 	virtual ~Master();
+
+	const QString & applicationFilePath() const
+	{
+		return m_applicationFilePath;
+	}
 
 	void createSlave( const Ipc::Id &id, SlaveLauncher *slaveLauncher = NULL );
 	void stopSlave( const Ipc::Id &id );
@@ -61,6 +66,7 @@ private slots:
 
 
 private:
+	QString m_applicationFilePath;
 	QSignalMapper m_socketReceiveMapper;
 
 	struct ProcessInformation

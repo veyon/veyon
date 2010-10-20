@@ -1,5 +1,5 @@
 /*
- * MasterProcess.h - MasterProcess which manages (GUI) slave apps
+ * ItalcSlaveManager.h - ItalcSlaveManager which manages (GUI) slave apps
  *
  * Copyright (c) 2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  * Copyright (c) 2010 Univention GmbH
@@ -23,18 +23,59 @@
  *
  */
 
-#ifndef _MASTER_PROCESS_H
-#define _MASTER_PROCESS_H
+#ifndef _ITALC_SLAVE_MANAGER_H
+#define _ITALC_SLAVE_MANAGER_H
 
 #include "Ipc/Master.h"
+#include "DemoServerMaster.h"
 
 
-class MasterProcess : protected Ipc::Master
+class ItalcSlaveManager : protected Ipc::Master
 {
 	Q_OBJECT
 public:
-	MasterProcess();
-	virtual ~MasterProcess();
+	ItalcSlaveManager();
+	virtual ~ItalcSlaveManager();
+
+	static const Ipc::Id IdCoreServer;
+	static const Ipc::Id IdDemoClient;
+	static const Ipc::Id IdDemoServer;
+	static const Ipc::Id IdMessageBox;
+	static const Ipc::Id IdScreenLock;
+	static const Ipc::Id IdSystemTrayIcon;
+
+	struct SystemTrayIcon
+	{
+		static const Ipc::Command ShowMessage;
+		static const Ipc::Argument Title;
+		static const Ipc::Argument Text;
+		static const Ipc::Command SetToolTip;
+		static const Ipc::Argument ToolTipText;
+	} ;
+
+	struct DemoClient
+	{
+		static const Ipc::Command StartDemo;
+		static const Ipc::Argument MasterHost;
+		static const Ipc::Argument FullScreen;
+	} ;
+
+	struct DemoServer
+	{
+		static const Ipc::Command StartDemoServer;
+		static const Ipc::Argument UserRole;
+		static const Ipc::Argument SourcePort;
+		static const Ipc::Argument DestinationPort;
+
+		static const Ipc::Command UpdateAllowedHosts;
+		static const Ipc::Argument AllowedHosts;
+	} ;
+
+	struct MessageBoxSlave
+	{
+		static const Ipc::Command ShowMessageBox;
+		static const Ipc::Argument Text;
+	} ;
 
 	enum AccessDialogResult
 	{
@@ -44,8 +85,11 @@ public:
 		AccessNever
 	} ;
 
+	DemoServerMaster *demoServerMaster()
+	{
+		return &m_demoServerMaster;
+	}
 
-public slots:
 	void startDemo( const QString &masterHost, bool fullscreen);
 	void stopDemo();
 
@@ -61,6 +105,11 @@ public slots:
 
 private:
 	virtual bool handleMessage( const Ipc::Msg &m );
+
+	DemoServerMaster m_demoServerMaster;
+
+
+	friend class DemoServerMaster;
 
 } ;
 

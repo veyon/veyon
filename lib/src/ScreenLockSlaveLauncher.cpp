@@ -23,14 +23,15 @@
  *
  */
 
-#include <QtCore/QCoreApplication>
 #include <QtCore/QStringList>
 
 #include "ScreenLockSlaveLauncher.h"
+#include "Ipc/QtSlaveLauncher.h"
 
 
-ScreenLockSlaveLauncher::ScreenLockSlaveLauncher() :
-	Ipc::SlaveLauncher(),
+ScreenLockSlaveLauncher::ScreenLockSlaveLauncher(
+										const QString &applicationFilePath ) :
+	Ipc::SlaveLauncher( applicationFilePath ),
 #ifdef ITALC_BUILD_WIN32
 	m_newDesktop( NULL ),
 	m_origThreadDesktop( NULL ),
@@ -71,8 +72,8 @@ void ScreenLockSlaveLauncher::start( const QStringList &arguments )
 	si.lpDesktop = desktopName;
 	ZeroMemory( &pi, sizeof(pi) );
 
-	char * cmdline = qstrdup( QString( QCoreApplication::applicationFilePath() +
-						" " + arguments.join( " " ) ).toAscii().constData() );
+	char * cmdline = qstrdup( QString( applicationFilePath() + " " +
+								arguments.join( " " ) ).toAscii().constData() );
 	CreateProcess( NULL, cmdline, NULL, NULL, FALSE, 0, NULL, NULL, &si, &pi );
 	delete[] cmdline;
 
@@ -83,8 +84,9 @@ void ScreenLockSlaveLauncher::start( const QStringList &arguments )
 
 	SwitchDesktop( m_newDesktop );
 #else
-	m_launcher = new Ipc::QtSlaveLauncher;
+	m_launcher = new Ipc::QtSlaveLauncher( applicationFilePath() );
 	m_launcher->start( arguments );
+
 #endif
 }
 

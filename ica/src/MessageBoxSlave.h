@@ -31,9 +31,6 @@
 class MessageBoxSlave : public IcaSlave
 {
 public:
-	static const Ipc::Command ShowMessageBox;
-	static const Ipc::Argument Text;
-
 	MessageBoxSlave();
 	virtual ~MessageBoxSlave();
 

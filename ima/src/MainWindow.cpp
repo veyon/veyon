@@ -370,8 +370,8 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 	}
 
 	// create DemoServerMaster
-	m_demoServerMaster = new DemoServerMaster;
-	m_demoServerMaster->start( PortOffsetIVS, PortOffsetDemoServer );
+	m_italcSlaveManager = new ItalcSlaveManager;
+	demoServerMaster()->start( PortOffsetIVS, PortOffsetDemoServer );
 
 //	##ITALC2: m_localISD->hideTrayIcon();
 
@@ -403,7 +403,7 @@ MainWindow::~MainWindow()
 	// also delets clients
 	delete m_workspace;
 
-	delete m_demoServerMaster;
+	delete m_italcSlaveManager;
 
 	delete m_localISD;
 	m_localISD = NULL;

@@ -33,10 +33,6 @@ class DemoClient;
 class DemoClientSlave : public IcaSlave
 {
 public:
-	static const Ipc::Command StartDemo;
-	static const Ipc::Argument MasterHost;
-	static const Ipc::Argument FullScreen;
-
 	DemoClientSlave();
 	virtual ~DemoClientSlave();
 

@@ -33,12 +33,6 @@
 class SystemTrayIconSlave : public IcaSlave
 {
 public:
-	static const Ipc::Command ShowMessage;
-	static const Ipc::Argument Title;
-	static const Ipc::Argument Text;
-	static const Ipc::Command SetToolTip;
-	static const Ipc::Argument ToolTipText;
-
 	SystemTrayIconSlave();
 	virtual ~SystemTrayIconSlave();
 

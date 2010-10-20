@@ -231,7 +231,7 @@ static int runCoreServer( int argc, char **argv )
 	ItalcVncServer vncServer;
 
 	// start the SystemTrayIconSlave and set the default tooltip
-	coreServer.masterProcess()->setSystemTrayToolTip(
+	coreServer.slaveManager()->setSystemTrayToolTip(
 		QApplication::tr( "iTALC Client %1 on %2:%3" ).
 							arg( ITALC_VERSION ).
 							arg( QHostInfo::localHostName() ).
@@ -302,27 +302,27 @@ int main( int argc, char **argv )
 				return -1;
 			}
 			const QString arg2 = argv[2];
-			if( arg2 == ItalcCore::Ipc::IdCoreServer )
+			if( arg2 == ItalcSlaveManager::IdCoreServer )
 			{
 				return runCoreServer( argc, argv );
 			}
-			else if( arg2 == ItalcCore::Ipc::IdDemoClient )
+			else if( arg2 == ItalcSlaveManager::IdDemoClient )
 			{
 				return runSlave<DemoClientSlave, QApplication>( argc, argv );
 			}
-			else if( arg2 == ItalcCore::Ipc::IdMessageBox )
+			else if( arg2 == ItalcSlaveManager::IdMessageBox )
 			{
 				return runSlave<MessageBoxSlave, QApplication>( argc, argv );
 			}
-			else if( arg2 == ItalcCore::Ipc::IdScreenLock )
+			else if( arg2 == ItalcSlaveManager::IdScreenLock )
 			{
 				return runSlave<ScreenLockSlave, QApplication>( argc, argv );
 			}
-			else if( arg2 == ItalcCore::Ipc::IdSystemTrayIcon )
+			else if( arg2 == ItalcSlaveManager::IdSystemTrayIcon )
 			{
 				return runSlave<SystemTrayIconSlave, QApplication>( argc, argv );
 			}
-			else if( arg2 == ItalcCore::Ipc::IdDemoServer )
+			else if( arg2 == ItalcSlaveManager::IdDemoServer )
 			{
 				return runSlave<DemoServerSlave, QCoreApplication>( argc, argv );
 			}

@@ -32,8 +32,9 @@
 namespace Ipc
 {
 
-Master::Master() :
+Master::Master( const QString &applicationFilePath ) :
 	QTcpServer(),
+	m_applicationFilePath( applicationFilePath ),
 	m_socketReceiveMapper( this ),
 	m_processes()
 {
@@ -71,7 +72,7 @@ void Master::createSlave( const Ipc::Id &id, SlaveLauncher *slaveLauncher )
 
 	if( slaveLauncher == NULL )
 	{
-		slaveLauncher = new QtSlaveLauncher;
+		slaveLauncher = new QtSlaveLauncher( applicationFilePath() );
 	}
 
 	ProcessInformation pi;

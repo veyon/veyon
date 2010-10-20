@@ -32,7 +32,7 @@
 #include <QtCore/QStringList>
 
 #include "ItalcCore.h"
-#include "MasterProcess.h"
+#include "ItalcSlaveManager.h"
 
 
 class ItalcCoreServer : public QObject
@@ -52,9 +52,9 @@ public:
 
 	bool authSecTypeItalc( socketDispatcher sd, void *user );
 
-	MasterProcess * masterProcess()
+	ItalcSlaveManager * slaveManager()
 	{
-		return &m_masterProcess;
+		return &m_slaveManager;
 	}
 
 	void setAllowedIPs( const QStringList &allowedIPs )
@@ -73,7 +73,7 @@ private:
 
 	QStringList m_allowedIPs;
 
-	MasterProcess m_masterProcess;
+	ItalcSlaveManager m_slaveManager;
 
 } ;
 
