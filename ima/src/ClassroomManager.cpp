@@ -423,7 +423,7 @@ void ClassroomManager::savePersonalConfig( void )
 	QString xml = "<?xml version=\"1.0\"?>\n" + doc.toString( 2 );
 	if( MainWindow::ensureConfigPathExists() == FALSE )
 	{
-		qWarning( QString( "Could not read/write or create directory "
+		qWarning( "%s", QString( "Could not read/write or create directory "
 					"%1! For running iTALC, make sure you "
 					"have write-access to your home-"
 					"directory and to %1 (if already "

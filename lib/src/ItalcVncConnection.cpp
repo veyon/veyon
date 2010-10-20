@@ -184,7 +184,6 @@ void ItalcVncConnection::hookUpdateFB( rfbClient *cl, int x, int y, int w, int h
 void ItalcVncConnection::hookCursorShape( rfbClient *cl, int xh, int yh,
 											int w, int h, int bpp )
 {
-	const int bytesPerRow = (w + 7) / 8;
 	for( int i = 0; i < w*h;++i )
 	{
 		if( cl->rcMask[i] )
@@ -265,15 +264,15 @@ ItalcVncConnection::ItalcVncConnection( QObject *parent ) :
 	QThread( parent ),
 	frameBuffer( NULL ),
 	m_cl( NULL ),
-	m_state( Disconnected ),
-	m_stopped( false ),
 	m_quality( DemoQuality ),
 	m_port( PortOffsetIVS ),
 	m_framebufferUpdateInterval( 0 ),
 	m_image(),
 	m_scaledScreenNeedsUpdate( false ),
 	m_scaledScreen(),
-	m_scaledSize()
+	m_scaledSize(),
+	m_state( Disconnected ),
+	m_stopped( false )
 {
 }
 

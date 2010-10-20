@@ -4315,7 +4315,7 @@ if (db) rfbLog("raw_xfer bad write:  %d -> %d | %d/%d  errno=%d\n", csock, s_out
 
 #define ENC_DISABLE_SHOW_CERT 
 
-//#include "enc.h"
+#include "enc.h"
 
 static void symmetric_encryption_xfer(int csock, int s_in, int s_out) {
 	char tmp[100];

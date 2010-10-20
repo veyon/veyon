@@ -659,6 +659,7 @@ FreeUserCredential(rfbCredential *cred)
   free(cred);
 }
 
+#ifdef LIBVNCSERVER_WITH_CLIENT_TLS
 static rfbBool
 HandlePlainAuth(rfbClient *client)
 {
@@ -712,6 +713,7 @@ HandlePlainAuth(rfbClient *client)
 
   return TRUE;
 }
+#endif
 
 /* Simple 64bit big integer arithmetic implementation */
 /* (x + y) % m, works even if (x + y) > 64bit */
@@ -836,7 +838,9 @@ InitialiseRFBConnection(rfbClient* client)
   rfbProtocolVersionMsg pv;
   int major,minor;
   uint32_t authScheme;
+#ifdef LIBVNCSERVER_WITH_CLIENT_TLS
   uint32_t subAuthScheme;
+#endif
   rfbClientInitMsg ci;
 
   /* if the connection is immediately closed, don't report anything, so

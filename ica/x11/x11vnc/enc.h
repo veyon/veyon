@@ -238,12 +238,13 @@ static char *prog = "ultravnc_dsm_helper";
 #include <errno.h>
 #include <signal.h>
 
+#ifndef WIN32
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <netinet/tcp.h>
 #include <arpa/inet.h>
 #include <netdb.h>
-
+#endif
 
 /* Solaris (sysv?) needs INADDR_NONE */
 #ifndef INADDR_NONE
