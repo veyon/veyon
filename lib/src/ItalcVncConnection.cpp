@@ -473,7 +473,8 @@ void ItalcVncConnection::run()
 
 		emit newClient( m_cl );
 
-		if( rfbInitClient( m_cl, 0, 0 ) )
+		int argc;
+		if( rfbInitClient( m_cl, &argc, NULL ) )
 		{
 			emit connected();
 
@@ -487,11 +488,11 @@ void ItalcVncConnection::run()
 		{
 			// guess reason why connection failed based on the state,
 			// libvncclient left the rfbClient structure
-			if( m_cl->sock < 0 )
+			if( argc < 0 )
 			{
 				m_state = HostUnreachable;
 			}
-			else if( m_cl->desktopName == NULL )
+			else if( argc > 0 )
 			{
 				m_state = AuthenticationFailed;
 			}
