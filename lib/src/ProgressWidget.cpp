@@ -67,9 +67,9 @@ ProgressWidget::~ProgressWidget()
 
 
 
-void ProgressWidget::nextAnim( void )
+void ProgressWidget::nextAnim()
 {
-	m_curFrame = ( ++m_curFrame ) % m_frames;
+	m_curFrame = ( m_curFrame+1 ) % m_frames;
 	update();
 }
 
