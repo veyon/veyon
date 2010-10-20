@@ -1281,7 +1281,7 @@ SendFramebufferUpdateRequest(rfbClient* client, int x, int y, int w, int h, rfbB
 	char *noUpdates = rfbClientGetClientData(client, (void *) 0x555);
 	if( noUpdates )
 	{
-		return;
+		return TRUE;
 	}
 	/*                          */
 
