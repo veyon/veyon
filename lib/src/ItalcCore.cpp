@@ -162,6 +162,11 @@ const Command RestartComputer = "RestartComputer";
 const Command DisableLocalInputs = "DisableLocalInputs";
 const Command SetRole = "SetRole";
 
+const Command DemoServerAllowHost = "DemoServerAllowHost";
+const Command DemoServerUnallowHost = "DemoServerUnallowHost";
+const Command StartDemoServer = "StartDemoServer";
+const Command StopDemoServer = "StopDemoServer";
+
 
 } ;
 

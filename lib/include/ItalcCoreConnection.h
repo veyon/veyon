@@ -79,6 +79,11 @@ public:
 
 	void setRole( const ItalcCore::UserRole role );
 
+	void startDemoServer( int sourcePort, int destinationPort );
+	void stopDemoServer();
+	void demoServerAllowHost( const QString &host );
+	void demoServerUnallowHost( const QString &host );
+
 
 private slots:
 	void initNewClient( rfbClient *client );

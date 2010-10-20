@@ -267,6 +267,41 @@ void ItalcCoreConnection::setRole( const ItalcCore::UserRole role )
 
 
 
+void ItalcCoreConnection::startDemoServer( int sourcePort, int destinationPort )
+{
+	enqueueMessage( ItalcCore::Msg( ItalcCore::DemoServerAllowHost ).
+						addArg( "sourceport", sourcePort ).
+						addArg( "destinationport", destinationPort ) );
+}
+
+
+
+
+void ItalcCoreConnection::stopDemoServer()
+{
+	enqueueMessage( ItalcCore::Msg( ItalcCore::StopDemoServer ) );
+}
+
+
+
+
+void ItalcCoreConnection::demoServerAllowHost( const QString &host )
+{
+	enqueueMessage( ItalcCore::Msg( ItalcCore::DemoServerAllowHost ).
+						addArg( "host", host ) );
+}
+
+
+
+
+void ItalcCoreConnection::demoServerUnallowHost( const QString &host )
+{
+	enqueueMessage( ItalcCore::Msg( ItalcCore::DemoServerUnallowHost ).
+						addArg( "host", host ) );
+}
+
+
+
 void ItalcCoreConnection::enqueueMessage( const ItalcCore::Msg &msg )
 {
 	ItalcCore::Msg m( msg );

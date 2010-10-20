@@ -234,6 +234,24 @@ int ItalcCoreServer::handleItalcClientMessage( socketDispatcher sock,
 	{
 		m_slaveManager.unlockDisplay();
 	}
+	else if( cmd == ItalcCore::StartDemoServer )
+	{
+		m_slaveManager.demoServerMaster()->start(
+			msgIn.arg( "sourceport" ).toInt(),
+			msgIn.arg( "destinationport" ).toInt() );
+	}
+	else if( cmd == ItalcCore::StopDemoServer )
+	{
+		m_slaveManager.demoServerMaster()->stop();
+	}
+	else if( cmd == ItalcCore::DemoServerAllowHost )
+	{
+		m_slaveManager.demoServerMaster()->allowHost( msgIn.arg( "host" ) );
+	}
+	else if( cmd == ItalcCore::DemoServerUnallowHost )
+	{
+		m_slaveManager.demoServerMaster()->unallowHost( msgIn.arg( "host" ) );
+	}
 	// TODO: handle plugins
 	else
 	{

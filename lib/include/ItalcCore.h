@@ -157,6 +157,10 @@ namespace ItalcCore
 	extern const Command RestartComputer;
 	extern const Command DisableLocalInputs;
 	extern const Command SetRole;
+	extern const Command StartDemoServer;
+	extern const Command StopDemoServer;
+	extern const Command DemoServerAllowHost;
+	extern const Command DemoServerUnallowHost;
 
 	class Msg
 	{
