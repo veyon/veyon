@@ -280,7 +280,7 @@ static BOOL WINAPI consoleCtrlHandler( DWORD _dwCtrlType )
 
 
 
-/*#include "vncKeymap.h"
+#include "vncKeymap.h"
 
 extern vncServer * __server;
 extern __declspec(dllimport) BOOL __localInputsDisabled;
