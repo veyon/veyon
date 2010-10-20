@@ -86,12 +86,12 @@ extern VNCLog vnclog;
 
 // Macros for sticking in the current file name
 #define VNCLOG(s)	(__FILE__ " : " s)
-//#if MSC_VER > 12
+#if MSC_VER > 12
 #ifndef _X64
 #pragma comment(linker,"/manifestdependency:\"type='Win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='X86' publicKeyToken='6595b64144ccf1df' language='*'\"")
 #else
 #pragma comment(linker,"/manifestdependency:\"type='Win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='amd64' publicKeyToken='6595b64144ccf1df' language='*'\"")
 #endif
-//#endif
+#endif
 //#define memcpy memcpy_amd
 //remove comment to compiler for >=athlon  or >=PIII
