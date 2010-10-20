@@ -501,6 +501,12 @@ void ItalcVncConnection::run()
 				// failed for an unknown reason
 				m_state = ConnectionFailed;
 			}
+
+			// sleep until next connect
+			if( m_framebufferUpdateInterval > 0 )
+			{
+				msleep( m_framebufferUpdateInterval );
+			}
 		}
 	}
 
