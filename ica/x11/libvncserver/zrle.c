@@ -96,10 +96,6 @@
  * data.
  */
 
-/* TODO: put into rfbClient struct */
-
-static char zrleBeforeBuf[rfbZRLETileWidth * rfbZRLETileHeight * 4 + 4];
-
 /*
  * rfbSendRectEncodingZRLE - send a given rectangle using ZRLE encoding.
  */

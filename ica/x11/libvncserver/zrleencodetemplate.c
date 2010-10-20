@@ -84,8 +84,6 @@ static const int bitsPerPackedPixel[] = {
   0, 1, 2, 2, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4
 };
 
-static zrlePaletteHelper paletteHelper;
-
 #endif /* ZRLE_ONCE */
 
 void ZRLE_ENCODE_TILE (PIXEL_T* data, int w, int h, zrleOutStream* os,
