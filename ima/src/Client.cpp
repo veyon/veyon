@@ -478,7 +478,6 @@ Client::Client( const QString & _hostname,
 	m_nickname( _nickname ),
 	m_mac( _mac ),
 	m_type( _type ),
-	m_reloadsAfterReset( 0 ),
 	m_mode( Mode_Overview ),
 	m_user( "" ),
 	m_makeSnapshot( FALSE ),
@@ -1015,31 +1014,13 @@ void Client::reload()
 
 	if( userLoggedIn() )
 	{
-		// for some reason we must not send user-information-requests
-		// while first messages being exchanged between client and
-		// server
-		if( m_reloadsAfterReset > 5 )
-		{
-			m_connection->sendGetUserInformationRequest();
-		}
-		else
-		{
-			++m_reloadsAfterReset;
-		}
-		//if( m_connection->sendGetUserInformationRequest() )
-		{
-			// only send a framebuffer-update-request if client
-			// is in (over)view-mode
-			/*m_connection->handleServerMessages(
-						m_mode == Mode_Overview );*/
-		}
-
+		m_connection->sendGetUserInformationRequest();
 		m_user = m_connection->user();
 		update();
 	}
 	else
 	{
-		m_user = "";
+		m_user = QString();
 	}
 
 	if( m_classRoomItem )
