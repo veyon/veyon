@@ -311,6 +311,7 @@ void ItalcVncConnection::stop()
 
 		if( !wait( 1000 ) )
 		{
+			qWarning( "ItalcVncConnection::stop(): terminating thread" );
 			terminate();
 		}
 	}
@@ -449,6 +450,16 @@ void ItalcVncConnection::run()
 	rfbClientLog = hookOutputHandler;
 	rfbClientErr = hookOutputHandler;
 
+	while( m_stopped == false )
+	{
+		doConnection();
+	}
+}
+
+
+
+void ItalcVncConnection::doConnection()
+{
 	QMutex sleeperMutex;
 
 	while( !m_stopped && m_state != Connected ) // try to connect as long as the server allows
@@ -588,9 +599,6 @@ void ItalcVncConnection::run()
 	}
 
 	m_state = Disconnected;
-
-	// Cleanup allocated resources
-	m_stopped = true;
 }
 
 

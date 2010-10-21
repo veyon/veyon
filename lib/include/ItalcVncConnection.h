@@ -173,6 +173,7 @@ public slots:
 
 protected:
 	virtual void run();
+	void doConnection();
 
 
 private:
