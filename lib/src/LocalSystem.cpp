@@ -226,7 +226,7 @@ void msgHandler( QtMsgType _type, const char * _msg )
 	{
 		out = properLineEnding( out );
 		__debug_out->write( out.toUtf8() );
-		printf( "%s", out.toUtf8().constData() );
+		fprintf( stderr, "%s\n", out.toUtf8().constData() );
 	}
 }
 
