@@ -641,11 +641,11 @@ void VncView::paintEvent( QPaintEvent *paintEvent )
 	}
 
 	const QSize sSize = scaledSize();
-	const float scale = sSize.isNull() ? 1 :
+	const float scale = sSize.isEmpty() ? 1 :
 			(float) sSize.width() / framebufferSize().width();
 	if( m_repaint )
 	{
-		if( sSize.isNull() )
+		if( sSize.isEmpty() )
 		{
 			p.drawImage( QRect( m_x, m_y, m_w, m_h ),
 					m_frame.copy( m_x, m_y, m_w, m_h ) );
