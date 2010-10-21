@@ -3824,12 +3824,15 @@ vncClientThread::run(void *arg)
             break;
 #ifdef ULTRAVNC_ITALC_SUPPORT
 		case rfbItalcCoreRequest:
+		{
+			omni_mutex_lock l(m_client->GetUpdateLock());
 			if( !ItalcCoreServer::instance()->
 				handleItalcClientMessage( vsocketDispatcher, m_socket ) )
 			{
 				connected = FALSE;
 			}
 			break;
+		}
 #endif
 		default:
 			// Unknown message, so fail!
