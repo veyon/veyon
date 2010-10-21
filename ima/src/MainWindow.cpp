@@ -77,6 +77,7 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 	QMainWindow(/* 0, Qt::FramelessWindowHint*/ ),
 	m_openedTabInSideBar( 1 ),
 	m_localISD( NULL ),
+	m_italcSlaveManager( NULL ),
 	m_rctrlLock(),
 	m_remoteControlWidget( NULL ),
 	m_stopDemo( FALSE ),
