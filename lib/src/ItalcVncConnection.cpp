@@ -304,10 +304,15 @@ void ItalcVncConnection::checkOutputErrorMessage()
 
 void ItalcVncConnection::stop()
 {
-	m_stopped = true;
-	if( !wait( 1000 ) )
+	if( isRunning() )
 	{
-		terminate();
+		m_stopped = true;
+		m_updateIntervalSleeper.wakeAll();
+
+		if( !wait( 1000 ) )
+		{
+			terminate();
+		}
 	}
 }
 
@@ -444,6 +449,8 @@ void ItalcVncConnection::run()
 	rfbClientLog = hookOutputHandler;
 	rfbClientErr = hookOutputHandler;
 
+	QMutex sleeperMutex;
+
 	while( !m_stopped && m_state != Connected ) // try to connect as long as the server allows
 	{
 		m_cl = rfbGetClient( 8, 3, 4 );
@@ -504,16 +511,25 @@ void ItalcVncConnection::run()
 				m_state = ConnectionFailed;
 			}
 
+			// do not sleep when already requested to stop
+			if( m_stopped )
+			{
+				break;
+			}
+
 			// wait a bit until next connect
+			sleeperMutex.lock();
 			if( m_framebufferUpdateInterval > 0 )
 			{
-				msleep( m_framebufferUpdateInterval );
+				m_updateIntervalSleeper.wait( &sleeperMutex,
+												m_framebufferUpdateInterval );
 			}
 			else
 			{
 				// default: retry every second
-				msleep( 1000 );
+				m_updateIntervalSleeper.wait( &sleeperMutex, 1000 );
 			}
+			sleeperMutex.unlock();
 		}
 	}
 
@@ -557,9 +573,12 @@ void ItalcVncConnection::run()
 
 		m_mutex.unlock();
 
-		if( m_framebufferUpdateInterval > 0 )
+		if( m_framebufferUpdateInterval > 0 && m_stopped == false )
 		{
-			msleep( m_framebufferUpdateInterval );
+			sleeperMutex.lock();
+			m_updateIntervalSleeper.wait( &sleeperMutex,
+												m_framebufferUpdateInterval );
+			sleeperMutex.unlock();
 		}
 	}
 
