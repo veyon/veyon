@@ -170,7 +170,7 @@ int main( int argc, char * * argv )
 	MainWindow mainWindow( screen );
 
 	if( !mainWindow.localISD() ||
-		mainWindow.localISD()->isConnected() )
+		!mainWindow.localISD()->isConnected() )
 	{
 		return -1;
 	}
