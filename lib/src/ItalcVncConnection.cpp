@@ -503,10 +503,15 @@ void ItalcVncConnection::run()
 				m_state = ConnectionFailed;
 			}
 
-			// sleep until next connect
+			// wait a bit until next connect
 			if( m_framebufferUpdateInterval > 0 )
 			{
 				msleep( m_framebufferUpdateInterval );
+			}
+			else
+			{
+				// default: retry every second
+				msleep( 1000 );
 			}
 		}
 	}
