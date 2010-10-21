@@ -265,6 +265,7 @@ ItalcVncConnection::ItalcVncConnection( QObject *parent ) :
 	QThread( parent ),
 	frameBuffer( NULL ),
 	m_cl( NULL ),
+	m_italcAuthType( ItalcAuthDSA ),
 	m_quality( DemoQuality ),
 	m_port( PortOffsetIVS ),
 	m_framebufferUpdateInterval( 0 ),
