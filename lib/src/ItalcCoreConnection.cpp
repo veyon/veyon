@@ -269,7 +269,7 @@ void ItalcCoreConnection::setRole( const ItalcCore::UserRole role )
 
 void ItalcCoreConnection::startDemoServer( int sourcePort, int destinationPort )
 {
-	enqueueMessage( ItalcCore::Msg( ItalcCore::DemoServerAllowHost ).
+	enqueueMessage( ItalcCore::Msg( ItalcCore::StartDemoServer ).
 						addArg( "sourceport", sourcePort ).
 						addArg( "destinationport", destinationPort ) );
 }
