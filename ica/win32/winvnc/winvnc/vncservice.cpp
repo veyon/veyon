@@ -825,6 +825,26 @@ vncService::PostAddNewClient(unsigned long ipaddress, unsigned short port)
 	return TRUE;
 }
 
+BOOL
+vncService::PostAddNewClientInit(unsigned long ipaddress, unsigned short port)
+{
+	// Post to the WinVNC menu window
+	if (!PostToWinVNC(MENU_ADD_CLIENT_MSG_INIT, (WPARAM)port, (LPARAM)ipaddress))
+	{
+
+		//MessageBox(NULL, sz_ID_NO_EXIST_INST, szAppName, MB_ICONEXCLAMATION | MB_OK);
+
+		//Little hack, seems postmessage fail in some cases on some os.
+		//permission proble
+		//use G_var + WM_time to reconnect
+		vnclog.Print(LL_INTERR, VNCLOG("PostAddNewClient failed\n"));
+		if (port==1111 && ipaddress==1111) G_1111=true;
+		return FALSE;
+	}
+
+	return TRUE;
+}
+
 //adzm 2009-06-20
 // Static routine to tell a locally-running instance of the server
 // to prompt for a new ID to connect out to the repeater

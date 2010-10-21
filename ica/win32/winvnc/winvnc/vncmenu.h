@@ -41,6 +41,7 @@ class vncMenu;
 
 // Constants
 extern const UINT MENU_ADD_CLIENT_MSG;
+extern const UINT MENU_ADD_CLIENT_MSG_INIT;
 extern const UINT MENU_AUTO_RECONNECT_MSG;
 extern const UINT MENU_REPEATER_ID_MSG;
 // adzm 2009-07-05 - Tray icon balloon tips
