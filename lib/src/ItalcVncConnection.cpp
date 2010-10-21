@@ -28,7 +28,7 @@
 #include "ItalcVncConnection.h"
 
 #include <QtCore/QMutexLocker>
-#include <QtCore/QTimer>
+#include <QtCore/QTime>
 
 
 static QString outputErrorMessageString;
@@ -544,6 +544,7 @@ void ItalcVncConnection::doConnection()
 		}
 	}
 
+	QTime lastFullUpdate = QTime::currentTime();
 
 	// Main VNC event loop
 	while( !m_stopped )
@@ -569,6 +570,21 @@ void ItalcVncConnection::doConnection()
 			if( handledOkay == false )
 			{
 				break;
+			}
+		}
+		else
+		{
+			// work around a bug in UltraVNC on Win7 where it does not handle
+			// incremental updates correctly
+			int msecs = lastFullUpdate.msecsTo( QTime::currentTime() );
+			if( ( m_framebufferUpdateInterval > 0 &&
+					msecs > 10*m_framebufferUpdateInterval ) ||
+				( m_framebufferUpdateInterval == 0 && msecs > 1000 ) )
+			{
+				SendFramebufferUpdateRequest( m_cl, 0, 0,
+						framebufferSize().width(), framebufferSize().height(),
+						false );
+				lastFullUpdate = QTime::currentTime();
 			}
 		}
 
