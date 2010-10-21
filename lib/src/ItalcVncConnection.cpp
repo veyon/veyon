@@ -560,7 +560,13 @@ void ItalcVncConnection::doConnection()
 		}
 		else if( i )
 		{
-			if( !HandleRFBServerMessage( m_cl ) )
+			// read and process remaining messages many messages as available
+			bool handledOkay = true;
+			while( WaitForMessage( m_cl, 0 ) && handledOkay )
+			{
+				handledOkay = HandleRFBServerMessage( m_cl );
+			}
+			if( handledOkay == false )
 			{
 				break;
 			}
