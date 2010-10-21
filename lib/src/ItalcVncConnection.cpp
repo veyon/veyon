@@ -170,6 +170,7 @@ void ItalcVncConnection::hookUpdateFB( rfbClient *cl, int x, int y, int w, int h
 	if( img.isNull() )
 	{
 		qWarning( "image not loaded" );
+		return;
 	}
 
 	ItalcVncConnection * t = (ItalcVncConnection *)
