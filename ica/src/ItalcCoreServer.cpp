@@ -309,7 +309,7 @@ bool ItalcCoreServer::authSecTypeItalc( socketDispatcher sd, void *user )
 
 		// authentication via DSA-challenge/-response
 		case ItalcAuthDSA:
-			if( doKeyBasedAuth( sdev ) )
+			if( doKeyBasedAuth( sdev, host ) )
 			{
 				result = rfbVncAuthOK;
 			}
@@ -390,7 +390,7 @@ void ItalcCoreServer::errorMsgAuth( const QString &ip )
 
 
 
-bool ItalcCoreServer::doKeyBasedAuth( SocketDevice &sdev )
+bool ItalcCoreServer::doKeyBasedAuth( SocketDevice &sdev, const QString &host )
 {
 	// generate data to sign and send to client
 	const QByteArray chall = DsaKey::generateChallenge();
@@ -399,7 +399,8 @@ bool ItalcCoreServer::doKeyBasedAuth( SocketDevice &sdev )
 	// get user-role
 	const ItalcCore::UserRoles urole =
 				static_cast<ItalcCore::UserRoles>( sdev.read().toInt() );
-	if( ItalcCore::role != ItalcCore::RoleOther )
+	if( ItalcCore::role != ItalcCore::RoleOther &&
+		host != QHostAddress( QHostAddress::LocalHost ).toString() )
 	{
 		/*	if( __denied_hosts.contains( host ) )
 			{

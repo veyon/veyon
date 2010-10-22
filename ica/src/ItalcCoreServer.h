@@ -66,7 +66,7 @@ public:
 private:
 	static void errorMsgAuth( const QString & _ip );
 
-	bool doKeyBasedAuth( SocketDevice &sdev );
+	bool doKeyBasedAuth( SocketDevice &sdev, const QString &host );
 	bool doHostBasedAuth( const QString &host );
 
 	static ItalcCoreServer * _this;
