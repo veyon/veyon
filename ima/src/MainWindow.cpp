@@ -371,6 +371,9 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 		return;
 	}
 
+	// update the role under which ICA is running
+	m_localICA->setRole( ItalcCore::role );
+
 	// create DemoServerMaster
 	m_italcSlaveManager = new ItalcSlaveManager;
 	demoServerMaster()->start( PortOffsetIVS, PortOffsetDemoServer );
