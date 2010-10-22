@@ -44,12 +44,12 @@ RemoteControlWidgetToolBar::RemoteControlWidgetToolBar(
 			RemoteControlWidget * _parent, bool viewOnly ) :
 	QWidget( _parent ),
 	m_parent( _parent ),
-	m_disappear( false ),
+	m_showHideTimeLine(),
+	m_iconStateTimeLine(),
 	m_connecting( false ),
 	m_icon( FastQImage( QImage( ":/resources/logo.png" ) ).
 					scaled( QSize( 48, 48 ) ) ),
-	m_iconGray( FastQImage( m_icon ).toGray().darken( 50 ) ),
-	m_iconState()
+	m_iconGray( FastQImage( m_icon ).toGray().darken( 50 ) )
 {
 	QPalette pal = palette();
 	pal.setBrush( QPalette::Window, QPixmap( ":/resources/toolbar-background.png" ) );
@@ -114,6 +114,23 @@ RemoteControlWidgetToolBar::RemoteControlWidgetToolBar(
 					this, SLOT( startConnection() ) );
 	connect( m_parent->m_vncView, SIGNAL( connectionEstablished() ),
 					this, SLOT( connectionEstablished() ) );
+
+	setFixedHeight( 52 );
+
+	m_showHideTimeLine.setFrameRange( 0, height() );
+	m_showHideTimeLine.setDuration( 800 );
+	m_showHideTimeLine.setCurveShape( QTimeLine::EaseInCurve );
+	connect( &m_showHideTimeLine, SIGNAL( valueChanged( qreal ) ),
+				this, SLOT( updatePosition() ) );
+
+	m_iconStateTimeLine.setFrameRange( 0, 100 );
+	m_iconStateTimeLine.setDuration( 1500 );
+	m_iconStateTimeLine.setUpdateInterval( 60 );
+	m_iconStateTimeLine.setCurveShape( QTimeLine::SineCurve );
+	connect( &m_iconStateTimeLine, SIGNAL( valueChanged( qreal ) ),
+				this, SLOT( updateConnectionAnimation() ) );
+	connect( &m_iconStateTimeLine, SIGNAL( finished() ),
+				&m_iconStateTimeLine, SLOT( start() ) );
 }
 
 
@@ -128,11 +145,8 @@ RemoteControlWidgetToolBar::~RemoteControlWidgetToolBar()
 
 void RemoteControlWidgetToolBar::appear()
 {
-	m_disappear = false;
-	if( y() <= -height() )
-	{
-		updatePosition();
-	}
+	m_showHideTimeLine.setDirection( QTimeLine::Backward );
+	m_showHideTimeLine.resume();
 }
 
 
@@ -142,52 +156,59 @@ void RemoteControlWidgetToolBar::disappear()
 {
 	if( !m_connecting )
 	{
-		m_disappear = true;
-		if( y() == 0 )
-		{
-			updatePosition();
-		}
+		m_showHideTimeLine.setDirection( QTimeLine::Forward );
+		m_showHideTimeLine.resume();
 	}
 }
 
 
 
 
-void RemoteControlWidgetToolBar::paintEvent( QPaintEvent * _pe )
+void RemoteControlWidgetToolBar::leaveEvent( QEvent *event )
+{
+	QTimer::singleShot( 500, this, SLOT( disappear() ) );
+	QWidget::leaveEvent( event );
+}
+
+
+
+
+void RemoteControlWidgetToolBar::paintEvent( QPaintEvent *paintEv )
 {
 	QPainter p( this );
+	QFont f = p.font();
 
-	p.fillRect( _pe->rect(), palette().brush( QPalette::Window ) );
+	p.setOpacity( 0.8-0.8*m_showHideTimeLine.currentValue() );
+	p.fillRect( paintEv->rect(), palette().brush( QPalette::Window ) );
+	p.setOpacity( 1 );
 
 	p.drawImage( 5, 2, m_icon );
 
-	QFont f = p.font();
 	f.setPointSize( 12 );
 	f.setBold( true );
 	p.setFont( f );
 
-	p.setPen( QColor( 255, 212, 0 ) );
+	p.setPen( Qt::white );
 	m_parent->updateWindowTitle();
 	p.drawText( 64, 22, m_parent->windowTitle() );
 
-	p.setPen( QColor( 255, 255, 255 ) );
+	p.setPen( QColor( 192, 192, 192 ) );
 	f.setPointSize( 10 );
 	p.setFont( f );
 
 	if( m_connecting )
 	{
 		FastQImage tmp = m_iconGray;
-		tmp.alphaFillMax( (int)( 150 + 90.0 *
-				sin( m_iconState.elapsed()*3.141592/900 ) ) );
+		tmp.alphaFillMax( (int)( 120 - 120.0 *
+				m_iconStateTimeLine.currentValue() ) );
 		p.drawImage( 5, 2, tmp );
 
 		QString dots;
-		for( int i = 0; i < ( m_iconState.elapsed() / 400 ) % 6;++i)
+		for( int i = 0; i < ( m_iconStateTimeLine.currentTime() / 120 ) % 6; ++i )
 		{
 			dots += ".";
 		}
 		p.drawText( 64, 40, tr( "Connecting %1" ).arg( dots ) );
-		QTimer::singleShot( 50, this, SLOT( update() ) );
 	}
 	else
 	{
@@ -198,25 +219,20 @@ void RemoteControlWidgetToolBar::paintEvent( QPaintEvent * _pe )
 
 
 
+void RemoteControlWidgetToolBar::updateConnectionAnimation()
+{
+	update( 0, 0, 200, 63 );
+}
+
+
+
+
 void RemoteControlWidgetToolBar::updatePosition()
 {
-	bool again;
-	if( m_disappear )
+	const int newY = m_showHideTimeLine.currentFrame();
+	if( newY != -y() )
 	{
-		move( x(), qMax( -height(), y()-3 ) );
-		again = y() > -height();
-	}
-	else
-	{
-		move( x(), qMin( 0, y()+3 ) );
-		again = y() < 0;
-	}
-
-	update();
-
-	if( again )
-	{
-		QTimer::singleShot( 15, this, SLOT( updatePosition() ) );
+		move( x(), qMax( -height(), -newY ) );
 	}
 }
 
@@ -226,7 +242,7 @@ void RemoteControlWidgetToolBar::updatePosition()
 void RemoteControlWidgetToolBar::startConnection()
 {
 	m_connecting = true;
-	m_iconState.restart();
+	m_iconStateTimeLine.start();
 	appear();
 	update();
 }
@@ -237,6 +253,7 @@ void RemoteControlWidgetToolBar::startConnection()
 void RemoteControlWidgetToolBar::connectionEstablished()
 {
 	m_connecting = false;
+	m_iconStateTimeLine.stop();
 	QTimer::singleShot( 3000, this, SLOT( disappear() ) );
 	// within the next 1000ms the username should be known and therefore
 	// we update
@@ -321,7 +338,7 @@ void RemoteControlWidget::updateWindowTitle()
 void RemoteControlWidget::resizeEvent( QResizeEvent * )
 {
 	m_vncView->resize( size() );
-	m_toolBar->setFixedSize( width(), 52 );
+	m_toolBar->setFixedSize( width(), m_toolBar->height() );
 }
 
 
