@@ -350,10 +350,14 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 	}
 
 	ItalcVncConnection * conn = new ItalcVncConnection( this );
+	// attach ItalcCoreConnection to it so we can send extended iTALC commands
+	m_localICA = new ItalcCoreConnection( conn );
+
 	conn->setHost( QHostAddress( __ivs_host ).toString() );
 	conn->setPort( __ivs_port );
 	conn->setFramebufferUpdateInterval( -1 );
 	conn->start();
+
 	if( !conn->waitForConnected( 1000 ) )
 	{
 		DecoratedMessageBox::information(
@@ -366,8 +370,6 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 				QPixmap( ":/resources/stop.png" ) );
 		return;
 	}
-
-	m_localICA = new ItalcCoreConnection( conn );
 
 	// create DemoServerMaster
 	m_italcSlaveManager = new ItalcSlaveManager;
