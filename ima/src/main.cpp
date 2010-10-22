@@ -172,6 +172,7 @@ int main( int argc, char * * argv )
 	if( !mainWindow.localICA() ||
 		!mainWindow.localICA()->isConnected() )
 	{
+		qCritical( "No connection to local ICA - terminating now" );
 		return -1;
 	}
 

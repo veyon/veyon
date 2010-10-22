@@ -355,9 +355,7 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 	conn->setPort( __ivs_port );
 	conn->setFramebufferUpdateInterval( -1 );
 	conn->start();
-
-	m_localICA = new ItalcCoreConnection( conn );
-	if( 0 )//##ITALC2: m_localISD->open() != isdConnection::Connected )
+	if( !conn->waitForConnected( 1000 ) )
 	{
 		DecoratedMessageBox::information(
 			tr( "iTALC service not running" ),
@@ -369,6 +367,8 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 				QPixmap( ":/resources/stop.png" ) );
 		return;
 	}
+
+	m_localICA = new ItalcCoreConnection( conn );
 
 	// create DemoServerMaster
 	m_italcSlaveManager = new ItalcSlaveManager;
