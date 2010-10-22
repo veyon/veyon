@@ -207,6 +207,7 @@ private:
 
 	QButtonGroup * m_modeGroup;
 
+	QSystemTrayIcon m_systemTrayIcon;
 	QList<QAction *> m_sysTrayActions;
 
 	QWidget * m_sideBarWidget;
