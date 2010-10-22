@@ -124,8 +124,7 @@ bool VncView::eventFilter(QObject *obj, QEvent *event)
 			event->type() == QEvent::MouseButtonDblClick ||
 			event->type() == QEvent::MouseButtonPress ||
 			event->type() == QEvent::MouseButtonRelease ||
-			event->type() == QEvent::Wheel ||
-			event->type() == QEvent::MouseMove )
+			event->type() == QEvent::Wheel )
 		return true;
 	}
 
@@ -780,8 +779,11 @@ void VncView::mouseEventHandler( QMouseEvent * _me )
 		}
 	}
 
-	const QPoint p = mapToFramebuffer( _me->pos() );
-	m_vncConn.mouseEvent( p.x(), p.y(), m_buttonMask );
+	if( !m_viewOnly )
+	{
+		const QPoint p = mapToFramebuffer( _me->pos() );
+		m_vncConn.mouseEvent( p.x(), p.y(), m_buttonMask );
+	}
 }
 
 
