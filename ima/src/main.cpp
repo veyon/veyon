@@ -169,8 +169,8 @@ int main( int argc, char * * argv )
 	// now create the main-window
 	MainWindow mainWindow( screen );
 
-	if( !mainWindow.localISD() ||
-		!mainWindow.localISD()->isConnected() )
+	if( !mainWindow.localICA() ||
+		!mainWindow.localICA()->isConnected() )
 	{
 		return -1;
 	}

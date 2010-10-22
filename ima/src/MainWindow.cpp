@@ -76,7 +76,7 @@ bool MainWindow::s_atExit = FALSE;
 MainWindow::MainWindow( int _rctrl_screen ) :
 	QMainWindow(/* 0, Qt::FramelessWindowHint*/ ),
 	m_openedTabInSideBar( 1 ),
-	m_localISD( NULL ),
+	m_localICA( NULL ),
 	m_italcSlaveManager( NULL ),
 	m_rctrlLock(),
 	m_remoteControlWidget( NULL ),
@@ -356,7 +356,7 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 	conn->setFramebufferUpdateInterval( -1 );
 	conn->start();
 
-	m_localISD = new ItalcCoreConnection( conn );
+	m_localICA = new ItalcCoreConnection( conn );
 	if( 0 )//##ITALC2: m_localISD->open() != isdConnection::Connected )
 	{
 		DecoratedMessageBox::information(
@@ -406,8 +406,8 @@ MainWindow::~MainWindow()
 
 	delete m_italcSlaveManager;
 
-	delete m_localISD;
-	m_localISD = NULL;
+	delete m_localICA;
+	m_localICA = NULL;
 
 	__systray_icon->hide();
 	delete __systray_icon;

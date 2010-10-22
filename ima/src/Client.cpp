@@ -1111,7 +1111,10 @@ void Client::snapshot()
 
 void Client::powerOn()
 {
-	m_mainWindow->localISD()->powerOnComputer( m_mac );
+	// we have to send the wake-on-LAN packets with root privileges,
+	// therefore let the local ICA do the job (as it usually is running
+	// with higher privileges)
+	m_mainWindow->localICA()->powerOnComputer( m_mac );
 }
 
 

@@ -114,9 +114,9 @@ public:
 		return m_classroomManager;
 	}
 
-	ItalcCoreConnection *localISD()
+	ItalcCoreConnection *localICA()
 	{
-		return m_localISD;
+		return m_localICA;
 	}
 
 	DemoServerMaster *demoServerMaster()
@@ -213,7 +213,7 @@ private:
 	int m_openedTabInSideBar;
 
 
-	ItalcCoreConnection * m_localISD;
+	ItalcCoreConnection * m_localICA;
 	ItalcSlaveManager *m_italcSlaveManager;
 
 	QReadWriteLock m_rctrlLock;
