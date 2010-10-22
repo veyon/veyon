@@ -179,10 +179,10 @@ public:
 		const unsigned int pixels = width() * height();
 		for( unsigned int i = 0; i < pixels; ++i )
 		{
-			for( int j = 0; j < 4; ++j )
-			{
-				ptr[j] = (  ptr[j] * _coeff ) >> 8;
-			}
+			ptr[0] = ( ptr[0] * _coeff ) >> 8;
+			ptr[1] = ( ptr[1] * _coeff ) >> 8;
+			ptr[2] = ( ptr[2] * _coeff ) >> 8;
+			ptr[3] = ( ptr[3] * 256 ) >> 8;
 			ptr += 4;
 		}
 		return *this;
@@ -195,8 +195,9 @@ public:
 		const unsigned int pixels = width() * height();
 		for( unsigned int i = 0; i < pixels; ++i )
 		{
-			const unsigned int gray = qGray( *ptr );
-			const QRgb g = gray | ( gray << 8 ) | ( gray << 16 ) | 0xff000000;
+			const QRgb gray = qGray( *ptr );
+			const QRgb g = gray | ( gray << 8 ) | ( gray << 16 ) |
+													( qAlpha(*ptr) << 24 );
 			*ptr = g;
 			++ptr;
 		}
