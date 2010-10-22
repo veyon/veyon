@@ -613,6 +613,7 @@ void Client::changeMode( const Modes _new_mode )
 			case Mode_WindowDemo:
 				m_mainWindow->demoServerMaster()->allowHost( m_hostname );
 				m_connection->startDemo(
+								QString(),// let client guess IP from connection
 								m_mainWindow->demoServerMaster()->serverPort(),
 								m_mode == Mode_FullscreenDemo );
 				break;

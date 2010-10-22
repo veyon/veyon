@@ -197,24 +197,25 @@ int ItalcCoreServer::handleItalcClientMessage( socketDispatcher sock,
 	}
 	else if( cmd == ItalcCore::StartDemo )
 	{
-		QString host;
+		QString host = msgIn.arg( "host" );
 		QString port = msgIn.arg( "port" );
-		if( port.isEmpty() )
+		// no host given?
+		if( host.isEmpty() )
 		{
-			port = "11200";	// TODO: convert from global constant
-		}
-		if( !port.contains( ':' ) )
-		{
+			// then guess IP from remote peer address
 			const int MAX_HOST_LEN = 255;
 			char hostArr[MAX_HOST_LEN+1];
-			sock( hostArr, MAX_HOST_LEN,
-					SocketGetPeerAddress, user );
+			sock( hostArr, MAX_HOST_LEN, SocketGetPeerAddress, user );
 			hostArr[MAX_HOST_LEN] = 0;
-			host = hostArr + QString( ":" ) + port;
+			host = hostArr;
 		}
-		else
+		if( port.isEmpty() )
 		{
-			host = port;
+			port = QString::number( PortOffsetDemoServer );
+		}
+		if( !host.contains( ':' ) )
+		{
+			host += ':' + port;
 		}
 		m_slaveManager.startDemo( host, msgIn.arg( "fullscreen" ).toInt() );
 	}

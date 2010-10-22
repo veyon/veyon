@@ -63,7 +63,7 @@ public:
 
 	void sendGetUserInformationRequest();
 	void execCmds( const QString &cmd );
-	void startDemo( int port, bool fullscreen = false );
+	void startDemo( const QString &host, int port, bool fullscreen = false );
 	void stopDemo();
 	void lockDisplay();
 	void unlockDisplay();

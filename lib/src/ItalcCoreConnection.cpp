@@ -166,9 +166,11 @@ void ItalcCoreConnection::execCmds( const QString &cmd )
 
 
 
-void ItalcCoreConnection::startDemo( int port, bool fullscreen )
+void ItalcCoreConnection::startDemo( const QString &host, int port,
+										bool fullscreen )
 {
 	enqueueMessage( ItalcCore::Msg( ItalcCore::StartDemo ).
+					addArg( "host", host ).
 					addArg( "port", port ).
 					addArg( "fullscreen", fullscreen ) );
 }
