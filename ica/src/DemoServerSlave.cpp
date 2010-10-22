@@ -27,7 +27,6 @@
 #include <QtNetwork/QHostInfo>
 
 #include "DemoServerSlave.h"
-#include "ItalcCoreServer.h"
 #include "ItalcVncServer.h"
 
 
@@ -50,7 +49,6 @@ protected:
 		{
 			ItalcCore::role = ItalcCore::RoleTeacher;
 		}
-		ItalcCoreServer coreServer;	// required for authentication
 		ItalcVncServer::runVncReflector( m_srcPort, m_dstPort );
 	}
 
@@ -66,7 +64,8 @@ private:
 
 DemoServerSlave::DemoServerSlave() :
 	IcaSlave(),
-	m_demoServerThread( NULL )
+	m_demoServerThread( NULL ),
+	m_coreServer()
 {
 }
 
@@ -115,7 +114,7 @@ bool DemoServerSlave::handleMessage( const Ipc::Msg &m )
 		}
 
 		// now we can use the list of IP addresses for host-based authentication
-		ItalcCoreServer::instance()->setAllowedIPs( allowedIPs );
+		m_coreServer.setAllowedIPs( allowedIPs );
 
 		return true;
 	}

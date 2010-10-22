@@ -27,6 +27,7 @@
 #define _DEMO_SERVER_SLAVE_H
 
 #include "IcaSlave.h"
+#include "ItalcCoreServer.h"
 
 class DemoServerThread;
 
@@ -41,6 +42,7 @@ private:
 	virtual bool handleMessage( const Ipc::Msg &m );
 
 	DemoServerThread *m_demoServerThread;
+	ItalcCoreServer m_coreServer;
 } ;
 
 #endif
