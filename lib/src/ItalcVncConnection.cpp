@@ -27,6 +27,7 @@
 
 #include "ItalcVncConnection.h"
 
+#include <QtCore/QCoreApplication>
 #include <QtCore/QMutexLocker>
 #include <QtCore/QTime>
 
@@ -356,6 +357,24 @@ void ItalcVncConnection::setPort( int port )
 {
 	QMutexLocker locker( &m_mutex );
 	m_port = port;
+}
+
+
+
+
+bool ItalcVncConnection::waitForConnected( int timeout ) const
+{
+	QTime startTime = QTime::currentTime();
+	while( !isConnected() &&
+				startTime.msecsTo( QTime::currentTime() ) < timeout )
+	{
+		if( QCoreApplication::instance() )
+		{
+			QCoreApplication::processEvents();
+		}
+	}
+
+	return isConnected();
 }
 
 

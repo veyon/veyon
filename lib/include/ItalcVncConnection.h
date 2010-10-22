@@ -100,6 +100,8 @@ public:
 		return state() == Connected && isRunning();
 	}
 
+	bool waitForConnected( int timeout = 10000 ) const;
+
 	void setItalcAuthType( ItalcAuthType t )
 	{
 		m_italcAuthType = t;
