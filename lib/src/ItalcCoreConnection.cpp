@@ -103,7 +103,12 @@ rfbBool ItalcCoreConnection::handleItalcMessage( rfbClient *cl,
 {
 	ItalcCoreConnection * icc = (ItalcCoreConnection *)
 				rfbClientGetClientData( cl, ItalcCoreConnectionTag );
-	return icc->handleServerMessage( cl, msg->type );
+	if( icc )
+	{
+		return icc->handleServerMessage( cl, msg->type );
+	}
+
+	return false;
 }
 
 
