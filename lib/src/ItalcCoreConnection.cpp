@@ -37,6 +37,8 @@ public:
 
 	virtual void fire( rfbClient *client )
 	{
+		SocketDevice socketDev( libvncClientDispatcher, client );
+		m_msg.setSocketDevice( &socketDev );
 		m_msg.send();
 	}
 
@@ -55,7 +57,6 @@ static void * ItalcCoreConnectionTag = (void *) PortOffsetIVS; // an unique ID
 
 ItalcCoreConnection::ItalcCoreConnection( ItalcVncConnection *vncConn ):
 	m_vncConn( vncConn ),
-	m_socketDev( libvncClientDispatcher ),
 	m_user(),
 	m_userHomeDir()
 {
@@ -91,7 +92,6 @@ ItalcCoreConnection::~ItalcCoreConnection()
 
 void ItalcCoreConnection::initNewClient( rfbClient *cl )
 {
-	m_socketDev.setUser( cl );
 	rfbClientSetClientData( cl, ItalcCoreConnectionTag, this );
 }
 
@@ -113,7 +113,8 @@ bool ItalcCoreConnection::handleServerMessage( rfbClient *cl, uint8_t msg )
 {
 	if( msg == rfbItalcCoreResponse )
 	{
-		ItalcCore::Msg m( &m_socketDev );
+		SocketDevice socketDev( libvncClientDispatcher, cl );
+		ItalcCore::Msg m( &socketDev );
 		m.receive();
 		if( m.cmd() == ItalcCore::UserInformation )
 		{
@@ -305,7 +306,6 @@ void ItalcCoreConnection::demoServerUnallowHost( const QString &host )
 void ItalcCoreConnection::enqueueMessage( const ItalcCore::Msg &msg )
 {
 	ItalcCore::Msg m( msg );
-	m.setSocketDevice( &m_socketDev );
 	m_vncConn->enqueueEvent( new ItalcMessageEvent( m ) );
 }
 

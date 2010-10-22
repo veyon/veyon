@@ -98,7 +98,6 @@ private:
 
 
 	ItalcVncConnection *m_vncConn;
-	SocketDevice m_socketDev;
 
 	QString m_user;
 	QString m_userHomeDir;
