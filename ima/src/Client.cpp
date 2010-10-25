@@ -1151,7 +1151,7 @@ Client::States Client::currentState( void ) const
 	switch( m_mode )
 	{
 		case Mode_Overview:
-			if( m_connection->isConnected() );
+			if( m_connection->isConnected() )
 			{
 				return State_Overview;
 			}
