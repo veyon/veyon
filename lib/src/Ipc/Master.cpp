@@ -192,18 +192,19 @@ void Master::receiveMessage( QObject *sockObj )
 		Ipc::Msg m;
 		if( m.receive( sock ).isValid() )
 		{
+			// search for slave ID
+			Ipc::Id slaveId;
+			for( ProcessMap::ConstIterator it = m_processes.begin();
+							it != m_processes.end(); ++it )
+			{
+				if( it->sock == sock )
+				{
+					slaveId = it.key();
+				}
+			}
+
 			if( m.cmd() == Ipc::Commands::UnknownCommand )
 			{
-				// search for slave ID
-				Ipc::Id slaveId;
-				for( ProcessMap::ConstIterator it = m_processes.begin();
-							it != m_processes.end(); ++it )
-				{
-					if( it->sock == sock )
-					{
-						slaveId = it.key();
-					}
-				}
 				qWarning() << "Slave" << slaveId
 						<< "could not handle command"
 						<< m.arg( Ipc::Arguments::Command );
@@ -232,7 +233,7 @@ void Master::receiveMessage( QObject *sockObj )
 			}
 			else
 			{
-				handleMessage( m );
+				handleMessage( slaveId, m );
 			}
 		}
 	}

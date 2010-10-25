@@ -57,7 +57,7 @@ public:
 	void sendMessage( const Ipc::Id &id, const Ipc::Msg &msg );
 	Ipc::Msg receiveMessage( const Ipc::Id &id );
 
-	virtual bool handleMessage( const Ipc::Msg &msg ) = 0;
+	virtual bool handleMessage( const Ipc::Id &id, const Ipc::Msg &msg ) = 0;
 
 
 private slots:
