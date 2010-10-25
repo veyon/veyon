@@ -601,7 +601,7 @@ void Client::changeMode( const Modes _new_mode )
 				m_connection->stopDemo();
 				break;
 			case Mode_Locked:
-				m_connection->unlockDisplay();
+				m_connection->unlockScreen();
 				break;
 		}
 		switch( m_mode = _new_mode )
@@ -618,7 +618,7 @@ void Client::changeMode( const Modes _new_mode )
 								m_mode == Mode_FullscreenDemo );
 				break;
 			case Mode_Locked:
-				m_connection->lockDisplay();
+				m_connection->lockScreen();
 				break;
 		}
 	}
@@ -632,7 +632,7 @@ void Client::changeMode( const Modes _new_mode )
 			conn->demoServerDenyClient( m_hostname );
 		}*/
 		m_connection->stopDemo();
-		m_connection->unlockDisplay();
+		m_connection->unlockScreen();
 	}
 }
 
