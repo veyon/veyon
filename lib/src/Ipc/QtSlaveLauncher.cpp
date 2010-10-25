@@ -33,6 +33,7 @@ namespace Ipc
 
 QtSlaveLauncher::QtSlaveLauncher( const QString &applicationFilePath ) :
 	SlaveLauncher( applicationFilePath ),
+	m_processMutex(),
 	m_process( NULL )
 {
 }
@@ -49,30 +50,47 @@ QtSlaveLauncher::~QtSlaveLauncher()
 void QtSlaveLauncher::start( const QStringList &arguments )
 {
 	stop();
+
+	m_processMutex.lock();
 	m_process = new QProcess;
 	m_process->start( applicationFilePath(), arguments );
+	m_processMutex.unlock();
 }
 
 
 
 void QtSlaveLauncher::stop()
 {
+	m_processMutex.lock();
 	if( m_process )
 	{
 		if( !m_process->waitForFinished( 5000 ) )
 		{
 			m_process->terminate();
+			m_process->kill();
 		}
 
 		delete m_process;
+		m_process = NULL;
 	}
+	m_processMutex.unlock();
 }
 
 
 
-bool QtSlaveLauncher::isRunning() const
+bool QtSlaveLauncher::isRunning()
 {
-	return m_process && m_process->state() != QProcess::NotRunning;
+	QMutexLocker l( &m_processMutex );
+	if( m_process )
+	{
+		// we have to call this in order to update the state if the
+		// process has finished already
+		m_process->waitForFinished( 0 );
+
+		return m_process->state() != QProcess::NotRunning;
+	}
+
+	return false;
 }
 
 

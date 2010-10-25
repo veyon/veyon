@@ -27,6 +27,8 @@
 #ifndef _IPC_QT_SLAVE_LAUNCHER_H
 #define _IPC_QT_SLAVE_LAUNCHER_H
 
+#include <QtCore/QMutex>
+
 #include "Ipc/SlaveLauncher.h"
 
 class QProcess;
@@ -42,10 +44,11 @@ public:
 
 	virtual void start( const QStringList &arguments );
 	virtual void stop();
-	virtual bool isRunning() const;
+	virtual bool isRunning();
 
 
 private:
+	QMutex m_processMutex;
 	QProcess *m_process;
 
 };
