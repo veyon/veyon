@@ -358,7 +358,7 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 	conn->setFramebufferUpdateInterval( -1 );
 	conn->start();
 
-	if( !conn->waitForConnected( 1000 ) )
+	if( !conn->waitForConnected( 5000 ) )
 	{
 		DecoratedMessageBox::information(
 			tr( "iTALC service not running" ),
