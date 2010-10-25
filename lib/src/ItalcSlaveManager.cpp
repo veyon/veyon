@@ -165,7 +165,7 @@ ItalcSlaveManager::AccessDialogResult ItalcSlaveManager::showAccessDialog( const
 
 
 
-int ItalcSlaveManager::slaveStateFlags() const
+int ItalcSlaveManager::slaveStateFlags()
 {
 	int s = 0;
 #define GEN_SLAVE_STATE_SETTER(x)				\

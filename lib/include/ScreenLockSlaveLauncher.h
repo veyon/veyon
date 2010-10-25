@@ -44,7 +44,7 @@ public:
 
 	virtual void start( const QStringList &arguments );
 	virtual void stop();
-	virtual bool isRunning() const;
+	virtual bool isRunning();
 
 
 private:

@@ -111,7 +111,7 @@ public:
 
 	AccessDialogResult showAccessDialog( const QString &host );
 
-	int slaveStateFlags() const;
+	int slaveStateFlags();
 
 
 private:

@@ -117,7 +117,7 @@ void ScreenLockSlaveLauncher::stop()
 
 
 
-bool ScreenLockSlaveLauncher::isRunning() const
+bool ScreenLockSlaveLauncher::isRunning()
 {
 #ifdef ITALC_BUILD_WIN32
 	return true;		// TODO

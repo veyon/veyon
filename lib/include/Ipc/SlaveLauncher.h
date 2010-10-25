@@ -40,7 +40,7 @@ public:
 
 	virtual void start( const QStringList &arguments );
 	virtual void stop();
-	virtual bool isRunning() const = 0;
+	virtual bool isRunning() = 0;
 
 	const QString & applicationFilePath() const
 	{
