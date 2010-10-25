@@ -52,7 +52,7 @@ public:
 
 	void createSlave( const Ipc::Id &id, SlaveLauncher *slaveLauncher = NULL );
 	void stopSlave( const Ipc::Id &id );
-	bool isSlaveRunning( const Ipc::Id &id );
+	bool isSlaveRunning( const Ipc::Id &id ) const;
 
 	void sendMessage( const Ipc::Id &id, const Ipc::Msg &msg );
 	Ipc::Msg receiveMessage( const Ipc::Id &id );

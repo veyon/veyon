@@ -115,7 +115,7 @@ void Master::stopSlave( const Ipc::Id &id )
 
 
 
-bool Master::isSlaveRunning( const Ipc::Id &id )
+bool Master::isSlaveRunning( const Ipc::Id &id ) const
 {
 	if( m_processes.contains( id ) )
 	{
