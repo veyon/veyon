@@ -38,12 +38,21 @@ public:
 	virtual ~ItalcSlaveManager();
 
 	static const Ipc::Id IdCoreServer;
+	static const Ipc::Id IdAccessDialog;
 	static const Ipc::Id IdDemoClient;
 	static const Ipc::Id IdDemoServer;
 	static const Ipc::Id IdMessageBox;
 	static const Ipc::Id IdScreenLock;
 	static const Ipc::Id IdInputLock;
 	static const Ipc::Id IdSystemTrayIcon;
+
+	struct AccessDialog
+	{
+		static const Ipc::Command Ask;
+		static const Ipc::Argument Host;
+		static const Ipc::Command ReportResult;
+		static const Ipc::Argument Result;
+	} ;
 
 	struct SystemTrayIcon
 	{
@@ -80,12 +89,13 @@ public:
 
 	enum SlaveStateFlags
 	{
-		DemoServerRunning = 1,
-		DemoClientRunning = 2,
-		ScreenLockRunning = 4,
-		InputLockRunning = 8,
-		SystemTrayIconRunning = 16,
-		MessageBoxRunning = 32
+		AccessDialogRunning = 1,
+		DemoServerRunning = 2,
+		DemoClientRunning = 4,
+		ScreenLockRunning = 8,
+		InputLockRunning = 16,
+		SystemTrayIconRunning = 32,
+		MessageBoxRunning = 64
 	} ;
 
 	enum AccessDialogResult
@@ -114,16 +124,16 @@ public:
 	void setSystemTrayToolTip( const QString &tooltip );
 	void systemTrayMessage( const QString &title, const QString &msg );
 
-	AccessDialogResult showAccessDialog( const QString &host );
+	AccessDialogResult execAccessDialog( const QString &host );
 
 	int slaveStateFlags();
 
 
 private:
-	virtual bool handleMessage( const Ipc::Msg &m );
+	virtual bool handleMessage( const Ipc::Id &slaveId, const Ipc::Msg &m );
 
 	DemoServerMaster m_demoServerMaster;
-
+	volatile int m_accessDialogResult;
 
 	friend class DemoServerMaster;
 

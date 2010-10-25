@@ -25,17 +25,24 @@
 
 #include <QtCore/QCoreApplication>
 #include <QtCore/QDir>
+#include <QtCore/QTime>
 
 #include "ItalcSlaveManager.h"
 #include "ScreenLockSlaveLauncher.h"
 
 const Ipc::Id ItalcSlaveManager::IdCoreServer = "CoreServer";
+const Ipc::Id ItalcSlaveManager::IdAccessDialog = "AccessDialog";
 const Ipc::Id ItalcSlaveManager::IdDemoClient = "DemoClient";
 const Ipc::Id ItalcSlaveManager::IdDemoServer = "DemoServer";
 const Ipc::Id ItalcSlaveManager::IdMessageBox = "MessageBox";
 const Ipc::Id ItalcSlaveManager::IdScreenLock = "ScreenLock";
 const Ipc::Id ItalcSlaveManager::IdInputLock = "InputLock";
 const Ipc::Id ItalcSlaveManager::IdSystemTrayIcon = "SystemTrayIcon";
+
+const Ipc::Command ItalcSlaveManager::AccessDialog::Ask = "Ask";
+const Ipc::Argument ItalcSlaveManager::AccessDialog::Host = "Host";
+const Ipc::Command ItalcSlaveManager::AccessDialog::ReportResult = "ReportResult";
+const Ipc::Argument ItalcSlaveManager::AccessDialog::Result = "Result";
 
 const Ipc::Command ItalcSlaveManager::DemoClient::StartDemo = "StartDemo";
 const Ipc::Argument ItalcSlaveManager::DemoClient::MasterHost = "MasterHost";
@@ -175,8 +182,30 @@ void ItalcSlaveManager::setSystemTrayToolTip( const QString &tooltip )
 
 
 
-ItalcSlaveManager::AccessDialogResult ItalcSlaveManager::showAccessDialog( const QString &host )
+ItalcSlaveManager::AccessDialogResult ItalcSlaveManager::execAccessDialog( const QString &host )
 {
+	m_accessDialogResult = -1;
+
+	createSlave( IdAccessDialog );
+	sendMessage( IdAccessDialog,
+					Ipc::Msg( AccessDialog::Ask ).
+						addArg( AccessDialog::Host, host ) );
+
+	// wait for answer
+	QTime t;
+	t.start();
+	while( m_accessDialogResult < 0 && t.elapsed() < 15000 )
+	{
+		QCoreApplication::processEvents();
+	}
+
+	if( m_accessDialogResult >= AccessYes &&
+			m_accessDialogResult <= AccessNever )
+	{
+		return static_cast<AccessDialogResult>( m_accessDialogResult );
+	}
+
+	return AccessNo;
 }
 
 
@@ -190,6 +219,7 @@ int ItalcSlaveManager::slaveStateFlags()
 			{									\
 				s |= x##Running;				\
 			}
+	GEN_SLAVE_STATE_SETTER(AccessDialog)
 	GEN_SLAVE_STATE_SETTER(DemoServer)
 	GEN_SLAVE_STATE_SETTER(DemoClient)
 	GEN_SLAVE_STATE_SETTER(ScreenLock)
@@ -203,8 +233,16 @@ int ItalcSlaveManager::slaveStateFlags()
 
 
 
-bool ItalcSlaveManager::handleMessage( const Ipc::Msg &m )
+bool ItalcSlaveManager::handleMessage( const Ipc::Id &slaveId, const Ipc::Msg &m )
 {
+	if( slaveId == IdAccessDialog )
+	{
+		if( m.cmd() == AccessDialog::ReportResult )
+		{
+			m_accessDialogResult = m.arg( AccessDialog::Result ).toInt();
+			return true;
+		}
+	}
 	return false;
 }
 

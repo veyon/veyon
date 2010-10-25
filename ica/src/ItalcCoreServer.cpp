@@ -286,7 +286,6 @@ bool ItalcCoreServer::authSecTypeItalc( socketDispatcher sd, void *user )
 	char host[MAX_HOST_LEN+1];
 	sd( host, MAX_HOST_LEN, SocketGetPeerAddress, user );
 	host[MAX_HOST_LEN] = 0;
-	static QStringList __denied_hosts, __allowed_hosts;
 
 	SocketDevice sdev( sd, user );
 
@@ -336,59 +335,17 @@ bool ItalcCoreServer::authSecTypeItalc( socketDispatcher sd, void *user )
 
 	if( result != rfbVncAuthOK )
 	{
-		errorMsgAuth( host );
+		// only report about failed authentications for hosts that are not
+		// blacklisted already
+		if( !m_manuallyDeniedHosts.contains( host ) )
+		{
+			errorMsgAuth( host );
+		}
 		return false;
 	}
 
 	return true;
 }
-
-
-
-
-/*ItalcCoreServer::AccessDialogResult ItalcCoreServer::showAccessDialog(
-							const QString & _host )
-{
-	QMessageBox m( QMessageBox::Question,
-			tr( "Confirm access" ),
-			tr( "Somebody at host %1 tries to access your screen. "
-				"Do you want to grant him/her access?" ).
-								arg( _host ),
-				QMessageBox::Yes | QMessageBox::No );
-
-	QPushButton * never_btn = m.addButton( tr( "Never for this session" ),
-							QMessageBox::NoRole );
-	QPushButton * always_btn = m.addButton( tr( "Always for this session" ),
-							QMessageBox::YesRole );
-	m.setDefaultButton( never_btn );
-	m.setEscapeButton( m.button( QMessageBox::No ) );
-
-	LocalSystem::activateWindow( &m );
-
-	const int res = m.exec();
-	if( m.clickedButton() == never_btn )
-	{
-		return AccessNever;
-	}
-	else if( m.clickedButton() == always_btn )
-	{
-		return AccessAlways;
-	}
-	else if( res == QMessageBox::No )
-	{
-		return AccessNo;
-	}
-	return AccessYes;
-}*/
-
-
-
-
-/*void ItalcCoreServer::displayTextMessage( const QString & _msg )
-{
-	new DecoratedMessageBox( tr( "Message from teacher" ), _msg,
-					QPixmap( ":/resources/message.png" ) );
-}*/
 
 
 
@@ -417,36 +374,25 @@ bool ItalcCoreServer::doKeyBasedAuth( SocketDevice &sdev, const QString &host )
 	if( ItalcCore::role != ItalcCore::RoleOther &&
 		host != QHostAddress( QHostAddress::LocalHost ).toString() )
 	{
-		/*	if( __denied_hosts.contains( host ) )
+		if( m_manuallyDeniedHosts.contains( host ) )
+		{
+			return false;
+		}
+		if( !m_manuallyAllowedHosts.contains( host ) )
+		{
+			switch( m_slaveManager.execAccessDialog( host ) )
 			{
-				result = ItalcAuthFailed;
-				break;
-			}
-			if( !__allowed_hosts.contains( host ) )
-			{
-				bool failed = true;
-				switch( doGuiOp( ItalcCore::AccessDialog, host ) )
-				{
-					case AccessAlways:
-						__allowed_hosts += host;
-					case AccessYes:
-						failed = false;
-						break;
-					case AccessNever:
-						__denied_hosts += host;
-					case AccessNo:
-						break;
-				}
-				if( failed )
-				{
-					result = ItalcAuthFailed;
+				case ItalcSlaveManager::AccessAlways:
+					m_manuallyAllowedHosts += host;
+				case ItalcSlaveManager::AccessYes:
 					break;
-				}
+				case ItalcSlaveManager::AccessNever:
+					m_manuallyDeniedHosts += host;
+				case ItalcSlaveManager::AccessNo:
+				default:
+					return false;
 			}
-			else*/
-			{
-				return false;
-			}
+		}
 	}
 
 	// now try to verify received signed data using public key of the user

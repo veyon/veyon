@@ -37,6 +37,7 @@
 #include "Debug.h"
 #include "DsaKey.h"
 
+#include "AccessDialogSlave.h"
 #include "DemoClientSlave.h"
 #include "DemoServerSlave.h"
 #include "MessageBoxSlave.h"
@@ -306,6 +307,10 @@ int main( int argc, char **argv )
 			if( arg2 == ItalcSlaveManager::IdCoreServer )
 			{
 				return runCoreServer( argc, argv );
+			}
+			else if( arg2 == ItalcSlaveManager::IdAccessDialog )
+			{
+				return runSlave<AccessDialogSlave, QApplication>( argc, argv );
 			}
 			else if( arg2 == ItalcSlaveManager::IdDemoClient )
 			{

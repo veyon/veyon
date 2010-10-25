@@ -73,6 +73,11 @@ private:
 
 	QStringList m_allowedIPs;
 
+	// list of hosts that are allowed/denied to access ICA when ICA is running
+	// under a role different from "RoleOther"
+	QStringList m_manuallyAllowedHosts;
+	QStringList m_manuallyDeniedHosts;
+
 	ItalcSlaveManager m_slaveManager;
 
 } ;
