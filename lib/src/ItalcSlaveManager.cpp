@@ -193,6 +193,7 @@ int ItalcSlaveManager::slaveStateFlags()
 	GEN_SLAVE_STATE_SETTER(DemoServer)
 	GEN_SLAVE_STATE_SETTER(DemoClient)
 	GEN_SLAVE_STATE_SETTER(ScreenLock)
+	GEN_SLAVE_STATE_SETTER(InputLock)
 	GEN_SLAVE_STATE_SETTER(SystemTrayIcon)
 	GEN_SLAVE_STATE_SETTER(MessageBox)
 
