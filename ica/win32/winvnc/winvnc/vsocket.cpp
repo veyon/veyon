@@ -667,6 +667,7 @@ VSocket::SendQueued(const char *buff, const VCard bufflen)
 VBool
 VSocket::SendExact(const char *buff, const VCard bufflen, unsigned char msgType)
 {
+	if (sock==-1) return VFalse;
 	//vnclog.Print(LL_SOCKERR, VNCLOG("SendExactMsg %i\n") ,bufflen);
 	// adzm 2010-09
 	if (!IsPluginStreamingOut() && m_fUsePlugin && m_pDSMPlugin->IsEnabled())
@@ -688,6 +689,7 @@ VSocket::SendExact(const char *buff, const VCard bufflen, unsigned char msgType)
 VBool 
 VSocket::SendExactQueue(const char *buff, const VCard bufflen, unsigned char msgType)
 {
+	if (sock==-1) return VFalse;
 	//vnclog.Print(LL_SOCKERR, VNCLOG("SendExactMsg %i\n") ,bufflen);
 	// adzm 2010-09
 	if (!IsPluginStreamingOut() && m_fUsePlugin && m_pDSMPlugin->IsEnabled())
@@ -708,6 +710,7 @@ VSocket::SendExactQueue(const char *buff, const VCard bufflen, unsigned char msg
 VBool
 VSocket::SendExact(const char *buff, const VCard bufflen)
 {	
+	if (sock==-1) return VFalse;
 	//adzm 2010-09
 	if (bufflen <=0) {
 		return VTrue;
@@ -750,6 +753,7 @@ VSocket::SendExact(const char *buff, const VCard bufflen)
 VBool
 VSocket::SendExactQueue(const char *buff, const VCard bufflen)
 {
+	if (sock==-1) return VFalse;
 	//adzm 2010-09
 	if (bufflen <=0) {
 		return VTrue;
@@ -793,6 +797,7 @@ VSocket::SendExactQueue(const char *buff, const VCard bufflen)
 VBool
 VSocket::ClearQueue()
 {
+	if (sock==-1) return VFalse;
 	if (queuebuffersize!=0)
   {
 	//adzm 2010-08-01
@@ -809,6 +814,7 @@ VSocket::ClearQueue()
 VInt
 VSocket::Read(char *buff, const VCard bufflen)
 {
+	if (sock==-1) return sock;
     int s = recv(sock, buff, bufflen, 0);
 #if defined(_DEBUG)
     if (s == SOCKET_ERROR)
@@ -829,6 +835,7 @@ VSocket::Read(char *buff, const VCard bufflen)
 VBool
 VSocket::ReadExact(char *buff, const VCard bufflen)
 {	
+	if (sock==-1) return VFalse;
 	//adzm 2010-09
 	if (bufflen <=0) {
 		return VTrue;

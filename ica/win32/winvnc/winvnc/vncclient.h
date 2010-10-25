@@ -553,6 +553,8 @@ public:
 	BOOL AuthSecureVNCPlugin(std::string& auth_message); // must SetHandshakeComplete after sending auth result!
 	BOOL AuthMsLogon(std::string& auth_message);
 	BOOL AuthVnc(std::string& auth_message);
+	BOOL AuthSCPrompt(std::string& auth_message); // adzm 2010-10
+	BOOL AuthSessionSelect(std::string& auth_message); // adzm 2010-10
 
 	BOOL FilterClients_Blacklist();
 	BOOL FilterClients_Ask_Permission();

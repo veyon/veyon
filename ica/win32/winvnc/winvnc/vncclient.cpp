@@ -1214,9 +1214,13 @@ BOOL vncClientThread::AuthenticateClient(std::vector<CARD8>& current_auth)
 {
 	// adzm 2010-09 - Gather all authentication types we support
 	std::vector<CARD8> auth_types;
+
+	const bool bUseSessionSelect = false;
 	
 	// obviously needs to be one that we suggested in the first place
 	bool bSecureVNCPluginActive = std::find(current_auth.begin(), current_auth.end(), rfbUltraVNC_SecureVNCPluginAuth) != current_auth.end();
+	bool bSCPromptActive = std::find(current_auth.begin(), current_auth.end(), rfbUltraVNC_SCPrompt) != current_auth.end();
+	bool bSessionSelectActive = std::find(current_auth.begin(), current_auth.end(), rfbUltraVNC_SessionSelect) != current_auth.end();
 
 	if (current_auth.empty()) {
 		// send the UltraVNC auth type to identify ourselves as an UltraVNC server, but only initially
@@ -1229,6 +1233,16 @@ BOOL vncClientThread::AuthenticateClient(std::vector<CARD8>& current_auth)
 	if (!bSecureVNCPluginActive && m_socket->IsUsePluginEnabled() && m_server->GetDSMPluginPointer()->IsEnabled() && m_socket->GetIntegratedPlugin() != NULL)
 	{
 		auth_types.push_back(rfbUltraVNC_SecureVNCPluginAuth);
+	}
+	else if ( (SPECIAL_SC_PROMPT || SPECIAL_SC_EXIT) && !bSCPromptActive ) 
+	{
+		// adzm 2010-10 - Add the SCPrompt pseudo-auth
+		auth_types.push_back(rfbUltraVNC_SCPrompt);
+	}
+	else if (bUseSessionSelect)
+	{
+		// adzm 2010-10 - Add the SessionSelect pseudo-auth
+		auth_types.push_back(rfbUltraVNC_SessionSelect);
 	}
 	else
 	{			
@@ -1306,6 +1320,14 @@ BOOL vncClientThread::AuthenticateClient(std::vector<CARD8>& current_auth)
 	case rfbNoAuth:
 		auth_success = TRUE;
 		break;
+	case rfbUltraVNC_SCPrompt:
+		// adzm 2010-10 - Do the SCPrompt auth
+		auth_success = AuthSCPrompt(auth_message);
+		break;
+	case rfbUltraVNC_SessionSelect:
+		// adzm 2010-10 - Do the SessionSelect auth
+		auth_success = AuthSessionSelect(auth_message);
+		break;
 #ifdef ULTRAVNC_ITALC_SUPPORT
 	case rfbSecTypeItalc:
 		auth_success =
@@ -1332,6 +1354,10 @@ BOOL vncClientThread::AuthenticateClient(std::vector<CARD8>& current_auth)
 			auth_result = rfbVncAuthContinue;
 		} else if (auth_accepted == rfbUltraVNC) {
 			auth_result = rfbVncAuthContinue;
+		} else if ( (SPECIAL_SC_PROMPT || SPECIAL_SC_EXIT) && !bSCPromptActive) {
+			auth_result = rfbVncAuthContinue;
+		} else if (bUseSessionSelect && !bSessionSelectActive) {
+			auth_result = rfbVncAuthContinue;
 		} else {
 			auth_result = rfbVncAuthOK;
 		}
@@ -1340,67 +1366,13 @@ BOOL vncClientThread::AuthenticateClient(std::vector<CARD8>& current_auth)
 	// RDV 2010-4-10
 	// This is a good spot for asking the user permission Accept/Reject
 	// Only when auth_result == rfbVncAuthOK, in all other cases it isn't needed
-	// If user reject connection, we set 
-	// auth_result = rfbVncAuthFailed and auth_success==false
+	// adzm 2010-10 - This was causing failure with DSM plugin, since this is
+	// pretty much the same as another auth type we'll just move it into that code
+	// instead. So see the AuthSCPrompt function.
+
+	// Check the FilterClients thing after final auth
 	if (auth_result == rfbVncAuthOK)
 	{
-
-		// Check if viewer accept connection
-		if (SPECIAL_SC_PROMPT || SPECIAL_SC_EXIT)
-		{
-		CARD32 auth_result_msg = Swap32IfLE(rfbUltraVNC_SCPrompt);
-		if (!m_socket->SendExact((char *)&auth_result_msg, sizeof(auth_result_msg)))
-			return FALSE;
-
-		char mytext[1024];
-		getinfo(mytext);
-		int size=strlen(mytext);
-		//adzm 2010-09 - minimize packets. SendExact flushes the queue.
-		if (!m_socket->SendExactQueue((char *)&size, sizeof(int)))
-			return FALSE;
-		if (!m_socket->SendExact((char *)mytext, size))
-			return FALSE;
-		int nummer;
-		if (!m_socket->ReadExact((char *)&nummer, sizeof(int)))
-		{
-			return FALSE;
-		}
-		if (nummer==0)
-		{
-			auth_result = rfbVncAuthFailed;
-			auth_success = false;
-		}
-		}
-		else if (false)  //totest set to true
-		{
-			//Fake Function
-			CARD32 auth_result_msg = Swap32IfLE(rfbUltraVNC_SessionSelect);
-			if (!m_socket->SendExact((char *)&auth_result_msg, sizeof(auth_result_msg)))
-				return FALSE;
-			CARD8 Items=3;
-			if (!m_socket->SendExact((char *)&Items, sizeof(Items)))
-				return FALSE;
-			char line1[128];
-			char line2[128];
-			char line3[128];
-			strcpy(line1,"line1 ");
-			strcpy(line2,"line22 ");
-			strcpy(line3,"line312 123 ");
-			if (!m_socket->SendExact((char *)line1, 128))
-				return FALSE;
-			if (!m_socket->SendExact((char *)line2, 128))
-				return FALSE;
-			if (!m_socket->SendExact((char *)line3, 128))
-				return FALSE;
-			int nummer;
-			if (!m_socket->ReadExact((char *)&nummer, sizeof(int)))
-			{
-				return FALSE;
-			}
-			int a=0;
-
-		}
-
 		// If not rejected by viewer
 		if (auth_result != rfbVncAuthFailed)
 		{
@@ -1735,6 +1707,67 @@ BOOL vncClientThread::AuthVnc(std::string& auth_message)
 	}
 }
 
+// adzm 2010-10
+BOOL vncClientThread::AuthSCPrompt(std::string& auth_message)
+{
+	// Check if viewer accept connection
+	char mytext[1024];
+	getinfo(mytext);
+	int size=strlen(mytext);
+	//adzm 2010-09 - minimize packets. SendExact flushes the queue.
+	if (!m_socket->SendExactQueue((char *)&size, sizeof(int)))
+		return FALSE;
+	if (!m_socket->SendExact((char *)mytext, size))
+		return FALSE;
+	int nummer;
+	if (!m_socket->ReadExact((char *)&nummer, sizeof(int)))
+	{
+		return FALSE;
+	}
+	if (nummer==0)
+	{
+		auth_message = "Viewer refused connection";
+		return FALSE;
+	} else {
+		return TRUE;
+	}
+}
+
+BOOL vncClientThread::AuthSessionSelect(std::string& auth_message)
+{
+	return TRUE;
+	/* Session select */
+	/*
+	{
+		//Fake Function
+		CARD32 auth_result_msg = Swap32IfLE(rfbUltraVNC_SessionSelect);
+		if (!m_socket->SendExact((char *)&auth_result_msg, sizeof(auth_result_msg)))
+			return FALSE;
+		CARD8 Items=3;
+		if (!m_socket->SendExact((char *)&Items, sizeof(Items)))
+			return FALSE;
+		char line1[128];
+		char line2[128];
+		char line3[128];
+		strcpy(line1,"line1 ");
+		strcpy(line2,"line22 ");
+		strcpy(line3,"line312 123 ");
+		if (!m_socket->SendExact((char *)line1, 128))
+			return FALSE;
+		if (!m_socket->SendExact((char *)line2, 128))
+			return FALSE;
+		if (!m_socket->SendExact((char *)line3, 128))
+			return FALSE;
+		int nummer;
+		if (!m_socket->ReadExact((char *)&nummer, sizeof(int)))
+		{
+			return FALSE;
+		}
+		int a=0;
+	}
+	*/
+}
+
 void
 ClearKeyState(BYTE key)
 {
@@ -1796,8 +1829,17 @@ void GetIPString(char *buffer, int buflen)
 bool vncClientThread::InitSocket()
 {
 	// To avoid people connecting and then halting the connection, set a timeout
-	if (!m_socket->SetTimeout(30000))
+
+	// adzm 2010-10 - Set 0 timeout if using repeater
+	VBool bSocketTimeoutSet = VFalse;
+	if (m_client->GetRepeaterID()) {
+		bSocketTimeoutSet = m_socket->SetTimeout(0);
+	} else {
+		bSocketTimeoutSet = m_socket->SetTimeout(30000);
+	}
+	if (!bSocketTimeoutSet) {
 		vnclog.Print(LL_INTERR, VNCLOG("failed to set socket timeout(%d)\n"), GetLastError());
+	}
 
 	// sf@2002 - DSM Plugin - Tell the client's socket where to find the DSMPlugin 
 	if (m_server->GetDSMPluginPointer() != NULL)
@@ -1886,7 +1928,6 @@ bool vncClientThread::TryReconnect()
 			strncpy(finalidcode, m_client->GetRepeaterID(), sizeof(finalidcode) - 1);
 
 			m_socket->Send(finalidcode,250);
-			m_socket->SetTimeout(0);
 
 			InitSocket();
 
@@ -1922,7 +1963,7 @@ vncClientThread::run(void *arg)
 		m_server->RemoveClient(m_client->GetClientId());
 		return;
 	}
-	
+
 	// GET PROTOCOL VERSION
 	if (!InitVersion())
 	{
