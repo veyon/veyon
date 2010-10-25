@@ -227,13 +227,21 @@ int ItalcCoreServer::handleItalcClientMessage( socketDispatcher sock,
 	{
 		m_slaveManager.messageBox( msgIn.arg( "text" ) );
 	}
-	else if( cmd == ItalcCore::LockDisplay )
+	else if( cmd == ItalcCore::LockScreen )
 	{
-		m_slaveManager.lockDisplay();
+		m_slaveManager.lockScreen();
 	}
-	else if( cmd == ItalcCore::UnlockDisplay )
+	else if( cmd == ItalcCore::UnlockScreen )
 	{
-		m_slaveManager.unlockDisplay();
+		m_slaveManager.unlockScreen();
+	}
+	else if( cmd == ItalcCore::LockInput )
+	{
+		m_slaveManager.lockInput();
+	}
+	else if( cmd == ItalcCore::UnlockInput )
+	{
+		m_slaveManager.unlockInput();
 	}
 	else if( cmd == ItalcCore::StartDemoServer )
 	{

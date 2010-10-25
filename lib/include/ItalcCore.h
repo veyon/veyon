@@ -145,8 +145,10 @@ namespace ItalcCore
 	extern const Command UserInformation;
 	extern const Command StartDemo;
 	extern const Command StopDemo;
-	extern const Command LockDisplay;
-	extern const Command UnlockDisplay;
+	extern const Command LockScreen;
+	extern const Command UnlockScreen;
+	extern const Command LockInput;
+	extern const Command UnlockInput;
 	extern const Command LogonUserCmd;
 	extern const Command LogoutUser;
 	extern const Command DisplayTextMessage;

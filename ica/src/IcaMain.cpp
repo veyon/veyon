@@ -40,6 +40,7 @@
 #include "DemoClientSlave.h"
 #include "DemoServerSlave.h"
 #include "MessageBoxSlave.h"
+#include "InputLockSlave.h"
 #include "ScreenLockSlave.h"
 #include "SystemTrayIconSlave.h"
 
@@ -317,6 +318,10 @@ int main( int argc, char **argv )
 			else if( arg2 == ItalcSlaveManager::IdScreenLock )
 			{
 				return runSlave<ScreenLockSlave, QApplication>( argc, argv );
+			}
+			else if( arg2 == ItalcSlaveManager::IdInputLock )
+			{
+				return runSlave<InputLockSlave, QApplication>( argc, argv );
 			}
 			else if( arg2 == ItalcSlaveManager::IdSystemTrayIcon )
 			{

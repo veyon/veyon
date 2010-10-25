@@ -76,6 +76,7 @@ public:
 	GEN_SLAVE_STATE_HELPER(DemoServerRunning)
 	GEN_SLAVE_STATE_HELPER(DemoClientRunning)
 	GEN_SLAVE_STATE_HELPER(ScreenLockRunning)
+	GEN_SLAVE_STATE_HELPER(InputLockRunning)
 	GEN_SLAVE_STATE_HELPER(SystemTrayIconRunning)
 	GEN_SLAVE_STATE_HELPER(MessageBoxRunning)
 
@@ -83,8 +84,10 @@ public:
 	void execCmds( const QString &cmd );
 	void startDemo( const QString &host, int port, bool fullscreen = false );
 	void stopDemo();
-	void lockDisplay();
-	void unlockDisplay();
+	void lockScreen();
+	void unlockScreen();
+	void lockInput();
+	void unlockInput();
 	void logonUser( const QString &uname, const QString &pw,
 						const QString &domain );
 	void logoutUser();

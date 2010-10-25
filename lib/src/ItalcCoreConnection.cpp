@@ -191,17 +191,33 @@ void ItalcCoreConnection::stopDemo()
 
 
 
-void ItalcCoreConnection::lockDisplay()
+void ItalcCoreConnection::lockScreen()
 {
-	enqueueMessage( ItalcCore::Msg( ItalcCore::LockDisplay ) );
+	enqueueMessage( ItalcCore::Msg( ItalcCore::LockScreen ) );
 }
 
 
 
 
-void ItalcCoreConnection::unlockDisplay()
+void ItalcCoreConnection::unlockScreen()
 {
-	enqueueMessage( ItalcCore::Msg( ItalcCore::UnlockDisplay ) );
+	enqueueMessage( ItalcCore::Msg( ItalcCore::UnlockScreen ) );
+}
+
+
+
+
+void ItalcCoreConnection::lockInput()
+{
+	enqueueMessage( ItalcCore::Msg( ItalcCore::LockInput ) );
+}
+
+
+
+
+void ItalcCoreConnection::unlockInput()
+{
+	enqueueMessage( ItalcCore::Msg( ItalcCore::UnlockInput ) );
 }
 
 

@@ -34,6 +34,7 @@ const Ipc::Id ItalcSlaveManager::IdDemoClient = "DemoClient";
 const Ipc::Id ItalcSlaveManager::IdDemoServer = "DemoServer";
 const Ipc::Id ItalcSlaveManager::IdMessageBox = "MessageBox";
 const Ipc::Id ItalcSlaveManager::IdScreenLock = "ScreenLock";
+const Ipc::Id ItalcSlaveManager::IdInputLock = "InputLock";
 const Ipc::Id ItalcSlaveManager::IdSystemTrayIcon = "SystemTrayIcon";
 
 const Ipc::Command ItalcSlaveManager::DemoClient::StartDemo = "StartDemo";
@@ -97,7 +98,7 @@ void ItalcSlaveManager::stopDemo()
 
 
 
-void ItalcSlaveManager::lockDisplay()
+void ItalcSlaveManager::lockScreen()
 {
 	createSlave( IdScreenLock,
 					new ScreenLockSlaveLauncher( applicationFilePath() ) );
@@ -106,9 +107,25 @@ void ItalcSlaveManager::lockDisplay()
 
 
 
-void ItalcSlaveManager::unlockDisplay()
+void ItalcSlaveManager::unlockScreen()
 {
 	stopSlave( IdScreenLock );
+}
+
+
+
+
+void ItalcSlaveManager::lockInput()
+{
+	createSlave( IdInputLock );
+}
+
+
+
+
+void ItalcSlaveManager::unlockInput()
+{
+	stopSlave( IdInputLock );
 }
 
 

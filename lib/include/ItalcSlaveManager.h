@@ -42,6 +42,7 @@ public:
 	static const Ipc::Id IdDemoServer;
 	static const Ipc::Id IdMessageBox;
 	static const Ipc::Id IdScreenLock;
+	static const Ipc::Id IdInputLock;
 	static const Ipc::Id IdSystemTrayIcon;
 
 	struct SystemTrayIcon
@@ -82,8 +83,9 @@ public:
 		DemoServerRunning = 1,
 		DemoClientRunning = 2,
 		ScreenLockRunning = 4,
-		SystemTrayIconRunning = 8,
-		MessageBoxRunning = 16
+		InputLockRunning = 8,
+		SystemTrayIconRunning = 16,
+		MessageBoxRunning = 32
 	} ;
 
 	enum AccessDialogResult
@@ -102,8 +104,11 @@ public:
 	void startDemo( const QString &masterHost, bool fullscreen);
 	void stopDemo();
 
-	void lockDisplay();
-	void unlockDisplay();
+	void lockScreen();
+	void unlockScreen();
+
+	void lockInput();
+	void unlockInput();
 
 	void messageBox( const QString &msg );
 	void setSystemTrayToolTip( const QString &tooltip );
