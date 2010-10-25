@@ -364,9 +364,10 @@ void ItalcVncConnection::setPort( int port )
 
 bool ItalcVncConnection::waitForConnected( int timeout ) const
 {
-	QTime startTime = QTime::currentTime();
-	while( !isConnected() &&
-				startTime.msecsTo( QTime::currentTime() ) < timeout )
+	QTime startTime;
+	startTime.start();
+
+	while( !isConnected() && startTime.elapsed() < timeout )
 	{
 		if( QCoreApplication::instance() )
 		{
