@@ -77,6 +77,15 @@ public:
 		static const Ipc::Argument Text;
 	} ;
 
+	enum SlaveStateFlags
+	{
+		DemoServerRunning = 1,
+		DemoClientRunning = 2,
+		ScreenLockRunning = 4,
+		SystemTrayIconRunning = 8,
+		MessageBoxRunning = 16
+	} ;
+
 	enum AccessDialogResult
 	{
 		AccessYes,
@@ -101,6 +110,8 @@ public:
 	void systemTrayMessage( const QString &title, const QString &msg );
 
 	AccessDialogResult showAccessDialog( const QString &host );
+
+	int slaveStateFlags() const;
 
 
 private:

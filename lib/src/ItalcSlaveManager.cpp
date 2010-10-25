@@ -165,6 +165,26 @@ ItalcSlaveManager::AccessDialogResult ItalcSlaveManager::showAccessDialog( const
 
 
 
+int ItalcSlaveManager::slaveStateFlags() const
+{
+	int s = 0;
+#define GEN_SLAVE_STATE_SETTER(x)				\
+			if( isSlaveRunning( Id##x ) )		\
+			{									\
+				s |= x##Running;				\
+			}
+	GEN_SLAVE_STATE_SETTER(DemoServer)
+	GEN_SLAVE_STATE_SETTER(DemoClient)
+	GEN_SLAVE_STATE_SETTER(ScreenLock)
+	GEN_SLAVE_STATE_SETTER(SystemTrayIcon)
+	GEN_SLAVE_STATE_SETTER(MessageBox)
+
+	return s;
+}
+
+
+
+
 bool ItalcSlaveManager::handleMessage( const Ipc::Msg &m )
 {
 	return false;

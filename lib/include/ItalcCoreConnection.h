@@ -26,6 +26,7 @@
 #define _ITALC_CORE_CONNECTION_H
 
 #include "ItalcCore.h"
+#include "ItalcSlaveManager.h"
 #include "ItalcVncConnection.h"
 
 
@@ -61,6 +62,23 @@ public:
 		return m_userHomeDir;
 	}
 
+	int slaveStateFlags() const
+	{
+		return m_slaveStateFlags;
+	}
+
+#define GEN_SLAVE_STATE_HELPER(x)									\
+			bool is##x() const										\
+			{														\
+				return slaveStateFlags() & ItalcSlaveManager::x;	\
+			}
+
+	GEN_SLAVE_STATE_HELPER(DemoServerRunning)
+	GEN_SLAVE_STATE_HELPER(DemoClientRunning)
+	GEN_SLAVE_STATE_HELPER(ScreenLockRunning)
+	GEN_SLAVE_STATE_HELPER(SystemTrayIconRunning)
+	GEN_SLAVE_STATE_HELPER(MessageBoxRunning)
+
 	void sendGetUserInformationRequest();
 	void execCmds( const QString &cmd );
 	void startDemo( const QString &host, int port, bool fullscreen = false );
@@ -84,6 +102,8 @@ public:
 	void demoServerAllowHost( const QString &host );
 	void demoServerUnallowHost( const QString &host );
 
+	void reportSlaveStateFlags();
+
 
 private slots:
 	void initNewClient( rfbClient *client );
@@ -101,6 +121,8 @@ private:
 
 	QString m_user;
 	QString m_userHomeDir;
+
+	int m_slaveStateFlags;
 
 } ;
 

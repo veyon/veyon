@@ -161,6 +161,7 @@ namespace ItalcCore
 	extern const Command StopDemoServer;
 	extern const Command DemoServerAllowHost;
 	extern const Command DemoServerUnallowHost;
+	extern const Command ReportSlaveStateFlags;
 
 	class Msg
 	{

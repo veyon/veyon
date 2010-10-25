@@ -58,7 +58,8 @@ static void * ItalcCoreConnectionTag = (void *) PortOffsetIVS; // an unique ID
 ItalcCoreConnection::ItalcCoreConnection( ItalcVncConnection *vncConn ):
 	m_vncConn( vncConn ),
 	m_user(),
-	m_userHomeDir()
+	m_userHomeDir(),
+	m_slaveStateFlags( 0 )
 {
 	if( __italcProtocolExt == NULL )
 	{
@@ -125,6 +126,10 @@ bool ItalcCoreConnection::handleServerMessage( rfbClient *cl, uint8_t msg )
 		{
 			m_user = m.arg( "username" );
 			m_userHomeDir = m.arg( "homedir" );
+		}
+		else if( m.cmd() == ItalcCore::ReportSlaveStateFlags )
+		{
+			m_slaveStateFlags = m.arg( "slavestateflags" ).toInt();
 		}
 		// TODO: plugin hook
 		else
@@ -306,6 +311,14 @@ void ItalcCoreConnection::demoServerUnallowHost( const QString &host )
 {
 	enqueueMessage( ItalcCore::Msg( ItalcCore::DemoServerUnallowHost ).
 						addArg( "host", host ) );
+}
+
+
+
+
+void ItalcCoreConnection::reportSlaveStateFlags()
+{
+	enqueueMessage( ItalcCore::Msg( ItalcCore::ReportSlaveStateFlags ) );
 }
 
 

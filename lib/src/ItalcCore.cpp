@@ -167,6 +167,8 @@ const Command DemoServerUnallowHost = "DemoServerUnallowHost";
 const Command StartDemoServer = "StartDemoServer";
 const Command StopDemoServer = "StopDemoServer";
 
+const Command ReportSlaveStateFlags = "ReportSlaveStateFlags";
+
 
 } ;
 

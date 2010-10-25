@@ -253,6 +253,12 @@ int ItalcCoreServer::handleItalcClientMessage( socketDispatcher sock,
 	{
 		m_slaveManager.demoServerMaster()->unallowHost( msgIn.arg( "host" ) );
 	}
+	else if( cmd == ItalcCore::ReportSlaveStateFlags )
+	{
+		ItalcCore::Msg( &sdev, cmd ).
+				addArg( "slavestateflags", m_slaveManager.slaveStateFlags() ).
+					send();
+	}
 	// TODO: handle plugins
 	else
 	{
