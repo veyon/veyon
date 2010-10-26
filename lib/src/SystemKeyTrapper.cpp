@@ -231,7 +231,10 @@ void SystemKeyTrapper::setEnabled( bool _on )
 									false );
 			ShowWindow( FindWindow( "Shell_traywnd", NULL ), SW_HIDE );
 
-			Inject();
+			if( !Inject() )
+			{
+				qWarning( "SystemKeyTrapper: Inject() failed");
+			}
 		}
 
 		QTimer * t = new QTimer( this );
@@ -255,7 +258,10 @@ void SystemKeyTrapper::setEnabled( bool _on )
 									true );
 
 			ShowWindow( FindWindow( "Shell_traywnd", NULL ), SW_NORMAL );
-			Eject();
+			if( !Eject() )
+			{
+				qWarning( "SystemKeyTrapper: Eject() failed");
+			}
 		}
 #endif
 	}
