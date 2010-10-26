@@ -43,13 +43,9 @@ namespace LocalSystem
 	typedef void (*p_pressKey)( int _key, bool _down );
 
 
-	int freePort( int _default_port );
-
 	void initialize( p_pressKey _pk, const QString & _log_file );
 
 	void sleep( const int _ms );
-
-	void execInTerminal( const QString & _cmds );
 
 	void broadcastWOLPacket( const QString & _mac );
 

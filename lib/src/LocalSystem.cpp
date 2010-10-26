@@ -40,7 +40,6 @@
 #include <QtCore/QSettings>
 #include <QtCore/QDateTime>
 #include <QtGui/QWidget>
-#include <QtNetwork/QTcpServer>
 
 
 #ifdef ITALC_BUILD_WIN32
@@ -268,20 +267,6 @@ void initialize( p_pressKey _pk, const QString & _log_file )
 
 
 
-int freePort( int _default_port )
-{
-	QTcpServer t;
-	if( t.listen( QHostAddress::LocalHost, _default_port ) )
-	{
-		return( _default_port );
-	}
-	t.listen( QHostAddress::LocalHost );
-	return( t.serverPort() );
-}
-
-
-
-
 void sleep( const int _ms )
 {
 #ifdef ITALC_BUILD_WIN32
@@ -290,20 +275,6 @@ void sleep( const int _ms )
 	struct timespec ts = { _ms / 1000, ( _ms % 1000 ) * 1000 * 1000 } ;
 	nanosleep( &ts, NULL );
 #endif
-}
-
-
-
-
-void execInTerminal( const QString & _cmds )
-{
-	QProcess::startDetached(
-#ifdef ITALC_BUILD_WIN32
-			"cmd " +
-#else
-			"xterm -e " +
-#endif
-			_cmds );
 }
 
 
