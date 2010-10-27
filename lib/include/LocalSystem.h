@@ -45,6 +45,117 @@ namespace LocalSystem
 
 	void initialize( p_pressKey _pk, const QString & _log_file );
 
+	class Desktop
+	{
+	public:
+		Desktop( const QString &name = QString() );
+		Desktop( const Desktop &desktop );
+
+		const QString &name() const
+		{
+			return m_name;
+		}
+
+		static Desktop activeDesktop();
+
+	private:
+		QString m_name;
+	} ;
+
+	class User
+	{
+	public:
+#ifdef ITALC_BUILD_WIN32
+		typedef PSID Token;
+#else
+		typedef int Token;
+#endif
+		User( const QString &name, const QString &domain = QString(),
+									const QString &fullname = QString() );
+		User( Token token );
+		User( const User &user );
+		~User();
+
+		static User loggedOnUser();
+
+		const Token userToken() const
+		{
+			return m_userToken;
+		}
+
+		Token userToken()
+		{
+			return m_userToken;
+		}
+
+		const QString &name() const
+		{
+			return m_name;
+		}
+
+		const QString &domain() const
+		{
+			return m_domain;
+		}
+
+		const QString &fullName()
+		{
+			// full name lookups are quite expensive, therefore do them
+			// on-demand and only if not done before
+			if( m_fullName.isEmpty() )
+			{
+				lookupFullName();
+				if( m_fullName.isEmpty() )
+				{
+					m_fullName = name();
+				}
+			}
+			return m_fullName;
+		}
+
+
+	private:
+		void lookupNameAndDomain();
+		void lookupFullName();
+
+		Token m_userToken;
+		QString m_name;
+		QString m_domain;
+		QString m_fullName;
+
+	} ;
+
+	class Process
+	{
+	public:
+#ifdef ITALC_BUILD_WIN32
+		typedef HANDLE Handle;
+#else
+		typedef int Handle;
+#endif
+		Process( int pid = -1 );
+		~Process();
+
+		static int findProcessId( const QString &processName,
+									int sessionId = -1,
+									User *processOwner = NULL );
+
+		User *getProcessOwner();
+
+		Handle processHandle()
+		{
+			return m_processHandle;
+		}
+
+		Handle runAsUser( const QString &proc,
+									const QString &desktop = QString() );
+
+	private:
+		Handle m_processHandle;
+
+	} ;
+
+
 	void sleep( const int _ms );
 
 	void broadcastWOLPacket( const QString & _mac );
@@ -55,8 +166,6 @@ namespace LocalSystem
 	void logonUser( const QString & _uname, const QString & _pw,
 						const QString & _domain );
 	void logoutUser( void );
-
-	QString currentUser( void );
 
 	QString privateKeyPath( const ItalcCore::UserRoles _role,
 						bool _only_path = FALSE );

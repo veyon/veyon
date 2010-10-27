@@ -75,9 +75,23 @@ int ItalcCoreServer::handleItalcClientMessage( socketDispatcher sock,
 	const QString cmd = msgIn.cmd();
 	if( cmd == ItalcCore::GetUserInformation )
 	{
+		static QString lastUserName, lastFullUsername;
+
+		LocalSystem::User user = LocalSystem::User::loggedOnUser();
+		QString currentUsername = user.name();
+		if( lastUserName != currentUsername )
+		{
+			lastUserName = currentUsername;
+			lastFullUsername = user.fullName();
+		}
+		if( !lastFullUsername.isEmpty() &&
+				currentUsername != lastFullUsername )
+		{
+			currentUsername = QString( "%1 (%2)" ).arg( currentUsername ).
+									arg( lastFullUsername );
+		}
 		ItalcCore::Msg( &sdev, ItalcCore::UserInformation ).
-					addArg( "username",
-						LocalSystem::currentUser() ).
+					addArg( "username", currentUsername ).
 					addArg( "homedir", QDir::homePath() ).
 									send();
 	}
@@ -86,79 +100,24 @@ int ItalcCoreServer::handleItalcClientMessage( socketDispatcher sock,
 		const QString cmds = msgIn.arg( "cmds" );
 		if( !cmds.isEmpty() )
 		{
+			LocalSystem::User user = LocalSystem::User::loggedOnUser();
+			LocalSystem::Process proc(
+				LocalSystem::Process::findProcessId( QString(), -1, &user ) );
+
+			foreach( const QString & cmd, cmds.split( '\n' ) )
+			{
+				LocalSystem::Process::Handle hProcess =
+					proc.runAsUser( cmd,
+						LocalSystem::Desktop::activeDesktop().name() );
 #ifdef ITALC_BUILD_WIN32
-	// run process as the user which is logged on
-	DWORD aProcesses[1024], cbNeeded;
-
-	if( !EnumProcesses( aProcesses, sizeof( aProcesses ), &cbNeeded ) )
-	{
-		return false;
-	}
-
-	DWORD cProcesses = cbNeeded / sizeof(DWORD);
-
-	for( DWORD i = 0; i < cProcesses; i++ )
-	{
-		HANDLE hProcess = OpenProcess( PROCESS_ALL_ACCESS,
-							false, aProcesses[i] );
-		HMODULE hMod;
-		if( hProcess == NULL ||
-			!EnumProcessModules( hProcess, &hMod, sizeof( hMod ),
-								&cbNeeded ) )
-	        {
-			continue;
-		}
-
-		TCHAR szProcessName[MAX_PATH];
-		GetModuleBaseName( hProcess, hMod, szProcessName,
-				sizeof( szProcessName ) / sizeof( TCHAR) );
-		for( TCHAR * ptr = szProcessName; *ptr; ++ptr )
-		{
-			*ptr = tolower( *ptr );
-		}
-
-		if( strcmp( szProcessName, "explorer.exe" ) )
-		{
-			CloseHandle( hProcess );
-			continue;
-		}
-
-		HANDLE hToken;
-		OpenProcessToken( hProcess, MAXIMUM_ALLOWED, &hToken );
-		ImpersonateLoggedOnUser( hToken );
-
-		STARTUPINFO si;
-		PROCESS_INFORMATION pi;
-		ZeroMemory( &si, sizeof( STARTUPINFO ) );
-		si.cb= sizeof( STARTUPINFO );
-		si.lpDesktop = (CHAR *) "winsta0\\default";
-		HANDLE hNewToken = NULL;
-
-		DuplicateTokenEx( hToken, MAXIMUM_ALLOWED, NULL,
-					SecurityImpersonation, TokenPrimary,
-								&hNewToken );
-
-		CreateProcessAsUser(
-				hNewToken,            // client's access token
-				NULL,              // file to execute
-				(CHAR *)cmds.toAscii().constData(),     // command line
-				NULL,              // pointer to process SECURITY_ATTRIBUTES
-				NULL,              // pointer to thread SECURITY_ATTRIBUTES
-				false,             // handles are not inheritable
-				NORMAL_PRIORITY_CLASS | CREATE_NEW_CONSOLE,   // creation flags
-				NULL,              // pointer to new environment block
-				NULL,              // name of current directory
-				&si,               // pointer to STARTUPINFO structure
-				&pi                // receives information about new process
-				);
-		CloseHandle( hNewToken );
-		RevertToSelf();
-		CloseHandle( hToken );
-		CloseHandle( hProcess );
-	}
+				if( hProcess )
+				{
+					CloseHandle( hProcess );
+				}
 #else
-				QProcess::startDetached( cmds );
+				(void) hProcess;
 #endif
+			}
 		}
 	}
 	else if( cmd == ItalcCore::LogonUserCmd )

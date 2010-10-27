@@ -956,8 +956,15 @@ int WinVNCAppMain()
 
 	while ( !fShutdownOrdered)
 	{
+#ifdef ULTRAVNC_ITALC_SUPPORT
+		DWORD result = WaitForSingleObject( hShutdownEvent, INFINITE );
+		if( WAIT_OBJECT_0 == result )
+		{
+			fShutdownOrdered = true;
+			server.KillAuthClients();
+		}
+#else
 		//vnclog.Print(LL_STATE, VNCLOG("################## Creating Imp Thread : %d \n"), nn);
-
 		HANDLE threadHandle;
 		DWORD dwTId;
 		threadHandle = CreateThread(NULL, 0, imp_desktop_thread, &server, 0, &dwTId);
@@ -968,6 +975,7 @@ int WinVNCAppMain()
 			CloseHandle(threadHandle);
 		}
 		vnclog.Print(LL_STATE, VNCLOG("################## Closing Imp Thread\n"));
+#endif
 	}
 
 	KillSDTimer();

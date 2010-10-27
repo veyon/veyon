@@ -30,7 +30,7 @@
 #include <QtGui/QApplication>
 #include <QtNetwork/QHostInfo>
 
-#include "SystemService.h"
+#include "WindowsService.h"
 #include "ItalcCoreServer.h"
 #include "ItalcVncServer.h"
 #include "LocalSystemIca.h"
@@ -46,33 +46,20 @@
 #include "SystemTrayIconSlave.h"
 
 
-QString __app_name = "iTALC Client";
-const QString SERVICE_ARG = "-service";
-
-int main( int argc, char **argv );
-
-
-int serviceMain( SystemService * _srv )
-{
-	int c = 1;
-	char * * v = new char *[1];
-	v[0] = _srv->argv()[0];
-
-	return main( c, v );
-}
-
-
 #ifdef ITALC_BUILD_WIN32
+static HANDLE hShutdownEvent = NULL;
 
-// event-filter which makes ICA ignore quit- end end-session-messages for not
-// quitting at user logoff
-bool eventFilter( void * _msg, long * _result )
+// event-filter which makes ICA recognize logoff events etc.
+bool eventFilter( void *msg, long *result )
 {
-	DWORD msg = ( ( MSG *) _msg )->message;
-	if(/* msg == WM_QUIT ||*/msg == WM_ENDSESSION )
+	DWORD winMsg = ( ( MSG *) msg )->message;
+
+	if( winMsg == WM_QUERYENDSESSION )
 	{
-		return true;
+		// tell UltraVNC server to quit
+		SetEvent( hShutdownEvent );
 	}
+
 	return false;
 }
 
@@ -128,7 +115,7 @@ int createKeyPair( int argc, char **argv )
 
 
 
-static bool initCoreApplication( QCoreApplication *app = NULL )
+void initCoreApplication( QCoreApplication *app = NULL )
 {
 	const QString loc = QLocale::system().name().left( 2 );
 
@@ -148,8 +135,13 @@ static bool initCoreApplication( QCoreApplication *app = NULL )
 	{
 		ItalcCore::serverPort = LocalSystem::parameter( "serverport" ).toInt();
 	}
+}
 
-	QStringListIterator argIt( QCoreApplication::arguments() );
+
+
+static bool parseArguments( const QStringList &arguments )
+{
+	QStringListIterator argIt( arguments );
 	argIt.next();	// skip application file name
 	while( argIt.hasNext() )
 	{
@@ -223,9 +215,16 @@ static bool initCoreApplication( QCoreApplication *app = NULL )
 static int runCoreServer( int argc, char **argv )
 {
 	QCoreApplication app( argc, argv );
+
 	initCoreApplication( &app );
+	if( !parseArguments( app.arguments() ) )
+	{
+		return -1;
+	}
 
 #ifdef ITALC_BUILD_WIN32
+	hShutdownEvent = CreateEvent( NULL, FALSE, FALSE,
+									"Global\\SessionEventUltra" );
 	app.setEventFilter( eventFilter );
 #endif
 
@@ -239,9 +238,18 @@ static int runCoreServer( int argc, char **argv )
 							arg( QHostInfo::localHostName() ).
 							arg( QString::number( vncServer.serverPort() ) ) );
 
+	// make app terminate once the VNC server thread has finished
+	app.connect( &vncServer, SIGNAL( finished() ), SLOT( quit() ) );
+
 	vncServer.start();
 
-	return app.exec();
+	app.exec();
+
+#ifdef ITALC_BUILD_WIN32
+	CloseHandle( hShutdownEvent );
+#endif
+
+	return 0;
 }
 
 
@@ -250,7 +258,12 @@ template<class SlaveClass, class Application>
 static int runSlave( int argc, char **argv )
 {
 	Application app( argc, argv );
+
 	initCoreApplication( &app );
+	if( !parseArguments( app.arguments() ) )
+	{
+		return -1;
+	}
 
 	SlaveClass s;
 
@@ -279,20 +292,22 @@ int main( int argc, char **argv )
 	mainthreadId = GetCurrentThreadId();
 #endif
 
-	// decide whether to create a QCoreApplication or QApplication
+	// decide in what mode to run
 	if( argc >= 2 )
 	{
 		const QString arg1 = argv[1];
-		if( arg1 == "-service" )
+#ifdef ITALC_BUILD_WIN32
+		if( arg1.contains( "service" ) )
 		{
-			SystemService s( "icas", SERVICE_ARG, __app_name,
-								"", serviceMain, argc, argv );
-			if( s.evalArgs( argc, argv ) )
+			WindowsService winService( "icas", "-service", "iTALC Client",
+										QString(), argc, argv );
+			if( winService.evalArgs( argc, argv ) )
 			{
 				return 0;
 			}
 		}
-		else if( arg1 == "-createkeypair" )
+#endif
+		if( arg1 == "-createkeypair" )
 		{
 			return createKeyPair( argc, argv );
 		}

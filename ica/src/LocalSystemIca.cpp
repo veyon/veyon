@@ -60,7 +60,6 @@
 
 #include "LocalSystem.h"
 #include "SystemKeyTrapper.h"
-#include "SystemService.h"
 
 /*
 
@@ -337,8 +336,6 @@ static inline void pressKey( int _key, bool _down )
 #endif
 
 
-extern QString __sessCurUser;
-
 namespace LocalSystem
 {
 
@@ -354,62 +351,6 @@ void initialize( void )
 
 }
 
-
-
-
-
-QString currentUser( void )
-{
-	QString ret = "unknown";
-
-#ifdef ITALC_BUILD_WIN32
-	return __sessCurUser;
-/*
-	if( __user_poll_thread && !__user_poll_thread->name().isEmpty() )
-	{
-		ret = __user_poll_thread->name();
-	}
-*/
-#else
-
-	char * user_name = getenv( "USER" );
-#ifdef ITALC_HAVE_PWD_H
-	struct passwd * pw_entry = NULL;
-	if( user_name )
-	{
-		pw_entry = getpwnam( user_name );
-	}
-	if( !pw_entry )
-	{
-		pw_entry = getpwuid( getuid() );
-	}
-	if( pw_entry )
-	{
-		QString shell( pw_entry->pw_shell );
-
-		/* Skip not real users */
-		if ( shell.endsWith( "/false" ) ||
-				shell.endsWith( "/true" ) ||
-				shell.endsWith( "/null" ) ||
-				shell.endsWith( "/nologin") )
-		{
-			return "";
-		}
-
-		return QString( "%1 (%2)" ).
-				arg( QString::fromUtf8( pw_entry->pw_gecos ) ).
-				arg( QString::fromUtf8( pw_entry->pw_name ) );
-	}
-#endif
-	if( user_name )
-	{
-		return QString::fromUtf8( user_name );
-	}
-
-#endif
-
-	return ret;
-}
 
 
 
@@ -454,7 +395,7 @@ void powerDown( void )
 				);*/
 	enablePrivilege( SE_SHUTDOWN_NAME, FALSE );
 #else
-	if( currentUser() == "root (root)" )
+	if( LocalSystem::User::loggedOnUser().name() == "root" )
 	{
 		QProcess::startDetached( "poweroff" );
 	}
@@ -496,7 +437,7 @@ void reboot( void )
 				);*/
 	enablePrivilege( SE_SHUTDOWN_NAME, FALSE );
 #else
-	if( currentUser() == "root (root)" )
+	if( LocalSystem::User::loggedOnUser().name() == "root" )
 	{
 		QProcess::startDetached( "poweroff" );
 	}

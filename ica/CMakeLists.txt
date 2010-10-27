@@ -122,7 +122,7 @@ IF(ITALC_BUILD_WIN32)
 		)
 
 	SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-write-strings -fexceptions")
-	LINK_LIBRARIES(-lnetapi32 -luserenv -lole32 -lversion -lgdi32 -limm32 -lwtsapi32)
+	LINK_LIBRARIES(-luserenv -lole32 -lversion -lgdi32 -limm32)
 
 	ADD_DEFINITIONS(-DULTRAVNC_ITALC_SUPPORT -DLIBVNCSERVER_NEED_INADDR_T)
 

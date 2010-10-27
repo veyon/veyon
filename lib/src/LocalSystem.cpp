@@ -1,6 +1,6 @@
 /*
  * LocalSystem.cpp - namespace LocalSystem, providing an interface for
- *                   transparent usage of operating-system-specific functions
+ *				   transparent usage of operating-system-specific functions
  *
  * Copyright (c) 2006-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
@@ -40,6 +40,7 @@
 #include <QtCore/QSettings>
 #include <QtCore/QDateTime>
 #include <QtGui/QWidget>
+#include <QtNetwork/QHostInfo>
 
 
 #ifdef ITALC_BUILD_WIN32
@@ -56,7 +57,10 @@ static const char * tr_accels = QT_TRANSLATE_NOOP(
 
 #include <windows.h>
 #include <shlobj.h>
-#include <psapi.h>
+#include <psapi.h>		// TODO: remove when rewriting logonUser()
+#include <wtsapi32.h>
+#include <sddl.h>
+#include <lm.h>
 
 
 
@@ -74,9 +78,9 @@ QString windowsConfigPath( int _type )
 				library.resolve( "SHGetSpecialFolderPathA" );
 	if( SHGetSpecialFolderPath )
 	{
-	    char path[MAX_PATH];
-	    SHGetSpecialFolderPath( 0, path, _type, FALSE );
-	    result = QString::fromLocal8Bit( path );
+		char path[MAX_PATH];
+		SHGetSpecialFolderPath( 0, path, _type, FALSE );
+		result = QString::fromLocal8Bit( path );
 	}
 	return( result );
 }
@@ -265,6 +269,608 @@ void initialize( p_pressKey _pk, const QString & _log_file )
 }
 
 
+Desktop::Desktop( const QString &name ) :
+	m_name( name )
+{
+#ifdef ITALC_BUILD_WIN32
+	if( m_name.isEmpty() )
+	{
+		m_name = "winsta0\\default";
+	}
+#endif
+}
+
+
+
+Desktop::Desktop( const Desktop &desktop ) :
+	m_name( desktop.name() )
+{
+}
+
+
+
+Desktop Desktop::activeDesktop()
+{
+	QString deskName;
+
+#ifdef ITALC_BUILD_WIN32
+	HDESK desktopHandle = OpenInputDesktop( 0, TRUE, DESKTOP_READOBJECTS );
+
+	char dname[256];
+	dname[0] = 0;
+	if( GetUserObjectInformation( desktopHandle, UOI_NAME, dname,
+									sizeof( dname ), NULL ) )
+	{
+		deskName = QString( "winsta0\\%1" ).arg( dname );
+	}
+	CloseDesktop( desktopHandle );
+#endif
+
+	return Desktop( deskName );
+}
+
+
+
+
+User::User( const QString &name, const QString &dom, const QString &fullname ) :
+	m_userToken( 0 ),
+	m_name( name ),
+	m_domain( dom ),
+	m_fullName( fullname )
+{
+#ifdef ITALC_BUILD_WIN32
+	// try to look up the user -> domain
+	DWORD sidLen = 256;
+	char domain[256];
+	domain[0] = 0;
+	char *sid = new char[sidLen];
+	DWORD domainLen = sizeof( domain );
+	SID_NAME_USE snu;
+	m_userToken = sid;
+
+	if( !LookupAccountName( NULL,		// system name
+							m_name.toAscii().constData(),
+							m_userToken,		// SID
+							&sidLen,
+							domain,
+							&domainLen,
+							&snu ) )
+	{
+		qCritical( "Could not look up SID structure" );
+		return;
+	}
+
+	if( m_domain.isEmpty() )
+	{
+		m_domain = domain;
+	}
+#else
+	m_userToken = getuid();
+#endif
+}
+
+
+#ifdef ITALC_BUILD_WIN32
+static void copySid( const PSID &src, PSID &dst )
+{
+	if( src )
+	{
+		const int sidLen = GetLengthSid( src );
+		if( sidLen )
+		{
+			dst = new char[sidLen];
+			CopySid( sidLen, dst, src );
+		}
+	}
+}
+
+#endif
+
+User::User( Token userToken ) :
+	m_userToken( userToken ),
+	m_name(),
+	m_domain(),
+	m_fullName()
+{
+#ifdef ITALC_BUILD_WIN32
+	copySid( userToken, m_userToken );
+#endif
+
+	lookupNameAndDomain();
+}
+
+
+
+User::User( const User &user ) :
+	m_userToken( user.userToken() ),
+	m_name( user.name() ),
+	m_domain( user.domain() ),
+	m_fullName( user.m_fullName )
+{
+#ifdef ITALC_BUILD_WIN32
+	copySid( user.userToken(), m_userToken );
+#endif
+}
+
+
+
+User::~User()
+{
+#ifdef ITALC_BUILD_WIN32
+	if( m_userToken )
+	{
+		delete[] (char *) m_userToken;
+	}
+#endif
+}
+
+
+#ifdef ITALC_BUILD_WIN32
+static QString querySessionInformation( DWORD sessionId,
+										WTS_INFO_CLASS infoClass )
+{
+	QString result;
+	LPTSTR pBuffer = NULL;
+	DWORD dwBufferLen;
+	if( WTSQuerySessionInformation(
+					WTS_CURRENT_SERVER_HANDLE,
+					sessionId,
+					infoClass,
+					&pBuffer,
+					&dwBufferLen ) )
+	{
+		result = pBuffer;
+	}
+	WTSFreeMemory( pBuffer );
+
+	return result;
+}
+#endif
+
+
+
+User User::loggedOnUser()
+{
+	QString userName = "unknown";
+	QString domainName = QHostInfo::localDomainName();
+
+#ifdef ITALC_BUILD_WIN32
+
+	DWORD sessionId = WTSGetActiveConsoleSessionId();
+
+	userName = querySessionInformation( sessionId, WTSUserName );
+	domainName = querySessionInformation( sessionId, WTSDomainName );
+
+#else
+
+	char * envUser = getenv( "USER" );
+
+#ifdef ITALC_HAVE_PWD_H
+	struct passwd * pw_entry = NULL;
+	if( envUser )
+	{
+		pw_entry = getpwnam( envUser );
+	}
+	if( !pw_entry )
+	{
+		pw_entry = getpwuid( getuid() );
+	}
+	if( pw_entry )
+	{
+		QString shell( pw_entry->pw_shell );
+
+		// Skip not real users
+		if ( !( shell.endsWith( "/false" ) ||
+				shell.endsWith( "/true" ) ||
+				shell.endsWith( "/null" ) ||
+				shell.endsWith( "/nologin") ) )
+		{
+			userName = QString::fromUtf8( pw_entry->pw_name );
+		}
+	}
+#endif	/* ITALC_HAVE_PWD_H */
+
+	if( userName.isEmpty() )
+	{
+		userName = QString::fromUtf8( envUser );
+	}
+
+#endif
+
+	return User( userName, domainName );
+}
+
+
+
+
+void User::lookupNameAndDomain()
+{
+	if( !m_name.isEmpty() && !m_domain.isEmpty() )
+	{
+		return;
+	}
+
+#ifdef ITALC_BUILD_WIN32
+	DWORD accNameLen = 0;
+	DWORD domainNameLen = 0;
+	SID_NAME_USE snu;
+	LookupAccountSid( NULL, userToken(), NULL, &accNameLen, NULL,
+							&domainNameLen, &snu );
+	if( accNameLen == 0 || domainNameLen == 0 )
+	{
+		return;
+	}
+
+	char * accName = new char[accNameLen];
+	char * domainName = new char[domainNameLen];
+	LookupAccountSid( NULL, userToken(), accName, &accNameLen,
+						domainName, &domainNameLen, &snu );
+
+	if( m_name.isEmpty() )
+	{
+		m_name = accName;
+	}
+
+	if( m_domain.isEmpty() )
+	{
+		m_domain = domainName;
+	}
+
+	delete[] accName;
+	delete[] domainName;
+
+#else	/* ITALC_BUILD_WIN32 */
+
+	struct passwd * pw_entry = getpwuid( m_userToken );
+	if( pw_entry )
+	{
+		QString shell( pw_entry->pw_shell );
+
+		// Skip not real users
+		if ( !( shell.endsWith( "/false" ) ||
+				shell.endsWith( "/true" ) ||
+				shell.endsWith( "/null" ) ||
+				shell.endsWith( "/nologin") ) )
+		{
+			m_name = QString::fromUtf8( pw_entry->pw_name );
+		}
+	}
+
+	m_domain = QHostInfo::localDomainName();
+#endif
+}
+
+
+
+
+void User::lookupFullName()
+{
+	lookupNameAndDomain();
+
+#ifdef ITALC_BUILD_WIN32
+	char * accName = qstrdup( m_name.toAscii().constData() );
+	char * domainName = qstrdup( m_domain.toAscii().constData() );
+
+	// try to retrieve user's full name from domain
+	WCHAR wszDomain[256];
+	MultiByteToWideChar( CP_ACP, 0, domainName,
+			strlen( domainName ) + 1, wszDomain, sizeof( wszDomain ) /
+											sizeof( wszDomain[0] ) );
+	WCHAR wszUser[256];
+	MultiByteToWideChar( CP_ACP, 0, accName,
+			strlen( accName ) + 1, wszUser, sizeof( wszUser ) /
+											sizeof( wszUser[0] ) );
+
+	PBYTE dc = NULL;	// domain controller
+	if( NetGetDCName( NULL, wszDomain, &dc ) != NERR_Success )
+	{
+		dc = NULL;
+	}
+
+	LPUSER_INFO_2 pBuf = NULL;
+	NET_API_STATUS nStatus = NetUserGetInfo( (LPWSTR)dc, wszUser, 2,
+												(LPBYTE *) &pBuf );
+	if( nStatus == NERR_Success && pBuf != NULL )
+	{
+		int len = WideCharToMultiByte( CP_ACP, 0, pBuf->usri2_full_name,
+											-1, NULL, 0, NULL, NULL );
+		if( len > 0 )
+		{
+			char *mbstr = new char[len];
+			len = WideCharToMultiByte( CP_ACP, 0, pBuf->usri2_full_name,
+										-1, mbstr, len, NULL, NULL );
+			if( strlen( mbstr ) >= 1 )
+			{
+				m_fullName = mbstr;
+			}
+			delete[] mbstr;
+		}
+	}
+
+	if( pBuf != NULL )
+	{
+		NetApiBufferFree( pBuf );
+	}
+	if( dc != NULL )
+	{
+		NetApiBufferFree( dc );
+	}
+
+	delete[] accName;
+	delete[] domainName;
+
+#else
+
+#ifdef ITALC_HAVE_PWD_H
+	struct passwd * pw_entry = getpwnam( m_name.toUtf8().constData() );
+	if( !pw_entry )
+	{
+		pw_entry = getpwuid( m_userToken );
+	}
+	if( pw_entry )
+	{
+		QString shell( pw_entry->pw_shell );
+
+		// Skip not real users
+		if ( !( shell.endsWith( "/false" ) ||
+				shell.endsWith( "/true" ) ||
+				shell.endsWith( "/null" ) ||
+				shell.endsWith( "/nologin") ) )
+		{
+			m_fullName = QString::fromUtf8( pw_entry->pw_gecos );
+		}
+	}
+#endif
+
+#endif
+}
+
+
+
+
+
+Process::Process( int pid ) :
+	m_processHandle( 0 )
+{
+#ifdef ITALC_BUILD_WIN32
+	if( pid >= 0 )
+	{
+		m_processHandle = OpenProcess( PROCESS_ALL_ACCESS, FALSE, pid );
+	}
+#endif
+}
+
+
+
+Process::~Process()
+{
+#ifdef ITALC_BUILD_WIN32
+	if( m_processHandle )
+	{
+		CloseHandle( m_processHandle );
+	}
+#endif
+}
+
+
+
+#ifdef ITALC_BUILD_WIN32
+static DWORD findProcessId_WTS( const QString &processName, DWORD sessionId,
+															User *processOwner )
+{
+	PWTS_PROCESS_INFO pProcessInfo = NULL;
+	DWORD processCount = 0;
+	DWORD pid = -1;
+
+	if( !WTSEnumerateProcesses( WTS_CURRENT_SERVER_HANDLE, 0, 1, &pProcessInfo,
+								&processCount ) )
+	{
+		return pid;
+	}
+
+	for( DWORD proc = 0; (int)pid < 0 && proc < processCount; ++proc )
+	{
+		if( pProcessInfo[proc].ProcessId == 0 )
+		{
+			continue;
+		}
+		if( processName.isEmpty() ||
+				processName.compare( pProcessInfo[proc].pProcessName,
+												Qt::CaseInsensitive	) == 0 )
+		{
+			if( (int) sessionId < 0 ||
+						sessionId == pProcessInfo[proc].SessionId )
+			{
+				if( processOwner == NULL )
+				{
+					pid = pProcessInfo[proc].ProcessId;
+				}
+				else if( pProcessInfo[proc].pUserSid != NULL )
+				{
+					if( EqualSid( pProcessInfo[proc].pUserSid,
+									processOwner->userToken() ) )
+					{
+						pid = pProcessInfo[proc].ProcessId;
+					}
+				}
+			}
+		}
+	}
+
+	WTSFreeMemory( pProcessInfo );
+
+	return pid;
+}
+
+
+#include <tlhelp32.h>
+
+static DWORD findProcessId_TH32( const QString &processName, DWORD sessionId,
+															User *processOwner )
+{
+	DWORD pid = 0;
+	PROCESSENTRY32 procEntry;
+
+	HANDLE hSnap = CreateToolhelp32Snapshot( TH32CS_SNAPPROCESS, 0 );
+	if( hSnap == INVALID_HANDLE_VALUE )
+	{
+		return 0;
+	}
+
+	procEntry.dwSize = sizeof( PROCESSENTRY32 );
+
+	if( !Process32First( hSnap, &procEntry ) )
+	{
+		CloseHandle( hSnap );
+		return 0;
+	}
+
+	do
+	{
+		if( processName.isEmpty() ||
+				processName.compare( procEntry.szExeFile,
+									Qt::CaseInsensitive ) == 0 )
+		{
+			if( processOwner == NULL )
+			{
+				pid = procEntry.th32ProcessID;
+				break;
+			}
+			else
+			{
+				User *u = Process( procEntry.th32ProcessID ).getProcessOwner();
+				if( u && EqualSid( u->userToken(), processOwner->userToken() ) )
+				{
+					pid = procEntry.th32ProcessID;
+					break;
+				}
+				delete u;
+			}
+		}
+	}
+	while( Process32Next( hSnap, &procEntry ) );
+
+	CloseHandle( hSnap );
+
+	return pid;
+}
+#endif
+
+
+
+int Process::findProcessId( const QString &processName,
+							int sessionId, User *processOwner )
+{
+	int pid = 0;
+#ifdef ITALC_BUILD_WIN32
+	pid = findProcessId_WTS( processName, sessionId, processOwner );
+	if( pid < 0 )
+	{
+		pid = findProcessId_TH32( processName, sessionId, processOwner );
+	}
+#endif
+	return pid;
+}
+
+
+
+
+User *Process::getProcessOwner()
+{
+#ifdef ITALC_BUILD_WIN32
+	HANDLE hToken;
+	OpenProcessToken( m_processHandle, TOKEN_READ, &hToken );
+
+	DWORD len = 0;
+
+	GetTokenInformation( hToken, TokenUser, NULL, 0, &len ) ;
+	if( len <= 0 )
+	{
+		CloseHandle( hToken );
+		return NULL;
+	}
+
+	char *buf = new char[len];
+	if( buf == NULL )
+	{
+		CloseHandle( hToken );
+		return NULL;
+	}
+
+	if ( !GetTokenInformation( hToken, TokenUser, buf, len, &len ) )
+	{
+		delete[] buf;
+		CloseHandle( hToken );
+		return NULL;
+	}
+
+	User *user = new User( ((TOKEN_USER*) buf)->User.Sid );
+
+	delete[] buf;
+	CloseHandle( hToken );
+
+	return user;
+#else
+	return NULL;
+#endif
+}
+
+
+
+
+Process::Handle Process::runAsUser( const QString &proc,
+									const QString &desktop )
+{
+#ifdef ITALC_BUILD_WIN32
+	enablePrivilege( SE_ASSIGNPRIMARYTOKEN_NAME, true );
+	enablePrivilege( SE_INCREASE_QUOTA_NAME, true );
+	HANDLE hToken = NULL;
+
+	OpenProcessToken( processHandle(), MAXIMUM_ALLOWED, &hToken );
+	ImpersonateLoggedOnUser( hToken );
+
+	STARTUPINFO si;
+	PROCESS_INFORMATION pi;
+	ZeroMemory( &si, sizeof( STARTUPINFO ) );
+	si.cb = sizeof( STARTUPINFO );
+	if( !desktop.isEmpty() )
+	{
+		si.lpDesktop = (CHAR *) qstrdup( desktop.toAscii().constData() );
+	}
+	HANDLE hNewToken = NULL;
+
+	DuplicateTokenEx( hToken, TOKEN_ASSIGN_PRIMARY|TOKEN_ALL_ACCESS, NULL,
+						SecurityImpersonation, TokenPrimary, &hNewToken );
+
+	CreateProcessAsUser(
+				hNewToken,			// client's access token
+				NULL,			  // file to execute
+				(CHAR *) proc.toUtf8().constData(),	 // command line
+				NULL,			  // pointer to process SECURITY_ATTRIBUTES
+				NULL,			  // pointer to thread SECURITY_ATTRIBUTES
+				FALSE,			 // handles are not inheritable
+				NORMAL_PRIORITY_CLASS,   // creation flags
+				NULL,			  // pointer to new environment block
+				NULL,			  // name of current directory
+				&si,			   // pointer to STARTUPINFO structure
+				&pi				// receives information about new process
+				);
+
+	delete[] si.lpDesktop;
+
+	CloseHandle( hNewToken );
+	RevertToSelf();
+	CloseHandle( hToken );
+
+	return pi.hProcess;
+#else
+	QProcess::startDetached( proc );
+	return 0;
+#endif
+}
+
+
+
 
 
 void sleep( const int _ms )
@@ -326,8 +932,8 @@ void broadcastWOLPacket( const QString & _mac )
 	// UDP-broadcast the MAC-address
 	unsigned int sock = socket( AF_INET, SOCK_DGRAM, IPPROTO_UDP );
 	struct sockaddr_in my_addr;
-	my_addr.sin_family      = AF_INET;            // Address family to use
-	my_addr.sin_port        = htons( PORT_NUM );    // Port number to use
+	my_addr.sin_family	  = AF_INET;			// Address family to use
+	my_addr.sin_port		= htons( PORT_NUM );	// Port number to use
 	my_addr.sin_addr.s_addr = inet_addr( "255.255.255.255" ); // send to
 								  // IP_ADDR
 
@@ -392,7 +998,7 @@ void logonUser( const QString & _uname, const QString & _passwd,
 		if( hProcess == NULL ||
 			!EnumProcessModules( hProcess, &hMod, sizeof( hMod ),
 								&cbNeeded ) )
-	        {
+			{
 			continue;
 		}
 		TCHAR szProcessName[MAX_PATH];
@@ -454,20 +1060,20 @@ void logonUser( const QString & _uname, const QString & _passwd,
 	const ushort * accels = QObject::tr( tr_accels ).utf16();
 
 	/* Need to handle 2 cases here; if an interactive login message is
-         * defined in policy, this window will be displayed with an "OK" button;
-         * if not the login window will be displayed. Sending a space will
-         * dismiss the message, but will also add a space to the currently
-         * selected field if the login windows is active. The solution is:
-         *  1. send the "username" field accelerator (which won't do anything
-         *     to the message window, but will select the "username" field of
-         *     the login window if it is active)
-         *  2. Send a space keypress to dismiss the message. (adds a space
-         *     to username field of login window if active)
-         *  3. Send the "username" field accelerator again; which will select
-         *     the username field for the case where the message was displayed
-         *  4. Send a backspace keypress to remove any space that was added to
-         *     the username field if there is no message.
-         */
+		 * defined in policy, this window will be displayed with an "OK" button;
+		 * if not the login window will be displayed. Sending a space will
+		 * dismiss the message, but will also add a space to the currently
+		 * selected field if the login windows is active. The solution is:
+		 *  1. send the "username" field accelerator (which won't do anything
+		 *	 to the message window, but will select the "username" field of
+		 *	 the login window if it is active)
+		 *  2. Send a space keypress to dismiss the message. (adds a space
+		 *	 to username field of login window if active)
+		 *  3. Send the "username" field accelerator again; which will select
+		 *	 the username field for the case where the message was displayed
+		 *  4. Send a backspace keypress to remove any space that was added to
+		 *	 the username field if there is no message.
+		 */
 	__pressKey( XK_Alt_L, TRUE );
 	pressAndReleaseKey( accels[0] );
 	__pressKey( XK_Alt_L, FALSE );
@@ -750,8 +1356,8 @@ BOOL enablePrivilege( LPCTSTR lpszPrivilegeName, BOOL bEnable )
 		return FALSE;
 	}
 
-	tp.PrivilegeCount           = 1;
-	tp.Privileges[0].Luid       = luid;
+	tp.PrivilegeCount		   = 1;
+	tp.Privileges[0].Luid	   = luid;
 	tp.Privileges[0].Attributes = bEnable ? SE_PRIVILEGE_ENABLED : 0;
 
 	ret = AdjustTokenPrivileges( hToken, FALSE, &tp, 0, NULL, NULL );
