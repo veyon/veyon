@@ -62,223 +62,6 @@
 #include "SystemKeyTrapper.h"
 
 /*
-
-void getUserName( char * * _str )
-{
-	if( !_str )
-	{
-		return;
-	}
-	*_str = NULL;
-
-	DWORD aProcesses[1024], cbNeeded;
-
-	if( !EnumProcesses( aProcesses, sizeof( aProcesses ), &cbNeeded ) )
-	{
-		return;
-	}
-
-	DWORD cProcesses = cbNeeded / sizeof(DWORD);
-
-	for( DWORD i = 0; i < cProcesses; i++ )
-	{
-		HANDLE hProcess = OpenProcess( PROCESS_QUERY_INFORMATION |
-								PROCESS_VM_READ,
-							false, aProcesses[i] );
-		HMODULE hMod;
-		if( hProcess == NULL ||
-			!EnumProcessModules( hProcess, &hMod, sizeof( hMod ),
-								&cbNeeded ) )
-	        {
-			continue;
-		}
-
-		TCHAR szProcessName[MAX_PATH];
-		GetModuleBaseName( hProcess, hMod, szProcessName,
-				sizeof( szProcessName ) / sizeof( TCHAR) );
-		for( TCHAR * ptr = szProcessName; *ptr; ++ptr )
-		{
-			*ptr = tolower( *ptr );
-		}
-
-		if( strcmp( szProcessName, "explorer.exe" ) )
-		{
-			CloseHandle( hProcess );
-			continue;
-		}
-
-		HANDLE hToken;
-		OpenProcessToken( hProcess, TOKEN_READ, &hToken );
-		DWORD len = 0;
-
-		GetTokenInformation( hToken, TokenUser, NULL, 0, &len ) ;
-		if( len <= 0 )
-		{
-			CloseHandle( hToken );
-			CloseHandle( hProcess );
-			continue;
-		}
-		char * buf = new char[len];
-		if( buf == NULL )
-		{
-			CloseHandle( hToken );
-			CloseHandle( hProcess );
-			continue;
-		}
-		if ( !GetTokenInformation( hToken, TokenUser, buf, len, &len ) )
-		{
-			delete[] buf;
-			CloseHandle( hToken );
-			CloseHandle( hProcess );
-			continue;
-		}
-
-		PSID psid = ((TOKEN_USER*) buf)->User.Sid;
-
-		DWORD accname_len = 0;
-		DWORD domname_len = 0;
-		SID_NAME_USE nu;
-		LookupAccountSid( NULL, psid, NULL, &accname_len, NULL,
-							&domname_len, &nu );
-		if( accname_len == 0 || domname_len == 0 )
-		{
-			delete[] buf;
-			CloseHandle( hToken );
-			CloseHandle( hProcess );
-			continue;
-		}
-		char * accname = new char[accname_len];
-		char * domname = new char[domname_len];
-		if( accname == NULL || domname == NULL )
-		{
-			delete[] buf;
-			delete[] accname;
-			delete[] domname;
-			CloseHandle( hToken );
-			CloseHandle( hProcess );
-			continue;
-		}
-		LookupAccountSid( NULL, psid, accname, &accname_len,
-						domname, &domname_len, &nu );
-		WCHAR wszDomain[256];
-		MultiByteToWideChar( CP_ACP, 0, domname,
-			strlen( domname ) + 1, wszDomain, sizeof( wszDomain ) /
-						sizeof( wszDomain[0] ) );
-		WCHAR wszUser[256];
-		MultiByteToWideChar( CP_ACP, 0, accname,
-			strlen( accname ) + 1, wszUser, sizeof( wszUser ) /
-							sizeof( wszUser[0] ) );
-		PBYTE domcontroller = NULL;
-		if( NetGetDCName( NULL, wszDomain, &domcontroller ) !=
-								NERR_Success )
-		{
-			domcontroller = NULL;
-		}
-		LPUSER_INFO_2 pBuf = NULL;
-		NET_API_STATUS nStatus = NetUserGetInfo( (LPWSTR)domcontroller,
-						wszUser, 2, (LPBYTE *) &pBuf );
-		if( nStatus == NERR_Success && pBuf != NULL )
-		{
-			len = WideCharToMultiByte( CP_ACP, 0,
-							pBuf->usri2_full_name,
-						-1, NULL, 0, NULL, NULL );
-			if( len > 0 )
-			{
-				char * mbstr = new char[len];
-				len = WideCharToMultiByte( CP_ACP, 0,
-							pBuf->usri2_full_name,
-						-1, mbstr, len, NULL, NULL );
-				if( strlen( mbstr ) < 1 )
-				{
-					*_str = new char[2*accname_len+4];
-					sprintf( *_str, "%s (%s)", accname,
-								accname );
-				}
-				else
-				{
-					*_str = new char[len+accname_len+4];
-					sprintf( *_str, "%s (%s)", mbstr,
-								accname );
-				}
-				delete[] mbstr;
-			}
-			else
-			{
-				*_str = new char[2*accname_len+4];
-				sprintf( *_str, "%s (%s)", accname, accname );
-			}
-		}
-		if( pBuf != NULL )
-		{
-			NetApiBufferFree( pBuf );
-		}
-		if( domcontroller != NULL )
-		{
-			NetApiBufferFree( domcontroller );
-		}
-		delete[] accname;
-		delete[] domname;
-		FreeSid( psid );
-		delete[] buf;
-		CloseHandle( hToken );
-		CloseHandle( hProcess );
-	}
-}
-
-
-
-class userPollThread : public QThread
-{
-public:
-	userPollThread() : QThread()
-	{
-		start( LowPriority );
-	}
-
-	const QString & name( void )
-	{
-		QMutexLocker m( &m_mutex );
-		return( m_name );
-	}
-
-
-private:
-	virtual void run( void )
-	{
-		while( 1 )
-		{
-			char * name = NULL;
-			getUserName( &name );
-			if( name )
-			{
-				QMutexLocker m( &m_mutex );
-				m_name = name;
-				m_name.detach();
-				delete[] name;
-			}
-			Sleep( 5000 );
-		} // end while( 1 )
-
-	}
-
-	QString m_name;
-	QMutex m_mutex;
-
-}  static * __user_poll_thread = NULL;
-
-
-
-static BOOL WINAPI consoleCtrlHandler( DWORD _dwCtrlType )
-{
-	switch( _dwCtrlType )
-	{
-		case CTRL_LOGOFF_EVENT: return TRUE;
-		default: return FALSE;
-	}
-}
-
-
-
 #include "vncKeymap.h"
 
 extern vncServer * __server;
@@ -343,12 +126,6 @@ namespace LocalSystem
 void initialize( void )
 {
 	initialize( pressKey, "italc_client.log" );
-#ifdef ITALC_BUILD_WIN32
-//	__user_poll_thread = new userPollThread();
-
-//	SetConsoleCtrlHandler( consoleCtrlHandler, TRUE );
-#endif
-
 }
 
 
@@ -386,13 +163,6 @@ void powerDown( void )
 #ifdef ITALC_BUILD_WIN32
 	enablePrivilege( SE_SHUTDOWN_NAME, TRUE );
 	ExitWindowsEx( EWX_POWEROFF | SHUTDOWN_FLAGS, SHUTDOWN_REASON );
-/*	InitiateSystemShutdown( NULL,	// local machine
-				NULL,	// message for shutdown-box
-				0,	// no timeout or possibility to abort
-					// system-shutdown
-				TRUE,	// force closing all apps
-				FALSE	// do not reboot
-				);*/
 	enablePrivilege( SE_SHUTDOWN_NAME, FALSE );
 #else
 	if( LocalSystem::User::loggedOnUser().name() == "root" )
@@ -428,13 +198,6 @@ void reboot( void )
 #ifdef ITALC_BUILD_WIN32
 	enablePrivilege( SE_SHUTDOWN_NAME, TRUE );
 	ExitWindowsEx( EWX_REBOOT | SHUTDOWN_FLAGS, SHUTDOWN_REASON );
-/*	InitiateSystemShutdown( NULL,	// local machine
-				NULL,	// message for shutdown-box
-				0,	// no timeout or possibility to abort
-					// system-shutdown
-				TRUE,	// force closing all apps
-				TRUE	// reboot
-				);*/
 	enablePrivilege( SE_SHUTDOWN_NAME, FALSE );
 #else
 	if( LocalSystem::User::loggedOnUser().name() == "root" )
@@ -449,7 +212,6 @@ void reboot( void )
 	}
 #endif
 }
-
 
 
 
