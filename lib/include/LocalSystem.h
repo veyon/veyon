@@ -56,7 +56,14 @@ namespace LocalSystem
 			return m_name;
 		}
 
+		bool isActive() const
+		{
+			return name() == activeDesktop().name();
+		}
+
 		static Desktop activeDesktop();
+		static Desktop screenLockDesktop();
+
 
 	private:
 		QString m_name;

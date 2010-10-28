@@ -311,6 +311,13 @@ Desktop Desktop::activeDesktop()
 
 
 
+Desktop Desktop::screenLockDesktop()
+{
+	return Desktop( "ScreenLockSlaveDesktop" );
+}
+
+
+
 
 User::User( const QString &name, const QString &dom, const QString &fullname ) :
 	m_userToken( 0 ),
