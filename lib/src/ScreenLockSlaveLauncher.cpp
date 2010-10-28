@@ -26,6 +26,7 @@
 #include <QtCore/QStringList>
 
 #include "ScreenLockSlaveLauncher.h"
+#include "LocalSystem.h"
 #include "Ipc/QtSlaveLauncher.h"
 
 
@@ -60,7 +61,8 @@ void ScreenLockSlaveLauncher::start( const QStringList &arguments )
 	m_origThreadDesktop = GetThreadDesktop( GetCurrentThreadId() );
 	m_origInputDesktop = OpenInputDesktop( 0, FALSE, DESKTOP_SWITCHDESKTOP );
 
-	char desktopName[] = "ScreenLockSlaveDesktop";
+	char *desktopName = qstrdup( LocalSystem::Desktop::screenLockDesktop().
+												name().toUtf8().constData() );
 	m_newDesktop = CreateDesktop( desktopName, NULL, NULL, 0, GENERIC_ALL, NULL );
 	SetThreadDesktop( m_newDesktop );
 
@@ -72,10 +74,12 @@ void ScreenLockSlaveLauncher::start( const QStringList &arguments )
 	si.lpDesktop = desktopName;
 	ZeroMemory( &pi, sizeof(pi) );
 
-	char * cmdline = qstrdup( QString( applicationFilePath() + " " +
-								arguments.join( " " ) ).toAscii().constData() );
+	char *cmdline = qstrdup( QString( applicationFilePath() + " " +
+								arguments.join( " " ) ).toUtf8().constData() );
 	CreateProcess( NULL, cmdline, NULL, NULL, FALSE, 0, NULL, NULL, &si, &pi );
+
 	delete[] cmdline;
+	delete[] desktopName;
 
 	m_lockProcess = pi.hProcess;
 
