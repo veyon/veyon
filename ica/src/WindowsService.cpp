@@ -744,14 +744,22 @@ void WindowsService::monitorSessions()
 	ResetEvent( hEvent );
 
 	const DWORD SESSION_INVALID = 0xFFFFFFFF;
-	DWORD sessionId = SESSION_INVALID ;
 	DWORD oldSessionId = SESSION_INVALID;
 
-    while( WaitForSingleObject( s_stopServiceEvent, 1000 ) == WAIT_TIMEOUT )
+	while( WaitForSingleObject( s_stopServiceEvent, 1000 ) == WAIT_TIMEOUT )
 	{
-		sessionId = WTSGetActiveConsoleSessionId();
+		const DWORD sessionId = WTSGetActiveConsoleSessionId();
 		if( oldSessionId != sessionId )
 		{
+			// some logic for not reacting to desktop changes when the screen
+			// locker got active - we also don't update oldSessionId so when
+			// switching back to the original desktop, the above condition
+			// should not be met and nothing should happen
+			if( LocalSystem::Desktop::screenLockDesktop().isActive() )
+			{
+				continue;
+			}
+
 			if( oldSessionId != SESSION_INVALID )
 			{
 				SetEvent( hEvent );
