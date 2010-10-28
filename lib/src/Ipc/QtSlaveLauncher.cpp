@@ -24,6 +24,7 @@
  *
  */
 
+#include <QtCore/QDebug>
 #include <QtCore/QProcess>
 
 #include "Ipc/QtSlaveLauncher.h"
@@ -53,7 +54,11 @@ void QtSlaveLauncher::start( const QStringList &arguments )
 
 	m_processMutex.lock();
 	m_process = new QProcess;
+#ifndef DEBUG
 	m_process->start( applicationFilePath(), arguments );
+#else
+	qWarning() << applicationFilePath() << arguments;
+#endif
 	m_processMutex.unlock();
 }
 
