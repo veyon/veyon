@@ -145,6 +145,11 @@ rfbUnregisterProtocolExtension(rfbProtocolExtension* extension)
 
 rfbProtocolExtension* rfbGetExtensionIterator()
 {
+	if (! extMutex_initialized) {
+		INIT_MUTEX(extMutex);
+		extMutex_initialized = 1;
+	}
+
 	LOCK(extMutex);
 	return rfbExtensionHead;
 }
