@@ -87,7 +87,12 @@ ItalcSlaveManager::~ItalcSlaveManager()
 
 void ItalcSlaveManager::startDemo( const QString &masterHost, bool fullscreen )
 {
-	createSlave( IdDemoClient );
+	Ipc::SlaveLauncher *slaveLauncher = NULL;
+	if( fullscreen )
+	{
+		slaveLauncher = new ScreenLockSlaveLauncher( applicationFilePath() );
+	}
+	createSlave( IdDemoClient, slaveLauncher );
 	sendMessage( IdDemoClient,
 					Ipc::Msg( DemoClient::StartDemo ).
 						addArg( DemoClient::MasterHost, masterHost ).
