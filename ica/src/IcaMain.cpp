@@ -223,8 +223,8 @@ static int runCoreServer( int argc, char **argv )
 	}
 
 #ifdef ITALC_BUILD_WIN32
-	hShutdownEvent = CreateEvent( NULL, FALSE, FALSE,
-									"Global\\SessionEventUltra" );
+	hShutdownEvent = OpenEvent( EVENT_ALL_ACCESS, FALSE,
+								"Global\\SessionEventUltra" );
 	app.setEventFilter( eventFilter );
 #endif
 

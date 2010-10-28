@@ -740,9 +740,9 @@ void WindowsService::monitorSessions()
 {
 	ItalcServiceSubProcess italcProcess;
 
-	HANDLE hEvent = OpenEvent( EVENT_ALL_ACCESS, FALSE,
-								"Global\\SessionEventUltra" );
-	ResetEvent( hEvent );
+	HANDLE hShutdownEvent = CreateEvent( NULL, FALSE, FALSE,
+									"Global\\SessionEventUltra" );
+	ResetEvent( hShutdownEvent );
 
 	const DWORD SESSION_INVALID = 0xFFFFFFFF;
 	DWORD oldSessionId = SESSION_INVALID;
@@ -763,7 +763,7 @@ void WindowsService::monitorSessions()
 
 			if( oldSessionId != SESSION_INVALID )
 			{
-				SetEvent( hEvent );
+				SetEvent( hShutdownEvent );
 				Sleep( 2000 );
 				italcProcess.stop();
 			}
@@ -775,11 +775,11 @@ void WindowsService::monitorSessions()
 		}
 	}
 
-	SetEvent( hEvent );
+	SetEvent( hShutdownEvent );
 	Sleep( 2000 );
 	italcProcess.stop();
 
-	CloseHandle( hEvent );
+	CloseHandle( hShutdownEvent );
 }
 
 
