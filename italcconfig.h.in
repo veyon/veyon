@@ -102,4 +102,5 @@
 #cmakedefine ITALC_HAVE_XKBLIB_H 1
 #cmakedefine ITALC_HAVE_XKEYBOARD 1
 #cmakedefine ITALC_HAVE_LIBCRYPT 1
-
+#cmakedefine ITALC_HAVE_LIBPTHREAD 1
+#cmakedefine ITALC_HAVE_TLS 1
