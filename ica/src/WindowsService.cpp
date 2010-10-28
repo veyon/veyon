@@ -59,7 +59,8 @@ public:
 				LocalSystem::Process(
 					LocalSystem::Process::findProcessId( "winlogon.exe",
 															sessionId )
-									).runAsUser( appPath, "winsta0\\winlogon" );
+									).runAsUser( appPath,
+											LocalSystem::Desktop().name() );
 		}
 	}
 
