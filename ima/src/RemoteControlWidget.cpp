@@ -283,7 +283,8 @@ RemoteControlWidget::RemoteControlWidget( const QString &host,
 	m_coreConnection( new ItalcCoreConnection( m_vncView->vncConnection() ) ),
 	m_toolBar( new RemoteControlWidgetToolBar( this, viewOnly ) ),
 	m_mainWindow( mainWindow ),
-	m_extraStates( Qt::WindowMaximized )
+	m_extraStates( Qt::WindowMaximized ),
+	m_host( host )
 {
 	setWindowIcon( QPixmap( ":/resources/remote_control.png" ) );
 	setAttribute( Qt::WA_DeleteOnClose, true );
@@ -310,22 +311,12 @@ RemoteControlWidget::~RemoteControlWidget()
 
 
 
-QString RemoteControlWidget::host() const
-{
-	return "blah";
-/*	return( m_vncView->m_connection ? m_vncView->m_connection->host() :
-								QString::null );*/
-}
-
-
-
-
 void RemoteControlWidget::updateWindowTitle()
 {
 	const QString s = m_vncView->isViewOnly() ?
-			tr( "View live (%1 at host %2)" )
+			tr( "View live (%1 @ %2)" )
 		:
-			tr( "Remote control (%1 at host %2)" );
+			tr( "Remote control (%1 @ %2)" );
 	QString u = m_coreConnection->user();
 	if( u.isEmpty() )
 	{

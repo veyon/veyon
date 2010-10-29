@@ -84,7 +84,10 @@ public:
 						MainWindow * _main_window = NULL );
 	virtual ~RemoteControlWidget();
 
-	QString host() const;
+	const QString &host() const
+	{
+		return m_host;
+	}
 
 
 public slots:
@@ -112,6 +115,8 @@ private:
 	MainWindow * m_mainWindow;
 
 	Qt::WindowStates m_extraStates;
+
+	QString m_host;
 
 	friend class RemoteControlWidgetToolBar;
 
