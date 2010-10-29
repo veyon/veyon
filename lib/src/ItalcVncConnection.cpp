@@ -108,13 +108,14 @@ rfbBool ItalcVncConnection::hookNewClient( rfbClient *cl )
 
 	const int size = (int) cl->width * cl->height *
 					( cl->format.bitsPerPixel / 8 );
-	if( t->frameBuffer )
+	if( t->m_frameBuffer )
 	{
 		// do not leak if we get a new framebuffer size
-		delete [] t->frameBuffer;
+		delete [] t->m_frameBuffer;
 	}
-	t->frameBuffer = new uint8_t[size];
-	cl->frameBuffer = t->frameBuffer;
+	t->m_frameBuffer = new uint8_t[size];
+	t->m_framebufferInitialized = false;
+	cl->frameBuffer = t->m_frameBuffer;
 	memset( cl->frameBuffer, '\0', size );
 	cl->format.bitsPerPixel = 32;
 	cl->format.redShift = 16;
@@ -178,6 +179,7 @@ void ItalcVncConnection::hookUpdateFB( rfbClient *cl, int x, int y, int w, int h
 					rfbClientGetClientData( cl, 0 );
 	t->setImage( img );
 	t->m_scaledScreenNeedsUpdate = true;
+	t->m_framebufferInitialized = true;
 	t->emitUpdated( x, y, w, h );
 }
 
@@ -265,7 +267,8 @@ void ItalcVncConnection::hookOutputHandler( const char *format, ... )
 
 ItalcVncConnection::ItalcVncConnection( QObject *parent ) :
 	QThread( parent ),
-	frameBuffer( NULL ),
+	m_frameBuffer( NULL ),
+	m_framebufferInitialized( false ),
 	m_cl( NULL ),
 	m_italcAuthType( ItalcAuthDSA ),
 	m_quality( DemoQuality ),
@@ -286,7 +289,7 @@ ItalcVncConnection::~ItalcVncConnection()
 {
 	stop();
 
-	delete [] frameBuffer;
+	delete [] m_frameBuffer;
 }
 
 

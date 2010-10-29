@@ -134,6 +134,11 @@ public:
 		return m_image.size();
 	}
 
+	bool framebufferInitialized() const
+	{
+		return m_framebufferInitialized;
+	}
+
 	void setScaledSize( const QSize &s )
 	{
 		if( m_scaledSize != s )
@@ -153,8 +158,6 @@ public:
 
 	void rescaleScreen();
 
-
-	uint8_t * frameBuffer;
 
 
 signals:
@@ -188,6 +191,8 @@ private:
 	static rfbBool hookHandleItalcMessage( rfbClient *cl,
 						rfbServerToClientMsg *msg );
 
+	uint8_t *m_frameBuffer;
+	bool m_framebufferInitialized;
 	rfbClient *m_cl;
 	ItalcAuthType m_italcAuthType;
 	QualityLevels m_quality;
