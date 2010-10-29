@@ -1,7 +1,7 @@
 /*
  * DecoratedMessageBox.cpp - simple message-box
  *
- * Copyright (c) 2006-2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -22,7 +22,6 @@
  *
  */
 
-
 #include "DecoratedMessageBox.h"
 #include "LocalSystem.h"
 
@@ -34,10 +33,9 @@
 #include <QtGui/QLabel>
 #include <QtGui/QBoxLayout>
 #include <QtGui/QPushButton>
+#include <QtGui/QSystemTrayIcon>
 
-#ifdef SYSTEMTRAY_SUPPORT
 QSystemTrayIcon * __systray_icon = NULL;
-#endif
 
 
 DecoratedMessageBox::DecoratedMessageBox( const QString & _title,
@@ -116,7 +114,7 @@ void DecoratedMessageBox::trySysTrayMessage( const QString & _title,
 	{
 		return;
 	}
-#ifdef SYSTEMTRAY_SUPPORT
+
 	// OS X does not support messages
 	if( QSystemTrayIcon::supportsMessages() && __systray_icon )
 	{
@@ -124,7 +122,7 @@ void DecoratedMessageBox::trySysTrayMessage( const QString & _title,
 				(QSystemTrayIcon::MessageIcon) _msg_icon, -1 );
 		return;
 	}
-#else
+
 	QPixmap p;
 	switch( _msg_icon )
 	{
@@ -136,8 +134,9 @@ void DecoratedMessageBox::trySysTrayMessage( const QString & _title,
 			p = QPixmap( ":/resources/stop.png" );
 			break;
 	}
+
 	new DecoratedMessageBox( _title, _msg, p );
-#endif
+
 }
 
 

@@ -29,11 +29,6 @@
 #include <QtGui/QPixmap>
 #include "QtFeatures.h"
 
-#ifdef SYSTEMTRAY_SUPPORT
-#include <QtGui/QSystemTrayIcon>
-#endif
-
-
 class DecoratedMessageBox : public QDialog
 {
 	Q_OBJECT
@@ -56,10 +51,6 @@ public:
 							const QString & _msg,
 							MessageIcon _msg_icon );
 } ;
-
-#ifdef SYSTEMTRAY_SUPPORT
-extern QSystemTrayIcon * __systray_icon;
-#endif
 
 #endif
 
