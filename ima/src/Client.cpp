@@ -902,7 +902,8 @@ void Client::paintEvent( QPaintEvent * _pe )
 	p.setPen( m_classRoomItem->isSelected() ? Qt::white : Qt::black );
 	p.drawText( 10, TITLE_HEIGHT-7, s );
 
-	if( m_connection->isConnected() && m_mode == Mode_Overview )
+	if( m_mode == Mode_Overview && m_connection->isConnected() &&
+			m_connection->vncConnection()->framebufferInitialized() )
 	{
 		p.drawImage( CONTENT_OFFSET, m_connection->
 					vncConnection()->scaledScreen() );
