@@ -28,6 +28,7 @@
 
 #include "Ipc/Core.h"
 
+#include <QtCore/QMutex>
 #include <QtCore/QProcess>
 #include <QtCore/QSignalMapper>
 #include <QtNetwork/QTcpServer>
@@ -92,6 +93,8 @@ private:
 
 	typedef QMap<Ipc::Id, ProcessInformation> ProcessMap;
 	ProcessMap m_processes;
+
+	QMutex m_processMapMutex;
 
 };
 

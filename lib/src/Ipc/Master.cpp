@@ -36,7 +36,8 @@ Master::Master( const QString &applicationFilePath ) :
 	QTcpServer(),
 	m_applicationFilePath( applicationFilePath ),
 	m_socketReceiveMapper( this ),
-	m_processes()
+	m_processes(),
+	m_processMapMutex( QMutex::Recursive )
 {
 	if( !listen( QHostAddress::LocalHost ) )
 	{
@@ -55,6 +56,8 @@ Master::Master( const QString &applicationFilePath ) :
 
 Master::~Master()
 {
+	QMutexLocker l( &m_processMapMutex );
+
 	const QList<Ipc::Id> processIds = m_processes.keys();
 	foreach( const Ipc::Id &id, processIds )
 	{
@@ -76,13 +79,14 @@ void Master::createSlave( const Ipc::Id &id, SlaveLauncher *slaveLauncher )
 	}
 
 	ProcessInformation pi;
-	pi.sock = NULL;
 
 	pi.slaveLauncher = slaveLauncher;
 	pi.slaveLauncher->start( QStringList() << "-slave" << id <<
 											QString::number( serverPort() ) );
 
+	m_processMapMutex.lock();
 	m_processes[id] = pi;
+	m_processMapMutex.unlock();
 }
 
 
@@ -90,6 +94,8 @@ void Master::createSlave( const Ipc::Id &id, SlaveLauncher *slaveLauncher )
 
 void Master::stopSlave( const Ipc::Id &id )
 {
+	QMutexLocker l( &m_processMapMutex );
+
 	if( m_processes.contains( id ) )
 	{
 		if( isSlaveRunning( id ) )
@@ -117,6 +123,8 @@ void Master::stopSlave( const Ipc::Id &id )
 
 bool Master::isSlaveRunning( const Ipc::Id &id )
 {
+	QMutexLocker l( &m_processMapMutex );
+
 	if( m_processes.contains( id ) )
 	{
 		return m_processes[id].slaveLauncher->isRunning();
@@ -130,6 +138,8 @@ bool Master::isSlaveRunning( const Ipc::Id &id )
 
 void Master::sendMessage( const Ipc::Id &id, const Ipc::Msg &msg )
 {
+	QMutexLocker l( &m_processMapMutex );
+
 	if( m_processes.contains( id ) )
 	{
 		if( m_processes[id].sock )
@@ -148,6 +158,8 @@ void Master::sendMessage( const Ipc::Id &id, const Ipc::Msg &msg )
 
 Ipc::Msg Master::receiveMessage( const Ipc::Id &id )
 {
+	QMutexLocker l( &m_processMapMutex );
+
 	Ipc::Msg m;
 	if( m_processes.contains( id ) && m_processes[id].sock )
 	{
@@ -192,6 +204,8 @@ void Master::receiveMessage( QObject *sockObj )
 		Ipc::Msg m;
 		if( m.receive( sock ).isValid() )
 		{
+			QMutexLocker l( &m_processMapMutex );
+
 			// search for slave ID
 			Ipc::Id slaveId;
 			for( ProcessMap::ConstIterator it = m_processes.begin();
