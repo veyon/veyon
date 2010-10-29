@@ -65,7 +65,6 @@ void ScreenLockSlaveLauncher::start( const QStringList &arguments )
 	char *desktopName = qstrdup( LocalSystem::Desktop::screenLockDesktop().
 												name().toUtf8().constData() );
 	m_newDesktop = CreateDesktop( desktopName, NULL, NULL, 0, GENERIC_ALL, NULL );
-	SetThreadDesktop( m_newDesktop );
 
 	LocalSystem::User user = LocalSystem::User::loggedOnUser();
 	LocalSystem::Process proc(
@@ -98,7 +97,6 @@ void ScreenLockSlaveLauncher::stop()
 	if( m_lockProcess )
 	{
 		SwitchDesktop( m_origInputDesktop );
-		SetThreadDesktop( m_origThreadDesktop );
 
 		TerminateProcess( m_lockProcess, 0 );
 		CloseDesktop( m_newDesktop );
