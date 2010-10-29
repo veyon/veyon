@@ -387,8 +387,14 @@ bool ItalcVncConnection::waitForConnected( int timeout ) const
 void ItalcVncConnection::setImage( const QImage & img )
 {
 	m_imgLock.lockForWrite();
+	const QSize oldSize = m_image.size();
 	m_image = img;
 	m_imgLock.unlock();
+
+	if( img.size() != oldSize )
+	{
+		emit framebufferSizeChanged( img.width(), img.height() );
+	}
 }
 
 

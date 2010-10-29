@@ -163,6 +163,7 @@ public:
 signals:
 	void newClient( rfbClient *c );
 	void imageUpdated( int x, int y, int w, int h );
+	void framebufferSizeChanged( int w, int h );
 	void cursorShapeUpdated( const QImage &cursorShape, int xh, int yh );
 	void gotCut( const QString &text );
 	void passwordRequest();
