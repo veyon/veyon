@@ -2,7 +2,7 @@
  * Client.h - declaration of class Client which represents a client, shows its
  *            display and allows controlling it in several ways
  *
- * Copyright (c) 2004-2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -22,7 +22,6 @@
  * Boston, MA 02111-1307, USA.
  *
  */
-
 
 #ifndef _CLIENT_H
 #define _CLIENT_H
@@ -289,6 +288,7 @@ public slots:
 private slots:
 	void enlarge( void );
 	void reload( void );
+	void setUpdateFlag();
 
 
 private:
@@ -311,6 +311,7 @@ private:
 
 	MainWindow * m_mainWindow;
 	ItalcCoreConnection * m_connection;
+	bool m_framebufferUpdated;
 	QPoint m_clickPoint;
 	QPoint m_origPos;
 	QSize m_origSize;

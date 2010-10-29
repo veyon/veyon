@@ -23,7 +23,6 @@
  *
  */
 
- 
 #include <QtGui/QCloseEvent>
 #include <QtGui/QLinearGradient>
 #include <QtGui/QMenu>
@@ -472,6 +471,7 @@ Client::Client( const QString & _hostname,
 	QWidget( _main_window->workspace() ),
 	m_mainWindow( _main_window ),
 	m_connection( NULL ),
+	m_framebufferUpdated( false ),
 	m_clickPoint( -1, -1 ),
 	m_origPos( -1, -1 ),
 	m_hostname( _hostname ),
@@ -500,6 +500,10 @@ Client::Client( const QString & _hostname,
 	conn->setQuality( ItalcVncConnection::ThumbnailQuality );
 	conn->setFramebufferUpdateInterval(
 				m_mainWindow->getClassroomManager()->updateInterval() * 1000 );
+
+	// set a flag so we only update the view if there were some updates
+	connect( conn, SIGNAL( imageUpdated( int, int, int, int ) ),
+				this, SLOT( setUpdateFlag() ) );
 
 	m_connection = new ItalcCoreConnection( conn );
 
@@ -1001,7 +1005,8 @@ void Client::showEvent( QShowEvent * )
 
 void Client::reload()
 {
-	QTimer::singleShot( 1000,
+	QTimer::singleShot(
+				m_mainWindow->getClassroomManager()->updateInterval() * 1000,
 				this,
 				SLOT( reload() ) );
 	if( !isVisible() )
@@ -1017,18 +1022,38 @@ void Client::reload()
 	if( userLoggedIn() )
 	{
 		m_connection->sendGetUserInformationRequest();
-		m_user = m_connection->user();
-		update();
+		if( m_connection->user() != m_user )
+		{
+			m_user = m_connection->user();
+			update();
+		}
+		if( m_framebufferUpdated )
+		{
+			m_framebufferUpdated = false;
+			update();
+		}
 	}
 	else
 	{
-		m_user = QString();
+		if( !m_user.isEmpty() )
+		{
+			m_user = QString();
+			update();
+		}
 	}
 
 	if( m_classRoomItem )
 	{
 		m_classRoomItem->setUser( m_user );
 	}
+}
+
+
+
+
+void Client::setUpdateFlag()
+{
+	m_framebufferUpdated = true;
 }
 
 
