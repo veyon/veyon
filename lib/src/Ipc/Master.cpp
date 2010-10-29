@@ -81,12 +81,14 @@ void Master::createSlave( const Ipc::Id &id, SlaveLauncher *slaveLauncher )
 	ProcessInformation pi;
 
 	pi.slaveLauncher = slaveLauncher;
-	pi.slaveLauncher->start( QStringList() << "-slave" << id <<
-											QString::number( serverPort() ) );
 
 	m_processMapMutex.lock();
 	m_processes[id] = pi;
 	m_processMapMutex.unlock();
+
+	pi.slaveLauncher->start( QStringList() << "-slave" << id <<
+											QString::number( serverPort() ) );
+
 }
 
 
