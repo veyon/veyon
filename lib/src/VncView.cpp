@@ -75,6 +75,9 @@ VncView::VncView( const QString &host, QWidget *parent, Mode mode ) :
 			this, SLOT( updateImage( int, int, int, int ) ),
 						Qt::BlockingQueuedConnection );
 
+	connect( &m_vncConn, SIGNAL( framebufferSizeChanged() ),
+				this, SIGNAL( sizeHintChanged() ) );
+
 	connect( &m_vncConn, SIGNAL( cursorShapeUpdated( const QImage &, int, int ) ),
 				this, SLOT( updateCursorShape( const QImage &, int, int ) ) );
 	show();

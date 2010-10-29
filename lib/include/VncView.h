@@ -85,6 +85,7 @@ signals:
 	void keyEvent( int, bool );
 	void startConnection();
 	void connectionEstablished();
+	void sizeHintChanged();
 
 
 private slots:
