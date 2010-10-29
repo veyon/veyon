@@ -238,6 +238,7 @@ void Master::receiveMessage( QObject *sockObj )
 					{
 						m.send( sock );
 					}
+					m_processes[id].pendingMessages.clear();
 				}
 				else
 				{
