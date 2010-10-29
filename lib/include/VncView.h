@@ -70,8 +70,7 @@ public:
 		return &m_vncConn;
 	}
 
-	QSize scaledSize( const QSize & _default = QSize() ) const;
-
+	QSize scaledSize() const;
 	QSize framebufferSize() const;
 	QSize sizeHint() const;
 
@@ -125,8 +124,6 @@ private:
 	bool m_viewOnlyFocus;
 	bool m_scaledView;
 	bool m_initDone;
-
-	QPoint m_viewOffset;
 
 	int m_buttonMask;
 	QMap<unsigned int, bool> m_mods;

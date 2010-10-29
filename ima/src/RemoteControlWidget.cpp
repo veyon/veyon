@@ -287,11 +287,15 @@ RemoteControlWidget::RemoteControlWidget( const QString &host,
 {
 	setWindowIcon( QPixmap( ":/resources/remote_control.png" ) );
 	setAttribute( Qt::WA_DeleteOnClose, true );
+
 	m_vncView->move( 0, 0 );
 	connect( m_vncView, SIGNAL( mouseAtTop() ), m_toolBar,
 							SLOT( appear() ) );
 	connect( m_vncView, SIGNAL( keyEvent( int, bool ) ),
 				this, SLOT( checkKeyEvent( int, bool ) ) );
+	connect( m_vncView, SIGNAL( connectionEstablished() ),
+					this, SLOT( lateInit() ) );
+
 	show();
 	LocalSystem::activateWindow( this );
 
@@ -359,6 +363,17 @@ void RemoteControlWidget::checkKeyEvent( int key, bool pressed )
 	if( pressed && key == XK_Escape && !m_coreConnection->isConnected() )
 	{
 		close();
+	}
+}
+
+
+
+
+void RemoteControlWidget::lateInit()
+{
+	if( !( windowState() & Qt::WindowFullScreen ) )
+	{
+		resize( m_vncView->sizeHint() );
 	}
 }
 

@@ -42,7 +42,7 @@ DemoClient::DemoClient( const QString &host, bool fullscreen ) :
 	m_toplevel->setWindowTitle( tr( "iTALC Demo" ) );
 	m_toplevel->setWindowIcon( QPixmap( ":/resources/display.png" ) );
 	m_toplevel->setAttribute( Qt::WA_DeleteOnClose, false );
-	m_toplevel->resize( QApplication::desktop()->availableGeometry( m_toplevel ).size() );
+	m_toplevel->resize( QApplication::desktop()->availableGeometry( m_toplevel ).size() - QSize( 10, 30 ) );
 
 	QVBoxLayout * toplevel_layout = new QVBoxLayout;
 	toplevel_layout->setMargin( 0 );
@@ -54,11 +54,16 @@ DemoClient::DemoClient( const QString &host, bool fullscreen ) :
 
 	connect( m_toplevel, SIGNAL( destroyed( QObject * ) ),
 			this, SLOT( viewDestroyed( QObject * ) ) );
+	m_toplevel->move( 0, 0 );
 	if( !fullscreen )
 	{
-		m_toplevel->showMaximized();
-		LocalSystem::activateWindow( m_toplevel );
+		m_toplevel->show();
 	}
+	else
+	{
+		m_toplevel->showFullScreen();
+	}
+	LocalSystem::activateWindow( m_toplevel );
 }
 
 

@@ -31,8 +31,8 @@
 #include "SystemKeyTrapper.h"
 #include "QtFeatures.h"
 
-#include <QtCore/QTimer>
 #include <QtGui/QApplication>
+#include <QtGui/QDesktopWidget>
 #include <QtGui/QMouseEvent>
 #include <QtGui/QPainter>
 
@@ -50,7 +50,6 @@ VncView::VncView( const QString &host, QWidget *parent, Mode mode ) :
 	m_viewOnlyFocus( true ),
 	m_scaledView( true ),
 	m_initDone( false ),
-	m_viewOffset( QPoint( 0, 0 ) ),
 	m_buttonMask( 0 ),
 	m_establishingConnection( NULL ),
 	m_sysKeyTrapper( new SystemKeyTrapper( false ) )
@@ -78,18 +77,10 @@ VncView::VncView( const QString &host, QWidget *parent, Mode mode ) :
 
 	connect( &m_vncConn, SIGNAL( cursorShapeUpdated( const QImage &, int, int ) ),
 				this, SLOT( updateCursorShape( const QImage &, int, int ) ) );
-/*	setMouseTracking( true );
-	//setWidgetAttribute( Qt::WA_OpaquePaintEvent );
-	setAttribute( Qt::WA_NoSystemBackground, true );
-	setAttribute( Qt::WA_DeleteOnClose, true );*/
 	show();
 
-	QSize parent_size = size();
-	if( parentWidget() != NULL )
-	{
-		parent_size = parentWidget()->size();
-	}
-	resize( parent_size );
+	resize( QApplication::desktop()->
+						availableGeometry( this ).size() - QSize( 10, 30 ) );
 
 	setFocusPolicy( Qt::StrongFocus );
 	setFocus();
@@ -144,20 +135,24 @@ QSize VncView::framebufferSize() const
 
 QSize VncView::sizeHint() const
 {
-	return scaledSize( framebufferSize() );
+	if( m_scaledView )
+	{
+		return scaledSize();
+	}
+	return framebufferSize();
 }
 
 
 
 
-QSize VncView::scaledSize( const QSize & _default ) const
+QSize VncView::scaledSize() const
 {
 	const QSize s = size();
 	QSize fbs = framebufferSize();
 	if( ( s.width() >= fbs.width() && s.height() >= fbs.height() ) ||
 							m_scaledView == false )
 	{
-		return _default;
+		return fbs;
 	}
 	fbs.scale( s, Qt::KeepAspectRatio );
 	return fbs;
@@ -190,9 +185,9 @@ void VncView::setViewOnly( bool _vo )
 
 
 
-void VncView::setScaledView( bool _sv )
+void VncView::setScaledView( bool scaledView )
 {
-	m_scaledView = _sv;
+	m_scaledView = scaledView;
 	m_vncConn.setScaledSize( scaledSize() );
 	update();
 }
@@ -435,12 +430,11 @@ QPoint VncView::mapToFramebuffer( const QPoint &pos )
 
 	if( m_scaledView )
 	{
-		return QPoint( pos.x() * fbs.width() / scaledSize( fbs ).width(),
-						pos.y() * fbs.height() / scaledSize( fbs ).height() );
+		return QPoint( pos.x() * fbs.width() / scaledSize().width(),
+						pos.y() * fbs.height() / scaledSize().height() );
 	}
 
-	return QPoint( pos.x() + m_viewOffset.x(),
-					pos.y() + m_viewOffset.y() );
+	return pos;
 }
 
 
@@ -459,7 +453,7 @@ QRect VncView::mapFromFramebuffer( const QRect &r )
 		return( QRect( (int)(r.x()*dx), (int)(r.y()*dy),
 					(int)(r.width()*dx), (int)(r.height()*dy) ) );
 	}
-	return( r.translated( -m_viewOffset ) );
+	return r;
 }
 
 
@@ -584,17 +578,9 @@ void VncView::paintEvent( QPaintEvent *paintEvent )
 
 
 
-void VncView::resizeEvent( QResizeEvent * _re )
+void VncView::resizeEvent( QResizeEvent *event )
 {
 	m_vncConn.setScaledSize( scaledSize() );
-	const int max_x = framebufferSize().width() - width();
-	const int max_y = framebufferSize().height() - height();
-	if( m_viewOffset.x() > max_x || m_viewOffset.y() > max_y )
-	{
-		m_viewOffset = QPoint(
-				qMax( 0, qMin( m_viewOffset.x(), max_x ) ),
-				qMax( 0, qMin( m_viewOffset.y(), max_y ) ) );
-	}
 
 	repaint();
 
@@ -605,7 +591,7 @@ void VncView::resizeEvent( QResizeEvent * _re )
 
 	updateLocalCursor();
 
-	QWidget::resizeEvent( _re );
+	QWidget::resizeEvent( event );
 }
 
 
