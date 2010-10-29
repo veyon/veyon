@@ -155,9 +155,9 @@ SET(ITALCCONFIG ${CMAKE_BINARY_DIR}/italcconfig.h)
 SET(RFBCONFIG ${CMAKE_BINARY_DIR}/rfb/rfbconfig.h)
 
 CONFIGURE_FILE(${CMAKE_SOURCE_DIR}/italcconfig.h.in ${ITALCCONFIG})
-SET(IN_FILES italc.spec ima/data/italc ima/data/italc.desktop ica/ica.rc ima/italc.rc)
+SET(IN_FILES iTALC.nsi italc.spec ima/data/italc ima/data/italc.desktop ica/ica.rc ima/italc.rc)
 FOREACH(f ${IN_FILES})
-	CONFIGURE_FILE(${CMAKE_SOURCE_DIR}/${f}.in ${CMAKE_BINARY_DIR}/${f})
+	CONFIGURE_FILE(${CMAKE_SOURCE_DIR}/${f}.in ${CMAKE_BINARY_DIR}/${f} @ONLY)
 ENDFOREACH(f ${IN_FILES})
 
 FILE(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/rfb)
@@ -203,6 +203,18 @@ ADD_CUSTOM_TARGET(dist
 			COMMAND rm -rf ${TMP})
 
 SET_DIRECTORY_PROPERTIES(PROPERTIES ADDITIONAL_MAKE_CLEAN_FILES "italcconfig.h")
+
+ADD_CUSTOM_TARGET(win32-nsi
+			COMMAND make
+			COMMAND rm -rf ${TMP}
+			COMMAND mkdir -p ${TMP}
+			COMMAND cp lib/ItalcCore.dll ica/ica.exe ima/italc.exe ${TMP}
+			COMMAND ${STRIP} ${TMP}/*
+			COMMAND cp ${CMAKE_SOURCE_DIR}/COPYING ${TMP}
+			COMMAND cp ${CMAKE_SOURCE_DIR}/COPYING ${TMP}/LICENSE.TXT
+			COMMAND cp ${CMAKE_SOURCE_DIR}/README ${TMP}/README.TXT
+			COMMAND makensis iTALC.nsi
+			COMMAND rm -rf ${TMP})
 
 
 #

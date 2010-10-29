@@ -1,0 +1,280 @@
+!define DLLDIR "@MINGW_PREFIX@/bin"
+!define APP_NAME "iTALC"
+!define COMP_NAME "iTALC Solutions Inc."
+!define WEB_SITE "http://italc.sf.net"
+!define VERSION "@VERSION@"
+!define COPYRIGHT "© Tobias Doerffel 2004-2010"
+!define DESCRIPTION "Intelligent Teaching and Learning with Computers"
+!define LICENSE_TXT "COPYING"
+!define INSTALLER_NAME "italc-${VERSION}-setup.exe"
+!define MAIN_APP_EXE "italc.exe"
+!define INSTALL_TYPE "SetShellVarContext all"
+!define REG_ROOT "HKLM"
+!define REG_APP_PATH "Software\Microsoft\Windows\CurrentVersion\App Paths\${MAIN_APP_EXE}"
+!define UNINSTALL_PATH "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APP_NAME}"
+
+######################################################################
+
+VIProductVersion  "${VERSION}.0"
+VIAddVersionKey "ProductName"  "${APP_NAME}"
+VIAddVersionKey "CompanyName"  "${COMP_NAME}"
+VIAddVersionKey "LegalCopyright"  "${COPYRIGHT}"
+VIAddVersionKey "FileDescription"  "${DESCRIPTION}"
+VIAddVersionKey "FileVersion"  "${VERSION}"
+
+######################################################################
+
+SetCompressor /SOLID Lzma
+Name "${APP_NAME}"
+Caption "${APP_NAME}"
+OutFile "${INSTALLER_NAME}"
+BrandingText "${APP_NAME}"
+XPStyle on
+InstallDirRegKey "${REG_ROOT}" "${REG_APP_PATH}" ""
+InstallDir "$PROGRAMFILES\iTALC"
+ShowInstDetails show
+
+######################################################################
+
+!include "MUI.nsh"
+
+!define MUI_ABORTWARNING
+!define MUI_UNABORTWARNING
+
+!define MUI_LANGDLL_REGISTRY_ROOT "${REG_ROOT}"
+!define MUI_LANGDLL_REGISTRY_KEY "${UNINSTALL_PATH}"
+!define MUI_LANGDLL_REGISTRY_VALUENAME "Installer Language"
+
+!insertmacro MUI_PAGE_WELCOME
+
+!insertmacro MUI_PAGE_LICENSE "${LICENSE_TXT}"
+
+!insertmacro MUI_PAGE_DIRECTORY
+
+!insertmacro MUI_PAGE_COMPONENTS
+
+!ifdef REG_START_MENU
+!define MUI_STARTMENUPAGE_NODISABLE
+!define MUI_STARTMENUPAGE_DEFAULTFOLDER "iTALC"
+!define MUI_STARTMENUPAGE_REGISTRY_ROOT "${REG_ROOT}"
+!define MUI_STARTMENUPAGE_REGISTRY_KEY "${UNINSTALL_PATH}"
+!define MUI_STARTMENUPAGE_REGISTRY_VALUENAME "${REG_START_MENU}"
+!insertmacro MUI_PAGE_STARTMENU Application $SM_Folder
+!endif
+
+!insertmacro MUI_PAGE_INSTFILES
+
+!define MUI_FINISHPAGE_RUN
+!define MUI_FINISHPAGE_RUN_TEXT "Run key setup tool now"
+!define MUI_FINISHPAGE_RUN_FUNCTION "RunKeySetupTool"
+
+!insertmacro MUI_PAGE_FINISH
+
+!insertmacro MUI_UNPAGE_CONFIRM
+
+!insertmacro MUI_UNPAGE_INSTFILES
+
+!insertmacro MUI_UNPAGE_FINISH
+
+!insertmacro MUI_LANGUAGE "Albanian"
+!insertmacro MUI_LANGUAGE "Arabic"
+!insertmacro MUI_LANGUAGE "Belarusian"
+!insertmacro MUI_LANGUAGE "Bosnian"
+!insertmacro MUI_LANGUAGE "Breton"
+!insertmacro MUI_LANGUAGE "Bulgarian"
+!insertmacro MUI_LANGUAGE "Catalan"
+!insertmacro MUI_LANGUAGE "Croatian"
+!insertmacro MUI_LANGUAGE "Czech"
+!insertmacro MUI_LANGUAGE "Danish"
+!insertmacro MUI_LANGUAGE "Dutch"
+!insertmacro MUI_LANGUAGE "English"
+!insertmacro MUI_LANGUAGE "Estonian"
+!insertmacro MUI_LANGUAGE "Farsi"
+!insertmacro MUI_LANGUAGE "Finnish"
+!insertmacro MUI_LANGUAGE "French"
+!insertmacro MUI_LANGUAGE "German"
+!insertmacro MUI_LANGUAGE "Greek"
+!insertmacro MUI_LANGUAGE "Hebrew"
+!insertmacro MUI_LANGUAGE "Hungarian"
+!insertmacro MUI_LANGUAGE "Icelandic"
+!insertmacro MUI_LANGUAGE "Indonesian"
+!insertmacro MUI_LANGUAGE "Italian"
+!insertmacro MUI_LANGUAGE "Japanese"
+!insertmacro MUI_LANGUAGE "Korean"
+!insertmacro MUI_LANGUAGE "Kurdish"
+!insertmacro MUI_LANGUAGE "Latvian"
+!insertmacro MUI_LANGUAGE "Lithuanian"
+!insertmacro MUI_LANGUAGE "Luxembourgish"
+!insertmacro MUI_LANGUAGE "Macedonian"
+!insertmacro MUI_LANGUAGE "Malay"
+!insertmacro MUI_LANGUAGE "Mongolian"
+!insertmacro MUI_LANGUAGE "Norwegian"
+!insertmacro MUI_LANGUAGE "Polish"
+!insertmacro MUI_LANGUAGE "Portuguese"
+!insertmacro MUI_LANGUAGE "PortugueseBR"
+!insertmacro MUI_LANGUAGE "Romanian"
+!insertmacro MUI_LANGUAGE "Russian"
+!insertmacro MUI_LANGUAGE "Serbian"
+!insertmacro MUI_LANGUAGE "SerbianLatin"
+!insertmacro MUI_LANGUAGE "SimpChinese"
+!insertmacro MUI_LANGUAGE "Slovak"
+!insertmacro MUI_LANGUAGE "Slovenian"
+!insertmacro MUI_LANGUAGE "Spanish"
+!insertmacro MUI_LANGUAGE "Swedish"
+!insertmacro MUI_LANGUAGE "Thai"
+!insertmacro MUI_LANGUAGE "TradChinese"
+!insertmacro MUI_LANGUAGE "Turkish"
+!insertmacro MUI_LANGUAGE "Ukrainian"
+
+!insertmacro MUI_RESERVEFILE_LANGDLL
+
+######################################################################
+
+Function .onInit
+#!insertmacro MUI_LANGDLL_DISPLAY
+FunctionEnd
+
+######################################################################
+
+Section "iTALC Service"
+SectionIn RO
+${INSTALL_TYPE}
+ExecWait '"$INSTDIR\ica.exe" -quiet -unregisterservice'
+SetOverwrite ifnewer
+SetOutPath "$INSTDIR"
+# DLLs
+File "${DLLDIR}\QtCore4.dll"
+File "${DLLDIR}\QtGui4.dll"
+File "${DLLDIR}\QtXml4.dll"
+File "${DLLDIR}\QtNetwork4.dll"
+File "${DLLDIR}\zlib1.dll"
+File "${DLLDIR}\libjpeg-8.dll"
+File "${DLLDIR}\libeay32.dll"
+File "${DLLDIR}\libssl32.dll"
+# core components
+File "italc-${VERSION}\ica.exe"
+File "italc-${VERSION}\ItalcCore.dll"
+File "italc-${VERSION}\setup.exe"
+File "italc-${VERSION}\LICENSE.TXT"
+File "italc-${VERSION}\README.TXT"
+ExecWait '"$INSTDIR\ica.exe" -quiet -registerservice'
+ExecWait '"$INSTDIR\ica.exe" -quiet -startservice'
+SectionEnd
+
+Section "iTALC Master"
+${INSTALL_TYPE}
+SetOutPath "$INSTDIR"
+File "italc-${VERSION}\italc.exe"
+
+!ifdef REG_START_MENU
+!insertmacro MUI_STARTMENU_WRITE_BEGIN Application
+CreateDirectory "$SMPROGRAMS\$SM_Folder"
+CreateShortCut "$SMPROGRAMS\$SM_Folder\${APP_NAME}.lnk" "$INSTDIR\${MAIN_APP_EXE}"
+CreateShortCut "$DESKTOP\${APP_NAME}.lnk" "$INSTDIR\${MAIN_APP_EXE}"
+!insertmacro MUI_STARTMENU_WRITE_END
+!endif
+
+!ifndef REG_START_MENU
+CreateDirectory "$SMPROGRAMS\iTALC"
+CreateShortCut "$SMPROGRAMS\iTALC\${APP_NAME}.lnk" "$INSTDIR\${MAIN_APP_EXE}"
+CreateShortCut "$DESKTOP\${APP_NAME}.lnk" "$INSTDIR\${MAIN_APP_EXE}"
+!endif
+SectionEnd
+
+Function RunKeySetupTool
+	Exec '"$INSTDIR\setup.exe"'
+FunctionEnd
+
+######################################################################
+
+Section -Icons_Reg
+SetOutPath "$INSTDIR"
+WriteUninstaller "$INSTDIR\uninstall.exe"
+
+!ifdef REG_START_MENU
+!insertmacro MUI_STARTMENU_WRITE_BEGIN Application
+CreateDirectory "$SMPROGRAMS\$SM_Folder"
+CreateShortCut "$SMPROGRAMS\$SM_Folder\iTALC Key Setup Tool.lnk" "$INSTDIR\setup.exe"
+CreateShortCut "$SMPROGRAMS\$SM_Folder\Uninstall iTALC.lnk" "$INSTDIR\uninstall.exe"
+WriteIniStr "$INSTDIR\iTALC website.url" "InternetShortcut" "URL" "${WEB_SITE}"
+CreateShortCut "$SMPROGRAMS\$SM_Folder\iTALC Website.lnk" "$INSTDIR\iTALC website.url"
+!insertmacro MUI_STARTMENU_WRITE_END
+!endif
+
+!ifndef REG_START_MENU
+CreateDirectory "$SMPROGRAMS\iTALC"
+CreateShortCut "$SMPROGRAMS\iTALC\iTALC Key Setup Tool.lnk" "$INSTDIR\setup.exe"
+CreateShortCut "$SMPROGRAMS\iTALC\Uninstall iTALC.lnk" "$INSTDIR\uninstall.exe"
+WriteIniStr "$INSTDIR\iTALC website.url" "InternetShortcut" "URL" "${WEB_SITE}"
+CreateShortCut "$SMPROGRAMS\iTALC\iTALC Website.lnk" "$INSTDIR\iTALC website.url"
+!endif
+
+WriteRegStr ${REG_ROOT} "${REG_APP_PATH}" "" "$INSTDIR\${MAIN_APP_EXE}"
+WriteRegStr ${REG_ROOT} "${UNINSTALL_PATH}"  "DisplayName" "iTALC"
+WriteRegStr ${REG_ROOT} "${UNINSTALL_PATH}"  "UninstallString" "$INSTDIR\uninstall.exe"
+WriteRegStr ${REG_ROOT} "${UNINSTALL_PATH}"  "DisplayIcon" "$INSTDIR\${MAIN_APP_EXE}"
+WriteRegStr ${REG_ROOT} "${UNINSTALL_PATH}"  "DisplayVersion" "${VERSION}"
+WriteRegStr ${REG_ROOT} "${UNINSTALL_PATH}"  "Publisher" "${COMP_NAME}"
+WriteRegStr ${REG_ROOT} "${UNINSTALL_PATH}"  "URLInfoAbout" "${WEB_SITE}"
+SectionEnd
+
+######################################################################
+
+Section Uninstall
+${INSTALL_TYPE}
+ExecWait '"$INSTDIR\ica.exe" -quiet -unregisterservice'
+# make sure the service is stopped and all file handles are released
+Sleep 2000
+Delete "$INSTDIR\ica.exe"
+Delete "$INSTDIR\zlib1.dll"
+Delete "$INSTDIR\libjpeg-8.dll"
+Delete "$INSTDIR\QtXml4.dll"
+Delete "$INSTDIR\libeay32.dll"
+Delete "$INSTDIR\QtNetwork4.dll"
+Delete "$INSTDIR\QtCore4.dll"
+Delete "$INSTDIR\libssl32.dll"
+Delete "$INSTDIR\LICENSE.TXT"
+Delete "$INSTDIR\vnchooks.dll"
+Delete "$INSTDIR\setup.exe"
+Delete "$INSTDIR\italc.exe"
+Delete "$INSTDIR\README.TXT"
+Delete "$INSTDIR\italc_core.dll"
+Delete "$INSTDIR\QtGui4.dll"
+Delete "$INSTDIR\uninstall.exe"
+Delete "$INSTDIR\iTALC website.url"
+
+RmDir "$INSTDIR"
+
+!ifdef REG_START_MENU
+!insertmacro MUI_STARTMENU_GETFOLDER "Application" $SM_Folder
+Delete "$SMPROGRAMS\$SM_Folder\iTALC.lnk"
+Delete "$SMPROGRAMS\$SM_Folder\Uninstall iTALC.lnk"
+Delete "$SMPROGRAMS\$SM_Folder\iTALC Key Setup Tool.lnk"
+Delete "$SMPROGRAMS\$SM_Folder\iTALC Website.lnk"
+Delete "$DESKTOP\iTALC.lnk"
+
+RmDir "$SMPROGRAMS\$SM_Folder"
+!endif
+
+!ifndef REG_START_MENU
+Delete "$SMPROGRAMS\iTALC\iTALC.lnk"
+Delete "$SMPROGRAMS\iTALC\iTALC Key Setup Tool.lnk"
+Delete "$SMPROGRAMS\iTALC\Uninstall iTALC.lnk"
+Delete "$SMPROGRAMS\iTALC\iTALC Website.lnk"
+Delete "$DESKTOP\iTALC.lnk"
+
+RmDir "$SMPROGRAMS\iTALC"
+!endif
+
+DeleteRegKey ${REG_ROOT} "${REG_APP_PATH}"
+DeleteRegKey ${REG_ROOT} "${UNINSTALL_PATH}"
+SectionEnd
+
+######################################################################
+
+Function un.onInit
+!insertmacro MUI_UNGETLANGUAGE
+FunctionEnd
+
+######################################################################
+
