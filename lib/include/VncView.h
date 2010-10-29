@@ -74,7 +74,6 @@ public:
 
 	QSize framebufferSize() const;
 	QSize sizeHint() const;
-	QSize minimumSizeHint() const;
 
 
 public slots:
