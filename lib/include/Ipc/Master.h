@@ -74,6 +74,20 @@ private:
 		QTcpSocket *sock;
 		SlaveLauncher *slaveLauncher;
 		QVector<Ipc::Msg> pendingMessages;
+
+		ProcessInformation() :
+			sock( NULL ),
+			slaveLauncher( NULL ),
+			pendingMessages()
+		{
+		}
+
+		ProcessInformation( const ProcessInformation &ref ) :
+			sock( ref.sock ),
+			slaveLauncher( ref.slaveLauncher ),
+			pendingMessages( ref.pendingMessages )
+		{
+		}
 	};
 
 	typedef QMap<Ipc::Id, ProcessInformation> ProcessMap;
