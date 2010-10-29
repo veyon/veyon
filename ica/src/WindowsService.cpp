@@ -22,9 +22,10 @@
  *
  */
 
+#include <QtCore/QDebug>
+#include <QtCore/QProcess>
 #include <QtGui/QApplication>
 #include <QtGui/QMessageBox>
-#include <QtCore/QProcess>
 
 #include "WindowsService.h"
 #include "LocalSystem.h"
@@ -172,8 +173,7 @@ bool WindowsService::evalArgs( int &argc, char **argv )
 		return false;
 	}
 
-	const QString cmd = argv[1];
-	if( cmd == m_arg )
+	if( argv[1] == m_arg )
 	{
 		return runAsService();
 	}
@@ -181,7 +181,10 @@ bool WindowsService::evalArgs( int &argc, char **argv )
 	QApplication app( argc, argv );
 	initCoreApplication( &app );
 
-	m_quiet = app.arguments().contains( "-quiet" );
+	QStringList args = app.arguments();
+	args.removeFirst();
+
+	m_quiet = args.removeAll( "-quiet" ) > 0;
 
 	struct ServiceOp
 	{
@@ -198,21 +201,30 @@ bool WindowsService::evalArgs( int &argc, char **argv )
 		{ "", NULL }
 	} ;
 
-	for( size_t i = 0; i < sizeof( serviceOps ); ++i )
+	foreach( const QString &arg, args )
 	{
-		if( cmd == serviceOps[i].arg )
+		for( size_t i = 0; i < sizeof( serviceOps ); ++i )
 		{
-			// make sure to run as administrator.
-			if( !isRunningAsAdmin() )
+			if( arg == serviceOps[i].arg )
 			{
-				runAsAdmin( appPath, serviceOps[i].arg );
+				// make sure to run as administrator.
+				if( !isRunningAsAdmin() )
+				{
+					QString serviceArgs = serviceOps[i].arg;
+					if( m_quiet )
+					{
+						serviceArgs += " -quiet";
+					}
+					runAsAdmin( appPath, serviceArgs.toUtf8().constData() );
+				}
+				else
+				{
+					(this->*serviceOps[i].opFunc)();
+				}
+				return true;
 			}
-			else
-			{
-				(this->*serviceOps[i].opFunc)();
-			}
-			return true;
 		}
+		qWarning() << "Unknown option" << arg;
 	}
 
 	return false;

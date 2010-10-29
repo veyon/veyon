@@ -297,13 +297,17 @@ int main( int argc, char **argv )
 	{
 		const QString arg1 = argv[1];
 #ifdef ITALC_BUILD_WIN32
-		if( arg1.contains( "service" ) )
+		for( int i = 1; i < argc; ++i )
 		{
-			WindowsService winService( "icas", "-service", "iTALC Client",
-										QString(), argc, argv );
-			if( winService.evalArgs( argc, argv ) )
+			if( QString( argv[i] ).contains( "service" ) )
 			{
-				return 0;
+				WindowsService winService( "icas", "-service", "iTALC Client",
+											QString(), argc, argv );
+				if( winService.evalArgs( argc, argv ) )
+				{
+					return 0;
+				}
+				break;
 			}
 		}
 #endif
