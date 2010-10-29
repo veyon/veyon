@@ -68,7 +68,11 @@ public:
 	{
 		if( m_subProcessHandle )
 		{
-			TerminateProcess( m_subProcessHandle, 0 );
+			if( WaitForSingleObject( m_subProcessHandle, 10000 ) ==
+																WAIT_TIMEOUT )
+			{
+				TerminateProcess( m_subProcessHandle, 0 );
+			}
 			CloseHandle( m_subProcessHandle ),
 			m_subProcessHandle = NULL;
 		}
@@ -764,7 +768,6 @@ void WindowsService::monitorSessions()
 			if( oldSessionId != SESSION_INVALID )
 			{
 				SetEvent( hShutdownEvent );
-				Sleep( 2000 );
 				italcProcess.stop();
 			}
 			if( sessionId != SESSION_INVALID )
@@ -776,7 +779,6 @@ void WindowsService::monitorSessions()
 	}
 
 	SetEvent( hShutdownEvent );
-	Sleep( 2000 );
 	italcProcess.stop();
 
 	CloseHandle( hShutdownEvent );
