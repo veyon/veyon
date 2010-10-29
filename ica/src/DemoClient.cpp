@@ -44,16 +44,20 @@ DemoClient::DemoClient( const QString &host, bool fullscreen ) :
 	m_toplevel->setAttribute( Qt::WA_DeleteOnClose, false );
 	m_toplevel->resize( QApplication::desktop()->availableGeometry( m_toplevel ).size() - QSize( 10, 30 ) );
 
-	QVBoxLayout * toplevel_layout = new QVBoxLayout;
-	toplevel_layout->setMargin( 0 );
-	toplevel_layout->setSpacing( 0 );
-	toplevel_layout->addWidget(
-						new VncView( host, m_toplevel, VncView::DemoMode ) );
+	m_vncView = new VncView( host, m_toplevel, VncView::DemoMode );
 
-	m_toplevel->setLayout( toplevel_layout );
+	QVBoxLayout * toplevelLayout = new QVBoxLayout;
+	toplevelLayout->setMargin( 0 );
+	toplevelLayout->setSpacing( 0 );
+	toplevelLayout->addWidget( m_vncView );
+
+	m_toplevel->setLayout( toplevelLayout );
 
 	connect( m_toplevel, SIGNAL( destroyed( QObject * ) ),
 			this, SLOT( viewDestroyed( QObject * ) ) );
+	connect( m_vncView, SIGNAL( sizeHintChanged() ),
+				this, SLOT( resizeToplevelWidget() ) );
+
 	m_toplevel->move( 0, 0 );
 	if( !fullscreen )
 	{
@@ -86,4 +90,10 @@ void DemoClient::viewDestroyed( QObject * _obj )
 	deleteLater();
 }
 
+
+
+void DemoClient::resizeToplevelWidget()
+{
+	m_toplevel->resize( m_vncView->sizeHint() );
+}
 

@@ -28,6 +28,7 @@
 
 #include <QtCore/QObject>
 
+class VncView;
 
 class DemoClient : public QObject
 {
@@ -39,10 +40,12 @@ public:
 
 private slots:
 	void viewDestroyed( QObject * );
+	void resizeToplevelWidget();
 
 
 private:
 	QWidget * m_toplevel;
+	VncView *m_vncView;
 
 } ;
 
