@@ -146,7 +146,10 @@ RemoteControlWidgetToolBar::~RemoteControlWidgetToolBar()
 void RemoteControlWidgetToolBar::appear()
 {
 	m_showHideTimeLine.setDirection( QTimeLine::Backward );
-	m_showHideTimeLine.resume();
+	if( m_showHideTimeLine.state() != QTimeLine::Running )
+	{
+		m_showHideTimeLine.resume();
+	}
 }
 
 
@@ -154,10 +157,13 @@ void RemoteControlWidgetToolBar::appear()
 
 void RemoteControlWidgetToolBar::disappear()
 {
-	if( !m_connecting )
+	if( !m_connecting && !rect().contains( mapFromGlobal( QCursor::pos() ) ) )
 	{
-		m_showHideTimeLine.setDirection( QTimeLine::Forward );
-		m_showHideTimeLine.resume();
+		if( m_showHideTimeLine.state() != QTimeLine::Running )
+		{
+			m_showHideTimeLine.setDirection( QTimeLine::Forward );
+			m_showHideTimeLine.resume();
+		}
 	}
 }
 
@@ -330,6 +336,22 @@ void RemoteControlWidget::updateWindowTitle()
 		u = u.section( '(', 1 ).section( ')', 0, 0 );
 	}
 	setWindowTitle( s.arg( u ).arg( host() ) );
+}
+
+
+
+
+void RemoteControlWidget::enterEvent( QEvent * )
+{
+	QTimer::singleShot( 500, m_toolBar, SLOT( disappear() ) );
+}
+
+
+
+
+void RemoteControlWidget::leaveEvent( QEvent * )
+{
+	m_toolBar->appear();
 }
 
 
