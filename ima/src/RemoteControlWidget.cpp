@@ -89,7 +89,7 @@ RemoteControlWidgetToolBar::RemoteControlWidgetToolBar(
 	ls_btn->setCheckable( true );
 	fs_btn->setCheckable( true );
 	vo_btn->setChecked( viewOnly );
-	fs_btn->setChecked( true );
+	fs_btn->setChecked( false );
 
 	connect( vo_btn, SIGNAL( toggled( bool ) ),
 				_parent, SLOT( toggleViewOnly( bool ) ) );
@@ -283,7 +283,6 @@ RemoteControlWidget::RemoteControlWidget( const QString &host,
 	m_coreConnection( new ItalcCoreConnection( m_vncView->vncConnection() ) ),
 	m_toolBar( new RemoteControlWidgetToolBar( this, viewOnly ) ),
 	m_mainWindow( mainWindow ),
-	m_extraStates( Qt::WindowMaximized ),
 	m_host( host )
 {
 	setWindowIcon( QPixmap( ":/resources/remote_control.png" ) );
@@ -293,8 +292,6 @@ RemoteControlWidget::RemoteControlWidget( const QString &host,
 							SLOT( appear() ) );
 	connect( m_vncView, SIGNAL( keyEvent( int, bool ) ),
 				this, SLOT( checkKeyEvent( int, bool ) ) );
-//	showMaximized();
-	//showFullScreen();
 	show();
 	LocalSystem::activateWindow( this );
 
@@ -385,8 +382,6 @@ void RemoteControlWidget::toggleFullScreen( bool _on )
 	else
 	{
 		setWindowState( windowState() & ~Qt::WindowFullScreen );
-		setWindowState( windowState() | m_extraStates );
-		m_extraStates = Qt::WindowNoState;
 	}
 }
 

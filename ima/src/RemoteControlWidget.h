@@ -114,8 +114,6 @@ private:
 	RemoteControlWidgetToolBar * m_toolBar;
 	MainWindow * m_mainWindow;
 
-	Qt::WindowStates m_extraStates;
-
 	QString m_host;
 
 	friend class RemoteControlWidgetToolBar;
