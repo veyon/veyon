@@ -92,8 +92,16 @@ void DemoClient::viewDestroyed( QObject * _obj )
 
 
 
+
 void DemoClient::resizeToplevelWidget()
 {
-	m_toplevel->resize( m_vncView->sizeHint() );
+	if( !( m_toplevel->windowState() & Qt::WindowFullScreen ) )
+	{
+		m_toplevel->resize( m_vncView->sizeHint() );
+	}
+	else
+	{
+		m_vncView->resize( m_toplevel->size() );
+	}
 }
 

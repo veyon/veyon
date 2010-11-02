@@ -44,6 +44,7 @@ VncView::VncView( const QString &host, QWidget *parent, Mode mode ) :
 	m_mode( mode ),
 	m_frame(),
 	m_cursorShape(),
+	m_framebufferSize( 0, 0 ),
 	m_cursorHotX( 0 ),
 	m_cursorHotY( 0 ),
 	m_viewOnly( true ),
@@ -75,11 +76,21 @@ VncView::VncView( const QString &host, QWidget *parent, Mode mode ) :
 			this, SLOT( updateImage( int, int, int, int ) ),
 						Qt::BlockingQueuedConnection );
 
-	connect( &m_vncConn, SIGNAL( framebufferSizeChanged() ),
-				this, SIGNAL( sizeHintChanged() ) );
+	connect( &m_vncConn, SIGNAL( framebufferSizeChanged( int, int ) ),
+				this, SLOT( updateSizeHint( int, int ) ), Qt::QueuedConnection );
 
 	connect( &m_vncConn, SIGNAL( cursorShapeUpdated( const QImage &, int, int ) ),
 				this, SLOT( updateCursorShape( const QImage &, int, int ) ) );
+
+	// set up background color
+	if( parent == NULL )
+	{
+		parent = this;
+	}
+	QPalette pal = parent->palette();
+	pal.setColor( parent->backgroundRole(), Qt::black );
+	parent->setPalette( pal );
+
 	show();
 
 	resize( QApplication::desktop()->
@@ -123,14 +134,6 @@ bool VncView::eventFilter(QObject *obj, QEvent *event)
 	}
 
 	return QWidget::eventFilter(obj, event);
-}
-
-
-
-
-QSize VncView::framebufferSize() const
-{
-	return m_frame.size();
 }
 
 
@@ -514,9 +517,9 @@ void VncView::paintEvent( QPaintEvent *paintEvent )
 
 	QPainter p( this );
 
+	p.fillRect( paintEvent->rect(), Qt::black );
 	if( m_frame.isNull() || m_frame.format() == QImage::Format_Invalid )
 	{
-		p.fillRect( paintEvent->rect(), Qt::black );
 		return;
 	}
 
@@ -585,7 +588,7 @@ void VncView::resizeEvent( QResizeEvent *event )
 {
 	m_vncConn.setScaledSize( scaledSize() );
 
-	repaint();
+	update();
 
 	if( m_establishingConnection )
 	{
@@ -704,6 +707,18 @@ void VncView::updateImage(int x, int y, int w, int h)
 	repaint( qRound( m_x*scale ), qRound( m_y*scale ),
 			qRound( m_w*scale ), qRound( m_h*scale ) );
 	m_repaint = false;
+}
+
+
+
+void VncView::updateSizeHint( int w, int h )
+{
+	m_framebufferSize = QSize( w, h );
+	if( isScaledView() )
+	{
+		resize( w, h );
+	}
+	emit sizeHintChanged();
 }
 
 
