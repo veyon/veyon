@@ -84,11 +84,9 @@ void ProgressWidget::paintEvent( QPaintEvent * )
 	p.setPen( Qt::black );
 
 	QLinearGradient grad( 0, 0, 0, height() );
-	QColor g1 = palette().color( QPalette::Active, QPalette::Window ).
-								light( 130 );
+	QColor g1( 224, 224, 224 );
 	//g1.setAlpha( 204 );
-	QColor g2 = palette().color( QPalette::Active, QPalette::Window ).
-								light( 70 );
+	QColor g2( 160, 160, 160 );
 	//g2.setAlpha( 204 );
 	grad.setColorAt( 0, g1 );
 	grad.setColorAt( 1, g2 );
@@ -97,10 +95,8 @@ void ProgressWidget::paintEvent( QPaintEvent * )
 					ROUNDED / width(), ROUNDED / height() );
 	p.drawPixmap( 6, ( height() - m_pixmaps[m_curFrame].height() ) / 2 - 1,
 							m_pixmaps[m_curFrame] );
-	p.setPen( Qt::darkGray );
-	p.drawText( 15 + m_pixmaps[m_curFrame].width(), 25, m_txt );
 	p.setPen( Qt::black );
-	p.drawText( 14 + m_pixmaps[m_curFrame].width(), 24, m_txt );
+	p.drawText( 14 + m_pixmaps[m_curFrame].width(), 25, m_txt );
 }
 
 
