@@ -929,7 +929,7 @@ void broadcastWOLPacket( const QString & _mac )
 
 #ifdef ITALC_BUILD_WIN32
 	WSADATA info;
-	if( WSAStartup( MAKEWORD( 1, 1 ), &info ) != 0 )
+	if( WSAStartup( MAKEWORD( 2, 0 ), &info ) != 0 )
 	{
 		qCritical( "cannot initialize WinSock!" );
 		return;
