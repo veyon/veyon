@@ -72,7 +72,7 @@ public:
 	vncMenu(vncServer *server);
 	~vncMenu();
 
-	void Shutdown(); // sf@2007
+	void Shutdown(bool kill_client); // sf@2007
 
 	// adzm 2009-07-05 - Tray icon balloon tips
 	static BOOL NotifyBalloon(char* szInfo, char* szTitle);

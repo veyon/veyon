@@ -35,6 +35,7 @@
 #include "common/win32_helpers.h"
 
 HANDLE hEvent=NULL;
+HANDLE hEventcad=NULL;
 extern HANDLE stopServiceEvent;
 static char app_path[MAX_PATH];
 typedef DWORD (*WTSGETACTIVECONSOLESESSIONID)();
@@ -744,6 +745,9 @@ void wait_for_existing_process()
     }
 }
 
+#include <sddl.h>
+SECURITY_ATTRIBUTES secAttr;
+
 void monitor_sessions()
 {
 	pad2();
@@ -759,103 +763,132 @@ void monitor_sessions()
 	//We use this event to notify the program that the session has changed
 	//The program need to end so the service can restart the program in the correct session
     wait_for_existing_process();
-	hEvent = CreateEvent(NULL, FALSE, FALSE, "Global\\SessionEventUltra");
+	hEvent = CreateEvent(NULL, FALSE, FALSE, "Global\\SessionEventUltra");	
+	hEventcad = CreateEvent(NULL, FALSE, FALSE, "Global\\SessionEventUltraCad");
 	Sleep(3000);
-	while(WaitForSingleObject(stopServiceEvent, 1000)==WAIT_TIMEOUT)
+	HANDLE testevent[2];
+	testevent[0]=stopServiceEvent;
+	testevent[1]=hEventcad;
+	bool ToCont=true;
+	while(ToCont)
 	{
+	DWORD dwEvent;
+	dwEvent=WaitForMultipleObjects(2,testevent,FALSE, 1000);
+	switch (dwEvent) 
+    { 
+		//stopServiceEvent, exit while loop
+		case WAIT_OBJECT_0 + 0: 
+			ToCont=false;
+            break; 
 
-		if (lpfnWTSGetActiveConsoleSessionId.isValid())
-			dwSessionId = (*lpfnWTSGetActiveConsoleSessionId)();
-		if (OlddwSessionId!=dwSessionId)
-		{
-			#ifdef _DEBUG
-					char			szText[256];
-					sprintf(szText," ++++++SetEvent Session change: signal tray icon to shut down\n");
-					OutputDebugString(szText);		
-			#endif
-			SetEvent(hEvent);
-		}
+        //cad request
+        case WAIT_OBJECT_0 + 1: 
+			{
+			typedef VOID (WINAPI *SendSas)(BOOL asUser);
+			HINSTANCE Inst = LoadLibrary("sas.dll");
+			SendSas sendSas = (SendSas) GetProcAddress(Inst, "SendSAS");
+			if (sendSas) sendSas(FALSE);
+			if (Inst) FreeLibrary(Inst);
+			}
+            break; 
+
+        case WAIT_TIMEOUT:
+			{
+
+									if (lpfnWTSGetActiveConsoleSessionId.isValid())
+										dwSessionId = (*lpfnWTSGetActiveConsoleSessionId)();
+									if (OlddwSessionId!=dwSessionId)
+									{
+										#ifdef _DEBUG
+												char			szText[256];
+												sprintf(szText," ++++++SetEvent Session change: signal tray icon to shut down\n");
+												OutputDebugString(szText);		
+										#endif
+										SetEvent(hEvent);
+									}
 
 		
 			
 
-		if (dwSessionId!=0xFFFFFFFF)
-			{
-						DWORD dwCode=0;
-						if (ProcessInfo.hProcess==NULL)
-						{
-									Sleep(1000);
-									if (Slow_connect) Sleep(2000);
-#ifdef _DEBUG
-                            OutputDebugString("No Tray icon existed, starting first process\n");
-#endif
-									LaunchProcessWin(dwSessionId);
-									win=false;
-									Slow_connect=false;
-						}
-						else if (GetExitCodeProcess(ProcessInfo.hProcess,&dwCode))
-						{
-							if(dwCode != STILL_ACTIVE)
-								{
-									if (last_con==true)
-									{
-										//problems, we move from win-->default-->win
-										// Put a long timeout to give system time to start or logout
-										Sleep(2000);
-									}
-//#if 0
-									Sleep(1000);
-									if (Slow_connect) Sleep(4000);
-//#endif
-#ifdef _DEBUG
-                                    OutputDebugString("Waiting up to 15 seconds for tray icon process to exit\n");
-#endif
+									if (dwSessionId!=0xFFFFFFFF)
+										{
+													DWORD dwCode=0;
+													if (ProcessInfo.hProcess==NULL)
+													{
+																Sleep(1000);
+																if (Slow_connect) Sleep(2000);
+							#ifdef _DEBUG
+														OutputDebugString("No Tray icon existed, starting first process\n");
+							#endif
+																LaunchProcessWin(dwSessionId);
+																win=false;
+																Slow_connect=false;
+													}
+													else if (GetExitCodeProcess(ProcessInfo.hProcess,&dwCode))
+													{
+														if(dwCode != STILL_ACTIVE)
+															{
+																if (last_con==true)
+																{
+																	//problems, we move from win-->default-->win
+																	// Put a long timeout to give system time to start or logout
+																	Sleep(2000);
+																}
+							//#if 0
+																Sleep(1000);
+																if (Slow_connect) Sleep(4000);
+							//#endif
+							#ifdef _DEBUG
+																OutputDebugString("Waiting up to 15 seconds for tray icon process to exit\n");
+							#endif
 
-                                    WaitForSingleObject(ProcessInfo.hProcess, 15000);
-									CloseHandle(ProcessInfo.hProcess);
-									CloseHandle(ProcessInfo.hThread);
-									LaunchProcessWin(dwSessionId);
-									win=false;
-									Slow_connect=false;
-								}
-							else
-								{
-									if (Slow_connect==false)
-									{
-										//This is the first time, so createprocess worked
-										//last_con=false-->defaultdesk
-										//last_con=true-->windesk
-										last_con=false;
-									}
-									Slow_connect=true;
-								}
-						}
-						else
-						{
-							if (last_con==true)
-									{
-										//problems, we move from win-->default-->win
-										// Put a long timeout to give system time to start or logout
-										Sleep(2000);
-									}
-							Sleep(1000);
-							if (Slow_connect) Sleep(4000);
-							if (ProcessInfo.hProcess) CloseHandle(ProcessInfo.hProcess);
-							if (ProcessInfo.hThread) CloseHandle(ProcessInfo.hThread);
-#ifdef _DEBUG
-                            OutputDebugString("Tray icon exited, starting new process\n");
-#endif
-							LaunchProcessWin(dwSessionId);
-							win=false;
-							Slow_connect=false;
-						}
-					#ifdef _DEBUG
-					char			szText[256];
-					sprintf(szText," ++++++1 %i %i %i %i\n",OlddwSessionId,dwSessionId,dwCode,ProcessInfo.hProcess);
-					OutputDebugString(szText);		
-					#endif
-					OlddwSessionId=dwSessionId;
-			}
+																WaitForSingleObject(ProcessInfo.hProcess, 15000);
+																CloseHandle(ProcessInfo.hProcess);
+																CloseHandle(ProcessInfo.hThread);
+																LaunchProcessWin(dwSessionId);
+																win=false;
+																Slow_connect=false;
+															}
+														else
+															{
+																if (Slow_connect==false)
+																{
+																	//This is the first time, so createprocess worked
+																	//last_con=false-->defaultdesk
+																	//last_con=true-->windesk
+																	last_con=false;
+																}
+																Slow_connect=true;
+															}
+													}
+													else
+													{
+														if (last_con==true)
+																{
+																	//problems, we move from win-->default-->win
+																	// Put a long timeout to give system time to start or logout
+																	Sleep(2000);
+																}
+														Sleep(1000);
+														if (Slow_connect) Sleep(4000);
+														if (ProcessInfo.hProcess) CloseHandle(ProcessInfo.hProcess);
+														if (ProcessInfo.hThread) CloseHandle(ProcessInfo.hThread);
+							#ifdef _DEBUG
+														OutputDebugString("Tray icon exited, starting new process\n");
+							#endif
+														LaunchProcessWin(dwSessionId);
+														win=false;
+														Slow_connect=false;
+													}
+												#ifdef _DEBUG
+												char			szText[256];
+												sprintf(szText," ++++++1 %i %i %i %i\n",OlddwSessionId,dwSessionId,dwCode,ProcessInfo.hProcess);
+												OutputDebugString(szText);		
+												#endif
+												OlddwSessionId=dwSessionId;
+										}
+			}//timeout
+		}//switch
 	}//while
 	#ifdef _DEBUG
 					char			szText[256];
@@ -877,6 +910,7 @@ void monitor_sessions()
 //	EndProcess();
 
 	if (hEvent) CloseHandle(hEvent);
+	if (hEventcad) CloseHandle(hEventcad);
 }
 
 // 20 April 2008 jdp paquette@atnetsend.net

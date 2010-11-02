@@ -89,8 +89,12 @@ FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     DEFPUSHBUTTON   "OK",IDOK,8,135,54,16
     CONTROL         139,IDC_VNCLOGO,"Static",SS_BITMAP | SS_CENTERIMAGE | SS_SUNKEN,7,5,53,46,WS_EX_TRANSPARENT
-    LTEXT           "UltraVNC Win32 Server 1.0.9.0",IDC_VERSION,73,5,195,11
-    LTEXT           "Copyright © 2002-2009 Ultr@VNC Team\nCopyright © 2001-2002 Sam - eSVNC \nCopyright © 1999-2002 Rudi D. V. - VdaccVNC \nCopyright © 2001 Harakan Software - PalmVNC\nCopyright © 1999-2002 Const. Kaplinsky - TightVNC \n",IDC_NAME,74,27,202,41
+#ifdef _X64
+    LTEXT           "UltraVNC X64 Server 1.0.9.1",IDC_VERSION,73,5,195,11
+#else
+	LTEXT           "UltraVNC Win32 Server 1.0.9.1",IDC_VERSION,73,5,195,11
+#endif
+    LTEXT           "Copyright © 2002-2009 UltraVNC Team\nCopyright © 2001-2002 Sam - eSVNC \nCopyright © 1999-2002 Rudi D. V. - VdaccVNC \nCopyright © 2001 Harakan Software - PalmVNC\nCopyright © 1999-2002 Const. Kaplinsky - TightVNC \n",IDC_NAME,74,27,202,41
     LTEXT           "For more Information and Links please visit: \nhttp://www.uvnc.com",IDC_WWW,74,135,141,19
     LTEXT           "Build:",IDC_BUILDTEXT,74,16,20,10
     LTEXT           "BuildTime",IDC_BUILDTIME,97,16,92,10
@@ -370,8 +374,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 1,0,9,0
- PRODUCTVERSION 1,0,9,0
+ FILEVERSION 1,0,9,1
+ PRODUCTVERSION 1,0,9,1
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x2dL
@@ -388,15 +392,19 @@ BEGIN
         BEGIN
             VALUE "Comments", "UltraVNC - Remote Control for all"
             VALUE "CompanyName", "UltraVNC"
-            VALUE "FileDescription", "VNC server for X64/win32"
-            VALUE "FileVersion", "1.0.9.0"
+#ifdef _X64
+            VALUE "FileDescription", "VNC server for X64"
+#else
+			 VALUE "FileDescription", "VNC server for win32"
+#endif
+            VALUE "FileVersion", "1.0.9.1"
             VALUE "InternalName", "WinVNC"
-            VALUE "LegalCopyright", "Copyright © 2009 UltraVNC"
+            VALUE "LegalCopyright", "Copyright © 2010 UltraVNC"
             VALUE "LegalTrademarks", "VNC"
             VALUE "OriginalFilename", "WinVNC.exe"
-            VALUE "PrivateBuild", "1.0.9.0"
+            VALUE "PrivateBuild", "1.0.9.1"
             VALUE "ProductName", "UltraVNC"
-            VALUE "ProductVersion", "1.0.9.0"
+            VALUE "ProductVersion", "1.0.9.1"
         END
     END
     BLOCK "VarFileInfo"

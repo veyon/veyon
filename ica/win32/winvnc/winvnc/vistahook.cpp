@@ -168,8 +168,14 @@ vncDesktopThread::Handle_Ringbuffer(mystruct *ringbuffer,rfb::Region2D &rgncache
 	return 1;
 }
 
+extern HANDLE hShutdownEventcad;
 DWORD WINAPI Cadthread(LPVOID lpParam)
 {
+	OSVERSIONINFO OSversion;	
+	OSversion.dwOSVersionInfoSize=sizeof(OSVERSIONINFO);
+	GetVersionEx(&OSversion);
+
+
 	HDESK desktop=NULL;
 	desktop = OpenInputDesktop(0, FALSE,
 								DESKTOP_CREATEMENU | DESKTOP_CREATEWINDOW |
@@ -177,6 +183,13 @@ DWORD WINAPI Cadthread(LPVOID lpParam)
 								DESKTOP_WRITEOBJECTS | DESKTOP_READOBJECTS |
 								DESKTOP_SWITCHDESKTOP | GENERIC_WRITE
 								);
+	if(OSversion.dwMajorVersion==6 && OSversion.dwMinorVersion>=1)
+	{
+
+		if (hShutdownEventcad==NULL ) hShutdownEventcad = OpenEvent(EVENT_MODIFY_STATE, FALSE, "Global\\SessionEventUltraCad");
+		if (hShutdownEventcad!=NULL ) SetEvent(hShutdownEventcad);
+		return 0;
+	}
 
 	if (desktop == NULL)
 		vnclog.Print(LL_INTERR, VNCLOG("OpenInputdesktop Error \n"));

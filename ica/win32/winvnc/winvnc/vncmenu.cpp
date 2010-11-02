@@ -784,7 +784,7 @@ vncMenu::SendTrayMsg(DWORD msg, BOOL flash)
 
 
 // sf@2007
-void vncMenu::Shutdown()
+void vncMenu::Shutdown(bool kill_client)
 {
 	vnclog.Print(LL_INTERR, VNCLOG("vncMenu::Shutdown: Close menu - Disconnect all - Shutdown server\n"));
 //	m_server->AutoRestartFlag(TRUE);
@@ -792,6 +792,7 @@ void vncMenu::Shutdown()
 //	m_server->KillSockConnect();
 //	m_server->ShutdownServer();
 	SendMessage(m_hwnd, WM_CLOSE, 0, 0);
+	if (kill_client) m_server->KillAuthClients();
 }
 
 
