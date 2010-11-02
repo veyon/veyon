@@ -208,7 +208,10 @@ void ItalcVncServer::runVncReflector( int srcPort, int dstPort )
 		<< "-reflect"
 		<< QString( "localhost:%1" ).arg( srcPort );
 
-	runX11vnc( args, dstPort, true );
+	while( 1 )
+	{
+		runX11vnc( args, dstPort, true );
+	}
 
 #ifdef ITALC_BUILD_WIN32
 	pthread_win32_thread_detach_np();
