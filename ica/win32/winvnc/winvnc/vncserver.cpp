@@ -1654,6 +1654,9 @@ vncServer::SockConnected()
 BOOL
 vncServer::EnableHTTPConnect(BOOL enable)
 {
+#ifdef ULTRAVNC_ITALC_SUPPORT
+	m_enableHttpConn = FALSE;
+#else
 	m_enableHttpConn = enable;
 	if (enable && m_socketConn)
 	{
@@ -1685,7 +1688,7 @@ vncServer::EnableHTTPConnect(BOOL enable)
 			m_httpConn = NULL;
 		}
 	}
-
+#endif
 	return TRUE;
 }
 
