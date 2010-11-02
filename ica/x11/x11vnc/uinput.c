@@ -658,7 +658,7 @@ static void ptr_rel(int dx, int dy) {
 			resid_y -= dyf;
 
 			if (db > 1) fprintf(stderr, "*%s resid: dx dy: %d %d  %f %f\n", accel > 1 ? "*" : " ", dxf, dyf, resid_x, resid_y);
-if (0) {usleep(100*1000)};
+if (0) {usleep(100*1000);}
 			ptr_move(dxf, dyf);
 		}
 	}
@@ -849,7 +849,7 @@ void uinput_pointer_command(int mask, int x, int y, rfbClientPtr client) {
 			} else {
 				ptr_rel(x, y);
 			}
-			if (1) {usleep(10*1000)};
+			if (1) {usleep(10*1000);}
 
 			last_x = x;
 			last_y = y;
