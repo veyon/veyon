@@ -225,6 +225,23 @@ static int runCoreServer( int argc, char **argv )
 #ifdef ITALC_BUILD_WIN32
 	hShutdownEvent = OpenEvent( EVENT_ALL_ACCESS, FALSE,
 								"Global\\SessionEventUltra" );
+	if( !hShutdownEvent )
+	{
+		// no global event available already as we're not running under the
+		// control of the ICA service supervisor?
+		if( GetLastError() == ERROR_FILE_NOT_FOUND )
+		{
+			// then create our own event as otherwise the VNC server main loop
+			// will eat 100% CPU due to failing WaitForSingleObject() calls
+			hShutdownEvent = CreateEvent( NULL, FALSE, FALSE,
+											"Global\\SessionEventUltra" );
+		}
+		else
+		{
+			qCritical( "Could not open or create session event" );
+			return -1;
+		}
+	}
 	app.setEventFilter( eventFilter );
 #endif
 
