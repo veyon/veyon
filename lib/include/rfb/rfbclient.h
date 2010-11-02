@@ -136,6 +136,7 @@ typedef union _rfbCredential
 struct _rfbClient;
 
 typedef void (*HandleTextChatProc)(struct _rfbClient* client, int value, char *text);
+typedef void (*HandleXvpMsgProc)(struct _rfbClient* client, uint8_t version, uint8_t opcode);
 typedef void (*HandleKeyboardLedStateProc)(struct _rfbClient* client, int value, int pad);
 typedef rfbBool (*HandleCursorPosProc)(struct _rfbClient* client, int x, int y);
 typedef void (*SoftCursorLockAreaProc)(struct _rfbClient* client, int x, int y, int w, int h);
@@ -316,6 +317,9 @@ typedef struct _rfbClient {
 
         /* the QoS IP DSCP for this client */
         int QoS_DSCP;
+
+        /* hook to handle xvp server messages */
+	HandleXvpMsgProc           HandleXvpMsg;
 } rfbClient;
 
 /* cursor.c */
@@ -352,6 +356,7 @@ extern rfbBool TextChatOpen(rfbClient* client);
 extern rfbBool TextChatClose(rfbClient* client);
 extern rfbBool TextChatFinish(rfbClient* client);
 extern rfbBool PermitServerInput(rfbClient* client, int enabled);
+extern rfbBool SendXvpMsg(rfbClient* client, uint8_t version, uint8_t code);
 
 extern void PrintPixelFormat(rfbPixelFormat *format);
 

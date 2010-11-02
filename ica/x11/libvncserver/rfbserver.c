@@ -874,6 +874,7 @@ rfbSendSupportedMessages(rfbClientPtr cl)
     /*rfbSetBit(msgs.client2server, rfbTextChat);        */
     /*rfbSetBit(msgs.client2server, rfbKeyFrameRequest); */
     rfbSetBit(msgs.client2server, rfbPalmVNCSetScaleFactor);
+    rfbSetBit(msgs.client2server, rfbXvp);
 
     rfbSetBit(msgs.server2client, rfbFramebufferUpdate);
     rfbSetBit(msgs.server2client, rfbSetColourMapEntries);
@@ -882,6 +883,7 @@ rfbSendSupportedMessages(rfbClientPtr cl)
     rfbSetBit(msgs.server2client, rfbResizeFrameBuffer);
     /*rfbSetBit(msgs.server2client, rfbKeyFrameUpdate);  */
     rfbSetBit(msgs.server2client, rfbPalmVNCReSizeFrameBuffer);
+    rfbSetBit(msgs.server2client, rfbXvp);
 
     memcpy(&cl->updateBuf[cl->ublen], (char *)&msgs, sz_rfbSupportedMessages);
     cl->ublen += sz_rfbSupportedMessages;
@@ -1026,6 +1028,33 @@ rfbSendServerIdentity(rfbClientPtr cl)
 
     return TRUE;
 }
+
+/*
+ * Send an xvp server message
+ */
+
+rfbBool
+rfbSendXvp(rfbClientPtr cl, uint8_t version, uint8_t code)
+{
+    rfbXvpMsg xvp;
+
+    xvp.type = rfbXvp;
+    xvp.pad = 0;
+    xvp.version = version;
+    xvp.code = code;
+
+    LOCK(cl->sendMutex);
+    if (rfbWriteExact(cl, (char *)&xvp, sz_rfbXvpMsg) < 0) {
+      rfbLogPerror("rfbSendXvp: write");
+      rfbCloseClient(cl);
+    }
+    UNLOCK(cl->sendMutex);
+
+    rfbStatRecordMessageSent(cl, rfbXvp, sz_rfbXvpMsg, sz_rfbXvpMsg);
+
+    return TRUE;
+}
+
 
 rfbBool rfbSendTextChatMessage(rfbClientPtr cl, uint32_t length, char *buffer)
 {
@@ -1984,7 +2013,15 @@ rfbProcessClientNormalMessage(rfbClientPtr cl)
                           "%s\n", cl->host);
                   cl->enableServerIdentity = TRUE;
                 }
-                break;           
+                break;
+	    case rfbEncodingXvp:
+	        rfbLog("Enabling Xvp protocol extension for client "
+		        "%s\n", cl->host);
+		if (!rfbSendXvp(cl, 1, rfbXvp_Init)) {
+		  rfbCloseClient(cl);
+		  return;
+		}
+                break;
             default:
 #ifdef LIBVNCSERVER_HAVE_LIBZ
 		if ( enc >= (uint32_t)rfbEncodingCompressLevel0 &&
@@ -2366,6 +2403,28 @@ rfbProcessClientNormalMessage(rfbClientPtr cl)
       rfbScalingSetup(cl,cl->screen->width/msg.ssc.scale, cl->screen->height/msg.ssc.scale);
 
       rfbSendNewScaleSize(cl);
+      return;
+
+    case rfbXvp:
+
+      if ((n = rfbReadExact(cl, ((char *)&msg) + 1,
+          sz_rfbXvpMsg - 1)) <= 0) {
+          if (n != 0)
+            rfbLogPerror("rfbProcessClientNormalMessage: read");
+          rfbCloseClient(cl);
+          return;
+      }
+      rfbStatRecordMessageRcvd(cl, msg.type, sz_rfbXvpMsg, sz_rfbXvpMsg);
+
+      /* only version when is defined, so echo back a fail */
+      if(msg.xvp.version != 1) {
+	rfbSendXvp(cl, msg.xvp.version, rfbXvp_Fail);
+      }
+      else {
+	/* if the hook exists and fails, send a fail msg */
+	if(cl->screen->xvpHook && !cl->screen->xvpHook(cl, msg.xvp.version, msg.xvp.code))
+	  rfbSendXvp(cl, 1, rfbXvp_Fail);
+      }
       return;
 
     default:
@@ -2756,7 +2815,7 @@ rfbSendFramebufferUpdate(rfbClientPtr cl,
        if (!rfbSendServerIdentity(cl))
            goto updateFailed;
    }
-   
+
     if (!sraRgnEmpty(updateCopyRegion)) {
 	if (!rfbSendCopyRegion(cl,updateCopyRegion,dx,dy))
 	        goto updateFailed;

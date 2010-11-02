@@ -110,7 +110,7 @@ typedef uint32_t in_addr_t;
 #define                INADDR_NONE     ((in_addr_t) 0xffffffff)
 #endif
 
-#define MAX_ENCODINGS 20
+#define MAX_ENCODINGS 21
 
 /*****************************************************************************
  *
@@ -410,6 +410,8 @@ typedef struct {
 #define rfbKeyFrameRequest 12
 /* PalmVNC 1.4 & 2.0 SetScale Factor message */
 #define rfbPalmVNCSetScaleFactor 0xF
+/* Xvp message - bidirectional */
+#define rfbXvp 250
 
 
 
@@ -443,6 +445,9 @@ typedef struct {
 #define rfbEncodingCacheZip              0xFFFF0007
 #define rfbEncodingSolMonoZip            0xFFFF0008
 #define rfbEncodingUltraZip              0xFFFF0009
+
+/* Xvp pseudo-encoding */
+#define rfbEncodingXvp 			 0xFFFFFECB
 
 /*
  * Special encoding numbers:
@@ -1151,6 +1156,44 @@ typedef struct _rfbTextChatMsg {
 #define rfbTextChatFinished 0xFFFFFFFD  
 
 
+/*-----------------------------------------------------------------------------
+ * Xvp Message
+ * Bidirectional message
+ * A server which supports the xvp extension declares this by sending a message
+ * with an Xvp_INIT xvp-message-code when it receives a request from the client
+ * to use the xvp Pseudo-encoding. The server must specify in this message the
+ * highest xvp-extension-version it supports: the client may assume that the
+ * server supports all versions from 1 up to this value. The client is then
+ * free to use any supported version. Currently, only version 1 is defined.
+ *
+ * A server which subsequently receives an xvp Client Message requesting an
+ * operation which it is unable to perform, informs the client of this by
+ * sending a message with an Xvp_FAIL xvp-message-code, and the same
+ * xvp-extension-version as included in the client's operation request.
+ *
+ * A client supporting the xvp extension sends this to request that the server
+ * initiate a clean shutdown, clean reboot or abrupt reset of the system whose
+ * framebuffer the client is displaying.
+ */
+
+
+typedef struct {
+    uint8_t type;			/* always rfbXvp */
+	uint8_t pad;
+	uint8_t version;	/* xvp extension version */
+	uint8_t code;      	/* xvp message code */
+} rfbXvpMsg;
+
+#define sz_rfbXvpMsg (4)
+
+/* server message codes */
+#define rfbXvp_Fail 0
+#define rfbXvp_Init 1
+/* client message codes */
+#define rfbXvp_Shutdown 2
+#define rfbXvp_Reboot 3
+#define rfbXvp_Reset 4
+
 
 /*-----------------------------------------------------------------------------
  * Modif sf@2002
@@ -1205,6 +1248,7 @@ typedef union {
 	rfbPalmVNCReSizeFrameBufferMsg prsfb; 
 	rfbFileTransferMsg ft;
 	rfbTextChatMsg tc;
+        rfbXvpMsg xvp;
 } rfbServerToClientMsg;
 
 
@@ -1440,6 +1484,7 @@ typedef struct _rfbSetSWMsg {
 #define sz_rfbSetSWMsg 6
 
 
+
 /*-----------------------------------------------------------------------------
  * Union of all client->server messages.
  */
@@ -1459,6 +1504,7 @@ typedef union {
 	rfbFileTransferMsg ft;
 	rfbSetSWMsg sw;
 	rfbTextChatMsg tc;
+        rfbXvpMsg xvp;
 } rfbClientToServerMsg;
 
 /* 

@@ -901,6 +901,7 @@ rfbScreenInfoPtr rfbGetScreen(int* argc,char** argv,
    screen->displayHook = NULL;
    screen->displayFinishedHook = NULL;
    screen->getKeyboardLedStateHook = NULL;
+   screen->xvpHook = NULL;
 
    /* initialize client list and iterator mutex */
    rfbClientListInit(screen);
