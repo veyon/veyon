@@ -126,20 +126,12 @@ ItalcVncServer::ItalcVncServer() :
 	QThread(),
 	m_port( ItalcCore::serverPort )
 {
-#ifdef ITALC_BUILD_WIN32
-	pthread_win32_process_attach_np();
-	pthread_win32_thread_attach_np();
-#endif
 }
 
 
 
 ItalcVncServer::~ItalcVncServer()
 {
-#ifdef ITALC_BUILD_WIN32
-	pthread_win32_thread_detach_np();
-	pthread_win32_process_detach_np();
-#endif
 }
 
 
@@ -205,6 +197,11 @@ static void runX11vnc( QStringList cmdline, int port, bool plainVnc )
 
 void ItalcVncServer::runVncReflector( int srcPort, int dstPort )
 {
+#ifdef ITALC_BUILD_WIN32
+	pthread_win32_process_attach_np();
+	pthread_win32_thread_attach_np();
+#endif
+
 	QStringList args;
 	args << "-viewonly"
 		<< "-threads"
@@ -212,6 +209,11 @@ void ItalcVncServer::runVncReflector( int srcPort, int dstPort )
 		<< QString( "localhost:%1" ).arg( srcPort );
 
 	runX11vnc( args, dstPort, true );
+
+#ifdef ITALC_BUILD_WIN32
+	pthread_win32_thread_detach_np();
+	pthread_win32_process_detach_np();
+#endif
 }
 
 
