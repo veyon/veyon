@@ -207,6 +207,22 @@ void Logger::log( LogLevel ll, const QString &msg )
 
 
 
+void Logger::log( LogLevel ll, const char *format, ... )
+{
+	va_list args;
+	va_start( args, format );
+
+	QString message;
+	message.vsprintf( format, args );
+
+	va_end(args);
+
+	log( ll, message );
+}
+
+
+
+
 void Logger::outputMessage( const QString &msg )
 {
 	m_logFile->write( msg.toUtf8() );
