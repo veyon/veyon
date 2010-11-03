@@ -135,8 +135,8 @@ Myinit(HINSTANCE hInstance)
     //Load all messages from ressource file
     Load_Localization(hInstResDLL) ;
 	vnclog.SetFile();
-//	vnclog.SetMode(2);
-//	vnclog.SetLevel(10);
+	vnclog.SetMode(1);
+	vnclog.SetLevel(LL_INTWARN);
 
 #ifdef _DEBUG
 	{

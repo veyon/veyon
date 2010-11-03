@@ -31,8 +31,6 @@ extern VNCLog vnclog;
 // Log everything, including internal table setup, etc.
 #define LL_ALL		10
 
-// Macros for sticking in the current file name
-#define VNCLOG(s)	(__FILE__ " : " s)
 // Marscha@2004 - authSSP: end of change
 
 #include "Localization.h" // Act : add localization on messages

@@ -169,30 +169,36 @@ void VNCLog::CloseFile() {
     }
 }
 
+#ifdef ULTRAVNC_ITALC_SUPPORT
+#include "Logger.h"
+#endif
+
 inline void VNCLog::ReallyPrintLine(const char* line) 
 {
+#ifdef ULTRAVNC_ITALC_SUPPORT
+	ilog( Info, line );
+#else
     if (m_todebug) OutputDebugString(line);
-#ifndef ULTRAVNC_ITALC_SUPPORT
     if (m_toconsole) {
-#endif
         DWORD byteswritten;
         WriteConsole(GetStdHandle(STD_OUTPUT_HANDLE), line, strlen(line), &byteswritten, NULL); 
-#ifndef ULTRAVNC_ITALC_SUPPORT
     };
-#endif
     if (m_tofile && (hlogfile != NULL)) {
         DWORD byteswritten;
         WriteFile(hlogfile, line, strlen(line), &byteswritten, NULL); 
     }
+#endif
 }
 
 void VNCLog::ReallyPrint(const char* format, va_list ap) 
 {
+#ifndef ULTRAVNC_ITALC_SUPPORT
 	time_t current = time(0);
 	if (current != m_lastLogTime) {
 		m_lastLogTime = current;
 		ReallyPrintLine(ctime(&m_lastLogTime));
 	}
+#endif
 
 	// - Write the log message, safely, limiting the output buffer size
 	TCHAR line[(LINE_BUFFER_SIZE * 2) + 1]; // sf@2006 - Prevents buffer overflow

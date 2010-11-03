@@ -38,6 +38,8 @@
 #include <process.h>
 #include <crtdbg.h>
 
+#include <QtCore/QString>
+
 #define __inout
 #include "dpi.h"
 
@@ -85,7 +87,7 @@ extern VNCLog vnclog;
 #define SOCKET_KEEPALIVE_INTERVAL 1000
 
 // Macros for sticking in the current file name
-#define VNCLOG(s)	(__FILE__ " : " s)
+#define VNCLOG(s)	(QString("%1 : %2").arg(__PRETTY_FUNCTION__).arg(s).toUtf8().constData())
 #if MSC_VER > 12
 #ifndef _X64
 #pragma comment(linker,"/manifestdependency:\"type='Win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='X86' publicKeyToken='6595b64144ccf1df' language='*'\"")
