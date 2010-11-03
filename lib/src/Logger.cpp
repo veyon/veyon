@@ -92,26 +92,28 @@ void Logger::initLogFile()
 			tmpPath = s.toLower().mid( 5 );
 			break;
 		}
-			else if( s.toLower().left( 4 ) == "tmp=" )
-			{
-				tmpPath = s.toLower().mid( 4 );
-				break;
-			}
-		}
-		if( !QDir( tmpPath ).exists() )
+		else if( s.toLower().left( 4 ) == "tmp=" )
 		{
-			if( QDir( QDir::rootPath() ).mkdir( tmpPath ) )
-			{
-				QFile::setPermissions( tmpPath,
+			tmpPath = s.toLower().mid( 4 );
+			break;
+		}
+	}
+
+	if( !QDir( tmpPath ).exists() )
+	{
+		if( QDir( QDir::rootPath() ).mkdir( tmpPath ) )
+		{
+			QFile::setPermissions( tmpPath,
 						QFile::ReadOwner | QFile::WriteOwner | QFile::ExeOwner |
 						QFile::ReadUser | QFile::WriteUser | QFile::ExeUser |
 						QFile::ReadGroup | QFile::WriteGroup | QFile::ExeGroup |
 						QFile::ReadOther | QFile::WriteOther | QFile::ExeOther );
-			}
 		}
-		const QString logPath = tmpPath + QDir::separator();
-		m_logFile = new QFile( logPath + QString( "%1.log" ).arg( m_appName ) );
-		m_logFile->open( QFile::WriteOnly | QFile::Append | QFile::Unbuffered );
+	}
+
+	const QString logPath = tmpPath + QDir::separator();
+	m_logFile = new QFile( logPath + QString( "%1.log" ).arg( m_appName ) );
+	m_logFile->open( QFile::WriteOnly | QFile::Append | QFile::Unbuffered );
 }
 
 
