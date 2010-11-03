@@ -39,6 +39,8 @@ Slave::Slave( const Ipc::Id &masterId, const Ipc::Id &slaveId ) :
 {
 	connect( this, SIGNAL( readyRead() ),
 				this, SLOT( receiveMessage() ) );
+	connect( this, SIGNAL( error( QAbstractSocket::SocketError ) ),
+				QCoreApplication::instance(), SLOT( quit() ) );
 
 	m_pingTimer.setInterval( 1000 );
 	connect( &m_pingTimer, SIGNAL( timeout() ),
