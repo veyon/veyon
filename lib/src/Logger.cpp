@@ -205,7 +205,7 @@ void Logger::qtMsgHandler( QtMsgType msgType, const char *msg )
 
 void Logger::log( LogLevel ll, const QString &msg )
 {
-	if( logLevel >= ll )
+	if( instance != NULL && logLevel >= ll )
 	{
 		instance->outputMessage( formatMessage( ll, msg ) );
 	}
