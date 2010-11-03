@@ -26,6 +26,8 @@
 #ifndef _IPC_SLAVE_H
 #define _IPC_SLAVE_H
 
+#include <QtCore/QTime>
+#include <QtCore/QTimer>
 #include <QtNetwork/QTcpSocket>
 
 #include "Ipc/Core.h"
@@ -44,10 +46,13 @@ public:
 
 private slots:
 	void receiveMessage();
+	void masterPing();
 
 
 private:
 	const QString m_slaveId;
+	QTimer m_pingTimer;
+	QTime m_lastPingResponse;
 
 } ;
 

@@ -33,10 +33,18 @@ namespace Ipc
 
 Slave::Slave( const Ipc::Id &masterId, const Ipc::Id &slaveId ) :
 	QTcpSocket(),
-	m_slaveId( slaveId )
+	m_slaveId( slaveId ),
+	m_pingTimer( this ),
+	m_lastPingResponse( QTime::currentTime() )
 {
 	connect( this, SIGNAL( readyRead() ),
 				this, SLOT( receiveMessage() ) );
+
+	m_pingTimer.setInterval( 1000 );
+	connect( &m_pingTimer, SIGNAL( timeout() ),
+				this, SLOT( masterPing() ) );
+	connect( this, SIGNAL( connected() ),
+				&m_pingTimer, SLOT( start() ) );
 
 	connectToHost( QHostAddress::LocalHost, masterId.toInt() );
 }
@@ -69,6 +77,11 @@ void Slave::receiveMessage()
 						send( this );
 				handled = true;
 			}
+			else if( m.cmd() == Ipc::Commands::Ping )
+			{
+				m_lastPingResponse = QTime::currentTime();
+				handled = true;
+			}
 
 			if( !handled )
 			{
@@ -78,5 +91,21 @@ void Slave::receiveMessage()
 		}
 	}
 }
+
+
+
+
+void Slave::masterPing()
+{
+	Ipc::Msg( Ipc::Commands::Ping ).send( this );
+
+	if( m_lastPingResponse.msecsTo( QTime::currentTime() ) > 10000 )
+	{
+		QCoreApplication::quit();
+	}
+}
+
+
+
 
 }

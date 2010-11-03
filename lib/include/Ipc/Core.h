@@ -41,6 +41,7 @@ namespace Ipc
 	{
 		extern const Command Identify;
 		extern const Command UnknownCommand;
+		extern const Command Ping;
 		extern const Command Quit;
 	}
 

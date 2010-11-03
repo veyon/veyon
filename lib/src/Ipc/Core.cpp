@@ -32,6 +32,7 @@ namespace Ipc
 	{
 		const Command Identify = "IpcCommandIdentify";
 		const Command UnknownCommand = "IpcCommandUnknownCommand";
+		const Command Ping = "IpcCommandPing";
 		const Command Quit = "IpcCommandQuit";
 
 	}

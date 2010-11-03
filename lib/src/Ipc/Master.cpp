@@ -225,6 +225,11 @@ void Master::receiveMessage( QObject *sockObj )
 						<< "could not handle command"
 						<< m.arg( Ipc::Arguments::Command );
 			}
+			else if( m.cmd() == Ipc::Commands::Ping )
+			{
+				// send message back
+				m.send( sock );
+			}
 			else if( m.cmd() == Ipc::Commands::Identify )
 			{
 				// check whether we got a proper identification message
