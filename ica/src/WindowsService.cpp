@@ -29,6 +29,7 @@
 
 #include "WindowsService.h"
 #include "LocalSystem.h"
+#include "Logger.h"
 
 #ifdef ITALC_BUILD_WIN32
 
@@ -55,6 +56,7 @@ public:
 		char appPath[MAX_PATH];
 		if( GetModuleFileName( NULL, appPath, ARRAYSIZE(appPath) ) )
 		{
+			ilog( Info, "Starting core server" );
 			// run with the same user as winlogon.exe does
 			m_subProcessHandle =
 				LocalSystem::Process(
@@ -69,9 +71,11 @@ public:
 	{
 		if( m_subProcessHandle )
 		{
+			ilog( Info, "Waiting for core server to shutdown" );
 			if( WaitForSingleObject( m_subProcessHandle, 10000 ) ==
 																WAIT_TIMEOUT )
 			{
+				ilog( Warning, "Terminating core server" );
 				TerminateProcess( m_subProcessHandle, 0 );
 			}
 			CloseHandle( m_subProcessHandle ),
@@ -175,6 +179,7 @@ bool WindowsService::evalArgs( int &argc, char **argv )
 
 	if( argv[1] == m_arg )
 	{
+		Logger l( "ItalcServiceMonitor" );
 		return runAsService();
 	}
 
@@ -237,6 +242,7 @@ WindowsService *WindowsService::s_this = NULL;
 SERVICE_STATUS WindowsService::s_status;
 SERVICE_STATUS_HANDLE WindowsService::s_statusHandle;
 HANDLE WindowsService::s_stopServiceEvent = (DWORD) NULL;
+QAtomicInt WindowsService::s_sessionChangeEvent = 0;
 
 
 
@@ -692,6 +698,20 @@ DWORD WINAPI WindowsService::serviceCtrl( DWORD _ctrlcode, DWORD dwEventType,
 			// Service control manager just wants to know our state
 			break;
 
+		case SERVICE_CONTROL_SESSIONCHANGE:
+			switch( dwEventType )
+			{
+				case WTS_SESSION_LOGOFF:
+					ilog( Info, "Session change event: WTS_SESSION_LOGOFF" );
+					s_sessionChangeEvent = 1;
+					break;
+				case WTS_SESSION_LOGON:
+					ilog( Info, "Session change event: WTS_SESSION_LOGON" );
+					s_sessionChangeEvent = 1;
+					break;
+			}
+			break;
+
 		default:
 			// Control code not recognised
 			break;
@@ -720,7 +740,8 @@ bool WindowsService::reportStatus( DWORD state, DWORD exitCode, DWORD waitHint )
 	else
 	{
 		s_status.dwControlsAccepted = SERVICE_ACCEPT_STOP |
-										SERVICE_ACCEPT_SHUTDOWN;
+										SERVICE_ACCEPT_SHUTDOWN |
+										SERVICE_ACCEPT_SESSIONCHANGE;
 	}
 
 	// Save the new status we've been given
@@ -738,6 +759,8 @@ bool WindowsService::reportStatus( DWORD state, DWORD exitCode, DWORD waitHint )
 	{
 		s_status.dwCheckPoint = checkpoint++;
 	}
+
+	ilogf( Debug, "Reporting service status: %d", state );
 
 	// Tell the SCM our new status
 	if( !( result = SetServiceStatus( s_statusHandle, &s_status ) ) )
@@ -765,30 +788,36 @@ void WindowsService::monitorSessions()
 
 	while( WaitForSingleObject( s_stopServiceEvent, 1000 ) == WAIT_TIMEOUT )
 	{
+		bool sessionChanged = s_sessionChangeEvent.testAndSetOrdered( 1, 0 );
 		const DWORD sessionId = WTSGetActiveConsoleSessionId();
-		if( oldSessionId != sessionId )
+		if( oldSessionId != sessionId || sessionChanged )
 		{
+			ilogf( Info, "Session ID changed from %d to %d",
+									oldSessionId, sessionId );
 			// some logic for not reacting to desktop changes when the screen
 			// locker got active - we also don't update oldSessionId so when
 			// switching back to the original desktop, the above condition
 			// should not be met and nothing should happen
 			if( LocalSystem::Desktop::screenLockDesktop().isActive() )
 			{
+				ilog( Debug, "ScreenLockDesktop is active - ignoring" );
 				continue;
 			}
 
-			if( oldSessionId != SESSION_INVALID )
+			if( oldSessionId != SESSION_INVALID || sessionChanged )
 			{
 				SetEvent( hShutdownEvent );
 				italcProcess.stop();
 			}
-			if( sessionId != SESSION_INVALID )
+			if( sessionId != SESSION_INVALID || sessionChanged )
 			{
 				italcProcess.start( sessionId );
 			}
 			oldSessionId = sessionId;
 		}
 	}
+
+	ilog( Info, "Service shutdown" );
 
 	SetEvent( hShutdownEvent );
 	italcProcess.stop();

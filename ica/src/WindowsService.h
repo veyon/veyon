@@ -31,6 +31,7 @@
 #include <windows.h>
 #include <wtsapi32.h>
 
+#include <QtCore/QAtomicInt>
 #include <QtCore/QString>
 
 typedef BOOL(WINAPI *PFN_WTSQuerySessionInformation)( HANDLE, DWORD,
@@ -114,6 +115,7 @@ private:
 	static SERVICE_STATUS s_status;
 	static SERVICE_STATUS_HANDLE s_statusHandle;
 	static HANDLE s_stopServiceEvent;
+	static QAtomicInt s_sessionChangeEvent;
 
 } ;
 
