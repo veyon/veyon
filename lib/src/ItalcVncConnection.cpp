@@ -26,6 +26,7 @@
  */
 
 #include "ItalcVncConnection.h"
+#include "Logger.h"
 
 #include <QtCore/QCoreApplication>
 #include <QtCore/QMutexLocker>
@@ -234,7 +235,7 @@ void ItalcVncConnection::hookOutputHandler( const char *format, ... )
 	va_end(args);
 
 	message = message.trimmed();
-	fprintf( stderr, "%s\n", message.toAscii().constData() );
+	ilog( Warning, "ItalcVncConnection: " + message );
 
 	if( ( message.contains( "Couldn't convert " ) ) ||
 		( message.contains( "Unable to connect to VNC server" ) ) )
