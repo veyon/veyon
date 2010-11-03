@@ -58,8 +58,15 @@ Logger::Logger( const QString &appName ) :
 
 	qInstallMsgHandler( qtMsgHandler );
 
-	// log current application start up
-	LogStream() << "Startup" << QCoreApplication::arguments();
+	if( QCoreApplication::instance() )
+	{
+		// log current application start up
+		LogStream() << "Startup" << QCoreApplication::arguments();
+	}
+	else
+	{
+		ilog( Info, "Startup without QCoreApplication instance" );
+	}
 }
 
 
