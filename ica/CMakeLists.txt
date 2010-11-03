@@ -121,6 +121,19 @@ IF(ITALC_BUILD_WIN32)
 		${CMAKE_CURRENT_SOURCE_DIR}/win32/winvnc/dh.cpp
 		)
 
+	SET(VH_WINRC "${CMAKE_CURRENT_BINARY_DIR}/vnchooksrc.obj")
+	ADD_CUSTOM_COMMAND(OUTPUT ${VH_WINRC}
+						COMMAND ${WINDRES}
+							-I${CMAKE_CURRENT_SOURCE_DIR}
+							-o${VH_WINRC}
+							-i${CMAKE_CURRENT_SOURCE_DIR}/win32/winvnc/vnchooks/vnchooks.rc)
+
+	ADD_LIBRARY(vnchooks MODULE
+					${CMAKE_CURRENT_SOURCE_DIR}/win32/winvnc/vnchooks/VNCHooks.cpp
+					${CMAKE_CURRENT_SOURCE_DIR}/win32/winvnc/vnchooks/SharedData.cpp
+					${VH_WINRC})
+	SET_TARGET_PROPERTIES(vnchooks PROPERTIES PREFIX "")
+
 	SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-write-strings -fexceptions")
 	LINK_LIBRARIES(-luserenv -lole32 -lversion -lgdi32 -limm32)
 
