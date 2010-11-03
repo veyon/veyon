@@ -111,6 +111,7 @@ QString windowsConfigPath( int _type )
 #endif
 
 #include "LocalSystem.h"
+#include "Logger.h"
 #include "minilzo.h"
 
 
@@ -139,8 +140,6 @@ void initialize( p_pressKey _pk )
 	QCoreApplication::setOrganizationName( "iTALC Solutions" );
 	QCoreApplication::setOrganizationDomain( "italcsolutions.org" );
 	QCoreApplication::setApplicationName( "iTALC" );
-
-	QSettings settings( QSettings::SystemScope, "iTALC Solutions", "iTALC" );
 
 	initResources();
 }
@@ -645,12 +644,21 @@ static DWORD findProcessId_TH32( const QString &processName, DWORD sessionId,
 int Process::findProcessId( const QString &processName,
 							int sessionId, User *processOwner )
 {
+	LogStream( Logger::LogLevelDebug )
+			<< "Process::findProcessId("
+				<< processName
+				<< sessionId
+				<< processOwner
+			<< ")";
+
 	int pid = 0;
 #ifdef ITALC_BUILD_WIN32
 	pid = findProcessId_WTS( processName, sessionId, processOwner );
+	ilogf( Debug, "findProcessId_WTS(): %d", pid );
 	if( pid < 0 )
 	{
 		pid = findProcessId_TH32( processName, sessionId, processOwner );
+		ilogf( Debug, "findProcessId_TH32(): %d", pid );
 	}
 #endif
 	return pid;
@@ -670,6 +678,7 @@ User *Process::getProcessOwner()
 	GetTokenInformation( hToken, TokenUser, NULL, 0, &len ) ;
 	if( len <= 0 )
 	{
+		ilog_failedf( "GetTokenInformation()", "%d", GetLastError() );
 		CloseHandle( hToken );
 		return NULL;
 	}
@@ -683,6 +692,7 @@ User *Process::getProcessOwner()
 
 	if ( !GetTokenInformation( hToken, TokenUser, buf, len, &len ) )
 	{
+		ilog_failedf( "GetTokenInformation() (2)", "%d", GetLastError() );
 		delete[] buf;
 		CloseHandle( hToken );
 		return NULL;
@@ -710,8 +720,17 @@ Process::Handle Process::runAsUser( const QString &proc,
 	enablePrivilege( SE_INCREASE_QUOTA_NAME, true );
 	HANDLE hToken = NULL;
 
-	OpenProcessToken( processHandle(), MAXIMUM_ALLOWED, &hToken );
-	ImpersonateLoggedOnUser( hToken );
+	if( !OpenProcessToken( processHandle(), MAXIMUM_ALLOWED, &hToken ) )
+	{
+		ilog_failedf( "OpenProcessToken()", "%d", GetLastError() );
+		return NULL;
+	}
+
+	if( !ImpersonateLoggedOnUser( hToken ) )
+	{
+		ilog_failedf( "ImpersonateLoggedOnUser()", "%d", GetLastError() );
+		return NULL;
+	}
 
 	STARTUPINFO si;
 	PROCESS_INFORMATION pi;
@@ -726,7 +745,7 @@ Process::Handle Process::runAsUser( const QString &proc,
 	DuplicateTokenEx( hToken, TOKEN_ASSIGN_PRIMARY|TOKEN_ALL_ACCESS, NULL,
 						SecurityImpersonation, TokenPrimary, &hNewToken );
 
-	CreateProcessAsUser(
+	if( !CreateProcessAsUser(
 				hNewToken,			// client's access token
 				NULL,			  // file to execute
 				(CHAR *) proc.toUtf8().constData(),	 // command line
@@ -738,7 +757,11 @@ Process::Handle Process::runAsUser( const QString &proc,
 				NULL,			  // name of current directory
 				&si,			   // pointer to STARTUPINFO structure
 				&pi				// receives information about new process
-				);
+				) )
+	{
+		ilog_failedf( "CreateProcessAsUser()", "%d", GetLastError() );
+		return NULL;
+	}
 
 	delete[] si.lpDesktop;
 
