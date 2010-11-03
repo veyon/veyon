@@ -707,7 +707,7 @@ DWORD WINAPI WindowsService::serviceCtrl( DWORD _ctrlcode, DWORD dwEventType,
 					break;
 				case WTS_SESSION_LOGON:
 					ilog( Info, "Session change event: WTS_SESSION_LOGON" );
-					s_sessionChangeEvent = 1;
+					//s_sessionChangeEvent = 1;	// no need to restart server upon logon
 					break;
 			}
 			break;
