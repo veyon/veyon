@@ -73,8 +73,8 @@ private:
 
 #define ilog(ll, msg) Logger::log(Logger::LogLevel##ll, msg )
 #define ilogf(ll, format, ...) Logger::log(Logger::LogLevel##ll, format, __VA_ARGS__)
-#define ilog_failed(what) ilogf( Warning, "%s: %s failed", __FUNCTION__, what )
-#define ilog_failedf(what, format, ...) ilogf( Warning, "%s: %s failed: " format, __FUNCTION__, what, __VA_ARGS__ )
+#define ilog_failed(what) ilogf( Warning, "%s: %s failed", __PRETTY_FUNCTION__, what )
+#define ilog_failedf(what, format, ...) ilogf( Warning, "%s: %s failed: " format, __PRETTY_FUNCTION__, what, __VA_ARGS__ )
 
 
 // helper class for easily streaming Qt datatypes into logfiles
