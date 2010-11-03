@@ -36,6 +36,11 @@ public:
 	DemoClientSlave();
 	virtual ~DemoClientSlave();
 
+	static QString slaveName()
+	{
+		return "DemoClientSlave";
+	}
+
 
 private:
 	virtual bool handleMessage( const Ipc::Msg &m );

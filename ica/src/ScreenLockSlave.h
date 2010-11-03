@@ -36,6 +36,11 @@ public:
 	ScreenLockSlave();
 	virtual ~ScreenLockSlave();
 
+	static QString slaveName()
+	{
+		return "ScreenLockSlave";
+	}
+
 
 private:
 	virtual bool handleMessage( const Ipc::Msg &m );

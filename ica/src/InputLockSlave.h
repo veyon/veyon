@@ -36,6 +36,11 @@ public:
 	InputLockSlave();
 	virtual ~InputLockSlave();
 
+	static QString slaveName()
+	{
+		return "InputLockSlave";
+	}
+
 
 private:
 	virtual bool handleMessage( const Ipc::Msg &m );

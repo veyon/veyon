@@ -36,6 +36,11 @@ public:
 	SystemTrayIconSlave();
 	virtual ~SystemTrayIconSlave();
 
+	static QString slaveName()
+	{
+		return "SystemTrayIconSlave";
+	}
+
 
 private:
 	virtual bool handleMessage( const Ipc::Msg &m );

@@ -36,6 +36,11 @@ public:
 	AccessDialogSlave();
 	virtual ~AccessDialogSlave();
 
+	static QString slaveName()
+	{
+		return "AccessDialogSlave";
+	}
+
 
 private:
 	ItalcSlaveManager::AccessDialogResult exec( const QString &);

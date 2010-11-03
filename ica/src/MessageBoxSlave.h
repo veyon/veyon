@@ -34,6 +34,11 @@ public:
 	MessageBoxSlave();
 	virtual ~MessageBoxSlave();
 
+	static QString slaveName()
+	{
+		return "MessageBoxSlave";
+	}
+
 
 private:
 	virtual bool handleMessage( const Ipc::Msg &m );
