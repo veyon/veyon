@@ -57,6 +57,8 @@ bool eventFilter( void *msg, long *result )
 
 	if( winMsg == WM_QUERYENDSESSION )
 	{
+		ilog( Info, "Got WM_QUERYENDSESSION - initiating server shutdown" );
+
 		// tell UltraVNC server to quit
 		SetEvent( hShutdownEvent );
 	}
