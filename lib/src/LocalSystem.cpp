@@ -116,122 +116,7 @@ QString windowsConfigPath( int _type )
 
 
 static LocalSystem::p_pressKey __pressKey;
-static QString __log_file;
-static QFile * __debug_out = NULL;
 
-
-
-static QString properLineEnding( QString _out )
-{
-	if( _out.right( 1 ) != "\012" )
-	{
-		_out += "\012";
-	}
-#ifdef ITALC_BUILD_WIN32
-	if( _out.right( 1 ) != "\015" )
-	{
-		_out.replace( QString( "\012" ), QString( "\015\012" ) );
-	}
-#elif ITALC_BUILD_LINUX
-	if( _out.right( 1 ) != "\015" ) // MAC
-	{
-		_out.replace( QString( "\012" ), QString( "\015" ) );
-	}
-#endif
-	return( _out );
-}
-
-
-
-void msgHandler( QtMsgType _type, const char * _msg )
-{
-	if( LocalSystem::logLevel == 0 )
-	{
-		return ;
-	}
-#ifdef ITALC_BUILD_WIN32
-	if( QString( _msg ).contains( "timers cannot be stopped",
-							Qt::CaseInsensitive ) )
-	{
-		exit( 0 );
-	}
-#endif
-	if( __debug_out == NULL )
-	{
-		QString tmp_path = QDir::rootPath() +
-#ifdef ITALC_BUILD_WIN32
-						"temp"
-#else
-						"tmp"
-#endif
-				;
-		foreach( const QString s, QProcess::systemEnvironment() )
-		{
-			if( s.toLower().left( 5 ) == "temp=" )
-			{
-				tmp_path = s.toLower().mid( 5 );
-				break;
-			}
-			else if( s.toLower().left( 4 ) == "tmp=" )
-			{
-				tmp_path = s.toLower().mid( 4 );
-				break;
-			}
-		}
-		if( !QDir( tmp_path ).exists() )
-		{
-			if( QDir( QDir::rootPath() ).mkdir( tmp_path ) )
-			{
-				QFile::setPermissions( tmp_path,
-						QFile::ReadOwner | QFile::WriteOwner | QFile::ExeOwner |
-						QFile::ReadUser | QFile::WriteUser | QFile::ExeUser |
-						QFile::ReadGroup | QFile::WriteGroup | QFile::ExeGroup |
-						QFile::ReadOther | QFile::WriteOther | QFile::ExeOther );
-			}
-		}
-		const QString log_path = tmp_path + QDir::separator();
-		__debug_out = new QFile( log_path + __log_file );
-		__debug_out->open( QFile::WriteOnly | QFile::Append |
-							QFile::Unbuffered );
-	}
-
-	QString out;
-	switch( _type )
-	{
-		case QtDebugMsg:
-			if( LocalSystem::logLevel > 8)
-			{
-				out = QDateTime::currentDateTime().toString() + QString( ": [debug] %1" ).arg( _msg ) + "\n";
-			}
-			break;
-		case QtWarningMsg:
-			if( LocalSystem::logLevel > 5 )
-			{
-				out = QDateTime::currentDateTime().toString() + QString( ": [warning] %1" ).arg( _msg ) + "\n";
-			}
-			break;
-		case QtCriticalMsg:
-			if( LocalSystem::logLevel > 3 )
-			{
-				out = QDateTime::currentDateTime().toString() + QString( ": [critical] %1" ).arg( _msg ) + "\n";
-			}
-			break;
-		case QtFatalMsg:
-			if( LocalSystem::logLevel > 1 )
-			{
-				out = QDateTime::currentDateTime().toString() + QString( ": [fatal] %1" ).arg( _msg ) + "\n";
-			}
-		default:
-			out = QDateTime::currentDateTime().toString() + QString( ": [unknown] %1" ).arg( _msg ) + "\n";
-			break;
-	}
-	if( out.trimmed().size() )
-	{
-		out = properLineEnding( out );
-		__debug_out->write( out.toUtf8() );
-		fprintf( stderr, "%s\n", out.toUtf8().constData() );
-	}
-}
 
 
 void initResources( void )
@@ -245,10 +130,9 @@ namespace LocalSystem
 int logLevel = 6;
 
 
-void initialize( p_pressKey _pk, const QString & _log_file )
+void initialize( p_pressKey _pk )
 {
 	__pressKey = _pk;
-	__log_file = _log_file;
 
 	lzo_init();
 
@@ -257,13 +141,6 @@ void initialize( p_pressKey _pk, const QString & _log_file )
 	QCoreApplication::setApplicationName( "iTALC" );
 
 	QSettings settings( QSettings::SystemScope, "iTALC Solutions", "iTALC" );
-
-	if( settings.contains( "settings/LogLevel" ) )
-	{
-		logLevel = settings.value( "settings/LogLevel" ).toInt();
-	}
-
-	qInstallMsgHandler( msgHandler );
 
 	initResources();
 }

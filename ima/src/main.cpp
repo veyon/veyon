@@ -35,6 +35,7 @@
 #include "MainWindow.h"
 #include "ItalcCoreConnection.h"
 #include "LocalSystemIma.h"
+#include "Logger.h"
 #include "RemoteControlWidget.h"
 
 
@@ -54,6 +55,11 @@ QString __ivs_host = "127.0.0.1";
 int main( int argc, char * * argv )
 {
 	QApplication app( argc, argv );
+
+	LocalSystem::initialize();
+
+	Logger l( "ItalcMaster" );
+
 	app.connect( &app, SIGNAL( lastWindowClosed() ), SLOT( quit() ) );
 
 	app.setStyleSheet(
@@ -95,8 +101,6 @@ int main( int argc, char * * argv )
 	qRegisterMetaType<QModelIndex>( "QModelIndex" );
 	qRegisterMetaType<quint16>( "quint16" );
 
-
-	LocalSystem::initialize();
 
 	ItalcCore::role = ItalcCore::RoleTeacher;
 	if( LocalSystem::parameter( "ivsport" ).toInt() > 0 )
@@ -180,6 +184,8 @@ int main( int argc, char * * argv )
 	splashScreen.finish( &mainWindow );
 
 	mainWindow.show();
+
+	ilog( Info, "Exec" );
 
 	// let's rock!!
 	return app.exec();

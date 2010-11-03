@@ -3,7 +3,7 @@
  *                      transparent usage of operating-system-specific
  *                      functions
  *
- * Copyright (c) 2006-2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -29,23 +29,14 @@
 
 #include "LocalSystemIma.h"
 
-#include <QtCore/QDir>
-
 
 namespace LocalSystem
 {
 
 
-void initialize( void )
+void initialize()
 {
-	LocalSystem::initialize( NULL, "italc_master.log" );
-
-#ifdef BUILD_WIN32
-	if( QDir( "C:\\WINDOWS" ).exists() == FALSE )
-	{
-		QDir( "C:\\" ).mkdir( "WINDOWS" );
-	}
-#endif
+	LocalSystem::initialize( NULL );
 }
 
 

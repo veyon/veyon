@@ -38,12 +38,10 @@ class QWidget;
 
 namespace LocalSystem
 {
-	extern int logLevel;
-
 	typedef void (*p_pressKey)( int _key, bool _down );
 
 
-	void initialize( p_pressKey _pk, const QString & _log_file );
+	void initialize( p_pressKey _pk );
 
 	class Desktop
 	{

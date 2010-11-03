@@ -34,6 +34,7 @@
 #include "ItalcCoreServer.h"
 #include "ItalcVncServer.h"
 #include "LocalSystemIca.h"
+#include "Logger.h"
 #include "Debug.h"
 #include "DsaKey.h"
 
@@ -217,6 +218,9 @@ static int runCoreServer( int argc, char **argv )
 	QCoreApplication app( argc, argv );
 
 	initCoreApplication( &app );
+
+	Logger l( "ItalcCoreServer" );
+
 	if( !parseArguments( app.arguments() ) )
 	{
 		return -1;
@@ -260,13 +264,14 @@ static int runCoreServer( int argc, char **argv )
 
 	vncServer.start();
 
-	app.exec();
+	ilog( Info, "Exec" );
+	int ret = app.exec();
 
 #ifdef ITALC_BUILD_WIN32
 	CloseHandle( hShutdownEvent );
 #endif
 
-	return 0;
+	return ret;
 }
 
 
@@ -277,12 +282,17 @@ static int runSlave( int argc, char **argv )
 	Application app( argc, argv );
 
 	initCoreApplication( &app );
+
+	Logger l( "Italc" + SlaveClass::slaveName() );
+
 	if( !parseArguments( app.arguments() ) )
 	{
 		return -1;
 	}
 
 	SlaveClass s;
+
+	ilog( Info, "Exec" );
 
 	return app.exec();
 }
