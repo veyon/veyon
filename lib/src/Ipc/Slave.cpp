@@ -27,6 +27,7 @@
 #include <QtNetwork/QHostAddress>
 
 #include "Ipc/Slave.h"
+#include "Logger.h"
 
 namespace Ipc
 {
@@ -61,6 +62,11 @@ void Slave::receiveMessage()
 		Ipc::Msg m;
 		if( m.receive( this ).isValid() )
 		{
+			if( m.cmd() != Ipc::Commands::Ping )
+			{
+				qDebug() << "Slave" << m_slaveId << "received message" << m.cmd();
+			}
+
 			bool handled = false;
 			if( handleMessage( m ) )
 			{
@@ -91,6 +97,12 @@ void Slave::receiveMessage()
 						addArg( Ipc::Arguments::Command, m.cmd() ).send( this );
 			}
 		}
+		else
+		{
+			LogStream( Logger::LogLevelError )
+								<< "Slave" << m_slaveId
+								<< "received invalid message from master";
+		}
 	}
 }
 
@@ -103,6 +115,7 @@ void Slave::masterPing()
 
 	if( m_lastPingResponse.msecsTo( QTime::currentTime() ) > 10000 )
 	{
+		qWarning() << "Slave" << m_slaveId << "terminates due to ping timeout";
 		QCoreApplication::quit();
 	}
 }
