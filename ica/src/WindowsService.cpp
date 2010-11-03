@@ -789,6 +789,18 @@ void WindowsService::monitorSessions()
 	while( WaitForSingleObject( s_stopServiceEvent, 1000 ) == WAIT_TIMEOUT )
 	{
 		bool sessionChanged = s_sessionChangeEvent.testAndSetOrdered( 1, 0 );
+		// ignore session change events on Windows Vista and Windows 7 as
+		// monitoring session IDs is reliable enough there and prevents us
+		// from uneccessary server restarts
+		if( sessionChanged &&
+			( QSysInfo::windowsVersion() == QSysInfo::WV_VISTA ||
+				QSysInfo::windowsVersion() == QSysInfo::WV_WINDOWS7 ) )
+		{
+			ilog( Info, "Ignoring session change event as the operating system "
+						"is recent enough" );
+			sessionChanged = false;
+		}
+
 		const DWORD sessionId = WTSGetActiveConsoleSessionId();
 		if( oldSessionId != sessionId || sessionChanged )
 		{
