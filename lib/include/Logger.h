@@ -27,6 +27,7 @@
 
 #include <QtCore/QDebug>
 #include <QtCore/QTextStream>
+#include <QtCore/QMutex>
 
 class QFile;
 
@@ -65,6 +66,7 @@ private:
 
 	static LogLevel logLevel;
 	static Logger *instance;
+	static QMutex logMutex;
 
 	static LogLevel lastMsgLevel;
 	static QString lastMsg;

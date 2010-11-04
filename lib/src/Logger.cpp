@@ -36,6 +36,7 @@
 
 Logger::LogLevel Logger::logLevel = Logger::LogLevelDefault;
 Logger *Logger::instance = NULL;
+QMutex Logger::logMutex( QMutex::Recursive );
 Logger::LogLevel Logger::lastMsgLevel = Logger::LogLevelNothing;
 QString Logger::lastMsg;
 int Logger::lastMsgCount = 0;
@@ -168,6 +169,8 @@ void Logger::qtMsgHandler( QtMsgType msgType, const char *msg )
 	{
 		return ;
 	}
+
+	QMutexLocker l( &logMutex );
 	QString out;
 	switch( msgType )
 	{
@@ -210,6 +213,7 @@ void Logger::log( LogLevel ll, const QString &msg )
 {
 	if( instance != NULL && logLevel >= ll )
 	{
+		QMutexLocker l( &logMutex );
 		if( msg == lastMsg && ll == lastMsgLevel )
 		{
 			++lastMsgCount;
@@ -253,6 +257,8 @@ void Logger::log( LogLevel ll, const char *format, ... )
 
 void Logger::outputMessage( const QString &msg )
 {
+	QMutexLocker l( &logMutex );
+
 	m_logFile->write( msg.toUtf8() );
 	m_logFile->flush();
 
