@@ -335,7 +335,7 @@ ConnectClientToTcpAddr(unsigned int host, int port)
   }
 
   if (connect(sock, (struct sockaddr *)&addr, sizeof(addr)) < 0) {
-    rfbClientErr("ConnectToTcpAddr: connect\n");
+    /*rfbClientErr("ConnectToTcpAddr: connect\n");*/
     close(sock);
     return -1;
   }
