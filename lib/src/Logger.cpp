@@ -159,49 +159,19 @@ QString Logger::formatMessage( LogLevel ll, const QString &msg )
 
 void Logger::qtMsgHandler( QtMsgType msgType, const char *msg )
 {
-	if( instance == NULL )
-	{
-		return;
-	}
-	if( logLevel == LogLevelNothing )
-	{
-		return ;
-	}
+	LogLevel ll = LogLevelDefault;
 
-	QMutexLocker l( &logMutex );
-	QString out;
 	switch( msgType )
 	{
-		case QtDebugMsg:
-			if( logLevel >= LogLevelDebug )
-			{
-				out = formatMessage( LogLevelDebug, msg );
-			}
-			break;
-		case QtWarningMsg:
-			if( logLevel >= LogLevelWarning )
-			{
-				out = formatMessage( LogLevelWarning, msg );
-			}
-			break;
-		case QtCriticalMsg:
-			if( logLevel >= LogLevelError )
-			{
-				out = formatMessage( LogLevelError, msg );
-			}
-			break;
-		case QtFatalMsg:
-			if( logLevel >= LogLevelCritical )
-			{
-				out = formatMessage( LogLevelCritical, msg );
-			}
-			break;
+		case QtDebugMsg: ll = LogLevelDebug; break;
+		case QtWarningMsg: ll = LogLevelWarning; break;
+		case QtCriticalMsg: ll = LogLevelError; break;
+		case QtFatalMsg: ll = LogLevelCritical; break;
 		default:
-			out = formatMessage( LogLevelDefault, msg );
 			break;
 	}
 
-	instance->outputMessage( out );
+	log( ll, msg );
 }
 
 
