@@ -52,10 +52,8 @@ Logger::Logger( const QString &appName ) :
 	if( s.contains( "logging/loglevel" ) )
 	{
 		int ll = s.value( "logging/loglevel" ).toInt();
-		if( ll >= LogLevelMin && ll <= LogLevelMax )
-		{
-			logLevel = static_cast<LogLevel>( ll );
-		}
+		logLevel =
+			qBound( LogLevelMin, static_cast<LogLevel>( ll ), LogLevelMax );
 	}
 
 	initLogFile();
