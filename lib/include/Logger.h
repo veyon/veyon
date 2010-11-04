@@ -66,6 +66,10 @@ private:
 	static LogLevel logLevel;
 	static Logger *instance;
 
+	static LogLevel lastMsgLevel;
+	static QString lastMsg;
+	static int lastMsgCount;
+
 	QString m_appName;
 	QFile *m_logFile;
 

@@ -36,6 +36,9 @@
 
 Logger::LogLevel Logger::logLevel = Logger::LogLevelDefault;
 Logger *Logger::instance = NULL;
+Logger::LogLevel Logger::lastMsgLevel = Logger::LogLevelNothing;
+QString Logger::lastMsg;
+int Logger::lastMsgCount = 0;
 
 
 Logger::Logger( const QString &appName ) :
@@ -207,7 +210,25 @@ void Logger::log( LogLevel ll, const QString &msg )
 {
 	if( instance != NULL && logLevel >= ll )
 	{
-		instance->outputMessage( formatMessage( ll, msg ) );
+		if( msg == lastMsg && ll == lastMsgLevel )
+		{
+			++lastMsgCount;
+		}
+		else
+		{
+			if( lastMsgCount )
+			{
+				instance->outputMessage( formatMessage( lastMsgLevel, "---" ) );
+				instance->outputMessage( formatMessage( lastMsgLevel,
+				QString( "Last message repeated %1 times" ).
+					arg( lastMsgCount ) ) );
+				instance->outputMessage( formatMessage( lastMsgLevel, "---" ) );
+				lastMsgCount = 0;
+			}
+			instance->outputMessage( formatMessage( ll, msg ) );
+			lastMsg = msg;
+			lastMsgLevel = ll;
+		}
 	}
 }
 
