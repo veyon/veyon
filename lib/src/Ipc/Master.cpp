@@ -45,7 +45,7 @@ Master::Master( const QString &applicationFilePath ) :
 		qCritical( "Error in listen() in Ipc::Master::Master()" );
 	}
 
-	ilogf( Info, "Listening at port %d", serverPort() );
+	ilogf( Info, "Ipc::Master: listening at port %d", serverPort() );
 
 	connect( &m_socketReceiveMapper, SIGNAL( mapped( QObject *) ),
 				this, SLOT( receiveMessage( QObject * ) ) );

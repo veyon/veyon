@@ -72,6 +72,9 @@ int ItalcCoreServer::handleItalcClientMessage( socketDispatcher sock,
 	ItalcCore::Msg msgIn( &sdev );
 	msgIn.receive();
 
+	qDebug() << "ItalcCoreServer: received message" << msgIn.cmd()
+					<< "with arguments" << msgIn.args();
+
 	const QString cmd = msgIn.cmd();
 	if( cmd == ItalcCore::GetUserInformation )
 	{
@@ -369,6 +372,8 @@ bool ItalcCoreServer::doKeyBasedAuth( SocketDevice &sdev, const QString &host )
 
 bool ItalcCoreServer::doHostBasedAuth( const QString &host )
 {
+	qDebug() << "ItalcCoreServer: doing host based auth for host" << host;
+
 	if( m_allowedIPs.isEmpty() )
 	{
 		return false;
@@ -398,6 +403,8 @@ bool ItalcCoreServer::doHostBasedAuth( const QString &host )
 			}
 		}
 	}
+
+	qWarning() << "ItalcCoreServer::doHostBasedAuth() failed for host " << host;
 
 	// host-based authentication failed
 	return false;

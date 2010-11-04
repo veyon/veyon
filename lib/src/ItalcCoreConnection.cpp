@@ -22,9 +22,8 @@
  *
  */
 
-#include <QtCore/QDebug>
-
 #include "ItalcCoreConnection.h"
+#include "Logger.h"
 
 
 class ItalcMessageEvent : public ClientEvent
@@ -39,6 +38,8 @@ public:
 	{
 		SocketDevice socketDev( libvncClientDispatcher, client );
 		m_msg.setSocketDevice( &socketDev );
+		qDebug() << "ItalcMessageEvent::fire(): sending message" << m_msg.cmd()
+					<< "with arguments" << m_msg.args();
 		m_msg.send();
 	}
 
@@ -121,7 +122,11 @@ bool ItalcCoreConnection::handleServerMessage( rfbClient *cl, uint8_t msg )
 	{
 		SocketDevice socketDev( libvncClientDispatcher, cl );
 		ItalcCore::Msg m( &socketDev );
+
 		m.receive();
+		qDebug() << "ItalcCoreConnection: received message" << m.cmd()
+					<< "with arguments" << m.args();
+
 		if( m.cmd() == ItalcCore::UserInformation )
 		{
 			m_user = m.arg( "username" );
