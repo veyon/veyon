@@ -131,7 +131,8 @@ void Master::stopSlave( const Ipc::Id &id )
 	}
 	else
 	{
-		qDebug() << "Can't stop slave" << id << "as it does not exist";
+		qDebug() << "Ipc::Master: can't stop slave" << id
+					<< "as it does not exist";
 	}
 }
 
@@ -159,7 +160,7 @@ void Master::sendMessage( const Ipc::Id &id, const Ipc::Msg &msg )
 
 	if( m_processes.contains( id ) )
 	{
-		qDebug() << "queuing message" << msg.cmd()
+		qDebug() << "Ipc::Master: queuing message" << msg.cmd()
 					<< "for slave" << id;
 		m_processes[id].pendingMessages << msg;
 		if( m_processes[id].sock )
@@ -169,7 +170,7 @@ void Master::sendMessage( const Ipc::Id &id, const Ipc::Msg &msg )
 	}
 	else
 	{
-		qWarning() << "Can't send message" << msg.cmd()
+		qWarning() << "Ipc::Master: can't send message" << msg.cmd()
 					<< "to non-existing slave" << id;
 	}
 }
@@ -185,7 +186,8 @@ Ipc::Msg Master::receiveMessage( const Ipc::Id &id )
 	if( m_processes.contains( id ) && m_processes[id].sock )
 	{
 		m.receive( m_processes[id].sock );
-		qDebug() << "Received message" << m.cmd() << "from slave" << id;
+		qDebug() << "Ipc::Master: received message" << m.cmd()
+					<< "from slave" << id;
 	}
 
 	return m;
@@ -196,7 +198,7 @@ Ipc::Msg Master::receiveMessage( const Ipc::Id &id )
 
 void Master::acceptConnection()
 {
-	qDebug( "Accepting connection" );
+	qDebug( "Ipc::Master: accepting connection" );
 
 	QTcpSocket *s = nextPendingConnection();
 
@@ -243,7 +245,8 @@ void Master::receiveMessage( QObject *sockObj )
 
 			if( m.cmd() != Ipc::Commands::Ping )
 			{
-				qDebug() << "Received message" << m.cmd() << "from slave" << slaveId;
+				qDebug() << "Ipc::Master: received message" << m.cmd()
+							<< "from slave" << slaveId;
 			}
 
 			if( m.cmd() == Ipc::Commands::UnknownCommand )
@@ -298,7 +301,7 @@ void Master::sendPendingMessages()
 		{
 			foreach( const Ipc::Msg &m, it->pendingMessages )
 			{
-				qDebug() << "sending message" << m.cmd()
+				qDebug() << "Ipc::Master: sending message" << m.cmd()
 							<< "to slave" << it.key()
 							<< "with arguments" << m.args();
 				m.send( it->sock );
