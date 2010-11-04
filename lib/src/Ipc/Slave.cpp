@@ -115,8 +115,8 @@ void Slave::masterPing()
 
 	if( m_lastPingResponse.msecsTo( QTime::currentTime() ) > 10000 )
 	{
-		qWarning() << "Slave" << m_slaveId << "terminates due to ping timeout";
-		QCoreApplication::quit();
+		qWarning() << "Ping timeout for slave" << m_slaveId;
+		//QCoreApplication::quit();
 	}
 }
 
