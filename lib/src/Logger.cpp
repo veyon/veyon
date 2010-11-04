@@ -32,6 +32,7 @@
 #include <QtCore/QSettings>
 
 #include "Logger.h"
+#include "LocalSystem.h"
 
 
 Logger::LogLevel Logger::logLevel = Logger::LogLevelDefault;
@@ -60,14 +61,18 @@ Logger::Logger( const QString &appName ) :
 
 	qInstallMsgHandler( qtMsgHandler );
 
+	QString user = LocalSystem::User::loggedOnUser().name();
+
 	if( QCoreApplication::instance() )
 	{
 		// log current application start up
-		LogStream() << "Startup" << QCoreApplication::arguments();
+		LogStream() << "Startup for user" << user
+					<< "with arguments" << QCoreApplication::arguments();
 	}
 	else
 	{
-		ilog( Info, "Startup without QCoreApplication instance" );
+		LogStream() << "Startup for user" << user
+					<< "without QCoreApplication instance";
 	}
 }
 
