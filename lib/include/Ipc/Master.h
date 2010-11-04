@@ -64,6 +64,7 @@ public:
 private slots:
 	void acceptConnection();
 	void receiveMessage( QObject *sock );
+	void sendPendingMessages();
 
 
 private:
@@ -95,6 +96,10 @@ private:
 	ProcessMap m_processes;
 
 	QMutex m_processMapMutex;
+
+
+signals:
+	void messagesPending();
 
 };
 

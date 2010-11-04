@@ -52,6 +52,9 @@ Master::Master( const QString &applicationFilePath ) :
 
 	connect( this, SIGNAL( newConnection() ),
 			 this, SLOT( acceptConnection() ) );
+
+	connect( this, SIGNAL( messagesPending() ),
+				this, SLOT( sendPendingMessages() ), Qt::QueuedConnection );
 }
 
 
@@ -109,9 +112,10 @@ void Master::stopSlave( const Ipc::Id &id )
 		LogStream() << "Stopping slave" << id;
 		if( isSlaveRunning( id ) )
 		{
+			l.unlock();
 			sendMessage( id, Ipc::Commands::Quit );
-
 			m_processes[id].slaveLauncher->stop();
+			l.relock();
 		}
 
 		delete m_processes[id].slaveLauncher;
@@ -155,15 +159,12 @@ void Master::sendMessage( const Ipc::Id &id, const Ipc::Msg &msg )
 
 	if( m_processes.contains( id ) )
 	{
+		qDebug() << "queuing message" << msg.cmd()
+					<< "for slave" << id;
+		m_processes[id].pendingMessages << msg;
 		if( m_processes[id].sock )
 		{
-			qDebug() << "Sending message" << msg.cmd() << "to slave" << id;
-			msg.send( m_processes[id].sock );
-		}
-		else
-		{
-			qDebug() << "Queuing message" << msg.cmd() << "for slave" << id;
-			m_processes[id].pendingMessages << msg;
+			emit messagesPending();
 		}
 	}
 	else
@@ -264,14 +265,9 @@ void Master::receiveMessage( QObject *sockObj )
 						m_processes[id].sock == NULL )
 				{
 					m_processes[id].sock = sock;
-
 					// send all pending messages that were queued before the
 					// connection was established completely
-					foreach( const Ipc::Msg &m, m_processes[id].pendingMessages )
-					{
-						m.send( sock );
-					}
-					m_processes[id].pendingMessages.clear();
+					sendPendingMessages();
 				}
 				else
 				{
@@ -284,6 +280,30 @@ void Master::receiveMessage( QObject *sockObj )
 			{
 				handleMessage( slaveId, m );
 			}
+		}
+	}
+}
+
+
+
+void Master::sendPendingMessages()
+{
+	qDebug() << "Master::sendPendingMessages()";
+	QMutexLocker l( &m_processMapMutex );
+
+	for( ProcessMap::Iterator it = m_processes.begin();
+							it != m_processes.end(); ++it )
+	{
+		if( it->sock && !it->pendingMessages.isEmpty() )
+		{
+			foreach( const Ipc::Msg &m, it->pendingMessages )
+			{
+				qDebug() << "sending message" << m.cmd()
+							<< "to slave" << it.key()
+							<< "with arguments" << m.args();
+				m.send( it->sock );
+			}
+			it->pendingMessages.clear();
 		}
 	}
 }
