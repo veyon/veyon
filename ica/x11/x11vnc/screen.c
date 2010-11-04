@@ -1476,9 +1476,8 @@ char *vnc_reflect_guess(char *str, char **raw_fb_addr) {
 #define USE_AS_ITALC_DEMO_SERVER
 #ifdef USE_AS_ITALC_DEMO_SERVER
 	client->appData.encodingsString = "raw";
-#else
-	client->appData.useRemoteCursor = TRUE;
 #endif
+	client->appData.useRemoteCursor = TRUE;
 	client->canHandleNewFBSize = TRUE;
 
 	client->HandleCursorPos = vnc_reflect_cursor_pos;
