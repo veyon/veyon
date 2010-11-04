@@ -54,15 +54,17 @@ extern VNCLog vnclog;
 // No logging at all
 #define LL_NONE		0
 // Log server startup/shutdown
-#define LL_STATE	0
+#define LL_STATE	1
 // Log connect/disconnect
-#define LL_CLIENTS	1
+#define LL_CLIENTS	2
 // Log connection errors (wrong pixfmt, etc)
-#define LL_CONNERR	0
+#define LL_CONNERR	3
 // Log socket errors
 #define LL_SOCKERR	4
 // Log internal errors
-#define LL_INTERR	0
+#define LL_INTERR	5
+
+#define LL_ERROR	6
 
 // Log internal warnings
 #define LL_INTWARN	8

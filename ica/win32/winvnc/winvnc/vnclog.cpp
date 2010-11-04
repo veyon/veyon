@@ -173,10 +173,26 @@ void VNCLog::CloseFile() {
 #include "Logger.h"
 #endif
 
-inline void VNCLog::ReallyPrintLine(const char* line) 
+inline void VNCLog::ReallyPrintLine(int level, const char* line) 
 {
 #ifdef ULTRAVNC_ITALC_SUPPORT
-	ilog( Info, line );
+	if( level == LL_SOCKERR || level == LL_ERROR )
+	{
+		ilog( Error, line );
+	}
+	else if( level == LL_INTWARN || level == LL_CONNERR )
+	{
+		ilog( Warning, line );
+	}
+	else if( level == LL_STATE ||
+				level == LL_CLIENTS || level == LL_INTERR )
+	{
+		ilog( Info, line );
+	}
+	else
+	{
+		ilog( Debug, line );
+	}
 #else
     if (m_todebug) OutputDebugString(line);
     if (m_toconsole) {
@@ -190,7 +206,7 @@ inline void VNCLog::ReallyPrintLine(const char* line)
 #endif
 }
 
-void VNCLog::ReallyPrint(const char* format, va_list ap) 
+void VNCLog::ReallyPrint(int level, const char* format, va_list ap) 
 {
 #ifndef ULTRAVNC_ITALC_SUPPORT
 	time_t current = time(0);
@@ -216,8 +232,9 @@ void VNCLog::ReallyPrint(const char* format, va_list ap)
         }
 	strcat(line," --");
 	strcat(line,szErrorMsg);
+	level = LL_ERROR;
     }
-	ReallyPrintLine(line);
+	ReallyPrintLine(level, line);
 }
 
 VNCLog::~VNCLog()

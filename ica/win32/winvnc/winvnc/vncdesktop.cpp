@@ -472,7 +472,7 @@ vncDesktop::~vncDesktop()
 			// we must be carefull to avoid memory leaks...
 			((RGBPixelList*)(*iGrid))->clear();
 			delete ((RGBPixelList*)(*iGrid));
-			vnclog.Print(LL_INTWARN, VNCLOG("delete ((RGBPixelList) \n"));
+			//vnclog.Print(LL_INTWARN, VNCLOG("delete ((RGBPixelList) \n"));
 		}
 	}
 	vnclog.Print(LL_INTINFO, VNCLOG("~vncDesktop m_lGridsList.clear\n"));
