@@ -299,7 +299,8 @@ bool ItalcCoreServer::authSecTypeItalc( socketDispatcher sd, void *user )
 	{
 		// only report about failed authentications for hosts that are not
 		// blacklisted already
-		if( !m_manuallyDeniedHosts.contains( host ) )
+		if( !m_manuallyDeniedHosts.contains( host ) &&
+				chosen != ItalcAuthHostBased )
 		{
 			errorMsgAuth( host );
 		}
