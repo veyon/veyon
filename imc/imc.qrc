@@ -1,0 +1,15 @@
+<RCC>
+  <qresource prefix="/">
+    <file>Resources/edit-clear.png</file>
+    <file>Resources/document-open.png</file>
+    <file>Resources/go-previous.png</file>
+    <file>Resources/go-next.png</file>
+    <file>Resources/list-add.png</file>
+    <file>Resources/list-remove.png</file>
+    <file>Resources/Authentication.png</file>
+    <file>Resources/tools-wizard.png</file>
+    <file>Resources/General.png</file>
+    <file>Resources/Paths.png</file>
+    <file>Resources/Vnc.png</file>
+  </qresource>
+</RCC>
