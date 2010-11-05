@@ -155,7 +155,7 @@ SET(ITALCCONFIG ${CMAKE_BINARY_DIR}/italcconfig.h)
 SET(RFBCONFIG ${CMAKE_BINARY_DIR}/rfb/rfbconfig.h)
 
 CONFIGURE_FILE(${CMAKE_SOURCE_DIR}/italcconfig.h.in ${ITALCCONFIG})
-SET(IN_FILES iTALC.nsi italc.spec ima/data/italc ima/data/italc.desktop ica/ica.rc ima/italc.rc)
+SET(IN_FILES iTALC.nsi italc.spec ima/data/italc ima/data/italc.desktop ica/ica.rc ima/italc.rc imc/imc.rc)
 FOREACH(f ${IN_FILES})
 	CONFIGURE_FILE(${CMAKE_SOURCE_DIR}/${f}.in ${CMAKE_BINARY_DIR}/${f} @ONLY)
 ENDFOREACH(f ${IN_FILES})
@@ -185,6 +185,7 @@ LINK_LIBRARIES(${QT_LIBRARIES} ${ZLIB_LIBRARIES} ${JPEG_LIBRARIES} ${OPENSSL_LIB
 ADD_SUBDIRECTORY(lib)
 ADD_SUBDIRECTORY(ica)
 ADD_SUBDIRECTORY(ima)
+ADD_SUBDIRECTORY(imc)
 
 INSTALL()
 

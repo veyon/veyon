@@ -1,0 +1,26 @@
+//italcicon ICON data/italc.ico
+#include <windows.h>
+
+VS_VERSION_INFO	VERSIONINFO
+  FILEVERSION	1,9,0,0
+  FILEFLAGSMASK VS_FFI_FILEFLAGSMASK
+  FILEOS	VOS_NT_WINDOWS32
+  FILETYPE	VFT_APP
+  FILESUBTYPE	VFT2_UNKNOWN
+BEGIN
+  BLOCK "StringFileInfo"
+  BEGIN
+    BLOCK "040904E4"
+    //language ID = U.S. English, charset = Windows, Multilingual
+    BEGIN
+      VALUE "Comments",		"Intelligent Teaching And Learning with Computers (http://italc.sf.net)\0"
+      VALUE "CompanyName",	"iTALC Solutions\0"
+      VALUE "FileDescription",	"iTALC Management Console\0"
+      VALUE "FileVersion",	"@PACKAGE_VERSION@\0"
+      VALUE "LegalCopyright",	"Copyright (c) 2010 Tobias Doerffel\0"
+      VALUE "OriginalFilename",	"imc.exe\0"
+      VALUE "ProductName",	"iTALC\0"
+      VALUE "ProductVersion",	"@PACKAGE_VERSION@\0"
+    END
+  END
+END
