@@ -26,6 +26,7 @@
 #include <QtCore/QTranslator>
 #include <QtGui/QApplication>
 
+#include "ImcCore.h"
 #include "MainWindow.h"
 #include "LocalSystem.h"
 #include "Logger.h"
@@ -55,6 +56,7 @@ int main( int argc, char **argv )
 		app.installTranslator( tr );
 	}
 
+	ImcCore::init();
 
 	// parse arguments
 	QStringListIterator argIt( QCoreApplication::arguments() );
@@ -72,7 +74,10 @@ int main( int argc, char **argv )
 
 	ilog( Info, "App.Exec" );
 
-	// let's rock
-	return app.exec();
+	int ret = app.exec();
+
+	ImcCore::deinit();
+
+	return ret;
 }
 
