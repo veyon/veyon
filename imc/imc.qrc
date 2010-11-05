@@ -1,5 +1,7 @@
 <RCC>
   <qresource prefix="/">
+    <file>Resources/arrow-right.png</file>
+    <file>Resources/system-shutdown.png</file>
     <file>Resources/Authentication.png</file>
     <file>Resources/document-open.png</file>
     <file>Resources/document-save.png</file>
