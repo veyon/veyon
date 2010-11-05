@@ -46,30 +46,31 @@ public:
 
 	enum Scopes
 	{
-		Personal,
-		Global
+		Personal,	// for current user
+		Global,		// for all users
+		System		// system-wide (service settings etc.)
 	} ;
 	typedef Scopes Scope;
 
 
-	Store( Backend _backend, Scope _scope ) :
-		m_backend( _backend ),
-		m_scope( _scope )
+	Store( Backend backend, Scope scope ) :
+		m_backend( backend ),
+		m_scope( scope )
 	{
 	}
 
-	inline Backend backend( void ) const
+	Backend backend() const
 	{
 		return m_backend;
 	}
 
-	inline Scope scope( void ) const
+	Scope scope() const
 	{
 		return m_scope;
 	}
 
-	virtual void load( Object * _obj ) = 0;
-	virtual void flush( Object * _obj ) = 0;
+	virtual void load( Object *obj ) = 0;
+	virtual void flush( Object *obj ) = 0;
 
 
 private:
