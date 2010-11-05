@@ -91,6 +91,21 @@ private:
 			return value( key, parentKey ).toInt();	\
 		}
 
+#define MAP_CONFIG_BOOL_PROPERTY(get,set,key,parentKey)	\
+	public slots:										\
+		void set( bool val )							\
+		{												\
+			setValue( key, QString::number( val ),		\
+						parentKey );					\
+		}												\
+	public:												\
+		bool get() const								\
+		{												\
+			return value( key, parentKey ).toInt() ?	\
+										true : false;	\
+		}
+
+
 }
 
 #endif
