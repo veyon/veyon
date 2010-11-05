@@ -24,15 +24,60 @@
 
 #include <italcconfig.h>
 
+#include "ImcCore.h"
+#include "ItalcConfiguration.h"
 #include "MainWindow.h"
 
+
 MainWindow::MainWindow() :
-	QMainWindow()
+	QMainWindow(),
+	ui( new Ui::MainWindow )
 {
-	setupUi( this );
+	ui->setupUi( this );
 
 	setWindowTitle( tr( "iTALC Management Console %1" ).arg( ITALC_VERSION ) );
 
+#define LOAD_AND_CONNECT_PROPERTY(property,type,widget,setvalue,signal,slot)		\
+			ui->widget->setvalue( ImcCore::config->property() );  					\
+			connect( ui->widget, SIGNAL(signal(type)),									\
+						ImcCore::config, SLOT(slot(type)) );
+
+#define LOAD_AND_CONNECT_PROPERTY_BUTTON(property,slot)								\
+			LOAD_AND_CONNECT_PROPERTY(property,bool,property,setChecked,toggled,slot)
+
+#define LOAD_AND_CONNECT_PROPERTY_LINEEDIT(property,slot)							\
+			LOAD_AND_CONNECT_PROPERTY(property,const QString &,property,setText,toggled,slot)
+
+#define LOAD_AND_CONNECT_PROPERTY_SPINBOX(property,slot)							\
+			LOAD_AND_CONNECT_PROPERTY(property,int,property,setValue,toggled,slot)
+
+#define LOAD_AND_CONNECT_PROPERTY_COMBOBOX(property,slot)							\
+			LOAD_AND_CONNECT_PROPERTY(property,int,property,setCurrentIndex,toggled,slot)
+
+	// iTALC Service
+	LOAD_AND_CONNECT_PROPERTY_BUTTON(isTrayIconHidden,setTrayIconHidden);
+	LOAD_AND_CONNECT_PROPERTY_BUTTON(autostartService,setServiceAutostart);
+
+	LOAD_AND_CONNECT_PROPERTY_LINEEDIT(serviceArguments,setServiceArguments);
+
+	// Logging
+	LOAD_AND_CONNECT_PROPERTY_COMBOBOX(logLevel,setLogLevel);
+	LOAD_AND_CONNECT_PROPERTY_BUTTON(limittedLogFileSize,setLimittedLogFileSize);
+	LOAD_AND_CONNECT_PROPERTY_SPINBOX(logFileSizeLimit,setLogFileSizeLimit);
+	LOAD_AND_CONNECT_PROPERTY_LINEEDIT(logFileDirectory,setLogFileDirectory);
+
+	// VNC Server
+	LOAD_AND_CONNECT_PROPERTY_BUTTON(vncCaptureLayeredWindows,setVncCaptureLayeredWindows);
+	LOAD_AND_CONNECT_PROPERTY_BUTTON(vncPollFullScreen,setVncPollFullScreen);
+	LOAD_AND_CONNECT_PROPERTY_BUTTON(vncLowAccuracy,setVncLowAccuracy);
+
+	// Demo server
+	LOAD_AND_CONNECT_PROPERTY_BUTTON(isDemoServerMultithreaded,setDemoServerMultithreaded);
+
+	// Network
+	LOAD_AND_CONNECT_PROPERTY_SPINBOX(coreServerPort,setCoreServerPort);
+	LOAD_AND_CONNECT_PROPERTY_SPINBOX(demoServerPort,setDemoServerPort);
+	LOAD_AND_CONNECT_PROPERTY_BUTTON(isFirewallExceptionEnabled,setFirewallExceptionEnabled);
 }
 
 

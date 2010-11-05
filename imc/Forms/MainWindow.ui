@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>705</width>
-    <height>508</height>
+    <height>541</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -117,7 +117,7 @@
     <item row="0" column="1">
      <widget class="QStackedWidget" name="configPages">
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="generalSettingsPage">
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -160,14 +160,14 @@
           </property>
           <layout class="QGridLayout" name="gridLayout_10">
            <item row="0" column="0" colspan="5">
-            <widget class="QCheckBox" name="hideTrayIcon">
+            <widget class="QCheckBox" name="isTrayIconHidden">
              <property name="text">
               <string>Hide tray icon</string>
              </property>
             </widget>
            </item>
            <item row="1" column="0" colspan="5">
-            <widget class="QCheckBox" name="enableAutostart">
+            <widget class="QCheckBox" name="autostartService">
              <property name="text">
               <string>Autostart</string>
              </property>
@@ -202,7 +202,7 @@
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="additionalArguments"/>
+              <widget class="QLineEdit" name="serviceArguments"/>
              </item>
             </layout>
            </item>
@@ -301,7 +301,7 @@
               </widget>
              </item>
              <item row="1" column="1">
-              <widget class="QComboBox" name="loglevel">
+              <widget class="QComboBox" name="logLevel">
                <property name="currentIndex">
                 <number>2</number>
                </property>
@@ -342,7 +342,7 @@
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout_3">
              <item>
-              <widget class="QCheckBox" name="limitLogFileSize">
+              <widget class="QCheckBox" name="limittedLogFileSize">
                <property name="text">
                 <string>Limit log file size</string>
                </property>
@@ -454,7 +454,7 @@
           </property>
           <layout class="QGridLayout" name="gridLayout_7">
            <item row="0" column="0">
-            <widget class="QCheckBox" name="vncCaptureAlpha">
+            <widget class="QCheckBox" name="vncCaptureLayeredWindows">
              <property name="text">
               <string>Enable capturing of layered (semi-transparent) windows</string>
              </property>
@@ -484,7 +484,7 @@
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_7">
            <item>
-            <widget class="QCheckBox" name="demoServerMultithreading">
+            <widget class="QCheckBox" name="isDemoServerMultithreaded">
              <property name="text">
               <string>Multithreading (disable when experiencing crashes)</string>
              </property>
@@ -540,7 +540,7 @@
             </widget>
            </item>
            <item row="2" column="0">
-            <widget class="QCheckBox" name="firewallException">
+            <widget class="QCheckBox" name="isFirewallExceptionEnabled">
              <property name="text">
               <string>Enable firewall exception</string>
              </property>
@@ -1111,7 +1111,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>limitLogFileSize</sender>
+   <sender>limittedLogFileSize</sender>
    <signal>toggled(bool)</signal>
    <receiver>logFileSizeLimit</receiver>
    <slot>setEnabled(bool)</slot>

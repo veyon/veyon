@@ -25,15 +25,22 @@
 #ifndef _MAIN_WINDOW_H
 #define _MAIN_WINDOW_H
 
+#include <QtGui/QMainWindow>
+
 #include "ui_MainWindow.h"
 
-class MainWindow : public QMainWindow, public Ui::MainWindow
+namespace Ui { class MainWindow; } ;
+
+class MainWindow : public QMainWindow
 {
 	Q_OBJECT
 public:
 	MainWindow();
 	virtual ~MainWindow();
 
+
+private:
+	Ui::MainWindow *ui;
 
 } ;
 
