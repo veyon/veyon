@@ -34,7 +34,7 @@ namespace Configuration
 class XmlStore : public Store
 {
 public:
-	XmlStore( Scope scope );
+	XmlStore( Scope scope, const QString & file = QString() );
 
 	virtual void load( Object *obj );
 	virtual void flush( Object *obj );
@@ -42,6 +42,8 @@ public:
 
 private:
 	QString configurationFilePath();
+
+	QString m_file;
 
 } ;
 

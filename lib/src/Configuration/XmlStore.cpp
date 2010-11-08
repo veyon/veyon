@@ -36,8 +36,9 @@
 namespace Configuration
 {
 
-XmlStore::XmlStore( Scope _scope ) :
-	Store( Store::XmlFile, _scope )
+XmlStore::XmlStore( Scope scope, const QString &file ) :
+	Store( Store::XmlFile, scope ),
+	m_file( file )
 {
 }
 
@@ -73,7 +74,7 @@ static void loadXmlTree( Object * _obj, QDomNode & _parentNode,
 void XmlStore::load( Object * _obj )
 {
 	QDomDocument doc;
-	QFile xmlFile( configurationFilePath() );
+	QFile xmlFile( m_file.isEmpty() ? configurationFilePath() : m_file );
 	if( !xmlFile.open( QFile::ReadOnly ) || !doc.setContent( &xmlFile ) )
 	{
 		DecoratedMessageBox::information(
@@ -136,7 +137,7 @@ void XmlStore::flush( Object * _obj )
 	saveXmlTree( data, doc, root, QString() );
 	doc.appendChild( root );
 
-	QFile outfile( configurationFilePath() );
+	QFile outfile( m_file.isEmpty() ? configurationFilePath() : m_file );
 	if( !outfile.open( QIODevice::WriteOnly | QIODevice::Truncate ) )
 	{
 		qCritical() << "XmlStore::flush(): could not write to configuration file"
