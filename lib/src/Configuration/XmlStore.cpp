@@ -1,7 +1,7 @@
 /*
  * ConfigurationXmlStore.cpp - implementation of XmlStore
  *
- * Copyright (c) 2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2009-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -22,12 +22,14 @@
  *
  */
 
+#include <QtCore/QDir>
 #include <QtCore/QFile>
 #include <QtXml/QDomDocument>
 
 #include "Configuration/XmlStore.h"
 #include "Configuration/Object.h"
 #include "LocalSystem.h"
+#include "Logger.h"
 #include "DecoratedMessageBox.h"
 
 
@@ -49,14 +51,14 @@ static void loadXmlTree( Object * _obj, QDomNode & _parentNode,
 
 	while( !node.isNull() )
 	{
-		if( node.hasChildNodes() )
+		if( !node.firstChildElement().isNull() )
 		{
 			const QString subParentKey = _parentKey +
 				( _parentKey.isEmpty() ? "" : "/" ) +
 					node.nodeName();
 			loadXmlTree( _obj, node, subParentKey );
 		}
-		else if( node.isElement() )
+		else
 		{
 			_obj->setValue( node.nodeName(),
 					node.toElement().text(),
@@ -68,13 +70,10 @@ static void loadXmlTree( Object * _obj, QDomNode & _parentNode,
 
 
 
-
 void XmlStore::load( Object * _obj )
 {
 	QDomDocument doc;
-	QFile xmlFile( scope() == Global ?
-				LocalSystem::globalConfigPath() :
-				LocalSystem::personalConfigPath() );
+	QFile xmlFile( configurationFilePath() );
 	if( !xmlFile.open( QFile::ReadOnly ) || !doc.setContent( &xmlFile ) )
 	{
 		DecoratedMessageBox::information(
@@ -133,11 +132,42 @@ void XmlStore::flush( Object * _obj )
 	QDomDocument doc( "ItalcConfigXmlStore" );
 	const Object::DataMap & data = _obj->data();
 
-	QDomElement root = doc.createElement(
-			scope() == Global ? "GlobalConfig" : "PersonalConfig" );
+	QDomElement root = doc.createElement( configurationNameFromScope() );
 	saveXmlTree( data, doc, root, QString() );
 	doc.appendChild( root );
+
+	QFile outfile( configurationFilePath() );
+	if( !outfile.open( QIODevice::WriteOnly | QIODevice::Truncate ) )
+	{
+		qCritical() << "XmlStore::flush(): could not write to configuration file"
+					<< configurationFilePath();
+		return;
+	}
+
+	QString xml = "<?xml version=\"1.0\"?>\n" + doc.toString( 2 );
+	QTextStream( &outfile ) << xml;
 }
+
+
+
+
+QString XmlStore::configurationFilePath()
+{
+	QString base;
+	switch( scope() )
+	{
+		case Global: base = LocalSystem::globalConfigPath(); break;
+		case Personal: base = LocalSystem::personalConfigPath(); break;
+		case System: base = LocalSystem::systemConfigPath(); break;
+	}
+
+	LocalSystem::ensurePathExists( base );
+
+	return base + QDir::separator() + configurationNameFromScope() + ".xml";
+}
+
+
+
 
 
 }
