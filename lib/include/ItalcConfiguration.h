@@ -33,6 +33,7 @@ class ItalcConfiguration : public Configuration::Object
 	Q_OBJECT
 public:
 	ItalcConfiguration( Configuration::Store::Backend backend );
+	ItalcConfiguration( Configuration::Store *store );
 
 #define FOREACH_ITALC_CONFIG_PROPERTY(OP)												\
 		/* iTALC Service */																\

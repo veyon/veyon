@@ -33,5 +33,12 @@ ItalcConfiguration::ItalcConfiguration(
 
 
 
+ItalcConfiguration::ItalcConfiguration( Configuration::Store *store ) :
+	Configuration::Object( store )
+{
+}
+
+
+
 FOREACH_ITALC_CONFIG_PROPERTY(IMPLEMENT_CONFIG_SET_PROPERTY)
 
