@@ -48,6 +48,11 @@ public:
 			const QString & _value,
 			const QString & _parentKey = QString() );
 
+	void reloadFromStore()
+	{
+		m_store->load( this );
+	}
+
 	void flushStore()
 	{
 		m_store->flush( this );

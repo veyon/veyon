@@ -52,7 +52,7 @@ Object::Object( Store::Backend _backend, Store::Scope _scope ) :
 			break;
 	}
 
-	m_store->load( this );
+	reloadFromStore();
 }
 
 
