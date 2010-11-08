@@ -117,7 +117,7 @@
     <item row="0" column="1">
      <widget class="QStackedWidget" name="configPages">
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="generalSettingsPage">
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -585,7 +585,7 @@
             <number>10</number>
            </property>
            <item row="0" column="1">
-            <widget class="QLineEdit" name="globalConfig">
+            <widget class="QLineEdit" name="globalConfigurationPath">
              <property name="text">
               <string>$PROFILE/.italc/globalconfig.xml</string>
              </property>
@@ -606,7 +606,7 @@
             </widget>
            </item>
            <item row="1" column="1">
-            <widget class="QLineEdit" name="personalConfig">
+            <widget class="QLineEdit" name="personalConfigurationPath">
              <property name="text">
               <string>$PROFILE/.italc/personalconfig.xml</string>
              </property>
@@ -738,7 +738,7 @@
             </spacer>
            </item>
            <item row="0" column="0">
-            <widget class="QRadioButton" name="keyBasedAuth">
+            <widget class="QRadioButton" name="isAuthenticationKeyBased">
              <property name="text">
               <string>Key based authentication</string>
              </property>
@@ -748,7 +748,7 @@
             </widget>
            </item>
            <item row="1" column="0">
-            <widget class="QRadioButton" name="domainLogonAuth">
+            <widget class="QRadioButton" name="isAuthenticationLogonBased">
              <property name="text">
               <string>Domain logon (username/password) based authentication</string>
              </property>
@@ -1063,7 +1063,7 @@
  </resources>
  <connections>
   <connection>
-   <sender>domainLogonAuth</sender>
+   <sender>isAuthenticationLogonBased</sender>
    <signal>toggled(bool)</signal>
    <receiver>logonManagement</receiver>
    <slot>setEnabled(bool)</slot>
@@ -1095,7 +1095,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>keyBasedAuth</sender>
+   <sender>isAuthenticationKeyBased</sender>
    <signal>toggled(bool)</signal>
    <receiver>keyManagement</receiver>
    <slot>setEnabled(bool)</slot>
