@@ -28,6 +28,8 @@
 #include "Configuration/LocalStore.h"
 #include "Configuration/XmlStore.h"
 
+#include "Logger.h"
+
 
 namespace Configuration
 {
@@ -105,50 +107,57 @@ QString Object::value( const QString & _key, const QString & _parentKey ) const
 
 
 
-void Object::setValue( const QString & _key,
-			const QString & _value,
-			const QString & _parentKey )
+void Object::setValue( const QString & key,
+			const QString & value,
+			const QString & parentKey )
 {
-	if( _parentKey.isEmpty() )
-	{
-		// search for key in toplevel data map
-		if( m_data.contains( _key ) && m_data[_key].type() !=
-							QVariant::String )
-		{
-			qWarning( "cannot replace sub data map with a "
-					"string value!" );
-			return;
-		}
-		m_data[_key] = _value;
-		return;
-	}
-
 	// recursively search through data maps and sub data-maps until
 	// all levels of the parentKey are processed
-	const QStringList subLevels = _parentKey.split( '/' );
-	DataMap currentMap = m_data;
-	foreach( const QString & _level, subLevels )
+	QStringList subLevels = parentKey.split( '/' );
+	m_data = setValueRecursive( m_data, subLevels, key, value );
+}
+
+
+
+
+Object::DataMap Object::setValueRecursive( DataMap data,
+									QStringList subLevels,
+									const QString &key,
+									const QString &value )
+{
+	if( subLevels.isEmpty() )
 	{
-		if( currentMap.contains( _level ) )
+		// search for key in toplevel data map
+		if( !data.contains( key ) || data[key].type() == QVariant::String )
 		{
-			if( currentMap[_level].type() == QVariant::Map )
-			{
-				currentMap = currentMap[_level].toMap();
-			}
-			else
-			{
-				qWarning( "parent-key points to a string value "
-						"rather than a sub data map!" );
-				return;
-			}
+			data[key] = value;
 		}
 		else
 		{
-			currentMap[_level] = DataMap();
+			qWarning( "cannot replace sub data map with a "
+						"string value!" );
 		}
+
+		return data;
 	}
 
-	currentMap[_key] = _value;
+	const QString level = subLevels.takeFirst();
+	if( data.contains( level ) )
+	{
+		if( !data[level].type() == QVariant::Map )
+		{
+			qWarning( "parent key points doesn't point to a data map!" );
+			return data;
+		}
+	}
+	else
+	{
+		data[level] = DataMap();
+	}
+
+	data[level] = setValueRecursive( data[level].toMap(), subLevels, key, value );
+
+	return data;
 }
 
 

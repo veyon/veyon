@@ -48,18 +48,22 @@ public:
 			const QString & _value,
 			const QString & _parentKey = QString() );
 
-	void flushStore( void )
+	void flushStore()
 	{
 		m_store->flush( this );
 	}
 
-	const DataMap & data( void ) const
+	const DataMap & data() const
 	{
 		return m_data;
 	}
 
 
 private:
+	static DataMap setValueRecursive( DataMap data,
+										QStringList subLevels,
+										const QString &key,
+										const QString &value );
 	Configuration::Store * m_store;
 	DataMap m_data;
 
