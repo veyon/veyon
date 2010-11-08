@@ -1,5 +1,6 @@
 /*
- * ItalcConfiguration.h - a Configuration object storing everything
+ * ItalcConfiguration.h - a Configuration object storing system wide
+ *                        configuration values
  *
  * Copyright (c) 2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
@@ -31,128 +32,61 @@ class ItalcConfiguration : public Configuration::Object
 {
 	Q_OBJECT
 public:
-	ItalcConfiguration( Configuration::Store::Backend backend ) :
-		Configuration::Object( backend, Configuration::Store::System )
-	{
-	}
+	ItalcConfiguration( Configuration::Store::Backend backend );
 
-	// iTALC Service
+#define FOREACH_ITALC_CONFIG_PROPERTY(OP)												\
+		/* iTALC Service */																\
+		OP( ItalcConfiguration, BOOL, isTrayIconHidden, setTrayIconHidden, "HideTrayIcon", "Service" );			\
+		OP( ItalcConfiguration, BOOL, autostartService, setServiceAutostart, "Autostart", "Service" );			\
+		OP( ItalcConfiguration, STRING, serviceArguments, setServiceArguments, "Arguments", "Service" );			\
+		/* Logging */																	\
+		OP( ItalcConfiguration, INT, logLevel, setLogLevel, "LogLevel", "Logging" );								\
+		OP( ItalcConfiguration, BOOL, limittedLogFileSize, setLimittedLogFileSize, "LimittedLogFileSize", "Logging" );	\
+		OP( ItalcConfiguration, INT, logFileSizeLimit, setLogFileSizeLimit, "LogFileSizeLimit", "Logging" );		\
+		OP( ItalcConfiguration, STRING, logFileDirectory, setLogFileDirectory, "LogFileDirectory", "Logging" );		\
+		/* VNC Server */																\
+		OP( ItalcConfiguration, BOOL, vncCaptureLayeredWindows, setVncCaptureLayeredWindows, "CaptureLayeredWindows", "VNC" );	\
+		OP( ItalcConfiguration, BOOL, vncPollFullScreen, setVncPollFullScreen, "PollFullScreen", "VNC" );			\
+		OP( ItalcConfiguration, BOOL, vncLowAccuracy, setVncLowAccuracy, "LowAccuracy", "VNC" );					\
+		/* Demo server */																\
+		OP( ItalcConfiguration, BOOL, isDemoServerMultithreaded, setDemoServerMultithreaded, "Multithreaded", "DemoServer" );		\
+		/* Network */																	\
+		OP( ItalcConfiguration, INT, coreServerPort, setCoreServerPort, "CoreServerPort", "Network" );			\
+		OP( ItalcConfiguration, INT, demoServerPort, setDemoServerPort, "DemoServerPort", "Network" );			\
+		OP( ItalcConfiguration, BOOL, isFirewallExceptionEnabled, setFirewallExceptionEnabled, "FirewallExceptionEnabled", "Network" );	\
+		/* Configuration file paths */													\
+		OP( ItalcConfiguration, STRING, globalConfigurationPath, setGlobalConfigurationPath, "GlobalConfiguration", "Paths" );	\
+		OP( ItalcConfiguration, STRING, personalConfigurationPath, setPersonalConfigurationPath, "PersonalConfiguration", "Paths" );	\
+		/* Data directories */															\
+		OP( ItalcConfiguration, STRING, snapshotDirectory, setSnapshotDirectory, "SnapshotDirectory", "Paths" );	\
+		/* Authentication */															\
+		OP( ItalcConfiguration, BOOL, isAuthenticationKeyBased, setAuthenticationKeyBased, "KeyBased", "Authentication" );	\
+		OP( ItalcConfiguration, BOOL, isAuthenticationLogonBased, setAuthenticationLogonBased, "LogonBased", "Authentication" );	\
 
-	MAP_CONFIG_BOOL_PROPERTY( isTrayIconHidden,
-					setTrayIconHidden,
-					"HideTrayIcon",
-					"Service" );
+	FOREACH_ITALC_CONFIG_PROPERTY(DECLARE_CONFIG_PROPERTY)
 
-	MAP_CONFIG_BOOL_PROPERTY( autostartService,
-					setServiceAutostart,
-					"Autostart",
-					"Service" );
-
-	MAP_CONFIG_PROPERTY( serviceArguments,
-					setServiceArguments,
-					"Arguments",
-					"Service" );
-
-
-	// Logging
-
-	MAP_CONFIG_INT_PROPERTY( logLevel,
-					setLogLevel,
-					"LogLevel",
-					"Logging" );
-
-	MAP_CONFIG_BOOL_PROPERTY( limittedLogFileSize,
-					setLimittedLogFileSize,
-					"LimittedLogFileSize",
-					"Logging" );
-
-	MAP_CONFIG_INT_PROPERTY( logFileSizeLimit,
-					setLogFileSizeLimit,
-					"LogFileSizeLimit",
-					"Logging" );
-
-	MAP_CONFIG_PROPERTY( logFileDirectory,
-					setLogFileDirectory,
-					"LogFileDirectory",
-					"Logging" );
-
-
-	// VNC Server
-
-	MAP_CONFIG_BOOL_PROPERTY( vncCaptureLayeredWindows,
-					setVncCaptureLayeredWindows,
-					"CaptureLayeredWindows",
-					"VNC" );
-
-	MAP_CONFIG_BOOL_PROPERTY( vncPollFullScreen,
-					setVncPollFullScreen,
-					"PollFullScreen",
-					"VNC" );
-
-	MAP_CONFIG_BOOL_PROPERTY( vncLowAccuracy,
-					setVncLowAccuracy,
-					"LowAccuracy",
-					"VNC" );
-
-
-	// Demo server
-
-	MAP_CONFIG_BOOL_PROPERTY( isDemoServerMultithreaded,
-					setDemoServerMultithreaded,
-					"Multithreaded",
-					"DemoServer" );
-
-
-	// Network
-
-	MAP_CONFIG_INT_PROPERTY( coreServerPort,
-					setCoreServerPort,
-					"CoreServerPort",
-					"Network" );
-
-	MAP_CONFIG_INT_PROPERTY( demoServerPort,
-					setDemoServerPort,
-					"DemoServerPort",
-					"Network" );
-
-	MAP_CONFIG_BOOL_PROPERTY( isFirewallExceptionEnabled,
-					setFirewallExceptionEnabled,
-					"FirewallExceptionEnabled",
-					"Network" );
-
-
-	// Configuration file paths
-
-	MAP_CONFIG_PROPERTY( globalConfigurationPath,
-					setGlobalConfigurationPath,
-					"GlobalConfiguration",
-					"Paths" );
-
-	MAP_CONFIG_PROPERTY( personalConfigurationPath,
-					setPersonalConfigurationPath,
-					"PersonalConfiguration",
-					"Paths" );
-
-
-	// Data directories
-
-	MAP_CONFIG_PROPERTY( snapshotDirectory,
-					setSnapshotDirectory,
-					"SnapshotDirectory",
-					"Paths" );
-
-
-	// Authentication
-
-	MAP_CONFIG_BOOL_PROPERTY( isAuthenticationKeyBased,
-					setAuthenticationKeyBased,
-					"KeyBased",
-					"Authentication" );
-
-	MAP_CONFIG_BOOL_PROPERTY( isAuthenticationLogonBased,
-					setAuthenticationLogonBased,
-					"LogonBased",
-					"Authentication" );
+	// unluckily we have to declare slots manually as Qt's MOC doesn't do any
+	// macro expansion :-(
+public slots:
+	void setTrayIconHidden( bool );
+	void setServiceAutostart( bool );
+	void setServiceArguments( const QString & );
+	void setLogLevel( int );
+	void setLimittedLogFileSize( bool );
+	void setLogFileSizeLimit( int );
+	void setLogFileDirectory( const QString & );
+	void setVncCaptureLayeredWindows( bool );
+	void setVncPollFullScreen( bool );
+	void setVncLowAccuracy( bool );
+	void setDemoServerMultithreaded( bool );
+	void setCoreServerPort( int );
+	void setDemoServerPort( int );
+	void setFirewallExceptionEnabled( bool );
+	void setGlobalConfigurationPath( const QString & );
+	void setPersonalConfigurationPath( const QString & );
+	void setSnapshotDirectory( const QString & );
+	void setAuthenticationKeyBased( bool );
+	void setAuthenticationLogonBased( bool );
 
 } ;
 
