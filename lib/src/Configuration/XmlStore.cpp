@@ -77,13 +77,7 @@ void XmlStore::load( Object * _obj )
 	QFile xmlFile( m_file.isEmpty() ? configurationFilePath() : m_file );
 	if( !xmlFile.open( QFile::ReadOnly ) || !doc.setContent( &xmlFile ) )
 	{
-		DecoratedMessageBox::information(
-			_obj->tr( "No configuration file found" ),
-			_obj->tr( "Could not open configuration file %1.\n"
-				"You will have to add at least one classroom "
-				"and computers using the classroom-manager which "
-				"you'll find inside the program in the sidebar on "
-				"the left side." ).arg( xmlFile.fileName() ) );
+		qWarning() << "Could not open" << xmlFile.fileName();
 		return;
 	}
 
@@ -96,8 +90,7 @@ void XmlStore::load( Object * _obj )
 
 static void saveXmlTree( const Object::DataMap & _dataMap,
 				QDomDocument & _doc,
-				QDomNode & _parentNode,
-				const QString & _parentKey )
+				QDomNode & _parentNode )
 {
 	for( Object::DataMap::ConstIterator it = _dataMap.begin();
 						it != _dataMap.end(); ++it )
@@ -107,12 +100,7 @@ static void saveXmlTree( const Object::DataMap & _dataMap,
 			// create a new element with current key as tagname
 			QDomNode node = _doc.createElement( it.key() );
 
-			const QString subParentKey = _parentKey +
-				( _parentKey.isEmpty() ? "" : "/" ) + it.key();
-			saveXmlTree( it.value().toMap(),
-					_doc,
-					node,
-					subParentKey );
+			saveXmlTree( it.value().toMap(), _doc, node );
 			_parentNode.appendChild( node );
 		}
 		else if( it.value().type() == QVariant::String )
@@ -134,7 +122,7 @@ void XmlStore::flush( Object * _obj )
 	const Object::DataMap & data = _obj->data();
 
 	QDomElement root = doc.createElement( configurationNameFromScope() );
-	saveXmlTree( data, doc, root, QString() );
+	saveXmlTree( data, doc, root );
 	doc.appendChild( root );
 
 	QFile outfile( m_file.isEmpty() ? configurationFilePath() : m_file );
@@ -147,6 +135,7 @@ void XmlStore::flush( Object * _obj )
 
 	QString xml = "<?xml version=\"1.0\"?>\n" + doc.toString( 2 );
 	QTextStream( &outfile ) << xml;
+	qDebug() << xml;
 }
 
 
