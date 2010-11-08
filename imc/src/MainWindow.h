@@ -38,10 +38,12 @@ public:
 	MainWindow();
 	virtual ~MainWindow();
 
-
-public slots:
 	void reset();
 	void apply();
+
+
+private slots:
+	void resetOrApply( QAbstractButton *btn );
 
 
 private:

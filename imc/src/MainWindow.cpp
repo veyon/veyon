@@ -44,6 +44,9 @@ MainWindow::MainWindow() :
 
 	// connect widget signals to configuration property write methods
 	FOREACH_ITALC_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY)
+
+	connect( ui->buttonBox, SIGNAL( clicked( QAbstractButton * ) ),
+				this, SLOT( resetOrApply( QAbstractButton * ) ) );
 }
 
 
@@ -57,6 +60,8 @@ MainWindow::~MainWindow()
 
 void MainWindow::reset()
 {
+	ImcCore::config->reloadFromStore();
+
 	FOREACH_ITALC_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY)
 }
 
@@ -65,5 +70,21 @@ void MainWindow::reset()
 
 void MainWindow::apply()
 {
+	ImcCore::config->flushStore();
+}
+
+
+
+
+void MainWindow::resetOrApply( QAbstractButton *btn )
+{
+	if( ui->buttonBox->standardButton( btn ) & QDialogButtonBox::Apply )
+	{
+		apply();
+	}
+	else if( ui->buttonBox->standardButton( btn ) & QDialogButtonBox::Reset )
+	{
+		reset();
+	}
 }
 
