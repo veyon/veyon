@@ -187,6 +187,8 @@ namespace LocalSystem
 	QString personalConfigDir( void );
 	QString personalConfigPath( void );
 
+	QString systemConfigPath();
+
 	QString globalStartmenuDir( void );
 
 	QString parameter( const QString & _name );

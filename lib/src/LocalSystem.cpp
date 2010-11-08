@@ -1195,6 +1195,22 @@ QString personalConfigPath( void )
 
 
 
+QString systemConfigPath()
+{
+#ifdef ITALC_BUILD_WIN32
+	QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+	if( env.contains( "ProgramData" ) )
+	{
+		return env.value( "ProgramData" ) + QDir::separator() + "iTALC";
+	}
+	return windowsConfigPath( CSIDL_COMMON_APPDATA ) + QDir::separator() + "iTALC";
+#else
+	return "/etc/italc";
+#endif
+}
+
+
+
 
 QString globalStartmenuDir( void )
 {
