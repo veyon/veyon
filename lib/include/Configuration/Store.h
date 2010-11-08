@@ -69,6 +69,18 @@ public:
 		return m_scope;
 	}
 
+	QString configurationNameFromScope()
+	{
+		switch( scope() )
+		{
+			case Global: return "GlobalConfig";
+			case Personal: return "PersonalConfig";
+			case System: return "SystemConfig";
+		}
+
+		return QString();
+	}
+
 	virtual void load( Object *obj ) = 0;
 	virtual void flush( Object *obj ) = 0;
 
