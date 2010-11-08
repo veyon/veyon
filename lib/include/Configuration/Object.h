@@ -38,7 +38,8 @@ class Object : public QObject
 public:
 	typedef QMap<QString, QVariant> DataMap;
 
-	Object( Store::Backend _backend, Store::Scope _scope );
+	Object( Store::Backend backend, Store::Scope scope );
+	Object( Store *store );
 	~Object();
 
 	QString value( const QString & _key,
@@ -69,7 +70,8 @@ private:
 										QStringList subLevels,
 										const QString &key,
 										const QString &value );
-	Configuration::Store * m_store;
+	Configuration::Store *m_store;
+	bool m_customStore;
 	DataMap m_data;
 
 } ;

@@ -36,7 +36,8 @@ namespace Configuration
 
 
 Object::Object( Store::Backend _backend, Store::Scope _scope ) :
-	m_store( NULL )
+	m_store( NULL ),
+	m_customStore( false )
 {
 	switch( _backend )
 	{
@@ -58,9 +59,22 @@ Object::Object( Store::Backend _backend, Store::Scope _scope ) :
 
 
 
+Object::Object( Store *store ) :
+	m_store( store ),
+	m_customStore( true )
+{
+	reloadFromStore();
+}
+
+
+
+
 Object::~Object()
 {
-	delete m_store;
+	if( !m_customStore )
+	{
+		delete m_store;
+	}
 }
 
 
