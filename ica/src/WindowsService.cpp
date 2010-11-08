@@ -111,58 +111,6 @@ WindowsService::WindowsService(
 }
 
 
-static bool isRunningAsAdmin()
-{
-	BOOL runningAsAdmin = false;
-    PSID adminGroupSid = NULL;
-
-    // allocate and initialize a SID of the administrators group.
-    SID_IDENTIFIER_AUTHORITY NtAuthority = { SECURITY_NT_AUTHORITY };
-    if( AllocateAndInitializeSid(
-        &NtAuthority,
-        2,
-        SECURITY_BUILTIN_DOMAIN_RID,
-        DOMAIN_ALIAS_RID_ADMINS,
-        0, 0, 0, 0, 0, 0,
-        &adminGroupSid ) )
-    {
-    	// determine whether the SID of administrators group is enabled in
-	    // the primary access token of the process.
-	    CheckTokenMembership( NULL, adminGroupSid, &runningAsAdmin );
-	}
-
-   	if( adminGroupSid )
-    {
-       	FreeSid( adminGroupSid );
-    }
-
-    return runningAsAdmin;
-}
-
-
-
-
-static bool runAsAdmin( const char *appPath, const char *parameters )
-{
-	SHELLEXECUTEINFO sei = { sizeof(sei) };
-	sei.lpVerb = "runas";
-	sei.lpFile = appPath;
-	sei.hwnd = GetForegroundWindow();
-	sei.lpParameters = parameters;
-	sei.nShow = SW_NORMAL;
-
-	if( !ShellExecuteEx( &sei ) )
-	{
-		if( GetLastError() == ERROR_CANCELLED )
-		{
-			// the user refused the elevation - do nothing
-		}
-		return false;
-	}
-
-	return true;
-}
-
 
 
 bool WindowsService::evalArgs( int &argc, char **argv )
@@ -214,14 +162,15 @@ bool WindowsService::evalArgs( int &argc, char **argv )
 			if( arg == serviceOps[i].arg )
 			{
 				// make sure to run as administrator.
-				if( !isRunningAsAdmin() )
+				if( !LocalSystem::Process::isRunningAsAdmin() )
 				{
 					QString serviceArgs = serviceOps[i].arg;
 					if( m_quiet )
 					{
 						serviceArgs += " -quiet";
 					}
-					runAsAdmin( appPath, serviceArgs.toUtf8().constData() );
+					LocalSystem::Process::runAsAdmin( appPath,
+											serviceArgs.toUtf8().constData() );
 				}
 				else
 				{

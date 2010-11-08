@@ -779,6 +779,67 @@ Process::Handle Process::runAsUser( const QString &proc,
 
 
 
+bool Process::isRunningAsAdmin()
+{
+#ifdef ITALC_BUILD_WIN32
+	BOOL runningAsAdmin = false;
+	PSID adminGroupSid = NULL;
+
+	// allocate and initialize a SID of the administrators group.
+	SID_IDENTIFIER_AUTHORITY NtAuthority = { SECURITY_NT_AUTHORITY };
+	if( AllocateAndInitializeSid(
+		&NtAuthority,
+		2,
+		SECURITY_BUILTIN_DOMAIN_RID,
+		DOMAIN_ALIAS_RID_ADMINS,
+		0, 0, 0, 0, 0, 0,
+		&adminGroupSid ) )
+	{
+		// determine whether the SID of administrators group is enabled in
+		// the primary access token of the process.
+		CheckTokenMembership( NULL, adminGroupSid, &runningAsAdmin );
+	}
+
+	if( adminGroupSid )
+	{
+		FreeSid( adminGroupSid );
+	}
+
+	return runningAsAdmin;
+#else
+	return true;
+#endif
+}
+
+
+
+
+bool Process::runAsAdmin( const QString &appPath, const QString &parameters )
+{
+#ifdef ITALC_BUILD_WIN32
+	SHELLEXECUTEINFO sei = { sizeof(sei) };
+	sei.lpVerb = "runas";
+	sei.lpFile = appPath.toUtf8().constData();
+	sei.hwnd = GetForegroundWindow();
+	sei.lpParameters = parameters.toUtf8().constData();
+	sei.nShow = SW_NORMAL;
+
+	if( !ShellExecuteEx( &sei ) )
+	{
+		if( GetLastError() == ERROR_CANCELLED )
+		{
+			// the user refused the elevation - do nothing
+		}
+		return false;
+	}
+#endif
+
+	return true;
+}
+
+
+
+
 
 void sleep( const int _ms )
 {

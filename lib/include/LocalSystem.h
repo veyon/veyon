@@ -154,6 +154,8 @@ namespace LocalSystem
 
 		Handle runAsUser( const QString &proc,
 									const QString &desktop = QString() );
+		static bool isRunningAsAdmin();
+		static bool runAsAdmin( const QString &proc, const QString &parameters );
 
 	private:
 		Handle m_processHandle;
