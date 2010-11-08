@@ -22,8 +22,12 @@
  *
  */
 
+#include <QtCore/QSettings>
+#include <QtCore/QStringList>
+
 #include "Configuration/LocalStore.h"
 #include "Configuration/Object.h"
+#include "Logger.h"
 
 
 namespace Configuration
@@ -37,16 +41,60 @@ LocalStore::LocalStore( Scope _scope ) :
 
 
 
-void LocalStore::load( Object * _obj )
+static void loadSettingsTree( Object *obj, QSettings &s,
+								const QString &parentKey )
 {
+	foreach( const QString &g, s.childGroups() )
+	{
+		const QString subParentKey = parentKey +
+									( parentKey.isEmpty() ? "" : "/" ) + g;
+		s.beginGroup( g );
+		loadSettingsTree( obj, s, subParentKey );
+		s.endGroup();
+	}
+
+	foreach( const QString &k, s.childKeys() )
+	{
+		obj->setValue( k, s.value( k ).toString(), parentKey );
+	}
+}
+
+
+
+void LocalStore::load( Object *obj )
+{
+	QSettings s;
+	loadSettingsTree( obj, s, QString() );
 }
 
 
 
 
-void LocalStore::flush( Object * _obj )
+static void saveSettingsTree( const Object::DataMap & dataMap,
+								QSettings &s )
 {
-	const Object::DataMap & data = _obj->data();
+	for( Object::DataMap::ConstIterator it = dataMap.begin();
+						it != dataMap.end(); ++it )
+	{
+		if( it.value().type() == QVariant::Map )
+		{
+			s.beginGroup( it.key() );
+			saveSettingsTree( it.value().toMap(), s );
+			s.endGroup();
+		}
+		else if( it.value().type() == QVariant::String )
+		{
+			s.setValue( it.key(), it.value().toString() );
+		}
+	}
+}
+
+
+
+void LocalStore::flush( Object *obj )
+{
+	QSettings s;
+	saveSettingsTree( obj->data(), s );
 }
 
 
