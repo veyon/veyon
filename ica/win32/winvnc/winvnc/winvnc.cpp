@@ -115,6 +115,14 @@ BOOL SPECIAL_SC_EXIT=false;
 BOOL SPECIAL_SC_PROMPT=false;
 BOOL multi=false;
 
+void Enable_softwareCAD_elevated();
+void Enable_softwareCAD();
+void Reboot_in_safemode_elevated();
+void Reboot_in_safemode();
+void delete_softwareCAD_elevated();
+void delete_softwareCAD();
+
+
 // winvnc.exe will also be used for helper exe
 // This allow us to minimize the number of seperate exe
 bool
@@ -177,6 +185,7 @@ Myinit(HINSTANCE hInstance)
 // routine or, under NT, the main service routine.
 int WINAPI WinMainVNC(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLine, int iCmdShow)
 {
+	SetProcessShutdownParameters(0x100,false);
 #ifdef IPP
 	InitIpp();
 #endif
@@ -327,6 +336,25 @@ int WINAPI WinMainVNC(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLi
 				Set_uninstall_service_as_admin();
 				return 0;
 			}
+		if (strncmp(&szCmdLine[i], winvncSoftwarecadHelper, strlen(winvncSoftwarecadHelper)) == 0)
+			{
+				Sleep(3000);
+				Enable_softwareCAD_elevated();
+				return 0;
+			}
+		if (strncmp(&szCmdLine[i], winvncdelSoftwarecadHelper, strlen(winvncdelSoftwarecadHelper)) == 0)
+			{
+				Sleep(3000);
+				delete_softwareCAD_elevated();
+				return 0;
+			}
+		if (strncmp(&szCmdLine[i], winvncRebootSafeHelper, strlen(winvncRebootSafeHelper)) == 0)
+			{
+				Sleep(3000);
+				Reboot_in_safemode_elevated();
+				return 0;
+			}
+
 		if (strncmp(&szCmdLine[i], winvncSecurityEditorHelper, strlen(winvncSecurityEditorHelper)) == 0)
 			{
 				Sleep(3000);
@@ -360,6 +388,24 @@ int WINAPI WinMainVNC(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLi
 			i+=strlen(winvncSettings);
 			strcpy( mycommand, &(szCmdLine[i+1]));
 			Real_settings(mycommand);
+			return 0;
+		}
+
+		if (strncmp(&szCmdLine[i], winvncSoftwarecad, strlen(winvncSoftwarecad)) == 0)
+		{
+			Enable_softwareCAD();
+			return 0;
+		}
+
+		if (strncmp(&szCmdLine[i], winvncdelSoftwarecad, strlen(winvncdelSoftwarecad)) == 0)
+		{
+			delete_softwareCAD();
+			return 0;
+		}
+
+		if (strncmp(&szCmdLine[i], winvncRebootSafe, strlen(winvncRebootSafe)) == 0)
+		{
+			Reboot_in_safemode();
 			return 0;
 		}
 

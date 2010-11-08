@@ -13,13 +13,11 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// English (U.S.) resources
+// English (United States) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
-#ifdef _WIN32
 LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 #pragma code_page(1252)
-#endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -89,11 +87,7 @@ FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     DEFPUSHBUTTON   "OK",IDOK,8,135,54,16
     CONTROL         139,IDC_VNCLOGO,"Static",SS_BITMAP | SS_CENTERIMAGE | SS_SUNKEN,7,5,53,46,WS_EX_TRANSPARENT
-#ifdef _X64
-    LTEXT           "UltraVNC X64 Server 1.0.9.1",IDC_VERSION,73,5,195,11
-#else
-	LTEXT           "UltraVNC Win32 Server 1.0.9.1",IDC_VERSION,73,5,195,11
-#endif
+    LTEXT           "UltraVNC Win32 Server 1.0.9.3",IDC_VERSION,73,5,195,11
     LTEXT           "Copyright © 2002-2009 UltraVNC Team\nCopyright © 2001-2002 Sam - eSVNC \nCopyright © 1999-2002 Rudi D. V. - VdaccVNC \nCopyright © 2001 Harakan Software - PalmVNC\nCopyright © 1999-2002 Const. Kaplinsky - TightVNC \n",IDC_NAME,74,27,202,41
     LTEXT           "For more Information and Links please visit: \nhttp://www.uvnc.com",IDC_WWW,74,135,141,19
     LTEXT           "Build:",IDC_BUILDTEXT,74,16,20,10
@@ -116,7 +110,7 @@ BEGIN
     PUSHBUTTON      "Cancel",IDCANCEL,165,78,46,14
 END
 
-IDD_ACCEPT_CONN DIALOG  0, 0, 186, 95
+IDD_ACCEPT_CONN DIALOG 0, 0, 186, 95
 STYLE DS_SETFONT | DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION
 CAPTION "Accept WinVNC Connection?"
 FONT 8, "MS Shell Dlg"
@@ -261,7 +255,7 @@ END
 //
 
 #ifdef APSTUDIO_INVOKED
-GUIDELINES DESIGNINFO 
+GUIDELINES DESIGNINFO
 BEGIN
     IDD_TEXTCHAT_DLG, DIALOG
     BEGIN
@@ -374,8 +368,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 1,0,9,1
- PRODUCTVERSION 1,0,9,1
+ FILEVERSION 1,0,9,3
+ PRODUCTVERSION 1,0,9,3
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x2dL
@@ -392,19 +386,15 @@ BEGIN
         BEGIN
             VALUE "Comments", "UltraVNC - Remote Control for all"
             VALUE "CompanyName", "UltraVNC"
-#ifdef _X64
-            VALUE "FileDescription", "VNC server for X64"
-#else
-			 VALUE "FileDescription", "VNC server for win32"
-#endif
-            VALUE "FileVersion", "1.0.9.1"
+            VALUE "FileDescription", "VNC server for win32"
+            VALUE "FileVersion", "1.0.9.3"
             VALUE "InternalName", "WinVNC"
             VALUE "LegalCopyright", "Copyright © 2010 UltraVNC"
             VALUE "LegalTrademarks", "VNC"
             VALUE "OriginalFilename", "WinVNC.exe"
-            VALUE "PrivateBuild", "1.0.9.1"
+            VALUE "PrivateBuild", "1.0.9.3"
             VALUE "ProductName", "UltraVNC"
-            VALUE "ProductVersion", "1.0.9.1"
+            VALUE "ProductVersion", "1.0.9.3"
         END
     END
     BLOCK "VarFileInfo"
@@ -419,7 +409,7 @@ END
 // Menu
 //
 
-IDR_TRAYMENU MENU 
+IDR_TRAYMENU MENU
 BEGIN
     POPUP "tray"
     BEGIN
@@ -442,6 +432,9 @@ BEGIN
         MENUITEM "Uninstall Service",           ID_UNINSTALL_SERVICE
         MENUITEM "Stop Service",                ID_CLOSE_SERVICE
         MENUITEM "Start Service (must be installed first)", ID_START_SERVICE
+        MENUITEM "Fix1 SoftwareCad",            ID_SOFTWARECAD
+        MENUITEM "Fix2 SoftwareCad",            ID_DELSOFTWARECAD
+        MENUITEM "Reboot in safemode",          ID_REBOOTSAFEMODE
         MENUITEM SEPARATOR
         MENUITEM "&Close VNC Connections",      ID_CLOSE
     END
@@ -460,13 +453,13 @@ IDR_VNCVIEWER_JAR       JAVAARCHIVE             "res\\vncviewer.jar"
 // String Table
 //
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDI_WINVNC              "WinVNC"
     IDS_WARNING             "WARNING: By default, this session do not use any encryption whatsoever. Please do not use it to send sensitive data unless you are sure your connection is secure.\n\n"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_FAILED_INIT          "Failed to initialise the socket system"
     ID_WINVNC_USAGE         "WinVNC Usage"
@@ -478,7 +471,7 @@ BEGIN
     ID_SERV_FAIL_ST         "The WinVNC service failed to start"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_SERV_CT_MISS         "The Service Control Manager could not be contacted - the WinVNC service was not registered"
     ID_SERV_OLD_REG         "The WinVNC service is already registered"
@@ -501,7 +494,7 @@ BEGIN
                             "WARNING : This machine has no default password set.  WinVNC will present the Default Properties dialog now to allow one to be entered."
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_NO_OVERRIDE_ERR      "This machine has been preconfigured with WinVNC settings, which cannot be overridden by individual users.  The preconfigured settings may be modified only by a System Administrator."
     ID_NO_CURRENT_USER_ERR  "The WinVNC settings for the current user are unavailable at present."
@@ -522,7 +515,7 @@ BEGIN
     ID_UNABLE_PROC_MSLOGON  "Unable to process MS logon"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_RICHED32_UNLOAD      "Unable to load the Rich Edit (RICHED32.DLL) control!"
     ID_RICHED32_DLL_LD      "Rich Edit Dll Loading"
@@ -542,18 +535,16 @@ BEGIN
     ID_CADPERMISSION        "Permission denied on cad.exe, Ultravnc must be installed in ""program files"" else special cad permission is refused."
 END
 
-#endif    // English (U.S.) resources
+#endif    // English (United States) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
 /////////////////////////////////////////////////////////////////////////////
-// English (U.K.) resources
+// English (United Kingdom) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENG)
-#ifdef _WIN32
 LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_UK
 #pragma code_page(1252)
-#endif //_WIN32
 
 #ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
@@ -580,7 +571,7 @@ END
 
 #endif    // APSTUDIO_INVOKED
 
-#endif    // English (U.K.) resources
+#endif    // English (United Kingdom) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
@@ -588,10 +579,8 @@ END
 // Dutch (Belgium) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NLB)
-#ifdef _WIN32
 LANGUAGE LANG_DUTCH, SUBLANG_DUTCH_BELGIAN
 #pragma code_page(1252)
-#endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -633,7 +622,7 @@ END
 //
 
 #ifdef APSTUDIO_INVOKED
-GUIDELINES DESIGNINFO 
+GUIDELINES DESIGNINFO
 BEGIN
     IDD_MSLOGON, DIALOG
     BEGIN

@@ -3924,8 +3924,8 @@ vncClientThread::run(void *arg)
         m_client->m_encodemgr.m_buffer->m_desktop->SetBlockInputState(false);
         m_client->m_bClientHasBlockedInput = false;
     }
-
-	if (!CloseDesktop(input_desktop))
+	if (input_desktop)
+		if (!CloseDesktop(input_desktop))
 		vnclog.Print(LL_INTERR, VNCLOG("failed to close desktop\n"));
 	// Quit this thread.  This will automatically delete the thread and the
 	// associated client.

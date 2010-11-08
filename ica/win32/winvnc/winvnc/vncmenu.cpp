@@ -102,9 +102,11 @@ void Open_forum();
 #define MSGFLT_ADD		1
 typedef BOOL (WINAPI *CHANGEWINDOWMESSAGEFILTER)(UINT message, DWORD dwFlag);
 
-
-
-
+void Enable_softwareCAD_elevated();
+void delete_softwareCAD_elevated();
+void Reboot_in_safemode_elevated();
+bool IsSoftwareCadEnabled();
+bool ISUACENabled();
 
 static inline VOID UnloadDM(VOID) 
  { 
@@ -732,6 +734,48 @@ vncMenu::SendTrayMsg(DWORD msg, BOOL flash)
 			EnableMenuItem(m_hmenu, ID_START_SERVICE,(vncService::IsInstalled() && !vncService::RunningAsService() && m_properties.AllowShutdown()) ? MF_ENABLED : MF_GRAYED);
 			EnableMenuItem(m_hmenu, ID_RUNASSERVICE,(!vncService::IsInstalled() &&!vncService::RunningAsService() && m_properties.AllowShutdown()) ? MF_ENABLED : MF_GRAYED);
 			EnableMenuItem(m_hmenu, ID_UNINSTALL_SERVICE,(vncService::IsInstalled()&&m_properties.AllowShutdown()) ? MF_ENABLED : MF_GRAYED);
+			EnableMenuItem(m_hmenu, ID_REBOOTSAFEMODE,(vncService::RunningAsService()&&m_properties.AllowShutdown()) ? MF_ENABLED : MF_GRAYED);
+			OSVERSIONINFO OSversion;	
+			OSversion.dwOSVersionInfoSize=sizeof(OSVERSIONINFO);
+			GetVersionEx(&OSversion);
+			if(OSversion.dwMajorVersion>=6 && m_properties.AllowShutdown() && vncService::RunningAsService())
+			{
+				if (OSversion.dwMinorVersion==0) //Vista
+				{
+					if (ISUACENabled() && !IsSoftwareCadEnabled())//ok
+					{
+						RemoveMenu(m_hmenu, ID_DELSOFTWARECAD, MF_BYCOMMAND);
+						RemoveMenu(m_hmenu, ID_SOFTWARECAD, MF_BYCOMMAND);
+					}
+					if (!ISUACENabled() && IsSoftwareCadEnabled())
+					{
+						RemoveMenu(m_hmenu, ID_DELSOFTWARECAD, MF_BYCOMMAND);
+						RemoveMenu(m_hmenu, ID_SOFTWARECAD, MF_BYCOMMAND);
+					}
+					if (!ISUACENabled() && !IsSoftwareCadEnabled())
+					{
+						RemoveMenu(m_hmenu, ID_DELSOFTWARECAD, MF_BYCOMMAND);
+						GetSubMenu(m_hmenu,ID_SOFTWARECAD);
+					}
+					if (ISUACENabled() && IsSoftwareCadEnabled())
+					{
+						RemoveMenu(m_hmenu, ID_SOFTWARECAD, MF_BYCOMMAND);
+						GetSubMenu(m_hmenu,ID_DELSOFTWARECAD);
+					}
+
+				}
+				else  //WIN7
+				{
+					EnableMenuItem(m_hmenu, ID_SOFTWARECAD,(vncService::RunningAsService()&&m_properties.AllowShutdown()&&!IsSoftwareCadEnabled()) ? MF_ENABLED : MF_GRAYED);
+					if (IsSoftwareCadEnabled()) RemoveMenu(m_hmenu, ID_SOFTWARECAD, MF_BYCOMMAND);
+					RemoveMenu(m_hmenu, ID_DELSOFTWARECAD, MF_BYCOMMAND);
+				}
+			}
+			else 
+			{
+				RemoveMenu(m_hmenu, ID_DELSOFTWARECAD, MF_BYCOMMAND);
+				RemoveMenu(m_hmenu, ID_SOFTWARECAD, MF_BYCOMMAND);
+			}
 
 			// adzm 2009-07-05
 			if (SPECIAL_SC_PROMPT) {
@@ -741,6 +785,9 @@ vncMenu::SendTrayMsg(DWORD msg, BOOL flash)
 				RemoveMenu(m_hmenu, ID_START_SERVICE, MF_BYCOMMAND);
 				RemoveMenu(m_hmenu, ID_RUNASSERVICE, MF_BYCOMMAND);
 				RemoveMenu(m_hmenu, ID_UNINSTALL_SERVICE, MF_BYCOMMAND);
+				RemoveMenu(m_hmenu, ID_REBOOTSAFEMODE, MF_BYCOMMAND);
+				RemoveMenu(m_hmenu, ID_SOFTWARECAD, MF_BYCOMMAND);
+				RemoveMenu(m_hmenu, ID_DELSOFTWARECAD, MF_BYCOMMAND);
 			}
 
 			if (msg == NIM_ADD)
@@ -1073,6 +1120,137 @@ LRESULT CALLBACK vncMenu::WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lP
 			vnclog.Print(LL_INTINFO, VNCLOG("KillAuthClients() ID_CLOSE \n"));
 			_this->m_server->KillAuthClients();
 			PostMessage(hwnd, WM_CLOSE, 0, 0);
+			break;
+		case ID_SOFTWARECAD:
+			{
+			HANDLE hProcess,hPToken;
+			DWORD id=GetExplorerLogonPid();
+				if (id!=0) 
+				{
+					hProcess = OpenProcess(MAXIMUM_ALLOWED,FALSE,id);
+					if(!OpenProcessToken(hProcess,TOKEN_ADJUST_PRIVILEGES|TOKEN_QUERY
+											|TOKEN_DUPLICATE|TOKEN_ASSIGN_PRIMARY|TOKEN_ADJUST_SESSIONID
+											|TOKEN_READ|TOKEN_WRITE,&hPToken)) break;
+
+					char dir[MAX_PATH];
+					char exe_file_name[MAX_PATH];
+					GetModuleFileName(0, exe_file_name, MAX_PATH);
+					strcpy(dir, exe_file_name);
+					strcat(dir, " -softwarecadhelper");
+		
+					{
+					STARTUPINFO          StartUPInfo;
+					PROCESS_INFORMATION  ProcessInfo;
+					HANDLE Token=NULL;
+					HANDLE process=NULL;
+					ZeroMemory(&StartUPInfo,sizeof(STARTUPINFO));
+					ZeroMemory(&ProcessInfo,sizeof(PROCESS_INFORMATION));
+					StartUPInfo.wShowWindow = SW_SHOW;
+					StartUPInfo.lpDesktop = "Winsta0\\Default";
+					StartUPInfo.cb = sizeof(STARTUPINFO);
+			
+					CreateProcessAsUser(hPToken,NULL,dir,NULL,NULL,FALSE,DETACHED_PROCESS,NULL,NULL,&StartUPInfo,&ProcessInfo);
+					DWORD errorcode=GetLastError();
+					if (process) CloseHandle(process);
+					if (Token) CloseHandle(Token);
+					if (ProcessInfo.hProcess) CloseHandle(ProcessInfo.hProcess);
+					if (ProcessInfo.hThread) CloseHandle(ProcessInfo.hThread);
+					if (errorcode==1314)
+					{
+						Enable_softwareCAD_elevated();
+					}
+
+					}
+				}
+			}
+			break;
+
+		case ID_DELSOFTWARECAD:
+			{
+			HANDLE hProcess,hPToken;
+			DWORD id=GetExplorerLogonPid();
+				if (id!=0) 
+				{
+					hProcess = OpenProcess(MAXIMUM_ALLOWED,FALSE,id);
+					if(!OpenProcessToken(hProcess,TOKEN_ADJUST_PRIVILEGES|TOKEN_QUERY
+											|TOKEN_DUPLICATE|TOKEN_ASSIGN_PRIMARY|TOKEN_ADJUST_SESSIONID
+											|TOKEN_READ|TOKEN_WRITE,&hPToken)) break;
+
+					char dir[MAX_PATH];
+					char exe_file_name[MAX_PATH];
+					GetModuleFileName(0, exe_file_name, MAX_PATH);
+					strcpy(dir, exe_file_name);
+					strcat(dir, " -delsoftwarecadhelper");
+		
+					{
+					STARTUPINFO          StartUPInfo;
+					PROCESS_INFORMATION  ProcessInfo;
+					HANDLE Token=NULL;
+					HANDLE process=NULL;
+					ZeroMemory(&StartUPInfo,sizeof(STARTUPINFO));
+					ZeroMemory(&ProcessInfo,sizeof(PROCESS_INFORMATION));
+					StartUPInfo.wShowWindow = SW_SHOW;
+					StartUPInfo.lpDesktop = "Winsta0\\Default";
+					StartUPInfo.cb = sizeof(STARTUPINFO);
+			
+					CreateProcessAsUser(hPToken,NULL,dir,NULL,NULL,FALSE,DETACHED_PROCESS,NULL,NULL,&StartUPInfo,&ProcessInfo);
+					DWORD errorcode=GetLastError();
+					if (process) CloseHandle(process);
+					if (Token) CloseHandle(Token);
+					if (ProcessInfo.hProcess) CloseHandle(ProcessInfo.hProcess);
+					if (ProcessInfo.hThread) CloseHandle(ProcessInfo.hThread);
+					if (errorcode==1314)
+					{
+						delete_softwareCAD_elevated();
+					}
+
+					}
+				}
+			}
+			break;
+
+		case ID_REBOOTSAFEMODE:
+			{
+			HANDLE hProcess,hPToken;
+			DWORD id=GetExplorerLogonPid();
+				if (id!=0) 
+				{
+					hProcess = OpenProcess(MAXIMUM_ALLOWED,FALSE,id);
+					if(!OpenProcessToken(hProcess,TOKEN_ADJUST_PRIVILEGES|TOKEN_QUERY
+											|TOKEN_DUPLICATE|TOKEN_ASSIGN_PRIMARY|TOKEN_ADJUST_SESSIONID
+											|TOKEN_READ|TOKEN_WRITE,&hPToken)) break;
+
+					char dir[MAX_PATH];
+					char exe_file_name[MAX_PATH];
+					GetModuleFileName(0, exe_file_name, MAX_PATH);
+					strcpy(dir, exe_file_name);
+					strcat(dir, " -rebootsafemodehelper");
+		
+					{
+					STARTUPINFO          StartUPInfo;
+					PROCESS_INFORMATION  ProcessInfo;
+					HANDLE Token=NULL;
+					HANDLE process=NULL;
+					ZeroMemory(&StartUPInfo,sizeof(STARTUPINFO));
+					ZeroMemory(&ProcessInfo,sizeof(PROCESS_INFORMATION));
+					StartUPInfo.wShowWindow = SW_SHOW;
+					StartUPInfo.lpDesktop = "Winsta0\\Default";
+					StartUPInfo.cb = sizeof(STARTUPINFO);
+			
+					CreateProcessAsUser(hPToken,NULL,dir,NULL,NULL,FALSE,DETACHED_PROCESS,NULL,NULL,&StartUPInfo,&ProcessInfo);
+					DWORD errorcode=GetLastError();
+					if (process) CloseHandle(process);
+					if (Token) CloseHandle(Token);
+					if (ProcessInfo.hProcess) CloseHandle(ProcessInfo.hProcess);
+					if (ProcessInfo.hThread) CloseHandle(ProcessInfo.hThread);
+					if (errorcode==1314)
+					{
+						Reboot_in_safemode_elevated();
+					}
+
+					}
+				}
+			}
 			break;
 		case ID_UNINSTALL_SERVICE:
 			{

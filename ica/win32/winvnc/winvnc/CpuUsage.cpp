@@ -52,7 +52,8 @@ CProcessorUsage::~CProcessorUsage()
 {
    if(m_pInfo)
       delete m_pInfo;
-	::LeaveCriticalSection( &m_cs );
+     //Critical Section Over-Released or Corrupted
+	//::LeaveCriticalSection( &m_cs );
 	if (m_bLocked) m_bLocked = false;
     ::DeleteCriticalSection(&m_cs);
 }

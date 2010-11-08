@@ -8,12 +8,13 @@ static void WINAPI control_handler(DWORD controlCode);
 static DWORD WINAPI control_handler_ex(DWORD controlCode, DWORD dwEventType, LPVOID lpEventData, LPVOID lpContext);
 static int pad();
 
-static SERVICE_STATUS serviceStatus;
+SERVICE_STATUS serviceStatus;
 static SERVICE_STATUS_HANDLE serviceStatusHandle=0;
 HANDLE stopServiceEvent=0;
 extern HANDLE hEvent;
 static char service_path[MAX_PATH];
 void monitor_sessions();
+void Restore_after_reboot();
 char service_name[256]="uvnc_service";
 char *app_name = "UltraVNC";
 void disconnect_remote_sessions();
@@ -71,6 +72,7 @@ static void WINAPI service_main(DWORD argc, LPTSTR* argv) {
         serviceStatus.dwCurrentState=SERVICE_RUNNING;
         SetServiceStatus(serviceStatusHandle, &serviceStatus);
 
+Restore_after_reboot();
 monitor_sessions();
 
         /* service was stopped */
@@ -173,6 +175,13 @@ void set_service_description()
 	RegCloseKey(hKey);
 }
 
+
+// List of other required services ("dependency 1\0dependency 2\0\0")
+// *** These need filling in properly
+#define VNCDEPENDENCIES    "Tcpip\0\0"
+
+
+
 int install_service(void) {
     SC_HANDLE scm, service;
 	pad();
@@ -185,9 +194,9 @@ int install_service(void) {
     }
     //"Provides secure remote desktop sharing"
     service=CreateService(scm,service_name, service_name, SERVICE_ALL_ACCESS,
-                          SERVICE_WIN32_OWN_PROCESS | SERVICE_INTERACTIVE_PROCESS,
+                          SERVICE_WIN32_OWN_PROCESS,
                           SERVICE_AUTO_START, SERVICE_ERROR_NORMAL, service_path,
-        NULL, NULL, NULL, NULL, NULL);
+        NULL, NULL, VNCDEPENDENCIES, NULL, NULL);
     if(!service) {
 		DWORD myerror=GetLastError();
 		if (myerror==ERROR_ACCESS_DENIED)
@@ -301,3 +310,416 @@ static int pad()
 	return 0;
 }
 ////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+BOOL CreateServiceSafeBootKey()
+{
+	HKEY hKey;
+	DWORD dwDisp = 0;
+	LONG lSuccess;
+	char szKey[1024];
+	_snprintf(szKey, 1024, "SYSTEM\\CurrentControlSet\\Control\\SafeBoot\\%s\\%s", "Network", service_name);
+	lSuccess = RegCreateKeyEx(HKEY_LOCAL_MACHINE, szKey, 0L, NULL, REG_OPTION_NON_VOLATILE, KEY_ALL_ACCESS, NULL, &hKey, &dwDisp);
+	if (lSuccess == ERROR_SUCCESS)
+	{
+    RegSetValueEx(hKey, NULL, 0, REG_SZ, (unsigned char*)"Service", 8);
+		RegCloseKey(hKey);
+		return TRUE;
+	}
+	else
+		return FALSE;
+}
+////////////////////////////////////////////////////////////////////////////////
+void Set_Safemode()
+{
+	OSVERSIONINFO OSversion;	
+	OSversion.dwOSVersionInfoSize=sizeof(OSVERSIONINFO);
+	GetVersionEx(&OSversion);
+	if(OSversion.dwMajorVersion<6)
+			{
+					char drivepath[150];
+					char systemdrive[150];
+					char stringvalue[512];
+					GetEnvironmentVariable("SYSTEMDRIVE", systemdrive, 150);
+					strcat (systemdrive,"/boot.ini");
+					GetPrivateProfileString("boot loader","default","",drivepath,150,systemdrive);
+					if (strlen(drivepath)==0) return;
+					GetPrivateProfileString("operating systems",drivepath,"",stringvalue,512,systemdrive);
+					if (strlen(stringvalue)==0) return;
+					strcat(stringvalue," /safeboot:network");
+					SetFileAttributes(systemdrive,FILE_ATTRIBUTE_NORMAL);
+					WritePrivateProfileString("operating systems",drivepath,stringvalue,systemdrive);
+					DWORD err=GetLastError();
+
+
+			}
+			else
+			{
+
+#ifdef _X64
+			char systemroot[150];
+			GetEnvironmentVariable("SystemRoot", systemroot, 150);
+			char exe_file_name[MAX_PATH];
+			char parameters[MAX_PATH];
+			strcpy(exe_file_name,systemroot);
+			strcat(exe_file_name,"\\system32\\");
+			strcat(exe_file_name,"bcdedit.exe");
+			strcpy(parameters,"/set safeboot network");
+			SHELLEXECUTEINFO shExecInfo;
+			shExecInfo.cbSize = sizeof(SHELLEXECUTEINFO);
+			shExecInfo.fMask = NULL;
+			shExecInfo.hwnd = GetForegroundWindow();
+			shExecInfo.lpVerb = "runas";
+			shExecInfo.lpFile = exe_file_name;
+			shExecInfo.lpParameters = parameters;
+			shExecInfo.lpDirectory = NULL;
+			shExecInfo.nShow = SW_HIDE;
+			shExecInfo.hInstApp = NULL;
+			ShellExecuteEx(&shExecInfo);
+#else
+
+			typedef BOOL (WINAPI *LPFN_Wow64DisableWow64FsRedirection)(PVOID* OldValue);
+			typedef BOOL (WINAPI *LPFN_Wow64RevertWow64FsRedirection)(PVOID OldValue);
+			PVOID OldValue;  
+			LPFN_Wow64DisableWow64FsRedirection pfnWow64DisableWowFsRedirection = (LPFN_Wow64DisableWow64FsRedirection)GetProcAddress(GetModuleHandle("kernel32"),"Wow64DisableWow64FsRedirection");
+			LPFN_Wow64RevertWow64FsRedirection pfnWow64RevertWow64FsRedirection = (LPFN_Wow64RevertWow64FsRedirection)GetProcAddress(GetModuleHandle("kernel32"),"Wow64RevertWow64FsRedirection");
+			if (pfnWow64DisableWowFsRedirection && pfnWow64RevertWow64FsRedirection) 
+			{
+				if(TRUE == pfnWow64DisableWowFsRedirection(&OldValue))
+					{
+						char systemroot[150];
+						GetEnvironmentVariable("SystemRoot", systemroot, 150);
+						char exe_file_name[MAX_PATH];
+						char parameters[MAX_PATH];
+						strcpy(exe_file_name,systemroot);
+						strcat(exe_file_name,"\\system32\\");
+						strcat(exe_file_name,"bcdedit.exe");
+						strcpy(parameters,"/set safeboot network");
+						SHELLEXECUTEINFO shExecInfo;
+						shExecInfo.cbSize = sizeof(SHELLEXECUTEINFO);
+						shExecInfo.fMask = NULL;
+						shExecInfo.hwnd = GetForegroundWindow();
+						shExecInfo.lpVerb = "runas";
+						shExecInfo.lpFile = exe_file_name;
+						shExecInfo.lpParameters = parameters;
+						shExecInfo.lpDirectory = NULL;
+						shExecInfo.nShow = SW_HIDE;
+						shExecInfo.hInstApp = NULL;
+						ShellExecuteEx(&shExecInfo);
+						pfnWow64RevertWow64FsRedirection(OldValue);
+					}
+			}
+#endif
+
+			}
+}
+
+BOOL reboot()
+{
+	HANDLE hToken; 
+    TOKEN_PRIVILEGES tkp; 
+    if (OpenProcessToken(    GetCurrentProcess(),
+                TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY, 
+                & hToken)) 
+		{
+			LookupPrivilegeValue(    NULL,  SE_SHUTDOWN_NAME,  & tkp.Privileges[0].Luid);          
+			tkp.PrivilegeCount = 1; 
+			tkp.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED; 
+			if(AdjustTokenPrivileges(    hToken,  FALSE,  & tkp,  0,  (PTOKEN_PRIVILEGES)NULL,  0))
+				{
+					ExitWindowsEx(EWX_REBOOT, 0);
+				}
+		}
+	return TRUE;
+}
+
+void Reboot_in_safemode()
+{
+	if (CreateServiceSafeBootKey()) 
+		{
+			Set_Safemode();
+			reboot();
+		}
+
+}
+
+void Reboot_in_safemode_elevated()
+{
+
+	char exe_file_name[MAX_PATH];
+	GetModuleFileName(0, exe_file_name, MAX_PATH);
+	SHELLEXECUTEINFO shExecInfo;
+	shExecInfo.cbSize = sizeof(SHELLEXECUTEINFO);
+	shExecInfo.fMask = NULL;
+	shExecInfo.hwnd = GetForegroundWindow();
+	shExecInfo.lpVerb = "runas";
+	shExecInfo.lpFile = exe_file_name;
+	shExecInfo.lpParameters = "-rebootsafemode";
+	shExecInfo.lpDirectory = NULL;
+	shExecInfo.nShow = SW_HIDE;
+	shExecInfo.hInstApp = NULL;
+	ShellExecuteEx(&shExecInfo);
+}
+
+////////////////// ALL /////////////////////////////
+////////////////////////////////////////////////////
+
+BOOL DeleteServiceSafeBootKey()
+{
+	LONG lSuccess;
+	char szKey[1024];
+	_snprintf(szKey, 1024, "SYSTEM\\CurrentControlSet\\Control\\SafeBoot\\%s\\%s", "Network", service_name);
+	lSuccess = RegDeleteKey(HKEY_LOCAL_MACHINE, szKey);
+	return lSuccess == ERROR_SUCCESS;
+
+}
+
+void Restore_safemode()
+{
+	OSVERSIONINFO OSversion;	
+	OSversion.dwOSVersionInfoSize=sizeof(OSVERSIONINFO);
+	GetVersionEx(&OSversion);
+	if(OSversion.dwMajorVersion<6)
+		{
+			char drivepath[150];
+			char systemdrive[150];
+			char stringvalue[512];
+			GetEnvironmentVariable("SYSTEMDRIVE", systemdrive, 150);
+			strcat (systemdrive,"/boot.ini");
+			GetPrivateProfileString("boot loader","default","",drivepath,150,systemdrive);
+			if (strlen(drivepath)==0) return;
+			GetPrivateProfileString("operating systems",drivepath,"",stringvalue,512,systemdrive);
+			if (strlen(stringvalue)==0) return;
+			char* p = strrchr(stringvalue, '/');
+			if (p == NULL) return;
+				*p = '\0';
+			WritePrivateProfileString("operating systems",drivepath,stringvalue,systemdrive);		
+			SetFileAttributes(systemdrive,FILE_ATTRIBUTE_READONLY);
+		}
+	else
+		{
+#ifdef _X64
+			char systemroot[150];
+			GetEnvironmentVariable("SystemRoot", systemroot, 150);
+			char exe_file_name[MAX_PATH];
+			char parameters[MAX_PATH];
+			strcpy(exe_file_name,systemroot);
+			strcat(exe_file_name,"\\system32\\");
+			strcat(exe_file_name,"bcdedit.exe");
+			strcpy(parameters,"/deletevalue safeboot");
+			SHELLEXECUTEINFO shExecInfo;
+			shExecInfo.cbSize = sizeof(SHELLEXECUTEINFO);
+			shExecInfo.fMask = NULL;
+			shExecInfo.hwnd = GetForegroundWindow();
+			shExecInfo.lpVerb = "runas";
+			shExecInfo.lpFile = exe_file_name;
+			shExecInfo.lpParameters = parameters;
+			shExecInfo.lpDirectory = NULL;
+			shExecInfo.nShow = SW_HIDE;
+			shExecInfo.hInstApp = NULL;
+			ShellExecuteEx(&shExecInfo);
+#else
+			typedef BOOL (WINAPI *LPFN_Wow64DisableWow64FsRedirection)(PVOID* OldValue);
+			typedef BOOL (WINAPI *LPFN_Wow64RevertWow64FsRedirection)(PVOID OldValue);
+			PVOID OldValue;  
+			LPFN_Wow64DisableWow64FsRedirection pfnWow64DisableWowFsRedirection = (LPFN_Wow64DisableWow64FsRedirection)GetProcAddress(GetModuleHandle("kernel32"),"Wow64DisableWow64FsRedirection");
+			LPFN_Wow64RevertWow64FsRedirection pfnWow64RevertWow64FsRedirection = (LPFN_Wow64RevertWow64FsRedirection)GetProcAddress(GetModuleHandle("kernel32"),"Wow64RevertWow64FsRedirection");
+			if (pfnWow64DisableWowFsRedirection && pfnWow64RevertWow64FsRedirection) 
+			{
+				if(TRUE == pfnWow64DisableWowFsRedirection(&OldValue))
+					{
+						char systemroot[150];
+						GetEnvironmentVariable("SystemRoot", systemroot, 150);
+						char exe_file_name[MAX_PATH];
+						char parameters[MAX_PATH];
+						strcpy(exe_file_name,systemroot);
+						strcat(exe_file_name,"\\system32\\");
+						strcat(exe_file_name,"bcdedit.exe");
+						strcpy(parameters,"/deletevalue safeboot");
+						SHELLEXECUTEINFO shExecInfo;
+						shExecInfo.cbSize = sizeof(SHELLEXECUTEINFO);
+						shExecInfo.fMask = NULL;
+						shExecInfo.hwnd = GetForegroundWindow();
+						shExecInfo.lpVerb = "runas";
+						shExecInfo.lpFile = exe_file_name;
+						shExecInfo.lpParameters = parameters;
+						shExecInfo.lpDirectory = NULL;
+						shExecInfo.nShow = SW_HIDE;
+						shExecInfo.hInstApp = NULL;
+						ShellExecuteEx(&shExecInfo);
+						pfnWow64RevertWow64FsRedirection(OldValue);
+					}
+			}
+#endif
+		}
+}
+
+void Restore_after_reboot()
+{
+	//If we are running !normal mode
+	//disable boot.ini /safemode:network
+	//disable safeboot service
+	if (GetSystemMetrics(SM_CLEANBOOT) != 0)
+	{
+		Restore_safemode();
+		DeleteServiceSafeBootKey();
+	}
+}
+
+
+////////////////// >VISTA /////////////////////////////
+///////////////////////////////////////////////////////
+bool ISUACENabled()
+{
+	OSVERSIONINFO OSversion;	
+	OSversion.dwOSVersionInfoSize=sizeof(OSVERSIONINFO);
+	GetVersionEx(&OSversion);
+	if(OSversion.dwMajorVersion<6) return false;
+	HKEY hKey;
+	if (::RegOpenKeyW(HKEY_LOCAL_MACHINE, L"Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System", &hKey) == ERROR_SUCCESS)
+		{
+			DWORD value = 0;
+			if (::RegQueryValueExW(hKey, L"EnableLUA", NULL, NULL, NULL, &value) == ERROR_SUCCESS)  return (value != 0);
+		}
+	return false;
+}
+
+bool IsSoftwareCadEnabled()
+{
+	OSVERSIONINFO OSversion;	
+	OSversion.dwOSVersionInfoSize=sizeof(OSVERSIONINFO);
+	GetVersionEx(&OSversion);
+	if(OSversion.dwMajorVersion<6) return true;
+
+	HKEY hkLocal, hkLocalKey;
+	DWORD dw;
+	if (RegCreateKeyEx(HKEY_LOCAL_MACHINE,
+		"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies",
+		0, REG_NONE, REG_OPTION_NON_VOLATILE,
+		KEY_READ, NULL, &hkLocal, &dw) != ERROR_SUCCESS)
+		{
+		return 0;
+		}
+	if (RegOpenKeyEx(hkLocal,
+		"System",
+		0, KEY_READ,
+		&hkLocalKey) != ERROR_SUCCESS)
+	{
+		RegCloseKey(hkLocal);
+		return 0;
+	}
+
+	LONG pref=0;
+	ULONG type = REG_DWORD;
+	ULONG prefsize = sizeof(pref);
+
+	if (RegQueryValueEx(hkLocalKey,
+			"SoftwareSASGeneration",
+			NULL,
+			&type,
+			(LPBYTE) &pref,
+			&prefsize) != ERROR_SUCCESS)
+			return false;
+	RegCloseKey(hkLocalKey);
+	RegCloseKey(hkLocal);
+	if (pref!=0) return true;
+	else return false;
+}
+
+void
+Enable_softwareCAD()
+{							
+	HKEY hkLocal, hkLocalKey;
+	DWORD dw;
+	if (RegCreateKeyEx(HKEY_LOCAL_MACHINE,
+		"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies",
+		0, REG_NONE, REG_OPTION_NON_VOLATILE,
+		KEY_READ, NULL, &hkLocal, &dw) != ERROR_SUCCESS)
+		{
+		return;
+		}
+	if (RegOpenKeyEx(hkLocal,
+		"System",
+		0, KEY_WRITE | KEY_READ,
+		&hkLocalKey) != ERROR_SUCCESS)
+	{
+		RegCloseKey(hkLocal);
+		return;
+	}
+	LONG pref;
+	pref=1;
+	RegSetValueEx(hkLocalKey, "SoftwareSASGeneration", 0, REG_DWORD, (LPBYTE) &pref, sizeof(pref));
+	RegCloseKey(hkLocalKey);
+	RegCloseKey(hkLocal);
+}
+
+void delete_softwareCAD()
+{
+	//Beep(1000,10000);
+	HKEY hkLocal, hkLocalKey;
+	DWORD dw;
+	if (RegCreateKeyEx(HKEY_LOCAL_MACHINE,
+		"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies",
+		0, REG_NONE, REG_OPTION_NON_VOLATILE,
+		KEY_READ, NULL, &hkLocal, &dw) != ERROR_SUCCESS)
+		{
+		return;
+		}
+	if (RegOpenKeyEx(hkLocal,
+		"System",
+		0, KEY_WRITE | KEY_READ,
+		&hkLocalKey) != ERROR_SUCCESS)
+	{
+		RegCloseKey(hkLocal);
+		return;
+	}
+	RegDeleteValue(hkLocalKey, "SoftwareSASGeneration");
+	RegCloseKey(hkLocalKey);
+	RegCloseKey(hkLocal);
+
+}
+
+void delete_softwareCAD_elevated()
+{
+	OSVERSIONINFO OSversion;	
+	OSversion.dwOSVersionInfoSize=sizeof(OSVERSIONINFO);
+	GetVersionEx(&OSversion);
+	if(OSversion.dwMajorVersion<6) return;
+
+	char exe_file_name[MAX_PATH];
+	GetModuleFileName(0, exe_file_name, MAX_PATH);
+	SHELLEXECUTEINFO shExecInfo;
+	shExecInfo.cbSize = sizeof(SHELLEXECUTEINFO);
+	shExecInfo.fMask = NULL;
+	shExecInfo.hwnd = GetForegroundWindow();
+	shExecInfo.lpVerb = "runas";
+	shExecInfo.lpFile = exe_file_name;
+	shExecInfo.lpParameters = "-delsoftwarecad";
+	shExecInfo.lpDirectory = NULL;
+	shExecInfo.nShow = SW_SHOWNORMAL;
+	shExecInfo.hInstApp = NULL;
+	ShellExecuteEx(&shExecInfo);
+}
+
+void Enable_softwareCAD_elevated()
+{
+	OSVERSIONINFO OSversion;	
+	OSversion.dwOSVersionInfoSize=sizeof(OSVERSIONINFO);
+	GetVersionEx(&OSversion);
+	if(OSversion.dwMajorVersion<6) return;
+
+	char exe_file_name[MAX_PATH];
+	GetModuleFileName(0, exe_file_name, MAX_PATH);
+	SHELLEXECUTEINFO shExecInfo;
+	shExecInfo.cbSize = sizeof(SHELLEXECUTEINFO);
+	shExecInfo.fMask = NULL;
+	shExecInfo.hwnd = GetForegroundWindow();
+	shExecInfo.lpVerb = "runas";
+	shExecInfo.lpFile = exe_file_name;
+	shExecInfo.lpParameters = "-softwarecad";
+	shExecInfo.lpDirectory = NULL;
+	shExecInfo.nShow = SW_SHOWNORMAL;
+	shExecInfo.hInstApp = NULL;
+	ShellExecuteEx(&shExecInfo);
+}
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////

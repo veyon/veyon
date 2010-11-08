@@ -191,6 +191,23 @@ DWORD WINAPI Cadthread(LPVOID lpParam)
 		return 0;
 	}
 
+	 HKEY hKey; 
+	 DWORD isLUAon = 0; 
+     if (RegOpenKeyEx(HKEY_LOCAL_MACHINE, TEXT("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\System"), 0, KEY_READ, &hKey) == ERROR_SUCCESS) 
+              { 
+              DWORD LUAbufSize = 4; 
+              RegQueryValueEx(hKey, TEXT("EnableLUA"), NULL, NULL, (LPBYTE)&isLUAon, &LUAbufSize); 
+              RegCloseKey(hKey); 
+			  }
+     if (isLUAon != 1 && OSversion.dwMajorVersion==6) 
+	 {
+		 if (hShutdownEventcad==NULL ) hShutdownEventcad = OpenEvent(EVENT_MODIFY_STATE, FALSE, "Global\\SessionEventUltraCad");
+		 if (hShutdownEventcad!=NULL ) SetEvent(hShutdownEventcad);
+		 return 0;
+	 }
+
+
+
 	if (desktop == NULL)
 		vnclog.Print(LL_INTERR, VNCLOG("OpenInputdesktop Error \n"));
 	else 

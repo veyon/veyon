@@ -654,8 +654,9 @@ if (SPECIAL_SC_EXIT || SPECIAL_SC_PROMPT)return true;
 		{
 			DWORD lasterror;
 			lasterror=GetLastError();
-			vnclog.Print(LL_INTERR, VNCLOG("OpenInputDesktop I\n"));
+			vnclog.Print(LL_INTERR, VNCLOG("OpenInputDesktop %i I\n"),lasterror);
 			if (lasterror==170) return TRUE;
+			if (lasterror==624) return TRUE;
 			vnclog.Print(LL_INTERR, VNCLOG("OpenInputDesktop II\n"));
 			return FALSE;
 		}

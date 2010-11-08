@@ -79,6 +79,16 @@ const char winvncInstallService[]		= "-install";
 const char winvncUnInstallService[]		= "-uninstall";
 const char winvncInstallServiceHelper[]		= "-installhelper";
 const char winvncUnInstallServiceHelper[]	= "-uninstallhelper";
+
+const char winvncSoftwarecad[]		= "-softwarecad";
+const char winvncSoftwarecadHelper[]		= "-softwarecadhelper";
+
+const char winvncRebootSafe[]		= "-rebootsafemode";
+const char winvncRebootSafeHelper[]	= "-rebootsafemodehelper";
+
+const char winvncdelSoftwarecad[]		= "-delsoftwarecad";
+const char winvncdelSoftwarecadHelper[]		= "-delsoftwarecadhelper";
+
 const char winvncSecurityEditorHelper[]		= "-securityeditorhelper";
 const char winvncSecurityEditor[]			= "-securityeditor";
 const char winvncKill[]						= "-kill";

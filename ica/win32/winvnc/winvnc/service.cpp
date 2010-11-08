@@ -747,7 +747,7 @@ void wait_for_existing_process()
 
 #include <sddl.h>
 SECURITY_ATTRIBUTES secAttr;
-
+extern SERVICE_STATUS serviceStatus;
 void monitor_sessions()
 {
 	pad2();
@@ -770,7 +770,7 @@ void monitor_sessions()
 	testevent[0]=stopServiceEvent;
 	testevent[1]=hEventcad;
 	bool ToCont=true;
-	while(ToCont)
+	while(ToCont && serviceStatus.dwCurrentState==SERVICE_RUNNING)
 	{
 	DWORD dwEvent;
 	dwEvent=WaitForMultipleObjects(2,testevent,FALSE, 1000);
@@ -788,6 +788,22 @@ void monitor_sessions()
 			HINSTANCE Inst = LoadLibrary("sas.dll");
 			SendSas sendSas = (SendSas) GetProcAddress(Inst, "SendSAS");
 			if (sendSas) sendSas(FALSE);
+			else
+			{
+				char WORKDIR[MAX_PATH];
+				char mycommand[MAX_PATH];
+				if (GetModuleFileName(NULL, WORKDIR, MAX_PATH))
+					{
+					char* p = strrchr(WORKDIR, '\\');
+					if (p == NULL) return;
+					*p = '\0';
+					}
+				strcpy(mycommand,"");
+				strcat(mycommand,WORKDIR);//set the directory
+				strcat(mycommand,"\\");
+				strcat(mycommand,"cad.exe");
+				int nr=(int)ShellExecute(GetDesktopWindow(), "open", mycommand, "", 0, SW_SHOWNORMAL);
+			}
 			if (Inst) FreeLibrary(Inst);
 			}
             break; 

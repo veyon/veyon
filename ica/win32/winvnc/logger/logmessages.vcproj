@@ -4,6 +4,7 @@
 	Version="9,00"
 	Name="logmessages"
 	ProjectGUID="{E543B602-5529-4B23-8D2A-3709857F5066}"
+	RootNamespace="logmessages"
 	TargetFrameworkVersion="131072"
 	>
 	<Platforms>
@@ -15,6 +16,9 @@
 		/>
 	</Platforms>
 	<ToolFiles>
+		<DefaultToolFile
+			FileName="mc.rules"
+		/>
 	</ToolFiles>
 	<Configurations>
 		<Configuration
@@ -33,6 +37,9 @@
 				Name="VCCustomBuildTool"
 				CommandLine="mc messages.mc&#x0D;&#x0A;rc -r -fo messages.res messages.rc&#x0D;&#x0A;link -dll -manifest:no -noentry -out:..\Release\logmessages.dll messages.res&#x0D;&#x0A;"
 				Outputs="messages.res;messages.rc;messages.h;..\Release\logmessages.dll"
+			/>
+			<Tool
+				Name="MC"
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
@@ -130,6 +137,9 @@
 				Outputs="messages.res;messages.rc;messages.h;..\Release\logmessages.dll"
 			/>
 			<Tool
+				Name="MC"
+			/>
+			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
 			<Tool
@@ -222,6 +232,9 @@
 				Name="VCCustomBuildTool"
 				CommandLine="mc messages.mc&#x0D;&#x0A;rc -r -fo messages.res messages.rc&#x0D;&#x0A;link -dll -manifest:no -noentry -out:..\Debug\logmessages.dll messages.res&#x0D;&#x0A;"
 				Outputs="messages.res;messages.rc;messages.h;..\Debug\logmessages.dll"
+			/>
+			<Tool
+				Name="MC"
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
@@ -322,6 +335,9 @@
 				Outputs="messages.res;messages.rc;messages.h;..\Debug\logmessages.dll"
 			/>
 			<Tool
+				Name="MC"
+			/>
+			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
 			<Tool
@@ -419,6 +435,9 @@
 				Outputs="messages.res;messages.rc;messages.h;..\Release\logmessages.dll"
 			/>
 			<Tool
+				Name="MC"
+			/>
+			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
 			<Tool
@@ -512,6 +531,9 @@
 				Name="VCCustomBuildTool"
 				CommandLine="mc messages.mc&#x0D;&#x0A;rc -r -fo messages.res messages.rc&#x0D;&#x0A;link -dll -manifest:no -noentry -out:..\Release\logmessages.dll messages.res&#x0D;&#x0A;"
 				Outputs="messages.res;messages.rc;messages.h;..\Release\logmessages.dll"
+			/>
+			<Tool
+				Name="MC"
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"

@@ -654,6 +654,7 @@ Global
 		{04F91FA4-2D94-4803-BA3B-B61FBEF0ABE3}.ASM Release|x64.ActiveCfg = ReleaseLib|x64
 		{04F91FA4-2D94-4803-BA3B-B61FBEF0ABE3}.ASM Release|x64.Build.0 = ReleaseLib|x64
 		{04F91FA4-2D94-4803-BA3B-B61FBEF0ABE3}.Debug|Win32.ActiveCfg = DebugLib-Static|Win32
+		{04F91FA4-2D94-4803-BA3B-B61FBEF0ABE3}.Debug|Win32.Build.0 = DebugLib-Static|Win32
 		{04F91FA4-2D94-4803-BA3B-B61FBEF0ABE3}.Debug|x64.ActiveCfg = DebugLib-Static|x64
 		{04F91FA4-2D94-4803-BA3B-B61FBEF0ABE3}.Debug|x64.Build.0 = DebugLib-Static|x64
 		{04F91FA4-2D94-4803-BA3B-B61FBEF0ABE3}.DebugLib-Static|Win32.ActiveCfg = DebugLib-Static|Win32
