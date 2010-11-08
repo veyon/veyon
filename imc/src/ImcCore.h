@@ -25,6 +25,10 @@
 #ifndef _IMC_CORE_H
 #define _IMC_CORE_H
 
+#include <QtCore/QDir>
+#include <QtCore/QCoreApplication>
+#include <QtCore/QString>
+
 class ItalcConfiguration;
 class MainWindow;
 
@@ -32,6 +36,10 @@ namespace ImcCore
 {
 	void init();
 	void deinit();
+
+	bool applyConfiguration( const ItalcConfiguration &config );
+
+	QString icaFilePath();
 
 	extern ItalcConfiguration *config;
 

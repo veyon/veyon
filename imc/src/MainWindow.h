@@ -44,9 +44,14 @@ public:
 
 private slots:
 	void resetOrApply( QAbstractButton *btn );
+	void startService();
+	void stopService();
+	void updateServiceControl();
 
 
 private:
+	bool isServiceRunning();
+
 	Ui::MainWindow *ui;
 
 } ;

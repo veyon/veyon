@@ -24,9 +24,12 @@
 
 #include <QtCore/QLocale>
 #include <QtCore/QTranslator>
+#include <QtGui/QMessageBox>
 #include <QtGui/QApplication>
 
+#include "Configuration/XmlStore.h"
 #include "ImcCore.h"
+#include "ItalcConfiguration.h"
 #include "MainWindow.h"
 #include "LocalSystem.h"
 #include "Logger.h"
@@ -65,6 +68,29 @@ int main( int argc, char **argv )
 	while( argc > 1 && argIt.hasNext() )
 	{
 		const QString & a = argIt.next();
+		if( ( a == "-apply" || a == "-a" ) && argIt.hasNext() )
+		{
+			const QString file = argIt.next();
+			Configuration::XmlStore xs( Configuration::XmlStore::System, file );
+
+			if( ImcCore::applyConfiguration( ItalcConfiguration( &xs ) ) )
+			{
+				QMessageBox::information( NULL,
+					app.tr( "iTALC Management Console" ),
+					app.tr( "All settings were applied successfully." ) );
+			}
+			else
+			{
+				QMessageBox::critical( NULL,
+					app.tr( "iTALC Management Console" ),
+					app.tr( "An error occured while applying settings!" ) );
+			}
+
+			// remove temporary file
+			QFile( file ).remove();
+
+			return 0;
+		}
 	}
 
 	// now create the main window

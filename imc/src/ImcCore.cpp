@@ -24,6 +24,8 @@
 
 #include "ImcCore.h"
 #include "ItalcConfiguration.h"
+#include "Logger.h"
+#include "SystemConfigurationModifier.h"
 
 
 namespace ImcCore
@@ -39,10 +41,38 @@ void init()
 	config = new ItalcConfiguration( Configuration::Store::XmlFile );
 }
 
+
+
+
 void deinit()
 {
 	delete config;
 }
+
+
+
+
+bool applyConfiguration( const ItalcConfiguration &c )
+{
+	// merge configuration
+	*config += c;
+
+	// do neccessary modifications of system configuration
+	SystemConfigurationModifier::setServiceAutostart( config->autostartService() );
+	SystemConfigurationModifier::setServiceArguments( config->serviceArguments() );
+	SystemConfigurationModifier::enableFirewallException( config->isFirewallExceptionEnabled() );
+
+	// write global configuration
+	config->flushStore();
+}
+
+
+
+QString icaFilePath()
+{
+	return QCoreApplication::applicationDirPath() + QDir::separator() + "ica";
+}
+
 
 
 }
