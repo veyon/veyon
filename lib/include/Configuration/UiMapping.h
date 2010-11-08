@@ -25,25 +25,46 @@
 #ifndef _CONFIGURATION_UI_MAPPING_H
 #define _CONFIGURATION_UI_MAPPING_H
 
-#define LOAD_AND_CONNECT_PROPERTY(property,type,widgetType,setvalue,signal,slot)				\
-			qobject_cast<widgetType *>( ui->property )->setvalue( ImcCore::config->property() );\
-			connect( ui->property, SIGNAL(signal(type)),										\
-						ImcCore::config, SLOT(slot(type)) );
+// widget initialization
+#define _INIT_WIDGET_FROM_PROPERTY(property,widgetType,setvalue)				\
+			qobject_cast<widgetType *>( ui->property )->setvalue( ImcCore::config->property() );
 
-#define LOAD_AND_CONNECT_BOOL_PROPERTY(property,slot)											\
-			LOAD_AND_CONNECT_PROPERTY(property,bool,QAbstractButton,setChecked,toggled,slot)
+#define INIT_WIDGET_FROM_BOOL_PROPERTY(property,slot)							\
+			_INIT_WIDGET_FROM_PROPERTY(property,QAbstractButton,setChecked)
 
-#define LOAD_AND_CONNECT_STRING_PROPERTY(property,slot)											\
-			LOAD_AND_CONNECT_PROPERTY(property,const QString &,QLineEdit,setText,textChanged,slot)
+#define INIT_WIDGET_FROM_STRING_PROPERTY(property,slot)							\
+			_INIT_WIDGET_FROM_PROPERTY(property,QLineEdit,setText)
 
-#define LOAD_AND_CONNECT_INT_PROPERTY(property,slot)											\
-			if(ui->property->inherits("QComboBox"))	{											\
-				LOAD_AND_CONNECT_PROPERTY(property,int,QComboBox,setCurrentIndex,currentIndexChanged,slot)	\
-			} else {																			\
-				LOAD_AND_CONNECT_PROPERTY(property,int,QSpinBox,setValue,valueChanged,slot)		\
+#define INIT_WIDGET_FROM_INT_PROPERTY(property,slot)							\
+			if(ui->property->inherits("QComboBox"))	{							\
+				_INIT_WIDGET_FROM_PROPERTY(property,QComboBox,setCurrentIndex)	\
+			} else {															\
+				_INIT_WIDGET_FROM_PROPERTY(property,QSpinBox,setValue)			\
 			}
 
-#define MAP_CONFIG_TO_UI(className, type, get, set, key, parentKey)					\
-			LOAD_AND_CONNECT_##type##_PROPERTY(get,set)
+#define INIT_WIDGET_FROM_PROPERTY(className, type, get, set, key, parentKey)	\
+			INIT_WIDGET_FROM_##type##_PROPERTY(get,set)
+
+
+// allow connecting widget signals to configuration property write methods
+#define CONNECT_WIDGET_TO_BOOL_PROPERTY(property,slot)							\
+			connect( ui->property, SIGNAL(toggled(bool)),						\
+						ImcCore::config, SLOT(slot(bool)) );
+
+#define CONNECT_WIDGET_TO_STRING_PROPERTY(property,slot)						\
+			connect( ui->property, SIGNAL(textChanged(const QString &)),		\
+						ImcCore::config, SLOT(slot(const QString &)) );
+
+#define CONNECT_WIDGET_TO_INT_PROPERTY(property,slot)							\
+			if(ui->property->inherits("QComboBox"))	{							\
+				connect( ui->property, SIGNAL(currentIndexChanged(int)),		\
+							ImcCore::config, SLOT(slot(int)) );					\
+			} else {															\
+				connect( ui->property, SIGNAL(valueChanged(int)),				\
+							ImcCore::config, SLOT(slot(int)) );					\
+			}
+
+#define CONNECT_WIDGET_TO_PROPERTY(className, type, get, set, key, parentKey)	\
+			CONNECT_WIDGET_TO_##type##_PROPERTY(get,set)
 
 #endif
