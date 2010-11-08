@@ -39,6 +39,11 @@ public:
 	virtual ~MainWindow();
 
 
+public slots:
+	void reset();
+	void apply();
+
+
 private:
 	Ui::MainWindow *ui;
 

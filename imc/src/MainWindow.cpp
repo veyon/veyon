@@ -39,13 +39,31 @@ MainWindow::MainWindow() :
 
 	setWindowTitle( tr( "iTALC Management Console %1" ).arg( ITALC_VERSION ) );
 
-	FOREACH_ITALC_CONFIG_PROPERTY(MAP_CONFIG_TO_UI)
+	// reset all widget's values to current configuration
+	reset();
+
+	// connect widget signals to configuration property write methods
+	FOREACH_ITALC_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY)
 }
 
 
 
 
 MainWindow::~MainWindow()
+{
+}
+
+
+
+void MainWindow::reset()
+{
+	FOREACH_ITALC_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY)
+}
+
+
+
+
+void MainWindow::apply()
 {
 }
 
