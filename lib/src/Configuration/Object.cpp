@@ -79,6 +79,35 @@ Object::~Object()
 
 
 
+// allow easy merging of two data maps - source is dominant over destination
+static Object::DataMap operator+( Object::DataMap dst, Object::DataMap src )
+{
+	for( Object::DataMap::ConstIterator it = src.begin(); it != src.end(); ++it )
+	{
+		if( it.value().type() == QVariant::Map && dst.contains( it.key() ) )
+		{
+			dst[it.key()] = dst[it.key()].toMap() + it.value().toMap();
+		}
+		else
+		{
+			dst[it.key()] = it.value();
+		}
+	}
+	return dst;
+}
+
+
+
+
+Object &Object::operator+=( const Object &ref )
+{
+	m_data = m_data + ref.data();
+
+	return *this;
+}
+
+
+
 
 QString Object::value( const QString & _key, const QString & _parentKey ) const
 {

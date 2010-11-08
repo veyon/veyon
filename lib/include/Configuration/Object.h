@@ -42,6 +42,8 @@ public:
 	Object( Store *store );
 	~Object();
 
+	Object &operator+=( const Object &ref );
+
 	QString value( const QString & _key,
 			const QString & _parentKey = QString() ) const;
 
