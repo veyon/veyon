@@ -53,12 +53,18 @@ public:
 
 	void reloadFromStore()
 	{
-		m_store->load( this );
+		if( m_store )
+		{
+			m_store->load( this );
+		}
 	}
 
 	void flushStore()
 	{
-		m_store->flush( this );
+		if( m_store )
+		{
+			m_store->flush( this );
+		}
 	}
 
 	const DataMap & data() const

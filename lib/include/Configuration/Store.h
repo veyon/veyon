@@ -40,7 +40,8 @@ public:
 	enum Backends
 	{
 		LocalBackend,	// registry or similiar
-		XmlFile
+		XmlFile,
+		NoBackend
 	} ;
 	typedef Backends Backend;
 

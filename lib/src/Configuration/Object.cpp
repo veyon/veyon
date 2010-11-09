@@ -47,6 +47,8 @@ Object::Object( Store::Backend _backend, Store::Scope _scope ) :
 		case Store::XmlFile:
 			m_store = new XmlStore( _scope );
 			break;
+		case Store::NoBackend:
+			break;
 		default:
 			qCritical( "Invalid Store::Backend %d selected in "
 					"Object::Object()", _backend );
