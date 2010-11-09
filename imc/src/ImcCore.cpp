@@ -97,7 +97,11 @@ bool applyConfiguration( const ItalcConfiguration &c )
 
 QString icaFilePath()
 {
-	return QCoreApplication::applicationDirPath() + QDir::separator() + "ica";
+	QString path = QCoreApplication::applicationDirPath() + QDir::separator() + "ica";
+#ifdef ITALC_BUILD_WIN32
+	path = QString( path + ".exe" ).replace( '/', '\\' );
+#endif
+	return path;
 }
 
 
