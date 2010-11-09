@@ -37,7 +37,7 @@
 
 #include "ItalcCoreServer.h"
 #include "DsaKey.h"
-#include "LocalSystemIca.h"
+#include "LocalSystem.h"
 
 
 ItalcCoreServer * ItalcCoreServer::_this = NULL;
@@ -147,7 +147,8 @@ int ItalcCoreServer::handleItalcClientMessage( socketDispatcher sock,
 	}
 	else if( cmd == ItalcCore::DisableLocalInputs )
 	{
-		LocalSystem::disableLocalInputs( msgIn.arg( "disabled" ).toInt() );
+		// TODO
+		//LocalSystem::disableLocalInputs( msgIn.arg( "disabled" ).toInt() );
 	}
 	else if( cmd == ItalcCore::SetRole )
 	{
@@ -363,7 +364,7 @@ bool ItalcCoreServer::doKeyBasedAuth( SocketDevice &sdev, const QString &host )
 	const QByteArray sig = sdev.read().toByteArray();
 
 	// (publicKeyPath does range-checking of urole)
-	PublicDSAKey pubKey( LocalSystem::publicKeyPath( urole ) );
+	PublicDSAKey pubKey( LocalSystem::Path::publicKeyPath( urole ) );
 
 	return pubKey.verifySignature( chall, sig );
 }

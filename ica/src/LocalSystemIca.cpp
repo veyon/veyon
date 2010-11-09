@@ -61,27 +61,6 @@
 #include "LocalSystem.h"
 #include "SystemKeyTrapper.h"
 
-/*
-#include "vncKeymap.h"
-
-extern vncServer * __server;
-extern __declspec(dllimport) BOOL __localInputsDisabled;
-
-static inline void pressKey( int _key, bool _down )
-{
-	if( !__server )
-	{
-		return;
-	}
-	vncKeymap::keyEvent( _key, _down, __server );
-	LocalSystem::sleep( 50 );
-}
-*/
-//extern __declspec(dllimport) BOOL __localInputsDisabled;
-static inline void pressKey( int _key, bool _down )
-{
-}
-
 #else
 
 #include "LocalSystem.h"
@@ -123,16 +102,7 @@ namespace LocalSystem
 {
 
 
-void initialize()
-{
-	initialize( pressKey );
-}
-
-
-
-
-
-void disableLocalInputs( bool _disabled )
+/*void disableLocalInputs( bool _disabled )
 {
 #if 0
 #ifdef ITALC_BUILD_WIN32
@@ -154,7 +124,7 @@ void disableLocalInputs( bool _disabled )
 #warning TODO
 #endif
 #endif
-}
+}*/
 
 
 

@@ -31,9 +31,9 @@
 #include <QtNetwork/QHostInfo>
 
 #include "WindowsService.h"
+#include "ItalcConfiguration.h"
 #include "ItalcCoreServer.h"
 #include "ItalcVncServer.h"
-#include "LocalSystemIca.h"
 #include "Logger.h"
 #include "Debug.h"
 #include "DsaKey.h"
@@ -70,7 +70,7 @@ bool eventFilter( void *msg, long *result )
 
 
 
-int createKeyPair( int argc, char **argv )
+/*int createKeyPair( int argc, char **argv )
 {
 	const QString roleArg = argv[2];
 	ItalcCore::UserRoles role = ItalcCore::RoleTeacher;
@@ -114,7 +114,7 @@ int createKeyPair( int argc, char **argv )
 				"all users belong who are\nallowed to use "
 				"iTALC.\n\n\n" );
 	return 0;
-}
+}*/
 
 
 
@@ -132,12 +132,9 @@ void initCoreApplication( QCoreApplication *app = NULL )
 		app->installTranslator( tr );
 	}
 
-	LocalSystem::initialize();
+	ItalcCore::init();
 
-	if( LocalSystem::parameter( "serverport" ).toInt() > 0 )
-	{
-		ItalcCore::serverPort = LocalSystem::parameter( "serverport" ).toInt();
-	}
+	ItalcCore::serverPort = ItalcCore::config->coreServerPort();
 }
 
 
@@ -342,7 +339,7 @@ int main( int argc, char **argv )
 #endif
 		if( arg1 == "-createkeypair" )
 		{
-			return createKeyPair( argc, argv );
+			return 0;//createKeyPair( argc, argv );
 		}
 		else if( arg1 == "-slave" )
 		{
