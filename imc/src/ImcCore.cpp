@@ -26,8 +26,11 @@
 
 #include <italcconfig.h>
 
+#include "Configuration/LocalStore.h"
 #include "ImcCore.h"
 #include "ItalcConfiguration.h"
+#include "ItalcCore.h"
+#include "LocalSystem.h"
 #include "Logger.h"
 #include "SystemConfigurationModifier.h"
 
@@ -36,22 +39,7 @@ namespace ImcCore
 {
 
 // static data initialization
-ItalcConfiguration *config = NULL;
-
 MainWindow *mainWindow = NULL;
-
-void init()
-{
-	config = new ItalcConfiguration( Configuration::Store::XmlFile );
-}
-
-
-
-
-void deinit()
-{
-	delete config;
-}
 
 
 static void configApplyError( const QString &msg )
@@ -69,28 +57,32 @@ bool applyConfiguration( const ItalcConfiguration &c )
 	QCoreApplication *app = QCoreApplication::instance();
 
 	// merge configuration
-	*config += c;
+	*ItalcCore::config += c;
 
 	// do neccessary modifications of system configuration
-	if( !SystemConfigurationModifier::setServiceAutostart( config->autostartService() ) )
+	if( !SystemConfigurationModifier::setServiceAutostart(
+									ItalcCore::config->autostartService() ) )
 	{
 		configApplyError( app->tr( "Could not modify the autostart property "
 									"for the iTALC Client Service." ) );
 	}
 
-	if( !SystemConfigurationModifier::setServiceArguments( config->serviceArguments() ) )
+	if( !SystemConfigurationModifier::setServiceArguments(
+									ItalcCore::config->serviceArguments() ) )
 	{
 		configApplyError( app->tr( "Could not modify the service arguments "
 									"for the iTALC Client Service." ) );
 	}
-	if( !SystemConfigurationModifier::enableFirewallException( config->isFirewallExceptionEnabled() ) )
+	if( !SystemConfigurationModifier::enableFirewallException(
+							ItalcCore::config->isFirewallExceptionEnabled() ) )
 	{
 		configApplyError( app->tr( "Could not change the firewall configuration "
 									"for the iTALC Client Service." ) );
 	}
 
 	// write global configuration
-	config->flushStore();
+	Configuration::LocalStore localStore( Configuration::LocalStore::System );
+	localStore.flush( ItalcCore::config );
 }
 
 
@@ -99,9 +91,9 @@ QString icaFilePath()
 {
 	QString path = QCoreApplication::applicationDirPath() + QDir::separator() + "ica";
 #ifdef ITALC_BUILD_WIN32
-	path = QString( path + ".exe" ).replace( '/', '\\' );
+	path += ".exe";
 #endif
-	return path;
+	return QDTNS( path );
 }
 
 

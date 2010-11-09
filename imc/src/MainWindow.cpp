@@ -85,7 +85,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::reset()
 {
-	ImcCore::config->reloadFromStore();
+	ItalcCore::config->reloadFromStore();
 
 	FOREACH_ITALC_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY)
 }
@@ -97,8 +97,7 @@ void MainWindow::apply()
 {
 	if( LocalSystem::Process::isRunningAsAdmin() )
 	{
-		ImcCore::config->flushStore();
-		ImcCore::applyConfiguration( *ImcCore::config );
+		ImcCore::applyConfiguration( *ItalcCore::config );
 	}
 	else
 	{
@@ -112,7 +111,7 @@ void MainWindow::apply()
 		// write current configuration to temporary file
 		Configuration::XmlStore xs( Configuration::XmlStore::System,
 									f.fileName() );
-		xs.flush( ImcCore::config );
+		xs.flush( ItalcCore::config );
 
 		// launch ourselves as admin again and apply configuration from
 		// temporary file

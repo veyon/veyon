@@ -30,18 +30,17 @@
 #include "Configuration/XmlStore.h"
 #include "ImcCore.h"
 #include "ItalcConfiguration.h"
+#include "ItalcCore.h"
 #include "MainWindow.h"
-#include "LocalSystem.h"
 #include "Logger.h"
 
 
 
-// good old main-function... initializes and starts application
 int main( int argc, char **argv )
 {
 	QApplication app( argc, argv );
 
-	LocalSystem::initialize( NULL );
+	ItalcCore::init();
 
 	Logger l( "ItalcManagementConsole" );
 
@@ -58,8 +57,6 @@ int main( int argc, char **argv )
 		tr->load( QString( ":/resources/%1.qm" ).arg( qm ) );
 		app.installTranslator( tr );
 	}
-
-	ImcCore::init();
 
 	// parse arguments
 	QStringListIterator argIt( QCoreApplication::arguments() );
@@ -102,7 +99,7 @@ int main( int argc, char **argv )
 
 	int ret = app.exec();
 
-	ImcCore::deinit();
+	ItalcCore::destroy();
 
 	return ret;
 }

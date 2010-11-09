@@ -34,14 +34,10 @@ class MainWindow;
 
 namespace ImcCore
 {
-	void init();
-	void deinit();
-
 	bool applyConfiguration( const ItalcConfiguration &config );
 
 	QString icaFilePath();
 
-	extern ItalcConfiguration *config;
 
 	// UI objects
 	extern MainWindow * mainWindow;
