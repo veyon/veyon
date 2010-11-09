@@ -22,6 +22,10 @@
  *
  */
 
+#include <QtGui/QMessageBox>
+
+#include <italcconfig.h>
+
 #include "ImcCore.h"
 #include "ItalcConfiguration.h"
 #include "Logger.h"
@@ -50,17 +54,40 @@ void deinit()
 }
 
 
+static void configApplyError( const QString &msg )
+{
+	QCoreApplication *app = QCoreApplication::instance();
+	if( !app->arguments().contains( "-quiet" ) )
+	{
+		QMessageBox::critical( NULL, app->tr( "iTALC Management Console" ), msg );
+	}
+}
 
 
 bool applyConfiguration( const ItalcConfiguration &c )
 {
+	QCoreApplication *app = QCoreApplication::instance();
+
 	// merge configuration
 	*config += c;
 
 	// do neccessary modifications of system configuration
-	SystemConfigurationModifier::setServiceAutostart( config->autostartService() );
-	SystemConfigurationModifier::setServiceArguments( config->serviceArguments() );
-	SystemConfigurationModifier::enableFirewallException( config->isFirewallExceptionEnabled() );
+	if( !SystemConfigurationModifier::setServiceAutostart( config->autostartService() ) )
+	{
+		configApplyError( app->tr( "Could not modify the autostart property "
+									"for the iTALC Client Service." ) );
+	}
+
+	if( !SystemConfigurationModifier::setServiceArguments( config->serviceArguments() ) )
+	{
+		configApplyError( app->tr( "Could not modify the service arguments "
+									"for the iTALC Client Service." ) );
+	}
+	if( !SystemConfigurationModifier::enableFirewallException( config->isFirewallExceptionEnabled() ) )
+	{
+		configApplyError( app->tr( "Could not change the firewall configuration "
+									"for the iTALC Client Service." ) );
+	}
 
 	// write global configuration
 	config->flushStore();
