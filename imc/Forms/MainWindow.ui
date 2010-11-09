@@ -709,17 +709,14 @@
             </spacer>
            </item>
            <item row="0" column="0">
-            <widget class="QRadioButton" name="isAuthenticationKeyBased">
+            <widget class="QCheckBox" name="isKeyAuthenticationEnabled">
              <property name="text">
               <string>Key based authentication</string>
-             </property>
-             <property name="checked">
-              <bool>true</bool>
              </property>
             </widget>
            </item>
            <item row="1" column="0">
-            <widget class="QRadioButton" name="isAuthenticationLogonBased">
+            <widget class="QCheckBox" name="isLogonAuthenticationEnabled">
              <property name="text">
               <string>Domain logon (username/password) based authentication</string>
              </property>
@@ -730,6 +727,9 @@
         </item>
         <item>
          <widget class="QGroupBox" name="keyManagement">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
           <property name="minimumSize">
            <size>
             <width>0</width>
@@ -1034,22 +1034,6 @@
  </resources>
  <connections>
   <connection>
-   <sender>isAuthenticationLogonBased</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>logonManagement</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>441</x>
-     <y>139</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>502</x>
-     <y>436</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>pageSelector</sender>
    <signal>currentRowChanged(int)</signal>
    <receiver>configPages</receiver>
@@ -1066,22 +1050,6 @@
    </hints>
   </connection>
   <connection>
-   <sender>isAuthenticationKeyBased</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>keyManagement</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>441</x>
-     <y>111</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>502</x>
-     <y>240</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>limittedLogFileSize</sender>
    <signal>toggled(bool)</signal>
    <receiver>logFileSizeLimit</receiver>
@@ -1094,6 +1062,38 @@
     <hint type="destinationlabel">
      <x>408</x>
      <y>377</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>isKeyAuthenticationEnabled</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>keyManagement</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>441</x>
+     <y>78</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>455</x>
+     <y>190</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>isLogonAuthenticationEnabled</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>logonManagement</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>441</x>
+     <y>102</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>455</x>
+     <y>372</y>
     </hint>
    </hints>
   </connection>
