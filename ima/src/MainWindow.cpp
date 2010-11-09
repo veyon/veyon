@@ -50,25 +50,12 @@
 #include "DecoratedMessageBox.h"
 #include "DemoServerMaster.h"
 #include "ToolButton.h"
+#include "ItalcConfiguration.h"
 #include "ItalcCoreConnection.h"
 #include "ItalcVncConnection.h"
 #include "LocalSystem.h"
 #include "RemoteControlWidget.h"
 
-
-
-extern int __ivs_port;
-extern QString __ivs_host;
-
-
-bool MainWindow::ensureConfigPathExists( void )
-{
-	return( LocalSystem::ensurePathExists(
-					LocalSystem::personalConfigDir() ) );
-}
-
-
-bool MainWindow::s_atExit = FALSE;
 
 
 MainWindow::MainWindow( int _rctrl_screen ) :
@@ -90,17 +77,18 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 
 	setWindowTitle( tr( "iTALC" ) + " " + ITALC_VERSION );
 
-	if( MainWindow::ensureConfigPathExists() == FALSE )
+	if( LocalSystem::Path::ensurePathExists(
+						LocalSystem::Path::personalConfigDataPath() ) == false )
 	{
 		if( splashScreen != NULL )
 		{
 			splashScreen->hide();
 		}
-		DecoratedMessageBox::information( tr( "No write-access" ),
+		DecoratedMessageBox::information( tr( "No write access" ),
 			tr( "Could not read/write or create directory %1! "
 			"For running iTALC, make sure you're permitted to "
 			"create or write this directory." ).arg(
-					LocalSystem::personalConfigDir() ) );
+					LocalSystem::Path::personalConfigDataPath() ) );
 		return;
 	}
 
@@ -353,8 +341,9 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 	// attach ItalcCoreConnection to it so we can send extended iTALC commands
 	m_localICA = new ItalcCoreConnection( conn );
 
-	conn->setHost( QHostAddress( __ivs_host ).toString() );
-	conn->setPort( __ivs_port );
+	ItalcConfiguration cfg;
+	conn->setHost( QHostAddress( QHostAddress::LocalHost ).toString() );
+	conn->setPort( cfg.coreServerPort() );
 	conn->setFramebufferUpdateInterval( -1 );
 	conn->start();
 
@@ -376,7 +365,7 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 
 	// create DemoServerMaster
 	m_italcSlaveManager = new ItalcSlaveManager;
-	demoServerMaster()->start( PortOffsetIVS, PortOffsetDemoServer );
+	demoServerMaster()->start( cfg.coreServerPort(), cfg.demoServerPort() );
 
 //	##ITALC2: m_localISD->hideTrayIcon();
 
@@ -438,8 +427,6 @@ void MainWindow::keyPressEvent( QKeyEvent * _e )
 
 void MainWindow::closeEvent( QCloseEvent * _ce )
 {
-	s_atExit = TRUE;
-
 	m_updateThread->quit();
 	m_updateThread->wait();
 	delete m_updateThread;

@@ -43,12 +43,10 @@
         <file>resources/pt_br.qm</file>
         <file>resources/el.qm</file>
         <file>resources/tr.qm</file>
-        <file>resources/demoquality.png</file>
         <file>resources/error.png</file>
         <file>resources/filesave.png</file>
         <file>resources/fullscreen_demo.png</file>
         <file>resources/help.png</file>
-        <file>resources/high.png</file>
         <file>resources/host_unreachable.png</file>
         <file>resources/info.png</file>
         <file>resources/info_22.png</file>
@@ -58,8 +56,6 @@
         <file>resources/locale.png</file>
         <file>resources/locked.png</file>
         <file>resources/logout.png</file>
-        <file>resources/low.png</file>
-        <file>resources/medium.png</file>
         <file>resources/modem.png</file>
         <file>resources/remotelogon.png</file>
         <file>resources/remotelogon_22.png</file>

@@ -49,6 +49,7 @@
 #include "Client.h"
 #include "Dialogs.h"
 #include "CmdInputDialog.h"
+#include "ItalcConfiguration.h"
 #include "LocalSystem.h"
 #include "ToolButton.h"
 #include "DecoratedMessageBox.h"
@@ -86,8 +87,8 @@ ClassroomManager::ClassroomManager( MainWindow * _main_window,
 			tr( "Use this workspace to manage your computers and "
 				"classrooms in an easy way." ),
 			_main_window, _parent ),
-	m_personalConfiguration( LocalSystem::personalConfigPath() ),
-	m_globalClientConfiguration( LocalSystem::globalConfigPath() ),
+	m_personalConfiguration( ItalcCore::config->personalConfigurationPath() ),
+	m_globalClientConfiguration( ItalcCore::config->globalConfigurationPath() ),
 	m_quickSwitchMenu( new QMenu( this ) ),
 	m_qsmClassRoomSeparator( m_quickSwitchMenu->addSeparator() ),
 	m_globalClientMode( Client::Mode_Overview ),
@@ -372,7 +373,6 @@ void ClassroomManager::savePersonalConfig( void )
 				mainWindow()->saveState().toBase64() ) );
 
 	globalsettings.setAttribute( "defaultdomain", __default_domain );
-	globalsettings.setAttribute( "demoquality", __demo_quality );
 	globalsettings.setAttribute( "role", ItalcCore::role );
 	globalsettings.setAttribute( "notooltips",
 					ToolButton::toolTipsDisabled() );
@@ -421,17 +421,6 @@ void ClassroomManager::savePersonalConfig( void )
 	}
 
 	QString xml = "<?xml version=\"1.0\"?>\n" + doc.toString( 2 );
-	if( MainWindow::ensureConfigPathExists() == FALSE )
-	{
-		qWarning( "%s", QString( "Could not read/write or create directory "
-					"%1! For running iTALC, make sure you "
-					"have write-access to your home-"
-					"directory and to %1 (if already "
-					"existing)."
-				).arg( LocalSystem::personalConfigDir()
-						).toUtf8().constData() );
-	}
-
 	QFile( m_personalConfiguration + ".bak" ).remove();
 	QFile( m_personalConfiguration ).copy( m_personalConfiguration +
 								".bak" );
@@ -622,9 +611,6 @@ mainWindow()->move( node.toElement().attribute( "win-x" ).toInt(),
 			{
 				m_autoArranged = true;
 			}
-
-			__demo_quality = node.toElement().
-					attribute( "demoquality" ).toInt();
 
 			__default_domain = node.toElement().
 						attribute( "defaultdomain" );

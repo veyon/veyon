@@ -34,7 +34,7 @@
 #endif
 #include "MainWindow.h"
 #include "ItalcCoreConnection.h"
-#include "LocalSystemIma.h"
+#include "LocalSystem.h"
 #include "Logger.h"
 #include "RemoteControlWidget.h"
 
@@ -44,10 +44,6 @@ QSplashScreen * splashScreen = NULL;
 
 #ifndef ITALC3
 QString __default_domain;
-int __demo_quality = 0;
-
-int __ivs_port = PortOffsetIVS;
-QString __ivs_host = "127.0.0.1";
 #endif
 
 
@@ -56,7 +52,7 @@ int main( int argc, char * * argv )
 {
 	QApplication app( argc, argv );
 
-	LocalSystem::initialize();
+	ItalcCore::init();
 
 	Logger l( "ItalcMaster" );
 
@@ -103,10 +99,6 @@ int main( int argc, char * * argv )
 
 
 	ItalcCore::role = ItalcCore::RoleTeacher;
-	if( LocalSystem::parameter( "ivsport" ).toInt() > 0 )
-	{
-		__ivs_port = LocalSystem::parameter( "ivsport" ).toInt();
-	}
 
 	// parse arguments
 	QStringListIterator arg_it( QCoreApplication::arguments() );
@@ -155,14 +147,6 @@ int main( int argc, char * * argv )
 					"	supporter\n\n" );
 				return -1;
 			}
-		}
-		else if( a == "-ivsport" && arg_it.hasNext() )
-		{
-			__ivs_port = arg_it.next().toInt();
-		}
-		else if( a == "-ivshost" && arg_it.hasNext() )
-		{
-			__ivs_host = arg_it.next();
 		}
 	}
 

@@ -52,7 +52,6 @@ class ItalcCoreConnection;
 class ItalcVncConnection;
 
 extern QString __default_domain;
-extern int __demo_quality;
 
 
 class MainWindow;
@@ -144,13 +143,6 @@ public:
 		return m_sideBar;
 	}
 
-	static bool ensureConfigPathExists( void );
-
-	static inline bool atExit( void )
-	{
-		return( s_atExit );
-	}
-
 	void remoteControlDisplay( const QString & _hostname,
 					bool _view_only = FALSE,
 					bool _stop_demo_afterwards = FALSE );
@@ -227,8 +219,6 @@ private:
 	UserList * m_userList;
 	SnapshotList * m_snapshotList;
 	ConfigWidget * m_configWidget;
-
-	static bool s_atExit;
 
 	friend class MainWindowUpdateThread;
 	friend class ClassroomManager;

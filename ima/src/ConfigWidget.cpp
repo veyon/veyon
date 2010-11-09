@@ -112,12 +112,6 @@ ConfigWidget::ConfigWidget( MainWindow * _main_window, QWidget * _parent ) :
 							updateIntervalSB );
 
 
-	demoQualityCB->setCurrentIndex( __demo_quality );
-
-	connect( demoQualityCB, SIGNAL( activated( int ) ), this,
-					SLOT( demoQualitySelected( int ) ) );
-
-
 	roleCB->setCurrentIndex( ItalcCore::role - 1 );
 
 	connect( roleCB, SIGNAL( activated( int ) ), this,
@@ -163,14 +157,6 @@ void ConfigWidget::roleSelected( int _role )
 
 
 #ifndef ITALC3
-void ConfigWidget::demoQualitySelected( int _q )
-{
-	__demo_quality = _q;
-}
-
-
-
-
 void ConfigWidget::toggleToolButtonTips( bool _on )
 {
 	ToolButton::setToolTipsDisabled( _on );

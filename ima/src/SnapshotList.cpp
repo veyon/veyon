@@ -29,7 +29,8 @@
 
 #include "SnapshotList.h"
 #include "Client.h"
-#include "LocalSystem.h"
+#include "ItalcConfiguration.h"
+#include "ItalcCore.h"
 
 
 
@@ -84,7 +85,7 @@ SnapshotList::~SnapshotList()
 
 void SnapshotList::snapshotSelected( const QString & _s )
 {
-	previewLbl->setPixmap( LocalSystem::snapshotDir() + _s );
+	previewLbl->setPixmap( ItalcCore::config->snapshotDirectory() + _s );
 	previewLbl->setFixedHeight( previewLbl->width() * 3 / 4 );
 	userLbl->setText( _s.section( '_', 0, 0 ) );
  	hostLbl->setText( _s.section( '_', 1, 1 ) );
@@ -107,7 +108,7 @@ void SnapshotList::snapshotDoubleClicked( const QString & _s )
 	}
 
 	QLabel * img_label = new QLabel;
-	img_label->setPixmap( LocalSystem::snapshotDir() + _s );
+	img_label->setPixmap( ItalcCore::config->snapshotDirectory() + _s );
 	if( img_label->pixmap() != NULL )
 	{
 		img_label->setFixedSize( img_label->pixmap()->width(),
@@ -152,7 +153,7 @@ void SnapshotList::deleteSnapshot( void )
 		return;
 	}
 
-	QFile( LocalSystem::snapshotDir() + s ).remove();
+	QFile( ItalcCore::config->snapshotDirectory() + s ).remove();
 
 	reloadList();
 }
@@ -162,7 +163,8 @@ void SnapshotList::deleteSnapshot( void )
 
 void SnapshotList::reloadList( void )
 {
-	QDir sdir( LocalSystem::snapshotDir(), "*.png",
+	QDir sdir( ItalcCore::config->snapshotDirectory(),
+						"*.png",
 						QDir::Name | QDir::IgnoreCase,
 						QDir::Files | QDir::Readable );
 

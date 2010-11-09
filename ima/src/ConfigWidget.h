@@ -40,7 +40,6 @@ public:
 protected slots:
 	void roleSelected( int );
 #ifndef ITALC3
-	void demoQualitySelected( int );
 	void toggleToolButtonTips( bool _on );
 	void toggleIconOnlyToolButtons( bool _on );
 	void domainChanged( const QString & _domain );
