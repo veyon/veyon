@@ -45,9 +45,6 @@
 namespace LocalSystem
 {
 
-namespace Path
-{
-
 // taken from qt-win-opensource-src-4.2.2/src/corelib/io/qsettings.cpp
 QString windowsConfigPath( int _type )
 {
@@ -64,8 +61,6 @@ QString windowsConfigPath( int _type )
 		result = QString::fromLocal8Bit( path );
 	}
 	return( result );
-}
-
 }
 
 }
