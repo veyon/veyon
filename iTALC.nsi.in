@@ -70,8 +70,8 @@ ShowInstDetails show
 !insertmacro MUI_PAGE_INSTFILES
 
 !define MUI_FINISHPAGE_RUN
-!define MUI_FINISHPAGE_RUN_TEXT "Run key setup tool now"
-!define MUI_FINISHPAGE_RUN_FUNCTION "RunKeySetupTool"
+!define MUI_FINISHPAGE_RUN_TEXT "Run iTALC Management Console now"
+!define MUI_FINISHPAGE_RUN_FUNCTION "RunIMC"
 
 !insertmacro MUI_PAGE_FINISH
 
@@ -160,7 +160,7 @@ File "${DLLDIR}\libssl32.dll"
 File "italc-${VERSION}\ica.exe"
 File "italc-${VERSION}\vnchooks.dll"
 File "italc-${VERSION}\ItalcCore.dll"
-File "italc-${VERSION}\setup.exe"
+File "italc-${VERSION}\imc.exe"
 File "italc-${VERSION}\LICENSE.TXT"
 File "italc-${VERSION}\README.TXT"
 ExecWait '"$INSTDIR\ica.exe" -quiet -registerservice'
@@ -187,8 +187,8 @@ CreateShortCut "$DESKTOP\${APP_NAME}.lnk" "$INSTDIR\${MAIN_APP_EXE}"
 !endif
 SectionEnd
 
-Function RunKeySetupTool
-	Exec '"$INSTDIR\setup.exe"'
+Function RunIMC
+	Exec '"$INSTDIR\imc.exe"'
 FunctionEnd
 
 ######################################################################
@@ -200,7 +200,7 @@ WriteUninstaller "$INSTDIR\uninstall.exe"
 !ifdef REG_START_MENU
 !insertmacro MUI_STARTMENU_WRITE_BEGIN Application
 CreateDirectory "$SMPROGRAMS\$SM_Folder"
-CreateShortCut "$SMPROGRAMS\$SM_Folder\iTALC Key Setup Tool.lnk" "$INSTDIR\setup.exe"
+CreateShortCut "$SMPROGRAMS\$SM_Folder\iTALC Management Console.lnk" "$INSTDIR\imc.exe"
 CreateShortCut "$SMPROGRAMS\$SM_Folder\Uninstall iTALC.lnk" "$INSTDIR\uninstall.exe"
 WriteIniStr "$INSTDIR\iTALC website.url" "InternetShortcut" "URL" "${WEB_SITE}"
 CreateShortCut "$SMPROGRAMS\$SM_Folder\iTALC Website.lnk" "$INSTDIR\iTALC website.url"
@@ -209,7 +209,7 @@ CreateShortCut "$SMPROGRAMS\$SM_Folder\iTALC Website.lnk" "$INSTDIR\iTALC websit
 
 !ifndef REG_START_MENU
 CreateDirectory "$SMPROGRAMS\iTALC"
-CreateShortCut "$SMPROGRAMS\iTALC\iTALC Key Setup Tool.lnk" "$INSTDIR\setup.exe"
+CreateShortCut "$SMPROGRAMS\iTALC\iTALC Management Console.lnk" "$INSTDIR\imc.exe"
 CreateShortCut "$SMPROGRAMS\iTALC\Uninstall iTALC.lnk" "$INSTDIR\uninstall.exe"
 WriteIniStr "$INSTDIR\iTALC website.url" "InternetShortcut" "URL" "${WEB_SITE}"
 CreateShortCut "$SMPROGRAMS\iTALC\iTALC Website.lnk" "$INSTDIR\iTALC website.url"
@@ -241,7 +241,7 @@ Delete "$INSTDIR\QtCore4.dll"
 Delete "$INSTDIR\libssl32.dll"
 Delete "$INSTDIR\LICENSE.TXT"
 Delete "$INSTDIR\vnchooks.dll"
-Delete "$INSTDIR\setup.exe"
+Delete "$INSTDIR\imc.exe"
 Delete "$INSTDIR\italc.exe"
 Delete "$INSTDIR\README.TXT"
 Delete "$INSTDIR\italc_core.dll"
@@ -255,7 +255,7 @@ RmDir "$INSTDIR"
 !insertmacro MUI_STARTMENU_GETFOLDER "Application" $SM_Folder
 Delete "$SMPROGRAMS\$SM_Folder\iTALC.lnk"
 Delete "$SMPROGRAMS\$SM_Folder\Uninstall iTALC.lnk"
-Delete "$SMPROGRAMS\$SM_Folder\iTALC Key Setup Tool.lnk"
+Delete "$SMPROGRAMS\$SM_Folder\iTALC Management Console.lnk"
 Delete "$SMPROGRAMS\$SM_Folder\iTALC Website.lnk"
 Delete "$DESKTOP\iTALC.lnk"
 
@@ -264,7 +264,7 @@ RmDir "$SMPROGRAMS\$SM_Folder"
 
 !ifndef REG_START_MENU
 Delete "$SMPROGRAMS\iTALC\iTALC.lnk"
-Delete "$SMPROGRAMS\iTALC\iTALC Key Setup Tool.lnk"
+Delete "$SMPROGRAMS\iTALC\iTALC Management Console.lnk"
 Delete "$SMPROGRAMS\iTALC\Uninstall iTALC.lnk"
 Delete "$SMPROGRAMS\iTALC\iTALC Website.lnk"
 Delete "$DESKTOP\iTALC.lnk"

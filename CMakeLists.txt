@@ -209,7 +209,7 @@ ADD_CUSTOM_TARGET(win32-nsi
 			COMMAND make
 			COMMAND rm -rf ${TMP}
 			COMMAND mkdir -p ${TMP}
-			COMMAND cp lib/ItalcCore.dll ica/ica.exe ica/vnchooks.dll ima/italc.exe setup/setup.exe ${TMP}
+			COMMAND cp lib/ItalcCore.dll ica/ica.exe ica/vnchooks.dll ima/italc.exe imc/imc.exe ${TMP}
 			COMMAND ${STRIP} ${TMP}/*
 			COMMAND cp ${CMAKE_SOURCE_DIR}/COPYING ${TMP}
 			COMMAND cp ${CMAKE_SOURCE_DIR}/COPYING ${TMP}/LICENSE.TXT
