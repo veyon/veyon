@@ -93,8 +93,8 @@ ItalcConfiguration ItalcConfiguration::defaultConfiguration()
 
 	c.setSnapshotDirectory( QDTNS( "$APPDATA/Snapshots" ) );
 
-	c.setAuthenticationKeyBased( true );
-	c.setAuthenticationLogonBased( true );
+	c.setKeyAuthenticationEnabled( true );
+	c.setLogonAuthenticationEnabled( true );
 
 	c.setPrivateKeyBaseDir( QDTNS( "$GLOBALAPPDATA/keys/private" ) );
 	c.setPublicKeyBaseDir( QDTNS( "$GLOBALAPPDATA/keys/public" ) );

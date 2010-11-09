@@ -68,8 +68,8 @@ public:
 		/* Data directories */															\
 		OP( ItalcConfiguration, STRING, snapshotDirectory, setSnapshotDirectory, "SnapshotDirectory", "Paths" );	\
 		/* Authentication */															\
-		OP( ItalcConfiguration, BOOL, isAuthenticationKeyBased, setAuthenticationKeyBased, "KeyBased", "Authentication" );	\
-		OP( ItalcConfiguration, BOOL, isAuthenticationLogonBased, setAuthenticationLogonBased, "LogonBased", "Authentication" );	\
+		OP( ItalcConfiguration, BOOL, isKeyAuthenticationEnabled, setKeyAuthenticationEnabled, "KeyAuthenticationEnabled", "Authentication" );	\
+		OP( ItalcConfiguration, BOOL, isLogonAuthenticationEnabled, setLogonAuthenticationEnabled, "LogonAuthenticationEnabled", "Authentication" );	\
 		OP( ItalcConfiguration, STRING, privateKeyBaseDir, setPrivateKeyBaseDir, "PrivateKeyBaseDir", "Authentication" );	\
 		OP( ItalcConfiguration, STRING, publicKeyBaseDir, setPublicKeyBaseDir, "PublicKeyBaseDir", "Authentication" );	\
 
@@ -95,8 +95,8 @@ public slots:
 	void setGlobalConfigurationPath( const QString & );
 	void setPersonalConfigurationPath( const QString & );
 	void setSnapshotDirectory( const QString & );
-	void setAuthenticationKeyBased( bool );
-	void setAuthenticationLogonBased( bool );
+	void setKeyAuthenticationEnabled( bool );
+	void setLogonAuthenticationEnabled( bool );
 	void setPrivateKeyBaseDir( const QString & );
 	void setPublicKeyBaseDir( const QString & );
 
