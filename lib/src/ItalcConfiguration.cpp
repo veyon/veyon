@@ -23,7 +23,15 @@
  *
  */
 
+#include <QtCore/QDir>
+#include <QtCore/QProcessEnvironment>
+#include <QtCore/QSysInfo>
+
 #include "ItalcConfiguration.h"
+#include "ItalcCore.h"
+#include "LocalSystem.h"
+#include "Logger.h"
+
 
 ItalcConfiguration::ItalcConfiguration(
 									Configuration::Store::Backend backend ) :
@@ -36,6 +44,62 @@ ItalcConfiguration::ItalcConfiguration(
 ItalcConfiguration::ItalcConfiguration( Configuration::Store *store ) :
 	Configuration::Object( store )
 {
+}
+
+
+
+ItalcConfiguration::ItalcConfiguration( const ItalcConfiguration &ref ) :
+	Configuration::Object( Configuration::Store::NoBackend,
+							Configuration::Store::System )
+{
+	*this += ref;	// copy data
+}
+
+
+
+
+ItalcConfiguration ItalcConfiguration::defaultConfiguration()
+{
+	ItalcConfiguration c( Configuration::Store::NoBackend );
+
+	c.setTrayIconHidden( false );
+	c.setServiceAutostart( true );
+	c.setServiceArguments( QString() );
+
+	c.setLogLevel( Logger::LogLevelDefault );
+	c.setLimittedLogFileSize( false );
+	c.setLogFileSizeLimit( -1 );
+	c.setLogFileDirectory( QDir::tempPath() );
+
+	c.setVncCaptureLayeredWindows(
+#ifdef ITALC_BUILD_WIN32
+						QSysInfo::windowsVersion() == QSysInfo::WV_VISTA ||
+						QSysInfo::windowsVersion() == QSysInfo::WV_WINDOWS7
+#else
+						false
+#endif
+								);
+	c.setVncPollFullScreen( true );
+	c.setVncLowAccuracy( true );
+
+	c.setDemoServerMultithreaded( true );
+
+	c.setCoreServerPort( PortOffsetIVS );
+	c.setDemoServerPort( PortOffsetDemoServer );
+	c.setFirewallExceptionEnabled( true );
+
+	c.setGlobalConfigurationPath( QDTNS( "$APPDATA/GlobalConfig.xml" ) );
+	c.setPersonalConfigurationPath( QDTNS( "$APPDATA/PersonalConfig.xml" ) );
+
+	c.setSnapshotDirectory( QDTNS( "$APPDATA/Snapshots" ) );
+
+	c.setAuthenticationKeyBased( true );
+	c.setAuthenticationLogonBased( true );
+
+	c.setPrivateKeyBaseDir( QDTNS( "$GLOBALAPPDATA/keys/private" ) );
+	c.setPublicKeyBaseDir( QDTNS( "$GLOBALAPPDATA/keys/public" ) );
+
+	return c;
 }
 
 

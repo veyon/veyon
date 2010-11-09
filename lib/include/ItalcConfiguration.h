@@ -32,8 +32,15 @@ class ItalcConfiguration : public Configuration::Object
 {
 	Q_OBJECT
 public:
-	ItalcConfiguration( Configuration::Store::Backend backend );
+	ItalcConfiguration( Configuration::Store::Backend backend =
+										Configuration::Store::LocalBackend );
 	ItalcConfiguration( Configuration::Store *store );
+	ItalcConfiguration( const ItalcConfiguration &ref );
+
+	static ItalcConfiguration defaultConfiguration();
+
+	static QString expandPath( QString path );
+
 
 #define FOREACH_ITALC_CONFIG_PROPERTY(OP)												\
 		/* iTALC Service */																\
@@ -63,6 +70,8 @@ public:
 		/* Authentication */															\
 		OP( ItalcConfiguration, BOOL, isAuthenticationKeyBased, setAuthenticationKeyBased, "KeyBased", "Authentication" );	\
 		OP( ItalcConfiguration, BOOL, isAuthenticationLogonBased, setAuthenticationLogonBased, "LogonBased", "Authentication" );	\
+		OP( ItalcConfiguration, STRING, privateKeyBaseDir, setPrivateKeyBaseDir, "PrivateKeyBaseDir", "Authentication" );	\
+		OP( ItalcConfiguration, STRING, publicKeyBaseDir, setPublicKeyBaseDir, "PublicKeyBaseDir", "Authentication" );	\
 
 	FOREACH_ITALC_CONFIG_PROPERTY(DECLARE_CONFIG_PROPERTY)
 
@@ -88,6 +97,8 @@ public slots:
 	void setSnapshotDirectory( const QString & );
 	void setAuthenticationKeyBased( bool );
 	void setAuthenticationLogonBased( bool );
+	void setPrivateKeyBaseDir( const QString & );
+	void setPublicKeyBaseDir( const QString & );
 
 } ;
 
