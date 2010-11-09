@@ -132,9 +132,15 @@ private:
 
 
 
+class ItalcConfiguration;
 
 namespace ItalcCore
 {
+	bool init();
+	void destroy();
+
+	extern ItalcConfiguration *config;
+
 	typedef QString Command;
 	typedef QMap<QString, QVariant> CommandArgs;
 	typedef QList<QPair<ItalcCore::Command, ItalcCore::CommandArgs> >
@@ -250,6 +256,8 @@ namespace ItalcCore
 	typedef UserRoles UserRole;
 
 	bool initAuthentication();
+
+	QString userRoleName( UserRole role );
 
 
 	extern int serverPort;

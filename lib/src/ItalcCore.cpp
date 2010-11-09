@@ -24,19 +24,32 @@
 
 #include <italcconfig.h>
 
+#include <QtCore/QCoreApplication>
 #include <QtCore/QDir>
 #include <QtCore/QFileInfo>
 
 #include "ItalcCore.h"
 #include "DsaKey.h"
+#include "ItalcConfiguration.h"
 #include "ItalcVncConnection.h"
 #include "LocalSystem.h"
 
+#include "minilzo.h"
+
+
+
+ItalcConfiguration *ItalcCore::config = NULL;
 
 static PrivateDSAKey * privDSAKey = NULL;
 
 int ItalcCore::serverPort = PortOffsetIVS;
 ItalcCore::UserRoles ItalcCore::role = ItalcCore::RoleOther;
+
+
+void initResources()
+{
+	Q_INIT_RESOURCE(italc_core);
+}
 
 
 
@@ -62,25 +75,77 @@ qint64 libvncClientDispatcher( char * _buf, const qint64 _len,
 
 
 
-
-bool ItalcCore::initAuthentication( void )
+bool ItalcCore::initAuthentication()
 {
-	if( privDSAKey != NULL )
+	if( privDSAKey )
 	{
-		qWarning( "isdConnection::initAuthentication(): private key "
-							"already initialized" );
 		delete privDSAKey;
 		privDSAKey = NULL;
 	}
 
-	const QString privKeyFile = LocalSystem::privateKeyPath( role );
-	if( privKeyFile == "" )
+	const QString privKeyFile = LocalSystem::Path::privateKeyPath( role );
+	if( privKeyFile.isEmpty() )
 	{
 		return false;
 	}
 	privDSAKey = new PrivateDSAKey( privKeyFile );
 
 	return privDSAKey->isValid();
+}
+
+
+
+
+bool ItalcCore::init()
+{
+	if( config )
+	{
+		return false;
+	}
+
+	lzo_init();
+
+	QCoreApplication::setOrganizationName( "iTALC Solutions" );
+	QCoreApplication::setOrganizationDomain( "italcsolutions.org" );
+	QCoreApplication::setApplicationName( "iTALC" );
+
+	initResources();
+
+	ItalcConfiguration dc = ItalcConfiguration::defaultConfiguration();
+	config = new ItalcConfiguration( dc );
+	*config += ItalcConfiguration( Configuration::Store::LocalBackend );
+
+	return true;
+}
+
+
+
+
+void ItalcCore::destroy()
+{
+	delete config;
+	config = NULL;
+
+	delete privDSAKey;
+	privDSAKey = NULL;
+}
+
+
+
+static const char *userRoleNames[] =
+{
+	"none",
+	"teacher",
+	"admin",
+	"supporter",
+	"other"
+} ;
+
+
+
+QString ItalcCore::userRoleName( UserRole role )
+{
+	return userRoleNames[role];
 }
 
 

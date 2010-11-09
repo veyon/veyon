@@ -28,9 +28,9 @@
 
 #include "Configuration/XmlStore.h"
 #include "Configuration/Object.h"
+#include "ItalcConfiguration.h"
 #include "LocalSystem.h"
 #include "Logger.h"
-#include "DecoratedMessageBox.h"
 
 
 namespace Configuration
@@ -146,14 +146,22 @@ QString XmlStore::configurationFilePath()
 	QString base;
 	switch( scope() )
 	{
-		case Global: base = LocalSystem::globalConfigPath(); break;
-		case Personal: base = LocalSystem::personalConfigPath(); break;
-		case System: base = LocalSystem::systemConfigPath(); break;
+		case Global:
+			base = ItalcConfiguration::defaultConfiguration().globalConfigurationPath();
+			break;
+		case Personal:
+			base = ItalcConfiguration::defaultConfiguration().personalConfigurationPath();
+			break;
+		case System:
+			base = LocalSystem::Path::systemConfigDataPath();
+			break;
 	}
 
-	LocalSystem::ensurePathExists( base );
+	base = LocalSystem::Path::expand( base );
 
-	return base + QDir::separator() + configurationNameFromScope() + ".xml";
+	LocalSystem::Path::ensurePathExists( base );
+
+	return QDTNS( base + QDir::separator() + configurationNameFromScope() + ".xml" );
 }
 
 

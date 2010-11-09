@@ -25,23 +25,19 @@
 #ifndef _LOCAL_SYSTEM_H
 #define _LOCAL_SYSTEM_H
 
-#include <QtCore/QString>
-
 #include "ItalcCore.h"
 
 #ifdef ITALC_BUILD_WIN32
 #include <windef.h>
 #endif
 
+#define QDTNS(x)	QDir::toNativeSeparators(x)
+
 class QWidget;
 
 
 namespace LocalSystem
 {
-	typedef void (*p_pressKey)( int _key, bool _down );
-
-
-	void initialize( p_pressKey _pk );
 
 	class Desktop
 	{
@@ -163,47 +159,33 @@ namespace LocalSystem
 	} ;
 
 
+	class Path
+	{
+	public:
+		static QString expand( QString path );
+		static bool ensurePathExists( const QString &path );
+
+		static QString personalConfigDataPath();
+		static QString systemConfigDataPath();
+
+		static QString privateKeyPath( ItalcCore::UserRoles role );
+		static QString publicKeyPath( ItalcCore::UserRoles role );
+	} ;
+
+
 	void sleep( const int _ms );
 
 	void broadcastWOLPacket( const QString & _mac );
 
-	void powerDown( void );
-	void reboot( void );
+	void powerDown();
+	void reboot();
 
 	void logonUser( const QString & _uname, const QString & _pw,
 						const QString & _domain );
-	void logoutUser( void );
-
-	QString privateKeyPath( const ItalcCore::UserRoles _role,
-						bool _only_path = FALSE );
-	QString publicKeyPath( const ItalcCore::UserRoles _role,
-						bool _only_path = FALSE );
-
-	void setPrivateKeyPath( const QString & _path,
-						const ItalcCore::UserRoles _role );
-	void setPublicKeyPath( const QString & _path,
-						const ItalcCore::UserRoles _role );
-
-	QString snapshotDir( void );
-	QString globalConfigPath( void );
-	QString personalConfigDir( void );
-	QString personalConfigPath( void );
-
-	QString systemConfigPath();
-
-	QString globalStartmenuDir( void );
-
-	QString parameter( const QString & _name );
-
-	bool ensurePathExists( const QString & _path );
-
-	QString ip( void );
-
-	QString userRoleName( const ItalcCore::UserRoles _role );
+	void logoutUser();
 
 #ifdef ITALC_BUILD_WIN32
 	BOOL enablePrivilege( LPCTSTR lpszPrivilegeName, BOOL bEnable );
-	QString windowsConfigPath( int _type );
 #endif
 
 	void activateWindow( QWidget * _window );

@@ -2,7 +2,7 @@
  * DsaKey.cpp - easy to use C++ classes for dealing with DSA-keys, -signatures
  *              etc.
  *
- * Copyright (c) 2006-2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -633,7 +633,7 @@ void PrivateDSAKey::save( const QString & _file, QString _passphrase ) const
 	}
 	if( _file.contains( QDir::separator() ) )
 	{
-		LocalSystem::ensurePathExists( QFileInfo( _file ).filePath() );
+		LocalSystem::Path::ensurePathExists( QFileInfo( _file ).filePath() );
 	}
 
 	QFile outfile( _file );
@@ -813,7 +813,7 @@ void PublicDSAKey::save( const QString & _file, QString ) const
 
 	if( _file.contains( QDir::separator() ) )
 	{
-		LocalSystem::ensurePathExists( QFileInfo( _file ).filePath() );
+		LocalSystem::Path::ensurePathExists( QFileInfo( _file ).filePath() );
 	}
 
 	QFile outfile( _file );

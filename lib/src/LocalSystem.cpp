@@ -23,22 +23,10 @@
  *
  */
 
-#ifdef ITALC_BUILD_WIN32
-#define _WIN32_WINNT 0x0501
-#endif
-
 #include <italcconfig.h>
 
-#ifdef ITALC_BUILD_WIN32
-#define _WIN32_WINNT 0x0501
-#endif
-
-#include <QtCore/QCoreApplication>
 #include <QtCore/QDir>
-#include <QtCore/QMutex>
 #include <QtCore/QProcess>
-#include <QtCore/QSettings>
-#include <QtCore/QDateTime>
 #include <QtGui/QWidget>
 #include <QtNetwork/QHostInfo>
 
@@ -47,24 +35,17 @@
 
 #include <QtCore/QLibrary>
 
-static const char * tr_accels = QT_TRANSLATE_NOOP(
-		"QObject",
-		"UPL (note for translators: the first three characters of "
-		"this string are the accellerators (underlined characters) "
-		"of the three input-fields in logon-dialog of windows - "
-		"please keep this note as otherwise there are strange errors "
-					"concerning logon-feature)" );
-
 #include <windows.h>
 #include <shlobj.h>
-#include <psapi.h>		// TODO: remove when rewriting logonUser()
 #include <wtsapi32.h>
 #include <sddl.h>
 #include <lm.h>
 
 
-
 namespace LocalSystem
+{
+
+namespace Path
 {
 
 // taken from qt-win-opensource-src-4.2.2/src/corelib/io/qsettings.cpp
@@ -83,6 +64,8 @@ QString windowsConfigPath( int _type )
 		result = QString::fromLocal8Bit( path );
 	}
 	return( result );
+}
+
 }
 
 }
@@ -110,39 +93,15 @@ QString windowsConfigPath( int _type )
 #include <errno.h>
 #endif
 
+#include "ItalcConfiguration.h"
 #include "LocalSystem.h"
 #include "Logger.h"
-#include "minilzo.h"
 
 
 
-static LocalSystem::p_pressKey __pressKey;
-
-
-
-void initResources( void )
-{
-	Q_INIT_RESOURCE(italc_core);
-}
 
 namespace LocalSystem
 {
-
-int logLevel = 6;
-
-
-void initialize( p_pressKey _pk )
-{
-	__pressKey = _pk;
-
-	lzo_init();
-
-	QCoreApplication::setOrganizationName( "iTALC Solutions" );
-	QCoreApplication::setOrganizationDomain( "italcsolutions.org" );
-	QCoreApplication::setApplicationName( "iTALC" );
-
-	initResources();
-}
 
 
 Desktop::Desktop( const QString &name ) :
@@ -934,377 +893,47 @@ void broadcastWOLPacket( const QString & _mac )
 
 static inline void pressAndReleaseKey( int _key )
 {
-	__pressKey( _key, TRUE );
-	__pressKey( _key, FALSE );
 }
 
 
 void logonUser( const QString & _uname, const QString & _passwd,
 						const QString & _domain )
 {
-#ifdef ITALC_BUILD_WIN32
+	// TODO
+}
 
-	// first check for process "explorer.exe" - if we find it, a user
-	// is logged in and we do not send our key-sequences as it probably
-	// disturbes user
-	DWORD aProcesses[1024], cbNeeded;
 
-	if( !EnumProcesses( aProcesses, sizeof(aProcesses), &cbNeeded ) )
+
+
+QString Path::expand( QString path )
+{
+	return QDTNS( path.replace( "$HOME", QDir::homePath() ).
+						replace( "%HOME%", QDir::homePath() ).
+						replace( "$PROFILE", QDir::homePath() ).
+						replace( "%PROFILE%", QDir::homePath() ).
+						replace( "$APPDATA", personalConfigDataPath() ).
+						replace( "%APPDATA%", personalConfigDataPath() ).
+						replace( "$GLOBALAPPDATA", systemConfigDataPath() ).
+						replace( "%GLOBALAPPDATA%", systemConfigDataPath() ).
+						replace( "$TMP", QDir::tempPath() ).
+						replace( "$TEMP", QDir::tempPath() ).
+						replace( "%TMP%", QDir::tempPath() ).
+						replace( "%TEMP%", QDir::tempPath() ) );
+}
+
+
+
+bool Path::ensurePathExists( const QString &path )
+{
+	if( path.isEmpty() || QDir( path ).exists() )
 	{
-		return;
+		return true;
 	}
 
-	DWORD cProcesses = cbNeeded / sizeof(DWORD);
-
-	bool user_logged_on = FALSE;
-	for( DWORD i = 0; i < cProcesses; i++ )
+	QString p = QDir( path ).absolutePath();
+	if( !QFileInfo( path ).isDir() )
 	{
-		HANDLE hProcess = OpenProcess( PROCESS_QUERY_INFORMATION |
-								PROCESS_VM_READ,
-							FALSE, aProcesses[i] );
-		HMODULE hMod;
-		if( hProcess == NULL ||
-			!EnumProcessModules( hProcess, &hMod, sizeof( hMod ),
-								&cbNeeded ) )
-			{
-			continue;
-		}
-		TCHAR szProcessName[MAX_PATH];
-		GetModuleBaseName( hProcess, hMod, szProcessName,
-					sizeof(szProcessName)/sizeof(TCHAR) );
-		for( TCHAR * ptr = szProcessName; *ptr; ++ptr )
-		{
-			*ptr = tolower( *ptr );
-		}
-		if( strcmp( szProcessName, "explorer.exe" ) == 0 )
-		{
-			user_logged_on = TRUE;
-			break;
-		}
-	}
-
-	if( user_logged_on )
-	{
-		return;
-	}
-/*
-	// does not work :(
-	enablePrivilege( SE_TCB_NAME, TRUE );
-	HANDLE hToken;
-	if( !LogonUser(
-		(CHAR *)_uname.toAscii().constData(),
-		(CHAR*)(_domain.isEmpty() ? "." : _domain.toAscii().constData()),
-		(CHAR *)_passwd.toAscii().constData(),
-		LOGON32_LOGON_INTERACTIVE,
-		LOGON32_PROVIDER_DEFAULT,
-		&hToken ) )
-	{
-		CloseHandle( hToken );
-	}
-	enablePrivilege( SE_TCB_NAME, FALSE );*/
-
-	// disable caps lock
-	if( GetKeyState( VK_CAPITAL ) & 1 )
-	{
-		INPUT input[2];
-		ZeroMemory( input, sizeof( input ) );
-		input[0].type = input[1].type = INPUT_KEYBOARD;
-		input[0].ki.wVk = input[1].ki.wVk = VK_CAPITAL;
-		input[1].ki.dwFlags = KEYEVENTF_KEYUP;
-		SendInput( 2, input, sizeof( INPUT ) );
-	}
-
-	pressAndReleaseKey( XK_Escape );
-	pressAndReleaseKey( XK_Escape );
-
-	// send Secure Attention Sequence (SAS) for making sure we can enter
-	// username and password
-	__pressKey( XK_Alt_L, TRUE );
-	__pressKey( XK_Control_L, TRUE );
-	pressAndReleaseKey( XK_Delete );
-	__pressKey( XK_Control_L, FALSE );
-	__pressKey( XK_Alt_L, FALSE );
-
-	const ushort * accels = QObject::tr( tr_accels ).utf16();
-
-	/* Need to handle 2 cases here; if an interactive login message is
-		 * defined in policy, this window will be displayed with an "OK" button;
-		 * if not the login window will be displayed. Sending a space will
-		 * dismiss the message, but will also add a space to the currently
-		 * selected field if the login windows is active. The solution is:
-		 *  1. send the "username" field accelerator (which won't do anything
-		 *	 to the message window, but will select the "username" field of
-		 *	 the login window if it is active)
-		 *  2. Send a space keypress to dismiss the message. (adds a space
-		 *	 to username field of login window if active)
-		 *  3. Send the "username" field accelerator again; which will select
-		 *	 the username field for the case where the message was displayed
-		 *  4. Send a backspace keypress to remove any space that was added to
-		 *	 the username field if there is no message.
-		 */
-	__pressKey( XK_Alt_L, TRUE );
-	pressAndReleaseKey( accels[0] );
-	__pressKey( XK_Alt_L, FALSE );
-
-	pressAndReleaseKey( XK_space );
-
-	__pressKey( XK_Alt_L, TRUE );
-	pressAndReleaseKey( accels[0] );
-	__pressKey( XK_Alt_L, FALSE );
-
-	pressAndReleaseKey( XK_BackSpace );
-#endif
-
-	for( int i = 0; i < _uname.size(); ++i )
-	{
-		pressAndReleaseKey( _uname.utf16()[i] );
-	}
-
-#ifdef ITALC_BUILD_WIN32
-	__pressKey( XK_Alt_L, TRUE );
-	pressAndReleaseKey( accels[1] );
-	__pressKey( XK_Alt_L, FALSE );
-#else
-	pressAndReleaseKey( XK_Tab );
-#endif
-
-	for( int i = 0; i < _passwd.size(); ++i )
-	{
-		pressAndReleaseKey( _passwd.utf16()[i] );
-	}
-
-#ifdef ITALC_BUILD_WIN32
-	if( !_domain.isEmpty() )
-	{
-		__pressKey( XK_Alt_L, TRUE );
-		pressAndReleaseKey( accels[2] );
-		__pressKey( XK_Alt_L, FALSE );
-		for( int i = 0; i < _domain.size(); ++i )
-		{
-			pressAndReleaseKey( _domain.utf16()[i] );
-		}
-	}
-#endif
-
-	pressAndReleaseKey( XK_Return );
-}
-
-
-
-
-static const QString userRoleNames[] =
-{
-	"none",
-	"teacher",
-	"admin",
-	"supporter",
-	"other"
-} ;
-
-
-QString userRoleName( const ItalcCore::UserRoles _role )
-{
-	return( userRoleNames[_role] );
-}
-
-
-inline QString keyPath( const ItalcCore::UserRoles _role, const QString _group,
-							bool _only_path )
-{
-	QSettings settings( QSettings::SystemScope, "iTALC Solutions",
-								"iTALC" );
-	if( _role <= ItalcCore::RoleNone || _role >= ItalcCore::RoleCount )
-	{
-		qWarning( "invalid role" );
-		return( "" );
-	}
-	const QString fallback_dir =
-#ifdef ITALC_BUILD_LINUX
-		"/etc/italc/keys/"
-#else
-#ifdef ITALC_BUILD_WIN32
-		"c:\\italc\\keys\\"
-#endif
-#endif
-		+ _group + QDir::separator() + userRoleNames[_role] +
-						QDir::separator() +
-						( _only_path ? "" : "key" );
-	const QString val = settings.value( "keypaths" + _group + "/" +
-					userRoleNames[_role] ).toString();
-	if( val.isEmpty() )
-	{
-		settings.setValue( "keypaths" + _group + "/" +
-					userRoleNames[_role], fallback_dir );
-		return( fallback_dir );
-	}
-	else
-	{
-		if( _only_path && val.right( 4 ) == "\\key" )
-		{
-			return( val.left( val.size() - 4 ) );
-		}
-	}
-	return( val );
-}
-
-
-QString privateKeyPath( const ItalcCore::UserRoles _role, bool _only_path )
-{
-	return( keyPath( _role, "private", _only_path ) );
-}
-
-
-QString publicKeyPath( const ItalcCore::UserRoles _role, bool _only_path )
-{
-	return( keyPath( _role, "public", _only_path ) );
-}
-
-
-
-
-void setKeyPath( QString _path, const ItalcCore::UserRoles _role,
-							const QString _group )
-{
-	_path = _path.left( 1 ) + _path.mid( 1 ).
-		replace( QString( QDir::separator() ) + QDir::separator(),
-							QDir::separator() );
-
-	QSettings settings( QSettings::SystemScope, "iTALC Solutions",
-								"iTALC" );
-	if( _role <= ItalcCore::RoleNone || _role >= ItalcCore::RoleCount )
-	{
-		qWarning( "invalid role" );
-		return;
-	}
-	settings.setValue( "keypaths" + _group + "/" +
-						userRoleNames[_role], _path );
-}
-
-
-void setPrivateKeyPath( const QString & _path, const ItalcCore::UserRoles _role )
-{
-	setKeyPath( _path, _role, "private" );
-}
-
-
-
-
-void setPublicKeyPath( const QString & _path, const ItalcCore::UserRoles _role )
-{
-	setKeyPath( _path, _role, "public" );
-}
-
-
-
-
-QString snapshotDir( void )
-{
-	QSettings settings;
-	return( settings.value( "paths/snapshots",
-#ifdef ITALC_BUILD_WIN32
-				windowsConfigPath( CSIDL_PERSONAL ) +
-					QDir::separator() +
-					QObject::tr( "iTALC-snapshots" )
-#else
-				personalConfigDir() + "snapshots"
-#endif
-					).toString() + QDir::separator() );
-}
-
-
-
-
-QString globalConfigPath( void )
-{
-	QSettings settings;
-	return( settings.value( "paths/globalconfig", personalConfigDir() +
-					"globalconfig.xml" ).toString() );
-}
-
-
-
-
-QString personalConfigDir( void )
-{
-	QSettings settings;
-	const QString d = settings.value( "paths/personalconfigdir" ).toString();
-	return( d.isEmpty() ?
-#ifdef ITALC_BUILD_WIN32
-				windowsConfigPath( CSIDL_APPDATA ) +
-						QDir::separator() + "iTALC"
-#else
-				QDir::homePath() + QDir::separator() +
-								".italc"
-#endif
-				+ QDir::separator()
-		:
-				d + QDir::separator() );
-}
-
-
-
-
-QString personalConfigPath( void )
-{
-	QSettings settings;
-	const QString d = settings.value( "paths/personalconfig" ).toString();
-	return( d.isEmpty() ?
-				personalConfigDir() + "personalconfig.xml"
-			:
-				d );
-}
-
-
-
-QString systemConfigPath()
-{
-#ifdef ITALC_BUILD_WIN32
-	QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-	if( env.contains( "ProgramData" ) )
-	{
-		return env.value( "ProgramData" ) + QDir::separator() + "iTALC";
-	}
-	return windowsConfigPath( CSIDL_COMMON_APPDATA ) + QDir::separator() + "iTALC";
-#else
-	return "/etc/italc";
-#endif
-}
-
-
-
-
-QString globalStartmenuDir( void )
-{
-#ifdef ITALC_BUILD_WIN32
-	return( windowsConfigPath( CSIDL_COMMON_STARTMENU ) +
-							QDir::separator() );
-#else
-	return( "/usr/share/applnk/Applications/" );
-#endif
-}
-
-
-
-
-QString parameter( const QString & _name )
-{
-	return( QSettings().value( "parameters/" + _name ).toString() );
-}
-
-
-
-
-bool ensurePathExists( const QString & _path )
-{
-	if( _path.isEmpty() || QDir( _path ).exists() )
-	{
-		return( TRUE );
-	}
-
-	QString p = QDir( _path ).absolutePath();
-	if( !QFileInfo( _path ).isDir() )
-	{
-		p = QFileInfo( _path ).absolutePath();
+		p = QFileInfo( path ).absolutePath();
 	}
 	QStringList dirs;
 	while( !QDir( p ).exists() && !p.isEmpty() )
@@ -1314,10 +943,58 @@ bool ensurePathExists( const QString & _path )
 	}
 	if( !p.isEmpty() )
 	{
-		return( QDir( p ).mkpath( dirs.join( QDir::separator() ) ) );
+		return QDir( p ).mkpath( dirs.join( QDir::separator() ) );
 	}
-	return( FALSE );
+	return false;
 }
+
+
+
+QString Path::personalConfigDataPath()
+{
+	const QString appData = 
+#ifdef ITALC_BUILD_WIN32
+		LocalSystem::windowsConfigPath( CSIDL_APPDATA ) + QDir::separator() + "iTALC";
+#else
+		QDir::homePath() + QDir::separator() + ".italc";
+#endif
+
+	return QDTNS( appData + QDir::separator() );
+}
+
+
+
+QString Path::privateKeyPath( ItalcCore::UserRoles role )
+{
+	QString d = expand( ItalcCore::config->privateKeyBaseDir() ) +
+					QDir::separator() + ItalcCore::userRoleName( role ) +
+					QDir::separator() + "key";
+	return QDTNS( d );
+}
+
+
+
+QString Path::publicKeyPath( ItalcCore::UserRoles role )
+{
+	QString d = expand( ItalcCore::config->publicKeyBaseDir() ) +
+					QDir::separator() + ItalcCore::userRoleName( role ) +
+					QDir::separator() + "key";
+	return QDTNS( d );
+}
+
+
+
+
+QString Path::systemConfigDataPath()
+{
+#ifdef ITALC_BUILD_WIN32
+	return QDTNS( windowsConfigPath( CSIDL_COMMON_APPDATA ) + QDir::separator() + "iTALC/" );
+#else
+	return "/etc/italc/";
+#endif
+}
+
+
 
 
 

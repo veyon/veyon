@@ -27,7 +27,7 @@
 
 // widget initialization
 #define _INIT_WIDGET_FROM_PROPERTY(property,widgetType,setvalue)				\
-			qobject_cast<widgetType *>( ui->property )->setvalue( ImcCore::config->property() );
+			qobject_cast<widgetType *>( ui->property )->setvalue( ItalcCore::config->property() );
 
 #define INIT_WIDGET_FROM_BOOL_PROPERTY(property,slot)							\
 			_INIT_WIDGET_FROM_PROPERTY(property,QAbstractButton,setChecked)
@@ -49,19 +49,19 @@
 // allow connecting widget signals to configuration property write methods
 #define CONNECT_WIDGET_TO_BOOL_PROPERTY(property,slot)							\
 			connect( ui->property, SIGNAL(toggled(bool)),						\
-						ImcCore::config, SLOT(slot(bool)) );
+						ItalcCore::config, SLOT(slot(bool)) );
 
 #define CONNECT_WIDGET_TO_STRING_PROPERTY(property,slot)						\
 			connect( ui->property, SIGNAL(textChanged(const QString &)),		\
-						ImcCore::config, SLOT(slot(const QString &)) );
+						ItalcCore::config, SLOT(slot(const QString &)) );
 
 #define CONNECT_WIDGET_TO_INT_PROPERTY(property,slot)							\
 			if(ui->property->inherits("QComboBox"))	{							\
 				connect( ui->property, SIGNAL(currentIndexChanged(int)),		\
-							ImcCore::config, SLOT(slot(int)) );					\
+							ItalcCore::config, SLOT(slot(int)) );				\
 			} else {															\
 				connect( ui->property, SIGNAL(valueChanged(int)),				\
-							ImcCore::config, SLOT(slot(int)) );					\
+							ItalcCore::config, SLOT(slot(int)) );				\
 			}
 
 #define CONNECT_WIDGET_TO_PROPERTY(className, type, get, set, key, parentKey)	\

@@ -28,9 +28,8 @@
 #include <QtCore/QDateTime>
 #include <QtCore/QDir>
 #include <QtCore/QFile>
-#include <QtCore/QProcess>
-#include <QtCore/QSettings>
 
+#include "ItalcConfiguration.h"
 #include "Logger.h"
 #include "LocalSystem.h"
 
@@ -49,14 +48,8 @@ Logger::Logger( const QString &appName ) :
 {
 	instance = this;
 
-	QSettings s;
-	if( s.contains( "logging/loglevel" ) )
-	{
-		int ll = s.value( "logging/loglevel" ).toInt();
-		logLevel =
-			qBound( LogLevelMin, static_cast<LogLevel>( ll ), LogLevelMax );
-	}
-
+	int ll = ItalcCore::config->logLevel();
+	logLevel = qBound( LogLevelMin, static_cast<LogLevel>( ll ), LogLevelMax );
 	initLogFile();
 
 	qInstallMsgHandler( qtMsgHandler );
@@ -91,33 +84,13 @@ Logger::~Logger()
 
 void Logger::initLogFile()
 {
-	QString tmpPath = QDir::rootPath() +
-#ifdef ITALC_BUILD_WIN32
-							"temp"
-#else
-							"tmp"
-#endif
-				;
+	QString logPath = LocalSystem::Path::expand( ItalcCore::config->logFileDirectory() );
 
-	foreach( const QString s, QProcess::systemEnvironment() )
+	if( !QDir( logPath ).exists() )
 	{
-		if( s.toLower().left( 5 ) == "temp=" )
+		if( QDir( QDir::rootPath() ).mkdir( logPath ) )
 		{
-			tmpPath = s.toLower().mid( 5 );
-			break;
-		}
-		else if( s.toLower().left( 4 ) == "tmp=" )
-		{
-			tmpPath = s.toLower().mid( 4 );
-			break;
-		}
-	}
-
-	if( !QDir( tmpPath ).exists() )
-	{
-		if( QDir( QDir::rootPath() ).mkdir( tmpPath ) )
-		{
-			QFile::setPermissions( tmpPath,
+			QFile::setPermissions( logPath,
 						QFile::ReadOwner | QFile::WriteOwner | QFile::ExeOwner |
 						QFile::ReadUser | QFile::WriteUser | QFile::ExeUser |
 						QFile::ReadGroup | QFile::WriteGroup | QFile::ExeGroup |
@@ -125,7 +98,7 @@ void Logger::initLogFile()
 		}
 	}
 
-	const QString logPath = tmpPath + QDir::separator();
+	logPath = logPath + QDir::separator();
 	m_logFile = new QFile( logPath + QString( "%1.log" ).arg( m_appName ) );
 	m_logFile->open( QFile::WriteOnly | QFile::Append | QFile::Unbuffered );
 }
