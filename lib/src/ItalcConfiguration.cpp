@@ -23,7 +23,6 @@
  *
  */
 
-#include <QtCore/QDir>
 #include <QtCore/QProcessEnvironment>
 #include <QtCore/QSysInfo>
 
@@ -69,7 +68,13 @@ ItalcConfiguration ItalcConfiguration::defaultConfiguration()
 	c.setLogLevel( Logger::LogLevelDefault );
 	c.setLimittedLogFileSize( false );
 	c.setLogFileSizeLimit( -1 );
-	c.setLogFileDirectory( QDir::tempPath() );
+	c.setLogFileDirectory(
+#ifdef ITALC_BUILD_WIN32
+		"%TEMP%"
+#else
+		"$TEMP"
+#endif
+				);
 
 	c.setVncCaptureLayeredWindows(
 #ifdef ITALC_BUILD_WIN32
