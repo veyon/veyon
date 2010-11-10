@@ -48,6 +48,7 @@ private slots:
 	void startService();
 	void stopService();
 	void updateServiceControl();
+	void launchAccessKeyAssistant();
 
 
 private:

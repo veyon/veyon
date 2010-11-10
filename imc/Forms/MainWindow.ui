@@ -683,7 +683,7 @@
         <item>
          <widget class="QGroupBox" name="groupBox_5">
           <property name="title">
-           <string>Authentication method</string>
+           <string>Authentication methods</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_6">
            <property name="leftMargin">
@@ -711,14 +711,14 @@
            <item row="0" column="0">
             <widget class="QCheckBox" name="isKeyAuthenticationEnabled">
              <property name="text">
-              <string>Key based authentication</string>
+              <string>Access key authentication</string>
              </property>
             </widget>
            </item>
            <item row="1" column="0">
             <widget class="QCheckBox" name="isLogonAuthenticationEnabled">
              <property name="text">
-              <string>Domain logon (username/password) based authentication</string>
+              <string>Domain logon (username/password) authentication</string>
              </property>
             </widget>
            </item>
@@ -737,7 +737,7 @@
            </size>
           </property>
           <property name="title">
-           <string>Key management</string>
+           <string>Access key management</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_12">
            <property name="verticalSpacing">
@@ -796,9 +796,9 @@
             </layout>
            </item>
            <item row="2" column="1">
-            <widget class="QPushButton" name="createNewKeyPair">
+            <widget class="QPushButton" name="launchAccessKeyAssistant">
              <property name="text">
-              <string>Create new key pair</string>
+              <string>Launch access key assistant</string>
              </property>
              <property name="icon">
               <iconset resource="../imc.qrc">

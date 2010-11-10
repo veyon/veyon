@@ -36,6 +36,7 @@
 #include "Configuration/XmlStore.h"
 #include "Configuration/UiMapping.h"
 
+#include "AccessKeyAssistant.h"
 #include "ImcCore.h"
 #include "ItalcConfiguration.h"
 #include "LocalSystem.h"
@@ -65,6 +66,9 @@ MainWindow::MainWindow() :
 
 	connect( ui->buttonBox, SIGNAL( clicked( QAbstractButton * ) ),
 				this, SLOT( resetOrApply( QAbstractButton * ) ) );
+
+	connect( ui->launchAccessKeyAssistant, SIGNAL( clicked() ),
+				this, SLOT( launchAccessKeyAssistant() ) );
 
 	updateServiceControl();
 
@@ -190,6 +194,14 @@ void MainWindow::updateServiceControl()
 	ui->stopService->setEnabled( false );
 #endif
 	ui->serviceState->setText( running ? tr( "Running" ) : tr( "Stopped" ) );
+}
+
+
+
+
+void MainWindow::launchAccessKeyAssistant()
+{
+	AccessKeyAssistant().exec();
 }
 
 
