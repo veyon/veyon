@@ -158,7 +158,8 @@ void MainWindow::resetOrApply( QAbstractButton *btn )
 
 void MainWindow::startService()
 {
-	QProcess::startDetached( ImcCore::icaFilePath() + " -startservice" );
+	QProcess::startDetached( ImcCore::icaFilePath(),
+								QStringList() << "-startservice" );
 
 	updateServiceControl();
 }
@@ -168,7 +169,8 @@ void MainWindow::startService()
 
 void MainWindow::stopService()
 {
-	QProcess::startDetached( ImcCore::icaFilePath() + " -stopservice" );
+	QProcess::startDetached( ImcCore::icaFilePath(),
+								QStringList() << "-stopservice" );
 
 	updateServiceControl();
 }
