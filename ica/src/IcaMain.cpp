@@ -83,8 +83,6 @@ void initCoreApplication( QCoreApplication *app = NULL )
 		app->installTranslator( tr );
 	}
 
-	ItalcCore::init();
-
 	ItalcCore::serverPort = ItalcCore::config->coreServerPort();
 }
 
@@ -268,6 +266,8 @@ int main( int argc, char **argv )
 	hAppInstance = GetModuleHandle( NULL );
 	mainthreadId = GetCurrentThreadId();
 #endif
+
+	ItalcCore::init();
 
 	// decide in what mode to run
 	if( argc >= 2 )
