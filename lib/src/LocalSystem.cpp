@@ -959,20 +959,34 @@ QString Path::personalConfigDataPath()
 
 
 
-QString Path::privateKeyPath( ItalcCore::UserRoles role )
+QString Path::privateKeyPath( ItalcCore::UserRoles role, QString baseDir )
 {
-	QString d = expand( ItalcCore::config->privateKeyBaseDir() ) +
-					QDir::separator() + ItalcCore::userRoleName( role ) +
+	if( baseDir.isEmpty() )
+	{
+		baseDir = expand( ItalcCore::config->privateKeyBaseDir() );
+	}
+	else
+	{
+		baseDir += "/private";
+	}
+	QString d = baseDir + QDir::separator() + ItalcCore::userRoleName( role ) +
 					QDir::separator() + "key";
 	return QDTNS( d );
 }
 
 
 
-QString Path::publicKeyPath( ItalcCore::UserRoles role )
+QString Path::publicKeyPath( ItalcCore::UserRoles role, QString baseDir )
 {
-	QString d = expand( ItalcCore::config->publicKeyBaseDir() ) +
-					QDir::separator() + ItalcCore::userRoleName( role ) +
+	if( baseDir.isEmpty() )
+	{
+		baseDir = expand( ItalcCore::config->publicKeyBaseDir() );
+	}
+	else
+	{
+		baseDir += "/public";
+	}
+	QString d = baseDir + QDir::separator() + ItalcCore::userRoleName( role ) +
 					QDir::separator() + "key";
 	return QDTNS( d );
 }

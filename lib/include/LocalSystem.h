@@ -168,8 +168,10 @@ namespace LocalSystem
 		static QString personalConfigDataPath();
 		static QString systemConfigDataPath();
 
-		static QString privateKeyPath( ItalcCore::UserRoles role );
-		static QString publicKeyPath( ItalcCore::UserRoles role );
+		static QString privateKeyPath( ItalcCore::UserRoles role,
+												QString baseDir = QString() );
+		static QString publicKeyPath( ItalcCore::UserRoles role,
+												QString baseDir = QString() );
 	} ;
 
 
