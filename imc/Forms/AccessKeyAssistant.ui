@@ -242,11 +242,6 @@ The public key part is used on the client computers to verify that any incoming 
     </item>
     <item row="8" column="1" colspan="3">
      <widget class="QLabel" name="label_4">
-      <property name="font">
-       <font>
-        <pointsize>9</pointsize>
-       </font>
-      </property>
       <property name="text">
        <string>User roles allow using multiple access keys in parallel. For example there can be different teacher access keys for each classroom while the support access keys are the same for the whole school.</string>
       </property>
