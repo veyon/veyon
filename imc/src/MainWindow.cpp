@@ -39,7 +39,6 @@
 #include "AccessKeyAssistant.h"
 #include "ImcCore.h"
 #include "ItalcConfiguration.h"
-#include "LocalSystem.h"
 #include "Logger.h"
 #include "MainWindow.h"
 
@@ -116,30 +115,7 @@ void MainWindow::reset()
 
 void MainWindow::apply()
 {
-	if( LocalSystem::Process::isRunningAsAdmin() )
-	{
-		ImcCore::applyConfiguration( *ItalcCore::config );
-	}
-	else
-	{
-		QTemporaryFile f;
-		f.setAutoRemove( false );
-		if( !f.open() )
-		{
-			ilog_failed( "QTemporaryFile::open()" );
-			return;
-		}
-		// write current configuration to temporary file
-		Configuration::XmlStore xs( Configuration::XmlStore::System,
-									f.fileName() );
-		xs.flush( ItalcCore::config );
-
-		// launch ourselves as admin again and apply configuration from
-		// temporary file
-		LocalSystem::Process::runAsAdmin(
-				QCoreApplication::applicationFilePath(),
-				QString( "-apply %1" ).arg( f.fileName() ) );
-	}
+	ImcCore::applyConfiguration( *ItalcCore::config );
 
 	ui->buttonBox->setEnabled( false );
 	m_configChanged = false;

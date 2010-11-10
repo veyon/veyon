@@ -32,12 +32,25 @@
 #include "ItalcConfiguration.h"
 #include "ItalcCore.h"
 #include "MainWindow.h"
+#include "LocalSystem.h"
 #include "Logger.h"
 
 
 
 int main( int argc, char **argv )
 {
+	// make sure to run as admin
+	if( !LocalSystem::Process::isRunningAsAdmin() )
+	{
+		QCoreApplication app( argc, argv );
+		QStringList args = app.arguments();
+		args.removeFirst();
+		LocalSystem::Process::runAsAdmin(
+				QCoreApplication::applicationFilePath(),
+				args.join( " " ) );
+		return 0;
+	}
+
 	QApplication app( argc, argv );
 
 	ItalcCore::init();
