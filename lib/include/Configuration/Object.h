@@ -73,6 +73,10 @@ public:
 	}
 
 
+signals:
+	void configurationChanged();
+
+
 private:
 	static DataMap setValueRecursive( DataMap data,
 										QStringList subLevels,

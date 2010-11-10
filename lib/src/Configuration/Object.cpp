@@ -159,7 +159,12 @@ void Object::setValue( const QString & key,
 	// recursively search through data maps and sub data-maps until
 	// all levels of the parentKey are processed
 	QStringList subLevels = parentKey.split( '/' );
-	m_data = setValueRecursive( m_data, subLevels, key, value );
+	DataMap data = setValueRecursive( m_data, subLevels, key, value );
+	if( data != m_data )
+	{
+		m_data = data;
+		emit configurationChanged();
+	}
 }
 
 
