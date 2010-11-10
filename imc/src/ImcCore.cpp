@@ -27,6 +27,7 @@
 #include <italcconfig.h>
 
 #include "Configuration/LocalStore.h"
+#include "DsaKey.h"
 #include "ImcCore.h"
 #include "ItalcConfiguration.h"
 #include "ItalcCore.h"
@@ -84,6 +85,40 @@ bool applyConfiguration( const ItalcConfiguration &c )
 	Configuration::LocalStore localStore( Configuration::LocalStore::System );
 	localStore.flush( ItalcCore::config );
 }
+
+
+
+bool createKeyPair( ItalcCore::UserRole role, const QString &destDir )
+{
+	QString priv = LocalSystem::Path::privateKeyPath( role, destDir );
+	QString pub = LocalSystem::Path::publicKeyPath( role, destDir );
+	LogStream() << "ImcCore: creating new key pair in" << priv << "and" << pub;
+
+	PrivateDSAKey pkey( 1024 );
+	if( !pkey.isValid() )
+	{
+		qCritical( "ImcCore: key generation failed!" );
+		return false;
+	}
+	pkey.save( priv );
+
+	PublicDSAKey( pkey ).save( pub );
+
+	printf( "...done, saved key-pair in\n\n%s\n\nand\n\n%s",
+						priv.toUtf8().constData(),
+						pub.toUtf8().constData() );
+	printf( "\n\n\nFor now the file is only readable by "
+				"root and members of group root (if you\n"
+				"didn't ran this command as non-root).\n"
+				"I suggest changing the ownership of the "
+				"private key so that the file is\nreadable "
+				"by all members of a special group to which "
+				"all users belong who are\nallowed to use "
+				"iTALC.\n\n\n" );
+	return true;
+}
+
+
 
 
 

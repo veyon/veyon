@@ -29,12 +29,16 @@
 #include <QtCore/QCoreApplication>
 #include <QtCore/QString>
 
+#include "ItalcCore.h"
+
 class ItalcConfiguration;
 class MainWindow;
 
 namespace ImcCore
 {
 	bool applyConfiguration( const ItalcConfiguration &config );
+
+	bool createKeyPair( ItalcCore::UserRole role, const QString &destDir );
 
 	QString icaFilePath();
 
