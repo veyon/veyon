@@ -45,7 +45,7 @@ AccessKeyAssistant::AccessKeyAssistant() :
 	// init destination directory line edit
 	QDir d( LocalSystem::Path::expand( ItalcCore::config->privateKeyBaseDir() ) );
 	d.cdUp();
-	m_ui->destDirEdit->setText( d.absolutePath() );
+	m_ui->destDirEdit->setText( QDTNS( d.absolutePath() ) );
 }
 
 
