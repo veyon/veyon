@@ -30,8 +30,8 @@
 
 #include <QtCore/QDir>
 #include <QtCore/QProcess>
-#include <QtCore/QTemporaryFile>
 #include <QtCore/QTimer>
+#include <QtGui/QFileDialog>
 
 #include "Configuration/XmlStore.h"
 #include "Configuration/UiMapping.h"
@@ -74,6 +74,11 @@ MainWindow::MainWindow() :
 	connect( ui->buttonBox, SIGNAL( clicked( QAbstractButton * ) ),
 				this, SLOT( resetOrApply( QAbstractButton * ) ) );
 
+	connect( ui->actionLoadSettings, SIGNAL( triggered() ),
+				this, SLOT( loadSettingsFromFile() ) );
+	connect( ui->actionSaveSettings, SIGNAL( triggered() ),
+				this, SLOT( saveSettingsToFile() ) );
+
 	connect( ui->launchAccessKeyAssistant, SIGNAL( clicked() ),
 				this, SLOT( launchAccessKeyAssistant() ) );
 
@@ -98,11 +103,14 @@ MainWindow::~MainWindow()
 
 
 
-void MainWindow::reset()
+void MainWindow::reset( bool onlyUI )
 {
-	ItalcCore::config->clear();
-	*ItalcCore::config += ItalcConfiguration::defaultConfiguration();
-	*ItalcCore::config += ItalcConfiguration( Configuration::Store::LocalBackend );
+	if( onlyUI == false )
+	{
+		ItalcCore::config->clear();
+		*ItalcCore::config += ItalcConfiguration::defaultConfiguration();
+		*ItalcCore::config += ItalcConfiguration( Configuration::Store::LocalBackend );
+	}
 
 	FOREACH_ITALC_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY)
 
@@ -179,6 +187,41 @@ void MainWindow::updateServiceControl()
 	ui->stopService->setEnabled( false );
 #endif
 	ui->serviceState->setText( running ? tr( "Running" ) : tr( "Stopped" ) );
+}
+
+
+
+
+void MainWindow::loadSettingsFromFile()
+{
+	QString fileName = QFileDialog::getOpenFileName( this, tr( "Load settings from file" ),
+											QDir::homePath(), tr( "XML files (*.xml)" ) );
+	if( !fileName.isEmpty() )
+	{
+		// write current configuration to output file
+		Configuration::XmlStore( Configuration::XmlStore::System,
+										fileName ).load( ItalcCore::config );
+		reset( true );
+	}
+}
+
+
+
+
+void MainWindow::saveSettingsToFile()
+{
+	QString fileName = QFileDialog::getSaveFileName( this, tr( "Save settings to file" ),
+											QDir::homePath(), tr( "XML files (*.xml)" ) );
+	if( !fileName.isEmpty() )
+	{
+		if( !fileName.endsWith( ".xml", Qt::CaseInsensitive ) )
+		{
+			fileName += ".xml";
+		}
+		// write current configuration to output file
+		Configuration::XmlStore( Configuration::XmlStore::System,
+										fileName ).flush( ItalcCore::config );
+	}
 }
 
 

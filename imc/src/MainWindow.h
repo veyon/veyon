@@ -38,7 +38,7 @@ public:
 	MainWindow();
 	virtual ~MainWindow();
 
-	void reset();
+	void reset( bool onlyUI = false );
 	void apply();
 
 
@@ -48,6 +48,8 @@ private slots:
 	void startService();
 	void stopService();
 	void updateServiceControl();
+	void loadSettingsFromFile();
+	void saveSettingsToFile();
 	void launchAccessKeyAssistant();
 
 
