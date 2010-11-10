@@ -288,11 +288,7 @@ int main( int argc, char **argv )
 			}
 		}
 #endif
-		if( arg1 == "-createkeypair" )
-		{
-			return 0;//createKeyPair( argc, argv );
-		}
-		else if( arg1 == "-slave" )
+		if( arg1 == "-slave" )
 		{
 			if( argc <= 2 )
 			{
