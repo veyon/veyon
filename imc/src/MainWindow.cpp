@@ -56,6 +56,14 @@ MainWindow::MainWindow() :
 	// reset all widget's values to current configuration
 	reset();
 
+	// if local configuration is incomplete, re-enable the apply button
+	if( ItalcConfiguration(
+			Configuration::Store::LocalBackend ).data().size() <
+										ItalcCore::config->data().size() )
+	{
+		configurationChanged();
+	}
+
 	// connect widget signals to configuration property write methods
 	FOREACH_ITALC_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY)
 
