@@ -23,6 +23,7 @@
  *
  */
 
+#include <QtCore/QDir>
 #include <QtCore/QProcessEnvironment>
 #include <QtCore/QSysInfo>
 
