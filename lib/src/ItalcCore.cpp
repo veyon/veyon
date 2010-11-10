@@ -33,6 +33,7 @@
 #include "ItalcConfiguration.h"
 #include "ItalcVncConnection.h"
 #include "LocalSystem.h"
+#include "Logger.h"
 
 #include "minilzo.h"
 
@@ -84,6 +85,7 @@ bool ItalcCore::initAuthentication()
 	}
 
 	const QString privKeyFile = LocalSystem::Path::privateKeyPath( role );
+	qDebug() << "Loading private key" << privKeyFile << "for role" << role;
 	if( privKeyFile.isEmpty() )
 	{
 		return false;

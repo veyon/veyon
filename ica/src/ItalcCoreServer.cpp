@@ -363,6 +363,8 @@ bool ItalcCoreServer::doKeyBasedAuth( SocketDevice &sdev, const QString &host )
 	// under which the client claims to run
 	const QByteArray sig = sdev.read().toByteArray();
 
+	qDebug() << "Loading public key" << LocalSystem::Path::publicKeyPath( urole )
+				<< "for role" << urole;
 	// (publicKeyPath does range-checking of urole)
 	PublicDSAKey pubKey( LocalSystem::Path::publicKeyPath( urole ) );
 
