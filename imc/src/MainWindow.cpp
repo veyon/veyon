@@ -94,6 +94,7 @@ MainWindow::~MainWindow()
 void MainWindow::reset()
 {
 	ItalcCore::config->clear();
+	*ItalcCore::config += ItalcConfiguration::defaultConfiguration();
 	*ItalcCore::config += ItalcConfiguration( Configuration::Store::LocalBackend );
 
 	FOREACH_ITALC_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY)
