@@ -63,7 +63,10 @@ static void loadSettingsTree( Object *obj, QSettings &s,
 
 void LocalStore::load( Object *obj )
 {
-	QSettings s;
+	QSettings s( scope() == System ?
+					QSettings::SystemScope : QSettings::UserScope,
+				QSettings().organizationName(),
+				QSettings().applicationName() );
 	loadSettingsTree( obj, s, QString() );
 }
 
@@ -93,7 +96,10 @@ static void saveSettingsTree( const Object::DataMap & dataMap,
 
 void LocalStore::flush( Object *obj )
 {
-	QSettings s;
+	QSettings s( scope() == System ?
+					QSettings::SystemScope : QSettings::UserScope,
+				QSettings().organizationName(),
+				QSettings().applicationName() );
 	saveSettingsTree( obj->data(), s );
 }
 
