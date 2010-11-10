@@ -67,6 +67,11 @@ public:
 		}
 	}
 
+	void clear()
+	{
+		m_data.clear();
+	}
+
 	const DataMap & data() const
 	{
 		return m_data;
