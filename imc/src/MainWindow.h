@@ -43,6 +43,7 @@ public:
 
 
 private slots:
+	void configurationChanged();
 	void resetOrApply( QAbstractButton *btn );
 	void startService();
 	void stopService();
@@ -53,6 +54,7 @@ private:
 	bool isServiceRunning();
 
 	Ui::MainWindow *ui;
+	bool m_configChanged;
 
 } ;
 

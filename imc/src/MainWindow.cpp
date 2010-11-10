@@ -45,7 +45,8 @@
 
 MainWindow::MainWindow() :
 	QMainWindow(),
-	ui( new Ui::MainWindow )
+	ui( new Ui::MainWindow ),
+	m_configChanged( false )
 {
 	ui->setupUi( this );
 
@@ -72,6 +73,9 @@ MainWindow::MainWindow() :
 
 	connect( serviceUpdateTimer, SIGNAL( timeout() ),
 				this, SLOT( updateServiceControl() ) );
+
+	connect( ItalcCore::config, SIGNAL( configurationChanged() ),
+				this, SLOT( configurationChanged() ) );
 }
 
 
@@ -88,6 +92,9 @@ void MainWindow::reset()
 	ItalcCore::config->reloadFromStore();
 
 	FOREACH_ITALC_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY)
+
+	ui->buttonBox->setEnabled( false );
+	m_configChanged = false;
 }
 
 
@@ -119,6 +126,18 @@ void MainWindow::apply()
 				QCoreApplication::applicationFilePath(),
 				QString( "-apply %1" ).arg( f.fileName() ) );
 	}
+
+	ui->buttonBox->setEnabled( false );
+	m_configChanged = false;
+}
+
+
+
+
+void MainWindow::configurationChanged()
+{
+	ui->buttonBox->setEnabled( true );
+	m_configChanged = true;
 }
 
 
