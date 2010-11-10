@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="/">
+    <file>Resources/help-hint.png</file>
     <file>Resources/arrow-right.png</file>
     <file>Resources/system-shutdown.png</file>
     <file>Resources/Authentication.png</file>
