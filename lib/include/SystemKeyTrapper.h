@@ -68,6 +68,9 @@ private:
 	static int s_refCnt;
 
 	bool m_enabled;
+#ifdef ITALC_BUILD_LINUX
+	QByteArray m_origKeyTable;
+#endif
 
 
 private slots:
