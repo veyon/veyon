@@ -38,10 +38,11 @@ public:
 
 	virtual void load( Object *obj );
 	virtual void flush( Object *obj );
+	virtual bool isWritable() const;
 
 
 private:
-	QString configurationFilePath();
+	QString configurationFilePath() const;
 
 	QString m_file;
 

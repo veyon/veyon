@@ -141,7 +141,17 @@ void XmlStore::flush( Object * _obj )
 
 
 
-QString XmlStore::configurationFilePath()
+bool XmlStore::isWritable() const
+{
+	return QFileInfo( m_file.isEmpty() ?
+							configurationFilePath() : m_file ).isWritable();
+
+}
+
+
+
+
+QString XmlStore::configurationFilePath() const
 {
 	QString base;
 	switch( scope() )

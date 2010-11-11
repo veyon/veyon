@@ -101,6 +101,17 @@ void LocalStore::flush( Object *obj )
 
 
 
+bool LocalStore::isWritable() const
+{
+	QSettings *s = createSettingsObject();
+	bool ret = s->isWritable();
+	delete s;
+
+	return ret;
+}
+
+
+
 QSettings *LocalStore::createSettingsObject() const
 {
 	return new QSettings( scope() == System ?

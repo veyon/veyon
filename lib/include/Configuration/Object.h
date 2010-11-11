@@ -67,6 +67,11 @@ public:
 		}
 	}
 
+	bool isStoreWritable() const
+	{
+		return m_store->isWritable();
+	}
+
 	void clear()
 	{
 		m_data.clear();

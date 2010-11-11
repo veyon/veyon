@@ -70,7 +70,7 @@ public:
 		return m_scope;
 	}
 
-	QString configurationNameFromScope()
+	QString configurationNameFromScope() const
 	{
 		switch( scope() )
 		{
@@ -84,6 +84,7 @@ public:
 
 	virtual void load( Object *obj ) = 0;
 	virtual void flush( Object *obj ) = 0;
+	virtual bool isWritable() const = 0;
 
 
 private:

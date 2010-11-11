@@ -39,6 +39,7 @@ public:
 
 	virtual void load( Object *obj );
 	virtual void flush( Object *obj );
+	virtual bool isWritable() const;
 
 
 private:
