@@ -24,10 +24,10 @@
 
 #include <QtCore/QDir>
 #include <QtGui/QMessageBox>
-#include <QtGui/QFileDialog>
 
 #include "AccessKeyAssistant.h"
 #include "DsaKey.h"
+#include "FileSystemBrowser.h"
 #include "ImcCore.h"
 #include "ItalcConfiguration.h"
 #include "ItalcCore.h"
@@ -70,46 +70,27 @@ void AccessKeyAssistant::openPubKeyDir()
 {
 	if( m_ui->modeCreateKeys->isChecked() )
 	{
-		QString pkDir = LocalSystem::Path::expand( m_ui->publicKeyDir->text() );
-		if( !QFileInfo( pkDir ).isDir() )
-		{
-			pkDir = QDir::homePath();
-		}
-		pkDir = QFileDialog::getExistingDirectory( this,
-				tr( "Select directory in which to export the public key" ),
-				pkDir,
-				QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks );
-		if( !pkDir.isEmpty() )
-		{
-			m_ui->publicKeyDir->setText( pkDir );
-		}
+		FileSystemBrowser b( FileSystemBrowser::ExistingDirectory );
+		b.setShrinkPath( false );
+		b.exec( m_ui->publicKeyDir,
+				tr( "Select directory in which to export the public key" ) );
 	}
 	else if( m_ui->modeImportPublicKey->isChecked() )
 	{
-		QString pk = LocalSystem::Path::expand( m_ui->publicKeyDir->text() );
-		if( QFileInfo( pk ).isFile() )
+		QString origPath = m_ui->publicKeyDir->text();
+
+		FileSystemBrowser b( FileSystemBrowser::ExistingFile );
+		b.setShrinkPath( false );
+		b.exec( m_ui->publicKeyDir,
+				tr( "Select directory in which to export the public key" ),
+				tr( "Key files (*.key.txt)" ) );
+
+		if( !PublicDSAKey( m_ui->publicKeyDir->text() ).isValid() )
 		{
-			pk = QFileInfo( pk ).absolutePath();
-		}
-		else
-		{
-			pk = QDir::homePath();
-		}
-		pk = QFileDialog::getOpenFileName( this,
-				tr( "Select public key to import" ),
-				pk, tr( "Key files (*.key.txt)" ) );
-		if( !pk.isEmpty() )
-		{
-			if( PublicDSAKey( pk ).isValid () )
-			{
-				m_ui->publicKeyDir->setText( pk );
-			}
-			else
-			{
-				QMessageBox::critical( this, tr( "Invalid public key" ),
+			m_ui->publicKeyDir->setText( origPath );
+			QMessageBox::critical( this, tr( "Invalid public key" ),
 					tr( "The selected file does not contain a valid public "
 						"iTALC access key!" ) );
-			}
 		}
 	}
 }
@@ -119,19 +100,9 @@ void AccessKeyAssistant::openPubKeyDir()
 
 void AccessKeyAssistant::openDestDir()
 {
-	QString destDir = LocalSystem::Path::expand( m_ui->destDirEdit->text() );
-	if( !QFileInfo( destDir ).isDir() )
-	{
-		destDir = QDir::homePath();
-	}
-	destDir = QFileDialog::getExistingDirectory( this,
-				tr( "Select destination directory" ),
-				destDir,
-				QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks );
-	if( !destDir.isEmpty() )
-	{
-		m_ui->destDirEdit->setText( destDir );
-	}
+	FileSystemBrowser b( FileSystemBrowser::ExistingDirectory );
+	b.setShrinkPath( false );
+	b.exec( m_ui->destDirEdit, tr( "Select destination directory" ) );
 }
 
 
