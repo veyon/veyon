@@ -57,6 +57,17 @@ int main( int argc, char **argv )
 
 	Logger l( "ItalcManagementConsole" );
 
+	if( !ItalcConfiguration().isStoreWritable() &&
+			ItalcCore::config->logLevel() < Logger::LogLevelDebug )
+	{
+		qCritical( "ItalcConfiguration is not writable!" );
+		QMessageBox::critical( NULL, app.tr( "Configuration not writable" ),
+			app.tr( "The local configuration backend reported that the "
+					"configuration is not writable! Please run the iTALC "
+					"Management Console with higher privileges." ) );
+		return -1;
+	}
+
 	app.connect( &app, SIGNAL( lastWindowClosed() ), SLOT( quit() ) );
 
 	const QString loc = QLocale::system().name().left( 2 );
