@@ -15,7 +15,7 @@ ${CMAKE_CURRENT_SOURCE_DIR}/../ica/x11/libvncclient/sockets.c
 ${CMAKE_CURRENT_SOURCE_DIR}/../ica/x11/libvncclient/vncviewer.c)
 
 
-SET(QRC_FILE ${CMAKE_CURRENT_SOURCE_DIR}/italc_core.qrc)
+SET(QRC_FILE ${CMAKE_CURRENT_SOURCE_DIR}/ItalcCore.qrc)
 QT4_WRAP_CPP(ic_MOC_out ${ic_INCLUDES})
 QT4_ADD_RESOURCES(ic_RCC_out ${QRC_FILE})
 QT4_TRANSLATIONS_FOR_QRC(${QRC_FILE} ${ic_SOURCES} ${ic_INCLUDES})

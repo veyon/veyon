@@ -49,7 +49,7 @@ ItalcCore::UserRoles ItalcCore::role = ItalcCore::RoleOther;
 
 void initResources()
 {
-	Q_INIT_RESOURCE(italc_core);
+	Q_INIT_RESOURCE(ItalcCore);
 }
 
 
