@@ -341,9 +341,8 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 	// attach ItalcCoreConnection to it so we can send extended iTALC commands
 	m_localICA = new ItalcCoreConnection( conn );
 
-	ItalcConfiguration cfg;
 	conn->setHost( QHostAddress( QHostAddress::LocalHost ).toString() );
-	conn->setPort( cfg.coreServerPort() );
+	conn->setPort( ItalcCore::config->coreServerPort() );
 	conn->setFramebufferUpdateInterval( -1 );
 	conn->start();
 
@@ -365,7 +364,8 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 
 	// create DemoServerMaster
 	m_italcSlaveManager = new ItalcSlaveManager;
-	demoServerMaster()->start( cfg.coreServerPort(), cfg.demoServerPort() );
+	demoServerMaster()->start( ItalcCore::config->coreServerPort(),
+								ItalcCore::config->demoServerPort() );
 
 //	##ITALC2: m_localISD->hideTrayIcon();
 
