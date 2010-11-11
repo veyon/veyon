@@ -918,6 +918,49 @@ QString Path::expand( QString path )
 
 
 
+
+QString Path::shrink( QString path )
+{
+	if( QFileInfo( path ).isDir() )
+	{
+		// we replace parts of the path with strings returned by
+		// personalConfigDataPath() & friends which always return a path with
+		// a trailing dir separator - therefore add one so we don't miss a
+		// replace
+		path += QDir::separator();
+	}
+	path = QDir::fromNativeSeparators( path );
+#ifdef ITALC_BUILD_WIN32
+	const Qt::CaseSensitivity cs = Qt::CaseInsensitive;
+	const QString envVar = "%%%1%%\\";
+#else
+	const Qt::CaseSensitivity cs = Qt::CaseSensitive;
+	const QString envVar = "$%1/";
+#endif
+	if( path.startsWith( QDir::homePath(), cs ) )
+	{
+		path.replace( QDir::homePath(), envVar.arg( "HOME" ) );
+	}
+	else if( path.startsWith( personalConfigDataPath(), cs ) )
+	{
+		path.replace( personalConfigDataPath(), envVar.arg( "APPDATA" ) );
+	}
+	else if( path.startsWith( systemConfigDataPath(), cs ) )
+	{
+		path.replace( systemConfigDataPath(), envVar.arg( "GLOBALAPPDATA" ) );
+	}
+	else if( path.startsWith( QDir::tempPath(), cs ) )
+	{
+		path.replace( QDir::tempPath(), envVar.arg( "TEMP" ) );
+	}
+
+	return QDTNS( path.replace( QString( "%1%1" ).
+								arg( QDir::separator() ), QDir::separator() ) );
+}
+
+
+
+
 bool Path::ensurePathExists( const QString &path )
 {
 	if( path.isEmpty() || QDir( path ).exists() )

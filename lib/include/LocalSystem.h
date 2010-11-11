@@ -163,6 +163,7 @@ namespace LocalSystem
 	{
 	public:
 		static QString expand( QString path );
+		static QString shrink( QString path );
 		static bool ensurePathExists( const QString &path );
 
 		static QString personalConfigDataPath();
