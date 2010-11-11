@@ -41,21 +41,21 @@ LocalStore::LocalStore( Scope _scope ) :
 
 
 
-static void loadSettingsTree( Object *obj, QSettings &s,
+static void loadSettingsTree( Object *obj, QSettings *s,
 								const QString &parentKey )
 {
-	foreach( const QString &g, s.childGroups() )
+	foreach( const QString &g, s->childGroups() )
 	{
 		const QString subParentKey = parentKey +
 									( parentKey.isEmpty() ? "" : "/" ) + g;
-		s.beginGroup( g );
+		s->beginGroup( g );
 		loadSettingsTree( obj, s, subParentKey );
-		s.endGroup();
+		s->endGroup();
 	}
 
-	foreach( const QString &k, s.childKeys() )
+	foreach( const QString &k, s->childKeys() )
 	{
-		obj->setValue( k, s.value( k ).toString(), parentKey );
+		obj->setValue( k, s->value( k ).toString(), parentKey );
 	}
 }
 
@@ -63,31 +63,29 @@ static void loadSettingsTree( Object *obj, QSettings &s,
 
 void LocalStore::load( Object *obj )
 {
-	QSettings s( scope() == System ?
-					QSettings::SystemScope : QSettings::UserScope,
-				QSettings().organizationName(),
-				QSettings().applicationName() );
+	QSettings *s = createSettingsObject();
 	loadSettingsTree( obj, s, QString() );
+	delete s;
 }
 
 
 
 
-static void saveSettingsTree( const Object::DataMap & dataMap,
-								QSettings &s )
+static void saveSettingsTree( const Object::DataMap &dataMap,
+								QSettings *s )
 {
 	for( Object::DataMap::ConstIterator it = dataMap.begin();
 						it != dataMap.end(); ++it )
 	{
 		if( it.value().type() == QVariant::Map )
 		{
-			s.beginGroup( it.key() );
+			s->beginGroup( it.key() );
 			saveSettingsTree( it.value().toMap(), s );
-			s.endGroup();
+			s->endGroup();
 		}
 		else if( it.value().type() == QVariant::String )
 		{
-			s.setValue( it.key(), it.value().toString() );
+			s->setValue( it.key(), it.value().toString() );
 		}
 	}
 }
@@ -96,11 +94,19 @@ static void saveSettingsTree( const Object::DataMap & dataMap,
 
 void LocalStore::flush( Object *obj )
 {
-	QSettings s( scope() == System ?
-					QSettings::SystemScope : QSettings::UserScope,
-				QSettings().organizationName(),
-				QSettings().applicationName() );
+	QSettings *s = createSettingsObject();
 	saveSettingsTree( obj->data(), s );
+	delete s;
+}
+
+
+
+QSettings *LocalStore::createSettingsObject() const
+{
+	return new QSettings( scope() == System ?
+							QSettings::SystemScope : QSettings::UserScope,
+						QSettings().organizationName(),
+						QSettings().applicationName() );
 }
 
 
