@@ -27,6 +27,8 @@
 #include <QtCore/QDir>
 #include <QtCore/QTime>
 
+#include "ItalcConfiguration.h"
+#include "ItalcCore.h"
 #include "ItalcSlaveManager.h"
 #include "ScreenLockSlaveLauncher.h"
 
@@ -160,6 +162,11 @@ void ItalcSlaveManager::messageBox( const QString &msg )
 void ItalcSlaveManager::systemTrayMessage( const QString &title,
 										const QString &msg )
 {
+	if( ItalcCore::config->isTrayIconHidden() )
+	{
+		messageBox( msg );
+		return;
+	}
 	if( !isSlaveRunning( IdSystemTrayIcon ) )
 	{
 		createSlave( IdSystemTrayIcon );
@@ -175,6 +182,10 @@ void ItalcSlaveManager::systemTrayMessage( const QString &title,
 
 void ItalcSlaveManager::setSystemTrayToolTip( const QString &tooltip )
 {
+	if( ItalcCore::config->isTrayIconHidden() )
+	{
+		return;
+	}
 	if( !isSlaveRunning( IdSystemTrayIcon ) )
 	{
 		createSlave( IdSystemTrayIcon );
