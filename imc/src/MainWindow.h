@@ -27,7 +27,7 @@
 
 #include <QtGui/QMainWindow>
 
-#include "ui_MainWindow.h"
+class QAbstractButton;
 
 namespace Ui { class MainWindow; } ;
 
@@ -48,6 +48,11 @@ private slots:
 	void startService();
 	void stopService();
 	void updateServiceControl();
+	void openGlobalConfig();
+	void openPersonalConfig();
+	void openSnapshotDirectory();
+	void openPublicKeyBaseDir();
+	void openPrivateKeyBaseDir();
 	void loadSettingsFromFile();
 	void saveSettingsToFile();
 	void launchAccessKeyAssistant();

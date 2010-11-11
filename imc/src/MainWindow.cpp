@@ -37,10 +37,13 @@
 #include "Configuration/UiMapping.h"
 
 #include "AccessKeyAssistant.h"
+#include "FileSystemBrowser.h"
 #include "ImcCore.h"
 #include "ItalcConfiguration.h"
 #include "Logger.h"
 #include "MainWindow.h"
+
+#include "ui_MainWindow.h"
 
 
 MainWindow::MainWindow() :
@@ -70,6 +73,18 @@ MainWindow::MainWindow() :
 				this, SLOT( startService() ) );
 	connect( ui->stopService, SIGNAL( clicked() ),
 				this, SLOT( stopService() ) );
+
+	connect( ui->openGlobalConfig, SIGNAL( clicked() ),
+				this, SLOT( openGlobalConfig() ) );
+	connect( ui->openPersonalConfig, SIGNAL( clicked() ),
+				this, SLOT( openPersonalConfig() ) );
+	connect( ui->openSnapshotDirectory, SIGNAL( clicked() ),
+				this, SLOT( openSnapshotDirectory() ) );
+
+	connect( ui->openPublicKeyBaseDir, SIGNAL( clicked() ),
+				this, SLOT( openPublicKeyBaseDir() ) );
+	connect( ui->openPrivateKeyBaseDir, SIGNAL( clicked() ),
+				this, SLOT( openPrivateKeyBaseDir() ) );
 
 	connect( ui->buttonBox, SIGNAL( clicked( QAbstractButton * ) ),
 				this, SLOT( resetOrApply( QAbstractButton * ) ) );
@@ -189,6 +204,51 @@ void MainWindow::updateServiceControl()
 	ui->stopService->setEnabled( false );
 #endif
 	ui->serviceState->setText( running ? tr( "Running" ) : tr( "Stopped" ) );
+}
+
+
+
+
+void MainWindow::openGlobalConfig()
+{
+	FileSystemBrowser( FileSystemBrowser::ExistingFile ).
+										exec( ui->globalConfigurationPath );
+}
+
+
+
+
+void MainWindow::openPersonalConfig()
+{
+	FileSystemBrowser( FileSystemBrowser::ExistingFile ).
+										exec( ui->personalConfigurationPath );
+}
+
+
+
+
+void MainWindow::openSnapshotDirectory()
+{
+	FileSystemBrowser( FileSystemBrowser::ExistingDirectory ).
+												exec( ui->snapshotDirectory );
+}
+
+
+
+
+void MainWindow::openPublicKeyBaseDir()
+{
+	FileSystemBrowser( FileSystemBrowser::ExistingDirectory ).
+												exec( ui->publicKeyBaseDir );
+}
+
+
+
+
+void MainWindow::openPrivateKeyBaseDir()
+{
+	FileSystemBrowser( FileSystemBrowser::ExistingDirectory ).
+												exec( ui->privateKeyBaseDir );
 }
 
 

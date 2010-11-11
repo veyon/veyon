@@ -772,7 +772,7 @@
               <widget class="QLineEdit" name="privateKeyBaseDir"/>
              </item>
              <item row="0" column="2">
-              <widget class="QToolButton" name="openPublicKeyDir">
+              <widget class="QToolButton" name="openPublicKeyBaseDir">
                <property name="text">
                 <string>...</string>
                </property>
@@ -783,7 +783,7 @@
               </widget>
              </item>
              <item row="1" column="2">
-              <widget class="QToolButton" name="openPrivateKeyDir">
+              <widget class="QToolButton" name="openPrivateKeyBaseDir">
                <property name="text">
                 <string>...</string>
                </property>
