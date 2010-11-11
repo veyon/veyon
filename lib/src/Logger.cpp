@@ -33,6 +33,10 @@
 #include "Logger.h"
 #include "LocalSystem.h"
 
+#ifdef ITALC_BUILD_WIN32
+#include "3rdparty/XEventLog.h"
+#include "3rdparty/XEventLog.cpp"
+#endif
 
 Logger::LogLevel Logger::logLevel = Logger::LogLevelDefault;
 Logger *Logger::instance = NULL;
@@ -40,7 +44,9 @@ QMutex Logger::logMutex( QMutex::Recursive );
 Logger::LogLevel Logger::lastMsgLevel = Logger::LogLevelNothing;
 QString Logger::lastMsg;
 int Logger::lastMsgCount = 0;
-
+#ifdef ITALC_BUILD_WIN32
+CXEventLog *Logger::winEventLog = NULL;
+#endif
 
 Logger::Logger( const QString &appName ) :
 	m_appName( appName ),
@@ -48,6 +54,9 @@ Logger::Logger( const QString &appName ) :
 {
 	instance = this;
 
+#ifdef ITALC_BUILD_WIN32
+	winEventLog = new CXEventLog( appName.toUtf8().constData() );
+#endif
 	int ll = ItalcCore::config->logLevel();
 	logLevel = qBound( LogLevelMin, static_cast<LogLevel>( ll ), LogLevelMax );
 	initLogFile();
@@ -176,6 +185,22 @@ void Logger::log( LogLevel ll, const QString &msg )
 				lastMsgCount = 0;
 			}
 			instance->outputMessage( formatMessage( ll, msg ) );
+#ifdef ITALC_BUILD_WIN32
+			WORD wtype = -1;
+			switch( ll )
+			{
+				case LogLevelCritical:
+				case LogLevelError: wtype = EVENTLOG_ERROR_TYPE; break;
+				case LogLevelWarning: wtype = EVENTLOG_WARNING_TYPE; break;
+				case LogLevelInfo: wtype = EVENTLOG_INFORMATION_TYPE; break;
+				default:
+					break;
+			}
+			if( wtype > 0 )
+			{
+				winEventLog->Write( wtype, msg.toUtf8().constData() );
+			}
+#endif
 			lastMsg = msg;
 			lastMsgLevel = ll;
 		}

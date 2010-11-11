@@ -25,11 +25,14 @@
 #ifndef _LOGGER_H
 #define _LOGGER_H
 
+#include <italcconfig.h>
+
 #include <QtCore/QDebug>
 #include <QtCore/QTextStream>
 #include <QtCore/QMutex>
 
 class QFile;
+class CXEventLog;
 
 class Logger
 {
@@ -73,6 +76,11 @@ private:
 	static int lastMsgCount;
 
 	QString m_appName;
+
+#ifdef ITALC_BUILD_WIN32
+	static CXEventLog *winEventLog;
+#endif
+
 	QFile *m_logFile;
 
 } ;
