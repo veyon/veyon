@@ -69,22 +69,20 @@ MainWindow::MainWindow() :
 	// connect widget signals to configuration property write methods
 	FOREACH_ITALC_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY)
 
-	connect( ui->startService, SIGNAL( clicked() ),
-				this, SLOT( startService() ) );
-	connect( ui->stopService, SIGNAL( clicked() ),
-				this, SLOT( stopService() ) );
+#define CONNECT_BUTTON_SLOT(name) \
+			connect( ui->name, SIGNAL( clicked() ), this, SLOT( name() ) );
 
-	connect( ui->openGlobalConfig, SIGNAL( clicked() ),
-				this, SLOT( openGlobalConfig() ) );
-	connect( ui->openPersonalConfig, SIGNAL( clicked() ),
-				this, SLOT( openPersonalConfig() ) );
-	connect( ui->openSnapshotDirectory, SIGNAL( clicked() ),
-				this, SLOT( openSnapshotDirectory() ) );
+	CONNECT_BUTTON_SLOT( startService );
+	CONNECT_BUTTON_SLOT( stopService );
 
-	connect( ui->openPublicKeyBaseDir, SIGNAL( clicked() ),
-				this, SLOT( openPublicKeyBaseDir() ) );
-	connect( ui->openPrivateKeyBaseDir, SIGNAL( clicked() ),
-				this, SLOT( openPrivateKeyBaseDir() ) );
+	CONNECT_BUTTON_SLOT( openGlobalConfig );
+	CONNECT_BUTTON_SLOT( openPersonalConfig );
+	CONNECT_BUTTON_SLOT( openSnapshotDirectory );
+
+	CONNECT_BUTTON_SLOT( openPublicKeyBaseDir );
+	CONNECT_BUTTON_SLOT( openPrivateKeyBaseDir );
+
+	CONNECT_BUTTON_SLOT( launchAccessKeyAssistant );
 
 	connect( ui->buttonBox, SIGNAL( clicked( QAbstractButton * ) ),
 				this, SLOT( resetOrApply( QAbstractButton * ) ) );
@@ -93,9 +91,6 @@ MainWindow::MainWindow() :
 				this, SLOT( loadSettingsFromFile() ) );
 	connect( ui->actionSaveSettings, SIGNAL( triggered() ),
 				this, SLOT( saveSettingsToFile() ) );
-
-	connect( ui->launchAccessKeyAssistant, SIGNAL( clicked() ),
-				this, SLOT( launchAccessKeyAssistant() ) );
 
 	updateServiceControl();
 
