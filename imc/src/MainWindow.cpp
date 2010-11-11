@@ -75,6 +75,8 @@ MainWindow::MainWindow() :
 	CONNECT_BUTTON_SLOT( startService );
 	CONNECT_BUTTON_SLOT( stopService );
 
+	CONNECT_BUTTON_SLOT( openLogFileDirectory );
+
 	CONNECT_BUTTON_SLOT( openGlobalConfig );
 	CONNECT_BUTTON_SLOT( openPersonalConfig );
 	CONNECT_BUTTON_SLOT( openSnapshotDirectory );
@@ -199,6 +201,15 @@ void MainWindow::updateServiceControl()
 	ui->stopService->setEnabled( false );
 #endif
 	ui->serviceState->setText( running ? tr( "Running" ) : tr( "Stopped" ) );
+}
+
+
+
+
+void MainWindow::openLogFileDirectory()
+{
+	FileSystemBrowser( FileSystemBrowser::ExistingDirectory ).
+												exec( ui->logFileDirectory );
 }
 
 
