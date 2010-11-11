@@ -44,34 +44,34 @@ public:
 
 #define FOREACH_ITALC_CONFIG_PROPERTY(OP)												\
 		/* iTALC Service */																\
-		OP( ItalcConfiguration, BOOL, isTrayIconHidden, setTrayIconHidden, "HideTrayIcon", "Service" );			\
-		OP( ItalcConfiguration, BOOL, autostartService, setServiceAutostart, "Autostart", "Service" );			\
-		OP( ItalcConfiguration, STRING, serviceArguments, setServiceArguments, "Arguments", "Service" );			\
+		OP( ItalcConfiguration, ItalcCore::config, BOOL, isTrayIconHidden, setTrayIconHidden, "HideTrayIcon", "Service" );			\
+		OP( ItalcConfiguration, ItalcCore::config, BOOL, autostartService, setServiceAutostart, "Autostart", "Service" );			\
+		OP( ItalcConfiguration, ItalcCore::config, STRING, serviceArguments, setServiceArguments, "Arguments", "Service" );			\
 		/* Logging */																	\
-		OP( ItalcConfiguration, INT, logLevel, setLogLevel, "LogLevel", "Logging" );								\
-		OP( ItalcConfiguration, BOOL, limittedLogFileSize, setLimittedLogFileSize, "LimittedLogFileSize", "Logging" );	\
-		OP( ItalcConfiguration, INT, logFileSizeLimit, setLogFileSizeLimit, "LogFileSizeLimit", "Logging" );		\
-		OP( ItalcConfiguration, STRING, logFileDirectory, setLogFileDirectory, "LogFileDirectory", "Logging" );		\
+		OP( ItalcConfiguration, ItalcCore::config, INT, logLevel, setLogLevel, "LogLevel", "Logging" );								\
+		OP( ItalcConfiguration, ItalcCore::config, BOOL, limittedLogFileSize, setLimittedLogFileSize, "LimittedLogFileSize", "Logging" );	\
+		OP( ItalcConfiguration, ItalcCore::config, INT, logFileSizeLimit, setLogFileSizeLimit, "LogFileSizeLimit", "Logging" );		\
+		OP( ItalcConfiguration, ItalcCore::config, STRING, logFileDirectory, setLogFileDirectory, "LogFileDirectory", "Logging" );		\
 		/* VNC Server */																\
-		OP( ItalcConfiguration, BOOL, vncCaptureLayeredWindows, setVncCaptureLayeredWindows, "CaptureLayeredWindows", "VNC" );	\
-		OP( ItalcConfiguration, BOOL, vncPollFullScreen, setVncPollFullScreen, "PollFullScreen", "VNC" );			\
-		OP( ItalcConfiguration, BOOL, vncLowAccuracy, setVncLowAccuracy, "LowAccuracy", "VNC" );					\
+		OP( ItalcConfiguration, ItalcCore::config, BOOL, vncCaptureLayeredWindows, setVncCaptureLayeredWindows, "CaptureLayeredWindows", "VNC" );	\
+		OP( ItalcConfiguration, ItalcCore::config, BOOL, vncPollFullScreen, setVncPollFullScreen, "PollFullScreen", "VNC" );			\
+		OP( ItalcConfiguration, ItalcCore::config, BOOL, vncLowAccuracy, setVncLowAccuracy, "LowAccuracy", "VNC" );					\
 		/* Demo server */																\
-		OP( ItalcConfiguration, BOOL, isDemoServerMultithreaded, setDemoServerMultithreaded, "Multithreaded", "DemoServer" );		\
+		OP( ItalcConfiguration, ItalcCore::config, BOOL, isDemoServerMultithreaded, setDemoServerMultithreaded, "Multithreaded", "DemoServer" );		\
 		/* Network */																	\
-		OP( ItalcConfiguration, INT, coreServerPort, setCoreServerPort, "CoreServerPort", "Network" );			\
-		OP( ItalcConfiguration, INT, demoServerPort, setDemoServerPort, "DemoServerPort", "Network" );			\
-		OP( ItalcConfiguration, BOOL, isFirewallExceptionEnabled, setFirewallExceptionEnabled, "FirewallExceptionEnabled", "Network" );	\
+		OP( ItalcConfiguration, ItalcCore::config, INT, coreServerPort, setCoreServerPort, "CoreServerPort", "Network" );			\
+		OP( ItalcConfiguration, ItalcCore::config, INT, demoServerPort, setDemoServerPort, "DemoServerPort", "Network" );			\
+		OP( ItalcConfiguration, ItalcCore::config, BOOL, isFirewallExceptionEnabled, setFirewallExceptionEnabled, "FirewallExceptionEnabled", "Network" );	\
 		/* Configuration file paths */													\
-		OP( ItalcConfiguration, STRING, globalConfigurationPath, setGlobalConfigurationPath, "GlobalConfiguration", "Paths" );	\
-		OP( ItalcConfiguration, STRING, personalConfigurationPath, setPersonalConfigurationPath, "PersonalConfiguration", "Paths" );	\
+		OP( ItalcConfiguration, ItalcCore::config, STRING, globalConfigurationPath, setGlobalConfigurationPath, "GlobalConfiguration", "Paths" );	\
+		OP( ItalcConfiguration, ItalcCore::config, STRING, personalConfigurationPath, setPersonalConfigurationPath, "PersonalConfiguration", "Paths" );	\
 		/* Data directories */															\
-		OP( ItalcConfiguration, STRING, snapshotDirectory, setSnapshotDirectory, "SnapshotDirectory", "Paths" );	\
+		OP( ItalcConfiguration, ItalcCore::config, STRING, snapshotDirectory, setSnapshotDirectory, "SnapshotDirectory", "Paths" );	\
 		/* Authentication */															\
-		OP( ItalcConfiguration, BOOL, isKeyAuthenticationEnabled, setKeyAuthenticationEnabled, "KeyAuthenticationEnabled", "Authentication" );	\
-		OP( ItalcConfiguration, BOOL, isLogonAuthenticationEnabled, setLogonAuthenticationEnabled, "LogonAuthenticationEnabled", "Authentication" );	\
-		OP( ItalcConfiguration, STRING, privateKeyBaseDir, setPrivateKeyBaseDir, "PrivateKeyBaseDir", "Authentication" );	\
-		OP( ItalcConfiguration, STRING, publicKeyBaseDir, setPublicKeyBaseDir, "PublicKeyBaseDir", "Authentication" );	\
+		OP( ItalcConfiguration, ItalcCore::config, BOOL, isKeyAuthenticationEnabled, setKeyAuthenticationEnabled, "KeyAuthenticationEnabled", "Authentication" );	\
+		OP( ItalcConfiguration, ItalcCore::config, BOOL, isLogonAuthenticationEnabled, setLogonAuthenticationEnabled, "LogonAuthenticationEnabled", "Authentication" );	\
+		OP( ItalcConfiguration, ItalcCore::config, STRING, privateKeyBaseDir, setPrivateKeyBaseDir, "PrivateKeyBaseDir", "Authentication" );	\
+		OP( ItalcConfiguration, ItalcCore::config, STRING, publicKeyBaseDir, setPublicKeyBaseDir, "PublicKeyBaseDir", "Authentication" );	\
 
 	FOREACH_ITALC_CONFIG_PROPERTY(DECLARE_CONFIG_PROPERTY)
 

@@ -26,45 +26,45 @@
 #define _CONFIGURATION_UI_MAPPING_H
 
 // widget initialization
-#define _INIT_WIDGET_FROM_PROPERTY(property,widgetType,setvalue)				\
-			qobject_cast<widgetType *>( ui->property )->setvalue( ItalcCore::config->property() );
+#define _INIT_WIDGET_FROM_PROPERTY(config,property,widgetType,setvalue)				\
+			qobject_cast<widgetType *>( ui->property )->setvalue( config->property() );
 
-#define INIT_WIDGET_FROM_BOOL_PROPERTY(property,slot)							\
-			_INIT_WIDGET_FROM_PROPERTY(property,QAbstractButton,setChecked)
+#define INIT_WIDGET_FROM_BOOL_PROPERTY(config,property,slot)							\
+			_INIT_WIDGET_FROM_PROPERTY(config,property,QAbstractButton,setChecked)
 
-#define INIT_WIDGET_FROM_STRING_PROPERTY(property,slot)							\
-			_INIT_WIDGET_FROM_PROPERTY(property,QLineEdit,setText)
+#define INIT_WIDGET_FROM_STRING_PROPERTY(config,property,slot)							\
+			_INIT_WIDGET_FROM_PROPERTY(config,property,QLineEdit,setText)
 
-#define INIT_WIDGET_FROM_INT_PROPERTY(property,slot)							\
+#define INIT_WIDGET_FROM_INT_PROPERTY(config,property,slot)							\
 			if(ui->property->inherits("QComboBox"))	{							\
-				_INIT_WIDGET_FROM_PROPERTY(property,QComboBox,setCurrentIndex)	\
+				_INIT_WIDGET_FROM_PROPERTY(config,property,QComboBox,setCurrentIndex)	\
 			} else {															\
-				_INIT_WIDGET_FROM_PROPERTY(property,QSpinBox,setValue)			\
+				_INIT_WIDGET_FROM_PROPERTY(config,property,QSpinBox,setValue)			\
 			}
 
-#define INIT_WIDGET_FROM_PROPERTY(className, type, get, set, key, parentKey)	\
-			INIT_WIDGET_FROM_##type##_PROPERTY(get,set)
+#define INIT_WIDGET_FROM_PROPERTY(className, config, type, get, set, key, parentKey)	\
+			INIT_WIDGET_FROM_##type##_PROPERTY(config,get,set)
 
 
 // allow connecting widget signals to configuration property write methods
-#define CONNECT_WIDGET_TO_BOOL_PROPERTY(property,slot)							\
+#define CONNECT_WIDGET_TO_BOOL_PROPERTY(config,property,slot)							\
 			connect( ui->property, SIGNAL(toggled(bool)),						\
-						ItalcCore::config, SLOT(slot(bool)) );
+						config, SLOT(slot(bool)) );
 
-#define CONNECT_WIDGET_TO_STRING_PROPERTY(property,slot)						\
+#define CONNECT_WIDGET_TO_STRING_PROPERTY(config,property,slot)						\
 			connect( ui->property, SIGNAL(textChanged(const QString &)),		\
-						ItalcCore::config, SLOT(slot(const QString &)) );
+						config, SLOT(slot(const QString &)) );
 
-#define CONNECT_WIDGET_TO_INT_PROPERTY(property,slot)							\
+#define CONNECT_WIDGET_TO_INT_PROPERTY(config,property,slot)							\
 			if(ui->property->inherits("QComboBox"))	{							\
 				connect( ui->property, SIGNAL(currentIndexChanged(int)),		\
-							ItalcCore::config, SLOT(slot(int)) );				\
+							config, SLOT(slot(int)) );				\
 			} else {															\
 				connect( ui->property, SIGNAL(valueChanged(int)),				\
-							ItalcCore::config, SLOT(slot(int)) );				\
+							config, SLOT(slot(int)) );				\
 			}
 
-#define CONNECT_WIDGET_TO_PROPERTY(className, type, get, set, key, parentKey)	\
-			CONNECT_WIDGET_TO_##type##_PROPERTY(get,set)
+#define CONNECT_WIDGET_TO_PROPERTY(className, config, type, get, set, key, parentKey)	\
+			CONNECT_WIDGET_TO_##type##_PROPERTY(config,get,set)
 
 #endif

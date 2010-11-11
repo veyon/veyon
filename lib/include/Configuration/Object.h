@@ -116,7 +116,7 @@ private:
 										true : false;	\
 		}
 
-#define DECLARE_CONFIG_PROPERTY(className, type, get, set, key, parentKey)			\
+#define DECLARE_CONFIG_PROPERTY(className,config,type, get, set, key, parentKey)			\
 			DECLARE_CONFIG_##type##_PROPERTY(get,key,parentKey)
 
 
@@ -138,7 +138,7 @@ private:
 			setValue( key, QString::number( val ), parentKey );			\
 		}
 
-#define IMPLEMENT_CONFIG_SET_PROPERTY(className, type, get, set, key, parentKey)	\
+#define IMPLEMENT_CONFIG_SET_PROPERTY(className, config,type, get, set, key, parentKey)	\
 			IMPLEMENT_CONFIG_SET_##type##_PROPERTY(className,set,key,parentKey)
 
 
