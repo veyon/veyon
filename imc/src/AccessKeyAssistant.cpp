@@ -24,12 +24,15 @@
 
 #include <QtCore/QDir>
 #include <QtGui/QMessageBox>
+#include <QtGui/QFileDialog>
 
 #include "AccessKeyAssistant.h"
+#include "DsaKey.h"
 #include "ImcCore.h"
 #include "ItalcConfiguration.h"
 #include "ItalcCore.h"
 #include "LocalSystem.h"
+#include "Logger.h"
 #include "ui_AccessKeyAssistant.h"
 
 
@@ -46,6 +49,12 @@ AccessKeyAssistant::AccessKeyAssistant() :
 	QDir d( LocalSystem::Path::expand( ItalcCore::config->privateKeyBaseDir() ) );
 	d.cdUp();
 	m_ui->destDirEdit->setText( QDTNS( d.absolutePath() ) );
+
+	connect( m_ui->openDestDir, SIGNAL( clicked() ),
+				this, SLOT( openDestDir() ) );
+
+	connect( m_ui->openPubKeyDir, SIGNAL( clicked() ),
+				this, SLOT( openPubKeyDir() ) );
 }
 
 
@@ -53,6 +62,78 @@ AccessKeyAssistant::AccessKeyAssistant() :
 AccessKeyAssistant::~AccessKeyAssistant()
 {
 }
+
+
+
+
+void AccessKeyAssistant::openPubKeyDir()
+{
+	if( m_ui->modeCreateKeys->isChecked() )
+	{
+		QString pkDir = LocalSystem::Path::expand( m_ui->publicKeyDir->text() );
+		if( !QFileInfo( pkDir ).isDir() )
+		{
+			pkDir = QDir::homePath();
+		}
+		pkDir = QFileDialog::getExistingDirectory( this,
+				tr( "Select directory in which to export the public key" ),
+				pkDir,
+				QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks );
+		if( !pkDir.isEmpty() )
+		{
+			m_ui->publicKeyDir->setText( pkDir );
+		}
+	}
+	else if( m_ui->modeImportPublicKey->isChecked() )
+	{
+		QString pk = LocalSystem::Path::expand( m_ui->publicKeyDir->text() );
+		if( QFileInfo( pk ).isFile() )
+		{
+			pk = QFileInfo( pk ).absolutePath();
+		}
+		else
+		{
+			pk = QDir::homePath();
+		}
+		pk = QFileDialog::getOpenFileName( this,
+				tr( "Select public key to import" ),
+				pk, tr( "Key files (*.key.txt)" ) );
+		if( !pk.isEmpty() )
+		{
+			if( PublicDSAKey( pk ).isValid () )
+			{
+				m_ui->publicKeyDir->setText( pk );
+			}
+			else
+			{
+				QMessageBox::critical( this, tr( "Invalid public key" ),
+					tr( "The selected file does not contain a valid public "
+						"iTALC access key!" ) );
+			}
+		}
+	}
+}
+
+
+
+
+void AccessKeyAssistant::openDestDir()
+{
+	QString destDir = LocalSystem::Path::expand( m_ui->destDirEdit->text() );
+	if( !QFileInfo( destDir ).isDir() )
+	{
+		destDir = QDir::homePath();
+	}
+	destDir = QFileDialog::getExistingDirectory( this,
+				tr( "Select destination directory" ),
+				destDir,
+				QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks );
+	if( !destDir.isEmpty() )
+	{
+		m_ui->destDirEdit->setText( destDir );
+	}
+}
+
 
 
 
@@ -78,7 +159,7 @@ void AccessKeyAssistant::accept()
 			{
 				QFile f( LocalSystem::Path::publicKeyPath( role, destDir ) );
 				f.copy( QDTNS( m_ui->publicKeyDir->text() +
-										"/italc_public_key.txt" ) );
+										"/italc_public_key.key.txt" ) );
 			}
 			QMessageBox::information( this, tr( "Access key creation" ),
 				tr( "Access keys were created and written successfully to %1 and %2." ).

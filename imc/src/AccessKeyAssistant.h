@@ -37,6 +37,11 @@ public:
 	virtual ~AccessKeyAssistant();
 
 
+private slots:
+	void openPubKeyDir();
+	void openDestDir();
+
+
 private:
 	virtual void accept();
 
