@@ -36,6 +36,7 @@
 #include <QtCore/QProcess>
 
 #include "ItalcVncServer.h"
+#include "ItalcConfiguration.h"
 #include "ItalcCore.h"
 #include "ItalcCoreServer.h"
 
@@ -204,9 +205,12 @@ void ItalcVncServer::runVncReflector( int srcPort, int dstPort )
 
 	QStringList args;
 	args << "-viewonly"
-		<< "-threads"
 		<< "-reflect"
 		<< QString( "localhost:%1" ).arg( srcPort );
+	if( ItalcCore::config->isDemoServerMultithreaded() )
+	{
+		args << "-threads";
+	}
 
 	while( 1 )
 	{
