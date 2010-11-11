@@ -1473,6 +1473,20 @@ BOOL vncClientThread::AuthenticateLegacyClient()
 	{
 	case rfbLegacy_SecureVNCPlugin:
 		auth_success = AuthSecureVNCPlugin(auth_message);	
+		// adzm 2010-11 - Legacy 1.0.8.2 special build will continue here with mslogon
+		if (auth_success && m_ms_logon) {
+			CARD32 auth_result_msg = Swap32IfLE(rfbLegacy_MsLogon);
+			if (!m_socket->SendExact((char *)&auth_result_msg, sizeof(auth_result_msg)))
+				return FALSE;
+			
+			//adzm 2010-09 - Set handshake complete if integrated plugin finished auth
+			if (auth_success && auth_type == rfbLegacy_SecureVNCPlugin && m_socket->GetIntegratedPlugin()) {			
+				m_socket->GetIntegratedPlugin()->SetHandshakeComplete();
+			}
+
+			auth_type = rfbLegacy_MsLogon;
+			auth_success = AuthMsLogon(auth_message);
+		}
 		break;
 	case rfbLegacy_MsLogon:
 		auth_success = AuthMsLogon(auth_message);
