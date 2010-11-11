@@ -384,7 +384,6 @@ typedef struct {
 #define rfbServerCutText 3
 /* Modif sf@2002 */
 #define rfbResizeFrameBuffer 4
-#define rfbKeyFrameUpdate 5
 #define rfbPalmVNCReSizeFrameBuffer 0xF
 
 /* client -> server */
@@ -407,7 +406,6 @@ typedef struct {
 /* Modif sf@2002 - TextChat - Bidirectionnal */
 #define rfbTextChat	11
 /* Modif cs@2005 */
-#define rfbKeyFrameRequest 12
 /* PalmVNC 1.4 & 2.0 SetScale Factor message */
 #define rfbPalmVNCSetScaleFactor 0xF
 /* Xvp message - bidirectional */
@@ -523,18 +521,6 @@ typedef struct {
 } rfbFramebufferUpdateMsg;
 
 #define sz_rfbFramebufferUpdateMsg 4
-
-/*- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
- * KeyFrameUpdate - Acknowledgment of a key frame request, it tells the client
- * that the next update received will be a key frame.
- */
-
-typedef struct {
-    uint8_t type;
-} rfbKeyFrameUpdateMsg;
-
-#define sz_rfbKeyFrameUpdateMsg 1
-
 
 /*
  * Each rectangle of pixel data consists of a header describing the position
