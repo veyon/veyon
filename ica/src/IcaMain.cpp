@@ -276,7 +276,7 @@ int main( int argc, char **argv )
 #ifdef ITALC_BUILD_WIN32
 		for( int i = 1; i < argc; ++i )
 		{
-			if( QString( argv[i] ).contains( "service" ) )
+			if( QString( argv[i] ).toLower().contains( "service" ) )
 			{
 				WindowsService winService( "icas", "-service", "iTALC Client",
 											QString(), argc, argv );
@@ -288,7 +288,7 @@ int main( int argc, char **argv )
 			}
 		}
 #endif
-		if( arg1 == "-slave" )
+		if( arg1.toLower() == "-slave" )
 		{
 			if( argc <= 2 )
 			{

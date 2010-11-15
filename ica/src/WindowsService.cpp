@@ -155,8 +155,9 @@ bool WindowsService::evalArgs( int &argc, char **argv )
 		{ "", NULL }
 	} ;
 
-	foreach( const QString &arg, args )
+	foreach( QString arg, args )
 	{
+		arg = arg.toLower();
 		for( size_t i = 0; i < sizeof( serviceOps ); ++i )
 		{
 			if( arg == serviceOps[i].arg )
