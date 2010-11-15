@@ -54,14 +54,15 @@ Logger::Logger( const QString &appName ) :
 {
 	instance = this;
 
-#ifdef ITALC_BUILD_WIN32
-	winEventLog = new CXEventLog( appName.toUtf8().constData() );
-#endif
 	int ll = ItalcCore::config->logLevel();
 	logLevel = qBound( LogLevelMin, static_cast<LogLevel>( ll ), LogLevelMax );
 	initLogFile();
 
 	qInstallMsgHandler( qtMsgHandler );
+
+#ifdef ITALC_BUILD_WIN32
+	winEventLog = new CXEventLog( appName.toUtf8().constData() );
+#endif
 
 	QString user = LocalSystem::User::loggedOnUser().name();
 
@@ -196,7 +197,7 @@ void Logger::log( LogLevel ll, const QString &msg )
 				default:
 					break;
 			}
-			if( wtype > 0 )
+			if( winEventLog != NULL && wtype > 0 )
 			{
 				winEventLog->Write( wtype, msg.toUtf8().constData() );
 			}
@@ -230,8 +231,11 @@ void Logger::outputMessage( const QString &msg )
 {
 	QMutexLocker l( &logMutex );
 
-	m_logFile->write( msg.toUtf8() );
-	m_logFile->flush();
+	if( m_logFile )
+	{
+		m_logFile->write( msg.toUtf8() );
+		m_logFile->flush();
+	}
 
 	fprintf( stderr, "%s", msg.toUtf8().constData() );
 	fflush( stderr );
