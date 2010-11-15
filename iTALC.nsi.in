@@ -31,7 +31,7 @@ OutFile "${INSTALLER_NAME}"
 BrandingText "${APP_NAME} ${VERSION}"
 XPStyle on
 InstallDirRegKey "${REG_ROOT}" "${REG_APP_PATH}" ""
-InstallDir "$PROGRAMFILES\iTALC"
+InstallDir "$PROGRAMFILES64\iTALC"
 ShowInstDetails show
 
 ######################################################################
