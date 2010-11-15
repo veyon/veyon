@@ -167,8 +167,14 @@ vncDesktopThread::Handle_Ringbuffer(mystruct *ringbuffer,rfb::Region2D &rgncache
 	g_Oldcounter=counter;
 	return 1;
 }
-
+void Enable_softwareCAD_elevated();
+void delete_softwareCAD_elevated();
+DWORD GetExplorerLogonPid();
+bool IsSoftwareCadEnabled();
+bool ISUACENabled();
 extern HANDLE hShutdownEventcad;
+
+
 DWORD WINAPI Cadthread(LPVOID lpParam)
 {
 	OSVERSIONINFO OSversion;	
@@ -183,31 +189,9 @@ DWORD WINAPI Cadthread(LPVOID lpParam)
 								DESKTOP_WRITEOBJECTS | DESKTOP_READOBJECTS |
 								DESKTOP_SWITCHDESKTOP | GENERIC_WRITE
 								);
-	if(OSversion.dwMajorVersion==6 && OSversion.dwMinorVersion>=1)
-	{
-
-		if (hShutdownEventcad==NULL ) hShutdownEventcad = OpenEvent(EVENT_MODIFY_STATE, FALSE, "Global\\SessionEventUltraCad");
-		if (hShutdownEventcad!=NULL ) SetEvent(hShutdownEventcad);
-		return 0;
-	}
-
-	 HKEY hKey; 
-	 DWORD isLUAon = 0; 
-     if (RegOpenKeyEx(HKEY_LOCAL_MACHINE, TEXT("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\System"), 0, KEY_READ, &hKey) == ERROR_SUCCESS) 
-              { 
-              DWORD LUAbufSize = 4; 
-              RegQueryValueEx(hKey, TEXT("EnableLUA"), NULL, NULL, (LPBYTE)&isLUAon, &LUAbufSize); 
-              RegCloseKey(hKey); 
-			  }
-     if (isLUAon != 1 && OSversion.dwMajorVersion==6) 
-	 {
-		 if (hShutdownEventcad==NULL ) hShutdownEventcad = OpenEvent(EVENT_MODIFY_STATE, FALSE, "Global\\SessionEventUltraCad");
-		 if (hShutdownEventcad!=NULL ) SetEvent(hShutdownEventcad);
-		 return 0;
-	 }
 
 
-
+	
 	if (desktop == NULL)
 		vnclog.Print(LL_INTERR, VNCLOG("OpenInputdesktop Error \n"));
 	else 
@@ -231,6 +215,179 @@ DWORD WINAPI Cadthread(LPVOID lpParam)
 		vnclog.Print(LL_INTERR, VNCLOG("SelectHDESK:!SetThreadDesktop \n"));
 	}
 	}
+
+	//////
+	if(OSversion.dwMajorVersion>=6 && vncService::RunningAsService())
+			{
+				if (OSversion.dwMinorVersion==0) //Vista
+				{
+					if (ISUACENabled() && !IsSoftwareCadEnabled())//ok
+					{
+						
+					}
+					if (!ISUACENabled() && IsSoftwareCadEnabled())
+					{
+						
+					}
+					if (!ISUACENabled() && !IsSoftwareCadEnabled())
+					{
+						DWORD result=MessageBox(NULL,"UAC is Disable, make registry changes to allow cad","Warning",MB_YESNO);
+						if (result==IDYES)
+						{
+							HANDLE hProcess,hPToken;
+							DWORD id=GetExplorerLogonPid();
+							if (id!=0) 
+								{
+									hProcess = OpenProcess(MAXIMUM_ALLOWED,FALSE,id);
+									if(!OpenProcessToken(hProcess,TOKEN_ADJUST_PRIVILEGES|TOKEN_QUERY
+													|TOKEN_DUPLICATE|TOKEN_ASSIGN_PRIMARY|TOKEN_ADJUST_SESSIONID
+													|TOKEN_READ|TOKEN_WRITE,&hPToken)) return 0;
+
+									char dir[MAX_PATH];
+									char exe_file_name[MAX_PATH];
+									GetModuleFileName(0, exe_file_name, MAX_PATH);
+									strcpy(dir, exe_file_name);
+									strcat(dir, " -softwarecadhelper");
+		
+							
+									STARTUPINFO          StartUPInfo;
+									PROCESS_INFORMATION  ProcessInfo;
+									HANDLE Token=NULL;
+									HANDLE process=NULL;
+									ZeroMemory(&StartUPInfo,sizeof(STARTUPINFO));
+									ZeroMemory(&ProcessInfo,sizeof(PROCESS_INFORMATION));
+									StartUPInfo.wShowWindow = SW_SHOW;
+									StartUPInfo.lpDesktop = "Winsta0\\Default";
+									StartUPInfo.cb = sizeof(STARTUPINFO);
+				
+									CreateProcessAsUser(hPToken,NULL,dir,NULL,NULL,FALSE,DETACHED_PROCESS,NULL,NULL,&StartUPInfo,&ProcessInfo);
+									DWORD errorcode=GetLastError();
+									if (process) CloseHandle(process);
+									if (Token) CloseHandle(Token);
+									if (ProcessInfo.hProcess) CloseHandle(ProcessInfo.hProcess);
+									if (ProcessInfo.hThread) CloseHandle(ProcessInfo.hThread);
+									if (errorcode==1314)
+									{
+										Enable_softwareCAD_elevated();
+									}
+								}
+						}
+					}
+					if (ISUACENabled() && IsSoftwareCadEnabled())
+					{
+						DWORD result=MessageBox(NULL,"UAC is Enablde, make registry changes to allow cad","Warning",MB_YESNO);
+						if (result==IDYES)
+						{
+							HANDLE hProcess,hPToken;
+							DWORD id=GetExplorerLogonPid();
+							if (id!=0) 
+								{
+									hProcess = OpenProcess(MAXIMUM_ALLOWED,FALSE,id);
+									if(!OpenProcessToken(hProcess,TOKEN_ADJUST_PRIVILEGES|TOKEN_QUERY
+													|TOKEN_DUPLICATE|TOKEN_ASSIGN_PRIMARY|TOKEN_ADJUST_SESSIONID
+													|TOKEN_READ|TOKEN_WRITE,&hPToken)) return 0;
+
+									char dir[MAX_PATH];
+									char exe_file_name[MAX_PATH];
+									GetModuleFileName(0, exe_file_name, MAX_PATH);
+									strcpy(dir, exe_file_name);
+									strcat(dir, " -delsoftwarecadhelper");
+			
+							
+									STARTUPINFO          StartUPInfo;
+									PROCESS_INFORMATION  ProcessInfo;
+									HANDLE Token=NULL;
+									HANDLE process=NULL;
+									ZeroMemory(&StartUPInfo,sizeof(STARTUPINFO));
+									ZeroMemory(&ProcessInfo,sizeof(PROCESS_INFORMATION));
+									StartUPInfo.wShowWindow = SW_SHOW;
+									StartUPInfo.lpDesktop = "Winsta0\\Default";
+									StartUPInfo.cb = sizeof(STARTUPINFO);
+			
+									CreateProcessAsUser(hPToken,NULL,dir,NULL,NULL,FALSE,DETACHED_PROCESS,NULL,NULL,&StartUPInfo,&ProcessInfo);
+									DWORD errorcode=GetLastError();
+									if (process) CloseHandle(process);
+									if (Token) CloseHandle(Token);
+									if (ProcessInfo.hProcess) CloseHandle(ProcessInfo.hProcess);
+									if (ProcessInfo.hThread) CloseHandle(ProcessInfo.hThread);
+									if (errorcode==1314)
+										{
+											delete_softwareCAD_elevated();
+										}							
+								}
+						}
+					}
+
+				}
+				else if( vncService::RunningAsService() &&!IsSoftwareCadEnabled())
+					{
+						DWORD result=MessageBox(NULL,"UAC is Disable, make registry changes to allow cad","Warning",MB_YESNO);
+						if (result==IDYES)
+							{
+								HANDLE hProcess,hPToken;
+								DWORD id=GetExplorerLogonPid();
+								if (id!=0) 
+									{						
+									hProcess = OpenProcess(MAXIMUM_ALLOWED,FALSE,id);
+									if(!OpenProcessToken(hProcess,TOKEN_ADJUST_PRIVILEGES|TOKEN_QUERY
+													|TOKEN_DUPLICATE|TOKEN_ASSIGN_PRIMARY|TOKEN_ADJUST_SESSIONID
+													|TOKEN_READ|TOKEN_WRITE,&hPToken)) return 0;
+
+									char dir[MAX_PATH];
+									char exe_file_name[MAX_PATH];
+									GetModuleFileName(0, exe_file_name, MAX_PATH);
+									strcpy(dir, exe_file_name);
+									strcat(dir, " -softwarecadhelper");
+		
+							
+									STARTUPINFO          StartUPInfo;
+									PROCESS_INFORMATION  ProcessInfo;
+									HANDLE Token=NULL;
+									HANDLE process=NULL;
+									ZeroMemory(&StartUPInfo,sizeof(STARTUPINFO));
+									ZeroMemory(&ProcessInfo,sizeof(PROCESS_INFORMATION));
+									StartUPInfo.wShowWindow = SW_SHOW;
+									StartUPInfo.lpDesktop = "Winsta0\\Default";
+									StartUPInfo.cb = sizeof(STARTUPINFO);
+			
+									CreateProcessAsUser(hPToken,NULL,dir,NULL,NULL,FALSE,DETACHED_PROCESS,NULL,NULL,&StartUPInfo,&ProcessInfo);
+									DWORD errorcode=GetLastError();
+									if (process) CloseHandle(process);
+									if (Token) CloseHandle(Token);
+									if (ProcessInfo.hProcess) CloseHandle(ProcessInfo.hProcess);
+									if (ProcessInfo.hThread) CloseHandle(ProcessInfo.hThread);
+									if (errorcode==1314)
+										{
+											Enable_softwareCAD_elevated();
+										}							
+									}
+							}
+					
+					}
+			}
+       /////////////////////
+	if(OSversion.dwMajorVersion==6 && OSversion.dwMinorVersion>=1)
+	{
+
+		if (hShutdownEventcad==NULL ) hShutdownEventcad = OpenEvent(EVENT_MODIFY_STATE, FALSE, "Global\\SessionEventUltraCad");
+		if (hShutdownEventcad!=NULL ) SetEvent(hShutdownEventcad);
+		return 0;
+	}
+
+	 HKEY hKey; 
+	 DWORD isLUAon = 0; 
+     if (RegOpenKeyEx(HKEY_LOCAL_MACHINE, TEXT("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\System"), 0, KEY_READ, &hKey) == ERROR_SUCCESS) 
+              { 
+              DWORD LUAbufSize = 4; 
+              RegQueryValueEx(hKey, TEXT("EnableLUA"), NULL, NULL, (LPBYTE)&isLUAon, &LUAbufSize); 
+              RegCloseKey(hKey); 
+			  }
+     if (isLUAon != 1 && OSversion.dwMajorVersion==6) 
+	 {
+		 if (hShutdownEventcad==NULL ) hShutdownEventcad = OpenEvent(EVENT_MODIFY_STATE, FALSE, "Global\\SessionEventUltraCad");
+		 if (hShutdownEventcad!=NULL ) SetEvent(hShutdownEventcad);
+		 return 0;
+	 }
 
 //Full path needed, sometimes it just default to system32
 	char WORKDIR[MAX_PATH];

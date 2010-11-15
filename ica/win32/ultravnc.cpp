@@ -139,6 +139,10 @@ typedef enum {
 #define rfbKeepAlive 13 // 16 July 2008 jdp -- bidirectional
 // adzm 2010-09 - Notify streaming DSM plugin support
 #define rfbNotifyPluginStreaming 0x50
+
+#define rfbRequestSession 20
+#define rfbSetSession 21
+
   
 // adzm 2010-09 - Notify streaming DSM plugin support
 #define rfbEncodingPluginStreaming       0xC0A1E5CF
@@ -147,6 +151,7 @@ typedef enum {
 #define rfbEncodingServerState              0xFFFF8000
 #define rfbEncodingEnableKeepAlive          0xFFFF8001
 #define rfbEncodingFTProtocolVersion           0xFFFF8002
+#define rfbEncodingpseudoSession    		0xFFFF8003
 
 // adzm 2010-09 - Notify streaming DSM plugin support
 typedef struct {
@@ -192,7 +197,18 @@ typedef struct {
 	uint8_t type;
 } rfbKeepAliveMsg;
 
+typedef struct {
+	uint8_t type;
+} rfbRequestSessionMsg;
+
+typedef struct {
+	uint8_t type;
+	uint8_t number;
+} rfbSetSessionMsg;
+
 #define sz_rfbKeepAliveMsg 1
+#define sz_rfbRequestSessionMsg 1
+#define sz_rfbSetSessionMsg 2
 
 
 qint64 vsocketDispatcher( char * _buf, const qint64 _len,

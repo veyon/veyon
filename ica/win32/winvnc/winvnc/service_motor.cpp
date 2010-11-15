@@ -407,6 +407,50 @@ void Set_Safemode()
 						ShellExecuteEx(&shExecInfo);
 						pfnWow64RevertWow64FsRedirection(OldValue);
 					}
+				else
+				{
+					char systemroot[150];
+					GetEnvironmentVariable("SystemRoot", systemroot, 150);
+					char exe_file_name[MAX_PATH];
+					char parameters[MAX_PATH];
+					strcpy(exe_file_name,systemroot);
+					strcat(exe_file_name,"\\system32\\");
+					strcat(exe_file_name,"bcdedit.exe");
+					strcpy(parameters,"/set safeboot network");
+					SHELLEXECUTEINFO shExecInfo;
+					shExecInfo.cbSize = sizeof(SHELLEXECUTEINFO);
+					shExecInfo.fMask = NULL;
+					shExecInfo.hwnd = GetForegroundWindow();
+					shExecInfo.lpVerb = "runas";
+					shExecInfo.lpFile = exe_file_name;
+					shExecInfo.lpParameters = parameters;
+					shExecInfo.lpDirectory = NULL;
+					shExecInfo.nShow = SW_HIDE;
+					shExecInfo.hInstApp = NULL;
+					ShellExecuteEx(&shExecInfo);
+				}
+			}
+			else
+			{
+				char systemroot[150];
+				GetEnvironmentVariable("SystemRoot", systemroot, 150);
+				char exe_file_name[MAX_PATH];
+				char parameters[MAX_PATH];
+				strcpy(exe_file_name,systemroot);
+				strcat(exe_file_name,"\\system32\\");
+				strcat(exe_file_name,"bcdedit.exe");
+				strcpy(parameters,"/set safeboot network");
+				SHELLEXECUTEINFO shExecInfo;
+				shExecInfo.cbSize = sizeof(SHELLEXECUTEINFO);
+				shExecInfo.fMask = NULL;
+				shExecInfo.hwnd = GetForegroundWindow();
+				shExecInfo.lpVerb = "runas";
+				shExecInfo.lpFile = exe_file_name;
+				shExecInfo.lpParameters = parameters;
+				shExecInfo.lpDirectory = NULL;
+				shExecInfo.nShow = SW_HIDE;
+				shExecInfo.hInstApp = NULL;
+				ShellExecuteEx(&shExecInfo);
 			}
 #endif
 
@@ -523,7 +567,7 @@ void Restore_safemode()
 			PVOID OldValue;  
 			LPFN_Wow64DisableWow64FsRedirection pfnWow64DisableWowFsRedirection = (LPFN_Wow64DisableWow64FsRedirection)GetProcAddress(GetModuleHandle("kernel32"),"Wow64DisableWow64FsRedirection");
 			LPFN_Wow64RevertWow64FsRedirection pfnWow64RevertWow64FsRedirection = (LPFN_Wow64RevertWow64FsRedirection)GetProcAddress(GetModuleHandle("kernel32"),"Wow64RevertWow64FsRedirection");
-			if (pfnWow64DisableWowFsRedirection && pfnWow64RevertWow64FsRedirection) 
+			if (pfnWow64DisableWowFsRedirection && pfnWow64RevertWow64FsRedirection)  ///win32 on x64 system
 			{
 				if(TRUE == pfnWow64DisableWowFsRedirection(&OldValue))
 					{
@@ -548,6 +592,50 @@ void Restore_safemode()
 						ShellExecuteEx(&shExecInfo);
 						pfnWow64RevertWow64FsRedirection(OldValue);
 					}
+				else
+				{
+					char systemroot[150];
+					GetEnvironmentVariable("SystemRoot", systemroot, 150);
+					char exe_file_name[MAX_PATH];
+					char parameters[MAX_PATH];
+					strcpy(exe_file_name,systemroot);
+					strcat(exe_file_name,"\\system32\\");
+					strcat(exe_file_name,"bcdedit.exe");
+					strcpy(parameters,"/deletevalue safeboot");
+					SHELLEXECUTEINFO shExecInfo;
+					shExecInfo.cbSize = sizeof(SHELLEXECUTEINFO);
+					shExecInfo.fMask = NULL;
+					shExecInfo.hwnd = GetForegroundWindow();
+					shExecInfo.lpVerb = "runas";
+					shExecInfo.lpFile = exe_file_name;
+					shExecInfo.lpParameters = parameters;
+					shExecInfo.lpDirectory = NULL;
+					shExecInfo.nShow = SW_HIDE;
+					shExecInfo.hInstApp = NULL;
+					ShellExecuteEx(&shExecInfo);
+				}
+			}
+			else  //win32 on W32
+			{
+				char systemroot[150];
+				GetEnvironmentVariable("SystemRoot", systemroot, 150);
+				char exe_file_name[MAX_PATH];
+				char parameters[MAX_PATH];
+				strcpy(exe_file_name,systemroot);
+				strcat(exe_file_name,"\\system32\\");
+				strcat(exe_file_name,"bcdedit.exe");
+				strcpy(parameters,"/deletevalue safeboot");
+				SHELLEXECUTEINFO shExecInfo;
+				shExecInfo.cbSize = sizeof(SHELLEXECUTEINFO);
+				shExecInfo.fMask = NULL;
+				shExecInfo.hwnd = GetForegroundWindow();
+				shExecInfo.lpVerb = "runas";
+				shExecInfo.lpFile = exe_file_name;
+				shExecInfo.lpParameters = parameters;
+				shExecInfo.lpDirectory = NULL;
+				shExecInfo.nShow = SW_HIDE;
+				shExecInfo.hInstApp = NULL;
+				ShellExecuteEx(&shExecInfo);
 			}
 #endif
 		}
@@ -578,7 +666,13 @@ bool ISUACENabled()
 	if (::RegOpenKeyW(HKEY_LOCAL_MACHINE, L"Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System", &hKey) == ERROR_SUCCESS)
 		{
 			DWORD value = 0;
-			if (::RegQueryValueExW(hKey, L"EnableLUA", NULL, NULL, NULL, &value) == ERROR_SUCCESS)  return (value != 0);
+			DWORD tt=4;
+			if (::RegQueryValueExW(hKey, L"EnableLUA", NULL, NULL, (LPBYTE)&value, &tt) == ERROR_SUCCESS)
+			{
+			RegCloseKey(hKey);
+			return (value != 0);
+			}
+			RegCloseKey(hKey);
 		}
 	return false;
 }
@@ -618,7 +712,11 @@ bool IsSoftwareCadEnabled()
 			&type,
 			(LPBYTE) &pref,
 			&prefsize) != ERROR_SUCCESS)
+	{
+			RegCloseKey(hkLocalKey);
+			RegCloseKey(hkLocal);
 			return false;
+	}
 	RegCloseKey(hkLocalKey);
 	RegCloseKey(hkLocal);
 	if (pref!=0) return true;

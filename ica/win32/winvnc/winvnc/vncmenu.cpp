@@ -729,7 +729,11 @@ vncMenu::SendTrayMsg(DWORD msg, BOOL flash)
 			m_properties.AllowEditClients() ? MF_ENABLED : MF_GRAYED);
 			EnableMenuItem(m_hmenu, ID_OUTGOING_CONN,
 			m_properties.AllowEditClients() ? MF_ENABLED : MF_GRAYED);
-
+			if (vncService::RunningAsService() && !vncService::IsInstalled())
+			{
+				//service is already disabled, but this winvnc was still started from the service
+				vncService::RunningFromExternalService(false);
+			}
 			EnableMenuItem(m_hmenu, ID_CLOSE_SERVICE,(vncService::RunningAsService()&&m_properties.AllowShutdown()) ? MF_ENABLED : MF_GRAYED);
 			EnableMenuItem(m_hmenu, ID_START_SERVICE,(vncService::IsInstalled() && !vncService::RunningAsService() && m_properties.AllowShutdown()) ? MF_ENABLED : MF_GRAYED);
 			EnableMenuItem(m_hmenu, ID_RUNASSERVICE,(!vncService::IsInstalled() &&!vncService::RunningAsService() && m_properties.AllowShutdown()) ? MF_ENABLED : MF_GRAYED);
@@ -738,7 +742,7 @@ vncMenu::SendTrayMsg(DWORD msg, BOOL flash)
 			OSVERSIONINFO OSversion;	
 			OSversion.dwOSVersionInfoSize=sizeof(OSVERSIONINFO);
 			GetVersionEx(&OSversion);
-			if(OSversion.dwMajorVersion>=6 && m_properties.AllowShutdown() && vncService::RunningAsService())
+			/*if(OSversion.dwMajorVersion>=6 && m_properties.AllowShutdown() && vncService::RunningAsService())
 			{
 				if (OSversion.dwMinorVersion==0) //Vista
 				{
@@ -771,11 +775,12 @@ vncMenu::SendTrayMsg(DWORD msg, BOOL flash)
 					RemoveMenu(m_hmenu, ID_DELSOFTWARECAD, MF_BYCOMMAND);
 				}
 			}
-			else 
+			else */
 			{
 				RemoveMenu(m_hmenu, ID_DELSOFTWARECAD, MF_BYCOMMAND);
 				RemoveMenu(m_hmenu, ID_SOFTWARECAD, MF_BYCOMMAND);
 			}
+
 
 			// adzm 2009-07-05
 			if (SPECIAL_SC_PROMPT) {
