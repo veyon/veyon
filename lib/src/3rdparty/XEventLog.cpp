@@ -300,11 +300,13 @@ BOOL CXEventLog::RegisterSource(LPCTSTR lpszApp,
 			// use app's directory + "XEventMessage.dll"
 			::GetModuleFileName(NULL, szPathName, MAX_PATH*2-2);
 
+#if 0
 			TCHAR *cp = _tcsrchr(szPathName, _T('\\'));
 			if (cp != NULL)
 				*cp = _T('\0');
 
 			_tcscat(szPathName, _T("\\XEventMessage.dll"));
+#endif
 		}
 
 		::RegSetValueEx(hKey,  _T("EventMessageFile"), 0, REG_SZ,
