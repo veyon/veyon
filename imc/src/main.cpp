@@ -22,9 +22,11 @@
  *
  */
 
+#include <italcconfig.h>
+
 #include <QtCore/QLocale>
+#include <QtCore/QProcessEnvironment>
 #include <QtCore/QTranslator>
-#include <QtGui/QMessageBox>
 #include <QtGui/QApplication>
 
 #include "Configuration/XmlStore.h"
@@ -51,7 +53,19 @@ int main( int argc, char **argv )
 		return 0;
 	}
 
-	QApplication app( argc, argv );
+	QCoreApplication *app = NULL;
+#ifdef ITALC_BUILD_LINUX
+	if( QProcessEnvironment::systemEnvironment().contains( "DISPLAY" ) )
+	{
+		app = new QApplication( argc, argv );
+	}
+	else
+	{
+		app = new QCoreApplication( argc, argv );
+	}
+#else
+	app = new QApplication( argc, argv );
+#endif
 
 	ItalcCore::init();
 
@@ -60,15 +74,14 @@ int main( int argc, char **argv )
 	if( !ItalcConfiguration().isStoreWritable() &&
 			ItalcCore::config->logLevel() < Logger::LogLevelDebug )
 	{
-		qCritical( "ItalcConfiguration is not writable!" );
-		QMessageBox::critical( NULL, app.tr( "Configuration not writable" ),
-			app.tr( "The local configuration backend reported that the "
+		ImcCore::criticalMessage( app->tr( "Configuration not writable" ),
+			app->tr( "The local configuration backend reported that the "
 					"configuration is not writable! Please run the iTALC "
 					"Management Console with higher privileges." ) );
 		return -1;
 	}
 
-	app.connect( &app, SIGNAL( lastWindowClosed() ), SLOT( quit() ) );
+	app->connect( app, SIGNAL( lastWindowClosed() ), SLOT( quit() ) );
 
 	const QString loc = QLocale::system().name().left( 2 );
 
@@ -77,9 +90,9 @@ int main( int argc, char **argv )
 												<< loc
 												<< "qt_" + loc )
 	{
-		QTranslator * tr = new QTranslator( &app );
+		QTranslator * tr = new QTranslator( app );
 		tr->load( QString( ":/resources/%1.qm" ).arg( qm ) );
-		app.installTranslator( tr );
+		app->installTranslator( tr );
 	}
 
 	// parse arguments
@@ -88,27 +101,68 @@ int main( int argc, char **argv )
 
 	while( argc > 1 && argIt.hasNext() )
 	{
-		const QString & a = argIt.next();
-		if( ( a == "-apply" || a == "-a" ) && argIt.hasNext() )
+		const QString a = argIt.next().toLower();
+		if( ( a == "-applysettings" || a == "-a" ) && argIt.hasNext() )
 		{
 			const QString file = argIt.next();
 			Configuration::XmlStore xs( Configuration::XmlStore::System, file );
 
 			if( ImcCore::applyConfiguration( ItalcConfiguration( &xs ) ) )
 			{
-				QMessageBox::information( NULL,
-					app.tr( "iTALC Management Console" ),
-					app.tr( "All settings were applied successfully." ) );
+				ImcCore::informationMessage(
+					app->tr( "iTALC Management Console" ),
+					app->tr( "All settings were applied successfully." ) );
 			}
 			else
 			{
-				QMessageBox::critical( NULL,
-					app.tr( "iTALC Management Console" ),
-					app.tr( "An error occured while applying settings!" ) );
+				ImcCore::criticalMessage(
+					app->tr( "iTALC Management Console" ),
+					app->tr( "An error occured while applying settings!" ) );
 			}
 
 			// remove temporary file
 			QFile( file ).remove();
+
+			return 0;
+		}
+		else if( a == "-listconfig" || a == "-l" )
+		{
+			ImcCore::listConfiguration( *ItalcCore::config );
+
+			return 0;
+		}
+		else if( a == "-setconfigvalue" || a == "-s" )
+		{
+			if( !argIt.hasNext() )
+			{
+				qCritical( "No configuration property specified!" );
+				return -1;
+			}
+			QString prop = argIt.next();
+			QString value;
+			if( !argIt.hasNext() )
+			{
+				if( !prop.contains( '=' ) )
+				{
+					qCritical() << "No value for property" << prop << "specified!";
+					return -1;
+				}
+				else
+				{
+					value = prop.section( '=', -1, -1 );
+					prop = prop.section( '=', 0, -2 );
+				}
+			}
+			else
+			{
+				value = argIt.next();
+			}
+			const QString key = prop.section( '/', -1, -1 );
+			const QString parentKey = prop.section( '/', 0, -2 );
+
+			ItalcCore::config->setValue( key, value, parentKey );
+
+			ImcCore::applyConfiguration( *ItalcCore::config );
 
 			return 0;
 		}
@@ -121,9 +175,11 @@ int main( int argc, char **argv )
 
 	ilog( Info, "App.Exec" );
 
-	int ret = app.exec();
+	int ret = app->exec();
 
 	ItalcCore::destroy();
+
+	delete app;
 
 	return ret;
 }
