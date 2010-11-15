@@ -165,6 +165,7 @@ File "italc-${VERSION}\LICENSE.TXT"
 File "italc-${VERSION}\README.TXT"
 File "italc-${VERSION}\*txt"
 ExecWait '"$INSTDIR\ica.exe" -quiet -registerservice'
+ExecWait '"$INSTDIR\imc.exe" -s Network/FirewallExceptionEnabled=1'
 ExecWait '"$INSTDIR\ica.exe" -quiet -startservice'
 SectionEnd
 
@@ -229,6 +230,7 @@ SectionEnd
 
 Section Uninstall
 ${INSTALL_TYPE}
+ExecWait '"$INSTDIR\imc.exe" -s Network/FirewallExceptionEnabled=0'
 ExecWait '"$INSTDIR\ica.exe" -quiet -unregisterservice'
 # make sure the service is stopped and all file handles are released
 Sleep 2000
