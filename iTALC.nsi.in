@@ -6,7 +6,7 @@
 !define COPYRIGHT "© Tobias Doerffel 2004-2010"
 !define DESCRIPTION "Intelligent Teaching and Learning with Computers"
 !define LICENSE_TXT "@CMAKE_SOURCE_DIR@/COPYING"
-!define INSTALLER_NAME "italc-${VERSION}-setup.exe"
+!define INSTALLER_NAME "italc-${VERSION}-@MINGW_PLATFORM@-setup.exe"
 !define MAIN_APP_EXE "italc.exe"
 !define INSTALL_TYPE "SetShellVarContext all"
 !define REG_ROOT "HKLM"
