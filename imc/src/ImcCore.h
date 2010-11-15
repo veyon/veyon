@@ -40,6 +40,8 @@ namespace ImcCore
 	void listConfiguration( const ItalcConfiguration &config );
 
 	bool createKeyPair( ItalcCore::UserRole role, const QString &destDir );
+	bool importPublicKey( ItalcCore::UserRole role,
+							const QString &pubKey, const QString &destDir );
 
 	QString icaFilePath();
 

@@ -157,6 +157,26 @@ bool createKeyPair( ItalcCore::UserRole role, const QString &destDir )
 
 
 
+bool importPublicKey( ItalcCore::UserRole role,
+							const QString &pubKey, const QString &destDir )
+{
+	// look whether the public key file is valid
+	PublicDSAKey dsaKey( pubKey );
+	if( !dsaKey.isValid() )
+	{
+		qCritical() << "ImcCore::importPublicKey(): file" << pubKey
+					<< "is not a valid public key file";
+		return false;
+	}
+
+	QString destFile = LocalSystem::Path::publicKeyPath( role, destDir );
+	QFile( destFile ).remove();
+
+	// now try to copy it
+	return QFile( pubKey ).copy( destFile );
+}
+
+
 
 QString icaFilePath()
 {
