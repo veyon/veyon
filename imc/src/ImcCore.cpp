@@ -22,6 +22,7 @@
  *
  */
 
+#include <QtGui/QApplication>
 #include <QtGui/QMessageBox>
 
 #include <italcconfig.h>
@@ -48,7 +49,7 @@ static void configApplyError( const QString &msg )
 	QCoreApplication *app = QCoreApplication::instance();
 	if( !app->arguments().contains( "-quiet" ) )
 	{
-		QMessageBox::critical( NULL, app->tr( "iTALC Management Console" ), msg );
+		criticalMessage( app->tr( "iTALC Management Console" ), msg );
 	}
 }
 
@@ -85,6 +86,41 @@ bool applyConfiguration( const ItalcConfiguration &c )
 	Configuration::LocalStore localStore( Configuration::LocalStore::System );
 	localStore.flush( ItalcCore::config );
 }
+
+
+
+
+static void listConfiguration( const ItalcConfiguration::DataMap &map,
+									const QString &parentKey )
+{
+	for( ItalcConfiguration::DataMap::ConstIterator it = map.begin();
+												it != map.end(); ++it )
+	{
+		QString curParentKey = parentKey.isEmpty() ?
+									it.key() : parentKey + "/" + it.key();
+		if( it.value().type() == QVariant::Map )
+		{
+			listConfiguration( it.value().toMap(), curParentKey );
+		}
+		else if( it.value().type() == QVariant::String )
+		{
+			QTextStream( stdout ) << curParentKey << "="
+									<< it.value().toString() << endl;
+		}
+		else
+		{
+			qWarning( "unknown value in configuration data map" );
+		}
+	}
+}
+
+
+
+void listConfiguration( const ItalcConfiguration &config )
+{
+	listConfiguration( config.data(), QString() );
+}
+
 
 
 
@@ -129,6 +165,34 @@ QString icaFilePath()
 	path += ".exe";
 #endif
 	return QDTNS( path );
+}
+
+
+
+
+void informationMessage( const QString &title, const QString &msg )
+{
+	if( qApp )
+	{
+		QMessageBox::information( NULL, title, msg );
+	}
+	else
+	{
+		LogStream( Logger::LogLevelInfo ) << title.toUtf8().constData()
+								<< ":" << msg.toUtf8().constData();
+	}
+}
+
+
+
+void criticalMessage( const QString &title, const QString &msg )
+{
+	LogStream( Logger::LogLevelCritical ) << title.toUtf8().constData()
+								<< ":" << msg.toUtf8().constData();
+	if( QApplication::type() != QApplication::Tty )
+	{
+		QMessageBox::critical( NULL, title, msg );
+	}
 }
 
 
