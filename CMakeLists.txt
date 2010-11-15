@@ -211,6 +211,7 @@ ADD_CUSTOM_TARGET(win-nsi
 			COMMAND mkdir -p ${TMP}
 			COMMAND cp lib/ItalcCore.dll ica/ica.exe ica/vnchooks.dll ima/italc.exe imc/imc.exe ${TMP}
 			COMMAND ${STRIP} ${TMP}/*
+			COMMAND cp ${CMAKE_SOURCE_DIR}/doc/*.txt ${TMP}
 			COMMAND cp ${CMAKE_SOURCE_DIR}/COPYING ${TMP}
 			COMMAND cp ${CMAKE_SOURCE_DIR}/COPYING ${TMP}/LICENSE.TXT
 			COMMAND cp ${CMAKE_SOURCE_DIR}/README ${TMP}/README.TXT

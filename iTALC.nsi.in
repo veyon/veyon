@@ -163,6 +163,7 @@ File "italc-${VERSION}\ItalcCore.dll"
 File "italc-${VERSION}\imc.exe"
 File "italc-${VERSION}\LICENSE.TXT"
 File "italc-${VERSION}\README.TXT"
+File "italc-${VERSION}\*txt"
 ExecWait '"$INSTDIR\ica.exe" -quiet -registerservice'
 ExecWait '"$INSTDIR\ica.exe" -quiet -startservice'
 SectionEnd
@@ -248,6 +249,7 @@ Delete "$INSTDIR\italc_core.dll"
 Delete "$INSTDIR\QtGui4.dll"
 Delete "$INSTDIR\uninstall.exe"
 Delete "$INSTDIR\iTALC website.url"
+Delete "$INSTDIR\*.txt"
 
 RmDir "$INSTDIR"
 
