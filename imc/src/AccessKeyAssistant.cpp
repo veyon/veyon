@@ -110,20 +110,21 @@ void AccessKeyAssistant::openDestDir()
 
 void AccessKeyAssistant::accept()
 {
-	if( m_ui->modeCreateKeys->isChecked() )
-	{
-		ItalcCore::UserRole role =
+	ItalcCore::UserRole role =
 			static_cast<ItalcCore::UserRole>(
 					m_ui->userRole->currentIndex() + ItalcCore::RoleTeacher );
-		QString destDir;
-		if( m_ui->useCustomDestDir->isChecked() ||
+
+	QString destDir;
+	if( m_ui->useCustomDestDir->isChecked() ||
 				// trap the case public and private key path are equal
 				LocalSystem::Path::publicKeyPath( role ) ==
 					LocalSystem::Path::privateKeyPath( role ) )
-		{
-			destDir = m_ui->destDirEdit->text();
-		}
+	{
+		destDir = m_ui->destDirEdit->text();
+	}
 
+	if( m_ui->modeCreateKeys->isChecked() )
+	{
 		if( ImcCore::createKeyPair( role, destDir ) )
 		{
 			if( m_ui->exportPublicKey->isChecked() )
@@ -148,6 +149,7 @@ void AccessKeyAssistant::accept()
 	}
 	else if( m_ui->modeImportPublicKey->isChecked() )
 	{
+		ImcCore::importPublicKey( role, m_ui->publicKeyDir->text(), destDir );
 	}
 
 	QWizard::accept();
