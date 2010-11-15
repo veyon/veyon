@@ -1,0 +1,49 @@
+Automated setup with the iTALC Management Console (IMC)
+=======================================================
+
+The iTALC Management Console (IMC) allows to configure an iTALC installation
+easily. The IMC provides an easy to use graphical user interface where all
+iTALC-related settings can be made.
+
+This document describes how a computer can be setup for the use of iTALC
+automatically. All instructions refer to an automated setup on Windows but
+should be identical on Linux except platform-specific characteristics such
+as path delimiter, installation paths etc.
+
+
+1) Prepare a global common directory which can be accessed by all computers
+   in the network. Alternatively, a directory on an USB drive works as well.
+
+
+2) Install iTALC on the master computer. Afterwards run the IMC and alter the
+   settings according to your needs and your environment.
+
+   In the "Authentication" area, launch the iTALC access key assistant and
+   let it create an access key pair and export the public key to the directory
+   prepared in step 1)
+
+
+3) Create an iTALC client reference installation. Afterwards run the IMC and
+   alter the settings according to your needs and your environment. Then save
+   the settings via "File" -> "Save settings into file" to the directory
+   prepared in step 1) and choose a filename, e.g. ClientSettings.xml
+
+
+4) Copy the content of the installation directory (e.g. all files in
+   C:\Program Files\iTALC\) to the directory prepared in step 1).
+
+
+5) Write a batch file with the following commands and place it in the same
+   directory as the files in the previous steps.
+
+     mkdir "C:\Program Files\iTALC"
+     cp *.exe *.dll *.txt *.xml "C:\Program Files\iTALC\"
+     cd "\Program Files\iTALC"
+     imc -ApplySettings ClientSettings.xml
+     imc -ImportPublicKey PublicKey.key.txt
+     ica -RegisterService
+     ica -StartService
+
+   After running this batch file on a client, the client should be ready for use
+   with the iTALC network.
+
