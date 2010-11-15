@@ -166,6 +166,41 @@ int main( int argc, char **argv )
 
 			return 0;
 		}
+		else if( a == "-importpublickey" || a == "-i" )
+		{
+			QString pubKeyFile;
+			if( !argIt.hasNext() )
+			{
+				QStringList l =
+					QDir::current().entryList( QStringList() << "*.key.txt",
+												QDir::Files | QDir::Readable );
+				if( l.size() != 1 )
+				{
+					qCritical( "Please specify location of the public key "
+								"to import" );
+					return -1;
+				}
+				pubKeyFile = QDir::currentPath() + QDir::separator() +
+													l.first();
+				qWarning() << "No public key file specified. Trying to import "
+								"the public key file found at" << pubKeyFile;
+			}
+			else
+			{
+				pubKeyFile = argIt.next();
+			}
+
+			if( !ImcCore::importPublicKey( ItalcCore::RoleTeacher,
+											pubKeyFile, QString() ) )
+			{
+				LogStream( Logger::LogLevelInfo ) << "Public key import "
+													"failed";
+				return -1;
+			}
+			LogStream( Logger::LogLevelInfo ) << "Public key successfully "
+													"imported";
+			return 0;
+		}
 	}
 
 	// now create the main window
