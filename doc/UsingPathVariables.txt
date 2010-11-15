@@ -1,0 +1,30 @@
+Using path variables
+====================
+
+This document describes how to use the builtin path variables for paths which
+can be customized using IMC. Path variables are helpful if you do not want
+to hardcode paths e.g. for configuration files but make them relative to a
+certain environment, e.g. the user's home/profile.
+
+The following path variables are known to iTALC and replaced automatically:
+
+* $HOME, %HOME%, $PROFILE, %PROFILE%
+  - the home/profile directory of the user which started the application
+    (e.g. iTALC Master Application)
+
+* $APPDATA, %APPDATA
+  - Linux: $HOME/.italc
+  - Windows XP: C:\Documents and Settings\<user>\Application Data\iTALC
+  - Windows Vista/7: C:\Users\<user>\AppData\Roaming\iTALC
+
+* $GLOBALAPPDATA, %GLOBALAPPDATA%
+  - Linux: /etc/italc
+  - Windows XP: C:\Documents and Settings\All Users\Application Data\iTALC
+  - Windows Vista/7: C:\ProgramData\iTALC
+
+* $TEMP, %TEMP%, $TMP, %TMP%:
+  - Linux: /tmp
+  - Windows: current %TEMP% environment variable:
+    - Windows XP: C:\Documents and Settings\<user>\Local Settings\Temp
+    - Windows Vista/7: C:\Users\<user>\AppData\Local\Temp
+
