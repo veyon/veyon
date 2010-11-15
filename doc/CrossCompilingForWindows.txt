@@ -1,0 +1,37 @@
+Cross compiling iTALC for Windows on Linux
+==========================================
+
+- Create an Ubuntu 10.04 installation, e.g. by using the netboot installer at
+
+    http://archive.ubuntu.com/ubuntu/dists/lucid/main/installer-i386/current/images/netboot/mini.iso
+
+- Add the following line to your /etc/apt/sources.list
+
+    deb http://ppa.launchpad.net/tobydox/mingw/ubuntu lucid main
+
+  and update your package list cache (e.g. apt-get update or similiar)
+
+- Install the following packages:
+
+  * cmake
+  * nsis
+  * mingw32-x-gcc
+  * mingw32-x-qt
+  * mingw32-x-zlib
+  * mingw32-x-openssl
+  * mingw32-x-libjpeg
+  * mingw32-x-pthreads
+
+- Change into the iTALC source directory and type
+
+  mkdir b
+  cd b
+  ../build_mingw32
+  make win-nsi
+
+- This will build a ready-to-use Win32 installer like the ones you can download
+  from the iTALC website.
+
+- If you want to build a Win64 installer, replace all occurences of "32" in the
+  above instructions (including package names) with "64".
+
