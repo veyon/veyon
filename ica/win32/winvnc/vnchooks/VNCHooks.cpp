@@ -87,7 +87,7 @@ BOOL HookMaster = FALSE;							// Is this instance WinVNC itself?
 
 BOOL appHookedOK = FALSE;							// Did InitInstance succeed?
 
-ULONG old_cursor = NULL;							// Current Cursor icon handle
+HICON old_cursor = NULL;							// Current Cursor icon handle
 
 BOOL m_ddihook;
 
@@ -99,7 +99,7 @@ const UINT VNC_DEFERRED_UPDATE = RegisterWindowMessage("VNCHooks.Deferred.Update
 
 // Atoms
 const char *VNC_POPUPSELN_ATOMNAME = "VNCHooks.PopUpMenu.Selected";
-ATOM VNC_POPUPSELN_ATOM = NULL;
+ATOM VNC_POPUPSELN_ATOM = INVALID_ATOM;
 
 /////////////////////////////////////////////////////////////////////////////
 // The DLL functions
@@ -260,7 +260,7 @@ DllExport BOOL UnSetHooks(DWORD thread_id)
 	BOOL unHooked = TRUE;
 	
 	// Remove the extra property value from all local windows
-	EnumWindows((WNDENUMPROC) &KillPropsProc, NULL);
+	EnumWindows((WNDENUMPROC) &KillPropsProc, 0);
 
 	// Stop the keyboard & mouse hooks
 	unHooked = unHooked && SetKeyboardFilterHook(FALSE);
@@ -513,12 +513,12 @@ inline BOOL HookHandleddi(UINT MessageId, HWND hWnd, WPARAM wParam, LPARAM lPara
 	case WM_MOUSEMOVE:
 		// Inform WinVNC that the mouse has moved and pass it the current cursor handle
 		{
-			ULONG new_cursor = (ULONG)GetCursor();
+			HICON new_cursor = GetCursor();
 			if (new_cursor != old_cursor) {
 				PostThreadMessage(
 					vnc_thread_id,
 					MouseMoveMessage,
-					(ULONG) new_cursor, 0);
+					(ULONG_PTR)new_cursor, 0);
 				old_cursor=new_cursor;
 			}
 		}
@@ -725,12 +725,12 @@ inline BOOL HookHandle(UINT MessageId, HWND hWnd, WPARAM wParam, LPARAM lParam)
 	case WM_MOUSEMOVE:
 		// Inform WinVNC that the mouse has moved and pass it the current cursor handle
 		{
-			ULONG new_cursor = (ULONG)GetCursor();
+			HICON new_cursor = GetCursor();
 			if (new_cursor != old_cursor) {
 				PostThreadMessage(
 					vnc_thread_id,
 					MouseMoveMessage,
-					(ULONG) new_cursor, 0);
+					(ULONG_PTR)new_cursor, 0);
 				old_cursor=new_cursor;
 			}
 		}
@@ -1054,9 +1054,9 @@ void ReadSettings() {
 BOOL InitInstance() 
 {
 	// Create the global atoms
-	if (VNC_POPUPSELN_ATOM == NULL)
+	if (VNC_POPUPSELN_ATOM == INVALID_ATOM)
     	VNC_POPUPSELN_ATOM = GlobalAddAtom(VNC_POPUPSELN_ATOMNAME);
-	if (VNC_POPUPSELN_ATOM == NULL)
+	if (VNC_POPUPSELN_ATOM == INVALID_ATOM)
 		return FALSE;
 
 	// Get the module name
@@ -1099,10 +1099,10 @@ BOOL InitInstance()
 BOOL ExitInstance() 
 {
 	// Free the created atoms
-	if (VNC_POPUPSELN_ATOM != NULL)
+	if (VNC_POPUPSELN_ATOM != INVALID_ATOM)
 	{
 		GlobalDeleteAtom(VNC_POPUPSELN_ATOM);
-		VNC_POPUPSELN_ATOM = NULL;
+		VNC_POPUPSELN_ATOM = INVALID_ATOM;
 	}
 
 	// Write the module settings to disk

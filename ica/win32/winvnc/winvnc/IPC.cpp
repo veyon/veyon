@@ -69,7 +69,7 @@ bool CIPC::OpenIPCMMF(void)
 		if(m_hFileMap != NULL)
 		{
 			bOpened = true;
-			m_FileView = (DWORD)MapViewOfFile(m_hFileMap,
+			m_FileView = MapViewOfFile(m_hFileMap,
 			FILE_MAP_READ | FILE_MAP_WRITE,
 			0, 0, 0);
 			if (m_FileView==0) bOpened = false;
@@ -87,7 +87,7 @@ void CIPC::CloseIPCMMF(void)
 {
 	try
 	{
-		if (m_FileView) UnmapViewOfFile((LPVOID)m_FileView);
+		if (m_FileView) UnmapViewOfFile(m_FileView);
 		if(m_hFileMap != NULL)
 			CloseHandle(m_hFileMap), m_hFileMap = NULL;
 	}

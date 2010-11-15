@@ -2969,10 +2969,12 @@ vncClientThread::run(void *arg)
 			break;
 
 
+#ifndef ULTRAVNC_ITALC_SUPPORT
 		// Modif sf@2002 - TextChat
 		case rfbTextChat:
 			m_client->m_pTextChat->ProcessTextChatMsg(nTO);
 			break;
+#endif
 
 
 #ifndef ULTRAVNC_ITALC_SUPPORT
@@ -4100,7 +4102,9 @@ vncClient::vncClient() : Sendinput("USER32", "SendInput"), m_clipboard(Clipboard
 	m_lLastFTUserImpersonationTime = 0L;
 
 	// Modif sf@2002 - Text Chat
+#ifndef ULTRAVNC_ITALC_SUPPORT
 	m_pTextChat = new TextChat(this); 	
+#endif
 	m_fUltraViewer = true;
 	m_IsLoopback=false;
 	m_NewSWUpdateWaiting=false;
@@ -4138,6 +4142,7 @@ vncClient::~vncClient()
 {
 	vnclog.Print(LL_INTINFO, VNCLOG("~vncClient() executing...\n"));
 
+#ifndef ULTRAVNC_ITALC_SUPPORT
 	// Modif sf@2002 - Text Chat
 	if (m_pTextChat) 
 	{
@@ -4145,6 +4150,7 @@ vncClient::~vncClient()
 		delete(m_pTextChat);
 		m_pTextChat = NULL;
 	}
+#endif
 
 	// Directory FileTransfer utils
 #ifndef ULTRAVNC_ITALC_SUPPORT
@@ -4254,8 +4260,10 @@ vncClient::Kill()
 {
 	// Close the socket
 	vnclog.Print(LL_INTERR, VNCLOG("client Kill() called"));
+#ifndef ULTRAVNC_ITALC_SUPPORT
 	if (m_pTextChat)
         m_pTextChat->KillDialog();
+#endif
 	if (m_socket != NULL)
 		m_socket->Close();
 }

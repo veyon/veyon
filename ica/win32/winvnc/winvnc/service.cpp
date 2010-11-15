@@ -802,7 +802,7 @@ void monitor_sessions()
 				strcat(mycommand,WORKDIR);//set the directory
 				strcat(mycommand,"\\");
 				strcat(mycommand,"cad.exe");
-				int nr=(int)ShellExecute(GetDesktopWindow(), "open", mycommand, "", 0, SW_SHOWNORMAL);
+				(void)ShellExecute(GetDesktopWindow(), "open", mycommand, "", 0, SW_SHOWNORMAL);
 			}
 			if (Inst) FreeLibrary(Inst);
 			}

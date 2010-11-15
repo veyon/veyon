@@ -403,7 +403,7 @@ DWORD WINAPI Cadthread(LPVOID lpParam)
 	strcat(mycommand,"\\");
 	strcat(mycommand,"cad.exe");
 
-	int nr=(int)ShellExecute(GetDesktopWindow(), "open", mycommand, "", 0, SW_SHOWNORMAL);
+	int nr=(LONG_PTR)ShellExecute(GetDesktopWindow(), "open", mycommand, "", 0, SW_SHOWNORMAL);
 	if (nr<=32)
 	{
 		//error

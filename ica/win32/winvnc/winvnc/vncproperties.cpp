@@ -344,7 +344,7 @@ vncProperties::ShowAdmin(BOOL show, BOOL usersettings)
 				    MAKEINTRESOURCE(IDD_PROPERTIES1), 
 				    NULL,
 				    (DLGPROC) DialogProc,
-				    (LONG) this);
+				    (LONG_PTR) this);
 
 				if (!m_returncode_valid)
 				    result = IDCANCEL;

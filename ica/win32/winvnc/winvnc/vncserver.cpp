@@ -790,7 +790,9 @@ void vncServer::TextChatClient(LPSTR szClientName)
 				break;
 			}
 			vnclog.Print(LL_INTINFO, VNCLOG("TextChat with client named: %s\n"), szClientName);
+#ifndef ULTRAVNC_ITALC_SUPPORT
 			pClient->GetTextChatPointer()->OrderTextChat();
+#endif
 			break;
 		}
 	}

@@ -158,7 +158,7 @@ static LRESULT CALLBACK WndProc(
 						case WM_CTLCOLORSTATIC:
 							{
 									SetBkMode((HDC) wParam, TRANSPARENT);
-									return (DWORD) GetStockObject(NULL_BRUSH);
+									return (LONG_PTR) GetStockObject(NULL_BRUSH);
 							}
                          case WM_DESTROY:
 								KillTimer(hwnd,100);

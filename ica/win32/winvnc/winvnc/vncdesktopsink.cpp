@@ -562,7 +562,7 @@ vncDesktop::InitWindow()
 	}
 
 	// Set the "this" pointer for the window
-    helper::SafeSetWindowUserData(m_hwnd, (long)this);
+    helper::SafeSetWindowUserData(m_hwnd, (LONG_PTR)this);
 
 	// Enable clipboard hooking
 	// adzm - 2010-07 - Fix clipboard hangs

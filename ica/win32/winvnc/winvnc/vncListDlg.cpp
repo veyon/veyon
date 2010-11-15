@@ -70,7 +70,7 @@ void vncListDlg::Display()
 						MAKEINTRESOURCE(IDD_LIST_DLG), 
 						NULL,
 						(DLGPROC) DialogProc,
-						(LONG) this
+						(LONG_PTR) this
 						);
 	}
 }

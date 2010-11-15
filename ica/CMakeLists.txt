@@ -64,7 +64,6 @@ IF(ITALC_BUILD_WIN32)
 		${CMAKE_CURRENT_SOURCE_DIR}/win32/winvnc/winvnc/vncserver.cpp
 		${CMAKE_CURRENT_SOURCE_DIR}/win32/winvnc/winvnc/vncabout.cpp
 		${CMAKE_CURRENT_SOURCE_DIR}/win32/winvnc/winvnc/black_layered.cpp
-		${CMAKE_CURRENT_SOURCE_DIR}/win32/winvnc/winvnc/TextChat.cpp
 		${CMAKE_CURRENT_SOURCE_DIR}/win32/winvnc/winvnc/vncsetauth.cpp
 		${CMAKE_CURRENT_SOURCE_DIR}/win32/winvnc/winvnc/vncacceptdialog.cpp
 		${CMAKE_CURRENT_SOURCE_DIR}/win32/winvnc/winvnc/rfbUpdateTracker.cpp
@@ -135,7 +134,7 @@ IF(ITALC_BUILD_WIN32)
 	SET_TARGET_PROPERTIES(vnchooks PROPERTIES PREFIX "")
 
 	SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-write-strings -fexceptions")
-	LINK_LIBRARIES(-luserenv -lole32 -lversion -lgdi32 -limm32)
+	LINK_LIBRARIES(-luserenv -lole32 -lversion -lgdi32 -limm32 -lwinmm)
 
 	ADD_DEFINITIONS(-DULTRAVNC_ITALC_SUPPORT -DLIBVNCSERVER_NEED_INADDR_T)
 
@@ -148,6 +147,10 @@ IF(ITALC_BUILD_WIN32)
 						DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/ica.rc)
 
 ENDIF(ITALC_BUILD_WIN32)
+
+IF(ITALC_BUILD_WIN64)
+	ADD_DEFINITIONS(-D_X64)
+ENDIF(ITALC_BUILD_WIN64)
 
 
 ADD_DEFINITIONS(-DBUILD_ICA)

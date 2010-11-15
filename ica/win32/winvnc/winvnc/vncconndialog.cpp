@@ -64,7 +64,7 @@ INT_PTR vncConnDialog::DoDialog()
 	//DialogBoxParam(hAppInstance, MAKEINTRESOURCE(IDD_OUTGOING_CONN), 	
 	//adzm 2009-06-20 - Return the result
 	INT_PTR nResult = DialogBoxParam(hInstResDLL, MAKEINTRESOURCE(IDD_OUTGOING_CONN), 
-		NULL, (DLGPROC) vncConnDlgProc, (LONG) this);
+		NULL, (DLGPROC) vncConnDlgProc, (LONG_PTR) this);
 	delete this;
 	return nResult;
 }

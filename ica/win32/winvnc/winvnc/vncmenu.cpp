@@ -315,7 +315,7 @@ vncMenu::vncMenu(vncServer *server)
 	}
 
 	// record which client created this window
-    helper::SafeSetWindowUserData(m_hwnd, (LONG) this);
+    helper::SafeSetWindowUserData(m_hwnd, (LONG_PTR) this);
 
 	// Ask the server object to notify us of stuff
 	server->AddNotify(m_hwnd);

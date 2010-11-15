@@ -32,7 +32,7 @@ public:
 protected:
 	HANDLE m_hFileMap;
 	HANDLE m_hMutex;
-	DWORD m_FileView;
+	LPVOID m_FileView;
 	mystruct list;
 	mystruct *plist;
 };
