@@ -19,7 +19,7 @@ Example:
 This will give an output like
 
    ...
-   Logging/Logging/LogLevel=1
+   Logging/LogLevel=1
    Network/CoreServerPort=11100
    Network/DemoServerPort=11400
    ...
@@ -35,7 +35,7 @@ A the value of configuration property can be changed using the
 Examples:
 
   imc -SetConfigValue Logging/LogFileDirectory C:\temp
-  imc -s Logging/Logging/LogLevel=4
+  imc -s Logging/LogLevel=4
 
 
 
