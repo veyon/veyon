@@ -15,6 +15,7 @@ Cross compiling iTALC for Windows on Linux
 
   * cmake
   * nsis
+  * tofrodos
   * mingw32-x-gcc
   * mingw32-x-qt
   * mingw32-x-zlib
