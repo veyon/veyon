@@ -153,11 +153,6 @@ public:
 		return( m_remoteControlWidget != NULL );
 	}
 
-	inline void reloadSnapshotList( void )
-	{
-		m_snapshotList->reloadList();
-	}
-
 
 protected:
 	void keyPressEvent( QKeyEvent *e );

@@ -263,16 +263,6 @@ public:
 
 	virtual void update( void );
 
-	static inline bool reloadSnapshotList( void )
-	{
-		return( s_reloadSnapshotList );
-	}
-
-	static inline void resetReloadOfSnapshotList( void )
-	{
-		s_reloadSnapshotList = FALSE;
-	}
-
 
 	void zoom( void );
 	void zoomBack( void );
@@ -331,8 +321,6 @@ private:
 
 
 	// static data
-	static bool s_reloadSnapshotList;
-
 	static QHash<int, Client *> s_clientIDs;
 
 	// static members

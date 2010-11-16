@@ -582,14 +582,8 @@ MainWindowUpdateThread::MainWindowUpdateThread( MainWindow * _main_window ) :
 
 
 
-void MainWindowUpdateThread::update( void )
+void MainWindowUpdateThread::update()
 {
-	if( Client::reloadSnapshotList() )
-	{
-		m_mainWindow->m_snapshotList->reloadList();
-	}
-	Client::resetReloadOfSnapshotList();
-
 	// now do cleanup-work
 	m_mainWindow->getClassroomManager()->doCleanupWork();
 }

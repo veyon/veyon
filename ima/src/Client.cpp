@@ -56,8 +56,6 @@ const QSize CONTENT_SIZE_SUB( 2*DECO_WIDTH, 2*DECO_WIDTH + TITLE_HEIGHT );
 // resolve static symbols...
 QHash<int, Client *> Client::s_clientIDs;
 
-bool Client::s_reloadSnapshotList = FALSE;
-
 
 class closeButton : public QWidget
 {
@@ -967,9 +965,6 @@ void Client::paintEvent( QPaintEvent * _pe )
 		m_makeSnapshot = FALSE;
 	// ##ITALC2: todo
 	//	if( m_connection->takeSnapshot() )
-		{
-			s_reloadSnapshotList = TRUE;
-		}
 	}
 
 }
