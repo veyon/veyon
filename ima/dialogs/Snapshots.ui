@@ -11,11 +11,8 @@
    </rect>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
-   <property name="spacing">
-    <number>6</number>
-   </property>
    <item>
-    <widget class="QListWidget" name="list">
+    <widget class="QListView" name="list">
      <property name="whatsThis">
       <string>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -25,21 +22,34 @@ p, li { white-space: pre-wrap; }
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="previewLbl"/>
+    <widget class="QLabel" name="previewLbl">
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
    </item>
    <item>
-    <layout class="QGridLayout">
-     <property name="margin">
+    <layout class="QGridLayout" columnstretch="0,1">
+     <property name="horizontalSpacing">
       <number>10</number>
      </property>
-     <property name="spacing">
+     <property name="verticalSpacing">
       <number>4</number>
+     </property>
+     <property name="margin">
+      <number>10</number>
      </property>
      <item row="1" column="1">
       <widget class="QLabel" name="dateLbl"/>
      </item>
      <item row="0" column="0">
       <widget class="QLabel" name="userDescLbl">
+       <property name="font">
+        <font>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
        <property name="text">
         <string>User:</string>
        </property>
@@ -53,6 +63,12 @@ p, li { white-space: pre-wrap; }
      </item>
      <item row="3" column="0">
       <widget class="QLabel" name="hostDescLbl">
+       <property name="font">
+        <font>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
        <property name="text">
         <string>Host:</string>
        </property>
@@ -60,6 +76,12 @@ p, li { white-space: pre-wrap; }
      </item>
      <item row="1" column="0">
       <widget class="QLabel" name="dateDescLbl">
+       <property name="font">
+        <font>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
        <property name="text">
         <string>Date:</string>
        </property>
@@ -70,6 +92,12 @@ p, li { white-space: pre-wrap; }
      </item>
      <item row="2" column="0">
       <widget class="QLabel" name="timeDescLbl">
+       <property name="font">
+        <font>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
        <property name="text">
         <string>Time:</string>
        </property>
@@ -78,37 +106,30 @@ p, li { white-space: pre-wrap; }
     </layout>
    </item>
    <item>
-    <widget class="QPushButton" name="showBtn">
-     <property name="text">
-      <string>Show snapshot</string>
-     </property>
-     <property name="icon">
-      <iconset resource="../italc.qrc">
-       <normaloff>:/resources/client_show.png</normaloff>:/resources/client_show.png</iconset>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QPushButton" name="deleteBtn">
-     <property name="text">
-      <string>Delete snapshot</string>
-     </property>
-     <property name="icon">
-      <iconset resource="../italc.qrc">
-       <normaloff>:/resources/cancel.png</normaloff>:/resources/cancel.png</iconset>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QPushButton" name="reloadBtn">
-     <property name="text">
-      <string>Reload list</string>
-     </property>
-     <property name="icon">
-      <iconset resource="../italc.qrc">
-       <normaloff>:/resources/reload.png</normaloff>:/resources/reload.png</iconset>
-     </property>
-    </widget>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QPushButton" name="showBtn">
+       <property name="text">
+        <string>Show</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../italc.qrc">
+         <normaloff>:/resources/client_show.png</normaloff>:/resources/client_show.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="deleteBtn">
+       <property name="text">
+        <string>Delete</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../italc.qrc">
+         <normaloff>:/resources/cancel.png</normaloff>:/resources/cancel.png</iconset>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
    <item>
     <spacer>
@@ -121,7 +142,7 @@ p, li { white-space: pre-wrap; }
      <property name="sizeHint" stdset="0">
       <size>
        <width>16</width>
-       <height>30</height>
+       <height>10</height>
       </size>
      </property>
     </spacer>

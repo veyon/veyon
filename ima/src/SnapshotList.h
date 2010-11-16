@@ -29,39 +29,31 @@
 #include <QtGui/QWidget>
 
 #include "SideBarWidget.h"
-#include "ui_Snapshots.h"
 
+class QModelIndex;
+class QFileSystemModel;
 
-class QLabel;
-class QPushButton;
-class QListWidget;
+namespace Ui { class Snapshots; }
 
-
-class SnapshotList : public SideBarWidget, private Ui::Snapshots
+class SnapshotList : public SideBarWidget
 {
 	Q_OBJECT
 public:
-	SnapshotList( MainWindow * _main_window, QWidget * _parent );
+	SnapshotList( MainWindow *mainWindow, QWidget *parent );
 	virtual ~SnapshotList();
 
 
-public slots:
-	void reloadList( void );
-
-
 private slots:
-	void snapshotSelected( const QString & _s );
-	void snapshotActivated( QListWidgetItem * _item )
-	{
-		snapshotDoubleClicked( _item->text() );
-	}
+	void snapshotSelected( const QModelIndex &idx );
+	void snapshotDoubleClicked( const QModelIndex &idx );
 
-	void showSnapshot( void );
-	void deleteSnapshot( void );
+	void showSnapshot();
+	void deleteSnapshot();
 
 
 private:
-	void snapshotDoubleClicked( const QString & _s );
+	Ui::Snapshots *ui;
+	QFileSystemModel *m_fsModel;
 
 } ;
 

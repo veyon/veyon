@@ -24,53 +24,44 @@
 
 #include <QtCore/QDir>
 #include <QtCore/QDate>
+#include <QtGui/QFileSystemModel>
 #include <QtGui/QScrollArea>
 
-
 #include "SnapshotList.h"
-#include "Client.h"
 #include "ItalcConfiguration.h"
 #include "ItalcCore.h"
 #include "LocalSystem.h"
 
+#include "ui_Snapshots.h"
 
 
-SnapshotList::SnapshotList( MainWindow * _main_window, QWidget * _parent ) :
+SnapshotList::SnapshotList( MainWindow *mainWindow, QWidget *parent ) :
 	SideBarWidget( QPixmap( ":/resources/snapshot.png" ),
 			tr( "Snapshots" ),
-			tr( "Simply manage the snapshots you made using this "
-				"workspace." ),
-			_main_window, _parent )
+			tr( "Simply manage the snapshots you made using this workspace." ),
+			mainWindow, parent ),
+	ui( new Ui::Snapshots ),
+	m_fsModel( new QFileSystemModel( this ) )
 {
-	setupUi( contentParent() );
+	ui->setupUi( contentParent() );
 
-	connect( list, SIGNAL( currentTextChanged( const QString & ) ), this,
-				SLOT( snapshotSelected( const QString & ) ) );
-	connect( list, SIGNAL( itemActivated( QListWidgetItem * ) ), this,
-			SLOT( snapshotActivated( QListWidgetItem * ) ) );
+	LocalSystem::Path::ensurePathExists( ItalcCore::config->snapshotDirectory() );
 
-	previewLbl->setScaledContents( true );
+	m_fsModel->setNameFilters( QStringList() << "*.png" );
+	m_fsModel->setFilter( QDir::AllDirs | QDir::NoDotAndDotDot | QDir::Files );
+	m_fsModel->setRootPath( LocalSystem::Path::expand(
+									ItalcCore::config->snapshotDirectory() ) );
 
-	QFont f = userDescLbl->font();
-	f.setBold( true );
-	f.setItalic( true );
+	ui->list->setModel( m_fsModel );
+	ui->list->setRootIndex( m_fsModel->index( m_fsModel->rootPath() ) );
 
-	userDescLbl->setFont( f );
-	dateDescLbl->setFont( f );
-	timeDescLbl->setFont( f );
-	hostDescLbl->setFont( f );
+	connect( ui->list, SIGNAL( clicked( const QModelIndex & ) ),
+				this, SLOT( snapshotSelected( const QModelIndex & ) ) );
+	connect( ui->list, SIGNAL( doubleClicked( const QModelIndex & ) ),
+				this, SLOT( showSnapshot() ) );
 
-	f.setBold( false );
-	f.setItalic( false );
-
-	connect( showBtn, SIGNAL( clicked() ), this,
-						SLOT( showSnapshot() ) );
-
-	connect( deleteBtn, SIGNAL( clicked() ), this,
-						SLOT( deleteSnapshot() ) );
-	connect( reloadBtn, SIGNAL( clicked() ), this, SLOT( reloadList() ) );
-
-	reloadList();
+	connect( ui->showBtn, SIGNAL( clicked() ), this, SLOT( showSnapshot() ) );
+	connect( ui->deleteBtn, SIGNAL( clicked() ), this, SLOT( deleteSnapshot() ) );
 }
 
 
@@ -83,94 +74,61 @@ SnapshotList::~SnapshotList()
 
 
 
-
-void SnapshotList::snapshotSelected( const QString & _s )
+void SnapshotList::snapshotSelected( const QModelIndex &idx )
 {
-	previewLbl->setPixmap( LocalSystem::Path::expand( ItalcCore::config->snapshotDirectory() ) + _s );
-	previewLbl->setFixedHeight( previewLbl->width() * 3 / 4 );
-	userLbl->setText( _s.section( '_', 0, 0 ) );
- 	hostLbl->setText( _s.section( '_', 1, 1 ) );
-	dateLbl->setText( QDate::fromString( _s.section( '_', 2, 2 ),
-				Qt::ISODate ).toString( Qt::LocalDate ) );
-	timeLbl->setText( _s.section( '_', 3, 3 ).section( '.', 0, 0 ).
-							replace( '-', ':' ) );
+	ui->previewLbl->setPixmap( m_fsModel->filePath( idx ) );
+	ui->previewLbl->setFixedHeight( ui->previewLbl->width() * 3 / 4 );
+
+	const QString fileName = m_fsModel->fileName( idx );
+	ui->userLbl->setText( fileName.section( '_', 0, 0 ) );
+	ui->hostLbl->setText( fileName.section( '_', 1, 1 ) );
+	ui->dateLbl->setText( QDate::fromString( fileName.section( '_', 2, 2 ),
+									Qt::ISODate ).toString( Qt::LocalDate ) );
+	ui->timeLbl->setText( fileName.section( '_', 3, 3 ).
+									section( '.', 0, 0 ).replace( '-', ':' ) );
 }
 
 
 
 
-void SnapshotList::snapshotDoubleClicked( const QString & _s )
+void SnapshotList::snapshotDoubleClicked( const QModelIndex &idx )
 {
-	// maybe the user clicked on "show snapshot" and selected no
-	// snapshot...
-	if( _s == "" )
+	QLabel * imgLabel = new QLabel;
+	imgLabel->setPixmap( m_fsModel->filePath( idx ) );
+	if( imgLabel->pixmap() != NULL )
 	{
-		return;
-	}
-
-	QLabel * img_label = new QLabel;
-	img_label->setPixmap( LocalSystem::Path::expand( ItalcCore::config->snapshotDirectory() ) + _s );
-	if( img_label->pixmap() != NULL )
-	{
-		img_label->setFixedSize( img_label->pixmap()->width(),
-					img_label->pixmap()->height() );
+		imgLabel->setFixedSize( imgLabel->pixmap()->width(),
+								imgLabel->pixmap()->height() );
 	}
 
 	QScrollArea * sa = new QScrollArea;
 	sa->setAttribute( Qt::WA_DeleteOnClose, true );
 	sa->move( 0, 0 );
-	sa->setWidget( img_label );
-	sa->setWindowTitle( _s );
+	sa->setWidget( imgLabel );
+	sa->setWindowTitle( m_fsModel->fileName( idx ) );
 	sa->show();
 }
 
 
 
 
-void SnapshotList::showSnapshot( void )
+void SnapshotList::showSnapshot()
 {
-	if( list->currentItem() )
+	if( ui->list->currentIndex().isValid() )
 	{
-		snapshotDoubleClicked( list->currentItem()->text() );
+		snapshotDoubleClicked( ui->list->currentIndex() );
 	}
 }
 
 
 
 
-void SnapshotList::deleteSnapshot( void )
+void SnapshotList::deleteSnapshot()
 {
-	if( !list->currentItem() )
+	if( ui->list->currentIndex().isValid() )
 	{
-		return;
+		m_fsModel->remove( ui->list->currentIndex() );
 	}
-
-	const QString s = list->currentItem()->text();
-
-	// maybe the user clicked on "delete snapshot" and didn't select a
-	// snapshot...
-	if( s.isEmpty() )
-	{
-		return;
-	}
-
-	QFile( LocalSystem::Path::expand( ItalcCore::config->snapshotDirectory() ) + s ).remove();
-
-	reloadList();
-}
-
-
-
-
-void SnapshotList::reloadList( void )
-{
-	QDir sdir( LocalSystem::Path::expand( ItalcCore::config->snapshotDirectory() ),
-						"*.png",
-						QDir::Name | QDir::IgnoreCase,
-						QDir::Files | QDir::Readable );
-
-	list->clear();
-	list->insertItems( 0, sdir.entryList() );
 }
 
 
