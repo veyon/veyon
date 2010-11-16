@@ -40,7 +40,7 @@
 #include "ClassroomManager.h"
 #include "CmdInputDialog.h"
 #include "LocalSystem.h"
-#include "SnapshotList.h"
+#include "Snapshot.h"
 #include "Dialogs.h"
 #include "DecoratedMessageBox.h"
 
@@ -477,8 +477,8 @@ Client::Client( const QString & _hostname,
 	m_mac( _mac ),
 	m_type( _type ),
 	m_mode( Mode_Overview ),
-	m_user( "" ),
-	m_makeSnapshot( FALSE ),
+	m_user(),
+	m_takeSnapshot( false ),
 	m_state( State_Unkown ),
 	m_classRoomItem( NULL )
 {
@@ -960,11 +960,10 @@ void Client::paintEvent( QPaintEvent * _pe )
 				Qt::TextWordWrap | Qt::AlignCenter, msg );
 	}
 
-	if( m_makeSnapshot )
+	if( m_takeSnapshot )
 	{
-		m_makeSnapshot = FALSE;
-	// ##ITALC2: todo
-	//	if( m_connection->takeSnapshot() )
+		Snapshot().take( m_connection->vncConnection(), m_user );
+		m_takeSnapshot = false;
 	}
 
 }
@@ -1124,7 +1123,7 @@ void Client::logoutUser()
 
 void Client::snapshot()
 {
-	m_makeSnapshot = TRUE;
+	m_takeSnapshot = true;
 }
 
 

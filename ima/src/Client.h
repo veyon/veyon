@@ -313,7 +313,7 @@ private:
 
 	Modes m_mode;
 	QString m_user;
-	volatile bool m_makeSnapshot;
+	volatile bool m_takeSnapshot;
 
 	States m_state;
 
