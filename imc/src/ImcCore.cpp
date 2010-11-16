@@ -192,14 +192,11 @@ QString icaFilePath()
 
 void informationMessage( const QString &title, const QString &msg )
 {
-	if( qApp )
+	LogStream( Logger::LogLevelInfo ) << title.toUtf8().constData()
+								<< ":" << msg.toUtf8().constData();
+	if( QApplication::type() != QApplication::Tty )
 	{
 		QMessageBox::information( NULL, title, msg );
-	}
-	else
-	{
-		LogStream( Logger::LogLevelInfo ) << title.toUtf8().constData()
-								<< ":" << msg.toUtf8().constData();
 	}
 }
 
