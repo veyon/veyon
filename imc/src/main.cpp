@@ -204,9 +204,9 @@ int main( int argc, char **argv )
 	}
 
 	// now create the main window
-	MainWindow mainWindow;
+	MainWindow *mainWindow = new MainWindow;
 
-	mainWindow.show();
+	mainWindow->show();
 
 	ilog( Info, "App.Exec" );
 
