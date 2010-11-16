@@ -31,6 +31,7 @@
 #include "ItalcConfiguration.h"
 #include "ItalcCore.h"
 #include "LocalSystem.h"
+#include "Snapshot.h"
 
 #include "ui_Snapshots.h"
 
@@ -76,16 +77,15 @@ SnapshotList::~SnapshotList()
 
 void SnapshotList::snapshotSelected( const QModelIndex &idx )
 {
-	ui->previewLbl->setPixmap( m_fsModel->filePath( idx ) );
+	Snapshot s( m_fsModel->filePath( idx ) );
+
+	ui->previewLbl->setPixmap( s.pixmap() );
 	ui->previewLbl->setFixedHeight( ui->previewLbl->width() * 3 / 4 );
 
-	const QString fileName = m_fsModel->fileName( idx );
-	ui->userLbl->setText( fileName.section( '_', 0, 0 ) );
-	ui->hostLbl->setText( fileName.section( '_', 1, 1 ) );
-	ui->dateLbl->setText( QDate::fromString( fileName.section( '_', 2, 2 ),
-									Qt::ISODate ).toString( Qt::LocalDate ) );
-	ui->timeLbl->setText( fileName.section( '_', 3, 3 ).
-									section( '.', 0, 0 ).replace( '-', ':' ) );
+	ui->userLbl->setText( s.user() );
+	ui->hostLbl->setText( s.host() );
+	ui->dateLbl->setText( s.date() );
+	ui->timeLbl->setText( s.time() );
 }
 
 
