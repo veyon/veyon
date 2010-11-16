@@ -963,26 +963,30 @@ QString Path::shrink( QString path )
 
 bool Path::ensurePathExists( const QString &path )
 {
-	if( path.isEmpty() || QDir( path ).exists() )
+	const QString expandedPath = expand( path );
+
+	if( path.isEmpty() || QDir( expandedPath ).exists() )
 	{
 		return true;
 	}
 
-	QString p = QDir( path ).absolutePath();
-	if( !QFileInfo( path ).isDir() )
-	{
-		p = QFileInfo( path ).absolutePath();
-	}
+	qDebug() << "LocalSystem::Path::ensurePathExists(): creating "
+				<< path << "=>" << expandedPath;
+
+	QString p = expandedPath;
+
 	QStringList dirs;
 	while( !QDir( p ).exists() && !p.isEmpty() )
 	{
 		dirs.push_front( QDir( p ).dirName() );
 		p.chop( dirs.front().size() + 1 );
 	}
+
 	if( !p.isEmpty() )
 	{
 		return QDir( p ).mkpath( dirs.join( QDir::separator() ) );
 	}
+
 	return false;
 }
 
