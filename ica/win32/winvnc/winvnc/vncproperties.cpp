@@ -395,10 +395,15 @@ vncProperties::ShowAdmin(BOOL show, BOOL usersettings)
 			}
 
 			// Load in all the settings
+			// If you run as service, you reload the saved settings before they are actual saved
+			// via runas.....
+			if (!vncService::RunningAsService())
+			{
 			if (m_fUseRegistry) 
 				Load(TRUE);
 			else
 				LoadFromIniFile();
+			}
 
 		}
 	}

@@ -51,7 +51,6 @@ bool g_Server_running;
 extern bool g_Desktop_running;
 extern bool g_DesktopThread_running;
 void*	vncServer::pThis;
-extern CDPI g_dpi;
 
 // adzm 2009-07-05
 extern BOOL SPECIAL_SC_PROMPT;
@@ -1625,16 +1624,18 @@ vncServer::SockConnect(BOOL On)
 	}
 	else
 	{
-		// *** JNW - Trying to fix up a lock-up when the listening socket closes
-		vnclog.Print(LL_INTINFO, VNCLOG("KillAuthClients() fix up a lock-up \n"));
-		KillAuthClients();
-		KillUnauthClients();
-		WaitUntilAuthEmpty();
-		WaitUntilUnauthEmpty();
 
 		// Is there a listening socket?
 		if (m_socketConn != NULL)
 		{
+
+			// *** JNW - Trying to fix up a lock-up when the listening socket closes
+			vnclog.Print(LL_INTINFO, VNCLOG("KillAuthClients() fix up a lock-up \n"));
+			KillAuthClients();
+			KillUnauthClients();
+			WaitUntilAuthEmpty();
+			WaitUntilUnauthEmpty();
+
 			// Close the socket
 			delete m_socketConn;
 			m_socketConn = NULL;
@@ -1793,8 +1794,8 @@ vncServer::GetScreenInfo(int &width, int &height, int &depth)
 		}
 		else
 		{
-			scrinfo.framebufferWidth = g_dpi.UnscaleX(GetDeviceCaps(hrootdc, HORZRES));
-			scrinfo.framebufferHeight = g_dpi.UnscaleY(GetDeviceCaps(hrootdc, VERTRES));
+			scrinfo.framebufferWidth = GetDeviceCaps(hrootdc, HORZRES);
+			scrinfo.framebufferHeight = GetDeviceCaps(hrootdc, VERTRES);
 			HBITMAP membitmap = CreateCompatibleBitmap(hrootdc, scrinfo.framebufferWidth, scrinfo.framebufferHeight);
 			if (membitmap == NULL) {
 				scrinfo.framebufferWidth = 0;
@@ -2554,15 +2555,17 @@ void vncServer::NotifyClients_StateChange(CARD32 state, CARD32 value)
     vncClient *client = NULL;
 
     vncClientList::iterator i;
+
 	for (i = m_unauthClients.begin(); i != m_unauthClients.end(); i++)
-	{
-		// Is this the right client?
+		{
+
+			// Is this the right client?
         client = GetClient(*i);
         if (!client)
             continue;
 
-        client->SendServerStateUpdate(state, value);
-	}
+        client->Record_SendServerStateUpdate(state, value);
+		}
 
 	for (i = m_authClients.begin(); i != m_authClients.end(); i++)
 	{
@@ -2571,7 +2574,7 @@ void vncServer::NotifyClients_StateChange(CARD32 state, CARD32 value)
         if (!client)
             continue;
 
-        client->SendServerStateUpdate(state, value);
+        client->Record_SendServerStateUpdate(state, value);
 	}
 }
 void vncServer::SetFTTimeout(int msecs)

@@ -527,7 +527,7 @@ vncMenu::AddTrayIcon()
 		if (!tray)
 		{
 			IsIconSet=false;
-			vnclog.Print(LL_INTERR, VNCLOG("########### vncMenu::AddTrayIcon - User exists, traywnd is not found reset when counter reach %i=20\n"),IconFaultCounter);
+			vnclog.Print(LL_INTERR, VNCLOG("########### vncMenu::AddTrayIcon - User exists, traywnd is not found reset when counter reach %i=3\n"),IconFaultCounter);
 			IconFaultCounter++;
 			m_server->TriggerUpdate();
 			return;
@@ -1297,10 +1297,10 @@ LRESULT CALLBACK vncMenu::WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lP
 					}
 
 					}
-					fShutdownOrdered=TRUE;
+					/*fShutdownOrdered=TRUE;
 					vnclog.Print(LL_INTINFO, VNCLOG("KillAuthClients() ID_CLOSE \n"));
 					_this->m_server->KillAuthClients();					
-					PostMessage(hwnd, WM_CLOSE, 0, 0);
+					PostMessage(hwnd, WM_CLOSE, 0, 0);*/
 				}
 			}
 			break;

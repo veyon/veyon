@@ -185,7 +185,15 @@ Myinit(HINSTANCE hInstance)
 // routine or, under NT, the main service routine.
 int WINAPI WinMainVNC(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLine, int iCmdShow)
 {
+	// make vnc last service to stop
 	SetProcessShutdownParameters(0x100,false);
+	// handle dpi on aero
+	HMODULE hUser32 = LoadLibrary(_T("user32.dll"));
+	typedef BOOL (*SetProcessDPIAwareFunc)();
+	SetProcessDPIAwareFunc setDPIAware = (SetProcessDPIAwareFunc)GetProcAddress(hUser32, "SetProcessDPIAware");
+	if (setDPIAware) setDPIAware();
+	FreeLibrary(hUser32);
+
 #ifdef IPP
 	InitIpp();
 #endif
@@ -269,7 +277,7 @@ int WINAPI WinMainVNC(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLi
 
 		if (strncmp(&szCmdLine[i], winvncSettingshelper, strlen(winvncSettingshelper)) == 0)
 		{
-			Sleep(3000);
+			Sleep(1000);
 			char mycommand[MAX_PATH];
 			i+=strlen(winvncSettingshelper);
 			strcpy( mycommand, &(szCmdLine[i+1]));
@@ -279,7 +287,7 @@ int WINAPI WinMainVNC(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLi
 
 		if (strncmp(&szCmdLine[i], winvncStopserviceHelper, strlen(winvncStopserviceHelper)) == 0)
 		{
-			Sleep(3000);
+			Sleep(1000);
 			Set_stop_service_as_admin();
 			return 0;
 		}
@@ -319,45 +327,45 @@ int WINAPI WinMainVNC(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLi
 
 		if (strncmp(&szCmdLine[i], winvncStartserviceHelper, strlen(winvncStartserviceHelper)) == 0)
 		{
-			Sleep(3000);
+			Sleep(1000);
 			Set_start_service_as_admin();
 			return 0;
 		}
 
 		if (strncmp(&szCmdLine[i], winvncInstallServiceHelper, strlen(winvncInstallServiceHelper)) == 0)
 			{
-				Sleep(3000);
+				Sleep(1000);
 				Set_install_service_as_admin();
 				return 0;
 			}
 		if (strncmp(&szCmdLine[i], winvncUnInstallServiceHelper, strlen(winvncUnInstallServiceHelper)) == 0)
 			{
-				Sleep(3000);
+				Sleep(1000);
 				Set_uninstall_service_as_admin();
 				return 0;
 			}
 		if (strncmp(&szCmdLine[i], winvncSoftwarecadHelper, strlen(winvncSoftwarecadHelper)) == 0)
 			{
-				Sleep(3000);
+				Sleep(1000);
 				Enable_softwareCAD_elevated();
 				return 0;
 			}
 		if (strncmp(&szCmdLine[i], winvncdelSoftwarecadHelper, strlen(winvncdelSoftwarecadHelper)) == 0)
 			{
-				Sleep(3000);
+				Sleep(1000);
 				delete_softwareCAD_elevated();
 				return 0;
 			}
 		if (strncmp(&szCmdLine[i], winvncRebootSafeHelper, strlen(winvncRebootSafeHelper)) == 0)
 			{
-				Sleep(3000);
+				Sleep(1000);
 				Reboot_in_safemode_elevated();
 				return 0;
 			}
 
 		if (strncmp(&szCmdLine[i], winvncSecurityEditorHelper, strlen(winvncSecurityEditorHelper)) == 0)
 			{
-				Sleep(3000);
+				Sleep(1000);
 				winvncSecurityEditorHelper_as_admin();
 				return 0;
 			}

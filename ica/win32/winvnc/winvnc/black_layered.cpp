@@ -26,7 +26,6 @@ HINSTANCE hInst;
 
 int wd=0;
 int ht=0;
-CDPI g_dpi;
 
 HBITMAP
     DoGetBkGndBitmap2(
@@ -195,20 +194,13 @@ create_window(void)
         RECT clientRect;
         clientRect.left = 0;
         clientRect.top = 0;
-        clientRect.right = g_dpi.ScaledScreenWidth();
-        clientRect.bottom = g_dpi.ScaledScreenHeight();
+        clientRect.right = GetSystemMetrics(SM_CXSCREEN);
+        clientRect.bottom = GetSystemMetrics(SM_CYSCREEN);
 
-        UINT x(g_dpi.ScaledScreenVirtualX());
-        UINT y(g_dpi.ScaledScreenVirtualY());
-        UINT cx(g_dpi.ScaledScreenVirtualWidth());
-        UINT cy(g_dpi.ScaledScreenVirtualHeight());
-        if (vncService::IsWinNT()  && vncService::VersionMajor() <= 4)
-        {
-            x = 0;
-            y = 0;
-            cx = g_dpi.ScaledScreenWidth();
-            cy = g_dpi.ScaledScreenHeight();
-        }
+        UINT x(GetSystemMetrics(SM_XVIRTUALSCREEN));
+        UINT y(GetSystemMetrics(SM_YVIRTUALSCREEN));
+        UINT cx(GetSystemMetrics(SM_CXVIRTUALSCREEN));
+        UINT cy(GetSystemMetrics(SM_CYVIRTUALSCREEN));
 
         clientRect.left = x;
         clientRect.top = y;

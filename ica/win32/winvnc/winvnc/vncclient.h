@@ -127,14 +127,14 @@ public:
 	//     AND no changed or copied updates intersect it
 	virtual BOOL UpdateWanted() {
 		omni_mutex_lock l(GetUpdateLock());
-#ifdef _DEBUG
+/*#ifdef _DEBUG
 										char			szText[256];
 										sprintf(szText," UpdateWanted %i %i %i %i\n",!m_incr_rgn.is_empty(),
 											m_incr_rgn.intersect(m_update_tracker.get_changed_region()).is_empty() ,
 											m_incr_rgn.intersect(m_update_tracker.get_cached_region()).is_empty() ,
 											m_incr_rgn.intersect(m_update_tracker.get_copied_region()).is_empty());
 										OutputDebugString(szText);		
-#endif
+#endif*/
 		return  !m_incr_rgn.is_empty() &&
 			m_incr_rgn.intersect(m_update_tracker.get_changed_region()).is_empty() &&
 			m_incr_rgn.intersect(m_update_tracker.get_cached_region()).is_empty() &&
@@ -258,6 +258,7 @@ public:
     void FTDeleteHook(std::string name, bool isDir);
     void FTRenameHook(std::string oldName, std::string newname);
     void SendServerStateUpdate(CARD32 state, CARD32 value);
+	void Record_SendServerStateUpdate(CARD32 state, CARD32 value);
     void SendKeepAlive(bool bForce = false);
     void SendFTProtocolMsg();
 	// adzm - 2010-07 - Extended clipboard
@@ -290,6 +291,11 @@ protected:
 	void TriggerUpdateThread();
 
 	void PollWindow(HWND hwnd);
+
+
+	CARD32 m_state;
+	CARD32 m_value;
+	bool m_want_update_state; 
 
 
 	// Specialised client-side UpdateTracker
@@ -527,6 +533,7 @@ protected:
     std::string m_OrigSourceDirectoryName;
     bool        m_wants_ServerStateUpdates;
     bool        m_bClientHasBlockedInput;
+	bool		m_Support_rfbSetServerInput;
     bool        m_wants_KeepAlive;
 	bool		m_session_supported;
 };

@@ -4,7 +4,6 @@ bool g_DesktopThread_running;
 bool g_update_triggered;
 DWORD WINAPI hookwatch(LPVOID lpParam);
 extern bool stop_hookwatch;
-extern CDPI g_dpi;
 
 
 
@@ -322,11 +321,11 @@ bool vncDesktopThread::handle_display_change(HANDLE& threadHandle, rfb::Region2D
 					if (XRichCursorEnabled) m_server->UpdateCursorShape();
 					/// We lock all buffers,,and also back the client thread update mechanism
 					omni_mutex_lock l(m_desktop->m_update_lock);
-					#ifdef _DEBUG
+					/*#ifdef _DEBUG
 					char			szText[256];
 					sprintf(szText," ++++++ Mutex lock display changes\n");
 					OutputDebugString(szText);		
-			#endif
+			#endif*/
 					// We remove all queue updates from the tracker
 					m_server->Clear_Update_Tracker();
 					// Also clear the current updates
@@ -449,8 +448,6 @@ bool vncDesktopThread::handle_display_change(HANDLE& threadHandle, rfb::Region2D
 							m_desktop->SWinit();
 							m_desktop->GetQuarterSize();
 							GetCursorPos(&CursorPos);
-							CursorPos.x=g_dpi.UnscaleX(CursorPos.x);
-							CursorPos.y=g_dpi.UnscaleY(CursorPos.y);
 							CursorPos.x -= m_desktop->m_ScreenOffsetx;
 							CursorPos.y -= m_desktop->m_ScreenOffsety;
 							m_desktop->m_cursorpos.tl = CursorPos;
@@ -532,11 +529,11 @@ bool vncDesktopThread::handle_display_change(HANDLE& threadHandle, rfb::Region2D
 									m_server->SetNewSWSize(m_desktop->mymonitor[0].Width,m_desktop->mymonitor[0].Height,TRUE); //changed no lock ok
 						}
 
-		#ifdef _DEBUG
+		/*#ifdef _DEBUG
 					//char			szText[256];
 					sprintf(szText," ++++++ Mutex unlock display changes\n");
 					OutputDebugString(szText);		
-			#endif
+			#endif*/
 			}// end lock
 
 
@@ -599,8 +596,6 @@ void vncDesktopThread::do_polling(HANDLE& threadHandle, rfb::Region2D& rgncache,
 		POINT mousepos;
 		if (GetCursorPos(&mousepos))
 		{
-			mousepos.x=g_dpi.UnscaleX(mousepos.x);
-			mousepos.y=g_dpi.UnscaleY(mousepos.y);
 			// Find the window under the mouse
 			HWND hwnd = WindowFromPoint(mousepos);
             // exclude the foreground window (done above) and desktop
@@ -795,11 +790,11 @@ vncDesktopThread::run_undetached(void *arg)
 									// can cause a very long wait time
 								}	
 								
-								#ifdef _DEBUG
+								/*#ifdef _DEBUG
 										char			szText[256];
 										sprintf(szText," cpu2: %d %i %i\n",cpuUsage,MIN_UPDATE_INTERVAL,newtick-oldtick);
 										OutputDebugString(szText);		
-								#endif
+								#endif*/
 								oldtick=newtick;
 								if (m_desktop->VideoBuffer() && m_desktop->m_hookdriver) handle_driver_changes(rgncache,updates);
 								m_desktop->m_update_triggered = FALSE;
@@ -1010,11 +1005,11 @@ vncDesktopThread::run_undetached(void *arg)
 											{
 												m_desktop->m_buffer.GrabRegion(rgncache,false,capture);
 											}
-#ifdef _DEBUG
+/*#ifdef _DEBUG
 										char			szText[256];
 										sprintf(szText," capture %i\n",capture);
 										OutputDebugString(szText);		
-#endif
+#endif*/
 										capture=true;
 											
 										// sf@2002 - v1.1.x - Mouse handling

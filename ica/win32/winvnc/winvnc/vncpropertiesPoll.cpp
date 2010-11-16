@@ -245,10 +245,13 @@ vncPropertiesPoll::Show(BOOL show, BOOL usersettings)
 			}
 
 			// Load in all the settings
+			if (!vncService::RunningAsService())
+			{
 			if (m_fUseRegistry) 
 				Load(TRUE);
 			else
 				LoadFromIniFile();
+			}
 		}
 	}
 	if(iImpersonateResult == ERROR_SUCCESS)RevertToSelf();

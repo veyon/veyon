@@ -80,7 +80,6 @@ bool isDirectoryTransfer(const char *szFileName);
 extern BOOL SPECIAL_SC_PROMPT;
 extern BOOL SPECIAL_SC_EXIT;
 int getinfo(char mytext[1024]);
-extern CDPI g_dpi;
 
 // take a full path & file name, split it, prepend prefix to filename, then merge it back
 static std::string make_temp_filename(const char *szFullPath)
@@ -494,11 +493,11 @@ vncClientUpdateThread::run_undetached(void *arg)
 		// Block waiting for an update to send
 		{
 			omni_mutex_lock l(m_client->GetUpdateLock());
-			#ifdef _DEBUG
+			/*#ifdef _DEBUG
 					char			szText[256];
 					sprintf(szText," ++++++ Mutex lock clientupdatethread\n");
 					OutputDebugString(szText);		
-			#endif
+			#endif*/
 
 			m_client->m_incr_rgn.assign_union(clipregion);
 
@@ -785,11 +784,11 @@ vncClientUpdateThread::run_undetached(void *arg)
 			clipregion.clear();
 		}
 
-			#ifdef _DEBUG
+			/*#ifdef _DEBUG
 //					char			szText[256];
 					sprintf(szText," ++++++ Mutex unlock clientupdatethread\n");
 					OutputDebugString(szText);		
-			#endif
+			#endif*/
 		}
 
 		yield();
@@ -2171,12 +2170,12 @@ vncClientThread::run(void *arg)
         if (need_to_disable_input)
         {
             // have to do this here if we're a service so that we're on the correct desktop
-            m_client->m_encodemgr.m_buffer->m_desktop->SetDisableInput(m_server->LocalInputsDisabled());
+            m_client->m_encodemgr.m_buffer->m_desktop->SetDisableInput();
             need_to_disable_input = false;
         }
 
         // reclaim input block after local C+A+D if user currently has it blocked 
-        m_client->m_encodemgr.m_buffer->m_desktop->block_input(m_client->m_encodemgr.m_buffer->m_desktop->GetBlockInputState());
+        m_client->m_encodemgr.m_buffer->m_desktop->block_input();
 
         if (need_first_keepalive)
         {
@@ -2185,6 +2184,16 @@ vncClientThread::run(void *arg)
             m_client->SendKeepAlive();
             need_first_keepalive = false;
         }
+		if (m_client->m_want_update_state && m_client->m_Support_rfbSetServerInput)
+		{
+			m_client->m_want_update_state=false;
+			m_client->SendServerStateUpdate(m_client->m_state, m_client->m_value);
+#ifdef _DEBUG
+					char			szText[256];
+					sprintf(szText,"SendServerStateUpdate %i %i  \n",m_client->m_state,m_client->m_value);
+					OutputDebugString(szText);		
+#endif
+		}
         if (need_ft_version_msg)
         {
             // send a ft protocol message to client.
@@ -2516,9 +2525,7 @@ vncClientThread::run(void *arg)
 			m_client->client_settings_passed=true;
 			m_client->EnableProtocol();
 
-            // 26 March 2008 jdp 
-            // send notification of remote input state to new client
-            m_client->SendServerStateUpdate(rfbServerRemoteInputsState, m_server->GetDesktopPointer()->GetBlockInputState() ? rfbServerState_Disabled : rfbServerState_Enabled);
+
 			break;
 			
 		case rfbFramebufferUpdateRequest:
@@ -2720,10 +2727,10 @@ vncClientThread::run(void *arg)
 							{							
 								INPUT evt;
 								evt.type = INPUT_MOUSE;
-								int xx=msg.pe.x-g_dpi.ScaledScreenVirtualX()+ (m_client->m_SWOffsetx+m_client->m_ScreenOffsetx);
-								int yy=msg.pe.y-g_dpi.ScaledScreenVirtualY()+ (m_client->m_SWOffsety+m_client->m_ScreenOffsety);
-								evt.mi.dx = (xx * 65535) / (g_dpi.ScaledScreenVirtualWidth()-1);
-								evt.mi.dy = (yy* 65535) / (g_dpi.ScaledScreenVirtualHeight()-1);
+								int xx=msg.pe.x-GetSystemMetrics(SM_XVIRTUALSCREEN)+ (m_client->m_SWOffsetx+m_client->m_ScreenOffsetx);
+								int yy=msg.pe.y-GetSystemMetrics(SM_YVIRTUALSCREEN)+ (m_client->m_SWOffsety+m_client->m_ScreenOffsety);
+								evt.mi.dx = (xx * 65535) / (GetSystemMetrics(SM_CXVIRTUALSCREEN)-1);
+								evt.mi.dy = (yy* 65535) / (GetSystemMetrics(SM_CYVIRTUALSCREEN)-1);
 								evt.mi.dwFlags = flags | MOUSEEVENTF_VIRTUALDESK;
 								evt.mi.dwExtraInfo = 0;
 								evt.mi.mouseData = wheel_movement;
@@ -2733,8 +2740,6 @@ vncClientThread::run(void *arg)
 							else
 							{
 								POINT cursorPos; GetCursorPos(&cursorPos);
-								cursorPos.x=g_dpi.UnscaleX(cursorPos.x);
-								cursorPos.y=g_dpi.UnscaleY(cursorPos.y);
 								ULONG oldSpeed, newSpeed = 10;
 								ULONG mouseInfo[3];
 								if (flags & MOUSEEVENTF_MOVE) 
@@ -2923,30 +2928,38 @@ vncClientThread::run(void *arg)
 				connected = FALSE;
 				break;
 			}
+
+			m_client->m_Support_rfbSetServerInput=true;
 			if (m_client->m_keyboardenabled)
 				{
-					//if (msg.sim.status==1) m_client->m_encodemgr.m_buffer->m_desktop->SetDisableInput(true);
-					//if (msg.sim.status==0) m_client->m_encodemgr.m_buffer->m_desktop->SetDisableInput(false);
 					// added jeff
                 vnclog.Print(LL_INTINFO, VNCLOG("rfbSetServerInput: inputs %s\n"), (msg.sim.status==1) ? "disabled" : "enabled");
-
+		#ifdef _DEBUG
+					char szText[256];
+					sprintf(szText,"rfbSetServerInput  %i %i %i\n",msg.sim.status,m_server->GetDesktopPointer()->GetBlockInputState() , m_client->m_bClientHasBlockedInput);
+					OutputDebugString(szText);		
+		#endif
                 // only allow change if this is the client that originally changed the input state
 				/// fix by PGM (pgmoney)
 				if (!m_server->GetDesktopPointer()->GetBlockInputState() && !m_client->m_bClientHasBlockedInput && msg.sim.status==1) 
 					{ 
-						CARD32 state = rfbServerState_Enabled;
-						m_server->NotifyClients_StateChange(rfbServerRemoteInputsState, state); 
+						CARD32 state = rfbServerState_Enabled; 
 						m_client->m_encodemgr.m_buffer->m_desktop->SetBlockInputState(true); 
 						m_client->m_bClientHasBlockedInput = (true);
 					} 
 				if (m_server->GetDesktopPointer()->GetBlockInputState() && m_client->m_bClientHasBlockedInput && msg.sim.status==0)
 					{
 						CARD32 state = rfbServerState_Disabled; 
-						m_server->NotifyClients_StateChange(rfbServerRemoteInputsState, state);
 						m_client->m_encodemgr.m_buffer->m_desktop->SetBlockInputState(FALSE);
 						m_client->m_bClientHasBlockedInput = (FALSE); 
 					} 
 
+				if (!m_server->GetDesktopPointer()->GetBlockInputState() && !m_client->m_bClientHasBlockedInput && msg.sim.status==0)
+					{
+						CARD32 state = rfbServerState_Disabled; 
+						m_client->m_encodemgr.m_buffer->m_desktop->SetBlockInputState(FALSE);
+						m_client->m_bClientHasBlockedInput = (FALSE);
+					}
 				}
 			break;
 
@@ -4122,6 +4135,7 @@ vncClient::vncClient() : Sendinput("USER32", "SendInput"), m_clipboard(Clipboard
 #endif
     m_wants_ServerStateUpdates =  false;
     m_bClientHasBlockedInput = false;
+	m_Support_rfbSetServerInput = false;
     m_wants_KeepAlive = false;
 	m_session_supported = false;
     m_fFileSessionOpen = false;
@@ -4136,6 +4150,7 @@ vncClient::vncClient() : Sendinput("USER32", "SendInput"), m_clipboard(Clipboard
 	m_szRepeaterID = NULL; // as in, not using
 	m_szHost = NULL;
 	m_hostPort = 0;
+	m_want_update_state=false;
 }
 
 vncClient::~vncClient()
@@ -4313,8 +4328,6 @@ vncClient::UpdateMouse()
 	if (m_use_PointerPos && !m_cursor_pos_changed) {
 		POINT cursorPos;
 		GetCursorPos(&cursorPos);
-		cursorPos.x=g_dpi.UnscaleX(cursorPos.x);
-		cursorPos.y=g_dpi.UnscaleY(cursorPos.y);
 		cursorPos.x=cursorPos.x-(m_ScreenOffsetx+m_SWOffsetx);
 		cursorPos.y=cursorPos.y-(m_ScreenOffsety+m_SWOffsety);
 		//vnclog.Print(LL_INTINFO, VNCLOG("UpdateMouse m_cursor_pos(%d, %d), new(%d, %d)\n"), 
@@ -5848,6 +5861,20 @@ void vncClient::UndoFTUserImpersonation()
 }
 
 // 10 April 2008 jdp paquette@atnetsend.net
+// This can crash as we can not send middle in an update...
+
+void vncClient::Record_SendServerStateUpdate(CARD32 state, CARD32 value)
+{
+    m_state=state;
+	m_value=value;
+	m_want_update_state=true;
+#ifdef _DEBUG
+					char			szText[256];
+					sprintf(szText,"Record_SendServerStateUpdate %i %i  \n",m_state,m_value);
+					OutputDebugString(szText);		
+#endif
+}
+
 void vncClient::SendServerStateUpdate(CARD32 state, CARD32 value)
 {
     if (m_wants_ServerStateUpdates && m_socket)
@@ -5862,6 +5889,7 @@ void vncClient::SendServerStateUpdate(CARD32 state, CARD32 value)
 		m_socket->SendExact((char*)&rsmsg, sz_rfbServerStateMsg, rfbServerState);
     }
 }
+
 void vncClient::SendKeepAlive(bool bForce)
 {
     if (m_wants_KeepAlive && m_socket)
