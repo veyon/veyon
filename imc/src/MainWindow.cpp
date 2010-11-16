@@ -31,7 +31,9 @@
 #include <QtCore/QDir>
 #include <QtCore/QProcess>
 #include <QtCore/QTimer>
+#include <QtGui/QCloseEvent>
 #include <QtGui/QFileDialog>
+#include <QtGui/QMessageBox>
 
 #include "Configuration/XmlStore.h"
 #include "Configuration/UiMapping.h"
@@ -298,6 +300,26 @@ void MainWindow::saveSettingsToFile()
 void MainWindow::launchAccessKeyAssistant()
 {
 	AccessKeyAssistant().exec();
+}
+
+
+
+
+void MainWindow::closeEvent( QCloseEvent *closeEvent )
+{
+	if( m_configChanged &&
+			QMessageBox::question( this, tr( "Unsaved settings" ),
+									tr( "There are unsaved settings. "
+										"Quit anyway?" ),
+									QMessageBox::Yes | QMessageBox::No ) !=
+															QMessageBox::Yes )
+	{
+		closeEvent->ignore();
+		return;
+	}
+
+	closeEvent->accept();
+	QMainWindow::closeEvent( closeEvent );
 }
 
 

@@ -60,6 +60,8 @@ private slots:
 
 
 private:
+	virtual void closeEvent( QCloseEvent *closeEvent );
+
 	bool isServiceRunning();
 
 	Ui::MainWindow *ui;
