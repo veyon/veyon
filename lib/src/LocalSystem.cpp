@@ -929,19 +929,15 @@ QString Path::shrink( QString path )
 		// replace
 		path += QDir::separator();
 	}
-	path = QDir::fromNativeSeparators( path );
+	path = QDTNS( path );
 #ifdef ITALC_BUILD_WIN32
 	const Qt::CaseSensitivity cs = Qt::CaseInsensitive;
-	const QString envVar = "%%%1%%\\";
+	const QString envVar = "%%1%\\";
 #else
 	const Qt::CaseSensitivity cs = Qt::CaseSensitive;
 	const QString envVar = "$%1/";
 #endif
-	if( path.startsWith( QDir::homePath(), cs ) )
-	{
-		path.replace( QDir::homePath(), envVar.arg( "HOME" ) );
-	}
-	else if( path.startsWith( personalConfigDataPath(), cs ) )
+	if( path.startsWith( personalConfigDataPath(), cs ) )
 	{
 		path.replace( personalConfigDataPath(), envVar.arg( "APPDATA" ) );
 	}
@@ -949,9 +945,13 @@ QString Path::shrink( QString path )
 	{
 		path.replace( systemConfigDataPath(), envVar.arg( "GLOBALAPPDATA" ) );
 	}
-	else if( path.startsWith( QDir::tempPath(), cs ) )
+	else if( path.startsWith( QDTNS( QDir::homePath() ), cs ) )
 	{
-		path.replace( QDir::tempPath(), envVar.arg( "TEMP" ) );
+		path.replace( QDTNS( QDir::homePath() ), envVar.arg( "HOME" ) );
+	}
+	else if( path.startsWith( QDTNS( QDir::tempPath() ), cs ) )
+	{
+		path.replace( QDTNS( QDir::tempPath() ), envVar.arg( "TEMP" ) );
 	}
 
 	return QDTNS( path.replace( QString( "%1%1" ).
