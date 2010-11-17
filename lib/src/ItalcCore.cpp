@@ -24,6 +24,10 @@
 
 #include <italcconfig.h>
 
+#ifdef ITALC_BUILD_WIN32
+#include <windows.h>
+#endif
+
 #include <QtCore/QCoreApplication>
 #include <QtCore/QDir>
 #include <QtCore/QFileInfo>
@@ -97,6 +101,22 @@ bool ItalcCore::initAuthentication()
 
 
 
+static void killWisPtis()
+{
+#ifdef ITALC_BUILD_WIN32
+	int pid;
+	while( ( pid = LocalSystem::Process::findProcessId( "wisptis.exe" ) ) >= 0 )
+	{
+		HANDLE hProcess = OpenProcess( PROCESS_QUERY_INFORMATION |
+										PROCESS_TERMINATE |
+										PROCESS_VM_READ,
+										false, pid );
+		TerminateProcess( hProcess, 0 );
+		CloseHandle( hProcess );
+	}
+#endif
+}
+
 
 bool ItalcCore::init()
 {
@@ -104,6 +124,8 @@ bool ItalcCore::init()
 	{
 		return false;
 	}
+
+	killWisPtis();
 
 	lzo_init();
 
