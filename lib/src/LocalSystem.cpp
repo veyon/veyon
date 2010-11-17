@@ -545,13 +545,13 @@ static DWORD findProcessId_WTS( const QString &processName, DWORD sessionId,
 static DWORD findProcessId_TH32( const QString &processName, DWORD sessionId,
 															User *processOwner )
 {
-	DWORD pid = 0;
+	DWORD pid = -1;
 	PROCESSENTRY32 procEntry;
 
 	HANDLE hSnap = CreateToolhelp32Snapshot( TH32CS_SNAPPROCESS, 0 );
 	if( hSnap == INVALID_HANDLE_VALUE )
 	{
-		return 0;
+		return -1;
 	}
 
 	procEntry.dwSize = sizeof( PROCESSENTRY32 );
@@ -559,7 +559,7 @@ static DWORD findProcessId_TH32( const QString &processName, DWORD sessionId,
 	if( !Process32First( hSnap, &procEntry ) )
 	{
 		CloseHandle( hSnap );
-		return 0;
+		return -1;
 	}
 
 	do
@@ -605,7 +605,7 @@ int Process::findProcessId( const QString &processName,
 				<< processOwner
 			<< ")";
 
-	int pid = 0;
+	int pid = -1;
 #ifdef ITALC_BUILD_WIN32
 	pid = findProcessId_WTS( processName, sessionId, processOwner );
 	ilogf( Debug, "findProcessId_WTS(): %d", pid );
