@@ -29,7 +29,6 @@
 #include "QtUserEvents.h"
 #include "ProgressWidget.h"
 #include "SystemKeyTrapper.h"
-#include "QtFeatures.h"
 
 #include <QtGui/QApplication>
 #include <QtGui/QDesktopWidget>
@@ -242,11 +241,10 @@ void VncView::keyEventHandler( QKeyEvent * _ke )
 {
 	bool pressed = _ke->type() == QEvent::KeyPress;
 
-#ifdef NATIVE_VIRTUAL_KEY_SUPPORT
-	// the Trolls seem to love us! With Qt 4.2 they introduced this cute
-	// function returning the key-code of the key-event (platform-dependent)
-	// so when operating under Linux/X11, key-codes are equal to the ones
-	// used by VNC-protocol
+#ifdef ITALC_BUILD_LINUX
+	// Starting with Qt 4.2 there's a nice function returning the key-code
+	// of the key-event (platform-dependent) so when operating under Linux/X11,
+	// key-codes are equal to the ones used by RFB protocol
 	int key = _ke->nativeVirtualKey();
 
 	// we do not handle Key_Backtab separately as the Shift-modifier

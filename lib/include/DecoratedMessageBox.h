@@ -27,7 +27,6 @@
 
 #include <QtGui/QDialog>
 #include <QtGui/QPixmap>
-#include "QtFeatures.h"
 
 class DecoratedMessageBox : public QDialog
 {
