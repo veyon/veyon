@@ -517,6 +517,11 @@ clientInput(void *data)
 	struct timeval tv;
 	int n;
 
+	if (cl->sock == -1) {
+	  /* Client has disconnected. */
+            break;
+        }
+
 	FD_ZERO(&rfds);
 	FD_SET(cl->sock, &rfds);
 	FD_ZERO(&efds);
@@ -546,11 +551,6 @@ clientInput(void *data)
 
         if (FD_ISSET(cl->sock, &rfds) || FD_ISSET(cl->sock, &efds))
             rfbProcessClientMessage(cl);
-
-        if (cl->sock == -1) {
-            /* Client has disconnected. */
-            break;
-        }
     }
 
     /* Get rid of the output thread. */
