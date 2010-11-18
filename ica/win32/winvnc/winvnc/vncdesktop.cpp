@@ -1510,54 +1510,82 @@ vncDesktop::CaptureMouse(BYTE *scrBuff, UINT scrBuffSize)
 		CursorPos.x -= m_ScreenOffsetx;
 		CursorPos.y -= m_ScreenOffsety;
 		///
+		
+		if (CursorPos.x<=m_bmrect.tl.x || CursorPos.y<=m_bmrect.tl.y || CursorPos.x>=m_bmrect.br.x || CursorPos.y>=m_bmrect.br.y) 
+		{
+			if ((m_cursorpos.tl.x<=m_bmrect.tl.x)||
+				(m_cursorpos.tl.y<=m_bmrect.tl.y)||
+				(m_cursorpos.br.x>=m_bmrect.br.x)||
+				(m_cursorpos.br.y>=m_bmrect.br.y))
+			{
+				m_cursorpos.tl.x=0;
+				m_cursorpos.tl.y=0;
+				m_cursorpos.br.x=16;
+				m_cursorpos.br.y=16;
+			}
+			//Error, cursor isn't on the visbale display.
+			if (IconInfo.hbmMask != NULL)
+					DeleteObject(IconInfo.hbmMask);
+				if (IconInfo.hbmColor != NULL)
+					DeleteObject(IconInfo.hbmColor);
+			return;
+		}
+
+		// Save the bounding rectangle
+		m_cursorpos.tl = CursorPos;
+		m_cursorpos.br = rfb::Point(GetSystemMetrics(SM_CXCURSOR),
+		GetSystemMetrics(SM_CYCURSOR)).translate(CursorPos);
+		// Clip the bounding rect to the screen
+		// Copy the mouse cursor into the screen buffer, if any of it is visible
+		m_cursorpos = m_cursorpos.intersect(m_bmrect);
+
+		if (IconInfo.hbmMask && IconInfo.hbmColor)
+			{
+					HBITMAP oldbitmap;
+					if ((oldbitmap = (HBITMAP) SelectObject(m_hmemdc, m_membitmap)) == NULL)
+							return;
+					HDC mdc1, mdc2;
+					mdc1 = CreateCompatibleDC(m_hmemdc);
+					mdc2 = CreateCompatibleDC(m_hmemdc);
+					HBITMAP oldbmp1 = (HBITMAP)SelectObject(mdc1, IconInfo.hbmMask);
+					HBITMAP oldbmp2 = (HBITMAP)SelectObject(mdc2, IconInfo.hbmColor);
+					BitBlt(m_hmemdc,m_cursorpos.tl.x, m_cursorpos.tl.y,m_cursorpos.br.x-m_cursorpos.tl.x, m_cursorpos.br.y-m_cursorpos.tl.y, mdc1, 0, 0, SRCAND);
+					BitBlt(m_hmemdc, m_cursorpos.tl.x, m_cursorpos.tl.y, m_cursorpos.br.x-m_cursorpos.tl.x, m_cursorpos.br.y-m_cursorpos.tl.y, mdc2, 0, 0, SRCINVERT);
+
+					SelectObject(m_hmemdc, oldbitmap);
+					SelectObject(mdc1, oldbmp1);
+					SelectObject(mdc2, oldbmp2);
+			}
+		else
+			{
+
+				// Select the memory bitmap into the memory DC
+				HBITMAP oldbitmap;
+				if ((oldbitmap = (HBITMAP) SelectObject(m_hmemdc, m_membitmap)) == NULL)
+					return;
+
+				// Draw the cursor
+				DrawIconEx(
+					m_hmemdc,									// handle to device context 
+					CursorPos.x, CursorPos.y,
+					m_hcursor,									// handle to icon to draw 
+					0,0,										// width of the icon 
+					0,											// index of frame in animated cursor 
+					NULL,										// handle to background brush 
+					DI_NORMAL | DI_COMPAT						// icon-drawing flags 
+					);
+
+				// Select the old bitmap back into the memory DC
+				SelectObject(m_hmemdc, oldbitmap);
+		}
+
 		if (IconInfo.hbmMask != NULL)
 			DeleteObject(IconInfo.hbmMask);
 		if (IconInfo.hbmColor != NULL)
 			DeleteObject(IconInfo.hbmColor);
 	}
-	if (CursorPos.x<=m_bmrect.tl.x || CursorPos.y<=m_bmrect.tl.y || CursorPos.x>=m_bmrect.br.x || CursorPos.y>=m_bmrect.br.y) 
-	{
-		if ((m_cursorpos.tl.x<=m_bmrect.tl.x)||
-			(m_cursorpos.tl.y<=m_bmrect.tl.y)||
-			(m_cursorpos.br.x>=m_bmrect.br.x)||
-			(m_cursorpos.br.y>=m_bmrect.br.y))
-		{
-		m_cursorpos.tl.x=0;
-		m_cursorpos.tl.y=0;
-		m_cursorpos.br.x=16;
-		m_cursorpos.br.y=16;
-		}
-		//Error, cursor isn't on the visbale display.
-		return;
-	}
 
-	// Select the memory bitmap into the memory DC
-	HBITMAP oldbitmap;
-	if ((oldbitmap = (HBITMAP) SelectObject(m_hmemdc, m_membitmap)) == NULL)
-		return;
 
-	// Draw the cursor
-	DrawIconEx(
-		m_hmemdc,									// handle to device context 
-		CursorPos.x, CursorPos.y,
-		m_hcursor,									// handle to icon to draw 
-		0,0,										// width of the icon 
-		0,											// index of frame in animated cursor 
-		NULL,										// handle to background brush 
-		DI_NORMAL | DI_COMPAT						// icon-drawing flags 
-		);
-
-	// Select the old bitmap back into the memory DC
-	SelectObject(m_hmemdc, oldbitmap);
-
-	// Save the bounding rectangle
-	m_cursorpos.tl = CursorPos;
-	m_cursorpos.br = rfb::Point(GetSystemMetrics(SM_CXCURSOR),
-		GetSystemMetrics(SM_CYCURSOR)).translate(CursorPos);
-
-	// Clip the bounding rect to the screen
-	// Copy the mouse cursor into the screen buffer, if any of it is visible
-	m_cursorpos = m_cursorpos.intersect(m_bmrect);
 	if (!m_cursorpos.is_empty()) {
 		CopyToBuffer(m_cursorpos, scrBuff, scrBuffSize);
 	}

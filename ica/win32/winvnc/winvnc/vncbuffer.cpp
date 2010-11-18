@@ -731,7 +731,7 @@ void vncBuffer::ScaleRect(rfb::Rect &rect)
 	// Pixels Blending (takes the "medium" pixel of each m_Scale*m_nScale square)
 	// This TrueColor Pixel blending routine comes from the Harakan's WinVNC with Server Side Scaling
 	// Extension. It replaces my own buggy Blending function that given *ugly* results.
-	if (m_scrinfo.format.trueColour)
+	if (m_scrinfo.format.trueColour && m_nScale!=1)
 	{
 		unsigned long lRed;
 		unsigned long lGreen;

@@ -40,6 +40,7 @@ static int ippstaticinitcalled=0;
 DWORD				dwFeatures;
 
 
+#ifndef _X64
 bool IsCPUID()
 {
 	__try 
@@ -131,6 +132,7 @@ notamd:
 	return true;
 }
 
+
 static
 IppCpuType
 AutoDetect(void)
@@ -142,14 +144,17 @@ if ((dwFeatures & SUPPORT_SSE) == SUPPORT_SSE) cputype=ippCpuPIII;
 if ((dwFeatures & SUPPORT_SSE2) == SUPPORT_SSE2) cputype=ippCpuP4;
 return cputype;
 }
+#endif
 
 void InitIpp()
 {
 if(!ippstaticinitcalled)
 	{
 		IppCpuType cpu=ippCoreGetCpuType();
-		if(cpu==ippCpuUnknown) {cpu=AutoDetect();  ippStaticInitCpu(cpu);}
-		else 
+#ifndef _X64
+		if(cpu==ippCpuUnknown) {cpu=AutoDetect();  ippInitCpu(cpu);}
+		else
+#endif
 		ippStaticInitBest();
 		ippstaticinitcalled=1;
 	}

@@ -1460,6 +1460,7 @@ vncEncodeTight::SendJpegRect(BYTE *dst, int w, int h, int quality)
 	rowPointer[0] = (JSAMPROW)srcBuf;
 
 	cinfo.err = jpeg_std_error(&jerr);
+	int size=sizeof(cinfo);
 	jpeg_create_compress(&cinfo);
 
 	cinfo.image_width = w;

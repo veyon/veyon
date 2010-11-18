@@ -286,6 +286,7 @@ vncEncodeZlibHex::EncodeHextiles##bpp(BYTE *source, BYTE *dest,				\
     int encodedBytes, compressedSize;										\
 	CARD16* card16ptr;														\
 	CARD##bpp bg, fg, newBg, newFg;											\
+	bg=0;fg=0;newBg=0;newFg=0;												\
 	BOOL mono, solid;														\
 	BOOL validBg = FALSE;													\
 	BOOL validFg = FALSE;													\
