@@ -43,6 +43,7 @@
 // project-headers
 #include "DsaKey.h"
 #include "LocalSystem.h"
+#include "Logger.h"
 
 
 // OpenSSL-headers
@@ -376,7 +377,7 @@ bool DsaKey::verifySignature( const QByteArray & _data,
 {
 	if( !isValid() )
 	{
-		qCritical( "DsaKey::verifySignature( ... ): invalid key" );
+		qCritical( "DsaKey::verifySignature(): invalid key" );
 		return false;
 	}
 
@@ -387,8 +388,7 @@ bool DsaKey::verifySignature( const QByteArray & _data,
 	char * ktype = (char*) buffer_get_string( &b, NULL );
 	if( strcmp( "italc-dss", ktype ) != 0 && strcmp( "ssh-dss", ktype ) != 0)
 	{
-		qCritical( "DsaKey::verifySignature( ... ): cannot handle "
-							"type %s", ktype );
+		qCritical( "DsaKey::verifySignature(): cannot handle type %s", ktype );
 		buffer_free( &b );
 		delete[] ktype;
 		return false;
@@ -402,8 +402,7 @@ bool DsaKey::verifySignature( const QByteArray & _data,
 	buffer_free( &b );
 	if( rlen != 0 )
 	{
-		qWarning( "DsaKey::verifySignature( ... ): remaining bytes in "
-							"signature %d", rlen );
+		qWarning( "DsaKey::verifySignature(): remaining bytes in signature %d", rlen );
 		delete[] sigblob;
 		return false;
 	}
@@ -419,20 +418,19 @@ bool DsaKey::verifySignature( const QByteArray & _data,
 	// parse signature
 	if( sig == NULL )
 	{
-		qCritical( "DsaKey::verifySignature( ... ): DSA_SIG_new "
-								"failed" );
+		qCritical( "DsaKey::verifySignature(): DSA_SIG_new failed" );
 		return false;
 	}
 
 	if( ( sig->r = BN_new() ) == NULL )
 	{
-		qCritical( "DsaKey::verifySignature( ... ): BN_new failed" );
+		qCritical( "DsaKey::verifySignature(): BN_new failed" );
 		return false;
 	}
 
 	if( ( sig->s = BN_new() ) == NULL )
 	{
-		qCritical( "DsaKey::verifySignature( ... ): BN_new failed" );
+		qCritical( "DsaKey::verifySignature(): BN_new failed" );
 		return false;
 	}
 
@@ -497,15 +495,13 @@ PrivateDSAKey::PrivateDSAKey( const unsigned int _bits) :
 									NULL );
 	if( m_dsa == NULL)
 	{
-		qCritical( "PrivateDSAKey::PrivateDSAKey( ... ): "
-					"DSA_generate_parameters failed" );
+		qCritical( "PrivateDSAKey::PrivateDSAKey(): DSA_generate_parameters failed" );
 		return;
 	}
 
 	if( !DSA_generate_key( m_dsa ) )
 	{
-		qCritical( "PrivateDSAKey::PrivateDSAKey( ... ): "
-						"DSA_generate_key failed" );
+		qCritical( "PrivateDSAKey::PrivateDSAKey(): DSA_generate_key failed" );
 		m_dsa = NULL;
 		return;
 	}
@@ -518,7 +514,7 @@ QByteArray PrivateDSAKey::sign( const QByteArray & _data ) const
 {
 	if( !isValid() )
 	{
-		qCritical( "PrivateDSAKey::sign( ... ): invalid key" );
+		qCritical( "PrivateDSAKey::sign(): invalid key" );
 		return QByteArray();
 	}
 
@@ -536,7 +532,7 @@ QByteArray PrivateDSAKey::sign( const QByteArray & _data ) const
 
 	if( sig == NULL )
 	{
-		qCritical( "PrivateDSAKey::sign( ... ): DSA_do_sign() failed" );
+		qCritical( "PrivateDSAKey::sign(): DSA_do_sign() failed" );
 		return QByteArray();
 	}
 
@@ -571,7 +567,7 @@ QByteArray PrivateDSAKey::sign( const QByteArray & _data ) const
 
 
 
-void PrivateDSAKey::load( const QString & _file, QString _passphrase )
+bool PrivateDSAKey::load( const QString & _file, QString _passphrase )
 {
 	if( isValid() )
 	{
@@ -584,9 +580,8 @@ void PrivateDSAKey::load( const QString & _file, QString _passphrase )
 	QFile infile( _file );
 	if( !QFileInfo( _file ).exists() || !infile.open( QFile::ReadOnly ) )
 	{
-		qCritical( "PrivateDSAKey::load( ... ): could not open file %s",
-						_file.toAscii().constData() );
-		return;
+		qCritical() << "PrivateDSAKey::load(): could not open file" << _file;
+		return false;
 	}
 	FILE * fp = fdopen( infile.handle(), "r" );
 /*#else
@@ -594,8 +589,8 @@ void PrivateDSAKey::load( const QString & _file, QString _passphrase )
 #endif*/
 	if( fp == NULL )
 	{
-		qCritical( "PrivateDSAKey::load( ... ): fdopen failed" );
-		return;
+		qCritical( "PrivateDSAKey::load(): fdopen failed" );
+		return false;
 	}
 
 	EVP_PKEY * pk = PEM_read_PrivateKey( fp, NULL, NULL,
@@ -603,6 +598,8 @@ void PrivateDSAKey::load( const QString & _file, QString _passphrase )
 	if( pk == NULL )
 	{
 		qCritical( "PEM_read_PrivateKey failed" );
+		fclose( fp );
+		return false;
 	}
 	else if( pk->type == EVP_PKEY_DSA )
 	{
@@ -612,18 +609,19 @@ void PrivateDSAKey::load( const QString & _file, QString _passphrase )
 	{
 		qCritical( "PEM_read_PrivateKey: mismatch or "
 			    "unknown EVP_PKEY save_type %d", pk->save_type );
+		EVP_PKEY_free( pk );
+		return false;
 	}
 	fclose( fp );
-	if( pk != NULL )
-	{
-		EVP_PKEY_free( pk );
-	}
+	EVP_PKEY_free( pk );
+
+	return true;
 }
 
 
 
 
-void PrivateDSAKey::save( const QString & _file, QString _passphrase ) const
+bool PrivateDSAKey::save( const QString & _file, QString _passphrase ) const
 {
 	if( _passphrase.length() > 0 && _passphrase.length() <= 4 )
 	{
@@ -639,19 +637,19 @@ void PrivateDSAKey::save( const QString & _file, QString _passphrase ) const
 	QFile outfile( _file );
 	if( outfile.exists() )
 	{
+		outfile.setPermissions( QFile::WriteOwner );
 		if( !outfile.remove() )
 		{
-			qWarning( "could not remove %s",
-						_file.toAscii().constData() );
+			qCritical() << "PrivateDSAKey::save(): could not remove existing" << _file;
+			return false;
 		}
 	}
 	// QFile::handle() of Qt >= 4.3.0 returns -1 under win32
 //#if QT_VERSION < 0x040300 || !BUILD_WIN32
 	if( !outfile.open( QFile::WriteOnly | QFile::Truncate ) )
 	{
-		qCritical( "could not save private key in %s",
-						_file.toAscii().constData() );
-		return;
+		qCritical() << "PrivateDSAKey::save(): could not save private key in" << _file;
+		return false;
 	}
 	FILE * fp = fdopen( outfile.handle(), "w" );
 /*#else
@@ -659,8 +657,8 @@ void PrivateDSAKey::save( const QString & _file, QString _passphrase ) const
 #endif*/
 	if( fp == NULL )
 	{
-		qCritical( "fdopen failed." );
-		return;
+		qCritical( "PrivateDSAKey::save(): fdopen failed" );
+		return false;
 	}
 
 	const EVP_CIPHER * cipher = _passphrase.isEmpty() ?
@@ -671,20 +669,21 @@ void PrivateDSAKey::save( const QString & _file, QString _passphrase ) const
 					_passphrase.length(), NULL, NULL );
 	fclose( fp );
 	outfile.close();
-	outfile.setPermissions( QFile::ReadOwner | QFile::ReadUser |
-							QFile::ReadGroup );
+	outfile.setPermissions( QFile::ReadOwner | QFile::ReadUser | QFile::ReadGroup );
+
+	return true;
 }
 
 
 
 
 
-DSA * createNewDSA( void )
+DSA * createNewDSA()
 {
 	DSA * dsa = DSA_new();
 	if( dsa == NULL )
 	{
-		qCritical( "createNewDSA: DSA_new failed" );
+		qCritical( "createNewDSA(): DSA_new failed" );
 		return NULL;
 	}
 	if( ( dsa->p = BN_new() ) == NULL ||
@@ -692,7 +691,7 @@ DSA * createNewDSA( void )
 		( dsa->g = BN_new() ) == NULL ||
 		( dsa->pub_key = BN_new() ) == NULL )
 	{
-		qCritical( "createNewDSA: BN_new failed" );
+		qCritical( "createNewDSA(): BN_new failed" );
 		return NULL;
 	}
 	return dsa;
@@ -720,7 +719,7 @@ DSA * keyFromBlob( const QByteArray & _ba )
 	}
 	else
 	{
-		qCritical( "key_from_blob: cannot handle type %s", ktype );
+		qCritical( "keyFromBlob: cannot handle type %s", ktype );
 		return NULL;
 	}
 	//int rlen = buffer_len( &b );
@@ -739,23 +738,22 @@ PublicDSAKey::PublicDSAKey( const PrivateDSAKey & _pk ) :
 {
 	if( !_pk.isValid() )
 	{
-		qCritical( "PublicDSAKey::PublicDSAKey( ... ): "
-				"invalid private key to derive from!" );
+		qCritical( "PublicDSAKey::PublicDSAKey(): invalid private key to derive from!" );
 	}
 	m_dsa = createNewDSA();
 	if( m_dsa != NULL )
 	{
-		BN_copy( m_dsa->p, _pk.dsaData()->p);
-		BN_copy( m_dsa->q, _pk.dsaData()->q);
-		BN_copy( m_dsa->g, _pk.dsaData()->g);
-		BN_copy( m_dsa->pub_key, _pk.dsaData()->pub_key);
+		BN_copy( m_dsa->p, _pk.dsaData()->p );
+		BN_copy( m_dsa->q, _pk.dsaData()->q );
+		BN_copy( m_dsa->g, _pk.dsaData()->g );
+		BN_copy( m_dsa->pub_key, _pk.dsaData()->pub_key );
 	}
 }
 
 
 
 
-void PublicDSAKey::load( const QString & _file, QString )
+bool PublicDSAKey::load( const QString & _file, QString )
 {
 	if( isValid() )
 	{
@@ -766,9 +764,8 @@ void PublicDSAKey::load( const QString & _file, QString )
 	QFile infile( _file );
 	if( !QFileInfo( _file ).exists() || !infile.open( QFile::ReadOnly ) )
 	{
-		qCritical( "could not open file %s",
-						_file.toAscii().constData() );
-		return;
+		qCritical() << "PublicDSAKey::load(): could not open file" << _file;
+		return false;
 	}
 
 	QTextStream ts( &infile );
@@ -781,34 +778,34 @@ void PublicDSAKey::load( const QString & _file, QString )
 		{
 			if( line.section( ' ', 0, 0 ) != "italc-dss" && line.section( ' ', 0, 0 ) != "ssh-dss")
 			{
-				qCritical( "PublicDSAKey::load(): "
-							"missing keytype" );
+				qCritical( "PublicDSAKey::load(): missing keytype" );
 				continue;
 			}
 			m_dsa = keyFromBlob( QByteArray::fromBase64(
 					line.section( ' ', 1, 1 ).toAscii() ) );
 			if( m_dsa == NULL )
 			{
-				qCritical( "PublicDSAKey::load(): "
-						"keyFromBlob failed" );
+				qCritical( "PublicDSAKey::load(): keyFromBlob failed" );
 				continue;
 			}
-			return;
+			return true;
 		}
 	}
 
-	qCritical( "error while reading public key!" );
+	qCritical( "PublicDSAKey::load(): error while reading public key!" );
+
+	return false;
 }
 
 
 
 
-void PublicDSAKey::save( const QString & _file, QString ) const
+bool PublicDSAKey::save( const QString & _file, QString ) const
 {
 	if( !isValid() )
 	{
-		qCritical( "PublicDSAKey::save(...): key not valid!" );
-		return;
+		qCritical( "PublicDSAKey::save(): key not valid!" );
+		return false;
 	}
 
 	if( _file.contains( QDir::separator() ) )
@@ -819,13 +816,17 @@ void PublicDSAKey::save( const QString & _file, QString ) const
 	QFile outfile( _file );
 	if( outfile.exists() )
 	{
-		outfile.remove();
+		outfile.setPermissions( QFile::WriteOwner );
+		if( !outfile.remove() )
+		{
+			qCritical() << "PublicDSAKey::save(): could remove existing file" << _file;
+			return false;
+		}
 	}
 	if( !outfile.open( QFile::WriteOnly | QFile::Truncate ) )
 	{
-		qCritical( "could not save public key in %s",
-						_file.toAscii().constData() );
-		return;
+		qCritical() << "PublicDSAKey::save(): could not save public key in" << _file;
+		return false;
 	}
 
 	Buffer b;
@@ -838,15 +839,15 @@ void PublicDSAKey::save( const QString & _file, QString ) const
 
 	char * p = (char *) buffer_ptr( &b );
 	const int len = buffer_len( &b );
-	QTextStream ts( &outfile );
-	ts << QString( "italc-dss %1" ).arg( QString( QByteArray( p, len ).
-								toBase64() ) );
+	QTextStream( &outfile ) << QString( "italc-dss %1" ).
+							arg( QString( QByteArray( p, len ).toBase64() ) );
 	memset( p, 0, len );
 	buffer_free( &b );
-	ts.flush();
 	outfile.close();
 	outfile.setPermissions( QFile::ReadOwner | QFile::ReadUser |
-				QFile::ReadGroup | QFile::ReadOther );
+							QFile::ReadGroup | QFile::ReadOther );
+
+	return true;
 }
 
 

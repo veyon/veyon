@@ -83,10 +83,10 @@ public:
 		return ( m_dsa != NULL );
 	}
 
-	virtual void load( const QString & _file,
-				QString _passphrase = QString::null ) = 0;
-	virtual void save( const QString & _file,
-				QString _passphrase = QString::null ) const = 0;
+	virtual bool load( const QString & _file,
+					QString _passphrase = QString::null ) = 0;
+	virtual bool save( const QString & _file,
+					QString _passphrase = QString::null ) const = 0;
 
 	bool verifySignature( const QByteArray & _data,
 					const QByteArray & _signature ) const;
@@ -125,10 +125,10 @@ public:
 	// returns signature for data
 	QByteArray sign( const QByteArray & _data ) const;
 
-	virtual void load( const QString & _file,
-					QString _passphrase = QString::null );
-	virtual void save( const QString & _file,
-				QString _passphrase = QString::null ) const;
+	virtual bool load( const QString & _file,
+						QString _passphrase = QString::null );
+	virtual bool save( const QString & _file,
+						QString _passphrase = QString::null ) const;
 
 } ;
 
@@ -148,10 +148,10 @@ public:
 	// constructor - derive public key from private key
 	explicit PublicDSAKey( const PrivateDSAKey & _pkey );
 
-	virtual void load( const QString & _file,
-					QString _passphrase = QString::null );
-	virtual void save( const QString & _file,
-				QString _passphrase = QString::null ) const;
+	virtual bool load( const QString & _file,
+						QString _passphrase = QString::null );
+	virtual bool save( const QString & _file,
+						QString _passphrase = QString::null ) const;
 
 } ;
 
