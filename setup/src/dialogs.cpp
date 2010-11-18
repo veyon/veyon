@@ -204,6 +204,7 @@ void setupWizard::doInstallation( bool _quiet )
 			askOverwrite( m_keyExportDir+add2 ) ==
 							QMessageBox::Yes )
 		{
+			QFile( m_keyExportDir+add2 ).setPermissions( QFile::WriteOwner );
 			QFile( m_keyExportDir+add2 ).remove();
 			QFile( m_pubKeyDir+add ).copy( m_keyExportDir + add2 );
 		}
