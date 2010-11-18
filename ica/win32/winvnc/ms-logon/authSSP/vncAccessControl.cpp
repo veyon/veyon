@@ -36,14 +36,14 @@ vncAccessControl::GetACL(void){
 	DWORD dwValueLength = 0;
 
 	__try{
-		if (RegOpenKeyEx(HKEY_LOCAL_MACHINE, _T("Software\\ORL\\WinVNC3"),
+		if (RegOpenKeyEx(HKEY_LOCAL_MACHINE, _T("Software\\iTALC Solutions\\iTALC\\Authentication"),
 			0, KEY_QUERY_VALUE, &hk) != ERROR_SUCCESS){
 			__leave;
 		}
 
 		// Read the ACL value from the VNC registry key
 		// First call to RegQueryValueEx just gets the buffer length.
-		if (RegQueryValueEx(hk, _T("ACL"), 0, 0, NULL, &dwValueLength) 
+		if (RegQueryValueEx(hk, _T("LogonACL"), 0, 0, NULL, &dwValueLength) 
 			!= ERROR_SUCCESS){
 			__leave;
 		}
@@ -52,7 +52,7 @@ vncAccessControl::GetACL(void){
 		else {
 			__leave;
 		}
-		if (RegQueryValueEx(hk, _T("ACL"), 0, 0, (LPBYTE) pInitACL, &dwValueLength)
+		if (RegQueryValueEx(hk, _T("LogonACL"), 0, 0, (LPBYTE) pInitACL, &dwValueLength)
 			!= ERROR_SUCCESS){
 			__leave;
 		}
@@ -116,7 +116,6 @@ vncAccessControl::SetSD(PSECURITY_DESCRIPTOR pSD){
 	BOOL bDaclPresent = FALSE;
 	BOOL bDaclDefaulted = FALSE;
 	PACL pDACL = NULL;
-	PACL pNewACL = NULL;
 
 	GetSecurityDescriptorDacl(pSD, &bDaclPresent, &pDACL, &bDaclDefaulted);
 
@@ -131,7 +130,7 @@ vncAccessControl::SetSD(PSECURITY_DESCRIPTOR pSD){
 PSID
 vncAccessControl::GetOwnerSID(void){
 	PSID pAdminSid = NULL;
-	SID_IDENTIFIER_AUTHORITY SIDAuth = SECURITY_NT_AUTHORITY;
+	SID_IDENTIFIER_AUTHORITY SIDAuth = { SECURITY_NT_AUTHORITY };
 	// Create a SID for the BUILTIN\Administrators group.
 	AllocateAndInitializeSid( &SIDAuth, 2,
 		SECURITY_BUILTIN_DOMAIN_RID,
@@ -156,19 +155,19 @@ vncAccessControl::StoreACL(PACL pACL){
 	if (pACL)
 		GetAclInformation(pACL, &AclInfo, nAclInformationLength, AclSizeInformation);
 
-	__try{ if (RegCreateKey(HKEY_LOCAL_MACHINE, _T("Software\\ORL\\WinVNC3"), &hk)
+	__try{ if (RegCreateKey(HKEY_LOCAL_MACHINE, _T("Software\\iTALC Solutions\\iTALC\\Authentication"), &hk)
 			!= ERROR_SUCCESS){
 			__leave;
 		}
 		  if (hk)
 		  RegCloseKey(hk);
 
-		if (RegOpenKeyEx(HKEY_LOCAL_MACHINE, _T("Software\\ORL\\WinVNC3"), 0, KEY_SET_VALUE, &hk)
+		if (RegOpenKeyEx(HKEY_LOCAL_MACHINE, _T("Software\\iTALC Solutions\\iTALC\\Authentication"), 0, KEY_SET_VALUE, &hk)
 			!= ERROR_SUCCESS){
 			__leave;
 		}
 		
-		if (RegSetValueEx(hk, _T("ACL"), 0, REG_BINARY, (LPBYTE) pACL, AclInfo.AclBytesInUse)
+		if (RegSetValueEx(hk, _T("LogonACL"), 0, REG_BINARY, (LPBYTE) pACL, AclInfo.AclBytesInUse)
 			!= ERROR_SUCCESS){
 			__leave;
 		}
