@@ -13,7 +13,7 @@ BOOL ultravnc_italc_load_int( LPCSTR valname, LONG *out )
 	}
 	if( strcmp( valname, "AuthRequired" ) == 0 )
 	{
-		*out = 0;
+		*out = 1;
 		return true;
 	}
 	if( strcmp( valname, "CaptureAlphaBlending" ) == 0 )
@@ -44,6 +44,11 @@ BOOL ultravnc_italc_load_int( LPCSTR valname, LONG *out )
 	if( strcmp( valname, "AllowLoopback" ) == 0 )
 	{
 		*out = 1;
+		return true;
+	}
+	if( strcmp( valname, "AutoPortSelect" ) == 0 )
+	{
+		*out = 0;
 		return true;
 	}
 

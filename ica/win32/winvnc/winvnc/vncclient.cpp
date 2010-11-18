@@ -995,6 +995,7 @@ vncClientThread::FilterClients_Blacklist()
 
 BOOL vncClientThread::CheckEmptyPasswd()
 {
+#ifndef ULTRAVNC_ITALC_SUPPORT
 	char password[MAXPWLEN];
 	m_server->GetPassword(password);
 	vncPasswd::ToText plain(password);
@@ -1006,6 +1007,7 @@ BOOL vncClientThread::CheckEmptyPasswd()
 					"Until a password is set, incoming connections cannot be accepted.");
 		return FALSE;
 	}
+#endif
 	return TRUE;
 }
 

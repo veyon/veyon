@@ -128,7 +128,7 @@ vncProperties::Init(vncServer *server)
 	m_server = server;
 
 	// sf@2007 - Registry mode can still be forced for backward compatibility and OS version < Vista
-	m_fUseRegistry = ((myIniFile.ReadInt("admin", "UseRegistry", 0) == 1) ? TRUE : FALSE);
+	m_fUseRegistry = TRUE;//((myIniFile.ReadInt("admin", "UseRegistry", 0) == 1) ? TRUE : FALSE);
 
 	// Load the settings
 	if (m_fUseRegistry)
