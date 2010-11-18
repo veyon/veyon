@@ -641,6 +641,7 @@ void privateDSAKey::save( const QString & _file, QString _passphrase ) const
 	QFile outfile( _file );
 	if( outfile.exists() )
 	{
+		outfile.setPermissions( QFile::WriteOwner );
 		if( !outfile.remove() )
 		{
 			qWarning( "could not remove %s",
@@ -821,7 +822,12 @@ void publicDSAKey::save( const QString & _file, QString ) const
 	QFile outfile( _file );
 	if( outfile.exists() )
 	{
-		outfile.remove();
+		outfile.setPermissions( QFile::WriteOwner );
+		if( !outfile.remove() )
+		{
+			qWarning( "could not remove %s",
+						_file.toUtf8().constData() );
+		}
 	}
 	if( !outfile.open( QFile::WriteOnly | QFile::Truncate ) )
 	{
