@@ -1,0 +1,34 @@
+SET(CMAKE_MODULE_LINKER_FLAGS -Wl,-export-all-symbols)
+
+SET(VH_WINRC "${CMAKE_CURRENT_BINARY_DIR}/vnchooksrc.obj")
+ADD_CUSTOM_COMMAND(OUTPUT ${VH_WINRC}
+						COMMAND ${WINDRES}
+							-I${CMAKE_CURRENT_SOURCE_DIR}
+							-o${VH_WINRC}
+							-i${CMAKE_CURRENT_SOURCE_DIR}/winvnc/vnchooks/vnchooks.rc)
+
+ADD_LIBRARY(vnchooks MODULE
+				${CMAKE_CURRENT_SOURCE_DIR}/winvnc/vnchooks/VNCHooks.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/winvnc/vnchooks/SharedData.cpp
+				${VH_WINRC})
+SET_TARGET_PROPERTIES(vnchooks PROPERTIES PREFIX "")
+
+
+ADD_DEFINITIONS(-DAUTHSSP_EXPORTS)
+SET(AUTHSSP_WINRC "${CMAKE_CURRENT_BINARY_DIR}/authssprc.obj")
+ADD_CUSTOM_COMMAND(OUTPUT ${AUTHSSP_WINRC}
+						COMMAND ${WINDRES}
+							-I${CMAKE_CURRENT_SOURCE_DIR}
+							-o${AUTHSSP_WINRC}
+							-i${CMAKE_CURRENT_SOURCE_DIR}/winvnc/ms-logon/authSSP/authSSP.rc)
+
+ADD_LIBRARY(authSSP MODULE
+				${CMAKE_CURRENT_SOURCE_DIR}/winvnc/ms-logon/authSSP/authSSP.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/winvnc/ms-logon/authSSP/EventLogging.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/winvnc/ms-logon/authSSP/GenClientServerContext.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/winvnc/ms-logon/authSSP/vncAccessControl.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/winvnc/ms-logon/authSSP/vncSSP.cpp
+				${AUTHSSP_WINRC})
+SET_TARGET_PROPERTIES(authSSP PROPERTIES PREFIX "")
+
+

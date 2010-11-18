@@ -22,6 +22,10 @@
 
 #include "vncAccessControl.h"
 
+#define __try
+#define __leave goto cleanup
+#define __finally cleanup:
+
 /*
  * GetACL: Gets ACL from reg and puts it in class variable pACL.
  */
