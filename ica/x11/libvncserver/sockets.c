@@ -498,7 +498,11 @@ rfbReadExactTimeout(rfbClientPtr cl, char* buf, int len, int timeout)
 
 int rfbReadExact(rfbClientPtr cl,char* buf,int len)
 {
-  return(rfbReadExactTimeout(cl,buf,len,rfbMaxClientWait));
+  /* favor the per-screen value if set */
+  if(cl->screen->maxClientWait)
+    return(rfbReadExactTimeout(cl,buf,len,cl->screen->maxClientWait));
+  else
+    return(rfbReadExactTimeout(cl,buf,len,rfbMaxClientWait));
 }
 
 /*
@@ -517,6 +521,7 @@ rfbWriteExact(rfbClientPtr cl,
     fd_set fds;
     struct timeval tv;
     int totalTimeWaited = 0;
+    const int timeout = cl->screen->maxClientWait ? cl->screen->maxClientWait : rfbMaxClientWait;
 
 #undef DEBUG_WRITE_EXACT
 #ifdef DEBUG_WRITE_EXACT
@@ -552,7 +557,7 @@ rfbWriteExact(rfbClientPtr cl,
                 return n;
             }
 
-            /* Retry every 5 seconds until we exceed rfbMaxClientWait.  We
+            /* Retry every 5 seconds until we exceed timeout.  We
                need to do this because select doesn't necessarily return
                immediately when the other end has gone away */
 
@@ -570,7 +575,7 @@ rfbWriteExact(rfbClientPtr cl,
             }
             if (n == 0) {
                 totalTimeWaited += 5000;
-                if (totalTimeWaited >= rfbMaxClientWait) {
+                if (totalTimeWaited >= timeout) {
                     errno = ETIMEDOUT;
                     UNLOCK(cl->outputMutex);
                     return -1;
