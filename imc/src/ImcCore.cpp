@@ -133,12 +133,20 @@ bool createKeyPair( ItalcCore::UserRole role, const QString &destDir )
 	PrivateDSAKey pkey( 1024 );
 	if( !pkey.isValid() )
 	{
-		qCritical( "ImcCore: key generation failed!" );
+		ilog_failed( "key generation" );
 		return false;
 	}
-	pkey.save( priv );
+	if( !pkey.save( priv ) )
+	{
+		ilog_failed( "saving private key" );
+		return false;
+	}
 
-	PublicDSAKey( pkey ).save( pub );
+	if( !PublicDSAKey( pkey ).save( pub ) )
+	{
+		ilog_failed( "saving public key" );
+		return false;
+	}
 
 	printf( "...done, saved key-pair in\n\n%s\n\nand\n\n%s",
 						priv.toUtf8().constData(),
@@ -169,11 +177,20 @@ bool importPublicKey( ItalcCore::UserRole role,
 		return false;
 	}
 
-	QString destFile = LocalSystem::Path::publicKeyPath( role, destDir );
-	QFile( destFile ).remove();
+	QFile destFile( LocalSystem::Path::publicKeyPath( role, destDir ) );
+	if( destFile.exists() )
+	{
+		destFile.setPermissions( QFile::WriteOwner );
+		if( !destFile.remove() )
+		{
+			qCritical() << "ImcCore::importPublicKey(): could not remove "
+							"existing public key file" << destFile.fileName();
+			return false;
+		}
+	}
 
 	// now try to copy it
-	return QFile( pubKey ).copy( destFile );
+	return QFile( pubKey ).copy( destFile.fileName() );
 }
 
 

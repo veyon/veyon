@@ -129,9 +129,27 @@ void AccessKeyAssistant::accept()
 		{
 			if( m_ui->exportPublicKey->isChecked() )
 			{
-				QFile f( LocalSystem::Path::publicKeyPath( role, destDir ) );
-				f.copy( QDTNS( m_ui->publicKeyDir->text() +
+				QFile src( LocalSystem::Path::publicKeyPath( role, destDir ) );
+				QFile dst( QDTNS( m_ui->publicKeyDir->text() +
 										"/italc_public_key.key.txt" ) );
+				if( dst.exists() )
+				{
+					dst.setPermissions( QFile::WriteOwner );
+					if( !dst.remove() )
+					{
+						QMessageBox::critical( this, tr( "Access key creation" ),
+							tr( "Could not remove previously existing file %1." ).
+								arg( dst.fileName() ) );
+						return;
+					}
+				}
+				if( !src.copy( dst.fileName() ) )
+				{
+					QMessageBox::critical( this, tr( "Access key creation" ),
+							tr( "Failed exporting public access key from %1 to %2." ).
+								arg( src.fileName() ).arg( dst.fileName() ) );
+					return;
+				}
 			}
 			QMessageBox::information( this, tr( "Access key creation" ),
 				tr( "Access keys were created and written successfully to %1 and %2." ).
@@ -144,12 +162,20 @@ void AccessKeyAssistant::accept()
 					tr( "An error occured while creating the access keys. "
 						"You probably are not permitted to write to the "
 						"selected directories." ) );
+			return;
 		}
 
 	}
 	else if( m_ui->modeImportPublicKey->isChecked() )
 	{
-		ImcCore::importPublicKey( role, m_ui->publicKeyDir->text(), destDir );
+		if( !ImcCore::importPublicKey( role, m_ui->publicKeyDir->text(), destDir ) )
+		{
+			QMessageBox::critical( this, tr( "Public key import" ),
+					tr( "An error occured while importing the public access "
+						"key. You probably are not permitted to read the "
+						"source key or to write the destination file." ) );
+			return;
+		}
 	}
 
 	QWizard::accept();
