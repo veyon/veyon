@@ -19,10 +19,6 @@
 // which you received this file, check http://www.realvnc.com/ or contact
 // the authors on info@realvnc.com for information on obtaining it.
 
-#ifdef __cplusplus
-#include <string>
-#endif
-
 #ifndef max
 #define max(a,b)            (((a) > (b)) ? (a) : (b))
 #endif

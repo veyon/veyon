@@ -168,10 +168,10 @@ vncServer::vncServer()
 	
 	// General options
 	m_loopbackOnly = FALSE;
-	m_loopback_allowed = TRUE;
+	m_loopback_allowed = FALSE;
 	m_lock_on_exit = 0;
 	m_connect_pri = 0;
-	m_disableTrayIcon = TRUE;
+	m_disableTrayIcon = FALSE;
 	m_AllowEditClients = FALSE;
 
 	// Set the input options
@@ -200,7 +200,7 @@ vncServer::vncServer()
 
 	// sf@2002 - v1.1.2
 	// m_fQueuingEnabled = false;
-	m_fFileTransferEnabled = false;
+	m_fFileTransferEnabled = true;
 	m_nDefaultScale = 1;
 
 	// sf@2002 - Data Stream Modification Plugin handling
@@ -1657,9 +1657,6 @@ vncServer::SockConnected()
 BOOL
 vncServer::EnableHTTPConnect(BOOL enable)
 {
-#ifdef ULTRAVNC_ITALC_SUPPORT
-	m_enableHttpConn = FALSE;
-#else
 	m_enableHttpConn = enable;
 	if (enable && m_socketConn)
 	{
@@ -1691,7 +1688,7 @@ vncServer::EnableHTTPConnect(BOOL enable)
 			m_httpConn = NULL;
 		}
 	}
-#endif
+
 	return TRUE;
 }
 

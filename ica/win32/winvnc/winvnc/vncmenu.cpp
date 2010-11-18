@@ -28,8 +28,6 @@
 
 // Implementation of a system tray icon & menu for WinVNC
 
-#define _WIN32_IE 0x500
-
 #include "stdhdrs.h"
 #include "winvnc.h"
 #include "vncservice.h"
@@ -37,8 +35,6 @@
 #include <lmcons.h>
 #include <wininet.h>
 #include <shlobj.h>
-#include <imm.h>
-#include "common/win32_helpers.h"
 
 // Header
 
@@ -196,16 +192,12 @@ static bool IsUserDesktop()
 // adzm - 2010-07 - Disable more effects or font smoothing
 static void KillWallpaper()
 {
-#ifndef ULTRAVNC_ITALC_SUPPORT
 	HideDesktop();
-#endif
 }
 
 static void RestoreWallpaper()
 {
-#ifndef ULTRAVNC_ITALC_SUPPORT
   RestoreDesktop();
-#endif
 }
 
 // adzm - 2010-07 - Disable more effects or font smoothing
@@ -452,9 +444,7 @@ vncMenu::vncMenu(vncServer *server)
 	m_hmenu = LoadMenu(hInstResDLL, MAKEINTRESOURCE(IDR_TRAYMENU));
 
 	// Install the tray icon!
-#ifndef ULTRAVNC_ITALC_SUPPORT
 	AddTrayIcon();
-#endif
 	CoUninitialize();
 }
 
@@ -1065,7 +1055,7 @@ LRESULT CALLBACK vncMenu::WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lP
 								StartUPInfo.cb = sizeof(STARTUPINFO);
 						
 								CreateProcessAsUser(hPToken,NULL,dir,NULL,NULL,FALSE,DETACHED_PROCESS,NULL,NULL,&StartUPInfo,&ProcessInfo);
-								DWORD error=GetLastError();
+								GetLastError();
                                 if (ProcessInfo.hThread) CloseHandle(ProcessInfo.hThread);
                                 if (ProcessInfo.hProcess) CloseHandle(ProcessInfo.hProcess);
 								//if (error==1314)
@@ -1105,7 +1095,7 @@ LRESULT CALLBACK vncMenu::WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lP
 								StartUPInfo.cb = sizeof(STARTUPINFO);
 						
 								CreateProcessAsUser(hPToken,NULL,dir,NULL,NULL,FALSE,DETACHED_PROCESS,NULL,NULL,&StartUPInfo,&ProcessInfo);
-								DWORD error=GetLastError();
+								GetLastError();
                                 if (ProcessInfo.hThread) CloseHandle(ProcessInfo.hThread);
                                 if (ProcessInfo.hProcess) CloseHandle(ProcessInfo.hProcess);
 								//if (error==1314)
@@ -1669,7 +1659,7 @@ LRESULT CALLBACK vncMenu::WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lP
 			// of a listening client, to which we should connect.
 
 			//adzm 2009-06-20 - Check for special add repeater client message
-			if (wParam == 0xFFFFFFFF && lParam == 0xFFFFFFFF) {
+			if (wParam == 0xFFFFFFFF && (ULONG) lParam == 0xFFFFFFFF) {
 				vncConnDialog *newconn = new vncConnDialog(_this->m_server);
 				if (newconn)
 				{

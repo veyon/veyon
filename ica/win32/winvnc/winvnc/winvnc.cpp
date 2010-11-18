@@ -47,8 +47,6 @@
 #include "vncOSVersion.h"
 #include "videodriver.h"
 
-#include <ctype.h>
-
 #ifdef IPP
 void InitIpp();
 #endif
@@ -143,8 +141,8 @@ Myinit(HINSTANCE hInstance)
     //Load all messages from ressource file
     Load_Localization(hInstResDLL) ;
 	vnclog.SetFile();
-	vnclog.SetMode(1);
-	vnclog.SetLevel(LL_INTWARN);
+//	vnclog.SetMode(2);
+//	vnclog.SetLevel(10);
 
 #ifdef _DEBUG
 	{

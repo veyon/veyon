@@ -44,7 +44,6 @@ typedef SHORT vncClientId;
 #pragma warning(disable : 4786)
 #endif
 
-#include <winable.h>
 #include <list>
 #include <string>
 #include <vector>

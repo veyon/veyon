@@ -53,6 +53,7 @@ IF(ITALC_BUILD_WIN32)
 	INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/win32/winvnc ${CMAKE_CURRENT_SOURCE_DIR}/win32/winvnc/omnithread ${CMAKE_CURRENT_SOURCE_DIR}/win32/winvnc/winvnc ${CMAKE_CURRENT_SOURCE_DIR}/x11/libvncclient)
 	SET(platform_SOURCES
 		${CMAKE_CURRENT_SOURCE_DIR}/win32/ultravnc.cpp
+		${CMAKE_CURRENT_SOURCE_DIR}/win32/ultravnc-italc.cpp
 		${CMAKE_CURRENT_SOURCE_DIR}/win32/winvnc/winvnc/HideDesktop.cpp
 		${CMAKE_CURRENT_SOURCE_DIR}/win32/winvnc/winvnc/rfbRegion_win32.cpp
 		${CMAKE_CURRENT_SOURCE_DIR}/win32/winvnc/winvnc/vistahook.cpp

@@ -1443,6 +1443,9 @@ vncProperties::InitPortSettings(HWND hwnd)
 		bConnectSock && !bAutoPort && !bValidDisplay);
 }
 
+#ifdef ULTRAVNC_ITALC_SUPPORT
+extern BOOL ultravnc_italc_load_int( LPCSTR valname, LONG *out );
+#endif
 
 // Functions to load & save the settings
 LONG
@@ -1452,6 +1455,13 @@ vncProperties::LoadInt(HKEY key, LPCSTR valname, LONG defval)
 	ULONG type = REG_DWORD;
 	ULONG prefsize = sizeof(pref);
 
+#ifdef ULTRAVNC_ITALC_SUPPORT
+	LONG out;
+	if( ultravnc_italc_load_int( valname, &out ) )
+	{
+		return out;
+	}
+#endif
 	if (RegQueryValueEx(key,
 		valname,
 		NULL,
@@ -1714,11 +1724,8 @@ vncProperties::Load(BOOL usersettings)
 	//vnclog.SetLevel(LoadInt(hkLocal, "DebugLevel", 0));
 
 	// Disable Tray Icon
-#ifdef ULTRAVNC_ITALC_SUPPORT
-	m_server->SetDisableTrayIcon(1);
-#else
-	m_server->SetDisableTrayIcon(LoadInt(hkLocal, "DisableTrayIcon", false));
-#endif
+	m_server->SetDisableTrayIcon(LoadInt(hkLocal, "DisableTrayIcon", false));
+
 	// Authentication required, loopback allowed, loopbackOnly
 
 	m_server->SetLoopbackOnly(LoadInt(hkLocal, "LoopbackOnly", false));
@@ -1750,11 +1757,7 @@ vncProperties::Load(BOOL usersettings)
 
 	if (m_server->LoopbackOnly()) m_server->SetLoopbackOk(true);
 	else m_server->SetLoopbackOk(LoadInt(hkLocal, "AllowLoopback", false));
-#ifdef ULTRAVNC_ITALC_SUPPORT
-	m_server->SetAuthRequired(0);
-#else
-	m_server->SetAuthRequired(LoadInt(hkLocal, "AuthRequired", true));
-#endif
+	m_server->SetAuthRequired(LoadInt(hkLocal, "AuthRequired", true));
 
 	m_server->SetConnectPriority(LoadInt(hkLocal, "ConnectPriority", 0));
 	if (!m_server->LoopbackOnly())
@@ -2311,11 +2314,7 @@ void vncProperties::LoadFromIniFile()
 
 	if (m_server->LoopbackOnly()) m_server->SetLoopbackOk(true);
 	else m_server->SetLoopbackOk(myIniFile.ReadInt("admin", "AllowLoopback", false));
-#ifdef ULTRAVNC_ITALC_SUPPORT
-	m_server->SetAuthRequired(0);
-#else
-	m_server->SetAuthRequired(myIniFile.ReadInt("admin", "AuthRequired", true));
-#endif
+	m_server->SetAuthRequired(myIniFile.ReadInt("admin", "AuthRequired", true));
 
 	m_server->SetConnectPriority(myIniFile.ReadInt("admin", "ConnectPriority", 0));
 	if (!m_server->LoopbackOnly())

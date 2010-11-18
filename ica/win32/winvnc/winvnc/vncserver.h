@@ -305,7 +305,7 @@ public:
 
 	// Whether or not to allow connections from the local machine
 	virtual void SetLoopbackOk(BOOL ok) {m_loopback_allowed = ok;};
-	virtual BOOL LoopbackOk() {return TRUE;}//m_loopback_allowed;};
+	virtual BOOL LoopbackOk() {return m_loopback_allowed;};
 
 	// Whether or not to shutdown or logoff when the last client leaves
 	virtual void SetLockSettings(int ok) {m_lock_on_exit = ok;};
