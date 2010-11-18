@@ -57,6 +57,7 @@ private slots:
 	void loadSettingsFromFile();
 	void saveSettingsToFile();
 	void launchAccessKeyAssistant();
+	void manageACLs();
 
 
 private:

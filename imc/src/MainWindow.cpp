@@ -87,6 +87,7 @@ MainWindow::MainWindow() :
 	CONNECT_BUTTON_SLOT( openPrivateKeyBaseDir );
 
 	CONNECT_BUTTON_SLOT( launchAccessKeyAssistant );
+	CONNECT_BUTTON_SLOT( manageACLs );
 
 	connect( ui->buttonBox, SIGNAL( clicked( QAbstractButton * ) ),
 				this, SLOT( resetOrApply( QAbstractButton * ) ) );
@@ -106,6 +107,14 @@ MainWindow::MainWindow() :
 
 	connect( ItalcCore::config, SIGNAL( configurationChanged() ),
 				this, SLOT( configurationChanged() ) );
+
+	// show/hide platform-specific controls
+#ifdef ITALC_BUILD_WIN32
+	ui->groupManagement->hide();
+#else
+	ui->manageACLs->hide();
+#endif
+
 }
 
 
@@ -300,6 +309,19 @@ void MainWindow::saveSettingsToFile()
 void MainWindow::launchAccessKeyAssistant()
 {
 	AccessKeyAssistant().exec();
+}
+
+
+
+#ifdef ITALC_BUILD_WIN32
+void Win32AclEditor( HWND hwnd );
+#endif
+
+void MainWindow::manageACLs()
+{
+#ifdef ITALC_BUILD_WIN32
+	Win32AclEditor( winId() );
+#endif
 }
 
 
