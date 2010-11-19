@@ -631,7 +631,7 @@ bool PrivateDSAKey::save( const QString & _file, QString _passphrase ) const
 	}
 	if( _file.contains( QDir::separator() ) )
 	{
-		LocalSystem::Path::ensurePathExists( QFileInfo( _file ).filePath() );
+		LocalSystem::Path::ensurePathExists( QFileInfo( _file ).path() );
 	}
 
 	QFile outfile( _file );
@@ -810,7 +810,7 @@ bool PublicDSAKey::save( const QString & _file, QString ) const
 
 	if( _file.contains( QDir::separator() ) )
 	{
-		LocalSystem::Path::ensurePathExists( QFileInfo( _file ).filePath() );
+		LocalSystem::Path::ensurePathExists( QFileInfo( _file ).path() );
 	}
 
 	QFile outfile( _file );
