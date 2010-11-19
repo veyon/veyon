@@ -120,7 +120,6 @@ IF(ITALC_BUILD_WIN32)
 		${CMAKE_CURRENT_SOURCE_DIR}/win32/winvnc/common/win32_helpers.cpp
 		${CMAKE_CURRENT_SOURCE_DIR}/win32/winvnc/rdr/ZlibOutStream.cxx
 		${CMAKE_CURRENT_SOURCE_DIR}/win32/winvnc/rdr/ZlibInStream.cxx
-		${CMAKE_CURRENT_SOURCE_DIR}/win32/winvnc/dh.cpp
 		)
 
 	SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-write-strings -fexceptions")
