@@ -255,8 +255,6 @@ namespace ItalcCore
 	} ;
 	typedef UserRoles UserRole;
 
-	bool initAuthentication();
-
 	QString userRoleName( UserRole role );
 
 

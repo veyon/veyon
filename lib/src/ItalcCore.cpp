@@ -33,9 +33,7 @@
 #include <QtCore/QFileInfo>
 
 #include "ItalcCore.h"
-#include "DsaKey.h"
 #include "ItalcConfiguration.h"
-#include "ItalcVncConnection.h"
 #include "LocalSystem.h"
 #include "Logger.h"
 
@@ -44,8 +42,6 @@
 
 
 ItalcConfiguration *ItalcCore::config = NULL;
-
-static PrivateDSAKey * privDSAKey = NULL;
 
 int ItalcCore::serverPort = PortOffsetIVS;
 ItalcCore::UserRoles ItalcCore::role = ItalcCore::RoleOther;
@@ -76,27 +72,6 @@ qint64 libvncClientDispatcher( char * _buf, const qint64 _len,
 	}
 	return 0;
 
-}
-
-
-
-bool ItalcCore::initAuthentication()
-{
-	if( privDSAKey )
-	{
-		delete privDSAKey;
-		privDSAKey = NULL;
-	}
-
-	const QString privKeyFile = LocalSystem::Path::privateKeyPath( role );
-	qDebug() << "Loading private key" << privKeyFile << "for role" << role;
-	if( privKeyFile.isEmpty() )
-	{
-		return false;
-	}
-	privDSAKey = new PrivateDSAKey( privKeyFile );
-
-	return privDSAKey->isValid();
 }
 
 
@@ -171,9 +146,6 @@ void ItalcCore::destroy()
 {
 	delete config;
 	config = NULL;
-
-	delete privDSAKey;
-	privDSAKey = NULL;
 }
 
 
@@ -192,62 +164,6 @@ static const char *userRoleNames[] =
 QString ItalcCore::userRoleName( UserRole role )
 {
 	return userRoleNames[role];
-}
-
-
-
-
-void handleSecTypeItalc( rfbClient *client )
-{
-	SocketDevice socketDev( libvncClientDispatcher, client );
-
-	// read list of supported authentication types
-	QMap<QString, QVariant> supportedAuthTypes = socketDev.read().toMap();
-
-	int chosenAuthType = ItalcAuthDSA;
-	if( !supportedAuthTypes.isEmpty() )
-	{
-		chosenAuthType = supportedAuthTypes.values().first().toInt();
-
-		// look whether the ItalcVncConnection recommends a specific
-		// authentication type (e.g. ItalcAuthHostBased when running as
-		// demo client)
-		ItalcVncConnection *t = (ItalcVncConnection *)
-										rfbClientGetClientData( client, 0 );
-
-		if( t != NULL )
-		{
-			foreach( const QVariant &v, supportedAuthTypes )
-			{
-				if( t->italcAuthType() == v.toInt() )
-				{
-					chosenAuthType = v.toInt();
-				}
-			}
-		}
-	}
-
-	socketDev.write( QVariant( chosenAuthType ) );
-
-	if( chosenAuthType == ItalcAuthDSA )
-	{
-		QByteArray chall = socketDev.read().toByteArray();
-		socketDev.write( QVariant( (int) ItalcCore::role ) );
-		if( !privDSAKey )
-		{
-			ItalcCore::initAuthentication();
-		}
-		socketDev.write( privDSAKey->sign( chall ) );
-	}
-	else if( chosenAuthType == ItalcAuthHostBased )
-	{
-		// nothing to do - we just get accepted if our IP is in the list of
-		// allowed hosts
-	}
-	else if( chosenAuthType == ItalcAuthNone )
-	{
-		// nothing to do - we just get accepted
-	}
 }
 
 

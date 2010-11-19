@@ -25,12 +25,19 @@
  *
  */
 
+#include "DsaKey.h"
+#include "ItalcConfiguration.h"
 #include "ItalcVncConnection.h"
+#include "LocalSystem.h"
 #include "Logger.h"
 
 #include <QtCore/QCoreApplication>
 #include <QtCore/QMutexLocker>
 #include <QtCore/QTime>
+
+#include <rfb/dh.h>
+
+extern "C" void rfbClientEncryptBytes2( unsigned char *where, const int length, unsigned char *key );
 
 
 static QString outputErrorMessageString;
@@ -690,6 +697,151 @@ void ItalcVncConnection::keyEvent( int key, bool pressed )
 void ItalcVncConnection::clientCut( const QString &text )
 {
 	enqueueEvent( new ClientCutEvent( strdup( text.toUtf8() ) ) );
+}
+
+
+
+
+
+PrivateDSAKey *ItalcVncConnection::privDSAKey = NULL;
+
+bool ItalcVncConnection::initAuthentication()
+{
+	if( privDSAKey )
+	{
+		delete privDSAKey;
+		privDSAKey = NULL;
+	}
+
+	const QString privKeyFile = LocalSystem::Path::privateKeyPath( ItalcCore::role );
+	qDebug() << "Loading private key" << privKeyFile << "for role" << ItalcCore::role;
+	if( privKeyFile.isEmpty() )
+	{
+		return false;
+	}
+	privDSAKey = new PrivateDSAKey( privKeyFile );
+
+	return privDSAKey->isValid();
+}
+
+
+
+void ItalcVncConnection::handleSecTypeItalc( rfbClient *client )
+{
+	SocketDevice socketDev( libvncClientDispatcher, client );
+
+	// read list of supported authentication types
+	QMap<QString, QVariant> supportedAuthTypes = socketDev.read().toMap();
+
+	int chosenAuthType = ItalcAuthDSA;
+	if( !supportedAuthTypes.isEmpty() )
+	{
+		chosenAuthType = supportedAuthTypes.values().first().toInt();
+
+		// look whether the ItalcVncConnection recommends a specific
+		// authentication type (e.g. ItalcAuthHostBased when running as
+		// demo client)
+		ItalcVncConnection *t = (ItalcVncConnection *)
+										rfbClientGetClientData( client, 0 );
+
+		if( t != NULL )
+		{
+			foreach( const QVariant &v, supportedAuthTypes )
+			{
+				if( t->italcAuthType() == v.toInt() )
+				{
+					chosenAuthType = v.toInt();
+				}
+			}
+		}
+	}
+
+	socketDev.write( QVariant( chosenAuthType ) );
+
+	if( chosenAuthType == ItalcAuthDSA )
+	{
+		QByteArray chall = socketDev.read().toByteArray();
+		socketDev.write( QVariant( (int) ItalcCore::role ) );
+		if( !privDSAKey )
+		{
+			initAuthentication();
+		}
+		socketDev.write( privDSAKey->sign( chall ) );
+	}
+	else if( chosenAuthType == ItalcAuthHostBased )
+	{
+		// nothing to do - we just get accepted if our IP is in the list of
+		// allowed hosts
+	}
+	else if( chosenAuthType == ItalcAuthNone )
+	{
+		// nothing to do - we just get accepted
+	}
+}
+
+
+
+
+void ItalcVncConnection::handleMsLogonIIAuth( rfbClient *client )
+{
+	ItalcVncConnection *c =
+				(ItalcVncConnection *) rfbClientGetClientData( client, 0 );
+
+	char gen[8], mod[8], pub[8], resp[8];
+	char user[256], passwd[64];
+	unsigned char key[8];
+
+	ReadFromRFBServer(client, gen, sizeof(gen));
+	ReadFromRFBServer(client, mod, sizeof(mod));
+	ReadFromRFBServer(client, resp, sizeof(resp));
+
+	DiffieHellman dh(bytesToInt64(gen), bytesToInt64(mod));
+	int64ToBytes(dh.createInterKey(), pub);
+
+	WriteToRFBServer(client, pub, sizeof(pub));
+
+	int64ToBytes(dh.createEncryptionKey(bytesToInt64(resp)), (char*) key);
+
+	strcpy(user, c->authUser().toUtf8().constData() );
+	strcpy(passwd, c->authPassword().toUtf8().constData() );
+
+	rfbClientEncryptBytes2((unsigned char*) user, sizeof(user), key);
+	rfbClientEncryptBytes2((unsigned char*) passwd, sizeof(passwd), key);
+
+	WriteToRFBServer(client, user, sizeof(user));
+	WriteToRFBServer(client, passwd, sizeof(passwd));
+}
+
+
+
+
+
+// global auth handlers used in modified libvncclient
+
+int isLogonAuthenticationEnabled( rfbClient *client )
+{
+	ItalcVncConnection *c =
+				(ItalcVncConnection *) rfbClientGetClientData( client, 0 );
+	if( ItalcCore::config->isLogonAuthenticationEnabled() &&
+			c && !c->authUser().isEmpty() )
+	{
+
+		return 1;
+	}
+
+	return 0;
+}
+
+
+void handleSecTypeItalc( rfbClient *client )
+{
+	ItalcVncConnection::handleSecTypeItalc( client );
+}
+
+
+void handleMsLogonIIAuth( rfbClient *client )
+{
+	ItalcVncConnection::handleMsLogonIIAuth( client );
 }
 
 

@@ -78,7 +78,9 @@ typedef enum ItalcAuthTypes ItalcAuthType;
 extern "C"
 {
 #endif
-void handleSecTypeItalc( rfbClient * _cl );
+int isLogonAuthenticationEnabled( rfbClient *client );
+void handleSecTypeItalc( rfbClient *client );
+void handleMsLogonIIAuth( rfbClient *client );
 #ifdef __cplusplus
 }
 #endif
