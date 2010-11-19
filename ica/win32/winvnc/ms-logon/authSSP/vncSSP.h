@@ -45,7 +45,7 @@ typedef BOOL (*CheckUserPasswordSDFn)(const char * domainuser,
 
 #define MAXSTRING 254
 
-AUTHSSP_API int CUPSD(const char * userin, const char *password, const char *machine);
+extern "C" AUTHSSP_API int CUPSD(const char * userin, const char *password, const char *machine);
 void LOG(long EvenID, const TCHAR *format, ...);
 TCHAR * AddToModuleDir(TCHAR *filename, int length);
 
