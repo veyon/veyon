@@ -161,7 +161,7 @@ int main( int argc, char * * argv )
 		!mainWindow.localICA()->isConnected() )
 	{
 		qCritical( "No connection to local ICA - terminating now" );
-		return -1;
+		//return -1;
 	}
 
 	// hide splash-screen as soon as main-window is shown

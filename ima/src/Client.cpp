@@ -465,9 +465,9 @@ QMenu * clientMenu::createDefault( QWidget * _parent )
 Client::Client( const QString & _hostname,
 		const QString & _mac, const QString & _nickname,
 		Types _type, classRoom * _class_room,
-					MainWindow * _main_window, int _id ) :
-	QWidget( _main_window->workspace() ),
-	m_mainWindow( _main_window ),
+					MainWindow * mainWindow, int _id ) :
+	QWidget( mainWindow->workspace() ),
+	m_mainWindow( mainWindow ),
 	m_connection( NULL ),
 	m_framebufferUpdated( false ),
 	m_clickPoint( -1, -1 ),
@@ -495,6 +495,10 @@ Client::Client( const QString & _hostname,
 
 	ItalcVncConnection * conn = new ItalcVncConnection( this );
 	conn->setHost( m_hostname );
+
+	conn->setAuthUser( mainWindow->username() );
+	conn->setAuthPassword( mainWindow->password() );
+
 	conn->setQuality( ItalcVncConnection::ThumbnailQuality );
 	conn->setFramebufferUpdateInterval(
 				m_mainWindow->getClassroomManager()->updateInterval() * 1000 );

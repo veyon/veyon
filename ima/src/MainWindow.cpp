@@ -44,6 +44,7 @@
 #include "MainWindow.h"
 #include "ClassroomManager.h"
 #include "Dialogs.h"
+#include "PasswordDialog.h"
 #include "OverviewWidget.h"
 #include "SnapshotList.h"
 #include "ConfigWidget.h"
@@ -90,6 +91,18 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 			"create or write this directory." ).arg(
 					LocalSystem::Path::personalConfigDataPath() ) );
 		return;
+	}
+
+	bool needKeys = true;
+	if( ItalcCore::config->isLogonAuthenticationEnabled() )
+	{
+		PasswordDialog dlg( this );
+		if( dlg.exec() )
+		{
+			m_username = dlg.username();
+			m_password = dlg.password();
+			needKeys = false;
+		}
 	}
 
 	// configure side bar
@@ -314,12 +327,16 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 
 	while( 1 )
 	{
-		if( ItalcCore::initAuthentication() == FALSE )
+		if( ItalcVncConnection::initAuthentication() == false )
 		{
 			if( ItalcCore::role != ItalcCore::RoleTeacher )
 			{
 				ItalcCore::role = ItalcCore::RoleTeacher;
 				continue;
+			}
+			if( needKeys == false )
+			{
+				break;
 			}
 			if( splashScreen != NULL )
 			{
@@ -356,7 +373,7 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 				"required for running iTALC. Contact your "
 				"administrator for solving this problem." ),
 				QPixmap( ":/resources/stop.png" ) );
-		return;
+		//return;
 	}
 
 	// update the role under which ICA is running
