@@ -1269,11 +1269,11 @@ BOOL vncClientThread::AuthenticateClient(std::vector<CARD8>& current_auth)
 
 #ifdef ULTRAVNC_ITALC_SUPPORT
 	auth_types.clear();
-	auth_types.push_back(rfbSecTypeItalc);
 	if( m_ms_logon )
 	{
 		auth_types.push_back(rfbUltraVNC_MsLogonIIAuth);
 	}
+	auth_types.push_back(rfbSecTypeItalc);
 #endif
 	// adzm 2010-09 - Send the auths
 	{
