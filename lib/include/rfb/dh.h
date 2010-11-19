@@ -23,12 +23,12 @@
 #ifndef __RFB_DH_H__
 #define __RFB_DH_H__
 
-#include <windows.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
 #include <time.h>
+#include <stdint.h>
 
 #define DH_MAX_BITS 31
 #define DH_RANGE 100
@@ -42,39 +42,42 @@
 #define DH_PUB	4
 #define DH_KEY	5
 
-class DH
+#ifdef ULTRAVNC_ITALC_SUPPORT
+#define DH DiffieHellman
+#endif
+
+class DiffieHellman
 {
 public:
-	DH();
-	DH(unsigned __int64 generator, unsigned __int64 modulus);
-	~DH();
+	DiffieHellman();
+	DiffieHellman(uint64_t generator, uint64_t modulus);
+	~DiffieHellman();
 
 	void createKeys();
-	unsigned __int64 createInterKey();
-	unsigned __int64 createEncryptionKey(unsigned __int64 interKey);
+	uint64_t createInterKey();
+	uint64_t createEncryptionKey(uint64_t interKey);
 	
-	unsigned __int64 getValue(DWORD flags = DH_KEY);
+	uint64_t getValue(int flags = DH_KEY);
 
 private:
-	unsigned __int64 XpowYmodN(unsigned __int64 x, unsigned __int64 y, unsigned __int64 N);
-	unsigned __int64 generatePrime();
-	unsigned __int64 tryToGeneratePrime(unsigned __int64 start);
-	bool millerRabin (unsigned __int64 n, unsigned int trials);
-	void cleanMem(DWORD flags=DH_CLEAN_ALL_MEMORY);
+	uint64_t XpowYmodN(uint64_t x, uint64_t y, uint64_t N);
+	uint64_t generatePrime();
+	uint64_t tryToGeneratePrime(uint64_t start);
+	bool millerRabin (uint64_t n, unsigned int trials);
+	void cleanMem(int flags=DH_CLEAN_ALL_MEMORY);
 
 
-	unsigned __int64 gen;
-	unsigned __int64 mod;
-	unsigned __int64 priv;
-	unsigned __int64 pub;
-	unsigned __int64 key;
-	unsigned __int64 maxNum;
+	uint64_t gen;
+	uint64_t mod;
+	uint64_t priv;
+	uint64_t pub;
+	uint64_t key;
+	uint64_t maxNum;
 
 };
 
-int bits(__int64 number);
-bool int64ToBytes(const unsigned __int64 integer, char* const bytes);
-unsigned __int64 bytesToInt64(const char* const bytes);
-bool vncWc2Mb(char* multibyte, WCHAR* widechar, int length);
+int bits(int64_t number);
+bool int64ToBytes(const uint64_t integer, char* const bytes);
+uint64_t bytesToInt64(const char* const bytes);
 
 #endif // __RFB_DH_H__
