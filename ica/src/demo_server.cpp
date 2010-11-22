@@ -204,7 +204,9 @@ void demoServerClient::updateRegion( const QRegion & _reg )
 
 void demoServerClient::updateCursorShape( void )
 {
+	m_dataMutex.lock();
 	m_cursorShapeChanged = TRUE;
+	m_dataMutex.unlock();
 }
 
 
