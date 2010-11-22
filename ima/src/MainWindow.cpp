@@ -360,6 +360,8 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 
 	conn->setHost( QHostAddress( QHostAddress::LocalHost ).toString() );
 	conn->setPort( ItalcCore::config->coreServerPort() );
+	conn->setAuthUser( username() );
+	conn->setAuthPassword( password() );
 	conn->setFramebufferUpdateInterval( -1 );
 	conn->start();
 
