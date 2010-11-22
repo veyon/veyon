@@ -26,6 +26,8 @@
 #ifndef _ITALC_CONFIGURATION_H
 #define _ITALC_CONFIGURATION_H
 
+#include <QtCore/QStringList>
+
 #include "Configuration/Object.h"
 
 class ItalcConfiguration : public Configuration::Object
@@ -72,6 +74,7 @@ public:
 		OP( ItalcConfiguration, ItalcCore::config, BOOL, isLogonAuthenticationEnabled, setLogonAuthenticationEnabled, "LogonAuthenticationEnabled", "Authentication" );	\
 		OP( ItalcConfiguration, ItalcCore::config, STRING, privateKeyBaseDir, setPrivateKeyBaseDir, "PrivateKeyBaseDir", "Authentication" );	\
 		OP( ItalcConfiguration, ItalcCore::config, STRING, publicKeyBaseDir, setPublicKeyBaseDir, "PublicKeyBaseDir", "Authentication" );	\
+		OP( ItalcConfiguration, ItalcCore::config, STRINGLIST, logonGroups, setLogonGroups, "LogonGroups", "Authentication" );	\
 
 	FOREACH_ITALC_CONFIG_PROPERTY(DECLARE_CONFIG_PROPERTY)
 
@@ -99,6 +102,7 @@ public slots:
 	void setLogonAuthenticationEnabled( bool );
 	void setPrivateKeyBaseDir( const QString & );
 	void setPublicKeyBaseDir( const QString & );
+	void setLogonGroups( const QStringList & );
 
 } ;
 
