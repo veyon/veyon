@@ -26,13 +26,12 @@
 #include "ItalcCoreConnection.h"
 #include "LocalSystem.h"
 #include "ToolButton.h"
-#include "MainWindow.h"
+#include "Snapshot.h"
 
 #include <math.h>
 
 #include <QtCore/QTimer>
 #include <QtGui/QBitmap>
-#include <QtGui/QDesktopWidget>
 #include <QtGui/QLayout>
 #include <QtGui/QPainter>
 #include <QtGui/QPaintEvent>
@@ -276,13 +275,11 @@ void RemoteControlWidgetToolBar::connectionEstablished()
 
 
 RemoteControlWidget::RemoteControlWidget( const QString &host,
-											bool viewOnly,
-											MainWindow *mainWindow ) :
+											bool viewOnly ) :
 	QWidget( 0 ),
 	m_vncView( new VncView( host, this, VncView::RemoteControlMode ) ),
 	m_coreConnection( new ItalcCoreConnection( m_vncView->vncConnection() ) ),
 	m_toolBar( new RemoteControlWidgetToolBar( this, viewOnly ) ),
-	m_mainWindow( mainWindow ),
 	m_host( host )
 {
 	setWindowIcon( QPixmap( ":/resources/remote_control.png" ) );
@@ -414,11 +411,7 @@ void RemoteControlWidget::toggleViewOnly( bool _on )
 
 void RemoteControlWidget::takeSnapshot()
 {
-/*	m_vncView->m_connection->takeSnapshot();
-	if( m_mainWindow )
-	{
-		m_mainWindow->reloadSnapshotList();
-	}*/
+	Snapshot().take( m_vncView->vncConnection(), m_coreConnection->user() );
 }
 
 

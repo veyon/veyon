@@ -32,7 +32,6 @@
 class VncView;
 class ItalcCoreConnection;
 class RemoteControlWidget;
-class MainWindow;
 
 
 class RemoteControlWidgetToolBar : public QWidget
@@ -80,8 +79,7 @@ class RemoteControlWidget : public QWidget
 {
 	Q_OBJECT
 public:
-	RemoteControlWidget( const QString & _host, bool _view_only = false,
-						MainWindow * _main_window = NULL );
+	RemoteControlWidget( const QString & _host, bool _view_only = false );
 	virtual ~RemoteControlWidget();
 
 	const QString &host() const
@@ -113,7 +111,6 @@ private:
 	VncView * m_vncView;
 	ItalcCoreConnection *m_coreConnection;
 	RemoteControlWidgetToolBar * m_toolBar;
-	MainWindow * m_mainWindow;
 
 	QString m_host;
 

@@ -516,8 +516,7 @@ void MainWindow::remoteControlDisplay( const QString & _hostname,
 	{
 		return;
 	}
-	m_remoteControlWidget = new RemoteControlWidget( _hostname, _view_only,
-									this );
+	m_remoteControlWidget = new RemoteControlWidget( _hostname, _view_only );
 	int x = 0;
 	for( int i = 0; i < m_remoteControlScreen; ++i )
 	{
