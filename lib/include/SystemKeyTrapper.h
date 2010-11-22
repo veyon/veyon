@@ -78,7 +78,7 @@ private slots:
 
 
 signals:
-	void keyEvent( uint32_t, bool );
+	void keyEvent( unsigned int, bool );
 
 } ;
 

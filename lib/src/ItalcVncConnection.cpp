@@ -47,7 +47,7 @@ static QString outputErrorMessageString;
 class KeyClientEvent : public ClientEvent
 {
 public:
-	KeyClientEvent( int key, int pressed ) :
+	KeyClientEvent( unsigned int key, bool pressed ) :
 		m_key( key ),
 		m_pressed( pressed )
 	{
@@ -59,8 +59,8 @@ public:
 	}
 
 private:
-	int m_key;
-	int m_pressed;
+	unsigned int m_key;
+	bool m_pressed;
 } ;
 
 
@@ -686,7 +686,7 @@ void ItalcVncConnection::mouseEvent( int x, int y, int buttonMask )
 
 
 
-void ItalcVncConnection::keyEvent( int key, bool pressed )
+void ItalcVncConnection::keyEvent( unsigned int key, bool pressed )
 {
 	enqueueEvent( new KeyClientEvent( key, pressed ) );
 }

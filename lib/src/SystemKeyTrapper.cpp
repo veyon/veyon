@@ -314,7 +314,7 @@ void SystemKeyTrapper::checkForTrappedKeys( void )
 
 	while( !__trapped_keys.isEmpty() )
 	{
-		int key = 0;
+		unsigned int key = 0;
 		switch( __trapped_keys.front() )
 		{
 			case None: break;

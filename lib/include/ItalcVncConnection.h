@@ -205,7 +205,7 @@ signals:
 
 public slots:
 	void mouseEvent( int x, int y, int buttonMask );
-	void keyEvent( int key, bool pressed );
+	void keyEvent( unsigned int key, bool pressed );
 	void clientCut( const QString &text );
 
 
