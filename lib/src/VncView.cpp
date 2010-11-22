@@ -81,6 +81,10 @@ VncView::VncView( const QString &host, QWidget *parent, Mode mode ) :
 	connect( &m_vncConn, SIGNAL( cursorShapeUpdated( const QImage &, int, int ) ),
 				this, SLOT( updateCursorShape( const QImage &, int, int ) ) );
 
+	// forward trapped special keys
+	connect( m_sysKeyTrapper, SIGNAL( keyEvent( unsigned int, bool ) ),
+				&m_vncConn, SLOT( keyEvent( unsigned int, bool ) ) );
+
 	// set up background color
 	if( parent == NULL )
 	{
@@ -184,6 +188,7 @@ void VncView::setViewOnly( bool _vo )
 	{
 		grabKeyboard();
 		updateLocalCursor();
+		m_sysKeyTrapper->setEnabled( true );
 	}
 }
 
@@ -373,6 +378,24 @@ void VncView::keyEventHandler( QKeyEvent * _ke )
 		m_vncConn.keyEvent( XK_ISO_Level3_Shift, true );
 	}
 #endif
+
+	// handle Ctrl+Alt+Del replacement (Meta key+Del)
+	if( ( m_mods.contains( XK_Super_L ) || m_mods.contains( XK_Super_R ) ) &&
+			_ke->key() == Qt::Key_Delete )
+	{
+		if( pressed )
+		{
+			unpressModifiers();
+			m_vncConn.keyEvent( XK_Control_L, true );
+			m_vncConn.keyEvent( XK_Alt_L, true );
+			m_vncConn.keyEvent( XK_Delete, true );
+			m_vncConn.keyEvent( XK_Delete, false );
+			m_vncConn.keyEvent( XK_Alt_L, false );
+			m_vncConn.keyEvent( XK_Control_L, false );
+			m_mods[XK_Super_L] = true;
+			key = 0;
+		}
+	}
 
 	// handle modifiers
 	if( key == XK_Shift_L || key == XK_Control_L || key == XK_Meta_L ||
