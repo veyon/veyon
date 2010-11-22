@@ -112,7 +112,7 @@ MainWindow::MainWindow() :
 
 	// show/hide platform-specific controls
 #ifdef ITALC_BUILD_WIN32
-	ui->groupManagement->hide();
+	ui->logonGroupManagement->hide();
 #else
 	ui->manageACLs->hide();
 
