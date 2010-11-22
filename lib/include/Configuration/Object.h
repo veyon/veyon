@@ -106,6 +106,13 @@ private:
 			return value( key, parentKey );			\
 		}
 
+#define DECLARE_CONFIG_STRINGLIST_PROPERTY(get,key,parentKey)\
+	public:													\
+		inline QStringList get() const						\
+		{													\
+			return value( key, parentKey ).split( ',' );	\
+		}
+
 #define DECLARE_CONFIG_INT_PROPERTY(get,key,parentKey)	\
 	public:												\
 		inline int get() const							\
@@ -129,6 +136,12 @@ private:
 		void className::set( const QString &val )						\
 		{																\
 			setValue( key, val,	parentKey );							\
+		}
+
+#define IMPLEMENT_CONFIG_SET_STRINGLIST_PROPERTY(className,set,key,parentKey)\
+		void className::set( const QStringList &val )					\
+		{																\
+			setValue( key, val.join( "," ),	parentKey );				\
 		}
 
 #define IMPLEMENT_CONFIG_SET_INT_PROPERTY(className,set,key,parentKey)	\

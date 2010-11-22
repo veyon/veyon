@@ -35,6 +35,12 @@
 #define INIT_WIDGET_FROM_STRING_PROPERTY(config,property,slot)							\
 			_INIT_WIDGET_FROM_PROPERTY(config,property,QLineEdit,setText)
 
+#define INIT_WIDGET_FROM_STRINGLIST_PROPERTY(config,property,slot)							\
+			if(ui->property->inherits("QListWidget")) {					\
+				qobject_cast<QListWidget *>( ui->property )->clear();			\
+				qobject_cast<QListWidget *>( ui->property )->addItems( config->property() );	\
+			}
+
 #define INIT_WIDGET_FROM_INT_PROPERTY(config,property,slot)							\
 			if(ui->property->inherits("QComboBox"))	{							\
 				_INIT_WIDGET_FROM_PROPERTY(config,property,QComboBox,setCurrentIndex)	\
@@ -50,6 +56,8 @@
 #define CONNECT_WIDGET_TO_BOOL_PROPERTY(config,property,slot)							\
 			connect( ui->property, SIGNAL(toggled(bool)),						\
 						config, SLOT(slot(bool)) );
+
+#define CONNECT_WIDGET_TO_STRINGLIST_PROPERTY(config,property,slot)
 
 #define CONNECT_WIDGET_TO_STRING_PROPERTY(config,property,slot)						\
 			connect( ui->property, SIGNAL(textChanged(const QString &)),		\
