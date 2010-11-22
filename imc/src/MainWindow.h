@@ -58,10 +58,14 @@ private slots:
 	void saveSettingsToFile();
 	void launchAccessKeyAssistant();
 	void manageACLs();
+	void addLogonGroup();
+	void removeLogonGroup();
 
 
 private:
 	virtual void closeEvent( QCloseEvent *closeEvent );
+
+	void updateLogonGroupsUI();
 
 	bool isServiceRunning();
 

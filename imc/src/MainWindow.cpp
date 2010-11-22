@@ -88,6 +88,8 @@ MainWindow::MainWindow() :
 
 	CONNECT_BUTTON_SLOT( launchAccessKeyAssistant );
 	CONNECT_BUTTON_SLOT( manageACLs );
+	CONNECT_BUTTON_SLOT( addLogonGroup );
+	CONNECT_BUTTON_SLOT( removeLogonGroup );
 
 	connect( ui->buttonBox, SIGNAL( clicked( QAbstractButton * ) ),
 				this, SLOT( resetOrApply( QAbstractButton * ) ) );
@@ -113,8 +115,9 @@ MainWindow::MainWindow() :
 	ui->groupManagement->hide();
 #else
 	ui->manageACLs->hide();
-#endif
 
+	updateLogonGroupsUI();
+#endif
 }
 
 
@@ -327,6 +330,39 @@ void MainWindow::manageACLs()
 
 
 
+void MainWindow::addLogonGroup()
+{
+	QStringList logonGroups = ItalcCore::config->logonGroups();
+	foreach( QListWidgetItem *item, ui->allGroups->selectedItems() )
+	{
+		logonGroups.removeAll( item->text() );
+		logonGroups += item->text();
+	}
+	logonGroups.removeAll( "" );
+	ItalcCore::config->setLogonGroups( logonGroups );
+
+	updateLogonGroupsUI();
+}
+
+
+
+
+void MainWindow::removeLogonGroup()
+{
+	QStringList logonGroups = ItalcCore::config->logonGroups();
+	foreach( QListWidgetItem *item, ui->logonGroups->selectedItems() )
+	{
+		logonGroups.removeAll( item->text() );
+	}
+	logonGroups.removeAll( "" );
+	ItalcCore::config->setLogonGroups( logonGroups );
+
+	updateLogonGroupsUI();
+}
+
+
+
+
 void MainWindow::closeEvent( QCloseEvent *closeEvent )
 {
 	if( m_configChanged &&
@@ -342,6 +378,105 @@ void MainWindow::closeEvent( QCloseEvent *closeEvent )
 
 	closeEvent->accept();
 	QMainWindow::closeEvent( closeEvent );
+}
+
+
+
+
+void MainWindow::updateLogonGroupsUI()
+{
+	QProcess p;
+	p.start( "getent", QStringList() << "group" );
+	p.waitForFinished();
+
+	QStringList groups = QString( p.readAll() ).split( '\n' );
+	QStringList groupNames;
+	foreach( const QString &group, groups )
+	{
+		groupNames += group.split( ':' ).first();
+	}
+	static const char *ignoredGroups[] = {
+		"root",
+		"daemon",
+		"bin",
+		"tty",
+		"disk",
+		"lp",
+		"mail",
+		"news",
+		"uucp",
+		"man",
+		"proxy",
+		"kmem",
+		"dialout",
+		"fax",
+		"voice",
+		"cdrom",
+		"tape",
+		"audio",
+		"dip",
+		"www-data",
+		"backup",
+		"list",
+		"irc",
+		"src",
+		"gnats",
+		"shadow",
+		"utmp",
+		"video",
+		"sasl",
+		"plugdev",
+		"games",
+		"users",
+		"nogroup",
+		"libuuid",
+		"syslog",
+		"fuse",
+		"lpadmin",
+		"ssl-cert",
+		"messagebus",
+		"crontab",
+		"mlocate",
+		"avahi-autoipd",
+		"netdev",
+		"saned",
+		"sambashare",
+		"haldaemon",
+		"polkituser",
+		"mysql",
+		"avahi",
+		"klog",
+		"floppy",
+		"oprofile",
+		"netdev",
+		"dirmngr",
+		"vboxusers",
+		"",
+		NULL };
+	for( int i = 0; ignoredGroups[i] != NULL; ++i )
+	{
+		groupNames.removeAll( ignoredGroups[i] );
+	}
+
+	ui->logonGroupManagement->setUpdatesEnabled( false );
+
+	ui->allGroups->clear();
+	ui->logonGroups->clear();
+
+	const QStringList logonGroups = ItalcCore::config->logonGroups();
+	foreach( const QString &g, groupNames )
+	{
+		if( logonGroups.contains( g ) )
+		{
+			ui->logonGroups->addItem( g );
+		}
+		else
+		{
+			ui->allGroups->addItem( g );
+		}
+	}
+
+	ui->logonGroupManagement->setUpdatesEnabled( true );
 }
 
 
