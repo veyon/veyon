@@ -42,6 +42,7 @@
 #include <QtNetwork/QHostAddress>
 
 #include "MainWindow.h"
+#include "AuthenticationCredentials.h"
 #include "ClassroomManager.h"
 #include "Dialogs.h"
 #include "PasswordDialog.h"
@@ -91,18 +92,6 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 			"create or write this directory." ).arg(
 					LocalSystem::Path::personalConfigDataPath() ) );
 		return;
-	}
-
-	bool needKeys = true;
-	if( ItalcCore::config->isLogonAuthenticationEnabled() )
-	{
-		PasswordDialog dlg( this );
-		if( dlg.exec() )
-		{
-			m_username = dlg.username();
-			m_password = dlg.password();
-			needKeys = false;
-		}
 	}
 
 	// configure side bar
@@ -327,14 +316,15 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 
 	while( 1 )
 	{
-		if( ItalcVncConnection::initAuthentication() == false )
+		if( ItalcCore::initAuthentication() == false )
 		{
 			if( ItalcCore::role != ItalcCore::RoleTeacher )
 			{
 				ItalcCore::role = ItalcCore::RoleTeacher;
 				continue;
 			}
-			if( needKeys == false )
+			if( ItalcCore::authenticationCredentials->hasCredentials(
+										AuthenticationCredentials::UserLogon ) )
 			{
 				break;
 			}
@@ -360,8 +350,6 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 
 	conn->setHost( QHostAddress( QHostAddress::LocalHost ).toString() );
 	conn->setPort( ItalcCore::config->coreServerPort() );
-	conn->setAuthUser( username() );
-	conn->setAuthPassword( password() );
 	conn->setFramebufferUpdateInterval( -1 );
 	conn->start();
 

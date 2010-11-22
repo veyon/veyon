@@ -25,6 +25,7 @@
  *
  */
 
+#include "AuthenticationCredentials.h"
 #include "DsaKey.h"
 #include "ItalcConfiguration.h"
 #include "ItalcVncConnection.h"
@@ -702,30 +703,6 @@ void ItalcVncConnection::clientCut( const QString &text )
 
 
 
-
-PrivateDSAKey *ItalcVncConnection::privDSAKey = NULL;
-
-bool ItalcVncConnection::initAuthentication()
-{
-	if( privDSAKey )
-	{
-		delete privDSAKey;
-		privDSAKey = NULL;
-	}
-
-	const QString privKeyFile = LocalSystem::Path::privateKeyPath( ItalcCore::role );
-	qDebug() << "Loading private key" << privKeyFile << "for role" << ItalcCore::role;
-	if( privKeyFile.isEmpty() )
-	{
-		return false;
-	}
-	privDSAKey = new PrivateDSAKey( privKeyFile );
-
-	return privDSAKey->isValid();
-}
-
-
-
 void ItalcVncConnection::handleSecTypeItalc( rfbClient *client )
 {
 	SocketDevice socketDev( libvncClientDispatcher, client );
@@ -760,13 +737,14 @@ void ItalcVncConnection::handleSecTypeItalc( rfbClient *client )
 
 	if( chosenAuthType == ItalcAuthDSA )
 	{
-		QByteArray chall = socketDev.read().toByteArray();
-		socketDev.write( QVariant( (int) ItalcCore::role ) );
-		if( !privDSAKey )
+		if( ItalcCore::authenticationCredentials->hasCredentials(
+				AuthenticationCredentials::PrivateKey ) )
 		{
-			initAuthentication();
+			QByteArray chall = socketDev.read().toByteArray();
+			socketDev.write( QVariant( (int) ItalcCore::role ) );
+			socketDev.write( ItalcCore::authenticationCredentials->
+													privateKey()->sign( chall ) );
 		}
-		socketDev.write( privDSAKey->sign( chall ) );
 	}
 	else if( chosenAuthType == ItalcAuthHostBased )
 	{
@@ -784,9 +762,6 @@ void ItalcVncConnection::handleSecTypeItalc( rfbClient *client )
 
 void ItalcVncConnection::handleMsLogonIIAuth( rfbClient *client )
 {
-	ItalcVncConnection *c =
-				(ItalcVncConnection *) rfbClientGetClientData( client, 0 );
-
 	char gen[8], mod[8], pub[8], resp[8];
 	char user[256], passwd[64];
 	unsigned char key[8];
@@ -802,8 +777,10 @@ void ItalcVncConnection::handleMsLogonIIAuth( rfbClient *client )
 
 	int64ToBytes(dh.createEncryptionKey(bytesToInt64(resp)), (char*) key);
 
-	strcpy(user, c->authUser().toUtf8().constData() );
-	strcpy(passwd, c->authPassword().toUtf8().constData() );
+	strcpy( user, ItalcCore::authenticationCredentials->
+										logonUsername().toUtf8().constData() );
+	strcpy( passwd, ItalcCore::authenticationCredentials->
+										logonPassword().toUtf8().constData() );
 
 	rfbClientEncryptBytes2((unsigned char*) user, sizeof(user), key);
 	rfbClientEncryptBytes2((unsigned char*) passwd, sizeof(passwd), key);
@@ -820,10 +797,9 @@ void ItalcVncConnection::handleMsLogonIIAuth( rfbClient *client )
 
 int isLogonAuthenticationEnabled( rfbClient *client )
 {
-	ItalcVncConnection *c =
-				(ItalcVncConnection *) rfbClientGetClientData( client, 0 );
 	if( ItalcCore::config->isLogonAuthenticationEnabled() &&
-			c && !c->authUser().isEmpty() )
+			ItalcCore::authenticationCredentials->hasCredentials(
+										AuthenticationCredentials::UserLogon ) )
 	{
 
 		return 1;

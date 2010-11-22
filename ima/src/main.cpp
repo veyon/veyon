@@ -109,6 +109,12 @@ int main( int argc, char * * argv )
 		const QString & a = arg_it.next();
 		if( a == "-rctrl" && arg_it.hasNext() )
 		{
+			if( !ItalcCore::initAuthentication() )
+			{
+				ilog_failed( "ItalcCore::initAuthentication()" );
+				return -1;
+			}
+
 			const QString host = arg_it.next();
 			bool view_only = arg_it.hasNext() ?
 						arg_it.next().toInt()

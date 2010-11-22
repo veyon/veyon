@@ -495,10 +495,6 @@ Client::Client( const QString & _hostname,
 
 	ItalcVncConnection * conn = new ItalcVncConnection( this );
 	conn->setHost( m_hostname );
-
-	conn->setAuthUser( mainWindow->username() );
-	conn->setAuthPassword( mainWindow->password() );
-
 	conn->setQuality( ItalcVncConnection::ThumbnailQuality );
 	conn->setFramebufferUpdateInterval(
 				m_mainWindow->getClassroomManager()->updateInterval() * 1000 );

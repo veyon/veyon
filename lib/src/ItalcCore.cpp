@@ -28,20 +28,23 @@
 #include <windows.h>
 #endif
 
-#include <QtCore/QCoreApplication>
 #include <QtCore/QDir>
 #include <QtCore/QFileInfo>
+#include <QtGui/QApplication>
 
+#include "AuthenticationCredentials.h"
 #include "ItalcCore.h"
 #include "ItalcConfiguration.h"
 #include "LocalSystem.h"
 #include "Logger.h"
+#include "PasswordDialog.h"
 
 #include "minilzo.h"
 
 
 
 ItalcConfiguration *ItalcCore::config = NULL;
+AuthenticationCredentials *ItalcCore::authenticationCredentials = NULL;
 
 int ItalcCore::serverPort = PortOffsetIVS;
 ItalcCore::UserRoles ItalcCore::role = ItalcCore::RoleOther;
@@ -142,8 +145,65 @@ bool ItalcCore::init()
 
 
 
+bool ItalcCore::initAuthentication()
+{
+	if( authenticationCredentials )
+	{
+		delete authenticationCredentials;
+		authenticationCredentials = NULL;
+	}
+
+	authenticationCredentials = new AuthenticationCredentials;
+
+	bool success = true;
+
+	if( config->isLogonAuthenticationEnabled() )
+	{
+		if( QApplication::type() != QApplication::Tty )
+		{
+			PasswordDialog dlg( QApplication::activeWindow() );
+			if( dlg.exec() )
+			{
+				authenticationCredentials->setLogonCredentials(
+											dlg.username(), dlg.password() );
+				success &= true;
+			}
+			else
+			{
+				success = false;
+			}
+		}
+		else
+		{
+			success = false;
+		}
+	}
+
+	if( config->isKeyAuthenticationEnabled() )
+	{
+		const QString privKeyFile = LocalSystem::Path::privateKeyPath( ItalcCore::role );
+		qDebug() << "Loading private key" << privKeyFile << "for role" << ItalcCore::role;
+		if( authenticationCredentials->loadPrivateKey( privKeyFile ) )
+		{
+			success &= true;
+		}
+		else
+		{
+			success = false;
+		}
+	}
+
+	return success;
+}
+
+
+
+
 void ItalcCore::destroy()
 {
+	delete authenticationCredentials;
+	authenticationCredentials = NULL;
+
 	delete config;
 	config = NULL;
 }

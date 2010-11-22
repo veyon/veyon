@@ -92,27 +92,6 @@ public:
 	void setHost( const QString &host );
 	void setPort( int port );
 
-	void setAuthUser( const QString &authUser )
-	{
-		m_authUser = authUser;
-	}
-
-	void setAuthPassword( const QString &authPassword )
-	{
-		m_authPassword = authPassword;
-	}
-
-	const QString &authUser() const
-	{
-		return m_authUser;
-	}
-
-	const QString &authPassword() const
-	{
-		return m_authPassword;
-	}
-
-
 	State state() const
 	{
 		return m_state;
@@ -187,7 +166,6 @@ public:
 	void rescaleScreen();
 
 	// authentication
-	static bool initAuthentication();
 	static void handleSecTypeItalc( rfbClient *client );
 	static void handleMsLogonIIAuth( rfbClient *client );
 
@@ -223,13 +201,6 @@ private:
 	static void hookOutputHandler( const char *format, ... );
 	static rfbBool hookHandleItalcMessage( rfbClient *cl,
 						rfbServerToClientMsg *msg );
-
-	// authentication
-	static PrivateDSAKey *privDSAKey;
-
-	QString m_authUser;
-	QString m_authPassword;
-
 
 	uint8_t *m_frameBuffer;
 	bool m_framebufferInitialized;

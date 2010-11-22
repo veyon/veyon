@@ -132,14 +132,17 @@ private:
 
 
 
+class AuthenticationCredentials;
 class ItalcConfiguration;
 
 namespace ItalcCore
 {
 	bool init();
+	bool initAuthentication();
 	void destroy();
 
 	extern ItalcConfiguration *config;
+	extern AuthenticationCredentials *authenticationCredentials;
 
 	typedef QString Command;
 	typedef QMap<QString, QVariant> CommandArgs;
