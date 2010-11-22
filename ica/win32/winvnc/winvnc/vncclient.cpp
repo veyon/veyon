@@ -1156,9 +1156,6 @@ vncClientThread::InitAuthenticate()
 			return FALSE;
 		}
 	} else {
-#ifdef ULTRAVNC_ITALC_SUPPORT
-			return FALSE;
-#endif
 		// RDV 2010-4-10
 		if (!FilterClients_Ask_Permission())
 			{
@@ -1454,6 +1451,13 @@ BOOL vncClientThread::AuthenticateLegacyClient()
 	{
 		auth_type = rfbNoAuth;
 	}
+
+#ifdef ULTRAVNC_ITALC_SUPPORT
+	// always use MS logon authentication when authenticating against
+	// an old VNC viewer - this allows to use the iTALC client as regular
+	// VNC server
+	auth_type = rfbLegacy_MsLogon;
+#endif
 
 	// abort if invalid
 	if (auth_type == rfbInvalidAuth) {
