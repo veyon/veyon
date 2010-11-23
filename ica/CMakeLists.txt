@@ -52,7 +52,7 @@ IF(ITALC_BUILD_WIN32)
 	ADD_SUBDIRECTORY(win32)
 
 	ADD_DEFINITIONS(-DX11VNC_IPV6=0 -DPTW32_STATIC_LIB -DTLS=__thread -DX11VNC_USLEEP)
-	INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/win32/winvnc ${CMAKE_CURRENT_SOURCE_DIR}/win32/winvnc/omnithread ${CMAKE_CURRENT_SOURCE_DIR}/win32/winvnc/winvnc ${CMAKE_CURRENT_SOURCE_DIR}/x11/libvncclient)
+	INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/win32 ${CMAKE_CURRENT_SOURCE_DIR}/win32/winvnc ${CMAKE_CURRENT_SOURCE_DIR}/win32/winvnc/omnithread ${CMAKE_CURRENT_SOURCE_DIR}/win32/winvnc/winvnc ${CMAKE_CURRENT_SOURCE_DIR}/x11/libvncclient)
 	SET(platform_SOURCES
 		${CMAKE_CURRENT_SOURCE_DIR}/win32/ultravnc.cpp
 		${CMAKE_CURRENT_SOURCE_DIR}/win32/ultravnc-italc.cpp
@@ -113,13 +113,13 @@ IF(ITALC_BUILD_WIN32)
 		${CMAKE_CURRENT_SOURCE_DIR}/win32/winvnc/winvnc/CpuUsage.cpp
 		${CMAKE_CURRENT_SOURCE_DIR}/win32/winvnc/winvnc/getinfo.cpp
 		${CMAKE_CURRENT_SOURCE_DIR}/win32/winvnc/winvnc/Dtwinver.cpp
+		${CMAKE_CURRENT_SOURCE_DIR}/win32/winvnc/winvnc/httpconnect.cpp
 		${CMAKE_CURRENT_SOURCE_DIR}/win32/winvnc/omnithread/nt.cpp
-		${CMAKE_CURRENT_SOURCE_DIR}/win32/winvnc/Xregion/Region.c
 		${CMAKE_CURRENT_SOURCE_DIR}/win32/winvnc/DSMPlugin/DSMPlugin.cpp
-		${CMAKE_CURRENT_SOURCE_DIR}/win32/winvnc/common/clipboard.cpp
-		${CMAKE_CURRENT_SOURCE_DIR}/win32/winvnc/common/win32_helpers.cpp
-		${CMAKE_CURRENT_SOURCE_DIR}/win32/winvnc/rdr/ZlibOutStream.cxx
-		${CMAKE_CURRENT_SOURCE_DIR}/win32/winvnc/rdr/ZlibInStream.cxx
+		${CMAKE_CURRENT_SOURCE_DIR}/win32/common/Clipboard.cpp
+		${CMAKE_CURRENT_SOURCE_DIR}/win32/common/win32_helpers.cpp
+		${CMAKE_CURRENT_SOURCE_DIR}/win32/rdr/ZlibOutStream.cxx
+		${CMAKE_CURRENT_SOURCE_DIR}/win32/rdr/ZlibInStream.cxx
 		)
 
 	SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-write-strings -fexceptions")

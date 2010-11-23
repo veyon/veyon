@@ -2159,7 +2159,7 @@ vncClientThread::run(void *arg)
 		// Ensure that we're running in the correct desktop
 		if (!m_client->IsFileTransBusy())
 		// This desktop switch is responsible for the keyboard input
-		if (!vncService::InputDesktopSelected())
+		if (vncService::InputDesktopSelected()==0)
 		{
 			vnclog.Print(LL_CONNERR, VNCLOG("vncClientThread \n"));
 			if (!vncService::SelectDesktop(NULL, &input_desktop)) 

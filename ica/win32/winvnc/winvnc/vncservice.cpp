@@ -629,12 +629,9 @@ BOOL CALLBACK WinStationEnumProc(LPTSTR name, LPARAM param) {
 
 // NT only function to establish whether we're on the current input desktop
 
-BOOL
+int
 vncService::InputDesktopSelected()
 {
-//Running as SC we want to keep the viewer open in case UAC or screensaver jump in
-if (SPECIAL_SC_EXIT || SPECIAL_SC_PROMPT)return true;
-
 //	vnclog.Print(LL_INTERR, VNCLOG("InputDesktopSelected()\n"));
 	// Are we running on NT?
 	if (IsWinNT())
@@ -652,13 +649,15 @@ if (SPECIAL_SC_EXIT || SPECIAL_SC_PROMPT)return true;
 		// *** I think this is horribly inefficient but I'm not sure.
 		if (inputdesktop == NULL)
 		{
+			//Running as SC we want to keep the viewer open in case UAC or screensaver jump in
+			if (!m_fRunningFromExternalService)return 2;
 			DWORD lasterror;
 			lasterror=GetLastError();
 			vnclog.Print(LL_INTERR, VNCLOG("OpenInputDesktop %i I\n"),lasterror);
 			if (lasterror==170) return TRUE;
 			if (lasterror==624) return TRUE;
 			vnclog.Print(LL_INTERR, VNCLOG("OpenInputDesktop II\n"));
-			return FALSE;
+			return 0;
 		}
 
 		DWORD dummy;
@@ -669,14 +668,18 @@ if (SPECIAL_SC_EXIT || SPECIAL_SC_PROMPT)return true;
 			if (!CloseDesktop(inputdesktop))
 				vnclog.Print(LL_INTERR, VNCLOG("failed to close input desktop\n"));
 			vnclog.Print(LL_INTERR, VNCLOG("!GetUserObjectInformation(threaddesktop\n"));
-			return FALSE;
+			//Running as SC we want to keep the viewer open in case UAC or screensaver jump in
+			if (!m_fRunningFromExternalService)return 2;
+			return 0;
 		}
 		assert(dummy <= 256);
 		if (!GetUserObjectInformation(inputdesktop, UOI_NAME, &inputname, 256, &dummy)) {
 			if (!CloseDesktop(inputdesktop))
 				vnclog.Print(LL_INTERR, VNCLOG("failed to close input desktop\n"));
 			vnclog.Print(LL_INTERR, VNCLOG("!GetUserObjectInformation(inputdesktop\n"));
-			return FALSE;
+			//Running as SC we want to keep the viewer open in case UAC or screensaver jump in
+			if (!m_fRunningFromExternalService)return 2;
+			return 0;
 		}
 		assert(dummy <= 256);
 
@@ -686,11 +689,13 @@ if (SPECIAL_SC_EXIT || SPECIAL_SC_PROMPT)return true;
 		if (strcmp(threadname, inputname) != 0)
 		{
 			vnclog.Print(LL_INTERR, VNCLOG("threadname, inputname differ\n"));
-		   return FALSE;
+			//Running as SC we want to keep the viewer open in case UAC or screensaver jump in
+			if (!m_fRunningFromExternalService)return 2;
+		   return 0;
 		}	
 	}
 
-	return TRUE;
+	return 1;
 }
 
 

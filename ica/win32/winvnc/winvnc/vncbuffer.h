@@ -86,6 +86,7 @@ public:
 	BOOL IsShapeCleared();
 	void MultiMonitors(int number);
 	bool  IsMultiMonitor();
+	void WriteMessageOnScreen(char*);
 
 	// sf@2005 - Grey Palette
 	void EnableGreyPalette(BOOL enable);

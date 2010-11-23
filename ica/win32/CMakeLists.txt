@@ -20,14 +20,14 @@ ADD_CUSTOM_COMMAND(OUTPUT ${AUTHSSP_WINRC}
 						COMMAND ${WINDRES}
 							-I${CMAKE_CURRENT_SOURCE_DIR}
 							-o${AUTHSSP_WINRC}
-							-i${CMAKE_CURRENT_SOURCE_DIR}/winvnc/ms-logon/authSSP/authSSP.rc)
+							-i${CMAKE_CURRENT_SOURCE_DIR}/addon/ms-logon/authSSP/authSSP.rc)
 
 ADD_LIBRARY(authSSP MODULE
-				${CMAKE_CURRENT_SOURCE_DIR}/winvnc/ms-logon/authSSP/authSSP.cpp
-				${CMAKE_CURRENT_SOURCE_DIR}/winvnc/ms-logon/authSSP/EventLogging.cpp
-				${CMAKE_CURRENT_SOURCE_DIR}/winvnc/ms-logon/authSSP/GenClientServerContext.cpp
-				${CMAKE_CURRENT_SOURCE_DIR}/winvnc/ms-logon/authSSP/vncAccessControl.cpp
-				${CMAKE_CURRENT_SOURCE_DIR}/winvnc/ms-logon/authSSP/vncSSP.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/addon/ms-logon/authSSP/authSSP.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/addon/ms-logon/authSSP/EventLogging.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/addon/ms-logon/authSSP/GenClientServerContext.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/addon/ms-logon/authSSP/vncAccessControl.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/addon/ms-logon/authSSP/vncSSP.cpp
 				${AUTHSSP_WINRC})
 SET_TARGET_PROPERTIES(authSSP PROPERTIES PREFIX "")
 

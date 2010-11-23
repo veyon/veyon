@@ -738,7 +738,8 @@ vncDesktop::Shutdown()
 BOOL
 vncDesktop::InitDesktop()
 {
-	if (vncService::InputDesktopSelected())
+	int result=vncService::InputDesktopSelected();
+	if (result==1 || result==2)
 		return TRUE;
 	vnclog.Print(LL_INTINFO, VNCLOG("InitDesktop...\n"));
 	return vncService::SelectDesktop(NULL, &m_input_desktop);
@@ -1399,6 +1400,39 @@ void
 vncDesktop::FillDisplayInfo(rfbServerInitMsg *scrinfo)
 {
 	memcpy(scrinfo, &m_scrinfo, sz_rfbServerInitMsg);
+}
+
+
+void
+vncDesktop::WriteMessageOnScreen(char * tt,BYTE *scrBuff, UINT scrBuffSize)
+{
+	// Select the memory bitmap into the memory DC
+	RECT rect;
+	SetRect(&rect, 0,0, 300, 120);
+	COLORREF bgcol =RGB(0xff, 0x00, 0x00);
+	COLORREF oldtxtcol =SetTextColor(m_hmemdc, RGB(0,0,254));
+	COLORREF oldbgcol  =SetBkColor(  m_hmemdc, bgcol);
+	HBRUSH backgroundBrush = CreateSolidBrush(bgcol);
+
+	HBITMAP oldbitmap;
+	if ((oldbitmap = (HBITMAP) SelectObject(m_hmemdc, m_membitmap)) == NULL)
+					return;
+
+	FillRect(m_hmemdc, &rect, backgroundBrush); 
+	DrawText(m_hmemdc,tt,strlen(tt),&rect,DT_CENTER | DT_VCENTER);
+				// Select the old bitmap back into the memory DC
+	//DWORD err= GetLastError();
+
+	
+	//ExtTextOut(m_hmemdc, 0, 0, ETO_OPAQUE,&rect,tt,strlen(tt), NULL); 
+        
+
+	SetBkColor(  m_hmemdc, oldbgcol);
+	SetTextColor(m_hmemdc, oldtxtcol);
+	SelectObject(m_hmemdc, oldbitmap);
+	DeleteObject(backgroundBrush); 
+
+	CopyToBuffer(rect, scrBuff, scrBuffSize);
 }
 
 #ifndef CAPTUREBLT

@@ -82,7 +82,7 @@ public:
 
 	// Routine to establish whether the current thread desktop is the
 	// current user input one
-	static BOOL InputDesktopSelected();
+	static int InputDesktopSelected();
 
 	// Routine to fake a CtrlAltDel to winlogon when required.
 	// *** This is a nasty little hack...

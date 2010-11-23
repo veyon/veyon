@@ -126,6 +126,8 @@ public:
   static void SetSocketKeepAliveTimeoutDefault(int timeout) { m_defaultSocketKeepAliveTimeout = timeout; }
 
   bool GetPeerAddress(char *address, int size);
+
+  VBool Http_CreateConnect(const VString address);
   SOCKET GetChannel() const { return (SOCKET) sock; }
   // I/O routines
 #ifdef HTTP_SAMEPORT

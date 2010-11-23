@@ -66,7 +66,7 @@ typedef std::list<vncClientId> vncClientList;
 #include "TextChat.h" // sf@2002 - TextChat
 //#include "timer.h"
 // adzm - 2010-07 - Extended clipboard
-#include "common/clipboard.h"
+#include "common/Clipboard.h"
 
 // The vncClient class itself
 typedef UINT (WINAPI *pSendinput)(UINT,LPINPUT,INT);

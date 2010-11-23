@@ -111,6 +111,7 @@ void Open_forum();
 HINSTANCE	hInstResDLL;
 BOOL SPECIAL_SC_EXIT=false;
 BOOL SPECIAL_SC_PROMPT=false;
+BOOL G_HTTP;
 BOOL multi=false;
 
 void Enable_softwareCAD_elevated();
@@ -544,6 +545,13 @@ int WINAPI WinMainVNC(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLi
 		{
 			multi=true;
 			i+=strlen(winvncmulti);
+			continue;
+		}
+
+		if (strncmp(&szCmdLine[i], winvnchttp, strlen(winvnchttp)) == 0)
+		{
+			G_HTTP=true;
+			i+=strlen(winvnchttp);
 			continue;
 		}
 

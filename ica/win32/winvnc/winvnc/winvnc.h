@@ -62,6 +62,7 @@ const char winvncReconnectId[]	= "-id:";
 const char winvncSCexit[]	= "-sc_exit";
 const char winvncSCprompt[]	= "-sc_prompt";
 const char winvncmulti[]	= "-multi";
+const char winvnchttp[]	= "-httpproxy";
 
 //adzm 2009-06-20
 // for use with -sc

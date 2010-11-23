@@ -288,8 +288,17 @@ vncDesktopThread::PollWindow(rfb::Region2D &rgn, HWND hwnd)
 
 bool vncDesktopThread::handle_display_change(HANDLE& threadHandle, rfb::Region2D& rgncache, rfb::SimpleUpdateTracker& clipped_updates, rfb::ClippedUpdateTracker& updates)
 {
+	if (vncService::InputDesktopSelected()==2)
+	{
+		m_desktop->m_buffer.WriteMessageOnScreen("UltraVVNC running as application doesn't \nhave permission to acces \nUAC protected windows.\n\nThe is screen is locked until the remote user \nunlock this window");
+		rfb::Rect rect;
+		rect.tl = rfb::Point(0,0);
+		rect.br = rfb::Point(300,120);
+		rgncache.assign_union(rect);
+	}
+		
 	if ((m_desktop->m_displaychanged ||									//WM_DISPLAYCHANGE
-			!vncService::InputDesktopSelected() ||							//handle logon and screensaver desktops
+			vncService::InputDesktopSelected()==0 ||							//handle logon and screensaver desktops
 			m_desktop->m_SWtoDesktop ||										//switch from SW to full desktop or visa versa
 			m_desktop->m_hookswitch||										//hook change request
 			m_desktop->requested_multi_monitor!=m_desktop->m_buffer.IsMultiMonitor()		//monitor change request
@@ -308,7 +317,7 @@ bool vncDesktopThread::handle_display_change(HANDLE& threadHandle, rfb::Region2D
 				if (m_desktop->m_hookswitch)									vnclog.Print(LL_INTERR, VNCLOG("m_hookswitch \n"));
 				if (m_desktop->requested_multi_monitor!=m_desktop->m_buffer.IsMultiMonitor()) vnclog.Print(LL_INTERR, VNCLOG("desktop switch %i %i \n"),m_desktop->requested_multi_monitor,m_desktop->m_buffer.IsMultiMonitor());
 				if (!m_server->IsThereFileTransBusy())
-				if (!vncService::InputDesktopSelected())						vnclog.Print(LL_INTERR, VNCLOG("++++InputDesktopSelected \n"));
+				if (vncService::InputDesktopSelected()==0)						vnclog.Print(LL_INTERR, VNCLOG("++++InputDesktopSelected \n"));
 				
 				
 				BOOL screensize_changed=false;
@@ -358,7 +367,7 @@ bool vncDesktopThread::handle_display_change(HANDLE& threadHandle, rfb::Region2D
 					// monitor change, for non driver, use another buffer
 					//*******************************************************
 					if (!m_server->IsThereFileTransBusy())
-					if (m_desktop->m_displaychanged || !vncService::InputDesktopSelected() || m_desktop->m_hookswitch || (monitor_changed && !m_desktop->m_videodriver))
+					if (m_desktop->m_displaychanged || vncService::InputDesktopSelected()==0 || m_desktop->m_hookswitch || (monitor_changed && !m_desktop->m_videodriver))
 					{
 								// Attempt to close the old hooks
 								// shutdown(true) driver is reinstalled without shutdown,(shutdown need a 640x480x8 switch)
@@ -570,7 +579,15 @@ void vncDesktopThread::do_polling(HANDLE& threadHandle, rfb::Region2D& rgncache,
 			++fullpollcounter;
 			rfb::Rect r = m_desktop->GetSize();
 			// THIS FUNCTION IS A PIG. It uses too much CPU on older machines (PIII, P4)
-			if (m_desktop->FastDetectChanges(rgncache, r, 0, true)) capture=false;
+			if (vncService::InputDesktopSelected()!=2)
+			{
+				if (m_desktop->FastDetectChanges(rgncache, r, 0, true)) capture=false;
+			}
+			else
+			{
+				capture=false;
+			}
+
 			// force full screen scan every three seconds after the mouse stops moving
 			if (fullpollcounter > 20) 
 			{

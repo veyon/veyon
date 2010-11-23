@@ -884,6 +884,10 @@ void vncBuffer::GreyScaleRect(rfb::Rect &rect)
 		}
 }
 
+void vncBuffer::WriteMessageOnScreen(char* tt)
+{
+	m_desktop->WriteMessageOnScreen(tt,m_mainbuff, m_backbuffsize);
+}
 
 void
 vncBuffer::GrabRect(const rfb::Rect &rect,BOOL driver,BOOL capture)

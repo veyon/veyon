@@ -55,7 +55,7 @@ class vncServer;
 #include <list>
 
 // adzm - 2010-07 - Extended clipboard
-#include "common/clipboard.h"
+#include "common/Clipboard.h"
 
 typedef BOOL (WINAPI *WTSREGISTERSESSIONNOTIFICATION)(HWND, DWORD);
 typedef BOOL (WINAPI *WTSUNREGISTERSESSIONNOTIFICATION)(HWND);

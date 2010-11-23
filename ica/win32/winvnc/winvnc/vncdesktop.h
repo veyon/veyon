@@ -59,7 +59,7 @@ class vncServer;
 #include "avilog/avilog/AVIGenerator.h"
 #endif
 // adzm - 2010-07 - Extended clipboard
-#include "common/clipboard.h"
+#include "common/Clipboard.h"
 //#define COMPILE_MULTIMON_STUBS
 //#include "Multimon.h"
 #ifndef SM_CMONITORS
@@ -324,6 +324,7 @@ public:
 
 	// The current mouse position
 	rfb::Rect		m_cursorpos;
+	void WriteMessageOnScreen(char*,BYTE *scrBuff, UINT scrBuffSize);
 
 	// Implementation
 protected:

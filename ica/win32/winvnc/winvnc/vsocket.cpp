@@ -169,6 +169,14 @@ VSocket::~VSocket()
 }
 
 ////////////////////////////
+#include "httpconnect.h"
+VBool VSocket::Http_CreateConnect(const VString address)
+{
+	httpconnect http_class;
+	sock=http_class.Get_https_socket("443",address);
+	if (sock==0) return false;
+	else return true;
+}
 
 VBool
 VSocket::Create()

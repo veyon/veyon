@@ -44,7 +44,7 @@ class vncEncodeTight;
 extern "C"
 {
 #ifdef IPP
-#include "libjpeg-turbo-win/jpeglib.h"
+#include "libjpeg/jpeglib.h"
 #else
 #include "libjpeg/jpeglib.h"
 #endif
