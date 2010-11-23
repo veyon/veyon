@@ -44,8 +44,6 @@
 extern "C" int x11vnc_main( int argc, char * * argv );
 
 
-rfbClientPtr __client = NULL;
-
 
 qint64 libvncServerDispatcher( char * _buf, const qint64 _len,
 				const SocketOpCodes _op_code, void * _user )
@@ -104,7 +102,6 @@ static void lvs_italcSecurityHandler( struct _rfbClientRec *cl )
 	if( authOK )
 	{
 		cl->state = rfbClientRec::RFB_INITIALISATION;
-		__client = cl;
 	}
 	else
 	{
