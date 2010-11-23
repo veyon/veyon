@@ -35,6 +35,7 @@
 
 #include "Ipc/Core.h"
 
+#include "AuthenticationCredentials.h"
 #include "ItalcRfbExt.h"
 #include "rfb/rfbproto.h"
 #include "rfb/rfbclient.h"
@@ -132,13 +133,13 @@ private:
 
 
 
-class AuthenticationCredentials;
 class ItalcConfiguration;
 
 namespace ItalcCore
 {
 	bool init();
-	bool initAuthentication();
+	bool initAuthentication( int credentialTypes =
+										AuthenticationCredentials::AllTypes );
 	void destroy();
 
 	extern ItalcConfiguration *config;

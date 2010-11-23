@@ -32,7 +32,6 @@
 #include <QtCore/QFileInfo>
 #include <QtGui/QApplication>
 
-#include "AuthenticationCredentials.h"
 #include "ItalcCore.h"
 #include "ItalcConfiguration.h"
 #include "LocalSystem.h"
@@ -145,7 +144,7 @@ bool ItalcCore::init()
 
 
 
-bool ItalcCore::initAuthentication()
+bool ItalcCore::initAuthentication( int credentialTypes )
 {
 	if( authenticationCredentials )
 	{
@@ -157,7 +156,8 @@ bool ItalcCore::initAuthentication()
 
 	bool success = true;
 
-	if( config->isLogonAuthenticationEnabled() )
+	if( credentialTypes & AuthenticationCredentials::UserLogon &&
+			config->isLogonAuthenticationEnabled() )
 	{
 		if( QApplication::type() != QApplication::Tty )
 		{
@@ -179,7 +179,8 @@ bool ItalcCore::initAuthentication()
 		}
 	}
 
-	if( config->isKeyAuthenticationEnabled() )
+	if( credentialTypes & AuthenticationCredentials::PrivateKey &&
+			config->isKeyAuthenticationEnabled() )
 	{
 		const QString privKeyFile = LocalSystem::Path::privateKeyPath( ItalcCore::role );
 		qDebug() << "Loading private key" << privKeyFile << "for role" << ItalcCore::role;
