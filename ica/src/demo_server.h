@@ -116,7 +116,7 @@ private slots:
 	// IVS-connection - this way we can record changes in screen, later we
 	// extract single, non-overlapping rectangles out of changed region for
 	// updating as less as possible of screen
-	void updateRegion( const QRegion & _reg );
+	void updateRegion( const RectList &reg );
 
 	// called whenever ivsConnection::cursorShapeChanged() is emitted
 	void updateCursorShape( void );
@@ -138,7 +138,7 @@ private:
 
 	demoServer * m_ds;
 	QMutex m_dataMutex;
-	QRegion m_changedRegion;
+	RectList m_changedRegion;
 	QPoint m_lastCursorPos;
 	volatile bool m_cursorShapeChanged;
 

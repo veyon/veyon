@@ -31,6 +31,7 @@
 
 
 #include "demo_server.h"
+#include "QuadTree.h"
 #include "isd_server.h"
 #include "italc_rfb_ext.h"
 #include "minilzo.h"
@@ -192,10 +193,10 @@ demoServerClient::~demoServerClient()
 
 
 
-void demoServerClient::updateRegion( const QRegion & _reg )
+void demoServerClient::updateRegion( const RectList &reg )
 {
 	m_dataMutex.lock();
-	m_changedRegion += _reg;
+	m_changedRegion += reg;
 	m_dataMutex.unlock();
 }
 
@@ -279,7 +280,9 @@ void demoServerClient::processClient( void )
 		// e.g. if we didn't get an update-request for a quite long time
 		// and there were a lot of updates - at the end we don't send
 		// more than the whole screen one time
-		const QVector<QRect> r = m_changedRegion.rects();
+		QuadTree q( 0, 0, m_conn->screen().width()-1, m_conn->screen().height()-1, 4 );
+		q.addRects( m_changedRegion );
+		const QVector<QuadTreeRect> r = q.rects();
 
 		// no we gonna post all changed rects!
 		const rfbFramebufferUpdateMsg m =
@@ -292,47 +295,47 @@ void demoServerClient::processClient( void )
 
 		m_sock->write( (const char *) &m, sizeof( m ) );
 		// process each rect
-		for( QVector<QRect>::const_iterator it = r.begin();
+		for( QVector<QuadTreeRect>::const_iterator it = r.begin();
 							it != r.end(); ++it )
 		{
+			const int rx = it->x1();
+			const int ry = it->y1();
+			const int rw = it->x2()-it->x1()+1;
+			const int rh = it->y2()-it->y1()+1;
 			const rfbRectangle rr =
 			{
-				swap16IfLE( it->x() ),
-				swap16IfLE( it->y() ),
-				swap16IfLE( it->width() ),
-				swap16IfLE( it->height() )
+				swap16IfLE( rx ),
+				swap16IfLE( ry ),
+				swap16IfLE( rw ),
+				swap16IfLE( rh )
 			} ;
 
-			const rfbFramebufferUpdateRectHeader rh =
+			const rfbFramebufferUpdateRectHeader rhdr =
 			{
 				rr,
 				swap32IfLE( rfbEncodingItalc )
 			} ;
 
-			m_sock->write( (const char *) &rh, sizeof( rh ) );
+			m_sock->write( (const char *) &rhdr, sizeof( rhdr ) );
 
 			const QImage & i = m_conn->screen();
 			italcRectEncodingHeader hdr = { 0, 0, 0 } ;
 
-			const int w = it->width();
-			const int h = it->height();
-
 			// we only compress if it's enough data, otherwise
 			// there's too much overhead
-			if( w * h > 1024 )
+			if( rw * rh > 1024 )
 			{
 
 	hdr.compressed = 1;
-	QRgb last_pix = *( (QRgb *) i.scanLine( it->y() ) + it->x() );
+	QRgb last_pix = *( (QRgb *) i.scanLine( ry ) + rx );
 	Q_UINT8 rle_cnt = 0;
 	Q_UINT8 rle_sub = 1;
-	Q_UINT8 * out = new Q_UINT8[w * h * sizeof( QRgb )+16];
+	Q_UINT8 * out = new Q_UINT8[rw * rh * sizeof( QRgb )+16];
 	Q_UINT8 * out_ptr = out;
-	for( int y = it->y(); y < it->y() + h; ++y )
+	for( int y = ry; y < ry+rh; ++y )
 	{
-		const QRgb * data = ( (const QRgb *) i.scanLine( y ) ) +
-									it->x();
-		for( int x = 0; x < w; ++x )
+		const QRgb * data = ( (const QRgb *) i.scanLine( y ) ) + rx;
+		for( int x = 0; x < rw; ++x )
 		{
 			if( data[x] != last_pix || rle_cnt > 254 )
 			{
@@ -374,28 +377,25 @@ void demoServerClient::processClient( void )
 	m_sock->write( (const char *) &hdr, sizeof( hdr ) );
 	if( m_otherEndianess )
 	{
-		Q_UINT32 * buf = new Q_UINT32[w];
-		for( int y = 0; y < h; ++y )
+		Q_UINT32 * buf = new Q_UINT32[rw];
+		for( int y = 0; y < rh; ++y )
 		{
-			const QRgb * src = (const QRgb *) i.scanLine(
-								it->y() + y ) +
-									it->x();
-			for( int x = 0; x < w; ++x, ++src )
+			const QRgb * src = (const QRgb *) i.scanLine( ry + y ) + rx;
+			for( int x = 0; x < rw; ++x, ++src )
 			{
 				buf[x] = swap32( *src );
 			}
-			m_sock->write( (const char *) buf, w * sizeof( QRgb ) );
+			m_sock->write( (const char *) buf, rw * sizeof( QRgb ) );
 		}
 		delete[] buf;
 	}
 	else
 	{
-		for( int y = 0; y < h; ++y )
+		for( int y = 0; y < rh; ++y )
 		{
 			m_sock->write( (const char *)
-				( (const QRgb *) i.scanLine( it->y() + y ) +
-								it->x() ),
-							w * sizeof( QRgb ) );
+				( (const QRgb *) i.scanLine( ry + y ) + rx ),
+							rw * sizeof( QRgb ) );
 		}
 	}
 			}
@@ -425,8 +425,7 @@ void demoServerClient::processClient( void )
 		}
 
 		// reset vars
-		//m_changedRegion.clear();
-		m_changedRegion = QRegion();
+		m_changedRegion.clear();
 		m_cursorShapeChanged = FALSE;
 	}
 	m_sock->waitForBytesWritten();
@@ -553,14 +552,14 @@ void demoServerClient::run( void )
 	connect( m_conn, SIGNAL( cursorShapeChanged() ),
 			this, SLOT( updateCursorShape() ),
 							Qt::QueuedConnection );
-	connect( m_conn, SIGNAL( regionUpdated( const QRegion & ) ),
-			this, SLOT( updateRegion( const QRegion & ) ),
+	connect( m_conn, SIGNAL( regionUpdated( const RectList & ) ),
+			this, SLOT( updateRegion( const RectList & ) ),
 							Qt::QueuedConnection );
 
 	ml.unlock();
 
 	// first time send a key-frame
-	updateRegion( m_conn->screen().rect() );
+	updateRegion( RectList() << m_conn->screen().rect() );
 
 	//connect( m_sock, SIGNAL( readyRead() ), this, SLOT( processClient() ) );
 	connect( m_sock, SIGNAL( disconnected() ),

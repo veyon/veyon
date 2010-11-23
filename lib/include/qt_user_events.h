@@ -27,26 +27,28 @@
 #define _QT_USER_EVENTS_H
 
 #include <QtCore/QEvent>
-#include <QtGui/QRegion>
+#include <QtCore/QList>
+#include <QtCore/QRect>
 
+typedef QList<QRect> RectList;
 
 class regionChangedEvent : public QEvent
 {
 public:
-	regionChangedEvent( const QRegion & _r = QRegion() ) :
+	regionChangedEvent( const RectList &r = RectList() ) :
 		QEvent( static_cast<QEvent::Type>( QEvent::User+385 ) ),
-		m_changedRegion( _r )
+		m_changedRegion( r )
 	{
 	}
 
-	const QRegion & changedRegion( void ) const
+	const RectList &changedRegion() const
 	{
-		return( m_changedRegion );
+		return m_changedRegion;
 	}
 
 
 private:
-	QRegion m_changedRegion;
+	RectList m_changedRegion;
 
 } ;
 

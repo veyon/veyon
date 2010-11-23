@@ -32,7 +32,6 @@
 
 #include <QtCore/QReadWriteLock>
 #include <QtGui/QImage>
-#include <QtGui/QRegion>
 
 
 #ifdef HAVE_LIBZ
@@ -49,9 +48,11 @@ namespace jpeglib
 }
 #endif
 
+#include "qt_user_events.h"
 #include "isd_connection.h"
 #include "rfb/rfbproto.h"
 #include "fast_qimage.h"
+
 
 
 class demoServerClient;
@@ -152,7 +153,7 @@ private:
 						Q_UINT16 _w, Q_UINT16 _h,
 						bool _incremental );
 
-	void postRegionChangedEvent( const QRegion & _rgn );
+	void postRegionChangedEvent( const RectList &rgn );
 
 	bool handleCursorPos( const Q_UINT16 _x, const Q_UINT16 _y );
 	bool handleCursorShape( const Q_UINT16 _xhot, const Q_UINT16 _yhot,
@@ -250,7 +251,7 @@ private:
 
 signals:
 	void cursorShapeChanged( void );
-	void regionUpdated( const QRegion & );
+	void regionUpdated( const RectList & );
 
 } ;
 

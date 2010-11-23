@@ -38,7 +38,7 @@
 
 
 #include "ivs_connection.h"
-#include "qt_user_events.h"
+#include "QuadTree.h"
 #include "local_system.h"
 #include "messagebox.h"
 
@@ -97,6 +97,8 @@ ivsConnection::ivsConnection( const QString & _host, quality _q,
 	m_zlibStreamActive[0] = m_zlibStreamActive[1] = m_zlibStreamActive[2] =
 						m_zlibStreamActive[3] = FALSE;
 #endif
+
+	qRegisterMetaType<RectList>( "RectList" );
 }
 
 
@@ -454,11 +456,11 @@ bool ivsConnection::sendKeyEvent( Q_UINT32 key, bool down )
 
 
 
-void ivsConnection::postRegionChangedEvent( const QRegion & _rgn )
+void ivsConnection::postRegionChangedEvent( const RectList &rgn )
 {
 	if( parent() != NULL )
 	{
-		regionChangedEvent * rche = new regionChangedEvent( _rgn );
+		regionChangedEvent * rche = new regionChangedEvent( rgn );
 		QCoreApplication::postEvent( parent(), rche );
 	}
 }
@@ -523,7 +525,7 @@ bool ivsConnection::handleServerMessages( bool _send_screen_update, int _tries )
 
 			msg.fu.nRects = swap16IfLE( msg.fu.nRects );
 
-			QRegion updated_region;
+			RectList updated_region;
 
 			rfbFramebufferUpdateRectHeader rect;
 			for( int i = 0; i < msg.fu.nRects; i++ )
@@ -652,7 +654,8 @@ bool ivsConnection::handleServerMessages( bool _send_screen_update, int _tries )
 
 					case rfbEncodingItalcCursor:
 	{
-		QRegion ch_reg = QRect( m_cursorPos - m_cursorHotSpot,
+		RectList ch_reg;
+		ch_reg += QRect( m_cursorPos - m_cursorHotSpot,
 							m_cursorShape.size() );
 		m_cursorLock.lockForWrite();
 		//m_cursorShape = socketDev().read().value<QImage>();
@@ -697,15 +700,16 @@ bool ivsConnection::handleServerMessages( bool _send_screen_update, int _tries )
 				// if we're providing data for demo-purposes,
 				// we perform a simple color-reduction for
 				// better compression-results
-	const QVector<QRect> rects = updated_region.rects();
-	for( QVector<QRect>::const_iterator it = rects.begin();
+	QuadTree q( 0, 0, m_screen.width()-1, m_screen.height()-1, 4 );
+	q.addRects( updated_region );
+	const QVector<QuadTreeRect> rects = q.rects();
+	for( QVector<QuadTreeRect>::const_iterator it = rects.begin();
 					it != rects.end(); ++it )
 	{
-		for( Q_UINT16 y = 0; y < it->height(); ++y )
+		for( int y = it->y1(); y <= it->y2(); ++y )
 		{
-			QRgb * data = ( (QRgb *) m_screen.scanLine( y +
-							it->y() ) ) + it->x();
-			for( Q_UINT16 x = 0; x < it->width(); ++x )
+			QRgb * data = ( (QRgb *) m_screen.scanLine( y ) );
+			for( Q_UINT16 x = it->x1(); x <= it->x2(); ++x )
 			{
 				data[x] &= and_value;
 			}
@@ -1553,7 +1557,8 @@ bool ivsConnection::decompressJpegRect( Q_UINT16 x, Q_UINT16 y, Q_UINT16 w,
 bool ivsConnection::handleCursorPos( const Q_UINT16 _x, const Q_UINT16 _y )
 {
 	// move cursor and update appropriate region
-	QRegion ch_reg = QRect( m_cursorPos - m_cursorHotSpot,
+	RectList ch_reg;
+	ch_reg += QRect( m_cursorPos - m_cursorHotSpot,
 							m_cursorShape.size() );
 	m_cursorPos = QPoint( _x, _y );
 	ch_reg += QRect( m_cursorPos - m_cursorHotSpot, m_cursorShape.size() );
@@ -1707,7 +1712,8 @@ bool ivsConnection::handleCursorShape( const Q_UINT16 _xhot,
 	}
 
 
-	QRegion ch_reg = QRect( m_cursorPos - m_cursorHotSpot,
+	RectList ch_reg;
+	ch_reg += QRect( m_cursorPos - m_cursorHotSpot,
 							m_cursorShape.size() );
 	m_cursorLock.lockForWrite();
 	m_cursorShape = QImage( rcSource, _width, _height,
