@@ -25,7 +25,7 @@
 #ifdef ITALC_BUILD_WIN32
 
 #include "Win32AclEditor.h"
-#include "../ica/win32/winvnc/ms-logon/authSSP/vncAccessControl.h"
+#include "../ica/win32/addon/ms-logon/authSSP/vncAccessControl.h"
 
 SI_ACCESS g_vncAccess[] = {
 	// these are a easy-to-swallow listing of basic rights for VNC
