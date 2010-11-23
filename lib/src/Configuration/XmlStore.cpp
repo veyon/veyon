@@ -133,9 +133,9 @@ void XmlStore::flush( Object * _obj )
 		return;
 	}
 
-	QString xml = "<?xml version=\"1.0\"?>\n" + doc.toString( 2 );
-	QTextStream( &outfile ) << xml;
-	qDebug() << xml;
+	QTextStream( &outfile ) << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
+	outfile.write( doc.toByteArray( 2 ) );
+	qDebug() << doc.toString( 2 );
 }
 
 
