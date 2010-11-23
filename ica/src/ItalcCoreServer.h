@@ -25,6 +25,7 @@
 #ifndef _ITALC_CORE_SERVER_H
 #define _ITALC_CORE_SERVER_H
 
+#include <QtCore/QMutex>
 #include <QtCore/QStringList>
 
 #include "ItalcCore.h"
@@ -55,6 +56,7 @@ public:
 
 	void setAllowedIPs( const QStringList &allowedIPs )
 	{
+		QMutexLocker l( &m_dataMutex );
 		m_allowedIPs = allowedIPs;
 	}
 
@@ -68,6 +70,7 @@ private:
 
 	static ItalcCoreServer *_this;
 
+	QMutex m_dataMutex;
 	QStringList m_allowedIPs;
 
 	// list of hosts that are allowed/denied to access ICA when ICA is running
