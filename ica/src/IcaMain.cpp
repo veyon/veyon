@@ -83,6 +83,10 @@ void initCoreApplication( QCoreApplication *app = NULL )
 		app->installTranslator( tr );
 	}
 
+	// initialize global AuthenticationCredentials object so we can read and
+	// write a common secret later
+	ItalcCore::initAuthentication( AuthenticationCredentials::CommonSecret );
+
 	ItalcCore::serverPort = ItalcCore::config->coreServerPort();
 }
 
