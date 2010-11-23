@@ -193,7 +193,7 @@ void Logger::log( LogLevel ll, const QString &msg )
 				case LogLevelCritical:
 				case LogLevelError: wtype = EVENTLOG_ERROR_TYPE; break;
 				case LogLevelWarning: wtype = EVENTLOG_WARNING_TYPE; break;
-				case LogLevelInfo: wtype = EVENTLOG_INFORMATION_TYPE; break;
+				//case LogLevelInfo: wtype = EVENTLOG_INFORMATION_TYPE; break;
 				default:
 					break;
 			}
