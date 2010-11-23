@@ -45,10 +45,6 @@ public:
 protected:
 	virtual void run()
 	{
-		if( ItalcCore::role == ItalcCore::RoleOther )
-		{
-			ItalcCore::role = ItalcCore::RoleTeacher;
-		}
 		ItalcVncServer::runVncReflector( m_srcPort, m_dstPort );
 	}
 
