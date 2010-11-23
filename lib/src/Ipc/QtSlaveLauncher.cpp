@@ -29,6 +29,10 @@
 
 #include "Ipc/QtSlaveLauncher.h"
 
+#include "ItalcCore.h"
+#include "ItalcConfiguration.h"
+#include "Logger.h"
+
 namespace Ipc
 {
 
@@ -54,6 +58,13 @@ void QtSlaveLauncher::start( const QStringList &arguments )
 
 	m_processMutex.lock();
 	m_process = new QProcess;
+
+	// forward stdout from slave to master when in debug mode
+	if( ItalcCore::config->logLevel() >= Logger::LogLevelDebug )
+	{
+		m_process->setProcessChannelMode( QProcess::ForwardedChannels );
+	}
+
 #ifndef DEBUG
 	m_process->start( applicationFilePath(), arguments );
 #else
