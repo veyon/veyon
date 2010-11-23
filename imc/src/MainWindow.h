@@ -65,6 +65,7 @@ private slots:
 private:
 	virtual void closeEvent( QCloseEvent *closeEvent );
 
+	void reloadLogonACL();
 	void updateLogonGroupsUI();
 
 	bool isServiceRunning();
