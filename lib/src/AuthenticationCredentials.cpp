@@ -29,7 +29,8 @@
 AuthenticationCredentials::AuthenticationCredentials() :
 	m_privateKey( NULL ),
 	m_logonUsername(),
-	m_logonPassword()
+	m_logonPassword(),
+	m_commonSecret()
 {
 }
 
@@ -46,6 +47,13 @@ bool AuthenticationCredentials::hasCredentials( TypeFlags credentialType ) const
 	{
 		return m_logonUsername.isEmpty() == false &&
 				m_logonPassword.isEmpty() == false;
+	}
+
+	if( credentialType & CommonSecret )
+	{
+		return !m_commonSecret.isEmpty() &&
+				QByteArray::fromBase64( m_commonSecret.toAscii() ).size() ==
+												DsaKey::DefaultChallengeSize;
 	}
 
 	ilog_failedf( "credential type check", "%d", credentialType );

@@ -36,7 +36,8 @@ public:
 	{
 		PrivateKey = 0x01,
 		UserLogon = 0x02,
-		NumTypes
+		CommonSecret = 0x04,
+		AllTypes = PrivateKey | UserLogon | CommonSecret
 	} ;
 	typedef int TypeFlag;
 
@@ -44,12 +45,14 @@ public:
 
 	bool hasCredentials( TypeFlags credentialType ) const;
 
+	// private key auth
 	bool loadPrivateKey( const QString &path );
 	const PrivateDSAKey *privateKey() const
 	{
 		return m_privateKey;
 	}
 
+	// user logon auth
 	void setLogonCredentials( const QString &username, const QString &password );
 
 	const QString &logonUsername() const
@@ -62,10 +65,26 @@ public:
 		return m_logonPassword;
 	}
 
+	// common secret auth
+	void setCommonSecret( const QString &secret )
+	{
+		m_commonSecret = secret;
+	}
+
+	const QString &commonSecret() const
+	{
+		return m_commonSecret;
+	}
+
+
 private:
 	PrivateDSAKey *m_privateKey;
+
 	QString m_logonUsername;
 	QString m_logonPassword;
 
+	QString m_commonSecret;
+
 } ;
+
 #endif
