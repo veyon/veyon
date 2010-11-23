@@ -1,20 +1,4 @@
 <!DOCTYPE RCC><RCC version="1.0">
 	<qresource>
-		<file>resources/de.qm</file>
-		<file>resources/cs.qm</file>
-		<file>resources/it.qm</file>
-		<file>resources/es.qm</file>
-		<file>resources/fr.qm</file>
-		<file>resources/nn.qm</file>
-		<file>resources/pl.qm</file>
-		<file>resources/sl.qm</file>
-		<file>resources/uk.qm</file>
-		<file>resources/zh_cn.qm</file>
-		<file>resources/fi.qm</file>
-		<file>resources/sk.qm</file>
-		<file>resources/ru.qm</file>
-		<file>resources/pt_br.qm</file>
-		<file>resources/el.qm</file>
-		<file>resources/tr.qm</file>
 	</qresource>
 </RCC>

@@ -25,8 +25,6 @@
 #include <italcconfig.h>
 
 #include <QtCore/QProcess>
-#include <QtCore/QLocale>
-#include <QtCore/QTranslator>
 #include <QtGui/QApplication>
 #include <QtNetwork/QHostInfo>
 
@@ -71,18 +69,6 @@ bool eventFilter( void *msg, long *result )
 
 void initCoreApplication( QCoreApplication *app = NULL )
 {
-	const QString loc = QLocale::system().name().left( 2 );
-
-	foreach( const QString & qm, QStringList()
-												<< loc + "-core"
-												<< loc
-												<< "qt_" + loc )
-	{
-		QTranslator * tr = new QTranslator( app );
-		tr->load( QString( ":/resources/%1.qm" ).arg( qm ) );
-		app->installTranslator( tr );
-	}
-
 	// initialize global AuthenticationCredentials object so we can read and
 	// write a common secret later
 	ItalcCore::initAuthentication( AuthenticationCredentials::CommonSecret );

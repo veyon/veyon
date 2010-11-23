@@ -74,10 +74,10 @@ int main( int argc, char **argv )
 	if( !ItalcConfiguration().isStoreWritable() &&
 			ItalcCore::config->logLevel() < Logger::LogLevelDebug )
 	{
-		ImcCore::criticalMessage( app->tr( "Configuration not writable" ),
-			app->tr( "The local configuration backend reported that the "
-					"configuration is not writable! Please run the iTALC "
-					"Management Console with higher privileges." ) );
+		ImcCore::criticalMessage( MainWindow::tr( "Configuration not writable" ),
+			MainWindow::tr( "The local configuration backend reported that the "
+							"configuration is not writable! Please run the iTALC "
+							"Management Console with higher privileges." ) );
 		return -1;
 	}
 
@@ -110,14 +110,14 @@ int main( int argc, char **argv )
 			if( ImcCore::applyConfiguration( ItalcConfiguration( &xs ) ) )
 			{
 				ImcCore::informationMessage(
-					app->tr( "iTALC Management Console" ),
-					app->tr( "All settings were applied successfully." ) );
+					MainWindow::tr( "iTALC Management Console" ),
+					MainWindow::tr( "All settings were applied successfully." ) );
 			}
 			else
 			{
 				ImcCore::criticalMessage(
-					app->tr( "iTALC Management Console" ),
-					app->tr( "An error occured while applying settings!" ) );
+					MainWindow::tr( "iTALC Management Console" ),
+					MainWindow::tr( "An error occured while applying settings!" ) );
 			}
 
 			// remove temporary file

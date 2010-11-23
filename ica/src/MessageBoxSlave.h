@@ -30,6 +30,7 @@
 
 class MessageBoxSlave : public IcaSlave
 {
+	Q_OBJECT
 public:
 	MessageBoxSlave();
 	virtual ~MessageBoxSlave();

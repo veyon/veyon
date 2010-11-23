@@ -30,6 +30,8 @@
 
 #include <QtCore/QDir>
 #include <QtCore/QFileInfo>
+#include <QtCore/QLocale>
+#include <QtCore/QTranslator>
 #include <QtGui/QApplication>
 
 #include "ItalcCore.h"
@@ -133,6 +135,18 @@ bool ItalcCore::init()
 	QCoreApplication::setApplicationName( "iTALC" );
 
 	initResources();
+
+	const QString loc = QLocale::system().name().left( 2 );
+
+	foreach( const QString &qm, QStringList()
+												<< loc
+												<< "qt_" + loc )
+	{
+		QTranslator *tr = new QTranslator;
+		tr->load( QString( ":/resources/%1.qm" ).arg( qm ) );
+		QCoreApplication::installTranslator( tr );
+	}
+
 
 	ItalcConfiguration dc = ItalcConfiguration::defaultConfiguration();
 	config = new ItalcConfiguration( dc );

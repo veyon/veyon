@@ -34,6 +34,7 @@
 #include "ItalcCore.h"
 #include "LocalSystem.h"
 #include "Logger.h"
+#include "MainWindow.h"
 #include "SystemConfigurationModifier.h"
 
 
@@ -49,15 +50,13 @@ static void configApplyError( const QString &msg )
 	QCoreApplication *app = QCoreApplication::instance();
 	if( !app->arguments().contains( "-quiet" ) )
 	{
-		criticalMessage( app->tr( "iTALC Management Console" ), msg );
+		criticalMessage( MainWindow::tr( "iTALC Management Console" ), msg );
 	}
 }
 
 
 bool applyConfiguration( const ItalcConfiguration &c )
 {
-	QCoreApplication *app = QCoreApplication::instance();
-
 	// merge configuration
 	*ItalcCore::config += c;
 
@@ -65,21 +64,24 @@ bool applyConfiguration( const ItalcConfiguration &c )
 	if( !SystemConfigurationModifier::setServiceAutostart(
 									ItalcCore::config->autostartService() ) )
 	{
-		configApplyError( app->tr( "Could not modify the autostart property "
-									"for the iTALC Client Service." ) );
+		configApplyError(
+			MainWindow::tr( "Could not modify the autostart property "
+										"for the iTALC Service." ) );
 	}
 
 	if( !SystemConfigurationModifier::setServiceArguments(
 									ItalcCore::config->serviceArguments() ) )
 	{
-		configApplyError( app->tr( "Could not modify the service arguments "
-									"for the iTALC Client Service." ) );
+		configApplyError(
+			MainWindow::tr( "Could not modify the service arguments "
+									"for the iTALC Service." ) );
 	}
 	if( !SystemConfigurationModifier::enableFirewallException(
 							ItalcCore::config->isFirewallExceptionEnabled() ) )
 	{
-		configApplyError( app->tr( "Could not change the firewall configuration "
-									"for the iTALC Client Service." ) );
+		configApplyError(
+			MainWindow::tr( "Could not change the firewall configuration "
+									"for the iTALC Service." ) );
 	}
 
 	// write global configuration

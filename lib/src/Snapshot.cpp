@@ -53,7 +53,7 @@ void Snapshot::take( ItalcVncConnection *vncConn, const QString &user )
 	QString u = user;
 	if( u.isEmpty() )
 	{
-		u = qApp->tr( "unknown" );
+		u = tr( "unknown" );
 	}
 	if( !u.contains( '(' ) )
 	{
@@ -69,13 +69,13 @@ void Snapshot::take( ItalcVncConnection *vncConn, const QString &user )
 									ItalcCore::config->snapshotDirectory() );
 	if( !LocalSystem::Path::ensurePathExists( dir ) )
 	{
-		QString msg = qApp->tr( "Could not take a snapshot as directory %1 "
+		QString msg = tr( "Could not take a snapshot as directory %1 "
 								"doesn't exist and couldn't be "
 								"created." ).arg( dir );
 		qCritical() << msg.toUtf8().constData();
 		if( QApplication::type() != QApplication::Tty )
 		{
-			QMessageBox::critical( NULL, qApp->tr( "Snapshot" ), msg );
+			QMessageBox::critical( NULL, tr( "Snapshot" ), msg );
 		}
 
 		return;

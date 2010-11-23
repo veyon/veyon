@@ -51,8 +51,8 @@
 // 
 // Returns:     None
 //
-CXEventLog::CXEventLog(LPCTSTR lpszApp /*= NULL*/,
-					   LPCTSTR lpszEventMessageDll /*= NULL*/)
+CXEventLog::CXEventLog(LPCTSTR lpszApp /* = NULL*/,
+					   LPCTSTR lpszEventMessageDll /* = NULL*/)
 {
 #ifdef _DEBUG
 	if ((lpszApp == NULL) || (lpszApp[0] == _T('\0')))
@@ -140,7 +140,7 @@ LPTSTR CXEventLog::GetAppName()
 // 
 // Returns:     BOOL - TRUE = success
 //
-BOOL CXEventLog::Init(LPCTSTR lpszApp, LPCTSTR lpszEventMessageDll /*= NULL*/)
+BOOL CXEventLog::Init(LPCTSTR lpszApp, LPCTSTR lpszEventMessageDll /* = NULL*/)
 {
 	_ASSERTE((lpszApp != NULL) && (lpszApp[0] != _T('\0')));
 	if (!lpszApp || lpszApp[0] == _T('\0'))

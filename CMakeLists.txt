@@ -193,6 +193,34 @@ ADD_SUBDIRECTORY(imc)
 INSTALL()
 
 #
+# rules for building localizations
+#
+FILE(GLOB italc_LOCALES lib/resources/*.ts)
+SET(ts_targets "")
+SET(qm_targets "")
+FILE(GLOB_RECURSE italc_SOURCES *.cpp *.h *.ui)
+FOREACH(_ts_file ${italc_LOCALES})
+	STRING(REPLACE "${CMAKE_SOURCE_DIR}/lib/resources/" "" _ts_target "${_ts_file}")
+	STRING(REPLACE ".ts" ".qm" _qm_file "${_ts_file}")
+	STRING(REPLACE ".ts" ".qm" _qm_target "${_ts_target}")
+	ADD_CUSTOM_TARGET(${_ts_target} COMMAND ${QT_LUPDATE_EXECUTABLE} -I${CMAKE_SOURCE_DIR}/lib/include -locations none -no-obsolete ${italc_SOURCES} -ts ${_ts_file})
+	ADD_CUSTOM_TARGET(${_qm_target} COMMAND ${QT_LRELEASE_EXECUTABLE} ${_ts_file} -qm ${_qm_file})
+	LIST(APPEND ts_targets "${_ts_target}")
+	LIST(APPEND qm_targets "${_qm_target}")
+ENDFOREACH(_ts_file ${italc_LOCALES})
+
+ADD_CUSTOM_TARGET(update-locales)
+FOREACH(_item ${ts_targets})
+	ADD_DEPENDENCIES(update-locales ${_item})
+ENDFOREACH(_item ${ts_targets})
+
+ADD_CUSTOM_TARGET(finalize-locales)
+FOREACH(_item ${qm_targets})
+	ADD_DEPENDENCIES(finalize-locales ${_item})
+ENDFOREACH(_item ${qm_targets})
+
+
+#
 # add tarball-target
 #
 SET(TMP "italc-${VERSION}")

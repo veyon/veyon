@@ -40,7 +40,6 @@ class vncBuffer;
 // Includes
 
 #include "stdhdrs.h"
-#include "vncencoder.h"
 #include "rfbRegion.h"
 #include "rfbRect.h"
 #include "rfb.h"

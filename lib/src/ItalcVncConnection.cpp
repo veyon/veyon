@@ -248,7 +248,7 @@ void ItalcVncConnection::hookOutputHandler( const char *format, ... )
 	if( ( message.contains( "Couldn't convert " ) ) ||
 		( message.contains( "Unable to connect to VNC server" ) ) )
 	{
-		outputErrorMessageString = tr( "Server not found." );
+		outputErrorMessageString = "Server not found.";
 	}
 
 	if( ( message.contains( "VNC connection failed: Authentication failed, "

@@ -32,6 +32,7 @@
 
 class AccessDialogSlave : public IcaSlave
 {
+	Q_OBJECT
 public:
 	AccessDialogSlave();
 	virtual ~AccessDialogSlave();

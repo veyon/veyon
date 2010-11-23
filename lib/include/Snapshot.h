@@ -29,8 +29,9 @@
 
 class ItalcVncConnection;
 
-class Snapshot
+class Snapshot : public QObject
 {
+	Q_OBJECT
 public:
 	Snapshot( const QString &fileName = QString() );
 
