@@ -51,9 +51,9 @@ const Ipc::Argument ItalcSlaveManager::DemoClient::MasterHost = "MasterHost";
 const Ipc::Argument ItalcSlaveManager::DemoClient::FullScreen = "FullScreen";
 
 const Ipc::Command ItalcSlaveManager::DemoServer::StartDemoServer = "StartDemoServer";
-const Ipc::Argument ItalcSlaveManager::DemoServer::UserRole = "UserRole";
 const Ipc::Argument ItalcSlaveManager::DemoServer::SourcePort = "SourcePort";
 const Ipc::Argument ItalcSlaveManager::DemoServer::DestinationPort = "DestinationPort";
+const Ipc::Argument ItalcSlaveManager::DemoServer::CommonSecret = "CommonSecret";
 
 const Ipc::Command ItalcSlaveManager::DemoServer::UpdateAllowedHosts = "UpdateAllowedHosts";
 const Ipc::Argument ItalcSlaveManager::DemoServer::AllowedHosts = "AllowedHosts";

@@ -208,6 +208,8 @@ int ItalcCoreServer::handleItalcClientMessage( socketDispatcher sock,
 	}
 	else if( cmd == ItalcCore::StartDemoServer )
 	{
+		ItalcCore::authenticationCredentials->setCommonSecret(
+									DsaKey::generateChallenge().toBase64() );
 		m_slaveManager.demoServerMaster()->start(
 			msgIn.arg( "sourceport" ).toInt(),
 			msgIn.arg( "destinationport" ).toInt() );

@@ -48,7 +48,8 @@ void DemoServerMaster::start( int sourcePort, int destinationPort )
 	m_slaveManager->createSlave( ItalcSlaveManager::IdDemoServer );
 	m_slaveManager->sendMessage( ItalcSlaveManager::IdDemoServer,
 					Ipc::Msg( ItalcSlaveManager::DemoServer::StartDemoServer ).
-						addArg( ItalcSlaveManager::DemoServer::UserRole, ItalcCore::role ).
+						addArg( ItalcSlaveManager::DemoServer::CommonSecret,
+									ItalcCore::authenticationCredentials->commonSecret() ).
 						addArg( ItalcSlaveManager::DemoServer::SourcePort, sourcePort ).
 						addArg( ItalcSlaveManager::DemoServer::DestinationPort, destinationPort ) );
 

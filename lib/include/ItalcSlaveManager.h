@@ -73,9 +73,9 @@ public:
 	struct DemoServer
 	{
 		static const Ipc::Command StartDemoServer;
-		static const Ipc::Argument UserRole;
 		static const Ipc::Argument SourcePort;
 		static const Ipc::Argument DestinationPort;
+		static const Ipc::Argument CommonSecret;
 
 		static const Ipc::Command UpdateAllowedHosts;
 		static const Ipc::Argument AllowedHosts;

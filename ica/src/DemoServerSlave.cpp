@@ -82,13 +82,14 @@ bool DemoServerSlave::handleMessage( const Ipc::Msg &m )
 {
 	if( m.cmd() == ItalcSlaveManager::DemoServer::StartDemoServer )
 	{
-		ItalcCore::role =
-			static_cast<ItalcCore::UserRoles>(
-				m.argV( ItalcSlaveManager::DemoServer::UserRole ).toInt() );
+		ItalcCore::authenticationCredentials->setCommonSecret(
+						m.arg( ItalcSlaveManager::DemoServer::CommonSecret ) );
+
 		m_demoServerThread = new DemoServerThread(
 			m.argV( ItalcSlaveManager::DemoServer::SourcePort ).toInt(),
 			m.argV( ItalcSlaveManager::DemoServer::DestinationPort ).toInt() );
 		m_demoServerThread->start();
+
 		return true;
 	}
 	else if( m.cmd() == ItalcSlaveManager::DemoServer::UpdateAllowedHosts )
