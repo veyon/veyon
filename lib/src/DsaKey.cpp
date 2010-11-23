@@ -371,6 +371,8 @@ buffer_put_bignum2(Buffer *buffer, BIGNUM *value)
 #define INTBLOB_LEN	20
 #define SIGBLOB_LEN	(2*INTBLOB_LEN)
 
+const int DsaKey::DefaultChallengeSize = 64;
+
 
 bool DsaKey::verifySignature( const QByteArray & _data,
 					const QByteArray & _sig ) const
@@ -462,7 +464,7 @@ bool DsaKey::verifySignature( const QByteArray & _data,
 
 
 
-QByteArray DsaKey::generateChallenge( void )
+QByteArray DsaKey::generateChallenge()
 {
 	BIGNUM * challenge_bn = BN_new();
 
@@ -472,13 +474,12 @@ QByteArray DsaKey::generateChallenge( void )
 		return QByteArray();
 	}
 
-	const int DEFAULT_CHALLENGE_SIZE = 64;
-
 	// generate a random challenge
-	BN_rand( challenge_bn, DEFAULT_CHALLENGE_SIZE * 8, 0, 0 );
+	BN_rand( challenge_bn, DefaultChallengeSize * 8, 0, 0 );
 	QByteArray chall( BN_num_bytes( challenge_bn ), 0 );
 	BN_bn2bin( challenge_bn, (unsigned char *) chall.data() );
 	BN_free( challenge_bn );
+
 	return chall;
 }
 

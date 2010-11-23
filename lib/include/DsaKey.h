@@ -56,6 +56,8 @@ public:
 		Private
 	} ;
 
+	static const int DefaultChallengeSize;
+
 	// constructor
 	DsaKey( const KeyType _type ) :
 		m_dsa( NULL ),
