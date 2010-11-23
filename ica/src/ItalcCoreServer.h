@@ -25,10 +25,6 @@
 #ifndef _ITALC_CORE_SERVER_H
 #define _ITALC_CORE_SERVER_H
 
-#include <QtCore/QList>
-#include <QtCore/QMutex>
-#include <QtCore/QPair>
-#include <QtCore/QSignalMapper>
 #include <QtCore/QStringList>
 
 #include "ItalcCore.h"
@@ -42,7 +38,7 @@ public:
 	ItalcCoreServer();
 	virtual ~ItalcCoreServer();
 
-	static ItalcCoreServer * instance()
+	static ItalcCoreServer *instance()
 	{
 		Q_ASSERT( this != NULL );
 		return _this;
@@ -68,8 +64,9 @@ private:
 
 	bool doKeyBasedAuth( SocketDevice &sdev, const QString &host );
 	bool doHostBasedAuth( const QString &host );
+	bool doCommonSecretAuth( SocketDevice &sdev );
 
-	static ItalcCoreServer * _this;
+	static ItalcCoreServer *_this;
 
 	QStringList m_allowedIPs;
 

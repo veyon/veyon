@@ -257,6 +257,11 @@ bool ItalcCoreServer::authSecTypeItalc( socketDispatcher sd, void *user )
 	QMap<QString, QVariant> supportedAuthTypes;
 	supportedAuthTypes["ItalcAuthDSA"] = ItalcAuthDSA;
 	supportedAuthTypes["ItalcAuthHostBased"] = ItalcAuthHostBased;
+	if( ItalcCore::authenticationCredentials->hasCredentials(
+									AuthenticationCredentials::CommonSecret ) )
+	{
+		supportedAuthTypes["ItalcAuthCommonSecret"] = ItalcAuthCommonSecret;
+	}
 	sdev.write( supportedAuthTypes );
 
 	uint32_t result = rfbVncAuthFailed;
@@ -292,6 +297,13 @@ bool ItalcCoreServer::authSecTypeItalc( socketDispatcher sd, void *user )
 			}
 			break;
 
+		case ItalcAuthCommonSecret:
+			if( doCommonSecretAuth( sdev ) )
+			{
+				result = rfbVncAuthOK;
+			}
+			break;
+
 		default:
 			break;
 	}
@@ -305,6 +317,8 @@ bool ItalcCoreServer::authSecTypeItalc( socketDispatcher sd, void *user )
 		{
 			errorMsgAuth( host );
 		}
+		qWarning() << "ItalcCoreServer::authSecTypeItalc(): failed "
+						"authenticating client" << host;
 		return false;
 	}
 
@@ -380,6 +394,7 @@ bool ItalcCoreServer::doHostBasedAuth( const QString &host )
 
 	if( m_allowedIPs.isEmpty() )
 	{
+		qWarning() << "ItalcCoreServer: empty list of allowed IPs";
 		return false;
 	}
 
@@ -411,6 +426,22 @@ bool ItalcCoreServer::doHostBasedAuth( const QString &host )
 	qWarning() << "ItalcCoreServer::doHostBasedAuth() failed for host " << host;
 
 	// host-based authentication failed
+	return false;
+}
+
+
+
+
+bool ItalcCoreServer::doCommonSecretAuth( SocketDevice &sdev )
+{
+	qDebug() << "ItalcCoreServer: doing common secret auth";
+
+	const QString secret = sdev.read().toString();
+	if( secret == ItalcCore::authenticationCredentials->commonSecret() )
+	{
+		return true;
+	}
+
 	return false;
 }
 
