@@ -31,11 +31,10 @@
 #include <QtGui/QScrollArea>
 #include <QtGui/QMessageBox>
 
-
 #include "MainWindow.h"
 #include "Client.h"
-#include "DemoServerMaster.h"
 #include "ItalcVncConnection.h"
+#include "ItalcConfiguration.h"
 #include "ItalcCoreConnection.h"
 #include "ClassroomManager.h"
 #include "CmdInputDialog.h"
@@ -599,7 +598,7 @@ void Client::changeMode( const Modes _new_mode )
 				break;
 			case Mode_FullscreenDemo:
 			case Mode_WindowDemo:
-				m_mainWindow->demoServerMaster()->unallowHost( m_hostname );
+				m_mainWindow->localICA()->demoServerUnallowHost( m_hostname );
 				m_connection->stopDemo();
 				break;
 			case Mode_Locked:
@@ -613,10 +612,10 @@ void Client::changeMode( const Modes _new_mode )
 				break;
 			case Mode_FullscreenDemo:
 			case Mode_WindowDemo:
-				m_mainWindow->demoServerMaster()->allowHost( m_hostname );
+				m_mainWindow->localICA()->demoServerAllowHost( m_hostname );
 				m_connection->startDemo(
 								QString(),// let client guess IP from connection
-								m_mainWindow->demoServerMaster()->serverPort(),
+								ItalcCore::config->demoServerPort(),
 								m_mode == Mode_FullscreenDemo );
 				break;
 			case Mode_Locked:

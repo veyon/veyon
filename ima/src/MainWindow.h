@@ -35,7 +35,6 @@
 #include "ui_MainWindow.h"
 
 #include "Client.h"
-#include "ItalcSlaveManager.h"
 #include "SnapshotList.h"
 
 
@@ -116,11 +115,6 @@ public:
 	ItalcCoreConnection *localICA()
 	{
 		return m_localICA;
-	}
-
-	DemoServerMaster *demoServerMaster()
-	{
-		return m_italcSlaveManager->demoServerMaster();
 	}
 
 	void checkModeButton( int _id )
@@ -215,7 +209,6 @@ private:
 	QString m_password;
 
 	ItalcCoreConnection * m_localICA;
-	ItalcSlaveManager *m_italcSlaveManager;
 
 	QReadWriteLock m_rctrlLock;
 	RemoteControlWidget * m_remoteControlWidget;

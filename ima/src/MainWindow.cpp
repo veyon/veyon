@@ -50,7 +50,6 @@
 #include "SnapshotList.h"
 #include "ConfigWidget.h"
 #include "DecoratedMessageBox.h"
-#include "DemoServerMaster.h"
 #include "ToolButton.h"
 #include "ItalcConfiguration.h"
 #include "ItalcCoreConnection.h"
@@ -65,7 +64,6 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 	m_systemTrayIcon( this ),
 	m_openedTabInSideBar( 1 ),
 	m_localICA( NULL ),
-	m_italcSlaveManager( NULL ),
 	m_rctrlLock(),
 	m_remoteControlWidget( NULL ),
 	m_stopDemo( FALSE ),
@@ -368,11 +366,8 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 
 	// update the role under which ICA is running
 	m_localICA->setRole( ItalcCore::role );
-
-	// create DemoServerMaster
-	m_italcSlaveManager = new ItalcSlaveManager;
-	demoServerMaster()->start( ItalcCore::config->coreServerPort(),
-								ItalcCore::config->demoServerPort() );
+	m_localICA->startDemoServer( ItalcCore::config->coreServerPort(),
+									ItalcCore::config->demoServerPort() );
 
 //	##ITALC2: m_localISD->hideTrayIcon();
 
@@ -405,7 +400,7 @@ MainWindow::~MainWindow()
 	// also delets clients
 	delete m_workspace;
 
-	delete m_italcSlaveManager;
+	m_localICA->stopDemoServer();
 
 	delete m_localICA;
 	m_localICA = NULL;
