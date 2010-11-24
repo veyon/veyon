@@ -44,32 +44,12 @@
 #include "ImcCore.h"
 #include "ItalcConfiguration.h"
 #include "Logger.h"
+#include "LogonAclSettings.h"
 #include "MainWindow.h"
 
 #include "ui_MainWindow.h"
 
 
-#ifdef ITALC_BUILD_WIN32
-class LogonAclSettings
-{
-public:
-	LogonAclSettings() :
-		m_s( "HKEY_LOCAL_MACHINE\\Software\\iTALC Solutions\\"
-							"iTALC\\Authentication", QSettings::NativeFormat )
-	{
-	}
-
-	QSettings *operator->()
-	{
-		return &m_s;
-	}
-
-private:
-	QSettings m_s;
-} ;
-
-
-#endif
 
 MainWindow::MainWindow() :
 	QMainWindow(),
@@ -156,25 +136,19 @@ void MainWindow::reset( bool onlyUI )
 {
 	if( onlyUI == false )
 	{
-#ifdef ITALC_BUILD_WIN32
-		LogonAclSettings s;
-		s->remove( "NewLogonACL" );
-		// previously saved ACL existing?
-		if( s->contains( "OldLogonACL" ) )
-		{
-			// then roll back
-			s->setValue( "LogonACL", s->value( "OldLogonACL" ) );
-		}
-		else
-		{
-			// otherwise save current ACL as old state for future reset()s
-			s->setValue( "OldLogonACL", s->value( "LogonACL" ) );
-		}
-#endif
 		ItalcCore::config->clear();
 		*ItalcCore::config += ItalcConfiguration::defaultConfiguration();
 		*ItalcCore::config += ItalcConfiguration( Configuration::Store::LocalBackend );
 	}
+
+#ifdef ITALC_BUILD_WIN32
+	// always make sure we do not have a LogonACL string in our config
+	ItalcCore::config->removeValue( "LogonACL", "Authentication" );
+
+	// revert LogonACL to what has been saved in the encoded logon ACL
+	LogonAclSettings().setACL(
+		ItalcCore::config->value( "EncodedLogonACL", "Authentication" ) );
+#endif
 
 	FOREACH_ITALC_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY)
 
@@ -187,8 +161,10 @@ void MainWindow::reset( bool onlyUI )
 
 void MainWindow::apply()
 {
-	reloadLogonACL();
-
+#ifdef ITALC_BUILD_WIN32
+	ItalcCore::config->setValue( "EncodedLogonACL", LogonAclSettings().acl(),
+															"Authentication" );
+#endif
 	ImcCore::applyConfiguration( *ItalcCore::config );
 
 	ui->buttonBox->setEnabled( false );
@@ -323,10 +299,6 @@ void MainWindow::loadSettingsFromFile()
 		// write current configuration to output file
 		Configuration::XmlStore( Configuration::XmlStore::System,
 										fileName ).load( ItalcCore::config );
-#ifdef ITALC_BUILD_WIN32
-		LogonAclSettings()->setValue( "NewLogonACL",
-					ItalcCore::config->value( "LogonACL", "Authentication" ) );
-#endif
 		reset( true );
 		configurationChanged();	// give user a chance to apply possible changes
 	}
@@ -346,11 +318,20 @@ void MainWindow::saveSettingsToFile()
 			fileName += ".xml";
 		}
 
-		reloadLogonACL();
+		bool configChangedPrevious = m_configChanged;
+
+#ifdef ITALC_BUILD_WIN32
+		ItalcCore::config->removeValue( "LogonACL", "Authentication" );
+		ItalcCore::config->setValue( "EncodedLogonACL",
+								LogonAclSettings().acl(), "Authentication" );
+#endif
 
 		// write current configuration to output file
 		Configuration::XmlStore( Configuration::XmlStore::System,
 										fileName ).flush( ItalcCore::config );
+
+		m_configChanged = configChangedPrevious;
+		ui->buttonBox->setEnabled( m_configChanged );
 	}
 }
 
@@ -371,15 +352,13 @@ void Win32AclEditor( HWND hwnd );
 void MainWindow::manageACLs()
 {
 #ifdef ITALC_BUILD_WIN32
-	if( LogonAclSettings()->contains( "NewLogonACL" ) )
-	{
-		QMessageBox::information( this, windowTitle(),
-			tr( "You have to apply the configuration first before managing "
-				"ACLs." ) );
-		return;
-	}
 	Win32AclEditor( winId() );
-	configurationChanged();
+
+	if( LogonAclSettings().acl() !=
+				ItalcCore::config->value( "EncodedLogonACL", "Authentication" ) )
+	{
+		configurationChanged();
+	}
 #endif
 }
 
@@ -432,29 +411,11 @@ void MainWindow::closeEvent( QCloseEvent *closeEvent )
 		return;
 	}
 
+	// make sure to revert the LogonACL
+	reset();
+
 	closeEvent->accept();
 	QMainWindow::closeEvent( closeEvent );
-}
-
-
-
-
-void MainWindow::reloadLogonACL()
-{
-#ifdef ITALC_BUILD_WIN32
-	LogonAclSettings s;
-	if( s->contains( "NewLogonACL" ) )
-	{
-		ItalcCore::config->setValue( "LogonACL",
-						s->value( "NewLogonACL" ).toString(), "Authentication" );
-		s->remove( "NewLogonACL" );
-	}
-	else
-	{
-		ItalcCore::config->setValue( "LogonACL",
-						s->value( "LogonACL" ).toString(), "Authentication" );
-	}
-#endif
 }
 
 
