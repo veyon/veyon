@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9,00"
+	Version="9.00"
 	Name="winvnc"
 	ProjectGUID="{C05AE605-1250-4F58-911B-EC99AE2C25AF}"
 	RootNamespace="winvnc"
@@ -20,8 +20,8 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
+			OutputDirectory=".\..\Debug"
+			IntermediateDirectory=".\..\Debug"
 			ConfigurationType="1"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
@@ -248,18 +248,17 @@
 				Optimization="3"
 				InlineFunctionExpansion="2"
 				EnableIntrinsicFunctions="true"
-				FavorSizeOrSpeed="0"
+				FavorSizeOrSpeed="1"
 				EnableFiberSafeOptimizations="true"
 				WholeProgramOptimization="true"
 				AdditionalIncludeDirectories="..\omnithread,..,..\.."
 				PreprocessorDefinitions="NDEBUG;__x86__;__WIN32__;WIN32;_WINDOWS;_WIN32_WINNT=0x501;XMD_H;_WINSTATIC;_VC80;_CRT_SECURE_NO_WARNINGS;_WIN32_IE=0x0600"
 				StringPooling="true"
 				RuntimeLibrary="0"
-				StructMemberAlignment="5"
-				EnableFunctionLevelLinking="false"
-				EnableEnhancedInstructionSet="2"
-				UsePrecompiledHeader="0"
+				EnableFunctionLevelLinking="true"
 				PrecompiledHeaderFile=".\..\Release/winvnc.pch"
+				AssemblerListingLocation=".\..\Release/"
+				ObjectFile=".\..\Release/"
 				ProgramDataBaseFileName=".\..\Release/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
@@ -611,26 +610,6 @@
 		</Configuration>
 	</Configurations>
 	<References>
-		<ProjectReference
-			ReferencedProjectIdentifier="{E52B9956-FE67-47F7-BC4F-67CC5A64B708}"
-			RelativePathToProject=".\omnithread\omnithread.vcproj"
-		/>
-		<ProjectReference
-			ReferencedProjectIdentifier="{F5244002-0FFF-4F19-A941-FCCE1861F132}"
-			RelativePathToProject="..\rdr\rdr.vcproj"
-		/>
-		<ProjectReference
-			ReferencedProjectIdentifier="{F9321962-FBED-4581-BF7D-D0EBC303D891}"
-			RelativePathToProject="..\zipunzip_src\unzip\windll\vc6\lib\unz32lib.vcproj"
-		/>
-		<ProjectReference
-			ReferencedProjectIdentifier="{1D18E045-6B72-43F4-ACBD-3E679A3DE349}"
-			RelativePathToProject=".\vnchooks\vnchooks.vcproj"
-		/>
-		<ProjectReference
-			ReferencedProjectIdentifier="{E8BA959F-B652-4BAB-9EA7-8E9FC8D7F39C}"
-			RelativePathToProject="..\zipunzip_src\zip20\windll\visualc\lib\zip32.vcproj"
-		/>
 	</References>
 	<Files>
 		<Filter

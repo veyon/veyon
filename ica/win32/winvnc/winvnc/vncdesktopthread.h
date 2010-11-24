@@ -90,7 +90,7 @@ protected:
 	HMODULE user32;
 	_GetCursorInfo MyGetCursorInfo;
 	bool XRichCursorEnabled;
-	DWORD newtick,oldtick;
+	DWORD newtick,oldtick,oldtick2;
 
 	DWORD m_lLastMouseMoveTime;
 	HMODULE  hUser32;

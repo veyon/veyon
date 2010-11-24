@@ -748,12 +748,60 @@ void wait_for_existing_process()
 #include <sddl.h>
 SECURITY_ATTRIBUTES secAttr;
 extern SERVICE_STATUS serviceStatus;
+
+char old_buffer_s[512];
+int old_buflen_s=0;
+char buffer_s[512];
+int buflen_s;
+
+bool CheckIPAddrString() {
+    char namebuf[256];
+
+    if (gethostname(namebuf, 256) != 0) {
+		strncpy(buffer_s, "Host name unavailable", buflen_s);
+		return false;
+    };
+
+    HOSTENT *ph = gethostbyname(namebuf);
+    if (!ph) {
+		strncpy(buffer_s, "IP address unavailable", buflen_s);
+		return false;
+    };
+
+    *buffer_s = '\0';
+    char digtxt[5];
+    for (int i = 0; ph->h_addr_list[i]; i++) {
+    	for (int j = 0; j < ph->h_length; j++) {
+			sprintf(digtxt, "%d.", (unsigned char) ph->h_addr_list[i][j]);
+			strncat(buffer_s, digtxt, (buflen_s-1)-strlen(buffer_s));
+		}	
+		buffer_s[strlen(buffer_s)-1] = '\0';
+		if (ph->h_addr_list[i+1] != 0)
+			strncat(buffer_s, ", ", (buflen_s-1)-strlen(buffer_s));
+    }
+	if (strlen(buffer_s)<512) // just in case it would be bigger then our buffer
+	{
+	if (old_buflen_s!=0)
+	{
+		if (strncmp(old_buffer_s,buffer_s,old_buflen_s)!=NULL)	
+		{
+			old_buflen_s=strlen(buffer_s);
+			strncpy(old_buffer_s,buffer_s,strlen(buffer_s));
+			return false;
+		}
+	}
+	old_buflen_s=strlen(buffer_s);
+	strncpy(old_buffer_s,buffer_s,strlen(buffer_s));
+	}
+	return true;
+}
+
 void monitor_sessions()
 {
 	pad2();
 	HANDLE hTokenNew = NULL, hTokenDup = NULL;
 
-
+	int counter_ipcheck=0;
 	DWORD dwSessionId=0;
 	DWORD OlddwSessionId=99;
 	ProcessInfo.hProcess=0;
@@ -810,6 +858,12 @@ void monitor_sessions()
 
         case WAIT_TIMEOUT:
 			{
+				counter_ipcheck++;
+				if (counter_ipcheck==30)
+				{
+					counter_ipcheck=0;
+					if (!CheckIPAddrString()) OlddwSessionId=99;  //force restart
+				}
 
 									if (lpfnWTSGetActiveConsoleSessionId.isValid())
 										dwSessionId = (*lpfnWTSGetActiveConsoleSessionId)();

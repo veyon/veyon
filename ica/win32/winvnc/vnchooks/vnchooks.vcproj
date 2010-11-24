@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9,00"
+	Version="9.00"
 	Name="vnchooks"
 	ProjectGUID="{1D18E045-6B72-43F4-ACBD-3E679A3DE349}"
-	RootNamespace="vnchooks"
 	TargetFrameworkVersion="131072"
 	>
 	<Platforms>
@@ -236,16 +235,15 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				Optimization="3"
-				InlineFunctionExpansion="2"
-				EnableIntrinsicFunctions="true"
-				FavorSizeOrSpeed="0"
+				Optimization="2"
+				InlineFunctionExpansion="1"
 				PreprocessorDefinitions="NDEBUG;__WIN32__;WIN32;_WINDOWS;_USRDLL;VNCHOOKS_EXPORTS;_WIN32_WINNT=0x400;_CRT_SECURE_NO_WARNINGS"
 				StringPooling="true"
 				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="true"
-				EnableEnhancedInstructionSet="2"
 				PrecompiledHeaderFile=".\..\Release/vnchooks.pch"
+				AssemblerListingLocation=".\..\Release/"
+				ObjectFile=".\..\Release/"
 				ProgramDataBaseFileName=".\..\Release/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
