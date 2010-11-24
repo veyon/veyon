@@ -51,6 +51,8 @@ public:
 			const QString & _value,
 			const QString & _parentKey = QString() );
 
+	void removeValue( const QString &key, const QString &parentKey );
+
 	void reloadFromStore()
 	{
 		if( m_store )
@@ -88,10 +90,6 @@ signals:
 
 
 private:
-	static DataMap setValueRecursive( DataMap data,
-										QStringList subLevels,
-										const QString &key,
-										const QString &value );
 	Configuration::Store *m_store;
 	bool m_customStore;
 	DataMap m_data;

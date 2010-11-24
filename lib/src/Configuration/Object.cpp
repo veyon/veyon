@@ -152,28 +152,10 @@ QString Object::value( const QString & _key, const QString & _parentKey ) const
 
 
 
-void Object::setValue( const QString & key,
-			const QString & value,
-			const QString & parentKey )
-{
-	// recursively search through data maps and sub data-maps until
-	// all levels of the parentKey are processed
-	QStringList subLevels = parentKey.split( '/' );
-	DataMap data = setValueRecursive( m_data, subLevels, key, value );
-	if( data != m_data )
-	{
-		m_data = data;
-		emit configurationChanged();
-	}
-}
-
-
-
-
-Object::DataMap Object::setValueRecursive( DataMap data,
-									QStringList subLevels,
-									const QString &key,
-									const QString &value )
+static Object::DataMap setValueRecursive( Object::DataMap data,
+											QStringList subLevels,
+											const QString &key,
+											const QString &value )
 {
 	if( subLevels.isEmpty() )
 	{
@@ -202,12 +184,72 @@ Object::DataMap Object::setValueRecursive( DataMap data,
 	}
 	else
 	{
-		data[level] = DataMap();
+		data[level] = Object::DataMap();
 	}
 
 	data[level] = setValueRecursive( data[level].toMap(), subLevels, key, value );
 
 	return data;
+}
+
+
+
+
+void Object::setValue( const QString & key,
+			const QString & value,
+			const QString & parentKey )
+{
+	// recursively search through data maps and sub data-maps until
+	// all levels of the parentKey are processed
+	QStringList subLevels = parentKey.split( '/' );
+	DataMap data = setValueRecursive( m_data, subLevels, key, value );
+	if( data != m_data )
+	{
+		m_data = data;
+		emit configurationChanged();
+	}
+}
+
+
+
+
+static Object::DataMap removeValueRecursive( Object::DataMap data,
+											QStringList subLevels,
+											const QString &key )
+{
+	if( subLevels.isEmpty() )
+	{
+		// search for key in toplevel data map
+		if( data.contains( key ) )
+		{
+			data.remove( key );
+		}
+
+		return data;
+	}
+
+	const QString level = subLevels.takeFirst();
+	if( data.contains( level ) && data[level].type() == QVariant::Map )
+	{
+		data[level] = removeValueRecursive( data[level].toMap(), subLevels, key );
+	}
+
+	return data;
+}
+
+
+
+
+
+void Object::removeValue( const QString &key, const QString &parentKey )
+{
+	QStringList subLevels = parentKey.split( '/' );
+	DataMap data = removeValueRecursive( m_data, subLevels, key );
+	if( data != m_data )
+	{
+		m_data = data;
+		emit configurationChanged();
+	}
 }
 
 
