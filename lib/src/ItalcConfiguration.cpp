@@ -90,7 +90,7 @@ ItalcConfiguration ItalcConfiguration::defaultConfiguration()
 
 	c.setDemoServerMultithreaded( true );
 
-	c.setCoreServerPort( PortOffsetIVS );
+	c.setCoreServerPort( PortOffsetVncServer );
 	c.setDemoServerPort( PortOffsetDemoServer );
 	c.setFirewallExceptionEnabled( true );
 

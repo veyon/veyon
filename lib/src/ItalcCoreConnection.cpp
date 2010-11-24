@@ -52,7 +52,7 @@ private:
 
 
 static rfbClientProtocolExtension * __italcProtocolExt = NULL;
-static void * ItalcCoreConnectionTag = (void *) PortOffsetIVS; // an unique ID
+static void * ItalcCoreConnectionTag = (void *) PortOffsetVncServer; // an unique ID
 
 
 

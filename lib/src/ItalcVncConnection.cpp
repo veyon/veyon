@@ -281,7 +281,7 @@ ItalcVncConnection::ItalcVncConnection( QObject *parent ) :
 	m_cl( NULL ),
 	m_italcAuthType( ItalcAuthDSA ),
 	m_quality( DemoQuality ),
-	m_port( PortOffsetIVS ),
+	m_port( PortOffsetVncServer ),
 	m_framebufferUpdateInterval( 0 ),
 	m_image(),
 	m_scaledScreenNeedsUpdate( false ),
@@ -515,13 +515,13 @@ void ItalcVncConnection::doConnection()
 
 		if( m_port < 0 ) // port is invalid or empty...
 		{
-			m_port = PortOffsetIVS;
+			m_port = PortOffsetVncServer;
 		}
 
 		if( m_port >= 0 && m_port < 100 )
 		{
 			 // the user most likely used the short form (e.g. :1)
-			m_port += PortOffsetIVS;
+			m_port += PortOffsetVncServer;
 		}
 
 		free( m_cl->serverHost );

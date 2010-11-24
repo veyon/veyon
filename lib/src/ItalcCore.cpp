@@ -47,7 +47,7 @@
 ItalcConfiguration *ItalcCore::config = NULL;
 AuthenticationCredentials *ItalcCore::authenticationCredentials = NULL;
 
-int ItalcCore::serverPort = PortOffsetIVS;
+int ItalcCore::serverPort = PortOffsetVncServer;
 ItalcCore::UserRoles ItalcCore::role = ItalcCore::RoleOther;
 
 
