@@ -256,11 +256,23 @@ ADD_CUSTOM_TARGET(win-nsi
 #
 
 MESSAGE("\n"
-"Installation Summary\n"
+"iTALC build summary\n"
 "--------------------\n"
-"* Install Directory           : ${CMAKE_INSTALL_PREFIX}\n"
+"* Install prefix              : ${CMAKE_INSTALL_PREFIX}\n"
 "* Build type                  : ${CMAKE_BUILD_TYPE}\n"
+"* Platform                    : ${CMAKE_SYSTEM_PROCESSOR} (${Machine})\n"
+"* Compile flags               : ${CMAKE_C_FLAGS} (CXX: ${CMAKE_CXX_FLAGS})\n"
 )
+
+MESSAGE(
+"\n"
+"-----------------------------------------------------------------\n"
+"IMPORTANT:\n"
+"After installing missing packages, remove CMakeCache.txt before\n"
+"running cmake again!\n"
+"-----------------------------------------------------------------\n"
+"\n\n")
+
 
 INCLUDE(InstallRequiredSystemLibraries)
 SET(CPACK_PACKAGE_DESCRIPTION_SUMMARY "iTALC - Intelligent Teaching And Learning with Computers")
