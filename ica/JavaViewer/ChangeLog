@@ -1,0 +1,44 @@
+2006-05 UltraVNC Team
+        * Improved MS Logon
+        * MS Logon weak challenge fixed
+
+2005-01-?? and 2005-02-?? ??:?? Ultr@VNC team
+
+        * Made the viewer compilable with Java SDK 1.3
+        * Added support for huge files transfers (> 4Gb)
+        * Added more color modes (64 colors, 8 Colors, Grey scales). Default settings
+          are now Tight and 64 Colors.
+
+
+2004-11-10 23:00 Ultr@VNC Team
+
+        * Prevented the FT GUI to be closed while a transfer is running
+        * Made FT GUI window non resizable
+        * Added confirmation dialogs for file Deletion and Overwrite
+        * Uniformized and cleaned the status/history messages
+        * Added "Stop" button
+        * Added certificate into the applet
+        * Made it compatible with enhanced FT protocole ( >= RC19)
+        * The selected pane is more "white" so the user knows to which
+          side the buttons apply
+        * Directory names are listed first, and are surrounded with
+          "[ " and " ]"
+
+2004-08-15 18:00 Ultr@VNC Team
+
+        * Added Kenn Min Chong and John Witchel FileTransfer code and GUI
+        * Added improvements in FileTransfer code (compression...) and GUI
+
+
+2004-07-05 12:00 Alban Chazot - Carmi Grenoble
+
+	* Modified AuthPanel to show username if Ultr@VNC mslogon connection required
+	* Modified VncViewer to accept Ultravnc mslogon
+	* Modified VncViewer to add scrollPane to applet mode
+
+2002-09-30 12:00  Ultr@VNC Team
+
+	* Replaced "TightVNC" with "Ultr@VNC" string in ClipboardFrame.java,
+	OptionsFrame.java and VncViewer.java
+
+	* Added Ultr@VNC in the .vnc files
