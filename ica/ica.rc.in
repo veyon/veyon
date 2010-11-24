@@ -1,4 +1,14 @@
 #include <windows.h>
+#include "win32/winvnc/winvnc/resource.h"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// JAVAARCHIVE
+//
+
+IDR_VNCVIEWER_JAR       JAVAARCHIVE             "JavaViewer/VncViewer.jar"
+
+
 
 VS_VERSION_INFO	VERSIONINFO
   FILEVERSION	1,9,0,0

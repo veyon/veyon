@@ -6,6 +6,25 @@ QT4_ADD_RESOURCES(ica_RCC_out ${QRC_FILE})
 QT4_TRANSLATIONS_FOR_QRC(${QRC_FILE} ${ica_SOURCES} ${ica_INCLUDES})
 ADD_DEFINITIONS(-DLIBVNCSERVER_PACKAGE_STRING="iTALC ${VERSION}")
 
+# build JavaViewer
+SET(VNCVIEWER_JAR ${CMAKE_CURRENT_BINARY_DIR}/JavaViewer/VncViewer.jar)
+
+IF(JAVA_COMPILE AND JAVA_ARCHIVE)
+
+	ADD_CUSTOM_COMMAND(OUTPUT ${VNCVIEWER_JAR}
+						COMMAND ${JAVA_COMPILE} -O2 -d ${CMAKE_CURRENT_BINARY_DIR}/JavaViewer ${CMAKE_CURRENT_SOURCE_DIR}/JavaViewer/*.java
+						COMMAND cd ${CMAKE_CURRENT_SOURCE_DIR}/JavaViewer && ${JAVA_ARCHIVE} cfm ${VNCVIEWER_JAR} ${CMAKE_CURRENT_SOURCE_DIR}/JavaViewer/MANIFEST.MF OptionsFrame.class VncCanvas.class ButtonPanel.class FTPFrame.class SessionRecorder.class DH.class VncViewer.class DesCipher.class RecordingFrame.class FTPFrame$$StrComp.class RfbProto.class ClipboardFrame.class AuthPanel.class
+						DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/JavaViewer/* )
+
+ELSE()
+
+	ADD_CUSTOM_COMMAND(OUTPUT ${VNCVIEWER_JAR} COMMAND touch ${VNCVIEWER_JAR})
+
+ENDIF()
+
+# end build JavaViewer
+
+
 SET(x11vnc_SOURCES
 		${CMAKE_CURRENT_SOURCE_DIR}/x11/libvncserver/auth.c
 		${CMAKE_CURRENT_SOURCE_DIR}/x11/libvncserver/cargs.c
@@ -133,7 +152,7 @@ IF(ITALC_BUILD_WIN32)
 							-I${CMAKE_CURRENT_SOURCE_DIR}
 							-o${WINRC}
 							-i${CMAKE_CURRENT_BINARY_DIR}/ica.rc
-						DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/ica.rc)
+						DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/ica.rc ${VNCVIEWER_JAR})
 
 ENDIF(ITALC_BUILD_WIN32)
 
