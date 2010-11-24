@@ -50,7 +50,7 @@ public class VncViewer extends java.applet.Applet
 
   // mslogon support
 
-  boolean mslogon = false;
+  boolean mslogon = true;
 
   // mslogon support end
 
