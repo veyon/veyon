@@ -54,13 +54,19 @@ BOOL ultravnc_italc_load_int( LPCSTR valname, LONG *out )
 
 	if( strcmp( valname, "HTTPConnect" ) == 0 )
 	{
-		*out = 0;
+		*out = ItalcCore::config->isHttpServerEnabled() ? 1 : 0;
 		return true;
 	}
 
 	if( strcmp( valname, "PortNumber" ) == 0 )
 	{
 		*out = ItalcCore::config->coreServerPort();
+		return true;
+	}
+
+	if( strcmp( valname, "HTTPPortNumber" ) == 0 )
+	{
+		*out = ItalcCore::config->httpServerPort();
 		return true;
 	}
 
