@@ -44,7 +44,8 @@
 enum PortOffsets
 {
 	PortOffsetVncServer = 11100,
-	PortOffsetDemoServer = PortOffsetVncServer + 300
+	PortOffsetDemoServer = PortOffsetVncServer + 300,
+	PortOffsetHttpServer = 5800
 } ;
 
 

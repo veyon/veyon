@@ -62,7 +62,9 @@ public:
 		OP( ItalcConfiguration, ItalcCore::config, BOOL, isDemoServerMultithreaded, setDemoServerMultithreaded, "Multithreaded", "DemoServer" );		\
 		/* Network */																	\
 		OP( ItalcConfiguration, ItalcCore::config, INT, coreServerPort, setCoreServerPort, "CoreServerPort", "Network" );			\
+		OP( ItalcConfiguration, ItalcCore::config, INT, httpServerPort, setHttpServerPort, "HttpServerPort", "Network" );			\
 		OP( ItalcConfiguration, ItalcCore::config, INT, demoServerPort, setDemoServerPort, "DemoServerPort", "Network" );			\
+		OP( ItalcConfiguration, ItalcCore::config, BOOL, isHttpServerEnabled, setHttpServerEnabled, "HttpServerEnabled", "Network" );	\
 		OP( ItalcConfiguration, ItalcCore::config, BOOL, isFirewallExceptionEnabled, setFirewallExceptionEnabled, "FirewallExceptionEnabled", "Network" );	\
 		/* Configuration file paths */													\
 		OP( ItalcConfiguration, ItalcCore::config, STRING, globalConfigurationPath, setGlobalConfigurationPath, "GlobalConfiguration", "Paths" );	\
@@ -94,7 +96,9 @@ public slots:
 	void setDemoServerMultithreaded( bool );
 	void setCoreServerPort( int );
 	void setDemoServerPort( int );
+	void setHttpServerPort( int );
 	void setFirewallExceptionEnabled( bool );
+	void setHttpServerEnabled( bool );
 	void setGlobalConfigurationPath( const QString & );
 	void setPersonalConfigurationPath( const QString & );
 	void setSnapshotDirectory( const QString & );

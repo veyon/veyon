@@ -92,6 +92,8 @@ ItalcConfiguration ItalcConfiguration::defaultConfiguration()
 
 	c.setCoreServerPort( PortOffsetVncServer );
 	c.setDemoServerPort( PortOffsetDemoServer );
+	c.setHttpServerPort( PortOffsetHttpServer );
+	c.setHttpServerEnabled( false );
 	c.setFirewallExceptionEnabled( true );
 
 	c.setGlobalConfigurationPath( QDTNS( "$APPDATA/GlobalConfig.xml" ) );
