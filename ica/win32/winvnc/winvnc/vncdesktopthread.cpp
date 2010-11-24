@@ -1018,7 +1018,7 @@ vncDesktopThread::run_undetached(void *arg)
 										char tempchar[10];
 										itoa(1000/((newtick-oldtick2)),tempchar,10);
 										oldtick2=newtick;
-										m_desktop->m_buffer.WriteMessageOnScreen(tempchar);
+										//m_desktop->m_buffer.WriteMessageOnScreen(tempchar);
 
 										if (m_desktop->VideoBuffer() && m_desktop->m_hookdriver)
 											{
