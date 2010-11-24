@@ -15,12 +15,15 @@ IF(JAVA_COMPILE AND JAVA_ARCHIVE)
 						COMMAND ${JAVA_COMPILE} -O2 -d ${CMAKE_CURRENT_BINARY_DIR}/JavaViewer ${CMAKE_CURRENT_SOURCE_DIR}/JavaViewer/*.java
 						COMMAND cd ${CMAKE_CURRENT_SOURCE_DIR}/JavaViewer && ${JAVA_ARCHIVE} cfm ${VNCVIEWER_JAR} ${CMAKE_CURRENT_SOURCE_DIR}/JavaViewer/MANIFEST.MF OptionsFrame.class VncCanvas.class ButtonPanel.class FTPFrame.class SessionRecorder.class DH.class VncViewer.class DesCipher.class RecordingFrame.class FTPFrame$$StrComp.class RfbProto.class ClipboardFrame.class AuthPanel.class
 						DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/JavaViewer/* )
+	INSTALL(FILES ${VNCVIEWER_JAR} ${CMAKE_CURRENT_SOURCE_DIR}/JavaViewer/index.vnc DESTINATION ${CMAKE_INSTALL_PREFIX}/share/italc/JavaViewer)
 
 ELSE()
 
 	ADD_CUSTOM_COMMAND(OUTPUT ${VNCVIEWER_JAR} COMMAND touch ${VNCVIEWER_JAR})
 
 ENDIF()
+
+ADD_CUSTOM_TARGET(JavaViewer DEPENDS ${VNCVIEWER_JAR})
 
 # end build JavaViewer
 
@@ -167,6 +170,8 @@ INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/src 
 LINK_LIBRARIES(ItalcCore -lpthread)
 
 ADD_EXECUTABLE(ica ${ica_SOURCES} ${ica_INCLUDES} ${ica_MOC_out} ${ica_RCC_out} ${x11vnc_SOURCES} ${platform_SOURCES} ${WINRC})
+
+ADD_DEPENDENCIES(ica JavaViewer)
 
 INSTALL(TARGETS ica RUNTIME DESTINATION bin)
 
