@@ -40,8 +40,10 @@ public:
 
 	Object( Store::Backend backend, Store::Scope scope );
 	Object( Store *store );
+	Object( const Object & );
 	~Object();
 
+	Object &operator=( const Object &ref );
 	Object &operator+=( const Object &ref );
 
 	QString value( const QString & _key,

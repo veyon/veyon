@@ -71,6 +71,16 @@ Object::Object( Store *store ) :
 
 
 
+Object::Object( const Object &obj ) :
+	m_store( NULL ),
+	m_customStore( false )
+{
+	*this = obj;
+}
+
+
+
+
 Object::~Object()
 {
 	if( !m_customStore )
@@ -78,6 +88,38 @@ Object::~Object()
 		delete m_store;
 	}
 }
+
+
+
+
+Object &Object::operator=( const Object &ref )
+{
+	if( !m_customStore && ref.m_store && !ref.m_customStore )
+	{
+		delete m_store;
+
+		switch( ref.m_store->backend() )
+		{
+			case Store::LocalBackend:
+				m_store = new LocalStore( ref.m_store->scope() );
+				break;
+			case Store::XmlFile:
+				m_store = new XmlStore( ref.m_store->scope() );
+				break;
+			case Store::NoBackend:
+				break;
+			default:
+				qCritical( "Invalid Store::Backend %d selected in "
+							"Object::operator=()", ref.m_store->backend() );
+			break;
+		}
+	}
+
+	m_data = ref.data();
+
+	return *this;
+}
+
 
 
 
