@@ -1122,7 +1122,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>There are unsaved settings. Quit anyway?</source>
-        <translation>Einige Einstellungen sind nicht gespeichert. Trotzdem fortfahren?</translation>
+        <translation>Einige Einstellungen sind nicht gespeichert. Trotzdem beenden?</translation>
     </message>
     <message>
         <source>Configuration not writable</source>
