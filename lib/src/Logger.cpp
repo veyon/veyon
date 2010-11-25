@@ -86,6 +86,8 @@ Logger::~Logger()
 {
 	LogStream() << "Shutdown";
 
+	instance = NULL;
+
 	delete m_logFile;
 }
 
