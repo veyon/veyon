@@ -54,7 +54,7 @@ DWORD	g_platform_id;
 BOOL	g_impersonating_user = 0;
 DWORD	g_version_major;
 DWORD	g_version_minor;
-BOOL	m_fRunningFromExternalService = false;
+BOOL	m_fRunningFromExternalService = true;
 
 typedef DWORD (WINAPI* pWTSGetActiveConsoleSessionId)(VOID);
 typedef BOOL (WINAPI * pProcessIdToSessionId)(DWORD,DWORD*);

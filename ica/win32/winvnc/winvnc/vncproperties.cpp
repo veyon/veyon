@@ -139,7 +139,7 @@ vncProperties::Init(vncServer *server)
 	// If the password is empty then always show a dialog
 	char passwd[MAXPWLEN];
 	m_server->GetPassword(passwd);
-	{
+	if(0){
 	    vncPasswd::ToText plain(passwd);
 	    if (strlen(plain) == 0)
 			 if (!m_allowproperties || !RunningAsAdministrator ()) {
