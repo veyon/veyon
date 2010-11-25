@@ -2100,12 +2100,17 @@ vncServer::AddAuthHostsBlacklist(const char *machine) {
 			current->_lastRefTime.QuadPart = now.QuadPart + 10;
 			current->_failureCount++;
 
-			if (current->_failureCount > 5)
+			if (current->_failureCount > 50)
 				current->_blocked = TRUE;
 			return;
 		}
 
 		current = current->_next;
+	}
+
+	if( strcmp( machine, "127.0.0.1" ) == 0 )
+	{
+		return;
 	}
 
 	// Didn't find the entry
