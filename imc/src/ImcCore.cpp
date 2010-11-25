@@ -188,7 +188,8 @@ bool importPublicKey( ItalcCore::UserRole role,
 		return false;
 	}
 
-	QFile destFile( LocalSystem::Path::publicKeyPath( role, destDir ) );
+	QString pub = LocalSystem::Path::publicKeyPath( role, destDir );
+	QFile destFile( pub );
 	if( destFile.exists() )
 	{
 		destFile.setPermissions( QFile::WriteOwner );
@@ -201,7 +202,7 @@ bool importPublicKey( ItalcCore::UserRole role,
 	}
 
 	// now try to copy it
-	return QFile( pubKey ).copy( destFile.fileName() );
+	return dsaKey.save( pub );
 }
 
 
