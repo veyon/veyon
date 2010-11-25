@@ -895,30 +895,6 @@
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_4">
            <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_4">
-             <item>
-              <widget class="QPushButton" name="manageACLs">
-               <property name="text">
-                <string>Manage ACLs...</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <spacer name="horizontalSpacer_9">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-            </layout>
-           </item>
-           <item>
             <widget class="QWidget" name="logonGroupManagement" native="true">
              <layout class="QGridLayout" name="gridLayout">
               <property name="margin">
@@ -1038,6 +1014,45 @@
               </item>
              </layout>
             </widget>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_4">
+             <item>
+              <widget class="QPushButton" name="manageACLs">
+               <property name="text">
+                <string>Manage ACLs</string>
+               </property>
+               <property name="icon">
+                <iconset resource="../imc.qrc">
+                 <normaloff>:/Resources/preferences-other.png</normaloff>:/Resources/preferences-other.png</iconset>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="testLogonAuthentication">
+               <property name="text">
+                <string>Test logon authentication</string>
+               </property>
+               <property name="icon">
+                <iconset resource="../imc.qrc">
+                 <normaloff>:/Resources/task-accepted.png</normaloff>:/Resources/task-accepted.png</iconset>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_9">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
            </item>
           </layout>
          </widget>

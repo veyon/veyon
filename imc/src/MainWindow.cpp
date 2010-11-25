@@ -26,7 +26,8 @@
 
 #ifdef ITALC_BUILD_WIN32
 #include <windows.h>
-#include <QtCore/QSettings>
+#include "../ica/win32/addon/ms-logon/authSSP/vncSSP.h"
+void Win32AclEditor( HWND hwnd );
 #endif
 
 #include <QtCore/QDir>
@@ -46,6 +47,7 @@
 #include "Logger.h"
 #include "LogonAclSettings.h"
 #include "MainWindow.h"
+#include "PasswordDialog.h"
 
 #include "ui_MainWindow.h"
 
@@ -91,6 +93,7 @@ MainWindow::MainWindow() :
 
 	CONNECT_BUTTON_SLOT( launchAccessKeyAssistant );
 	CONNECT_BUTTON_SLOT( manageACLs );
+	CONNECT_BUTTON_SLOT( testLogonAuthentication );
 	CONNECT_BUTTON_SLOT( addLogonGroup );
 	CONNECT_BUTTON_SLOT( removeLogonGroup );
 
@@ -345,9 +348,6 @@ void MainWindow::launchAccessKeyAssistant()
 
 
 
-#ifdef ITALC_BUILD_WIN32
-void Win32AclEditor( HWND hwnd );
-#endif
 
 void MainWindow::manageACLs()
 {
@@ -360,6 +360,35 @@ void MainWindow::manageACLs()
 		configurationChanged();
 	}
 #endif
+}
+
+
+
+
+void MainWindow::testLogonAuthentication()
+{
+	PasswordDialog dlg( this );
+	if( dlg.exec() )
+	{
+		bool result = false;
+#ifdef ITALC_BUILD_WIN32
+		result = CUPSD( dlg.username().toUtf8().constData(),
+						dlg.password().toUtf8().constData(),
+						"127.0.0.1" ) > 0 ?  true : false;
+#endif
+		if( result )
+		{
+			QMessageBox::information( this, tr( "Logon authentication test" ),
+							tr( "Authentication with provided credentials "
+								"was successful." ) );
+		}
+		else
+		{
+			QMessageBox::critical( this, tr( "Logon authentication test" ),
+							tr( "Authentication with provided credentials "
+								"failed!" ) );
+		}
+	}
 }
 
 

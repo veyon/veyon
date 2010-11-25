@@ -58,6 +58,7 @@ private slots:
 	void saveSettingsToFile();
 	void launchAccessKeyAssistant();
 	void manageACLs();
+	void testLogonAuthentication();
 	void addLogonGroup();
 	void removeLogonGroup();
 
