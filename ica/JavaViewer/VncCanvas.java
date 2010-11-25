@@ -27,6 +27,7 @@ import java.io.*;
 import java.lang.*;
 import java.util.zip.*;
 
+import java.util.Collections;
 
 //
 // VncCanvas is a subclass of Canvas which draws a VNC desktop on it.
@@ -84,6 +85,20 @@ class VncCanvas
 		cm8_8c = new DirectColorModel(8, (1 << 2), (1 << 1), (1 << 0));
 		
 		cm24 = new DirectColorModel(24, 0xFF0000, 0x00FF00, 0x0000FF);
+
+    // kludge to not show any Java cursor in the canvas since we are
+    // showing the soft cursor (should be a user setting...)
+/*    Cursor dot = Toolkit.getDefaultToolkit().createCustomCursor(
+        Toolkit.getDefaultToolkit().createImage(new byte[4]), new Point(0,0),
+        "dot");
+    this.setCursor(dot);*/
+
+    // while we are at it... get rid of the keyboard traversals that
+    // make it so we can't type a Tab character:
+    this.setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS,
+        Collections.EMPTY_SET);
+    this.setFocusTraversalKeys(KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS,
+        Collections.EMPTY_SET);
 
 		colors = new Color[256];
 		// sf@2005 - Now Default
@@ -1532,9 +1547,9 @@ class VncCanvas
 							else
 							{
 								result =
-									0xFF000000 | (pixBuf[i * 4 + 1] & 0xFF)
-										<< 16 | (pixBuf[i * 4 + 2] & 0xFF)
-										<< 8 | (pixBuf[i * 4 + 3] & 0xFF);
+									0xFF000000 | (pixBuf[i * 4 + 2] & 0xFF)
+										<< 16 | (pixBuf[i * 4 + 1] & 0xFF)
+										<< 8 | (pixBuf[i * 4 + 0] & 0xFF);
 							}
 						} else {
 							result = 0; // Transparent pixel
