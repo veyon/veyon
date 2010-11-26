@@ -74,8 +74,11 @@ public:
 		/* Authentication */															\
 		OP( ItalcConfiguration, ItalcCore::config, BOOL, isKeyAuthenticationEnabled, setKeyAuthenticationEnabled, "KeyAuthenticationEnabled", "Authentication" );	\
 		OP( ItalcConfiguration, ItalcCore::config, BOOL, isLogonAuthenticationEnabled, setLogonAuthenticationEnabled, "LogonAuthenticationEnabled", "Authentication" );	\
+		OP( ItalcConfiguration, ItalcCore::config, BOOL, isPermissionRequiredWithKeyAuthentication, setPermissionRequiredWithKeyAuthentication, "PermissionRequiredWithKeyAuthentication", "Authentication" );	\
 		OP( ItalcConfiguration, ItalcCore::config, STRING, privateKeyBaseDir, setPrivateKeyBaseDir, "PrivateKeyBaseDir", "Authentication" );	\
 		OP( ItalcConfiguration, ItalcCore::config, STRING, publicKeyBaseDir, setPublicKeyBaseDir, "PublicKeyBaseDir", "Authentication" );	\
+		OP( ItalcConfiguration, ItalcCore::config, BOOL, isPermissionRequiredWithLogonAuthentication, setPermissionRequiredWithLogonAuthentication, "PermissionRequiredWithLogonAuthentication", "Authentication" );	\
+		OP( ItalcConfiguration, ItalcCore::config, BOOL, isSameUserConfirmationDisabled, setSameUserConfirmationDisabled, "SameUserConfirmationDisabled", "Authentication" );	\
 		OP( ItalcConfiguration, ItalcCore::config, STRINGLIST, logonGroups, setLogonGroups, "LogonGroups", "Authentication" );	\
 
 	FOREACH_ITALC_CONFIG_PROPERTY(DECLARE_CONFIG_PROPERTY)
@@ -104,8 +107,11 @@ public slots:
 	void setSnapshotDirectory( const QString & );
 	void setKeyAuthenticationEnabled( bool );
 	void setLogonAuthenticationEnabled( bool );
+	void setPermissionRequiredWithKeyAuthentication( bool );
 	void setPrivateKeyBaseDir( const QString & );
 	void setPublicKeyBaseDir( const QString & );
+	void setPermissionRequiredWithLogonAuthentication( bool );
+	void setSameUserConfirmationDisabled( bool );
 	void setLogonGroups( const QStringList & );
 
 } ;

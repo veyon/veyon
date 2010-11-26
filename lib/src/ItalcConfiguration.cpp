@@ -104,8 +104,13 @@ ItalcConfiguration ItalcConfiguration::defaultConfiguration()
 	c.setKeyAuthenticationEnabled( true );
 	c.setLogonAuthenticationEnabled( true );
 
+	c.setPermissionRequiredWithKeyAuthentication( false );
 	c.setPrivateKeyBaseDir( QDTNS( "$GLOBALAPPDATA/keys/private" ) );
 	c.setPublicKeyBaseDir( QDTNS( "$GLOBALAPPDATA/keys/public" ) );
+
+	c.setPermissionRequiredWithLogonAuthentication( false );
+	c.setSameUserConfirmationDisabled( false );
+	c.setLogonGroups( QStringList() );
 
 	return c;
 }
