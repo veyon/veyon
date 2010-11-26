@@ -24,8 +24,9 @@
  *
  */
 
-#include <QtCore/QDebug>
+#include <QtCore/QCoreApplication>
 #include <QtCore/QProcess>
+#include <QtCore/QTime>
 
 #include "Ipc/QtSlaveLauncher.h"
 
@@ -80,8 +81,17 @@ void QtSlaveLauncher::stop()
 	m_processMutex.lock();
 	if( m_process )
 	{
-		if( !m_process->waitForFinished( 5000 ) )
+		QTime t;
+		t.start();
+
+		while( t.elapsed() < 5000 && m_process->state() != QProcess::NotRunning )
 		{
+			QCoreApplication::processEvents();
+		}
+
+		if( m_process->state() != QProcess::NotRunning )
+		{
+			qWarning( "Slave still running, terminating it now." );
 			m_process->terminate();
 			m_process->kill();
 		}
