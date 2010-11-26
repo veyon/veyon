@@ -36,10 +36,10 @@
 			_INIT_WIDGET_FROM_PROPERTY(config,property,QLineEdit,setText)
 
 #define INIT_WIDGET_FROM_STRINGLIST_PROPERTY(config,property,slot)							\
-			if(ui->property->inherits("QListWidget")) {					\
+/*			if(ui->property->inherits("QListWidget")) {					\
 				qobject_cast<QListWidget *>( ui->property )->clear();			\
 				qobject_cast<QListWidget *>( ui->property )->addItems( config->property() );	\
-			}
+			}*/
 
 #define INIT_WIDGET_FROM_INT_PROPERTY(config,property,slot)							\
 			if(ui->property->inherits("QComboBox"))	{							\
