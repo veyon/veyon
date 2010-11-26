@@ -161,10 +161,22 @@ void MainWindow::apply()
 	ItalcCore::config->setValue( "EncodedLogonACL", LogonAclSettings().acl(),
 															"Authentication" );
 #endif
-	ImcCore::applyConfiguration( *ItalcCore::config );
-
-	ui->buttonBox->setEnabled( false );
-	m_configChanged = false;
+	if( ImcCore::applyConfiguration( *ItalcCore::config ) )
+	{
+#ifdef ITALC_BUILD_WIN32
+		if( QMessageBox::question( this, tr( "Restart iTALC Service" ),
+				tr( "All settings were saved successfully. In order to take "
+					"effect the iTALC service needs to be restarted. "
+					"Restart it now?" ), QMessageBox::Yes | QMessageBox::No,
+				QMessageBox::Yes ) == QMessageBox::Yes )
+		{
+			stopService();
+			startService();
+		}
+#endif
+		ui->buttonBox->setEnabled( false );
+		m_configChanged = false;
+	}
 }
 
 
