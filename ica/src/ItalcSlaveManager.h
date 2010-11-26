@@ -49,9 +49,10 @@ public:
 	struct AccessDialog
 	{
 		static const Ipc::Command Ask;
+		static const Ipc::Argument User;
 		static const Ipc::Argument Host;
-		static const Ipc::Command ReportResult;
-		static const Ipc::Argument Result;
+		static const Ipc::Argument ChoiceFlags;
+		static const Ipc::Command ReportChoice;
 	} ;
 
 	struct SystemTrayIcon
@@ -87,25 +88,6 @@ public:
 		static const Ipc::Argument Text;
 	} ;
 
-	enum SlaveStateFlags
-	{
-		AccessDialogRunning = 1,
-		DemoServerRunning = 2,
-		DemoClientRunning = 4,
-		ScreenLockRunning = 8,
-		InputLockRunning = 16,
-		SystemTrayIconRunning = 32,
-		MessageBoxRunning = 64
-	} ;
-
-	enum AccessDialogResult
-	{
-		AccessYes,
-		AccessNo,
-		AccessAlways,
-		AccessNever
-	} ;
-
 	DemoServerMaster *demoServerMaster()
 	{
 		return &m_demoServerMaster;
@@ -124,7 +106,8 @@ public:
 	void setSystemTrayToolTip( const QString &tooltip );
 	void systemTrayMessage( const QString &title, const QString &msg );
 
-	AccessDialogResult execAccessDialog( const QString &host );
+	int execAccessDialog( const QString &user, const QString &host,
+							int choiceFlags );
 
 	int slaveStateFlags();
 
@@ -133,7 +116,7 @@ private:
 	virtual bool handleMessage( const Ipc::Id &slaveId, const Ipc::Msg &m );
 
 	DemoServerMaster m_demoServerMaster;
-	volatile int m_accessDialogResult;
+	volatile int m_accessDialogChoice;
 
 	friend class DemoServerMaster;
 

@@ -36,6 +36,7 @@
 #include <QtNetwork/QHostInfo>
 
 #include "ItalcCoreServer.h"
+#include "DesktopAccessPermission.h"
 #include "DsaKey.h"
 #include "LocalSystem.h"
 
@@ -278,6 +279,8 @@ bool ItalcCoreServer::authSecTypeItalc( socketDispatcher sd, void *user )
 		return result;
 	}
 
+	const QString username = sdev.read().toString();
+
 	switch( chosen )
 	{
 		// no authentication
@@ -326,7 +329,13 @@ bool ItalcCoreServer::authSecTypeItalc( socketDispatcher sd, void *user )
 		return false;
 	}
 
-	return true;
+	if( DesktopAccessPermission(
+			DesktopAccessPermission::LogonAuthentication ).ask( username, host ) )
+	{
+		return true;
+	}
+
+	return false;
 }
 
 
@@ -353,6 +362,7 @@ bool ItalcCoreServer::doKeyBasedAuth( SocketDevice &sdev, const QString &host )
 	// get user-role
 	const ItalcCore::UserRoles urole =
 				static_cast<ItalcCore::UserRoles>( sdev.read().toInt() );
+#if 0
 	if( ItalcCore::role != ItalcCore::RoleOther &&
 		host != QHostAddress( QHostAddress::LocalHost ).toString() )
 	{
@@ -376,6 +386,7 @@ bool ItalcCoreServer::doKeyBasedAuth( SocketDevice &sdev, const QString &host )
 			}
 		}
 	}
+#endif
 
 	// now try to verify received signed data using public key of the user
 	// under which the client claims to run

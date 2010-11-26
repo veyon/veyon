@@ -1,6 +1,8 @@
 #include <windows.h>
 
+#include "DesktopAccessPermission.h"
 #include "ItalcCore.h"
+#include "ItalcCoreServer.h"
 #include "ItalcConfiguration.h"
 
 
@@ -73,5 +75,12 @@ BOOL ultravnc_italc_load_int( LPCSTR valname, LONG *out )
 	return false;
 }
 
+
+BOOL ultravnc_italc_ask_permission( const char *username, const char *host )
+{
+	return DesktopAccessPermission(
+				DesktopAccessPermission::LogonAuthentication ).
+														ask( username, host );
+}
 
 

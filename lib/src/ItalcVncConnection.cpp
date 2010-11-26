@@ -734,6 +734,16 @@ void ItalcVncConnection::handleSecTypeItalc( rfbClient *client )
 	}
 
 	socketDev.write( QVariant( chosenAuthType ) );
+	// send username which is used when displaying an access confirm dialog
+	if( ItalcCore::authenticationCredentials->hasCredentials(
+									AuthenticationCredentials::UserLogon ) )
+	{
+		socketDev.write( ItalcCore::authenticationCredentials->logonUsername() );
+	}
+	else
+	{
+		socketDev.write( LocalSystem::User::loggedOnUser().name() );
+	}
 
 	if( chosenAuthType == ItalcAuthDSA )
 	{

@@ -76,6 +76,10 @@
 #include "vncOSVersion.h"
 #include "common/win32_helpers.h"
 
+#ifdef ULTRAVNC_ITALC_SUPPORT
+extern BOOL ultravnc_italc_ask_permission( const char *username, const char *host );
+#endif
+
 bool isDirectoryTransfer(const char *szFileName);
 extern BOOL SPECIAL_SC_PROMPT;
 extern BOOL SPECIAL_SC_EXIT;
@@ -1644,6 +1648,9 @@ vncClientThread::AuthMsLogon(std::string& auth_message)
 	}
 
 	if (result) {
+#ifdef ULTRAVNC_ITALC_SUPPORT
+		return ultravnc_italc_ask_permission( user, m_socket->GetPeerName() );
+#endif
 		return TRUE;
 	} else {
 		return FALSE;

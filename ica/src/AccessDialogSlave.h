@@ -27,7 +27,6 @@
 #define _ACCESS_DIALOG_SLAVE_H
 
 #include "IcaSlave.h"
-#include "ItalcSlaveManager.h"
 
 
 class AccessDialogSlave : public IcaSlave
@@ -44,7 +43,6 @@ public:
 
 
 private:
-	ItalcSlaveManager::AccessDialogResult exec( const QString &);
 	virtual bool handleMessage( const Ipc::Msg &m );
 
 } ;

@@ -27,6 +27,7 @@
 #include <QtCore/QDir>
 #include <QtCore/QTime>
 
+#include "DesktopAccessPermission.h"
 #include "ItalcConfiguration.h"
 #include "ItalcCore.h"
 #include "ItalcSlaveManager.h"
@@ -42,9 +43,10 @@ const Ipc::Id ItalcSlaveManager::IdInputLock = "InputLock";
 const Ipc::Id ItalcSlaveManager::IdSystemTrayIcon = "SystemTrayIcon";
 
 const Ipc::Command ItalcSlaveManager::AccessDialog::Ask = "Ask";
+const Ipc::Argument ItalcSlaveManager::AccessDialog::User = "User";
 const Ipc::Argument ItalcSlaveManager::AccessDialog::Host = "Host";
-const Ipc::Command ItalcSlaveManager::AccessDialog::ReportResult = "ReportResult";
-const Ipc::Argument ItalcSlaveManager::AccessDialog::Result = "Result";
+const Ipc::Argument ItalcSlaveManager::AccessDialog::ChoiceFlags = "ChoiceFlags";
+const Ipc::Command ItalcSlaveManager::AccessDialog::ReportChoice = "ReportChoice";
 
 const Ipc::Command ItalcSlaveManager::DemoClient::StartDemo = "StartDemo";
 const Ipc::Argument ItalcSlaveManager::DemoClient::MasterHost = "MasterHost";
@@ -198,30 +200,33 @@ void ItalcSlaveManager::setSystemTrayToolTip( const QString &tooltip )
 
 
 
-ItalcSlaveManager::AccessDialogResult ItalcSlaveManager::execAccessDialog( const QString &host )
+int ItalcSlaveManager::execAccessDialog( const QString &user,
+											const QString &host,
+											int choiceFlags )
 {
-	m_accessDialogResult = -1;
+	m_accessDialogChoice = -1;
 
 	createSlave( IdAccessDialog );
 	sendMessage( IdAccessDialog,
 					Ipc::Msg( AccessDialog::Ask ).
-						addArg( AccessDialog::Host, host ) );
+						addArg( AccessDialog::User , user ).
+						addArg( AccessDialog::Host, host ).
+						addArg( AccessDialog::ChoiceFlags, choiceFlags ) );
 
 	// wait for answer
 	QTime t;
 	t.start();
-	while( m_accessDialogResult < 0 && t.elapsed() < 15000 )
+	while( m_accessDialogChoice < 0 )
 	{
 		QCoreApplication::processEvents();
+		if( t.elapsed() > 30000 )
+		{
+			stopSlave( IdAccessDialog );
+			return DesktopAccessPermission::ChoiceNo;
+		}
 	}
 
-	if( m_accessDialogResult >= AccessYes &&
-			m_accessDialogResult <= AccessNever )
-	{
-		return static_cast<AccessDialogResult>( m_accessDialogResult );
-	}
-
-	return AccessNo;
+	return m_accessDialogChoice;
 }
 
 
@@ -233,7 +238,7 @@ int ItalcSlaveManager::slaveStateFlags()
 #define GEN_SLAVE_STATE_SETTER(x)				\
 			if( isSlaveRunning( Id##x ) )		\
 			{									\
-				s |= x##Running;				\
+				s |= ItalcCore::x##Running;		\
 			}
 	GEN_SLAVE_STATE_SETTER(AccessDialog)
 	GEN_SLAVE_STATE_SETTER(DemoServer)
@@ -253,9 +258,9 @@ bool ItalcSlaveManager::handleMessage( const Ipc::Id &slaveId, const Ipc::Msg &m
 {
 	if( slaveId == IdAccessDialog )
 	{
-		if( m.cmd() == AccessDialog::ReportResult )
+		if( m.cmd() == AccessDialog::ReportChoice )
 		{
-			m_accessDialogResult = m.arg( AccessDialog::Result ).toInt();
+			m_accessDialogChoice = m.arg( AccessDialog::ChoiceFlags ).toInt();
 			return true;
 		}
 	}

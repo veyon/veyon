@@ -27,6 +27,7 @@
 #include <QtGui/QPushButton>
 
 #include "AccessDialogSlave.h"
+#include "DesktopAccessPermission.h"
 #include "ItalcSlaveManager.h"
 #include "LocalSystem.h"
 
@@ -43,21 +44,39 @@ AccessDialogSlave::~AccessDialogSlave()
 }
 
 
-ItalcSlaveManager::AccessDialogResult AccessDialogSlave::exec(
-														const QString &host )
+static int exec( const QString &user, const QString &host,
+								int choiceFlags )
 {
+	QMessageBox::StandardButtons btns = QMessageBox::NoButton;
+	if( choiceFlags & DesktopAccessPermission::ChoiceYes )
+	{
+		btns |= QMessageBox::Yes;
+	}
+	if( choiceFlags & DesktopAccessPermission::ChoiceNo )
+	{
+		btns |= QMessageBox::No;
+	}
 	QMessageBox m( QMessageBox::Question,
-					tr( "Confirm access" ),
-					tr( "Somebody at host %1 tries to access your screen. "
-						"Do you want to grant him/her access?" ).
-							arg( host ),
-					QMessageBox::Yes | QMessageBox::No );
+		AccessDialogSlave::tr( "Confirm desktop access" ),
+		AccessDialogSlave::tr( "The user %1 at host %2 wants to access your "
+								"desktop. Do you want to grant access?" ).
+									arg( user ).arg( host ), btns );
 
-	QPushButton * neverBtn = m.addButton( tr( "Never for this session" ),
+	QPushButton *neverBtn = NULL, *alwaysBtn = NULL;
+	if( choiceFlags & DesktopAccessPermission::ChoiceNever )
+	{
+		neverBtn = m.addButton(
+						AccessDialogSlave::tr( "Never for this session" ),
 														QMessageBox::NoRole );
-	QPushButton * alwaysBtn = m.addButton( tr( "Always for this session" ),
+		m.setDefaultButton( neverBtn );
+	}
+	if( choiceFlags & DesktopAccessPermission::ChoiceAlways )
+	{
+		alwaysBtn = m.addButton(
+						AccessDialogSlave::tr( "Always for this session" ),
 														QMessageBox::YesRole );
-	m.setDefaultButton( neverBtn );
+	}
+
 	m.setEscapeButton( m.button( QMessageBox::No ) );
 
 	LocalSystem::activateWindow( &m );
@@ -65,18 +84,18 @@ ItalcSlaveManager::AccessDialogResult AccessDialogSlave::exec(
 	const int res = m.exec();
 	if( m.clickedButton() == neverBtn )
 	{
-		return ItalcSlaveManager::AccessNever;
+		return DesktopAccessPermission::ChoiceNever;
 	}
 	else if( m.clickedButton() == alwaysBtn )
 	{
-		return ItalcSlaveManager::AccessAlways;
+		return DesktopAccessPermission::ChoiceAlways;
 	}
 	else if( res == QMessageBox::Yes )
 	{
-		return ItalcSlaveManager::AccessYes;
+		return DesktopAccessPermission::ChoiceYes;
 	}
 
-	return ItalcSlaveManager::AccessNo;
+	return DesktopAccessPermission::ChoiceNo;
 }
 
 
@@ -86,12 +105,14 @@ bool AccessDialogSlave::handleMessage( const Ipc::Msg &m )
 {
 	if( m.cmd() == ItalcSlaveManager::AccessDialog::Ask )
 	{
+		QString user = m.arg( ItalcSlaveManager::AccessDialog::User );
 		QString host = m.arg( ItalcSlaveManager::AccessDialog::Host );
+		int choiceFlags = m.argV( ItalcSlaveManager::AccessDialog::ChoiceFlags ).toInt();
 
-		ItalcSlaveManager::AccessDialogResult res = exec( host );
+		choiceFlags = exec( user, host, choiceFlags );
 
-		Ipc::Msg( ItalcSlaveManager::AccessDialog::ReportResult ).
-			addArg( ItalcSlaveManager::AccessDialog::Result, res ).
+		Ipc::Msg( ItalcSlaveManager::AccessDialog::ReportChoice ).
+			addArg( ItalcSlaveManager::AccessDialog::ChoiceFlags, choiceFlags ).
 				send( this );
 
 		return true;
