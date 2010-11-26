@@ -1,5 +1,5 @@
 /*
- * MainWindow.h - main window of the iTALC Management Console
+ * LogonGroupEditor.h - a dialog for editing logon groups
  *
  * Copyright (c) 2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
@@ -22,52 +22,34 @@
  *
  */
 
-#ifndef _MAIN_WINDOW_H
-#define _MAIN_WINDOW_H
+#ifndef _LOGON_GROUP_EDITOR_H
+#define _LOGON_GROUP_EDITOR_H
 
-#include <QtGui/QMainWindow>
+#include <QtGui/QDialog>
 
-class QAbstractButton;
+namespace Ui { class LogonGroupEditor; } ;
 
-namespace Ui { class MainWindow; } ;
-
-class MainWindow : public QMainWindow
+class LogonGroupEditor : public QDialog
 {
 	Q_OBJECT
 public:
-	MainWindow();
-	virtual ~MainWindow();
+	LogonGroupEditor( QWidget *parent );
+	virtual ~LogonGroupEditor();
 
-	void reset( bool onlyUI = false );
-	void apply();
+	virtual void accept();
 
 
 private slots:
-	void configurationChanged();
-	void resetOrApply( QAbstractButton *btn );
-	void startService();
-	void stopService();
-	void updateServiceControl();
-	void openLogFileDirectory();
-	void openGlobalConfig();
-	void openPersonalConfig();
-	void openSnapshotDirectory();
-	void openPublicKeyBaseDir();
-	void openPrivateKeyBaseDir();
-	void loadSettingsFromFile();
-	void saveSettingsToFile();
-	void launchAccessKeyAssistant();
-	void manageACLs();
-	void testLogonAuthentication();
+	void addLogonGroup();
+	void removeLogonGroup();
 
 
 private:
-	virtual void closeEvent( QCloseEvent *closeEvent );
+	void updateLogonGroupsUI();
 
-	bool isServiceRunning();
+	Ui::LogonGroupEditor *ui;
 
-	Ui::MainWindow *ui;
-	bool m_configChanged;
+	QStringList m_logonGroups;
 
 } ;
 

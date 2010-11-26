@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>705</width>
-    <height>541</height>
+    <width>703</width>
+    <height>507</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -124,29 +124,6 @@
         <property name="spacing">
          <number>10</number>
         </property>
-        <item>
-         <widget class="QGroupBox" name="groupBox_4">
-          <property name="title">
-           <string>User interface</string>
-          </property>
-          <layout class="QGridLayout" name="gridLayout_5">
-           <item row="0" column="0">
-            <widget class="QCheckBox" name="enableBalloonToolTips">
-             <property name="text">
-              <string>Enable balloon tooltips</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="0">
-            <widget class="QCheckBox" name="enableTextOnButtons">
-             <property name="text">
-              <string>Show text on buttons</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
         <item>
          <widget class="QGroupBox" name="groupBox_3">
           <property name="title">
@@ -423,7 +400,7 @@
           <property name="sizeHint" stdset="0">
            <size>
             <width>20</width>
-            <height>40</height>
+            <height>10</height>
            </size>
           </property>
          </spacer>
@@ -793,12 +770,6 @@
           <property name="enabled">
            <bool>false</bool>
           </property>
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>120</height>
-           </size>
-          </property>
           <property name="title">
            <string>Access key management</string>
           </property>
@@ -806,7 +777,7 @@
            <property name="verticalSpacing">
             <number>2</number>
            </property>
-           <item row="0" column="0" colspan="2">
+           <item row="1" column="0" colspan="2">
             <layout class="QGridLayout" name="gridLayout_8">
              <property name="horizontalSpacing">
               <number>10</number>
@@ -858,7 +829,7 @@
              </item>
             </layout>
            </item>
-           <item row="2" column="1">
+           <item row="3" column="1">
             <widget class="QPushButton" name="launchAccessKeyAssistant">
              <property name="text">
               <string>Launch access key assistant</string>
@@ -869,7 +840,7 @@
              </property>
             </widget>
            </item>
-           <item row="2" column="0">
+           <item row="3" column="0">
             <spacer name="horizontalSpacer_2">
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
@@ -882,6 +853,13 @@
              </property>
             </spacer>
            </item>
+           <item row="0" column="0" colspan="2">
+            <widget class="QCheckBox" name="isPermissionRequiredWithKeyAuthentication">
+             <property name="text">
+              <string>Ask user for permission to access desktop</string>
+             </property>
+            </widget>
+           </item>
           </layout>
          </widget>
         </item>
@@ -893,130 +871,52 @@
           <property name="title">
            <string>Logon settings</string>
           </property>
-          <layout class="QVBoxLayout" name="verticalLayout_4">
+          <layout class="QVBoxLayout" name="verticalLayout_3">
+           <property name="spacing">
+            <number>0</number>
+           </property>
            <item>
-            <widget class="QWidget" name="logonGroupManagement" native="true">
-             <layout class="QGridLayout" name="gridLayout">
-              <property name="margin">
-               <number>0</number>
-              </property>
-              <item row="0" column="0" rowspan="2" colspan="4">
-               <widget class="QLabel" name="label_3">
-                <property name="text">
-                 <string>Please add the groups whose members should be allowed to access computers in your iTALC network.</string>
-                </property>
-                <property name="wordWrap">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="0">
-               <widget class="QLabel" name="label_4">
-                <property name="text">
-                 <string>All groups</string>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="3">
-               <widget class="QLabel" name="label_6">
-                <property name="text">
-                 <string>Groups with iTALC privileges</string>
-                </property>
-               </widget>
-              </item>
-              <item row="4" column="0" colspan="2">
-               <widget class="QListWidget" name="allGroups">
-                <property name="selectionMode">
-                 <enum>QAbstractItemView::MultiSelection</enum>
-                </property>
-                <property name="sortingEnabled">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item row="4" column="2">
-               <layout class="QVBoxLayout" name="verticalLayout_3">
-                <item>
-                 <spacer name="verticalSpacer_4">
-                  <property name="orientation">
-                   <enum>Qt::Vertical</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>20</width>
-                    <height>40</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-                <item>
-                 <widget class="QToolButton" name="addLogonGroup">
-                  <property name="text">
-                   <string>...</string>
-                  </property>
-                  <property name="icon">
-                   <iconset resource="../imc.qrc">
-                    <normaloff>:/Resources/go-next.png</normaloff>:/Resources/go-next.png</iconset>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QToolButton" name="removeLogonGroup">
-                  <property name="text">
-                   <string>...</string>
-                  </property>
-                  <property name="icon">
-                   <iconset resource="../imc.qrc">
-                    <normaloff>:/Resources/go-previous.png</normaloff>:/Resources/go-previous.png</iconset>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <spacer name="verticalSpacer_5">
-                  <property name="orientation">
-                   <enum>Qt::Vertical</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>20</width>
-                    <height>40</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-               </layout>
-              </item>
-              <item row="4" column="3">
-               <widget class="QListWidget" name="logonGroups">
-                <property name="selectionMode">
-                 <enum>QAbstractItemView::MultiSelection</enum>
-                </property>
-                <property name="sortingEnabled">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="0" colspan="4">
-               <spacer name="verticalSpacer_3">
-                <property name="orientation">
-                 <enum>Qt::Vertical</enum>
-                </property>
-                <property name="sizeType">
-                 <enum>QSizePolicy::Fixed</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>20</width>
-                  <height>6</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-             </layout>
+            <widget class="QCheckBox" name="isPermissionRequiredWithLogonAuthentication">
+             <property name="text">
+              <string>Ask user for permission to access desktop</string>
+             </property>
             </widget>
            </item>
            <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_6">
+             <item>
+              <spacer name="horizontalSpacer_12">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeType">
+                <enum>QSizePolicy::Fixed</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>24</width>
+                 <height>16</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="isSameUserConfirmationDisabled">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="text">
+                <string>Allow same user to access desktop without confirmation</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
             <layout class="QHBoxLayout" name="horizontalLayout_4">
+             <property name="topMargin">
+              <number>10</number>
+             </property>
              <item>
               <widget class="QPushButton" name="manageACLs">
                <property name="text">
@@ -1098,7 +998,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>705</width>
+     <width>703</width>
      <height>25</height>
     </rect>
    </property>
@@ -1264,6 +1164,22 @@
     <hint type="destinationlabel">
      <x>320</x>
      <y>396</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>isPermissionRequiredWithLogonAuthentication</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>isSameUserConfirmationDisabled</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>458</x>
+     <y>322</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>473</x>
+     <y>345</y>
     </hint>
    </hints>
   </connection>
