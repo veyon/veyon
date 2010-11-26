@@ -63,6 +63,8 @@ private slots:
 
 private:
 	virtual void closeEvent( QCloseEvent *closeEvent );
+	void serviceControlWithProgressBar( const QString &title,
+										const QString &arg );
 
 	bool isServiceRunning();
 

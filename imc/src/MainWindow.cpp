@@ -36,6 +36,8 @@ void Win32AclEditor( HWND hwnd );
 #include <QtGui/QCloseEvent>
 #include <QtGui/QFileDialog>
 #include <QtGui/QMessageBox>
+#include <QtGui/QProgressBar>
+#include <QtGui/QProgressDialog>
 
 #include "Configuration/XmlStore.h"
 #include "Configuration/UiMapping.h"
@@ -44,6 +46,7 @@ void Win32AclEditor( HWND hwnd );
 #include "FileSystemBrowser.h"
 #include "ImcCore.h"
 #include "ItalcConfiguration.h"
+#include "LocalSystem.h"
 #include "Logger.h"
 #include "LogonAclSettings.h"
 #include "LogonGroupEditor.h"
@@ -193,10 +196,7 @@ void MainWindow::resetOrApply( QAbstractButton *btn )
 
 void MainWindow::startService()
 {
-	QProcess::startDetached( ImcCore::icaFilePath(),
-								QStringList() << "-startservice" );
-
-	updateServiceControl();
+	serviceControlWithProgressBar( tr( "Starting iTALC service" ), "-startservice" );
 }
 
 
@@ -204,10 +204,7 @@ void MainWindow::startService()
 
 void MainWindow::stopService()
 {
-	QProcess::startDetached( ImcCore::icaFilePath(),
-								QStringList() << "-stopservice" );
-
-	updateServiceControl();
+	serviceControlWithProgressBar( tr( "Stopping iTALC service" ), "-stopservice" );
 }
 
 
@@ -404,6 +401,38 @@ void MainWindow::closeEvent( QCloseEvent *closeEvent )
 
 	closeEvent->accept();
 	QMainWindow::closeEvent( closeEvent );
+}
+
+
+
+
+void MainWindow::serviceControlWithProgressBar( const QString &title,
+												const QString &arg )
+{
+	QProcess p;
+	p.start( ImcCore::icaFilePath(), QStringList() << arg );
+	p.waitForStarted();
+
+	QProgressDialog pd( title, QString(), 0, 0, this );
+	pd.setWindowTitle( windowTitle() );
+
+	QProgressBar *b = new QProgressBar( &pd );
+	b->setMaximum( 100 );
+	b->setTextVisible( false );
+	pd.setBar( b );
+	b->show();
+	pd.setWindowModality( Qt::WindowModal );
+	pd.show();
+
+	int j = 0;
+	while( p.state() == QProcess::Running )
+	{
+		QApplication::processEvents();
+		b->setValue( ++j % 100 );
+		LocalSystem::sleep( 10 );
+	}
+
+	updateServiceControl();
 }
 
 
