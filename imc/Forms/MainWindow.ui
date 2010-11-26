@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>703</width>
+    <width>734</width>
     <height>507</height>
    </rect>
   </property>
@@ -758,7 +758,7 @@
            <item row="1" column="0">
             <widget class="QCheckBox" name="isLogonAuthenticationEnabled">
              <property name="text">
-              <string>ACL-based user logon authentication</string>
+              <string>ACL-based logon authentication</string>
              </property>
             </widget>
            </item>
@@ -829,7 +829,14 @@
              </item>
             </layout>
            </item>
-           <item row="3" column="1">
+           <item row="0" column="0" colspan="2">
+            <widget class="QCheckBox" name="isPermissionRequiredWithKeyAuthentication">
+             <property name="text">
+              <string>Additionally always ask user for permission to access desktop</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
             <widget class="QPushButton" name="launchAccessKeyAssistant">
              <property name="text">
               <string>Launch access key assistant</string>
@@ -840,7 +847,7 @@
              </property>
             </widget>
            </item>
-           <item row="3" column="0">
+           <item row="2" column="1">
             <spacer name="horizontalSpacer_2">
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
@@ -852,13 +859,6 @@
               </size>
              </property>
             </spacer>
-           </item>
-           <item row="0" column="0" colspan="2">
-            <widget class="QCheckBox" name="isPermissionRequiredWithKeyAuthentication">
-             <property name="text">
-              <string>Ask user for permission to access desktop</string>
-             </property>
-            </widget>
            </item>
           </layout>
          </widget>
@@ -878,7 +878,7 @@
            <item>
             <widget class="QCheckBox" name="isPermissionRequiredWithLogonAuthentication">
              <property name="text">
-              <string>Ask user for permission to access desktop</string>
+              <string>Additionally always ask user for permission to access desktop</string>
              </property>
             </widget>
            </item>
@@ -914,13 +914,16 @@
            </item>
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout_4">
+             <property name="spacing">
+              <number>16</number>
+             </property>
              <property name="topMargin">
               <number>10</number>
              </property>
              <item>
               <widget class="QPushButton" name="manageACLs">
                <property name="text">
-                <string>Manage ACLs</string>
+                <string>Manage permissions</string>
                </property>
                <property name="icon">
                 <iconset resource="../imc.qrc">
@@ -931,7 +934,7 @@
              <item>
               <widget class="QPushButton" name="testLogonAuthentication">
                <property name="text">
-                <string>Test logon authentication</string>
+                <string>Test</string>
                </property>
                <property name="icon">
                 <iconset resource="../imc.qrc">
@@ -998,7 +1001,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>703</width>
+     <width>734</width>
      <height>25</height>
     </rect>
    </property>
