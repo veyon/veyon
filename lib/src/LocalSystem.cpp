@@ -902,7 +902,7 @@ void logonUser( const QString & _uname, const QString & _passwd,
 
 QString Path::expand( QString path )
 {
-	return QDTNS( path.replace( "$HOME", QDir::homePath() ).
+	QString p = QDTNS( path.replace( "$HOME", QDir::homePath() ).
 						replace( "%HOME%", QDir::homePath() ).
 						replace( "$PROFILE", QDir::homePath() ).
 						replace( "%PROFILE%", QDir::homePath() ).
@@ -914,6 +914,15 @@ QString Path::expand( QString path )
 						replace( "$TEMP", QDir::tempPath() ).
 						replace( "%TMP%", QDir::tempPath() ).
 						replace( "%TEMP%", QDir::tempPath() ) );
+	// remove duplicate directory separators - however skip the first two chars
+	// as they might specify an UNC path on Windows
+	if( p.length() > 3 )
+	{
+		return p.left( 2 ) + p.mid( 2 ).replace(
+									QString( "%1%1" ).arg( QDir::separator() ),
+									QDir::separator() );
+	}
+	return p;
 }
 
 
