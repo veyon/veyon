@@ -300,7 +300,12 @@ bool ItalcCoreServer::authSecTypeItalc( socketDispatcher sd, void *user )
 		case ItalcAuthDSA:
 			if( doKeyBasedAuth( sdev, host ) )
 			{
-				result = rfbVncAuthOK;
+				if( DesktopAccessPermission(
+						DesktopAccessPermission::KeyAuthentication ).
+							ask( username, host ) )
+				{
+					result = rfbVncAuthOK;
+				}
 			}
 			break;
 
@@ -329,13 +334,7 @@ bool ItalcCoreServer::authSecTypeItalc( socketDispatcher sd, void *user )
 		return false;
 	}
 
-	if( DesktopAccessPermission(
-			DesktopAccessPermission::LogonAuthentication ).ask( username, host ) )
-	{
-		return true;
-	}
-
-	return false;
+	return true;
 }
 
 
