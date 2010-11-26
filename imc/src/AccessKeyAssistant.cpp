@@ -176,6 +176,9 @@ void AccessKeyAssistant::accept()
 						"source key or to write the destination file." ) );
 			return;
 		}
+		QMessageBox::information( this, tr( "Public key import" ),
+				tr( "The public key was successfully imported to %1." ).
+					arg( LocalSystem::Path::publicKeyPath( role, destDir ) ) );
 	}
 
 	QWizard::accept();
