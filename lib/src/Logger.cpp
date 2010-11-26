@@ -113,6 +113,7 @@ void Logger::initLogFile()
 	logPath = logPath + QDir::separator();
 	m_logFile = new QFile( logPath + QString( "%1.log" ).arg( m_appName ) );
 	m_logFile->open( QFile::WriteOnly | QFile::Append | QFile::Unbuffered );
+	m_logFile->setPermissions( QFile::ReadOwner | QFile::WriteOwner );
 }
 
 
