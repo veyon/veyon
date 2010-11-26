@@ -26,7 +26,6 @@
 #define _ITALC_CORE_CONNECTION_H
 
 #include "ItalcCore.h"
-#include "ItalcSlaveManager.h"
 #include "ItalcVncConnection.h"
 
 
@@ -67,10 +66,10 @@ public:
 		return m_slaveStateFlags;
 	}
 
-#define GEN_SLAVE_STATE_HELPER(x)									\
-			bool is##x() const										\
-			{														\
-				return slaveStateFlags() & ItalcSlaveManager::x;	\
+#define GEN_SLAVE_STATE_HELPER(x)							\
+			bool is##x() const								\
+			{												\
+				return slaveStateFlags() & ItalcCore::x;	\
 			}
 
 	GEN_SLAVE_STATE_HELPER(DemoServerRunning)

@@ -259,6 +259,17 @@ namespace ItalcCore
 	} ;
 	typedef UserRoles UserRole;
 
+	enum SlaveStateFlags
+	{
+		AccessDialogRunning 	= 1,
+		DemoServerRunning 		= 2,
+		DemoClientRunning 		= 4,
+		ScreenLockRunning 		= 8,
+		InputLockRunning 		= 16,
+		SystemTrayIconRunning 	= 32,
+		MessageBoxRunning 		= 64
+	} ;
+
 	QString userRoleName( UserRole role );
 
 
