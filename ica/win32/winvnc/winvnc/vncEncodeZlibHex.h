@@ -45,7 +45,7 @@ class vncEncodeZlibHex;
 #ifdef IPP
 #include "..\..\ipp_zlib\src\zlib\zlib.h"
 #else
-#include "zlib/zlib.h"
+#include "zlib.h"
 #endif
 #include "lzo/minilzo.h"
 

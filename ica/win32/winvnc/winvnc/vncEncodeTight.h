@@ -39,7 +39,7 @@ class vncEncodeTight;
 #ifdef IPP
 #include "..\..\ipp_zlib\src\zlib\zlib.h"
 #else
-#include "zlib/zlib.h"
+#include "zlib.h"
 #endif
 extern "C"
 {

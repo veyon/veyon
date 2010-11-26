@@ -1015,10 +1015,10 @@ vncDesktopThread::run_undetached(void *arg)
 										// after a m_hookdriver switching from on to off 
 										// (and m_hookdll from off to on) that causes mouse cursor garbage,
 										// or missing mouse cursor.
-										char tempchar[10];
-										itoa(1000/((newtick-oldtick2)),tempchar,10);
+										/*char tempchar[10];
+										if ((newtick-oldtick2) != 0) itoa(1000/((newtick-oldtick2)),tempchar,10);
 										oldtick2=newtick;
-										//m_desktop->m_buffer.WriteMessageOnScreen(tempchar);
+										m_desktop->m_buffer.WriteMessageOnScreen(tempchar);*/
 
 										if (m_desktop->VideoBuffer() && m_desktop->m_hookdriver)
 											{

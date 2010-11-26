@@ -67,8 +67,14 @@ vncDesktopThread::Handle_Ringbuffer(mystruct *ringbuffer,rfb::Region2D &rgncache
 				//rect.br.x-=(m_desktop->m_SWOffsetx);
 				//rect.tl.y-=(m_desktop->m_SWOffsety);
 				//rect.br.y-=(m_desktop->m_SWOffsety);
-				//vnclog.Print(LL_INTERR, VNCLOG("REct %i %i %i %i  \n"),rect.tl.x,rect.br.x,rect.tl.y,rect.br.y);
-				
+				vnclog.Print(LL_INTERR, VNCLOG("REct %i %i %i %i  \n"),rect.tl.x,rect.br.x,rect.tl.y,rect.br.y);
+	#ifdef _DEBUG
+					char			szText[256];
+					DWORD error=GetLastError();
+					sprintf(szText,"REct %i %i %i %i  \n",rect.tl.x,rect.br.x,rect.tl.y,rect.br.y);
+					SetLastError(0);
+					OutputDebugString(szText);		
+	#endif			
 				rect = rect.intersect(m_desktop->m_Cliprect);
 				if (!rect.is_empty())
 				{
@@ -108,7 +114,13 @@ vncDesktopThread::Handle_Ringbuffer(mystruct *ringbuffer,rfb::Region2D &rgncache
 				//rect.tl.y-=m_desktop->m_ScreenOffsety;
 				//rect.br.y-=m_desktop->m_ScreenOffsety;
 				//vnclog.Print(LL_INTERR, VNCLOG("REct %i %i %i %i  \n"),rect.tl.x,rect.br.x,rect.tl.y,rect.br.y);
-				
+#ifdef _DEBUG
+					char			szText[256];
+					DWORD error=GetLastError();
+					sprintf(szText,"REct %i %i %i %i  \n",rect.tl.x,rect.br.x,rect.tl.y,rect.br.y);
+					SetLastError(0);
+					OutputDebugString(szText);		
+	#endif				
 				rect = rect.intersect(m_desktop->m_Cliprect);
 				if (!rect.is_empty())
 				{
@@ -219,7 +231,7 @@ DWORD WINAPI Cadthread(LPVOID lpParam)
 	//////
 	if(OSversion.dwMajorVersion>=6 && vncService::RunningAsService())
 			{
-				if (OSversion.dwMinorVersion==0) //Vista
+				/*if (OSversion.dwMinorVersion==0) //Vista
 				{
 					if (ISUACENabled() && !IsSoftwareCadEnabled())//ok
 					{
@@ -319,7 +331,8 @@ DWORD WINAPI Cadthread(LPVOID lpParam)
 					}
 
 				}
-				else if( vncService::RunningAsService() &&!IsSoftwareCadEnabled())
+				else*/
+					if( vncService::RunningAsService() &&!IsSoftwareCadEnabled())
 					{
 						DWORD result=MessageBox(NULL,"UAC is Disable, make registry changes to allow cad","Warning",MB_YESNO);
 						if (result==IDYES)
@@ -366,11 +379,13 @@ DWORD WINAPI Cadthread(LPVOID lpParam)
 					}
 			}
        /////////////////////
-	if(OSversion.dwMajorVersion==6 && OSversion.dwMinorVersion>=1)
+	if(OSversion.dwMajorVersion==6)//&& OSversion.dwMinorVersion>=1) //win7  // test win7 +Vista
 	{
 
 		if (hShutdownEventcad==NULL ) hShutdownEventcad = OpenEvent(EVENT_MODIFY_STATE, FALSE, "Global\\SessionEventUltraCad");
 		if (hShutdownEventcad!=NULL ) SetEvent(hShutdownEventcad);
+		if (old_desktop) SetThreadDesktop(old_desktop);
+		if (desktop) CloseDesktop(desktop);
 		return 0;
 	}
 
@@ -386,6 +401,8 @@ DWORD WINAPI Cadthread(LPVOID lpParam)
 	 {
 		 if (hShutdownEventcad==NULL ) hShutdownEventcad = OpenEvent(EVENT_MODIFY_STATE, FALSE, "Global\\SessionEventUltraCad");
 		 if (hShutdownEventcad!=NULL ) SetEvent(hShutdownEventcad);
+		 if (old_desktop) SetThreadDesktop(old_desktop);
+		 if (desktop) CloseDesktop(desktop);
 		 return 0;
 	 }
 
