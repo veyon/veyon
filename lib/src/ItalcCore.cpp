@@ -54,6 +54,9 @@ ItalcCore::UserRoles ItalcCore::role = ItalcCore::RoleOther;
 void initResources()
 {
 	Q_INIT_RESOURCE(ItalcCore);
+#ifndef QT_TRANSLATIONS_DIR
+	Q_INIT_RESOURCE(qt_qm);
+#endif
 }
 
 
@@ -136,17 +139,19 @@ bool ItalcCore::init()
 
 	initResources();
 
-	const QString loc = QLocale::system().name().left( 2 );
+	const QString loc = QLocale::system().name();
 
-	foreach( const QString &qm, QStringList()
-												<< loc
-												<< "qt_" + loc )
-	{
-		QTranslator *tr = new QTranslator;
-		tr->load( QString( ":/resources/%1.qm" ).arg( qm ) );
-		QCoreApplication::installTranslator( tr );
-	}
+	QTranslator *tr = new QTranslator;
+	tr->load( QString( ":/resources/%1.qm" ).arg( loc ) );
+	QCoreApplication::installTranslator( tr );
 
+	QTranslator *qtTr = new QTranslator;
+#ifdef QT_TRANSLATIONS_DIR
+	qtTr->load( QString( "qt_%1.qm" ).arg( loc ), QT_TRANSLATIONS_DIR );
+#else
+	qtTr->load( QString( ":/qt_%1.qm" ).arg( loc ) );
+#endif
+	QCoreApplication::installTranslator( qtTr );
 
 	ItalcConfiguration dc = ItalcConfiguration::defaultConfiguration();
 	config = new ItalcConfiguration( dc );
