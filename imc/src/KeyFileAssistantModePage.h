@@ -1,5 +1,5 @@
 /*
- * KeyAssistantModePage.h - QWizardPage for assistant mode selection
+ * KeyFileAssistantModePage.h - QWizardPage for assistant mode selection
  *
  * Copyright (c) 2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
@@ -22,24 +22,24 @@
  *
  */
 
-#ifndef _KEY_ASSISTANT_MODE_PAGE_H
-#define _KEY_ASSISTANT_MODE_PAGE_H
+#ifndef _KEY_FILE_ASSISTANT_MODE_PAGE_H
+#define _KEY_FILE_ASSISTANT_MODE_PAGE_H
 
 #include <QtGui/QWizardPage>
 
 class QButtonGroup;
-namespace Ui { class AccessKeyAssistant; }
+namespace Ui { class KeyFileAssistant; }
 
-class KeyAssistantModePage : public QWizardPage
+class KeyFileAssistantModePage : public QWizardPage
 {
 	Q_OBJECT
 public:
-	KeyAssistantModePage();
-	virtual ~KeyAssistantModePage()
+	KeyFileAssistantModePage();
+	virtual ~KeyFileAssistantModePage()
 	{
 	}
 
-	void setUi( Ui::AccessKeyAssistant *ui );
+	void setUi( Ui::KeyFileAssistant *ui );
 	virtual bool isComplete() const;
 
 

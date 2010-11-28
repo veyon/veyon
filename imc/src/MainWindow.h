@@ -56,7 +56,7 @@ private slots:
 	void openPrivateKeyBaseDir();
 	void loadSettingsFromFile();
 	void saveSettingsToFile();
-	void launchAccessKeyAssistant();
+	void launchKeyFileAssistant();
 	void manageACLs();
 	void testLogonAuthentication();
 

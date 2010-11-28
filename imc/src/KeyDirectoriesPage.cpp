@@ -24,10 +24,10 @@
 
 #include <QtCore/QFileInfo>
 
-#include "AccessKeyAssistant.h"
+#include "KeyFileAssistant.h"
 #include "KeyDirectoriesPage.h"
 #include "LocalSystem.h"
-#include "ui_AccessKeyAssistant.h"
+#include "ui_KeyFileAssistant.h"
 
 
 KeyDirectoriesPage::KeyDirectoriesPage() :
@@ -38,7 +38,7 @@ KeyDirectoriesPage::KeyDirectoriesPage() :
 
 
 
-void KeyDirectoriesPage::setUi( Ui::AccessKeyAssistant *ui )
+void KeyDirectoriesPage::setUi( Ui::KeyFileAssistant *ui )
 {
 	m_ui = ui;
 

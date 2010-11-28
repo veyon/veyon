@@ -1,5 +1,5 @@
 /*
- * AccessKeyAssistant.h - a wizard assisting in managing access keys
+ * KeyFileAssistant.h - a wizard assisting in managing key files
  *
  * Copyright (c) 2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
@@ -22,19 +22,19 @@
  *
  */
 
-#ifndef _ACCESS_KEY_ASSISTANT_H
-#define _ACCESS_KEY_ASSISTANT_H
+#ifndef _KEY_FILE_ASSISTANT_H
+#define _KEY_FILE_ASSISTANT_H
 
 #include <QtGui/QWizard>
 
-namespace Ui { class AccessKeyAssistant; }
+namespace Ui { class KeyFileAssistant; }
 
-class AccessKeyAssistant : public QWizard
+class KeyFileAssistant : public QWizard
 {
 	Q_OBJECT
 public:
-	AccessKeyAssistant();
-	virtual ~AccessKeyAssistant();
+	KeyFileAssistant();
+	virtual ~KeyFileAssistant();
 
 
 private slots:
@@ -45,7 +45,7 @@ private slots:
 private:
 	virtual void accept();
 
-	Ui::AccessKeyAssistant *m_ui;
+	Ui::KeyFileAssistant *m_ui;
 
 } ;
 

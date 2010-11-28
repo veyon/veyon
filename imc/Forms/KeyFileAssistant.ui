@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>AccessKeyAssistant</class>
- <widget class="QWizard" name="AccessKeyAssistant">
+ <class>KeyFileAssistant</class>
+ <widget class="QWizard" name="KeyFileAssistant">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -95,7 +95,7 @@ The public key part is used on the client computers to verify that any incoming 
     </item>
    </layout>
   </widget>
-  <widget class="KeyAssistantModePage" name="assistantModePage">
+  <widget class="KeyFileAssistantModePage" name="assistantModePage">
    <property name="title">
     <string>Assistant mode</string>
    </property>
@@ -528,7 +528,7 @@ The public key part is used on the client computers to verify that any incoming 
          <number>6</number>
         </property>
         <item>
-         <widget class="QLabel" name="actionWriteAccessKey">
+         <widget class="QLabel" name="actionWriteKeyFile">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
             <horstretch>0</horstretch>
@@ -629,9 +629,9 @@ The public key part is used on the client computers to verify that any incoming 
  </widget>
  <customwidgets>
   <customwidget>
-   <class>KeyAssistantModePage</class>
+   <class>KeyFileAssistantModePage</class>
    <extends>QWizardPage</extends>
-   <header>KeyAssistantModePage.h</header>
+   <header>KeyFileAssistantModePage.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>

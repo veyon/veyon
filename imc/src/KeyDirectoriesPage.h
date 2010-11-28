@@ -27,7 +27,7 @@
 
 #include <QtGui/QWizardPage>
 
-namespace Ui { class AccessKeyAssistant; }
+namespace Ui { class KeyFileAssistant; }
 
 class KeyDirectoriesPage : public QWizardPage
 {
@@ -38,12 +38,12 @@ public:
 	{
 	}
 
-	void setUi( Ui::AccessKeyAssistant *ui );
+	void setUi( Ui::KeyFileAssistant *ui );
 	virtual bool isComplete() const;
 
 
 private:
-	Ui::AccessKeyAssistant *m_ui;
+	Ui::KeyFileAssistant *m_ui;
 
 } ;
 

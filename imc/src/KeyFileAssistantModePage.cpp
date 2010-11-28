@@ -1,5 +1,5 @@
 /*
- * KeyAssistantModePage.cpp - QWizardPage for assistant mode selection
+ * KeyFileAssistantModePage.cpp - QWizardPage for assistant mode selection
  *
  * Copyright (c) 2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
@@ -24,12 +24,12 @@
 
 #include <QtGui/QButtonGroup>
 
-#include "AccessKeyAssistant.h"
-#include "KeyAssistantModePage.h"
-#include "ui_AccessKeyAssistant.h"
+#include "KeyFileAssistant.h"
+#include "KeyFileAssistantModePage.h"
+#include "ui_KeyFileAssistant.h"
 
 
-KeyAssistantModePage::KeyAssistantModePage() :
+KeyFileAssistantModePage::KeyFileAssistantModePage() :
 	QWizardPage(),
 	m_modeButtonGroup( NULL )
 {
@@ -37,7 +37,7 @@ KeyAssistantModePage::KeyAssistantModePage() :
 
 
 
-void KeyAssistantModePage::setUi( Ui::AccessKeyAssistant *ui )
+void KeyFileAssistantModePage::setUi( Ui::KeyFileAssistant *ui )
 {
 	m_modeButtonGroup = ui->assistantModeButtonGroup;
 	connect( m_modeButtonGroup, SIGNAL( buttonClicked( int ) ),
@@ -46,7 +46,7 @@ void KeyAssistantModePage::setUi( Ui::AccessKeyAssistant *ui )
 
 
 
-bool KeyAssistantModePage::isComplete() const
+bool KeyFileAssistantModePage::isComplete() const
 {
 	return m_modeButtonGroup && m_modeButtonGroup->checkedButton() != NULL;
 }

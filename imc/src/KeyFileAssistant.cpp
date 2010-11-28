@@ -1,5 +1,5 @@
 /*
- * AccessKeyAssistant.cpp - a wizard assisting in managing access keys
+ * KeyFileAssistant.cpp - a wizard assisting in managing key files
  *
  * Copyright (c) 2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
@@ -25,7 +25,7 @@
 #include <QtCore/QDir>
 #include <QtGui/QMessageBox>
 
-#include "AccessKeyAssistant.h"
+#include "KeyFileAssistant.h"
 #include "DsaKey.h"
 #include "FileSystemBrowser.h"
 #include "ImcCore.h"
@@ -33,12 +33,12 @@
 #include "ItalcCore.h"
 #include "LocalSystem.h"
 #include "Logger.h"
-#include "ui_AccessKeyAssistant.h"
+#include "ui_KeyFileAssistant.h"
 
 
-AccessKeyAssistant::AccessKeyAssistant() :
+KeyFileAssistant::KeyFileAssistant() :
 	QWizard(),
-	m_ui( new Ui::AccessKeyAssistant )
+	m_ui( new Ui::KeyFileAssistant )
 {
 	m_ui->setupUi( this );
 
@@ -59,14 +59,14 @@ AccessKeyAssistant::AccessKeyAssistant() :
 
 
 
-AccessKeyAssistant::~AccessKeyAssistant()
+KeyFileAssistant::~KeyFileAssistant()
 {
 }
 
 
 
 
-void AccessKeyAssistant::openPubKeyDir()
+void KeyFileAssistant::openPubKeyDir()
 {
 	if( m_ui->modeCreateKeys->isChecked() )
 	{
@@ -98,7 +98,7 @@ void AccessKeyAssistant::openPubKeyDir()
 
 
 
-void AccessKeyAssistant::openDestDir()
+void KeyFileAssistant::openDestDir()
 {
 	FileSystemBrowser b( FileSystemBrowser::ExistingDirectory );
 	b.setShrinkPath( false );
@@ -108,7 +108,7 @@ void AccessKeyAssistant::openDestDir()
 
 
 
-void AccessKeyAssistant::accept()
+void KeyFileAssistant::accept()
 {
 	ItalcCore::UserRole role =
 			static_cast<ItalcCore::UserRole>(

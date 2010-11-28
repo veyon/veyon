@@ -42,7 +42,7 @@ void Win32AclEditor( HWND hwnd );
 #include "Configuration/XmlStore.h"
 #include "Configuration/UiMapping.h"
 
-#include "AccessKeyAssistant.h"
+#include "KeyFileAssistant.h"
 #include "FileSystemBrowser.h"
 #include "ImcCore.h"
 #include "ItalcConfiguration.h"
@@ -95,7 +95,7 @@ MainWindow::MainWindow() :
 	CONNECT_BUTTON_SLOT( openPublicKeyBaseDir );
 	CONNECT_BUTTON_SLOT( openPrivateKeyBaseDir );
 
-	CONNECT_BUTTON_SLOT( launchAccessKeyAssistant );
+	CONNECT_BUTTON_SLOT( launchKeyFileAssistant );
 	CONNECT_BUTTON_SLOT( manageACLs );
 	CONNECT_BUTTON_SLOT( testLogonAuthentication );
 
@@ -340,9 +340,9 @@ void MainWindow::saveSettingsToFile()
 
 
 
-void MainWindow::launchAccessKeyAssistant()
+void MainWindow::launchKeyFileAssistant()
 {
-	AccessKeyAssistant().exec();
+	KeyFileAssistant().exec();
 }
 
 
