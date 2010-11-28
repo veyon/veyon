@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>734</width>
-    <height>507</height>
+    <width>719</width>
+    <height>573</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -751,7 +751,7 @@
            <item row="0" column="0">
             <widget class="QCheckBox" name="isKeyAuthenticationEnabled">
              <property name="text">
-              <string>Access key authentication</string>
+              <string>Key file authentication</string>
              </property>
             </widget>
            </item>
@@ -777,7 +777,7 @@
            <property name="verticalSpacing">
             <number>2</number>
            </property>
-           <item row="1" column="0" colspan="2">
+           <item row="0" column="0" colspan="2">
             <layout class="QGridLayout" name="gridLayout_8">
              <property name="horizontalSpacing">
               <number>10</number>
@@ -788,7 +788,7 @@
              <item row="0" column="0">
               <widget class="QLabel" name="label_7">
                <property name="text">
-                <string>Public key base directory</string>
+                <string>Public key file base directory</string>
                </property>
               </widget>
              </item>
@@ -798,7 +798,7 @@
              <item row="1" column="0">
               <widget class="QLabel" name="label_8">
                <property name="text">
-                <string>Private key base directory</string>
+                <string>Private key file base directory</string>
                </property>
               </widget>
              </item>
@@ -829,17 +829,10 @@
              </item>
             </layout>
            </item>
-           <item row="0" column="0" colspan="2">
-            <widget class="QCheckBox" name="isPermissionRequiredWithKeyAuthentication">
-             <property name="text">
-              <string>Additionally always ask user for permission to access desktop</string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="0">
+           <item row="1" column="0">
             <widget class="QPushButton" name="launchAccessKeyAssistant">
              <property name="text">
-              <string>Launch access key assistant</string>
+              <string>Launch key file assistant</string>
              </property>
              <property name="icon">
               <iconset resource="../imc.qrc">
@@ -847,7 +840,7 @@
              </property>
             </widget>
            </item>
-           <item row="2" column="1">
+           <item row="1" column="1">
             <spacer name="horizontalSpacer_2">
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
@@ -871,14 +864,81 @@
           <property name="title">
            <string>Logon settings</string>
           </property>
-          <layout class="QVBoxLayout" name="verticalLayout_3">
-           <property name="spacing">
-            <number>0</number>
+          <layout class="QGridLayout" name="gridLayout">
+           <property name="horizontalSpacing">
+            <number>10</number>
            </property>
+           <item row="0" column="0">
+            <widget class="QPushButton" name="manageACLs">
+             <property name="text">
+              <string>Manage permissions</string>
+             </property>
+             <property name="icon">
+              <iconset resource="../imc.qrc">
+               <normaloff>:/Resources/preferences-other.png</normaloff>:/Resources/preferences-other.png</iconset>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QPushButton" name="testLogonAuthentication">
+             <property name="text">
+              <string>Test</string>
+             </property>
+             <property name="icon">
+              <iconset resource="../imc.qrc">
+               <normaloff>:/Resources/task-accepted.png</normaloff>:/Resources/task-accepted.png</iconset>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <spacer name="horizontalSpacer_9">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>209</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="groupBox_4">
+          <property name="title">
+           <string>Access confirmation</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_4">
+           <item>
+            <widget class="QLabel" name="label_3">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="text">
+              <string>You can configure iTALC to ask the user for permission to access the desktop when using certain authentication methods.</string>
+             </property>
+             <property name="wordWrap">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QCheckBox" name="isPermissionRequiredWithKeyAuthentication">
+             <property name="text">
+              <string>Key file authentication</string>
+             </property>
+            </widget>
+           </item>
            <item>
             <widget class="QCheckBox" name="isPermissionRequiredWithLogonAuthentication">
              <property name="text">
-              <string>Additionally always ask user for permission to access desktop</string>
+              <string>Logon authentication</string>
              </property>
             </widget>
            </item>
@@ -912,51 +972,6 @@
              </item>
             </layout>
            </item>
-           <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_4">
-             <property name="spacing">
-              <number>16</number>
-             </property>
-             <property name="topMargin">
-              <number>10</number>
-             </property>
-             <item>
-              <widget class="QPushButton" name="manageACLs">
-               <property name="text">
-                <string>Manage permissions</string>
-               </property>
-               <property name="icon">
-                <iconset resource="../imc.qrc">
-                 <normaloff>:/Resources/preferences-other.png</normaloff>:/Resources/preferences-other.png</iconset>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="testLogonAuthentication">
-               <property name="text">
-                <string>Test</string>
-               </property>
-               <property name="icon">
-                <iconset resource="../imc.qrc">
-                 <normaloff>:/Resources/task-accepted.png</normaloff>:/Resources/task-accepted.png</iconset>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <spacer name="horizontalSpacer_9">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-            </layout>
-           </item>
           </layout>
          </widget>
         </item>
@@ -964,12 +979,6 @@
          <spacer name="verticalSpacer_7">
           <property name="orientation">
            <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
           </property>
          </spacer>
         </item>
@@ -1001,7 +1010,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>734</width>
+     <width>719</width>
      <height>25</height>
     </rect>
    </property>
