@@ -42,7 +42,12 @@ DemoClient::DemoClient( const QString &host, bool fullscreen ) :
 	m_toplevel->setWindowTitle( tr( "iTALC Demo" ) );
 	m_toplevel->setWindowIcon( QPixmap( ":/resources/display.png" ) );
 	m_toplevel->setAttribute( Qt::WA_DeleteOnClose, false );
-	m_toplevel->resize( QApplication::desktop()->availableGeometry( m_toplevel ).size() - QSize( 10, 30 ) );
+	m_toplevel->setWindowFlags( Qt::Window |
+								Qt::CustomizeWindowHint |
+								Qt::WindowTitleHint |
+								Qt::WindowMinMaxButtonsHint );
+	m_toplevel->resize( QApplication::desktop()->
+					availableGeometry( m_toplevel ).size() - QSize( 10, 30 ) );
 
 	m_vncView = new VncView( host, m_toplevel, VncView::DemoMode );
 
