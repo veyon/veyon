@@ -392,7 +392,7 @@ public:
 
 	// sf@2007 - Vista / XP FUS special modes
 	virtual BOOL RunningFromExternalService(){return m_fRunningFromExternalService;};
-	virtual void RunningFromExternalService(BOOL fEnabled){m_fRunningFromExternalService = fEnabled;};
+	virtual void RunningFromExternalService(BOOL fEnabled){m_fRunningFromExternalService = true;};
 
 	virtual void AutoRestartFlag(BOOL fOn){m_fAutoRestart = fOn;};
 	virtual BOOL AutoRestartFlag(){return m_fAutoRestart;};

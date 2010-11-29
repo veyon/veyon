@@ -231,7 +231,7 @@ vncServer::vncServer()
 
 	m_impersonationtoken=NULL; // Modif Jeremy C. 
 
-	m_fRunningFromExternalService = false;
+	m_fRunningFromExternalService = true;
 	m_fAutoRestart = false;
     m_ftTimeout = FT_RECV_TIMEOUT;
     m_keepAliveInterval = KEEPALIVE_INTERVAL;

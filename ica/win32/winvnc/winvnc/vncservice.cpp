@@ -913,7 +913,7 @@ vncService::RunningFromExternalService()
 void 
 vncService::RunningFromExternalService(BOOL fEnabled)
 {
-	m_fRunningFromExternalService = fEnabled;
+	m_fRunningFromExternalService = true;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
