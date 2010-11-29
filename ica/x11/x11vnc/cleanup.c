@@ -150,7 +150,8 @@ void clean_up_exit(int ret) {
 	exit_flag = 1;
 
 	if (depth++ > 2) {
-		exit(ret);
+		return;
+		//exit(ret);
 	}
 
 	if (icon_mode) {
@@ -244,7 +245,7 @@ void clean_up_exit(int ret) {
 		fflush(stderr);
 	}
 
-	exit(ret);
+	//exit(ret);
 }
 
 /* X11 error handlers */
