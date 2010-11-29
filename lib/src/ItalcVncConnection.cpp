@@ -159,8 +159,14 @@ rfbBool ItalcVncConnection::hookNewClient( rfbClient *cl )
 			cl->appData.qualityLevel = 5;
 			cl->appData.enableJPEG = true;
 			break;
-		default:
 		case DemoQuality:
+			cl->appData.encodingsString = "tight ultra copyrect "
+							"hextile zlib corre rre raw";
+			cl->appData.compressLevel = 9;
+			cl->appData.qualityLevel = 9;
+			cl->appData.enableJPEG = true;
+			break;
+		default:
 			cl->appData.encodingsString = "zrle ultra copyrect "
 							"hextile zlib corre rre raw";
 			break;
