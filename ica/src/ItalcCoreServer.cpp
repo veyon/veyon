@@ -32,7 +32,6 @@
 #endif
 
 #include <QtCore/QCoreApplication>
-#include <QtCore/QDir>
 #include <QtNetwork/QHostInfo>
 
 #include "ItalcCoreServer.h"
@@ -96,7 +95,7 @@ int ItalcCoreServer::handleItalcClientMessage( socketDispatcher sock,
 		}
 		ItalcCore::Msg( &sdev, ItalcCore::UserInformation ).
 					addArg( "username", currentUsername ).
-					addArg( "homedir", QDir::homePath() ).
+					addArg( "homedir", user.homePath() ).
 									send();
 	}
 	else if( cmd == ItalcCore::ExecCmds )
