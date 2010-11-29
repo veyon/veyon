@@ -35,7 +35,6 @@
 #define rfbItalcCoreResponse		rfbItalcCoreRequest
 
 
-#define rfbEncodingItalc 30
 #define rfbEncodingItalcCursor 31
 
 #define rfbSecTypeItalc 30
@@ -46,14 +45,6 @@ enum PortOffsets
 	PortOffsetVncServer = 11100,
 	PortOffsetDemoServer = PortOffsetVncServer + 300,
 	PortOffsetHttpServer = 5800
-} ;
-
-
-struct ItalcRectEncodingHeader
-{
-	uint8_t compressed;
-	uint32_t bytesLZO;
-	uint32_t bytesRLE;
 } ;
 
 

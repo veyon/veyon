@@ -1,6 +1,7 @@
 #include <algorithm>
 
 #include "stdhdrs.h"
+#include "ItalcRfbExt.h"
 #include "ItalcCoreServer.h"
 #include "vsocket.cpp"
 

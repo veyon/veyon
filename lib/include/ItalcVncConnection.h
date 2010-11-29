@@ -35,6 +35,7 @@
 #include <QtCore/QWaitCondition>
 
 #include "ItalcCore.h"
+#include "ItalcRfbExt.h"
 #include "FastQImage.h"
 
 class PrivateDSAKey;

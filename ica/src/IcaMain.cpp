@@ -30,6 +30,7 @@
 
 #include "WindowsService.h"
 #include "ItalcConfiguration.h"
+#include "ItalcCore.h"
 #include "ItalcCoreServer.h"
 #include "ItalcVncServer.h"
 #include "Logger.h"

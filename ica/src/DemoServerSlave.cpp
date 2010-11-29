@@ -27,6 +27,7 @@
 #include <QtNetwork/QHostInfo>
 
 #include "DemoServerSlave.h"
+#include "ItalcCore.h"
 #include "ItalcVncServer.h"
 
 

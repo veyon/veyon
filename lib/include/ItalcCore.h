@@ -25,115 +25,17 @@
 #ifndef _ITALC_CORE_H
 #define _ITALC_CORE_H
 
-#include <italcconfig.h>
-
-#include <QtCore/QIODevice>
 #include <QtCore/QPair>
 #include <QtCore/QString>
-#include <QtCore/QSysInfo>
 #include <QtCore/QVariant>
 
 #include "Ipc/Core.h"
 
 #include "AuthenticationCredentials.h"
-#include "ItalcRfbExt.h"
-#include "rfb/rfbproto.h"
-#include "rfb/rfbclient.h"
-
-
-/* ============================================================================
- * socket dispatching
- * ============================================================================
- */
-
-
-typedef enum
-{
-	SocketRead,
-	SocketWrite,
-	SocketGetPeerAddress
-} SocketOpCodes;
-
-
-typedef qint64 ( * socketDispatcher )( char *buffer, const qint64 bytes,
-									const SocketOpCodes opCode, void *user );
-
-
-extern qint64 libvncClientDispatcher( char *buffer, const qint64 bytes,
-									const SocketOpCodes opCode, void *user );
-
-
-class SocketDevice : public QIODevice
-{
-public:
-	inline SocketDevice( socketDispatcher sockDisp, void *user = NULL ) :
-		QIODevice(),
-		m_socketDispatcher( sockDisp ),
-		m_user( user )
-	{
-		open( ReadWrite | Unbuffered );
-	}
-
-	inline QVariant read()
-	{
-		QDataStream d( this );
-		return d;
-	}
-
-	inline void write( const QVariant &v )
-	{
-		QDataStream d( this );
-		d << v;
-	}
-
-	inline socketDispatcher sockDispatcher()
-	{
-		return m_socketDispatcher;
-	}
-
-	inline void *user()
-	{
-		return m_user;
-	}
-
-	inline void setUser( void *user )
-	{
-		m_user = user;
-	}
-
-	inline qint64 read( char *buf, qint64 bytes )
-	{
-		return readData( buf, bytes );
-	}
-
-	inline qint64 write( const char *buf, qint64 bytes )
-	{
-		return writeData( buf, bytes );
-	}
-
-
-protected:
-	inline qint64 readData( char *buf, qint64 bytes )
-	{
-		return m_socketDispatcher( buf, bytes, SocketRead, m_user );
-	}
-
-	inline qint64 writeData( const char *buf, qint64 bytes )
-	{
-		return m_socketDispatcher( const_cast<char *>( buf ), bytes,
-												SocketWrite, m_user );
-	}
-
-
-private:
-	socketDispatcher m_socketDispatcher;
-	void * m_user;
-
-} ;
-
 
 
 class ItalcConfiguration;
+class SocketDevice;
 
 namespace ItalcCore
 {
@@ -190,12 +92,12 @@ namespace ItalcCore
 		{
 		}
 
-		inline const Command & cmd() const
+		const Command &cmd() const
 		{
 			return m_cmd;
 		}
 
-		inline const CommandArgs & args() const
+		const CommandArgs &args() const
 		{
 			return m_args;
 		}
@@ -205,43 +107,29 @@ namespace ItalcCore
 			m_socketDevice = sockDev;
 		}
 
-		Msg & addArg( const QString &key, const QString &value )
+		Msg &addArg( const QString &key, const QString &value )
 		{
 			m_args[key.toLower()] = value;
 			return *this;
 		}
 
-		Msg & addArg( const QString & key, const int value )
+		Msg &addArg( const QString &key, const int value )
 		{
 			m_args[key.toLower()] = QString::number( value );
 			return *this;
 		}
 
-		QString arg( const QString & key ) const
+		QString arg( const QString &key ) const
 		{
 			return m_args[key.toLower()].toString();
 		}
 
-		bool send()
-		{
-			QDataStream d( m_socketDevice );
-			d << (uint8_t) rfbItalcCoreRequest;
-			d << m_cmd;
-			d << m_args;
-			return true;
-		}
-
-		Msg & receive()
-		{
-			QDataStream d( m_socketDevice );
-			d >> m_cmd;
-			d >> m_args;
-			return *this;
-		}
+		bool send();
+		Msg &receive();
 
 
 	private:
-		SocketDevice * m_socketDevice;
+		SocketDevice *m_socketDevice;
 
 		Command m_cmd;
 		CommandArgs m_args;

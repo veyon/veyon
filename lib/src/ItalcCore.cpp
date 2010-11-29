@@ -36,9 +36,13 @@
 
 #include "ItalcCore.h"
 #include "ItalcConfiguration.h"
+#include "ItalcRfbExt.h"
 #include "LocalSystem.h"
 #include "Logger.h"
 #include "PasswordDialog.h"
+#include "SocketDevice.h"
+
+#include <rfb/rfbclient.h>
 
 #include "minilzo.h"
 
@@ -251,6 +255,30 @@ QString ItalcCore::userRoleName( UserRole role )
 
 namespace ItalcCore
 {
+
+
+bool Msg::send()
+{
+	QDataStream d( m_socketDevice );
+	d << (uint8_t) rfbItalcCoreRequest;
+	d << m_cmd;
+	d << m_args;
+
+	return true;
+}
+
+
+
+Msg &Msg::receive()
+{
+	QDataStream d( m_socketDevice );
+	d >> m_cmd;
+	d >> m_args;
+
+	return *this;
+}
+
+
 
 const Command GetUserInformation = "GetUserInformation";
 const Command UserInformation = "UserInformation";

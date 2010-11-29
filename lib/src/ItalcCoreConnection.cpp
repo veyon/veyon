@@ -24,6 +24,7 @@
 
 #include "ItalcCoreConnection.h"
 #include "Logger.h"
+#include "SocketDevice.h"
 
 
 class ItalcMessageEvent : public ClientEvent

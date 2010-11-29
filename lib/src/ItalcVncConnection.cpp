@@ -31,6 +31,7 @@
 #include "ItalcVncConnection.h"
 #include "LocalSystem.h"
 #include "Logger.h"
+#include "SocketDevice.h"
 
 #include <QtCore/QCoreApplication>
 #include <QtCore/QMutexLocker>

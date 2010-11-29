@@ -40,6 +40,7 @@
 #include "ItalcConfiguration.h"
 #include "ItalcCore.h"
 #include "ItalcCoreServer.h"
+#include "ItalcRfbExt.h"
 #include "Logger.h"
 
 

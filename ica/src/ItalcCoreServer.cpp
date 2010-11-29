@@ -37,6 +37,7 @@
 #include "ItalcCoreServer.h"
 #include "DesktopAccessPermission.h"
 #include "DsaKey.h"
+#include "ItalcRfbExt.h"
 #include "LocalSystem.h"
 
 

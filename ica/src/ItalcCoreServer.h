@@ -28,7 +28,7 @@
 #include <QtCore/QMutex>
 #include <QtCore/QStringList>
 
-#include "ItalcCore.h"
+#include "SocketDevice.h"
 #include "ItalcSlaveManager.h"
 
 

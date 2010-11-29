@@ -29,6 +29,7 @@
 
 #include "ItalcConfiguration.h"
 #include "ItalcCore.h"
+#include "ItalcRfbExt.h"
 #include "LocalSystem.h"
 #include "Logger.h"
 
