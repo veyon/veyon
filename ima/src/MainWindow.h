@@ -102,6 +102,8 @@ public:
 	MainWindow( int _screen );
 	virtual ~MainWindow();
 
+	static bool initAuthentication();
+
 	QWidget * workspace()
 	{
 		return m_workspace;

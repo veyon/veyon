@@ -49,12 +49,12 @@
 #include "OverviewWidget.h"
 #include "SnapshotList.h"
 #include "ConfigWidget.h"
-#include "DecoratedMessageBox.h"
 #include "ToolButton.h"
 #include "ItalcConfiguration.h"
 #include "ItalcCoreConnection.h"
 #include "ItalcVncConnection.h"
 #include "LocalSystem.h"
+#include "Logger.h"
 #include "RemoteControlWidget.h"
 
 
@@ -84,7 +84,7 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 		{
 			splashScreen->hide();
 		}
-		DecoratedMessageBox::information( tr( "No write access" ),
+		QMessageBox::information( this, tr( "No write access" ),
 			tr( "Could not read/write or create directory %1! "
 			"For running iTALC, make sure you're permitted to "
 			"create or write this directory." ).arg(
@@ -312,36 +312,6 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 		}
 	}
 
-	while( 1 )
-	{
-		if( ItalcCore::initAuthentication() == false )
-		{
-			if( ItalcCore::role != ItalcCore::RoleTeacher )
-			{
-				ItalcCore::role = ItalcCore::RoleTeacher;
-				continue;
-			}
-			if( ItalcCore::authenticationCredentials->hasCredentials(
-										AuthenticationCredentials::UserLogon ) )
-			{
-				break;
-			}
-			if( splashScreen != NULL )
-			{
-				splashScreen->hide();
-			}
-			DecoratedMessageBox::information(
-				tr( "No valid keys found" ),
-			tr( 	"No authentication-keys were found or your "
-				"old ones were broken. Please create a new "
-				"key-pair using ICA (see documentation at "
-		"http://italc.sf.net/wiki/index.php?title=Installation).\n"
-				"Otherwise you won't be able to access "
-						"computers using iTALC." ) );
-		}
-		break;
-	}
-
 	ItalcVncConnection * conn = new ItalcVncConnection( this );
 	// attach ItalcCoreConnection to it so we can send extended iTALC commands
 	m_localICA = new ItalcCoreConnection( conn );
@@ -353,15 +323,17 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 
 	if( !conn->waitForConnected( 5000 ) )
 	{
-		DecoratedMessageBox::information(
-			tr( "iTALC service not running" ),
-			tr( "There seems to be no iTALC service running "
-				"on this computer or the authentication-keys "
-				"aren't set up properly. The service is "
-				"required for running iTALC. Contact your "
-				"administrator for solving this problem." ),
-				QPixmap( ":/resources/stop.png" ) );
-		//return;
+		QMessageBox::information( this,
+			tr( "Could not contact iTALC service" ),
+			tr( "Could not contact the local iTALC service. It is likely "
+				"that you entered wrong credentials or key files are "
+				"not set up properly. Try again or contact your "
+				"administrator for solving this problem using the iTALC "
+				"Management Console." ) );
+		if( ItalcCore::config->logLevel() < Logger::LogLevelDebug )
+		{
+			return;
+		}
 	}
 
 	// update the role under which ICA is running
@@ -406,6 +378,40 @@ MainWindow::~MainWindow()
 	m_localICA = NULL;
 
 	m_systemTrayIcon.hide();
+}
+
+
+
+
+bool MainWindow::initAuthentication()
+{
+	if( ItalcCore::initAuthentication() )
+	{
+		return true;
+	}
+
+	if( ItalcCore::role != ItalcCore::RoleTeacher )
+	{
+		ItalcCore::role = ItalcCore::RoleTeacher;
+		return initAuthentication();
+	}
+
+	// if we have logon credentials, assume they are fine and continue
+	if( ItalcCore::authenticationCredentials->hasCredentials(
+									AuthenticationCredentials::UserLogon ) )
+	{
+		return true;
+	}
+
+	QMessageBox::information( NULL,
+			tr( "Authentication impossible" ),
+			tr(	"No authentication key files were found or your current ones "
+				"are outdated. Please create new key files using the iTALC "
+				"Management Console. Alternatively set up logon authentication "
+				"using the iTALC Management Console. Otherwise you won't be "
+				"able to access computers using iTALC." ) );
+
+	return false;
 }
 
 
@@ -507,7 +513,7 @@ void MainWindow::remoteControlDisplay( const QString & _hostname,
 						bool _stop_demo_afterwards )
 {
 	QWriteLocker wl( &m_rctrlLock );
-	if( m_remoteControlWidget  )
+	if( m_remoteControlWidget )
 	{
 		return;
 	}

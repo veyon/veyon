@@ -31,6 +31,7 @@
 #include "MasterCore.h"
 #endif
 #include "MainWindow.h"
+#include "ItalcConfiguration.h"
 #include "ItalcCoreConnection.h"
 #include "LocalSystem.h"
 #include "Logger.h"
@@ -139,6 +140,10 @@ int main( int argc, char * * argv )
 	QSplashScreen splashScreen( QPixmap( ":/resources/splash.png" ) );
 	splashScreen.show();
 
+	if( !MainWindow::initAuthentication() )
+	{
+		return -1;
+	}
 	// now create the main-window
 	MainWindow mainWindow( screen );
 
@@ -146,7 +151,10 @@ int main( int argc, char * * argv )
 		!mainWindow.localICA()->isConnected() )
 	{
 		qCritical( "No connection to local ICA - terminating now" );
-		//return -1;
+		if( ItalcCore::config->logLevel() < Logger::LogLevelDebug )
+		{
+			return -1;
+		}
 	}
 
 	// hide splash-screen as soon as main-window is shown
