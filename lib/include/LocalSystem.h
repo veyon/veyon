@@ -79,7 +79,7 @@ namespace LocalSystem
 
 		static User loggedOnUser();
 
-		const Token userToken() const
+		const Token &userToken() const
 		{
 			return m_userToken;
 		}
@@ -114,6 +114,8 @@ namespace LocalSystem
 			return m_fullName;
 		}
 
+		QString homePath() const;
+
 
 	private:
 		void lookupNameAndDomain();
@@ -139,7 +141,7 @@ namespace LocalSystem
 
 		static int findProcessId( const QString &processName,
 									int sessionId = -1,
-									User *processOwner = NULL );
+									const User *processOwner = NULL );
 
 		User *getProcessOwner();
 

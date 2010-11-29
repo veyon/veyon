@@ -39,6 +39,7 @@
 #include <shlobj.h>
 #include <wtsapi32.h>
 #include <sddl.h>
+#include <userenv.h>
 #include <lm.h>
 
 
@@ -320,6 +321,41 @@ User User::loggedOnUser()
 
 
 
+QString User::homePath() const
+{
+	QString homePath = QDir::homePath();
+
+#ifdef ITALC_BUILD_WIN32
+	LocalSystem::Process userProcess(
+				LocalSystem::Process::findProcessId( QString(), -1, this ) );
+	HANDLE hToken;
+	if( OpenProcessToken( userProcess.processHandle(),
+									MAXIMUM_ALLOWED, &hToken ) )
+	{
+		CHAR userProfile[MAX_PATH];
+		DWORD size = MAX_PATH;
+		if( GetUserProfileDirectory( hToken, userProfile, &size ) )
+		{
+			homePath = userProfile;
+			CloseHandle( hToken );
+		}
+		else
+		{
+			ilog_failedf( "GetUserProfileDirectory()", "%d", GetLastError() );
+		}
+	}
+	else
+	{
+		ilog_failedf( "OpenProcessToken()", "%d", GetLastError() );
+	}
+#endif
+
+	return homePath;
+}
+
+
+
+
 void User::lookupNameAndDomain()
 {
 	if( !m_name.isEmpty() && !m_domain.isEmpty() )
@@ -493,7 +529,7 @@ Process::~Process()
 
 #ifdef ITALC_BUILD_WIN32
 static DWORD findProcessId_WTS( const QString &processName, DWORD sessionId,
-															User *processOwner )
+													const User *processOwner )
 {
 	PWTS_PROCESS_INFO pProcessInfo = NULL;
 	DWORD processCount = 0;
@@ -543,7 +579,7 @@ static DWORD findProcessId_WTS( const QString &processName, DWORD sessionId,
 #include <tlhelp32.h>
 
 static DWORD findProcessId_TH32( const QString &processName, DWORD sessionId,
-															User *processOwner )
+													const User *processOwner )
 {
 	DWORD pid = -1;
 	PROCESSENTRY32 procEntry;
@@ -596,7 +632,7 @@ static DWORD findProcessId_TH32( const QString &processName, DWORD sessionId,
 
 
 int Process::findProcessId( const QString &processName,
-							int sessionId, User *processOwner )
+							int sessionId, const User *processOwner )
 {
 	LogStream( Logger::LogLevelDebug )
 			<< "Process::findProcessId("
