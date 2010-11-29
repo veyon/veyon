@@ -93,7 +93,7 @@ class ClientCutEvent : public ClientEvent
 {
 public:
 	ClientCutEvent( char *text ) :
-	    m_text( text )
+		m_text( text )
 	{
 	}
 
@@ -161,7 +161,7 @@ rfbBool ItalcVncConnection::hookNewClient( rfbClient *cl )
 			break;
 		case DemoQuality:
 			cl->appData.encodingsString = "tight ultra copyrect "
-							"hextile zlib corre rre raw";
+									"hextile zlib corre rre raw";
 			cl->appData.compressLevel = 9;
 			cl->appData.qualityLevel = 9;
 			cl->appData.enableJPEG = true;
@@ -193,10 +193,22 @@ void ItalcVncConnection::hookUpdateFB( rfbClient *cl, int x, int y, int w, int h
 	ItalcVncConnection * t = (ItalcVncConnection *)
 					rfbClientGetClientData( cl, 0 );
 	t->setImage( img );
-	t->m_scaledScreenNeedsUpdate = true;
 	t->m_framebufferInitialized = true;
-	t->emitUpdated( x, y, w, h );
+	t->imageUpdated( x, y, w, h );
 }
+
+
+
+
+void ItalcVncConnection::hookFinishFrameBufferUpdate( rfbClient *cl )
+{
+	ItalcVncConnection *t = (ItalcVncConnection *)
+					rfbClientGetClientData( cl, 0 );
+	t->m_scaledScreenNeedsUpdate = true;
+
+	t->framebufferUpdateComplete();
+}
+
 
 
 
@@ -218,20 +230,20 @@ void ItalcVncConnection::hookCursorShape( rfbClient *cl, int xh, int yh,
 
 	ItalcVncConnection * t = (ItalcVncConnection *)
 					rfbClientGetClientData( cl, 0 );
-	t->emitCursorShapeUpdated( cursorShape, xh, yh );
+	t->cursorShapeUpdated( cursorShape, xh, yh );
 }
 
 
 
 void ItalcVncConnection::hookCutText( rfbClient *cl, const char *text,
-								int textlen )
+										int textlen )
 {
 	QString cutText = QString::fromUtf8( text, textlen );
 	if( !cutText.isEmpty() )
 	{
-	        ItalcVncConnection * t = (ItalcVncConnection *)
-					rfbClientGetClientData( cl, 0);
-		t->emitGotCut( cutText );
+		ItalcVncConnection *t = (ItalcVncConnection *)
+										rfbClientGetClientData( cl, 0 );
+		t->gotCut( cutText );
 	}
 }
 
@@ -415,7 +427,7 @@ void ItalcVncConnection::setImage( const QImage & img )
 
 
 
-const QImage ItalcVncConnection::image( int x, int y, int w, int h )
+const QImage ItalcVncConnection::image( int x, int y, int w, int h ) const
 {
 	QReadLocker locker( &m_imgLock );
 
@@ -462,31 +474,6 @@ void ItalcVncConnection::rescaleScreen()
 
 
 
-void ItalcVncConnection::emitUpdated( int x, int y, int w, int h )
-{
-	emit imageUpdated( x, y, w, h );
-}
-
-
-
-
-void ItalcVncConnection::emitCursorShapeUpdated( const QImage &cursorShape,
-														int xh, int yh )
-{
-	emit cursorShapeUpdated( cursorShape, xh, yh );
-}
-
-
-
-
-void ItalcVncConnection::emitGotCut( const QString &text )
-{
-	emit gotCut( text );
-}
-
-
-
-
 void ItalcVncConnection::run()
 {
 	m_state = Disconnected;
@@ -513,6 +500,7 @@ void ItalcVncConnection::doConnection()
 		m_cl->MallocFrameBuffer = hookNewClient;
 		m_cl->canHandleNewFBSize = true;
 		m_cl->GotFrameBufferUpdate = hookUpdateFB;
+		m_cl->FinishedFrameBufferUpdate = hookFinishFrameBufferUpdate;
 		m_cl->GotCursorShape = hookCursorShape;
 		m_cl->GotXCutText = hookCutText;
 		rfbClientSetClientData( m_cl, 0, this );
