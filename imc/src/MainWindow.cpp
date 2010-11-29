@@ -87,6 +87,7 @@ MainWindow::MainWindow() :
 	CONNECT_BUTTON_SLOT( stopService );
 
 	CONNECT_BUTTON_SLOT( openLogFileDirectory );
+	CONNECT_BUTTON_SLOT( clearLogFiles );
 
 	CONNECT_BUTTON_SLOT( openGlobalConfig );
 	CONNECT_BUTTON_SLOT( openPersonalConfig );
@@ -247,6 +248,69 @@ void MainWindow::openLogFileDirectory()
 {
 	FileSystemBrowser( FileSystemBrowser::ExistingDirectory ).
 												exec( ui->logFileDirectory );
+}
+
+
+
+
+void MainWindow::clearLogFiles()
+{
+#ifdef ITALC_BUILD_WIN32
+	bool stopped = false;
+	if( isServiceRunning() )
+	{
+		if( QMessageBox::question( this, tr( "iTALC Service" ),
+				tr( "The iTALC service needs to be stopped temporarily "
+					"in order to remove the log files. Continue?"
+					), QMessageBox::Yes | QMessageBox::No,
+				QMessageBox::Yes ) == QMessageBox::Yes )
+		{
+			stopService();
+			stopped = true;
+		}
+		else
+		{
+			return;
+		}
+	}
+#endif
+
+	bool success = true;
+	QDir d( LocalSystem::Path::expand( ItalcCore::config->logFileDirectory() ) );
+	foreach( const QString &f, d.entryList( QStringList() << "Italc*.log" ) )
+	{
+		if( f != "ItalcManagementConsole.log" )
+		{
+			success &= d.remove( f );
+		}
+	}
+
+#ifdef ITALC_BUILD_WIN32
+	d = QDir( "C:\\Windows\\Temp" );
+	foreach( const QString &f, d.entryList( QStringList() << "Italc*.log" ) )
+	{
+		if( f != "ItalcManagementConsole.log" )
+		{
+			success &= d.remove( f );
+		}
+	}
+
+	if( stopped )
+	{
+		startService();
+	}
+#endif
+
+	if( success )
+	{
+		QMessageBox::information( this, tr( "Log files cleared" ),
+			tr( "All log files were cleared successfully." ) );
+	}
+	else
+	{
+		QMessageBox::critical( this, tr( "Error" ),
+			tr( "Could not remove all log files." ) );
+	}
 }
 
 

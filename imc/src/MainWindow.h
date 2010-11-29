@@ -49,6 +49,7 @@ private slots:
 	void stopService();
 	void updateServiceControl();
 	void openLogFileDirectory();
+	void clearLogFiles();
 	void openGlobalConfig();
 	void openPersonalConfig();
 	void openSnapshotDirectory();
