@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>719</width>
-    <height>536</height>
+    <height>543</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -360,6 +360,13 @@
               </spacer>
              </item>
             </layout>
+           </item>
+           <item>
+            <widget class="QCheckBox" name="logToWindowsEventLog">
+             <property name="text">
+              <string>Log to Windows event log</string>
+             </property>
+            </widget>
            </item>
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout">

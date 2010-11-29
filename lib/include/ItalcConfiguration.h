@@ -52,6 +52,7 @@ public:
 		/* Logging */																	\
 		OP( ItalcConfiguration, ItalcCore::config, INT, logLevel, setLogLevel, "LogLevel", "Logging" );								\
 		OP( ItalcConfiguration, ItalcCore::config, BOOL, limittedLogFileSize, setLimittedLogFileSize, "LimittedLogFileSize", "Logging" );	\
+		OP( ItalcConfiguration, ItalcCore::config, BOOL, logToWindowsEventLog, setLogToWindowsEventLog, "LogToWindowsEventLog", "Logging" );	\
 		OP( ItalcConfiguration, ItalcCore::config, INT, logFileSizeLimit, setLogFileSizeLimit, "LogFileSizeLimit", "Logging" );		\
 		OP( ItalcConfiguration, ItalcCore::config, STRING, logFileDirectory, setLogFileDirectory, "LogFileDirectory", "Logging" );		\
 		/* VNC Server */																\
@@ -90,6 +91,7 @@ public slots:
 	void setServiceAutostart( bool );
 	void setServiceArguments( const QString & );
 	void setLogLevel( int );
+	void setLogToWindowsEventLog( bool );
 	void setLimittedLogFileSize( bool );
 	void setLogFileSizeLimit( int );
 	void setLogFileDirectory( const QString & );

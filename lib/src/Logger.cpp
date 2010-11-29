@@ -61,7 +61,10 @@ Logger::Logger( const QString &appName ) :
 	qInstallMsgHandler( qtMsgHandler );
 
 #ifdef ITALC_BUILD_WIN32
-	winEventLog = new CXEventLog( appName.toUtf8().constData() );
+	if( ItalcCore::config->logToWindowsEventLog() )
+	{
+		winEventLog = new CXEventLog( appName.toUtf8().constData() );
+	}
 #endif
 
 	QString user = LocalSystem::User::loggedOnUser().name();

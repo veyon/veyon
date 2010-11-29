@@ -69,6 +69,7 @@ ItalcConfiguration ItalcConfiguration::defaultConfiguration()
 
 	c.setLogLevel( Logger::LogLevelDefault );
 	c.setLimittedLogFileSize( false );
+	c.setLogToWindowsEventLog( false );
 	c.setLogFileSizeLimit( -1 );
 	c.setLogFileDirectory(
 #ifdef ITALC_BUILD_WIN32

@@ -117,6 +117,10 @@ MainWindow::MainWindow() :
 
 	connect( ItalcCore::config, SIGNAL( configurationChanged() ),
 				this, SLOT( configurationChanged() ) );
+
+#ifndef ITALC_BUILD_WIN32
+	ui->logToWindowsEventLog->hide();
+#endif
 }
 
 
