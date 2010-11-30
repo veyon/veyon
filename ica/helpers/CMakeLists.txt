@@ -1,0 +1,2 @@
+LINK_LIBRARIES(-lpam)
+ADD_EXECUTABLE(ItalcAuthHelper ${CMAKE_CURRENT_SOURCE_DIR}/ItalcAuthHelper.cpp)
