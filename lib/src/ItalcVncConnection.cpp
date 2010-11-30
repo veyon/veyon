@@ -665,7 +665,7 @@ void ItalcVncConnection::doConnection()
 void ItalcVncConnection::enqueueEvent( ClientEvent *e )
 {
 	QMutexLocker lock( &m_mutex );
-	if( m_stopped )
+	if( m_state != Connected )
 	{
 		return;
 	}
