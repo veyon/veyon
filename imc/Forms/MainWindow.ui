@@ -371,6 +371,13 @@
             </layout>
            </item>
            <item>
+            <widget class="QCheckBox" name="logToStdErr">
+             <property name="text">
+              <string>Log to standard error output</string>
+             </property>
+            </widget>
+           </item>
+           <item>
             <widget class="QCheckBox" name="logToWindowsEventLog">
              <property name="text">
               <string>Log to Windows event log</string>

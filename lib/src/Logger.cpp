@@ -243,8 +243,11 @@ void Logger::outputMessage( const QString &msg )
 		m_logFile->flush();
 	}
 
-	fprintf( stderr, "%s", msg.toUtf8().constData() );
-	fflush( stderr );
+	if( !ItalcCore::config || ItalcCore::config->logToStdErr() )
+	{
+		fprintf( stderr, "%s", msg.toUtf8().constData() );
+		fflush( stderr );
+	}
 }
 
 

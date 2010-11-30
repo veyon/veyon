@@ -52,6 +52,7 @@ public:
 		/* Logging */																	\
 		OP( ItalcConfiguration, ItalcCore::config, INT, logLevel, setLogLevel, "LogLevel", "Logging" );								\
 		OP( ItalcConfiguration, ItalcCore::config, BOOL, limittedLogFileSize, setLimittedLogFileSize, "LimittedLogFileSize", "Logging" );	\
+		OP( ItalcConfiguration, ItalcCore::config, BOOL, logToStdErr, setLogToStdErr, "LogToStdErr", "Logging" );	\
 		OP( ItalcConfiguration, ItalcCore::config, BOOL, logToWindowsEventLog, setLogToWindowsEventLog, "LogToWindowsEventLog", "Logging" );	\
 		OP( ItalcConfiguration, ItalcCore::config, INT, logFileSizeLimit, setLogFileSizeLimit, "LogFileSizeLimit", "Logging" );		\
 		OP( ItalcConfiguration, ItalcCore::config, STRING, logFileDirectory, setLogFileDirectory, "LogFileDirectory", "Logging" );		\
@@ -91,6 +92,7 @@ public slots:
 	void setServiceAutostart( bool );
 	void setServiceArguments( const QString & );
 	void setLogLevel( int );
+	void setLogToStdErr( bool );
 	void setLogToWindowsEventLog( bool );
 	void setLimittedLogFileSize( bool );
 	void setLogFileSizeLimit( int );
