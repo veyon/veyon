@@ -452,23 +452,25 @@ void ItalcVncConnection::setFramebufferUpdateInterval( int interval )
 
 void ItalcVncConnection::rescaleScreen()
 {
+	if( m_scaledSize.isNull() )
+	{
+		return;
+	}
+
+	if( m_scaledScreen.isNull() || m_scaledScreen.size() != m_scaledSize )
+	{
+		m_scaledScreen = QImage( m_scaledSize, QImage::Format_RGB32 );
+		m_scaledScreen.fill( Qt::black );
+	}
+
 	if( m_scaledScreenNeedsUpdate )
 	{
-		if( m_scaledScreen.size() != m_scaledSize )
-		{
-			m_scaledScreen = QImage( m_scaledSize,
-							QImage::Format_RGB32 );
-		}
 		QReadLocker locker( &m_imgLock );
 		if( m_image.size().isValid() )
 		{
+			m_scaledScreenNeedsUpdate = false;
 			m_image.scaleTo( m_scaledScreen );
 		}
-		else
-		{
-			m_scaledScreen.fill( Qt::black );
-		}
-		m_scaledScreenNeedsUpdate = false;
 	}
 }
 
