@@ -618,7 +618,11 @@ vncDesktop::InitWindow()
 			char* p = strrchr(szCurrentDirSC, '\\');
 			if (p == NULL) return 0;
 			*p = '\0';
+#ifdef _X64
+			strcat (szCurrentDirSC,"\\schook64.dll");
+#else
 			strcat (szCurrentDirSC,"\\schook.dll");
+#endif
 		}
 
 	UnSetHooks=NULL;
