@@ -295,5 +295,40 @@ void Object::removeValue( const QString &key, const QString &parentKey )
 }
 
 
+
+
+static void addSubObjectRecursive( const Object::DataMap &dataMap,
+									Object *_this,
+									const QString &parentKey )
+{
+	for( Object::DataMap::ConstIterator it = dataMap.begin();
+										it != dataMap.end(); ++it )
+	{
+		if( it.value().type() == QVariant::Map )
+		{
+			QString newParentKey = it.key();
+			if( !parentKey.isEmpty() )
+			{
+				newParentKey = parentKey + "/" + newParentKey;
+			}
+			addSubObjectRecursive( it.value().toMap(), _this, newParentKey );
+		}
+		else if( it.value().type() == QVariant::String )
+		{
+			_this->setValue( it.key(), it.value().toString(), parentKey );
+		}
+	}
+}
+
+
+
+void Object::addSubObject( Object *obj,
+								const QString &parentKey )
+{
+	addSubObjectRecursive( obj->data(), this, parentKey );
+}
+
+
+
 }
 

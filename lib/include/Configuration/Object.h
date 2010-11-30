@@ -55,6 +55,8 @@ public:
 
 	void removeValue( const QString &key, const QString &parentKey );
 
+	void addSubObject( Object *obj, const QString &parentKey );
+
 	void reloadFromStore()
 	{
 		if( m_store )
