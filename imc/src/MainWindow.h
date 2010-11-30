@@ -60,6 +60,7 @@ private slots:
 	void launchKeyFileAssistant();
 	void manageACLs();
 	void testLogonAuthentication();
+	void generateBugReportArchive();
 
 
 private:

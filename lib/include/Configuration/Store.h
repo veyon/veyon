@@ -49,7 +49,8 @@ public:
 	{
 		Personal,	// for current user
 		Global,		// for all users
-		System		// system-wide (service settings etc.)
+		System,		// system-wide (service settings etc.)
+		BugReportArchive
 	} ;
 	typedef Scopes Scope;
 
@@ -77,6 +78,7 @@ public:
 			case Global: return "GlobalConfig";
 			case Personal: return "PersonalConfig";
 			case System: return "SystemConfig";
+			case BugReportArchive: return "BugReportArchive";
 		}
 
 		return QString();

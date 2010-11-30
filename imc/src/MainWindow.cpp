@@ -100,6 +100,8 @@ MainWindow::MainWindow() :
 	CONNECT_BUTTON_SLOT( manageACLs );
 	CONNECT_BUTTON_SLOT( testLogonAuthentication );
 
+	CONNECT_BUTTON_SLOT( generateBugReportArchive );
+
 	connect( ui->buttonBox, SIGNAL( clicked( QAbstractButton * ) ),
 				this, SLOT( resetOrApply( QAbstractButton * ) ) );
 
@@ -287,6 +289,10 @@ void MainWindow::clearLogFiles()
 
 #ifdef ITALC_BUILD_WIN32
 	d = QDir( "C:\\Windows\\Temp" );
+#else
+	d = QDir( "/tmp" );
+#endif
+
 	foreach( const QString &f, d.entryList( QStringList() << "Italc*.log" ) )
 	{
 		if( f != "ItalcManagementConsole.log" )
@@ -295,6 +301,7 @@ void MainWindow::clearLogFiles()
 		}
 	}
 
+#ifdef ITALC_BUILD_WIN32
 	if( stopped )
 	{
 		startService();
@@ -459,6 +466,115 @@ void MainWindow::testLogonAuthentication()
 								"failed!" ) );
 		}
 	}
+}
+
+
+
+
+void MainWindow::generateBugReportArchive()
+{
+	FileSystemBrowser fsb( FileSystemBrowser::SaveFile );
+	fsb.setShrinkPath( false );
+	fsb.setExpandPath( false );
+	QString outfile = fsb.exec( QDir::homePath(),
+								tr( "Save bug report archive" ),
+								tr( "iTALC bug report archive (*.ibra.xml)" ) );
+	if( outfile.isEmpty() )
+	{
+		return;
+	}
+
+	if( !outfile.endsWith( ".ibra.xml" ) )
+	{
+		outfile += ".ibra.xml";
+	}
+
+	Configuration::XmlStore bugReportXML(
+							Configuration::Store::BugReportArchive, outfile );
+	Configuration::Object obj( &bugReportXML );
+
+
+	// retrieve some basic system information
+
+#ifdef ITALC_BUILD_WIN32
+
+	OSVERSIONINFOEX ovi;
+	ovi.dwOSVersionInfoSize = sizeof( ovi );
+	GetVersionEx( (LPOSVERSIONINFO) &ovi );
+
+	QString os = "Windows %1 SP%2 (%3.%4.%5)";
+	switch( QSysInfo::windowsVersion() )
+	{
+		case QSysInfo::WV_NT: os = os.arg( "NT 4.0" ); break;
+		case QSysInfo::WV_2000: os = os.arg( "2000" ); break;
+		case QSysInfo::WV_XP: os = os.arg( "XP" ); break;
+		case QSysInfo::WV_VISTA: os = os.arg( "Vista" ); break;
+		case QSysInfo::WV_WINDOWS7: os = os.arg( "7" ); break;
+		default: os = os.arg( "<unknown>" );
+	}
+
+	os = os.arg( ovi.wServicePackMajor ).
+			arg( ovi.dwMajorVersion ).
+			arg( ovi.dwMinorVersion ).
+			arg( ovi.dwBuildNumber );
+
+	const QString machineInfo =
+		QProcessEnvironment::systemEnvironment().value( "PROCESSOR_IDENTIFIER" );
+
+#elif defined( ITALC_BUILD_LINUX )
+
+	const QString os = "Linux";
+
+	QProcess p;
+	p.start( "uname", QStringList() << "-a" );
+	p.waitForFinished();
+	const QString machineInfo = p.readAll().trimmed();
+
+#endif
+
+#ifdef ITALC_HOST_X86
+	const QString buildType = "x86";
+#elif defined( ITALC_HOST_X86_64 )
+	const QString buildType = "x86_64";
+#endif
+	obj.setValue( "OS", os, "General" );
+	obj.setValue( "MachineInfo", machineInfo, "General" );
+	obj.setValue( "BuildType", buildType, "General" );
+	obj.setValue( "Version", ITALC_VERSION, "General" );
+
+
+	// add current iTALC configuration
+	obj.addSubObject( ItalcCore::config, "Configuration" );
+
+
+	// compress all log files and encode them as base64
+	QStringList paths;
+	paths << LocalSystem::Path::expand( ItalcCore::config->logFileDirectory() );
+#ifdef ITALC_BUILD_WIN32
+	paths << "C:\\Windows\\Temp";
+#else
+	paths << "/tmp";
+#endif
+	foreach( const QString &p, paths )
+	{
+		QDir d( p );
+		foreach( const QString &f, d.entryList( QStringList() << "Italc*.log" ) )
+		{
+			QFile logfile( d.absoluteFilePath( f ) );
+			logfile.open( QFile::ReadOnly );
+			QByteArray data = qCompress( logfile.readAll() ).toBase64();
+			obj.setValue( logfile.fileName(), data, "LogFiles" );
+		}
+	}
+
+	// write the file
+	obj.flushStore();
+
+	QMessageBox::information( this, tr( "iTALC bug report archive saved" ),
+			tr( "An iTALC bug report archive has been saved to %1. "
+				"It includes iTALC log files and information about your "
+				"operating system. You can attach it to a bug report." ).
+				arg( QDTNS( outfile ) ) );
 }
 
 
