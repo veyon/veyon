@@ -22,6 +22,7 @@ Cross compiling iTALC for Windows on Linux
   * mingw32-x-openssl
   * mingw32-x-libjpeg
   * mingw32-x-pthreads
+  * gcj
 
 - Change into the iTALC source directory and type
 
