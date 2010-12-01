@@ -336,7 +336,7 @@ public class VncViewer extends java.applet.Applet
     //
 
     
-    prologueDetectAuthProtocol() ;
+    //prologueDetectAuthProtocol() ;
 
     authenticator = new AuthPanel(mslogon);
     
