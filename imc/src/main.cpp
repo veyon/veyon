@@ -24,9 +24,7 @@
 
 #include <italcconfig.h>
 
-#include <QtCore/QLocale>
 #include <QtCore/QProcessEnvironment>
-#include <QtCore/QTranslator>
 #include <QtGui/QApplication>
 
 #include "Configuration/XmlStore.h"
@@ -53,18 +51,11 @@ int main( int argc, char **argv )
 		return 0;
 	}
 
-	QCoreApplication *app = NULL;
 #ifdef ITALC_BUILD_LINUX
-	if( QProcessEnvironment::systemEnvironment().contains( "DISPLAY" ) )
-	{
-		app = new QApplication( argc, argv );
-	}
-	else
-	{
-		app = new QCoreApplication( argc, argv );
-	}
+	QApplication app( argc, argv,
+			QProcessEnvironment::systemEnvironment().contains( "DISPLAY" ) );
 #else
-	app = new QApplication( argc, argv );
+	QApplication app( argc, argv );
 #endif
 
 	ItalcCore::init();
@@ -81,18 +72,9 @@ int main( int argc, char **argv )
 		return -1;
 	}
 
-	app->connect( app, SIGNAL( lastWindowClosed() ), SLOT( quit() ) );
-
-	const QString loc = QLocale::system().name().left( 2 );
-
-	foreach( const QString & qm, QStringList()
-												<< loc + "-core"
-												<< loc
-												<< "qt_" + loc )
+	if( app.type() != QApplication::Tty )
 	{
-		QTranslator * tr = new QTranslator( app );
-		tr->load( QString( ":/resources/%1.qm" ).arg( qm ) );
-		app->installTranslator( tr );
+		app.connect( &app, SIGNAL( lastWindowClosed() ), SLOT( quit() ) );
 	}
 
 	// parse arguments
@@ -210,11 +192,9 @@ int main( int argc, char **argv )
 
 	ilog( Info, "App.Exec" );
 
-	int ret = app->exec();
+	int ret = app.exec();
 
 	ItalcCore::destroy();
-
-	delete app;
 
 	return ret;
 }
