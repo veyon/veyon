@@ -325,6 +325,9 @@ static void runX11vnc( QStringList cmdline, int port, bool plainVnc )
 	// register handler for MS Logon II security type
 	rfbSecurityHandler shmsl = { rfbUltraVNC_MsLogonIIAuth, lvs_msLogonIISecurityHandler, NULL };
 	rfbRegisterSecurityHandler( &shmsl );
+
+	rfbSecurityHandler shmsl_legacy = { rfbMSLogon, lvs_msLogonIISecurityHandler, NULL };
+	rfbRegisterSecurityHandler( &shmsl_legacy );
 #endif
 
 	// run x11vnc-server
