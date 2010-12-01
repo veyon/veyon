@@ -85,7 +85,7 @@ static bool parseArguments( const QStringList &arguments )
 	argIt.next();	// skip application file name
 	while( argIt.hasNext() )
 	{
-		const QString & a = argIt.next();
+		const QString & a = argIt.next().toLower();
 		if( a == "-port" && argIt.hasNext() )
 		{
 			ItalcCore::serverPort = argIt.next().toInt();
