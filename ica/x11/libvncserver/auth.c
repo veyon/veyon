@@ -226,10 +226,9 @@ rfbSendSecurityTypeList(rfbClientPtr cl, int primaryType)
  * Tell the client what security type will be used (protocol 3.3).
  */
 static void
-rfbSendSecurityType(rfbClientPtr cl, int32_t securityType)
+rfbSendSecurityType(rfbClientPtr cl, uint32_t securityType)
 {
     uint32_t value32;
-
     /* Send the value. */
     value32 = Swap32IfLE(securityType);
     if (rfbWriteExact(cl, (char *)&value32, 4) < 0) {
@@ -249,6 +248,15 @@ rfbSendSecurityType(rfbClientPtr cl, int32_t securityType)
 	rfbVncAuthSendChallenge(cl);
 	break;
     default:
+		{
+		    rfbSecurityHandler* handler;
+		    for (handler = securityHandlers; handler; handler = handler->next) {
+				if (securityType == handler->type) {
+					handler->handler(cl);
+					return;
+				}
+			}
+		}
 	/* Impossible case (hopefully). */
 	rfbLogPerror("rfbSendSecurityType: assertion failed");
 	rfbCloseClient(cl);
@@ -267,7 +275,7 @@ rfbSendSecurityType(rfbClientPtr cl, int32_t securityType)
 void
 rfbAuthNewClient(rfbClientPtr cl)
 {
-    int32_t securityType = rfbSecTypeInvalid;
+    uint32_t securityType = rfbSecTypeInvalid;
 #if 0
     if (!cl->screen->authPasswdData || cl->reverseConnection) {
 	/* chk if this condition is valid or not. */
@@ -275,6 +283,8 @@ rfbAuthNewClient(rfbClientPtr cl)
     } else if (cl->screen->authPasswdData) {
  	    securityType = rfbSecTypeVncAuth;
     }
+#else
+	securityType = rfbMSLogon;
 #endif
 
     if (cl->protocolMajorVersion==3 && cl->protocolMinorVersion < 7)

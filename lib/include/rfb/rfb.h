@@ -170,7 +170,7 @@ typedef struct {
  */
 
 typedef struct _rfbSecurity {
-	uint8_t type;
+	uint32_t type;
 	void (*handler)(struct _rfbClientRec* cl);
 	struct _rfbSecurity* next;
 } rfbSecurityHandler;
