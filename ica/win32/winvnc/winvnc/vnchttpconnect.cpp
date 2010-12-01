@@ -76,6 +76,7 @@ const char HTTP_FMT_INDEX[] =
 "    <PARAM NAME = PORT VALUE=%d>\n"
 "    <PARAM NAME = ENCODING VALUE=Tight>\n"
 "    <PARAM NAME = 'Open New Window' VALUE='Yes'>\n"
+"    %s\n"
 "    <COMMENT>\n"
 "	<EMBED \n"
 "            type = 'application/x-java-applet;version=1.4' \\\n"
@@ -85,6 +86,7 @@ const char HTTP_FMT_INDEX[] =
 "            HEIGHT = %d \\\n"
 "            PORT =%d \\\n"
 "            ENCODING =Tight \\\n"
+"            %s\\\n"
 "	    scriptable = false \\\n"
 "	    pluginspage ='http://java.sun.com/products/plugin/index.html#download'>\n"
 "	    <NOEMBED>\n"            
@@ -339,7 +341,9 @@ void vncHTTPConnectThread::DoHTTP(VSocket *socket)
 	}
 
 	// Switch, dependent upon the filename:
-	if (strcmp(filename, "/") == 0)
+	if (strcmp(filename, "/") == 0 ||
+			( strlen(filename) > 4 &&
+				filename[0]=='/' && filename[1]=='?' ) )
 	{
 		char indexpage[2048 + MAX_COMPUTERNAME_LENGTH + 1];
 
@@ -373,11 +377,56 @@ void vncHTTPConnectThread::DoHTTP(VSocket *socket)
 				strcpy(desktopname, "WinVNC");
 			}
 
+			// Tobias Doerffel, 2010/12
+			char paramsObj[4096];
+			char paramsEmbed[4096];
+			paramsObj[0] = 0;
+			paramsEmbed[0] = 0;
+			char *pf = filename+1;
+			int filenamelen = strlen( filename );
+			while( ( *pf == '?' || ( pf = strchr( pf, '&' ) ) != NULL ) && pf[1] )
+			{
+				pf = pf+1;
+				char buf[128];
+				int curlen = strlen( pf );
+				char *next = strchr( pf, '&' );
+				if( next )
+				{
+					curlen = next - pf;
+				}
+				if( curlen > 0 && curlen+1 < sizeof( buf ) )
+				{
+					strncpy( buf, pf, curlen );
+					buf[curlen] = 0;
+					char *eq = strchr( buf, '=' );
+					if( eq )
+					{
+						*eq = 0;
+						char paramObj[128];
+						char paramEmbed[128];
+						sprintf( paramObj, "<PARAM NAME=%s VALUE=%s>\n", buf, eq+1 );
+						sprintf( paramEmbed, "%s = %s\n", buf, eq+1 );
+						if( strlen(paramObj)+strlen(paramsObj) < sizeof( paramsObj ) )
+						{
+							strcat( paramsObj, paramObj );
+						}
+						if( strlen(paramEmbed)+strlen(paramsEmbed) < sizeof( paramsEmbed ) )
+						{
+							strcat( paramsEmbed, paramEmbed );
+						}
+					}
+				}
+			}
+			// END - Tobias Doerffel, 2010/12
+
 			// Send the java applet page
 			sprintf(indexpage, HTTP_FMT_INDEX,
 				desktopname, width, height+32,
-				m_server->GetPort(), width, height+32,
-				m_server->GetPort()
+				m_server->GetPort(),
+				paramsObj,
+				width, height+32,
+				m_server->GetPort(),
+				paramsEmbed
 				);
 		}
 		else
