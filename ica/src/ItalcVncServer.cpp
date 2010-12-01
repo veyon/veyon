@@ -167,7 +167,7 @@ static bool authMsLogon( struct _rfbClientRec *cl )
 	vncDecryptBytes( (unsigned char*) passwd, sizeof(passwd), key ); passwd[63] = '\0';
 
 	QProcess p;
-	p.start( "ItalcAuthHelper" );
+	p.start( "italc_auth_helper" );
 	p.waitForStarted();
 
 	QDataStream ds( &p );
