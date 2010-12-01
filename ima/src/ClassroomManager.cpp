@@ -22,7 +22,6 @@
  *
  */
 
-
 #include <italcconfig.h>
 #include <math.h>
 
@@ -41,7 +40,6 @@
 #include <QtGui/QSplashScreen>
 #include <QtGui/QSplitter>
 #include <QtGui/QPainter>
-#include <QtNetwork/QHostInfo>
 
 
 #include "MainWindow.h"

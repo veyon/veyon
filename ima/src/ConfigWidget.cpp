@@ -27,7 +27,6 @@
 #include <QtGui/QCheckBox>
 #include <QtGui/QComboBox>
 #include <QtGui/QMessageBox>
-#include <QtNetwork/QHostInfo>
 
 #include "ConfigWidget.h"
 #include "ClassroomManager.h"
