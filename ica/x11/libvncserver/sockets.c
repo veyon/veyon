@@ -499,7 +499,7 @@ rfbReadExactTimeout(rfbClientPtr cl, char* buf, int len, int timeout)
 int rfbReadExact(rfbClientPtr cl,char* buf,int len)
 {
   /* favor the per-screen value if set */
-  if(cl->screen->maxClientWait)
+  if(cl->screen && cl->screen->maxClientWait)
     return(rfbReadExactTimeout(cl,buf,len,cl->screen->maxClientWait));
   else
     return(rfbReadExactTimeout(cl,buf,len,rfbMaxClientWait));
@@ -521,7 +521,7 @@ rfbWriteExact(rfbClientPtr cl,
     fd_set fds;
     struct timeval tv;
     int totalTimeWaited = 0;
-    const int timeout = cl->screen->maxClientWait ? cl->screen->maxClientWait : rfbMaxClientWait;
+    const int timeout = (cl->screen && cl->screen->maxClientWait) ? cl->screen->maxClientWait : rfbMaxClientWait;
 
 #undef DEBUG_WRITE_EXACT
 #ifdef DEBUG_WRITE_EXACT
