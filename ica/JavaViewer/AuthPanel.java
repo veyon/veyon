@@ -126,6 +126,10 @@ class AuthPanel extends Panel implements ActionListener {
     else { moveFocusToPasswordField();}
   }
   
+	public void setUserName( String un ) {
+		username.setText( un );
+  }
+
   // mslogon support 5 end	  
 	  
   //

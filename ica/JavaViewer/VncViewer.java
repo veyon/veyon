@@ -367,9 +367,18 @@ public class VncViewer extends java.applet.Applet
       //   -- const
       
      //mslogon support 
-      authenticator.moveFocusToUsernameField();
      //mslogon support end
     }
+
+	authenticator.setUserName(readParameter("USER", false));
+	if( readParameter("USER", false) == null )
+	{
+		authenticator.moveFocusToUsernameField();
+	}
+	else
+	{
+		authenticator.moveFocusToPasswordField();
+	}
 
     while (true) {
       // Wait for user entering a password, or a username and a password
@@ -788,6 +797,7 @@ public class VncViewer extends java.applet.Applet
     if (encPasswordParam == null)
       passwordParam = readParameter("PASSWORD", false);
 
+    usernameParam = readParameter("USER", false);
     // "Show Controls" set to "No" disables button panel.
     showControls = true;
     str = readParameter("Show Controls", false);
