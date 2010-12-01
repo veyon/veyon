@@ -610,7 +610,7 @@ void ItalcVncConnection::doConnection()
 		}
 		else
 		{
-			// work around a bug in UltraVNC on Win7 where it does not handle
+		/*	// work around a bug in UltraVNC on Win7 where it does not handle
 			// incremental updates correctly
 			int msecs = lastFullUpdate.msecsTo( QTime::currentTime() );
 			if( ( m_framebufferUpdateInterval > 0 &&
@@ -621,7 +621,7 @@ void ItalcVncConnection::doConnection()
 						framebufferSize().width(), framebufferSize().height(),
 						false );
 				lastFullUpdate = QTime::currentTime();
-			}
+			}*/
 		}
 
 		m_mutex.lock();
