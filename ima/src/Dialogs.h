@@ -25,12 +25,16 @@
 #ifndef _DIALOGS_H
 #define _DIALOGS_H
 
-#include "ui_About.h"
-#include "ui_ClientSettings.h"
-#include "ui_TextMessage.h"
-#include "ui_Support.h"
-#include "ui_RemoteLogon.h"
+#include <QtGui/QDialog>
 
+namespace Ui
+{
+	class AboutDialog;
+	class ClientSettingsDialog;
+	class TextMessageDialog;
+	class SupportDialog;
+	class RemoteLogonDialog;
+}
 
 class Client;
 #ifndef ITALC3
@@ -38,29 +42,33 @@ class MainWindow;
 #endif
 
 
-class AboutDialog : public QDialog, private Ui::About
+class AboutDialog : public QDialog
 {
 public:
-	AboutDialog( QWidget * _parent );
+	AboutDialog( QWidget *parent );
 
+
+private:
+	Ui::AboutDialog *ui;
 } ;
 
 
 
-class ClientSettingsDialog : public QDialog, private Ui::ClientSettings
+class ClientSettingsDialog : public QDialog
 {
 	Q_OBJECT
 public:
-	ClientSettingsDialog( Client * _c,
+	ClientSettingsDialog( Client *c,
 #ifndef ITALC3
 				MainWindow * _main_window,
 #endif
-				const QString & _classroom );
+				const QString &classroom );
 
 private:
-	virtual void accept( void );
+	virtual void accept();
 
-	Client * m_client;
+	Ui::ClientSettingsDialog *ui;
+	Client *m_client;
 #ifndef ITALC3
 	MainWindow * m_mainWindow;
 #endif
@@ -70,90 +78,83 @@ private:
 
 
 
-class SupportDialog : public QDialog, private Ui::Support
+class SupportDialog : public QDialog
 {
 public:
-	SupportDialog( QWidget * _parent ) :
-		QDialog( _parent ? _parent->window() : 0 )
-	{
-		setupUi( this );
-	}
+	SupportDialog( QWidget *parent );
 
-	static QString getHost( QWidget * _parent )
-	{
-		SupportDialog sd( _parent );
-		if( sd.exec() == Accepted )
-		
-		{
-			return sd.hostEdit->text();
-		}
-		return QString();
-	}
-
-} ;
-
-
-
-
-class TextMessageDialog : public QDialog, private Ui::TextMessage
-{
-	Q_OBJECT
-public:
-	TextMessageDialog( QString & _msg_str, QWidget * _parent = 0 );
-
-
-private slots:
-	virtual void accept( void );
+	static QString getHost( QWidget *parent );
 
 
 private:
-	QString & m_msgStr;
+	Ui::SupportDialog *ui;
 
 } ;
 
 
 
 
-class RemoteLogonDialog : public QDialog, private Ui::RemoteLogon
+class TextMessageDialog : public QDialog
 {
 	Q_OBJECT
 public:
-	RemoteLogonDialog( QWidget * _parent = 0 );
+	TextMessageDialog( QString &msgStr, QWidget *parent );
 
-	const QString & userName( void ) const
+
+private slots:
+	virtual void accept();
+
+
+private:
+	Ui::TextMessageDialog *ui;
+	QString &m_msgStr;
+
+} ;
+
+
+
+
+class RemoteLogonDialog : public QDialog
+{
+	Q_OBJECT
+public:
+	RemoteLogonDialog( QWidget *parent );
+
+	const QString &userName() const
 	{
 		return m_userName;
 	}
 
-	const QString & password( void ) const
+	const QString &password() const
 	{
 		return m_password;
 	}
 
-	const QString & domain( void ) const
+	const QString &domain() const
 	{
 		return m_domain;
 	}
 
 
 private slots:
-	void userNameChanged( const QString & _un )
+	void userNameChanged( const QString &un )
 	{
-		m_userName = _un;
+		m_userName = un;
 	}
 
-	void passwordChanged( const QString & _pw )
+	void passwordChanged( const QString &pw )
 	{
-		m_password = _pw;
+		m_password = pw;
 	}
 
-	void domainChanged( const QString & _domain )
+	void domainChanged( const QString &domain )
 	{
-		m_domain = _domain;
+		m_domain = domain;
 	}
 
 
 private:
+	Ui::RemoteLogonDialog *ui;
 	QString m_userName;
 	QString m_password;
 	QString m_domain;

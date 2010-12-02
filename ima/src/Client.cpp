@@ -37,7 +37,7 @@
 #include "ItalcConfiguration.h"
 #include "ItalcCoreConnection.h"
 #include "ClassroomManager.h"
-#include "CmdInputDialog.h"
+#include "RunCommandsDialog.h"
 #include "LocalSystem.h"
 #include "Snapshot.h"
 #include "Dialogs.h"
@@ -193,7 +193,7 @@ void ClientAction::process( QVector<Client *> _clients, TargetGroup _target )
 		case SendTextMessage:
 			{
 				QString msg;
-				TextMessageDialog tmd( msg );
+				TextMessageDialog tmd( msg, NULL );
 
 				if( tmd.exec() == QDialog::Accepted &&
 					!msg.isEmpty() )
@@ -209,7 +209,7 @@ void ClientAction::process( QVector<Client *> _clients, TargetGroup _target )
 
 		case LogonUser:
 			{
-				RemoteLogonDialog mld;
+				RemoteLogonDialog mld( NULL );
 
 				if( mld.exec() == QDialog::Accepted &&
 					!mld.userName().isEmpty()/* &&
@@ -272,7 +272,7 @@ void ClientAction::process( QVector<Client *> _clients, TargetGroup _target )
 		case ExecCmds:
 			{
 				QString cmds;
-				CmdInputDialog cmd_input_dialog( cmds );
+				RunCommandsDialog cmd_input_dialog( cmds, NULL );
 
 				if( cmd_input_dialog.exec() == QDialog::Accepted &&
 					!cmds.isEmpty() )

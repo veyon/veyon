@@ -37,6 +37,7 @@
 #include <QtGui/QMenu>
 #include <QtGui/QMessageBox>
 #include <QtGui/QPixmap>
+#include <QtGui/QPushButton>
 #include <QtGui/QSplashScreen>
 #include <QtGui/QSplitter>
 #include <QtGui/QPainter>
@@ -46,7 +47,7 @@
 #include "ClassroomManager.h"
 #include "Client.h"
 #include "Dialogs.h"
-#include "CmdInputDialog.h"
+#include "RunCommandsDialog.h"
 #include "ItalcConfiguration.h"
 #include "LocalSystem.h"
 #include "ToolButton.h"

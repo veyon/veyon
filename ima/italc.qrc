@@ -6,8 +6,6 @@
 	<file>resources/fullscreen.png</file>
 	<file>resources/quit.png</file>
         <file>resources/adjust_size.png</file>
-        <file>resources/analog.png</file>
-        <file>resources/apply.png</file>
         <file>resources/authors.png</file>
         <file>resources/auto_arrange.png</file>
         <file>resources/back.png</file>
@@ -35,19 +33,15 @@
         <file>resources/host_unreachable.png</file>
         <file>resources/info.png</file>
         <file>resources/info_22.png</file>
-        <file>resources/isdn.png</file>
-        <file>resources/lan.png</file>
         <file>resources/license.png</file>
         <file>resources/locale.png</file>
         <file>resources/locked.png</file>
         <file>resources/logout.png</file>
-        <file>resources/modem.png</file>
         <file>resources/remotelogon.png</file>
         <file>resources/remotelogon_22.png</file>
         <file>resources/remotelogon_48.png</file>
         <file>resources/network.png</file>
         <file>resources/no_user.png</file>
-        <file>resources/ok.png</file>
         <file>resources/overview.png</file>
         <file>resources/overview_mode.png</file>
         <file>resources/power_off.png</file>
@@ -70,7 +64,6 @@
         <file>resources/users.png</file>
         <file>resources/users_48.png</file>
         <file>resources/viewmag.png</file>
-        <file>resources/vpn.png</file>
         <file>resources/window_demo.png</file>
         <file>resources/logo.png</file>
         <file>resources/greenled.png</file>

@@ -1,7 +1,7 @@
 /*
- * CmdInputDialog.h - declaration of class CmdInputDialog
+ * RunCommandsDialog.h - declaration of class RunCommandsDialog
  *
- * Copyright (c) 2004-2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -20,40 +20,27 @@
  *
  */
 
-#ifndef _CMD_INPUT_DIALOG_H
-#define _CMD_INPUT_DIALOG_H
+#ifndef _RUN_COMMANDS_DIALOG_H
+#define _RUN_COMMANDS_DIALOG_H
 
 #include <QtGui/QDialog>
-#include <QtGui/QLabel>
 
+namespace Ui { class RunCommandsDialog; }
 
-class QLabel;
-class QPushButton;
-class QTextEdit;
-
-
-class CmdInputDialog : public QDialog
+class RunCommandsDialog : public QDialog
 {
 	Q_OBJECT
 public:
-	CmdInputDialog( QString & _cmds_str, QWidget * _parent = 0 );
-	virtual ~CmdInputDialog();
+	RunCommandsDialog( QString &cmdStr, QWidget *parent );
+	virtual ~RunCommandsDialog();
 
 
 private slots:
-	virtual void accept( void );
+	virtual void accept();
 
 
 private:
-	virtual void keyPressEvent( QKeyEvent * _ke );
-	virtual void resizeEvent( QResizeEvent * _re );
-
-	QPushButton * m_cancelBtn;
-	QPushButton * m_okBtn;
-	QLabel * m_iconLbl;
-	QLabel * m_appNameLbl;
-	QTextEdit * m_cmdInputTextEdit;
-
+	Ui::RunCommandsDialog *ui;
 	QString & m_cmdsStr;
 
 } ;

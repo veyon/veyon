@@ -31,6 +31,13 @@
 #include "MainWindow.h"
 #include "DecoratedMessageBox.h"
 
+#include "ui_AboutDialog.h"
+#include "ui_ClientSettingsDialog.h"
+#include "ui_TextMessageDialog.h"
+#include "ui_SupportDialog.h"
+#include "ui_RemoteLogonDialog.h"
+
+
 #ifdef ITALC3
 #include "GlobalConfig.h"
 #include "MasterCore.h"
@@ -38,18 +45,19 @@
 #endif
 
 
-AboutDialog::AboutDialog( QWidget * _parent ) :
-	QDialog( _parent ? _parent->window() : _parent )
+AboutDialog::AboutDialog( QWidget *parent ) :
+	QDialog( parent ),
+	ui( new Ui::AboutDialog )
 {
-	setupUi( this );
+	ui->setupUi( this );
 
-	QFile authors_rc( ":/AUTHORS" );
-	authors_rc.open( QFile::ReadOnly );
-	authors->setPlainText( authors_rc.readAll() );
+	QFile authors( ":/AUTHORS" );
+	authors.open( QFile::ReadOnly );
+	ui->authors->setPlainText( authors.readAll() );
 
-	QFile license_rc( ":/COPYING" );
-	license_rc.open( QFile::ReadOnly );
-	license->setPlainText( license_rc.readAll() );
+	QFile license( ":/COPYING" );
+	license.open( QFile::ReadOnly );
+	ui->license->setPlainText( license.readAll() );
 }
 
 
@@ -67,15 +75,15 @@ ClientSettingsDialog::ClientSettingsDialog( Client * _client,
 #else
 	QDialog( _main_window ),
 #endif
-	Ui::ClientSettings(),
+	ui( new Ui::ClientSettingsDialog ),
 	m_client( _client )
 #ifndef ITALC3
 	,m_mainWindow( _main_window )
 #endif
 {
-	setupUi( this );
+	ui->setupUi( this );
 
-	hostnameEdit->setFocus();
+	ui->hostnameEdit->setFocus();
 	int classroomIndex = 0, i = 0;
 
 #ifdef ITALC3
@@ -94,7 +102,7 @@ ClientSettingsDialog::ClientSettingsDialog( Client * _client,
 	ClassroomManager * cm = m_mainWindow->getClassroomManager();
 	for( int i = 0; i < cm->m_classRooms.size(); ++i )
 	{
-		classRoomComboBox->addItem( cm->m_classRooms[i]->text( 0 ) );
+		ui->classRoomComboBox->addItem( cm->m_classRooms[i]->text( 0 ) );
 		if( _classroom == cm->m_classRooms[i]->text( 0 ) )
 		{
 			classroomIndex = i;
@@ -102,40 +110,41 @@ ClientSettingsDialog::ClientSettingsDialog( Client * _client,
 	}
 #endif
 
-	classRoomComboBox->setCurrentIndex( classroomIndex );
+	ui->classRoomComboBox->setCurrentIndex( classroomIndex );
 
 	if( m_client != NULL )
 	{
-		macEdit->setText( m_client->mac() );
+		ui->macEdit->setText( m_client->mac() );
 #ifdef ITALC3
-		hostnameEdit->setText( m_client->host() );
-		nameEdit->setText( m_client->displayName() );
+		ui->hostnameEdit->setText( m_client->host() );
+		ui->nameEdit->setText( m_client->displayName() );
 #else
-		hostnameEdit->setText( m_client->hostname() );
-		nameEdit->setText( m_client->nickname() );
+		ui->hostnameEdit->setText( m_client->hostname() );
+		ui->nameEdit->setText( m_client->nickname() );
 #endif
-		typeComboBox->setCurrentIndex( m_client->type() );
+		ui->typeComboBox->setCurrentIndex( m_client->type() );
 	}
 }
 
 
 
 
-void ClientSettingsDialog::accept( void )
+void ClientSettingsDialog::accept()
 {
-	if( hostnameEdit->text() == "" )
+	if( ui->hostnameEdit->text().isEmpty() )
 	{
 		DecoratedMessageBox::information(
-			tr( "Missing IP-address/hostname" ),
-			tr( "You didn't specify an IP-address or hostname for "
+			tr( "Missing IP address/hostname" ),
+			tr( "You didn't specify an IP address or hostname for "
 							"the computer!" ),
 					QPixmap( ":/resources/stop.png" ) );
 		return;
 	}
+
 	// check whether mac-address is valid
-	if( macEdit->text() != "" &&
-		QString( macEdit->text().toUpper() + ":" ).indexOf(
-				QRegExp( "^([\\dA-F]{2}:){6}$" ) ) != 0 )
+	if( !ui->macEdit->text().isEmpty() &&
+		QString( ui->macEdit->text().toUpper() + ":" ).
+					indexOf( QRegExp( "^([\\dA-F]{2}:){6}$" ) ) != 0 )
 	{
 		DecoratedMessageBox::information(
 			tr( "Invalid MAC-address" ),
@@ -149,34 +158,33 @@ void ClientSettingsDialog::accept( void )
 	if( m_client == NULL )
 	{
 #ifdef ITALC3
-		m_client = new Client( hostnameEdit->text(),
-					macEdit->text(),
-					nameEdit->text(),
-				(Client::Types) typeComboBox->currentIndex() );
+		m_client = new Client( ui->hostnameEdit->text(),
+								ui->macEdit->text(),
+								ui->nameEdit->text(),
+				(Client::Types) ui->typeComboBox->currentIndex() );
 #else
-		m_client = new Client( hostnameEdit->text(),
-					macEdit->text(),
-					nameEdit->text(),
-				(Client::Types) typeComboBox->currentIndex(),
-m_mainWindow->getClassroomManager()->m_classRooms[classRoomComboBox->currentIndex()],
+		m_client = new Client( ui->hostnameEdit->text(),
+								ui->macEdit->text(),
+								ui->nameEdit->text(),
+				(Client::Types) ui->typeComboBox->currentIndex(),
+m_mainWindow->getClassroomManager()->m_classRooms[ui->classRoomComboBox->currentIndex()],
 					m_mainWindow );
 #endif
 	}
 	else
 	{
-		m_client->setMac( macEdit->text() );
-		m_client->setType( (Client::Types)
-                                                typeComboBox->currentIndex() );
+		m_client->setMac( ui->macEdit->text() );
+		m_client->setType( (Client::Types) ui->typeComboBox->currentIndex() );
 #ifdef ITALC3
-		m_client->setHost( hostnameEdit->text() );
-		m_client->setDisplayName( nameEdit->text() );
+		m_client->setHost( ui->hostnameEdit->text() );
+		m_client->setDisplayName( ui->nameEdit->text() );
 		m_client->closeConnection();
 		m_client->openConnection();
 #else
-		m_client->setHostname( hostnameEdit->text() );
-		m_client->setNickname( nameEdit->text() );
+		m_client->setHostname( ui->hostnameEdit->text() );
+		m_client->setNickname( ui->nameEdit->text() );
 		m_client->setClassRoom(
-m_mainWindow->getClassroomManager()->m_classRooms[classRoomComboBox->currentIndex()] );
+m_mainWindow->getClassroomManager()->m_classRooms[ui->classRoomComboBox->currentIndex()] );
 		m_client->resetConnection();
 #endif
 	}
@@ -188,20 +196,44 @@ m_mainWindow->getClassroomManager()->m_classRooms[classRoomComboBox->currentInde
 
 
 
-TextMessageDialog::TextMessageDialog( QString & _msg_str, QWidget * _parent ) :
-	QDialog( _parent ? _parent->window() : 0 ),
-	Ui::TextMessage(),
-	m_msgStr( _msg_str )
+SupportDialog::SupportDialog( QWidget *parent ) :
+	QDialog( parent ),
+	ui( new Ui::SupportDialog )
 {
-	setupUi( this );
+	ui->setupUi( this );
+}
+
+
+
+QString SupportDialog::getHost( QWidget *parent )
+{
+	SupportDialog sd( parent );
+	if( sd.exec() == Accepted )
+	{
+		return sd.ui->hostEdit->text();
+	}
+
+	return QString();
 }
 
 
 
 
-void TextMessageDialog::accept( void )
+
+TextMessageDialog::TextMessageDialog( QString &msgStr, QWidget *parent ) :
+	QDialog( parent ),
+	ui( new Ui::TextMessageDialog ),
+	m_msgStr( msgStr )
 {
-	m_msgStr = textEdit->toPlainText();
+	ui->setupUi( this );
+}
+
+
+
+
+void TextMessageDialog::accept()
+{
+	m_msgStr = ui->textEdit->toPlainText();
 	QDialog::accept();
 }
 
@@ -210,22 +242,22 @@ void TextMessageDialog::accept( void )
 
 
 
-RemoteLogonDialog::RemoteLogonDialog( QWidget * _parent ) :
-	QDialog( _parent ? _parent->window() : 0 ),
-	Ui::RemoteLogon()
+RemoteLogonDialog::RemoteLogonDialog( QWidget *parent ) :
+	QDialog( parent ),
+	ui( new Ui::RemoteLogonDialog )
 {
-	setupUi( this );
+	ui->setupUi( this );
 
 #ifdef ITALC3
-	domainEdit->setText( MasterCore::globalConfig->defaultDomain() );
+	ui->domainEdit->setText( MasterCore::globalConfig->defaultDomain() );
 #else
-	domainEdit->setText( __default_domain );
+	ui->domainEdit->setText( __default_domain );
 #endif
-	connect( userNameEdit, SIGNAL( textChanged( const QString & ) ),
+	connect( ui->userNameEdit, SIGNAL( textChanged( const QString & ) ),
 			this, SLOT( userNameChanged( const QString & ) ) );
-	connect( passwordEdit, SIGNAL( textChanged( const QString & ) ),
+	connect( ui->passwordEdit, SIGNAL( textChanged( const QString & ) ),
 			this, SLOT( passwordChanged( const QString & ) ) );
-	connect( domainEdit, SIGNAL( textChanged( const QString & ) ),
+	connect( ui->domainEdit, SIGNAL( textChanged( const QString & ) ),
 			this, SLOT( domainChanged( const QString & ) ) );
 }
 
