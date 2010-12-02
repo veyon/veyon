@@ -317,7 +317,7 @@ int main( int argc, char **argv )
 			}
 			else if( arg2 == ItalcSlaveManager::IdDemoServer )
 			{
-				return runSlave<DemoServerSlave, QCoreApplication>( argc, argv );
+				return runSlave<DemoServerSlave, QApplication>( argc, argv );
 			}
 			else
 			{

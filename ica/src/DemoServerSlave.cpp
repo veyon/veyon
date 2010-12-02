@@ -29,6 +29,7 @@
 #include "DemoServerSlave.h"
 #include "ItalcCore.h"
 #include "ItalcVncServer.h"
+#include "DemoServer.h"
 
 
 // a helper threading running the VNC reflector
@@ -82,11 +83,15 @@ bool DemoServerSlave::handleMessage( const Ipc::Msg &m )
 		ItalcCore::authenticationCredentials->setCommonSecret(
 						m.arg( ItalcSlaveManager::DemoServer::CommonSecret ) );
 
-		m_demoServerThread = new DemoServerThread(
+/*		m_demoServerThread = new DemoServerThread(
 			m.argV( ItalcSlaveManager::DemoServer::SourcePort ).toInt(),
 			m.argV( ItalcSlaveManager::DemoServer::DestinationPort ).toInt() );
-		m_demoServerThread->start();
+		m_demoServerThread->start();*/
 
+		new DemoServer(
+			m.argV( ItalcSlaveManager::DemoServer::SourcePort ).toInt(),
+			m.argV( ItalcSlaveManager::DemoServer::DestinationPort ).toInt(),
+			this );
 		return true;
 	}
 	else if( m.cmd() == ItalcSlaveManager::DemoServer::UpdateAllowedHosts )
