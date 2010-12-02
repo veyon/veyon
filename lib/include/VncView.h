@@ -92,6 +92,7 @@ signals:
 
 
 private slots:
+	void updateCursorPos( int x, int y );
 	void updateCursorShape( const QImage &cursorShape, int xh, int yh );
 	void updateImage( int x, int y, int w, int h );
 	void updateSizeHint( int w, int h );
@@ -122,7 +123,9 @@ private:
 	int m_x, m_y, m_w, m_h;
 	bool m_repaint;
 	FastQImage m_frame;
-	FastQImage m_cursorShape;
+	QImage m_cursorShape;
+	int m_cursorX;
+	int m_cursorY;
 	QSize m_framebufferSize;
 	int m_cursorHotX;
 	int m_cursorHotY;

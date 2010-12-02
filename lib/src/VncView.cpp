@@ -43,6 +43,8 @@ VncView::VncView( const QString &host, QWidget *parent, Mode mode ) :
 	m_mode( mode ),
 	m_frame(),
 	m_cursorShape(),
+	m_cursorX( 0 ),
+	m_cursorY( 0 ),
 	m_framebufferSize( 0, 0 ),
 	m_cursorHotX( 0 ),
 	m_cursorHotY( 0 ),
@@ -57,7 +59,7 @@ VncView::VncView( const QString &host, QWidget *parent, Mode mode ) :
 	m_vncConn.setHost( host );
 	if( m_mode == DemoMode )
 	{
-		m_vncConn.setQuality( ItalcVncConnection::DemoQuality );
+		m_vncConn.setQuality( ItalcVncConnection::DemoClientQuality );
 		m_vncConn.setItalcAuthType( ItalcAuthHostBased );
 		m_establishingConnection = new ProgressWidget(
 			tr( "Establishing connection to %1 ..." ).arg( host ),
@@ -77,6 +79,9 @@ VncView::VncView( const QString &host, QWidget *parent, Mode mode ) :
 
 	connect( &m_vncConn, SIGNAL( framebufferSizeChanged( int, int ) ),
 				this, SLOT( updateSizeHint( int, int ) ), Qt::QueuedConnection );
+
+	connect( &m_vncConn, SIGNAL( cursorPosChanged( int, int ) ),
+				this, SLOT( updateCursorPos( int, int ) ) );
 
 	connect( &m_vncConn, SIGNAL( cursorShapeUpdated( const QImage &, int, int ) ),
 				this, SLOT( updateCursorShape( const QImage &, int, int ) ) );
@@ -205,11 +210,46 @@ void VncView::setScaledView( bool scaledView )
 
 
 
+void VncView::updateCursorPos( int x, int y )
+{
+	if( isViewOnly() )
+	{
+		if( !m_cursorShape.isNull() )
+		{
+			update( m_cursorX, m_cursorY,
+					m_cursorShape.width(), m_cursorShape.height() );
+		}
+		m_cursorX = x;
+		m_cursorY = y;
+		if( !m_cursorShape.isNull() )
+		{
+			update( m_cursorX, m_cursorY,
+					m_cursorShape.width(), m_cursorShape.height() );
+		}
+	}
+}
+
+
+
+
 void VncView::updateCursorShape( const QImage &cursorShape, int xh, int yh )
 {
-	m_cursorShape = cursorShape;
-	m_cursorHotX = xh;
-	m_cursorHotY = yh;
+	float scale = 1;
+	if( !scaledSize().isEmpty() && !framebufferSize().isEmpty() )
+	{
+		scale = (float) scaledSize().width() / framebufferSize().width();
+	}
+	m_cursorHotX = xh*scale;
+	m_cursorHotY = yh*scale;
+	m_cursorShape = cursorShape.scaled( m_cursorShape.width()*scale,
+										m_cursorShape.height()*scale );
+
+	if( isViewOnly() )
+	{
+		update( m_cursorX, m_cursorY,
+					m_cursorShape.width(), m_cursorShape.height() );
+	}
+
 	updateLocalCursor();
 }
 
@@ -489,16 +529,12 @@ void VncView::updateLocalCursor()
 {
 	if( !isViewOnly() && !m_cursorShape.isNull() )
 	{
-		float scale = 1;
-		if( !scaledSize().isEmpty() && !framebufferSize().isEmpty() )
-		{
-			scale = (float) scaledSize().width() / framebufferSize().width();
-		}
-		int cursorWidth = scale * m_cursorShape.width();
-		int cursorHeight = scale * m_cursorShape.height();
-		setCursor( QCursor( QPixmap::fromImage(
-							m_cursorShape.scaled( cursorWidth, cursorHeight ) ),
-								m_cursorHotX*scale, m_cursorHotY*scale ) );
+		setCursor( QCursor( QPixmap::fromImage( m_cursorShape ),
+								m_cursorHotX, m_cursorHotY ) );
+	}
+	else
+	{
+		setCursor( Qt::ArrowCursor );
 	}
 }
 
@@ -585,6 +621,22 @@ void VncView::paintEvent( QPaintEvent *paintEvent )
 			Qt::IgnoreAspectRatio, Qt::SmoothTransformation ) );
 		}
 	}
+
+	if( isViewOnly() && !m_cursorShape.isNull() )
+	{
+		const QRect cursorRect = mapFromFramebuffer(
+			QRect( QPoint( m_cursorX - m_cursorHotX,
+							m_cursorY - m_cursorHotY ),
+					m_cursorShape.size() ) );
+		// parts of cursor within updated region?
+		if( paintEvent->region().intersects( cursorRect ) )
+		{
+			// then repaint it
+			p.drawImage( cursorRect.topLeft(), m_cursorShape );
+		}
+	}
+
+
 
 	// draw black borders if neccessary
 	const int fbw = sSize.isValid() ? sSize.width() :

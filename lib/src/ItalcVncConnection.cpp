@@ -160,7 +160,12 @@ rfbBool ItalcVncConnection::hookNewClient( rfbClient *cl )
 			cl->appData.qualityLevel = 5;
 			cl->appData.enableJPEG = true;
 			break;
-		case DemoQuality:
+		case DemoServerQuality:
+			cl->appData.encodingsString = "copyrect corre rre raw";
+			//cl->appData.useRemoteCursor = true;
+			break;
+		case DemoClientQuality:
+			//cl->appData.useRemoteCursor = true;
 			cl->appData.encodingsString = "tight ultra copyrect "
 									"hextile zlib corre rre raw";
 			cl->appData.compressLevel = 9;
@@ -191,8 +196,22 @@ void ItalcVncConnection::hookUpdateFB( rfbClient *cl, int x, int y, int w, int h
 		return;
 	}
 
-	ItalcVncConnection * t = (ItalcVncConnection *)
-					rfbClientGetClientData( cl, 0 );
+	ItalcVncConnection * t = (ItalcVncConnection *) rfbClientGetClientData( cl, 0 );
+
+	if( t->quality() == DemoServerQuality )
+	{
+		// if we're providing data for demo server, perform a simple
+		// color-reduction for better compression-results
+		for( int ry = y; ry < y+h; ++ry )
+		{
+			QRgb *data = ( (QRgb *) img.scanLine( ry ) );
+			for( int rx = x; rx < x+w; ++rx )
+			{
+				data[rx] &= 0xfcfcfc;
+			}
+		}
+	}
+
 	t->setImage( img );
 	t->m_framebufferInitialized = true;
 	t->imageUpdated( x, y, w, h );
@@ -208,6 +227,20 @@ void ItalcVncConnection::hookFinishFrameBufferUpdate( rfbClient *cl )
 	t->m_scaledScreenNeedsUpdate = true;
 
 	t->framebufferUpdateComplete();
+}
+
+
+
+
+rfbBool ItalcVncConnection::hookHandleCursorPos( rfbClient *cl, int x, int y )
+{
+	ItalcVncConnection * t = (ItalcVncConnection *) rfbClientGetClientData( cl, 0 );
+	if( t )
+	{
+		t->cursorPosChanged( x, y );
+	}
+
+	return true;
 }
 
 
@@ -299,7 +332,7 @@ ItalcVncConnection::ItalcVncConnection( QObject *parent ) :
 	m_framebufferInitialized( false ),
 	m_cl( NULL ),
 	m_italcAuthType( ItalcAuthDSA ),
-	m_quality( DemoQuality ),
+	m_quality( DemoClientQuality ),
 	m_port( PortOffsetVncServer ),
 	m_framebufferUpdateInterval( 0 ),
 	m_image(),
@@ -504,6 +537,7 @@ void ItalcVncConnection::doConnection()
 		m_cl->canHandleNewFBSize = true;
 		m_cl->GotFrameBufferUpdate = hookUpdateFB;
 		m_cl->FinishedFrameBufferUpdate = hookFinishFrameBufferUpdate;
+		m_cl->HandleCursorPos = hookHandleCursorPos;
 		m_cl->GotCursorShape = hookCursorShape;
 		m_cl->GotXCutText = hookCutText;
 		rfbClientSetClientData( m_cl, 0, this );

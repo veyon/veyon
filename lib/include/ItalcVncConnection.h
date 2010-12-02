@@ -66,7 +66,8 @@ public:
 		ThumbnailQuality,
 		SnapshotQuality,
 		RemoteControlQuality,
-		DemoQuality,
+		DemoServerQuality,
+		DemoClientQuality,
 		NumQualityLevels
 	} ;
 
@@ -172,12 +173,18 @@ public:
 	static void handleSecTypeItalc( rfbClient *client );
 	static void handleMsLogonIIAuth( rfbClient *client );
 
+	void cursorShapeUpdatedExternal( const QImage &cursorShape, int xh, int yh )
+	{
+		cursorShapeUpdated( cursorShape, xh, yh );
+	}
+
 
 signals:
 	void newClient( rfbClient *c );
 	void imageUpdated( int x, int y, int w, int h );
 	void framebufferUpdateComplete();
 	void framebufferSizeChanged( int w, int h );
+	void cursorPosChanged( int x, int y );
 	void cursorShapeUpdated( const QImage &cursorShape, int xh, int yh );
 	void gotCut( const QString &text );
 	void passwordRequest();
@@ -201,6 +208,7 @@ private:
 	static rfbBool hookNewClient( rfbClient *cl );
 	static void hookUpdateFB( rfbClient *cl, int x, int y, int w, int h );
 	static void hookFinishFrameBufferUpdate( rfbClient *cl );
+	static rfbBool hookHandleCursorPos( rfbClient *cl, int x, int y );
 	static void hookCursorShape( rfbClient *cl, int xh, int yh, int w, int h, int bpp );
 	static void hookCutText( rfbClient *cl, const char *text, int textlen );
 	static void hookOutputHandler( const char *format, ... );
