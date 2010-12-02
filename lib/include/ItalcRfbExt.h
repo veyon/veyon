@@ -35,8 +35,6 @@
 #define rfbItalcCoreResponse		rfbItalcCoreRequest
 
 
-#define rfbEncodingItalcCursor 31
-
 #define rfbSecTypeItalc 30
 
 
