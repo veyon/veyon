@@ -1,7 +1,7 @@
 /*
- * DemoClient.cpp - client for demo-server
+ * DemoClient.cpp - client widget for demo mode
  *
- * Copyright (c) 2006-2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -22,16 +22,17 @@
  *
  */
 
-
 #include <QtGui/QIcon>
 #include <QtGui/QLayout>
 #include <QtGui/QApplication>
 #include <QtGui/QDesktopWidget>
 
 #include "DemoClient.h"
-#include "VncView.h"
-#include "LockWidget.h"
 #include "LocalSystem.h"
+#include "LockWidget.h"
+#include "RfbLZORLE.h"
+#include "RfbItalcCursor.h"
+#include "VncView.h"
 
 
 DemoClient::DemoClient( const QString &host, bool fullscreen ) :
@@ -48,6 +49,10 @@ DemoClient::DemoClient( const QString &host, bool fullscreen ) :
 								Qt::WindowMinMaxButtonsHint );
 	m_toplevel->resize( QApplication::desktop()->
 					availableGeometry( m_toplevel ).size() - QSize( 10, 30 ) );
+
+	// initialize extended protocol handlers
+	RfbLZORLE();
+	RfbItalcCursor();
 
 	m_vncView = new VncView( host, m_toplevel, VncView::DemoMode );
 
