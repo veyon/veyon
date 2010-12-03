@@ -472,9 +472,50 @@
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_7">
            <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_11" stretch="0,1,2">
+             <property name="spacing">
+              <number>16</number>
+             </property>
+             <item>
+              <widget class="QLabel" name="label_6">
+               <property name="text">
+                <string>Backend</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QComboBox" name="demoServerBackend">
+               <item>
+                <property name="text">
+                 <string>VNC reflector</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>iTALC 1 demo server</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_15">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+           <item>
             <widget class="QCheckBox" name="isDemoServerMultithreaded">
              <property name="text">
-              <string>Multithreading (disable when experiencing crashes)</string>
+              <string>Multithreading (can be enabled when using the VNC reflector backend)</string>
              </property>
             </widget>
            </item>
@@ -1295,6 +1336,12 @@ Note: if the bug involves both a master and client computer, attach bug report a
                <property name="orientation">
                 <enum>Qt::Vertical</enum>
                </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>0</width>
+                 <height>0</height>
+                </size>
+               </property>
               </spacer>
              </item>
             </layout>
@@ -1306,6 +1353,12 @@ Note: if the bug involves both a master and client computer, attach bug report a
          <spacer name="verticalSpacer_9">
           <property name="orientation">
            <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>0</width>
+            <height>0</height>
+           </size>
           </property>
          </spacer>
         </item>
@@ -1337,7 +1390,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>819</width>
+     <width>804</width>
      <height>25</height>
     </rect>
    </property>

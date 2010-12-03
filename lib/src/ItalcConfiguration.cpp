@@ -91,6 +91,7 @@ ItalcConfiguration ItalcConfiguration::defaultConfiguration()
 	c.setVncPollFullScreen( true );
 	c.setVncLowAccuracy( true );
 
+	c.setDemoServerBackend( 0 );
 	c.setDemoServerMultithreaded( true );
 
 	c.setCoreServerPort( PortOffsetVncServer );

@@ -61,6 +61,7 @@ public:
 		OP( ItalcConfiguration, ItalcCore::config, BOOL, vncPollFullScreen, setVncPollFullScreen, "PollFullScreen", "VNC" );			\
 		OP( ItalcConfiguration, ItalcCore::config, BOOL, vncLowAccuracy, setVncLowAccuracy, "LowAccuracy", "VNC" );					\
 		/* Demo server */																\
+		OP( ItalcConfiguration, ItalcCore::config, INT, demoServerBackend, setDemoServerBackend, "Backend", "DemoServer" );		\
 		OP( ItalcConfiguration, ItalcCore::config, BOOL, isDemoServerMultithreaded, setDemoServerMultithreaded, "Multithreaded", "DemoServer" );		\
 		/* Network */																	\
 		OP( ItalcConfiguration, ItalcCore::config, INT, coreServerPort, setCoreServerPort, "CoreServerPort", "Network" );			\
@@ -100,6 +101,7 @@ public slots:
 	void setVncCaptureLayeredWindows( bool );
 	void setVncPollFullScreen( bool );
 	void setVncLowAccuracy( bool );
+	void setDemoServerBackend( int );
 	void setDemoServerMultithreaded( bool );
 	void setCoreServerPort( int );
 	void setDemoServerPort( int );
