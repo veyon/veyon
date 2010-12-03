@@ -29,8 +29,6 @@
 #include "IcaSlave.h"
 #include "ItalcCoreServer.h"
 
-class DemoServerThread;
-
 class DemoServerSlave : public IcaSlave
 {
 public:
@@ -46,7 +44,7 @@ public:
 private:
 	virtual bool handleMessage( const Ipc::Msg &m );
 
-	DemoServerThread *m_demoServerThread;
+	QObject *m_demoServer;
 	ItalcCoreServer m_coreServer;
 } ;
 
