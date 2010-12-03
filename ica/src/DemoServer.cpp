@@ -56,7 +56,7 @@ static qint64 qtcpsocketDispatcher( char * buffer, const qint64 bytes,
 		case SocketRead:
 			while( ret < bytes )
 			{
-				qint64 bytesRead = sock->read( buffer, bytes );
+				qint64 bytesRead = sock->read( buffer+ret, bytes-ret );
 				if( bytesRead < 0 || opStartTime.elapsed() > 5000 )
 				{
 					qWarning( "qtcpsocketDispatcher(...): connection closed while reading" );
@@ -83,7 +83,7 @@ static qint64 qtcpsocketDispatcher( char * buffer, const qint64 bytes,
 		case SocketWrite:
 			while( ret < bytes )
 			{
-				qint64 written = sock->write( buffer, bytes );
+				qint64 written = sock->write( buffer+ret, bytes-ret );
 				if( written < 0 || opStartTime.elapsed() > 5000 )
 				{
 					qWarning( "qtcpsocketDispatcher(...): connection closed while writing" );
@@ -104,8 +104,7 @@ static qint64 qtcpsocketDispatcher( char * buffer, const qint64 bytes,
 					opStartTime.restart();
 				}
 			}
-			//sock->flush();
-			sock->waitForBytesWritten( 5000 );
+			sock->flush();
 			break;
 
 		case SocketGetPeerAddress:
@@ -284,7 +283,7 @@ return;		// TODO
 		} ;
 
 		m_sock->write( (const char *) &rh, sizeof( rh ) );
-		m_sock->waitForBytesWritten();
+		m_sock->flush();
 		m_dataMutex.unlock();
 	}
 }
@@ -304,8 +303,6 @@ void DemoServerClient::sendUpdates()
 			return;
 		}
 	}
-
-	m_updatesPending = false;
 
 	// extract single (non-overlapping) rects out of changed region
 	// this way we avoid lot of simliar/overlapping rectangles,
@@ -464,7 +461,14 @@ void DemoServerClient::sendUpdates()
 	m_changedRects.clear();
 	m_cursorShapeChanged = false;
 
-	QTimer::singleShot( 500, this, SLOT( sendUpdates() ) );
+	if( m_updatesPending )
+	{
+		// make sure to send an update once more even if there has
+		// been no update request
+		QTimer::singleShot( 1000, this, SLOT( sendUpdates() ) );
+	}
+
+	m_updatesPending = false;
 }
 
 
@@ -529,7 +533,6 @@ void DemoServerClient::processClient()
 		sendUpdates();
 	}
 
-//	m_sock->waitForBytesWritten();
 	m_dataMutex.unlock();
 }
 
@@ -622,23 +625,28 @@ void DemoServerClient::run()
 
 	ml.unlock();
 
+	// TODO
 	//updateCursorShape( m_demoServer->initialCursorShape(), 0, 0 );
 
 	// first time send a key-frame
 	QSize s = m_vncConn->framebufferSize();
 	updateRect( 0, 0, s.width(), s.height() );
 
+	connect( m_sock, SIGNAL( readyRead() ),
+				this, SLOT( processClient() ), Qt::DirectConnection );
 	connect( m_sock, SIGNAL( disconnected() ),
 						this, SLOT( deleteLater() ) );
 
-	QTimer t;
+	// TODO
+/*	QTimer t;
 	connect( &t, SIGNAL( timeout() ),
 			this, SLOT( moveCursor() ), Qt::DirectConnection );
-	t.start( CURSOR_UPDATE_TIME );
-	QTimer t2;
+	t.start( CURSOR_UPDATE_TIME );*/
+
+/*	QTimer t2;
 	connect( &t2, SIGNAL( timeout() ),
 			this, SLOT( processClient() ), Qt::DirectConnection );
-	t2.start( 2*CURSOR_UPDATE_TIME );
+	t2.start( 2*CURSOR_UPDATE_TIME );*/
 
 	// now run our own event-loop for optimal scheduling
 	exec();
