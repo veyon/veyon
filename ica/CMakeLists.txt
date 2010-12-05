@@ -11,8 +11,9 @@ SET(VNCVIEWER_JAR ${CMAKE_CURRENT_BINARY_DIR}/JavaViewer/VncViewer.jar)
 
 IF(JAVA_COMPILE AND JAVA_ARCHIVE)
 
+	FILE(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/JavaViewer)
 	ADD_CUSTOM_COMMAND(OUTPUT ${VNCVIEWER_JAR}
-						COMMAND ${JAVA_COMPILE} -O2 -d ${CMAKE_CURRENT_BINARY_DIR}/JavaViewer ${CMAKE_CURRENT_SOURCE_DIR}/JavaViewer/*.java
+						COMMAND ${JAVA_COMPILE} -d ${CMAKE_CURRENT_BINARY_DIR}/JavaViewer ${CMAKE_CURRENT_SOURCE_DIR}/JavaViewer/*.java
 						COMMAND cd ${CMAKE_CURRENT_BINARY_DIR}/JavaViewer && ${JAVA_ARCHIVE} cfm ${VNCVIEWER_JAR} ${CMAKE_CURRENT_SOURCE_DIR}/JavaViewer/MANIFEST.MF OptionsFrame.class VncCanvas.class ButtonPanel.class FTPFrame.class SessionRecorder.class DH.class VncViewer.class DesCipher.class RecordingFrame.class FTPFrame$$StrComp.class RfbProto.class ClipboardFrame.class AuthPanel.class
 						DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/JavaViewer/* )
 	INSTALL(FILES ${VNCVIEWER_JAR} ${CMAKE_CURRENT_SOURCE_DIR}/JavaViewer/index.vnc DESTINATION ${CMAKE_INSTALL_PREFIX}/share/italc/JavaViewer)
