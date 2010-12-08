@@ -523,7 +523,10 @@ void MainWindow::generateBugReportArchive()
 
 #elif defined( ITALC_BUILD_LINUX )
 
-	const QString os = "Linux";
+	QFile f( "/etc/lsb-release" );
+	f.open( QFile::ReadOnly );
+
+	const QString os = "Linux\n" + f.readAll().trimmed();
 
 	QProcess p;
 	p.start( "uname", QStringList() << "-a" );
