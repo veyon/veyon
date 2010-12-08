@@ -48,11 +48,7 @@ MainWindow *mainWindow = NULL;
 
 static void configApplyError( const QString &msg )
 {
-	QCoreApplication *app = QCoreApplication::instance();
-	if( !app->arguments().contains( "-quiet" ) )
-	{
-		criticalMessage( MainWindow::tr( "iTALC Management Console" ), msg );
-	}
+	criticalMessage( MainWindow::tr( "iTALC Management Console" ), msg );
 }
 
 
@@ -96,6 +92,8 @@ bool applyConfiguration( const ItalcConfiguration &c )
 	// write global configuration
 	Configuration::LocalStore localStore( Configuration::LocalStore::System );
 	localStore.flush( ItalcCore::config );
+
+	return true;
 }
 
 
@@ -223,7 +221,8 @@ void informationMessage( const QString &title, const QString &msg )
 {
 	LogStream( Logger::LogLevelInfo ) << title.toUtf8().constData()
 								<< ":" << msg.toUtf8().constData();
-	if( QApplication::type() != QApplication::Tty )
+	if( QApplication::type() != QApplication::Tty &&
+			!QCoreApplication::instance()->arguments().contains( "-quiet" ) )
 	{
 		QMessageBox::information( NULL, title, msg );
 	}
@@ -235,7 +234,8 @@ void criticalMessage( const QString &title, const QString &msg )
 {
 	LogStream( Logger::LogLevelCritical ) << title.toUtf8().constData()
 								<< ":" << msg.toUtf8().constData();
-	if( QApplication::type() != QApplication::Tty )
+	if( QApplication::type() != QApplication::Tty &&
+			!QCoreApplication::instance()->arguments().contains( "-quiet" ) )
 	{
 		QMessageBox::critical( NULL, title, msg );
 	}
