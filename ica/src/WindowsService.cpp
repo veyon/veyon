@@ -84,6 +84,17 @@ public:
 		}
 	}
 
+	bool isRunning() const
+	{
+		if( m_subProcessHandle &&
+			WaitForSingleObject( m_subProcessHandle, 5000 ) == WAIT_TIMEOUT )
+		{
+			return true;
+		}
+
+		return false;
+	}
+
 
 private:
 	HANDLE m_subProcessHandle;
@@ -772,10 +783,12 @@ void WindowsService::monitorSessions()
 				SetEvent( hShutdownEvent );
 				italcProcess.stop();
 			}
-			if( sessionId != SESSION_INVALID || sessionChanged )
+			if( sessionId != SESSION_INVALID || sessionChanged ||
+					!italcProcess.isRunning() )
 			{
 				italcProcess.start( sessionId );
 			}
+
 			oldSessionId = sessionId;
 		}
 	}
