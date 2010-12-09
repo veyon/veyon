@@ -34,7 +34,6 @@
 #include "ItalcCoreServer.h"
 #include "ItalcVncServer.h"
 #include "Logger.h"
-#include "Debug.h"
 
 #include "AccessDialogSlave.h"
 #include "DemoClientSlave.h"
