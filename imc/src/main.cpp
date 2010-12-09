@@ -60,6 +60,9 @@ int main( int argc, char **argv )
 
 	ItalcCore::init();
 
+	// default to teacher role for various command line operations
+	ItalcCore::role = ItalcCore::RoleTeacher;
+
 	Logger l( "ItalcManagementConsole" );
 
 	if( !ItalcConfiguration().isStoreWritable() &&
@@ -148,6 +151,39 @@ int main( int argc, char **argv )
 
 			return 0;
 		}
+		else if( a == "-role" )
+		{
+			if( argIt.hasNext() )
+			{
+				const QString role = argIt.next();
+				if( role == "teacher" )
+				{
+					ItalcCore::role = ItalcCore::RoleTeacher;
+				}
+				else if( role == "admin" )
+				{
+					ItalcCore::role = ItalcCore::RoleAdmin;
+				}
+				else if( role == "supporter" )
+				{
+					ItalcCore::role = ItalcCore::RoleSupporter;
+				}
+			}
+			else
+			{
+				qCritical( "-role needs an argument:\n"
+					"	teacher\n"
+					"	admin\n"
+					"	supporter\n\n" );
+				return -1;
+			}
+		}
+		else if( a == "-createkeypair" )
+		{
+			const QString destDir = argIt.hasNext() ? argIt.next() : QString();
+			ImcCore::createKeyPair( ItalcCore::role, destDir );
+			return 0;
+		}
 		else if( a == "-importpublickey" || a == "-i" )
 		{
 			QString pubKeyFile;
@@ -172,8 +208,7 @@ int main( int argc, char **argv )
 				pubKeyFile = argIt.next();
 			}
 
-			if( !ImcCore::importPublicKey( ItalcCore::RoleTeacher,
-											pubKeyFile, QString() ) )
+			if( !ImcCore::importPublicKey( ItalcCore::role, pubKeyFile, QString() ) )
 			{
 				LogStream( Logger::LogLevelInfo ) << "Public key import "
 													"failed";
