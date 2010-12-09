@@ -160,6 +160,8 @@ bool ItalcCore::init()
 	config = new ItalcConfiguration( ItalcConfiguration::defaultConfiguration() );
 	*config += ItalcConfiguration( Configuration::Store::LocalBackend );
 
+	serverPort = config->coreServerPort();
+
 	return true;
 }
 

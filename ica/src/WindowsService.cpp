@@ -33,8 +33,6 @@
 
 #ifdef ITALC_BUILD_WIN32
 
-extern void initCoreApplication( QCoreApplication *app = NULL );
-
 
 class ItalcServiceSubProcess
 {
@@ -139,12 +137,16 @@ bool WindowsService::evalArgs( int &argc, char **argv )
 
 	if( argv[1] == m_arg )
 	{
+		ItalcCore::init();
 		Logger l( "ItalcServiceMonitor" );
 		return runAsService();
 	}
 
 	QApplication app( argc, argv );
-	initCoreApplication( &app );
+
+	ItalcCore::init();
+
+	Logger l( "ItalcServiceControl" );
 
 	QStringList args = app.arguments();
 	args.removeFirst();
