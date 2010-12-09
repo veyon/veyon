@@ -157,8 +157,7 @@ bool ItalcCore::init()
 #endif
 	QCoreApplication::installTranslator( qtTr );
 
-	ItalcConfiguration dc = ItalcConfiguration::defaultConfiguration();
-	config = new ItalcConfiguration( dc );
+	config = new ItalcConfiguration( ItalcConfiguration::defaultConfiguration() );
 	*config += ItalcConfiguration( Configuration::Store::LocalBackend );
 
 	return true;
