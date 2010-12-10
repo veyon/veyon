@@ -785,12 +785,16 @@ void WindowsService::monitorSessions()
 				SetEvent( hShutdownEvent );
 				italcProcess.stop();
 			}
-			if( sessionId != SESSION_INVALID || sessionChanged ||
-					!italcProcess.isRunning() )
+			if( sessionId != SESSION_INVALID || sessionChanged )
 			{
 				italcProcess.start( sessionId );
 			}
 
+			oldSessionId = sessionId;
+		}
+		else if( italcProcess.isRunning() == false )
+		{
+			italcProcess.start( sessionId );
 			oldSessionId = sessionId;
 		}
 	}
