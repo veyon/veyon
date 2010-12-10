@@ -168,6 +168,8 @@ File "italc-${VERSION}\*txt"
 ExecWait '"$INSTDIR\ica.exe" -quiet -registerservice'
 ExecWait '"$INSTDIR\imc.exe" -s Network/FirewallExceptionEnabled=1'
 ExecWait '"$INSTDIR\ica.exe" -quiet -startservice'
+# disable forced guest logon as otherwise logon authentication fails
+WriteRegDWORD ${REG_ROOT} "SYSTEM\CurrentControlSet\Control\Lsa"  "ForceGuest" "0"
 SectionEnd
 
 Section "iTALC Master"
