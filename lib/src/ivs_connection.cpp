@@ -1773,13 +1773,15 @@ bool ivsConnection::handleItalc( Q_UINT16 rx, Q_UINT16 ry, Q_UINT16 rw,
 
 	Q_UINT8 * rle_data = new Q_UINT8[hdr.bytesRLE];
 
-	lzo_uint decomp_bytes = 0;
-	lzo1x_decompress( (const unsigned char *) lzo_data,
+	lzo_uint decomp_bytes = hdr.bytesRLE;
+	lzo1x_decompress_safe( (const unsigned char *) lzo_data,
 				(lzo_uint) hdr.bytesLZO,
 				(unsigned char *) rle_data,
 				(lzo_uint *) &decomp_bytes, NULL );
 	if( decomp_bytes != hdr.bytesRLE )
 	{
+		delete[] rle_data;
+		delete[] lzo_data;
 		qCritical( "ivsConnection::handleItalc(...): expected and real "
 				"size of decompressed data do not match!" );
 		return( FALSE );
