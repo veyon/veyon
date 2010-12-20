@@ -19,6 +19,8 @@
 // If the source code for the program is not available from the place from
 // which you received this file, check 
 // http://ultravnc.sourceforge.net/
+
+#include <locale.h>
 #include <wchar.h>
 #include <tchar.h>
 #include "MSLogonACL.h"
@@ -28,6 +30,7 @@
 
 int _tmain(int argc, TCHAR *argv[])
 {
+	setlocale( LC_ALL, "" );
 	bool append = false;
 	int rc = 1;
 

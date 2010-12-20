@@ -216,6 +216,7 @@ PACL vncImportACL::BuildACL(){
 bool vncImportACL::SetACL(PACL pACL){
    HKEY hk = NULL; 
 	bool isSaveOK = false;
+	DWORD  dwDisposition;
 
 	
     ACL_SIZE_INFORMATION AclInformation = {0, 0, 0};
@@ -226,9 +227,16 @@ bool vncImportACL::SetACL(PACL pACL){
 		GetAclInformation(pACL, &AclInformation, nAclInformationLength, AclSizeInformation);
 
 	__try{
-		if (ERROR_SUCCESS != RegOpenKeyEx( HKEY_LOCAL_MACHINE,
+		//if (ERROR_SUCCESS != RegOpenKeyEx( HKEY_LOCAL_MACHINE,
+		//	_T("Software\\ORL\\WinVNC3"),
+		//	0, KEY_SET_VALUE, &hk )){
+		//	_ftprintf(stderr, _T("Error %d: RegOpenKeyEx\n"), GetLastError());
+		//	__leave;
+		//}
+
+		if (ERROR_SUCCESS != RegCreateKeyEx( HKEY_LOCAL_MACHINE,
 			_T("Software\\ORL\\WinVNC3"),
-			0, KEY_SET_VALUE, &hk )){
+			0, NULL, 0, KEY_SET_VALUE, NULL, &hk, &dwDisposition )){
 			_ftprintf(stderr, _T("Error %d: RegOpenKeyEx\n"), GetLastError());
 			__leave;
 		}

@@ -1,3 +1,3 @@
 
 
-#define BUILDTIME "Nov 20 2010" " " "18:21:31" "\0"
+#define BUILDTIME "Dec  4 2010" " " "20:03:15" "\0"
