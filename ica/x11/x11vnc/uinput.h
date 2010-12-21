@@ -37,6 +37,7 @@ so, delete this exception statement from your version.
 
 extern int check_uinput(void);
 extern int initialize_uinput(void);
+extern void shutdown_uinput(void);
 extern int set_uinput_accel(char *str);
 extern int set_uinput_thresh(char *str);
 extern void set_uinput_reset(int ms);

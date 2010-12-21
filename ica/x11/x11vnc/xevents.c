@@ -57,6 +57,7 @@ int grab_buster = 0;
 int grab_kbd = 0;
 int grab_ptr = 0;
 int grab_always = 0;
+int ungrab_both = 0;
 int grab_local = 0;
 int sync_tod_delay = 20;
 

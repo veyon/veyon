@@ -1,3 +1,19 @@
+2010-12-21  Karl Runge <runge@karlrunge.com>
+	* x11vnc: Add RELEASE-NOTES. Call shutdown_uinput() when exiting.
+	  Free some minor memory.  Do not use GetMainDevice() on macosx.
+	  Add utility scripts qt_tslib_inject.pl and uinput.pl. Option
+	  -ungrabboth (not useful.)  X11VNC_SB_FACTOR -sb user tweak.
+	  X11VNC_REFLECT_{bitsPerSample,samplesPerPixel,bytesPerPixel}
+	  for -reflect vncclient.  Fix minor fd leaks.	For -create mode
+	  preserve LC_ALL; FIND_DISPLAY_NO_VT_FIND, FIND_DISPLAY_NO_LSOF,
+	  and X11VNC_CREATE_LC_ALL_C_OK.  Speed up -find and  -create scripts
+	  for large installations.  Enable direct event input modes to
+	  bypass uinput.  TSLIB support for uinput touchscreens.  Handle
+	  pressure events on touchscreens.  User can set X11VNC_UINPUT_BUS
+	  and X11VNC_UINPUT_VERSION.  Allow Tab switch in -create login:
+	  prompt.  Fix bug in setting bpp for -rawfb.  Java viewers now
+	  handle mousewheel events. No vars named new.
+
 2010-09-10  Karl Runge <runge@karlrunge.com>
 	* x11vnc: update classes/ssl jars, patches, and script. 
 	  update prepare_x11vnc_dist.sh to 0.9.13. Makefile.am no top_srcdir

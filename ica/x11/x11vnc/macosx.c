@@ -241,6 +241,7 @@ char *macosx_console_guess(char *str, int *fd) {
 
 	q = (char *) malloc(strlen("map:macosx:") + strlen(file) + 1 + strlen(atparms) + 1);
 	sprintf(q, "map:macosx:%s@%s", file, atparms);
+	free(atparms);
 	return q;
 }
 

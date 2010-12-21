@@ -1358,7 +1358,7 @@ static void list_apps(void) {
 
 static int process_control(char *file, int check_clients) {
 	int i, nnew = 0, seen[CMAX];
-	char line[1024], *new[CMAX];
+	char line[1024], *newctl[CMAX];
 	FILE *f;
 
 	f = fopen(file, "r");
@@ -1481,7 +1481,7 @@ static int process_control(char *file, int check_clients) {
 			if (idx >= 0) {
 				seen[idx] = 1;
 			} else {
-				new[nnew++] = strdup(q);
+				newctl[nnew++] = strdup(q);
 			}
 		}
 	}
@@ -1509,8 +1509,8 @@ static int process_control(char *file, int check_clients) {
 				}
 				continue;
 			}
-			clients[free] = new[i];
-			client(new[i], 1);
+			clients[free] = newctl[i];
+			client(newctl[i], 1);
 		}
 	}
 	return 1;

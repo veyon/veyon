@@ -47,7 +47,7 @@ int xtrap_base_event_type = 0;
 int xdamage_base_event_type = 0;
 
 /*               date +'lastmod: %Y-%m-%d' */
-char lastmod[] = "0.9.13 lastmod: 2010-09-10";
+char lastmod[] = "0.9.13 lastmod: 2010-12-20";
 
 /* X display info */
 

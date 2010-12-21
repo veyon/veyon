@@ -565,6 +565,12 @@ char *get_pty_ptmx(int *fd_p) {
 	ioctl(fd, TIOCFLUSH, (char *) 0);
 #endif
 
+	if (strlen(slave) > sizeof(slave_str)/2) {
+		rfbLog("get_pty_ptmx: slave string length too long.\n");	
+		close(fd);
+		return NULL;
+	}
+
 	strcpy(slave_str, slave);
 	*fd_p = fd;
 	return slave_str;
@@ -1743,7 +1749,7 @@ void unixpw_keystroke(rfbBool down, rfbKeySym keysym, int init) {
 		    down ? "down":"up  ", keysym, keystr);
 	}
 
-	if (keysym == XK_Return || keysym == XK_Linefeed) {
+	if (keysym == XK_Return || keysym == XK_Linefeed || keysym == XK_Tab) {
 		/* let "up" pass down below for Return case */
 		if (down) {
 			return;
@@ -1866,7 +1872,7 @@ void unixpw_keystroke(rfbBool down, rfbKeySym keysym, int init) {
 			return;
 		}
 
-		if (keysym == XK_Return || keysym == XK_Linefeed) {
+		if (keysym == XK_Return || keysym == XK_Linefeed || keysym == XK_Tab) {
 			char pw[] = "Password: ";
 
 			if (down) {

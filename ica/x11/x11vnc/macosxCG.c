@@ -87,7 +87,9 @@ int dragum(void) {
         CGPoint loc;
 
 	CGDirectDisplayID displayID2 = kCGDirectMainDisplay;
+#ifdef X11VNC_MACOSX_USE_GETMAINDEVICE
 	(void) GetMainDevice();
+#endif
 
         for (i=0; i< 50; i++) {
                 usleep(1000*100);
@@ -140,7 +142,9 @@ void macosxCG_init(void) {
 #endif
 
 		displayID = kCGDirectMainDisplay;
+#ifdef X11VNC_MACOSX_USE_GETMAINDEVICE
 		(void) GetMainDevice();
+#endif
 
 		CGSetLocalEventsSuppressionInterval(0.0);
 		CGSetLocalEventsFilterDuringSupressionState(

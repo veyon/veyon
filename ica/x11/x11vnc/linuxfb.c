@@ -265,6 +265,7 @@ char *console_guess(char *str, int *fd) {
 	} else {
 		sprintf(q, "map:%s@%s", file, atparms);
 	}
+	free(atparms);
 	return q;
 }
 

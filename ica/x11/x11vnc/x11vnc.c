@@ -1069,6 +1069,7 @@ static void check_rcfile(int argc, char **argv) {
 		if (! home) {
 			norc = 1;
 		} else {
+			memset(rcfile, 0, sizeof(rcfile));
 			strncpy(rcfile, home, 500);
 			free(home);
 
@@ -1398,6 +1399,7 @@ static void quick_pw(char *str) {
 		if(fgets(tmp, 1024, in) == NULL) {
 			exit(2);
 		}
+		fclose(in);
 		q = strdup(tmp);
 	} else {
 		q = strdup(str+1);
@@ -2580,6 +2582,10 @@ int main(int argc, char* argv[]) {
 		}
 		if (!strcmp(arg, "-grabptr")) {
 			grab_ptr = 1;
+			continue;
+		}
+		if (!strcmp(arg, "-ungrabboth")) {
+			ungrab_both = 1;
 			continue;
 		}
 		if (!strcmp(arg, "-grabalways")) {
@@ -4284,7 +4290,7 @@ int main(int argc, char* argv[]) {
 		char *pstr = "%VNCDISPLAY";
 		if (strstr(logfile, pstr)) {
 			char *h = this_host();
-			char *s, *q, *new;
+			char *s, *q, *newlog;
 			int n, p = got_rfbport_val;
 			/* we don't really know the port yet... so guess */
 			if (p < 0) {
@@ -4303,23 +4309,23 @@ int main(int argc, char* argv[]) {
 				n++;
 				q = t+1; 
 			}
-			new = (char *) malloc(strlen(logfile) + n * strlen(pstr));
-			new[0] = '\0';
+			newlog = (char *) malloc(strlen(logfile) + n * strlen(pstr));
+			newlog[0] = '\0';
 
 			q = logfile;
 			while (1) {
 				char *t = strstr(q, pstr);
 				if (!t) {
-					strcat(new, q);
+					strcat(newlog, q);
 					break;
 				}
-				strncat(new, q, t - q);
-				strcat(new, s);
+				strncat(newlog, q, t - q);
+				strcat(newlog, s);
 				q = t + strlen(pstr); 
 			}
-			logfile = new;
+			logfile = newlog;
 			if (!quiet && !got_inetd) {
-				rfbLog("Expanded logfile to '%s'\n", new);
+				rfbLog("Expanded logfile to '%s'\n", newlog);
 				
 			}
 			free(s);
@@ -4327,7 +4333,7 @@ int main(int argc, char* argv[]) {
 		pstr = "%HOME";
 		if (strstr(logfile, pstr)) {
 			char *h = get_home_dir();
-			char *s, *q, *new;
+			char *s, *q, *newlog;
 
 			s = (char *) malloc(strlen(h) + 32);
 			sprintf(s, "%s", h);
@@ -4339,23 +4345,23 @@ int main(int argc, char* argv[]) {
 				n++;
 				q = t+1; 
 			}
-			new = (char *) malloc(strlen(logfile) + n * strlen(pstr));
-			new[0] = '\0';
+			newlog = (char *) malloc(strlen(logfile) + n * strlen(pstr));
+			newlog[0] = '\0';
 
 			q = logfile;
 			while (1) {
 				char *t = strstr(q, pstr);
 				if (!t) {
-					strcat(new, q);
+					strcat(newlog, q);
 					break;
 				}
-				strncat(new, q, t - q);
-				strcat(new, s);
+				strncat(newlog, q, t - q);
+				strcat(newlog, s);
 				q = t + strlen(pstr); 
 			}
-			logfile = new;
+			logfile = newlog;
 			if (!quiet && !got_inetd) {
-				rfbLog("Expanded logfile to '%s'\n", new);
+				rfbLog("Expanded logfile to '%s'\n", newlog);
 			}
 			free(s);
 		}

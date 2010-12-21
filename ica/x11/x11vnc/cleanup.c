@@ -50,6 +50,7 @@ so, delete this exception statement from your version.
 #include "screen.h"
 #include "xrecord.h"
 #include "xevents.h"
+#include "uinput.h"
 
 /*
  * Exiting and error handling routines
@@ -187,6 +188,8 @@ void clean_up_exit(int ret) {
 		pclose(pipeinput_fh);
 		pipeinput_fh = NULL;
 	}
+
+	shutdown_uinput();
 
 	if (! dpy) {	/* raw_rb hack */
 		if (rm_flagfile) {

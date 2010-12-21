@@ -1,8 +1,8 @@
 .\" This file was automatically generated from x11vnc -help output.
-.TH X11VNC "1" "September 2010" "x11vnc " "User Commands"
+.TH X11VNC "1" "December 2010" "x11vnc " "User Commands"
 .SH NAME
 x11vnc - allow VNC connections to real X11 displays
-         version: 0.9.13, lastmod: 2010-09-10
+         version: 0.9.13, lastmod: 2010-12-20
 .SH SYNOPSIS
 .B x11vnc
 [OPTION]...
@@ -925,6 +925,11 @@ server with them, grabbing the keyboard himself, etc.
 Some degree of cooperation from the person at the
 display is assumed.  This is intended for remote
 help-desk or educational usage modes.
+.IP
+Note: on some recent (12/2010) X servers and/or
+desktops, \fB-grabkbd\fR no longer works: it prevents the
+window manager from resizing windows and similar things.
+Try \fB-ungrabboth\fR below (might not work.)
 .PP
 \fB-grabptr\fR
 .IP
@@ -939,6 +944,13 @@ that call
 for resizes, etc, will
 act on the local user's input.  Again, some degree of
 cooperation from the person at the display is assumed.
+.PP
+\fB-ungrabboth\fR
+.IP
+Whenever there is any input (either keyboard or
+pointer), ungrab *both* the keyboard and the pointer
+while injecting the synthetic input.  This is to allow
+window managers, etc. a chance to grab.
 .PP
 \fB-grabalways\fR
 .IP
@@ -1569,6 +1581,15 @@ xauthority data for the display. For example;
 .IP
 xauth extract - $DISPLAY"
 .IP
+NOTE: As specified in the previous paragraph, you can
+supply your own WAIT:cmd=... program or script, BUT
+there are two very useful *BUILT-IN* ones: FINDDISPLAY
+(alias \fB-find\fR above) and FINDCREATEDISPLAY (alias \fB-create\fR
+above.)  Most people use these instead of creating
+their own script.  Read the following (especially the
+BUILT-IN modes sections) to see how to configure these
+two useful builtin \fB-display\fR WAIT: modes.
+.IP
 In the case of \fB-unixpw\fR (and \fB-unixpw_nis\fR only if x11vnc
 is running as root), then the cmd= command is run
 as the user who just authenticated via the login and
@@ -1599,6 +1620,11 @@ for convenience m/n implies scale= e.g. fred:3/4  If you
 type and enter your password incorrectly, to retrieve
 your long "login:" line press the Up arrow once
 (before typing anything else).
+.IP
+Most of these colon options only apply to the builtin
+FINDDISPLAY and FINDCREATEDISPLAY modes, but note
+that they are passed to the extrenal command in the
+environment as well and so could be used.
 .IP
 In the login panel, press F1 to get a list of the
 available options that you can add after the username.
@@ -1633,23 +1659,19 @@ prompt.  For example \fB-env\fR FD_USERPREFS=.x11vnc_create
 and the user put "geom=1600x1200" in his
 ~/.x11vnc_create file.
 .IP
-To troubleshoot the FINDCREATEDISPLAY mechanism,
-set the following env. var. to an output log file,
-e.g \fB-env\fR CREATE_DISPLAY_OUTPUT=/tmp/mydebug.txt
-.IP
 To disable the option setting set the environment
 variable X11VNC_NO_UNIXPW_OPTS=1 before starting x11vnc.
 To set any other options, the user can use the gui
 (x11vnc \fB-gui\fR connect) or the remote control method
 (x11vnc \fB-R\fR opt:val) during his VNC session.
 .IP
-The combination of \fB-display\fR WAIT:cmd=... and \fB-unixpw\fR
-allows automatic pairing of an unix authenticated VNC
-user with his desktop.  This could be very useful on
-SunRays and also any system where multiple users share
-a given machine.  The user does not need to remember
-special ports or passwords set up for his desktop
-and VNC.
+So we see the combination of \fB-display\fR WAIT:cmd=... and
+\fB-unixpw\fR allows automatic pairing of an unix
+authenticated VNC user with his desktop.  This could
+be very useful on SunRays and also any system where
+multiple users share a given machine.  The user does
+not need to remember special ports or passwords set up
+for his desktop and VNC.
 .IP
 A nice way to use WAIT:cmd=... is out of 
 .IR inetd (8)
@@ -1662,7 +1684,9 @@ the user as well.  Note: there will be a 2nd SSL helper
 process that will not switch, but it is only encoding
 and decoding the encrypted stream at that point.
 .IP
-Automatic Finding of User X Sessions:
+BUILT-IN modes:
+.IP
+\fB--\fR Automatic Finding of User X Sessions \fB--\fR
 .IP
 As a special case, WAIT:cmd=FINDDISPLAY will run a
 script that works on most Unixes to determine a user's
@@ -1670,7 +1694,7 @@ DISPLAY variable and xauthority data (see
 .IR who (1)
 ).
 .IP
-The option "\fB-find\fR" is an alias for this mode.
+NOTE: The option "\fB-find\fR" is an alias for this mode.
 .IP
 To have this default script printed to stdout (e.g. for
 customization) run with WAIT:cmd=FINDDISPLAY-print To
@@ -1715,7 +1739,14 @@ using "+" instead of ","  If "nd=all" or you set
 X11VNC_SKIP_DISPLAY=all then all display finding fails
 as if you set X11VNC_FINDDISPLAY_ALWAYS_FAILS=1 (below.)
 .IP
-Automatic Creation of User X Sessions:
+On some systems 
+.IR lsof (1)
+can be very slow.  Set the
+env. var. FIND_DISPLAY_NO_LSOF=1 to skip using lsof to
+try to find the Linux VT the X server is running on.
+set FIND_DISPLAY_NO_VT_FIND=1 to avoid looking at all.
+.IP
+\fB--\fR Automatic Creation of User X Sessions \fB--\fR
 .IP
 An interesting option is WAIT:cmd=FINDCREATEDISPLAY
 that is like FINDDISPLAY in that is uses the same method
@@ -1724,12 +1755,18 @@ find one it will try to *start* up an X server session
 for the user.  This is the only time x11vnc tries to
 actually start up an X server.
 .IP
-The option "\fB-create\fR" is an alias for this mode.
+NOTE: The option "\fB-create\fR" is an alias for this mode.
 .IP
 It will start looking for an open display number at :20
 Override via X11VNC_CREATE_STARTING_DISPLAY_NUMBER=n
 By default 80 X displays are allowed (i.e. going to :99)
 Override via X11VNC_CREATE_MAX_DISPLAYS=n
+.IP
+For its heuristics, the create display script sets
+LC_ALL=C so that command output is uniform.  By default
+it will try to restore LC_ALL right before starting the
+user session.  However, if you don't mind it keeping
+LC_ALL=C set the env. var.: X11VNC_CREATE_LC_ALL_C_OK=1
 .IP
 By default FINDCREATEDISPLAY will try Xvfb and then
 Xdummy:
@@ -1756,6 +1793,10 @@ The FINDDISPLAY will find it directly next time.
 The user must exit the X session in the usual way for
 it to terminate (or kill the X server process if all
 else fails).
+.IP
+To troubleshoot the FINDCREATEDISPLAY mechanism,
+set the following env. var. to an output log file,
+e.g \fB-env\fR CREATE_DISPLAY_OUTPUT=/tmp/mydebug.txt
 .IP
 So this is a somewhat odd mode for x11vnc in that it
 will start up and poll virtual X servers!  This can
@@ -4614,6 +4655,7 @@ Default: take naps
 Time in seconds after NO activity (e.g. screen blank)
 to really throttle down the screen polls (i.e. sleep
 for about 1.5 secs). Use 0 to disable.  Default: 60
+Set the env. var. X11VNC_SB_FACTOR to scale it.
 .PP
 \fB-readtimeout\fR \fIn\fR
 .IP
@@ -5129,18 +5171,19 @@ do not prefer the default 16bpp set RAWFB_VCSA_BPP to
 using the 'console_guess' string printed at startup,
 be sure to indicate the snap: method.
 .IP
-uinput: If the Linux version appears to be 2.6 or
-later and the "uinput" module appears to be present
-(modprobe uinput), then the uinput method will be used
-instead of /dev/ttyN.  uinput allows insertion of BOTH
-keystrokes and mouse input and so it preferred when
-accessing graphical (e.g. QT-embedded) linux console
-apps.  See \fB-pipeinput\fR UINPUT below for more information
-on this mode; you will have to use \fB-pipeinput\fR if you
-want to tweak any UINPUT parameters.  You may also want
-to also use the \fB-nodragging\fR and \fB-cursor\fR none options.
-Use "console0", etc  or \fB-pipeinput\fR CONSOLE to force
-the /dev/ttyN method.
+uinput: If the Linux version appears to be 2.6
+or later and the "uinput" module appears to be
+present (modprobe uinput), then the uinput method
+will be used instead of /dev/ttyN.  uinput allows
+insertion of BOTH keystrokes and mouse input and so it
+preferred when accessing graphical (e.g. QT-embedded)
+linux console apps.  It also provides more accurate
+keystroke insertion.  See \fB-pipeinput\fR UINPUT below for
+more information on this mode; you will have to use
+\fB-pipeinput\fR if you want to tweak any UINPUT parameters.
+You may also want to also use the \fB-nodragging\fR and
+\fB-cursor\fR none options.  Use "console0", etc  or
+\fB-pipeinput\fR CONSOLE to force the /dev/ttyN method.
 .IP
 Note you can change the Linux VT remotely using the
 .IR chvt (1)
@@ -5181,7 +5224,11 @@ This mode is really only of use if you are trying
 to improve performance in the case of many (e.g. >
 10) simultaneous VNC viewers, and you try a divide
 and conquer scheme to reduce bandwidth and improve
-responsiveness.
+responsiveness.  (However, another user found this mode
+useful to export a demo display through a slow link:
+then multiple demo viewers connected to the reflecting
+x11vnc on the fast side of the link, and so avoided
+all of the demo viewers going through the slow link.)
 .IP
 For example, if there will be 64 simultaneous VNC
 viewers this can lead to a lot of redundant VNC traffic
@@ -5211,6 +5258,13 @@ The env. var. X11VNC_REFLECT_PASSWORD can be set to
 the password needed to log into the vnc host server, or
 to "file:path_to_file" to indicate a file containing
 the password as its first line.
+.IP
+To set the pixel format that x11vnc requests as a VNC
+CLIENT set the env. vars: X11VNC_REFLECT_bitsPerSample
+X11VNC_REFLECT_samplesPerPixel, and
+X11VNC_REFLECT_bytesPerPixel; the defaults are 8, 3, 4.
+2, 3, 1 would give a low color mode.  See the function
+rfbGetClient() in libvncclient for more info.
 .IP
 The VNC HOST mode implies \fB-shared.\fR  Use \fB-noshared\fR as
 a subsequent cmdline option to disable sharing.
@@ -5278,7 +5332,8 @@ and insert the module with "modprobe uinput".
 .IP
 The UINPUT mode currently only does US keyboards (a
 scan code option may be added), and not all keysyms
-are supported.
+are supported.  But it is probably more accurate than
+the "CONSOLE" method.
 .IP
 You may want to use the options \fB-cursor\fR none and
 \fB-nodragging\fR in this mode.
@@ -5320,16 +5375,6 @@ in 1 jump), This correction seems to be needed but can
 cause jerkiness or unexpected behavior with menus, etc.
 Use reset=0 to disable.
 .IP
-If the uinput device has an absolute pointer (as opposed
-to a normal mouse that is a relative pointer) you can
-specify the option "abs".  Note that a touchpad
-on a laptop is an absolute device to some degree.
-This (usually) avoids all the problems with mouse
-acceleration.  If x11vnc has trouble deducing the size
-of the device, use "abs=WxH".  Furthermore, if the
-device is a touchscreen (assumed to have an absolute
-pointer) use "touch" or "touch=WxH".
-.IP
 If you set the env. var X11VNC_UINPUT_THRESHOLDS then
 the thresh=n mode will be enabled.  It is currently
 not working well.  If |dx| <= thresh and |dy| < thresh
@@ -5339,8 +5384,70 @@ no acceleration is applied.  Use "thresh=+n" |dx| +
 Example:
 \fB-pipeinput\fR UINPUT:accel=4.0 \fB-cursor\fR none
 .IP
-You can also set the env. var X11VNC_UINPUT_DEBUG=1 or
-higher to get debugging output for UINPUT mode.
+If the uinput device has an absolute pointer (as opposed
+to a normal mouse that is a relative pointer) you can
+specify the option "abs".  Note that a touchpad
+on a laptop is an absolute device to some degree.
+This (usually) avoids all the problems with mouse
+acceleration.  If x11vnc has trouble deducing the
+size of the device, use "abs=WxH".  Furthermore,
+if the device is a touchscreen (assumed to have an
+absolute pointer) use "touch" or "touch=WxH".
+For touchscreens, when a mouse button is pressed,
+a pressure increase is injected, and when the button
+is released a pressure of zero is injected.
+.IP
+If touch has been set, use "touch_always=1" to
+indicate whenever the mouse moves with no button
+pressed, a touch event of zero pressure should be
+sent anyway.  Also use "btn_touch=1" to indicate a
+BTN_TOUCH keystroke press or release should be sent
+instead of a pressure change.  Set "dragskip=n" to
+skip n dragged mouse touches (with pressure applied)
+before injecting one.  To indicate the pressure that
+should be sent when there is a button click for a
+touchscreen device, specify pressure=n, e.g. n=5. The
+default is n=1.
+.IP
+If a touch screen is being used ("touch" above)
+and it is having its input processed by tslib, you can
+specify the tslib calibration file via tslib_cal=<file>.
+For example, tslib_cal=/etc/pointercal.  To get accurate
+or even usable positioning this is required when tslib
+is in use.
+.IP
+The Linux uinput mechanism can be bypassed and one can
+write input events DIRECTLY to the devices instead.
+To do this, specify one or more of the following
+for the input classes: direct_rel=<device>
+direct_abs=<device> direct_btn=<device> or
+direct_key=<device>.  The <device> file is usually
+something like /dev/input/event1 but you can specify
+any device file or pipe.  You must specify each one
+of the above classes even if they correspond to the
+same device file (rel/abs and btn are often the same.)
+Look at the file /proc/bus/input/devices to get an idea
+what is available and the device filenames.  Note:
+The /dev/input/mouse* devices do not seem to work,
+use the corresponding /dev/input/event* file instead.
+Any input class not directly specified as above will be
+handled via the uinput mechanism.  To disable creating a
+uinput device (and thereby discarding unhandled input),
+specify "nouinput".
+.IP
+Examples:
+.IP
+\fB-pipeinput\fR UINPUT:direct_abs=/dev/input/event1
+.IP
+this was used on a qtmoko Neo freerunner (armel):
+.IP
+\fB-pipeinput\fR UINPUT:touch,tslib_cal=/etc/pointercal,
+direct_abs=/dev/input/event1,nouinput,dragskip=4
+.IP
+(where the long line has been split into two.)
+.IP
+You can set the env. var X11VNC_UINPUT_DEBUG=1 or higher
+to get debugging output for UINPUT mode.
 .PP
 \fB-macnodim\fR
 .IP

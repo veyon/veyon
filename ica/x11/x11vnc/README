@@ -2,7 +2,7 @@
 Copyright (C) 2002-2010 Karl J. Runge <runge@karlrunge.com>
 All rights reserved.
 
-x11vnc README file                         Date: Fri Sep 10 12:29:36 EDT 2010
+x11vnc README file                         Date: Tue Dec 21 11:45:35 EST 2010
 
 The following information is taken from these URLs:
 
@@ -241,7 +241,7 @@ to:     http://www.karlrunge.com/x11vnc/faq.html#faq-singleclick
      * Have x11vnc (0.9.3 or later) available to run on the remote host
        (i.e. in $PATH.)
      * Download and unpack a SSVNC bundle (1.0.19 or later, e.g.
-       ssvnc_no_windows-1.0.23.tar.gz) on the Viewer-side machine.
+       ssvnc_no_windows-1.0.28.tar.gz) on the Viewer-side machine.
      * Start the SSVNC Terminal Services mode GUI: ./ssvnc/bin/tsvnc
      * Enter your remote username@hostname (e.g. fred@far-away.east) in
        the "VNC Terminal Server" entry.
@@ -909,10 +909,43 @@ make
 
 
    Here are some features that will appear in the 0.9.13 release:
-     * Coming Soon!
+     * Improved support for non-X11 touchscreen devices (e.g. handheld or
+       cell phone) via Linux uinput input injection. Additional tuning
+       parameters are added. TSLIB touchscreen calibration is supported.
+       Tested on Qtmoko Neo Freerunner. A tool, misc/uinput.pl, is
+       provided to diagnose uinput behavior on new devices. The env.
+       vars. X11VNC_UINPUT_BUS and X11VNC_UINPUT_VERSION are available if
+       leaving them unset does not work.
+     * The Linux uinput non-X11 input injection can now be bypassed:
+       events can be directly written to the /dev/input/event devices
+       specified by the user (direct_abs=..., etc.) A -pipeinput input
+       injection helper script, misc/qt_tslib_inject.pl is provided as a
+       tweakable non-builtin direct input injection method.
+     * The list of new uinput parameters for the above two features is:
+       pressure, tslib_cal, touch_always, dragskip, btn_touch;
+       direct_rel, direct_abs, direct_btn, direct_key.
+     * The included SSL enabled Java VNC Viewers now handle Mouse Wheel
+       events.
+     * miscellaneous new features and changes: In -reflect mode, the
+       libvncclient connection can now have the pixel format modified via
+       the environment variables X11VNC_REFLECT_bitsPerSample,
+       X11VNC_REFLECT_samplesPerPixel, and X11VNC_REFLECT_bytesPerPixel
+     * In -create mode the following environment variables are added to
+       fine tune the behavior: FIND_DISPLAY_NO_LSOF: do not use lsof(1)
+       to try to determine the Linux VT, FIND_DISPLAY_NO_VT_FIND: do not
+       try to determine the Linux VT at all, X11VNC_CREATE_LC_ALL_C_OK:
+       do not bother undoing the setting LC_ALL=C that the create_display
+       script sets. The performance of the -create script has been
+       improved for large installations (100's of user sessions on one
+       machine.)
+     * In -unixpw mode, one can now Tab from login: to Password.
+     * An environment variable, X11VNC_SB_FACTOR, allows one to scale the
+       -sb screenblank sleep time from the default 2 secs.
+     * Documented that -grabkbd is no longer working with some/most
+       window managers (it can prevent resizing and menu posting.)
 
 
-   Here are some features that appeared in the 0.9.12 release:
+   Here are some features that appeared in the 0.9.12 release (Sep/2010):
      * One can now specify the maximum number of displays that can be
        created in -create mode via the env. var.
        X11VNC_CREATE_MAX_DISPLAYS
@@ -922,7 +955,7 @@ make
        killed by the display manager.
      * A compile time bug is fixed so that configuring using
        --with-system-libvncserver pointing to LibVNCServer 0.9.7 works
-       again. A bug from forced used of Xdefs.h is worked around.
+       again. A bug from forced use of Xdefs.h is worked around.
 
 
    Here are some features that appeared in the 0.9.11 release (Aug/2010):
@@ -2028,56 +2061,63 @@ http://www.karlrunge.com/x11vnc/faq.html:
    Q-114: Can I export via VNC a Webcam or TV tuner framebuffer using
    x11vnc? 
 
-   Q-115: Can I connect via VNC to a Qt-embedded/Qtopia application
-   running on my handheld or PC using the Linux console framebuffer (i.e.
-   not X11)? 
+   Q-115: Can I connect via VNC to a Qt-embedded/Qt-enhanced/Qtopia
+   application running on my handheld, cell phone, or PC using the Linux
+   console framebuffer (i.e. not X11)? 
 
-   Q-116: Now that non-X11 devices can be exported via VNC using x11vnc,
+   Q-116: How do I inject touch screen input into an
+   Qt-embedded/Qt-enhanced/Qtopia cell phone such as openmoko/qtmoko Neo
+   Freerunner? 
+
+   Q-117: Now that non-X11 devices can be exported via VNC using x11vnc,
    can I build it with no dependencies on X11 header files and libraries?
    
-   Q-117: Does x11vnc support Mac OS X Aqua/Quartz displays natively
+   Q-118: How do I cross compile x11vnc for a different architecture than
+   my Linux i386 or amd64 PC? 
+
+   Q-119: Does x11vnc support Mac OS X Aqua/Quartz displays natively
    (i.e. no X11 involved)? 
 
-   Q-118: Can x11vnc be used as a VNC reflector/repeater to improve
+   Q-120: Can x11vnc be used as a VNC reflector/repeater to improve
    performance for the case of a large number of simultaneous VNC viewers
    (e.g. classroom broadcasting or a large demo)? 
 
-   Q-119: Can x11vnc be used during a Linux, Solaris, etc. system
+   Q-121: Can x11vnc be used during a Linux, Solaris, etc. system
    Installation so the Installation can be done remotely? 
 
    [Misc: Clipboard, File Transfer/Sharing, Printing, Sound, Beeps,
    Thanks, etc.]
 
-   Q-120: Does the Clipboard/Selection get transferred between the
+   Q-122: Does the Clipboard/Selection get transferred between the
    vncviewer and the X display? 
 
-   Q-121: Can I use x11vnc to record a Shock Wave Flash (or other format)
+   Q-123: Can I use x11vnc to record a Shock Wave Flash (or other format)
    video of my desktop, e.g. to record a tutorial or demo? 
 
-   Q-122: Can I transfer files back and forth with x11vnc? 
+   Q-124: Can I transfer files back and forth with x11vnc? 
 
-   Q-123: Which UltraVNC extensions are supported? 
+   Q-125: Which UltraVNC extensions are supported? 
 
-   Q-124: Can x11vnc emulate UltraVNC's Single Click helpdesk mode for
+   Q-126: Can x11vnc emulate UltraVNC's Single Click helpdesk mode for
    Unix? I.e. something very simple for a naive user to initiate a
    reverse vnc connection from their Unix desktop to a helpdesk
    operator's VNC Viewer. 
 
-   Q-125: Can I (temporarily) mount my local (viewer-side) Windows/Samba
+   Q-127: Can I (temporarily) mount my local (viewer-side) Windows/Samba
    File share on the machine where x11vnc is running? 
 
-   Q-126: Can I redirect CUPS print jobs from the remote desktop where
+   Q-128: Can I redirect CUPS print jobs from the remote desktop where
    x11vnc is running to a printer on my local (viewer-side) machine? 
 
-   Q-127: How can I hear the sound (audio) from the remote applications
+   Q-129: How can I hear the sound (audio) from the remote applications
    on the desktop I am viewing via x11vnc? 
 
-   Q-128: Why don't I hear the "Beeps" in my X session (e.g. when typing
+   Q-130: Why don't I hear the "Beeps" in my X session (e.g. when typing
    tput bel in an xterm)? 
 
-   Q-129: Does x11vnc work with IPv6? 
+   Q-131: Does x11vnc work with IPv6? 
 
-   Q-130: Thanks for your program or for your help! Can I make a
+   Q-132: Thanks for your program or for your help! Can I make a
    donation? 
      _________________________________________________________________
 
@@ -7884,9 +7924,9 @@ minal #2)
    x11vnc.)
 
 
-   Q-115: Can I connect via VNC to a Qt-embedded/Qtopia application
-   running on my handheld or PC using the Linux console framebuffer (i.e.
-   not X11)?
+   Q-115: Can I connect via VNC to a Qt-embedded/Qt-enhanced/Qtopia
+   application running on my handheld, cell phone, or PC using the Linux
+   console framebuffer (i.e. not X11)?
 
    Yes, the basic method for this is the -rawfb scheme where the Linux
    console framebuffer (usually /dev/fb0) is polled and the uinput driver
@@ -7945,10 +7985,50 @@ minal #2)
    Update: We are finding some setups like Qtopia on the IPAQ do not
    allow mouse input via uinput. Please help us debug this problem by
    trying x11vnc on your device and letting us know what does and does
-   not work.
+   not work. See the next FAQ for a possible workaround for touchscreens.
 
 
-   Q-116: Now that non-X11 devices can be exported via VNC using x11vnc,
+   Q-116: How do I inject touch screen input into an
+   Qt-embedded/Qt-enhanced/Qtopia cell phone such as openmoko/qtmoko Neo
+   Freerunner?
+
+   The qtmoko project does not use X11 for the graphical display.
+   Unfortunately the Linux uinput method described in the previous FAQ
+   does not work because Qt is using TSLIB (touch screen library) to
+   process the input and it only reads from one device (often
+   /dev/input/event1) and not from the new UINPUT device that x11vnc
+   creates (under -pipeinput UINPUT)
+
+   So something else needs to be done. It was discovered that by simply
+   writing the touchscreen events directly to /dev/input/event1 then
+   input can be injected into the system. There is no x11vnc builtin mode
+   for this yet (until we understand it better), but there is a working
+   script provided in x11vnc/misc/qt_tslib_inject.pl. So one could use it
+   this way for example:
+  x11vnc ... -rawfb console -pipeinput path/to/qt_tslib_inject.pl -env INJECT_O
+PTIONS=clickonly,cal=/etc/pointercal
+
+   Read the script for how to enable other options and what the above
+   options mean (e.g. /etc/pointercal contains TSLIB's calibration
+   parameters and are necessary to achieve accurate pointing.)
+
+   The x11vnc/misc/qt_tslib_inject.pl script can potentially be modified
+   to handle other devices where the uinput method fails. It could also
+   be modified to create 'hot keys', etc.
+
+   Please let us know how things go if you try this out; there is much to
+   learn about synthetic input injection in handhelds and cell phones. As
+   we learn more we can develop a builtin x11vnc mode for this sort of
+   injection.
+
+   Update Dec/2010: There is experimental built-in UINPUT support in the
+   x11vnc development tarball for qtmoko with touchpad managed by tslib.
+   See -pipeinput UINPUT for more info. Here is an example:
+   x11vnc -rawfb console -pipeinput UINPUT:touch,tslib_cal=/etc/pointercal,dire
+ct_abs=/dev/input/event1,nouinput,dragskip=3
+
+
+   Q-117: Now that non-X11 devices can be exported via VNC using x11vnc,
    can I build it with no dependencies on X11 header files and libraries?
 
    Yes, as of Jul/2006 x11vnc enables building for -rawfb only support.
@@ -7962,7 +8042,40 @@ minal #2)
    know what you did.
 
 
-   Q-117: Does x11vnc support Mac OS X Aqua/Quartz displays natively
+   Q-118: How do I cross compile x11vnc for a different architecture than
+   my Linux i386 or amd64 PC?
+
+   You will need a cross-compiling toolchain. Perhaps your distro
+   provides these or you can find a HOWTO for your distro. We found a
+   nice one at qtmoko.org for building armel binaries on Debian Linux
+   i386 machines. It includes most of the libraries that x11vnc needs. We
+   use that example here.
+
+   We ran this script to set PATH, configure, and build:
+#!/bin/sh
+
+# toolchain from: qtmoko-debian-toolchain-armv4t-eabi.tar.gz
+
+export PATH=/opt/toolchains/arm920t-eabi/bin:$PATH
+
+env CC=arm-linux-gcc ./configure --host=arm-linux --without-avahi
+
+make
+
+arm-linux-strip ./x11vnc/x11vnc
+ls -l ./x11vnc/x11vnc
+
+   Note we had to include --without-avahi due to lack of
+   libavahi-client.so.3 supplied by the toolchain we used. One would need
+   to add it if it was desired on the target machine. We also stripped
+   the binary to make it smaller.
+
+   For an embedded system one may also want to add --without-x if the
+   embedded system does not use X11 and the -rawfb mechanism must be
+   used.
+
+
+   Q-119: Does x11vnc support Mac OS X Aqua/Quartz displays natively
    (i.e. no X11 involved)?
 
    Yes, since Nov/2006 in the development tree (x11vnc-0.8.4 tarball)
@@ -8086,7 +8199,7 @@ ONLY do that for Mac OS X 10.5.x and NOT for 10.6.x (which doesn't
 need it anyway).
 
 
-   Q-118: Can x11vnc be used as a VNC reflector/repeater to improve
+   Q-120: Can x11vnc be used as a VNC reflector/repeater to improve
    performance for the case of a large number of simultaneous VNC viewers
    (e.g. classroom broadcasting or a large demo)?
 
@@ -8195,7 +8308,7 @@ need it anyway).
    us know what you did. A really nice thing would be some sort of
    auto-discovery of your repeater, etc...
 
-   Q-119: Can x11vnc be used during a Linux, Solaris, etc. system
+   Q-121: Can x11vnc be used during a Linux, Solaris, etc. system
    Installation so the Installation can be done remotely?
 
    This can be done, but it doesn't always work because it depends on how
@@ -8288,7 +8401,7 @@ need it anyway).
    [Misc: Clipboard, File Transfer/Sharing, Printing, Sound, Beeps,
    Thanks, etc.]
 
-   Q-120: Does the Clipboard/Selection get transferred between the
+   Q-122: Does the Clipboard/Selection get transferred between the
    vncviewer and the X display?
 
    As of Jan/2004 x11vnc supports the "CutText" part of the RFB (aka VNC)
@@ -8342,7 +8455,7 @@ need it anyway).
    cutbuffers.
 
 
-   Q-121: Can I use x11vnc to record a Shock Wave Flash (or other format)
+   Q-123: Can I use x11vnc to record a Shock Wave Flash (or other format)
    video of my desktop, e.g. to record a tutorial or demo?
 
    Yes, it is possible with a number of tools that record VNC and
@@ -8354,7 +8467,7 @@ need it anyway).
    parameters should be applied to x11vnc to speed up its polling for
    this sort of application, e.g. "-wait 10 -defer 10".
 
-   Q-122: Can I transfer files back and forth with x11vnc?
+   Q-124: Can I transfer files back and forth with x11vnc?
 
    As of Oct/2005 and May/2006 x11vnc enables, respectively, the TightVNC
    and UltraVNC file transfer implementations that were added to
@@ -8402,7 +8515,7 @@ need it anyway).
    control you will probably be foiled by the "-rfbversion 3.6" issue.
 
 
-   Q-123: Which UltraVNC extensions are supported?
+   Q-125: Which UltraVNC extensions are supported?
 
    Some of them are supported. To get UltraVNC Viewers to attempt to use
    these extensions you will need to supply this option to x11vnc:
@@ -8432,7 +8545,7 @@ need it anyway).
    ultravnc_repeater.pl
 
 
-   Q-124: Can x11vnc emulate UltraVNC's Single Click helpdesk mode for
+   Q-126: Can x11vnc emulate UltraVNC's Single Click helpdesk mode for
    Unix? I.e. something very simple for a naive user to initiate a
    reverse vnc connection from their Unix desktop to a helpdesk
    operator's VNC Viewer.
@@ -8670,7 +8783,7 @@ connect = localhost:5501
    You will find the details here.
 
 
-   Q-125: Can I (temporarily) mount my local (viewer-side) Windows/Samba
+   Q-127: Can I (temporarily) mount my local (viewer-side) Windows/Samba
    File share on the machine where x11vnc is running?
 
    You will have to use an external network redirection for this.
@@ -8720,7 +8833,7 @@ d,ip=127.0.0.1,port=1139
    Sep 2006 it is there for testing.)
 
 
-   Q-126: Can I redirect CUPS print jobs from the remote desktop where
+   Q-128: Can I redirect CUPS print jobs from the remote desktop where
    x11vnc is running to a printer on my local (viewer-side) machine?
 
    You will have to use an external network redirection for this.
@@ -8812,7 +8925,7 @@ d,ip=127.0.0.1,port=1139
    Sep 2006 it is there for testing.)
 
 
-   Q-127: How can I hear the sound (audio) from the remote applications
+   Q-129: How can I hear the sound (audio) from the remote applications
    on the desktop I am viewing via x11vnc?
 
    You will have to use an external network audio mechanism for this.
@@ -8913,7 +9026,7 @@ or:
        provide (as of Sep/2006 it is there for testing.)
 
 
-   Q-128: Why don't I hear the "Beeps" in my X session (e.g. when typing
+   Q-130: Why don't I hear the "Beeps" in my X session (e.g. when typing
    tput bel in an xterm)?
 
    As of Dec/2003 "Beep" XBell events are tracked by default. The X
@@ -8926,7 +9039,7 @@ or:
    redirector such as esd.
 
 
-   Q-129: Does x11vnc work with IPv6?
+   Q-131: Does x11vnc work with IPv6?
 
    Update: as of Apr/2010 in the 0.9.10 x11vnc development tarball, there
    is now built-in support for IPv6 (128 bit internet addresses.) See the
@@ -9025,7 +9138,7 @@ or:
 
     Contributions:
 
-   Q-130: Thanks for your program or for your help! Can I make a
+   Q-132: Thanks for your program or for your help! Can I make a
    donation?
 
    Please do (any amount is appreciated; very few have donated) and thank
@@ -12172,7 +12285,7 @@ x11vnc: a VNC server for real X displays
    Here are all of x11vnc command line options:
 % x11vnc -opts      (see below for -help long descriptions)
 
-x11vnc: allow VNC connections to real X11 displays. 0.9.13 lastmod: 2010-09-10
+x11vnc: allow VNC connections to real X11 displays. 0.9.13 lastmod: 2010-12-20
 
 x11vnc options:
   -display disp            -auth file               -N                     
@@ -12193,83 +12306,83 @@ x11vnc options:
   -vncconnect              -novncconnect            -allow host1[,host2..] 
   -localhost               -listen6 str             -nolookup              
   -input string            -grabkbd                 -grabptr               
-  -grabalways              -viewpasswd string       -passwdfile filename   
-  -showrfbauth filename    -unixpw [list]           -unixpw_nis [list]     
-  -unixpw_cmd cmd          -find                    -finddpy               
-  -listdpy                 -findauth [disp]         -create                
-  -xdummy                  -xvnc                    -xvnc_redirect         
-  -xdummy_xvfb             -create_xsrv str         -svc                   
-  -svc_xdummy              -svc_xvnc                -svc_xdummy_xvfb       
-  -xdmsvc                  -sshxdmsvc               -unixpw_system_greeter 
-  -redirect port           -display WAIT:...        -vencrypt mode         
-  -anontls mode            -sslonly                 -dhparams file         
-  -nossl                   -ssl [pem]               -ssltimeout n          
-  -sslnofail               -ssldir dir              -sslverify path        
-  -sslCRL path             -sslGenCA [dir]          -sslGenCert type name  
-  -sslEncKey pem           -sslCertInfo pem         -sslDelCert pem        
-  -sslScripts              -stunnel [pem]           -stunnel3  [pem]       
-  -enc cipher:keyfile      -https [port]            -httpsredir [port]     
-  -http_oneport            -ssh user@host:disp      -usepw                 
-  -storepasswd pass file   -nopw                    -accept string         
-  -afteraccept string      -gone string             -users list            
-  -noshm                   -flipbyteorder           -onetile               
-  -solid [color]           -blackout string         -xinerama              
-  -noxinerama              -xtrap                   -xrandr [mode]         
-  -rotate string           -padgeom WxH             -o logfile             
-  -flag file               -rmflag file             -rc filename           
-  -norc                    -env VAR=VALUE           -prog /path/to/x11vnc  
-  -h, -help                -?, -opts                -V, -version           
-  -license                 -dbg                     -q, -quiet             
-  -v, -verbose             -bg                      -modtweak              
-  -nomodtweak              -xkb                     -noxkb                 
-  -capslock                -skip_lockkeys           -noskip_lockkeys       
-  -skip_keycodes string    -sloppy_keys             -skip_dups             
-  -noskip_dups             -add_keysyms             -noadd_keysyms         
-  -clear_mods              -clear_keys              -clear_all             
-  -remap string            -norepeat                -repeat                
-  -nofb                    -nobell                  -nosel                 
-  -noprimary               -nosetprimary            -noclipboard           
-  -nosetclipboard          -seldir string           -cursor [mode]         
-  -nocursor                -cursor_drag             -arrow n               
-  -noxfixes                -alphacut n              -alphafrac fraction    
-  -alpharemove             -noalphablend            -nocursorshape         
-  -cursorpos               -nocursorpos             -xwarppointer          
-  -noxwarppointer          -always_inject           -buttonmap string      
-  -nodragging              -ncache n                -ncache_cr             
-  -ncache_no_moveraise     -ncache_no_dtchange      -ncache_no_rootpixmap  
-  -ncache_keep_anims       -ncache_old_wm           -ncache_pad n          
-  -debug_ncache            -wireframe [str]         -nowireframe           
-  -nowireframelocal        -wirecopyrect mode       -nowirecopyrect        
-  -debug_wireframe         -scrollcopyrect mode     -noscrollcopyrect      
-  -scr_area n              -scr_skip list           -scr_inc list          
-  -scr_keys list           -scr_term list           -scr_keyrepeat lo-hi   
-  -scr_parms string        -fixscreen string        -debug_scroll          
-  -noxrecord               -grab_buster             -nograb_buster         
-  -debug_grabs             -debug_sel               -pointer_mode n        
-  -input_skip n            -allinput                -input_eagerly         
-  -speeds rd,bw,lat        -wmdt string             -debug_pointer         
-  -debug_keyboard          -defer time              -wait time             
-  -extra_fbur n            -wait_ui factor          -setdefer n            
-  -nowait_bog              -slow_fb time            -xrefresh time         
-  -nap                     -nonap                   -sb time               
-  -readtimeout n           -ping n                  -nofbpm                
-  -fbpm                    -nodpms                  -dpms                  
-  -forcedpms               -clientdpms              -noserverdpms          
-  -noultraext              -chatwindow              -noxdamage             
-  -xd_area A               -xd_mem f                -sigpipe string        
-  -threads                 -nothreads               -fs f                  
-  -gaps n                  -grow n                  -fuzz n                
-  -debug_tiles             -snapfb                  -rawfb string          
-  -freqtab file            -pipeinput cmd           -macnodim              
-  -macnosleep              -macnosaver              -macnowait             
-  -macwheel n              -macnoswap               -macnoresize           
-  -maciconanim n           -macmenu                 -macuskbd              
-  -gui [gui-opts]          -remote command          -query variable        
-  -QD variable             -sync                    -query_retries str     
-  -remote_prefix str       -noremote                -yesremote             
-  -unsafe                  -safer                   -privremote            
-  -nocmds                  -allowedcmds list        -deny_all              
-
+  -ungrabboth              -grabalways              -viewpasswd string     
+  -passwdfile filename     -showrfbauth filename    -unixpw [list]         
+  -unixpw_nis [list]       -unixpw_cmd cmd          -find                  
+  -finddpy                 -listdpy                 -findauth [disp]       
+  -create                  -xdummy                  -xvnc                  
+  -xvnc_redirect           -xdummy_xvfb             -create_xsrv str       
+  -svc                     -svc_xdummy              -svc_xvnc              
+  -svc_xdummy_xvfb         -xdmsvc                  -sshxdmsvc             
+  -unixpw_system_greeter   -redirect port           -display WAIT:...      
+  -vencrypt mode           -anontls mode            -sslonly               
+  -dhparams file           -nossl                   -ssl [pem]             
+  -ssltimeout n            -sslnofail               -ssldir dir            
+  -sslverify path          -sslCRL path             -sslGenCA [dir]        
+  -sslGenCert type name    -sslEncKey pem           -sslCertInfo pem       
+  -sslDelCert pem          -sslScripts              -stunnel [pem]         
+  -stunnel3  [pem]         -enc cipher:keyfile      -https [port]          
+  -httpsredir [port]       -http_oneport            -ssh user@host:disp    
+  -usepw                   -storepasswd pass file   -nopw                  
+  -accept string           -afteraccept string      -gone string           
+  -users list              -noshm                   -flipbyteorder         
+  -onetile                 -solid [color]           -blackout string       
+  -xinerama                -noxinerama              -xtrap                 
+  -xrandr [mode]           -rotate string           -padgeom WxH           
+  -o logfile               -flag file               -rmflag file           
+  -rc filename             -norc                    -env VAR=VALUE         
+  -prog /path/to/x11vnc    -h, -help                -?, -opts              
+  -V, -version             -license                 -dbg                   
+  -q, -quiet               -v, -verbose             -bg                    
+  -modtweak                -nomodtweak              -xkb                   
+  -noxkb                   -capslock                -skip_lockkeys         
+  -noskip_lockkeys         -skip_keycodes string    -sloppy_keys           
+  -skip_dups               -noskip_dups             -add_keysyms           
+  -noadd_keysyms           -clear_mods              -clear_keys            
+  -clear_all               -remap string            -norepeat              
+  -repeat                  -nofb                    -nobell                
+  -nosel                   -noprimary               -nosetprimary          
+  -noclipboard             -nosetclipboard          -seldir string         
+  -cursor [mode]           -nocursor                -cursor_drag           
+  -arrow n                 -noxfixes                -alphacut n            
+  -alphafrac fraction      -alpharemove             -noalphablend          
+  -nocursorshape           -cursorpos               -nocursorpos           
+  -xwarppointer            -noxwarppointer          -always_inject         
+  -buttonmap string        -nodragging              -ncache n              
+  -ncache_cr               -ncache_no_moveraise     -ncache_no_dtchange    
+  -ncache_no_rootpixmap    -ncache_keep_anims       -ncache_old_wm         
+  -ncache_pad n            -debug_ncache            -wireframe [str]       
+  -nowireframe             -nowireframelocal        -wirecopyrect mode     
+  -nowirecopyrect          -debug_wireframe         -scrollcopyrect mode   
+  -noscrollcopyrect        -scr_area n              -scr_skip list         
+  -scr_inc list            -scr_keys list           -scr_term list         
+  -scr_keyrepeat lo-hi     -scr_parms string        -fixscreen string      
+  -debug_scroll            -noxrecord               -grab_buster           
+  -nograb_buster           -debug_grabs             -debug_sel             
+  -pointer_mode n          -input_skip n            -allinput              
+  -input_eagerly           -speeds rd,bw,lat        -wmdt string           
+  -debug_pointer           -debug_keyboard          -defer time            
+  -wait time               -extra_fbur n            -wait_ui factor        
+  -setdefer n              -nowait_bog              -slow_fb time          
+  -xrefresh time           -nap                     -nonap                 
+  -sb time                 -readtimeout n           -ping n                
+  -nofbpm                  -fbpm                    -nodpms                
+  -dpms                    -forcedpms               -clientdpms            
+  -noserverdpms            -noultraext              -chatwindow            
+  -noxdamage               -xd_area A               -xd_mem f              
+  -sigpipe string          -threads                 -nothreads             
+  -fs f                    -gaps n                  -grow n                
+  -fuzz n                  -debug_tiles             -snapfb                
+  -rawfb string            -freqtab file            -pipeinput cmd         
+  -macnodim                -macnosleep              -macnosaver            
+  -macnowait               -macwheel n              -macnoswap             
+  -macnoresize             -maciconanim n           -macmenu               
+  -macuskbd                -gui [gui-opts]          -remote command        
+  -query variable          -QD variable             -sync                  
+  -query_retries str       -remote_prefix str       -noremote              
+  -yesremote               -unsafe                  -safer                 
+  -privremote              -nocmds                  -allowedcmds list      
+  -deny_all              
 
 LibVNCServer options:
 -rfbport port          TCP port for RFB protocol
@@ -12303,7 +12416,7 @@ libvncserver-tight-extension options:
 
 % x11vnc -help
 
-x11vnc: allow VNC connections to real X11 displays. 0.9.13 lastmod: 2010-09-10
+x11vnc: allow VNC connections to real X11 displays. 0.9.13 lastmod: 2010-12-20
 
 (type "x11vnc -opts" to just list the options.)
 
@@ -13085,6 +13198,12 @@ Options:
                        Some degree of cooperation from the person at the
                        display is assumed.  This is intended for remote
                        help-desk or educational usage modes.
+
+                       Note: on some recent (12/2010) X servers and/or
+                       desktops, -grabkbd no longer works: it prevents the
+                       window manager from resizing windows and similar things.
+                       Try -ungrabboth below (might not work.)
+
 -grabptr               As -grabkbd, but for the mouse pointer using
                        XGrabPointer(3X11).  Unfortunately due to the way the X
                        server works, the mouse can still be moved around by the
@@ -13093,6 +13212,11 @@ Options:
                        that call XGrabServer(3X11) for resizes, etc, will
                        act on the local user's input.  Again, some degree of
                        cooperation from the person at the display is assumed.
+
+-ungrabboth            Whenever there is any input (either keyboard or
+                       pointer), ungrab *both* the keyboard and the pointer
+                       while injecting the synthetic input.  This is to allow
+                       window managers, etc. a chance to grab.
 
 -grabalways            Apply both -grabkbd and -grabptr even when no VNC
                        viewers are connected.  If you only want one of them,
@@ -13639,6 +13763,15 @@ Options:
 
                             xauth extract - $DISPLAY"
 
+                       NOTE: As specified in the previous paragraph, you can
+                       supply your own WAIT:cmd=... program or script, BUT
+                       there are two very useful *BUILT-IN* ones: FINDDISPLAY
+                       (alias -find above) and FINDCREATEDISPLAY (alias -create
+                       above.)  Most people use these instead of creating
+                       their own script.  Read the following (especially the
+                       BUILT-IN modes sections) to see how to configure these
+                       two useful builtin -display WAIT: modes.
+
                        In the case of -unixpw (and -unixpw_nis only if x11vnc
                        is running as root), then the cmd= command is run
                        as the user who just authenticated via the login and
@@ -13669,6 +13802,11 @@ Options:
                        type and enter your password incorrectly, to retrieve
                        your long "login:" line press the Up arrow once
                        (before typing anything else).
+
+                       Most of these colon options only apply to the builtin
+                       FINDDISPLAY and FINDCREATEDISPLAY modes, but note
+                       that they are passed to the extrenal command in the
+                       environment as well and so could be used.
 
                        In the login panel, press F1 to get a list of the
                        available options that you can add after the username.
@@ -13703,23 +13841,19 @@ Options:
                        and the user put "geom=1600x1200" in his
                        ~/.x11vnc_create file.
 
-                       To troubleshoot the FINDCREATEDISPLAY mechanism,
-                       set the following env. var. to an output log file,
-                       e.g -env CREATE_DISPLAY_OUTPUT=/tmp/mydebug.txt
-
                        To disable the option setting set the environment
                        variable X11VNC_NO_UNIXPW_OPTS=1 before starting x11vnc.
                        To set any other options, the user can use the gui
                        (x11vnc -gui connect) or the remote control method
                        (x11vnc -R opt:val) during his VNC session.
 
-                       The combination of -display WAIT:cmd=... and -unixpw
-                       allows automatic pairing of an unix authenticated VNC
-                       user with his desktop.  This could be very useful on
-                       SunRays and also any system where multiple users share
-                       a given machine.  The user does not need to remember
-                       special ports or passwords set up for his desktop
-                       and VNC.
+                       So we see the combination of -display WAIT:cmd=... and
+                       -unixpw allows automatic pairing of an unix
+                       authenticated VNC user with his desktop.  This could
+                       be very useful on SunRays and also any system where
+                       multiple users share a given machine.  The user does
+                       not need to remember special ports or passwords set up
+                       for his desktop and VNC.
 
                        A nice way to use WAIT:cmd=... is out of inetd(8)
                        (it automatically forks a new x11vnc for each user).
@@ -13731,13 +13865,15 @@ Options:
                        process that will not switch, but it is only encoding
                        and decoding the encrypted stream at that point.
 
-                       Automatic Finding of User X Sessions:
+                       BUILT-IN modes:
+
+                       -- Automatic Finding of User X Sessions --
 
                        As a special case, WAIT:cmd=FINDDISPLAY will run a
                        script that works on most Unixes to determine a user's
                        DISPLAY variable and xauthority data (see who(1)).
 
-                       The option "-find" is an alias for this mode.
+                       NOTE: The option "-find" is an alias for this mode.
 
                        To have this default script printed to stdout (e.g. for
                        customization) run with WAIT:cmd=FINDDISPLAY-print To
@@ -13781,7 +13917,12 @@ Options:
                        X11VNC_SKIP_DISPLAY=all then all display finding fails
                        as if you set X11VNC_FINDDISPLAY_ALWAYS_FAILS=1 (below.)
 
-                       Automatic Creation of User X Sessions:
+                       On some systems lsof(1) can be very slow.  Set the
+                       env. var. FIND_DISPLAY_NO_LSOF=1 to skip using lsof to
+                       try to find the Linux VT the X server is running on.
+                       set FIND_DISPLAY_NO_VT_FIND=1 to avoid looking at all.
+
+                       -- Automatic Creation of User X Sessions --
 
                        An interesting option is WAIT:cmd=FINDCREATEDISPLAY
                        that is like FINDDISPLAY in that is uses the same method
@@ -13790,12 +13931,18 @@ Options:
                        for the user.  This is the only time x11vnc tries to
                        actually start up an X server.
 
-                       The option "-create" is an alias for this mode.
+                       NOTE: The option "-create" is an alias for this mode.
 
                        It will start looking for an open display number at :20
                        Override via X11VNC_CREATE_STARTING_DISPLAY_NUMBER=n
                        By default 80 X displays are allowed (i.e. going to :99)
                        Override via X11VNC_CREATE_MAX_DISPLAYS=n
+
+                       For its heuristics, the create display script sets
+                       LC_ALL=C so that command output is uniform.  By default
+                       it will try to restore LC_ALL right before starting the
+                       user session.  However, if you don't mind it keeping
+                       LC_ALL=C set the env. var.: X11VNC_CREATE_LC_ALL_C_OK=1
 
                        By default FINDCREATEDISPLAY will try Xvfb and then
                        Xdummy:
@@ -13822,6 +13969,10 @@ Options:
                        The user must exit the X session in the usual way for
                        it to terminate (or kill the X server process if all
                        else fails).
+
+                       To troubleshoot the FINDCREATEDISPLAY mechanism,
+                       set the following env. var. to an output log file,
+                       e.g -env CREATE_DISPLAY_OUTPUT=/tmp/mydebug.txt
 
                        So this is a somewhat odd mode for x11vnc in that it
                        will start up and poll virtual X servers!  This can
@@ -16302,6 +16453,7 @@ t
 -sb time               Time in seconds after NO activity (e.g. screen blank)
                        to really throttle down the screen polls (i.e. sleep
                        for about 1.5 secs). Use 0 to disable.  Default: 60
+                       Set the env. var. X11VNC_SB_FACTOR to scale it.
 
 -readtimeout n         Set LibVNCServer rfbMaxClientWait to n seconds. On
                        slow links that take a long time to paint the first
@@ -16749,18 +16901,19 @@ er
                        using the 'console_guess' string printed at startup,
                        be sure to indicate the snap: method.
 
-                       uinput: If the Linux version appears to be 2.6 or
-                       later and the "uinput" module appears to be present
-                       (modprobe uinput), then the uinput method will be used
-                       instead of /dev/ttyN.  uinput allows insertion of BOTH
-                       keystrokes and mouse input and so it preferred when
-                       accessing graphical (e.g. QT-embedded) linux console
-                       apps.  See -pipeinput UINPUT below for more information
-                       on this mode; you will have to use -pipeinput if you
-                       want to tweak any UINPUT parameters.  You may also want
-                       to also use the -nodragging and -cursor none options.
-                       Use "console0", etc  or -pipeinput CONSOLE to force
-                       the /dev/ttyN method.
+                       uinput: If the Linux version appears to be 2.6
+                       or later and the "uinput" module appears to be
+                       present (modprobe uinput), then the uinput method
+                       will be used instead of /dev/ttyN.  uinput allows
+                       insertion of BOTH keystrokes and mouse input and so it
+                       preferred when accessing graphical (e.g. QT-embedded)
+                       linux console apps.  It also provides more accurate
+                       keystroke insertion.  See -pipeinput UINPUT below for
+                       more information on this mode; you will have to use
+                       -pipeinput if you want to tweak any UINPUT parameters.
+                       You may also want to also use the -nodragging and
+                       -cursor none options.  Use "console0", etc  or
+                       -pipeinput CONSOLE to force the /dev/ttyN method.
 
                        Note you can change the Linux VT remotely using the
                        chvt(1) command to make the one you want be the active
@@ -16800,7 +16953,11 @@ er
                        to improve performance in the case of many (e.g. >
                        10) simultaneous VNC viewers, and you try a divide
                        and conquer scheme to reduce bandwidth and improve
-                       responsiveness.
+                       responsiveness.  (However, another user found this mode
+                       useful to export a demo display through a slow link:
+                       then multiple demo viewers connected to the reflecting
+                       x11vnc on the fast side of the link, and so avoided
+                       all of the demo viewers going through the slow link.)
 
                        For example, if there will be 64 simultaneous VNC
                        viewers this can lead to a lot of redundant VNC traffic
@@ -16830,6 +16987,13 @@ er
                        the password needed to log into the vnc host server, or
                        to "file:path_to_file" to indicate a file containing
                        the password as its first line.
+
+                       To set the pixel format that x11vnc requests as a VNC
+                       CLIENT set the env. vars: X11VNC_REFLECT_bitsPerSample
+                       X11VNC_REFLECT_samplesPerPixel, and
+                       X11VNC_REFLECT_bytesPerPixel; the defaults are 8, 3, 4.
+                       2, 3, 1 would give a low color mode.  See the function
+                       rfbGetClient() in libvncclient for more info.
 
                        The VNC HOST mode implies -shared.  Use -noshared as
                        a subsequent cmdline option to disable sharing.
@@ -16893,7 +17057,8 @@ er
 
                        The UINPUT mode currently only does US keyboards (a
                        scan code option may be added), and not all keysyms
-                       are supported.
+                       are supported.  But it is probably more accurate than
+                       the "CONSOLE" method.
 
                        You may want to use the options -cursor none and
                        -nodragging in this mode.
@@ -16933,16 +17098,6 @@ er
                        cause jerkiness or unexpected behavior with menus, etc.
                        Use reset=0 to disable.
 
-                       If the uinput device has an absolute pointer (as opposed
-                       to a normal mouse that is a relative pointer) you can
-                       specify the option "abs".  Note that a touchpad
-                       on a laptop is an absolute device to some degree.
-                       This (usually) avoids all the problems with mouse
-                       acceleration.  If x11vnc has trouble deducing the size
-                       of the device, use "abs=WxH".  Furthermore, if the
-                       device is a touchscreen (assumed to have an absolute
-                       pointer) use "touch" or "touch=WxH".
-
                        If you set the env. var X11VNC_UINPUT_THRESHOLDS then
                        the thresh=n mode will be enabled.  It is currently
                        not working well.  If |dx| <= thresh and |dy| < thresh
@@ -16952,8 +17107,70 @@ er
                        Example:
                            -pipeinput UINPUT:accel=4.0 -cursor none
 
-                       You can also set the env. var X11VNC_UINPUT_DEBUG=1 or
-                       higher to get debugging output for UINPUT mode.
+                       If the uinput device has an absolute pointer (as opposed
+                       to a normal mouse that is a relative pointer) you can
+                       specify the option "abs".  Note that a touchpad
+                       on a laptop is an absolute device to some degree.
+                       This (usually) avoids all the problems with mouse
+                       acceleration.  If x11vnc has trouble deducing the
+                       size of the device, use "abs=WxH".  Furthermore,
+                       if the device is a touchscreen (assumed to have an
+                       absolute pointer) use "touch" or "touch=WxH".
+                       For touchscreens, when a mouse button is pressed,
+                       a pressure increase is injected, and when the button
+                       is released a pressure of zero is injected.
+
+                       If touch has been set, use "touch_always=1" to
+                       indicate whenever the mouse moves with no button
+                       pressed, a touch event of zero pressure should be
+                       sent anyway.  Also use "btn_touch=1" to indicate a
+                       BTN_TOUCH keystroke press or release should be sent
+                       instead of a pressure change.  Set "dragskip=n" to
+                       skip n dragged mouse touches (with pressure applied)
+                       before injecting one.  To indicate the pressure that
+                       should be sent when there is a button click for a
+                       touchscreen device, specify pressure=n, e.g. n=5. The
+                       default is n=1.
+
+                       If a touch screen is being used ("touch" above)
+                       and it is having its input processed by tslib, you can
+                       specify the tslib calibration file via tslib_cal=<file>.
+                       For example, tslib_cal=/etc/pointercal.  To get accurate
+                       or even usable positioning this is required when tslib
+                       is in use.
+
+                       The Linux uinput mechanism can be bypassed and one can
+                       write input events DIRECTLY to the devices instead.
+                       To do this, specify one or more of the following
+                       for the input classes: direct_rel=<device>
+                       direct_abs=<device> direct_btn=<device> or
+                       direct_key=<device>.  The <device> file is usually
+                       something like /dev/input/event1 but you can specify
+                       any device file or pipe.  You must specify each one
+                       of the above classes even if they correspond to the
+                       same device file (rel/abs and btn are often the same.)
+                       Look at the file /proc/bus/input/devices to get an idea
+                       what is available and the device filenames.  Note:
+                       The /dev/input/mouse* devices do not seem to work,
+                       use the corresponding /dev/input/event* file instead.
+                       Any input class not directly specified as above will be
+                       handled via the uinput mechanism.  To disable creating a
+                       uinput device (and thereby discarding unhandled input),
+                       specify "nouinput".
+
+                       Examples:
+
+                         -pipeinput UINPUT:direct_abs=/dev/input/event1
+
+                       this was used on a qtmoko Neo freerunner (armel):
+
+                         -pipeinput UINPUT:touch,tslib_cal=/etc/pointercal,
+                          direct_abs=/dev/input/event1,nouinput,dragskip=4
+
+                       (where the long line has been split into two.)
+
+                       You can set the env. var X11VNC_UINPUT_DEBUG=1 or higher
+                       to get debugging output for UINPUT mode.
 
 -macnodim              For the native MacOSX server, disable dimming.
 -macnosleep            For the native MacOSX server, disable display sleep.

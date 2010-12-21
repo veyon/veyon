@@ -2965,7 +2965,17 @@ static void nap_check(int tile_cnt) {
 	now = time(NULL);
 
 	if (screen_blank > 0) {
-		int dt_ev, dt_fbu, ms = 2000;
+		int dt_ev, dt_fbu;
+		static int ms = 0;
+		if (ms == 0) {
+			ms = 2000;
+			if (getenv("X11VNC_SB_FACTOR")) {
+				ms = ms * atof(getenv("X11VNC_SB_FACTOR"));
+			}
+			if (ms <= 0) {
+				ms = 2000;
+			}
+		}
 
 		/* if no activity, pause here for a second or so. */
 		dt_ev  = (int) (now - last_event);

@@ -1,0 +1,1553 @@
+
+x11vnc 0.9.13	2010-12-20
+
+New in the 0.9.13 x11vnc release:
+
+	Improved support for non-X11 touchscreen devices (e.g. handheld or
+		cell phone) via Linux uinput input injection.  Additional
+		tuning parameters are added. TSLIB touchscreen calibration
+		is supported. Tested on Qtmoko Neo Freerunner.
+
+		A tool, misc/uinput.pl, is provided to diagnose uinput
+		behavior on new devices.
+
+		The env. vars. X11VNC_UINPUT_BUS and X11VNC_UINPUT_VERSION
+		are available if leaving them unset does not work.
+
+	The Linux uinput non-X11 input injection can now be bypassed:
+		events can be directly written to the /dev/input/event
+		devices specified by the user (direct_abs=..., etc.)
+
+		A -pipeinput input injection helper script,
+		misc/qt_tslib_inject.pl is provided as a tweakable
+		non-builtin direct input injection method.
+
+	The list of new uinput parameters for the above two features is:
+		pressure, tslib_cal, touch_always, dragskip, btn_touch;
+		direct_rel, direct_abs, direct_btn, direct_key.
+
+	The included SSL enabled Java VNC Viewers now handle Mouse
+		Wheel events.
+
+
+  miscellaneous new features and changes:
+
+	In -reflect mode, the libvncclient connection can now have
+		the pixel format modified via the environment
+		variables X11VNC_REFLECT_bitsPerSample,
+		X11VNC_REFLECT_samplesPerPixel, and
+		X11VNC_REFLECT_bytesPerPixel
+
+	In -create mode the following environment variables are added
+		to fine tune the behavior: FIND_DISPLAY_NO_LSOF:
+		do not use lsof(1) to try to determine the Linux VT,
+		FIND_DISPLAY_NO_VT_FIND: do not try to determine the
+		Linux VT at all, X11VNC_CREATE_LC_ALL_C_OK: do not bother
+		undoing the setting LC_ALL=C that the create_display
+		script sets.  The performance of the -create script
+		has been improved for large installations (100's of
+		user sessions on one machine.)
+
+	In -unixpw mode, one can now Tab from login: to Password.
+
+	An environment variable, X11VNC_SB_FACTOR, allows one to scale
+		the -sb screenblank sleep time from the default 2 secs.
+
+	In -rawfb mode, a bug is fixed in setting the number of bits
+		per pixel.
+
+	Documented that -grabkbd is no longer working with some/most
+		window managers (it can prevent resizing and menu posting.)
+
+	The macosx deprecated interface GetMainDevice() call is removed.
+		Compile with -DX11VNC_MACOSX_USE_GETMAINDEVICE if needed
+		for an old macosx version...
+
+	Miscellaneous code cleanup.
+
+-----------------------------------------------------------------------------
+
+
+x11vnc 0.9.12	2010-09-10
+
+New in the 0.9.12 x11vnc release:
+
+	One can now specify the maximum number of displays
+		that can be created in -create mode via the
+		env. var. X11VNC_CREATE_MAX_DISPLAYS
+
+	The X11VNC_NO_LIMIT_SHM env. var. is added to skip any
+		automatic shared memory reduction.
+
+	The kdm display manager is now detected when trying not to get
+		killed by the display manager.
+
+  miscellaneous new features and changes:
+
+	A compile error is fixed when using --with-system-libvncserver
+		pointing to LibVNCServer 0.9.7.
+
+	-nevershared -forever usage mode is documented.
+
+	Old SuSE broken thread local storage is documented.
+
+	x11vnc exit cases are documented.
+
+	A compile bug from forced use of Xdefs.h is worked around.
+
+
+-----------------------------------------------------------------------------
+
+
+x11vnc 0.9.11	2010-08-08
+
+New in the 0.9.11 x11vnc release:
+
+	The source tree is synchronized with the most recent libvncclient
+		(this only affects -reflect mode.)  The build is fixed
+		for incompatibilities when using an external LibVNCServer
+		(e.g.  ./configure --with-system-libvncserver...)
+
+	The SSL enabled Java VNC Viewer Makefile has been modified so
+		that the jar files that are built are compatible back
+		to Java 1.4.
+
+	In -reflect mode cursor position updates are now handled
+		correctly.
+
+	In -create/-unixpw mode, the env. var. FD_USERPREFS may be set
+		to a filename in the user's home directory that includes
+		default username:options values (so the options do not
+		need to be typed every time at the login prompt.)
+
+  miscellaneous new features and changes:
+
+	An option -always_inject is provided: Even if there is no
+		displacement (dx = dy = 0) for a VNC mouse event force
+		the pointer to the indicated x,y position anyway.
+
+	New java viewer debugging and workaround applet parameters:
+		debugKeyboard mapF5_to_atsign forbid_Ctrl_Alt 
+
+	You can set X11VNC_AVAHI_NAME, X11VNC_AVAHI_HOST, and/or
+		X11VNC_AVAHI_PORT environment variables to override the
+		default values. For example: -env X11VNC_AVAHI_NAME=wally
+
+	When opening the X11 display extra XAUTHLOCALHOSTNAME settings
+		are attempted.
+
+
+-----------------------------------------------------------------------------
+
+
+x11vnc 0.9.10	2010-05-03
+
+New in the 0.9.10 x11vnc release:
+
+	IPv6 is now supported for all usage modes: forward and reverse
+		connections, SSL and unencrypted, etc.
+
+	The included SSL enabled Java VNC viewer applet now supports
+		Chained SSL Certificates (x11vnc -ssl always has.)
+		The applet autodects x11vnc and set GET=1 for faster
+		connecting via HTTPS.
+
+	A demo CGI script 'desktop.cgi' shows how to create an
+		SSL encrypted, multi-user x11vnc web login desktop
+		service.  The user logs into a secure web site and gets
+		his/her own virtual desktop and his browser accesses it
+		with the SSL Java VNC Viewer applet.
+
+	A serverCert Java Viewer applet parameter is provided.
+		Use an authenticated HTTPS browser connection to set
+		this parameter (the user could set it locally too.)
+		The onetimekey tool has -certonly option for this scheme.
+
+	The Xdummy script (use Xorg 'dummy' driver instead of Xvfb)
+		no longer requires being run as root.
+
+
+  miscellaneous new features and changes:
+
+	In the Java viewer applet, debugCerts and debugKeyboard parameters
+		are provided.  The debugging output of the applet is more
+		readable.  Some corner-case bugs (e.g. socket exceptions)
+		are now handled gracefully.  Parameters forbid_Ctrl_Alt
+		and mapF5_to_atsign are added.
+
+	The amount of time to wait for HTTPS applet downloads to finish
+		can be set in env. var. X11VNC_HTTPS_DOWNLOAD_WAIT_TIME.
+
+	The -xkb mode is automatically enabled if there are more than
+		4 keysyms per key.
+
+	-coe is now an alias for -connect_or_exit.
+
+	The -input_eagerly option enables this LibVNCServer feature
+		(it is like -allinput.)
+
+	The "%" unix password verification tricks for the -unixpw
+		option are now documented.  They also run a command
+		in UNIXPW_CMD.
+
+	In -create (-svc, etc.) modes, a warning is printed out if Xvfb
+		cannot be found.  Xvfb '+kb' option is checked for.
+		The -env CREATE_DISPLAY_OUTPUT=/tmp/mydebug.txt debugging
+		option is documented.  Try to preserve user's PATH
+		if possible.
+
+		In XDMCP connection mode, a test for GDM listening only
+		on IPv6 (::1) is performed.  The interface can also be
+		specified via FD_XDMCP_IF.
+
+	The example scripts connect_switch, ultravnc_repeater.pl, inet6to4
+		have settings to let them run reliably for long times
+		as daemons.  They also support IPv6.
+
+	IPv6 notes: for some very esoteric cases (e.g. -chatwindow)
+		IPv4 localhost may be required for local IPC.  A demo
+		transition tool 'inet6to4' is also included (can be
+		used for other apps.)  x11vnc options related to IPv6:
+		-listen6, -6, -no6, -noipv4, -noipv6, and -connect,
+		-proxy.
+
+	Use STUNNEL_LISTEN in -stunnel mode to have it listen on a
+		particular interface.  Also STUNNEL_PROG.
+
+	New remote control query options: pointer_x, pointer_y,
+		pointer_same, pointer_root, and pointer_mask. A demo
+		script using them misc/panner.pl is provided.
+
+	Remote control change of -clip option will not create new
+		framebuffer if the size has not changed (for panner.pl)
+
+	The X11VNC_DISABLE_SSL_CLIENT_MODE env. var. can be set to
+		disable SSL client role in reverse connections.  This
+		means the VNC viewer side must be in SSL client role.
+		UltraVNC repeater operation can benefit from this.
+
+		The SSL_INIT_TIMEOUT is increased to 1 hour if 'repeater'
+		is detected in a reverse connect string.
+
+	The X property X11VNC_TRAP_XRANDR can be set on a desktop to
+		force x11vnc to use the -xrandr screen size change
+		trapping code.
+
+	The -sslScripts option prints out the SSL certificate management
+		scripts.
+
+	Suggest '-auth guess' and '-findauth' if X connection fails.
+
+	The TightVNC sercurity type (TightVNC features enabler) now
+		works for RFB version 3.8.
+
+	RECORD scroll detection is now working with the new gtk/gdk scroll
+		mechanism.  Set X11VNC_SCROLL_MUST_EQUAL to disable.
+
+
+For more information:
+
+	http://www.karlrunge.com/x11vnc/
+	http://www.karlrunge.com/x11vnc/x11vnc_opts.html
+       	x11vnc -help | less
+
+-----------------------------------------------------------------------------
+
+
+x11vnc 0.9.9	2009-12-21
+
+
+
+New in the 0.9.9 x11vnc release:
+
+	A new option -findauth runs the FINDDISPLAY script that applies
+		heuristics to try to determine the correct XAUTHORITY
+		file.  The use of '-auth guess' will use the XAUTHORITY
+		that -findauth reveals.  This can be handy in with
+		the lastest GDM where the ability to store cookies in
+		~/.Xauthority has been removed.
+
+		If x11vnc is running as root (e.g. inetd or XDM/GDM/KDM)
+		the FD_XDM=1 mode will be tried if the above -findauth
+		or '-auth guess' command fails; it will find the
+		correct XAUTHORITY for the given display (this works for
+		XDM/GDM/KDM if the login greeter panel is up or if someone
+		has already logged into an X session.)	You can also
+		set -env FD_XDM=1 to force it to be done on the first try.
+
+	The -unixpw_system_greeter option, when used in combined
+		unixpw and XDMCP FINDCREATEDISPLAY mode (e.g. -xdmsvc),
+		enables the user to press Escape to jump directly to the
+		XDM/GDM/KDM login greeter screen.  This way the user
+		avoids entering his unix password twice at X session
+		creation time.	For subseqent logins to the same session,
+		he uses the regular x11vnc unixpw "login:" prompt.   Also,
+		the unixpw login panel now has a short help displayed
+		if the user presses 'F1' that lists the options.
+
+	The -appshare option enables simple application sharing based on
+		the -id/-sid mechanism.  Every new toplevel window that
+		the application creates induces a new viewer window via
+		a reverse connection.  The -id/-sid and -connect options
+		are required.  Run 'x11vnc -appshare -help' for more info.
+
+	Heuristics are applied to try to determine if the X display
+		is currently in a Display Manager Greeter Login panel
+		(e.g. GDM.)  If so, x11vnc's creation of any windows and
+		use of XFIXES are delayed.
+
+		This is to try to avoid x11vnc being killed after the user
+		logs in if the GDM KillInitClients=true is in effect.
+		So one no longer needs to set KillInitClients=false in
+		gdm.conf.  Note that in recent GDM the KillInitClients
+		option has been removed.
+
+		Also delayed is the use of the XFIXES cursor fetching
+		functionality; this avoids an Xorg bug that causes Xorg
+		to crash right after the user logs in.
+
+	x11vnc now tries to be more aggressive in keeping up with VNC
+		client's framebuffer update requests.  Some broken VNC
+		clients continuously spray these requests at VNC servers
+		(regardless of whether they have received any updates
+		or not.)  The -extra_fbur option allows one to fine tune
+		the setting.
+
+	The "-display WAIT:cmd=...", -find, -create modes now work
+		correctly for the user-supplied login program scheme
+		"-unixpw_cmd ...", as long as the login program supports
+		running commands specified in the environment variable
+		"RFB_UNIXPW_CMD_RUN" as the logged-in user.  The mode
+		"-unixpw_nis ..." has also been made more consistent.
+		The username option "tag=..." can be used to set FD_TAG.
+
+	The -stunnel option (like -ssl but uses stunnel as an external
+		helper program) now works with the -ssl "SAVE" and "TMP"
+		special certificate names.  The -sslverify and -sslCRL
+		options now work correctly in -stunnel mode.  Single port
+		HTTPS connections are also supported for this mode.
+
+	The remote control command -R can be used to instruct x11vnc
+		to resend its most recent copy of the Clipboard,
+		Primary, or Cutbuffer selections: "x11vnc -R
+		resend_clipboard", "x11vnc -R resend_primary", and
+		"x11vnc -R resend_cutbuffer".
+
+  miscellaneous new features and changes:
+
+	The fonts in the GUI (-gui) can now by set via environment
+		variables, e.g. -env X11VNC_FONT_BOLD='Helvetica -16 bold'
+		and -env X11VNC_FONT_FIXED='Courier -14'.
+
+	The value of the -timeout option is now also used for the timing
+		out of reverse connections.  The -timeout exit will
+		occur if no client has made it to normal operating state
+		(instead of merely trying to connect.)
+
+	One can add extra URL parameters to the HTTPS (-ssl) urls
+		via X11VNC_EXTRA_HTTPS_PARAMS without needing to edit
+		index.vnc. E.g.: -env X11VNC_EXTRA_HTTPS_PARAMS='?GET=1'
+
+	One can make the libvncserver HTTP (non-SSL) server listen on
+		localhost: -env X11VNC_HTTP_LISTEN_LOCALHOST=1 (this way
+		only the single-port VNC+HTTPS is exposed to the network.)
+
+	Warnings are printed out at startup if $DISPLAY appears to
+		start with "localhost:" (SSH X11 forwarding) or 
+		"hostname:" (remote X display; will fail w/o -noshm)
+
+	The -solid option now uses the DBUS_SESSION_BUS_ADDRESS env. var
+		if available.  The -solid option now works in xfce.
+		If available, the dbus_launch(1) will be used in
+		FINDCREATEDISPLAY for gnome sessions.
+
+	The bcx_xattach remote control command was added to facilitate
+		xattach and x2x desktop cursor switching.  Other new
+		remote control commands: grab_state, ping:mystring,
+		grablocal, resend_cutbuffer, resend_clipboard,
+		resend_primary, keycode, keysym, fakebuttonevent,
+		ptr, sleep, get_xprop, set_xprop, wininfo, pointer_pos,
+		mouse_xy, noop, guess_dbus, DIRECT:query.  Remote control
+		scripting, -query_retries, and -remote_prefix were
+		also added.
+
+	In -rawfb mode the X display will not be opened at all unless
+		the -rawfb string is prefixed with '+' or -display
+		was specified on the cmdline.
+
+	For multiple, separate x11vnc instances on the same X display,
+		one can rename the X11VNC_REMOTE, X11VNC_TICKER, and
+		VNC_CONNECT property names to unique ones.
+
+	The -showrfbauth option prints out the VNC rfbauth password.
+
+	The XDAMAGE mechanism is now automatically disabled for a
+		period of time if a game or screensaver generates too
+		many XDAMAGE rectangles per second.  This avoids the X11
+		event queue from soaking up too much memory.
+
+	x11vnc does not switch on server autorepeat if any keys are
+		pressed down to work around a recent Xorg server and/or
+		gnome bug where the key will never stop repeating.
+
+	Thse list of current clients is kept more up-to-date in the
+		tkx11vnc gui.  Bugs in the gui setpass mode have been
+		fixed.
+
+	Threads stability is further improved.  See under the -threads
+		option help info about -env X11VNC_THREADS_NEW_FB_SLEEP=ms
+
+	There is an experimental workaround: "-env X11VNC_WATCH_DX_DY=1"
+		that tries to avoid problems with poorly constructed
+		menu themes that place the initial position of the mouse
+		cursor inside a menu item's active zone.
+
+	The crypt(3) function is now declared inside the x11vnc code on
+		all platforms (not just Linux).  To disable this, set
+		CPPFLAGS='-DDO_NOT_DECLARE_CRYPT' while configuring.
+		(crypt is declared to avoid problems with header files.)
+
+	Error reasons are printed for -storepasswd failures.
+
+	Two scripts are added to x11vnc/misc: connect_switch and
+		ultravnc_repeater.pl
+
+For more information:
+
+	http://www.karlrunge.com/x11vnc/
+	http://www.karlrunge.com/x11vnc/x11vnc_opts.html
+       	x11vnc -help | less
+
+
+
+-----------------------------------------------------------------------------
+
+
+x11vnc 0.9.8	2009-07-08
+
+
+New in the 0.9.8 x11vnc release:
+
+	Better reliability for the Java Viewer applet when connecting
+		through a Web Proxy via HTTPS.	A proxy hostname
+		and port can be specified via applet parameters.
+		Proxy Authentication via Auth-Basic is supported.
+		More x11vnc printout in -ssl is provided to help
+		troubleshoot this mode and other ssl connections.
+
+	Stability improvements to -threads mode. Running x11vnc this
+		way is more reliable now. Threaded operation sometimes
+		gives better interactive response and faster updates. The
+		threaded mode now supports multiple VNC viewers using
+		the same VNC encoding (some only on Linux or enabled
+		at build time.)  The threaded mode can also yield
+		a performance enhancement in the many client case
+		(e.g. class-room broadcast.) We have tested with 30 to
+		50 simultaneous clients.  See also -reflect.
+
+
+  miscellaneous new features and changes:
+
+	x11vnc automatically tries to work around an Xorg server bug
+		involving infinitely repeating keys when turning off key
+		repeating. Use -repeat if the automatic workaround fails.
+		Also, the environment variable X11VNC_IDLE_TIMEOUT
+		(seconds) is provided.
+
+	In -reflect mode the environment variable X11VNC_REFLECT_PASSWORD
+		is provided.
+
+	The -clip mode works under -rawfb.
+
+	The -nounixpw option can disable unixpw mode if an earlier option
+		enables it (e.g. -svc).
+
+	Scroll detection is skipped for windows with 'OpenOffice' in
+		their name.
+
+
+For more information:
+
+	http://www.karlrunge.com/x11vnc/
+	http://www.karlrunge.com/x11vnc/x11vnc_opts.html
+       	x11vnc -help | less
+
+-----------------------------------------------------------------------------
+
+
+x11vnc 0.9.7	2009-03-31
+
+
+New in the 0.9.7 x11vnc release:
+
+	Basic support for building with VirtualGL's TurboVNC (an
+		enhanced TightVNC for fast LAN high framerate usage)
+		encoding and TightVNC modifications.  More info:
+		http://www.karlrunge.com/x11vnc/faq.html#faq-turbovnc
+		and x11vnc/misc/turbovnc/README.
+
+	The -ncache_cr option has been fixed and so in -ncache mode
+		smooth opaque window motions are now work correctly. Try
+		it out to see how smooth it is even on a slow link.
+
+	Support for Linux text consoles (virtual terminals, e.g. 1-6)
+		is provided via, e.g., 'x11vnc -rawfb vt2' (for virtual
+		terminal #2).
+
+		This is like LinuxVNC (i.e. text only), it avoids using
+		/dev/fb and uses /dev/vcsaN instead (the '-rawfb console'
+		mode uses /dev/fb.)  With /dev/vcsaN the text terminal
+		is accessible even it if is not the currently active one.
+
+	The -rawfb option now supports framebuffers with bits per pixel
+		less than 8 (e.g. 4 or 1 bpp.)
+
+	Reverse connections now work in Anonymous Diffie Hellman SSL/TLS
+		mode.  Reverse connections also work for VeNCrypt and
+		ANONTLS modes.
+
+
+  miscellaneous new features and changes:
+
+	The included SSL enabled UltraVNC java viewer now has a
+		configurable [Home] entry in the drives drop down menu.
+
+	In the -create, -svc, etc. modes one can now specify a
+		range of X displays to ignore in X11VNC_SKIP_DISPLAY.
+		Improvements and bugfixes were made to the find_display
+		and create_display scripts.  FD_EXTRA option is provided.
+
+	The '-rawfb video' option finds the video device file more
+		carefully.
+
+	The -rmflag option allows a new way to indicate to other
+		applications that x11vnc has started.
+
+	All of the java applet parameters are now documented in
+		the classes/ssl/README file.
+
+	There is now a "sendbell" remote control command.
+
+	A one-time -padgeom once:WxH mode is added.
+
+	Improvements to the CUPS Terminal Services helper mode.
+
+	If the X display cannot be opened normally then the env. var.
+		XAUTHLOCALHOSTNAME=localhost is tried.
+
+	Bugfix for selection transfer to a now non-existent X window
+		(Thunderbird can cause this.)  Related, the env. variable
+		LIBXCB_ALLOW_SLOPPY_LOCK is now set by default.
+
+	Bugfix for -8to24 mode due to nonstandard indexed color support.
+
+	The libvncserver and x11vnc autoconf/automake settings have
+		been improved.
+
+	libXrandr include file is now found on Solaris.
+
+
+For more information: 
+
+	http://www.karlrunge.com/x11vnc/
+	http://www.karlrunge.com/x11vnc/x11vnc_opts.html
+       	x11vnc -help | less
+
+-----------------------------------------------------------------------------
+
+
+x11vnc 0.9.6	2008-12-10
+
+
+New in the 0.9.6 x11vnc release:
+
+	x11vnc's SSL encryption is extended to support the VeNCrypt and
+		TLS (older; vino) SSL/TLS security type extensions to VNC.
+
+	Anonymous Diffie-Hellman key exchange (-ssl ANON) and Certificate
+		Revocation List support (-sslCRL) is added to the SSL
+		encryption mode.
+
+	The Java viewer applet can now be served up through the VNC port
+		(5900) in addition to the normal HTTP port (5800) via
+		the -http_oneport option.  Previously this only worked
+		for SSL connections and HTTPS.
+
+	The "-rfbport PROMPT" mode presents a simple gui for the user
+		to select a port for the x11vnc service and a few other
+		settings.  This enables a menu entry for naive users
+		that is included in x11vnc.desktop.
+
+	If x11vnc is not built with the Avahi Zeroconf library an external
+		helper program (avahi-publish or dns-sd on Mac OS X)
+		is used instead.
+
+  miscellaneous new features and changes:
+
+	The default mode for '-ssl' is now the '-ssl SAVE' mode; i.e.
+		the generated certificate is saved and reused in
+		subsequent sessions rather than being discarded.
+		Use '-ssl TMP' recover the old way.  This change made
+		to for it to be more likely that the VNC Viewer can save
+		the accepted cert for future authentications.
+
+	The solid background color option works on the Mac OS X console.
+
+	The -reopen option enables x11vnc to try to re connect to the X
+		display if GDM (or other display manager) kills it just
+		after the user logs in.
+
+	The -dhparams option can be used to point to your own Diffie
+		Hellman parameters.
+
+	The -setdefer option allows tuning how quickly updates will
+		be sent.  Default setting tuned.
+
+	The option -zeroconf is now an alias for -avahi/-mdns.
+
+	In pipeinput mode, the pipe filehandle is now closed when
+		x11vnc exits.
+
+	The -sshonly option turns off VeNCrypt and TLSVNC (vino) mod
+		leaving only the standard SSL (i.e. vncs://)
+
+	For testing, the option -rand in an alias for -rawfb rand -nopw
+
+	Minor tweaks to improve CUPS Print tunneling.
+
+For more information: 
+
+	http://www.karlrunge.com/x11vnc/
+	http://www.karlrunge.com/x11vnc/x11vnc_opts.html
+       	x11vnc -help | less
+
+-----------------------------------------------------------------------------
+
+
+x11vnc 0.9.5	2008-10-24
+
+
+New in the 0.9.5 x11vnc release:
+
+	Symmetric key encryption using the RC4, AES, Blowfish, and 3DES
+		ciphers is supported via the -enc cipher:keyfile option.
+		The SSVNC unix viewer 1.0.20 and later supports these
+		encryption methods.
+
+	Server-side scaling can now have different scale factors along
+		the horizontal and vertical axes.  E.g. -scale 1280x1024
+		(same as -geometry 1280x1024) or -scale 0.8x0.75
+
+	The -chatwindow option allows a chat window to appear on the
+		X console during UltraVNC chats (requires the SSVNC
+		viewer package.)
+
+  miscellaneous new features and changes:
+
+	The HTTP Java viewer applet jar, classes/VncViewer.jar, has
+		been updated with an improved implementation based on
+		the code used by the classes/ssl applets.
+
+	A description and instructions are now printed out when
+		X_ShmAttach fails if one tries to attach to a remote
+		$DISPLAY (i.e. $DISPLAY is on a different machine from
+		the machine x11vnc is running on; this often happens
+		with SSH X redirection, X terminal servers, etc).
+
+	The -allow option now works correctly in -ssl mode.
+
+	The -remap option now works on the MacOSX console.
+
+For more information: 
+
+	http://www.karlrunge.com/x11vnc/
+	http://www.karlrunge.com/x11vnc/x11vnc_opts.html
+       	x11vnc -help | less
+
+-----------------------------------------------------------------------------
+
+
+x11vnc 0.9.4	2008-09-17
+
+
+New in the 0.9.4 x11vnc release:
+
+	Reverse VNC connections (-connect and  -connect_or_exit options)
+		work in the -find and -create X session FINDCREATEDISPLAY
+		modes.
+
+	Reverse VNC connections (either normal or using SSL) can use a
+		Web Proxy, a SOCKS proxy, the UltraVNC repeater proxy,
+		an SSH connection, or even a CGI URL to make the outgoing
+		connection (-proxy option).  Forward connections can
+		use the -ssh option to set up a reachable redirection.
+
+	Support for the ZYWRLE encoding is added, this is the RealVNC ZRLE
+		encoding extended to do motion video and photo regions
+		more efficiently by way of a Wavelet based transformation.
+
+	The session finding and creating modes (-find and -create) have
+		been improved to be more reliable and also provide a new
+		desktop types (xfce) and new service redirection options.
+
+	Support for indexed colormaps (PseudoColor) with depths other
+		than 8 is provided (depths 1 to 16 now work).
+
+	Java viewer applet source code is provided in the x11vnc 0.9.4
+		tarball so now everything can be built from source.  
+
+  miscellaneous new features and changes:
+
+	To unset Caps_Lock, Num_Lock and raise all keys in the X server
+		use -clear_all, or by remote control 'x11vnc -R clear_all'
+
+	The -autoport option gives more control over the server port
+		range that probes.
+
+	The -ping option can be used to help keep idle connections alive.
+
+	The -finddpy and -listdpy utilities help to debug and configure
+		the -find, -create, and -display WAIT:... modes.
+
+	Some automatic detection of screen resizes are handled even if
+		the -xrandr option is not supplied.
+
+	The -advertise_truecolor option can workaround some VNC viewer
+		incompatibilities with PseudoColor.
+
+	The option '-clip xinerama0' can be used to clip to the first
+		Xinerama sub-screen, etc.
+
+	If a fast framebuffer read rate is detected the -wait and -defer
+		parameters are reduced to 10 and 15 msec, respectively.
+
+	Pasting of the selection/clipboard into remote applications
+		(e.g. Java) is improved.
+
+	Usage with dvorak keyboards is improved.  The option -macuskbd is
+		available on MacOSX to use the original US keyboard code.
+
+	Via a compiler option (-DENABLE_GRABLOCAL) one can use the
+		-grablocal n option to filter VNC client input if someone
+		at the console has done mouse or keyboard input n secs ago. 
+
+	The -sleepin option can now sleep a random amount of time between
+		min and max time delays (-sleepin min-max).
+
+For more information: 
+
+	http://www.karlrunge.com/x11vnc/
+	http://www.karlrunge.com/x11vnc/x11vnc_opts.html
+       	x11vnc -help | less
+
+-----------------------------------------------------------------------------
+
+
+x11vnc 0.9.3	2007-10-04
+
+
+New in the 0.9.3 x11vnc release:
+
+	This release provides client-side caching to improve interactive
+	response.  Almost no VNC viewers implement caching which is why
+	VNC is slow compared to other remote graphics protocols.
+
+	The x11vnc caching will work with any VNC viewer, but they will
+	not hide the pixmap cache region that is below the main desktop
+	(one must adjust the window manually).  The SSVNC Unix VNC viewer,
+	however, automatically detects and hides the region.
+
+	To enable caching, supply "-ncache n" to x11vnc, where the
+	number n, e.g. 10, indicates how much memory to devote to the
+	caching scheme.
+
+	See http://www.karlrunge.com/x11vnc/#faq-client-caching
+
+For more information: 
+
+	http://www.karlrunge.com/x11vnc/
+	http://www.karlrunge.com/x11vnc/x11vnc_opts.html
+       	x11vnc -help | less
+
+-----------------------------------------------------------------------------
+
+
+x11vnc 0.9.2	2007-06-18
+
+
+New in the 0.9.2 x11vnc release:
+
+	A compile-time bug is fixed for when the OpenSSL library is not
+		available or --without-ssl is supplied; previously the
+		build would fail.
+
+	One can configure x11vnc via "configure --with-system-libvncserver"
+		to use a system installed libvncserver library instead of
+		the one bundled in the release tarball. 
+
+	If UltraVNC file transfer or chat is detected, then VNC clients
+		are "pinged" more often to prevent these side channels
+		from becoming serviced too infrequently.
+
+	In -unixpw mode in the username and password dialog no text will
+		be echoed if the first character sent is "Escape".  This
+		enables a convenience feature in SSVNC to send the username
+		and password automatically.  
+
+  miscellaneous new features and changes:
+
+	When building from the CVS tree --with-x11vnc must be supplied if
+		you want x11vnc to be built.  The LibVNCServer release
+		tarball no longer contains the x11vnc source.
+
+
+For more information: 
+
+	http://www.karlrunge.com/x11vnc/
+	http://www.karlrunge.com/x11vnc/x11vnc_opts.html
+       	x11vnc -help | less
+
+-----------------------------------------------------------------------------
+
+
+x11vnc 0.9.1	2007-05-24
+
+
+New in the 0.9.1 x11vnc release:
+
+	A new Unix username identification scheme is provided when
+		SSL client certificates are used to authenticate VNC
+		viewers.  The username is extracted from the 'Subject'
+		section of the cert.  The option is "-users sslpeer="
+		which, like "-users unixpw=" already does, will cause
+		a switch to the Unix user.  This is useful for the
+		-find and -create options that try to find an existing
+		X session associated with the user or create a new one.
+
+	The UltraVNC Java Viewer has been modified to support SSL
+		connections.  Some bugs were also fixed and some
+		improvements added.  A patch file and a compiled jar file
+		(UltraViewerSSL.jar and SignedUltraViewerSSL.jar in the
+		classes/ssl directory) are provided in the x11vnc package.
+
+	For the -user option groups are now handled better by using
+		initgroups(3), or if finer control is needed one can
+		use: "-users user1.group1,..."
+
+	When SSL client certification is being used and external login
+		programs are being used the env. var. RFB_SSL_CLIENT_CERT
+		is set to the clients certificate.  Set X11VNC_SSLPEER_CN
+		to use the Common Name instead of the certificate email
+		address to find the unix username.
+
+  miscellaneous new features and changes:
+
+	The -wait and -defer defaults were lowered from 30 to 20
+		milliseconds, set the values explicitly if this increases
+		the load too much for your liking.
+
+	In -create mode where a Xvfb session is started, mwm was added
+		as a session type.  setpgrp(2) is used for the spawned
+		process if available.  The XKEYBOARD extension is 
+		enabled (+kb, but it doesn't seem to always work).
+		TrueColor is forced to be the default visual (recent
+		Xvfb seem to choose DirectColor, this is likely a bug)
+		One can also force creating a new Xvfb by setting the
+		env. var. X11VNC_FINDDISPLAY_ALWAYS_FAILS (not exactly
+		clear what this would be used for). 
+
+	The WAITBG env. var. enables -display WAIT:... to take place in
+		the background.
+
+	One can specify the X11VNC_SKIP_DISPLAY env. var. for a list of
+		displays to exclude in the FINDDISPLAY action.	This can
+		also be specified via nd=... as a -unixpw login option.
+
+	setsid() or setpgrp() is called for the external command spawned
+		by the -gone option (since it may be long lived, e.g. a
+		screen locker).
+
+	The script "onetimekey" utility is provided in the classes/ssl
+		subdirectory that allows a (very long) string representing
+		a Client SSL certificate to be provided by the authenticating
+		client, or via https cgi script (e.g. after a web login).
+
+	Some bugs were fixed in the libvncserver implementation of
+		UltraVNC file transfer.
+
+
+
+For more information: 
+
+	http://www.karlrunge.com/x11vnc/
+	http://www.karlrunge.com/x11vnc/x11vnc_opts.html
+       	x11vnc -help | less
+
+-----------------------------------------------------------------------------
+
+
+x11vnc 0.9	2007-04-18
+
+
+New in the 0.9 x11vnc release:
+
+	VNC Service advertising via mDNS / ZeroConf / BonJour with the
+		Avahi client library. Enable via "-avahi".
+
+	Implementations of UltraVNC's TextChat, SingleWindow, and
+		ServerInput extensions (requires ultravnc viewer or ssvnc
+		Unix viewer). They toggle the selection of a single window
+		(-id), and disable (friendly) user input and viewing
+		(monitor blank) at the VNC server.
+
+	Short aliases "-find", "-create", "-svc", and "-xdmsvc" for
+		commonly used FINDCREATEDISPLAY usage modes (to find
+		the user's display or create one, etc).
+
+	Reverse VNC connections (viewer listening) now work in SSL
+		(-ssl) mode.
+
+  miscellaneous new features and changes:
+
+	New options to control the Monitor power state and keyboard/mouse
+		grabbing: -forcedpms, -clientdpms, -noserverdpms,
+		and -grabalways.
+
+	A simple way to emulate inetd(8) to some degree via the "-loopbg"
+		option.
+
+	Monitor the accuracy of XDAMAGE and apply "-noxdamage" if it is
+		not working well. OpenGL applications like like beryl and
+		MythTv have been shown to make XDAMAGE not work properly.
+
+	For Java SSL connections involving a router/firewall port
+		redirection, an option -httpsredir to spare the user
+		from needing to include PORT=NNN in the browser URL.
+
+	A -sleepin n option to delay startup by n seconds to let redirs
+		and listening clients to get started.
+
+	TightVNC file transfer is now off by default; enable via
+		-tightfilexfer
+
+
+For more information: 
+
+	http://www.karlrunge.com/x11vnc/
+	http://www.karlrunge.com/x11vnc/x11vnc_opts.html
+       	x11vnc -help | less
+
+-----------------------------------------------------------------------------
+
+
+x11vnc 0.8.4	2007-02-01
+
+
+New in the 0.8.4 x11vnc release:
+
+	Native Mac OS X Aqua/Quartz support.  It exports the full
+		display (no X11 server, etc).
+
+		This provides an alternative to OSXvnc; some activities
+		are faster (and see the client-side caching feature
+		-ncache in the 0.8.5 development version for more
+		speedups).
+
+	x11vnc can act as a VNC reflector/repeater using the
+		"-reflect host:N" option.  This is useful for large
+		classroom broadcasting or demos.  You set up a number
+		of reflectors to spread the network and CPU load around
+		for better response.
+
+	A new login mode: "-display WAIT:cmd=FINDCREATEDISPLAY -unixpw ..."
+		that will Create a new X session (Xvfb, Xdummy, or
+		Xorg) for the user if it cannot find the user's X
+		session display via the FINDDISPLAY method.  It will
+		be re-found upon reconnection.
+
+		This enables a simple "terminal services" mode based on
+		Unix username and password and where the user does not
+		have to memorize their VNC display number, etc.
+
+
+  miscellaneous new features and changes:
+
+	Option -nodpms to avoid problems with programs like KDE's
+		kdesktop_lock that keep restarting the screen saver
+		every few seconds even with active VNC clients connected.
+
+	The "-N" option couples the VNC Display number to the X Display
+		number. E.g. if your X DISPLAY is :2 then the VNC display
+		will be :2 (i.e. using port 5902). If that port is taken
+		x11vnc will exit.
+
+	Wireframe copyrect detection for local user activity (e.g. someone
+		sitting at the physical display moving windows).  You
+		can disable this with the -nowireframelocal option.
+
+	To automatically fix the common mouse motion problem on XINERAMA
+		(multi-headed) displays, the -xwarppointer option is
+		enabled by default when XINERAMA is active.  You can
+		disable this with the -noxwarppointer option.
+
+	By default in -reflect mode -shared is implied (it makes sense),
+		use -noshared after the -reflect option to disable this. 
+
+	The -prog option lets you specify the full path (argv[0]) to
+		the program, in case it is spawned by inetd/tcpd and
+		cannot determine its path.  The path is needed for the
+		-http option to guess the http classes directory.
+
+	Usually not needed, but there are many options for tuning the
+		native Mac OS X mode: -macnodim -macnosleep -macnosaver
+		-macnowait -macwheel -macnoswap -macnoresize -maciconanim
+		-macmenu.
+
+	An option -debug_xdamage has been added for debugging and profiling.
+
+
+For more information: 
+
+	http://www.karlrunge.com/x11vnc/
+	http://www.karlrunge.com/x11vnc/x11vnc_opts.html
+       	x11vnc -help | less
+
+-----------------------------------------------------------------------------
+
+
+x11vnc 0.8.3	2006-11-13
+
+
+New in the 0.8.3 x11vnc release:
+
+	The -ssl option provides SSL encryption and authentication
+		natively via the www.openssl.org library.  One can use
+		from a simple self-signed certificate server certificate
+		up to full CA and client certificate authentication schemes.
+
+	The -sslverify option allows for authenticating VNC clients via
+		their certificates in either -ssl or -stunnel modes.
+
+	Certificate creation and management tools are provide in the
+		-sslGenCert, -sslGenCA, and related options.
+
+	An SSL enabled Java applet VNC Viewer applet is provided in
+		classes/ssl/VncViewer.jar.
+
+		The applet may also be loaded into the web
+		browser via HTTPS, i.e one can use the VNC port,
+		e.g. https://host:5900/
+
+		See our "Enhanced TightVNC Viewer" project, for native
+		SSL enabled viewers.
+
+	The -unixpw option supports Unix username and password
+		authentication. The -ssl or -localhost and -stunnel
+		options (or detection of an SSH tunnel) are enforced in
+		this mode to prevent password sniffing.
+
+	Coupling -unixpw with -display WAIT:cmd=FINDDISPLAY provides a
+		way to allow a user to login with their UNIX password
+		and have their display connected to automatically.
+
+	Hooks are provided in the -unixpw_cmd and "-passwdfile cmd:,custom:..."
+		options to allow you to supply your own authentication
+		and password lookup programs (e.g. LDAP).
+
+	The "-ultrafilexfer" alias is provided and improved UltraVNC
+		filetransfer rates have been achieved.
+
+	The -rotate option enables you to rotate or reflect the screen
+		before exporting via VNC. This is intended for use on
+		handhelds and other devices where the rotation orientation
+		is not "natural".
+
+  miscellaneous new features and changes:
+
+	Similar to -ssl, the -stunnel option starts up a SSL tunnel server
+		stunnel (that must be installed separately on the system)
+		to allow only encrypted SSL connections from the network.
+
+	Option -sslnofail to exit immediately if there are any SSL
+		connection failures.
+
+	A simpler variant of -unixpw is the -unixpw_nis option that
+		works in environments where the encrypted passwords are
+		readable, e.g. NIS.
+
+	x11vnc can be configured and built to not depend on X11 libraries
+		"./configure --without-x" for -rawfb only operation
+		(e.g. embedded linux console devices).
+
+	Add -cursor_drag to change the mouse cursor during Drag and Drop, etc.
+
+	Under the "-connect_or_exit host" option x11vnc will exit
+		immediately unless the reverse connection to host
+		succeeds. The "-rfbport 0" option disables TCP listening
+		for connections (useful for this mode).
+
+	The "-rawfb rand" and "-rawfb none" options are useful for
+		testing automation scripts, etc., without requiring a
+		full desktop.
+
+	Reduced spewing of information at startup, use "-verbose" (also
+		"-v") to turn it back on for debugging.
+
+
+For more information: 
+
+	http://www.karlrunge.com/x11vnc/
+	http://www.karlrunge.com/x11vnc/x11vnc_opts.html
+       	x11vnc -help | less
+
+-----------------------------------------------------------------------------
+
+
+x11vnc 0.8.2	2006-07-13
+
+
+New in the 0.8.2 x11vnc release:
+
+	Support for full mouse and keyboard input into the Linux
+		console framebuffer /dev/fb0 in -rawfb mode
+		(i.e. non-X11) by using the Linux "uinput" driver.
+
+		This enables, for example, viewing and interacting
+		with Qt-embedded/Qtopia-Core apps on Linux-based
+		handhelds, etc.
+
+		Options:   -rawfb cons, -pipeinput UINPUT More info:
+		http://www.karlrunge.com/x11vnc/#faq-qt-embedded
+
+	Extension of the display option: -display WAIT:<disp-or-cmd>
+		to delay x11vnc's opening of the X display
+		until a VNC client connects (useful built-in:
+		-display WAIT:cmd=FINDDISPLAY, to find a user's
+		display and Xauthority data).
+
+	Options -grabkbd and -grabptr have x11vnc try to grab
+		the X display when VNC clients are connected to
+		prevent a (non-malicious) user at the physical X
+		display from performing keyboard or mouse input.
+		E.g. remote help-desk support.
+	
+
+  miscellaneous new features and changes:
+
+	-allowedcmds option to fine-tune which external commands
+		may be run by x11vnc, rather than shutting
+		them all off with -nocmds.
+
+	-env VAR=VALUE convenience option to avoid the need of
+		setting environment variables before starting
+		x11vnc.
+
+	-allinput option to enable libvncserver handleEventsEagerly
+		parameter (not clear it yields an improvement).
+
+	-rawfb rand  fun/testing option using /dev/urandom as a fb.
+
+	-license, -copying, -warranty option.
+
+
+For more information: 
+
+	http://www.karlrunge.com/x11vnc/
+	http://www.karlrunge.com/x11vnc/x11vnc_opts.html
+       	x11vnc -help | less
+
+-----------------------------------------------------------------------------
+
+
+x11vnc 0.8.1	2006-06-03
+
+New in the 0.8.1 x11vnc release:
+
+	Improved support for webcams and tv tuners with video4linux
+		/dev/video: see the "-rawfb video" and "-pipeinput VID"
+		options. (the latter gives a simple keyboard control
+		of a tv tuner; see also the -freqtab option for stations).
+
+	FBPM support for hardware that provides framebuffer power
+		management (it needs to be disabled when vnc clients
+		are connected).
+
+	The -usepw option will require x11vnc to use a password of 
+		some sort or otherwise exit immediately.  Put it in
+		your ~/.x11vncrc so you don't forget.
+
+	The command "x11vnc -storepasswd" will prompt for a password
+		without echoing and save it in ~/.vnc/passwd
+
+	The X CLIPBOARD selection is managed in addition to the
+		X PRIMARY selection.
+
+
+  miscellaneous new features and changes:
+
+	Convenience option for accessing the Linux console: -rawfb cons
+		etc. (requires /dev/fb0 to be working).
+
+	clipboard/cut-text input can now be managed on a per-client
+		basis.
+
+	-capslock and -skip_lockkeys options can help make CapsLock work
+		better.
+
+	The Xdummy wrapper script is included in the source tree.
+
+	A mode "-gone popup" as been added.
+
+	-24to32 option to avoid 24bpp problems.
+
+	-xinerama is on by default.
+
+
+For more information: 
+
+	http://www.karlrunge.com/x11vnc/
+	http://www.karlrunge.com/x11vnc/x11vnc_opts.html
+       	x11vnc -help | less
+
+-----------------------------------------------------------------------------
+
+
+x11vnc 0.8	2006-02-13
+
+
+New in the 0.8 x11vnc release:
+
+	TightVNC file transfer support is enabled via the extension to
+		LibVNCServer added by Rohit Kumar.
+
+	The -passwdfile option has been enhanced to handle any number
+		of full-access and view only passwords in an easy to
+		maintain format, and additional features.
+
+	The -8to24 option enables multi-depth viewing on systems that do
+		not support -overlay. The 8bpp regions are transformed
+		to depth 24 TrueColor before exporting via VNC.
+
+	The x11vnc source code has gone through a major reorganization.
+		The build has been enhanced and many bugs fixed.
+
+
+  miscellaneous new features and changes:
+
+	-afteraccept option is like -accept however it enables running
+		a user supplied command after client authentication
+		has taken place. The RFB_* environment variables have
+		been extended.
+	-loop option will run x11vnc in an outer loop restarting each time
+		(useful for situations where the X server restarts often).
+	-slow_fb allows for slow polling for special purpose applications
+		(e.g. video).  -blackout noptr,WxH+X+Y,... will prevent
+	the pointer from going into a blacked out region.
+
+For more information: 
+
+	http://www.karlrunge.com/x11vnc/
+	http://www.karlrunge.com/x11vnc/x11vnc_opts.html
+       	x11vnc -help | less
+
+-----------------------------------------------------------------------------
+
+
+x11vnc 0.7.2	2005-07-11
+
+
+New in the 0.7.2 x11vnc release:
+
+	The X DAMAGE extension is supported to dramatically reduce
+		resource consumption when idle: often 20 times less;
+		and to pick up small changed regions more quickly.
+
+		DAMAGE sends events indicating damaged (modified) screen
+		rectangles to x11vnc.  These are used as hints to focus
+		the polling and also if the rectangle is below a size
+		threshold it is accepted unconditionally (i.e. dragged in
+		from the framebuffer).	Tuning is possible with -xd_area.
+
+		DAMAGE is available on recent Xorg servers and Solaris 10.
+
+	-wireframe: Heuristics are used to guess when a window is being
+		moved or resized and during this period show only a
+		moving wireframe outline.  Just like on video cards in
+		the 90's, remember?  This is to avoid window "lurching"
+		when you move or resize one opaquely.
+
+		Also, -wirecopyrect applies the VNC CopyRect encoding
+		for the moved window.  Both are on by default, use
+		-nowireframe or -nowirecopyrect to disable (aka -nowf
+		and -nowcr).
+
+	-scrollcopyrect: Sniff the X11 protocol via the RECORD extension
+		and to try to detect window scrolls (e.g. via scrollbar,
+		Up/Down arrow, etc).  When detected, the VNC CopyRect
+		encoding is applied to the scrolled regions for a speedup.
+
+		The contents of the scrolling window may only be
+		approximate while it is being scrolled: e.g. tearing,
+		bunching-up, etc.  The heuristics will also miss scrolls
+		by certain toolkits or applications, so those will still
+		happen the slow way.  To disable use -noscrollcopyrect
+		(aka -noscr).  Tuning is also available, see the -help
+		entry.
+
+	-listen: Makes x11vnc listen only on a single network interface.
+		-localhost now implies '-listen localhost'.
+
+	-rawfb: Instead of polling an X server framebuffer, poll a raw
+		one (i.e. a mapped file or a shm segment).  E.g. for
+		the linux framebuffer device:
+
+		    -rawfb map:/dev/fb0@1024x768x32
+
+		This is a bit out of x11vnc's scope but may have some
+		interesting applications.  Perhaps /dev/video?
+
+	-pipeinput: Pipe the VNC user's pointer and keyboard input events
+		to a helper program you provide.  Two examples are in
+		misc/vcinject.pl and misc/slide.pl.  Primarily intended
+		for use with -rawfb to somehow kludge-up user input,
+		but it can also be used by itself.
+
+	Improvements for the magnification scaling case (e.g. -scale 2)
+		for use in low vision applications.  It is faster and
+		no-blending :nb now works correctly.
+
+	More safety measures are taken WRT remote-control in the
+		default mode.  See the -unsafe, -safer, -privremote,
+		and -nocmds options.
+
+	The GUI has been improved, and running with the options "-gui icon"
+		presents a small, simple gui instead of the full blown one,
+		and "-gui tray" attempts to embed the small icon in the
+		system tray.  Use "-gui tray=setpass" to prompt for
+		session password creation at startup.
+
+
+  miscellaneous new features and changes:
+
+	-xkb: a simple test is performed at startup to see if it is a
+		good idea to apply -xkb mode for the current keyboard
+		keymapping (i.e. if keysyms like !, @, [ are otherwise
+		unavailable).  To disable use -noxkb.
+	 ISO_Level3_Shift vs. Mode_switch:  Set things up in -xkb mode to
+		prefer ISO_Level3_Shift over Mode_switch for modtweaking.
+		No override; let me know if this causes problems.
+	-add_keysyms is now the default, use -noadd_keysyms to disable.
+		the added keysyms are periodically deleted.
+	-remap DEAD: shorthand for mapping many "dead" keysyms to their
+		"un-dead" counterparts, e.g. grave -> dead_grave.  For
+		some VNC viewers that are unable to send the dead keysym.
+	-skip_dups: skip impossible duplicate key events sent by some VNC
+		viewers. -noskip_dups to disable (currently off by default).
+	-sloppy_keys: try to handle sloppy keyboarding (esp. between
+		different language keyboards) where, say, Shift is released
+		before the key.
+	-norepeat N: ping-pong N times if something else on the desktop
+		restores key autorepeating (e.g. session startup). Default
+		2.  Also, If the VNC client is idle for 5 min. autorepeat
+		is restored.
+	-wait_ui: If there is very recent user input, cut the -wait sleep
+		time by the specified factor (default 2.0).
+	-nowait_bog: Detection is now in place to watch for polling "bogging
+		down" (e.g. lots of scrolling text from a long build in a
+		terminal) and to sleep more.  Use -nowait_bog to disable.
+	-flag: write PORT=5900 to a flag file to aid wrapper scripts.
+	-http: try to guess what the -httpdir should be and if found
+		enable http listening.
+	-clip WxH+X+Y: only show the specified rectangle not the
+		entire screen.
+	 cursors are now scaled by default under -scale, use -scale_cursor
+		to modify this behavior.
+	-arrow n: select from some different arrow cursors (ignored under
+		XFIXES cursor grabbing mode).
+	-nolookup: disable DNS lookups for broken environments.
+	-seldir: fine tune and debug selection transfer. 
+	 build-time customization macros: SHARED, FOREVER, NOREPEAT,
+		REMOTE_CONTROL, SMALL_FOOTPRINT, default passwd, etc.
+		see the top of the x11vnc.c for more info.
+	-xtrap: DEC-XTRAP extension is supported for legacy systems
+		with insufficient XTEST extension (X11R5).
+	-shiftcmap: for legacy systems with non-standard colormap values.
+	-noxrecord: do not use the RECORD extension for anything (currently
+		only -scrollcopyrect and grabserver watching use it).
+	-grab_buster: fork a helper thread to watch for XGrabServer deadlock
+		in x11vnc and break the grab.  Under -scrollcopyrect there
+		is a small window where x11vnc is vulnerable to this deadlock.
+	-dbg:   A "crash shell" with tips on debugging will be presented
+		instead of exiting when a fatal error occurs.	
+	-fixscreen: periodically refresh the screen to get rid of painting
+		errors, etc. induced by new features, jpeg compression, etc.
+	-speeds: Tell x11vnc what the network and fb speeds are instead of
+		having it try to measure them.  (these speeds are used by
+		various features, such as -wireframe, -scrollcopyrect, etc.).
+	-wmdt: set the window manager or desktop to spare x11vnc from guessing.
+	-readtimeout: set libvncserver's read timeout parameter, useful on
+		very slow links that take more than 20secs to paint
+		the whole screen.
+	-nopw: If you use x11vnc without a password it now prints out a
+		scary warning message.  Use -nopw to disable the warning.
+	 plugged X event leaks; periodically purge any remaining buildup.
+	
+
+For more information: 
+
+	http://www.karlrunge.com/x11vnc/
+	http://www.karlrunge.com/x11vnc/x11vnc_opts.html
+       	x11vnc -help
+
+-----------------------------------------------------------------------------
+
+
+x11vnc 0.7.1	2005-02-24
+
+
+New in the 0.7.1 x11vnc release:
+
+	Improved algorithm for approximating XFIXES cursors with
+		transparency (alpha channel).  No more ugly black fuzz
+		around translucent cursors.  Tuning parameters -alpha*
+		if it is still not right.
+
+	Added mechanisms to handle XFIXES cursors with transparency
+		exactly (i.e. blend in the background).  Works by default
+		under -nocursorshape updates, and also works under limited
+		circumstances for cursorshape updates if the VNC viewer
+		is patched (TightVNC viewer patch provided).
+
+	-solid: to improve performance switch the background to a solid
+		color when clients are connected.  Works on GNOME, KDE,
+		CDE, and classic X.
+
+	-input: allows fine-tuning the type of allowed user input
+		(Keystroke, Mouse-motion, Button-click).  Useful for
+		certain applications of x11vnc, e.g. demos. Also
+		per-client settings via -R input:xyz..
+
+	-users: enables switching to different users if started as root.
+		Please read the description for details.
+
+	-gui ez: less daunting GUI with fewer options via '-gui ez' or
+		"Misc -> simple-gui" once started.
+
+  miscellaneous new features and changes:
+
+	-nap is now the default, use -nonap to disable.
+	-snapfb: snapshot h/w fb to RAM periodically, not clear how useful...
+	-timeout n: for use in certain applications, exit if no client
+		connects after n seconds.
+	-oa and -logappend for appending to logfiles.
+	-opts will just show the options w/o the long -help descriptions.
+	if you forget to set -display, it will beep and try :0 after a bit.
+
+For more information: 
+
+	http://www.karlrunge.com/x11vnc/
+	http://www.karlrunge.com/x11vnc/x11vnc_opts.html
+       	x11vnc -help
+
+-----------------------------------------------------------------------------
+
+
+x11vnc 0.7	2004-12-23
+
+
+New in the 0.7 x11vnc release:
+
+	Support for the XFIXES X extension to show the exact mouse cursor
+		shape.  Requires libXfixes.  For approximate cursor
+		shapes also see: -cursor (none|arrow|X|some|most)
+
+	-remote/-R: remote-control support: nearly every setting can be
+		changed dynamically without restarting x11vnc.	For
+		example, "x11vnc -R shared", and "x11vnc -R scale:3/4"
+		will connect to a running x11vnc server to make it shared
+		and re-scaled, respectively.
+
+	-gui: launches a simple tcl/tk GUI based on the remote control
+		function.  Requires the tcl/tk "wish" program.
+
+	-overlay: support for overlay/multi-depth (e.g. 24+8) visuals
+		on Solaris (SUN_OVL extension) and IRIX.
+
+	-xrandr: support for the XRANDR (X Resize, Rotate and Reflection)
+		extension: if the screen changes size or rotates x11vnc
+		creates a new framebuffer to match it.  Useful to have a VNC
+		Viewer that supports NewFBSize extension. (also -padgeom)
+
+	-pointer_mode: Experimental pointer input handling schemes,
+		e.g.: "-pointer_mode 3" (similar to -nodragging)
+
+	man page x11vnc.1 and README files created.
+
+  miscellaneous new features and changes:
+
+	-sb: set screen blank idle timeout
+	-nocursorshape: disable cursor shape VNC extension.
+	RFB_MODE = "accept" or "gone" passed to -accept/-gone commands.
+        -vncconnect is now the default.
+        -norepeat is now the default.
+	"-id pick" to pick a window via xwininfo for the -id option. 
+	-sid option: like -id but crops root window instead.
+	Related to remote-control: -query, -noremote, -sync, 
+		-deny_all, -safer, -unsafe.
+
+
+For more information: 
+
+	http://www.karlrunge.com/x11vnc/
+	http://www.karlrunge.com/x11vnc/x11vnc_opts.html
+       	x11vnc -help
+
+-----------------------------------------------------------------------------
+
+
+x11vnc 0.6.2	2004-08-02
+
+New in the 0.6.2 x11vnc release:
+
+	-scale option for server side scaling (e.g. -scale 2/3).
+
+	-storepasswd option to create VNC password files.
+
+	~/.x11vncrc simple config file support.
+
+	-cursorpos now the default (send cursor position updates to clients
+		that understand them, disable with -nocursorpos)
+
+	more connection info sent to the -accept and -gone commands.
+
+  new keyboard related features:
+
+	-modtweak is now the default (it automatically adjusts the modifier
+		keys state to send a Keysym properly, disable -nomodtweak)
+		this works around "ghost" keys like "< >" in XFree86.
+
+	-xkb option to use XKEYBOARD extension for modtweak-ing to further
+		improve the accuracy of sending Keysyms between different
+		language keyboards.
+
+	-skip_keycodes and -add_keysyms options to fine tune stubborn
+		keyboard differences.
+
+	-norepeat option to turn off X server key autorepeat when clients
+		are connected (works around the repeated characters problem)
+
+	-clear_mods and -clear_keys to send key release events at
+		startup and exit.	
+
+  removed options:
+
+	-hints/-nohints: we now always use hints.
+
+For more information: 
+
+	http://www.karlrunge.com/x11vnc/
+	http://www.karlrunge.com/x11vnc/x11vnc_opts.html
+       	x11vnc -help
+
+-----------------------------------------------------------------------------
+

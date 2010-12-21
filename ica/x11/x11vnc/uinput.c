@@ -63,6 +63,7 @@ so, delete this exception statement from your version.
 
 int check_uinput(void);
 int initialize_uinput(void);
+void shutdown_uinput(void);
 int set_uinput_accel(char *str);
 int set_uinput_thresh(char *str);
 void set_uinput_reset(int ms);
@@ -83,20 +84,29 @@ static void init_key_tracker(void);
 static int mod_is_down(void);
 static int key_is_down(void);
 static void set_uinput_accel_xy(double fx, double fy);
-static void shutdown_uinput(void);
 static void ptr_move(int dx, int dy);
 static void ptr_rel(int dx, int dy);
 static void button_click(int down, int btn);
 static int lookup_code(int keysym);
 
 static int fd = -1;
-static int db = 0;
+static int direct_rel_fd = -1;
+static int direct_abs_fd = -1;
+static int direct_btn_fd = -1;
+static int direct_key_fd = -1;
 static int bmask = 0;
+static int db = 0;
 
 static char *injectable = NULL;
 static char *uinput_dev = NULL;
+static char *tslib_cal = NULL;
+static double a[7];
 static int uinput_touchscreen = 0;
 static int uinput_abs = 0;
+static int btn_touch = 0;
+static int dragskip = 0;
+static int touch_always = 0;
+static int touch_pressure = 1;
 static int abs_x = 0, abs_y = 0;
 
 static char *devs[] = {
@@ -106,6 +116,13 @@ static char *devs[] = {
 	NULL
 };
 
+#ifndef O_NDELAY
+#ifdef  O_NONBLOCK
+#define O_NDELAY O_NONBLOCK
+#else
+#define O_NDELAY 0
+#endif
+#endif
 
 /* 
  * User may need to do:
@@ -137,7 +154,7 @@ int check_uinput(void) {
 	fd = -1;
 	i = 0;
 	while (devs[i] != NULL) {
-		if ( (fd = open(devs[i++], O_RDWR)) >= 0) {
+		if ( (fd = open(devs[i++], O_WRONLY | O_NDELAY)) >= 0) {
 			break;
 		}
 	}
@@ -190,39 +207,187 @@ static int key_is_down(void) {
 	return 0;
 }
 
-static void shutdown_uinput(void) {
+void shutdown_uinput(void) {
 #ifdef UINPUT_OK
-	ioctl(fd, UI_DEV_DESTROY);
+	if (fd >= 0) {
+		if (db) {
+			rfbLog("shutdown_uinput called on fd=%d\n", fd);
+		}
+		ioctl(fd, UI_DEV_DESTROY);
+		close(fd);
+		fd = -1;
+	}
+
+	/* close direct injection files too: */
+	if (direct_rel_fd >= 0) close(direct_rel_fd);
+	if (direct_abs_fd >= 0) close(direct_abs_fd);
+	if (direct_btn_fd >= 0) close(direct_btn_fd);
+	if (direct_key_fd >= 0) close(direct_key_fd);
+	direct_rel_fd = -1;
+	direct_abs_fd = -1;
+	direct_btn_fd = -1;
+	direct_key_fd = -1;
 #endif
 }
+
+/* 
+grep BUS_ /usr/include/linux/input.h | awk '{print $2}' | perl -e 'while (<>) {chomp; print "#ifdef $_\n\t\tif(!strcmp(s, \"$_\"))\tudev.id.bustype = $_\n#endif\n"}'
+ */
+static int get_bustype(char *s) {
+#ifdef UINPUT_OK
+
+	if (!s) return 0;
+
+#ifdef BUS_PCI
+	if(!strcmp(s, "BUS_PCI"))	return BUS_PCI;
+#endif
+#ifdef BUS_ISAPNP
+	if(!strcmp(s, "BUS_ISAPNP"))	return BUS_ISAPNP;
+#endif
+#ifdef BUS_USB
+	if(!strcmp(s, "BUS_USB"))	return BUS_USB;
+#endif
+#ifdef BUS_HIL
+	if(!strcmp(s, "BUS_HIL"))	return BUS_HIL;
+#endif
+#ifdef BUS_BLUETOOTH
+	if(!strcmp(s, "BUS_BLUETOOTH"))	return BUS_BLUETOOTH;
+#endif
+#ifdef BUS_VIRTUAL
+	if(!strcmp(s, "BUS_VIRTUAL"))	return BUS_VIRTUAL;
+#endif
+#ifdef BUS_ISA
+	if(!strcmp(s, "BUS_ISA"))	return BUS_ISA;
+#endif
+#ifdef BUS_I8042
+	if(!strcmp(s, "BUS_I8042"))	return BUS_I8042;
+#endif
+#ifdef BUS_XTKBD
+	if(!strcmp(s, "BUS_XTKBD"))	return BUS_XTKBD;
+#endif
+#ifdef BUS_RS232
+	if(!strcmp(s, "BUS_RS232"))	return BUS_RS232;
+#endif
+#ifdef BUS_GAMEPORT
+	if(!strcmp(s, "BUS_GAMEPORT"))	return BUS_GAMEPORT;
+#endif
+#ifdef BUS_PARPORT
+	if(!strcmp(s, "BUS_PARPORT"))	return BUS_PARPORT;
+#endif
+#ifdef BUS_AMIGA
+	if(!strcmp(s, "BUS_AMIGA"))	return BUS_AMIGA;
+#endif
+#ifdef BUS_ADB
+	if(!strcmp(s, "BUS_ADB"))	return BUS_ADB;
+#endif
+#ifdef BUS_I2C
+	if(!strcmp(s, "BUS_I2C"))	return BUS_I2C;
+#endif
+#ifdef BUS_HOST
+	if(!strcmp(s, "BUS_HOST"))	return BUS_HOST;
+#endif
+#ifdef BUS_GSC
+	if(!strcmp(s, "BUS_GSC"))	return BUS_GSC;
+#endif
+#ifdef BUS_ATARI
+	if(!strcmp(s, "BUS_ATARI"))	return BUS_ATARI;
+#endif
+	if (atoi(s) > 0) {
+		return atoi(s);
+	}
+
+#endif
+	return 0;
+}
+
+static void load_tslib_cal(void) {
+	FILE *f;
+	char line[1024], *p;
+	int i;
+
+	/* /etc/pointercal -528 33408 -3417516 -44200 408 40292028 56541 */
+
+	/* this is the identity transformation: */
+	a[0] = 1.0;
+	a[1] = 0.0;
+	a[2] = 0.0;
+	a[3] = 0.0;
+	a[4] = 1.0;
+	a[5] = 0.0;
+	a[6] = 1.0;
+
+	if (tslib_cal == NULL) {
+		return;
+	}
+
+	rfbLog("load_tslib_cal: reading %s\n", tslib_cal);
+	f = fopen(tslib_cal, "r");
+	if (f == NULL) {
+		rfbLogPerror("load_tslib_cal: fopen");
+		clean_up_exit(1);
+	}
+
+	if (fgets(line, sizeof(line), f) == NULL) {
+		rfbLogPerror("load_tslib_cal: fgets");
+		clean_up_exit(1);
+	}
+	fclose(f);
+
+	p = strtok(line, " \t");
+	i = 0;
+	while (p) {
+		a[i] = (double) atoi(p);
+		rfbLog("load_tslib_cal: a[%d] %.3f\n", i, a[i]);
+		p = strtok(NULL, " \t");
+		i++;
+		if (i >= 7) {
+			break;
+		}
+	}
+	if (i != 7) {
+		rfbLog("load_tslib_cal: invalid tslib file format: i=%d %s\n",
+		    i, tslib_cal);
+		clean_up_exit(1);
+	}
+}
+
 
 int initialize_uinput(void) {
 #ifndef UINPUT_OK
 	return 0;
 #else
 	int i;
+	char *s;
 	struct uinput_user_dev udev;
 
 	if (fd >= 0) {
 		shutdown_uinput();
-		close(fd);
-		fd = -1;
 	}
+	fd = -1;
 
 	if (getenv("X11VNC_UINPUT_DEBUG")) {
 		db = atoi(getenv("X11VNC_UINPUT_DEBUG"));
 		rfbLog("set uinput debug to: %d\n", db);
 	}
 
+	if (tslib_cal) {
+		load_tslib_cal();	
+	}
+
 	init_key_tracker();
 	
 	if (uinput_dev) {
-		fd = open(uinput_dev, O_RDWR);
-		rfbLog("initialize_uinput: using: %s %d\n", uinput_dev, fd);
+		if (!strcmp(uinput_dev, "nouinput")) {
+			rfbLog("initialize_uinput: not creating uinput device.\n");
+			return 1;
+		} else {
+			fd = open(uinput_dev, O_WRONLY | O_NDELAY);
+			rfbLog("initialize_uinput: using: %s %d\n", uinput_dev, fd);
+		}
 	} else {
 		i = 0;
 		while (devs[i] != NULL) {
-			if ( (fd = open(devs[i], O_RDWR)) >= 0) {
+			if ( (fd = open(devs[i], O_WRONLY | O_NDELAY)) >= 0) {
 				rfbLog("initialize_uinput: using: %s %d\n",
 				    devs[i], fd);
 				break;
@@ -233,21 +398,37 @@ int initialize_uinput(void) {
 	if (fd < 0) {
 		rfbLog("initialize_uinput: could not open an uinput device.\n");
 		rfbLogPerror("open");
-		clean_up_exit(1);
+		if (direct_rel_fd < 0 && direct_abs_fd < 0 && direct_btn_fd < 0 && direct_key_fd < 0) {
+			clean_up_exit(1);
+		}
+		return 1;
 	}
 
 	memset(&udev, 0, sizeof(udev));
 
 	strncpy(udev.name, "x11vnc injector", UINPUT_MAX_NAME_SIZE);
 
-	udev.id.bustype = BUS_USB;	/* Matters? */
-	udev.id.version = 4;
+	s = getenv("X11VNC_UINPUT_BUS");
+	if (s) {
+		udev.id.bustype = get_bustype(s);
+	} else if (0) {
+		udev.id.bustype = BUS_USB;
+	}
+
+	s = getenv("X11VNC_UINPUT_VERSION");
+	if (s) {
+		udev.id.version = atoi(s);
+	} else if (0) {
+		udev.id.version = 4;
+	}
 
 	ioctl(fd, UI_SET_EVBIT, EV_REL);
 	ioctl(fd, UI_SET_RELBIT, REL_X);
 	ioctl(fd, UI_SET_RELBIT, REL_Y);
 
 	ioctl(fd, UI_SET_EVBIT, EV_KEY);
+
+	ioctl(fd, UI_SET_EVBIT, EV_SYN);
 
 	for (i=0; i < 256; i++) {
 		ioctl(fd, UI_SET_KEYBIT, i);
@@ -287,6 +468,23 @@ int initialize_uinput(void) {
 		udev.absflat[ABS_Y] = 0;
 		rfbLog("uinput: absolute pointer enabled at %dx%d.\n", abs_x, abs_y);
 		set_uinput_accel_xy(1.0, 1.0);
+	}
+
+	if (db) {
+		rfbLog("   udev.name:             %s\n", udev.name);
+		rfbLog("   udev.id.bustype:       %d\n", udev.id.bustype);
+		rfbLog("   udev.id.vendor:        %d\n", udev.id.vendor);
+		rfbLog("   udev.id.product:       %d\n", udev.id.product);
+		rfbLog("   udev.id.version:       %d\n", udev.id.version);
+		rfbLog("   udev.ff_effects_max:   %d\n", udev.ff_effects_max);
+		rfbLog("   udev.absmin[ABS_X]:    %d\n", udev.absmin[ABS_X]);
+		rfbLog("   udev.absmax[ABS_X]:    %d\n", udev.absmax[ABS_X]);
+		rfbLog("   udev.absfuzz[ABS_X]:   %d\n", udev.absfuzz[ABS_X]);
+		rfbLog("   udev.absflat[ABS_X]:   %d\n", udev.absflat[ABS_X]);
+		rfbLog("   udev.absmin[ABS_Y]:    %d\n", udev.absmin[ABS_Y]);
+		rfbLog("   udev.absmax[ABS_Y]:    %d\n", udev.absmax[ABS_Y]);
+		rfbLog("   udev.absfuzz[ABS_Y]:   %d\n", udev.absfuzz[ABS_Y]);
+		rfbLog("   udev.absflat[ABS_Y]:   %d\n", udev.absflat[ABS_Y]);
 	}
 
 	write(fd, &udev, sizeof(udev));
@@ -408,9 +606,19 @@ void parse_uinput_str(char *in) {
 	uinput_abs = 0;
 	abs_x = abs_y = 0;
 
+	if (tslib_cal) {
+		free(tslib_cal);
+		tslib_cal = NULL;
+	}
+
 	p = strtok(str, ",");
 	while (p) {
 		if (p[0] == '/') {
+			if (uinput_dev) {
+				free(uinput_dev);
+			}
+			uinput_dev = strdup(p);
+		} else if (strstr(p, "nouinput") == p) {
 			if (uinput_dev) {
 				free(uinput_dev);
 			}
@@ -435,6 +643,12 @@ void parse_uinput_str(char *in) {
 				free(injectable);
 			}
 			injectable = strdup(p);
+		} else if (strstr(p, "touch_always=") == p) {
+			touch_always = atoi(p + strlen("touch_always="));
+		} else if (strstr(p, "btn_touch=") == p) {
+			btn_touch = atoi(p + strlen("btn_touch="));
+		} else if (strstr(p, "dragskip=") == p) {
+			dragskip = atoi(p + strlen("dragskip="));
 		} else if (strstr(p, "touch") == p) {
 			int gw, gh;
 			q = strchr(p, '=');
@@ -452,7 +666,38 @@ void parse_uinput_str(char *in) {
 				abs_x = gw;
 				abs_y = gh;
 			}
-		
+		} else if (strstr(p, "pressure=") == p) {
+			touch_pressure = atoi(p + strlen("pressure="));
+		} else if (strstr(p, "direct_rel=") == p) {
+			direct_rel_fd = open(p+strlen("direct_rel="), O_WRONLY);
+			if (direct_rel_fd < 0) {
+				rfbLogPerror("uinput: direct_rel open");
+			} else {
+				rfbLog("uinput: opened: %s fd=%d\n", p, direct_rel_fd);
+			}
+		} else if (strstr(p, "direct_abs=") == p) {
+			direct_abs_fd = open(p+strlen("direct_abs="), O_WRONLY);
+			if (direct_abs_fd < 0) {
+				rfbLogPerror("uinput: direct_abs open");
+			} else {
+				rfbLog("uinput: opened: %s fd=%d\n", p, direct_abs_fd);
+			}
+		} else if (strstr(p, "direct_btn=") == p) {
+			direct_btn_fd = open(p+strlen("direct_btn="), O_WRONLY);
+			if (direct_btn_fd < 0) {
+				rfbLogPerror("uinput: direct_btn open");
+			} else {
+				rfbLog("uinput: opened: %s fd=%d\n", p, direct_btn_fd);
+			}
+		} else if (strstr(p, "direct_key=") == p) {
+			direct_key_fd = open(p+strlen("direct_key="), O_WRONLY);
+			if (direct_key_fd < 0) {
+				rfbLogPerror("uinput: direct_key open");
+			} else {
+				rfbLog("uinput: opened: %s fd=%d\n", p, direct_key_fd);
+			}
+		} else if (strstr(p, "tslib_cal=") == p) {
+			tslib_cal = strdup(p+strlen("tslib_cal="));
 		} else {
 			rfbLog("invalid UINPUT option: %s\n", p);
 			clean_up_exit(1);
@@ -465,36 +710,53 @@ void parse_uinput_str(char *in) {
 static void ptr_move(int dx, int dy) {
 #ifdef UINPUT_OK
 	struct input_event ev;
+	int d = direct_rel_fd < 0 ? fd : direct_rel_fd;
 
 	if (injectable && strchr(injectable, 'M') == NULL) {
 		return;
 	}
 
 	memset(&ev, 0, sizeof(ev));
+
+	if (db) fprintf(stderr, "ptr_move(%d, %d) fd=%d\n", dx, dy, d);
 
 	gettimeofday(&ev.time, NULL);
 	ev.type = EV_REL;
 	ev.code = REL_Y;
 	ev.value = dy;
-	write(fd, &ev, sizeof(ev));
+	write(d, &ev, sizeof(ev));
 
 	ev.type = EV_REL;
 	ev.code = REL_X;
 	ev.value = dx;
-	write(fd, &ev, sizeof(ev));
+	write(d, &ev, sizeof(ev));
 
 	ev.type = EV_SYN;
 	ev.code = SYN_REPORT;
 	ev.value = 0;
-	write(fd, &ev, sizeof(ev));
+	write(d, &ev, sizeof(ev));
 #else
 	if (!dx || !dy) {}
 #endif
 }
 
-static void ptr_abs(int x, int y) {
+static void apply_tslib(int *x, int *y) {
+	double x1 = *x, y1 = *y, x2, y2;
+
+	/* this is the inverse of the tslib linear transform: */
+	x2 = (a[4] * (a[6] * x1 - a[2]) - a[1] * (a[6] * y1 - a[5]))/(a[4]*a[0] - a[1]*a[3]);
+	y2 = (a[0] * (a[6] * y1 - a[5]) - a[3] * (a[6] * x1 - a[2]))/(a[4]*a[0] - a[1]*a[3]);
+
+	*x = (int) x2;
+	*y = (int) y2;
+}
+	
+
+static void ptr_abs(int x, int y, int p) {
 #ifdef UINPUT_OK
 	struct input_event ev;
+	int x0, y0;
+	int d = direct_abs_fd < 0 ? fd : direct_abs_fd;
 
 	if (injectable && strchr(injectable, 'M') == NULL) {
 		return;
@@ -502,23 +764,37 @@ static void ptr_abs(int x, int y) {
 
 	memset(&ev, 0, sizeof(ev));
 
-	if (db) fprintf(stderr, "ptr_abs(%d, %d)\n", x, y);
+	x0 = x;
+	y0 = y;
+
+	if (tslib_cal) {
+		apply_tslib(&x, &y);
+	}
+
+	if (db) fprintf(stderr, "ptr_abs(%d, %d => %d %d, p=%d) fd=%d\n", x0, y0, x, y, p, d);
 
 	gettimeofday(&ev.time, NULL);
 	ev.type = EV_ABS;
 	ev.code = ABS_Y;
 	ev.value = y;
-	write(fd, &ev, sizeof(ev));
+	write(d, &ev, sizeof(ev));
 
 	ev.type = EV_ABS;
 	ev.code = ABS_X;
 	ev.value = x;
-	write(fd, &ev, sizeof(ev));
+	write(d, &ev, sizeof(ev));
+
+	if (p >= 0) {
+		ev.type = EV_ABS;
+		ev.code = ABS_PRESSURE;
+		ev.value = p;
+		write(d, &ev, sizeof(ev));
+	}
 
 	ev.type = EV_SYN;
 	ev.code = SYN_REPORT;
 	ev.value = 0;
-	write(fd, &ev, sizeof(ev));
+	write(d, &ev, sizeof(ev));
 #else
 	if (!x || !y) {}
 #endif
@@ -658,7 +934,7 @@ static void ptr_rel(int dx, int dy) {
 			resid_y -= dyf;
 
 			if (db > 1) fprintf(stderr, "*%s resid: dx dy: %d %d  %f %f\n", accel > 1 ? "*" : " ", dxf, dyf, resid_x, resid_y);
-if (0) {usleep(100*1000);}
+if (0) {usleep(100*1000) ;}
 			ptr_move(dxf, dyf);
 		}
 	}
@@ -667,12 +943,13 @@ if (0) {usleep(100*1000);}
 static void button_click(int down, int btn) {
 #ifdef UINPUT_OK
 	struct input_event ev;
+	int d = direct_btn_fd < 0 ? fd : direct_btn_fd;
 
 	if (injectable && strchr(injectable, 'B') == NULL) {
 		return;
 	}
 
-	if (db) fprintf(stderr, "button_click: btn %d %s\n", btn, down ? "down" : "up");
+	if (db) fprintf(stderr, "button_click: btn %d %s fd=%d\n", btn, down ? "down" : "up", d);
 
 	memset(&ev, 0, sizeof(ev));
 	gettimeofday(&ev.time, NULL);
@@ -696,12 +973,12 @@ static void button_click(int down, int btn) {
 		return;
 	}
 
-	write(fd, &ev, sizeof(ev));
+	write(d, &ev, sizeof(ev));
 
 	ev.type = EV_SYN;
 	ev.code = SYN_REPORT;
 	ev.value = 0;
-	write(fd, &ev, sizeof(ev));
+	write(d, &ev, sizeof(ev));
 
 	last_button_click = dnow();
 #else
@@ -756,15 +1033,6 @@ void uinput_pointer_command(int mask, int x, int y, rfbClientPtr client) {
 		do_reset = 1;
 	}
 	if (uinput_abs) {
-#if 0
-		/* this is a bad idea... need to do something else */
-		if (do_reset) {
-			ptr_abs(dpy_x, dpy_y);
-			usleep(10*1000);
-			ptr_abs(x, y);
-			usleep(10*1000);
-		}
-#endif
 		do_reset = 0;
 	}
 
@@ -849,7 +1117,7 @@ void uinput_pointer_command(int mask, int x, int y, rfbClientPtr client) {
 			} else {
 				ptr_rel(x, y);
 			}
-			if (1) {usleep(10*1000);}
+			if (1) {usleep(10*1000) ;}
 
 			last_x = x;
 			last_y = y;
@@ -863,8 +1131,10 @@ void uinput_pointer_command(int mask, int x, int y, rfbClientPtr client) {
 
 	if (input.motion) {
 		if (x != last_x || y != last_y) {
-			if (uinput_abs) {
-				ptr_abs(x, y);
+			if (uinput_touchscreen) {
+				;
+			} else if (uinput_abs) {
+				ptr_abs(x, y, -1);
 			} else {
 				ptr_rel(x - last_x, y - last_y);
 			}
@@ -888,7 +1158,46 @@ void uinput_pointer_command(int mask, int x, int y, rfbClientPtr client) {
 		fprintf(stderr, "button_mask: %s\n", bitprint(button_mask, 16));
 	}
 
-	if (mask != last_mask) {
+	if (uinput_touchscreen) {
+		if (!btn_touch) {
+			static int down_count = 0;
+			int p = touch_pressure >=0 ? touch_pressure : 0;
+			if (!last_mask && !mask) {
+				if (touch_always) {
+					ptr_abs(last_x, last_y, 0);
+				}
+			} else if (!last_mask && mask) {
+				ptr_abs(last_x, last_y, p);
+				down_count = 0;
+			} else if (last_mask && !mask) {
+				ptr_abs(last_x, last_y, 0);
+			} else if (last_mask && mask) {
+				down_count++;
+				if (dragskip > 0) {
+					if (down_count % dragskip == 0) {
+						ptr_abs(last_x, last_y, p);
+					}
+				} else {
+					ptr_abs(last_x, last_y, p);
+				}
+			}
+		} else {
+			if (!last_mask && !mask) {
+				if (touch_always) {
+					ptr_abs(last_x, last_y, 0);
+				}
+			} else if (!last_mask && mask) {
+				ptr_abs(last_x, last_y, 0);
+				button_click(1, 0);
+			} else if (last_mask && !mask) {
+				ptr_abs(last_x, last_y, 0);
+				button_click(0, 0);
+			} else if (last_mask && mask) {
+				;
+			}
+		}
+		last_mask = mask;
+	} else if (mask != last_mask) {
 		int i;
 		for (i=1; i <= MAX_BUTTONS; i++) {
 			int down, b = 1 << (i-1);
@@ -902,6 +1211,9 @@ void uinput_pointer_command(int mask, int x, int y, rfbClientPtr client) {
 			}
 			button_click(down, i);
 		}
+		if (mask && uinput_abs && touch_pressure >= 0) {
+			ptr_abs(last_x, last_y, touch_pressure);
+		}
 		last_mask = mask;
 	}
 	bmask = mask;
@@ -912,6 +1224,7 @@ void uinput_key_command(int down, int keysym, rfbClientPtr client) {
 	struct input_event ev;
 	int scancode;
 	allowed_input_t input;
+	int d = direct_key_fd < 0 ? fd : direct_key_fd;
 
 	if (injectable && strchr(injectable, 'K') == NULL) {
 		return;
@@ -929,7 +1242,7 @@ void uinput_key_command(int down, int keysym, rfbClientPtr client) {
 	if (scancode < 0) {
 		return;
 	}
-	if (db) fprintf(stderr, "uinput_key_command: %d -> %d %s\n", keysym, scancode, down ? "down" : "up");
+	if (db) fprintf(stderr, "uinput_key_command: %d -> %d %s fd=%d\n", keysym, scancode, down ? "down" : "up", d);
 
 	memset(&ev, 0, sizeof(ev));
 	gettimeofday(&ev.time, NULL);
@@ -937,12 +1250,12 @@ void uinput_key_command(int down, int keysym, rfbClientPtr client) {
 	ev.code = (unsigned char) scancode;
 	ev.value = down;
 
-	write(fd, &ev, sizeof(ev));
+	write(d, &ev, sizeof(ev));
 
 	ev.type = EV_SYN;
 	ev.code = SYN_REPORT;
 	ev.value = 0;
-	write(fd, &ev, sizeof(ev));
+	write(d, &ev, sizeof(ev));
 
 	if (0 <= scancode && scancode < 256) {
 		key_pressed[scancode] = down ? 1 : 0;
@@ -951,6 +1264,10 @@ void uinput_key_command(int down, int keysym, rfbClientPtr client) {
 	if (!down || !keysym || !client) {}
 #endif
 }
+
+#if 0
+  grep 'case XK_' x0vnc.c | sed -e 's/case /$key_lookup{/' -e 's/:/}/' -e 's/return /= $/'
+#endif
 
 static int lookup_code(int keysym) {
 

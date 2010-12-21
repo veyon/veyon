@@ -74,8 +74,8 @@ char *process_remote_cmd(char *cmd, int stringonly);
 static char *add_item(char *instr, char *item);
 static char *delete_item(char *instr, char *item);
 static void if_8bpp_do_new_fb(void);
-static void reset_httpport(int old, int new);
-static void reset_rfbport(int old, int new) ;
+static void reset_httpport(int old, int newp);
+static void reset_rfbport(int old, int newp) ;
 
 char *query_result = NULL;
 
@@ -563,8 +563,8 @@ void http_connections(int on) {
 	}
 }
 
-static void reset_httpport(int old, int new) {
-	int hp = new;
+static void reset_httpport(int old, int newp) {
+	int hp = newp;
 
 	if (! screen->httpDir) {
 		return;
@@ -619,8 +619,8 @@ static void reset_httpport(int old, int new) {
 	}
 }
 
-static void reset_rfbport(int old, int new)  {
-	int rp = new;
+static void reset_rfbport(int old, int newp)  {
+	int rp = newp;
 
 	if (inetd) {
 		rfbLog("reset_rfbport: cannot set rfbport: %d in inetd.\n", rp);
@@ -2303,7 +2303,7 @@ char *process_remote_cmd(char *cmd, int stringonly) {
 		 * safe_remote_only but at least the command names
 		 * are fixed.
 		 */
-		char *new;
+		char *newc;
 		int doit = 1;
 		COLON_CHECK("solid_color:")
 		if (query) {
@@ -2313,19 +2313,19 @@ char *process_remote_cmd(char *cmd, int stringonly) {
 		}
 		p += strlen("solid_color:");
 		if (*p != '\0') {
-			new = strdup(p);
+			newc = strdup(p);
 		} else {
-			new = strdup(solid_default);
+			newc = strdup(solid_default);
 		}
-		rfbLog("remote_cmd: solid %s -> %s\n", NONUL(solid_str), new);
+		rfbLog("remote_cmd: solid %s -> %s\n", NONUL(solid_str), newc);
 
 		if (solid_str) {
-			if (!strcmp(solid_str, new)) {
+			if (!strcmp(solid_str, newc)) {
 				doit = 0;
 			}
 			free(solid_str);
 		}
-		solid_str = new;
+		solid_str = newc;
 		use_solid_bg = 1;
 		if (raw_fb && !macosx_console) set_raw_fb_params(0);
 
@@ -4211,6 +4211,24 @@ char *process_remote_cmd(char *cmd, int stringonly) {
 			adjust_grabs(1, 0);
 		}
 		rfbLog("enabled grab_ptr\n");
+		goto done;
+	}
+	if (!strcmp(p, "ungrabboth")) {
+		if (query) {
+			snprintf(buf, bufn, "ans=%s:%d", p, ungrab_both);
+			goto qry;
+		}
+		ungrab_both = 1;
+		rfbLog("enabled ungrab_both\n");
+		goto done;
+	}
+	if (!strcmp(p, "noungrabboth")) {
+		if (query) {
+			snprintf(buf, bufn, "ans=%s:%d", p, !ungrab_both);
+			goto qry;
+		}
+		ungrab_both = 0;
+		rfbLog("disabled ungrab_both\n");
 		goto done;
 	}
 	if (!strcmp(p, "nograbptr")) {

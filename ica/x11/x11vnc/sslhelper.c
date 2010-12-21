@@ -125,17 +125,17 @@ char *get_saved_pem(char *save, int create) {
 	sprintf(path, "%s/server%s.pem", cdir, s);
 
 	if (stat(path, &sbuf) != 0) {
-		char *new = NULL;
+		char *new_name = NULL;
 		if (create) {
 			if (inetd || opts_bg) {
 				set_env("GENCERT_NOPROMPT", "1");
 			}
-			new = create_tmp_pem(path, prompt);
+			new_name = create_tmp_pem(path, prompt);
 			if (!getenv("X11VNC_SSL_NO_PASSPHRASE") && !inetd && !opts_bg) {
-				sslEncKey(new, 0);
+				sslEncKey(new_name, 0);
 			}
 		}
-		return new;
+		return new_name;
 	}
 
 	if (! quiet) {
@@ -337,9 +337,12 @@ char *create_tmp_pem(char *pathin, int prompt) {
 	sprintf(str, tmpl, C, L, OU, O, CN, EM);
 
 	cnf_fd = mkstemp(cnf);
+	if (cnf_fd < 0) {
+		return NULL;
+	}
 	pem_fd = mkstemp(pem);
-
-	if (cnf_fd < 0 || pem_fd < 0) {
+	if (pem_fd < 0) {
+		close(cnf_fd);
 		return NULL;
 	}
 

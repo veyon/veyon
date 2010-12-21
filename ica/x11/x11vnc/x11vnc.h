@@ -139,6 +139,8 @@ so, delete this exception statement from your version.
  * -DPOLL_8TO24_DELAY=N  
  * -DDEBUG_XEVENTS=1  enable printout for X events.
  *
+ * -DX11VNC_MACOSX_USE_GETMAINDEVICE use deprecated GetMainDevice on macosx 
+ *
  * Set these in CPPFLAGS before running configure. E.g.:
  *
  *   % env CPPFLAGS="-DFOREVER -DREMOTE_CONTROL=0" ./configure

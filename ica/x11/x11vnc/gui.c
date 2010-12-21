@@ -81,26 +81,26 @@ static Window tweak_tk_window_id(Window win) {
 	return None;
 #else
 	char *name = NULL;
-	Window parent, new;
+	Window parent, new_win;
 
 	if (getenv("NO_TWEAK_TK_WINDOW_ID")) {
 		return win;
 	}
 
 	/* hack for tk, does not report outermost window */
-	new = win;
+	new_win = win;
 	parent = parent_window(win, &name);
 	if (parent && name != NULL) {
 		lowercase(name);
 		if (strstr(name, "wish") || strstr(name, "x11vnc")) {
-			new = parent;
+			new_win = parent;
 			rfbLog("tray_embed: using parent: %s\n", name);
 		}
 	}
 	if (name != NULL) {
 		XFree_wr(name);
 	}
-	return new;
+	return new_win;
 #endif	/* NO_X11 */
 }
 

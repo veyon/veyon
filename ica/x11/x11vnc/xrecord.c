@@ -73,7 +73,7 @@ void initialize_xrecord(void);
 void zerodisp_xrecord(void);
 void shutdown_xrecord(void);
 int xrecord_skip_keysym(rfbKeySym keysym);
-int xrecord_skip_button(int new, int old);
+int xrecord_skip_button(int newb, int old);
 int xrecord_scroll_keysym(rfbKeySym keysym);
 void check_xrecord_reset(int force);
 void xrecord_watch(int start, int setby);
@@ -410,9 +410,9 @@ int xrecord_skip_keysym(rfbKeySym keysym) {
 	return 0;
 }
 
-int xrecord_skip_button(int new, int old) {
+int xrecord_skip_button(int new_button, int old) {
 	/* unused vars warning: */
-	if (new || old) {}
+	if (new_button || old) {}
 
 	return 0;
 }

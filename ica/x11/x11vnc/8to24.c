@@ -720,7 +720,7 @@ static int check_depth_win(Window win, Window top, XWindowAttributes *attr) {
 
 	if (store_it) {
 		int i, j = -1, none = -1, nomap = -1;
-		int new = 0;
+		int newc = 0;
 		if (attr->map_state == IsViewable) {
 			/* count the visible ones: */
 			multivis_count++;
@@ -754,7 +754,7 @@ if (db24 > 1) fprintf(stderr, "multivis: 0x%lx %d\n", win, attr->depth);
 			} else if (none >= 0) {
 				/* put it in the first None slot */
 				j = none;
-				new = 1;
+				newc = 1;
 			} else if (nomap >=0) {
 				/* put it in the first unmapped slot */
 				j = nomap;
@@ -791,8 +791,8 @@ if (db24 > 1) fprintf(stderr, "multivis: STORE 0x%lx j: %3d ms: %d dep=%d\n", wi
 			windows_8bpp[j].x = x;
 			windows_8bpp[j].y = y;
 
-			if (new || now_vis) {
-if (db24) fprintf(stderr, "new/now_vis: 0x%lx %d/%d\n", win, new, now_vis);
+			if (newc || now_vis) {
+if (db24) fprintf(stderr, "new/now_vis: 0x%lx %d/%d\n", win, newc, now_vis);
 				/* mark it immediately if a new one: */
 				X_UNLOCK;	/* dont forget the giant lock */
 				mark_rect_as_modified(x, y, x + attr->width,

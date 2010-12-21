@@ -96,8 +96,8 @@ extern struct timeval _mysleep;
   ((KeySym)(keysym) != XK_Caps_Lock) && ((KeySym)(keysym) != XK_Shift_Lock)))
 
 /*
- * Not sure why... but when threaded we have to mutex our X11 calls to
- * avoid XIO crashes.
+ * When threaded we have to mutex our X11 calls to avoid XIO crashes
+ * due to callbacks.
  */
 #ifdef LIBVNCSERVER_HAVE_LIBPTHREAD
 extern MUTEX(x11Mutex);

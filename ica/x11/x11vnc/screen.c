@@ -1461,7 +1461,19 @@ char *vnc_reflect_guess(char *str, char **raw_fb_addr) {
 	char *str0 = strdup(str);
 
 	if (client == NULL) {
-		client = rfbGetClient(8, 3, 4);
+		int bitsPerSample = 8;
+		int samplesPerPixel = 3;
+		int bytesPerPixel = 4;
+		char *s;
+		s = getenv("X11VNC_REFLECT_bitsPerSample");
+		if (s) bitsPerSample = atoi(s);
+		s = getenv("X11VNC_REFLECT_samplesPerPixel");
+		if (s) samplesPerPixel = atoi(s);
+		s = getenv("X11VNC_REFLECT_bytesPerPixel");
+		if (s) bytesPerPixel = atoi(s);
+		rfbLog("rfbGetClient(bitsPerSample=%d, samplesPerPixel=%d, bytesPerPixel=%d)\n",
+		    bitsPerSample, samplesPerPixel, bytesPerPixel);
+		client = rfbGetClient(bitsPerSample, samplesPerPixel, bytesPerPixel);
 	}
 
 	rfbLog("rawfb: %s\n", str);
@@ -2099,16 +2111,16 @@ if (db) fprintf(stderr, "initialize_raw_fb reset\n");
 		/* hmmm, not following directions, see if map: applies */
 		struct stat sbuf;
 		if (stat(str, &sbuf) == 0) {
-			char *new;
+			char *newstr;
 			int len = strlen("map:") + strlen(str) + 1;
 			rfbLog("no type prefix: %s\n", raw_fb_str);
 			rfbLog("  but file exists, so assuming: map:%s\n",
 			    raw_fb_str);
-			new = (char *) malloc(len);
-			strcpy(new, "map:");
-			strcat(new, str);
+			newstr = (char *) malloc(len);
+			strcpy(newstr, "map:");
+			strcat(newstr, str);
 			free(str);
-			str = new;
+			str = newstr;
 		}
 	}
 

@@ -2776,6 +2776,7 @@ if (db) fprintf(stderr, "\n");
 				clean_up_exit(1);
 			}
 			n = fread(line2, 1, 16384, p);
+			pclose(p);
 		}
 		if (tmp_fd >= 0) {
 			unlink(tmp);

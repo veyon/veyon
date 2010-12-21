@@ -60,7 +60,7 @@ extern void initialize_xrecord(void);
 extern void zerodisp_xrecord(void);
 extern void shutdown_xrecord(void);
 extern int xrecord_skip_keysym(rfbKeySym keysym);
-extern int xrecord_skip_button(int new, int old);
+extern int xrecord_skip_button(int newb, int old);
 extern int xrecord_scroll_keysym(rfbKeySym keysym);
 extern void check_xrecord_reset(int force);
 extern void xrecord_watch(int start, int setby);

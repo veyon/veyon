@@ -61,7 +61,7 @@ void check_add_keysyms(void);
 int add_keysym(KeySym keysym);
 void delete_added_keycodes(int bequiet);
 void initialize_remap(char *infile);
-int sloppy_key_check(int key, rfbBool down, rfbKeySym keysym, int *new);
+int sloppy_key_check(int key, rfbBool down, rfbKeySym keysym, int *new_kc);
 void switch_to_xkb_if_better(void);
 char *short_kmbcf(char *str);
 void initialize_allowed_input(void);
@@ -518,7 +518,7 @@ int add_keysym(KeySym keysym) {
 	for (kc = minkey+1; kc <= maxkey; kc++) {
 		int i, j, didmsg = 0, is_empty = 1;
 		char *str;
-		KeySym new[8];
+		KeySym newks[8];
 
 		for (n=0; n < syms_per_keycode; n++) {
 			if (keymap[ (kc-minkey) * syms_per_keycode + n]
@@ -532,19 +532,19 @@ int add_keysym(KeySym keysym) {
 		}
 
 		for (i=0; i<8; i++) {
-			new[i] = NoSymbol;
+			newks[i] = NoSymbol;
 		}
 		if (add_keysyms == 2) {
-			new[0] = keysym;	/* XXX remove me */
+			newks[0] = keysym;	/* XXX remove me */
 		} else {
 			for(i=0; i < syms_per_keycode; i++) {
-				new[i] = keysym;
+				newks[i] = keysym;
 				if (i >= 7) break;
 			}
 		}
 
 		XChangeKeyboardMapping(dpy, kc, syms_per_keycode,
-		    new, 1);
+		    newks, 1);
 
 		if (alltime_num >= alltime_len) {
 			didmsg = 1;	/* something weird */
@@ -584,7 +584,7 @@ static void delete_keycode(KeyCode kc, int bequiet) {
 #else
 	int minkey, maxkey, syms_per_keycode, i;
 	KeySym *keymap;
-	KeySym ksym, new[8];
+	KeySym ksym, newks[8];
 	char *str;
 
 	RAWFB_RET_VOID
@@ -594,10 +594,10 @@ static void delete_keycode(KeyCode kc, int bequiet) {
 	    &syms_per_keycode);
 
 	for (i=0; i<8; i++) {
-		new[i] = NoSymbol;
+		newks[i] = NoSymbol;
 	}
 
-	XChangeKeyboardMapping(dpy, kc, syms_per_keycode, new, 1);
+	XChangeKeyboardMapping(dpy, kc, syms_per_keycode, newks, 1);
 
 	if (! bequiet && ! quiet) {
 		ksym = XKeycodeToKeysym(dpy, kc, 0);
@@ -907,14 +907,14 @@ static int kc1_shift, kc1_control, kc1_caplock, kc1_alt;
 static int kc1_meta, kc1_numlock, kc1_super, kc1_hyper;
 static int kc1_mode_switch, kc1_iso_level3_shift, kc1_multi_key;
 	
-int sloppy_key_check(int key, rfbBool down, rfbKeySym keysym, int *new) {
+int sloppy_key_check(int key, rfbBool down, rfbKeySym keysym, int *new_kc) {
 	if (!sloppy_keys) {
 		return 0;
 	}
 
 	RAWFB_RET(0)
 #if NO_X11
-	if (!key || !down || !keysym || !new) {}
+	if (!key || !down || !keysym || !new_kc) {}
 	return 0;
 #else
 	
@@ -958,7 +958,7 @@ int sloppy_key_check(int key, rfbBool down, rfbKeySym keysym, int *new) {
 				    "-> %d/0x%x  (nmods: %d)\n", (int) key,
 				    (int) key, downkey, downkey, nmods_down);
 			}
-			*new = downkey;
+			*new_kc = downkey;
 			return 1;
 		}
 	}

@@ -434,23 +434,23 @@ static void apply_settings(char *dev, char *settings, int *fd) {
 static double dval = 0.05;
 
 static int v4l1_dpct(int old, int d) {
-	int new, max = V4L1_MAX; 
+	int newval, max = V4L1_MAX; 
 	
 	/* -1 and 1 are special cases for "small increments" */
 	if (d == -1) {
-		new = old - (int) (dval * max);
+		newval = old - (int) (dval * max);
 	} else if (d == 1) {
-		new = old + (int) (dval * max);
+		newval = old + (int) (dval * max);
 	} else {
-		new = (d * max)/100;
+		newval = (d * max)/100;
 	}
-	if (new < 0) {
-		new = 0;
+	if (newval < 0) {
+		newval = 0;
 	}
-	if (new > max) {
-		new = max;
+	if (newval > max) {
+		newval = max;
 	}
-	return new;
+	return newval;
 }
 
 static void v4l_requery(void) {
