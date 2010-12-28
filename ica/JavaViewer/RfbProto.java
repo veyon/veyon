@@ -1545,6 +1545,38 @@ class RfbProto {
 	final static int META_MASK = InputEvent.META_MASK;
 	final static int ALT_MASK = InputEvent.ALT_MASK;
 
+	void writeWheelEvent(MouseWheelEvent evt) throws IOException {
+
+		eventBufLen = 0;
+
+		int x = evt.getX();
+		int y = evt.getY();
+
+		if (x < 0) x = 0;
+		if (y < 0) y = 0;
+
+		int ptrmask;
+
+		int clicks = evt.getWheelRotation();
+		System.out.println("writeWheelEvent: clicks: " + clicks);
+		if (clicks > 0) {
+			ptrmask = 16;
+		} else if (clicks < 0) {
+			ptrmask = 8;
+		} else {
+			return;
+		}
+
+		eventBuf[eventBufLen++] = (byte) PointerEvent;
+		eventBuf[eventBufLen++] = (byte) ptrmask;
+		eventBuf[eventBufLen++] = (byte) ((x >> 8) & 0xff);
+		eventBuf[eventBufLen++] = (byte) (x & 0xff);
+		eventBuf[eventBufLen++] = (byte) ((y >> 8) & 0xff);
+		eventBuf[eventBufLen++] = (byte) (y & 0xff);
+
+		os.write(eventBuf, 0, eventBufLen);
+	}
+
 	//
 	// Write a pointer event message.  We may need to send modifier key events
 	// around it to set the correct modifier state.
