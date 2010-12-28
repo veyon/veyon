@@ -677,6 +677,8 @@ vncDesktopThread::run_undetached(void *arg)
 	// Succeeded to initialise ok
 	ReturnVal(0);
 
+	//telling running viewers to wait until first update
+	m_server->InitialUpdate(false);
 	// sf@2003 - Done here to take into account if the driver is actually activated
 	m_desktop->InitHookSettings(); 
 
@@ -752,7 +754,8 @@ vncDesktopThread::run_undetached(void *arg)
 											{
 												m_desktop->m_buffer.GrabRegion(rgncache,false,true);
 											}
-	///
+	//telling running viewers to wait until first update, done
+	m_server->InitialUpdate(true);
 	while (looping && !fShutdownOrdered)
 	{		
 		DWORD result;

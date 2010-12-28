@@ -150,6 +150,7 @@ public:
 	virtual void SetNewSWSize(long w,long h,BOOL desktop);
 	virtual void SetSWOffset(int x,int y);
 	virtual void SetScreenOffset(int x,int y,int type); //never locked
+	virtual void InitialUpdate(bool value);
 
 	virtual BOOL All_clients_initialalized();
 

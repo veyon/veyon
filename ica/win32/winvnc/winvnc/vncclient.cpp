@@ -2559,6 +2559,10 @@ vncClientThread::run(void *arg)
 			}
 
 			{
+				//Fix server viewer crash, when server site scaling is used
+				//
+				m_client->m_ScaledScreen =m_client->m_encodemgr.m_buffer->GetViewerSize();
+
 				rfb::Rect update;
 				// Get the specified rectangle as the region to send updates for
 				// Modif sf@2002 - Scaling.
@@ -2566,6 +2570,11 @@ vncClientThread::run(void *arg)
 				update.tl.y = (Swap16IfLE(msg.fur.y) + m_client->m_SWOffsety) * m_client->m_nScale;
 				update.br.x = update.tl.x + Swap16IfLE(msg.fur.w) * m_client->m_nScale;
 				update.br.y = update.tl.y + Swap16IfLE(msg.fur.h) * m_client->m_nScale;
+				// Verify max size, scaled changed on server while not pushed to viewer
+				if (update.tl.x< ((m_client->m_ScaledScreen.tl.x + m_client->m_SWOffsetx) * m_client->m_nScale)) update.tl.x = (m_client->m_ScaledScreen.tl.x + m_client->m_SWOffsetx) * m_client->m_nScale;
+				if (update.tl.y < ((m_client->m_ScaledScreen.tl.y + m_client->m_SWOffsety) * m_client->m_nScale)) update.tl.y = (m_client->m_ScaledScreen.tl.y + m_client->m_SWOffsety) * m_client->m_nScale;
+				if (update.br.x > (update.tl.x + (m_client->m_ScaledScreen.br.x-m_client->m_ScaledScreen.tl.x) * m_client->m_nScale)) update.br.x = update.tl.x + (m_client->m_ScaledScreen.br.x-m_client->m_ScaledScreen.tl.x) * m_client->m_nScale;
+				if (update.br.y > (update.tl.y + (m_client->m_ScaledScreen.br.y-m_client->m_ScaledScreen.tl.y) * m_client->m_nScale)) update.br.y = update.tl.y + (m_client->m_ScaledScreen.br.y-m_client->m_ScaledScreen.tl.y) * m_client->m_nScale;
 				rfb::Region2D update_rgn = update;
 
 				//fullscreeen request, make it independed of the incremental rectangle
@@ -4168,6 +4177,7 @@ vncClient::vncClient() : Sendinput("USER32", "SendInput"), m_clipboard(Clipboard
 	m_szHost = NULL;
 	m_hostPort = 0;
 	m_want_update_state=false;
+	m_initial_update=true;
 }
 
 vncClient::~vncClient()
@@ -4539,6 +4549,16 @@ vncClient::SendRFBMsgQueue(CARD8 type, BYTE *buffer, int buflen)
 BOOL
 vncClient::SendUpdate(rfb::SimpleUpdateTracker &update)
 {
+
+	unlockcounter=0;
+	while (!m_initial_update)
+	{
+		Sleep(5);
+		unlockcounter++;
+		//something wnr wrong, just unlock
+		if (unlockcounter>1000) break;
+	}
+
 	// If there is nothing to send then exit
 
 	if (update.is_empty() && !m_cursor_update_pending && !m_NewSWUpdateWaiting && !m_cursor_pos_changed) return FALSE;
@@ -4919,6 +4939,12 @@ vncClient::SetScreenOffset(int x,int y,int type)
 	m_ScreenOffsetx=x;
 	m_ScreenOffsety=y;
 	m_display_type=type;
+}
+
+void
+vncClient::InitialUpdate(bool value)
+{
+	m_initial_update=value;
 }
 
 // CACHE RDV
