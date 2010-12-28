@@ -69,7 +69,7 @@ vncPropertiesPoll::Init(vncServer *server)
 	m_server = server;	
 
 	// sf@2007 - Registry mode can still be forced for backward compatibility and OS version < Vista
-	m_fUseRegistry = ((myIniFile.ReadInt("admin", "UseRegistry", 0) == 1) ? TRUE : FALSE);
+	m_fUseRegistry = TRUE;//((myIniFile.ReadInt("admin", "UseRegistry", 0) == 1) ? TRUE : FALSE);
 
 	// Load the settings
 	if (m_fUseRegistry)
@@ -86,7 +86,7 @@ vncPropertiesPoll::Show(BOOL show, BOOL usersettings)
 {
 	HANDLE hProcess=NULL;
 	HANDLE hPToken=NULL;
-	DWORD id=GetExplorerLogonPid();
+	//DWORD id=GetExplorerLogonPid();
 	int iImpersonateResult=0;
 	{
 		char WORKDIR[MAX_PATH];
@@ -522,6 +522,9 @@ vncPropertiesPoll::DialogProcPoll(HWND hwnd,
 
 
 
+#ifdef ULTRAVNC_ITALC_SUPPORT
+extern BOOL ultravnc_italc_load_int( LPCSTR valname, LONG *out );
+#endif
 
 // Functions to load & save the settings
 LONG
@@ -531,6 +534,13 @@ vncPropertiesPoll::LoadInt(HKEY key, LPCSTR valname, LONG defval)
 	ULONG type = REG_DWORD;
 	ULONG prefsize = sizeof(pref);
 
+#ifdef ULTRAVNC_ITALC_SUPPORT
+	LONG out;
+	if( ultravnc_italc_load_int( valname, &out ) )
+	{
+		return out;
+	}
+#endif
 	if (RegQueryValueEx(key,
 		valname,
 		NULL,

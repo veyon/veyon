@@ -23,6 +23,16 @@ BOOL ultravnc_italc_load_int( LPCSTR valname, LONG *out )
 		*out = ItalcCore::config->vncCaptureLayeredWindows() ? 1 : 0;
 		return true;
 	}
+	if( strcmp( valname, "PollFullScreen" ) == 0 )
+	{
+		*out = ItalcCore::config->vncPollFullScreen() ? 1 : 0;
+		return true;
+	}
+	if( strcmp( valname, "TurboMode" ) == 0 )
+	{
+		*out = ItalcCore::config->vncLowAccuracy() ? 1 : 0;
+		return true;
+	}
 	if( strcmp( valname, "NewMSLogon" ) == 0 )
 	{
 		*out = 1;
