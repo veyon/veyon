@@ -141,6 +141,16 @@ so, delete this exception statement from your version.
  *
  * -DX11VNC_MACOSX_USE_GETMAINDEVICE use deprecated GetMainDevice on macosx 
  *
+ * -DX11VNC_MACOSX_NO_DEPRECATED_LOCALEVENTS={0,1}
+ * -DX11VNC_MACOSX_NO_DEPRECATED_POSTEVENTS={0,1}
+ * -DX11VNC_MACOSX_NO_DEPRECATED_FRAMEBUFFER={0,1}
+ *
+ * or for all:
+ *
+ * -DX11VNC_MACOSX_NO_DEPRECATED=1
+ *
+ * env. var. of the same names as above can be set to imply true.
+ *
  * Set these in CPPFLAGS before running configure. E.g.:
  *
  *   % env CPPFLAGS="-DFOREVER -DREMOTE_CONTROL=0" ./configure
@@ -252,6 +262,30 @@ so, delete this exception statement from your version.
 #define LIBVNCSERVER_HAVE_UTMPX_H 0
 #define LIBVNCSERVER_HAVE_PWD_H 0
 #define REMOTE_CONTROL 0
+#endif
+
+#ifndef X11VNC_MACOSX_NO_DEPRECATED_LOCALEVENTS
+#if     X11VNC_MACOSX_NO_DEPRECATED
+#define X11VNC_MACOSX_NO_DEPRECATED_LOCALEVENTS 1
+#else
+#define X11VNC_MACOSX_NO_DEPRECATED_LOCALEVENTS 0
+#endif
+#endif
+
+#ifndef X11VNC_MACOSX_NO_DEPRECATED_POSTEVENTS
+#if     X11VNC_MACOSX_NO_DEPRECATED
+#define X11VNC_MACOSX_NO_DEPRECATED_POSTEVENTS 1
+#else
+#define X11VNC_MACOSX_NO_DEPRECATED_POSTEVENTS 0
+#endif
+#endif
+
+#ifndef X11VNC_MACOSX_NO_DEPRECATED_FRAMEBUFFER
+#if     X11VNC_MACOSX_NO_DEPRECATED
+#define X11VNC_MACOSX_NO_DEPRECATED_FRAMEBUFFER 1
+#else
+#define X11VNC_MACOSX_NO_DEPRECATED_FRAMEBUFFER 0
+#endif
 #endif
 
 /*

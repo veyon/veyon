@@ -51,7 +51,7 @@ extern void macosxCG_pointer_inject(int mask, int x, int y);
 extern int macosxCG_get_cursor_pos(int *x, int *y);
 extern int macosxCG_get_cursor(void);
 extern void macosxCG_init_key_table(void);
-extern void macosxCG_key_inject(int down, unsigned int keysym);
+extern void macosxCG_keysym_inject(int down, unsigned int keysym);
 extern void macosxCG_keycode_inject(int down, int keycode);
 
 extern void macosxCG_refresh_callback_off(void);

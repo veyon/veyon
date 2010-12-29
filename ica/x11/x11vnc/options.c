@@ -134,6 +134,8 @@ int no_external_cmds = 1;	/* cannot be turned back on. */
 char *allowed_external_cmds = NULL;
 int started_as_root = 0;
 int host_lookup = 1;
+char *unix_sock = NULL;
+int unix_sock_fd = -1;
 #if X11VNC_LISTEN6
 int ipv6_listen = 1;		/* -6 / -no6 */
 int got_ipv6_listen = 1;
@@ -217,6 +219,10 @@ int macosx_console = 0;
 int macosx_swap23 = 1;
 int macosx_resize = 1;
 int macosx_icon_anim_time = 450;
+int macosx_no_opengl = 0;
+int macosx_no_rawfb = 0;
+int macosx_read_opengl = 0;
+int macosx_read_rawfb = 0;
 
 unsigned long subwin = 0x0;	/* -id, -sid */
 int subwin_wait_mapped = 0;

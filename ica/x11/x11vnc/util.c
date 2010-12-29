@@ -594,6 +594,9 @@ int rfbPE(long usec) {
 	if (ipv6_listen) {
 		check_ipv6_listen(usec);
 	}
+	if (unix_sock) {
+		check_unix_sock(usec);
+	}
 	if (check_rate != 0) {
 		if (check_rate < 0) {
 			if (getenv("CHECK_RATE")) {
@@ -713,9 +716,31 @@ char *choose_title(char *display) {
 	if (display == NULL) {
 		display = getenv("DISPLAY");
 	}
+
+#ifdef MACOSX
+	if (display == NULL || strstr(display, "/tmp/") == display) {
+		char *u = get_user_name();
+		char *th = this_host();
+		if (strlen(u) > MAXN/4)  {
+			u = "someone";
+		}
+		strcpy(title, u);
+		if (th == NULL && UT.nodename) {
+			th = UT.nodename;
+		}
+		if (th) {
+			strcat(title, "@");
+			strncat(title, th, MAXN - strlen(title));
+		}
+		return title;
+	}
+#endif
+
 	if (display == NULL) {
 		return title;
 	}
+
+	/* use display: */
 	title[0] = '\0';
 	if (display[0] == ':') {
 		char *th = this_host();

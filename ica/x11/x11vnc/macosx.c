@@ -149,8 +149,6 @@ int macosx_checkevent(XEvent *ev) {
 }
 
 
-int dragum(void) {return 1;}
-
 #else 
 
 void macosx_event_loop(void) {
@@ -161,6 +159,12 @@ char *macosx_get_fb_addr(void) {
 	macosxCG_init();
 	return macosxCG_get_fb_addr();
 }
+
+int macosx_opengl_get_width(void);
+int macosx_opengl_get_height(void);
+int macosx_opengl_get_bpp(void);
+int macosx_opengl_get_bps(void);
+int macosx_opengl_get_spp(void);
 
 char *macosx_console_guess(char *str, int *fd) {
 	char *q, *in = strdup(str);
@@ -200,12 +204,22 @@ char *macosx_console_guess(char *str, int *fd) {
 		int w, h, b, bps, dep;
 		unsigned long rm = 0, gm = 0, bm = 0;
 
-		w = macosxCG_CGDisplayPixelsWide();
-		h = macosxCG_CGDisplayPixelsHigh();
-		b = macosxCG_CGDisplayBitsPerPixel();
+		if (macosx_read_opengl) {
+			w = macosx_opengl_get_width();
+			h = macosx_opengl_get_height();
+			b = macosx_opengl_get_bpp();
 
-		bps = macosxCG_CGDisplayBitsPerSample();
-		dep = macosxCG_CGDisplaySamplesPerPixel() * bps;
+			bps = macosx_opengl_get_bps();
+			dep = macosx_opengl_get_spp() * bps;
+			
+		} else {
+			w = macosxCG_CGDisplayPixelsWide();
+			h = macosxCG_CGDisplayPixelsHigh();
+			b = macosxCG_CGDisplayBitsPerPixel();
+
+			bps = macosxCG_CGDisplayBitsPerSample();
+			dep = macosxCG_CGDisplaySamplesPerPixel() * bps;
+		}
 
 		rm = (1 << bps) - 1;
 		gm = (1 << bps) - 1;
@@ -223,8 +237,7 @@ char *macosx_console_guess(char *str, int *fd) {
 		
 		/* @66666x66666x32:0xffffffff:... */
 		atparms = (char *) malloc(200);
-		sprintf(atparms, "%dx%dx%d:%lx/%lx/%lx",
-		    w, h, b, rm, gm, bm);
+		sprintf(atparms, "%dx%dx%d:%lx/%lx/%lx", w, h, b, rm, gm, bm);
 	}
 	if (atparms) {
 		int gw, gh, gb;
@@ -303,7 +316,7 @@ void macosx_pointer_command(int mask, int x, int y, rfbClientPtr client) {
 if (0) fprintf(stderr, "about to get all windows:           %.4f\n", dnowx());
 			for (i=0; i < 2; i++) {
 				macosxCGS_get_all_windows();
-				fprintf(stderr, "!");
+				if (0) fprintf(stderr, "!");
 				if (macosx_checkevent(NULL)) {
 					break;
 				}
@@ -340,7 +353,7 @@ void macosx_key_command(rfbBool down, rfbKeySym keysym, rfbClientPtr client) {
 	}
 
 	init_key_table();
-	macosxCG_key_inject((int) down, (unsigned int) keysym);
+	macosxCG_keysym_inject((int) down, (unsigned int) keysym);
 }
 
 extern void macosxGCS_poll_pb(void);

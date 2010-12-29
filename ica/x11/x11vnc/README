@@ -2,7 +2,7 @@
 Copyright (C) 2002-2010 Karl J. Runge <runge@karlrunge.com>
 All rights reserved.
 
-x11vnc README file                         Date: Tue Dec 21 13:47:44 EST 2010
+x11vnc README file                         Date: Mon Dec 27 20:58:57 EST 2010
 
 The following information is taken from these URLs:
 
@@ -924,12 +924,19 @@ make
      * The list of new uinput parameters for the above two features is:
        pressure, tslib_cal, touch_always, dragskip, btn_touch;
        direct_rel, direct_abs, direct_btn, direct_key.
+     * The MacOSX native server can now use OpenGL for the screen
+       capture. In nearly all cases this is faster than the raw
+       framebuffer capture method. There are build and run time flags,
+       X11VNC_MACOSX_NO_DEPRECATED, etc. to disable use of deprecated
+       input injection and screen access interfaces. Cursor shape now
+       works for 64bit binaries.
      * The included SSL enabled Java VNC Viewers now handle Mouse Wheel
        events.
-     * miscellaneous new features and changes: In -reflect mode, the
-       libvncclient connection can now have the pixel format modified via
-       the environment variables X11VNC_REFLECT_bitsPerSample,
-       X11VNC_REFLECT_samplesPerPixel, and X11VNC_REFLECT_bytesPerPixel
+     * miscellaneous new features and changes:
+     * In -reflect mode, the libvncclient connection can now have the
+       pixel format modified via the environment variables
+       X11VNC_REFLECT_bitsPerSample, X11VNC_REFLECT_samplesPerPixel, and
+       X11VNC_REFLECT_bytesPerPixel
      * In -create mode the following environment variables are added to
        fine tune the behavior: FIND_DISPLAY_NO_LSOF: do not use lsof(1)
        to try to determine the Linux VT, FIND_DISPLAY_NO_VT_FIND: do not
@@ -941,6 +948,9 @@ make
      * In -unixpw mode, one can now Tab from login: to Password.
      * An environment variable, X11VNC_SB_FACTOR, allows one to scale the
        -sb screenblank sleep time from the default 2 secs.
+     * An experimental option -unixsock is available for testing. Note,
+       however, that it requires a manual change to
+       libvncserver/rfbserver.c for it to work.
      * Documented that -grabkbd is no longer working with some/most
        window managers (it can prevent resizing and menu posting.)
 
@@ -3489,8 +3499,8 @@ if [ "$RFB_CLIENT_IP" != "127.0.0.1" -o "$RFB_SERVER_IP" != "127.0.0.1" ]; then
         exit 1  # something fishy... reject it.
 fi
 user=`echo "$RFB_CLIENT_PORT, $RFB_SERVER_PORT" | nc -w 1 $RFB_CLIENT_IP 113 \
-        | grep 'USERID.*UNIX' | head -1 | sed -e 's/[\r ]//g' | awk -F: '{print
- $4}'`
+        | grep 'USERID.*UNIX' | head -n 1 | sed -e 's/[\r ]//g' | awk -F: '{pri
+nt $4}'`
 
 for okuser in fred barney wilma betty
 do
@@ -3503,6 +3513,67 @@ exit 1  # reject it
    For this to work with ssh port redirection, the ssh option
    UsePrivilegeSeparation must be enabled otherwise the userid will
    always be "root".
+
+   Here is a similar example based on Linux netstat(1) output:
+#!/bin/sh
+#
+# accept_local_netstat:  x11vnc -accept command to accept a local
+# vncviewer connection from acceptable users.  Linux netstat -nte is used.
+
+PATH=/bin:/usr/bin:$PATH; export PATH;  # set to get system utils
+
+allowed="`id -u fred`";                 # add more user numbers if desired.
+
+# check required settings
+ok=1
+if [ "X$allowed" = "X" ]; then
+        ok=0;   # something wrong with allowed list
+fi
+if [ "X$RFB_CLIENT_IP" != "X127.0.0.1" -o "X$RFB_SERVER_IP" != "X127.0.0.1" ];
+then
+        ok=0;   # connection not over localhost
+fi
+if [ "$RFB_CLIENT_PORT" -le 0 -o "$RFB_SERVER_PORT" -le 0 ]; then
+        ok=0;   # something wrong with tcp port numbers
+fi
+if [ "$ok" = 0 ]; then
+        echo "$0: invalid setting:" 1>&2
+        env | grep ^RFB | sort 1>&2
+        exit 1
+fi
+
+# Linux netstat -nte:
+# Proto Recv-Q Send-Q Local Address           Foreign Address         State
+   User       Inode
+# 0     0      0      RFB_CLIENT              RFB_SERVER           ESTABLISHED
+   nnnn       ....
+#
+user=`netstat -nte | grep ESTABLISHED \
+        | grep " $RFB_CLIENT_IP:$RFB_CLIENT_PORT  *$RFB_SERVER_IP:$RFB_SERVER_P
+ORT "`
+
+echo "netstat match: $user" 1>&2
+user=`echo "$user" | head -n 1 | sed -e 's/^.*ESTABLISHED/ /' | awk '{print $1}
+'`
+
+ok=0
+for u in $allowed
+do
+        if [ "X$user" = "X$u" ]; then
+                ok=1
+                break
+        fi
+done
+
+if [ "X$ok" = "X1" ]; then
+        echo "$0: user accepted: '$user'" 1>&2
+        exit 0
+else
+        echo "$0: user '$user' invalid:" 1>&2
+        echo "$0: allowed: $allowed" 1>&2
+        env | grep ^RFB | sort 1>&2
+        exit 1
+fi
 
 
    Q-39: Can I supply an external program to provide my own custom login
@@ -8184,9 +8255,9 @@ rm -f $tmp
    Terminal windows (you can't delete them since that will kill x11vnc.)
 
    Update Aug/2010: A user reports the following useful information:
-This is not a problem on Mac OS X 10.6.x when connecting via ssh to
-start x11vnc.  And, on Mac OS X 10.5.x, the problem can be permanently
-eliminated by doing this:
+This is not a problem on Mac OS X 10.6.x (Snow Leopard) when connecting
+via ssh to start x11vnc.  And, on Mac OS X 10.5.x (Leopard), the problem
+can be permanently eliminated by doing this:
 
 
 sudo /usr/libexec/PlistBuddy -c 'delete :LimitLoadToSessionType' \
@@ -8197,6 +8268,9 @@ sudo /usr/libexec/PlistBuddy -c 'delete :LimitLoadToSessionType' \
 and then restarting (yes, you must restart not just log off).  But
 ONLY do that for Mac OS X 10.5.x and NOT for 10.6.x (which doesn't
 need it anyway).
+
+   We recently got access to a MacOSX 10.6.4 (Snow Leopard) macbook and
+   have confirmed that the above is correct.
 
 
    Q-120: Can x11vnc be used as a VNC reflector/repeater to improve
@@ -12285,7 +12359,7 @@ x11vnc: a VNC server for real X displays
    Here are all of x11vnc command line options:
 % x11vnc -opts      (see below for -help long descriptions)
 
-x11vnc: allow VNC connections to real X11 displays. 0.9.13 lastmod: 2010-12-21
+x11vnc: allow VNC connections to real X11 displays. 0.9.13 lastmod: 2010-12-27
 
 x11vnc options:
   -display disp            -auth file               -N                     
@@ -12304,80 +12378,81 @@ x11vnc options:
   -avahi                   -mdns                    -zeroconf              
   -connect string          -connect_or_exit str     -proxy string          
   -vncconnect              -novncconnect            -allow host1[,host2..] 
-  -localhost               -listen6 str             -nolookup              
-  -input string            -grabkbd                 -grabptr               
-  -ungrabboth              -grabalways              -viewpasswd string     
-  -passwdfile filename     -showrfbauth filename    -unixpw [list]         
-  -unixpw_nis [list]       -unixpw_cmd cmd          -find                  
-  -finddpy                 -listdpy                 -findauth [disp]       
-  -create                  -xdummy                  -xvnc                  
-  -xvnc_redirect           -xdummy_xvfb             -create_xsrv str       
-  -svc                     -svc_xdummy              -svc_xvnc              
-  -svc_xdummy_xvfb         -xdmsvc                  -sshxdmsvc             
-  -unixpw_system_greeter   -redirect port           -display WAIT:...      
-  -vencrypt mode           -anontls mode            -sslonly               
-  -dhparams file           -nossl                   -ssl [pem]             
-  -ssltimeout n            -sslnofail               -ssldir dir            
-  -sslverify path          -sslCRL path             -sslGenCA [dir]        
-  -sslGenCert type name    -sslEncKey pem           -sslCertInfo pem       
-  -sslDelCert pem          -sslScripts              -stunnel [pem]         
-  -stunnel3  [pem]         -enc cipher:keyfile      -https [port]          
-  -httpsredir [port]       -http_oneport            -ssh user@host:disp    
-  -usepw                   -storepasswd pass file   -nopw                  
-  -accept string           -afteraccept string      -gone string           
-  -users list              -noshm                   -flipbyteorder         
-  -onetile                 -solid [color]           -blackout string       
-  -xinerama                -noxinerama              -xtrap                 
-  -xrandr [mode]           -rotate string           -padgeom WxH           
-  -o logfile               -flag file               -rmflag file           
-  -rc filename             -norc                    -env VAR=VALUE         
-  -prog /path/to/x11vnc    -h, -help                -?, -opts              
-  -V, -version             -license                 -dbg                   
-  -q, -quiet               -v, -verbose             -bg                    
-  -modtweak                -nomodtweak              -xkb                   
-  -noxkb                   -capslock                -skip_lockkeys         
-  -noskip_lockkeys         -skip_keycodes string    -sloppy_keys           
-  -skip_dups               -noskip_dups             -add_keysyms           
-  -noadd_keysyms           -clear_mods              -clear_keys            
-  -clear_all               -remap string            -norepeat              
-  -repeat                  -nofb                    -nobell                
-  -nosel                   -noprimary               -nosetprimary          
-  -noclipboard             -nosetclipboard          -seldir string         
-  -cursor [mode]           -nocursor                -cursor_drag           
-  -arrow n                 -noxfixes                -alphacut n            
-  -alphafrac fraction      -alpharemove             -noalphablend          
-  -nocursorshape           -cursorpos               -nocursorpos           
-  -xwarppointer            -noxwarppointer          -always_inject         
-  -buttonmap string        -nodragging              -ncache n              
-  -ncache_cr               -ncache_no_moveraise     -ncache_no_dtchange    
-  -ncache_no_rootpixmap    -ncache_keep_anims       -ncache_old_wm         
-  -ncache_pad n            -debug_ncache            -wireframe [str]       
-  -nowireframe             -nowireframelocal        -wirecopyrect mode     
-  -nowirecopyrect          -debug_wireframe         -scrollcopyrect mode   
-  -noscrollcopyrect        -scr_area n              -scr_skip list         
-  -scr_inc list            -scr_keys list           -scr_term list         
-  -scr_keyrepeat lo-hi     -scr_parms string        -fixscreen string      
-  -debug_scroll            -noxrecord               -grab_buster           
-  -nograb_buster           -debug_grabs             -debug_sel             
-  -pointer_mode n          -input_skip n            -allinput              
-  -input_eagerly           -speeds rd,bw,lat        -wmdt string           
-  -debug_pointer           -debug_keyboard          -defer time            
-  -wait time               -extra_fbur n            -wait_ui factor        
-  -setdefer n              -nowait_bog              -slow_fb time          
-  -xrefresh time           -nap                     -nonap                 
-  -sb time                 -readtimeout n           -ping n                
-  -nofbpm                  -fbpm                    -nodpms                
-  -dpms                    -forcedpms               -clientdpms            
-  -noserverdpms            -noultraext              -chatwindow            
-  -noxdamage               -xd_area A               -xd_mem f              
-  -sigpipe string          -threads                 -nothreads             
-  -fs f                    -gaps n                  -grow n                
-  -fuzz n                  -debug_tiles             -snapfb                
-  -rawfb string            -freqtab file            -pipeinput cmd         
-  -macnodim                -macnosleep              -macnosaver            
-  -macnowait               -macwheel n              -macnoswap             
-  -macnoresize             -maciconanim n           -macmenu               
-  -macuskbd                -gui [gui-opts]          -remote command        
+  -localhost               -unixsock str            -listen6 str           
+  -nolookup                -input string            -grabkbd               
+  -grabptr                 -ungrabboth              -grabalways            
+  -viewpasswd string       -passwdfile filename     -showrfbauth filename  
+  -unixpw [list]           -unixpw_nis [list]       -unixpw_cmd cmd        
+  -find                    -finddpy                 -listdpy               
+  -findauth [disp]         -create                  -xdummy                
+  -xvnc                    -xvnc_redirect           -xdummy_xvfb           
+  -create_xsrv str         -svc                     -svc_xdummy            
+  -svc_xvnc                -svc_xdummy_xvfb         -xdmsvc                
+  -sshxdmsvc               -unixpw_system_greeter   -redirect port         
+  -display WAIT:...        -vencrypt mode           -anontls mode          
+  -sslonly                 -dhparams file           -nossl                 
+  -ssl [pem]               -ssltimeout n            -sslnofail             
+  -ssldir dir              -sslverify path          -sslCRL path           
+  -sslGenCA [dir]          -sslGenCert type name    -sslEncKey pem         
+  -sslCertInfo pem         -sslDelCert pem          -sslScripts            
+  -stunnel [pem]           -stunnel3  [pem]         -enc cipher:keyfile    
+  -https [port]            -httpsredir [port]       -http_oneport          
+  -ssh user@host:disp      -usepw                   -storepasswd pass file 
+  -nopw                    -accept string           -afteraccept string    
+  -gone string             -users list              -noshm                 
+  -flipbyteorder           -onetile                 -solid [color]         
+  -blackout string         -xinerama                -noxinerama            
+  -xtrap                   -xrandr [mode]           -rotate string         
+  -padgeom WxH             -o logfile               -flag file             
+  -rmflag file             -rc filename             -norc                  
+  -env VAR=VALUE           -prog /path/to/x11vnc    -h, -help              
+  -?, -opts                -V, -version             -license               
+  -dbg                     -q, -quiet               -v, -verbose           
+  -bg                      -modtweak                -nomodtweak            
+  -xkb                     -noxkb                   -capslock              
+  -skip_lockkeys           -noskip_lockkeys         -skip_keycodes string  
+  -sloppy_keys             -skip_dups               -noskip_dups           
+  -add_keysyms             -noadd_keysyms           -clear_mods            
+  -clear_keys              -clear_all               -remap string          
+  -norepeat                -repeat                  -nofb                  
+  -nobell                  -nosel                   -noprimary             
+  -nosetprimary            -noclipboard             -nosetclipboard        
+  -seldir string           -cursor [mode]           -nocursor              
+  -cursor_drag             -arrow n                 -noxfixes              
+  -alphacut n              -alphafrac fraction      -alpharemove           
+  -noalphablend            -nocursorshape           -cursorpos             
+  -nocursorpos             -xwarppointer            -noxwarppointer        
+  -always_inject           -buttonmap string        -nodragging            
+  -ncache n                -ncache_cr               -ncache_no_moveraise   
+  -ncache_no_dtchange      -ncache_no_rootpixmap    -ncache_keep_anims     
+  -ncache_old_wm           -ncache_pad n            -debug_ncache          
+  -wireframe [str]         -nowireframe             -nowireframelocal      
+  -wirecopyrect mode       -nowirecopyrect          -debug_wireframe       
+  -scrollcopyrect mode     -noscrollcopyrect        -scr_area n            
+  -scr_skip list           -scr_inc list            -scr_keys list         
+  -scr_term list           -scr_keyrepeat lo-hi     -scr_parms string      
+  -fixscreen string        -debug_scroll            -noxrecord             
+  -grab_buster             -nograb_buster           -debug_grabs           
+  -debug_sel               -pointer_mode n          -input_skip n          
+  -allinput                -input_eagerly           -speeds rd,bw,lat      
+  -wmdt string             -debug_pointer           -debug_keyboard        
+  -defer time              -wait time               -extra_fbur n          
+  -wait_ui factor          -setdefer n              -nowait_bog            
+  -slow_fb time            -xrefresh time           -nap                   
+  -nonap                   -sb time                 -readtimeout n         
+  -ping n                  -nofbpm                  -fbpm                  
+  -nodpms                  -dpms                    -forcedpms             
+  -clientdpms              -noserverdpms            -noultraext            
+  -chatwindow              -noxdamage               -xd_area A             
+  -xd_mem f                -sigpipe string          -threads               
+  -nothreads               -fs f                    -gaps n                
+  -grow n                  -fuzz n                  -debug_tiles           
+  -snapfb                  -rawfb string            -freqtab file          
+  -pipeinput cmd           -macnodim                -macnosleep            
+  -macnosaver              -macnowait               -macwheel n            
+  -macnoswap               -macnoresize             -maciconanim n         
+  -macmenu                 -macuskbd                -macnoopengl           
+  -macnorawfb              -gui [gui-opts]          -remote command        
   -query variable          -QD variable             -sync                  
   -query_retries str       -remote_prefix str       -noremote              
   -yesremote               -unsafe                  -safer                 
@@ -12416,7 +12491,7 @@ libvncserver-tight-extension options:
 
 % x11vnc -help
 
-x11vnc: allow VNC connections to real X11 displays. 0.9.13 lastmod: 2010-12-21
+x11vnc: allow VNC connections to real X11 displays. 0.9.13 lastmod: 2010-12-27
 
 (type "x11vnc -opts" to just list the options.)
 
@@ -13161,6 +13236,20 @@ Options:
 
                        IPv6: if IPv6 is supported, this option automatically
                        implies the IPv6 loopback address '::1' as well.
+
+-unixsock str          Listen on the unix socket (AF_UNIX) 'str'
+                       for connections.  This mode is for either local
+                       connections or a tunnel endpoint where one wants the
+                       file permission of the unix socket file to determine
+                       what can connect to it.  (This currently requires an
+                       edit to libvnserver/rfbserver.c: comment out lines 310
+                       and 311, 'close(sock)' and 'return NULL' in rfbserver.c
+                       after the setsockopt() call.) Note that to disable all
+                       tcp listening ports specify '-rfbport 0' and should be
+                       useful with this mode.  Example:
+                           mkdir ~/s; chmod 700 ~/s;
+                           x11vnc -unixsock ~/s/mysock -rfbport 0 ...
+                       The SSVNC unix vncviewer can connect to unix sockets.
 
 -listen6 str           When in IPv6 listen mode "-6", listen only on the
                        network interface with address "str".  It also works
@@ -17193,6 +17282,42 @@ er
                        because they have animated fades, etc.)
 -macuskbd              For the native MacOSX server, use the original
                        keystroke insertion code based on a US keyboard.
+-macnoopengl           For the native MacOSX server, do not use OpenGL for
+                       screen capture, but rather use the original, deprecated
+                       raw memory access method: addr = CGDisplayBaseAddress().
+-macnorawfb            For the native MacOSX server, disable the raw memory
+                       address screen capture method.
+
+                       MACOSX NOTE: There are some deprecated MacOSX interfaces
+                       to inject keyboard and mouse events and the raw memory
+                       access method is deprecated as well (however, OpenGL
+                       will be preferred if available because it is faster.)
+                       One can force not using any deprecated interfaces at
+                       compile time by setting -DX11VNC_MACOSX_NO_DEPRECATED=1
+                       in CPPFLAGS.  Or to turn them off one by one:
+                       -DX11VNC_MACOSX_NO_DEPRECATED_LOCALEVENTS=1,
+                       -DX11VNC_MACOSX_NO_DEPRECATED_POSTEVENTS=1 or
+                       -DX11VNC_MACOSX_NO_DEPRECATED_FRAMEBUFFER=1
+                       At run time, for testing and workarounds, one can
+                       disable them by using:
+                       -env X11VNC_MACOSX_NO_DEPRECATED=1
+                       -env X11VNC_MACOSX_NO_DEPRECATED_LOCALEVENTS=1
+                       -env X11VNC_MACOSX_NO_DEPRECATED_POSTEVENTS=1 or
+                       -env X11VNC_MACOSX_NO_DEPRECATED_FRAMEBUFFER=1
+                       Note: When doing either of these for the mouse input
+                       not everything works currently, e.g. double clicks and
+                       wireframing.  Also, screen resolution and pixel depth
+                       changes will not be automatically detected unless the
+                       deprecated framebuffer interfaces are allowed.
+
+                       Conversely, if you are compiling on an
+                       older machine that does not have some of
+                       the newer interfaces, you may need to specify
+                       -DX11VNC_MACOSX_NO_CGEVENTCREATESCROLLWHEELEVENT
+                       -DX11VNC_MACOSX_NO_CGEVENTCREATEMOUSEEVENT or
+                       -DX11VNC_MACOSX_NO_CGEVENTCREATEKEYBOARDEVENT.  Use
+                       -DX11VNC_MACOSX_USE_GETMAINDEVICE to regain the very
+                       old QuickDraw GetMainDevice() interface (rare...)
 
 -gui [gui-opts]        Start up a simple tcl/tk gui based on the remote
                        control options -remote/-query described below.

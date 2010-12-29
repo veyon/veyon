@@ -57,6 +57,8 @@ int have_ssh_env(void);
 char *ipv6_getnameinfo(struct sockaddr *paddr, int addrlen);
 char *ipv6_getipaddr(struct sockaddr *paddr, int addrlen);
 int listen6(int port);
+int listen_unix(char *file);
+int accept_unix(int s);
 int connect_tcp(char *host, int port);
 int listen_tcp(int port, in_addr_t iface, int try6);
 
@@ -649,6 +651,62 @@ int listen6(int port) {
 #else
 	if (port) {}
 	return -1;
+#endif
+}
+
+#ifdef LIBVNCSERVER_HAVE_SYS_SOCKET_H
+#include <sys/un.h>
+#endif
+
+int listen_unix(char *file) {
+#if !defined(AF_UNIX) || !defined(LIBVNCSERVER_HAVE_SYS_SOCKET_H)
+	if (sock) {}
+	return -1;
+#else
+	int s, len;
+	struct sockaddr_un saun;
+
+	s = socket(AF_UNIX, SOCK_STREAM, 0);
+	if (s < 0) {
+		rfbLogPerror("listen_unix: socket");
+		return -1;
+	}
+	saun.sun_family = AF_UNIX;
+	strcpy(saun.sun_path, file);
+	unlink(file);
+
+	len = sizeof(saun.sun_family) + strlen(saun.sun_path);
+
+	if (bind(s, (struct sockaddr *)&saun, len) < 0) {
+		rfbLogPerror("listen_unix: bind");
+		close(s);
+		return -1;
+	}
+
+	if (listen(s, 32) < 0) {
+		rfbLogPerror("listen_unix: listen");
+		close(s);
+		return -1;
+	}
+	rfbLog("listening on unix socket: %s fd=%d\n", file, s);
+	return s;
+#endif
+}
+
+int accept_unix(int s) {
+#if !defined(AF_UNIX) || !defined(LIBVNCSERVER_HAVE_SYS_SOCKET_H)
+	if (s) {}
+	return -1;
+#else
+	int fd, fromlen;
+	struct sockaddr_un fsaun;
+
+	fd = accept(s, (struct sockaddr *)&fsaun, &fromlen);
+	if (fd < 0) {
+		rfbLogPerror("accept_unix: accept");
+		return -1;
+	}
+	return fd;
 #endif
 }
 

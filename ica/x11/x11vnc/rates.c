@@ -240,6 +240,13 @@ void initialize_speeds(void) {
 	if (! speeds_read_rate) {
 		int n = 0;
 		double dt, timer;
+#ifdef MACOSX
+		if (macosx_console && macosx_read_opengl && fullscreen) {
+			copy_image(fullscreen, 0, 0, 0, 0);
+			usleep(10 * 1000);
+		}
+#endif
+
 		dtime0(&timer);
 		if (fullscreen) {
 			copy_image(fullscreen, 0, 0, 0, 0);

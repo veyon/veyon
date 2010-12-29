@@ -191,6 +191,15 @@ void clean_up_exit(int ret) {
 
 	shutdown_uinput();
 
+	if (unix_sock) {
+		if (unix_sock_fd >= 0) {
+			rfbLog("deleting unix sock: %s\n", unix_sock);
+			close(unix_sock_fd);
+			unix_sock_fd = -1;
+			unlink(unix_sock);
+		}
+	}
+
 	if (! dpy) {	/* raw_rb hack */
 		if (rm_flagfile) {
 			unlink(rm_flagfile);

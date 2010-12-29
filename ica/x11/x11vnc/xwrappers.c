@@ -681,11 +681,22 @@ static void copy_raw_fb_24_to_32(XImage *dest, int x, int y, unsigned int w,
 	}
 }
 
+#ifdef MACOSX
+void macosx_copy_opengl(char *, int, int, unsigned int, unsigned int);
+#endif
+
 void copy_raw_fb(XImage *dest, int x, int y, unsigned int w, unsigned int h) {
 	char *src, *dst;
 	unsigned int line;
 	int pixelsize = bpp/8;
 	static int db = -1;
+
+#ifdef MACOSX
+	if (macosx_console && macosx_read_opengl) {
+		macosx_copy_opengl(dest->data, x, y, w, h);
+		return;
+	}
+#endif
 
 	if (xform24to32) {
 		copy_raw_fb_24_to_32(dest, x, y, w, h);

@@ -1,10 +1,16 @@
+2010-12-29  Karl Runge <runge@karlrunge.com>
+	* x11vnc: Use opengl to read screen on macosx. Experimental
+	  use of non-deprecated macosx interfaces for input injection.
+	  Fix cursors for 64bit macosx. Add -unixsock option.  Work around
+	  grep issue on OpenBSD in create_display.
+
 2010-12-21  Karl Runge <runge@karlrunge.com>
 	* x11vnc: Add RELEASE-NOTES. Call shutdown_uinput() when exiting.
 	  Free some minor memory.  Do not use GetMainDevice() on macosx.
 	  Add utility scripts qt_tslib_inject.pl and uinput.pl. Option
 	  -ungrabboth (not useful.)  X11VNC_SB_FACTOR -sb user tweak.
 	  X11VNC_REFLECT_{bitsPerSample,samplesPerPixel,bytesPerPixel}
-	  for -reflect vncclient.  Fix minor fd leaks.	For -create mode
+	  for -reflect vncclient.  Fix minor fd leaks. For -create mode
 	  preserve LC_ALL; FIND_DISPLAY_NO_VT_FIND, FIND_DISPLAY_NO_LSOF,
 	  and X11VNC_CREATE_LC_ALL_C_OK.  Speed up -find and  -create scripts
 	  for large installations.  Enable direct event input modes to
@@ -54,7 +60,7 @@
 	  dotted_ip() and -listen6.  Improvements to ipv6 mode.
 	  http interface for X11VNC_HTTP_LISTEN_LOCALHOST.  Print
 	  warning about missing Xvfb, Xdummy, or Xvnc in -create.
-	  Fix __LINUX_VIDEODEV2_H / HAVE_V4L2.	Always print out info
+	  Fix __LINUX_VIDEODEV2_H / HAVE_V4L2. Always print out info
 	  about Xinerama screens.
 	* x11vnc/misc/enhanced_tightvnc_viewer: check for host cmd.
 	  fix stunnel mode w/o proxy.  Update to stunnel 4.33, Fix
@@ -128,7 +134,7 @@
 	  x11vnc instances.) The -quiet option documented better.
 	  Add fakebuttonevent remote control action.  Improve child
 	  test for connecting to port 113.  Add connect_switch and
-	  ultravnc_repeater.pl to CVS.	Report X server number of mouse
+	  ultravnc_repeater.pl to CVS. Report X server number of mouse
 	  buttons.  Change find_display script to check for stale pids
 	  in /tmp/.XNN-lock.  If root under find_display, try FD_XDM
 	  if previous failed to find auth.  Print error reasons for
@@ -162,11 +168,11 @@
 	  Delay calling xfixes at the beginning of 1st connection to avoid
 	  display manager Xorg server crash.  Delay selwin creation at the
 	  begin 1st connection to avoid being killed by display manager.
-	  Options -findauth and '-auth guess'.	Export icon_mode query.
+	  Options -findauth and '-auth guess'. Export icon_mode query.
 	  Do not open X display in -rawfb mode unless asked. Bugfix for
 	  -sid/-id handling window offscreen or bigger than display.
 	  Search for windows with _DBUS_SESSION_BUS_PID to decide which
-	  dbus_launch is ours.	Fix missing displays in FIND_DISPLAY
+	  dbus_launch is ours. Fix missing displays in FIND_DISPLAY
 	  script.  Add X11VNC_SKIP_DISPLAY_NEGATE.  Improvements to
 	  'x11vnc Properties' gui dialog and connecting with x11vnc via
 	  socket (client list.) X11VNC_SYSTEM_GREETER1 for previous text
@@ -275,9 +281,9 @@
 
 2008-12-10  Karl Runge <runge@karlrunge.com>
 	* x11vnc: 0.9.6 release.  Some strtok bugfixes. rename -tlsvnc
-	  to -anontls.	Disable ssl caching.  No cert creation prompting
+	  to -anontls. Disable ssl caching.  No cert creation prompting
 	  in inetd or bg modes.  waitpid a bit more carefully on ssl
-	  helpers.  Tune ssl initial timeouts.	Let -create user specify
+	  helpers.  Tune ssl initial timeouts. Let -create user specify
 	  starting X display.  fix -rfbport prompt gui for older tk.
 	  -sslonly option. Error if no -ssl with related options. -rand
 	  option.  -ssl implies -ssl SAVE
@@ -301,7 +307,7 @@
 
 2008-10-19  Karl Runge <runge@karlrunge.com>
 	* x11vnc: -chatwindow for chat window on X console using SSVNC
-	  as a helper.	Print suggestion for X_ShmAttach failure.
+	  as a helper. Print suggestion for X_ShmAttach failure.
 	  Allow -scale WxH for different X- and Y-scaling factors.
 	  Workaround for missing -enc cipher EVP_aes_256_cfb.  Modify
 	  message digest and salt/IV parameters.  Try to improve compile
@@ -383,7 +389,7 @@
 2007-09-11  Karl Runge <runge@karlrunge.com>
 	* x11vnc: fix wireframe crash under -clip.  Add -redirect for
 	  VNC redir.  -rawfb nullbig, randbig, solid, swirl, etc.
-	  FD_XDM mode to find_display.	-listdpy.  Add enlightenment.
+	  FD_XDM mode to find_display. -listdpy.  Add enlightenment.
 	  Xvnc.redirect FINDDISPLAY-vnc_redirect. -xvnc, -xvnc_redirect,
 	  -svc_xvnc. AUTO_PORT.
 	* ssvnc: sshvnc ssh-only, tsvnc Terminal Services modes.

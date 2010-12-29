@@ -93,6 +93,7 @@ void adjust_grabs(int grab, int quiet);
 void check_new_clients(void);
 int accept_client(rfbClientPtr client);
 void check_ipv6_listen(long usec);
+void check_unix_sock(long usec);
 int run_user_command(char *cmd, rfbClientPtr client, char *mode, char *input,
     int len, FILE *output);
 int check_access(char *addr);
@@ -1835,6 +1836,69 @@ void check_ipv6_listen(long usec) {
 	}
 #endif
 	if (usec) {}
+}
+
+void check_unix_sock(long usec) {
+	fd_set fds;
+	struct timeval tv;
+	int nfds, csock = -1;
+	rfbClientPtr cl;
+	int nmax = 0;
+	char *name;
+
+	if (!unix_sock || unix_sock_fd < 0) {
+		return;
+	}
+
+	FD_ZERO(&fds);
+	if (unix_sock_fd >= 0) {
+		FD_SET(unix_sock_fd, &fds);
+		nmax = unix_sock_fd;
+	}
+
+	tv.tv_sec = 0;
+	tv.tv_usec = 0;
+
+	nfds = select(nmax+1, &fds, NULL, NULL, &tv);
+
+	if (nfds <= 0) {
+		return;
+	}
+
+	if (unix_sock_fd >= 0 && FD_ISSET(unix_sock_fd, &fds)) {
+		csock = accept_unix(unix_sock_fd);
+		if (csock < 0) {
+			return;
+		}
+		if (fcntl(csock, F_SETFL, O_NONBLOCK) < 0) {
+			rfbLogPerror("check_unix_sock: fcntl");
+			close(csock);
+			return;
+		}
+
+		/* rfbNewClient() will screw us with setsockopt TCP_NODELAY...
+		   you need to comment out in libvncserver/rfbserver.c:
+			rfbLogPerror("setsockopt failed");
+			close(sock);
+			return NULL;
+		 */
+		cl = rfbNewClient(screen, csock);
+
+		if (cl == NULL) {
+			close(csock);
+			return;
+		}
+
+		name = strdup(unix_sock);
+
+		if (name) {
+			if (cl->host) {
+				free(cl->host);
+			}
+			cl->host = name;
+			rfbLog("unix sock client: %s\n", name);
+		}
+	}
 }
 
 /*

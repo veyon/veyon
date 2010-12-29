@@ -62,7 +62,7 @@ void macosxCG_pointer_inject(int mask, int x, int y);
 int macosxCG_get_cursor_pos(int *x, int *y);
 int macosxCG_get_cursor(void);
 void macosxCG_init_key_table(void);
-void macosxCG_key_inject(int down, unsigned int keysym);
+void macosxCG_keysym_inject(int down, unsigned int keysym);
 void macosxCG_keycode_inject(int down, int keycode);
 
 CGDirectDisplayID displayID = 0;
@@ -81,27 +81,31 @@ static void macosxCG_callback(CGRectCount n, const CGRect *rects, void *dum) {
 	}
 }
 
-int dragum(void) {
 #if 0
-        int x =200, y = 150, dy = 10, i;
-        CGPoint loc;
+> 
+> if gcc -DHAVE_CONFIG_H -I. -I. -I..   -I/opt/local/include   -I/opt/local/include -ObjC -g -O2 -Wall -MT x11vnc-macosxCG.o -MD -MP -MF ".deps/x11vnc-macosxCG.Tpo" -c -o x11vnc-macosxCG.o `test -f 'macosxCG.c' || echo './'`macosxCG.c; \
+> 	then mv -f ".deps/x11vnc-macosxCG.Tpo" ".deps/x11vnc-macosxCG.Po"; else rm -f ".deps/x11vnc-macosxCG.Tpo"; exit 1; fi
+> macosxCG.c:149: warning: CGSetLocalEventsSuppressionInterval is deprecated (declared at /System/Library/Frameworks/ApplicationServices.framework/Frameworks/CoreGraphics.framework/Headers/CGRemoteOperation.h:373)
+> macosxCG.c:150: warning: CGSetLocalEventsFilterDuringSuppressionState is deprecated (declared at /System/Library/Frameworks/ApplicationServices.framework/Frameworks/CoreGraphics.framework/Headers/CGRemoteOperation.h:366)
+> macosxCG.c:153: warning: CGSetLocalEventsFilterDuringSuppressionState is deprecated (declared at /System/Library/Frameworks/ApplicationServices.framework/Frameworks/CoreGraphics.framework/Headers/CGRemoteOperation.h:366)
+> macosxCG.c:244: warning: CGDisplayBaseAddress is deprecated (declared at /System/Library/Frameworks/ApplicationServices.framework/Frameworks/CoreGraphics.framework/Headers/CGDirectDisplay.h:466)
+> macosxCG.c:254: warning: CGDisplayBitsPerPixel is deprecated (declared at /System/Library/Frameworks/ApplicationServices.framework/Frameworks/CoreGraphics.framework/Headers/CGDirectDisplay.h:517)
+> macosxCG.c:257: warning: CGDisplayBitsPerSample is deprecated (declared at /System/Library/Frameworks/ApplicationServices.framework/Frameworks/CoreGraphics.framework/Headers/CGDirectDisplay.h:522)
+> macosxCG.c:260: warning: CGDisplaySamplesPerPixel is deprecated (declared at /System/Library/Frameworks/ApplicationServices.framework/Frameworks/CoreGraphics.framework/Headers/CGDirectDisplay.h:526)
+> macosxCG.c:263: warning: CGDisplayBytesPerRow is deprecated (declared at /System/Library/Frameworks/ApplicationServices.framework/Frameworks/CoreGraphics.framework/Headers/CGDirectDisplay.h:476)
+> macosxCG.c:419: warning: CGPostScrollWheelEvent is deprecated (declared at /System/Library/Frameworks/ApplicationServices.framework/Frameworks/CoreGraphics.framework/Headers/CGRemoteOperation.h:327)
+> macosxCG.c:422: warning: CGPostScrollWheelEvent is deprecated (declared at /System/Library/Frameworks/ApplicationServices.framework/Frameworks/CoreGraphics.framework/Headers/CGRemoteOperation.h:327)
+> macosxCG.c:425: warning: CGPostMouseEvent is deprecated (declared at /System/Library/Frameworks/ApplicationServices.framework/Frameworks/CoreGraphics.framework/Headers/CGRemoteOperation.h:307)
+> macosxCG.c:641: warning: CGPostKeyboardEvent is deprecated (declared at /System/Library/Frameworks/ApplicationServices.framework/Frameworks/CoreGraphics.framework/Headers/CGRemoteOperation.h:333)
+> macosxCG.c:661: warning: CGPostKeyboardEvent is deprecated (declared at /System/Library/Frameworks/ApplicationServices.framework/Frameworks/CoreGraphics.framework/Headers/CGRemoteOperation.h:333)
+>
 
-	CGDirectDisplayID displayID2 = kCGDirectMainDisplay;
-#ifdef X11VNC_MACOSX_USE_GETMAINDEVICE
-	(void) GetMainDevice();
-#endif
+X11VNC_MACOSX_NO_DEPRECATED_LOCALEVENTS
+X11VNC_MACOSX_NO_DEPRECATED_POSTEVENTS
+X11VNC_MACOSX_NO_DEPRECATED_FRAMEBUFFER
+X11VNC_MACOSX_NO_DEPRECATED
 
-        for (i=0; i< 50; i++) {
-                usleep(1000*100);
-                loc.x = x;
-                loc.y = y + i*dy;
-                CGPostMouseEvent(loc, TRUE, 1, TRUE);
-        }
-        CGPostMouseEvent(loc, TRUE, 1, FALSE);
-        usleep(4*1000*1000);
 #endif
-	return 0;
-}
 
 static int callback_set = 0;
 extern int nofb;
@@ -112,7 +116,7 @@ void macosxCG_refresh_callback_on(void) {
 	}
 
 	if (! callback_set) {
-		if (1) macosx_log("macosxCG_callback: register\n");
+		if (1) macosx_log("macosxCG_refresh_callback: register\n");
 		CGRegisterScreenRefreshCallback(macosxCG_callback, NULL);
 	}
 	callback_set = 1;
@@ -120,44 +124,93 @@ void macosxCG_refresh_callback_on(void) {
 
 void macosxCG_refresh_callback_off(void) {
 	if (callback_set) {
-		if (1) macosx_log("macosxCG_callback: unregister\n");
+		if (1) macosx_log("macosxCG_refresh_callback: unregister\n");
 		CGUnregisterScreenRefreshCallback(macosxCG_callback, NULL);
 	}
 	callback_set = 0;
 }
 
 extern int macosx_noscreensaver;
+extern int macosx_read_opengl;
+extern int macosx_read_rawfb;
+
 extern void macosxGCS_initpb(void);
 extern int macosxCGP_init_dimming(void);
 extern int macosxCGP_undim(void);
 extern int macosxCGP_dim_shutdown(void);
 extern void macosxCGP_screensaver_timer_off(void);
 extern void macosxCGP_screensaver_timer_on(void);
+extern void macosx_opengl_init(void);
+extern void macosx_opengl_fini(void);
+
+int x11vnc_macosx_no_deprecated_localevents = 0;
+int x11vnc_macosx_no_deprecated_postevents  = 0;
+int x11vnc_macosx_no_deprecated_framebuffer = 0;
 
 void macosxCG_init(void) {
+
+	x11vnc_macosx_no_deprecated_localevents = 0;
+	x11vnc_macosx_no_deprecated_postevents  = 0;
+	x11vnc_macosx_no_deprecated_framebuffer = 0;
+
+	if (getenv("X11VNC_MACOSX_NO_DEPRECATED_LOCALEVENTS") || getenv("X11VNC_MACOSX_NO_DEPRECATED")) {
+		x11vnc_macosx_no_deprecated_localevents = 1;
+	}
+	if (getenv("X11VNC_MACOSX_NO_DEPRECATED_POSTEVENTS") || getenv("X11VNC_MACOSX_NO_DEPRECATED")) {
+		x11vnc_macosx_no_deprecated_postevents = 1;
+	}
+	if (getenv("X11VNC_MACOSX_NO_DEPRECATED_FRAMEBUFFER") || getenv("X11VNC_MACOSX_NO_DEPRECATED")) {
+		x11vnc_macosx_no_deprecated_framebuffer = 1;
+	}
+
 	if (displayID == 0) {
 		macosx_log("macosxCG_init: initializing display.\n");
-#if 0
-		dragum();
-#endif
 
 		displayID = kCGDirectMainDisplay;
 #ifdef X11VNC_MACOSX_USE_GETMAINDEVICE
+		/* not sure this ever did anything. */
 		(void) GetMainDevice();
 #endif
+		if (displayID == 0) {
+			macosx_log("macosxCG_init: could not get kCGDirectMainDisplay / CGMainDisplayID() display.\n");
+			exit(1);
+		}
 
-		CGSetLocalEventsSuppressionInterval(0.0);
-		CGSetLocalEventsFilterDuringSupressionState(
-		    kCGEventFilterMaskPermitAllEvents,
-		    kCGEventSupressionStateSupressionInterval);
-		CGSetLocalEventsFilterDuringSupressionState(
-		    kCGEventFilterMaskPermitAllEvents,
-		    kCGEventSupressionStateRemoteMouseDrag);
+#if X11VNC_MACOSX_NO_DEPRECATED_LOCALEVENTS || X11VNC_MACOSX_NO_DEPRECATED
+		macosx_log("NO_DEPRECATED_LOCALEVENTS: not calling CGSetLocalEventsSuppressionInterval()\n");
+		macosx_log("NO_DEPRECATED_LOCALEVENTS: not calling CGSetLocalEventsFilterDuringSupressionState()\n");
+#else
+		if (!x11vnc_macosx_no_deprecated_localevents) {
+			CGSetLocalEventsSuppressionInterval(0.0);
+			CGSetLocalEventsFilterDuringSupressionState(
+			    kCGEventFilterMaskPermitAllEvents,
+			    kCGEventSupressionStateSupressionInterval);
+			CGSetLocalEventsFilterDuringSupressionState(
+			    kCGEventFilterMaskPermitAllEvents,
+			    kCGEventSupressionStateRemoteMouseDrag);
+		} else {
+			macosx_log("NO_DEPRECATED_LOCALEVENTS: not calling CGSetLocalEventsSuppressionInterval()\n");
+			macosx_log("NO_DEPRECATED_LOCALEVENTS: not calling CGSetLocalEventsFilterDuringSupressionState()\n");
+		}
+#endif
+
+		macosx_opengl_init();
+
+		if (!macosx_read_opengl) {
+			char *addr = macosxCG_get_fb_addr();
+			if (addr == NULL) {
+				macosx_log("macosxCG_init: could not get raw framebuffer address / CGDisplayBaseAddress().\n");
+				exit(1);
+			}
+			macosx_read_rawfb = 1;
+			macosx_log("macosxCG_init: using raw framebuffer address for screen capture.\n");
+		}
 
 		macosxCGP_init_dimming();
 		if (macosx_noscreensaver) {
 			macosxCGP_screensaver_timer_on();
 		}
+
 		macosxGCS_initpb();
 	}
 }
@@ -168,6 +221,8 @@ void macosxCG_fini(void) {
 		macosxCGP_screensaver_timer_off();
 	}
 	macosxCG_refresh_callback_off();
+	macosx_opengl_fini();
+	displayID = 0;
 }
 
 extern int dpy_x, dpy_y, bpp, wdpy_x, wdpy_y;
@@ -187,6 +242,7 @@ extern void clean_up_exit(int ret);
 void macosxCG_event_loop(void) {
 	OSStatus rc;
 	int nbpp;
+	static int nbpp_save = -1;
 
 	macosxGCS_poll_pb();
 	if (nofb) {
@@ -203,18 +259,22 @@ void macosxCG_event_loop(void) {
 
 	nbpp = macosxCG_CGDisplayBitsPerPixel();
 
+	if (nbpp_save < 0) {
+		nbpp_save = nbpp;
+	}
 		
-	if (nbpp > 0 && nbpp != bpp) {
+	if (nbpp > 0 && nbpp != nbpp_save) {
+		nbpp_save = nbpp;
 		if (macosx_resize) {
 			do_new_fb(1);
 		}
-	} else if (wdpy_x != (int) CGDisplayPixelsWide(displayID)) {
-	    if (wdpy_y != (int) CGDisplayPixelsHigh(displayID)) {
+	} else if (wdpy_x != macosxCG_CGDisplayPixelsWide()) {
+	    if (wdpy_y != macosxCG_CGDisplayPixelsHigh()) {
 		if (macosx_wait_for_switch) {
 			int cnt = 0;
 			while (1) {
-				if(CGDisplayPixelsWide(displayID) > 0) {
-					if(CGDisplayPixelsHigh(displayID) > 0) {
+				if(macosxCG_CGDisplayPixelsWide() > 0) {
+					if(macosxCG_CGDisplayPixelsHigh() > 0) {
 						usleep(500*1000);
 						break;
 					}
@@ -225,8 +285,8 @@ void macosxCG_event_loop(void) {
 				}
 				sleep(1);
 			}
-			if (wdpy_x == (int) CGDisplayPixelsWide(displayID)) {
-				if (wdpy_y == (int) CGDisplayPixelsHigh(displayID)) {
+			if (wdpy_x == macosxCG_CGDisplayPixelsWide()) {
+				if (wdpy_y == macosxCG_CGDisplayPixelsHigh()) {
 					macosx_log("we're back...\n");
 					return;
 				}
@@ -237,31 +297,99 @@ void macosxCG_event_loop(void) {
 		}
 	    }
 	}
+	if (nbpp > 0) {
+		nbpp_save = nbpp;
+	}
 }
 
+extern int macosx_no_rawfb;
+extern int macosx_read_opengl;
+extern int macosx_opengl_get_width();
+extern int macosx_opengl_get_height();
+extern int macosx_opengl_get_bpp();
+extern int macosx_opengl_get_bps();
+extern int macosx_opengl_get_spp();
+
+#if X11VNC_MACOSX_NO_DEPRECATED_FRAMEBUFFER || X11VNC_MACOSX_NO_DEPRECATED
+
 char *macosxCG_get_fb_addr(void) {
-	macosxCG_init();
+	return NULL;
+}
+int macosxCG_CGDisplayPixelsWide(void) {
+	return macosx_opengl_get_width();
+}
+int macosxCG_CGDisplayPixelsHigh(void) {
+	return macosx_opengl_get_height();
+}
+int macosxCG_CGDisplayBitsPerPixel(void) {
+	return macosx_opengl_get_bpp();
+}
+int macosxCG_CGDisplayBitsPerSample(void) {
+	return macosx_opengl_get_bps();
+}
+int macosxCG_CGDisplaySamplesPerPixel(void) {
+	return macosx_opengl_get_spp();
+}
+int macosxCG_CGDisplayBytesPerRow(void) {
+	return macosx_opengl_get_width() * macosx_opengl_get_bpp() / 8;
+}
+
+#else
+
+char *macosxCG_get_fb_addr(void) {
+	if (x11vnc_macosx_no_deprecated_framebuffer) {
+		macosx_log("CGDisplayBaseAddress disabled by env. var\n");
+		return NULL;
+	}
+	if (macosx_no_rawfb) {
+		macosx_log("CGDisplayBaseAddress disabled by user.\n");
+		return NULL;
+	}
+	if (macosx_read_opengl) {
+		macosx_log("CGDisplayBaseAddress disabled by OpenGL.\n");
+		return NULL;
+	}
 	return (char *) CGDisplayBaseAddress(displayID);
 }
 
 int macosxCG_CGDisplayPixelsWide(void) {
+	if ((0 && macosx_read_opengl) || x11vnc_macosx_no_deprecated_framebuffer) {
+		return macosx_opengl_get_width();
+	}
 	return (int) CGDisplayPixelsWide(displayID);
 }
 int macosxCG_CGDisplayPixelsHigh(void) {
+	if ((0 && macosx_read_opengl) || x11vnc_macosx_no_deprecated_framebuffer) {
+		return macosx_opengl_get_height();
+	}
 	return (int) CGDisplayPixelsHigh(displayID);
 }
 int macosxCG_CGDisplayBitsPerPixel(void) {
+	if ((0 && macosx_read_opengl) || x11vnc_macosx_no_deprecated_framebuffer) {
+		return macosx_opengl_get_bpp();
+	}
 	return (int) CGDisplayBitsPerPixel(displayID);
 }
 int macosxCG_CGDisplayBitsPerSample(void) {
+	if (macosx_read_opengl || x11vnc_macosx_no_deprecated_framebuffer) {
+		return macosx_opengl_get_bps();
+	}
 	return (int) CGDisplayBitsPerSample(displayID);
 }
 int macosxCG_CGDisplaySamplesPerPixel(void) {
+	if (macosx_read_opengl || x11vnc_macosx_no_deprecated_framebuffer) {
+		return macosx_opengl_get_spp();
+	}
 	return (int) CGDisplaySamplesPerPixel(displayID);
 }
 int macosxCG_CGDisplayBytesPerRow(void) {
+	if (macosx_read_opengl || x11vnc_macosx_no_deprecated_framebuffer) {
+		return macosx_opengl_get_width() * macosx_opengl_get_bpp()/8;
+	}
 	return (int) CGDisplayBytesPerRow(displayID);;
 }
+
+#endif
 
 typedef int CGSConnectionRef;
 static CGSConnectionRef conn = 0;
@@ -358,6 +486,8 @@ int macosxCG_get_cursor(void) {
 		}
 	}
 
+	/* XXX all of these interfaces are undocumented. */
+
 	cursor_seed = CGSCurrentCursorSeed();
 	if (last_idx && cursor_seed == last_cursor_seed) {
 		if (now < last_fetch + 2) {
@@ -376,6 +506,10 @@ int macosxCG_get_cursor(void) {
 
 	err = CGSGetGlobalCursorData(conn, data, &datasize, &row_bytes,
 	    &rect, &hot, &cdepth, &comps, &bpcomp);
+#if 0
+	fprintf(stderr, "datasize: %d row_bytes: %d cdepth: %d comps: %d bpcomp: %d w: %d h: %d\n",
+	  datasize, row_bytes, cdepth, comps, bpcomp, (int) rect.size.width, (int) rect.size.height);
+#endif
 	if (err != kCGErrorSuccess) {
 		macosx_log("CGSGetGlobalCursorData error\n");
 		return which;
@@ -383,6 +517,21 @@ int macosxCG_get_cursor(void) {
 
 	if (cdepth == 24) {
 		cdepth = 32;
+	}
+
+	if (sizeof(long) == 8 && comps * bpcomp <= 32) {
+		/* pad it out to unsigned long array size (like xfixes) */
+		int i;
+		unsigned char *dsave;
+		unsigned char *data64 = (unsigned char*) malloc(2 *datasize);
+		unsigned int  *uI = (unsigned int  *) data;
+		unsigned long *uL = (unsigned long *) data64;
+		for (i=0; i < datasize/4; i++) {
+			uL[i] = uI[i];
+		}
+		dsave = data;
+		data = data64;
+		free(dsave);
 	}
 
 	which = store_cursor(cursor_seed, (unsigned long*) data,
@@ -396,12 +545,137 @@ extern int macosx_mouse_wheel_speed;
 extern int macosx_swap23;
 extern int off_x, coff_x, off_y, coff_y;
 
+extern int debug_pointer;
+
+static void CGPostScrollWheelEvent_wr(CGWheelCount wheel_count, int wheel_distance) {
+	static int post_mode = -1, mcnt = 0;
+
+#if !X11VNC_MACOSX_NO_DEPRECATED_POSTEVENTS && !X11VNC_MACOSX_NO_DEPRECATED
+	if (post_mode < 0) {
+		post_mode = 1;
+		if (getenv("X11VNC_MACOSX_NO_DEPRECATED_POSTEVENTS") || getenv("X11VNC_MACOSX_NO_DEPRECATED")) {
+			post_mode = 0;
+		}
+	}
+	
+	if (post_mode) {
+		if (mcnt++ < 10 || debug_pointer) fprintf(stderr, "CGPostScrollWheelEvent()\n");
+		CGPostScrollWheelEvent(wheel_count, wheel_distance);
+	} else
+#endif
+	{
+		/* XXX 10.5 and later */
+#ifndef X11VNC_MACOSX_NO_CGEVENTCREATESCROLLWHEELEVENT
+		CGEventRef event;
+		event = CGEventCreateScrollWheelEvent(NULL, kCGScrollEventUnitLine, wheel_count, wheel_distance);
+		if (event != NULL) {
+			CGEventPost(kCGHIDEventTap, event);
+			CFRelease(event);
+		}
+#endif
+		if (mcnt++ < 10 || debug_pointer) fprintf(stderr, "CGEventCreateScrollWheelEvent()\n");
+	}
+}
+
+static void CGPostMouseEvent_wr(CGPoint loc, int update, int count, int d1, int d2, int d3, int p1, int p2, int p3) {
+	static int post_mode = -1, mcnt = 0;
+
+#if !X11VNC_MACOSX_NO_DEPRECATED_POSTEVENTS && !X11VNC_MACOSX_NO_DEPRECATED
+	if (post_mode < 0) {
+		post_mode = 1;
+		if (getenv("X11VNC_MACOSX_NO_DEPRECATED_POSTEVENTS") || getenv("X11VNC_MACOSX_NO_DEPRECATED")) {
+			post_mode = 0;
+		}
+	}
+	
+	if (post_mode) {
+		if (mcnt++ < 10 || debug_pointer) fprintf(stderr, "CGPostMouseEvent()\n");
+		CGPostMouseEvent(loc, update, count, d1, d2, d3);
+	} else
+#endif
+	{
+		/* XXX 10.4 and later */
+#ifndef X11VNC_MACOSX_NO_CGEVENTCREATEMOUSEEVENT
+		CGEventRef event;
+		static int xp = -1, yp;
+
+		if (xp == -1) {
+			xp = loc.x;
+			yp = loc.y;
+		}
+		if (xp != loc.x || yp != loc.y) {
+			int moved = 0;
+			if (p1 && p1 == d1) {
+				event = CGEventCreateMouseEvent(NULL, kCGEventLeftMouseDragged, loc, 0);
+				if (event != NULL) {
+					moved = 1;
+					CGEventPost(kCGHIDEventTap, event);
+					CFRelease(event);
+				}
+			}
+			if (p3 && p3 == d3) {
+				event = CGEventCreateMouseEvent(NULL, kCGEventOtherMouseDragged, loc, 0);
+				if (event != NULL) {
+					moved = 1;
+					CGEventPost(kCGHIDEventTap, event);
+					CFRelease(event);
+				}
+			}
+			if (p2 && p2 == d2) {
+				event = CGEventCreateMouseEvent(NULL, kCGEventRightMouseDragged, loc, 0);
+				if (event != NULL) {
+					moved = 1;
+					CGEventPost(kCGHIDEventTap, event);
+					CFRelease(event);
+				}
+			}
+			if (!moved) {
+				event = CGEventCreateMouseEvent(NULL, kCGEventMouseMoved, loc, 0);
+				if (event != NULL) {
+					CGEventPost(kCGHIDEventTap, event);
+					CFRelease(event);
+				}
+			}
+		}
+		xp = loc.x;
+		yp = loc.y;
+		if (p1 != d1) {
+			CGEventType type = (!p1 && d1) ? kCGEventLeftMouseDown : kCGEventLeftMouseUp;
+			event = CGEventCreateMouseEvent(NULL, type, loc, 0);
+			if (event != NULL) {
+				CGEventPost(kCGHIDEventTap, event);
+				CFRelease(event);
+			}
+		}
+		if (p3 != d3) {
+			CGEventType type = (!p3 && d3) ? kCGEventOtherMouseDown : kCGEventOtherMouseUp;
+			event = CGEventCreateMouseEvent(NULL, type, loc, kCGMouseButtonCenter);
+			if (event != NULL) {
+				CGEventPost(kCGHIDEventTap, event);
+				CFRelease(event);
+			}
+		}
+		if (p2 != d2) {
+			CGEventType type = (!p2 && d2) ? kCGEventRightMouseDown : kCGEventRightMouseUp;
+			event = CGEventCreateMouseEvent(NULL, type, loc, 0);
+			if (event != NULL) {
+				CGEventPost(kCGHIDEventTap, event);
+				CFRelease(event);
+			}
+		}
+#endif
+		if (mcnt++ < 10 || debug_pointer) fprintf(stderr, "CGEventCreateMouseEvent()\n");
+	}
+}
+
 void macosxCG_pointer_inject(int mask, int x, int y) {
 	int swap23 = macosx_swap23;
 	int s1 = 0, s2 = 1, s3 = 2, s4 = 3, s5 = 4;
 	CGPoint loc;
 	int wheel_distance = macosx_mouse_wheel_speed;
 	static int cnt = 0;
+	static int first = 1, prev1 = 0, prev2 = 0, prev3 = 0; 
+	int curr1, curr2, curr3;
 
 	if (swap23) {
 		s2 = 2;
@@ -416,17 +690,28 @@ void macosxCG_pointer_inject(int mask, int x, int y) {
 	}
 
 	if ((mask & (1 << s4))) {
-		CGPostScrollWheelEvent(1,  wheel_distance);
+		CGPostScrollWheelEvent_wr(1,  wheel_distance);
 	}
 	if ((mask & (1 << s5))) {
-		CGPostScrollWheelEvent(1, -wheel_distance);
+		CGPostScrollWheelEvent_wr(1, -wheel_distance);
 	}
-	
-	CGPostMouseEvent(loc, TRUE, 3,
-	    (mask & (1 << s1)) ? TRUE : FALSE,
-	    (mask & (1 << s2)) ? TRUE : FALSE,
-	    (mask & (1 << s3)) ? TRUE : FALSE
-	);
+
+	curr1 = (mask & (1 << s1)) ? TRUE : FALSE;
+	curr2 = (mask & (1 << s2)) ? TRUE : FALSE;
+	curr3 = (mask & (1 << s3)) ? TRUE : FALSE;
+
+	if (first) {
+		prev1 = curr1;
+		prev2 = curr2;
+		prev3 = curr3;
+		first = 0;
+	}
+
+	CGPostMouseEvent_wr(loc, TRUE, 3, curr1, curr2, curr3, prev1, prev2, prev3);
+
+	prev1 = curr1;
+	prev2 = curr2;
+	prev3 = curr3;
 }
 
 #define keyTableSize 0xFFFF
@@ -634,14 +919,48 @@ void macosxCG_init_key_table(void) {
 extern void init_key_table(void);
 extern int macosx_us_kbd;
 
+extern int debug_keyboard;
+
+void CGPostKeyboardEvent_wr(CGCharCode keyChar, CGKeyCode keyCode, int down) {
+	static int post_mode = -1, mcnt = 0;
+
+#if !X11VNC_MACOSX_NO_DEPRECATED_POSTEVENTS && !X11VNC_MACOSX_NO_DEPRECATED
+	if (post_mode < 0) {
+		post_mode = 1;
+		if (getenv("X11VNC_MACOSX_NO_DEPRECATED_POSTEVENTS") || getenv("X11VNC_MACOSX_NO_DEPRECATED")) {
+			post_mode = 0;
+		}
+	}
+	
+	if (post_mode) {
+		if (mcnt++ < 10 || debug_keyboard) fprintf(stderr, "CGPostKeyboardEvent(keyChar=%d, keyCode=%d, down=%d)\n", keyChar, keyCode, down);
+		CGPostKeyboardEvent(keyChar, keyCode, down);
+	} else
+#endif
+	{
+		/* XXX 10.4 and later */
+#ifndef X11VNC_MACOSX_NO_CGEVENTCREATEKEYBOARDEVENT
+		CGEventRef event;
+		event = CGEventCreateKeyboardEvent(NULL, keyCode, down);
+		if (event != NULL) {
+			CGEventPost(kCGHIDEventTap, event);
+			CFRelease(event);
+		}
+#endif
+		if (mcnt++ < 10 || debug_keyboard) fprintf(stderr, "CGEventCreateKeyboardEvent(NULL, keyCode=%d, down=%d)\n", keyCode, down);
+	}
+}
+
 void macosxCG_keycode_inject(int down, int keycode) {
 	CGKeyCode keyCode = (CGKeyCode) keycode;
 	CGCharCode keyChar = 0;
 
-	CGPostKeyboardEvent(keyChar, keyCode, down);
+	if (debug_keyboard) fprintf(stderr, "macosxCG_keycode_inject(down=%d, keycode=%d)\n", down, keycode);
+
+	CGPostKeyboardEvent_wr(keyChar, keyCode, down);
 }
 
-void macosxCG_key_inject(int down, unsigned int keysym) {
+void macosxCG_keysym_inject(int down, unsigned int keysym) {
 	CGKeyCode keyCode = keyTable[(unsigned short)keysym];
 	CGCharCode keyChar = 0;
 #if 0
@@ -651,14 +970,18 @@ void macosxCG_key_inject(int down, unsigned int keysym) {
 
 	init_key_table();
 
+	if (debug_keyboard) fprintf(stderr, "macosxCG_keysym_inject(down=%d, keysym=%d)\n", down, (int) keysym);
+
 	if (keysym < 0xFF && macosx_us_kbd) {
 		keyChar = (CGCharCode) keysym;
+		if (debug_keyboard) fprintf(stderr, "macosxCG_keysym_inject keyChar=>%d\n", (int) keyChar);
 	}
 	if (keyCode == 0xFFFF) {
 		return;
 	}
 	macosxCGP_undim();
-	CGPostKeyboardEvent(keyChar, keyCode, down);
+
+	CGPostKeyboardEvent_wr(keyChar, keyCode, down);
 }
 
 #endif	/* __APPLE__ */

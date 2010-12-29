@@ -399,7 +399,6 @@ if (db) fprintf(stderr, "out avahi_reset\n");
 }
 
 static void avahi_timeout (int sig) {
-	int i;
 	rfbLog("sig: %d, avahi_cleanup timed out.\n", sig);
 	exit(1);
 }

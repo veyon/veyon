@@ -2,7 +2,7 @@
 .TH X11VNC "1" "December 2010" "x11vnc " "User Commands"
 .SH NAME
 x11vnc - allow VNC connections to real X11 displays
-         version: 0.9.13, lastmod: 2010-12-21
+         version: 0.9.13, lastmod: 2010-12-27
 .SH SYNOPSIS
 .B x11vnc
 [OPTION]...
@@ -878,6 +878,22 @@ or plan to use remote control: \fB-R\fR connect:host), use
 .IP
 IPv6: if IPv6 is supported, this option automatically
 implies the IPv6 loopback address '::1' as well.
+.PP
+\fB-unixsock\fR \fIstr\fR
+.IP
+Listen on the unix socket (AF_UNIX) 'str'
+for connections.  This mode is for either local
+connections or a tunnel endpoint where one wants the
+file permission of the unix socket file to determine
+what can connect to it.  (This currently requires an
+edit to libvnserver/rfbserver.c: comment out lines 310
+and 311, 'close(sock)' and 'return NULL' in rfbserver.c
+after the setsockopt() call.) Note that to disable all
+tcp listening ports specify '-rfbport 0' and should be
+useful with this mode.  Example:
+mkdir ~/s; chmod 700 ~/s;
+x11vnc \fB-unixsock\fR ~/s/mysock \fB-rfbport\fR 0 ...
+The SSVNC unix vncviewer can connect to unix sockets.
 .PP
 \fB-listen6\fR \fIstr\fR
 .IP
@@ -5499,6 +5515,48 @@ because they have animated fades, etc.)
 .IP
 For the native MacOSX server, use the original
 keystroke insertion code based on a US keyboard.
+.PP
+\fB-macnoopengl\fR
+.IP
+For the native MacOSX server, do not use OpenGL for
+screen capture, but rather use the original, deprecated
+raw memory access method: addr = CGDisplayBaseAddress().
+.PP
+\fB-macnorawfb\fR
+.IP
+For the native MacOSX server, disable the raw memory
+address screen capture method.
+.IP
+MACOSX NOTE: There are some deprecated MacOSX interfaces
+to inject keyboard and mouse events and the raw memory
+access method is deprecated as well (however, OpenGL
+will be preferred if available because it is faster.)
+One can force not using any deprecated interfaces at
+compile time by setting \fB-DX11VNC_MACOSX_NO_DEPRECATED=1\fR
+in CPPFLAGS.  Or to turn them off one by one:
+\fB-DX11VNC_MACOSX_NO_DEPRECATED_LOCALEVENTS=1,\fR
+\fB-DX11VNC_MACOSX_NO_DEPRECATED_POSTEVENTS=1\fR or
+\fB-DX11VNC_MACOSX_NO_DEPRECATED_FRAMEBUFFER=1\fR
+At run time, for testing and workarounds, one can
+disable them by using:
+\fB-env\fR X11VNC_MACOSX_NO_DEPRECATED=1
+\fB-env\fR X11VNC_MACOSX_NO_DEPRECATED_LOCALEVENTS=1
+\fB-env\fR X11VNC_MACOSX_NO_DEPRECATED_POSTEVENTS=1 or
+\fB-env\fR X11VNC_MACOSX_NO_DEPRECATED_FRAMEBUFFER=1
+Note: When doing either of these for the mouse input
+not everything works currently, e.g. double clicks and
+wireframing.  Also, screen resolution and pixel depth
+changes will not be automatically detected unless the
+deprecated framebuffer interfaces are allowed.
+.IP
+Conversely, if you are compiling on an
+older machine that does not have some of
+the newer interfaces, you may need to specify
+\fB-DX11VNC_MACOSX_NO_CGEVENTCREATESCROLLWHEELEVENT\fR
+\fB-DX11VNC_MACOSX_NO_CGEVENTCREATEMOUSEEVENT\fR or
+\fB-DX11VNC_MACOSX_NO_CGEVENTCREATEKEYBOARDEVENT.\fR  Use
+\fB-DX11VNC_MACOSX_USE_GETMAINDEVICE\fR to regain the very
+old QuickDraw GetMainDevice() interface (rare...)
 .PP
 \fB-gui\fR \fI[gui-opts]\fR
 .IP

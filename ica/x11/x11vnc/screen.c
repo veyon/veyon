@@ -1028,6 +1028,11 @@ void do_new_fb(int reset_mem) {
 		settle_clients(1);
 	}
 
+#ifdef MACOSX
+	if (macosx_console) {
+		macosxCG_fini();
+	}
+#endif
 	if (reset_mem == 1) {
 		/* reset_mem == 2 is a hack for changing users... */
 		clean_shm(0);
@@ -1705,7 +1710,7 @@ if (db) fprintf(stderr, "initialize_raw_fb reset\n");
 		raw_fb_addr = NULL;
 	}
 #endif
-	
+
 	if (raw_fb_addr || raw_fb_seek) {
 		if (raw_fb_shm) {
 #if LIBVNCSERVER_HAVE_XSHM || LIBVNCSERVER_HAVE_SHMAT
@@ -3210,6 +3215,9 @@ void initialize_screen(int *argc, char **argv, XImage *fb) {
 		    bits_per_color, 1, fb_bpp/8);
 		if (screen && http_dir) {
 			http_connections(1);
+		}
+		if (unix_sock) {
+			unix_sock_fd = listen_unix(unix_sock);
 		}
 	} else {
 		/* set set frameBuffer member below. */
