@@ -2,7 +2,7 @@
 Copyright (C) 2002-2010 Karl J. Runge <runge@karlrunge.com>
 All rights reserved.
 
-x11vnc README file                         Date: Tue Dec 21 11:45:35 EST 2010
+x11vnc README file                         Date: Tue Dec 21 13:47:44 EST 2010
 
 The following information is taken from these URLs:
 
@@ -12285,7 +12285,7 @@ x11vnc: a VNC server for real X displays
    Here are all of x11vnc command line options:
 % x11vnc -opts      (see below for -help long descriptions)
 
-x11vnc: allow VNC connections to real X11 displays. 0.9.13 lastmod: 2010-12-20
+x11vnc: allow VNC connections to real X11 displays. 0.9.13 lastmod: 2010-12-21
 
 x11vnc options:
   -display disp            -auth file               -N                     
@@ -12416,7 +12416,7 @@ libvncserver-tight-extension options:
 
 % x11vnc -help
 
-x11vnc: allow VNC connections to real X11 displays. 0.9.13 lastmod: 2010-12-20
+x11vnc: allow VNC connections to real X11 displays. 0.9.13 lastmod: 2010-12-21
 
 (type "x11vnc -opts" to just list the options.)
 
