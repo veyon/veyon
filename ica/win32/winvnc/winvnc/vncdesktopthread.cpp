@@ -312,6 +312,14 @@ vncDesktopThread::PollWindow(rfb::Region2D &rgn, HWND hwnd)
 
 bool vncDesktopThread::handle_display_change(HANDLE& threadHandle, rfb::Region2D& rgncache, rfb::SimpleUpdateTracker& clipped_updates, rfb::ClippedUpdateTracker& updates)
 {
+	BOOL screensize_changed=false;
+	if (first_run)
+	{
+		first_run=false;
+		m_desktop->m_displaychanged=true;
+		screensize_changed=true;
+	}
+
 	if (vncService::InputDesktopSelected()==2)
 	{
 		m_desktop->m_buffer.WriteMessageOnScreen("UltraVVNC running as application doesn't \nhave permission to acces \nUAC protected windows.\n\nThe is screen is locked until the remote user \nunlock this window");
@@ -344,7 +352,7 @@ bool vncDesktopThread::handle_display_change(HANDLE& threadHandle, rfb::Region2D
 				if (vncService::InputDesktopSelected()==0)						vnclog.Print(LL_INTERR, VNCLOG("++++InputDesktopSelected \n"));
 				
 				
-				BOOL screensize_changed=false;
+				//BOOL screensize_changed=false;
 				BOOL monitor_changed=false;
 				rfbServerInitMsg oldscrinfo;
 				//*******************************************************
@@ -568,8 +576,6 @@ bool vncDesktopThread::handle_display_change(HANDLE& threadHandle, rfb::Region2D
 					OutputDebugString(szText);		
 			#endif*/
 			}// end lock
-
-
 	}
 
 	return true;
@@ -653,6 +659,7 @@ vncDesktopThread::run_undetached(void *arg)
 	// INIT
 	//*******************************************************
 	capture=true;
+	first_run=true;
 	vnclog.Print(LL_INTERR, VNCLOG("Hook changed 1\n"));
 	// Save the thread's "home" desktop, under NT (no effect under 9x)
 	m_desktop->m_home_desktop = GetThreadDesktop(GetCurrentThreadId());
@@ -756,6 +763,7 @@ vncDesktopThread::run_undetached(void *arg)
 											}
 	//telling running viewers to wait until first update, done
 	m_server->InitialUpdate(true);
+
 	while (looping && !fShutdownOrdered)
 	{		
 		DWORD result;

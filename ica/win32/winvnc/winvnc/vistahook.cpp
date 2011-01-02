@@ -94,7 +94,7 @@ vncDesktopThread::Handle_Ringbuffer(mystruct *ringbuffer,rfb::Region2D &rgncache
 	#ifdef _DEBUG
 					char			szText[256];
 					DWORD error=GetLastError();
-					sprintf(szText,"REct %i %i %i %i  \n",rect.tl.x,rect.br.x,rect.tl.y,rect.br.y);
+					sprintf(szText,"REct1 %i %i %i %i  \n",rect.tl.x,rect.br.x,rect.tl.y,rect.br.y);
 					SetLastError(0);
 					OutputDebugString(szText);		
 	#endif			
@@ -140,7 +140,7 @@ vncDesktopThread::Handle_Ringbuffer(mystruct *ringbuffer,rfb::Region2D &rgncache
 #ifdef _DEBUG
 					char			szText[256];
 					DWORD error=GetLastError();
-					sprintf(szText,"REct %i %i %i %i  \n",rect.tl.x,rect.br.x,rect.tl.y,rect.br.y);
+					sprintf(szText,"REct2 %i %i %i %i  \n",rect.tl.x,rect.br.x,rect.tl.y,rect.br.y);
 					SetLastError(0);
 					OutputDebugString(szText);		
 	#endif				

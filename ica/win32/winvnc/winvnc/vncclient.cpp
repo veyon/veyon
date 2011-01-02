@@ -2095,6 +2095,10 @@ vncClientThread::run(void *arg)
 		}
 	}
 
+	strcat(desktopname, " - ");
+	if (vncService::RunningAsService()) strcat(desktopname, "service mode");
+	else strcat(desktopname, "application mode");
+
 	// Send the server format message to the client
 	rfbServerInitMsg server_ini;
 	server_ini.format = m_client->m_encodemgr.m_buffer->GetLocalFormat();

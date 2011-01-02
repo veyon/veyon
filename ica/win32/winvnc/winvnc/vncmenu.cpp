@@ -695,6 +695,22 @@ vncMenu::SendTrayMsg(DWORD msg, BOOL flash)
 	    }
 	}
 
+	char namebuf[256];
+
+    if (gethostname(namebuf, 256) == 0) {
+		strncat(m_nid.szTip, " - ", strlen(" - "));
+		strncat(m_nid.szTip, namebuf, strlen(namebuf));
+    }
+
+	if (vncService::RunningAsService())
+	{
+		strncat(m_nid.szTip, " - service", strlen(" - service"));
+	}
+	else
+	{
+		strncat(m_nid.szTip, " - application", strlen(" - application"));
+	}
+
 //	vnclog.Print(LL_INTERR, VNCLOG("########### vncMenu::SendTrayMsg - Shell_NotifyIcon call\n"));
 	// Send the message
 	if ((msg == NIM_MODIFY) && (IsIconSet == FALSE)) return; //no icon to modify

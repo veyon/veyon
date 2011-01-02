@@ -710,7 +710,7 @@ vncDesktop::InitWindow()
 					rect.br.x-=m_ScreenOffsetx;
 					rect.tl.y-=m_ScreenOffsety;
 					rect.br.y-=m_ScreenOffsety;
-					vnclog.Print(LL_INTERR, VNCLOG("REct %i %i %i %i  \n"),rect.tl.x,rect.br.x,rect.tl.y,rect.br.y);
+					vnclog.Print(LL_INTERR, VNCLOG("REct3 %i %i %i %i  \n"),rect.tl.x,rect.br.x,rect.tl.y,rect.br.y);
 				
 					rect = rect.intersect(m_Cliprect);
 					if (!rect.is_empty())
