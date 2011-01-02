@@ -660,7 +660,6 @@ int listen6(int port) {
 
 int listen_unix(char *file) {
 #if !defined(AF_UNIX) || !defined(LIBVNCSERVER_HAVE_SYS_SOCKET_H)
-	if (sock) {}
 	return -1;
 #else
 	int s, len;

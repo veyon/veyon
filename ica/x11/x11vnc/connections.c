@@ -1770,7 +1770,13 @@ void check_ipv6_listen(long usec) {
 			rfbLogPerror("check_ipv6_listen: accept");
 			goto err1;
 		}
+#ifdef WIN32
+		unsigned long block=1;
+		if(ioctlsocket(csock, FIONBIO, &block) == SOCKET_ERROR) {
+			errno=WSAGetLastError();
+#else
 		if (fcntl(csock, F_SETFL, O_NONBLOCK) < 0) {
+#endif
 			rfbLogPerror("check_ipv6_listen: fcntl");
 			close(csock);
 			goto err1;
@@ -1810,7 +1816,13 @@ void check_ipv6_listen(long usec) {
 			rfbLogPerror("check_ipv6_listen: accept");
 			return;
 		}
+#ifdef WIN32
+		unsigned long block=1;
+		if(ioctlsocket(csock, FIONBIO, &block) == SOCKET_ERROR) {
+			errno=WSAGetLastError();
+#else
 		if (fcntl(csock, F_SETFL, O_NONBLOCK) < 0) {
+#endif
 			rfbLogPerror("check_ipv6_listen: fcntl");
 			close(csock);
 			return;
@@ -1870,7 +1882,13 @@ void check_unix_sock(long usec) {
 		if (csock < 0) {
 			return;
 		}
+#ifdef WIN32
+		unsigned long block=1;
+		if(ioctlsocket(csock, FIONBIO, &block) == SOCKET_ERROR) {
+			errno=WSAGetLastError();
+#else
 		if (fcntl(csock, F_SETFL, O_NONBLOCK) < 0) {
+#endif
 			rfbLogPerror("check_unix_sock: fcntl");
 			close(csock);
 			return;
