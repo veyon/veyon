@@ -60,7 +60,7 @@ fi
 # Check that moc is in path
 AC_CHECK_PROG(MOC, moc-qt4, $QTHOSTDIR/bin/moc-qt4,,$QTHOSTDIR/bin/)
 if test x$MOC = x ; then
-	AC_CHECK_PROG(MOC, moc$EXEEXT, $QTHOSTDIR/bin/moc$EXEEXT,,$QTHOSTDIR/bin/)
+	AC_CHECK_PROG(MOC, moc, $QTHOSTDIR/bin/moc,,$QTHOSTDIR/bin/)
 	if test x$MOC = x ; then
         	AC_MSG_ERROR([*** not found! Make sure you have Qt-devel-tools installed!])
 	fi
@@ -69,7 +69,7 @@ fi
 # Check that uic is in path
 AC_CHECK_PROG(UIC, uic-qt4, $QTHOSTDIR/bin/uic-qt4,,$QTHOSTDIR/bin/)
 if test x$UIC = x ; then
-	AC_CHECK_PROG(UIC, uic$EXEEXT, $QTHOSTDIR/bin/uic$EXEEXT,,$QTHOSTDIR/bin/)
+	AC_CHECK_PROG(UIC, uic, $QTHOSTDIR/bin/uic,,$QTHOSTDIR/bin/)
 	if test x$UIC = x ; then
         	AC_MSG_ERROR([*** not found! Make sure you have Qt-devel-tools installed!])
 	fi
@@ -78,7 +78,7 @@ fi
 # Check that rcc is in path
 AC_CHECK_PROG(RCC, rcc-qt4, $QTHOSTDIR/bin/rcc-qt4,,$QTHOSTDIR/bin/)
 if test x$RCC = x ; then
-	AC_CHECK_PROG(RCC, rcc$EXEEXT, $QTHOSTDIR/bin/rcc$EXEEXT,,$QTHOSTDIR/bin/)
+	AC_CHECK_PROG(RCC, rcc, $QTHOSTDIR/bin/rcc,,$QTHOSTDIR/bin/)
 	if test x$RCC = x ; then
         	AC_MSG_ERROR([*** not found! Make sure you have Qt-devel-tools installed!])
 	fi
@@ -87,7 +87,7 @@ fi
 # lupdate is the Qt translation-update utility.
 AC_CHECK_PROG(LUPDATE, lupdate-qt4, $QTHOSTDIR/bin/lupdate-qt4,,$QTHOSTDIR/bin/)
 if test x$LUPDATE = x ; then
-	AC_CHECK_PROG(LUPDATE, lupdate$EXEEXT, $QTHOSTDIR/bin/lupdate$EXEEXT,,$QTHOSTDIR/bin/)
+	AC_CHECK_PROG(LUPDATE, lupdate, $QTHOSTDIR/bin/lupdate,,$QTHOSTDIR/bin/)
 	if test x$LUPDATE = x ; then
 	        AC_MSG_WARN([*** not found! It's not needed just for compiling but should be part of a proper Qt-devel-tools-installation!])
 	fi
@@ -96,7 +96,7 @@ fi
 # lrelease is the Qt translation-release utility.
 AC_CHECK_PROG(LRELEASE, lrelease-qt4, $QTHOSTDIR/bin/lrelease-qt4,,$QTHOSTDIR/bin/)
 if test x$LRELEASE = x ; then
-	AC_CHECK_PROG(LRELEASE, lrelease$EXEEXT, $QTHOSTDIR/bin/lrelease$EXEEXT,,$QTHOSTDIR/bin/)
+	AC_CHECK_PROG(LRELEASE, lrelease, $QTHOSTDIR/bin/lrelease,,$QTHOSTDIR/bin/)
 	if test x$LRELEASE = x ; then
 	        AC_MSG_WARN([*** not found! It's not needed just for compiling but should be part of a proper Qt-devel-tools-installation!])
 	fi
