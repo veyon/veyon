@@ -179,6 +179,7 @@ ivsConnection::states ivsConnection::protocolInitialization( void )
 
 	if( !readFromServer( desktop_name, m_si.nameLength ) )
 	{
+		delete[] desktop_name;
 		return( state_ref() = ConnectionFailed );
 	}
 
