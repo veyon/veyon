@@ -1,7 +1,7 @@
 /*
  * QuadTree.h - QuadTree, a data structure for fast fuzzy rectangle merging
  *
- * Copyright (c) 2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2010-2011 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -78,7 +78,7 @@ public:
 		m_topLevel( topLevel ),
 		m_marked( false )
 	{
-		if( level > 0 )
+		if( m_level > 0 )
 		{
 			uint16_t wh = (m_x2-m_x1+1)/2;
 			uint16_t hh = (m_y2-m_y1+1)/2;
@@ -86,6 +86,17 @@ public:
 			m_subRects[1][0] = new QuadTree( x1+wh, y1, x2, y1+hh-1, level-1, false );
 			m_subRects[0][1] = new QuadTree( x1, y1+hh, x1+wh-1, y2, level-1, false );
 			m_subRects[1][1] = new QuadTree( x1+wh, y1+hh, x2, y2, level-1, false );
+		}
+	}
+
+	~QuadTree()
+	{
+		if( m_level > 0 )
+		{
+			delete m_subRects[0][0];
+			delete m_subRects[0][1];
+			delete m_subRects[1][0];
+			delete m_subRects[1][1];
 		}
 	}
 
@@ -264,9 +275,9 @@ public:
 	}
 
 private:
-	uint16_t m_x1, m_y1, m_x2, m_y2;
-	uint8_t m_level;
-	bool m_topLevel;
+	const uint16_t m_x1, m_y1, m_x2, m_y2;
+	const uint8_t m_level;
+	const bool m_topLevel;
 	bool m_marked;
 	QuadTree *m_subRects[2][2];
 } ;
