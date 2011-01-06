@@ -145,7 +145,7 @@ Section "iTALC Service"
 SectionIn RO
 ${INSTALL_TYPE}
 ExecWait '"$INSTDIR\ica.exe" -quiet -unregisterservice'
-SetOverwrite ifnewer
+SetOverwrite on
 SetOutPath "$INSTDIR"
 # DLLs
 File "${DLLDIR}\QtCore4.dll"
