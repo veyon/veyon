@@ -2,7 +2,7 @@ setupicon ICON setup.ico
 #include <windows.h>
 
 VS_VERSION_INFO	VERSIONINFO
-  FILEVERSION	1,0,10,0
+  FILEVERSION	1,0,13,0
   FILEFLAGSMASK VS_FFI_FILEFLAGSMASK
   FILEOS	VOS_NT_WINDOWS32
   FILETYPE	VFT_APP
@@ -17,7 +17,7 @@ BEGIN
       VALUE "CompanyName",	"iTALC Solutions\0"
       VALUE "FileDescription",	"iTALC Setup\0"
       VALUE "FileVersion",	"@PACKAGE_VERSION@\0"
-      VALUE "LegalCopyright",	"Copyright (c) 2004-2010 Tobias Doerffel\0"
+      VALUE "LegalCopyright",	"Copyright (c) 2004-2011 Tobias Doerffel\0"
       VALUE "OriginalFilename",	"setup.exe\0"
       VALUE "ProductName",	"iTALC\0"
       VALUE "ProductVersion",	"@PACKAGE_VERSION@\0"
