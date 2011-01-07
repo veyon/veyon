@@ -252,7 +252,9 @@ bool vncDesktop::FastDetectChanges(rfb::Region2D &rgn, rfb::Rect &rect, int nZon
 			// If init list
 			if (fInitGrid)
 			{
+				int off = iPixelColor - pThePixelGrid->begin();
 			   pThePixelGrid->push_back(PixelColor);
+				iPixelColor = pThePixelGrid->begin() + off;
 			   // vnclog.Print(LL_INTINFO, VNCLOG("### PixelsGrid Init : Pixel xo=%d - yo=%d - C=%ld\n"), xo, yo, (long)PixelColor); 
 			   continue;
 			}

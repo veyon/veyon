@@ -96,7 +96,7 @@ BOOL MyStrToken(LPSTR szToken, LPSTR lpString, int nTokenNum, char cSep)
 		lpString++;
 	}
 	*szToken = '\0' ;
-	if (( ! *lpString ) || (! *szToken)) return NULL;
+	if (( ! *lpString ) || (! *szToken)) return FALSE;
 	return FALSE;
 }
 
@@ -243,7 +243,7 @@ bool CDSMPlugin::SetPluginParams(HWND hWnd, char* szParams, char* szConfig, char
 
 	//adzm 2010-05-12 - dsmplugin config
 	if (m_PConfig) {
-		char* szNewConfig = NULL;
+		//char* szNewConfig = NULL;
 		int nRes = (*m_PConfig)(hWnd, szParams, szConfig, pszNewConfig);		
 		if (nRes > 0) return true; else return false;
 	} else {
@@ -330,9 +330,9 @@ bool CDSMPlugin::LoadPlugin(char* szPlugin, bool fAllowMulti)
 		char szCurrentDir_szDllCopyName[MAX_PATH];
 		while (!fDllCopyCreated)
 		{
-			strcpy_s(szDllCopyName, 260,szPlugin);
+			/*strcpy_s(szDllCopyName, 260,szPlugin);
 			szDllCopyName[strlen(szPlugin) - 4] = '\0'; //remove the ".dsm" extension
-			sprintf(szDllCopyName, "%s-tmp.d%d", szDllCopyName, i++);
+			sprintf(szDllCopyName, "%s-tmp.d%d", szDllCopyName, i++);*/
 			//fDllCopyCreated = (FALSE != CopyFile(szPlugin, szDllCopyName, false));
 			// Note: Let's be really dirty; Overwrite if it's possible only (dll not loaded). 
 			// This way if for some reason (abnormal process termination) the dll wasn't previously 
