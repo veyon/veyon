@@ -23,6 +23,7 @@
 ////////////////////////////////////////////////////////////////////////////
 
 #include "stdhdrs.h"
+#include "omnithread.h"
 #include <objbase.h>
 #include <windows.h>
 #include <stdio.h>
@@ -32,28 +33,6 @@
 #include "vnclog.h"
 extern VNCLog vnclog;
 #include "inifile.h"
-
-// No logging at all
-#define LL_NONE		0
-// Log server startup/shutdown
-#define LL_STATE	0
-// Log connect/disconnect
-#define LL_CLIENTS	1
-// Log connection errors (wrong pixfmt, etc)
-#define LL_CONNERR	0
-// Log socket errors
-#define LL_SOCKERR	4
-// Log internal errors
-#define LL_INTERR	0
-
-// Log internal warnings
-#define LL_INTWARN	8
-// Log internal info
-#define LL_INTINFO	9
-// Log socket errors
-#define LL_SOCKINFO	10
-// Log everything, including internal table setup, etc.
-#define LL_ALL		10
 
 // Marscha@2004 - authSSP: end of change
 
@@ -515,6 +494,10 @@ int CheckUserGroupPasswordUni(char * userin,char *password,const char *machine)
 		}
 		HMODULE hModule = LoadLibrary(szCurrentDir);
 		if (hModule) {
+
+			static omni_mutex authSSPMutex;
+			omni_mutex_lock l( authSSPMutex );
+
 			CheckUserPasswordSDUni = (CheckUserPasswordSDUniFn) GetProcAddress(hModule, "CUPSD");
 			vnclog.Print(LL_INTINFO, VNCLOG("GetProcAddress"));
 			HRESULT hr = CoInitialize(NULL);
