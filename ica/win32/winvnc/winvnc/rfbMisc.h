@@ -19,6 +19,8 @@
 // which you received this file, check http://www.realvnc.com/ or contact
 // the authors on info@realvnc.com for information on obtaining it.
 
+#include <vector>
+
 #ifndef max
 #define max(a,b)            (((a) > (b)) ? (a) : (b))
 #endif

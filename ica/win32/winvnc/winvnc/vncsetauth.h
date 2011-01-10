@@ -51,7 +51,7 @@ public:
 
 	// General
 	void Show(BOOL show);
-	void SetTemp(char *TempFile){strncpy(m_Tempfile,TempFile,MAXPATH);};
+	void SetTemp(char *TempFile){strcpy_s(m_Tempfile,MAXPATH,TempFile);};
 	char m_Tempfile[MAXPATH];
 
 	// Implementation

@@ -24,8 +24,6 @@
 #include "stdhdrs.h"
 #include "rfbRegion_win32.h"
 
-#undef min
-
 using namespace rfb;
 
 void dump_rects(char *n, HRGN rgn, bool dbg = 0)

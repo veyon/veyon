@@ -513,7 +513,7 @@ DesktopWndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 }
 //////////////////////////////////////////////////////////////////////////////////////////
 
-ATOM m_wndClass = 0;
+ATOM m_wndClass = INVALID_ATOM;
 
 BOOL
 vncDesktop::InitWindow()

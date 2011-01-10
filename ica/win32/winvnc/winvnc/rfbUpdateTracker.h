@@ -109,4 +109,4 @@ namespace rfb {
 
 };
 
-#endif
+#endif /* __RFB_UPDATETRACKER_INCLUDED__ */

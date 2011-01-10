@@ -28,8 +28,8 @@
 #include <windows.h>
 #endif
 
-#include <vector>
 #include "rfbMisc.h"
+#include <vector>
 
 namespace rfb {
 

@@ -875,7 +875,7 @@ vncService::PostAddNewRepeaterClient()
 BOOL
 vncService::PostAddAutoConnectClient( const char* pszId )
 {
-	ATOM aId = 0;
+	ATOM aId = INVALID_ATOM;
 	if ( pszId )
 	{
 		aId = GlobalAddAtom( pszId );
@@ -887,7 +887,7 @@ vncService::PostAddAutoConnectClient( const char* pszId )
 BOOL
 vncService::PostAddConnectClient( const char* pszId )
 {
-	ATOM aId = 0;
+	ATOM aId = INVALID_ATOM;
 	if ( pszId )
 	{
 		aId = GlobalAddAtom( pszId );
