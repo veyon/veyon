@@ -313,12 +313,12 @@ vncDesktopThread::PollWindow(rfb::Region2D &rgn, HWND hwnd)
 bool vncDesktopThread::handle_display_change(HANDLE& threadHandle, rfb::Region2D& rgncache, rfb::SimpleUpdateTracker& clipped_updates, rfb::ClippedUpdateTracker& updates)
 {
 	BOOL screensize_changed=false;
-	/*if (first_run)
+	if (first_run)
 	{
 		first_run=false;
 		m_desktop->m_displaychanged=true;
 		screensize_changed=true;
-	}*/
+	}
 
 	if (vncService::InputDesktopSelected()==2)
 	{
@@ -618,12 +618,6 @@ void vncDesktopThread::do_polling(HANDLE& threadHandle, rfb::Region2D& rgncache,
 				capture=false;
 			}
 
-			#ifdef _DEBUG
-										char			szText[256];
-										sprintf(szText," Capture %i\n",capture);
-										OutputDebugString(szText);		
-			#endif
-
 			// force full screen scan every three seconds after the mouse stops moving
 			if (fullpollcounter > 20) 
 			{
@@ -694,7 +688,6 @@ vncDesktopThread::run_undetached(void *arg)
 	m_server->InitialUpdate(false);
 	// sf@2003 - Done here to take into account if the driver is actually activated
 	m_desktop->InitHookSettings(); 
-	initialupdate=false;
 
 	// We set a flag inside the desktop handler here, to indicate it's now safe
 	// to handle clipboard messages
@@ -769,6 +762,7 @@ vncDesktopThread::run_undetached(void *arg)
 												m_desktop->m_buffer.GrabRegion(rgncache,false,true);
 											}
 	//telling running viewers to wait until first update, done
+	m_server->InitialUpdate(true);
 
 	while (looping && !fShutdownOrdered)
 	{		
@@ -971,20 +965,13 @@ vncDesktopThread::run_undetached(void *arg)
 											m_desktop->SetCursor(cinfo.hCursor);
 										}
 									}
-
-									//****************************************************************************
-									//************* Check for moved windows
-									//****************************************************************************
-									bool moved=false;
-									if (!m_desktop->m_hookdriver && !m_server->SingleWindow()) 
-											moved=m_desktop->CalcCopyRects(updates);
 								
 									//****************************************************************************
 									//************* Polling ---- no driver
 									//****************************************************************************
 									if (!m_desktop->m_hookdriver || !m_desktop->can_be_hooked)
 									{
-										if (!moved) do_polling(threadHandle, rgncache, fullpollcounter, cursormoved);
+										do_polling(threadHandle, rgncache, fullpollcounter, cursormoved);
 									}
 									//****************************************************************************
 									//************* driver  No polling
@@ -1050,8 +1037,8 @@ vncDesktopThread::run_undetached(void *arg)
 										
 										// CHECK FOR COPYRECTS
 										// This actually just checks where the Foreground window is
-										//if (!m_desktop->m_hookdriver && !m_server->SingleWindow()) 
-										//	m_desktop->CalcCopyRects(updates);
+										if (!m_desktop->m_hookdriver && !m_server->SingleWindow()) 
+											m_desktop->CalcCopyRects(updates);
 										
 										// GRAB THE DISPLAY
 										// Fetch data from the display to our display cache.
@@ -1184,41 +1171,12 @@ vncDesktopThread::run_undetached(void *arg)
 										//checkrgn = rgncache.union_(clipped_updates.get_copied_region());	
 										checkrgn = rgncache.subtract(clipped_updates.get_copied_region());	
 										//make sure the copyrect is checked next update
-										if (!clipped_updates.get_copied_region().is_empty())
-										{
-
-											rfb::UpdateInfo update_info;
-												rfb::RectVector::const_iterator i;
-												clipped_updates.get_update(update_info);
-												if (!update_info.copied.empty()) 
-													{
-														for (i=update_info.copied.begin(); i!=update_info.copied.end(); i++) 						
-														{
-															rfb::Rect rect;
-															rect.br.x=i->br.x+4;
-															rect.br.y=i->br.y+4;
-															rect.tl.x=i->tl.x-4;
-															rect.tl.y=i->tl.y-4;
-															rect = rect.intersect(m_desktop->m_Cliprect);
-															rgncache=rgncache.union_(rect);
-															rfb::Rect src = rect.translate(update_info.copy_delta.negate());
-															src = src.intersect(m_desktop->m_Cliprect);
-															rgncache=rgncache.union_(src);
-														}
-													}
-										}
-										else
-											rgncache = clipped_updates.get_copied_region();
-										
+										rgncache = clipped_updates.get_copied_region();
 										//Check all regions for changed and cached parts
 										//This is very cpu intensive, only check once for all viewers
 										if (!checkrgn.is_empty())
 											m_desktop->m_buffer.CheckRegion(changedrgn,cachedrgn, checkrgn);
-										if (!initialupdate)
-											{
-												m_server->InitialUpdate(true);
-												initialupdate=true;
-											}
+
 										updates.add_changed(changedrgn);
 										updates.add_cached(cachedrgn);
 												

@@ -71,7 +71,6 @@ DWORD WINAPI hookwatch(LPVOID lpParam)
 bool
 vncDesktopThread::Handle_Ringbuffer(mystruct *ringbuffer,rfb::Region2D &rgncache)
 {
-	bool returnvalue=false;
 	//vnclog.Print(LL_INTERR, VNCLOG("counter,g_Oldcounter %i %i  \n"),ringbuffer->counter,g_Oldcounter);
 	if (ringbuffer->counter==g_Oldcounter) return 0;
 	int counter=ringbuffer->counter;
@@ -102,14 +101,6 @@ vncDesktopThread::Handle_Ringbuffer(mystruct *ringbuffer,rfb::Region2D &rgncache
 				rect = rect.intersect(m_desktop->m_Cliprect);
 				if (!rect.is_empty())
 				{
-#ifdef _DEBUG
-					char			szText[256];
-					DWORD error=GetLastError();
-					sprintf(szText,"REctXXXXXXXXXXX %i %i %i %i  \n",rect.tl.x,rect.br.x,rect.tl.y,rect.br.y);
-					SetLastError(0);
-					OutputDebugString(szText);		
-	#endif
-					returnvalue=true;
 					rgncache.assign_union(rect);
 				}
 			}
@@ -156,7 +147,6 @@ vncDesktopThread::Handle_Ringbuffer(mystruct *ringbuffer,rfb::Region2D &rgncache
 				rect = rect.intersect(m_desktop->m_Cliprect);
 				if (!rect.is_empty())
 				{
-					returnvalue=true;
 					rgncache.assign_union(rect);
 				}
 			}
@@ -191,7 +181,6 @@ vncDesktopThread::Handle_Ringbuffer(mystruct *ringbuffer,rfb::Region2D &rgncache
 				rect = rect.intersect(m_desktop->m_Cliprect);
 				if (!rect.is_empty())
 				{
-					returnvalue=true;
 					rgncache.assign_union(rect);
 				}
 			}
@@ -211,7 +200,7 @@ vncDesktopThread::Handle_Ringbuffer(mystruct *ringbuffer,rfb::Region2D &rgncache
 		}
 	}
 	g_Oldcounter=counter;
-	return returnvalue;
+	return 1;
 }
 void Enable_softwareCAD_elevated();
 void delete_softwareCAD_elevated();

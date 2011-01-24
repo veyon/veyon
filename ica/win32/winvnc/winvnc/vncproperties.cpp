@@ -1822,8 +1822,6 @@ LABELUSERSETTINGS:
 	m_pref_EnableFileTransfer = TRUE;
 	m_pref_FTUserImpersonation = TRUE;
 	m_pref_EnableBlankMonitor = TRUE;
-	m_pref_BlankInputsOnly = FALSE;
-	m_pref_QueryIfNoLogon = FALSE;
 	m_pref_DefaultScale = 1;
 	m_pref_CaptureAlphaBlending = FALSE; 
 	m_pref_BlackAlphaBlending = FALSE; 
@@ -2378,8 +2376,6 @@ void vncProperties::LoadFromIniFile()
 	m_pref_EnableFileTransfer = TRUE;
 	m_pref_FTUserImpersonation = TRUE;
 	m_pref_EnableBlankMonitor = TRUE;
-	m_pref_BlankInputsOnly = FALSE;
-	m_pref_QueryIfNoLogon = FALSE;
 	m_pref_DefaultScale = 1;
 	m_pref_CaptureAlphaBlending = FALSE; 
 	m_pref_BlackAlphaBlending = FALSE; 

@@ -1513,11 +1513,10 @@ LRESULT CALLBACK vncMenu::WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lP
 	case WM_CLOSE:
 		
 		// Only accept WM_CLOSE if the logged on user has AllowShutdown set
-		// Error this clock the service restart.
-		/*if (!_this->m_properties.AllowShutdown())
+		if (!_this->m_properties.AllowShutdown())
 		{
 			return 0;
-		}*/
+		}
 		// tnatsni Wallpaper fix
 		if (_this->m_server->RemoveWallpaperEnabled())
 			RestoreWallpaper();

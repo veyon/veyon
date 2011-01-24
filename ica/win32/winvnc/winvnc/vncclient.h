@@ -503,7 +503,6 @@ protected:
 	// Modif sf@2002 - Scaling
 	rfb::Rect		m_ScaledScreen;
 	UINT			m_nScale;
-	UINT			m_nScale_viewer;
 	bool			fNewScale;
 	bool			m_fPalmVNCScaling;
 	bool			fFTRequest;
