@@ -91,7 +91,7 @@ ClassroomManager::ClassroomManager( MainWindow * _main_window,
 	m_quickSwitchMenu( new QMenu( this ) ),
 	m_qsmClassRoomSeparator( m_quickSwitchMenu->addSeparator() ),
 	m_globalClientMode( Client::Mode_Overview ),
-	m_clientUpdateInterval( 1 ),
+	m_clientUpdateInterval( 500 ),
 	m_autoArranged( false )
 {
 	// some code called out of this function relies on m_classroomManager
@@ -561,6 +561,22 @@ void ClassroomManager::getHeaderInformation( const QDomElement & _header )
 		{
 			m_clientUpdateInterval = node.toElement().attribute(
 					"client-update-interval" ).toInt();
+			// convert old settings
+			if( m_clientUpdateInterval < 100 )
+			{
+				if( m_clientUpdateInterval > 0 )
+				{
+					m_clientUpdateInterval = m_clientUpdateInterval*100;
+				}
+				else
+				{
+					m_clientUpdateInterval = 1000;
+				}
+			}
+			if( m_clientUpdateInterval > 10000 )
+			{
+				m_clientUpdateInterval = 10000;
+			}
 			if( node.toElement().attribute( "win-width" ) !=
 								QString::null &&
 				node.toElement().attribute( "win-height" ) !=
@@ -631,12 +647,6 @@ mainWindow()->move( node.toElement().attribute( "win-x" ).toInt(),
 					"clientdoubleclickaction" ).toInt();
 			m_showUsernameCheckBox->setChecked(
 				node.toElement().attribute( "showUserColumn" ).toInt() );
-			// if the attr did not exist, we got zero as value,
-			// which is not acceptable
-			if( m_clientUpdateInterval < 1 )
-			{
-				m_clientUpdateInterval = 2;
-			}
 		}
 		node = node.nextSibling();
         }
@@ -971,8 +981,7 @@ void ClassroomManager::updateClients( void )
 		cl->update();
 	}
 
-	QTimer::singleShot( m_clientUpdateInterval * 1000, this,
-						SLOT( updateClients() ) );
+	QTimer::singleShot( m_clientUpdateInterval, this, SLOT( updateClients() ) );
 }
 
 
@@ -1318,9 +1327,9 @@ void ClassroomManager::decreaseClientSize( void )
 
 
 
-void ClassroomManager::updateIntervalChanged( int _value )
+void ClassroomManager::updateIntervalChanged( double seconds )
 {
-	m_clientUpdateInterval = _value;
+	m_clientUpdateInterval = qRound( seconds * 1000 );
 }
 
 

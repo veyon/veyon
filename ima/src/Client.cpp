@@ -498,7 +498,7 @@ Client::Client( const QString & _hostname,
 	conn->setHost( m_hostname );
 	conn->setQuality( ItalcVncConnection::ThumbnailQuality );
 	conn->setFramebufferUpdateInterval(
-				m_mainWindow->getClassroomManager()->updateInterval() * 1000 );
+				m_mainWindow->getClassroomManager()->updateInterval() );
 
 	// set a flag so we only update the view if there were some updates
 	connect( conn, SIGNAL( imageUpdated( int, int, int, int ) ),
@@ -1001,7 +1001,7 @@ void Client::showEvent( QShowEvent * )
 void Client::reload()
 {
 	QTimer::singleShot(
-				m_mainWindow->getClassroomManager()->updateInterval() * 1000,
+				m_mainWindow->getClassroomManager()->updateInterval(),
 				this,
 				SLOT( reload() ) );
 	if( !isVisible() )

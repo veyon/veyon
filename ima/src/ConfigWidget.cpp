@@ -1,7 +1,7 @@
 /*
  * ConfigWidget.cpp - implementation of configuration-widget for side-bar
  *
- * Copyright (c) 2004-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2011 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -104,11 +104,10 @@ ConfigWidget::ConfigWidget( MainWindow * _main_window, QWidget * _parent ) :
 					toggled,
 					setNoToolTips);
 #else
-	connect( updateIntervalSB, SIGNAL( valueChanged( int ) ),
+	connect( updateIntervalSB, SIGNAL( valueChanged( double ) ),
 				mainWindow()->getClassroomManager(),
-					SLOT( updateIntervalChanged( int ) ) );
-	mainWindow()->getClassroomManager()->setUpdateIntervalSpinBox(
-							updateIntervalSB );
+					SLOT( updateIntervalChanged( double ) ) );
+	mainWindow()->getClassroomManager()->setUpdateIntervalSpinBox( updateIntervalSB );
 
 
 	roleCB->setCurrentIndex( ItalcCore::role - 1 );

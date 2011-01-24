@@ -600,7 +600,7 @@ void MainWindowUpdateThread::run( void )
 {
 	QTimer t;
 	connect( &t, SIGNAL( timeout() ), this, SLOT( update() ) );
-	t.start( m_mainWindow->getClassroomManager()->updateInterval() * 1000 );
+	t.start( m_mainWindow->getClassroomManager()->updateInterval() );
 	exec();
 }
 

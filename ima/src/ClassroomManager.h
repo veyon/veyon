@@ -28,7 +28,7 @@
 
 #include <QtCore/QString>
 #include <QtCore/QVector>
-#include <QtGui/QSpinBox>
+#include <QtGui/QDoubleSpinBox>
 #include <QtGui/QPixmap>
 #include <QtGui/QMenu>
 #include <QtGui/QTreeWidget>
@@ -99,10 +99,10 @@ public:
 		return( m_clientDblClickAction );
 	}
 
-	inline void setUpdateIntervalSpinBox( QSpinBox * _update_interval_sb )
+	inline void setUpdateIntervalSpinBox( QDoubleSpinBox * _update_interval_sb )
 	{
 		m_updateIntervalSpinBox = _update_interval_sb;
-		m_updateIntervalSpinBox->setValue( m_clientUpdateInterval );
+		m_updateIntervalSpinBox->setValue( m_clientUpdateInterval / 1000.0f );
 	}
 
 	inline QMenu * quickSwitchMenu( void )
@@ -148,7 +148,7 @@ public slots:
 	void decreaseClientSize( void );
 
 	// slots for config-widget in side-bar
-	void updateIntervalChanged( int _value );
+	void updateIntervalChanged( double seconds );
 
 	void hideAllClassRooms( void );
 
@@ -223,7 +223,7 @@ private:
 	QMenu * m_clientMenu; /* template */
 	QVector<QDomNode> m_customMenuConfiguration;
 
-	QSpinBox * m_updateIntervalSpinBox;
+	QDoubleSpinBox * m_updateIntervalSpinBox;
 	QMenu * m_quickSwitchMenu;
 	QAction * m_qsmClassRoomSeparator;
 	Client::Modes m_globalClientMode;
