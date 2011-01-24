@@ -2,7 +2,7 @@
  * Client.h - declaration of class Client which represents a client, shows its
  *            display and allows controlling it in several ways
  *
- * Copyright (c) 2004-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2011 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -64,7 +64,7 @@ public:
 		RemoteControl,
 		ClientDemo,
 		SendTextMessage,
-		LogonUser,
+		//LogonUser,
 		LogoutUser,
 		Snapshot,
 		PowerOn,
@@ -194,8 +194,8 @@ public:
 	void remoteControl( void );
 	void clientDemo( void );
 	void sendTextMessage( const QString & _msg );
-	void logonUser( const QString & _username, const QString & _password,
-			const QString & _domain );
+/*	void logonUser( const QString & _username, const QString & _password,
+			const QString & _domain );*/
 	void logoutUser( void );
 	void snapshot( void );
 	void powerOn( void );

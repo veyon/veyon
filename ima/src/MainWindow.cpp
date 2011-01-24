@@ -1,7 +1,7 @@
 /*
  * MainWindow.cpp - implementation of MainWindow class
  *
- * Copyright (c) 2004-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2011 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -240,14 +240,14 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 			m_classroomManager,
 					SLOT( powerDownClients() ), m_toolBar );
 
-	ToolButton * remotelogon = new ToolButton(
+/*	ToolButton * remotelogon = new ToolButton(
 			QPixmap( ":/resources/remotelogon.png" ),
 			tr( "Logon" ), QString::null,
 			tr( "Remote logon" ),
 			tr( "After clicking this button you can enter a "
 				"username and password to log on the "
 				"according user on all visible computers." ),
-			m_classroomManager, SLOT( remoteLogon() ), m_toolBar );
+			m_classroomManager, SLOT( remoteLogon() ), m_toolBar );*/
 
 	ToolButton * directsupport = new ToolButton(
 			QPixmap( ":/resources/remote_control.png" ),
@@ -287,7 +287,7 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 	text_msg->addTo( m_toolBar );
 	power_on->addTo( m_toolBar );
 	power_off->addTo( m_toolBar );
-	remotelogon->addTo( m_toolBar );
+	//remotelogon->addTo( m_toolBar );
 	directsupport->addTo( m_toolBar );
 	adjust_size->addTo( m_toolBar );
 	auto_arrange->addTo( m_toolBar );

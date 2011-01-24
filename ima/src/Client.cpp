@@ -2,7 +2,7 @@
  * Client.cpp - code for client-windows, which are displayed in several
  *              instances in the main-window of iTALC
  *
- * Copyright (c) 2004-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2011 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -207,6 +207,7 @@ void ClientAction::process( QVector<Client *> _clients, TargetGroup _target )
 
 			break;
 
+#if 0
 		case LogonUser:
 			{
 				RemoteLogonDialog mld( NULL );
@@ -224,6 +225,7 @@ void ClientAction::process( QVector<Client *> _clients, TargetGroup _target )
 
 			}
 			break;
+#endif
 
 		case LogoutUser:
 			if ( confirmLogout( _target ) )
@@ -432,8 +434,8 @@ QMenu * clientMenu::createDefault( QWidget * _parent )
 		scaledIcon( "text_message.png" ), tr( "Send text message" ), menu ) );
 	menu->addSeparator();
 
-	menu->addAction( new ClientAction( ClientAction::LogonUser,
-		scaledIcon( "remotelogon.png" ), tr( "Logon user" ), menu ) );
+/*	menu->addAction( new ClientAction( ClientAction::LogonUser,
+		scaledIcon( "remotelogon.png" ), tr( "Logon user" ), menu ) );*/
 	menu->addAction( new ClientAction( ClientAction::LogoutUser,
 		scaledIcon( "logout.png" ), tr( "Logout user" ), menu ) );
 	menu->addSeparator();
@@ -1103,11 +1105,11 @@ void Client::sendTextMessage( const QString & _msg )
 
 
 
-void Client::logonUser( const QString & _username, const QString & _password,
+/*void Client::logonUser( const QString & _username, const QString & _password,
 			const QString & _domain )
 {
 	m_connection->logonUser( _username, _password, _domain );
-}
+}*/
 
 
 
