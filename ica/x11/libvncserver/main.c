@@ -1003,9 +1003,6 @@ void rfbScreenCleanup(rfbScreenInfoPtr screen)
   if(screen->cursor && screen->cursor->cleanup)
     rfbFreeCursor(screen->cursor);
 
-  rfbRRECleanup(screen);
-  rfbCoRRECleanup(screen);
-  rfbUltraCleanup(screen);
 #ifdef LIBVNCSERVER_HAVE_LIBZ
   rfbZlibCleanup(screen);
 #ifdef LIBVNCSERVER_HAVE_LIBJPEG

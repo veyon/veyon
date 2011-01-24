@@ -29,36 +29,16 @@
 #include <rfb/rfb.h>
 
 /*
- * rreBeforeBuf contains pixel data in the client's format.
- * rreAfterBuf contains the RRE encoded version.  If the RRE encoded version is
- * larger than the raw data or if it exceeds rreAfterBufSize then
+ * cl->beforeEncBuf contains pixel data in the client's format.
+ * cl->afterEncBuf contains the RRE encoded version.  If the RRE encoded version is
+ * larger than the raw data or if it exceeds cl->afterEncBufSize then
  * raw encoding is used instead.
  */
 
-static int rreBeforeBufSize = 0;
-static char *rreBeforeBuf = NULL;
-
-static int rreAfterBufSize = 0;
-static char *rreAfterBuf = NULL;
-static int rreAfterBufLen=0;
-
-static int subrectEncode8(uint8_t *data, int w, int h);
-static int subrectEncode16(uint16_t *data, int w, int h);
-static int subrectEncode32(uint32_t *data, int w, int h);
+static int subrectEncode8(rfbClientPtr cl, uint8_t *data, int w, int h);
+static int subrectEncode16(rfbClientPtr cl, uint16_t *data, int w, int h);
+static int subrectEncode32(rfbClientPtr cl, uint32_t *data, int w, int h);
 static uint32_t getBgColour(char *data, int size, int bpp);
-
-
-void rfbRRECleanup(rfbScreenInfoPtr screen)
-{
-  if (rreBeforeBufSize) {
-    free(rreBeforeBuf);
-    rreBeforeBufSize=0;
-  }
-  if (rreAfterBufSize) {
-    free(rreAfterBuf);
-    rreAfterBufSize=0;
-  }
-}
 
 
 /*
@@ -82,36 +62,36 @@ rfbSendRectEncodingRRE(rfbClientPtr cl,
     int maxRawSize = (cl->scaledScreen->width * cl->scaledScreen->height
                       * (cl->format.bitsPerPixel / 8));
 
-    if (rreBeforeBufSize < maxRawSize) {
-        rreBeforeBufSize = maxRawSize;
-        if (rreBeforeBuf == NULL)
-            rreBeforeBuf = (char *)malloc(rreBeforeBufSize);
+    if (cl->beforeEncBufSize < maxRawSize) {
+        cl->beforeEncBufSize = maxRawSize;
+        if (cl->beforeEncBuf == NULL)
+            cl->beforeEncBuf = (char *)malloc(cl->beforeEncBufSize);
         else
-            rreBeforeBuf = (char *)realloc(rreBeforeBuf, rreBeforeBufSize);
+            cl->beforeEncBuf = (char *)realloc(cl->beforeEncBuf, cl->beforeEncBufSize);
     }
 
-    if (rreAfterBufSize < maxRawSize) {
-        rreAfterBufSize = maxRawSize;
-        if (rreAfterBuf == NULL)
-            rreAfterBuf = (char *)malloc(rreAfterBufSize);
+    if (cl->afterEncBufSize < maxRawSize) {
+        cl->afterEncBufSize = maxRawSize;
+        if (cl->afterEncBuf == NULL)
+            cl->afterEncBuf = (char *)malloc(cl->afterEncBufSize);
         else
-            rreAfterBuf = (char *)realloc(rreAfterBuf, rreAfterBufSize);
+            cl->afterEncBuf = (char *)realloc(cl->afterEncBuf, cl->afterEncBufSize);
     }
 
     (*cl->translateFn)(cl->translateLookupTable,
 		       &(cl->screen->serverFormat),
-                       &cl->format, fbptr, rreBeforeBuf,
+                       &cl->format, fbptr, cl->beforeEncBuf,
                        cl->scaledScreen->paddedWidthInBytes, w, h);
 
     switch (cl->format.bitsPerPixel) {
     case 8:
-        nSubrects = subrectEncode8((uint8_t *)rreBeforeBuf, w, h);
+        nSubrects = subrectEncode8(cl, (uint8_t *)cl->beforeEncBuf, w, h);
         break;
     case 16:
-        nSubrects = subrectEncode16((uint16_t *)rreBeforeBuf, w, h);
+        nSubrects = subrectEncode16(cl, (uint16_t *)cl->beforeEncBuf, w, h);
         break;
     case 32:
-        nSubrects = subrectEncode32((uint32_t *)rreBeforeBuf, w, h);
+        nSubrects = subrectEncode32(cl, (uint32_t *)cl->beforeEncBuf, w, h);
         break;
     default:
         rfbLog("getBgColour: bpp %d?\n",cl->format.bitsPerPixel);
@@ -126,7 +106,7 @@ rfbSendRectEncodingRRE(rfbClientPtr cl,
     }
 
     rfbStatRecordEncodingSent(cl, rfbEncodingRRE,
-                              sz_rfbFramebufferUpdateRectHeader + sz_rfbRREHeader + rreAfterBufLen,
+                              sz_rfbFramebufferUpdateRectHeader + sz_rfbRREHeader + cl->afterEncBufLen,
                               sz_rfbFramebufferUpdateRectHeader + w * h * (cl->format.bitsPerPixel / 8));
 
     if (cl->ublen + sz_rfbFramebufferUpdateRectHeader + sz_rfbRREHeader
@@ -151,15 +131,15 @@ rfbSendRectEncodingRRE(rfbClientPtr cl,
     memcpy(&cl->updateBuf[cl->ublen], (char *)&hdr, sz_rfbRREHeader);
     cl->ublen += sz_rfbRREHeader;
 
-    for (i = 0; i < rreAfterBufLen;) {
+    for (i = 0; i < cl->afterEncBufLen;) {
 
         int bytesToCopy = UPDATE_BUF_SIZE - cl->ublen;
 
-        if (i + bytesToCopy > rreAfterBufLen) {
-            bytesToCopy = rreAfterBufLen - i;
+        if (i + bytesToCopy > cl->afterEncBufLen) {
+            bytesToCopy = cl->afterEncBufLen - i;
         }
 
-        memcpy(&cl->updateBuf[cl->ublen], &rreAfterBuf[i], bytesToCopy);
+        memcpy(&cl->updateBuf[cl->ublen], &cl->afterEncBuf[i], bytesToCopy);
 
         cl->ublen += bytesToCopy;
         i += bytesToCopy;
@@ -179,7 +159,7 @@ rfbSendRectEncodingRRE(rfbClientPtr cl,
  * subrectEncode() encodes the given multicoloured rectangle as a background 
  * colour overwritten by single-coloured rectangles.  It returns the number 
  * of subrectangles in the encoded buffer, or -1 if subrect encoding won't
- * fit in the buffer.  It puts the encoded rectangles in rreAfterBuf.  The
+ * fit in the buffer.  It puts the encoded rectangles in cl->afterEncBuf.  The
  * single-colour rectangle partition is not optimal, but does find the biggest
  * horizontal or vertical rectangle top-left anchored to each consecutive 
  * coordinate position.
@@ -190,7 +170,7 @@ rfbSendRectEncodingRRE(rfbClientPtr cl,
 
 #define DEFINE_SUBRECT_ENCODE(bpp)                                            \
 static int                                                                    \
-subrectEncode##bpp(uint##bpp##_t *data, int w, int h) {                       \
+ subrectEncode##bpp(rfbClientPtr client, uint##bpp##_t *data, int w, int h) { \
     uint##bpp##_t cl;                                                         \
     rfbRectangle subrect;                                                     \
     int x,y;                                                                  \
@@ -205,9 +185,9 @@ subrectEncode##bpp(uint##bpp##_t *data, int w, int h) {                       \
     int newLen;                                                               \
     uint##bpp##_t bg = (uint##bpp##_t)getBgColour((char*)data,w*h,bpp);       \
                                                                               \
-    *((uint##bpp##_t*)rreAfterBuf) = bg;                                      \
+    *((uint##bpp##_t*)client->afterEncBuf) = bg;                                      \
                                                                               \
-    rreAfterBufLen = (bpp/8);                                                 \
+    client->afterEncBufLen = (bpp/8);                                                 \
                                                                               \
     for (y=0; y<h; y++) {                                                     \
       line = data+(y*w);                                                      \
@@ -252,15 +232,15 @@ subrectEncode##bpp(uint##bpp##_t *data, int w, int h) {                       \
           subrect.w = Swap16IfLE(thew);                                       \
           subrect.h = Swap16IfLE(theh);                                       \
                                                                               \
-          newLen = rreAfterBufLen + (bpp/8) + sz_rfbRectangle;                \
-          if ((newLen > (w * h * (bpp/8))) || (newLen > rreAfterBufSize))     \
+          newLen = client->afterEncBufLen + (bpp/8) + sz_rfbRectangle;                \
+          if ((newLen > (w * h * (bpp/8))) || (newLen > client->afterEncBufSize))     \
             return -1;                                                        \
                                                                               \
           numsubs += 1;                                                       \
-          *((uint##bpp##_t*)(rreAfterBuf + rreAfterBufLen)) = cl;             \
-          rreAfterBufLen += (bpp/8);                                          \
-          memcpy(&rreAfterBuf[rreAfterBufLen],&subrect,sz_rfbRectangle);      \
-          rreAfterBufLen += sz_rfbRectangle;                                  \
+          *((uint##bpp##_t*)(client->afterEncBuf + client->afterEncBufLen)) = cl;             \
+          client->afterEncBufLen += (bpp/8);                                          \
+          memcpy(&client->afterEncBuf[client->afterEncBufLen],&subrect,sz_rfbRectangle);      \
+          client->afterEncBufLen += sz_rfbRectangle;                                  \
                                                                               \
           /*                                                                  \
            * Now mark the subrect as done.                                    \

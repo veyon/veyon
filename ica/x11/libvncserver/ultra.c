@@ -11,19 +11,13 @@
 #include "minilzo.h"
 
 /*
- * lzoBeforeBuf contains pixel data in the client's format.
- * lzoAfterBuf contains the lzo (deflated) encoding version.
+ * cl->beforeEncBuf contains pixel data in the client's format.
+ * cl->afterEncBuf contains the lzo (deflated) encoding version.
  * If the lzo compressed/encoded version is
- * larger than the raw data or if it exceeds lzoAfterBufSize then
+ * larger than the raw data or if it exceeds cl->afterEncBufSize then
  * raw encoding is used instead.
  */
 
-static int lzoBeforeBufSize = 0;
-static char *lzoBeforeBuf = NULL;
-
-static int lzoAfterBufSize = 0;
-static char *lzoAfterBuf = NULL;
-static int lzoAfterBufLen = 0;
 
 /*
  * rfbSendOneRectEncodingZlib - send a given rectangle using one Zlib
@@ -32,17 +26,6 @@ static int lzoAfterBufLen = 0;
 
 #define MAX_WRKMEM ((LZO1X_1_MEM_COMPRESS) + (sizeof(lzo_align_t) - 1)) / sizeof(lzo_align_t)
 
-void rfbUltraCleanup(rfbScreenInfoPtr screen)
-{
-  if (lzoBeforeBufSize) {
-    free(lzoBeforeBuf);
-    lzoBeforeBufSize=0;
-  }
-  if (lzoAfterBufSize) {
-    free(lzoAfterBuf);
-    lzoAfterBufSize=0;
-  }
-}
 
 void rfbFreeUltraData(rfbClientPtr cl) {
   if (cl->compStreamInitedLZO) {
@@ -71,12 +54,12 @@ rfbSendOneRectEncodingUltra(rfbClientPtr cl,
 
     maxRawSize = (w * h * (cl->format.bitsPerPixel / 8));
 
-    if (lzoBeforeBufSize < maxRawSize) {
-	lzoBeforeBufSize = maxRawSize;
-	if (lzoBeforeBuf == NULL)
-	    lzoBeforeBuf = (char *)malloc(lzoBeforeBufSize);
+    if (cl->beforeEncBufSize < maxRawSize) {
+	cl->beforeEncBufSize = maxRawSize;
+	if (cl->beforeEncBuf == NULL)
+	    cl->beforeEncBuf = (char *)malloc(cl->beforeEncBufSize);
 	else
-	    lzoBeforeBuf = (char *)realloc(lzoBeforeBuf, lzoBeforeBufSize);
+	    cl->beforeEncBuf = (char *)realloc(cl->beforeEncBuf, cl->beforeEncBufSize);
     }
 
     /*
@@ -85,19 +68,19 @@ rfbSendOneRectEncodingUltra(rfbClientPtr cl,
      */
     maxCompSize = (maxRawSize + maxRawSize / 16 + 64 + 3);
 
-    if (lzoAfterBufSize < maxCompSize) {
-	lzoAfterBufSize = maxCompSize;
-	if (lzoAfterBuf == NULL)
-	    lzoAfterBuf = (char *)malloc(lzoAfterBufSize);
+    if (cl->afterEncBufSize < maxCompSize) {
+	cl->afterEncBufSize = maxCompSize;
+	if (cl->afterEncBuf == NULL)
+	    cl->afterEncBuf = (char *)malloc(cl->afterEncBufSize);
 	else
-	    lzoAfterBuf = (char *)realloc(lzoAfterBuf, lzoAfterBufSize);
+	    cl->afterEncBuf = (char *)realloc(cl->afterEncBuf, cl->afterEncBufSize);
     }
 
     /* 
      * Convert pixel data to client format.
      */
     (*cl->translateFn)(cl->translateLookupTable, &cl->screen->serverFormat,
-		       &cl->format, fbptr, lzoBeforeBuf,
+		       &cl->format, fbptr, cl->beforeEncBuf,
 		       cl->scaledScreen->paddedWidthInBytes, w, h);
 
     if ( cl->compStreamInitedLZO == FALSE ) {
@@ -109,11 +92,11 @@ rfbSendOneRectEncodingUltra(rfbClientPtr cl,
     }
 
     /* Perform the compression here. */
-    deflateResult = lzo1x_1_compress((unsigned char *)lzoBeforeBuf, (lzo_uint)(w * h * (cl->format.bitsPerPixel / 8)), (unsigned char *)lzoAfterBuf, (lzo_uint *)&maxCompSize, cl->lzoWrkMem);
+    deflateResult = lzo1x_1_compress((unsigned char *)cl->beforeEncBuf, (lzo_uint)(w * h * (cl->format.bitsPerPixel / 8)), (unsigned char *)cl->afterEncBuf, (lzo_uint *)&maxCompSize, cl->lzoWrkMem);
     /* maxCompSize now contains the compressed size */
 
     /* Find the total size of the resulting compressed data. */
-    lzoAfterBufLen = maxCompSize;
+    cl->afterEncBufLen = maxCompSize;
 
     if ( deflateResult != LZO_E_OK ) {
         rfbErr("lzo deflation error: %d\n", deflateResult);
@@ -121,7 +104,7 @@ rfbSendOneRectEncodingUltra(rfbClientPtr cl,
     }
 
     /* Update statics */
-    rfbStatRecordEncodingSent(cl, rfbEncodingUltra, sz_rfbFramebufferUpdateRectHeader + sz_rfbZlibHeader + lzoAfterBufLen, maxRawSize);
+    rfbStatRecordEncodingSent(cl, rfbEncodingUltra, sz_rfbFramebufferUpdateRectHeader + sz_rfbZlibHeader + cl->afterEncBufLen, maxRawSize);
 
     if (cl->ublen + sz_rfbFramebufferUpdateRectHeader + sz_rfbZlibHeader
 	> UPDATE_BUF_SIZE)
@@ -140,21 +123,21 @@ rfbSendOneRectEncodingUltra(rfbClientPtr cl,
 	   sz_rfbFramebufferUpdateRectHeader);
     cl->ublen += sz_rfbFramebufferUpdateRectHeader;
 
-    hdr.nBytes = Swap32IfLE(lzoAfterBufLen);
+    hdr.nBytes = Swap32IfLE(cl->afterEncBufLen);
 
     memcpy(&cl->updateBuf[cl->ublen], (char *)&hdr, sz_rfbZlibHeader);
     cl->ublen += sz_rfbZlibHeader;
 
     /* We might want to try sending the data directly... */
-    for (i = 0; i < lzoAfterBufLen;) {
+    for (i = 0; i < cl->afterEncBufLen;) {
 
 	int bytesToCopy = UPDATE_BUF_SIZE - cl->ublen;
 
-	if (i + bytesToCopy > lzoAfterBufLen) {
-	    bytesToCopy = lzoAfterBufLen - i;
+	if (i + bytesToCopy > cl->afterEncBufLen) {
+	    bytesToCopy = cl->afterEncBufLen - i;
 	}
 
-	memcpy(&cl->updateBuf[cl->ublen], &lzoAfterBuf[i], bytesToCopy);
+	memcpy(&cl->updateBuf[cl->ublen], &cl->afterEncBuf[i], bytesToCopy);
 
 	cl->ublen += bytesToCopy;
 	i += bytesToCopy;

@@ -29,16 +29,7 @@ void rfbFreeZrleData(rfbClientPtr cl);
 
 /* from ultra.c */
 
-extern void rfbUltraCleanup(rfbScreenInfoPtr screen);
 extern void rfbFreeUltraData(rfbClientPtr cl);
-
-/* from rre.c */
-
-extern void rfbRRECleanup(rfbScreenInfoPtr screen);
-
-/* from corre.c */
-
-extern void rfbCoRRECleanup(rfbScreenInfoPtr screen);
 
 #endif
 

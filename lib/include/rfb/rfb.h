@@ -608,6 +608,13 @@ typedef struct _rfbClientRec {
     MUTEX(sendMutex);
 #endif
 
+  /* buffers to hold pixel data before and after encoding.
+     per-client for thread safety */
+  char *beforeEncBuf;
+  int beforeEncBufSize;
+  char *afterEncBuf;
+  int afterEncBufSize;
+  int afterEncBufLen;
 } rfbClientRec, *rfbClientPtr;
 
 /*

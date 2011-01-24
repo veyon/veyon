@@ -486,6 +486,10 @@ rfbClientConnectionGone(rfbClientPtr cl)
 
     rfbFreeUltraData(cl);
 
+    /* free buffers holding pixel data before and after encoding */
+    free(cl->beforeEncBuf);
+    free(cl->afterEncBuf);
+
 #ifdef LIBVNCSERVER_HAVE_LIBPTHREAD
     if(cl->screen->backgroundLoop != FALSE) {
       int i;
