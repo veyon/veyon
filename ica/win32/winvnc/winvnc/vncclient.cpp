@@ -2928,7 +2928,7 @@ vncClientThread::run(void *arg)
 
 			// Only accept reasonable scales...
 			if (msg.ssc.scale < 1 || msg.ssc.scale > 9) break;
-
+			m_client->m_nScale_viewer = msg.ssc.scale;
 			m_client->m_nScale = msg.ssc.scale;
 			{
 				omni_mutex_lock l(m_client->GetUpdateLock());
@@ -4182,6 +4182,7 @@ vncClient::vncClient() : Sendinput("USER32", "SendInput"), m_clipboard(Clipboard
 	m_hostPort = 0;
 	m_want_update_state=false;
 	m_initial_update=true;
+	m_nScale_viewer = 1;
 }
 
 vncClient::~vncClient()
@@ -4553,15 +4554,7 @@ vncClient::SendRFBMsgQueue(CARD8 type, BYTE *buffer, int buflen)
 BOOL
 vncClient::SendUpdate(rfb::SimpleUpdateTracker &update)
 {
-
-	unlockcounter=0;
-	while (!m_initial_update)
-	{
-		Sleep(5);
-		unlockcounter++;
-		//something wnr wrong, just unlock
-		if (unlockcounter>1000) break;
-	}
+	if (!m_initial_update) return FALSE;
 
 	// If there is nothing to send then exit
 
@@ -4579,10 +4572,12 @@ vncClient::SendUpdate(rfb::SimpleUpdateTracker &update)
 			m_socket->ClearQueue();
 			rfbFramebufferUpdateRectHeader hdr;
 			if (m_use_NewSWSize) {
+				m_ScaledScreen = m_encodemgr.m_buffer->GetViewerSize();
+				m_nScale = m_encodemgr.m_buffer->GetScale();
 				hdr.r.x = 0;
 				hdr.r.y = 0;
-				hdr.r.w = Swap16IfLE(NewsizeW);
-				hdr.r.h = Swap16IfLE(NewsizeH);
+				hdr.r.w = Swap16IfLE(NewsizeW*m_nScale_viewer/m_nScale);
+				hdr.r.h = Swap16IfLE(NewsizeH*m_nScale_viewer/m_nScale);
 				hdr.encoding = Swap32IfLE(rfbEncodingNewFBSize);
 				rfbFramebufferUpdateMsg header;
 				header.nRects = Swap16IfLE(1);
@@ -4590,8 +4585,6 @@ vncClient::SendUpdate(rfb::SimpleUpdateTracker &update)
 				SendRFBMsgQueue(rfbFramebufferUpdate, (BYTE *)&header,sz_rfbFramebufferUpdateMsg);
 				m_socket->SendExact((char *)&hdr, sizeof(hdr));
 				m_NewSWUpdateWaiting=false;
-				m_ScaledScreen = m_encodemgr.m_buffer->GetViewerSize();
-				m_nScale = m_encodemgr.m_buffer->GetScale();
 				return TRUE;
 			}
 		}

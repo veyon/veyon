@@ -64,6 +64,13 @@ BOOL GetDllProductVersion(char* dllName, char *vBuffer, int size)
 
 //   DWORD sName = GetModuleFileName(NULL, fileName, sizeof(fileName));
 // FYI only
+    /*char systemroot[150];
+	GetEnvironmentVariable("SystemRoot", systemroot, 150);
+	char exe_file_name[MAX_PATH];
+	strcpy(exe_file_name,systemroot);
+	strcat(exe_file_name,"\\system32\\driver\\");
+	strcat(exe_file_name,dllName);*/
+
    DWORD sVersion = GetFileVersionInfoSize(dllName, &rBuffer);
    if (sVersion==0) return (FALSE);
    versionInfo = new char[sVersion];

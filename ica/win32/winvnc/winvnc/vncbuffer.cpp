@@ -799,10 +799,11 @@ void vncBuffer::ScaleRect(rfb::Rect &rect)
 		UINT nBytesPerPixel = (m_scrinfo.format.bitsPerPixel / 8);
 		for (int y = ScaledRect.tl.y; y < ScaledRect.br.y; y++)
 		{
-			for (int x = 0; x < (ScaledRect.br.x - ScaledRect.tl.x); x++)
+			/*for (int x = 0; x < (ScaledRect.br.x - ScaledRect.tl.x); x++)
 			{
 				memcpy(&pScaled[x * nBytesPerPixel], &pMain[x * m_nScale * nBytesPerPixel], nBytesPerPixel);
-			}
+			}*/
+			memcpy(&pScaled[0], &pMain[0], nBytesPerPixel*(ScaledRect.br.x - ScaledRect.tl.x));
 			// Move the buffers' pointers to their next "line"
 			pMain   += (m_bytesPerRow * m_nScale); // Skip m_nScale lines of the mainbuffer's Rect
 			pScaled += m_bytesPerRow;

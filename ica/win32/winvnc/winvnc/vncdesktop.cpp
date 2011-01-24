@@ -316,7 +316,7 @@ bool vncDesktop::FastDetectChanges(rfb::Region2D &rgn, rfb::Rect &rect, int nZon
 	}
 	else
 	{
-		idle_counter++;
+		idle_counter=idle_counter+5;
 	}
 	if (idle_counter>20) 
 	{

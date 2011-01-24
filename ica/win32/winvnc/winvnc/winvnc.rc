@@ -87,7 +87,7 @@ FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     DEFPUSHBUTTON   "OK",IDOK,8,135,54,16
     CONTROL         139,IDC_VNCLOGO,"Static",SS_BITMAP | SS_CENTERIMAGE | SS_SUNKEN,7,5,53,46,WS_EX_TRANSPARENT
-    LTEXT           "UltraVNC Win32 Server 1.0.9.5",IDC_VERSION,73,5,195,11
+    LTEXT           "UltraVNC Win32 Server 1.0.9.5.1",IDC_VERSION,73,5,195,11
     LTEXT           "Copyright © 2002-2009 UltraVNC Team\nCopyright © 2001-2002 Sam - eSVNC \nCopyright © 1999-2002 Rudi D. V. - VdaccVNC \nCopyright © 2001 Harakan Software - PalmVNC\nCopyright © 1999-2002 Const. Kaplinsky - TightVNC \n",IDC_NAME,74,27,202,41
     LTEXT           "For more Information and Links please visit: \nhttp://www.uvnc.com",IDC_WWW,74,135,141,19
     LTEXT           "Build:",IDC_BUILDTEXT,74,16,20,10
@@ -156,7 +156,7 @@ BEGIN
     GROUPBOX        "Incoming Connections",IDC_CONNECT_BORDER,5,3,132,116,BS_LEFT
     CONTROL         "Accept Socket Connections",IDC_CONNECT_SOCK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,15,112,11
     LTEXT           "Display Number or Ports to use:",IDC_DISPLAY_NO_LABEL,11,28,102,9,SS_CENTERIMAGE
-    CONTROL         "Display",IDC_SPECDISPLAY,"Button",BS_AUTORADIOBUTTON,11,41,35,10
+    CONTROL         "Display",IDC_SPECDISPLAY,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,11,41,35,10
     EDITTEXT        IDC_DISPLAYNO,66,41,29,12,ES_AUTOHSCROLL | ES_NUMBER
     CONTROL         "Auto",IDC_AUTO_DISPLAY_NO,"Button",BS_AUTOCHECKBOX | NOT WS_VISIBLE | WS_TABSTOP,102,39,35,13
     CONTROL         "Ports",IDC_SPECPORT,"Button",BS_AUTORADIOBUTTON,11,54,30,10
@@ -170,9 +170,9 @@ BEGIN
     CONTROL         "Allow Loopback Connections",IDC_ALLOWLOOPBACK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,11,91,105,10
     CONTROL         "LoopbackOnly",IDC_LOOPBACKONLY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,11,102,59,10
     GROUPBOX        "When Last Client Disconnects",IDC_LOCKSETTINGS,142,3,104,52,BS_LEFT
-    CONTROL         "Do Nothing",IDC_LOCKSETTING_NOTHING,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,146,15,80,12
-    CONTROL         "Lock Workstation (W2K)",IDC_LOCKSETTING_LOCK,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,146,26,96,13
-    CONTROL         "Logoff Workstation",IDC_LOCKSETTING_LOGOFF,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,146,39,80,11
+    CONTROL         "Do Nothing",IDC_LOCKSETTING_NOTHING,"Button",BS_AUTORADIOBUTTON | WS_GROUP,146,15,80,12
+    CONTROL         "Lock Workstation (W2K)",IDC_LOCKSETTING_LOCK,"Button",BS_AUTORADIOBUTTON,146,26,96,13
+    CONTROL         "Logoff Workstation",IDC_LOCKSETTING_LOGOFF,"Button",BS_AUTORADIOBUTTON,146,39,80,11
     GROUPBOX        "Keyboard && Mouse",IDC_STATIC,142,59,103,60,BS_LEFT
     CONTROL         "Disable Viewers inputs",IDC_DISABLE_INPUTS,"Button",BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,150,70,92,11
     CONTROL         "Disable Local inputs",IDC_DISABLE_LOCAL_INPUTS,"Button",BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,150,82,83,12
@@ -386,19 +386,15 @@ BEGIN
         BEGIN
             VALUE "Comments", "UltraVNC - Remote Control for all"
             VALUE "CompanyName", "UltraVNC"
-#ifdef _X64
-			 VALUE "FileDescription", "VNC server for x64"
-#else
             VALUE "FileDescription", "VNC server for win32"
-#endif
-            VALUE "FileVersion", "1.0.9.5"
+            VALUE "FileVersion", "1.0.9.5.1"
             VALUE "InternalName", "WinVNC"
             VALUE "LegalCopyright", "Copyright © 2010 UltraVNC"
             VALUE "LegalTrademarks", "VNC"
             VALUE "OriginalFilename", "WinVNC.exe"
-            VALUE "PrivateBuild", "1.0.9.5"
+            VALUE "PrivateBuild", "1.0.9.5.1"
             VALUE "ProductName", "UltraVNC"
-            VALUE "ProductVersion", "1.0.9.5"
+            VALUE "ProductVersion", "1.0.9.5.1"
         END
     END
     BLOCK "VarFileInfo"

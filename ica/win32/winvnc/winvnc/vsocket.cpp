@@ -306,7 +306,7 @@ VSocket::Connect(const VString address, const VCard port)
   if (addr.sin_addr.s_addr == -1)
     {
       // No, so get the actual IP address of the host name specified
-      struct hostent *pHost;
+      struct hostent *pHost=NULL;
       pHost = gethostbyname(address);
       if (pHost != NULL)
 	  {

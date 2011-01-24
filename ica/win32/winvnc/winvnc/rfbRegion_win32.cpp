@@ -191,6 +191,7 @@ bool Region::get_rects(std::vector<Rect>& rects,
 
 
    unsigned char* buffer = new unsigned char[buffsize];
+   memset(buffer,0,buffsize);
 
    if (GetRegionData(rgn, buffsize, (LPRGNDATA)buffer) != buffsize)
    {

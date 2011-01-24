@@ -126,6 +126,7 @@ protected:
 	DWORD MAX_CPU_USAGE;
 	bool capture;
 	bool first_run;
+	bool initialupdate;
 
 };
 #endif
