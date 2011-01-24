@@ -40,8 +40,6 @@ int CUPSD(const char * userin, const char *password, const char *machine)
 {
 	DWORD dwAccessGranted = 0;
 	BOOL isAccessOK = FALSE;
-	BOOL NT4OS=FALSE;
-	BOOL W2KOS=FALSE;
 	BOOL isAuthenticated = FALSE;
 	bool isViewOnly = false;
 	bool isInteract = false;
@@ -72,7 +70,7 @@ int CUPSD(const char * userin, const char *password, const char *machine)
 			char* timestr = ctime(&current);
 			timestr[24] = '\0'; // remove newline
 			fprintf(file, "%s - CUPSD2: Access is %u, user %s is %sauthenticated, access granted is 0x%x\n",
-				timestr, isAccessOK, userin, isAuthenticated ? "" : "not ", dwAccessGranted);
+				timestr, isAccessOK, userin, isAuthenticated ? "" : "not ", (int) dwAccessGranted);
 			fclose(file);
 		}
 	} else { // message text to be moved to localization.h

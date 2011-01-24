@@ -383,12 +383,11 @@ void vncHTTPConnectThread::DoHTTP(VSocket *socket)
 			paramsObj[0] = 0;
 			paramsEmbed[0] = 0;
 			char *pf = filename+1;
-			int filenamelen = strlen( filename );
 			while( ( *pf == '?' || ( pf = strchr( pf, '&' ) ) != NULL ) && pf[1] )
 			{
 				pf = pf+1;
 				char buf[128];
-				int curlen = strlen( pf );
+				size_t curlen = strlen( pf );
 				char *next = strchr( pf, '&' );
 				if( next )
 				{

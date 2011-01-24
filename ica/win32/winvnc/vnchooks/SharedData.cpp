@@ -24,8 +24,10 @@
 // This file is used only when your compiler is Borland C++.
 
 // Change default data segment and data class names
+#ifndef __GNUC__
 #pragma option -zRSHSEG
 #pragma option -zTSHCLASS
+#endif
 
 #include "windows.h"
 

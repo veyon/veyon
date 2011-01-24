@@ -128,7 +128,7 @@ BOOL CALLBACK vncListDlg::DialogProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM
 		case IDC_KILL_B:
 			{
 			HWND hList = GetDlgItem(hwnd, IDC_VIEWERS_LISTBOX);
-			DWORD nSelected = SendMessage(hList, LB_GETCURSEL, 0, 0);
+			LRESULT nSelected = SendMessage(hList, LB_GETCURSEL, 0, 0);
 			if (nSelected != LB_ERR)
 			{
 				char szClient[128];
@@ -144,7 +144,7 @@ BOOL CALLBACK vncListDlg::DialogProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM
 		case IDC_TEXTCHAT_B:
 			{
 			HWND hList = GetDlgItem(hwnd, IDC_VIEWERS_LISTBOX);
-			DWORD nSelected = SendMessage(hList, LB_GETCURSEL, 0, 0);
+			LRESULT nSelected = SendMessage(hList, LB_GETCURSEL, 0, 0);
 			if (nSelected != LB_ERR)
 			{
 				char szClient[128];

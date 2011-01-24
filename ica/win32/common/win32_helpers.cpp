@@ -83,7 +83,7 @@ void close_handle(HANDLE& h)
     }
 }
 
-DynamicFnBase::DynamicFnBase(const TCHAR* dllName, const char* fnName) : dllHandle(0), fnPtr(0) {
+DynamicFnBase::DynamicFnBase(const TCHAR* dllName, const char* fnName) : fnPtr(0), dllHandle(0) {
   dllHandle = LoadLibrary(dllName);
   if (!dllHandle) {
     return;

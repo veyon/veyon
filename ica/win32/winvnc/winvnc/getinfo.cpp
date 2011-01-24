@@ -248,21 +248,21 @@ int getinfo(char mytext[1024])
     }
 #endif
 
-    _stprintf(sBuf, _T(" v%d."), osvi.dwEmulatedMajorVersion);
+    _stprintf(sBuf, _T(" v%d."), (int) osvi.dwEmulatedMajorVersion);
     _tcscat(sText, sBuf);     
     if (osvi.dwEmulatedMinorVersion % 10)
     {
       if (osvi.dwEmulatedMinorVersion > 9)
-        _stprintf(sBuf, _T("%02d"), osvi.dwEmulatedMinorVersion);
+        _stprintf(sBuf, _T("%02d"), (int) osvi.dwEmulatedMinorVersion);
       else
-        _stprintf(sBuf, _T("%01d"), osvi.dwEmulatedMinorVersion);
+        _stprintf(sBuf, _T("%01d"), (int) osvi.dwEmulatedMinorVersion);
     }
     else
-      _stprintf(sBuf, _T("%01d"), osvi.dwEmulatedMinorVersion / 10);
+      _stprintf(sBuf, _T("%01d"), (int) osvi.dwEmulatedMinorVersion / 10);
     _tcscat(sText, sBuf);                           
     if (osvi.dwEmulatedBuildNumber)
     {
-      _stprintf(sBuf, _T(" Build:%d"), osvi.dwEmulatedBuildNumber);
+      _stprintf(sBuf, _T(" Build:%d"), (int) osvi.dwEmulatedBuildNumber);
       _tcscat(sText, sBuf);           
     }
     if (osvi.wEmulatedServicePackMajor)       

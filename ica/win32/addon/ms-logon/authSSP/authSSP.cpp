@@ -43,7 +43,6 @@ BOOL CUPSD2(const char * domainuser,
 	TCHAR user2[MAXLEN];
 	TCHAR domain2[MAXLEN];
 	TCHAR password2[MAXLEN];
-	TCHAR *prefix = NULL;
 
 	user = SplitString(domainuser,'\\',domain);
 
@@ -97,7 +96,7 @@ BOOL WINAPI SSPLogonUser(LPTSTR szDomain,
 			__leave;
 		
 		// Get max token size
-		fn._QuerySecurityPackageInfo(_T("NTLM"), &pSPI);
+		fn._QuerySecurityPackageInfo((SEC_CHAR *)_T("NTLM"), &pSPI);
 		cbMaxToken = pSPI->cbMaxToken;
 		
 		// Allocate buffers for client and server messages

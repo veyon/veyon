@@ -35,7 +35,9 @@
 #include <issperr.h>
 #include <time.h>
 #endif
+#ifndef __GNUC__
 #pragma hdrstop
+#endif
 #include <stdarg.h>
 
 #define MAXLEN 256

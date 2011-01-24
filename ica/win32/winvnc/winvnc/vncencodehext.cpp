@@ -143,7 +143,7 @@ vncEncodeHexT::EncodeHextiles##bpp(BYTE *source, BYTE *dest,				\
 {																			\
     int x, y, w, h;															\
     int rectoffset, destoffset;												\
-    CARD##bpp bg, fg, newBg, newFg;											\
+    CARD##bpp bg = 0, fg = 0, newBg, newFg;									\
     BOOL mono, solid;														\
     BOOL validBg = FALSE;													\
     CARD##bpp clientPixelData[16*16*(bpp/8)];								\

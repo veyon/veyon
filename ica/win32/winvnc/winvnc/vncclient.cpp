@@ -85,6 +85,7 @@ extern BOOL SPECIAL_SC_PROMPT;
 extern BOOL SPECIAL_SC_EXIT;
 int getinfo(char mytext[1024]);
 
+#ifndef ULTRAVNC_ITALC_SUPPORT
 // take a full path & file name, split it, prepend prefix to filename, then merge it back
 static std::string make_temp_filename(const char *szFullPath)
 {
@@ -99,6 +100,7 @@ static std::string make_temp_filename(const char *szFullPath)
 
     return tmpName;
 }
+#endif
 
 std::string get_real_filename(std::string name)
 {
@@ -1111,7 +1113,7 @@ void vncClientThread::LogAuthResult(bool success)
 		HMODULE hModule = LoadLibrary(szCurrentDir);
 		if (hModule)
 			{
-				BOOL result=false;
+				//BOOL result=false;
 				Logevent = (LogeventFn) GetProcAddress( hModule, "LOGFAILED" );
 				Logevent((char *)m_client->GetClientName());
 				FreeLibrary(hModule);
@@ -1131,7 +1133,7 @@ void vncClientThread::LogAuthResult(bool success)
 		HMODULE hModule = LoadLibrary(szCurrentDir);
 		if (hModule)
 			{
-				BOOL result=false;
+				//BOOL result=false;
 				Logevent = (LogeventFn) GetProcAddress( hModule, "LOGLOGON" );
 				Logevent((char *)m_client->GetClientName());
 				FreeLibrary(hModule);
@@ -1693,7 +1695,7 @@ BOOL vncClientThread::AuthVnc(std::string& auth_message)
 
 			auth_ok = TRUE;
 			// Compare them to the response
-			for (int i=0; i<sizeof(challenge); i++)
+			for (size_t i=0; i<sizeof(challenge); i++)
 			{
 				if (challenge[i] != response[i])
 				{
@@ -1717,7 +1719,7 @@ BOOL vncClientThread::AuthVnc(std::string& auth_message)
 					vncEncryptBytes((BYTE *)&challenge2, plain2); //PGM
 
 					// Compare them to the response //PGM
-					for (int i=0; i<sizeof(challenge2); i++) //PGM
+					for (size_t i=0; i<sizeof(challenge2); i++) //PGM
 					{ //PGM
 						if (challenge2[i] != response[i]) //PGM
 						{ //PGM
@@ -2973,20 +2975,20 @@ vncClientThread::run(void *arg)
 				/// fix by PGM (pgmoney)
 				if (!m_server->GetDesktopPointer()->GetBlockInputState() && !m_client->m_bClientHasBlockedInput && msg.sim.status==1) 
 					{ 
-						CARD32 state = rfbServerState_Enabled; 
+						//CARD32 state = rfbServerState_Enabled; 
 						m_client->m_encodemgr.m_buffer->m_desktop->SetBlockInputState(true); 
 						m_client->m_bClientHasBlockedInput = (true);
 					} 
 				if (m_server->GetDesktopPointer()->GetBlockInputState() && m_client->m_bClientHasBlockedInput && msg.sim.status==0)
 					{
-						CARD32 state = rfbServerState_Disabled; 
+						//CARD32 state = rfbServerState_Disabled; 
 						m_client->m_encodemgr.m_buffer->m_desktop->SetBlockInputState(FALSE);
 						m_client->m_bClientHasBlockedInput = (FALSE); 
 					} 
 
 				if (!m_server->GetDesktopPointer()->GetBlockInputState() && !m_client->m_bClientHasBlockedInput && msg.sim.status==0)
 					{
-						CARD32 state = rfbServerState_Disabled; 
+						//CARD32 state = rfbServerState_Disabled; 
 						m_client->m_encodemgr.m_buffer->m_desktop->SetBlockInputState(FALSE);
 						m_client->m_bClientHasBlockedInput = (FALSE);
 					}
@@ -4014,7 +4016,7 @@ vncClientThread::run(void *arg)
 		HMODULE hModule = LoadLibrary(szCurrentDir);
 		if (hModule)
 			{
-				BOOL result=false;
+				//BOOL result=false;
 				Logevent = (LogeventFn) GetProcAddress( hModule, "LOGEXIT" );
 				Logevent((char *)m_client->GetClientName());
 				FreeLibrary(hModule);
@@ -4050,7 +4052,7 @@ vncClientThread::run(void *arg)
 // The vncClient itself
 
 // adzm - 2010-07 - Extended clipboard
-vncClient::vncClient() : Sendinput("USER32", "SendInput"), m_clipboard(ClipboardSettings::defaultServerCaps)
+vncClient::vncClient() : m_clipboard(ClipboardSettings::defaultServerCaps), Sendinput("USER32", "SendInput")
 {
 	vnclog.Print(LL_INTINFO, VNCLOG("vncClient() executing...\n"));
 

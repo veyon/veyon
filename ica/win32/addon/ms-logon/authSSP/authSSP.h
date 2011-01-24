@@ -36,7 +36,9 @@
 #include <time.h>
 #endif
 #include <aclapi.h>
+#ifndef __GNUC__
 #pragma hdrstop
+#endif
 
 #include "Auth_Seq.h"
 

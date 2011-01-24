@@ -261,7 +261,6 @@ GetCurrentUser(char *buffer, UINT size) // RealVNC 336 change
 		// Get the current user SID size
 		DWORD usersize;
 		GetUserObjectInformation(station, UOI_USER_SID, NULL, 0, &usersize);
-		DWORD  dwErrorCode = GetLastError();
 		SetLastError(0);
 
 		// Check the required buffer size isn't zero
@@ -441,7 +440,7 @@ FindWinVNCWindow(bool bThisProcess)
 
 			if (hwndServer != NULL) {
 				DWORD dwProcessId = 0;
-				DWORD dwThreadId = GetWindowThreadProcessId(hwndServer, &dwProcessId);
+				//DWORD dwThreadId = GetWindowThreadProcessId(hwndServer, &dwProcessId);
 
 				if (dwProcessId == GetCurrentProcessId()) {
 					return hwndServer;

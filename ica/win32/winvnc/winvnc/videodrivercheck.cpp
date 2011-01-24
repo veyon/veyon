@@ -75,11 +75,6 @@ BOOL GetDllProductVersion(char* dllName, char *vBuffer, int size)
    if (sVersion==0) return (FALSE);
    versionInfo = new char[sVersion];
 
-   BOOL resultVersion = GetFileVersionInfo(dllName,
-                                           NULL,
-                                           sVersion,
-                                           versionInfo);
-
    BOOL resultValue = VerQueryValue(versionInfo,  
 
 TEXT("\\StringFileInfo\\040904b0\\ProductVersion"), 
@@ -114,7 +109,6 @@ bool
 CheckVideoDriver(bool Box)
 {
 		typedef BOOL (WINAPI* pEnumDisplayDevices)(PVOID,DWORD,PVOID,DWORD);
-		HDC m_hrootdc=NULL;
 		pEnumDisplayDevices pd=NULL;
 		LPSTR driverName = "mv video hook driver2";
 		BOOL DriverFound;
@@ -122,7 +116,7 @@ CheckVideoDriver(bool Box)
 		FillMemory(&devmode, sizeof(DEVMODE), 0);
 		devmode.dmSize = sizeof(DEVMODE);
 		devmode.dmDriverExtra = 0;
-		BOOL change = EnumDisplaySettings(NULL,ENUM_CURRENT_SETTINGS,&devmode);
+		/*BOOL change = */EnumDisplaySettings(NULL,ENUM_CURRENT_SETTINGS,&devmode);
 		devmode.dmFields = DM_BITSPERPEL | DM_PELSWIDTH | DM_PELSHEIGHT;
 		HMODULE hUser32=LoadLibrary("USER32");
 		if (hUser32) pd = (pEnumDisplayDevices)GetProcAddress( hUser32, "EnumDisplayDevicesA");
@@ -136,7 +130,7 @@ CheckVideoDriver(bool Box)
 				INT devNum = 0;
 				BOOL result;
 				DriverFound=false;
-				while (result = (*pd)(NULL,devNum, &dd,0))
+				while ((result = (*pd)(NULL,devNum, &dd,0)))
 				{
 					if (strcmp((const char *)&dd.DeviceString[0], driverName) == 0)
 					{
@@ -174,9 +168,6 @@ CheckVideoDriver(bool Box)
 						MessageBox(NULL,buf,"driver info: required version 1.22",0);
 					}
 					return true;
-				//deviceName = (LPSTR)&dd.DeviceName[0];
-				//m_hrootdc = CreateDC("DISPLAY",deviceName,NULL,NULL);	
-				//if (m_hrootdc) DeleteDC(m_hrootdc);
 				}
 				else if(Box) MessageBox(NULL,"Driver not found: Perhaps you need to reboot after install","driver info: required version 1.22",0);
 			}

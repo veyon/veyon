@@ -55,7 +55,7 @@ class vncEncodeZlibHex;
 //#define VNC_ENCODE_ZLIBHEX_MIN_COMP_SIZE (17)
 #define VNC_ENCODE_ZLIBHEX_MIN_COMP_SIZE (64)
 // Flag used to mark our compressors as uninitialized.
-#define ZLIBHEX_COMP_UNINITED (-1)
+#define ZLIBHEX_COMP_UNINITED ((DWORD)-1)
 
 // Size of the smallest update portion sent independently across
 // the network.  This encoder can transmit partial updates to

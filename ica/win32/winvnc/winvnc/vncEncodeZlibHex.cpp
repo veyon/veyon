@@ -41,8 +41,8 @@
 
 //#define IN_LEN		(128*1024)
 //#define OUT_LEN		(IN_LEN + IN_LEN / 64 + 16 + 3)
-//#define HEAP_ALLOC(var,size) \
-//	lzo_align_t __LZO_MMODEL var [ ((size) + (sizeof(lzo_align_t) - 1)) / sizeof(lzo_align_t) ]
+/*#define HEAP_ALLOC(var,size) \
+	lzo_align_t __LZO_MMODEL var [ ((size) + (sizeof(lzo_align_t) - 1)) / sizeof(lzo_align_t) ]*/
 //static HEAP_ALLOC(wrkmem,LZO1X_1_MEM_COMPRESS);
 
 
@@ -185,7 +185,6 @@ vncEncodeZlibHex::EncodeRect(BYTE *source, VSocket *outConn, BYTE *dest, const R
 UINT
 vncEncodeZlibHex::zlibCompress(BYTE *from_buf, BYTE *to_buf, UINT length, struct z_stream_s *compressor)
 {
-	int totalCompDataLen = 0;
 	int previousTotalOut;
 	int deflateResult;
 //	unsigned int out_len;
@@ -631,8 +630,6 @@ vncEncodeZlibHex::AddToQueu(BYTE *source,int sizerect,VSocket *outConn)
 void
 vncEncodeZlibHex::SendZlibHexrects(VSocket *outConn)
 {
-	const int rawDataSize = (m_Queuelen);
-
 	if (m_Queuelen==0) return; // NO update
 	
 		outConn->SendExactQueue( (char *)m_Queuebuffer, m_Queuelen); // 1 Small update

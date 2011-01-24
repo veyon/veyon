@@ -1021,32 +1021,32 @@ void WriteProfileInt(LPTSTR key, int value)
 void ReadSettings() {
   // Read in the prefs
 	prf_use_GetUpdateRect = GetProfileInt(
-		"use_GetUpdateRect",
+		(CHAR *) "use_GetUpdateRect",
 		TRUE
 		);
 
 	prf_use_Timer = GetProfileInt(
-		"use_Timer",
+		(CHAR *) "use_Timer",
 		FALSE
 		);
 	prf_use_KeyPress = GetProfileInt(
-		"use_KeyPress",
+		(CHAR *) "use_KeyPress",
 		TRUE
 		);
 	prf_use_LButtonUp = GetProfileInt(
-		"use_LButtonUp",
+		(CHAR *) "use_LButtonUp",
 		TRUE
 		);
 	prf_use_MButtonUp = GetProfileInt(
-		"use_MButtonUp",
+		(CHAR *) "use_MButtonUp",
 		TRUE
 		);
 	prf_use_RButtonUp = GetProfileInt(
-		"use_RButtonUp",
+		(CHAR *) "use_RButtonUp",
 		TRUE
 		);
 	prf_use_Deferral = GetProfileInt(
-		"use_Deferral",
+		(CHAR *) "use_Deferral",
 		TRUE
 		);
 }
@@ -1132,37 +1132,37 @@ BOOL ExitInstance()
 #endif
 
 		WriteProfileInt(
-			"use_GetUpdateRect",
+			(CHAR *) "use_GetUpdateRect",
 			prf_use_GetUpdateRect
 			);
 
 		WriteProfileInt(
-			"use_Timer",
+			(CHAR *) "use_Timer",
 			prf_use_Timer
 			);
 
 		WriteProfileInt(
-			"use_KeyPress",
+			(CHAR *) "use_KeyPress",
 			prf_use_KeyPress
 			);
 
 		WriteProfileInt(
-			"use_LButtonUp",
+			(CHAR *) "use_LButtonUp",
 			prf_use_LButtonUp
 			);
 
 		WriteProfileInt(
-			"use_MButtonUp",
+			(CHAR *) "use_MButtonUp",
 			prf_use_MButtonUp
 			);
 
 		WriteProfileInt(
-			"use_RButtonUp",
+			(CHAR *) "use_RButtonUp",
 			prf_use_RButtonUp
 			);
 
 		WriteProfileInt(
-			"use_Deferral",
+			(CHAR *) "use_Deferral",
 			prf_use_Deferral
 			);
 

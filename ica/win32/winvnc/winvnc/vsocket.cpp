@@ -303,7 +303,7 @@ VSocket::Connect(const VString address, const VCard port)
   addr.sin_addr.s_addr = inet_addr(address);
 
   // Was the string a valid IP address?
-  if (addr.sin_addr.s_addr == -1)
+  if ((int) addr.sin_addr.s_addr == -1)
     {
       // No, so get the actual IP address of the host name specified
       struct hostent *pHost=NULL;
@@ -900,7 +900,7 @@ VSocket::ReadExact(char *buff, const VCard bufflen)
 		int nRestDataLen = 0;
 		nTransDataLen = nTransDataLenSave;
 		//adzm 2009-06-20
-		BYTE* pPipo = RestoreBufferStep2((BYTE*)buff, nTransDataLen, &nRestDataLen);
+		RestoreBufferStep2((BYTE*)buff, nTransDataLen, &nRestDataLen);
 
 		// Check if we actually get the real original data length
 		if ((VCard)nRestDataLen != bufflen)

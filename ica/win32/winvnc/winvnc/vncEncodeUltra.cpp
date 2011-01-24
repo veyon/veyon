@@ -204,7 +204,6 @@ vncEncodeUltra::EncodeOneRect(BYTE *source, BYTE *dest, const RECT &rect,VSocket
 	const int rectW = rect.right - rect.left;
 	const int rectH = rect.bottom - rect.top;
 	const int rawDataSize = (rectW*rectH*m_remoteformat.bitsPerPixel / 8);
-	const int maxCompSize = (rawDataSize + (rawDataSize/100) + 8);
 
 	// Create the rectangle header
 	rfbFramebufferUpdateRectHeader *surh=(rfbFramebufferUpdateRectHeader *)dest;

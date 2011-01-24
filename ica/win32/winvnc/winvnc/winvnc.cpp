@@ -382,7 +382,7 @@ int WINAPI WinMainVNC(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLi
 					HMODULE hModule = LoadLibrary(szCurrentDir);
 					if (hModule) {
 						vncEditSecurity = (vncEditSecurityFn) GetProcAddress(hModule, "vncEditSecurity");
-						HRESULT hr = CoInitialize(NULL);
+						/*HRESULT hr = */CoInitialize(NULL);
 						vncEditSecurity(NULL, hAppInstance);
 						CoUninitialize();
 						FreeLibrary(hModule);
@@ -793,7 +793,9 @@ int WINAPI WinMainVNC(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLi
 
 DWORD WINAPI imp_desktop_thread(LPVOID lpParam)
 {
+#ifndef ULTRAVNC_ITALC_SUPPORT
 	vncServer *server = (vncServer *)lpParam;
+#endif
 	HDESK desktop;
 	//vnclog.Print(LL_INTERR, VNCLOG("SelectDesktop \n"));
 	//vnclog.Print(LL_INTERR, VNCLOG("OpenInputdesktop2 NULL\n"));
@@ -834,7 +836,6 @@ DWORD WINAPI imp_desktop_thread(LPVOID lpParam)
 	{
 		DWORD usersize;
 		GetUserObjectInformation(station, UOI_USER_SID, NULL, 0, &usersize);
-		DWORD  dwErrorCode = GetLastError();
 		SetLastError(0);
 		if (usersize != 0)
 		{
@@ -940,7 +941,7 @@ void CALLBACK fpTimer(UINT uID, UINT uMsg, DWORD dwUser, DWORD dw1, DWORD dw2)
 
 void InitSDTimer()
 {
-	if (mmRes != -1) return;
+	if (mmRes != (MMRESULT)-1) return;
 	vnclog.Print(LL_INTERR, VNCLOG("****************** Init SDTimer\n"));
 	mmRes = timeSetEvent( 2000, 0, (LPTIMECALLBACK)fpTimer, 0, TIME_PERIODIC );
 }

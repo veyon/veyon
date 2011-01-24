@@ -271,7 +271,6 @@ vncEncodeZlib::EncodeOneRect(BYTE *source,BYTE *source2, BYTE *dest, const RECT 
 		}
 		m_buffer2 = new BYTE [rawDataSize+1];
 	}
-	bool full_solid=false;
 	// Translate the data into our new buffer
 	compStream.avail_in = rawDataSize;
 	Translate(source, m_buffer, rect);

@@ -46,8 +46,8 @@ VNCLog::VNCLog()
     , m_level(0)
     , hlogfile(NULL)
     , m_append(false)
-    , m_lastLogTime(0)
 	, m_video(false)
+    , m_lastLogTime(0)
 {
 	strcpy(m_filename,"");
 }
@@ -228,7 +228,7 @@ void VNCLog::ReallyPrint(int level, const char* format, va_list ap)
              MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),(char *)&szErrorMsg,
              LINE_BUFFER_SIZE, NULL) == 0)
         {
-            sprintf(szErrorMsg, "error code 0x%08X", dwErrorCode);
+            sprintf(szErrorMsg, "error code 0x%08X", (unsigned int) dwErrorCode);
         }
 	strcat(line," --");
 	strcat(line,szErrorMsg);

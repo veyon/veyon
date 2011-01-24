@@ -126,7 +126,7 @@ protected:
 	BOOL			m_multi_monitor;
 
 	// Modif sf@2002 - Scaling
-	UINT		m_ScaledSize;
+	int			m_ScaledSize;
 	UINT		m_nScale;
 	BYTE		*m_ScaledBuff;
 
@@ -140,7 +140,7 @@ public:
 	rfbServerInitMsg	m_scrinfo;
 	// vncEncodeMgr reads data from back buffer directly when encoding
 	BYTE		*m_backbuff;
-	UINT		m_backbuffsize;
+	int			m_backbuffsize;
 	// CACHE RDV
 	BYTE		*m_cachebuff;
 	BYTE		*m_mainbuff;

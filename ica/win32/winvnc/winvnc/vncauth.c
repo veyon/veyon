@@ -67,7 +67,7 @@ vncEncryptPasswd(char *passwd, char *encryptedPasswd)
        password */
 
     deskey(fixedkey, EN0);
-    des(encryptedPasswd, encryptedPasswd);
+    des((unsigned  char*) encryptedPasswd, (unsigned char*) encryptedPasswd);
 
     return 8;
 }
@@ -83,7 +83,7 @@ vncDecryptPasswd(char *inouttext)
     unsigned char *passwd = (unsigned char *)malloc(9);
 
     deskey(fixedkey, DE1);
-    des(inouttext, passwd);
+    des((unsigned char*) inouttext, passwd);
 
     passwd[8] = 0;
 

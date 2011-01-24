@@ -147,6 +147,8 @@ HRESULT EnableActiveDesktop(bool enable)
 	hr = pIActiveDesktop->ApplyChanges(AD_APPLY_REFRESH);
 	CoUninitialize();
 	return hr;
+#else
+	return 0;
 #endif
 }
 
@@ -168,7 +170,6 @@ void ShowActiveDesktop()
 }
 		
 // OK, so this doesn't work in multiple threads or nest...
-static TCHAR	DesktopPattern[40];
 static BOOL		ADWasEnabled = false;
 static BOOL		ISWallPaperHided = false;
 static TCHAR SCREENNAME[1024];
@@ -207,8 +208,6 @@ void RestoreWallpaperStyle()
 
 void HideDesktop()
 {
-	//GetProfileString("Desktop", "Pattern", "0 0 0 0 0 0 0 0", DesktopPattern, sizeof(DesktopPattern));
-
 	// @@@efh Setting the desktop pattern via pvParam works, but is undocumented (except by www.winehq.com)
 	//SystemParametersInfo(SPI_SETDESKPATTERN, 0, "0 0 0 0 0 0 0 0", SPIF_SENDCHANGE);
 
@@ -219,7 +218,7 @@ void HideDesktop()
 	if (!ISWallPaperHided)
 	{
 		SaveWallpaperStyle(); // Added Jef Fix
-		SystemParametersInfo(SPI_GETDESKWALLPAPER,1024,SCREENNAME,NULL );
+		SystemParametersInfo(SPI_GETDESKWALLPAPER,1024,SCREENNAME,0 );
 		SystemParametersInfo(SPI_SETDESKWALLPAPER, 0, NULL, SPIF_SENDCHANGE);
 		ADWasEnabled = HideActiveDesktop();
 		ISWallPaperHided=true;
@@ -242,8 +241,6 @@ void RestoreDesktop()
 	}
 
 	ISWallPaperHided=false;
-
-	//SystemParametersInfo(SPI_SETDESKPATTERN, 0, DesktopPattern, SPIF_SENDCHANGE);
 }
 
 
@@ -289,16 +286,15 @@ void DisableEffects()
 
 		::ZeroMemory(spiValues, sizeof(spiValues));
 
-		int iParam = 0;
-		for (iParam = 0; iParam < (sizeof(spiParams) / sizeof(spiParams[0])); iParam++) {
-			if (!SystemParametersInfo(spiParams[iParam], 0, &(spiValues[iParam]), NULL)) {
+		for (size_t iParam = 0; iParam < (sizeof(spiParams) / sizeof(spiParams[0])); iParam++) {
+			if (!SystemParametersInfo(spiParams[iParam], 0, &(spiValues[iParam]), 0)) {
 				vnclog.Print(LL_INTWARN, VNCLOG("Failed to get SPI value for 0x%04x (0x%08x)\n"), spiParams[iParam], GetLastError());
 			} else {
 				vnclog.Print(LL_INTINFO, VNCLOG("Retrieved SPI value for 0x%04x: 0x%08x\n"), spiParams[iParam], spiValues[iParam]);
 			}
 		}
-		for (iParam = 0; iParam < (sizeof(spiParams) / sizeof(spiParams[0])); iParam++) {
-			if (spiValues[iParam] != spiSuggested[iParam]) {
+		for (size_t iParam = 0; iParam < (sizeof(spiParams) / sizeof(spiParams[0])); iParam++) {
+			if (spiValues[iParam] != (BOOL) spiSuggested[iParam]) {
 				if (!SystemParametersInfo(spiParams[iParam]+1, 0, (PVOID)spiSuggested[iParam], SPIF_SENDCHANGE)) {				
 					vnclog.Print(LL_INTWARN, VNCLOG("Failed to set SPI value for 0x%04x to 0x%08x (0x%08x)\n"), spiParams[iParam]+1, spiSuggested[iParam], GetLastError());
 				} else {
@@ -313,9 +309,8 @@ void DisableEffects()
 void EnableEffects()
 {
 	if (g_bEffectsDisabled) {
-		int iParam = 0;
-		for (iParam = 0; iParam < (sizeof(spiParams) / sizeof(spiParams[0])); iParam++) {
-			if (spiValues[iParam] != spiSuggested[iParam]) {
+		for (size_t iParam = 0; iParam < (sizeof(spiParams) / sizeof(spiParams[0])); iParam++) {
+			if (spiValues[iParam] != (BOOL) spiSuggested[iParam]) {
 				if (!SystemParametersInfo(spiParams[iParam]+1, 0, (PVOID)spiValues[iParam], SPIF_SENDCHANGE)) {
 					vnclog.Print(LL_INTWARN, VNCLOG("Failed to restore SPI value for 0x%04x (0x%08x)\n"), spiParams[iParam]+1, GetLastError());
 				} else {
@@ -350,14 +345,14 @@ void DisableFontSmoothing()
 		
 		if (!g_bGotOldFontSmoothingValue) {
 			// there appears to be a delay between setting the SPI_SETFONTSMOOTHING value and SPI_GETFONTSMOOTHING returning that up-to-date value.
-			if (!SystemParametersInfo(SPI_GETFONTSMOOTHING, 0, &g_bOldFontSmoothingValue, NULL)) {
+			if (!SystemParametersInfo(SPI_GETFONTSMOOTHING, 0, &g_bOldFontSmoothingValue, 0)) {
 				vnclog.Print(LL_INTWARN, VNCLOG("Failed to get SPI value for SPI_GETFONTSMOOTHING (0x%08x)\n"), GetLastError());
 				g_bGotOldFontSmoothingValue = false;
 			} else {
 				vnclog.Print(LL_INTINFO, VNCLOG("Retrieved SPI value for SPI_GETFONTSMOOTHING: 0x%08x\n"), g_bOldFontSmoothingValue);
 				g_bGotOldFontSmoothingValue = true;
 				
-				if (!SystemParametersInfo(0x200A /*SPI_GETFONTSMOOTHINGTYPE*/, 0, &g_nOldFontSmoothingType, NULL)) {
+				if (!SystemParametersInfo(0x200A /*SPI_GETFONTSMOOTHINGTYPE*/, 0, &g_nOldFontSmoothingType, 0)) {
 					vnclog.Print(LL_INTWARN, VNCLOG("Failed to get SPI value for SPI_GETFONTSMOOTHINGTYPE (0x%08x)\n"), GetLastError());
 					g_bGotFontSmoothingType = false;
 				} else {
@@ -365,7 +360,7 @@ void DisableFontSmoothing()
 					g_bGotFontSmoothingType = true;
 				}
 				
-				if (!SystemParametersInfo(0x1048 /*SPI_GETCLEARTYPE*/, 0, &g_bOldClearTypeValue, NULL)) {
+				if (!SystemParametersInfo(0x1048 /*SPI_GETCLEARTYPE*/, 0, &g_bOldClearTypeValue, 0)) {
 					vnclog.Print(LL_INTWARN, VNCLOG("Failed to get SPI value for SPI_GETCLEARTYPE (0x%08x)\n"), GetLastError());
 					g_bGotClearType = false;
 				} else {

@@ -149,7 +149,7 @@ typedef BOOL (WINAPI* pEnumDisplayDevices)(PVOID,DWORD,PVOID,DWORD);
 		FillMemory(&devmode, sizeof(DEVMODE), 0);
 		devmode.dmSize = sizeof(DEVMODE);
 		devmode.dmDriverExtra = 0;
-		BOOL change = EnumDisplaySettings(NULL,ENUM_CURRENT_SETTINGS,&devmode);
+		/*BOOL change = */EnumDisplaySettings(NULL,ENUM_CURRENT_SETTINGS,&devmode);
 		devmode.dmFields = DM_BITSPERPEL | DM_PELSWIDTH | DM_PELSHEIGHT;
 		HMODULE hUser32=LoadLibrary("USER32");
 		if (hUser32) pd = (pEnumDisplayDevices)GetProcAddress( hUser32, "EnumDisplayDevicesA");
@@ -163,7 +163,7 @@ typedef BOOL (WINAPI* pEnumDisplayDevices)(PVOID,DWORD,PVOID,DWORD);
 				INT devNum = 0;
 				BOOL result;
 				DriverFound=false;
-				while (result = (*pd)(NULL,devNum, &dd,0))
+				while ((result = (*pd)(NULL,devNum, &dd,0)))
 				{
 					if (strcmp((const char *)&dd.DeviceString[0], driverName) == 0)
 					{

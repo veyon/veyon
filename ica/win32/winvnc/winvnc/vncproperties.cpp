@@ -142,6 +142,7 @@ vncProperties::Init(vncServer *server)
 	if(0){
 	    vncPasswd::ToText plain(passwd);
 	    if (strlen(plain) == 0)
+		{
 			 if (!m_allowproperties || !RunningAsAdministrator ()) {
 				if(m_server->AuthRequired()) {
 					MessageBox(NULL, sz_ID_NO_PASSWD_NO_OVERRIDE_ERR,
@@ -173,6 +174,7 @@ vncProperties::Init(vncServer *server)
 					}
 				}
 			}
+		}
 	}
 	Lock_service_helper=false;
 	return TRUE;
@@ -187,7 +189,9 @@ vncProperties::ShowAdmin(BOOL show, BOOL usersettings)
 //	if (Lock_service_helper) return;
 	HANDLE hProcess=NULL;
 	HANDLE hPToken=NULL;
+#ifndef ULTRAVNC_ITALC_SUPPORT
 	DWORD id=GetExplorerLogonPid();
+#endif
 	int iImpersonateResult=0;
 	{
 		char WORKDIR[MAX_PATH];
@@ -388,7 +392,7 @@ vncProperties::ShowAdmin(BOOL show, BOOL usersettings)
 				}
 
 				// If we reached here then OK was used & there is no password!
-				int result2 = MessageBox(NULL, sz_ID_NO_PASSWORD_WARN,
+				MessageBox(NULL, sz_ID_NO_PASSWORD_WARN,
 				    sz_ID_WINVNC_WARNIN, MB_OK | MB_ICONEXCLAMATION);
 
 				omni_thread::sleep(4);
@@ -631,7 +635,7 @@ vncProperties::DialogProc(HWND hwnd,
 				TRUE,
 				0);
 
-			HWND hmvSetting;
+			HWND hmvSetting = 0;
 			switch (_this->m_server->ConnectPriority()) {
 			case 0:
 				hmvSetting = GetDlgItem(hwnd, IDC_MV1);

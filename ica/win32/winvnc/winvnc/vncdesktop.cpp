@@ -134,9 +134,6 @@ PixelCaptureEngine::CapturePixel(int x, int y)
 		if (m_bIsVista)
 		{
 				COLORREF cr = 0;
-				int tx = x - m_rect.tl.x;
-				int ty = y - m_rect.tl.y;
-
 				unsigned int index = (m_bytesPerRow * y) + (m_bytesPerPixel * x);
 				memcpy(&cr, ((char*)m_DIBbits)+index, m_bytesPerPixel);
 
@@ -209,7 +206,6 @@ bool vncDesktop::FastDetectChanges(rfb::Region2D &rgn, rfb::Rect &rect, int nZon
 	// vnclog.Print(LL_INTINFO, VNCLOG("### Polling Grid %d - SubGrid %d\n"), nZone, m_nGridCycle); 
 	GridsList::iterator iGrid;
 	int nGridPos = (nZone * PIXEL_BLOCK_SIZE / GRID_OFFSET) + m_nGridCycle;
-	int nIndex = nGridPos;
 
 	iGrid = m_lGridsList.begin();
     std::advance(iGrid, nGridPos);
@@ -435,7 +431,6 @@ vncDesktop::~vncDesktop()
 	if(m_thread != NULL)
 	{
 		StopInitWindowthread();
-		vncDesktopThread *thread=(vncDesktopThread*)m_thread;
 		int counter=0;
 		while (g_DesktopThread_running!=false)
 		{
@@ -857,7 +852,7 @@ vncDesktop::InitBitmap()
 					FillMemory(&devmode, sizeof(DEVMODE), 0);
 					devmode.dmSize = sizeof(DEVMODE);
 					devmode.dmDriverExtra = 0;
-					BOOL change = EnumDisplaySettings(NULL,ENUM_CURRENT_SETTINGS,&devmode);
+					/*BOOL change = */EnumDisplaySettings(NULL,ENUM_CURRENT_SETTINGS,&devmode);
 					devmode.dmFields = DM_BITSPERPEL | DM_PELSWIDTH | DM_PELSHEIGHT;
 					HMODULE hUser32=LoadLibrary("USER32");
 					if (hUser32) pd = (pEnumDisplayDevices)GetProcAddress( hUser32, "EnumDisplayDevicesA");
@@ -871,7 +866,7 @@ vncDesktop::InitBitmap()
 								INT devNum = 0;
 								BOOL result;
 								DriverFound=false;
-								while (result = (*pd)(NULL,devNum, &dd,0))
+								while ((result = (*pd)(NULL,devNum, &dd,0)))
 									{
 										if (strcmp((const char *)&dd.DeviceString[0], driverName) == 0)
 											{
@@ -884,7 +879,7 @@ vncDesktop::InitBitmap()
 									{
 										deviceName = (LPSTR)&dd.DeviceName[0];
 										m_hrootdc = CreateDC("DISPLAY",deviceName,NULL,NULL);
-										BOOL change = EnumDisplaySettings(deviceName,ENUM_CURRENT_SETTINGS,&devmode);
+										/*BOOL change = */EnumDisplaySettings(deviceName,ENUM_CURRENT_SETTINGS,&devmode);
 										m_ScreenOffsetx=devmode.dmPosition.x;
 										m_ScreenOffsety=devmode.dmPosition.y;
 										if (m_hrootdc) DriverType=MIRROR;
@@ -2314,7 +2309,7 @@ void vncDesktop::InitHookSettings()
 
 void vncDesktop::SetBlockInputState(bool newstate)
 {
-	CARD32 state;
+	CARD32 state = 0;
 	if (m_server->BlankMonitorEnabled())
     {
 		if (!m_server->BlankInputsOnly()) SetBlankMonitor(newstate);	        

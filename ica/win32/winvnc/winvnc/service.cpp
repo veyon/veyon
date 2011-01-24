@@ -166,7 +166,6 @@ BOOL CreateRemoteSessionProcess(
         DWORD           dwNameLen;
         HINSTANCE       hInstWinSta;
         HANDLE          hNamedPipe;
-        LPVOID          pData=NULL;
         BOOL            bRet = FALSE;
         DWORD           cbReadBytes,cbWriteBytes;
         DWORD           dwEnvLen = 0;
@@ -444,7 +443,6 @@ get_winlogon_handle(OUT LPHANDLE  lphUserToken)
 {
 	BOOL   bResult = FALSE;
 	HANDLE hProcess;
-	HANDLE hAccessToken = NULL;
 	HANDLE hTokenThis = NULL;
 	DWORD ID_session=0;
 	if (lpfnWTSGetActiveConsoleSessionId.isValid()) ID_session=(*lpfnWTSGetActiveConsoleSessionId)();
@@ -453,7 +451,7 @@ get_winlogon_handle(OUT LPHANDLE  lphUserToken)
 	else Id=GetwinlogonPid();
 
     // fall back to old method if Terminal services is disabled
-    if (W2K == 0 && Id == -1)
+    if (W2K == 0 && Id == (DWORD)-1)
         Id=GetwinlogonPid();
 
 	#ifdef _DEBUG
@@ -511,10 +509,8 @@ BOOL
 GetSessionUserTokenWin(OUT LPHANDLE  lphUserToken)
 {
   BOOL   bResult = FALSE;
-  HANDLE hImpersonationToken = INVALID_HANDLE_VALUE;
   DWORD ID=0;
   if (lpfnWTSGetActiveConsoleSessionId.isValid()) ID=(*lpfnWTSGetActiveConsoleSessionId)();
-  HANDLE hTokenThis = NULL;
   
   if (lphUserToken != NULL) {   
 		  bResult = get_winlogon_handle(lphUserToken);
@@ -530,8 +526,6 @@ GetSessionUserTokenDefault(OUT LPHANDLE  lphUserToken)
   DWORD ID=0;
   if (lpfnWTSGetActiveConsoleSessionId.isValid()) ID=(*lpfnWTSGetActiveConsoleSessionId)();
 
-  HANDLE hTokenThis = NULL;
-  
   if (lphUserToken != NULL) {   
       if ((*lpfnWTSQueryUserToken)(ID, &hImpersonationToken)) 
       {
@@ -576,8 +570,8 @@ LaunchProcessWin(DWORD dwSessionId)
 			{
 				counter=0;
 				bReturn = TRUE;
-				DWORD error=GetLastError();
 				#ifdef _DEBUG
+					DWORD error=GetLastError();
 					char			szText[256];
 					sprintf(szText," ++++++ CreateProcessAsUser winlogon %d\n",error);
 					OutputDebugString(szText);		
@@ -648,8 +642,8 @@ LaunchProcessWin(DWORD dwSessionId)
 			{
 				counter=0;
 				bReturn = TRUE;
-				DWORD error=GetLastError();
 				#ifdef _DEBUG
+					DWORD error=GetLastError();
 					char			szText[256];
 					sprintf(szText," ++++++ CreateProcessAsUser winlogon %d\n",error);
 					OutputDebugString(szText);		
@@ -799,7 +793,6 @@ bool CheckIPAddrString() {
 void monitor_sessions()
 {
 	pad2();
-	HANDLE hTokenNew = NULL, hTokenDup = NULL;
 
 	int counter_ipcheck=0;
 	DWORD dwSessionId=0;
@@ -1057,7 +1050,7 @@ void disconnect_remote_sessions()
 				if (!LockWorkStationF())
                 {
                     char msg[1024];
-                    sprintf(msg, "LockWorkstation failed with error 0x%0X", GetLastError());
+                    sprintf(msg, "LockWorkstation failed with error 0x%0X", (unsigned int) GetLastError());
                     ::OutputDebugString(msg);
                 }
 
