@@ -9,9 +9,9 @@ FILE(GLOB ic_SOURCES
 FILE(GLOB ic_UI ${CMAKE_CURRENT_SOURCE_DIR}/dialogs/*.ui)
 
 SET(LIBVNCCLIENT_SOURCES
+${CMAKE_CURRENT_SOURCE_DIR}/../ica/x11/common/minilzo.c
 ${CMAKE_CURRENT_SOURCE_DIR}/../ica/x11/libvncclient/cursor.c
 ${CMAKE_CURRENT_SOURCE_DIR}/../ica/x11/libvncclient/listen.c
-${CMAKE_CURRENT_SOURCE_DIR}/../ica/x11/libvncclient/minilzo.c
 ${CMAKE_CURRENT_SOURCE_DIR}/../ica/x11/libvncclient/rfbproto.c
 ${CMAKE_CURRENT_SOURCE_DIR}/../ica/x11/libvncclient/sockets.c
 ${CMAKE_CURRENT_SOURCE_DIR}/../ica/x11/libvncclient/vncviewer.c)
@@ -32,7 +32,7 @@ IF(ITALC_BUILD_WIN32)
 	SET(CMAKE_MODULE_LINKER_FLAGS -Wl,-export-all-symbols)
 ENDIF(ITALC_BUILD_WIN32)
 
-INCLUDE_DIRECTORIES(${CMAKE_BINARY_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/include ${CMAKE_CURRENT_SOURCE_DIR}/../ica/x11/libvncclient/)
+INCLUDE_DIRECTORIES(${CMAKE_BINARY_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/include ${CMAKE_CURRENT_SOURCE_DIR}/../ica/x11/common/)
 ADD_LIBRARY(ItalcCore MODULE ${ic_SOURCES} ${ic_INCLUDES} ${ic_MOC_out} ${ic_UIC_out} ${ic_RCC_out} ${ic_qt_qm_out} ${LIBVNCCLIENT_SOURCES})
 
 IF(ITALC_BUILD_WIN32)
