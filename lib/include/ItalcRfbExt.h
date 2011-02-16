@@ -2,7 +2,7 @@
  * ItalcRfbExt.h - an extension of the RFB-protocol, used for communication
  *                 between master and clients
  *
- * Copyright (c) 2004-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2011 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -31,11 +31,11 @@
 
 // new rfb-command which tells server or client that an italc-request/response
 // is following
-#define rfbItalcCoreRequest		30
+#define rfbItalcCoreRequest		40
 #define rfbItalcCoreResponse		rfbItalcCoreRequest
 
 
-#define rfbSecTypeItalc 30
+#define rfbSecTypeItalc 40
 
 
 enum PortOffsets
