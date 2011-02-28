@@ -60,7 +60,7 @@ RfbItalcCursor::RfbItalcCursor()
 		__italcCursorProtocolExt = new rfbClientProtocolExtension;
 		__italcCursorProtocolExt->encodings = new int[2];
 		__italcCursorProtocolExt->encodings[0] = rfbEncodingItalcCursor;
-		__italcCursorProtocolExt->encodings[2] = 0;
+		__italcCursorProtocolExt->encodings[1] = 0;
 		__italcCursorProtocolExt->handleEncoding = handleEncodingItalcCursor;
 		__italcCursorProtocolExt->handleMessage = NULL;
 
