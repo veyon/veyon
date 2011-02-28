@@ -41,7 +41,7 @@ public:
 
 	static ItalcCoreServer *instance()
 	{
-		Q_ASSERT( this != NULL );
+		Q_ASSERT( _this != NULL );
 		return _this;
 	}
 
