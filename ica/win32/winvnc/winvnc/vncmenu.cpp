@@ -103,6 +103,9 @@ void delete_softwareCAD_elevated();
 void Reboot_in_safemode_elevated();
 bool IsSoftwareCadEnabled();
 bool ISUACENabled();
+void Reboot_with_force_reboot_elevated();
+//HACK to use name in autoreconnect from service with dyn dns
+extern char dnsname[255];
 
 static inline VOID UnloadDM(VOID) 
  { 
@@ -499,6 +502,7 @@ vncMenu::~vncMenu()
 		RestoreFontSmoothing();
 	if (m_server->RemoveAeroEnabled())
 		ResetAero();
+	CoUninitialize();
 }
 
 void
@@ -578,12 +582,16 @@ vncMenu::FlashTrayIcon(BOOL flash)
 // the ip is just used in the tray tip
 char old_buffer[512];
 char old_buflen=0;
-void GetIPAddrString(char *buffer, int buflen) {
-	if (old_buflen!=0)
+int dns_counter=0; // elimate to many dns requests once every 250s is ok
+void 
+vncMenu::GetIPAddrString(char *buffer, int buflen) {
+	if (old_buflen!=0 && dns_counter<50)
 	{
+		dns_counter++;
 		strcpy(buffer,old_buffer);
 		return;
 	}
+	dns_counter=0;
     char namebuf[256];
 
     if (gethostname(namebuf, 256) != 0) {
@@ -610,6 +618,18 @@ void GetIPAddrString(char *buffer, int buflen) {
     }
 	if (strlen(buffer)<512) // just in case it would be bigger then our buffer
 	{
+		if (old_buflen!=0)//first time old_buflen=0
+		{
+			if (strcmp(buffer,old_buffer)!=0) //ip changed
+			{
+				if (m_server->SockConnected())
+				{
+					// if connected restart
+					m_server->SockConnect(false);
+					m_server->SockConnect(true);
+				}
+			}
+		}
 	old_buflen=strlen(buffer);
 	strncpy(old_buffer,buffer,strlen(buffer));
 	}
@@ -745,6 +765,7 @@ vncMenu::SendTrayMsg(DWORD msg, BOOL flash)
 			EnableMenuItem(m_hmenu, ID_RUNASSERVICE,(!vncService::IsInstalled() &&!vncService::RunningAsService() && m_properties.AllowShutdown()) ? MF_ENABLED : MF_GRAYED);
 			EnableMenuItem(m_hmenu, ID_UNINSTALL_SERVICE,(vncService::IsInstalled()&&m_properties.AllowShutdown()) ? MF_ENABLED : MF_GRAYED);
 			EnableMenuItem(m_hmenu, ID_REBOOTSAFEMODE,(vncService::RunningAsService()&&m_properties.AllowShutdown()) ? MF_ENABLED : MF_GRAYED);
+			EnableMenuItem(m_hmenu, ID_REBOOT_FORCE,(vncService::RunningAsService()&&m_properties.AllowShutdown()) ? MF_ENABLED : MF_GRAYED);
 			OSVERSIONINFO OSversion;	
 			OSversion.dwOSVersionInfoSize=sizeof(OSVERSIONINFO);
 			GetVersionEx(&OSversion);
@@ -797,6 +818,7 @@ vncMenu::SendTrayMsg(DWORD msg, BOOL flash)
 				RemoveMenu(m_hmenu, ID_RUNASSERVICE, MF_BYCOMMAND);
 				RemoveMenu(m_hmenu, ID_UNINSTALL_SERVICE, MF_BYCOMMAND);
 				RemoveMenu(m_hmenu, ID_REBOOTSAFEMODE, MF_BYCOMMAND);
+				RemoveMenu(m_hmenu, ID_REBOOT_FORCE, MF_BYCOMMAND);
 				RemoveMenu(m_hmenu, ID_SOFTWARECAD, MF_BYCOMMAND);
 				RemoveMenu(m_hmenu, ID_DELSOFTWARECAD, MF_BYCOMMAND);
 			}
@@ -1264,6 +1286,51 @@ LRESULT CALLBACK vncMenu::WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lP
 				}
 			}
 			break;
+
+		case ID_REBOOT_FORCE:
+			{
+			HANDLE hProcess,hPToken;
+			DWORD id=GetExplorerLogonPid();
+				if (id!=0) 
+				{
+					hProcess = OpenProcess(MAXIMUM_ALLOWED,FALSE,id);
+					if(!OpenProcessToken(hProcess,TOKEN_ADJUST_PRIVILEGES|TOKEN_QUERY
+											|TOKEN_DUPLICATE|TOKEN_ASSIGN_PRIMARY|TOKEN_ADJUST_SESSIONID
+											|TOKEN_READ|TOKEN_WRITE,&hPToken)) break;
+
+					char dir[MAX_PATH];
+					char exe_file_name[MAX_PATH];
+					GetModuleFileName(0, exe_file_name, MAX_PATH);
+					strcpy(dir, exe_file_name);
+					strcat(dir, " -rebootforcedehelper");
+		
+					{
+					STARTUPINFO          StartUPInfo;
+					PROCESS_INFORMATION  ProcessInfo;
+					HANDLE Token=NULL;
+					HANDLE process=NULL;
+					ZeroMemory(&StartUPInfo,sizeof(STARTUPINFO));
+					ZeroMemory(&ProcessInfo,sizeof(PROCESS_INFORMATION));
+					StartUPInfo.wShowWindow = SW_SHOW;
+					StartUPInfo.lpDesktop = "Winsta0\\Default";
+					StartUPInfo.cb = sizeof(STARTUPINFO);
+			
+					CreateProcessAsUser(hPToken,NULL,dir,NULL,NULL,FALSE,DETACHED_PROCESS,NULL,NULL,&StartUPInfo,&ProcessInfo);
+					DWORD errorcode=GetLastError();
+					if (process) CloseHandle(process);
+					if (Token) CloseHandle(Token);
+					if (ProcessInfo.hProcess) CloseHandle(ProcessInfo.hProcess);
+					if (ProcessInfo.hThread) CloseHandle(ProcessInfo.hThread);
+					if (errorcode==1314)
+					{
+						 Reboot_with_force_reboot_elevated();
+					}
+
+					}
+				}
+			}
+			break;
+
 		case ID_UNINSTALL_SERVICE:
 			{
 			HANDLE hProcess,hPToken;
@@ -1513,10 +1580,11 @@ LRESULT CALLBACK vncMenu::WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lP
 	case WM_CLOSE:
 		
 		// Only accept WM_CLOSE if the logged on user has AllowShutdown set
-		if (!_this->m_properties.AllowShutdown())
+		// Error this clock the service restart.
+		/*if (!_this->m_properties.AllowShutdown())
 		{
 			return 0;
-		}
+		}*/
 		// tnatsni Wallpaper fix
 		if (_this->m_server->RemoveWallpaperEnabled())
 			RestoreWallpaper();
@@ -1709,8 +1777,20 @@ LRESULT CALLBACK vncMenu::WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lP
 			// sf@2003 - Values are already converted
 			if ((_this->m_server->AutoReconnect()|| _this->m_server->IdReconnect() )&& strlen(_this->m_server->AutoReconnectAdr()) > 0)
 			{
+				struct in_addr address;
 				nport = _this->m_server->AutoReconnectPort();
-				strcpy(szAdrName, _this->m_server->AutoReconnectAdr());
+				VCard32 ipaddress = VSocket::Resolve(_this->m_server->AutoReconnectAdr());
+				unsigned long ipaddress_long=ipaddress;
+				address.S_un.S_addr = ipaddress_long;
+				char *name = inet_ntoa(address);
+				if (name == 0)
+					return 0;
+				nameDup = _strdup(name);
+				if (nameDup == 0)
+					return 0;
+				strcpy(szAdrName, nameDup);
+				// Free the duplicate name
+				if (nameDup != 0) free(nameDup);
 			}
 			else
 			{
@@ -1745,7 +1825,7 @@ LRESULT CALLBACK vncMenu::WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lP
 			// This way we can call this message again later to reconnect with the same values
 			if ((_this->m_server->AutoReconnect() || _this->m_server->IdReconnect())&& strlen(_this->m_server->AutoReconnectAdr()) == 0)
 			{
-				_this->m_server->AutoReconnectAdr(szAdrName);
+				_this->m_server->AutoReconnectAdr(dnsname);
 				_this->m_server->AutoReconnectPort(nport);
 			}
 

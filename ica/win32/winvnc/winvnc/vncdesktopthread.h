@@ -75,7 +75,7 @@ public:
 		cpuUsage=0;
 		MIN_UPDATE_INTERVAL=33;
 		MIN_UPDATE_INTERVAL_MAX=500;
-		MIN_UPDATE_INTERVAL_MIN=10;
+		MIN_UPDATE_INTERVAL_MIN=33;
 		// replaced by macpu ini setting
 		MAX_CPU_USAGE=20;
 	};
@@ -126,6 +126,7 @@ protected:
 	DWORD MAX_CPU_USAGE;
 	bool capture;
 	bool first_run;
+	bool initialupdate;
 
 };
 #endif

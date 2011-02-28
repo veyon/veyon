@@ -504,6 +504,10 @@ protected:
 	int old_Blockinput;
 	int old_Blockinput1;
 	int old_Blockinput2;
+	int nr_rects;
+	HWND hDeskWnd;
+	HWND hFolderView;
+	rfb::Region2D iconregion;
 
 	
 BOOL DriverWanted;

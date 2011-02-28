@@ -105,6 +105,7 @@ public:
 	virtual void KillClient(vncClientId client);
 	virtual void KillClient(LPSTR szClientName); // sf@2002
 	virtual void TextChatClient(LPSTR szClientName); // sf@2002
+	bool IsUltraVncViewer();
 
 	virtual UINT AuthClientCount();
 	virtual UINT UnauthClientCount();
@@ -148,6 +149,7 @@ public:
 	virtual char *GetWindowName() { return m_szWindowName; };
 	virtual vncDesktop* GetDesktopPointer() {return m_desktop;}
 	virtual void SetNewSWSize(long w,long h,BOOL desktop);
+	virtual void SetNewSWSizeFR(long w,long h,BOOL desktop);
 	virtual void SetSWOffset(int x,int y);
 	virtual void SetScreenOffset(int x,int y,int type); //never locked
 	virtual void InitialUpdate(bool value);
@@ -385,7 +387,7 @@ public:
 	virtual void AutoReconnect(BOOL fEnabled){m_fAutoReconnect = fEnabled;};
 	virtual void IdReconnect(BOOL fEnabled){m_fIdReconnect = fEnabled;};
 	virtual void AutoReconnectPort(UINT nPort){m_AutoReconnectPort = nPort;};
-	virtual void AutoReconnectAdr(char* szAdr){strcpy_s(m_szAutoReconnectAdr,64, szAdr);}
+	virtual void AutoReconnectAdr(char* szAdr){strcpy_s(m_szAutoReconnectAdr,255, szAdr);}
 	virtual void AutoReconnectId(char* szId){strcpy_s(m_szAutoReconnectId,MAX_PATH, szId);}
 	virtual void AutoConnectRetry( );
 	static void CALLBACK _timerRetryHandler( HWND /*hWnd*/, UINT /*uMsg*/, UINT_PTR /*idEvent*/, DWORD /*dwTime*/ );
@@ -581,7 +583,7 @@ protected:
 	BOOL m_fAutoReconnect;
 	BOOL m_fIdReconnect;
 	UINT m_AutoReconnectPort;
-	char m_szAutoReconnectAdr[64];
+	char m_szAutoReconnectAdr[255];
 	char m_szAutoReconnectId[MAX_PATH];
 
 	// sf@2007

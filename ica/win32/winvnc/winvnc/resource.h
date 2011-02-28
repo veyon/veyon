@@ -145,6 +145,7 @@
 #define IDC_IDCODE                      1084
 #define IDC_BLANKINGTXT                 1084
 #define IDC_EDIT_PATH                   1084
+#define IDC_MAXCPU                      1084
 #define IDC_MSLOGON_CHECKD              1085
 #define IDC_GROUP2                      1086
 #define IDC_MSLOGON_CHECKD2             1086
@@ -226,6 +227,8 @@
 #define ID_REBOOTSAFEMODE               40025
 #define ID_TRAY_DELETESOFTWARECAD       40026
 #define ID_DELSOFTWARECAD               40027
+#define ID_TRAY_FORCEREBOOT             40028
+#define ID_REBOOT_FORCE                 40029
 #define ID_FAILED_INIT                  41000
 #define ID_WINVNC_USAGE                 41001
 #define ID_ANOTHER_INST                 41002
@@ -288,8 +291,8 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        155
-#define _APS_NEXT_COMMAND_VALUE         40028
-#define _APS_NEXT_CONTROL_VALUE         1130
+#define _APS_NEXT_COMMAND_VALUE         40030
+#define _APS_NEXT_CONTROL_VALUE         1131
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

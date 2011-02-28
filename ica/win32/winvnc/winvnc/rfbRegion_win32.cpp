@@ -28,7 +28,7 @@ using namespace rfb;
 
 void dump_rects(char *n, HRGN rgn, bool dbg = 0)
 {
-#if defined(_DEBUG)
+/*#if defined(_DEBUG)
   //vnclog.Print(LL_INTWARN, VNCLOG("Region %s %p contains rects:\n"), n, rgn);
 	DWORD buffsize = GetRegionData(rgn, 0, NULL);
 	if (!buffsize)
@@ -67,7 +67,7 @@ void dump_rects(char *n, HRGN rgn, bool dbg = 0)
 	}
 
 	delete [] buffer;
-#endif
+#endif*/
 }
 
 
@@ -100,6 +100,10 @@ Region::~Region() {
   free(m_name);
 }
 
+bool Region::IsPtInRegion(int x, int y)
+{
+	return PtInRegion(rgn,x,y);
+}
 
 rfb::Region& Region::operator=(const Region& r) {
   clear();
@@ -191,6 +195,7 @@ bool Region::get_rects(std::vector<Rect>& rects,
 
 
    unsigned char* buffer = new unsigned char[buffsize];
+   memset(buffer,0,buffsize);
 
    if (GetRegionData(rgn, buffsize, (LPRGNDATA)buffer) != buffsize)
    {

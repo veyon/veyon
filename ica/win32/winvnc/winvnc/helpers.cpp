@@ -100,8 +100,8 @@ LONG AllowShutdown=1;
 LONG AllowProperties=1;
 LONG AllowEditClients=1;
 
-LONG FileTransferEnabled;
-LONG FTUserImpersonation;
+LONG FileTransferEnabled=0;
+LONG FTUserImpersonation=1;
 LONG BlankMonitorEnabled=1;
 LONG BlankInputsOnly=0; //PGM
 LONG DefaultScale=1;
@@ -136,7 +136,7 @@ char passwd[MAXPWLEN];
 
 LONG TurboMode=1;
 LONG PollUnderCursor=0;
-LONG PollForeground=1;
+LONG PollForeground=0;
 LONG PollFullScreen=1;
 LONG PollConsoleOnly=0;
 LONG PollOnEventOnly=0;
@@ -146,6 +146,7 @@ LONG Virtual;
 LONG SingleWindow=0;
 char SingleWindowName[32];
 char path[512];
+LONG MaxCpu=40;
 
 //adzm 2010-05-30 - dsmplugin config
 char DSMPluginConfig[512];
@@ -153,7 +154,6 @@ char DSMPluginConfig[512];
 
 LONG Primary=1;
 LONG Secondary=0;
-LONG MaxCpu=40;
 
 
 BUseRegistry = myIniFile_In.ReadInt("admin", "UseRegistry", 0);
@@ -332,6 +332,9 @@ myIniFile_Out.WriteInt("poll", "EnableVirtual", Virtual);
 
 myIniFile_Out.WriteInt("poll", "SingleWindow", SingleWindow);
 myIniFile_Out.WriteString("poll", "SingleWindowName", SingleWindowName);
+
+MaxCpu=myIniFile_In.ReadInt("poll", "MaxCpu",MaxCpu);
+myIniFile_Out.WriteInt("poll", "MaxCpu", MaxCpu);
 
 DeleteFile(lpCmdLine);
 }

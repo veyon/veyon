@@ -618,6 +618,10 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
+				RelativePath=".\benchmark.cpp"
+				>
+			</File>
+			<File
 				RelativePath="black_layered.cpp"
 				>
 				<FileConfiguration
@@ -4338,11 +4342,11 @@
 				>
 			</File>
 			<File
-				RelativePath="res\vnc.bmp"
+				RelativePath="vnc.bmp"
 				>
 			</File>
 			<File
-				RelativePath="vnc.bmp"
+				RelativePath="res\vnc.bmp"
 				>
 			</File>
 			<File
@@ -4379,11 +4383,11 @@
 			>
 		</File>
 		<File
-			RelativePath="..\building.txt"
+			RelativePath="..\..\BUILDING.txt"
 			>
 		</File>
 		<File
-			RelativePath="..\..\BUILDING.txt"
+			RelativePath="..\building.txt"
 			>
 		</File>
 		<File

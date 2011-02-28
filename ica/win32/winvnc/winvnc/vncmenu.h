@@ -83,6 +83,7 @@ protected:
 	void DelTrayIcon();
 	void FlashTrayIcon(BOOL flash);
 	void SendTrayMsg(DWORD msg, BOOL flash);
+	void GetIPAddrString(char *buffer, int buflen);
 
 	// Message handler for the tray window
 	static LRESULT CALLBACK WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam);

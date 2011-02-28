@@ -214,11 +214,10 @@ PACL vncImportACL::BuildACL(){
 }
 
 bool vncImportACL::SetACL(PACL pACL){
-   HKEY hk = NULL; 
+	HKEY hk = NULL; 
 	bool isSaveOK = false;
 	DWORD  dwDisposition;
 
-	
     ACL_SIZE_INFORMATION AclInformation = {0, 0, 0};
 	DWORD nAclInformationLength = sizeof(AclInformation);
 
@@ -233,14 +232,14 @@ bool vncImportACL::SetACL(PACL pACL){
 		//	_ftprintf(stderr, _T("Error %d: RegOpenKeyEx\n"), GetLastError());
 		//	__leave;
 		//}
-
+		
 		if (ERROR_SUCCESS != RegCreateKeyEx( HKEY_LOCAL_MACHINE,
 			_T("Software\\ORL\\WinVNC3"),
 			0, NULL, 0, KEY_SET_VALUE, NULL, &hk, &dwDisposition )){
 			_ftprintf(stderr, _T("Error %d: RegOpenKeyEx\n"), GetLastError());
 			__leave;
 		}
-		
+
 		// Add the ACL value to the VNC registry key
 		if (ERROR_SUCCESS != RegSetValueEx(hk,
             _T("ACL"),

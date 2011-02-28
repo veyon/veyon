@@ -219,7 +219,7 @@ void HideDesktop()
 	{
 		SaveWallpaperStyle(); // Added Jef Fix
 		SystemParametersInfo(SPI_GETDESKWALLPAPER,1024,SCREENNAME,0 );
-		SystemParametersInfo(SPI_SETDESKWALLPAPER, 0, NULL, SPIF_SENDCHANGE);
+		SystemParametersInfo(SPI_SETDESKWALLPAPER, 0, (PVOID)"", SPIF_SENDCHANGE);
 		ADWasEnabled = HideActiveDesktop();
 		ISWallPaperHided=true;
 		vnclog.Print(LL_INTWARN, VNCLOG("Killwallpaper %i %i\n"),ISWallPaperHided,ADWasEnabled);

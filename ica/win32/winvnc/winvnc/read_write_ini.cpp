@@ -49,58 +49,58 @@ LONG ConnectPriority;
 char DSMPlugin[128];
 char *authhosts=new char[150];
 
-LONG AllowShutdown;
-LONG AllowProperties;
-LONG AllowEditClients;
+LONG AllowShutdown=1;
+LONG AllowProperties=1;
+LONG AllowEditClients=1;
 
-LONG FileTransferEnabled;
-LONG FTUserImpersonation;
-LONG BlankMonitorEnabled ;
-LONG BlankInputsOnly; //PGM
-LONG DefaultScale ;
-LONG CaptureAlphaBlending ;
-LONG BlackAlphaBlending ;
+LONG FileTransferEnabled=0;
+LONG FTUserImpersonation=1;
+LONG BlankMonitorEnabled=1;
+LONG BlankInputsOnly=0; //PGM
+LONG DefaultScale=1;
+LONG CaptureAlphaBlending=1;
+LONG BlackAlphaBlending=1;
 
-LONG SocketConnect;
+LONG SocketConnect=1;
 LONG HTTPConnect;
 LONG XDMCPConnect;
-LONG AutoPortSelect;
-LONG PortNumber;
-LONG HttpPortNumber;
-LONG IdleTimeout;
+LONG AutoPortSelect=1;
+LONG PortNumber=5900;
+LONG HttpPortNumber=5800;
+LONG IdleTimeout=0;
 
-LONG RemoveWallpaper;
-LONG RemoveAero;
+LONG RemoveWallpaper=1;
+LONG RemoveAero=1;
 
-LONG QuerySetting;
-LONG QueryTimeout;
-LONG QueryAccept;
-LONG QueryIfNoLogon;
+LONG QuerySetting=1;
+LONG QueryTimeout=10;
+LONG QueryAccept=4;
+LONG QueryIfNoLogon=1;
 
-LONG EnableRemoteInputs;
-LONG LockSettings;
-LONG DisableLocalInputs;
-LONG EnableJapInput;
-LONG kickrdp;
-LONG clearconsole;
+LONG EnableRemoteInputs=1;
+LONG LockSettings=0;
+LONG DisableLocalInputs=0;
+LONG EnableJapInput=0;
+LONG kickrdp=0;
+LONG clearconsole=0;
 
 #define MAXPWLEN 8
 char passwd[MAXPWLEN];
 
-LONG TurboMode;
-LONG PollUnderCursor;
-LONG PollForeground;
-LONG PollFullScreen;
-LONG PollConsoleOnly;
-LONG PollOnEventOnly;
-LONG MaxCpu;
-LONG Driver;
-LONG Hook;
-LONG Virtual;
+LONG TurboMode=1;
+LONG PollUnderCursor=0;
+LONG PollForeground=0;
+LONG PollFullScreen=1;
+LONG PollConsoleOnly=0;
+LONG PollOnEventOnly=0;
+LONG Driver=0;
+LONG Hook=1;
+LONG Virtual=0;
 LONG SingleWindow=0;
 char SingleWindowName[32];
 LONG FTTimeout = 30;
 char path[512];
+LONG MaxCpu=40;
 
 LONG Primary=1;
 LONG Secondary=0;
@@ -207,9 +207,9 @@ SocketConnect=myIniFile_In.ReadInt("admin", "SocketConnect", true);
 HTTPConnect=myIniFile_In.ReadInt("admin", "HTTPConnect", true);
 XDMCPConnect=myIniFile_In.ReadInt("admin", "XDMCPConnect", true);
 AutoPortSelect=myIniFile_In.ReadInt("admin", "AutoPortSelect", true);
-PortNumber=myIniFile_In.ReadInt("admin", "PortNumber", 0);
-HttpPortNumber=myIniFile_In.ReadInt("admin", "HTTPPortNumber",0);
-IdleTimeout=myIniFile_In.ReadInt("admin", "IdleTimeout", 0);
+PortNumber=myIniFile_In.ReadInt("admin", "PortNumber", PortNumber);
+HttpPortNumber=myIniFile_In.ReadInt("admin", "HTTPPortNumber",HttpPortNumber);
+IdleTimeout=myIniFile_In.ReadInt("admin", "IdleTimeout", IdleTimeout);
 myIniFile_Out.WriteInt("admin", "SocketConnect", SocketConnect);
 myIniFile_Out.WriteInt("admin", "HTTPConnect", HTTPConnect);
 myIniFile_Out.WriteInt("admin", "XDMCPConnect", XDMCPConnect);
@@ -218,16 +218,16 @@ myIniFile_Out.WriteInt("admin", "PortNumber", PortNumber);
 myIniFile_Out.WriteInt("admin", "HTTPPortNumber", HttpPortNumber);
 myIniFile_Out.WriteInt("admin", "IdleTimeout", IdleTimeout);
 	
-RemoveWallpaper=myIniFile_In.ReadInt("admin", "RemoveWallpaper", 0);
-RemoveAero=myIniFile_In.ReadInt("admin", "RemoveAero", 0);
+RemoveWallpaper=myIniFile_In.ReadInt("admin", "RemoveWallpaper", RemoveWallpaper);
+RemoveAero=myIniFile_In.ReadInt("admin", "RemoveAero", RemoveAero);
 myIniFile_Out.WriteInt("admin", "RemoveWallpaper", RemoveWallpaper);
 myIniFile_Out.WriteInt("admin", "RemoveAero", RemoveAero);
 
 	// Connection querying settings
-QuerySetting=myIniFile_In.ReadInt("admin", "QuerySetting", 0);
-QueryTimeout=myIniFile_In.ReadInt("admin", "QueryTimeout", 0);
-QueryAccept=myIniFile_In.ReadInt("admin", "QueryAccept", 0);
-QueryIfNoLogon=myIniFile_In.ReadInt("admin", "QueryIfNoLogon", 0);
+QuerySetting=myIniFile_In.ReadInt("admin", "QuerySetting", QuerySetting);
+QueryTimeout=myIniFile_In.ReadInt("admin", "QueryTimeout", QueryTimeout);
+QueryAccept=myIniFile_In.ReadInt("admin", "QueryAccept", QueryAccept);
+QueryIfNoLogon=myIniFile_In.ReadInt("admin", "QueryIfNoLogon", QueryIfNoLogon);
 myIniFile_Out.WriteInt("admin", "QuerySetting", QuerySetting);
 myIniFile_Out.WriteInt("admin", "QueryTimeout", QueryTimeout);
 myIniFile_Out.WriteInt("admin", "QueryAccept", QueryAccept);
@@ -239,12 +239,12 @@ memset(passwd, '\0', MAXPWLEN); //PGM
 myIniFile_In.ReadPassword2(passwd,MAXPWLEN); //PGM
 myIniFile_Out.WritePassword2(passwd); //PGM
 
-EnableRemoteInputs=myIniFile_In.ReadInt("admin", "InputsEnabled", 0);
-LockSettings=myIniFile_In.ReadInt("admin", "LockSetting", 0);
-DisableLocalInputs=myIniFile_In.ReadInt("admin", "LocalInputsDisabled", 0);
-EnableJapInput=myIniFile_In.ReadInt("admin", "EnableJapInput", 0);
-kickrdp=myIniFile_In.ReadInt("admin", "kickrdp", 0);
-clearconsole=myIniFile_In.ReadInt("admin", "clearconsole", 0);
+EnableRemoteInputs=myIniFile_In.ReadInt("admin", "InputsEnabled", EnableRemoteInputs);
+LockSettings=myIniFile_In.ReadInt("admin", "LockSetting", LockSettings);
+DisableLocalInputs=myIniFile_In.ReadInt("admin", "LocalInputsDisabled", DisableLocalInputs);
+EnableJapInput=myIniFile_In.ReadInt("admin", "EnableJapInput", EnableJapInput);
+kickrdp=myIniFile_In.ReadInt("admin", "kickrdp", kickrdp);
+clearconsole=myIniFile_In.ReadInt("admin", "clearconsole", clearconsole);
 
 myIniFile_Out.WriteInt("admin", "InputsEnabled", EnableRemoteInputs);
 myIniFile_Out.WriteInt("admin", "LockSetting", LockSettings);
@@ -254,16 +254,16 @@ myIniFile_Out.WriteInt("admin", "kickrdp", kickrdp);
 myIniFile_Out.WriteInt("admin", "clearconsole", clearconsole);
 
 
-TurboMode = myIniFile_In.ReadInt("poll", "TurboMode", 0);
-PollUnderCursor=myIniFile_In.ReadInt("poll", "PollUnderCursor", 0);
-PollForeground=myIniFile_In.ReadInt("poll", "PollForeground", 0);
-PollFullScreen=myIniFile_In.ReadInt("poll", "PollFullScreen", 0);
-PollConsoleOnly=myIniFile_In.ReadInt("poll", "OnlyPollConsole", 0);
-PollOnEventOnly=myIniFile_In.ReadInt("poll", "OnlyPollOnEvent", 0);
-MaxCpu=myIniFile_In.ReadInt("poll", "MaxCpu", 0);
-Driver=myIniFile_In.ReadInt("poll", "EnableDriver", 0);
-Hook=myIniFile_In.ReadInt("poll", "EnableHook", 0);
-Virtual=myIniFile_In.ReadInt("poll", "EnableVirtual", 0);
+TurboMode = myIniFile_In.ReadInt("poll", "TurboMode", TurboMode);
+PollUnderCursor=myIniFile_In.ReadInt("poll", "PollUnderCursor", PollUnderCursor);
+PollForeground=myIniFile_In.ReadInt("poll", "PollForeground", PollForeground);
+PollFullScreen=myIniFile_In.ReadInt("poll", "PollFullScreen", PollFullScreen);
+PollConsoleOnly=myIniFile_In.ReadInt("poll", "OnlyPollConsole", PollConsoleOnly);
+PollOnEventOnly=myIniFile_In.ReadInt("poll", "OnlyPollOnEvent", PollOnEventOnly);
+MaxCpu=myIniFile_In.ReadInt("poll", "MaxCpu",MaxCpu);
+Driver=myIniFile_In.ReadInt("poll", "EnableDriver",Driver);
+Hook=myIniFile_In.ReadInt("poll", "EnableHook", Hook);
+Virtual=myIniFile_In.ReadInt("poll", "EnableVirtual", Virtual);
 
 SingleWindow=myIniFile_In.ReadInt("poll","SingleWindow",SingleWindow);
 myIniFile_In.ReadString("poll", "SingleWindowName", SingleWindowName,32);

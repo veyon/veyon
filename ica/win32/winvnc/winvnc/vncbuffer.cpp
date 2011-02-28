@@ -61,6 +61,7 @@ vncBuffer::vncBuffer()
 
 	// sf@2005 - Grey Palette
 	m_fGreyPalette = false;
+	m_videodriverused=false;
 }
 
 vncBuffer::~vncBuffer()
@@ -312,6 +313,15 @@ BOOL vncBuffer::SetAccuracy(int nAccuracy)
 	return TRUE;
 }
 
+void vncBuffer::VideDriverUsed(bool enabled)
+{
+	m_videodriverused=enabled;
+}
+
+bool vncBuffer::VideDriverUsed()
+{
+	return m_videodriverused;
+}
 
 
 // Check a specified rectangle for changes and fill the region with
@@ -321,6 +331,13 @@ BOOL vncBuffer::SetAccuracy(int nAccuracy)
 const int BLOCK_SIZE = 32;
 void vncBuffer::CheckRect(rfb::Region2D &dest, rfb::Region2D &cacheRgn, const rfb::Rect &srcrect)
 {
+#ifdef _DEBUG
+					char			szText[256];
+					DWORD error=GetLastError();
+					sprintf(szText,"CheckRect ++++++++++++++++ %i %i %i %i  \n",srcrect.tl.x,srcrect.br.x,srcrect.tl.y,srcrect.br.y);
+					SetLastError(0);
+					OutputDebugString(szText);		
+#endif
 	//only called from desktopthread
 	if (!FastCheckMainbuffer())
 		return;
@@ -352,9 +369,9 @@ void vncBuffer::CheckRect(rfb::Region2D &dest, rfb::Region2D &cacheRgn, const rf
 	// Problem, driver buffer is not writable
 	// so we always need a m_scalednuff
 	unsigned char *TheBuffer;
-	/*if (m_nScale == 1)
+	if (m_nScale == 1 && !m_videodriverused)
 		TheBuffer = m_mainbuff;
-	else*/
+	else
 		TheBuffer = m_ScaledBuff;
 
 	// sf@2004 - Optimization (attempt...)
@@ -731,7 +748,14 @@ void vncBuffer::ScaleRect(rfb::Rect &rect)
 	// Pixels Blending (takes the "medium" pixel of each m_Scale*m_nScale square)
 	// This TrueColor Pixel blending routine comes from the Harakan's WinVNC with Server Side Scaling
 	// Extension. It replaces my own buggy Blending function that given *ugly* results.
-	if (m_scrinfo.format.trueColour && m_nScale!=1)
+	if (m_nScale == 1 && !m_videodriverused)
+	{
+		//nothing to do, we use the current buffer
+		//Thebuffer=mainbuffer
+		//This avoid the memcpy, on slower systems this give
+		// a real speed boost.
+	}
+	else if (m_scrinfo.format.trueColour && m_nScale!=1)
 	{
 		unsigned long lRed;
 		unsigned long lGreen;
@@ -799,10 +823,11 @@ void vncBuffer::ScaleRect(rfb::Rect &rect)
 		UINT nBytesPerPixel = (m_scrinfo.format.bitsPerPixel / 8);
 		for (int y = ScaledRect.tl.y; y < ScaledRect.br.y; y++)
 		{
-			for (int x = 0; x < (ScaledRect.br.x - ScaledRect.tl.x); x++)
+			/*for (int x = 0; x < (ScaledRect.br.x - ScaledRect.tl.x); x++)
 			{
 				memcpy(&pScaled[x * nBytesPerPixel], &pMain[x * m_nScale * nBytesPerPixel], nBytesPerPixel);
-			}
+			}*/
+			memcpy(&pScaled[0], &pMain[0], nBytesPerPixel*(ScaledRect.br.x - ScaledRect.tl.x));
 			// Move the buffers' pointers to their next "line"
 			pMain   += (m_bytesPerRow * m_nScale); // Skip m_nScale lines of the mainbuffer's Rect
 			pScaled += m_bytesPerRow;

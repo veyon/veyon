@@ -87,6 +87,9 @@ const char winvncSoftwarecadHelper[]		= "-softwarecadhelper";
 const char winvncRebootSafe[]		= "-rebootsafemode";
 const char winvncRebootSafeHelper[]	= "-rebootsafemodehelper";
 
+const char winvncRebootForce[]		= "-rebootforce";
+const char winvncRebootForceHelper[]	= "-rebootforcehelper";
+
 const char winvncdelSoftwarecad[]		= "-delsoftwarecad";
 const char winvncdelSoftwarecadHelper[]		= "-delsoftwarecadhelper";
 

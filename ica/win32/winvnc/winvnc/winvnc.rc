@@ -87,7 +87,7 @@ FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     DEFPUSHBUTTON   "OK",IDOK,8,135,54,16
     CONTROL         139,IDC_VNCLOGO,"Static",SS_BITMAP | SS_CENTERIMAGE | SS_SUNKEN,7,5,53,46,WS_EX_TRANSPARENT
-    LTEXT           "UltraVNC Win32 Server 1.0.9.5",IDC_VERSION,73,5,195,11
+    LTEXT           "UltraVNC Win32 Server 1.0.9.6",IDC_VERSION,73,5,195,11
     LTEXT           "Copyright © 2002-2009 UltraVNC Team\nCopyright © 2001-2002 Sam - eSVNC \nCopyright © 1999-2002 Rudi D. V. - VdaccVNC \nCopyright © 2001 Harakan Software - PalmVNC\nCopyright © 1999-2002 Const. Kaplinsky - TightVNC \n",IDC_NAME,74,27,202,41
     LTEXT           "For more Information and Links please visit: \nhttp://www.uvnc.com",IDC_WWW,74,135,141,19
     LTEXT           "Build:",IDC_BUILDTEXT,74,16,20,10
@@ -110,10 +110,11 @@ BEGIN
     PUSHBUTTON      "Cancel",IDCANCEL,165,78,46,14
 END
 
-IDD_ACCEPT_CONN DIALOG 0, 0, 186, 95
-STYLE DS_SETFONT | DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION
+IDD_ACCEPT_CONN DIALOGEX 0, 0, 186, 95
+STYLE DS_SYSMODAL | DS_SETFONT | DS_MODALFRAME | DS_SETFOREGROUND | DS_FIXEDSYS | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION
+EXSTYLE WS_EX_TOPMOST
 CAPTION "Accept WinVNC Connection?"
-FONT 8, "MS Shell Dlg"
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
 BEGIN
     DEFPUSHBUTTON   "&Accept",IDACCEPT,7,74,53,14
     PUSHBUTTON      "&Reject",IDREJECT,130,74,49,14
@@ -123,12 +124,12 @@ BEGIN
     CTEXT           "AutoReject:",IDC_ACCEPT_TIMEOUT,60,74,70,14,SS_CENTERIMAGE
 END
 
-IDD_PROPERTIES DIALOGEX 0, 0, 224, 172
+IDD_PROPERTIES DIALOGEX 0, 0, 224, 191
 STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_FIXEDSYS | DS_CENTER | WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
 CAPTION " Ultr@VNC Server Property Page"
 FONT 8, "MS Shell Dlg", 0, 0, 0x0
 BEGIN
-    GROUPBOX        "Server Screen Updates Handling",IDC_UPDATE_BORDER,6,2,214,94
+    GROUPBOX        "Server Screen Updates Handling",IDC_UPDATE_BORDER,6,2,214,118
     CONTROL         "Poll Full Screen ( Ultra Fast )",IDC_POLL_FULLSCREEN,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,13,112,13
     CONTROL         "Poll Foreground Window",IDC_POLL_FOREGROUND,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,16,28,95,9
@@ -139,24 +140,26 @@ BEGIN
     CONTROL         "Video Hook Driver",IDC_DRIVER,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,68,74,10
     CONTROL         "Low Accuracy ( Turbo Speed )",IDC_TURBOMODE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,81,112,10
     PUSHBUTTON      "Check the Video Hook Driver",IDC_CHECKDRIVER,92,67,121,11
-    GROUPBOX        "Single Window Sharing",IDC_STATIC,5,100,214,47,BS_LEFT
+    GROUPBOX        "Single Window Sharing",IDC_STATIC,5,124,214,47,BS_LEFT
     CONTROL         "Share only the Server Window Named :",IDC_SINGLE_WINDOW,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,14,113,188,10
-    EDITTEXT        IDC_NAME_APPLI,14,127,195,13,ES_AUTOHSCROLL
-    DEFPUSHBUTTON   "&OK",IDOK,81,154,44,14
-    PUSHBUTTON      "&Apply",IDC_APPLY,130,154,43,14
-    PUSHBUTTON      "&Cancel",IDCANCEL,177,154,41,14
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,14,137,188,10
+    EDITTEXT        IDC_NAME_APPLI,14,151,195,13,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "&OK",IDOK,82,174,44,14
+    PUSHBUTTON      "&Apply",IDC_APPLY,131,174,43,14
+    PUSHBUTTON      "&Cancel",IDCANCEL,178,174,41,14
+    EDITTEXT        IDC_MAXCPU,54,99,40,14,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "Max Cpu :",IDC_STATIC,14,102,34,8
 END
 
 IDD_PROPERTIES1 DIALOGEX 0, 0, 390, 297
 STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_FIXEDSYS | DS_CENTER | WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
-CAPTION " Ultr@VNC Server Property Page"
+CAPTION " UltraVNC Server Property Page"
 FONT 8, "MS Shell Dlg", 0, 0, 0x0
 BEGIN
     GROUPBOX        "Incoming Connections",IDC_CONNECT_BORDER,5,3,132,116,BS_LEFT
     CONTROL         "Accept Socket Connections",IDC_CONNECT_SOCK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,15,112,11
     LTEXT           "Display Number or Ports to use:",IDC_DISPLAY_NO_LABEL,11,28,102,9,SS_CENTERIMAGE
-    CONTROL         "Display",IDC_SPECDISPLAY,"Button",BS_AUTORADIOBUTTON,11,41,35,10
+    CONTROL         "Display",IDC_SPECDISPLAY,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,11,41,35,10
     EDITTEXT        IDC_DISPLAYNO,66,41,29,12,ES_AUTOHSCROLL | ES_NUMBER
     CONTROL         "Auto",IDC_AUTO_DISPLAY_NO,"Button",BS_AUTOCHECKBOX | NOT WS_VISIBLE | WS_TABSTOP,102,39,35,13
     CONTROL         "Ports",IDC_SPECPORT,"Button",BS_AUTORADIOBUTTON,11,54,30,10
@@ -170,13 +173,13 @@ BEGIN
     CONTROL         "Allow Loopback Connections",IDC_ALLOWLOOPBACK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,11,91,105,10
     CONTROL         "LoopbackOnly",IDC_LOOPBACKONLY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,11,102,59,10
     GROUPBOX        "When Last Client Disconnects",IDC_LOCKSETTINGS,142,3,104,52,BS_LEFT
-    CONTROL         "Do Nothing",IDC_LOCKSETTING_NOTHING,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,146,15,80,12
-    CONTROL         "Lock Workstation (W2K)",IDC_LOCKSETTING_LOCK,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,146,26,96,13
-    CONTROL         "Logoff Workstation",IDC_LOCKSETTING_LOGOFF,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,146,39,80,11
+    CONTROL         "Do Nothing",IDC_LOCKSETTING_NOTHING,"Button",BS_AUTORADIOBUTTON | WS_GROUP,146,15,80,12
+    CONTROL         "Lock Workstation (W2K)",IDC_LOCKSETTING_LOCK,"Button",BS_AUTORADIOBUTTON,146,26,96,13
+    CONTROL         "Logoff Workstation",IDC_LOCKSETTING_LOGOFF,"Button",BS_AUTORADIOBUTTON,146,39,80,11
     GROUPBOX        "Keyboard && Mouse",IDC_STATIC,142,59,103,60,BS_LEFT
     CONTROL         "Disable Viewers inputs",IDC_DISABLE_INPUTS,"Button",BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,150,70,92,11
     CONTROL         "Disable Local inputs",IDC_DISABLE_LOCAL_INPUTS,"Button",BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,150,82,83,12
-    CONTROL         "Japanese",IDC_JAP_INPUTS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,150,95,89,10
+    CONTROL         "Alternate keyboard method",IDC_JAP_INPUTS,"Button",BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,150,95,89,18
     GROUPBOX        "Query on incoming connection",IDC_STATIC,250,3,136,53,BS_LEFT
     CONTROL         "Display Query Window",IDQUERY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,257,15,86,10
     LTEXT           "Timeout:",IDC_STATIC,275,29,28,8
@@ -327,6 +330,7 @@ BEGIN
     IDD_PROPERTIES, DIALOG
     BEGIN
         VERTGUIDE, 14
+        BOTTOMMARGIN, 172
     END
 
     IDD_PROPERTIES1, DIALOG
@@ -368,8 +372,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 1,0,9,5
- PRODUCTVERSION 1,0,9,5
+ FILEVERSION 1,0,9,6
+ PRODUCTVERSION 1,0,9,6
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x2dL
@@ -386,19 +390,15 @@ BEGIN
         BEGIN
             VALUE "Comments", "UltraVNC - Remote Control for all"
             VALUE "CompanyName", "UltraVNC"
-#ifdef _X64
-			 VALUE "FileDescription", "VNC server for x64"
-#else
             VALUE "FileDescription", "VNC server for win32"
-#endif
-            VALUE "FileVersion", "1.0.9.5"
+            VALUE "FileVersion", "1.0.9.6"
             VALUE "InternalName", "WinVNC"
             VALUE "LegalCopyright", "Copyright © 2010 UltraVNC"
             VALUE "LegalTrademarks", "VNC"
             VALUE "OriginalFilename", "WinVNC.exe"
-            VALUE "PrivateBuild", "1.0.9.5"
+            VALUE "PrivateBuild", "1.0.9.6"
             VALUE "ProductName", "UltraVNC"
-            VALUE "ProductVersion", "1.0.9.5"
+            VALUE "ProductVersion", "1.0.9.6"
         END
     END
     BLOCK "VarFileInfo"
@@ -439,6 +439,7 @@ BEGIN
         MENUITEM "Fix1 SoftwareCad",            ID_SOFTWARECAD
         MENUITEM "Fix2 SoftwareCad",            ID_DELSOFTWARECAD
         MENUITEM "Reboot in safemode",          ID_REBOOTSAFEMODE
+        MENUITEM "Force Reboot (unsafe)",       ID_REBOOT_FORCE
         MENUITEM SEPARATOR
         MENUITEM "&Close VNC Connections",      ID_CLOSE
     END

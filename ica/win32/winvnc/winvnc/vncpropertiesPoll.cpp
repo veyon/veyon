@@ -301,6 +301,9 @@ vncPropertiesPoll::DialogProcPoll(HWND hwnd,
 			}
 
 			// Modif sf@2002
+
+		   SetDlgItemInt(hwnd, IDC_MAXCPU, _this->m_server->MaxCpu(), false);
+
 		   HWND hTurboMode = GetDlgItem(hwnd, IDC_TURBOMODE);
            SendMessage(hTurboMode, BM_SETCHECK, _this->m_server->TurboMode(), 0);
 
@@ -384,7 +387,9 @@ vncPropertiesPoll::DialogProcPoll(HWND hwnd,
 			{
 				
 
-				
+				int maxcpu = GetDlgItemInt(hwnd, IDC_MAXCPU, NULL, FALSE);
+				_this->m_server->MaxCpu(maxcpu);
+
 				// Modif sf@2002
 				HWND hTurboMode = GetDlgItem(hwnd, IDC_TURBOMODE);
 				_this->m_server->TurboMode(SendMessage(hTurboMode, BM_GETCHECK, 0, 0) == BST_CHECKED);
@@ -847,8 +852,7 @@ vncPropertiesPoll::ApplyUserPrefs()
 	m_server->PollFullScreen(m_pref_PollFullScreen);
 	m_server->PollConsoleOnly(m_pref_PollConsoleOnly);
 	m_server->PollOnEventOnly(m_pref_PollOnEventOnly);
-	m_server->MaxCpu(m_pref_MaxCpu);
-		
+	m_server->MaxCpu(m_pref_MaxCpu);	
 	if (CheckVideoDriver(0) && m_pref_Driver) m_server->Driver(m_pref_Driver);
 	else m_server->Driver(false);
 	m_server->Hook(m_pref_Hook);
@@ -940,7 +944,6 @@ vncPropertiesPoll::SaveUserPrefsPoll(HKEY appkey)
 	SaveInt(appkey, "OnlyPollConsole", m_server->PollConsoleOnly());
 	SaveInt(appkey, "OnlyPollOnEvent", m_server->PollOnEventOnly());
 	SaveInt(appkey, "MaxCpu", m_server->MaxCpu());
-
 	SaveInt(appkey, "EnableDriver", m_server->Driver());
 	SaveInt(appkey, "EnableHook", m_server->Hook());
 	SaveInt(appkey, "EnableVirtual", m_server->Virtual());

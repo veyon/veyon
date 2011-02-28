@@ -150,6 +150,9 @@ public:
 
 	// sf@2005 - Grey palette
 	BOOL m_fGreyPalette;
+	bool m_videodriverused;
+	void VideDriverUsed(bool enabled);
+	bool VideDriverUsed();
 };
 
 #endif // _WINVNC_VNCBUFFER

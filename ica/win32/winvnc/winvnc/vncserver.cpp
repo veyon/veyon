@@ -798,6 +798,18 @@ void vncServer::TextChatClient(LPSTR szClientName)
 	vnclog.Print(LL_INTINFO, VNCLOG("KillClient() from name done\n"));
 }
 
+bool vncServer::IsUltraVncViewer()
+{
+	vncClientList::iterator i;
+	omni_mutex_lock l(m_clientsLock);
+
+	for (i = m_authClients.begin(); i != m_authClients.end(); i++)
+	{	
+		if (GetClient(*i)->IsUltraViewer())return true;
+	}
+	return false;
+}
+
 
 void
 vncServer::KillAuthClients()
@@ -2168,6 +2180,24 @@ vncServer::SetNewSWSize(long w,long h,BOOL desktop)
 	{
 		// Post the update
 		if (!GetClient(*i)->SetNewSWSize(w,h,desktop)) {
+			vnclog.Print(LL_INTINFO, VNCLOG("Unable to set new desktop size\n"));
+			KillClient(*i);
+		}
+	}
+}
+
+void
+vncServer::SetNewSWSizeFR(long w,long h,BOOL desktop)
+{
+	vncClientList::iterator i;
+		
+	omni_mutex_lock l(m_clientsLock);
+
+	// Post this screen size update to all the connected clients
+	for (i = m_authClients.begin(); i != m_authClients.end(); i++)
+	{
+		// Post the update
+		if (!GetClient(*i)->SetNewSWSizeFR(w,h,desktop)) {
 			vnclog.Print(LL_INTINFO, VNCLOG("Unable to set new desktop size\n"));
 			KillClient(*i);
 		}
