@@ -42,7 +42,7 @@ Building:
 If some requirements are not fullfilled, CMake will inform you about it and
 you will have to install the missing software before continuing.
 
-After configure ran successfully you can run
+After CMake ran successfully you can run
 
 	make install
 
