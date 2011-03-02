@@ -105,9 +105,6 @@ int main( int argc, char **argv )
 					MainWindow::tr( "An error occured while applying settings!" ) );
 			}
 
-			// remove temporary file
-			QFile( file ).remove();
-
 			return 0;
 		}
 		else if( a == "-listconfig" || a == "-l" )
