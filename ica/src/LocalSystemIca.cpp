@@ -144,6 +144,7 @@ void powerDown( void )
 		QProcess::startDetached( "gdm-signal -h" ); // Gnome shutdown
 		QProcess::startDetached( "gnome-session-save --silent --kill" ); // Gnome logout
 		QProcess::startDetached( "dcop ksmserver ksmserver logout 0 2 0" ); // KDE shutdown
+		QProcess::startDetached( "qdbus org.kde.ksmserver /KSMServer logout 0 2 0" ); // KDE4 shutdown
 	}
 #endif
 }
@@ -158,6 +159,7 @@ void logoutUser( void )
 #else
 	QProcess::startDetached( "gnome-session-save --silent --kill" ); // Gnome logout
 	QProcess::startDetached( "dcop ksmserver ksmserver logout 0 0 0" ); // KDE logout
+	QProcess::startDetached( "qdbus org.kde.ksmserver /KSMServer logout 0 0 0" ); // KDE4 logout
 #endif
 }
 
@@ -179,6 +181,7 @@ void reboot( void )
 		QProcess::startDetached( "gdm-signal -r" ); // Gnome reboot
 		QProcess::startDetached( "gnome-session-save --silent --kill" ); // Gnome logout
 		QProcess::startDetached( "dcop ksmserver ksmserver logout 0 1 0" ); // KDE reboot
+		QProcess::startDetached( "qdbus org.kde.ksmserver /KSMServer logout 0 1 0" ); // KDE4 reboot
 	}
 #endif
 }
