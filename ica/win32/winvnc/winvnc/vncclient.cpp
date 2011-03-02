@@ -4309,7 +4309,7 @@ void
 vncClient::Kill()
 {
 	// Close the socket
-	vnclog.Print(LL_INTERR, VNCLOG("client Kill() called"));
+	vnclog.Print(LL_INTINFO, VNCLOG("client Kill() called"));
 #ifndef ULTRAVNC_ITALC_SUPPORT
 	if (m_pTextChat)
         m_pTextChat->KillDialog();
