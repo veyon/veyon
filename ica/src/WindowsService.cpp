@@ -1,7 +1,7 @@
 /*
  * WindowsService.cpp - implementation of WindowsService-class
  *
- * Copyright (c) 2006-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2011 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -24,6 +24,7 @@
 
 #include <QtCore/QDebug>
 #include <QtCore/QProcess>
+#include <QtCore/QTime>
 #include <QtGui/QApplication>
 #include <QtGui/QMessageBox>
 
@@ -750,6 +751,8 @@ void WindowsService::monitorSessions()
 	const DWORD SESSION_INVALID = 0xFFFFFFFF;
 	DWORD oldSessionId = SESSION_INVALID;
 
+	QTime lastServiceStart;
+
 	while( WaitForSingleObject( s_stopServiceEvent, 1000 ) == WAIT_TIMEOUT )
 	{
 		bool sessionChanged = s_sessionChangeEvent.testAndSetOrdered( 1, 0 );
@@ -782,12 +785,22 @@ void WindowsService::monitorSessions()
 
 			if( oldSessionId != SESSION_INVALID || sessionChanged )
 			{
-				SetEvent( hShutdownEvent );
+				// workaround for situations where service is stopped
+				// while it is still starting up
+				do
+				{
+					SetEvent( hShutdownEvent );
+				}
+				while( lastServiceStart.elapsed() < 10000 && italcProcess.isRunning() );
+
 				italcProcess.stop();
+
+				Sleep( 5000 );
 			}
 			if( sessionId != SESSION_INVALID || sessionChanged )
 			{
 				italcProcess.start( sessionId );
+				lastServiceStart.restart();
 			}
 
 			oldSessionId = sessionId;
@@ -796,6 +809,7 @@ void WindowsService::monitorSessions()
 		{
 			italcProcess.start( sessionId );
 			oldSessionId = sessionId;
+			lastServiceStart.restart();
 		}
 	}
 
