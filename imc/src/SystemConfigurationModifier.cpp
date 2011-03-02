@@ -2,7 +2,7 @@
  * SystemConfigurationModifier.cpp - class for easy modification of iTALC-related
  *                                   settings in the operating system
  *
- * Copyright (c) 2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2010-2011 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -308,7 +308,7 @@ HRESULT WindowsFirewallRemoveApp( INetFwProfile* fwProfile,
 		goto error;
 	}
 
-	// Add the application to the collection.
+	// Remove the application from the collection.
 	hr = fwApps->Remove( fwBstrProcessImageFileName );
 	if( FAILED( hr ) )
 	{
@@ -328,6 +328,149 @@ error:
 
 	return hr;
 }
+
+
+
+HRESULT WindowsFirewallInitialize2( INetFwPolicy2 **fwPolicy2 )
+{
+	HRESULT hr = S_OK;
+
+	// Create an instance of the firewall settings manager.
+	hr = CoCreateInstance( CLSID_NetFwPolicy2, NULL, CLSCTX_INPROC_SERVER,
+							IID_INetFwPolicy2, (void**)fwPolicy2 );
+	if( FAILED( hr ) )
+	{
+		ilog_failedf( "CoCreateInstance()", "0x%08lx\n", hr );
+	}
+
+	return hr;
+}
+
+
+void WindowsFirewallCleanup2( INetFwPolicy2 *fwPolicy2 )
+{
+	if( fwPolicy2 != NULL )
+	{
+		fwPolicy2->Release();
+	}
+}
+
+
+
+HRESULT WindowsFirewallAddApp2( INetFwPolicy2* fwPolicy2,
+								const wchar_t* fwApplicationPath,
+								const wchar_t* fwName )
+{
+	HRESULT hr = S_OK;
+	BSTR fwBstrRuleName = NULL;
+	BSTR fwBstrApplicationPath = NULL;
+	BSTR fwBstrRuleDescription = NULL;
+	BSTR fwBstrRuleGrouping = NULL;
+
+	INetFwRules *pFwRules = NULL;
+	INetFwRule *pFwRule = NULL;
+
+	// Retrieve INetFwRules
+	hr = fwPolicy2->get_Rules( &pFwRules );
+	if( FAILED( hr ) )
+	{
+		ilog_failedf( "get_Rules()", "0x%08lx\n", hr );
+		goto cleanup;
+	}
+
+	// Create an instance of an authorized application.
+	hr = CoCreateInstance( CLSID_NetFwRule, NULL,
+							CLSCTX_INPROC_SERVER,
+							IID_INetFwRule, (void**)&pFwRule );
+	if( FAILED( hr ) )
+	{
+		ilog_failedf( "CoCreateInstance()", "0x%08lx\n", hr );
+		goto cleanup;
+	}
+
+	fwBstrRuleName = SysAllocString( fwName );
+	fwBstrApplicationPath = SysAllocString( fwApplicationPath );
+	fwBstrRuleDescription = SysAllocString( fwName );
+	fwBstrRuleGrouping = SysAllocString( fwName );
+
+	// Set the rule
+	pFwRule->put_Name( fwBstrRuleName );
+	pFwRule->put_ApplicationName( fwBstrApplicationPath );
+	pFwRule->put_Description( fwBstrRuleDescription );
+	pFwRule->put_Grouping( fwBstrRuleGrouping );
+
+	pFwRule->put_Action( NET_FW_ACTION_ALLOW );
+	pFwRule->put_Enabled( VARIANT_TRUE );
+	pFwRule->put_Protocol( NET_FW_IP_PROTOCOL_TCP );
+	pFwRule->put_Profiles( NET_FW_PROFILE2_ALL );
+
+
+	// Add the application to the collection.
+	hr = pFwRules->Add( pFwRule );
+	if( FAILED( hr ) )
+	{
+		ilog_failedf( "Add()", "0x%08lx\n", hr );
+		goto cleanup;
+	}
+
+cleanup:
+	// Free the BSTRs.
+	SysFreeString( fwBstrRuleName );
+	SysFreeString( fwBstrApplicationPath );
+	SysFreeString( fwBstrRuleDescription );
+	SysFreeString( fwBstrRuleGrouping );
+
+	if( pFwRule != NULL )
+	{
+		pFwRule->Release();
+	}
+
+	if( pFwRules != NULL )
+	{
+		pFwRules->Release();
+	}
+
+	return hr;
+}
+
+
+
+HRESULT WindowsFirewallRemoveApp2( INetFwPolicy2 * fwPolicy2,
+									const wchar_t* fwName )
+{
+	HRESULT hr = S_OK;
+	BSTR fwBstrRuleName = SysAllocString( fwName );
+
+	INetFwRules *pFwRules = NULL;
+
+	// Retrieve INetFwRules
+	hr = fwPolicy2->get_Rules( &pFwRules );
+	if( FAILED( hr ) )
+	{
+		ilog_failedf( "get_Rules()", "0x%08lx\n", hr );
+		goto cleanup;
+	}
+
+	// Remove rule
+	hr = pFwRules->Remove( fwBstrRuleName );
+	if( FAILED( hr ) )
+	{
+		ilog_failedf( "Remove()", "0x%08lx\n", hr );
+		goto cleanup;
+	}
+
+cleanup:
+	// Free the BSTRs.
+	SysFreeString( fwBstrRuleName );
+
+	if( pFwRules != NULL )
+	{
+		pFwRules->Release();
+	}
+
+	return hr;
+}
+
 
 #endif
 
@@ -355,14 +498,7 @@ bool SystemConfigurationModifier::enableFirewallException( bool enabled )
 		}
 	}
 
-	// retrieve current firewall profile
-	INetFwProfile* fwProfile = NULL;
-	hr = WindowsFirewallInitialize( &fwProfile );
-	if( FAILED( hr ) )
-	{
-		ilog_failedf( "WindowsFirewallInitialize()", "0x%08lx\n", hr );
-		return false;
-	}
+	static const wchar_t *fwRuleName = L"iTALC Client Application";
 
 	const QString p = ImcCore::icaFilePath().replace( '/', '\\' );
 
@@ -370,22 +506,69 @@ bool SystemConfigurationModifier::enableFirewallException( bool enabled )
 	p.toWCharArray( icaPath );
 	icaPath[p.size()] = 0;
 
-	// always remove firewall exception first
-	hr = WindowsFirewallRemoveApp( fwProfile, icaPath );
+	OSVERSIONINFO ovi;
+	ovi.dwOSVersionInfoSize = sizeof( OSVERSIONINFO );
+	GetVersionEx( &ovi );
 
-	if( enabled )
+	// Windows >= Vista ?
+	if( ovi.dwMajorVersion >= 6 )
 	{
-		// add ICA to the list of authorized applications
-		hr = WindowsFirewallAddApp( fwProfile, icaPath,
-									L"iTALC Client Application" );
+		// code for advanced firewall API
+
+		// retrieve current firewall profile
+		INetFwPolicy2 *fwPolicy2 = NULL;
+		hr = WindowsFirewallInitialize2( &fwPolicy2 );
 		if( FAILED( hr ) )
 		{
-			ilog_failedf( "WindowsFirewallAddApp()", "0x%08lx\n", hr );
+			ilog_failedf( "WindowsFirewallInitialize2()", "0x%08lx\n", hr );
 			return false;
 		}
-	}
 
-	WindowsFirewallCleanup( fwProfile );
+		// always remove firewall exception first
+		hr = WindowsFirewallRemoveApp2( fwPolicy2, fwRuleName );
+
+		if( enabled )
+		{
+			// add ICA to the list of authorized applications
+			hr = WindowsFirewallAddApp2( fwPolicy2, icaPath, fwRuleName );
+			if( FAILED( hr ) )
+			{
+				ilog_failedf( "WindowsFirewallAddApp2()", "0x%08lx\n", hr );
+				return false;
+			}
+		}
+
+		WindowsFirewallCleanup2( fwPolicy2 );
+	}
+	else
+	{
+		// code for old firewall API
+
+		// retrieve current firewall profile
+		INetFwProfile *fwProfile = NULL;
+		hr = WindowsFirewallInitialize( &fwProfile );
+		if( FAILED( hr ) )
+		{
+			ilog_failedf( "WindowsFirewallInitialize()", "0x%08lx\n", hr );
+			return false;
+		}
+
+		// always remove firewall exception first
+		hr = WindowsFirewallRemoveApp( fwProfile, icaPath );
+
+		if( enabled )
+		{
+			// add ICA to the list of authorized applications
+			hr = WindowsFirewallAddApp( fwProfile, icaPath, fwRuleName );
+			if( FAILED( hr ) )
+			{
+				ilog_failedf( "WindowsFirewallAddApp()", "0x%08lx\n", hr );
+				return false;
+			}
+		}
+
+		WindowsFirewallCleanup( fwProfile );
+	}
 
 	// Uninitialize COM.
 	if( SUCCEEDED( comInit ) )
