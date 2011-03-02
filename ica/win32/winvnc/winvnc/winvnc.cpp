@@ -990,14 +990,14 @@ void CALLBACK fpTimer(UINT uID, UINT uMsg, DWORD dwUser, DWORD dw1, DWORD dw2)
 void InitSDTimer()
 {
 	if (mmRes != (MMRESULT)-1) return;
-	vnclog.Print(LL_INTERR, VNCLOG("****************** Init SDTimer\n"));
+	vnclog.Print(LL_INTINFO, VNCLOG("****************** Init SDTimer\n"));
 	mmRes = timeSetEvent( 2000, 0, (LPTIMECALLBACK)fpTimer, 0, TIME_PERIODIC );
 }
 
 
 void KillSDTimer()
 {
-	vnclog.Print(LL_INTERR, VNCLOG("****************** Kill SDTimer\n"));
+	vnclog.Print(LL_INTINFO, VNCLOG("****************** Kill SDTimer\n"));
 	timeKillEvent(mmRes);
 	mmRes = -1;
 }
@@ -1025,10 +1025,11 @@ int WinVNCAppMain()
 	{
 		if (!instancehan->Init())
 		{	
-    		vnclog.Print(LL_INTINFO, VNCLOG("%s -- exiting\n"), sz_ID_ANOTHER_INST);
+    		vnclog.Print(LL_ERROR, VNCLOG("%s -- exiting\n"), sz_ID_ANOTHER_INST);
 			// We don't allow multiple instances!
-			if (!fRunningFromExternalService)
-				MessageBox(NULL, sz_ID_ANOTHER_INST, szAppName, MB_OK);
+			/*if (!fRunningFromExternalService)
+				MessageBox(NULL, sz_ID_ANOTHER_INST, szAppName, MB_OK);*/
+			Sleep( 5000 );
 			return 0;
 		}
 	}
