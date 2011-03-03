@@ -24,6 +24,8 @@
 
 #include <italcconfig.h>
 
+#include <QtGui/QPushButton>
+
 #include "PasswordDialog.h"
 #include "LocalSystem.h"
 
@@ -51,6 +53,8 @@ PasswordDialog::PasswordDialog( QWidget *parent ) :
 	{
 		ui->password->setFocus();
 	}
+
+	updateOkButton();
 }
 
 
@@ -72,5 +76,13 @@ QString PasswordDialog::username() const
 QString PasswordDialog::password() const
 {
 	return ui->password->text();
+}
+
+
+
+void PasswordDialog::updateOkButton()
+{
+	ui->buttonBox->button( QDialogButtonBox::Ok )->
+					setEnabled( !username().isEmpty() && !password().isEmpty() );
 }
 

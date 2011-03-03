@@ -1,7 +1,7 @@
 /*
  * PasswordDialog.h - declaration of password dialog
  *
- * Copyright (c) 2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2010-2011 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -31,12 +31,17 @@ namespace Ui { class PasswordDialog; }
 
 class PasswordDialog : public QDialog
 {
+	Q_OBJECT
 public:
 	PasswordDialog( QWidget *parent );
 	virtual ~PasswordDialog();
 
 	QString username() const;
 	QString password() const;
+
+
+private slots:
+	void updateOkButton();
 
 
 private:
