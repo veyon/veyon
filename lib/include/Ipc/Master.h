@@ -1,7 +1,7 @@
 /*
  * IpcMaster.h - class Ipc::Master which manages Ipc::Slaves
  *
- * Copyright (c) 2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2010-2011 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  * Copyright (c) 2010 Univention GmbH
  *
  * This file is part of iTALC - http://italc.sourceforge.net
@@ -51,7 +51,7 @@ public:
 		return m_applicationFilePath;
 	}
 
-	void createSlave( const Ipc::Id &id, SlaveLauncher *slaveLauncher = NULL );
+	virtual void createSlave( const Ipc::Id &id, SlaveLauncher *slaveLauncher = NULL );
 	void stopSlave( const Ipc::Id &id );
 	bool isSlaveRunning( const Ipc::Id &id );
 

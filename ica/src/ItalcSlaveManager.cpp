@@ -1,7 +1,7 @@
 /*
  * ItalcSlaveManager.cpp - ItalcSlaveManager which manages (GUI) slave apps
  *
- * Copyright (c) 2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2010-2011 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  * Copyright (c) 2010 Univention GmbH
  *
  * This file is part of iTALC - http://italc.sourceforge.net
@@ -31,6 +31,7 @@
 #include "ItalcConfiguration.h"
 #include "ItalcCore.h"
 #include "ItalcSlaveManager.h"
+#include "LocalSystem.h"
 #include "ScreenLockSlaveLauncher.h"
 
 const Ipc::Id ItalcSlaveManager::IdCoreServer = "CoreServer";
@@ -251,6 +252,24 @@ int ItalcSlaveManager::slaveStateFlags()
 	return s;
 }
 
+
+
+void ItalcSlaveManager::createSlave( const Ipc::Id &id, Ipc::SlaveLauncher *slaveLauncher )
+{
+	// only launch interactive iTALC slaves (screen lock, demo, message box,
+	// access dialog) if a user is logged on - prevents us from messing up logon
+	// dialog on Windows
+	if( id == IdSystemTrayIcon ||
+			!LocalSystem::User::loggedOnUser().name().isEmpty() )
+	{
+		Ipc::Master::createSlave( id, slaveLauncher );
+	}
+	else
+	{
+		qDebug() << "ItalcSlaveManager: not creating slave" << id
+					<< "as no user is logged on.";
+	}
+}
 
 
 

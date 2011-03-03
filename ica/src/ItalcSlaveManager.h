@@ -1,7 +1,7 @@
 /*
  * ItalcSlaveManager.h - ItalcSlaveManager which manages (GUI) slave apps
  *
- * Copyright (c) 2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2010-2011 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  * Copyright (c) 2010 Univention GmbH
  *
  * This file is part of iTALC - http://italc.sourceforge.net
@@ -113,6 +113,9 @@ public:
 
 
 private:
+	virtual void createSlave( const Ipc::Id &id,
+								Ipc::SlaveLauncher *slaveLauncher = NULL );
+
 	virtual bool handleMessage( const Ipc::Id &slaveId, const Ipc::Msg &m );
 
 	DemoServerMaster m_demoServerMaster;
