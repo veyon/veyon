@@ -1,7 +1,7 @@
 /*
  * ScreenLockSlaveLauncher.cpp - a SlaveLauncher for the ScreenLockSlave
  *
- * Copyright (c) 2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2010-2011 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  * Copyright (c) 2010 Univention GmbH
  *
  * This file is part of iTALC - http://italc.sourceforge.net
@@ -97,8 +97,11 @@ void ScreenLockSlaveLauncher::stop()
 	if( m_lockProcess )
 	{
 		SwitchDesktop( m_origInputDesktop );
-
-		TerminateProcess( m_lockProcess, 0 );
+		if( WaitForSingleObject( m_lockProcess, 10000 ) == WAIT_TIMEOUT )
+		{
+			qWarning( "ScreenLockSlaveLauncher: calling TerminateProcess()" );
+			TerminateProcess( m_lockProcess, 0 );
+		}
 		CloseDesktop( m_newDesktop );
 
 		m_lockProcess = NULL;
