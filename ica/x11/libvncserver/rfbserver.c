@@ -1350,6 +1350,9 @@ rfbBool rfbSendFileTransferChunk(rfbClientPtr cl)
 	n = select(cl->sock + 1, NULL, &wfds, NULL, &tv);
 
 	if (n<0) {
+#ifdef WIN32
+	    errno=WSAGetLastError();
+#endif
             rfbLog("rfbSendFileTransferChunk() select failed: %s\n", strerror(errno));
 	}
         /* We have space on the transmit queue */
@@ -1369,6 +1372,9 @@ rfbBool rfbSendFileTransferChunk(rfbClientPtr cl)
                 return retval;
             case -1:
                 /* TODO : send an error msg to the client... */
+#ifdef WIN32
+	        errno=WSAGetLastError();
+#endif
                 rfbLog("rfbSendFileTransferChunk(): %s\n",strerror(errno));
                 retval = rfbSendFileTransferMessage(cl, rfbAbortFileTransfer, 0, 0, 0, NULL);
                 close(cl->fileTransfer.fd);

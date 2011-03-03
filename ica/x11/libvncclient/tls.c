@@ -62,6 +62,9 @@ PushTLS(gnutls_transport_ptr_t transport, const void *data, size_t len)
     ret = write(client->sock, data, len);
     if (ret < 0)
     {
+#ifdef WIN32
+      errno=WSAGetLastError();
+#endif
       if (errno == EINTR) continue;
       return -1;
     }
@@ -81,6 +84,9 @@ PullTLS(gnutls_transport_ptr_t transport, void *data, size_t len)
     ret = read(client->sock, data, len);
     if (ret < 0)
     {
+#ifdef WIN32
+      errno=WSAGetLastError();
+#endif
       if (errno == EINTR) continue;
       return -1;
     }

@@ -567,6 +567,9 @@ rfbWriteExact(rfbClientPtr cl,
             tv.tv_usec = 0;
             n = select(sock+1, NULL, &fds, NULL /* &fds */, &tv);
 	    if (n < 0) {
+#ifdef WIN32
+                errno=WSAGetLastError();
+#endif
        	        if(errno==EINTR)
 		    continue;
                 rfbLogPerror("WriteExact: select");

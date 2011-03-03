@@ -269,6 +269,9 @@ httpProcessInput(rfbScreenInfoPtr rfbScreen)
 	    if (got == 0) {
 		rfbErr("httpd: premature connection close\n");
 	    } else {
+#ifdef WIN32
+	        errno=WSAGetLastError();
+#endif
 		if (errno == EAGAIN) {
 		    return;
 		}
