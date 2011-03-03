@@ -2,7 +2,7 @@
  * LocalSystem.cpp - namespace LocalSystem, providing an interface for
  *				   transparent usage of operating-system-specific functions
  *
- * Copyright (c) 2006-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2011 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -159,10 +159,10 @@ User::User( const QString &name, const QString &dom, const QString &fullname ) :
 #ifdef ITALC_BUILD_WIN32
 	// try to look up the user -> domain
 	DWORD sidLen = 256;
-	char domain[256];
-	domain[0] = 0;
+	char domainName[MAX_PATH];
+	domainName[0] = 0;
 	char *sid = new char[sidLen];
-	DWORD domainLen = sizeof( domain );
+	DWORD domainLen = MAX_PATH;
 	SID_NAME_USE snu;
 	m_userToken = sid;
 
@@ -170,7 +170,7 @@ User::User( const QString &name, const QString &dom, const QString &fullname ) :
 							m_name.toAscii().constData(),
 							m_userToken,		// SID
 							&sidLen,
-							domain,
+							domainName,
 							&domainLen,
 							&snu ) )
 	{
@@ -180,8 +180,16 @@ User::User( const QString &name, const QString &dom, const QString &fullname ) :
 
 	if( m_domain.isEmpty() )
 	{
-		m_domain = domain;
+		CHAR computerName[MAX_PATH];
+		DWORD size = MAX_PATH;
+		GetComputerName( computerName, &size );
+
+		if( QString( domainName ) != computerName )
+		{
+			m_domain = domainName;
+		}
 	}
+
 #else
 	m_userToken = getuid();
 #endif
@@ -278,6 +286,21 @@ User User::loggedOnUser()
 
 	userName = querySessionInformation( sessionId, WTSUserName );
 	domainName = querySessionInformation( sessionId, WTSDomainName );
+
+	// check whether we just got the name of the local computer
+	if( !domainName.isEmpty() )
+	{
+		CHAR computerName[MAX_PATH];
+		DWORD size = MAX_PATH;
+		GetComputerName( computerName, &size );
+
+		if( domainName == computerName )
+		{
+			// reset domain name as storing the local computer's name
+			// doesn't help here
+			domainName = QString();
+		}
+	}
 
 #else
 
@@ -386,7 +409,14 @@ void User::lookupNameAndDomain()
 
 	if( m_domain.isEmpty() )
 	{
-		m_domain = domainName;
+		CHAR computerName[MAX_PATH];
+		DWORD size = MAX_PATH;
+		GetComputerName( computerName, &size );
+
+		if( QString( domainName ) != computerName )
+		{
+			m_domain = domainName;
+		}
 	}
 
 	delete[] accName;
