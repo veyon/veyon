@@ -1,7 +1,7 @@
 /*
  * MainWindow.cpp - implementation of MainWindow class
  *
- * Copyright (c) 2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2010-2011 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -566,7 +566,7 @@ void MainWindow::generateBugReportArchive()
 			QFile logfile( d.absoluteFilePath( f ) );
 			logfile.open( QFile::ReadOnly );
 			QByteArray data = qCompress( logfile.readAll() ).toBase64();
-			obj.setValue( logfile.fileName(), data, "LogFiles" );
+			obj.setValue( QFileInfo( logfile ).baseName(), data, "LogFiles" );
 		}
 	}
 
