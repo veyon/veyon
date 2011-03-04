@@ -23,6 +23,10 @@
 //
 #include "EventLogging.h"
 
+#ifdef ULTRAVNC_ITALC_SUPPORT
+#include "Logger.h"
+
+#else
 
 EventLogging::EventLogging()
 {
@@ -98,6 +102,8 @@ void EventLogging::AddEventSourceToRegistry(LPCTSTR lpszSourceName)
     } RegCloseKey(hk);
 }
 
+#endif
+
 void LOG(long EventID, const TCHAR *format, ...) {
     FILE *file;
 	TCHAR szMslogonLog[MAX_PATH];
@@ -112,6 +118,9 @@ void LOG(long EventID, const TCHAR *format, ...) {
 	va_start(ap, format);
 	_vstprintf(szText, format, ap);
 	va_end(ap);
+#ifdef ULTRAVNC_ITALC_SUPPORT
+	ilog( Info, szText );
+#else
 	ps[0] = szText;
     EventLogging log;
 	log.AddEventSourceToRegistry(NULL);
@@ -144,5 +153,6 @@ void LOG(long EventID, const TCHAR *format, ...) {
 		fwrite(texttowrite, sizeof(char), strlen(texttowrite),file);
 		fclose(file);
 	}
+#endif
 }
   

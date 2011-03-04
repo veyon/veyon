@@ -63,16 +63,12 @@ int CUPSD(const char * userin, const char *password, const char *machine)
 		vncAccessControl vncAC;
 		isAccessOK = CUPSD2(userin, password, vncAC.GetSD(), &isAuthenticated, &dwAccessGranted);
 		// This logging should be moved to LOGLOGONUSER etc.
-		FILE *file = fopen("WinVNC-authSSP.log", "a");
-		if (file) {
             time_t current;
 			time(&current);
 			char* timestr = ctime(&current);
 			timestr[24] = '\0'; // remove newline
-			fprintf(file, "%s - CUPSD2: Access is %u, user %s is %sauthenticated, access granted is 0x%x\n",
+			LOG(0, "%s - CUPSD2: Access is %u, user %s is %sauthenticated, access granted is 0x%x\n",
 				timestr, isAccessOK, userin, isAuthenticated ? "" : "not ", (int) dwAccessGranted);
-			fclose(file);
-		}
 	} else { // message text to be moved to localization.h
 		MessageBox(NULL, _T("New MS-Logon currently not supported on Win9x"), _T("Warning"), MB_OK);
 		return FALSE;
