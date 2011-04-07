@@ -51,6 +51,10 @@
 #include <time.h>
 
 #ifdef LIBVNCSERVER_WITH_CLIENT_GCRYPT
+#ifdef WIN32
+#undef SOCKET
+#undef socklen_t
+#endif
 #include <gcrypt.h>
 #endif
 
@@ -556,11 +560,6 @@ ReadSupportedSecurityType(rfbClient* client, uint32_t *result, rfbBool subAuth)
         ReadReason(client);
         return FALSE;
     }
-    if (count>sizeof(tAuth))
-    {
-        rfbClientLog("%d security types are too many; maximum is %d\n", count, sizeof(tAuth));
-        return FALSE;
-    }
 
     rfbClientLog("We have %d security types to read\n", count);
     authScheme=0;
@@ -570,7 +569,7 @@ ReadSupportedSecurityType(rfbClient* client, uint32_t *result, rfbBool subAuth)
         if (!ReadFromRFBServer(client, (char *)&tAuth[loop], 1)) return FALSE;
         rfbClientLog("%d) Received security type %d\n", loop, tAuth[loop]);
         if (flag) continue;
-        if (tAuth[loop]==rfbVncAuth || tAuth[loop]==rfbNoAuth || tAuth[loop]==rfbMSLogon ||
+        if (tAuth[loop]==rfbVncAuth || tAuth[loop]==rfbNoAuth ||
 			( tAuth[loop] == rfbUltraVNC_MsLogonIIAuth && isLogonAuthenticationEnabled( client ) ) ||
 			tAuth[loop] == rfbSecTypeItalc ||
             tAuth[loop]==rfbARD ||
@@ -665,7 +664,6 @@ FreeUserCredential(rfbCredential *cred)
   free(cred);
 }
 
-#ifdef LIBVNCSERVER_WITH_CLIENT_TLS
 static rfbBool
 HandlePlainAuth(rfbClient *client)
 {
@@ -719,7 +717,6 @@ HandlePlainAuth(rfbClient *client)
 
   return TRUE;
 }
-#endif
 
 /* Simple 64bit big integer arithmetic implementation */
 /* (x + y) % m, works even if (x + y) > 64bit */

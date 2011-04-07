@@ -96,6 +96,7 @@
  * data.
  */
 
+
 /*
  * rfbSendRectEncodingZRLE - send a given rectangle using ZRLE encoding.
  */

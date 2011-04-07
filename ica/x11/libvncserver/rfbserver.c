@@ -1271,10 +1271,10 @@ rfbBool rfbSendDirContent(rfbClientPtr cl, int length, char *buffer)
                 rfbLog("rfbProcessFileTransfer() rfbDirContentRequest: rfbRDirContent: Sending \"%s\"\n", (char *)win32filename.cFileName);
                 */
                 if (rfbSendFileTransferMessage(cl, rfbDirPacket, rfbADirectory, 0, nOptLen, (char *)&win32filename)==FALSE)
-				{
-					closedir(dirp);
-					return FALSE;
-				}
+                {
+                    closedir(dirp);
+                    return FALSE;
+                }
             }
         }
     }
@@ -1657,7 +1657,7 @@ rfbBool rfbProcessFileTransfer(rfbClientPtr cl, uint8_t contentType, uint8_t con
 #ifdef LIBVNCSERVER_HAVE_LIBZ
                 /* compressed packet */
                 nRet = uncompress(compBuff,&nRawBytes,(const unsigned char*)buffer, length);
-                retval=write(cl->fileTransfer.fd, compBuff, nRawBytes);
+                retval=write(cl->fileTransfer.fd, (char*)compBuff, nRawBytes);
 #else
                 /* Write the file out as received... */
                 retval=write(cl->fileTransfer.fd, buffer, length);
@@ -3265,7 +3265,7 @@ void
 rfbNewUDPConnection(rfbScreenInfoPtr rfbScreen,
                     int sock)
 {
-    if (write(sock, &ptrAcceleration, 1) < 0) {
+  if (write(sock, (char*) &ptrAcceleration, 1) < 0) {
 	rfbLogPerror("rfbNewUDPConnection: write");
     }
 }

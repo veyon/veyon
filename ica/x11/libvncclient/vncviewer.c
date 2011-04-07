@@ -331,21 +331,6 @@ rfbBool rfbInitClient(rfbClient* client,int* argc,char** argv) {
   }
 
   if(!rfbInitConnection(client)) {
-	if(argc && argv == NULL)
-	{
-		if( client->sock < 0 )
-		{
-			*argc = -1;
-		}
-		if( client->desktopName == NULL )
-		{
-			*argc = 1;
-		}
-		else
-		{
-			*argc = 0;
-		}
-	}
     rfbClientCleanup(client);
     return FALSE;
   }

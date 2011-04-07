@@ -142,11 +142,7 @@ void ZRLE_ENCODE_TILE(PIXEL_T* data, int w, int h, zrleOutStream* os,
   PIXEL_T* end = ptr + h * w;
   *end = ~*(end-1); /* one past the end is different so the while loop ends */
 
-#if 0
-  ph = &paletteHelper;
-#else
   ph = (zrlePaletteHelper *) paletteHelper;
-#endif
   zrlePaletteHelperInit(ph);
 
   while (ptr < end) {

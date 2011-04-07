@@ -50,7 +50,7 @@ rfbSendOneRectEncodingUltra(rfbClientPtr cl,
     	   + (x * (cl->scaledScreen->bitsPerPixel / 8)));
 
     int maxRawSize;
-    int maxCompSize;
+    lzo_uint maxCompSize;
 
     maxRawSize = (w * h * (cl->format.bitsPerPixel / 8));
 
@@ -68,7 +68,7 @@ rfbSendOneRectEncodingUltra(rfbClientPtr cl,
      */
     maxCompSize = (maxRawSize + maxRawSize / 16 + 64 + 3);
 
-    if (cl->afterEncBufSize < maxCompSize) {
+    if (cl->afterEncBufSize < (int)maxCompSize) {
 	cl->afterEncBufSize = maxCompSize;
 	if (cl->afterEncBuf == NULL)
 	    cl->afterEncBuf = (char *)malloc(cl->afterEncBufSize);
@@ -92,7 +92,7 @@ rfbSendOneRectEncodingUltra(rfbClientPtr cl,
     }
 
     /* Perform the compression here. */
-    deflateResult = lzo1x_1_compress((unsigned char *)cl->beforeEncBuf, (lzo_uint)(w * h * (cl->format.bitsPerPixel / 8)), (unsigned char *)cl->afterEncBuf, (lzo_uint *)&maxCompSize, cl->lzoWrkMem);
+    deflateResult = lzo1x_1_compress((unsigned char *)cl->beforeEncBuf, (lzo_uint)(w * h * (cl->format.bitsPerPixel / 8)), (unsigned char *)cl->afterEncBuf, &maxCompSize, cl->lzoWrkMem);
     /* maxCompSize now contains the compressed size */
 
     /* Find the total size of the resulting compressed data. */
