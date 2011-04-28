@@ -1,7 +1,8 @@
-/* lzoconf.h -- configuration for the LZO real-time data compression library
+/* lzoconf.h -- configuration of the LZO data compression library
 
    This file is part of the LZO real-time data compression library.
 
+   Copyright (C) 2011 Markus Franz Xaver Johannes Oberhumer
    Copyright (C) 2010 Markus Franz Xaver Johannes Oberhumer
    Copyright (C) 2009 Markus Franz Xaver Johannes Oberhumer
    Copyright (C) 2008 Markus Franz Xaver Johannes Oberhumer
@@ -43,9 +44,9 @@
 #ifndef __LZOCONF_H_INCLUDED
 #define __LZOCONF_H_INCLUDED 1
 
-#define LZO_VERSION             0x2040
-#define LZO_VERSION_STRING      "2.04"
-#define LZO_VERSION_DATE        "Oct 31 2010"
+#define LZO_VERSION             0x2050
+#define LZO_VERSION_STRING      "2.05"
+#define LZO_VERSION_DATE        "Apr 23 2011"
 
 /* internal Autoconf configuration file - only used when building LZO */
 #if defined(LZO_HAVE_CONFIG_H)
@@ -159,6 +160,27 @@ extern "C" {
 #  endif
 #endif
 
+/* Integral types with exactly 64 bits. */
+#if !defined(LZO_UINT64_MAX)
+#  if (LZO_UINT_MAX >= LZO_0xffffffffL)
+#   if ((((LZO_UINT_MAX) >> 31) >> 31) == 3)
+#    define lzo_uint64          lzo_uint
+#    define lzo_int64           lzo_int
+#    define LZO_UINT64_MAX      LZO_UINT_MAX
+#    define LZO_INT64_MAX       LZO_INT_MAX
+#    define LZO_INT64_MIN       LZO_INT_MIN
+#   endif
+#  elif (ULONG_MAX >= LZO_0xffffffffL)
+#   if ((((ULONG_MAX) >> 31) >> 31) == 3)
+     typedef unsigned long      lzo_uint64;
+     typedef long               lzo_int64;
+#    define LZO_UINT64_MAX      ULONG_MAX
+#    define LZO_INT64_MAX       LONG_MAX
+#    define LZO_INT64_MIN       LONG_MIN
+#   endif
+#  endif
+#endif
+
 /* The larger type of lzo_uint and lzo_uint32. */
 #if (LZO_UINT_MAX >= LZO_UINT32_MAX)
 #  define lzo_xint              lzo_uint
@@ -186,6 +208,10 @@ extern "C" {
 #define lzo_ushortp             unsigned short __LZO_MMODEL *
 #define lzo_uint32p             lzo_uint32 __LZO_MMODEL *
 #define lzo_int32p              lzo_int32 __LZO_MMODEL *
+#if defined(LZO_UINT64_MAX)
+#define lzo_uint64p             lzo_uint64 __LZO_MMODEL *
+#define lzo_int64p              lzo_int64 __LZO_MMODEL *
+#endif
 #define lzo_uintp               lzo_uint __LZO_MMODEL *
 #define lzo_intp                lzo_int __LZO_MMODEL *
 #define lzo_xintp               lzo_xint __LZO_MMODEL *
@@ -308,7 +334,7 @@ struct lzo_callback_t
  */
 #define LZO_E_OK                    0
 #define LZO_E_ERROR                 (-1)
-#define LZO_E_OUT_OF_MEMORY         (-2)    /* [not used right now] */
+#define LZO_E_OUT_OF_MEMORY         (-2)    /* [lzo_alloc_func_t failure] */
 #define LZO_E_NOT_COMPRESSIBLE      (-3)    /* [not used right now] */
 #define LZO_E_INPUT_OVERRUN         (-4)
 #define LZO_E_OUTPUT_OVERRUN        (-5)
@@ -316,6 +342,7 @@ struct lzo_callback_t
 #define LZO_E_EOF_NOT_FOUND         (-7)
 #define LZO_E_INPUT_NOT_CONSUMED    (-8)
 #define LZO_E_NOT_YET_IMPLEMENTED   (-9)    /* [not used right now] */
+#define LZO_E_INVALID_ARGUMENT      (-10)
 
 
 #ifndef lzo_sizeof_dict_t

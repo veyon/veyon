@@ -2,6 +2,7 @@
 
    This file is part of the LZO real-time data compression library.
 
+   Copyright (C) 2011 Markus Franz Xaver Johannes Oberhumer
    Copyright (C) 2010 Markus Franz Xaver Johannes Oberhumer
    Copyright (C) 2009 Markus Franz Xaver Johannes Oberhumer
    Copyright (C) 2008 Markus Franz Xaver Johannes Oberhumer
@@ -487,7 +488,7 @@
 #  if defined(__clang_major__) && defined(__clang_minor__) && defined(__clang_patchlevel__)
 #    define LZO_CC_CLANG_CLANG  (__clang_major__ * 0x10000L + __clang_minor__ * 0x100 + __clang_patchlevel__)
 #  else
-#    define LZO_CC_CLANG_CLANG  0x020700L
+#    define LZO_CC_CLANG_CLANG  0x010000L
 #  endif
 #  define LZO_CC_CLANG          LZO_CC_CLANG_GNUC
 #  define LZO_INFO_CC           "clang"
