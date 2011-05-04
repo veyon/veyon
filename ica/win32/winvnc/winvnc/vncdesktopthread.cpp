@@ -602,7 +602,7 @@ void vncDesktopThread::do_polling(HANDLE& threadHandle, rfb::Region2D& rgncache,
 
 	//if (cursormoved)
 	//	m_lLastMouseMoveTime = lTime;
-	
+	if (cursormoved) m_desktop->idle_counter=0;
 	if ((m_desktop->m_server->PollFullScreen() /*&& !cursormoved*/) || (!m_desktop->can_be_hooked && !cursormoved))
 	{
 		int timeSinceLastMouseMove = lTime - m_lLastMouseMoveTime;
@@ -785,7 +785,7 @@ vncDesktopThread::run_undetached(void *arg)
 		DWORD result;
 		newtick = timeGetTime();
 		int waittime;
-		waittime=200;
+		waittime=33;
 		if (m_desktop->VideoBuffer() && m_desktop->m_hookdriver) 
 		{
 			int fastcounter=0;
@@ -859,11 +859,11 @@ vncDesktopThread::run_undetached(void *arg)
 									// can cause a very long wait time
 								}	
 								
-								#ifdef _DEBUG
+								/*#ifdef _DEBUG
 										char			szText[256];
 										sprintf(szText," cpu2: %d %i %i\n",cpuUsage,MIN_UPDATE_INTERVAL,newtick-oldtick);
 										OutputDebugString(szText);		
-								#endif
+								#endif*/
 								//oldtick=newtick;
 								if (m_desktop->VideoBuffer() && m_desktop->m_hookdriver) handle_driver_changes(rgncache,updates);
 								m_desktop->m_update_triggered = FALSE;

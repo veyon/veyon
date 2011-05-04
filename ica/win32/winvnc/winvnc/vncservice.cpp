@@ -884,6 +884,12 @@ vncService::PostAddAutoConnectClient( const char* pszId )
 }
 
 BOOL
+vncService::PostAddStopConnectClient()
+{
+	return ( PostToWinVNC(MENU_STOP_RECONNECT_MSG, 0, 0) );
+}
+
+BOOL
 vncService::PostAddConnectClient( const char* pszId )
 {
 	ATOM aId = INVALID_ATOM;

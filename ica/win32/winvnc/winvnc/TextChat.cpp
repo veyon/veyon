@@ -39,7 +39,7 @@
 
 //	[v1.0.2-jp1 fix]
 LRESULT CALLBACK SBProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
-LONG pDefSBProc;
+LONG pDefSBProc=NULL;
 extern HINSTANCE	hInstResDLL;
 
 extern HINSTANCE	hAppInstance;
@@ -438,7 +438,7 @@ LRESULT CALLBACK TextChat::DoDialogThread(LPVOID lpParameter)
  	 //DialogBoxParam(hAppInstance, MAKEINTRESOURCE(IDD_TEXTCHAT_DLG), 
 	 //						NULL, (DLGPROC) TextChatDlgProc, (LONG) _this);
  	 DialogBoxParam(hInstResDLL, MAKEINTRESOURCE(IDD_TEXTCHAT_DLG), 
-	 						NULL, (DLGPROC) TextChatDlgProc, (LONG) _this);
+	 						NULL, (DLGPROC) TextChatDlgProc, (LPARAM) _this);
 	 SetThreadDesktop(old_desktop);
 	 if (desktop) CloseDesktop(desktop);
 	 return 0;
@@ -532,10 +532,14 @@ void AdjustBottom(LPRECT lprc)
 //
 //
 //
-BOOL CALLBACK TextChat::TextChatDlgProc(  HWND hWnd,  UINT uMsg,  WPARAM wParam, LPARAM lParam ) {
+INT_PTR CALLBACK TextChat::TextChatDlgProc(  HWND hWnd,  UINT uMsg,  WPARAM wParam, LPARAM lParam ) {
 
     TextChat *_this = helper::SafeGetWindowUserData<TextChat>(hWnd);
-
+#ifdef _DEBUG
+					char			szText[256];
+					sprintf(szText," ++++++ uMsg %i\n",uMsg);
+					OutputDebugString(szText);		
+#endif
 	switch (uMsg)
 	{
 	case WM_INITDIALOG:
@@ -572,26 +576,23 @@ BOOL CALLBACK TextChat::TextChatDlgProc(  HWND hWnd,  UINT uMsg,  WPARAM wParam,
 			_this->SetTextFormat(); //  Set character formatting and background color
 			SendDlgItemMessage( hWnd, IDC_CHATAREA_EDIT, EM_SETBKGNDCOLOR, FALSE, 0xFFFFFF ); 
 
-			// if (!_this->m_fPersistentTexts)
-			{
-				memset(_this->m_szLastLocalText, 0, TEXTMAXSIZE); // Future retype functionnality
-				memset(_this->m_szTextBoxBuffer, 0, TEXTMAXSIZE); // Clear Chat area 
+			memset(_this->m_szLastLocalText, 0, TEXTMAXSIZE); // Future retype functionnality
+			memset(_this->m_szTextBoxBuffer, 0, TEXTMAXSIZE); // Clear Chat area 
 				//  Load and display diclaimer message
 				// sf@2005 - Only if the DSMplugin is used
-				if (!_this->m_pCC->m_server->GetDSMPluginPointer()->IsEnabled())
+			if (!_this->m_pCC->m_server->GetDSMPluginPointer()->IsEnabled())
 				{
 					//	[v1.0.2-jp1 fix]
-					//if (LoadString(hAppInstance,IDS_WARNING,_this->m_szRemoteText, TEXTMAXSIZE -1) )
-					//	_this->PrintMessage(_this->m_szRemoteText, NULL ,GREY);
 					if (LoadString(hInstResDLL,IDS_WARNING,_this->m_szRemoteText, TEXTMAXSIZE -1) )
 						_this->PrintMessage(_this->m_szRemoteText, NULL ,GREY);
 				}
-			}
-			// else
-			//	SendDlgItemMessage(hWnd,IDC_CHATAREA_EDIT, WM_SETTEXT, 0, (LONG)_this->m_szTextBoxBuffer);
+
+
 			
 			// Scroll down the chat window
 			// The following seems necessary under W9x & Me if we want the Edit to scroll to bottom...
+
+
 			SCROLLINFO si;
 			ZeroMemory(&si, sizeof(SCROLLINFO));
 			si.cbSize = sizeof(SCROLLINFO);
@@ -599,25 +600,24 @@ BOOL CALLBACK TextChat::TextChatDlgProc(  HWND hWnd,  UINT uMsg,  WPARAM wParam,
 			GetScrollInfo(GetDlgItem(hWnd, IDC_CHATAREA_EDIT), SB_VERT, &si);
 			si.nPos = si.nMax - max(si.nPage - 1, 0);
 			SendDlgItemMessage(hWnd, IDC_CHATAREA_EDIT, WM_VSCROLL, MAKELONG(SB_THUMBPOSITION, si.nPos), 0L);	
-			// This line does the bottom scrolling correctly under NT4,W2K, XP...
-			// SendDlgItemMessage(m_hDlg, IDC_CHATAREA_EDIT, WM_VSCROLL, SB_BOTTOM, 0L);
-
-			// SendDlgItemMessage(hWnd, IDC_PERSISTENT_CHECK, BM_SETCHECK, _this->m_fPersistentTexts, 0);
-
-			//if (strlen(_this->m_szUserID) > 0)
-			//	SetDlgItemText(hWnd, IDC_USERID_EDIT, _this->m_szUserID);
 			
 			SetForegroundWindow(hWnd);
 
 			//	[v1.0.2-jp1 fix] SUBCLASS Split bar
             pDefSBProc = helper::SafeGetWindowProc(GetDlgItem(hWnd, IDC_STATIC_SPLIT));
-            helper::SafeSetWindowProc(GetDlgItem(hWnd, IDC_STATIC_SPLIT), (LONG)SBProc);
+			// CRAsh X64 fixed
+            helper::SafeSetWindowProc(GetDlgItem(hWnd, IDC_STATIC_SPLIT), pDefSBProc);
 
             return TRUE;
 		}
 		break;
 
 	case WM_COMMAND:
+#ifdef _DEBUG
+					//char			szText[256];
+					sprintf(szText," ++++++ wm_command %i\n",LOWORD(wParam));
+					OutputDebugString(szText);		
+	#endif
 		switch (LOWORD(wParam))
 		{
 		/*

@@ -431,6 +431,7 @@ typedef struct {
 #define rfbEncodingTight 7
 #define rfbEncodingZlibHex 8
 #define rfbEncodingUltra 9
+#define rfbEncodingUltra2   10
 #define rfbEncodingZRLE 16
 #define rfbEncodingZYWRLE 17
 

@@ -47,6 +47,7 @@ class vncEncodeMgr;
 #include "vncEncodeZlibHex.h"
 #include "vncEncodeTight.h"
 #include "vncEncodeUltra.h"
+#include "vncEncodeUltra2.h"
 #include "vncbuffer.h"
 
 //
@@ -117,7 +118,7 @@ public:
 #endif
 
 	inline bool IsSlowEncoding() {return (m_encoding == rfbEncodingZYWRLE || m_encoding == rfbEncodingZRLE || m_encoding == rfbEncodingTight || m_encoding == rfbEncodingZlib);};
-	inline bool IsUltraEncoding() {return (m_encoding == rfbEncodingUltra);};
+	inline bool IsUltraEncoding() {return (m_encoding == rfbEncodingUltra || m_encoding == rfbEncodingUltra2);};
 
 
 
@@ -143,6 +144,7 @@ protected:
 	vncEncoder*		m_hold_zlib_encoder;
 	bool			ultra_encoder_in_use;
 	vncEncoder*		m_hold_ultra_encoder;
+	vncEncoder*		m_hold_ultra2_encoder;
 	bool			zlibhex_encoder_in_use;
 	vncEncoder*		m_hold_zlibhex_encoder;
 	bool			tight_encoder_in_use;
@@ -174,6 +176,7 @@ public:
 	vncBuffer	*m_buffer;
 	rfbServerInitMsg	m_scrinfo;
 	CARD32		m_encoding;
+	bool			ultra2_encoder_in_use;
 };
 
 //
@@ -195,7 +198,9 @@ inline vncEncodeMgr::vncEncodeMgr()
 	zlib_encoder_in_use = false;
 	m_hold_zlib_encoder = NULL;
     ultra_encoder_in_use = false;
+	ultra2_encoder_in_use = false;
 	m_hold_ultra_encoder = NULL;
+	m_hold_ultra2_encoder = NULL;
 	zlibhex_encoder_in_use = false;
 	m_hold_zlibhex_encoder = NULL;
 	tight_encoder_in_use = false;
@@ -230,6 +235,11 @@ inline vncEncodeMgr::~vncEncodeMgr()
 		m_hold_ultra_encoder = NULL;
 	}
 
+	if (m_hold_ultra2_encoder != NULL && m_hold_ultra2_encoder != m_encoder) {
+		delete m_hold_ultra2_encoder;
+		m_hold_ultra2_encoder = NULL;
+	}
+
 	if (m_hold_zlibhex_encoder != NULL && m_hold_zlibhex_encoder != m_encoder) {
 		delete m_hold_zlibhex_encoder;
 		m_hold_zlibhex_encoder = NULL;
@@ -248,6 +258,7 @@ inline vncEncodeMgr::~vncEncodeMgr()
 		m_encoder = NULL;
 		m_hold_zlib_encoder = NULL;
 		m_hold_ultra_encoder = NULL;
+		m_hold_ultra2_encoder = NULL;
 		m_hold_zlibhex_encoder = NULL;
 		m_hold_tight_encoder = NULL;
 
@@ -385,6 +396,10 @@ vncEncodeMgr::SetEncoding(CARD32 encoding,BOOL reinitialize)
 		{
 			m_hold_ultra_encoder = m_encoder;
 		}
+		else if ( ultra2_encoder_in_use )
+		{
+			m_hold_ultra2_encoder = m_encoder;
+		}
 		else if ( zlibhex_encoder_in_use )
 		{
 			m_hold_zlibhex_encoder = m_encoder;
@@ -403,6 +418,7 @@ vncEncodeMgr::SetEncoding(CARD32 encoding,BOOL reinitialize)
 	}
 	zlib_encoder_in_use = false;
 	ultra_encoder_in_use = false;
+	ultra2_encoder_in_use = false;
 	zlibhex_encoder_in_use = false;
 	tight_encoder_in_use = false;
 	// Returns FALSE if the desired encoding cannot be used
@@ -471,6 +487,32 @@ vncEncodeMgr::SetEncoding(CARD32 encoding,BOOL reinitialize)
 		// sf@2003 - UltraEncoder Queing does not work with DSM - Disable it in this case until
 		// some work is done to improve Queuing/DSM compatibility
 		((vncEncodeUltra*)(m_encoder))->EnableQueuing(m_fEnableQueuing);
+		EnableXCursor(false);
+		EnableRichCursor(false);
+		EnableCache(false);
+		break;
+
+	case rfbEncodingUltra2:
+
+		vnclog.Print(LL_INTINFO, VNCLOG("Ultra encoder requested\n"));
+
+		// Create a Zlib encoder, if needed.
+		// If a Zlib encoder was used previously, then reuse it here
+		// to maintain zlib dictionary synchronization with the viewer.
+		if ( m_hold_ultra2_encoder == NULL )
+		{
+			m_encoder = new vncEncodeUltra2;
+		}
+		else
+		{
+			m_encoder = m_hold_ultra2_encoder;
+		}
+		if (m_encoder == NULL)
+			return FALSE;
+		ultra2_encoder_in_use = true;//
+
+		// sf@2003 - UltraEncoder Queing does not work with DSM - Disable it in this case until
+		// some work is done to improve Queuing/DSM compatibility
 		EnableXCursor(false);
 		EnableRichCursor(false);
 		EnableCache(false);
@@ -678,9 +720,13 @@ vncEncodeMgr::EncodeRect(const rfb::Rect &rect,VSocket *outconn)
 	{
 		return m_encoder->EncodeRect(m_buffer->m_backbuff, outconn ,m_clientbuff, rect);
 	}
+	if (ultra2_encoder_in_use)
+	{
+		return m_encoder->EncodeRect(m_buffer->m_backbuff, outconn ,m_clientbuff, rect);
+	}
 
 	// sf@2002 - Tight encoding
-	if (tight_encoder_in_use || zlibhex_encoder_in_use  || ultra_encoder_in_use)
+	if (tight_encoder_in_use || zlibhex_encoder_in_use  || ultra_encoder_in_use || ultra2_encoder_in_use)
 	{
 		RECT TRect;
 		TRect.right = rect.br.x;
@@ -818,6 +864,7 @@ vncEncodeMgr::LastRect(VSocket *outConn)
 {
 	m_encoder->LastRect(outConn);
 }
+
 // Modif cs@2005
 #ifdef DSHOW
 inline BOOL

@@ -62,7 +62,7 @@ public:
 	void ProcessTextChatMsg(int nTO);
    	virtual ~TextChat();
 	static LRESULT CALLBACK DoDialogThread(LPVOID lpParameter);
-	static BOOL CALLBACK TextChatDlgProc(HWND hwndDlg,UINT uMsg,WPARAM wParam,LPARAM lParam);
+	static INT_PTR CALLBACK TextChatDlgProc(HWND hwndDlg,UINT uMsg,WPARAM wParam,LPARAM lParam);
 	void SendTextChatRequest(int Msg);
 	void SendLocalText(void);
 	void PrintMessage(const char* szMessage, const char* szSender, DWORD color = BLACK);

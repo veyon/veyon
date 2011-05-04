@@ -810,6 +810,20 @@ bool vncServer::IsUltraVncViewer()
 	return false;
 }
 
+bool vncServer::AreThereMultipleViewers()
+{
+	vncClientList::iterator i;
+	omni_mutex_lock l(m_clientsLock);
+	vncClient *pClient = NULL;
+	int a=0;
+	for (i = m_authClients.begin(); i != m_authClients.end(); i++)
+	{	
+		a++;
+	}
+	if (a<=1) return false;
+	else return true;
+}
+
 
 void
 vncServer::KillAuthClients()
@@ -2553,7 +2567,7 @@ void vncServer::AutoConnectRetry( )
 	if ( m_fAutoReconnect && !fShutdownOrdered)
 	{
 		vnclog.Print(LL_INTINFO, VNCLOG("AutoConnectRetry(): started\n"));
-		m_retry_timeout = SetTimer( NULL, 0, (1000*30), (TIMERPROC)_timerRetryHandler );
+		if (m_retry_timeout == 0) m_retry_timeout = SetTimer( NULL, 0, (100), (TIMERPROC)_timerRetryHandler );
 	}
 }
 void CALLBACK vncServer::_timerRetryHandler( HWND /*hWnd*/, UINT /*uMsg*/, UINT_PTR /*idEvent*/, DWORD /*dwTime*/ )
@@ -2566,7 +2580,7 @@ void vncServer::_actualTimerRetryHandler()
 	vnclog.Print(LL_INTINFO, VNCLOG("Attempting AutoReconnect....\n"));
 	
 	KillTimer( NULL, m_retry_timeout );
-	m_retry_timeout = 0;
+	
 	
 	if ( m_fAutoReconnect && strlen(m_szAutoReconnectAdr) > 0 && !fShutdownOrdered)
 	{
@@ -2591,10 +2605,12 @@ void vncServer::_actualTimerRetryHandler()
 						// Add the new client to this server
 						// adzm 2009-08-02
 						AddClient(tmpsock, TRUE, TRUE, 0, NULL, m_szAutoReconnectId, m_szAutoReconnectAdr, m_AutoReconnectPort);
+						m_retry_timeout = 0;
 						} else {
 						// Add the new client to this server
 						// adzm 2009-08-02
 						AddClient(tmpsock, TRUE, TRUE, 0, NULL, NULL, m_szAutoReconnectAdr, m_AutoReconnectPort);
+						m_retry_timeout = 0;
 						}
 					}
 					else
@@ -2609,10 +2625,12 @@ void vncServer::_actualTimerRetryHandler()
 								// adzm 2009-07-05 - repeater IDs
 								// Add the new client to this server
 								AddClient(tmpsock, TRUE, TRUE, 0, NULL, m_szAutoReconnectId, m_szAutoReconnectAdr, m_AutoReconnectPort);
+								m_retry_timeout = 0;
 							} else {
 								// Add the new client to this server
 								// adzm 2009-08-02
 								AddClient(tmpsock, TRUE, TRUE, 0, NULL, NULL, m_szAutoReconnectAdr, m_AutoReconnectPort);
+								m_retry_timeout = 0;
 							}
 						} else {
 							delete tmpsock;
@@ -2633,10 +2651,12 @@ void vncServer::_actualTimerRetryHandler()
 							// adzm 2009-07-05 - repeater IDs
 							// Add the new client to this server
 							AddClient(tmpsock, TRUE, TRUE, 0, NULL, m_szAutoReconnectId, m_szAutoReconnectAdr, m_AutoReconnectPort);
+							m_retry_timeout = 0;
 						} else {
 							// Add the new client to this server
 							// adzm 2009-08-02
 							AddClient(tmpsock, TRUE, TRUE, 0, NULL, NULL, m_szAutoReconnectAdr, m_AutoReconnectPort);
+							m_retry_timeout = 0;
 						}
 					} else {
 						delete tmpsock;
@@ -2644,6 +2664,10 @@ void vncServer::_actualTimerRetryHandler()
 					}
 			}
 		} //tempsocket
+	}
+	else
+	{
+		m_retry_timeout = 0;
 	}
 }
 void vncServer::NotifyClients_StateChange(CARD32 state, CARD32 value)

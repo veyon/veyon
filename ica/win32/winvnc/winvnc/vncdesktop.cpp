@@ -2409,12 +2409,12 @@ bool vncDesktop::block_input()
 		Blockinput_val=false;
 	}
 
-	#ifdef _DEBUG
+	/*#ifdef _DEBUG
 					char			szText[256];
 					sprintf(szText," blockinput %i %i %i %i\n",m_bIsInputDisabledByClient,m_server->LocalInputsDisabled(),old_Blockinput1,old_Blockinput2);
 					SetLastError(0);
 					OutputDebugString(szText);		
-	#endif
+	#endif*/
 
 	if (old_Blockinput1!=m_bIsInputDisabledByClient || old_Blockinput2!=m_server->LocalInputsDisabled())
 	{

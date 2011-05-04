@@ -77,8 +77,14 @@ vncEncodeHexT::NumCodedRects(const rfb::Rect &rect)
  */
 
 UINT
-vncEncodeHexT::EncodeRect(BYTE *source, BYTE *dest, const rfb::Rect &rect)
+vncEncodeHexT::EncodeRect(BYTE *source, BYTE *dest, const rfb::Rect &rect_IN)
 {
+	rfb::Rect rect;
+	rect.tl.x=(rect_IN.tl.x < 0)? 0: rect_IN.tl.x;
+	rect.tl.y=(rect_IN.tl.y < 0)? 0: rect_IN.tl.y;
+	rect.br.x=(rect_IN.br.x < 0)? 0: rect_IN.br.x;
+	rect.br.y=(rect_IN.br.y < 0)? 0: rect_IN.br.y;
+
 	const UINT rectW = rect.br.x - rect.tl.x;
 	const UINT rectH = rect.br.y - rect.tl.y;
 

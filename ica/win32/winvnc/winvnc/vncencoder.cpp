@@ -402,7 +402,8 @@ vncEncoder::SetLocalFormat(rfbPixelFormat &pixformat, int width, int height)
 {
 	// Work out the bytes per row at the local end - useful
 	m_bytesPerRow = width * pixformat.bitsPerPixel/8;
-
+	framebufferWidth=width;
+	framebufferHeight=height;
 	// Save the pixel format
 	m_localformat = pixformat;
 	return SetTranslateFunction();

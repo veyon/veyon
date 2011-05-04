@@ -150,7 +150,8 @@ vncProperties::Init(vncServer *server)
 								MB_OK | MB_ICONSTOP);
 					PostQuitMessage(0);
 				} else {
-					MessageBox(NULL, sz_ID_NO_PASSWD_NO_OVERRIDE_WARN,
+					if (!vncService::RunningAsService())
+						MessageBox(NULL, sz_ID_NO_PASSWD_NO_OVERRIDE_WARN,
 								sz_ID_WINVNC_ERROR,
 								MB_OK | MB_ICONEXCLAMATION);
 				}

@@ -57,6 +57,7 @@ const char winvncStartService[]		= "-service";
 const char winvncRunAsUserApp[]		= "-run";
 const char winvncConnect[]		= "-connect";
 const char winvncAutoReconnect[]	= "-autoreconnect";
+const char winvncStopReconnect[]	= "-stopreconnect";
 const char winvncAutoReconnectId[]	= "id:";
 const char winvncReconnectId[]	= "-id:";
 const char winvncSCexit[]	= "-sc_exit";
@@ -100,4 +101,4 @@ const char winvncopenhomepage[]				= "-openhomepage";
 const char winvncopenforum[]				= "-openforum";
 
 // Usage string
-const char winvncUsageText[]		= "winvnc [-sc_prompt] [-sc_exit] [-id:????] [-autoreconnect[ ID:????]] [-connect host[:display]] [-connect host[::port]] [-repeater host[:port]] [-run]\n";
+const char winvncUsageText[]		= "winvnc [-sc_prompt] [-sc_exit] [-id:????] [-stopreconnect][-autoreconnect[ ID:????]] [-connect host[:display]] [-connect host[::port]] [-repeater host[:port]] [-run]\n";

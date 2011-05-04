@@ -127,6 +127,7 @@ IF(ITALC_BUILD_WIN32)
 		${CMAKE_CURRENT_SOURCE_DIR}/win32/winvnc/winvnc/vncListDlg.cpp
 		${CMAKE_CURRENT_SOURCE_DIR}/win32/winvnc/winvnc/stdhdrs.cpp
 		${CMAKE_CURRENT_SOURCE_DIR}/win32/winvnc/winvnc/vncEncodeUltra.cpp
+		${CMAKE_CURRENT_SOURCE_DIR}/win32/winvnc/winvnc/vncEncodeUltra2.cpp
 		${CMAKE_CURRENT_SOURCE_DIR}/win32/winvnc/winvnc/vncsockconnect.cpp
 		${CMAKE_CURRENT_SOURCE_DIR}/win32/winvnc/winvnc/vncntlm.cpp
 		${CMAKE_CURRENT_SOURCE_DIR}/win32/winvnc/winvnc/vncinsthandler.cpp

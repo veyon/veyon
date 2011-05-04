@@ -116,6 +116,8 @@ protected:
 	rfbPixelFormat		m_remoteformat;			// Client pixel format info
 	rfbPixelFormat		m_transformat;			// Internal format used for translation (usually == client format)
 	int					m_bytesPerRow;			// Number of bytes per row locally
+	int					framebufferWidth;
+	int					framebufferHeight;
 	int m_SWOffsetx;
 	int m_SWOffsety;
 	int					dataSize;				// Total size of raw data encoded

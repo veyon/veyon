@@ -46,7 +46,7 @@ extern "C"
 #ifdef IPP
 #include "libjpeg/jpeglib.h"
 #else
-#include "libjpeg/jpeglib.h"
+#include "libjpeg-turbo-win/jpeglib.h"
 #endif
 }
 #include <math.h>
