@@ -2,7 +2,7 @@
  * SystemKeyTrapper.cpp - class for trapping system-keys and -key-sequences
  *                        such as Alt+Ctrl+Del, Alt+Tab etc.
  *
- * Copyright (c) 2006-2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2011 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -208,6 +208,7 @@ void SystemKeyTrapper::setEnabled( bool _on )
 	}
 
 	s_refCntMutex.lock();
+
 	m_enabled = _on;
 	if( _on )
 	{
@@ -228,8 +229,7 @@ void SystemKeyTrapper::setEnabled( bool _on )
 
 			enableStickyKeys( false );
 
-			EnableWindow( FindWindow( "Shell_traywnd", NULL ),
-									false );
+			EnableWindow( FindWindow( "Shell_traywnd", NULL ), false );
 			ShowWindow( FindWindow( "Shell_traywnd", NULL ), SW_HIDE );
 
 			if( !Inject() )
@@ -273,15 +273,15 @@ void SystemKeyTrapper::setEnabled( bool _on )
 			UnhookWindowsHookEx( g_hHookKbdLL );
 			g_hHookKbdLL = NULL;
 
-			enableStickyKeys( true );
-			EnableWindow( FindWindow( "Shell_traywnd", NULL ),
-									true );
-
-			ShowWindow( FindWindow( "Shell_traywnd", NULL ), SW_NORMAL );
 			if( !Eject() )
 			{
 				qWarning( "SystemKeyTrapper: Eject() failed");
 			}
+
+			enableStickyKeys( true );
+
+			EnableWindow( FindWindow( "Shell_traywnd", NULL ), true );
+			ShowWindow( FindWindow( "Shell_traywnd", NULL ), SW_NORMAL );
 		}
 #endif
 #ifdef ITALC_BUILD_LINUX
@@ -308,7 +308,7 @@ void SystemKeyTrapper::disableAllKeys( bool _on )
 
 
 
-void SystemKeyTrapper::checkForTrappedKeys( void )
+void SystemKeyTrapper::checkForTrappedKeys()
 {
 	QMutexLocker m( &__trapped_keys_mutex );
 
