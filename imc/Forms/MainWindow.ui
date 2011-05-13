@@ -576,14 +576,14 @@
              </property>
             </widget>
            </item>
-           <item row="3" column="0" colspan="2">
+           <item row="4" column="0" colspan="2">
             <widget class="QCheckBox" name="isHttpServerEnabled">
              <property name="text">
               <string>Enable HTTP server which provides a JavaViewer applet</string>
              </property>
             </widget>
            </item>
-           <item row="4" column="0" colspan="2">
+           <item row="5" column="0" colspan="2">
             <layout class="QHBoxLayout" name="horizontalLayout_5">
              <item>
               <spacer name="horizontalSpacer_10">
@@ -638,6 +638,13 @@
               </spacer>
              </item>
             </layout>
+           </item>
+           <item row="3" column="0" colspan="2">
+            <widget class="QCheckBox" name="localConnectOnly">
+             <property name="text">
+              <string>Allow connections from localhost only</string>
+             </property>
+            </widget>
            </item>
           </layout>
          </widget>
