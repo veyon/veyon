@@ -1,7 +1,7 @@
 /*
  * Configuration/LocalStore.h - LocalStore class
  *
- * Copyright (c) 2009-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2009-2011 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -41,9 +41,8 @@ public:
 	virtual void flush( Object *obj );
 	virtual bool isWritable() const;
 
-
-private:
 	QSettings *createSettingsObject() const;
+
 } ;
 
 }
