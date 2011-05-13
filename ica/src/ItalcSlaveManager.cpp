@@ -93,7 +93,7 @@ ItalcSlaveManager::~ItalcSlaveManager()
 void ItalcSlaveManager::startDemo( const QString &masterHost, bool fullscreen )
 {
 	Ipc::SlaveLauncher *slaveLauncher = NULL;
-	if( fullscreen )
+	if( fullscreen && ItalcCore::config->lockWithDesktopSwitching() )
 	{
 		slaveLauncher = new ScreenLockSlaveLauncher( applicationFilePath() );
 	}
@@ -117,8 +117,12 @@ void ItalcSlaveManager::stopDemo()
 
 void ItalcSlaveManager::lockScreen()
 {
-	createSlave( IdScreenLock,
-					new ScreenLockSlaveLauncher( applicationFilePath() ) );
+	Ipc::SlaveLauncher *slaveLauncher = NULL;
+	if( ItalcCore::config->lockWithDesktopSwitching() )
+	{
+		slaveLauncher = new ScreenLockSlaveLauncher( applicationFilePath() );
+	}
+	createSlave( IdScreenLock, slaveLauncher );
 }
 
 
