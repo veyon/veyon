@@ -2,7 +2,7 @@
  * ItalcConfiguration.h - a Configuration object storing system wide
  *                        configuration values
  *
- * Copyright (c) 2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2010-2011 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -47,6 +47,7 @@ public:
 #define FOREACH_ITALC_CONFIG_PROPERTY(OP)												\
 		/* iTALC Service */																\
 		OP( ItalcConfiguration, ItalcCore::config, BOOL, isTrayIconHidden, setTrayIconHidden, "HideTrayIcon", "Service" );			\
+		OP( ItalcConfiguration, ItalcCore::config, BOOL, lockWithDesktopSwitching, setLockWithDesktopSwitching, "LockWithDesktopSwitching", "Service" );			\
 		OP( ItalcConfiguration, ItalcCore::config, BOOL, autostartService, setServiceAutostart, "Autostart", "Service" );			\
 		OP( ItalcConfiguration, ItalcCore::config, STRING, serviceArguments, setServiceArguments, "Arguments", "Service" );			\
 		/* Logging */																	\
@@ -90,6 +91,7 @@ public:
 	// macro expansion :-(
 public slots:
 	void setTrayIconHidden( bool );
+	void setLockWithDesktopSwitching( bool );
 	void setServiceAutostart( bool );
 	void setServiceArguments( const QString & );
 	void setLogLevel( int );
