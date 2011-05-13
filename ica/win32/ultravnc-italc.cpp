@@ -1,13 +1,29 @@
 #include <windows.h>
 
+#include <QtCore/QSettings>
+
 #include "DesktopAccessPermission.h"
 #include "ItalcCore.h"
 #include "ItalcCoreServer.h"
 #include "ItalcConfiguration.h"
+#include "Configuration/LocalStore.h"
+
+static QSettings *__italcSettings = NULL;
 
 
 BOOL ultravnc_italc_load_int( LPCSTR valname, LONG *out )
 {
+	if( strcmp( valname, "LocalConnectOnly" ) == 0 )
+	{
+		if( __italcSettings == NULL )
+		{
+			__italcSettings = Configuration::LocalStore( Configuration::Store::System ).createSettingsObject();
+			__italcSettings->beginGroup( "Network" );
+		}
+
+		*out = __italcSettings->value( valname ).toInt();
+		return true;
+	}
 	if( strcmp( valname, "DisableTrayIcon" ) == 0 )
 	{
 		*out = 1;

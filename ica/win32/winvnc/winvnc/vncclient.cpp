@@ -77,6 +77,7 @@
 #include "common/win32_helpers.h"
 
 #ifdef ULTRAVNC_ITALC_SUPPORT
+extern BOOL ultravnc_italc_load_int( LPCSTR valname, LONG *out );
 extern BOOL ultravnc_italc_ask_permission( const char *username, const char *host );
 #endif
 
@@ -1066,6 +1067,19 @@ vncClientThread::CheckLoopBack()
 				vnclog.Print(LL_CONNERR, VNCLOG("loopback connection attempted - client accepted\n"));
 				m_client->m_IsLoopback=true;
 			}
+#ifdef ULTRAVNC_ITALC_SUPPORT
+			else
+			{
+				LONG val = 0;
+				if( ultravnc_italc_load_int( "LocalConnectOnly", &val ) && val )
+				{
+					// FOOOOOOO
+					vnclog.Print(LL_CONNERR, VNCLOG("non-loopback connections disabled - client rejected\n"));
+					SendConnFailed("non-loopback connections are disabled.");
+					return FALSE;
+				}
+			}
+#endif
 		}
 
 	}
