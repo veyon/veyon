@@ -98,7 +98,16 @@ LRESULT CALLBACK TaskKeyHookLL( int nCode, WPARAM wp, LPARAM lp )
 		}
 		else if( pkh->vkCode == VK_LWIN || pkh->vkCode == VK_RWIN )
 		{
-			key = SystemKeyTrapper::MetaKey;
+			pressed.removeAll( SystemKeyTrapper::SuperKeyDown );
+			pressed.removeAll( SystemKeyTrapper::SuperKeyUp );
+			if( wp == WM_KEYDOWN )
+			{
+				key = SystemKeyTrapper::SuperKeyDown;
+			}
+			else
+			{
+				key = SystemKeyTrapper::SuperKeyUp;
+			}
 		}
 		else if( pkh->vkCode == VK_DELETE && bCtrlKeyDown &&
 						pkh->flags && LLKHF_ALTDOWN )
@@ -315,6 +324,8 @@ void SystemKeyTrapper::checkForTrappedKeys()
 	while( !__trapped_keys.isEmpty() )
 	{
 		unsigned int key = 0;
+		bool toggle = true;
+		bool stateToSet = false;
 		switch( __trapped_keys.front() )
 		{
 			case None: break;
@@ -324,13 +335,21 @@ void SystemKeyTrapper::checkForTrappedKeys()
 			case AltSpace: key = XK_KP_Space; break;
 			case AltF4: key = XK_F4; break;
 			case CtrlEsc: key = XK_Escape; break;
-			case MetaKey: key = XK_Meta_L; break;
+			case SuperKeyDown: key = XK_Super_L; toggle = false; stateToSet = true; break;
+			case SuperKeyUp: key = XK_Super_L; toggle = false; stateToSet = false; break;
 		}
 
 		if( key )
 		{
-			emit keyEvent( key, true );
-			emit keyEvent( key, false );
+			if( toggle )
+			{
+				emit keyEvent( key, true );
+				emit keyEvent( key, false );
+			}
+			else
+			{
+				emit keyEvent( key, stateToSet );
+			}
 		}
 
 		__trapped_keys.removeFirst();
