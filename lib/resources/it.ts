@@ -39,6 +39,12 @@ If you&apos;re interested in translating iTALC into your local or another langua
         <source>License</source>
         <translation>Licenza</translation>
     </message>
+    <message utf8="true">
+        <source>iTALC - Intelligent Teaching And Learning with Computers
+
+Copyright © 2004-2011 Tobias Doerffel</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AccessDialogSlave</name>
@@ -1388,6 +1394,14 @@ Nota: Se l&apos;errore si verifica sia sul computer docente(master) che sul comp
     <message>
         <source>An error occured while applying settings!</source>
         <translation>Si è verificato un errore nell&apos;applicazioni delle impostazioni!</translation>
+    </message>
+    <message>
+        <source>Enable desktop switching for screen lock (experimental)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Allow connections from localhost only</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
