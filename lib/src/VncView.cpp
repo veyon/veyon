@@ -1,7 +1,7 @@
 /*
  * VncView.cpp - VNC viewer widget
  *
- * Copyright (c) 2006-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2011 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -89,6 +89,9 @@ VncView::VncView( const QString &host, QWidget *parent, Mode mode ) :
 	// forward trapped special keys
 	connect( m_sysKeyTrapper, SIGNAL( keyEvent( unsigned int, bool ) ),
 				&m_vncConn, SLOT( keyEvent( unsigned int, bool ) ) );
+	connect( m_sysKeyTrapper, SIGNAL( keyEvent( unsigned int, bool ) ),
+				this, SLOT( checkKeyEvent( unsigned int, bool ) ) );
+
 
 	// set up background color
 	if( parent == NULL )
@@ -210,6 +213,24 @@ void VncView::setScaledView( bool scaledView )
 
 
 
+void VncView::checkKeyEvent( unsigned int key, bool pressed )
+{
+	if( key == XK_Super_L )
+	{
+		if( pressed )
+		{
+			m_mods[key] = true;
+		}
+		else if( m_mods.contains( key ) )
+		{
+			m_mods.remove( key );
+		}
+	}
+}
+
+
+
+
 void VncView::updateCursorPos( int x, int y )
 {
 	if( isViewOnly() )
@@ -302,7 +323,7 @@ void VncView::keyEventHandler( QKeyEvent * _ke )
 #else
 	// hmm, either Win32-platform or too old Qt so we have to handle and
 	// translate Qt-key-codes to X-keycodes
-	int key = 0;
+	unsigned int key = 0;
 	switch( _ke->key() )
 	{
 		// modifiers are handled separately
@@ -419,9 +440,11 @@ void VncView::keyEventHandler( QKeyEvent * _ke )
 	}
 #endif
 
-	// handle Ctrl+Alt+Del replacement (Meta key+Del)
-	if( ( m_mods.contains( XK_Super_L ) || m_mods.contains( XK_Super_R ) ) &&
-			_ke->key() == Qt::Key_Delete )
+	// handle Ctrl+Alt+Del replacement (Meta/Super key+Del)
+	if( ( m_mods.contains( XK_Super_L ) ||
+			m_mods.contains( XK_Super_R ) ||
+			m_mods.contains( XK_Meta_L ) ) &&
+				_ke->key() == Qt::Key_Delete )
 	{
 		if( pressed )
 		{
@@ -432,14 +455,13 @@ void VncView::keyEventHandler( QKeyEvent * _ke )
 			m_vncConn.keyEvent( XK_Delete, false );
 			m_vncConn.keyEvent( XK_Alt_L, false );
 			m_vncConn.keyEvent( XK_Control_L, false );
-			m_mods[XK_Super_L] = true;
 			key = 0;
 		}
 	}
 
 	// handle modifiers
 	if( key == XK_Shift_L || key == XK_Control_L || key == XK_Meta_L ||
-							key == XK_Alt_L )
+			key == XK_Alt_L || key == XK_Super_L || key == XK_Super_R )
 	{
 		if( pressed )
 		{

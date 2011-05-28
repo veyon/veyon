@@ -1,7 +1,7 @@
 /*
  * VncView.h - VNC viewer widget
  *
- * Copyright (c) 2006-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2011 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -92,6 +92,7 @@ signals:
 
 
 private slots:
+	void checkKeyEvent( unsigned int key, bool pressed );
 	void updateCursorPos( int x, int y );
 	void updateCursorShape( const QImage &cursorShape, int xh, int yh );
 	void updateImage( int x, int y, int w, int h );
