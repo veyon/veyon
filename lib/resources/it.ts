@@ -508,7 +508,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>This assistant will help you to create or import iTALC access keys.</source>
-        <translation>Questo programma ti aiuterà a creare o importare lechiavi di accesso per iTALC</translation>
+        <translation>Questo programma ti aiuterà a creare o importare le chiavi di accesso per iTALC</translation>
     </message>
     <message>
         <source>How does it work?</source>
@@ -520,11 +520,10 @@ p, li { white-space: pre-wrap; }
 Using the private key part, users on the master computer will be able to access client computers. It is important that only authorized users have read access to the private key file.
 
 The public key part is used on the client computers to verify that any incoming connection request is authorized.</source>
-        <translation>iTALC  utilizza una coppia di chiavi crittografiche per prevenire l&apos;accesso non autorizzato ai computer su cui è installato il software client di iTALC.
-
-Le chiavi di accesso sono due: una privata, l&apos;altra pubblica.
+        <translation>Le chiavi (crittografiche) di accesso per iTALC sono composte da due parti: una privata, l&apos;altra pubblica.
 
 Utilizzando la chiave privata, gli utenti del computer docente saranno in grado di accedere a tutti i computer studente (client). E&apos; importante che solo gli utenti autorizzati abbiano accesso al file della chiave privata.
+
 La chiave pubblica, invece, è utilizzata dai computer studente per verificare che ogni richiesta di connesione sia  autorizzata.
 </translation>
     </message>
