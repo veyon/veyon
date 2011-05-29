@@ -193,7 +193,8 @@ void enableStickyKeys( bool _enable )
 
 SystemKeyTrapper::SystemKeyTrapper( bool _enabled ) :
 	QObject(),
-	m_enabled( false )
+	m_enabled( false ),
+	m_taskBarHidden( false )
 {
 	setEnabled( _enabled );
 }
@@ -204,6 +205,31 @@ SystemKeyTrapper::SystemKeyTrapper( bool _enabled ) :
 SystemKeyTrapper::~SystemKeyTrapper()
 {
 	setEnabled( false );
+	if( m_taskBarHidden )
+	{
+		setTaskBarHidden( false );
+	}
+}
+
+
+
+
+void SystemKeyTrapper::setTaskBarHidden( bool on )
+{
+	m_taskBarHidden = on;
+#ifdef ITALC_BUILD_WIN32
+	if( on )
+	{
+		EnableWindow( FindWindow( "Shell_traywnd", NULL ), false );
+		ShowWindow( FindWindow( "Shell_traywnd", NULL ), SW_HIDE );
+
+	}
+	else
+	{
+		EnableWindow( FindWindow( "Shell_traywnd", NULL ), true );
+		ShowWindow( FindWindow( "Shell_traywnd", NULL ), SW_NORMAL );
+	}
+#endif
 }
 
 
@@ -237,9 +263,6 @@ void SystemKeyTrapper::setEnabled( bool on )
 			}
 
 			enableStickyKeys( false );
-
-			EnableWindow( FindWindow( "Shell_traywnd", NULL ), false );
-			ShowWindow( FindWindow( "Shell_traywnd", NULL ), SW_HIDE );
 
 			if( !Inject() )
 			{
@@ -288,9 +311,6 @@ void SystemKeyTrapper::setEnabled( bool on )
 			}
 
 			enableStickyKeys( true );
-
-			EnableWindow( FindWindow( "Shell_traywnd", NULL ), true );
-			ShowWindow( FindWindow( "Shell_traywnd", NULL ), SW_NORMAL );
 		}
 #endif
 #ifdef ITALC_BUILD_LINUX

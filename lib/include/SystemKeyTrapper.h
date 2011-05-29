@@ -61,6 +61,8 @@ public:
 		return m_enabled;
 	}
 
+	void setTaskBarHidden( bool on );
+
 	void setAllKeysDisabled( bool on );
 
 
@@ -69,6 +71,7 @@ private:
 	static int s_refCnt;
 
 	bool m_enabled;
+	bool m_taskBarHidden;
 #ifdef ITALC_BUILD_LINUX
 	QByteArray m_origKeyTable;
 #endif
