@@ -70,7 +70,7 @@ LockWidget::LockWidget( Modes _mode ) :
 	m_mode( _mode ),
 	m_sysKeyTrapper()
 {
-	m_sysKeyTrapper.disableAllKeys( true );
+	m_sysKeyTrapper.setAllKeysDisabled( true );
 	setWindowTitle( tr( "screen lock" ) );
 	setWindowIcon( QIcon( ":/resources/icon32.png" ) );
 	showFullScreen();
@@ -107,6 +107,7 @@ LockWidget::~LockWidget()
 		SystemParametersInfo( __ss_set_list[x], __ss_val[x], NULL, 0 );
 	}
 #endif
+	m_sysKeyTrapper.setAllKeysDisabled( false );
 }
 
 

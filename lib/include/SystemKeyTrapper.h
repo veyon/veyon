@@ -52,16 +52,16 @@ public:
 	} ;
 
 
-	SystemKeyTrapper( bool _enable = true );
+	SystemKeyTrapper( bool enable = true );
 	~SystemKeyTrapper();
 
-	void setEnabled( bool _on );
-	bool isEnabled( void ) const
+	void setEnabled( bool on );
+	bool isEnabled() const
 	{
-		return( m_enabled );
+		return m_enabled;
 	}
 
-	void disableAllKeys( bool _on );
+	void setAllKeysDisabled( bool on );
 
 
 private:
@@ -75,7 +75,7 @@ private:
 
 
 private slots:
-	void checkForTrappedKeys( void );
+	void checkForTrappedKeys();
 
 
 signals:

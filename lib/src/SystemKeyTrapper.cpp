@@ -209,17 +209,17 @@ SystemKeyTrapper::~SystemKeyTrapper()
 
 
 
-void SystemKeyTrapper::setEnabled( bool _on )
+void SystemKeyTrapper::setEnabled( bool on )
 {
-	if( _on == m_enabled )
+	if( on == m_enabled )
 	{
 		return;
 	}
 
 	s_refCntMutex.lock();
 
-	m_enabled = _on;
-	if( _on )
+	m_enabled = on;
+	if( on )
 	{
 #ifdef ITALC_BUILD_WIN32
 		if( !s_refCnt )
@@ -309,9 +309,9 @@ void SystemKeyTrapper::setEnabled( bool _on )
 
 
 
-void SystemKeyTrapper::disableAllKeys( bool _on )
+void SystemKeyTrapper::setAllKeysDisabled( bool on )
 {
-	__disable_all_keys = _on;
+	__disable_all_keys = on;
 }
 
 
