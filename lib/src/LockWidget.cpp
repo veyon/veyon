@@ -71,6 +71,8 @@ LockWidget::LockWidget( Modes _mode ) :
 	m_sysKeyTrapper()
 {
 	m_sysKeyTrapper.setAllKeysDisabled( true );
+	m_sysKeyTrapper.setTaskBarHidden( true );
+
 	setWindowTitle( tr( "screen lock" ) );
 	setWindowIcon( QIcon( ":/resources/icon32.png" ) );
 	showFullScreen();
