@@ -80,6 +80,18 @@ QString PasswordDialog::password() const
 
 
 
+
+AuthenticationCredentials PasswordDialog::credentials() const
+{
+	AuthenticationCredentials cred;
+	cred.setLogonUsername( username() );
+	cred.setLogonPassword( password() );
+
+	return cred;
+}
+
+
+
 void PasswordDialog::updateOkButton()
 {
 	ui->buttonBox->button( QDialogButtonBox::Ok )->

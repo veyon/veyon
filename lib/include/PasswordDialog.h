@@ -25,6 +25,8 @@
 #ifndef _PASSWORD_DIALOG_H
 #define _PASSWORD_DIALOG_H
 
+#include "AuthenticationCredentials.h"
+
 #include <QtGui/QDialog>
 
 namespace Ui { class PasswordDialog; }
@@ -38,6 +40,8 @@ public:
 
 	QString username() const;
 	QString password() const;
+
+	AuthenticationCredentials credentials() const;
 
 
 private slots:
