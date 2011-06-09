@@ -186,10 +186,12 @@ bool ItalcCore::initAuthentication( int credentialTypes )
 		if( QApplication::type() != QApplication::Tty )
 		{
 			PasswordDialog dlg( QApplication::activeWindow() );
-			if( dlg.exec() )
+			if( dlg.exec() &&
+				dlg.credentials().hasCredentials( AuthenticationCredentials::UserLogon ) )
 			{
-				authenticationCredentials->setLogonCredentials(
-											dlg.username(), dlg.password() );
+				authenticationCredentials->setLogonUsername( dlg.username() );
+				authenticationCredentials->setLogonPassword( dlg.password() );
+
 				success &= true;
 			}
 			else
