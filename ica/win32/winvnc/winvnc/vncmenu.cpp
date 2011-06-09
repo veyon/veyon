@@ -287,6 +287,9 @@ vncMenu::vncMenu(vncServer *server)
 
 	RegisterClassEx(&wndclass);
 
+#ifdef ULTRAVNC_ITALC_SUPPORT
+	m_hwnd = NULL;
+#else
 	m_hwnd = CreateWindow(MENU_CLASS_NAME,
 				MENU_CLASS_NAME,
 				WS_OVERLAPPEDWINDOW,
@@ -317,6 +320,7 @@ vncMenu::vncMenu(vncServer *server)
 
 	// Ask the server object to notify us of stuff
 	server->AddNotify(m_hwnd);
+#endif
 
 	// Initialise the properties dialog object
 	if (!m_properties.Init(m_server))
@@ -335,7 +339,9 @@ vncMenu::vncMenu(vncServer *server)
 	ResetEvent(hEvent);
 	*/
 
+#ifndef ULTRAVNC_ITALC_SUPPORT
 	SetTimer(m_hwnd, 1, 5000, NULL);
+#endif
 
 
 	// sf@2002
