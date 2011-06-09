@@ -26,7 +26,6 @@
 
 #ifdef ITALC_BUILD_WIN32
 #include <windows.h>
-#include "../ica/win32/addon/ms-logon/authSSP/vncSSP.h"
 void Win32AclEditor( HWND hwnd );
 #endif
 
@@ -49,6 +48,7 @@ void Win32AclEditor( HWND hwnd );
 #include "LocalSystem.h"
 #include "Logger.h"
 #include "LogonAclSettings.h"
+#include "LogonAuthentication.h"
 #include "LogonGroupEditor.h"
 #include "MainWindow.h"
 #include "PasswordDialog.h"
@@ -447,12 +447,7 @@ void MainWindow::testLogonAuthentication()
 	PasswordDialog dlg( this );
 	if( dlg.exec() )
 	{
-		bool result = false;
-#ifdef ITALC_BUILD_WIN32
-		result = CUPSD( dlg.username().toUtf8().constData(),
-						dlg.password().toUtf8().constData(),
-						"127.0.0.1" ) > 0 ?  true : false;
-#endif
+		bool result = LogonAuthentication::authenticateUser( dlg.credentials() );
 		if( result )
 		{
 			QMessageBox::information( this, tr( "Logon authentication test" ),
