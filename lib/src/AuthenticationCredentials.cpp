@@ -36,6 +36,16 @@ AuthenticationCredentials::AuthenticationCredentials() :
 
 
 
+AuthenticationCredentials::AuthenticationCredentials( const AuthenticationCredentials &other ) :
+	m_privateKey( NULL ),
+	m_logonUsername( other.logonUsername() ),
+	m_logonPassword( other.logonPassword() ),
+	m_commonSecret( other.commonSecret() )
+{
+}
+
+
+
 bool AuthenticationCredentials::hasCredentials( TypeFlags credentialType ) const
 {
 	if( credentialType & PrivateKey )
@@ -83,10 +93,15 @@ bool AuthenticationCredentials::loadPrivateKey( const QString &privKeyFile )
 
 
 
-void AuthenticationCredentials::setLogonCredentials( const QString &username,
-														const QString &password )
+void AuthenticationCredentials::setLogonUsername( const QString &username )
 {
 	m_logonUsername = username;
+}
+
+
+
+void AuthenticationCredentials::setLogonPassword( const QString &password )
+{
 	m_logonPassword = password;
 }
 

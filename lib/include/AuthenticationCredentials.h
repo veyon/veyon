@@ -42,6 +42,7 @@ public:
 	typedef int TypeFlag;
 
 	AuthenticationCredentials();
+	AuthenticationCredentials( const AuthenticationCredentials &other );
 
 	bool hasCredentials( TypeFlags credentialType ) const;
 
@@ -53,7 +54,8 @@ public:
 	}
 
 	// user logon auth
-	void setLogonCredentials( const QString &username, const QString &password );
+	void setLogonUsername( const QString &username );
+	void setLogonPassword( const QString &password );
 
 	const QString &logonUsername() const
 	{
