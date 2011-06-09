@@ -52,6 +52,7 @@ extern "C"
 #include "ItalcCoreServer.h"
 #include "ItalcRfbExt.h"
 #include "Logger.h"
+#include "LogonAuthentication.h"
 
 
 extern "C" int x11vnc_main( int argc, char * * argv );
@@ -166,43 +167,11 @@ static bool authMsLogon( struct _rfbClientRec *cl )
 	vncDecryptBytes( (unsigned char*) user, sizeof(user), key ); user[255] = '\0';
 	vncDecryptBytes( (unsigned char*) passwd, sizeof(passwd), key ); passwd[63] = '\0';
 
-	QProcess p;
-	p.start( "italc_auth_helper" );
-	p.waitForStarted();
+	AuthenticationCredentials credentials;
+	credentials.setLogonUsername( user );
+	credentials.setLogonPassword( passwd );
 
-	QDataStream ds( &p );
-	ds << QString( user );
-	ds << QString( passwd );
-
-	p.closeWriteChannel();
-	p.waitForFinished();
-
-	if( p.exitCode() == 0 )
-	{
-		QProcess p;
-		p.start( "getent", QStringList() << "group" );
-		p.waitForFinished();
-
-		QStringList groups = QString( p.readAll() ).split( '\n' );
-		foreach( const QString &group, groups )
-		{
-			QStringList groupComponents = group.split( ':' );
-			if( groupComponents.size() == 4 &&
-				ItalcCore::config->logonGroups().
-										contains( groupComponents.first() ) &&
-				groupComponents.last().split( ',' ).contains( user ) )
-			{
-				return true;
-			}
-		}
-		qCritical() << "User not in a privileged group";
-	}
-	else
-	{
-		qCritical() << "ItalcAuthHelper failed:" << p.readAll().trimmed();
-	}
-
-	return false;
+	return LogonAuthentication::authenticateUser( credentials );
 }
 
 
