@@ -218,8 +218,6 @@ rfbCheckFds(rfbScreenInfoPtr rfbScreen,long usec)
     struct sockaddr_in addr;
     socklen_t addrlen = sizeof(addr);
     char buf[6];
-    const int one = 1;
-    int sock;
     rfbClientIteratorPtr i;
     rfbClientPtr cl;
     int result = 0;
@@ -260,37 +258,8 @@ rfbCheckFds(rfbScreenInfoPtr rfbScreen,long usec)
 
 	if (rfbScreen->listenSock != -1 && FD_ISSET(rfbScreen->listenSock, &fds)) {
 
-	    if ((sock = accept(rfbScreen->listenSock,
-			    (struct sockaddr *)&addr, &addrlen)) < 0) {
-		rfbLogPerror("rfbCheckFds: accept");
-		return -1;
-	    }
-
-            if(!rfbSetNonBlocking(sock)) {
-	        closesocket(sock);
-		return -1;
-	    }
-
-	    if (setsockopt(sock, IPPROTO_TCP, TCP_NODELAY,
-			(char *)&one, sizeof(one)) < 0) {
-		rfbLogPerror("rfbCheckFds: setsockopt");
-		closesocket(sock);
-		return -1;
-	    }
-
-#ifdef USE_LIBWRAP
-	    if(!hosts_ctl("vnc",STRING_UNKNOWN,inet_ntoa(addr.sin_addr),
-			STRING_UNKNOWN)) {
-		rfbLog("Rejected connection from client %s\n",
-			inet_ntoa(addr.sin_addr));
-		closesocket(sock);
-		return -1;
-	    }
-#endif
-
-	    rfbLog("Got connection from client %s\n", inet_ntoa(addr.sin_addr));
-
-	    rfbNewClient(rfbScreen,sock);
+	    if (!rfbProcessNewConnection(rfbScreen))
+                return -1;
 
 	    FD_CLR(rfbScreen->listenSock, &fds);
 	    if (--nfds == 0)
@@ -350,6 +319,49 @@ rfbCheckFds(rfbScreenInfoPtr rfbScreen,long usec)
 	rfbReleaseClientIterator(i);
     } while(rfbScreen->handleEventsEagerly);
     return result;
+}
+
+rfbBool
+rfbProcessNewConnection(rfbScreenInfoPtr rfbScreen)
+{
+    const int one = 1;
+    int sock = -1;
+    struct sockaddr_in addr;
+    socklen_t addrlen = sizeof(addr);
+
+    if ((sock = accept(rfbScreen->listenSock,
+		       (struct sockaddr *)&addr, &addrlen)) < 0) {
+      rfbLogPerror("rfbCheckFds: accept");
+      return FALSE;
+    }
+
+    if(!rfbSetNonBlocking(sock)) {
+      closesocket(sock);
+      return FALSE;
+    }
+
+    if (setsockopt(sock, IPPROTO_TCP, TCP_NODELAY,
+		   (char *)&one, sizeof(one)) < 0) {
+      rfbLogPerror("rfbCheckFds: setsockopt");
+      closesocket(sock);
+      return FALSE;
+    }
+
+#ifdef USE_LIBWRAP
+    if(!hosts_ctl("vnc",STRING_UNKNOWN,inet_ntoa(addr.sin_addr),
+		  STRING_UNKNOWN)) {
+      rfbLog("Rejected connection from client %s\n",
+	     inet_ntoa(addr.sin_addr));
+      closesocket(sock);
+      return FALSE;
+    }
+#endif
+
+    rfbLog("Got connection from client %s\n", inet_ntoa(addr.sin_addr));
+
+    rfbNewClient(rfbScreen,sock);
+
+    return TRUE;
 }
 
 

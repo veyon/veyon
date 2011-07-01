@@ -30,7 +30,7 @@
 #include <rfb/rfb.h>
 
 /* RFB 3.8 clients are well informed */
-void rfbClientSendString(rfbClientPtr cl, char *reason);
+void rfbClientSendString(rfbClientPtr cl, const char *reason);
 
 
 /*

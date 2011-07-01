@@ -1,0 +1,50 @@
+*  LibVNCServer (C) 2001 Johannes E. Schindelin <Johannes.Schindelin@gmx.de>
+is based on
+*  Original OSXvnc (C) 2001 Dan McGuirk <mcguirk@incompleteness.net>,
+which in turn is based on
+*  Original Xvnc (C) 1999 AT&T Laboratories Cambridge.
+
+Lots of improvements of this library are thanks to
+* TightVNC (C) 2000-2003 Const Kaplinsky
+
+The ZRLE compression scheme is from
+* RealVNC (James "Wez" Weatherall, who helped also with regions)
+
+The good folks from
+* KRFB (I think it was Tim Jansen)
+helped also a lot (some *big* bugs!).
+
+Karl Runge provides an x11vnc, which is a much, much improved version of my
+original proof-of-concept. It really deserves to replace the old version,
+as it is a state-of-the-art, fast and usable program by now! However, he
+maintains it and improves it still in amazing ways!
+
+The file transfer protocol from TightVNC was implemented by Rohit Kumar.
+This includes an implementation of RFB protocol version 3.7t.
+
+Occasional important patches were sent by (in order I found the names in my
+archives and please don't beat me, if I forgot you, but just send me an
+email!): Akira Hatakeyama, Karl J. Runge, Justin "Zippy" Dearing,
+Oliver Mihatsch, Greg Sternberg, Werner Hofer, Giampiero Giancipoli,
+Glenn Mabutt, Paul Kreiner, Erik Kunze, Mike Frysinger, Martin Waitz,
+Mark McLoughlin, Paul Fox, Juan Jose Costello, Andre Leiadella,
+Alberto Lusiani, Malvina Mazin, Dave Stuart, Rohit Kumar, Donald Dugger,
+Steven Carr, Uwe Völker, Charles Coffing, Guillaume Rousse,
+Alessandro Praduroux, Brad Hards, Timo Ketola, Christian Ehrlicher,
+Noriaki Yamazaki, Ben Klopfenstein, Vic Lee, Christian Beier,
+Alexander Dorokhine, Corentin Chary, Wouter Van Meir and George Kiagiadakis.
+
+Probably I forgot quite a few people sending a patch here and there, which
+really made a difference. Without those, some obscure bugs still would
+be unfound.
+
+A hearty unthanks goes to Michael and Erick, who provided me with nothing
+but hollow words. Finally I got that configure and install working, but
+it would have been so much better for them not just to complain, but also
+help. As you showed me real egoism, you are the main reasons I am not
+working one dot to make this library less than GPL, so that nobody ever
+can make profit of my and others work without giving something back to me
+and others.
+
+Speaking of hollow words, another hearty unthanks goes to Sam, who thought
+he could let me work for him, not paying me in any way.

@@ -636,7 +636,7 @@ rfbProcessClientProtocolVersion(rfbClientPtr cl)
 
 
 void
-rfbClientSendString(rfbClientPtr cl, char *reason)
+rfbClientSendString(rfbClientPtr cl, const char *reason)
 {
     char *buf;
     int len = strlen(reason);
@@ -661,7 +661,7 @@ rfbClientSendString(rfbClientPtr cl, char *reason)
 
 void
 rfbClientConnFailed(rfbClientPtr cl,
-                    char *reason)
+                    const char *reason)
 {
     char *buf;
     int len = strlen(reason);
@@ -1104,7 +1104,7 @@ rfbBool rfbSendTextChatMessage(rfbClientPtr cl, uint32_t length, char *buffer)
 
 int DB = 1;
 
-rfbBool rfbSendFileTransferMessage(rfbClientPtr cl, uint8_t contentType, uint8_t contentParam, uint32_t size, uint32_t length, char *buffer)
+rfbBool rfbSendFileTransferMessage(rfbClientPtr cl, uint8_t contentType, uint8_t contentParam, uint32_t size, uint32_t length, const char *buffer)
 {
     rfbFileTransferMsg ft;
     ft.type = rfbFileTransfer;

@@ -82,7 +82,7 @@ int ScaleY(rfbScreenInfoPtr from, rfbScreenInfoPtr to, int y)
 /* So, all of the encodings point to the ->screen->frameBuffer,
  * We need to change this!
  */
-void rfbScaledCorrection(rfbScreenInfoPtr from, rfbScreenInfoPtr to, int *x, int *y, int *w, int *h, char *function)
+void rfbScaledCorrection(rfbScreenInfoPtr from, rfbScreenInfoPtr to, int *x, int *y, int *w, int *h, const char *function)
 {
     double x1,y1,w1,h1, x2, y2, w2, h2;
     double scaleW = ((double) to->width) / ((double) from->width);

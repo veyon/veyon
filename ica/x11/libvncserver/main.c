@@ -1071,7 +1071,6 @@ rfbProcessEvents(rfbScreenInfoPtr screen,long usec)
 {
   rfbClientIteratorPtr i;
   rfbClientPtr cl,clPrev;
-  struct timeval tv;
   rfbBool result=FALSE;
   extern rfbClientIteratorPtr
     rfbGetClientIteratorWithClosed(rfbScreenInfoPtr rfbScreen);
@@ -1085,24 +1084,44 @@ rfbProcessEvents(rfbScreenInfoPtr screen,long usec)
   i = rfbGetClientIteratorWithClosed(screen);
   cl=rfbClientIteratorHead(i);
   while(cl) {
-    if (cl->sock >= 0 && !cl->onHold && FB_UPDATE_PENDING(cl) &&
+    result = rfbUpdateClient(cl);
+    clPrev=cl;
+    cl=rfbClientIteratorNext(i);
+    if(clPrev->sock==-1) {
+      rfbClientConnectionGone(clPrev);
+      result=TRUE;
+    }
+  }
+  rfbReleaseClientIterator(i);
+
+  return result;
+}
+
+rfbBool
+rfbUpdateClient(rfbClientPtr cl)
+{
+  struct timeval tv;
+  rfbBool result=FALSE;
+  rfbScreenInfoPtr screen = cl->screen;
+
+  if (cl->sock >= 0 && !cl->onHold && FB_UPDATE_PENDING(cl) &&
         !sraRgnEmpty(cl->requestedRegion)) {
       result=TRUE;
       if(screen->deferUpdateTime == 0) {
-	  rfbSendFramebufferUpdate(cl,cl->modifiedRegion);
+          rfbSendFramebufferUpdate(cl,cl->modifiedRegion);
       } else if(cl->startDeferring.tv_usec == 0) {
-	gettimeofday(&cl->startDeferring,NULL);
-	if(cl->startDeferring.tv_usec == 0)
-	  cl->startDeferring.tv_usec++;
+        gettimeofday(&cl->startDeferring,NULL);
+        if(cl->startDeferring.tv_usec == 0)
+          cl->startDeferring.tv_usec++;
       } else {
-	gettimeofday(&tv,NULL);
-	if(tv.tv_sec < cl->startDeferring.tv_sec /* at midnight */
-	   || ((tv.tv_sec-cl->startDeferring.tv_sec)*1000
-	       +(tv.tv_usec-cl->startDeferring.tv_usec)/1000)
-	     > screen->deferUpdateTime) {
-	  cl->startDeferring.tv_usec = 0;
-	  rfbSendFramebufferUpdate(cl,cl->modifiedRegion);
-	}
+        gettimeofday(&tv,NULL);
+        if(tv.tv_sec < cl->startDeferring.tv_sec /* at midnight */
+           || ((tv.tv_sec-cl->startDeferring.tv_sec)*1000
+               +(tv.tv_usec-cl->startDeferring.tv_usec)/1000)
+             > screen->deferUpdateTime) {
+          cl->startDeferring.tv_usec = 0;
+          rfbSendFramebufferUpdate(cl,cl->modifiedRegion);
+        }
       }
     }
 
@@ -1119,23 +1138,15 @@ rfbProcessEvents(rfbScreenInfoPtr screen,long usec)
            +(tv.tv_usec-cl->startPtrDeferring.tv_usec)/1000)
            > cl->screen->deferPtrUpdateTime) {
           cl->startPtrDeferring.tv_usec = 0;
-          cl->screen->ptrAddEvent(cl->lastPtrButtons, 
-                                  cl->lastPtrX, 
+          cl->screen->ptrAddEvent(cl->lastPtrButtons,
+                                  cl->lastPtrX,
                                   cl->lastPtrY, cl);
-	  cl->lastPtrX = -1;
+          cl->lastPtrX = -1;
         }
       }
     }
-    clPrev=cl;
-    cl=rfbClientIteratorNext(i);
-    if(clPrev->sock==-1) {
-      rfbClientConnectionGone(clPrev);
-      result=TRUE;
-    }
-  }
-  rfbReleaseClientIterator(i);
 
-  return result;
+    return result;
 }
 
 rfbBool rfbIsActive(rfbScreenInfoPtr screenInfo) {

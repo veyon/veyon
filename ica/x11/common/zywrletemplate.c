@@ -143,7 +143,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #ifdef WIN32
 #define InlineX __inline
 #else
-#define InlineX inline
+# ifndef __STRICT_ANSI__
+#  define InlineX inline
+# else
+#  define InlineX
+# endif
 #endif
 
 #ifdef ZYWRLE_ENCODE
