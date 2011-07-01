@@ -41,6 +41,7 @@ void Win32AclEditor( HWND hwnd );
 #include "Configuration/XmlStore.h"
 #include "Configuration/UiMapping.h"
 
+#include "AboutDialog.h"
 #include "KeyFileAssistant.h"
 #include "FileSystemBrowser.h"
 #include "ImcCore.h"
@@ -109,6 +110,9 @@ MainWindow::MainWindow() :
 				this, SLOT( loadSettingsFromFile() ) );
 	connect( ui->actionSaveSettings, SIGNAL( triggered() ),
 				this, SLOT( saveSettingsToFile() ) );
+
+	connect( ui->actionAboutQt, SIGNAL( triggered() ),
+				QApplication::instance(), SLOT( aboutQt() ) );
 
 	updateServiceControl();
 
@@ -575,6 +579,12 @@ void MainWindow::generateBugReportArchive()
 				arg( QDTNS( outfile ) ) );
 }
 
+
+
+void MainWindow::aboutItalc()
+{
+	AboutDialog( this ).exec();
+}
 
 
 

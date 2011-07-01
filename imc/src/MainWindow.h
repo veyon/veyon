@@ -1,7 +1,7 @@
 /*
  * MainWindow.h - main window of the iTALC Management Console
  *
- * Copyright (c) 2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2010-2011 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -61,6 +61,7 @@ private slots:
 	void manageACLs();
 	void testLogonAuthentication();
 	void generateBugReportArchive();
+	void aboutItalc();
 
 
 private:

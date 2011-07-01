@@ -1463,6 +1463,10 @@ Note: if the bug involves both a master and client computer, attach bug report a
    </property>
   </action>
   <action name="actionAboutItalc">
+   <property name="icon">
+    <iconset resource="../../lib/ItalcCore.qrc">
+     <normaloff>:/resources/info.png</normaloff>:/resources/info.png</iconset>
+   </property>
    <property name="text">
     <string>About iTALC</string>
    </property>
@@ -1475,6 +1479,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
  </widget>
  <resources>
   <include location="../imc.qrc"/>
+  <include location="../../lib/ItalcCore.qrc"/>
  </resources>
  <connections>
   <connection>
@@ -1589,5 +1594,40 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionAboutItalc</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>aboutItalc()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>357</x>
+     <y>282</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionQuit</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>357</x>
+     <y>282</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
+ <slots>
+  <slot>aboutItalc()</slot>
+ </slots>
 </ui>
