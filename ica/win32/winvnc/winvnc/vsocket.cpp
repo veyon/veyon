@@ -45,6 +45,7 @@ class VSocket;
 #ifdef __WIN32__
 #include <io.h>
 #include <winsock2.h>
+#include <in6addr.h>
 #include <mstcpip.h>
 #else
 #include <sys/types.h>
