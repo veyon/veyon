@@ -1,7 +1,7 @@
 /*
  * Dialogs.cpp - implementation of dialogs
  *
- * Copyright (c) 2006-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2011 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -22,7 +22,6 @@
  *
  */
 
-#include <QtCore/QFile>
 #include <QtCore/QRegExp>
 
 #include "Dialogs.h"
@@ -31,7 +30,6 @@
 #include "MainWindow.h"
 #include "DecoratedMessageBox.h"
 
-#include "ui_AboutDialog.h"
 #include "ui_ClientSettingsDialog.h"
 #include "ui_TextMessageDialog.h"
 #include "ui_SupportDialog.h"
@@ -43,25 +41,6 @@
 #include "MasterCore.h"
 #include "MasterUI.h"
 #endif
-
-
-AboutDialog::AboutDialog( QWidget *parent ) :
-	QDialog( parent ),
-	ui( new Ui::AboutDialog )
-{
-	ui->setupUi( this );
-
-	QFile authors( ":/AUTHORS" );
-	authors.open( QFile::ReadOnly );
-	ui->authors->setPlainText( authors.readAll() );
-
-	QFile license( ":/COPYING" );
-	license.open( QFile::ReadOnly );
-	ui->license->setPlainText( license.readAll() );
-}
-
-
-
 
 
 

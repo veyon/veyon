@@ -1,12 +1,9 @@
 <RCC>
     <qresource prefix="/" >
-        <file>../AUTHORS</file>
-        <file>../COPYING</file>
 	<file>resources/no_mouse.png</file>
 	<file>resources/fullscreen.png</file>
 	<file>resources/quit.png</file>
         <file>resources/adjust_size.png</file>
-        <file>resources/authors.png</file>
         <file>resources/auto_arrange.png</file>
         <file>resources/back.png</file>
         <file>resources/cancel.png</file>
@@ -33,8 +30,6 @@
         <file>resources/host_unreachable.png</file>
         <file>resources/info.png</file>
         <file>resources/info_22.png</file>
-        <file>resources/license.png</file>
-        <file>resources/locale.png</file>
         <file>resources/locked.png</file>
         <file>resources/logout.png</file>
         <file>resources/remotelogon.png</file>
@@ -65,7 +60,6 @@
         <file>resources/users_48.png</file>
         <file>resources/viewmag.png</file>
         <file>resources/window_demo.png</file>
-        <file>resources/logo.png</file>
         <file>resources/greenled.png</file>
         <file>resources/toolbar-background.png</file>
     </qresource>

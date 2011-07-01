@@ -252,7 +252,7 @@
        <item>
         <widget class="QLabel" name="label_12">
          <property name="pixmap">
-          <pixmap resource="../italc.qrc">:/resources/authors.png</pixmap>
+          <pixmap resource="../../lib/ItalcCore.qrc">:/resources/authors.png</pixmap>
          </property>
         </widget>
        </item>
@@ -566,6 +566,7 @@ p, li { white-space: pre-wrap; }
  </widget>
  <resources>
   <include location="../italc.qrc"/>
+  <include location="../../lib/ItalcCore.qrc"/>
  </resources>
  <connections/>
 </ui>

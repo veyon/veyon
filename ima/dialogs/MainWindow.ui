@@ -14,8 +14,8 @@
    <string>MainWindow</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../italc.qrc">
-    <normaloff>:/resources/logo.png</normaloff>:/resources/logo.png</iconset>
+   <iconset resource="../../lib/ItalcCore.qrc">
+    <normaloff>:/resources/icon64.png</normaloff>:/resources/icon64.png</iconset>
   </property>
   <widget class="QWidget" name="m_centralWidget">
    <layout class="QHBoxLayout" name="m_centralLayout">
@@ -84,6 +84,7 @@
  </customwidgets>
  <resources>
   <include location="../italc.qrc"/>
+  <include location="../../lib/ItalcCore.qrc"/>
  </resources>
  <connections/>
 </ui>

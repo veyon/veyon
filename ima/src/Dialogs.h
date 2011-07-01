@@ -1,7 +1,7 @@
 /*
- * Dialogs.h - declaration of dialog-classes
+ * Dialogs.h - declaration of dialog classes
  *
- * Copyright (c) 2004-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2011 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -29,7 +29,6 @@
 
 namespace Ui
 {
-	class AboutDialog;
 	class ClientSettingsDialog;
 	class TextMessageDialog;
 	class SupportDialog;
@@ -40,18 +39,6 @@ class Client;
 #ifndef ITALC3
 class MainWindow;
 #endif
-
-
-class AboutDialog : public QDialog
-{
-public:
-	AboutDialog( QWidget *parent );
-
-
-private:
-	Ui::AboutDialog *ui;
-} ;
-
 
 
 class ClientSettingsDialog : public QDialog

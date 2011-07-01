@@ -46,7 +46,7 @@ RemoteControlWidgetToolBar::RemoteControlWidgetToolBar(
 	m_showHideTimeLine(),
 	m_iconStateTimeLine(),
 	m_connecting( false ),
-	m_icon( FastQImage( QImage( ":/resources/logo.png" ) ).
+	m_icon( FastQImage( QImage( ":/resources/icon64.png" ) ).
 					scaled( QSize( 48, 48 ) ) ),
 	m_iconGray( FastQImage( m_icon ).toGray().darken( 50 ) )
 {
