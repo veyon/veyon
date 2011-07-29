@@ -1,0 +1,198 @@
+<policyDefinitionResources revision="1.0" schemaVersion="1.0">
+  <displayName>
+  </displayName>
+  <description>
+  </description>
+  <resources>
+    <stringTable>
+      <string id="CAT_E6822BC9_5417_4E95_8BBA_CD94F08CD005">iTALC</string>
+      <string id="CAT_2A348098_3EA3_4875_9ADD_F005E090EEC0">General</string>
+      <string id="POL_9A9480B3_E1F7_4129_A2EE_5DEBB661FE11">Hide Tray Icon</string>
+      <string id="POL_9A9480B3_E1F7_4129_A2EE_5DEBB661FE11_Help">This policy setting changes the behavior of the iTALC client displaying the system tray icon. 
+
+If you enable this policy the iTALC system tray icon will not be displayed
+
+If you disable this policy the iTALC system tray icon will be displayed
+
+The default setting is that the system tray icon will be displayed.</string>
+      <string id="POL_662B8988_93CC_4255_9569_06D871FA5620">Service Autostart</string>
+      <string id="POL_662B8988_93CC_4255_9569_06D871FA5620_Help">This policy setting changes the starting behavior of the iTALC service
+
+If you enable this policy the iTALC service will start automatically at startup
+
+If you disable this policy the iTALC service will not start automatically at startup
+
+The default setting is that the iTALC service starts automatically at startup i.e. Enabled</string>
+      <string id="POL_7773AF6B_B297_400B_8D84_BBD247EAC334">Log File Directory</string>
+      <string id="POL_7773AF6B_B297_400B_8D84_BBD247EAC334_Help">This policy setting changes the logging directory for the iTALC service.  The default location is the %temp% folder which is normally located at c:\windows\temp\
+</string>
+      <string id="POL_2EDF2411_B7EF_4E25_B545_9463015CE39E">Log Level</string>
+      <string id="POL_C7358096_E7C6_4A9D_96FE_AE48C78CC770">Log to standard error output</string>
+      <string id="POL_FE44DB41_2023_44B8_8C1B_86730F5B84B6">Additional Arguments</string>
+      <string id="CAT_D70BA71E_524E_4561_833B_8A6D8852360D">Paths</string>
+      <string id="POL_812B4929_AA2A_491F_9EE6_457D5074F8E6">Global Configuration</string>
+      <string id="POL_AF018DCF_30AD_41AB_8DFF_29C174C4D17B">Personal Configuration</string>
+      <string id="POL_CDE8DA03_8E43_428A_B57E_8031656B83B1">Snapshot Directory</string>
+      <string id="CAT_D5109123_FD1C_4A0A_B3A6_614D2913C31E">Authentication</string>
+      <string id="POL_9DD077A5_0E53_412F_97C9_1769609B7DA9">Key File Authentication</string>
+      <string id="POL_F622107A_F3E6_418B_95EE_3DDEB80646EA">ACL-Based Logon Authentication</string>
+      <string id="POL_9DD077A5_0E53_412F_97C9_1769609B7DA9_Help">This policy setting allows you to enable or disable Key File Authentication between master and clients.
+
+If you Enable this policy setting Key File Authentication will be enabled on the iTALC service
+
+If you Disable this policy setting Key File Authentication will be disabled on the iTALC service
+
+The default setting for iTALC is to be Enabled.
+
+NB.  If both Key File and ACL-based Logon Authentication methods are disabled then an iTALC Master will not be able to contact the client
+
+When this policy is Enabled you must also configure a public and private key base directory.  By default the keys are stored on the local client</string>
+      <string id="POL_F622107A_F3E6_418B_95EE_3DDEB80646EA_Help">This policy setting allows you to enable or disable ACL-based Logon Authentication between master and clients
+
+If you Enable this policy setting ACL-based Logon Authentication will be enabled on the iTALC service
+
+If you Disable this policy setting ACL-based Logon Authentication will be disabled on the iTALC service
+
+The default setting for iTALC is to be Enabled.
+
+NB.  If both Key File and ACL-based Logon Authentication methods are disabled then an iTALC Master will not be able to contact the client</string>
+      <string id="CAT_6F7A78F2_BB62_490E_B84C_3D863160CC7F">Server</string>
+      <string id="POL_0A4FF41B_EAC7_4DFA_B143_C5C911528B36">Enable capturing of layered (semi-transparent) windows</string>
+      <string id="POL_3E564BAB_A95E_4C4F_B12E_7849DDAB127C">Poll Full Screen</string>
+      <string id="POL_315D0DCE_88E6_481F_ADC7_42147A288D65">Low Accuracy (turbo mode)</string>
+      <string id="POL_19687667_F2FD_42C4_9A0A_C7EEF3D572DA">Demo Server Backend</string>
+      <string id="ITM_6FC14439_C03E_49A4_A438_8D5F17766C94">VNC Reflector</string>
+      <string id="ITM_8321B5CD_5BEE_4EAF_9B7D_62BC0E0DED81">iTALC 1 Demo Server</string>
+      <string id="POL_E1969258_5B49_4CE7_B85D_8F7B4C01E7A6">Multithreading</string>
+      <string id="POL_E1969258_5B49_4CE7_B85D_8F7B4C01E7A6_Help">This policy setting changes the multithreaded behavior of the iTALC service.
+
+If you enable this policy the iTALC service will run with Multithreading when using the VNC Reflector backend
+
+If you disable this policy the iTALC service will not run with Multithreading when using the VNC Reflector backend
+
+The default setting is to have Multithreading enabled</string>
+      <string id="POL_19687667_F2FD_42C4_9A0A_C7EEF3D572DA_Help">
+      </string>
+      <string id="POL_789CFC83_C979_4BD5_9760_C39916C6786F">Core Server Port</string>
+      <string id="POL_789CFC83_C979_4BD5_9760_C39916C6786F_Help">This policy setting changes the network port on which the iTALC service listens for requests
+
+The default Core Server Port is 11100
+</string>
+      <string id="POL_9EE6A627_73AE_4EB2_882B_136CB3A6FED3">Demo server port</string>
+      <string id="POL_5CB7663E_F4FC_4462_A353_FDD5FB0B90A0">Enable firewall exception</string>
+      <string id="POL_5CB7663E_F4FC_4462_A353_FDD5FB0B90A0_Help">This policy setting changes if a firewall exception has been made for the iTALC service
+
+If you enable this policy the iTALC service icon will create a firewall exception for the ica.exe process
+
+The default setting is to have an exception placed in the firewall</string>
+      <string id="POL_9EE6A627_73AE_4EB2_882B_136CB3A6FED3_Help">
+      </string>
+      <string id="POL_BD6B9FA6_D9B1_497D_B9D7_857FE2871480">Allow connections from localhost only</string>
+      <string id="POL_BD6B9FA6_D9B1_497D_B9D7_857FE2871480_Help">This policy setting changes the iTALC service to listen for requests only on the localhost or 127.0.0.1 (loopback) address.
+
+If you enable this policy the iTALC service will run listening only to the localhost or 127.0.0.1 (loopback) address.
+
+If you disable this policy the iTALC service will listen on all interfaces for requests.
+
+The default setting is to be disabled and allow connections from all sources.</string>
+      <string id="POL_96BFBCE9_F707_417A_B425_F11DF1ED22C8">Enable HTTP Server</string>
+      <string id="POL_96BFBCE9_F707_417A_B425_F11DF1ED22C8_Help">This policy setting changes the iTALC service to run a HTTP server which provides a JavaViewer applet
+
+If you enable this policy the iTALC service will run with a HTTP server.
+
+If you disable this policy the iTALC service will not run with a HTTP server
+
+The default setting is to be disabled
+
+When enabling this policy you should also set a HTTP server port on which the HTTP server will listen on.</string>
+      <string id="ITM_8ED46BE0_B873_45A7_A78C_881C66BCC8AB">Nothing</string>
+      <string id="ITM_7CA444CB_EA44_494E_A49E_A36360058B05">Only Critical Messages</string>
+      <string id="ITM_7F639549_7B94_4047_B890_0689EA436A8C">Warnings and Errors</string>
+      <string id="ITM_E6465EB9_8B8F_4E0F_A361_724EA3DCBC06">Information, warnings and errors</string>
+      <string id="ITM_D2A5DF60_E5DF_4432_AF5A_4210AB20470A">Debug messages and everything else</string>
+      <string id="POL_5F42AD52_12DE_415D_9E1A_F99E6EF218EA">Limit log file size</string>
+      <string id="POL_F3F42BE8_3CDF_4FA4_8AEA_DE90699FAE76">Log to Windows event log</string>
+      <string id="POL_6A15AC8F_D05F_40A6_8F33_F02BE63FDB92">Access confirmation - Key file Authentication</string>
+      <string id="POL_82CAE5C2_998D_4EB5_BF9E_8C6414C40003">Access confirmation - Logon Authentication</string>
+      <string id="POL_B3A40764_63FC_4BE1_AF56_5AA7DCAE5258">Enable desktop switching for screen lock (experimental)</string>
+      <string id="POL_2EDF2411_B7EF_4E25_B545_9463015CE39E_Help">This policy setting changes the log level detail for the iTALC service.</string>
+      <string id="POL_C7358096_E7C6_4A9D_96FE_AE48C78CC770_Help">
+      </string>
+      <string id="POL_F3F42BE8_3CDF_4FA4_8AEA_DE90699FAE76_Help">This policy setting allows the iTALC log to be added to the windows event log.
+
+If you enable this policy the iTALC service will send logs to the windows event log
+
+If you disable this policy the iTALC service will not send logs to the windows event log
+
+The default setting is disabled</string>
+      <string id="POL_B3A40764_63FC_4BE1_AF56_5AA7DCAE5258_Help">
+      </string>
+    </stringTable>
+    <presentationTable>
+      <presentation id="POL_7773AF6B_B297_400B_8D84_BBD247EAC334">
+        <textBox refId="TXT_BC01A7E3_4B4C_4FC4_B216_0D094C18D960">
+          <label>Log File Directory</label>
+          <defaultValue>%TEMP%</defaultValue>
+        </textBox>
+      </presentation>
+      <presentation id="POL_2EDF2411_B7EF_4E25_B545_9463015CE39E">
+        <dropdownList refId="DST_B780FD16_FCA9_4ACC_BA08_99D8FE87F9C8" defaultItem="0">Log Level</dropdownList>
+      </presentation>
+      <presentation id="POL_9A9480B3_E1F7_4129_A2EE_5DEBB661FE11" />
+      <presentation id="POL_812B4929_AA2A_491F_9EE6_457D5074F8E6">
+        <textBox refId="TXT_1BD429DA_5FE1_42CB_8D7A_58DE15956FA0">
+          <label>Specify the Global Configuration path</label>
+          <defaultValue>$APPDATA\GlobalConfig.xml</defaultValue>
+        </textBox>
+      </presentation>
+      <presentation id="POL_19687667_F2FD_42C4_9A0A_C7EEF3D572DA">
+        <dropdownList refId="DST_600D95A8_3EAF_4D25_BBF1_5A0B84D1B577" defaultItem="0">Backend</dropdownList>
+      </presentation>
+      <presentation id="POL_E1969258_5B49_4CE7_B85D_8F7B4C01E7A6" />
+      <presentation id="POL_789CFC83_C979_4BD5_9760_C39916C6786F">
+        <decimalTextBox refId="DXT_414AE5C6_3D02_43A5_8698_942530126DED" defaultValue="11100">Core Server Port</decimalTextBox>
+      </presentation>
+      <presentation id="POL_9EE6A627_73AE_4EB2_882B_136CB3A6FED3">
+        <decimalTextBox refId="DXT_9D6EF27F_5710_4B65_B36B_59B8AC34AB1D" defaultValue="11400">Demo Server Port</decimalTextBox>
+      </presentation>
+      <presentation id="POL_96BFBCE9_F707_417A_B425_F11DF1ED22C8">
+        <decimalTextBox refId="DXT_AF6B507A_8C97_4706_BDCE_7900742047B4" defaultValue="5800">HTTP Server Port</decimalTextBox>
+      </presentation>
+      <presentation id="POL_9DD077A5_0E53_412F_97C9_1769609B7DA9">
+        <textBox refId="TXT_10B8096A_C236_4AFB_9645_00F24D623534">
+          <label>Public key file base directory</label>
+          <defaultValue>$GLOBALAPPDATA\keys\public</defaultValue>
+        </textBox>
+        <textBox refId="TXT_DFEE24A6_F32C_4F73_8211_5189B619BA3E">
+          <label>Private key file base directory</label>
+          <defaultValue>$GLOBALAPPDATA\keys\private</defaultValue>
+        </textBox>
+      </presentation>
+      <presentation id="POL_AF018DCF_30AD_41AB_8DFF_29C174C4D17B">
+        <textBox refId="TXT_8062DA4D_351A_485F_A908_D213AC03099F">
+          <label>Personal Configuration Path</label>
+          <defaultValue>$APPDATA\PersonalConfig.xml</defaultValue>
+        </textBox>
+      </presentation>
+      <presentation id="POL_CDE8DA03_8E43_428A_B57E_8031656B83B1">
+        <textBox refId="TXT_285A3E7F_4E08_481B_AC98_6E651FA87084">
+          <label>Snapshot Directory Path</label>
+          <defaultValue>$APPDATA\Snapshots</defaultValue>
+        </textBox>
+      </presentation>
+      <presentation id="POL_FE44DB41_2023_44B8_8C1B_86730F5B84B6">
+        <textBox refId="TXT_A82D7855_F654_4DA2_AB92_9285A298D8EF">
+          <label>Additional Startup Arguements</label>
+          <defaultValue>
+          </defaultValue>
+        </textBox>
+      </presentation>
+      <presentation id="POL_5F42AD52_12DE_415D_9E1A_F99E6EF218EA">
+        <decimalTextBox refId="DXT_B6F2D87F_B738_4C7A_8530_1C12C3C65F84">Limit log file size (MB)</decimalTextBox>
+      </presentation>
+      <presentation id="POL_82CAE5C2_998D_4EB5_BF9E_8C6414C40003">
+        <checkBox refId="CHK_203AD3C4_4D8C_46BB_B117_6A9B02F6FA76">Allow same user to access desktop without confirmation</checkBox>
+      </presentation>
+    </presentationTable>
+  </resources>
+</policyDefinitionResources>

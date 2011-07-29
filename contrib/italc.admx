@@ -1,0 +1,327 @@
+<policyDefinitions revision="1.0" schemaVersion="1.0">
+  <policyNamespaces>
+    <target prefix="fullarmor" namespace="FullArmor.Policies.42CC9973_C881_4AE4_9520_734C46E506A9" />
+    <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+  </policyNamespaces>
+  <supersededAdm fileName="" />
+  <resources minRequiredRevision="1.0" />
+  <categories>
+    <category name="CAT_E6822BC9_5417_4E95_8BBA_CD94F08CD005" displayName="$(string.CAT_E6822BC9_5417_4E95_8BBA_CD94F08CD005)" />
+    <category name="CAT_D70BA71E_524E_4561_833B_8A6D8852360D" displayName="$(string.CAT_D70BA71E_524E_4561_833B_8A6D8852360D)">
+      <parentCategory ref="CAT_E6822BC9_5417_4E95_8BBA_CD94F08CD005" />
+    </category>
+    <category name="CAT_6F7A78F2_BB62_490E_B84C_3D863160CC7F" displayName="$(string.CAT_6F7A78F2_BB62_490E_B84C_3D863160CC7F)">
+      <parentCategory ref="CAT_E6822BC9_5417_4E95_8BBA_CD94F08CD005" />
+    </category>
+    <category name="CAT_D5109123_FD1C_4A0A_B3A6_614D2913C31E" displayName="$(string.CAT_D5109123_FD1C_4A0A_B3A6_614D2913C31E)">
+      <parentCategory ref="CAT_E6822BC9_5417_4E95_8BBA_CD94F08CD005" />
+    </category>
+    <category name="CAT_2A348098_3EA3_4875_9ADD_F005E090EEC0" displayName="$(string.CAT_2A348098_3EA3_4875_9ADD_F005E090EEC0)">
+      <parentCategory ref="CAT_E6822BC9_5417_4E95_8BBA_CD94F08CD005" />
+    </category>
+  </categories>
+  <policies>
+    <policy name="POL_9A9480B3_E1F7_4129_A2EE_5DEBB661FE11" class="Machine" displayName="$(string.POL_9A9480B3_E1F7_4129_A2EE_5DEBB661FE11)" explainText="$(string.POL_9A9480B3_E1F7_4129_A2EE_5DEBB661FE11_Help)" presentation="$(presentation.POL_9A9480B3_E1F7_4129_A2EE_5DEBB661FE11)" key="SOFTWARE\iTALC Solutions\iTALC\Service" valueName="HideTrayIcon">
+      <parentCategory ref="CAT_2A348098_3EA3_4875_9ADD_F005E090EEC0" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+	  <enabledValue>
+            <string>1</string>
+      </enabledValue>
+      <disabledValue>
+            <string>0</string>
+      </disabledValue>
+    </policy>
+    <policy name="POL_662B8988_93CC_4255_9569_06D871FA5620" class="Machine" displayName="$(string.POL_662B8988_93CC_4255_9569_06D871FA5620)" explainText="$(string.POL_662B8988_93CC_4255_9569_06D871FA5620_Help)" key="SOFTWARE\iTALC Solutions\iTALC\Service" valueName="Autostart">
+      <parentCategory ref="CAT_2A348098_3EA3_4875_9ADD_F005E090EEC0" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+	  <enabledValue>
+            <string>1</string>
+      </enabledValue>
+      <disabledValue>
+            <string>0</string>
+      </disabledValue>
+    </policy>
+    <policy name="POL_7773AF6B_B297_400B_8D84_BBD247EAC334" class="Machine" displayName="$(string.POL_7773AF6B_B297_400B_8D84_BBD247EAC334)" explainText="$(string.POL_7773AF6B_B297_400B_8D84_BBD247EAC334_Help)" presentation="$(presentation.POL_7773AF6B_B297_400B_8D84_BBD247EAC334)" key="SOFTWARE\iTALC Solutions\iTALC\Logging" valueName="LogFileDirectory">
+      <parentCategory ref="CAT_2A348098_3EA3_4875_9ADD_F005E090EEC0" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <elements>
+        <text id="TXT_BC01A7E3_4B4C_4FC4_B216_0D094C18D960" key="SOFTWARE\iTALC Solutions\iTALC\Logging" valueName="LogFileDirectory" required="true" />
+      </elements>
+    </policy>
+    <policy name="POL_2EDF2411_B7EF_4E25_B545_9463015CE39E" class="Machine" displayName="$(string.POL_2EDF2411_B7EF_4E25_B545_9463015CE39E)" explainText="$(string.POL_2EDF2411_B7EF_4E25_B545_9463015CE39E_Help)" presentation="$(presentation.POL_2EDF2411_B7EF_4E25_B545_9463015CE39E)" key="SOFTWARE\iTALC Solutions\iTALC\Logging" valueName="LogLevel">
+      <parentCategory ref="CAT_2A348098_3EA3_4875_9ADD_F005E090EEC0" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <elements>
+        <enum id="DST_B780FD16_FCA9_4ACC_BA08_99D8FE87F9C8" key="SOFTWARE\iTALC Solutions\iTALC\Logging" valueName="LogLevel">
+          <item displayName="$(string.ITM_8ED46BE0_B873_45A7_A78C_881C66BCC8AB)">
+            <value>
+              <string>0</string>
+            </value>
+          </item>
+          <item displayName="$(string.ITM_7CA444CB_EA44_494E_A49E_A36360058B05)">
+            <value>
+              <string>1</string>
+            </value>
+          </item>
+          <item displayName="$(string.ITM_7F639549_7B94_4047_B890_0689EA436A8C)">
+            <value>
+              <string>3</string>
+            </value>
+          </item>
+          <item displayName="$(string.ITM_E6465EB9_8B8F_4E0F_A361_724EA3DCBC06)">
+            <value>
+              <string>4</string>
+            </value>
+          </item>
+          <item displayName="$(string.ITM_D2A5DF60_E5DF_4432_AF5A_4210AB20470A)">
+            <value>
+              <string>5</string>
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="POL_C7358096_E7C6_4A9D_96FE_AE48C78CC770" class="Machine" displayName="$(string.POL_C7358096_E7C6_4A9D_96FE_AE48C78CC770)" explainText="$(string.POL_C7358096_E7C6_4A9D_96FE_AE48C78CC770_Help)" key="SOFTWARE\iTALC Solutions\iTALC\Logging" valueName="LogToStdErr">
+      <parentCategory ref="CAT_2A348098_3EA3_4875_9ADD_F005E090EEC0" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+	  <enabledValue>
+            <string>1</string>
+      </enabledValue>
+      <disabledValue>
+            <string>0</string>
+      </disabledValue>
+    </policy>
+    <policy name="POL_FE44DB41_2023_44B8_8C1B_86730F5B84B6" class="Machine" displayName="$(string.POL_FE44DB41_2023_44B8_8C1B_86730F5B84B6)" presentation="$(presentation.POL_FE44DB41_2023_44B8_8C1B_86730F5B84B6)" key="SOFTWARE\iTALC Solutions\iTALC\Service" valueName="Arguments">
+      <parentCategory ref="CAT_2A348098_3EA3_4875_9ADD_F005E090EEC0" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <elements>
+        <text id="TXT_A82D7855_F654_4DA2_AB92_9285A298D8EF" key="SOFTWARE\iTALC Solutions\iTALC\Service" valueName="Arguments" maxLength="256" />
+      </elements>
+    </policy>
+    <policy name="POL_812B4929_AA2A_491F_9EE6_457D5074F8E6" class="Machine" displayName="$(string.POL_812B4929_AA2A_491F_9EE6_457D5074F8E6)" presentation="$(presentation.POL_812B4929_AA2A_491F_9EE6_457D5074F8E6)" key="SOFTWARE\iTALC Solutions\iTALC\Paths" valueName="GlobalConfiguration">
+      <parentCategory ref="CAT_D70BA71E_524E_4561_833B_8A6D8852360D" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <elements>
+        <text id="TXT_1BD429DA_5FE1_42CB_8D7A_58DE15956FA0" key="SOFTWARE\iTALC Solutions\iTALC\Paths" valueName="GlobalConfiguration" required="true" maxLength="256" />
+      </elements>
+    </policy>
+    <policy name="POL_AF018DCF_30AD_41AB_8DFF_29C174C4D17B" class="Machine" displayName="$(string.POL_AF018DCF_30AD_41AB_8DFF_29C174C4D17B)" presentation="$(presentation.POL_AF018DCF_30AD_41AB_8DFF_29C174C4D17B)" key="SOFTWARE\iTALC Solutions\iTALC\Paths" valueName="PersonalConfiguration">
+      <parentCategory ref="CAT_D70BA71E_524E_4561_833B_8A6D8852360D" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <elements>
+        <text id="TXT_8062DA4D_351A_485F_A908_D213AC03099F" key="SOFTWARE\iTALC Solutions\iTALC\Paths" valueName="PersonalConfiguration" required="true" maxLength="256" />
+      </elements>
+    </policy>
+    <policy name="POL_CDE8DA03_8E43_428A_B57E_8031656B83B1" class="Machine" displayName="$(string.POL_CDE8DA03_8E43_428A_B57E_8031656B83B1)" presentation="$(presentation.POL_CDE8DA03_8E43_428A_B57E_8031656B83B1)" key="SOFTWARE\iTALC Solutions\iTALC\Paths" valueName="SnapshotDirectory">
+      <parentCategory ref="CAT_D70BA71E_524E_4561_833B_8A6D8852360D" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <elements>
+        <text id="TXT_285A3E7F_4E08_481B_AC98_6E651FA87084" key="SOFTWARE\iTALC Solutions\iTALC\Paths" valueName="SnapshotDirectory" required="true" />
+      </elements>
+    </policy>
+    <policy name="POL_9DD077A5_0E53_412F_97C9_1769609B7DA9" class="Machine" displayName="$(string.POL_9DD077A5_0E53_412F_97C9_1769609B7DA9)" explainText="$(string.POL_9DD077A5_0E53_412F_97C9_1769609B7DA9_Help)" presentation="$(presentation.POL_9DD077A5_0E53_412F_97C9_1769609B7DA9)" key="SOFTWARE\iTALC Solutions\iTALC\Authentication" valueName="KeyAuthenticationEnabled">
+      <parentCategory ref="CAT_D5109123_FD1C_4A0A_B3A6_614D2913C31E" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+	  <enabledValue>
+            <string>1</string>
+      </enabledValue>
+      <disabledValue>
+            <string>0</string>
+      </disabledValue>
+      <elements>
+        <text id="TXT_DFEE24A6_F32C_4F73_8211_5189B619BA3E" key="SOFTWARE\iTALC Solutions\iTALC\Authentication" valueName="PrivateKeyBaseDir" required="true" maxLength="250" />
+        <text id="TXT_10B8096A_C236_4AFB_9645_00F24D623534" key="SOFTWARE\iTALC Solutions\iTALC\Authentication" valueName="PublicKeyBaseDir" required="true" maxLength="250" />
+      </elements>
+    </policy>
+    <policy name="POL_F622107A_F3E6_418B_95EE_3DDEB80646EA" class="Machine" displayName="$(string.POL_F622107A_F3E6_418B_95EE_3DDEB80646EA)" explainText="$(string.POL_F622107A_F3E6_418B_95EE_3DDEB80646EA_Help)" key="SOFTWARE\iTALC Solutions\iTALC\Authentication" valueName="LogonAuthenticationEnabled">
+      <parentCategory ref="CAT_D5109123_FD1C_4A0A_B3A6_614D2913C31E" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+	  <enabledValue>
+            <string>1</string>
+      </enabledValue>
+      <disabledValue>
+            <string>0</string>
+      </disabledValue>
+    </policy>
+    <policy name="POL_0A4FF41B_EAC7_4DFA_B143_C5C911528B36" class="Machine" displayName="$(string.POL_0A4FF41B_EAC7_4DFA_B143_C5C911528B36)" key="SOFTWARE\iTALC Solutions\iTALC\VNC" valueName="CaptureLayeredWindows">
+      <parentCategory ref="CAT_6F7A78F2_BB62_490E_B84C_3D863160CC7F" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+	  <enabledValue>
+            <string>1</string>
+      </enabledValue>
+      <disabledValue>
+            <string>0</string>
+      </disabledValue>
+    </policy>
+    <policy name="POL_3E564BAB_A95E_4C4F_B12E_7849DDAB127C" class="Machine" displayName="$(string.POL_3E564BAB_A95E_4C4F_B12E_7849DDAB127C)" key="SOFTWARE\iTALC Solutions\iTALC\VNC" valueName="PollFullScreen">
+      <parentCategory ref="CAT_6F7A78F2_BB62_490E_B84C_3D863160CC7F" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+	  <enabledValue>
+            <string>1</string>
+      </enabledValue>
+      <disabledValue>
+            <string>0</string>
+      </disabledValue>
+    </policy>
+    <policy name="POL_315D0DCE_88E6_481F_ADC7_42147A288D65" class="Machine" displayName="$(string.POL_315D0DCE_88E6_481F_ADC7_42147A288D65)" key="SOFTWARE\iTALC Solutions\iTALC\VNC" valueName="LowAccuracy">
+      <parentCategory ref="CAT_6F7A78F2_BB62_490E_B84C_3D863160CC7F" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+	  <enabledValue>
+            <string>1</string>
+      </enabledValue>
+      <disabledValue>
+            <string>0</string>
+      </disabledValue>
+    </policy>
+    <policy name="POL_19687667_F2FD_42C4_9A0A_C7EEF3D572DA" class="Machine" displayName="$(string.POL_19687667_F2FD_42C4_9A0A_C7EEF3D572DA)" explainText="$(string.POL_19687667_F2FD_42C4_9A0A_C7EEF3D572DA_Help)" presentation="$(presentation.POL_19687667_F2FD_42C4_9A0A_C7EEF3D572DA)" key="SOFTWARE\iTALC Solutions\DemoServer" valueName="Backend">
+      <parentCategory ref="CAT_6F7A78F2_BB62_490E_B84C_3D863160CC7F" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+      <elements>
+        <enum id="DST_600D95A8_3EAF_4D25_BBF1_5A0B84D1B577" key="SOFTWARE\iTALC Solutions\DemoServer" valueName="Backend" required="true">
+          <item displayName="$(string.ITM_6FC14439_C03E_49A4_A438_8D5F17766C94)">
+            <value>
+              <string>0</string>
+            </value>
+          </item>
+          <item displayName="$(string.ITM_8321B5CD_5BEE_4EAF_9B7D_62BC0E0DED81)">
+            <value>
+              <string>1</string>
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy name="POL_E1969258_5B49_4CE7_B85D_8F7B4C01E7A6" class="Machine" displayName="$(string.POL_E1969258_5B49_4CE7_B85D_8F7B4C01E7A6)" explainText="$(string.POL_E1969258_5B49_4CE7_B85D_8F7B4C01E7A6_Help)" presentation="$(presentation.POL_E1969258_5B49_4CE7_B85D_8F7B4C01E7A6)" key="SOFTWARE\iTALC Solutions\iTALC\DemoServer" valueName="Multithreaded">
+      <parentCategory ref="CAT_6F7A78F2_BB62_490E_B84C_3D863160CC7F" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+	  <enabledValue>
+            <string>1</string>
+      </enabledValue>
+      <disabledValue>
+            <string>0</string>
+      </disabledValue>
+    </policy>
+    <policy name="POL_789CFC83_C979_4BD5_9760_C39916C6786F" class="Machine" displayName="$(string.POL_789CFC83_C979_4BD5_9760_C39916C6786F)" explainText="$(string.POL_789CFC83_C979_4BD5_9760_C39916C6786F_Help)" presentation="$(presentation.POL_789CFC83_C979_4BD5_9760_C39916C6786F)" key="SOFTWARE\iTALC Solutions\iTALC\Network" valueName="CoreServerPort">
+      <parentCategory ref="CAT_6F7A78F2_BB62_490E_B84C_3D863160CC7F" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+	  <enabledValue>
+            <string>1</string>
+      </enabledValue>
+      <disabledValue>
+            <string>0</string>
+      </disabledValue>
+      <elements>
+        <decimal id="DXT_414AE5C6_3D02_43A5_8698_942530126DED" key="SOFTWARE\iTALC Solutions\iTALC\Network" valueName="CoreServerPort" required="true" maxValue="65535" storeAsText="true" />
+      </elements>
+    </policy>
+    <policy name="POL_9EE6A627_73AE_4EB2_882B_136CB3A6FED3" class="Machine" displayName="$(string.POL_9EE6A627_73AE_4EB2_882B_136CB3A6FED3)" explainText="$(string.POL_9EE6A627_73AE_4EB2_882B_136CB3A6FED3_Help)" presentation="$(presentation.POL_9EE6A627_73AE_4EB2_882B_136CB3A6FED3)" key="SOFTWARE\iTALC Solutions\iTALC\Network" valueName="DemoServerPort">
+      <parentCategory ref="CAT_6F7A78F2_BB62_490E_B84C_3D863160CC7F" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+	  <enabledValue>
+            <string>1</string>
+      </enabledValue>
+      <disabledValue>
+            <string>0</string>
+      </disabledValue>
+      <elements>
+        <decimal id="DXT_9D6EF27F_5710_4B65_B36B_59B8AC34AB1D" key="SOFTWARE\iTALC Solutions\iTALC\Network" valueName="DemoServerPort" required="true" maxValue="65535" storeAsText="true" />
+      </elements>
+    </policy>
+    <policy name="POL_5CB7663E_F4FC_4462_A353_FDD5FB0B90A0" class="Machine" displayName="$(string.POL_5CB7663E_F4FC_4462_A353_FDD5FB0B90A0)" explainText="$(string.POL_5CB7663E_F4FC_4462_A353_FDD5FB0B90A0_Help)" key="SOFTWARE\iTALC Solutions\iTALC\Network" valueName="FirewallExceptionEnabled">
+      <parentCategory ref="CAT_6F7A78F2_BB62_490E_B84C_3D863160CC7F" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+	  <enabledValue>
+            <string>1</string>
+      </enabledValue>
+      <disabledValue>
+            <string>0</string>
+      </disabledValue>
+    </policy>
+    <policy name="POL_BD6B9FA6_D9B1_497D_B9D7_857FE2871480" class="Machine" displayName="$(string.POL_BD6B9FA6_D9B1_497D_B9D7_857FE2871480)" explainText="$(string.POL_BD6B9FA6_D9B1_497D_B9D7_857FE2871480_Help)" key="SOFTWARE\iTALC Solutions\iTALC\Network" valueName="LocalConnectOnly">
+      <parentCategory ref="CAT_6F7A78F2_BB62_490E_B84C_3D863160CC7F" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+	  <enabledValue>
+            <string>1</string>
+      </enabledValue>
+      <disabledValue>
+            <string>0</string>
+      </disabledValue>
+    </policy>
+    <policy name="POL_96BFBCE9_F707_417A_B425_F11DF1ED22C8" class="Machine" displayName="$(string.POL_96BFBCE9_F707_417A_B425_F11DF1ED22C8)" explainText="$(string.POL_96BFBCE9_F707_417A_B425_F11DF1ED22C8_Help)" presentation="$(presentation.POL_96BFBCE9_F707_417A_B425_F11DF1ED22C8)" key="SOFTWARE\iTALC Solutions\iTALC\Network" valueName="HttpServerEnabled">
+      <parentCategory ref="CAT_6F7A78F2_BB62_490E_B84C_3D863160CC7F" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+	  <enabledValue>
+            <string>1</string>
+      </enabledValue>
+      <disabledValue>
+            <string>0</string>
+      </disabledValue>
+      <elements>
+        <decimal id="DXT_AF6B507A_8C97_4706_BDCE_7900742047B4" key="SOFTWARE\iTALC Solutions\iTALC\Network" valueName="HttpServerPort" required="true" maxValue="65535" storeAsText="true" />
+      </elements>
+    </policy>
+    <policy name="POL_5F42AD52_12DE_415D_9E1A_F99E6EF218EA" class="Machine" displayName="$(string.POL_5F42AD52_12DE_415D_9E1A_F99E6EF218EA)" presentation="$(presentation.POL_5F42AD52_12DE_415D_9E1A_F99E6EF218EA)" key="SOFTWARE\iTALC Solutions\iTALC\Logging" valueName="LimittedLogFileSize">
+      <parentCategory ref="CAT_2A348098_3EA3_4875_9ADD_F005E090EEC0" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+	  <enabledValue>
+            <string>1</string>
+      </enabledValue>
+      <disabledValue>
+            <string>0</string>
+      </disabledValue>
+      <elements>
+        <decimal id="DXT_B6F2D87F_B738_4C7A_8530_1C12C3C65F84" key="SOFTWARE\iTALC Solutions\iTALC\Logging" valueName="LogFileSizeLimit" storeAsText="true" />
+      </elements>
+    </policy>
+    <policy name="POL_F3F42BE8_3CDF_4FA4_8AEA_DE90699FAE76" class="Machine" displayName="$(string.POL_F3F42BE8_3CDF_4FA4_8AEA_DE90699FAE76)" explainText="$(string.POL_F3F42BE8_3CDF_4FA4_8AEA_DE90699FAE76_Help)" key="SOFTWARE\iTALC Solutions\iTALC\Logging" valueName="LogToWindowsEventLog">
+      <parentCategory ref="CAT_2A348098_3EA3_4875_9ADD_F005E090EEC0" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+	  <enabledValue>
+            <string>1</string>
+      </enabledValue>
+      <disabledValue>
+            <string>0</string>
+      </disabledValue>
+    </policy>
+    <policy name="POL_6A15AC8F_D05F_40A6_8F33_F02BE63FDB92" class="Machine" displayName="$(string.POL_6A15AC8F_D05F_40A6_8F33_F02BE63FDB92)" key="SOFTWARE\iTALC Solutions\iTALC\Authentication" valueName="PermissionRequiredWithKeyAuthentication">
+      <parentCategory ref="CAT_D5109123_FD1C_4A0A_B3A6_614D2913C31E" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+	  <enabledValue>
+            <string>1</string>
+      </enabledValue>
+      <disabledValue>
+            <string>0</string>
+      </disabledValue>
+    </policy>
+    <policy name="POL_82CAE5C2_998D_4EB5_BF9E_8C6414C40003" class="Machine" displayName="$(string.POL_82CAE5C2_998D_4EB5_BF9E_8C6414C40003)" presentation="$(presentation.POL_82CAE5C2_998D_4EB5_BF9E_8C6414C40003)" key="SOFTWARE\iTALC Solutions\iTALC\Authentication" valueName="PermissionRequiredWithLogonAuthentication">
+      <parentCategory ref="CAT_D5109123_FD1C_4A0A_B3A6_614D2913C31E" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+	  <enabledValue>
+            <string>1</string>
+      </enabledValue>
+      <disabledValue>
+            <string>0</string>
+      </disabledValue>
+      <elements>
+        <boolean id="CHK_203AD3C4_4D8C_46BB_B117_6A9B02F6FA76" key="SOFTWARE\iTALC Solutions\iTALC\Authentication" valueName="SameUserConfirmationDisabled">
+          <trueValue>
+            <string>1</string>
+          </trueValue>
+          <falseValue>
+            <string>0</string>
+          </falseValue>
+        </boolean>
+      </elements>
+    </policy>
+    <policy name="POL_B3A40764_63FC_4BE1_AF56_5AA7DCAE5258" class="Machine" displayName="$(string.POL_B3A40764_63FC_4BE1_AF56_5AA7DCAE5258)" explainText="$(string.POL_B3A40764_63FC_4BE1_AF56_5AA7DCAE5258_Help)" key="SOFTWARE\iTALC Solutions\iTALC\Service" valueName="LockWithDesktopSwitching">
+      <parentCategory ref="CAT_2A348098_3EA3_4875_9ADD_F005E090EEC0" />
+      <supportedOn ref="windows:SUPPORTED_WindowsXP" />
+	  <enabledValue>
+            <string>1</string>
+      </enabledValue>
+      <disabledValue>
+            <string>0</string>
+      </disabledValue>
+    </policy>
+  </policies>
+</policyDefinitions>
