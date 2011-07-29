@@ -2,74 +2,52 @@
 <!DOCTYPE TS>
 <TS version="2.0" language="sv">
 <context>
-    <name>About</name>
+    <name>AboutDialog</name>
     <message>
         <source>About iTALC</source>
-        <translation>Om iTALC</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:20pt; font-weight:600; font-style:italic;&quot;&gt;About iTALC&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:20pt; font-weight:600; font-style:italic;&quot;&gt;Om iTALC&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation type="unfinished">Om iTALC</translation>
     </message>
     <message>
         <source>About</source>
-        <translation>Om</translation>
+        <translation type="unfinished">Om</translation>
+    </message>
+    <message utf8="true">
+        <source>iTALC - Intelligent Teaching And Learning with Computers
+
+Copyright © 2004-2011 Tobias Doerffel / iTALC Solutions</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;iTALC - Intelligent Teaching And Learning with Computers&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;&quot;&gt;Copyright (c) 2004-2009 Tobias Doerffel&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;iTALC - Intelligent Teaching And Learning with Computers&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt;&quot;&gt;Copyright (c) 2004-2009 Tobias Doerffel&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;a href=&quot;http://italc.sourceforge.net&quot;&gt;http://italc.sourceforge.net&lt;/a&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Authors</source>
-        <translation>Upphovsmän</translation>
+        <translation type="unfinished">Upphovsmän</translation>
     </message>
     <message>
         <source>Translation</source>
-        <translation>Översättning</translation>
+        <translation type="unfinished">Översättning</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Current language not translated yet (or native English).&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;If you&apos;re interested in translating iTALC into your local or another language or want to improve an existing translation, please contact an iTALC-developer!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Aktuellt språk har inte översatts ännu (eller engelska).&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Om du är intresserad att översätta iTALC till ditt språk, något annat språk eller vill förbättra en befintlig översättning så kan du kontakta en iTALC-utvecklare!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>Current language not translated yet (or native English).
+
+If you&apos;re interested in translating iTALC into your local or another language or want to improve an existing translation, please contact an iTALC developer!</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>License</source>
-        <translation>Licens</translation>
+        <translation type="unfinished">Licens</translation>
     </message>
-    <message>
-        <source>OK</source>
-        <translation>OK</translation>
+    <message utf8="true">
+        <source>iTALC - Intelligent Teaching And Learning with Computers
+
+Copyright © 2004-2011 Tobias Doerffel</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>AccessDialogSlave</name>
-    <message>
-        <source>Confirm access</source>
-        <translation>Bekräfta åtkomst</translation>
-    </message>
-    <message>
-        <source>Somebody at host %1 tries to access your screen. Do you want to grant him/her access?</source>
-        <translation>Någon på värden %1 försöker att komma åt din skärm. Vill du tillåta honom/henne att göra detta?</translation>
-    </message>
     <message>
         <source>Never for this session</source>
         <translation>Aldrig för denna session</translation>
@@ -78,184 +56,13 @@ p, li { white-space: pre-wrap; }
         <source>Always for this session</source>
         <translation>Alltid för denna session</translation>
     </message>
-</context>
-<context>
-    <name>AccessKeyAssistant</name>
     <message>
-        <source>iTALC Access Key Assistant</source>
-        <translation>Guide för iTALC-åtkomstnycklar</translation>
+        <source>Confirm desktop access</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Create/import iTALC access keys</source>
-        <translation>Skapa/importera iTALC-åtkomstnycklar</translation>
-    </message>
-    <message>
-        <source>This assistant will help you to create or import iTALC access keys.</source>
-        <translation>Denna guide hjälper dig att skapa eller importera iTALC-åtkomstnycklar.</translation>
-    </message>
-    <message>
-        <source>How does it work?</source>
-        <translation>Hur fungerar det?</translation>
-    </message>
-    <message>
-        <source>iTALC access keys consist of two parts belonging together, a private and a public key part.
-
-Using the private key part, users on the master computer will be able to access client computers. It is important that only authorized users have read access to the private key file.
-
-The public key part is used on the client computers to verify that any incoming connection request is authorized.</source>
-        <translation>iTALC-åtkomstnycklar består av två delar som tillhör varandra, en privat och en publik nyckeldel.
-
-Användare på huvuddatorn kan komma åt klientdatorer med den privata nyckeldelen. Det är viktigt att endast behöriga användare har läsrättigheter till den privata nyckeldelen.
-
-Den publika delen används på klientdatorerna för att verifiera att inkommande anslutningar är behöriga.</translation>
-    </message>
-    <message>
-        <source>Assistant mode</source>
-        <translation>Guideläge</translation>
-    </message>
-    <message>
-        <source>Please choose whether to create new access keys or import a public key on a client.</source>
-        <translation>Välj huruvida du vill skapa nya åtkomstnycklar eller importera en publik nyckel på en klient.</translation>
-    </message>
-    <message>
-        <source>Create new access keys (master computer)</source>
-        <translation>Skapa nya åtkomstnycklar (huvuddator)</translation>
-    </message>
-    <message>
-        <source>assistantModeButtonGroup</source>
-        <translation>assistantModeButtonGroup</translation>
-    </message>
-    <message>
-        <source>Import public key (client computer)</source>
-        <translation>Importera publik nyckel (klientdator)</translation>
-    </message>
-    <message>
-        <source>Select user role</source>
-        <translation>Välj användarroll</translation>
-    </message>
-    <message>
-        <source>Please select a user role for which to create or import the access keys:</source>
-        <translation>Välj en användarroll för vilken åtkomstnycklarna ska skapas eller importeras:</translation>
-    </message>
-    <message>
-        <source>Teacher</source>
-        <translation>Lärare</translation>
-    </message>
-    <message>
-        <source>Administrator</source>
-        <translation>Administratör</translation>
-    </message>
-    <message>
-        <source>Support team member</source>
-        <translation>Medlem av supportgrupp</translation>
-    </message>
-    <message>
-        <source>Other</source>
-        <translation>Annan</translation>
-    </message>
-    <message>
-        <source>User roles allow using multiple access keys in parallel. For example there can be different teacher access keys for each classroom while the support access keys are the same for the whole school.</source>
-        <translation>Användarroller tillåter att man använder flera åtkomstnycklar samtidigt. Till exempel kan det finnas olika åtkomstnycklar för lärare för varje klassrum men åtkomstnycklar för supportpersoner kan gälla för hela skolan.</translation>
-    </message>
-    <message>
-        <source>Directories</source>
-        <translation>Kataloger</translation>
-    </message>
-    <message>
-        <source>Export public key part (master computer)</source>
-        <translation>Exportera publik nyckeldel (huvuddator)</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
-        <source>Use custom destination directory for access keys</source>
-        <translation>Använd anpassad målkatalog för åtkomstnycklar</translation>
-    </message>
-    <message>
-        <source>Please specify the location of the public access key to be imported.</source>
-        <translation>Ange platsen för den publika åtkomstnyckeln som ska importeras.</translation>
-    </message>
-    <message>
-        <source>Summary</source>
-        <translation>Sammandrag</translation>
-    </message>
-    <message>
-        <source>The following actions will be taken:</source>
-        <translation>Följande åtgärder kommer att genomföras:</translation>
-    </message>
-    <message utf8="true">
-        <source>• Create new access keys</source>
-        <translation>• Skapa nya åtkomstnycklar</translation>
-    </message>
-    <message utf8="true">
-        <source>• Import public access key from</source>
-        <translation>• Importera publik åtkomstnyckel från</translation>
-    </message>
-    <message>
-        <source>&lt;unknown&gt;</source>
-        <translation>&lt;okänt&gt;</translation>
-    </message>
-    <message utf8="true">
-        <source>• Write access key(s) to</source>
-        <translation>• Skriv åtkomstnycklar till</translation>
-    </message>
-    <message utf8="true">
-        <source>• Export public key to</source>
-        <translation>• Exportera publik nyckel till</translation>
-    </message>
-    <message utf8="true">
-        <source>• Configure for user role</source>
-        <translation>• Konfigurera för användarrollen</translation>
-    </message>
-    <message>
-        <source>Select directory in which to export the public key</source>
-        <translation>Välj katalog att exportera den publika nyckeln till</translation>
-    </message>
-    <message>
-        <source>Key files (*.key.txt)</source>
-        <translation>Nyckelfiler (*.key.txt)</translation>
-    </message>
-    <message>
-        <source>Invalid public key</source>
-        <translation>Ogiltig publik nyckel</translation>
-    </message>
-    <message>
-        <source>The selected file does not contain a valid public iTALC access key!</source>
-        <translation>Det valda filen innehåller inte någon giltig publik iTALC-åtkomstnyckel!</translation>
-    </message>
-    <message>
-        <source>Select destination directory</source>
-        <translation>Välj målkatalog</translation>
-    </message>
-    <message>
-        <source>Access key creation</source>
-        <translation>Skapa åtkomstnyckel</translation>
-    </message>
-    <message>
-        <source>Could not remove previously existing file %1.</source>
-        <translation>Kunde inte ta bort befintliga filen %1.</translation>
-    </message>
-    <message>
-        <source>Failed exporting public access key from %1 to %2.</source>
-        <translation>Misslyckades med att exportera publik åtkomstnyckel från %1 till %2.</translation>
-    </message>
-    <message>
-        <source>Access keys were created and written successfully to %1 and %2.</source>
-        <translation>Åtkomstnycklar skapades och skrevs till %1 och %2.</translation>
-    </message>
-    <message>
-        <source>An error occured while creating the access keys. You probably are not permitted to write to the selected directories.</source>
-        <translation>Ett fel inträffade vid skapandet av åtkomstnycklar. Du har antagligen inte behörighet att skriva till de valda katalogerna.</translation>
-    </message>
-    <message>
-        <source>Public key import</source>
-        <translation>Import av publik nyckel</translation>
-    </message>
-    <message>
-        <source>An error occured while importing the public access key. You probably are not permitted to read the source key or to write the destination file.</source>
-        <translation>Ett fel inträffade vid import av publik åtkomstnyckel. Du har antagligen inte behörighet att läsa källnyckeln eller skriva till målfilen.</translation>
+        <source>The user %1 at host %2 wants to access your desktop. Do you want to grant access?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -478,148 +285,7 @@ Vill du skapa ett nytt klassrum nu?</translation>
     </message>
 </context>
 <context>
-    <name>ClientSettings</name>
-    <message>
-        <source>Client settings</source>
-        <translation>Klientinställningar</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:20pt; font-weight:600; font-style:italic;&quot;&gt;Client settings&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:20pt; font-weight:600; font-style:italic;&quot;&gt;Klientinställningar&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>General</source>
-        <translation>Allmänt</translation>
-    </message>
-    <message>
-        <source>Type</source>
-        <translation>Typ</translation>
-    </message>
-    <message>
-        <source>Student computer</source>
-        <translation>Studentdator</translation>
-    </message>
-    <message>
-        <source>Teacher computer</source>
-        <translation>Lärardator</translation>
-    </message>
-    <message>
-        <source>Other/undefined computer</source>
-        <translation>Annan/odefinierad dator</translation>
-    </message>
-    <message>
-        <source>Classroom</source>
-        <translation>Klassrum</translation>
-    </message>
-    <message>
-        <source>MAC-address</source>
-        <translation>MAC-adress</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;enter an IP-address or hostname under which iTALC can reach the client (use &apos;:&apos; for specifying an optional port-number)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;ange en IP-adress eller värdnamn med vilket iTALC kan nå klienten (använd &quot;:&quot; för att ange ett valfritt portnummer)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>IP/hostname</source>
-        <translation>IP/värdnamn</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Hardware/MAC-address of client - only used for powering on client&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Maskinvaru-/MAC-adress för klienten - används endast för att starta klienten&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation>Namn</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Optional nickname of the host which is displayed in iTALC.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Valfritt smeknamn på värddatorn som kommer att visas i iTALC.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>VPN</source>
-        <translation>VPN</translation>
-    </message>
-    <message>
-        <source>Connection</source>
-        <translation>Anslutning</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;connection to hosts on the same level&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;anslutning till värddatorer på samma nivå&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Here you can specify how this host is connected to the iTALC-network, i.e. hosts on the same level. Normally clients are connected via 100 MBit/s LAN, but there might be special hosts such as gateways to other iTALC-networks in foreign schools or a student&apos;s home-computer. In such cases iTALC tries to optimize its bandwidth utilization.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Här kan du ange hur denna värddator är ansluten till iTALC-nätverket, alltså värddatorer på samma nivå. Normalt sett ansluts klienter via 100 MBit/s lokalt nätverk, men det kan finnas speciella värddatorer såsom gateways för andra iTALC-nätverk i andra skolor eller en students hemdator. I sådana fall försöker iTALC att optimera dess bandbreddsutnyttjande.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>Analog</source>
-        <translation>Analog</translation>
-    </message>
-    <message>
-        <source>ISDN</source>
-        <translation>ISDN</translation>
-    </message>
-    <message>
-        <source>DSL / 400 KBit/s</source>
-        <translation>DSL / 400 KBit/s</translation>
-    </message>
-    <message>
-        <source>DSL / 2000 KBit/s</source>
-        <translation>DSL / 2000 KBit/s</translation>
-    </message>
-    <message>
-        <source>100 MBit/s LAN</source>
-        <translation>100 MBit/s LAN</translation>
-    </message>
-    <message>
-        <source>1000 MBit/s LAN</source>
-        <translation>1000 MBit/s LAN</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Check if the host is the gateway for the subnet.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Kontrollera om värddatorn är gateway för delnätverket.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>Host is &amp;gateway for subnet</source>
-        <translation>Värden är &amp;gateway för delnätverket</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Activate this option for at least one host in a subnet.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Aktivera detta alternativ för minst en värddator i ett delnätverk.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;When showing a demo to more than one host in a foreign network, it&apos;s meaningful to activate this option for at least one of the involved hosts. This way all data is only sent once to the demo-replicator which provides the data for all the other clients in the network. Especially on slow links usage of this option is essential. Normally you should enable this option on the subnet-gateway (see option above).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;När en demo visas till fler än en värddator i ett annat nätverk så är det lämpligt att aktivera detta alternativ för minst en av de inblandade värddatorerna. På detta sätt kommer allt data endast att skickas en gång till demoreplikatorn som sedan tillhandahåller data fr alla andra klienter i nätverket. Speciellt på långsamma länkar kommer detta alternativ att vara nödvändigt. Normalt sett bör du aktivera detta alternativ på subnet-gateway (se alternativet ovan).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>Act as &amp;demo replicator</source>
-        <translation>Fungera som &amp;demoreplikator</translation>
-    </message>
-    <message>
-        <source>&amp;OK</source>
-        <translation>&amp;OK</translation>
-    </message>
-    <message>
-        <source>C&amp;ancel</source>
-        <translation>&amp;Avbryt</translation>
-    </message>
-</context>
-<context>
     <name>ClientSettingsDialog</name>
-    <message>
-        <source>Missing IP-address/hostname</source>
-        <translation>Saknar IP-adress/värdnamn</translation>
-    </message>
-    <message>
-        <source>You didn&apos;t specify an IP-address or hostname for the computer!</source>
-        <translation>Du angav inte någon IP-adress eller värdnamn för datorn!</translation>
-    </message>
     <message>
         <source>Invalid MAC-address</source>
         <translation>Ogiltig MAC-adress</translation>
@@ -628,24 +294,61 @@ p, li { white-space: pre-wrap; }
         <source>You specified an invalid MAC-address. Either leave the field blank or enter a valid MAC-address (use &quot;:&quot; as separator!).</source>
         <translation>Du angav en ogiltig MAC-adress. Lämna fältet tomt eller ange en giltig MAC-adress (använd &quot;:&quot; som avgränsare!).</translation>
     </message>
-</context>
-<context>
-    <name>CmdInputDialog</name>
     <message>
-        <source>Run commands on client(s)</source>
-        <translation>Kör kommandon på klient(er)</translation>
+        <source>Client settings</source>
+        <translation type="unfinished">Klientinställningar</translation>
     </message>
     <message>
-        <source>Enter commands, which should be run on client(s):</source>
-        <translation>Ange de kommandon som ska köras på klient(er):</translation>
+        <source>IP/hostname</source>
+        <translation type="unfinished">IP/värdnamn</translation>
     </message>
     <message>
-        <source>&amp;Run!</source>
-        <translation>&amp;Kör!</translation>
+        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;enter an IP-address or hostname under which iTALC can reach the client (use &apos;:&apos; for specifying an optional port-number)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished">&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;ange en IP-adress eller värdnamn med vilket iTALC kan nå klienten (använd &quot;:&quot; för att ange ett valfritt portnummer)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <source>Cancel</source>
-        <translation>Avbryt</translation>
+        <source>Name</source>
+        <translation type="unfinished">Namn</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Optional nickname of the host which is displayed in iTALC.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished">&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Valfritt smeknamn på värddatorn som kommer att visas i iTALC.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>MAC address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Hardware/MAC-address of client - only used for powering on client&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished">&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Maskinvaru-/MAC-adress för klienten - används endast för att starta klienten&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>Classroom</source>
+        <translation type="unfinished">Klassrum</translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation type="unfinished">Typ</translation>
+    </message>
+    <message>
+        <source>Student computer</source>
+        <translation type="unfinished">Studentdator</translation>
+    </message>
+    <message>
+        <source>Teacher computer</source>
+        <translation type="unfinished">Lärardator</translation>
+    </message>
+    <message>
+        <source>Other/undefined computer</source>
+        <translation type="unfinished">Annan/odefinierad dator</translation>
+    </message>
+    <message>
+        <source>Missing IP address/hostname</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You didn&apos;t specify an IP address or hostname for the computer!</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -657,10 +360,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Here you can set the interval between updates of clients. Higher values result in lower network-traffic and lower CPU-usage on this computer.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Här kan du ställa in intervallet mellan uppdateringar av klienter. Högre värden resulterar i lägre nätverkstrafik och lägre processorbelastning på denna dator.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>1 second</source>
-        <translation>1 sekund</translation>
     </message>
     <message>
         <source> seconds</source>
@@ -807,10 +506,216 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>KeyFileAssistant</name>
+    <message>
+        <source>iTALC Access Key Assistant</source>
+        <translation type="unfinished">Guide för iTALC-åtkomstnycklar</translation>
+    </message>
+    <message>
+        <source>Create/import iTALC access keys</source>
+        <translation type="unfinished">Skapa/importera iTALC-åtkomstnycklar</translation>
+    </message>
+    <message>
+        <source>This assistant will help you to create or import iTALC access keys.</source>
+        <translation type="unfinished">Denna guide hjälper dig att skapa eller importera iTALC-åtkomstnycklar.</translation>
+    </message>
+    <message>
+        <source>How does it work?</source>
+        <translation type="unfinished">Hur fungerar det?</translation>
+    </message>
+    <message>
+        <source>iTALC access keys consist of two parts belonging together, a private and a public key part.
+
+Using the private key part, users on the master computer will be able to access client computers. It is important that only authorized users have read access to the private key file.
+
+The public key part is used on the client computers to verify that any incoming connection request is authorized.</source>
+        <translation type="unfinished">iTALC-åtkomstnycklar består av två delar som tillhör varandra, en privat och en publik nyckeldel.
+
+Användare på huvuddatorn kan komma åt klientdatorer med den privata nyckeldelen. Det är viktigt att endast behöriga användare har läsrättigheter till den privata nyckeldelen.
+
+Den publika delen används på klientdatorerna för att verifiera att inkommande anslutningar är behöriga.</translation>
+    </message>
+    <message>
+        <source>Assistant mode</source>
+        <translation type="unfinished">Guideläge</translation>
+    </message>
+    <message>
+        <source>Please choose whether to create new access keys or import a public key on a client.</source>
+        <translation type="unfinished">Välj huruvida du vill skapa nya åtkomstnycklar eller importera en publik nyckel på en klient.</translation>
+    </message>
+    <message>
+        <source>Create new access keys (master computer)</source>
+        <translation type="unfinished">Skapa nya åtkomstnycklar (huvuddator)</translation>
+    </message>
+    <message>
+        <source>assistantModeButtonGroup</source>
+        <translation type="unfinished">assistantModeButtonGroup</translation>
+    </message>
+    <message>
+        <source>Import public key (client computer)</source>
+        <translation type="unfinished">Importera publik nyckel (klientdator)</translation>
+    </message>
+    <message>
+        <source>Select user role</source>
+        <translation type="unfinished">Välj användarroll</translation>
+    </message>
+    <message>
+        <source>Please select a user role for which to create or import the access keys:</source>
+        <translation type="unfinished">Välj en användarroll för vilken åtkomstnycklarna ska skapas eller importeras:</translation>
+    </message>
+    <message>
+        <source>Teacher</source>
+        <translation type="unfinished">Lärare</translation>
+    </message>
+    <message>
+        <source>Administrator</source>
+        <translation type="unfinished">Administratör</translation>
+    </message>
+    <message>
+        <source>Support team member</source>
+        <translation type="unfinished">Medlem av supportgrupp</translation>
+    </message>
+    <message>
+        <source>Other</source>
+        <translation type="unfinished">Annan</translation>
+    </message>
+    <message>
+        <source>User roles allow using multiple access keys in parallel. For example there can be different teacher access keys for each classroom while the support access keys are the same for the whole school.</source>
+        <translation type="unfinished">Användarroller tillåter att man använder flera åtkomstnycklar samtidigt. Till exempel kan det finnas olika åtkomstnycklar för lärare för varje klassrum men åtkomstnycklar för supportpersoner kan gälla för hela skolan.</translation>
+    </message>
+    <message>
+        <source>Directories</source>
+        <translation type="unfinished">Kataloger</translation>
+    </message>
+    <message>
+        <source>Export public key part (master computer)</source>
+        <translation type="unfinished">Exportera publik nyckeldel (huvuddator)</translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation type="unfinished">...</translation>
+    </message>
+    <message>
+        <source>Use custom destination directory for access keys</source>
+        <translation type="unfinished">Använd anpassad målkatalog för åtkomstnycklar</translation>
+    </message>
+    <message>
+        <source>Please specify the location of the public access key to be imported.</source>
+        <translation type="unfinished">Ange platsen för den publika åtkomstnyckeln som ska importeras.</translation>
+    </message>
+    <message>
+        <source>Summary</source>
+        <translation type="unfinished">Sammandrag</translation>
+    </message>
+    <message>
+        <source>The following actions will be taken:</source>
+        <translation type="unfinished">Följande åtgärder kommer att genomföras:</translation>
+    </message>
+    <message utf8="true">
+        <source>• Create new access keys</source>
+        <translation type="unfinished">• Skapa nya åtkomstnycklar</translation>
+    </message>
+    <message utf8="true">
+        <source>• Import public access key from</source>
+        <translation type="unfinished">• Importera publik åtkomstnyckel från</translation>
+    </message>
+    <message>
+        <source>&lt;unknown&gt;</source>
+        <translation type="unfinished">&lt;okänt&gt;</translation>
+    </message>
+    <message utf8="true">
+        <source>• Write access key(s) to</source>
+        <translation type="unfinished">• Skriv åtkomstnycklar till</translation>
+    </message>
+    <message utf8="true">
+        <source>• Export public key to</source>
+        <translation type="unfinished">• Exportera publik nyckel till</translation>
+    </message>
+    <message utf8="true">
+        <source>• Configure for user role</source>
+        <translation type="unfinished">• Konfigurera för användarrollen</translation>
+    </message>
+    <message>
+        <source>Select directory in which to export the public key</source>
+        <translation type="unfinished">Välj katalog att exportera den publika nyckeln till</translation>
+    </message>
+    <message>
+        <source>Key files (*.key.txt)</source>
+        <translation type="unfinished">Nyckelfiler (*.key.txt)</translation>
+    </message>
+    <message>
+        <source>Invalid public key</source>
+        <translation type="unfinished">Ogiltig publik nyckel</translation>
+    </message>
+    <message>
+        <source>The selected file does not contain a valid public iTALC access key!</source>
+        <translation type="unfinished">Det valda filen innehåller inte någon giltig publik iTALC-åtkomstnyckel!</translation>
+    </message>
+    <message>
+        <source>Select destination directory</source>
+        <translation type="unfinished">Välj målkatalog</translation>
+    </message>
+    <message>
+        <source>Access key creation</source>
+        <translation type="unfinished">Skapa åtkomstnyckel</translation>
+    </message>
+    <message>
+        <source>Could not remove previously existing file %1.</source>
+        <translation type="unfinished">Kunde inte ta bort befintliga filen %1.</translation>
+    </message>
+    <message>
+        <source>Failed exporting public access key from %1 to %2.</source>
+        <translation type="unfinished">Misslyckades med att exportera publik åtkomstnyckel från %1 till %2.</translation>
+    </message>
+    <message>
+        <source>Access keys were created and written successfully to %1 and %2.</source>
+        <translation type="unfinished">Åtkomstnycklar skapades och skrevs till %1 och %2.</translation>
+    </message>
+    <message>
+        <source>An error occured while creating the access keys. You probably are not permitted to write to the selected directories.</source>
+        <translation type="unfinished">Ett fel inträffade vid skapandet av åtkomstnycklar. Du har antagligen inte behörighet att skriva till de valda katalogerna.</translation>
+    </message>
+    <message>
+        <source>Public key import</source>
+        <translation type="unfinished">Import av publik nyckel</translation>
+    </message>
+    <message>
+        <source>An error occured while importing the public access key. You probably are not permitted to read the source key or to write the destination file.</source>
+        <translation type="unfinished">Ett fel inträffade vid import av publik åtkomstnyckel. Du har antagligen inte behörighet att läsa källnyckeln eller skriva till målfilen.</translation>
+    </message>
+    <message>
+        <source>The public key was successfully imported to %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>LockWidget</name>
     <message>
         <source>screen lock</source>
         <translation>skärmlås</translation>
+    </message>
+</context>
+<context>
+    <name>LogonGroupEditor</name>
+    <message>
+        <source>Logon group editor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please add the groups whose members should be allowed to access computers in your iTALC network.</source>
+        <translation type="unfinished">Lägg till grupperna vars medlemmar ska tillåtas att komma åt datorer i ditt iTALC-nätverk.</translation>
+    </message>
+    <message>
+        <source>All groups</source>
+        <translation type="unfinished">Alla grupper</translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation type="unfinished">...</translation>
+    </message>
+    <message>
+        <source>Groups with iTALC privileges</source>
+        <translation type="unfinished">Grupper med iTALC-behörighet</translation>
     </message>
 </context>
 <context>
@@ -845,18 +750,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Authentication</source>
         <translation>Autentisering</translation>
-    </message>
-    <message>
-        <source>User interface</source>
-        <translation>Användargränssnitt</translation>
-    </message>
-    <message>
-        <source>Enable balloon tooltips</source>
-        <translation>Aktivera ballongtips</translation>
-    </message>
-    <message>
-        <source>Show text on buttons</source>
-        <translation>Visa text på ballonger</translation>
     </message>
     <message>
         <source>iTALC Service</source>
@@ -963,10 +856,6 @@ p, li { white-space: pre-wrap; }
         <translation>Demoserver</translation>
     </message>
     <message>
-        <source>Multithreading (disable when experiencing crashes)</source>
-        <translation>Multitrådning (inaktivera om du upplever problem)</translation>
-    </message>
-    <message>
         <source>Network</source>
         <translation>Nätverk</translation>
     </message>
@@ -1007,48 +896,12 @@ p, li { white-space: pre-wrap; }
         <translation>Autentiseringsmetoder</translation>
     </message>
     <message>
-        <source>Access key authentication</source>
-        <translation>Autentisering med åtkomstnyckel</translation>
-    </message>
-    <message>
-        <source>ACL-based user logon authentication</source>
-        <translation>ACL-baserad autentisering för användarinloggning</translation>
-    </message>
-    <message>
         <source>Access key management</source>
         <translation>Hantering av åtkomstnycklar</translation>
     </message>
     <message>
-        <source>Public key base directory</source>
-        <translation>Baskatalog för publika nycklar</translation>
-    </message>
-    <message>
-        <source>Private key base directory</source>
-        <translation>Baskatalog för privata nycklar</translation>
-    </message>
-    <message>
-        <source>Launch access key assistant</source>
-        <translation>Starta guide för åtkomstnycklar</translation>
-    </message>
-    <message>
         <source>Logon settings</source>
         <translation>Inloggningsinställningar</translation>
-    </message>
-    <message>
-        <source>Manage ACLs...</source>
-        <translation>Hantera åtkomstbehörighet (ACL)...</translation>
-    </message>
-    <message>
-        <source>Please add the groups whose members should be allowed to access computers in your iTALC network.</source>
-        <translation>Lägg till grupperna vars medlemmar ska tillåtas att komma åt datorer i ditt iTALC-nätverk.</translation>
-    </message>
-    <message>
-        <source>All groups</source>
-        <translation>Alla grupper</translation>
-    </message>
-    <message>
-        <source>Groups with iTALC privileges</source>
-        <translation>Grupper med iTALC-behörighet</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -1121,10 +974,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Save settings to file</source>
         <translation>Spara inställningar till fil</translation>
-    </message>
-    <message>
-        <source>You have to apply the configuration first before managing ACLs.</source>
-        <translation>Du måste verkställa konfigurationen först innan du hanterar ACL-regler.</translation>
     </message>
     <message>
         <source>Unsaved settings</source>
@@ -1271,18 +1120,6 @@ p, li { white-space: pre-wrap; }
         <translation>Du kan klicka på denna knapp för att stänga av alla visade datorer (t.ex. när lektionen är över).</translation>
     </message>
     <message>
-        <source>Logon</source>
-        <translation>Logga in</translation>
-    </message>
-    <message>
-        <source>Remote logon</source>
-        <translation>Fjärrinloggning</translation>
-    </message>
-    <message>
-        <source>After clicking this button you can enter a username and password to log on the according user on all visible computers.</source>
-        <translation>Klicka på denna knapp för att ange ett användarnamn och lösenord att logga in med på alla synliga datorer.</translation>
-    </message>
-    <message>
         <source>Support</source>
         <translation>Support</translation>
     </message>
@@ -1319,24 +1156,6 @@ p, li { white-space: pre-wrap; }
         <translation>Alla synliga fönster kommer att arrangeras om och justeras när du klickar på denna knapp.</translation>
     </message>
     <message>
-        <source>No valid keys found</source>
-        <translation>Inga giltiga nycklar hittades</translation>
-    </message>
-    <message>
-        <source>No authentication-keys were found or your old ones were broken. Please create a new key-pair using ICA (see documentation at http://italc.sf.net/wiki/index.php?title=Installation).
-Otherwise you won&apos;t be able to access computers using iTALC.</source>
-        <translation>Inga autentiseringsnycklar hittades eller så är dina gamla nycklar trasiga. Skapa ett nytt nyckelpar med ICA (se dokumentation på http://italc.sf.net/wiki/index.php?title=Installation).
-Du kommer annars inte att kunna komma åt datorer med iTALC.</translation>
-    </message>
-    <message>
-        <source>iTALC service not running</source>
-        <translation>iTALC-tjänsten är inte igång</translation>
-    </message>
-    <message>
-        <source>There seems to be no iTALC service running on this computer or the authentication-keys aren&apos;t set up properly. The service is required for running iTALC. Contact your administrator for solving this problem.</source>
-        <translation>Det verkar inte finnas någon iTALC-tjänst igång på denna dator eller så är autentiseringsnycklarna inte konfigurerade korrekt. Tjänsten krävs för att köra iTALC. Kontakta din administratör för att lösa problemet.</translation>
-    </message>
-    <message>
         <source>iTALC Master Control</source>
         <translation>Huvudstyrning - iTALC</translation>
     </message>
@@ -1355,6 +1174,231 @@ Du kommer annars inte att kunna komma åt datorer med iTALC.</translation>
     <message>
         <source>Could not change the firewall configuration for the iTALC Service.</source>
         <translation>Kunde inte ändra brandväggskonfigurationen för iTALC-tjänsten.</translation>
+    </message>
+    <message>
+        <source>Debugging</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable desktop switching for screen lock (experimental)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Log to standard error output</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Log to Windows event log</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Backend</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>VNC reflector</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>iTALC 1 demo server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Multithreading (can be enabled when using the VNC reflector backend)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable HTTP server which provides a JavaViewer applet</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>HTTP server port</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Allow connections from localhost only</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Key file authentication</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>ACL-based logon authentication</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Public key file base directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Private key file base directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Launch key file assistant</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Manage permissions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Access confirmation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You can configure iTALC to ask the user for permission to access the desktop when using certain authentication methods.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Logon authentication</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Allow same user to access desktop without confirmation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Debugging iTALC</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>When encountering bugs or other misbehaviour in iTALC it is important to inform the developers about them, so that the bugs can be fixed in future releases. This page allows you to submit a helpful bug report easily.
+
+If the bug is not reproducible, skip step 1) - 3).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Clear the logfiles in the &quot;General&quot; section.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>2)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>In the &quot;General&quot; section set the log level to &quot;Debug messages and everything else&quot;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>3)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Repeat the actions leading to the bug or misbehaviour.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>4)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Click the following button and save the file to a known location.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Generate bug report archive</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>5)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Go to the &lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;amp;atid=724375&quot;&gt;iTALC bug tracker&lt;/a&gt;, open a new bug, describe what you did in step 3) and attach the file you saved in step 4).&lt;/p&gt;
+&lt;br/&gt;
+&lt;br/&gt;
+Note: if the bug involves both a master and client computer, attach bug report archives for both computers.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Restart iTALC Service</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>All settings were saved successfully. In order to take effect the iTALC service needs to be restarted. Restart it now?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Starting iTALC service</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stopping iTALC service</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The iTALC service needs to be stopped temporarily in order to remove the log files. Continue?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Log files cleared</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>All log files were cleared successfully.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not remove all log files.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Logon authentication test</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Authentication with provided credentials was successful.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Authentication with provided credentials failed!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save bug report archive</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>iTALC bug report archive (*.ibra.xml)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>iTALC bug report archive saved</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An iTALC bug report archive has been saved to %1. It includes iTALC log files and information about your operating system. You can attach it to a bug report.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not contact iTALC service</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not contact the local iTALC service. It is likely that you entered wrong credentials or key files are not set up properly. Try again or contact your administrator for solving this problem using the iTALC Management Console.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Authentication impossible</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No authentication key files were found or your current ones are outdated. Please create new key files using the iTALC Management Console. Alternatively set up logon authentication using the iTALC Management Console. Otherwise you won&apos;t be able to access computers using iTALC.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1411,10 +1455,6 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>PasswordDialog</name>
     <message>
-        <source>iTALC Master Logon</source>
-        <translation>Huvudinloggning i iTALC</translation>
-    </message>
-    <message>
         <source>Please enter your username and password in order to access iTALC clients.</source>
         <translation>Ange ditt användarnamn och lösenord för att komma åt iTALC-klienter.</translation>
     </message>
@@ -1425,6 +1465,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Password</source>
         <translation>Lösenord</translation>
+    </message>
+    <message>
+        <source>iTALC Logon</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1541,52 +1585,37 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
-    <name>RemoteLogon</name>
+    <name>RemoteLogonDialog</name>
     <message>
-        <source>Remote Logon</source>
-        <translation>Fjärrinloggning</translation>
+        <source>Remote logon</source>
+        <translation type="unfinished">Fjärrinloggning</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:20pt; font-weight:600; font-style:italic;&quot;&gt;Remote Logon&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:20pt; font-weight:600; font-style:italic;&quot;&gt;Fjärrinloggning&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>Use the fields below to enter the username, password and optional the domain-name. These information will be used to logon the computer(s).</source>
-        <translation>Använd fälten nedan för att ange användarnamn, lösenord och domännamn (valfritt). Denna information kommer att användas för att logga in på datorerna.</translation>
+        <source>Use the fields below to enter the username, password and optional the domain name. These information will be used to logon the computer(s).</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Username</source>
-        <translation>Användarnamn</translation>
+        <translation type="unfinished">Användarnamn</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation>Lösenord</translation>
+        <translation type="unfinished">Lösenord</translation>
     </message>
     <message>
         <source>Domain</source>
-        <translation>Domän</translation>
+        <translation type="unfinished">Domän</translation>
+    </message>
+</context>
+<context>
+    <name>RunCommandsDialog</name>
+    <message>
+        <source>Run commands</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&amp;OK</source>
-        <translation>&amp;OK</translation>
-    </message>
-    <message>
-        <source>Ctrl+Enter</source>
-        <translation>Ctrl+Enter</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation>Avbryt</translation>
-    </message>
-    <message>
-        <source>Esc</source>
-        <translation>Esc</translation>
+        <source>Please enter the commands to run on the selected client(s). You can separate multiple commands by line.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1653,57 +1682,25 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
-    <name>Support</name>
+    <name>SupportDialog</name>
     <message>
         <source>Support</source>
-        <translation>Support</translation>
+        <translation type="unfinished">Support</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:20pt; font-weight:600; font-style:italic;&quot;&gt;Support &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:20pt; font-weight:600; font-style:italic;&quot;&gt;Support &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>Please enter the IP-address or the name of the host at which the person is sitting, you want to support.</source>
-        <translation>Ange den IP-adress eller namn på värddatorn som personen sitter på som du vill hjälpa.</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation>OK</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation>Avbryt</translation>
+        <source>Please enter the IP address or the name of the host to which you want to connect.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>TextMessage</name>
+    <name>TextMessageDialog</name>
     <message>
         <source>Send text message</source>
-        <translation>Skicka textmeddelande</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:20pt; font-weight:600; font-style:italic;&quot;&gt;Send text message&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:20pt; font-weight:600; font-style:italic;&quot;&gt;Skicka textmeddelande&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation type="unfinished">Skicka textmeddelande</translation>
     </message>
     <message>
         <source>Use the field below to type your message which will be sent to all selected users.</source>
-        <translation>Använd fältet nedan för att skriva ditt meddelande som ska skickas till alla markerade användare.</translation>
-    </message>
-    <message>
-        <source>&amp;OK</source>
-        <translation>&amp;OK</translation>
-    </message>
-    <message>
-        <source>Ctrl+Enter</source>
-        <translation>Ctrl+Enter</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation>Avbryt</translation>
-    </message>
-    <message>
-        <source>Esc</source>
-        <translation>Esc</translation>
+        <translation type="unfinished">Använd fältet nedan för att skriva ditt meddelande som ska skickas till alla markerade användare.</translation>
     </message>
 </context>
 <context>
@@ -1746,10 +1743,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Send text message</source>
         <translation>Skicka textmeddelande</translation>
-    </message>
-    <message>
-        <source>Logon user</source>
-        <translation>Logga in användare</translation>
     </message>
     <message>
         <source>Logout user</source>

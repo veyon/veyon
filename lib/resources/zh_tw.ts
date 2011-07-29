@@ -43,6 +43,12 @@ If you&apos;re interested in translating iTALC into your local or another langua
         <source>License</source>
         <translation>授權條款</translation>
     </message>
+    <message utf8="true">
+        <source>iTALC - Intelligent Teaching And Learning with Computers
+
+Copyright © 2004-2011 Tobias Doerffel / iTALC Solutions</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AccessDialogSlave</name>

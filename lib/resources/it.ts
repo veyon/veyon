@@ -11,12 +11,6 @@
         <source>About</source>
         <translation>Informazioni su</translation>
     </message>
-    <message utf8="true">
-        <source>iTALC - Intelligent Teaching And Learning with Computers
-
-Copyright © 2004-2010 Tobias Doerffel</source>
-        <translation></translation>
-    </message>
     <message>
         <source>&lt;a href=&quot;http://italc.sourceforge.net&quot;&gt;http://italc.sourceforge.net&lt;/a&gt;</source>
         <translation></translation>
@@ -43,6 +37,12 @@ If you&apos;re interested in translating iTALC into your local or another langua
         <source>iTALC - Intelligent Teaching And Learning with Computers
 
 Copyright © 2004-2011 Tobias Doerffel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message utf8="true">
+        <source>iTALC - Intelligent Teaching And Learning with Computers
+
+Copyright © 2004-2011 Tobias Doerffel / iTALC Solutions</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
