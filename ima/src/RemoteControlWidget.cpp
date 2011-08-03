@@ -1,7 +1,7 @@
 /*
  *  RemoteControlWidget.cpp - widget containing a VNC-view and controls for it
  *
- *  Copyright (c) 2006-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ *  Copyright (c) 2006-2011 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  *  This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -304,6 +304,8 @@ RemoteControlWidget::RemoteControlWidget( const QString &host,
 
 RemoteControlWidget::~RemoteControlWidget()
 {
+	delete m_coreConnection;
+	delete m_vncView;
 }
 
 
