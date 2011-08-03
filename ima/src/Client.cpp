@@ -470,6 +470,7 @@ Client::Client( const QString & _hostname,
 	QWidget( mainWindow->workspace() ),
 	m_mainWindow( mainWindow ),
 	m_connection( NULL ),
+	m_vncConn( NULL ),
 	m_framebufferUpdated( false ),
 	m_clickPoint( -1, -1 ),
 	m_origPos( -1, -1 ),
@@ -494,17 +495,17 @@ Client::Client( const QString & _hostname,
 
 	m_classRoomItem = new classRoomItem( this, _class_room );
 
-	ItalcVncConnection * conn = new ItalcVncConnection( this );
-	conn->setHost( m_hostname );
-	conn->setQuality( ItalcVncConnection::ThumbnailQuality );
-	conn->setFramebufferUpdateInterval(
+	m_vncConn = new ItalcVncConnection( this );
+	m_vncConn->setHost( m_hostname );
+	m_vncConn->setQuality( ItalcVncConnection::ThumbnailQuality );
+	m_vncConn->setFramebufferUpdateInterval(
 				m_mainWindow->getClassroomManager()->updateInterval() );
 
 	// set a flag so we only update the view if there were some updates
-	connect( conn, SIGNAL( imageUpdated( int, int, int, int ) ),
+	connect( m_vncConn, SIGNAL( imageUpdated( int, int, int, int ) ),
 				this, SLOT( setUpdateFlag() ) );
 
-	m_connection = new ItalcCoreConnection( conn );
+	m_connection = new ItalcCoreConnection( m_vncConn );
 
 	setAttribute( Qt::WA_OpaquePaintEvent );
 	setWindowIcon( QPixmap( ":/resources/classroom_manager.png" ) );
@@ -539,6 +540,9 @@ Client::~Client()
 
 	delete m_connection;
 	m_connection = NULL;
+
+	delete m_vncConn;
+	m_vncConn = NULL;
 
 	delete m_classRoomItem;
 }

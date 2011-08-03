@@ -43,6 +43,7 @@ class classRoomItem;
 class Client;
 class MainWindow;
 class ItalcCoreConnection;
+class ItalcVncConnection;
 
 typedef void( Client:: * execCmd )( const QString & );
 
@@ -300,7 +301,8 @@ private:
 
 
 	MainWindow * m_mainWindow;
-	ItalcCoreConnection * m_connection;
+	ItalcCoreConnection *m_connection;
+	ItalcVncConnection *m_vncConn;
 	bool m_framebufferUpdated;
 	QPoint m_clickPoint;
 	QPoint m_origPos;
