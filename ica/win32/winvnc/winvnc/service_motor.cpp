@@ -212,7 +212,7 @@ int install_service(void) {
 
     scm=OpenSCManager(0, 0, SC_MANAGER_CREATE_SERVICE);
     if(!scm) {
-        MessageBox(NULL, "Failed to open service control manager",
+        MessageBoxSecure(NULL, "Failed to open service control manager",
             app_name, MB_ICONERROR);
         return 1;
     }
@@ -225,20 +225,20 @@ int install_service(void) {
 		DWORD myerror=GetLastError();
 		if (myerror==ERROR_ACCESS_DENIED)
 		{
-			MessageBox(NULL, "Failed: Permission denied",
+			MessageBoxSecure(NULL, "Failed: Permission denied",
             app_name, MB_ICONERROR);
 			CloseServiceHandle(scm);
 			return 1;
 		}
 		if (myerror==ERROR_SERVICE_EXISTS)
 		{
-			//MessageBox(NULL, "Failed: Already exist",
+			//MessageBoxSecure(NULL, "Failed: Already exist",
             //"UltraVnc", MB_ICONERROR);
 			CloseServiceHandle(scm);
 			return 1;
 		}
 
-        MessageBox(NULL, "Failed to create a new service",
+        MessageBoxSecure(NULL, "Failed to create a new service",
             app_name, MB_ICONERROR);
         CloseServiceHandle(scm);
         return 1;
@@ -256,7 +256,7 @@ int uninstall_service(void) {
 
     scm=OpenSCManager(0, 0, SC_MANAGER_CONNECT);
     if(!scm) {
-        MessageBox(NULL, "Failed to open service control manager",
+        MessageBoxSecure(NULL, "Failed to open service control manager",
             app_name, MB_ICONERROR);
         return 1;
     }
@@ -267,7 +267,7 @@ int uninstall_service(void) {
 		DWORD myerror=GetLastError();
 		if (myerror==ERROR_ACCESS_DENIED)
 		{
-			MessageBox(NULL, "Failed: Permission denied",
+			MessageBoxSecure(NULL, "Failed: Permission denied",
             app_name, MB_ICONERROR);
 			CloseServiceHandle(scm);
 			return 1;
@@ -275,27 +275,27 @@ int uninstall_service(void) {
 		if (myerror==ERROR_SERVICE_DOES_NOT_EXIST)
 		{
 #if 0
-			MessageBox(NULL, "Failed: Service is not installed",
+			MessageBoxSecure(NULL, "Failed: Service is not installed",
             app_name, MB_ICONERROR);
 #endif
 			CloseServiceHandle(scm);
 			return 1;
 		}
 
-        MessageBox(NULL, "Failed to open the service",
+        MessageBoxSecure(NULL, "Failed to open the service",
             app_name, MB_ICONERROR);
         CloseServiceHandle(scm);
         return 1;
     }
     if(!QueryServiceStatus(service, &serviceStatus)) {
-        MessageBox(NULL, "Failed to query service status",
+        MessageBoxSecure(NULL, "Failed to query service status",
             app_name, MB_ICONERROR);
         CloseServiceHandle(service);
         CloseServiceHandle(scm);
         return 1;
     }
     if(serviceStatus.dwCurrentState!=SERVICE_STOPPED) {
-        //MessageBox(NULL, "The service is still running, disable it first",
+        //MessageBoxSecure(NULL, "The service is still running, disable it first",
         //    "UltraVnc", MB_ICONERROR);
         CloseServiceHandle(service);
         CloseServiceHandle(scm);
@@ -303,7 +303,7 @@ int uninstall_service(void) {
         return 1;
     }
     if(!DeleteService(service)) {
-        MessageBox(NULL, "Failed to delete the service",
+        MessageBoxSecure(NULL, "Failed to delete the service",
             app_name, MB_ICONERROR);
         CloseServiceHandle(service);
         CloseServiceHandle(scm);

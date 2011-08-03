@@ -178,6 +178,7 @@ public:
 
   //adzm 2010-08-01
   DWORD GetLastSentTick() { return m_LastSentTick; };
+  IIntegratedPlugin* m_pIntegratedPluginInterface;
 
 
   ////////////////////////////
@@ -193,7 +194,7 @@ protected:
   //adzm 2009-06-20
   IPlugin* m_pPluginInterface;
   //adzm 2010-05-10
-  IIntegratedPlugin* m_pIntegratedPluginInterface;
+  //IIntegratedPlugin* m_pIntegratedPluginInterface;
   bool m_fUsePlugin;
   bool m_fPluginStreamingIn; //adzm 2010-09
   bool m_fPluginStreamingOut; //adzm 2010-09

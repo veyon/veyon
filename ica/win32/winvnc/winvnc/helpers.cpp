@@ -160,7 +160,7 @@ BUseRegistry = myIniFile_In.ReadInt("admin", "UseRegistry", 0);
 if (!myIniFile_Out.WriteInt("admin", "UseRegistry", BUseRegistry))
 {
 		//error
-		MessageBox(NULL,"Permission denied:Uncheck [_] Protect my computer... in run as dialog or use user with write permission." ,myIniFile_Out.myInifile,MB_ICONERROR);
+		MessageBoxSecure(NULL,"Permission denied:Uncheck [_] Protect my computer... in run as dialog or use user with write permission." ,myIniFile_Out.myInifile,MB_ICONERROR);
 }
 
 MSLogonRequired=myIniFile_In.ReadInt("admin", "MSLogonRequired", false);
@@ -582,4 +582,29 @@ bool GetServiceName(TCHAR *pszAppPath, TCHAR *pszServiceName)
     CloseServiceHandle(hManager);
 
     return bResult;
+}
+extern BOOL	m_fRunningFromExternalService;
+DWORD MessageBoxSecure(HWND hWnd,LPCTSTR lpText,LPCTSTR lpCaption,UINT uType)
+{
+	DWORD retunvalue;
+	if (m_fRunningFromExternalService)
+	{
+		HDESK desktop=NULL;
+		HDESK old_desktop;
+		desktop = OpenInputDesktop(0, FALSE,DESKTOP_CREATEMENU | DESKTOP_CREATEWINDOW |DESKTOP_ENUMERATE | DESKTOP_HOOKCONTROL |DESKTOP_WRITEOBJECTS | DESKTOP_READOBJECTS |DESKTOP_SWITCHDESKTOP | GENERIC_WRITE);
+		old_desktop = GetThreadDesktop(GetCurrentThreadId());
+		if (desktop && 	old_desktop && old_desktop!=desktop)
+			{					
+					SetThreadDesktop(desktop);
+					retunvalue=MessageBox(hWnd,lpText,lpCaption,uType);
+					SetThreadDesktop(old_desktop);
+					CloseDesktop(desktop);
+			}
+		else retunvalue=0;
+	}
+	else
+	{
+		retunvalue=MessageBox(hWnd,lpText,lpCaption,uType);
+	}
+	return retunvalue;
 }

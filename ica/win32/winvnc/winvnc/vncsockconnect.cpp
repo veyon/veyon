@@ -84,6 +84,14 @@ void *vncSockConnectThread::run_undetached(void * arg)
 			break;
 		else
 		{
+#ifdef HTTP_SAMEPORT
+		if (maybeHandleHTTPRequest(new_socket,m_server)) {
+ 			// HTTP request has been handled and new_socket closed. The client will
+ 			// now reconnect to the RFB port and we will carry on.
+ 			vnclog.Print(LL_CLIENTS,VNCLOG("Woo hoo! Served Java applet via RFB!"));
+ 			continue;
+ 		}
+#endif
 			vnclog.Print(LL_CLIENTS, VNCLOG("accepted connection from %s\n"), new_socket->GetPeerName());
 			if ((!m_shutdown && !fShutdownOrdered)) m_server->AddClient(new_socket, FALSE, FALSE,NULL);
 		}

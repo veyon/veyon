@@ -39,6 +39,20 @@
 #define IDR_FTPFRAME_CLASS              148
 #define IDR_DH_CLASS                    149
 #define IDR_FTPFRAMESTRCOMP_CLASS       151
+#define IDR_JAVAARCHIVE1                155
+#define IDR_JAVACLASS1                  156
+#define IDR_JAVACLASS2                  157
+#define IDR_JAVACLASS3                  158
+#define IDR_JAVACLASS4                  159
+#define IDR_JAVACLASS5                  160
+#define IDR_JAVACLASS6                  161
+#define IDR_JAVACLASS7                  162
+#define IDR_JAVACLASS8                  163
+#define IDR_JAVACLASS9                  164
+#define IDR_JAVACLASS10                 165
+#define IDR_JAVACLASS11                 166
+#define IDR_JAVACLASS12                 167
+#define IDR_JAVACLASS13                 169
 #define IDD_USER_NAME                   604
 #define IDD_PASSWORD                    608
 #define IDR_MESSAGES_PROPERTIES         900
@@ -290,7 +304,7 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        155
+#define _APS_NEXT_RESOURCE_VALUE        170
 #define _APS_NEXT_COMMAND_VALUE         40030
 #define _APS_NEXT_CONTROL_VALUE         1131
 #define _APS_NEXT_SYMED_VALUE           101

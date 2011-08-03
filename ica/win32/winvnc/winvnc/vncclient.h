@@ -386,6 +386,7 @@ public:
 	//int sizearray[rfbEncodingZRLE+1][31];
 	//int Totalsend;
 	BOOL client_settings_passed;
+	bool		m_Autoreconnect;
 
 	// Internal stuffs
 protected:
@@ -582,6 +583,10 @@ public:
 	// The main thread function
 	virtual void run(void *arg);
 	bool m_autoreconnectcounter_quit;
+
+	UINT m_AutoReconnectPort;
+	char m_szAutoReconnectAdr[255];
+	char m_szAutoReconnectId[MAX_PATH];
 
 protected:
 	virtual ~vncClientThread();

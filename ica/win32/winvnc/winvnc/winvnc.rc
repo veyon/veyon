@@ -87,11 +87,7 @@ FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     DEFPUSHBUTTON   "OK",IDOK,8,135,54,16
     CONTROL         139,IDC_VNCLOGO,"Static",SS_BITMAP | SS_CENTERIMAGE | SS_SUNKEN,7,5,53,46,WS_EX_TRANSPARENT
-#ifdef _X64
-	LTEXT			"UltraVNC x64 Server 1.0.9.6.1",IDC_VERSION,73,5,195,11
-#else
     LTEXT           "UltraVNC Win32 Server 1.0.9.6.1",IDC_VERSION,73,5,195,11
-#endif
     LTEXT           "Copyright © 2002-2009 UltraVNC Team\nCopyright © 2001-2002 Sam - eSVNC \nCopyright © 1999-2002 Rudi D. V. - VdaccVNC \nCopyright © 2001 Harakan Software - PalmVNC\nCopyright © 1999-2002 Const. Kaplinsky - TightVNC \n",IDC_NAME,74,27,202,41
     LTEXT           "For more Information and Links please visit: \nhttp://www.uvnc.com",IDC_WWW,74,135,141,19
     LTEXT           "Build:",IDC_BUILDTEXT,74,16,20,10
@@ -593,6 +589,25 @@ LANGUAGE LANG_DUTCH, SUBLANG_DUTCH_BELGIAN
 
 /////////////////////////////////////////////////////////////////////////////
 //
+// JAVACLASS
+//
+
+IDR_JAVACLASS1          JAVACLASS               "res\\mslogon\\AuthPanel.class"
+IDR_JAVACLASS2          JAVACLASS               "res\\mslogon\\ButtonPanel.class"
+IDR_JAVACLASS3          JAVACLASS               "res\\mslogon\\ClipboardFrame.class"
+IDR_JAVACLASS4          JAVACLASS               "res\\mslogon\\DesCipher.class"
+IDR_JAVACLASS5          JAVACLASS               "res\\mslogon\\DH.class"
+IDR_JAVACLASS6          JAVACLASS               "res\\mslogon\\FTPFrame$StrComp.class"
+IDR_JAVACLASS7          JAVACLASS               "res\\mslogon\\FTPFrame.class"
+IDR_JAVACLASS8          JAVACLASS               "res\\mslogon\\OptionsFrame.class"
+IDR_JAVACLASS9          JAVACLASS               "res\\mslogon\\RecordingFrame.class"
+IDR_JAVACLASS10         JAVACLASS               "res\\mslogon\\RfbProto.class"
+IDR_JAVACLASS11         JAVACLASS               "res\\mslogon\\SessionRecorder.class"
+IDR_JAVACLASS12         JAVACLASS               "res\\mslogon\\VncCanvas.class"
+IDR_JAVACLASS13         JAVACLASS               "res\\mslogon\\VncViewer.class"
+
+/////////////////////////////////////////////////////////////////////////////
+//
 // Dialog
 //
 
@@ -652,6 +667,13 @@ BEGIN
 END
 #endif    // APSTUDIO_INVOKED
 
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// JAVAARCHIVE
+//
+
+IDR_JAVAARCHIVE1        JAVAARCHIVE             "res\\mslogon\\VncViewer.jar"
 
 /////////////////////////////////////////////////////////////////////////////
 //

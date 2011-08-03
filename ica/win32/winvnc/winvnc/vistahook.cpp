@@ -277,7 +277,7 @@ DWORD WINAPI Cadthread(LPVOID lpParam)
 					}
 					if (!ISUACENabled() && !IsSoftwareCadEnabled())
 					{
-						DWORD result=MessageBox(NULL,"UAC is Disable, make registry changes to allow cad","Warning",MB_YESNO);
+						DWORD result=MessageBoxSecure(NULL,"UAC is Disable, make registry changes to allow cad","Warning",MB_YESNO);
 						if (result==IDYES)
 						{
 							HANDLE hProcess,hPToken;
@@ -321,7 +321,7 @@ DWORD WINAPI Cadthread(LPVOID lpParam)
 					}
 					if (ISUACENabled() && IsSoftwareCadEnabled())
 					{
-						DWORD result=MessageBox(NULL,"UAC is Enablde, make registry changes to allow cad","Warning",MB_YESNO);
+						DWORD result=MessageBoxSecure(NULL,"UAC is Enablde, make registry changes to allow cad","Warning",MB_YESNO);
 						if (result==IDYES)
 						{
 							HANDLE hProcess,hPToken;
@@ -368,7 +368,7 @@ DWORD WINAPI Cadthread(LPVOID lpParam)
 				else*/
 					if( vncService::RunningAsService() &&!IsSoftwareCadEnabled())
 					{
-						DWORD result=MessageBox(NULL,"UAC is Disable, make registry changes to allow cad","Warning",MB_YESNO);
+						DWORD result=MessageBoxSecure(NULL,"UAC is Disable, make registry changes to allow cad","Warning",MB_YESNO);
 						if (result==IDYES)
 							{
 								HANDLE hProcess,hPToken;

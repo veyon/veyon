@@ -145,7 +145,7 @@ TextChat::TextChat(vncClient *pCC)
 	m_hRichEdit = LoadLibrary( "RICHED32.DLL" );
 	if (!m_hRichEdit)
 	{  
-		MessageBox( NULL, sz_ID_RICHED32_UNLOAD,
+		MessageBoxSecure( NULL, sz_ID_RICHED32_UNLOAD,
 					sz_ID_RICHED32_DLL_LD, MB_OK | MB_ICONEXCLAMATION );
 		// Todo: do normal edit instead (no colors)
 	}

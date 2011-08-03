@@ -158,7 +158,7 @@ vncPropertiesPoll::Show(BOOL show, BOOL usersettings)
 					return;
 				}
 				if (strcmp(username, "") == 0) {
-					MessageBox(NULL, sz_ID_NO_CURRENT_USER_ERR, sz_ID_WINVNC_ERROR, MB_OK | MB_ICONEXCLAMATION);
+					MessageBoxSecure(NULL, sz_ID_NO_CURRENT_USER_ERR, sz_ID_WINVNC_ERROR, MB_OK | MB_ICONEXCLAMATION);
 					if(iImpersonateResult == ERROR_SUCCESS)RevertToSelf();
 					CloseHandle(hProcess);
 					CloseHandle(hPToken);
@@ -184,7 +184,7 @@ vncPropertiesPoll::Show(BOOL show, BOOL usersettings)
 				if (hkDefault) RegCloseKey(hkDefault);
 
 				if (!canEditDefaultPrefs) {
-					MessageBox(NULL, sz_ID_CANNOT_EDIT_DEFAULT_PREFS, sz_ID_WINVNC_ERROR, MB_OK | MB_ICONEXCLAMATION);
+					MessageBoxSecure(NULL, sz_ID_CANNOT_EDIT_DEFAULT_PREFS, sz_ID_WINVNC_ERROR, MB_OK | MB_ICONEXCLAMATION);
 					if(iImpersonateResult == ERROR_SUCCESS)RevertToSelf();
 					if (hProcess) CloseHandle(hProcess);
 					if (hPToken) CloseHandle(hPToken);
@@ -911,7 +911,7 @@ vncPropertiesPoll::Save()
 			WINVNC_REGISTRY_KEY,
 			0, REG_NONE, REG_OPTION_NON_VOLATILE,
 			KEY_READ, NULL, &hkLocal, &dw) != ERROR_SUCCESS) {
-			MessageBox(NULL, sz_ID_MB1, sz_ID_WVNC, MB_OK);
+			MessageBoxSecure(NULL, sz_ID_MB1, sz_ID_WVNC, MB_OK);
 			return;
 		}
 

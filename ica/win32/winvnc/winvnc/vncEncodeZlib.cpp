@@ -236,6 +236,8 @@ vncEncodeZlib::EncodeOneRect(BYTE *source,BYTE *source2, BYTE *dest, const RECT 
 	const int rawDataSize = (rectW*rectH*m_remoteformat.bitsPerPixel / 8);
 	const int maxCompSize = (rawDataSize + (rawDataSize/100) + 8);
 
+	if (!outConn->m_pIntegratedPluginInterface) m_queueEnable=false;
+
 	// Create the rectangle header
 	rfbFramebufferUpdateRectHeader *surh=(rfbFramebufferUpdateRectHeader *)dest;
 	// Modif rdv@2002 - v1.1.x - Application Resize

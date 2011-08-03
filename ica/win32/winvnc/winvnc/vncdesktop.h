@@ -508,6 +508,7 @@ protected:
 	HWND hDeskWnd;
 	HWND hFolderView;
 	rfb::Region2D iconregion;
+	bool blankmonitorstate;
 
 	
 BOOL DriverWanted;

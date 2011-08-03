@@ -145,13 +145,13 @@ vncProperties::Init(vncServer *server)
 		{
 			 if (!m_allowproperties || !RunningAsAdministrator ()) {
 				if(m_server->AuthRequired()) {
-					MessageBox(NULL, sz_ID_NO_PASSWD_NO_OVERRIDE_ERR,
+					MessageBoxSecure(NULL, sz_ID_NO_PASSWD_NO_OVERRIDE_ERR,
 								sz_ID_WINVNC_ERROR,
 								MB_OK | MB_ICONSTOP);
 					PostQuitMessage(0);
 				} else {
 					if (!vncService::RunningAsService())
-						MessageBox(NULL, sz_ID_NO_PASSWD_NO_OVERRIDE_WARN,
+						MessageBoxSecure(NULL, sz_ID_NO_PASSWD_NO_OVERRIDE_WARN,
 								sz_ID_WINVNC_ERROR,
 								MB_OK | MB_ICONEXCLAMATION);
 				}
@@ -163,7 +163,7 @@ vncProperties::Init(vncServer *server)
 						return FALSE;
 					if (strcmp(username, "") == 0) {
 						Lock_service_helper=true;
-						MessageBox(NULL, sz_ID_NO_PASSWD_NO_LOGON_WARN,
+						MessageBoxSecure(NULL, sz_ID_NO_PASSWD_NO_LOGON_WARN,
 									sz_ID_WINVNC_ERROR,
 									MB_OK | MB_ICONEXCLAMATION);
 						ShowAdmin(TRUE, FALSE);
@@ -286,7 +286,7 @@ vncProperties::ShowAdmin(BOOL show, BOOL usersettings)
 						return;
 					}
 				if (strcmp(username, "") == 0) {
-					MessageBox(NULL, sz_ID_NO_CURRENT_USER_ERR, sz_ID_WINVNC_ERROR, MB_OK | MB_ICONEXCLAMATION);
+					MessageBoxSecure(NULL, sz_ID_NO_CURRENT_USER_ERR, sz_ID_WINVNC_ERROR, MB_OK | MB_ICONEXCLAMATION);
 					if(iImpersonateResult == ERROR_SUCCESS)RevertToSelf();
 					CloseHandle(hProcess);
 					CloseHandle(hPToken);
@@ -314,7 +314,7 @@ vncProperties::ShowAdmin(BOOL show, BOOL usersettings)
 				if (hkDefault) RegCloseKey(hkDefault);
 
 				if (!canEditDefaultPrefs) {
-					MessageBox(NULL, sz_ID_CANNOT_EDIT_DEFAULT_PREFS, sz_ID_WINVNC_ERROR, MB_OK | MB_ICONEXCLAMATION);
+					MessageBoxSecure(NULL, sz_ID_CANNOT_EDIT_DEFAULT_PREFS, sz_ID_WINVNC_ERROR, MB_OK | MB_ICONEXCLAMATION);
 					if(iImpersonateResult == ERROR_SUCCESS)RevertToSelf();
 					if (hProcess) CloseHandle(hProcess);
 					if (hPToken) CloseHandle(hPToken);
@@ -393,7 +393,7 @@ vncProperties::ShowAdmin(BOOL show, BOOL usersettings)
 				}
 
 				// If we reached here then OK was used & there is no password!
-				MessageBox(NULL, sz_ID_NO_PASSWORD_WARN,
+				MessageBoxSecure(NULL, sz_ID_NO_PASSWORD_WARN,
 				    sz_ID_WINVNC_WARNIN, MB_OK | MB_ICONEXCLAMATION);
 
 				omni_thread::sleep(4);
@@ -1034,7 +1034,7 @@ vncProperties::DialogProc(HWND hwnd,
 
 				/*if (!RunningAsAdministrator () && vncService::RunningAsService())
 				{
-					MessageBox(NULL,"Only admins are allowed to save","Warning", MB_OK | MB_ICONINFORMATION);
+					MessageBoxSecure(NULL,"Only admins are allowed to save","Warning", MB_OK | MB_ICONINFORMATION);
 				}
 				else*/
 				{
@@ -1390,7 +1390,7 @@ vncProperties::DialogProc(HWND hwnd,
 					}
 					else
 					{
-						MessageBox(NULL, 
+						MessageBoxSecure(NULL, 
 							sz_ID_PLUGIN_NOT_LOAD, 
 							sz_ID_PLUGIN_LOADIN, MB_OK | MB_ICONEXCLAMATION );
 					}
@@ -2131,7 +2131,7 @@ vncProperties::Save()
 			WINVNC_REGISTRY_KEY,
 			0, REG_NONE, REG_OPTION_NON_VOLATILE,
 			KEY_READ, NULL, &hkLocal, &dw) != ERROR_SUCCESS) {
-			MessageBox(NULL, sz_ID_MB1, sz_ID_WVNC, MB_OK);
+			MessageBoxSecure(NULL, sz_ID_MB1, sz_ID_WVNC, MB_OK);
 			return;
 		}
 

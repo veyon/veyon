@@ -368,7 +368,7 @@ BOOL CALLBACK vncConnDialog::vncConnDlgProc(HWND hwnd,
 			else
 			{
 				// Print up an error message
-				MessageBox(NULL, 
+				MessageBoxSecure(NULL, 
 					sz_ID_FAILED_CONNECT_LISTING_VIEW,
 					sz_ID_OUTGOING_CONNECTION,
 					MB_OK | MB_ICONEXCLAMATION );

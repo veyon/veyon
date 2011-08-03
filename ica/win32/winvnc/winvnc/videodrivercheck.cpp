@@ -26,6 +26,7 @@
 #include <stdlib.h>
 #include "vncOSVersion.h"
 
+DWORD MessageBoxSecure(HWND hWnd,LPCTSTR lpText,LPCTSTR lpCaption,UINT uType);
 typedef BOOL (WINAPI* pEnumDisplayDevices)(PVOID,DWORD,PVOID,DWORD);
 
 /*bool CheckDriver2(void)
@@ -165,11 +166,11 @@ CheckVideoDriver(bool Box)
 						else
 							strcat(buf," driver Not Active");
 						    
-						MessageBox(NULL,buf,"driver info: required version 1.22",0);
+						MessageBoxSecure(NULL,buf,"driver info: required version 1.22",0);
 					}
 					return true;
 				}
-				else if(Box) MessageBox(NULL,"Driver not found: Perhaps you need to reboot after install","driver info: required version 1.22",0);
+				else if(Box) MessageBoxSecure(NULL,"Driver not found: Perhaps you need to reboot after install","driver info: required version 1.22",0);
 			}
 	if (hUser32) FreeLibrary(hUser32);	
 	return false;

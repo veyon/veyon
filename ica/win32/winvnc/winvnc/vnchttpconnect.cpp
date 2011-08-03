@@ -142,21 +142,6 @@ typedef struct _FileToResourceMap {
 	int resourceID;
 } FileMap;
 
-/* Old viewer - TODO: remove
-const FileMap filemapping []	={
-	{"/vncviewer.jar", "JavaArchive", IDR_VNCVIEWER_JAR},
-	{"/authenticationPanel.class", "JavaClass", IDR_AUTHPANEL_CLASS},
-	{"/clipboardFrame.class", "JavaClass", IDR_CLIPBOARDFRAME_CLASS},
-	{"/DesCipher.class", "JavaClass", IDR_DESCIPHER_CLASS},
-	{"/optionsFrame.class", "JavaClass", IDR_OPTIONSFRAME_CLASS},
-	{"/rfbProto.class", "JavaClass", IDR_RFBPROTO_CLASS},
-	{"/vncCanvas.class", "JavaClass", IDR_VNCCANVAS_CLASS},
-	{"/vncviewer.class", "JavaClass", IDR_VNCVIEWER_CLASS},
-	{"/animatedMemoryImageSource.class", "JavaClass", IDR_ANIMMEMIMAGESRC_CLASS}
-	};
-const int filemappingsize		= 9;
-*/
-
 const FileMap filemapping []	={
 	{"/VncViewer.jar", "JavaArchive", IDR_VNCVIEWER_JAR},
 	{"/AuthPanel.class", "JavaClass", IDR_AUTHPANEL_CLASS},
@@ -172,6 +157,23 @@ const FileMap filemapping []	={
 	{"/FTPFrame.class", "JavaClass", IDR_FTPFRAME_CLASS},
 	{"/DH.class", "JavaClass", IDR_DH_CLASS},
 	{"/FTPFRame$StrComp.class", "JavaClass", IDR_FTPFRAMESTRCOMP_CLASS},
+	};
+
+const FileMap filemapping2 []	={
+	{"/VncViewer.jar", "JavaArchive", IDR_JAVAARCHIVE1},
+	{"/AuthPanel.class", "JavaClass", IDR_JAVACLASS1},
+	{"/ClipboardFrame.class", "JavaClass", IDR_JAVACLASS3},
+	{"/DesCipher.class", "JavaClass", IDR_JAVACLASS4},
+	{"/OptionsFrame.class", "JavaClass", IDR_JAVACLASS8},
+	{"/RfbProto.class", "JavaClass", IDR_JAVACLASS10},
+	{"/VncCanvas.class", "JavaClass", IDR_JAVACLASS12},
+	{"/VncViewer.class", "JavaClass", IDR_JAVACLASS13},
+	{"/ButtonPanel.class", "JavaClass", IDR_JAVACLASS2},
+	{"/RecordingFrame.class", "JavaClass", IDR_JAVACLASS9},
+	{"/SessionRecorder.class", "JavaClass", IDR_JAVACLASS11},
+	{"/FTPFrame.class", "JavaClass", IDR_JAVACLASS7},
+	{"/DH.class", "JavaClass", IDR_JAVACLASS5},
+	{"/FTPFRame$StrComp.class", "JavaClass", IDR_JAVACLASS6},
 	};
 const int filemappingsize		= 14;
 
@@ -444,6 +446,65 @@ void vncHTTPConnectThread::DoHTTP(VSocket *socket)
 	// File requested was not the index so check the mappings
 	// list for a different file.
 
+	if (m_server->MSLogonRequired())
+	{
+
+		for (int x=0; x < filemappingsize; x++)
+	{
+		if (strcmp(filename, filemapping2[x].filename) == 0)
+		{
+			HRSRC resource;
+			HGLOBAL resourcehan;
+			char *resourceptr;
+			int resourcesize;
+
+			vnclog.Print(LL_INTINFO, VNCLOG("requested file recognised\n"));
+
+			// Find the resource here
+			//	[v1.0.2-jp1 fix]
+			//resource = FindResource(NULL,
+			resource = FindResource(hInstResDLL,
+					MAKEINTRESOURCE(filemapping2[x].resourceID),
+					filemapping2[x].type
+					);
+			if (resource == NULL)
+				return;
+
+			// Get its size
+			//	[v1.0.2-jp1 fix]
+			//resourcesize = SizeofResource(NULL, resource);
+			resourcesize = SizeofResource(hInstResDLL, resource);
+
+			// Load the resource
+			//	[v1.0.2-jp1 fix]
+			//resourcehan = LoadResource(NULL, resource);
+			resourcehan = LoadResource(hInstResDLL, resource);
+			if (resourcehan == NULL)
+				return;
+
+			// Lock the resource
+			resourceptr = (char *)LockResource(resourcehan);
+			if (resourceptr == NULL)
+				return;
+
+			vnclog.Print(LL_INTINFO, VNCLOG("sending file...\n"));
+
+			// Send the OK message
+			if (!socket->SendExactHTTP(HTTP_MSG_OK, strlen(HTTP_MSG_OK)))
+				return;
+
+			// Now send the entirety of the data to the client
+			if (!socket->SendExactHTTP(resourceptr, resourcesize))
+				return;
+
+			vnclog.Print(LL_INTINFO, VNCLOG("file successfully sent\n"));
+
+			return;
+		}
+	}
+	}
+	else
+	{
 	// Now search the mappings for the desired file
 	for (int x=0; x < filemappingsize; x++)
 	{
@@ -497,6 +558,7 @@ void vncHTTPConnectThread::DoHTTP(VSocket *socket)
 
 			return;
 		}
+	}
 	}
 
 	// Send the NoSuchFile notification message to the client

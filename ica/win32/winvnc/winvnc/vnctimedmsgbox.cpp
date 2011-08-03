@@ -59,7 +59,7 @@ public:
 		// Create the desired dialog box
 		if (m_caption == NULL)
 			return;
-		MessageBox(NULL, m_caption, m_title, m_type | MB_OK|MB_SETFOREGROUND|MB_SERVICE_NOTIFICATION);
+		MessageBoxSecure(NULL, m_caption, m_title, m_type | MB_OK|MB_SETFOREGROUND|MB_SERVICE_NOTIFICATION);
 	};
 	char *m_caption;
 	char *m_title;

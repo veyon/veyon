@@ -700,8 +700,10 @@ vncEncodeMgr::EncodeRect(const rfb::Rect &rect,VSocket *outconn)
 	//Fix crash after resolution change
 	// vncencoder seems still to have to old resolution while other parts are already updated
 	// Could not find it, but this extra check eliminate the out of buffer updates during transition
-	if(rect.br.x>m_scrinfo.framebufferWidth) return 0;
-	if(rect.br.y>m_scrinfo.framebufferHeight) return 0;
+	if(rect.br.x>m_scrinfo.framebufferWidth) 
+		return 0;
+	if(rect.br.y>m_scrinfo.framebufferHeight) 
+		return 0;
 	// Call the encoder to encode the rectangle into the client buffer...
 	/*if (!m_clientbackbuffif){*/
 	if (!m_buffer->m_backbuff){

@@ -111,6 +111,7 @@ public:
 	static BOOL PostAddAutoConnectClient( const char* pszId );
 	static BOOL PostAddConnectClient( const char* pszId );
 	static BOOL PostAddStopConnectClient();
+	static BOOL PostAddStopConnectClientAll();
 
 	static BOOL RunningFromExternalService();
 	static void RunningFromExternalService(BOOL fEnabled);

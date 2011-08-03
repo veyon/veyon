@@ -53,6 +53,7 @@ const UINT MENU_ADD_CLIENT_MSG_INIT = RegisterWindowMessage("WinVNC.AddClient.Me
 const UINT MENU_ADD_CLIENT_MSG = RegisterWindowMessage("WinVNC.AddClient.Message");
 const UINT MENU_AUTO_RECONNECT_MSG = RegisterWindowMessage("WinVNC.AddAutoClient.Message");
 const UINT MENU_STOP_RECONNECT_MSG = RegisterWindowMessage("WinVNC.AddStopClient.Message");
+const UINT MENU_STOP_ALL_RECONNECT_MSG = RegisterWindowMessage("WinVNC.AddStopAllClient.Message");
 const UINT MENU_REPEATER_ID_MSG = RegisterWindowMessage("WinVNC.AddRepeaterID.Message");
 // adzm 2009-07-05 - Tray icon balloon tips
 // adzm 2010-02-10 - Changed this window message (added 2) to prevent receiving the same message from older UltraVNC builds 
@@ -249,6 +250,7 @@ vncMenu::vncMenu(vncServer *server)
 	if (pfnFilter) pfnFilter(MENU_ADD_CLIENT_MSG_INIT, MSGFLT_ADD);
 	if (pfnFilter) pfnFilter(MENU_AUTO_RECONNECT_MSG, MSGFLT_ADD);
 	if (pfnFilter) pfnFilter(MENU_STOP_RECONNECT_MSG, MSGFLT_ADD);
+	if (pfnFilter) pfnFilter(MENU_STOP_ALL_RECONNECT_MSG, MSGFLT_ADD);
 	if (pfnFilter) pfnFilter(MENU_REPEATER_ID_MSG, MSGFLT_ADD);
 	// adzm 2009-07-05 - Tray icon balloon tips
 	if (pfnFilter) pfnFilter(MENU_TRAYICON_BALLOON_MSG, MSGFLT_ADD);
@@ -1625,6 +1627,7 @@ LRESULT CALLBACK vncMenu::WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lP
 				Sleep(1000);
 				vnclog.Print(LL_INTERR, VNCLOG("SHUTDOWN OS detected\n"));
 				vnclog.Print(LL_INTINFO, VNCLOG("KillAuthClients() ID_CLOSE \n"));
+				_this->m_server->OS_Shutdown=true;
 				_this->m_server->KillAuthClients();				
 				PostMessage(hwnd, WM_CLOSE, 0, 0);
 				break;
@@ -1703,6 +1706,10 @@ LRESULT CALLBACK vncMenu::WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lP
 		if ( iMsg == MENU_STOP_RECONNECT_MSG )
 		{
 			_this->m_server->AutoReconnect(false);
+		}
+		if ( iMsg == MENU_STOP_ALL_RECONNECT_MSG )
+		{
+			_this->m_server->StopReconnectAll();
 		}
 		if ( iMsg == MENU_AUTO_RECONNECT_MSG )
 		{

@@ -439,6 +439,8 @@ public:
 
 	void TriggerUpdate();
 	UINT				m_retry_timeout;
+	bool OS_Shutdown;
+	void StopReconnectAll();
 
 protected:
 	// The vncServer UpdateTracker class

@@ -491,6 +491,7 @@ vncDesktop::vncDesktop()
 	old_Blockinput2=2;
 	nr_rects=0;
 	iconregion.clear();
+	blankmonitorstate=false;
 }
 
 vncDesktop::~vncDesktop()
@@ -1014,7 +1015,7 @@ vncDesktop::InitBitmap()
 	// Check that the device capabilities are ok
 	if ((GetDeviceCaps(m_hrootdc, RASTERCAPS) & RC_BITBLT) == 0)
 	{
-		MessageBox(
+		MessageBoxSecure(
 			NULL,
 			"vncDesktop : root device doesn't support BitBlt\n"
 			"WinVNC cannot be used with this graphic device driver",
@@ -1025,7 +1026,7 @@ vncDesktop::InitBitmap()
 	}
 	if ((GetDeviceCaps(m_hmemdc, RASTERCAPS) & RC_DI_BITMAP) == 0)
 	{
-		MessageBox(
+		MessageBoxSecure(
 			NULL,
 			"vncDesktop : memory device doesn't support GetDIBits\n"
 			"WinVNC cannot be used with this graphics device driver",
@@ -1142,7 +1143,7 @@ vncDesktop::SetPixFormat()
       GetDeviceCaps(m_hmemdc, PLANES));
 	  if (GetDeviceCaps(m_hmemdc, PLANES) != 1)
 	  {
-		  MessageBox(
+		  MessageBoxSecure(
 			  NULL,
 			  "vncDesktop : current display is PLANAR, not CHUNKY!\n"
 			  "WinVNC cannot be used with this graphics device driver",
@@ -2146,7 +2147,7 @@ BOOL vncDesktop::VideoBuffer()
 
 DWORD WINAPI Warningbox_non_locked(LPVOID lpParam)
 {
-	MessageBox(NULL,"Current driver to old for this version \nUpdate driver or disable Video hook driver\n in the server properties window","",0);
+	MessageBoxSecure(NULL,"Current driver to old for this version \nUpdate driver or disable Video hook driver\n in the server properties window","",0);
 	return 0;
 }
 
@@ -2388,11 +2389,27 @@ void vncDesktop::SetBlockInputState(bool newstate)
 	CARD32 state = 0;
 	if (m_server->BlankMonitorEnabled())
     {
-		if (!m_server->BlankInputsOnly()) SetBlankMonitor(newstate);	        
-		m_bIsInputDisabledByClient = newstate;
+		if (!m_server->BlankInputsOnly()) 
+			{
+				if (blankmonitorstate==1 && newstate==1) 
+					{
+						SetBlankMonitor(0);
+						blankmonitorstate=0;
+					}
+				else
+				{
+					SetBlankMonitor(newstate);	
+					blankmonitorstate=newstate;
+				}
+			}
+		m_bIsInputDisabledByClient=newstate;
 		state=!block_input();
 		
     }
+	else state=!newstate;
+
+	m_bIsInputDisabledByClient = !state;
+
  m_server->NotifyClients_StateChange(rfbServerRemoteInputsState, state);
 }
 
@@ -2428,7 +2445,9 @@ bool vncDesktop::block_input()
 		DWORD aa=GetLastError();
 		if (old_Blockinput!=Blockinput_val && aa==5)
 		{
+			if (m_hookinited)
 			PostMessage(m_hwnd, WM_HOOKCHANGE, 2, 0);
+			else Blockinput_val=false;
 		}
 
     }

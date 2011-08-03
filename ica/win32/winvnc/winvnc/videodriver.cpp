@@ -76,11 +76,11 @@ VIDEODRIVER::VIDEODRIVER_start(int x,int y,int w,int h)
 			mypVideoMemory=VideoMemory_GetSharedMemory();
 			mypchangebuf=(PCHANGES_BUF)mypVideoMemory;
 			myframebuffer=mypVideoMemory+sizeof(CHANGES_BUF);
-			//if (mypVideoMemory==NULL) MessageBox(NULL,"MVideo driver failed", NULL, MB_OK);
+			//if (mypVideoMemory==NULL) MessageBoxSecure(NULL,"MVideo driver failed", NULL, MB_OK);
 			}
 			else
 			{
-	//			MessageBox(NULL,"Video driver failed", NULL, MB_OK);
+	//			MessageBoxSecure(NULL,"Video driver failed", NULL, MB_OK);
 ////////////////////////////////////////////////////////////////////////////////
 				if (Mirror_driver_attach_XP(x,y,w,h))
 					{
@@ -243,7 +243,7 @@ VIDEODRIVER::Mirror_driver_Vista(DWORD dwAttach,int x,int y,int w,int h)
         // display devices installed on this machine untill we hit
         // our favourate mirrored driver, then extract the device name string
         // of the format '\\.\DISPLAY#'
-//		MessageBox(NULL, "change ok", NULL, MB_OK);
+//		MessageBoxSecure(NULL, "change ok", NULL, MB_OK);
    
         DISPLAY_DEVICE dispDevice;
    
@@ -266,7 +266,7 @@ VIDEODRIVER::Mirror_driver_Vista(DWORD dwAttach,int x,int y,int w,int h)
                                 &dispDevice,
                                 0)))
         {
-//          MessageBox(NULL, &dispDevice.DeviceString[0], NULL, MB_OK);
+//          MessageBoxSecure(NULL, &dispDevice.DeviceString[0], NULL, MB_OK);
           if (dispDevice.StateFlags & DISPLAY_DEVICE_PRIMARY_DEVICE)
           {
               // Primary device. Find out its dmPelsWidht and dmPelsHeight.
@@ -294,14 +294,14 @@ VIDEODRIVER::Mirror_driver_Vista(DWORD dwAttach,int x,int y,int w,int h)
         // error check
         if (!result)
         {
-//           MessageBox(NULL,  driverName, NULL, MB_OK);
+//           MessageBoxSecure(NULL,  driverName, NULL, MB_OK);
 		   if (hUser32) FreeLibrary(hUser32);
            return false;
         }
 
         if (cxPrimary == 0xffffffff || cyPrimary == 0xffffffff)
         {
-//             MessageBox(NULL,"cxPrimary or cyPrimary not valid", NULL, MB_OK);
+//             MessageBoxSecure(NULL,"cxPrimary or cyPrimary not valid", NULL, MB_OK);
 			if (hUser32) FreeLibrary(hUser32);
             return false;
         }
@@ -322,7 +322,7 @@ VIDEODRIVER::Mirror_driver_Vista(DWORD dwAttach,int x,int y,int w,int h)
         // error check       
         if (!result)
         {
-//          MessageBox(NULL,driverName, NULL, MB_OK);
+//          MessageBoxSecure(NULL,driverName, NULL, MB_OK);
 		   if (hUser32) FreeLibrary(hUser32);
            return false;
         }
@@ -371,7 +371,7 @@ VIDEODRIVER::Mirror_driver_Vista(DWORD dwAttach,int x,int y,int w,int h)
             // Attach and detach information is sent via the dmPelsWidth/Height
             // of the devmode.
             //
-//			MessageBox(NULL,"bED", NULL, MB_OK);
+//			MessageBoxSecure(NULL,"bED", NULL, MB_OK);
             if (dwAttach == 0)
             {
                 devmode.dmPelsWidth = 0;

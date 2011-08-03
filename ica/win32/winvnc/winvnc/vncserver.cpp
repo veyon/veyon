@@ -242,6 +242,7 @@ vncServer::vncServer()
 	
 	//adzm 2010-05-12 - dsmplugin config
 	m_szDSMPluginConfig[0] = '\0';
+	OS_Shutdown=false;
 }
 
 vncServer::~vncServer()
@@ -814,7 +815,6 @@ bool vncServer::AreThereMultipleViewers()
 {
 	vncClientList::iterator i;
 	omni_mutex_lock l(m_clientsLock);
-	vncClient *pClient = NULL;
 	int a=0;
 	for (i = m_authClients.begin(); i != m_authClients.end(); i++)
 	{	
@@ -1198,7 +1198,7 @@ vncServer::RemoveClient(vncClientId clientid)
 		vnclog.Print(LL_STATE, VNCLOG("deleting desktop server\n"));
 
 		// sf@2007 - Do not lock/logoff even if required when WinVNC autorestarts (on desktop change (XP FUS / Vista))
-		if (!AutoRestartFlag())
+		if (!AutoRestartFlag() && !OS_Shutdown)
 		{
 			// Are there locksettings set?
 			if (LockSettings() == 1 || clearconsole)
@@ -2405,7 +2405,7 @@ BOOL vncServer::SetDSMPlugin(BOOL bForceReload)
 		strcat(szParams, ",");
 		strcat(szParams, vncService::RunningAsService() ? "server-svc" : "server-app");
 
-		//::MessageBox(NULL, szParams, "SetDSMPlugin info", MB_OK);
+		//::MessageBoxSecure(NULL, szParams, "SetDSMPlugin info", MB_OK);
 
 		vnclog.Print(LL_INTINFO, VNCLOG("$$$$$$$$$$ SetDSMPlugin - SetPluginParams call \n"));
 
@@ -2430,7 +2430,7 @@ BOOL vncServer::SetDSMPlugin(BOOL bForceReload)
 	}
 
 	/*
-	MessageBox(NULL, 
+	MessageBoxSecure(NULL, 
 	_T(_this->m_pDSMPlugin->DescribePlugin()),
 	_T("Plugin Description"), MB_OK | MB_ICONEXCLAMATION );
 	*/
@@ -2698,6 +2698,25 @@ void vncServer::NotifyClients_StateChange(CARD32 state, CARD32 value)
         client->Record_SendServerStateUpdate(state, value);
 	}
 }
+
+void vncServer::StopReconnectAll()
+{
+	omni_mutex_lock l(m_clientsLock);
+    vncClient *client = NULL;
+
+    vncClientList::iterator i;
+
+	for (i = m_authClients.begin(); i != m_authClients.end(); i++)
+	{
+		// Is this the right client?
+        client = GetClient(*i);
+        if (!client)
+            continue;
+
+        client->m_Autoreconnect=false;
+	}
+}
+
 void vncServer::SetFTTimeout(int msecs)
 {
     m_ftTimeout = msecs;

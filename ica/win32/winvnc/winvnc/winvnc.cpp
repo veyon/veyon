@@ -187,7 +187,7 @@ Myinit(HINSTANCE hInstance)
 	VSocketSystem socksys;
 	if (!socksys.Initialised())
 	{
-		MessageBox(NULL, sz_ID_FAILED_INIT, szAppName, MB_OK);
+		MessageBoxSecure(NULL, sz_ID_FAILED_INIT, szAppName, MB_OK);
 		return 0;
 	}
 #endif
@@ -218,6 +218,7 @@ int WINAPI WinMainVNC(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLi
 #ifdef CRASHRPT
 	Install(NULL, _T("ultravnc@skynet.be"), _T(""));
 #endif
+	bool Injected_autoreconnect=false;
 	SPECIAL_SC_EXIT=false;
 	SPECIAL_SC_PROMPT=false;
 	SetOSVersion();
@@ -288,7 +289,7 @@ int WINAPI WinMainVNC(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLi
 	VSocketSystem socksys;
 	if (!socksys.Initialised())
 	{
-		MessageBox(NULL, sz_ID_FAILED_INIT, szAppName, MB_OK);
+		MessageBoxSecure(NULL, sz_ID_FAILED_INIT, szAppName, MB_OK);
 		return 0;
 	}
     // look up the current service name in the registry.
@@ -605,7 +606,7 @@ int WINAPI WinMainVNC(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLi
 		if (strncmp(&szCmdLine[i], winvncStopReconnect, strlen(winvncStopReconnect)) == 0)
 		{
 			i+=strlen(winvncStopReconnect);
-			vncService::PostAddStopConnectClient();
+			vncService::PostAddStopConnectClientAll();
 			continue;
 		}
 
@@ -615,7 +616,7 @@ int WINAPI WinMainVNC(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLi
 			// on the command line !
 			// wa@2005 -- added support for the AutoReconnectId
 			i+=strlen(winvncAutoReconnect);
-
+			Injected_autoreconnect=true;
 			int start, end;
 			char* pszId = NULL;
 			start = i;
@@ -698,6 +699,10 @@ int WINAPI WinMainVNC(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLi
 
 		if (strncmp(&szCmdLine[i], winvncConnect, strlen(winvncConnect)) == 0)
 		{
+			if (!Injected_autoreconnect)
+			{
+				vncService::PostAddStopConnectClient();
+			}
 			// Add a new client to an existing copy of winvnc
 			i+=strlen(winvncConnect);
 
@@ -748,6 +753,9 @@ int WINAPI WinMainVNC(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLi
 						PostAddNewClient_bool=true;
 						port_int=0;
 						address_vcard=0;
+						Sleep(2000);
+						Beep(200,1000);
+						return 0;
 					}
 				}
 				i=end;
@@ -828,7 +836,7 @@ int WINAPI WinMainVNC(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLi
 		// Either the user gave the -help option or there is something odd on the cmd-line!
 
 		// Show the usage dialog
-		MessageBox(NULL, winvncUsageText, sz_ID_WINVNC_USAGE, MB_OK | MB_ICONINFORMATION);
+		MessageBoxSecure(NULL, winvncUsageText, sz_ID_WINVNC_USAGE, MB_OK | MB_ICONINFORMATION);
 		break;
 	};
 
@@ -1034,7 +1042,7 @@ int WinVNCAppMain()
     		vnclog.Print(LL_ERROR, VNCLOG("%s -- exiting\n"), sz_ID_ANOTHER_INST);
 			// We don't allow multiple instances!
 			/*if (!fRunningFromExternalService)
-				MessageBox(NULL, sz_ID_ANOTHER_INST, szAppName, MB_OK);*/
+				MessageBoxSecure(NULL, sz_ID_ANOTHER_INST, szAppName, MB_OK);*/
 			Sleep( 5000 );
 			return 0;
 		}
@@ -1044,7 +1052,7 @@ int WinVNCAppMain()
 	VSocketSystem socksys;
 	if (!socksys.Initialised())
 	{
-		MessageBox(NULL, sz_ID_FAILED_INIT, szAppName, MB_OK);
+		MessageBoxSecure(NULL, sz_ID_FAILED_INIT, szAppName, MB_OK);
 		return 0;
 	}
 
