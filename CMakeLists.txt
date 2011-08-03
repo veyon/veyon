@@ -261,7 +261,7 @@ ADD_CUSTOM_TARGET(dist
 			COMMAND rm -rf ${TMP}
 			COMMAND mkdir -p ${TMP}
 			COMMAND cp AUTHORS build_mingw32 ChangeLog CMakeLists.txt COPYING INSTALL italcconfig.h.in italc.spec.in iTALC.nsi.in README TODO ${TMP}
-			COMMAND cp -r cmake doc lib ica ima imc ${TMP}
+			COMMAND cp -r cmake contrib doc lib ica ima imc ${TMP}
 			COMMAND rm -rf `find ${TMP} -type d -name ".svn"`  `find ${TMP} -name cmake_install.cmake` `find ${TMP} -name Makefile` `find ${TMP} -type d -name CMakeFiles` ${TMP}/CMakeCache.txt
 			COMMAND tar cjf italc-${VERSION}.tar.bz2 ${TMP}
 			COMMAND rm -rf ${TMP})
@@ -274,13 +274,15 @@ ADD_CUSTOM_TARGET(win-nsi
 			COMMAND mkdir -p ${TMP}
 			COMMAND cp lib/ItalcCore.dll ica/ica.exe ica/win32/vnchooks.dll ica/win32/authSSP.dll ima/italc.exe imc/imc.exe ${TMP}
 			COMMAND ${STRIP} ${TMP}/*
-			COMMAND cp ${CMAKE_SOURCE_DIR}/doc/*.txt ${TMP}
+			COMMAND cp -r ${CMAKE_SOURCE_DIR}/doc ${TMP}
+			COMMAND cp -r ${CMAKE_SOURCE_DIR}/contrib ${TMP}
 			COMMAND cp ${CMAKE_SOURCE_DIR}/COPYING ${TMP}
 			COMMAND cp ${CMAKE_SOURCE_DIR}/COPYING ${TMP}/LICENSE.TXT
 			COMMAND cp ${CMAKE_SOURCE_DIR}/README ${TMP}/README.TXT
 			COMMAND todos ${TMP}/*.txt ${TMP}/*.TXT
 			COMMAND makensis iTALC.nsi
-			COMMAND rm -rf ${TMP})
+			#COMMAND rm -rf ${TMP}
+		)
 
 
 #

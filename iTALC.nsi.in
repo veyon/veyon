@@ -164,7 +164,12 @@ File "italc-${VERSION}\ItalcCore.dll"
 File "italc-${VERSION}\imc.exe"
 File "italc-${VERSION}\LICENSE.TXT"
 File "italc-${VERSION}\README.TXT"
-File "italc-${VERSION}\*txt"
+SetOutPath "$INSTDIR\doc"
+File "italc-${VERSION}\doc\*txt"
+SetOutPath "$INSTDIR\contrib"
+File "italc-${VERSION}\contrib\*"
+SetOutPath "$INSTDIR\contrib\en-US"
+File "italc-${VERSION}\contrib\en-US\*"
 ExecWait '"$INSTDIR\ica.exe" -quiet -registerservice'
 ExecWait '"$INSTDIR\imc.exe" -s Network/FirewallExceptionEnabled=1'
 ExecWait '"$INSTDIR\ica.exe" -quiet -startservice'
@@ -255,7 +260,8 @@ Delete "$INSTDIR\ItalcCore.dll"
 Delete "$INSTDIR\QtGui4.dll"
 Delete "$INSTDIR\uninstall.exe"
 Delete "$INSTDIR\iTALC website.url"
-Delete "$INSTDIR\*.txt"
+RmDir /r "$INSTDIR\doc"
+RmDir /r "$INSTDIR\contrib"
 
 RmDir "$INSTDIR"
 
