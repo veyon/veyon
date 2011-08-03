@@ -104,7 +104,7 @@ static qint64 qtcpsocketDispatcher( char * buffer, const qint64 bytes,
 					opStartTime.restart();
 				}
 			}
-			sock->flush();
+			//sock->flush();
 			break;
 
 		case SocketGetPeerAddress:
