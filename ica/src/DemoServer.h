@@ -2,7 +2,7 @@
  * DemoServer.h - multi-threaded slim VNC-server for demo-purposes (optimized
  *                for lot of clients accessing server in read-only-mode)
  *
- * Copyright (c) 2006-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2011 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -134,6 +134,7 @@ private:
 	const ItalcVncConnection *m_vncConn;
 	bool m_otherEndianess;
 	char *m_lzoWorkMem;
+	QRgb *m_rawBuf;
 
 } ;
 

@@ -2,7 +2,7 @@
  * DemoServer.cpp - multi-threaded slim VNC-server for demo-purposes (optimized
  *                   for lot of clients accessing server in read-only-mode)
  *
- * Copyright (c) 2006-2008 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2011 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -191,6 +191,7 @@ void DemoServer::incomingConnection( int sock )
 
 
 
+#define RAW_MAX_PIXELS 1024
 
 DemoServerClient::DemoServerClient( int sock, const ItalcVncConnection *vncConn,
 										DemoServer *parent ) :
@@ -209,7 +210,8 @@ DemoServerClient::DemoServerClient( int sock, const ItalcVncConnection *vncConn,
 	m_lzoWorkMem( new char[sizeof( lzo_align_t ) *
 			( ( ( LZO1X_1_MEM_COMPRESS ) +
 					( sizeof( lzo_align_t ) - 1 ) ) /
-						sizeof( lzo_align_t ) ) ] )
+						sizeof( lzo_align_t ) ) ] ),
+	m_rawBuf( new QRgb[RAW_MAX_PIXELS] )
 {
 	start();
 }
@@ -222,6 +224,7 @@ DemoServerClient::~DemoServerClient()
 	exit();
 	wait();
 	delete[] m_lzoWorkMem;
+	delete[] m_rawBuf;
 }
 
 
@@ -357,7 +360,7 @@ void DemoServerClient::sendUpdates()
 
 		// we only compress if it's enough data, otherwise
 		// there's too much overhead
-		if( rw * rh > 1024 )
+		if( rw * rh > RAW_MAX_PIXELS )
 		{
 
 	hdr.compressed = 1;
@@ -409,29 +412,30 @@ void DemoServerClient::sendUpdates()
 		else
 		{
 			sd.write( (const char *) &hdr, sizeof( hdr ) );
+			QRgb *dst = m_rawBuf;
 			if( m_otherEndianess )
 			{
-				uint32_t *buf = new uint32_t[rw];
 				for( int y = 0; y < rh; ++y )
 				{
-					const QRgb * src = (const QRgb *) i.scanLine( ry + y ) + rx;
-					for( int x = 0; x < rw; ++x, ++src )
+					const QRgb *src = (const QRgb *) i.scanLine( ry + y ) + rx;
+					for( int x = 0; x < rw; ++x, ++src, ++dst )
 					{
-						buf[x] = Swap32( *src );
+						*dst = Swap32( *src );
 					}
-					sd.write( (const char *) buf, rw * sizeof( QRgb ) );
 				}
-				delete[] buf;
 			}
 			else
 			{
 				for( int y = 0; y < rh; ++y )
 				{
-					sd.write( (const char *)
-						( (const QRgb *) i.scanLine( ry + y ) + rx ),
-									rw * sizeof( QRgb ) );
+					const QRgb *src = (const QRgb *) i.scanLine( ry + y ) + rx;
+					for( int x = 0; x < rw; ++x, ++src, ++dst )
+					{
+						*dst = *src;
+					}
 				}
 			}
+			sd.write( (const char *) m_rawBuf, rh * rw * sizeof( QRgb ) );
 		}
 	}
 
