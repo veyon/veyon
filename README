@@ -1,4 +1,4 @@
-iTALC 1.9.7 - Intelligent Teaching and Learning with Computers
+iTALC 2.0.0 - Intelligent Teaching and Learning with Computers
 ===============================================================
 
 
@@ -48,10 +48,10 @@ How to build, install and setup iTALC
 ---------------------------------------
 
 * Linux:
-   configure, make and make install - see INSTALL for details.
+   run CMake, make and make install - see INSTALL for details.
 
 * Windows:
-   run setup.exe
+   run setup file
 
 
 
