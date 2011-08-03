@@ -262,7 +262,7 @@ ADD_CUSTOM_TARGET(dist
 			COMMAND mkdir -p ${TMP}
 			COMMAND cp AUTHORS build_mingw* ChangeLog CMakeLists.txt COPYING INSTALL italcconfig.h.in italc.spec.in iTALC.nsi.in README* TODO ${TMP}
 			COMMAND cp -r cmake contrib doc lib ica ima imc nsis ${TMP}
-			COMMAND rm -rf `find ${TMP} -type d -name ".svn"`  `find ${TMP} -name cmake_install.cmake` `find ${TMP} -name Makefile` `find ${TMP} -type d -name CMakeFiles` ${TMP}/CMakeCache.txt `find ${TMP} -name "*.depends"`  `find ${TMP} -name "*.rc"` ${TMP}/ima/data/italc ${TMP}/ima/data/italc.desktop
+			COMMAND rm -rf `find ${TMP} -type d -name ".svn"`  `find ${TMP} -name cmake_install.cmake` `find ${TMP} -name Makefile` `find ${TMP} -type d -name CMakeFiles` ${TMP}/CMakeCache.txt `find ${TMP} -name "*.depends"` ${TMP}/ima/data/italc ${TMP}/ima/data/italc.desktop
 			COMMAND tar cjf italc-${VERSION}.tar.bz2 ${TMP}
 			COMMAND rm -rf ${TMP})
 
