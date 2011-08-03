@@ -1,7 +1,7 @@
 /*
  * ItalcCoreConnection.cpp - implementation of ItalcCoreConnection
  *
- * Copyright (c) 2008-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2008-2011 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -86,7 +86,7 @@ ItalcCoreConnection::~ItalcCoreConnection()
 	if( m_vncConn )
 	{
 		m_vncConn->stop();
-		delete m_vncConn;
+		m_vncConn = NULL;
 	}
 }
 
