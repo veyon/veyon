@@ -1874,7 +1874,7 @@ extern "C" {
 #undef LZO_HAVE_CONFIG_H
 #include "minilzo.h"
 
-#if !defined(MINILZO_VERSION) || (MINILZO_VERSION != 0x2050)
+#if !defined(MINILZO_VERSION) || (MINILZO_VERSION != 0x2060)
 #  error "version mismatch in miniLZO source files"
 #endif
 
@@ -2561,10 +2561,8 @@ LZOLIB_PUBLIC(lzo_hvoid_p, lzo_hmemset) (lzo_hvoid_p s, int c, lzo_hsize_t len)
 #endif
 #undef ACCCHK_ASSERT
 
-#if 0
 #define WANT_lzo_bitops_clz32 1
 #define WANT_lzo_bitops_clz64 1
-#endif
 #define WANT_lzo_bitops_ctz32 1
 #define WANT_lzo_bitops_ctz64 1
 
@@ -2611,7 +2609,7 @@ static __lzo_inline unsigned lzo_bitops_ctz64(lzo_uint64 v)
 #define lzo_bitops_ctz64 lzo_bitops_ctz64
 #endif
 
-#elif (LZO_CC_CLANG || (LZO_CC_GNUC >= 0x030400ul) || (LZO_CC_INTELC && (__INTEL_COMPILER >= 1000)) || LZO_CC_LLVM)
+#elif (LZO_CC_CLANG || (LZO_CC_GNUC >= 0x030400ul) || (LZO_CC_INTELC && (__INTEL_COMPILER >= 1000)) || (LZO_CC_LLVM && (!defined(__llvm_tools_version__) || (__llvm_tools_version__+0 >= 0x010500ul))))
 #if !defined(lzo_bitops_clz32) && defined(WANT_lzo_bitops_clz32)
 #define lzo_bitops_clz32(v) ((unsigned) __builtin_clz(v))
 #endif
@@ -2688,25 +2686,25 @@ _lzo_config_check(void)
 #endif
 #if defined(lzo_bitops_clz32)
     { unsigned i; lzo_uint32 v = 1;
-    for (i = 0; i < 31; i++, v <<= 1)
+    for (i = 0; i < 32; i++, v <<= 1)
         r &= lzo_bitops_clz32(v) == 31 - i;
     }
 #endif
 #if defined(lzo_bitops_clz64)
     { unsigned i; lzo_uint64 v = 1;
-    for (i = 0; i < 63; i++, v <<= 1)
+    for (i = 0; i < 64; i++, v <<= 1)
         r &= lzo_bitops_clz64(v) == 63 - i;
     }
 #endif
 #if defined(lzo_bitops_ctz32)
     { unsigned i; lzo_uint32 v = 1;
-    for (i = 0; i < 31; i++, v <<= 1)
+    for (i = 0; i < 32; i++, v <<= 1)
         r &= lzo_bitops_ctz32(v) == i;
     }
 #endif
 #if defined(lzo_bitops_ctz64)
     { unsigned i; lzo_uint64 v = 1;
-    for (i = 0; i < 63; i++, v <<= 1)
+    for (i = 0; i < 64; i++, v <<= 1)
         r &= lzo_bitops_ctz64(v) == i;
     }
 #endif
@@ -3091,9 +3089,13 @@ DVAL_ASSERT(lzo_xint dv, const lzo_bytep p)
 #  define do_compress       LZO_CPP_ECONCAT2(DO_COMPRESS,_core)
 #endif
 
-#if defined(UA_GET64)
+#if defined(UA_GET64) && (LZO_ABI_BIG_ENDIAN)
+#  define WANT_lzo_bitops_clz64 1
+#elif defined(UA_GET64) && (LZO_ABI_LITTLE_ENDIAN)
 #  define WANT_lzo_bitops_ctz64 1
-#elif defined(UA_GET32)
+#elif defined(UA_GET32) && (LZO_ABI_BIG_ENDIAN)
+#  define WANT_lzo_bitops_clz32 1
+#elif defined(UA_GET32) && (LZO_ABI_LITTLE_ENDIAN)
 #  define WANT_lzo_bitops_ctz32 1
 #endif
 
@@ -3140,7 +3142,7 @@ static __lzo_inline unsigned lzo_bitops_ctz64(lzo_uint64 v)
 #define lzo_bitops_ctz64 lzo_bitops_ctz64
 #endif
 
-#elif (LZO_CC_CLANG || (LZO_CC_GNUC >= 0x030400ul) || (LZO_CC_INTELC && (__INTEL_COMPILER >= 1000)) || LZO_CC_LLVM)
+#elif (LZO_CC_CLANG || (LZO_CC_GNUC >= 0x030400ul) || (LZO_CC_INTELC && (__INTEL_COMPILER >= 1000)) || (LZO_CC_LLVM && (!defined(__llvm_tools_version__) || (__llvm_tools_version__+0 >= 0x010500ul))))
 #if !defined(lzo_bitops_clz32) && defined(WANT_lzo_bitops_clz32)
 #define lzo_bitops_clz32(v) ((unsigned) __builtin_clz(v))
 #endif
@@ -3175,7 +3177,7 @@ do_compress ( const lzo_bytep in , lzo_uint  in_len,
 
     op = out;
     ip = in;
-    ii = ip - ti;
+    ii = ip;
 
     ip += ti < 4 ? 4 - ti : 0;
     for (;;)
@@ -3237,6 +3239,7 @@ next:
         }
 #endif
 
+        ii -= ti; ti = 0;
         {
         register lzo_uint t = pd(ip,ii);
         if (t != 0)
@@ -3318,7 +3321,14 @@ next:
                     goto m_len_done;
             } while (v == 0);
         }
-#if (LZO_ABI_LITTLE_ENDIAN) && defined(lzo_bitops_ctz64)
+#if (LZO_ABI_BIG_ENDIAN) && defined(lzo_bitops_clz64)
+        m_len += lzo_bitops_clz64(v) / CHAR_BIT;
+#elif (LZO_ABI_BIG_ENDIAN)
+        if ((v >> (64 - CHAR_BIT)) == 0) do {
+            v <<= CHAR_BIT;
+            m_len += 1;
+        } while ((v >> (64 - CHAR_BIT)) == 0);
+#elif (LZO_ABI_LITTLE_ENDIAN) && defined(lzo_bitops_ctz64)
         m_len += lzo_bitops_ctz64(v) / CHAR_BIT;
 #elif (LZO_ABI_LITTLE_ENDIAN)
         if ((v & UCHAR_MAX) == 0) do {
@@ -3341,7 +3351,14 @@ next:
                     goto m_len_done;
             } while (v == 0);
         }
-#if (LZO_ABI_LITTLE_ENDIAN) && defined(lzo_bitops_ctz32)
+#if (LZO_ABI_BIG_ENDIAN) && defined(lzo_bitops_clz32)
+        m_len += lzo_bitops_clz32(v) / CHAR_BIT;
+#elif (LZO_ABI_BIG_ENDIAN)
+        if ((v >> (32 - CHAR_BIT)) == 0) do {
+            v <<= CHAR_BIT;
+            m_len += 1;
+        } while ((v >> (32 - CHAR_BIT)) == 0);
+#elif (LZO_ABI_LITTLE_ENDIAN) && defined(lzo_bitops_ctz32)
         m_len += lzo_bitops_ctz32(v) / CHAR_BIT;
 #elif (LZO_ABI_LITTLE_ENDIAN)
         if ((v & UCHAR_MAX) == 0) do {
@@ -3428,7 +3445,7 @@ m_len_done:
     }
 
     *out_len = pd(op, out);
-    return pd(in_end,ii);
+    return pd(in_end,ii-ti);
 }
 
 LZO_PUBLIC(int)

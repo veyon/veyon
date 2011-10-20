@@ -44,9 +44,9 @@
 #ifndef __LZOCONF_H_INCLUDED
 #define __LZOCONF_H_INCLUDED 1
 
-#define LZO_VERSION             0x2050
-#define LZO_VERSION_STRING      "2.05"
-#define LZO_VERSION_DATE        "Apr 23 2011"
+#define LZO_VERSION             0x2060
+#define LZO_VERSION_STRING      "2.06"
+#define LZO_VERSION_DATE        "Aug 12 2011"
 
 /* internal Autoconf configuration file - only used when building LZO */
 #if defined(LZO_HAVE_CONFIG_H)
