@@ -187,9 +187,6 @@ typedef struct _rfbClient {
 	rfbPixelFormat format;
 	rfbServerInitMsg si;
 
-	/* listen.c */
-        int listenSock;
-
 	/* sockets.c */
 #define RFB_BUF_SIZE 8192
 	char buf[RFB_BUF_SIZE];
@@ -268,7 +265,6 @@ typedef struct _rfbClient {
 	SoftCursorLockAreaProc SoftCursorLockArea;
 	SoftCursorUnlockScreenProc SoftCursorUnlockScreen;
 	GotFrameBufferUpdateProc GotFrameBufferUpdate;
-	FinishedFrameBufferUpdateProc FinishedFrameBufferUpdate;
 	/* the pointer returned by GetPassword will be freed after use! */
 	GetPasswordProc GetPassword;
 	MallocFrameBufferProc MallocFrameBuffer;
@@ -320,6 +316,11 @@ typedef struct _rfbClient {
 
         /* hook to handle xvp server messages */
 	HandleXvpMsgProc           HandleXvpMsg;
+
+	/* listen.c */
+        int listenSock;
+
+	FinishedFrameBufferUpdateProc FinishedFrameBufferUpdate;
 } rfbClient;
 
 /* cursor.c */

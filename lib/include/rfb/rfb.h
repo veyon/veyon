@@ -39,6 +39,11 @@ extern "C"
 #include <string.h>
 #include <rfb/rfbproto.h>
 
+#if defined(ANDROID) || defined(LIBVNCSERVER_HAVE_ANDROID)
+#include <arpa/inet.h>
+#include <sys/select.h>
+#endif
+
 #ifdef LIBVNCSERVER_HAVE_SYS_TYPES_H
 #include <sys/types.h>
 #endif
@@ -359,6 +364,10 @@ typedef struct _rfbScreenInfo
     rfbDisplayFinishedHookPtr displayFinishedHook;
     /* xvpHook is called to handle an xvp client message */
     rfbXvpHookPtr xvpHook;
+#ifdef LIBVNCSERVER_WITH_WEBSOCKETS
+    char *sslkeyfile;
+    char *sslcertfile;
+#endif
 } rfbScreenInfo, *rfbScreenInfoPtr;
 
 
@@ -404,6 +413,9 @@ typedef struct _rfbStatList {
     uint32_t bytesRcvdIfRaw;
     struct _rfbStatList *Next;
 } rfbStatList;
+
+typedef struct _rfbSslCtx rfbSslCtx;
+typedef struct _wsCtx wsCtx;
 
 typedef struct _rfbClientRec {
   
@@ -533,7 +545,10 @@ typedef struct _rfbClientRec {
     struct z_stream_s compStream;
     rfbBool compStreamInited;
     uint32_t zlibCompressLevel;
-    /* the quality level is also used by ZYWRLE */
+    /** the quality level is also used by ZYWRLE */
+#endif
+#if defined(LIBVNCSERVER_HAVE_LIBZ) || defined(LIBVNCSERVER_HAVE_LIBPNG)
+    /** the quality level is also used by ZYWRLE and TightPng */
     int tightQualityLevel;
 
 #ifdef LIBVNCSERVER_HAVE_LIBJPEG
@@ -541,6 +556,8 @@ typedef struct _rfbClientRec {
     z_stream zsStruct[4];
     rfbBool zsActive[4];
     int zsLevel[4];
+#endif
+#if defined(LIBVNCSERVER_HAVE_LIBJPEG) || defined(LIBVNCSERVER_HAVE_LIBPNG)
     int tightCompressLevel;
 #endif
 #endif
@@ -615,6 +632,15 @@ typedef struct _rfbClientRec {
   char *afterEncBuf;
   int afterEncBufSize;
   int afterEncBufLen;
+#if defined(LIBVNCSERVER_HAVE_LIBZ) || defined(LIBVNCSERVER_HAVE_LIBPNG)
+    uint32_t tightEncoding;  /* rfbEncodingTight or rfbEncodingTightPng */
+#endif
+
+#ifdef LIBVNCSERVER_WITH_WEBSOCKETS
+    rfbSslCtx *sslctx;
+    wsCtx     *wsctx;
+    char *wspath;                          /* Requests path component */
+#endif
 } rfbClientRec, *rfbClientPtr;
 
 /*
@@ -667,6 +693,7 @@ extern void rfbDisconnectUDPSock(rfbScreenInfoPtr rfbScreen);
 extern void rfbCloseClient(rfbClientPtr cl);
 extern int rfbReadExact(rfbClientPtr cl, char *buf, int len);
 extern int rfbReadExactTimeout(rfbClientPtr cl, char *buf, int len,int timeout);
+extern int rfbPeekExactTimeout(rfbClientPtr cl, char *buf, int len,int timeout);
 extern int rfbWriteExact(rfbClientPtr cl, const char *buf, int len);
 extern int rfbCheckFds(rfbScreenInfoPtr rfbScreen,long usec);
 extern int rfbConnect(rfbScreenInfoPtr rfbScreen, char* host, int port);
@@ -675,6 +702,15 @@ extern int rfbListenOnTCPPort(int port, in_addr_t iface);
 extern int rfbListenOnUDPPort(int port, in_addr_t iface);
 extern int rfbStringToAddr(char* string,in_addr_t* addr);
 extern rfbBool rfbSetNonBlocking(int sock);
+
+#ifdef LIBVNCSERVER_WITH_WEBSOCKETS
+/* websockets.c */
+
+extern rfbBool webSocketsCheck(rfbClientPtr cl);
+extern rfbBool webSocketCheckDisconnect(rfbClientPtr cl);
+extern int webSocketsEncode(rfbClientPtr cl, const char *src, int len, char **dst);
+extern int webSocketsDecode(rfbClientPtr cl, char *dst, int len);
+#endif
 
 /* rfbserver.c */
 
@@ -791,7 +827,7 @@ extern rfbBool rfbSendRectEncodingUltra(rfbClientPtr cl, int x,int y,int w,int h
 extern rfbBool rfbSendRectEncodingZlib(rfbClientPtr cl, int x, int y, int w,
 				    int h);
 
-#ifdef LIBVNCSERVER_HAVE_LIBJPEG
+#if defined(LIBVNCSERVER_HAVE_LIBJPEG) || defined(LIBVNCSERVER_HAVE_LIBPNG)
 /* tight.c */
 
 #define TIGHT_DEFAULT_COMPRESSION  6
@@ -799,7 +835,13 @@ extern rfbBool rfbSendRectEncodingZlib(rfbClientPtr cl, int x, int y, int w,
 extern rfbBool rfbTightDisableGradient;
 
 extern int rfbNumCodedRectsTight(rfbClientPtr cl, int x,int y,int w,int h);
+
+#if defined(LIBVNCSERVER_HAVE_LIBJPEG)
 extern rfbBool rfbSendRectEncodingTight(rfbClientPtr cl, int x,int y,int w,int h);
+#endif
+#if defined(LIBVNCSERVER_HAVE_LIBPNG)
+extern rfbBool rfbSendRectEncodingTightPng(rfbClientPtr cl, int x,int y,int w,int h);
+#endif
 
 #endif
 #endif

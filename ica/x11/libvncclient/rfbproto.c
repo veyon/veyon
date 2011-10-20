@@ -31,11 +31,9 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/stat.h>
-#endif
-#include <errno.h>
-#ifndef WIN32
 #include <pwd.h>
 #endif
+#include <errno.h>
 #include <rfb/rfbclient.h>
 #ifdef LIBVNCSERVER_HAVE_LIBZ
 #include <zlib.h>
@@ -45,6 +43,9 @@
 #endif
 #endif
 #ifdef LIBVNCSERVER_HAVE_LIBJPEG
+#ifdef _RPCNDR_H /* This Windows header typedefs 'boolean', jpeglib has to know */
+#define HAVE_BOOLEAN
+#endif
 #include <jpeglib.h>
 #endif
 #include <stdarg.h>
@@ -664,6 +665,7 @@ FreeUserCredential(rfbCredential *cred)
   free(cred);
 }
 
+#ifdef LIBVNCSERVER_WITH_CLIENT_TLS
 static rfbBool
 HandlePlainAuth(rfbClient *client)
 {
@@ -717,6 +719,7 @@ HandlePlainAuth(rfbClient *client)
 
   return TRUE;
 }
+#endif
 
 /* Simple 64bit big integer arithmetic implementation */
 /* (x + y) % m, works even if (x + y) > 64bit */

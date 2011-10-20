@@ -163,6 +163,20 @@ rfbProcessArguments(rfbScreenInfoPtr rfbScreen,int* argc, char *argv[])
             if (! rfbStringToAddr(argv[++i], &(rfbScreen->listenInterface))) {
                 return FALSE;
             }
+#ifdef LIBVNCSERVER_WITH_WEBSOCKETS
+        } else if (strcmp(argv[i], "-sslkeyfile") == 0) {  /* -sslkeyfile sslkeyfile */
+            if (i + 1 >= *argc) {
+		rfbUsage();
+		return FALSE;
+	    }
+            rfbScreen->sslkeyfile = argv[++i];
+        } else if (strcmp(argv[i], "-sslcertfile") == 0) {  /* -sslcertfile sslcertfile */
+            if (i + 1 >= *argc) {
+		rfbUsage();
+		return FALSE;
+	    }
+            rfbScreen->sslcertfile = argv[++i];
+#endif
         } else {
 	    rfbProtocolExtension* extension;
 	    int handled=0;

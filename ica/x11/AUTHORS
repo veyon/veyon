@@ -32,19 +32,10 @@ Alberto Lusiani, Malvina Mazin, Dave Stuart, Rohit Kumar, Donald Dugger,
 Steven Carr, Uwe Völker, Charles Coffing, Guillaume Rousse,
 Alessandro Praduroux, Brad Hards, Timo Ketola, Christian Ehrlicher,
 Noriaki Yamazaki, Ben Klopfenstein, Vic Lee, Christian Beier,
-Alexander Dorokhine, Corentin Chary, Wouter Van Meir and George Kiagiadakis.
+Alexander Dorokhine, Corentin Chary, Wouter Van Meir, George Kiagiadakis,
+Joel Martin, Gernot Tenchio, William Roberts, Cristian Rodríguez,
+George Fleury, Kan-Ru Chen and Steve Guo.
 
 Probably I forgot quite a few people sending a patch here and there, which
 really made a difference. Without those, some obscure bugs still would
 be unfound.
-
-A hearty unthanks goes to Michael and Erick, who provided me with nothing
-but hollow words. Finally I got that configure and install working, but
-it would have been so much better for them not just to complain, but also
-help. As you showed me real egoism, you are the main reasons I am not
-working one dot to make this library less than GPL, so that nobody ever
-can make profit of my and others work without giving something back to me
-and others.
-
-Speaking of hollow words, another hearty unthanks goes to Sam, who thought
-he could let me work for him, not paying me in any way.

@@ -34,6 +34,12 @@
 #define NEEDFAR_POINTERS
 #endif
 
+#ifdef _RPCNDR_H /* This Windows header typedefs 'boolean', jpeglib has to know */
+#define HAVE_BOOLEAN
+#endif
+#ifdef LIBVNCSERVER_HAVE_LIBPNG
+#include <png.h>
+#endif
 #include <jpeglib.h>
 
 /* Note: The following constant should not be changed. */
@@ -87,6 +93,25 @@ static TIGHT_CONF tightConf[10] = {
     { 65536, 2048,  32,  8192, 9, 9, 8, 6, 190, 475,  64, 75,   500,  1200 },
     { 65536, 2048,  32,  8192, 9, 9, 9, 6, 200, 500,  96, 80,   200,   500 }
 };
+
+#ifdef LIBVNCSERVER_HAVE_LIBPNG
+typedef struct TIGHT_PNG_CONF_s {
+    int png_zlib_level, png_filters;
+} TIGHT_PNG_CONF;
+
+static TIGHT_PNG_CONF tightPngConf[10] = {
+    { 0, PNG_NO_FILTERS },
+    { 1, PNG_NO_FILTERS },
+    { 2, PNG_NO_FILTERS },
+    { 3, PNG_NO_FILTERS },
+    { 4, PNG_NO_FILTERS },
+    { 5, PNG_ALL_FILTERS },
+    { 6, PNG_ALL_FILTERS },
+    { 7, PNG_ALL_FILTERS },
+    { 8, PNG_ALL_FILTERS },
+    { 9, PNG_ALL_FILTERS },
+};
+#endif
 
 static TLS int compressLevel = 0;
 static TLS int qualityLevel = 0;
@@ -143,6 +168,8 @@ void rfbTightCleanup(rfbScreenInfoPtr screen)
 
 /* Prototypes for static functions. */
 
+static rfbBool SendRectEncodingTight(rfbClientPtr cl, int x, int y,
+                                     int w, int h);
 static void FindBestSolidArea (rfbClientPtr cl, int x, int y, int w, int h,
                                uint32_t colorValue, int *w_ptr, int *h_ptr);
 static void ExtendSolidArea   (rfbClientPtr cl, int x, int y, int w, int h,
@@ -162,10 +189,10 @@ static rfbBool SendSubrect       (rfbClientPtr cl, int x, int y, int w, int h);
 static rfbBool SendTightHeader   (rfbClientPtr cl, int x, int y, int w, int h);
 
 static rfbBool SendSolidRect     (rfbClientPtr cl);
-static rfbBool SendMonoRect      (rfbClientPtr cl, int w, int h);
-static rfbBool SendIndexedRect   (rfbClientPtr cl, int w, int h);
-static rfbBool SendFullColorRect (rfbClientPtr cl, int w, int h);
-static rfbBool SendGradientRect  (rfbClientPtr cl, int w, int h);
+static rfbBool SendMonoRect      (rfbClientPtr cl, int x, int y, int w, int h);
+static rfbBool SendIndexedRect   (rfbClientPtr cl, int x, int y, int w, int h);
+static rfbBool SendFullColorRect (rfbClientPtr cl, int x, int y, int w, int h);
+static rfbBool SendGradientRect  (rfbClientPtr cl, int x, int y, int w, int h);
 
 static rfbBool CompressData(rfbClientPtr cl, int streamId, int dataLen,
                          int zlibLevel, int zlibStrategy);
@@ -198,16 +225,20 @@ static unsigned long DetectSmoothImage32(rfbClientPtr cl, rfbPixelFormat *fmt, i
 
 static rfbBool SendJpegRect(rfbClientPtr cl, int x, int y, int w, int h,
                          int quality);
-static void PrepareRowForJpeg(rfbClientPtr cl, uint8_t *dst, int x, int y, int count);
-static void PrepareRowForJpeg24(rfbClientPtr cl, uint8_t *dst, int x, int y, int count);
-static void PrepareRowForJpeg16(rfbClientPtr cl, uint8_t *dst, int x, int y, int count);
-static void PrepareRowForJpeg32(rfbClientPtr cl, uint8_t *dst, int x, int y, int count);
+static void PrepareRowForImg(rfbClientPtr cl, uint8_t *dst, int x, int y, int count);
+static void PrepareRowForImg24(rfbClientPtr cl, uint8_t *dst, int x, int y, int count);
+static void PrepareRowForImg16(rfbClientPtr cl, uint8_t *dst, int x, int y, int count);
+static void PrepareRowForImg32(rfbClientPtr cl, uint8_t *dst, int x, int y, int count);
 
 static void JpegInitDestination(j_compress_ptr cinfo);
 static boolean JpegEmptyOutputBuffer(j_compress_ptr cinfo);
 static void JpegTermDestination(j_compress_ptr cinfo);
 static void JpegSetDstManager(j_compress_ptr cinfo);
 
+#ifdef LIBVNCSERVER_HAVE_LIBPNG
+static rfbBool SendPngRect(rfbClientPtr cl, int x, int y, int w, int h);
+static rfbBool CanSendPngRect(rfbClientPtr cl, int w, int h);
+#endif
 
 /*
  * Tight encoding implementation.
@@ -243,6 +274,29 @@ rfbNumCodedRectsTight(rfbClientPtr cl,
 
 rfbBool
 rfbSendRectEncodingTight(rfbClientPtr cl,
+                         int x,
+                         int y,
+                         int w,
+                         int h)
+{
+    cl->tightEncoding = rfbEncodingTight;
+    return SendRectEncodingTight(cl, x, y, w, h);
+}
+
+rfbBool
+rfbSendRectEncodingTightPng(rfbClientPtr cl,
+                         int x,
+                         int y,
+                         int w,
+                         int h)
+{
+    cl->tightEncoding = rfbEncodingTightPng;
+    return SendRectEncodingTight(cl, x, y, w, h);
+}
+
+
+rfbBool
+SendRectEncodingTight(rfbClientPtr cl,
                          int x,
                          int y,
                          int w,
@@ -338,7 +392,7 @@ rfbSendRectEncodingTight(rfbClientPtr cl,
                      !SendRectSimple(cl, x, y, w, y_best-y) )
                     return FALSE;
                 if ( x_best != x &&
-                     !rfbSendRectEncodingTight(cl, x, y_best,
+                     !SendRectEncodingTight(cl, x, y_best,
                                                x_best-x, h_best) )
                     return FALSE;
 
@@ -361,11 +415,11 @@ rfbSendRectEncodingTight(rfbClientPtr cl,
                 /* Send remaining rectangles (at right and bottom). */
 
                 if ( x_best + w_best != x + w &&
-                     !rfbSendRectEncodingTight(cl, x_best+w_best, y_best,
+                     !SendRectEncodingTight(cl, x_best+w_best, y_best,
                                                w-(x_best-x)-w_best, h_best) )
                     return FALSE;
                 if ( y_best + h_best != y + h &&
-                     !rfbSendRectEncodingTight(cl, x, y_best+h_best,
+                     !SendRectEncodingTight(cl, x, y_best+h_best,
                                                w, h-(y_best-y)-h_best) )
                     return FALSE;
 
@@ -626,10 +680,10 @@ SendSubrect(rfbClientPtr cl,
                 success = SendJpegRect(cl, x, y, w, h,
                                        tightConf[qualityLevel].jpegQuality);
             } else {
-                success = SendGradientRect(cl, w, h);
+                success = SendGradientRect(cl, x, y, w, h);
             }
         } else {
-            success = SendFullColorRect(cl, w, h);
+            success = SendFullColorRect(cl, x, y, w, h);
         }
         break;
     case 1:
@@ -638,7 +692,7 @@ SendSubrect(rfbClientPtr cl,
         break;
     case 2:
         /* Two-color rectangle */
-        success = SendMonoRect(cl, w, h);
+        success = SendMonoRect(cl, x, y, w, h);
         break;
     default:
         /* Up to 256 different colors */
@@ -648,7 +702,7 @@ SendSubrect(rfbClientPtr cl,
             success = SendJpegRect(cl, x, y, w, h,
                                    tightConf[qualityLevel].jpegQuality);
         } else {
-            success = SendIndexedRect(cl, w, h);
+            success = SendIndexedRect(cl, x, y, w, h);
         }
     }
     return success;
@@ -672,13 +726,13 @@ SendTightHeader(rfbClientPtr cl,
     rect.r.y = Swap16IfLE(y);
     rect.r.w = Swap16IfLE(w);
     rect.r.h = Swap16IfLE(h);
-    rect.encoding = Swap32IfLE(rfbEncodingTight);
+    rect.encoding = Swap32IfLE(cl->tightEncoding);
 
     memcpy(&cl->updateBuf[cl->ublen], (char *)&rect,
            sz_rfbFramebufferUpdateRectHeader);
     cl->ublen += sz_rfbFramebufferUpdateRectHeader;
 
-    rfbStatRecordEncodingSent(cl, rfbEncodingTight, sz_rfbFramebufferUpdateRectHeader,
+    rfbStatRecordEncodingSent(cl, cl->tightEncoding, sz_rfbFramebufferUpdateRectHeader,
                               sz_rfbFramebufferUpdateRectHeader + w * (cl->format.bitsPerPixel / 8) * h);
 
     return TRUE;
@@ -708,18 +762,28 @@ SendSolidRect(rfbClientPtr cl)
     memcpy (&cl->updateBuf[cl->ublen], tightBeforeBuf, len);
     cl->ublen += len;
 
-    rfbStatRecordEncodingSentAdd(cl, rfbEncodingTight, len+1);
+    rfbStatRecordEncodingSentAdd(cl, cl->tightEncoding, len+1);
 
     return TRUE;
 }
 
 static rfbBool
 SendMonoRect(rfbClientPtr cl,
+             int x,
+             int y,
              int w,
              int h)
 {
     int streamId = 1;
     int paletteLen, dataLen;
+
+#ifdef LIBVNCSERVER_HAVE_LIBPNG
+    if (CanSendPngRect(cl, w, h)) {
+        /* TODO: setup palette maybe */
+        return SendPngRect(cl, x, y, w, h);
+        /* TODO: destroy palette maybe */
+    }
+#endif
 
     if ( cl->ublen + TIGHT_MIN_TO_COMPRESS + 6 +
 	 2 * cl->format.bitsPerPixel / 8 > UPDATE_BUF_SIZE ) {
@@ -751,7 +815,7 @@ SendMonoRect(rfbClientPtr cl,
 
         memcpy(&cl->updateBuf[cl->ublen], tightAfterBuf, paletteLen);
         cl->ublen += paletteLen;
-        rfbStatRecordEncodingSentAdd(cl, rfbEncodingTight, 3 + paletteLen);
+        rfbStatRecordEncodingSentAdd(cl, cl->tightEncoding, 3 + paletteLen);
         break;
 
     case 16:
@@ -762,7 +826,7 @@ SendMonoRect(rfbClientPtr cl,
 
         memcpy(&cl->updateBuf[cl->ublen], tightAfterBuf, 4);
         cl->ublen += 4;
-        rfbStatRecordEncodingSentAdd(cl, rfbEncodingTight, 7);
+        rfbStatRecordEncodingSentAdd(cl, cl->tightEncoding, 7);
         break;
 
     default:
@@ -770,7 +834,7 @@ SendMonoRect(rfbClientPtr cl,
 
         cl->updateBuf[cl->ublen++] = (char)monoBackground;
         cl->updateBuf[cl->ublen++] = (char)monoForeground;
-        rfbStatRecordEncodingSentAdd(cl, rfbEncodingTight, 5);
+        rfbStatRecordEncodingSentAdd(cl, cl->tightEncoding, 5);
     }
 
     return CompressData(cl, streamId, dataLen,
@@ -780,11 +844,19 @@ SendMonoRect(rfbClientPtr cl,
 
 static rfbBool
 SendIndexedRect(rfbClientPtr cl,
+                int x,
+                int y,
                 int w,
                 int h)
 {
     int streamId = 2;
     int i, entryLen;
+
+#ifdef LIBVNCSERVER_HAVE_LIBPNG
+    if (CanSendPngRect(cl, w, h)) {
+        return SendPngRect(cl, x, y, w, h);
+    }
+#endif
 
     if ( cl->ublen + TIGHT_MIN_TO_COMPRESS + 6 +
 	 paletteNumColors * cl->format.bitsPerPixel / 8 >
@@ -816,7 +888,7 @@ SendIndexedRect(rfbClientPtr cl,
 
         memcpy(&cl->updateBuf[cl->ublen], tightAfterBuf, paletteNumColors * entryLen);
         cl->ublen += paletteNumColors * entryLen;
-        rfbStatRecordEncodingSentAdd(cl, rfbEncodingTight, 3 + paletteNumColors * entryLen);
+        rfbStatRecordEncodingSentAdd(cl, cl->tightEncoding, 3 + paletteNumColors * entryLen);
         break;
 
     case 16:
@@ -829,7 +901,7 @@ SendIndexedRect(rfbClientPtr cl,
 
         memcpy(&cl->updateBuf[cl->ublen], tightAfterBuf, paletteNumColors * 2);
         cl->ublen += paletteNumColors * 2;
-        rfbStatRecordEncodingSentAdd(cl, rfbEncodingTight, 3 + paletteNumColors * 2);
+        rfbStatRecordEncodingSentAdd(cl, cl->tightEncoding, 3 + paletteNumColors * 2);
         break;
 
     default:
@@ -843,11 +915,19 @@ SendIndexedRect(rfbClientPtr cl,
 
 static rfbBool
 SendFullColorRect(rfbClientPtr cl,
+                  int x,
+                  int y,
                   int w,
                   int h)
 {
     int streamId = 0;
     int len;
+
+#ifdef LIBVNCSERVER_HAVE_LIBPNG
+    if (CanSendPngRect(cl, w, h)) {
+        return SendPngRect(cl, x, y, w, h);
+    }
+#endif
 
     if (cl->ublen + TIGHT_MIN_TO_COMPRESS + 1 > UPDATE_BUF_SIZE) {
         if (!rfbSendUpdateBuf(cl))
@@ -855,7 +935,7 @@ SendFullColorRect(rfbClientPtr cl,
     }
 
     cl->updateBuf[cl->ublen++] = 0x00;  /* stream id = 0, no flushing, no filter */
-    rfbStatRecordEncodingSentAdd(cl, rfbEncodingTight, 1);
+    rfbStatRecordEncodingSentAdd(cl, cl->tightEncoding, 1);
 
     if (usePixelFormat24) {
         Pack24(cl, tightBeforeBuf, &cl->format, w * h);
@@ -870,14 +950,22 @@ SendFullColorRect(rfbClientPtr cl,
 
 static rfbBool
 SendGradientRect(rfbClientPtr cl,
+                 int x,
+                 int y,
                  int w,
                  int h)
 {
     int streamId = 3;
     int len;
 
+#ifdef LIBVNCSERVER_HAVE_LIBPNG
+    if (CanSendPngRect(cl, w, h)) {
+        return SendPngRect(cl, x, y, w, h);
+    }
+#endif
+
     if (cl->format.bitsPerPixel == 8)
-        return SendFullColorRect(cl, w, h);
+        return SendFullColorRect(cl, x, y, w, h);
 
     if (cl->ublen + TIGHT_MIN_TO_COMPRESS + 2 > UPDATE_BUF_SIZE) {
         if (!rfbSendUpdateBuf(cl))
@@ -889,7 +977,7 @@ SendGradientRect(rfbClientPtr cl,
 
     cl->updateBuf[cl->ublen++] = (streamId | rfbTightExplicitFilter) << 4;
     cl->updateBuf[cl->ublen++] = rfbTightFilterGradient;
-    rfbStatRecordEncodingSentAdd(cl, rfbEncodingTight, 2);
+    rfbStatRecordEncodingSentAdd(cl, cl->tightEncoding, 2);
 
     if (usePixelFormat24) {
         FilterGradient24(cl, tightBeforeBuf, &cl->format, w, h);
@@ -920,7 +1008,7 @@ CompressData(rfbClientPtr cl,
     if (dataLen < TIGHT_MIN_TO_COMPRESS) {
         memcpy(&cl->updateBuf[cl->ublen], tightBeforeBuf, dataLen);
         cl->ublen += dataLen;
-        rfbStatRecordEncodingSentAdd(cl, rfbEncodingTight, dataLen);
+        rfbStatRecordEncodingSentAdd(cl, cl->tightEncoding, dataLen);
         return TRUE;
     }
 
@@ -970,15 +1058,15 @@ static rfbBool SendCompressedData(rfbClientPtr cl,
     int i, portionLen;
 
     cl->updateBuf[cl->ublen++] = compressedLen & 0x7F;
-    rfbStatRecordEncodingSentAdd(cl, rfbEncodingTight, 1);
+    rfbStatRecordEncodingSentAdd(cl, cl->tightEncoding, 1);
     if (compressedLen > 0x7F) {
         cl->updateBuf[cl->ublen-1] |= 0x80;
         cl->updateBuf[cl->ublen++] = compressedLen >> 7 & 0x7F;
-        rfbStatRecordEncodingSentAdd(cl, rfbEncodingTight, 1);
+        rfbStatRecordEncodingSentAdd(cl, cl->tightEncoding, 1);
         if (compressedLen > 0x3FFF) {
             cl->updateBuf[cl->ublen-1] |= 0x80;
             cl->updateBuf[cl->ublen++] = compressedLen >> 14 & 0xFF;
-            rfbStatRecordEncodingSentAdd(cl, rfbEncodingTight, 1);
+            rfbStatRecordEncodingSentAdd(cl, cl->tightEncoding, 1);
         }
     }
 
@@ -994,7 +1082,7 @@ static rfbBool SendCompressedData(rfbClientPtr cl,
         memcpy(&cl->updateBuf[cl->ublen], &tightAfterBuf[i], portionLen);
         cl->ublen += portionLen;
     }
-    rfbStatRecordEncodingSentAdd(cl, rfbEncodingTight, compressedLen);
+    rfbStatRecordEncodingSentAdd(cl, cl->tightEncoding, compressedLen);
 
     return TRUE;
 }
@@ -1656,11 +1744,11 @@ SendJpegRect(rfbClientPtr cl, int x, int y, int w, int h, int quality)
     int dy;
 
     if (cl->screen->serverFormat.bitsPerPixel == 8)
-        return SendFullColorRect(cl, w, h);
+        return SendFullColorRect(cl, x, y, w, h);
 
     srcBuf = (uint8_t *)malloc(w * 3);
     if (srcBuf == NULL) {
-        return SendFullColorRect(cl, w, h);
+        return SendFullColorRect(cl, x, y, w, h);
     }
     rowPointer[0] = srcBuf;
 
@@ -1680,7 +1768,7 @@ SendJpegRect(rfbClientPtr cl, int x, int y, int w, int h, int quality)
     jpeg_start_compress(&cinfo, TRUE);
 
     for (dy = 0; dy < h; dy++) {
-        PrepareRowForJpeg(cl, srcBuf, x, y + dy, w);
+        PrepareRowForImg(cl, srcBuf, x, y + dy, w);
         jpeg_write_scanlines(&cinfo, rowPointer, 1);
         if (jpegError)
             break;
@@ -1693,7 +1781,7 @@ SendJpegRect(rfbClientPtr cl, int x, int y, int w, int h, int quality)
     free(srcBuf);
 
     if (jpegError)
-        return SendFullColorRect(cl, w, h);
+        return SendFullColorRect(cl, x, y, w, h);
 
     if (cl->ublen + TIGHT_MIN_TO_COMPRESS + 1 > UPDATE_BUF_SIZE) {
         if (!rfbSendUpdateBuf(cl))
@@ -1701,13 +1789,13 @@ SendJpegRect(rfbClientPtr cl, int x, int y, int w, int h, int quality)
     }
 
     cl->updateBuf[cl->ublen++] = (char)(rfbTightJpeg << 4);
-    rfbStatRecordEncodingSentAdd(cl, rfbEncodingTight, 1);
+    rfbStatRecordEncodingSentAdd(cl, cl->tightEncoding, 1);
 
     return SendCompressedData(cl, jpegDstDataLen);
 }
 
 static void
-PrepareRowForJpeg(rfbClientPtr cl,
+PrepareRowForImg(rfbClientPtr cl,
                   uint8_t *dst,
                   int x,
                   int y,
@@ -1717,18 +1805,18 @@ PrepareRowForJpeg(rfbClientPtr cl,
         if ( cl->screen->serverFormat.redMax == 0xFF &&
              cl->screen->serverFormat.greenMax == 0xFF &&
              cl->screen->serverFormat.blueMax == 0xFF ) {
-            PrepareRowForJpeg24(cl, dst, x, y, count);
+            PrepareRowForImg24(cl, dst, x, y, count);
         } else {
-            PrepareRowForJpeg32(cl, dst, x, y, count);
+            PrepareRowForImg32(cl, dst, x, y, count);
         }
     } else {
         /* 16 bpp assumed. */
-        PrepareRowForJpeg16(cl, dst, x, y, count);
+        PrepareRowForImg16(cl, dst, x, y, count);
     }
 }
 
 static void
-PrepareRowForJpeg24(rfbClientPtr cl,
+PrepareRowForImg24(rfbClientPtr cl,
                     uint8_t *dst,
                     int x,
                     int y,
@@ -1751,7 +1839,7 @@ PrepareRowForJpeg24(rfbClientPtr cl,
 #define DEFINE_JPEG_GET_ROW_FUNCTION(bpp)                                   \
                                                                             \
 static void                                                                 \
-PrepareRowForJpeg##bpp(rfbClientPtr cl, uint8_t *dst, int x, int y, int count) { \
+PrepareRowForImg##bpp(rfbClientPtr cl, uint8_t *dst, int x, int y, int count) { \
     uint##bpp##_t *fbptr;                                                   \
     uint##bpp##_t pix;                                                      \
     int inRed, inGreen, inBlue;                                             \
@@ -1819,3 +1907,161 @@ JpegSetDstManager(j_compress_ptr cinfo)
     cinfo->dest = &jpegDstManager;
 }
 
+/*
+ * PNG compression stuff.
+ */
+
+#ifdef LIBVNCSERVER_HAVE_LIBPNG
+
+static TLS int pngDstDataLen = 0;
+
+static rfbBool CanSendPngRect(rfbClientPtr cl, int w, int h) {
+    if (cl->tightEncoding != rfbEncodingTightPng) {
+        return FALSE;
+    }
+
+    if ( cl->screen->serverFormat.bitsPerPixel == 8 ||
+         cl->format.bitsPerPixel == 8) {
+        return FALSE;
+    }
+
+    return TRUE;
+}
+
+static void pngWriteData(png_structp png_ptr, png_bytep data,
+                           png_size_t length)
+{
+#if 0
+    rfbClientPtr cl = png_get_io_ptr(png_ptr);
+
+    buffer_reserve(&vs->tight.png, vs->tight.png.offset + length);
+    memcpy(vs->tight.png.buffer + vs->tight.png.offset, data, length);
+#endif
+    memcpy(tightAfterBuf + pngDstDataLen, data, length);
+
+    pngDstDataLen += length;
+}
+
+static void pngFlushData(png_structp png_ptr)
+{
+}
+
+
+static void *pngMalloc(png_structp png_ptr, png_size_t size)
+{
+    return malloc(size);
+}
+
+static void pngFree(png_structp png_ptr, png_voidp ptr)
+{
+    free(ptr);
+}
+
+static rfbBool SendPngRect(rfbClientPtr cl, int x, int y, int w, int h) {
+    /* rfbLog(">> SendPngRect x:%d, y:%d, w:%d, h:%d\n", x, y, w, h); */
+
+    png_byte color_type;
+    png_structp png_ptr;
+    png_infop info_ptr;
+    png_colorp png_palette = NULL;
+    int level = tightPngConf[cl->tightCompressLevel].png_zlib_level;
+    int filters = tightPngConf[cl->tightCompressLevel].png_filters;
+    uint8_t *buf;
+    int dy;
+
+    pngDstDataLen = 0;
+
+    png_ptr = png_create_write_struct_2(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL,
+                                        NULL, pngMalloc, pngFree);
+
+    if (png_ptr == NULL)
+        return FALSE;
+
+    info_ptr = png_create_info_struct(png_ptr);
+
+    if (info_ptr == NULL) {
+        png_destroy_write_struct(&png_ptr, NULL);
+        return FALSE;
+    }
+
+    png_set_write_fn(png_ptr, (void *) cl, pngWriteData, pngFlushData);
+    png_set_compression_level(png_ptr, level);
+    png_set_filter(png_ptr, PNG_FILTER_TYPE_DEFAULT, filters);
+
+#if 0
+    /* TODO: */
+    if (palette) {
+        color_type = PNG_COLOR_TYPE_PALETTE;
+    } else {
+        color_type = PNG_COLOR_TYPE_RGB;
+    }
+#else
+    color_type = PNG_COLOR_TYPE_RGB;
+#endif
+    png_set_IHDR(png_ptr, info_ptr, w, h,
+                 8, color_type, PNG_INTERLACE_NONE,
+                 PNG_COMPRESSION_TYPE_DEFAULT, PNG_FILTER_TYPE_DEFAULT);
+
+#if 0
+    if (color_type == PNG_COLOR_TYPE_PALETTE) {
+        struct palette_cb_priv priv;
+
+        png_palette = pngMalloc(png_ptr, sizeof(*png_palette) *
+                                 palette_size(palette));
+
+        priv.vs = vs;
+        priv.png_palette = png_palette;
+        palette_iter(palette, write_png_palette, &priv);
+
+        png_set_PLTE(png_ptr, info_ptr, png_palette, palette_size(palette));
+
+        offset = vs->tight.tight.offset;
+        if (vs->clientds.pf.bytes_per_pixel == 4) {
+            tight_encode_indexed_rect32(vs->tight.tight.buffer, w * h, palette);
+        } else {
+            tight_encode_indexed_rect16(vs->tight.tight.buffer, w * h, palette);
+        }
+    }
+
+    buffer_reserve(&vs->tight.png, 2048);
+#endif
+
+    png_write_info(png_ptr, info_ptr);
+    buf = malloc(w * 3);
+    for (dy = 0; dy < h; dy++)
+    {
+#if 0
+        if (color_type == PNG_COLOR_TYPE_PALETTE) {
+            memcpy(buf, vs->tight.tight.buffer + (dy * w), w);
+        } else {
+            PrepareRowForImg(cl, buf, x, y + dy, w);
+        }
+#else
+        PrepareRowForImg(cl, buf, x, y + dy, w);
+#endif
+        png_write_row(png_ptr, buf);
+    }
+    free(buf);
+
+    png_write_end(png_ptr, NULL);
+
+    if (color_type == PNG_COLOR_TYPE_PALETTE) {
+        pngFree(png_ptr, png_palette);
+    }
+
+    png_destroy_write_struct(&png_ptr, &info_ptr);
+
+    /* done v */
+
+    if (cl->ublen + TIGHT_MIN_TO_COMPRESS + 1 > UPDATE_BUF_SIZE) {
+        if (!rfbSendUpdateBuf(cl))
+            return FALSE;
+    }
+
+    cl->updateBuf[cl->ublen++] = (char)(rfbTightPng << 4);
+    rfbStatRecordEncodingSentAdd(cl, cl->tightEncoding, 1);
+
+    /* rfbLog("<< SendPngRect\n"); */
+    return SendCompressedData(cl, pngDstDataLen);
+}
+#endif

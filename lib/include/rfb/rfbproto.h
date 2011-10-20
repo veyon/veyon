@@ -429,6 +429,7 @@ typedef struct {
 #define rfbEncodingHextile 5
 #define rfbEncodingZlib 6
 #define rfbEncodingTight 7
+#define rfbEncodingTightPng 0xFFFFFEFC /* -260 */
 #define rfbEncodingZlibHex 8
 #define rfbEncodingUltra 9
 #define rfbEncodingUltra2   10
@@ -703,7 +704,10 @@ typedef struct {
 #ifdef LIBVNCSERVER_HAVE_LIBZ
 
 /*- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
- * Tight Encoding.
+ * Tight and TightPng Encoding.
+ *
+ *-- TightPng is like Tight but basic compression is not used, instead PNG
+ *   data is sent.
  *
  *-- The first byte of each Tight-encoded rectangle is a "compression control
  *   byte". Its format is as follows (bit 0 is the least significant one):
@@ -714,8 +718,9 @@ typedef struct {
  *   bit 3:    if 1, then compression stream 3 should be reset;
  *   bits 7-4: if 1000 (0x08), then the compression type is "fill",
  *             if 1001 (0x09), then the compression type is "jpeg",
+ *             if 1001 (0x0A), then the compression type is "png",
  *             if 0xxx, then the compression type is "basic",
- *             values greater than 1001 are not valid.
+ *             values greater than 1010 are not valid.
  *
  * If the compression type is "basic", then bits 6..4 of the
  * compression control byte (those xxx in 0xxx) specify the following:
@@ -725,17 +730,17 @@ typedef struct {
  *   bit 6:     if 1, then a "filter id" byte is following this byte.
  *
  *-- The data that follows after the compression control byte described
- * above depends on the compression type ("fill", "jpeg" or "basic").
+ * above depends on the compression type ("fill", "jpeg", "png" or "basic").
  *
  *-- If the compression type is "fill", then the only pixel value follows, in
  * client pixel format (see NOTE 1). This value applies to all pixels of the
  * rectangle.
  *
- *-- If the compression type is "jpeg", the following data stream looks like
- * this:
+ *-- If the compression type is "jpeg" or "png", the following data stream
+ * looks like this:
  *
  *   1..3 bytes:  data size (N) in compact representation;
- *   N bytes:     JPEG image.
+ *   N bytes:     JPEG or PNG image.
  *
  * Data size is compactly represented in one, two or three bytes, according
  * to the following scheme:
@@ -816,7 +821,7 @@ typedef struct {
  *-- NOTE 2. The decoder must reset compression streams' states before
  * decoding the rectangle, if some of bits 0,1,2,3 in the compression control
  * byte are set to 1. Note that the decoder must reset zlib streams even if
- * the compression type is "fill" or "jpeg".
+ * the compression type is "fill", "jpeg" or "png".
  *
  *-- NOTE 3. The "gradient" filter and "jpeg" compression may be used only
  * when bits-per-pixel value is either 16 or 32, not 8.
@@ -830,7 +835,8 @@ typedef struct {
 #define rfbTightExplicitFilter         0x04
 #define rfbTightFill                   0x08
 #define rfbTightJpeg                   0x09
-#define rfbTightMaxSubencoding         0x09
+#define rfbTightPng                    0x0A
+#define rfbTightMaxSubencoding         0x0A
 
 /* Filters to improve compression efficiency */
 #define rfbTightFilterCopy             0x00
