@@ -44,6 +44,9 @@ as path delimiter, installation paths etc.
      ica -RegisterService
      ica -StartService
 
+   When calling IMC for applying settings and importing the public key you can
+   also pass "-silent" or "-quiet" in order to suppress any message boxes.
+
    After running this batch file on a client, the client should be ready for use
    with the iTALC network.
 
