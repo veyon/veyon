@@ -44,6 +44,7 @@ namespace ImcCore
 
 // static data initialization
 MainWindow *mainWindow = NULL;
+bool silent = false;
 
 
 static void configApplyError( const QString &msg )
@@ -221,8 +222,7 @@ void informationMessage( const QString &title, const QString &msg )
 {
 	LogStream( Logger::LogLevelInfo ) << title.toUtf8().constData()
 								<< ":" << msg.toUtf8().constData();
-	if( QApplication::type() != QApplication::Tty &&
-			!QCoreApplication::instance()->arguments().contains( "-quiet" ) )
+	if( QApplication::type() != QApplication::Tty && !silent )
 	{
 		QMessageBox::information( NULL, title, msg );
 	}
@@ -234,8 +234,7 @@ void criticalMessage( const QString &title, const QString &msg )
 {
 	LogStream( Logger::LogLevelCritical ) << title.toUtf8().constData()
 								<< ":" << msg.toUtf8().constData();
-	if( QApplication::type() != QApplication::Tty &&
-			!QCoreApplication::instance()->arguments().contains( "-quiet" ) )
+	if( QApplication::type() != QApplication::Tty && !silent )
 	{
 		QMessageBox::critical( NULL, title, msg );
 	}

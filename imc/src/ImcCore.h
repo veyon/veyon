@@ -48,6 +48,8 @@ namespace ImcCore
 	void informationMessage( const QString &title, const QString &msg );
 	void criticalMessage( const QString &title, const QString &msg );
 
+	extern bool silent;
+
 	// UI objects
 	extern MainWindow * mainWindow;
 

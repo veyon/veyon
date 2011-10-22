@@ -39,6 +39,7 @@
 
 int main( int argc, char **argv )
 {
+
 	// make sure to run as admin
 	if( !LocalSystem::Process::isRunningAsAdmin() )
 	{
@@ -59,6 +60,11 @@ int main( int argc, char **argv )
 #endif
 
 	ItalcCore::init();
+
+	ImcCore::silent = app.arguments().contains( "-quiet" ) ||
+						app.arguments().contains( "-silent" ) ||
+						app.arguments().contains( "-q" );
+
 
 	// default to teacher role for various command line operations
 	ItalcCore::role = ItalcCore::RoleTeacher;
@@ -81,7 +87,7 @@ int main( int argc, char **argv )
 	}
 
 	// parse arguments
-	QStringListIterator argIt( QCoreApplication::arguments() );
+	QStringListIterator argIt( app.arguments() );
 	argIt.next();
 
 	while( argc > 1 && argIt.hasNext() )
