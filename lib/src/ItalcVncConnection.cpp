@@ -614,7 +614,7 @@ void ItalcVncConnection::doConnection()
 		}
 	}
 
-	QTime lastFullUpdate = QTime::currentTime();
+	//QTime lastFullUpdate = QTime::currentTime();
 
 	// Main VNC event loop
 	while( !m_stopped )
