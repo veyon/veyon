@@ -205,7 +205,7 @@ vncDesktopThread::handle_driver_changes(rfb::Region2D &rgncache,rfb::UpdateTrack
 		rfb::RectVector rects;
 		rfb::RectVector::iterator i;
 		rgncache.get_rects(rects, 1, 1);
-		for (i = rects.begin(); i != rects.end(); i++)
+		for (i = rects.begin(); i != rects.end(); ++i)
 			{
 				rfb::Rect rect = *i;
 				rect.tl.x=rect.tl.x/32*32;

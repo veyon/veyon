@@ -64,7 +64,7 @@ vncServer::ServerUpdateTracker::add_changed(const rfb::Region2D &rgn) {
 	omni_mutex_lock l(m_server->m_clientsLock);
 
 	// Post this update to all the connected clients
-	for (i = m_server->m_authClients.begin(); i != m_server->m_authClients.end(); i++)
+	for (i = m_server->m_authClients.begin(); i != m_server->m_authClients.end(); ++i)
 	{
 		// Post the update
 		// REalVNC 336 change
@@ -83,7 +83,7 @@ vncServer::ServerUpdateTracker::add_cached(const rfb::Region2D &rgn) {
 	omni_mutex_lock l(m_server->m_clientsLock);
 
 	// Post this update to all the connected clients
-	for (i = m_server->m_authClients.begin(); i != m_server->m_authClients.end(); i++)
+	for (i = m_server->m_authClients.begin(); i != m_server->m_authClients.end(); ++i)
 	{
 		// Post the update
 		// RealVNC 336 change
@@ -105,7 +105,7 @@ vncServer::ServerUpdateTracker::add_copied(const rfb::Region2D &dest, const rfb:
 	omni_mutex_lock l(m_server->m_clientsLock);
 
 	// Post this update to all the connected clients
-	for (i = m_server->m_authClients.begin(); i != m_server->m_authClients.end(); i++)
+	for (i = m_server->m_authClients.begin(); i != m_server->m_authClients.end(); ++i)
 	{
 		// Post the update
 		// RealVNC 336 change
@@ -544,7 +544,7 @@ vncClientId vncServer::AddClient(VSocket *socket,
 		char szInfo[256];
 		strcpy(szInfo, "Waiting for connection... ");
 
-		for (i = m_unauthClients.begin(); i != m_unauthClients.end(); i++)
+		for (i = m_unauthClients.begin(); i != m_unauthClients.end(); ++i)
 		{
 
 
@@ -622,7 +622,7 @@ vncServer::Authenticated(vncClientId clientid)
 	vncClient *client = NULL;
 
 	// Search the unauthenticated client list
-	for (i = m_unauthClients.begin(); i != m_unauthClients.end(); i++)
+	for (i = m_unauthClients.begin(); i != m_unauthClients.end(); ++i)
 	{
 		// Is this the right client?
 		if ((*i) == clientid)
@@ -706,7 +706,7 @@ vncServer::KillClient(vncClientId clientid)
 	omni_mutex_lock l(m_clientsLock);
 
 	// Find the client in one of the two lists
-	for (i = m_unauthClients.begin(); i != m_unauthClients.end(); i++)
+	for (i = m_unauthClients.begin(); i != m_unauthClients.end(); ++i)
 	{
 		// Is this the right client?
 		if ((*i) == clientid)
@@ -723,7 +723,7 @@ vncServer::KillClient(vncClientId clientid)
 	}
 	if (!done)
 	{
-		for (i = m_authClients.begin(); i != m_authClients.end(); i++)
+		for (i = m_authClients.begin(); i != m_authClients.end(); ++i)
 		{
 			// Is this the right client?
 			if ((*i) == clientid)
@@ -752,7 +752,7 @@ void vncServer::KillClient(LPSTR szClientName)
 	omni_mutex_lock l(m_clientsLock);
 	vncClient *pClient = NULL;
 
-	for (i = m_authClients.begin(); i != m_authClients.end(); i++)
+	for (i = m_authClients.begin(); i != m_authClients.end(); ++i)
 	{
 		pClient = GetClient(*i);
 		if (!_stricmp(pClient->GetClientName(), szClientName))
@@ -774,7 +774,7 @@ void vncServer::TextChatClient(LPSTR szClientName)
 	omni_mutex_lock l(m_clientsLock);
 	vncClient *pClient = NULL;
 
-	for (i = m_authClients.begin(); i != m_authClients.end(); i++)
+	for (i = m_authClients.begin(); i != m_authClients.end(); ++i)
 	{
 		pClient = GetClient(*i);
 		if (!_stricmp(pClient->GetClientName(), szClientName))
@@ -804,7 +804,7 @@ bool vncServer::IsUltraVncViewer()
 	vncClientList::iterator i;
 	omni_mutex_lock l(m_clientsLock);
 
-	for (i = m_authClients.begin(); i != m_authClients.end(); i++)
+	for (i = m_authClients.begin(); i != m_authClients.end(); ++i)
 	{	
 		if (GetClient(*i)->IsUltraViewer())return true;
 	}
@@ -816,7 +816,7 @@ bool vncServer::AreThereMultipleViewers()
 	vncClientList::iterator i;
 	omni_mutex_lock l(m_clientsLock);
 	int a=0;
-	for (i = m_authClients.begin(); i != m_authClients.end(); i++)
+	for (i = m_authClients.begin(); i != m_authClients.end(); ++i)
 	{	
 		a++;
 	}
@@ -832,7 +832,7 @@ vncServer::KillAuthClients()
 	omni_mutex_lock l(m_clientsLock);
 
 	// Tell all the authorised clients to die!
-	for (i = m_authClients.begin(); i != m_authClients.end(); i++)
+	for (i = m_authClients.begin(); i != m_authClients.end(); ++i)
 	{
 		vnclog.Print(LL_INTINFO, VNCLOG("killing auth client\n"));
 
@@ -852,7 +852,7 @@ void vncServer::ListAuthClients(HWND hListBox)
 	vncClientList::iterator i;
 	omni_mutex_lock l(m_clientsLock);
 
-	for (i = m_authClients.begin(); i != m_authClients.end(); i++)
+	for (i = m_authClients.begin(); i != m_authClients.end(); ++i)
 	{
 		// adzm 2009-07-05
 		vncClient* client = GetClient(*i);
@@ -882,7 +882,7 @@ void vncServer::ListUnauthClients(HWND hListBox)
 	vncClientList::iterator i;
 	omni_mutex_lock l(m_clientsLock);
 
-	for (i = m_unauthClients.begin(); i != m_unauthClients.end(); i++)
+	for (i = m_unauthClients.begin(); i != m_unauthClients.end(); ++i)
 	{
 		// adzm 2009-07-05
 		vncClient* client = GetClient(*i);
@@ -929,7 +929,7 @@ bool vncServer::IsThereASlowClient()
 	bool fFound = false;
 	omni_mutex_lock l(m_clientsLock);
 
-	for (i = m_authClients.begin(); i != m_authClients.end(); i++)
+	for (i = m_authClients.begin(); i != m_authClients.end(); ++i)
 	{
 		if (GetClient(*i)->IsSlowEncoding())
 		{
@@ -952,7 +952,7 @@ bool vncServer::IsThereAUltraEncodingClient()
 	vncClientList::iterator i;
 	omni_mutex_lock l(m_clientsLock);
 
-	for (i = m_authClients.begin(); i != m_authClients.end(); i++)
+	for (i = m_authClients.begin(); i != m_authClients.end(); ++i)
 	{
 		if (GetClient(*i)->IsUltraEncoding())
 		{
@@ -967,7 +967,7 @@ bool vncServer::IsThereFileTransBusy()
 	vncClientList::iterator i;
 	omni_mutex_lock l(m_clientsLock);
 
-	for (i = m_authClients.begin(); i != m_authClients.end(); i++)
+	for (i = m_authClients.begin(); i != m_authClients.end(); ++i)
 	{
 		if (GetClient(*i)->IsFileTransBusy())
 		{
@@ -985,7 +985,7 @@ vncServer::KillUnauthClients()
 	omni_mutex_lock l(m_clientsLock);
 
 	// Tell all the authorised clients to die!
-	for (i = m_unauthClients.begin(); i != m_unauthClients.end(); i++)
+	for (i = m_unauthClients.begin(); i != m_unauthClients.end(); ++i)
 	{
 		vnclog.Print(LL_INTINFO, VNCLOG("killing unauth client\n"));
 
@@ -1020,7 +1020,7 @@ vncServer::UpdateWanted()
 	omni_mutex_lock l(m_clientsLock);
 
 	// Iterate over the authorised clients
-	for (i = m_authClients.begin(); i != m_authClients.end(); i++)
+	for (i = m_authClients.begin(); i != m_authClients.end(); ++i)
 	{
 		if (GetClient(*i)->UpdateWanted())
 			return TRUE;
@@ -1036,7 +1036,7 @@ vncServer::RemoteEventReceived()
 	omni_mutex_lock l(m_clientsLock);
 
 	// Iterate over the authorised clients
-	for (i = m_authClients.begin(); i != m_authClients.end(); i++)
+	for (i = m_authClients.begin(); i != m_authClients.end(); ++i)
 	{
 		result = result || GetClient(*i)->RemoteEventReceived();
 	}
@@ -1154,7 +1154,7 @@ vncServer::RemoveClient(vncClientId clientid)
 	{	omni_mutex_lock l2(m_clientsLock);
 
 		// Find the client in one of the two lists
-		for (i = m_unauthClients.begin(); i != m_unauthClients.end(); i++)
+		for (i = m_unauthClients.begin(); i != m_unauthClients.end(); ++i)
 		{
 			// Is this the right client?
 			if ((*i) == clientid)
@@ -1170,7 +1170,7 @@ vncServer::RemoveClient(vncClientId clientid)
 		}
 		if (!done)
 		{
-			for (i = m_authClients.begin(); i != m_authClients.end(); i++)
+			for (i = m_authClients.begin(); i != m_authClients.end(); ++i)
 			{
 				// Is this the right client?
 				if ((*i) == clientid)
@@ -1253,7 +1253,7 @@ vncServer::RemNotify(HWND hwnd)
 
 	// Remove the window handle from the list
 	vncNotifyList::iterator i;
-	for (i=m_notifyList.begin(); i!=m_notifyList.end(); i++)
+	for (i=m_notifyList.begin(); i!=m_notifyList.end(); ++i)
 	{
 		if ((*i) == hwnd)
 		{
@@ -1274,7 +1274,7 @@ vncServer::DoNotify(UINT message, WPARAM wparam, LPARAM lparam)
 
 	// Send the given message to all the notification windows
 	vncNotifyList::iterator i;
-	for (i=m_notifyList.begin(); i!=m_notifyList.end(); i++)
+	for (i=m_notifyList.begin(); i!=m_notifyList.end(); ++i)
 	{
 		PostMessage((*i), message, wparam, lparam);
 	}
@@ -1288,7 +1288,7 @@ vncServer::UpdateMouse()
 	omni_mutex_lock l(m_clientsLock);
 
 	// Post this mouse update to all the connected clients
-	for (i = m_authClients.begin(); i != m_authClients.end(); i++)
+	for (i = m_authClients.begin(); i != m_authClients.end(); ++i)
 	{
 		// Post the update
 		GetClient(*i)->UpdateMouse();
@@ -1305,7 +1305,7 @@ vncServer::UpdateClipText(const char* text)
 	omni_mutex_lock l(m_clientsLock);
 
 	// Post this update to all the connected clients
-	for (i = m_authClients.begin(); i != m_authClients.end(); i++)
+	for (i = m_authClients.begin(); i != m_authClients.end(); ++i)
 	{
 		// Post the update
 		GetClient(*i)->UpdateClipText(text);
@@ -1325,7 +1325,7 @@ vncServer::UpdateClipTextEx(HWND hwndOwner, vncClient* excludeClient)
 		omni_mutex_lock l(m_clientsLock);
 
 		// Post this update to all the connected clients
-		for (i = m_authClients.begin(); i != m_authClients.end(); i++)
+		for (i = m_authClients.begin(); i != m_authClients.end(); ++i)
 		{
 			// Post the update
 			vncClient* client = GetClient(*i);
@@ -1344,7 +1344,7 @@ vncServer::UpdateCursorShape()
 	omni_mutex_lock l(m_clientsLock);
 
 	// Post this update to all the connected clients
-	for (i = m_authClients.begin(); i != m_authClients.end(); i++)
+	for (i = m_authClients.begin(); i != m_authClients.end(); ++i)
 	{
 		// Post the update
 		GetClient(*i)->UpdateCursorShape();
@@ -1359,7 +1359,7 @@ vncServer::UpdatePalette(bool lock)
 	omni_mutex_lock l(m_clientsLock);
 
 	// Post this update to all the connected clients
-	for (i = m_authClients.begin(); i != m_authClients.end(); i++)
+	for (i = m_authClients.begin(); i != m_authClients.end(); ++i)
 	{
 		// Post the update
 		GetClient(*i)->UpdatePalette(lock);
@@ -1374,7 +1374,7 @@ vncServer::UpdateLocalFormat(bool lock)
 	omni_mutex_lock l(m_clientsLock);
 
 	// Post this update to all the connected clients
-	for (i = m_authClients.begin(); i != m_authClients.end(); i++)
+	for (i = m_authClients.begin(); i != m_authClients.end(); ++i)
 	{
 		// Post the update
 		GetClient(*i)->UpdateLocalFormat(lock);
@@ -1412,7 +1412,7 @@ vncServer::UpdateLocalClipTextEx(ExtendedClipboardDataMessage& extendedClipboard
 		omni_mutex_lock l(m_clientsLock);
 
 		// Post this update to all the connected clients
-		for (i = m_authClients.begin(); i != m_authClients.end(); i++)
+		for (i = m_authClients.begin(); i != m_authClients.end(); ++i)
 		{
 			// Post the update
 			vncClient* client = GetClient(*i);
@@ -1519,7 +1519,7 @@ vncServer::EnableRemoteInputs(BOOL enable)
 		
 	omni_mutex_lock l(m_clientsLock);
 
-	for (i = m_authClients.begin(); i != m_authClients.end(); i++)
+	for (i = m_authClients.begin(); i != m_authClients.end(); ++i)
 	{
 		GetClient(*i)->EnableKeyboard(m_enable_remote_inputs);
 		GetClient(*i)->EnablePointer(m_enable_remote_inputs);
@@ -1556,7 +1556,7 @@ vncServer::EnableJapInput(BOOL enable)
 		
 	omni_mutex_lock l(m_clientsLock);
 
-	for (i = m_authClients.begin(); i != m_authClients.end(); i++)
+	for (i = m_authClients.begin(); i != m_authClients.end(); ++i)
 	{
         GetClient(*i)->EnableJap(m_enable_jap_input ? true : false);
 	}
@@ -2190,7 +2190,7 @@ vncServer::SetNewSWSize(long w,long h,BOOL desktop)
 	omni_mutex_lock l(m_clientsLock);
 
 	// Post this screen size update to all the connected clients
-	for (i = m_authClients.begin(); i != m_authClients.end(); i++)
+	for (i = m_authClients.begin(); i != m_authClients.end(); ++i)
 	{
 		// Post the update
 		if (!GetClient(*i)->SetNewSWSize(w,h,desktop)) {
@@ -2208,7 +2208,7 @@ vncServer::SetNewSWSizeFR(long w,long h,BOOL desktop)
 	omni_mutex_lock l(m_clientsLock);
 
 	// Post this screen size update to all the connected clients
-	for (i = m_authClients.begin(); i != m_authClients.end(); i++)
+	for (i = m_authClients.begin(); i != m_authClients.end(); ++i)
 	{
 		// Post the update
 		if (!GetClient(*i)->SetNewSWSizeFR(w,h,desktop)) {
@@ -2226,7 +2226,7 @@ vncServer::SetSWOffset(int x,int y)
 	omni_mutex_lock l(m_clientsLock);
 
 	// Post this screen size update to all the connected clients
-	for (i = m_authClients.begin(); i != m_authClients.end(); i++)
+	for (i = m_authClients.begin(); i != m_authClients.end(); ++i)
 	{
 		// Post the update
 		GetClient(*i)->SetSWOffset(x,y);
@@ -2242,7 +2242,7 @@ vncServer::InitialUpdate(bool value)
 	omni_mutex_lock l(m_clientsLock);
 
 	// Post this screen size update to all the connected clients
-	for (i = m_authClients.begin(); i != m_authClients.end(); i++)
+	for (i = m_authClients.begin(); i != m_authClients.end(); ++i)
 	{
 		// Post the update
 		GetClient(*i)->InitialUpdate(value);
@@ -2258,7 +2258,7 @@ vncServer::SetScreenOffset(int x,int y,int type)
 	omni_mutex_lock l(m_clientsLock);
 
 	// Post this screen size update to all the connected clients
-	for (i = m_authClients.begin(); i != m_authClients.end(); i++)
+	for (i = m_authClients.begin(); i != m_authClients.end(); ++i)
 	{
 		// Post the update
 		GetClient(*i)->SetScreenOffset(x,y,type);
@@ -2453,7 +2453,7 @@ void vncServer::DisableCacheForAllClients()
 		
 	omni_mutex_lock l(m_clientsLock);
 
-	for (i = m_authClients.begin(); i != m_authClients.end(); i++)
+	for (i = m_authClients.begin(); i != m_authClients.end(); ++i)
 	{
 		GetClient(*i)->EnableCache(FALSE);
 	}
@@ -2465,7 +2465,7 @@ vncServer::Clear_Update_Tracker() {
 	vncClientList::iterator i;
 	omni_mutex_lock l(m_clientsLock);
 	// Post this update to all the connected clients
-	for (i = m_authClients.begin(); i != m_authClients.end(); i++)
+	for (i = m_authClients.begin(); i != m_authClients.end(); ++i)
 	{
 		GetClient(*i)->Clear_Update_Tracker();
 
@@ -2534,7 +2534,7 @@ BOOL
 vncServer::All_clients_initialalized() {
 	vncClientList::iterator i;
 	// Post this update to all the connected clients
-	for (i = m_authClients.begin(); i != m_authClients.end(); i++)
+	for (i = m_authClients.begin(); i != m_authClients.end(); ++i)
 	{
 		if (!GetClient(*i)->client_settings_passed) return false;
 
@@ -2546,7 +2546,7 @@ void
 vncServer::TriggerUpdate() {
 	vncClientList::iterator i;
 	// Post this update to all the connected clients
-	for (i = m_authClients.begin(); i != m_authClients.end(); i++)
+	for (i = m_authClients.begin(); i != m_authClients.end(); ++i)
 	{
 		GetClient(*i)->TriggerUpdate();
 
@@ -2557,7 +2557,7 @@ vncServer::TriggerUpdate() {
 bool vncServer::IsClient(vncClient* pClient)
 {
   vncClientList::iterator i;
-  for (i = m_authClients.begin(); i != m_authClients.end(); i++)
+  for (i = m_authClients.begin(); i != m_authClients.end(); ++i)
     if (GetClient(*i) == pClient) return true;
 
   return false;
@@ -2677,7 +2677,7 @@ void vncServer::NotifyClients_StateChange(CARD32 state, CARD32 value)
 
     vncClientList::iterator i;
 
-	for (i = m_unauthClients.begin(); i != m_unauthClients.end(); i++)
+	for (i = m_unauthClients.begin(); i != m_unauthClients.end(); ++i)
 		{
 
 			// Is this the right client?
@@ -2688,7 +2688,7 @@ void vncServer::NotifyClients_StateChange(CARD32 state, CARD32 value)
         client->Record_SendServerStateUpdate(state, value);
 		}
 
-	for (i = m_authClients.begin(); i != m_authClients.end(); i++)
+	for (i = m_authClients.begin(); i != m_authClients.end(); ++i)
 	{
 		// Is this the right client?
         client = GetClient(*i);
@@ -2706,7 +2706,7 @@ void vncServer::StopReconnectAll()
 
     vncClientList::iterator i;
 
-	for (i = m_authClients.begin(); i != m_authClients.end(); i++)
+	for (i = m_authClients.begin(); i != m_authClients.end(); ++i)
 	{
 		// Is this the right client?
         client = GetClient(*i);

@@ -4655,7 +4655,7 @@ vncClient::SendUpdate(rfb::SimpleUpdateTracker &update)
 	rfb::RectVector::const_iterator i;
 	if (updates!= 0xFFFF)
 	{
-		for ( i=update_info.changed.begin(); i != update_info.changed.end(); i++)
+		for ( i=update_info.changed.begin(); i != update_info.changed.end(); ++i)
 		{
 			// Tight specific (lastrect)
 			numsubrects = m_encodemgr.GetNumCodedRects(*i);
@@ -4674,7 +4674,7 @@ vncClient::SendUpdate(rfb::SimpleUpdateTracker &update)
 	// We need to send the cache as a normal update
 	if (!m_encodemgr.IsCacheEnabled() && updates!= 0xFFFF) 
 	{
-		for (i=update_info.cached.begin(); i != update_info.cached.end(); i++)
+		for (i=update_info.cached.begin(); i != update_info.cached.end(); ++i)
 		{
 			// Tight specific (lastrect)
 			numsubrects = m_encodemgr.GetNumCodedRects(*i);
@@ -4784,7 +4784,7 @@ vncClient::SendRectangles(const rfb::RectVector &rects)
 
 
 	// Work through the list of rectangles, sending each one
-	for (i=rects.begin();i!=rects.end();i++) {
+	for (i=rects.begin();i!=rects.end();++i) {
 		if (m_encodemgr.ultra2_encoder_in_use)
 		{
 			//We want smaller rect, so data can be send and decoded while handling next update
@@ -5063,7 +5063,7 @@ vncClient::SendCacheRectangles(const rfb::RectVector &rects)
 	vnclog.Print(LL_INTINFO, VNCLOG("******** Sending %d Cache Rects \r\n"), rects.size());
 
 	// Work through the list of rectangles, sending each one
-	for (i= rects.begin();i != rects.end();i++)
+	for (i= rects.begin();i != rects.end();++i)
 	{
 		if (!SendCacheRect(*i))
 			return FALSE;
@@ -5183,7 +5183,7 @@ BOOL vncClient::SendCacheZip(const rfb::RectVector &rects)
 	rfbRectangle theRect;
 	rfb::RectVector::const_iterator i;
 	BYTE* p = m_pRawCacheZipBuf;
-	for (i = rects.begin();i != rects.end();i++)
+	for (i = rects.begin();i != rects.end();++i)
 	{
 		theRect.x = Swap16IfLE(((*i).tl.x - m_SWOffsetx) / m_nScale );
 		theRect.y = Swap16IfLE(((*i).tl.y - m_SWOffsety) / m_nScale);
