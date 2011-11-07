@@ -58,7 +58,7 @@ void InitIpp();
 
 // Application instance and name
 HINSTANCE	hAppInstance;
-const char	*szAppName = "WinVNC";
+const char	*szAppName = "ITALCVNC";
 DWORD		mainthreadId;
 BOOL		fRunningFromExternalService=false;
 
