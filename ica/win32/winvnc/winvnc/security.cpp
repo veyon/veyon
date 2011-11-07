@@ -95,7 +95,7 @@ bool RunningAsAdministrator ()
  ON_BLOCK_EXIT(CloseHandle, process);
  ON_BLOCK_EXIT(CloseHandle, Token);
 
- SID_IDENTIFIER_AUTHORITY SystemSidAuthority= SECURITY_NT_AUTHORITY;
+ SID_IDENTIFIER_AUTHORITY SystemSidAuthority= { SECURITY_NT_AUTHORITY };
 
  // Then we must query the size of the group information associated with
  // the token. Note that we expect a FALSE result from GetTokenInformation
