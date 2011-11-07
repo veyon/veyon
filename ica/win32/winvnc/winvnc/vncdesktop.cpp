@@ -921,7 +921,7 @@ vncDesktop::InitBitmap()
 			if (VideoBuffer())
 				{
 					pEnumDisplayDevices pd=NULL;
-					LPSTR driverName = "mv video hook driver2";
+					const CHAR driverName[] = "mv video hook driver2";
 					BOOL DriverFound;
 					DEVMODE devmode;
 					FillMemory(&devmode, sizeof(DEVMODE), 0);
