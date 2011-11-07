@@ -57,9 +57,9 @@ void InitIpp();
 
 
 // Application instance and name
-HINSTANCE	hAppInstance;
+HINSTANCE	hAppInstance = NULL;
 const char	*szAppName = "ITALCVNC";
-DWORD		mainthreadId;
+DWORD		mainthreadId = 0;
 BOOL		fRunningFromExternalService=false;
 
 //adzm 2009-06-20
@@ -193,6 +193,8 @@ Myinit(HINSTANCE hInstance)
 #endif
 	return 1;
 }
+
+#ifndef ULTRAVNC_ITALC_SUPPORT
 //#define CRASHRPT
 #ifdef CRASHRPT
 #include "C:/DATA/crash/crashrpt/include/crashrpt.h"
@@ -849,6 +851,7 @@ int WINAPI WinMainVNC(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLi
 
 	return 0;
 }
+#endif
 
 
 // rdv&sf@2007 - New TrayIcon impuDEsktop/impersonation thread stuff
