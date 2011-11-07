@@ -5,7 +5,11 @@
 class vncLogonThread : public omni_thread
 {
 public:
-	vncLogonThread() {m_returnsig = NULL;};
+	vncLogonThread() {
+		m_returnsig = NULL;
+		m_desktop = NULL;
+		x1 = x2 = y1 = y2 = 0;
+	}
 	~vncLogonThread() {if (m_returnsig != NULL) delete m_returnsig;};
 public:
 	virtual BOOL Init(vncDesktop *desktop);

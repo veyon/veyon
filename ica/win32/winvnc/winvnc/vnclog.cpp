@@ -50,6 +50,7 @@ VNCLog::VNCLog()
     , m_lastLogTime(0)
 {
 	strcpy(m_filename,"");
+	m_path[0] = 0;
 }
 
 void VNCLog::SetMode(int mode)

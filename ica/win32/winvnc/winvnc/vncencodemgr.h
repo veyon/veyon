@@ -185,6 +185,9 @@ public:
 
 inline vncEncodeMgr::vncEncodeMgr()
 {
+	m_encoding = rfbEncodingRaw;
+	m_transfunc = NULL;
+
 	zrleEncoder=NULL;
 	m_encoder = NULL;
 	m_buffer=NULL;

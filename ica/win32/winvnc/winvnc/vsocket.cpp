@@ -148,7 +148,8 @@ VSocket::VSocket()
 	m_fWriteToNetRectBuf = false;
 	m_nNetRectBufOffset = 0;
 	queuebuffersize=0;
-	
+	memset( queuebuffer, 0, sizeof( queuebuffer ) );
+
 	//adzm 2010-08-01
 	m_LastSentTick = 0;
 
