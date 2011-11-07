@@ -77,10 +77,13 @@ extern VNCLog vnclog;
 // Log everything, including internal table setup, etc.
 #define LL_ALL		10
 
-#define strcat_s(dst,num,src) strncat(dst,src,num)
-#define strncat_s(a,b,c,d) strncat(a,c,b)
-#define strcpy_s(dst,num,src)	strncpy(dst,src,num)
-#define strncpy_s(dst,num,src,x)	strncpy(dst,src,num)
+extern "C"
+{
+errno_t strcat_s(char* dst, size_t size, const char* src);
+errno_t strncat_s(char* dst, size_t size, const char* src, size_t n);
+errno_t strcpy_s(char* dst, size_t size, const char* src);
+errno_t strncpy_s(char* dst, size_t size, const char* src, size_t n);
+} ;
 
 #define KEEPALIVE_HEADROOM 1
 #define KEEPALIVE_INTERVAL 5
