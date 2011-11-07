@@ -1340,13 +1340,13 @@ retry:
     /* make connection */
     if ( relay_method == METHOD_DIRECT ) {
         remote = open_connection (dest_host, dest_port);
-        if ( remote == SOCKET_ERROR )
+        if ( (errno_t) remote == SOCKET_ERROR )
 		{
 			return 0;
 		}
     } else {
         remote = open_connection (relay_host, relay_port);
-        if ( remote == SOCKET_ERROR )
+        if ( (errno_t) remote == SOCKET_ERROR )
 		{
 			return 0;
 		}
