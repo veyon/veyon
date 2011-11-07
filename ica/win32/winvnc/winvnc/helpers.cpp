@@ -561,6 +561,7 @@ bool GetServiceName(TCHAR *pszAppPath, TCHAR *pszServiceName)
                                 make_upper(servicePath);
                                 if (servicePath.find(appPath.c_str()) != (size_t) -1)
                                 {
+									bResult = true;
                                     strncpy(pszServiceName, pServices[i].lpServiceName, 256);
                                     pszServiceName[255] = 0;
                                 }
