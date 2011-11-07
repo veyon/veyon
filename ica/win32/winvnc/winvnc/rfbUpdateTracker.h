@@ -54,7 +54,7 @@ namespace rfb {
 			const Region2D &cliprgn_) : child(child_), cliprgn(cliprgn_) {};
 		virtual ~ClippedUpdateTracker() {};
 
-		virtual void set_clip_region(const Region2D cliprgn_) {cliprgn = cliprgn_;};
+		virtual void set_clip_region(const Region2D &cliprgn_) {cliprgn = cliprgn_;};
 
 		virtual void add_changed(const Region2D &region);
 		virtual void add_cached(const Region2D &region);
