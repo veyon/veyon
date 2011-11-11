@@ -1,3 +1,21 @@
+2011-10-12  Christian Beier <dontmind@freeshell.org>
+
+	* CMakeLists.txt, NEWS, configure.ac: Update version number in
+	autotools && cmake, NEWS entry.
+
+2011-10-08  Johannes Schindelin <johannes.schindelin@gmx.de>
+
+	* rfb/rfbclient.h: Hopefully fix the crash when updating from 0.9.7
+	or earlier For backwards-compatibility reasons, we can only add struct members
+	to the end. That way, existing callers still can use newer
+	libraries, as the structs are always allocated by the library (and
+	therefore guaranteed to have the correct size) and still rely on the
+	same position of the parts the callers know about.  Reported by Luca Falavigna.  Signed-off-by: Johannes Schindelin <johannes.schindelin@gmx.de>
+
+2011-03-30  Christian Beier <dontmind@freeshell.org>
+
+	* ChangeLog: Update ChangeLog for 0.9.8.
+
 2011-03-29  Christian Beier <dontmind@freeshell.org>
 
 	* README: Remove RDP from the README description.  We do VNC but no RDP. Pointed out by Vic Lee, thanks!

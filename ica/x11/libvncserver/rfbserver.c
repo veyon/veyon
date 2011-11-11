@@ -494,6 +494,21 @@ rfbClientConnectionGone(rfbClientPtr cl)
     if (cl->next)
         cl->next->prev = cl->prev;
 
+    UNLOCK(rfbClientListMutex);
+
+#ifdef LIBVNCSERVER_HAVE_LIBPTHREAD
+    if(cl->screen->backgroundLoop != FALSE) {
+      int i;
+      do {
+	LOCK(cl->refCountMutex);
+	i=cl->refCount;
+	if(i>0)
+	  WAIT(cl->deleteCond,cl->refCountMutex);
+	UNLOCK(cl->refCountMutex);
+      } while(i>0);
+    }
+#endif
+
     if(cl->sock>=0)
 	close(cl->sock);
 
@@ -509,21 +524,6 @@ rfbClientConnectionGone(rfbClientPtr cl)
     /* free buffers holding pixel data before and after encoding */
     free(cl->beforeEncBuf);
     free(cl->afterEncBuf);
-
-#ifdef LIBVNCSERVER_HAVE_LIBPTHREAD
-    if(cl->screen->backgroundLoop != FALSE) {
-      int i;
-      do {
-	LOCK(cl->refCountMutex);
-	i=cl->refCount;
-	if(i>0)
-	  WAIT(cl->deleteCond,cl->refCountMutex);
-	UNLOCK(cl->refCountMutex);
-      } while(i>0);
-    }
-#endif
-
-    UNLOCK(rfbClientListMutex);
 
     if(cl->sock>=0)
        FD_CLR(cl->sock,&(cl->screen->allFds));
