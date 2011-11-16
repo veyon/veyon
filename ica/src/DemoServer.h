@@ -136,6 +136,12 @@ private:
 	char *m_lzoWorkMem;
 	QRgb *m_rawBuf;
 
+	uint8_t *m_rleBuf;
+	size_t m_currentRleBufSize;
+
+	uint8_t *m_lzoOutBuf;
+	size_t m_currentLzoOutBufSize;
+
 } ;
 
 

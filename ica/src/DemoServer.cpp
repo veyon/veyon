@@ -23,6 +23,8 @@
  *
  */
 
+#define USE_QREGION
+
 #include <QtCore/QDateTime>
 #include <QtNetwork/QTcpSocket>
 #include <QtCore/QTimer>
@@ -31,7 +33,9 @@
 #include "DemoServer.h"
 #include "ItalcCoreServer.h"
 #include "ItalcVncConnection.h"
+#ifndef USE_QREGION
 #include "QuadTree.h"
+#endif
 #include "RfbLZORLE.h"
 #include "RfbItalcCursor.h"
 #include "SocketDevice.h"
@@ -211,7 +215,11 @@ DemoServerClient::DemoServerClient( int sock, const ItalcVncConnection *vncConn,
 			( ( ( LZO1X_1_MEM_COMPRESS ) +
 					( sizeof( lzo_align_t ) - 1 ) ) /
 						sizeof( lzo_align_t ) ) ] ),
-	m_rawBuf( new QRgb[RAW_MAX_PIXELS] )
+	m_rawBuf( new QRgb[RAW_MAX_PIXELS] ),
+	m_rleBuf( NULL ),
+	m_currentRleBufSize( 0 ),
+	m_lzoOutBuf( NULL ),
+	m_currentLzoOutBufSize( 0 )
 {
 	start();
 }
@@ -223,6 +231,15 @@ DemoServerClient::~DemoServerClient()
 {
 	exit();
 	wait();
+
+	if( m_lzoOutBuf )
+	{
+		delete[] m_lzoOutBuf;
+	}
+	if( m_rleBuf )
+	{
+		delete[] m_rleBuf;
+	}
 	delete[] m_lzoWorkMem;
 	delete[] m_rawBuf;
 }
@@ -303,8 +320,8 @@ void DemoServerClient::sendUpdates()
 		if( m_updatesPending )
 		{
 			QTimer::singleShot( 50, this, SLOT( sendUpdates() ) );
-			return;
 		}
+		return;
 	}
 
 	// extract single (non-overlapping) rects out of changed region
@@ -312,6 +329,14 @@ void DemoServerClient::sendUpdates()
 	// e.g. if we didn't get an update-request for a quite long time
 	// and there were a lot of updates - at the end we don't send
 	// more than the whole screen one time
+#ifdef USE_QREGION
+	QRegion region;
+	foreach( const QRect &rect, m_changedRects )
+	{
+		region += rect;
+	}
+	QVector<QRect> r = region.rects();
+#else
 	QuadTree q( 0, 0, m_vncConn->image().width()-1, m_vncConn->image().height()-1, 4 );
 	QVector<QuadTreeRect> r;
 	if( !m_changedRects.isEmpty() )
@@ -319,6 +344,7 @@ void DemoServerClient::sendUpdates()
 		q.addRects( m_changedRects );
 		r = q.rects();
 	}
+#endif
 
 	// no we gonna post all changed rects!
 	const rfbFramebufferUpdateMsg m =
@@ -333,12 +359,23 @@ void DemoServerClient::sendUpdates()
 	sd.write( (const char *) &m, sz_rfbFramebufferUpdateMsg );
 
 	// process each rect
+#ifdef USE_QREGION
+	for( QVector<QRect>::ConstIterator it = r.begin(); it != r.end(); ++it )
+#else
 	for( QVector<QuadTreeRect>::const_iterator it = r.begin(); it != r.end(); ++it )
+#endif
 	{
+#ifdef USE_QREGION
+		const int rx = it->x();
+		const int ry = it->y();
+		const int rw = it->width();
+		const int rh = it->height();
+#else
 		const int rx = it->x1();
 		const int ry = it->y1();
 		const int rw = it->x2()-it->x1()+1;
 		const int rh = it->y2()-it->y1()+1;
+#endif
 		const rfbRectangle rr =
 		{
 			Swap16IfLE( rx ),
@@ -365,9 +402,22 @@ void DemoServerClient::sendUpdates()
 
 	hdr.compressed = 1;
 	QRgb last_pix = *( (QRgb *) i.scanLine( ry ) + rx );
+
+	// re-allocate RLE buffer if current one is too small
+	const size_t rleBufSize = rw * rh * sizeof( QRgb )+16;
+	if( rleBufSize > m_currentRleBufSize )
+	{
+		if( m_rleBuf )
+		{
+			delete[] m_rleBuf;
+		}
+		m_rleBuf = new uint8_t[rleBufSize];
+		m_currentRleBufSize = rleBufSize;
+	}
+
 	uint8_t rle_cnt = 0;
 	uint8_t rle_sub = 1;
-	uint8_t *out = new uint8_t[rw * rh * sizeof( QRgb )+16];
+	uint8_t *out = m_rleBuf;
 	uint8_t *out_ptr = out;
 	for( int y = ry; y < ry+rh; ++y )
 	{
@@ -396,7 +446,19 @@ void DemoServerClient::sendUpdates()
 	hdr.bytesRLE = out_ptr - out;
 
 	lzo_uint bytes_lzo = hdr.bytesRLE + hdr.bytesRLE / 16 + 67;
-	uint8_t *comp = new uint8_t[bytes_lzo];
+
+	// re-allocate LZO output buffer if current one is too small
+	if( bytes_lzo > m_currentLzoOutBufSize )
+	{
+		if( m_lzoOutBuf )
+		{
+			delete[] m_lzoOutBuf;
+		}
+		m_lzoOutBuf = new uint8_t[bytes_lzo];
+		m_currentLzoOutBufSize = bytes_lzo;
+	}
+
+	uint8_t *comp = m_lzoOutBuf;
 	lzo1x_1_compress( (const unsigned char *) out, (lzo_uint) hdr.bytesRLE,
 				(unsigned char *) comp,
 				&bytes_lzo, m_lzoWorkMem );
@@ -405,8 +467,6 @@ void DemoServerClient::sendUpdates()
 
 	sd.write( (const char *) &hdr, sizeof( hdr ) );
 	sd.write( (const char *) comp, Swap32IfLE( hdr.bytesLZO ) );
-	delete[] out;
-	delete[] comp;
 
 		}
 		else
@@ -639,7 +699,7 @@ void DemoServerClient::run()
 	connect( m_sock, SIGNAL( readyRead() ),
 				this, SLOT( processClient() ), Qt::DirectConnection );
 	connect( m_sock, SIGNAL( disconnected() ),
-						this, SLOT( deleteLater() ) );
+						this, SLOT( quit() ) );
 
 	// TODO
 /*	QTimer t;
@@ -654,6 +714,8 @@ void DemoServerClient::run()
 
 	// now run our own event-loop for optimal scheduling
 	exec();
+
+	deleteLater();
 }
 
 
