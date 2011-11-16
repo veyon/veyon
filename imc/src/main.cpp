@@ -1,7 +1,7 @@
 /*
  * main.cpp - main file for iTALC Management Console
  *
- * Copyright (c) 2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2010-2011 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -227,6 +227,11 @@ int main( int argc, char **argv )
 	MainWindow *mainWindow = new MainWindow;
 
 	mainWindow->show();
+
+	if( app.arguments().contains( "-manageACLs" ) )
+	{
+		mainWindow->manageACLs();
+	}
 
 	ilog( Info, "App.Exec" );
 

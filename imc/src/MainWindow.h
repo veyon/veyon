@@ -42,6 +42,10 @@ public:
 	void apply();
 
 
+public slots:
+	void manageACLs();
+
+
 private slots:
 	void configurationChanged();
 	void resetOrApply( QAbstractButton *btn );
@@ -58,7 +62,6 @@ private slots:
 	void loadSettingsFromFile();
 	void saveSettingsToFile();
 	void launchKeyFileAssistant();
-	void manageACLs();
 	void testLogonAuthentication();
 	void generateBugReportArchive();
 	void aboutItalc();
