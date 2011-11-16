@@ -458,7 +458,7 @@
            <item row="1" column="0">
             <widget class="QCheckBox" name="vncPollFullScreen">
              <property name="text">
-              <string>Poll full screen</string>
+              <string>Poll full screen (leave this enabled per default)</string>
              </property>
             </widget>
            </item>
