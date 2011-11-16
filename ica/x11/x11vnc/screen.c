@@ -4539,7 +4539,14 @@ void watch_loop(void) {
 
 		if (rawfb_vnc_reflect) {
 			static time_t lastone = 0;
-			if (time(NULL) > lastone + 10) {
+
+	/* Tobias Doerffel, 2011/11 */
+#ifdef USE_AS_ITALC_DEMO_SERVER
+			if (1)
+#else
+			if (time(NULL) > lastone + 10)
+#endif
+			{
 				lastone = time(NULL);
 				vnc_reflect_process_client();
 			}
@@ -4564,7 +4571,22 @@ void watch_loop(void) {
 
 		if (! screen || ! screen->clientHead) {
 			/* waiting for a client */
+	/* Tobias Doerffel, 2011/11 */
+#ifdef USE_AS_ITALC_DEMO_SERVER
+			/* when running as demo server, increase main loop delay
+				and instead removed delay between vnc_reflect_process_client()
+				calls above */
+			if( rawfb_vnc_reflect )
+			{
+				usleep(400 * 1000);
+			}
+			else
+			{
+				usleep(200 * 1000);
+			}
+#else
 			usleep(200 * 1000);
+#endif
 			continue;
 		}
 
