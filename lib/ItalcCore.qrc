@@ -1,6 +1,8 @@
 <RCC>
   <qresource>
     <file>resources/icon64.png</file>
+    <file>resources/manage-with-imc.png</file>
+    <file>resources/dialog-password.png</file>
     <file>../COPYING</file>
     <file>resources/license.png</file>
     <file>../AUTHORS</file>

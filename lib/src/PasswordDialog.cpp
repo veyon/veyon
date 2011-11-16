@@ -24,6 +24,8 @@
 
 #include <italcconfig.h>
 
+#include <QtCore/QDir>
+#include <QtCore/QProcess>
 #include <QtGui/QPushButton>
 
 #include "PasswordDialog.h"
@@ -96,5 +98,14 @@ void PasswordDialog::updateOkButton()
 {
 	ui->buttonBox->button( QDialogButtonBox::Ok )->
 					setEnabled( !username().isEmpty() && !password().isEmpty() );
+}
+
+
+
+void PasswordDialog::manage()
+{
+	QProcess::startDetached( QCoreApplication::applicationDirPath() +
+								QDir::separator() + "imc",
+									QStringList( "-manageACLs" ) );
 }
 

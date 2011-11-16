@@ -46,6 +46,7 @@ public:
 
 private slots:
 	void updateOkButton();
+	void manage();
 
 
 private:
