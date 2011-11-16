@@ -1584,7 +1584,7 @@ BOOL
 vncServer::SockConnect(BOOL On)
 {
 	// Are we being asked to switch socket connects on or off?
-	vnclog.Print(20, VNCLOG("SockConnect %d\n"), On);
+	vnclog.Print(LL_SOCKINFO, VNCLOG("SockConnect %d\n"), On);
 	if (On)
 	{
 		// Is there a listening socket?
@@ -1643,7 +1643,7 @@ vncServer::SockConnect(BOOL On)
 			// Now let's start the HTTP connection stuff
 			EnableHTTPConnect(m_enableHttpConn);
 			EnableXDMCPConnect(m_enableXdmcpConn);
-			vnclog.Print(20, VNCLOG("SockConnect  Done %d\n"), On);
+			vnclog.Print(LL_SOCKINFO, VNCLOG("SockConnect  Done %d\n"), On);
 		}
 	}
 	else
