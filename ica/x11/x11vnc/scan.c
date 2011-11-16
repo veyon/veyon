@@ -451,7 +451,7 @@ void initialize_polling_images(void) {
 	 * limits, e.g. the default 1MB on Solaris)
 	 */
 #ifdef WIN32
-	set_fs_factor(1 * MB);
+	set_fs_factor(10 * MB);
 #else
 	if (UT.sysname && strstr(UT.sysname, "Linux")) {
 		set_fs_factor(10 * MB);
