@@ -519,6 +519,7 @@ vncMenu::~vncMenu()
 void
 vncMenu::AddTrayIcon()
 {
+	return;
 	//vnclog.Print(LL_INTERR, VNCLOG("########### vncMenu::AddTrayIcon \n"));
 	vnclog.Print(LL_INTERR, VNCLOG("########### vncMenu::AddTrayIcon - UserName = %s\n"), m_username);
 
@@ -574,6 +575,7 @@ vncMenu::AddTrayIcon()
 void
 vncMenu::DelTrayIcon()
 {
+	return;
 	//vnclog.Print(LL_INTERR, VNCLOG("########### vncMenu::DelTrayIcon - DEL Tray Icon call\n"));
 	SendTrayMsg(NIM_DELETE, FALSE);
 }
