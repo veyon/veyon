@@ -221,13 +221,13 @@ void SystemKeyTrapper::setTaskBarHidden( bool on )
 	if( on )
 	{
 		EnableWindow( FindWindow( "Shell_traywnd", NULL ), false );
-		ShowWindow( FindWindow( "Shell_traywnd", NULL ), SW_HIDE );
-
+		//ShowWindow( FindWindow( "Shell_traywnd", NULL ), SW_HIDE );
 	}
 	else
 	{
 		EnableWindow( FindWindow( "Shell_traywnd", NULL ), true );
-		ShowWindow( FindWindow( "Shell_traywnd", NULL ), SW_NORMAL );
+		// causes hang on Win7
+		//ShowWindow( FindWindow( "Shell_traywnd", NULL ), SW_NORMAL );
 	}
 #endif
 }
