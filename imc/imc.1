@@ -1,0 +1,71 @@
+.TH imc 1 "Date: 2011/16/12 10:00:00" "imc"
+.SH NAME
+imc \- is the iTALC management console to setup iTALC.
+.SH SYNOPSIS
+\fBimc\fP [\fIoptions\fP]
+.SH OVERVIEW
+
+imc\[rg], is a X11 program to modify the various settings used by italc-client and italc-master.
+
+imc is free software delivered as a ready-to-run binary distribution or as source code that you can freely use, copy, modify, and distribute. Its license is compatible with the GPL. It runs on all major operating systems.
+
+The functionality of imc is typically utilized from X11 but also from the command line.
+
+In the paragraphs below, find a short description for each command-line option.If you are just getting acquianted with imc, start the program without any options.
+.TP
+.B -ListConfig -l
+
+The current configuration with all keys and values will be listed. This will give an output like
+   ...
+   Logging/LogLevel=1
+   Network/CoreServerPort=11100
+   Network/DemoServerPort=11400
+   ...
+
+.TP
+.B -SetConfigValue -s
+
+The value of configuration property can be changed with this option.
+Examples:
+  imc -SetConfigValue Logging/LogFileDirectory C:\temp
+  imc -s Logging/LogLevel=4
+
+.TP
+.B -ApplySettings -a
+
+You can apply the settings previously saved in a settings file using this command.
+Examples:
+  imc -ApplySettings MyCustomSettings.xml
+
+.TP
+.B -ImportPublicKey -i
+
+You can import a public key file which has been exported during the installation
+of the iTALC master computer using this command or its abbreviation.
+
+You can omit the the second parameter which specifies the public key file if it
+is located in the directory from which you launch IMC. IMC will automatically
+search for a *.key.txt file. If it finds exactly one, it'll import this one.
+Examples:
+  imc -ImportPublicKey MyPublicKey.key.txt
+  imc -i
+
+.TP
+.B -createkeypair <path>
+
+creates a new key pair for the default role (teacher) with the specified "path" as base dir. If "path" is omitted 
+the path is taken from the settings file. This is used in conjunction with role. If role is omitted the default
+role is "teacher".
+
+.TP
+.B -role [supporter|teacher|admin]
+
+in connection with "createkeypair" creates a key pair for the specified role.
+
+.PP
+For more information about the imc, point your browser to file:///usr/share/doc/packages/imc or http://italc.sourceforge.net/.
+.SH SEE ALSO
+ica(1), italc(1)
+
+.SH COPYRIGHT
+\fBCopyright (C) 2004-2011 Tobias Doerffel. Additional copyrights and licenses apply to this software, see http://italc.sourceforge.net\fP
