@@ -157,6 +157,12 @@ bool ItalcCore::init()
 #endif
 	QCoreApplication::installTranslator( qtTr );
 
+	if( QLocale::system().language() == QLocale::Hebrew ||
+		QLocale::system().language() == QLocale::Arabic )
+	{
+		QApplication::setLayoutDirection( Qt::RightToLeft );
+	}
+
 	config = new ItalcConfiguration( ItalcConfiguration::defaultConfiguration() );
 	*config += ItalcConfiguration( Configuration::Store::LocalBackend );
 
