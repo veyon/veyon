@@ -132,10 +132,12 @@ bool ItalcCoreConnection::handleServerMessage( rfbClient *cl, uint8_t msg )
 		{
 			m_user = m.arg( "username" );
 			m_userHomeDir = m.arg( "homedir" );
+			emit receivedUserInfo( m_user, m_userHomeDir );
 		}
 		else if( m.cmd() == ItalcCore::ReportSlaveStateFlags )
 		{
 			m_slaveStateFlags = m.arg( "slavestateflags" ).toInt();
+			emit receivedSlaveStateFlags( m_slaveStateFlags );
 		}
 		// TODO: plugin hook
 		else

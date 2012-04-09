@@ -106,6 +106,9 @@ public:
 
 	void reportSlaveStateFlags();
 
+signals:
+	void receivedUserInfo( const QString &, const QString & );
+	void receivedSlaveStateFlags( const int );
 
 private slots:
 	void initNewClient( rfbClient *client );

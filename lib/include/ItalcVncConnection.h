@@ -190,6 +190,7 @@ signals:
 	void passwordRequest();
 	void outputErrorMessage( const QString &message );
 	void connected();
+	void stateChanged( const int );
 
 
 public slots:
