@@ -17,6 +17,7 @@
  *  USA.
  */
 
+#include <gnutls/gnutls.h>
 #include <rfb/rfbclient.h>
 #include <errno.h>
 #ifdef WIN32
@@ -29,7 +30,6 @@
 #endif
 #include "tls.h"
 
-#ifdef LIBVNCSERVER_WITH_CLIENT_TLS
 
 static const char *rfbTLSPriority = "NORMAL:+DHE-DSS:+RSA:+DHE-RSA:+SRP";
 static const char *rfbAnonTLSPriority= "NORMAL:+ANON-DH";
@@ -135,21 +135,21 @@ InitializeTLSSession(rfbClient* client, rfbBool anonTLS)
 
   if (client->tlsSession) return TRUE;
 
-  if ((ret = gnutls_init(&client->tlsSession, GNUTLS_CLIENT)) < 0)
+  if ((ret = gnutls_init((gnutls_session_t*)&client->tlsSession, GNUTLS_CLIENT)) < 0)
   {
     rfbClientLog("Failed to initialized TLS session: %s.\n", gnutls_strerror(ret));
     return FALSE;
   }
 
-  if ((ret = gnutls_priority_set_direct(client->tlsSession,
+  if ((ret = gnutls_priority_set_direct((gnutls_session_t)client->tlsSession,
     anonTLS ? rfbAnonTLSPriority : rfbTLSPriority, &p)) < 0)
   {
     rfbClientLog("Warning: Failed to set TLS priority: %s (%s).\n", gnutls_strerror(ret), p);
   }
 
-  gnutls_transport_set_ptr(client->tlsSession, (gnutls_transport_ptr_t)client);
-  gnutls_transport_set_push_function(client->tlsSession, PushTLS);
-  gnutls_transport_set_pull_function(client->tlsSession, PullTLS);
+  gnutls_transport_set_ptr((gnutls_session_t)client->tlsSession, (gnutls_transport_ptr_t)client);
+  gnutls_transport_set_push_function((gnutls_session_t)client->tlsSession, PushTLS);
+  gnutls_transport_set_pull_function((gnutls_session_t)client->tlsSession, PullTLS);
 
   rfbClientLog("TLS session initialized.\n");
 
@@ -163,7 +163,7 @@ SetTLSAnonCredential(rfbClient* client)
   int ret;
 
   if ((ret = gnutls_anon_allocate_client_credentials(&anonCred)) < 0 ||
-      (ret = gnutls_credentials_set(client->tlsSession, GNUTLS_CRD_ANON, anonCred)) < 0)
+      (ret = gnutls_credentials_set((gnutls_session_t)client->tlsSession, GNUTLS_CRD_ANON, anonCred)) < 0)
   {
     FreeTLS(client);
     rfbClientLog("Failed to create anonymous credentials: %s", gnutls_strerror(ret));
@@ -179,7 +179,7 @@ HandshakeTLS(rfbClient* client)
   int timeout = 15;
   int ret;
 
-  while (timeout > 0 && (ret = gnutls_handshake(client->tlsSession)) < 0)
+  while (timeout > 0 && (ret = gnutls_handshake((gnutls_session_t)client->tlsSession)) < 0)
   {
     if (!gnutls_error_is_fatal(ret))
     {
@@ -335,13 +335,10 @@ CreateX509CertCredential(rfbCredential *cred)
   return x509_cred;
 }
 
-#endif
 
 rfbBool
 HandleAnonTLSAuth(rfbClient* client)
 {
-#ifdef LIBVNCSERVER_WITH_CLIENT_TLS
-
   if (!InitializeTLS() || !InitializeTLSSession(client, TRUE)) return FALSE;
 
   if (!SetTLSAnonCredential(client)) return FALSE;
@@ -349,17 +346,11 @@ HandleAnonTLSAuth(rfbClient* client)
   if (!HandshakeTLS(client)) return FALSE;
 
   return TRUE;
-
-#else
-  rfbClientLog("TLS is not supported.\n");
-  return FALSE;
-#endif
 }
 
 rfbBool
 HandleVeNCryptAuth(rfbClient* client)
 {
-#ifdef LIBVNCSERVER_WITH_CLIENT_TLS
   uint8_t major, minor, status;
   uint32_t authScheme;
   rfbBool anonTLS;
@@ -447,7 +438,7 @@ HandleVeNCryptAuth(rfbClient* client)
   }
   else
   {
-    if ((ret = gnutls_credentials_set(client->tlsSession, GNUTLS_CRD_CERTIFICATE, x509_cred)) < 0)
+    if ((ret = gnutls_credentials_set((gnutls_session_t)client->tlsSession, GNUTLS_CRD_CERTIFICATE, x509_cred)) < 0)
     {
       rfbClientLog("Cannot set x509 credential: %s.\n", gnutls_strerror(ret));
       FreeTLS(client);
@@ -463,20 +454,14 @@ HandleVeNCryptAuth(rfbClient* client)
    * to do actual sub authentication.
    */
   return TRUE;
-
-#else
-  rfbClientLog("TLS is not supported.\n");
-  return FALSE;
-#endif
 }
 
 int
 ReadFromTLS(rfbClient* client, char *out, unsigned int n)
 {
-#ifdef LIBVNCSERVER_WITH_CLIENT_TLS
   ssize_t ret;
 
-  ret = gnutls_record_recv(client->tlsSession, out, n);
+  ret = gnutls_record_recv((gnutls_session_t)client->tlsSession, out, n);
   if (ret >= 0) return ret;
   if (ret == GNUTLS_E_REHANDSHAKE || ret == GNUTLS_E_AGAIN)
   {
@@ -487,23 +472,17 @@ ReadFromTLS(rfbClient* client, char *out, unsigned int n)
     errno = EINTR;
   }
   return -1;
-#else
-  rfbClientLog("TLS is not supported.\n");
-  errno = EINTR;
-  return -1;
-#endif
 }
 
 int
 WriteToTLS(rfbClient* client, char *buf, unsigned int n)
 {
-#ifdef LIBVNCSERVER_WITH_CLIENT_TLS
   unsigned int offset = 0;
   ssize_t ret;
 
   while (offset < n)
   {
-    ret = gnutls_record_send(client->tlsSession, buf+offset, (size_t)(n-offset));
+    ret = gnutls_record_send((gnutls_session_t)client->tlsSession, buf+offset, (size_t)(n-offset));
     if (ret == 0) continue;
     if (ret < 0)
     {
@@ -514,20 +493,13 @@ WriteToTLS(rfbClient* client, char *buf, unsigned int n)
     offset += (unsigned int)ret;
   }
   return offset;
-#else
-  rfbClientLog("TLS is not supported.\n");
-  errno = EINTR;
-  return -1;
-#endif
 }
 
 void FreeTLS(rfbClient* client)
 {
-#ifdef LIBVNCSERVER_WITH_CLIENT_TLS
   if (client->tlsSession)
   {
-    gnutls_deinit(client->tlsSession);
+    gnutls_deinit((gnutls_session_t)client->tlsSession);
     client->tlsSession = NULL;
   }
-#endif
 }

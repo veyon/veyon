@@ -1,4 +1,5 @@
 /*
+ *  Copyright (C) 2011-2012 Christian Beier <dontmind@freeshell.org>
  *  Copyright (C) 1999 AT&T Laboratories Cambridge.  All Rights Reserved.
  *
  *  This is free software; you can redistribute it and/or modify
@@ -23,6 +24,11 @@
 
 #ifdef __STRICT_ANSI__
 #define _BSD_SOURCE
+#ifdef __linux__
+/* Setting this on other systems hides definitions such as INADDR_LOOPBACK.
+ * The check should be for __GLIBC__ in fact. */
+# define _POSIX_SOURCE
+#endif
 #endif
 #include <unistd.h>
 #include <errno.h>
@@ -110,7 +116,7 @@ ReadFromRFBServer(rfbClient* client, char *out, unsigned int n)
       rec->tv=tv;
     }
     
-    return (fread(out,1,n,rec->file)<0?FALSE:TRUE);
+    return (fread(out,1,n,rec->file) != n ? FALSE : TRUE);
   }
   
   if (n <= client->buffered) {
@@ -135,15 +141,11 @@ ReadFromRFBServer(rfbClient* client, char *out, unsigned int n)
 
     while (client->buffered < n) {
       int i;
-#ifdef LIBVNCSERVER_WITH_CLIENT_TLS
       if (client->tlsSession) {
         i = ReadFromTLS(client, client->buf + client->buffered, RFB_BUF_SIZE - client->buffered);
       } else {
-#endif
         i = read(client->sock, client->buf + client->buffered, RFB_BUF_SIZE - client->buffered);
-#ifdef LIBVNCSERVER_WITH_CLIENT_TLS
       }
-#endif
       if (i <= 0) {
 	if (i < 0) {
 #ifdef WIN32
@@ -177,15 +179,12 @@ ReadFromRFBServer(rfbClient* client, char *out, unsigned int n)
 
     while (n > 0) {
       int i;
-#ifdef LIBVNCSERVER_WITH_CLIENT_TLS
       if (client->tlsSession) {
         i = ReadFromTLS(client, out, n);
       } else {
-#endif
         i = read(client->sock, out, n);
-#ifdef LIBVNCSERVER_WITH_CLIENT_TLS
       }
-#endif
+
       if (i <= 0) {
 	if (i < 0) {
 #ifdef WIN32
@@ -240,7 +239,6 @@ WriteToRFBServer(rfbClient* client, char *buf, int n)
   if (client->serverPort==-1)
     return TRUE; /* vncrec playing */
 
-#ifdef LIBVNCSERVER_WITH_CLIENT_TLS
   if (client->tlsSession) {
     /* WriteToTLS() will guarantee either everything is written, or error/eof returns */
     i = WriteToTLS(client, buf, n);
@@ -248,7 +246,6 @@ WriteToRFBServer(rfbClient* client, char *buf, int n)
 
     return TRUE;
   }
-#endif
 
   while (i < n) {
     j = write(client->sock, buf + i, (n - i));
@@ -480,13 +477,31 @@ FindFreeTcpPort(void)
 int
 ListenAtTcpPort(int port)
 {
+  return ListenAtTcpPortAndAddress(port, NULL);
+}
+
+
+
+/*
+ * ListenAtTcpPortAndAddress starts listening at the given TCP port on
+ * the given IP address
+ */
+
+int
+ListenAtTcpPortAndAddress(int port, const char *address)
+{
   int sock;
-  struct sockaddr_in addr;
   int one = 1;
+#ifndef LIBVNCSERVER_IPv6
+  struct sockaddr_in addr;
 
   addr.sin_family = AF_INET;
   addr.sin_port = htons(port);
-  addr.sin_addr.s_addr = htonl(INADDR_ANY);
+  if (address) {
+    addr.sin_addr.s_addr = inet_addr(address);
+  } else {
+    addr.sin_addr.s_addr = htonl(INADDR_ANY);
+  }
 
   if (!initSockets())
     return -1;
@@ -509,6 +524,66 @@ ListenAtTcpPort(int port)
     close(sock);
     return -1;
   }
+
+#else
+  int rv;
+  struct addrinfo hints, *servinfo, *p;
+  char port_str[8];
+
+  snprintf(port_str, 8, "%d", port);
+
+  memset(&hints, 0, sizeof(hints));
+  hints.ai_family = AF_UNSPEC;
+  hints.ai_socktype = SOCK_STREAM;
+  hints.ai_flags = AI_PASSIVE; /* fill in wildcard address if address == NULL */
+
+  if (!initSockets())
+    return -1;
+
+  if ((rv = getaddrinfo(address, port_str, &hints, &servinfo)) != 0) {
+    rfbClientErr("ListenAtTcpPortAndAddress: error in getaddrinfo: %s\n", gai_strerror(rv));
+    return -1;
+  }
+
+  /* loop through all the results and bind to the first we can */
+  for(p = servinfo; p != NULL; p = p->ai_next) {
+    if ((sock = socket(p->ai_family, p->ai_socktype, p->ai_protocol)) < 0) {
+      continue;
+    }
+
+#ifdef IPV6_V6ONLY
+    /* we have seperate IPv4 and IPv6 sockets since some OS's do not support dual binding */
+    if (p->ai_family == AF_INET6 && setsockopt(sock, IPPROTO_IPV6, IPV6_V6ONLY, (char *)&one, sizeof(one)) < 0) {
+      rfbClientErr("ListenAtTcpPortAndAddress: error in setsockopt IPV6_V6ONLY: %s\n", strerror(errno));
+      close(sock);
+      freeaddrinfo(servinfo);
+      return -1;
+    }
+#endif
+
+    if (setsockopt(sock, SOL_SOCKET, SO_REUSEADDR, (char *)&one, sizeof(one)) < 0) {
+      rfbClientErr("ListenAtTcpPortAndAddress: error in setsockopt SO_REUSEADDR: %s\n", strerror(errno));
+      close(sock);
+      freeaddrinfo(servinfo);
+      return -1;
+    }
+
+    if (bind(sock, p->ai_addr, p->ai_addrlen) < 0) {
+      close(sock);
+      continue;
+    }
+
+    break;
+  }
+
+  if (p == NULL)  {
+    rfbClientErr("ListenAtTcpPortAndAddress: error in bind: %s\n", strerror(errno));
+    return -1;
+  }
+
+  /* all done with this structure now */
+  freeaddrinfo(servinfo);
+#endif
 
   if (listen(sock, 5) < 0) {
     rfbClientErr("ListenAtTcpPort: listen\n");

@@ -34,7 +34,9 @@ Alessandro Praduroux, Brad Hards, Timo Ketola, Christian Ehrlicher,
 Noriaki Yamazaki, Ben Klopfenstein, Vic Lee, Christian Beier,
 Alexander Dorokhine, Corentin Chary, Wouter Van Meir, George Kiagiadakis,
 Joel Martin, Gernot Tenchio, William Roberts, Cristian Rodríguez,
-George Fleury, Kan-Ru Chen and Steve Guo.
+George Fleury, Kan-Ru Chen, Steve Guo, Luca Stauble, Peter Watkins,
+Kyle J. McKay, Mateus Cesar Groess, Philip Van Hoof, D. R. Commander,
+Rostislav Lisovy, Oliver Loch and Raphael Kubo da Costa.
 
 Probably I forgot quite a few people sending a patch here and there, which
 really made a difference. Without those, some obscure bugs still would

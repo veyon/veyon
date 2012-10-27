@@ -1,4 +1,5 @@
 /*
+ *  Copyright (C) 2011-2012 Christian Beier <dontmind@freeshell.org>
  *  Copyright (C) 1999 AT&T Laboratories Cambridge.  All Rights Reserved.
  *
  *  This is free software; you can redistribute it and/or modify
@@ -50,12 +51,12 @@ listenForIncomingConnections(rfbClient* client)
   rfbClientErr("listenForIncomingConnections on MinGW32 NOT IMPLEMENTED\n");
   return;
 #else
-  int listenSocket;
+  int listenSocket, listen6Socket = -1;
   fd_set fds;
 
   client->listenSpecified = TRUE;
 
-  listenSocket = ListenAtTcpPort(client->listenPort);
+  listenSocket = ListenAtTcpPortAndAddress(client->listenPort, client->listenAddress);
 
   if ((listenSocket < 0))
     return;
@@ -65,8 +66,24 @@ listenForIncomingConnections(rfbClient* client)
   rfbClientLog("%s -listen: Command line errors are not reported until "
 	  "a connection comes in.\n", client->programName);
 
-  while (TRUE) {
+#ifdef LIBVNCSERVER_IPv6 /* only try that if we're IPv6-capable, otherwise we may try to bind to the same port which would make all that listening fail */ 
+  /* only do IPv6 listen of listen6Port is set */
+  if (client->listen6Port > 0)
+    {
+      listen6Socket = ListenAtTcpPortAndAddress(client->listen6Port, client->listen6Address);
 
+      if (listen6Socket < 0)
+	return;
+
+      rfbClientLog("%s -listen: Listening on IPV6 port %d\n",
+		   client->programName,client->listenPort);
+      rfbClientLog("%s -listen: Command line errors are not reported until "
+		   "a connection comes in.\n", client->programName);
+    }
+#endif
+
+  while (TRUE) {
+    int r;
     /* reap any zombies */
     int status, pid;
     while ((pid= wait3(&status, WNOHANG, (struct rusage *)0))>0);
@@ -75,12 +92,19 @@ listenForIncomingConnections(rfbClient* client)
 
     FD_ZERO(&fds); 
 
-    FD_SET(listenSocket, &fds);
+    if(listenSocket >= 0)
+      FD_SET(listenSocket, &fds);  
+    if(listen6Socket >= 0)
+      FD_SET(listen6Socket, &fds);
 
-    select(listenSocket+1, &fds, NULL, NULL, NULL);
+    r = select(max(listenSocket, listen6Socket)+1, &fds, NULL, NULL, NULL);
 
-    if (FD_ISSET(listenSocket, &fds)) {
-      client->sock = AcceptTcpConnection(listenSocket);
+    if (r > 0) {
+      if (FD_ISSET(listenSocket, &fds))
+	client->sock = AcceptTcpConnection(client->listenSock); 
+      else if (FD_ISSET(listen6Socket, &fds))
+	client->sock = AcceptTcpConnection(client->listen6Sock);
+
       if (client->sock < 0)
 	return;
       if (!SetNonBlocking(client->sock))
@@ -97,6 +121,7 @@ listenForIncomingConnections(rfbClient* client)
       case 0:
 	/* child - return to caller */
 	close(listenSocket);
+	close(listen6Socket);
 	return;
 
       default:
@@ -133,7 +158,7 @@ listenForIncomingConnectionsNoFork(rfbClient* client, int timeout)
 
   if (client->listenSock < 0)
     {
-      client->listenSock = ListenAtTcpPort(client->listenPort);
+      client->listenSock = ListenAtTcpPortAndAddress(client->listenPort, client->listenAddress);
 
       if (client->listenSock < 0)
 	return -1;
@@ -144,24 +169,54 @@ listenForIncomingConnectionsNoFork(rfbClient* client, int timeout)
 		   "a connection comes in.\n", client->programName);
     }
 
+#ifdef LIBVNCSERVER_IPv6 /* only try that if we're IPv6-capable, otherwise we may try to bind to the same port which would make all that listening fail */ 
+  /* only do IPv6 listen of listen6Port is set */
+  if (client->listen6Port > 0 && client->listen6Sock < 0)
+    {
+      client->listen6Sock = ListenAtTcpPortAndAddress(client->listen6Port, client->listen6Address);
+
+      if (client->listen6Sock < 0)
+	return -1;
+
+      rfbClientLog("%s -listennofork: Listening on IPV6 port %d\n",
+		   client->programName,client->listenPort);
+      rfbClientLog("%s -listennofork: Command line errors are not reported until "
+		   "a connection comes in.\n", client->programName);
+    }
+#endif
+
   FD_ZERO(&fds);
 
-  FD_SET(client->listenSock, &fds);
+  if(client->listenSock >= 0)
+    FD_SET(client->listenSock, &fds);
+  if(client->listen6Sock >= 0)
+    FD_SET(client->listen6Sock, &fds);
 
   if (timeout < 0)
-    r = select(client->listenSock+1, &fds, NULL, NULL, NULL);
+    r = select(max(client->listenSock, client->listen6Sock) +1, &fds, NULL, NULL, NULL);
   else
-    r = select(client->listenSock+1, &fds, NULL, NULL, &to);
+    r = select(max(client->listenSock, client->listen6Sock) +1, &fds, NULL, NULL, &to);
 
   if (r > 0)
     {
-      client->sock = AcceptTcpConnection(client->listenSock);
+      if (FD_ISSET(client->listenSock, &fds))
+	client->sock = AcceptTcpConnection(client->listenSock); 
+      else if (FD_ISSET(client->listen6Sock, &fds))
+	client->sock = AcceptTcpConnection(client->listen6Sock);
+
       if (client->sock < 0)
 	return -1;
       if (!SetNonBlocking(client->sock))
 	return -1;
 
-      close(client->listenSock);
+      if(client->listenSock >= 0) {
+	close(client->listenSock);
+	client->listenSock = -1;
+      }
+      if(client->listen6Sock >= 0) {
+	close(client->listen6Sock);
+	client->listen6Sock = -1;
+      }
       return r;
     }
 

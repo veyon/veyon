@@ -127,12 +127,37 @@ rfbVncAuthSendChallenge(rfbClientPtr cl)
  * Send the NO AUTHENTICATION. SCARR
  */
 
+/*
+ * The rfbVncAuthNone function is currently the only function that contains
+ * special logic for the built-in Mac OS X VNC client which is activated by
+ * a protocolMinorVersion == 889 coming from the Mac OS X VNC client.
+ * The rfbProcessClientInitMessage function does understand how to handle the
+ * RFB_INITIALISATION_SHARED state which was introduced to support the built-in
+ * Mac OS X VNC client, but rfbProcessClientInitMessage does not examine the
+ * protocolMinorVersion version field and so its support for the
+ * RFB_INITIALISATION_SHARED state is not restricted to just the OS X client.
+ */
+
 static void
 rfbVncAuthNone(rfbClientPtr cl)
 {
+    /* The built-in Mac OS X VNC client behaves in a non-conforming fashion
+     * when the server version is 3.7 or later AND the list of security types
+     * sent to the OS X client contains the 'None' authentication type AND
+     * the OS X client sends back the 'None' type as its choice.  In this case,
+     * and this case ONLY, the built-in Mac OS X VNC client will NOT send the
+     * ClientInit message and instead will behave as though an implicit
+     * ClientInit message containing a shared-flag of true has been sent.
+     * The special state RFB_INITIALISATION_SHARED represents this case.
+     * The Mac OS X VNC client can be detected by checking protocolMinorVersion
+     * for a value of 889.  No other VNC client is known to use this value
+     * for protocolMinorVersion. */
     uint32_t authResult;
 
-    if (cl->protocolMajorVersion==3 && cl->protocolMinorVersion > 7) {
+    /* The built-in Mac OS X VNC client expects to NOT receive a SecurityResult
+     * message for authentication type 'None'.  Since its protocolMinorVersion
+     * is greater than 7 (it is 889) this case must be tested for specially. */
+    if (cl->protocolMajorVersion==3 && cl->protocolMinorVersion > 7 && cl->protocolMinorVersion != 889) {
         rfbLog("rfbProcessClientSecurityType: returning securityResult for client rfb version >= 3.8\n");
         authResult = Swap32IfLE(rfbVncAuthOK);
         if (rfbWriteExact(cl, (char *)&authResult, 4) < 0) {
@@ -141,7 +166,12 @@ rfbVncAuthNone(rfbClientPtr cl)
             return;
         }
     }
-    cl->state = RFB_INITIALISATION;
+    cl->state = cl->protocolMinorVersion == 889 ? RFB_INITIALISATION_SHARED : RFB_INITIALISATION;
+    if (cl->state == RFB_INITIALISATION_SHARED)
+        /* In this case we must call rfbProcessClientMessage now because
+         * otherwise we would hang waiting for data to be received from the
+         * client (the ClientInit message which will never come). */
+        rfbProcessClientMessage(cl);
     return;
 }
 

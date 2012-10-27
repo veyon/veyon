@@ -163,7 +163,7 @@ If you already have a socket to talk to, just set rfbScreen->inetdSock
 
 To also start an HTTP server (running on port 5800+display_number), you have
 to set rfbScreen->httpdDir to a directory containing vncviewer.jar and
-index.vnc (like the included "classes" directory).
+index.vnc (like the included "webclients" directory).
 
 Hooks and IO functions
 ----------------------

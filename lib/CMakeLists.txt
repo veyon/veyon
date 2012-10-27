@@ -10,10 +10,12 @@ FILE(GLOB ic_UI ${CMAKE_CURRENT_SOURCE_DIR}/dialogs/*.ui)
 
 SET(LIBVNCCLIENT_SOURCES
 ${CMAKE_CURRENT_SOURCE_DIR}/../ica/x11/common/minilzo.c
+${CMAKE_CURRENT_SOURCE_DIR}/../ica/x11/common/turbojpeg.c
 ${CMAKE_CURRENT_SOURCE_DIR}/../ica/x11/libvncclient/cursor.c
 ${CMAKE_CURRENT_SOURCE_DIR}/../ica/x11/libvncclient/listen.c
 ${CMAKE_CURRENT_SOURCE_DIR}/../ica/x11/libvncclient/rfbproto.c
 ${CMAKE_CURRENT_SOURCE_DIR}/../ica/x11/libvncclient/sockets.c
+${CMAKE_CURRENT_SOURCE_DIR}/../ica/x11/libvncclient/tls_none.c
 ${CMAKE_CURRENT_SOURCE_DIR}/../ica/x11/libvncclient/vncviewer.c)
 
 

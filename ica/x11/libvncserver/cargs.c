@@ -22,6 +22,9 @@ rfbUsage(void)
     rfbProtocolExtension* extension;
 
     fprintf(stderr, "-rfbport port          TCP port for RFB protocol\n");
+#ifdef LIBVNCSERVER_IPv6
+    fprintf(stderr, "-rfbportv6 port        TCP6 port for RFB protocol\n");
+#endif
     fprintf(stderr, "-rfbwait time          max time in ms to wait for RFB client\n");
     fprintf(stderr, "-rfbauth passwd-file   use authentication on RFB protocol\n"
                     "                       (use 'storepasswd' to create a password file)\n");
@@ -42,10 +45,17 @@ rfbUsage(void)
                                                                 "instead)\n");
     fprintf(stderr, "-httpdir dir-path      enable http server using dir-path home\n");
     fprintf(stderr, "-httpport portnum      use portnum for http connection\n");
+#ifdef LIBVNCSERVER_IPv6
+    fprintf(stderr, "-httpportv6 portnum    use portnum for IPv6 http connection\n");
+#endif
     fprintf(stderr, "-enablehttpproxy       enable http proxy support\n");
     fprintf(stderr, "-progressive height    enable progressive updating for slow links\n");
     fprintf(stderr, "-listen ipaddr         listen for connections only on network interface with\n");
     fprintf(stderr, "                       addr ipaddr. '-listen localhost' and hostname work too.\n");
+#ifdef LIBVNCSERVER_IPv6
+    fprintf(stderr, "-listenv6 ipv6addr     listen for IPv6 connections only on network interface with\n");
+    fprintf(stderr, "                       addr ipv6addr. '-listen localhost' and hostname work too.\n");
+#endif
 
     for(extension=rfbGetExtensionIterator();extension;extension=extension->next)
 	if(extension->usage)
@@ -80,6 +90,14 @@ rfbProcessArguments(rfbScreenInfoPtr rfbScreen,int* argc, char *argv[])
 		return FALSE;
 	    }
 	    rfbScreen->port = atoi(argv[++i]);
+#ifdef LIBVNCSERVER_IPv6
+	} else if (strcmp(argv[i], "-rfbportv6") == 0) { /* -rfbportv6 port */
+            if (i + 1 >= *argc) {
+		rfbUsage();
+		return FALSE;
+	    }
+	    rfbScreen->ipv6port = atoi(argv[++i]);
+#endif
         } else if (strcmp(argv[i], "-rfbwait") == 0) {  /* -rfbwait ms */
             if (i + 1 >= *argc) {
 		rfbUsage();
@@ -147,6 +165,14 @@ rfbProcessArguments(rfbScreenInfoPtr rfbScreen,int* argc, char *argv[])
 		return FALSE;
 	    }
             rfbScreen->httpPort = atoi(argv[++i]);
+#ifdef LIBVNCSERVER_IPv6
+	} else if (strcmp(argv[i], "-httpportv6") == 0) {  /* -httpportv6 portnum */
+            if (i + 1 >= *argc) {
+		rfbUsage();
+		return FALSE;
+	    }
+            rfbScreen->http6Port = atoi(argv[++i]);
+#endif
         } else if (strcmp(argv[i], "-enablehttpproxy") == 0) {
             rfbScreen->httpEnableProxyConnect = TRUE;
         } else if (strcmp(argv[i], "-progressive") == 0) {  /* -httpport portnum */
@@ -163,6 +189,14 @@ rfbProcessArguments(rfbScreenInfoPtr rfbScreen,int* argc, char *argv[])
             if (! rfbStringToAddr(argv[++i], &(rfbScreen->listenInterface))) {
                 return FALSE;
             }
+#ifdef LIBVNCSERVER_IPv6
+	} else if (strcmp(argv[i], "-listenv6") == 0) {  /* -listenv6 ipv6addr */
+            if (i + 1 >= *argc) {
+		rfbUsage();
+		return FALSE;
+	    }
+	    rfbScreen->listen6Interface = argv[++i];
+#endif
 #ifdef LIBVNCSERVER_WITH_WEBSOCKETS
         } else if (strcmp(argv[i], "-sslkeyfile") == 0) {  /* -sslkeyfile sslkeyfile */
             if (i + 1 >= *argc) {

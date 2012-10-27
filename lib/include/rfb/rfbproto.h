@@ -2,7 +2,9 @@
 #define RFBPROTO_H
 
 /*
+ *  Copyright (C) 2009-2010 D. R. Commander. All Rights Reserved.
  *  Copyright (C) 2005 Rohit Kumar, Johannes E. Schindelin
+ *  Copyright (C) 2004-2008 Sun Microsystems, Inc. All Rights Reserved.
  *  Copyright (C) 2000-2002 Constantin Kaplinsky.  All Rights Reserved.
  *  Copyright (C) 2000 Tridia Corporation.  All Rights Reserved.
  *  Copyright (C) 1999 AT&T Laboratories Cambridge.  All Rights Reserved.
@@ -453,6 +455,8 @@ typedef struct {
 
 /*
  * Special encoding numbers:
+ *   0xFFFFFD00 .. 0xFFFFFD05 -- subsampling level
+ *   0xFFFFFE00 .. 0xFFFFFE64 -- fine-grained quality level (0-100 scale)
  *   0xFFFFFF00 .. 0xFFFFFF0F -- encoding-specific compression levels;
  *   0xFFFFFF10 .. 0xFFFFFF1F -- mouse cursor shape data;
  *   0xFFFFFF20 .. 0xFFFFFF2F -- various protocol extensions;
@@ -460,6 +464,15 @@ typedef struct {
  *   0xFFFFFFE0 .. 0xFFFFFFEF -- quality level for JPEG compressor;
  *   0xFFFFFFF0 .. 0xFFFFFFFF -- cross-encoding compression levels.
  */
+
+#define rfbEncodingFineQualityLevel0   0xFFFFFE00
+#define rfbEncodingFineQualityLevel100 0xFFFFFE64
+#define rfbEncodingSubsamp1X           0xFFFFFD00
+#define rfbEncodingSubsamp4X           0xFFFFFD01
+#define rfbEncodingSubsamp2X           0xFFFFFD02
+#define rfbEncodingSubsampGray         0xFFFFFD03
+#define rfbEncodingSubsamp8X           0xFFFFFD04
+#define rfbEncodingSubsamp16X          0xFFFFFD05
 
 #define rfbEncodingCompressLevel0  0xFFFFFF00
 #define rfbEncodingCompressLevel1  0xFFFFFF01
@@ -718,12 +731,20 @@ typedef struct {
  *   bit 3:    if 1, then compression stream 3 should be reset;
  *   bits 7-4: if 1000 (0x08), then the compression type is "fill",
  *             if 1001 (0x09), then the compression type is "jpeg",
- *             if 1001 (0x0A), then the compression type is "png",
- *             if 0xxx, then the compression type is "basic",
+ *             (Tight only) if 1010 (0x0A), then the compression type is
+ *               "basic" and no Zlib compression was used,
+ *             (Tight only) if 1110 (0x0E), then the compression type is
+ *               "basic", no Zlib compression was used, and a "filter id" byte
+ *               follows this byte,
+ *             (TightPng only) if 1010 (0x0A), then the compression type is
+ *               "png",
+ *             if 0xxx, then the compression type is "basic" and Zlib
+ *               compression was used,
  *             values greater than 1010 are not valid.
  *
- * If the compression type is "basic", then bits 6..4 of the
- * compression control byte (those xxx in 0xxx) specify the following:
+ * If the compression type is "basic" and Zlib compression was used, then bits
+ * 6..4 of the compression control byte (those xxx in 0xxx) specify the
+ * following:
  *
  *   bits 5-4:  decimal representation is the index of a particular zlib
  *              stream which should be used for decompressing the data;
@@ -835,6 +856,7 @@ typedef struct {
 #define rfbTightExplicitFilter         0x04
 #define rfbTightFill                   0x08
 #define rfbTightJpeg                   0x09
+#define rfbTightNoZlib                 0x0A
 #define rfbTightPng                    0x0A
 #define rfbTightMaxSubencoding         0x0A
 

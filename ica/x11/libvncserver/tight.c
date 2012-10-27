@@ -2,9 +2,20 @@
  * tight.c
  *
  * Routines to implement Tight Encoding
+ *
+ * Our Tight encoder is based roughly on the TurboVNC v0.6 encoder with some
+ * additional enhancements from TurboVNC 1.1.  For lower compression levels,
+ * this encoder provides a tremendous reduction in CPU usage (and subsequently,
+ * an increase in throughput for CPU-limited environments) relative to the
+ * TightVNC encoder, whereas Compression Level 9 provides a low-bandwidth mode
+ * that behaves similarly to Compression Levels 5-9 in the old TightVNC
+ * encoder.
  */
 
 /*
+ *  Copyright (C) 2010-2012 D. R. Commander.  All Rights Reserved.
+ *  Copyright (C) 2005-2008 Sun Microsystems, Inc.  All Rights Reserved.
+ *  Copyright (C) 2004 Landmark Graphics Corporation.  All Rights Reserved.
  *  Copyright (C) 2000, 2001 Const Kaplinsky.  All Rights Reserved.
  *  Copyright (C) 1999 AT&T Laboratories Cambridge.  All Rights Reserved.
  *
@@ -20,27 +31,18 @@
  *
  *  You should have received a copy of the GNU General Public License
  *  along with this software; if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307,
+ *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301,
  *  USA.
  */
 
-/*#include <stdio.h>*/
 #include <rfb/rfb.h>
 #include "private.h"
 
-#ifdef WIN32
-#define XMD_H
-#undef FAR
-#define NEEDFAR_POINTERS
-#endif
-
-#ifdef _RPCNDR_H /* This Windows header typedefs 'boolean', jpeglib has to know */
-#define HAVE_BOOLEAN
-#endif
 #ifdef LIBVNCSERVER_HAVE_LIBPNG
 #include <png.h>
 #endif
-#include <jpeglib.h>
+#include "turbojpeg.h"
+
 
 /* Note: The following constant should not be changed. */
 #define TIGHT_MIN_TO_COMPRESS 12
@@ -49,9 +51,6 @@
 #define MIN_SPLIT_RECT_SIZE     4096
 #define MIN_SOLID_SUBRECT_SIZE  2048
 #define MAX_SPLIT_TILE_SIZE       16
-
-/* May be set to TRUE with "-lazytight" Xvnc option. */
-rfbBool rfbTightDisableGradient = FALSE;
 
 /*
  * There is so much access of the Tight encoding static data buffers
@@ -68,30 +67,24 @@ rfbBool rfbTightDisableGradient = FALSE;
 /* This variable is set on every rfbSendRectEncodingTight() call. */
 static TLS rfbBool usePixelFormat24 = FALSE;
 
+
 /* Compression level stuff. The following array contains various
    encoder parameters for each of 10 compression levels (0..9).
    Last three parameters correspond to JPEG quality levels (0..9). */
 
 typedef struct TIGHT_CONF_s {
     int maxRectSize, maxRectWidth;
-    int monoMinRectSize, gradientMinRectSize;
-    int idxZlibLevel, monoZlibLevel, rawZlibLevel, gradientZlibLevel;
-    int gradientThreshold, gradientThreshold24;
+    int monoMinRectSize;
+    int idxZlibLevel, monoZlibLevel, rawZlibLevel;
     int idxMaxColorsDivisor;
-    int jpegQuality, jpegThreshold, jpegThreshold24;
+    int palMaxColorsWithJPEG;
 } TIGHT_CONF;
 
-static TIGHT_CONF tightConf[10] = {
-    {   512,   32,   6, 65536, 0, 0, 0, 0,   0,   0,   4,  5, 10000, 23000 },
-    {  2048,  128,   6, 65536, 1, 1, 1, 0,   0,   0,   8, 10,  8000, 18000 },
-    {  6144,  256,   8, 65536, 3, 3, 2, 0,   0,   0,  24, 15,  6500, 15000 },
-    { 10240, 1024,  12, 65536, 5, 5, 3, 0,   0,   0,  32, 25,  5000, 12000 },
-    { 16384, 2048,  12, 65536, 6, 6, 4, 0,   0,   0,  32, 37,  4000, 10000 },
-    { 32768, 2048,  12,  4096, 7, 7, 5, 4, 150, 380,  32, 50,  3000,  8000 },
-    { 65536, 2048,  16,  4096, 7, 7, 6, 4, 170, 420,  48, 60,  2000,  5000 },
-    { 65536, 2048,  16,  4096, 8, 8, 7, 5, 180, 450,  64, 70,  1000,  2500 },
-    { 65536, 2048,  32,  8192, 9, 9, 8, 6, 190, 475,  64, 75,   500,  1200 },
-    { 65536, 2048,  32,  8192, 9, 9, 9, 6, 200, 500,  96, 80,   200,   500 }
+static TIGHT_CONF tightConf[4] = {
+    { 65536, 2048,   6, 0, 0, 0,   4, 24 }, /* 0  (used only without JPEG) */
+    { 65536, 2048,  32, 1, 1, 1,  96, 24 }, /* 1 */
+    { 65536, 2048,  32, 3, 3, 2,  96, 96 }, /* 2  (used only with JPEG) */
+    { 65536, 2048,  32, 7, 7, 5,  96, 256 } /* 9 */
 };
 
 #ifdef LIBVNCSERVER_HAVE_LIBPNG
@@ -113,8 +106,14 @@ static TIGHT_PNG_CONF tightPngConf[10] = {
 };
 #endif
 
-static TLS int compressLevel = 0;
-static TLS int qualityLevel = 0;
+static TLS int compressLevel = 1;
+static TLS int qualityLevel = 95;
+static TLS int subsampLevel = TJ_444;
+
+static const int subsampLevel2tjsubsamp[4] = {
+    TJ_444, TJ_420, TJ_422, TJ_GRAYSCALE
+};
+
 
 /* Stuff dealing with palettes. */
 
@@ -150,21 +149,23 @@ static TLS char *tightBeforeBuf = NULL;
 static TLS int tightAfterBufSize = 0;
 static TLS char *tightAfterBuf = NULL;
 
-static TLS int *prevRowBuf = NULL;
+static TLS tjhandle j = NULL;
 
-void rfbTightCleanup(rfbScreenInfoPtr screen)
+void rfbTightCleanup (rfbScreenInfoPtr screen)
 {
-  if(tightBeforeBufSize) {
-    free(tightBeforeBuf);
-    tightBeforeBufSize=0;
-    tightBeforeBuf = NULL;
-  }
-  if(tightAfterBufSize) {
-    free(tightAfterBuf);
-    tightAfterBufSize=0;
-    tightAfterBuf = NULL;
-  }
+    if (tightBeforeBufSize) {
+        free (tightBeforeBuf);
+        tightBeforeBufSize = 0;
+        tightBeforeBuf = NULL;
+    }
+    if (tightAfterBufSize) {
+        free (tightAfterBuf);
+        tightAfterBufSize = 0;
+        tightAfterBuf = NULL;
+    }
+    if (j) tjDestroy(j);
 }
+
 
 /* Prototypes for static functions. */
 
@@ -176,13 +177,13 @@ static void ExtendSolidArea   (rfbClientPtr cl, int x, int y, int w, int h,
                                uint32_t colorValue,
                                int *x_ptr, int *y_ptr, int *w_ptr, int *h_ptr);
 static rfbBool CheckSolidTile    (rfbClientPtr cl, int x, int y, int w, int h,
-                               uint32_t *colorPtr, rfbBool needSameColor);
+                                  uint32_t *colorPtr, rfbBool needSameColor);
 static rfbBool CheckSolidTile8   (rfbClientPtr cl, int x, int y, int w, int h,
-                               uint32_t *colorPtr, rfbBool needSameColor);
+                                  uint32_t *colorPtr, rfbBool needSameColor);
 static rfbBool CheckSolidTile16  (rfbClientPtr cl, int x, int y, int w, int h,
-                               uint32_t *colorPtr, rfbBool needSameColor);
+                                  uint32_t *colorPtr, rfbBool needSameColor);
 static rfbBool CheckSolidTile32  (rfbClientPtr cl, int x, int y, int w, int h,
-                               uint32_t *colorPtr, rfbBool needSameColor);
+                                  uint32_t *colorPtr, rfbBool needSameColor);
 
 static rfbBool SendRectSimple    (rfbClientPtr cl, int x, int y, int w, int h);
 static rfbBool SendSubrect       (rfbClientPtr cl, int x, int y, int w, int h);
@@ -192,48 +193,39 @@ static rfbBool SendSolidRect     (rfbClientPtr cl);
 static rfbBool SendMonoRect      (rfbClientPtr cl, int x, int y, int w, int h);
 static rfbBool SendIndexedRect   (rfbClientPtr cl, int x, int y, int w, int h);
 static rfbBool SendFullColorRect (rfbClientPtr cl, int x, int y, int w, int h);
-static rfbBool SendGradientRect  (rfbClientPtr cl, int x, int y, int w, int h);
 
-static rfbBool CompressData(rfbClientPtr cl, int streamId, int dataLen,
-                         int zlibLevel, int zlibStrategy);
-static rfbBool SendCompressedData(rfbClientPtr cl, int compressedLen);
+static rfbBool CompressData (rfbClientPtr cl, int streamId, int dataLen,
+                             int zlibLevel, int zlibStrategy);
+static rfbBool SendCompressedData (rfbClientPtr cl, char *buf,
+                                   int compressedLen);
 
-static void FillPalette8(int count);
-static void FillPalette16(int count);
-static void FillPalette32(int count);
+static void FillPalette8 (int count);
+static void FillPalette16 (int count);
+static void FillPalette32 (int count);
+static void FastFillPalette16 (rfbClientPtr cl, uint16_t *data, int w,
+                               int pitch, int h);
+static void FastFillPalette32 (rfbClientPtr cl, uint32_t *data, int w,
+                               int pitch, int h);
 
-static void PaletteReset(void);
-static int PaletteInsert(uint32_t rgb, int numPixels, int bpp);
+static void PaletteReset (void);
+static int PaletteInsert (uint32_t rgb, int numPixels, int bpp);
 
-static void Pack24(rfbClientPtr cl, char *buf, rfbPixelFormat *fmt, int count);
+static void Pack24 (rfbClientPtr cl, char *buf, rfbPixelFormat *fmt,
+                    int count);
 
-static void EncodeIndexedRect16(uint8_t *buf, int count);
-static void EncodeIndexedRect32(uint8_t *buf, int count);
+static void EncodeIndexedRect16 (uint8_t *buf, int count);
+static void EncodeIndexedRect32 (uint8_t *buf, int count);
 
-static void EncodeMonoRect8(uint8_t *buf, int w, int h);
-static void EncodeMonoRect16(uint8_t *buf, int w, int h);
-static void EncodeMonoRect32(uint8_t *buf, int w, int h);
+static void EncodeMonoRect8 (uint8_t *buf, int w, int h);
+static void EncodeMonoRect16 (uint8_t *buf, int w, int h);
+static void EncodeMonoRect32 (uint8_t *buf, int w, int h);
 
-static void FilterGradient24(rfbClientPtr cl, char *buf, rfbPixelFormat *fmt, int w, int h);
-static void FilterGradient16(rfbClientPtr cl, uint16_t *buf, rfbPixelFormat *fmt, int w, int h);
-static void FilterGradient32(rfbClientPtr cl, uint32_t *buf, rfbPixelFormat *fmt, int w, int h);
-
-static int DetectSmoothImage(rfbClientPtr cl, rfbPixelFormat *fmt, int w, int h);
-static unsigned long DetectSmoothImage24(rfbClientPtr cl, rfbPixelFormat *fmt, int w, int h);
-static unsigned long DetectSmoothImage16(rfbClientPtr cl, rfbPixelFormat *fmt, int w, int h);
-static unsigned long DetectSmoothImage32(rfbClientPtr cl, rfbPixelFormat *fmt, int w, int h);
-
-static rfbBool SendJpegRect(rfbClientPtr cl, int x, int y, int w, int h,
-                         int quality);
+static rfbBool SendJpegRect (rfbClientPtr cl, int x, int y, int w, int h,
+                             int quality);
 static void PrepareRowForImg(rfbClientPtr cl, uint8_t *dst, int x, int y, int count);
 static void PrepareRowForImg24(rfbClientPtr cl, uint8_t *dst, int x, int y, int count);
 static void PrepareRowForImg16(rfbClientPtr cl, uint8_t *dst, int x, int y, int count);
 static void PrepareRowForImg32(rfbClientPtr cl, uint8_t *dst, int x, int y, int count);
-
-static void JpegInitDestination(j_compress_ptr cinfo);
-static boolean JpegEmptyOutputBuffer(j_compress_ptr cinfo);
-static void JpegTermDestination(j_compress_ptr cinfo);
-static void JpegSetDstManager(j_compress_ptr cinfo);
 
 #ifdef LIBVNCSERVER_HAVE_LIBPNG
 static rfbBool SendPngRect(rfbClientPtr cl, int x, int y, int w, int h);
@@ -257,10 +249,10 @@ rfbNumCodedRectsTight(rfbClientPtr cl,
     /* No matter how many rectangles we will send if LastRect markers
        are used to terminate rectangle stream. */
     if (cl->enableLastRectEncoding && w * h >= MIN_SPLIT_RECT_SIZE)
-      return 0;
+        return 0;
 
-    maxRectSize = tightConf[cl->tightCompressLevel].maxRectSize;
-    maxRectWidth = tightConf[cl->tightCompressLevel].maxRectWidth;
+    maxRectSize = tightConf[compressLevel].maxRectSize;
+    maxRectWidth = tightConf[compressLevel].maxRectWidth;
 
     if (w > maxRectWidth || w * h > maxRectSize) {
         subrectMaxWidth = (w > maxRectWidth) ? maxRectWidth : w;
@@ -311,7 +303,34 @@ SendRectEncodingTight(rfbClientPtr cl,
     rfbSendUpdateBuf(cl);
 
     compressLevel = cl->tightCompressLevel;
-    qualityLevel = cl->tightQualityLevel;
+    qualityLevel = cl->turboQualityLevel;
+    subsampLevel = cl->turboSubsampLevel;
+
+    /* We only allow compression levels that have a demonstrable performance
+       benefit.  CL 0 with JPEG reduces CPU usage for workloads that have low
+       numbers of unique colors, but the same thing can be accomplished by
+       using CL 0 without JPEG (AKA "Lossless Tight.")  For those same
+       low-color workloads, CL 2 can provide typically 20-40% better
+       compression than CL 1 (with a commensurate increase in CPU usage.)  For
+       high-color workloads, CL 1 should always be used, as higher compression
+       levels increase CPU usage for these workloads without providing any
+       significant reduction in bandwidth. */
+    if (qualityLevel != -1) {
+        if (compressLevel < 1) compressLevel = 1;
+        if (compressLevel > 2) compressLevel = 2;
+    }
+
+    /* With JPEG disabled, CL 2 offers no significant bandwidth savings over
+       CL 1, so we don't include it. */
+    else if (compressLevel > 1) compressLevel = 1;
+
+    /* CL 9 (which maps internally to CL 3) is included mainly for backward
+       compatibility with TightVNC Compression Levels 5-9.  It should be used
+       only in extremely low-bandwidth cases in which it can be shown to have a
+       benefit.  For low-color workloads, it provides typically only 10-20%
+       better compression than CL 2 with JPEG and CL 1 without JPEG, and it
+       uses, on average, twice as much CPU time. */
+    if (cl->tightCompressLevel == 9) compressLevel = 3;
 
     if ( cl->format.depth == 24 && cl->format.redMax == 0xFF &&
          cl->format.greenMax == 0xFF && cl->format.blueMax == 0xFF ) {
@@ -331,7 +350,7 @@ SendRectEncodingTight(rfbClientPtr cl,
             tightBeforeBuf = (char *)malloc(tightBeforeBufSize);
         else
             tightBeforeBuf = (char *)realloc(tightBeforeBuf,
-                                              tightBeforeBufSize);
+                                             tightBeforeBufSize);
     }
 
     /* Calculate maximum number of rows in one non-solid rectangle. */
@@ -359,14 +378,23 @@ SendRectEncodingTight(rfbClientPtr cl,
         }
 
         dh = (dy + MAX_SPLIT_TILE_SIZE <= y + h) ?
-            MAX_SPLIT_TILE_SIZE : (y + h - dy);
+             MAX_SPLIT_TILE_SIZE : (y + h - dy);
 
         for (dx = x; dx < x + w; dx += MAX_SPLIT_TILE_SIZE) {
 
             dw = (dx + MAX_SPLIT_TILE_SIZE <= x + w) ?
-                MAX_SPLIT_TILE_SIZE : (x + w - dx);
+                 MAX_SPLIT_TILE_SIZE : (x + w - dx);
 
             if (CheckSolidTile(cl, dx, dy, dw, dh, &colorValue, FALSE)) {
+
+                if (subsampLevel == TJ_GRAYSCALE && qualityLevel != -1) {
+                    uint32_t r = (colorValue >> 16) & 0xFF;
+                    uint32_t g = (colorValue >> 8) & 0xFF;
+                    uint32_t b = (colorValue) & 0xFF;
+                    double y = (0.257 * (double)r) + (0.504 * (double)g)
+                             + (0.098 * (double)b) + 16.;
+                    colorValue = (int)y + (((int)y) << 8) + (((int)y) << 16);
+                }
 
                 /* Get dimensions of solid-color area. */
 
@@ -415,12 +443,12 @@ SendRectEncodingTight(rfbClientPtr cl,
                 /* Send remaining rectangles (at right and bottom). */
 
                 if ( x_best + w_best != x + w &&
-                     !SendRectEncodingTight(cl, x_best+w_best, y_best,
-                                               w-(x_best-x)-w_best, h_best) )
+                     !SendRectEncodingTight(cl, x_best + w_best, y_best,
+                                               w - (x_best-x) - w_best, h_best) )
                     return FALSE;
                 if ( y_best + h_best != y + h &&
-                     !SendRectEncodingTight(cl, x, y_best+h_best,
-                                               w, h-(y_best-y)-h_best) )
+                     !SendRectEncodingTight(cl, x, y_best + h_best,
+                                               w, h - (y_best-y) - h_best) )
                     return FALSE;
 
                 /* Return after all recursive calls are done. */
@@ -436,6 +464,7 @@ SendRectEncodingTight(rfbClientPtr cl,
 
     return SendRectSimple(cl, x, y, w, h);
 }
+
 
 static void
 FindBestSolidArea(rfbClientPtr cl,
@@ -456,16 +485,16 @@ FindBestSolidArea(rfbClientPtr cl,
     for (dy = y; dy < y + h; dy += MAX_SPLIT_TILE_SIZE) {
 
         dh = (dy + MAX_SPLIT_TILE_SIZE <= y + h) ?
-            MAX_SPLIT_TILE_SIZE : (y + h - dy);
+             MAX_SPLIT_TILE_SIZE : (y + h - dy);
         dw = (w_prev > MAX_SPLIT_TILE_SIZE) ?
-            MAX_SPLIT_TILE_SIZE : w_prev;
+             MAX_SPLIT_TILE_SIZE : w_prev;
 
         if (!CheckSolidTile(cl, x, dy, dw, dh, &colorValue, TRUE))
             break;
 
         for (dx = x + dw; dx < x + w_prev;) {
             dw = (dx + MAX_SPLIT_TILE_SIZE <= x + w_prev) ?
-                MAX_SPLIT_TILE_SIZE : (x + w_prev - dx);
+                 MAX_SPLIT_TILE_SIZE : (x + w_prev - dx);
             if (!CheckSolidTile(cl, dx, dy, dw, dh, &colorValue, TRUE))
                 break;
 	    dx += dw;
@@ -481,6 +510,7 @@ FindBestSolidArea(rfbClientPtr cl,
     *w_ptr = w_best;
     *h_ptr = h_best;
 }
+
 
 static void
 ExtendSolidArea(rfbClientPtr cl,
@@ -525,6 +555,7 @@ ExtendSolidArea(rfbClientPtr cl,
     *w_ptr += cx - (*x_ptr + *w_ptr);
 }
 
+
 /*
  * Check if a rectangle is all of the same color. If needSameColor is
  * set to non-zero, then also check that its color equals to the
@@ -544,6 +575,7 @@ static rfbBool CheckSolidTile(rfbClientPtr cl, int x, int y, int w, int h, uint3
     }
 }
 
+
 #define DEFINE_CHECK_SOLID_FUNCTION(bpp)                                      \
                                                                               \
 static rfbBool                                                                \
@@ -554,8 +586,8 @@ CheckSolidTile##bpp(rfbClientPtr cl, int x, int y, int w, int h,              \
     uint##bpp##_t colorValue;                                                 \
     int dx, dy;                                                               \
                                                                               \
-    fbptr = (uint##bpp##_t *)                                                 \
-        &cl->scaledScreen->frameBuffer[y * cl->scaledScreen->paddedWidthInBytes + x * (bpp/8)]; \
+    fbptr = (uint##bpp##_t *)&cl->scaledScreen->frameBuffer                   \
+        [y * cl->scaledScreen->paddedWidthInBytes + x * (bpp/8)];             \
                                                                               \
     colorValue = *fbptr;                                                      \
     if (needSameColor && (uint32_t)colorValue != *colorPtr)                   \
@@ -566,7 +598,8 @@ CheckSolidTile##bpp(rfbClientPtr cl, int x, int y, int w, int h,              \
             if (colorValue != fbptr[dx])                                      \
                 return FALSE;                                                 \
         }                                                                     \
-        fbptr = (uint##bpp##_t *)((uint8_t *)fbptr + cl->scaledScreen->paddedWidthInBytes); \
+        fbptr = (uint##bpp##_t *)((uint8_t *)fbptr                            \
+                 + cl->scaledScreen->paddedWidthInBytes);                     \
     }                                                                         \
                                                                               \
     *colorPtr = (uint32_t)colorValue;                                         \
@@ -598,7 +631,7 @@ SendRectSimple(rfbClientPtr cl, int x, int y, int w, int h)
             tightBeforeBuf = (char *)malloc(tightBeforeBufSize);
         else
             tightBeforeBuf = (char *)realloc(tightBeforeBuf,
-                                              tightBeforeBufSize);
+                                             tightBeforeBufSize);
     }
 
     if (tightAfterBufSize < maxAfterSize) {
@@ -607,7 +640,7 @@ SendRectSimple(rfbClientPtr cl, int x, int y, int w, int h)
             tightAfterBuf = (char *)malloc(tightAfterBufSize);
         else
             tightAfterBuf = (char *)realloc(tightAfterBuf,
-                                             tightAfterBufSize);
+                                            tightAfterBufSize);
     }
 
     if (w > maxRectWidth || w * h > maxRectSize) {
@@ -618,7 +651,7 @@ SendRectSimple(rfbClientPtr cl, int x, int y, int w, int h)
             for (dx = 0; dx < w; dx += maxRectWidth) {
                 rw = (dx + maxRectWidth < w) ? maxRectWidth : w - dx;
                 rh = (dy + subrectMaxHeight < h) ? subrectMaxHeight : h - dy;
-                if (!SendSubrect(cl, x+dx, y+dy, rw, rh))
+                if (!SendSubrect(cl, x + dx, y + dy, rw, rh))
                     return FALSE;
             }
         }
@@ -649,39 +682,68 @@ SendSubrect(rfbClientPtr cl,
     if (!SendTightHeader(cl, x, y, w, h))
         return FALSE;
 
-    fbptr = (cl->scaledScreen->frameBuffer + (cl->scaledScreen->paddedWidthInBytes * y)
+    fbptr = (cl->scaledScreen->frameBuffer
+             + (cl->scaledScreen->paddedWidthInBytes * y)
              + (x * (cl->scaledScreen->bitsPerPixel / 8)));
 
-    (*cl->translateFn)(cl->translateLookupTable, &cl->screen->serverFormat,
-                       &cl->format, fbptr, tightBeforeBuf,
-                       cl->scaledScreen->paddedWidthInBytes, w, h);
+    if (subsampLevel == TJ_GRAYSCALE && qualityLevel != -1)
+        return SendJpegRect(cl, x, y, w, h, qualityLevel);
 
     paletteMaxColors = w * h / tightConf[compressLevel].idxMaxColorsDivisor;
+    if(qualityLevel != -1)
+        paletteMaxColors = tightConf[compressLevel].palMaxColorsWithJPEG;
     if ( paletteMaxColors < 2 &&
          w * h >= tightConf[compressLevel].monoMinRectSize ) {
         paletteMaxColors = 2;
     }
-    switch (cl->format.bitsPerPixel) {
-    case 8:
-        FillPalette8(w * h);
-        break;
-    case 16:
-        FillPalette16(w * h);
-        break;
-    default:
-        FillPalette32(w * h);
+
+    if (cl->format.bitsPerPixel == cl->screen->serverFormat.bitsPerPixel &&
+        cl->format.redMax == cl->screen->serverFormat.redMax &&
+        cl->format.greenMax == cl->screen->serverFormat.greenMax && 
+        cl->format.blueMax == cl->screen->serverFormat.blueMax &&
+        cl->format.bitsPerPixel >= 16) {
+
+        /* This is so we can avoid translating the pixels when compressing
+           with JPEG, since it is unnecessary */
+        switch (cl->format.bitsPerPixel) {
+        case 16:
+            FastFillPalette16(cl, (uint16_t *)fbptr, w,
+                              cl->scaledScreen->paddedWidthInBytes / 2, h);
+            break;
+        default:
+            FastFillPalette32(cl, (uint32_t *)fbptr, w,
+                              cl->scaledScreen->paddedWidthInBytes / 4, h);
+        }
+
+        if(paletteNumColors != 0 || qualityLevel == -1) {
+            (*cl->translateFn)(cl->translateLookupTable,
+                               &cl->screen->serverFormat, &cl->format, fbptr,
+                               tightBeforeBuf,
+                               cl->scaledScreen->paddedWidthInBytes, w, h);
+        }
+    }
+    else {
+        (*cl->translateFn)(cl->translateLookupTable, &cl->screen->serverFormat,
+                           &cl->format, fbptr, tightBeforeBuf,
+                           cl->scaledScreen->paddedWidthInBytes, w, h);
+
+        switch (cl->format.bitsPerPixel) {
+        case 8:
+            FillPalette8(w * h);
+            break;
+        case 16:
+            FillPalette16(w * h);
+            break;
+        default:
+            FillPalette32(w * h);
+        }
     }
 
     switch (paletteNumColors) {
     case 0:
         /* Truecolor image */
-        if (DetectSmoothImage(cl, &cl->format, w, h)) {
-            if (qualityLevel != -1) {
-                success = SendJpegRect(cl, x, y, w, h,
-                                       tightConf[qualityLevel].jpegQuality);
-            } else {
-                success = SendGradientRect(cl, x, y, w, h);
-            }
+        if (qualityLevel != -1) {
+            success = SendJpegRect(cl, x, y, w, h, qualityLevel);
         } else {
             success = SendFullColorRect(cl, x, y, w, h);
         }
@@ -696,14 +758,7 @@ SendSubrect(rfbClientPtr cl,
         break;
     default:
         /* Up to 256 different colors */
-        if ( paletteNumColors > 96 &&
-             qualityLevel != -1 && qualityLevel <= 3 &&
-             DetectSmoothImage(cl, &cl->format, w, h) ) {
-            success = SendJpegRect(cl, x, y, w, h,
-                                   tightConf[qualityLevel].jpegQuality);
-        } else {
-            success = SendIndexedRect(cl, x, y, w, h);
-        }
+        success = SendIndexedRect(cl, x, y, w, h);
     }
     return success;
 }
@@ -732,8 +787,10 @@ SendTightHeader(rfbClientPtr cl,
            sz_rfbFramebufferUpdateRectHeader);
     cl->ublen += sz_rfbFramebufferUpdateRectHeader;
 
-    rfbStatRecordEncodingSent(cl, cl->tightEncoding, sz_rfbFramebufferUpdateRectHeader,
-                              sz_rfbFramebufferUpdateRectHeader + w * (cl->format.bitsPerPixel / 8) * h);
+    rfbStatRecordEncodingSent(cl, cl->tightEncoding,
+                              sz_rfbFramebufferUpdateRectHeader,
+                              sz_rfbFramebufferUpdateRectHeader
+                                  + w * (cl->format.bitsPerPixel / 8) * h);
 
     return TRUE;
 }
@@ -762,7 +819,7 @@ SendSolidRect(rfbClientPtr cl)
     memcpy (&cl->updateBuf[cl->ublen], tightBeforeBuf, len);
     cl->ublen += len;
 
-    rfbStatRecordEncodingSentAdd(cl, cl->tightEncoding, len+1);
+    rfbStatRecordEncodingSentAdd(cl, cl->tightEncoding, len + 1);
 
     return TRUE;
 }
@@ -795,7 +852,12 @@ SendMonoRect(rfbClientPtr cl,
     dataLen = (w + 7) / 8;
     dataLen *= h;
 
-    cl->updateBuf[cl->ublen++] = (streamId | rfbTightExplicitFilter) << 4;
+    if (tightConf[compressLevel].monoZlibLevel == 0 &&
+        cl->tightEncoding != rfbEncodingTightPng)
+        cl->updateBuf[cl->ublen++] =
+            (char)((rfbTightNoZlib | rfbTightExplicitFilter) << 4);
+    else
+        cl->updateBuf[cl->ublen++] = (streamId | rfbTightExplicitFilter) << 4;
     cl->updateBuf[cl->ublen++] = rfbTightFilterPalette;
     cl->updateBuf[cl->ublen++] = 1;
 
@@ -866,7 +928,12 @@ SendIndexedRect(rfbClientPtr cl,
     }
 
     /* Prepare tight encoding header. */
-    cl->updateBuf[cl->ublen++] = (streamId | rfbTightExplicitFilter) << 4;
+    if (tightConf[compressLevel].idxZlibLevel == 0 &&
+        cl->tightEncoding != rfbEncodingTightPng)
+        cl->updateBuf[cl->ublen++] =
+            (char)((rfbTightNoZlib | rfbTightExplicitFilter) << 4);
+    else
+        cl->updateBuf[cl->ublen++] = (streamId | rfbTightExplicitFilter) << 4;
     cl->updateBuf[cl->ublen++] = rfbTightFilterPalette;
     cl->updateBuf[cl->ublen++] = (char)(paletteNumColors - 1);
 
@@ -886,9 +953,11 @@ SendIndexedRect(rfbClientPtr cl,
         } else
             entryLen = 4;
 
-        memcpy(&cl->updateBuf[cl->ublen], tightAfterBuf, paletteNumColors * entryLen);
+        memcpy(&cl->updateBuf[cl->ublen], tightAfterBuf,
+               paletteNumColors * entryLen);
         cl->ublen += paletteNumColors * entryLen;
-        rfbStatRecordEncodingSentAdd(cl, cl->tightEncoding, 3 + paletteNumColors * entryLen);
+        rfbStatRecordEncodingSentAdd(cl, cl->tightEncoding,
+                                     3 + paletteNumColors * entryLen);
         break;
 
     case 16:
@@ -901,7 +970,8 @@ SendIndexedRect(rfbClientPtr cl,
 
         memcpy(&cl->updateBuf[cl->ublen], tightAfterBuf, paletteNumColors * 2);
         cl->ublen += paletteNumColors * 2;
-        rfbStatRecordEncodingSentAdd(cl, cl->tightEncoding, 3 + paletteNumColors * 2);
+        rfbStatRecordEncodingSentAdd(cl, cl->tightEncoding,
+                                     3 + paletteNumColors * 2);
         break;
 
     default:
@@ -934,7 +1004,11 @@ SendFullColorRect(rfbClientPtr cl,
             return FALSE;
     }
 
-    cl->updateBuf[cl->ublen++] = 0x00;  /* stream id = 0, no flushing, no filter */
+    if (tightConf[compressLevel].rawZlibLevel == 0 &&
+        cl->tightEncoding != rfbEncodingTightPng)
+        cl->updateBuf[cl->ublen++] = (char)(rfbTightNoZlib << 4);
+    else
+        cl->updateBuf[cl->ublen++] = 0x00;  /* stream id = 0, no flushing, no filter */
     rfbStatRecordEncodingSentAdd(cl, cl->tightEncoding, 1);
 
     if (usePixelFormat24) {
@@ -946,53 +1020,6 @@ SendFullColorRect(rfbClientPtr cl,
     return CompressData(cl, streamId, w * h * len,
                         tightConf[compressLevel].rawZlibLevel,
                         Z_DEFAULT_STRATEGY);
-}
-
-static rfbBool
-SendGradientRect(rfbClientPtr cl,
-                 int x,
-                 int y,
-                 int w,
-                 int h)
-{
-    int streamId = 3;
-    int len;
-
-#ifdef LIBVNCSERVER_HAVE_LIBPNG
-    if (CanSendPngRect(cl, w, h)) {
-        return SendPngRect(cl, x, y, w, h);
-    }
-#endif
-
-    if (cl->format.bitsPerPixel == 8)
-        return SendFullColorRect(cl, x, y, w, h);
-
-    if (cl->ublen + TIGHT_MIN_TO_COMPRESS + 2 > UPDATE_BUF_SIZE) {
-        if (!rfbSendUpdateBuf(cl))
-            return FALSE;
-    }
-
-    if (prevRowBuf == NULL)
-        prevRowBuf = (int *)malloc(2048 * 3 * sizeof(int));
-
-    cl->updateBuf[cl->ublen++] = (streamId | rfbTightExplicitFilter) << 4;
-    cl->updateBuf[cl->ublen++] = rfbTightFilterGradient;
-    rfbStatRecordEncodingSentAdd(cl, cl->tightEncoding, 2);
-
-    if (usePixelFormat24) {
-        FilterGradient24(cl, tightBeforeBuf, &cl->format, w, h);
-        len = 3;
-    } else if (cl->format.bitsPerPixel == 32) {
-        FilterGradient32(cl, (uint32_t *)tightBeforeBuf, &cl->format, w, h);
-        len = 4;
-    } else {
-        FilterGradient16(cl, (uint16_t *)tightBeforeBuf, &cl->format, w, h);
-        len = 2;
-    }
-
-    return CompressData(cl, streamId, w * h * len,
-                        tightConf[compressLevel].gradientZlibLevel,
-                        Z_FILTERED);
 }
 
 static rfbBool
@@ -1011,6 +1038,9 @@ CompressData(rfbClientPtr cl,
         rfbStatRecordEncodingSentAdd(cl, cl->tightEncoding, dataLen);
         return TRUE;
     }
+
+    if (zlibLevel == 0)
+        return SendCompressedData (cl, tightBeforeBuf, dataLen);
 
     pz = &cl->zsStruct[streamId];
 
@@ -1044,15 +1074,16 @@ CompressData(rfbClientPtr cl,
     }
 
     /* Actual compression. */
-    if ( deflate (pz, Z_SYNC_FLUSH) != Z_OK ||
-         pz->avail_in != 0 || pz->avail_out == 0 ) {
+    if (deflate(pz, Z_SYNC_FLUSH) != Z_OK ||
+        pz->avail_in != 0 || pz->avail_out == 0) {
         return FALSE;
     }
 
-    return SendCompressedData(cl, tightAfterBufSize - pz->avail_out);
+    return SendCompressedData(cl, tightAfterBuf,
+                              tightAfterBufSize - pz->avail_out);
 }
 
-static rfbBool SendCompressedData(rfbClientPtr cl,
+static rfbBool SendCompressedData(rfbClientPtr cl, char *buf,
                                   int compressedLen)
 {
     int i, portionLen;
@@ -1079,13 +1110,14 @@ static rfbBool SendCompressedData(rfbClientPtr cl,
             if (!rfbSendUpdateBuf(cl))
                 return FALSE;
         }
-        memcpy(&cl->updateBuf[cl->ublen], &tightAfterBuf[i], portionLen);
+        memcpy(&cl->updateBuf[cl->ublen], &buf[i], portionLen);
         cl->ublen += portionLen;
     }
     rfbStatRecordEncodingSentAdd(cl, cl->tightEncoding, compressedLen);
 
     return TRUE;
 }
+
 
 /*
  * Code to determine how many different colors used in rectangle.
@@ -1132,6 +1164,7 @@ FillPalette8(int count)
         paletteNumColors = 2;   /* Two colors */
     }
 }
+
 
 #define DEFINE_FILL_PALETTE_FUNCTION(bpp)                               \
                                                                         \
@@ -1198,13 +1231,117 @@ FillPalette##bpp(int count) {                                           \
 DEFINE_FILL_PALETTE_FUNCTION(16)
 DEFINE_FILL_PALETTE_FUNCTION(32)
 
+#define DEFINE_FAST_FILL_PALETTE_FUNCTION(bpp)                          \
+                                                                        \
+static void                                                             \
+FastFillPalette##bpp(rfbClientPtr cl, uint##bpp##_t *data, int w,       \
+                     int pitch, int h)                                  \
+{                                                                       \
+    uint##bpp##_t c0, c1, ci, mask, c0t, c1t, cit;                      \
+    int i, j, i2 = 0, j2, n0, n1, ni;                                   \
+                                                                        \
+    if (cl->translateFn != rfbTranslateNone) {                          \
+        mask = cl->screen->serverFormat.redMax                          \
+            << cl->screen->serverFormat.redShift;                       \
+        mask |= cl->screen->serverFormat.greenMax                       \
+             << cl->screen->serverFormat.greenShift;                    \
+        mask |= cl->screen->serverFormat.blueMax                        \
+             << cl->screen->serverFormat.blueShift;                     \
+    } else mask = ~0;                                                   \
+                                                                        \
+    c0 = data[0] & mask;                                                \
+    for (j = 0; j < h; j++) {                                           \
+        for (i = 0; i < w; i++) {                                       \
+            if ((data[j * pitch + i] & mask) != c0)                     \
+                goto done;                                              \
+        }                                                               \
+    }                                                                   \
+    done:                                                               \
+    if (j >= h) {                                                       \
+        paletteNumColors = 1;   /* Solid rectangle */                   \
+        return;                                                         \
+    }                                                                   \
+    if (paletteMaxColors < 2) {                                         \
+        paletteNumColors = 0;   /* Full-color encoding preferred */     \
+        return;                                                         \
+    }                                                                   \
+                                                                        \
+    n0 = j * w + i;                                                     \
+    c1 = data[j * pitch + i] & mask;                                    \
+    n1 = 0;                                                             \
+    i++;  if (i >= w) {i = 0;  j++;}                                    \
+    for (j2 = j; j2 < h; j2++) {                                        \
+        for (i2 = i; i2 < w; i2++) {                                    \
+            ci = data[j2 * pitch + i2] & mask;                          \
+            if (ci == c0) {                                             \
+                n0++;                                                   \
+            } else if (ci == c1) {                                      \
+                n1++;                                                   \
+            } else                                                      \
+                goto done2;                                             \
+        }                                                               \
+        i = 0;                                                          \
+    }                                                                   \
+    done2:                                                              \
+    (*cl->translateFn)(cl->translateLookupTable,                        \
+                       &cl->screen->serverFormat, &cl->format,          \
+                       (char *)&c0, (char *)&c0t, bpp/8, 1, 1);         \
+    (*cl->translateFn)(cl->translateLookupTable,                        \
+                       &cl->screen->serverFormat, &cl->format,          \
+                       (char *)&c1, (char *)&c1t, bpp/8, 1, 1);         \
+    if (j2 >= h) {                                                      \
+        if (n0 > n1) {                                                  \
+            monoBackground = (uint32_t)c0t;                             \
+            monoForeground = (uint32_t)c1t;                             \
+        } else {                                                        \
+            monoBackground = (uint32_t)c1t;                             \
+            monoForeground = (uint32_t)c0t;                             \
+        }                                                               \
+        paletteNumColors = 2;   /* Two colors */                        \
+        return;                                                         \
+    }                                                                   \
+                                                                        \
+    PaletteReset();                                                     \
+    PaletteInsert (c0t, (uint32_t)n0, bpp);                             \
+    PaletteInsert (c1t, (uint32_t)n1, bpp);                             \
+                                                                        \
+    ni = 1;                                                             \
+    i2++;  if (i2 >= w) {i2 = 0;  j2++;}                                \
+    for (j = j2; j < h; j++) {                                          \
+        for (i = i2; i < w; i++) {                                      \
+            if ((data[j * pitch + i] & mask) == ci) {                   \
+                ni++;                                                   \
+            } else {                                                    \
+                (*cl->translateFn)(cl->translateLookupTable,            \
+                                   &cl->screen->serverFormat,           \
+                                   &cl->format, (char *)&ci,            \
+                                   (char *)&cit, bpp/8, 1, 1);          \
+                if (!PaletteInsert (cit, (uint32_t)ni, bpp))            \
+                    return;                                             \
+                ci = data[j * pitch + i] & mask;                        \
+                ni = 1;                                                 \
+            }                                                           \
+        }                                                               \
+        i2 = 0;                                                         \
+    }                                                                   \
+                                                                        \
+    (*cl->translateFn)(cl->translateLookupTable,                        \
+                       &cl->screen->serverFormat, &cl->format,          \
+                       (char *)&ci, (char *)&cit, bpp/8, 1, 1);         \
+    PaletteInsert (cit, (uint32_t)ni, bpp);                             \
+}
+
+DEFINE_FAST_FILL_PALETTE_FUNCTION(16)
+DEFINE_FAST_FILL_PALETTE_FUNCTION(32)
+
 
 /*
  * Functions to operate with palette structures.
  */
 
-#define HASH_FUNC16(rgb) ((int)(((rgb >> 8) + rgb) & 0xFF))
-#define HASH_FUNC32(rgb) ((int)(((rgb >> 16) + (rgb >> 8)) & 0xFF))
+#define HASH_FUNC16(rgb) ((int)((((rgb) >> 8) + (rgb)) & 0xFF))
+#define HASH_FUNC32(rgb) ((int)((((rgb) >> 16) + ((rgb) >> 8)) & 0xFF))
+
 
 static void
 PaletteReset(void)
@@ -1212,6 +1349,7 @@ PaletteReset(void)
     paletteNumColors = 0;
     memset(palette.hash, 0, 256 * sizeof(COLOR_LIST *));
 }
+
 
 static int
 PaletteInsert(uint32_t rgb,
@@ -1353,6 +1491,7 @@ EncodeIndexedRect##bpp(uint8_t *buf, int count) {                       \
 DEFINE_IDX_ENCODE_FUNCTION(16)
 DEFINE_IDX_ENCODE_FUNCTION(32)
 
+
 #define DEFINE_MONO_ENCODE_FUNCTION(bpp)                                \
                                                                         \
 static void                                                             \
@@ -1409,379 +1548,110 @@ DEFINE_MONO_ENCODE_FUNCTION(32)
 
 
 /*
- * ``Gradient'' filter for 24-bit color samples.
- * Should be called only when redMax, greenMax and blueMax are 255.
- * Color components assumed to be byte-aligned.
- */
-
-static void
-FilterGradient24(rfbClientPtr cl, char *buf, rfbPixelFormat *fmt, int w, int h)
-{
-    uint32_t *buf32;
-    uint32_t pix32;
-    int *prevRowPtr;
-    int shiftBits[3];
-    int pixHere[3], pixUpper[3], pixLeft[3], pixUpperLeft[3];
-    int prediction;
-    int x, y, c;
-
-    buf32 = (uint32_t *)buf;
-    memset (prevRowBuf, 0, w * 3 * sizeof(int));
-
-    if (!cl->screen->serverFormat.bigEndian == !fmt->bigEndian) {
-        shiftBits[0] = fmt->redShift;
-        shiftBits[1] = fmt->greenShift;
-        shiftBits[2] = fmt->blueShift;
-    } else {
-        shiftBits[0] = 24 - fmt->redShift;
-        shiftBits[1] = 24 - fmt->greenShift;
-        shiftBits[2] = 24 - fmt->blueShift;
-    }
-
-    for (y = 0; y < h; y++) {
-        for (c = 0; c < 3; c++) {
-            pixUpper[c] = 0;
-            pixHere[c] = 0;
-        }
-        prevRowPtr = prevRowBuf;
-        for (x = 0; x < w; x++) {
-            pix32 = *buf32++;
-            for (c = 0; c < 3; c++) {
-                pixUpperLeft[c] = pixUpper[c];
-                pixLeft[c] = pixHere[c];
-                pixUpper[c] = *prevRowPtr;
-                pixHere[c] = (int)(pix32 >> shiftBits[c] & 0xFF);
-                *prevRowPtr++ = pixHere[c];
-
-                prediction = pixLeft[c] + pixUpper[c] - pixUpperLeft[c];
-                if (prediction < 0) {
-                    prediction = 0;
-                } else if (prediction > 0xFF) {
-                    prediction = 0xFF;
-                }
-                *buf++ = (char)(pixHere[c] - prediction);
-            }
-        }
-    }
-}
-
-
-/*
- * ``Gradient'' filter for other color depths.
- */
-
-#define DEFINE_GRADIENT_FILTER_FUNCTION(bpp)                             \
-                                                                         \
-static void                                                              \
-FilterGradient##bpp(rfbClientPtr cl, uint##bpp##_t *buf,                 \
-		rfbPixelFormat *fmt, int w, int h) {                     \
-    uint##bpp##_t pix, diff;                                             \
-    rfbBool endianMismatch;                                              \
-    int *prevRowPtr;                                                     \
-    int maxColor[3], shiftBits[3];                                       \
-    int pixHere[3], pixUpper[3], pixLeft[3], pixUpperLeft[3];            \
-    int prediction;                                                      \
-    int x, y, c;                                                         \
-                                                                         \
-    memset (prevRowBuf, 0, w * 3 * sizeof(int));                         \
-                                                                         \
-    endianMismatch = (!cl->screen->serverFormat.bigEndian != !fmt->bigEndian);    \
-                                                                         \
-    maxColor[0] = fmt->redMax;                                           \
-    maxColor[1] = fmt->greenMax;                                         \
-    maxColor[2] = fmt->blueMax;                                          \
-    shiftBits[0] = fmt->redShift;                                        \
-    shiftBits[1] = fmt->greenShift;                                      \
-    shiftBits[2] = fmt->blueShift;                                       \
-                                                                         \
-    for (y = 0; y < h; y++) {                                            \
-        for (c = 0; c < 3; c++) {                                        \
-            pixUpper[c] = 0;                                             \
-            pixHere[c] = 0;                                              \
-        }                                                                \
-        prevRowPtr = prevRowBuf;                                         \
-        for (x = 0; x < w; x++) {                                        \
-            pix = *buf;                                                  \
-            if (endianMismatch) {                                        \
-                pix = Swap##bpp(pix);                                    \
-            }                                                            \
-            diff = 0;                                                    \
-            for (c = 0; c < 3; c++) {                                    \
-                pixUpperLeft[c] = pixUpper[c];                           \
-                pixLeft[c] = pixHere[c];                                 \
-                pixUpper[c] = *prevRowPtr;                               \
-                pixHere[c] = (int)(pix >> shiftBits[c] & maxColor[c]);   \
-                *prevRowPtr++ = pixHere[c];                              \
-                                                                         \
-                prediction = pixLeft[c] + pixUpper[c] - pixUpperLeft[c]; \
-                if (prediction < 0) {                                    \
-                    prediction = 0;                                      \
-                } else if (prediction > maxColor[c]) {                   \
-                    prediction = maxColor[c];                            \
-                }                                                        \
-                diff |= ((pixHere[c] - prediction) & maxColor[c])        \
-                    << shiftBits[c];                                     \
-            }                                                            \
-            if (endianMismatch) {                                        \
-                diff = Swap##bpp(diff);                                  \
-            }                                                            \
-            *buf++ = diff;                                               \
-        }                                                                \
-    }                                                                    \
-}
-
-DEFINE_GRADIENT_FILTER_FUNCTION(16)
-DEFINE_GRADIENT_FILTER_FUNCTION(32)
-
-
-/*
- * Code to guess if given rectangle is suitable for smooth image
- * compression (by applying "gradient" filter or JPEG coder).
- */
-
-#define JPEG_MIN_RECT_SIZE  4096
-
-#define DETECT_SUBROW_WIDTH    7
-#define DETECT_MIN_WIDTH       8
-#define DETECT_MIN_HEIGHT      8
-
-static int
-DetectSmoothImage (rfbClientPtr cl, rfbPixelFormat *fmt, int w, int h)
-{
-    long avgError;
-
-    if ( cl->screen->serverFormat.bitsPerPixel == 8 || fmt->bitsPerPixel == 8 ||
-         w < DETECT_MIN_WIDTH || h < DETECT_MIN_HEIGHT ) {
-        return 0;
-    }
-
-    if (qualityLevel != -1) {
-        if (w * h < JPEG_MIN_RECT_SIZE) {
-            return 0;
-        }
-    } else {
-        if ( rfbTightDisableGradient ||
-             w * h < tightConf[compressLevel].gradientMinRectSize ) {
-            return 0;
-        }
-    }
-
-    if (fmt->bitsPerPixel == 32) {
-        if (usePixelFormat24) {
-            avgError = DetectSmoothImage24(cl, fmt, w, h);
-            if (qualityLevel != -1) {
-                return (avgError < tightConf[qualityLevel].jpegThreshold24);
-            }
-            return (avgError < tightConf[compressLevel].gradientThreshold24);
-        } else {
-            avgError = DetectSmoothImage32(cl, fmt, w, h);
-        }
-    } else {
-        avgError = DetectSmoothImage16(cl, fmt, w, h);
-    }
-    if (qualityLevel != -1) {
-        return (avgError < tightConf[qualityLevel].jpegThreshold);
-    }
-    return (avgError < tightConf[compressLevel].gradientThreshold);
-}
-
-static unsigned long
-DetectSmoothImage24 (rfbClientPtr cl,
-                     rfbPixelFormat *fmt,
-                     int w,
-                     int h)
-{
-    int off;
-    int x, y, d, dx, c;
-    int diffStat[256];
-    int pixelCount = 0;
-    int pix, left[3];
-    unsigned long avgError;
-
-    /* If client is big-endian, color samples begin from the second
-       byte (offset 1) of a 32-bit pixel value. */
-    off = (fmt->bigEndian != 0);
-
-    memset(diffStat, 0, 256*sizeof(int));
-
-    y = 0, x = 0;
-    while (y < h && x < w) {
-        for (d = 0; d < h - y && d < w - x - DETECT_SUBROW_WIDTH; d++) {
-            for (c = 0; c < 3; c++) {
-                left[c] = (int)tightBeforeBuf[((y+d)*w+x+d)*4+off+c] & 0xFF;
-            }
-            for (dx = 1; dx <= DETECT_SUBROW_WIDTH; dx++) {
-                for (c = 0; c < 3; c++) {
-                    pix = (int)tightBeforeBuf[((y+d)*w+x+d+dx)*4+off+c] & 0xFF;
-                    diffStat[abs(pix - left[c])]++;
-                    left[c] = pix;
-                }
-                pixelCount++;
-            }
-        }
-        if (w > h) {
-            x += h;
-            y = 0;
-        } else {
-            x = 0;
-            y += w;
-        }
-    }
-
-    if (diffStat[0] * 33 / pixelCount >= 95)
-        return 0;
-
-    avgError = 0;
-    for (c = 1; c < 8; c++) {
-        avgError += (unsigned long)diffStat[c] * (unsigned long)(c * c);
-        if (diffStat[c] == 0 || diffStat[c] > diffStat[c-1] * 2)
-            return 0;
-    }
-    for (; c < 256; c++) {
-        avgError += (unsigned long)diffStat[c] * (unsigned long)(c * c);
-    }
-    avgError /= (pixelCount * 3 - diffStat[0]);
-
-    return avgError;
-}
-
-#define DEFINE_DETECT_FUNCTION(bpp)                                          \
-                                                                             \
-static unsigned long                                                         \
-DetectSmoothImage##bpp (rfbClientPtr cl, rfbPixelFormat *fmt, int w, int h) {\
-    rfbBool endianMismatch;                                                  \
-    uint##bpp##_t pix;                                                       \
-    int maxColor[3], shiftBits[3];                                           \
-    int x, y, d, dx, c;                                                      \
-    int diffStat[256];                                                       \
-    int pixelCount = 0;                                                      \
-    int sample, sum, left[3];                                                \
-    unsigned long avgError;                                                  \
-                                                                             \
-    endianMismatch = (!cl->screen->serverFormat.bigEndian != !fmt->bigEndian); \
-                                                                             \
-    maxColor[0] = fmt->redMax;                                               \
-    maxColor[1] = fmt->greenMax;                                             \
-    maxColor[2] = fmt->blueMax;                                              \
-    shiftBits[0] = fmt->redShift;                                            \
-    shiftBits[1] = fmt->greenShift;                                          \
-    shiftBits[2] = fmt->blueShift;                                           \
-                                                                             \
-    memset(diffStat, 0, 256*sizeof(int));                                    \
-                                                                             \
-    y = 0, x = 0;                                                            \
-    while (y < h && x < w) {                                                 \
-        for (d = 0; d < h - y && d < w - x - DETECT_SUBROW_WIDTH; d++) {     \
-            pix = ((uint##bpp##_t *)tightBeforeBuf)[(y+d)*w+x+d];            \
-            if (endianMismatch) {                                            \
-                pix = Swap##bpp(pix);                                        \
-            }                                                                \
-            for (c = 0; c < 3; c++) {                                        \
-                left[c] = (int)(pix >> shiftBits[c] & maxColor[c]);          \
-            }                                                                \
-            for (dx = 1; dx <= DETECT_SUBROW_WIDTH; dx++) {                  \
-                pix = ((uint##bpp##_t *)tightBeforeBuf)[(y+d)*w+x+d+dx];     \
-                if (endianMismatch) {                                        \
-                    pix = Swap##bpp(pix);                                    \
-                }                                                            \
-                sum = 0;                                                     \
-                for (c = 0; c < 3; c++) {                                    \
-                    sample = (int)(pix >> shiftBits[c] & maxColor[c]);       \
-                    sum += abs(sample - left[c]);                            \
-                    left[c] = sample;                                        \
-                }                                                            \
-                if (sum > 255)                                               \
-                    sum = 255;                                               \
-                diffStat[sum]++;                                             \
-                pixelCount++;                                                \
-            }                                                                \
-        }                                                                    \
-        if (w > h) {                                                         \
-            x += h;                                                          \
-            y = 0;                                                           \
-        } else {                                                             \
-            x = 0;                                                           \
-            y += w;                                                          \
-        }                                                                    \
-    }                                                                        \
-                                                                             \
-    if ((diffStat[0] + diffStat[1]) * 100 / pixelCount >= 90)                \
-        return 0;                                                            \
-                                                                             \
-    avgError = 0;                                                            \
-    for (c = 1; c < 8; c++) {                                                \
-        avgError += (unsigned long)diffStat[c] * (unsigned long)(c * c);     \
-        if (diffStat[c] == 0 || diffStat[c] > diffStat[c-1] * 2)             \
-            return 0;                                                        \
-    }                                                                        \
-    for (; c < 256; c++) {                                                   \
-        avgError += (unsigned long)diffStat[c] * (unsigned long)(c * c);     \
-    }                                                                        \
-    avgError /= (pixelCount - diffStat[0]);                                  \
-                                                                             \
-    return avgError;                                                         \
-}
-
-DEFINE_DETECT_FUNCTION(16)
-DEFINE_DETECT_FUNCTION(32)
-
-
-/*
  * JPEG compression stuff.
  */
-
-static TLS struct jpeg_destination_mgr jpegDstManager;
-static TLS rfbBool jpegError = FALSE;
-static TLS int jpegDstDataLen = 0;
 
 static rfbBool
 SendJpegRect(rfbClientPtr cl, int x, int y, int w, int h, int quality)
 {
-    struct jpeg_compress_struct cinfo;
-    struct jpeg_error_mgr jerr;
-    uint8_t *srcBuf;
-    JSAMPROW rowPointer[1];
-    int dy;
+    unsigned char *srcbuf;
+    int ps = cl->screen->serverFormat.bitsPerPixel / 8;
+    int subsamp = subsampLevel2tjsubsamp[subsampLevel];
+    unsigned long size = 0;
+    int flags = 0, pitch;
+    unsigned char *tmpbuf = NULL;
 
     if (cl->screen->serverFormat.bitsPerPixel == 8)
         return SendFullColorRect(cl, x, y, w, h);
 
-    srcBuf = (uint8_t *)malloc(w * 3);
-    if (srcBuf == NULL) {
-        return SendFullColorRect(cl, x, y, w, h);
+    if (ps < 2) {
+        rfbLog("Error: JPEG requires 16-bit, 24-bit, or 32-bit pixel format.\n");
+        return 0;
     }
-    rowPointer[0] = srcBuf;
-
-    cinfo.err = jpeg_std_error(&jerr);
-    jpeg_create_compress(&cinfo);
-
-    cinfo.image_width = w;
-    cinfo.image_height = h;
-    cinfo.input_components = 3;
-    cinfo.in_color_space = JCS_RGB;
-
-    jpeg_set_defaults(&cinfo);
-    jpeg_set_quality(&cinfo, quality, TRUE);
-
-    JpegSetDstManager (&cinfo);
-
-    jpeg_start_compress(&cinfo, TRUE);
-
-    for (dy = 0; dy < h; dy++) {
-        PrepareRowForImg(cl, srcBuf, x, y + dy, w);
-        jpeg_write_scanlines(&cinfo, rowPointer, 1);
-        if (jpegError)
-            break;
+    if (!j) {
+        if ((j = tjInitCompress()) == NULL) {
+            rfbLog("JPEG Error: %s\n", tjGetErrorStr());
+            return 0;
+        }
     }
 
-    if (!jpegError)
-        jpeg_finish_compress(&cinfo);
+    if (tightAfterBufSize < TJBUFSIZE(w, h)) {
+        if (tightAfterBuf == NULL)
+            tightAfterBuf = (char *)malloc(TJBUFSIZE(w, h));
+        else
+            tightAfterBuf = (char *)realloc(tightAfterBuf,
+                                            TJBUFSIZE(w, h));
+        if (!tightAfterBuf) {
+            rfbLog("Memory allocation failure!\n");
+            return 0;
+        }
+        tightAfterBufSize = TJBUFSIZE(w, h);
+    }
 
-    jpeg_destroy_compress(&cinfo);
-    free(srcBuf);
+    if (ps == 2) {
+        uint16_t *srcptr, pix;
+        unsigned char *dst;
+        int inRed, inGreen, inBlue, i, j;
 
-    if (jpegError)
-        return SendFullColorRect(cl, x, y, w, h);
+        if((tmpbuf = (unsigned char *)malloc(w * h * 3)) == NULL)
+            rfbLog("Memory allocation failure!\n");
+        srcptr = (uint16_t *)&cl->scaledScreen->frameBuffer
+            [y * cl->scaledScreen->paddedWidthInBytes + x * ps];
+        dst = tmpbuf;
+        for(j = 0; j < h; j++) {
+            uint16_t *srcptr2 = srcptr;
+            unsigned char *dst2 = dst;
+            for (i = 0; i < w; i++) {
+                pix = *srcptr2++;
+                inRed = (int) (pix >> cl->screen->serverFormat.redShift
+                               & cl->screen->serverFormat.redMax);
+                inGreen = (int) (pix >> cl->screen->serverFormat.greenShift
+                                 & cl->screen->serverFormat.greenMax);
+                inBlue  = (int) (pix >> cl->screen->serverFormat.blueShift
+                                 & cl->screen->serverFormat.blueMax);
+                *dst2++ = (uint8_t)((inRed * 255
+                                     + cl->screen->serverFormat.redMax / 2)
+                                    / cl->screen->serverFormat.redMax);
+               	*dst2++ = (uint8_t)((inGreen * 255
+                                     + cl->screen->serverFormat.greenMax / 2)
+                                    / cl->screen->serverFormat.greenMax);
+                *dst2++ = (uint8_t)((inBlue * 255
+                                     + cl->screen->serverFormat.blueMax / 2)
+                                    / cl->screen->serverFormat.blueMax);
+            }
+            srcptr += cl->scaledScreen->paddedWidthInBytes / ps;
+            dst += w * 3;
+        }
+        srcbuf = tmpbuf;
+        pitch = w * 3;
+        ps = 3;
+    } else {
+        if (cl->screen->serverFormat.bigEndian && ps == 4)
+            flags |= TJ_ALPHAFIRST;
+        if (cl->screen->serverFormat.redShift == 16
+            && cl->screen->serverFormat.blueShift == 0)
+            flags |= TJ_BGR;
+        if (cl->screen->serverFormat.bigEndian)
+            flags ^= TJ_BGR;
+        pitch = cl->scaledScreen->paddedWidthInBytes;
+        srcbuf = (unsigned char *)&cl->scaledScreen->frameBuffer
+            [y * pitch + x * ps];
+    }
+
+    if (tjCompress(j, srcbuf, w, pitch, h, ps, (unsigned char *)tightAfterBuf,
+                   &size, subsamp, quality, flags) == -1) {
+        rfbLog("JPEG Error: %s\n", tjGetErrorStr());
+        if (tmpbuf) {
+            free(tmpbuf);
+            tmpbuf = NULL;
+        }
+        return 0;
+    }
+
+    if (tmpbuf) {
+        free(tmpbuf);
+        tmpbuf = NULL;
+    }
 
     if (cl->ublen + TIGHT_MIN_TO_COMPRESS + 1 > UPDATE_BUF_SIZE) {
         if (!rfbSendUpdateBuf(cl))
@@ -1791,7 +1661,7 @@ SendJpegRect(rfbClientPtr cl, int x, int y, int w, int h, int quality)
     cl->updateBuf[cl->ublen++] = (char)(rfbTightJpeg << 4);
     rfbStatRecordEncodingSentAdd(cl, cl->tightEncoding, 1);
 
-    return SendCompressedData(cl, jpegDstDataLen);
+    return SendCompressedData(cl, tightAfterBuf, (int)size);
 }
 
 static void
@@ -1869,43 +1739,6 @@ PrepareRowForImg##bpp(rfbClientPtr cl, uint8_t *dst, int x, int y, int count) { 
 
 DEFINE_JPEG_GET_ROW_FUNCTION(16)
 DEFINE_JPEG_GET_ROW_FUNCTION(32)
-
-/*
- * Destination manager implementation for JPEG library.
- */
-
-static void
-JpegInitDestination(j_compress_ptr cinfo)
-{
-    jpegError = FALSE;
-    jpegDstManager.next_output_byte = (JOCTET *)tightAfterBuf;
-    jpegDstManager.free_in_buffer = (size_t)tightAfterBufSize;
-}
-
-static boolean
-JpegEmptyOutputBuffer(j_compress_ptr cinfo)
-{
-    jpegError = TRUE;
-    jpegDstManager.next_output_byte = (JOCTET *)tightAfterBuf;
-    jpegDstManager.free_in_buffer = (size_t)tightAfterBufSize;
-
-    return TRUE;
-}
-
-static void
-JpegTermDestination(j_compress_ptr cinfo)
-{
-    jpegDstDataLen = tightAfterBufSize - jpegDstManager.free_in_buffer;
-}
-
-static void
-JpegSetDstManager(j_compress_ptr cinfo)
-{
-    jpegDstManager.init_destination = JpegInitDestination;
-    jpegDstManager.empty_output_buffer = JpegEmptyOutputBuffer;
-    jpegDstManager.term_destination = JpegTermDestination;
-    cinfo->dest = &jpegDstManager;
-}
 
 /*
  * PNG compression stuff.
@@ -2062,6 +1895,6 @@ static rfbBool SendPngRect(rfbClientPtr cl, int x, int y, int w, int h) {
     rfbStatRecordEncodingSentAdd(cl, cl->tightEncoding, 1);
 
     /* rfbLog("<< SendPngRect\n"); */
-    return SendCompressedData(cl, pngDstDataLen);
+    return SendCompressedData(cl, tightAfterBuf, pngDstDataLen);
 }
 #endif

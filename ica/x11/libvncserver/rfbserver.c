@@ -3,6 +3,7 @@
  */
 
 /*
+ *  Copyright (C) 2011-2012 D. R. Commander
  *  Copyright (C) 2005 Rohit Kumar, Johannes E. Schindelin
  *  Copyright (C) 2002 RealVNC Ltd.
  *  OSXvnc Copyright (C) 2001 Dan McGuirk <mcguirk@incompleteness.net>.
@@ -27,7 +28,11 @@
 
 #ifdef __STRICT_ANSI__
 #define _BSD_SOURCE
+#define _POSIX_SOURCE
+#define _XOPEN_SOURCE 600
 #endif
+
+#include <stdio.h>
 #include <string.h>
 #include <rfb/rfb.h>
 #include <rfb/rfbregion.h>
@@ -50,6 +55,7 @@
 #ifdef LIBVNCSERVER_HAVE_NETINET_IN_H
 #include <netinet/in.h>
 #include <netinet/tcp.h>
+#include <netdb.h>
 #include <arpa/inet.h>
 #endif
 #endif
@@ -83,6 +89,21 @@ static int compat_mkdir(const char *path, int mode)
 	return mkdir(path);
 }
 #define mkdir compat_mkdir
+#endif
+
+#ifdef LIBVNCSERVER_HAVE_LIBJPEG
+/*
+ * Map of quality levels to provide compatibility with TightVNC/TigerVNC
+ * clients.  This emulates the behavior of the TigerVNC Server.
+ */
+
+static const int tight2turbo_qual[10] = {
+   15, 29, 41, 42, 62, 77, 79, 86, 92, 100
+};
+
+static const int tight2turbo_subsamp[10] = {
+   1, 1, 1, 2, 2, 2, 0, 0, 0, 0
+};
 #endif
 
 static void rfbProcessClientProtocolVersion(rfbClientPtr cl);
@@ -211,9 +232,7 @@ void
 rfbNewClientConnection(rfbScreenInfoPtr rfbScreen,
                        int sock)
 {
-    rfbClientPtr cl;
-
-    cl = rfbNewClient(rfbScreen,sock);
+    rfbNewClient(rfbScreen,sock);
 }
 
 
@@ -270,8 +289,12 @@ rfbNewTCPOrUDPClient(rfbScreenInfoPtr rfbScreen,
     rfbProtocolVersionMsg pv;
     rfbClientIteratorPtr iterator;
     rfbClientPtr cl,cl_;
+#ifdef LIBVNCSERVER_IPv6
+    struct sockaddr_storage addr;
+#else
     struct sockaddr_in addr;
-    socklen_t addrlen = sizeof(struct sockaddr_in);
+#endif
+    socklen_t addrlen = sizeof(addr);
     rfbProtocolExtension* extension;
 
     cl = (rfbClientPtr)calloc(sizeof(rfbClientRec),1);
@@ -294,7 +317,17 @@ rfbNewTCPOrUDPClient(rfbScreenInfoPtr rfbScreen,
       int one=1;
 
       getpeername(sock, (struct sockaddr *)&addr, &addrlen);
+#ifdef LIBVNCSERVER_IPv6
+      char host[1024];
+      if(getnameinfo((struct sockaddr*)&addr, addrlen, host, sizeof(host), NULL, 0, NI_NUMERICHOST) != 0) {
+	rfbLogPerror("rfbNewClient: error in getnameinfo");
+	cl->host = strdup("");
+      }
+      else
+	cl->host = strdup(host);
+#else
       cl->host = strdup(inet_ntoa(addr.sin_addr));
+#endif
 
       rfbLog("  other clients:\n");
       iterator = rfbGetClientIterator(rfbScreen);
@@ -364,10 +397,9 @@ rfbNewTCPOrUDPClient(rfbScreenInfoPtr rfbScreen,
 
 #if defined(LIBVNCSERVER_HAVE_LIBZ) || defined(LIBVNCSERVER_HAVE_LIBPNG)
       cl->tightQualityLevel = -1;
-#if defined(LIBVNCSERVER_HAVE_LIBJPEG) || defined(LIBVNCSERVER_HAVE_LIBPNG)
-      cl->tightCompressLevel = TIGHT_DEFAULT_COMPRESSION;
-#endif
 #ifdef LIBVNCSERVER_HAVE_LIBJPEG
+      cl->tightCompressLevel = TIGHT_DEFAULT_COMPRESSION;
+      cl->turboSubsampLevel = TURBO_DEFAULT_SUBSAMP;
       {
 	int i;
 	for (i = 0; i < 4; i++)
@@ -481,7 +513,7 @@ rfbNewUDPClient(rfbScreenInfoPtr rfbScreen)
 void
 rfbClientConnectionGone(rfbClientPtr cl)
 {
-#ifdef LIBVNCSERVER_HAVE_LIBJPEG
+#if defined(LIBVNCSERVER_HAVE_LIBZ) && defined(LIBVNCSERVER_HAVE_LIBJPEG)
     int i;
 #endif
 
@@ -593,6 +625,7 @@ rfbProcessClientMessage(rfbClientPtr cl)
         rfbAuthProcessClientMessage(cl);
         return;
     case RFB_INITIALISATION:
+    case RFB_INITIALISATION_SHARED:
         rfbProcessClientInitMessage(cl);
         return;
     default:
@@ -720,13 +753,22 @@ rfbProcessClientInitMessage(rfbClientPtr cl)
     rfbClientPtr otherCl;
     rfbExtensionData* extension;
 
-    if ((n = rfbReadExact(cl, (char *)&ci,sz_rfbClientInitMsg)) <= 0) {
-        if (n == 0)
-            rfbLog("rfbProcessClientInitMessage: client gone\n");
-        else
-            rfbLogPerror("rfbProcessClientInitMessage: read");
-        rfbCloseClient(cl);
-        return;
+    if (cl->state == RFB_INITIALISATION_SHARED) {
+        /* In this case behave as though an implicit ClientInit message has
+         * already been received with a shared-flag of true. */
+        ci.shared = 1;
+        /* Avoid the possibility of exposing the RFB_INITIALISATION_SHARED
+         * state to calling software. */
+        cl->state = RFB_INITIALISATION;
+    } else {
+        if ((n = rfbReadExact(cl, (char *)&ci,sz_rfbClientInitMsg)) <= 0) {
+            if (n == 0)
+                rfbLog("rfbProcessClientInitMessage: client gone\n");
+            else
+                rfbLogPerror("rfbProcessClientInitMessage: read");
+            rfbCloseClient(cl);
+            return;
+        }
     }
 
     memset(u.buf,0,sizeof(u.buf));
@@ -1681,7 +1723,10 @@ rfbBool rfbProcessFileTransfer(rfbClientPtr cl, uint8_t contentType, uint8_t con
 #ifdef LIBVNCSERVER_HAVE_LIBZ
                 /* compressed packet */
                 nRet = uncompress(compBuff,&nRawBytes,(const unsigned char*)buffer, length);
-                retval=write(cl->fileTransfer.fd, (char*)compBuff, nRawBytes);
+		if(nRet == Z_OK)
+		  retval=write(cl->fileTransfer.fd, (char*)compBuff, nRawBytes);
+		else
+		  retval = -1;
 #else
                 /* Write the file out as received... */
                 retval=write(cl->fileTransfer.fd, buffer, length);
@@ -1938,6 +1983,14 @@ rfbProcessClientNormalMessage(rfbClientPtr cl)
         cl->enableSupportedMessages  = FALSE;
         cl->enableSupportedEncodings = FALSE;
         cl->enableServerIdentity     = FALSE;
+#if defined(LIBVNCSERVER_HAVE_LIBZ) || defined(LIBVNCSERVER_HAVE_LIBPNG)
+        cl->tightQualityLevel        = -1;
+#ifdef LIBVNCSERVER_HAVE_LIBJPEG
+        cl->tightCompressLevel       = TIGHT_DEFAULT_COMPRESSION;
+        cl->turboSubsampLevel        = TURBO_DEFAULT_SUBSAMP;
+        cl->turboQualityLevel        = -1;
+#endif
+#endif
 
 
         for (i = 0; i < msg.se.nEncodings; i++) {
@@ -2062,7 +2115,7 @@ rfbProcessClientNormalMessage(rfbClientPtr cl)
 		if ( enc >= (uint32_t)rfbEncodingCompressLevel0 &&
 		     enc <= (uint32_t)rfbEncodingCompressLevel9 ) {
 		    cl->zlibCompressLevel = enc & 0x0F;
-#if defined(LIBVNCSERVER_HAVE_LIBJPEG) || defined(LIBVNCSERVER_HAVE_LIBPNG)
+#ifdef LIBVNCSERVER_HAVE_LIBJPEG
 		    cl->tightCompressLevel = enc & 0x0F;
 		    rfbLog("Using compression level %d for client %s\n",
 			   cl->tightCompressLevel, cl->host);
@@ -2072,6 +2125,22 @@ rfbProcessClientNormalMessage(rfbClientPtr cl)
 		    cl->tightQualityLevel = enc & 0x0F;
 		    rfbLog("Using image quality level %d for client %s\n",
 			   cl->tightQualityLevel, cl->host);
+#ifdef LIBVNCSERVER_HAVE_LIBJPEG
+		    cl->turboQualityLevel = tight2turbo_qual[enc & 0x0F];
+		    cl->turboSubsampLevel = tight2turbo_subsamp[enc & 0x0F];
+		    rfbLog("Using JPEG subsampling %d, Q%d for client %s\n",
+			   cl->turboSubsampLevel, cl->turboQualityLevel, cl->host);
+		} else if ( enc >= (uint32_t)rfbEncodingFineQualityLevel0 + 1 &&
+			    enc <= (uint32_t)rfbEncodingFineQualityLevel100 ) {
+		    cl->turboQualityLevel = enc & 0xFF;
+		    rfbLog("Using fine quality level %d for client %s\n",
+			   cl->turboQualityLevel, cl->host);
+		} else if ( enc >= (uint32_t)rfbEncodingSubsamp1X &&
+			    enc <= (uint32_t)rfbEncodingSubsampGray ) {
+		    cl->turboSubsampLevel = enc & 0xFF;
+		    rfbLog("Using subsampling level %d for client %s\n",
+			   cl->turboSubsampLevel, cl->host);
+#endif
 		} else
 #endif
 		{
@@ -2787,7 +2856,7 @@ rfbSendFramebufferUpdate(rfbClientPtr cl,
 	sraRgnReleaseIterator(i); i=NULL;
 #endif
 #endif
-#ifdef LIBVNCSERVER_HAVE_LIBPNG
+#if defined(LIBVNCSERVER_HAVE_LIBJPEG) && defined(LIBVNCSERVER_HAVE_LIBPNG)
     } else if (cl->preferredEncoding == rfbEncodingTightPng) {
 	nUpdateRegionRects = 0;
 
@@ -2919,25 +2988,23 @@ rfbSendFramebufferUpdate(rfbClientPtr cl,
 	    if (!rfbSendRectEncodingZlib(cl, x, y, w, h))
 	        goto updateFailed;
 	    break;
-#ifdef LIBVNCSERVER_HAVE_LIBJPEG
+       case rfbEncodingZRLE:
+       case rfbEncodingZYWRLE:
+           if (!rfbSendRectEncodingZRLE(cl, x, y, w, h))
+	       goto updateFailed;
+           break;
+#endif
+#if defined(LIBVNCSERVER_HAVE_LIBJPEG) && (defined(LIBVNCSERVER_HAVE_LIBZ) || defined(LIBVNCSERVER_HAVE_LIBPNG))
 	case rfbEncodingTight:
 	    if (!rfbSendRectEncodingTight(cl, x, y, w, h))
 	        goto updateFailed;
 	    break;
-#endif
-#endif
 #ifdef LIBVNCSERVER_HAVE_LIBPNG
 	case rfbEncodingTightPng:
 	    if (!rfbSendRectEncodingTightPng(cl, x, y, w, h))
 	        goto updateFailed;
 	    break;
 #endif
-#ifdef LIBVNCSERVER_HAVE_LIBZ
-       case rfbEncodingZRLE:
-       case rfbEncodingZYWRLE:
-           if (!rfbSendRectEncodingZRLE(cl, x, y, w, h))
-	       goto updateFailed;
-           break;
 #endif
         }
     }

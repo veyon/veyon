@@ -19,6 +19,7 @@
  */
 
 /*
+ *  Copyright (C) 2011-2012 Christian Beier <dontmind@freeshell.org>
  *  Copyright (C) 2005 Rohit Kumar, Johannes E. Schindelin
  *  OSXvnc Copyright (C) 2001 Dan McGuirk <mcguirk@incompleteness.net>.
  *  Original Xvnc code Copyright (C) 1999 AT&T Laboratories Cambridge.  
@@ -39,6 +40,15 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307,
  *  USA.
  */
+
+#ifdef __STRICT_ANSI__
+#define _BSD_SOURCE
+#ifdef __linux__
+/* Setting this on other systems hides definitions such as INADDR_LOOPBACK.
+ * The check should be for __GLIBC__ in fact. */
+# define _POSIX_SOURCE
+#endif
+#endif
 
 #include <rfb/rfb.h>
 
@@ -137,6 +147,8 @@ rfbInitSockets(rfbScreenInfoPtr rfbScreen)
 
     if(rfbScreen->autoPort) {
         int i;
+        FD_ZERO(&(rfbScreen->allFds));
+
         rfbLog("Autoprobing TCP port \n");
         for (i = 5900; i < 6000; i++) {
             if ((rfbScreen->listenSock = rfbListenOnTCPPort(i, iface)) >= 0) {
@@ -150,22 +162,57 @@ rfbInitSockets(rfbScreenInfoPtr rfbScreen)
 	    return;
         }
 
-        rfbLog("Autoprobing selected port %d\n", rfbScreen->port);
-        FD_ZERO(&(rfbScreen->allFds));
+        rfbLog("Autoprobing selected TCP port %d\n", rfbScreen->port);
         FD_SET(rfbScreen->listenSock, &(rfbScreen->allFds));
         rfbScreen->maxFd = rfbScreen->listenSock;
+
+#ifdef LIBVNCSERVER_IPv6
+        rfbLog("Autoprobing TCP6 port \n");
+	for (i = 5900; i < 6000; i++) {
+            if ((rfbScreen->listen6Sock = rfbListenOnTCP6Port(i, rfbScreen->listen6Interface)) >= 0) {
+		rfbScreen->ipv6port = i;
+		break;
+	    }
+        }
+
+        if (i >= 6000) {
+	    rfbLogPerror("Failure autoprobing");
+	    return;
+        }
+
+        rfbLog("Autoprobing selected TCP6 port %d\n", rfbScreen->ipv6port);
+	FD_SET(rfbScreen->listen6Sock, &(rfbScreen->allFds));
+	rfbScreen->maxFd = max((int)rfbScreen->listen6Sock,rfbScreen->maxFd);
+#endif
     }
-    else if(rfbScreen->port>0) {
-      rfbLog("Listening for VNC connections on TCP port %d\n", rfbScreen->port);
+    else
+    {
+	    if(rfbScreen->port>0) {
+      FD_ZERO(&(rfbScreen->allFds));
 
       if ((rfbScreen->listenSock = rfbListenOnTCPPort(rfbScreen->port, iface)) < 0) {
 	rfbLogPerror("ListenOnTCPPort");
 	return;
       }
-
-      FD_ZERO(&(rfbScreen->allFds));
+      rfbLog("Listening for VNC connections on TCP port %d\n", rfbScreen->port);  
+  
       FD_SET(rfbScreen->listenSock, &(rfbScreen->allFds));
       rfbScreen->maxFd = rfbScreen->listenSock;
+	    }
+
+#ifdef LIBVNCSERVER_IPv6
+	    if (rfbScreen->ipv6port>0) {
+      if ((rfbScreen->listen6Sock = rfbListenOnTCP6Port(rfbScreen->ipv6port, rfbScreen->listen6Interface)) < 0) {
+	/* ListenOnTCP6Port has its own detailed error printout */
+	return;
+      }
+      rfbLog("Listening for VNC connections on TCP6 port %d\n", rfbScreen->ipv6port);  
+	
+      FD_SET(rfbScreen->listen6Sock, &(rfbScreen->allFds));
+      rfbScreen->maxFd = max((int)rfbScreen->listen6Sock,rfbScreen->maxFd);
+	    }
+#endif
+
     }
 
     if (rfbScreen->udpPort != 0) {
@@ -175,6 +222,8 @@ rfbInitSockets(rfbScreenInfoPtr rfbScreen)
 	    rfbLogPerror("ListenOnUDPPort");
 	    return;
 	}
+	rfbLog("Listening for VNC connections on TCP port %d\n", rfbScreen->port);  
+
 	FD_SET(rfbScreen->udpSock, &(rfbScreen->allFds));
 	rfbScreen->maxFd = max((int)rfbScreen->udpSock,rfbScreen->maxFd);
     }
@@ -197,6 +246,12 @@ void rfbShutdownSockets(rfbScreenInfoPtr rfbScreen)
 	closesocket(rfbScreen->listenSock);
 	FD_CLR(rfbScreen->listenSock,&rfbScreen->allFds);
 	rfbScreen->listenSock=-1;
+    }
+
+    if(rfbScreen->listen6Sock>-1) {
+	closesocket(rfbScreen->listen6Sock);
+	FD_CLR(rfbScreen->listen6Sock,&rfbScreen->allFds);
+	rfbScreen->listen6Sock=-1;
     }
 
     if(rfbScreen->udpSock>-1) {
@@ -270,6 +325,16 @@ rfbCheckFds(rfbScreenInfoPtr rfbScreen,long usec)
 		return result;
 	}
 
+	if (rfbScreen->listen6Sock != -1 && FD_ISSET(rfbScreen->listen6Sock, &fds)) {
+
+	    if (!rfbProcessNewConnection(rfbScreen))
+                return -1;
+
+	    FD_CLR(rfbScreen->listen6Sock, &fds);
+	    if (--nfds == 0)
+		return result;
+	}
+
 	if ((rfbScreen->udpSock != -1) && FD_ISSET(rfbScreen->udpSock, &fds)) {
 	    if(!rfbScreen->udpClient)
 		rfbNewUDPClient(rfbScreen);
@@ -330,10 +395,33 @@ rfbProcessNewConnection(rfbScreenInfoPtr rfbScreen)
 {
     const int one = 1;
     int sock = -1;
+#ifdef LIBVNCSERVER_IPv6
+    struct sockaddr_storage addr;
+#else
     struct sockaddr_in addr;
+#endif
     socklen_t addrlen = sizeof(addr);
+    fd_set listen_fds; 
+    int chosen_listen_sock = -1;
 
-    if ((sock = accept(rfbScreen->listenSock,
+    /* Do another select() call to find out which listen socket
+       has an incoming connection pending. We know that at least 
+       one of them has, so this should not block for too long! */
+    FD_ZERO(&listen_fds);  
+    if(rfbScreen->listenSock >= 0) 
+      FD_SET(rfbScreen->listenSock, &listen_fds);
+    if(rfbScreen->listen6Sock >= 0) 
+      FD_SET(rfbScreen->listen6Sock, &listen_fds);
+    if (select(rfbScreen->maxFd+1, &listen_fds, NULL, NULL, NULL) == -1) {
+      rfbLogPerror("rfbProcessNewConnection: error in select");
+      return FALSE;
+    }
+    if (rfbScreen->listenSock >= 0 && FD_ISSET(rfbScreen->listenSock, &listen_fds))
+      chosen_listen_sock = rfbScreen->listenSock;
+    if (rfbScreen->listen6Sock >= 0 && FD_ISSET(rfbScreen->listen6Sock, &listen_fds))
+      chosen_listen_sock = rfbScreen->listen6Sock;
+
+    if ((sock = accept(chosen_listen_sock,
 		       (struct sockaddr *)&addr, &addrlen)) < 0) {
       rfbLogPerror("rfbCheckFds: accept");
       return FALSE;
@@ -361,7 +449,15 @@ rfbProcessNewConnection(rfbScreenInfoPtr rfbScreen)
     }
 #endif
 
+#ifdef LIBVNCSERVER_IPv6
+    char host[1024];
+    if(getnameinfo((struct sockaddr*)&addr, addrlen, host, sizeof(host), NULL, 0, NI_NUMERICHOST) != 0) {
+      rfbLogPerror("rfbProcessNewConnection: error in getnameinfo");
+    }
+    rfbLog("Got connection from client %s\n", host);
+#else
     rfbLog("Got connection from client %s\n", inet_ntoa(addr.sin_addr));
+#endif
 
     rfbNewClient(rfbScreen,sock);
 
@@ -774,12 +870,128 @@ rfbListenOnTCPPort(int port,
     return sock;
 }
 
+
+int
+rfbListenOnTCP6Port(int port,
+                    const char* iface)
+{
+#ifndef LIBVNCSERVER_IPv6
+    rfbLogPerror("This LibVNCServer does not have IPv6 support");
+    return -1;
+#else
+    int sock;
+    int one = 1;
+    int rv;
+    struct addrinfo hints, *servinfo, *p;
+    char port_str[8];
+
+    snprintf(port_str, 8, "%d", port);
+
+    memset(&hints, 0, sizeof(hints));
+    hints.ai_family = AF_INET6;
+    hints.ai_socktype = SOCK_STREAM;
+    hints.ai_flags = AI_PASSIVE; /* fill in wildcard address if iface == NULL */
+
+    if ((rv = getaddrinfo(iface, port_str, &hints, &servinfo)) != 0) {
+        rfbErr("rfbListenOnTCP6Port error in getaddrinfo: %s\n", gai_strerror(rv));
+        return -1;
+    }
+    
+    /* loop through all the results and bind to the first we can */
+    for(p = servinfo; p != NULL; p = p->ai_next) {
+        if ((sock = socket(p->ai_family, p->ai_socktype, p->ai_protocol)) < 0) {
+            continue;
+        }
+
+#ifdef IPV6_V6ONLY
+	/* we have seperate IPv4 and IPv6 sockets since some OS's do not support dual binding */
+	if (setsockopt(sock, IPPROTO_IPV6, IPV6_V6ONLY, (char *)&one, sizeof(one)) < 0) {
+	  rfbLogPerror("rfbListenOnTCP6Port error in setsockopt IPV6_V6ONLY");
+	  closesocket(sock);
+	  freeaddrinfo(servinfo);
+	  return -1;
+	}
+#endif
+
+	if (setsockopt(sock, SOL_SOCKET, SO_REUSEADDR, (char *)&one, sizeof(one)) < 0) {
+	  rfbLogPerror("rfbListenOnTCP6Port: error in setsockopt SO_REUSEADDR");
+	  closesocket(sock);
+	  freeaddrinfo(servinfo);
+	  return -1;
+	}
+
+	if (bind(sock, p->ai_addr, p->ai_addrlen) < 0) {
+	  closesocket(sock);
+	  continue;
+	}
+
+        break;
+    }
+
+    if (p == NULL)  {
+        rfbLogPerror("rfbListenOnTCP6Port: error in bind IPv6 socket");
+        freeaddrinfo(servinfo);
+        return -1;
+    }
+
+    /* all done with this structure now */
+    freeaddrinfo(servinfo);
+
+    if (listen(sock, 32) < 0) {
+        rfbLogPerror("rfbListenOnTCP6Port: error in listen on IPv6 socket");
+	closesocket(sock);
+	return -1;
+    }
+
+    return sock;
+#endif
+}
+
+
 int
 rfbConnectToTcpAddr(char *host,
                     int port)
 {
-    struct hostent *hp;
     int sock;
+#ifdef LIBVNCSERVER_IPv6
+    struct addrinfo hints, *servinfo, *p;
+    int rv;
+    char port_str[8];
+
+    snprintf(port_str, 8, "%d", port);
+
+    memset(&hints, 0, sizeof hints);
+    hints.ai_family = AF_UNSPEC;
+    hints.ai_socktype = SOCK_STREAM;
+
+    if ((rv = getaddrinfo(host, port_str, &hints, &servinfo)) != 0) {
+        rfbErr("rfbConnectToTcpAddr: error in getaddrinfo: %s\n", gai_strerror(rv));
+        return -1;
+    }
+
+    /* loop through all the results and connect to the first we can */
+    for(p = servinfo; p != NULL; p = p->ai_next) {
+        if ((sock = socket(p->ai_family, p->ai_socktype, p->ai_protocol)) < 0)
+            continue;
+
+        if (connect(sock, p->ai_addr, p->ai_addrlen) < 0) {
+            closesocket(sock);
+            continue;
+        }
+
+        break;
+    }
+
+    /* all failed */
+    if (p == NULL) {
+        rfbLogPerror("rfbConnectToTcoAddr: failed to connect\n");
+        sock = -1; /* set return value */
+    }
+
+    /* all done with this structure now */
+    freeaddrinfo(servinfo);
+#else
+    struct hostent *hp;
     struct sockaddr_in addr;
 
     memset(&addr, 0, sizeof(addr));
@@ -803,7 +1015,7 @@ rfbConnectToTcpAddr(char *host,
 	closesocket(sock);
 	return -1;
     }
-
+#endif
     return sock;
 }
 

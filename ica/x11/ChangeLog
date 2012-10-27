@@ -1,7 +1,701 @@
+2012-05-04  Christian Beier <dontmind@freeshell.org>
+
+	* configure.ac: Enable building DLLs with MinGW32.
+
+2012-05-04  Christian Beier <dontmind@freeshell.org>
+
+	* NEWS: Update NEWS for 0.9.9.
+
+2012-05-03  Christian Beier <dontmind@freeshell.org>
+
+	* libvncclient/rfbproto.c: LibVNCClient: #undef these types in case
+	it's WIN32.  The various other headers include windows.h and the winsock headers
+	which give an error when SOCKET and socklen_t are already defined.
+
+2012-05-03  Christian Beier <dontmind@freeshell.org>
+
+	* rfb/rfb.h: LibVNCServer: Include ws2tcpip.h if it's available.  Needed for the IPv6 stuff.
+
+2012-04-30  Christian Beier <dontmind@freeshell.org>
+
+	* libvncserver/Makefile.am: LibVNCServer: Prefer GnuTLS over OpenSSL
+	to be in sync with LibVNCClient.
+
+2012-04-30  Christian Beier <dontmind@freeshell.org>
+
+	* libvncserver/rfbserver.c: Some more libjpeg, libpng and zlib
+	related build fixes.
+
+2012-04-30  Christian Beier <dontmind@freeshell.org>
+
+	* configure.ac: Make PKG_CHECK_MODULES fail non-fatal.  These check for optional modules.
+
+2012-04-30  Christian Beier <dontmind@freeshell.org>
+
+	* libvncserver/rfbserver.c, rfb/rfb.h: Only try to build TightPNG
+	stuff when libjpeg is available.  TightPNG replaces the ZLIB stuff int Tight encoding with PNG. It
+	still uses JPEG rects as well. Theoretically, we could build
+	TightPNG with only libpng and libjpeg - without zlib - but libpng
+	depends on zlib, so this is kinda moot.
+
+2012-04-27  Christian Beier <dontmind@freeshell.org>
+
+	* test/Makefile.am: Only build libjpeg test programs if libjpeg is
+	actually available.
+
+2012-04-26  Christian Beier <dontmind@freeshell.org>
+
+	* CMakeLists.txt: Fix CMake build of LibVNCClient.
+
+2012-04-26  Christian Beier <dontmind@freeshell.org>
+
+	* libvncserver/rfbserver.c: Properly check return value.  This also fixes a compiler warning.
+
+2012-04-26  Christian Beier <dontmind@freeshell.org>
+
+	* configure.ac: Fix build when no libjpeg is available.
+
+2012-04-26  Christian Beier <dontmind@freeshell.org>
+
+	* examples/android/Makefile.am, libvncserver/Makefile.am: Include
+	some more missing files for make dist.
+
+2012-04-25  Christian Beier <dontmind@freeshell.org>
+
+	* libvncserver/Makefile.am: Include missing files for make dist.
+
+2012-04-25  Christian Beier <dontmind@freeshell.org>
+
+	* libvncclient/Makefile.am: Fix libvncclient make dist.
+
+2012-04-25  Christian Beier <dontmind@freeshell.org>
+
+	* configure.ac: Better check for Linux build.
+
+2012-04-25  Christian Beier <dontmind@freeshell.org>
+
+	* vncterm/Makefile.am: Binaries that are to be installed should be
+	all lowercase.
+
+2012-04-25  Christian Beier <dontmind@freeshell.org>
+
+	* CMakeLists.txt, configure.ac: Bump version to 0.9.9.
+
+2012-04-25  Christian Beier <dontmind@freeshell.org>
+
+	* common/turbojpeg.c, libvncserver/rfbserver.c,
+	libvncserver/websockets.c, test/tjbench.c: Fix some compiler
+	warnings thrown with newer gcc.
+
+2012-04-25  Christian Beier <dontmind@freeshell.org>
+
+	* test/Makefile.am: Fix turbojpeg tests compilation.
+
+2012-04-25  DRC <information@virtualgl.org>
+
+	* common/turbojpeg.c: Fix compilation with some libjpeg
+	distributions.
+
+2012-04-22  Monkey <chris.boyle.1978@gmail.com>
+
+	* libvncclient/rfbproto.c: Added support for UltraVNC Single Click
+	as originally proposed by Noobius (Boobius) on 6/1/11.  Original thread:
+
+	http://sourceforge.net/tracker/?func=detail&aid=3310255&group_id=32584&atid=405860
+
+2012-04-15  Christian Beier <dontmind@freeshell.org>
+
+	* AUTHORS: Add Philip to AUTHORS.
+
+2012-04-15  Christian Beier <dontmind@freeshell.org>
+
+	* libvncclient/tls_none.c: LibVNCClient: Fix build with no SSL/TLS
+	library available.
+
+2012-04-15  Christian Beier <dontmind@freeshell.org>
+
+	* libvncclient/tls_openssl.c: LibVNCClient: properly free the
+	openssl session stuff on shutdown.
+
+2012-04-15  Christian Beier <dontmind@freeshell.org>
+
+	* libvncclient/rfbproto.c, libvncclient/sockets.c,
+	libvncclient/tls_gnutls.c, libvncclient/vncviewer.c,
+	rfb/rfbclient.h: LibVNCClient: Remove all those WITH_CLIENT_TLS
+	#ifdefs and move GnuTLS specific functionality into tls_gnutls.c.
+
+2012-04-14  Christian Beier <dontmind@freeshell.org>
+
+	* configure.ac: Unify GnuTLS vs OpenSSL build systems stuff between
+	libvncclient and libvncserver.
+
+2012-04-14  Christian Beier <dontmind@freeshell.org>
+
+	* libvncclient/Makefile.am, libvncclient/tls.c,
+	libvncclient/tls_gnutls.c, libvncclient/tls_none.c,
+	libvncclient/tls_openssl.c: Add the OpenSSL libvncclient TLS version
+	to the build system.
+
+2012-04-12  Christian Beier <dontmind@freeshell.org>
+
+	* webclients/novnc/LICENSE.txt, webclients/novnc/README.md,
+	webclients/novnc/include/base.css,
+	webclients/novnc/include/base64.js,
+	webclients/novnc/include/display.js,
+	webclients/novnc/include/input.js,
+	webclients/novnc/include/jsunzip.js,
+	webclients/novnc/include/rfb.js, webclients/novnc/include/ui.js,
+	webclients/novnc/include/util.js, webclients/novnc/include/vnc.js,
+	webclients/novnc/include/websock.js,
+	webclients/novnc/include/webutil.js, webclients/novnc/vnc.html,
+	webclients/novnc/vnc_auto.html: Update our copy of noVNC.  Bugfixes and support for tight encoding with zlib.
+
+2012-04-12  Christian Beier <dontmind@freeshell.org>
+
+	* libvncserver/tight.c: Make TurboVNC compress level 3 actually
+	work.
+
+2012-04-09  DRC <information@virtualgl.org>
+
+	* common/turbojpeg.c: Fix memory leak in TurboVNC Note that the memory leak was only occurring with the colorspace
+	emulation code, which is only active when using regular libjpeg (not
+	libjpeg-turbo.) Diagnosed by Christian Beier, using valgrind.  Signed-off-by: Johannes Schindelin <johannes.schindelin@gmx.de>
+
+2012-04-02  Christian Beier <dontmind@freeshell.org>
+
+	* libvncclient/listen.c, libvncclient/sockets.c,
+	libvncserver/httpd.c, libvncserver/sockets.c: IPv6 support for
+	LibVNCServer, part four: add copyright notices to files with
+	non-trivial changes.
+
+2012-03-29  Johannes Schindelin <johannes.schindelin@gmx.de>
+
+	* client_examples/SDLvncviewer.c: SDLvncviewer: map Apple/Windows
+	keys correctly Signed-off-by: Johannes Schindelin <johannes.schindelin@gmx.de>
+
+2012-03-29  Johannes Schindelin <johannes.schindelin@gmx.de>
+
+	* .gitignore: gitignore the compiled gtkvncclient Signed-off-by: Johannes Schindelin <johannes.schindelin@gmx.de>
+
+2012-03-29  Johannes Schindelin <johannes.schindelin@gmx.de>
+
+	* client_examples/SDLvncviewer.c: SDLvncviewer: fix the SDL_KEYUP
+	issue Keys got stuck because unicode is 0 upon SDL_KEYUP events, even if
+	the same key event sets unicode correctly in SDL_KEYDOWN events.  Work around that for the common case (ASCII) using the fact that
+	both SDL and X11 keysyms were created with ASCII compatibility in
+	mind. So as long as we type ASCII symbols, we can map things
+	trivially.  Signed-off-by: Johannes Schindelin <johannes.schindelin@gmx.de>
+
+2012-03-23  DRC <information@virtualgl.org>
+
+	* CMakeLists.txt: Extend support for the new TurboVNC encoder to the
+	CMake build system
+
+2012-03-25  DRC <information@virtualgl.org>
+
+	* common/turbojpeg.c, common/turbojpeg.h, configure.ac,
+	libvncserver/Makefile.am, libvncserver/rfbserver.c,
+	libvncserver/tight.c, libvncserver/turbo.c, rfb/rfb.h,
+	rfb/rfbproto.h, test/Makefile.am, test/bmp.c, test/bmp.h,
+	test/tjbench.c, test/tjunittest.c, test/tjutil.c, test/tjutil.h: 
+	Replace TightVNC encoder with TurboVNC encoder. This patch is the
+	result of further research and discussion that revealed the
+	following: -- TightPng encoding and the rfbTightNoZlib extension need not
+	   conflict.  Since TightPng is a separate encoding type, not supported
+	   by TurboVNC-compatible viewers, then the rfbTightNoZlib extension
+	   can be used solely whenever the encoding type is Tight and disabled
+	with the encoding type is TightPng.  -- In the TightVNC encoder, compression levels above 5 are basically
+	   useless.  On the set of 20 low-level datasets that were used to
+	   design the TurboVNC encoder (these include the eight 2D application
+	   captures that were also used when designing the TightVNC encoder, as
+	   well as 12 3D application captures provided by the VirtualGL
+	   Project-- see
+	   http://www.virtualgl.org/pmwiki/uploads/About/tighttoturbo.pdf),
+	   moving from Compression Level (CL) 5 to CL 9 in the TightVNC
+	   encoder did not increase the compression ratio of any datasets more
+	   than 10%, and the compression ratio only increased by more than 5%
+	   on four of them.  The compression ratio actually decreased a few
+	   percent on five of them.  In exchange for this paltry increase in
+	   compression ratio, the CPU usage, on average, went up by a factor of
+	   5.  Thus, for all intents and purposes, TightVNC CL 5 provides the
+	"best useful compression" for that encoder.  -- TurboVNC's best compression level (CL 2) compresses 3D and video
+	   workloads significantly more "tightly" than TightVNC CL 5 (~70%
+	   better, in the aggregate) but does not quite achieve the same level
+	   of compression with 2D workloads (~20% worse, in the aggregate.)
+	   This decrease in compression ratio may or may not be noticeable,
+	   since many of the datasets it affects are not performance-critical
+	   (such as the console output of a compilation, etc.) However, for
+	   peace of mind, it was still desirable to have a mode that compressed
+	   with equal "tightness" to TightVNC CL 5, since we proposed to
+	replace that encoder entirely.  -- A new mode was discovered in the TurboVNC encoder that produces,
+	   in the aggregate, similar compression ratios on 2D datasets as
+	   TightVNC CL 5.  That new mode involves using Zlib level 7 (the same
+	   level used by TightVNC CL 5) but setting the "palette threshold" to
+	   256, so that indexed color encoding is used whenever possible.  This
+	   mode reduces bandwidth only marginally (typically 10-20%) relative
+	   to TurboVNC CL 2 on low-color workloads, in exchange for nearly
+	   doubling CPU usage, and it does not benefit high-color workloads at
+	   all (since those are usually encoded with JPEG.)  However, it
+	provides a means of reproducing the same "tightness" as the TightVNC    encoder on 2D workloads without sacrificing any compression for
+	   3D/video workloads, and without using any more CPU time than
+	necessary.  -- The TurboVNC encoder still performs as well or better than the
+	   TightVNC encoder when plain libjpeg is used instead of
+	libjpeg-turbo.  Specific notes follow: common/turbojpeg.c common/turbojpeg.h: Added code to emulate the
+	libjpeg-turbo colorspace extensions, so that the TurboJPEG wrapper
+	can be used with plain libjpeg as well.  This required updating the
+	TurboJPEG wrapper to the latest code from libjpeg-turbo 1.2.0,
+	mainly because the TurboJPEG 1.2 API handles pixel formats in a much
+	cleaner way, which made the conversion code easier to write.  It
+	also eases the maintenance to have the wrapper synced as much as
+	possible with the upstream code base (so I can merge any relevant
+	bug fixes that are discovered upstream.) The libvncserver version of
+	the TurboJPEG wrapper is a "lite" version, containing only the JPEG
+	compression/decompression code and not the lossless transform, YUV
+	encoding/decoding, and dynamic buffer allocation features from
+	TurboJPEG 1.2.  configure.ac: Removed the --with-turbovnc option.  configure still
+	checks for the presence of libjpeg-turbo, but only for the purposes
+	of printing a performance warning if it isn't available.  rfb/rfb.h: Fix a bug introduced with the initial TurboVNC encoder
+	patch.  We cannot use tightQualityLevel for the TurboVNC 1-100
+	quality level, because tightQualityLevel is also used by ZRLE.
+	Thus, a new parameter (turboQualityLevel) was created.  rfb/rfbproto.h: Remove TurboVNC-specific #ifdefs and language libvncserver/rfbserver.c: Remove TurboVNC-specific #ifdefs.  Fix
+	afore-mentioned tightQualityLevel bug.  libvncserver/tight.c: Replaced the TightVNC encoder with the
+	TurboVNC encoder.  Relative to the initial TurboVNC encoder patch,
+	this patch also: -- Adds TightPng support to the TurboVNC encoder --
+	   Adds the afore-mentioned low-bandwidth mode, which is mapped
+	   externally to Compression Level 9 test/*: Included TJUnitTest (a regression test for the TurboJPEG
+	wrapper) as well as TJBench (a benchmark for same.)  These are
+	useful for ensuring that the wrapper still functions correctly and
+	performantly if it needs to be modified for whatever reason.  Both
+	of these programs are derived from libjpeg-turbo 1.2.0.  As with the
+	TurboJPEG wrapper, they do not contain the more advanced features of
+	TurboJPEG 1.2, such as YUV encoding/decoding and lossless
+	transforms.
+
+2012-03-15  Christian Beier <dontmind@freeshell.org>
+
+	* AUTHORS: Add DRC to AUTHORS.
+
+2012-03-15  Christian Beier <dontmind@freeshell.org>
+
+	* rfb/rfb.h: Move tightsubsamplevel member to the end of rfbClient
+	struct.  Try to not break ABI between releases. Even if the code gets ugly...
+
+2012-03-10  DRC <information@virtualgl.org>
+
+	* x11vnc/Makefile.am: Fix the build of x11vnc when an out-of-tree
+	build directory is used
+
+2012-03-10  DRC <information@virtualgl.org>
+
+	* libvncserver/rfbserver.c: Fix an issue that affects the existing
+	Tight encoder as well as the newly-implemented Turbo encoder.  The issue is that, when using the current libvncserver source, it is
+	impossible to disable Tight JPEG encoding.  The way Tight/Turbo
+	viewers disable JPEG encoding is by simply not sending the Tight
+	quality value, causing the server to use the default value of -1.
+	Thus, cl->tightQualityLevel has to be set to -1 prior to processing
+	the encodings message for this mechanism to work.  Similarly, it is
+	not guaranteed that the compress level will be set in the encodings
+	message, so it is set to a default value prior to processing the
+	message.
+
+2012-03-10  DRC <information@virtualgl.org>
+
+	* common/turbojpeg.c, common/turbojpeg.h, configure.ac,
+	libvncserver/Makefile.am, libvncserver/rfbserver.c,
+	libvncserver/turbo.c, rfb/rfb.h, rfb/rfbproto.h: Add TurboVNC
+	encoding support.  TurboVNC is a variant of TightVNC that uses the same client/server
+	protocol (RFB version 3.8t), and thus it is fully cross-compatible
+	with TightVNC and TigerVNC (with one exception, which is noted
+	below.) Both the TightVNC and TurboVNC encoders analyze each
+	rectangle, pick out regions of solid color to send separately, and
+	send the remaining subrectangles using mono, indexed color, JPEG, or
+	raw encoding, depending on the number of colors in the subrectangle.
+	However, TurboVNC uses a fundamentally different selection algorithm
+	to determine the appropriate subencoding to use for each
+	subrectangle.  Thus, while it sends a protocol stream that can be
+	decoded by any TightVNC-compatible viewer, the mix of subencoding
+	types in this protocol stream will be different from those generated
+	by a TightVNC server.  The research that led to TurboVNC is described in the following
+	report:
+	http://www.virtualgl.org/pmwiki/uploads/About/tighttoturbo.pdf.  In
+	summary:  20 RFB captures, representing "common" 2D and 3D
+	application workloads (the 3D workloads were run using VirtualGL),
+	were studied using the TightVNC encoder in isolation.  Some of the
+	analysis features in the TightVNC encoder, such as smoothness
+	detection, were found to generate a lot of CPU usage with little or
+	no benefit in compression, so those features were disabled.  JPEG
+	encoding was accelerated using libjpeg-turbo (which achieves a 2-4x
+	speedup over plain libjpeg on modern x86 or ARM processors.)
+	Finally, the "palette threshold" (minimum number of colors that the
+	subrectangle must have before it is compressed using JPEG or raw)
+	was adjusted to account for the fact that JPEG encoding is now quite
+	a bit faster (meaning that we can now use it more without a CPU
+	penalty.)  TurboVNC has additional optimizations, such as the
+	ability to count colors and encode JPEG images directly from the
+	framebuffer without first translating the pixels into RGB.  The
+	TurboVNC encoder compares quite favorably in terms of compression
+	ratio with TightVNC and generally encodes a great deal faster (often
+	an order of magnitude or more.) The version of the TurboVNC encoder included in this patch is
+	roughly equivalent to the one found in version 0.6 of the Unix
+	TurboVNC Server, with a few minor patches integrated from TurboVNC
+	1.1.  TurboVNC 1.0 added multi-threading capabilities, which can be
+	added in later if desired (at the expense of making libvncserver
+	depend on libpthread.) Because TurboVNC uses a fundamentally different mix of subencodings
+	than TightVNC, because it uses the identical protocol (and thus a
+	viewer really has no idea whether it's talking to a TightVNC or
+	TurboVNC server), and because it doesn't support rfbTightPng (and in
+	fact conflicts with it-- see below), the TurboVNC and TightVNC
+	encoders cannot be enabled simultaneously.  Compatibility: In *most* cases, a TurboVNC-enabled viewer is fully compatible with
+	a TightVNC server, and vice versa.  TurboVNC supports
+	pseudo-encodings for specifying a fine-grained (1-100) quality scale
+	and specifying chrominance subsampling.  If a TurboVNC viewer sends
+	those to a TightVNC server, then the TightVNC server ignores them,
+	so the TurboVNC viewer also sends the quality on a 0-9 scale that
+	the TightVNC server can understand.  Similarly, the TurboVNC server
+	checks first for fine-grained quality and subsampling
+	pseudo-encodings from the viewer, and failing to receive those, it
+	then checks for the TightVNC 0-9 quality pseudo-encoding.  There is one case in which the two systems are not compatible, and
+	that is when a TightVNC or TigerVNC viewer requests compression
+	level 0 without JPEG from a TurboVNC server.  For performance
+	reasons, this causes the TurboVNC server to send images directly to
+	the viewer, bypassing Zlib.  When the TurboVNC server does this, it
+	also sets bits 7-4 in the compression control byte to rfbTightNoZlib
+	(0x0A), which is unfortunately the same value as rfbTightPng.  Older
+	TightVNC viewers that don't handle PNG will assume that the stream
+	is uncompressed but still encapsulated in a Zlib structure, whereas
+	newer PNG-supporting TightVNC viewers will assume that the stream is
+	PNG.  In either case, the viewer will probably crash.  Since most
+	VNC viewers don't expose compression level 0 in the GUI, this is a
+	relatively rare situation.  Description of changes: configure.ac -- Added support for libjpeg-turbo.  If passed an
+	   argument of --with-turbovnc, configure will now run (or, if cross-compiling, just link) a test program that determines
+	   whether the libjpeg library being used is libjpeg-turbo.
+	   libjpeg-turbo must be used when building the TurboVNC encoder,
+	   because the TurboVNC encoder relies on the libjpeg-turbo
+	   colorspace extensions in order to compress images directly out of
+	   the framebuffer (which may be, for instance, BGRA rather than RGB.)
+	   libjpeg-turbo can optionally be used with the TightVNC encoder as
+	   well, but the speedup will only be marginal (the report linked above
+	    explains why in more detail, but basically it's because of Amdahl's
+	    Law.  The TightVNC encoder was designed with the assumption that
+	JPEG had a very high CPU cost, and thus JPEG is used only
+	sparingly.) -- Added a new configure variable, JPEG_LDFLAGS.  This
+	   is necessitated by the fact that libjpeg-turbo often distributes
+	   libjpeg.a and libjpeg.so in /opt/libjpeg-turbo/lib32 or
+	   /opt/libjpeg-turbo/lib64, and many people prefer to statically
+	   link with it.  Thus, more flexibility is needed than is provided by
+	   --with-jpeg.  If JPEG_LDFLAGS is specified, then it overrides the
+	   changes to LDFLAGS enacted by --with-jpeg (but --with-jpeg is
+	   still used to set the include path.)  The addition of JPEG_LDFLAGS
+	necessitated replacing AC_CHECK_LIB with AC_LINK_IFELSE (because
+	   AC_CHECK_LIB automatically sets LIBS to -ljpeg, which is not what we
+	want if we're, for instance, linking statically with libjpeg-turbo.)
+	-- configure does not check for PNG support if TurboVNC encoding is
+	   enabled.  This prevents the rfbSendRectEncodingTightPng() function
+	   from being compiled in, since the TurboVNC encoder doesn't (and
+	can't) support it.  common/turbojpeg.c, common/turbojpeg.h -- TurboJPEG is a simple API
+	   used to compress and decompress JPEG images in memory.  It was
+	   originally implemented because it was desirable to use different
+	   types of underlying technologies to compress JPEG on different
+	   platforms (mediaLib on SPARC, Quicktime on PPC Macs, Intel
+	   Performance Primitives, etc.) These days, however, libjpeg-turbo
+	   is the only underlying technology used by TurboVNC, so TurboJPEG's
+	purpose is largely just code simplicity and flexibility.  Thus,
+	   since there is no real need for libvncserver to use any technology
+	   other than libjpeg-turbo for compressing JPEG, the TurboJPEG wrapper
+	for libjpeg-turbo has been included in-tree so that libvncserver can
+	   be directly linked with libjpeg-turbo.  This is convenient because
+	   many modern Linux distros (Fedora, Ubuntu, etc.) now ship
+	   libjpeg-turbo as their default libjpeg library.  libvncserver/rfbserver.c -- Added logic to check for the TurboVNC
+	   fine-grained quality level and subsampling encodings and to map
+	   Tight (0-9) quality levels to appropriate fine-grained quality level
+	   and subsampling values if communicating with a TightVNC/TigerVNC
+	viewer.  libvncserver/turbo.c -- TurboVNC encoder (compiled instead of
+	libvncserver/tight.c) rfb/rfb.h -- Added support for the TurboVNC subsampling level rfb/rfbproto.h -- Added constants for the TurboVNC fine quality
+	   level and subsampling encodings as well as the rfbTightNoZlib
+	constant and notes on its usage.
+
+2012-03-10  Christian Beier <dontmind@freeshell.org>
+
+	* client_examples/SDLvncviewer.c, libvncclient/listen.c,
+	libvncclient/sockets.c, libvncclient/vncviewer.c,
+	libvncserver/sockets.c, rfb/rfbclient.h: IPv6 support for
+	LibVNCServer, part three: make reverse connections IPv6-capable.  Besided making libvncserver reverseVNC IPv6-aware, this introduces
+	some changes on the client side as well to make clients listen on
+	IPv6 sockets, too. Like the server side, this also uses a
+	separate-socket approach.
+
+2012-03-10  Christian Beier <dontmind@freeshell.org>
+
+	* libvncserver/sockets.c: IPv6 support for LibVNCServer, part
+	onepointseven: Plug a memleak.  We have to properly free the addrinfo struct when jumping out of the
+	function.
+
+2012-03-09  Christian Beier <dontmind@freeshell.org>
+
+	* webclients/index.vnc: IPv6 support for LibVNCServer, part
+	twopointone: properly surround IPv6 addresses with [] for noVNC URL.  Some browsers omit the square brackets in
+	document.location.hostname, so add them if missing.
+
+2012-02-27  Christian Beier <dontmind@freeshell.org>
+
+	* libvncserver/cargs.c, libvncserver/httpd.c, libvncserver/main.c,
+	rfb/rfb.h: IPv6 support for LibVNCServer, part two: Let the http
+	server listen on IPv6, too.  As done with the RFB sockets, this uses a separate-socket approach
+	as well.
+
+2012-02-27  Christian Beier <dontmind@freeshell.org>
+
+	* libvncserver/main.c: IPv6 support for LibVNCServer, part
+	onepointsix: fix a small logic error.  Without this, we would have gotten a stale IPv4 socket in a race
+	condition.
+
+2012-02-27  Christian Beier <dontmind@freeshell.org>
+
+	* libvncserver/rfbserver.c, libvncserver/sockets.c: IPv6 support for
+	LibVNCServer, part onepointfive: Fix compilation with IPv6 missing.  There was an oversight that crept in...
+
+2012-02-20  Christian Beier <dontmind@freeshell.org>
+
+	* libvncserver/cargs.c, libvncserver/main.c,
+	libvncserver/rfbserver.c, libvncserver/sockets.c, rfb/rfb.h: IPv6
+	support for LibVNCServer, part one: accept IPv4 and IPv6
+	connections.  This uses a separate-socket approach since there are systems that do
+	not support dual binding sockets under *any* circumstances, for
+	instance OpenBSD. Using separate sockets for IPv4 and IPv6 is thus
+	more portable than having a v6 socket handle v4 connections as well.  Signed-off-by: Christian Beier <dontmind@freeshell.org>
+
+2012-02-11  Mateus Cesar Groess <mateuscg@gmail.com>
+
+	* AUTHORS, client_examples/Makefile.am,
+	client_examples/gtkvncviewer.c, configure.ac: Here is a port of
+	SDLvncviewer to GTK+2.  I think it may encourage people to implement more features for the
+	viewer, because a GTK GUI seems to be easier to implement than a SDL
+	one (and it is more integrated with the major Linux Desktops out
+	there).  Signed-off-by: Christian Beier <dontmind@freeshell.org>
+
+2012-02-11  Christian Beier <dontmind@freeshell.org>
+
+	* AUTHORS: Update AUTHORS.
+
+2012-02-10  Kyle J. McKay <mackyle@gmail.com>
+
+	* libvncserver/auth.c, libvncserver/rfbserver.c, rfb/rfb.h: Support
+	Mac OS X vnc client with no password Support connections from the Mac OS X built-in VNC client to
+	LibVNCServers running with no password and advertising a server
+	version of 3.7 or greater.
+
+2012-02-04  Johannes Schindelin <johannes.schindelin@gmx.de>
+
+	* AUTHORS: Add Luca to the AUTHORS Signed-off-by: Johannes Schindelin <johannes.schindelin@gmx.de>
+
+2012-02-04  Luca Stauble <gnekoz@gmail.com>
+
+	* libvncclient/listen.c, libvncclient/sockets.c,
+	libvncclient/vncviewer.c, rfb/rfbclient.h: Add an optional parameter
+	to specify the ip address for reverse connections For security reasons, it can be important to limit which IP
+	addresses a LibVNCClient-based client should listen for reverse
+	connections. This commit adds that option.  To preserve binary backwards-compatibility, the field was added to
+	the end of the rfbclient struct, and the function ListenAtTcpPort
+	retains its signature (but calls the new ListenAtTcpPortAndAddress).  [jes: shortened the commit subject, added a longer explanation in
+	the commit body and adjusted style] Signed-off-by: Luca Stauble <gnekoz@gmail.com> Signed-off-by:
+	Johannes Schindelin <johannes.schindelin@gmx.de>
+
+2012-01-12  Gernot Tenchio <gernot.tenchio@securepoint.de>
+
+	* libvncserver/websockets.c: websockets: removed debug message
+
+2012-01-12  Gernot Tenchio <gernot.tenchio@securepoint.de>
+
+	* libvncserver/websockets.c: websockets: restore errno after logging
+	an error
+
+2012-01-12  Gernot Tenchio <gernot.tenchio@securepoint.de>
+
+	* CMakeLists.txt: cmake: adapted to latest websocket crypto changes
+
+2011-12-15  Christian Beier <dontmind@freeshell.org>
+
+	* rfb/rfbclient.h: Small changes to LibNVCClient doxygen
+	documentation.
+
+2011-12-01  Christian Beier <dontmind@freeshell.org>
+
+	* libvncserver/Makefile.am: Fix build error when libpng is
+	available, but libjpeg is not.  The png stuff in tight.c depends on code in tight.c that uses
+	libjpeg features. We could probably seperate that, but for now the
+	dependency for 'tight' goes: PNG depends on JPEG depends on ZLIB.  This is reflected in Makefile.am now.  NB: Building tight.c with JPEG but without PNG is still possible,     but nor the other way around.
+
+2011-12-01  Christian Beier <dontmind@freeshell.org>
+
+	* configure.ac: Use AM_SILENT_RULES only when it's actually
+	available.  Otherwise building breaks with older make versions. Happens on OS X
+	10.6 for instance.
+
+2011-11-09  Christian Beier <dontmind@freeshell.org>
+
+	* configure.ac, webclients/Makefile.am, webclients/index.vnc,
+	webclients/java-applet/Makefile.am,
+	webclients/java-applet/javaviewer.pseudo_proxy.patch,
+	webclients/java-applet/ssl/Makefile.am,
+	webclients/java-applet/ssl/README,
+	webclients/java-applet/ssl/index.vnc,
+	webclients/java-applet/ssl/onetimekey,
+	webclients/java-applet/ssl/proxy.vnc,
+	webclients/java-applet/ssl/ss_vncviewer,
+	webclients/java-applet/ssl/tightvnc-1.3dev7_javasrc-vncviewer-curso
+	r-colors+no-tab-traversal.patch,
+	webclients/java-applet/ssl/tightvnc-1.3dev7_javasrc-vncviewer-ssl.p
+	atch, webclients/java-applet/ssl/ultra.vnc,
+	webclients/java-applet/ssl/ultraproxy.vnc,
+	webclients/java-applet/ssl/ultrasigned.vnc,
+	webclients/java-applet/ssl/ultravnc-102-JavaViewer-ssl-etc.patch,
+	webclients/javaviewer.pseudo_proxy.patch,
+	webclients/ssl/Makefile.am, webclients/ssl/README,
+	webclients/ssl/index.vnc, webclients/ssl/onetimekey,
+	webclients/ssl/proxy.vnc, webclients/ssl/ss_vncviewer,
+	webclients/ssl/tightvnc-1.3dev7_javasrc-vncviewer-cursor-colors+no-
+	tab-traversal.patch,
+	webclients/ssl/tightvnc-1.3dev7_javasrc-vncviewer-ssl.patch,
+	webclients/ssl/ultra.vnc, webclients/ssl/ultraproxy.vnc,
+	webclients/ssl/ultrasigned.vnc,
+	webclients/ssl/ultravnc-102-JavaViewer-ssl-etc.patch: Move the java
+	stuff into webclients/java-applet.
+
+2011-11-09  Christian Beier <dontmind@freeshell.org>
+
+	* LibVNCServer.spec.in, Makefile.am, README, classes/Makefile.am,
+	classes/index.vnc, classes/javaviewer.pseudo_proxy.patch,
+	classes/novnc/LICENSE.txt, classes/novnc/README.md,
+	classes/novnc/favicon.ico, classes/novnc/include/base.css,
+	classes/novnc/include/base64.js, classes/novnc/include/black.css,
+	classes/novnc/include/blue.css, classes/novnc/include/des.js,
+	classes/novnc/include/display.js, classes/novnc/include/input.js,
+	classes/novnc/include/logo.js, classes/novnc/include/playback.js,
+	classes/novnc/include/rfb.js, classes/novnc/include/ui.js,
+	classes/novnc/include/util.js, classes/novnc/include/vnc.js,
+	classes/novnc/include/web-socket-js/README.txt,
+	classes/novnc/include/web-socket-js/swfobject.js,
+	classes/novnc/include/web-socket-js/web_socket.js,
+	classes/novnc/include/websock.js, classes/novnc/include/webutil.js,
+	classes/novnc/vnc.html, classes/novnc/vnc_auto.html,
+	classes/ssl/Makefile.am, classes/ssl/README, classes/ssl/index.vnc,
+	classes/ssl/onetimekey, classes/ssl/proxy.vnc,
+	classes/ssl/ss_vncviewer,
+	classes/ssl/tightvnc-1.3dev7_javasrc-vncviewer-cursor-colors+no-tab
+	-traversal.patch,
+	classes/ssl/tightvnc-1.3dev7_javasrc-vncviewer-ssl.patch,
+	classes/ssl/ultra.vnc, classes/ssl/ultraproxy.vnc,
+	classes/ssl/ultrasigned.vnc,
+	classes/ssl/ultravnc-102-JavaViewer-ssl-etc.patch, configure.ac,
+	examples/example.c, examples/pnmshow.c, examples/pnmshow24.c,
+	rfb/rfb.h, webclients/Makefile.am, webclients/index.vnc,
+	webclients/javaviewer.pseudo_proxy.patch,
+	webclients/novnc/LICENSE.txt, webclients/novnc/README.md,
+	webclients/novnc/favicon.ico, webclients/novnc/include/base.css,
+	webclients/novnc/include/base64.js,
+	webclients/novnc/include/black.css,
+	webclients/novnc/include/blue.css, webclients/novnc/include/des.js,
+	webclients/novnc/include/display.js,
+	webclients/novnc/include/input.js,
+	webclients/novnc/include/logo.js,
+	webclients/novnc/include/playback.js,
+	webclients/novnc/include/rfb.js, webclients/novnc/include/ui.js,
+	webclients/novnc/include/util.js, webclients/novnc/include/vnc.js,
+	webclients/novnc/include/web-socket-js/README.txt,
+	webclients/novnc/include/web-socket-js/swfobject.js,
+	webclients/novnc/include/web-socket-js/web_socket.js,
+	webclients/novnc/include/websock.js,
+	webclients/novnc/include/webutil.js, webclients/novnc/vnc.html,
+	webclients/novnc/vnc_auto.html, webclients/ssl/Makefile.am,
+	webclients/ssl/README, webclients/ssl/index.vnc,
+	webclients/ssl/onetimekey, webclients/ssl/proxy.vnc,
+	webclients/ssl/ss_vncviewer,
+	webclients/ssl/tightvnc-1.3dev7_javasrc-vncviewer-cursor-colors+no-
+	tab-traversal.patch,
+	webclients/ssl/tightvnc-1.3dev7_javasrc-vncviewer-ssl.patch,
+	webclients/ssl/ultra.vnc, webclients/ssl/ultraproxy.vnc,
+	webclients/ssl/ultrasigned.vnc,
+	webclients/ssl/ultravnc-102-JavaViewer-ssl-etc.patch: Rename
+	'classes' dir to 'webclients'.
+
+2011-11-09  Christian Beier <dontmind@freeshell.org>
+
+	* classes/index.vnc, libvncserver/httpd.c: novnc client: use the
+	client's notion about the server hostname instead of what the server
+	thinks.
+
+2011-11-09  Christian Beier <dontmind@freeshell.org>
+
+	* classes/index.vnc: Fix tiny typo.
+
+2011-11-09  Christian Beier <dontmind@freeshell.org>
+
+	* NEWS: Add 0.9.8.2 NEWS entry.
+
+2011-11-09  Christian Beier <dontmind@freeshell.org>
+
+	* libvncclient/rfbproto.c: When GetCredential() callback is not set,
+	don't use authentications requiring it.  The auth methods that employ Getcredential() will only be used if
+	the client's GetCredential callback is actually set.
+
+2011-10-12  Christian Beier <dontmind@freeshell.org>
+
+	* ChangeLog: Update ChangeLog for 0.9.8.1.
+
 2011-10-12  Christian Beier <dontmind@freeshell.org>
 
 	* CMakeLists.txt, NEWS, configure.ac: Update version number in
 	autotools && cmake, NEWS entry.
+
+2011-10-26  Peter Watkins <watkipet@gmail.com>
+
+	* rfb/rfbclient.h: Added comments.
+
+2011-10-26  Christian Beier <dontmind@freeshell.org>
+
+	* libvncserver/rfbserver.c: Fix deadlock in threaded mode when using
+	nested rfbClientIteratorNext() calls.  Lengthy explanation follows...  First, the scenario before this patch: We have three clients 1,2,3 connected. The main thread loops through
+	them using rfbClientIteratorNext() (loop L1) and is currently at
+	client 2 i.e. client 2's cl_2->refCount is 1. At this point we need
+	to loop again through the clients, with cl_2->refCount == 1, i.e. do
+	a loop L2 nested within loop L1.  BUT: Now client 2 disconnects, it's clientInput thread terminates
+	its clientOutput thread and calls rfbClientConnectionGone(). This
+	LOCKs clientListMutex and WAITs for cl_2->refCount to become 0. This
+	means this thread waits for the main thread to release cl_2.
+	Waiting, with clientListMutex LOCKed! Meanwhile, the main thread is about to begin the inner
+	rfbClientIteratorNext() loop L2. The first call to
+	rfbClientIteratorNext() LOCKs clientListMutex. BAAM. This mutex is
+	locked by cl2's clientInput thread and is only released when
+	cl_2->refCount becomes 0. The main thread would decrement
+	cl_2->refCount when it would continue with loop L1. But it's waiting
+	for cl2's clientInput thread to release clientListMutex. Which never
+	happens since this one's waiting for the main thread to decrement
+	cl_2->refCount. DEADLOCK.  Now, situation with this patch: Same as above, but when client 2 disconnects it's clientInput thread
+	rfbClientConnectionGone(). This again LOCKs clientListMutex, removes
+	cl_2 from the linked list and UNLOCKS clientListMutex. The WAIT for
+	cl_2->refCount to become 0 is _after_ that. Waiting, with
+	clientListMutex UNLOCKed! Therefore, the main thread can continue, do the inner loop L2 (now
+	only looping through 1,3 - 2 was removed from the linked list) and
+	continue with loop L1, finally decrementing cl_2->refCount, allowing
+	cl2's clientInput thread to continue and terminate. The resources
+	held by cl2 are not free()'d by rfbClientConnectionGone until
+	cl2->refCount becomes 0, i.e. loop L1 has released cl2.
+
+2011-10-16  Johannes Schindelin <johannes.schindelin@gmx.de>
+
+	* AUTHORS: Update AUTHORS Signed-off-by: Johannes Schindelin <johannes.schindelin@gmx.de>
+
+2011-10-16  George Fleury <gfleury@gmail.com>
+
+	* libvncserver/rfbserver.c: Fix memory leak I was debbuging some code tonight and i found a pointer that is not
+	been freed, so i think there is maybe a memory leak, so it is...  there is the malloc caller reverse order: ( malloc cl->statEncList ) 	<- rfbStatLookupEncoding 	<- rfbStatRecordEncodingSent 	<- rfbSendCursorPos 	<- rfbSendFramebufferUpdate 	<- rfbProcessEvents I didnt look the whole libvncserver api, but i am using
+	rfbReverseConnection with rfbProcessEvents, and then when the client
+	connection dies, i am calling a rfbShutdownServer and
+	rfbScreenCleanup, but the malloc at rfbStatLookupEncoding isnt been
+	freed.  So to free the stats i added a rfbResetStats(cl) after
+	rfbPrintStats(cl) at rfbClientConnectionGone in rfbserver.c before
+	free the cl pointer. (at rfbserver.c line 555). And this, obviously,
+	is correcting the memory leak.  Signed-off-by: Johannes Schindelin <johannes.schindelin@gmx.de>
 
 2011-10-08  Johannes Schindelin <johannes.schindelin@gmx.de>
 
@@ -11,6 +705,382 @@
 	libraries, as the structs are always allocated by the library (and
 	therefore guaranteed to have the correct size) and still rely on the
 	same position of the parts the callers know about.  Reported by Luca Falavigna.  Signed-off-by: Johannes Schindelin <johannes.schindelin@gmx.de>
+
+2011-10-09  Johannes Schindelin <johannes.schindelin@gmx.de>
+
+	* client_examples/SDLvncviewer.c: SDLvncviewer: make it resizable by
+	default I got annoyed having to specify -resizable all the time; I never use
+	it in another mode anymore, since I am on a netbook.  The option -no-resizable was added to be able to switch off that
+	feature.  Signed-off-by: Johannes Schindelin <johannes.schindelin@gmx.de>
+
+2011-10-06  Christian Beier <dontmind@freeshell.org>
+
+	* libvncserver/httpd.c: httpd: fix sending of binary data such as
+	images.  We do this simply by omitting the content-type and let the browser
+	decide upon the mime-type of the sent file. Only exception is
+	'index.vnc', where we do set the content-type since some browsers
+	fail to detect it's html when it's ending in '.vnc' Also, remove superfluous #defines. We close the connection always.
+
+2011-10-06  Christian Beier <dontmind@freeshell.org>
+
+	* classes/index.vnc: Fix typo && use proper website.
+
+2011-10-04  Christian Beier <dontmind@freeshell.org>
+
+	* classes/index.vnc, classes/novnc/LICENSE.txt,
+	classes/novnc/README.md, classes/novnc/favicon.ico,
+	classes/novnc/include/base.css, classes/novnc/include/base64.js,
+	classes/novnc/include/black.css, classes/novnc/include/blue.css,
+	classes/novnc/include/des.js, classes/novnc/include/display.js,
+	classes/novnc/include/input.js, classes/novnc/include/logo.js,
+	classes/novnc/include/playback.js, classes/novnc/include/rfb.js,
+	classes/novnc/include/ui.js, classes/novnc/include/util.js,
+	classes/novnc/include/vnc.js,
+	classes/novnc/include/web-socket-js/README.txt,
+	classes/novnc/include/web-socket-js/swfobject.js,
+	classes/novnc/include/web-socket-js/web_socket.js,
+	classes/novnc/include/websock.js, classes/novnc/include/webutil.js,
+	classes/novnc/vnc.html, classes/novnc/vnc_auto.html,
+	libvncserver/httpd.c: Add noVNC HTML5 client connect possibility to
+	our http server.  Pure JavaScript, no Java plugin required anymore! (But a recent
+	browser...)
+
+2011-10-04  Christian Beier <dontmind@freeshell.org>
+
+	* configure.ac: This build warning is a libvncserver one, not for
+	x11vnc.  Also, make it warn more generally when no known encryption lib is
+	available.
+
+2011-09-21  Gernot Tenchio <gernot@tenchio.de>
+
+	* common/md5.c: md5: forced to use function names with leading
+	underscores Commented out the surrounding '#ifdef _LIBC' to build md5.o with
+	leading underscores. This is required to match the prototypes
+	defined in md5.h.
+
+2011-09-20  Gernot Tenchio <gernot.tenchio@securepoint.de>
+
+	* libvncserver/rfbcrypto_included.c: rfbcrypto_included: fix c&p
+	errors
+
+2011-09-20  Gernot Tenchio <gernot@tenchio.de>
+
+	* libvncserver/rfbcrypto_polarssl.c: rfbcrypto_polarssl: it was way
+	to late last night...
+
+2011-09-18  Gernot Tenchio <gernot@tenchio.de>
+
+	* libvncserver/Makefile.am, libvncserver/rfbcrypto.h,
+	libvncserver/rfbcrypto_gnutls.c, libvncserver/rfbcrypto_included.c,
+	libvncserver/rfbcrypto_openssl.c,
+	libvncserver/rfbcrypto_polarssl.c, libvncserver/websockets.c: Add
+	support for different crypto implementations
+
+2011-09-11  Christian Beier <dontmind@freeshell.org>
+
+	* configure.ac, libvncserver/Makefile.am: Autotools: Fix OpenSSL and
+	GnuTLS advertisement.
+
+2011-09-11  Christian Beier <dontmind@freeshell.org>
+
+	* libvncserver/rfbssl_gnutls.c: Fix libvncserver GnuTLS init.  gnutls_certificate_set_x509_trust_file() returns the number of
+	processed certs and _not_ GNUTLS_E_SUCCESS (0) on success!
+
+2011-09-11  Christian Beier <dontmind@freeshell.org>
+
+	* AUTHORS, libvncserver/websockets.c: Update AUTHORS regarding the
+	websocket guys.
+
+2011-08-28  Gernot Tenchio <gernot@tenchio.de>
+
+	* configure.ac: configure: Add AM_SILENT_RULES Working with “silent make mode” makes debugging a lot of easier
+	since warnings wont shadowed by useless compiler noise
+
+2011-08-27  Gernot Tenchio <gernot@tenchio.de>
+
+	* CMakeLists.txt: cmake: set SOVERSION
+
+2011-09-11  Christian Beier <dontmind@freeshell.org>
+
+	* configure.ac, libvncserver/Makefile.am: Autotools: Fix OpenSSL and
+	GnuTLS advertisement.
+
+2011-09-11  Christian Beier <dontmind@freeshell.org>
+
+	* libvncserver/rfbssl_gnutls.c: Fix libvncserver GnuTLS init.  gnutls_certificate_set_x509_trust_file() returns the number of
+	processed certs and _not_ GNUTLS_E_SUCCESS (0) on success!
+
+2011-09-11  Christian Beier <dontmind@freeshell.org>
+
+	* AUTHORS, libvncserver/websockets.c: Update AUTHORS regarding the
+	websocket guys.
+
+2011-09-02  Gernot Tenchio <gernot@tenchio.de>
+
+	* libvncserver/websockets.c: websocket: Use a single buffer for
+	both, encoding and decoding
+
+2011-08-30  Gernot Tenchio <gernot.tenchio@securepoint.de>
+
+	* libvncserver/rfbssl_gnutls.c: rfbssl_gnutls: Merge
+	rfbssl_peek/rfbssl_read into one function
+
+2011-08-30  Gernot Tenchio <gernot.tenchio@securepoint.de>
+
+	* libvncserver/websockets.c: websockets: fix
+	webSocketCheckDisconnect() Do not consume the peeked data if no close frame was detected.
+
+2011-08-29  Gernot Tenchio <gernot.tenchio@securepoint.de>
+
+	* libvncserver/websockets.c: websockets: use 32bit Xor in
+	webSocketsDecodeHybi()
+
+2011-08-29  Gernot Tenchio <gernot.tenchio@securepoint.de>
+
+	* CMakeLists.txt: cmake: use sha1.c for websocket builds
+
+2011-08-25  Gernot Tenchio <gernot@tenchio.de>
+
+	* libvncserver/websockets.c: websockets: nothing to worry about
+
+2011-08-25  Gernot Tenchio <gernot@tenchio.de>
+
+	* libvncserver/websockets.c: websockets: added gcrypt based sha1
+	digest funtion
+
+2011-08-25  Joel Martin <jmartin@sentryds.com>
+
+	* common/sha1.c, common/sha1.h, libvncserver/Makefile.am,
+	libvncserver/websockets.c: Add sha1.*. Remove UTF-8 encode. Protocol
+	handling.  Add common/sha1.h and common/sha1.c so that we have the SHA routines
+	even if openssl is not available. From the IETF SHA RFC example
+	code.  Remove the UTF-8 encoding hack. This was really just an experiment.  If the protocol passed in the handshake has "binary" then don't
+	base64 encode for the HyBi protocol. This will allow noVNC to
+	request the binary data be passed raw and not base64 encoded.
+	Unfortunately, the client doesn't speak first in VNC protocol (bad
+	original design). If it did then we could determine whether to
+	base64 encode or not based on the first HyBi frame from the client
+	and whether the binary bit is set or not. Oh well.  Misc Cleanup: - Always free response and buf in handshake routine.  - Remove some unused variables.
+
+2011-08-25  Gernot Tenchio <gernot@tenchio.de>
+
+	* CMakeLists.txt: cmake: make some noise
+
+2011-08-25  Gernot Tenchio <gernot@tenchio.de>
+
+	* libvncserver/rfbssl_gnutls.c: websockets: remove warning on 64bit
+	platforms
+
+2011-08-25  Gernot Tenchio <gernot.tenchio@securepoint.de>
+
+	* libvncserver/websockets.c: websockets: Removed debugging left over
+
+2011-08-25  Gernot Tenchio <gernot.tenchio@securepoint.de>
+
+	* libvncserver/websockets.c: websockets: Use callback functions for
+	encode/decode
+
+2011-08-25  Gernot Tenchio <gernot.tenchio@securepoint.de>
+
+	* libvncserver/rfbserver.c, libvncserver/sockets.c,
+	libvncserver/websockets.c, rfb/rfb.h: websockets: Move Hixie
+	disconnect hack to websockets.c Move the hixie disconnect hack to websockets.c. Removed the
+	remaining websockets vars from rfbClientPtr, so all websockets stuff
+	is hidden behind an opaque pointer.
+
+2011-08-25  Gernot Tenchio <gernot.tenchio@securepoint.de>
+
+	* libvncserver/rfbserver.c, libvncserver/sockets.c,
+	libvncserver/websockets.c, rfb/rfb.h: websockets: Initial HyBi
+	support
+
+2011-08-16  Gernot Tenchio <gernot.tenchio@securepoint.de>
+
+	* CMakeLists.txt: cmake: don't link sdl libs to vnc libraries Signed-off-by: Johannes Schindelin <johannes.schindelin@gmx.de>
+
+2011-08-16  Gernot Tenchio <gernot.tenchio@securepoint.de>
+
+	* libvncserver/sockets.c, libvncserver/websockets.c, rfb/rfb.h: 
+	websockets: Add wspath member to rfbClientRec Added wspath member to rfbClientRec which holds the path component
+	of the initial websocket request.  Signed-off-by: Johannes Schindelin <johannes.schindelin@gmx.de>
+
+2011-08-16  Gernot Tenchio <gernot.tenchio@securepoint.de>
+
+	* CMakeLists.txt, common/md5.c, common/md5.h,
+	libvncserver/Makefile.am, libvncserver/md5.c, libvncserver/md5.h: 
+	Move libvncserver/md5* to common Signed-off-by: Johannes Schindelin <johannes.schindelin@gmx.de>
+
+2011-08-16  Gernot Tenchio <gernot.tenchio@securepoint.de>
+
+	* CMakeLists.txt, rfb/rfbconfig.h.cmake: websockets: Add Websockets
+	support to CMakeLists.txt Signed-off-by: Johannes Schindelin <johannes.schindelin@gmx.de>
+
+2011-08-16  Joel Martin <github@martintribe.org>
+
+	* libvncserver/Makefile.am, libvncserver/cargs.c: websockets: Add
+	SSL cert command line options.  - Add --sslcertfile and --sslkeyfile. These should really be
+	  combined with the existing x11vnc command line options for SSL
+	support.  Signed-off-by: Johannes Schindelin <johannes.schindelin@gmx.de>
+
+2011-08-17  Gernot Tenchio <gernot.tenchio@securepoint.de>
+
+	* configure.ac, libvncserver/Makefile.am,
+	libvncserver/rfbssl_gnutls.c, libvncserver/rfbssl_openssl.c: 
+	websockets: add GnuTLS and OpenSSL support For now, only OpenSSL support is activated through configure, since
+	GnuTLS is only used in LibVNCClient.  [jes: separated this out from the commit adding encryption support,
+	added autoconf support.] Signed-off-by: Johannes Schindelin <johannes.schindelin@gmx.de>
+
+2011-08-16  Gernot Tenchio <gernot.tenchio@securepoint.de>
+
+	* libvncserver/Makefile.am, libvncserver/rfbserver.c,
+	libvncserver/rfbssl.h, libvncserver/rfbssl_none.c,
+	libvncserver/sockets.c, libvncserver/websockets.c, rfb/rfb.h: 
+	websockets: Add encryption support [jes: moved out GnuTLS and OpenSSL support, added a dummy support,
+	to separate changes better, and to keep things compiling] Signed-off-by: Johannes Schindelin <johannes.schindelin@gmx.de>
+
+2011-08-16  Joel Martin <jmartin@sentryds.com>
+
+	* libvncserver/websockets.c: websockets: Properly parse Hixie-76
+	handshake.  Signed-off-by: Johannes Schindelin <johannes.schindelin@gmx.de>
+
+2011-08-16  Joel Martin <github@martintribe.org>
+
+	* libvncserver/rfbserver.c, libvncserver/websockets.c: websockets:
+	Add UTF-8 encoding support.  This is not completely standard UTF-8 encoding. Only code points
+	0-255 are encoded and never encoded to more than two octets. Since
+	'\x00' is a WebSockets framing character, it's easier for all
+	parties to encode zero as '\xc4\x80', i.e. 194+128, i.e. UTF-8 256.  This means that a random stream will be slightly more than 50%
+	larger using this encoding scheme. But it's easy CPU-wise for client
+	and server to decode/encode. This is especially important for
+	clients written in languages that have weak bitops, like Javascript
+	(i.e. the noVNC client).  Signed-off-by: Johannes Schindelin <johannes.schindelin@gmx.de>
+
+2011-08-16  Joel Martin <github@martintribe.org>
+
+	* libvncserver/rfbserver.c: websockets: Better disconnect detection.  If the only thing we are waiting on is a WebSockets terminator, then
+	remove it from the stream early on in rfbProcessClientNormalMessage.  Signed-off-by: Johannes Schindelin <johannes.schindelin@gmx.de>
+
+2011-08-16  Joel Martin <github@martintribe.org>
+
+	* configure.ac, libvncserver/Makefile.am, libvncserver/md5.c,
+	libvncserver/md5.h, libvncserver/rfbserver.c,
+	libvncserver/sockets.c, libvncserver/websockets.c, rfb/rfb.h: 
+	websockets: Initial WebSockets support.  Has a bug: WebSocket client disconnects are not detected.
+	rfbSendFramebufferUpdate is doing a MSG_PEEK recv to determine if
+	enough data is available which prevents a disconnect from being
+	detected.  Otherwise it's working pretty well.  [jes: moved added struct members to the end for binary compatibility
+	with previous LibVNCServer versions, removed an unused variable] Signed-off-by: Johannes Schindelin <johannes.schindelin@gmx.de>
+
+2011-08-17  Johannes Schindelin <johannes.schindelin@gmx.de>
+
+	* .gitignore: .gitignore: zippy has moved Signed-off-by: Johannes Schindelin <johannes.schindelin@gmx.de>
+
+2011-07-25  Christian Beier <dontmind@freeshell.org>
+
+	* examples/android/README: Add installation hints to android example
+	README.
+
+2011-07-22  William Roberts <wroberts@sta.samsung.com>
+
+	* examples/android/jni/fbvncserver.c: Reduced memory footprint by
+	50%
+
+2011-07-22  William Roberts <wroberts@sta.samsung.com>
+
+	* examples/android/jni/fbvncserver.c: Corrected resolution issue,
+	but screen is getting reported as wrong size
+
+2011-07-23  ckanru <ckanru@code.google.com>
+
+	* examples/android/jni/fbvncserver.c: Fixes running vncserver on
+	beagleboard/0xdroid and possibly any device without a touch screen.
+	Because fake touch screen always report zero when query device
+	information, coordinates transformation is not needed.  Signed-off-by: Christian Beier <dontmind@freeshell.org>
+
+2011-07-23  Christian Beier <dontmind@freeshell.org>
+
+	* configure.ac, examples/Makefile.am, examples/android/Makefile.am,
+	rfb/rfb.h, vncterm/Makefile.am: Adopt autotools build system to
+	Android.  LibVNCServer/LibVNCClient now build for Android!
+
+2011-07-23  Christian Beier <dontmind@freeshell.org>
+
+	* examples/android/README, examples/android/jni/Android.mk,
+	examples/android/jni/fbvncserver.c: Add androidvncserver example.
+
+2011-07-22  letsgoustc <letsgoustc@gmail.com>
+
+	* rfb/rfb.h: Make LibVNCServer build for Android.  Signed-off-by: Christian Beier <dontmind@freeshell.org>
+
+2011-07-19  Joel Martin <github@martintribe.org>
+
+	* libvncserver/tight.c: tightPng: check even for SendGradientRect.  Signed-off-by: Christian Beier <dontmind@freeshell.org>
+
+2011-07-19  Joel Martin <github@martintribe.org>
+
+	* CMakeLists.txt, configure.ac, libvncserver/Makefile.am,
+	libvncserver/rfbserver.c, libvncserver/stats.c,
+	libvncserver/tight.c, rfb/rfb.h, rfb/rfbconfig.h.cmake,
+	rfb/rfbproto.h: tightPng: Add initial tightPng encoding support.  http://wiki.qemu.org/VNC_Tight_PNG Signed-off-by: Joel Martin <github@martintribe.org> Signed-off-by:
+	Christian Beier <dontmind@freeshell.org>
+
+2011-06-01  Christian Beier <dontmind@freeshell.org>
+
+	* libvncserver/main.c, libvncserver/sockets.c: Remove some unused
+	variables.
+
+2010-11-14  George Kiagiadakis <kiagiadakis.george@gmail.com>
+
+	* libvncserver/sockets.c, rfb/rfb.h: Fix rfbProcessNewConnection to
+	return some value instead of void.  BUG: 256891 Signed-off-by: Christian Beier <dontmind@freeshell.org>
+
+2010-11-10  George Kiagiadakis <kiagiadakis.george@gmail.com>
+
+	* libvncserver/main.c, libvncserver/sockets.c, rfb/rfb.h: Split two
+	event-loop related functions out of the rfbProcessEvents()
+	mechanism.  This is required to be able to do proper event loop integration with
+	Qt.  Idea was taken from vino's libvncserver fork.  Signed-off-by: Christian Beier <dontmind@freeshell.org>
+
+2011-05-06  Cristian Rodríguez <crrodriguez@opensuse.org>
+
+	* libvncserver/tightvnc-filetransfer/filetransfermsg.c: Fix buffer
+	overflow Signed-off-by: Cristian Rodríguez <crrodriguez@opensuse.org>
+	Signed-off-by: Christian Beier <dontmind@freeshell.org>
+
+2011-04-30  Christian Beier <dontmind@freeshell.org>
+
+	* libvncserver/tight.c: Revert "Fix memory corruption bug." This reverts commit c1363fa9583ed41b94fbc79b3ff410b7d5189407.  The proper fix was already in
+	804335f9d296440bb708ca844f5d89b58b50b0c6.
+
+2011-04-28  Johannes Schindelin <johannes.schindelin@gmx.de>
+
+	* AUTHORS: UTF-8ify AUTHORS Signed-off-by: Johannes Schindelin <johannes.schindelin@gmx.de>
+
+2011-04-28  Johannes Schindelin <johannes.schindelin@gmx.de>
+
+	* AUTHORS: Update AUTHORS Signed-off-by: Johannes Schindelin <johannes.schindelin@gmx.de>
+
+2010-11-10  George Kiagiadakis <kiagiadakis.george@gmail.com>
+
+	* libvncserver/tight.c: Fix memory corruption bug.  This bug occured when a second telepathy tubes client was connected
+	after the first one had disconnected and the channel (thus, the
+	screen too) had been destroyed.  Signed-off-by: Johannes Schindelin <johannes.schindelin@gmx.de>
+
+2010-11-10  George Kiagiadakis <kiagiadakis.george@gmail.com>
+
+	* common/zywrletemplate.c, libvncserver/auth.c,
+	libvncserver/rfbserver.c, libvncserver/scale.c,
+	libvncserver/scale.h, rfb/rfb.h: Fix compilation in c89 mode.  Signed-off-by: Johannes Schindelin <johannes.schindelin@gmx.de>
+
+2011-04-27  Vic Lee <llyzs@163.com>
+
+	* libvncclient/tls.c: Replace deprecated GnuTLS functions
+	gnutls_*_set_priority with gnutls_priority_set_direct.  The functions gnutls_*_set_priority we used were marked deprecated
+	since latest GnuTLS version 2.12. However the replacement function
+	gnutls_priority_set_direct is available since 2.2, which is even
+	lower than our version requirement 2.4 in configure. The patch just
+	replace the deprecate function to fix the compile warning.  Signed-off-by: Vic Lee <llyzs@163.com> Signed-off-by: Johannes
+	Schindelin <johannes.schindelin@gmx.de>
 
 2011-03-30  Christian Beier <dontmind@freeshell.org>
 
