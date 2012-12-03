@@ -2,7 +2,7 @@
  * LocalSystem.cpp - namespace LocalSystem, providing an interface for
  *				   transparent usage of operating-system-specific functions
  *
- * Copyright (c) 2006-2011 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2012 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -68,6 +68,10 @@ QString windowsConfigPath( int _type )
 
 #endif
 
+
+#ifdef ITALC_HAVE_UNISTD_H
+#include <unistd.h>
+#endif
 
 #ifdef ITALC_HAVE_PWD_H
 #include <pwd.h>

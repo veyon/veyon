@@ -7,6 +7,7 @@
 
 #cmakedefine ITALC_HAVE_ARPA_INET_H 1
 #cmakedefine ITALC_HAVE_FCNTL_H 1
+#cmakedefine ITALC_HAVE_FCNTL_H 1
 #cmakedefine ITALC_HAVE_LIMITS_H 1
 #cmakedefine ITALC_HAVE_MEMORY_H 1
 #cmakedefine ITALC_HAVE_NETDB_H 1
