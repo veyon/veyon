@@ -1,7 +1,7 @@
 /*
  * Configuration/Store.h - ConfigurationStore class
  *
- * Copyright (c) 2009-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2009-2012 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -58,6 +58,10 @@ public:
 	Store( Backend backend, Scope scope ) :
 		m_backend( backend ),
 		m_scope( scope )
+	{
+	}
+
+	virtual ~Store()
 	{
 	}
 
