@@ -2,7 +2,7 @@
  * DemoServer.cpp - multi-threaded slim VNC-server for demo-purposes (optimized
  *                   for lot of clients accessing server in read-only-mode)
  *
- * Copyright (c) 2006-2011 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2013 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -283,17 +283,17 @@ return;		// TODO
 		{
 			rfbFramebufferUpdate,
 			0,
-			Swap16IfLE( 1 )
+			(uint16_t) Swap16IfLE( 1 )
 		} ;
 
 		m_sock->write( (const char *) &m, sizeof( m ) );
 
 		const rfbRectangle rr =
 		{
-			Swap16IfLE( m_lastCursorPos.x() ),
-			Swap16IfLE( m_lastCursorPos.y() ),
-			Swap16IfLE( 0 ),
-			Swap16IfLE( 0 )
+			(uint16_t) Swap16IfLE( m_lastCursorPos.x() ),
+			(uint16_t) Swap16IfLE( m_lastCursorPos.y() ),
+			(uint16_t) Swap16IfLE( 0 ),
+			(uint16_t) Swap16IfLE( 0 )
 		} ;
 
 		const rfbFramebufferUpdateRectHeader rh =
@@ -351,7 +351,7 @@ void DemoServerClient::sendUpdates()
 	{
 		rfbFramebufferUpdate,
 		0,
-		Swap16IfLE( r.size() +
+		(uint16_t) Swap16IfLE( r.size() +
 				( m_cursorShapeChanged ? 1 : 0 ) )
 	} ;
 
@@ -378,16 +378,16 @@ void DemoServerClient::sendUpdates()
 #endif
 		const rfbRectangle rr =
 		{
-			Swap16IfLE( rx ),
-			Swap16IfLE( ry ),
-			Swap16IfLE( rw ),
-			Swap16IfLE( rh )
+			(uint16_t) Swap16IfLE( rx ),
+			(uint16_t) Swap16IfLE( ry ),
+			(uint16_t) Swap16IfLE( rw ),
+			(uint16_t) Swap16IfLE( rh )
 		} ;
 
 		const rfbFramebufferUpdateRectHeader rhdr =
 		{
 			rr,
-			Swap32IfLE( rfbEncodingLZORLE )
+			(uint32_t) Swap32IfLE( rfbEncodingLZORLE )
 		} ;
 
 		sd.write( (const char *) &rhdr, sizeof( rhdr ) );
@@ -504,16 +504,16 @@ void DemoServerClient::sendUpdates()
 		const QImage cur = m_cursorShape;
 		const rfbRectangle rr =
 		{
-			Swap16IfLE( m_cursorHotX ),
-			Swap16IfLE( m_cursorHotY ),
-			Swap16IfLE( cur.width() ),
-			Swap16IfLE( cur.height() )
+			(uint16_t) Swap16IfLE( m_cursorHotX ),
+			(uint16_t) Swap16IfLE( m_cursorHotY ),
+			(uint16_t) Swap16IfLE( cur.width() ),
+			(uint16_t) Swap16IfLE( cur.height() )
 		} ;
 
 		const rfbFramebufferUpdateRectHeader rh =
 		{
 			rr,
-			Swap32IfLE( rfbEncodingItalcCursor )
+			(uint32_t) Swap32IfLE( rfbEncodingItalcCursor )
 		} ;
 
 		sd.write( (const char *) &rh, sizeof( rh ) );
