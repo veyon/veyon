@@ -39,6 +39,10 @@ struct ItalcSecurityInfo : ISecurityInformation
 		m_pszObjectName(pszObjectName),
 		m_pszPageTitle(pszPageTitle) {}
 
+	virtual ~ItalcSecurityInfo()
+	{
+	}
+
 	STDMETHODIMP QueryInterface( REFIID iid, void** ppv );
 	STDMETHODIMP_(ULONG) AddRef();
 	STDMETHODIMP_(ULONG) Release();
