@@ -1,7 +1,7 @@
 /*
  * DecoratedMessageBox.cpp - simple message-box
  *
- * Copyright (c) 2006-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2013 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -133,6 +133,8 @@ void DecoratedMessageBox::trySysTrayMessage( const QString & _title,
 		case Critical:
 			p = QPixmap( ":/resources/stop.png" );
 			break;
+
+		default: break;
 	}
 
 	new DecoratedMessageBox( _title, _msg, p );
