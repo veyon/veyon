@@ -1,7 +1,7 @@
 /*
  * Dialogs.cpp - implementation of dialogs
  *
- * Copyright (c) 2006-2011 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2013 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -63,9 +63,10 @@ ClientSettingsDialog::ClientSettingsDialog( Client * _client,
 	ui->setupUi( this );
 
 	ui->hostnameEdit->setFocus();
-	int classroomIndex = 0, i = 0;
+	int classroomIndex = 0;
 
 #ifdef ITALC3
+	int i = 0;
 	ClassroomManager * cm = MasterCore::classroomManager;
 	foreach( const Classroom * cr,
 			MasterCore::classroomManager->classrooms() )
