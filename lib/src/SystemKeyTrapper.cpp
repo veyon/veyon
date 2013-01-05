@@ -2,7 +2,7 @@
  * SystemKeyTrapper.cpp - class for trapping system-keys and -key-sequences
  *                        such as Alt+Ctrl+Del, Alt+Tab etc.
  *
- * Copyright (c) 2006-2011 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2013 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -147,10 +147,6 @@ void enableStickyKeys( bool _enable )
 {
 	if( _enable )
 	{
-		STICKYKEYS sk = settings_sk;
-		TOGGLEKEYS tk = settings_tk;
-		FILTERKEYS fk = settings_fk;
-
 		SystemParametersInfo( SPI_SETSTICKYKEYS, sizeof( STICKYKEYS ),
 							&settings_sk, 0 );
 		SystemParametersInfo( SPI_SETTOGGLEKEYS, sizeof( TOGGLEKEYS ),
