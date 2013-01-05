@@ -1,7 +1,7 @@
 /*
  * FileSystemBrowser.cpp - a wrapper class for easily browsing the file system
  *
- * Copyright (c) 2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2010-2013 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -58,6 +58,8 @@ QString FileSystemBrowser::exec( const QString &path,
 				browsePath = QDir::homePath();
 			}
 			break;
+
+		default: break;
 	}
 
 	QString chosenPath;
@@ -77,6 +79,8 @@ QString FileSystemBrowser::exec( const QString &path,
 			chosenPath = QFileDialog::getSaveFileName( NULL, title,
 														browsePath, filter );
 			break;
+
+		default: break;
 	}
 
 	if( !chosenPath.isEmpty() )
