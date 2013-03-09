@@ -5,17 +5,11 @@
     <name>AboutDialog</name>
     <message>
         <source>About iTALC</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">О программе iTALC</translation>
     </message>
     <message>
         <source>About</source>
         <translation type="unfinished">О программе</translation>
-    </message>
-    <message utf8="true">
-        <source>iTALC - Intelligent Teaching And Learning with Computers
-
-Copyright © 2004-2011 Tobias Doerffel</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>&lt;a href=&quot;http://italc.sourceforge.net&quot;&gt;http://italc.sourceforge.net&lt;/a&gt;</source>
@@ -33,7 +27,9 @@ Copyright © 2004-2011 Tobias Doerffel</source>
         <source>Current language not translated yet (or native English).
 
 If you&apos;re interested in translating iTALC into your local or another language or want to improve an existing translation, please contact an iTALC developer!</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Перевод на данный язык еще не осуществлен.
+
+Если Вы желаете добавить перевод программы iTALC на новый язык или улучшить уже существующий, пожалуйста, свяжитесь с разработчиками iTALC!</translation>
     </message>
     <message>
         <source>License</source>
@@ -58,11 +54,11 @@ Copyright © 2004-2011 Tobias Doerffel / iTALC Solutions</source>
     </message>
     <message>
         <source>Confirm desktop access</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Подтверждать доступ к рабочему столу</translation>
     </message>
     <message>
         <source>The user %1 at host %2 wants to access your desktop. Do you want to grant access?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Пользователь %1 компьютера %2 пытается подключиться к Вашему рабочему столу. Разрешить ему доступ к Вашему рабочему столу?</translation>
     </message>
 </context>
 <context>
@@ -101,7 +97,7 @@ Copyright © 2004-2011 Tobias Doerffel / iTALC Solutions</source>
     </message>
     <message>
         <source>Export to text-file</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Экспортировать в текстовый файл</translation>
     </message>
     <message>
         <source>Use this button for exporting this list of computers and usernames into a text-file. You can use this file later for collecting files after an exam has finished. This is sometimes neccessary, because some users might have finished and logged out earlier and so you cannot collect their files at the end of the exam.</source>
@@ -175,15 +171,15 @@ Please edit it. Otherwise you should delete this file.</source>
     </message>
     <message>
         <source>Select output-file</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Выберите выходной файл</translation>
     </message>
     <message>
         <source>Text files (*.txt)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Текстовые файлы (*.txt)</translation>
     </message>
     <message>
         <source>Actions for selected</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Действия для выбранных элементов</translation>
     </message>
     <message>
         <source>Actions</source>
@@ -253,11 +249,11 @@ Do you want to create a new classrom now?</source>
     <name>ClientAction</name>
     <message>
         <source>Are you sure want logout all users on all visible computers ?</source>
-        <translation type="unfinished">Вы уверены, что хотите завершить работу всех пользователей на всех видимых компьютерах?</translation>
+        <translation type="unfinished">Вы действительно хотите завершить работу пользователей на всех видимых компьютерах?</translation>
     </message>
     <message>
         <source>Are you sure want logout all users on all selected computers ?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Вы действительно хотите завершить работу пользователей на всех выбранных компьютерах?</translation>
     </message>
     <message>
         <source>Logout user</source>
@@ -265,11 +261,11 @@ Do you want to create a new classrom now?</source>
     </message>
     <message>
         <source>Are you sure want to reboot all visible computers?</source>
-        <translation type="unfinished">Вы уверены, что хотите перезагрузить все видимые компьютеры?</translation>
+        <translation type="unfinished">Вы действительно хотите перезагрузить все видимые компьютеры?</translation>
     </message>
     <message>
         <source>Are you sure want to reboot all selected computers?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Вы действительно хотите перезагрузить все выбранные компьютеры?</translation>
     </message>
     <message>
         <source>Reboot computers</source>
@@ -277,11 +273,11 @@ Do you want to create a new classrom now?</source>
     </message>
     <message>
         <source>Are you sure want to power down all visible computers?</source>
-        <translation type="unfinished">Вы уверены, что хотите выключить все видимые компьютеры?</translation>
+        <translation type="unfinished">Вы действительно хотите завершить работу всех видимых компьютеров?</translation>
     </message>
     <message>
         <source>Are you sure want to power down all selected computers?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Вы действительно хотите завершить работу всех выбранных компьютеров?</translation>
     </message>
 </context>
 <context>
@@ -494,34 +490,34 @@ p, li { white-space: pre-wrap; }
     <name>ItalcVncConnection</name>
     <message>
         <source>VNC authentication failed because of too many authentication tries.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Превышено количество попыток VNC аутентификации.</translation>
     </message>
     <message>
         <source>VNC authentication failed.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">VNC аутентификация не удалась.</translation>
     </message>
     <message>
         <source>VNC server closed connection.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">VNC сервер закрыл соединение.</translation>
     </message>
 </context>
 <context>
     <name>KeyFileAssistant</name>
     <message>
         <source>iTALC Access Key Assistant</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Помощник операций с ключем доступа к iTALC</translation>
     </message>
     <message>
         <source>Create/import iTALC access keys</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Создать/Импортировать ключи доступа к iTALC</translation>
     </message>
     <message>
         <source>This assistant will help you to create or import iTALC access keys.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Помощник поможет Вам создать или импортировать ключи доступа к iTALC</translation>
     </message>
     <message>
         <source>How does it work?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Как он работает?</translation>
     </message>
     <message>
         <source>iTALC access keys consist of two parts belonging together, a private and a public key part.
@@ -529,19 +525,23 @@ p, li { white-space: pre-wrap; }
 Using the private key part, users on the master computer will be able to access client computers. It is important that only authorized users have read access to the private key file.
 
 The public key part is used on the client computers to verify that any incoming connection request is authorized.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ключи доступа к iTALC состоят из двух частей - закрытого и открытого ключа.
+
+С помощью закрытого ключа пользователи главного компьютера смогут получить доступ к клиентским компьютерам. Обязательно необходимо убедиться, что только авторизованные пользователи имеют доступ на чтение файла, содержащего закрытый ключ.
+
+Открытый ключ используется на клиентских компьютерах для проверки, что все входящие запросы посылаются главным компьютером.</translation>
     </message>
     <message>
         <source>Assistant mode</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Режим работы помощника</translation>
     </message>
     <message>
         <source>Please choose whether to create new access keys or import a public key on a client.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Пожалуйста, выберите, нужно ли создавать новые ключи доступа или импортировать уже существующий открытый ключ на клиентскую машину.</translation>
     </message>
     <message>
         <source>Create new access keys (master computer)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Создать новые ключи доступа (главный компьютер)</translation>
     </message>
     <message>
         <source>assistantModeButtonGroup</source>
@@ -549,7 +549,7 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>Import public key (client computer)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Импортировать открытый ключ (для клиентских машин)</translation>
     </message>
     <message>
         <source>Select user role</source>
@@ -557,7 +557,7 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>Please select a user role for which to create or import the access keys:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Пожалуйста, выберите роль пользователя, который будет создавать или импортировать ключи доступа:</translation>
     </message>
     <message>
         <source>Teacher</source>
@@ -569,7 +569,7 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>Support team member</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Член службы поддержки</translation>
     </message>
     <message>
         <source>Other</source>
@@ -577,15 +577,15 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>User roles allow using multiple access keys in parallel. For example there can be different teacher access keys for each classroom while the support access keys are the same for the whole school.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Роли пользователей позволяют использовать несколько ключей доступа одновременно. Например, можно создать различные ключи доступа учителям для каждого класса, а ключи доступа для технической поддержки будут одинаковы для всего учебного заведения.</translation>
     </message>
     <message>
         <source>Directories</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Каталоги</translation>
     </message>
     <message>
         <source>Export public key part (master computer)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Экспортировать открытый ключ (главный компьютер)</translation>
     </message>
     <message>
         <source>...</source>
@@ -593,27 +593,27 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>Use custom destination directory for access keys</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Использовать пользовательский каталог для хранения ключей доступа</translation>
     </message>
     <message>
         <source>Please specify the location of the public access key to be imported.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Пожалуйста, укажите расположение открытого ключа доступа для его импорта</translation>
     </message>
     <message>
         <source>Summary</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Основная информация</translation>
     </message>
     <message>
         <source>The following actions will be taken:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Будут выполнены следующие действия:</translation>
     </message>
     <message utf8="true">
         <source>• Create new access keys</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">• Созданы новые ключи доступа</translation>
     </message>
     <message utf8="true">
         <source>• Import public access key from</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">• Импортирован открытый ключ из</translation>
     </message>
     <message>
         <source>&lt;unknown&gt;</source>
@@ -621,67 +621,67 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message utf8="true">
         <source>• Write access key(s) to</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">• Записаны ключи в</translation>
     </message>
     <message utf8="true">
         <source>• Export public key to</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">• Экспортирован открытый ключ в</translation>
     </message>
     <message utf8="true">
         <source>• Configure for user role</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">• Выполнена настройка для роли пользователя</translation>
     </message>
     <message>
         <source>Select directory in which to export the public key</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Выберите каталог, в который будет осуществлен экспорт открытого ключа</translation>
     </message>
     <message>
         <source>Key files (*.key.txt)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Файлы ключей (*.key.txt)</translation>
     </message>
     <message>
         <source>Invalid public key</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Неправильный формат открытого ключа</translation>
     </message>
     <message>
         <source>The selected file does not contain a valid public iTALC access key!</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Выбранный файл не содержит открытый ключ доступа к iTALC</translation>
     </message>
     <message>
         <source>Select destination directory</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Выберите каталог назначения</translation>
     </message>
     <message>
         <source>Access key creation</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Создание ключа доступа</translation>
     </message>
     <message>
         <source>Could not remove previously existing file %1.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Не удается удалить ранее существующий файл %1.</translation>
     </message>
     <message>
         <source>Failed exporting public access key from %1 to %2.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ошибка экспорта открытых ключей доступа из %1 в %2.</translation>
     </message>
     <message>
         <source>Access keys were created and written successfully to %1 and %2.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ключи доступа были успешно созданы в %1 и %2.</translation>
     </message>
     <message>
         <source>An error occured while creating the access keys. You probably are not permitted to write to the selected directories.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Произошла ошибка при создании ключей доступа. Возможно, у выбранного каталога установлен запрет на запись.</translation>
     </message>
     <message>
         <source>Public key import</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Импорт открытого ключа</translation>
     </message>
     <message>
         <source>An error occured while importing the public access key. You probably are not permitted to read the source key or to write the destination file.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Произошла ошибка при импорте открытого ключа доступа. Возможно, у файла, содержащего исходный ключ, установлен запрет на чтение или существует запрет на запись в каталоге, содержащем ключи (конечном каталоге).</translation>
     </message>
     <message>
         <source>The public key was successfully imported to %1.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Открытый ключ был успешно импортирован в %1.</translation>
     </message>
 </context>
 <context>
@@ -694,16 +694,12 @@ The public key part is used on the client computers to verify that any incoming 
 <context>
     <name>LogonGroupEditor</name>
     <message>
-        <source>Logon group editor</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Please add the groups whose members should be allowed to access computers in your iTALC network.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Пожалуйста, добавьте группы, члены которых могут иметь доступ к компьютерам в сети iTALC.</translation>
     </message>
     <message>
         <source>All groups</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Все группы</translation>
     </message>
     <message>
         <source>...</source>
@@ -711,6 +707,10 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>Groups with iTALC privileges</source>
+        <translation type="unfinished">Группы с привилегиями iTALC</translation>
+    </message>
+    <message>
+        <source>Logon group editor</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -732,60 +732,56 @@ The public key part is used on the client computers to verify that any incoming 
         <translation type="unfinished">Выход</translation>
     </message>
     <message>
-        <source>iTALC Management Console</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>iTALC Server</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Сервер iTALC</translation>
     </message>
     <message>
         <source>Paths</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Пути</translation>
     </message>
     <message>
         <source>Authentication</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Аутентификация</translation>
     </message>
     <message>
         <source>iTALC Service</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Сервис iTALC</translation>
     </message>
     <message>
         <source>Hide tray icon</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Скрыть иконку в трее</translation>
     </message>
     <message>
         <source>Autostart</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Автозапуск</translation>
     </message>
     <message>
         <source>Additional arguments</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Дополнительные параметры</translation>
     </message>
     <message>
         <source>Start service</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Запустить сервис</translation>
     </message>
     <message>
         <source>Stop service</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Остановить сервис</translation>
     </message>
     <message>
         <source>State:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Состояние:</translation>
     </message>
     <message>
         <source>Stopped</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Остановлен</translation>
     </message>
     <message>
         <source>Logging</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ведение журнала</translation>
     </message>
     <message>
         <source>Log file directory</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Каталог, содержащий файл журнала</translation>
     </message>
     <message>
         <source>...</source>
@@ -793,95 +789,91 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>Log level</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Уровень журналирования</translation>
     </message>
     <message>
         <source>Nothing</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Отключить журналирование</translation>
     </message>
     <message>
         <source>Only critical messages</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Только критические ошибки</translation>
     </message>
     <message>
         <source>Errors and critical messages</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Все ошибки</translation>
     </message>
     <message>
         <source>Warnings and errors</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Предупреждения и ошибки</translation>
     </message>
     <message>
         <source>Information, warnings and errors</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Информационные сообщения, предупреждения и ошибки</translation>
     </message>
     <message>
         <source>Debug messages and everything else</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Все сообщения вместе с отладочной информацией</translation>
     </message>
     <message>
         <source>Limit log file size</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ограничить размер файла журнала</translation>
     </message>
     <message>
         <source>MB</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Мб</translation>
     </message>
     <message>
         <source>Clear all log files</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Очистить все файлы журналов</translation>
     </message>
     <message>
         <source>Desktop capturing</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Захват рабочего стола</translation>
     </message>
     <message>
         <source>Enable capturing of layered (semi-transparent) windows</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Poll full screen</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Включить захват с помощью полупрозрачного окна</translation>
     </message>
     <message>
         <source>Low accuracy (turbo mode)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Низкая четкость (высокая скорость)</translation>
     </message>
     <message>
         <source>Demo server</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Демонстрационный сервер</translation>
     </message>
     <message>
         <source>Network</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Сеть</translation>
     </message>
     <message>
         <source>Core server port</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Основной порт сервера</translation>
     </message>
     <message>
         <source>Demo server port</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Порт демонстрационного сервера</translation>
     </message>
     <message>
         <source>Enable firewall exception</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Включить исключения рандмауэра</translation>
     </message>
     <message>
         <source>Configuration files</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Конфигурационные файлы</translation>
     </message>
     <message>
         <source>Global configuration</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Общие настройки</translation>
     </message>
     <message>
         <source>Personal configuration</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Персональные настройки</translation>
     </message>
     <message>
         <source>Data directories</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Каталоги с данными</translation>
     </message>
     <message>
         <source>Snapshots</source>
@@ -889,27 +881,27 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>Authentication methods</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Методы аутентификации</translation>
     </message>
     <message>
         <source>Access key management</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Управление ключами доступа</translation>
     </message>
     <message>
         <source>Logon settings</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Настройки входа в систему</translation>
     </message>
     <message>
         <source>&amp;File</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&amp;Файл</translation>
     </message>
     <message>
         <source>&amp;Help</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&amp;Помощь</translation>
     </message>
     <message>
         <source>&amp;Quit</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&amp;Выход</translation>
     </message>
     <message>
         <source>Ctrl+Q</source>
@@ -917,11 +909,11 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>&amp;Save settings into file</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&amp;Сохранить настройки в файл</translation>
     </message>
     <message>
         <source>Save settings into file</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Сохранить настройки в файл</translation>
     </message>
     <message>
         <source>Ctrl+S</source>
@@ -929,7 +921,7 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>L&amp;oad settings from file</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Загрузить настройки из файла</translation>
     </message>
     <message>
         <source>Ctrl+O</source>
@@ -937,11 +929,11 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>About iTALC</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">О программе iTALC</translation>
     </message>
     <message>
         <source>About Qt</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">О пакете Qt</translation>
     </message>
     <message>
         <source>MainWindow</source>
@@ -953,47 +945,47 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>iTALC Management Console %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Консоль управления iTALC %1</translation>
     </message>
     <message>
         <source>Running</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Работает</translation>
     </message>
     <message>
         <source>Load settings from file</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Загрузить настройки из файла</translation>
     </message>
     <message>
         <source>XML files (*.xml)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Файлы XML (*.xml)</translation>
     </message>
     <message>
         <source>Save settings to file</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Сохранить настройки в файл</translation>
     </message>
     <message>
         <source>Unsaved settings</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Несохраненные настройки</translation>
     </message>
     <message>
         <source>There are unsaved settings. Quit anyway?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Существуют несохраненные настройки. Выйти, не сохранив их?</translation>
     </message>
     <message>
         <source>Configuration not writable</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Файл конфигурации не доступен для записи</translation>
     </message>
     <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run the iTALC Management Console with higher privileges.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Локальный сервер сообщил, что конфигурация защищена от записи. Запустите консоль управления iTALC с более высокими привилегиями.</translation>
     </message>
     <message>
         <source>All settings were applied successfully.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Все настройки были успешно применены.</translation>
     </message>
     <message>
         <source>An error occured while applying settings!</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ошибка в применении параметров!</translation>
     </message>
     <message>
         <source>iTALC</source>
@@ -1001,7 +993,7 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>No write access</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Нет доступа на запись</translation>
     </message>
     <message>
         <source>Could not read/write or create directory %1! For running iTALC, make sure you&apos;re permitted to create or write this directory.</source>
@@ -1117,7 +1109,7 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>Support</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Поддержка</translation>
     </message>
     <message>
         <source>Direct support</source>
@@ -1161,31 +1153,31 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>Could not modify the autostart property for the iTALC Service.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Не удалось изменить настройки автозапуска службы iTALC.</translation>
     </message>
     <message>
         <source>Could not modify the service arguments for the iTALC Service.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Не удалось изменить параметры для службы iTALC.</translation>
     </message>
     <message>
         <source>Could not change the firewall configuration for the iTALC Service.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Невозможно изменить настройки брандмауэра для службы iTALC.</translation>
     </message>
     <message>
         <source>Debugging</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Отладка</translation>
     </message>
     <message>
         <source>Enable desktop switching for screen lock (experimental)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Включение переключения рабочего стола для блокировки экрана (экспериментальная функция)</translation>
     </message>
     <message>
         <source>Log to standard error output</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Обычное журналирование</translation>
     </message>
     <message>
         <source>Log to Windows event log</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Журналирование в системный журнал событий</translation>
     </message>
     <message>
         <source>Backend</source>
@@ -1197,77 +1189,79 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>iTALC 1 demo server</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">iTALC 1 - демонстрационный сервер</translation>
     </message>
     <message>
         <source>Multithreading (can be enabled when using the VNC reflector backend)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Многопоточность (может быть включена при использовании VNC reflector backend)</translation>
     </message>
     <message>
         <source>Enable HTTP server which provides a JavaViewer applet</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Включить HTTP-сервер, предоставляющий апплет JavaViewer</translation>
     </message>
     <message>
         <source>HTTP server port</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Порт HTTP-сервера</translation>
     </message>
     <message>
         <source>Allow connections from localhost only</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Разрешить только локальные подключения</translation>
     </message>
     <message>
         <source>Key file authentication</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Аутентификация с помощью ключа доступа</translation>
     </message>
     <message>
         <source>ACL-based logon authentication</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Аутентификация с помощью списков доступа (ACL)</translation>
     </message>
     <message>
         <source>Public key file base directory</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Каталог, содержащий открытые ключи</translation>
     </message>
     <message>
         <source>Private key file base directory</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Каталог, содержащий закрытые ключи</translation>
     </message>
     <message>
         <source>Launch key file assistant</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Запустить помощник операций с ключем доступа</translation>
     </message>
     <message>
         <source>Manage permissions</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Управление разрешениями</translation>
     </message>
     <message>
         <source>Test</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Тестировать</translation>
     </message>
     <message>
         <source>Access confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Подтверждение доступа</translation>
     </message>
     <message>
         <source>You can configure iTALC to ask the user for permission to access the desktop when using certain authentication methods.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Вы можете настроить iTALC так, что он будет спрашивать у пользователя разрешение на доступ к рабочему столу, используя определенные методы аутентификации.</translation>
     </message>
     <message>
         <source>Logon authentication</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Аутентификация при входе в систему</translation>
     </message>
     <message>
         <source>Allow same user to access desktop without confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Предоставить пользователю доступ к рабочему столу без повторного подтверждения</translation>
     </message>
     <message>
         <source>Debugging iTALC</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Отладка iTALC</translation>
     </message>
     <message>
         <source>When encountering bugs or other misbehaviour in iTALC it is important to inform the developers about them, so that the bugs can be fixed in future releases. This page allows you to submit a helpful bug report easily.
 
 If the bug is not reproducible, skip step 1) - 3).</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">При возникновении ошибки или другого неожиданного поведения iTALC желательно сообщить об этом разработчикам. В этом случае ошибки могут быть исправлены в будущих версиях. На этой странице можно создать отчет об ошибке.
+
+Если ошибка повторно не воспроизводится, пропустите шаг 1) - 3).</translation>
     </message>
     <message>
         <source>1)</source>
@@ -1275,7 +1269,7 @@ If the bug is not reproducible, skip step 1) - 3).</source>
     </message>
     <message>
         <source>Clear the logfiles in the &quot;General&quot; section.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Очистите файлы журналов в разделе &quot;Общие настройки&quot;.</translation>
     </message>
     <message>
         <source>2)</source>
@@ -1283,7 +1277,7 @@ If the bug is not reproducible, skip step 1) - 3).</source>
     </message>
     <message>
         <source>In the &quot;General&quot; section set the log level to &quot;Debug messages and everything else&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">В разделе &quot;Общие настройки&quot; установите уровень журналирования в &quot;Все сообщения вместе с отладочной информацией&quot;.</translation>
     </message>
     <message>
         <source>3)</source>
@@ -1291,7 +1285,7 @@ If the bug is not reproducible, skip step 1) - 3).</source>
     </message>
     <message>
         <source>Repeat the actions leading to the bug or misbehaviour.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Повторите действия, ведущие к ошибке или неправильному поведению программы.</translation>
     </message>
     <message>
         <source>4)</source>
@@ -1299,11 +1293,11 @@ If the bug is not reproducible, skip step 1) - 3).</source>
     </message>
     <message>
         <source>Click the following button and save the file to a known location.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Нажмите следующую кнопку и сохраните файл</translation>
     </message>
     <message>
         <source>Generate bug report archive</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Создать архив, содержащий отчет об ошибке</translation>
     </message>
     <message>
         <source>5)</source>
@@ -1314,23 +1308,26 @@ If the bug is not reproducible, skip step 1) - 3).</source>
 &lt;br/&gt;
 &lt;br/&gt;
 Note: if the bug involves both a master and client computer, attach bug report archives for both computers.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Откройте &lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;amp;atid=724375&quot;&gt;трекер ошибок iTALC&lt;/a&gt;, откройте новую запись с ошибкой, опишите шаги, приводящие к ней (шаг 3) и прикрепите файл с отладочной информацией (шаг 4).&lt;/p&gt;
+&lt;br/&gt;
+&lt;br/&gt;
+Замечание: Если ошибка возникает на главном комьютере и клиентском компьютере одновременно, отправьте оба отчета об ошибке.</translation>
     </message>
     <message>
         <source>Restart iTALC Service</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Перезапуск сервиса iTALC</translation>
     </message>
     <message>
         <source>All settings were saved successfully. In order to take effect the iTALC service needs to be restarted. Restart it now?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Все настройки были успешно сохранены. Для того чтобы они вступили в силу необходимо перезапустить службу iTALC. Перезапустить ее сейчас?</translation>
     </message>
     <message>
         <source>Starting iTALC service</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Запуск сервиса iTALC</translation>
     </message>
     <message>
         <source>Stopping iTALC service</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Остановка сервиса iTALC</translation>
     </message>
     <message>
         <source>The iTALC service needs to be stopped temporarily in order to remove the log files. Continue?</source>
@@ -1338,43 +1335,43 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Log files cleared</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Файлы журналов были очищены</translation>
     </message>
     <message>
         <source>All log files were cleared successfully.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Все файлы журналов были успешно очищены.</translation>
     </message>
     <message>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ошибка</translation>
     </message>
     <message>
         <source>Could not remove all log files.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Невозможно удалить все файлы журналов.</translation>
     </message>
     <message>
         <source>Logon authentication test</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Тестирования аутентификации входа в систему</translation>
     </message>
     <message>
         <source>Authentication with provided credentials was successful.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Аутентификация учетных данных прошла успешно.</translation>
     </message>
     <message>
         <source>Authentication with provided credentials failed!</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">При прохождении аутентификации учетных данных возникли ошибки!</translation>
     </message>
     <message>
         <source>Save bug report archive</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Сохранить архив, содрежащий отчет об ошибках</translation>
     </message>
     <message>
         <source>iTALC bug report archive (*.ibra.xml)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Архив отчета об ошибках iTALC (*.ibra.xml)</translation>
     </message>
     <message>
         <source>iTALC bug report archive saved</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Архив, содержащий отчет об ошибках iTALC, сохранен</translation>
     </message>
     <message>
         <source>An iTALC bug report archive has been saved to %1. It includes iTALC log files and information about your operating system. You can attach it to a bug report.</source>
@@ -1382,18 +1379,26 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Could not contact iTALC service</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Невозможно соединиться с сервисом iTALC</translation>
     </message>
     <message>
         <source>Could not contact the local iTALC service. It is likely that you entered wrong credentials or key files are not set up properly. Try again or contact your administrator for solving this problem using the iTALC Management Console.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Невозможно соединиться с локальным сервисом iTALC. Возможно, Вы неправильно указали учетные данные или не установили файлы, содержащие ключи доступа. Попробуйте повторить попытку соединения. В случае, если ошибка повториться вновь, обратитесь к Вашему администратору для ее решения с помощью консоли управления iTALC.</translation>
     </message>
     <message>
         <source>Authentication impossible</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Невозможно выполнить аутентификацию</translation>
     </message>
     <message>
         <source>No authentication key files were found or your current ones are outdated. Please create new key files using the iTALC Management Console. Alternatively set up logon authentication using the iTALC Management Console. Otherwise you won&apos;t be able to access computers using iTALC.</source>
+        <translation type="unfinished">Не найдены файлы ключей аутентификации или они устарели. Пожалуйста, создайте новые файлы, используя консоль управления iTALC. Иначе Вы не сможете получить доступ к компьютерам с помощью iTALC.</translation>
+    </message>
+    <message>
+        <source>iTALC Management Console</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Poll full screen (leave this enabled per default)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1434,7 +1439,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>About iTALC</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">О программе iTALC</translation>
     </message>
 </context>
 <context>
@@ -1452,7 +1457,7 @@ p, li { white-space: pre-wrap; }
     <name>PasswordDialog</name>
     <message>
         <source>Please enter your username and password in order to access iTALC clients.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Пожалуйста, введите имя пользователя и пароль для доступа клиентских компьютеров к iTALC.</translation>
     </message>
     <message>
         <source>Username</source>
@@ -1464,6 +1469,10 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>iTALC Logon</source>
+        <translation type="unfinished">Вход в систему iTALC</translation>
+    </message>
+    <message>
+        <source>Manage</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1526,11 +1535,11 @@ p, li { white-space: pre-wrap; }
     <name>RemoteControlWidget</name>
     <message>
         <source>View live (%1 @ %2)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Живой просмотр (%1 @ %2)</translation>
     </message>
     <message>
         <source>Remote control (%1 @ %2)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Удаленное управление (%1 @ %2)</translation>
     </message>
     <message>
         <source>unknown user</source>
@@ -1588,7 +1597,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Use the fields below to enter the username, password and optional the domain name. These information will be used to logon the computer(s).</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Используйте приведенные ниже поля для ввода имени пользователя, пароля и необязательного названия домена. Эта информация будет использована для входа в систему(ы).</translation>
     </message>
     <message>
         <source>Username</source>
@@ -1607,11 +1616,11 @@ p, li { white-space: pre-wrap; }
     <name>RunCommandsDialog</name>
     <message>
         <source>Run commands</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Выполнить команды</translation>
     </message>
     <message>
         <source>Please enter the commands to run on the selected client(s). You can separate multiple commands by line.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Пожалуйста, введите команды для их выполнения на выбранных клиентских компьютерах. Вы можете записать несколько команд, по одной в строке.</translation>
     </message>
 </context>
 <context>
@@ -1670,22 +1679,22 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Show</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Показать</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Удалить</translation>
     </message>
 </context>
 <context>
     <name>SupportDialog</name>
     <message>
         <source>Support</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Поддержка</translation>
     </message>
     <message>
         <source>Please enter the IP address or the name of the host to which you want to connect.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Пожалуйста, введите IP-адрес или имя хоста, к которому вы хотите подключиться.</translation>
     </message>
 </context>
 <context>
