@@ -15,7 +15,7 @@
         <source>iTALC - Intelligent Teaching And Learning with Computers
 
 Copyright © 2004-2011 Tobias Doerffel / iTALC Solutions</source>
-        <translation>iTALC - Ensino Inteligente e Aprendizagem com Computadores
+        <translation>iTALC -Ensino e Aprendizagem Inteligente com Computadores
 
 Copyright © 2004-2011 Tobias Doerffel / iTALC Solutions</translation>
     </message>
@@ -35,9 +35,9 @@ Copyright © 2004-2011 Tobias Doerffel / iTALC Solutions</translation>
         <source>Current language not translated yet (or native English).
 
 If you&apos;re interested in translating iTALC into your local or another language or want to improve an existing translation, please contact an iTALC developer!</source>
-        <translation>Idioma atual não traduzido ainda (ou Inglês nativo)
+        <translation>Idioma atual não traduzido ainda (ou está em Inglês nativo).
 
-Se você está interessado em traduzir iTALC em seu local ou outro idioma ou quer melhorar uma tradução existente, entre em contato com um desenvolvedor iTALC!</translation>
+Se você estiver interessado em traduzir o iTALC em seu idioma local ou outro idioma ou quer melhorar uma tradução existente, entre em contato com um desenvolvedor iTALC!</translation>
     </message>
     <message>
         <source>License</source>
@@ -56,11 +56,11 @@ Se você está interessado em traduzir iTALC em seu local ou outro idioma ou que
     </message>
     <message>
         <source>Confirm desktop access</source>
-        <translation>Confirmar o acesso ao desktop</translation>
+        <translation>Confirmar acesso ao desktop</translation>
     </message>
     <message>
         <source>The user %1 at host %2 wants to access your desktop. Do you want to grant access?</source>
-        <translation>O usuário %1 na máquina %2 deseja acessar sua área de trabalho. Você aceita conceder o acesso?</translation>
+        <translation>O usuário %1 do computador %2 deseja acessar o seu desktop. Você quer conceder o acesso?</translation>
     </message>
 </context>
 <context>
@@ -71,15 +71,15 @@ Se você está interessado em traduzir iTALC em seu local ou outro idioma ou que
     </message>
     <message>
         <source>Use this workspace to manage your computers and classrooms in an easy way.</source>
-        <translation>Use este espaço para gerenciar os computadores e salas de aula de forma muito simples.</translation>
+        <translation>Use este espaço para gerenciar seus computadores e salas de aula de uma forma fácil.</translation>
     </message>
     <message>
         <source>This is where computers and classrooms are managed. You can add computers or classrooms by clicking right in this list.</source>
-        <translation>Aqui, os computadores e salas de aula são gerenciados. Você pode adicionar computadores e salas de aula clicando nesta lista.</translation>
+        <translation>Este é o lugar onde os computadores e salas de aula são gerenciados. Você pode adicionar computadores e salas de aula clicando à direita nesta lista.</translation>
     </message>
     <message>
         <source>Classrooms/computers</source>
-        <translation>Salas de aual/Computadores</translation>
+        <translation>Salas de aual/computadores</translation>
     </message>
     <message>
         <source>IP-address</source>
@@ -103,7 +103,7 @@ Se você está interessado em traduzir iTALC em seu local ou outro idioma ou que
     </message>
     <message>
         <source>Use this button for exporting this list of computers and usernames into a text-file. You can use this file later for collecting files after an exam has finished. This is sometimes neccessary, because some users might have finished and logged out earlier and so you cannot collect their files at the end of the exam.</source>
-        <translation>Use este botão para exportar esta lista de computadores e nomes de usuários para um arquivo texto. Você pode usar este arquivo mais tarde para recolher os arquivos dos usuários depois que um exame terminou. As vezes isso é necessário, pois alguns usuários podem ter terminado o exame mais cedo e ter feito logoff do computador impedindo o professor de recolher seus arquivos no final do exame.</translation>
+        <translation>Use este botão para exportar esta lista de computadores e nomes de usuários para um arquivo texto. Você pode usar este arquivo mais tarde para recolher os arquivos dos usuários depois que um exame terminou. As vezes isso é necessário, porque alguns usuários podem ter terminado o exame mais cedo e ter feito logoff do computador e por isso impedindo você de recolher seus arquivos no final do exame.</translation>
     </message>
     <message>
         <source>Hide teacher computers</source>
@@ -111,7 +111,7 @@ Se você está interessado em traduzir iTALC em seu local ou outro idioma ou que
     </message>
     <message>
         <source>Show/hide</source>
-        <translation>Mostrar/Ocultar</translation>
+        <translation>Mostrar/ocultar</translation>
     </message>
     <message>
         <source>Edit settings</source>
@@ -127,7 +127,7 @@ Se você está interessado em traduzir iTALC em seu local ou outro idioma ou que
     </message>
     <message>
         <source>Hide all computers in classroom</source>
-        <translation>Ocultarr todos os computadores da sala de aula</translation>
+        <translation>Ocultar todos os computadores da sala de aula</translation>
     </message>
     <message>
         <source>Edit name</source>
@@ -240,11 +240,11 @@ Quer criar uma nova sala agora?</translation>
     </message>
     <message>
         <source>Demo running</source>
-        <translation>Demo em andamento</translation>
+        <translation>Demonstração em execução</translation>
     </message>
     <message>
         <source>Desktop locked</source>
-        <translation>Travar área de trabalho</translation>
+        <translation>Desktop bloqueado</translation>
     </message>
 </context>
 <context>
@@ -302,7 +302,7 @@ Quer criar uma nova sala agora?</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;enter an IP-address or hostname under which iTALC can reach the client (use &apos;:&apos; for specifying an optional port-number)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Digite um endereço IP ou nome de computador em que o iTALC possa acessar o cliente (use &apos;:&apos; para especificar um número de porta opcional)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Digite um endereço IP ou nome do computador para que o iTALC possa acessar o cliente (use &apos;:&apos; para especificar um número de porta opcional)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Name</source>
@@ -330,7 +330,7 @@ Quer criar uma nova sala agora?</translation>
     </message>
     <message>
         <source>Student computer</source>
-        <translation>Computador do estudante</translation>
+        <translation>Computador do aluno</translation>
     </message>
     <message>
         <source>Teacher computer</source>
@@ -346,7 +346,7 @@ Quer criar uma nova sala agora?</translation>
     </message>
     <message>
         <source>You didn&apos;t specify an IP address or hostname for the computer!</source>
-        <translation>Você não especificou um endereço IP ou nome do computador para o computador!</translation>
+        <translation>Você não especificou um endereço IP ou nome para o computador!</translation>
     </message>
 </context>
 <context>
@@ -389,7 +389,7 @@ Quer criar uma nova sala agora?</translation>
     </message>
     <message>
         <source>Your role (needs according keys!)</source>
-        <translation>Sua função (necessário as chaves estaremde acordo!)</translation>
+        <translation>Sua função (necessário as chaves estarem de acordo!)</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -399,7 +399,7 @@ p, li { white-space: pre-wrap; }
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Aqui, você pode selecionar sua função. Somente modifique isto, se você conhece o que está fazendo. Caso contrário, você não será capaz de acessar todos os computadores clientes até que você restaure sua antiga funação.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Aqui, você pode selecionar sua função. Somente modifique isto, se você conhece o que está fazendo. Caso contrário, você não será capaz de acessar todos os computadores clientes até que você restaure sua antiga função.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Teacher</source>
@@ -437,7 +437,7 @@ p, li { white-space: pre-wrap; }
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Aqui, você pode definir o que deve acontecer se você clicar duas vezes em uma janela cliente.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Aqui, você pode definir o que deve acontecer se você clicar duas vezes em uma janela do cliente.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Remote control</source>
@@ -445,7 +445,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>View live in fullscreen</source>
-        <translation>Visualização ao vivo em tela cheia</translation>
+        <translation>Ver ao vivo em tela cheia</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;Please note, that some changes won&apos;t take effect until you restart iTALC.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
@@ -507,7 +507,7 @@ p, li { white-space: pre-wrap; }
     <name>KeyFileAssistant</name>
     <message>
         <source>iTALC Access Key Assistant</source>
-        <translation>Assistente da Chave de Acesso do iTALC</translation>
+        <translation>Assistente Da Chave De Acesso Do iTALC</translation>
     </message>
     <message>
         <source>Create/import iTALC access keys</source>
@@ -527,7 +527,7 @@ p, li { white-space: pre-wrap; }
 Using the private key part, users on the master computer will be able to access client computers. It is important that only authorized users have read access to the private key file.
 
 The public key part is used on the client computers to verify that any incoming connection request is authorized.</source>
-        <translation>As chaves de acesso do iTALC consistem em duas partes pertencentes em conjunto, uma chave privada e uma pública.
+        <translation>As chaves de acesso do iTALC consistem em duas partes pertencentes em conjunto, uma chave pública e uma privada.
 
 Usando a chave privada, os usuários no computador mestre serão capazes de acessar os computadores clientes. É importante que somente usuários autorizados tenham acesso de leitura para o arquivo da chave privada.
 
@@ -559,7 +559,7 @@ A chave pública é usada nos computadores clientes para verificar que qualquer 
     </message>
     <message>
         <source>Please select a user role for which to create or import the access keys:</source>
-        <translation>Por favor, selecione uma função do usuário para criar ou importar chaves de acesso:</translation>
+        <translation>Por favor, selecione uma função para o usuário para criar ou importar as chaves de acesso:</translation>
     </message>
     <message>
         <source>Teacher</source>
@@ -587,7 +587,7 @@ A chave pública é usada nos computadores clientes para verificar que qualquer 
     </message>
     <message>
         <source>Export public key part (master computer)</source>
-        <translation>Exportar chave pública (computador mestre)</translation>
+        <translation>Exportar parte de chave pública (computador mestre)</translation>
     </message>
     <message>
         <source>...</source>
@@ -599,7 +599,7 @@ A chave pública é usada nos computadores clientes para verificar que qualquer 
     </message>
     <message>
         <source>Please specify the location of the public access key to be imported.</source>
-        <translation>Por favor, especifique a localização da chave pública de acesso para ser importada.</translation>
+        <translation>Por favor, especifique a localização da chave de acesso pública para ser importada.</translation>
     </message>
     <message>
         <source>Summary</source>
@@ -627,7 +627,7 @@ A chave pública é usada nos computadores clientes para verificar que qualquer 
     </message>
     <message utf8="true">
         <source>• Export public key to</source>
-        <translation>• Exportar chave púlica para</translation>
+        <translation>• Exportar chave pública para</translation>
     </message>
     <message utf8="true">
         <source>• Configure for user role</source>
@@ -659,11 +659,11 @@ A chave pública é usada nos computadores clientes para verificar que qualquer 
     </message>
     <message>
         <source>Could not remove previously existing file %1.</source>
-        <translation>Não foi possível remove arquivo %1 previamente existente.</translation>
+        <translation>Não foi possível remover arquivo %1 previamente existente.</translation>
     </message>
     <message>
         <source>Failed exporting public access key from %1 to %2.</source>
-        <translation>Falha ao exportar chave de acesso pública de %1 para %2.</translation>
+        <translation>Falha ao exportar chave pública de acesso de %1 para %2.</translation>
     </message>
     <message>
         <source>Access keys were created and written successfully to %1 and %2.</source>
@@ -679,29 +679,29 @@ A chave pública é usada nos computadores clientes para verificar que qualquer 
     </message>
     <message>
         <source>An error occured while importing the public access key. You probably are not permitted to read the source key or to write the destination file.</source>
-        <translation>Um erro ocorreu ao importar a chave de acesso pública. Você provavelmente não tem permissão para ler a chave de origem ou escrever no arquivo de destino.</translation>
+        <translation>Um erro ocorreu ao importa a chave pública de acesso. Você provavelmente não tem permissão para ler a chave de origem ou escrever no arquivo de destino.</translation>
     </message>
     <message>
         <source>The public key was successfully imported to %1.</source>
-        <translation>A chave pública foi importada com êxito para %1.</translation>
+        <translation>A chave pública foi importada com sucesso de %1.</translation>
     </message>
 </context>
 <context>
     <name>LockWidget</name>
     <message>
         <source>screen lock</source>
-        <translation>travar tela</translation>
+        <translation>bloquear tela</translation>
     </message>
 </context>
 <context>
     <name>LogonGroupEditor</name>
     <message>
         <source>Logon group editor</source>
-        <translation>Editor grupo de logon</translation>
+        <translation>Editor de grupo de acesso</translation>
     </message>
     <message>
         <source>Please add the groups whose members should be allowed to access computers in your iTALC network.</source>
-        <translation>Por favor, adicione os grupos cujos membros devem ser autorizados a acessar os computadores na sua rede iTALC.</translation>
+        <translation>Por favor, adicione os grupos cujos membros devem ser autorizados a acessar os computadores em sua rede iTALC.</translation>
     </message>
     <message>
         <source>All groups</source>
@@ -842,10 +842,6 @@ A chave pública é usada nos computadores clientes para verificar que qualquer 
         <translation>Habilitar captura de janelas em camadas (semi-transparente)</translation>
     </message>
     <message>
-        <source>Poll full screen</source>
-        <translation>Pesquisa em tela cheia</translation>
-    </message>
-    <message>
         <source>Low accuracy (turbo mode)</source>
         <translation>Baixa precisão (modo turbo)</translation>
     </message>
@@ -867,7 +863,7 @@ A chave pública é usada nos computadores clientes para verificar que qualquer 
     </message>
     <message>
         <source>Enable firewall exception</source>
-        <translation>Hablitar exceção de firewall</translation>
+        <translation>Habilitar exceção de firewall</translation>
     </message>
     <message>
         <source>Configuration files</source>
@@ -919,11 +915,11 @@ A chave pública é usada nos computadores clientes para verificar que qualquer 
     </message>
     <message>
         <source>&amp;Save settings into file</source>
-        <translation>&amp;Salvar as configurações no arquivo</translation>
+        <translation>&amp;Salvar configurações em arquivo</translation>
     </message>
     <message>
         <source>Save settings into file</source>
-        <translation>Salvar as configurações no arquivo</translation>
+        <translation>Salvar configurações em arquivo</translation>
     </message>
     <message>
         <source>Ctrl+S</source>
@@ -1023,7 +1019,7 @@ A chave pública é usada nos computadores clientes para verificar que qualquer 
     </message>
     <message>
         <source>Click on this button, to switch between classrooms.</source>
-        <translation>Clique neste botão, para alternar entre as sala de aula.</translation>
+        <translation>Clique neste botão, para alternar entre as salas de aula.</translation>
     </message>
     <message>
         <source>Overview mode</source>
@@ -1055,11 +1051,11 @@ A chave pública é usada nos computadores clientes para verificar que qualquer 
     </message>
     <message>
         <source>Window demo</source>
-        <translation>Demonstração da janela</translation>
+        <translation>Demonstração em janela</translation>
     </message>
     <message>
         <source>Window Demo</source>
-        <translation>Demonstração da janela</translation>
+        <translation>Demonstração em janela</translation>
     </message>
     <message>
         <source>In this mode your screen being displayed in a window on all shown computers. The users are able to switch to other windows and thus can continue to work.</source>
@@ -1067,7 +1063,7 @@ A chave pública é usada nos computadores clientes para verificar que qualquer 
     </message>
     <message>
         <source>Lock/unlock desktops</source>
-        <translation>Bloquear/desbloquear áreas de trabalho</translation>
+        <translation>Bloquear/desbloquear os desktops</translation>
     </message>
     <message>
         <source>Lock all</source>
@@ -1091,7 +1087,7 @@ A chave pública é usada nos computadores clientes para verificar que qualquer 
     </message>
     <message>
         <source>Use this button to send a text message to all users e.g. to tell them new tasks etc.</source>
-        <translation>Use este botão para enviar uma mensagem de texto para todos os usuaŕios, por exemplo, para comunicar a nova tarefa etc.</translation>
+        <translation>Use este botão para enviar uma mensagem de texto para todos os usuários, por exemplo, para comunicar a nova tarefa etc.</translation>
     </message>
     <message>
         <source>Power on computers</source>
@@ -1135,7 +1131,7 @@ A chave pública é usada nos computadores clientes para verificar que qualquer 
     </message>
     <message>
         <source>Adjust windows and their size</source>
-        <translation>Ajustar o tamanho da janela</translation>
+        <translation>Ajustar janelas e seus tamanhos</translation>
     </message>
     <message>
         <source>When clicking this button the biggest possible size for the client-windows is adjusted. Furthermore all windows are aligned.</source>
@@ -1155,7 +1151,7 @@ A chave pública é usada nos computadores clientes para verificar que qualquer 
     </message>
     <message>
         <source>iTALC Master Control</source>
-        <translation>Controle Mestre do iTALC</translation>
+        <translation>Controle Mestre Do iTALC</translation>
     </message>
     <message>
         <source>Remote control</source>
@@ -1175,23 +1171,23 @@ A chave pública é usada nos computadores clientes para verificar que qualquer 
     </message>
     <message>
         <source>Debugging</source>
-        <translation>Dupuração</translation>
+        <translation>Depuração</translation>
     </message>
     <message>
         <source>Enable desktop switching for screen lock (experimental)</source>
-        <translation>Habilitar desktop alternando para travar a tela (experimental)</translation>
+        <translation>Habilitar alternando desktop para bloquear tela (experimental)</translation>
     </message>
     <message>
         <source>Log to standard error output</source>
-        <translation>Registrar para a saída de erro padrão</translation>
+        <translation>Log para a saída de erro padrão</translation>
     </message>
     <message>
         <source>Log to Windows event log</source>
-        <translation>Registrar para a Janela de eventos de log</translation>
+        <translation>Log para registro de eventos de Janelas</translation>
     </message>
     <message>
         <source>Backend</source>
-        <translation>Mecanismo</translation>
+        <translation>Backend</translation>
     </message>
     <message>
         <source>VNC reflector</source>
@@ -1199,15 +1195,15 @@ A chave pública é usada nos computadores clientes para verificar que qualquer 
     </message>
     <message>
         <source>iTALC 1 demo server</source>
-        <translation>Servidor demo iTALC</translation>
+        <translation>Servidor de demonstração iTALC</translation>
     </message>
     <message>
         <source>Multithreading (can be enabled when using the VNC reflector backend)</source>
-        <translation>Multithreading (pode ser habilitado ao usar o mecanismo refletor VNC)</translation>
+        <translation>Multithreading (pode ser habilitado ao usar o backend refletor VNC)</translation>
     </message>
     <message>
         <source>Enable HTTP server which provides a JavaViewer applet</source>
-        <translation>Habilitar o servidor HTTP que fornece um applet Java Viewer</translation>
+        <translation>Habilitar servidor HTTP que fornece um applet JavaViewer</translation>
     </message>
     <message>
         <source>HTTP server port</source>
@@ -1215,7 +1211,7 @@ A chave pública é usada nos computadores clientes para verificar que qualquer 
     </message>
     <message>
         <source>Allow connections from localhost only</source>
-        <translation>Permitir conexões a partir da máquina local apenas</translation>
+        <translation>Permitir conexões de localhost apenas</translation>
     </message>
     <message>
         <source>Key file authentication</source>
@@ -1223,7 +1219,7 @@ A chave pública é usada nos computadores clientes para verificar que qualquer 
     </message>
     <message>
         <source>ACL-based logon authentication</source>
-        <translation>ACL baseada em autenticação de logon</translation>
+        <translation>Autenticação de logon baseado em ACL</translation>
     </message>
     <message>
         <source>Public key file base directory</source>
@@ -1235,7 +1231,7 @@ A chave pública é usada nos computadores clientes para verificar que qualquer 
     </message>
     <message>
         <source>Launch key file assistant</source>
-        <translation>Iniciar assistente de arquivo de chave</translation>
+        <translation>Lançar assistente de arquivo de chave</translation>
     </message>
     <message>
         <source>Manage permissions</source>
@@ -1251,15 +1247,15 @@ A chave pública é usada nos computadores clientes para verificar que qualquer 
     </message>
     <message>
         <source>You can configure iTALC to ask the user for permission to access the desktop when using certain authentication methods.</source>
-        <translation>Você pode configurar iTALC para perguntar ao usuário pela permissão para acessar a área de trabalho ao usar determinados métodos de autenticação.</translation>
+        <translation>Você pode configurar iTALC para pedir a permissão do usuário para acessar o desktop ao usar determinados métodos de autenticação.</translation>
     </message>
     <message>
         <source>Logon authentication</source>
-        <translation>Autenticação</translation>
+        <translation>Autenticação de logon</translation>
     </message>
     <message>
         <source>Allow same user to access desktop without confirmation</source>
-        <translation>Permitir que o mesmo usuário acesse a área de trabalho sem confirmação</translation>
+        <translation>Permitir que o mesmo usuário acesse o desktop sem confirmação</translation>
     </message>
     <message>
         <source>Debugging iTALC</source>
@@ -1269,9 +1265,9 @@ A chave pública é usada nos computadores clientes para verificar que qualquer 
         <source>When encountering bugs or other misbehaviour in iTALC it is important to inform the developers about them, so that the bugs can be fixed in future releases. This page allows you to submit a helpful bug report easily.
 
 If the bug is not reproducible, skip step 1) - 3).</source>
-        <translation>Ao encontrar falhas ou outro mau comportamento em iTALC é importante informar os desenvolvedores sobre eles, de modo que as falhas possam ser corrigidas em versões futuras. Esta página permite que você envie um relatório de falha facilmente.
+        <translation>Ao encontrar falhas ou outro mau comportamento em iTALC é importante informar os desenvolvedores sobre eles, de modo que as falhas possam ser corrigidas em versões futuras. Esta página permite que você envie um relatório de falha útil facilmente.
 
-Se a falha não é reproduzível, pule a etapa 1) - 3).</translation>
+Se a falha não é reproduzível, pule o passo1) - 3).</translation>
     </message>
     <message>
         <source>1)</source>
@@ -1287,7 +1283,7 @@ Se a falha não é reproduzível, pule a etapa 1) - 3).</translation>
     </message>
     <message>
         <source>In the &quot;General&quot; section set the log level to &quot;Debug messages and everything else&quot;.</source>
-        <translation>Na seção &quot;Geral&quot; defina o nível de log para &quot;Depurar mensagens e tudo mais&quot;.</translation>
+        <translation>Na seção &quot;Geral&quot; defina o nível do log para &quot;Mensagens de depuração e tudo mais&quot;.</translation>
     </message>
     <message>
         <source>3)</source>
@@ -1295,7 +1291,7 @@ Se a falha não é reproduzível, pule a etapa 1) - 3).</translation>
     </message>
     <message>
         <source>Repeat the actions leading to the bug or misbehaviour.</source>
-        <translation>Repetir as ações principais de falha ou mau comportamento.</translation>
+        <translation>Repita as ações que conduzem ao erro ou mau comportamento.</translation>
     </message>
     <message>
         <source>4)</source>
@@ -1318,14 +1314,14 @@ Se a falha não é reproduzível, pule a etapa 1) - 3).</translation>
 &lt;br/&gt;
 &lt;br/&gt;
 Note: if the bug involves both a master and client computer, attach bug report archives for both computers.</source>
-        <translation>Vá para o &lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;amp;atid=724375&quot;&gt;perseguidor de falha do iTALC&lt;/a&gt;, abra uma nova falha, descreva o que você fez na etapa 3) e anexe o arquivo que salvo na etapa 4).&lt;/p&gt;
+        <translation>Ir para o &lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;amp;atid=724375&quot;&gt;iTALC bug tracker&lt;/a&gt;, abra um novo bug, descrever o que você fez no passo 3) e anexe o arquivo que você salvou no passo 4).&lt;/p&gt;
 &lt;br/&gt;
 &lt;br/&gt;
-Nota: se a falha envolve tanto o computador mestre e como o cliente, anexe os arquivos de relatório de falhas de ambos os computadores.</translation>
+Nota: se o erro envolve ambos os computadores mestre e cliente, anexe os arquivos de relatório de erro para ambos os computadores.</translation>
     </message>
     <message>
         <source>Restart iTALC Service</source>
-        <translation>Reiniciar o Serviço iTALC</translation>
+        <translation>Reiniciar Servidor iTALC</translation>
     </message>
     <message>
         <source>All settings were saved successfully. In order to take effect the iTALC service needs to be restarted. Restart it now?</source>
@@ -1341,7 +1337,7 @@ Nota: se a falha envolve tanto o computador mestre e como o cliente, anexe os ar
     </message>
     <message>
         <source>The iTALC service needs to be stopped temporarily in order to remove the log files. Continue?</source>
-        <translation>O serviço iTALC precisa ser interrompida temporariamente, a fim de remover os arquivos de log. Continuar?</translation>
+        <translation>O serviço iTALC precisa ser parado temporariamente, a fim de remover os arquivos de log. Continuar?</translation>
     </message>
     <message>
         <source>Log files cleared</source>
@@ -1361,39 +1357,39 @@ Nota: se a falha envolve tanto o computador mestre e como o cliente, anexe os ar
     </message>
     <message>
         <source>Logon authentication test</source>
-        <translation>Testar autenticação de logon</translation>
+        <translation>Teste de autenticação de logon</translation>
     </message>
     <message>
         <source>Authentication with provided credentials was successful.</source>
-        <translation>Autenticação com credenciais fornecidas foi bem sucedida.</translation>
+        <translation>A autenticação com credenciais fornecidas foi bem sucedida.</translation>
     </message>
     <message>
         <source>Authentication with provided credentials failed!</source>
-        <translation>Autenticação com credenciais fornecidas falhou!</translation>
+        <translation>A autenticação com credenciais fornecidas falhou!</translation>
     </message>
     <message>
         <source>Save bug report archive</source>
-        <translation>Salvar arquivo de relatório de falha</translation>
+        <translation>Salvar arquivo de relatório de bug</translation>
     </message>
     <message>
         <source>iTALC bug report archive (*.ibra.xml)</source>
-        <translation>Arquivo de relatório de falha do iTALC (*.ibra.xml)</translation>
+        <translation>Arquivo de relatório de bug iTALC (*.ibra.xml)</translation>
     </message>
     <message>
         <source>iTALC bug report archive saved</source>
-        <translation>Arquivo de relatório de falha do iTALC salvo</translation>
+        <translation>Arquivo de relatório de bug iTALC salvo</translation>
     </message>
     <message>
         <source>An iTALC bug report archive has been saved to %1. It includes iTALC log files and information about your operating system. You can attach it to a bug report.</source>
-        <translation>Um arquivo de relatório de falha do iTALC foi salvo em %1. Isto inclui arquivos de log do iTALC e informações sobre seu sistema operacional. Você pode anexá-lo a um relatório de falha.</translation>
+        <translation>Um arquivo de relatório de bug do iTALC foi salvo em %1.Ele inclui arquivos de log do iTALC e informações sobre seu sistema operacional. Você pode atachá-lo a um relatório de bug.</translation>
     </message>
     <message>
         <source>Could not contact iTALC service</source>
-        <translation>Não foi possível contatar o serviço iTALC</translation>
+        <translation>Não foi possível contactar o serviço iTALC</translation>
     </message>
     <message>
         <source>Could not contact the local iTALC service. It is likely that you entered wrong credentials or key files are not set up properly. Try again or contact your administrator for solving this problem using the iTALC Management Console.</source>
-        <translation>Não foi possível contatar o serviço iTALC local. É provável que você inseriu credenciais erradas ou os arquivos de chave não estão configurados corretamente. Tente novamente ou contate o administrador para resolver este problema usando o Console de Gerenciamento do iTALC.</translation>
+        <translation>Não foi possível contactar o serviço local iTALC. É provável que você inseriu as credenciais erradas ou arquivos de chaves não estão configurados corretamente. Tente novamente ou contate o administrador para resolver esse problema usando o Console De Gerenciamento Do iTALC. </translation>
     </message>
     <message>
         <source>Authentication impossible</source>
@@ -1401,7 +1397,11 @@ Nota: se a falha envolve tanto o computador mestre e como o cliente, anexe os ar
     </message>
     <message>
         <source>No authentication key files were found or your current ones are outdated. Please create new key files using the iTALC Management Console. Alternatively set up logon authentication using the iTALC Management Console. Otherwise you won&apos;t be able to access computers using iTALC.</source>
-        <translation>Nenhuns arquivos de chave de autenticação foram encontrados ou seus atuais estão desatualizados. Por favor, crie novos arquivos de chaves usando o Console de Gerenciamento iTALC. Alternativamente, configure a autenticação usando o Console de Gerenciamento iTALC. Caso contrário você não será capaz de acessar os computadores usando o iTALC.</translation>
+        <translation>Nenhum arquivos de chave de autenticação foram encontrados ou seus atuais estão desatualizados. Por favor, crie novos arquivos de chave usando o Console De Gerenciamento Do iTALC. Alternativamente, configure a autenticação do usuário no Console De Gerenciamento Do iTALC. Caso contrário, você não será capaz de acessar computadores usando o iTALC.</translation>
+    </message>
+    <message>
+        <source>Poll full screen (leave this enabled per default)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1425,7 +1425,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Here you see the working-bar which contains several buttons. Each button is connected to a workspace. Just take a look at the available workspaces by clicking on the corresponding button.</source>
-        <translation>Aqui, você vê a barra de ferramentas que contém vários butões. Cada botão está conectado a um espaço de trabalho. Basta dar uma olhada nos espaços de trabalho disponíveis, clicando no botão correspondente.</translation>
+        <translation>Aqui, você vê a barra de ferramentas que contém vários botões. Cada botão está conectado a um espaço de trabalho. Para dar uma olhada nos espaços de trabalho disponíveis, basta clicar no botão correspondente.</translation>
     </message>
     <message>
         <source>Using the classroom-manager you can manage your classrooms and computers. You can also see which users are logged in.</source>
@@ -1459,7 +1459,7 @@ p, li { white-space: pre-wrap; }
     <name>PasswordDialog</name>
     <message>
         <source>Please enter your username and password in order to access iTALC clients.</source>
-        <translation>Por favor, digite seu nome de usuário e senha para acessar os clientes do iTALC.</translation>
+        <translation>Por favor, digite seu nome de usuário e senha para acessar os clientes iTALC.</translation>
     </message>
     <message>
         <source>Username</source>
@@ -1471,14 +1471,18 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>iTALC Logon</source>
-        <translation>Logon iTALC</translation>
+        <translation>Acessar iTALC</translation>
+    </message>
+    <message>
+        <source>Manage</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>QApplication</name>
     <message>
         <source>iTALC Client %1 on %2:%3</source>
-        <translation>iTALC Cliente %1 no %2:%3</translation>
+        <translation>Cliente iTALC %1 no %2:%3</translation>
     </message>
     <message>
         <source>Unable to register service &apos;%1&apos;.</source>
@@ -1486,7 +1490,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not registered.</source>
-        <translation>O Gerenciador de Controle de Servicos não pôde ser contatado (você tem os direitos necessários?!) - o serviço &apos;%1&apos; não foi registrado.</translation>
+        <translation>O Gerenciador de Controle de Servicos não pode ser contatado (você tem os direitos necessários?!) - o serviço &apos;%1&apos; não foi registrado.</translation>
     </message>
     <message>
         <source>The service &apos;%1&apos; is already registered.</source>
@@ -1494,7 +1498,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>The service &apos;%1&apos; could not be registered.</source>
-        <translation>O serviço &apos;%1&apos; não pôde se registrado.</translation>
+        <translation>O serviço &apos;%1&apos; não pode se registrado.</translation>
     </message>
     <message>
         <source>The service &apos;%1&apos; was successfully registered.</source>
@@ -1502,38 +1506,38 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>The service &apos;%1&apos; could not be stopped.</source>
-        <translation>O serviço &apos;%1&apos; não pôde ser parado.</translation>
+        <translation>O serviço &apos;%1&apos; não pode ser parado.</translation>
     </message>
     <message>
         <source>The service &apos;%1&apos; has been unregistered.</source>
-        <translation>O serviço &apos;%1&apos; não tem sido registrado.</translation>
+        <translation>O serviço &apos;%1&apos; tem sido registrado.</translation>
     </message>
     <message>
         <source>The service &apos;%1&apos; isn&apos;t registered and therefore can&apos;t be unregistered.</source>
-        <translation>O serviço &apos;%1&apos; não tem sido registrado e por isso não pôde ser registrado.</translation>
+        <translation>O serviço &apos;%1&apos; não tem sido registrado e por isso não pode ser registrado.</translation>
     </message>
     <message>
         <source>The service &apos;%1&apos; could not be unregistered.</source>
-        <translation>O serviço &apos;%1&apos; não pôde ser registrado.</translation>
+        <translation>O serviço &apos;%1&apos; não pode ser registrado.</translation>
     </message>
     <message>
         <source>The service &apos;%1&apos; could not be found.</source>
-        <translation>O serviço &apos;%1&apos; não pôde ser encontrado.</translation>
+        <translation>O serviço &apos;%1&apos; não pode ser encontrado.</translation>
     </message>
     <message>
         <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not unregistered.</source>
-        <translation>O Gerenciador de Controle de Servicos não pôde ser contatado (você tem os direitos necessários?!) - o serviço &apos;%1&apos; não foi registrado.</translation>
+        <translation>O Gerenciador de Controle de Servicos não pode ser contatado (você tem os direitos necessários?!) - o serviço &apos;%1&apos; não foi registrado.</translation>
     </message>
     <message>
         <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not stopped.</source>
-        <translation>O Gerenciador de Controle de Servicos não pôde ser contatado (você tem os direitos necessários?!) - o serviço &apos;%1&apos; não foi parado.</translation>
+        <translation>O Gerenciador de Controle de Servicos não pode ser contatado (você tem os direitos necessários?!) - o serviço &apos;%1&apos; não foi parado.</translation>
     </message>
 </context>
 <context>
     <name>RemoteControlWidget</name>
     <message>
         <source>View live (%1 @ %2)</source>
-        <translation>Visualização ao vivo (%1 @ %2)</translation>
+        <translation>Ver ao vivo (%1 @ %2)</translation>
     </message>
     <message>
         <source>Remote control (%1 @ %2)</source>
@@ -1556,11 +1560,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Lock student</source>
-        <translation>Travar estudante</translation>
+        <translation>Bloquear aluno</translation>
     </message>
     <message>
         <source>Unlock student</source>
-        <translation>Destravar estudante</translation>
+        <translation>Desbloquear aluno</translation>
     </message>
     <message>
         <source>Snapshot</source>
@@ -1584,22 +1588,22 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Connected.</source>
-        <translation>Cnectado.</translation>
+        <translation>Conectado.</translation>
     </message>
 </context>
 <context>
     <name>RemoteLogonDialog</name>
     <message>
         <source>Remote logon</source>
-        <translation>Fazer logon remoto</translation>
+        <translation>Acessar remotamente</translation>
     </message>
     <message>
         <source>Use the fields below to enter the username, password and optional the domain name. These information will be used to logon the computer(s).</source>
-        <translation>Use os campos abaixo para digitar o nome de usuário, senha e o nome de domínio opcional. Estas informações serão usadas para logar no(s) computador(es).</translation>
+        <translation>Use os campos abaixo para digitar o nome de usuário, senha e nome de domínio opcional. Estas informações serão usadas para fazer acessar o(s) computador(es).</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation>Usuário</translation>
+        <translation>Nome de usuário</translation>
     </message>
     <message>
         <source>Password</source>
@@ -1692,7 +1696,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Please enter the IP address or the name of the host to which you want to connect.</source>
-        <translation>Por favor, digite o endereço IP ou o nome de máquina ao qual você deseja se conectar.</translation>
+        <translation>Por favor, digite o endereço IP ou nome do computador para o qual você deseja se conectar.</translation>
     </message>
 </context>
 <context>
@@ -1729,11 +1733,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Locked display</source>
-        <translation>Travar tela</translation>
+        <translation>Bloquear tela</translation>
     </message>
     <message>
         <source>View live</source>
-        <translation>Visualizar ao vivo</translation>
+        <translation>Ver ao vivo</translation>
     </message>
     <message>
         <source>Remote control</source>
@@ -1741,7 +1745,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Let student show demo</source>
-        <translation>Deixar o estudante exibir uma demonstração</translation>
+        <translation>Deixar o aluno exibir uma demonstração</translation>
     </message>
     <message>
         <source>Send text message</source>
