@@ -326,7 +326,10 @@ void RemoteControlWidget::updateWindowTitle()
 	}
 	else
 	{
-		u = u.section( '(', 1 ).section( ')', 0, 0 );
+		if( u.contains( '(' ) && u.contains( ')' ) )
+		{
+			u = u.section( '(', 1 ).section( ')', 0, 0 );
+		}
 	}
 	setWindowTitle( s.arg( u ).arg( host() ) );
 }
