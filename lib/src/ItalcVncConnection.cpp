@@ -552,7 +552,7 @@ void ItalcVncConnection::doConnection()
 
 		emit newClient( m_cl );
 
-		int argc;
+		int argc = 0;
 		if( rfbInitClient( m_cl, &argc, NULL ) )
 		{
 			emit connected();
