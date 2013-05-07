@@ -43,7 +43,7 @@ int ReadFromTLS(rfbClient* client, char *out, unsigned int n)
 }
 
 
-int WriteToTLS(rfbClient* client, char *buf, unsigned int n)
+int WriteToTLS(rfbClient* client, const char *buf, unsigned int n)
 {
   rfbClientLog("TLS is not supported.\n");
   errno = EINTR;

@@ -452,7 +452,7 @@ extern rfbBool SendKeyEvent(rfbClient* client,uint32_t key, rfbBool down);
  * @param len The length of the string
  * @return true if the client cut message was sent successfully, false otherwise
  */
-extern rfbBool SendClientCutText(rfbClient* client,char *str, int len);
+extern rfbBool SendClientCutText(rfbClient* client,const char *str, int len);
 /**
  * Handles messages from the RFB server. You must call this function
  * intermittently so LibVNCClient can parse messages from the server. For
@@ -539,7 +539,7 @@ void rfbClientRegisterExtension(rfbClientProtocolExtension* e);
 extern rfbBool errorMessageOnReadFailure;
 
 extern rfbBool ReadFromRFBServer(rfbClient* client, char *out, unsigned int n);
-extern rfbBool WriteToRFBServer(rfbClient* client, char *buf, int n);
+extern rfbBool WriteToRFBServer(rfbClient* client, const char *buf, int n);
 extern int FindFreeTcpPort(void);
 extern int ListenAtTcpPort(int port);
 extern int ListenAtTcpPortAndAddress(int port, const char *address);

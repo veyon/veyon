@@ -1710,7 +1710,7 @@ SendKeyEvent(rfbClient* client, uint32_t key, rfbBool down)
  */
 
 rfbBool
-SendClientCutText(rfbClient* client, char *str, int len)
+SendClientCutText(rfbClient* client, const char *str, int len)
 {
   rfbClientCutTextMsg cct;
 
