@@ -1,7 +1,7 @@
 /*
  * ItalcVncConnection.h - declaration of ItalcVncConnection class
  *
- * Copyright (c) 2008-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2008-2013 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -237,9 +237,6 @@ private:
 	volatile State m_state;
 	volatile bool m_stopped;
 
-
-private slots:
-	void checkOutputErrorMessage();
 
 } ;
 

@@ -1,7 +1,7 @@
 /*
  * ItalcVncConnection.cpp - implementation of ItalcVncConnection class
  *
- * Copyright (c) 2008-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2008-2013 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -41,8 +41,6 @@
 
 extern "C" void rfbClientEncryptBytes2( unsigned char *where, const int length, unsigned char *key );
 
-
-static QString outputErrorMessageString;
 
 
 
@@ -297,6 +295,7 @@ void ItalcVncConnection::hookOutputHandler( const char *format, ... )
 	message = message.trimmed();
 	ilog( Warning, "ItalcVncConnection: " + message );
 
+#if 0
 	if( ( message.contains( "Couldn't convert " ) ) ||
 		( message.contains( "Unable to connect to VNC server" ) ) )
 	{
@@ -321,6 +320,7 @@ void ItalcVncConnection::hookOutputHandler( const char *format, ... )
 	// internal messages, not displayed to user
 	if (message.contains("VNC server supports protocol version 3.889")) // see http://bugs.kde.org/162640
 		outputErrorMessageString = "INTERNAL:APPLE_VNC_COMPATIBILTY";
+#endif
 }
 
 
@@ -351,18 +351,6 @@ ItalcVncConnection::~ItalcVncConnection()
 	stop();
 
 	delete [] m_frameBuffer;
-}
-
-
-
-
-void ItalcVncConnection::checkOutputErrorMessage()
-{
-	if( !outputErrorMessageString.isEmpty() )
-	{
-//		QString errorMessage = outputErrorMessageString;
-		outputErrorMessageString.clear();
-	}
 }
 
 
