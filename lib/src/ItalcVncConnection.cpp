@@ -93,18 +93,18 @@ private:
 class ClientCutEvent : public ClientEvent
 {
 public:
-	ClientCutEvent( char *text ) :
-		m_text( text )
+	ClientCutEvent( const QString& text ) :
+		m_text( text.toUtf8() )
 	{
 	}
 
 	virtual void fire( rfbClient *cl )
 	{
-		SendClientCutText( cl, m_text, qstrlen( m_text ) );
+		SendClientCutText( cl, m_text.constData(), m_text.size() );
 	}
 
 private:
-	char * m_text;
+	QByteArray m_text;
 } ;
 
 
@@ -737,7 +737,7 @@ void ItalcVncConnection::keyEvent( unsigned int key, bool pressed )
 
 void ItalcVncConnection::clientCut( const QString &text )
 {
-	enqueueEvent( new ClientCutEvent( strdup( text.toUtf8() ) ) );
+	enqueueEvent( new ClientCutEvent( text ) );
 }
 
 
