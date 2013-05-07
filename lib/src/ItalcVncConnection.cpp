@@ -618,7 +618,7 @@ void ItalcVncConnection::doConnection()
 			timeout = 100*1000;	// 100 ms
 		}
 		const int i = WaitForMessage( m_cl, timeout );
-		if( i < 0 )
+		if( m_stopped || i < 0 )
 		{
 			break;
 		}
