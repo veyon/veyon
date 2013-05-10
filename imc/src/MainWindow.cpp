@@ -1,7 +1,7 @@
 /*
  * MainWindow.cpp - implementation of MainWindow class
  *
- * Copyright (c) 2010-2011 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2010-2013 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -538,6 +538,8 @@ void MainWindow::generateBugReportArchive()
 	const QString buildType = "x86";
 #elif defined( ITALC_HOST_X86_64 )
 	const QString buildType = "x86_64";
+#else
+	const QString buildType = "unknown";
 #endif
 	obj.setValue( "OS", os, "General" );
 	obj.setValue( "MachineInfo", machineInfo, "General" );
