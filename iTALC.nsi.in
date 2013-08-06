@@ -3,7 +3,7 @@
 !define COMP_NAME "iTALC Solutions Inc."
 !define WEB_SITE "http://italc.sf.net"
 !define VERSION "@VERSION@"
-!define COPYRIGHT "© Tobias Doerffel 2004-2011"
+!define COPYRIGHT "© Tobias Doerffel 2004-2013"
 !define DESCRIPTION "Intelligent Teaching and Learning with Computers"
 !define LICENSE_TXT "@CMAKE_SOURCE_DIR@/COPYING"
 !define INSTALLER_NAME "italc-${VERSION}-@MINGW_PLATFORM@-setup.exe"
