@@ -251,7 +251,7 @@ static void runX11vnc( QStringList cmdline, int port, bool plainVnc )
 	// workaround for x11vnc when running in an NX session
 	foreach( const QString &s, QProcess::systemEnvironment() )
 	{
-		if( s.startsWith( "NXSESSIONID=" ) )
+		if( s.startsWith( "NXSESSIONID=" ) || s.startsWith( "X2GO_SESSION=" ) )
 		{
 			cmdline << "-noxdamage";
 		}
