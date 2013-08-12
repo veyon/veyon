@@ -2,7 +2,7 @@
 .\" First parameter, NAME, should be all caps
 .\" Second parameter, SECTION, should be 1-8, maybe w/ subsection
 .\" other parameters are allowed: see man(7), man(1)
-.TH ICA 1 "April 30, 2007"
+.TH ICA 1 "May 18, 2012"
 .\" Please adjust this date whenever revising the manpage.
 .\"
 .\" Some roff macros, for reference:
@@ -31,18 +31,17 @@ ica \- iTALC Client Application
 .B ICA
 is the software which needs to run on clients in order to access them using iTALC master application. It provides a VNC-server and a service-daemon which is neccessary for taking control over the client.
 
-.SH OPTIONS
+.SH iTALC OPTIONS
 .IP "\fB\-role\fP \fIrole\fP
 .IP
-Set role under which ICA should run where \fIrole\fP has to be "teacher", "admin", "supporter" or "other". This is mainly used in combination with the \fB-createkeypair\fP option.
-.IP "\fB\-ivsport\fP \fIport\fP
+Set role under which ICA should run where \fIrole\fP has to be "teacher", "admin", "supporter" or "other".
+.IP "\fB\-port\fP \fIport\fP
 .IP
 Set port at which the iTALC-VNC-server should listen. Default: 11100
-.
-.IP "\fB\-isdport\fP \fIport\fP
-.IP
-Set port at which the iTALC-service-daemon should listen. Default: 11200
-.
+.PP
+The \fB\-createkeypair\fP option has been moved to the iTALC Management Console \fBimc\fP since iTALC 2.0.0.
+
+.SH X11VNC OPTIONS
 .IP \fB-noshm\fR
 .IP
 Do not use the MIT-SHM extension for the polling.
@@ -56,15 +55,47 @@ of shm segments and \fB-onetile\fR is not sufficient.
 Do not use the new copy_tiles() framebuffer mechanism,
 just use 1 shm tile for polling.  Limits shm segments
 used to 3.
-.
-.IP "\fB\-createkeypair\fP \fI[private-key-file] [public-key-file]\fP
+.PP
+\fB-nosel\fR
 .IP
-Create a new key pair for authentication between master and client. Until specified with \fB-role\fP the key-pair will be created for role "other". The keys either will be saved under given file-names or the default ones according to the selected role (/etc/italc/keys/private/<role>/key and /etc/italc/keys/public/<role>/key).
+ Do not manage exchange of X selection/cutbuffer between VNC viewers and the X server at all.
+.PP
+\fB-nosetclipboard\fR
+.IP
+Do not set the CLIPBOARD selection for changes received from VNC clients.
+.PP
+\fB-solid\fR \fI[color]\fR
+.IP
+To improve performance, when VNC clients are connected try to change the desktop background to a solid color.  The [color] is optional: the
+default color is "cyan4".  For a different one specify the X color (rgb.txt name, e.g. "darkblue" or numerical "#RRGGBB").
+.IP
+Currently  this  option only works on GNOME, KDE3, CDE, XFCE, and classic X (i.e. with the background image on the root window).  The "gconftool-2",
+"dcop" and "xfconf-query" external commands are run for GNOME, KDE, and XFCE respectively.
+(There  is  no  color selection for XFCE.)  Other desktops won't work, (send us the corresponding commands if you find them).
+.IP
+
+.PP
+\fB-xrandr\fR \fI[mode]\fR
+.IP
+If  the display supports the XRANDR (X Resize, Rotate and Reflection) extension, and you expect XRANDR events to occur to the display while
+x11vnc is running, this options indicates x11vnc should try to respond to them (as opposed to simply crashing by assuming  the  old  screen
+size).  See the xrandr(1) manpage and run ´xrandr -q' for more info.  [mode] is optional and described below.
+.IP
+Since  watching for XRANDR events and trapping errors increases polling overhead, only use this option if XRANDR changes are expected.  For
+example on a rotatable screen PDA or laptop, or using a XRANDR-aware Desktop where you resize often.  It is  best  to  be  viewing  with  a
+vncviewer that supports the NewFBSize encoding, since it knows how to react to screen size changes.  Otherwise, LibVNCServer tries to do so
+something reasonable for viewers that cannot do this (portions of the screen may be clipped, unused, etc).
+.IP
+"mode"  defaults  to  "resize",  which means create a new, resized, framebuffer and hope all viewers can cope with the change.  "newfbsize"
+means first disconnect all viewers that do not support the NewFBSize VNC encoding, and then resize the framebuffer.  "exit"  means  disconnect
+all viewer clients, and then terminate x11vnc.
+.PP
 .SH SEE ALSO
-.IR italc (1),
+.IR italc (1), imc (8), italc_auth_helper (1)
+.PP
 .IR http://italc.sf.net/
 
 .SH AUTHOR
-iTALC was written by Tobias Doerffel. See AUTHORS for details.
+iTALC has been written by Tobias Doerffel. See AUTHORS for details.
 .PP
-This manual page was written by Tobias Doerffel <tobydox /at/ users /dot/ sf /dot/ net>, for the Debian project (but may be used by others).
+This manual page has been written by Tobias Doerffel and updated by Mike Gabriel. It was originally written for the Debian project (but may be used by others).

@@ -2,7 +2,7 @@
 .\" First parameter, NAME, should be all caps
 .\" Second parameter, SECTION, should be 1-8, maybe w/ subsection
 .\" other parameters are allowed: see man(7), man(1)
-.TH ITALC 1 "February 1, 2008"
+.TH ITALC 1 "May 18, 2012"
 .SH NAME
 italc \- iTALC Master Application
 .SH SYNOPSIS
@@ -16,20 +16,17 @@ is the actual software to control iTALC-clients. Using it's GUI you can remote-c
 .IP
 Directly remote-control the specified host. You can omit port if the server is running at the default-port (11100).
 .
-.IP "\fB\-isdport\fP \fIport\fP
+.IP "\fB\-screen\fP \fI<screen-number>\fP
 .IP
-Set port to which iTALC should connect in order to contact the local iTALC-service-daemon. Default: 11200
-.
-.IP "\fB\-isdhost\fP \fIip\fP
-.IP
-Set the host to which iTALC should connect in order to contact the local iTALC-service-daemon. Default: localhost
+Place the remote control window on another screen if running on a multi-headed workstation.
 .
 .PP
 .SH SEE ALSO
-.IR ica (1),
+.IR ica (1), imc (8), italc_auth_helper(1)
+.PP
 .IR http://italc.sf.net
 .SH AUTHOR
-iTALC was written by Tobias Doerffel. See AUTHORS for details.
+iTALC has been written by Tobias Doerffel. See AUTHORS for details.
 .PP
-This manual page was written by Steffen Joeris <steffen.joeris@skolelinux.de>
-and Tobias Doerffel <tobydox /at/ users /dot/ sf /dot/ net>, for the Debian project (but may be used by others).
+This manual page has been written by Steffen Joeris
+and Tobias Doerffel and updated by Mike Gabriel. It was originally written for the Debian project (but may be used by others).
