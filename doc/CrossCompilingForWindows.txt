@@ -1,13 +1,13 @@
 Cross compiling iTALC for Windows on Linux
 ==========================================
 
-- Create an Ubuntu 10.04 installation, e.g. by using the netboot installer at
+- Create an Ubuntu 12.04 installation, e.g. by using the netboot installer at
 
-    http://archive.ubuntu.com/ubuntu/dists/lucid/main/installer-i386/current/images/netboot/mini.iso
+    http://archive.ubuntu.com/ubuntu/dists/precise/main/installer-i386/current/images/netboot/mini.iso
 
 - Add the following line to your /etc/apt/sources.list
 
-    deb http://ppa.launchpad.net/tobydox/mingw/ubuntu lucid main
+    deb http://ppa.launchpad.net/tobydox/mingw/ubuntu precise main
 
   and update your package list cache (e.g. apt-get update or similiar)
 
@@ -21,8 +21,9 @@ Cross compiling iTALC for Windows on Linux
   * mingw32-x-zlib
   * mingw32-x-openssl
   * mingw32-x-libjpeg
+  * mingw32-x-libpng
   * mingw32-x-pthreads
-  * gcj
+  * gcj-jdk
 
 - Change into the iTALC source directory and type
 
