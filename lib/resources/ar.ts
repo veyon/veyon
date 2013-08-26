@@ -37,8 +37,8 @@ If you&apos;re interested in translating iTALC into your local or another langua
     <message utf8="true">
         <source>iTALC - Intelligent Teaching And Learning with Computers
 
-Copyright © 2004-2011 Tobias Doerffel / iTALC Solutions</source>
-        <translation>‏&quot;آيتالك&quot; - التعليم والتعلم الذكي بواسطة الحاسب</translation>
+Copyright © 2004-2013 Tobias Doerffel / iTALC Solutions</source>
+        <translation type="unfinished">‏&quot;آيتالك&quot; - التعليم والتعلم الذكي بواسطة الحاسب {2004-2013 ?}</translation>
     </message>
 </context>
 <context>
@@ -1390,50 +1390,6 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </message>
     <message>
         <source>Poll full screen (leave this enabled per default)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Remote Logon</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Logon key sequence settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Key sequence</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Alt+Ctrl+Del</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Tab</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Enter</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Shift+Tab</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Escape</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;username&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;password&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Custom key</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

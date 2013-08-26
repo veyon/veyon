@@ -11,14 +11,6 @@
         <source>About</source>
         <translation>Sobre</translation>
     </message>
-    <message utf8="true">
-        <source>iTALC - Intelligent Teaching And Learning with Computers
-
-Copyright © 2004-2011 Tobias Doerffel / iTALC Solutions</source>
-        <translation>iTALC -Ensino e Aprendizagem Inteligente com Computadores
-
-Copyright © 2004-2011 Tobias Doerffel / iTALC Solutions</translation>
-    </message>
     <message>
         <source>&lt;a href=&quot;http://italc.sourceforge.net&quot;&gt;http://italc.sourceforge.net&lt;/a&gt;</source>
         <translation>&lt;a href=&quot;http://italc.sourceforge.net&quot;&gt;http://italc.sourceforge.net&lt;/a&gt;</translation>
@@ -42,6 +34,14 @@ Se você estiver interessado em traduzir o iTALC em seu idioma local ou outro id
     <message>
         <source>License</source>
         <translation>Licença</translation>
+    </message>
+    <message utf8="true">
+        <source>iTALC - Intelligent Teaching And Learning with Computers
+
+Copyright © 2004-2013 Tobias Doerffel / iTALC Solutions</source>
+        <translation type="unfinished">iTALC -Ensino e Aprendizagem Inteligente com Computadores
+
+Copyright © 2004-2011 Tobias Doerffel / iTALC Solutions {2004-2013 ?}</translation>
     </message>
 </context>
 <context>

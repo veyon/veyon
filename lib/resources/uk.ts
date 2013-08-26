@@ -11,14 +11,6 @@
         <source>About</source>
         <translation>Про програму</translation>
     </message>
-    <message utf8="true">
-        <source>iTALC - Intelligent Teaching And Learning with Computers
-
-Copyright © 2004-2011 Tobias Doerffel</source>
-        <translation>iTALC — інтелектуальне викладання та навчання за допомогою комп’ютерів
-
-© Tobias Doerffel, 2004–2011</translation>
-    </message>
     <message>
         <source>&lt;a href=&quot;http://italc.sourceforge.net&quot;&gt;http://italc.sourceforge.net&lt;/a&gt;</source>
         <translation>&lt;a href=&quot;http://italc.sourceforge.net&quot;&gt;http://italc.sourceforge.net&lt;/a&gt;</translation>
@@ -46,7 +38,7 @@ If you&apos;re interested in translating iTALC into your local or another langua
     <message utf8="true">
         <source>iTALC - Intelligent Teaching And Learning with Computers
 
-Copyright © 2004-2011 Tobias Doerffel / iTALC Solutions</source>
+Copyright © 2004-2013 Tobias Doerffel / iTALC Solutions</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -848,10 +840,6 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>Увімкнути захоплення шарів (напівпрозорих) вікон</translation>
     </message>
     <message>
-        <source>Poll full screen</source>
-        <translation>Запит на весь екран</translation>
-    </message>
-    <message>
         <source>Low accuracy (turbo mode)</source>
         <translation>Низька точність (турбо-режим)</translation>
     </message>
@@ -1409,6 +1397,10 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <source>No authentication key files were found or your current ones are outdated. Please create new key files using the iTALC Management Console. Alternatively set up logon authentication using the iTALC Management Console. Otherwise you won&apos;t be able to access computers using iTALC.</source>
         <translation>Не було знайдено файлів ключів розпізнавання або поточні файли є застарілими. Будь ласка, створіть нові файли ключів за допомогою консолі керування iTALC. Крім того, ви можете налаштувати розпізнавання під час входу до системи за допомогою консолі керування iTALC. Якщо ви не налаштуйте розпізнавання, ви не зможете отримати доступ до комп’ютерів за допомогою iTALC.</translation>
     </message>
+    <message>
+        <source>Poll full screen (leave this enabled per default)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MessageBoxSlave</name>
@@ -1478,6 +1470,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>iTALC Logon</source>
         <translation>Вхід до iTALC</translation>
+    </message>
+    <message>
+        <source>Manage</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

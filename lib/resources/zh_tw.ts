@@ -11,14 +11,6 @@
         <source>About</source>
         <translation>關於</translation>
     </message>
-    <message utf8="true">
-        <source>iTALC - Intelligent Teaching And Learning with Computers
-
-Copyright © 2004-2011 Tobias Doerffel</source>
-        <translation>iTALC - Intelligent Teaching And Learning with Computers
-
-Copyright © 2004-2011 Tobias Doerffel</translation>
-    </message>
     <message>
         <source>&lt;a href=&quot;http://italc.sourceforge.net&quot;&gt;http://italc.sourceforge.net&lt;/a&gt;</source>
         <translation>&lt;a href=&quot;http://italc.sourceforge.net&quot;&gt;http://italc.sourceforge.net&lt;/a&gt;</translation>
@@ -46,7 +38,7 @@ If you&apos;re interested in translating iTALC into your local or another langua
     <message utf8="true">
         <source>iTALC - Intelligent Teaching And Learning with Computers
 
-Copyright © 2004-2011 Tobias Doerffel / iTALC Solutions</source>
+Copyright © 2004-2013 Tobias Doerffel / iTALC Solutions</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1032,10 +1024,6 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>開啟多層次（半透明）視窗擷取</translation>
     </message>
     <message>
-        <source>Poll full screen</source>
-        <translation>輪詢全螢幕</translation>
-    </message>
-    <message>
         <source>Low accuracy (turbo mode)</source>
         <translation>低精確度（快速模式）</translation>
     </message>
@@ -1409,6 +1397,10 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <source>There are unsaved settings. Quit anyway?</source>
         <translation>有尚未儲存的設定。還是要離開嗎？</translation>
     </message>
+    <message>
+        <source>Poll full screen (leave this enabled per default)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MessageBoxSlave</name>
@@ -1478,6 +1470,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Password</source>
         <translation>密碼</translation>
+    </message>
+    <message>
+        <source>Manage</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

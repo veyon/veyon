@@ -11,14 +11,6 @@
         <source>About</source>
         <translation>Über</translation>
     </message>
-    <message utf8="true">
-        <source>iTALC - Intelligent Teaching And Learning with Computers
-
-Copyright © 2004-2011 Tobias Doerffel</source>
-        <translation>iTALC - Intelligent Teaching And Learning with Computers
-
-Copyright © 2004-2011 Tobias Doerffel</translation>
-    </message>
     <message>
         <source>&lt;a href=&quot;http://italc.sourceforge.net&quot;&gt;http://italc.sourceforge.net&lt;/a&gt;</source>
         <translation>&lt;a href=&quot;http://italc.sourceforge.net&quot;&gt;http://italc.sourceforge.net&lt;/a&gt;</translation>
@@ -44,7 +36,7 @@ If you&apos;re interested in translating iTALC into your local or another langua
     <message utf8="true">
         <source>iTALC - Intelligent Teaching And Learning with Computers
 
-Copyright © 2004-2011 Tobias Doerffel / iTALC Solutions</source>
+Copyright © 2004-2013 Tobias Doerffel / iTALC Solutions</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -841,10 +833,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>Halbdurchsichtige Fenster (layered windows) aufzeichnen</translation>
     </message>
     <message>
-        <source>Poll full screen</source>
-        <translation>Vollen Bildschirm abfragen</translation>
-    </message>
-    <message>
         <source>Low accuracy (turbo mode)</source>
         <translation>Niedrige Genauigkeit (Turbomodus)</translation>
     </message>
@@ -1397,6 +1385,10 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <source>No authentication key files were found or your current ones are outdated. Please create new key files using the iTALC Management Console. Alternatively set up logon authentication using the iTALC Management Console. Otherwise you won&apos;t be able to access computers using iTALC.</source>
         <translation>Es wurden keine Authentifizierungsschlüsseldateien gefunden oder sie sind veraltet. Bitte erstellen Sie neue Schlüsseldateien mit Hilfe der iTALC-Management-Console. Alternativ können Sie die Anmelde-Authentifizierung mit Hilfe der iTALC-Management-Console einrichten. Andernfalls werden Sie nicht in der Lage sein, mit iTALC auf andere Rechner zuzugreifen.</translation>
     </message>
+    <message>
+        <source>Poll full screen (leave this enabled per default)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MessageBoxSlave</name>
@@ -1466,6 +1458,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>iTALC Logon</source>
         <translation>iTALC-Anmeldung</translation>
+    </message>
+    <message>
+        <source>Manage</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

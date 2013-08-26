@@ -36,13 +36,7 @@ If you&apos;re interested in translating iTALC into your local or another langua
     <message utf8="true">
         <source>iTALC - Intelligent Teaching And Learning with Computers
 
-Copyright © 2004-2011 Tobias Doerffel</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message utf8="true">
-        <source>iTALC - Intelligent Teaching And Learning with Computers
-
-Copyright © 2004-2011 Tobias Doerffel / iTALC Solutions</source>
+Copyright © 2004-2013 Tobias Doerffel / iTALC Solutions</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1022,10 +1016,6 @@ La chiave pubblica, invece, è utilizzata dai computer studente per verificare c
         <translation>Abilita cattura di finestre in livelli (semi-trasparente)</translation>
     </message>
     <message>
-        <source>Poll full screen</source>
-        <translation>Schermo pieno</translation>
-    </message>
-    <message>
         <source>Low accuracy (turbo mode)</source>
         <translation>Bassa qualità (modalità turbo)</translation>
     </message>
@@ -1403,6 +1393,10 @@ Nota: Se l&apos;errore si verifica sia sul computer docente(master) che sul comp
         <source>Allow connections from localhost only</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Poll full screen (leave this enabled per default)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MessageBoxSlave</name>
@@ -1472,6 +1466,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Password</source>
         <translation>Password</translation>
+    </message>
+    <message>
+        <source>Manage</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

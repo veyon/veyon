@@ -41,11 +41,11 @@ Ha szeretné lefordítani másik nyelvre is, kérem jelezze az iTALC fejlesztőc
     <message utf8="true">
         <source>iTALC - Intelligent Teaching And Learning with Computers
 
-Copyright © 2004-2011 Tobias Doerffel / iTALC Solutions</source>
+Copyright © 2004-2013 Tobias Doerffel / iTALC Solutions</source>
         <translation type="unfinished">iTALC - Intelligent Teaching And Learning with Computer
 
 Copyright © 2004-2011 Tobias Doerffel / iTALC Solutions
-</translation>
+ {2004-2013 ?}</translation>
     </message>
 </context>
 <context>

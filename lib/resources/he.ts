@@ -11,12 +11,6 @@
         <source>About</source>
         <translation type="unfinished">אודות</translation>
     </message>
-    <message utf8="true">
-        <source>iTALC - Intelligent Teaching And Learning with Computers
-
-Copyright © 2004-2011 Tobias Doerffel / iTALC Solutions</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <source>&lt;a href=&quot;http://italc.sourceforge.net&quot;&gt;http://italc.sourceforge.net&lt;/a&gt;</source>
         <translation type="unfinished"></translation>
@@ -38,6 +32,12 @@ If you&apos;re interested in translating iTALC into your local or another langua
     <message>
         <source>License</source>
         <translation type="unfinished">רישיון</translation>
+    </message>
+    <message utf8="true">
+        <source>iTALC - Intelligent Teaching And Learning with Computers
+
+Copyright © 2004-2013 Tobias Doerffel / iTALC Solutions</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -260,7 +260,7 @@ Do you want to create a new classrom now?</source>
     </message>
     <message>
         <source>Logout user</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">נתק משתמש</translation>
     </message>
     <message>
         <source>Are you sure want to reboot all visible computers?</source>
@@ -813,7 +813,7 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>Send text message</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">שלחו הודעת טקסט</translation>
     </message>
     <message>
         <source>Text message</source>
@@ -1021,10 +1021,6 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>Enable capturing of layered (semi-transparent) windows</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Poll full screen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1396,6 +1392,10 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <source>There are unsaved settings. Quit anyway?</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Poll full screen (leave this enabled per default)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MessageBoxSlave</name>
@@ -1465,6 +1465,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Password</source>
         <translation type="unfinished">סיסמא</translation>
+    </message>
+    <message>
+        <source>Manage</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1705,7 +1709,7 @@ p, li { white-space: pre-wrap; }
     <name>TextMessageDialog</name>
     <message>
         <source>Send text message</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">שלחו הודעת טקסט</translation>
     </message>
     <message>
         <source>Use the field below to type your message which will be sent to all selected users.</source>
