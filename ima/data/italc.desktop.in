@@ -8,4 +8,4 @@ Icon=@prefix@/share/pixmaps/italc.png
 Exec=@prefix@/bin/italc
 Type=Application
 Terminal=false
-Categories=Qt;KDE;Education;X-KDE-Edu-Teaching;
+Categories=Qt;KDE;Education;X-KDE-Edu-Teaching;RemoteAccess;
