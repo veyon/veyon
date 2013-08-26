@@ -2,7 +2,7 @@
  * SystemConfigurationModifier.cpp - class for easy modification of iTALC-related
  *                                   settings in the operating system
  *
- * Copyright (c) 2010-2011 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2010-2013 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -533,6 +533,15 @@ bool SystemConfigurationModifier::enableFirewallException( bool enabled )
 			hr = WindowsFirewallAddApp2( fwPolicy2, icaPath, fwRuleName );
 			if( FAILED( hr ) )
 			{
+				// failed because firewall service not running / disabled?
+				if( (DWORD) hr == 0x800706D9 )
+				{
+					// then assume this is intended, log a warning and
+					// pretend everything went well
+					qWarning() << "Windows Firewall service not running or disabled - can't add or remove firewall exception!";
+					return true;
+				}
+
 				ilog_failedf( "WindowsFirewallAddApp2()", "0x%08lx\n", hr );
 				return false;
 			}
@@ -549,6 +558,15 @@ bool SystemConfigurationModifier::enableFirewallException( bool enabled )
 		hr = WindowsFirewallInitialize( &fwProfile );
 		if( FAILED( hr ) )
 		{
+			// failed because firewall service not running / disabled?
+			if( (DWORD) hr == 0x800706D9 )
+			{
+				// then assume this is intended, log a warning and
+				// pretend everything went well
+				qWarning() << "Windows Firewall service not running or disabled - can't add or remove firewall exception!";
+				return true;
+			}
+
 			ilog_failedf( "WindowsFirewallInitialize()", "0x%08lx\n", hr );
 			return false;
 		}
