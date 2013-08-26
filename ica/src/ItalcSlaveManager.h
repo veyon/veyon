@@ -23,8 +23,8 @@
  *
  */
 
-#ifndef _ITALC_SLAVE_MANAGER_H
-#define _ITALC_SLAVE_MANAGER_H
+#ifndef ITALC_SLAVE_MANAGER_H
+#define ITALC_SLAVE_MANAGER_H
 
 #include "Ipc/Master.h"
 #include "DemoServerMaster.h"

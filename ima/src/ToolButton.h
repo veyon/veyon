@@ -1,7 +1,7 @@
 /*
  * ToolButton.h - declaration of class ToolButton
  *
- * Copyright (c) 2006-2010 Tobias Doerffel <tobydox/at/users.sourceforge.net>
+ * Copyright (c) 2006-2013 Tobias Doerffel <tobydox/at/users.sourceforge.net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -22,8 +22,8 @@
  *
  */
 
-#ifndef _TOOL_BUTTON_H
-#define _TOOL_BUTTON_H 
+#ifndef TOOL_BUTTON_H
+#define TOOL_BUTTON_H
 
 #include <QtGui/QToolButton>
 

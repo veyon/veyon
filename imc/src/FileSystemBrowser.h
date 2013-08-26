@@ -22,8 +22,8 @@
  *
  */
 
-#ifndef _FILE_SYSTEM_BROWSER_H
-#define _FILE_SYSTEM_BROWSER_H
+#ifndef FILE_SYSTEM_BROWSER_H
+#define FILE_SYSTEM_BROWSER_H
 
 #include <QtCore/QString>
 

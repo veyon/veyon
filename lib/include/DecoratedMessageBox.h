@@ -22,8 +22,8 @@
  *
  */
 
-#ifndef _DECORATED_MESSAGEBOX_H
-#define _DECORATED_MESSAGEBOX_H
+#ifndef DECORATED_MESSAGEBOX_H
+#define DECORATED_MESSAGEBOX_H
 
 #include <QtGui/QDialog>
 #include <QtGui/QPixmap>

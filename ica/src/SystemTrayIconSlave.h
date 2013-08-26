@@ -23,8 +23,8 @@
  *
  */
 
-#ifndef _SYSTEM_TRAY_ICON_SLAVE_H
-#define _SYSTEM_TRAY_ICON_SLAVE_H
+#ifndef SYSTEM_TRAY_ICON_SLAVE_H
+#define SYSTEM_TRAY_ICON_SLAVE_H
 
 #include <QtGui/QSystemTrayIcon>
 

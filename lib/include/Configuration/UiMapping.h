@@ -1,7 +1,7 @@
 /*
  * Configuration/UiMapping.h - helper macros for connecting config with UI
  *
- * Copyright (c) 2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2010-2013 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -22,8 +22,8 @@
  *
  */
 
-#ifndef _CONFIGURATION_UI_MAPPING_H
-#define _CONFIGURATION_UI_MAPPING_H
+#ifndef CONFIGURATION_UI_MAPPING_H
+#define CONFIGURATION_UI_MAPPING_H
 
 // widget initialization
 #define _INIT_WIDGET_FROM_PROPERTY(config,property,widgetType,setvalue)				\

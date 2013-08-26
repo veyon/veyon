@@ -23,8 +23,8 @@
  */
 
 
-#ifndef _CLASSROOM_MANAGER_H
-#define _CLASSROOM_MANAGER_H
+#ifndef CLASSROOM_MANAGER_H
+#define CLASSROOM_MANAGER_H
 
 #include <QtCore/QString>
 #include <QtCore/QVector>

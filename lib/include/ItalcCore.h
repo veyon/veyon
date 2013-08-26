@@ -22,8 +22,8 @@
  *
  */
 
-#ifndef _ITALC_CORE_H
-#define _ITALC_CORE_H
+#ifndef ITALC_CORE_H
+#define ITALC_CORE_H
 
 #include <QtCore/QPair>
 #include <QtCore/QString>

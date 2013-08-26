@@ -22,8 +22,8 @@
  *
  */
 
-#ifndef _KEY_FILE_ASSISTANT_H
-#define _KEY_FILE_ASSISTANT_H
+#ifndef KEY_FILE_ASSISTANT_H
+#define KEY_FILE_ASSISTANT_H
 
 #include <QtGui/QWizard>
 

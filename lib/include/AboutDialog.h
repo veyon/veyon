@@ -22,8 +22,8 @@
  *
  */
 
-#ifndef _ABOUT_DIALOG_H
-#define _ABOUT_DIALOG_H
+#ifndef ABOUT_DIALOG_H
+#define ABOUT_DIALOG_H
 
 #include <QtGui/QDialog>
 

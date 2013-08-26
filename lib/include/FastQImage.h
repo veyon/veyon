@@ -22,8 +22,8 @@
  *
  */
 
-#ifndef _FAST_QIMAGE_H
-#define _FAST_QIMAGE_H
+#ifndef FAST_QIMAGE_H
+#define FAST_QIMAGE_H
 
 #include <stdint.h>
 

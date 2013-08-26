@@ -21,8 +21,8 @@
  *  USA.
  */
 
-#ifndef _REMOTE_CONTROL_WIDGET_H
-#define _REMOTE_CONTROL_WIDGET_H
+#ifndef REMOTE_CONTROL_WIDGET_H
+#define REMOTE_CONTROL_WIDGET_H
 
 #include <QtCore/QTimeLine>
 #include <QtGui/QWidget>

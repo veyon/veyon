@@ -2,7 +2,7 @@
  * Client.h - declaration of class Client which represents a client, shows its
  *            display and allows controlling it in several ways
  *
- * Copyright (c) 2004-2011 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2013 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -23,8 +23,8 @@
  *
  */
 
-#ifndef _CLIENT_H
-#define _CLIENT_H
+#ifndef CLIENT_H
+#define CLIENT_H
 
 #include <italcconfig.h>
 

@@ -20,8 +20,8 @@
 // which you received this file, check
 // http://ultravnc.sourceforge.net/
 
-#ifndef _WIN32_ACL_EDITOR_H
-#define _WIN32_ACL_EDITOR_H
+#ifndef WIN32_ACL_EDITOR_H
+#define WIN32_ACL_EDITOR_H
 
 #include <windows.h>
 #include <aclui.h>

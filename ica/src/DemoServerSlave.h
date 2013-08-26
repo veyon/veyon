@@ -23,8 +23,8 @@
  *
  */
 
-#ifndef _DEMO_SERVER_SLAVE_H
-#define _DEMO_SERVER_SLAVE_H
+#ifndef DEMO_SERVER_SLAVE_H
+#define DEMO_SERVER_SLAVE_H
 
 #include "IcaSlave.h"
 #include "ItalcCoreServer.h"

@@ -1,7 +1,7 @@
 /*
  * Logger.h - a global clas for easily logging messages to log files
  *
- * Copyright (c) 2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2010-2013 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -22,8 +22,8 @@
  *
  */
 
-#ifndef _LOGGER_H
-#define _LOGGER_H
+#ifndef ITALCCORE_LOGGER_H
+#define ITALCCORE_LOGGER_H
 
 #include <italcconfig.h>
 

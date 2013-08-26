@@ -20,8 +20,8 @@
  *
  */
 
-#ifndef _RUN_COMMANDS_DIALOG_H
-#define _RUN_COMMANDS_DIALOG_H
+#ifndef RUN_COMMANDS_DIALOG_H
+#define RUN_COMMANDS_DIALOG_H
 
 #include <QtGui/QDialog>
 

@@ -23,8 +23,8 @@
  *
  */
 
-#ifndef _SCREEN_LOCK_SLAVE_LAUNCHER_H
-#define _SCREEN_LOCK_SLAVE_LAUNCHER_H
+#ifndef SCREEN_LOCK_SLAVE_LAUNCHER_H
+#define SCREEN_LOCK_SLAVE_LAUNCHER_H
 
 #include <italcconfig.h>
 

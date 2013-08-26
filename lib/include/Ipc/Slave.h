@@ -23,8 +23,8 @@
  *
  */
 
-#ifndef _IPC_SLAVE_H
-#define _IPC_SLAVE_H
+#ifndef IPC_SLAVE_H
+#define IPC_SLAVE_H
 
 #include <QtCore/QTime>
 #include <QtCore/QTimer>

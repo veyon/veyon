@@ -1,7 +1,7 @@
 /*
  * Dialogs.h - declaration of dialog classes
  *
- * Copyright (c) 2004-2011 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2013 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -22,8 +22,8 @@
  *
  */
 
-#ifndef _DIALOGS_H
-#define _DIALOGS_H
+#ifndef DIALOGS_H
+#define DIALOGS_H
 
 #include <QtGui/QDialog>
 

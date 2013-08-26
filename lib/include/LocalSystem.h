@@ -1,7 +1,7 @@
 /*
  * LocalSystem.h - misc. platform-specific stuff
  *
- * Copyright (c) 2006-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2013 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -22,8 +22,8 @@
  *
  */
 
-#ifndef _LOCAL_SYSTEM_H
-#define _LOCAL_SYSTEM_H
+#ifndef LOCAL_SYSTEM_H
+#define LOCAL_SYSTEM_H
 
 #include "ItalcCore.h"
 

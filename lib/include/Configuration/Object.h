@@ -22,8 +22,8 @@
  *
  */
 
-#ifndef _CONFIGURATION_OBJECT_H
-#define _CONFIGURATION_OBJECT_H
+#ifndef CONFIGURATION_OBJECT_H
+#define CONFIGURATION_OBJECT_H
 
 #include <QtCore/QObject>
 

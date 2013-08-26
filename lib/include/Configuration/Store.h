@@ -22,8 +22,8 @@
  *
  */
 
-#ifndef _CONFIGURATION_STORE_H
-#define _CONFIGURATION_STORE_H
+#ifndef CONFIGURATION_STORE_H
+#define CONFIGURATION_STORE_H
 
 #include <QtCore/QMap>
 #include <QtCore/QString>

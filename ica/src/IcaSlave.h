@@ -23,8 +23,8 @@
  *
  */
 
-#ifndef _ICA_SLAVE_H
-#define _ICA_SLAVE_H
+#ifndef ICA_SLAVE_H
+#define ICA_SLAVE_H
 
 #include <QtCore/QCoreApplication>
 #include <QtCore/QStringList>

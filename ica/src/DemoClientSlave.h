@@ -1,7 +1,7 @@
 /*
  * DemoClientSlave.h - an IcaSlave providing the demo window
  *
- * Copyright (c) 2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2010-2013 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  * Copyright (c) 2010 Univention GmbH
  *
  * This file is part of iTALC - http://italc.sourceforge.net
@@ -23,8 +23,8 @@
  *
  */
 
-#ifndef _DEMO_CLIENT_SLAVE_H
-#define _DEMO_CLIENT_SLAVE_H
+#ifndef DEMO_CLIENT_SLAVE_H
+#define DEMO_CLIENT_SLAVE_H
 
 #include "IcaSlave.h"
 

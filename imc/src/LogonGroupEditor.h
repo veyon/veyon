@@ -22,8 +22,8 @@
  *
  */
 
-#ifndef _LOGON_GROUP_EDITOR_H
-#define _LOGON_GROUP_EDITOR_H
+#ifndef LOGON_GROUP_EDITOR_H
+#define LOGON_GROUP_EDITOR_H
 
 #include <QtGui/QDialog>
 

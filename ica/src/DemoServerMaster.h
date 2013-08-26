@@ -23,8 +23,8 @@
  *
  */
 
-#ifndef _DEMO_SERVER_MASTER_H
-#define _DEMO_SERVER_MASTER_H
+#ifndef DEMO_SERVER_MASTER_H
+#define DEMO_SERVER_MASTER_H
 
 #include <QtCore/QStringList>
 

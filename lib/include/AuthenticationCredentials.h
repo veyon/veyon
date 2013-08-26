@@ -1,7 +1,7 @@
 /*
  * AuthenticationCredentials.h - class holding credentials for authentication
  *
- * Copyright (c) 2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2010-2013 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -22,8 +22,8 @@
  *
  */
 
-#ifndef _AUTHENTICATION_CREDENTIALS_H
-#define _AUTHENTICATION_CREDENTIALS_H
+#ifndef AUTHENTICATION_CREDENTIALS_H
+#define AUTHENTICATION_CREDENTIALS_H
 
 #include <QtCore/QString>
 

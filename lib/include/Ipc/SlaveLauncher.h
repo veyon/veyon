@@ -24,8 +24,8 @@
  *
  */
 
-#ifndef _IPC_SLAVE_LAUNCHER_H
-#define _IPC_SLAVE_LAUNCHER_H
+#ifndef IPC_SLAVE_LAUNCHER_H
+#define IPC_SLAVE_LAUNCHER_H
 
 #include "Ipc/Core.h"
 

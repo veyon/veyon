@@ -2,7 +2,7 @@
  * DsaKey.h - easy to use C++ classes for dealing with DSA-keys, -signatures
  *            etc.
  *
- * Copyright (c) 2006-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2013 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -38,8 +38,8 @@
  *
  ****************************************************************************/
 
-#ifndef _DSA_KEY_H
-#define _DSA_KEY_H
+#ifndef DSA_KEY_H
+#define DSA_KEY_H
 
 #include <QtCore/QByteArray>
 #include <QtCore/QString>

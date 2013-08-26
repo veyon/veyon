@@ -23,8 +23,8 @@
  */
 
 
-#ifndef _OVERVIEW_WIDGET_H
-#define _OVERVIEW_WIDGET_H
+#ifndef OVERVIEW_WIDGET_H
+#define OVERVIEW_WIDGET_H
 
 #include "SideBarWidget.h"
 #include "ui_Overview.h"

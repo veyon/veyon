@@ -22,8 +22,8 @@
  *
  */
 
-#ifndef _ITALC_CORE_CONNECTION_H
-#define _ITALC_CORE_CONNECTION_H
+#ifndef ITALC_CORE_CONNECTION_H
+#define ITALC_CORE_CONNECTION_H
 
 #include "ItalcCore.h"
 #include "ItalcVncConnection.h"

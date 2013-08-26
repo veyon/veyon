@@ -22,8 +22,8 @@
  *
  */
 
-#ifndef _SOCKET_DEVICE_H
-#define _SOCKET_DEVICE_H
+#ifndef SOCKET_DEVICE_H
+#define SOCKET_DEVICE_H
 
 #include <QtCore/QIODevice>
 #include <QtCore/QString>

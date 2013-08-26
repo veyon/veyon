@@ -23,8 +23,8 @@
  *
  */
 
-#ifndef _INPUT_LOCK_SLAVE_H
-#define _INPUT_LOCK_SLAVE_H
+#ifndef INPUT_LOCK_SLAVE_H
+#define INPUT_LOCK_SLAVE_H
 
 #include "IcaSlave.h"
 

@@ -23,8 +23,8 @@
  *
  */
 
-#ifndef _ITALC_VNC_SERVER_H
-#define _ITALC_VNC_SERVER_H
+#ifndef ITALC_VNC_SERVER_H
+#define ITALC_VNC_SERVER_H
 
 #include <QtCore/QThread>
 

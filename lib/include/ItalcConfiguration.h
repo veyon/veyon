@@ -23,8 +23,8 @@
  *
  */
 
-#ifndef _ITALC_CONFIGURATION_H
-#define _ITALC_CONFIGURATION_H
+#ifndef ITALC_CONFIGURATION_H
+#define ITALC_CONFIGURATION_H
 
 #include <QtCore/QStringList>
 

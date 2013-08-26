@@ -22,8 +22,8 @@
  *
  */
 
-#ifndef _ITALC_CORE_SERVER_H
-#define _ITALC_CORE_SERVER_H
+#ifndef ITALC_CORE_SERVER_H
+#define ITALC_CORE_SERVER_H
 
 #include <QtCore/QMutex>
 #include <QtCore/QStringList>

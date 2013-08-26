@@ -1,7 +1,7 @@
 /*
  * ImcCore.h - global instances for the iTALC Management Console
  *
- * Copyright (c) 2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2010-2013 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -22,8 +22,8 @@
  *
  */
 
-#ifndef _IMC_CORE_H
-#define _IMC_CORE_H
+#ifndef IMC_CORE_H
+#define IMC_CORE_H
 
 #include <QtCore/QDir>
 #include <QtCore/QCoreApplication>

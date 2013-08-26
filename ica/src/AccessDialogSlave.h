@@ -23,8 +23,8 @@
  *
  */
 
-#ifndef _ACCESS_DIALOG_SLAVE_H
-#define _ACCESS_DIALOG_SLAVE_H
+#ifndef ACCESS_DIALOG_SLAVE_H
+#define ACCESS_DIALOG_SLAVE_H
 
 #include "IcaSlave.h"
 

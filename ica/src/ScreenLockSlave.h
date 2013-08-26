@@ -23,8 +23,8 @@
  *
  */
 
-#ifndef _SCREEN_LOCK_SLAVE_H
-#define _SCREEN_LOCK_SLAVE_H
+#ifndef SCREEN_LOCK_SLAVE_H
+#define SCREEN_LOCK_SLAVE_H
 
 #include "IcaSlave.h"
 

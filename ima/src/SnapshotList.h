@@ -1,7 +1,7 @@
 /*
  * SnapshotList.h - declaration of snapshot-list for side-bar
  *
- * Copyright (c) 2004-2009 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2013 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -23,8 +23,8 @@
  */
 
 
-#ifndef _SNAPSHOT_LIST_H
-#define _SNAPSHOT_LIST_H
+#ifndef SNAPSHOT_LIST_H
+#define SNAPSHOT_LIST_H
 
 #include <QtGui/QWidget>
 

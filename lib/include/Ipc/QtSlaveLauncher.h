@@ -24,8 +24,8 @@
  *
  */
 
-#ifndef _IPC_QT_SLAVE_LAUNCHER_H
-#define _IPC_QT_SLAVE_LAUNCHER_H
+#ifndef IPC_QT_SLAVE_LAUNCHER_H
+#define IPC_QT_SLAVE_LAUNCHER_H
 
 #include <QtCore/QMutex>
 

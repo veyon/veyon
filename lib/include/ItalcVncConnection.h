@@ -25,8 +25,8 @@
  *
  */
 
-#ifndef _ITALC_VNC_CONNECTION_H
-#define _ITALC_VNC_CONNECTION_H
+#ifndef ITALC_VNC_CONNECTION_H
+#define ITALC_VNC_CONNECTION_H
 
 #include <QtCore/QMutex>
 #include <QtCore/QQueue>

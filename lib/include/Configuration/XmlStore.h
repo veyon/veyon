@@ -22,8 +22,8 @@
  *
  */
 
-#ifndef _CONFIGURATION_XML_STORE_H
-#define _CONFIGURATION_XML_STORE_H
+#ifndef CONFIGURATION_XML_STORE_H
+#define CONFIGURATION_XML_STORE_H
 
 #include "Configuration/Store.h"
 

@@ -21,8 +21,8 @@
  *  USA.
  */
 
-#ifndef _LOCK_WIDGET_H
-#define _LOCK_WIDGET_H
+#ifndef LOCK_WIDGET_H
+#define LOCK_WIDGET_H
 
 #include <italcconfig.h>
 

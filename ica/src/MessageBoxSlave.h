@@ -23,8 +23,8 @@
  *
  */
 
-#ifndef _MESSAGE_BOX_SLAVE_H
-#define _MESSAGE_BOX_SLAVE_H
+#ifndef MESSAGE_BOX_SLAVE_H
+#define MESSAGE_BOX_SLAVE_H
 
 #include "IcaSlave.h"
 

@@ -22,8 +22,8 @@
  *
  */
 
-#ifndef _LOGON_ACL_SETTINGS_H
-#define _LOGON_ACL_SETTINGS_H
+#ifndef LOGON_ACL_SETTINGS_H
+#define LOGON_ACL_SETTINGS_H
 
 #include <italcconfig.h>
 

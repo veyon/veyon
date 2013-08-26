@@ -1,7 +1,7 @@
 /*
  * QuadTree.h - QuadTree, a data structure for fast fuzzy rectangle merging
  *
- * Copyright (c) 2010-2011 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2010-2013 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -22,8 +22,8 @@
  *
  */
 
-#ifndef _QUAD_TREE_H
-#define _QUAD_TREE_H
+#ifndef QUAD_TREE_H
+#define QUAD_TREE_H
 
 #include <stdint.h>
 #include <QtCore/QList>

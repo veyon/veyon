@@ -2,7 +2,7 @@
  * ItalcRfbExt.h - an extension of the RFB-protocol, used for communication
  *                 between master and clients
  *
- * Copyright (c) 2004-2011 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2013 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -23,8 +23,8 @@
  *
  */
 
-#ifndef _ITALC_RFB_EXT_H
-#define _ITALC_RFB_EXT_H
+#ifndef ITALC_RFB_EXT_H
+#define ITALC_RFB_EXT_H
 
 #include <rfb/rfbproto.h>
 #include <rfb/rfbclient.h>

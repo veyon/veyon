@@ -23,8 +23,8 @@
  *
  */
 
-#ifndef _SIDE_BAR_H
-#define _SIDE_BAR_H
+#ifndef SIDE_BAR_H
+#define SIDE_BAR_H
 
 #include <QtCore/QMap>
 #include <QtGui/QButtonGroup>

@@ -22,8 +22,8 @@
  *
  */
 
-#ifndef _WINDOWS_SERVICE_H
-#define _WINDOWS_SERVICE_H
+#ifndef WINDOWS_SERVICE_H
+#define WINDOWS_SERVICE_H
 
 #include <italcconfig.h>
 

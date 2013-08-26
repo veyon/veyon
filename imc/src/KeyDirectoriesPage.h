@@ -22,8 +22,8 @@
  *
  */
 
-#ifndef _KEY_DIRECTORIES_PAGE_H
-#define _KEY_DIRECTORIES_PAGE_H
+#ifndef KEY_DIRECTORIES_PAGE_H
+#define KEY_DIRECTORIES_PAGE_H
 
 #include <QtGui/QWizardPage>
 

@@ -1,7 +1,7 @@
 /*
  *  Snapshot.h - class representing a screen snapshot
  *
- *  Copyright (c) 2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ *  Copyright (c) 2010-2013 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  *  This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -21,8 +21,8 @@
  *  USA.
  */
 
-#ifndef _SNAPSHOT_H
-#define _SNAPSHOT_H
+#ifndef SNAPSHOT_H
+#define SNAPSHOT_H
 
 #include <QtGui/QImage>
 #include <QtGui/QPixmap>

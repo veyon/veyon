@@ -1,7 +1,7 @@
 /*
  * IpcMaster.h - class Ipc::Master which manages Ipc::Slaves
  *
- * Copyright (c) 2010-2011 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2010-2013 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  * Copyright (c) 2010 Univention GmbH
  *
  * This file is part of iTALC - http://italc.sourceforge.net
@@ -23,8 +23,8 @@
  *
  */
 
-#ifndef _IPC_MASTER_H
-#define _IPC_MASTER_H
+#ifndef IPC_MASTER_H
+#define IPC_MASTER_H
 
 #include "Ipc/Core.h"
 
