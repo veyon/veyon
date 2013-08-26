@@ -367,6 +367,11 @@ void ItalcVncConnection::stop()
 		{
 			qWarning( "ItalcVncConnection::stop(): terminating thread" );
 			terminate();
+
+			while( !wait( 1000 ) )
+			{
+				qWarning( "ItalcVncConnection::stop(): terminated thread is still alive!" );
+			}
 		}
 	}
 }
