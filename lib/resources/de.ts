@@ -1272,7 +1272,7 @@ If the bug is not reproducible, skip step 1) - 3).</source>
     </message>
     <message>
         <source>In the &quot;General&quot; section set the log level to &quot;Debug messages and everything else&quot;.</source>
-        <translation>Setzen Sie den Logleve  im Abschnitt &quot;Allgemein&quot; auf &quot;Debugmeldungen und alles andere&quot;.</translation>
+        <translation>Setzen Sie den Loglevel im Abschnitt &quot;Allgemein&quot; auf &quot;Debugmeldungen und alles andere&quot;.</translation>
     </message>
     <message>
         <source>3)</source>
