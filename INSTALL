@@ -29,6 +29,7 @@ Requirements:
 - libjpeg62-dev/libjpeg-devel
 - zlib1g-dev/zlib-devel
 - libssl-dev/openssl-devel
+- libpam0g-dev/pam-devel
 
 Of course GCC/G++ must not be missing...
 
