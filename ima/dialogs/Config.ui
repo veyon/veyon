@@ -231,6 +231,169 @@
        </item>
       </layout>
      </item>
+     <item>
+      <layout class="QHBoxLayout">
+       <property name="spacing">
+        <number>6</number>
+       </property>
+       <property name="margin">
+        <number>0</number>
+       </property>
+       <item>
+        <spacer>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>1</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_3">
+         <property name="text">
+          <string>Language:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="languageCB">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <item>
+          <property name="text">
+           <string>System default</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>ar - العربية</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>cs - Česky</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>de - Deutsch</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>el - Ελληνικά</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>es - Español</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>fi - Suomi</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>fr - Français</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>he - עִבְרִית</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>hu - Magyar</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>it - Italiano</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>nl - Nederlands</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>nn - Norsk</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>pl - Polski</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>pt_br - Brasileiro</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>pt_pt - Português</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>ru - Русский</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>sk - Slovenský</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>sl - Slovenčina</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>sv - Svenska</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>tr - Türkçe</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>uk - Українська</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>zh_cn - 简体字</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>zh_tw - 簡體字</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+      </layout>
+     </item>
     </layout>
    </item>
    <item>
