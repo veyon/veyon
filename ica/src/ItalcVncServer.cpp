@@ -274,15 +274,14 @@ static void runX11vnc( QStringList cmdline, int port, bool plainVnc )
 	{
 		// register iTALC protocol extension
 		static rfbProtocolExtension pe;
+
+		// initialize all pointers inside the struct to NULL
+		memset( &pe, 0, sizeof( pe ) );
+
+		// register our own handlers
 		pe.newClient = italcCoreNewClient;
-		pe.init = NULL;
-		pe.enablePseudoEncoding = NULL;
-		pe.pseudoEncodings = NULL;
 		pe.handleMessage = lvs_italcHandleMessage;
-		pe.close = NULL;
-		pe.usage = NULL;
-		pe.processArgument = NULL;
-		pe.next = NULL;
+
 		rfbRegisterProtocolExtension( &pe );
 	}
 
