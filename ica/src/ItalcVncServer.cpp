@@ -2,7 +2,7 @@
  * ItalcVncServer.cpp - implementation of ItalcVncServer, a VNC-server-
  *                      abstraction for platform independent VNC-server-usage
  *
- * Copyright (c) 2006-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2013 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -273,7 +273,7 @@ static void runX11vnc( QStringList cmdline, int port, bool plainVnc )
 	if( plainVnc == false )
 	{
 		// register iTALC protocol extension
-		rfbProtocolExtension pe;
+		static rfbProtocolExtension pe;
 		pe.newClient = italcCoreNewClient;
 		pe.init = NULL;
 		pe.enablePseudoEncoding = NULL;
