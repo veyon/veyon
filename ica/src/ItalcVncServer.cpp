@@ -270,30 +270,37 @@ static void runX11vnc( QStringList cmdline, int port, bool plainVnc )
 		strcpy( argv[argc], it->toUtf8().constData() );
 	}
 
-	if( plainVnc == false )
+	static bool firstTime = true;
+
+	if( firstTime )
 	{
-		// register iTALC protocol extension
-		static rfbProtocolExtension pe;
+		if( plainVnc == false )
+		{
+			// register iTALC protocol extension
+			static rfbProtocolExtension pe;
 
-		// initialize all pointers inside the struct to NULL
-		memset( &pe, 0, sizeof( pe ) );
+			// initialize all pointers inside the struct to NULL
+			memset( &pe, 0, sizeof( pe ) );
 
-		// register our own handlers
-		pe.newClient = italcCoreNewClient;
-		pe.handleMessage = lvs_italcHandleMessage;
+			// register our own handlers
+			pe.newClient = italcCoreNewClient;
+			pe.handleMessage = lvs_italcHandleMessage;
 
-		rfbRegisterProtocolExtension( &pe );
-	}
+			rfbRegisterProtocolExtension( &pe );
+		}
 
-	// register handler for iTALC's security-type
-	rfbSecurityHandler shi = { rfbSecTypeItalc, lvs_italcSecurityHandler, NULL };
-	rfbRegisterSecurityHandler( &shi );
+		// register handler for iTALC's security-type
+		static rfbSecurityHandler shi = { rfbSecTypeItalc, lvs_italcSecurityHandler, NULL };
+		rfbRegisterSecurityHandler( &shi );
 
 #ifndef ITALC_BUILD_WIN32
-	// register handler for MS Logon II security type
-	rfbSecurityHandler shmsl = { rfbUltraVNC_MsLogonIIAuth, lvs_msLogonIISecurityHandler, NULL };
-	rfbRegisterSecurityHandler( &shmsl );
+		// register handler for MS Logon II security type
+		static rfbSecurityHandler shmsl = { rfbUltraVNC_MsLogonIIAuth, lvs_msLogonIISecurityHandler, NULL };
+		rfbRegisterSecurityHandler( &shmsl );
 #endif
+
+		firstTime = false;
+	}
 
 	// run x11vnc-server
 	x11vnc_main( argc, argv );
