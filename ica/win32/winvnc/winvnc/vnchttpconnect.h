@@ -50,7 +50,7 @@ class vncHTTPConnect
 public:
 	// Constructor/destructor
 	vncHTTPConnect();
-	~vncHTTPConnect();
+	virtual ~vncHTTPConnect();
 
 	// Init
 	virtual VBool Init(vncServer *server, UINT port);

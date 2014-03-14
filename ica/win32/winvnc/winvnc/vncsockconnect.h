@@ -48,7 +48,7 @@ class vncSockConnect
 public:
 	// Constructor/destructor
 	vncSockConnect();
-	~vncSockConnect();
+	virtual ~vncSockConnect();
 
 	// Init
 	virtual VBool Init(vncServer *server, UINT port);
