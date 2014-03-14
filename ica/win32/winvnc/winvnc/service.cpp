@@ -54,7 +54,6 @@ BOOL Char2Wchar(WCHAR* pDest, char* pSrc, int nDestStrLen)
 {
      int nSrcStrLen = 0;
      int nOutputBuffLen = 0;
-     int retcode = 0;
 
      if(pDest == NULL || pSrc == NULL)
      {
@@ -78,7 +77,7 @@ BOOL Char2Wchar(WCHAR* pDest, char* pSrc, int nDestStrLen)
  
      if (nOutputBuffLen == 0)
      {
-          retcode = GetLastError();
+          GetLastError();
           return FALSE;
      }
 
@@ -509,8 +508,7 @@ BOOL
 GetSessionUserTokenWin(OUT LPHANDLE  lphUserToken)
 {
   BOOL   bResult = FALSE;
-  DWORD ID=0;
-  if (lpfnWTSGetActiveConsoleSessionId.isValid()) ID=(*lpfnWTSGetActiveConsoleSessionId)();
+  if (lpfnWTSGetActiveConsoleSessionId.isValid()) (*lpfnWTSGetActiveConsoleSessionId)();
   
   if (lphUserToken != NULL) {   
 		  bResult = get_winlogon_handle(lphUserToken);
@@ -798,7 +796,6 @@ void monitor_sessions()
 	DWORD dwSessionId=0;
 	DWORD OlddwSessionId=99;
 	ProcessInfo.hProcess=0;
-	bool win=false;
 	bool Slow_connect=false;
 	bool last_con=false;
 	//We use this event to notify the program that the session has changed
@@ -884,7 +881,6 @@ void monitor_sessions()
 														OutputDebugString("No Tray icon existed, starting first process\n");
 							#endif
 																LaunchProcessWin(dwSessionId);
-																win=false;
 																Slow_connect=false;
 													}
 													else if (GetExitCodeProcess(ProcessInfo.hProcess,&dwCode))
@@ -909,7 +905,6 @@ void monitor_sessions()
 																CloseHandle(ProcessInfo.hProcess);
 																CloseHandle(ProcessInfo.hThread);
 																LaunchProcessWin(dwSessionId);
-																win=false;
 																Slow_connect=false;
 															}
 														else
@@ -940,7 +935,6 @@ void monitor_sessions()
 														OutputDebugString("Tray icon exited, starting new process\n");
 							#endif
 														LaunchProcessWin(dwSessionId);
-														win=false;
 														Slow_connect=false;
 													}
 												#ifdef _DEBUG

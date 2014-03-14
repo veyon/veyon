@@ -99,7 +99,6 @@ LONG Hook=1;
 LONG Virtual=0;
 LONG SingleWindow=0;
 char SingleWindowName[32];
-LONG FTTimeout = 30;
 char path[512];
 LONG MaxCpu=40;
 
@@ -185,7 +184,6 @@ BlankInputsOnly = myIniFile_In.ReadInt("admin", "BlankInputsOnly", false); //PGM
 DefaultScale = myIniFile_In.ReadInt("admin", "DefaultScale", 1);
 CaptureAlphaBlending = myIniFile_In.ReadInt("admin", "CaptureAlphaBlending", false); // sf@2005
 BlackAlphaBlending = myIniFile_In.ReadInt("admin", "BlackAlphaBlending", false); // sf@2005
-FTTimeout = myIniFile_In.ReadInt("admin", "FileTransferTimeout", 30);
 
 Primary = myIniFile_In.ReadInt("admin", "primary", true);
 Secondary = myIniFile_In.ReadInt("admin", "secondary", false);

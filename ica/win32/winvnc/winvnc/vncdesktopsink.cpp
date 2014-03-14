@@ -614,9 +614,6 @@ vncDesktop::InitWindow()
 	m_hnextviewer = SetClipboardViewer(m_hwnd);
 	m_settingClipboardViewer = false;
 	StopDriverWatches=false;
-		DrvWatch mywatch;
-		mywatch.stop=&StopDriverWatches;
-		mywatch.hwnd=m_hwnd;
 	if (VideoBuffer())
 	{
 		DWORD myword;

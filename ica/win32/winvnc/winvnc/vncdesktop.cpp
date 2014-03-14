@@ -1799,14 +1799,12 @@ void vncDesktop::SetClipText(char* rfbStr)
 // adzm - 2010-07 - Extended clipboard
 void vncDesktop::SetClipTextEx(ExtendedClipboardDataMessage& extendedClipboardDataMessage)
 {
-	bool bRestored = false;
 	{
 		ClipboardData newClipboard;
 
 		if (newClipboard.Restore(Window(), extendedClipboardDataMessage)) {
 			vnclog.Print(LL_INTINFO, VNCLOG("Set extended clipboard data\n"));
 
-			bRestored = true;
 			newClipboard.FreeData();
 		} else {
 			vnclog.Print(LL_INTWARN, VNCLOG("Failed to set extended clipboard data\n"));
@@ -2416,7 +2414,6 @@ void vncDesktop::SetBlockInputState(bool newstate)
 bool vncDesktop::block_input()
 {
     int Blockinput_val;
-	BOOL returnvalue;
 	if(m_bIsInputDisabledByClient || m_server->LocalInputsDisabled())
 	{
 		Blockinput_val=true;
@@ -2441,7 +2438,7 @@ bool vncDesktop::block_input()
 	}
     if (pbi)
     {
-        returnvalue = (*pbi)(Blockinput_val);
+		(*pbi)(Blockinput_val);
 		DWORD aa=GetLastError();
 		if (old_Blockinput!=Blockinput_val && aa==5)
 		{
