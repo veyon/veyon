@@ -589,7 +589,7 @@ DWORD COSVersion::GetVersion()
 BOOL COSVersion::GetVersion(LPOS_VERSION_INFO lpVersionInformation)
 {
   //Zero out everything in the structure
-  memset(lpVersionInformation, 0, sizeof(lpVersionInformation));
+  memset(lpVersionInformation, 0, sizeof(*lpVersionInformation));
                 
   #ifdef UNDER_CE
     OSVERSIONINFO osvi;
