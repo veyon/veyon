@@ -76,7 +76,7 @@ AUTH_METHOD_ITEM socks5_auth_table[] = {
     { "gssapi", SOCKS5_AUTH_GSSAPI },
     { "userpass", SOCKS5_AUTH_USERPASS },
     { "chap", SOCKS5_AUTH_CHAP },
-    { NULL, -1 },
+    { NULL, (unsigned char) -1 },
 };
 
 const char *digits    = "0123456789";

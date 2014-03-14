@@ -2603,10 +2603,10 @@ vncClientThread::run(void *arg)
 				update.br.x = update.tl.x + Swap16IfLE(msg.fur.w) * m_client->m_nScale;
 				update.br.y = update.tl.y + Swap16IfLE(msg.fur.h) * m_client->m_nScale;
 				// Verify max size, scaled changed on server while not pushed to viewer
-				if (update.tl.x< ((m_client->m_ScaledScreen.tl.x + m_client->m_SWOffsetx) * m_client->m_nScale)) update.tl.x = (m_client->m_ScaledScreen.tl.x + m_client->m_SWOffsetx) * m_client->m_nScale;
-				if (update.tl.y < ((m_client->m_ScaledScreen.tl.y + m_client->m_SWOffsety) * m_client->m_nScale)) update.tl.y = (m_client->m_ScaledScreen.tl.y + m_client->m_SWOffsety) * m_client->m_nScale;
-				if (update.br.x > (update.tl.x + (m_client->m_ScaledScreen.br.x-m_client->m_ScaledScreen.tl.x) * m_client->m_nScale)) update.br.x = update.tl.x + (m_client->m_ScaledScreen.br.x-m_client->m_ScaledScreen.tl.x) * m_client->m_nScale;
-				if (update.br.y > (update.tl.y + (m_client->m_ScaledScreen.br.y-m_client->m_ScaledScreen.tl.y) * m_client->m_nScale)) update.br.y = update.tl.y + (m_client->m_ScaledScreen.br.y-m_client->m_ScaledScreen.tl.y) * m_client->m_nScale;
+				if (update.tl.x< (int)((m_client->m_ScaledScreen.tl.x + m_client->m_SWOffsetx) * m_client->m_nScale)) update.tl.x = (m_client->m_ScaledScreen.tl.x + m_client->m_SWOffsetx) * m_client->m_nScale;
+				if (update.tl.y < (int)((m_client->m_ScaledScreen.tl.y + m_client->m_SWOffsety) * m_client->m_nScale)) update.tl.y = (m_client->m_ScaledScreen.tl.y + m_client->m_SWOffsety) * m_client->m_nScale;
+				if (update.br.x > (int)(update.tl.x + (m_client->m_ScaledScreen.br.x-m_client->m_ScaledScreen.tl.x) * m_client->m_nScale)) update.br.x = update.tl.x + (m_client->m_ScaledScreen.br.x-m_client->m_ScaledScreen.tl.x) * m_client->m_nScale;
+				if (update.br.y > (int)(update.tl.y + (m_client->m_ScaledScreen.br.y-m_client->m_ScaledScreen.tl.y) * m_client->m_nScale)) update.br.y = update.tl.y + (m_client->m_ScaledScreen.br.y-m_client->m_ScaledScreen.tl.y) * m_client->m_nScale;
 				rfb::Region2D update_rgn = update;
 
 				//fullscreeen request, make it independed of the incremental rectangle
