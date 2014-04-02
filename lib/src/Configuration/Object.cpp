@@ -218,7 +218,7 @@ static Object::DataMap setValueRecursive( Object::DataMap data,
 	const QString level = subLevels.takeFirst();
 	if( data.contains( level ) )
 	{
-		if( !data[level].type() == QVariant::Map )
+		if( data[level].type() != QVariant::Map )
 		{
 			qWarning( "parent key points doesn't point to a data map!" );
 			return data;
