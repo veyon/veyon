@@ -235,7 +235,7 @@ int rfbSelectBox(rfbScreenInfoPtr rfbScreen,rfbFontDataPtr font,
 
    i = rfbWidthOfString(font,okStr);
    j = rfbWidthOfString(font,cancelStr);
-   selData.buttonWidth= k = 4*border+(i<j)?j:i;
+   selData.buttonWidth= k = 4*border+((i<j)?j:i);
    selData.okBX = x1+(x2-x1-2*k)/3;
    if(selData.okBX<x1+border) /* too narrow! */
      return(-1);
