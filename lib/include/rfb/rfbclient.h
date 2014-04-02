@@ -346,6 +346,10 @@ typedef struct _rfbClient {
         int listen6Sock;
         char* listen6Address;
         int listen6Port;
+
+        /* Output Window ID. When set, client application enables libvncclient to perform direct rendering in its window */
+        unsigned long outputWindow;
+
 } rfbClient;
 
 /* cursor.c */

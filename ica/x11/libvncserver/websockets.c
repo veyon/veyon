@@ -794,6 +794,7 @@ webSocketsEncodeHybi(rfbClientPtr cl, const char *src, int len, char **dst)
 	/* calculate the resulting size */
 	blen = B64LEN(len);
     } else {
+	opcode = WS_OPCODE_BINARY_FRAME;
 	blen = len;
     }
 

@@ -751,7 +751,7 @@ rfbBool sraRgnIteratorNext(sraRectangleIterator* i,sraRect* r)
       i->ptrSize += DEFSTEP;
       i->sPtrs = (sraSpan**)realloc(i->sPtrs, sizeof(sraSpan*)*i->ptrSize);
     }
-    i->ptrPos =+ 2;
+    i->ptrPos += 2;
     if(sraReverse(i)) {
       i->sPtrs[i->ptrPos]   =   i->sPtrs[i->ptrPos-2]->subspan->back._prev;
       i->sPtrs[i->ptrPos+1] = &(i->sPtrs[i->ptrPos-2]->subspan->front);
