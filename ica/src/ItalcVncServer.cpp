@@ -311,11 +311,6 @@ static void runX11vnc( QStringList cmdline, int port, bool plainVnc )
 
 void ItalcVncServer::runVncReflector( int srcPort, int dstPort )
 {
-#ifdef ITALC_BUILD_WIN32
-	pthread_win32_process_attach_np();
-	pthread_win32_thread_attach_np();
-#endif
-
 	QStringList args;
 	args << "-viewonly"
 		<< "-reflect"
@@ -329,11 +324,6 @@ void ItalcVncServer::runVncReflector( int srcPort, int dstPort )
 	{
 		runX11vnc( args, dstPort, true );
 	}
-
-#ifdef ITALC_BUILD_WIN32
-	pthread_win32_thread_detach_np();
-	pthread_win32_process_detach_np();
-#endif
 }
 
 
