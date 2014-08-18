@@ -268,6 +268,7 @@ int check_xrandr_event(char *msg) {
 			/* under do_change caller normally returns before its X_UNLOCK */
 			X_UNLOCK;
 			handle_xrandr_change(rev->width, rev->height);
+			X_LOCK;
 		}
 		if (qout) {
 			return do_change;

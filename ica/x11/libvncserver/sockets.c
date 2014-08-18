@@ -126,8 +126,9 @@ rfbInitSockets(rfbScreenInfoPtr rfbScreen)
 {
     in_addr_t iface = rfbScreen->listenInterface;
 
-    if (rfbScreen->socketState!=RFB_SOCKET_INIT)
-	return;
+    if (rfbScreen->socketState == RFB_SOCKET_READY) {
+        return;
+    }
 
     rfbScreen->socketState = RFB_SOCKET_READY;
 

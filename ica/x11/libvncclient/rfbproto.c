@@ -582,6 +582,9 @@ ReadSupportedSecurityType(rfbClient* client, uint32_t *result, rfbBool subAuth)
         if (tAuth[loop]==rfbVncAuth || tAuth[loop]==rfbNoAuth ||
 			( tAuth[loop] == rfbUltraVNC_MsLogonIIAuth && isLogonAuthenticationEnabled( client ) ) ||
 			tAuth[loop] == rfbSecTypeItalc ||
+#if defined(LIBVNCSERVER_HAVE_GNUTLS) || defined(LIBVNCSERVER_HAVE_LIBSSL)
+			tAuth[loop]==rfbVeNCrypt ||
+#endif
             (tAuth[loop]==rfbARD && client->GetCredential) ||
             (!subAuth && (tAuth[loop]==rfbTLS || (tAuth[loop]==rfbVeNCrypt && client->GetCredential))))
         {
@@ -1299,6 +1302,8 @@ SetFormatAndEncodings(rfbClient* client)
   if (!SupportsClient2Server(client, rfbSetPixelFormat)) return TRUE;
 
   spf.type = rfbSetPixelFormat;
+  spf.pad1 = 0;
+  spf.pad2 = 0;
   spf.format = client->format;
   spf.format.redMax = rfbClientSwap16IfLE(spf.format.redMax);
   spf.format.greenMax = rfbClientSwap16IfLE(spf.format.greenMax);
@@ -1845,7 +1850,8 @@ HandleRFBServerMessage(rfbClient* client)
 	client->updateRect.x = client->updateRect.y = 0;
 	client->updateRect.w = client->width;
 	client->updateRect.h = client->height;
-	client->MallocFrameBuffer(client);
+	if (!client->MallocFrameBuffer(client))
+	  return FALSE;
 	SendFramebufferUpdateRequest(client, 0, 0, rect.r.w, rect.r.h, FALSE);
 	rfbClientLog("Got new framebuffer size: %dx%d\n", rect.r.w, rect.r.h);
 	continue;
@@ -2306,7 +2312,9 @@ HandleRFBServerMessage(rfbClient* client)
     client->updateRect.x = client->updateRect.y = 0;
     client->updateRect.w = client->width;
     client->updateRect.h = client->height;
-    client->MallocFrameBuffer(client);
+    if (!client->MallocFrameBuffer(client))
+      return FALSE;
+
     SendFramebufferUpdateRequest(client, 0, 0, client->width, client->height, FALSE);
     rfbClientLog("Got new framebuffer size: %dx%d\n", client->width, client->height);
     break;
@@ -2322,7 +2330,8 @@ HandleRFBServerMessage(rfbClient* client)
     client->updateRect.x = client->updateRect.y = 0;
     client->updateRect.w = client->width;
     client->updateRect.h = client->height;
-    client->MallocFrameBuffer(client);
+    if (!client->MallocFrameBuffer(client))
+      return FALSE;
     SendFramebufferUpdateRequest(client, 0, 0, client->width, client->height, FALSE);
     rfbClientLog("Got new framebuffer size: %dx%d\n", client->width, client->height);
     break;

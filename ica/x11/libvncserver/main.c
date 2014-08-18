@@ -1061,10 +1061,13 @@ void rfbShutdownServer(rfbScreenInfoPtr screen,rfbBool disconnectClients) {
   if(disconnectClients) {
     rfbClientPtr cl;
     rfbClientIteratorPtr iter = rfbGetClientIterator(screen);
-    while( (cl = rfbClientIteratorNext(iter)) )
-      if (cl->sock > -1)
-	/* we don't care about maxfd here, because the server goes away */
-	rfbCloseClient(cl);
+    while( (cl = rfbClientIteratorNext(iter)) ) {
+      if (cl->sock > -1) {
+       /* we don't care about maxfd here, because the server goes away */
+       rfbCloseClient(cl);
+       rfbClientConnectionGone(cl);
+      }
+    }
     rfbReleaseClientIterator(iter);
   }
 

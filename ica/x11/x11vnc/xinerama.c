@@ -98,6 +98,13 @@ static void initialize_blackouts(char *list) {
 		if (y > Y) {
 			t = Y; Y = y; y = t;
 		}
+
+		/* take clipping region into account */
+		x = nfix(x - coff_x, wdpy_x);
+		X = nfix(X - coff_x, wdpy_x);
+		y = nfix(y - coff_y, wdpy_y);
+		Y = nfix(Y - coff_y, wdpy_y);
+
 		if (x < 0 || x > dpy_x || y < 0 || y > dpy_y ||
 		    X < 0 || X > dpy_x || Y < 0 || Y > dpy_y ||
 		    x == X || y == Y) {
