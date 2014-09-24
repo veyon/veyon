@@ -173,7 +173,7 @@ void reboot( void )
 #else
 	if( LocalSystem::User::loggedOnUser().name() == "root" )
 	{
-		QProcess::startDetached( "poweroff" );
+		QProcess::startDetached( "reboot" );
 	}
 	else
 	{
