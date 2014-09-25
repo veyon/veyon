@@ -92,6 +92,14 @@ ItalcSlaveManager::~ItalcSlaveManager()
 
 void ItalcSlaveManager::startDemo( const QString &masterHost, bool fullscreen )
 {
+	// if a demo-server is started, it's likely that the demo was started
+	// on master-computer as well therefore we deny starting a demo on
+	// hosts on which a demo-server is running
+	if( isSlaveRunning( IdDemoServer ) )
+	{
+		return;
+	}
+
 	Ipc::SlaveLauncher *slaveLauncher = NULL;
 	if( fullscreen && ItalcCore::config->lockWithDesktopSwitching() )
 	{
@@ -117,6 +125,11 @@ void ItalcSlaveManager::stopDemo()
 
 void ItalcSlaveManager::lockScreen()
 {
+	if( isSlaveRunning( IdDemoServer ) )
+	{
+		return;
+	}
+
 	Ipc::SlaveLauncher *slaveLauncher = NULL;
 	if( ItalcCore::config->lockWithDesktopSwitching() )
 	{

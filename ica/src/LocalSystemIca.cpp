@@ -141,8 +141,7 @@ void powerDown( void )
 	}
 	else
 	{
-		QProcess::startDetached( "gdm-signal -h" ); // Gnome shutdown
-		QProcess::startDetached( "gnome-session-save --silent --kill" ); // Gnome logout
+		QProcess::startDetached( "dbus-send --session --dest=org.gnome.SessionManager --type=method_call /org/gnome/SessionManager org.gnome.SessionManager.RequestShutdown" ); // Gnome shutdown
 		QProcess::startDetached( "dcop ksmserver ksmserver logout 0 2 0" ); // KDE shutdown
 		QProcess::startDetached( "qdbus org.kde.ksmserver /KSMServer logout 0 2 0" ); // KDE4 shutdown
 	}
@@ -157,7 +156,7 @@ void logoutUser( void )
 #ifdef ITALC_BUILD_WIN32
 	ExitWindowsEx( EWX_LOGOFF | SHUTDOWN_FLAGS, SHUTDOWN_REASON );
 #else
-	QProcess::startDetached( "gnome-session-save --silent --kill" ); // Gnome logout
+	QProcess::startDetached( "dbus-send --session --dest=org.gnome.SessionManager --type=method_call /org/gnome/SessionManager org.gnome.SessionManager.Logout uint32:2" ); // Gnome logout, 2 = forced mode (don't wait for unresponsive processes)
 	QProcess::startDetached( "dcop ksmserver ksmserver logout 0 0 0" ); // KDE logout
 	QProcess::startDetached( "qdbus org.kde.ksmserver /KSMServer logout 0 0 0" ); // KDE4 logout
 #endif
@@ -174,12 +173,11 @@ void reboot( void )
 #else
 	if( LocalSystem::User::loggedOnUser().name() == "root" )
 	{
-		QProcess::startDetached( "poweroff" );
+		QProcess::startDetached( "reboot" );
 	}
 	else
 	{
-		QProcess::startDetached( "gdm-signal -r" ); // Gnome reboot
-		QProcess::startDetached( "gnome-session-save --silent --kill" ); // Gnome logout
+		QProcess::startDetached( "dbus-send --session --dest=org.gnome.SessionManager --type=method_call /org/gnome/SessionManager org.gnome.SessionManager.RequestReboot" ); // Gnome reboot
 		QProcess::startDetached( "dcop ksmserver ksmserver logout 0 1 0" ); // KDE reboot
 		QProcess::startDetached( "qdbus org.kde.ksmserver /KSMServer logout 0 1 0" ); // KDE4 reboot
 	}
