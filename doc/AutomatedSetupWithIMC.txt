@@ -37,8 +37,10 @@ as path delimiter, installation paths etc.
    directory as the files in the previous steps.
 
      mkdir "C:\Program Files\iTALC"
-     cp *.exe *.dll *.txt *.xml "C:\Program Files\iTALC\"
-     cd "\Program Files\iTALC"
+     copy "%~dp0\*.exe" "C:\Program Files\iTALC"
+     copy "%~dp0\*.dll" "C:\Program Files\iTALC"
+     copy "%~dp0\*.txt" "C:\Program Files\iTALC"
+     copy "%~dp0\*.xml" "C:\Program Files\iTALC"
      imc -ApplySettings ClientSettings.xml
      imc -ImportPublicKey PublicKey.key.txt
      ica -RegisterService
