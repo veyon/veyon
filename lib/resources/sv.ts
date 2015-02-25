@@ -5,11 +5,11 @@
     <name>AboutDialog</name>
     <message>
         <source>About iTALC</source>
-        <translation type="unfinished">Om iTALC</translation>
+        <translation>Om iTALC</translation>
     </message>
     <message>
         <source>About</source>
-        <translation type="unfinished">Om</translation>
+        <translation>Om</translation>
     </message>
     <message>
         <source>&lt;a href=&quot;http://italc.sourceforge.net&quot;&gt;http://italc.sourceforge.net&lt;/a&gt;</source>
