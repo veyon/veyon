@@ -5,11 +5,11 @@
     <name>AboutDialog</name>
     <message>
         <source>About iTALC</source>
-        <translation type="unfinished">O iTALC</translation>
+        <translation>O aplikaci iTALC</translation>
     </message>
     <message>
         <source>About</source>
-        <translation type="unfinished">O programu</translation>
+        <translation>O aplikaci</translation>
     </message>
     <message>
         <source>&lt;a href=&quot;http://italc.sourceforge.net&quot;&gt;http://italc.sourceforge.net&lt;/a&gt;</source>
@@ -17,11 +17,11 @@
     </message>
     <message>
         <source>Authors</source>
-        <translation type="unfinished">Autoři</translation>
+        <translation>Tvůrci</translation>
     </message>
     <message>
         <source>Translation</source>
-        <translation type="unfinished">Překlad</translation>
+        <translation>Překlad</translation>
     </message>
     <message>
         <source>Current language not translated yet (or native English).
@@ -31,491 +31,494 @@ If you&apos;re interested in translating iTALC into your local or another langua
     </message>
     <message>
         <source>License</source>
-        <translation type="unfinished">Licence</translation>
+        <translation>Licence</translation>
     </message>
     <message utf8="true">
         <source>iTALC - Intelligent Teaching And Learning with Computers
 
 Copyright © 2004-2013 Tobias Doerffel / iTALC Solutions</source>
-        <translation type="unfinished"></translation>
+        <translation>iTALC - Intelligent Teaching And Learning with Computers
+(inteligentní vyučování a učení se s počítači)
+
+Copyright © 2004-2013 Tobias Doerffel / iTALC Solutions</translation>
     </message>
 </context>
 <context>
     <name>AccessDialogSlave</name>
     <message>
         <source>Never for this session</source>
-        <translation type="unfinished">Nikdy pro toto sezení</translation>
+        <translation>Nikdy pro tuto relaci</translation>
     </message>
     <message>
         <source>Always for this session</source>
-        <translation type="unfinished">Vždy pro toto sezení</translation>
+        <translation>Vždy pro tuto relaci</translation>
     </message>
     <message>
         <source>Confirm desktop access</source>
-        <translation type="unfinished"></translation>
+        <translation>Potvrdit přístup k desktopu</translation>
     </message>
     <message>
         <source>The user %1 at host %2 wants to access your desktop. Do you want to grant access?</source>
-        <translation type="unfinished"></translation>
+        <translation>Uživatel %1 na počítači %2 chce přistoupit k vašemu desktopu. Povolujete to?</translation>
     </message>
 </context>
 <context>
     <name>ClassroomManager</name>
     <message>
         <source>Classroom-Manager</source>
-        <translation type="unfinished">Správce třídy</translation>
+        <translation>Správce učebny</translation>
     </message>
     <message>
         <source>Use this workspace to manage your computers and classrooms in an easy way.</source>
-        <translation type="unfinished">V tomto rozhraní můžete snadno spravovat počítače a třídy.</translation>
+        <translation>Toto rozhraní slouží pro snadnou správu počítačů a učeben.</translation>
     </message>
     <message>
         <source>This is where computers and classrooms are managed. You can add computers or classrooms by clicking right in this list.</source>
-        <translation type="unfinished">Zde se spravují počítače a učebny. Počítače přidáte kliknutím pravého tlačítka myši v seznamu.</translation>
+        <translation>Zde jsou spravovány počítače a učebny. K přidávání slouží kliknutí pravým tlačítkem myši v tomtu seznamu.</translation>
     </message>
     <message>
         <source>Classrooms/computers</source>
-        <translation type="unfinished">Počítače/třídy</translation>
+        <translation>Učebny/počítače</translation>
     </message>
     <message>
         <source>IP-address</source>
-        <translation type="unfinished">IP-adresa</translation>
+        <translation>IP adresa</translation>
     </message>
     <message>
         <source>Usernames</source>
-        <translation type="unfinished"></translation>
+        <translation>Uživatelská jména</translation>
     </message>
     <message>
         <source>Show usernames</source>
-        <translation type="unfinished"></translation>
+        <translation>Zobrazit uživatelská jména</translation>
     </message>
     <message>
         <source>Use the context-menu (right mouse-button) to add/remove computers and/or classrooms.</source>
-        <translation type="unfinished"></translation>
+        <translation>Pro přidávání/odebírání počítačů a učeben použijte kontextovou nabídku (kliknout pravým tlačítkem myši).</translation>
     </message>
     <message>
         <source>Export to text-file</source>
-        <translation type="unfinished">Exportovat do textového souboru</translation>
+        <translation>Exportovat do textového souboru</translation>
     </message>
     <message>
         <source>Use this button for exporting this list of computers and usernames into a text-file. You can use this file later for collecting files after an exam has finished. This is sometimes neccessary, because some users might have finished and logged out earlier and so you cannot collect their files at the end of the exam.</source>
-        <translation type="unfinished"></translation>
+        <translation>Toto tlačítko slouží pro export seznamu počítačů a uživatelů do textového souboru. Ten pak pomůže při shromážďování souborů s výsledky po skončení zkoušení. Někteří uživatelé totiž mohou testy dokončit a odhlásit se dříve a vy byste se jinak k jejich souborům nedostali.</translation>
     </message>
     <message>
         <source>Hide teacher computers</source>
-        <translation type="unfinished">Skrýt učitelské počítače</translation>
+        <translation>Skrýt počítače vyučujících</translation>
     </message>
     <message>
         <source>Show/hide</source>
-        <translation type="unfinished">Zobrazit/skrýt</translation>
+        <translation>Zobrazit/skrýt</translation>
     </message>
     <message>
         <source>Edit settings</source>
-        <translation type="unfinished">Upravit nastavení</translation>
+        <translation>Upravit nastavení</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished">Odstranit</translation>
+        <translation>Odstranit</translation>
     </message>
     <message>
         <source>Show all computers in classroom</source>
-        <translation type="unfinished">Zobrazit všechny počítače ve třídě</translation>
+        <translation>Zobrazit všechny počítače v učebně</translation>
     </message>
     <message>
         <source>Hide all computers in classroom</source>
-        <translation type="unfinished">Skrýt všechny počítače ve třídě</translation>
+        <translation>Skrýt všechny počítače v učebně</translation>
     </message>
     <message>
         <source>Edit name</source>
-        <translation type="unfinished">Upravit jméno</translation>
+        <translation>Upravit název</translation>
     </message>
     <message>
         <source>Remove classroom</source>
-        <translation type="unfinished">Odstranit třídu</translation>
+        <translation>Odstranit učebnu</translation>
     </message>
     <message>
         <source>Add computer</source>
-        <translation type="unfinished">Přidat počítač</translation>
+        <translation>Přidat počítač</translation>
     </message>
     <message>
         <source>Add classroom</source>
-        <translation type="unfinished">Přidat třídu</translation>
+        <translation>Přidat učebnu</translation>
     </message>
     <message>
         <source>No configuration-file found</source>
-        <translation type="unfinished">Nebyl nalezen žádný konfigurační soubor</translation>
+        <translation>Nebyl nalezen soubor s nastaveními</translation>
     </message>
     <message>
         <source>Could not open configuration file %1.
 You will have to add at least one classroom and computers using the classroom-manager which you&apos;ll find inside the program in the sidebar on the left side.</source>
-        <translation type="unfinished">Nemohu otevřít konfigurační soubor %1.
-Budete muset přidat alespoň jednu učebny a počítače pomocí Správce tříd, kterého naleznete v programu na levém panelu.</translation>
+        <translation>Nelze otevřít soubor s nastaveními %1.
+Bude třeba přidat alespoň jednu učebnu a počítače pomocí Správce učebny, kterého naleznete na levém panelu v okně aplikace.</translation>
     </message>
     <message>
         <source>Error in configuration-file</source>
-        <translation type="unfinished">Chyba v konfiguračním souboru</translation>
+        <translation>Chyba v souboru s nastaveními</translation>
     </message>
     <message>
         <source>Error while parsing configuration-file %1.
 Please edit it. Otherwise you should delete this file and have to add all classrooms and computers again.</source>
-        <translation type="unfinished">Chyba při analýze konfiguračního souboru %1.
-Upravte ho prosím ručně. Nebo také můžete tento soubor smazat a přidat všechny třídy a počítače znovu.</translation>
+        <translation>Chyba při zpracovávání souboru s nastaveními %1.
+Je třeba jej opravit (ručně). Případně je možné jej smazat a znovu přidat všechny učebny a počítače.</translation>
     </message>
     <message>
         <source>Error while parsing configuration-file %1.
 Please edit it. Otherwise you should delete this file.</source>
-        <translation type="unfinished">Chyba při analýze konfiguračního souboru %1.
-Upravte ho prosím. Jinak byste tento soubor měli smazat.</translation>
+        <translation>Chyba při zpracovávání souboru s nastaveními%1.
+Je třeba jej opravit (ručně). Jinak nezbývá, než jej smazat.</translation>
     </message>
     <message>
         <source>Select output-file</source>
-        <translation type="unfinished">Vybrat výstupní soubor</translation>
+        <translation>Vybrat výstupní soubor</translation>
     </message>
     <message>
         <source>Text files (*.txt)</source>
-        <translation type="unfinished">Textové soubory (*.txt)</translation>
+        <translation>Textové soubory (*.txt)</translation>
     </message>
     <message>
         <source>Actions for selected</source>
-        <translation type="unfinished"></translation>
+        <translation>Akce pro označené</translation>
     </message>
     <message>
         <source>Actions</source>
-        <translation type="unfinished">Akce</translation>
+        <translation>Akce</translation>
     </message>
     <message>
         <source>Actions for %1</source>
-        <translation type="unfinished">Akce pro %1</translation>
+        <translation>Akce pro %1</translation>
     </message>
     <message>
         <source>New name for classroom</source>
-        <translation type="unfinished">Nové jméno třídy</translation>
+        <translation>Nové název učebny</translation>
     </message>
     <message>
         <source>Please enter a new name for classroom &quot;%1&quot;.</source>
-        <translation type="unfinished">Zadejte prosím nové jméno pro třídu &quot;%1&quot;.</translation>
+        <translation>Zadejte nový název pro učetnu &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>Are you sure want to remove classroom &quot;%1&quot;?
 All computers in it will be removed as well!</source>
-        <translation type="unfinished">Opravdu si přejete odstranit třídu &quot;%1&quot;?
-Všechny počítače ve třídě budou odstraněny též!</translation>
+        <translation>Opravdu chcete odstranit učebnu &quot;%1&quot;?
+Společně s tím budou odstraněny též všechny počítače v ní!</translation>
     </message>
     <message>
         <source>Missing classroom</source>
-        <translation type="unfinished">Chybí třída</translation>
+        <translation>Chybějící učebna</translation>
     </message>
     <message>
         <source>Before adding computers you have to create at least one classroom.
 Do you want to create a new classrom now?</source>
-        <translation type="unfinished">Před přidáním počítačů musíte vytvořit alespoň jednu třídu.
-Přejete si nyní vytvořit novou třídu?</translation>
+        <translation>Před přidáváním počítačů je třeba vytvořit alespoň jednu učebnu.
+Chcete nyní vytvořit novou učebnu?</translation>
     </message>
     <message>
         <source>New classroom</source>
-        <translation type="unfinished">Nová třída</translation>
+        <translation>Nová učebna</translation>
     </message>
     <message>
         <source>Please enter the name of the classroom you want to create.</source>
-        <translation type="unfinished">Zadejte prosím jméno nové třídy, kterou si přejete vytvořit.</translation>
+        <translation>Zadejte název nově vytvářené učebny.</translation>
     </message>
 </context>
 <context>
     <name>Client</name>
     <message>
         <source>Unknown state</source>
-        <translation type="unfinished">Neznámý stav</translation>
+        <translation>Neznámý stav</translation>
     </message>
     <message>
         <source>No user logged in</source>
-        <translation type="unfinished">Žádný uživatel není přihlášen</translation>
+        <translation>Není přihlášen žádný uživatel</translation>
     </message>
     <message>
         <source>Host unreachable</source>
-        <translation type="unfinished">Počítač není  k dispozici</translation>
+        <translation>Počítač není k dispozici</translation>
     </message>
     <message>
         <source>Demo running</source>
-        <translation type="unfinished">Běžící demo</translation>
+        <translation>Běžící ukázka</translation>
     </message>
     <message>
         <source>Desktop locked</source>
-        <translation type="unfinished">Desktop zamknut</translation>
+        <translation>Zamknutý desktop</translation>
     </message>
 </context>
 <context>
     <name>ClientAction</name>
     <message>
         <source>Are you sure want logout all users on all visible computers ?</source>
-        <translation type="unfinished">Opravdu chcete odhlásit uživatele všech zobrazených počítačů?</translation>
+        <translation>Opravdu chcete odhlásit všechny uživatele ze všech zobrazených počítačů?</translation>
     </message>
     <message>
         <source>Are you sure want logout all users on all selected computers ?</source>
-        <translation type="unfinished"></translation>
+        <translation>Opravdu chcete odhlásit všechny uživatele ze všech označených počítačů?</translation>
     </message>
     <message>
         <source>Logout user</source>
-        <translation type="unfinished">Odhlásit uživatele</translation>
+        <translation>Odhlásit uživatele</translation>
     </message>
     <message>
         <source>Are you sure want to reboot all visible computers?</source>
-        <translation type="unfinished">Opravdu si přejete restartovat všechny zobrazené počítače?</translation>
+        <translation>Opravdu chcete restartovat všechny zobrazené počítače?</translation>
     </message>
     <message>
         <source>Are you sure want to reboot all selected computers?</source>
-        <translation type="unfinished"></translation>
+        <translation>Opravdu chcete restartovat všechny označené počítače?</translation>
     </message>
     <message>
         <source>Reboot computers</source>
-        <translation type="unfinished">Restartovat počítače</translation>
+        <translation>Restartovat počítače</translation>
     </message>
     <message>
         <source>Are you sure want to power down all visible computers?</source>
-        <translation type="unfinished">Opravdu si přejete vypnout všechny zobrazené počítače?</translation>
+        <translation>Opravdu chcete vypnout všechny zobrazené počítače?</translation>
     </message>
     <message>
         <source>Are you sure want to power down all selected computers?</source>
-        <translation type="unfinished"></translation>
+        <translation>Opravdu chcete vypnout všechny označené počítače?</translation>
     </message>
 </context>
 <context>
     <name>ClientSettingsDialog</name>
     <message>
         <source>Invalid MAC-address</source>
-        <translation type="unfinished">Neplatná MAC-adresa</translation>
+        <translation>Neplatná MAC-adresa</translation>
     </message>
     <message>
         <source>You specified an invalid MAC-address. Either leave the field blank or enter a valid MAC-address (use &quot;:&quot; as separator!).</source>
-        <translation type="unfinished">Musíte zadat platnou MAC-adresu. Buď zadejte platnou MAC-adresu (oddělovačem je &quot;:&quot;), nebo nechte políčko prázdné.</translation>
+        <translation>Je třeba zadat platnou MAC-adresu. Buď zadejte platnou MAC-adresu (oddělovačem je &quot;:&quot;), nebo ponechte políčko prázdné.</translation>
     </message>
     <message>
         <source>Client settings</source>
-        <translation type="unfinished">Nastavení klienta</translation>
+        <translation>Nastavení klienta</translation>
     </message>
     <message>
         <source>IP/hostname</source>
-        <translation type="unfinished">IP/jméno</translation>
+        <translation>IP/název počítače</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;enter an IP-address or hostname under which iTALC can reach the client (use &apos;:&apos; for specifying an optional port-number)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;zadejte IP-adresu nebo jméno počítače, na kterém běží klient iTALC (pro určení volitelného čísla portu použijte &apos;:&apos;)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;zadejte IP-adresu nebo název počítače, na kterém běží klient iTALC (pro určení volitelného čísla portu použijte &apos;:&apos;)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished">Jméno</translation>
+        <translation>Název</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Optional nickname of the host which is displayed in iTALC.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Volitelná přezdívka počítače, zobrazovaná v iTALC.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>MAC address</source>
-        <translation type="unfinished"></translation>
+        <translation>MAC adresa</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Hardware/MAC-address of client - only used for powering on client&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Hardwarová/MAC-adresa klienta - používá se pouze pro zapínání klientského počítače&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Hardwarová/MAC-adresa klienta - používá se pouze pro zapínání klientského počítače&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Classroom</source>
-        <translation type="unfinished">Třída</translation>
+        <translation>Učebna</translation>
     </message>
     <message>
         <source>Type</source>
-        <translation type="unfinished">Typ</translation>
+        <translation>Typ</translation>
     </message>
     <message>
         <source>Student computer</source>
-        <translation type="unfinished">Studentský počítač</translation>
+        <translation>Počítač studenta</translation>
     </message>
     <message>
         <source>Teacher computer</source>
-        <translation type="unfinished">Učitelský počítač</translation>
+        <translation>Počítač vyučujícího</translation>
     </message>
     <message>
         <source>Other/undefined computer</source>
-        <translation type="unfinished">Jiný/nedefinovaný počítač</translation>
+        <translation>Jiný/neurčený počítač</translation>
     </message>
     <message>
         <source>Missing IP address/hostname</source>
-        <translation type="unfinished"></translation>
+        <translation>Chybějící IP adresa/název počítače</translation>
     </message>
     <message>
         <source>You didn&apos;t specify an IP address or hostname for the computer!</source>
-        <translation type="unfinished"></translation>
+        <translation>Nebyla zadána IP adresa či název počítače!</translation>
     </message>
 </context>
 <context>
     <name>Config</name>
     <message>
         <source>Interval between updates</source>
-        <translation type="unfinished">Interval mezi aktualizacemi</translation>
+        <translation>Interval mezi aktualizacemi</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Here you can set the interval between updates of clients. Higher values result in lower network-traffic and lower CPU-usage on this computer.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Zde se zadává interval mezi jednotlivými aktualizacemi klientů. Vyšší hodnoty snižují provoz na síti i zátěž CPU tohoto počítače.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Zde se zadává interval mezi aktualizacemi stavu klientů. Vyšší hodnoty snižují provoz na síti i zátěž procesoru tohoto počítače.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source> seconds</source>
-        <translation type="unfinished">(sp) sekund</translation>
+        <translation> sekund</translation>
     </message>
     <message>
         <source>User interface</source>
-        <translation type="unfinished">Uživatelské rozhraní</translation>
+        <translation>Uživatelské rozhraní</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Do not show balloon-tooltips for toolbar-buttons&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Nezobrazovat tipy v panelu nástrojů&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Nezobrazovat tipy v panelu nástrojů&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Check this option if you&apos;re annoyed by the balloon-tooltips appearing when moving mouse-cursor over toolbar-buttons.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Tuto volbu zaškrněte, pokud se vám nelíbí zobrazování nápovědy v panelu nástrojů při ukázání myší na dané tlačítko.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Tuto volbu zaškrněte, pokud vám nevyhovuje zobrazování tipů v panelu nástrojů při ukázání myší na dané tlačítko.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>No balloon-tooltips</source>
-        <translation type="unfinished">Bez tipů panelu nástrojů</translation>
+        <translation>Bez tipů k nástrojům</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Do not show texts on toolbar-buttons&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Nezobrazovat texty na tlačítkách lišty nástrojů.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>No texts on toolbar-buttons</source>
-        <translation type="unfinished"></translation>
+        <translation>Bez textů na tlačítkách lišty nástrojů</translation>
     </message>
     <message>
         <source>Your role (needs according keys!)</source>
-        <translation type="unfinished">Vaše role (vyžaduje odpovídající klíče!)</translation>
+        <translation>Vaše úloha (vyžaduje odpovídající klíče!)</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Here you can select your role. Only change this if you know what you&apos;re doing. Otherwise you won&apos;t be able to access any clients until you restore your old role.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Zde můžete vybrat vaši roli. Volbu měňte pouze pokud skutečně víte co děláte. Jinak se může stát, že nebudete schopni přistupovat k žádným klientům až dokud neobnovíte svou roli.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Zde můžete vybrat svou úlohu. Volbu měňte pouze pokud skutečně víte co děláte. Jinak se může stát, že nebudete schopni přistupovat k žádným klientům,  dokud neobnovíte svou původní úlohu.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Teacher</source>
-        <translation type="unfinished">Učitel</translation>
+        <translation>Vyučující</translation>
     </message>
     <message>
         <source>Administrator</source>
-        <translation type="unfinished">Administrátor</translation>
+        <translation>Správce systémů</translation>
     </message>
     <message>
         <source>Supporter</source>
-        <translation type="unfinished">Podpora</translation>
+        <translation>Technická podpora</translation>
     </message>
     <message>
         <source>Other</source>
-        <translation type="unfinished">Jiná</translation>
+        <translation>Jiná</translation>
     </message>
     <message>
         <source>Settings for multi-logon</source>
-        <translation type="unfinished">Nastavení pro vícenásobné přihlášení</translation>
+        <translation>Nastavení pro vícenásobné přihlášení</translation>
     </message>
     <message>
         <source>Domain</source>
-        <translation type="unfinished">Doména</translation>
+        <translation>Doména</translation>
     </message>
     <message>
         <source>Double-click action for client-window</source>
-        <translation type="unfinished">Dvojklik v okně klienta</translation>
+        <translation>Akce pro dvojklik v okně klienta</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Here you can set what should happen if you double-click a client-window.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Zde se nastavuje co se má stát, pokud provedete dvojklik v okně klienta.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Zde se nastavuje co se má stát při provedení dvojkliku v okně klienta.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Remote control</source>
-        <translation type="unfinished">Vzdálené ovládání</translation>
+        <translation>Vzdálené ovládání</translation>
     </message>
     <message>
         <source>View live in fullscreen</source>
-        <translation type="unfinished">Zobrazení naživo v celé obrazovce</translation>
+        <translation>Zobrazení naživo na celé obrazovce</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;Please note, that some changes won&apos;t take effect until you restart iTALC.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;Pamatujte prosím, že některá nastavení nebudou aktivní dokud nerestartujete iTALC.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;Pamatujte, že změna některých nastavení se neprojeví dokud nebude iTALC restartován.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
     <name>ConfigWidget</name>
     <message>
         <source>Your iTALC-configuration</source>
-        <translation type="unfinished">Konfigurace iTALC</translation>
+        <translation>Vaše nastavení pro iTALC</translation>
     </message>
     <message>
         <source>In this workspace you can customize iTALC to fit your needs.</source>
-        <translation type="unfinished">V tomto praconím prostředí můžete upravit iTALC vašim potřebám.</translation>
+        <translation>Toto rozhraní slouží k přizpůsobení aplikace iTALC vašim potřebám.</translation>
     </message>
 </context>
 <context>
     <name>DecoratedMessageBox</name>
     <message>
         <source>OK</source>
-        <translation type="unfinished">OK</translation>
+        <translation>OK</translation>
     </message>
 </context>
 <context>
     <name>DemoClient</name>
     <message>
         <source>iTALC Demo</source>
-        <translation type="unfinished">Demo iTALC</translation>
+        <translation>Ukázka iTALC</translation>
     </message>
 </context>
 <context>
     <name>ItalcCoreServer</name>
     <message>
         <source>Authentication error</source>
-        <translation type="unfinished">Chyba autentizace</translation>
+        <translation>Chyba ověření</translation>
     </message>
     <message>
         <source>Somebody (IP: %1) tried to access this computer but could not authenticate itself successfully!</source>
-        <translation type="unfinished">Někdo (IP: %1) se pokouší přistupovat k tomuto počítači, ale nedaří se ho autentizovat!</translation>
+        <translation>Někdo (IP: %1) se pokusil přistoupit k tomuto počítači, ale neprošel přes ověření!</translation>
     </message>
 </context>
 <context>
     <name>ItalcVncConnection</name>
     <message>
         <source>VNC authentication failed because of too many authentication tries.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ověřování VNC selhalo z důvodu příliš mnoha pokusů o ověření.</translation>
     </message>
     <message>
         <source>VNC authentication failed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ověření VNC se nezdařilo.</translation>
     </message>
     <message>
         <source>VNC server closed connection.</source>
-        <translation type="unfinished"></translation>
+        <translation>VNC server ukončil spojení.</translation>
     </message>
 </context>
 <context>
     <name>KeyFileAssistant</name>
     <message>
         <source>iTALC Access Key Assistant</source>
-        <translation type="unfinished"></translation>
+        <translation>Pomocník pro přístupové klíče k iTALC</translation>
     </message>
     <message>
         <source>Create/import iTALC access keys</source>
-        <translation type="unfinished"></translation>
+        <translation>Vytvořit/importovat přístupové klíče k iTALC</translation>
     </message>
     <message>
         <source>This assistant will help you to create or import iTALC access keys.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tento pomocník vám pomůže s vytvořením či importem přístupových klíčů pro iTALC.</translation>
     </message>
     <message>
         <source>How does it work?</source>
-        <translation type="unfinished"></translation>
+        <translation>Jak to funguje?</translation>
     </message>
     <message>
         <source>iTALC access keys consist of two parts belonging together, a private and a public key part.
@@ -523,19 +526,23 @@ p, li { white-space: pre-wrap; }
 Using the private key part, users on the master computer will be able to access client computers. It is important that only authorized users have read access to the private key file.
 
 The public key part is used on the client computers to verify that any incoming connection request is authorized.</source>
-        <translation type="unfinished"></translation>
+        <translation>Přístupové klíče k iTALC se sestávají ze dvou vzájemně si odpovídajících částí - soukromé a veřejné.
+
+S použitím soukromé části mohou uživatelé řídícího počítače přistupovat ke klientským počítačům. Je velmi důležité, aby k soukromé části klíče měli přístup pouze pověření uživatelé.
+
+Veřejná část klíče se používá na klientských počítačích pro ověřování příchozích požadavků na připojení.</translation>
     </message>
     <message>
         <source>Assistant mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Režim pomocníka</translation>
     </message>
     <message>
         <source>Please choose whether to create new access keys or import a public key on a client.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zvolte, zda vytvořit nový přístupový klíč či importovat veřejnou část klíče na klienta.</translation>
     </message>
     <message>
         <source>Create new access keys (master computer)</source>
-        <translation type="unfinished"></translation>
+        <translation>Vytvořit nový přístupový klíč (řídící počítač)</translation>
     </message>
     <message>
         <source>assistantModeButtonGroup</source>
@@ -543,859 +550,864 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>Import public key (client computer)</source>
-        <translation type="unfinished"></translation>
+        <translation>Importovat veřejnou část klíče (klientský počítač)</translation>
     </message>
     <message>
         <source>Select user role</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyberte úlohu uživatele</translation>
     </message>
     <message>
         <source>Please select a user role for which to create or import the access keys:</source>
-        <translation type="unfinished"></translation>
+        <translation>Zvolte úlohu uživatele pro kterou vytvořit či importovat přístupové klíče:</translation>
     </message>
     <message>
         <source>Teacher</source>
-        <translation type="unfinished">Učitel</translation>
+        <translation>Vyučující</translation>
     </message>
     <message>
         <source>Administrator</source>
-        <translation type="unfinished">Administrátor</translation>
+        <translation>Správce systémů</translation>
     </message>
     <message>
         <source>Support team member</source>
-        <translation type="unfinished"></translation>
+        <translation>Pracovník technické podpory</translation>
     </message>
     <message>
         <source>Other</source>
-        <translation type="unfinished">Jiná</translation>
+        <translation>Jiná</translation>
     </message>
     <message>
         <source>User roles allow using multiple access keys in parallel. For example there can be different teacher access keys for each classroom while the support access keys are the same for the whole school.</source>
-        <translation type="unfinished"></translation>
+        <translation>Uživatelské úlohy umožňují používat více přístupových klíčů naráz. Například zde mohou být různé přístupové klíče vyučujících zvášť pro každou z učeben, zatímco klíče pracovníků technické podpory mohou být stejné pro celou školu.</translation>
     </message>
     <message>
         <source>Directories</source>
-        <translation type="unfinished"></translation>
+        <translation>Složky</translation>
     </message>
     <message>
         <source>Export public key part (master computer)</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportovat veřejnou část klíče (řídící počítač)</translation>
     </message>
     <message>
         <source>...</source>
-        <translation type="unfinished"></translation>
+        <translation>...</translation>
     </message>
     <message>
         <source>Use custom destination directory for access keys</source>
-        <translation type="unfinished"></translation>
+        <translation>Pro přístupové klíče použít složku, kterou určíte</translation>
     </message>
     <message>
         <source>Please specify the location of the public access key to be imported.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zadejte, kte se nachází veřejná část přístupového klíče, který má být importován.</translation>
     </message>
     <message>
         <source>Summary</source>
-        <translation type="unfinished"></translation>
+        <translation>Souhrn</translation>
     </message>
     <message>
         <source>The following actions will be taken:</source>
-        <translation type="unfinished"></translation>
+        <translation>Budou provedeny následující akce:</translation>
     </message>
     <message utf8="true">
         <source>• Create new access keys</source>
-        <translation type="unfinished"></translation>
+        <translation>• Vytvořit nové přístupové klíče</translation>
     </message>
     <message utf8="true">
         <source>• Import public access key from</source>
-        <translation type="unfinished"></translation>
+        <translation>• Importovat veřejnou část přístupového klíče z</translation>
     </message>
     <message>
         <source>&lt;unknown&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;neznámé&gt;</translation>
     </message>
     <message utf8="true">
         <source>• Write access key(s) to</source>
-        <translation type="unfinished"></translation>
+        <translation> Zapsat přístupové klíče do</translation>
     </message>
     <message utf8="true">
         <source>• Export public key to</source>
-        <translation type="unfinished"></translation>
+        <translation> Exportovat veřejnou část klíče do</translation>
     </message>
     <message utf8="true">
         <source>• Configure for user role</source>
-        <translation type="unfinished"></translation>
+        <translation> Nastavit pro úlohu daného uživatele</translation>
     </message>
     <message>
         <source>Select directory in which to export the public key</source>
-        <translation type="unfinished"></translation>
+        <translation>Zvolte složku do které má být exportována veřejná část klíče</translation>
     </message>
     <message>
         <source>Key files (*.key.txt)</source>
-        <translation type="unfinished"></translation>
+        <translation>Soubory s klíči (*.key.txt)</translation>
     </message>
     <message>
         <source>Invalid public key</source>
-        <translation type="unfinished"></translation>
+        <translation>Neplatná veřejná část klíče</translation>
     </message>
     <message>
         <source>The selected file does not contain a valid public iTALC access key!</source>
-        <translation type="unfinished"></translation>
+        <translation>Zvolený soubor neobsahuje platnou veřejnou část přístupového klíče pro iTALC!</translation>
     </message>
     <message>
         <source>Select destination directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyberte cílovou složku</translation>
     </message>
     <message>
         <source>Access key creation</source>
-        <translation type="unfinished"></translation>
+        <translation>Vytvoření přístupového klíče</translation>
     </message>
     <message>
         <source>Could not remove previously existing file %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nelze odebrat již existující soubor %1.</translation>
     </message>
     <message>
         <source>Failed exporting public access key from %1 to %2.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nezdařil se export veřejné části přístupového klíče z %1 do %2.</translation>
     </message>
     <message>
         <source>Access keys were created and written successfully to %1 and %2.</source>
-        <translation type="unfinished"></translation>
+        <translation>Přístupové klíče byly vytvořeny a úspěšně zapsány do %1 a %2.</translation>
     </message>
     <message>
         <source>An error occured while creating the access keys. You probably are not permitted to write to the selected directories.</source>
-        <translation type="unfinished"></translation>
+        <translation>Chyba při vytváření přístupových klíčů. Nejspíš nemáte oprávnění zapisovat do zvolených složek.</translation>
     </message>
     <message>
         <source>Public key import</source>
-        <translation type="unfinished"></translation>
+        <translation>Import veřejné části klíče</translation>
     </message>
     <message>
         <source>An error occured while importing the public access key. You probably are not permitted to read the source key or to write the destination file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Chyba při importu veřejné části přístupového klíče. Nejspíš nemáte oprávnění číst zdrojový klíč či zapisovat do cílového souboru.</translation>
     </message>
     <message>
         <source>The public key was successfully imported to %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Veřejná část klíče byla úspěšně importována do %1.</translation>
     </message>
 </context>
 <context>
     <name>LockWidget</name>
     <message>
         <source>screen lock</source>
-        <translation type="unfinished">zamknutí obrazovky</translation>
+        <translation>uzamčení obrazovky</translation>
     </message>
 </context>
 <context>
     <name>LogonGroupEditor</name>
     <message>
         <source>Logon group editor</source>
-        <translation type="unfinished"></translation>
+        <translation>Editor přihlašovací skupiny</translation>
     </message>
     <message>
         <source>Please add the groups whose members should be allowed to access computers in your iTALC network.</source>
-        <translation type="unfinished"></translation>
+        <translation>Přidejte skupiny, jejichž členové budou moci přistupovat k počítačům v rámci sítě s iTALC.</translation>
     </message>
     <message>
         <source>All groups</source>
-        <translation type="unfinished"></translation>
+        <translation>Všechny skupiny</translation>
     </message>
     <message>
         <source>...</source>
-        <translation type="unfinished"></translation>
+        <translation>...</translation>
     </message>
     <message>
         <source>Groups with iTALC privileges</source>
-        <translation type="unfinished"></translation>
+        <translation>Skupiny s pověřeními pro iTALC</translation>
     </message>
 </context>
 <context>
     <name>MainToolBar</name>
     <message>
         <source>Actions</source>
-        <translation type="unfinished">Akce</translation>
+        <translation>Akce</translation>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
         <source>General</source>
-        <translation type="unfinished">Obecné</translation>
+        <translation>Obecné</translation>
     </message>
     <message>
         <source>Quit</source>
-        <translation type="unfinished">Ukončit</translation>
+        <translation>Ukončit</translation>
     </message>
     <message>
         <source>iTALC Management Console</source>
-        <translation type="unfinished"></translation>
+        <translation>Konzole pro správu iTALC</translation>
     </message>
     <message>
         <source>iTALC Server</source>
-        <translation type="unfinished"></translation>
+        <translation>Server iTALC</translation>
     </message>
     <message>
         <source>Paths</source>
-        <translation type="unfinished"></translation>
+        <translation>Cesty</translation>
     </message>
     <message>
         <source>Authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>Ověření</translation>
     </message>
     <message>
         <source>iTALC Service</source>
-        <translation type="unfinished"></translation>
+        <translation>služba iTALC</translation>
     </message>
     <message>
         <source>Hide tray icon</source>
-        <translation type="unfinished"></translation>
+        <translation>Skrýt ikonu v oznamovací oblasti</translation>
     </message>
     <message>
         <source>Autostart</source>
-        <translation type="unfinished"></translation>
+        <translation>Automatické spuštění</translation>
     </message>
     <message>
         <source>Additional arguments</source>
-        <translation type="unfinished"></translation>
+        <translation>Další argumenty</translation>
     </message>
     <message>
         <source>Start service</source>
-        <translation type="unfinished"></translation>
+        <translation>Restartovat službu</translation>
     </message>
     <message>
         <source>Stop service</source>
-        <translation type="unfinished"></translation>
+        <translation>Zastavit službu</translation>
     </message>
     <message>
         <source>State:</source>
-        <translation type="unfinished"></translation>
+        <translation>Stav:</translation>
     </message>
     <message>
         <source>Stopped</source>
-        <translation type="unfinished"></translation>
+        <translation>Zastaveno</translation>
     </message>
     <message>
         <source>Logging</source>
-        <translation type="unfinished"></translation>
+        <translation>Pořizování záznamů o provozu</translation>
     </message>
     <message>
         <source>Log file directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Složka pro soubor se záznamy o provozu</translation>
     </message>
     <message>
         <source>...</source>
-        <translation type="unfinished"></translation>
+        <translation>...</translation>
     </message>
     <message>
         <source>Log level</source>
-        <translation type="unfinished"></translation>
+        <translation>Úroveň podrobností záznamů o provozu</translation>
     </message>
     <message>
         <source>Nothing</source>
-        <translation type="unfinished"></translation>
+        <translation>Nic</translation>
     </message>
     <message>
         <source>Only critical messages</source>
-        <translation type="unfinished"></translation>
+        <translation>Pouze kritické zprávy</translation>
     </message>
     <message>
         <source>Errors and critical messages</source>
-        <translation type="unfinished"></translation>
+        <translation>Chyby a kritické zprávy</translation>
     </message>
     <message>
         <source>Warnings and errors</source>
-        <translation type="unfinished"></translation>
+        <translation>Varování a chyby</translation>
     </message>
     <message>
         <source>Information, warnings and errors</source>
-        <translation type="unfinished"></translation>
+        <translation>Informace, varování a chyby</translation>
     </message>
     <message>
         <source>Debug messages and everything else</source>
-        <translation type="unfinished"></translation>
+        <translation>Ladicí zprávy a vše ostatní</translation>
     </message>
     <message>
         <source>Limit log file size</source>
-        <translation type="unfinished"></translation>
+        <translation>Omezit velikost souboru se záznamy o provozu</translation>
     </message>
     <message>
         <source>MB</source>
-        <translation type="unfinished"></translation>
+        <translation>MB</translation>
     </message>
     <message>
         <source>Clear all log files</source>
-        <translation type="unfinished"></translation>
+        <translation>Vymazat všechny soubory se záznamy o provozu</translation>
     </message>
     <message>
         <source>Desktop capturing</source>
-        <translation type="unfinished"></translation>
+        <translation>Zachytávání deskopu</translation>
     </message>
     <message>
         <source>Enable capturing of layered (semi-transparent) windows</source>
-        <translation type="unfinished"></translation>
+        <translation>Povolit zachytávání vrstvených (jako by průhledných) oken</translation>
     </message>
     <message>
         <source>Low accuracy (turbo mode)</source>
-        <translation type="unfinished"></translation>
+        <translation>Nízká přesnost (rychlé)</translation>
     </message>
     <message>
         <source>Demo server</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukázkový server</translation>
     </message>
     <message>
         <source>Network</source>
-        <translation type="unfinished"></translation>
+        <translation>Síť</translation>
     </message>
     <message>
         <source>Core server port</source>
-        <translation type="unfinished"></translation>
+        <translation>Port hlavního serveru</translation>
     </message>
     <message>
         <source>Demo server port</source>
-        <translation type="unfinished"></translation>
+        <translation>Port ukázkového serveru</translation>
     </message>
     <message>
         <source>Enable firewall exception</source>
-        <translation type="unfinished"></translation>
+        <translation>Povolit výjimku na firewallu</translation>
     </message>
     <message>
         <source>Configuration files</source>
-        <translation type="unfinished"></translation>
+        <translation>Soubory s nastaveními</translation>
     </message>
     <message>
         <source>Global configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Globální nastavení</translation>
     </message>
     <message>
         <source>Personal configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Osobní nastavení</translation>
     </message>
     <message>
         <source>Data directories</source>
-        <translation type="unfinished"></translation>
+        <translation>Složky s daty</translation>
     </message>
     <message>
         <source>Snapshots</source>
-        <translation type="unfinished">Snímky</translation>
+        <translation>Snímky</translation>
     </message>
     <message>
         <source>Authentication methods</source>
-        <translation type="unfinished"></translation>
+        <translation>Metody ověření</translation>
     </message>
     <message>
         <source>Access key management</source>
-        <translation type="unfinished"></translation>
+        <translation>Správa přístupových klíčů</translation>
     </message>
     <message>
         <source>Logon settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastavení přihlašování</translation>
     </message>
     <message>
         <source>&amp;File</source>
-        <translation type="unfinished"></translation>
+        <translation>S&amp;oubor</translation>
     </message>
     <message>
         <source>&amp;Help</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Nápověda</translation>
     </message>
     <message>
         <source>&amp;Quit</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ukončit</translation>
     </message>
     <message>
         <source>Ctrl+Q</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Q</translation>
     </message>
     <message>
         <source>&amp;Save settings into file</source>
-        <translation type="unfinished"></translation>
+        <translation>Uložit nastavení do &amp;souboru</translation>
     </message>
     <message>
         <source>Save settings into file</source>
-        <translation type="unfinished"></translation>
+        <translation>Uložit nastavení do souboru</translation>
     </message>
     <message>
         <source>Ctrl+S</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+S</translation>
     </message>
     <message>
         <source>L&amp;oad settings from file</source>
-        <translation type="unfinished"></translation>
+        <translation>Načíst nastavení ze soub&amp;oru</translation>
     </message>
     <message>
         <source>Ctrl+O</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+O</translation>
     </message>
     <message>
         <source>About iTALC</source>
-        <translation type="unfinished">O iTALC</translation>
+        <translation>O aplikaci iTALC</translation>
     </message>
     <message>
         <source>About Qt</source>
-        <translation type="unfinished"></translation>
+        <translation>O frameworku Qt</translation>
     </message>
     <message>
         <source>MainWindow</source>
-        <translation type="unfinished"></translation>
+        <translation>HlavníOkno</translation>
     </message>
     <message>
         <source>toolBar</source>
-        <translation type="unfinished"></translation>
+        <translation>Lišta nástrojů</translation>
     </message>
     <message>
         <source>iTALC Management Console %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Konzole pro správu iTALC %1</translation>
     </message>
     <message>
         <source>Running</source>
-        <translation type="unfinished"></translation>
+        <translation>V běhu</translation>
     </message>
     <message>
         <source>Load settings from file</source>
-        <translation type="unfinished"></translation>
+        <translation>Načíst nastavení ze souboru</translation>
     </message>
     <message>
         <source>XML files (*.xml)</source>
-        <translation type="unfinished"></translation>
+        <translation>Soubory XML (*.xml)</translation>
     </message>
     <message>
         <source>Save settings to file</source>
-        <translation type="unfinished"></translation>
+        <translation>Uložit nastavení do souboru</translation>
     </message>
     <message>
         <source>Unsaved settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Neuložená nastavení</translation>
     </message>
     <message>
         <source>There are unsaved settings. Quit anyway?</source>
-        <translation type="unfinished"></translation>
+        <translation>Některá nastavení nebyla doposud uložena. Ukončit i tak?</translation>
     </message>
     <message>
         <source>Configuration not writable</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastavení nelze zapsat</translation>
     </message>
     <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run the iTALC Management Console with higher privileges.</source>
-        <translation type="unfinished"></translation>
+        <translation>Místní nastavovací backend hlásí, že do nastavení nelze zapisovat! Spusťte konzoli pro správu iTALC s vyššími oprávněními.</translation>
     </message>
     <message>
         <source>All settings were applied successfully.</source>
-        <translation type="unfinished"></translation>
+        <translation>Veškerá nastavení byla úspěšně použita.</translation>
     </message>
     <message>
         <source>An error occured while applying settings!</source>
-        <translation type="unfinished"></translation>
+        <translation>Chyba při použití nastavení! </translation>
     </message>
     <message>
         <source>iTALC</source>
-        <translation type="unfinished">iTALC</translation>
+        <translation>iTALC</translation>
     </message>
     <message>
         <source>No write access</source>
-        <translation type="unfinished"></translation>
+        <translation>Není přístupné pro zápis</translation>
     </message>
     <message>
         <source>Could not read/write or create directory %1! For running iTALC, make sure you&apos;re permitted to create or write this directory.</source>
-        <translation type="unfinished">Nemohu číst/zapisovat nebo vytvořit adresář %1! Pro spuštění iTALC je nutné, abyste měli oprávnění vytvářet a zapisovat do tohoto adresáře.</translation>
+        <translation>Nelze číst/zapisovat nebo vytvořit složku %1! Pro spuštění iTALC je nutné, abyste měli oprávnění vytvářet a zapisovat do této složky.</translation>
     </message>
     <message>
         <source>Classroom</source>
-        <translation type="unfinished">Třída</translation>
+        <translation>Učebna</translation>
     </message>
     <message>
         <source>Switch classroom</source>
-        <translation type="unfinished">Přepnout třídu</translation>
+        <translation>Přepnout učebnu</translation>
     </message>
     <message>
         <source>Click this button to open a menu where you can choose the active classroom.</source>
-        <translation type="unfinished">Kliknutím na toto tlačítko se zobrazí nabídka, kde si budete moci zvolit aktivní třídu.</translation>
+        <translation>Kliknutím na toto tlačítko se zobrazí nabídka, ze které je možné zvolit učebnu.</translation>
     </message>
     <message>
         <source>Click on this button, to switch between classrooms.</source>
-        <translation type="unfinished">Klikněte na toto tlačítko a přepněte se mezi třídami.</translation>
+        <translation>Kliknutím na toto tlačítko se přepněte mezi učebnami.</translation>
     </message>
     <message>
         <source>Overview mode</source>
-        <translation type="unfinished">Přehledový mód</translation>
+        <translation>Přehledový režim</translation>
     </message>
     <message>
         <source>Overview</source>
-        <translation type="unfinished">Přehled</translation>
+        <translation>Přehled</translation>
     </message>
     <message>
         <source>This is the default mode in iTALC and allows you to have an overview over all visible computers. Also click on this button for unlocking locked workstations or for leaving demo-mode.</source>
-        <translation type="unfinished">Toto je výchozí mód iTALC, který vám umožní zobrazit přehled dostupných počítačů. Kliknutím na toto tlačítko odemknete zamknuté stanice nebo opustíte ukázkový mód.</translation>
+        <translation>Toto je výchozí režim iTALC, ve kterém si zobrazíte přehled všech dostupných počítačů. Kliknutím na toto tlačítko též odemknete zamknuté stanice nebo opustíte ukázkový režim.</translation>
     </message>
     <message>
         <source>Fullscreen demo</source>
-        <translation type="unfinished"></translation>
+        <translation>Celoobrazovková ukázka</translation>
     </message>
     <message>
         <source>Fullscreen Demo</source>
-        <translation type="unfinished"></translation>
+        <translation>Celoobrazovková ukázka</translation>
     </message>
     <message>
         <source>Stop Demo</source>
-        <translation type="unfinished"></translation>
+        <translation>Zastavit ukázku</translation>
     </message>
     <message>
         <source>In this mode your screen is being displayed on all shown computers. Furthermore the users aren&apos;t able to do something else as all input devices are locked in this mode.</source>
-        <translation type="unfinished">V tomto módu bude vaše obrazovka zobrazena na všech dostupných počítačích. Mimo to, uživatelé nebudou schopni dělat nic jiného, protože budou jejich vstupní zařízení uzamčeny.</translation>
+        <translation>V tomto režimu bude vaše obrazovka zobrazena na všech dostupných počítačích. Mimo to, uživatelé nebudou schopni dělat nic jiného, protože budou jejich vstupní zařízení uzamčena.</translation>
     </message>
     <message>
         <source>Window demo</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukázka v okně</translation>
     </message>
     <message>
         <source>Window Demo</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukázka v okně</translation>
     </message>
     <message>
         <source>In this mode your screen being displayed in a window on all shown computers. The users are able to switch to other windows and thus can continue to work.</source>
-        <translation type="unfinished">V tomto módu se vaše obrazovka zobrazí na všech počítačích. Uživatelé přitom budou moci přepínat mezi dalšími oknami a tak může vaše práce pokračovat.</translation>
+        <translation>V tomto režimu se vaše obrazovka zobrazí na všech počítačích. Uživatelé přitom budou moci přepínat mezi dalšími okny a pokračovat ve své práci.</translation>
     </message>
     <message>
         <source>Lock/unlock desktops</source>
-        <translation type="unfinished">Zamknout/odemknout počítače</translation>
+        <translation>Zamknout/odemknout počítače</translation>
     </message>
     <message>
         <source>Lock all</source>
-        <translation type="unfinished">Zamknout vše</translation>
+        <translation>Zamknout vše</translation>
     </message>
     <message>
         <source>Unlock all</source>
-        <translation type="unfinished">Odemknout vše</translation>
+        <translation>Odemknout vše</translation>
     </message>
     <message>
         <source>To have all user&apos;s full attention you can lock their desktops using this button. In this mode all input devices are locked and the screen is black.</source>
-        <translation type="unfinished">Abyste upoutali pozornost všech uživatelů, můžete jim pomocí tohoto tlačítka uzamknout všechny počítače. V tomto módu budou všechna vstupní zařízení uzamčena a obrazovky budou černé.</translation>
+        <translation>Abyste upoutali pozornost všech uživatelů, můžete jim pomocí tohoto tlačítka uzamknout jejich počítače. V tomto režimu budou všechna vstupní zařízení uzamčena a obrazovky budou černé.</translation>
     </message>
     <message>
         <source>Send text message</source>
-        <translation type="unfinished">Poslat textovou zprávu</translation>
+        <translation>Poslat textovou zprávu</translation>
     </message>
     <message>
         <source>Text message</source>
-        <translation type="unfinished">Textová zpráva</translation>
+        <translation>Textová zpráva</translation>
     </message>
     <message>
         <source>Use this button to send a text message to all users e.g. to tell them new tasks etc.</source>
-        <translation type="unfinished">Pomocí tohoto tlačítka můžete poslat zprávu všem uživatelům, např. zadat jim tak nové úkoly, atd.</translation>
+        <translation>Tímto tlačítkem pošlete zprávu všem uživatelům, např. zadání nových úkolů, atd.</translation>
     </message>
     <message>
         <source>Power on computers</source>
-        <translation type="unfinished">Zapne počítače</translation>
+        <translation>Zapnout počítače</translation>
     </message>
     <message>
         <source>Power on</source>
-        <translation type="unfinished">Zapnout</translation>
+        <translation>Zapnout</translation>
     </message>
     <message>
         <source>Click this button to power on all visible computers. This way you do not have to turn on each computer by hand.</source>
-        <translation type="unfinished">Kliknutím na toto tlačítko zapnete všechny viditelné počítače. Tímto způsobem nebudete muset zapínat každý počítač ručně.</translation>
+        <translation>Kliknutím na toto tlačítko zapnete všechny dostupné počítače. Takto není třeba jednotlivě zapínat každý z počítačů ručně.</translation>
     </message>
     <message>
         <source>Power down computers</source>
-        <translation type="unfinished"></translation>
+        <translation>Vypnout</translation>
     </message>
     <message>
         <source>Power down</source>
-        <translation type="unfinished">Vypnout</translation>
+        <translation>Vypnout</translation>
     </message>
     <message>
         <source>To power down all shown computers (e.g. after the lesson has finished) you can click this button.</source>
-        <translation type="unfinished">Pro vypnutí všech zobrazených počítačů (např. na konci hodiny), stačí kliknout na toto tlačítko.</translation>
+        <translation>Pro vypnutí všech dostupných počítačů (např. na konci lekce), stačí kliknout na toto tlačítko.</translation>
     </message>
     <message>
         <source>Support</source>
-        <translation type="unfinished">Podpora</translation>
+        <translation>Podpora</translation>
     </message>
     <message>
         <source>Direct support</source>
-        <translation type="unfinished"></translation>
+        <translation>Přímá podpora</translation>
     </message>
     <message>
         <source>If you need to support someone at a certain computer you can click this button and enter the according hostname or IP afterwards.</source>
-        <translation type="unfinished"></translation>
+        <translation>Je-li třeba poskytnout podporu někomu na konkrétním počítači, klikněte na toto tlačítko a zadejte název nebo IP adresu příslušného počítače.</translation>
     </message>
     <message>
         <source>Adjust/align</source>
-        <translation type="unfinished">Seřadit/uspořádat</translation>
+        <translation>Přizpůsobit/zarovnat</translation>
     </message>
     <message>
         <source>Adjust windows and their size</source>
-        <translation type="unfinished">Uspořádá okna a nastaví jejich velikosti</translation>
+        <translation>Přizpůsobí okna a upraví jejich velikost</translation>
     </message>
     <message>
         <source>When clicking this button the biggest possible size for the client-windows is adjusted. Furthermore all windows are aligned.</source>
-        <translation type="unfinished">Kliknutím na toto tlačítko bude nastavena ta největší možná velikost oken klientů. Kromě toho budou všechna okna srovnána.</translation>
+        <translation>Kliknutím na toto tlačítko bude nastavena ta největší možná velikost oken klientů. Dále budou všechna okna zarovnána.</translation>
     </message>
     <message>
         <source>Auto view</source>
-        <translation type="unfinished">Automatický pohled</translation>
+        <translation>Automatický pohled</translation>
     </message>
     <message>
         <source>Auto re-arrange windows and their size</source>
-        <translation type="unfinished">Automaticky přenastaví okna a jejich velikosti</translation>
+        <translation>Automaticky přeusporádá okna a jejich velikosti</translation>
     </message>
     <message>
         <source>When clicking this button all visible windows are re-arranged and adjusted.</source>
-        <translation type="unfinished">Kliknutím na toto tlačítko budou všechna okna přeuspořádána a přizpůsobena.</translation>
+        <translation>Kliknutím na toto tlačítko budou všechna okna přeuspořádána a přizpůsobena.</translation>
     </message>
     <message>
         <source>iTALC Master Control</source>
-        <translation type="unfinished"></translation>
+        <translation>Hlavní řízení iTALC</translation>
     </message>
     <message>
         <source>Remote control</source>
-        <translation type="unfinished">Vzdálené ovládání</translation>
+        <translation>Vzdálené ovládání</translation>
     </message>
     <message>
         <source>Could not modify the autostart property for the iTALC Service.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nelze upravit automatické spouštění služby iTALC.</translation>
     </message>
     <message>
         <source>Could not modify the service arguments for the iTALC Service.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nelze upravit argumenty služby iTALC.</translation>
     </message>
     <message>
         <source>Could not change the firewall configuration for the iTALC Service.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nelze změnit nastavení firewallu pro službu iTALC.</translation>
     </message>
     <message>
         <source>Debugging</source>
-        <translation type="unfinished"></translation>
+        <translation>Ladění</translation>
     </message>
     <message>
         <source>Enable desktop switching for screen lock (experimental)</source>
-        <translation type="unfinished"></translation>
+        <translation>Povolit přepínání ploch pro uzamčení obrazovky (pokusné)</translation>
     </message>
     <message>
         <source>Log to standard error output</source>
-        <translation type="unfinished"></translation>
+        <translation>Zaznamenávat na standardní chybový výstup</translation>
     </message>
     <message>
         <source>Log to Windows event log</source>
-        <translation type="unfinished"></translation>
+        <translation>Zaznamenávat v rámci záznamů o provozu Windows</translation>
     </message>
     <message>
         <source>Backend</source>
-        <translation type="unfinished"></translation>
+        <translation>Backend</translation>
     </message>
     <message>
         <source>VNC reflector</source>
-        <translation type="unfinished"></translation>
+        <translation>VNC reflector</translation>
     </message>
     <message>
         <source>iTALC 1 demo server</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukázkový server iTALC 1</translation>
     </message>
     <message>
         <source>Multithreading (can be enabled when using the VNC reflector backend)</source>
-        <translation type="unfinished"></translation>
+        <translation>Vícevláknový běh (může být zapnut při použití backendu VNC reflector)</translation>
     </message>
     <message>
         <source>Enable HTTP server which provides a JavaViewer applet</source>
-        <translation type="unfinished"></translation>
+        <translation>Povolit HTTP server, který poskytuje applet JavaViewer</translation>
     </message>
     <message>
         <source>HTTP server port</source>
-        <translation type="unfinished"></translation>
+        <translation>Port HTTP serveru</translation>
     </message>
     <message>
         <source>Allow connections from localhost only</source>
-        <translation type="unfinished"></translation>
+        <translation>Povolit připojení pouze v rámci tohoto počítače</translation>
     </message>
     <message>
         <source>Key file authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>Ověřování pomocí klíčů</translation>
     </message>
     <message>
         <source>ACL-based logon authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>Ověřování založené na ACL</translation>
     </message>
     <message>
         <source>Public key file base directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Základní složka pro veřejnou část klíče</translation>
     </message>
     <message>
         <source>Private key file base directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Základní složka pro soukromou část klíče</translation>
     </message>
     <message>
         <source>Launch key file assistant</source>
-        <translation type="unfinished"></translation>
+        <translation>Spustit pomocníka pro klíče</translation>
     </message>
     <message>
         <source>Manage permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>Spravovat povolení</translation>
     </message>
     <message>
         <source>Test</source>
-        <translation type="unfinished"></translation>
+        <translation>Zkouška</translation>
     </message>
     <message>
         <source>Access confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Potvrzení přístupu</translation>
     </message>
     <message>
         <source>You can configure iTALC to ask the user for permission to access the desktop when using certain authentication methods.</source>
-        <translation type="unfinished"></translation>
+        <translation>iTALC je možné natstavit tak, aby se ptal uživatele na schválení přistupu k desktopu při použití konkrétních způsobů ověření.</translation>
     </message>
     <message>
         <source>Logon authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>Přihlašovací ověrení</translation>
     </message>
     <message>
         <source>Allow same user to access desktop without confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Povolit stejnému uživateli přistoupit k desktopu bez potvrzení</translation>
     </message>
     <message>
         <source>Debugging iTALC</source>
-        <translation type="unfinished"></translation>
+        <translation>Ladění aplikace iTALC</translation>
     </message>
     <message>
         <source>When encountering bugs or other misbehaviour in iTALC it is important to inform the developers about them, so that the bugs can be fixed in future releases. This page allows you to submit a helpful bug report easily.
 
 If the bug is not reproducible, skip step 1) - 3).</source>
-        <translation type="unfinished"></translation>
+        <translation>Setkáte-li se s chybou či neočekávaným chování aplikace iTALC, je důležité o tom informovat vývojáře, aby chyba mohla být opravena v příštích vydáních. Tato stránka slouží ke snadnému a správnému nahlášení chyby.
+
+Pokud chybu není možné zopakovat, přeskočte kroky 1 až 3.</translation>
     </message>
     <message>
         <source>1)</source>
-        <translation type="unfinished"></translation>
+        <translation>1)</translation>
     </message>
     <message>
         <source>Clear the logfiles in the &quot;General&quot; section.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vymažte soubory se záznamy o provozu v sekci &quot;Obecné&quot;.</translation>
     </message>
     <message>
         <source>2)</source>
-        <translation type="unfinished"></translation>
+        <translation>2)</translation>
     </message>
     <message>
         <source>In the &quot;General&quot; section set the log level to &quot;Debug messages and everything else&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>V sekci &quot;Obecné&quot; nastavte úroveň podrobností záznamů o provozu na &quot;Ladicí zprávy a vše ostatní&quot;.</translation>
     </message>
     <message>
         <source>3)</source>
-        <translation type="unfinished"></translation>
+        <translation>3)</translation>
     </message>
     <message>
         <source>Repeat the actions leading to the bug or misbehaviour.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zopakujte akce, které vedou k manifestaci chyby či neočekávanému chování.</translation>
     </message>
     <message>
         <source>4)</source>
-        <translation type="unfinished"></translation>
+        <translation>4)</translation>
     </message>
     <message>
         <source>Click the following button and save the file to a known location.</source>
-        <translation type="unfinished"></translation>
+        <translation>Klikněte na následující tlačítko a uložte soubor někam, kde ho pak najdete.</translation>
     </message>
     <message>
         <source>Generate bug report archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Vytvořit archiv s údaji pro hlášení chyby</translation>
     </message>
     <message>
         <source>5)</source>
-        <translation type="unfinished"></translation>
+        <translation>5)</translation>
     </message>
     <message>
         <source>Go to the &lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;amp;atid=724375&quot;&gt;iTALC bug tracker&lt;/a&gt;, open a new bug, describe what you did in step 3) and attach the file you saved in step 4).&lt;/p&gt;
 &lt;br/&gt;
 &lt;br/&gt;
 Note: if the bug involves both a master and client computer, attach bug report archives for both computers.</source>
-        <translation type="unfinished"></translation>
+        <translation>Přejděte do &lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;amp;atid=724375&quot;&gt;systému sledování chyb v iTALC&lt;/a&gt;, zadejte nové hlášení, popište, co jste dělali v kroku 3 a připojte soubor, který jste uložili v kroku 4.&lt;/p&gt;
+&lt;br/&gt;
+&lt;br/&gt;
+Pozn.: pokud se chyba týká řídícího i klientského počítače, připojte archivy pro hlášení chyby z obou počítačů.</translation>
     </message>
     <message>
         <source>Restart iTALC Service</source>
-        <translation type="unfinished"></translation>
+        <translation>Restartovat službu iTALC</translation>
     </message>
     <message>
         <source>All settings were saved successfully. In order to take effect the iTALC service needs to be restarted. Restart it now?</source>
-        <translation type="unfinished"></translation>
+        <translation>Všechna nastavení byla úspěšně uložena. Aby se změny projevily, je třeba restartovat službu iTALC - provést nyní?</translation>
     </message>
     <message>
         <source>Starting iTALC service</source>
-        <translation type="unfinished"></translation>
+        <translation>Spouštění služby iTALC</translation>
     </message>
     <message>
         <source>Stopping iTALC service</source>
-        <translation type="unfinished"></translation>
+        <translation>Zastavování služby iTALC</translation>
     </message>
     <message>
         <source>The iTALC service needs to be stopped temporarily in order to remove the log files. Continue?</source>
-        <translation type="unfinished"></translation>
+        <translation>Pro smazání souborů se záznamy o provozu je třeba dočasně zastavit službu iTALC - pokračovat?</translation>
     </message>
     <message>
         <source>Log files cleared</source>
-        <translation type="unfinished"></translation>
+        <translation>Soubory se záznamy o provozu byly smazány</translation>
     </message>
     <message>
         <source>All log files were cleared successfully.</source>
-        <translation type="unfinished"></translation>
+        <translation>Všechny soubory se záznamy o provozu byly úspěšně smazány.</translation>
     </message>
     <message>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Chyba</translation>
     </message>
     <message>
         <source>Could not remove all log files.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nelze smazat soubory se záznamy o provozu.</translation>
     </message>
     <message>
         <source>Logon authentication test</source>
-        <translation type="unfinished"></translation>
+        <translation>Test přihlašovacího ověřování</translation>
     </message>
     <message>
         <source>Authentication with provided credentials was successful.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ověření pomocí poskytnutých přihlašovacích údajů proběhlo úspěšně.</translation>
     </message>
     <message>
         <source>Authentication with provided credentials failed!</source>
-        <translation type="unfinished"></translation>
+        <translation>Ověření pomocí poskytnutých přihlašovacích údajů se nezdařilo!</translation>
     </message>
     <message>
         <source>Save bug report archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Uložit přílohu pro hlášení chyby</translation>
     </message>
     <message>
         <source>iTALC bug report archive (*.ibra.xml)</source>
-        <translation type="unfinished"></translation>
+        <translation>Archiv s údaji pro hlášení chyby v iTALC (*.ibra.xml)</translation>
     </message>
     <message>
         <source>iTALC bug report archive saved</source>
-        <translation type="unfinished"></translation>
+        <translation>Archiv s údaji pro hlášení chyby v iTALC byl uložen</translation>
     </message>
     <message>
         <source>An iTALC bug report archive has been saved to %1. It includes iTALC log files and information about your operating system. You can attach it to a bug report.</source>
-        <translation type="unfinished"></translation>
+        <translation>Archiv s údaji pro hlášení chyby v iTALC byl uložen do %1. Obsahuje soubory se záznamy o provozu iTALC a informace o vašem operačním systému. Můžete jej připojit k hlášení chyby.</translation>
     </message>
     <message>
         <source>Could not contact iTALC service</source>
-        <translation type="unfinished"></translation>
+        <translation>Nedaří se kontaktovat službu iTALC</translation>
     </message>
     <message>
         <source>Could not contact the local iTALC service. It is likely that you entered wrong credentials or key files are not set up properly. Try again or contact your administrator for solving this problem using the iTALC Management Console.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nelze se připojit k místní službe iTALC. Nejspíš jste zadali špatné přihlašovací údaje či soubory s klíči nejsou správně nastaveny. Zkuste to znovu a případně oslovte správce systémů, aby problém vyřešil s použitím konzole pro správu iTALC.</translation>
     </message>
     <message>
         <source>Authentication impossible</source>
-        <translation type="unfinished"></translation>
+        <translation>Ověření není možné</translation>
     </message>
     <message>
         <source>No authentication key files were found or your current ones are outdated. Please create new key files using the iTALC Management Console. Alternatively set up logon authentication using the iTALC Management Console. Otherwise you won&apos;t be able to access computers using iTALC.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nebyly žádné ověrovací klíče nebo jsou ty vámi právě používané zastaralé. Vytvořte nové soubory s klíči pomocí konzole pro správu iTALC. Případně můžete nastavit přihlašovací ověřování s použitím konzole pro správu iTALC. Pokud tak neučiníte, nebudete moci přistupovat k počítačům s iTALC.</translation>
     </message>
     <message>
         <source>Poll full screen (leave this enabled per default)</source>
-        <translation type="unfinished"></translation>
+        <translation>Kontrolovat celou obrazovku (ponechte povolené jako výchozí)</translation>
     </message>
 </context>
 <context>
     <name>MessageBoxSlave</name>
     <message>
         <source>Message from teacher</source>
-        <translation type="unfinished">Zpráva od učitele</translation>
+        <translation>Zpráva od vyučujícího</translation>
     </message>
 </context>
 <context>
@@ -1405,64 +1417,64 @@ Note: if the bug involves both a master and client computer, attach bug report a
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; font-style:italic;&quot;&gt;Welcome to iTALC!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; font-style:italic;&quot;&gt; Vítejte v iTALC!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; font-style:italic;&quot;&gt; Vítejte v aplikaci iTALC!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Here you see the working-bar which contains several buttons. Each button is connected to a workspace. Just take a look at the available workspaces by clicking on the corresponding button.</source>
-        <translation type="unfinished">Na pracovní ploše jsou vidět různá tlačítka. Každé tlačítko je připojeno k nějaké pracovní ploše. Jednoduše se kliknutím na odpovídající tlačítko podívejte na dostupné pracovní plochy.</translation>
+        <translation>Zde vidíte pracovní lištu s různými tlačítky. Každé z nich je připojeno k nějaké pracovní ploše. Dostupné plochy si jednoduše zobrazíte kliknutím na odpovídající tlačítko.</translation>
     </message>
     <message>
         <source>Using the classroom-manager you can manage your classrooms and computers. You can also see which users are logged in.</source>
-        <translation type="unfinished"></translation>
+        <translation>S použitím správce učeben můžete spravovat své učebny a počítače. Můžete zde též vidět kteří uživatelé jsou přihlášeni.</translation>
     </message>
     <message>
         <source>The snapshot-workspace is a very useful tool. It let&apos;s you manage the snapshots you made.</source>
-        <translation type="unfinished">Plocha se snímky obrazovky je velmi užitečná. Umožní vám spravovat snímky, které provedete.</translation>
+        <translation>Plocha se snímky obrazovky je velmi užitečná. Umožňuje vám spravovat snímky, které jste pořídili.</translation>
     </message>
     <message>
         <source>Of course you can configure iTALC. This is usually done using the configuration-workspace.</source>
-        <translation type="unfinished">Samozřejmě, že můžete nastavovat iTALC. To se obvykle provádí pomocí konfigurační plochy.</translation>
+        <translation>iTALC si samozřejmně můžete nastavit dle svých potřeb. Obvykle se to provádí pomocí rozhraní pro správu nastavení.</translation>
     </message>
     <message>
         <source>About iTALC</source>
-        <translation type="unfinished">O iTALC</translation>
+        <translation>O aplikaci iTALC</translation>
     </message>
 </context>
 <context>
     <name>OverviewWidget</name>
     <message>
         <source>Overview</source>
-        <translation type="unfinished">Přehled</translation>
+        <translation>Přehled</translation>
     </message>
     <message>
         <source>Some basic information on iTALC and how to use it.</source>
-        <translation type="unfinished">Některé základní informace o iTALC a použití programu.</translation>
+        <translation>Několik základních informací o iTALC a otom, jak jej používat.</translation>
     </message>
 </context>
 <context>
     <name>PasswordDialog</name>
     <message>
         <source>Please enter your username and password in order to access iTALC clients.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zadejte své uživatelské jméno abyste mohli přistupovat k iTALC klientům.</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation type="unfinished">Uživatelské jméno</translation>
+        <translation>Uživatelské jméno</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished">Heslo</translation>
+        <translation>Heslo</translation>
     </message>
     <message>
         <source>iTALC Logon</source>
-        <translation type="unfinished"></translation>
+        <translation>Přihlášení iTALC</translation>
     </message>
     <message>
         <source>Manage</source>
-        <translation type="unfinished"></translation>
+        <translation>Spravovat</translation>
     </message>
 </context>
 <context>
@@ -1473,11 +1485,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Unable to register service &apos;%1&apos;.</source>
-        <translation>Nemohu zaregistrovat službu &apos;%1&apos;.</translation>
+        <translation>Nelze zaregistrovat službu &apos;%1&apos;.</translation>
     </message>
     <message>
         <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not registered.</source>
-        <translation>Nemohu kontaktovat Správce služeb (máte potřebná oprávnění?!) - služba &apos;%1&apos; nebyla zaregistrována.</translation>
+        <translation>Nelze kontaktovat Správce služeb (máte potřebná oprávnění?!) - služba &apos;%1&apos; nebyla zaregistrována.</translation>
     </message>
     <message>
         <source>The service &apos;%1&apos; is already registered.</source>
@@ -1485,7 +1497,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>The service &apos;%1&apos; could not be registered.</source>
-        <translation>Nemohu zaregistrovat službu &apos;%1&apos;.</translation>
+        <translation>Nelze zaregistrovat službu &apos;%1&apos;.</translation>
     </message>
     <message>
         <source>The service &apos;%1&apos; was successfully registered.</source>
@@ -1493,19 +1505,19 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>The service &apos;%1&apos; could not be stopped.</source>
-        <translation>Službu &apos;%1&apos; není možno zastavit.</translation>
+        <translation>Službu &apos;%1&apos; nelze zastavit.</translation>
     </message>
     <message>
         <source>The service &apos;%1&apos; has been unregistered.</source>
-        <translation>Služba &apos;%1&apos; byla odregistrována.</translation>
+        <translation>Registrace služby &apos;%1&apos; byla zrušena.</translation>
     </message>
     <message>
         <source>The service &apos;%1&apos; isn&apos;t registered and therefore can&apos;t be unregistered.</source>
-        <translation>Služba &apos;%1&apos; není registrována a z tohoto jí nelze odregistrovat.</translation>
+        <translation>Služba &apos;%1&apos; není registrována a proto není jakou registraci rušit.</translation>
     </message>
     <message>
         <source>The service &apos;%1&apos; could not be unregistered.</source>
-        <translation>Službu &apos;%1&apos; nebylo možno odregistrovat.</translation>
+        <translation>Registraci služby &apos;%1&apos; nelze zrušit.</translation>
     </message>
     <message>
         <source>The service &apos;%1&apos; could not be found.</source>
@@ -1513,129 +1525,129 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not unregistered.</source>
-        <translation>Nemohu kontakovat Správce služeb (máte potřebná oprávnění?!) - službu &apos;%1&apos; nelze odregistrovat.</translation>
+        <translation>Nelze kontakovat Správce služeb (máte potřebná oprávnění?!) - registraci služby &apos;%1&apos; proto nelze zrušit.</translation>
     </message>
     <message>
         <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not stopped.</source>
-        <translation>Nemohu kontaktovat Správce služeb (máte potřebná oprávnění?!) - služba &apos;%1&apos; nebyla zastavena.</translation>
+        <translation>Nelze kontaktovat Správce služeb (máte potřebná oprávnění?!) - služba &apos;%1&apos; proto nebyla zastavena.</translation>
     </message>
 </context>
 <context>
     <name>RemoteControlWidget</name>
     <message>
         <source>View live (%1 @ %2)</source>
-        <translation type="unfinished"></translation>
+        <translation>Živé zobrazení (%1 na %2)</translation>
     </message>
     <message>
         <source>Remote control (%1 @ %2)</source>
-        <translation type="unfinished"></translation>
+        <translation>Vzdálené ovládání (%1 na %2)</translation>
     </message>
     <message>
         <source>unknown user</source>
-        <translation type="unfinished">neznámý uživatel</translation>
+        <translation>neznámý uživatel</translation>
     </message>
 </context>
 <context>
     <name>RemoteControlWidgetToolBar</name>
     <message>
         <source>View only</source>
-        <translation type="unfinished">Pouze prohlížet</translation>
+        <translation>Pouze zobrazovat</translation>
     </message>
     <message>
         <source>Remote control</source>
-        <translation type="unfinished">Vzdálené ovládání</translation>
+        <translation>Vzdálené ovládání</translation>
     </message>
     <message>
         <source>Lock student</source>
-        <translation type="unfinished">Zamknout studenta</translation>
+        <translation>Zamknout studenta</translation>
     </message>
     <message>
         <source>Unlock student</source>
-        <translation type="unfinished">Odemknout studenta</translation>
+        <translation>Odemknout studenta</translation>
     </message>
     <message>
         <source>Snapshot</source>
-        <translation type="unfinished">Snímek</translation>
+        <translation>Snímek</translation>
     </message>
     <message>
         <source>Fullscreen</source>
-        <translation type="unfinished">Celá obrazovka</translation>
+        <translation>Celá obrazovka</translation>
     </message>
     <message>
         <source>Window</source>
-        <translation type="unfinished">Okno</translation>
+        <translation>Okno</translation>
     </message>
     <message>
         <source>Quit</source>
-        <translation type="unfinished">Ukončit</translation>
+        <translation>Ukončit</translation>
     </message>
     <message>
         <source>Connecting %1</source>
-        <translation type="unfinished">Připojuji %1</translation>
+        <translation>Připojování k %1 ...</translation>
     </message>
     <message>
         <source>Connected.</source>
-        <translation type="unfinished">Připojeno.</translation>
+        <translation>Připojeno.</translation>
     </message>
 </context>
 <context>
     <name>RemoteLogonDialog</name>
     <message>
         <source>Remote logon</source>
-        <translation type="unfinished">Vzdálené odhlášení</translation>
+        <translation>Vzdálené přihlášení</translation>
     </message>
     <message>
         <source>Use the fields below to enter the username, password and optional the domain name. These information will be used to logon the computer(s).</source>
-        <translation type="unfinished"></translation>
+        <translation>Do políček níže zadejte uživatelské jméno, heslo a případně název domény. Tyto údaje pak budou používány k přihlašování na počítače.</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation type="unfinished">Uživatelské jméno</translation>
+        <translation>Uživatelské jméno</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished">Heslo</translation>
+        <translation>Heslo</translation>
     </message>
     <message>
         <source>Domain</source>
-        <translation type="unfinished">Doména</translation>
+        <translation>Doména</translation>
     </message>
 </context>
 <context>
     <name>RunCommandsDialog</name>
     <message>
         <source>Run commands</source>
-        <translation type="unfinished"></translation>
+        <translation>Spustit příkazy</translation>
     </message>
     <message>
         <source>Please enter the commands to run on the selected client(s). You can separate multiple commands by line.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zadejte příkaz, který má být spuštěn na zvolených klientech. Je možné zadat více příkazů naráz - každý zvlášť na svém řádku.</translation>
     </message>
 </context>
 <context>
     <name>Snapshot</name>
     <message>
         <source>unknown</source>
-        <translation type="unfinished"></translation>
+        <translation>Neznámý</translation>
     </message>
     <message>
         <source>Could not take a snapshot as directory %1 doesn&apos;t exist and couldn&apos;t be created.</source>
-        <translation type="unfinished">Nemohu získat snímek, protože adresář %1 neexistuje a nelze ho vytvořit.</translation>
+        <translation>Nelze pořídit snímek, protože složka %1 neexistuje a nelze ji vytvořit.</translation>
     </message>
     <message>
         <source>Snapshot</source>
-        <translation type="unfinished">Snímek</translation>
+        <translation>Snímek</translation>
     </message>
 </context>
 <context>
     <name>SnapshotList</name>
     <message>
         <source>Snapshots</source>
-        <translation type="unfinished">Snímky</translation>
+        <translation>Snímky</translation>
     </message>
     <message>
         <source>Simply manage the snapshots you made using this workspace.</source>
-        <translation type="unfinished">Jednoduše spravuje vámi provedené snímky ploch.</translation>
+        <translation>Toto rozhraní slouží pro snadnou správu pořízených snímků.</translation>
     </message>
 </context>
 <context>
@@ -1645,122 +1657,122 @@ p, li { white-space: pre-wrap; }
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;All snapshots you made are listed here. You can make snapshots by selecting the according entry in the context-menu of a client-window. These snapshosts can be managed using the buttons below.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Všechny pořízené snímky se uchovávají zde. Snímky můžete provádět výběrem odpovídající položky v kontextové nabídce klientského okna. Tyto snímky je možno spravovat pomocí tlačítek níže.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Všechny pořízené snímky se uchovávají zde. Snímky je možné pořizovat výběrem odpovídající položky v kontextové nabídce klientského okna. Tyto snímky je pak možné spravovat pomocí tlačítek níže.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>User:</source>
-        <translation type="unfinished">Uživatel:</translation>
+        <translation>Uživatel:</translation>
     </message>
     <message>
         <source>Host:</source>
-        <translation type="unfinished">Počítač:</translation>
+        <translation>Počítač:</translation>
     </message>
     <message>
         <source>Date:</source>
-        <translation type="unfinished">Datum:</translation>
+        <translation>Datum:</translation>
     </message>
     <message>
         <source>Time:</source>
-        <translation type="unfinished">Čas:</translation>
+        <translation>Čas:</translation>
     </message>
     <message>
         <source>Show</source>
-        <translation type="unfinished"></translation>
+        <translation>Zobrazit</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>Smazat</translation>
     </message>
 </context>
 <context>
     <name>SupportDialog</name>
     <message>
         <source>Support</source>
-        <translation type="unfinished">Podpora</translation>
+        <translation>Podpora</translation>
     </message>
     <message>
         <source>Please enter the IP address or the name of the host to which you want to connect.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zadejte IP adresu či název počítače ke kterému se chcete připojit.</translation>
     </message>
 </context>
 <context>
     <name>TextMessageDialog</name>
     <message>
         <source>Send text message</source>
-        <translation type="unfinished">Poslat textovou zprávu</translation>
+        <translation>Poslat textovou zprávu</translation>
     </message>
     <message>
         <source>Use the field below to type your message which will be sent to all selected users.</source>
-        <translation type="unfinished">Do políčka níže zadejte vaši zprávu, která bude poslána vybraným uživatelům.</translation>
+        <translation>Do políčka níže zadejte svou zprávu, určenou všem vybraným uživatelům.</translation>
     </message>
 </context>
 <context>
     <name>VncView</name>
     <message>
         <source>Establishing connection to %1 ...</source>
-        <translation type="unfinished">Připojuji se k %1 ...</translation>
+        <translation>Připojování k %1 ...</translation>
     </message>
 </context>
 <context>
     <name>clientMenu</name>
     <message>
         <source>Overview</source>
-        <translation type="unfinished">Přehled</translation>
+        <translation>Přehled</translation>
     </message>
     <message>
         <source>Fullscreen demo</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukázka na celou obrazovku</translation>
     </message>
     <message>
         <source>Window demo</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukázka v okně</translation>
     </message>
     <message>
         <source>Locked display</source>
-        <translation type="unfinished">Obrazovka zamknuta</translation>
+        <translation>Obrazovka zamknuta</translation>
     </message>
     <message>
         <source>View live</source>
-        <translation type="unfinished">Zobrazit naživo</translation>
+        <translation>Zobrazit naživo</translation>
     </message>
     <message>
         <source>Remote control</source>
-        <translation type="unfinished">Vzdálené ovládání</translation>
+        <translation>Vzdálené ovládání</translation>
     </message>
     <message>
         <source>Let student show demo</source>
-        <translation type="unfinished">Zobrazit studentům demo</translation>
+        <translation>Nechat studenta předvést ukázku</translation>
     </message>
     <message>
         <source>Send text message</source>
-        <translation type="unfinished">Poslat textovou zprávu</translation>
+        <translation>Poslat textovou zprávu</translation>
     </message>
     <message>
         <source>Logout user</source>
-        <translation type="unfinished">Odhlásit uživatele</translation>
+        <translation>Odhlásit uživatele</translation>
     </message>
     <message>
         <source>Take a snapshot</source>
-        <translation type="unfinished">Sejmout obrazovku</translation>
+        <translation>Pořídit snímek obrazovky</translation>
     </message>
     <message>
         <source>Power on</source>
-        <translation type="unfinished">Zapnout</translation>
+        <translation>Zapnout</translation>
     </message>
     <message>
         <source>Reboot</source>
-        <translation type="unfinished">Restartovat</translation>
+        <translation>Restartovat</translation>
     </message>
     <message>
         <source>Power down</source>
-        <translation type="unfinished">Vypnout</translation>
+        <translation>Vypnout</translation>
     </message>
     <message>
         <source>Execute commands</source>
-        <translation type="unfinished">Vykonat příkaz</translation>
+        <translation>Vykonat příkazy</translation>
     </message>
 </context>
 </TS>
