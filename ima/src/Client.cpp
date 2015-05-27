@@ -23,13 +23,13 @@
  *
  */
 
-#include <QtGui/QCloseEvent>
+#include <QCloseEvent>
 #include <QtGui/QLinearGradient>
-#include <QtGui/QMenu>
+#include <QMenu>
 #include <QtGui/QPainter>
 #include <QtGui/QPixmap>
-#include <QtGui/QScrollArea>
-#include <QtGui/QMessageBox>
+#include <QScrollArea>
+#include <QMessageBox>
 
 #include "MainWindow.h"
 #include "Client.h"

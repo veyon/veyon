@@ -27,10 +27,10 @@
 
 #include <QtCore/QReadWriteLock>
 #include <QtCore/QThread>
-#include <QtGui/QButtonGroup>
-#include <QtGui/QMainWindow>
-#include <QtGui/QSystemTrayIcon>
-#include <QtGui/QToolButton>
+#include <QButtonGroup>
+#include <QMainWindow>
+#include <QSystemTrayIcon>
+#include <QToolButton>
 
 #include "ui_MainWindow.h"
 
@@ -125,7 +125,7 @@ public:
 						m_modeGroup->button( _id ) );
 		if( btn != NULL )
 		{
-			btn->setChecked( TRUE );
+			btn->setChecked( true );
 		}
 	}
 
@@ -140,8 +140,8 @@ public:
 	}
 
 	void remoteControlDisplay( const QString & _hostname,
-					bool _view_only = FALSE,
-					bool _stop_demo_afterwards = FALSE );
+					bool _view_only = false,
+					bool _stop_demo_afterwards = false );
 
 	inline bool remoteControlRunning( void )
 	{

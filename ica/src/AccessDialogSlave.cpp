@@ -23,8 +23,8 @@
  *
  */
 
-#include <QtGui/QMessageBox>
-#include <QtGui/QPushButton>
+#include <QMessageBox>
+#include <QPushButton>
 
 #include "AccessDialogSlave.h"
 #include "DesktopAccessPermission.h"

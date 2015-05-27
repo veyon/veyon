@@ -33,10 +33,10 @@ void Win32AclEditor( HWND hwnd );
 #include <QtCore/QProcess>
 #include <QtCore/QTimer>
 #include <QtGui/QCloseEvent>
-#include <QtGui/QFileDialog>
-#include <QtGui/QMessageBox>
-#include <QtGui/QProgressBar>
-#include <QtGui/QProgressDialog>
+#include <QFileDialog>
+#include <QMessageBox>
+#include <QProgressBar>
+#include <QProgressDialog>
 
 #include "Configuration/XmlStore.h"
 #include "Configuration/UiMapping.h"

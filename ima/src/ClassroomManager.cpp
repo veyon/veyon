@@ -28,18 +28,18 @@
 #include <QtCore/QDateTime>
 #include <QtCore/QTextStream>
 #include <QtCore/QTimer>
-#include <QtGui/QButtonGroup>
-#include <QtGui/QCloseEvent>
-#include <QtGui/QFileDialog>
-#include <QtGui/QHeaderView>
-#include <QtGui/QInputDialog>
-#include <QtGui/QLabel>
-#include <QtGui/QMenu>
-#include <QtGui/QMessageBox>
+#include <QButtonGroup>
+#include <QCloseEvent>
+#include <QFileDialog>
+#include <QHeaderView>
+#include <QInputDialog>
+#include <QLabel>
+#include <QMenu>
+#include <QMessageBox>
 #include <QtGui/QPixmap>
-#include <QtGui/QPushButton>
-#include <QtGui/QSplashScreen>
-#include <QtGui/QSplitter>
+#include <QPushButton>
+#include <QSplashScreen>
+#include <QSplitter>
 #include <QtGui/QPainter>
 
 
@@ -115,10 +115,10 @@ ClassroomManager::ClassroomManager( MainWindow * _main_window,
 	m_view->setIconSize( QSize( 22, 22 ) );
 	m_view->header()->resizeSection( m_view->header()->logicalIndex( 0 ),
 									200 );
-	m_view->setSortingEnabled( TRUE );
-	m_view->setRootIsDecorated( TRUE );
+	m_view->setSortingEnabled( true );
+	m_view->setRootIsDecorated( true );
 	m_view->sortItems( 0, Qt::AscendingOrder );
-//	m_view->setShowToolTips( TRUE );
+//	m_view->setShowToolTips( true );
 	m_view->setWindowTitle( tr( "Classroom-Manager" ) );
 	m_view->setContextMenuPolicy( Qt::CustomContextMenu );
 	connect( m_view, SIGNAL( itemDoubleClicked( QTreeWidgetItem *, int ) ),
@@ -140,7 +140,7 @@ ClassroomManager::ClassroomManager( MainWindow * _main_window,
 		tr( "Use the context-menu (right mouse-button) to add/remove "
 			"computers and/or classrooms." ), contentParent() );
 	l->addWidget( help_txt );
-	help_txt->setWordWrap( TRUE );
+	help_txt->setWordWrap( true );
 	help_txt->setFont( f );
 
 	l->addSpacing( 16 );
@@ -179,7 +179,7 @@ void ClassroomManager::setupMenus()
 {
 	QAction * act;
 	QAction * separator = new QAction( this );
-	separator->setSeparator( TRUE );
+	separator->setSeparator( true );
 
 	/*** quick workspace menu ***/
 
@@ -216,7 +216,7 @@ void ClassroomManager::setupMenus()
 			tr( "Remove" ) );
 	connect( act, SIGNAL( triggered() ), this, SLOT( removeClient() ) );
 
-	m_classRoomItemActionGroup->addAction( "" )->setSeparator( TRUE );
+	m_classRoomItemActionGroup->addAction( "" )->setSeparator( true );
 
 	/*** actions for single classroom in context Menu ***/
 
@@ -247,7 +247,7 @@ void ClassroomManager::setupMenus()
 			tr("Remove classroom" ) );
 	connect( act, SIGNAL( triggered() ), this, SLOT( removeClassRoom() ) );
 
-	m_classRoomActionGroup->addAction( "" )->setSeparator( TRUE );
+	m_classRoomActionGroup->addAction( "" )->setSeparator( true );
 
 	/*** common actions in context menu ***/
 
@@ -318,11 +318,11 @@ void ClassroomManager::saveGlobalClientConfig( void )
 	for( int i = 0; i < m_view->topLevelItemCount(); ++i )
 	{
 		saveSettingsOfChildren( doc, root, m_view->topLevelItem( i ),
-									TRUE );
+									true );
 	}
 
 	QString xml = "<?xml version=\"1.0\"?>\n" + doc.toString( 2 );
-/*	if( MainWindow::ensureConfigPathExists() == FALSE )
+/*	if( MainWindow::ensureConfigPathExists() == false )
 	{
 		qFatal( QString( "Could not read/write or create directory %1!"
 					"For running iTALC, make sure you have "
@@ -411,7 +411,7 @@ void ClassroomManager::savePersonalConfig( void )
 	for( int i = 0; i < m_view->topLevelItemCount(); ++i )
 	{
 		saveSettingsOfChildren( doc, root, m_view->topLevelItem( i ),
-									FALSE );
+									false );
 	}
 
 	foreach ( QDomNode node, m_customMenuConfiguration )
@@ -660,10 +660,10 @@ void ClassroomManager::loadTree( classRoom * _parent_item,
 						bool _is_global_config )
 {
 	for( QDomNode node = _parent_element.firstChild();
-						node.isNull() == FALSE;
+						node.isNull() == false;
 						node = node.nextSibling() )
 	{
-		if( node.isElement() == FALSE )
+		if( node.isElement() == false )
 		{
 			continue;
 		}
@@ -761,7 +761,7 @@ void ClassroomManager::loadMenuElement( QDomElement _e )
 		{
 			if ( act->text() == _e.attribute( "hide" ) )
 			{
-				act->setVisible( FALSE );
+				act->setVisible( false );
 			}
 		}
 	}
@@ -882,7 +882,7 @@ void ClassroomManager::loadGlobalClientConfig( void )
 	{
 		if( node.isElement() && node.nodeName() == "body" )
 		{
-			loadTree( NULL, node.toElement(), TRUE );
+			loadTree( NULL, node.toElement(), true );
 			break;
 		}
 		node = node.nextSibling();
@@ -961,7 +961,7 @@ void ClassroomManager::loadPersonalConfig( void )
 	{
 		if( node.isElement() && node.nodeName() == "body" )
 		{
-			loadTree( NULL, node.toElement(), FALSE );
+			loadTree( NULL, node.toElement(), false );
 			break;
 		}
 		node = node.nextSibling();
@@ -1503,12 +1503,12 @@ void ClassroomManager::showHideClient( void )
 
 	if( si.size() > 0 )
 	{
-		bool all_shown = TRUE;
+		bool all_shown = true;
 		foreach( classRoomItem * cri, si )
 		{
 			if( cri->getClient()->isVisible() )
 			{
-				all_shown = FALSE;
+				all_shown = false;
 				break;
 			}
 		}
@@ -1552,7 +1552,7 @@ void ClassroomManager::removeClient( void )
 		foreach( classRoomItem * cri, si )
 		{
 			cri->getClient()->hide();
-			m_view->setItemHidden( cri, TRUE );
+			m_view->setItemHidden( cri, true );
 			m_clientsToRemove.push_back( cri->getClient() );
 		}
 	}
@@ -1605,7 +1605,7 @@ void ClassroomManager::showSelectedClassRooms( void )
 	{
 		if( m_view->isItemSelected( cr ) && cr->childCount() )
 		{
-			setStateOfClassRoom( cr, TRUE );
+			setStateOfClassRoom( cr, true );
 		}
 	}
 }
@@ -1619,7 +1619,7 @@ void ClassroomManager::hideSelectedClassRooms( void )
 	{
 		if( m_view->isItemSelected( cr ) && ( cr )->childCount() )
 		{
-			setStateOfClassRoom( cr, FALSE );
+			setStateOfClassRoom( cr, false );
 		}
 	}
 }
@@ -1631,7 +1631,7 @@ void ClassroomManager::hideAllClassRooms( void )
 {
 	foreach( classRoom * cr, m_classRooms )
 	{
-		setStateOfClassRoom( cr, FALSE );
+		setStateOfClassRoom( cr, false );
 	}
 }
 
@@ -1642,7 +1642,7 @@ void ClassroomManager::editClassRoomName( void )
 {
 	foreach( classRoom * cr, m_classRooms )
 	{
-		if( m_view->isItemSelected( cr ) == FALSE )
+		if( m_view->isItemSelected( cr ) == false )
 		{
 			continue;
 		}
@@ -1670,7 +1670,7 @@ void ClassroomManager::removeClassRoom( void )
 {
 	foreach( classRoom * cr, m_classRooms )
 	{
-		if( m_view->isItemSelected( cr ) == FALSE )
+		if( m_view->isItemSelected( cr ) == false )
 		{
 			continue;
 		}
@@ -1694,7 +1694,7 @@ void ClassroomManager::removeClassRoom( void )
 
 void ClassroomManager::removeClassRoom( classRoom * cr )
 {
-		m_view->setItemHidden( cr, TRUE );
+		m_view->setItemHidden( cr, true );
 
 		for ( int i = 0 ; i < cr->childCount(); ++i )
 		{
@@ -1879,7 +1879,7 @@ void classTreeWidget::mousePressEvent( QMouseEvent * _me )
 		if ( ! item->isSelected() )
 		{
 			clearSelection();
-			item->setSelected( TRUE );
+			item->setSelected( true );
 		}
 	}
 
@@ -2115,7 +2115,7 @@ void classRoom::clientMenuTriggered( QAction * _action )
 void classRoom::switchToClassRoom( void )
 {
 	m_classroomManager->hideAllClassRooms();
-	m_classroomManager->setStateOfClassRoom( this, TRUE );
+	m_classroomManager->setStateOfClassRoom( this, true );
 }
 
 
@@ -2129,7 +2129,7 @@ void classRoom::switchToClassRoom( void )
 
 classRoomItem::classRoomItem( Client * _client, QTreeWidgetItem * _parent ) :
 	QTreeWidgetItem( _parent, QStringList( _client->name() ) ),
-	m_visible( FALSE ),
+	m_visible( false ),
 	m_client( _client )
 {
 	if( s_clientPixmap == NULL )
@@ -2165,7 +2165,7 @@ classRoomItem::~classRoomItem()
 void classRoomItem::setVisible( const bool _obs )
 {
 	m_visible = _obs;
-	if( _obs == FALSE )
+	if( _obs == false )
 	{
 		setIcon( 0, *s_clientPixmap );
 	}

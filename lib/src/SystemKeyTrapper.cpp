@@ -286,7 +286,7 @@ void SystemKeyTrapper::setEnabled( bool on )
 		// start new xmodmap process and dump our modified keytable from stdin
 		p.start( "xmodmap", QStringList() << "-" );
 		p.waitForStarted();
-		p.write( keyTableModified.toAscii() );
+		p.write( keyTableModified.toLatin1() );
 		p.closeWriteChannel();
 		p.waitForFinished();
 #endif

@@ -24,8 +24,8 @@
 #include <QtCore/QDateTime>
 #include <QtCore/QDir>
 #include <QtCore/QFileInfo>
-#include <QtGui/QApplication>
-#include <QtGui/QMessageBox>
+#include <QApplication>
+#include <QMessageBox>
 #include <QtGui/QPainter>
 
 #include "Snapshot.h"
@@ -73,7 +73,7 @@ void Snapshot::take( ItalcVncConnection *vncConn, const QString &user )
 								"doesn't exist and couldn't be "
 								"created." ).arg( dir );
 		qCritical() << msg.toUtf8().constData();
-		if( QApplication::type() != QApplication::Tty )
+		if( qobject_cast<QApplication *>( QCoreApplication::instance() ) )
 		{
 			QMessageBox::critical( NULL, tr( "Snapshot" ), msg );
 		}

@@ -27,7 +27,7 @@
 
 #include "AuthenticationCredentials.h"
 
-#include <QtGui/QDialog>
+#include <QDialog>
 
 namespace Ui { class PasswordDialog; }
 

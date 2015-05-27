@@ -25,7 +25,7 @@
 #ifndef KEY_DIRECTORIES_PAGE_H
 #define KEY_DIRECTORIES_PAGE_H
 
-#include <QtGui/QWizardPage>
+#include <QWizardPage>
 
 namespace Ui { class KeyFileAssistant; }
 

@@ -27,7 +27,7 @@
 
 #include <QtCore/QDir>
 #include <QtCore/QProcess>
-#include <QtGui/QWidget>
+#include <QWidget>
 #include <QtNetwork/QHostInfo>
 
 
@@ -171,7 +171,7 @@ User::User( const QString &name, const QString &dom, const QString &fullname ) :
 	m_userToken = sid;
 
 	if( !LookupAccountName( NULL,		// system name
-							m_name.toAscii().constData(),
+							m_name.toLatin1().constData(),
 							m_userToken,		// SID
 							&sidLen,
 							domainName,
@@ -455,8 +455,8 @@ void User::lookupFullName()
 	lookupNameAndDomain();
 
 #ifdef ITALC_BUILD_WIN32
-	char * accName = qstrdup( m_name.toAscii().constData() );
-	char * domainName = qstrdup( m_domain.toAscii().constData() );
+	char * accName = qstrdup( m_name.toLatin1().constData() );
+	char * domainName = qstrdup( m_domain.toLatin1().constData() );
 
 	// try to retrieve user's full name from domain
 	WCHAR wszDomain[256];
@@ -762,7 +762,7 @@ Process::Handle Process::runAsUser( const QString &proc,
 	si.cb = sizeof( STARTUPINFO );
 	if( !desktop.isEmpty() )
 	{
-		si.lpDesktop = (CHAR *) qstrdup( desktop.toAscii().constData() );
+		si.lpDesktop = (CHAR *) qstrdup( desktop.toLatin1().constData() );
 	}
 	HANDLE hNewToken = NULL;
 
@@ -886,7 +886,7 @@ void broadcastWOLPacket( const QString & _mac )
 	unsigned char mac[MAC_SIZE];
 	char out_buf[OUTBUF_SIZE];
 
-	if( sscanf( _mac.toAscii().constData(),
+	if( sscanf( _mac.toLatin1().constData(),
 				"%2x:%2x:%2x:%2x:%2x:%2x",
 				(unsigned int *) &mac[0],
 				(unsigned int *) &mac[1],

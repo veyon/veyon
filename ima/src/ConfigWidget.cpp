@@ -22,11 +22,11 @@
  *
  */
 
-#include <QtGui/QLabel>
-#include <QtGui/QLayout>
-#include <QtGui/QCheckBox>
-#include <QtGui/QComboBox>
-#include <QtGui/QMessageBox>
+#include <QLabel>
+#include <QLayout>
+#include <QCheckBox>
+#include <QComboBox>
+#include <QMessageBox>
 
 #include "ConfigWidget.h"
 #include "ClassroomManager.h"

@@ -25,7 +25,7 @@
 #ifndef SIDE_BAR_WIDGET_H
 #define SIDE_BAR_WIDGET_H
 
-#include <QtGui/QWidget>
+#include <QWidget>
 #include <QtGui/QPixmap>
 
 

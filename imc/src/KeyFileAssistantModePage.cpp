@@ -22,7 +22,7 @@
  *
  */
 
-#include <QtGui/QButtonGroup>
+#include <QButtonGroup>
 
 #include "KeyFileAssistant.h"
 #include "KeyFileAssistantModePage.h"

@@ -26,7 +26,7 @@
 
 #include <italcconfig.h>
 
-#include <QtGui/QWidget>
+#include <QWidget>
 #include <QtGui/QPixmap>
 
 #include "SystemKeyTrapper.h"
@@ -50,7 +50,9 @@ public:
 private:
 	virtual void paintEvent( QPaintEvent * );
 #ifdef ITALC_BUILD_LINUX
+#if QT_VERSION < 0x050000
 	virtual bool x11Event( XEvent * _e );
+#endif
 #endif
 
 	QPixmap m_background;

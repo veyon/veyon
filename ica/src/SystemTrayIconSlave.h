@@ -26,7 +26,7 @@
 #ifndef SYSTEM_TRAY_ICON_SLAVE_H
 #define SYSTEM_TRAY_ICON_SLAVE_H
 
-#include <QtGui/QSystemTrayIcon>
+#include <QSystemTrayIcon>
 
 #include "IcaSlave.h"
 

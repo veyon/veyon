@@ -29,7 +29,7 @@
 
 #include <QtCore/QEvent>
 #include <QtCore/QThread>
-#include <QtGui/QWidget>
+#include <QWidget>
 
 #include "ItalcVncConnection.h"
 #include "FastQImage.h"

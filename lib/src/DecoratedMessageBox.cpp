@@ -26,14 +26,14 @@
 #include "LocalSystem.h"
 
 #include <QtCore/QThread>
-#include <QtGui/QApplication>
-#include <QtGui/QWidget>
+#include <QApplication>
+#include <QWidget>
 #include <QtGui/QPixmap>
 #include <QtGui/QIcon>
-#include <QtGui/QLabel>
-#include <QtGui/QBoxLayout>
-#include <QtGui/QPushButton>
-#include <QtGui/QSystemTrayIcon>
+#include <QLabel>
+#include <QBoxLayout>
+#include <QPushButton>
+#include <QSystemTrayIcon>
 
 QSystemTrayIcon * __systray_icon = NULL;
 
@@ -51,7 +51,7 @@ DecoratedMessageBox::DecoratedMessageBox( const QString & _title,
 	hl1->setSpacing( 20 );
 
 	QLabel * icon_lbl = new QLabel( content );
-	if( _pixmap.isNull() == FALSE )
+	if( _pixmap.isNull() == false )
 	{
 		icon_lbl->setPixmap( _pixmap );
 	}
@@ -63,7 +63,7 @@ DecoratedMessageBox::DecoratedMessageBox( const QString & _title,
 
 	QLabel * txt_lbl = new QLabel( _msg, content );
 	txt_lbl->setMinimumWidth( 400 );
-	txt_lbl->setWordWrap( TRUE );
+	txt_lbl->setWordWrap( true );
 
 	hl1->addWidget( icon_lbl );
 	hl1->addWidget( txt_lbl );
@@ -84,8 +84,8 @@ DecoratedMessageBox::DecoratedMessageBox( const QString & _title,
 
 	setWindowTitle( _title );
 	setWindowIcon( *icon_lbl->pixmap() );
-	setAttribute( Qt::WA_DeleteOnClose, TRUE );
-	setModal( TRUE );
+	setAttribute( Qt::WA_DeleteOnClose, true );
+	setModal( true );
 	show();
 	LocalSystem::activateWindow( this );
 }

@@ -22,8 +22,8 @@
  *
  */
 
-#include <QtGui/QApplication>
-#include <QtGui/QMessageBox>
+#include <QApplication>
+#include <QMessageBox>
 
 #include <italcconfig.h>
 
@@ -222,7 +222,7 @@ void informationMessage( const QString &title, const QString &msg )
 {
 	LogStream( Logger::LogLevelInfo ) << title.toUtf8().constData()
 								<< ":" << msg.toUtf8().constData();
-	if( QApplication::type() != QApplication::Tty && !silent )
+	if( qobject_cast<QApplication *>( QCoreApplication::instance() ) && !silent )
 	{
 		QMessageBox::information( NULL, title, msg );
 	}
@@ -234,7 +234,7 @@ void criticalMessage( const QString &title, const QString &msg )
 {
 	LogStream( Logger::LogLevelCritical ) << title.toUtf8().constData()
 								<< ":" << msg.toUtf8().constData();
-	if( QApplication::type() != QApplication::Tty && !silent )
+	if( qobject_cast<QApplication *>( QCoreApplication::instance() ) && !silent )
 	{
 		QMessageBox::critical( NULL, title, msg );
 	}

@@ -24,8 +24,8 @@
 
 #include <QtCore/QDir>
 #include <QtCore/QDate>
-#include <QtGui/QFileSystemModel>
-#include <QtGui/QScrollArea>
+#include <QFileSystemModel>
+#include <QScrollArea>
 
 #include "SnapshotList.h"
 #include "ItalcConfiguration.h"

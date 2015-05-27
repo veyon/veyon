@@ -25,7 +25,7 @@
 #include <italcconfig.h>
 
 #include <QtCore/QProcess>
-#include <QtGui/QApplication>
+#include <QApplication>
 #include <QtNetwork/QHostInfo>
 
 #include "WindowsService.h"

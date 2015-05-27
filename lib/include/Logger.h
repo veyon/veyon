@@ -65,7 +65,7 @@ private:
 	void outputMessage( const QString &msg );
 
 	static QString formatMessage( LogLevel ll, const QString &msg );
-	static void qtMsgHandler( QtMsgType msgType, const char *msg );
+	static void qtMsgHandler( QtMsgType msgType, const QMessageLogContext &, const QString& msg );
 
 	static LogLevel logLevel;
 	static Logger *instance;

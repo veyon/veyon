@@ -58,7 +58,7 @@ Logger::Logger( const QString &appName ) :
 	logLevel = qBound( LogLevelMin, static_cast<LogLevel>( ll ), LogLevelMax );
 	initLogFile();
 
-	qInstallMsgHandler( qtMsgHandler );
+	qInstallMessageHandler( qtMsgHandler );
 
 #ifdef ITALC_BUILD_WIN32
 	if( ItalcCore::config->logToWindowsEventLog() )
@@ -151,7 +151,7 @@ QString Logger::formatMessage( LogLevel ll, const QString &msg )
 
 
 
-void Logger::qtMsgHandler( QtMsgType msgType, const char *msg )
+void Logger::qtMsgHandler( QtMsgType msgType, const QMessageLogContext &, const QString& msg )
 {
 	LogLevel ll = LogLevelDefault;
 

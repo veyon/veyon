@@ -62,7 +62,7 @@ bool AuthenticationCredentials::hasCredentials( TypeFlags credentialType ) const
 	if( credentialType & CommonSecret )
 	{
 		return !m_commonSecret.isEmpty() &&
-				QByteArray::fromBase64( m_commonSecret.toAscii() ).size() ==
+				QByteArray::fromBase64( m_commonSecret.toLatin1() ).size() ==
 												DsaKey::DefaultChallengeSize;
 	}
 

@@ -25,7 +25,7 @@
 #ifndef DECORATED_MESSAGEBOX_H
 #define DECORATED_MESSAGEBOX_H
 
-#include <QtGui/QDialog>
+#include <QDialog>
 #include <QtGui/QPixmap>
 
 class DecoratedMessageBox : public QDialog
