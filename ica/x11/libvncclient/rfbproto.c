@@ -143,6 +143,10 @@ void* rfbClientGetClientData(rfbClient* client, void* tag)
 static void FillRectangle(rfbClient* client, int x, int y, int w, int h, uint32_t colour) {
   int i,j;
 
+  if (client->frameBuffer == NULL) {
+      return;
+  }
+
 #define FILL_RECT(BPP) \
     for(j=y*client->width;j<(y+h)*client->width;j+=client->width) \
       for(i=x;i<x+w;i++) \
@@ -185,6 +189,10 @@ static void CopyRectangle(rfbClient* client, uint8_t* buffer, int x, int y, int 
 /* TODO: test */
 static void CopyRectangleFromRectangle(rfbClient* client, int src_x, int src_y, int w, int h, int dest_x, int dest_y) {
   int i,j;
+
+  if (client->frameBuffer == NULL) {
+      return;
+  }
 
 #define COPY_RECT_FROM_RECT(BPP) \
   { \
