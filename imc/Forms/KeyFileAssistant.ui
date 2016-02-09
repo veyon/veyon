@@ -150,6 +150,9 @@ The public key part is used on the client computers to verify that any incoming 
       <property name="text">
        <string>Import public key (client computer)</string>
       </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
       <attribute name="buttonGroup">
        <string>assistantModeButtonGroup</string>
       </attribute>
