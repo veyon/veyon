@@ -5,9 +5,10 @@ Cross compiling iTALC for Windows on Linux
 
     http://archive.ubuntu.com/ubuntu/dists/precise/main/installer-i386/current/images/netboot/mini.iso
 
-- Add the following line to your /etc/apt/sources.list
+- Install the add-apt-repository tool and the mingw repisitory
 
-    deb http://ppa.launchpad.net/tobydox/mingw/ubuntu precise main
+    sudo apt-get install python-software-properties
+    sudo add-apt-repository ppa:tobydox/mingw-x-precise
 
   and update your package list cache (e.g. apt-get update or similiar)
 
@@ -22,7 +23,7 @@ Cross compiling iTALC for Windows on Linux
   * mingw32-x-openssl
   * mingw32-x-libjpeg
   * mingw32-x-libpng
-  * mingw32-x-pthreads
+  * mingw32-x-runtime
   * gcj-jdk
 
 - Change into the iTALC source directory and type
