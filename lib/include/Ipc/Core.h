@@ -1,7 +1,7 @@
 /*
  * IpcCore.h - core definitions for the IPC framework
  *
- * Copyright (c) 2010-2013 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2010-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  * Copyright (c) 2010 Univention GmbH
  *
  * This file is part of iTALC - http://italc.sourceforge.net
@@ -26,6 +26,7 @@
 #ifndef IPC_CORE_H
 #define IPC_CORE_H
 
+#include <QtCore/QDataStream>
 #include <QtCore/QMap>
 #include <QtCore/QString>
 #include <QtCore/QVariant>
@@ -116,8 +117,10 @@ namespace Ipc
 		Msg & receive( QIOD *d )
 		{
 			QDataStream ds( d );
+			QVariant args;
 			ds >> m_cmd;
-			ds >> m_args;
+			ds >> args;
+			m_args = args.toMap();
 			return *this;
 		}
 
