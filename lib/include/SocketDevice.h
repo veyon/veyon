@@ -1,7 +1,7 @@
 /*
  * SocketDevice.h - SocketDevice abstraction
  *
- * Copyright (c) 2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2010-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -25,6 +25,7 @@
 #ifndef SOCKET_DEVICE_H
 #define SOCKET_DEVICE_H
 
+#include <QtCore/QDataStream>
 #include <QtCore/QIODevice>
 #include <QtCore/QString>
 #include <QtCore/QVariant>
