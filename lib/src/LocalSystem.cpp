@@ -2,7 +2,7 @@
  * LocalSystem.cpp - namespace LocalSystem, providing an interface for
  *				   transparent usage of operating-system-specific functions
  *
- * Copyright (c) 2006-2012 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -34,6 +34,8 @@
 #ifdef ITALC_BUILD_WIN32
 
 #include <QtCore/QLibrary>
+#include <QtGui/QGuiApplication>
+#include <qpa/qplatformnativeinterface.h>
 
 #include <windows.h>
 #include <shlobj.h>
@@ -1165,15 +1167,46 @@ BOOL enablePrivilege( LPCTSTR lpszPrivilegeName, BOOL bEnable )
 #endif
 
 
-
-void activateWindow( QWidget * _w )
-{
-	_w->activateWindow();
-	_w->raise();
 #ifdef ITALC_BUILD_WIN32
-	SetWindowPos( _w->winId(), HWND_TOPMOST, 0, 0, 0, 0,
+static QWindow* windowForWidget( const QWidget* widget )
+{
+	QWindow* window = widget->windowHandle();
+	if( window )
+	{
+		return window;
+	}
+
+	const QWidget* nativeParent = widget->nativeParentWidget();
+	if( nativeParent )
+	{
+		return nativeParent->windowHandle();
+	}
+
+	return 0;
+}
+
+
+HWND getHWNDForWidget(const QWidget* widget )
+{
+	QWindow* window = windowForWidget( widget );
+	if( window )
+	{
+		QPlatformNativeInterface* interfacep = QGuiApplication::platformNativeInterface();
+		return static_cast<HWND>( interfacep->nativeResourceForWindow( QByteArrayLiteral( "handle" ), window ) );
+	}
+	return 0;
+}
+#endif
+
+
+void activateWindow( QWidget* w )
+{
+	w->activateWindow();
+	w->raise();
+#ifdef ITALC_BUILD_WIN32
+	SetWindowPos( getHWNDForWidget(w), HWND_TOPMOST, 0, 0, 0, 0,
 						SWP_NOMOVE | SWP_NOSIZE );
-	SetWindowPos( _w->winId(), HWND_NOTOPMOST, 0, 0, 0, 0,
+	SetWindowPos( getHWNDForWidget(w), HWND_NOTOPMOST, 0, 0, 0, 0,
 						SWP_NOMOVE | SWP_NOSIZE );
 #endif
 }
