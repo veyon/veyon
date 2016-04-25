@@ -1,6 +1,6 @@
-MINGW=/opt/mingw32
-export PATH=$PATH:$MINGW/bin
-export CFLAGS=""
-export CXXFLAGS="$CFLAGS"
+#MINGW=/usr/i686-w64-mingw32/
+#export PATH=$PATH:$MINGW/bin
+#export CFLAGS=""
+#export CXXFLAGS="$CFLAGS"
 cmake .. -DCMAKE_TOOLCHAIN_FILE=../cmake/modules/Win32Toolchain.cmake -DCMAKE_MODULE_PATH=`pwd`/../cmake/modules/
 
