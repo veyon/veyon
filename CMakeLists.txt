@@ -97,51 +97,13 @@ ENDFOREACH(_func ${FUNCS})
 
 # TODO: ITALC_WORDS_BIGENDIAN
 
-# check for Qt4
+# check for required Qt5 modules
 
-IF(WANT_QT5)
-    SET(QT5 TRUE)
-
-    FIND_PACKAGE(Qt5Core REQUIRED)
-    FIND_PACKAGE(Qt5Gui REQUIRED)
-    FIND_PACKAGE(Qt5Widgets REQUIRED)
-    FIND_PACKAGE(Qt5Xml REQUIRED)
-    FIND_PACKAGE(Qt5Network REQUIRED)
-
-
-ELSE()
-    SET(QT5 FALSE)
-
-	SET(QT_MIN_VERSION "4.6.0")
-	FIND_PACKAGE(Qt4 REQUIRED)
-	SET(QT_USE_QTXML 1)
-	SET(QT_USE_QTNETWORK 1)
-	IF(WIN32)
-		SET(QT_QM_RCC "<!DOCTYPE RCC><RCC version=\"1.0\"><qresource>")
-		FILE(GLOB QT_QM ${MINGW_PREFIX}/share/qt4/translations/qt_*.qm)
-		FOREACH(f ${QT_QM})
-			STRING(REGEX MATCH ".*qt_help.*" TMP "${f}")
-			IF(NOT TMP)
-				STRING(REPLACE "${MINGW_PREFIX}/share/qt4/translations/" "" fa "${f}")
-				SET(QT_QM_RCC "${QT_QM_RCC}<file alias=\"${fa}\">${f}</file>")
-			ENDIF()
-		ENDFOREACH()
-		SET(QT_QM_RCC "${QT_QM_RCC}</qresource></RCC>")
-		FILE(WRITE ${CMAKE_CURRENT_BINARY_DIR}/lib/qt_qm.qrc "${QT_QM_RCC}")
-	ELSE()
-		EXEC_PROGRAM(${QT_QMAKE_EXECUTABLE} ARGS "-query QT_INSTALL_TRANSLATIONS" OUTPUT_VARIABLE QT_TRANSLATIONS_DIR)
-		IF(EXISTS "${QT_TRANSLATIONS_DIR}")
-			MESSAGE("-- Found Qt translations in ${QT_TRANSLATIONS_DIR}")
-			ADD_DEFINITIONS(-D'QT_TRANSLATIONS_DIR="${QT_TRANSLATIONS_DIR}"')
-		ENDIF(EXISTS "${QT_TRANSLATIONS_DIR}")
-	ENDIF()
-
-	IF(NOT WIN32)
-		STRING(REPLACE "-DQT_DLL" "" QT_DEFINITIONS "${QT_DEFINITIONS}")
-	ENDIF(NOT WIN32)
-	INCLUDE(${QT_USE_FILE})
-ENDIF()
-
+FIND_PACKAGE(Qt5Core REQUIRED)
+FIND_PACKAGE(Qt5Gui REQUIRED)
+FIND_PACKAGE(Qt5Widgets REQUIRED)
+FIND_PACKAGE(Qt5Xml REQUIRED)
+FIND_PACKAGE(Qt5Network REQUIRED)
 
 
 # find libraries
@@ -283,7 +245,7 @@ ADD_CUSTOM_TARGET(dist
 			COMMAND mkdir -p ${TMP}
 			COMMAND cp AUTHORS build_mingw* ChangeLog CMakeLists.txt COPYING INSTALL italcconfig.h.in italc.spec.in iTALC.nsi.in README* TODO ${TMP}
 			COMMAND cp -r cmake contrib doc lib ica ima imc nsis ${TMP}
-			COMMAND rm -rf `find ${TMP} -type d -name ".svn"`  `find ${TMP} -name cmake_install.cmake` `find ${TMP} -name Makefile` `find ${TMP} -type d -name CMakeFiles` ${TMP}/CMakeCache.txt `find ${TMP} -name "*.depends"` ${TMP}/ima/data/italc ${TMP}/ima/data/italc.desktop
+			COMMAND rm -rf `find ${TMP} -type d -name ".git"` `find ${TMP} -name cmake_install.cmake` `find ${TMP} -name Makefile` `find ${TMP} -type d -name CMakeFiles` ${TMP}/CMakeCache.txt `find ${TMP} -name "*.depends"` ${TMP}/ima/data/italc ${TMP}/ima/data/italc.desktop
 			COMMAND tar cjf italc-${VERSION}.tar.bz2 ${TMP}
 			COMMAND rm -rf ${TMP})
 
