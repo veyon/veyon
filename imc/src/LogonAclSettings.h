@@ -1,7 +1,7 @@
 /*
  * LogonAclSettings.h - helper class for reading and setting logon ACLs
  *
- * Copyright (c) 2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2010-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -83,7 +83,7 @@ public:
 			return;
 		}
 
-		QByteArray d = QByteArray::fromBase64( base64ACL.toAscii() );
+		QByteArray d = QByteArray::fromBase64( base64ACL.toLatin1() );
 		HKEY hk = NULL;
 		if( RegOpenKeyEx( HKEY_LOCAL_MACHINE,
 							"Software\\iTALC Solutions\\iTALC\\Authentication",
