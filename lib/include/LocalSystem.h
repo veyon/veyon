@@ -191,6 +191,7 @@ namespace LocalSystem
 
 #ifdef ITALC_BUILD_WIN32
 	BOOL enablePrivilege( LPCTSTR lpszPrivilegeName, BOOL bEnable );
+	HWND getHWNDForWidget( const QWidget* widget );
 #endif
 
 	void activateWindow( QWidget * _window );
