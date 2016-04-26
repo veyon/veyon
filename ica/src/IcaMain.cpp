@@ -1,7 +1,7 @@
 /*
  * IcaMain.cpp - main file for ICA (iTALC Client Application)
  *
- * Copyright (c) 2006-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -26,6 +26,7 @@
 
 #include <QtCore/QProcess>
 #include <QApplication>
+#include <QAbstractNativeEventFilter>
 #include <QtNetwork/QHostInfo>
 
 #include "WindowsService.h"
@@ -47,21 +48,29 @@
 #ifdef ITALC_BUILD_WIN32
 static HANDLE hShutdownEvent = NULL;
 
-// event-filter which makes ICA recognize logoff events etc.
-bool eventFilter( void *msg, long *result )
+// event filter which makes ICA recognize logoff events etc.
+class LogoffEventFilter : public QAbstractNativeEventFilter
 {
-	DWORD winMsg = ( ( MSG *) msg )->message;
-
-	if( winMsg == WM_QUERYENDSESSION )
+public:
+	virtual bool nativeEventFilter( const QByteArray& eventType, void *message, long *result)
 	{
-		ilog( Info, "Got WM_QUERYENDSESSION - initiating server shutdown" );
+		Q_UNUSED(eventType);
+		Q_UNUSED(result);
 
-		// tell UltraVNC server to quit
-		SetEvent( hShutdownEvent );
+		DWORD winMsg = ( ( MSG *) message )->message;
+
+		if( winMsg == WM_QUERYENDSESSION )
+		{
+			ilog( Info, "Got WM_QUERYENDSESSION - initiating server shutdown" );
+
+			// tell UltraVNC server to quit
+			SetEvent( hShutdownEvent );
+		}
+
+		return false;
 	}
 
-	return false;
-}
+};
 
 #endif
 
@@ -177,7 +186,10 @@ static int runCoreServer( int argc, char **argv )
 			return -1;
 		}
 	}
-	app.setEventFilter( eventFilter );
+
+	LogoffEventFilter eventFilter;
+
+	app.installNativeEventFilter( &eventFilter );
 #endif
 
 	ItalcCoreServer coreServer;
