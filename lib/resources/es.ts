@@ -1036,7 +1036,7 @@ La parte pública de la clave se utiliza en los equipos cliente para verificar q
     </message>
     <message>
         <source>Fullscreen Demo</source>
-        <translation>Fullscreen Demo</translation>
+        <translation>Demo en Pantalla</translation>
     </message>
     <message>
         <source>Stop Demo</source>
@@ -1052,7 +1052,7 @@ La parte pública de la clave se utiliza en los equipos cliente para verificar q
     </message>
     <message>
         <source>Window Demo</source>
-        <translation>Window Demo</translation>
+        <translation>Demo en Ventana</translation>
     </message>
     <message>
         <source>In this mode your screen being displayed in a window on all shown computers. The users are able to switch to other windows and thus can continue to work.</source>
