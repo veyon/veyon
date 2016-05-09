@@ -29,9 +29,8 @@
 If you&apos;re interested in translating iTALC into your local or another language or want to improve an existing translation, please contact an iTALC developer!</source>
         <translation>Traducción realizada por 
 
-José Antonio Muñoz Jiménez (basándose en traducciones previas)
-(jamj2000 at gmail dot com)
-
+José Antonio Muñoz Jiménez &lt;jamj2000 at gmail dot com&gt;
+(basándose en traducciones previas)
 
 Si deseas mejorar la traducción actual, por favor, ¡contacta con un desarrollador de iTALC!</translation>
     </message>
@@ -1312,7 +1311,7 @@ Si el error no es reproducible, omita el paso 1) - 3).</translation>
 &lt;br/&gt;
 &lt;br/&gt;
 Note: if the bug involves both a master and client computer, attach bug report archives for both computers.</source>
-        <translation>Visite el&lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;amp;atid=724375&quot;&gt;seguimiento de errores de iTALC&lt;/a&gt;, inicie un nuevo error, describa lo que hizo en el paso 3) y adjunte el archivo que guardo en el paso 4).&lt;/p&gt;
+        <translation>Visite el &lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;amp;atid=724375&quot;&gt;seguimiento de errores de iTALC&lt;/a&gt;, inicie un nuevo error, describa lo que hizo en el paso 3) y adjunte el archivo que guardo en el paso 4).&lt;/p&gt;
 &lt;br/&gt;
 &lt;br/&gt;
 Nota: si el error implica a la vez a un equipo maestro y a uno cliente, adjuntar archivos de informe de errores para ambos equipos.</translation>
@@ -1431,7 +1430,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>The snapshot-workspace is a very useful tool. It let&apos;s you manage the snapshots you made.</source>
-        <translation>El zona de Capturas es una herramienta muy útil. Le permite administrar las capturas que hace.</translation>
+        <translation>La zona de Capturas es una herramienta muy útil. Le permite administrar las capturas que hace.</translation>
     </message>
     <message>
         <source>Of course you can configure iTALC. This is usually done using the configuration-workspace.</source>
