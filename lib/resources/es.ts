@@ -1020,11 +1020,11 @@ La parte pública de la clave se utiliza en los equipos cliente para verificar q
     </message>
     <message>
         <source>Overview mode</source>
-        <translation>Modo resumen</translation>
+        <translation>Modo ayuda</translation>
     </message>
     <message>
         <source>Overview</source>
-        <translation>Resumen</translation>
+        <translation>Ayuda</translation>
     </message>
     <message>
         <source>This is the default mode in iTALC and allows you to have an overview over all visible computers. Also click on this button for unlocking locked workstations or for leaving demo-mode.</source>
@@ -1044,7 +1044,7 @@ La parte pública de la clave se utiliza en los equipos cliente para verificar q
     </message>
     <message>
         <source>In this mode your screen is being displayed on all shown computers. Furthermore the users aren&apos;t able to do something else as all input devices are locked in this mode.</source>
-        <translation>En este modo tu pantalla se verá en una ventana en todos los equipos visibles. Además los usuarios no son capaces de hacer nada más dado que todos los dispositivos de entrada son bloqueados en este modo.</translation>
+        <translation>En este modo tu pantalla se verá a pantalla completa en todos los equipos visibles. Además los usuarios no son capaces de hacer nada más dado que todos los dispositivos de entrada son bloqueados en este modo.</translation>
     </message>
     <message>
         <source>Window demo</source>
@@ -1445,7 +1445,7 @@ p, li { white-space: pre-wrap; }
     <name>OverviewWidget</name>
     <message>
         <source>Overview</source>
-        <translation>Resumen</translation>
+        <translation>Ayuda</translation>
     </message>
     <message>
         <source>Some basic information on iTALC and how to use it.</source>
@@ -1718,7 +1718,7 @@ p, li { white-space: pre-wrap; }
     <name>clientMenu</name>
     <message>
         <source>Overview</source>
-        <translation>Resumen</translation>
+        <translation>Ayuda</translation>
     </message>
     <message>
         <source>Fullscreen demo</source>
