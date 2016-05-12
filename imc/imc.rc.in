@@ -2,7 +2,7 @@ imcicon ICON Resources/imc.ico
 #include <windows.h>
 
 VS_VERSION_INFO	VERSIONINFO
-  FILEVERSION	2,0,2,0
+  FILEVERSION	2,1,0,0
   FILEFLAGSMASK VS_FFI_FILEFLAGSMASK
   FILEOS	VOS_NT_WINDOWS32
   FILETYPE	VFT_APP
@@ -17,7 +17,7 @@ BEGIN
       VALUE "CompanyName",	"iTALC Solutions\0"
       VALUE "FileDescription",	"iTALC Management Console\0"
       VALUE "FileVersion",	"@PACKAGE_VERSION@\0"
-      VALUE "LegalCopyright",	"Copyright (c) 2010-2014 Tobias Doerffel\0"
+      VALUE "LegalCopyright",	"Copyright (c) 2010-2016 Tobias Doerffel\0"
       VALUE "OriginalFilename",	"imc.exe\0"
       VALUE "ProductName",	"iTALC\0"
       VALUE "ProductVersion",	"@PACKAGE_VERSION@\0"
