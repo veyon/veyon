@@ -22,11 +22,10 @@ and continue with "Install iTALC".
 
 Requirements:
 
-- libqt4-dev and qt4-dev-tools (Debian-based distributions) or qt4-devel
-  (Fedora etc.)
+- qtbase5-dev and qtbase5-dev-tools (Debian-based distributions)
 - xorg-dev or similiar
 - libxtst-dev
-- libjpeg62-dev/libjpeg-devel
+- libjpeg-dev/libjpeg-devel
 - zlib1g-dev/zlib-devel
 - libssl-dev/openssl-devel
 - libpam0g-dev/pam-devel
