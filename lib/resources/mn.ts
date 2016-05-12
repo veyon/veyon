@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="mn_MN">
+<TS version="2.1" language="mn_MN">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -35,11 +35,11 @@ If you&apos;re interested in translating iTALC into your local or another langua
         <source>License</source>
         <translation>Лиценз</translation>
     </message>
-    <message utf8="true">
+    <message>
         <source>iTALC - Intelligent Teaching And Learning with Computers
 
-Copyright © 2004-2011 Tobias Doerffel / iTALC Solutions</source>
-        <translation></translation>
+Copyright © 2004-2013 Tobias Doerffel / iTALC Solutions</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -449,6 +449,106 @@ p, li { white-space: pre-wrap; }
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;Please note, that some changes won&apos;t take effect until you restart iTALC.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;Та iTALC дахин эхлүүлэх хүртэл бүх өөрчлөлтүүд явагдах юм.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
+    <message>
+        <source>Language:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>System default</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>ar - العربية</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>cs - Česky</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>de - Deutsch</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>el - Ελληνικά</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>es - Español</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>fi - Suomi</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>fr - Français</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>he - עִבְרִית</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>hu - Magyar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>it - Italiano</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>nl - Nederlands</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>nn - Norsk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>pl - Polski</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>pt_br - Brasileiro</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>pt_pt - Português</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>ru - Русский</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>sk - Slovenský</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>sl - Slovenčina</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>sv - Svenska</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>tr - Türkçe</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>uk - Українська</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>zh_cn - 简体字</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>zh_tw - 簡體字</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConfigWidget</name>
@@ -607,11 +707,11 @@ The public key part is used on the client computers to verify that any incoming 
         <source>The following actions will be taken:</source>
         <translation>Дараах үйлдлүүдийг авч болно:</translation>
     </message>
-    <message utf8="true">
+    <message>
         <source>• Create new access keys</source>
         <translation>• Нэвтрэх түлхүүр үүсгэх</translation>
     </message>
-    <message utf8="true">
+    <message>
         <source>• Import public access key from</source>
         <translation>• Нийтийн нэвтрэх түлхүүрийг оруулах</translation>
     </message>
@@ -619,15 +719,15 @@ The public key part is used on the client computers to verify that any incoming 
         <source>&lt;unknown&gt;</source>
         <translation>&lt;Үл-мэдэгдэх&gt;</translation>
     </message>
-    <message utf8="true">
+    <message>
         <source>• Write access key(s) to</source>
         <translation>• Нэвтрэх түлхүүр бичих</translation>
     </message>
-    <message utf8="true">
+    <message>
         <source>• Export public key to</source>
         <translation>•  Нийтийн түлхүүрийг гаргах -&gt;</translation>
     </message>
-    <message utf8="true">
+    <message>
         <source>• Configure for user role</source>
         <translation>• Хэрэглэгчийн үүргийг тохируулах</translation>
     </message>
@@ -854,10 +954,6 @@ The public key part is used on the client computers to verify that any incoming 
     <message>
         <source>Demo server port</source>
         <translation>Демо серверийн порт</translation>
-    </message>
-    <message>
-        <source>Enable filesirewall exception</source>
-        <translation>Онцгой хамгаалалтыг идэвхжүүлэх</translation>
     </message>
     <message>
         <source>Configuration files</source>
@@ -1400,6 +1496,10 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <message>
         <source>Poll full screen (leave this enabled per default)</source>
         <translation>Бүтэн дэлгэцээрх санал асуулга(үүнийг идэвхтэйгээр орхих хэрэгтэй)</translation>
+    </message>
+    <message>
+        <source>Enable firewall exception</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

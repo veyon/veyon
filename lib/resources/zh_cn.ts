@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="zh_CN">
+<TS version="2.1" language="zh_CN">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -35,7 +35,7 @@ If you&apos;re interested in translating iTALC into your local or another langua
         <source>License</source>
         <translation>许可</translation>
     </message>
-    <message utf8="true">
+    <message>
         <source>iTALC - Intelligent Teaching And Learning with Computers
 
 Copyright © 2004-2013 Tobias Doerffel / iTALC Solutions</source>
@@ -459,11 +459,11 @@ p, li { white-space: pre-wrap; }
         <source>System default</source>
         <translation type="unfinished"></translation>
     </message>
-    <message utf8="true">
+    <message>
         <source>ar - العربية</source>
         <translation type="unfinished"></translation>
     </message>
-    <message utf8="true">
+    <message>
         <source>cs - Česky</source>
         <translation type="unfinished"></translation>
     </message>
@@ -471,11 +471,11 @@ p, li { white-space: pre-wrap; }
         <source>de - Deutsch</source>
         <translation type="unfinished"></translation>
     </message>
-    <message utf8="true">
+    <message>
         <source>el - Ελληνικά</source>
         <translation type="unfinished"></translation>
     </message>
-    <message utf8="true">
+    <message>
         <source>es - Español</source>
         <translation type="unfinished"></translation>
     </message>
@@ -483,11 +483,11 @@ p, li { white-space: pre-wrap; }
         <source>fi - Suomi</source>
         <translation type="unfinished"></translation>
     </message>
-    <message utf8="true">
+    <message>
         <source>fr - Français</source>
         <translation type="unfinished"></translation>
     </message>
-    <message utf8="true">
+    <message>
         <source>he - עִבְרִית</source>
         <translation type="unfinished"></translation>
     </message>
@@ -515,19 +515,19 @@ p, li { white-space: pre-wrap; }
         <source>pt_br - Brasileiro</source>
         <translation type="unfinished"></translation>
     </message>
-    <message utf8="true">
+    <message>
         <source>pt_pt - Português</source>
         <translation type="unfinished"></translation>
     </message>
-    <message utf8="true">
+    <message>
         <source>ru - Русский</source>
         <translation type="unfinished"></translation>
     </message>
-    <message utf8="true">
+    <message>
         <source>sk - Slovenský</source>
         <translation type="unfinished"></translation>
     </message>
-    <message utf8="true">
+    <message>
         <source>sl - Slovenčina</source>
         <translation type="unfinished"></translation>
     </message>
@@ -535,19 +535,19 @@ p, li { white-space: pre-wrap; }
         <source>sv - Svenska</source>
         <translation type="unfinished"></translation>
     </message>
-    <message utf8="true">
+    <message>
         <source>tr - Türkçe</source>
         <translation type="unfinished"></translation>
     </message>
-    <message utf8="true">
+    <message>
         <source>uk - Українська</source>
         <translation type="unfinished"></translation>
     </message>
-    <message utf8="true">
+    <message>
         <source>zh_cn - 简体字</source>
         <translation type="unfinished"></translation>
     </message>
-    <message utf8="true">
+    <message>
         <source>zh_tw - 簡體字</source>
         <translation type="unfinished"></translation>
     </message>
@@ -709,11 +709,11 @@ The public key part is used on the client computers to verify that any incoming 
         <source>The following actions will be taken:</source>
         <translation>将要执行下列操作：</translation>
     </message>
-    <message utf8="true">
+    <message>
         <source>• Create new access keys</source>
         <translation>• 创建新密钥</translation>
     </message>
-    <message utf8="true">
+    <message>
         <source>• Import public access key from</source>
         <translation>• 从这里导入公钥</translation>
     </message>
@@ -721,15 +721,15 @@ The public key part is used on the client computers to verify that any incoming 
         <source>&lt;unknown&gt;</source>
         <translation>&lt;未知&gt;</translation>
     </message>
-    <message utf8="true">
+    <message>
         <source>• Write access key(s) to</source>
         <translation>• 密钥保存到</translation>
     </message>
-    <message utf8="true">
+    <message>
         <source>• Export public key to</source>
         <translation>• 导出公钥到</translation>
     </message>
-    <message utf8="true">
+    <message>
         <source>• Configure for user role</source>
         <translation>• 选择用户角色</translation>
     </message>
