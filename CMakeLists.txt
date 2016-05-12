@@ -15,7 +15,7 @@ INCLUDE(CheckCSourceCompiles)
 INCLUDE(CheckIncludeFiles)
 INCLUDE(CheckFunctionExists)
 INCLUDE(FindPkgConfig)
-INCLUDE(Qt4Hacks)
+#INCLUDE(Qt4Hacks)
 
 SET(VERSION_MAJOR "2")
 SET(VERSION_MINOR "0")
