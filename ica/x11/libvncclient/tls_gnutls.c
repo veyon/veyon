@@ -480,6 +480,14 @@ WriteToTLS(rfbClient* client, char *buf, unsigned int n)
   unsigned int offset = 0;
   ssize_t ret;
 
+  if (client->LockWriteToTLS)
+  {
+    if (!client->LockWriteToTLS(client))
+    {
+      rfbClientLog("Callback to get lock in WriteToTLS() failed\n");
+      return -1;
+    }
+  }
   while (offset < n)
   {
     ret = gnutls_record_send((gnutls_session_t)client->tlsSession, buf+offset, (size_t)(n-offset));
@@ -488,9 +496,22 @@ WriteToTLS(rfbClient* client, char *buf, unsigned int n)
     {
       if (ret == GNUTLS_E_AGAIN || ret == GNUTLS_E_INTERRUPTED) continue;
       rfbClientLog("Error writing to TLS: %s.\n", gnutls_strerror(ret));
+      if (client->UnlockWriteToTLS)
+      {
+        if (!client->UnlockWriteToTLS(client))
+          rfbClientLog("Callback to unlock WriteToTLS() failed\n");
+      }
       return -1;
     }
     offset += (unsigned int)ret;
+  }
+  if (client->UnlockWriteToTLS)
+  {
+    if (!client->UnlockWriteToTLS(client))
+    {
+      rfbClientLog("Callback to unlock WriteToTLS() failed\n");
+      return -1;
+    }
   }
   return offset;
 }

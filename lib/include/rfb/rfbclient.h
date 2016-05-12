@@ -31,6 +31,10 @@
  * @file rfbclient.h
  */
 
+#ifdef WIN32
+#define WIN32_LEAN_AND_MEAN /* Prevent loading any Winsock 1.x headers from windows.h */
+#endif
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -169,9 +173,17 @@ typedef rfbCredential* (*GetCredentialProc)(struct _rfbClient* client, int crede
 typedef rfbBool (*MallocFrameBufferProc)(struct _rfbClient* client);
 typedef void (*GotXCutTextProc)(struct _rfbClient* client, const char *text, int textlen);
 typedef void (*BellProc)(struct _rfbClient* client);
-
+/**
+    Called when a cursor shape update was received from the server. The decoded cursor shape
+    will be in client->rcSource. It's up to the application to do something with this, e.g. draw
+    into a viewer's window. If you want the server to draw the cursor into the framebuffer, be
+    careful not to announce remote cursor support, i.e. not include rfbEncodingXCursor or
+    rfbEncodingRichCursor in SetFormatAndEncodings().
+*/
 typedef void (*GotCursorShapeProc)(struct _rfbClient* client, int xhot, int yhot, int width, int height, int bytesPerPixel);
 typedef void (*GotCopyRectProc)(struct _rfbClient* client, int src_x, int src_y, int w, int h, int dest_x, int dest_y);
+typedef rfbBool (*LockWriteToTLSProc)(struct _rfbClient* client);
+typedef rfbBool (*UnlockWriteToTLSProc)(struct _rfbClient* client);
 
 typedef struct _rfbClient {
 	uint8_t* frameBuffer;
@@ -266,6 +278,7 @@ typedef struct _rfbClient {
 
 
 	/* cursor.c */
+	/** Holds cursor shape data when received from server. */
 	uint8_t *rcSource, *rcMask;
 
 	/** private data pointer */
@@ -350,10 +363,19 @@ typedef struct _rfbClient {
         /* Output Window ID. When set, client application enables libvncclient to perform direct rendering in its window */
         unsigned long outputWindow;
 
+	/** Hooks for optional protection WriteToTLS() by mutex */
+	LockWriteToTLSProc LockWriteToTLS;
+	UnlockWriteToTLSProc UnlockWriteToTLS;
+
 } rfbClient;
 
 /* cursor.c */
-
+/**
+ * Handles XCursor and RichCursor shape updates from the server.
+ * We emulate cursor operating on the frame buffer (that is
+ * why we call it "software cursor"). This decodes the received cursor
+ * shape and hands it over to GotCursorShapeProc, if set.
+ */
 extern rfbBool HandleCursorShape(rfbClient* client,int xhot, int yhot, int width, int height, uint32_t enc);
 
 /* listen.c */

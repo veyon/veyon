@@ -61,6 +61,10 @@
 #endif
 #include "tls.h"
 
+#ifdef _MSC_VER
+#  define snprintf _snprintf
+#endif
+
 void PrintInHex(char *buf, int len);
 
 rfbBool errorMessageOnReadFailure = TRUE;
@@ -88,6 +92,13 @@ ReadFromRFBServer(rfbClient* client, char *out, unsigned int n)
 	int nn=n;
 	rfbClientLog("ReadFromRFBServer %d bytes\n",n);
 #endif
+
+  /* Handle attempts to write to NULL out buffer that might occur
+     when an outside malloc() fails. For instance, memcpy() to NULL
+     results in undefined behaviour and probably memory corruption.*/
+  if(!out)
+    return FALSE;
+
   if (client->serverPort==-1) {
     /* vncrec playing */
     rfbVNCRec* rec = client->vncRec;
@@ -109,7 +120,7 @@ ReadFromRFBServer(rfbClient* client, char *out, unsigned int n)
 	  diff.tv_sec--;
 	  diff.tv_usec+=1000000;
         }
-#ifndef __MINGW32__
+#ifndef WIN32
         sleep (diff.tv_sec);
         usleep (diff.tv_usec);
 #else
@@ -556,7 +567,7 @@ ListenAtTcpPortAndAddress(int port, const char *address)
     }
 
 #ifdef IPV6_V6ONLY
-    /* we have seperate IPv4 and IPv6 sockets since some OS's do not support dual binding */
+    /* we have separate IPv4 and IPv6 sockets since some OS's do not support dual binding */
     if (p->ai_family == AF_INET6 && setsockopt(sock, IPPROTO_IPV6, IPV6_V6ONLY, (char *)&one, sizeof(one)) < 0) {
       rfbClientErr("ListenAtTcpPortAndAddress: error in setsockopt IPV6_V6ONLY: %s\n", strerror(errno));
       close(sock);

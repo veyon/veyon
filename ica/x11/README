@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/LibVNC/libvncserver.svg?branch=master)](https://travis-ci.org/LibVNC/libvncserver)
+
 LibVNCServer: A library for easy implementation of a VNC server.
 Copyright (C) 2001-2003 Johannes E. Schindelin
 

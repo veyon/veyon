@@ -300,7 +300,7 @@ rfbSendRectEncodingZlib(rfbClientPtr cl,
             return FALSE;
         }
 
-        /* Technically, flushing the buffer here is not extrememly
+        /* Technically, flushing the buffer here is not extremely
          * efficient.  However, this improves the overall throughput
          * of the system over very slow networks.  By flushing
          * the buffer with every maximum size zlib rectangle, we

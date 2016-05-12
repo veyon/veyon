@@ -23,7 +23,7 @@
 
 #include <string.h>
 #include "md5.h"
-#include "sha1.h"
+#include "sha.h"
 #include "rfbcrypto.h"
 
 void digestmd5(const struct iovec *iov, int iovcnt, void *dest)

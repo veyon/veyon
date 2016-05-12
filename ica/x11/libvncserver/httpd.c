@@ -43,8 +43,15 @@
 #include <errno.h>
 
 #ifdef WIN32
-#include <winsock.h>
+#include <io.h>
+#include <winsock2.h>
+#include <ws2tcpip.h>
 #define close closesocket
+#if defined(_MSC_VER)
+#include <BaseTsd.h> /* For the missing ssize_t */
+#define ssize_t SSIZE_T
+#define read _read /* Prevent POSIX deprecation warnings */
+#endif
 #else
 #ifdef LIBVNCSERVER_HAVE_SYS_TIME_H
 #include <sys/time.h>
@@ -185,7 +192,7 @@ rfbHttpCheckFds(rfbScreenInfoPtr rfbScreen)
     }
     tv.tv_sec = 0;
     tv.tv_usec = 0;
-    nfds = select(max(rfbScreen->httpListen6Sock, max(rfbScreen->httpSock,rfbScreen->httpListenSock)) + 1, &fds, NULL, NULL, &tv);
+    nfds = select(rfbMax(rfbScreen->httpListen6Sock, rfbMax(rfbScreen->httpSock,rfbScreen->httpListenSock)) + 1, &fds, NULL, NULL, &tv);
     if (nfds == 0) {
 	return;
     }
@@ -392,11 +399,13 @@ httpProcessInput(rfbScreenInfoPtr rfbScreen)
 
     getpeername(rfbScreen->httpSock, (struct sockaddr *)&addr, &addrlen);
 #ifdef LIBVNCSERVER_IPv6
-    char host[1024];
-    if(getnameinfo((struct sockaddr*)&addr, addrlen, host, sizeof(host), NULL, 0, NI_NUMERICHOST) != 0) {
-      rfbLogPerror("httpProcessInput: error in getnameinfo");
+    {
+        char host[1024];
+        if(getnameinfo((struct sockaddr*)&addr, addrlen, host, sizeof(host), NULL, 0, NI_NUMERICHOST) != 0) {
+            rfbLogPerror("httpProcessInput: error in getnameinfo");
+        }
+        rfbLog("httpd: get '%s' for %s\n", fname+1, host);
     }
-    rfbLog("httpd: get '%s' for %s\n", fname+1, host);
 #else
     rfbLog("httpd: get '%s' for %s\n", fname+1,
 	   inet_ntoa(addr.sin_addr));
@@ -414,6 +423,14 @@ httpProcessInput(rfbScreenInfoPtr rfbScreen)
        }
     }
 
+    /* Basic protection against directory traversal outside webroot */
+
+    if (strstr(fname, "..")) {
+        rfbErr("httpd: URL should not contain '..'\n");
+        rfbWriteExact(&cl, NOT_FOUND_STR, strlen(NOT_FOUND_STR));
+        httpCloseSock(rfbScreen);
+        return;
+    }
 
     /* If we were asked for '/', actually read the file index.vnc */
 

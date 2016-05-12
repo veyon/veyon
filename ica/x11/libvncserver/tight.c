@@ -163,7 +163,11 @@ void rfbTightCleanup (rfbScreenInfoPtr screen)
         tightAfterBufSize = 0;
         tightAfterBuf = NULL;
     }
-    if (j) tjDestroy(j);
+	if (j) {
+		tjDestroy(j);
+		/* Set freed resource handle to 0! */
+		j = 0;
+	}
 }
 
 
@@ -559,7 +563,7 @@ ExtendSolidArea(rfbClientPtr cl,
 /*
  * Check if a rectangle is all of the same color. If needSameColor is
  * set to non-zero, then also check that its color equals to the
- * *colorPtr value. The result is 1 if the test is successfull, and in
+ * *colorPtr value. The result is 1 if the test is successful, and in
  * that case new color will be stored in *colorPtr.
  */
 

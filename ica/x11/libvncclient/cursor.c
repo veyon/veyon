@@ -37,12 +37,6 @@
     << client->format.blueShift)
 
 
-/*********************************************************************
- * HandleCursorShape(). Support for XCursor and RichCursor shape
- * updates. We emulate cursor operating on the frame buffer (that is
- * why we call it "software cursor").
- ********************************************************************/
-
 rfbBool HandleCursorShape(rfbClient* client,int xhot, int yhot, int width, int height, uint32_t enc)
 {
   int bytesPerPixel;

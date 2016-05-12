@@ -53,7 +53,12 @@
 #endif
 #include <jpeglib.h>
 #endif
+
+#ifndef _MSC_VER
+/* Strings.h is not available in MSVC */
 #include <strings.h>
+#endif
+
 #include <stdarg.h>
 #include <time.h>
 
@@ -65,6 +70,10 @@
 #include "tls.h"
 
 #include "ItalcRfbExt.h"
+
+#ifdef _MSC_VER
+#  define snprintf _snprintf /* MSVC went straight to the underscored syntax */
+#endif
 
 /*
  * rfbClientLog prints a time-stamped message to the log file (stderr).
@@ -147,6 +156,10 @@ static void FillRectangle(rfbClient* client, int x, int y, int w, int h, uint32_
       return;
   }
 
+  if (client->frameBuffer == NULL) {
+      return;
+  }
+
 #define FILL_RECT(BPP) \
     for(j=y*client->width;j<(y+h)*client->width;j+=client->width) \
       for(i=x;i<x+w;i++) \
@@ -189,6 +202,10 @@ static void CopyRectangle(rfbClient* client, uint8_t* buffer, int x, int y, int 
 /* TODO: test */
 static void CopyRectangleFromRectangle(rfbClient* client, int src_x, int src_y, int w, int h, int dest_x, int dest_y) {
   int i,j;
+
+  if (client->frameBuffer == NULL) {
+      return;
+  }
 
   if (client->frameBuffer == NULL) {
       return;
@@ -273,9 +290,6 @@ static rfbBool HandleZRLE24(rfbClient* client, int rx, int ry, int rw, int rh);
 static rfbBool HandleZRLE24Up(rfbClient* client, int rx, int ry, int rw, int rh);
 static rfbBool HandleZRLE24Down(rfbClient* client, int rx, int ry, int rw, int rh);
 static rfbBool HandleZRLE32(rfbClient* client, int rx, int ry, int rw, int rh);
-#endif
-#ifdef LIBVNCSERVER_CONFIG_LIBVA
-static rfbBool HandleH264 (rfbClient* client, int rx, int ry, int rw, int rh);
 #endif
 
 /*
@@ -860,6 +874,16 @@ HandleARDAuth(rfbClient *client)
   rfbCredential *cred = NULL;
   rfbBool result = FALSE;
 
+  if (!gcry_control(GCRYCTL_INITIALIZATION_FINISHED_P))
+  {
+    /* Application did not initialize gcrypt, so we should */
+    if (!gcry_check_version(GCRYPT_VERSION))
+    {
+      /* Older version of libgcrypt is installed on system than compiled against */
+      rfbClientLog("libgcrypt version mismatch.\n");
+    }
+  }
+
   while (1)
   {
     if (!ReadFromRFBServer(client, (char *)gen, 2))
@@ -1266,7 +1290,8 @@ InitialiseRFBConnection(rfbClient* client)
   client->si.format.blueMax = rfbClientSwap16IfLE(client->si.format.blueMax);
   client->si.nameLength = rfbClientSwap32IfLE(client->si.nameLength);
 
-  client->desktopName = malloc(client->si.nameLength + 1);
+  /* To guard against integer wrap-around, si.nameLength is cast to 64 bit */
+  client->desktopName = malloc((uint64_t)client->si.nameLength + 1);
   if (!client->desktopName) {
     rfbClientLog("Error allocating memory for desktop name, %lu bytes\n",
             (unsigned long)client->si.nameLength);
@@ -1378,10 +1403,6 @@ SetFormatAndEncodings(rfbClient* client)
 	encs[se->nEncodings++] = rfbClientSwap32IfLE(rfbEncodingCoRRE);
       } else if (strncasecmp(encStr,"rre",encStrLen) == 0) {
 	encs[se->nEncodings++] = rfbClientSwap32IfLE(rfbEncodingRRE);
-#ifdef LIBVNCSERVER_CONFIG_LIBVA
-      } else if (strncasecmp(encStr,"h264",encStrLen) == 0) {
-	encs[se->nEncodings++] = rfbClientSwap32IfLE(rfbEncodingH264);
-#endif
       } else {
 	rfbClientLog("Unknown encoding '%.*s'\n",encStrLen,encStr);
       }
@@ -1450,10 +1471,6 @@ SetFormatAndEncodings(rfbClient* client)
       encs[se->nEncodings++] = rfbClientSwap32IfLE(client->appData.qualityLevel +
 					  rfbEncodingQualityLevel0);
     }
-#ifdef LIBVNCSERVER_CONFIG_LIBVA
-    encs[se->nEncodings++] = rfbClientSwap32IfLE(rfbEncodingH264);
-    rfbClientLog("h264 encoding added\n");
-#endif
   }
 
 
@@ -1497,7 +1514,8 @@ SetFormatAndEncodings(rfbClient* client)
     if(e->encodings) {
       int* enc;
       for(enc = e->encodings; *enc; enc++)
-	encs[se->nEncodings++] = rfbClientSwap32IfLE(*enc);
+        if(se->nEncodings < MAX_ENCODINGS)
+          encs[se->nEncodings++] = rfbClientSwap32IfLE(*enc);
     }
 
   len = sz_rfbSetEncodingsMsg + se->nEncodings * 4;
@@ -1955,7 +1973,10 @@ HandleRFBServerMessage(rfbClient* client)
 	int y=rect.r.y, h=rect.r.h;
 
 	bytesPerLine = rect.r.w * client->format.bitsPerPixel / 8;
-	linesToRead = RFB_BUFFER_SIZE / bytesPerLine;
+	/* RealVNC 4.x-5.x on OSX can induce bytesPerLine==0, 
+	   usually during GPU accel. */
+	/* Regardless of cause, do not divide by zero. */
+	linesToRead = bytesPerLine ? (RFB_BUFFER_SIZE / bytesPerLine) : 0;
 
 	while (h > 0) {
 	  if (linesToRead > h)
@@ -1971,7 +1992,8 @@ HandleRFBServerMessage(rfbClient* client)
 	  y += linesToRead;
 
 	}
-      } break;
+	break;
+      } 
 
       case rfbEncodingCopyRect:
       {
@@ -2177,14 +2199,6 @@ HandleRFBServerMessage(rfbClient* client)
 	break;
      }
 
-#endif
-#ifdef LIBVNCSERVER_CONFIG_LIBVA
-      case rfbEncodingH264:
-      {
-	if (!HandleH264(client, rect.r.x, rect.r.y, rect.r.w, rect.r.h))
-	  return FALSE;
-	break;
-      }
 #endif
 
       default:
@@ -2422,7 +2436,6 @@ HandleRFBServerMessage(rfbClient* client)
 #define UNCOMP -8
 #include "zrle.c"
 #undef BPP
-#include "h264.c"
 
 
 /*

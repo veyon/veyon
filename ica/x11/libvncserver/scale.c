@@ -66,6 +66,12 @@
         (double) ((int) (x)) : (double) ((int) (x) + 1) )
 #define FLOOR(x) ( (double) ((int) (x)) )
 
+static inline int pad4(int value)
+{
+    int remainder = value & 3;
+    if (!remainder) return value;
+    return value + 4 - remainder;
+}
 
 int ScaleX(rfbScreenInfoPtr from, rfbScreenInfoPtr to, int x)
 {
@@ -207,7 +213,7 @@ void rfbScaledScreenUpdateRect(rfbScreenInfoPtr screen, rfbScreenInfoPtr ptr, in
              case 2: pixel_value = *((unsigned short *)srcptr2); break;
              case 1: pixel_value = *((unsigned char *)srcptr2);  break;
              default:
-               /* fixme: endianess problem? */
+               /* fixme: endianness problem? */
                for (z = 0; z < bytesPerPixel; z++)
                  pixel_value += (srcptr2[z] << (8 * z));
                 break;
@@ -234,7 +240,7 @@ void rfbScaledScreenUpdateRect(rfbScreenInfoPtr screen, rfbScreenInfoPtr ptr, in
          case 2: *((unsigned short *)dstptr) = (unsigned short) pixel_value; break;
          case 1: *((unsigned char *)dstptr)  = (unsigned char)  pixel_value; break;
          default:
-           /* fixme: endianess problem? */
+           /* fixme: endianness problem? */
            for (z = 0; z < bytesPerPixel; z++)
              dstptr[z]=(pixel_value >> (8 * z)) & 0xff;
             break;
@@ -281,14 +287,29 @@ rfbScreenInfoPtr rfbScaledScreenAllocate(rfbClientPtr cl, int width, int height)
     ptr = malloc(sizeof(rfbScreenInfo));
     if (ptr!=NULL)
     {
+        int allocSize;
+
         /* copy *everything* (we don't use most of it, but just in case) */
         memcpy(ptr, cl->screen, sizeof(rfbScreenInfo));
+
+        /* SECURITY: make sure that no integer overflow will occur afterwards.
+         * Note: this is defensive coding, as the check should have already been
+         * performed during initial, non-scaled screen setup.
+         */
+        allocSize = pad4(width * (ptr->bitsPerPixel/8)); /* per protocol, width<2**16 and bpp<256 */
+        if (height == 0 || allocSize >= SIZE_MAX / height)
+        {
+          free(ptr);
+          return NULL; /* malloc() will allocate an incorrect buffer size - early abort */
+        }
+
+        /* Resume copy everything */
         ptr->width = width;
         ptr->height = height;
         ptr->paddedWidthInBytes = (ptr->bitsPerPixel/8)*ptr->width;
 
         /* Need to by multiples of 4 for Sparc systems */
-        ptr->paddedWidthInBytes += (ptr->paddedWidthInBytes % 4);
+        ptr->paddedWidthInBytes = pad4(ptr->paddedWidthInBytes);
 
         /* Reset the reference count to 0! */
         ptr->scaledScreenRefCount = 0;
@@ -392,7 +413,6 @@ int rfbSendNewScaleSize(rfbClientPtr cl)
         if (rfbWriteExact(cl, (char *)&pmsg, sz_rfbPalmVNCReSizeFrameBufferMsg) < 0) {
             rfbLogPerror("rfbNewClient: write");
             rfbCloseClient(cl);
-            rfbClientConnectionGone(cl);
             return FALSE;
         }
     }
@@ -407,7 +427,6 @@ int rfbSendNewScaleSize(rfbClientPtr cl)
         if (rfbWriteExact(cl, (char *)&rmsg, sz_rfbResizeFrameBufferMsg) < 0) {
             rfbLogPerror("rfbNewClient: write");
             rfbCloseClient(cl);
-            rfbClientConnectionGone(cl);
             return FALSE;
         }
     }

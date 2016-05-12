@@ -1,5 +1,5 @@
 /*
- *  This parses the command line arguments. It was seperated from main.c by 
+ *  This parses the command line arguments. It was separated from main.c by
  *  Justin Dearing <jdeari01@longisland.poly.edu>.
  */
 

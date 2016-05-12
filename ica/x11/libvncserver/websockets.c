@@ -31,9 +31,12 @@
 #endif
 
 #include <rfb/rfb.h>
-#include <resolv.h> /* __b64_ntop */
 /* errno */
 #include <errno.h>
+
+#ifndef _MSC_VER
+#include <resolv.h> /* __b64_ntop */
+#endif
 
 #ifdef LIBVNCSERVER_HAVE_ENDIAN_H
 #include <endian.h>
@@ -902,3 +905,16 @@ webSocketCheckDisconnect(rfbClientPtr cl)
     return FALSE;
 }
 
+/* returns TRUE if there is data waiting to be read in our internal buffer
+ * or if is there any pending data in the buffer of the SSL implementation
+ */
+rfbBool
+webSocketsHasDataInBuffer(rfbClientPtr cl)
+{
+    ws_ctx_t *wsctx = (ws_ctx_t *)cl->wsctx;
+
+    if (wsctx && wsctx->readbuflen)
+      return TRUE;
+
+    return (cl->sslctx && rfbssl_pending(cl) > 0);
+}

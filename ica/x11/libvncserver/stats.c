@@ -26,6 +26,10 @@
 
 #include <rfb/rfb.h>
 
+#ifdef _MSC_VER
+#define snprintf _snprintf /* Missing in MSVC */
+#endif
+
 char *messageNameServer2Client(uint32_t type, char *buf, int len);
 char *messageNameClient2Server(uint32_t type, char *buf, int len);
 char *encodingName(uint32_t enc, char *buf, int len);

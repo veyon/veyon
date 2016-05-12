@@ -550,7 +550,15 @@ clientInput(void *data)
             rfbSendFileTransferChunk(cl);
 
         if (FD_ISSET(cl->sock, &rfds) || FD_ISSET(cl->sock, &efds))
+        {
+#ifdef LIBVNCSERVER_WITH_WEBSOCKETS
+            do {
+                rfbProcessClientMessage(cl);
+            } while (webSocketsHasDataInBuffer(cl));
+#else
             rfbProcessClientMessage(cl);
+#endif
+        }
     }
 
     /* Get rid of the output thread. */
@@ -1051,7 +1059,7 @@ void rfbInitServer(rfbScreenInfoPtr screen)
 #endif
   rfbInitSockets(screen);
   rfbHttpInitSockets(screen);
-#ifndef __MINGW32__
+#ifndef WIN32
   if(screen->ignoreSIGPIPE)
     signal(SIGPIPE,SIG_IGN);
 #endif
