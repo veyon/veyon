@@ -104,6 +104,7 @@ FIND_PACKAGE(Qt5Gui REQUIRED)
 FIND_PACKAGE(Qt5Widgets REQUIRED)
 FIND_PACKAGE(Qt5Xml REQUIRED)
 FIND_PACKAGE(Qt5Network REQUIRED)
+FIND_PACKAGE(Qt5LinguistTools)
 
 
 # find libraries
@@ -218,8 +219,8 @@ FOREACH(_ts_file ${italc_LOCALES})
 	STRING(REPLACE "${CMAKE_SOURCE_DIR}/lib/resources/" "" _ts_target "${_ts_file}")
 	STRING(REPLACE ".ts" ".qm" _qm_file "${_ts_file}")
 	STRING(REPLACE ".ts" ".qm" _qm_target "${_ts_target}")
-	ADD_CUSTOM_TARGET(${_ts_target} COMMAND ${QT_LUPDATE_EXECUTABLE} -I${CMAKE_SOURCE_DIR}/lib/include -locations none -no-obsolete ${italc_SOURCES} -ts ${_ts_file})
-	ADD_CUSTOM_TARGET(${_qm_target} COMMAND ${QT_LRELEASE_EXECUTABLE} ${_ts_file} -qm ${_qm_file})
+	ADD_CUSTOM_TARGET(${_ts_target} COMMAND ${Qt5_LUPDATE_EXECUTABLE} -I${CMAKE_SOURCE_DIR}/lib/include -locations none -no-obsolete ${italc_SOURCES} -ts ${_ts_file})
+	ADD_CUSTOM_TARGET(${_qm_target} COMMAND ${Qt5_LRELEASE_EXECUTABLE} ${_ts_file} -qm ${_qm_file})
 	LIST(APPEND ts_targets "${_ts_target}")
 	LIST(APPEND qm_targets "${_qm_target}")
 ENDFOREACH(_ts_file ${italc_LOCALES})
