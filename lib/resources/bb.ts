@@ -30,7 +30,7 @@ If nei interesten in transleitiŋ iTALC intu neidè lokol or kitadè leŋgueij o
         </message>
         <message>
             <source>License</source>
-            <translation">Laisèns</translation>
+            <translation>Laisèns</translation>
         </message>
     <message utf8="true">
             <source>iTALC - Intelligent Teaching And Learning with Computers
