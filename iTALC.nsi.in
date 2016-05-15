@@ -66,12 +66,6 @@ ShowInstDetails show
 
 !insertmacro MUI_PAGE_COMPONENTS
 
-!if ${PROCESSOR}=="x86_64"
-!echo "conseguido"
-!define DLL_GCC "libgcc_s_seh-1.dll"
-!endif
-
-
 !ifdef REG_START_MENU
 !define MUI_STARTMENUPAGE_NODISABLE
 !define MUI_STARTMENUPAGE_DEFAULTFOLDER "iTALC"
