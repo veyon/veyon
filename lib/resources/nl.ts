@@ -36,7 +36,7 @@ If you&apos;re interested in translating iTALC into your local or another langua
     <message>
         <source>iTALC - Intelligent Teaching And Learning with Computers
 
-Copyright © 2004-2013 Tobias Doerffel / iTALC Solutions</source>
+Copyright © 2004-2016 Tobias Doerffel / iTALC Solutions</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -52,11 +52,11 @@ Copyright © 2004-2013 Tobias Doerffel / iTALC Solutions</source>
     </message>
     <message>
         <source>Confirm desktop access</source>
-        <translation>Bevestig desktop toegang</translation>
+        <translation>Bevestig bureaublad toegang</translation>
     </message>
     <message>
         <source>The user %1 at host %2 wants to access your desktop. Do you want to grant access?</source>
-        <translation>De gebruiker %1 op host %2 wil toegang tot uw bureaublad. Wilt u de toegang verlenen?</translation>
+        <translation>De gebruiker %1 op host %2 wil toegang tot uw bureaublad. Wilt u toegang verlenen?</translation>
     </message>
 </context>
 <context>
@@ -87,7 +87,7 @@ Copyright © 2004-2013 Tobias Doerffel / iTALC Solutions</source>
     </message>
     <message>
         <source>Show usernames</source>
-        <translation>Toon de gebruikersnamen</translation>
+        <translation>Toon gebruikersnamen</translation>
     </message>
     <message>
         <source>Use the context-menu (right mouse-button) to add/remove computers and/or classrooms.</source>
@@ -103,7 +103,7 @@ Copyright © 2004-2013 Tobias Doerffel / iTALC Solutions</source>
     </message>
     <message>
         <source>Hide teacher computers</source>
-        <translation>Verberg de leraar computers</translation>
+        <translation>Verberg leraar computers</translation>
     </message>
     <message>
         <source>Show/hide</source>
@@ -149,7 +149,7 @@ Copyright © 2004-2013 Tobias Doerffel / iTALC Solutions</source>
         <source>Could not open configuration file %1.
 You will have to add at least one classroom and computers using the classroom-manager which you&apos;ll find inside the program in the sidebar on the left side.</source>
         <translation>Kon het configuratiebestand %1 niet openen.
-Je moet ten minste één klas en computers toevoegen met het klaslokaal-manager die u&apos;ll vinden binnen het programma in de navigatiekolom aan de linkerkant.</translation>
+Je moet ten minste één klas en computers toevoegen met het klaslokaal-manager die je vindt binnen het programma in de navigatiekolom aan de linkerkant.</translation>
     </message>
     <message>
         <source>Error in configuration-file</source>
@@ -169,7 +169,7 @@ Gelieve te bewerken. Anders moet je dit bestand verwijderen.</translation>
     </message>
     <message>
         <source>Select output-file</source>
-        <translation>Selecteer het uitgang-bestand</translation>
+        <translation>Selecteer het output-bestand</translation>
     </message>
     <message>
         <source>Text files (*.txt)</source>
@@ -193,17 +193,17 @@ Gelieve te bewerken. Anders moet je dit bestand verwijderen.</translation>
     </message>
     <message>
         <source>Please enter a new name for classroom &quot;%1&quot;.</source>
-        <translation>Voer een nieuwe naam voor klaslokaal &quot;%1&quot;.</translation>
+        <translation>Voer een nieuwe naam in voor klaslokaal &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>Are you sure want to remove classroom &quot;%1&quot;?
 All computers in it will be removed as well!</source>
         <translation>Weet je zeker dat je klaslokaal &quot;%1&quot; wilt verwijderen?
-Alle andere computers zullen ook worden verwijderd!</translation>
+Alle computers daar in zullen ook worden verwijderd!</translation>
     </message>
     <message>
         <source>Missing classroom</source>
-        <translation>Ontbrekende klaslokaal</translation>
+        <translation>Ontbrekend klaslokaal</translation>
     </message>
     <message>
         <source>Before adding computers you have to create at least one classroom.
@@ -246,8 +246,8 @@ Wilt u nu een nieuw klaslokaal maken?</translation>
 <context>
     <name>ClientAction</name>
     <message>
-        <source>Are you sure want logout all users on all visible computers ?</source>
-        <translation>Weet je zeker dat je alle gebruikers uit wilt loggen op alle zichtbare computers ?</translation>
+        <source>Are you sure want logout all users on all visible computers?</source>
+        <translation>Weet je zeker dat je alle gebruikers uit wilt loggen op alle zichtbare computers?</translation>
     </message>
     <message>
         <source>Are you sure want logout all users on all selected computers ?</source>
@@ -255,7 +255,7 @@ Wilt u nu een nieuw klaslokaal maken?</translation>
     </message>
     <message>
         <source>Logout user</source>
-        <translation>Afmelden gebruiker</translation>
+        <translation>Gebruiker afmelden</translation>
     </message>
     <message>
         <source>Are you sure want to reboot all visible computers?</source>
@@ -263,7 +263,7 @@ Wilt u nu een nieuw klaslokaal maken?</translation>
     </message>
     <message>
         <source>Are you sure want to reboot all selected computers?</source>
-        <translation>Weet je zeker dat je alle zichtbare computers wilt herstarten?</translation>
+        <translation>Weet je zeker dat je alle geselecteerde computers wilt herstarten?</translation>
     </message>
     <message>
         <source>Reboot computers</source>
@@ -286,11 +286,11 @@ Wilt u nu een nieuw klaslokaal maken?</translation>
     </message>
     <message>
         <source>You specified an invalid MAC-address. Either leave the field blank or enter a valid MAC-address (use &quot;:&quot; as separator!).</source>
-        <translation>U heeft een ongeldig MAC-adres opgegeven. Of laat het veld leeg of voer een geldig MAC-adres (gebruik &quot;:&quot; als afscheider!).</translation>
+        <translation>U heeft een ongeldig MAC-adres opgegeven. Laat het veld leeg of voer een geldig MAC-adres in (gebruik &quot;:&quot; als afscheider!).</translation>
     </message>
     <message>
         <source>Client settings</source>
-        <translation>Client-instellingen</translation>
+        <translation>Client instellingen</translation>
     </message>
     <message>
         <source>IP/hostname</source>
@@ -298,7 +298,7 @@ Wilt u nu een nieuw klaslokaal maken?</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;enter an IP-address or hostname under which iTALC can reach the client (use &apos;:&apos; for specifying an optional port-number)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;voer een IP-adres of de hostnaam in waaronder iTALC de klant kan bereiken (gebruik &apos;:&apos; voor het opgeven van een optionele port-nummer)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;voer een IP-adres of hostnaam in waaronder iTALC de client kan bereiken (gebruik &apos;:&apos; voor het opgeven van een optionele port-nummer)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Name</source>
@@ -338,11 +338,11 @@ Wilt u nu een nieuw klaslokaal maken?</translation>
     </message>
     <message>
         <source>Missing IP address/hostname</source>
-        <translation>Ontbrekende IP adres/hostnaam</translation>
+        <translation>Ontbreekt IP adres/hostnaam</translation>
     </message>
     <message>
         <source>You didn&apos;t specify an IP address or hostname for the computer!</source>
-        <translation>Je heb&apos;t het IP adres of de hostnaam voor deze computer niet opgegeven!</translation>
+        <translation>Je hebt het IP adres of de hostnaam voor deze computer niet opgegeven!</translation>
     </message>
 </context>
 <context>
@@ -377,7 +377,7 @@ Wilt u nu een nieuw klaslokaal maken?</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Do not show texts on toolbar-buttons&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Do not show texts on toolbar-buttons&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Laat geen tekst op werkbalk-knoppen zien&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>No texts on toolbar-buttons</source>
@@ -395,7 +395,7 @@ p, li { white-space: pre-wrap; }
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Hier kunt u uw rol selecteren.Dit alleen veranderen als je weet wat je doet. Anders zal je niet in staat zijn om toegang te krijgen tot andere computers totdat je je oude rol hersteld.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Hier kunt u uw rol selecteren. Verander dit alleen als je weet wat je doet. Anders zal je niet in staat zijn om toegang te krijgen tot computers totdat je je oude rol hersteld.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Teacher</source>
@@ -433,15 +433,15 @@ p, li { white-space: pre-wrap; }
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Hier kunt u instellen wat er moet gebeuren als u dubbelklikt op een client-venster.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Hier kunt u instellen wat er gebeurt als u dubbelklikt op een client-venster.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Remote control</source>
-        <translation>Afstandsbediening</translation>
+        <translation>Remote Control</translation>
     </message>
     <message>
         <source>View live in fullscreen</source>
-        <translation>Live bekijken op het volledige scherm</translation>
+        <translation>Volledig scherm live bekijken</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;Please note, that some changes won&apos;t take effect until you restart iTALC.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
@@ -449,11 +449,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Language:</source>
-        <translation type="unfinished"></translation>
+        <translation>Taal</translation>
     </message>
     <message>
         <source>System default</source>
-        <translation type="unfinished"></translation>
+        <translation>Systeem standaard</translation>
     </message>
     <message>
         <source>ar - العربية</source>
@@ -577,11 +577,11 @@ p, li { white-space: pre-wrap; }
     <name>ItalcCoreServer</name>
     <message>
         <source>Authentication error</source>
-        <translation>Authenticatiefout</translation>
+        <translation>Authenticatie fout</translation>
     </message>
     <message>
         <source>Somebody (IP: %1) tried to access this computer but could not authenticate itself successfully!</source>
-        <translation>Iemand (IP:% 1) probeerde toegang te krijgen tot deze computer, maar kon zich niet met succes authenticeren!</translation>
+        <translation>Iemand (IP: %1) probeerde toegang te krijgen tot deze computer, maar kon zich niet met succes authenticeren!</translation>
     </message>
 </context>
 <context>
@@ -607,7 +607,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Create/import iTALC access keys</source>
-        <translation>Maak/import iTALC toegangssleutels</translation>
+        <translation>Maak/importeer iTALC toegangssleutels</translation>
     </message>
     <message>
         <source>This assistant will help you to create or import iTALC access keys.</source>
@@ -625,17 +625,17 @@ Using the private key part, users on the master computer will be able to access 
 The public key part is used on the client computers to verify that any incoming connection request is authorized.</source>
         <translation>iTALC toegangssleutels bestaan uit twee delen die bij elkaar horen, een private en een publieke sleutel deel.
 
-Met behulp van de private key deel, zullen de gebruikers op de master-computer toegang krijgen tot client-computers. Het is van belang dat alleen geautoriseerde gebruikers toegang hebben tot het private key-bestand.
+Met behulp van de private key deel, zullen de gebruikers op de master-computer toegang krijgen tot client-computers. Het is van belang dat alleen geautoriseerde gebruikers toegang hebben tot het private sleutel-bestand.
 
-De publieke sleutel deel wordt gebruikt op de clientcomputers om te controleren of een binnenkomende verbindingsaanvraag wordt geautoriseerd.</translation>
+De publieke sleutel deel wordt gebruikt op de clientcomputers te controleren of een binnenkomende verbindingsaanvraag wordt geautoriseerd.</translation>
     </message>
     <message>
         <source>Assistant mode</source>
-        <translation>Assistent-modus</translation>
+        <translation>Assistent modus</translation>
     </message>
     <message>
         <source>Please choose whether to create new access keys or import a public key on a client.</source>
-        <translation>Kies of u een nieuwe toegangssleutels wilt maken of het importeren van een openbare sleutel op een client.</translation>
+        <translation>Kies of u een nieuwe toegangssleutels wilt maken of het importeren van een publieke sleutel op een client.</translation>
     </message>
     <message>
         <source>Create new access keys (master computer)</source>
@@ -643,19 +643,19 @@ De publieke sleutel deel wordt gebruikt op de clientcomputers om te controleren 
     </message>
     <message>
         <source>assistantModeButtonGroup</source>
-        <translation>Assistent-ModusButtonGroup</translation>
+        <translation>AssistentModusKnoppenGroep</translation>
     </message>
     <message>
         <source>Import public key (client computer)</source>
-        <translation>Importeer openbare sleutel (client computer)</translation>
+        <translation>Importeer publieke sleutel (client computer)</translation>
     </message>
     <message>
         <source>Select user role</source>
-        <translation>Selecteer gebruiker rol</translation>
+        <translation>Selecteer gebruikers rol</translation>
     </message>
     <message>
         <source>Please select a user role for which to create or import the access keys:</source>
-        <translation>Selecteer een gebruiker rol waarvoor u de toegangssleutels wilt maken of importeren:</translation>
+        <translation>Selecteer een gebruikersrol waarvoor u de toegangssleutels wilt maken of importeren:</translation>
     </message>
     <message>
         <source>Teacher</source>
@@ -675,7 +675,7 @@ De publieke sleutel deel wordt gebruikt op de clientcomputers om te controleren 
     </message>
     <message>
         <source>User roles allow using multiple access keys in parallel. For example there can be different teacher access keys for each classroom while the support access keys are the same for the whole school.</source>
-        <translation>Gebruikersrollen toestaan met behulp van meerdere toegangssleutels in parallel. Zo kunnen er verschillende leraren sleutels voor elke klas zijn, terwijl de toegang tot support sleutels hetzelfde is voor de hele school.</translation>
+        <translation>Gebruikersrollen toestaan met behulp van meerdere toegangssleutels in parallel. Zo kunnen er verschillende leraar sleutels voor elke klas zijn, terwijl de toegang tot support sleutels hetzelfde is voor de hele school.</translation>
     </message>
     <message>
         <source>Directories</source>
@@ -683,7 +683,7 @@ De publieke sleutel deel wordt gebruikt op de clientcomputers om te controleren 
     </message>
     <message>
         <source>Export public key part (master computer)</source>
-        <translation>Exporteer het openbare sleutel deel (master computer)</translation>
+        <translation>Exporteer het publieke sleutel deel (master computer)</translation>
     </message>
     <message>
         <source>...</source>
@@ -695,7 +695,7 @@ De publieke sleutel deel wordt gebruikt op de clientcomputers om te controleren 
     </message>
     <message>
         <source>Please specify the location of the public access key to be imported.</source>
-        <translation>Geef de locatie van het openbare toegangssleutel waar die moet worden geimporteerd.</translation>
+        <translation>Geef de locatie van de publieke toegangssleutel waar die moet worden geimporteerd.</translation>
     </message>
     <message>
         <source>Summary</source>
@@ -719,7 +719,7 @@ De publieke sleutel deel wordt gebruikt op de clientcomputers om te controleren 
     </message>
     <message>
         <source>• Write access key(s) to</source>
-        <translation>• Toegangssleutel(s) schrijven aan</translation>
+        <translation>• Toegangssleutel(s) schrijven naar</translation>
     </message>
     <message>
         <source>• Export public key to</source>
@@ -727,7 +727,7 @@ De publieke sleutel deel wordt gebruikt op de clientcomputers om te controleren 
     </message>
     <message>
         <source>• Configure for user role</source>
-        <translation>• configureren voor de gebruiker rol</translation>
+        <translation>• configureer voor de gebruikersrol</translation>
     </message>
     <message>
         <source>Select directory in which to export the public key</source>
@@ -739,7 +739,7 @@ De publieke sleutel deel wordt gebruikt op de clientcomputers om te controleren 
     </message>
     <message>
         <source>Invalid public key</source>
-        <translation>Ongeldige openbare sleutel</translation>
+        <translation>Ongeldig publieke sleutel</translation>
     </message>
     <message>
         <source>The selected file does not contain a valid public iTALC access key!</source>
@@ -755,11 +755,11 @@ De publieke sleutel deel wordt gebruikt op de clientcomputers om te controleren 
     </message>
     <message>
         <source>Could not remove previously existing file %1.</source>
-        <translation>Kon niet eerder het bestaande bestand %1 verwijderen.</translation>
+        <translation>Kon niet het laatst bestaande bestand %1 verwijderen.</translation>
     </message>
     <message>
         <source>Failed exporting public access key from %1 to %2.</source>
-        <translation>Mislukt van het exporteren van openbare sleutel uit %1 naar 2%.</translation>
+        <translation>Mislukt bij het exporteren van publieke sleutel uit %1 naar 2%.</translation>
     </message>
     <message>
         <source>Access keys were created and written successfully to %1 and %2.</source>
@@ -767,7 +767,7 @@ De publieke sleutel deel wordt gebruikt op de clientcomputers om te controleren 
     </message>
     <message>
         <source>An error occured while creating the access keys. You probably are not permitted to write to the selected directories.</source>
-        <translation>Er is een fout opgetreden tijdens het maken van de toegang sleutels. Je bent waarschijnlijk niet toegestaan om te schrijven naar de geselecteerde directories.</translation>
+        <translation>Er is een fout opgetreden tijdens het maken van de toegang sleutels. Je bent waarschijnlijk niet bevoegd om te schrijven naar de geselecteerde directories.</translation>
     </message>
     <message>
         <source>Public key import</source>
@@ -775,11 +775,11 @@ De publieke sleutel deel wordt gebruikt op de clientcomputers om te controleren 
     </message>
     <message>
         <source>An error occured while importing the public access key. You probably are not permitted to read the source key or to write the destination file.</source>
-        <translation>Er is een fout opgetreden tijdens het importeren van de openbare sleutel. Je bent waarschijnlijk niet toegestaan om de bron sleutel te lezen of naar de bestemmings bestand te schrijven.</translation>
+        <translation>Er is een fout opgetreden tijdens het importeren van de openbare sleutel. Je bent waarschijnlijk niet bevoegd om de bron sleutel te lezen of naar de bestemmings bestand te schrijven.</translation>
     </message>
     <message>
         <source>The public key was successfully imported to %1.</source>
-        <translation>De publieke sleutel is geïmporteerd naar %1.</translation>
+        <translation>De publieke sleutel is succesvol geïmporteerd naar %1.</translation>
     </message>
 </context>
 <context>
@@ -793,11 +793,11 @@ De publieke sleutel deel wordt gebruikt op de clientcomputers om te controleren 
     <name>LogonGroupEditor</name>
     <message>
         <source>Logon group editor</source>
-        <translation>Aanmelden groeps bewerker</translation>
+        <translation>Aanmeldt groeps bewerker</translation>
     </message>
     <message>
         <source>Please add the groups whose members should be allowed to access computers in your iTALC network.</source>
-        <translation>Voeg de groepen waarvan de leden moet worden toegestaan om toegang tot computers in uw iTALC netwerk te krijgen.</translation>
+        <translation>Voeg de groepen toe waarvan de leden moet worden toegestaan om toegang tot computers in uw iTALC netwerk te krijgen.</translation>
     </message>
     <message>
         <source>All groups</source>
@@ -831,7 +831,7 @@ De publieke sleutel deel wordt gebruikt op de clientcomputers om te controleren 
     </message>
     <message>
         <source>iTALC Management Console</source>
-        <translation>iTALC Console van het Beheer</translation>
+        <translation>iTALC Beheer Console</translation>
     </message>
     <message>
         <source>iTALC Server</source>
@@ -971,7 +971,7 @@ De publieke sleutel deel wordt gebruikt op de clientcomputers om te controleren 
     </message>
     <message>
         <source>Personal configuration</source>
-        <translation>persoonlijke configuratie</translation>
+        <translation>Persoonlijke configuratie</translation>
     </message>
     <message>
         <source>Data directories</source>
@@ -1023,7 +1023,7 @@ De publieke sleutel deel wordt gebruikt op de clientcomputers om te controleren 
     </message>
     <message>
         <source>L&amp;oad settings from file</source>
-        <translation>L&amp;aad instellingen uit bestand</translation>
+        <translation>&amp;Laad instellingen uit bestand</translation>
     </message>
     <message>
         <source>Ctrl+O</source>
@@ -1043,7 +1043,7 @@ De publieke sleutel deel wordt gebruikt op de clientcomputers om te controleren 
     </message>
     <message>
         <source>toolBar</source>
-        <translation>werkBalk</translation>
+        <translation>werkbalk</translation>
     </message>
     <message>
         <source>iTALC Management Console %1</source>
@@ -1079,7 +1079,7 @@ De publieke sleutel deel wordt gebruikt op de clientcomputers om te controleren 
     </message>
     <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run the iTALC Management Console with higher privileges.</source>
-        <translation>De lokale configuratie achterste meld dat de configuratie niet schrijfbaar is! Voer het iTALC Console van het Beheer met hogere privileges.</translation>
+        <translation>De lokale configuratie back-end meld dat de configuratie niet schrijfbaar is! Voer het iTALC Console van het Beheer met hogere privileges.</translation>
     </message>
     <message>
         <source>All settings were applied successfully.</source>
@@ -1099,7 +1099,7 @@ De publieke sleutel deel wordt gebruikt op de clientcomputers om te controleren 
     </message>
     <message>
         <source>Could not read/write or create directory %1! For running iTALC, make sure you&apos;re permitted to create or write this directory.</source>
-        <translation>Kan niet lezen / schrijven of creëren in folder% 1! Voor het draaien van iTALC, zorg ervoor dat je bent toegestaan om te creëren of te schrijven in deze map.</translation>
+        <translation>Kan niet lezen/schrijven of creëren in folder %1! Voor het draaien van iTALC, zorg ervoor dat je bent toegestaan om te creëren of te schrijven in deze map.</translation>
     </message>
     <message>
         <source>Classroom</source>
@@ -1143,7 +1143,7 @@ De publieke sleutel deel wordt gebruikt op de clientcomputers om te controleren 
     </message>
     <message>
         <source>In this mode your screen is being displayed on all shown computers. Furthermore the users aren&apos;t able to do something else as all input devices are locked in this mode.</source>
-        <translation>In deze modus wordt uw scherm weergegeven op alle getoonde computers. Verder zijn de gebruikers niet in staat om iets anders te doen omdat alle input devices zijn gesloten in deze modus.</translation>
+        <translation>In deze modus wordt uw scherm weergegeven op alle getoonde computers. Verder zijn de gebruikers niet in staat om iets anders te doen omdat alle input devices gesloten zijn in deze modus.</translation>
     </message>
     <message>
         <source>Window demo</source>
@@ -1187,11 +1187,11 @@ De publieke sleutel deel wordt gebruikt op de clientcomputers om te controleren 
     </message>
     <message>
         <source>Power on computers</source>
-        <translation>Schakel computers aan</translation>
+        <translation>Computers inschakelen</translation>
     </message>
     <message>
         <source>Power on</source>
-        <translation>Schakel aan</translation>
+        <translation>Inschakelen</translation>
     </message>
     <message>
         <source>Click this button to power on all visible computers. This way you do not have to turn on each computer by hand.</source>
@@ -1219,7 +1219,7 @@ De publieke sleutel deel wordt gebruikt op de clientcomputers om te controleren 
     </message>
     <message>
         <source>If you need to support someone at a certain computer you can click this button and enter the according hostname or IP afterwards.</source>
-        <translation>Als u iemand moet ondersteunen op een bepaalde dan kunt u klikken op deze knop en voer vervolgens de hostnaam of IP achteraf in.</translation>
+        <translation>Als u iemand moet ondersteunen op een bepaalde computer dan kunt u klikken op deze knop en vervolgens de hostnaam of IP achteraf invoeren.</translation>
     </message>
     <message>
         <source>Adjust/align</source>
@@ -1227,11 +1227,11 @@ De publieke sleutel deel wordt gebruikt op de clientcomputers om te controleren 
     </message>
     <message>
         <source>Adjust windows and their size</source>
-        <translation>Pas schermen en de grootte aan</translation>
+        <translation>Pas vensters en de grootte aan</translation>
     </message>
     <message>
         <source>When clicking this button the biggest possible size for the client-windows is adjusted. Furthermore all windows are aligned.</source>
-        <translation>Bij het klikken op deze knop wordt de grootst mogelijke grootte voor de gebruikers scherm aangepast. Verder zijn alle schermen uitgelijnd.</translation>
+        <translation>Bij het klikken op deze knop wordt de grootst mogelijke grote voor de gebruiker scherm aangepast. Verder zijn alle schermen uitgelijnd.</translation>
     </message>
     <message>
         <source>Auto view</source>
@@ -1239,7 +1239,7 @@ De publieke sleutel deel wordt gebruikt op de clientcomputers om te controleren 
     </message>
     <message>
         <source>Auto re-arrange windows and their size</source>
-        <translation>Automatisch herindelen van schermen en de grootte van</translation>
+        <translation>Automatisch herindelen van vensters en de grootte van</translation>
     </message>
     <message>
         <source>When clicking this button all visible windows are re-arranged and adjusted.</source>
@@ -1251,7 +1251,7 @@ De publieke sleutel deel wordt gebruikt op de clientcomputers om te controleren 
     </message>
     <message>
         <source>Remote control</source>
-        <translation>Afstandsbediening</translation>
+        <translation>Remote Control</translation>
     </message>
     <message>
         <source>Could not modify the autostart property for the iTALC Service.</source>
@@ -1271,7 +1271,7 @@ De publieke sleutel deel wordt gebruikt op de clientcomputers om te controleren 
     </message>
     <message>
         <source>Enable desktop switching for screen lock (experimental)</source>
-        <translation>Inschakelen bureaublad wisselen tijdens scherm vergrendeling (experimenteel)</translation>
+        <translation>Schakel bureaublad wisseling in tijdens scherm vergrendeling (experimenteel)</translation>
     </message>
     <message>
         <source>Log to standard error output</source>
@@ -1283,7 +1283,7 @@ De publieke sleutel deel wordt gebruikt op de clientcomputers om te controleren 
     </message>
     <message>
         <source>Backend</source>
-        <translation>Achterste deel</translation>
+        <translation>Back-end</translation>
     </message>
     <message>
         <source>VNC reflector</source>
@@ -1295,11 +1295,11 @@ De publieke sleutel deel wordt gebruikt op de clientcomputers om te controleren 
     </message>
     <message>
         <source>Multithreading (can be enabled when using the VNC reflector backend)</source>
-        <translation>Multithreading (kan worden ingeschakeld bij gebruik van de VNC reflector achterste deel)</translation>
+        <translation>Multithreading (kan worden ingeschakeld bij gebruik van de VNC reflector back-end)</translation>
     </message>
     <message>
         <source>Enable HTTP server which provides a JavaViewer applet</source>
-        <translation>HTTP server inschakelen die een Java-applet Viewer biedt</translation>
+        <translation>HTTP server inschakelen die een JavaViewer applet biedt</translation>
     </message>
     <message>
         <source>HTTP server port</source>
@@ -1319,7 +1319,7 @@ De publieke sleutel deel wordt gebruikt op de clientcomputers om te controleren 
     </message>
     <message>
         <source>Public key file base directory</source>
-        <translation>Openbare sleutel basis bestands folder</translation>
+        <translation>Publieke sleutel basis bestands folder</translation>
     </message>
     <message>
         <source>Private key file base directory</source>
@@ -1361,7 +1361,7 @@ De publieke sleutel deel wordt gebruikt op de clientcomputers om te controleren 
         <source>When encountering bugs or other misbehaviour in iTALC it is important to inform the developers about them, so that the bugs can be fixed in future releases. This page allows you to submit a helpful bug report easily.
 
 If the bug is not reproducible, skip step 1) - 3).</source>
-        <translation>Bij het aantreffen van bugs of ander wangedrag in iTALC is het belangrijk om de ontwikkelaars te informeren over dat, zodat de bugs in toekomstige releases kan worden toegevoegd. Deze pagina kunt u een bug report gemakkelijk in dienen.
+        <translation>Bij het aantreffen van bugs of ander wangedrag in iTALC is het belangrijk om de ontwikkelaars te informeren over dat, zodat de bugs in toekomstige releases kunnen worden opgelost. Deze pagina kunt u een bug report gemakkelijk in dienen.
 Als de bug niet reproduceerbaar is, dan slaat u stap 1) - 3) over.</translation>
     </message>
     <message>
@@ -1378,7 +1378,7 @@ Als de bug niet reproduceerbaar is, dan slaat u stap 1) - 3) over.</translation
     </message>
     <message>
         <source>In the &quot;General&quot; section set the log level to &quot;Debug messages and everything else&quot;.</source>
-        <translation>In de &quot;Algemeen&quot; sectie stel het logniveau &quot;Debug berichten en alle andere&quot;.</translation>
+        <translation>In de &quot;Algemeen&quot; sectie stel het logniveau in in &quot;Debug berichten en alle andere&quot;.</translation>
     </message>
     <message>
         <source>3)</source>
@@ -1394,7 +1394,7 @@ Als de bug niet reproduceerbaar is, dan slaat u stap 1) - 3) over.</translation
     </message>
     <message>
         <source>Click the following button and save the file to a known location.</source>
-        <translation>Klik op de onderstaande knop en sla het bestand op een bekende locatie.</translation>
+        <translation>Klik op de onderstaande knop en sla het bestand op een bekende locatie op.</translation>
     </message>
     <message>
         <source>Generate bug report archive</source>
@@ -1409,7 +1409,7 @@ Als de bug niet reproduceerbaar is, dan slaat u stap 1) - 3) over.</translation
 &lt;br/&gt;
 &lt;br/&gt;
 Note: if the bug involves both a master and client computer, attach bug report archives for both computers.</source>
-        <translation>Go to the &lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;amp;atid=724375&quot;&gt;iTALC bug tracker&lt;/a&gt;, open a new bug, describe what you did in step 3) and attach the file you saved in step 4).&lt;/p&gt;
+        <translation>Ga naar de &lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;amp;atid=724375&quot;&gt;iTALC bug tracker&lt;/a&gt;, open een nieuwe bug, beschrijf wat je bij stap 3) deed en voeg het opgeslagen bestand toe van stap 4).&lt;/p&gt;
 &lt;br/&gt;
 &lt;br/&gt;
 Let op: als de bug zowel een meester en client computer betreft, bevestig bug report archief voor beide computers.</translation>
@@ -1420,7 +1420,7 @@ Let op: als de bug zowel een meester en client computer betreft, bevestig bug re
     </message>
     <message>
         <source>All settings were saved successfully. In order to take effect the iTALC service needs to be restarted. Restart it now?</source>
-        <translation>Alle instellingen zijn opgeslagen. Om de instellingen van kracht te laten worden moet de iTALC dienst opnieuw worden opgestart. Nu herstarten?</translation>
+        <translation>Alle instellingen zijn goed opgeslagen. Om de instellingen van kracht te laten worden moet de iTALC dienst opnieuw worden opgestart. Wil je nu herstarten?</translation>
     </message>
     <message>
         <source>Starting iTALC service</source>
@@ -1452,7 +1452,7 @@ Let op: als de bug zowel een meester en client computer betreft, bevestig bug re
     </message>
     <message>
         <source>Logon authentication test</source>
-        <translation>Login authenticatie-test</translation>
+        <translation>Login authenticatie test</translation>
     </message>
     <message>
         <source>Authentication with provided credentials was successful.</source>
@@ -1484,7 +1484,7 @@ Let op: als de bug zowel een meester en client computer betreft, bevestig bug re
     </message>
     <message>
         <source>Could not contact the local iTALC service. It is likely that you entered wrong credentials or key files are not set up properly. Try again or contact your administrator for solving this problem using the iTALC Management Console.</source>
-        <translation>Kan geen contact met de lokale iTALC service maken. Het is waarschijnlijk dat u verkeerde aanmeldingsgegevens hebt ingevoerd of sleutel-bestanden zijn niet goed ingesteld. Probeer opnieuw of neem contact op met uw beheerder voor het oplossen van dit probleem met behulp van de iTALC Management Console.</translation>
+        <translation>Kan geen contact met de lokale iTALC service maken. Het is waarschijnlijk dat u verkeerde aanmeldingsgegevens hebt ingevoerd of sleutel-bestanden zijn niet goed ingesteld. Probeer het opnieuw of neem contact op met uw beheerder voor het oplossen van dit probleem met behulp van de iTALC Management Console.</translation>
     </message>
     <message>
         <source>Authentication impossible</source>
@@ -1496,7 +1496,7 @@ Let op: als de bug zowel een meester en client computer betreft, bevestig bug re
     </message>
     <message>
         <source>Poll full screen (leave this enabled per default)</source>
-        <translation>Poll het volledige scherm (laat dit standaard ingeschakeld)</translation>
+        <translation>Start het volledige scherm (laat dit standaard ingeschakeld)</translation>
     </message>
 </context>
 <context>
@@ -1528,11 +1528,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>The snapshot-workspace is a very useful tool. It let&apos;s you manage the snapshots you made.</source>
-        <translation>Het momentopname-werkruimte is een zeer nuttig hulpmiddel. Het laat je de momentopnamen die u hebt gemaakt beheren.</translation>
+        <translation>Het momentopname-ruimte is een zeer nuttig hulpmiddel. Het laat je de momentopnamen die u hebt gemaakt beheren.</translation>
     </message>
     <message>
         <source>Of course you can configure iTALC. This is usually done using the configuration-workspace.</source>
-        <translation>Natuurlijk kunt u iTALC configureren. Dit wordt meestal gedaan met behulp van de configuratie-werkruimte.</translation>
+        <translation>Natuurlijk kunt u iTALC configureren. Dit wordt meestal gedaan met behulp van de configuratie-ruimte.</translation>
     </message>
     <message>
         <source>About iTALC</source>
@@ -1605,15 +1605,15 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>The service &apos;%1&apos; has been unregistered.</source>
-        <translation>De service &apos;%1&apos; is uit het register gezet.</translation>
+        <translation>De service &apos;%1&apos; is ongeregistreerd gezet.</translation>
     </message>
     <message>
         <source>The service &apos;%1&apos; isn&apos;t registered and therefore can&apos;t be unregistered.</source>
-        <translation>De service &apos;%1&apos; is niet geregistreerd en daarom kan die niet uit het register worden gezet.</translation>
+        <translation>De service &apos;%1&apos; is niet geregistreerd en daarom kan die niet worden ongeregistreerd.</translation>
     </message>
     <message>
         <source>The service &apos;%1&apos; could not be unregistered.</source>
-        <translation>De service &apos;%1&apos; kon niet uit het register worden gezet.</translation>
+        <translation>De service &apos;%1&apos; kon niet ongeregisteerd worden gezet.</translation>
     </message>
     <message>
         <source>The service &apos;%1&apos; could not be found.</source>
@@ -1621,7 +1621,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not unregistered.</source>
-        <translation>De Service Control Manager kon niet worden gecontacteerd (heb je de benodigde rechten?!) - de service &apos;%1&apos; was niet uit het register gezet.</translation>
+        <translation>De Service Control Manager kon niet worden gecontacteerd (heb je de benodigde rechten?!) - de service &apos;%1&apos; werd niet op ongeristreerd gezet.</translation>
     </message>
     <message>
         <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not stopped.</source>
@@ -1694,7 +1694,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Use the fields below to enter the username, password and optional the domain name. These information will be used to logon the computer(s).</source>
-        <translation>Gebruik de onderstaande velden om de gebruikersnaam, wachtwoord en de optionele domeinnaam in te voeren. Deze informatie zal worden gebruikt om de computer(s) in te loggen.</translation>
+        <translation>Gebruik de onderstaande velden om de gebruikersnaam, wachtwoord en de optionele domeinnaam in te voeren. Deze informatie zal worden gebruikt om op de computer(s) in te loggen.</translation>
     </message>
     <message>
         <source>Username</source>
@@ -1717,7 +1717,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Please enter the commands to run on the selected client(s). You can separate multiple commands by line.</source>
-        <translation>Vul de commando&apos;s in om deze uit te voeren op de geselecteerde computers. U kunt meerdere commando&apos;s te scheiden per regel.</translation>
+        <translation>Vul de commando&apos;s in om deze uit te voeren op de geselecteerde computers. U kunt meerdere commando&apos;s scheiden per regel.</translation>
     </message>
 </context>
 <context>
@@ -1728,7 +1728,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Could not take a snapshot as directory %1 doesn&apos;t exist and couldn&apos;t be created.</source>
-        <translation>Kan geen momentopname als map %1 maken omdat die niet bestaat en niet kan worden gemaakt.</translation>
+        <translation>Kan geen momentopname maken omdat folder %1 niet bestaat en niet kan worden gemaakt.</translation>
     </message>
     <message>
         <source>Snapshot</source>
@@ -1743,7 +1743,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Simply manage the snapshots you made using this workspace.</source>
-        <translation>Eenvoudig het beheren van de momentopnamen die u hebt gemaakt met behulp van deze werkruimte.</translation>
+        <translation>Eenvoudig beheren van de momentopnamen die u hebt gemaakt met behulp van deze werkruimte.</translation>
     </message>
 </context>
 <context>
@@ -1840,7 +1840,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Let student show demo</source>
-        <translation>Laat de student tonen demo</translation>
+        <translation>Laat de student demo tonen</translation>
     </message>
     <message>
         <source>Send text message</source>
