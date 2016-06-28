@@ -32,7 +32,7 @@
 
 // Name of the mutex
 
-const char mutexname [] = "Italc_WinVNC_Win32_Instance_Mutex";
+const char mutexname [] = "WinVNC_Win32_Instance_Mutex";
 
 // The class methods
 vncInstHandler::vncInstHandler()
