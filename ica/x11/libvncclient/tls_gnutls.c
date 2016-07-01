@@ -67,9 +67,20 @@ InitializeTLS(void)
  * libvncclient are linked to different versions of msvcrt.dll.
  */
 #ifdef WIN32
-static void WSAtoTLSErrno()
+static void WSAtoTLSErrno(gnutls_session_t* session)
 {
   switch(WSAGetLastError()) {
+#if (GNUTLS_VERSION_NUMBER >= 0x029901)
+  case WSAEWOULDBLOCK:
+    gnutls_transport_set_errno(session, EAGAIN);
+    break;
+  case WSAEINTR:
+    gnutls_transport_set_errno(session, EINTR);
+    break;
+  default:
+    gnutls_transport_set_errno(session, EIO);
+    break;
+#else
   case WSAEWOULDBLOCK:
     gnutls_transport_set_global_errno(EAGAIN);
     break;
@@ -79,10 +90,10 @@ static void WSAtoTLSErrno()
   default:
     gnutls_transport_set_global_errno(EIO);
     break;
+#endif
   }
 }
 #endif
-
 
 static ssize_t
 PushTLS(gnutls_transport_ptr_t transport, const void *data, size_t len)
@@ -96,7 +107,7 @@ PushTLS(gnutls_transport_ptr_t transport, const void *data, size_t len)
     if (ret < 0)
     {
 #ifdef WIN32
-      WSAtoTLSErrno();
+      WSAtoTLSErrno((gnutls_session_t*)&client->tlsSession);
 #endif
       if (errno == EINTR) continue;
       return -1;
@@ -118,7 +129,7 @@ PullTLS(gnutls_transport_ptr_t transport, void *data, size_t len)
     if (ret < 0)
     {
 #ifdef WIN32
-      WSAtoTLSErrno();
+      WSAtoTLSErrno((gnutls_session_t*)&client->tlsSession);
 #endif
       if (errno == EINTR) continue;
       return -1;

@@ -105,3 +105,5 @@
 #cmakedefine ITALC_HAVE_LIBCRYPT 1
 #cmakedefine ITALC_HAVE_LIBPTHREAD 1
 #cmakedefine ITALC_HAVE_TLS 1
+
+#cmakedefine ITALC_HAVE_WS2TCPIP_H  1

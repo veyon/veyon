@@ -46,7 +46,7 @@
 
 #ifdef WORDS_BIGENDIAN
 # define SWAP(n)                                                        \
-    (((n) << 24) | (((n) & 0xff00) << 8) | (((n) >> 8) & 0xff00) | ((n) >> 24))
+    ((((n) & 0x00ff) << 24) | (((n) & 0xff00) << 8) | (((n) >> 8) & 0xff00) | (((n) >> 24) & 0x00ff))
 #else
 # define SWAP(n) (n)
 #endif

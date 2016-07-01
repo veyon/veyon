@@ -398,7 +398,7 @@ rfbCheckFds(rfbScreenInfoPtr rfbScreen,long usec)
 #ifdef LIBVNCSERVER_WITH_WEBSOCKETS
                     do {
                         rfbProcessClientMessage(cl);
-                    } while (webSocketsHasDataInBuffer(cl));
+                    } while (cl->sock > 0 && webSocketsHasDataInBuffer(cl));
 #else
                     rfbProcessClientMessage(cl);
 #endif
