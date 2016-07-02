@@ -95,8 +95,8 @@ void QtSlaveLauncher::stop()
 
 	if( m_process )
 	{
-		// process still running
-		if( m_process->state() != QProcess::NotRunning )
+		// process still running?
+		if( isRunning() )
 		{
 			// then register some logic for asynchronously stopping process after timeout
 			QTimer* killTimer = new QTimer( m_process );
