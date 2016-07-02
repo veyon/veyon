@@ -68,17 +68,8 @@ void QtSlaveLauncher::start( const QStringList &arguments )
 
 	m_process = new QProcess;
 
-	if( ItalcCore::config->logLevel() >= Logger::LogLevelDebug )
-	{
-		// forward stdout from slave to master when in debug mode
-		m_process->setProcessChannelMode( QProcess::ForwardedChannels );
-	}
-	else
-	{
-		// discard output when not in debug mode
-		m_process->setStandardOutputFile( DEV_NULL );
-		m_process->setStandardErrorFile( DEV_NULL );
-	}
+	// forward stdout/stderr from slave to master
+	m_process->setProcessChannelMode( QProcess::ForwardedChannels );
 
 #ifndef DEBUG
 	m_process->start( applicationFilePath(), arguments );
