@@ -26,7 +26,7 @@
 
 #include <QtCore/QCoreApplication>
 #include <QtCore/QProcess>
-#include <QtCore/QTime>
+#include <QtCore/QTimer>
 
 #include "Ipc/QtSlaveLauncher.h"
 
@@ -94,29 +94,31 @@ void QtSlaveLauncher::stop()
 	m_processMutex.lock();
 	if( m_process )
 	{
-		QTime t;
-		t.start();
-
-		while( t.elapsed() < 5000 && m_process->state() != QProcess::NotRunning )
-		{
-			QCoreApplication::processEvents();
-#ifdef ITALC_BUILD_WIN32
-			// Silvio 2012-01-07: I don't know why this works and why this "Sleep" helps
-			// but after adding these two lines taskbar returns and screen unlocks almost
-			// instantly (before it took few seconds). Same is true for demo mode.
-			Sleep( 500 );
-			QCoreApplication::processEvents();
-#endif
-		}
-
+		// process still running
 		if( m_process->state() != QProcess::NotRunning )
 		{
-			qWarning( "Slave still running, terminating it now." );
-			m_process->terminate();
-			m_process->kill();
-		}
+			// then register some logic for asynchronously stopping process after timeout
+			QTimer* killTimer = new QTimer( m_process );
+#if QT_VERSION >= 0x050000
+			QObject::connect( m_process, static_cast<void(QProcess::*)(int, QProcess::ExitStatus)>(&QProcess::finished),
+							  m_process, &QProcess::deleteLater );
 
-		delete m_process;
+			QObject::connect( killTimer, &QTimer::timeout, [=]() {
+				qWarning( "Slave still running, terminating it now." );
+				m_process->terminate();
+				m_process->kill();
+			});
+#else
+			connect( m_process, SIGNAL(finished(int)), m_process, SLOT(deleteLater()) );
+			connect( killTimer, SIGNAL(timeout()), m_process, SLOT(terminate()) );
+			connect( killTimer, SIGNAL(timeout()), m_process, SLOT(kill()) );
+#endif
+			killTimer->start( 5000 );
+		}
+		else
+		{
+			delete m_process;
+		}
 		m_process = NULL;
 	}
 	m_processMutex.unlock();
