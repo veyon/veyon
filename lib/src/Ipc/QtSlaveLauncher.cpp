@@ -46,7 +46,7 @@ namespace Ipc
 
 QtSlaveLauncher::QtSlaveLauncher( const QString &applicationFilePath ) :
 	SlaveLauncher( applicationFilePath ),
-	m_processMutex(),
+	m_processMutex( QMutex::Recursive ),
 	m_process( NULL )
 {
 }
