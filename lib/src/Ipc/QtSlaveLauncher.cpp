@@ -2,7 +2,7 @@
  * QtSlaveLauncher.cpp - class Ipc::QtSlaveLauncher providing mechanisms for
  *                       launching a slave application via QProcess
  *
- * Copyright (c) 2010-2013 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2010-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  * Copyright (c) 2010 Univention GmbH
  *
  * This file is part of iTALC - http://italc.sourceforge.net
@@ -64,7 +64,8 @@ void QtSlaveLauncher::start( const QStringList &arguments )
 {
 	stop();
 
-	m_processMutex.lock();
+	QMutexLocker l( &m_processMutex );
+
 	m_process = new QProcess;
 
 	if( ItalcCore::config->logLevel() >= Logger::LogLevelDebug )
@@ -84,14 +85,14 @@ void QtSlaveLauncher::start( const QStringList &arguments )
 #else
 	qWarning() << applicationFilePath() << arguments;
 #endif
-	m_processMutex.unlock();
 }
 
 
 
 void QtSlaveLauncher::stop()
 {
-	m_processMutex.lock();
+	QMutexLocker l( &m_processMutex );
+
 	if( m_process )
 	{
 		// process still running
@@ -121,7 +122,6 @@ void QtSlaveLauncher::stop()
 		}
 		m_process = NULL;
 	}
-	m_processMutex.unlock();
 }
 
 
