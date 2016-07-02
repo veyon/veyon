@@ -90,22 +90,22 @@ void QtSlaveLauncher::stop()
 		if( isRunning() )
 		{
 			// then register some logic for asynchronously stopping process after timeout
-			QTimer* killTimer = new QTimer( m_process );
 #if QT_VERSION >= 0x050000
 			QObject::connect( m_process, static_cast<void(QProcess::*)(int, QProcess::ExitStatus)>(&QProcess::finished),
 							  m_process, &QProcess::deleteLater );
 
-			QObject::connect( killTimer, &QTimer::timeout, [=]() {
+			QTimer::singleShot( 5000, [=]() {
 				qWarning( "Slave still running, terminating it now." );
 				m_process->terminate();
 				m_process->kill();
 			});
 #else
+			QTimer* killTimer = new QTimer( m_process );
 			connect( m_process, SIGNAL(finished(int)), m_process, SLOT(deleteLater()) );
 			connect( killTimer, SIGNAL(timeout()), m_process, SLOT(terminate()) );
 			connect( killTimer, SIGNAL(timeout()), m_process, SLOT(kill()) );
-#endif
 			killTimer->start( 5000 );
+#endif
 		}
 		else
 		{
