@@ -24,6 +24,7 @@
  */
 
 #include <QtCore/QCoreApplication>
+#include <QtCore/QThread>
 #include <QtNetwork/QTcpSocket>
 
 #include "Ipc/Master.h"
@@ -159,7 +160,7 @@ void Master::sendMessage( const Ipc::Id &id, const Ipc::Msg &msg )
 	{
 		ProcessInformation& processInfo = m_processes[id];
 
-		if( processInfo.sock )
+		if( processInfo.sock && processInfo.sock->thread() == QThread::currentThread() )
 		{
 			qDebug() << "Ipc::Master: sending message" << msg.cmd() << "to slave" << id;
 			msg.send( processInfo.sock );
