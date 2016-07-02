@@ -108,7 +108,7 @@ namespace Ipc
 		{
 			QDataStream ds( d );
 			ds << m_cmd;
-			ds << m_args;
+			ds << QVariant( m_args );
 			d->flush();
 			return true;
 		}
