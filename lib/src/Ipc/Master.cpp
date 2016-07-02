@@ -1,7 +1,7 @@
 /*
  * IpcMaster.cpp - class Ipc::Master which manages IpcSlaves
  *
- * Copyright (c) 2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2010-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  * Copyright (c) 2010 Univention GmbH
  *
  * This file is part of iTALC - http://italc.sourceforge.net
@@ -52,9 +52,6 @@ Master::Master( const QString &applicationFilePath ) :
 
 	connect( this, SIGNAL( newConnection() ),
 			 this, SLOT( acceptConnection() ) );
-
-	connect( this, SIGNAL( messagesPending() ),
-				this, SLOT( sendPendingMessages() ), Qt::QueuedConnection );
 }
 
 
@@ -160,12 +157,17 @@ void Master::sendMessage( const Ipc::Id &id, const Ipc::Msg &msg )
 
 	if( m_processes.contains( id ) )
 	{
-		qDebug() << "Ipc::Master: queuing message" << msg.cmd()
-					<< "for slave" << id;
-		m_processes[id].pendingMessages << msg;
-		if( m_processes[id].sock )
+		ProcessInformation& processInfo = m_processes[id];
+
+		if( processInfo.sock )
 		{
-			emit messagesPending();
+			qDebug() << "Ipc::Master: sending message" << msg.cmd() << "to slave" << id;
+			msg.send( processInfo.sock );
+		}
+		else
+		{
+			qDebug() << "Ipc::Master: queuing message" << msg.cmd() << "for slave" << id;
+			processInfo.pendingMessages << msg;
 		}
 	}
 	else
@@ -210,7 +212,6 @@ void Master::acceptConnection()
 	m_socketReceiveMapper.setMapping( s, s );
 
 	Ipc::Msg( Ipc::Commands::Identify ).send( s );
-
 }
 
 
