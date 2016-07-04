@@ -38,6 +38,12 @@ SlaveLauncher::SlaveLauncher( const QString &applicationFilePath ) :
 	{
 		m_applicationFilePath = QCoreApplication::applicationFilePath();
 	}
+
+#if QT_VERSION >= 0x050000
+	connect( this, &SlaveLauncher::finished, this, &SlaveLauncher::deleteLater );
+#else
+	connect( m_process, SIGNAL(finished()), this, SLOT(deleteLater()) );
+#endif
 }
 
 

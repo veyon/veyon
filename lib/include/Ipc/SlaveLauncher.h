@@ -32,8 +32,9 @@
 namespace Ipc
 {
 
-class SlaveLauncher
+class SlaveLauncher : public QObject
 {
+	Q_OBJECT
 public:
 	SlaveLauncher( const QString &applicationFilePath = QString() );
 	virtual ~SlaveLauncher();
@@ -50,6 +51,10 @@ public:
 
 private:
 	QString m_applicationFilePath;
+
+
+signals:
+	void finished();
 
 };
 
