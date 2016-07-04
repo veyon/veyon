@@ -71,6 +71,16 @@ void QtSlaveLauncher::start( const QStringList &arguments )
 	// forward stdout/stderr from slave to master
 	m_process->setProcessChannelMode( QProcess::ForwardedChannels );
 
+#if QT_VERSION >= 0x050000
+	QObject::connect( m_process, static_cast<void(QProcess::*)(int, QProcess::ExitStatus)>(&QProcess::finished),
+					  m_process, &QProcess::deleteLater );
+	QObject::connect( m_process, static_cast<void(QProcess::*)(int, QProcess::ExitStatus)>(&QProcess::finished),
+					  this, &QtSlaveLauncher::finished );
+#else
+	connect( m_process, SIGNAL(finished(int)), m_process, SLOT(deleteLater()) );
+	connect( m_process, SIGNAL(finished(int)), this, SIGNAL(finished()) );
+#endif
+
 #ifndef DEBUG
 	m_process->start( applicationFilePath(), arguments );
 #else
@@ -84,34 +94,14 @@ void QtSlaveLauncher::stop()
 {
 	QMutexLocker l( &m_processMutex );
 
-	if( m_process )
+	// process still running?
+	if( isRunning() )
 	{
-		// process still running?
-		if( isRunning() )
-		{
-			// then register some logic for asynchronously stopping process after timeout
-#if QT_VERSION >= 0x050000
-			QObject::connect( m_process, static_cast<void(QProcess::*)(int, QProcess::ExitStatus)>(&QProcess::finished),
-							  m_process, &QProcess::deleteLater );
-
-			QTimer::singleShot( 5000, [=]() {
-				qWarning( "Slave still running, terminating it now." );
-				m_process->terminate();
-				m_process->kill();
-			});
-#else
-			QTimer* killTimer = new QTimer( m_process );
-			connect( m_process, SIGNAL(finished(int)), m_process, SLOT(deleteLater()) );
-			connect( killTimer, SIGNAL(timeout()), m_process, SLOT(terminate()) );
-			connect( killTimer, SIGNAL(timeout()), m_process, SLOT(kill()) );
-			killTimer->start( 5000 );
-#endif
-		}
-		else
-		{
-			delete m_process;
-		}
-		m_process = NULL;
+		// then register some logic for asynchronously stopping process after timeout
+		QTimer* killTimer = new QTimer( m_process );
+		connect( killTimer, SIGNAL(timeout()), m_process, SLOT(terminate()) );
+		connect( killTimer, SIGNAL(timeout()), m_process, SLOT(kill()) );
+		killTimer->start( 5000 );
 	}
 }
 
@@ -120,15 +110,13 @@ void QtSlaveLauncher::stop()
 bool QtSlaveLauncher::isRunning()
 {
 	QMutexLocker l( &m_processMutex );
+
+	// guarded pointer still valid?
 	if( m_process )
 	{
-		// we have to call this in order to update the state if the
-		// process has finished already
-		m_process->waitForFinished( 0 );
-
-		return m_process->state() != QProcess::NotRunning;
+		// then process is running
+		return true;
 	}
-
 	return false;
 }
 

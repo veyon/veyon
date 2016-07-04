@@ -28,6 +28,7 @@
 #define IPC_QT_SLAVE_LAUNCHER_H
 
 #include <QtCore/QMutex>
+#include <QtCore/QPointer>
 
 #include "Ipc/SlaveLauncher.h"
 
@@ -38,6 +39,7 @@ namespace Ipc
 
 class QtSlaveLauncher : public SlaveLauncher
 {
+	Q_OBJECT
 public:
 	QtSlaveLauncher( const QString &applicationFilePath = QString() );
 	~QtSlaveLauncher();
@@ -49,7 +51,7 @@ public:
 
 private:
 	QMutex m_processMutex;
-	QProcess *m_process;
+	QPointer<QProcess> m_process;
 
 };
 
