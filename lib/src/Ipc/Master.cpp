@@ -209,24 +209,6 @@ void Master::sendMessage( const Ipc::Id& id, const Ipc::Msg& msg )
 
 
 
-Ipc::Msg Master::receiveMessage( const Ipc::Id &id )
-{
-	QMutexLocker l( &m_processMapMutex );
-
-	Ipc::Msg m;
-	if( m_processes.contains( id ) && m_processes[id].sock )
-	{
-		m.receive( m_processes[id].sock );
-		qDebug() << "Ipc::Master: received message" << m.cmd()
-					<< "from slave" << id;
-	}
-
-	return m;
-}
-
-
-
-
 void Master::acceptConnection()
 {
 	qDebug( "Ipc::Master: accepting connection" );
