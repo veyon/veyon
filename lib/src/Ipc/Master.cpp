@@ -31,8 +31,13 @@
 #include "Ipc/QtSlaveLauncher.h"
 #include "Logger.h"
 
+Q_DECLARE_METATYPE(Ipc::Id)
+Q_DECLARE_METATYPE(Ipc::Msg)
+Q_DECLARE_METATYPE(Ipc::SlaveLauncher*)
+
 namespace Ipc
 {
+
 
 Master::Master( const QString &applicationFilePath ) :
 	QTcpServer(),
@@ -53,6 +58,10 @@ Master::Master( const QString &applicationFilePath ) :
 
 	connect( this, SIGNAL( newConnection() ),
 			 this, SLOT( acceptConnection() ) );
+
+	qRegisterMetaType<Ipc::Id>();
+	qRegisterMetaType<Ipc::Msg>();
+	qRegisterMetaType<Ipc::SlaveLauncher *>();
 }
 
 
@@ -74,8 +83,15 @@ Master::~Master()
 
 
 
-void Master::createSlave( const Ipc::Id &id, SlaveLauncher *slaveLauncher )
+void Master::createSlave( const Ipc::Id& id, Ipc::SlaveLauncher *slaveLauncher )
 {
+	if( thread() != QThread::currentThread() )
+	{
+		QMetaObject::invokeMethod( this, "createSlave", Qt::BlockingQueuedConnection,
+								   Q_ARG( const Ipc::Id&, id ), Q_ARG( Ipc::SlaveLauncher*, slaveLauncher ) );
+		return;
+	}
+
 	// make sure to stop a slave with the same id
 	stopSlave( id );
 
@@ -101,8 +117,14 @@ void Master::createSlave( const Ipc::Id &id, SlaveLauncher *slaveLauncher )
 
 
 
-void Master::stopSlave( const Ipc::Id &id )
+void Master::stopSlave( const Ipc::Id& id )
 {
+	if( thread() != QThread::currentThread() )
+	{
+		QMetaObject::invokeMethod( this, "stopSlave", Qt::BlockingQueuedConnection, Q_ARG( Ipc::Id, id ) );
+		return;
+	}
+
 	QMutexLocker l( &m_processMapMutex );
 
 	if( m_processes.contains( id ) )
@@ -110,20 +132,20 @@ void Master::stopSlave( const Ipc::Id &id )
 		LogStream() << "Stopping slave" << id;
 		if( isSlaveRunning( id ) )
 		{
-			l.unlock();
+			// tell slave to quit
 			sendMessage( id, Ipc::Commands::Quit );
+
+			// close socket so that client quits even if quit message isn't processed
+			if( m_processes[id].sock != NULL )
+			{
+				m_processes[id].sock->close();
+			}
+
+			// terminate process after internal timeout
 			m_processes[id].slaveLauncher->stop();
-			l.relock();
 		}
 
-		delete m_processes[id].slaveLauncher;
-
-		if( m_processes[id].sock != NULL )
-		{
-			// schedule deletion of socket - can't delete it here as this
-			// crashes Qt on Win32
-			m_processes[id].sock->deleteLater();
-		}
+		delete m_processes[id].sock;
 
 		m_processes.remove( id );
 	}
@@ -137,14 +159,13 @@ void Master::stopSlave( const Ipc::Id &id )
 
 
 
-bool Master::isSlaveRunning( const Ipc::Id &id )
+bool Master::isSlaveRunning( const Ipc::Id& id )
 {
 	QMutexLocker l( &m_processMapMutex );
 
-	if( m_processes.contains( id ) )
-	{
-		return m_processes[id].slaveLauncher->isRunning();
-	}
+	return m_processes.contains( id ) &&
+			m_processes[id].slaveLauncher &&
+			m_processes[id].slaveLauncher->isRunning();
 
 	return false;
 }
@@ -152,15 +173,22 @@ bool Master::isSlaveRunning( const Ipc::Id &id )
 
 
 
-void Master::sendMessage( const Ipc::Id &id, const Ipc::Msg &msg )
+void Master::sendMessage( const Ipc::Id& id, const Ipc::Msg& msg )
 {
+	if( thread() != QThread::currentThread() )
+	{
+		QMetaObject::invokeMethod( this, "sendMessage", Qt::BlockingQueuedConnection,
+								   Q_ARG( const Ipc::Id&, id ), Q_ARG(const Ipc::Msg&, msg ) );
+		return;
+	}
+
 	QMutexLocker l( &m_processMapMutex );
 
 	if( m_processes.contains( id ) )
 	{
 		ProcessInformation& processInfo = m_processes[id];
 
-		if( processInfo.sock && processInfo.sock->thread() == QThread::currentThread() )
+		if( processInfo.sock )
 		{
 			qDebug() << "Ipc::Master: sending message" << msg.cmd() << "to slave" << id;
 			msg.send( processInfo.sock );
