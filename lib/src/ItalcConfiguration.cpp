@@ -92,7 +92,6 @@ ItalcConfiguration ItalcConfiguration::defaultConfiguration()
 	c.setVncLowAccuracy( true );
 
 	c.setDemoServerBackend( 0 );
-	c.setDemoServerMultithreaded( true );
 
 	c.setCoreServerPort( PortOffsetVncServer );
 	c.setDemoServerPort( PortOffsetDemoServer );

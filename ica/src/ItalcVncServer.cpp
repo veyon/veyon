@@ -315,10 +315,6 @@ void ItalcVncServer::runVncReflector( int srcPort, int dstPort )
 	args << "-viewonly"
 		<< "-reflect"
 		<< QString( "localhost:%1" ).arg( srcPort );
-	if( ItalcCore::config->isDemoServerMultithreaded() )
-	{
-		args << "-threads";
-	}
 
 	while( 1 )
 	{

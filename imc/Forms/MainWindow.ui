@@ -519,13 +519,6 @@
              </item>
             </layout>
            </item>
-           <item>
-            <widget class="QCheckBox" name="isDemoServerMultithreaded">
-             <property name="text">
-              <string>Multithreading (can be enabled when using the VNC reflector backend)</string>
-             </property>
-            </widget>
-           </item>
           </layout>
          </widget>
         </item>
