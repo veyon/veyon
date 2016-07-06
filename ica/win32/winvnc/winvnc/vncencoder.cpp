@@ -265,6 +265,14 @@ vncEncoder::SetTranslateFunction()
 
     // Check that bits per pixel values are valid
 
+	if( m_transformat.bitsPerPixel == 0 )
+	{
+		m_transfunc = rfbTranslateNone;
+		// The first time the client sends an update, it will call
+		// GetRemotePalette to get the palette information required
+		return TRUE;
+	}
+
     if ((m_transformat.bitsPerPixel != 8) &&
 		(m_transformat.bitsPerPixel != 16) &&
 		(m_transformat.bitsPerPixel != 32))
