@@ -1,7 +1,7 @@
 /*
  * ItalcCoreServer.cpp - ItalcCoreServer
  *
- * Copyright (c) 2006-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -275,8 +275,8 @@ bool ItalcCoreServer::authSecTypeItalc( socketDispatcher sd, void *user )
 	{
 		errorMsgAuth( host );
 		qCritical( "ItalcCoreServer::authSecTypeItalc(...): "
-				"client chose unsupported authentication type!" );
-		return result;
+				"client chose unsupported authentication type %d!", (int) chosen );
+		return false;
 	}
 
 	const QString username = sdev.read().toString();
