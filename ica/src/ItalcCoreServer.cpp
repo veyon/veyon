@@ -276,7 +276,7 @@ bool ItalcCoreServer::authSecTypeItalc( socketDispatcher sd, void *user )
 		errorMsgAuth( host );
 		qCritical( "ItalcCoreServer::authSecTypeItalc(...): "
 				"client chose unsupported authentication type!" );
-		return result;
+		return false;
 	}
 
 	const QString username = sdev.read().toString();
