@@ -15,6 +15,10 @@ INCLUDE(CheckCSourceCompiles)
 INCLUDE(CheckIncludeFiles)
 INCLUDE(CheckFunctionExists)
 INCLUDE(FindPkgConfig)
+<<<<<<< HEAD
+=======
+INCLUDE(Qt4Hacks)
+>>>>>>> parent of 83cf65c... CMakeLists.txt: dropped Qt4Hacks module
 
 SET(VERSION_MAJOR "2")
 SET(VERSION_MINOR "1")
