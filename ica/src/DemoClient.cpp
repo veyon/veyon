@@ -23,9 +23,9 @@
  */
 
 #include <QtGui/QIcon>
-#include <QLayout>
-#include <QApplication>
-#include <QDesktopWidget>
+#include <QtGui/QLayout>
+#include <QtGui/QApplication>
+#include <QtGui/QDesktopWidget>
 
 #include "DemoClient.h"
 #include "LocalSystem.h"

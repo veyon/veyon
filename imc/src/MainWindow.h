@@ -25,7 +25,7 @@
 #ifndef MAIN_WINDOW_H
 #define MAIN_WINDOW_H
 
-#include <QMainWindow>
+#include <QtGui/QMainWindow>
 
 class QAbstractButton;
 

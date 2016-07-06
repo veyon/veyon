@@ -29,9 +29,9 @@
 #include "ProgressWidget.h"
 #include "SystemKeyTrapper.h"
 
-#include <QApplication>
-#include <QDesktopWidget>
-#include <QMouseEvent>
+#include <QtGui/QApplication>
+#include <QtGui/QDesktopWidget>
+#include <QtGui/QMouseEvent>
 #include <QtGui/QPainter>
 
 

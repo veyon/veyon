@@ -25,7 +25,7 @@
 #ifndef KEY_FILE_ASSISTANT_MODE_PAGE_H
 #define KEY_FILE_ASSISTANT_MODE_PAGE_H
 
-#include <QWizardPage>
+#include <QtGui/QWizardPage>
 
 class QButtonGroup;
 namespace Ui { class KeyFileAssistant; }

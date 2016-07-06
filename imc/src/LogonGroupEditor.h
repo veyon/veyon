@@ -25,7 +25,7 @@
 #ifndef LOGON_GROUP_EDITOR_H
 #define LOGON_GROUP_EDITOR_H
 
-#include <QDialog>
+#include <QtGui/QDialog>
 
 namespace Ui { class LogonGroupEditor; } ;
 

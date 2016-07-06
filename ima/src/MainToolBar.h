@@ -24,7 +24,7 @@
 #ifndef MAIN_TOOL_BAR_H
 #define MAIN_TOOL_BAR_H
 
-#include <QToolBar>
+#include <QtGui/QToolBar>
 
 
 class MainToolBar : public QToolBar

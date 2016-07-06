@@ -28,11 +28,11 @@
 
 #include <QtCore/QString>
 #include <QtCore/QVector>
-#include <QDoubleSpinBox>
+#include <QtGui/QDoubleSpinBox>
 #include <QtGui/QPixmap>
-#include <QMenu>
-#include <QTreeWidget>
-#include <QCheckBox>
+#include <QtGui/QMenu>
+#include <QtGui/QTreeWidget>
+#include <QtGui/QCheckBox>
 #include <QtXml/QtXml>
 
 #include "Client.h"
@@ -200,7 +200,7 @@ private:
 	QVector<classRoomItem *> selectedItems( void );
 	void getSelectedItems( QTreeWidgetItem * _p,
 						QVector<classRoomItem *> & _vv,
-						bool _add_all = false );
+						bool _add_all = FALSE );
 
 	void resizeClients( const int _new_width );
 

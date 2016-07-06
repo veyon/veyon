@@ -32,9 +32,9 @@
 
 #include <QtCore/QTimer>
 #include <QtGui/QBitmap>
-#include <QLayout>
+#include <QtGui/QLayout>
 #include <QtGui/QPainter>
-#include <QPaintEvent>
+#include <QtGui/QPaintEvent>
 
 
 

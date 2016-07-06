@@ -27,7 +27,7 @@
 
 #include <QtCore/QVector>
 #include <QtGui/QPixmap>
-#include <QWidget>
+#include <QtGui/QWidget>
 
 
 class ProgressWidget : public QWidget

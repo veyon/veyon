@@ -27,7 +27,7 @@
 #include <QtGui/QPixmap>
 #include <QtGui/QResizeEvent>
 #include <QtGui/QPaintEvent>
-#include <QLayout>
+#include <QtGui/QLayout>
 
 
 #include "SideBarWidget.h"

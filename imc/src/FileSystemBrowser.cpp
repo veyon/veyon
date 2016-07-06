@@ -22,8 +22,8 @@
  *
  */
 
-#include <QFileDialog>
-#include <QLineEdit>
+#include <QtGui/QFileDialog>
+#include <QtGui/QLineEdit>
 
 #include "FileSystemBrowser.h"
 #include "LocalSystem.h"

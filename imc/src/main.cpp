@@ -25,7 +25,7 @@
 #include <italcconfig.h>
 
 #include <QtCore/QProcessEnvironment>
-#include <QApplication>
+#include <QtGui/QApplication>
 
 #include "Configuration/XmlStore.h"
 #include "ImcCore.h"
@@ -81,7 +81,10 @@ int main( int argc, char **argv )
 		return -1;
 	}
 
-	app.connect( &app, SIGNAL( lastWindowClosed() ), SLOT( quit() ) );
+	if( app.type() != QApplication::Tty )
+	{
+		app.connect( &app, SIGNAL( lastWindowClosed() ), SLOT( quit() ) );
+	}
 
 	// parse arguments
 	QStringListIterator argIt( app.arguments() );

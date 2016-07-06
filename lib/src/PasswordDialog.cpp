@@ -26,7 +26,7 @@
 
 #include <QtCore/QDir>
 #include <QtCore/QProcess>
-#include <QPushButton>
+#include <QtGui/QPushButton>
 
 #include "PasswordDialog.h"
 #include "LocalSystem.h"

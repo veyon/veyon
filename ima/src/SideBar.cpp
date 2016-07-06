@@ -24,10 +24,10 @@
  */
 
 #include <QtGui/QContextMenuEvent>
-#include <QMenu>
+#include <QtGui/QMenu>
 #include <QtGui/QPainter>
-#include <QPaintEvent>
-#include <QToolButton>
+#include <QtGui/QPaintEvent>
+#include <QtGui/QToolButton>
 
 #include "SideBar.h"
 #include "SideBarWidget.h"

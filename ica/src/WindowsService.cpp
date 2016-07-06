@@ -25,8 +25,8 @@
 #include <QtCore/QDebug>
 #include <QtCore/QProcess>
 #include <QtCore/QTime>
-#include <QApplication>
-#include <QMessageBox>
+#include <QtGui/QApplication>
+#include <QtGui/QMessageBox>
 
 #include "WindowsService.h"
 #include "LocalSystem.h"

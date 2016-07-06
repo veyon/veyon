@@ -22,9 +22,9 @@
  *
  */
 
-#include <QLabel>
-#include <QLayout>
-#include <QPushButton>
+#include <QtGui/QLabel>
+#include <QtGui/QLayout>
+#include <QtGui/QPushButton>
 
 #include "OverviewWidget.h"
 #include "MainWindow.h"

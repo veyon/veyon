@@ -26,7 +26,7 @@
 #ifndef SNAPSHOT_LIST_H
 #define SNAPSHOT_LIST_H
 
-#include <QWidget>
+#include <QtGui/QWidget>
 
 #include "SideBarWidget.h"
 

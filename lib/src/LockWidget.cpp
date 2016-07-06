@@ -29,8 +29,8 @@
 #include "LockWidget.h"
 #include "LocalSystem.h"
 
-#include <QApplication>
-#include <QDesktopWidget>
+#include <QtGui/QApplication>
+#include <QtGui/QDesktopWidget>
 #include <QtGui/QIcon>
 #include <QtGui/QPainter>
 
@@ -139,7 +139,6 @@ void LockWidget::paintEvent( QPaintEvent * )
 
 
 #ifdef ITALC_BUILD_LINUX
-#if QT_VERSION < 0x050000
 bool LockWidget::x11Event( XEvent * _e )
 {
 	switch( _e->type )
@@ -153,7 +152,6 @@ bool LockWidget::x11Event( XEvent * _e )
 	}
 	return false;
 }
-#endif
 #endif
 
 

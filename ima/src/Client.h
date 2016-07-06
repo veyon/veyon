@@ -32,9 +32,9 @@
 #include <QtCore/QThread>
 #include <QtCore/QQueue>
 #include <QtCore/QVector>
-#include <QWidget>
+#include <QtGui/QWidget>
 #include <QtGui/QImage>
-#include <QMenu>
+#include <QtGui/QMenu>
 
 #include "FastQImage.h"
 
@@ -121,10 +121,10 @@ class clientMenu : public QMenu
 {
 	Q_OBJECT
 public:
-	static const bool FullMenu = true;
+	static const bool FullMenu = TRUE;
 
 	clientMenu( const QString & _title, const QList<QAction *> _actions,
-			QWidget * _parent = 0, const bool _fullMenu = false );
+			QWidget * _parent = 0, const bool _fullMenu = FALSE );
 
 	virtual ~clientMenu() {};
 
