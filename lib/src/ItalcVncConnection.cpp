@@ -513,6 +513,7 @@ void ItalcVncConnection::run()
 	{
 		doConnection();
 	}
+	deleteLater();
 }
 
 
