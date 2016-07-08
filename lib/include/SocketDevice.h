@@ -61,7 +61,9 @@ public:
 	QVariant read()
 	{
 		QDataStream d( this );
-		return d;
+		QVariant v;
+		d >> v;
+		return v;
 	}
 
 	void write( const QVariant &v )
