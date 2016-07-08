@@ -347,7 +347,11 @@ ItalcVncConnection::~ItalcVncConnection()
 {
 	stop();
 
-	delete [] m_frameBuffer;
+	if (m_frameBuffer)
+	{
+		delete [] m_frameBuffer;
+		m_frameBuffer = NULL;
+	}
 }
 
 
@@ -370,6 +374,12 @@ void ItalcVncConnection::stop()
 				qWarning( "ItalcVncConnection::stop(): terminated thread is still alive!" );
 			}
 		}
+	}
+
+	if (m_frameBuffer)
+	{
+		delete [] m_frameBuffer;
+		m_frameBuffer = NULL;
 	}
 }
 
