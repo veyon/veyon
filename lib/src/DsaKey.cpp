@@ -586,7 +586,7 @@ bool PrivateDSAKey::load( const QString & _file, QString _passphrase )
 	}
 	FILE * fp = fdopen( infile.handle(), "r" );
 /*#else
-	FILE * fp = fopen( _file.toLatin1().constData(), "r" );
+	FILE * fp = fopen( _file.toAscii().constData(), "r" );
 #endif*/
 	if( fp == NULL )
 	{
@@ -595,7 +595,7 @@ bool PrivateDSAKey::load( const QString & _file, QString _passphrase )
 	}
 
 	EVP_PKEY * pk = PEM_read_PrivateKey( fp, NULL, NULL,
-						_passphrase.toLatin1().data() );
+						_passphrase.toAscii().data() );
 	if( pk == NULL )
 	{
 		qCritical( "PEM_read_PrivateKey failed" );
@@ -652,7 +652,7 @@ bool PrivateDSAKey::save( const QString & _file, QString _passphrase ) const
 	}
 	FILE * fp = fdopen( outfile.handle(), "w" );
 /*#else
-	FILE * fp = fopen( _file.toLatin1().constData(), "w" );
+	FILE * fp = fopen( _file.toAscii().constData(), "w" );
 #endif*/
 	if( fp == NULL )
 	{
@@ -664,7 +664,7 @@ bool PrivateDSAKey::save( const QString & _file, QString _passphrase ) const
 						NULL : EVP_des_ede3_cbc();
 
 	PEM_write_DSAPrivateKey( fp, m_dsa, cipher, _passphrase.isEmpty() ?
-			NULL : (unsigned char *) _passphrase.toLatin1().data(),
+			NULL : (unsigned char *) _passphrase.toAscii().data(),
 					_passphrase.length(), NULL, NULL );
 	fclose( fp );
 	outfile.close();
@@ -781,7 +781,7 @@ bool PublicDSAKey::load( const QString & _file, QString )
 				continue;
 			}
 			m_dsa = keyFromBlob( QByteArray::fromBase64(
-					line.section( ' ', 1, 1 ).toLatin1() ) );
+					line.section( ' ', 1, 1 ).toAscii() ) );
 			if( m_dsa == NULL )
 			{
 				qCritical( "PublicDSAKey::load(): keyFromBlob failed" );

@@ -25,7 +25,7 @@
 #define REMOTE_CONTROL_WIDGET_H
 
 #include <QtCore/QTimeLine>
-#include <QWidget>
+#include <QtGui/QWidget>
 
 #include "FastQImage.h"
 

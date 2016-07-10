@@ -22,9 +22,9 @@
  */
 
 
-#include <QMenu>
+#include <QtGui/QMenu>
 #include <QtGui/QPainter>
-#include <QPaintEvent>
+#include <QtGui/QPaintEvent>
 
 #include "MainToolBar.h"
 
@@ -54,7 +54,7 @@ void MainToolBar::contextMenuEvent( QContextMenuEvent * _e )
 	foreach( QAction * a, actions() )
 	{
 		QAction * ma = m.addAction( a->text() );
-		ma->setCheckable( true );
+		ma->setCheckable( TRUE );
 		ma->setChecked( a->isVisible() );
 	}
 	connect( &m, SIGNAL( triggered( QAction * ) ),

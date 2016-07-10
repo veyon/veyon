@@ -25,7 +25,7 @@
 #ifndef TOOL_BUTTON_H
 #define TOOL_BUTTON_H
 
-#include <QToolButton>
+#include <QtGui/QToolButton>
 
 #include "FastQImage.h"
 

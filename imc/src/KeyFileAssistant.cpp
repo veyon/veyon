@@ -23,7 +23,7 @@
  */
 
 #include <QtCore/QDir>
-#include <QMessageBox>
+#include <QtGui/QMessageBox>
 
 #include "KeyFileAssistant.h"
 #include "DsaKey.h"

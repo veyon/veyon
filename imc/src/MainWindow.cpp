@@ -1,7 +1,7 @@
 /*
  * MainWindow.cpp - implementation of MainWindow class
  *
- * Copyright (c) 2010-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2010-2013 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -33,10 +33,10 @@ void Win32AclEditor( HWND hwnd );
 #include <QtCore/QProcess>
 #include <QtCore/QTimer>
 #include <QtGui/QCloseEvent>
-#include <QFileDialog>
-#include <QMessageBox>
-#include <QProgressBar>
-#include <QProgressDialog>
+#include <QtGui/QFileDialog>
+#include <QtGui/QMessageBox>
+#include <QtGui/QProgressBar>
+#include <QtGui/QProgressDialog>
 
 #include "Configuration/XmlStore.h"
 #include "Configuration/UiMapping.h"
@@ -431,7 +431,7 @@ void MainWindow::launchKeyFileAssistant()
 void MainWindow::manageACLs()
 {
 #ifdef ITALC_BUILD_WIN32
-	Win32AclEditor( LocalSystem::getHWNDForWidget( this ) );
+	Win32AclEditor( winId() );
 
 	if( LogonAclSettings().acl() !=
 				ItalcCore::config->value( "EncodedLogonACL", "Authentication" ) )

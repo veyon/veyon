@@ -24,15 +24,15 @@
  
 
 #include <QtCore/QTimer>
-#include <QAction>
-#include <QApplication>
+#include <QtGui/QAction>
+#include <QtGui/QApplication>
 #include <QtGui/QBitmap>
-#include <QDesktopWidget>
-#include <QLabel>
-#include <QLayout>
+#include <QtGui/QDesktopWidget>
+#include <QtGui/QLabel>
+#include <QtGui/QLayout>
 #include <QtGui/QLinearGradient>
 #include <QtGui/QPainter>
-#include <QToolBar>
+#include <QtGui/QToolBar>
 
 #include "ToolButton.h"
 
@@ -41,8 +41,8 @@ const int MARGIN = 10;
 const int ROUNDED = 2000;
 
 #ifndef ITALC3
-bool ToolButton::s_toolTipsDisabled = false;
-bool ToolButton::s_iconOnlyMode = false;
+bool ToolButton::s_toolTipsDisabled = FALSE;
+bool ToolButton::s_iconOnlyMode = FALSE;
 #endif
 
 
@@ -250,7 +250,7 @@ void ToolButton::paintEvent( QPaintEvent * _pe )
 
 	if( s_iconOnlyMode == false )
 	{
-		const QString l = ( active && m_altLabel.isEmpty() == false ) ?
+		const QString l = ( active && m_altLabel.isEmpty() == FALSE ) ?
 								m_altLabel : m_label;
 		const int w = painter.fontMetrics().width( l );
 		painter.setPen( Qt::black );
@@ -318,8 +318,8 @@ ToolButtonTip::ToolButtonTip( const QPixmap & _pixmap, const QString & _title,
 	m_description( _description ),
 	m_toolButton( _tool_btn )
 {
-	setAttribute( Qt::WA_DeleteOnClose, true );
-	setAttribute( Qt::WA_NoSystemBackground, true );
+	setAttribute( Qt::WA_DeleteOnClose, TRUE );
+	setAttribute( Qt::WA_NoSystemBackground, TRUE );
 
 	resize( sizeHint() );
 	updateMask();
@@ -331,7 +331,7 @@ ToolButtonTip::ToolButtonTip( const QPixmap & _pixmap, const QString & _title,
 QSize ToolButtonTip::sizeHint( void ) const
 {
 	QFont f = font();
-	f.setBold( true );
+	f.setBold( TRUE );
 	int title_w = QFontMetrics( f ).width( m_title );
 	QRect desc_rect = fontMetrics().boundingRect( QRect( 0, 0, 250, 100 ),
 					Qt::TextWordWrap, m_description );
@@ -380,11 +380,11 @@ void ToolButtonTip::resizeEvent( QResizeEvent * _re )
 		QPoint pt = m_toolButton->mapToGlobal( QPoint( 0, 0 ) );
 		p.setPen( color_top );
 		p.setBrush( color_top );
-		p.setRenderHint( QPainter::Antialiasing, false );
+		p.setRenderHint( QPainter::Antialiasing, FALSE );
 		p.drawLine( pt.x() - x(), 0,
 				pt.x() + m_toolButton->width() - x() - 2, 0 );
 		const int dx = pt.x() - x();
-		p.setRenderHint( QPainter::Antialiasing, true );
+		p.setRenderHint( QPainter::Antialiasing, TRUE );
 		if( dx < 10 && dx >= 0 )
 		{
 			p.setPen( pen );
@@ -396,13 +396,13 @@ void ToolButtonTip::resizeEvent( QResizeEvent * _re )
 
 	p.drawImage( MARGIN, MARGIN, m_icon );
 	QFont f = p.font();
-	f.setBold( true );
+	f.setBold( TRUE );
 	p.setFont( f );
 	const int title_x = MARGIN + m_icon.width() + MARGIN;
 	const int title_y = MARGIN + fontMetrics().height() - 2;
 	p.drawText( title_x, title_y, m_title );
 
-	f.setBold( false );
+	f.setBold( FALSE );
 	p.setFont( f );
 	p.drawText( QRect( title_x, title_y + MARGIN,
 					width() - MARGIN - title_x,

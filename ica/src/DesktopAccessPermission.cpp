@@ -22,7 +22,7 @@
  *
  */
 
-#include <QMessageBox>
+#include <QtGui/QMessageBox>
 
 #include "DesktopAccessPermission.h"
 #include "ItalcConfiguration.h"

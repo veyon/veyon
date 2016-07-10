@@ -32,7 +32,7 @@
 #include <QtCore/QFileInfo>
 #include <QtCore/QLocale>
 #include <QtCore/QTranslator>
-#include <QApplication>
+#include <QtGui/QApplication>
 
 #include "ItalcCore.h"
 #include "ItalcConfiguration.h"
@@ -59,9 +59,7 @@ void initResources()
 {
 	Q_INIT_RESOURCE(ItalcCore);
 #ifndef QT_TRANSLATIONS_DIR
-#if QT_VERSION < 0x050000
 	Q_INIT_RESOURCE(qt_qm);
-#endif
 #endif
 }
 
@@ -191,7 +189,7 @@ bool ItalcCore::initAuthentication( int credentialTypes )
 	if( credentialTypes & AuthenticationCredentials::UserLogon &&
 			config->isLogonAuthenticationEnabled() )
 	{
-		if( qobject_cast<QApplication *>( QCoreApplication::instance() ) )
+		if( QApplication::type() != QApplication::Tty )
 		{
 			PasswordDialog dlg( QApplication::activeWindow() );
 			if( dlg.exec() &&

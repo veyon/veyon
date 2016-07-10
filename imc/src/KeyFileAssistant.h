@@ -25,7 +25,7 @@
 #ifndef KEY_FILE_ASSISTANT_H
 #define KEY_FILE_ASSISTANT_H
 
-#include <QWizard>
+#include <QtGui/QWizard>
 
 namespace Ui { class KeyFileAssistant; }
 

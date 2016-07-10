@@ -24,8 +24,8 @@
 
 
 #include <QtCore/QModelIndex>
-#include <QApplication>
-#include <QSplashScreen>
+#include <QtGui/QApplication>
+#include <QtGui/QSplashScreen>
 
 #ifdef ITALC3
 #include "MasterCore.h"

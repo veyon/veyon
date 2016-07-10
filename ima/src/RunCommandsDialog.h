@@ -23,7 +23,7 @@
 #ifndef RUN_COMMANDS_DIALOG_H
 #define RUN_COMMANDS_DIALOG_H
 
-#include <QDialog>
+#include <QtGui/QDialog>
 
 namespace Ui { class RunCommandsDialog; }
 
