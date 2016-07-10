@@ -1,7 +1,7 @@
 /*
  * MainWindow.cpp - implementation of MainWindow class
  *
- * Copyright (c) 2004-2011 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -133,7 +133,7 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 	addToolBar( Qt::TopToolBarArea, m_toolBar );
 
 	ToolButton * scr = new ToolButton(
-			QPixmap( ":/resources/classroom.png" ),
+			QPixmap( ":/resources/applications-education.png" ),
 			tr( "Classroom" ), QString::null,
 			tr( "Switch classroom" ),
 			tr( "Click this button to open a menu where you can "
@@ -148,7 +148,7 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 
 	QAction * a;
 
-	a = new QAction( QIcon( ":/resources/overview_mode.png" ),
+	a = new QAction( QIcon( ":/resources/view-calendar-month.png" ),
 						tr( "Overview mode" ), this );
 	m_sysTrayActions << a;
 	ToolButton * overview_mode = new ToolButton(
@@ -183,7 +183,7 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 				"can continue to work." ),
 			this, SLOT( mapWindowDemo() ), m_toolBar );
 
-	a = new QAction( QIcon( ":/resources/locked.png" ),
+	a = new QAction( QIcon( ":/resources/system-lock-screen.png" ),
 					tr( "Lock/unlock desktops" ), this );
 	m_sysTrayActions << a;
 	ToolButton * lock_mode = new ToolButton(
@@ -208,7 +208,7 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 
 
 
-	a = new QAction( QIcon( ":/resources/text_message.png" ),
+	a = new QAction( QIcon( ":/resources/dialog-information.png" ),
 					tr( "Send text message" ), this );
 //	m_sysTrayActions << a;
 	ToolButton * text_msg = new ToolButton(
@@ -218,7 +218,7 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 			m_classroomManager, SLOT( sendMessage() ), m_toolBar );
 
 
-	a = new QAction( QIcon( ":/resources/power_on.png" ),
+	a = new QAction( QIcon( ":/resources/preferences-system-power-management.png" ),
 					tr( "Power on computers" ), this );
 	m_sysTrayActions << a;
 	ToolButton * power_on = new ToolButton(
@@ -229,7 +229,7 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 			m_classroomManager, SLOT( powerOnClients() ),
 								m_toolBar );
 
-	a = new QAction( QIcon( ":/resources/power_off.png" ),
+	a = new QAction( QIcon( ":/resources/system-shutdown.png" ),
 					tr( "Power down computers" ), this );
 	m_sysTrayActions << a;
 	ToolButton * power_off = new ToolButton(
@@ -239,15 +239,6 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 				"button." ),
 			m_classroomManager,
 					SLOT( powerDownClients() ), m_toolBar );
-
-/*	ToolButton * remotelogon = new ToolButton(
-			QPixmap( ":/resources/remotelogon.png" ),
-			tr( "Logon" ), QString::null,
-			tr( "Remote logon" ),
-			tr( "After clicking this button you can enter a "
-				"username and password to log on the "
-				"according user on all visible computers." ),
-			m_classroomManager, SLOT( remoteLogon() ), m_toolBar );*/
 
 	ToolButton * directsupport = new ToolButton(
 			QPixmap( ":/resources/remote_control.png" ),
@@ -259,7 +250,7 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 			m_classroomManager, SLOT( directSupport() ), m_toolBar );
 
 	ToolButton * adjust_size = new ToolButton(
-			QPixmap( ":/resources/adjust_size.png" ),
+			QPixmap( ":/resources/zoom-fit-best.png" ),
 			tr( "Adjust/align" ), QString::null,
 			tr( "Adjust windows and their size" ),
 			tr( "When clicking this button the biggest possible "
@@ -268,7 +259,7 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 			m_classroomManager, SLOT( adjustWindows() ), m_toolBar );
 
 	ToolButton * auto_arrange = new ToolButton(
-			QPixmap( ":/resources/auto_arrange.png" ),
+			QPixmap( ":/resources/vcs-locally-modified.png" ),
 			tr( "Auto view" ), QString::null,
 			tr( "Auto re-arrange windows and their size" ),
 			tr( "When clicking this button all visible windows "
@@ -287,7 +278,6 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 	text_msg->addTo( m_toolBar );
 	power_on->addTo( m_toolBar );
 	power_off->addTo( m_toolBar );
-	//remotelogon->addTo( m_toolBar );
 	directsupport->addTo( m_toolBar );
 	adjust_size->addTo( m_toolBar );
 	auto_arrange->addTo( m_toolBar );
@@ -483,7 +473,7 @@ void MainWindow::handleSystemTrayEvent( QSystemTrayIcon::ActivationReason _r )
 			m.addSeparator();
 
 			QAction * qa = m.addAction(
-					QIcon( ":/resources/quit.png" ),
+					QIcon( ":/resources/application-exit.png" ),
 					tr( "Quit" ) );
 			connect( qa, SIGNAL( triggered( bool ) ),
 					this, SLOT( close() ) );

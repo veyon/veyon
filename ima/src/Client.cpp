@@ -2,7 +2,7 @@
  * Client.cpp - code for client-windows, which are displayed in several
  *              instances in the main-window of iTALC
  *
- * Copyright (c) 2004-2011 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -390,7 +390,7 @@ clientMenu::clientMenu( const QString & _title, const QList<QAction *> _actions,
 			QWidget * _parent, const bool _fullMenu ) :
 	QMenu( _title, _parent )
 {
-	setIcon( scaledIcon( "client.png" ) );
+	setIcon( scaledIcon( "preferences-desktop-display.png" ) );
 
 	foreach ( QAction * action, _actions )
 	{
@@ -411,47 +411,45 @@ QMenu * clientMenu::createDefault( QWidget * _parent )
 	QMenu * menu = new QMenu( _parent );
 
 	menu->addAction( new ClientAction( ClientAction::Overview,
-		scaledIcon( "overview_mode.png" ), tr( "Overview" ), menu ) );
+		scaledIcon( "view-calendar-month.png" ), tr( "Overview" ), menu ) );
 	menu->addAction( new ClientAction( ClientAction::FullscreenDemo,
 		scaledIcon( "fullscreen_demo.png" ), tr( "Fullscreen demo" ), menu ) );
 	menu->addAction( new ClientAction( ClientAction::WindowDemo,
 		scaledIcon( "window_demo.png" ), tr( "Window demo" ), menu ) );
 	menu->addAction( new ClientAction(	ClientAction::Locked,
-		scaledIcon( "locked.png" ), tr( "Locked display" ), menu ) );
+		scaledIcon( "system-lock-screen.png" ), tr( "Locked display" ), menu ) );
 	menu->addSeparator();
 
 	menu->addAction( new ClientAction( ClientAction::ViewLive,
-		scaledIcon( "viewmag.png" ), tr( "View live" ), menu,
+		scaledIcon( "kmag.png" ), tr( "View live" ), menu,
 		ClientAction::FullMenu ) );
 	menu->addAction( new ClientAction( ClientAction::RemoteControl,
 		scaledIcon( "remote_control.png" ), tr( "Remote control" ), menu,
 		ClientAction::FullMenu ) );
 	menu->addAction( new ClientAction( ClientAction::ClientDemo,
-		scaledIcon( "client_demo.png" ), tr( "Let student show demo" ), menu,
+		scaledIcon( "preferences-desktop-display-orange.png" ), tr( "Let student show demo" ), menu,
 		ClientAction::FullMenu ) );
 
 	menu->addAction( new ClientAction( ClientAction::SendTextMessage,
-		scaledIcon( "text_message.png" ), tr( "Send text message" ), menu ) );
+		scaledIcon( "dialog-information.png" ), tr( "Send text message" ), menu ) );
 	menu->addSeparator();
 
-/*	menu->addAction( new ClientAction( ClientAction::LogonUser,
-		scaledIcon( "remotelogon.png" ), tr( "Logon user" ), menu ) );*/
 	menu->addAction( new ClientAction( ClientAction::LogoutUser,
-		scaledIcon( "logout.png" ), tr( "Logout user" ), menu ) );
+		scaledIcon( "system-suspend-hibernate.png" ), tr( "Logout user" ), menu ) );
 	menu->addSeparator();
 
 	menu->addAction( new ClientAction( ClientAction::Snapshot,
-		scaledIcon( "snapshot.png" ), tr( "Take a snapshot" ), menu ) );
+		scaledIcon( "ksnapshot.png" ), tr( "Take a snapshot" ), menu ) );
 	menu->addSeparator();
 
 	menu->addAction( new ClientAction( ClientAction::PowerOn,
-		scaledIcon( "power_on.png" ), tr( "Power on" ), menu ) );
+		scaledIcon( "preferences-system-power-management.png" ), tr( "Power on" ), menu ) );
 	menu->addAction( new ClientAction( ClientAction::Reboot,
-		scaledIcon( "reboot.png" ), tr( "Reboot" ), menu ) );
+		scaledIcon( "system-reboot.png" ), tr( "Reboot" ), menu ) );
 	menu->addAction( new ClientAction( ClientAction::PowerDown,
-		scaledIcon( "power_off.png" ), tr( "Power down" ), menu ) );
+		scaledIcon( "system-shutdown.png" ), tr( "Power down" ), menu ) );
 	menu->addAction( new ClientAction( ClientAction::ExecCmds,
-		scaledIcon( "run.png" ), tr( "Execute commands" ), menu ) );
+		scaledIcon( "run-build.png" ), tr( "Execute commands" ), menu ) );
 
 	return menu;
 }
@@ -508,7 +506,7 @@ Client::Client( const QString & _hostname,
 	m_connection = new ItalcCoreConnection( m_vncConn );
 
 	setAttribute( Qt::WA_OpaquePaintEvent );
-	setWindowIcon( QPixmap( ":/resources/classroom_manager.png" ) );
+	setWindowIcon( QPixmap( ":/resources/applications-education.png" ) );
 
 /*	setWhatsThis( tr( "This is a client-window. It either displays the "
 				"screen of the according client or a message "
@@ -878,15 +876,15 @@ void Client::paintEvent( QPaintEvent * _pe )
 	static QImage * img_locked = NULL;
 
 	if( img_unknown == NULL )
-		img_unknown = new QImage( ":/resources/error.png" );
+		img_unknown = new QImage( ":/resources/preferences-desktop-display-red.png" );
 	if( img_no_user == NULL )
-		img_no_user = new QImage( ":/resources/no_user.png" );
+		img_no_user = new QImage( ":/resources/preferences-system-login.png" );
 	if( img_host_unreachable == NULL )
-		img_host_unreachable = new QImage( ":/resources/host_unreachable.png" );
+		img_host_unreachable = new QImage( ":/resources/network-wired-unavailable.png" );
 	if( img_demo == NULL )
 		img_demo = new QImage( ":/resources/window_demo.png" );
 	if( img_locked == NULL )
-		img_locked = new QImage( ":/resources/locked.png" );
+		img_locked = new QImage( ":/resources/system-lock-screen.png" );
 
 	QPainter p( this );
 	p.setBrush( Qt::white );

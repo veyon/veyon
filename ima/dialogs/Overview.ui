@@ -29,19 +29,31 @@ p, li { white-space: pre-wrap; }
      <property name="spacing">
       <number>15</number>
      </property>
-     <property name="margin">
+     <property name="leftMargin">
+      <number>0</number>
+     </property>
+     <property name="topMargin">
+      <number>0</number>
+     </property>
+     <property name="rightMargin">
+      <number>0</number>
+     </property>
+     <property name="bottomMargin">
       <number>0</number>
      </property>
      <item>
       <widget class="QLabel" name="label6">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
+       <property name="maximumSize">
+        <size>
+         <width>64</width>
+         <height>64</height>
+        </size>
        </property>
        <property name="pixmap">
-        <pixmap resource="../italc.qrc">:/resources/back.png</pixmap>
+        <pixmap resource="../italc.qrc">:/resources/go-previous.png</pixmap>
+       </property>
+       <property name="scaledContents">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
@@ -62,19 +74,31 @@ p, li { white-space: pre-wrap; }
      <property name="spacing">
       <number>15</number>
      </property>
-     <property name="margin">
+     <property name="leftMargin">
+      <number>0</number>
+     </property>
+     <property name="topMargin">
+      <number>0</number>
+     </property>
+     <property name="rightMargin">
+      <number>0</number>
+     </property>
+     <property name="bottomMargin">
       <number>0</number>
      </property>
      <item>
       <widget class="QLabel" name="label7">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
+       <property name="maximumSize">
+        <size>
+         <width>64</width>
+         <height>64</height>
+        </size>
        </property>
        <property name="pixmap">
-        <pixmap resource="../italc.qrc">:/resources/classroom_manager_48.png</pixmap>
+        <pixmap resource="../italc.qrc">:/resources/applications-education.png</pixmap>
+       </property>
+       <property name="scaledContents">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
@@ -95,19 +119,31 @@ p, li { white-space: pre-wrap; }
      <property name="spacing">
       <number>15</number>
      </property>
-     <property name="margin">
+     <property name="leftMargin">
+      <number>0</number>
+     </property>
+     <property name="topMargin">
+      <number>0</number>
+     </property>
+     <property name="rightMargin">
+      <number>0</number>
+     </property>
+     <property name="bottomMargin">
       <number>0</number>
      </property>
      <item>
       <widget class="QLabel" name="label9">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
+       <property name="maximumSize">
+        <size>
+         <width>64</width>
+         <height>64</height>
+        </size>
        </property>
        <property name="pixmap">
-        <pixmap resource="../italc.qrc">:/resources/snapshot_48.png</pixmap>
+        <pixmap resource="../italc.qrc">:/resources/ksnapshot.png</pixmap>
+       </property>
+       <property name="scaledContents">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
@@ -128,19 +164,31 @@ p, li { white-space: pre-wrap; }
      <property name="spacing">
       <number>15</number>
      </property>
-     <property name="margin">
+     <property name="leftMargin">
+      <number>0</number>
+     </property>
+     <property name="topMargin">
+      <number>0</number>
+     </property>
+     <property name="rightMargin">
+      <number>0</number>
+     </property>
+     <property name="bottomMargin">
       <number>0</number>
      </property>
      <item>
       <widget class="QLabel" name="label10">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
+       <property name="maximumSize">
+        <size>
+         <width>64</width>
+         <height>64</height>
+        </size>
        </property>
        <property name="pixmap">
-        <pixmap resource="../italc.qrc">:/resources/config_48.png</pixmap>
+        <pixmap resource="../italc.qrc">:/resources/adjustrgb.png</pixmap>
+       </property>
+       <property name="scaledContents">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
@@ -185,7 +233,13 @@ p, li { white-space: pre-wrap; }
      </property>
      <property name="icon">
       <iconset resource="../italc.qrc">
-       <normaloff>:/resources/info_22.png</normaloff>:/resources/info_22.png</iconset>
+       <normaloff>:/resources/help-about.png</normaloff>:/resources/help-about.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>22</width>
+       <height>22</height>
+      </size>
      </property>
     </widget>
    </item>

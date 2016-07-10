@@ -1,7 +1,7 @@
 /*
  *  RemoteControlWidget.cpp - widget containing a VNC-view and controls for it
  *
- *  Copyright (c) 2006-2013 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ *  Copyright (c) 2006-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  *  This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -70,7 +70,7 @@ RemoteControlWidgetToolBar::RemoteControlWidgetToolBar(
 				QString::null, QString::null, 0, 0,
 				this );
 	ToolButton * ss_btn = new ToolButton(
-				QPixmap( ":/resources/snapshot.png" ),
+				QPixmap( ":/resources/ksnapshot.png" ),
 				tr( "Snapshot" ), QString::null,
 				QString::null, QString::null, 0, 0,
 				this );
@@ -80,7 +80,7 @@ RemoteControlWidgetToolBar::RemoteControlWidgetToolBar(
 				QString::null, QString::null, 0, 0,
 				this );
 	ToolButton * quit_btn = new ToolButton(
-				QPixmap( ":/resources/quit.png" ),
+				QPixmap( ":/resources/application-exit.png" ),
 				tr( "Quit" ), QString::null,
 				QString::null, QString::null, 0, 0,
 				this );

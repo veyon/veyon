@@ -30,14 +30,23 @@ p, li { white-space: pre-wrap; }
    </item>
    <item>
     <layout class="QGridLayout" columnstretch="0,1">
+     <property name="leftMargin">
+      <number>10</number>
+     </property>
+     <property name="topMargin">
+      <number>10</number>
+     </property>
+     <property name="rightMargin">
+      <number>10</number>
+     </property>
+     <property name="bottomMargin">
+      <number>10</number>
+     </property>
      <property name="horizontalSpacing">
       <number>10</number>
      </property>
      <property name="verticalSpacing">
       <number>4</number>
-     </property>
-     <property name="margin">
-      <number>10</number>
      </property>
      <item row="1" column="1">
       <widget class="QLabel" name="dateLbl"/>
@@ -114,7 +123,13 @@ p, li { white-space: pre-wrap; }
        </property>
        <property name="icon">
         <iconset resource="../italc.qrc">
-         <normaloff>:/resources/client_show.png</normaloff>:/resources/client_show.png</iconset>
+         <normaloff>:/resources/edit-find.png</normaloff>:/resources/edit-find.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>22</width>
+         <height>22</height>
+        </size>
        </property>
       </widget>
      </item>
@@ -125,7 +140,13 @@ p, li { white-space: pre-wrap; }
        </property>
        <property name="icon">
         <iconset resource="../italc.qrc">
-         <normaloff>:/resources/cancel.png</normaloff>:/resources/cancel.png</iconset>
+         <normaloff>:/resources/edit-delete.png</normaloff>:/resources/edit-delete.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>22</width>
+         <height>22</height>
+        </size>
        </property>
       </widget>
      </item>

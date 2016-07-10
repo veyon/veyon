@@ -1,7 +1,7 @@
 /*
  * Dialogs.cpp - implementation of dialogs
  *
- * Copyright (c) 2006-2013 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -117,7 +117,7 @@ void ClientSettingsDialog::accept()
 			tr( "Missing IP address/hostname" ),
 			tr( "You didn't specify an IP address or hostname for "
 							"the computer!" ),
-					QPixmap( ":/resources/stop.png" ) );
+					QPixmap( ":/resources/dialog-error.png" ) );
 		return;
 	}
 
@@ -131,7 +131,7 @@ void ClientSettingsDialog::accept()
 			tr( "You specified an invalid MAC-address. Either "
 				"leave the field blank or enter a valid MAC-"
 				"address (use \":\" as separator!)." ),
-					QPixmap( ":/resources/stop.png" ) );
+					QPixmap( ":/resources/dialog-error.png" ) );
 		return;
 	}
 

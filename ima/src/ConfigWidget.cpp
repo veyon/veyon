@@ -1,7 +1,7 @@
 /*
  * ConfigWidget.cpp - implementation of configuration-widget for side-bar
  *
- * Copyright (c) 2004-2011 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -40,7 +40,7 @@
 
 
 ConfigWidget::ConfigWidget( MainWindow * _main_window, QWidget * _parent ) :
-	SideBarWidget( QPixmap( ":/resources/config.png" ),
+	SideBarWidget( QPixmap( ":/resources/adjustrgb.png" ),
 			tr( "Your iTALC-configuration" ),
 			tr( "In this workspace you can customize iTALC to "
 				"fit your needs." ),
@@ -75,13 +75,6 @@ ConfigWidget::ConfigWidget( MainWindow * _main_window, QWidget * _parent ) :
 					setCurrentIndex,
 					activated,
 					setDefaultRole);
-
-	LOAD_AND_CONNECT_PROPERTY(defaultDomain,
-					const QString &,
-					domainEdit,
-					setText,
-					textChanged,
-					setDefaultDomain);
 
 	LOAD_AND_CONNECT_PROPERTY(clientDoubleClickAction,
 					int,
@@ -123,10 +116,6 @@ ConfigWidget::ConfigWidget( MainWindow * _main_window, QWidget * _parent ) :
 	iconOnlyToolButtons->setChecked( ToolButton::iconOnlyMode() );
 	connect( iconOnlyToolButtons, SIGNAL( toggled( bool ) ),
 			this, SLOT( toggleIconOnlyToolButtons( bool ) ) );
-
-	domainEdit->setText( __default_domain );
-	connect( domainEdit, SIGNAL( textChanged( const QString & ) ),
-			this, SLOT( domainChanged( const QString & ) ) );
 
 	clientDoubleClickActionCB->setCurrentIndex( mainWindow()->
 				getClassroomManager()->clientDblClickAction() );

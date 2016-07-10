@@ -32,7 +32,7 @@
 
 
 OverviewWidget::OverviewWidget( MainWindow * _main_window, QWidget * _parent ) :
-	SideBarWidget( QPixmap( ":/resources/overview.png" ),
+	SideBarWidget( QPixmap( ":/resources/view-calendar-month.png" ),
 			tr( "Overview" ),
 			tr( "Some basic information on iTALC and how to use "
 				"it." ), _main_window, _parent )

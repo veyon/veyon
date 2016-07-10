@@ -1,7 +1,7 @@
 /*
- * snapshot_list.cpp - implementation of snapshot-list for side-bar
+ * SnapshotList.cpp - implementation of snapshot-list for side-bar
  *
- * Copyright (c) 2004-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -37,7 +37,7 @@
 
 
 SnapshotList::SnapshotList( MainWindow *mainWindow, QWidget *parent ) :
-	SideBarWidget( QPixmap( ":/resources/snapshot.png" ),
+	SideBarWidget( QPixmap( ":/resources/ksnapshot.png" ),
 			tr( "Snapshots" ),
 			tr( "Simply manage the snapshots you made using this workspace." ),
 			mainWindow, parent ),
