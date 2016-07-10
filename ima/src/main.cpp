@@ -1,7 +1,7 @@
 /*
  * main.cpp - main-file for iTALC Master Application
  *
- * Copyright (c) 2004-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -56,22 +56,6 @@ int main( int argc, char * * argv )
 	Logger l( "ItalcMaster" );
 
 	app.connect( &app, SIGNAL( lastWindowClosed() ), SLOT( quit() ) );
-
-	app.setStyleSheet(
-		"QMenu { border:1px solid black; background-color: white; "
-			"background-image:url(:/resources/tray-menu-bg.png); "
-			"background-repeat:no-repeat; "
-			"background-position: bottom right; }"
-		"QMenu::separator { height: 1px; background: rgb(128,128,128); "
-					"margin-left: 5px; margin-right: 5px; }"
-		"QMenu::item { padding: 2px 32px 2px 20px; "
-						"margin:3px; }"
-		"QMenu::item:selected { color: white; font-weight:bold; "
-			"background-color: rgba(0, 0, 0, 160); "
-						"margin:3px; }"
-		"QMenu::item:disabled { color: white;  margin:0px; "
-			"background-color: rgba(0,0,0,192); font-size:14px;"
-			"font-weight:bold; padding: 4px 32px 4px 20px; }" );
 
 	// load translations
 	qRegisterMetaType<QModelIndex>( "QModelIndex" );
