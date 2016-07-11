@@ -876,11 +876,11 @@ void Client::paintEvent( QPaintEvent * _pe )
 	static QImage * img_locked = NULL;
 
 	if( img_unknown == NULL )
-		img_unknown = new QImage( ":/resources/preferences-desktop-display-red.png" );
+		img_unknown = new QImage( ":/resources/preferences-desktop-display-gray.png" );
 	if( img_no_user == NULL )
 		img_no_user = new QImage( ":/resources/preferences-system-login.png" );
 	if( img_host_unreachable == NULL )
-		img_host_unreachable = new QImage( ":/resources/network-wired-unavailable.png" );
+		img_host_unreachable = new QImage( ":/resources/preferences-desktop-display-red.png" );
 	if( img_demo == NULL )
 		img_demo = new QImage( ":/resources/window_demo.png" );
 	if( img_locked == NULL )
@@ -955,7 +955,7 @@ void Client::paintEvent( QPaintEvent * _pe )
 	QSize s( pm->size() );
 	s.scale( aw-10, ah-r.height()-20, Qt::KeepAspectRatio );
 	p.drawImage( ( aw-s.width() ) / 2, height()-ah,
-						FastQImage( *pm ).scaled( s ) );
+						QImage( *pm ).scaled( s ) );
 
 	p.setPen( QColor( 0, 0, 0 ) );
 	p.drawText( QRect( 5, height()-r.height()-10, aw - 10,

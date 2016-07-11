@@ -1,7 +1,7 @@
 /*
  * SideBarWidget.cpp - implementation of SideBarWidget
  *
- * Copyright (c) 2004-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -31,17 +31,16 @@
 
 
 #include "SideBarWidget.h"
-#include "FastQImage.h"
 
 
 
-SideBarWidget::SideBarWidget( const QPixmap & _icon,
+SideBarWidget::SideBarWidget( const QPixmap& icon,
 				const QString & _title,
 				const QString & _description,
 				MainWindow * _main_window, QWidget * _parent ) :
 	QWidget( _parent ),
 	m_mainWindow( _main_window ),
-	m_icon( _icon ),
+	m_icon( icon ),
 	m_title( _title ),
 	m_description( _description )
 {
@@ -93,7 +92,7 @@ void SideBarWidget::paintEvent( QPaintEvent * )
 	p.drawText( tx, ty, m_title );
 	p.drawLine( tx, ty + 4, width() - 4, ty + 4 );
 
-	p.drawImage( 2, 2, FastQImage( m_icon ).scaled( 48, 48 ) );
+	p.drawPixmap( 2, 2, m_icon.scaled( 48, 48, Qt::IgnoreAspectRatio, Qt::SmoothTransformation ) );
 }
 
 

@@ -2,7 +2,7 @@
  * Client.h - declaration of class Client which represents a client, shows its
  *            display and allows controlling it in several ways
  *
- * Copyright (c) 2004-2013 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -35,8 +35,6 @@
 #include <QWidget>
 #include <QtGui/QImage>
 #include <QMenu>
-
-#include "FastQImage.h"
 
 class classRoom;
 class classRoomItem;
@@ -134,9 +132,10 @@ public:
 
 
 
-inline QPixmap scaledIcon( const char * _name )
+inline QPixmap scaledIcon( const char* name )
 {
-	return scaled( QString( ":/resources/" ) + _name, 16, 16 );
+	return QPixmap( QString( ":/resources/" ) + name ).
+			scaled( 16, 16, Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
 }
 
 

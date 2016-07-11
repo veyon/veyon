@@ -35,29 +35,29 @@ class MainWindow;
 class SideBarWidget : public QWidget
 {
 public:
-	SideBarWidget( const QPixmap & _icon, const QString & _title,
+	SideBarWidget( const QPixmap& icon, const QString & _title,
 			const QString & _description,
 				MainWindow * _main_window, QWidget * _parent );
 	virtual ~SideBarWidget();
 
-	inline const QPixmap & icon( void ) const
+	inline const QPixmap& icon() const
 	{
 		return m_icon;
 	}
 
-	inline const QString & title( void ) const
+	inline const QString & title() const
 	{
 		return m_title;
 	}
 
-	inline const QString & description( void ) const
+	inline const QString & description() const
 	{
 		return m_description;
 	}
 
 
 protected:
-	virtual void paintEvent( QPaintEvent * _pe );
+	virtual void paintEvent( QPaintEvent* event );
 
 	inline QWidget * contentParent()
 	{
@@ -71,8 +71,8 @@ protected:
 
 
 private:
-	MainWindow * m_mainWindow;
-	QWidget * m_contents;
+	MainWindow *m_mainWindow;
+	QWidget *m_contents;
 	QPixmap m_icon;
 	QString m_title;
 	QString m_description;

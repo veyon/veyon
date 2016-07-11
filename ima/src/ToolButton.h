@@ -1,7 +1,7 @@
 /*
  * ToolButton.h - declaration of class ToolButton
  *
- * Copyright (c) 2006-2013 Tobias Doerffel <tobydox/at/users.sourceforge.net>
+ * Copyright (c) 2006-2016 Tobias Doerffel <tobydox/at/users.sourceforge.net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -26,8 +26,6 @@
 #define TOOL_BUTTON_H
 
 #include <QToolButton>
-
-#include "FastQImage.h"
 
 
 class QToolBar;
@@ -96,7 +94,7 @@ private:
 #endif
 
 	QPixmap m_pixmap;
-	FastQImage m_img;
+	QPixmap m_smallPixmap;
 	bool m_mouseOver;
 
 	QString m_label;
@@ -127,7 +125,7 @@ protected:
 private:
 	void updateMask( void );
 
-	QImage m_icon;
+	QPixmap m_icon;
 	QString m_title;
 	QString m_description;
 

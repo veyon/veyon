@@ -1,7 +1,7 @@
 /*
  * ToolButton.cpp - implementation of iTALC-tool-button
  *
- * Copyright (c) 2006-2009 Tobias Doerffel <tobydox/at/users.sourceforge.net>
+ * Copyright (c) 2006-2016 Tobias Doerffel <tobydox/at/users.sourceforge.net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -46,14 +46,14 @@ bool ToolButton::s_iconOnlyMode = false;
 #endif
 
 
-ToolButton::ToolButton( const QPixmap & _pixmap, const QString & _label,
+ToolButton::ToolButton( const QPixmap& pixmap, const QString & _label,
 				const QString & _alt_label,
 				const QString & _title, 
 				const QString & _desc, QObject * _receiver, 
 				const char * _slot, QWidget * _parent ) :
 	QToolButton( _parent ),
-	m_pixmap( _pixmap ),
-	m_img( FastQImage( _pixmap.toImage() ).scaled( 32, 32 ) ),
+	m_pixmap( pixmap ),
+	m_smallPixmap( pixmap.scaled( 32, 32, Qt::IgnoreAspectRatio, Qt::SmoothTransformation ) ),
 	m_mouseOver( false ),
 	m_label( _label ),
 	m_altLabel( _alt_label ),
@@ -74,17 +74,17 @@ ToolButton::ToolButton( const QPixmap & _pixmap, const QString & _label,
 
 
 
-ToolButton::ToolButton( QAction * _a, const QString & _label,
+ToolButton::ToolButton( QAction* a, const QString& label,
 				const QString & _alt_label,
 				const QString & _desc, QObject * _receiver, 
 				const char * _slot, QWidget * _parent ) :
 	QToolButton( _parent ),
-	m_pixmap( _a->icon().pixmap( 128, 128 ) ),
-	m_img( FastQImage( m_pixmap.toImage() ).scaled( 32, 32 ) ),
+	m_pixmap( a->icon().pixmap( 128, 128 ) ),
+	m_smallPixmap( a->icon().pixmap( 32, 32 ) ),
 	m_mouseOver( false ),
-	m_label( _label ),
+	m_label( label ),
 	m_altLabel( _alt_label ),
-	m_title( _a->text() ),
+	m_title( a->text() ),
 	m_descr( _desc )
 {
 	setAttribute( Qt::WA_NoSystemBackground, true );
@@ -94,7 +94,7 @@ ToolButton::ToolButton( QAction * _a, const QString & _label,
 	if( _receiver != NULL && _slot != NULL )
 	{
 		connect( this, SIGNAL( clicked() ), _receiver, _slot );
-		connect( _a, SIGNAL( triggered( bool ) ), _receiver, _slot );
+		connect( a, SIGNAL( triggered( bool ) ), _receiver, _slot );
 	}
 
 }
@@ -241,12 +241,12 @@ void ToolButton::paintEvent( QPaintEvent * _pe )
 	painter.drawRoundedRect( 0, 0, width(), height(), 5, 5 );
 
 	const int dd = active ? 1 : 0;
-	QPoint pt = QPoint( ( width() - m_img.width() ) / 2 + dd, 3 + dd );
+	QPoint pt = QPoint( ( width() - m_smallPixmap.width() ) / 2 + dd, 3 + dd );
 	if( s_iconOnlyMode )
 	{
-		pt.setY( ( height() - m_img.height() ) / 2 - 1 + dd );
+		pt.setY( ( height() - m_smallPixmap.height() ) / 2 - 1 + dd );
 	}
-	painter.drawImage( pt, m_img );
+	painter.drawPixmap( pt, m_smallPixmap );
 
 	if( s_iconOnlyMode == false )
 	{
@@ -309,12 +309,12 @@ void ToolButton::updateSize()
 
 
 
-ToolButtonTip::ToolButtonTip( const QPixmap & _pixmap, const QString & _title,
+ToolButtonTip::ToolButtonTip( const QPixmap& pixmap, const QString &title,
 				const QString & _description,
 				QWidget * _parent, QWidget * _tool_btn ) :
 	QWidget( _parent, Qt::ToolTip ),
-	m_icon( FastQImage( _pixmap ).scaled( 72, 72 ) ),
-	m_title( _title ),
+	m_icon( pixmap.scaled( 72, 72, Qt::IgnoreAspectRatio, Qt::SmoothTransformation ) ),
+	m_title( title ),
 	m_description( _description ),
 	m_toolButton( _tool_btn )
 {
@@ -394,7 +394,7 @@ void ToolButtonTip::resizeEvent( QResizeEvent * _re )
 	}
 	p.setPen( Qt::black );
 
-	p.drawImage( MARGIN, MARGIN, m_icon );
+	p.drawPixmap( MARGIN, MARGIN, m_icon );
 	QFont f = p.font();
 	f.setBold( true );
 	p.setFont( f );

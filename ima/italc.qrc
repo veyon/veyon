@@ -42,7 +42,6 @@
         <file>resources/greenled.png</file>
         <file>resources/system-suspend-hibernate.png</file>
         <file>resources/user-group-new.png</file>
-        <file>resources/network-wired-unavailable.png</file>
         <file>resources/toolbar-background.png</file>
     </qresource>
 </RCC>
