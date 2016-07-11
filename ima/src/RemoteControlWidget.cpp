@@ -46,9 +46,8 @@ RemoteControlWidgetToolBar::RemoteControlWidgetToolBar(
 	m_showHideTimeLine(),
 	m_iconStateTimeLine(),
 	m_connecting( false ),
-	m_icon( FastQImage( QImage( ":/resources/icon64.png" ) ).
-					scaled( QSize( 48, 48 ) ) ),
-	m_iconGray( FastQImage( m_icon ).toGray().darken( 50 ) )
+	m_icon( QPixmap( ":/resources/icon128.png" ).scaled( QSize( 48, 48 ),
+					Qt::IgnoreAspectRatio, Qt::SmoothTransformation ) )
 {
 	QPalette pal = palette();
 	pal.setBrush( QPalette::Window, QPixmap( ":/resources/toolbar-background.png" ) );
@@ -187,7 +186,7 @@ void RemoteControlWidgetToolBar::paintEvent( QPaintEvent *paintEv )
 	p.fillRect( paintEv->rect(), palette().brush( QPalette::Window ) );
 	p.setOpacity( 1 );
 
-	p.drawImage( 5, 2, m_icon );
+	p.drawPixmap( 5, 2, m_icon );
 
 	f.setPointSize( 12 );
 	f.setBold( true );
@@ -203,11 +202,6 @@ void RemoteControlWidgetToolBar::paintEvent( QPaintEvent *paintEv )
 
 	if( m_connecting )
 	{
-		FastQImage tmp = m_iconGray;
-		tmp.alphaFillMax( (int)( 120 - 120.0 *
-				m_iconStateTimeLine.currentValue() ) );
-		p.drawImage( 5, 2, tmp );
-
 		QString dots;
 		for( int i = 0; i < ( m_iconStateTimeLine.currentTime() / 120 ) % 6; ++i )
 		{

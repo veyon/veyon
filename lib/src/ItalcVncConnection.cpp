@@ -1,7 +1,7 @@
 /*
  * ItalcVncConnection.cpp - implementation of ItalcVncConnection class
  *
- * Copyright (c) 2008-2014 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2008-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -492,7 +492,7 @@ void ItalcVncConnection::rescaleScreen()
 		if( m_image.size().isValid() )
 		{
 			m_scaledScreenNeedsUpdate = false;
-			m_image.scaleTo( m_scaledScreen );
+			m_scaledScreen = m_image.scaled( m_scaledSize, Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
 		}
 	}
 }

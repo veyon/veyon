@@ -1,7 +1,7 @@
 /*
  * ItalcVncConnection.h - declaration of ItalcVncConnection class
  *
- * Copyright (c) 2008-2013 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2008-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -33,10 +33,10 @@
 #include <QtCore/QReadWriteLock>
 #include <QtCore/QThread>
 #include <QtCore/QWaitCondition>
+#include <QtGui/QImage>
 
 #include "ItalcCore.h"
 #include "ItalcRfbExt.h"
-#include "FastQImage.h"
 
 class PrivateDSAKey;
 
@@ -159,7 +159,7 @@ public:
 		}
 	}
 
-	FastQImage scaledScreen()
+	QImage scaledScreen()
 	{
 		rescaleScreen();
 		return m_scaledScreen;
@@ -229,9 +229,9 @@ private:
 	mutable QReadWriteLock m_imgLock;
 	QQueue<ClientEvent *> m_eventQueue;
 
-	FastQImage m_image;
+	QImage m_image;
 	bool m_scaledScreenNeedsUpdate;
-	FastQImage m_scaledScreen;
+	QImage m_scaledScreen;
 	QSize m_scaledSize;
 
 	volatile State m_state;

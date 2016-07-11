@@ -613,8 +613,7 @@ void VncView::paintEvent( QPaintEvent *paintEvent )
 		}
 		else
 		{
-			FastQImage i = m_frame;
-			p.drawImage( 0, 0, m_frame.scaled( sSize ) );
+			p.drawImage( 0, 0, m_frame.scaled( sSize, Qt::IgnoreAspectRatio, Qt::SmoothTransformation ) );
 		}
 	}
 	else

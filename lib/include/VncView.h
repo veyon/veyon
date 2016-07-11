@@ -1,7 +1,7 @@
 /*
  * VncView.h - VNC viewer widget
  *
- * Copyright (c) 2006-2013 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -32,7 +32,6 @@
 #include <QWidget>
 
 #include "ItalcVncConnection.h"
-#include "FastQImage.h"
 
 
 class ProgressWidget;
@@ -123,7 +122,7 @@ private:
 	Mode m_mode;
 	int m_x, m_y, m_w, m_h;
 	bool m_repaint;
-	FastQImage m_frame;
+	QImage m_frame;
 	QImage m_cursorShape;
 	int m_cursorX;
 	int m_cursorY;

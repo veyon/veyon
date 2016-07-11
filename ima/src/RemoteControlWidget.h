@@ -1,7 +1,7 @@
 /*
  *  RemoteControlWidget.h - widget containing a VNC-view and controls for it
  *
- *  Copyright (c) 2006-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ *  Copyright (c) 2006-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  *  This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -26,8 +26,6 @@
 
 #include <QtCore/QTimeLine>
 #include <QWidget>
-
-#include "FastQImage.h"
 
 class VncView;
 class ItalcCoreConnection;
@@ -66,8 +64,7 @@ private:
 	QTimeLine m_iconStateTimeLine;
 
 	bool m_connecting;
-	QImage m_icon;
-	FastQImage m_iconGray;
+	QPixmap m_icon;
 
 } ;
 
