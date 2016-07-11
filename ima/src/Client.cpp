@@ -411,11 +411,11 @@ QMenu * clientMenu::createDefault( QWidget * _parent )
 	QMenu * menu = new QMenu( _parent );
 
 	menu->addAction( new ClientAction( ClientAction::Overview,
-		scaledIcon( "view-calendar-month.png" ), tr( "Overview" ), menu ) );
+		scaledIcon( "presentation-none.png" ), tr( "Overview" ), menu ) );
 	menu->addAction( new ClientAction( ClientAction::FullscreenDemo,
-		scaledIcon( "fullscreen_demo.png" ), tr( "Fullscreen demo" ), menu ) );
+		scaledIcon( "presentation-fullscreen.png" ), tr( "Fullscreen demo" ), menu ) );
 	menu->addAction( new ClientAction( ClientAction::WindowDemo,
-		scaledIcon( "window_demo.png" ), tr( "Window demo" ), menu ) );
+		scaledIcon( "presentation-window.png" ), tr( "Window demo" ), menu ) );
 	menu->addAction( new ClientAction(	ClientAction::Locked,
 		scaledIcon( "system-lock-screen.png" ), tr( "Locked display" ), menu ) );
 	menu->addSeparator();
@@ -882,9 +882,9 @@ void Client::paintEvent( QPaintEvent * _pe )
 	if( img_host_unreachable == NULL )
 		img_host_unreachable = new QImage( ":/resources/preferences-desktop-display-red.png" );
 	if( img_demo == NULL )
-		img_demo = new QImage( ":/resources/window_demo.png" );
+		img_demo = new QImage( ":/resources/preferences-desktop-display-orange.png" );
 	if( img_locked == NULL )
-		img_locked = new QImage( ":/resources/system-lock-screen.png" );
+		img_locked = new QImage( ":/resources/preferences-desktop-display-purple.png" );
 
 	QPainter p( this );
 	p.setBrush( Qt::white );

@@ -148,7 +148,7 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 
 	QAction * a;
 
-	a = new QAction( QIcon( ":/resources/view-calendar-month.png" ),
+	a = new QAction( QIcon( ":/resources/presentation-none.png" ),
 						tr( "Overview mode" ), this );
 	m_sysTrayActions << a;
 	ToolButton * overview_mode = new ToolButton(
@@ -161,7 +161,7 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 			this, SLOT( mapOverview() ), m_toolBar );
 
 
-	a = new QAction( QIcon( ":/resources/fullscreen_demo.png" ),
+	a = new QAction( QIcon( ":/resources/presentation-fullscreen.png" ),
 						tr( "Fullscreen demo" ), this );
 	m_sysTrayActions << a;
 	ToolButton * fsdemo_mode = new ToolButton(
@@ -172,7 +172,7 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 				"devices are locked in this mode." ),
 			this, SLOT( mapFullscreenDemo() ), m_toolBar );
 
-	a = new QAction( QIcon( ":/resources/window_demo.png" ),
+	a = new QAction( QIcon( ":/resources/presentation-window.png" ),
 						tr( "Window demo" ), this );
 	m_sysTrayActions << a;
 	ToolButton * windemo_mode = new ToolButton(

@@ -14,12 +14,15 @@
         <file>resources/preferences-desktop-display-orange.png</file>
         <file>resources/preferences-desktop-display-gray.png</file>
         <file>resources/preferences-desktop-display-red.png</file>
+        <file>resources/preferences-desktop-display-purple.png</file>
         <file>resources/list-add.png</file>
         <file>resources/list-remove.png</file>
         <file>resources/chronometer.png</file>
         <file>resources/adjustrgb.png</file>
         <file>resources/document-save.png</file>
-        <file>resources/fullscreen_demo.png</file>
+        <file>resources/presentation-fullscreen.png</file>
+        <file>resources/presentation-window.png</file>
+        <file>resources/presentation-none.png</file>
         <file>resources/help-about.png</file>
         <file>resources/preferences-system-power-management.png</file>
         <file>resources/system-lock-screen.png</file>
@@ -38,8 +41,7 @@
         <file>resources/window-duplicate.png</file>
         <file>resources/edit-find.png</file>
         <file>resources/kmag.png</file>
-        <file>resources/window_demo.png</file>
-        <file>resources/greenled.png</file>
+        <file>resources/dot-green.png</file>
         <file>resources/system-suspend-hibernate.png</file>
         <file>resources/user-group-new.png</file>
         <file>resources/toolbar-background.png</file>

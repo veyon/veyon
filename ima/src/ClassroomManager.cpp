@@ -1565,7 +1565,7 @@ void ClassroomManager::setStateOfClassRoom( classRoom * _cr, bool _shown )
 {
 	if( _shown )
 	{
-		_cr->setMenuItemIcon( QIcon( ":/resources/greenled.png" ) );
+		_cr->setMenuItemIcon( QIcon( ":/resources/dot-green.png" ) );
 	}
 	else
 	{
