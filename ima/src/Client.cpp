@@ -424,7 +424,7 @@ QMenu * clientMenu::createDefault( QWidget * _parent )
 		scaledIcon( "kmag.png" ), tr( "View live" ), menu,
 		ClientAction::FullMenu ) );
 	menu->addAction( new ClientAction( ClientAction::RemoteControl,
-		scaledIcon( "remote_control.png" ), tr( "Remote control" ), menu,
+		scaledIcon( "kmag.png" ), tr( "Remote control" ), menu,
 		ClientAction::FullMenu ) );
 	menu->addAction( new ClientAction( ClientAction::ClientDemo,
 		scaledIcon( "preferences-desktop-display-orange.png" ), tr( "Let student show demo" ), menu,
@@ -439,7 +439,7 @@ QMenu * clientMenu::createDefault( QWidget * _parent )
 	menu->addSeparator();
 
 	menu->addAction( new ClientAction( ClientAction::Snapshot,
-		scaledIcon( "ksnapshot.png" ), tr( "Take a snapshot" ), menu ) );
+		scaledIcon( "camera-photo.png" ), tr( "Take a snapshot" ), menu ) );
 	menu->addSeparator();
 
 	menu->addAction( new ClientAction( ClientAction::PowerOn,

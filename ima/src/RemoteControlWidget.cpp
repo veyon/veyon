@@ -59,22 +59,22 @@ RemoteControlWidgetToolBar::RemoteControlWidgetToolBar(
 	startConnection();
 
 	ToolButton * vo_btn = new ToolButton(
-				QPixmap( ":/resources/overview_mode.png" ),
+				QPixmap( ":/resources/kmag.png" ),
 				tr( "View only" ), tr( "Remote control" ),
 				QString::null, QString::null, 0, 0,
 				this );
 	ToolButton * ls_btn = new ToolButton(
-				QPixmap( ":/resources/no_mouse.png" ),
+				QPixmap( ":/resources/kr_unselect.png" ),
 				tr( "Lock student" ), tr( "Unlock student" ),
 				QString::null, QString::null, 0, 0,
 				this );
 	ToolButton * ss_btn = new ToolButton(
-				QPixmap( ":/resources/ksnapshot.png" ),
+				QPixmap( ":/resources/camera-photo.png" ),
 				tr( "Snapshot" ), QString::null,
 				QString::null, QString::null, 0, 0,
 				this );
 	ToolButton * fs_btn = new ToolButton(
-				QPixmap( ":/resources/fullscreen.png" ),
+				QPixmap( ":/resources/view-fullscreen.png" ),
 				tr( "Fullscreen" ), tr( "Window" ),
 				QString::null, QString::null, 0, 0,
 				this );
@@ -278,7 +278,7 @@ RemoteControlWidget::RemoteControlWidget( const QString &host,
 	m_toolBar( new RemoteControlWidgetToolBar( this, viewOnly ) ),
 	m_host( host )
 {
-	setWindowIcon( QPixmap( ":/resources/remote_control.png" ) );
+	setWindowIcon( QPixmap( ":/resources/kmag.png" ) );
 	setAttribute( Qt::WA_DeleteOnClose, true );
 
 	m_vncView->move( 0, 0 );

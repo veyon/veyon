@@ -140,7 +140,7 @@ p, li { white-space: pre-wrap; }
         </size>
        </property>
        <property name="pixmap">
-        <pixmap resource="../italc.qrc">:/resources/ksnapshot.png</pixmap>
+        <pixmap resource="../italc.qrc">:/resources/camera-photo.png</pixmap>
        </property>
        <property name="scaledContents">
         <bool>true</bool>

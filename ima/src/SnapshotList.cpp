@@ -37,7 +37,7 @@
 
 
 SnapshotList::SnapshotList( MainWindow *mainWindow, QWidget *parent ) :
-	SideBarWidget( QPixmap( ":/resources/ksnapshot.png" ),
+	SideBarWidget( QPixmap( ":/resources/camera-photo.png" ),
 			tr( "Snapshots" ),
 			tr( "Simply manage the snapshots you made using this workspace." ),
 			mainWindow, parent ),

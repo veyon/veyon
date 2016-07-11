@@ -1,7 +1,7 @@
 <RCC>
     <qresource prefix="/" >
-	<file>resources/no_mouse.png</file>
-	<file>resources/fullscreen.png</file>
+	<file>resources/kr_unselect.png</file>
+	<file>resources/view-fullscreen.png</file>
 	<file>resources/application-exit.png</file>
 	<file>resources/document-edit.png</file>
         <file>resources/zoom-fit-best.png</file>
@@ -33,7 +33,7 @@
         <file>resources/remote_control.png</file>
         <file>resources/remote_control_48.png</file>
         <file>resources/run-build.png</file>
-        <file>resources/ksnapshot.png</file>
+        <file>resources/camera-photo.png</file>
         <file>resources/splash.png</file>
         <file>resources/dialog-error.png</file>
         <file>resources/dialog-information.png</file>
