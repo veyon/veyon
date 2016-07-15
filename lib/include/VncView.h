@@ -28,6 +28,7 @@
 #include <italcconfig.h>
 
 #include <QtCore/QEvent>
+#include <QtCore/QPointer>
 #include <QtCore/QThread>
 #include <QWidget>
 
@@ -64,9 +65,9 @@ public:
 		return m_scaledView;
 	}
 
-	ItalcVncConnection * vncConnection()
+	ItalcVncConnection* vncConnection()
 	{
-		return &m_vncConn;
+		return m_vncConn;
 	}
 
 	QSize scaledSize() const;
@@ -117,7 +118,7 @@ private:
 	void updateLocalCursor();
 
 
-	ItalcVncConnection m_vncConn;
+	QPointer<ItalcVncConnection> m_vncConn;
 
 	Mode m_mode;
 	int m_x, m_y, m_w, m_h;
@@ -140,9 +141,6 @@ private:
 	ProgressWidget * m_establishingConnection;
 
 	SystemKeyTrapper * m_sysKeyTrapper;
-
-
-	friend class remoteControlWidget;
 
 } ;
 

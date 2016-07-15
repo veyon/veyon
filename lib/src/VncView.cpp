@@ -38,7 +38,7 @@
 
 VncView::VncView( const QString &host, QWidget *parent, Mode mode ) :
 	QWidget( parent ),
-	m_vncConn( this ),
+	m_vncConn( new ItalcVncConnection( this ) ),
 	m_mode( mode ),
 	m_frame(),
 	m_cursorShape(),
@@ -55,39 +55,39 @@ VncView::VncView( const QString &host, QWidget *parent, Mode mode ) :
 	m_establishingConnection( NULL ),
 	m_sysKeyTrapper( new SystemKeyTrapper( false ) )
 {
-	m_vncConn.setHost( host );
+	m_vncConn->setHost( host );
 	if( m_mode == DemoMode )
 	{
-		m_vncConn.setQuality( ItalcVncConnection::DemoClientQuality );
-		m_vncConn.setItalcAuthType( ItalcAuthHostBased );
+		m_vncConn->setQuality( ItalcVncConnection::DemoClientQuality );
+		m_vncConn->setItalcAuthType( ItalcAuthHostBased );
 		m_establishingConnection = new ProgressWidget(
 			tr( "Establishing connection to %1 ..." ).arg( host ),
 					":/resources/watch%1.png", 16, this );
-		connect( &m_vncConn, SIGNAL( connected() ),
+		connect( m_vncConn, SIGNAL( connected() ),
 					m_establishingConnection, SLOT( hide() ) );
 
 	}
 	else if( m_mode == RemoteControlMode )
 	{
-		m_vncConn.setQuality( ItalcVncConnection::RemoteControlQuality );
+		m_vncConn->setQuality( ItalcVncConnection::RemoteControlQuality );
 	}
 
-	connect( &m_vncConn, SIGNAL( imageUpdated( int, int, int, int ) ),
+	connect( m_vncConn, SIGNAL( imageUpdated( int, int, int, int ) ),
 			this, SLOT( updateImage( int, int, int, int ) ),
 						Qt::BlockingQueuedConnection );
 
-	connect( &m_vncConn, SIGNAL( framebufferSizeChanged( int, int ) ),
+	connect( m_vncConn, SIGNAL( framebufferSizeChanged( int, int ) ),
 				this, SLOT( updateSizeHint( int, int ) ), Qt::QueuedConnection );
 
-	connect( &m_vncConn, SIGNAL( cursorPosChanged( int, int ) ),
+	connect( m_vncConn, SIGNAL( cursorPosChanged( int, int ) ),
 				this, SLOT( updateCursorPos( int, int ) ) );
 
-	connect( &m_vncConn, SIGNAL( cursorShapeUpdated( const QImage &, int, int ) ),
+	connect( m_vncConn, SIGNAL( cursorShapeUpdated( const QImage &, int, int ) ),
 				this, SLOT( updateCursorShape( const QImage &, int, int ) ) );
 
 	// forward trapped special keys
 	connect( m_sysKeyTrapper, SIGNAL( keyEvent( unsigned int, bool ) ),
-				&m_vncConn, SLOT( keyEvent( unsigned int, bool ) ) );
+				m_vncConn, SLOT( keyEvent( unsigned int, bool ) ) );
 	connect( m_sysKeyTrapper, SIGNAL( keyEvent( unsigned int, bool ) ),
 				this, SLOT( checkKeyEvent( unsigned int, bool ) ) );
 
@@ -109,7 +109,7 @@ VncView::VncView( const QString &host, QWidget *parent, Mode mode ) :
 	setFocusPolicy( Qt::StrongFocus );
 	setFocus();
 
-	m_vncConn.start();
+	m_vncConn->start();
 }
 
 
@@ -117,14 +117,16 @@ VncView::VncView( const QString &host, QWidget *parent, Mode mode ) :
 
 VncView::~VncView()
 {
-	disconnect( &m_vncConn, SIGNAL( imageUpdated( int, int, int, int ) ),
+	disconnect( m_vncConn, SIGNAL( imageUpdated( int, int, int, int ) ),
 			this, SLOT( updateImage( int, int, int, int ) ) );
 
 	unpressModifiers();
 	delete m_sysKeyTrapper;
 
-	m_vncConn.stop();
-	m_vncConn.wait( 500 );
+	if( m_vncConn )
+	{
+		m_vncConn->stop( true );
+	}
 }
 
 
@@ -205,7 +207,7 @@ void VncView::setViewOnly( bool _vo )
 void VncView::setScaledView( bool scaledView )
 {
 	m_scaledView = scaledView;
-	m_vncConn.setScaledSize( scaledSize() );
+	m_vncConn->setScaledSize( scaledSize() );
 	update();
 }
 
@@ -435,7 +437,7 @@ void VncView::keyEventHandler( QKeyEvent * _ke )
 						key >= 64 && key < 0xF000 )
 	{
 		unpressModifiers();
-		m_vncConn.keyEvent( XK_ISO_Level3_Shift, true );
+		m_vncConn->keyEvent( XK_ISO_Level3_Shift, true );
 	}
 #endif
 
@@ -448,12 +450,12 @@ void VncView::keyEventHandler( QKeyEvent * _ke )
 		if( pressed )
 		{
 			unpressModifiers();
-			m_vncConn.keyEvent( XK_Control_L, true );
-			m_vncConn.keyEvent( XK_Alt_L, true );
-			m_vncConn.keyEvent( XK_Delete, true );
-			m_vncConn.keyEvent( XK_Delete, false );
-			m_vncConn.keyEvent( XK_Alt_L, false );
-			m_vncConn.keyEvent( XK_Control_L, false );
+			m_vncConn->keyEvent( XK_Control_L, true );
+			m_vncConn->keyEvent( XK_Alt_L, true );
+			m_vncConn->keyEvent( XK_Delete, true );
+			m_vncConn->keyEvent( XK_Delete, false );
+			m_vncConn->keyEvent( XK_Alt_L, false );
+			m_vncConn->keyEvent( XK_Control_L, false );
 			key = 0;
 		}
 	}
@@ -479,7 +481,7 @@ void VncView::keyEventHandler( QKeyEvent * _ke )
 	if( key )
 	{
 		// forward key event to the VNC connection
-		m_vncConn.keyEvent( key, pressed );
+		m_vncConn->keyEvent( key, pressed );
 
 		// signal key event - used by RemoteControlWidget to close itself
 		// when pressing Esc
@@ -499,7 +501,7 @@ void VncView::unpressModifiers()
 	QList<unsigned int>::const_iterator it = keys.begin();
 	while( it != keys.end() )
 	{
-		m_vncConn.keyEvent( *it, false );
+		m_vncConn->keyEvent( *it, false );
 		it++;
 	}
 	m_mods.clear();
@@ -660,13 +662,13 @@ void VncView::paintEvent( QPaintEvent *paintEvent )
 
 	// draw black borders if neccessary
 	const int fbw = sSize.isValid() ? sSize.width() :
-				m_vncConn.framebufferSize().width();
+				m_vncConn->framebufferSize().width();
 	if( fbw < width() )
 	{
 		p.fillRect( fbw, 0, width() - fbw, height(), Qt::black );
 	}
 	const int fbh = sSize.isValid() ? sSize.height() :
-				m_vncConn.framebufferSize().height();
+				m_vncConn->framebufferSize().height();
 	if( fbh < height() )
 	{
 		p.fillRect( 0, fbh, fbw, height() - fbh, Qt::black );
@@ -679,7 +681,7 @@ void VncView::paintEvent( QPaintEvent *paintEvent )
 
 void VncView::resizeEvent( QResizeEvent *event )
 {
-	m_vncConn.setScaledSize( scaledSize() );
+	m_vncConn->setScaledSize( scaledSize() );
 
 	update();
 
@@ -699,9 +701,9 @@ void VncView::resizeEvent( QResizeEvent *event )
 void VncView::wheelEventHandler( QWheelEvent * _we )
 {
 	const QPoint p = mapToFramebuffer( _we->pos() );
-	m_vncConn.mouseEvent( p.x(), p.y(), m_buttonMask |
+	m_vncConn->mouseEvent( p.x(), p.y(), m_buttonMask |
 		( ( _we->delta() < 0 ) ? rfbButton5Mask : rfbButton4Mask ) );
-	m_vncConn.mouseEvent( p.x(), p.y(), m_buttonMask );
+	m_vncConn->mouseEvent( p.x(), p.y(), m_buttonMask );
 }
 
 
@@ -751,7 +753,7 @@ void VncView::mouseEventHandler( QMouseEvent * _me )
 	if( !m_viewOnly )
 	{
 		const QPoint p = mapToFramebuffer( _me->pos() );
-		m_vncConn.mouseEvent( p.x(), p.y(), m_buttonMask );
+		m_vncConn->mouseEvent( p.x(), p.y(), m_buttonMask );
 	}
 }
 
@@ -777,7 +779,7 @@ void VncView::updateImage(int x, int y, int w, int h)
 		m_h+=2;
 	}
 
-	m_frame = m_vncConn.image();
+	m_frame = m_vncConn->image();
 
 	if( !m_initDone )
 	{
@@ -789,7 +791,7 @@ void VncView::updateImage(int x, int y, int w, int h)
 		setFocusPolicy( Qt::WheelFocus );
 
 		resize( sizeHint() );
-		m_vncConn.setScaledSize( scaledSize() );
+		m_vncConn->setScaledSize( scaledSize() );
 
 		emit connectionEstablished();
 		m_initDone = true;
