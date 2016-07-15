@@ -86,7 +86,7 @@ public:
 
 	const QImage image( int x = 0, int y = 0, int w = 0, int h = 0 ) const;
 	void setImage( const QImage &img );
-	void stop();
+	void stop( bool deleteAfterFinished = false );
 	void reset( const QString &host );
 	void setHost( const QString &host );
 	void setPort( int port );
@@ -205,6 +205,10 @@ protected:
 
 
 private:
+	enum {
+		ThreadTerminationTimeout = 30000
+	};
+
 	// hooks for LibVNCClient
 	static rfbBool hookNewClient( rfbClient *cl );
 	static void hookUpdateFB( rfbClient *cl, int x, int y, int w, int h );
@@ -235,7 +239,6 @@ private:
 	QSize m_scaledSize;
 
 	volatile State m_state;
-	volatile bool m_stopped;
 
 
 } ;

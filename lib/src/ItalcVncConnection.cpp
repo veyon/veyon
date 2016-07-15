@@ -36,6 +36,7 @@
 #include <QtCore/QCoreApplication>
 #include <QtCore/QMutexLocker>
 #include <QtCore/QTime>
+#include <QtCore/QTimer>
 
 #include <rfb/dh.h>
 
@@ -336,8 +337,7 @@ ItalcVncConnection::ItalcVncConnection( QObject *parent ) :
 	m_scaledScreenNeedsUpdate( false ),
 	m_scaledScreen(),
 	m_scaledSize(),
-	m_state( Disconnected ),
-	m_stopped( false )
+	m_state( Disconnected )
 {
 }
 
@@ -347,29 +347,39 @@ ItalcVncConnection::~ItalcVncConnection()
 {
 	stop();
 
-	delete [] m_frameBuffer;
+	if( isRunning() )
+	{
+		qWarning( "Terminating VNC connection while still running!" );
+
+		terminate();
+	}
+
+	delete[] m_frameBuffer;
 }
 
 
 
 
-void ItalcVncConnection::stop()
+void ItalcVncConnection::stop( bool deleteAfterFinished )
 {
 	if( isRunning() )
 	{
-		m_stopped = true;
+		if( deleteAfterFinished )
+		{
+			connect( this, &ItalcVncConnection::finished,
+					 this, &ItalcVncConnection::deleteLater );
+		}
+
+		requestInterruption();
+
 		m_updateIntervalSleeper.wakeAll();
 
-		if( !wait( 1000 ) )
-		{
-			qWarning( "ItalcVncConnection::stop(): terminating thread" );
-			terminate();
-
-			while( !wait( 1000 ) )
-			{
-				qWarning( "ItalcVncConnection::stop(): terminated thread is still alive!" );
-			}
-		}
+		// terminate thread in background after timeout
+		QTimer::singleShot( ThreadTerminationTimeout, this, &ItalcVncConnection::terminate );
+	}
+	else if( deleteAfterFinished )
+	{
+		deleteLater();
 	}
 }
 
@@ -504,12 +514,11 @@ void ItalcVncConnection::run()
 {
 	m_state = Disconnected;
 	emit stateChanged( m_state );
-	m_stopped = false;
 
 	rfbClientLog = hookOutputHandler;
 	rfbClientErr = hookOutputHandler;
 
-	while( m_stopped == false )
+	while( isInterruptionRequested() == false )
 	{
 		doConnection();
 	}
@@ -521,7 +530,7 @@ void ItalcVncConnection::doConnection()
 {
 	QMutex sleeperMutex;
 
-	while( !m_stopped && m_state != Connected ) // try to connect as long as the server allows
+	while( isInterruptionRequested() == false && m_state != Connected ) // try to connect as long as the server allows
 	{
 		m_cl = rfbGetClient( 8, 3, 4 );
 		m_cl->MallocFrameBuffer = hookNewClient;
@@ -588,7 +597,7 @@ void ItalcVncConnection::doConnection()
 			}
 
 			// do not sleep when already requested to stop
-			if( m_stopped )
+			if( isInterruptionRequested() )
 			{
 				break;
 			}
@@ -612,7 +621,7 @@ void ItalcVncConnection::doConnection()
 	//QTime lastFullUpdate = QTime::currentTime();
 
 	// Main VNC event loop
-	while( !m_stopped )
+	while( isInterruptionRequested() == false )
 	{
 		int timeout = 500;
 		if( m_framebufferUpdateInterval < 0 )
@@ -620,7 +629,7 @@ void ItalcVncConnection::doConnection()
 			timeout = 100*1000;	// 100 ms
 		}
 		const int i = WaitForMessage( m_cl, timeout );
-		if( m_stopped || i < 0 )
+		if( isInterruptionRequested() || i < 0 )
 		{
 			break;
 		}
@@ -674,7 +683,7 @@ void ItalcVncConnection::doConnection()
 
 		m_mutex.unlock();
 
-		if( m_framebufferUpdateInterval > 0 && m_stopped == false )
+		if( m_framebufferUpdateInterval > 0 && isInterruptionRequested() == false )
 		{
 			sleeperMutex.lock();
 			m_updateIntervalSleeper.wait( &sleeperMutex,
@@ -689,6 +698,7 @@ void ItalcVncConnection::doConnection()
 	}
 
 	m_state = Disconnected;
+
 	emit stateChanged( m_state );
 }
 
