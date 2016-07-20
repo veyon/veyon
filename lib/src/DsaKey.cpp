@@ -352,7 +352,11 @@ buffer_put_bignum2(Buffer *buffer, BIGNUM *value)
 		exit( -1 );
 	}
 	hasnohigh = (buf[1] & 0x80) ? 0 : 1;
+#if OPENSSL_VERSION_NUMBER >= 0x10100000L
+	if (BN_is_negative(value)) {
+#else
 	if (value->neg) {
+#endif
 		/**XXX should be two's-complement */
 		int i, carry;
 		unsigned char *uc = buf;
@@ -424,32 +428,48 @@ bool DsaKey::verifySignature( const QByteArray & _data,
 		return false;
 	}
 
-	if( ( sig->r = BN_new() ) == NULL )
+	BIGNUM* bn_r = BN_new();
+	BIGNUM* bn_s = BN_new();
+
+	if( bn_r == NULL || bn_s == NULL )
 	{
 		qCritical( "DsaKey::verifySignature(): BN_new failed" );
 		return false;
 	}
 
-	if( ( sig->s = BN_new() ) == NULL )
+#if OPENSSL_VERSION_NUMBER >= 0x10100000L
+	if( DSA_SIG_set0( sig, bn_r, bn_s ) == 0 )
 	{
-		qCritical( "DsaKey::verifySignature(): BN_new failed" );
+		qCritical( "DsaKey::verifySignature(): DSA_SIG_set0 failed" );
 		return false;
 	}
+#else
+	sig->r = bn_r;
+	sig->s = bn_s;
+#endif
 
-	BN_bin2bn( sigblob, INTBLOB_LEN, sig->r );
-	BN_bin2bn( sigblob+ INTBLOB_LEN, INTBLOB_LEN, sig->s );
+	BN_bin2bn( sigblob, INTBLOB_LEN, bn_r );
+	BN_bin2bn( sigblob+ INTBLOB_LEN, INTBLOB_LEN, bn_s );
 
 	memset( sigblob, 0, len );
 	delete[] sigblob;
 
 	// sha1 the data
 	const EVP_MD * evp_md = EVP_sha1();
-	EVP_MD_CTX md;
 	unsigned char digest[EVP_MAX_MD_SIZE];
 	unsigned int dlen;
+#if OPENSSL_VERSION_NUMBER >= 0x10100000L
+	EVP_MD_CTX* md = EVP_MD_CTX_new();
+	EVP_DigestInit( md, evp_md );
+	EVP_DigestUpdate( md, _data.constData(), _data.size() );
+	EVP_DigestFinal( md, digest, &dlen );
+	EVP_MD_CTX_free( md );
+#else
+	EVP_MD_CTX md;
 	EVP_DigestInit( &md, evp_md );
 	EVP_DigestUpdate( &md, _data.constData(), _data.size() );
 	EVP_DigestFinal( &md, digest, &dlen );
+#endif
 
 	int ret = DSA_do_verify( digest, dlen, sig, m_dsa );
 	memset( digest, 'd', sizeof( digest ) );
@@ -520,13 +540,21 @@ QByteArray PrivateDSAKey::sign( const QByteArray & _data ) const
 	}
 
 	const EVP_MD * evp_md = EVP_sha1();
-	EVP_MD_CTX md;
 	unsigned char digest[EVP_MAX_MD_SIZE];
 	unsigned int dlen;
-
+#if OPENSSL_VERSION_NUMBER >= 0x10100000L
+	EVP_MD_CTX* md = EVP_MD_CTX_new();
+	EVP_DigestInit( md, evp_md );
+	EVP_DigestUpdate( md, _data.constData(), _data.size() );
+	EVP_DigestFinal( md, digest, &dlen );
+	EVP_MD_CTX_free( md );
+#else
+	EVP_MD_CTX md;
 	EVP_DigestInit( &md, evp_md );
 	EVP_DigestUpdate( &md, _data.constData(), _data.size() );
 	EVP_DigestFinal( &md, digest, &dlen );
+#endif
+
 
 	DSA_SIG * sig = DSA_do_sign( digest, dlen, m_dsa );
 	memset( digest, 'd', sizeof( digest ) );
@@ -537,8 +565,17 @@ QByteArray PrivateDSAKey::sign( const QByteArray & _data ) const
 		return QByteArray();
 	}
 
-	unsigned int rlen = BN_num_bytes( sig->r );
-	unsigned int slen = BN_num_bytes( sig->s );
+#if OPENSSL_VERSION_NUMBER >= 0x10100000L
+	BIGNUM const* bn_r = NULL;
+	BIGNUM const* bn_s = NULL;
+	DSA_SIG_get0( sig, &bn_r, &bn_s );
+#else
+	BIGNUM* bn_r = sig->r;
+	BIGNUM* bn_s = sig->s;
+#endif
+
+	unsigned int rlen = BN_num_bytes( bn_r );
+	unsigned int slen = BN_num_bytes( bn_s );
 	if( rlen > INTBLOB_LEN || slen > INTBLOB_LEN )
 	{
 		qCritical( "bad sig size %u %u", rlen, slen );
@@ -548,8 +585,8 @@ QByteArray PrivateDSAKey::sign( const QByteArray & _data ) const
 
 	unsigned char sigblob[SIGBLOB_LEN];
 	memset( sigblob, 0, SIGBLOB_LEN );
-	BN_bn2bin( sig->r, sigblob + SIGBLOB_LEN - INTBLOB_LEN - rlen );
-	BN_bn2bin( sig->s, sigblob + SIGBLOB_LEN - slen );
+	BN_bn2bin( bn_r, sigblob + SIGBLOB_LEN - INTBLOB_LEN - rlen );
+	BN_bn2bin( bn_s, sigblob + SIGBLOB_LEN - slen );
 	DSA_SIG_free( sig );
 
 	// ietf-drafts
@@ -602,14 +639,23 @@ bool PrivateDSAKey::load( const QString & _file, QString _passphrase )
 		fclose( fp );
 		return false;
 	}
+#if OPENSSL_VERSION_NUMBER >= 0x10100000L
+	else if( EVP_PKEY_base_id( pk ) == EVP_PKEY_DSA )
+#else
 	else if( pk->type == EVP_PKEY_DSA )
+#endif
 	{
 		m_dsa = EVP_PKEY_get1_DSA( pk );
 	}
 	else
 	{
-		qCritical( "PEM_read_PrivateKey: mismatch or "
-			    "unknown EVP_PKEY save_type %d", pk->save_type );
+		qCritical( "PEM_read_PrivateKey: mismatch or unknown EVP_PKEY save_type %d",
+#if OPENSSL_VERSION_NUMBER >= 0x10100000L
+					EVP_PKEY_base_id( pk )
+#else
+					pk->save_type
+#endif
+			);
 		EVP_PKEY_free( pk );
 		return false;
 	}
@@ -685,10 +731,14 @@ DSA * createNewDSA()
 		qCritical( "createNewDSA(): DSA_new failed" );
 		return NULL;
 	}
+#if OPENSSL_VERSION_NUMBER >= 0x10100000L
+	if( DSA_set0_pqg( dsa, BN_new(), BN_new(), BN_new() ) == 0 )
+#else
 	if( ( dsa->p = BN_new() ) == NULL ||
 		( dsa->q = BN_new() ) == NULL ||
 		( dsa->g = BN_new() ) == NULL ||
 		( dsa->pub_key = BN_new() ) == NULL )
+#endif
 	{
 		qCritical( "createNewDSA(): BN_new failed" );
 		return NULL;
@@ -711,10 +761,24 @@ DSA * keyFromBlob( const QByteArray & _ba )
 	if( strcmp(ktype, "dsa") == 0 || strcmp(ktype, "italc-dss" ) == 0 || strcmp(ktype, "ssh-dss" ) == 0 )
 	{
 		dsa = createNewDSA();
+#if OPENSSL_VERSION_NUMBER >= 0x10100000L
+		BIGNUM const* bn_p = NULL;
+		BIGNUM const* bn_q = NULL;
+		BIGNUM const* bn_g = NULL;
+		BIGNUM const* pubkey = NULL;
+		BIGNUM const* privkey = NULL;
+		DSA_get0_pqg( dsa, &bn_p, &bn_q, &bn_g );
+		DSA_get0_key( dsa, &pubkey, &privkey );
+		buffer_get_bignum2(&b, (BIGNUM *) bn_p);
+		buffer_get_bignum2(&b, (BIGNUM *) bn_q);
+		buffer_get_bignum2(&b, (BIGNUM *) bn_g);
+		buffer_get_bignum2(&b, (BIGNUM *) pubkey);
+#else
 		buffer_get_bignum2(&b, dsa->p);
 		buffer_get_bignum2(&b, dsa->q);
 		buffer_get_bignum2(&b, dsa->g);
 		buffer_get_bignum2(&b, dsa->pub_key);
+#endif
 	}
 	else
 	{
@@ -742,10 +806,33 @@ PublicDSAKey::PublicDSAKey( const PrivateDSAKey & _pk ) :
 	m_dsa = createNewDSA();
 	if( m_dsa != NULL )
 	{
+#if OPENSSL_VERSION_NUMBER >= 0x10100000L
+		BIGNUM const* src_bn_p = NULL;
+		BIGNUM const* src_bn_q = NULL;
+		BIGNUM const* src_bn_g = NULL;
+		BIGNUM const* src_pubkey = NULL;
+		BIGNUM const* src_privkey = NULL;
+		DSA_get0_pqg( _pk.dsaData(), &src_bn_p, &src_bn_q, &src_bn_g );
+		DSA_get0_key( _pk.dsaData(), &src_pubkey, &src_privkey );
+
+		BIGNUM const* dst_bn_p = NULL;
+		BIGNUM const* dst_bn_q = NULL;
+		BIGNUM const* dst_bn_g = NULL;
+		BIGNUM const* dst_pubkey = NULL;
+		BIGNUM const* dst_privkey = NULL;
+		DSA_get0_pqg( m_dsa, &dst_bn_p, &dst_bn_q, &dst_bn_g );
+		DSA_get0_key( m_dsa, &dst_pubkey, &dst_privkey );
+
+		BN_copy( (BIGNUM *) dst_bn_p, src_bn_p );
+		BN_copy( (BIGNUM *) dst_bn_q, src_bn_q );
+		BN_copy( (BIGNUM *) dst_bn_g, src_bn_g );
+		BN_copy( (BIGNUM *) dst_pubkey, src_pubkey );
+#else
 		BN_copy( m_dsa->p, _pk.dsaData()->p );
 		BN_copy( m_dsa->q, _pk.dsaData()->q );
 		BN_copy( m_dsa->g, _pk.dsaData()->g );
 		BN_copy( m_dsa->pub_key, _pk.dsaData()->pub_key );
+#endif
 	}
 }
 
@@ -828,10 +915,24 @@ bool PublicDSAKey::save( const QString & _file, QString ) const
 	Buffer b;
 	buffer_init( &b );
 	buffer_put_cstring( &b, "italc-dss" );
+#if OPENSSL_VERSION_NUMBER >= 0x10100000L
+	BIGNUM const* bn_p = NULL;
+	BIGNUM const* bn_q = NULL;
+	BIGNUM const* bn_g = NULL;
+	BIGNUM const* pubkey = NULL;
+	BIGNUM const* privkey = NULL;
+	DSA_get0_pqg( m_dsa, &bn_p, &bn_q, &bn_g );
+	DSA_get0_key( m_dsa, &pubkey, &privkey );
+	buffer_put_bignum2( &b, (BIGNUM *) bn_p );
+	buffer_put_bignum2( &b, (BIGNUM *) bn_q );
+	buffer_put_bignum2( &b, (BIGNUM *) bn_g );
+	buffer_put_bignum2( &b, (BIGNUM *) pubkey );
+#else
 	buffer_put_bignum2( &b, m_dsa->p );
 	buffer_put_bignum2( &b, m_dsa->q );
 	buffer_put_bignum2( &b, m_dsa->g );
 	buffer_put_bignum2( &b, m_dsa->pub_key );
+#endif
 
 	char * p = (char *) buffer_ptr( &b );
 	const int len = buffer_len( &b );
