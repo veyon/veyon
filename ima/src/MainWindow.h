@@ -1,7 +1,7 @@
 /*
- * MainWindow.h - main-window of iTALC
+ * MainWindow.h - main window of iTALC Master Application
  *
- * Copyright (c) 2004-2013 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -25,8 +25,8 @@
 #ifndef MAIN_WINDOW_H
 #define MAIN_WINDOW_H
 
-#include <QtCore/QReadWriteLock>
 #include <QtCore/QThread>
+#include <QPointer>
 #include <QButtonGroup>
 #include <QMainWindow>
 #include <QSystemTrayIcon>
@@ -139,15 +139,10 @@ public:
 		return m_sideBar;
 	}
 
-	void remoteControlDisplay( const QString & _hostname,
-					bool _view_only = false,
-					bool _stop_demo_afterwards = false );
+	void remoteControlDisplay( const QString& hostname,
+								bool viewOnly = false,
+								bool stopDemoAfterwards = false );
 
-	inline bool remoteControlRunning( void )
-	{
-		QReadLocker rl( &m_rctrlLock );
-		return( m_remoteControlWidget != NULL );
-	}
 
 protected:
 	void keyPressEvent( QKeyEvent *e );
@@ -156,7 +151,7 @@ protected:
 private slots:
 	void handleSystemTrayEvent( QSystemTrayIcon::ActivationReason _r );
 	void remoteControlClient( QAction * _c );
-	void remoteControlWidgetClosed( QObject * );
+	void stopDemoAfterRemoteControl();
 
 	void aboutITALC( void );
 
@@ -197,9 +192,7 @@ private:
 
 	ItalcCoreConnection * m_localICA;
 
-	QReadWriteLock m_rctrlLock;
-	RemoteControlWidget * m_remoteControlWidget;
-	bool m_stopDemo;
+	QPointer<RemoteControlWidget> m_remoteControlWidget;
 	int m_remoteControlScreen;
 
 	OverviewWidget * m_overviewWidget;

@@ -64,9 +64,7 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 	m_systemTrayIcon( this ),
 	m_openedTabInSideBar( 1 ),
 	m_localICA( NULL ),
-	m_rctrlLock(),
 	m_remoteControlWidget( NULL ),
-	m_stopDemo( FALSE ),
 	m_remoteControlScreen( _rctrl_screen > -1 ?
 				qMin( _rctrl_screen,
 					QApplication::desktop()->numScreens() )
@@ -498,41 +496,38 @@ void MainWindow::remoteControlClient( QAction * _a )
 
 
 
-void MainWindow::remoteControlDisplay( const QString & _hostname,
-						bool _view_only,
-						bool _stop_demo_afterwards )
+void MainWindow::remoteControlDisplay( const QString& hostname,
+										bool viewOnly,
+										bool stopDemoAfterwards )
 {
-	QWriteLocker wl( &m_rctrlLock );
 	if( m_remoteControlWidget )
 	{
 		return;
 	}
-	m_remoteControlWidget = new RemoteControlWidget( _hostname, _view_only );
+
+	m_remoteControlWidget = new RemoteControlWidget( hostname, viewOnly );
+
+	// determine screen offset where to show the remote control window
 	int x = 0;
 	for( int i = 0; i < m_remoteControlScreen; ++i )
 	{
 		x += QApplication::desktop()->screenGeometry( i ).width();
 	}
 	m_remoteControlWidget->move( x, 0 );
-	m_stopDemo = _stop_demo_afterwards;
-	connect( m_remoteControlWidget, SIGNAL( destroyed( QObject * ) ),
-			this, SLOT( remoteControlWidgetClosed( QObject * ) ) );
+
+	if( stopDemoAfterwards )
+	{
+		connect( m_remoteControlWidget, SIGNAL( objectDestroyed( QObject* ) ),
+				this, SLOT( stopDemoAfterRemoteControl() ) );
+	}
 }
 
 
 
 
-void MainWindow::remoteControlWidgetClosed( QObject * )
+void MainWindow::stopDemoAfterRemoteControl()
 {
-	m_rctrlLock.lockForWrite();
-	m_remoteControlWidget = NULL;
-	m_rctrlLock.unlock();
-	if( m_stopDemo )
-	{
-		m_classroomManager->changeGlobalClientMode(
-							Client::Mode_Overview );
-		m_stopDemo = FALSE;
-	}
+	m_classroomManager->changeGlobalClientMode( Client::Mode_Overview );
 }
 
 
