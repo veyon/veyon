@@ -38,7 +38,7 @@
 
 VncView::VncView( const QString &host, QWidget *parent, Mode mode ) :
 	QWidget( parent ),
-	m_vncConn( new ItalcVncConnection( this ) ),
+	m_vncConn( new ItalcVncConnection( QCoreApplication::instance() ) ),
 	m_mode( mode ),
 	m_frame(),
 	m_cursorShape(),
