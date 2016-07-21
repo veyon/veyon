@@ -508,20 +508,25 @@ QByteArray DsaKey::generateChallenge()
 
 
 
-PrivateDSAKey::PrivateDSAKey( const unsigned int _bits) :
+PrivateDSAKey::PrivateDSAKey( unsigned int bits) :
 	DsaKey( Private )
 {
-	m_dsa = DSA_generate_parameters( _bits, NULL, 0, NULL, NULL, NULL,
-									NULL );
-	if( m_dsa == NULL)
+	m_dsa = DSA_new();
+	if( m_dsa == NULL )
 	{
-		qCritical( "PrivateDSAKey::PrivateDSAKey(): DSA_generate_parameters failed" );
+		qCritical( "PrivateDSAKey(): DSA_new failed" );
+		return;
+	}
+
+	if( DSA_generate_parameters_ex( m_dsa, bits, NULL, 0, NULL, NULL, NULL ) == 0 )
+	{
+		qCritical( "PrivateDSAKey(): DSA_generate_parameters_ex failed" );
 		return;
 	}
 
 	if( !DSA_generate_key( m_dsa ) )
 	{
-		qCritical( "PrivateDSAKey::PrivateDSAKey(): DSA_generate_key failed" );
+		qCritical( "PrivateDSAKey(): DSA_generate_key failed" );
 		m_dsa = NULL;
 		return;
 	}
