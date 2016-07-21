@@ -1,8 +1,7 @@
 /*
- * DsaKey.cpp - easy to use C++ classes for dealing with DSA-keys, -signatures
- *              etc.
+ * DsaKey.cpp - C++ wrapper classes for dealing with DSA keys and signatures
  *
- * Copyright (c) 2006-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -732,7 +731,8 @@ DSA * createNewDSA()
 		return NULL;
 	}
 #if OPENSSL_VERSION_NUMBER >= 0x10100000L
-	if( DSA_set0_pqg( dsa, BN_new(), BN_new(), BN_new() ) == 0 )
+	if( DSA_set0_pqg( dsa, BN_new(), BN_new(), BN_new() ) == 0 ||
+		DSA_set0_key( dsa, BN_new(), NULL ) == 0 )
 #else
 	if( ( dsa->p = BN_new() ) == NULL ||
 		( dsa->q = BN_new() ) == NULL ||
@@ -822,7 +822,6 @@ PublicDSAKey::PublicDSAKey( const PrivateDSAKey & _pk ) :
 		BIGNUM const* dst_privkey = NULL;
 		DSA_get0_pqg( m_dsa, &dst_bn_p, &dst_bn_q, &dst_bn_g );
 		DSA_get0_key( m_dsa, &dst_pubkey, &dst_privkey );
-
 		BN_copy( (BIGNUM *) dst_bn_p, src_bn_p );
 		BN_copy( (BIGNUM *) dst_bn_q, src_bn_q );
 		BN_copy( (BIGNUM *) dst_bn_g, src_bn_g );
