@@ -141,7 +141,7 @@ The public key part is used on the client computers to verify that any incoming 
        <string>Create new access keys (master computer)</string>
       </property>
       <attribute name="buttonGroup">
-       <string>assistantModeButtonGroup</string>
+       <string notr="true">assistantModeButtonGroup</string>
       </attribute>
      </widget>
     </item>
@@ -154,7 +154,7 @@ The public key part is used on the client computers to verify that any incoming 
        <bool>true</bool>
       </property>
       <attribute name="buttonGroup">
-       <string>assistantModeButtonGroup</string>
+       <string notr="true">assistantModeButtonGroup</string>
       </attribute>
      </widget>
     </item>
@@ -646,12 +646,12 @@ The public key part is used on the client computers to verify that any incoming 
  </customwidgets>
  <resources>
   <include location="../imc.qrc"/>
-  <include location="../../../.designer/imc.qrc"/>
+  <include location="../imc.qrc"/>
  </resources>
  <connections>
   <connection>
    <sender>useCustomDestDir</sender>
-   <signal>toggled(bool)</signal>
+   <signal>clicked(bool)</signal>
    <receiver>destDirEdit</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
@@ -667,7 +667,7 @@ The public key part is used on the client computers to verify that any incoming 
   </connection>
   <connection>
    <sender>useCustomDestDir</sender>
-   <signal>toggled(bool)</signal>
+   <signal>clicked(bool)</signal>
    <receiver>openDestDir</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
@@ -747,7 +747,7 @@ The public key part is used on the client computers to verify that any incoming 
   </connection>
   <connection>
    <sender>exportPublicKey</sender>
-   <signal>toggled(bool)</signal>
+   <signal>clicked(bool)</signal>
    <receiver>actionExportPublicKey</receiver>
    <slot>setVisible(bool)</slot>
    <hints>
@@ -842,24 +842,8 @@ The public key part is used on the client computers to verify that any incoming 
    </hints>
   </connection>
   <connection>
-   <sender>modeImportPublicKey</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>publicKeyDir</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>263</x>
-     <y>181</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>262</x>
-     <y>120</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>exportPublicKey</sender>
-   <signal>toggled(bool)</signal>
+   <signal>clicked(bool)</signal>
    <receiver>publicKeyDir</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
@@ -875,7 +859,7 @@ The public key part is used on the client computers to verify that any incoming 
   </connection>
   <connection>
    <sender>exportPublicKey</sender>
-   <signal>toggled(bool)</signal>
+   <signal>clicked(bool)</signal>
    <receiver>openPubKeyDir</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
@@ -890,24 +874,8 @@ The public key part is used on the client computers to verify that any incoming 
    </hints>
   </connection>
   <connection>
-   <sender>modeImportPublicKey</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>openPubKeyDir</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>263</x>
-     <y>181</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>492</x>
-     <y>119</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>exportPublicKey</sender>
-   <signal>toggled(bool)</signal>
+   <signal>clicked(bool)</signal>
    <receiver>exportKeyDestDisplayLabel</receiver>
    <slot>setVisible(bool)</slot>
    <hints>

@@ -1,7 +1,7 @@
 /*
  * KeyDirectoriesPage.cpp - QWizardPage for key directory selection
  *
- * Copyright (c) 2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2010-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -42,11 +42,11 @@ void KeyDirectoriesPage::setUi( Ui::KeyFileAssistant *ui )
 {
 	m_ui = ui;
 
-	connect( m_ui->exportPublicKey, SIGNAL( toggled( bool ) ),
+	connect( m_ui->exportPublicKey, SIGNAL( clicked( bool ) ),
 				this, SIGNAL( completeChanged() ) );
 	connect( m_ui->publicKeyDir, SIGNAL( textChanged( const QString & ) ),
 				this, SIGNAL( completeChanged() ) );
-	connect( m_ui->useCustomDestDir, SIGNAL( toggled( bool ) ),
+	connect( m_ui->useCustomDestDir, SIGNAL( clicked( bool ) ),
 				this, SIGNAL( completeChanged() ) );
 	connect( m_ui->destDirEdit, SIGNAL( textChanged( const QString & ) ),
 				this, SIGNAL( completeChanged() ) );
