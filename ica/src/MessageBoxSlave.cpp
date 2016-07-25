@@ -1,7 +1,7 @@
 /*
  * MessageBoxSlave.cpp - an IcaSlave providing message boxes
  *
- * Copyright (c) 2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2010-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -22,9 +22,10 @@
  *
  */
 
+#include <QMessageBox>
+
 #include "MessageBoxSlave.h"
 #include "ItalcSlaveManager.h"
-#include "DecoratedMessageBox.h"
 
 
 MessageBoxSlave::MessageBoxSlave() :
@@ -44,9 +45,24 @@ bool MessageBoxSlave::handleMessage( const Ipc::Msg &m )
 {
 	if( m.cmd() == ItalcSlaveManager::MessageBoxSlave::ShowMessageBox )
 	{
-		new DecoratedMessageBox( tr( "Message from teacher" ),
-				m.arg( ItalcSlaveManager::MessageBoxSlave::Text ),
-				QPixmap( ":/resources/message.png" ) );
+		if( m.arg( ItalcSlaveManager::MessageBoxSlave::Icon ).toInt() == QMessageBox::Warning )
+		{
+			QMessageBox::warning( Q_NULLPTR,
+								  m.arg( ItalcSlaveManager::MessageBoxSlave::Title ),
+								  m.arg( ItalcSlaveManager::MessageBoxSlave::Text ) );
+		}
+		else if( m.arg( ItalcSlaveManager::MessageBoxSlave::Icon ).toInt() == QMessageBox::Critical )
+		{
+			QMessageBox::critical( Q_NULLPTR,
+								   m.arg( ItalcSlaveManager::MessageBoxSlave::Title ),
+								   m.arg( ItalcSlaveManager::MessageBoxSlave::Text ) );
+		}
+		else
+		{
+			QMessageBox::information( Q_NULLPTR,
+									  m.arg( ItalcSlaveManager::MessageBoxSlave::Title ),
+									  m.arg( ItalcSlaveManager::MessageBoxSlave::Text ) );
+		}
 
 		return true;
 	}
