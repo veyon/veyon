@@ -23,12 +23,12 @@
  */
 
 #include <QtCore/QRegExp>
+#include <QMessageBox>
 
 #include "Dialogs.h"
 #include "Client.h"
 #include "ClassroomManager.h"
 #include "MainWindow.h"
-#include "DecoratedMessageBox.h"
 
 #include "ui_ClientSettingsDialog.h"
 #include "ui_TextMessageDialog.h"
@@ -113,11 +113,8 @@ void ClientSettingsDialog::accept()
 {
 	if( ui->hostnameEdit->text().isEmpty() )
 	{
-		DecoratedMessageBox::information(
-			tr( "Missing IP address/hostname" ),
-			tr( "You didn't specify an IP address or hostname for "
-							"the computer!" ),
-					QPixmap( ":/resources/dialog-error.png" ) );
+		QMessageBox::warning( this, tr( "Missing IP address/hostname" ),
+			tr( "You didn't specify an IP address or hostname for the computer!" ) );
 		return;
 	}
 
@@ -126,12 +123,10 @@ void ClientSettingsDialog::accept()
 		QString( ui->macEdit->text().toUpper() + ":" ).
 					indexOf( QRegExp( "^([\\dA-F]{2}:){6}$" ) ) != 0 )
 	{
-		DecoratedMessageBox::information(
-			tr( "Invalid MAC-address" ),
-			tr( "You specified an invalid MAC-address. Either "
-				"leave the field blank or enter a valid MAC-"
-				"address (use \":\" as separator!)." ),
-					QPixmap( ":/resources/dialog-error.png" ) );
+		QMessageBox::warning( this, tr( "Invalid MAC address" ),
+			tr( "You specified an invalid MAC address. Either "
+				"leave the field blank or enter a valid MAC "
+				"address (use \":\" as separator!)." ) );
 		return;
 	}
 
