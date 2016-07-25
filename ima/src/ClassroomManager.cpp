@@ -51,7 +51,6 @@
 #include "ItalcConfiguration.h"
 #include "LocalSystem.h"
 #include "ToolButton.h"
-#include "DecoratedMessageBox.h"
 
 #define DEFAULT_WINDOW_WIDTH	1005
 #define DEFAULT_WINDOW_HEIGHT	700
@@ -834,16 +833,11 @@ void ClassroomManager::loadGlobalClientConfig( void )
 		{
 			splashScreen->close();
 		}
-		DecoratedMessageBox::information(
-					tr( "No configuration-file found" ),
-					tr( "Could not open configuration "
-						"file %1.\nYou will have to "
-						"add at least one classroom "
-						"and computers using the "
-						"classroom-manager which "
-						"you'll find inside the "
-						"program in the sidebar on the "
-						"left side."
+		QMessageBox::information( this, tr( "No configuration file found" ),
+					tr( "Could not open configuration file %1. You will have to "
+						"add at least one classroom and computers using the "
+						"classroom manager which you'll find inside the program "
+						"in the sidebar on the left side."
 					).arg( m_globalClientConfiguration ) );
 		return;
 	}
@@ -856,16 +850,11 @@ void ClassroomManager::loadGlobalClientConfig( void )
 		{
 			splashScreen->close();
 		}
-		DecoratedMessageBox::information(
-					tr( "Error in configuration-file" ),
-					tr( "Error while parsing configuration-"
-						"file %1.\nPlease edit it. "
-						"Otherwise you should delete "
-						"this file and have to add all "
-						"classrooms and computers "
-						"again."
-					).arg( m_globalClientConfiguration ),
-					QPixmap( ":/resources/dialog-error.png" ) );
+		QMessageBox::critical( this, tr( "Error in configuration file" ),
+					tr( "Error while parsing configuration file %1. Please fix the "
+						"file manually. Otherwise you should delete the file and "
+						"add all classrooms and computers again." ).
+								  arg( m_globalClientConfiguration ) );
 		cfg_file.close();
 		return;
 	}
@@ -926,14 +915,10 @@ void ClassroomManager::loadPersonalConfig( void )
 		{
 			splashScreen->close();
 		}
-		DecoratedMessageBox::information(
-					tr( "Error in configuration-file" ),
-					tr( "Error while parsing configuration-"
-						"file %1.\nPlease edit it. "
-						"Otherwise you should delete "
-						"this file."
-					).arg( m_personalConfiguration ),
-					QPixmap( ":/resources/dialog-error.png" ) );
+		QMessageBox::critical( this, tr( "Error in configuration file" ),
+					tr( "Error while parsing configuration file %1. Please fix the "
+						"file manually. Otherwise you should delete the file." ).
+					arg( m_personalConfiguration ) );
 		cfg_file.close();
 		setDefaultWindowsSizeAndPosition();
 		return;
