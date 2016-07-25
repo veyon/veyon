@@ -71,8 +71,8 @@ Master::~Master()
 {
 	QMutexLocker l( &m_processMapMutex );
 
-	const QList<Ipc::Id> processIds = m_processes.keys();
-	foreach( const Ipc::Id &id, processIds )
+	auto processIds = m_processes.keys();
+	for( auto id : processIds )
 	{
 		stopSlave( id );
 	}
