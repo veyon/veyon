@@ -1,7 +1,7 @@
 /*
  * ItalcSlaveManager.cpp - ItalcSlaveManager which manages (GUI) slave apps
  *
- * Copyright (c) 2010-2011 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2010-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  * Copyright (c) 2010 Univention GmbH
  *
  * This file is part of iTALC - http://italc.sourceforge.net
@@ -62,7 +62,9 @@ const Ipc::Command ItalcSlaveManager::DemoServer::UpdateAllowedHosts = "UpdateAl
 const Ipc::Argument ItalcSlaveManager::DemoServer::AllowedHosts = "AllowedHosts";
 
 const Ipc::Command ItalcSlaveManager::MessageBoxSlave::ShowMessageBox = "ShowMessageBox";
+const Ipc::Argument ItalcSlaveManager::MessageBoxSlave::Title = "Title";
 const Ipc::Argument ItalcSlaveManager::MessageBoxSlave::Text = "Text";
+const Ipc::Argument ItalcSlaveManager::MessageBoxSlave::Icon = "Icon";
 
 const Ipc::Command ItalcSlaveManager::SystemTrayIcon::SetToolTip = "SetToolTip";
 const Ipc::Argument ItalcSlaveManager::SystemTrayIcon::ToolTipText = "ToolTipText";
@@ -165,15 +167,17 @@ void ItalcSlaveManager::unlockInput()
 
 
 
-void ItalcSlaveManager::messageBox( const QString &msg )
+void ItalcSlaveManager::messageBox(const QString& title, const QString &msg, int icon )
 {
 	if( !isSlaveRunning( IdMessageBox ) )
 	{
 		createSlave( IdMessageBox );
 	}
 	sendMessage( IdMessageBox,
-					Ipc::Msg( MessageBoxSlave::ShowMessageBox ).
-						addArg( MessageBoxSlave::Text, msg ) );
+				 Ipc::Msg( MessageBoxSlave::ShowMessageBox ).
+					addArg( MessageBoxSlave::Title, title ).
+					addArg( MessageBoxSlave::Text, msg ).
+					addArg( MessageBoxSlave::Icon, icon ) );
 }
 
 
@@ -184,7 +188,7 @@ void ItalcSlaveManager::systemTrayMessage( const QString &title,
 {
 	if( ItalcCore::config->isTrayIconHidden() )
 	{
-		messageBox( msg );
+		messageBox( title, msg );
 		return;
 	}
 	if( !isSlaveRunning( IdSystemTrayIcon ) )

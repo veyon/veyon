@@ -1103,7 +1103,7 @@ void Client::remoteControl()
 
 void Client::sendTextMessage( const QString & _msg )
 {
-	m_connection->displayTextMessage( _msg );
+	m_connection->displayTextMessage( tr( "Message from teacher" ), _msg );
 }
 
 

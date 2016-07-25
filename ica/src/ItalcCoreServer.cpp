@@ -189,7 +189,7 @@ int ItalcCoreServer::handleItalcClientMessage( socketDispatcher sock,
 	}
 	else if( cmd == ItalcCore::DisplayTextMessage )
 	{
-		m_slaveManager.messageBox( msgIn.arg( "text" ) );
+		m_slaveManager.messageBox( msgIn.arg( "title" ), msgIn.arg( "text" ) );
 	}
 	else if( cmd == ItalcCore::LockScreen )
 	{
