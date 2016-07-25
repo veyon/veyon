@@ -201,12 +201,12 @@ void ClassroomManager::setupMenus()
 
 	m_classRoomItemActionGroup = new QActionGroup( this );
 
-	act = m_classRoomItemActionGroup->addAction( 
+	act = m_classRoomItemActionGroup->addAction(
 			QPixmap( ":/resources/edit-find.png" ),
 			tr( "Show/hide" ) );
 	connect( act, SIGNAL( triggered() ), this, SLOT( showHideClient() ) );
 
-	act = m_classRoomItemActionGroup->addAction( 
+	act = m_classRoomItemActionGroup->addAction(
 			QPixmap( ":/resources/document-edit.png" ),
 			tr( "Edit settings" ) );
 	connect( act, SIGNAL( triggered() ), this, SLOT( editClientSettings() ) );
@@ -266,7 +266,7 @@ void ClassroomManager::setupMenus()
 	/*** Default client Menu ***/
 
 	m_clientMenu = clientMenu::createDefault( this );
-	
+
 }
 
 
@@ -362,7 +362,7 @@ void ClassroomManager::savePersonalConfig( void )
 	globalsettings.setAttribute( "win-width", mainWindow()->width() );
 	globalsettings.setAttribute( "win-height", mainWindow()->height() );
 	globalsettings.setAttribute( "win-x", mainWindow()->x() );
-	globalsettings.setAttribute( "win-y", mainWindow()->y() );	
+	globalsettings.setAttribute( "win-y", mainWindow()->y() );
 	globalsettings.setAttribute( "ismaximized",
 					mainWindow()->isMaximized() );
 	globalsettings.setAttribute( "opened-tab",
@@ -478,11 +478,11 @@ void ClassroomManager::saveSettingsOfChildren( QDomDocument & _doc,
 						c->isVisible() ? "yes" : "no" );
 						client_element.setAttribute(
 			"x", QString::number( c->pos().x() ) );
- 						client_element.setAttribute(
+						client_element.setAttribute(
 			"y", QString::number( c->pos().y() ) );
 						client_element.setAttribute(
 			"w", QString::number( c->width() ) );
- 						client_element.setAttribute(
+						client_element.setAttribute(
 			"h", QString::number( c->height() ) );
 				}
 				classroom.appendChild( client_element );
@@ -595,7 +595,7 @@ mainWindow()->move( node.toElement().attribute( "win-x" ).toInt(),
 			else
 			{
 				setDefaultWindowsSizeAndPosition();
- 			}
+			}
 			if( node.toElement().attribute( "opened-tab" ) !=
 								QString::null )
 			{
@@ -649,7 +649,7 @@ mainWindow()->move( node.toElement().attribute( "win-x" ).toInt(),
 				node.toElement().attribute( "showUserColumn" ).toInt() );
 		}
 		node = node.nextSibling();
-        }
+		}
 }
 
 
@@ -706,7 +706,7 @@ void ClassroomManager::loadTree( classRoom * _parent_item,
 				QString nickname = e.attribute( "name" );
 
 				// add new client
-                                Client * c = new Client( hostname,
+								Client * c = new Client( hostname,
 						mac,
 						nickname,
 						(Client::Types)e.attribute(
@@ -895,7 +895,7 @@ void ClassroomManager::loadGlobalClientConfig( void )
 void ClassroomManager::setDefaultWindowsSizeAndPosition( void )
 {
 	mainWindow()->resize( DEFAULT_WINDOW_WIDTH, DEFAULT_WINDOW_HEIGHT );
-	mainWindow()->move( QPoint( 0, 0 ) );	
+	mainWindow()->move( QPoint( 0, 0 ) );
 }
 
 
@@ -1397,7 +1397,7 @@ void ClassroomManager::contextMenuRequest( const QPoint & _pos )
 		contextMenu->addActions( m_classRoomActionGroup->actions() );
 	}
 	else
-	{ 
+	{
 		/* no items */
 		foreach ( classRoom * cr, m_classRooms )
 		{
@@ -1781,7 +1781,7 @@ void ClassroomManager::addClassRoom( void )
 
 			if ( !sel_cr && dynamic_cast<classRoomItem *>( item ) )
 			{
-				sel_cr = dynamic_cast<classRoom *>( 
+				sel_cr = dynamic_cast<classRoom *>(
 					item->parent() );
 			}
 
@@ -1854,7 +1854,7 @@ classTreeWidget::classTreeWidget( QWidget * _parent ) :
 {
 	setDragEnabled( true );
 	setAcceptDrops( true );
-	setDropIndicatorShown( true ); 
+	setDropIndicatorShown( true );
 	setDragDropMode( QAbstractItemView::InternalMove );
 
 	connect( this, SIGNAL( itemSelectionChanged( void ) ),
@@ -1891,7 +1891,7 @@ void classTreeWidget::mousePressEvent( QMouseEvent * _me )
 
 void classTreeWidget::mouseMoveEvent( QMouseEvent * _me )
 {
-	if ( m_clientPressed ) 
+	if ( m_clientPressed )
 	{
 		m_clientPressed->zoomBack();
 		m_clientPressed = NULL;
@@ -1905,7 +1905,7 @@ void classTreeWidget::mouseMoveEvent( QMouseEvent * _me )
 
 void classTreeWidget::mouseReleaseEvent( QMouseEvent * _me )
 {
-	if ( m_clientPressed ) 
+	if ( m_clientPressed )
 	{
 		m_clientPressed->zoomBack();
 		m_clientPressed = NULL;
@@ -1919,14 +1919,14 @@ void classTreeWidget::mouseReleaseEvent( QMouseEvent * _me )
 
 bool classTreeWidget::droppingOnItself( QTreeWidgetItem * _target )
 {
-    QList<QTreeWidgetItem *> selected = selectedItems();
-    while ( _target )
-    {
-	    if ( selected.contains( _target ) )
-		    return true;
-	    _target = dynamic_cast<QTreeWidgetItem * >( _target->parent() );
-    }
-    return false;
+	QList<QTreeWidgetItem *> selected = selectedItems();
+	while ( _target )
+	{
+		if ( selected.contains( _target ) )
+			return true;
+		_target = dynamic_cast<QTreeWidgetItem * >( _target->parent() );
+	}
+	return false;
 }
 
 
@@ -1934,7 +1934,7 @@ bool classTreeWidget::droppingOnItself( QTreeWidgetItem * _target )
 
 void classTreeWidget::dragMoveEvent( QDragMoveEvent * _e )
 {
-	if ( _e->source() == this ) 
+	if ( _e->source() == this )
 	{
 		int clients_selected = 0;
 		foreach( QTreeWidgetItem * item, selectedItems() )
@@ -1946,7 +1946,7 @@ void classTreeWidget::dragMoveEvent( QDragMoveEvent * _e )
 		}
 
 		QTreeWidgetItem * target = itemAt( _e->pos() );
-		
+
 		/* Don't drop clients to the root nor
 		 * classroom to its own child */
 		if ( ( clients_selected && ! target ) ||
@@ -1967,9 +1967,9 @@ void classTreeWidget::dragMoveEvent( QDragMoveEvent * _e )
 
 void classTreeWidget::dropEvent( QDropEvent * _e )
 {
-    if ( _e->source() == this &&
-    	dragDropMode() == QAbstractItemView::InternalMove )
-    {
+	if ( _e->source() == this &&
+		dragDropMode() == QAbstractItemView::InternalMove )
+	{
 		QTreeWidgetItem * target = itemAt( _e->pos() );
 
 		/* Use client's parent as target */
@@ -1997,7 +1997,7 @@ void classTreeWidget::dropEvent( QDropEvent * _e )
 					takeTopLevelItem( indexOfTopLevelItem( item ) );
 				}
 
-				if ( target ) 
+				if ( target )
 				{
 					target->addChild( item );
 				}
@@ -2011,7 +2011,7 @@ void classTreeWidget::dropEvent( QDropEvent * _e )
 		setSortingEnabled( sortingEnabled );
 
 		_e->accept();
-    }
+	}
 }
 
 

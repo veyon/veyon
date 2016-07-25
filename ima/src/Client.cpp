@@ -41,15 +41,14 @@
 #include "LocalSystem.h"
 #include "Snapshot.h"
 #include "Dialogs.h"
-#include "DecoratedMessageBox.h"
 
 
 
 const QSize DEFAULT_CLIENT_SIZE( 256, 192 );
 const int DECO_WIDTH = 4;
 const int TITLE_HEIGHT = 23;
-const QPoint CONTENT_OFFSET( DECO_WIDTH, DECO_WIDTH + TITLE_HEIGHT ); 
-const QSize CONTENT_SIZE_SUB( 2*DECO_WIDTH, 2*DECO_WIDTH + TITLE_HEIGHT ); 
+const QPoint CONTENT_OFFSET( DECO_WIDTH, DECO_WIDTH + TITLE_HEIGHT );
+const QSize CONTENT_SIZE_SUB( 2*DECO_WIDTH, 2*DECO_WIDTH + TITLE_HEIGHT );
 
 
 // resolve static symbols...
@@ -147,49 +146,49 @@ void ClientAction::process( QVector<Client *> _clients, TargetGroup _target )
 				cl->changeMode( Client::Mode_Overview );
 			}
 			break;
-			
+
 		case FullscreenDemo:
 			foreach( Client * cl, _clients )
 			{
 				cl->changeMode( Client::Mode_FullscreenDemo );
 			}
 			break;
-			
+
 		case WindowDemo:
 			foreach( Client * cl, _clients )
 			{
 				cl->changeMode( Client::Mode_WindowDemo );
 			}
 			break;
-			
+
 		case Locked:
 			foreach( Client * cl, _clients )
 			{
 				cl->changeMode( Client::Mode_Locked );
 			}
 			break;
-			
+
 		case ViewLive:
 			foreach( Client * cl, _clients )
 			{
 				cl->viewLive();
 			}
 			break;
-			
+
 		case RemoteControl:
 			foreach( Client * cl, _clients )
 			{
 				cl->remoteControl();
 			}
 			break;
-			
+
 		case ClientDemo:
 			foreach( Client * cl, _clients )
 			{
 				cl->clientDemo();
 			}
 			break;
-			
+
 		case SendTextMessage:
 			{
 				QString msg;
@@ -197,7 +196,7 @@ void ClientAction::process( QVector<Client *> _clients, TargetGroup _target )
 
 				if( tmd.exec() == QDialog::Accepted &&
 					!msg.isEmpty() )
-				{ 
+				{
 					foreach( Client * cl, _clients )
 					{
 						cl->sendTextMessage( msg );
@@ -349,7 +348,7 @@ bool ClientAction::confirmLogout( TargetGroup _target ) const
 	QString question = ( _target == VisibleClients ?
 		tr( "Are you sure want logout all users on all visible computers ?" ) :
 		tr( "Are you sure want logout all users on all selected computers ?" ) );
-	
+
 	return QMessageBox::question( NULL, tr( "Logout user" ),
 				question, QMessageBox::Yes, QMessageBox::No )
 		== QMessageBox::Yes;
@@ -740,11 +739,11 @@ void Client::hideEvent( QHideEvent * )
 
 void Client::enlarge()
 {
-	if ( m_origSize.isValid() ) 
+	if ( m_origSize.isValid() )
 	{
 		QWidget * workspace = m_mainWindow->workspace();
 		QSize s = QSize( m_origSize );
-		
+
 		s.scale( workspace->parentWidget()->size(),
 							Qt::KeepAspectRatio );
 		setFixedSize( s );
@@ -777,7 +776,7 @@ void Client::zoom()
 void Client::zoomBack()
 {
 	if ( m_origSize.isValid() )
-	{	
+	{
 		move( m_origPos );
 		setFixedSize( m_origSize );
 		/* reset value: */
