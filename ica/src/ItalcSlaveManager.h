@@ -1,7 +1,7 @@
 /*
  * ItalcSlaveManager.h - ItalcSlaveManager which manages (GUI) slave apps
  *
- * Copyright (c) 2010-2011 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2010-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  * Copyright (c) 2010 Univention GmbH
  *
  * This file is part of iTALC - http://italc.sourceforge.net
@@ -85,7 +85,9 @@ public:
 	struct MessageBoxSlave
 	{
 		static const Ipc::Command ShowMessageBox;
+		static const Ipc::Argument Title;
 		static const Ipc::Argument Text;
+		static const Ipc::Argument Icon;
 	} ;
 
 	DemoServerMaster *demoServerMaster()
@@ -102,7 +104,7 @@ public:
 	void lockInput();
 	void unlockInput();
 
-	void messageBox( const QString &msg );
+	void messageBox(const QString &title, const QString &msg, int icon = -1);
 	void setSystemTrayToolTip( const QString &tooltip );
 	void systemTrayMessage( const QString &title, const QString &msg );
 

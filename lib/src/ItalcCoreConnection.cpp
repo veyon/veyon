@@ -1,7 +1,7 @@
 /*
  * ItalcCoreConnection.cpp - implementation of ItalcCoreConnection
  *
- * Copyright (c) 2008-2011 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2008-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -252,9 +252,10 @@ void ItalcCoreConnection::logoutUser()
 
 
 
-void ItalcCoreConnection::displayTextMessage( const QString &msg )
+void ItalcCoreConnection::displayTextMessage( const QString& title, const QString &msg )
 {
 	enqueueMessage( ItalcCore::Msg( ItalcCore::DisplayTextMessage ).
+						addArg( "title", title ).
 						addArg( "text", msg ) );
 }
 
