@@ -206,7 +206,7 @@ protected:
 
 private:
 	enum {
-		ThreadTerminationTimeout = 30000
+		ThreadTerminationTimeout = 10000
 	};
 
 	// hooks for LibVNCClient

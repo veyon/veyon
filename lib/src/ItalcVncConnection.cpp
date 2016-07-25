@@ -349,9 +349,16 @@ ItalcVncConnection::~ItalcVncConnection()
 
 	if( isRunning() )
 	{
-		qWarning( "Terminating VNC connection while still running!" );
+		qWarning( "Waiting for VNC connection thread to finish." );
+		wait( ThreadTerminationTimeout );
+	}
+
+	if( isRunning() )
+	{
+		qWarning( "Terminating hanging VNC connection thread!" );
 
 		terminate();
+		wait();
 	}
 
 	delete[] m_frameBuffer;
