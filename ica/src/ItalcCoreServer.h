@@ -1,7 +1,7 @@
 /*
  * ItalcCoreServer.h - ItalcCoreServer
  *
- * Copyright (c) 2006-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -77,6 +77,8 @@ private:
 	// under a role different from "RoleOther"
 	QStringList m_manuallyAllowedHosts;
 	QStringList m_manuallyDeniedHosts;
+
+	QStringList m_failedAuthHosts;
 
 	ItalcSlaveManager m_slaveManager;
 
