@@ -53,3 +53,5 @@ TARGET_LINK_LIBRARIES(ItalcCore
 	Qt5::Xml
 	)
 
+ADD_DEPENDENCIES(ItalcCore GenerateTranslationFiles)
+

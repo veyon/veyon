@@ -220,7 +220,9 @@ FOREACH(_ts_file ${italc_LOCALES})
 	STRING(REPLACE ".ts" ".qm" _qm_file "${_ts_file}")
 	STRING(REPLACE ".ts" ".qm" _qm_target "${_ts_target}")
 	ADD_CUSTOM_TARGET(${_ts_target} COMMAND ${Qt5_LUPDATE_EXECUTABLE} -I${CMAKE_SOURCE_DIR}/lib/include -locations none -no-obsolete ${italc_SOURCES} -ts ${_ts_file})
-	ADD_CUSTOM_TARGET(${_qm_target} COMMAND ${Qt5_LRELEASE_EXECUTABLE} ${_ts_file} -qm ${_qm_file})
+	# add command and target for generating/updating QM file if TS file is newer or no QM file exists yet
+	ADD_CUSTOM_COMMAND(OUTPUT ${_qm_file} COMMAND ${Qt5_LRELEASE_EXECUTABLE} ${_ts_file} -qm ${_qm_file} DEPENDS ${_ts_file})
+	ADD_CUSTOM_TARGET(${_qm_target} ALL DEPENDS ${_qm_file})
 	LIST(APPEND ts_targets "${_ts_target}")
 	LIST(APPEND qm_targets "${_qm_target}")
 ENDFOREACH(_ts_file ${italc_LOCALES})
@@ -230,9 +232,9 @@ FOREACH(_item ${ts_targets})
 	ADD_DEPENDENCIES(update-locales ${_item})
 ENDFOREACH(_item ${ts_targets})
 
-ADD_CUSTOM_TARGET(finalize-locales)
+ADD_CUSTOM_TARGET(GenerateTranslationFiles)
 FOREACH(_item ${qm_targets})
-	ADD_DEPENDENCIES(finalize-locales ${_item})
+	ADD_DEPENDENCIES(GenerateTranslationFiles ${_item})
 ENDFOREACH(_item ${qm_targets})
 
 
