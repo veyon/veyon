@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="cs_CZ">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="cs" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -12,8 +10,17 @@
         <translation>O aplikaci</translation>
     </message>
     <message>
+        <source>iTALC - Intelligent Teaching And Learning with Computers
+
+Copyright © 2004-2016 Tobias Doerffel / iTALC Solutions</source>
+        <translation>iTALC – Intelligent Teaching And Learning with Computers
+(smysluplné vyučování a učení se pomocí počítačů)
+
+Copyright © 2004-2016 Tobias Doerffel / iTALC Solutions</translation>
+    </message>
+    <message>
         <source>&lt;a href=&quot;http://italc.sourceforge.net&quot;&gt;http://italc.sourceforge.net&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;a href=&quot;http://italc.sourceforge.net&quot;&gt;http://italc.sourceforge.net&lt;/a&gt;</translation>
     </message>
     <message>
         <source>Authors</source>
@@ -27,39 +34,32 @@
         <source>Current language not translated yet (or native English).
 
 If you&apos;re interested in translating iTALC into your local or another language or want to improve an existing translation, please contact an iTALC developer!</source>
-        <translation type="unfinished"></translation>
+        <translation>Texty rozhraní aplikace ještě nejsou přeloženy do vámi používaného jazyka (nebo používáte původní anglické).
+
+Pokud máte zájem vytvořit překlad do svého rodného (či jiného) jazyka, případně vylepšit ten stávající, kontaktujte vývojáře aplikace iTALC!</translation>
     </message>
     <message>
         <source>License</source>
         <translation>Licence</translation>
     </message>
-    <message>
-        <source>iTALC - Intelligent Teaching And Learning with Computers
-
-Copyright © 2004-2013 Tobias Doerffel / iTALC Solutions</source>
-        <translation>iTALC - Intelligent Teaching And Learning with Computers
-(inteligentní vyučování a učení se s počítači)
-
-Copyright © 2004-2013 Tobias Doerffel / iTALC Solutions</translation>
-    </message>
 </context>
 <context>
     <name>AccessDialogSlave</name>
     <message>
-        <source>Never for this session</source>
-        <translation>Nikdy pro tuto relaci</translation>
-    </message>
-    <message>
-        <source>Always for this session</source>
-        <translation>Vždy pro tuto relaci</translation>
-    </message>
-    <message>
         <source>Confirm desktop access</source>
-        <translation>Potvrdit přístup k desktopu</translation>
+        <translation>Umožnit přístup k pracovní ploše</translation>
     </message>
     <message>
         <source>The user %1 at host %2 wants to access your desktop. Do you want to grant access?</source>
-        <translation>Uživatel %1 na počítači %2 chce přistoupit k vašemu desktopu. Povolujete to?</translation>
+        <translation>Uživatel %1 chce z počítače %2 přistoupit k Vaší pracovní ploše. Umožníte mu to?</translation>
+    </message>
+    <message>
+        <source>Never for this session</source>
+        <translation>Ne po celou dobu této relace</translation>
+    </message>
+    <message>
+        <source>Always for this session</source>
+        <translation>Ano kdykoli po dobu této relace</translation>
     </message>
 </context>
 <context>
@@ -74,7 +74,7 @@ Copyright © 2004-2013 Tobias Doerffel / iTALC Solutions</translation>
     </message>
     <message>
         <source>This is where computers and classrooms are managed. You can add computers or classrooms by clicking right in this list.</source>
-        <translation>Zde jsou spravovány počítače a učebny. K přidávání slouží kliknutí pravým tlačítkem myši v tomtu seznamu.</translation>
+        <translation>Zde jsou spravovány počítače a učebny. Přidávat je můžete klikáním pravým tlačítkem myši v tomtu seznamu.</translation>
     </message>
     <message>
         <source>Classrooms/computers</source>
@@ -97,7 +97,7 @@ Copyright © 2004-2013 Tobias Doerffel / iTALC Solutions</translation>
         <translation>Pro přidávání/odebírání počítačů a učeben použijte kontextovou nabídku (kliknout pravým tlačítkem myši).</translation>
     </message>
     <message>
-        <source>Export to text-file</source>
+        <source>Export to text file</source>
         <translation>Exportovat do textového souboru</translation>
     </message>
     <message>
@@ -145,34 +145,28 @@ Copyright © 2004-2013 Tobias Doerffel / iTALC Solutions</translation>
         <translation>Přidat učebnu</translation>
     </message>
     <message>
-        <source>No configuration-file found</source>
-        <translation>Nebyl nalezen soubor s nastaveními</translation>
+        <source>No configuration file found</source>
+        <translation>Nebyl nalezen žádný soubor s nastaveními</translation>
     </message>
     <message>
-        <source>Could not open configuration file %1.
-You will have to add at least one classroom and computers using the classroom-manager which you&apos;ll find inside the program in the sidebar on the left side.</source>
-        <translation>Nelze otevřít soubor s nastaveními %1.
-Bude třeba přidat alespoň jednu učebnu a počítače pomocí Správce učebny, kterého naleznete na levém panelu v okně aplikace.</translation>
+        <source>Could not open configuration file %1. You will have to add at least one classroom and computers using the classroom manager which you&apos;ll find inside the program in the sidebar on the left side.</source>
+        <translation>Nedaří se otevřít soubor s nastaveními %1. Pomocí nástroje Správce učebny (který naleznete v levé postranní liště okna aplikace) je třeba přidat alespoň jednu učebnu a počítače.</translation>
     </message>
     <message>
-        <source>Error in configuration-file</source>
+        <source>Error in configuration file</source>
         <translation>Chyba v souboru s nastaveními</translation>
     </message>
     <message>
-        <source>Error while parsing configuration-file %1.
-Please edit it. Otherwise you should delete this file and have to add all classrooms and computers again.</source>
-        <translation>Chyba při zpracovávání souboru s nastaveními %1.
-Je třeba jej opravit (ručně). Případně je možné jej smazat a znovu přidat všechny učebny a počítače.</translation>
+        <source>Error while parsing configuration file %1. Please fix the file manually. Otherwise you should delete the file and add all classrooms and computers again.</source>
+        <translation>Chyba při zpracování souboru s nastaveními %1. Opravte ho ručním zásahem. Případně ho smažte a znovu zadejte veškeré učebny a počítače.</translation>
     </message>
     <message>
-        <source>Error while parsing configuration-file %1.
-Please edit it. Otherwise you should delete this file.</source>
-        <translation>Chyba při zpracovávání souboru s nastaveními%1.
-Je třeba jej opravit (ručně). Jinak nezbývá, než jej smazat.</translation>
+        <source>Error while parsing configuration file %1. Please fix the file manually. Otherwise you should delete the file.</source>
+        <translation>Chyba při zpracování souboru s nastaveními %1. Opravte ho ručním zásahem. Případně soubor smažte.</translation>
     </message>
     <message>
         <source>Select output-file</source>
-        <translation>Vybrat výstupní soubor</translation>
+        <translation>Vyberte výstupní soubor</translation>
     </message>
     <message>
         <source>Text files (*.txt)</source>
@@ -192,27 +186,27 @@ Je třeba jej opravit (ručně). Jinak nezbývá, než jej smazat.</translation>
     </message>
     <message>
         <source>New name for classroom</source>
-        <translation>Nové název učebny</translation>
+        <translation>Nový název učebny</translation>
     </message>
     <message>
         <source>Please enter a new name for classroom &quot;%1&quot;.</source>
-        <translation>Zadejte nový název pro učetnu &quot;%1&quot;.</translation>
+        <translation>Zadejte nový název pro učetnu „%1“.</translation>
     </message>
     <message>
         <source>Are you sure want to remove classroom &quot;%1&quot;?
 All computers in it will be removed as well!</source>
-        <translation>Opravdu chcete odstranit učebnu &quot;%1&quot;?
-Společně s tím budou odstraněny též všechny počítače v ní!</translation>
+        <translation>Opravdu chcete odstranit učebnu „%1“?
+Budou tím odstraněny také všechny počítače, které pod ní spadají!</translation>
     </message>
     <message>
         <source>Missing classroom</source>
-        <translation>Chybějící učebna</translation>
+        <translation>Chybí učebna</translation>
     </message>
     <message>
         <source>Before adding computers you have to create at least one classroom.
 Do you want to create a new classrom now?</source>
-        <translation>Před přidáváním počítačů je třeba vytvořit alespoň jednu učebnu.
-Chcete nyní vytvořit novou učebnu?</translation>
+        <translation>Aby bylo možné přidávat počítače, je třeba vytvořit alespoň jednu učebnu.
+Chcete vytvořit novou učebnu?</translation>
     </message>
     <message>
         <source>New classroom</source>
@@ -220,7 +214,7 @@ Chcete nyní vytvořit novou učebnu?</translation>
     </message>
     <message>
         <source>Please enter the name of the classroom you want to create.</source>
-        <translation>Zadejte název nově vytvářené učebny.</translation>
+        <translation>Zadejte pro novou učebnu.</translation>
     </message>
 </context>
 <context>
@@ -231,30 +225,34 @@ Chcete nyní vytvořit novou učebnu?</translation>
     </message>
     <message>
         <source>No user logged in</source>
-        <translation>Není přihlášen žádný uživatel</translation>
+        <translation>Není přihlášený žádný uživatel</translation>
     </message>
     <message>
         <source>Host unreachable</source>
-        <translation>Počítač není k dispozici</translation>
+        <translation>Počítač není dosažitelný</translation>
     </message>
     <message>
         <source>Demo running</source>
-        <translation>Běžící ukázka</translation>
+        <translation>Spuštěná ukázka</translation>
     </message>
     <message>
         <source>Desktop locked</source>
-        <translation>Zamknutý desktop</translation>
+        <translation>Pracovní plocha uzamčena</translation>
+    </message>
+    <message>
+        <source>Message from teacher</source>
+        <translation>Zpráva od vyučujícího</translation>
     </message>
 </context>
 <context>
     <name>ClientAction</name>
     <message>
         <source>Are you sure want logout all users on all visible computers ?</source>
-        <translation>Opravdu chcete odhlásit všechny uživatele ze všech zobrazených počítačů?</translation>
+        <translation>Opravdu chcete ze všech zobrazených počítačů odhlásit všechny uživatele?</translation>
     </message>
     <message>
         <source>Are you sure want logout all users on all selected computers ?</source>
-        <translation>Opravdu chcete odhlásit všechny uživatele ze všech označených počítačů?</translation>
+        <translation>Opravdu chcete ze všech označených počítačů odhlásit všechny uživatele?</translation>
     </message>
     <message>
         <source>Logout user</source>
@@ -284,24 +282,16 @@ Chcete nyní vytvořit novou učebnu?</translation>
 <context>
     <name>ClientSettingsDialog</name>
     <message>
-        <source>Invalid MAC-address</source>
-        <translation>Neplatná MAC-adresa</translation>
-    </message>
-    <message>
-        <source>You specified an invalid MAC-address. Either leave the field blank or enter a valid MAC-address (use &quot;:&quot; as separator!).</source>
-        <translation>Je třeba zadat platnou MAC-adresu. Buď zadejte platnou MAC-adresu (oddělovačem je &quot;:&quot;), nebo ponechte políčko prázdné.</translation>
-    </message>
-    <message>
         <source>Client settings</source>
         <translation>Nastavení klienta</translation>
     </message>
     <message>
         <source>IP/hostname</source>
-        <translation>IP/název počítače</translation>
+        <translation>IP adresa / název počítače</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;enter an IP-address or hostname under which iTALC can reach the client (use &apos;:&apos; for specifying an optional port-number)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;zadejte IP-adresu nebo název počítače, na kterém běží klient iTALC (pro určení volitelného čísla portu použijte &apos;:&apos;)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;zadejte IP adresu nebo název počítače, na kterém je spuštěný klient iTALC (pro určení volitelného čísla portu použijte &apos;:&apos;)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Name</source>
@@ -347,6 +337,14 @@ Chcete nyní vytvořit novou učebnu?</translation>
         <source>You didn&apos;t specify an IP address or hostname for the computer!</source>
         <translation>Nebyla zadána IP adresa či název počítače!</translation>
     </message>
+    <message>
+        <source>Invalid MAC address</source>
+        <translation>Neplatná MAC adresa</translation>
+    </message>
+    <message>
+        <source>You specified an invalid MAC address. Either leave the field blank or enter a valid MAC address (use &quot;:&quot; as separator!).</source>
+        <translation>Zadali jste neplatnou MAC adresu. Buď kolonku ponechte prázdnou nebo zadejte platný údaj (jako odělovač použijte částí adresy použijte znak „:“ – dvojtečka!).</translation>
+    </message>
 </context>
 <context>
     <name>Config</name>
@@ -387,13 +385,113 @@ Chcete nyní vytvořit novou učebnu?</translation>
         <translation>Bez textů na tlačítkách lišty nástrojů</translation>
     </message>
     <message>
+        <source>Language:</source>
+        <translation>Jazyk:</translation>
+    </message>
+    <message>
+        <source>System default</source>
+        <translation>Výchozí systémový</translation>
+    </message>
+    <message>
+        <source>ar - العربية</source>
+        <translation>ar - العربية</translation>
+    </message>
+    <message>
+        <source>cs - Česky</source>
+        <translation>cs - Česky</translation>
+    </message>
+    <message>
+        <source>de - Deutsch</source>
+        <translation>de - Deutsch</translation>
+    </message>
+    <message>
+        <source>el - Ελληνικά</source>
+        <translation>el - Ελληνικά</translation>
+    </message>
+    <message>
+        <source>es - Español</source>
+        <translation>es - Español</translation>
+    </message>
+    <message>
+        <source>fi - Suomi</source>
+        <translation>fi - Suomi</translation>
+    </message>
+    <message>
+        <source>fr - Français</source>
+        <translation>fr - Français</translation>
+    </message>
+    <message>
+        <source>he - עִבְרִית</source>
+        <translation>he - עִבְרִית</translation>
+    </message>
+    <message>
+        <source>hu - Magyar</source>
+        <translation>hu - Magyar</translation>
+    </message>
+    <message>
+        <source>it - Italiano</source>
+        <translation>it - Italiano</translation>
+    </message>
+    <message>
+        <source>nl - Nederlands</source>
+        <translation>nl - Nederlands</translation>
+    </message>
+    <message>
+        <source>nn - Norsk</source>
+        <translation>nn - Norsk</translation>
+    </message>
+    <message>
+        <source>pl - Polski</source>
+        <translation>pl - Polski</translation>
+    </message>
+    <message>
+        <source>pt_br - Brasileiro</source>
+        <translation>pt_br - Brasileiro</translation>
+    </message>
+    <message>
+        <source>pt_pt - Português</source>
+        <translation>pt_pt - Português</translation>
+    </message>
+    <message>
+        <source>ru - Русский</source>
+        <translation>ru - Русский</translation>
+    </message>
+    <message>
+        <source>sk - Slovenský</source>
+        <translation>sk - Slovenský</translation>
+    </message>
+    <message>
+        <source>sl - Slovenčina</source>
+        <translation>sl - Slovenčina</translation>
+    </message>
+    <message>
+        <source>sv - Svenska</source>
+        <translation>sv - Svenska</translation>
+    </message>
+    <message>
+        <source>tr - Türkçe</source>
+        <translation>tr - Türkçe</translation>
+    </message>
+    <message>
+        <source>uk - Українська</source>
+        <translation>uk - Українська</translation>
+    </message>
+    <message>
+        <source>zh_cn - 简体字</source>
+        <translation>zh_cn - 简体字</translation>
+    </message>
+    <message>
+        <source>zh_tw - 簡體字</source>
+        <translation>zh_tw - 簡體字</translation>
+    </message>
+    <message>
         <source>Your role (needs according keys!)</source>
         <translation>Vaše úloha (vyžaduje odpovídající klíče!)</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Here you can select your role. Only change this if you know what you&apos;re doing. Otherwise you won&apos;t be able to access any clients until you restore your old role.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -417,21 +515,13 @@ p, li { white-space: pre-wrap; }
         <translation>Jiná</translation>
     </message>
     <message>
-        <source>Settings for multi-logon</source>
-        <translation>Nastavení pro vícenásobné přihlášení</translation>
-    </message>
-    <message>
-        <source>Domain</source>
-        <translation>Doména</translation>
-    </message>
-    <message>
-        <source>Double-click action for client-window</source>
-        <translation>Akce pro dvojklik v okně klienta</translation>
+        <source>Double click action for client window</source>
+        <translation>Akce při dvojkliku na okně klienta</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Here you can set what should happen if you double-click a client-window.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -450,106 +540,6 @@ p, li { white-space: pre-wrap; }
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;Please note, that some changes won&apos;t take effect until you restart iTALC.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;Pamatujte, že změna některých nastavení se neprojeví dokud nebude iTALC restartován.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
-    <message>
-        <source>Language:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>System default</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>ar - العربية</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>cs - Česky</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>de - Deutsch</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>el - Ελληνικά</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>es - Español</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>fi - Suomi</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>fr - Français</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>he - עִבְרִית</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>hu - Magyar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>it - Italiano</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>nl - Nederlands</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>nn - Norsk</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>pl - Polski</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>pt_br - Brasileiro</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>pt_pt - Português</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>ru - Русский</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>sk - Slovenský</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>sl - Slovenčina</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>sv - Svenska</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>tr - Türkçe</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>uk - Українська</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>zh_cn - 简体字</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>zh_tw - 簡體字</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>ConfigWidget</name>
@@ -560,13 +550,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>In this workspace you can customize iTALC to fit your needs.</source>
         <translation>Toto rozhraní slouží k přizpůsobení aplikace iTALC vašim potřebám.</translation>
-    </message>
-</context>
-<context>
-    <name>DecoratedMessageBox</name>
-    <message>
-        <source>OK</source>
-        <translation>OK</translation>
     </message>
 </context>
 <context>
@@ -583,8 +566,8 @@ p, li { white-space: pre-wrap; }
         <translation>Chyba ověření</translation>
     </message>
     <message>
-        <source>Somebody (IP: %1) tried to access this computer but could not authenticate itself successfully!</source>
-        <translation>Někdo (IP: %1) se pokusil přistoupit k tomuto počítači, ale neprošel přes ověření!</translation>
+        <source>Somebody (IP: %1) tried to access this computer but could not authenticate successfully!</source>
+        <translation>Někdo (IP adresa: %1) se pokusil přistoupit na tento počítač ale nebyl schopen poskytnout platné přihlašovací údaje!</translation>
     </message>
 </context>
 <context>
@@ -643,10 +626,6 @@ Veřejná část klíče se používá na klientských počítačích pro ověř
     <message>
         <source>Create new access keys (master computer)</source>
         <translation>Vytvořit nový přístupový klíč (řídící počítač)</translation>
-    </message>
-    <message>
-        <source>assistantModeButtonGroup</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Import public key (client computer)</source>
@@ -825,16 +804,20 @@ Veřejná část klíče se používá na klientských počítačích pro ověř
 <context>
     <name>MainWindow</name>
     <message>
-        <source>General</source>
-        <translation>Obecné</translation>
+        <source>MainWindow</source>
+        <translation>HlavníOkno</translation>
     </message>
     <message>
-        <source>Quit</source>
-        <translation>Ukončit</translation>
+        <source>toolBar</source>
+        <translation>Lišta nástrojů</translation>
     </message>
     <message>
         <source>iTALC Management Console</source>
         <translation>Konzole pro správu iTALC</translation>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>Obecné</translation>
     </message>
     <message>
         <source>iTALC Server</source>
@@ -847,6 +830,10 @@ Veřejná část klíče se používá na klientských počítačích pro ověř
     <message>
         <source>Authentication</source>
         <translation>Ověření</translation>
+    </message>
+    <message>
+        <source>Debugging</source>
+        <translation>Ladění</translation>
     </message>
     <message>
         <source>iTALC Service</source>
@@ -879,6 +866,10 @@ Veřejná část klíče se používá na klientských počítačích pro ověř
     <message>
         <source>Stopped</source>
         <translation>Zastaveno</translation>
+    </message>
+    <message>
+        <source>Enable desktop switching for screen lock (experimental)</source>
+        <translation>Povolit přepínání ploch pro uzamčení obrazovky (pokusné)</translation>
     </message>
     <message>
         <source>Logging</source>
@@ -929,6 +920,14 @@ Veřejná část klíče se používá na klientských počítačích pro ověř
         <translation>MB</translation>
     </message>
     <message>
+        <source>Log to standard error output</source>
+        <translation>Zaznamenávat na standardní chybový výstup</translation>
+    </message>
+    <message>
+        <source>Log to Windows event log</source>
+        <translation>Zaznamenávat v rámci záznamů o provozu Windows</translation>
+    </message>
+    <message>
         <source>Clear all log files</source>
         <translation>Vymazat všechny soubory se záznamy o provozu</translation>
     </message>
@@ -941,12 +940,28 @@ Veřejná část klíče se používá na klientských počítačích pro ověř
         <translation>Povolit zachytávání vrstvených (jako by průhledných) oken</translation>
     </message>
     <message>
+        <source>Poll full screen (leave this enabled per default)</source>
+        <translation>Kontrolovat celou obrazovku (ponechte povolené jako výchozí)</translation>
+    </message>
+    <message>
         <source>Low accuracy (turbo mode)</source>
         <translation>Nízká přesnost (rychlé)</translation>
     </message>
     <message>
         <source>Demo server</source>
         <translation>Ukázkový server</translation>
+    </message>
+    <message>
+        <source>Backend</source>
+        <translation>Backend</translation>
+    </message>
+    <message>
+        <source>VNC reflector</source>
+        <translation>VNC reflector</translation>
+    </message>
+    <message>
+        <source>iTALC 1 demo server</source>
+        <translation>Ukázkový server iTALC 1</translation>
     </message>
     <message>
         <source>Network</source>
@@ -963,6 +978,18 @@ Veřejná část klíče se používá na klientských počítačích pro ověř
     <message>
         <source>Enable firewall exception</source>
         <translation>Povolit výjimku na firewallu</translation>
+    </message>
+    <message>
+        <source>Enable HTTP server which provides a JavaViewer applet</source>
+        <translation>Povolit HTTP server, který poskytuje applet JavaViewer</translation>
+    </message>
+    <message>
+        <source>HTTP server port</source>
+        <translation>Port HTTP serveru</translation>
+    </message>
+    <message>
+        <source>Allow connections from localhost only</source>
+        <translation>Povolit připojení pouze v rámci tohoto počítače</translation>
     </message>
     <message>
         <source>Configuration files</source>
@@ -989,12 +1016,118 @@ Veřejná část klíče se používá na klientských počítačích pro ověř
         <translation>Metody ověření</translation>
     </message>
     <message>
+        <source>Key file authentication</source>
+        <translation>Ověřování pomocí klíčů</translation>
+    </message>
+    <message>
+        <source>ACL-based logon authentication</source>
+        <translation>Ověřování založené na ACL</translation>
+    </message>
+    <message>
         <source>Access key management</source>
         <translation>Správa přístupových klíčů</translation>
     </message>
     <message>
+        <source>Public key file base directory</source>
+        <translation>Základní složka pro veřejnou část klíče</translation>
+    </message>
+    <message>
+        <source>Private key file base directory</source>
+        <translation>Základní složka pro soukromou část klíče</translation>
+    </message>
+    <message>
+        <source>Launch key file assistant</source>
+        <translation>Spustit pomocníka pro klíče</translation>
+    </message>
+    <message>
         <source>Logon settings</source>
         <translation>Nastavení přihlašování</translation>
+    </message>
+    <message>
+        <source>Manage permissions</source>
+        <translation>Spravovat povolení</translation>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation>Zkouška</translation>
+    </message>
+    <message>
+        <source>Access confirmation</source>
+        <translation>Potvrzení přístupu</translation>
+    </message>
+    <message>
+        <source>You can configure iTALC to ask the user for permission to access the desktop when using certain authentication methods.</source>
+        <translation>iTALC je možné natstavit tak, aby se ptal uživatele na schválení přistupu k desktopu při použití konkrétních způsobů ověření.</translation>
+    </message>
+    <message>
+        <source>Logon authentication</source>
+        <translation>Přihlašovací ověrení</translation>
+    </message>
+    <message>
+        <source>Allow same user to access desktop without confirmation</source>
+        <translation>Povolit stejnému uživateli přistoupit k desktopu bez potvrzení</translation>
+    </message>
+    <message>
+        <source>Debugging iTALC</source>
+        <translation>Ladění aplikace iTALC</translation>
+    </message>
+    <message>
+        <source>When encountering bugs or other misbehaviour in iTALC it is important to inform the developers about them, so that the bugs can be fixed in future releases. This page allows you to submit a helpful bug report easily.
+
+If the bug is not reproducible, skip step 1) - 3).</source>
+        <translation>Setkáte-li se s chybou či neočekávaným chování aplikace iTALC, je důležité o tom informovat vývojáře, aby chyba mohla být opravena v příštích vydáních. Tato stránka slouží ke snadnému a správnému nahlášení chyby.
+
+Pokud chybu není možné zopakovat, přeskočte kroky 1 až 3.</translation>
+    </message>
+    <message>
+        <source>1)</source>
+        <translation>1)</translation>
+    </message>
+    <message>
+        <source>Clear the logfiles in the &quot;General&quot; section.</source>
+        <translation>Vymažte soubory se záznamy o provozu v sekci &quot;Obecné&quot;.</translation>
+    </message>
+    <message>
+        <source>2)</source>
+        <translation>2)</translation>
+    </message>
+    <message>
+        <source>In the &quot;General&quot; section set the log level to &quot;Debug messages and everything else&quot;.</source>
+        <translation>V sekci &quot;Obecné&quot; nastavte úroveň podrobností záznamů o provozu na &quot;Ladicí zprávy a vše ostatní&quot;.</translation>
+    </message>
+    <message>
+        <source>3)</source>
+        <translation>3)</translation>
+    </message>
+    <message>
+        <source>Repeat the actions leading to the bug or misbehaviour.</source>
+        <translation>Zopakujte akce, které vedou k manifestaci chyby či neočekávanému chování.</translation>
+    </message>
+    <message>
+        <source>4)</source>
+        <translation>4)</translation>
+    </message>
+    <message>
+        <source>Click the following button and save the file to a known location.</source>
+        <translation>Klikněte na následující tlačítko a uložte soubor někam, kde ho pak najdete.</translation>
+    </message>
+    <message>
+        <source>Generate bug report archive</source>
+        <translation>Vytvořit archiv s údaji pro hlášení chyby</translation>
+    </message>
+    <message>
+        <source>5)</source>
+        <translation>5)</translation>
+    </message>
+    <message>
+        <source>Go to the &lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;amp;atid=724375&quot;&gt;iTALC bug tracker&lt;/a&gt;, open a new bug, describe what you did in step 3) and attach the file you saved in step 4).&lt;/p&gt;
+&lt;br/&gt;
+&lt;br/&gt;
+Note: if the bug involves both a master and client computer, attach bug report archives for both computers.</source>
+        <translation>Přejděte do &lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;amp;atid=724375&quot;&gt;systému sledování chyb v iTALC&lt;/a&gt;, zadejte nové hlášení, popište, co jste dělali v kroku 3 a připojte soubor, který jste uložili v kroku 4.&lt;/p&gt;
+&lt;br/&gt;
+&lt;br/&gt;
+Pozn.: pokud se chyba týká řídícího i klientského počítače, připojte archivy pro hlášení chyby z obou počítačů.</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -1039,58 +1172,6 @@ Veřejná část klíče se používá na klientských počítačích pro ověř
     <message>
         <source>About Qt</source>
         <translation>O frameworku Qt</translation>
-    </message>
-    <message>
-        <source>MainWindow</source>
-        <translation>HlavníOkno</translation>
-    </message>
-    <message>
-        <source>toolBar</source>
-        <translation>Lišta nástrojů</translation>
-    </message>
-    <message>
-        <source>iTALC Management Console %1</source>
-        <translation>Konzole pro správu iTALC %1</translation>
-    </message>
-    <message>
-        <source>Running</source>
-        <translation>V běhu</translation>
-    </message>
-    <message>
-        <source>Load settings from file</source>
-        <translation>Načíst nastavení ze souboru</translation>
-    </message>
-    <message>
-        <source>XML files (*.xml)</source>
-        <translation>Soubory XML (*.xml)</translation>
-    </message>
-    <message>
-        <source>Save settings to file</source>
-        <translation>Uložit nastavení do souboru</translation>
-    </message>
-    <message>
-        <source>Unsaved settings</source>
-        <translation>Neuložená nastavení</translation>
-    </message>
-    <message>
-        <source>There are unsaved settings. Quit anyway?</source>
-        <translation>Některá nastavení nebyla doposud uložena. Ukončit i tak?</translation>
-    </message>
-    <message>
-        <source>Configuration not writable</source>
-        <translation>Nastavení nelze zapsat</translation>
-    </message>
-    <message>
-        <source>The local configuration backend reported that the configuration is not writable! Please run the iTALC Management Console with higher privileges.</source>
-        <translation>Místní nastavovací backend hlásí, že do nastavení nelze zapisovat! Spusťte konzoli pro správu iTALC s vyššími oprávněními.</translation>
-    </message>
-    <message>
-        <source>All settings were applied successfully.</source>
-        <translation>Veškerá nastavení byla úspěšně použita.</translation>
-    </message>
-    <message>
-        <source>An error occured while applying settings!</source>
-        <translation>Chyba při použití nastavení! </translation>
     </message>
     <message>
         <source>iTALC</source>
@@ -1249,12 +1330,32 @@ Veřejná část klíče se používá na klientských počítačích pro ověř
         <translation>Kliknutím na toto tlačítko budou všechna okna přeuspořádána a přizpůsobena.</translation>
     </message>
     <message>
+        <source>Could not contact iTALC service</source>
+        <translation>Nedaří se kontaktovat službu iTALC</translation>
+    </message>
+    <message>
+        <source>Could not contact the local iTALC service. It is likely that you entered wrong credentials or key files are not set up properly. Try again or contact your administrator for solving this problem using the iTALC Management Console.</source>
+        <translation>Nelze se připojit k místní službe iTALC. Nejspíš jste zadali špatné přihlašovací údaje či soubory s klíči nejsou správně nastaveny. Zkuste to znovu a případně oslovte správce systémů, aby problém vyřešil s použitím konzole pro správu iTALC.</translation>
+    </message>
+    <message>
         <source>iTALC Master Control</source>
         <translation>Hlavní řízení iTALC</translation>
     </message>
     <message>
+        <source>Authentication impossible</source>
+        <translation>Ověření není možné</translation>
+    </message>
+    <message>
+        <source>No authentication key files were found or your current ones are outdated. Please create new key files using the iTALC Management Console. Alternatively set up logon authentication using the iTALC Management Console. Otherwise you won&apos;t be able to access computers using iTALC.</source>
+        <translation>Nebyly žádné ověrovací klíče nebo jsou ty vámi právě používané zastaralé. Vytvořte nové soubory s klíči pomocí konzole pro správu iTALC. Případně můžete nastavit přihlašovací ověřování s použitím konzole pro správu iTALC. Pokud tak neučiníte, nebudete moci přistupovat k počítačům s iTALC.</translation>
+    </message>
+    <message>
         <source>Remote control</source>
         <translation>Vzdálené ovládání</translation>
+    </message>
+    <message>
+        <source>Quit</source>
+        <translation>Ukončit</translation>
     </message>
     <message>
         <source>Could not modify the autostart property for the iTALC Service.</source>
@@ -1269,154 +1370,24 @@ Veřejná část klíče se používá na klientských počítačích pro ověř
         <translation>Nelze změnit nastavení firewallu pro službu iTALC.</translation>
     </message>
     <message>
-        <source>Debugging</source>
-        <translation>Ladění</translation>
+        <source>Configuration not writable</source>
+        <translation>Nastavení nelze zapsat</translation>
     </message>
     <message>
-        <source>Enable desktop switching for screen lock (experimental)</source>
-        <translation>Povolit přepínání ploch pro uzamčení obrazovky (pokusné)</translation>
+        <source>The local configuration backend reported that the configuration is not writable! Please run the iTALC Management Console with higher privileges.</source>
+        <translation>Místní nastavovací backend hlásí, že do nastavení nelze zapisovat! Spusťte konzoli pro správu iTALC s vyššími oprávněními.</translation>
     </message>
     <message>
-        <source>Log to standard error output</source>
-        <translation>Zaznamenávat na standardní chybový výstup</translation>
+        <source>All settings were applied successfully.</source>
+        <translation>Veškerá nastavení byla úspěšně použita.</translation>
     </message>
     <message>
-        <source>Log to Windows event log</source>
-        <translation>Zaznamenávat v rámci záznamů o provozu Windows</translation>
+        <source>An error occured while applying settings!</source>
+        <translation>Chyba při použití nastavení! </translation>
     </message>
     <message>
-        <source>Backend</source>
-        <translation>Backend</translation>
-    </message>
-    <message>
-        <source>VNC reflector</source>
-        <translation>VNC reflector</translation>
-    </message>
-    <message>
-        <source>iTALC 1 demo server</source>
-        <translation>Ukázkový server iTALC 1</translation>
-    </message>
-    <message>
-        <source>Multithreading (can be enabled when using the VNC reflector backend)</source>
-        <translation>Vícevláknový běh (může být zapnut při použití backendu VNC reflector)</translation>
-    </message>
-    <message>
-        <source>Enable HTTP server which provides a JavaViewer applet</source>
-        <translation>Povolit HTTP server, který poskytuje applet JavaViewer</translation>
-    </message>
-    <message>
-        <source>HTTP server port</source>
-        <translation>Port HTTP serveru</translation>
-    </message>
-    <message>
-        <source>Allow connections from localhost only</source>
-        <translation>Povolit připojení pouze v rámci tohoto počítače</translation>
-    </message>
-    <message>
-        <source>Key file authentication</source>
-        <translation>Ověřování pomocí klíčů</translation>
-    </message>
-    <message>
-        <source>ACL-based logon authentication</source>
-        <translation>Ověřování založené na ACL</translation>
-    </message>
-    <message>
-        <source>Public key file base directory</source>
-        <translation>Základní složka pro veřejnou část klíče</translation>
-    </message>
-    <message>
-        <source>Private key file base directory</source>
-        <translation>Základní složka pro soukromou část klíče</translation>
-    </message>
-    <message>
-        <source>Launch key file assistant</source>
-        <translation>Spustit pomocníka pro klíče</translation>
-    </message>
-    <message>
-        <source>Manage permissions</source>
-        <translation>Spravovat povolení</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>Zkouška</translation>
-    </message>
-    <message>
-        <source>Access confirmation</source>
-        <translation>Potvrzení přístupu</translation>
-    </message>
-    <message>
-        <source>You can configure iTALC to ask the user for permission to access the desktop when using certain authentication methods.</source>
-        <translation>iTALC je možné natstavit tak, aby se ptal uživatele na schválení přistupu k desktopu při použití konkrétních způsobů ověření.</translation>
-    </message>
-    <message>
-        <source>Logon authentication</source>
-        <translation>Přihlašovací ověrení</translation>
-    </message>
-    <message>
-        <source>Allow same user to access desktop without confirmation</source>
-        <translation>Povolit stejnému uživateli přistoupit k desktopu bez potvrzení</translation>
-    </message>
-    <message>
-        <source>Debugging iTALC</source>
-        <translation>Ladění aplikace iTALC</translation>
-    </message>
-    <message>
-        <source>When encountering bugs or other misbehaviour in iTALC it is important to inform the developers about them, so that the bugs can be fixed in future releases. This page allows you to submit a helpful bug report easily.
-
-If the bug is not reproducible, skip step 1) - 3).</source>
-        <translation>Setkáte-li se s chybou či neočekávaným chování aplikace iTALC, je důležité o tom informovat vývojáře, aby chyba mohla být opravena v příštích vydáních. Tato stránka slouží ke snadnému a správnému nahlášení chyby.
-
-Pokud chybu není možné zopakovat, přeskočte kroky 1 až 3.</translation>
-    </message>
-    <message>
-        <source>1)</source>
-        <translation>1)</translation>
-    </message>
-    <message>
-        <source>Clear the logfiles in the &quot;General&quot; section.</source>
-        <translation>Vymažte soubory se záznamy o provozu v sekci &quot;Obecné&quot;.</translation>
-    </message>
-    <message>
-        <source>2)</source>
-        <translation>2)</translation>
-    </message>
-    <message>
-        <source>In the &quot;General&quot; section set the log level to &quot;Debug messages and everything else&quot;.</source>
-        <translation>V sekci &quot;Obecné&quot; nastavte úroveň podrobností záznamů o provozu na &quot;Ladicí zprávy a vše ostatní&quot;.</translation>
-    </message>
-    <message>
-        <source>3)</source>
-        <translation>3)</translation>
-    </message>
-    <message>
-        <source>Repeat the actions leading to the bug or misbehaviour.</source>
-        <translation>Zopakujte akce, které vedou k manifestaci chyby či neočekávanému chování.</translation>
-    </message>
-    <message>
-        <source>4)</source>
-        <translation>4)</translation>
-    </message>
-    <message>
-        <source>Click the following button and save the file to a known location.</source>
-        <translation>Klikněte na následující tlačítko a uložte soubor někam, kde ho pak najdete.</translation>
-    </message>
-    <message>
-        <source>Generate bug report archive</source>
-        <translation>Vytvořit archiv s údaji pro hlášení chyby</translation>
-    </message>
-    <message>
-        <source>5)</source>
-        <translation>5)</translation>
-    </message>
-    <message>
-        <source>Go to the &lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;amp;atid=724375&quot;&gt;iTALC bug tracker&lt;/a&gt;, open a new bug, describe what you did in step 3) and attach the file you saved in step 4).&lt;/p&gt;
-&lt;br/&gt;
-&lt;br/&gt;
-Note: if the bug involves both a master and client computer, attach bug report archives for both computers.</source>
-        <translation>Přejděte do &lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;amp;atid=724375&quot;&gt;systému sledování chyb v iTALC&lt;/a&gt;, zadejte nové hlášení, popište, co jste dělali v kroku 3 a připojte soubor, který jste uložili v kroku 4.&lt;/p&gt;
-&lt;br/&gt;
-&lt;br/&gt;
-Pozn.: pokud se chyba týká řídícího i klientského počítače, připojte archivy pro hlášení chyby z obou počítačů.</translation>
+        <source>iTALC Management Console %1</source>
+        <translation>Konzole pro správu iTALC %1</translation>
     </message>
     <message>
         <source>Restart iTALC Service</source>
@@ -1433,6 +1404,10 @@ Pozn.: pokud se chyba týká řídícího i klientského počítače, připojte 
     <message>
         <source>Stopping iTALC service</source>
         <translation>Zastavování služby iTALC</translation>
+    </message>
+    <message>
+        <source>Running</source>
+        <translation>V běhu</translation>
     </message>
     <message>
         <source>The iTALC service needs to be stopped temporarily in order to remove the log files. Continue?</source>
@@ -1453,6 +1428,18 @@ Pozn.: pokud se chyba týká řídícího i klientského počítače, připojte 
     <message>
         <source>Could not remove all log files.</source>
         <translation>Nelze smazat soubory se záznamy o provozu.</translation>
+    </message>
+    <message>
+        <source>Load settings from file</source>
+        <translation>Načíst nastavení ze souboru</translation>
+    </message>
+    <message>
+        <source>XML files (*.xml)</source>
+        <translation>Soubory XML (*.xml)</translation>
+    </message>
+    <message>
+        <source>Save settings to file</source>
+        <translation>Uložit nastavení do souboru</translation>
     </message>
     <message>
         <source>Logon authentication test</source>
@@ -1483,31 +1470,12 @@ Pozn.: pokud se chyba týká řídícího i klientského počítače, připojte 
         <translation>Archiv s údaji pro hlášení chyby v iTALC byl uložen do %1. Obsahuje soubory se záznamy o provozu iTALC a informace o vašem operačním systému. Můžete jej připojit k hlášení chyby.</translation>
     </message>
     <message>
-        <source>Could not contact iTALC service</source>
-        <translation>Nedaří se kontaktovat službu iTALC</translation>
+        <source>Unsaved settings</source>
+        <translation>Neuložená nastavení</translation>
     </message>
     <message>
-        <source>Could not contact the local iTALC service. It is likely that you entered wrong credentials or key files are not set up properly. Try again or contact your administrator for solving this problem using the iTALC Management Console.</source>
-        <translation>Nelze se připojit k místní službe iTALC. Nejspíš jste zadali špatné přihlašovací údaje či soubory s klíči nejsou správně nastaveny. Zkuste to znovu a případně oslovte správce systémů, aby problém vyřešil s použitím konzole pro správu iTALC.</translation>
-    </message>
-    <message>
-        <source>Authentication impossible</source>
-        <translation>Ověření není možné</translation>
-    </message>
-    <message>
-        <source>No authentication key files were found or your current ones are outdated. Please create new key files using the iTALC Management Console. Alternatively set up logon authentication using the iTALC Management Console. Otherwise you won&apos;t be able to access computers using iTALC.</source>
-        <translation>Nebyly žádné ověrovací klíče nebo jsou ty vámi právě používané zastaralé. Vytvořte nové soubory s klíči pomocí konzole pro správu iTALC. Případně můžete nastavit přihlašovací ověřování s použitím konzole pro správu iTALC. Pokud tak neučiníte, nebudete moci přistupovat k počítačům s iTALC.</translation>
-    </message>
-    <message>
-        <source>Poll full screen (leave this enabled per default)</source>
-        <translation>Kontrolovat celou obrazovku (ponechte povolené jako výchozí)</translation>
-    </message>
-</context>
-<context>
-    <name>MessageBoxSlave</name>
-    <message>
-        <source>Message from teacher</source>
-        <translation>Zpráva od vyučujícího</translation>
+        <source>There are unsaved settings. Quit anyway?</source>
+        <translation>Některá nastavení nebyla doposud uložena. Ukončit i tak?</translation>
     </message>
 </context>
 <context>
@@ -1515,7 +1483,7 @@ Pozn.: pokud se chyba týká řídícího i klientského počítače, připojte 
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; font-style:italic;&quot;&gt;Welcome to iTALC!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -1557,6 +1525,10 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>PasswordDialog</name>
     <message>
+        <source>iTALC Logon</source>
+        <translation>Přihlášení iTALC</translation>
+    </message>
+    <message>
         <source>Please enter your username and password in order to access iTALC clients.</source>
         <translation>Zadejte své uživatelské jméno abyste mohli přistupovat k iTALC klientům.</translation>
     </message>
@@ -1567,10 +1539,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Password</source>
         <translation>Heslo</translation>
-    </message>
-    <message>
-        <source>iTALC Logon</source>
-        <translation>Přihlášení iTALC</translation>
     </message>
     <message>
         <source>Manage</source>
@@ -1721,33 +1689,33 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Please enter the commands to run on the selected client(s). You can separate multiple commands by line.</source>
-        <translation>Zadejte příkaz, který má být spuštěn na zvolených klientech. Je možné zadat více příkazů naráz - každý zvlášť na svém řádku.</translation>
+        <translation>Zadejte příkaz, který má být spuštěn na označených klientech. Je možné zadat více příkazů naráz – každý zvlášť na svém řádku.</translation>
     </message>
 </context>
 <context>
     <name>Snapshot</name>
     <message>
         <source>unknown</source>
-        <translation>Neznámý</translation>
+        <translation>neznámé</translation>
     </message>
     <message>
         <source>Could not take a snapshot as directory %1 doesn&apos;t exist and couldn&apos;t be created.</source>
-        <translation>Nelze pořídit snímek, protože složka %1 neexistuje a nelze ji vytvořit.</translation>
+        <translation>Snímek nelze pořídit, protože složka %1 neexistuje a nedaří se jí vytvořit.</translation>
     </message>
     <message>
         <source>Snapshot</source>
-        <translation>Snímek</translation>
+        <translation>Snímek obrazovky</translation>
     </message>
 </context>
 <context>
     <name>SnapshotList</name>
     <message>
         <source>Snapshots</source>
-        <translation>Snímky</translation>
+        <translation>Snímky obrazovek</translation>
     </message>
     <message>
         <source>Simply manage the snapshots you made using this workspace.</source>
-        <translation>Toto rozhraní slouží pro snadnou správu pořízených snímků.</translation>
+        <translation>Toto rozhraní slouží pro snadnou správu pořízených snímků obrazovek.</translation>
     </message>
 </context>
 <context>
@@ -1755,7 +1723,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;All snapshots you made are listed here. You can make snapshots by selecting the according entry in the context-menu of a client-window. These snapshosts can be managed using the buttons below.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -1795,7 +1763,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Please enter the IP address or the name of the host to which you want to connect.</source>
-        <translation>Zadejte IP adresu či název počítače ke kterému se chcete připojit.</translation>
+        <translation>Zadejte IP adresu nebo název počítače ke kterému se chcete připojit.</translation>
     </message>
 </context>
 <context>
@@ -1806,14 +1774,14 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Use the field below to type your message which will be sent to all selected users.</source>
-        <translation>Do políčka níže zadejte svou zprávu, určenou všem vybraným uživatelům.</translation>
+        <translation>Do kolonky níže zadejte svou zprávu, určenou všem označeným uživatelům.</translation>
     </message>
 </context>
 <context>
     <name>VncView</name>
     <message>
         <source>Establishing connection to %1 ...</source>
-        <translation>Připojování k %1 ...</translation>
+        <translation>Připojování k %1…</translation>
     </message>
 </context>
 <context>
@@ -1832,7 +1800,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Locked display</source>
-        <translation>Obrazovka zamknuta</translation>
+        <translation>Obrazovka uzamčena</translation>
     </message>
     <message>
         <source>View live</source>
@@ -1872,7 +1840,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Execute commands</source>
-        <translation>Vykonat příkazy</translation>
+        <translation>Spustit příkazy</translation>
     </message>
 </context>
 </TS>
