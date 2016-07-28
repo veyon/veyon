@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="uk_UA">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="uk" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -10,6 +8,14 @@
     <message>
         <source>About</source>
         <translation>Про програму</translation>
+    </message>
+    <message>
+        <source>iTALC - Intelligent Teaching And Learning with Computers
+
+Copyright © 2004-2016 Tobias Doerffel / iTALC Solutions</source>
+        <translation>iTALC — інтелектуальна система викладання та навчання за допомогою комп’ютерів,
+
+© Tobias Doerffel / iTALC Solutions, 2004-2016</translation>
     </message>
     <message>
         <source>&lt;a href=&quot;http://italc.sourceforge.net&quot;&gt;http://italc.sourceforge.net&lt;/a&gt;</source>
@@ -35,23 +41,9 @@ If you&apos;re interested in translating iTALC into your local or another langua
         <source>License</source>
         <translation>Ліцензування</translation>
     </message>
-    <message>
-        <source>iTALC - Intelligent Teaching And Learning with Computers
-
-Copyright © 2004-2013 Tobias Doerffel / iTALC Solutions</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>AccessDialogSlave</name>
-    <message>
-        <source>Never for this session</source>
-        <translation>Ніколи протягом цього сеансу</translation>
-    </message>
-    <message>
-        <source>Always for this session</source>
-        <translation>Завжди протягом цього сеансу</translation>
-    </message>
     <message>
         <source>Confirm desktop access</source>
         <translation>Підтвердження доступу</translation>
@@ -59,6 +51,14 @@ Copyright © 2004-2013 Tobias Doerffel / iTALC Solutions</source>
     <message>
         <source>The user %1 at host %2 wants to access your desktop. Do you want to grant access?</source>
         <translation>Користувач %1 з вузла %2 бажає отримати доступ до вашої системи. Надасте йому доступ?</translation>
+    </message>
+    <message>
+        <source>Never for this session</source>
+        <translation>Ніколи протягом цього сеансу</translation>
+    </message>
+    <message>
+        <source>Always for this session</source>
+        <translation>Завжди протягом цього сеансу</translation>
     </message>
 </context>
 <context>
@@ -96,8 +96,8 @@ Copyright © 2004-2013 Tobias Doerffel / iTALC Solutions</source>
         <translation>Щоб додати або вилучити комп’ютери і/або класи, скористайтеся контекстним меню (клацання правою кнопкою).</translation>
     </message>
     <message>
-        <source>Export to text-file</source>
-        <translation>Експорт до текстового файла</translation>
+        <source>Export to text file</source>
+        <translation>Експортувати до текстового файла</translation>
     </message>
     <message>
         <source>Use this button for exporting this list of computers and usernames into a text-file. You can use this file later for collecting files after an exam has finished. This is sometimes neccessary, because some users might have finished and logged out earlier and so you cannot collect their files at the end of the exam.</source>
@@ -144,30 +144,24 @@ Copyright © 2004-2013 Tobias Doerffel / iTALC Solutions</source>
         <translation>Додати клас</translation>
     </message>
     <message>
-        <source>No configuration-file found</source>
-        <translation>Не знайдено файла налаштувань</translation>
+        <source>No configuration file found</source>
+        <translation>Файла налаштувань не знайдено</translation>
     </message>
     <message>
-        <source>Could not open configuration file %1.
-You will have to add at least one classroom and computers using the classroom-manager which you&apos;ll find inside the program in the sidebar on the left side.</source>
-        <translation>Не вдалося відкрити файл налаштувань %1.
-Вам слід додати хоча б один клас та його комп’ютери за допомогою керування класами на бічній панелі програми ліворуч.</translation>
+        <source>Could not open configuration file %1. You will have to add at least one classroom and computers using the classroom manager which you&apos;ll find inside the program in the sidebar on the left side.</source>
+        <translation>Не вдалося відкрити файл налаштувань %1. Вам слід додати принаймні одну класну кімнату та комп’ютери за допомогою засобу керування класними кімнатами, доступ до якого можна отримати за допомогою лівої бічної панелі основного вікна програми.</translation>
     </message>
     <message>
-        <source>Error in configuration-file</source>
+        <source>Error in configuration file</source>
         <translation>Помилка у файлі налаштувань</translation>
     </message>
     <message>
-        <source>Error while parsing configuration-file %1.
-Please edit it. Otherwise you should delete this file and have to add all classrooms and computers again.</source>
-        <translation>Помилка під час обробки файла налаштувань %1.
-Будь ласка, змініть його. Якщо ви не можете цього зробити, вам слід вилучити цей файл і виконати додавання всіх класів та комп’ютерів знову.</translation>
+        <source>Error while parsing configuration file %1. Please fix the file manually. Otherwise you should delete the file and add all classrooms and computers again.</source>
+        <translation>Помилка під час спроби обробити файл налаштувань %1. Будь ласка, виправте її вручну. Якщо ви цього не зробите, вам доведеться вилучити файл і додати усі класні кімнати та комп’ютери знову.</translation>
     </message>
     <message>
-        <source>Error while parsing configuration-file %1.
-Please edit it. Otherwise you should delete this file.</source>
-        <translation>Помилка під час розбору файла налаштувань %1.
-Будь ласка, змініть його. Якщо ви не можете цього зробити, вам слід вилучити цей файл.</translation>
+        <source>Error while parsing configuration file %1. Please fix the file manually. Otherwise you should delete the file.</source>
+        <translation>Помилка під час спроби обробити файл налаштувань %1. Будь ласка, виправте її вручну. Якщо ви цього не зробите, вам доведеться вилучити файл.</translation>
     </message>
     <message>
         <source>Select output-file</source>
@@ -244,6 +238,10 @@ Do you want to create a new classrom now?</source>
         <source>Desktop locked</source>
         <translation>Стільницю заблоковано</translation>
     </message>
+    <message>
+        <source>Message from teacher</source>
+        <translation>Повідомлення від вчителя</translation>
+    </message>
 </context>
 <context>
     <name>ClientAction</name>
@@ -282,14 +280,6 @@ Do you want to create a new classrom now?</source>
 </context>
 <context>
     <name>ClientSettingsDialog</name>
-    <message>
-        <source>Invalid MAC-address</source>
-        <translation>Некоректна MAC-адреса</translation>
-    </message>
-    <message>
-        <source>You specified an invalid MAC-address. Either leave the field blank or enter a valid MAC-address (use &quot;:&quot; as separator!).</source>
-        <translation>Вами вказано некоректну MAC-адресу. Ви можете або залишити це поле порожнім, або ввести коректну MAC-адресу (використовуйте &quot;:&quot; для відокремлення її частин!).</translation>
-    </message>
     <message>
         <source>Client settings</source>
         <translation>Параметри клієнта</translation>
@@ -346,6 +336,14 @@ Do you want to create a new classrom now?</source>
         <source>You didn&apos;t specify an IP address or hostname for the computer!</source>
         <translation>Вами не вказано IP-адреси або назви вузла комп’ютера!</translation>
     </message>
+    <message>
+        <source>Invalid MAC address</source>
+        <translation>Некоректна MAC-адреса</translation>
+    </message>
+    <message>
+        <source>You specified an invalid MAC address. Either leave the field blank or enter a valid MAC address (use &quot;:&quot; as separator!).</source>
+        <translation>Вами вказано некоректну MAC-адресу. Або не заповнюйте відповідне поле, або вкажіть коректну MAC-адресу (використовуйте роздільник «:»!).</translation>
+    </message>
 </context>
 <context>
     <name>Config</name>
@@ -386,13 +384,113 @@ Do you want to create a new classrom now?</source>
         <translation>Без тексту на кнопках інструментів</translation>
     </message>
     <message>
+        <source>Language:</source>
+        <translation>Мова:</translation>
+    </message>
+    <message>
+        <source>System default</source>
+        <translation>Типова для системи</translation>
+    </message>
+    <message>
+        <source>ar - العربية</source>
+        <translation>арабська</translation>
+    </message>
+    <message>
+        <source>cs - Česky</source>
+        <translation>чеська</translation>
+    </message>
+    <message>
+        <source>de - Deutsch</source>
+        <translation>німецька</translation>
+    </message>
+    <message>
+        <source>el - Ελληνικά</source>
+        <translation>грецька</translation>
+    </message>
+    <message>
+        <source>es - Español</source>
+        <translation>іспанська</translation>
+    </message>
+    <message>
+        <source>fi - Suomi</source>
+        <translation>фінська</translation>
+    </message>
+    <message>
+        <source>fr - Français</source>
+        <translation>французька</translation>
+    </message>
+    <message>
+        <source>he - עִבְרִית</source>
+        <translation>іврит</translation>
+    </message>
+    <message>
+        <source>hu - Magyar</source>
+        <translation>угорська</translation>
+    </message>
+    <message>
+        <source>it - Italiano</source>
+        <translation>італійська</translation>
+    </message>
+    <message>
+        <source>nl - Nederlands</source>
+        <translation>голландська</translation>
+    </message>
+    <message>
+        <source>nn - Norsk</source>
+        <translation>норвезька</translation>
+    </message>
+    <message>
+        <source>pl - Polski</source>
+        <translation>польська</translation>
+    </message>
+    <message>
+        <source>pt_br - Brasileiro</source>
+        <translation>бразильська португальська</translation>
+    </message>
+    <message>
+        <source>pt_pt - Português</source>
+        <translation>португальська</translation>
+    </message>
+    <message>
+        <source>ru - Русский</source>
+        <translation>російська</translation>
+    </message>
+    <message>
+        <source>sk - Slovenský</source>
+        <translation>словацька</translation>
+    </message>
+    <message>
+        <source>sl - Slovenčina</source>
+        <translation>словенська</translation>
+    </message>
+    <message>
+        <source>sv - Svenska</source>
+        <translation>шведська</translation>
+    </message>
+    <message>
+        <source>tr - Türkçe</source>
+        <translation>турецька</translation>
+    </message>
+    <message>
+        <source>uk - Українська</source>
+        <translation>українська</translation>
+    </message>
+    <message>
+        <source>zh_cn - 简体字</source>
+        <translation>китайська (спрощена)</translation>
+    </message>
+    <message>
+        <source>zh_tw - 簡體字</source>
+        <translation>китайська (традиційна)</translation>
+    </message>
+    <message>
         <source>Your role (needs according keys!)</source>
         <translation>Ваша роль (потрібні відповідні ключі!)</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Here you can select your role. Only change this if you know what you&apos;re doing. Otherwise you won&apos;t be able to access any clients until you restore your old role.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -416,21 +514,13 @@ p, li { white-space: pre-wrap; }
         <translation>Інша</translation>
     </message>
     <message>
-        <source>Settings for multi-logon</source>
-        <translation>Параметри для одночасного входження</translation>
-    </message>
-    <message>
-        <source>Domain</source>
-        <translation>Домен</translation>
-    </message>
-    <message>
-        <source>Double-click action for client-window</source>
-        <translation>Дія за подвійним клацанням на вікні клієнта</translation>
+        <source>Double click action for client window</source>
+        <translation>Дія у відповідь на подвійне клацання у клієнтському вікні</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Here you can set what should happen if you double-click a client-window.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -449,106 +539,6 @@ p, li { white-space: pre-wrap; }
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;Please note, that some changes won&apos;t take effect until you restart iTALC.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;Будь ласка, зауважте, що деякі зміни не набудуть чинності, доки ви не перезапустите iTALC.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
-    <message>
-        <source>Language:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>System default</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>ar - العربية</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>cs - Česky</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>de - Deutsch</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>el - Ελληνικά</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>es - Español</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>fi - Suomi</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>fr - Français</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>he - עִבְרִית</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>hu - Magyar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>it - Italiano</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>nl - Nederlands</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>nn - Norsk</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>pl - Polski</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>pt_br - Brasileiro</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>pt_pt - Português</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>ru - Русский</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>sk - Slovenský</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>sl - Slovenčina</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>sv - Svenska</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>tr - Türkçe</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>uk - Українська</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>zh_cn - 简体字</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>zh_tw - 簡體字</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>ConfigWidget</name>
@@ -559,13 +549,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>In this workspace you can customize iTALC to fit your needs.</source>
         <translation>У цьому робочому просторі ви можете налаштувати iTALC для ваших потреб.</translation>
-    </message>
-</context>
-<context>
-    <name>DecoratedMessageBox</name>
-    <message>
-        <source>OK</source>
-        <translation>Гаразд</translation>
     </message>
 </context>
 <context>
@@ -582,7 +565,7 @@ p, li { white-space: pre-wrap; }
         <translation>Помилка розпізнавання</translation>
     </message>
     <message>
-        <source>Somebody (IP: %1) tried to access this computer but could not authenticate itself successfully!</source>
+        <source>Somebody (IP: %1) tried to access this computer but could not authenticate successfully!</source>
         <translation>Хтось (IP: %1) намагався отримати доступ до цього комп’ютера, але не зміг пройти розпізнавання!</translation>
     </message>
 </context>
@@ -642,10 +625,6 @@ The public key part is used on the client computers to verify that any incoming 
     <message>
         <source>Create new access keys (master computer)</source>
         <translation>Створити ключі доступу (головний комп’ютер)</translation>
-    </message>
-    <message>
-        <source>assistantModeButtonGroup</source>
-        <translation>assistantModeButtonGroup</translation>
     </message>
     <message>
         <source>Import public key (client computer)</source>
@@ -824,16 +803,20 @@ The public key part is used on the client computers to verify that any incoming 
 <context>
     <name>MainWindow</name>
     <message>
-        <source>General</source>
-        <translation>Загальні</translation>
+        <source>MainWindow</source>
+        <translation>Головне вікно</translation>
     </message>
     <message>
-        <source>Quit</source>
-        <translation>Вийти</translation>
+        <source>toolBar</source>
+        <translation>Панель інструментів</translation>
     </message>
     <message>
         <source>iTALC Management Console</source>
         <translation>Консоль керування iTALC</translation>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>Загальні</translation>
     </message>
     <message>
         <source>iTALC Server</source>
@@ -846,6 +829,10 @@ The public key part is used on the client computers to verify that any incoming 
     <message>
         <source>Authentication</source>
         <translation>Розпізнавання</translation>
+    </message>
+    <message>
+        <source>Debugging</source>
+        <translation>Діагностика</translation>
     </message>
     <message>
         <source>iTALC Service</source>
@@ -878,6 +865,10 @@ The public key part is used on the client computers to verify that any incoming 
     <message>
         <source>Stopped</source>
         <translation>Зупинено</translation>
+    </message>
+    <message>
+        <source>Enable desktop switching for screen lock (experimental)</source>
+        <translation>Увімкнути перемикання стільниць для блокування екрана (експериментальне)</translation>
     </message>
     <message>
         <source>Logging</source>
@@ -928,6 +919,14 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>МБ</translation>
     </message>
     <message>
+        <source>Log to standard error output</source>
+        <translation>Виводити повідомлення до стандартного виводу помилок</translation>
+    </message>
+    <message>
+        <source>Log to Windows event log</source>
+        <translation>Вести журнал у журналі подій Windows</translation>
+    </message>
+    <message>
         <source>Clear all log files</source>
         <translation>Спорожнити всі файли журналу</translation>
     </message>
@@ -940,12 +939,28 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>Увімкнути захоплення шарів (напівпрозорих) вікон</translation>
     </message>
     <message>
+        <source>Poll full screen (leave this enabled per default)</source>
+        <translation>Повноекранний режим (залиште це типово увімкненим)</translation>
+    </message>
+    <message>
         <source>Low accuracy (turbo mode)</source>
         <translation>Низька точність (турбо-режим)</translation>
     </message>
     <message>
         <source>Demo server</source>
         <translation>Демосервер</translation>
+    </message>
+    <message>
+        <source>Backend</source>
+        <translation>Сервер</translation>
+    </message>
+    <message>
+        <source>VNC reflector</source>
+        <translation>VNC reflector</translation>
+    </message>
+    <message>
+        <source>iTALC 1 demo server</source>
+        <translation>Демосервер iTALC 1</translation>
     </message>
     <message>
         <source>Network</source>
@@ -962,6 +977,18 @@ The public key part is used on the client computers to verify that any incoming 
     <message>
         <source>Enable firewall exception</source>
         <translation>Увімкнути виключення брандмауера</translation>
+    </message>
+    <message>
+        <source>Enable HTTP server which provides a JavaViewer applet</source>
+        <translation>Увімкнути HTTP-сервер, який надає доступ до аплету JavaViewer</translation>
+    </message>
+    <message>
+        <source>HTTP server port</source>
+        <translation>Порт HTTP-сервера</translation>
+    </message>
+    <message>
+        <source>Allow connections from localhost only</source>
+        <translation>Дозволити з’єднання лише з локального вузла</translation>
     </message>
     <message>
         <source>Configuration files</source>
@@ -988,12 +1015,118 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>Способи розпізнавання</translation>
     </message>
     <message>
+        <source>Key file authentication</source>
+        <translation>Розпізнавання за файлами ключів</translation>
+    </message>
+    <message>
+        <source>ACL-based logon authentication</source>
+        <translation>Розпізнавання під час входу на основі ACL</translation>
+    </message>
+    <message>
         <source>Access key management</source>
         <translation>Керування ключами доступу</translation>
     </message>
     <message>
+        <source>Public key file base directory</source>
+        <translation>Основний каталог файлів відкритих ключів</translation>
+    </message>
+    <message>
+        <source>Private key file base directory</source>
+        <translation>Основний каталог файлів закритих ключів</translation>
+    </message>
+    <message>
+        <source>Launch key file assistant</source>
+        <translation>Запустити помічника файлів ключів</translation>
+    </message>
+    <message>
         <source>Logon settings</source>
         <translation>Параметри входу</translation>
+    </message>
+    <message>
+        <source>Manage permissions</source>
+        <translation>Керування правами доступу</translation>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation>Перевірити</translation>
+    </message>
+    <message>
+        <source>Access confirmation</source>
+        <translation>Підтвердження доступу</translation>
+    </message>
+    <message>
+        <source>You can configure iTALC to ask the user for permission to access the desktop when using certain authentication methods.</source>
+        <translation>Ви можете налаштувати iTALC так, щоб програма запитувала користувача про права доступу до стільниці у разі використання певних способів розпізнавання.</translation>
+    </message>
+    <message>
+        <source>Logon authentication</source>
+        <translation>Розпізнавання під час входу</translation>
+    </message>
+    <message>
+        <source>Allow same user to access desktop without confirmation</source>
+        <translation>Дозволити користувачеві доступ до стільниці без підтвердження</translation>
+    </message>
+    <message>
+        <source>Debugging iTALC</source>
+        <translation>Діагностика iTALC</translation>
+    </message>
+    <message>
+        <source>When encountering bugs or other misbehaviour in iTALC it is important to inform the developers about them, so that the bugs can be fixed in future releases. This page allows you to submit a helpful bug report easily.
+
+If the bug is not reproducible, skip step 1) - 3).</source>
+        <translation>Якщо у вас виникли проблеми або якісь інші негаразди з iTALC, важливо повідомити про них розробникам, щоб ці проблеми було вирішено у наступних випусках. За допомогою цієї сторінки ви зможете без проблем створити якісний звіт щодо вади.
+
+Якщо ваду не вдається відтворити, пропустіть кроки 1) — 3).</translation>
+    </message>
+    <message>
+        <source>1)</source>
+        <translation>1)</translation>
+    </message>
+    <message>
+        <source>Clear the logfiles in the &quot;General&quot; section.</source>
+        <translation>Спорожніть файли журналів у розділі «Загальні».</translation>
+    </message>
+    <message>
+        <source>2)</source>
+        <translation>2)</translation>
+    </message>
+    <message>
+        <source>In the &quot;General&quot; section set the log level to &quot;Debug messages and everything else&quot;.</source>
+        <translation>У розділі «Загальні» встановіть рівень ведення журналу у значення «Діагностичні повідомлення та все інше».</translation>
+    </message>
+    <message>
+        <source>3)</source>
+        <translation>3)</translation>
+    </message>
+    <message>
+        <source>Repeat the actions leading to the bug or misbehaviour.</source>
+        <translation>Повторіть послідовність дій, яка призвела до проблеми або некоректної поведінки.</translation>
+    </message>
+    <message>
+        <source>4)</source>
+        <translation>4)</translation>
+    </message>
+    <message>
+        <source>Click the following button and save the file to a known location.</source>
+        <translation>Натисніть наведену нижче кнопку і збережіть файл до якоїсь з ваших тек.</translation>
+    </message>
+    <message>
+        <source>Generate bug report archive</source>
+        <translation>Створити архів звіту щодо вади</translation>
+    </message>
+    <message>
+        <source>5)</source>
+        <translation>5)</translation>
+    </message>
+    <message>
+        <source>Go to the &lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;amp;atid=724375&quot;&gt;iTALC bug tracker&lt;/a&gt;, open a new bug, describe what you did in step 3) and attach the file you saved in step 4).&lt;/p&gt;
+&lt;br/&gt;
+&lt;br/&gt;
+Note: if the bug involves both a master and client computer, attach bug report archives for both computers.</source>
+        <translation>Перейдіть на сторінку &lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;amp;atid=724375&quot;&gt;стеження за вадами у iTALC&lt;/a&gt;, створіть повідомлення щодо вади, опишіть ваші дії на кроці 3) і долучіть файл, збережений на кроці 4).&lt;/p&gt;
+&lt;br/&gt;
+&lt;br/&gt;
+Зауваження: якщо ваду виявлено на головному і клієнтському комп’ютерах одночасно, долучіть архіви звітів щодо вади для обох комп’ютерів.</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -1038,58 +1171,6 @@ The public key part is used on the client computers to verify that any incoming 
     <message>
         <source>About Qt</source>
         <translation>Про Qt</translation>
-    </message>
-    <message>
-        <source>MainWindow</source>
-        <translation>Головне вікно</translation>
-    </message>
-    <message>
-        <source>toolBar</source>
-        <translation>Панель інструментів</translation>
-    </message>
-    <message>
-        <source>iTALC Management Console %1</source>
-        <translation>Консоль керування iTALC %1</translation>
-    </message>
-    <message>
-        <source>Running</source>
-        <translation>Запущено</translation>
-    </message>
-    <message>
-        <source>Load settings from file</source>
-        <translation>Завантажити параметри з файла</translation>
-    </message>
-    <message>
-        <source>XML files (*.xml)</source>
-        <translation>Файли XML (*.xml)</translation>
-    </message>
-    <message>
-        <source>Save settings to file</source>
-        <translation>Зберегти параметри до файла</translation>
-    </message>
-    <message>
-        <source>Unsaved settings</source>
-        <translation>Незбережені параметри</translation>
-    </message>
-    <message>
-        <source>There are unsaved settings. Quit anyway?</source>
-        <translation>Деякі з параметрів не збережено. Завершити роботу попри це?</translation>
-    </message>
-    <message>
-        <source>Configuration not writable</source>
-        <translation>Не вдалося записати налаштування</translation>
-    </message>
-    <message>
-        <source>The local configuration backend reported that the configuration is not writable! Please run the iTALC Management Console with higher privileges.</source>
-        <translation>Локальним модулем налаштувань було повідомлено про неможливість запису налаштувань! Будь ласка, запустіть консоль керування iTALC з розширеними правами доступу.</translation>
-    </message>
-    <message>
-        <source>All settings were applied successfully.</source>
-        <translation>Всі значення параметрів успішно застосовано.</translation>
-    </message>
-    <message>
-        <source>An error occured while applying settings!</source>
-        <translation>Під час спроби застосування параметрів сталася помилка!</translation>
     </message>
     <message>
         <source>iTALC</source>
@@ -1248,12 +1329,32 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>Якщо ви натиснете цю кнопку, всі видимі вікна буде перевпорядковано з підбиранням розміру.</translation>
     </message>
     <message>
+        <source>Could not contact iTALC service</source>
+        <translation>Не вдалося встановити зв’язок зі службою iTALC</translation>
+    </message>
+    <message>
+        <source>Could not contact the local iTALC service. It is likely that you entered wrong credentials or key files are not set up properly. Try again or contact your administrator for solving this problem using the iTALC Management Console.</source>
+        <translation>Не вдалося встановити зв’язок з локальною службою iTALC. Ймовірно, вами було вказано помилкові реєстраційні дані або файли ключів встановлено з помилками. Повторіть спробу або повідомте адміністратору вашої системи про те, що слід вирішити проблему з використанням консолі керування iTALC.</translation>
+    </message>
+    <message>
         <source>iTALC Master Control</source>
         <translation>Головне керування iTALC</translation>
     </message>
     <message>
+        <source>Authentication impossible</source>
+        <translation>Розпізнавання неможливе</translation>
+    </message>
+    <message>
+        <source>No authentication key files were found or your current ones are outdated. Please create new key files using the iTALC Management Console. Alternatively set up logon authentication using the iTALC Management Console. Otherwise you won&apos;t be able to access computers using iTALC.</source>
+        <translation>Не було знайдено файлів ключів розпізнавання або поточні файли є застарілими. Будь ласка, створіть нові файли ключів за допомогою консолі керування iTALC. Крім того, ви можете налаштувати розпізнавання під час входу до системи за допомогою консолі керування iTALC. Якщо ви не налаштуйте розпізнавання, ви не зможете отримати доступ до комп’ютерів за допомогою iTALC.</translation>
+    </message>
+    <message>
         <source>Remote control</source>
         <translation>Віддалене керування</translation>
+    </message>
+    <message>
+        <source>Quit</source>
+        <translation>Вийти</translation>
     </message>
     <message>
         <source>Could not modify the autostart property for the iTALC Service.</source>
@@ -1268,154 +1369,24 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>Не вдалося змінити налаштування брандмауера для служби iTALC.</translation>
     </message>
     <message>
-        <source>Debugging</source>
-        <translation>Діагностика</translation>
+        <source>Configuration not writable</source>
+        <translation>Не вдалося записати налаштування</translation>
     </message>
     <message>
-        <source>Enable desktop switching for screen lock (experimental)</source>
-        <translation>Увімкнути перемикання стільниць для блокування екрана (експериментальне)</translation>
+        <source>The local configuration backend reported that the configuration is not writable! Please run the iTALC Management Console with higher privileges.</source>
+        <translation>Локальним модулем налаштувань було повідомлено про неможливість запису налаштувань! Будь ласка, запустіть консоль керування iTALC з розширеними правами доступу.</translation>
     </message>
     <message>
-        <source>Log to standard error output</source>
-        <translation>Виводити повідомлення до стандартного виводу помилок</translation>
+        <source>All settings were applied successfully.</source>
+        <translation>Всі значення параметрів успішно застосовано.</translation>
     </message>
     <message>
-        <source>Log to Windows event log</source>
-        <translation>Вести журнал у журналі подій Windows</translation>
+        <source>An error occured while applying settings!</source>
+        <translation>Під час спроби застосування параметрів сталася помилка!</translation>
     </message>
     <message>
-        <source>Backend</source>
-        <translation>Сервер</translation>
-    </message>
-    <message>
-        <source>VNC reflector</source>
-        <translation>VNC reflector</translation>
-    </message>
-    <message>
-        <source>iTALC 1 demo server</source>
-        <translation>Демосервер iTALC 1</translation>
-    </message>
-    <message>
-        <source>Multithreading (can be enabled when using the VNC reflector backend)</source>
-        <translation>Обробка у декілька потоків (можна скористатися, якщо використано сервер VNC reflector)</translation>
-    </message>
-    <message>
-        <source>Enable HTTP server which provides a JavaViewer applet</source>
-        <translation>Увімкнути HTTP-сервер, який надає доступ до аплету JavaViewer</translation>
-    </message>
-    <message>
-        <source>HTTP server port</source>
-        <translation>Порт HTTP-сервера</translation>
-    </message>
-    <message>
-        <source>Allow connections from localhost only</source>
-        <translation>Дозволити з’єднання лише з локального вузла</translation>
-    </message>
-    <message>
-        <source>Key file authentication</source>
-        <translation>Розпізнавання за файлами ключів</translation>
-    </message>
-    <message>
-        <source>ACL-based logon authentication</source>
-        <translation>Розпізнавання під час входу на основі ACL</translation>
-    </message>
-    <message>
-        <source>Public key file base directory</source>
-        <translation>Основний каталог файлів відкритих ключів</translation>
-    </message>
-    <message>
-        <source>Private key file base directory</source>
-        <translation>Основний каталог файлів закритих ключів</translation>
-    </message>
-    <message>
-        <source>Launch key file assistant</source>
-        <translation>Запустити помічника файлів ключів</translation>
-    </message>
-    <message>
-        <source>Manage permissions</source>
-        <translation>Керування правами доступу</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>Перевірити</translation>
-    </message>
-    <message>
-        <source>Access confirmation</source>
-        <translation>Підтвердження доступу</translation>
-    </message>
-    <message>
-        <source>You can configure iTALC to ask the user for permission to access the desktop when using certain authentication methods.</source>
-        <translation>Ви можете налаштувати iTALC так, щоб програма запитувала користувача про права доступу до стільниці у разі використання певних способів розпізнавання.</translation>
-    </message>
-    <message>
-        <source>Logon authentication</source>
-        <translation>Розпізнавання під час входу</translation>
-    </message>
-    <message>
-        <source>Allow same user to access desktop without confirmation</source>
-        <translation>Дозволити користувачеві доступ до стільниці без підтвердження</translation>
-    </message>
-    <message>
-        <source>Debugging iTALC</source>
-        <translation>Діагностика iTALC</translation>
-    </message>
-    <message>
-        <source>When encountering bugs or other misbehaviour in iTALC it is important to inform the developers about them, so that the bugs can be fixed in future releases. This page allows you to submit a helpful bug report easily.
-
-If the bug is not reproducible, skip step 1) - 3).</source>
-        <translation>Якщо у вас виникли проблеми або якісь інші негаразди з iTALC, важливо повідомити про них розробникам, щоб ці проблеми було вирішено у наступних випусках. За допомогою цієї сторінки ви зможете без проблем створити якісний звіт щодо вади.
-
-Якщо ваду не вдається відтворити, пропустіть кроки 1) — 3).</translation>
-    </message>
-    <message>
-        <source>1)</source>
-        <translation>1)</translation>
-    </message>
-    <message>
-        <source>Clear the logfiles in the &quot;General&quot; section.</source>
-        <translation>Спорожніть файли журналів у розділі «Загальні».</translation>
-    </message>
-    <message>
-        <source>2)</source>
-        <translation>2)</translation>
-    </message>
-    <message>
-        <source>In the &quot;General&quot; section set the log level to &quot;Debug messages and everything else&quot;.</source>
-        <translation>У розділі «Загальні» встановіть рівень ведення журналу у значення «Діагностичні повідомлення та все інше».</translation>
-    </message>
-    <message>
-        <source>3)</source>
-        <translation>3)</translation>
-    </message>
-    <message>
-        <source>Repeat the actions leading to the bug or misbehaviour.</source>
-        <translation>Повторіть послідовність дій, яка призвела до проблеми або некоректної поведінки.</translation>
-    </message>
-    <message>
-        <source>4)</source>
-        <translation>4)</translation>
-    </message>
-    <message>
-        <source>Click the following button and save the file to a known location.</source>
-        <translation>Натисніть наведену нижче кнопку і збережіть файл до якоїсь з ваших тек.</translation>
-    </message>
-    <message>
-        <source>Generate bug report archive</source>
-        <translation>Створити архів звіту щодо вади</translation>
-    </message>
-    <message>
-        <source>5)</source>
-        <translation>5)</translation>
-    </message>
-    <message>
-        <source>Go to the &lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;amp;atid=724375&quot;&gt;iTALC bug tracker&lt;/a&gt;, open a new bug, describe what you did in step 3) and attach the file you saved in step 4).&lt;/p&gt;
-&lt;br/&gt;
-&lt;br/&gt;
-Note: if the bug involves both a master and client computer, attach bug report archives for both computers.</source>
-        <translation>Перейдіть на сторінку &lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;amp;atid=724375&quot;&gt;стеження за вадами у iTALC&lt;/a&gt;, створіть повідомлення щодо вади, опишіть ваші дії на кроці 3) і долучіть файл, збережений на кроці 4).&lt;/p&gt;
-&lt;br/&gt;
-&lt;br/&gt;
-Зауваження: якщо ваду виявлено на головному і клієнтському комп’ютерах одночасно, долучіть архіви звітів щодо вади для обох комп’ютерів.</translation>
+        <source>iTALC Management Console %1</source>
+        <translation>Консоль керування iTALC %1</translation>
     </message>
     <message>
         <source>Restart iTALC Service</source>
@@ -1432,6 +1403,10 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <message>
         <source>Stopping iTALC service</source>
         <translation>Зупиняється служба iTALC</translation>
+    </message>
+    <message>
+        <source>Running</source>
+        <translation>Запущено</translation>
     </message>
     <message>
         <source>The iTALC service needs to be stopped temporarily in order to remove the log files. Continue?</source>
@@ -1452,6 +1427,18 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <message>
         <source>Could not remove all log files.</source>
         <translation>Не вдалося вилучити всі файли журналу.</translation>
+    </message>
+    <message>
+        <source>Load settings from file</source>
+        <translation>Завантажити параметри з файла</translation>
+    </message>
+    <message>
+        <source>XML files (*.xml)</source>
+        <translation>Файли XML (*.xml)</translation>
+    </message>
+    <message>
+        <source>Save settings to file</source>
+        <translation>Зберегти параметри до файла</translation>
     </message>
     <message>
         <source>Logon authentication test</source>
@@ -1482,31 +1469,12 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <translation>Архів звіту щодо вади iTALC було збережено до %1. До архіву включено файли журналу iTALC та дані щодо вашої операційної системи. Ви можете долучити архів до вашого звіту щодо вади.</translation>
     </message>
     <message>
-        <source>Could not contact iTALC service</source>
-        <translation>Не вдалося встановити зв’язок зі службою iTALC</translation>
+        <source>Unsaved settings</source>
+        <translation>Незбережені параметри</translation>
     </message>
     <message>
-        <source>Could not contact the local iTALC service. It is likely that you entered wrong credentials or key files are not set up properly. Try again or contact your administrator for solving this problem using the iTALC Management Console.</source>
-        <translation>Не вдалося встановити зв’язок з локальною службою iTALC. Ймовірно, вами було вказано помилкові реєстраційні дані або файли ключів встановлено з помилками. Повторіть спробу або повідомте адміністратору вашої системи про те, що слід вирішити проблему з використанням консолі керування iTALC.</translation>
-    </message>
-    <message>
-        <source>Authentication impossible</source>
-        <translation>Розпізнавання неможливе</translation>
-    </message>
-    <message>
-        <source>No authentication key files were found or your current ones are outdated. Please create new key files using the iTALC Management Console. Alternatively set up logon authentication using the iTALC Management Console. Otherwise you won&apos;t be able to access computers using iTALC.</source>
-        <translation>Не було знайдено файлів ключів розпізнавання або поточні файли є застарілими. Будь ласка, створіть нові файли ключів за допомогою консолі керування iTALC. Крім того, ви можете налаштувати розпізнавання під час входу до системи за допомогою консолі керування iTALC. Якщо ви не налаштуйте розпізнавання, ви не зможете отримати доступ до комп’ютерів за допомогою iTALC.</translation>
-    </message>
-    <message>
-        <source>Poll full screen (leave this enabled per default)</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>MessageBoxSlave</name>
-    <message>
-        <source>Message from teacher</source>
-        <translation>Повідомлення від вчителя</translation>
+        <source>There are unsaved settings. Quit anyway?</source>
+        <translation>Деякі з параметрів не збережено. Завершити роботу попри це?</translation>
     </message>
 </context>
 <context>
@@ -1514,7 +1482,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; font-style:italic;&quot;&gt;Welcome to iTALC!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -1556,6 +1524,10 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>PasswordDialog</name>
     <message>
+        <source>iTALC Logon</source>
+        <translation>Вхід до iTALC</translation>
+    </message>
+    <message>
         <source>Please enter your username and password in order to access iTALC clients.</source>
         <translation>Будь ласка, вкажіть ваше ім’я користувача та пароль, щоб отримати доступ до клієнтів iTALC.</translation>
     </message>
@@ -1568,12 +1540,8 @@ p, li { white-space: pre-wrap; }
         <translation>Пароль</translation>
     </message>
     <message>
-        <source>iTALC Logon</source>
-        <translation>Вхід до iTALC</translation>
-    </message>
-    <message>
         <source>Manage</source>
-        <translation type="unfinished"></translation>
+        <translation>Керування</translation>
     </message>
 </context>
 <context>
@@ -1754,7 +1722,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;All snapshots you made are listed here. You can make snapshots by selecting the according entry in the context-menu of a client-window. These snapshosts can be managed using the buttons below.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
