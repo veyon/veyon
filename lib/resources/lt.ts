@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="lt_lt">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="lt" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -12,8 +10,16 @@
         <translation>Apie programą</translation>
     </message>
     <message>
+        <source>iTALC - Intelligent Teaching And Learning with Computers
+
+Copyright © 2004-2016 Tobias Doerffel / iTALC Solutions</source>
+        <translation>ITALC-Sumanus Mokymas Ir Mokymasis su Kompiuteriu.
+
+Sukurta © 2004-2016 Tobias Doerffel / iTALC Solutions</translation>
+    </message>
+    <message>
         <source>&lt;a href=&quot;http://italc.sourceforge.net&quot;&gt;http://italc.sourceforge.net&lt;/a&gt;</source>
-        <translation></translation>
+        <translation>&lt;a href=&quot;http://italc.sourceforge.net&quot;&gt;italc.sourceforge.net&lt;/a&gt;</translation>
     </message>
     <message>
         <source>Authors</source>
@@ -35,23 +41,9 @@ Jeigu norėtumėte padėti su programos iTALC vertimų į naują kalbą arba pat
         <source>License</source>
         <translation>Licencija</translation>
     </message>
-    <message>
-        <source>iTALC - Intelligent Teaching And Learning with Computers
-
-Copyright © 2004-2013 Tobias Doerffel / iTALC Solutions</source>
-        <translation></translation>
-    </message>
 </context>
 <context>
     <name>AccessDialogSlave</name>
-    <message>
-        <source>Never for this session</source>
-        <translation>Niekada šiame seanse</translation>
-    </message>
-    <message>
-        <source>Always for this session</source>
-        <translation>Visada šiame seanse</translation>
-    </message>
     <message>
         <source>Confirm desktop access</source>
         <translation>Patvirtinti darbalaukio valdymą</translation>
@@ -59,6 +51,14 @@ Copyright © 2004-2013 Tobias Doerffel / iTALC Solutions</source>
     <message>
         <source>The user %1 at host %2 wants to access your desktop. Do you want to grant access?</source>
         <translation> Vartotojas %1 iš kompiuterio  %2 bando prisijungti prie jūsų kompiuterio. Ar norite tai leisti?</translation>
+    </message>
+    <message>
+        <source>Never for this session</source>
+        <translation>Niekada šiame seanse</translation>
+    </message>
+    <message>
+        <source>Always for this session</source>
+        <translation>Visada šiame seanse</translation>
     </message>
 </context>
 <context>
@@ -96,7 +96,7 @@ Copyright © 2004-2013 Tobias Doerffel / iTALC Solutions</source>
         <translation>Naudokitės papildomumeniu (Paspausdami dešinį pelės klavišą) kad pridėti arba šalinti kompiuterius ar klases.</translation>
     </message>
     <message>
-        <source>Export to text-file</source>
+        <source>Export to text file</source>
         <translation>Eksportuoti į tekstinį failą</translation>
     </message>
     <message>
@@ -144,30 +144,24 @@ Copyright © 2004-2013 Tobias Doerffel / iTALC Solutions</source>
         <translation>Pridėti klasę</translation>
     </message>
     <message>
-        <source>No configuration-file found</source>
-        <translation>Konfiguracinis failas nerastas</translation>
+        <source>No configuration file found</source>
+        <translation>Konfiguracinis failas nerastas.</translation>
     </message>
     <message>
-        <source>Could not open configuration file %1.
-You will have to add at least one classroom and computers using the classroom-manager which you&apos;ll find inside the program in the sidebar on the left side.</source>
-        <translation>Negaliu atverti komfiguracinio failo  %1.
-Jūs turite pridėti bent vieną klasė,  ir kompiuterį naudodamasis klasių tvarkykle kuria galite rasti programos viduje kairėje pusėje</translation>
+        <source>Could not open configuration file %1. You will have to add at least one classroom and computers using the classroom manager which you&apos;ll find inside the program in the sidebar on the left side.</source>
+        <translation>Nepavyko atverti konfiguracijos failo %1. Turėsite pridėti bent vieną klasę ir kompiuterius naudodamiesi klasės valdymo įrankiu kurį rasite programos viduje kairės puses įrankių juostoje.</translation>
     </message>
     <message>
-        <source>Error in configuration-file</source>
-        <translation>Klaida konfiguraciniam faile</translation>
+        <source>Error in configuration file</source>
+        <translation>Konfiguraciniame faile įvyko klaida.</translation>
     </message>
     <message>
-        <source>Error while parsing configuration-file %1.
-Please edit it. Otherwise you should delete this file and have to add all classrooms and computers again.</source>
-        <translation>Klaida tvarkam konfiguracinį failą %1.
-Prašome patikrinti jį rankiniu būdu.Kitaip turite ištrinti šį failą ,bet tada teks klases ir kompiuterius pridėti iš naujo.</translation>
+        <source>Error while parsing configuration file %1. Please fix the file manually. Otherwise you should delete the file and add all classrooms and computers again.</source>
+        <translation>Įvyko klaida nuskaitant konfiguracijos failą %1. Prašome ištaisyti jį rankiniu būdu. Kitaip privalėsite pašalinti failą ir iš naujo pridėti klases ir kompiuterius</translation>
     </message>
     <message>
-        <source>Error while parsing configuration-file %1.
-Please edit it. Otherwise you should delete this file.</source>
-        <translation>Klaida tvarkant konfiguracinį failą %1.
-Paredaguokite jį.Kitaip turėsite jį ištrinti.</translation>
+        <source>Error while parsing configuration file %1. Please fix the file manually. Otherwise you should delete the file.</source>
+        <translation>Įvyko klaida nuskaitant konfiguracijos failą %1. Prašome pataisyti jį rankiniu būdu. Kitaip tiesiog pašalinkite failą.</translation>
     </message>
     <message>
         <source>Select output-file</source>
@@ -242,6 +236,10 @@ Do you want to create a new classrom now?</source>
         <source>Desktop locked</source>
         <translation>Darbalaukis užrakintas</translation>
     </message>
+    <message>
+        <source>Message from teacher</source>
+        <translation>Žinutė nuo mokytojo</translation>
+    </message>
 </context>
 <context>
     <name>ClientAction</name>
@@ -280,14 +278,6 @@ Do you want to create a new classrom now?</source>
 </context>
 <context>
     <name>ClientSettingsDialog</name>
-    <message>
-        <source>Invalid MAC-address</source>
-        <translation>Blogas MAC adresas</translation>
-    </message>
-    <message>
-        <source>You specified an invalid MAC-address. Either leave the field blank or enter a valid MAC-address (use &quot;:&quot; as separator!).</source>
-        <translation>Jūs įvedėte neleistina MAC adresą. Jūs galite palikti šį laukelį tuščia arba įvesti teisingą MAC adresą (Naudokite &quot;:&quot; kaip skirtuką!).</translation>
-    </message>
     <message>
         <source>Client settings</source>
         <translation>Kliento nustatymai</translation>
@@ -344,6 +334,14 @@ Do you want to create a new classrom now?</source>
         <source>You didn&apos;t specify an IP address or hostname for the computer!</source>
         <translation>Jūs nenurodėte ip adreso arba vardo kompiuteriui</translation>
     </message>
+    <message>
+        <source>Invalid MAC address</source>
+        <translation>Neleistinas mac adresas</translation>
+    </message>
+    <message>
+        <source>You specified an invalid MAC address. Either leave the field blank or enter a valid MAC address (use &quot;:&quot; as separator!).</source>
+        <translation>Jūs nurodėte neleistina MAC adresą. Palikite laukelį tuščia arba įveskite tinkama MAC adresą. (naudokite &quot;:&quot; kaip skirtuką)</translation>
+    </message>
 </context>
 <context>
     <name>Config</name>
@@ -384,13 +382,113 @@ Do you want to create a new classrom now?</source>
         <translation>Nerodyti teksto ant meniu mygtukų</translation>
     </message>
     <message>
+        <source>Language:</source>
+        <translation>Kalba</translation>
+    </message>
+    <message>
+        <source>System default</source>
+        <translation>Gamykliniai nustatymai</translation>
+    </message>
+    <message>
+        <source>ar - العربية</source>
+        <translation>Arabų</translation>
+    </message>
+    <message>
+        <source>cs - Česky</source>
+        <translation>Čekų</translation>
+    </message>
+    <message>
+        <source>de - Deutsch</source>
+        <translation>Vokiečių</translation>
+    </message>
+    <message>
+        <source>el - Ελληνικά</source>
+        <translation>Graikų</translation>
+    </message>
+    <message>
+        <source>es - Español</source>
+        <translation>Ispanų</translation>
+    </message>
+    <message>
+        <source>fi - Suomi</source>
+        <translation>Suomių</translation>
+    </message>
+    <message>
+        <source>fr - Français</source>
+        <translation>Prancuzų</translation>
+    </message>
+    <message>
+        <source>he - עִבְרִית</source>
+        <translation>Hebrajų</translation>
+    </message>
+    <message>
+        <source>hu - Magyar</source>
+        <translation>Vengrų</translation>
+    </message>
+    <message>
+        <source>it - Italiano</source>
+        <translation>Italų</translation>
+    </message>
+    <message>
+        <source>nl - Nederlands</source>
+        <translation>Olandų</translation>
+    </message>
+    <message>
+        <source>nn - Norsk</source>
+        <translation>Norvegų</translation>
+    </message>
+    <message>
+        <source>pl - Polski</source>
+        <translation>Lenkų</translation>
+    </message>
+    <message>
+        <source>pt_br - Brasileiro</source>
+        <translation>Brazilų</translation>
+    </message>
+    <message>
+        <source>pt_pt - Português</source>
+        <translation>Portugalų</translation>
+    </message>
+    <message>
+        <source>ru - Русский</source>
+        <translation>Rusų</translation>
+    </message>
+    <message>
+        <source>sk - Slovenský</source>
+        <translation>Slovakų</translation>
+    </message>
+    <message>
+        <source>sl - Slovenčina</source>
+        <translation>Slovėnų</translation>
+    </message>
+    <message>
+        <source>sv - Svenska</source>
+        <translation>Švedų</translation>
+    </message>
+    <message>
+        <source>tr - Türkçe</source>
+        <translation>Turkų</translation>
+    </message>
+    <message>
+        <source>uk - Українська</source>
+        <translation>Ukrainiečių</translation>
+    </message>
+    <message>
+        <source>zh_cn - 简体字</source>
+        <translation>Kinų</translation>
+    </message>
+    <message>
+        <source>zh_tw - 簡體字</source>
+        <translation>Taivaniečių</translation>
+    </message>
+    <message>
         <source>Your role (needs according keys!)</source>
         <translation>Jūsų teisės(Reikalauja patvirtinančio rakto)</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Here you can select your role. Only change this if you know what you&apos;re doing. Otherwise you won&apos;t be able to access any clients until you restore your old role.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -414,21 +512,13 @@ p, li { white-space: pre-wrap; }
         <translation>Kitas</translation>
     </message>
     <message>
-        <source>Settings for multi-logon</source>
-        <translation>Nustatymai daugkartiniam prisijungimui</translation>
-    </message>
-    <message>
-        <source>Domain</source>
-        <translation>Domenas</translation>
-    </message>
-    <message>
-        <source>Double-click action for client-window</source>
-        <translation>Veiksmai du kartus paspaudus ant kliento</translation>
+        <source>Double click action for client window</source>
+        <translation>Du kart nuspauskite veiksmą and kliento lango.</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Here you can set what should happen if you double-click a client-window.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -447,106 +537,6 @@ p, li { white-space: pre-wrap; }
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;Please note, that some changes won&apos;t take effect until you restart iTALC.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;Įsidemėkite kad kaikurie nustatymai nepasikeis tol kol neperkrausite programos iTALC.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
-    <message>
-        <source>Language:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>System default</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>ar - العربية</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>cs - Česky</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>de - Deutsch</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>el - Ελληνικά</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>es - Español</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>fi - Suomi</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>fr - Français</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>he - עִבְרִית</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>hu - Magyar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>it - Italiano</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>nl - Nederlands</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>nn - Norsk</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>pl - Polski</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>pt_br - Brasileiro</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>pt_pt - Português</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>ru - Русский</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>sk - Slovenský</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>sl - Slovenčina</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>sv - Svenska</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>tr - Türkçe</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>uk - Українська</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>zh_cn - 简体字</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>zh_tw - 簡體字</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>ConfigWidget</name>
@@ -557,13 +547,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>In this workspace you can customize iTALC to fit your needs.</source>
         <translation>Šioje tvarkyklėje galite iTALC pritaikyti savo poreikiams.</translation>
-    </message>
-</context>
-<context>
-    <name>DecoratedMessageBox</name>
-    <message>
-        <source>OK</source>
-        <translation>Gerai</translation>
     </message>
 </context>
 <context>
@@ -580,8 +563,8 @@ p, li { white-space: pre-wrap; }
         <translation>Autorizacijos klaida</translation>
     </message>
     <message>
-        <source>Somebody (IP: %1) tried to access this computer but could not authenticate itself successfully!</source>
-        <translation>Kažkas (IP: %1) bandė perimti šio kompiuterio valdymą ,bet jam nepavyko autorizuotis sėkmingai!</translation>
+        <source>Somebody (IP: %1) tried to access this computer but could not authenticate successfully!</source>
+        <translation>Kažkas  (IP: %1) bandė patekti į šį kompiuterį ,bet negalėjo sėkmingai prisiregistruoti.</translation>
     </message>
 </context>
 <context>
@@ -640,10 +623,6 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>Sukurti naują pasiekiamumo raktą (Pagrindinis kompiuteris)</translation>
     </message>
     <message>
-        <source>assistantModeButtonGroup</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Import public key (client computer)</source>
         <translation>Importuoti viešą raktą (Vartotojo kompiuteris)</translation>
     </message>
@@ -678,6 +657,10 @@ The public key part is used on the client computers to verify that any incoming 
     <message>
         <source>Directories</source>
         <translation>Katalogai</translation>
+    </message>
+    <message>
+        <source>Export public key part (master computer)</source>
+        <translation>Eksportuoti viešo rakto dalį (administratoriaus kompiuteris)</translation>
     </message>
     <message>
         <source>...</source>
@@ -775,10 +758,6 @@ The public key part is used on the client computers to verify that any incoming 
         <source>The public key was successfully imported to %1.</source>
         <translation>Viešas raktas sėkmingai importuotas į %1.</translation>
     </message>
-    <message>
-        <source>Export public key part (master computer)</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>LockWidget</name>
@@ -789,6 +768,10 @@ The public key part is used on the client computers to verify that any incoming 
 </context>
 <context>
     <name>LogonGroupEditor</name>
+    <message>
+        <source>Logon group editor</source>
+        <translation>Prisijungimų grupės redagavimas</translation>
+    </message>
     <message>
         <source>Please add the groups whose members should be allowed to access computers in your iTALC network.</source>
         <translation>Prašome pridėti grupes kurių nariai gali turėti prieigą prie iTALC kompiuterių tinklo.</translation>
@@ -805,10 +788,6 @@ The public key part is used on the client computers to verify that any incoming 
         <source>Groups with iTALC privileges</source>
         <translation>Grupės su iTALC privilegijomis</translation>
     </message>
-    <message>
-        <source>Logon group editor</source>
-        <translation>Prisijungimų grupės redagavimas</translation>
-    </message>
 </context>
 <context>
     <name>MainToolBar</name>
@@ -820,12 +799,20 @@ The public key part is used on the client computers to verify that any incoming 
 <context>
     <name>MainWindow</name>
     <message>
-        <source>General</source>
-        <translation>Pagrindinis</translation>
+        <source>MainWindow</source>
+        <translation>Pagrindinis langas</translation>
     </message>
     <message>
-        <source>Quit</source>
-        <translation>Išeiti</translation>
+        <source>toolBar</source>
+        <translation>Įrankių juosta</translation>
+    </message>
+    <message>
+        <source>iTALC Management Console</source>
+        <translation>iTALC nustatymų konsolė</translation>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>Pagrindinis</translation>
     </message>
     <message>
         <source>iTALC Server</source>
@@ -838,6 +825,10 @@ The public key part is used on the client computers to verify that any incoming 
     <message>
         <source>Authentication</source>
         <translation>Autorizavimas</translation>
+    </message>
+    <message>
+        <source>Debugging</source>
+        <translation>Derinimas</translation>
     </message>
     <message>
         <source>iTALC Service</source>
@@ -870,6 +861,10 @@ The public key part is used on the client computers to verify that any incoming 
     <message>
         <source>Stopped</source>
         <translation>Sustabdytas</translation>
+    </message>
+    <message>
+        <source>Enable desktop switching for screen lock (experimental)</source>
+        <translation>Įjungti darbalukio perjungimą darbalaukio blokavimui (eksperimentinė funkcija</translation>
     </message>
     <message>
         <source>Logging</source>
@@ -920,6 +915,14 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>MB</translation>
     </message>
     <message>
+        <source>Log to standard error output</source>
+        <translation>Persijungti į įvykių žurnalą</translation>
+    </message>
+    <message>
+        <source>Log to Windows event log</source>
+        <translation>Persijungti į sisteminį įvykių žurnalą</translation>
+    </message>
+    <message>
         <source>Clear all log files</source>
         <translation>Išvalyti visus įvykių žurnalo failus</translation>
     </message>
@@ -932,12 +935,28 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>Leisti įrašinėti su permatomu langu</translation>
     </message>
     <message>
+        <source>Poll full screen (leave this enabled per default)</source>
+        <translation>Apklausa naudojant pilną ekraną (Palikite tai įjungta numatytuose nustatymuose)</translation>
+    </message>
+    <message>
         <source>Low accuracy (turbo mode)</source>
         <translation>Žemos kokybės (Didelio įrašymo greičio)</translation>
     </message>
     <message>
         <source>Demo server</source>
         <translation>Prezantacijų serveris</translation>
+    </message>
+    <message>
+        <source>Backend</source>
+        <translation>Vidinis</translation>
+    </message>
+    <message>
+        <source>VNC reflector</source>
+        <translation>VNC reflektorius</translation>
+    </message>
+    <message>
+        <source>iTALC 1 demo server</source>
+        <translation>iTALC 1 - demonstracinis serveris</translation>
     </message>
     <message>
         <source>Network</source>
@@ -954,6 +973,18 @@ The public key part is used on the client computers to verify that any incoming 
     <message>
         <source>Enable firewall exception</source>
         <translation>Įjungti ugnesienės išimtį</translation>
+    </message>
+    <message>
+        <source>Enable HTTP server which provides a JavaViewer applet</source>
+        <translation>Įjungti HTTP-serverį, kuris palaiko JavaViewer funkciją</translation>
+    </message>
+    <message>
+        <source>HTTP server port</source>
+        <translation>HTTP serverio šliuzas</translation>
+    </message>
+    <message>
+        <source>Allow connections from localhost only</source>
+        <translation>Leisti prisijungimus tik vietiniam tinkle</translation>
     </message>
     <message>
         <source>Configuration files</source>
@@ -980,12 +1011,116 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>Autorizavimosi metodai</translation>
     </message>
     <message>
+        <source>Key file authentication</source>
+        <translation>Autorizuotis naudojant pasiekiamumo raktą</translation>
+    </message>
+    <message>
+        <source>ACL-based logon authentication</source>
+        <translation>ACL autorizavimas naudojant sąrašą</translation>
+    </message>
+    <message>
         <source>Access key management</source>
         <translation>Pasiekiamuymo raktų valdymas</translation>
     </message>
     <message>
+        <source>Public key file base directory</source>
+        <translation>Katalogas kuriame saugomas viešas raktas</translation>
+    </message>
+    <message>
+        <source>Private key file base directory</source>
+        <translation>Katalogas kuriame saugomas privatus raktas</translation>
+    </message>
+    <message>
+        <source>Launch key file assistant</source>
+        <translation>Paleisti pasiekiamumo raktų vedlį</translation>
+    </message>
+    <message>
         <source>Logon settings</source>
         <translation>Prisijungimo į sistemą nustatymai</translation>
+    </message>
+    <message>
+        <source>Manage permissions</source>
+        <translation>Tvarkyti teises</translation>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation>Testuoti</translation>
+    </message>
+    <message>
+        <source>Access confirmation</source>
+        <translation>Priėjimo patvirtinimas</translation>
+    </message>
+    <message>
+        <source>You can configure iTALC to ask the user for permission to access the desktop when using certain authentication methods.</source>
+        <translation>Jūs galite nusistatyti iTALC taip kad būtu būtina prašyti vartotojo leidimo prisijungti prie jo naudojant tam tikrus metodus</translation>
+    </message>
+    <message>
+        <source>Logon authentication</source>
+        <translation>Autorizacija prisijungiant į sistemą</translation>
+    </message>
+    <message>
+        <source>Allow same user to access desktop without confirmation</source>
+        <translation>Leisti tam pačiam vartotojui pasiekti ir darbalaukį be autorizacijos</translation>
+    </message>
+    <message>
+        <source>Debugging iTALC</source>
+        <translation>iTALC derinimas</translation>
+    </message>
+    <message>
+        <source>When encountering bugs or other misbehaviour in iTALC it is important to inform the developers about them, so that the bugs can be fixed in future releases. This page allows you to submit a helpful bug report easily.
+
+If the bug is not reproducible, skip step 1) - 3).</source>
+        <translation>Kada pastebite klaidas ar kitus negerus dalykus iTALC programoje svarbu informuoti kurėjus apie tai tam kad klaidos būtų kuo greičiau ištaisytos. Ši skiltis leidžia jums pranešti apie klaidas paprastai. Jeigu klaida nėra linkusi plisti ir kartotis tada praleiskite 1)-3) žingsnius</translation>
+    </message>
+    <message>
+        <source>1)</source>
+        <translation>1)</translation>
+    </message>
+    <message>
+        <source>Clear the logfiles in the &quot;General&quot; section.</source>
+        <translation>Išvalyti įvykių žurnalus skiltyje &quot;Bendri nustatymai&quot;.</translation>
+    </message>
+    <message>
+        <source>2)</source>
+        <translation>2)</translation>
+    </message>
+    <message>
+        <source>In the &quot;General&quot; section set the log level to &quot;Debug messages and everything else&quot;.</source>
+        <translation>Skiltyje &quot;bendri nustatymai&quot; nustatykite kad įrašinėtu ir visas kitas klaidas</translation>
+    </message>
+    <message>
+        <source>3)</source>
+        <translation>3)</translation>
+    </message>
+    <message>
+        <source>Repeat the actions leading to the bug or misbehaviour.</source>
+        <translation>Pakartokite veiksmus kurie sukėlė tą klaidą.</translation>
+    </message>
+    <message>
+        <source>4)</source>
+        <translation>4)</translation>
+    </message>
+    <message>
+        <source>Click the following button and save the file to a known location.</source>
+        <translation>Paspauskite šį mygtuką ir išsaugokite failą žinomoje vietoje</translation>
+    </message>
+    <message>
+        <source>Generate bug report archive</source>
+        <translation>Sukurti klaidos archyvą</translation>
+    </message>
+    <message>
+        <source>5)</source>
+        <translation>5)</translation>
+    </message>
+    <message>
+        <source>Go to the &lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;amp;atid=724375&quot;&gt;iTALC bug tracker&lt;/a&gt;, open a new bug, describe what you did in step 3) and attach the file you saved in step 4).&lt;/p&gt;
+&lt;br/&gt;
+&lt;br/&gt;
+Note: if the bug involves both a master and client computer, attach bug report archives for both computers.</source>
+        <translation>Nueikite į &lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;amp;atid=724375&quot;&gt; klaidų seklys iTALC&lt;/a&gt;, atsidarykite nauja klaida ir aprašykite ką darėte 3 žingsnyje ir prisekite failą kurį gavote 4 žingsnyje.&lt;/p&gt;
+&lt;br/&gt;
+&lt;br/&gt;
+Dėmesio:Jei klaida įtakoje mokytojo ir mokinio kompiuterius vienu metu reikalinga informacija iš abiejų kompiuterių.</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -1030,58 +1165,6 @@ The public key part is used on the client computers to verify that any incoming 
     <message>
         <source>About Qt</source>
         <translation>Apie Qt</translation>
-    </message>
-    <message>
-        <source>MainWindow</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>toolBar</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>iTALC Management Console %1</source>
-        <translation>iTALC valdymo komnsolė %1</translation>
-    </message>
-    <message>
-        <source>Running</source>
-        <translation>Veikia</translation>
-    </message>
-    <message>
-        <source>Load settings from file</source>
-        <translation>Įkelti nustatymus iš failo</translation>
-    </message>
-    <message>
-        <source>XML files (*.xml)</source>
-        <translation>XML failai (*.xml)</translation>
-    </message>
-    <message>
-        <source>Save settings to file</source>
-        <translation>Išsaugoti nustatymus į failą</translation>
-    </message>
-    <message>
-        <source>Unsaved settings</source>
-        <translation>Neišsaugoti nustatymai</translation>
-    </message>
-    <message>
-        <source>There are unsaved settings. Quit anyway?</source>
-        <translation>Egzistuoja dar neišsaugoti nustatymai. Vistiek išeiti?</translation>
-    </message>
-    <message>
-        <source>Configuration not writable</source>
-        <translation>Konfiguracinis failas negali būti įrašytas</translation>
-    </message>
-    <message>
-        <source>The local configuration backend reported that the configuration is not writable! Please run the iTALC Management Console with higher privileges.</source>
-        <translation>Vietinis konfiguracijos veldys pranešė, kad konfiguracija negali būti įrašyta. Prašome paleisti iTALC konsolę su aukštesnėmis privilegijomis.</translation>
-    </message>
-    <message>
-        <source>All settings were applied successfully.</source>
-        <translation>Visi nustatymai pritaikyti sėkmingai.</translation>
-    </message>
-    <message>
-        <source>An error occured while applying settings!</source>
-        <translation>Pritaikaint nustatymus įvyko klaida!</translation>
     </message>
     <message>
         <source>iTALC</source>
@@ -1240,12 +1323,32 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>Paspaudus šį mygtuką visi matomi langai yra surikiuojami ir pakeičiamas jų dydis.</translation>
     </message>
     <message>
+        <source>Could not contact iTALC service</source>
+        <translation>Nepavyko susisiekti su iTALC tarnyba</translation>
+    </message>
+    <message>
+        <source>Could not contact the local iTALC service. It is likely that you entered wrong credentials or key files are not set up properly. Try again or contact your administrator for solving this problem using the iTALC Management Console.</source>
+        <translation>Neįmanoma susisiekti su vietinia iTALC tarnybą. Greičiausiai įvedėte neteisingą informaciją arba pasiekiamumo raktas nenustatytas teisingai.Pabandykite vėl arba susisiekite su savo sistemos administratoriumi kad išsprestu bėdą naudodamasis iTALC konsole  </translation>
+    </message>
+    <message>
         <source>iTALC Master Control</source>
         <translation>iTALC pagrindinis valdymas</translation>
     </message>
     <message>
+        <source>Authentication impossible</source>
+        <translation>Autorizavimas neįmanomas</translation>
+    </message>
+    <message>
+        <source>No authentication key files were found or your current ones are outdated. Please create new key files using the iTALC Management Console. Alternatively set up logon authentication using the iTALC Management Console. Otherwise you won&apos;t be able to access computers using iTALC.</source>
+        <translation>Jokie autorizacijos raktai nerasti. Arba turimi yra per seni. Prašome sukurti naujus pasiekiamumo raktus naudojantis iTALC tvarkymo konsole.Alternatyvai galite nustatyti prisijungimo autorizavimą naudojantis iTALC konsole. Kitaip jūs negalėsite valdyti kompiuterių naudodamiesi iTALC</translation>
+    </message>
+    <message>
         <source>Remote control</source>
         <translation>Nuotolonis valdymas</translation>
+    </message>
+    <message>
+        <source>Quit</source>
+        <translation>Išeiti</translation>
     </message>
     <message>
         <source>Could not modify the autostart property for the iTALC Service.</source>
@@ -1260,152 +1363,24 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>Nepavyko pakeisti ugiasienės nustatymų  iTALC tarnybai.</translation>
     </message>
     <message>
-        <source>Debugging</source>
-        <translation>Derinimas</translation>
+        <source>Configuration not writable</source>
+        <translation>Konfiguracinis failas negali būti įrašytas</translation>
     </message>
     <message>
-        <source>Enable desktop switching for screen lock (experimental)</source>
-        <translation>Įjungti darbalukio perjungimą darbalaukio blokavimui (eksperimentinė funkcija</translation>
+        <source>The local configuration backend reported that the configuration is not writable! Please run the iTALC Management Console with higher privileges.</source>
+        <translation>Vietinis konfiguracijos veldys pranešė, kad konfiguracija negali būti įrašyta. Prašome paleisti iTALC konsolę su aukštesnėmis privilegijomis.</translation>
     </message>
     <message>
-        <source>Log to standard error output</source>
-        <translation>Persijungti į įvykių žurnalą</translation>
+        <source>All settings were applied successfully.</source>
+        <translation>Visi nustatymai pritaikyti sėkmingai.</translation>
     </message>
     <message>
-        <source>Log to Windows event log</source>
-        <translation>Persijungti į sisteminį įvykių žurnalą</translation>
+        <source>An error occured while applying settings!</source>
+        <translation>Pritaikaint nustatymus įvyko klaida!</translation>
     </message>
     <message>
-        <source>Backend</source>
-        <translation>Vidinis</translation>
-    </message>
-    <message>
-        <source>VNC reflector</source>
-        <translation>VNC reflektorius</translation>
-    </message>
-    <message>
-        <source>iTALC 1 demo server</source>
-        <translation>iTALC 1 - demonstracinis serveris</translation>
-    </message>
-    <message>
-        <source>Multithreading (can be enabled when using the VNC reflector backend)</source>
-        <translation>Multitikslinimas(Gali būti įjungtas naudojant VNC vidinį reflektorių)</translation>
-    </message>
-    <message>
-        <source>Enable HTTP server which provides a JavaViewer applet</source>
-        <translation>Įjungti HTTP-serverį, kuris palaiko JavaViewer funkciją</translation>
-    </message>
-    <message>
-        <source>HTTP server port</source>
-        <translation>HTTP serverio šliuzas</translation>
-    </message>
-    <message>
-        <source>Allow connections from localhost only</source>
-        <translation>Leisti prisijungimus tik vietiniam tinkle</translation>
-    </message>
-    <message>
-        <source>Key file authentication</source>
-        <translation>Autorizuotis naudojant pasiekiamumo raktą</translation>
-    </message>
-    <message>
-        <source>ACL-based logon authentication</source>
-        <translation>ACL autorizavimas naudojant sąrašą</translation>
-    </message>
-    <message>
-        <source>Public key file base directory</source>
-        <translation>Katalogas kuriame saugomas viešas raktas</translation>
-    </message>
-    <message>
-        <source>Private key file base directory</source>
-        <translation>Katalogas kuriame saugomas privatus raktas</translation>
-    </message>
-    <message>
-        <source>Launch key file assistant</source>
-        <translation>Paleisti pasiekiamumo raktų vedlį</translation>
-    </message>
-    <message>
-        <source>Manage permissions</source>
-        <translation>Tvarkyti teises</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>Testuoti</translation>
-    </message>
-    <message>
-        <source>Access confirmation</source>
-        <translation>Priėjimo patvirtinimas</translation>
-    </message>
-    <message>
-        <source>You can configure iTALC to ask the user for permission to access the desktop when using certain authentication methods.</source>
-        <translation>Jūs galite nusistatyti iTALC taip kad būtu būtina prašyti vartotojo leidimo prisijungti prie jo naudojant tam tikrus metodus</translation>
-    </message>
-    <message>
-        <source>Logon authentication</source>
-        <translation>Autorizacija prisijungiant į sistemą</translation>
-    </message>
-    <message>
-        <source>Allow same user to access desktop without confirmation</source>
-        <translation>Leisti tam pačiam vartotojui pasiekti ir darbalaukį be autorizacijos</translation>
-    </message>
-    <message>
-        <source>Debugging iTALC</source>
-        <translation>iTALC derinimas</translation>
-    </message>
-    <message>
-        <source>When encountering bugs or other misbehaviour in iTALC it is important to inform the developers about them, so that the bugs can be fixed in future releases. This page allows you to submit a helpful bug report easily.
-
-If the bug is not reproducible, skip step 1) - 3).</source>
-        <translation>Kada pastebite klaidas ar kitus negerus dalykus iTALC programoje svarbu informuoti kurėjus apie tai tam kad klaidos būtų kuo greičiau ištaisytos. Ši skiltis leidžia jums pranešti apie klaidas paprastai. Jeigu klaida nėra linkusi plisti ir kartotis tada praleiskite 1)-3) žingsnius</translation>
-    </message>
-    <message>
-        <source>1)</source>
-        <translation>1)</translation>
-    </message>
-    <message>
-        <source>Clear the logfiles in the &quot;General&quot; section.</source>
-        <translation>Išvalyti įvykių žurnalus skiltyje &quot;Bendri nustatymai&quot;.</translation>
-    </message>
-    <message>
-        <source>2)</source>
-        <translation>2)</translation>
-    </message>
-    <message>
-        <source>In the &quot;General&quot; section set the log level to &quot;Debug messages and everything else&quot;.</source>
-        <translation>Skiltyje &quot;bendri nustatymai&quot; nustatykite kad įrašinėtu ir visas kitas klaidas</translation>
-    </message>
-    <message>
-        <source>3)</source>
-        <translation>3)</translation>
-    </message>
-    <message>
-        <source>Repeat the actions leading to the bug or misbehaviour.</source>
-        <translation>Pakartokite veiksmus kurie sukėlė tą klaidą.</translation>
-    </message>
-    <message>
-        <source>4)</source>
-        <translation>4)</translation>
-    </message>
-    <message>
-        <source>Click the following button and save the file to a known location.</source>
-        <translation>Paspauskite šį mygtuką ir išsaugokite failą žinomoje vietoje</translation>
-    </message>
-    <message>
-        <source>Generate bug report archive</source>
-        <translation>Sukurti klaidos archyvą</translation>
-    </message>
-    <message>
-        <source>5)</source>
-        <translation>5)</translation>
-    </message>
-    <message>
-        <source>Go to the &lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;amp;atid=724375&quot;&gt;iTALC bug tracker&lt;/a&gt;, open a new bug, describe what you did in step 3) and attach the file you saved in step 4).&lt;/p&gt;
-&lt;br/&gt;
-&lt;br/&gt;
-Note: if the bug involves both a master and client computer, attach bug report archives for both computers.</source>
-        <translation>Nueikite į &lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;amp;atid=724375&quot;&gt; klaidų seklys iTALC&lt;/a&gt;, atsidarykite nauja klaida ir aprašykite ką darėte 3 žingsnyje ir prisekite failą kurį gavote 4 žingsnyje.&lt;/p&gt;
-&lt;br/&gt;
-&lt;br/&gt;
-Dėmesio:Jei klaida įtakoje mokytojo ir mokinio kompiuterius vienu metu reikalinga informacija iš abiejų kompiuterių.</translation>
+        <source>iTALC Management Console %1</source>
+        <translation>iTALC valdymo komnsolė %1</translation>
     </message>
     <message>
         <source>Restart iTALC Service</source>
@@ -1422,6 +1397,10 @@ Dėmesio:Jei klaida įtakoje mokytojo ir mokinio kompiuterius vienu metu reikali
     <message>
         <source>Stopping iTALC service</source>
         <translation>Sustabdoma iTALC tarnyba</translation>
+    </message>
+    <message>
+        <source>Running</source>
+        <translation>Veikia</translation>
     </message>
     <message>
         <source>The iTALC service needs to be stopped temporarily in order to remove the log files. Continue?</source>
@@ -1442,6 +1421,18 @@ Dėmesio:Jei klaida įtakoje mokytojo ir mokinio kompiuterius vienu metu reikali
     <message>
         <source>Could not remove all log files.</source>
         <translation>Nepavyko pašalinti visų įvykio failų.</translation>
+    </message>
+    <message>
+        <source>Load settings from file</source>
+        <translation>Įkelti nustatymus iš failo</translation>
+    </message>
+    <message>
+        <source>XML files (*.xml)</source>
+        <translation>XML failai (*.xml)</translation>
+    </message>
+    <message>
+        <source>Save settings to file</source>
+        <translation>Išsaugoti nustatymus į failą</translation>
     </message>
     <message>
         <source>Logon authentication test</source>
@@ -1472,35 +1463,12 @@ Dėmesio:Jei klaida įtakoje mokytojo ir mokinio kompiuterius vienu metu reikali
         <translation>iTALC klaidos archyvas išsaugotas į %1 . Jame yra iTALC ivykių žurnalai ir informacija apie jūsų operacinę sistemą. Galita šį archyvą prisegti prie klaidos pranešimo </translation>
     </message>
     <message>
-        <source>Could not contact iTALC service</source>
-        <translation>Nepavyko susisiekti su iTALC tarnyba</translation>
+        <source>Unsaved settings</source>
+        <translation>Neišsaugoti nustatymai</translation>
     </message>
     <message>
-        <source>Could not contact the local iTALC service. It is likely that you entered wrong credentials or key files are not set up properly. Try again or contact your administrator for solving this problem using the iTALC Management Console.</source>
-        <translation>Neįmanoma susisiekti su vietinia iTALC tarnybą. Greičiausiai įvedėte neteisingą informaciją arba pasiekiamumo raktas nenustatytas teisingai.Pabandykite vėl arba susisiekite su savo sistemos administratoriumi kad išsprestu bėdą naudodamasis iTALC konsole  </translation>
-    </message>
-    <message>
-        <source>Authentication impossible</source>
-        <translation>Autorizavimas neįmanomas</translation>
-    </message>
-    <message>
-        <source>No authentication key files were found or your current ones are outdated. Please create new key files using the iTALC Management Console. Alternatively set up logon authentication using the iTALC Management Console. Otherwise you won&apos;t be able to access computers using iTALC.</source>
-        <translation>Jokie autorizacijos raktai nerasti. Arba turimi yra per seni. Prašome sukurti naujus pasiekiamumo raktus naudojantis iTALC tvarkymo konsole.Alternatyvai galite nustatyti prisijungimo autorizavimą naudojantis iTALC konsole. Kitaip jūs negalėsite valdyti kompiuterių naudodamiesi iTALC</translation>
-    </message>
-    <message>
-        <source>iTALC Management Console</source>
-        <translation>iTALC nustatymų konsolė</translation>
-    </message>
-    <message>
-        <source>Poll full screen (leave this enabled per default)</source>
-        <translation>Apklausa naudojant pilną ekraną (Palikite tai įjungta numatytuose nustatymuose)</translation>
-    </message>
-</context>
-<context>
-    <name>MessageBoxSlave</name>
-    <message>
-        <source>Message from teacher</source>
-        <translation>Žinutė nuo mokytojo</translation>
+        <source>There are unsaved settings. Quit anyway?</source>
+        <translation>Egzistuoja dar neišsaugoti nustatymai. Vistiek išeiti?</translation>
     </message>
 </context>
 <context>
@@ -1508,7 +1476,7 @@ Dėmesio:Jei klaida įtakoje mokytojo ir mokinio kompiuterius vienu metu reikali
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; font-style:italic;&quot;&gt;Welcome to iTALC!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -1550,6 +1518,10 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>PasswordDialog</name>
     <message>
+        <source>iTALC Logon</source>
+        <translation>Prisijungimas prie iTALC</translation>
+    </message>
+    <message>
         <source>Please enter your username and password in order to access iTALC clients.</source>
         <translation>Prašome įvesti vartotojo vardą ir slaptažodį kad prisijungtumėte prie iTALC.</translation>
     </message>
@@ -1560,10 +1532,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Password</source>
         <translation>Slaptažodis</translation>
-    </message>
-    <message>
-        <source>iTALC Logon</source>
-        <translation>Prisijungimas prie iTALC</translation>
     </message>
     <message>
         <source>Manage</source>
@@ -1748,7 +1716,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;All snapshots you made are listed here. You can make snapshots by selecting the according entry in the context-menu of a client-window. These snapshosts can be managed using the buttons below.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
