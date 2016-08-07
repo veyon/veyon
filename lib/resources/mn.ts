@@ -1,19 +1,25 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="mn_MN">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="mn" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
         <source>About iTALC</source>
-        <translation>iTALC программын тухай</translation>
+        <translation>iTALC-ын тухай</translation>
     </message>
     <message>
         <source>About</source>
         <translation>Тухай</translation>
     </message>
     <message>
+        <source>iTALC - Intelligent Teaching And Learning with Computers
+
+Copyright © 2004-2016 Tobias Doerffel / iTALC Solutions</source>
+        <translation>iTALC - Intelligent Teaching And Learning with Computers
+
+Copyright © 2004-2016 Tobias Doerffel / iTALC Solutions</translation>
+    </message>
+    <message>
         <source>&lt;a href=&quot;http://italc.sourceforge.net&quot;&gt;http://italc.sourceforge.net&lt;/a&gt;</source>
-        <translation></translation>
+        <translation>&lt;a href=&quot;http://italc.sourceforge.net&quot;&gt;http://italc.sourceforge.net&lt;/a&gt;</translation>
     </message>
     <message>
         <source>Authors</source>
@@ -29,29 +35,15 @@
 If you&apos;re interested in translating iTALC into your local or another language or want to improve an existing translation, please contact an iTALC developer!</source>
         <translation>Одоогоор энэ хэл дээр орчуулагдаагүй байна.
 
-Хэрвээ та&apos; өөрийн хэл рүү орчуулгах эсвэл одоо байгаа орчуулгыг сайжруулахыг хүсэж байгаа бол хөгжүүлэгчтэй холбоо барина уу!</translation>
+Хэрвээ та өөрийн хэл рүү орчуулгах эсвэл одоо байгаа орчуулгыг сайжруулахыг хүсэж байгаа бол хөгжүүлэгчтэй холбоо барина уу!</translation>
     </message>
     <message>
         <source>License</source>
         <translation>Лиценз</translation>
     </message>
-    <message>
-        <source>iTALC - Intelligent Teaching And Learning with Computers
-
-Copyright © 2004-2013 Tobias Doerffel / iTALC Solutions</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>AccessDialogSlave</name>
-    <message>
-        <source>Never for this session</source>
-        <translation>Хэзээ ч энэ горимд биш</translation>
-    </message>
-    <message>
-        <source>Always for this session</source>
-        <translation>Байнга энэ горимд</translation>
-    </message>
     <message>
         <source>Confirm desktop access</source>
         <translation>Дэлгэцийн хандалтийг зөвшөөрөх</translation>
@@ -59,6 +51,14 @@ Copyright © 2004-2013 Tobias Doerffel / iTALC Solutions</source>
     <message>
         <source>The user %1 at host %2 wants to access your desktop. Do you want to grant access?</source>
         <translation>Хост дээрх %1 хэрэглэгч %2 таны компьютерт хандахыг хүсэж байна. Зөвшөөрч байна уу?</translation>
+    </message>
+    <message>
+        <source>Never for this session</source>
+        <translation>Хэзээ ч энэ горимд биш</translation>
+    </message>
+    <message>
+        <source>Always for this session</source>
+        <translation>Байнга энэ горимд</translation>
     </message>
 </context>
 <context>
@@ -96,8 +96,8 @@ Copyright © 2004-2013 Tobias Doerffel / iTALC Solutions</source>
         <translation>Дэд цэс(хулганын баруун даралт)-ээр компьютер нэмэх/хасах болон эсвэл анги нэмэх/хасах үйлдэл хийнэ.</translation>
     </message>
     <message>
-        <source>Export to text-file</source>
-        <translation>Текст-файлруу хадгалах</translation>
+        <source>Export to text file</source>
+        <translation>Текст файл болгох</translation>
     </message>
     <message>
         <source>Use this button for exporting this list of computers and usernames into a text-file. You can use this file later for collecting files after an exam has finished. This is sometimes neccessary, because some users might have finished and logged out earlier and so you cannot collect their files at the end of the exam.</source>
@@ -144,28 +144,25 @@ Copyright © 2004-2013 Tobias Doerffel / iTALC Solutions</source>
         <translation>Анги нэмэх</translation>
     </message>
     <message>
-        <source>No configuration-file found</source>
+        <source>No configuration file found</source>
         <translation>Тохируулгын файл олдсонгүй</translation>
     </message>
     <message>
-        <source>Could not open configuration file %1.
-You will have to add at least one classroom and computers using the classroom-manager which you&apos;ll find inside the program in the sidebar on the left side.</source>
+        <source>Could not open configuration file %1. You will have to add at least one classroom and computers using the classroom manager which you&apos;ll find inside the program in the sidebar on the left side.</source>
         <translation>Тохиргооны файлыг нээж чадахгүй байна  %1.
 Та ядаж нэг анги эсвэл компьютер нэмэж байж ангийн-удирдлагагыг хэрэглэж болно. Үүнийг програмын зүүн хэсгээс олж болно.</translation>
     </message>
     <message>
-        <source>Error in configuration-file</source>
+        <source>Error in configuration file</source>
         <translation>Тохируулгын файл дээрх алдаа</translation>
     </message>
     <message>
-        <source>Error while parsing configuration-file %1.
-Please edit it. Otherwise you should delete this file and have to add all classrooms and computers again.</source>
+        <source>Error while parsing configuration file %1. Please fix the file manually. Otherwise you should delete the file and add all classrooms and computers again.</source>
         <translation>Тохиргооны файл задлах үеийн алдаа %1.
 Үүнийг өөрчилнө үү. Үгүй бол та энэ файлыг устгах, дахин бүх анги танхим, компьютер нэмэх ёстой.</translation>
     </message>
     <message>
-        <source>Error while parsing configuration-file %1.
-Please edit it. Otherwise you should delete this file.</source>
+        <source>Error while parsing configuration file %1. Please fix the file manually. Otherwise you should delete the file.</source>
         <translation>Тохиргооны файл задлах үеийн алдаа %1.
 Үүнийг өөрчилнө үү. Үгүй бол та үүнийг устгах хэрэгтэй.</translation>
     </message>
@@ -244,6 +241,10 @@ Do you want to create a new classrom now?</source>
         <source>Desktop locked</source>
         <translation>Компьютер түгжигдсэн</translation>
     </message>
+    <message>
+        <source>Message from teacher</source>
+        <translation>Багшаас мессеж ирлээ</translation>
+    </message>
 </context>
 <context>
     <name>ClientAction</name>
@@ -282,14 +283,6 @@ Do you want to create a new classrom now?</source>
 </context>
 <context>
     <name>ClientSettingsDialog</name>
-    <message>
-        <source>Invalid MAC-address</source>
-        <translation>Буруу MAC-хаяг</translation>
-    </message>
-    <message>
-        <source>You specified an invalid MAC-address. Either leave the field blank or enter a valid MAC-address (use &quot;:&quot; as separator!).</source>
-        <translation>Та буруу MAC-хаяг оруулсан байна. Зөв MAC-хаяг  оруулах эсвэл хоосон үлдээж болно (тусгаарлагч &quot;:&quot;  болгон ашиглаарай!).</translation>
-    </message>
     <message>
         <source>Client settings</source>
         <translation>Клиентийн тохиргоо</translation>
@@ -346,6 +339,14 @@ Do you want to create a new classrom now?</source>
         <source>You didn&apos;t specify an IP address or hostname for the computer!</source>
         <translation>Та компьютерын IP хаяг эсвэл хостын нэрийг тодорхой заагаагүй байна!</translation>
     </message>
+    <message>
+        <source>Invalid MAC address</source>
+        <translation>Буруу MAC-хаяг</translation>
+    </message>
+    <message>
+        <source>You specified an invalid MAC address. Either leave the field blank or enter a valid MAC address (use &quot;:&quot; as separator!).</source>
+        <translation>Та буруу MAC-хаяг оруулсан байна. Зөв MAC-хаяг  оруулах эсвэл хоосон үлдээж болно (&quot;:&quot; тэмдэгтийг тусгаарлагч болгон ашиглаарай!) </translation>
+    </message>
 </context>
 <context>
     <name>Config</name>
@@ -386,13 +387,113 @@ Do you want to create a new classrom now?</source>
         <translation>toolbar-buttons-ыг текстгүй болгох</translation>
     </message>
     <message>
+        <source>Language:</source>
+        <translation>Хэл:</translation>
+    </message>
+    <message>
+        <source>System default</source>
+        <translation>Системийн анхны хэл</translation>
+    </message>
+    <message>
+        <source>ar - العربية</source>
+        <translation>ar - العربية</translation>
+    </message>
+    <message>
+        <source>cs - Česky</source>
+        <translation>cs - Česky</translation>
+    </message>
+    <message>
+        <source>de - Deutsch</source>
+        <translation>de - Deutsch</translation>
+    </message>
+    <message>
+        <source>el - Ελληνικά</source>
+        <translation>el - Ελληνικά</translation>
+    </message>
+    <message>
+        <source>es - Español</source>
+        <translation>es - Español</translation>
+    </message>
+    <message>
+        <source>fi - Suomi</source>
+        <translation>fi - Suomi</translation>
+    </message>
+    <message>
+        <source>fr - Français</source>
+        <translation>fr - Français</translation>
+    </message>
+    <message>
+        <source>he - עִבְרִית</source>
+        <translation>he - עִבְרִית</translation>
+    </message>
+    <message>
+        <source>hu - Magyar</source>
+        <translation>hu - Magyar</translation>
+    </message>
+    <message>
+        <source>it - Italiano</source>
+        <translation>it - Italiano</translation>
+    </message>
+    <message>
+        <source>nl - Nederlands</source>
+        <translation>nl - Nederlands</translation>
+    </message>
+    <message>
+        <source>nn - Norsk</source>
+        <translation>nn - Norsk</translation>
+    </message>
+    <message>
+        <source>pl - Polski</source>
+        <translation>pl - Polski</translation>
+    </message>
+    <message>
+        <source>pt_br - Brasileiro</source>
+        <translation>pt_br - Brasileiro</translation>
+    </message>
+    <message>
+        <source>pt_pt - Português</source>
+        <translation>pt_pt - Português</translation>
+    </message>
+    <message>
+        <source>ru - Русский</source>
+        <translation>ru - Русский</translation>
+    </message>
+    <message>
+        <source>sk - Slovenský</source>
+        <translation>sk - Slovenský</translation>
+    </message>
+    <message>
+        <source>sl - Slovenčina</source>
+        <translation>sl - Slovenčina</translation>
+    </message>
+    <message>
+        <source>sv - Svenska</source>
+        <translation>sv - Svenska</translation>
+    </message>
+    <message>
+        <source>tr - Türkçe</source>
+        <translation>tr - Türkçe</translation>
+    </message>
+    <message>
+        <source>uk - Українська</source>
+        <translation>uk - Українська</translation>
+    </message>
+    <message>
+        <source>zh_cn - 简体字</source>
+        <translation>zh_cn - 简体字</translation>
+    </message>
+    <message>
+        <source>zh_tw - 簡體字</source>
+        <translation>zh_tw - 簡體字</translation>
+    </message>
+    <message>
         <source>Your role (needs according keys!)</source>
         <translation>Таны үүрэг(мөн түлхүүр хэрэгтэй)</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Here you can select your role. Only change this if you know what you&apos;re doing. Otherwise you won&apos;t be able to access any clients until you restore your old role.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -416,21 +517,13 @@ p, li { white-space: pre-wrap; }
         <translation>Бусад</translation>
     </message>
     <message>
-        <source>Settings for multi-logon</source>
-        <translation>Зэрэг нэвтрэх тохиргоо</translation>
-    </message>
-    <message>
-        <source>Domain</source>
-        <translation>Домайн</translation>
-    </message>
-    <message>
-        <source>Double-click action for client-window</source>
+        <source>Double click action for client window</source>
         <translation>Клиент цонхны 2 даралтаарх үйлдлүүд</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Here you can set what should happen if you double-click a client-window.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -449,106 +542,6 @@ p, li { white-space: pre-wrap; }
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;Please note, that some changes won&apos;t take effect until you restart iTALC.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;Та iTALC дахин эхлүүлэх хүртэл бүх өөрчлөлтүүд явагдах юм.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
-    <message>
-        <source>Language:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>System default</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>ar - العربية</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>cs - Česky</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>de - Deutsch</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>el - Ελληνικά</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>es - Español</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>fi - Suomi</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>fr - Français</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>he - עִבְרִית</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>hu - Magyar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>it - Italiano</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>nl - Nederlands</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>nn - Norsk</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>pl - Polski</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>pt_br - Brasileiro</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>pt_pt - Português</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>ru - Русский</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>sk - Slovenský</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>sl - Slovenčina</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>sv - Svenska</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>tr - Türkçe</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>uk - Українська</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>zh_cn - 简体字</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>zh_tw - 簡體字</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>ConfigWidget</name>
@@ -559,13 +552,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>In this workspace you can customize iTALC to fit your needs.</source>
         <translation>Энэ хэсэгт та iTALC-ыг өөрийнхөөрөө тохируулж болно.</translation>
-    </message>
-</context>
-<context>
-    <name>DecoratedMessageBox</name>
-    <message>
-        <source>OK</source>
-        <translation>ОК</translation>
     </message>
 </context>
 <context>
@@ -582,8 +568,8 @@ p, li { white-space: pre-wrap; }
         <translation>Баталгаажуулалтын алдаа</translation>
     </message>
     <message>
-        <source>Somebody (IP: %1) tried to access this computer but could not authenticate itself successfully!</source>
-        <translation>Хэн нэгэн (IP: %1) энэ компьютерт хандахыг оролдсон боловч өөрийгөө зөвшөөрүүлж чадахгүй байна!</translation>
+        <source>Somebody (IP: %1) tried to access this computer but could not authenticate successfully!</source>
+        <translation>Хэн нэгэн (IP: %1) энэ компьютерт хандахыг оролдсон боловч зөвшөөрөгдөж чадахгүй байна!</translation>
     </message>
 </context>
 <context>
@@ -644,10 +630,6 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>Шинэ нэвтрэх түлхүүр үүсгэх (мастер компьютер)</translation>
     </message>
     <message>
-        <source>assistantModeButtonGroup</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Import public key (client computer)</source>
         <translation>Нийтийн нэвтрэх түлхүүр оруулах (Клиент компьютер)</translation>
     </message>
@@ -689,7 +671,7 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>...</source>
-        <translation></translation>
+        <translation>...</translation>
     </message>
     <message>
         <source>Use custom destination directory for access keys</source>
@@ -794,6 +776,10 @@ The public key part is used on the client computers to verify that any incoming 
 <context>
     <name>LogonGroupEditor</name>
     <message>
+        <source>Logon group editor</source>
+        <translation>Нэвтрэх группын эрхлэгч</translation>
+    </message>
+    <message>
         <source>Please add the groups whose members should be allowed to access computers in your iTALC network.</source>
         <translation>Таны iTALC сүлжээнд хандах эрхтэй компьютеруудын байх ёстой бүлгийг нэмнэ үү.</translation>
     </message>
@@ -803,15 +789,11 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>...</source>
-        <translation></translation>
+        <translation>...</translation>
     </message>
     <message>
         <source>Groups with iTALC privileges</source>
         <translation>iTALC давуу эрхтэй группууд</translation>
-    </message>
-    <message>
-        <source>Logon group editor</source>
-        <translation>Нэвтрэх группын эрхлэгч</translation>
     </message>
 </context>
 <context>
@@ -824,12 +806,20 @@ The public key part is used on the client computers to verify that any incoming 
 <context>
     <name>MainWindow</name>
     <message>
-        <source>General</source>
-        <translation>Ерөнхий</translation>
+        <source>MainWindow</source>
+        <translation>Үндсэн Цонх</translation>
     </message>
     <message>
-        <source>Quit</source>
-        <translation>Гарах</translation>
+        <source>toolBar</source>
+        <translation>Багажны хэсэг</translation>
+    </message>
+    <message>
+        <source>iTALC Management Console</source>
+        <translation>iTALC менежмент консол</translation>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>Ерөнхий</translation>
     </message>
     <message>
         <source>iTALC Server</source>
@@ -842,6 +832,10 @@ The public key part is used on the client computers to verify that any incoming 
     <message>
         <source>Authentication</source>
         <translation>Баталгаажуулалт</translation>
+    </message>
+    <message>
+        <source>Debugging</source>
+        <translation>Дибаг хийж байна</translation>
     </message>
     <message>
         <source>iTALC Service</source>
@@ -876,6 +870,10 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>Зогссон</translation>
     </message>
     <message>
+        <source>Enable desktop switching for screen lock (experimental)</source>
+        <translation>Дэлгэцийг түгжих шилжүүлэлтийг (туршилт) идэвхжүүлэх</translation>
+    </message>
+    <message>
         <source>Logging</source>
         <translation>Бүргэж байна</translation>
     </message>
@@ -885,7 +883,7 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>...</source>
-        <translation></translation>
+        <translation>...</translation>
     </message>
     <message>
         <source>Log level</source>
@@ -924,6 +922,14 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>Мб</translation>
     </message>
     <message>
+        <source>Log to standard error output</source>
+        <translation>Нэвтрэх үеийн энгийн алдааны гаралт</translation>
+    </message>
+    <message>
+        <source>Log to Windows event log</source>
+        <translation>Системийн үйл явцын бүртгэлд бүртгэх нь</translation>
+    </message>
+    <message>
         <source>Clear all log files</source>
         <translation>Бүх бүртгэлийн файлыг устгах</translation>
     </message>
@@ -936,12 +942,28 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>Үечилсэн бичилтийг идэвхжүүлэх(хагас-тодорхой)</translation>
     </message>
     <message>
+        <source>Poll full screen (leave this enabled per default)</source>
+        <translation>Бүтэн дэлгэцээрх санал асуулга(үүнийг идэвхтэйгээр орхих хэрэгтэй)</translation>
+    </message>
+    <message>
         <source>Low accuracy (turbo mode)</source>
         <translation>Бага нарийвчлал (өндөр хурдтай)</translation>
     </message>
     <message>
         <source>Demo server</source>
         <translation>Демо сервер</translation>
+    </message>
+    <message>
+        <source>Backend</source>
+        <translation>Арын хэсэг</translation>
+    </message>
+    <message>
+        <source>VNC reflector</source>
+        <translation>VNC тусгал</translation>
+    </message>
+    <message>
+        <source>iTALC 1 demo server</source>
+        <translation>iTALC 1 - демо сервер</translation>
     </message>
     <message>
         <source>Network</source>
@@ -954,6 +976,22 @@ The public key part is used on the client computers to verify that any incoming 
     <message>
         <source>Demo server port</source>
         <translation>Демо серверийн порт</translation>
+    </message>
+    <message>
+        <source>Enable firewall exception</source>
+        <translation>Онцгой хамгаалалтыг идэвхжүүлэх</translation>
+    </message>
+    <message>
+        <source>Enable HTTP server which provides a JavaViewer applet</source>
+        <translation>JavaViewer апплетийг хангах HTTP-серверийг идэвхжүүлэх</translation>
+    </message>
+    <message>
+        <source>HTTP server port</source>
+        <translation>HTTP сервер порт</translation>
+    </message>
+    <message>
+        <source>Allow connections from localhost only</source>
+        <translation>Зөвхөн дотоод холболтууддаа зөвшөөрөх</translation>
     </message>
     <message>
         <source>Configuration files</source>
@@ -980,12 +1018,118 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>Нэвтрэх аргууд</translation>
     </message>
     <message>
+        <source>Key file authentication</source>
+        <translation>Түлхүүр файлын баталгаажуулалт</translation>
+    </message>
+    <message>
+        <source>ACL-based logon authentication</source>
+        <translation>ACL-д суурилсан нэвтрэлт баталгаажуулалт</translation>
+    </message>
+    <message>
         <source>Access key management</source>
         <translation>Нэвтрэх түлхүүрийн менежмент</translation>
     </message>
     <message>
+        <source>Public key file base directory</source>
+        <translation>Нийтийн түлхүүрийг агуулсан сан</translation>
+    </message>
+    <message>
+        <source>Private key file base directory</source>
+        <translation>Хувийн түлхүүрийг агуулсан сан</translation>
+    </message>
+    <message>
+        <source>Launch key file assistant</source>
+        <translation>Түлхүүр файлын туслагч ажиллуулах</translation>
+    </message>
+    <message>
         <source>Logon settings</source>
         <translation>Нэвтрэх тохиргоо</translation>
+    </message>
+    <message>
+        <source>Manage permissions</source>
+        <translation>Зөвшөөрлийг удирдах</translation>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation>Тест</translation>
+    </message>
+    <message>
+        <source>Access confirmation</source>
+        <translation>Хандалтын баталгаажуулалт</translation>
+    </message>
+    <message>
+        <source>You can configure iTALC to ask the user for permission to access the desktop when using certain authentication methods.</source>
+        <translation>Та зарим нэг таних аргыг ашиглан үед уг дэлгэцэнд хандахын тулд хэрэглэгчийн зөвшөөрлийг асууж iTALC-д тохируулж болно.</translation>
+    </message>
+    <message>
+        <source>Logon authentication</source>
+        <translation>Нэвтрэлт танилт</translation>
+    </message>
+    <message>
+        <source>Allow same user to access desktop without confirmation</source>
+        <translation>Ижил хэрэглэгчидийг зөвшөөрөлгүйгээр хандахыг зөвшөөрөх</translation>
+    </message>
+    <message>
+        <source>Debugging iTALC</source>
+        <translation>iTALC дибаг хийх</translation>
+    </message>
+    <message>
+        <source>When encountering bugs or other misbehaviour in iTALC it is important to inform the developers about them, so that the bugs can be fixed in future releases. This page allows you to submit a helpful bug report easily.
+
+If the bug is not reproducible, skip step 1) - 3).</source>
+        <translation>iTALC дээрх алдаануудыг болон бусад алдаа тааралдсан үед алдаанууд нь ирээдүйн хувилбаруудад шийдэж болох тул, тэдний тухай хөгжүүлэгч мэдээлэх нь чухал юм. Энэ хуудас нь өөрийнхөө цуглуулгыг амархан тустай алдааны тайлан гаргах боломжийг олгодог.
+
+Алдаа давтан бол, алхмыг алгасаж 1) - 3).</translation>
+    </message>
+    <message>
+        <source>1)</source>
+        <translation>1)</translation>
+    </message>
+    <message>
+        <source>Clear the logfiles in the &quot;General&quot; section.</source>
+        <translation>&quot;Ерөнхий&quot; хэсэг дэх бүртгэлийн файлуудыг арилга.</translation>
+    </message>
+    <message>
+        <source>2)</source>
+        <translation>2)</translation>
+    </message>
+    <message>
+        <source>In the &quot;General&quot; section set the log level to &quot;Debug messages and everything else&quot;.</source>
+        <translation>&quot;Ерөнхий&quot; гэсэн хэсэгт нэвтэрч түвшинг нь &quot;Debug мессеж ба бусад бүх зүйл&quot; гэж тогтоосон юм.</translation>
+    </message>
+    <message>
+        <source>3)</source>
+        <translation>3)</translation>
+    </message>
+    <message>
+        <source>Repeat the actions leading to the bug or misbehaviour.</source>
+        <translation>Алдаа, эсвэл сахилга батын алдаанд хүргэсэн үйл ажиллагааг давтан хийнэ.</translation>
+    </message>
+    <message>
+        <source>4)</source>
+        <translation>4)</translation>
+    </message>
+    <message>
+        <source>Click the following button and save the file to a known location.</source>
+        <translation>Дараах товчийг дарж мэдэгдэж байгаа байршилд файлыг хадгал.</translation>
+    </message>
+    <message>
+        <source>Generate bug report archive</source>
+        <translation>Алдааны тайланг агуулсан файлыг үүсгэнэ</translation>
+    </message>
+    <message>
+        <source>5)</source>
+        <translation>5)</translation>
+    </message>
+    <message>
+        <source>Go to the &lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;amp;atid=724375&quot;&gt;iTALC bug tracker&lt;/a&gt;, open a new bug, describe what you did in step 3) and attach the file you saved in step 4).&lt;/p&gt;
+&lt;br/&gt;
+&lt;br/&gt;
+Note: if the bug involves both a master and client computer, attach bug report archives for both computers.</source>
+        <translation>Руу оч &lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;amp;atid=724375&quot;&gt;iTALC алдаа байршуулагч&lt;/a&gt;, шинэ алдаа нээж, та 3) алхамд юу хийснээ тайлбарлах мөн 4) алхамд файл хавсаргасанаа хэлэх.&lt;/p&gt;
+&lt;br/&gt;
+&lt;br/&gt;
+Тайлбар: алдаа нь яг тэр үед гол компьютер болон клиент бүр дээр гарсан тохиолдолд аль аль нь алдааны тайланг илгээдэг.</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -1001,7 +1145,7 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>Ctrl+Q</source>
-        <translation></translation>
+        <translation>Ctrl+Q</translation>
     </message>
     <message>
         <source>&amp;Save settings into file</source>
@@ -1013,7 +1157,7 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>Ctrl+S</source>
-        <translation></translation>
+        <translation>Ctrl+S</translation>
     </message>
     <message>
         <source>L&amp;oad settings from file</source>
@@ -1021,7 +1165,7 @@ The public key part is used on the client computers to verify that any incoming 
     </message>
     <message>
         <source>Ctrl+O</source>
-        <translation></translation>
+        <translation>CTRL+O</translation>
     </message>
     <message>
         <source>About iTALC</source>
@@ -1030,58 +1174,6 @@ The public key part is used on the client computers to verify that any incoming 
     <message>
         <source>About Qt</source>
         <translation>Qt-ын тухай</translation>
-    </message>
-    <message>
-        <source>MainWindow</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>toolBar</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>iTALC Management Console %1</source>
-        <translation>iTALC менежментийн консол %1</translation>
-    </message>
-    <message>
-        <source>Running</source>
-        <translation>Ажиллуулах</translation>
-    </message>
-    <message>
-        <source>Load settings from file</source>
-        <translation>Тохиргоог файлаас унших</translation>
-    </message>
-    <message>
-        <source>XML files (*.xml)</source>
-        <translation>XML файлууд (*.xml)</translation>
-    </message>
-    <message>
-        <source>Save settings to file</source>
-        <translation>Тохиргоог файлд хадгалах</translation>
-    </message>
-    <message>
-        <source>Unsaved settings</source>
-        <translation>Хадгалагдаагүй тохиргоо</translation>
-    </message>
-    <message>
-        <source>There are unsaved settings. Quit anyway?</source>
-        <translation>Тохиргоо хадгалагдаагүй байна. Шууд гарах уу?</translation>
-    </message>
-    <message>
-        <source>Configuration not writable</source>
-        <translation>Тохиргоо бичигдэх боломжгүй</translation>
-    </message>
-    <message>
-        <source>The local configuration backend reported that the configuration is not writable! Please run the iTALC Management Console with higher privileges.</source>
-        <translation>Локал тохиргооны арын хэсгийн тохиргооны бичигдэх боломжтой биш юм гэж хариулжээ! Илүү өндөр давуу эрх бүхий iTALC менежментийн консолыг ажиллуулна уу.</translation>
-    </message>
-    <message>
-        <source>All settings were applied successfully.</source>
-        <translation>Бүх тохиргоог амжилттай хэрэглэж байна.</translation>
-    </message>
-    <message>
-        <source>An error occured while applying settings!</source>
-        <translation>Тохиргоог хэрэгжүүлэх үед алдаа гарлаа!</translation>
     </message>
     <message>
         <source>iTALC</source>
@@ -1240,12 +1332,32 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>Энэ товчлуурыг дарахад боломжит бүх цонхнуудын хэмжээг дахин автоматаар тохируулна.</translation>
     </message>
     <message>
+        <source>Could not contact iTALC service</source>
+        <translation>iTALC сервист холбогдож чадсангүй</translation>
+    </message>
+    <message>
+        <source>Could not contact the local iTALC service. It is likely that you entered wrong credentials or key files are not set up properly. Try again or contact your administrator for solving this problem using the iTALC Management Console.</source>
+        <translation>iTALC сервист холбогдож чадсангүй. Энэ бол буруу итгэмжлэлүүдийг эсвэл түлхүүр файлуудыг зөв тохируулж оруулаагүй байж болох юм.Дахин оролдоно уу эсвэл iTALC менежмент консолыг ашиглан энэ асуудлыг шийдвэрлэх таны администраторт хандана уу.</translation>
+    </message>
+    <message>
         <source>iTALC Master Control</source>
         <translation>iTALC мастер хяналт</translation>
     </message>
     <message>
+        <source>Authentication impossible</source>
+        <translation>Өөрийгөө таниулан нэвтэрч чадахгүй байна</translation>
+    </message>
+    <message>
+        <source>No authentication key files were found or your current ones are outdated. Please create new key files using the iTALC Management Console. Alternatively set up logon authentication using the iTALC Management Console. Otherwise you won&apos;t be able to access computers using iTALC.</source>
+        <translation>Ямар нэг нэвтрэлт танилтын түлхүүр файлууд олдсонгүй. Эсвэл таны одоогийнх хоцрогдсон байна. ITALC менежмент консолыг ашиглан шинэ түлхүүр файлуудыг үүсгэнэ үү. Өөрөөр iTALC менежмент консолыг ашиглан нэвтрэлтийг тохируулна уу. Үгүй бол та iTALC ашиглан компьютерт хандаж чадахгүй байх болно.</translation>
+    </message>
+    <message>
         <source>Remote control</source>
         <translation>Алсын хяналт</translation>
+    </message>
+    <message>
+        <source>Quit</source>
+        <translation>Гарах</translation>
     </message>
     <message>
         <source>Could not modify the autostart property for the iTALC Service.</source>
@@ -1260,154 +1372,24 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>ITALC сервисийн хувьд галт ханын тохиргоог өөрчилж чадахгүй байна.</translation>
     </message>
     <message>
-        <source>Debugging</source>
-        <translation>Дибаг хийж байна</translation>
+        <source>Configuration not writable</source>
+        <translation>Тохиргоо бичигдэх боломжгүй</translation>
     </message>
     <message>
-        <source>Enable desktop switching for screen lock (experimental)</source>
-        <translation>Дэлгэцийг түгжих шилжүүлэлтийг (туршилт) идэвхжүүлэх</translation>
+        <source>The local configuration backend reported that the configuration is not writable! Please run the iTALC Management Console with higher privileges.</source>
+        <translation>Локал тохиргооны арын хэсгийн тохиргооны бичигдэх боломжтой биш юм гэж хариулжээ! Илүү өндөр давуу эрх бүхий iTALC менежментийн консолыг ажиллуулна уу.</translation>
     </message>
     <message>
-        <source>Log to standard error output</source>
-        <translation>Нэвтрэх үеийн энгийн алдааны гаралт</translation>
+        <source>All settings were applied successfully.</source>
+        <translation>Бүх тохиргоог амжилттай хэрэглэж байна.</translation>
     </message>
     <message>
-        <source>Log to Windows event log</source>
-        <translation>Системийн үйл явцын бүртгэлд бүртгэх нь</translation>
+        <source>An error occured while applying settings!</source>
+        <translation>Тохиргоог хэрэгжүүлэх үед алдаа гарлаа!</translation>
     </message>
     <message>
-        <source>Backend</source>
-        <translation>Арын хэсэг</translation>
-    </message>
-    <message>
-        <source>VNC reflector</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>iTALC 1 demo server</source>
-        <translation>iTALC 1 - демо сервер</translation>
-    </message>
-    <message>
-        <source>Multithreading (can be enabled when using the VNC reflector backend)</source>
-        <translation>Олон урсгалт (VNC тусгал арын хэсгийг ашиглаж байгаа үед боломжтой болно)</translation>
-    </message>
-    <message>
-        <source>Enable HTTP server which provides a JavaViewer applet</source>
-        <translation>JavaViewer апплетийг хангах HTTP-серверийг идэвхжүүлэх</translation>
-    </message>
-    <message>
-        <source>HTTP server port</source>
-        <translation>HTTP сервер порт</translation>
-    </message>
-    <message>
-        <source>Allow connections from localhost only</source>
-        <translation>Зөвхөн дотоод холболтууддаа зөвшөөрөх</translation>
-    </message>
-    <message>
-        <source>Key file authentication</source>
-        <translation>Түлхүүр файлын баталгаажуулалт</translation>
-    </message>
-    <message>
-        <source>ACL-based logon authentication</source>
-        <translation>ACL-д суурилсан нэвтрэлт баталгаажуулалт</translation>
-    </message>
-    <message>
-        <source>Public key file base directory</source>
-        <translation>Нийтийн түлхүүрийг агуулсан сан</translation>
-    </message>
-    <message>
-        <source>Private key file base directory</source>
-        <translation>Хувийн түлхүүрийг агуулсан сан</translation>
-    </message>
-    <message>
-        <source>Launch key file assistant</source>
-        <translation>Түлхүүр файлын туслагч ажиллуулах</translation>
-    </message>
-    <message>
-        <source>Manage permissions</source>
-        <translation>Зөвшөөрлийг удирдах</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>Тест</translation>
-    </message>
-    <message>
-        <source>Access confirmation</source>
-        <translation>Хандалтын баталгаажуулалт</translation>
-    </message>
-    <message>
-        <source>You can configure iTALC to ask the user for permission to access the desktop when using certain authentication methods.</source>
-        <translation>Та зарим нэг таних аргыг ашиглан үед уг дэлгэцэнд хандахын тулд хэрэглэгчийн зөвшөөрлийг асууж iTALC-д тохируулж болно.</translation>
-    </message>
-    <message>
-        <source>Logon authentication</source>
-        <translation>Нэвтрэлт танилт</translation>
-    </message>
-    <message>
-        <source>Allow same user to access desktop without confirmation</source>
-        <translation>Ижил хэрэглэгчидийг зөвшөөрөлгүйгээр хандахыг зөвшөөрөх</translation>
-    </message>
-    <message>
-        <source>Debugging iTALC</source>
-        <translation>iTALC дибаг хийх</translation>
-    </message>
-    <message>
-        <source>When encountering bugs or other misbehaviour in iTALC it is important to inform the developers about them, so that the bugs can be fixed in future releases. This page allows you to submit a helpful bug report easily.
-
-If the bug is not reproducible, skip step 1) - 3).</source>
-        <translation>iTALC дээрх алдаануудыг болон бусад алдаа тааралдсан үед алдаанууд нь ирээдүйн хувилбаруудад шийдэж болох тул, тэдний тухай хөгжүүлэгч мэдээлэх нь чухал юм. Энэ хуудас нь өөрийнхөө цуглуулгыг амархан тустай алдааны тайлан гаргах боломжийг олгодог.
-
-Алдаа давтан бол, алхмыг алгасаж 1) - 3).</translation>
-    </message>
-    <message>
-        <source>1)</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Clear the logfiles in the &quot;General&quot; section.</source>
-        <translation>&quot;Ерөнхий&quot; хэсэг дэх бүртгэлийн файлуудыг арилга.</translation>
-    </message>
-    <message>
-        <source>2)</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>In the &quot;General&quot; section set the log level to &quot;Debug messages and everything else&quot;.</source>
-        <translation>&quot;Ерөнхий&quot; гэсэн хэсэгт нэвтэрч түвшинг нь &quot;Debug мессеж ба бусад бүх зүйл&quot; гэж тогтоосон юм.</translation>
-    </message>
-    <message>
-        <source>3)</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Repeat the actions leading to the bug or misbehaviour.</source>
-        <translation>Алдаа, эсвэл сахилга батын алдаанд хүргэсэн үйл ажиллагааг давтан хийнэ.</translation>
-    </message>
-    <message>
-        <source>4)</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Click the following button and save the file to a known location.</source>
-        <translation>Дараах товчийг дарж мэдэгдэж байгаа байршилд файлыг хадгал.</translation>
-    </message>
-    <message>
-        <source>Generate bug report archive</source>
-        <translation>Алдааны тайланг агуулсан файлыг үүсгэнэ</translation>
-    </message>
-    <message>
-        <source>5)</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Go to the &lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;amp;atid=724375&quot;&gt;iTALC bug tracker&lt;/a&gt;, open a new bug, describe what you did in step 3) and attach the file you saved in step 4).&lt;/p&gt;
-&lt;br/&gt;
-&lt;br/&gt;
-Note: if the bug involves both a master and client computer, attach bug report archives for both computers.</source>
-        <translation>Руу оч &lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;amp;atid=724375&quot;&gt;iTALC алдаа байршуулагч&lt;/a&gt;, шинэ алдаа нээж, та 3) алхамд юу хийснээ тайлбарлах мөн 4) алхамд файл хавсаргасанаа хэлэх.&lt;/p&gt;
-&lt;br/&gt;
-&lt;br/&gt;
-Тайлбар: алдаа нь яг тэр үед гол компьютер болон клиент бүр дээр гарсан тохиолдолд аль аль нь алдааны тайланг илгээдэг.</translation>
+        <source>iTALC Management Console %1</source>
+        <translation>iTALC менежментийн консол %1</translation>
     </message>
     <message>
         <source>Restart iTALC Service</source>
@@ -1424,6 +1406,10 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <message>
         <source>Stopping iTALC service</source>
         <translation>iTALC сервисийг зогсоож байна</translation>
+    </message>
+    <message>
+        <source>Running</source>
+        <translation>Ажиллуулах</translation>
     </message>
     <message>
         <source>The iTALC service needs to be stopped temporarily in order to remove the log files. Continue?</source>
@@ -1444,6 +1430,18 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <message>
         <source>Could not remove all log files.</source>
         <translation>Бүх бүртгэлийн файлуудыг устгаж чадсангүй.</translation>
+    </message>
+    <message>
+        <source>Load settings from file</source>
+        <translation>Тохиргоог файлаас унших</translation>
+    </message>
+    <message>
+        <source>XML files (*.xml)</source>
+        <translation>XML файлууд (*.xml)</translation>
+    </message>
+    <message>
+        <source>Save settings to file</source>
+        <translation>Тохиргоог файлд хадгалах</translation>
     </message>
     <message>
         <source>Logon authentication test</source>
@@ -1474,39 +1472,12 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <translation>iTALC алдааны архив хадгалагдаж байна %1. Энд таны үйлдлийн системийн тухай файл, бүртгэлийн мэдээлэл орно. Та үүнийг хавсаргаж болно.</translation>
     </message>
     <message>
-        <source>Could not contact iTALC service</source>
-        <translation>iTALC сервист холбогдож чадсангүй</translation>
+        <source>Unsaved settings</source>
+        <translation>Хадгалагдаагүй тохиргоо</translation>
     </message>
     <message>
-        <source>Could not contact the local iTALC service. It is likely that you entered wrong credentials or key files are not set up properly. Try again or contact your administrator for solving this problem using the iTALC Management Console.</source>
-        <translation>iTALC сервист холбогдож чадсангүй. Энэ бол буруу итгэмжлэлүүдийг эсвэл түлхүүр файлуудыг зөв тохируулж оруулаагүй байж болох юм.Дахин оролдоно уу эсвэл iTALC менежмент консолыг ашиглан энэ асуудлыг шийдвэрлэх таны администраторт хандана уу.</translation>
-    </message>
-    <message>
-        <source>Authentication impossible</source>
-        <translation>Өөрийгөө таниулан нэвтэрч чадахгүй байна</translation>
-    </message>
-    <message>
-        <source>No authentication key files were found or your current ones are outdated. Please create new key files using the iTALC Management Console. Alternatively set up logon authentication using the iTALC Management Console. Otherwise you won&apos;t be able to access computers using iTALC.</source>
-        <translation>Ямар нэг нэвтрэлт танилтын түлхүүр файлууд олдсонгүй. Эсвэл таны одоогийнх хоцрогдсон байна. ITALC менежмент консолыг ашиглан шинэ түлхүүр файлуудыг үүсгэнэ үү. Өөрөөр iTALC менежмент консолыг ашиглан нэвтрэлтийг тохируулна уу. Үгүй бол та iTALC ашиглан компьютерт хандаж чадахгүй байх болно.</translation>
-    </message>
-    <message>
-        <source>iTALC Management Console</source>
-        <translation>iTALC менежмент консол</translation>
-    </message>
-    <message>
-        <source>Poll full screen (leave this enabled per default)</source>
-        <translation>Бүтэн дэлгэцээрх санал асуулга(үүнийг идэвхтэйгээр орхих хэрэгтэй)</translation>
-    </message>
-    <message>
-        <source>Enable firewall exception</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>MessageBoxSlave</name>
-    <message>
-        <source>Message from teacher</source>
-        <translation>Багшаас мессеж ирлээ</translation>
+        <source>There are unsaved settings. Quit anyway?</source>
+        <translation>Тохиргоо хадгалагдаагүй байна. Шууд гарах уу?</translation>
     </message>
 </context>
 <context>
@@ -1514,7 +1485,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; font-style:italic;&quot;&gt;Welcome to iTALC!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -1556,6 +1527,10 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>PasswordDialog</name>
     <message>
+        <source>iTALC Logon</source>
+        <translation>iTALC-д нэвтрэх</translation>
+    </message>
+    <message>
         <source>Please enter your username and password in order to access iTALC clients.</source>
         <translation>iTALC клиентүүдэд нэвтрэх хэрэглэгчийн нэр болон нууц үгээ оруулна уу.</translation>
     </message>
@@ -1566,10 +1541,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Password</source>
         <translation>Нууц үг</translation>
-    </message>
-    <message>
-        <source>iTALC Logon</source>
-        <translation>iTALC-д нэвтрэх</translation>
     </message>
     <message>
         <source>Manage</source>
@@ -1754,7 +1725,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;All snapshots you made are listed here. You can make snapshots by selecting the according entry in the context-menu of a client-window. These snapshosts can be managed using the buttons below.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
