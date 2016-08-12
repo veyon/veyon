@@ -3,7 +3,7 @@
  *                      transparent usage of operating-system-specific
  *                      functions
  *
- * Copyright (c) 2007-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2007-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -141,9 +141,14 @@ void powerDown( void )
 	}
 	else
 	{
-		QProcess::startDetached( "dbus-send --session --dest=org.gnome.SessionManager --type=method_call /org/gnome/SessionManager org.gnome.SessionManager.RequestShutdown" ); // Gnome shutdown
-		QProcess::startDetached( "dcop ksmserver ksmserver logout 0 2 0" ); // KDE shutdown
-		QProcess::startDetached( "qdbus org.kde.ksmserver /KSMServer logout 0 2 0" ); // KDE4 shutdown
+		// Gnome shutdown
+		QProcess::startDetached( "dbus-send --session --dest=org.gnome.SessionManager --type=method_call /org/gnome/SessionManager org.gnome.SessionManager.RequestShutdown" );
+		// KDE 3 shutdown
+		QProcess::startDetached( "dcop ksmserver ksmserver logout 0 2 0" );
+		// KDE 4 shutdown
+		QProcess::startDetached( "qdbus org.kde.ksmserver /KSMServer logout 0 2 0" );
+		// KDE 5 shutdown
+		QProcess::startDetached( "dbus-send --dest=org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout int32:0 int32:2 int32:2" );
 	}
 #endif
 }
@@ -156,9 +161,14 @@ void logoutUser( void )
 #ifdef ITALC_BUILD_WIN32
 	ExitWindowsEx( EWX_LOGOFF | SHUTDOWN_FLAGS, SHUTDOWN_REASON );
 #else
-	QProcess::startDetached( "dbus-send --session --dest=org.gnome.SessionManager --type=method_call /org/gnome/SessionManager org.gnome.SessionManager.Logout uint32:2" ); // Gnome logout, 2 = forced mode (don't wait for unresponsive processes)
-	QProcess::startDetached( "dcop ksmserver ksmserver logout 0 0 0" ); // KDE logout
-	QProcess::startDetached( "qdbus org.kde.ksmserver /KSMServer logout 0 0 0" ); // KDE4 logout
+	// Gnome logout, 2 = forced mode (don't wait for unresponsive processes)
+	QProcess::startDetached( "dbus-send --session --dest=org.gnome.SessionManager --type=method_call /org/gnome/SessionManager org.gnome.SessionManager.Logout uint32:2" );
+	// KDE 3 logout
+	QProcess::startDetached( "dcop ksmserver ksmserver logout 0 0 0" );
+	// KDE 4 logout
+	QProcess::startDetached( "qdbus org.kde.ksmserver /KSMServer logout 0 0 0" );
+	// KDE 5 logout
+	QProcess::startDetached( "dbus-send --dest=org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout int32:0 int32:2 int32:0" );
 #endif
 }
 
@@ -177,9 +187,14 @@ void reboot( void )
 	}
 	else
 	{
-		QProcess::startDetached( "dbus-send --session --dest=org.gnome.SessionManager --type=method_call /org/gnome/SessionManager org.gnome.SessionManager.RequestReboot" ); // Gnome reboot
-		QProcess::startDetached( "dcop ksmserver ksmserver logout 0 1 0" ); // KDE reboot
-		QProcess::startDetached( "qdbus org.kde.ksmserver /KSMServer logout 0 1 0" ); // KDE4 reboot
+		// Gnome reboot
+		QProcess::startDetached( "dbus-send --session --dest=org.gnome.SessionManager --type=method_call /org/gnome/SessionManager org.gnome.SessionManager.RequestReboot" );
+		// KDE 3 reboot
+		QProcess::startDetached( "dcop ksmserver ksmserver logout 0 1 0" );
+		// KDE 4 reboot
+		QProcess::startDetached( "qdbus org.kde.ksmserver /KSMServer logout 0 1 0" );
+		// KDE 5 reboot
+		QProcess::startDetached( "dbus-send --dest=org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout int32:1 int32:1 int32:1" );
 	}
 #endif
 }
