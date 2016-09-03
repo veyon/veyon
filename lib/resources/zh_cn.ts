@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="zh_CN">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="zh_CN" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -10,6 +8,14 @@
     <message>
         <source>About</source>
         <translation>关于</translation>
+    </message>
+    <message>
+        <source>iTALC - Intelligent Teaching And Learning with Computers
+
+Copyright © 2004-2016 Tobias Doerffel / iTALC Solutions</source>
+        <translation>iTALC - Intelligent Teaching And Learning with Computers
+
+Copyright © 2004-2016 Tobias Doerffel / iTALC Solutions</translation>
     </message>
     <message>
         <source>&lt;a href=&quot;http://italc.sourceforge.net&quot;&gt;http://italc.sourceforge.net&lt;/a&gt;</source>
@@ -27,7 +33,7 @@
         <source>Current language not translated yet (or native English).
 
 If you&apos;re interested in translating iTALC into your local or another language or want to improve an existing translation, please contact an iTALC developer!</source>
-        <translation>TeliuTe&lt;teliute@163.com&gt;, 2014.
+        <translation>TeliuTe&lt;teliute@163.com&gt;, 2014, 2016.
 
 如果您想参与 iTALC 翻译，或是对当前翻译提出建议，请与 iTALC 开发者联系。</translation>
     </message>
@@ -35,25 +41,9 @@ If you&apos;re interested in translating iTALC into your local or another langua
         <source>License</source>
         <translation>许可</translation>
     </message>
-    <message>
-        <source>iTALC - Intelligent Teaching And Learning with Computers
-
-Copyright © 2004-2013 Tobias Doerffel / iTALC Solutions</source>
-        <translation type="unfinished">iTALC - Intelligent Teaching And Learning with Computers
-
-Copyright © 2004-2011 Tobias Doerffel / iTALC Solutions {2004-2013 ?}</translation>
-    </message>
 </context>
 <context>
     <name>AccessDialogSlave</name>
-    <message>
-        <source>Never for this session</source>
-        <translation>从不使用这个会话</translation>
-    </message>
-    <message>
-        <source>Always for this session</source>
-        <translation>总是使用此会话</translation>
-    </message>
     <message>
         <source>Confirm desktop access</source>
         <translation>确认访问桌面</translation>
@@ -61,6 +51,14 @@ Copyright © 2004-2011 Tobias Doerffel / iTALC Solutions {2004-2013 ?}</translat
     <message>
         <source>The user %1 at host %2 wants to access your desktop. Do you want to grant access?</source>
         <translation>位于 %2 上的用户 %1，想要访问您的桌面，是否允许？</translation>
+    </message>
+    <message>
+        <source>Never for this session</source>
+        <translation>从不使用这个会话</translation>
+    </message>
+    <message>
+        <source>Always for this session</source>
+        <translation>总是使用此会话</translation>
     </message>
 </context>
 <context>
@@ -98,8 +96,8 @@ Copyright © 2004-2011 Tobias Doerffel / iTALC Solutions {2004-2013 ?}</translat
         <translation>使用上下文关联菜单(鼠标右键)，来添加/删除计算机和班级。</translation>
     </message>
     <message>
-        <source>Export to text-file</source>
-        <translation>导出到文本文件</translation>
+        <source>Export to text file</source>
+        <translation>导出为文本文件</translation>
     </message>
     <message>
         <source>Use this button for exporting this list of computers and usernames into a text-file. You can use this file later for collecting files after an exam has finished. This is sometimes neccessary, because some users might have finished and logged out earlier and so you cannot collect their files at the end of the exam.</source>
@@ -146,30 +144,24 @@ Copyright © 2004-2011 Tobias Doerffel / iTALC Solutions {2004-2013 ?}</translat
         <translation>添加班级</translation>
     </message>
     <message>
-        <source>No configuration-file found</source>
-        <translation>没有找到配置文件</translation>
+        <source>No configuration file found</source>
+        <translation>找不到配置文件</translation>
     </message>
     <message>
-        <source>Could not open configuration file %1.
-You will have to add at least one classroom and computers using the classroom-manager which you&apos;ll find inside the program in the sidebar on the left side.</source>
-        <translation>不能打开配置文件 %1 。
-您必须在班级管理中至少添加一个班级和计算机。班级管理在程序的左侧栏中。</translation>
+        <source>Could not open configuration file %1. You will have to add at least one classroom and computers using the classroom manager which you&apos;ll find inside the program in the sidebar on the left side.</source>
+        <translation>无法打开配置文件 %1 ，您必须在班级管理中至少添加一个班级和计算机。班级管理在程序的左侧栏中。</translation>
     </message>
     <message>
-        <source>Error in configuration-file</source>
+        <source>Error in configuration file</source>
         <translation>配置文件中有错误</translation>
     </message>
     <message>
-        <source>Error while parsing configuration-file %1.
-Please edit it. Otherwise you should delete this file and have to add all classrooms and computers again.</source>
-        <translation>分析配置文件 %1 时出错。
-请改正它。否则，您将不得不删除该文件并重新添加所有的班级和计算机。</translation>
+        <source>Error while parsing configuration file %1. Please fix the file manually. Otherwise you should delete the file and add all classrooms and computers again.</source>
+        <translation>分析配置文件 %1 时出错。请手动改正它。否则，您将不得不删除该配置文件并重新添加所有的班级和计算机。</translation>
     </message>
     <message>
-        <source>Error while parsing configuration-file %1.
-Please edit it. Otherwise you should delete this file.</source>
-        <translation>分析配置文件 %1 时出错。
-请改正它。否则，您将不得不删除该文件。</translation>
+        <source>Error while parsing configuration file %1. Please fix the file manually. Otherwise you should delete the file.</source>
+        <translation>分析配置文件 %1 时出错。请手动改正它。否则，您将不得不删除该配置文件。</translation>
     </message>
     <message>
         <source>Select output-file</source>
@@ -246,6 +238,10 @@ Do you want to create a new classrom now?</source>
         <source>Desktop locked</source>
         <translation>锁定桌面</translation>
     </message>
+    <message>
+        <source>Message from teacher</source>
+        <translation>来自教师的消息</translation>
+    </message>
 </context>
 <context>
     <name>ClientAction</name>
@@ -284,14 +280,6 @@ Do you want to create a new classrom now?</source>
 </context>
 <context>
     <name>ClientSettingsDialog</name>
-    <message>
-        <source>Invalid MAC-address</source>
-        <translation>无效的 MAC地址</translation>
-    </message>
-    <message>
-        <source>You specified an invalid MAC-address. Either leave the field blank or enter a valid MAC-address (use &quot;:&quot; as separator!).</source>
-        <translation>您指定的 MAC地址无效。该项请留空或者输入有效的MAC地址（用英文冒号“:”做分隔符!）。</translation>
-    </message>
     <message>
         <source>Client settings</source>
         <translation>客户端设置</translation>
@@ -348,6 +336,14 @@ Do you want to create a new classrom now?</source>
         <source>You didn&apos;t specify an IP address or hostname for the computer!</source>
         <translation>您还没有为此计算机指定 IP 地址或主机名！</translation>
     </message>
+    <message>
+        <source>Invalid MAC address</source>
+        <translation>无效的 MAC 地址</translation>
+    </message>
+    <message>
+        <source>You specified an invalid MAC address. Either leave the field blank or enter a valid MAC address (use &quot;:&quot; as separator!).</source>
+        <translation>您设定的 MAC地址无效。该项请留空或者输入有效的MAC地址（用英文冒号“:”做分隔符!）。</translation>
+    </message>
 </context>
 <context>
     <name>Config</name>
@@ -388,13 +384,113 @@ Do you want to create a new classrom now?</source>
         <translation>按钮上不显示文字</translation>
     </message>
     <message>
+        <source>Language:</source>
+        <translation>语言：</translation>
+    </message>
+    <message>
+        <source>System default</source>
+        <translation>系统默认</translation>
+    </message>
+    <message>
+        <source>ar - العربية</source>
+        <translation>ar - العربية</translation>
+    </message>
+    <message>
+        <source>cs - Česky</source>
+        <translation>cs - Česky</translation>
+    </message>
+    <message>
+        <source>de - Deutsch</source>
+        <translation>de - Deutsch</translation>
+    </message>
+    <message>
+        <source>el - Ελληνικά</source>
+        <translation>el - Ελληνικά</translation>
+    </message>
+    <message>
+        <source>es - Español</source>
+        <translation>es - Español</translation>
+    </message>
+    <message>
+        <source>fi - Suomi</source>
+        <translation>fi - Suomi</translation>
+    </message>
+    <message>
+        <source>fr - Français</source>
+        <translation>fr - Français</translation>
+    </message>
+    <message>
+        <source>he - עִבְרִית</source>
+        <translation>he - עִבְרִית</translation>
+    </message>
+    <message>
+        <source>hu - Magyar</source>
+        <translation>hu - Magyar</translation>
+    </message>
+    <message>
+        <source>it - Italiano</source>
+        <translation>it - Italiano</translation>
+    </message>
+    <message>
+        <source>nl - Nederlands</source>
+        <translation>nl - Nederlands</translation>
+    </message>
+    <message>
+        <source>nn - Norsk</source>
+        <translation>nn - Norsk</translation>
+    </message>
+    <message>
+        <source>pl - Polski</source>
+        <translation>pl - Polski</translation>
+    </message>
+    <message>
+        <source>pt_br - Brasileiro</source>
+        <translation>pt_br - Brasileiro</translation>
+    </message>
+    <message>
+        <source>pt_pt - Português</source>
+        <translation>pt_pt - Português</translation>
+    </message>
+    <message>
+        <source>ru - Русский</source>
+        <translation>ru - Русский</translation>
+    </message>
+    <message>
+        <source>sk - Slovenský</source>
+        <translation>sk - Slovenský</translation>
+    </message>
+    <message>
+        <source>sl - Slovenčina</source>
+        <translation>sl - Slovenčina</translation>
+    </message>
+    <message>
+        <source>sv - Svenska</source>
+        <translation>sv - Svenska</translation>
+    </message>
+    <message>
+        <source>tr - Türkçe</source>
+        <translation>tr - Türkçe</translation>
+    </message>
+    <message>
+        <source>uk - Українська</source>
+        <translation>uk - Українська</translation>
+    </message>
+    <message>
+        <source>zh_cn - 简体字</source>
+        <translation>zh_cn - 简体中文</translation>
+    </message>
+    <message>
+        <source>zh_tw - 簡體字</source>
+        <translation>zh_tw - 繁體中文</translation>
+    </message>
+    <message>
         <source>Your role (needs according keys!)</source>
         <translation>您的角色</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Here you can select your role. Only change this if you know what you&apos;re doing. Otherwise you won&apos;t be able to access any clients until you restore your old role.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -418,21 +514,13 @@ p, li { white-space: pre-wrap; }
         <translation>其他</translation>
     </message>
     <message>
-        <source>Settings for multi-logon</source>
-        <translation>多用户登录设置</translation>
-    </message>
-    <message>
-        <source>Domain</source>
-        <translation>域</translation>
-    </message>
-    <message>
-        <source>Double-click action for client-window</source>
-        <translation>客户端窗口双击动作</translation>
+        <source>Double click action for client window</source>
+        <translation>客户端图标上的双击动作</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Here you can set what should happen if you double-click a client-window.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -451,106 +539,6 @@ p, li { white-space: pre-wrap; }
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;Please note, that some changes won&apos;t take effect until you restart iTALC.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;请注意，某些改变不能立即生效，需要重启 iTALC 。&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
-    <message>
-        <source>Language:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>System default</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>ar - العربية</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>cs - Česky</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>de - Deutsch</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>el - Ελληνικά</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>es - Español</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>fi - Suomi</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>fr - Français</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>he - עִבְרִית</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>hu - Magyar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>it - Italiano</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>nl - Nederlands</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>nn - Norsk</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>pl - Polski</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>pt_br - Brasileiro</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>pt_pt - Português</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>ru - Русский</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>sk - Slovenský</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>sl - Slovenčina</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>sv - Svenska</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>tr - Türkçe</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>uk - Українська</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>zh_cn - 简体字</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>zh_tw - 簡體字</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>ConfigWidget</name>
@@ -561,13 +549,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>In this workspace you can customize iTALC to fit your needs.</source>
         <translation>在这个面板中您根据所需定制 iTALC。</translation>
-    </message>
-</context>
-<context>
-    <name>DecoratedMessageBox</name>
-    <message>
-        <source>OK</source>
-        <translation>确定</translation>
     </message>
 </context>
 <context>
@@ -584,7 +565,7 @@ p, li { white-space: pre-wrap; }
         <translation>验证错误</translation>
     </message>
     <message>
-        <source>Somebody (IP: %1) tried to access this computer but could not authenticate itself successfully!</source>
+        <source>Somebody (IP: %1) tried to access this computer but could not authenticate successfully!</source>
         <translation>有人（IP: %1 ）试图访问本机但未能通过验证!</translation>
     </message>
 </context>
@@ -644,10 +625,6 @@ The public key part is used on the client computers to verify that any incoming 
     <message>
         <source>Create new access keys (master computer)</source>
         <translation>创建新的密钥对(教师机)</translation>
-    </message>
-    <message>
-        <source>assistantModeButtonGroup</source>
-        <translation>assistantModeButtonGroup</translation>
     </message>
     <message>
         <source>Import public key (client computer)</source>
@@ -826,16 +803,20 @@ The public key part is used on the client computers to verify that any incoming 
 <context>
     <name>MainWindow</name>
     <message>
-        <source>General</source>
-        <translation>常规</translation>
+        <source>MainWindow</source>
+        <translation>主窗口</translation>
     </message>
     <message>
-        <source>Quit</source>
-        <translation>退出</translation>
+        <source>toolBar</source>
+        <translation>工具栏</translation>
     </message>
     <message>
         <source>iTALC Management Console</source>
         <translation>iTALC 管理控制台</translation>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>常规</translation>
     </message>
     <message>
         <source>iTALC Server</source>
@@ -848,6 +829,10 @@ The public key part is used on the client computers to verify that any incoming 
     <message>
         <source>Authentication</source>
         <translation>验证</translation>
+    </message>
+    <message>
+        <source>Debugging</source>
+        <translation>调试</translation>
     </message>
     <message>
         <source>iTALC Service</source>
@@ -880,6 +865,10 @@ The public key part is used on the client computers to verify that any incoming 
     <message>
         <source>Stopped</source>
         <translation>已停止</translation>
+    </message>
+    <message>
+        <source>Enable desktop switching for screen lock (experimental)</source>
+        <translation>开启屏幕锁定时的桌面切换(实验性功能)</translation>
     </message>
     <message>
         <source>Logging</source>
@@ -930,6 +919,14 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>MB</translation>
     </message>
     <message>
+        <source>Log to standard error output</source>
+        <translation>日志显示于标准输出设备(显示器)</translation>
+    </message>
+    <message>
+        <source>Log to Windows event log</source>
+        <translation>日志记录到 Windows 事件日志(Windows event log)</translation>
+    </message>
+    <message>
         <source>Clear all log files</source>
         <translation>清空所有日志文件</translation>
     </message>
@@ -954,6 +951,18 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>演示服务</translation>
     </message>
     <message>
+        <source>Backend</source>
+        <translation>后台</translation>
+    </message>
+    <message>
+        <source>VNC reflector</source>
+        <translation>VNC reflector</translation>
+    </message>
+    <message>
+        <source>iTALC 1 demo server</source>
+        <translation>iTALC 1 演示服务</translation>
+    </message>
+    <message>
         <source>Network</source>
         <translation>网络</translation>
     </message>
@@ -968,6 +977,18 @@ The public key part is used on the client computers to verify that any incoming 
     <message>
         <source>Enable firewall exception</source>
         <translation>开启防火墙例外设定</translation>
+    </message>
+    <message>
+        <source>Enable HTTP server which provides a JavaViewer applet</source>
+        <translation>开启一个提供 JavaViewer 的 HTTP 服务。</translation>
+    </message>
+    <message>
+        <source>HTTP server port</source>
+        <translation>HTTP 服务端口</translation>
+    </message>
+    <message>
+        <source>Allow connections from localhost only</source>
+        <translation>只允许本地连接</translation>
     </message>
     <message>
         <source>Configuration files</source>
@@ -994,12 +1015,118 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>验证模式</translation>
     </message>
     <message>
+        <source>Key file authentication</source>
+        <translation>密钥验证</translation>
+    </message>
+    <message>
+        <source>ACL-based logon authentication</source>
+        <translation>ACL 登录验证</translation>
+    </message>
+    <message>
         <source>Access key management</source>
         <translation>密钥管理</translation>
     </message>
     <message>
+        <source>Public key file base directory</source>
+        <translation>公钥文件主目录</translation>
+    </message>
+    <message>
+        <source>Private key file base directory</source>
+        <translation>私钥文件主目录</translation>
+    </message>
+    <message>
+        <source>Launch key file assistant</source>
+        <translation>运行密钥文件助手</translation>
+    </message>
+    <message>
         <source>Logon settings</source>
         <translation>登录设置</translation>
+    </message>
+    <message>
+        <source>Manage permissions</source>
+        <translation>许可管理</translation>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation>测试</translation>
+    </message>
+    <message>
+        <source>Access confirmation</source>
+        <translation>确认允许访问</translation>
+    </message>
+    <message>
+        <source>You can configure iTALC to ask the user for permission to access the desktop when using certain authentication methods.</source>
+        <translation>您可以配置 iTALC 在当前验证方式，是否显示确认访问的对话框。</translation>
+    </message>
+    <message>
+        <source>Logon authentication</source>
+        <translation>登录验证</translation>
+    </message>
+    <message>
+        <source>Allow same user to access desktop without confirmation</source>
+        <translation>允许同一用户不经提示访问桌面</translation>
+    </message>
+    <message>
+        <source>Debugging iTALC</source>
+        <translation>iTALC 调试</translation>
+    </message>
+    <message>
+        <source>When encountering bugs or other misbehaviour in iTALC it is important to inform the developers about them, so that the bugs can be fixed in future releases. This page allows you to submit a helpful bug report easily.
+
+If the bug is not reproducible, skip step 1) - 3).</source>
+        <translation>当使用 iTALC 遇到问题或其他异常时，反馈给开发者是非常重要的，这样在发布下一版本时问题得以修正。此页面可以帮助您轻松提交错误报告。
+
+如果问题无法重现，请跳过步骤 1) - 3)。</translation>
+    </message>
+    <message>
+        <source>1)</source>
+        <translation>1)</translation>
+    </message>
+    <message>
+        <source>Clear the logfiles in the &quot;General&quot; section.</source>
+        <translation>在“常规”标签中，清除日志文件。</translation>
+    </message>
+    <message>
+        <source>2)</source>
+        <translation>2)</translation>
+    </message>
+    <message>
+        <source>In the &quot;General&quot; section set the log level to &quot;Debug messages and everything else&quot;.</source>
+        <translation>在“常规”标签中，设置日志级别为“调试信息和其他所有信息”。</translation>
+    </message>
+    <message>
+        <source>3)</source>
+        <translation>3)</translation>
+    </message>
+    <message>
+        <source>Repeat the actions leading to the bug or misbehaviour.</source>
+        <translation>重新执行导致出错或异常的操作。</translation>
+    </message>
+    <message>
+        <source>4)</source>
+        <translation>4)</translation>
+    </message>
+    <message>
+        <source>Click the following button and save the file to a known location.</source>
+        <translation>点击下面的按钮保存日志文件到一个文件夹中。</translation>
+    </message>
+    <message>
+        <source>Generate bug report archive</source>
+        <translation>生成错误报告文件</translation>
+    </message>
+    <message>
+        <source>5)</source>
+        <translation>5)</translation>
+    </message>
+    <message>
+        <source>Go to the &lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;amp;atid=724375&quot;&gt;iTALC bug tracker&lt;/a&gt;, open a new bug, describe what you did in step 3) and attach the file you saved in step 4).&lt;/p&gt;
+&lt;br/&gt;
+&lt;br/&gt;
+Note: if the bug involves both a master and client computer, attach bug report archives for both computers.</source>
+        <translation>访问 &lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;amp;atid=724375&quot;&gt;iTALC 错误反馈站点&lt;/a&gt;，建立一个新的错误报告，描述一下您在 3) 做了些什么，并附上 4) 所保存的日志文件。
+&lt;br/&gt;
+&lt;br/&gt;
+如果此问题需要在主机和客户机电脑上同时使用才会发生，请记得附上两台电脑上各自生成的日志文件。</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -1044,58 +1171,6 @@ The public key part is used on the client computers to verify that any incoming 
     <message>
         <source>About Qt</source>
         <translation>关于 Qt</translation>
-    </message>
-    <message>
-        <source>MainWindow</source>
-        <translation>主窗口</translation>
-    </message>
-    <message>
-        <source>toolBar</source>
-        <translation>工具栏</translation>
-    </message>
-    <message>
-        <source>iTALC Management Console %1</source>
-        <translation>iTALC 管理控制台 %1</translation>
-    </message>
-    <message>
-        <source>Running</source>
-        <translation>正在运行</translation>
-    </message>
-    <message>
-        <source>Load settings from file</source>
-        <translation>打开配置文件</translation>
-    </message>
-    <message>
-        <source>XML files (*.xml)</source>
-        <translation>XML 文件(*.xml)</translation>
-    </message>
-    <message>
-        <source>Save settings to file</source>
-        <translation>保存配置文件</translation>
-    </message>
-    <message>
-        <source>Unsaved settings</source>
-        <translation>不保存</translation>
-    </message>
-    <message>
-        <source>There are unsaved settings. Quit anyway?</source>
-        <translation>设置还未保存，确定要退出吗？</translation>
-    </message>
-    <message>
-        <source>Configuration not writable</source>
-        <translation>配置文件不可写</translation>
-    </message>
-    <message>
-        <source>The local configuration backend reported that the configuration is not writable! Please run the iTALC Management Console with higher privileges.</source>
-        <translation>本地配置后台反馈配置不能写入，请以更高的权限(如管理员)来运行 iTALC 管理控制台。</translation>
-    </message>
-    <message>
-        <source>All settings were applied successfully.</source>
-        <translation>所有设置应用成功。</translation>
-    </message>
-    <message>
-        <source>An error occured while applying settings!</source>
-        <translation>应用设置时出错！</translation>
     </message>
     <message>
         <source>iTALC</source>
@@ -1254,12 +1329,32 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>点击此按钮重新排列和调整所有的窗口图标。</translation>
     </message>
     <message>
+        <source>Could not contact iTALC service</source>
+        <translation>无法连接到 iTALC 服务</translation>
+    </message>
+    <message>
+        <source>Could not contact the local iTALC service. It is likely that you entered wrong credentials or key files are not set up properly. Try again or contact your administrator for solving this problem using the iTALC Management Console.</source>
+        <translation>无法连接到 iTALC 服务，可能是 ica 服务未启动，或者您的密钥文件错误，或是密钥安装不正确。请再次尝试，或者与管理员联系，运行 iTALC 管理控制台(imc)解决此问题。</translation>
+    </message>
+    <message>
         <source>iTALC Master Control</source>
         <translation>iTALC 主控台</translation>
     </message>
     <message>
+        <source>Authentication impossible</source>
+        <translation>无法认证</translation>
+    </message>
+    <message>
+        <source>No authentication key files were found or your current ones are outdated. Please create new key files using the iTALC Management Console. Alternatively set up logon authentication using the iTALC Management Console. Otherwise you won&apos;t be able to access computers using iTALC.</source>
+        <translation>找不到配对密钥，或者您的密钥已过期。请使用 iTALC 管理控制台(imc)建立新的密钥对。此外，您也可以在 iTALC 管理控制台更改登录认证方式，此问题导致无法使用 iTALC 来访问电脑。</translation>
+    </message>
+    <message>
         <source>Remote control</source>
         <translation>远程控制</translation>
+    </message>
+    <message>
+        <source>Quit</source>
+        <translation>退出</translation>
     </message>
     <message>
         <source>Could not modify the autostart property for the iTALC Service.</source>
@@ -1274,154 +1369,24 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>不能更改 iTALC 服务的防火墙配置。</translation>
     </message>
     <message>
-        <source>Debugging</source>
-        <translation>调试</translation>
+        <source>Configuration not writable</source>
+        <translation>配置文件不可写</translation>
     </message>
     <message>
-        <source>Enable desktop switching for screen lock (experimental)</source>
-        <translation>开启屏幕锁定时的桌面切换(实验性功能)</translation>
+        <source>The local configuration backend reported that the configuration is not writable! Please run the iTALC Management Console with higher privileges.</source>
+        <translation>本地配置后台反馈配置不能写入，请以更高的权限(如管理员)来运行 iTALC 管理控制台。</translation>
     </message>
     <message>
-        <source>Log to standard error output</source>
-        <translation>日志显示于标准输出设备(显示器)</translation>
+        <source>All settings were applied successfully.</source>
+        <translation>所有设置应用成功。</translation>
     </message>
     <message>
-        <source>Log to Windows event log</source>
-        <translation>日志记录到 Windows 事件日志(Windows event log)</translation>
+        <source>An error occured while applying settings!</source>
+        <translation>应用设置时出错！</translation>
     </message>
     <message>
-        <source>Backend</source>
-        <translation>后台</translation>
-    </message>
-    <message>
-        <source>VNC reflector</source>
-        <translation>VNC reflector</translation>
-    </message>
-    <message>
-        <source>iTALC 1 demo server</source>
-        <translation>iTALC 1 演示服务</translation>
-    </message>
-    <message>
-        <source>Multithreading (can be enabled when using the VNC reflector backend)</source>
-        <translation>多线程(当使用 VNC reflector 后台时可用)</translation>
-    </message>
-    <message>
-        <source>Enable HTTP server which provides a JavaViewer applet</source>
-        <translation>开启一个提供 JavaViewer 的 HTTP 服务。</translation>
-    </message>
-    <message>
-        <source>HTTP server port</source>
-        <translation>HTTP 服务端口</translation>
-    </message>
-    <message>
-        <source>Allow connections from localhost only</source>
-        <translation>只允许本地连接</translation>
-    </message>
-    <message>
-        <source>Key file authentication</source>
-        <translation>密钥验证</translation>
-    </message>
-    <message>
-        <source>ACL-based logon authentication</source>
-        <translation>ACL 登录验证</translation>
-    </message>
-    <message>
-        <source>Public key file base directory</source>
-        <translation>公钥文件主目录</translation>
-    </message>
-    <message>
-        <source>Private key file base directory</source>
-        <translation>私钥文件主目录</translation>
-    </message>
-    <message>
-        <source>Launch key file assistant</source>
-        <translation>运行密钥文件助手</translation>
-    </message>
-    <message>
-        <source>Manage permissions</source>
-        <translation>许可管理</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>测试</translation>
-    </message>
-    <message>
-        <source>Access confirmation</source>
-        <translation>确认允许访问</translation>
-    </message>
-    <message>
-        <source>You can configure iTALC to ask the user for permission to access the desktop when using certain authentication methods.</source>
-        <translation>您可以配置 iTALC 在当前验证方式，是否显示确认访问的对话框。</translation>
-    </message>
-    <message>
-        <source>Logon authentication</source>
-        <translation>登录验证</translation>
-    </message>
-    <message>
-        <source>Allow same user to access desktop without confirmation</source>
-        <translation>允许同一用户不经提示访问桌面</translation>
-    </message>
-    <message>
-        <source>Debugging iTALC</source>
-        <translation>iTALC 调试</translation>
-    </message>
-    <message>
-        <source>When encountering bugs or other misbehaviour in iTALC it is important to inform the developers about them, so that the bugs can be fixed in future releases. This page allows you to submit a helpful bug report easily.
-
-If the bug is not reproducible, skip step 1) - 3).</source>
-        <translation>当使用 iTALC 遇到问题或其他异常时，反馈给开发者是非常重要的，这样在发布下一版本时问题得以修正。此页面可以帮助您轻松提交错误报告。
-
-如果问题无法重现，请跳过步骤 1) - 3)。</translation>
-    </message>
-    <message>
-        <source>1)</source>
-        <translation>1)</translation>
-    </message>
-    <message>
-        <source>Clear the logfiles in the &quot;General&quot; section.</source>
-        <translation>在“常规”标签中，清除日志文件。</translation>
-    </message>
-    <message>
-        <source>2)</source>
-        <translation>2)</translation>
-    </message>
-    <message>
-        <source>In the &quot;General&quot; section set the log level to &quot;Debug messages and everything else&quot;.</source>
-        <translation>在“常规”标签中，设置日志级别为“调试信息和其他所有信息”。</translation>
-    </message>
-    <message>
-        <source>3)</source>
-        <translation>3)</translation>
-    </message>
-    <message>
-        <source>Repeat the actions leading to the bug or misbehaviour.</source>
-        <translation>重新执行导致出错或异常的操作。</translation>
-    </message>
-    <message>
-        <source>4)</source>
-        <translation>4)</translation>
-    </message>
-    <message>
-        <source>Click the following button and save the file to a known location.</source>
-        <translation>点击下面的按钮保存日志文件到一个文件夹中。</translation>
-    </message>
-    <message>
-        <source>Generate bug report archive</source>
-        <translation>生成错误报告文件</translation>
-    </message>
-    <message>
-        <source>5)</source>
-        <translation>5)</translation>
-    </message>
-    <message>
-        <source>Go to the &lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;amp;atid=724375&quot;&gt;iTALC bug tracker&lt;/a&gt;, open a new bug, describe what you did in step 3) and attach the file you saved in step 4).&lt;/p&gt;
-&lt;br/&gt;
-&lt;br/&gt;
-Note: if the bug involves both a master and client computer, attach bug report archives for both computers.</source>
-        <translation>访问 &lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;amp;atid=724375&quot;&gt;iTALC 错误反馈站点&lt;/a&gt;，建立一个新的错误报告，描述一下您在 3) 做了些什么，并附上 4) 所保存的日志文件。
-&lt;br/&gt;
-&lt;br/&gt;
-如果此问题需要在主机和客户机电脑上同时使用才会发生，请记得附上两台电脑上各自生成的日志文件。</translation>
+        <source>iTALC Management Console %1</source>
+        <translation>iTALC 管理控制台 %1</translation>
     </message>
     <message>
         <source>Restart iTALC Service</source>
@@ -1438,6 +1403,10 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <message>
         <source>Stopping iTALC service</source>
         <translation>正在停止 iTALC 服务</translation>
+    </message>
+    <message>
+        <source>Running</source>
+        <translation>正在运行</translation>
     </message>
     <message>
         <source>The iTALC service needs to be stopped temporarily in order to remove the log files. Continue?</source>
@@ -1458,6 +1427,18 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <message>
         <source>Could not remove all log files.</source>
         <translation>不能删除所有日志文件。</translation>
+    </message>
+    <message>
+        <source>Load settings from file</source>
+        <translation>打开配置文件</translation>
+    </message>
+    <message>
+        <source>XML files (*.xml)</source>
+        <translation>XML 文件(*.xml)</translation>
+    </message>
+    <message>
+        <source>Save settings to file</source>
+        <translation>保存配置文件</translation>
     </message>
     <message>
         <source>Logon authentication test</source>
@@ -1488,27 +1469,12 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <translation>iTALC 错误报告文件已保存到 %1，包括 iTALC 日志文件和您操作系统的信息。您可以把它附在错误报告中一同提交。</translation>
     </message>
     <message>
-        <source>Could not contact iTALC service</source>
-        <translation>无法连接到 iTALC 服务</translation>
+        <source>Unsaved settings</source>
+        <translation>不保存</translation>
     </message>
     <message>
-        <source>Could not contact the local iTALC service. It is likely that you entered wrong credentials or key files are not set up properly. Try again or contact your administrator for solving this problem using the iTALC Management Console.</source>
-        <translation>无法连接到 iTALC 服务，可能是 ica 服务未启动，或者您的密钥文件错误，或是密钥安装不正确。请再次尝试，或者与管理员联系，运行 iTALC 管理控制台(imc)解决此问题。</translation>
-    </message>
-    <message>
-        <source>Authentication impossible</source>
-        <translation>无法认证</translation>
-    </message>
-    <message>
-        <source>No authentication key files were found or your current ones are outdated. Please create new key files using the iTALC Management Console. Alternatively set up logon authentication using the iTALC Management Console. Otherwise you won&apos;t be able to access computers using iTALC.</source>
-        <translation>找不到配对密钥，或者您的密钥已过期。请使用 iTALC 管理控制台(imc)建立新的密钥对。此外，您也可以在 iTALC 管理控制台更改登录认证方式，此问题导致无法使用 iTALC 来访问电脑。</translation>
-    </message>
-</context>
-<context>
-    <name>MessageBoxSlave</name>
-    <message>
-        <source>Message from teacher</source>
-        <translation>来自教师的消息</translation>
+        <source>There are unsaved settings. Quit anyway?</source>
+        <translation>设置还未保存，确定要退出吗？</translation>
     </message>
 </context>
 <context>
@@ -1516,7 +1482,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; font-style:italic;&quot;&gt;Welcome to iTALC!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -1558,6 +1524,10 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>PasswordDialog</name>
     <message>
+        <source>iTALC Logon</source>
+        <translation>iTALC 登录</translation>
+    </message>
+    <message>
         <source>Please enter your username and password in order to access iTALC clients.</source>
         <translation>请输入您的用户名和密码，以便访问 iTALC 客户机。</translation>
     </message>
@@ -1570,16 +1540,16 @@ p, li { white-space: pre-wrap; }
         <translation>密码</translation>
     </message>
     <message>
-        <source>iTALC Logon</source>
-        <translation>iTALC 登录</translation>
-    </message>
-    <message>
         <source>Manage</source>
-        <translation type="unfinished"></translation>
+        <translation>管理</translation>
     </message>
 </context>
 <context>
     <name>QApplication</name>
+    <message>
+        <source>iTALC Client %1 on %2:%3</source>
+        <translation>在 %2:%3 上的 iTALC 客户机 %1</translation>
+    </message>
     <message>
         <source>Unable to register service &apos;%1&apos;.</source>
         <translation>不能注册服务 &apos;%1&apos;。</translation>
@@ -1627,10 +1597,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not stopped.</source>
         <translation>无法连接服务控制管理器(您是否拥有所需的权限？) － 服务 &apos;%1&apos; 不能停止。</translation>
-    </message>
-    <message>
-        <source>iTALC Client %1 on %2:%3</source>
-        <translation>在 %2:%3 上的 iTALC 客户机 %1</translation>
     </message>
 </context>
 <context>
@@ -1756,7 +1722,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;All snapshots you made are listed here. You can make snapshots by selecting the according entry in the context-menu of a client-window. These snapshosts can be managed using the buttons below.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
