@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="zh_TW">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="zh_TW" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -10,6 +8,14 @@
     <message>
         <source>About</source>
         <translation>關於</translation>
+    </message>
+    <message>
+        <source>iTALC - Intelligent Teaching And Learning with Computers
+
+Copyright © 2004-2016 Tobias Doerffel / iTALC Solutions</source>
+        <translation>iTALC - Intelligent Teaching And Learning with Computers
+
+Copyright © 2004-2016 Tobias Doerffel / iTALC Solutions</translation>
     </message>
     <message>
         <source>&lt;a href=&quot;http://italc.sourceforge.net&quot;&gt;http://italc.sourceforge.net&lt;/a&gt;</source>
@@ -27,19 +33,13 @@
         <source>Current language not translated yet (or native English).
 
 If you&apos;re interested in translating iTALC into your local or another language or want to improve an existing translation, please contact an iTALC developer!</source>
-        <translation>您目前使用的語言尚未翻譯。
+        <translation>TeliuTe&lt;teliute@163.com&gt;, 2014, 2016.
 
 若您想參與翻譯 iTALC，或是想修正目前的翻譯，請與 iTALC 開發者聯絡。</translation>
     </message>
     <message>
         <source>License</source>
         <translation>授權條款</translation>
-    </message>
-    <message>
-        <source>iTALC - Intelligent Teaching And Learning with Computers
-
-Copyright © 2004-2013 Tobias Doerffel / iTALC Solutions</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -96,7 +96,7 @@ Copyright © 2004-2013 Tobias Doerffel / iTALC Solutions</source>
         <translation>使用快顯功能表（滑鼠右鍵）來加入/移除電腦和/或教室。</translation>
     </message>
     <message>
-        <source>Export to text-file</source>
+        <source>Export to text file</source>
         <translation>匯出為純文字檔案</translation>
     </message>
     <message>
@@ -144,30 +144,24 @@ Copyright © 2004-2013 Tobias Doerffel / iTALC Solutions</source>
         <translation>加入教室</translation>
     </message>
     <message>
-        <source>No configuration-file found</source>
+        <source>No configuration file found</source>
         <translation>找不到組態檔案</translation>
     </message>
     <message>
-        <source>Could not open configuration file %1.
-You will have to add at least one classroom and computers using the classroom-manager which you&apos;ll find inside the program in the sidebar on the left side.</source>
-        <translation>無法開啟組態檔案 %1。
-您必須先使用位於程式中左側的側邊列的教室管理程式加入至少一個教室與電腦。</translation>
+        <source>Could not open configuration file %1. You will have to add at least one classroom and computers using the classroom manager which you&apos;ll find inside the program in the sidebar on the left side.</source>
+        <translation>無法開啟組態檔案 %1。您必須先使用位於程式中左側的側邊列的教室管理程式加入至少一個教室與電腦。</translation>
     </message>
     <message>
-        <source>Error in configuration-file</source>
+        <source>Error in configuration file</source>
         <translation>組態檔案中有錯誤</translation>
     </message>
     <message>
-        <source>Error while parsing configuration-file %1.
-Please edit it. Otherwise you should delete this file and have to add all classrooms and computers again.</source>
-        <translation>解析組態檔案 %1 時發生錯誤。
-請編輯它。否則您應該刪除這個檔案並且須要重新加入所有的教室和電腦。</translation>
+        <source>Error while parsing configuration file %1. Please fix the file manually. Otherwise you should delete the file and add all classrooms and computers again.</source>
+        <translation>解析組態檔案 %1 時發生錯誤。請編輯它。否則您應該刪除這個檔案並且須要重新加入所有的教室和電腦。</translation>
     </message>
     <message>
-        <source>Error while parsing configuration-file %1.
-Please edit it. Otherwise you should delete this file.</source>
-        <translation>解析組態檔案 %1 時發生錯誤。
-請編輯它。否則您應該刪除這個檔案。</translation>
+        <source>Error while parsing configuration file %1. Please fix the file manually. Otherwise you should delete the file.</source>
+        <translation>解析組態檔案 %1 時發生錯誤。請編輯它。否則您應該刪除這個檔案。</translation>
     </message>
     <message>
         <source>Select output-file</source>
@@ -243,6 +237,10 @@ Do you want to create a new classrom now?</source>
     <message>
         <source>Desktop locked</source>
         <translation>桌面已鎖定</translation>
+    </message>
+    <message>
+        <source>Message from teacher</source>
+        <translation>來自老師的訊息</translation>
     </message>
 </context>
 <context>
@@ -339,12 +337,12 @@ Do you want to create a new classrom now?</source>
         <translation>您沒有指定此電腦的 IP 位址或主機名稱！</translation>
     </message>
     <message>
-        <source>Invalid MAC-address</source>
+        <source>Invalid MAC address</source>
         <translation>無效的 MAC-位址</translation>
     </message>
     <message>
-        <source>You specified an invalid MAC-address. Either leave the field blank or enter a valid MAC-address (use &quot;:&quot; as separator!).</source>
-        <translation>您指定了無效的 MAC-位址。您可以讓此欄位留空或輸入有效的 MAC-位址（使用 &quot;:&quot; 分隔！）。.</translation>
+        <source>You specified an invalid MAC address. Either leave the field blank or enter a valid MAC address (use &quot;:&quot; as separator!).</source>
+        <translation>您指定了無效的 MAC-位址。您可以讓此欄位留空或輸入有效的 MAC-位址（使用 英文冒號“:”分隔！）。</translation>
     </message>
 </context>
 <context>
@@ -386,13 +384,113 @@ Do you want to create a new classrom now?</source>
         <translation>工具列按鈕不顯示文字</translation>
     </message>
     <message>
+        <source>Language:</source>
+        <translation>語言：</translation>
+    </message>
+    <message>
+        <source>System default</source>
+        <translation>系統默認</translation>
+    </message>
+    <message>
+        <source>ar - العربية</source>
+        <translation>ar - العربية</translation>
+    </message>
+    <message>
+        <source>cs - Česky</source>
+        <translation>cs - Česky</translation>
+    </message>
+    <message>
+        <source>de - Deutsch</source>
+        <translation>de - Deutsch</translation>
+    </message>
+    <message>
+        <source>el - Ελληνικά</source>
+        <translation>el - Ελληνικά</translation>
+    </message>
+    <message>
+        <source>es - Español</source>
+        <translation>es - Español</translation>
+    </message>
+    <message>
+        <source>fi - Suomi</source>
+        <translation>fi - Suomi</translation>
+    </message>
+    <message>
+        <source>fr - Français</source>
+        <translation>fr - Français</translation>
+    </message>
+    <message>
+        <source>he - עִבְרִית</source>
+        <translation>he - עִבְרִית</translation>
+    </message>
+    <message>
+        <source>hu - Magyar</source>
+        <translation>hu - Magyar</translation>
+    </message>
+    <message>
+        <source>it - Italiano</source>
+        <translation>it - Italiano</translation>
+    </message>
+    <message>
+        <source>nl - Nederlands</source>
+        <translation>nl - Nederlands</translation>
+    </message>
+    <message>
+        <source>nn - Norsk</source>
+        <translation>nn - Norsk</translation>
+    </message>
+    <message>
+        <source>pl - Polski</source>
+        <translation>pl - Polski</translation>
+    </message>
+    <message>
+        <source>pt_br - Brasileiro</source>
+        <translation>pt_br - Brasileiro</translation>
+    </message>
+    <message>
+        <source>pt_pt - Português</source>
+        <translation>pt_pt - Português</translation>
+    </message>
+    <message>
+        <source>ru - Русский</source>
+        <translation>ru - Русский</translation>
+    </message>
+    <message>
+        <source>sk - Slovenský</source>
+        <translation>sk - Slovenský</translation>
+    </message>
+    <message>
+        <source>sl - Slovenčina</source>
+        <translation>sl - Slovenčina</translation>
+    </message>
+    <message>
+        <source>sv - Svenska</source>
+        <translation>sv - Svenska</translation>
+    </message>
+    <message>
+        <source>tr - Türkçe</source>
+        <translation>tr - Türkçe</translation>
+    </message>
+    <message>
+        <source>uk - Українська</source>
+        <translation>uk - Українська</translation>
+    </message>
+    <message>
+        <source>zh_cn - 简体字</source>
+        <translation>zh_cn - 简体字</translation>
+    </message>
+    <message>
+        <source>zh_tw - 簡體字</source>
+        <translation>zh_tw - 繁體字</translation>
+    </message>
+    <message>
         <source>Your role (needs according keys!)</source>
         <translation>您的角色（需要對應的鍵值！）</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Here you can select your role. Only change this if you know what you&apos;re doing. Otherwise you won&apos;t be able to access any clients until you restore your old role.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -416,21 +514,13 @@ p, li { white-space: pre-wrap; }
         <translation>其他</translation>
     </message>
     <message>
-        <source>Settings for multi-logon</source>
-        <translation>多重登入的設定值</translation>
-    </message>
-    <message>
-        <source>Domain</source>
-        <translation>網域</translation>
-    </message>
-    <message>
-        <source>Double-click action for client-window</source>
-        <translation>對客戶端視窗使用雙擊動作</translation>
+        <source>Double click action for client window</source>
+        <translation>應用於客戶端窗口的雙擊動作</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Here you can set what should happen if you double-click a client-window.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -449,106 +539,6 @@ p, li { white-space: pre-wrap; }
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;Please note, that some changes won&apos;t take effect until you restart iTALC.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;請注意，有些變更要在您重新啟動 iTALC 後才會生效。&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
-    <message>
-        <source>Language:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>System default</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>ar - العربية</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>cs - Česky</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>de - Deutsch</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>el - Ελληνικά</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>es - Español</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>fi - Suomi</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>fr - Français</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>he - עִבְרִית</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>hu - Magyar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>it - Italiano</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>nl - Nederlands</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>nn - Norsk</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>pl - Polski</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>pt_br - Brasileiro</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>pt_pt - Português</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>ru - Русский</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>sk - Slovenský</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>sl - Slovenčina</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>sv - Svenska</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>tr - Türkçe</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>uk - Українська</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>zh_cn - 简体字</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>zh_tw - 簡體字</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>ConfigWidget</name>
@@ -559,13 +549,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>In this workspace you can customize iTALC to fit your needs.</source>
         <translation>在這個工作區中您可以自訂 iTALC 以符合您的需求。</translation>
-    </message>
-</context>
-<context>
-    <name>DecoratedMessageBox</name>
-    <message>
-        <source>OK</source>
-        <translation>確定</translation>
     </message>
 </context>
 <context>
@@ -582,7 +565,7 @@ p, li { white-space: pre-wrap; }
         <translation>驗證錯誤</translation>
     </message>
     <message>
-        <source>Somebody (IP: %1) tried to access this computer but could not authenticate itself successfully!</source>
+        <source>Somebody (IP: %1) tried to access this computer but could not authenticate successfully!</source>
         <translation>某人 (IP: %1) 嘗試存取這台電腦，但是無法成功的通過驗證！</translation>
     </message>
 </context>
@@ -642,10 +625,6 @@ The public key part is used on the client computers to verify that any incoming 
     <message>
         <source>Create new access keys (master computer)</source>
         <translation>建立新的存取金鑰（主電腦）</translation>
-    </message>
-    <message>
-        <source>assistantModeButtonGroup</source>
-        <translation>assistantModeButtonGroup</translation>
     </message>
     <message>
         <source>Import public key (client computer)</source>
@@ -824,176 +803,12 @@ The public key part is used on the client computers to verify that any incoming 
 <context>
     <name>MainWindow</name>
     <message>
-        <source>Quit</source>
-        <translation>離開</translation>
-    </message>
-    <message>
         <source>MainWindow</source>
         <translation>主視窗</translation>
     </message>
     <message>
         <source>toolBar</source>
         <translation>工具列</translation>
-    </message>
-    <message>
-        <source>iTALC</source>
-        <translation>iTALC</translation>
-    </message>
-    <message>
-        <source>Could not read/write or create directory %1! For running iTALC, make sure you&apos;re permitted to create or write this directory.</source>
-        <translation>無法讀取/寫入或建立目錄 %1！為了執行 iTALC，請確定您被允許建立或寫入這個目錄。</translation>
-    </message>
-    <message>
-        <source>Classroom</source>
-        <translation>教室</translation>
-    </message>
-    <message>
-        <source>Switch classroom</source>
-        <translation>切換教室</translation>
-    </message>
-    <message>
-        <source>Click this button to open a menu where you can choose the active classroom.</source>
-        <translation>按下這個按鈕會開啟一個選單讓您選擇使用中的教室。</translation>
-    </message>
-    <message>
-        <source>Click on this button, to switch between classrooms.</source>
-        <translation>按下這個按鈕在教室間切換。</translation>
-    </message>
-    <message>
-        <source>Overview mode</source>
-        <translation>概覽模式</translation>
-    </message>
-    <message>
-        <source>Overview</source>
-        <translation>概覽</translation>
-    </message>
-    <message>
-        <source>This is the default mode in iTALC and allows you to have an overview over all visible computers. Also click on this button for unlocking locked workstations or for leaving demo-mode.</source>
-        <translation>這是 iTALC 的預設模式，讓您可以概覽所有可見的電腦。同時按下這個按鈕可以解鎖被鎖定的工作站或離開示範模式。</translation>
-    </message>
-    <message>
-        <source>Fullscreen demo</source>
-        <translation>全螢幕示範</translation>
-    </message>
-    <message>
-        <source>Fullscreen Demo</source>
-        <translation>全螢幕示範</translation>
-    </message>
-    <message>
-        <source>Stop Demo</source>
-        <translation>停止示範</translation>
-    </message>
-    <message>
-        <source>In this mode your screen is being displayed on all shown computers. Furthermore the users aren&apos;t able to do something else as all input devices are locked in this mode.</source>
-        <translation>在這個模式中您的螢幕會在所有出現的電腦中。同時使用者將無法進行其他操作，因為所有的輸入裝置在這個模式中都會被鎖定。</translation>
-    </message>
-    <message>
-        <source>Window demo</source>
-        <translation>視窗示範</translation>
-    </message>
-    <message>
-        <source>Window Demo</source>
-        <translation>視窗示範</translation>
-    </message>
-    <message>
-        <source>In this mode your screen being displayed in a window on all shown computers. The users are able to switch to other windows and thus can continue to work.</source>
-        <translation>在這個模式中您的螢幕會以視窗的形式顯示在所有出現的電腦中。使用者可以切換到其他視窗以繼續他們的操作。</translation>
-    </message>
-    <message>
-        <source>Lock/unlock desktops</source>
-        <translation>鎖定/解鎖桌面</translation>
-    </message>
-    <message>
-        <source>Lock all</source>
-        <translation>鎖定全部</translation>
-    </message>
-    <message>
-        <source>Unlock all</source>
-        <translation>鎖定全部</translation>
-    </message>
-    <message>
-        <source>To have all user&apos;s full attention you can lock their desktops using this button. In this mode all input devices are locked and the screen is black.</source>
-        <translation>要讓所有的使用者全心注意您可以使用這個按鈕鎖定他們的桌面。在這個模式中所有的輸入裝置都會被鎖定而畫面都會變成黑色。</translation>
-    </message>
-    <message>
-        <source>Send text message</source>
-        <translation>傳送文字訊息</translation>
-    </message>
-    <message>
-        <source>Text message</source>
-        <translation>文字訊息</translation>
-    </message>
-    <message>
-        <source>Use this button to send a text message to all users e.g. to tell them new tasks etc.</source>
-        <translation>使用這個按鈕傳送文字訊息給所有的使用者，例如告訴他們新的工作等等。</translation>
-    </message>
-    <message>
-        <source>Power on computers</source>
-        <translation>讓電腦開機</translation>
-    </message>
-    <message>
-        <source>Power on</source>
-        <translation>開機</translation>
-    </message>
-    <message>
-        <source>Click this button to power on all visible computers. This way you do not have to turn on each computer by hand.</source>
-        <translation>按下這個按鈕讓所有可視的電腦開機。這樣您可以不用親自開啟每一台電腦。</translation>
-    </message>
-    <message>
-        <source>Power down computers</source>
-        <translation>關閉電腦</translation>
-    </message>
-    <message>
-        <source>Power down</source>
-        <translation>關機</translation>
-    </message>
-    <message>
-        <source>To power down all shown computers (e.g. after the lesson has finished) you can click this button.</source>
-        <translation>要讓所有顯示的電腦關機（例如在課程結束後）您可以按這個按鈕。</translation>
-    </message>
-    <message>
-        <source>Support</source>
-        <translation>支援</translation>
-    </message>
-    <message>
-        <source>Direct support</source>
-        <translation>直接協助</translation>
-    </message>
-    <message>
-        <source>If you need to support someone at a certain computer you can click this button and enter the according hostname or IP afterwards.</source>
-        <translation>如果您需要協助使用某台電腦的人，可以按下這個按鈕，然後輸入對應的主機名稱或 IP。</translation>
-    </message>
-    <message>
-        <source>Adjust/align</source>
-        <translation>調整/對齊</translation>
-    </message>
-    <message>
-        <source>Adjust windows and their size</source>
-        <translation>調整視窗和他們的大小</translation>
-    </message>
-    <message>
-        <source>When clicking this button the biggest possible size for the client-windows is adjusted. Furthermore all windows are aligned.</source>
-        <translation>當按下這個按鈕會調整客戶端視窗為最大可能的大小。同時所有的視窗也會被調整。</translation>
-    </message>
-    <message>
-        <source>Auto view</source>
-        <translation>自動檢視</translation>
-    </message>
-    <message>
-        <source>Auto re-arrange windows and their size</source>
-        <translation>自動重新排列視窗和他們的大小</translation>
-    </message>
-    <message>
-        <source>When clicking this button all visible windows are re-arranged and adjusted.</source>
-        <translation>當按下這個按鈕所有可見的視窗會重新排列並調整。</translation>
-    </message>
-    <message>
-        <source>iTALC Master Control</source>
-        <translation>iTALC 主要控制</translation>
-    </message>
-    <message>
-        <source>Remote control</source>
-        <translation>遠端控制</translation>
     </message>
     <message>
         <source>iTALC Management Console</source>
@@ -1124,6 +939,10 @@ The public key part is used on the client computers to verify that any incoming 
         <translation>開啟多層次（半透明）視窗擷取</translation>
     </message>
     <message>
+        <source>Poll full screen (leave this enabled per default)</source>
+        <translation>輪詢全螢幕(默認開啓)</translation>
+    </message>
+    <message>
         <source>Low accuracy (turbo mode)</source>
         <translation>低精確度（快速模式）</translation>
     </message>
@@ -1142,10 +961,6 @@ The public key part is used on the client computers to verify that any incoming 
     <message>
         <source>iTALC 1 demo server</source>
         <translation>iTALC 1 展示伺服器</translation>
-    </message>
-    <message>
-        <source>Multithreading (can be enabled when using the VNC reflector backend)</source>
-        <translation>多執行緒（若是使用 VNC reflector 後端介面時可以開啟）</translation>
     </message>
     <message>
         <source>Network</source>
@@ -1358,8 +1173,160 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <translation>關於 Qt</translation>
     </message>
     <message>
+        <source>iTALC</source>
+        <translation>iTALC</translation>
+    </message>
+    <message>
         <source>No write access</source>
         <translation>沒有寫入權限</translation>
+    </message>
+    <message>
+        <source>Could not read/write or create directory %1! For running iTALC, make sure you&apos;re permitted to create or write this directory.</source>
+        <translation>無法讀取/寫入或建立目錄 %1！為了執行 iTALC，請確定您被允許建立或寫入這個目錄。</translation>
+    </message>
+    <message>
+        <source>Classroom</source>
+        <translation>教室</translation>
+    </message>
+    <message>
+        <source>Switch classroom</source>
+        <translation>切換教室</translation>
+    </message>
+    <message>
+        <source>Click this button to open a menu where you can choose the active classroom.</source>
+        <translation>按下這個按鈕會開啟一個選單讓您選擇使用中的教室。</translation>
+    </message>
+    <message>
+        <source>Click on this button, to switch between classrooms.</source>
+        <translation>按下這個按鈕在教室間切換。</translation>
+    </message>
+    <message>
+        <source>Overview mode</source>
+        <translation>概覽模式</translation>
+    </message>
+    <message>
+        <source>Overview</source>
+        <translation>概覽</translation>
+    </message>
+    <message>
+        <source>This is the default mode in iTALC and allows you to have an overview over all visible computers. Also click on this button for unlocking locked workstations or for leaving demo-mode.</source>
+        <translation>這是 iTALC 的預設模式，讓您可以概覽所有可見的電腦。同時按下這個按鈕可以解鎖被鎖定的工作站或離開示範模式。</translation>
+    </message>
+    <message>
+        <source>Fullscreen demo</source>
+        <translation>全螢幕示範</translation>
+    </message>
+    <message>
+        <source>Fullscreen Demo</source>
+        <translation>全螢幕示範</translation>
+    </message>
+    <message>
+        <source>Stop Demo</source>
+        <translation>停止示範</translation>
+    </message>
+    <message>
+        <source>In this mode your screen is being displayed on all shown computers. Furthermore the users aren&apos;t able to do something else as all input devices are locked in this mode.</source>
+        <translation>在這個模式中您的螢幕會在所有出現的電腦中。同時使用者將無法進行其他操作，因為所有的輸入裝置在這個模式中都會被鎖定。</translation>
+    </message>
+    <message>
+        <source>Window demo</source>
+        <translation>視窗示範</translation>
+    </message>
+    <message>
+        <source>Window Demo</source>
+        <translation>視窗示範</translation>
+    </message>
+    <message>
+        <source>In this mode your screen being displayed in a window on all shown computers. The users are able to switch to other windows and thus can continue to work.</source>
+        <translation>在這個模式中您的螢幕會以視窗的形式顯示在所有出現的電腦中。使用者可以切換到其他視窗以繼續他們的操作。</translation>
+    </message>
+    <message>
+        <source>Lock/unlock desktops</source>
+        <translation>鎖定/解鎖桌面</translation>
+    </message>
+    <message>
+        <source>Lock all</source>
+        <translation>鎖定全部</translation>
+    </message>
+    <message>
+        <source>Unlock all</source>
+        <translation>鎖定全部</translation>
+    </message>
+    <message>
+        <source>To have all user&apos;s full attention you can lock their desktops using this button. In this mode all input devices are locked and the screen is black.</source>
+        <translation>要讓所有的使用者全心注意您可以使用這個按鈕鎖定他們的桌面。在這個模式中所有的輸入裝置都會被鎖定而畫面都會變成黑色。</translation>
+    </message>
+    <message>
+        <source>Send text message</source>
+        <translation>傳送文字訊息</translation>
+    </message>
+    <message>
+        <source>Text message</source>
+        <translation>文字訊息</translation>
+    </message>
+    <message>
+        <source>Use this button to send a text message to all users e.g. to tell them new tasks etc.</source>
+        <translation>使用這個按鈕傳送文字訊息給所有的使用者，例如告訴他們新的工作等等。</translation>
+    </message>
+    <message>
+        <source>Power on computers</source>
+        <translation>讓電腦開機</translation>
+    </message>
+    <message>
+        <source>Power on</source>
+        <translation>開機</translation>
+    </message>
+    <message>
+        <source>Click this button to power on all visible computers. This way you do not have to turn on each computer by hand.</source>
+        <translation>按下這個按鈕讓所有可視的電腦開機。這樣您可以不用親自開啟每一台電腦。</translation>
+    </message>
+    <message>
+        <source>Power down computers</source>
+        <translation>關閉電腦</translation>
+    </message>
+    <message>
+        <source>Power down</source>
+        <translation>關機</translation>
+    </message>
+    <message>
+        <source>To power down all shown computers (e.g. after the lesson has finished) you can click this button.</source>
+        <translation>要讓所有顯示的電腦關機（例如在課程結束後）您可以按這個按鈕。</translation>
+    </message>
+    <message>
+        <source>Support</source>
+        <translation>支援</translation>
+    </message>
+    <message>
+        <source>Direct support</source>
+        <translation>直接協助</translation>
+    </message>
+    <message>
+        <source>If you need to support someone at a certain computer you can click this button and enter the according hostname or IP afterwards.</source>
+        <translation>如果您需要協助使用某台電腦的人，可以按下這個按鈕，然後輸入對應的主機名稱或 IP。</translation>
+    </message>
+    <message>
+        <source>Adjust/align</source>
+        <translation>調整/對齊</translation>
+    </message>
+    <message>
+        <source>Adjust windows and their size</source>
+        <translation>調整視窗和他們的大小</translation>
+    </message>
+    <message>
+        <source>When clicking this button the biggest possible size for the client-windows is adjusted. Furthermore all windows are aligned.</source>
+        <translation>當按下這個按鈕會調整客戶端視窗為最大可能的大小。同時所有的視窗也會被調整。</translation>
+    </message>
+    <message>
+        <source>Auto view</source>
+        <translation>自動檢視</translation>
+    </message>
+    <message>
+        <source>Auto re-arrange windows and their size</source>
+        <translation>自動重新排列視窗和他們的大小</translation>
+    </message>
+    <message>
+        <source>When clicking this button all visible windows are re-arranged and adjusted.</source>
+        <translation>當按下這個按鈕所有可見的視窗會重新排列並調整。</translation>
     </message>
     <message>
         <source>Could not contact iTALC service</source>
@@ -1370,12 +1337,36 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <translation>無法與本地端的 iTALC 服務聯繫。您有可能是輸入了錯誤的密碼或是金鑰檔並未正確安裝。請與您的站台管理員聯絡，以便使用 iTALC 管理主控台來解決此問題。</translation>
     </message>
     <message>
+        <source>iTALC Master Control</source>
+        <translation>iTALC 主要控制</translation>
+    </message>
+    <message>
         <source>Authentication impossible</source>
         <translation>無法認證</translation>
     </message>
     <message>
         <source>No authentication key files were found or your current ones are outdated. Please create new key files using the iTALC Management Console. Alternatively set up logon authentication using the iTALC Management Console. Otherwise you won&apos;t be able to access computers using iTALC.</source>
         <translation>找不到認證金鑰檔，或是您目前使用的金鑰檔已過期。請使用 iTALC 管理主控台建立新的金鑰檔。此外您也可以在 iTALC 管理主控台裡設定登入認證方式。不然您將無法使用iTALC 存取電腦。</translation>
+    </message>
+    <message>
+        <source>Remote control</source>
+        <translation>遠端控制</translation>
+    </message>
+    <message>
+        <source>Quit</source>
+        <translation>離開</translation>
+    </message>
+    <message>
+        <source>Could not modify the autostart property for the iTALC Service.</source>
+        <translation>無法變更 iTALC 服務的自動開始屬性。</translation>
+    </message>
+    <message>
+        <source>Could not modify the service arguments for the iTALC Service.</source>
+        <translation>無法變更 iTALC 服務的參數。</translation>
+    </message>
+    <message>
+        <source>Could not change the firewall configuration for the iTALC Service.</source>
+        <translation>無法變更 iTALC 服務的防火牆設定。</translation>
     </message>
     <message>
         <source>Configuration not writable</source>
@@ -1392,18 +1383,6 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <message>
         <source>An error occured while applying settings!</source>
         <translation>當套用設定時發生錯誤！</translation>
-    </message>
-    <message>
-        <source>Could not modify the autostart property for the iTALC Service.</source>
-        <translation>無法變更 iTALC 服務的自動開始屬性。</translation>
-    </message>
-    <message>
-        <source>Could not modify the service arguments for the iTALC Service.</source>
-        <translation>無法變更 iTALC 服務的參數。</translation>
-    </message>
-    <message>
-        <source>Could not change the firewall configuration for the iTALC Service.</source>
-        <translation>無法變更 iTALC 服務的防火牆設定。</translation>
     </message>
     <message>
         <source>iTALC Management Console %1</source>
@@ -1497,24 +1476,13 @@ Note: if the bug involves both a master and client computer, attach bug report a
         <source>There are unsaved settings. Quit anyway?</source>
         <translation>有尚未儲存的設定。還是要離開嗎？</translation>
     </message>
-    <message>
-        <source>Poll full screen (leave this enabled per default)</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>MessageBoxSlave</name>
-    <message>
-        <source>Message from teacher</source>
-        <translation>來自老師的訊息</translation>
-    </message>
 </context>
 <context>
     <name>Overview</name>
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; font-style:italic;&quot;&gt;Welcome to iTALC!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -1573,11 +1541,15 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Manage</source>
-        <translation type="unfinished"></translation>
+        <translation>管理</translation>
     </message>
 </context>
 <context>
     <name>QApplication</name>
+    <message>
+        <source>iTALC Client %1 on %2:%3</source>
+        <translation>iTALC 客戶端 %1 於 %2:%3</translation>
+    </message>
     <message>
         <source>Unable to register service &apos;%1&apos;.</source>
         <translation>無法註冊服務 &apos;%1&apos;。</translation>
@@ -1625,10 +1597,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not stopped.</source>
         <translation>無法連接服務控制管理程式（您是否有需要的權限？！）－ 服務 &apos;%1&apos; 尚未停止。</translation>
-    </message>
-    <message>
-        <source>iTALC Client %1 on %2:%3</source>
-        <translation>iTALC 客戶端 %1 於 %2:%3</translation>
     </message>
 </context>
 <context>
@@ -1754,7 +1722,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;All snapshots you made are listed here. You can make snapshots by selecting the according entry in the context-menu of a client-window. These snapshosts can be managed using the buttons below.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
