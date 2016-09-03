@@ -37,7 +37,7 @@ If you&apos;re interested in translating iTALC into your local or another langua
 
 Alexis Roda Villalonga &lt;alexis.roda.villalonga at gmail dot com&gt;
 
-Si voleu millorar una traducció existent, si us plau, contacteu un desenvolupador de iTALC!</translation>
+Si voleu millorar una traducció existent, contacteu amb un desenvolupador d&apos;iTALC!</translation>
     </message>
     <message>
         <source>License</source>
@@ -56,26 +56,26 @@ Si voleu millorar una traducció existent, si us plau, contacteu un desenvolupad
     </message>
     <message>
         <source>Never for this session</source>
-        <translation>Mai per aquesta sessió</translation>
+        <translation>Mai per a aquesta sessió</translation>
     </message>
     <message>
         <source>Always for this session</source>
-        <translation>Sempre per aquesta sessió</translation>
+        <translation>Sempre per a aquesta sessió</translation>
     </message>
 </context>
 <context>
     <name>ClassroomManager</name>
     <message>
         <source>Classroom-Manager</source>
-        <translation>Administrador d&apos;aules</translation>
+        <translation>Gestor d&apos;aules</translation>
     </message>
     <message>
         <source>Use this workspace to manage your computers and classrooms in an easy way.</source>
-        <translation>Utilitzeu aquest espail per administrar fàcilment els ordinadors i les aules.</translation>
+        <translation>Utilitzeu aquest espai per gestionar fàcilment els ordinadors i les aules.</translation>
     </message>
     <message>
         <source>This is where computers and classrooms are managed. You can add computers or classrooms by clicking right in this list.</source>
-        <translation>Aquí és on s&apos;administren els ordinadors i les aules. Podeu afegir ordinadors o aules fent clic amb el botó de la dreta en aqueta llista.</translation>
+        <translation>Aquí és on es gestionen els ordinadors i les aules. Podeu afegir ordinadors o aules fent clic amb el botó de la dreta en aquesta llista.</translation>
     </message>
     <message>
         <source>Classrooms/computers</source>
@@ -91,7 +91,7 @@ Si voleu millorar una traducció existent, si us plau, contacteu un desenvolupad
     </message>
     <message>
         <source>Show usernames</source>
-        <translation>Mostrar noms d&apos;usuari</translation>
+        <translation>Mostra els noms d&apos;usuari</translation>
     </message>
     <message>
         <source>Use the context-menu (right mouse-button) to add/remove computers and/or classrooms.</source>
@@ -99,79 +99,79 @@ Si voleu millorar una traducció existent, si us plau, contacteu un desenvolupad
     </message>
     <message>
         <source>Export to text file</source>
-        <translation>Exportar a un arxiu de text</translation>
+        <translation>Exporta a un fitxer de text</translation>
     </message>
     <message>
         <source>Use this button for exporting this list of computers and usernames into a text-file. You can use this file later for collecting files after an exam has finished. This is sometimes neccessary, because some users might have finished and logged out earlier and so you cannot collect their files at the end of the exam.</source>
-        <translation>Utilitzeu aquest botó per exportar aquesta llista d&apos;ordinadors i nom d&apos;usuari a un arxiu de text. Podeu utilitzar aquest arxiu més tard per recollir els arxius després de la finalització d&apos;un exàmen. Açò es necessari de vegades, ja que alguns usuaris poden haver acabat i tancat la sessió abans, de forma que no és possible recuperar els seus arxius al final de l&apos;exàmen.</translation>
+        <translation>Utilitzeu aquest botó per exportar aquesta llista d&apos;ordinadors i noms d&apos;usuari a un fitxer de text. Podeu utilitzar aquest fitxer més tard per recollir els arxius després d&apos;acabar un examen. Açò de vegades és necessari, ja que alguns usuaris poden haver acabat i tancat la sessió abans, de manera que no és possible recuperar els seus fitxers al final de l&apos;examen.</translation>
     </message>
     <message>
         <source>Hide teacher computers</source>
-        <translation>Amagar l&apos;ordinador del professor</translation>
+        <translation>Amaga els ordinadors dels professors</translation>
     </message>
     <message>
         <source>Show/hide</source>
-        <translation>Mostrar/amagar</translation>
+        <translation>Mostra/amaga</translation>
     </message>
     <message>
         <source>Edit settings</source>
-        <translation>Editar configuració</translation>
+        <translation>Edita la configuració</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation>Eliminar</translation>
+        <translation>Suprimeix</translation>
     </message>
     <message>
         <source>Show all computers in classroom</source>
-        <translation>Mostrar tots els ordinadors de l&apos;aula</translation>
+        <translation>Mostra tots els ordinadors de l&apos;aula</translation>
     </message>
     <message>
         <source>Hide all computers in classroom</source>
-        <translation>Amagar tots els ordinadors de l&apos;aula</translation>
+        <translation>Amaga tots els ordinadors de l&apos;aula</translation>
     </message>
     <message>
         <source>Edit name</source>
-        <translation>Editar nom</translation>
+        <translation>Edita el nom</translation>
     </message>
     <message>
         <source>Remove classroom</source>
-        <translation>Eliminar aula</translation>
+        <translation>Suprimeix l&apos;aula</translation>
     </message>
     <message>
         <source>Add computer</source>
-        <translation>Afegir ordinador</translation>
+        <translation>Afegeix un ordinador</translation>
     </message>
     <message>
         <source>Add classroom</source>
-        <translation>Afegir aula</translation>
+        <translation>Afegeix una aula</translation>
     </message>
     <message>
         <source>No configuration file found</source>
-        <translation>No s&apos;ha trobat l&apos;arxiu de configuració</translation>
+        <translation>No s&apos;ha trobat cap fitxer de configuració</translation>
     </message>
     <message>
         <source>Could not open configuration file %1. You will have to add at least one classroom and computers using the classroom manager which you&apos;ll find inside the program in the sidebar on the left side.</source>
-        <translation>No es pot obrir l&apos;arxiu de configuració %1. Cal que afegiu almenys un aula i un ordinador utilitzat el gestor d&apos;aules que trobareu dins el programa, en la barra lateral de l&apos;esquerra.</translation>
+        <translation>No es pot obrir el fitxer de configuració %1. Cal que afegiu almenys una aula i un ordinador utilitzant el gestor d&apos;aules que trobareu dins el programa, en la barra lateral de l&apos;esquerra.</translation>
     </message>
     <message>
         <source>Error in configuration file</source>
-        <translation>Error en arxiu de configuració</translation>
+        <translation>Hi ha un error en el fitxer de configuració</translation>
     </message>
     <message>
         <source>Error while parsing configuration file %1. Please fix the file manually. Otherwise you should delete the file and add all classrooms and computers again.</source>
-        <translation>Error processant l&apos;arxiu de configuració %1. Si us plau, corregiu l&apos;error manualment. Alternativament podeu esborrar l&apos;arxiu i afegir novament les aules i els ordinadors.</translation>
+        <translation>S&apos;ha produït un error en analitzar el fitxer de configuració %1. Corregiu l&apos;error manualment. També podeu esborrar el fitxer i afegir les aules i els ordinadors de nou.</translation>
     </message>
     <message>
         <source>Error while parsing configuration file %1. Please fix the file manually. Otherwise you should delete the file.</source>
-        <translation>Error processant l&apos;arxiu de configuració %1. Si us plau, corregiu l&apos;error manualment. Alternativament podeu esborrar l&apos;arxiu.</translation>
+        <translation>S&apos;ha produït un error en analitzar el fitxer de configuració %1. Corregiu l&apos;error manualment. També podeu esborrar el fitxer.</translation>
     </message>
     <message>
         <source>Select output-file</source>
-        <translation>Seleccioneu l&apos;arxiu de sortida</translation>
+        <translation>Seleccioneu el fitxer de sortida</translation>
     </message>
     <message>
         <source>Text files (*.txt)</source>
-        <translation>Arxius de text (*.txt)</translation>
+        <translation>Fitxers de text (*.txt)</translation>
     </message>
     <message>
         <source>Actions for selected</source>
@@ -183,39 +183,39 @@ Si voleu millorar una traducció existent, si us plau, contacteu un desenvolupad
     </message>
     <message>
         <source>Actions for %1</source>
-        <translation>Accions per %1</translation>
+        <translation>Accions per a %1</translation>
     </message>
     <message>
         <source>New name for classroom</source>
-        <translation>Nou nom per l&apos;aula</translation>
+        <translation>Nom nou per a l&apos;aula</translation>
     </message>
     <message>
         <source>Please enter a new name for classroom &quot;%1&quot;.</source>
-        <translation>Si us plau, introduïu un nou nom per l&apos;aula &quot;%1&quot;.</translation>
+        <translation>Introduïu un nom nou per a l&apos;aula &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>Are you sure want to remove classroom &quot;%1&quot;?
 All computers in it will be removed as well!</source>
-        <translation>Esteu segur de que voleu eliminar l&apos;aula &quot;%1&quot;?
-Tots els ordinadors dins l&apos;aula també seran eliminats!</translation>
+        <translation>Esteu segur que voleu eliminar l&apos;aula &quot;%1&quot;?
+També s&apos;eliminaran tots els ordinadors que conté!</translation>
     </message>
     <message>
         <source>Missing classroom</source>
-        <translation>Aula no trobada</translation>
+        <translation>No s&apos;ha trobat l&apos;aula</translation>
     </message>
     <message>
         <source>Before adding computers you have to create at least one classroom.
 Do you want to create a new classrom now?</source>
-        <translation>Abans de poder afegir ordinadors cal que creeu almenys un aula.
-Voleu crear un aula ara?</translation>
+        <translation>Abans de poder afegir ordinadors cal que creeu almenys una aula.
+Voleu crear una aula?</translation>
     </message>
     <message>
         <source>New classroom</source>
-        <translation>Nova aula</translation>
+        <translation>Aula nova</translation>
     </message>
     <message>
         <source>Please enter the name of the classroom you want to create.</source>
-        <translation>Si us plau, introduïu el nom de l&apos;aula que voleu crear.</translation>
+        <translation>Introduïu el nom de l&apos;aula que voleu crear.</translation>
     </message>
 </context>
 <context>
@@ -226,19 +226,19 @@ Voleu crear un aula ara?</translation>
     </message>
     <message>
         <source>No user logged in</source>
-        <translation>Cap usuari connectat</translation>
+        <translation>No hi ha cap usuari connectat</translation>
     </message>
     <message>
         <source>Host unreachable</source>
-        <translation>Equip no disponible</translation>
+        <translation>Amfitrió inaccessible</translation>
     </message>
     <message>
         <source>Demo running</source>
-        <translation>Demostració executant-se</translation>
+        <translation>S&apos;està executant una demostració</translation>
     </message>
     <message>
         <source>Desktop locked</source>
-        <translation>Escriptori bloquejat</translation>
+        <translation>S&apos;ha blocat l&apos;escriptori</translation>
     </message>
     <message>
         <source>Message from teacher</source>
@@ -249,35 +249,35 @@ Voleu crear un aula ara?</translation>
     <name>ClientAction</name>
     <message>
         <source>Are you sure want logout all users on all visible computers ?</source>
-        <translation>Esteu segur de que voleu desconnectar als usuaris dels ordinadors visibles?</translation>
+        <translation>Esteu segur que voleu desconnectar els usuaris dels ordinadors visibles?</translation>
     </message>
     <message>
         <source>Are you sure want logout all users on all selected computers ?</source>
-        <translation>Esteu segur de que voleu desconnectar als usuaris dels ordinadors seleccionats?</translation>
+        <translation>Esteu segur que voleu desconnectar els usuaris dels ordinadors seleccionats?</translation>
     </message>
     <message>
         <source>Logout user</source>
-        <translation>Desconnectar usuari</translation>
+        <translation>Desconnecta l&apos;usuari</translation>
     </message>
     <message>
         <source>Are you sure want to reboot all visible computers?</source>
-        <translation>Esteu segur de que voleu reiniciar els ordinadors visibles?</translation>
+        <translation>Esteu segur que voleu reiniciar els ordinadors visibles?</translation>
     </message>
     <message>
         <source>Are you sure want to reboot all selected computers?</source>
-        <translation>Esteu segur de que voleu reiniciar els ordinadors visibles?</translation>
+        <translation>Esteu segur que voleu reiniciar els ordinadors seleccionats?</translation>
     </message>
     <message>
         <source>Reboot computers</source>
-        <translation>Reiniciar ordinadors</translation>
+        <translation>Reinicia els ordinadors</translation>
     </message>
     <message>
         <source>Are you sure want to power down all visible computers?</source>
-        <translation>Esteu segur de que voleu apagar els ordinadors visibles?</translation>
+        <translation>Esteu segur que voleu apagar els ordinadors visibles?</translation>
     </message>
     <message>
         <source>Are you sure want to power down all selected computers?</source>
-        <translation>Esteu segur de que voleu apagar els ordinadors seleccionats?</translation>
+        <translation>Esteu segur que voleu apagar els ordinadors seleccionats?</translation>
     </message>
 </context>
 <context>
@@ -300,7 +300,7 @@ Voleu crear un aula ara?</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Optional nickname of the host which is displayed in iTALC.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Álies opcional de l&apos;equip que es mostrarà en iTALC.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Àlies opcional de l&apos;equip que es mostrarà a l&apos;iTALC.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>MAC address</source>
@@ -340,22 +340,22 @@ Voleu crear un aula ara?</translation>
     </message>
     <message>
         <source>Invalid MAC address</source>
-        <translation>Adreça MAC no vàlida</translation>
+        <translation>Adreça MAC incorrecta</translation>
     </message>
     <message>
         <source>You specified an invalid MAC address. Either leave the field blank or enter a valid MAC address (use &quot;:&quot; as separator!).</source>
-        <translation>Heu especificat una adreça MAC no vàlida. Deixeu el camp en blanc o introduïu una adreça MAC vàlida (utilitzeu &quot;:&quot; com separador!).</translation>
+        <translation>Heu especificat una adreça MAC incorrecta. Deixeu el camp en blanc o introduïu una adreça MAC vàlida (utilitzeu &quot;:&quot; com separador!).</translation>
     </message>
 </context>
 <context>
     <name>Config</name>
     <message>
         <source>Interval between updates</source>
-        <translation>Intèrval entre actualitzacions</translation>
+        <translation>Interval entre actualitzacions</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Here you can set the interval between updates of clients. Higher values result in lower network-traffic and lower CPU-usage on this computer.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Aquí podeu definir l&apos;intèrval entre actualitzacions dels equips. Valors més alts generen menys trafic a la xarxa i un consum menor de CPU en aquest ordinador.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Aquí podeu definir l&apos;interval entre actualitzacions dels equips. Un valor més alt genera menys trànsit a la xarxa i un consum menor de CPU en aquest ordinador.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source> seconds</source>
@@ -367,27 +367,27 @@ Voleu crear un aula ara?</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Do not show balloon-tooltips for toolbar-buttons&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;No mostrar els globus d&apos;ajuda dels botons de la barra d&apos;eines&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;No mostra els globus d&apos;ajuda dels botons de la barra d&apos;eines&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Check this option if you&apos;re annoyed by the balloon-tooltips appearing when moving mouse-cursor over toolbar-buttons.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Marqueu aquesta opció si us molesta l&apos;aparició dels globus d&apos;ajuda al moure el ratolí sobre els botons de la barra d&apos;eines.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Marqueu aquesta opció si us molesta l&apos;aparició dels globus d&apos;ajuda en moure el ratolí sobre els botons de la barra d&apos;eines.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>No balloon-tooltips</source>
-        <translation>Desactivar globus d&apos;ajuda</translation>
+        <translation>Desactiva els globus d&apos;ajuda</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Do not show texts on toolbar-buttons&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Ocultar text en els botons de la barra d&apos;eines&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Oculta el text en els botons de la barra d&apos;eines&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>No texts on toolbar-buttons</source>
-        <translation>Desactivar text en botons</translation>
+        <translation>Desactiva el text en els botons</translation>
     </message>
     <message>
         <source>Language:</source>
-        <translation>Idioma:</translation>
+        <translation>Llengua:</translation>
     </message>
     <message>
         <source>System default</source>
@@ -487,7 +487,7 @@ Voleu crear un aula ara?</translation>
     </message>
     <message>
         <source>Your role (needs according keys!)</source>
-        <translation>El seu rol (requereix les claus adients!)</translation>
+        <translation>El vostre rol (requereix les claus adients!)</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -497,7 +497,7 @@ p, li { white-space: pre-wrap; }
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Aquí podeu seleccionar el vostre rol. Canvieu-lo únicament si sabeu que esteu fent. En altre cas no podreu connectar a cap equip fins que recupereu el rol anterior.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Aquí podeu seleccionar el vostre rol. Canvieu-lo únicament si sabeu el que esteu fent. D&apos;altra manera no podreu connectar amb cap equip fins que recupereu el rol anterior.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Teacher</source>
@@ -513,11 +513,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Other</source>
-        <translation>Altre</translation>
+        <translation>Altres</translation>
     </message>
     <message>
         <source>Double click action for client window</source>
-        <translation>Acció del doble clic en miniatura d&apos;equip</translation>
+        <translation>Acció del doble clic en la miniatura d&apos;equip</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -527,7 +527,7 @@ p, li { white-space: pre-wrap; }
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Aquí podeu configurar que ocòrre al fer doble clic sobre la miniatura d&apos;un equip.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Aquí podeu configurar el que passa quan feu doble clic sobre la miniatura d&apos;un equip.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Remote control</source>
