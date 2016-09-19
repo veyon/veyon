@@ -382,7 +382,11 @@ void ItalcVncConnection::stop( bool deleteAfterFinished )
 		m_updateIntervalSleeper.wakeAll();
 
 		// terminate thread in background after timeout
+#if QT_VERSION < 0x050400
+		QTimer::singleShot( ThreadTerminationTimeout, this, SLOT(terminate()) );
+#else
 		QTimer::singleShot( ThreadTerminationTimeout, this, &ItalcVncConnection::terminate );
+#endif
 	}
 	else if( deleteAfterFinished )
 	{
