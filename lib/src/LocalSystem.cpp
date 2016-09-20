@@ -33,6 +33,7 @@
 
 #ifdef ITALC_BUILD_WIN32
 
+#define UNICODE
 #include <QtCore/QLibrary>
 #include <QtGui/QGuiApplication>
 #include <qpa/qplatformnativeinterface.h>
@@ -49,19 +50,19 @@ namespace LocalSystem
 {
 
 // taken from qt-win-opensource-src-4.2.2/src/corelib/io/qsettings.cpp
-QString windowsConfigPath( int _type )
+QString windowsConfigPath( int type )
 {
 	QString result;
 
 	QLibrary library( "shell32" );
-	typedef BOOL( WINAPI* GetSpecialFolderPath )( HWND, char *, int, BOOL );
+	typedef BOOL( WINAPI* GetSpecialFolderPath )( HWND, LPTSTR, int, BOOL );
 	GetSpecialFolderPath SHGetSpecialFolderPath = (GetSpecialFolderPath)
-				library.resolve( "SHGetSpecialFolderPathA" );
+				library.resolve( "SHGetSpecialFolderPathW" );
 	if( SHGetSpecialFolderPath )
 	{
-		char path[MAX_PATH];
-		SHGetSpecialFolderPath( 0, path, _type, FALSE );
-		result = QString::fromLocal8Bit( path );
+		wchar_t path[MAX_PATH];
+		SHGetSpecialFolderPath( 0, path, type, FALSE );
+		result = QString::fromWCharArray( path );
 	}
 	return( result );
 }
@@ -133,12 +134,12 @@ Desktop Desktop::activeDesktop()
 #ifdef ITALC_BUILD_WIN32
 	HDESK desktopHandle = OpenInputDesktop( 0, TRUE, DESKTOP_READOBJECTS );
 
-	char dname[256];
+	wchar_t dname[256];
 	dname[0] = 0;
 	if( GetUserObjectInformation( desktopHandle, UOI_NAME, dname,
-									sizeof( dname ), NULL ) )
+									sizeof( dname ) / sizeof( wchar_t ), NULL ) )
 	{
-		deskName = QString( "winsta0\\%1" ).arg( dname );
+		deskName = QString( "winsta0\\%1" ).arg( QString::fromWCharArray( dname ) );
 	}
 	CloseDesktop( desktopHandle );
 #endif
@@ -165,7 +166,7 @@ User::User( const QString &name, const QString &dom, const QString &fullname ) :
 #ifdef ITALC_BUILD_WIN32
 	// try to look up the user -> domain
 	DWORD sidLen = 256;
-	char domainName[MAX_PATH];
+	wchar_t domainName[MAX_PATH];
 	domainName[0] = 0;
 	char *sid = new char[sidLen];
 	DWORD domainLen = MAX_PATH;
@@ -173,7 +174,7 @@ User::User( const QString &name, const QString &dom, const QString &fullname ) :
 	m_userToken = sid;
 
 	if( !LookupAccountName( NULL,		// system name
-							m_name.toLatin1().constData(),
+							(LPCWSTR) m_name.unicode(),
 							m_userToken,		// SID
 							&sidLen,
 							domainName,
@@ -186,13 +187,14 @@ User::User( const QString &name, const QString &dom, const QString &fullname ) :
 
 	if( m_domain.isEmpty() )
 	{
-		CHAR computerName[MAX_PATH];
+		wchar_t computerName[MAX_PATH];
 		DWORD size = MAX_PATH;
 		GetComputerName( computerName, &size );
 
-		if( QString( domainName ) != computerName )
+		if( QString::fromWCharArray( domainName ) !=
+			QString::fromWCharArray( computerName ) )
 		{
-			m_domain = domainName;
+			m_domain = QString::fromWCharArray( domainName );
 		}
 	}
 
@@ -271,7 +273,7 @@ static QString querySessionInformation( DWORD sessionId,
 					&pBuffer,
 					&dwBufferLen ) )
 	{
-		result = pBuffer;
+		result = QString::fromWCharArray( pBuffer );
 	}
 	WTSFreeMemory( pBuffer );
 
@@ -296,11 +298,11 @@ User User::loggedOnUser()
 	// check whether we just got the name of the local computer
 	if( !domainName.isEmpty() )
 	{
-		CHAR computerName[MAX_PATH];
+		wchar_t computerName[MAX_PATH];
 		DWORD size = MAX_PATH;
 		GetComputerName( computerName, &size );
 
-		if( domainName == computerName )
+		if( domainName == QString::fromWCharArray( computerName ) )
 		{
 			// reset domain name as storing the local computer's name
 			// doesn't help here
@@ -361,11 +363,11 @@ QString User::homePath() const
 	if( OpenProcessToken( userProcess.processHandle(),
 									MAXIMUM_ALLOWED, &hToken ) )
 	{
-		CHAR userProfile[MAX_PATH];
+		wchar_t userProfile[MAX_PATH];
 		DWORD size = MAX_PATH;
 		if( GetUserProfileDirectory( hToken, userProfile, &size ) )
 		{
-			homePath = userProfile;
+			homePath = QString::fromWCharArray( userProfile );
 			CloseHandle( hToken );
 		}
 		else
@@ -403,25 +405,26 @@ void User::lookupNameAndDomain()
 		return;
 	}
 
-	char * accName = new char[accNameLen];
-	char * domainName = new char[domainNameLen];
+	wchar_t* accName = new wchar_t[accNameLen];
+	wchar_t* domainName = new wchar_t[domainNameLen];
 	LookupAccountSid( NULL, userToken(), accName, &accNameLen,
 						domainName, &domainNameLen, &snu );
 
 	if( m_name.isEmpty() )
 	{
-		m_name = accName;
+		m_name = QString::fromWCharArray( accName );
 	}
 
 	if( m_domain.isEmpty() )
 	{
-		CHAR computerName[MAX_PATH];
+		wchar_t computerName[MAX_PATH];
 		DWORD size = MAX_PATH;
 		GetComputerName( computerName, &size );
 
-		if( QString( domainName ) != computerName )
+		if( QString::fromWCharArray( domainName ) !=
+			QString::fromWCharArray( computerName ) )
 		{
-			m_domain = domainName;
+			m_domain = QString::fromWCharArray( domainName );
 		}
 	}
 
@@ -457,43 +460,20 @@ void User::lookupFullName()
 	lookupNameAndDomain();
 
 #ifdef ITALC_BUILD_WIN32
-	char * accName = qstrdup( m_name.toLatin1().constData() );
-	char * domainName = qstrdup( m_domain.toLatin1().constData() );
-
 	// try to retrieve user's full name from domain
-	WCHAR wszDomain[256];
-	MultiByteToWideChar( CP_ACP, 0, domainName,
-			strlen( domainName ) + 1, wszDomain, sizeof( wszDomain ) /
-											sizeof( wszDomain[0] ) );
-	WCHAR wszUser[256];
-	MultiByteToWideChar( CP_ACP, 0, accName,
-			strlen( accName ) + 1, wszUser, sizeof( wszUser ) /
-											sizeof( wszUser[0] ) );
 
 	PBYTE dc = NULL;	// domain controller
-	if( NetGetDCName( NULL, wszDomain, &dc ) != NERR_Success )
+	if( NetGetDCName( NULL, (LPWSTR) m_domain.unicode(), &dc ) != NERR_Success )
 	{
 		dc = NULL;
 	}
 
 	LPUSER_INFO_2 pBuf = NULL;
-	NET_API_STATUS nStatus = NetUserGetInfo( (LPWSTR)dc, wszUser, 2,
+	NET_API_STATUS nStatus = NetUserGetInfo( (LPWSTR)dc, (LPWSTR) m_name.unicode(), 2,
 												(LPBYTE *) &pBuf );
 	if( nStatus == NERR_Success && pBuf != NULL )
 	{
-		int len = WideCharToMultiByte( CP_ACP, 0, pBuf->usri2_full_name,
-											-1, NULL, 0, NULL, NULL );
-		if( len > 0 )
-		{
-			char *mbstr = new char[len];
-			len = WideCharToMultiByte( CP_ACP, 0, pBuf->usri2_full_name,
-										-1, mbstr, len, NULL, NULL );
-			if( strlen( mbstr ) >= 1 )
-			{
-				m_fullName = mbstr;
-			}
-			delete[] mbstr;
-		}
+		m_fullName = QString::fromWCharArray( pBuf->usri2_full_name );
 	}
 
 	if( pBuf != NULL )
@@ -504,10 +484,6 @@ void User::lookupFullName()
 	{
 		NetApiBufferFree( dc );
 	}
-
-	delete[] accName;
-	delete[] domainName;
-
 #else
 
 #ifdef ITALC_HAVE_PWD_H
@@ -584,7 +560,7 @@ static DWORD findProcessId_WTS( const QString &processName, DWORD sessionId,
 			continue;
 		}
 		if( processName.isEmpty() ||
-				processName.compare( pProcessInfo[proc].pProcessName,
+			processName.compare( QString::fromWCharArray( pProcessInfo[proc].pProcessName ),
 												Qt::CaseInsensitive	) == 0 )
 		{
 			if( (int) sessionId < 0 ||
@@ -637,7 +613,7 @@ static DWORD findProcessId_TH32( const QString &processName, DWORD sessionId,
 	do
 	{
 		if( processName.isEmpty() ||
-				processName.compare( procEntry.szExeFile,
+			processName.compare( QString::fromWCharArray( procEntry.szExeFile ),
 									Qt::CaseInsensitive ) == 0 )
 		{
 			if( processOwner == NULL )
@@ -742,8 +718,8 @@ Process::Handle Process::runAsUser( const QString &proc,
 									const QString &desktop )
 {
 #ifdef ITALC_BUILD_WIN32
-	enablePrivilege( SE_ASSIGNPRIMARYTOKEN_NAME, true );
-	enablePrivilege( SE_INCREASE_QUOTA_NAME, true );
+	enablePrivilege( QString::fromWCharArray( SE_ASSIGNPRIMARYTOKEN_NAME ), true );
+	enablePrivilege( QString::fromWCharArray( SE_INCREASE_QUOTA_NAME ), true );
 	HANDLE hToken = NULL;
 
 	if( !OpenProcessToken( processHandle(), MAXIMUM_ALLOWED, &hToken ) )
@@ -764,7 +740,7 @@ Process::Handle Process::runAsUser( const QString &proc,
 	si.cb = sizeof( STARTUPINFO );
 	if( !desktop.isEmpty() )
 	{
-		si.lpDesktop = (CHAR *) qstrdup( desktop.toLatin1().constData() );
+		si.lpDesktop = (LPWSTR) desktop.unicode();
 	}
 	HANDLE hNewToken = NULL;
 
@@ -774,7 +750,7 @@ Process::Handle Process::runAsUser( const QString &proc,
 	if( !CreateProcessAsUser(
 				hNewToken,			// client's access token
 				NULL,			  // file to execute
-				(CHAR *) proc.toUtf8().constData(),	 // command line
+				(LPWSTR) proc.unicode(),	 // command line
 				NULL,			  // pointer to process SECURITY_ATTRIBUTES
 				NULL,			  // pointer to thread SECURITY_ATTRIBUTES
 				FALSE,			 // handles are not inheritable
@@ -844,10 +820,10 @@ bool Process::runAsAdmin( const QString &appPath, const QString &parameters )
 {
 #ifdef ITALC_BUILD_WIN32
 	SHELLEXECUTEINFO sei = { sizeof(sei) };
-	sei.lpVerb = "runas";
-	sei.lpFile = appPath.toUtf8().constData();
+	sei.lpVerb = L"runas";
+	sei.lpFile = (LPWSTR) appPath.unicode();
 	sei.hwnd = GetForegroundWindow();
-	sei.lpParameters = parameters.toUtf8().constData();
+	sei.lpParameters = (LPWSTR) parameters.unicode();
 	sei.nShow = SW_NORMAL;
 
 	if( !ShellExecuteEx( &sei ) )
@@ -1136,7 +1112,7 @@ QString Path::systemConfigDataPath()
 
 
 #ifdef ITALC_BUILD_WIN32
-BOOL enablePrivilege( LPCTSTR lpszPrivilegeName, BOOL bEnable )
+BOOL enablePrivilege( const QString& privilegeName, bool enable )
 {
 	HANDLE			hToken;
 	TOKEN_PRIVILEGES	tp;
@@ -1149,14 +1125,14 @@ BOOL enablePrivilege( LPCTSTR lpszPrivilegeName, BOOL bEnable )
 		return FALSE;
 	}
 
-	if( !LookupPrivilegeValue( NULL, lpszPrivilegeName, &luid ) )
+	if( !LookupPrivilegeValue( NULL, (LPWSTR) privilegeName.unicode(), &luid ) )
 	{
 		return FALSE;
 	}
 
 	tp.PrivilegeCount		   = 1;
 	tp.Privileges[0].Luid	   = luid;
-	tp.Privileges[0].Attributes = bEnable ? SE_PRIVILEGE_ENABLED : 0;
+	tp.Privileges[0].Attributes = enable ? SE_PRIVILEGE_ENABLED : 0;
 
 	ret = AdjustTokenPrivileges( hToken, FALSE, &tp, 0, NULL, NULL );
 
