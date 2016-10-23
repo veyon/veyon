@@ -1,7 +1,7 @@
 /*
  * ItalcCore.cpp - implementation of iTALC Core
  *
- * Copyright (c) 2006-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -128,6 +128,21 @@ static void killWisPtis()
 }
 
 
+
+void ItalcCore::setupApplicationParameters()
+{
+	QCoreApplication::setOrganizationName( "iTALC Solutions" );
+	QCoreApplication::setOrganizationDomain( "italcsolutions.org" );
+	QCoreApplication::setApplicationName( "iTALC" );
+
+	if( ItalcConfiguration().isHighDPIScalingEnabled() )
+	{
+		QApplication::setAttribute( Qt::AA_EnableHighDpiScaling );
+	}
+}
+
+
+
 bool ItalcCore::init()
 {
 	if( config )
@@ -139,9 +154,7 @@ bool ItalcCore::init()
 
 	lzo_init();
 
-	QCoreApplication::setOrganizationName( "iTALC Solutions" );
-	QCoreApplication::setOrganizationDomain( "italcsolutions.org" );
-	QCoreApplication::setApplicationName( "iTALC" );
+	setupApplicationParameters();
 
 	initResources();
 
