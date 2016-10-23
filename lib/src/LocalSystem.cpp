@@ -765,8 +765,6 @@ Process::Handle Process::runAsUser( const QString &proc,
 		return NULL;
 	}
 
-	delete[] si.lpDesktop;
-
 	CloseHandle( hNewToken );
 	RevertToSelf();
 	CloseHandle( hToken );
