@@ -289,17 +289,17 @@ void ToolButton::updateSize()
 	f.setPointSizeF( 8 );
 	setFont( f );
 
+	QFontMetrics metrics( f );
+
+	int minWidth = ( ( ( qMax( metrics.width( m_label ), metrics.width( m_altLabel ) ) + MARGIN ) / 8 + 1 ) * 8 );
+
 	if( s_iconOnlyMode )
 	{
 		setFixedSize( 52, 48 );
 	}
-	else if( m_label.size() > 14 || m_altLabel.size() > 14 )
-	{
-		setFixedSize( 96, 48 );
-	}
 	else
 	{
-		setFixedSize( 88, 48 );
+		setFixedSize( qMax( minWidth, 88 ), 48 );
 	}
 }
 
