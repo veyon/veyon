@@ -19,6 +19,7 @@ Cross compiling iTALC for Windows on Linux
   * tofrodos
   * g++-mingw-w64
   * qt5base-mingw-w64
+  * qt5tools-mingw-w64
   * libz-mingw-w64-dev
   * libjpeg-mingw-w64
   * libpng-mingw-w64
