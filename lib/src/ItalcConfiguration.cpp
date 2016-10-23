@@ -2,7 +2,7 @@
  * ItalcConfiguration.cpp - a Configuration object storing system wide
  *                          configuration values
  *
- * Copyright (c) 2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2010-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -62,6 +62,8 @@ ItalcConfiguration::ItalcConfiguration( const ItalcConfiguration &ref ) :
 ItalcConfiguration ItalcConfiguration::defaultConfiguration()
 {
 	ItalcConfiguration c( Configuration::Store::NoBackend );
+
+	c.setHighDPIScalingEnabled( false );
 
 	c.setTrayIconHidden( false );
 	c.setServiceAutostart( true );

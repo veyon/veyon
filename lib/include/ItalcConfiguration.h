@@ -2,7 +2,7 @@
  * ItalcConfiguration.h - a Configuration object storing system wide
  *                        configuration values
  *
- * Copyright (c) 2010-2011 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2010-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -45,6 +45,8 @@ public:
 
 
 #define FOREACH_ITALC_CONFIG_PROPERTY(OP)												\
+		/* UI */																		\
+		OP( ItalcConfiguration, ItalcCore::config, BOOL, isHighDPIScalingEnabled, setHighDPIScalingEnabled, "EnableHighDPIScaling", "UI" );			\
 		/* iTALC Service */																\
 		OP( ItalcConfiguration, ItalcCore::config, BOOL, isTrayIconHidden, setTrayIconHidden, "HideTrayIcon", "Service" );			\
 		OP( ItalcConfiguration, ItalcCore::config, BOOL, lockWithDesktopSwitching, setLockWithDesktopSwitching, "LockWithDesktopSwitching", "Service" );			\
@@ -90,6 +92,7 @@ public:
 	// unluckily we have to declare slots manually as Qt's MOC doesn't do any
 	// macro expansion :-(
 public slots:
+	void setHighDPIScalingEnabled( bool );
 	void setTrayIconHidden( bool );
 	void setLockWithDesktopSwitching( bool );
 	void setServiceAutostart( bool );
