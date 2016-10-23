@@ -47,19 +47,19 @@ bool MessageBoxSlave::handleMessage( const Ipc::Msg &m )
 	{
 		if( m.arg( ItalcSlaveManager::MessageBoxSlave::Icon ).toInt() == QMessageBox::Warning )
 		{
-			QMessageBox::warning( Q_NULLPTR,
+			QMessageBox::warning( nullptr,
 								  m.arg( ItalcSlaveManager::MessageBoxSlave::Title ),
 								  m.arg( ItalcSlaveManager::MessageBoxSlave::Text ) );
 		}
 		else if( m.arg( ItalcSlaveManager::MessageBoxSlave::Icon ).toInt() == QMessageBox::Critical )
 		{
-			QMessageBox::critical( Q_NULLPTR,
+			QMessageBox::critical( nullptr,
 								   m.arg( ItalcSlaveManager::MessageBoxSlave::Title ),
 								   m.arg( ItalcSlaveManager::MessageBoxSlave::Text ) );
 		}
 		else
 		{
-			QMessageBox::information( Q_NULLPTR,
+			QMessageBox::information( nullptr,
 									  m.arg( ItalcSlaveManager::MessageBoxSlave::Title ),
 									  m.arg( ItalcSlaveManager::MessageBoxSlave::Text ) );
 		}
