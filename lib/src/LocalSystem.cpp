@@ -174,7 +174,7 @@ User::User( const QString &name, const QString &dom, const QString &fullname ) :
 	m_userToken = sid;
 
 	if( !LookupAccountName( NULL,		// system name
-							(LPCWSTR) m_name.unicode(),
+							(LPCWSTR) m_name.utf16(),
 							m_userToken,		// SID
 							&sidLen,
 							domainName,
@@ -740,7 +740,7 @@ Process::Handle Process::runAsUser( const QString &proc,
 	si.cb = sizeof( STARTUPINFO );
 	if( !desktop.isEmpty() )
 	{
-		si.lpDesktop = (LPWSTR) desktop.unicode();
+		si.lpDesktop = (LPWSTR) desktop.utf16();
 	}
 	HANDLE hNewToken = NULL;
 
@@ -750,7 +750,7 @@ Process::Handle Process::runAsUser( const QString &proc,
 	if( !CreateProcessAsUser(
 				hNewToken,			// client's access token
 				NULL,			  // file to execute
-				(LPWSTR) proc.unicode(),	 // command line
+				(LPWSTR) proc.utf16(),	 // command line
 				NULL,			  // pointer to process SECURITY_ATTRIBUTES
 				NULL,			  // pointer to thread SECURITY_ATTRIBUTES
 				FALSE,			 // handles are not inheritable
@@ -819,9 +819,9 @@ bool Process::runAsAdmin( const QString &appPath, const QString &parameters )
 #ifdef ITALC_BUILD_WIN32
 	SHELLEXECUTEINFO sei = { sizeof(sei) };
 	sei.lpVerb = L"runas";
-	sei.lpFile = (LPWSTR) appPath.unicode();
+	sei.lpFile = (LPWSTR) appPath.utf16();
 	sei.hwnd = GetForegroundWindow();
-	sei.lpParameters = (LPWSTR) parameters.unicode();
+	sei.lpParameters = (LPWSTR) parameters.utf16();
 	sei.nShow = SW_NORMAL;
 
 	if( !ShellExecuteEx( &sei ) )
@@ -1123,7 +1123,7 @@ BOOL enablePrivilege( const QString& privilegeName, bool enable )
 		return FALSE;
 	}
 
-	if( !LookupPrivilegeValue( NULL, (LPWSTR) privilegeName.unicode(), &luid ) )
+	if( !LookupPrivilegeValue( NULL, (LPWSTR) privilegeName.utf16(), &luid ) )
 	{
 		return FALSE;
 	}
