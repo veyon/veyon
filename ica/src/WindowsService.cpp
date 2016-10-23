@@ -1,7 +1,7 @@
 /*
  * WindowsService.cpp - implementation of WindowsService-class
  *
- * Copyright (c) 2006-2011 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -207,7 +207,6 @@ WindowsService *WindowsService::s_this = NULL;
 SERVICE_STATUS WindowsService::s_status;
 SERVICE_STATUS_HANDLE WindowsService::s_statusHandle;
 HANDLE WindowsService::s_stopServiceEvent = (DWORD) NULL;
-QAtomicInt WindowsService::s_sessionChangeEvent = 0;
 
 
 
@@ -663,20 +662,6 @@ DWORD WINAPI WindowsService::serviceCtrl( DWORD _ctrlcode, DWORD dwEventType,
 			// Service control manager just wants to know our state
 			break;
 
-		case SERVICE_CONTROL_SESSIONCHANGE:
-			switch( dwEventType )
-			{
-				case WTS_SESSION_LOGOFF:
-					ilog( Info, "Session change event: WTS_SESSION_LOGOFF" );
-					s_sessionChangeEvent = 1;
-					break;
-				case WTS_SESSION_LOGON:
-					ilog( Info, "Session change event: WTS_SESSION_LOGON" );
-					//s_sessionChangeEvent = 1;	// no need to restart server upon logon
-					break;
-			}
-			break;
-
 		default:
 			// Control code not recognised
 			break;
@@ -755,21 +740,8 @@ void WindowsService::monitorSessions()
 
 	while( WaitForSingleObject( s_stopServiceEvent, 1000 ) == WAIT_TIMEOUT )
 	{
-		bool sessionChanged = s_sessionChangeEvent.testAndSetOrdered( 1, 0 );
-		// ignore session change events on Windows Vista and Windows 7 as
-		// monitoring session IDs is reliable enough there and prevents us
-		// from uneccessary server restarts
-		if( sessionChanged &&
-			( QSysInfo::windowsVersion() == QSysInfo::WV_VISTA ||
-				QSysInfo::windowsVersion() == QSysInfo::WV_WINDOWS7 ) )
-		{
-			ilog( Info, "Ignoring session change event as the operating system "
-						"is recent enough" );
-			sessionChanged = false;
-		}
-
 		const DWORD sessionId = WTSGetActiveConsoleSessionId();
-		if( oldSessionId != sessionId || sessionChanged )
+		if( oldSessionId != sessionId )
 		{
 			ilogf( Info, "Session ID changed from %d to %d",
 									oldSessionId, sessionId );
@@ -783,7 +755,7 @@ void WindowsService::monitorSessions()
 				continue;
 			}
 
-			if( oldSessionId != SESSION_INVALID || sessionChanged )
+			if( oldSessionId != SESSION_INVALID )
 			{
 				// workaround for situations where service is stopped
 				// while it is still starting up
@@ -797,7 +769,7 @@ void WindowsService::monitorSessions()
 
 				Sleep( 5000 );
 			}
-			if( sessionId != SESSION_INVALID || sessionChanged )
+			if( sessionId != SESSION_INVALID )
 			{
 				italcProcess.start( sessionId );
 				lastServiceStart.restart();
