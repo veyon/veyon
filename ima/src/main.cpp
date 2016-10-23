@@ -38,7 +38,6 @@
 #include "RemoteControlWidget.h"
 
 
-
 QSplashScreen * splashScreen = NULL;
 
 #ifndef ITALC3
@@ -49,6 +48,8 @@ QString __default_domain;
 // good old main-function... initializes qt-app and starts iTALC
 int main( int argc, char * * argv )
 {
+	ItalcCore::setupApplicationParameters();
+
 	QApplication app( argc, argv );
 
 	ItalcCore::init();
