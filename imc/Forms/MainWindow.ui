@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>715</width>
-    <height>565</height>
+    <width>1305</width>
+    <height>862</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -129,10 +129,26 @@
        <number>0</number>
       </property>
       <widget class="QWidget" name="generalSettingsPage">
-       <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,0,1">
+       <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,0,0,1">
         <property name="spacing">
          <number>10</number>
         </property>
+        <item>
+         <widget class="QGroupBox" name="groupBox_11">
+          <property name="title">
+           <string>User interface</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_13">
+           <item row="0" column="0" colspan="2">
+            <widget class="QCheckBox" name="isHighDPIScalingEnabled">
+             <property name="text">
+              <string>Enable high DPI scaling</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
         <item>
          <widget class="QGroupBox" name="groupBox_3">
           <property name="title">
@@ -1397,8 +1413,8 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>715</width>
-     <height>25</height>
+     <width>1305</width>
+     <height>35</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_File">
@@ -1471,8 +1487,8 @@ Note: if the bug involves both a master and client computer, attach bug report a
   </action>
  </widget>
  <resources>
-  <include location="../imc.qrc"/>
   <include location="../../lib/ItalcCore.qrc"/>
+  <include location="../imc.qrc"/>
  </resources>
  <connections>
   <connection>
