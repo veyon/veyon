@@ -1,7 +1,7 @@
 /*
  * ScreenLockSlaveLauncher.cpp - a SlaveLauncher for the ScreenLockSlave
  *
- * Copyright (c) 2010-2011 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2010-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  * Copyright (c) 2010 Univention GmbH
  *
  * This file is part of iTALC - http://italc.sourceforge.net
@@ -23,6 +23,7 @@
  *
  */
 
+#define UNICODE
 #include <QtCore/QStringList>
 
 #include "ScreenLockSlaveLauncher.h"
@@ -62,9 +63,8 @@ void ScreenLockSlaveLauncher::start( const QStringList &arguments )
 	m_origThreadDesktop = GetThreadDesktop( GetCurrentThreadId() );
 	m_origInputDesktop = OpenInputDesktop( 0, FALSE, DESKTOP_SWITCHDESKTOP );
 
-	char *desktopName = qstrdup( LocalSystem::Desktop::screenLockDesktop().
-												name().toUtf8().constData() );
-	m_newDesktop = CreateDesktop( desktopName, NULL, NULL, 0, GENERIC_ALL, NULL );
+	const QString desktopName = LocalSystem::Desktop::screenLockDesktop().name();
+	m_newDesktop = CreateDesktop( (LPCWSTR) desktopName.utf16(), NULL, NULL, 0, GENERIC_ALL, NULL );
 
 	LocalSystem::User user = LocalSystem::User::loggedOnUser();
 	LocalSystem::Process proc(
@@ -73,8 +73,6 @@ void ScreenLockSlaveLauncher::start( const QStringList &arguments )
 	m_lockProcess =
 		proc.runAsUser( applicationFilePath() + " " + arguments.join( " " ),
 							LocalSystem::Desktop::screenLockDesktop().name() );
-
-	delete[] desktopName;
 
 	// sleep a bit so switch to desktop with loaded screen locker runs smoothly
 	Sleep( 2000 );
