@@ -1,7 +1,7 @@
 /*
  * DemoClient.cpp - client widget for demo mode
  *
- * Copyright (c) 2006-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -43,12 +43,17 @@ DemoClient::DemoClient( const QString &host, bool fullscreen ) :
 	m_toplevel->setWindowTitle( tr( "iTALC Demo" ) );
 	m_toplevel->setWindowIcon( QPixmap( ":/resources/display.png" ) );
 	m_toplevel->setAttribute( Qt::WA_DeleteOnClose, false );
-	m_toplevel->setWindowFlags( Qt::Window |
+
+	if( fullscreen == false )
+	{
+		m_toplevel->setWindowFlags( Qt::Window |
 								Qt::CustomizeWindowHint |
 								Qt::WindowTitleHint |
 								Qt::WindowMinMaxButtonsHint );
-	m_toplevel->resize( QApplication::desktop()->
+		m_toplevel->resize( QApplication::desktop()->
 					availableGeometry( m_toplevel ).size() - QSize( 10, 30 ) );
+
+	}
 
 	// initialize extended protocol handlers
 	RfbLZORLE();
