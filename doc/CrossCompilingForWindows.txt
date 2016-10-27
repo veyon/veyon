@@ -24,6 +24,7 @@ Cross compiling iTALC for Windows on Linux
   * libjpeg-mingw-w64
   * libpng-mingw-w64
   * openssl-mingw-w64
+  * openldap-mingw-w64
   * default-jdk
 
 - Change into the iTALC source directory and type
