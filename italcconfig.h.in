@@ -107,3 +107,16 @@
 #cmakedefine ITALC_HAVE_TLS 1
 
 #cmakedefine ITALC_HAVE_WS2TCPIP_H  1
+
+#cmakedefine LDAP_FOUND
+#cmakedefine SASL2_FOUND
+#cmakedefine HAVE_LDAP_H
+#cmakedefine HAVE_SYS_TIME_H
+#cmakedefine HAVE_LDAP_START_TLS_S
+#cmakedefine HAVE_LDAP_INITIALIZE
+#cmakedefine HAVE_BER_MEMFREE
+#cmakedefine HAVE_LDAP_UNBIND_EXT
+#cmakedefine HAVE_LDAP_EXTENDED_OPERATION
+#cmakedefine HAVE_LDAP_EXTENDED_OPERATION_S
+#cmakedefine HAVE_LDAP_EXTENDED_OPERATION_PROTOTYPE
+#cmakedefine HAVE_LDAP_EXTENDED_OPERATION_S_PROTOTYPE

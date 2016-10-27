@@ -1,0 +1,3 @@
+[submodule "lib/kldap"]
+	path = lib/kldap
+	url = https://github.com/KDE/kldap.git
