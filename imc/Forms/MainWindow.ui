@@ -114,6 +114,11 @@
       </item>
       <item>
        <property name="text">
+        <string>LDAP Configuration</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
         <string>Debugging</string>
        </property>
        <property name="icon">
@@ -1077,6 +1082,322 @@
         </item>
        </layout>
       </widget>
+      <widget class="QWidget" name="ldapSettingsPage">
+       <layout class="QVBoxLayout" name="verticalLayout_13">
+        <item>
+         <widget class="QGroupBox" name="groupBox_12">
+          <property name="title">
+           <string>LDAP base settings</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_15">
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_30">
+             <property name="text">
+              <string>Bind DN</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLineEdit" name="ldapServerHost"/>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="label_31">
+             <property name="text">
+              <string>Bind password</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_27">
+             <property name="text">
+              <string>LDAP server and port</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1" colspan="2">
+            <widget class="QLineEdit" name="ldapBindPassword"/>
+           </item>
+           <item row="0" column="2">
+            <widget class="QSpinBox" name="ldapServerPort">
+             <property name="maximum">
+              <number>65536</number>
+             </property>
+             <property name="value">
+              <number>389</number>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1" colspan="2">
+            <widget class="QLineEdit" name="ldapBindDn"/>
+           </item>
+           <item row="3" column="0">
+            <widget class="QPushButton" name="testLdapBind">
+             <property name="text">
+              <string>Test</string>
+             </property>
+             <property name="icon">
+              <iconset resource="../imc.qrc">
+               <normaloff>:/Resources/task-accepted.png</normaloff>:/Resources/task-accepted.png</iconset>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="groupBox_13">
+          <property name="title">
+           <string>LDAP environment settings</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_14">
+           <item row="6" column="0">
+            <widget class="QLabel" name="label_33">
+             <property name="text">
+              <string>User login attribute</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1">
+            <widget class="QLineEdit" name="ldapComputerTree">
+             <property name="placeholderText">
+              <string>e.g. OU=Computers</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0">
+            <widget class="QLabel" name="label_29">
+             <property name="text">
+              <string>Computer tree</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="1">
+            <widget class="QLineEdit" name="ldapComputerPoolTree">
+             <property name="placeholderText">
+              <string>e.g. OU=ComputerPools</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="label_16">
+             <property name="text">
+              <string>User tree</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLineEdit" name="ldapBaseDn"/>
+           </item>
+           <item row="10" column="1">
+            <widget class="QLineEdit" name="ldapComputerPoolsFilter">
+             <property name="placeholderText">
+              <string>e.g. objectClass=computerPool</string>
+             </property>
+            </widget>
+           </item>
+           <item row="10" column="0">
+            <widget class="QLabel" name="label_37">
+             <property name="text">
+              <string>LDAP filter for computer pools</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="0">
+            <widget class="QLabel" name="label_32">
+             <property name="text">
+              <string>Computer pool tree</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QLineEdit" name="ldapUserTree">
+             <property name="placeholderText">
+              <string>e.g. OU=Users</string>
+             </property>
+            </widget>
+           </item>
+           <item row="8" column="1">
+            <widget class="QLineEdit" name="ldapUsersFilter">
+             <property name="placeholderText">
+              <string>e.g. objectClass=person</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QRadioButton" name="isDynamicBaseDn">
+             <property name="text">
+              <string>Retrieve base DN via naming context</string>
+             </property>
+             <attribute name="buttonGroup">
+              <string notr="true">baseDnConfigGroup</string>
+             </attribute>
+            </widget>
+           </item>
+           <item row="6" column="1">
+            <widget class="QLineEdit" name="ldapUserLoginAttribute">
+             <property name="placeholderText">
+              <string>e.g. uid or sAMAccountName</string>
+             </property>
+            </widget>
+           </item>
+           <item row="8" column="0">
+            <widget class="QLabel" name="label_34">
+             <property name="text">
+              <string>LDAP filter for users</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1">
+            <widget class="QLineEdit" name="ldapGroupTree">
+             <property name="placeholderText">
+              <string>e.g. OU=Groups</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="label_28">
+             <property name="text">
+              <string>Group tree</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QRadioButton" name="isFixedBaseDn">
+             <property name="text">
+              <string>Fixed base DN</string>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
+             </property>
+             <attribute name="buttonGroup">
+              <string notr="true">baseDnConfigGroup</string>
+             </attribute>
+            </widget>
+           </item>
+           <item row="7" column="0">
+            <widget class="QLabel" name="label_35">
+             <property name="text">
+              <string>Group membership attribute</string>
+             </property>
+            </widget>
+           </item>
+           <item row="9" column="1">
+            <widget class="QLineEdit" name="ldapGroupsFilter">
+             <property name="placeholderText">
+              <string>e.g. objectClass=group</string>
+             </property>
+            </widget>
+           </item>
+           <item row="7" column="1">
+            <widget class="QLineEdit" name="ldapGroupMembershipAttribute">
+             <property name="placeholderText">
+              <string>e.g. memberOf</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QLineEdit" name="ldapNamingContext"/>
+           </item>
+           <item row="9" column="0">
+            <widget class="QLabel" name="label_36">
+             <property name="text">
+              <string>LDAP filter for groups</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="2">
+            <widget class="QPushButton" name="testLdapUsers">
+             <property name="text">
+              <string>Test</string>
+             </property>
+             <property name="icon">
+              <iconset resource="../imc.qrc">
+               <normaloff>:/Resources/task-accepted.png</normaloff>:/Resources/task-accepted.png</iconset>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="2">
+            <widget class="QPushButton" name="testLdapGroups">
+             <property name="text">
+              <string>Test</string>
+             </property>
+             <property name="icon">
+              <iconset resource="../imc.qrc">
+               <normaloff>:/Resources/task-accepted.png</normaloff>:/Resources/task-accepted.png</iconset>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="2">
+            <widget class="QPushButton" name="testLdapComputers">
+             <property name="text">
+              <string>Test</string>
+             </property>
+             <property name="icon">
+              <iconset resource="../imc.qrc">
+               <normaloff>:/Resources/task-accepted.png</normaloff>:/Resources/task-accepted.png</iconset>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="2">
+            <widget class="QPushButton" name="testLdapComputerPoolTree">
+             <property name="text">
+              <string>Test</string>
+             </property>
+             <property name="icon">
+              <iconset resource="../imc.qrc">
+               <normaloff>:/Resources/task-accepted.png</normaloff>:/Resources/task-accepted.png</iconset>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="2">
+            <widget class="QPushButton" name="testLdapUserLoginAttribute">
+             <property name="text">
+              <string>Test</string>
+             </property>
+             <property name="icon">
+              <iconset resource="../imc.qrc">
+               <normaloff>:/Resources/task-accepted.png</normaloff>:/Resources/task-accepted.png</iconset>
+             </property>
+            </widget>
+           </item>
+           <item row="8" column="2">
+            <widget class="QPushButton" name="testLdapUsersFilter">
+             <property name="text">
+              <string>Test</string>
+             </property>
+             <property name="icon">
+              <iconset resource="../imc.qrc">
+               <normaloff>:/Resources/task-accepted.png</normaloff>:/Resources/task-accepted.png</iconset>
+             </property>
+            </widget>
+           </item>
+           <item row="9" column="2">
+            <widget class="QPushButton" name="testLdapGroupsFilter">
+             <property name="text">
+              <string>Test</string>
+             </property>
+             <property name="icon">
+              <iconset resource="../imc.qrc">
+               <normaloff>:/Resources/task-accepted.png</normaloff>:/Resources/task-accepted.png</iconset>
+             </property>
+            </widget>
+           </item>
+           <item row="10" column="2">
+            <widget class="QPushButton" name="testLdapComputerPoolsFilter">
+             <property name="text">
+              <string>Test</string>
+             </property>
+             <property name="icon">
+              <iconset resource="../imc.qrc">
+               <normaloff>:/Resources/task-accepted.png</normaloff>:/Resources/task-accepted.png</iconset>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
       <widget class="QWidget" name="debugPage">
        <layout class="QVBoxLayout" name="verticalLayout_9" stretch="0,1">
         <property name="spacing">
@@ -1635,8 +1956,43 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>isFixedBaseDn</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>ldapBaseDn</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>502</x>
+     <y>383</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>929</x>
+     <y>383</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>isDynamicBaseDn</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>ldapNamingContext</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>502</x>
+     <y>418</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>929</x>
+     <y>418</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>aboutItalc()</slot>
  </slots>
+ <buttongroups>
+  <buttongroup name="baseDnConfigGroup"/>
+ </buttongroups>
 </ui>
