@@ -86,6 +86,22 @@ public:
 		OP( ItalcConfiguration, ItalcCore::config, BOOL, isPermissionRequiredWithLogonAuthentication, setPermissionRequiredWithLogonAuthentication, "PermissionRequiredWithLogonAuthentication", "Authentication" );	\
 		OP( ItalcConfiguration, ItalcCore::config, BOOL, isSameUserConfirmationDisabled, setSameUserConfirmationDisabled, "SameUserConfirmationDisabled", "Authentication" );	\
 		OP( ItalcConfiguration, ItalcCore::config, STRINGLIST, logonGroups, setLogonGroups, "LogonGroups", "Authentication" );	\
+		/* LDAP */															\
+		OP( ItalcConfiguration, ItalcCore::config, STRING, ldapServerHost, setLdapServerHost, "ServerHost", "LDAP" );	\
+		OP( ItalcConfiguration, ItalcCore::config, INT, ldapServerPort, setLdapServerPort, "ServerPort", "LDAP" );	\
+		OP( ItalcConfiguration, ItalcCore::config, STRING, ldapBindDn, setLdapBindDn, "BindDN", "LDAP" );	\
+		OP( ItalcConfiguration, ItalcCore::config, STRING, ldapBindPassword, setLdapBindPassword, "BindPassword", "LDAP" );	\
+		OP( ItalcConfiguration, ItalcCore::config, STRING, ldapBaseDn, setLdapBaseDn, "BaseDN", "LDAP" );	\
+		OP( ItalcConfiguration, ItalcCore::config, STRING, ldapNamingContext, setLdapNamingContext, "NamingContext", "LDAP" );	\
+		OP( ItalcConfiguration, ItalcCore::config, STRING, ldapUserTree, setLdapUserTree, "UserTree", "LDAP" );	\
+		OP( ItalcConfiguration, ItalcCore::config, STRING, ldapGroupTree, setLdapGroupTree, "GroupTree", "LDAP" );	\
+		OP( ItalcConfiguration, ItalcCore::config, STRING, ldapComputerTree, setLdapComputerTree, "ComputerTree", "LDAP" );	\
+		OP( ItalcConfiguration, ItalcCore::config, STRING, ldapComputerPoolTree, setLdapComputerPoolTree, "ComputerPoolTree", "LDAP" );	\
+		OP( ItalcConfiguration, ItalcCore::config, STRING, ldapUserLoginAttribute, setLdapUserLoginAttribute, "UserLoginAttribute", "LDAP" );	\
+		OP( ItalcConfiguration, ItalcCore::config, STRING, ldapGroupMembershipAttribute, setLdapGroupMembershipAttribute, "GroupMembershipAttribute", "LDAP" );	\
+		OP( ItalcConfiguration, ItalcCore::config, STRING, ldapUsersFilter, setLdapUsersFilter, "UsersFilter", "LDAP" );	\
+		OP( ItalcConfiguration, ItalcCore::config, STRING, ldapGroupsFilter, setLdapGroupsFilter, "GroupsFilter", "LDAP" );	\
+		OP( ItalcConfiguration, ItalcCore::config, STRING, ldapComputerPoolsFilter, setLdapComputerPoolsFilter, "ComputerPoolsFilter", "LDAP" );	\
 
 	FOREACH_ITALC_CONFIG_PROPERTY(DECLARE_CONFIG_PROPERTY)
 
@@ -124,6 +140,21 @@ public slots:
 	void setPermissionRequiredWithLogonAuthentication( bool );
 	void setSameUserConfirmationDisabled( bool );
 	void setLogonGroups( const QStringList & );
+	void setLdapServerHost( const QString& );
+	void setLdapServerPort( int );
+	void setLdapBindDn( const QString& );
+	void setLdapBindPassword( const QString& );
+	void setLdapBaseDn( const QString& );
+	void setLdapNamingContext( const QString& );
+	void setLdapUserTree( const QString& );
+	void setLdapGroupTree( const QString& );
+	void setLdapComputerTree( const QString& );
+	void setLdapComputerPoolTree( const QString& );
+	void setLdapUserLoginAttribute( const QString& );
+	void setLdapGroupMembershipAttribute( const QString& );
+	void setLdapUsersFilter( const QString& );
+	void setLdapGroupsFilter( const QString& );
+	void setLdapComputerPoolsFilter( const QString& );
 
 } ;
 
