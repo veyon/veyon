@@ -30,7 +30,7 @@ Requirements:
 - libssl-dev/openssl-devel
 - libpam0g-dev/pam-devel
 
-Of course GCC/G++ and cmake must not be missing...
+Of course GCC/G++, make and cmake must not be missing...
 
 
 Building:
