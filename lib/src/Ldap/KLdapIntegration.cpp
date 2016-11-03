@@ -1,5 +1,5 @@
 /*
- * KLdapIntegration.h - definition of logging category for kldap
+ * KLdapIntegration.cpp - definition of logging category for kldap
  *
  * Copyright (c) 2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
@@ -25,5 +25,3 @@
 #include "ldap_debug.h"
 
 Q_LOGGING_CATEGORY(LDAP_LOG, "ItalcCore::LDAP");
-
-
