@@ -63,6 +63,7 @@ private slots:
 	void saveSettingsToFile();
 	void launchKeyFileAssistant();
 	void testLogonAuthentication();
+	void testLdapBind();
 	void generateBugReportArchive();
 	void aboutItalc();
 

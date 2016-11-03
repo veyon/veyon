@@ -41,6 +41,8 @@ void Win32AclEditor( HWND hwnd );
 #include "Configuration/XmlStore.h"
 #include "Configuration/UiMapping.h"
 
+#include "Ldap/LdapDirectory.h"
+
 #include "AboutDialog.h"
 #include "KeyFileAssistant.h"
 #include "FileSystemBrowser.h"
@@ -100,6 +102,8 @@ MainWindow::MainWindow() :
 	CONNECT_BUTTON_SLOT( launchKeyFileAssistant );
 	CONNECT_BUTTON_SLOT( manageACLs );
 	CONNECT_BUTTON_SLOT( testLogonAuthentication );
+
+	CONNECT_BUTTON_SLOT( testLdapBind );
 
 	CONNECT_BUTTON_SLOT( generateBugReportArchive );
 
@@ -464,6 +468,37 @@ void MainWindow::testLogonAuthentication()
 							tr( "Authentication with provided credentials "
 								"failed!" ) );
 		}
+	}
+}
+
+
+
+void MainWindow::testLdapBind()
+{
+	LdapDirectory ldapDirectory;
+
+	if( ldapDirectory.isConnected() == false )
+	{
+		QMessageBox::critical( this, tr( "LDAP connection failed"),
+							   tr( "Could not connect to the LDAP server. "
+								   "Please check the server parameters. "
+								   "%1" ).arg( ldapDirectory.ldapErrorDescription() ) );
+	}
+	else if( ldapDirectory.isBound() == false )
+	{
+		QMessageBox::critical( this, tr( "LDAP bind failed"),
+							   tr( "Could not bind to the LDAP server. "
+								   "Please check the server parameters "
+								   "and bind credentials. "
+								   "%1" ).arg( ldapDirectory.ldapErrorDescription() ) );
+	}
+	else
+	{
+		QMessageBox::information( this, tr( "LDAP bind successful"),
+								  tr( "Successfully connected to the LDAP "
+									  "server and performed an LDAP bind. "
+									  "The basic LDAP settings are "
+									  "configured correctly." ) );
 	}
 }
 
