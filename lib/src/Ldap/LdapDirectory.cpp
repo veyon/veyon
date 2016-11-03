@@ -42,6 +42,8 @@ public:
 	KLDAP::LdapOperation operation;
 	QString usersDn;
 	QString groupsDn;
+	QString computersDn;
+	QString computerPoolsDn;
 
 	QString userLoginAttribute;
 
@@ -106,6 +108,20 @@ QStringList LdapDirectory::groups(const QString &filter)
 
 
 
+QStringList LdapDirectory::computers(const QString &filter)
+{
+	return queryEntries( d->computersDn, "cn", filter );
+}
+
+
+
+QStringList LdapDirectory::computerPools(const QString &filter)
+{
+	return queryEntries( d->computerPoolsDn, "cn", filter );
+}
+
+
+
 
 bool LdapDirectory::reconnect()
 {
@@ -147,6 +163,9 @@ bool LdapDirectory::reconnect()
 
 	d->usersDn = c->ldapUserTree() + "," + c->ldapBaseDn();
 	d->groupsDn = c->ldapGroupTree() + "," + c->ldapBaseDn();
+	d->computersDn = c->ldapComputerTree() + "," + c->ldapBaseDn();
+	d->computerPoolsDn = c->ldapComputerPoolTree() + "," + c->ldapBaseDn();
+
 	d->userLoginAttribute = c->ldapUserLoginAttribute();
 
 	return true;

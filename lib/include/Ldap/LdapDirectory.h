@@ -41,6 +41,8 @@ public:
 
 	QStringList users( const QString& filter = QString() );
 	QStringList groups( const QString& filter = QString() );
+	QStringList computers( const QString& filter = QString() );
+	QStringList computerPools( const QString& filter = QString() );
 
 private:
 	bool reconnect();
