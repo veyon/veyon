@@ -1186,7 +1186,11 @@
             </widget>
            </item>
            <item row="0" column="1">
-            <widget class="QLineEdit" name="ldapBaseDn"/>
+            <widget class="QLineEdit" name="ldapBaseDn">
+             <property name="placeholderText">
+              <string>e.g. dc=example,dc=org</string>
+             </property>
+            </widget>
            </item>
            <item row="10" column="1">
             <widget class="QLineEdit" name="ldapComputerPoolsFilter">
@@ -1226,7 +1230,7 @@
            <item row="1" column="0">
             <widget class="QRadioButton" name="isDynamicBaseDn">
              <property name="text">
-              <string>Retrieve base DN via naming context</string>
+              <string>Retrieve base DN via naming context attribute</string>
              </property>
              <attribute name="buttonGroup">
               <string notr="true">baseDnConfigGroup</string>
@@ -1299,6 +1303,9 @@
             <widget class="QLineEdit" name="ldapNamingContext">
              <property name="enabled">
               <bool>false</bool>
+             </property>
+             <property name="placeholderText">
+              <string>e.g. namingContext</string>
              </property>
             </widget>
            </item>
