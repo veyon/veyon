@@ -91,8 +91,9 @@ public:
 		OP( ItalcConfiguration, ItalcCore::config, INT, ldapServerPort, setLdapServerPort, "ServerPort", "LDAP" );	\
 		OP( ItalcConfiguration, ItalcCore::config, STRING, ldapBindDn, setLdapBindDn, "BindDN", "LDAP" );	\
 		OP( ItalcConfiguration, ItalcCore::config, STRING, ldapBindPassword, setLdapBindPassword, "BindPassword", "LDAP" );	\
+		OP( ItalcConfiguration, ItalcCore::config, BOOL, ldapQueryNamingContext, setLdapQueryNamingContext, "QueryNamingContext", "LDAP" );	\
 		OP( ItalcConfiguration, ItalcCore::config, STRING, ldapBaseDn, setLdapBaseDn, "BaseDN", "LDAP" );	\
-		OP( ItalcConfiguration, ItalcCore::config, STRING, ldapNamingContext, setLdapNamingContext, "NamingContext", "LDAP" );	\
+		OP( ItalcConfiguration, ItalcCore::config, STRING, ldapNamingContextAttribute, setLdapNamingContextAttribute, "NamingContextAttribute", "LDAP" );	\
 		OP( ItalcConfiguration, ItalcCore::config, STRING, ldapUserTree, setLdapUserTree, "UserTree", "LDAP" );	\
 		OP( ItalcConfiguration, ItalcCore::config, STRING, ldapGroupTree, setLdapGroupTree, "GroupTree", "LDAP" );	\
 		OP( ItalcConfiguration, ItalcCore::config, STRING, ldapComputerTree, setLdapComputerTree, "ComputerTree", "LDAP" );	\
@@ -145,7 +146,8 @@ public slots:
 	void setLdapBindDn( const QString& );
 	void setLdapBindPassword( const QString& );
 	void setLdapBaseDn( const QString& );
-	void setLdapNamingContext( const QString& );
+	void setLdapQueryNamingContext( bool );
+	void setLdapNamingContextAttribute( const QString& );
 	void setLdapUserTree( const QString& );
 	void setLdapGroupTree( const QString& );
 	void setLdapComputerTree( const QString& );
