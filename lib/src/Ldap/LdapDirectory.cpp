@@ -38,8 +38,44 @@
 class LdapDirectory::LdapDirectoryPrivate
 {
 public:
+
+	QStringList queryEntries(const QString &dn, const QString &attribute,
+							 const QString &filter, KLDAP::LdapUrl::Scope scope = KLDAP::LdapUrl::Base )
+	{
+		QStringList entries;
+
+		int id = operation.search( KLDAP::LdapDN( dn ), scope, filter, QStringList( attribute ) );
+
+		if( id != -1 )
+		{
+			while( operation.waitForResult(id) == KLDAP::LdapOperation::RES_SEARCH_ENTRY )
+			{
+				entries += operation.object().value( attribute );
+			}
+		}
+		else
+		{
+			qWarning() << "LDAP search failed:" << ldapErrorDescription();
+		}
+
+		return entries;
+	}
+
+	QString ldapErrorDescription() const
+	{
+		QString errorString = connection.ldapErrorString();
+		if( errorString.isEmpty() == false )
+		{
+			return tr( "LDAP error description: %1" ).arg( errorString );
+		}
+
+		return QString();
+	}
+
+
 	KLDAP::LdapConnection connection;
 	KLDAP::LdapOperation operation;
+
 	QString usersDn;
 	QString groupsDn;
 	QString computersDn;
@@ -83,43 +119,43 @@ bool LdapDirectory::isBound() const
 
 QString LdapDirectory::ldapErrorDescription() const
 {
-	QString errorString = d->connection.ldapErrorString();
-	if( errorString.isEmpty() == false )
-	{
-		return tr( "LDAP error description: %1" ).arg( errorString );
-	}
+	return d->ldapErrorDescription();
+}
 
-	return QString();
+
+
+QStringList LdapDirectory::queryEntries(const QString &dn, const QString &attribute, const QString &filter)
+{
+	return d->queryEntries( dn, attribute, filter );
 }
 
 
 
 QStringList LdapDirectory::users(const QString &filter)
 {
-	return queryEntries( d->usersDn, d->userLoginAttribute, filter );
+	return d->queryEntries( d->usersDn, d->userLoginAttribute, filter );
 }
 
 
 
 QStringList LdapDirectory::groups(const QString &filter)
 {
-	return queryEntries( d->groupsDn, "cn", filter );
+	return d->queryEntries( d->groupsDn, "cn", filter );
 }
 
 
 
 QStringList LdapDirectory::computers(const QString &filter)
 {
-	return queryEntries( d->computersDn, "cn", filter );
+	return d->queryEntries( d->computersDn, "cn", filter );
 }
 
 
 
 QStringList LdapDirectory::computerPools(const QString &filter)
 {
-	return queryEntries( d->computerPoolsDn, "cn", filter );
+	return d->queryEntries( d->computerPoolsDn, "cn", filter );
 }
-
 
 
 
@@ -169,27 +205,4 @@ bool LdapDirectory::reconnect()
 	d->userLoginAttribute = c->ldapUserLoginAttribute();
 
 	return true;
-}
-
-
-
-QStringList LdapDirectory::queryEntries(const QString &dn, const QString &attribute, const QString &filter)
-{
-	QStringList entries;
-
-	int id = d->operation.search( KLDAP::LdapDN( dn ), KLDAP::LdapUrl::Sub, filter, QStringList( attribute ) );
-
-	if( id != -1 )
-	{
-		while( d->operation.waitForResult(id) == KLDAP::LdapOperation::RES_SEARCH_ENTRY )
-		{
-			entries += d->operation.object().value( attribute );
-		}
-	}
-	else
-	{
-		qWarning() << "LDAP search failed:" << ldapErrorDescription();
-	}
-
-	return entries;
 }

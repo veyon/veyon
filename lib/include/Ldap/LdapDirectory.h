@@ -39,6 +39,8 @@ public:
 
 	QString ldapErrorDescription() const;
 
+	QStringList queryEntries( const QString& dn, const QString& attribute, const QString& filter );
+
 	QStringList users( const QString& filter = QString() );
 	QStringList groups( const QString& filter = QString() );
 	QStringList computers( const QString& filter = QString() );
@@ -46,8 +48,6 @@ public:
 
 private:
 	bool reconnect();
-
-	QStringList queryEntries( const QString& dn, const QString& attribute, const QString& filter );
 
 	class LdapDirectoryPrivate;
 
