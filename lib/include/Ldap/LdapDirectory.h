@@ -43,6 +43,8 @@ public:
 
 	QStringList queryBaseDn( const QString& attribute );
 
+	QString queryNamingContext();
+
 	QStringList users( const QString& filter = QString() );
 	QStringList groups( const QString& filter = QString() );
 	QStringList computers( const QString& filter = QString() );

@@ -77,6 +77,7 @@ public:
 	KLDAP::LdapOperation operation;
 
 	QString baseDn;
+	QString namingContextAttribute;
 	QString usersDn;
 	QString groupsDn;
 	QString computersDn;
@@ -135,6 +136,20 @@ QStringList LdapDirectory::queryEntries(const QString &dn, const QString &attrib
 QStringList LdapDirectory::queryBaseDn(const QString &attribute)
 {
 	return d->queryEntries( d->baseDn, attribute, QString() );
+}
+
+
+
+QString LdapDirectory::queryNamingContext()
+{
+	QStringList namingContextEntries = d->queryEntries( QString(), d->namingContextAttribute, QString() );
+
+	if( namingContextEntries.isEmpty() )
+	{
+		return QString();
+	}
+
+	return namingContextEntries.first();
 }
 
 
@@ -205,6 +220,13 @@ bool LdapDirectory::reconnect()
 
 	d->isBound = true;
 
+	d->namingContextAttribute = c->ldapNamingContextAttribute();
+
+	if( d->namingContextAttribute.isEmpty() )
+	{
+		// fallback to AD default value
+		d->namingContextAttribute = "defaultNamingContext";
+	}
 
 	d->baseDn = c->ldapBaseDn();
 
