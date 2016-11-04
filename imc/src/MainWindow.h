@@ -66,6 +66,10 @@ private slots:
 	bool testLdapBind(bool reportSuccess = true);
 	void testLdapBaseDn();
 	void testLdapNamingContext();
+	void testLdapUserTree();
+	void testLdapGroupTree();
+	void testLdapComputerTree();
+	void testLdapComputerPoolTree();
 	void generateBugReportArchive();
 	void aboutItalc();
 
@@ -76,6 +80,8 @@ private:
 										const QString &arg );
 
 	bool isServiceRunning();
+
+	void reportLdapTreeQueryResult( const QString& name, int count, const QString& errorDescription );
 
 	Ui::MainWindow *ui;
 	bool m_configChanged;

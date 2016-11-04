@@ -106,6 +106,10 @@ MainWindow::MainWindow() :
 	CONNECT_BUTTON_SLOT( testLdapBind );
 	CONNECT_BUTTON_SLOT( testLdapBaseDn );
 	CONNECT_BUTTON_SLOT( testLdapNamingContext );
+	CONNECT_BUTTON_SLOT( testLdapUserTree );
+	CONNECT_BUTTON_SLOT( testLdapGroupTree );
+	CONNECT_BUTTON_SLOT( testLdapComputerTree );
+	CONNECT_BUTTON_SLOT( testLdapComputerPoolTree );
 
 	CONNECT_BUTTON_SLOT( generateBugReportArchive );
 
@@ -560,6 +564,58 @@ void MainWindow::testLdapNamingContext()
 
 
 
+void MainWindow::testLdapUserTree()
+{
+	if(	testLdapBind( false ) )
+	{
+		LdapDirectory ldapDirectory;
+		int count = ldapDirectory.users().count();
+
+		reportLdapTreeQueryResult( tr( "user tree" ), count, ldapDirectory.ldapErrorDescription() );
+	}
+}
+
+
+
+void MainWindow::testLdapGroupTree()
+{
+	if(	testLdapBind( false ) )
+	{
+		LdapDirectory ldapDirectory;
+		int count = ldapDirectory.groups().count();
+
+		reportLdapTreeQueryResult( tr( "group tree" ), count, ldapDirectory.ldapErrorDescription() );
+	}
+}
+
+
+
+void MainWindow::testLdapComputerTree()
+{
+	if(	testLdapBind( false ) )
+	{
+		LdapDirectory ldapDirectory;
+		int count = ldapDirectory.computers().count();
+
+		reportLdapTreeQueryResult( tr( "computer tree" ), count, ldapDirectory.ldapErrorDescription() );
+	}
+}
+
+
+
+void MainWindow::testLdapComputerPoolTree()
+{
+	if(	testLdapBind( false ) )
+	{
+		LdapDirectory ldapDirectory;
+		int count = ldapDirectory.computerPools().count();
+
+		reportLdapTreeQueryResult( tr( "computer pool tree" ), count, ldapDirectory.ldapErrorDescription() );
+	}
+}
+
+
+
 
 void MainWindow::generateBugReportArchive()
 {
@@ -764,4 +820,23 @@ bool MainWindow::isServiceRunning()
 #else
 	return false;
 #endif
+}
+
+
+
+void MainWindow::reportLdapTreeQueryResult(const QString &name, int count, const QString &errorDescription)
+{
+	if( count <= 0 )
+	{
+		QMessageBox::critical( this, tr( "LDAP %1 test failed").arg( name ),
+							   tr( "Could query any entries in configured %1. "
+								   "Please check the %1 parameter.\n\n"
+								   "%2" ).arg( name, errorDescription ) );
+	}
+	else
+	{
+		QMessageBox::information( this, tr( "LDAP %1 test successful" ).arg( name ),
+						tr( "The %1 has been queried successfully and "
+							"%2 entries were found." ).arg( name ).arg( count ) );
+	}
 }
