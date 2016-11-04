@@ -40,7 +40,7 @@ class LdapDirectory::LdapDirectoryPrivate
 public:
 
 	QStringList queryEntries(const QString &dn, const QString &attribute,
-							 const QString &filter, KLDAP::LdapUrl::Scope scope = KLDAP::LdapUrl::Base )
+							 const QString &filter, KLDAP::LdapUrl::Scope scope = KLDAP::LdapUrl::One )
 	{
 		QStringList entries;
 
@@ -135,14 +135,14 @@ QStringList LdapDirectory::queryEntries(const QString &dn, const QString &attrib
 
 QStringList LdapDirectory::queryBaseDn(const QString &attribute)
 {
-	return d->queryEntries( d->baseDn, attribute, QString() );
+	return d->queryEntries( d->baseDn, attribute, QString(), KLDAP::LdapUrl::Base );
 }
 
 
 
 QString LdapDirectory::queryNamingContext()
 {
-	QStringList namingContextEntries = d->queryEntries( QString(), d->namingContextAttribute, QString() );
+	QStringList namingContextEntries = d->queryEntries( QString(), d->namingContextAttribute, QString(), KLDAP::LdapUrl::Base );
 
 	if( namingContextEntries.isEmpty() )
 	{
