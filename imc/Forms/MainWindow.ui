@@ -1317,7 +1317,7 @@
             </widget>
            </item>
            <item row="2" column="2">
-            <widget class="QPushButton" name="testLdapUsers">
+            <widget class="QPushButton" name="testLdapUserTree">
              <property name="text">
               <string>Test</string>
              </property>
@@ -1328,7 +1328,7 @@
             </widget>
            </item>
            <item row="3" column="2">
-            <widget class="QPushButton" name="testLdapGroups">
+            <widget class="QPushButton" name="testLdapGroupTree">
              <property name="text">
               <string>Test</string>
              </property>
@@ -1339,7 +1339,7 @@
             </widget>
            </item>
            <item row="4" column="2">
-            <widget class="QPushButton" name="testLdapComputers">
+            <widget class="QPushButton" name="testLdapComputerTree">
              <property name="text">
               <string>Test</string>
              </property>
