@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1305</width>
-    <height>948</height>
+    <height>1035</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -1228,7 +1228,7 @@
             </widget>
            </item>
            <item row="1" column="0">
-            <widget class="QRadioButton" name="isDynamicBaseDn">
+            <widget class="QRadioButton" name="ldapQueryNamingContext">
              <property name="text">
               <string>Retrieve base DN via naming context attribute</string>
              </property>
@@ -1266,7 +1266,7 @@
             </widget>
            </item>
            <item row="0" column="0">
-            <widget class="QRadioButton" name="isFixedBaseDn">
+            <widget class="QRadioButton" name="ldapIsFixedBaseDn">
              <property name="text">
               <string>Fixed base DN</string>
              </property>
@@ -1300,12 +1300,12 @@
             </widget>
            </item>
            <item row="1" column="1">
-            <widget class="QLineEdit" name="ldapNamingContext">
+            <widget class="QLineEdit" name="ldapNamingContextAttribute">
              <property name="enabled">
               <bool>false</bool>
              </property>
              <property name="placeholderText">
-              <string>e.g. namingContext</string>
+              <string>e.g. defaultNamingContext</string>
              </property>
             </widget>
            </item>
@@ -1395,6 +1395,31 @@
            </item>
            <item row="10" column="2">
             <widget class="QPushButton" name="testLdapComputerPoolsFilter">
+             <property name="text">
+              <string>Test</string>
+             </property>
+             <property name="icon">
+              <iconset resource="../imc.qrc">
+               <normaloff>:/Resources/task-accepted.png</normaloff>:/Resources/task-accepted.png</iconset>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2">
+            <widget class="QPushButton" name="testLdapNamingContext">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="text">
+              <string>Test</string>
+             </property>
+             <property name="icon">
+              <iconset resource="../imc.qrc">
+               <normaloff>:/Resources/task-accepted.png</normaloff>:/Resources/task-accepted.png</iconset>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <widget class="QPushButton" name="testLdapBaseDn">
              <property name="text">
               <string>Test</string>
              </property>
@@ -1819,8 +1844,8 @@ Note: if the bug involves both a master and client computer, attach bug report a
   </action>
  </widget>
  <resources>
-  <include location="../imc.qrc"/>
   <include location="../../lib/ItalcCore.qrc"/>
+  <include location="../imc.qrc"/>
  </resources>
  <connections>
   <connection>
@@ -1968,7 +1993,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
    </hints>
   </connection>
   <connection>
-   <sender>isFixedBaseDn</sender>
+   <sender>ldapIsFixedBaseDn</sender>
    <signal>toggled(bool)</signal>
    <receiver>ldapBaseDn</receiver>
    <slot>setEnabled(bool)</slot>
@@ -1984,9 +2009,9 @@ Note: if the bug involves both a master and client computer, attach bug report a
    </hints>
   </connection>
   <connection>
-   <sender>isDynamicBaseDn</sender>
+   <sender>ldapQueryNamingContext</sender>
    <signal>toggled(bool)</signal>
-   <receiver>ldapNamingContext</receiver>
+   <receiver>ldapNamingContextAttribute</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -1996,6 +2021,38 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <hint type="destinationlabel">
      <x>929</x>
      <y>418</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ldapQueryNamingContext</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>testLdapNamingContext</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>515</x>
+     <y>453</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1214</x>
+     <y>453</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ldapIsFixedBaseDn</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>testLdapBaseDn</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>515</x>
+     <y>403</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1214</x>
+     <y>403</y>
     </hint>
    </hints>
   </connection>

@@ -104,6 +104,8 @@ MainWindow::MainWindow() :
 	CONNECT_BUTTON_SLOT( testLogonAuthentication );
 
 	CONNECT_BUTTON_SLOT( testLdapBind );
+	CONNECT_BUTTON_SLOT( testLdapBaseDn );
+	CONNECT_BUTTON_SLOT( testLdapNamingContext );
 
 	CONNECT_BUTTON_SLOT( generateBugReportArchive );
 
@@ -473,7 +475,7 @@ void MainWindow::testLogonAuthentication()
 
 
 
-void MainWindow::testLdapBind()
+bool MainWindow::testLdapBind(bool reportSuccess )
 {
 	LdapDirectory ldapDirectory;
 
@@ -492,13 +494,67 @@ void MainWindow::testLdapBind()
 								   "and bind credentials. "
 								   "%1" ).arg( ldapDirectory.ldapErrorDescription() ) );
 	}
-	else
+	else if( reportSuccess )
 	{
 		QMessageBox::information( this, tr( "LDAP bind successful"),
 								  tr( "Successfully connected to the LDAP "
 									  "server and performed an LDAP bind. "
 									  "The basic LDAP settings are "
 									  "configured correctly." ) );
+	}
+
+	return ldapDirectory.isConnected() && ldapDirectory.isBound();
+}
+
+
+
+void MainWindow::testLdapBaseDn()
+{
+	if(	testLdapBind( false ) )
+	{
+		LdapDirectory ldapDirectory;
+		QStringList entries = ldapDirectory.queryBaseDn( "distinguishedName" );
+
+		if( entries.isEmpty() )
+		{
+			QMessageBox::critical( this, tr( "LDAP base DN test failed"),
+								   tr( "Could query the configured base DN. "
+									   "Please check the base DN parameter.\n"
+									   "%1" ).arg( ldapDirectory.ldapErrorDescription() ) );
+		}
+		else
+		{
+			QMessageBox::information( this, tr( "LDAP base DN test successful" ),
+							tr( "The LDAP base DN has been queried successfully. "
+								"The following entries were found:\n%1" ).
+									  arg( entries.join("\n") ) );
+		}
+	}
+}
+
+
+
+void MainWindow::testLdapNamingContext()
+{
+	if(	testLdapBind( false ) )
+	{
+		LdapDirectory ldapDirectory;
+		QString baseDn = ldapDirectory.queryNamingContext();
+
+		if( baseDn.isEmpty() )
+		{
+			QMessageBox::critical( this, tr( "LDAP naming context test failed"),
+								   tr( "Could query the base DN via naming contexts. "
+									   "Please check the naming context attribute parameter.\n"
+									   "%1" ).arg( ldapDirectory.ldapErrorDescription() ) );
+		}
+		else
+		{
+			QMessageBox::information( this, tr( "LDAP naming context test successful" ),
+							tr( "The LDAP naming context has been queried successfully. "
+								"The following base DN was found:\n%1" ).
+									  arg( baseDn ) );
+		}
 	}
 }
 
