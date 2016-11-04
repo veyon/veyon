@@ -514,7 +514,7 @@ bool MainWindow::testLdapBind(bool reportSuccess )
 
 void MainWindow::testLdapBaseDn()
 {
-	if(	testLdapBind( false ) )
+	if( testLdapBind( false ) )
 	{
 		LdapDirectory ldapDirectory;
 		QStringList entries = ldapDirectory.queryBaseDn( "distinguishedName" );
@@ -540,7 +540,7 @@ void MainWindow::testLdapBaseDn()
 
 void MainWindow::testLdapNamingContext()
 {
-	if(	testLdapBind( false ) )
+	if( testLdapBind( false ) )
 	{
 		LdapDirectory ldapDirectory;
 		QString baseDn = ldapDirectory.queryNamingContext();
@@ -566,7 +566,7 @@ void MainWindow::testLdapNamingContext()
 
 void MainWindow::testLdapUserTree()
 {
-	if(	testLdapBind( false ) )
+	if( testLdapBind( false ) )
 	{
 		LdapDirectory ldapDirectory;
 		int count = ldapDirectory.users().count();
@@ -579,7 +579,7 @@ void MainWindow::testLdapUserTree()
 
 void MainWindow::testLdapGroupTree()
 {
-	if(	testLdapBind( false ) )
+	if( testLdapBind( false ) )
 	{
 		LdapDirectory ldapDirectory;
 		int count = ldapDirectory.groups().count();
@@ -592,7 +592,7 @@ void MainWindow::testLdapGroupTree()
 
 void MainWindow::testLdapComputerTree()
 {
-	if(	testLdapBind( false ) )
+	if( testLdapBind( false ) )
 	{
 		LdapDirectory ldapDirectory;
 		int count = ldapDirectory.computers().count();
@@ -605,7 +605,7 @@ void MainWindow::testLdapComputerTree()
 
 void MainWindow::testLdapComputerPoolTree()
 {
-	if(	testLdapBind( false ) )
+	if( testLdapBind( false ) )
 	{
 		LdapDirectory ldapDirectory;
 		int count = ldapDirectory.computerPools().count();
