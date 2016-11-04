@@ -76,6 +76,7 @@ public:
 	KLDAP::LdapConnection connection;
 	KLDAP::LdapOperation operation;
 
+	QString baseDn;
 	QString usersDn;
 	QString groupsDn;
 	QString computersDn;
@@ -127,6 +128,13 @@ QString LdapDirectory::ldapErrorDescription() const
 QStringList LdapDirectory::queryEntries(const QString &dn, const QString &attribute, const QString &filter)
 {
 	return d->queryEntries( dn, attribute, filter );
+}
+
+
+
+QStringList LdapDirectory::queryBaseDn(const QString &attribute)
+{
+	return d->queryEntries( d->baseDn, attribute, QString() );
 }
 
 
@@ -196,6 +204,9 @@ bool LdapDirectory::reconnect()
 	}
 
 	d->isBound = true;
+
+
+	d->baseDn = c->ldapBaseDn();
 
 	d->usersDn = c->ldapUserTree() + "," + c->ldapBaseDn();
 	d->groupsDn = c->ldapGroupTree() + "," + c->ldapBaseDn();
