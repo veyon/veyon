@@ -228,7 +228,16 @@ bool LdapDirectory::reconnect()
 		d->namingContextAttribute = "defaultNamingContext";
 	}
 
-	d->baseDn = c->ldapBaseDn();
+	// query base DN via naming context if configured
+	if( c->ldapQueryNamingContext() )
+	{
+		d->baseDn = queryNamingContext();
+	}
+	else
+	{
+		// use the configured base DN
+		d->baseDn = c->ldapBaseDn();
+	}
 
 	d->usersDn = c->ldapUserTree() + "," + c->ldapBaseDn();
 	d->groupsDn = c->ldapGroupTree() + "," + c->ldapBaseDn();
