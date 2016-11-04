@@ -1090,15 +1090,19 @@
            <string>LDAP base settings</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_15">
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_27">
+             <property name="text">
+              <string>LDAP server and port</string>
+             </property>
+            </widget>
+           </item>
            <item row="1" column="0">
             <widget class="QLabel" name="label_30">
              <property name="text">
               <string>Bind DN</string>
              </property>
             </widget>
-           </item>
-           <item row="0" column="1">
-            <widget class="QLineEdit" name="ldapServerHost"/>
            </item>
            <item row="2" column="0">
             <widget class="QLabel" name="label_31">
@@ -1107,15 +1111,8 @@
              </property>
             </widget>
            </item>
-           <item row="0" column="0">
-            <widget class="QLabel" name="label_27">
-             <property name="text">
-              <string>LDAP server and port</string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="1" colspan="2">
-            <widget class="QLineEdit" name="ldapBindPassword"/>
+           <item row="0" column="1">
+            <widget class="QLineEdit" name="ldapServerHost"/>
            </item>
            <item row="0" column="2">
             <widget class="QSpinBox" name="ldapServerPort">
@@ -1129,6 +1126,13 @@
            </item>
            <item row="1" column="1" colspan="2">
             <widget class="QLineEdit" name="ldapBindDn"/>
+           </item>
+           <item row="2" column="1" colspan="2">
+            <widget class="QLineEdit" name="ldapBindPassword">
+             <property name="echoMode">
+              <enum>QLineEdit::Password</enum>
+             </property>
+            </widget>
            </item>
            <item row="3" column="0">
             <widget class="QPushButton" name="testLdapBind">
