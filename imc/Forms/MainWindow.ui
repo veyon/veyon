@@ -1237,7 +1237,7 @@
               <bool>false</bool>
              </property>
              <property name="placeholderText">
-              <string>e.g. defaultNamingContext</string>
+              <string>e.g. namingContexts or defaultNamingContext</string>
              </property>
             </widget>
            </item>
@@ -1279,7 +1279,7 @@
            <item row="7" column="1">
             <widget class="QLineEdit" name="ldapGroupMembershipAttribute">
              <property name="placeholderText">
-              <string>e.g. memberOf</string>
+              <string>e.g. member or memberUid</string>
              </property>
             </widget>
            </item>
@@ -1895,8 +1895,8 @@ Note: if the bug involves both a master and client computer, attach bug report a
   </action>
  </widget>
  <resources>
-  <include location="../../lib/ItalcCore.qrc"/>
   <include location="../imc.qrc"/>
+  <include location="../../lib/ItalcCore.qrc"/>
  </resources>
  <connections>
   <connection>
