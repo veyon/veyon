@@ -840,3 +840,25 @@ void MainWindow::reportLdapTreeQueryResult(const QString &name, int count, const
 							"%2 entries were found." ).arg( name ).arg( count ) );
 	}
 }
+
+
+
+
+
+void MainWindow::reportLdapObjectQueryResult( const QString &objectsName, const QString& parameterName,
+											  int count, const QString &errorDescription )
+{
+	if( count <= 0 )
+	{
+		QMessageBox::critical( this, tr( "LDAP %2 test failed").arg( parameterName ),
+							   tr( "Could query any %1. "
+								   "Please check the %2 parameter.\n\n"
+								   "%3" ).arg( objectsName, parameterName, errorDescription ) );
+	}
+	else
+	{
+		QMessageBox::information( this, tr( "LDAP %1 test successful" ).arg( parameterName ),
+						tr( "%1 %2 have been queried successfully." ).
+								  arg( count ).arg( objectsName ) );
+	}
+}
