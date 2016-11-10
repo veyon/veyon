@@ -156,7 +156,14 @@ QString LdapDirectory::queryNamingContext()
 
 QStringList LdapDirectory::users(const QString &filter)
 {
-	return d->queryEntries( d->usersDn, d->userLoginAttribute, filter );
+	QString queryFilter;
+
+	if( filter.isEmpty() == false )
+	{
+		queryFilter = QString( "(%1=%2)" ).arg( d->userLoginAttribute ).arg( filter );
+	}
+
+	return d->queryEntries( d->usersDn, d->userLoginAttribute, queryFilter );
 }
 
 
