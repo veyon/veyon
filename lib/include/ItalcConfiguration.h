@@ -89,6 +89,7 @@ public:
 		/* LDAP */															\
 		OP( ItalcConfiguration, ItalcCore::config, STRING, ldapServerHost, setLdapServerHost, "ServerHost", "LDAP" );	\
 		OP( ItalcConfiguration, ItalcCore::config, INT, ldapServerPort, setLdapServerPort, "ServerPort", "LDAP" );	\
+		OP( ItalcConfiguration, ItalcCore::config, BOOL, ldapUseBindCredentials, setLdapUseBindCredentials, "UseBindCredentials", "LDAP" );	\
 		OP( ItalcConfiguration, ItalcCore::config, STRING, ldapBindDn, setLdapBindDn, "BindDN", "LDAP" );	\
 		OP( ItalcConfiguration, ItalcCore::config, STRING, ldapBindPassword, setLdapBindPassword, "BindPassword", "LDAP" );	\
 		OP( ItalcConfiguration, ItalcCore::config, BOOL, ldapQueryNamingContext, setLdapQueryNamingContext, "QueryNamingContext", "LDAP" );	\
@@ -143,6 +144,7 @@ public slots:
 	void setLogonGroups( const QStringList & );
 	void setLdapServerHost( const QString& );
 	void setLdapServerPort( int );
+	void setLdapUseBindCredentials( bool );
 	void setLdapBindDn( const QString& );
 	void setLdapBindPassword( const QString& );
 	void setLdapBaseDn( const QString& );
