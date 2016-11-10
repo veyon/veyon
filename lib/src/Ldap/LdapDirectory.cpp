@@ -191,11 +191,18 @@ bool LdapDirectory::reconnect()
 	server.setHost( c->ldapServerHost() );
 	server.setPort( c->ldapServerPort() );
 	server.setBaseDn( KLDAP::LdapDN( c->ldapBaseDn() ) );
-	//server.setUser( c->ldapBindDn() );
-	server.setBindDn( c->ldapBindDn() );
-	server.setPassword( c->ldapBindPassword() );
+
+	if( c->ldapUseBindCredentials() )
+	{
+		server.setBindDn( c->ldapBindDn() );
+		server.setPassword( c->ldapBindPassword() );
+		server.setAuth( KLDAP::LdapServer::Simple );
+	}
+	else
+	{
+		server.setAuth( KLDAP::LdapServer::Anonymous );
+	}
 	server.setSecurity( KLDAP::LdapServer::None );
-	server.setAuth( KLDAP::LdapServer::Simple );
 
 	d->connection.close();
 
