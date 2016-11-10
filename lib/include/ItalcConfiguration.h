@@ -100,7 +100,7 @@ public:
 		OP( ItalcConfiguration, ItalcCore::config, STRING, ldapComputerTree, setLdapComputerTree, "ComputerTree", "LDAP" );	\
 		OP( ItalcConfiguration, ItalcCore::config, STRING, ldapComputerPoolTree, setLdapComputerPoolTree, "ComputerPoolTree", "LDAP" );	\
 		OP( ItalcConfiguration, ItalcCore::config, STRING, ldapUserLoginAttribute, setLdapUserLoginAttribute, "UserLoginAttribute", "LDAP" );	\
-		OP( ItalcConfiguration, ItalcCore::config, STRING, ldapGroupMembershipAttribute, setLdapGroupMembershipAttribute, "GroupMembershipAttribute", "LDAP" );	\
+		OP( ItalcConfiguration, ItalcCore::config, STRING, ldapGroupMemberAttribute, setLdapGroupMemberAttribute, "GroupMemberAttribute", "LDAP" );	\
 		OP( ItalcConfiguration, ItalcCore::config, STRING, ldapUsersFilter, setLdapUsersFilter, "UsersFilter", "LDAP" );	\
 		OP( ItalcConfiguration, ItalcCore::config, STRING, ldapGroupsFilter, setLdapGroupsFilter, "GroupsFilter", "LDAP" );	\
 		OP( ItalcConfiguration, ItalcCore::config, STRING, ldapComputerPoolsFilter, setLdapComputerPoolsFilter, "ComputerPoolsFilter", "LDAP" );	\
@@ -155,7 +155,7 @@ public slots:
 	void setLdapComputerTree( const QString& );
 	void setLdapComputerPoolTree( const QString& );
 	void setLdapUserLoginAttribute( const QString& );
-	void setLdapGroupMembershipAttribute( const QString& );
+	void setLdapGroupMemberAttribute( const QString& );
 	void setLdapUsersFilter( const QString& );
 	void setLdapGroupsFilter( const QString& );
 	void setLdapComputerPoolsFilter( const QString& );
