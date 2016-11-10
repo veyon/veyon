@@ -34,6 +34,7 @@ void Win32AclEditor( HWND hwnd );
 #include <QtCore/QTimer>
 #include <QtGui/QCloseEvent>
 #include <QFileDialog>
+#include <QInputDialog>
 #include <QMessageBox>
 #include <QProgressBar>
 #include <QProgressDialog>
@@ -110,6 +111,8 @@ MainWindow::MainWindow() :
 	CONNECT_BUTTON_SLOT( testLdapGroupTree );
 	CONNECT_BUTTON_SLOT( testLdapComputerTree );
 	CONNECT_BUTTON_SLOT( testLdapComputerPoolTree );
+
+	CONNECT_BUTTON_SLOT( testLdapUserLoginAttribute );
 
 	CONNECT_BUTTON_SLOT( generateBugReportArchive );
 
@@ -614,6 +617,20 @@ void MainWindow::testLdapComputerPoolTree()
 	}
 }
 
+
+
+void MainWindow::testLdapUserLoginAttribute()
+{
+	QString userFilter = QInputDialog::getText( this, tr( "Enter username" ),
+										  tr( "Please enter a user login name (wildcards allowed) which to query:") );
+	if( userFilter.isEmpty() == false )
+	{
+		LdapDirectory ldapDirectory;
+		int count = ldapDirectory.users( userFilter ).count();
+
+		reportLdapObjectQueryResult( tr( "user objects" ), tr( "user login attribute" ), count, ldapDirectory.ldapErrorDescription() );
+	}
+}
 
 
 

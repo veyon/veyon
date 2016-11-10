@@ -1480,6 +1480,17 @@
              </property>
             </widget>
            </item>
+           <item row="7" column="2">
+            <widget class="QPushButton" name="testLdapGroupMemberAttribute">
+             <property name="text">
+              <string>Test</string>
+             </property>
+             <property name="icon">
+              <iconset resource="../imc.qrc">
+               <normaloff>:/Resources/task-accepted.png</normaloff>:/Resources/task-accepted.png</iconset>
+             </property>
+            </widget>
+           </item>
           </layout>
          </widget>
         </item>
