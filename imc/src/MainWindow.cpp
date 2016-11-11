@@ -621,9 +621,9 @@ void MainWindow::testLdapUserLoginAttribute()
 	{
 		LdapDirectory ldapDirectory;
 		ldapDirectory.disableFilters();
-		int count = ldapDirectory.users( userFilter ).count();
 
-		reportLdapObjectQueryResult( tr( "user objects" ), tr( "user login attribute" ), count, ldapDirectory.ldapErrorDescription() );
+		reportLdapObjectQueryResults( tr( "user objects" ), tr( "user login attribute" ),
+									  ldapDirectory.users( userFilter ), ldapDirectory );
 	}
 }
 
@@ -637,9 +637,9 @@ void MainWindow::testLdapGroupMemberAttribute()
 	{
 		LdapDirectory ldapDirectory;
 		ldapDirectory.disableFilters();
-		int count = ldapDirectory.groupMembers( groupFilter ).count();
 
-		reportLdapObjectQueryResult( tr( "group members" ), tr( "group member attribute" ), count, ldapDirectory.ldapErrorDescription() );
+		reportLdapObjectQueryResults( tr( "group members" ), tr( "group member attribute" ),
+									  ldapDirectory.groupMembers( groupFilter ), ldapDirectory );
 	}
 }
 
@@ -903,21 +903,23 @@ void MainWindow::reportLdapTreeQueryResult(const QString &name, int count, const
 
 
 
-void MainWindow::reportLdapObjectQueryResult( const QString &objectsName, const QString& parameterName,
-											  int count, const QString &errorDescription )
+void MainWindow::reportLdapObjectQueryResults( const QString &objectsName, const QString& parameterName,
+											   const QStringList& results, const LdapDirectory &directory )
 {
-	if( count <= 0 )
+	if( results.isEmpty() )
 	{
 		QMessageBox::critical( this, tr( "LDAP %2 test failed").arg( parameterName ),
 							   tr( "Could query any %1. "
 								   "Please check the %2 parameter or enter the name of an existing objects.\n\n"
-								   "%3" ).arg( objectsName, parameterName, errorDescription ) );
+								   "%3" ).arg( objectsName, parameterName, directory.ldapErrorDescription() ) );
 	}
 	else
 	{
 		QMessageBox::information( this, tr( "LDAP %1 test successful" ).arg( parameterName ),
-						tr( "%1 %2 have been queried successfully." ).
-								  arg( count ).arg( objectsName ) );
+						tr( "%1 %2 have been queried successfully:\n\n%3" ).
+								  arg( results.count() ).
+								  arg( objectsName ).
+								  arg( formatResultsString( results ) ) );
 	}
 }
 
@@ -940,4 +942,19 @@ void MainWindow::reportLdapFilterTestResult( const QString &filterObjects, int c
 						tr( "%1 %2 have been queried successfully using the configured filter." ).
 								  arg( count ).arg( filterObjects ) );
 	}
+}
+
+
+
+QString MainWindow::formatResultsString( const QStringList &results )
+{
+	switch( results.count() )
+	{
+	case 0: return QString();
+	case 1: return results.first();
+	case 2: return QString( "%1\n%2" ).arg( results[0], results[1] );
+	default: break;
+	}
+
+	return QString( "%1\n%2\n[...]" ).arg( results[0], results[1] );
 }
