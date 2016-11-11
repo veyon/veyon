@@ -249,14 +249,13 @@ QStringList LdapDirectory::computerGroups(const QString &filterValue)
 
 QStringList LdapDirectory::groupMembers(const QString &groupName)
 {
-	QString queryFilter;
-
-	if( groupName.isEmpty() == false )
+	if( groupName.isEmpty() )
 	{
-		queryFilter = QString( "(cn=%1)" ).arg( groupName );
+		return QStringList();
 	}
 
-	return d->queryEntries( d->groupsDn, d->groupMemberAttribute, queryFilter );
+	return d->queryEntries( d->groupsDn, d->groupMemberAttribute,
+							QString( "(cn=%1)" ).arg( groupName ) );
 }
 
 
