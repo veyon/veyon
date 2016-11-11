@@ -48,7 +48,7 @@ public:
 
 		if( id != -1 )
 		{
-			while( operation.waitForResult(id) == KLDAP::LdapOperation::RES_SEARCH_ENTRY )
+			while( operation.waitForResult( id, LdapQueryTimeout ) == KLDAP::LdapOperation::RES_SEARCH_ENTRY )
 			{
 				for( auto value : operation.object().values( attribute ) )
 				{
@@ -75,6 +75,9 @@ public:
 		return QString();
 	}
 
+	enum {
+		LdapQueryTimeout = 3000
+	};
 
 	KLDAP::LdapConnection connection;
 	KLDAP::LdapOperation operation;
