@@ -885,7 +885,7 @@ void MainWindow::reportLdapObjectQueryResult( const QString &objectsName, const 
 	{
 		QMessageBox::critical( this, tr( "LDAP %2 test failed").arg( parameterName ),
 							   tr( "Could query any %1. "
-								   "Please check the %2 parameter.\n\n"
+								   "Please check the %2 parameter or enter the name of an existing objects.\n\n"
 								   "%3" ).arg( objectsName, parameterName, errorDescription ) );
 	}
 	else
