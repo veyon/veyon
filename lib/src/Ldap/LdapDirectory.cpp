@@ -92,6 +92,10 @@ public:
 	QString userLoginAttribute;
 	QString groupMemberAttribute;
 
+	QString usersFilter;
+	QString groupsFilter;
+	QString computerPoolsFilter;
+
 	bool isConnected;
 	bool isBound;
 };
@@ -282,5 +286,37 @@ bool LdapDirectory::reconnect()
 	d->userLoginAttribute = c->ldapUserLoginAttribute();
 	d->groupMemberAttribute = c->ldapGroupMemberAttribute();
 
+	d->usersFilter = c->ldapUsersFilter();
+	d->groupsFilter = c->ldapGroupsFilter();
+	d->computerPoolsFilter = c->ldapComputerPoolsFilter();
+
 	return true;
+}
+
+
+
+QString LdapDirectory::constructQueryFilter( const QString& filterAttribute,
+											 const QString& filterValue,
+											 const QString& extraFilter )
+{
+	QString queryFilter;
+
+	if( filterAttribute.isEmpty() == false && filterValue.isEmpty() == false )
+	{
+		queryFilter = QString( "(%1=%2)" ).arg( filterAttribute ).arg( filterValue );
+	}
+
+	if( extraFilter.isEmpty() == false )
+	{
+		if( queryFilter.isEmpty() )
+		{
+			queryFilter = QString( "(%1)" ).arg( extraFilter );
+		}
+		else
+		{
+			queryFilter = QString( "(&(%1)%2)" ).arg( extraFilter ).arg( queryFilter );
+		}
+	}
+
+	return queryFilter;
 }

@@ -55,6 +55,10 @@ public:
 private:
 	bool reconnect();
 
+	static QString constructQueryFilter( const QString& filterAttribute,
+										 const QString& filterValue,
+										 const QString& extraFilter );
+
 	class LdapDirectoryPrivate;
 
 	QScopedPointer<LdapDirectoryPrivate> d;
