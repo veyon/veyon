@@ -39,8 +39,8 @@ class LdapDirectory::LdapDirectoryPrivate
 {
 public:
 
-	QStringList queryEntries(const QString &dn, const QString &attribute,
-							 const QString &filter, KLDAP::LdapUrl::Scope scope = KLDAP::LdapUrl::One )
+	QStringList queryAttributes(const QString &dn, const QString &attribute,
+								const QString &filter, KLDAP::LdapUrl::Scope scope = KLDAP::LdapUrl::One )
 	{
 		QStringList entries;
 
@@ -172,21 +172,21 @@ QString LdapDirectory::ldapErrorDescription() const
 
 QStringList LdapDirectory::queryEntries(const QString &dn, const QString &attribute, const QString &filter)
 {
-	return d->queryEntries( dn, attribute, filter );
+	return d->queryAttributes( dn, attribute, filter );
 }
 
 
 
 QStringList LdapDirectory::queryBaseDn(const QString &attribute)
 {
-	return d->queryEntries( d->baseDn, attribute, QString(), KLDAP::LdapUrl::Base );
+	return d->queryAttributes( d->baseDn, attribute, QString(), KLDAP::LdapUrl::Base );
 }
 
 
 
 QString LdapDirectory::queryNamingContext()
 {
-	QStringList namingContextEntries = d->queryEntries( QString(), d->namingContextAttribute, QString(), KLDAP::LdapUrl::Base );
+	QStringList namingContextEntries = d->queryAttributes( QString(), d->namingContextAttribute, QString(), KLDAP::LdapUrl::Base );
 
 	if( namingContextEntries.isEmpty() )
 	{
@@ -202,7 +202,7 @@ QStringList LdapDirectory::users(const QString &filterValue)
 {
 	QString queryFilter = constructQueryFilter( d->userLoginAttribute, filterValue, d->usersFilter );
 
-	return d->queryEntries( d->usersDn, d->userLoginAttribute, queryFilter );
+	return d->queryAttributes( d->usersDn, d->userLoginAttribute, queryFilter );
 }
 
 
@@ -211,7 +211,7 @@ QStringList LdapDirectory::groups(const QString &filterValue)
 {
 	QString queryFilter = constructQueryFilter( "cn", filterValue, QString() );
 
-	return d->queryEntries( d->groupsDn, "cn", queryFilter );
+	return d->queryAttributes( d->groupsDn, "cn", queryFilter );
 }
 
 
@@ -220,7 +220,7 @@ QStringList LdapDirectory::userGroups(const QString &filterValue)
 {
 	QString queryFilter = constructQueryFilter( "cn", filterValue, d->userGroupsFilter );
 
-	return d->queryEntries( d->groupsDn, "cn", queryFilter );
+	return d->queryAttributes( d->groupsDn, "cn", queryFilter );
 }
 
 
@@ -242,7 +242,7 @@ QStringList LdapDirectory::computerGroups(const QString &filterValue)
 {
 	QString queryFilter = constructQueryFilter( "cn", filterValue, d->computerGroupsFilter );
 
-	return d->queryEntries( d->groupsDn, "cn", queryFilter );
+	return d->queryAttributes( d->groupsDn, "cn", queryFilter );
 }
 
 
@@ -254,7 +254,7 @@ QStringList LdapDirectory::groupMembers(const QString &groupName)
 		return QStringList();
 	}
 
-	return d->queryEntries( d->groupsDn, d->groupMemberAttribute,
+	return d->queryAttributes( d->groupsDn, d->groupMemberAttribute,
 							QString( "(cn=%1)" ).arg( groupName ) );
 }
 
@@ -267,7 +267,7 @@ QString LdapDirectory::computerHostName(const QString &computerObjectName)
 		return QString();
 	}
 
-	QStringList hostNames = d->queryEntries( d->computersDn, d->computerHostNameAttribute,
+	QStringList hostNames = d->queryAttributes( d->computersDn, d->computerHostNameAttribute,
 											 QString( "cn=%1" ).arg( computerObjectName ) );
 	if( hostNames.isEmpty() )
 	{
