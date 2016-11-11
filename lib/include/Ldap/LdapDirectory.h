@@ -54,6 +54,7 @@ public:
 	QStringList computerGroups( const QString& filterValue = QString() );
 
 	QStringList groupMembers( const QString& groupName );
+	QString computerHostName( const QString& computerObjectName );
 
 private:
 	bool reconnect();

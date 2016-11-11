@@ -261,6 +261,25 @@ QStringList LdapDirectory::groupMembers(const QString &groupName)
 
 
 
+QString LdapDirectory::computerHostName(const QString &computerObjectName)
+{
+	if( computerObjectName.isEmpty() )
+	{
+		return QString();
+	}
+
+	QStringList hostNames = d->queryEntries( d->computersDn, d->computerHostNameAttribute,
+											 QString( "cn=%1" ).arg( computerObjectName ) );
+	if( hostNames.isEmpty() )
+	{
+		return QString();
+	}
+
+	return hostNames.first();
+}
+
+
+
 bool LdapDirectory::reconnect()
 {
 	ItalcConfiguration* c = ItalcCore::config;
