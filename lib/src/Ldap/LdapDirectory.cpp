@@ -111,6 +111,7 @@ public:
 
 	QString userLoginAttribute;
 	QString groupMemberAttribute;
+	QString computerHostNameAttribute;
 
 	QString usersFilter;
 	QString userGroupsFilter;
@@ -223,10 +224,16 @@ QStringList LdapDirectory::userGroups(const QString &filterValue)
 }
 
 
-
-QStringList LdapDirectory::computers(const QString &filter)
+/*!
+ * \brief Returns list of computer object names matching the given hostname filter
+ * \param filterValue A filter value which is used to query the host name attribute
+ * \return List of DNs of all matching computer objects
+ */
+QStringList LdapDirectory::computers(const QString &filterValue)
 {
-	return d->queryEntries( d->computersDn, "cn", filter );
+	QString queryFilter = constructQueryFilter( d->computerHostNameAttribute, filterValue, QString() );
+
+	return d->queryDistinguishedNames( d->computersDn, queryFilter );
 }
 
 
@@ -324,6 +331,7 @@ bool LdapDirectory::reconnect()
 
 	d->userLoginAttribute = c->ldapUserLoginAttribute();
 	d->groupMemberAttribute = c->ldapGroupMemberAttribute();
+	d->computerHostNameAttribute = c->ldapComputerHostNameAttribute();
 
 	d->usersFilter = c->ldapUsersFilter();
 	d->userGroupsFilter = c->ldapUserGroupsFilter();
