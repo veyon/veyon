@@ -1254,7 +1254,7 @@
            <item row="1" column="0">
             <widget class="QRadioButton" name="ldapQueryNamingContext">
              <property name="text">
-              <string>Retrieve base DN via naming context attribute</string>
+              <string>Discover base DN by naming context</string>
              </property>
              <attribute name="buttonGroup">
               <string notr="true">baseDnConfigGroup</string>
@@ -1278,7 +1278,7 @@
            <item row="8" column="0">
             <widget class="QLabel" name="label_36">
              <property name="text">
-              <string>LDAP filter for user groups</string>
+              <string>Filter for user groups</string>
              </property>
             </widget>
            </item>
@@ -1331,7 +1331,7 @@
            <item row="9" column="0">
             <widget class="QLabel" name="label_37">
              <property name="text">
-              <string>LDAP filter for computer groups (pools/rooms)</string>
+              <string>Filter for computer groups (pools/rooms)</string>
              </property>
             </widget>
            </item>
@@ -1427,7 +1427,7 @@
            <item row="7" column="0">
             <widget class="QLabel" name="label_34">
              <property name="text">
-              <string>LDAP filter for users</string>
+              <string>Filter for users</string>
              </property>
             </widget>
            </item>
