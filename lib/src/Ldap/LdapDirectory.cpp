@@ -165,23 +165,20 @@ QString LdapDirectory::queryNamingContext()
 
 
 
-QStringList LdapDirectory::users(const QString &filter)
+QStringList LdapDirectory::users(const QString &filterValue)
 {
-	QString queryFilter;
-
-	if( filter.isEmpty() == false )
-	{
-		queryFilter = QString( "(%1=%2)" ).arg( d->userLoginAttribute ).arg( filter );
-	}
+	QString queryFilter = constructQueryFilter( d->userLoginAttribute, filterValue, d->usersFilter );
 
 	return d->queryEntries( d->usersDn, d->userLoginAttribute, queryFilter );
 }
 
 
 
-QStringList LdapDirectory::groups(const QString &filter)
+QStringList LdapDirectory::groups(const QString &filterValue)
 {
-	return d->queryEntries( d->groupsDn, "cn", filter );
+	QString queryFilter = constructQueryFilter( "cn", filterValue, d->groupsFilter );
+
+	return d->queryEntries( d->groupsDn, "cn", queryFilter );
 }
 
 
@@ -193,9 +190,11 @@ QStringList LdapDirectory::computers(const QString &filter)
 
 
 
-QStringList LdapDirectory::computerPools(const QString &filter)
+QStringList LdapDirectory::computerPools(const QString &filterValue)
 {
-	return d->queryEntries( d->computerPoolsDn, "cn", filter );
+	QString queryFilter = constructQueryFilter( "cn", filterValue, d->groupsFilter );
+
+	return d->queryEntries( d->computerPoolsDn, "cn", queryFilter );
 }
 
 

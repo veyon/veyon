@@ -45,10 +45,10 @@ public:
 
 	QString queryNamingContext();
 
-	QStringList users( const QString& filter = QString() );
-	QStringList groups( const QString& filter = QString() );
+	QStringList users( const QString& filterValue = QString() );
+	QStringList groups( const QString& filterValue = QString() );
 	QStringList computers( const QString& filter = QString() );
-	QStringList computerPools( const QString& filter = QString() );
+	QStringList computerPools( const QString& filterValue = QString() );
 
 	QStringList groupMembers( const QString& groupName );
 
