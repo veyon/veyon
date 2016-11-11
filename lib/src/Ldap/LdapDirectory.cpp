@@ -170,13 +170,6 @@ QString LdapDirectory::ldapErrorDescription() const
 
 
 
-QStringList LdapDirectory::queryEntries(const QString &dn, const QString &attribute, const QString &filter)
-{
-	return d->queryAttributes( dn, attribute, filter );
-}
-
-
-
 QStringList LdapDirectory::queryBaseDn(const QString &attribute)
 {
 	return d->queryAttributes( d->baseDn, attribute, QString(), KLDAP::LdapUrl::Base );
