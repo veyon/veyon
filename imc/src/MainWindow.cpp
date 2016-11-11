@@ -115,6 +115,10 @@ MainWindow::MainWindow() :
 	CONNECT_BUTTON_SLOT( testLdapUserLoginAttribute );
 	CONNECT_BUTTON_SLOT( testLdapGroupMemberAttribute );
 
+	CONNECT_BUTTON_SLOT( testLdapUsersFilter );
+	CONNECT_BUTTON_SLOT( testLdapGroupsFilter );
+	CONNECT_BUTTON_SLOT( testLdapComputerPoolsFilter );
+
 	CONNECT_BUTTON_SLOT( generateBugReportArchive );
 
 	connect( ui->buttonBox, SIGNAL( clicked( QAbstractButton * ) ),
@@ -652,6 +656,36 @@ void MainWindow::testLdapGroupMemberAttribute()
 
 		reportLdapObjectQueryResult( tr( "group members" ), tr( "group member attribute" ), count, ldapDirectory.ldapErrorDescription() );
 	}
+}
+
+
+
+void MainWindow::testLdapUsersFilter()
+{
+	LdapDirectory ldapDirectory;
+	int count = ldapDirectory.users().count();
+
+	reportLdapFilterTestResult( tr( "users" ), count, ldapDirectory.ldapErrorDescription() );
+}
+
+
+
+void MainWindow::testLdapGroupsFilter()
+{
+	LdapDirectory ldapDirectory;
+	int count = ldapDirectory.groups().count();
+
+	reportLdapFilterTestResult( tr( "groups" ), count, ldapDirectory.ldapErrorDescription() );
+}
+
+
+
+void MainWindow::testLdapComputerPoolsFilter()
+{
+	LdapDirectory ldapDirectory;
+	int count = ldapDirectory.computerPools().count();
+
+	reportLdapFilterTestResult( tr( "computer pools" ), count, ldapDirectory.ldapErrorDescription() );
 }
 
 
