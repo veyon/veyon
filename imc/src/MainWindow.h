@@ -71,6 +71,7 @@ private slots:
 	void testLdapComputerTree();
 	void testLdapComputerPoolTree();
 	void testLdapUserLoginAttribute();
+	void testLdapGroupMemberAttribute();
 	void generateBugReportArchive();
 	void aboutItalc();
 

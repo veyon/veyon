@@ -113,6 +113,7 @@ MainWindow::MainWindow() :
 	CONNECT_BUTTON_SLOT( testLdapComputerPoolTree );
 
 	CONNECT_BUTTON_SLOT( testLdapUserLoginAttribute );
+	CONNECT_BUTTON_SLOT( testLdapGroupMemberAttribute );
 
 	CONNECT_BUTTON_SLOT( generateBugReportArchive );
 
@@ -629,6 +630,21 @@ void MainWindow::testLdapUserLoginAttribute()
 		int count = ldapDirectory.users( userFilter ).count();
 
 		reportLdapObjectQueryResult( tr( "user objects" ), tr( "user login attribute" ), count, ldapDirectory.ldapErrorDescription() );
+	}
+}
+
+
+
+void MainWindow::testLdapGroupMemberAttribute()
+{
+	QString groupFilter = QInputDialog::getText( this, tr( "Enter group name" ),
+										  tr( "Please enter a group name whose members to query:") );
+	if( groupFilter.isEmpty() == false )
+	{
+		LdapDirectory ldapDirectory;
+		int count = ldapDirectory.groupMembers( groupFilter ).count();
+
+		reportLdapObjectQueryResult( tr( "group members" ), tr( "group member attribute" ), count, ldapDirectory.ldapErrorDescription() );
 	}
 }
 
