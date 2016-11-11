@@ -170,9 +170,9 @@ QString LdapDirectory::ldapErrorDescription() const
 
 
 
-QStringList LdapDirectory::queryBaseDn(const QString &attribute)
+QStringList LdapDirectory::queryBaseDn()
 {
-	return d->queryAttributes( d->baseDn, attribute, QString(), KLDAP::LdapUrl::Base );
+	return d->queryDistinguishedNames( d->baseDn, QString(), KLDAP::LdapUrl::Base );
 }
 
 

@@ -41,7 +41,7 @@ public:
 
 	QString ldapErrorDescription() const;
 
-	QStringList queryBaseDn( const QString& attribute );
+	QStringList queryBaseDn();
 
 	QString queryNamingContext();
 
