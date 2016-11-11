@@ -573,6 +573,7 @@ void MainWindow::testLdapUserTree()
 	if( testLdapBind( false ) )
 	{
 		LdapDirectory ldapDirectory;
+		ldapDirectory.disableFilters();
 		int count = ldapDirectory.users().count();
 
 		reportLdapTreeQueryResult( tr( "user tree" ), count, ldapDirectory.ldapErrorDescription() );
@@ -586,6 +587,7 @@ void MainWindow::testLdapGroupTree()
 	if( testLdapBind( false ) )
 	{
 		LdapDirectory ldapDirectory;
+		ldapDirectory.disableFilters();
 		int count = ldapDirectory.groups().count();
 
 		reportLdapTreeQueryResult( tr( "group tree" ), count, ldapDirectory.ldapErrorDescription() );
@@ -599,6 +601,7 @@ void MainWindow::testLdapComputerTree()
 	if( testLdapBind( false ) )
 	{
 		LdapDirectory ldapDirectory;
+		ldapDirectory.disableFilters();
 		int count = ldapDirectory.computers().count();
 
 		reportLdapTreeQueryResult( tr( "computer tree" ), count, ldapDirectory.ldapErrorDescription() );
@@ -612,6 +615,7 @@ void MainWindow::testLdapComputerPoolTree()
 	if( testLdapBind( false ) )
 	{
 		LdapDirectory ldapDirectory;
+		ldapDirectory.disableFilters();
 		int count = ldapDirectory.computerPools().count();
 
 		reportLdapTreeQueryResult( tr( "computer pool tree" ), count, ldapDirectory.ldapErrorDescription() );
@@ -627,6 +631,7 @@ void MainWindow::testLdapUserLoginAttribute()
 	if( userFilter.isEmpty() == false )
 	{
 		LdapDirectory ldapDirectory;
+		ldapDirectory.disableFilters();
 		int count = ldapDirectory.users( userFilter ).count();
 
 		reportLdapObjectQueryResult( tr( "user objects" ), tr( "user login attribute" ), count, ldapDirectory.ldapErrorDescription() );
@@ -642,6 +647,7 @@ void MainWindow::testLdapGroupMemberAttribute()
 	if( groupFilter.isEmpty() == false )
 	{
 		LdapDirectory ldapDirectory;
+		ldapDirectory.disableFilters();
 		int count = ldapDirectory.groupMembers( groupFilter ).count();
 
 		reportLdapObjectQueryResult( tr( "group members" ), tr( "group member attribute" ), count, ldapDirectory.ldapErrorDescription() );
