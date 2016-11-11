@@ -130,6 +130,18 @@ bool LdapDirectory::isBound() const
 
 
 
+/*!
+ * \brief Disables any configured filters which is required for some test scenarious
+ */
+void LdapDirectory::disableFilters()
+{
+	d->usersFilter.clear();
+	d->groupsFilter.clear();
+	d->computerPoolsFilter.clear();
+}
+
+
+
 QString LdapDirectory::ldapErrorDescription() const
 {
 	return d->ldapErrorDescription();

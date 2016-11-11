@@ -37,6 +37,8 @@ public:
 	bool isConnected() const;
 	bool isBound() const;
 
+	void disableFilters();
+
 	QString ldapErrorDescription() const;
 
 	QStringList queryEntries( const QString& dn, const QString& attribute, const QString& filter );
