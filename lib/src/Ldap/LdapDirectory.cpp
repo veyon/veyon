@@ -185,6 +185,15 @@ QStringList LdapDirectory::users(const QString &filterValue)
 
 
 
+QStringList LdapDirectory::groups(const QString &filterValue)
+{
+	QString queryFilter = constructQueryFilter( "cn", filterValue, QString() );
+
+	return d->queryEntries( d->groupsDn, "cn", queryFilter );
+}
+
+
+
 QStringList LdapDirectory::userGroups(const QString &filterValue)
 {
 	QString queryFilter = constructQueryFilter( "cn", filterValue, d->userGroupsFilter );

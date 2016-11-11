@@ -48,6 +48,7 @@ public:
 	QString queryNamingContext();
 
 	QStringList users( const QString& filterValue = QString() );
+	QStringList groups( const QString& filterValue = QString() );
 	QStringList userGroups( const QString& filterValue = QString() );
 	QStringList computers( const QString& filter = QString() );
 	QStringList computerGroups( const QString& filterValue = QString() );
