@@ -69,12 +69,11 @@ private slots:
 	void testLdapUserTree();
 	void testLdapGroupTree();
 	void testLdapComputerTree();
-	void testLdapComputerPoolTree();
 	void testLdapUserLoginAttribute();
 	void testLdapGroupMemberAttribute();
 	void testLdapUsersFilter();
-	void testLdapGroupsFilter();
-	void testLdapComputerPoolsFilter();
+	void testLdapUserGroupsFilter();
+	void testLdapComputerGroupsFilter();
 	void generateBugReportArchive();
 	void aboutItalc();
 

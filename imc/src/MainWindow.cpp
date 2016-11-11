@@ -110,14 +110,13 @@ MainWindow::MainWindow() :
 	CONNECT_BUTTON_SLOT( testLdapUserTree );
 	CONNECT_BUTTON_SLOT( testLdapGroupTree );
 	CONNECT_BUTTON_SLOT( testLdapComputerTree );
-	CONNECT_BUTTON_SLOT( testLdapComputerPoolTree );
 
 	CONNECT_BUTTON_SLOT( testLdapUserLoginAttribute );
 	CONNECT_BUTTON_SLOT( testLdapGroupMemberAttribute );
 
 	CONNECT_BUTTON_SLOT( testLdapUsersFilter );
-	CONNECT_BUTTON_SLOT( testLdapGroupsFilter );
-	CONNECT_BUTTON_SLOT( testLdapComputerPoolsFilter );
+	CONNECT_BUTTON_SLOT( testLdapUserGroupsFilter );
+	CONNECT_BUTTON_SLOT( testLdapComputerGroupsFilter );
 
 	CONNECT_BUTTON_SLOT( generateBugReportArchive );
 
@@ -592,7 +591,7 @@ void MainWindow::testLdapGroupTree()
 	{
 		LdapDirectory ldapDirectory;
 		ldapDirectory.disableFilters();
-		int count = ldapDirectory.groups().count();
+		int count = ldapDirectory.userGroups().count();
 
 		reportLdapTreeQueryResult( tr( "group tree" ), count, ldapDirectory.ldapErrorDescription() );
 	}
@@ -609,20 +608,6 @@ void MainWindow::testLdapComputerTree()
 		int count = ldapDirectory.computers().count();
 
 		reportLdapTreeQueryResult( tr( "computer tree" ), count, ldapDirectory.ldapErrorDescription() );
-	}
-}
-
-
-
-void MainWindow::testLdapComputerPoolTree()
-{
-	if( testLdapBind( false ) )
-	{
-		LdapDirectory ldapDirectory;
-		ldapDirectory.disableFilters();
-		int count = ldapDirectory.computerPools().count();
-
-		reportLdapTreeQueryResult( tr( "computer pool tree" ), count, ldapDirectory.ldapErrorDescription() );
 	}
 }
 
@@ -670,22 +655,22 @@ void MainWindow::testLdapUsersFilter()
 
 
 
-void MainWindow::testLdapGroupsFilter()
+void MainWindow::testLdapUserGroupsFilter()
 {
 	LdapDirectory ldapDirectory;
-	int count = ldapDirectory.groups().count();
+	int count = ldapDirectory.userGroups().count();
 
-	reportLdapFilterTestResult( tr( "groups" ), count, ldapDirectory.ldapErrorDescription() );
+	reportLdapFilterTestResult( tr( "user groups" ), count, ldapDirectory.ldapErrorDescription() );
 }
 
 
 
-void MainWindow::testLdapComputerPoolsFilter()
+void MainWindow::testLdapComputerGroupsFilter()
 {
 	LdapDirectory ldapDirectory;
-	int count = ldapDirectory.computerPools().count();
+	int count = ldapDirectory.computerGroups().count();
 
-	reportLdapFilterTestResult( tr( "computer pools" ), count, ldapDirectory.ldapErrorDescription() );
+	reportLdapFilterTestResult( tr( "computer groups" ), count, ldapDirectory.ldapErrorDescription() );
 }
 
 
