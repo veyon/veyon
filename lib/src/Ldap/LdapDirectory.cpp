@@ -87,14 +87,13 @@ public:
 	QString usersDn;
 	QString groupsDn;
 	QString computersDn;
-	QString computerPoolsDn;
 
 	QString userLoginAttribute;
 	QString groupMemberAttribute;
 
 	QString usersFilter;
-	QString groupsFilter;
-	QString computerPoolsFilter;
+	QString userGroupsFilter;
+	QString computerGroupsFilter;
 
 	bool isConnected;
 	bool isBound;
@@ -136,8 +135,8 @@ bool LdapDirectory::isBound() const
 void LdapDirectory::disableFilters()
 {
 	d->usersFilter.clear();
-	d->groupsFilter.clear();
-	d->computerPoolsFilter.clear();
+	d->userGroupsFilter.clear();
+	d->computerGroupsFilter.clear();
 }
 
 
@@ -186,9 +185,9 @@ QStringList LdapDirectory::users(const QString &filterValue)
 
 
 
-QStringList LdapDirectory::groups(const QString &filterValue)
+QStringList LdapDirectory::userGroups(const QString &filterValue)
 {
-	QString queryFilter = constructQueryFilter( "cn", filterValue, d->groupsFilter );
+	QString queryFilter = constructQueryFilter( "cn", filterValue, d->userGroupsFilter );
 
 	return d->queryEntries( d->groupsDn, "cn", queryFilter );
 }
@@ -202,11 +201,11 @@ QStringList LdapDirectory::computers(const QString &filter)
 
 
 
-QStringList LdapDirectory::computerPools(const QString &filterValue)
+QStringList LdapDirectory::computerGroups(const QString &filterValue)
 {
-	QString queryFilter = constructQueryFilter( "cn", filterValue, d->groupsFilter );
+	QString queryFilter = constructQueryFilter( "cn", filterValue, d->computerGroupsFilter );
 
-	return d->queryEntries( d->computerPoolsDn, "cn", queryFilter );
+	return d->queryEntries( d->groupsDn, "cn", queryFilter );
 }
 
 
@@ -292,14 +291,13 @@ bool LdapDirectory::reconnect()
 	d->usersDn = c->ldapUserTree() + "," + c->ldapBaseDn();
 	d->groupsDn = c->ldapGroupTree() + "," + c->ldapBaseDn();
 	d->computersDn = c->ldapComputerTree() + "," + c->ldapBaseDn();
-	d->computerPoolsDn = c->ldapComputerPoolTree() + "," + c->ldapBaseDn();
 
 	d->userLoginAttribute = c->ldapUserLoginAttribute();
 	d->groupMemberAttribute = c->ldapGroupMemberAttribute();
 
 	d->usersFilter = c->ldapUsersFilter();
-	d->groupsFilter = c->ldapGroupsFilter();
-	d->computerPoolsFilter = c->ldapComputerPoolsFilter();
+	d->userGroupsFilter = c->ldapUserGroupsFilter();
+	d->computerGroupsFilter = c->ldapComputerGroupsFilter();
 
 	return true;
 }

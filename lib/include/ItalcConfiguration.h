@@ -98,12 +98,11 @@ public:
 		OP( ItalcConfiguration, ItalcCore::config, STRING, ldapUserTree, setLdapUserTree, "UserTree", "LDAP" );	\
 		OP( ItalcConfiguration, ItalcCore::config, STRING, ldapGroupTree, setLdapGroupTree, "GroupTree", "LDAP" );	\
 		OP( ItalcConfiguration, ItalcCore::config, STRING, ldapComputerTree, setLdapComputerTree, "ComputerTree", "LDAP" );	\
-		OP( ItalcConfiguration, ItalcCore::config, STRING, ldapComputerPoolTree, setLdapComputerPoolTree, "ComputerPoolTree", "LDAP" );	\
 		OP( ItalcConfiguration, ItalcCore::config, STRING, ldapUserLoginAttribute, setLdapUserLoginAttribute, "UserLoginAttribute", "LDAP" );	\
 		OP( ItalcConfiguration, ItalcCore::config, STRING, ldapGroupMemberAttribute, setLdapGroupMemberAttribute, "GroupMemberAttribute", "LDAP" );	\
 		OP( ItalcConfiguration, ItalcCore::config, STRING, ldapUsersFilter, setLdapUsersFilter, "UsersFilter", "LDAP" );	\
-		OP( ItalcConfiguration, ItalcCore::config, STRING, ldapGroupsFilter, setLdapGroupsFilter, "GroupsFilter", "LDAP" );	\
-		OP( ItalcConfiguration, ItalcCore::config, STRING, ldapComputerPoolsFilter, setLdapComputerPoolsFilter, "ComputerPoolsFilter", "LDAP" );	\
+		OP( ItalcConfiguration, ItalcCore::config, STRING, ldapUserGroupsFilter, setLdapUserGroupsFilter, "UserGroupsFilter", "LDAP" );	\
+		OP( ItalcConfiguration, ItalcCore::config, STRING, ldapComputerGroupsFilter, setLdapComputerGroupsFilter, "ComputerGroupsFilter", "LDAP" );	\
 
 	FOREACH_ITALC_CONFIG_PROPERTY(DECLARE_CONFIG_PROPERTY)
 
@@ -153,12 +152,11 @@ public slots:
 	void setLdapUserTree( const QString& );
 	void setLdapGroupTree( const QString& );
 	void setLdapComputerTree( const QString& );
-	void setLdapComputerPoolTree( const QString& );
 	void setLdapUserLoginAttribute( const QString& );
 	void setLdapGroupMemberAttribute( const QString& );
 	void setLdapUsersFilter( const QString& );
-	void setLdapGroupsFilter( const QString& );
-	void setLdapComputerPoolsFilter( const QString& );
+	void setLdapUserGroupsFilter( const QString& );
+	void setLdapComputerGroupsFilter( const QString& );
 
 } ;
 
