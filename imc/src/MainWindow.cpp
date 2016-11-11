@@ -525,7 +525,7 @@ void MainWindow::testLdapBaseDn()
 	if( testLdapBind( false ) )
 	{
 		LdapDirectory ldapDirectory;
-		QStringList entries = ldapDirectory.queryBaseDn( "distinguishedName" );
+		QStringList entries = ldapDirectory.queryBaseDn();
 
 		if( entries.isEmpty() )
 		{
