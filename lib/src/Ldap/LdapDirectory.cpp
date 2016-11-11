@@ -87,6 +87,7 @@ public:
 	QString computerPoolsDn;
 
 	QString userLoginAttribute;
+	QString groupMemberAttribute;
 
 	bool isConnected;
 	bool isBound;
@@ -192,6 +193,20 @@ QStringList LdapDirectory::computerPools(const QString &filter)
 
 
 
+QStringList LdapDirectory::groupMembers(const QString &groupName)
+{
+	QString queryFilter;
+
+	if( groupName.isEmpty() == false )
+	{
+		queryFilter = QString( "(cn=%1)" ).arg( groupName );
+	}
+
+	return d->queryEntries( d->groupsDn, d->groupMemberAttribute, queryFilter );
+}
+
+
+
 bool LdapDirectory::reconnect()
 {
 	ItalcConfiguration* c = ItalcCore::config;
@@ -262,6 +277,7 @@ bool LdapDirectory::reconnect()
 	d->computerPoolsDn = c->ldapComputerPoolTree() + "," + c->ldapBaseDn();
 
 	d->userLoginAttribute = c->ldapUserLoginAttribute();
+	d->groupMemberAttribute = c->ldapGroupMemberAttribute();
 
 	return true;
 }
