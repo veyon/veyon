@@ -591,7 +591,7 @@ void MainWindow::testLdapGroupTree()
 	{
 		LdapDirectory ldapDirectory;
 		ldapDirectory.disableFilters();
-		int count = ldapDirectory.userGroups().count();
+		int count = ldapDirectory.groups().count();
 
 		reportLdapTreeQueryResult( tr( "group tree" ), count, ldapDirectory.ldapErrorDescription() );
 	}
