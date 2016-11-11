@@ -64,6 +64,27 @@ public:
 		return entries;
 	}
 
+	QStringList queryDistinguishedNames( const QString &dn, const QString &filter, KLDAP::LdapUrl::Scope scope = KLDAP::LdapUrl::One )
+	{
+		QStringList distinguishedNames;
+
+		int id = operation.search( KLDAP::LdapDN( dn ), scope, filter, QStringList() );
+
+		if( id != -1 )
+		{
+			while( operation.waitForResult( id, LdapQueryTimeout ) == KLDAP::LdapOperation::RES_SEARCH_ENTRY )
+			{
+				distinguishedNames += operation.object().dn().toString();
+			}
+		}
+		else
+		{
+			qWarning() << "LDAP search failed:" << ldapErrorDescription();
+		}
+
+		return distinguishedNames;
+	}
+
 	QString ldapErrorDescription() const
 	{
 		QString errorString = connection.ldapErrorString();
