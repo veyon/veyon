@@ -73,6 +73,7 @@ private slots:
 	void testLdapComputerTree();
 	void testLdapUserLoginAttribute();
 	void testLdapGroupMemberAttribute();
+	void testLdapComputerHostNameAttribute();
 	void testLdapUsersFilter();
 	void testLdapUserGroupsFilter();
 	void testLdapComputerGroupsFilter();

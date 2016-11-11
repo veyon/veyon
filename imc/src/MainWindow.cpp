@@ -113,6 +113,7 @@ MainWindow::MainWindow() :
 
 	CONNECT_BUTTON_SLOT( testLdapUserLoginAttribute );
 	CONNECT_BUTTON_SLOT( testLdapGroupMemberAttribute );
+	CONNECT_BUTTON_SLOT( testLdapComputerHostNameAttribute );
 
 	CONNECT_BUTTON_SLOT( testLdapUsersFilter );
 	CONNECT_BUTTON_SLOT( testLdapUserGroupsFilter );
@@ -640,6 +641,22 @@ void MainWindow::testLdapGroupMemberAttribute()
 
 		reportLdapObjectQueryResults( tr( "group members" ), tr( "group member attribute" ),
 									  ldapDirectory.groupMembers( groupFilter ), ldapDirectory );
+	}
+}
+
+
+
+void MainWindow::testLdapComputerHostNameAttribute()
+{
+	QString computerName = QInputDialog::getText( this, tr( "Enter computer name" ),
+										  tr( "Please enter a computer name whose host name to query:") );
+	if( computerName.isEmpty() == false )
+	{
+		LdapDirectory ldapDirectory;
+		ldapDirectory.disableFilters();
+
+		reportLdapObjectQueryResults( tr( "computer objects" ), tr( "computer host name attribute" ),
+									  ldapDirectory.computers( computerName ), ldapDirectory );
 	}
 }
 
