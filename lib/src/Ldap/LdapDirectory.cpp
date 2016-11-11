@@ -50,7 +50,10 @@ public:
 		{
 			while( operation.waitForResult(id) == KLDAP::LdapOperation::RES_SEARCH_ENTRY )
 			{
-				entries += operation.object().value( attribute );
+				for( auto value : operation.object().values( attribute ) )
+				{
+					entries += value;
+				}
 			}
 		}
 		else
