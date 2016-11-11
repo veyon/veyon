@@ -85,6 +85,7 @@ private:
 
 	void reportLdapTreeQueryResult( const QString& name, int count, const QString& errorDescription );
 	void reportLdapObjectQueryResult( const QString &objectsName, const QString& parameterName, int count, const QString &errorDescription );
+	void reportLdapFilterTestResult( const QString &filterObjects, int count, const QString &errorDescription );
 
 	Ui::MainWindow *ui;
 	bool m_configChanged;

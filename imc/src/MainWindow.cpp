@@ -901,3 +901,24 @@ void MainWindow::reportLdapObjectQueryResult( const QString &objectsName, const 
 								  arg( count ).arg( objectsName ) );
 	}
 }
+
+
+
+
+
+void MainWindow::reportLdapFilterTestResult( const QString &filterObjects, int count, const QString &errorDescription )
+{
+	if( count <= 0 )
+	{
+		QMessageBox::critical( this, tr( "LDAP filter test failed"),
+							   tr( "Could query any %1 using the configured filter. "
+								   "Please check the LDAP filter for %1.\n\n"
+								   "%2" ).arg( filterObjects, errorDescription ) );
+	}
+	else
+	{
+		QMessageBox::information( this, tr( "LDAP filter test successful" ),
+						tr( "%1 %2 have been queried successfully using the configured filter." ).
+								  arg( count ).arg( filterObjects ) );
+	}
+}
