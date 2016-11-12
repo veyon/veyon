@@ -280,6 +280,19 @@ QString LdapDirectory::userLoginName(const QString &userDn)
 
 
 
+QString LdapDirectory::groupName(const QString &groupDn)
+{
+	QStringList names = d->queryAttributes( groupDn, "cn", QString(), KLDAP::LdapUrl::Base );
+	if( names.isEmpty() )
+	{
+		return QString();
+	}
+
+	return names.first();
+}
+
+
+
 QString LdapDirectory::computerHostName(const QString &computerObjectName)
 {
 	if( computerObjectName.isEmpty() )
