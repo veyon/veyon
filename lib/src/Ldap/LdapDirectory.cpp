@@ -245,7 +245,23 @@ QStringList LdapDirectory::groupMembers(const QString &groupName)
 	}
 
 	return d->queryAttributes( d->groupsDn, d->groupMemberAttribute,
-							QString( "(cn=%1)" ).arg( groupName ) );
+							   QString( "(cn=%1)" ).arg( groupName ) );
+}
+
+
+
+QStringList LdapDirectory::groupsOfUser(const QString &userName)
+{
+	QStringList userObjects = users( userName );
+	if( userObjects.isEmpty() )
+	{
+		return QStringList();
+	}
+
+	QString queryFilter = constructQueryFilter( d->groupMemberAttribute, userObjects.first(),
+												d->userGroupsFilter );
+
+	return d->queryDistinguishedNames( d->groupsDn, queryFilter );
 }
 
 

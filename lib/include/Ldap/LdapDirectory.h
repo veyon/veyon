@@ -52,6 +52,8 @@ public:
 	QStringList computerGroups( const QString& filterValue = QString() );
 
 	QStringList groupMembers( const QString& groupName );
+	QStringList groupsOfUser( const QString& userName );
+
 	QString computerHostName( const QString& computerObjectName );
 
 private:
