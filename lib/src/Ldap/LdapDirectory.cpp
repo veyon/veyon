@@ -193,9 +193,8 @@ QString LdapDirectory::queryNamingContext()
 
 QStringList LdapDirectory::users(const QString &filterValue)
 {
-	QString queryFilter = constructQueryFilter( d->userLoginAttribute, filterValue, d->usersFilter );
-
-	return d->queryAttributes( d->usersDn, d->userLoginAttribute, queryFilter );
+	return d->queryDistinguishedNames( d->usersDn,
+									   constructQueryFilter( d->userLoginAttribute, filterValue, d->usersFilter ) );
 }
 
 
