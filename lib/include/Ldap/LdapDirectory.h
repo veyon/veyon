@@ -54,6 +54,7 @@ public:
 	QStringList groupMembers( const QString& groupName );
 	QStringList groupsOfUser( const QString& userName );
 
+	QString userLoginName( const QString& userDn );
 	QString computerHostName( const QString& computerObjectName );
 
 private:

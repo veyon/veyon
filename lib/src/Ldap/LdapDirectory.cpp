@@ -266,6 +266,20 @@ QStringList LdapDirectory::groupsOfUser(const QString &userName)
 
 
 
+QString LdapDirectory::userLoginName(const QString &userDn)
+{
+	QStringList names = d->queryAttributes( d->usersDn, d->userLoginAttribute,
+											constructQueryFilter( "cn", userDn, d->usersFilter ) );
+	if( names.isEmpty() )
+	{
+		return QString();
+	}
+
+	return names.first();
+}
+
+
+
 QString LdapDirectory::computerHostName(const QString &computerObjectName)
 {
 	if( computerObjectName.isEmpty() )
