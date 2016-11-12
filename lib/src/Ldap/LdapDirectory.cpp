@@ -85,6 +85,11 @@ public:
 		return distinguishedNames;
 	}
 
+	QStringList queryCommonNames( const QString& dn, const QString& filter, KLDAP::LdapUrl::Scope scope = KLDAP::LdapUrl::One )
+	{
+		return queryAttributes( dn, "cn", filter, scope );
+	}
+
 	QString ldapErrorDescription() const
 	{
 		QString errorString = connection.ldapErrorString();
