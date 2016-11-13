@@ -287,7 +287,7 @@ QString LdapDirectory::userLoginName(const QString &userDn)
 
 QString LdapDirectory::groupName(const QString &groupDn)
 {
-	QStringList names = d->queryAttributes( groupDn, "cn", QString(), KLDAP::LdapUrl::Base );
+	QStringList names = d->queryCommonNames( groupDn, QString(), KLDAP::LdapUrl::Base );
 	if( names.isEmpty() )
 	{
 		return QString();
