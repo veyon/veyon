@@ -241,15 +241,9 @@ QStringList LdapDirectory::computerGroups(const QString &filterValue)
 
 
 
-QStringList LdapDirectory::groupMembers(const QString &groupName)
+QStringList LdapDirectory::groupMembers(const QString &groupDn)
 {
-	if( groupName.isEmpty() )
-	{
-		return QStringList();
-	}
-
-	return d->queryAttributes( d->groupsDn, d->groupMemberAttribute,
-							   QString( "(cn=%1)" ).arg( groupName ) );
+	return d->queryAttributes( groupDn, d->groupMemberAttribute, QString(), KLDAP::LdapUrl::Base );
 }
 
 
