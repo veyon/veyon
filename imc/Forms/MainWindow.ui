@@ -19,115 +19,6 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_4">
-    <item row="0" column="0">
-     <widget class="QListWidget" name="pageSelector">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="minimumSize">
-       <size>
-        <width>200</width>
-        <height>200</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>200</width>
-        <height>16777215</height>
-       </size>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">::item { width:120; height:50 }
-</string>
-      </property>
-      <property name="verticalScrollBarPolicy">
-       <enum>Qt::ScrollBarAlwaysOff</enum>
-      </property>
-      <property name="horizontalScrollBarPolicy">
-       <enum>Qt::ScrollBarAlwaysOff</enum>
-      </property>
-      <property name="iconSize">
-       <size>
-        <width>48</width>
-        <height>48</height>
-       </size>
-      </property>
-      <property name="spacing">
-       <number>4</number>
-      </property>
-      <property name="viewMode">
-       <enum>QListView::ListMode</enum>
-      </property>
-      <property name="currentRow">
-       <number>0</number>
-      </property>
-      <item>
-       <property name="text">
-        <string>General</string>
-       </property>
-       <property name="icon">
-        <iconset resource="../imc.qrc">
-         <normaloff>:/Resources/General.png</normaloff>:/Resources/General.png</iconset>
-       </property>
-       <property name="flags">
-        <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>iTALC Server</string>
-       </property>
-       <property name="icon">
-        <iconset resource="../imc.qrc">
-         <normaloff>:/Resources/Vnc.png</normaloff>:/Resources/Vnc.png</iconset>
-       </property>
-       <property name="flags">
-        <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Paths</string>
-       </property>
-       <property name="icon">
-        <iconset resource="../imc.qrc">
-         <normaloff>:/Resources/Paths.png</normaloff>:/Resources/Paths.png</iconset>
-       </property>
-       <property name="flags">
-        <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Authentication</string>
-       </property>
-       <property name="icon">
-        <iconset resource="../imc.qrc">
-         <normaloff>:/Resources/Authentication.png</normaloff>:/Resources/Authentication.png</iconset>
-       </property>
-       <property name="flags">
-        <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>LDAP Configuration</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Debugging</string>
-       </property>
-       <property name="icon">
-        <iconset resource="../imc.qrc">
-         <normaloff>:/Resources/kbugbuster.png</normaloff>:/Resources/kbugbuster.png</iconset>
-       </property>
-      </item>
-     </widget>
-    </item>
     <item row="0" column="1">
      <widget class="QStackedWidget" name="configPages">
       <property name="currentIndex">
@@ -1124,17 +1015,6 @@
              </property>
             </widget>
            </item>
-           <item row="4" column="0">
-            <widget class="QPushButton" name="testLdapBind">
-             <property name="text">
-              <string>Test</string>
-             </property>
-             <property name="icon">
-              <iconset resource="../imc.qrc">
-               <normaloff>:/Resources/task-accepted.png</normaloff>:/Resources/task-accepted.png</iconset>
-             </property>
-            </widget>
-           </item>
            <item row="1" column="0" colspan="3">
             <layout class="QHBoxLayout" name="horizontalLayout_12">
              <item>
@@ -1172,6 +1052,17 @@
                 </size>
                </property>
               </spacer>
+             </item>
+             <item>
+              <widget class="QPushButton" name="testLdapBind">
+               <property name="text">
+                <string>Test</string>
+               </property>
+               <property name="icon">
+                <iconset resource="../imc.qrc">
+                 <normaloff>:/Resources/dialog-ok-apply.png</normaloff>:/Resources/dialog-ok-apply.png</iconset>
+               </property>
+              </widget>
              </item>
             </layout>
            </item>
@@ -1215,7 +1106,7 @@
              </property>
              <property name="icon">
               <iconset resource="../imc.qrc">
-               <normaloff>:/Resources/task-accepted.png</normaloff>:/Resources/task-accepted.png</iconset>
+               <normaloff>:/Resources/dialog-ok-apply.png</normaloff>:/Resources/dialog-ok-apply.png</iconset>
              </property>
             </widget>
            </item>
@@ -1261,7 +1152,7 @@
              </property>
              <property name="icon">
               <iconset resource="../imc.qrc">
-               <normaloff>:/Resources/task-accepted.png</normaloff>:/Resources/task-accepted.png</iconset>
+               <normaloff>:/Resources/dialog-ok-apply.png</normaloff>:/Resources/dialog-ok-apply.png</iconset>
              </property>
             </widget>
            </item>
@@ -1303,7 +1194,7 @@
              </property>
              <property name="icon">
               <iconset resource="../imc.qrc">
-               <normaloff>:/Resources/task-accepted.png</normaloff>:/Resources/task-accepted.png</iconset>
+               <normaloff>:/Resources/dialog-ok-apply.png</normaloff>:/Resources/dialog-ok-apply.png</iconset>
              </property>
             </widget>
            </item>
@@ -1328,7 +1219,7 @@
              </property>
              <property name="icon">
               <iconset resource="../imc.qrc">
-               <normaloff>:/Resources/task-accepted.png</normaloff>:/Resources/task-accepted.png</iconset>
+               <normaloff>:/Resources/dialog-ok-apply.png</normaloff>:/Resources/dialog-ok-apply.png</iconset>
              </property>
             </widget>
            </item>
@@ -1339,7 +1230,7 @@
              </property>
              <property name="icon">
               <iconset resource="../imc.qrc">
-               <normaloff>:/Resources/task-accepted.png</normaloff>:/Resources/task-accepted.png</iconset>
+               <normaloff>:/Resources/dialog-ok-apply.png</normaloff>:/Resources/dialog-ok-apply.png</iconset>
              </property>
             </widget>
            </item>
@@ -1357,7 +1248,7 @@
              </property>
              <property name="icon">
               <iconset resource="../imc.qrc">
-               <normaloff>:/Resources/task-accepted.png</normaloff>:/Resources/task-accepted.png</iconset>
+               <normaloff>:/Resources/dialog-ok-apply.png</normaloff>:/Resources/dialog-ok-apply.png</iconset>
              </property>
             </widget>
            </item>
@@ -1381,7 +1272,7 @@
              </property>
              <property name="icon">
               <iconset resource="../imc.qrc">
-               <normaloff>:/Resources/task-accepted.png</normaloff>:/Resources/task-accepted.png</iconset>
+               <normaloff>:/Resources/dialog-ok-apply.png</normaloff>:/Resources/dialog-ok-apply.png</iconset>
              </property>
             </widget>
            </item>
@@ -1392,7 +1283,7 @@
              </property>
              <property name="icon">
               <iconset resource="../imc.qrc">
-               <normaloff>:/Resources/task-accepted.png</normaloff>:/Resources/task-accepted.png</iconset>
+               <normaloff>:/Resources/dialog-ok-apply.png</normaloff>:/Resources/dialog-ok-apply.png</iconset>
              </property>
             </widget>
            </item>
@@ -1403,7 +1294,7 @@
              </property>
              <property name="icon">
               <iconset resource="../imc.qrc">
-               <normaloff>:/Resources/task-accepted.png</normaloff>:/Resources/task-accepted.png</iconset>
+               <normaloff>:/Resources/dialog-ok-apply.png</normaloff>:/Resources/dialog-ok-apply.png</iconset>
              </property>
             </widget>
            </item>
@@ -1438,7 +1329,7 @@
              </property>
              <property name="icon">
               <iconset resource="../imc.qrc">
-               <normaloff>:/Resources/task-accepted.png</normaloff>:/Resources/task-accepted.png</iconset>
+               <normaloff>:/Resources/dialog-ok-apply.png</normaloff>:/Resources/dialog-ok-apply.png</iconset>
              </property>
             </widget>
            </item>
@@ -1487,7 +1378,49 @@
              </property>
              <property name="icon">
               <iconset resource="../imc.qrc">
-               <normaloff>:/Resources/task-accepted.png</normaloff>:/Resources/task-accepted.png</iconset>
+               <normaloff>:/Resources/dialog-ok-apply.png</normaloff>:/Resources/dialog-ok-apply.png</iconset>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="groupBox_14">
+          <property name="title">
+           <string>Advanced LDAP configuration tests</string>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout_13">
+           <item>
+            <widget class="QPushButton" name="testLdapGroupsOfUser">
+             <property name="text">
+              <string>Groups of user</string>
+             </property>
+             <property name="icon">
+              <iconset resource="../imc.qrc">
+               <normaloff>:/Resources/user-group-properties.png</normaloff>:/Resources/user-group-properties.png</iconset>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="testLdapGroupsOfComputer">
+             <property name="text">
+              <string>Groups of computer</string>
+             </property>
+             <property name="icon">
+              <iconset resource="../imc.qrc">
+               <normaloff>:/Resources/computer.png</normaloff>:/Resources/computer.png</iconset>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="testLdapMembersOfComputerGroup">
+             <property name="text">
+              <string>Members of computer group</string>
+             </property>
+             <property name="icon">
+              <iconset resource="../imc.qrc">
+               <normaloff>:/Resources/configure.png</normaloff>:/Resources/configure.png</iconset>
              </property>
             </widget>
            </item>
@@ -1813,6 +1746,115 @@ Note: if the bug involves both a master and client computer, attach bug report a
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
       </property>
+     </widget>
+    </item>
+    <item row="0" column="0">
+     <widget class="QListWidget" name="pageSelector">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>200</width>
+        <height>200</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>200</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">::item { width:120; height:50 }
+</string>
+      </property>
+      <property name="verticalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOff</enum>
+      </property>
+      <property name="horizontalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOff</enum>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>48</width>
+        <height>48</height>
+       </size>
+      </property>
+      <property name="spacing">
+       <number>4</number>
+      </property>
+      <property name="viewMode">
+       <enum>QListView::ListMode</enum>
+      </property>
+      <property name="currentRow">
+       <number>0</number>
+      </property>
+      <item>
+       <property name="text">
+        <string>General</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../imc.qrc">
+         <normaloff>:/Resources/General.png</normaloff>:/Resources/General.png</iconset>
+       </property>
+       <property name="flags">
+        <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>iTALC Server</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../imc.qrc">
+         <normaloff>:/Resources/Vnc.png</normaloff>:/Resources/Vnc.png</iconset>
+       </property>
+       <property name="flags">
+        <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Paths</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../imc.qrc">
+         <normaloff>:/Resources/Paths.png</normaloff>:/Resources/Paths.png</iconset>
+       </property>
+       <property name="flags">
+        <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Authentication</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../imc.qrc">
+         <normaloff>:/Resources/Authentication.png</normaloff>:/Resources/Authentication.png</iconset>
+       </property>
+       <property name="flags">
+        <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>LDAP Configuration</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Debugging</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../imc.qrc">
+         <normaloff>:/Resources/kbugbuster.png</normaloff>:/Resources/kbugbuster.png</iconset>
+       </property>
+      </item>
      </widget>
     </item>
     <item row="2" column="1">
@@ -2155,7 +2197,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
   <slot>aboutItalc()</slot>
  </slots>
  <buttongroups>
-  <buttongroup name="baseDnConfigGroup"/>
   <buttongroup name="bindConfigurationGroup"/>
+  <buttongroup name="baseDnConfigGroup"/>
  </buttongroups>
 </ui>
