@@ -39,12 +39,11 @@ class LdapDirectory::LdapDirectoryPrivate
 {
 public:
 
-	QStringList queryAttributes(const QString &dn, const QString &attribute,
-								const QString &filter, KLDAP::LdapUrl::Scope scope = KLDAP::LdapUrl::One )
+	QStringList queryAttributes(const QString &dn, const QString &attribute )
 	{
 		QStringList entries;
 
-		int id = operation.search( KLDAP::LdapDN( dn ), scope, filter, QStringList( attribute ) );
+		int id = operation.search( KLDAP::LdapDN( dn ), KLDAP::LdapUrl::Base, QString(), QStringList( attribute ) );
 
 		if( id != -1 )
 		{
@@ -85,9 +84,15 @@ public:
 		return distinguishedNames;
 	}
 
-	QStringList queryCommonNames( const QString& dn, const QString& filter, KLDAP::LdapUrl::Scope scope = KLDAP::LdapUrl::One )
+	QString queryCommonName( const QString& dn )
 	{
-		return queryAttributes( dn, "cn", filter, scope );
+		QStringList names = queryAttributes( dn, "cn" );
+		if( names.isEmpty() )
+		{
+			return QString();
+		}
+
+		return names.first();
 	}
 
 	QString ldapErrorDescription() const
@@ -184,7 +189,7 @@ QStringList LdapDirectory::queryBaseDn()
 
 QString LdapDirectory::queryNamingContext()
 {
-	QStringList namingContextEntries = d->queryAttributes( QString(), d->namingContextAttribute, QString(), KLDAP::LdapUrl::Base );
+	QStringList namingContextEntries = d->queryAttributes( QString(), d->namingContextAttribute );
 
 	if( namingContextEntries.isEmpty() )
 	{
@@ -243,7 +248,7 @@ QStringList LdapDirectory::computerGroups(const QString &filterValue)
 
 QStringList LdapDirectory::groupMembers(const QString &groupDn)
 {
-	return d->queryAttributes( groupDn, d->groupMemberAttribute, QString(), KLDAP::LdapUrl::Base );
+	return d->queryAttributes( groupDn, d->groupMemberAttribute );
 }
 
 
@@ -266,7 +271,7 @@ QStringList LdapDirectory::groupsOfUser(const QString &userName)
 
 QString LdapDirectory::userLoginName(const QString &userDn)
 {
-	QStringList names = d->queryAttributes( userDn, d->userLoginAttribute, QString(), KLDAP::LdapUrl::Base );
+	QStringList names = d->queryAttributes( userDn, d->userLoginAttribute );
 
 	if( names.isEmpty() )
 	{
@@ -280,13 +285,7 @@ QString LdapDirectory::userLoginName(const QString &userDn)
 
 QString LdapDirectory::groupName(const QString &groupDn)
 {
-	QStringList names = d->queryCommonNames( groupDn, QString(), KLDAP::LdapUrl::Base );
-	if( names.isEmpty() )
-	{
-		return QString();
-	}
-
-	return names.first();
+	return d->queryCommonName( groupDn );
 }
 
 
@@ -298,8 +297,7 @@ QString LdapDirectory::computerHostName(const QString &computerDn)
 		return QString();
 	}
 
-	QStringList hostNames = d->queryAttributes( computerDn, d->computerHostNameAttribute,
-												QString(), KLDAP::LdapUrl::Base );
+	QStringList hostNames = d->queryAttributes( computerDn, d->computerHostNameAttribute );
 	if( hostNames.isEmpty() )
 	{
 		return QString();
