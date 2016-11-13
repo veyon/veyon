@@ -235,9 +235,8 @@ QStringList LdapDirectory::computers(const QString &filterValue)
 
 QStringList LdapDirectory::computerGroups(const QString &filterValue)
 {
-	QString queryFilter = constructQueryFilter( "cn", filterValue, d->computerGroupsFilter );
-
-	return d->queryAttributes( d->groupsDn, "cn", queryFilter );
+	return d->queryDistinguishedNames( d->groupsDn,
+									   constructQueryFilter( "cn", filterValue, d->computerGroupsFilter ) );
 }
 
 
