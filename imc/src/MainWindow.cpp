@@ -639,8 +639,20 @@ void MainWindow::testLdapGroupMemberAttribute()
 		LdapDirectory ldapDirectory;
 		ldapDirectory.disableFilters();
 
-		reportLdapObjectQueryResults( tr( "group members" ), tr( "group member attribute" ),
-									  ldapDirectory.groupMembers( groupFilter ), ldapDirectory );
+		QStringList groups = ldapDirectory.groups( groupFilter );
+
+		if( groups.isEmpty() == false )
+		{
+			reportLdapObjectQueryResults( tr( "group members" ), tr( "group member attribute" ),
+										  ldapDirectory.groupMembers( groups.first() ), ldapDirectory );
+		}
+		else
+		{
+			QMessageBox::warning( this, tr( "Group not found"),
+								  tr( "Could not find a group with the name \"%1\". "
+									  "Please check the group name or the group "
+									  "tree parameter.").arg( groupFilter ) );
+		}
 	}
 }
 
