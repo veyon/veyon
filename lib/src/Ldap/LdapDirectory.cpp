@@ -266,8 +266,8 @@ QStringList LdapDirectory::groupsOfUser(const QString &userName)
 
 QString LdapDirectory::userLoginName(const QString &userDn)
 {
-	QStringList names = d->queryAttributes( d->usersDn, d->userLoginAttribute,
-											constructQueryFilter( "cn", userDn, d->usersFilter ) );
+	QStringList names = d->queryAttributes( userDn, d->userLoginAttribute, QString(), KLDAP::LdapUrl::Base );
+
 	if( names.isEmpty() )
 	{
 		return QString();
