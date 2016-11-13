@@ -119,6 +119,8 @@ MainWindow::MainWindow() :
 	CONNECT_BUTTON_SLOT( testLdapUserGroupsFilter );
 	CONNECT_BUTTON_SLOT( testLdapComputerGroupsFilter );
 
+	CONNECT_BUTTON_SLOT( testLdapGroupsOfUser );
+
 	CONNECT_BUTTON_SLOT( generateBugReportArchive );
 
 	connect( ui->buttonBox, SIGNAL( clicked( QAbstractButton * ) ),
@@ -700,6 +702,21 @@ void MainWindow::testLdapComputerGroupsFilter()
 	int count = ldapDirectory.computerGroups().count();
 
 	reportLdapFilterTestResult( tr( "computer groups" ), count, ldapDirectory.ldapErrorDescription() );
+}
+
+
+
+void MainWindow::testLdapGroupsOfUser()
+{
+	QString userName = QInputDialog::getText( this, tr( "Enter username" ),
+										  tr( "Please enter a user login name whose group memberships to query:") );
+	if( userName.isEmpty() == false )
+	{
+		LdapDirectory ldapDirectory;
+
+		reportLdapObjectQueryResults( tr( "groups of user" ), tr( "user login attribute or group membership attribute" ),
+									  ldapDirectory.groupsOfUser( userName ), ldapDirectory );
+	}
 }
 
 
