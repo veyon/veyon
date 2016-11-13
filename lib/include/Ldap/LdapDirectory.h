@@ -56,7 +56,7 @@ public:
 
 	QString userLoginName( const QString& userDn );
 	QString groupName( const QString& groupDn );
-	QString computerHostName( const QString& computerObjectName );
+	QString computerHostName( const QString& computerDn );
 
 private:
 	bool reconnect();

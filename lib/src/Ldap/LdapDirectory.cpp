@@ -297,15 +297,15 @@ QString LdapDirectory::groupName(const QString &groupDn)
 
 
 
-QString LdapDirectory::computerHostName(const QString &computerObjectName)
+QString LdapDirectory::computerHostName(const QString &computerDn)
 {
-	if( computerObjectName.isEmpty() )
+	if( computerDn.isEmpty() )
 	{
 		return QString();
 	}
 
-	QStringList hostNames = d->queryAttributes( d->computersDn, d->computerHostNameAttribute,
-											 QString( "cn=%1" ).arg( computerObjectName ) );
+	QStringList hostNames = d->queryAttributes( computerDn, d->computerHostNameAttribute,
+												QString(), KLDAP::LdapUrl::Base );
 	if( hostNames.isEmpty() )
 	{
 		return QString();
