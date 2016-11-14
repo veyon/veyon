@@ -120,6 +120,7 @@ MainWindow::MainWindow() :
 	CONNECT_BUTTON_SLOT( testLdapComputerGroupsFilter );
 
 	CONNECT_BUTTON_SLOT( testLdapGroupsOfUser );
+	CONNECT_BUTTON_SLOT( testLdapGroupsOfComputer );
 
 	CONNECT_BUTTON_SLOT( generateBugReportArchive );
 
@@ -727,6 +728,33 @@ void MainWindow::testLdapGroupsOfUser()
 								  tr( "Could not find a user with the name \"%1\". "
 									  "Please check the user name or the user "
 									  "tree parameter.").arg( userName ) );
+		}
+	}
+}
+
+
+
+void MainWindow::testLdapGroupsOfComputer()
+{
+	QString computerHostName = QInputDialog::getText( this, tr( "Enter host name" ),
+										  tr( "Please enter a computer host name whose group memberships to query:") );
+	if( computerHostName.isEmpty() == false )
+	{
+		LdapDirectory ldapDirectory;
+
+		QStringList computerObjects = ldapDirectory.computers(computerHostName);
+
+		if( computerObjects.isEmpty() == false )
+		{
+			reportLdapObjectQueryResults( tr( "groups of computer" ), tr( "computer host name attribute or group membership attribute" ),
+										  ldapDirectory.groupsOfComputer( computerObjects.first() ), ldapDirectory );
+		}
+		else
+		{
+			QMessageBox::warning( this, tr( "Computer not found" ),
+								  tr( "Could not find a computer with the host name \"%1\". "
+									  "Please check the host name or the computer tree "
+									  "tree parameter.").arg( computerHostName ) );
 		}
 	}
 }
