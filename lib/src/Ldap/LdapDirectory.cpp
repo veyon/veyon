@@ -272,8 +272,7 @@ QStringList LdapDirectory::groupsOfComputer(const QString &computerDn)
 QStringList LdapDirectory::commonGroups(const QString &objectOne, const QString &objectTwo)
 {
 	return d->queryDistinguishedNames( d->groupsDn,
-									   constructQueryFilter( d->groupMemberAttribute, objectOne,
-															 constructQueryFilter( d->groupMemberAttribute, objectTwo ) ) );
+									   QString( "(&(%1=%2)(%1=%3))" ).arg( d->groupMemberAttribute, objectOne, objectTwo ) );
 }
 
 
