@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1305</width>
-    <height>1085</height>
+    <width>1321</width>
+    <height>1158</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -1762,26 +1762,16 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <item row="0" column="0">
      <widget class="QListWidget" name="pageSelector">
       <property name="sizePolicy">
-       <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
       </property>
       <property name="minimumSize">
        <size>
-        <width>200</width>
-        <height>200</height>
+        <width>250</width>
+        <height>0</height>
        </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>200</width>
-        <height>16777215</height>
-       </size>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">::item { width:120; height:50 }
-</string>
       </property>
       <property name="verticalScrollBarPolicy">
        <enum>Qt::ScrollBarAlwaysOff</enum>
@@ -1789,11 +1779,20 @@ Note: if the bug involves both a master and client computer, attach bug report a
       <property name="horizontalScrollBarPolicy">
        <enum>Qt::ScrollBarAlwaysOff</enum>
       </property>
+      <property name="sizeAdjustPolicy">
+       <enum>QAbstractScrollArea::AdjustToContents</enum>
+      </property>
       <property name="iconSize">
        <size>
         <width>48</width>
         <height>48</height>
        </size>
+      </property>
+      <property name="textElideMode">
+       <enum>Qt::ElideNone</enum>
+      </property>
+      <property name="movement">
+       <enum>QListView::Free</enum>
       </property>
       <property name="spacing">
        <number>4</number>
@@ -1801,8 +1800,11 @@ Note: if the bug involves both a master and client computer, attach bug report a
       <property name="viewMode">
        <enum>QListView::ListMode</enum>
       </property>
+      <property name="uniformItemSizes">
+       <bool>true</bool>
+      </property>
       <property name="currentRow">
-       <number>0</number>
+       <number>-1</number>
       </property>
       <item>
        <property name="text">
@@ -1854,7 +1856,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
       </item>
       <item>
        <property name="text">
-        <string>LDAP Configuration</string>
+        <string>LDAP</string>
        </property>
        <property name="icon">
         <iconset resource="../imc.qrc">
@@ -1889,7 +1891,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1305</width>
+     <width>1321</width>
      <height>35</height>
     </rect>
    </property>
@@ -2212,7 +2214,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
   <slot>aboutItalc()</slot>
  </slots>
  <buttongroups>
-  <buttongroup name="bindConfigurationGroup"/>
   <buttongroup name="baseDnConfigGroup"/>
+  <buttongroup name="bindConfigurationGroup"/>
  </buttongroups>
 </ui>
