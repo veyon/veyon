@@ -64,7 +64,7 @@ private:
 
 	static QString constructQueryFilter( const QString& filterAttribute,
 										 const QString& filterValue,
-										 const QString& extraFilter );
+										 const QString& extraFilter = QString() );
 
 	class LdapDirectoryPrivate;
 
