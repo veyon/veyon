@@ -53,6 +53,7 @@ public:
 
 	QStringList groupMembers( const QString& groupDn );
 	QStringList groupsOfUser( const QString& userDn );
+	QStringList groupsOfComputer( const QString& computerDn );
 
 	QString userLoginName( const QString& userDn );
 	QString groupName( const QString& groupDn );
