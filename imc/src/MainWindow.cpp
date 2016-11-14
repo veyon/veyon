@@ -714,8 +714,20 @@ void MainWindow::testLdapGroupsOfUser()
 	{
 		LdapDirectory ldapDirectory;
 
-		reportLdapObjectQueryResults( tr( "groups of user" ), tr( "user login attribute or group membership attribute" ),
-									  ldapDirectory.groupsOfUser( userName ), ldapDirectory );
+		QStringList userObjects = ldapDirectory.users(userName);
+
+		if( userObjects.isEmpty() == false )
+		{
+			reportLdapObjectQueryResults( tr( "groups of user" ), tr( "user login attribute or group membership attribute" ),
+										  ldapDirectory.groupsOfUser( userObjects.first() ), ldapDirectory );
+		}
+		else
+		{
+			QMessageBox::warning( this, tr( "User not found" ),
+								  tr( "Could not find a user with the name \"%1\". "
+									  "Please check the user name or the user "
+									  "tree parameter.").arg( userName ) );
+		}
 	}
 }
 
