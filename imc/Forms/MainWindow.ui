@@ -1416,7 +1416,7 @@
            <item>
             <widget class="QPushButton" name="testLdapMembersOfComputerGroup">
              <property name="text">
-              <string>Members of computer group</string>
+              <string>Computer group members</string>
              </property>
              <property name="icon">
               <iconset resource="../imc.qrc">
