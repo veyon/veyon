@@ -122,6 +122,7 @@ MainWindow::MainWindow() :
 	CONNECT_BUTTON_SLOT( testLdapGroupsOfUser );
 	CONNECT_BUTTON_SLOT( testLdapGroupsOfComputer );
 	CONNECT_BUTTON_SLOT( testLdapMembersOfComputerGroup );
+	CONNECT_BUTTON_SLOT( testLdapCommonGroups );
 
 	CONNECT_BUTTON_SLOT( generateBugReportArchive );
 
@@ -786,6 +787,31 @@ void MainWindow::testLdapMembersOfComputerGroup()
 									  "tree parameter.").arg( computerGroupName ) );
 		}
 	}
+}
+
+
+
+void MainWindow::testLdapCommonGroups()
+{
+	QString objectOne = QInputDialog::getText( this, tr( "Enter first object" ),
+										  tr( "Please enter the distinguished name of the first object:" ) );
+	if( objectOne.isEmpty() )
+	{
+		return;
+	}
+
+	QString objectTwo = QInputDialog::getText( this, tr( "Enter second object" ),
+										  tr( "Please enter the distinguished name of the second object:" ) );
+	if( objectTwo.isEmpty() )
+	{
+		return;
+	}
+
+	LdapDirectory ldapDirectory;
+
+	reportLdapObjectQueryResults( tr( "common groups" ),
+								  tr( "group membership attribute" ),
+								  ldapDirectory.commonGroups( objectOne, objectTwo ), ldapDirectory );
 }
 
 

@@ -80,6 +80,7 @@ private slots:
 	void testLdapGroupsOfUser();
 	void testLdapGroupsOfComputer();
 	void testLdapMembersOfComputerGroup();
+	void testLdapCommonGroups();
 	void generateBugReportArchive();
 	void aboutItalc();
 

@@ -1424,6 +1424,17 @@
              </property>
             </widget>
            </item>
+           <item>
+            <widget class="QPushButton" name="testLdapCommonGroups">
+             <property name="text">
+              <string>Common groups</string>
+             </property>
+             <property name="icon">
+              <iconset resource="../imc.qrc">
+               <normaloff>:/Resources/distribute-vertical-margin.png</normaloff>:/Resources/distribute-vertical-margin.png</iconset>
+             </property>
+            </widget>
+           </item>
           </layout>
          </widget>
         </item>
