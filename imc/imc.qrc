@@ -1,25 +1,27 @@
 <RCC>
     <qresource prefix="/">
-        <file>Resources/kbugbuster.png</file>
         <file>Resources/task-accepted.png</file>
         <file>Resources/preferences-other.png</file>
         <file>Resources/imc.png</file>
         <file>Resources/help-hint.png</file>
         <file>Resources/arrow-right.png</file>
         <file>Resources/system-shutdown.png</file>
-        <file>Resources/Authentication.png</file>
         <file>Resources/document-open.png</file>
         <file>Resources/document-save.png</file>
         <file>Resources/edit-clear.png</file>
-        <file>Resources/General.png</file>
         <file>Resources/go-next.png</file>
         <file>Resources/go-previous.png</file>
-        <file>Resources/Paths.png</file>
         <file>Resources/tools-wizard.png</file>
-        <file>Resources/Vnc.png</file>
         <file>Resources/user-group-properties.png</file>
         <file>Resources/dialog-ok-apply.png</file>
         <file>Resources/configure.png</file>
         <file>Resources/computer.png</file>
+        <file>Resources/distribute-vertical-margin.png</file>
+        <file>Resources/configure-shortcuts.png</file>
+        <file>Resources/debug-step-into.png</file>
+        <file>Resources/folder-publicshare.png</file>
+        <file>Resources/kfind.png</file>
+        <file>Resources/preferences-system-login.png</file>
+        <file>Resources/preferences-system-network.png</file>
     </qresource>
 </RCC>

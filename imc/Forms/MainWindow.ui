@@ -1799,7 +1799,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
        </property>
        <property name="icon">
         <iconset resource="../imc.qrc">
-         <normaloff>:/Resources/General.png</normaloff>:/Resources/General.png</iconset>
+         <normaloff>:/Resources/configure-shortcuts.png</normaloff>:/Resources/configure-shortcuts.png</iconset>
        </property>
        <property name="flags">
         <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
@@ -1811,7 +1811,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
        </property>
        <property name="icon">
         <iconset resource="../imc.qrc">
-         <normaloff>:/Resources/Vnc.png</normaloff>:/Resources/Vnc.png</iconset>
+         <normaloff>:/Resources/preferences-system-network.png</normaloff>:/Resources/preferences-system-network.png</iconset>
        </property>
        <property name="flags">
         <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
@@ -1823,7 +1823,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
        </property>
        <property name="icon">
         <iconset resource="../imc.qrc">
-         <normaloff>:/Resources/Paths.png</normaloff>:/Resources/Paths.png</iconset>
+         <normaloff>:/Resources/kfind.png</normaloff>:/Resources/kfind.png</iconset>
        </property>
        <property name="flags">
         <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
@@ -1835,7 +1835,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
        </property>
        <property name="icon">
         <iconset resource="../imc.qrc">
-         <normaloff>:/Resources/Authentication.png</normaloff>:/Resources/Authentication.png</iconset>
+         <normaloff>:/Resources/preferences-system-login.png</normaloff>:/Resources/preferences-system-login.png</iconset>
        </property>
        <property name="flags">
         <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
@@ -1845,6 +1845,10 @@ Note: if the bug involves both a master and client computer, attach bug report a
        <property name="text">
         <string>LDAP Configuration</string>
        </property>
+       <property name="icon">
+        <iconset resource="../imc.qrc">
+         <normaloff>:/Resources/folder-publicshare.png</normaloff>:/Resources/folder-publicshare.png</iconset>
+       </property>
       </item>
       <item>
        <property name="text">
@@ -1852,7 +1856,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
        </property>
        <property name="icon">
         <iconset resource="../imc.qrc">
-         <normaloff>:/Resources/kbugbuster.png</normaloff>:/Resources/kbugbuster.png</iconset>
+         <normaloff>:/Resources/debug-step-into.png</normaloff>:/Resources/debug-step-into.png</iconset>
        </property>
       </item>
      </widget>
@@ -1948,8 +1952,8 @@ Note: if the bug involves both a master and client computer, attach bug report a
   </action>
  </widget>
  <resources>
-  <include location="../imc.qrc"/>
   <include location="../../lib/ItalcCore.qrc"/>
+  <include location="../imc.qrc"/>
  </resources>
  <connections>
   <connection>
