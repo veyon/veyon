@@ -1,4 +1,4 @@
-iTALC 3.0.0 - Intelligent Teaching and Learning with Computers
+iTALC 3.0.1 - Intelligent Teaching and Learning with Computers
 ===============================================================
 
 
