@@ -25,23 +25,21 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 What is iTALC?
 ----------------
 
-iTALC is a use- and powerful didactical tool which lets you view and control
-computers in your labs and interact with students in a modern way.
+iTALC is a powerful didactical tool which allows teachers to view and control
+computer labs and interact with students. It's available in many languages and
+provides lots of useful features such as:
 
-iTALC has been designed for usage in school.
-Therefore it offers a lot of possibilities to teachers, such as
-
-  * see what's going on in computer-labs by using overview mode and make snapshots
-  * remote-control computers to support and help other people
-  * show a demo (either in fullscreen or in a window) - the teacher's screen is
-    shown on all student's computers in realtime
-  * lock workstations for moving undivided attention to teacher
-  * send text-messages to students
-  * powering on/off and rebooting computers per remote
-  * remote logon and logoff and remote execution of arbitrary commands/scripts
-  * home-schooling - iTALC's network-technology is not restricted to a subnet
-    and therefore students at home can join lessons via VPN-connections just by
-    installing iTALC client software
+  * see what's going on in computer labs by using overview mode and make snapshots
+  * remote control computers to support and help users
+  * broadcast teacher's screen to students in realtime by using demo mode
+    (either in fullscreen or in a window)
+  * lock workstations for attracting attention to teacher
+  * send text messages to students
+  * powering on/off and rebooting computers remote
+  * remote logoff and remote execution of arbitrary commands/scripts
+  * home schooling - iTALC's network-technology is not restricted to a subnet
+    and therefore students at home can join lessons via VPN connections just by
+    installing the iTALC service
 
 
 
