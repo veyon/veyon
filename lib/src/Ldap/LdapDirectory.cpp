@@ -251,6 +251,20 @@ QStringList LdapDirectory::computerGroups(const QString &filterValue)
 
 
 
+QStringList LdapDirectory::computerPools(const QString &filterValue)
+{
+	QStringList computerPools = d->queryAttributes( d->computersDn,
+													d->computerPoolAttribute,
+													constructQueryFilter( d->computerPoolAttribute, filterValue ),
+													KLDAP::LdapUrl::One );
+
+	computerPools.removeDuplicates();
+
+	return computerPools;
+}
+
+
+
 QStringList LdapDirectory::groupMembers(const QString &groupDn)
 {
 	return d->queryAttributes( groupDn, d->groupMemberAttribute );

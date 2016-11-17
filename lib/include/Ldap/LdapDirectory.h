@@ -50,6 +50,7 @@ public:
 	QStringList userGroups( const QString& filterValue = QString() );
 	QStringList computers( const QString& filterValue = QString() );
 	QStringList computerGroups( const QString& filterValue = QString() );
+	QStringList computerPools( const QString& filterValue = QString() );
 
 	QStringList groupMembers( const QString& groupDn );
 	QStringList groupsOfUser( const QString& userDn );
