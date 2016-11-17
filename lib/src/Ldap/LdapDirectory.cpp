@@ -288,10 +288,32 @@ QStringList LdapDirectory::groupsOfComputer(const QString &computerDn)
 
 
 
-QStringList LdapDirectory::commonGroups(const QString &objectOne, const QString &objectTwo)
+QStringList LdapDirectory::computerPoolsOfObject(const QString &objectDn)
 {
-	return d->queryDistinguishedNames( d->groupsDn,
-									   QString( "(&(%1=%2)(%1=%3))" ).arg( d->groupMemberAttribute, objectOne, objectTwo ) );
+	return d->queryAttributes( objectDn, d->computerPoolAttribute );
+}
+
+
+/*!
+ * \brief Determines common aggregations (groups, computer pools) of two objects
+ * \param objectOne DN of first object
+ * \param objectTwo DN of second object
+ * \return list of computer pools and groups which both objects have in common
+ */
+QStringList LdapDirectory::commonAggregations(const QString &objectOne, const QString &objectTwo)
+{
+	QStringList commonComputerPools;
+
+	if( d->computerPoolMembersByAttribute )
+	{
+		// get intersection of computer pool list of both objects
+		commonComputerPools = computerPoolsOfObject(objectOne).toSet().intersect(
+					computerPoolsOfObject(objectTwo).toSet() ).toList();
+	}
+
+	return commonComputerPools +
+			d->queryDistinguishedNames( d->groupsDn,
+										QString( "(&(%1=%2)(%1=%3))" ).arg( d->groupMemberAttribute, objectOne, objectTwo ) );
 }
 
 

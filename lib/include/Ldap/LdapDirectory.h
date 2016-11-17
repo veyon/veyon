@@ -55,7 +55,8 @@ public:
 	QStringList groupMembers( const QString& groupDn );
 	QStringList groupsOfUser( const QString& userDn );
 	QStringList groupsOfComputer( const QString& computerDn );
-	QStringList commonGroups( const QString& objectOne, const QString& objectTwo );
+	QStringList computerPoolsOfObject( const QString& objectDn );
+	QStringList commonAggregations( const QString& objectOne, const QString& objectTwo );
 
 	QString userLoginName( const QString& userDn );
 	QString groupName( const QString& groupDn );
