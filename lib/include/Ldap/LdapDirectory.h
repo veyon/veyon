@@ -60,6 +60,8 @@ public:
 	QString groupName( const QString& groupDn );
 	QString computerHostName( const QString& computerDn );
 
+	QStringList computerPoolMembers( const QString& computerPoolName );
+
 private:
 	bool reconnect();
 

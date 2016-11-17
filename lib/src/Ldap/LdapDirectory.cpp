@@ -319,6 +319,27 @@ QString LdapDirectory::computerHostName(const QString &computerDn)
 
 
 
+
+QStringList LdapDirectory::computerPoolMembers(const QString &computerPoolName)
+{
+	if( d->computerPoolMembersByAttribute )
+	{
+		return d->queryDistinguishedNames( d->baseDn,
+										   constructQueryFilter( d->computerPoolAttribute, computerPoolName ),
+										   KLDAP::LdapUrl::Sub );
+	}
+
+	QStringList computerPoolGroups = groups( computerPoolName );
+	if( computerPoolGroups.isEmpty() == false )
+	{
+		return groupMembers( computerPoolGroups.first() );
+	}
+
+	return QStringList();
+}
+
+
+
 bool LdapDirectory::reconnect()
 {
 	ItalcConfiguration* c = ItalcCore::config;
