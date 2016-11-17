@@ -39,11 +39,13 @@ class LdapDirectory::LdapDirectoryPrivate
 {
 public:
 
-	QStringList queryAttributes(const QString &dn, const QString &attribute )
+	QStringList queryAttributes(const QString &dn, const QString &attribute,
+								const QString& filter = QString(),
+								KLDAP::LdapUrl::Scope scope = KLDAP::LdapUrl::Base )
 	{
 		QStringList entries;
 
-		int id = operation.search( KLDAP::LdapDN( dn ), KLDAP::LdapUrl::Base, QString(), QStringList( attribute ) );
+		int id = operation.search( KLDAP::LdapDN( dn ), scope, filter, QStringList( attribute ) );
 
 		if( id != -1 )
 		{
