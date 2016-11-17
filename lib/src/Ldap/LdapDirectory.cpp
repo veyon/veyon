@@ -127,6 +127,9 @@ public:
 	QString userGroupsFilter;
 	QString computerGroupsFilter;
 
+	bool computerPoolMembersByAttribute;
+	QString computerPoolAttribute;
+
 	bool isConnected;
 	bool isBound;
 };
@@ -391,6 +394,9 @@ bool LdapDirectory::reconnect()
 	d->usersFilter = c->ldapUsersFilter();
 	d->userGroupsFilter = c->ldapUserGroupsFilter();
 	d->computerGroupsFilter = c->ldapComputerGroupsFilter();
+
+	d->computerPoolMembersByAttribute = c->ldapComputerPoolMembersByAttribute();
+	d->computerPoolAttribute = c->ldapComputerPoolAttribute();
 
 	return true;
 }
