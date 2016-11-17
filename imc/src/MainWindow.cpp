@@ -765,27 +765,14 @@ void MainWindow::testLdapGroupsOfComputer()
 
 void MainWindow::testLdapComputerPoolMembers()
 {
-	QString computerGroupName = QInputDialog::getText( this, tr( "Enter group name" ),
-										  tr( "Please enter the name of a computer group whose members to query:") );
-	if( computerGroupName.isEmpty() == false )
+	QString computerPoolName = QInputDialog::getText( this, tr( "Enter computer pool name" ),
+													  tr( "Please enter the name of a computer pool whose members to query:") );
+	if( computerPoolName.isEmpty() == false )
 	{
 		LdapDirectory ldapDirectory;
-
-		QStringList computerGroups = ldapDirectory.computerGroups(computerGroupName);
-
-		if( computerGroups.isEmpty() == false )
-		{
-			reportLdapObjectQueryResults( tr( "computer group members" ),
-										  tr( "computer host name attribute or group membership attribute" ),
-										  ldapDirectory.groupMembers( computerGroups.first() ), ldapDirectory );
-		}
-		else
-		{
-			QMessageBox::warning( this, tr( "Computer group not found" ),
-								  tr( "Could not find a computer group with the name \"%1\". "
-									  "Please check the group name or the computer tree "
-									  "tree parameter.").arg( computerGroupName ) );
-		}
+		reportLdapObjectQueryResults( tr( "computer pool members" ),
+									  tr( "computer group filter or computer pool member aggregation" ),
+									  ldapDirectory.computerPoolMembers( computerPoolName ), ldapDirectory );
 	}
 }
 
