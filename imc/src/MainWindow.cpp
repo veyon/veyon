@@ -813,9 +813,9 @@ void MainWindow::testLdapCommonAggregations()
 
 	LdapDirectory ldapDirectory;
 
-	reportLdapObjectQueryResults( tr( "common groups" ),
-								  tr( "group membership attribute" ),
-								  ldapDirectory.commonGroups( objectOne, objectTwo ), ldapDirectory );
+	reportLdapObjectQueryResults( tr( "common aggregations" ),
+								  tr( "group membership or computer pool attribute" ),
+								  ldapDirectory.commonAggregations( objectOne, objectTwo ), ldapDirectory );
 }
 
 
