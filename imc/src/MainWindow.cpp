@@ -119,6 +119,8 @@ MainWindow::MainWindow() :
 	CONNECT_BUTTON_SLOT( testLdapUserGroupsFilter );
 	CONNECT_BUTTON_SLOT( testLdapComputerGroupsFilter );
 
+	CONNECT_BUTTON_SLOT( testLdapComputerPoolAttribute );
+
 	CONNECT_BUTTON_SLOT( testLdapGroupsOfUser );
 	CONNECT_BUTTON_SLOT( testLdapGroupsOfComputer );
 	CONNECT_BUTTON_SLOT( testLdapComputerPoolMembers );
@@ -705,6 +707,21 @@ void MainWindow::testLdapComputerGroupsFilter()
 	int count = ldapDirectory.computerGroups().count();
 
 	reportLdapFilterTestResult( tr( "computer groups" ), count, ldapDirectory.ldapErrorDescription() );
+}
+
+
+
+void MainWindow::testLdapComputerPoolAttribute()
+{
+	QString computerPoolName = QInputDialog::getText( this, tr( "Enter computer pool name" ),
+										  tr( "Please enter the name of a computer pool (wildcards allowed):") );
+	if( computerPoolName.isEmpty() == false )
+	{
+		LdapDirectory ldapDirectory;
+
+		reportLdapObjectQueryResults( tr( "computer pools" ), tr( "computer pool attribute" ),
+									  ldapDirectory.computerPools( computerPoolName ), ldapDirectory );
+	}
 }
 
 
