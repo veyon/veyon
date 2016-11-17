@@ -121,8 +121,8 @@ MainWindow::MainWindow() :
 
 	CONNECT_BUTTON_SLOT( testLdapGroupsOfUser );
 	CONNECT_BUTTON_SLOT( testLdapGroupsOfComputer );
-	CONNECT_BUTTON_SLOT( testLdapMembersOfComputerGroup );
-	CONNECT_BUTTON_SLOT( testLdapCommonGroups );
+	CONNECT_BUTTON_SLOT( testLdapComputerPoolMembers );
+	CONNECT_BUTTON_SLOT( testLdapCommonAggregations );
 
 	CONNECT_BUTTON_SLOT( generateBugReportArchive );
 
@@ -763,7 +763,7 @@ void MainWindow::testLdapGroupsOfComputer()
 
 
 
-void MainWindow::testLdapMembersOfComputerGroup()
+void MainWindow::testLdapComputerPoolMembers()
 {
 	QString computerGroupName = QInputDialog::getText( this, tr( "Enter group name" ),
 										  tr( "Please enter the name of a computer group whose members to query:") );
@@ -791,7 +791,7 @@ void MainWindow::testLdapMembersOfComputerGroup()
 
 
 
-void MainWindow::testLdapCommonGroups()
+void MainWindow::testLdapCommonAggregations()
 {
 	QString objectOne = QInputDialog::getText( this, tr( "Enter first object" ),
 										  tr( "Please enter the distinguished name of the first object:" ) );

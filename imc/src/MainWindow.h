@@ -79,8 +79,8 @@ private slots:
 	void testLdapComputerGroupsFilter();
 	void testLdapGroupsOfUser();
 	void testLdapGroupsOfComputer();
-	void testLdapMembersOfComputerGroup();
-	void testLdapCommonGroups();
+	void testLdapComputerPoolMembers();
+	void testLdapCommonAggregations();
 	void generateBugReportArchive();
 	void aboutItalc();
 
