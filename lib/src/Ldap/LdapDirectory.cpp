@@ -45,6 +45,18 @@ public:
 	{
 		QStringList entries;
 
+		if( dn.isEmpty() )
+		{
+			qCritical() << "LdapDirectory::queryAttributes(): DN is empty!";
+			return entries;
+		}
+
+		if( attribute.isEmpty() )
+		{
+			qCritical() << "LdapDirectory::queryAttributes(): attribute is empty!";
+			return entries;
+		}
+
 		int id = operation.search( KLDAP::LdapDN( dn ), scope, filter, QStringList( attribute ) );
 
 		if( id != -1 )
@@ -68,6 +80,13 @@ public:
 	QStringList queryDistinguishedNames( const QString &dn, const QString &filter, KLDAP::LdapUrl::Scope scope )
 	{
 		QStringList distinguishedNames;
+
+		if( dn.isEmpty() )
+		{
+			qCritical() << "LdapDirectory::queryDistinguishedNames(): DN is empty!";
+
+			return distinguishedNames;
+		}
 
 		int id = operation.search( KLDAP::LdapDN( dn ), scope, filter, QStringList() );
 
