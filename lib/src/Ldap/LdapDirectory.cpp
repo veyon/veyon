@@ -381,6 +381,17 @@ QString LdapDirectory::groupMemberUserIdentification(const QString &userDn)
 
 
 
+QString LdapDirectory::groupMemberComputerIdentification(const QString &computerDn)
+{
+	if( d->identifyGroupMembersByNameAttribute )
+	{
+		return computerHostName( computerDn );
+	}
+
+	return computerDn;
+}
+
+
 
 QStringList LdapDirectory::computerPoolMembers(const QString &computerPoolName)
 {
