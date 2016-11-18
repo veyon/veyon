@@ -104,7 +104,7 @@ public:
 		OP( ItalcConfiguration, ItalcCore::config, STRING, ldapComputerHostNameAttribute, setLdapComputerHostNameAttribute, "ComputerHostNameAttribute", "LDAP" );	\
 		OP( ItalcConfiguration, ItalcCore::config, STRING, ldapUsersFilter, setLdapUsersFilter, "UsersFilter", "LDAP" );	\
 		OP( ItalcConfiguration, ItalcCore::config, STRING, ldapUserGroupsFilter, setLdapUserGroupsFilter, "UserGroupsFilter", "LDAP" );	\
-		OP( ItalcConfiguration, ItalcCore::config, BOOL, ldapIdentifyGroupMembersByUserLoginAttribute, setLdapIdentifyGroupMembersByUserLoginAttribute, "IdentifyGroupMembersByLoginAttribute", "LDAP" );	\
+		OP( ItalcConfiguration, ItalcCore::config, BOOL, ldapIdentifyGroupMembersByNameAttribute, setLdapIdentifyGroupMembersByNameAttribute, "IdentifyGroupMembersByNameAttribute", "LDAP" );	\
 		OP( ItalcConfiguration, ItalcCore::config, STRING, ldapComputerGroupsFilter, setLdapComputerGroupsFilter, "ComputerGroupsFilter", "LDAP" );	\
 		OP( ItalcConfiguration, ItalcCore::config, BOOL, ldapComputerPoolMembersByAttribute, setLdapComputerPoolMembersByAttribute, "ComputerPoolMembersByAttribute", "LDAP" );	\
 		OP( ItalcConfiguration, ItalcCore::config, STRING, ldapComputerPoolAttribute, setLdapComputerPoolAttribute, "ComputerPoolAttribute", "LDAP" );	\
@@ -164,7 +164,7 @@ public slots:
 	void setLdapComputerHostNameAttribute( const QString& );
 	void setLdapUsersFilter( const QString& );
 	void setLdapUserGroupsFilter( const QString& );
-	void setLdapIdentifyGroupMembersByUserLoginAttribute( bool );
+	void setLdapIdentifyGroupMembersByNameAttribute( bool );
 	void setLdapComputerGroupsFilter( const QString& );
 	void setLdapComputerPoolMembersByAttribute( bool );
 	void setLdapComputerPoolAttribute( const QString& );
