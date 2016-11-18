@@ -88,13 +88,7 @@ public:
 
 	QString queryCommonName( const QString& dn )
 	{
-		QStringList names = queryAttributes( dn, "cn" );
-		if( names.isEmpty() )
-		{
-			return QString();
-		}
-
-		return names.first();
+		return queryAttributes( dn, "cn" ).value( 0 );
 	}
 
 	QString ldapErrorDescription() const
@@ -197,14 +191,7 @@ QStringList LdapDirectory::queryBaseDn()
 
 QString LdapDirectory::queryNamingContext()
 {
-	QStringList namingContextEntries = d->queryAttributes( QString(), d->namingContextAttribute );
-
-	if( namingContextEntries.isEmpty() )
-	{
-		return QString();
-	}
-
-	return namingContextEntries.first();
+	return d->queryAttributes( QString(), d->namingContextAttribute ).value( 0 );
 }
 
 
@@ -334,14 +321,7 @@ QStringList LdapDirectory::commonAggregations(const QString &objectOne, const QS
 
 QString LdapDirectory::userLoginName(const QString &userDn)
 {
-	QStringList names = d->queryAttributes( userDn, d->userLoginAttribute );
-
-	if( names.isEmpty() )
-	{
-		return QString();
-	}
-
-	return names.first();
+	return d->queryAttributes( userDn, d->userLoginAttribute ).value( 0 );
 }
 
 
@@ -360,13 +340,7 @@ QString LdapDirectory::computerHostName(const QString &computerDn)
 		return QString();
 	}
 
-	QStringList hostNames = d->queryAttributes( computerDn, d->computerHostNameAttribute );
-	if( hostNames.isEmpty() )
-	{
-		return QString();
-	}
-
-	return hostNames.first();
+	return d->queryAttributes( computerDn, d->computerHostNameAttribute ).value( 0 );
 }
 
 
