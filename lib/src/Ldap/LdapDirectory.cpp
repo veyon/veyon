@@ -121,6 +121,8 @@ public:
 	QString groupsDn;
 	QString computersDn;
 
+	KLDAP::LdapUrl::Scope defaultSearchScope;
+
 	QString userLoginAttribute;
 	QString groupMemberAttribute;
 	QString computerHostNameAttribute;
@@ -460,6 +462,15 @@ bool LdapDirectory::reconnect()
 	d->usersDn = c->ldapUserTree() + "," + c->ldapBaseDn();
 	d->groupsDn = c->ldapGroupTree() + "," + c->ldapBaseDn();
 	d->computersDn = c->ldapComputerTree() + "," + c->ldapBaseDn();
+
+	if( c->ldapRecursiveSearchOperations() )
+	{
+		d->defaultSearchScope = KLDAP::LdapUrl::Sub;
+	}
+	else
+	{
+		d->defaultSearchScope = KLDAP::LdapUrl::One;
+	}
 
 	d->userLoginAttribute = c->ldapUserLoginAttribute();
 	d->groupMemberAttribute = c->ldapGroupMemberAttribute();
