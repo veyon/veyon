@@ -397,13 +397,7 @@ QStringList LdapDirectory::computerPoolMembers(const QString &computerPoolName)
 										   KLDAP::LdapUrl::Sub );
 	}
 
-	QStringList computerPoolGroups = computerGroups( computerPoolName );
-	if( computerPoolGroups.isEmpty() == false )
-	{
-		return groupMembers( computerPoolGroups.first() );
-	}
-
-	return QStringList();
+	return groupMembers( computerGroups( computerPoolName ).value( 0 ) );
 }
 
 
