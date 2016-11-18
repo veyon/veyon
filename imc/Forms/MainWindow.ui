@@ -2418,38 +2418,6 @@ Note: if the bug involves both a master and client computer, attach bug report a
     </hint>
    </hints>
   </connection>
-  <connection>
-   <sender>ldapComputerPoolMembersByGroups</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>ldapComputerGroupsFilter</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>532</x>
-     <y>695</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>918</x>
-     <y>569</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>ldapComputerPoolMembersByGroups</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>testLdapComputerGroupsFilter</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>532</x>
-     <y>695</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>1297</x>
-     <y>569</y>
-    </hint>
-   </hints>
-  </connection>
  </connections>
  <slots>
   <slot>aboutItalc()</slot>
