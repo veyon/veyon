@@ -281,7 +281,7 @@ QStringList LdapDirectory::groupMembers(const QString &groupDn)
 
 QStringList LdapDirectory::groupsOfUser(const QString &userDn)
 {
-	QString userId = groupMemberIdentification( userDn );
+	QString userId = groupMemberUserIdentification( userDn );
 
 	return d->queryDistinguishedNames( d->groupsDn,
 									   constructQueryFilter( d->groupMemberAttribute, userId, d->userGroupsFilter ),
@@ -369,14 +369,14 @@ QString LdapDirectory::computerHostName(const QString &computerDn)
 
 
 
-QString LdapDirectory::groupMemberIdentification(const QString &objectDn)
+QString LdapDirectory::groupMemberUserIdentification(const QString &userDn)
 {
 	if( d->identifyGroupMembersByNameAttribute )
 	{
-		return d->queryAttributes( objectDn, d->userLoginAttribute ).value( 0 );
+		return userLoginName( userDn );
 	}
 
-	return objectDn;
+	return userDn;
 }
 
 
