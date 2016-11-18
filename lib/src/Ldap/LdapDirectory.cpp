@@ -292,8 +292,10 @@ QStringList LdapDirectory::groupsOfUser(const QString &userDn)
 
 QStringList LdapDirectory::groupsOfComputer(const QString &computerDn)
 {
+	QString computerId = groupMemberComputerIdentification( computerDn );
+
 	return d->queryDistinguishedNames( d->groupsDn,
-									   constructQueryFilter( d->groupMemberAttribute, computerDn, d->computerGroupsFilter ),
+									   constructQueryFilter( d->groupMemberAttribute, computerId, d->computerGroupsFilter ),
 									   d->defaultSearchScope );
 }
 
