@@ -1102,17 +1102,17 @@
                <string>Object trees</string>
               </property>
               <layout class="QGridLayout" name="gridLayout_21">
-               <item row="0" column="1">
-                <widget class="QLineEdit" name="ldapUserTree">
-                 <property name="placeholderText">
-                  <string>e.g. OU=Users</string>
-                 </property>
-                </widget>
-               </item>
                <item row="2" column="0">
                 <widget class="QLabel" name="label_29">
                  <property name="text">
                   <string>Computer tree</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QLineEdit" name="ldapGroupTree">
+                 <property name="placeholderText">
+                  <string>e.g. OU=Groups</string>
                  </property>
                 </widget>
                </item>
@@ -1123,10 +1123,10 @@
                  </property>
                 </widget>
                </item>
-               <item row="2" column="1">
-                <widget class="QLineEdit" name="ldapComputerTree">
+               <item row="0" column="1">
+                <widget class="QLineEdit" name="ldapUserTree">
                  <property name="placeholderText">
-                  <string>e.g. OU=Computers</string>
+                  <string>e.g. OU=Users</string>
                  </property>
                 </widget>
                </item>
@@ -1152,20 +1152,6 @@
                  </property>
                 </widget>
                </item>
-               <item row="1" column="0">
-                <widget class="QLabel" name="label_28">
-                 <property name="text">
-                  <string>Group tree</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="1" column="1">
-                <widget class="QLineEdit" name="ldapGroupTree">
-                 <property name="placeholderText">
-                  <string>e.g. OU=Groups</string>
-                 </property>
-                </widget>
-               </item>
                <item row="0" column="2">
                 <widget class="QPushButton" name="testLdapUserTree">
                  <property name="text">
@@ -1174,6 +1160,20 @@
                  <property name="icon">
                   <iconset resource="../imc.qrc">
                    <normaloff>:/Resources/dialog-ok-apply.png</normaloff>:/Resources/dialog-ok-apply.png</iconset>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="1">
+                <widget class="QLineEdit" name="ldapComputerTree">
+                 <property name="placeholderText">
+                  <string>e.g. OU=Computers</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="label_28">
+                 <property name="text">
+                  <string>Group tree</string>
                  </property>
                 </widget>
                </item>
