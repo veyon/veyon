@@ -129,6 +129,7 @@ public:
 	QString userGroupsFilter;
 	QString computerGroupsFilter;
 
+	bool identifyGroupMembersByUserLoginAttribute;
 	bool computerPoolMembersByAttribute;
 	QString computerPoolAttribute;
 
@@ -357,6 +358,18 @@ QString LdapDirectory::computerHostName(const QString &computerDn)
 
 
 
+QString LdapDirectory::groupMemberIdentification(const QString &objectDn)
+{
+	if( d->identifyGroupMembersByUserLoginAttribute )
+	{
+		return d->queryAttributes( objectDn, d->userLoginAttribute );
+	}
+
+	return objectDn;
+}
+
+
+
 
 QStringList LdapDirectory::computerPoolMembers(const QString &computerPoolName)
 {
@@ -453,6 +466,8 @@ bool LdapDirectory::reconnect()
 	d->usersFilter = c->ldapUsersFilter();
 	d->userGroupsFilter = c->ldapUserGroupsFilter();
 	d->computerGroupsFilter = c->ldapComputerGroupsFilter();
+
+	d->identifyGroupMembersByUserLoginAttribute = c->ldapIdentifyGroupMembersByUserLoginAttribute();
 
 	d->computerPoolMembersByAttribute = c->ldapComputerPoolMembersByAttribute();
 	d->computerPoolAttribute = c->ldapComputerPoolAttribute();
