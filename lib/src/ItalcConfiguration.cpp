@@ -117,6 +117,8 @@ ItalcConfiguration ItalcConfiguration::defaultConfiguration()
 	c.setSameUserConfirmationDisabled( false );
 	c.setLogonGroups( QStringList() );
 
+	c.setLdapServerPort( 389 );
+
 	return c;
 }
 
