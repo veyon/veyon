@@ -364,7 +364,7 @@ QString LdapDirectory::groupMemberIdentification(const QString &objectDn)
 {
 	if( d->identifyGroupMembersByUserLoginAttribute )
 	{
-		return d->queryAttributes( objectDn, d->userLoginAttribute );
+		return d->queryAttributes( objectDn, d->userLoginAttribute ).value( 0 );
 	}
 
 	return objectDn;
