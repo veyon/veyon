@@ -98,6 +98,7 @@ public:
 		OP( ItalcConfiguration, ItalcCore::config, STRING, ldapUserTree, setLdapUserTree, "UserTree", "LDAP" );	\
 		OP( ItalcConfiguration, ItalcCore::config, STRING, ldapGroupTree, setLdapGroupTree, "GroupTree", "LDAP" );	\
 		OP( ItalcConfiguration, ItalcCore::config, STRING, ldapComputerTree, setLdapComputerTree, "ComputerTree", "LDAP" );	\
+		OP( ItalcConfiguration, ItalcCore::config, BOOL, ldapRecursiveSearchOperations, setLdapRecursiveSearchOperations, "RecursiveSearchOperations", "LDAP" );	\
 		OP( ItalcConfiguration, ItalcCore::config, STRING, ldapUserLoginAttribute, setLdapUserLoginAttribute, "UserLoginAttribute", "LDAP" );	\
 		OP( ItalcConfiguration, ItalcCore::config, STRING, ldapGroupMemberAttribute, setLdapGroupMemberAttribute, "GroupMemberAttribute", "LDAP" );	\
 		OP( ItalcConfiguration, ItalcCore::config, STRING, ldapComputerHostNameAttribute, setLdapComputerHostNameAttribute, "ComputerHostNameAttribute", "LDAP" );	\
@@ -157,6 +158,7 @@ public slots:
 	void setLdapUserTree( const QString& );
 	void setLdapGroupTree( const QString& );
 	void setLdapComputerTree( const QString& );
+	void setLdapRecursiveSearchOperations( bool );
 	void setLdapUserLoginAttribute( const QString& );
 	void setLdapGroupMemberAttribute( const QString& );
 	void setLdapComputerHostNameAttribute( const QString& );
