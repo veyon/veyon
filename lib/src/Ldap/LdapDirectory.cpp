@@ -65,7 +65,7 @@ public:
 		return entries;
 	}
 
-	QStringList queryDistinguishedNames( const QString &dn, const QString &filter, KLDAP::LdapUrl::Scope scope = KLDAP::LdapUrl::One )
+	QStringList queryDistinguishedNames( const QString &dn, const QString &filter, KLDAP::LdapUrl::Scope scope )
 	{
 		QStringList distinguishedNames;
 
@@ -212,7 +212,8 @@ QString LdapDirectory::queryNamingContext()
 QStringList LdapDirectory::users(const QString &filterValue)
 {
 	return d->queryDistinguishedNames( d->usersDn,
-									   constructQueryFilter( d->userLoginAttribute, filterValue, d->usersFilter ) );
+									   constructQueryFilter( d->userLoginAttribute, filterValue, d->usersFilter ),
+									   d->defaultSearchScope );
 }
 
 
@@ -220,7 +221,8 @@ QStringList LdapDirectory::users(const QString &filterValue)
 QStringList LdapDirectory::groups(const QString &filterValue)
 {
 	return d->queryDistinguishedNames( d->groupsDn,
-									   constructQueryFilter( "cn", filterValue, QString() ) );
+									   constructQueryFilter( "cn", filterValue, QString() ),
+									   d->defaultSearchScope );
 }
 
 
@@ -228,7 +230,8 @@ QStringList LdapDirectory::groups(const QString &filterValue)
 QStringList LdapDirectory::userGroups(const QString &filterValue)
 {
 	return d->queryDistinguishedNames( d->groupsDn,
-									   constructQueryFilter( "cn", filterValue, d->userGroupsFilter ) );
+									   constructQueryFilter( "cn", filterValue, d->userGroupsFilter ),
+									   d->defaultSearchScope );
 }
 
 
@@ -239,9 +242,9 @@ QStringList LdapDirectory::userGroups(const QString &filterValue)
  */
 QStringList LdapDirectory::computers(const QString &filterValue)
 {
-	QString queryFilter = constructQueryFilter( d->computerHostNameAttribute, filterValue, QString() );
-
-	return d->queryDistinguishedNames( d->computersDn, queryFilter );
+	return d->queryDistinguishedNames( d->computersDn,
+									   constructQueryFilter( d->computerHostNameAttribute, filterValue ),
+									   d->defaultSearchScope );
 }
 
 
@@ -249,7 +252,8 @@ QStringList LdapDirectory::computers(const QString &filterValue)
 QStringList LdapDirectory::computerGroups(const QString &filterValue)
 {
 	return d->queryDistinguishedNames( d->groupsDn,
-									   constructQueryFilter( "cn", filterValue, d->computerGroupsFilter ) );
+									   constructQueryFilter( "cn", filterValue, d->computerGroupsFilter ) ,
+									   d->defaultSearchScope );
 }
 
 
@@ -259,7 +263,7 @@ QStringList LdapDirectory::computerPools(const QString &filterValue)
 	QStringList computerPools = d->queryAttributes( d->computersDn,
 													d->computerPoolAttribute,
 													constructQueryFilter( d->computerPoolAttribute, filterValue ),
-													KLDAP::LdapUrl::One );
+													d->defaultSearchScope );
 
 	computerPools.removeDuplicates();
 
@@ -280,7 +284,8 @@ QStringList LdapDirectory::groupsOfUser(const QString &userDn)
 	QString userId = groupMemberIdentification( userDn );
 
 	return d->queryDistinguishedNames( d->groupsDn,
-									   constructQueryFilter( d->groupMemberAttribute, userId, d->userGroupsFilter ) );
+									   constructQueryFilter( d->groupMemberAttribute, userId, d->userGroupsFilter ),
+									   d->defaultSearchScope );
 }
 
 
@@ -288,7 +293,8 @@ QStringList LdapDirectory::groupsOfUser(const QString &userDn)
 QStringList LdapDirectory::groupsOfComputer(const QString &computerDn)
 {
 	return d->queryDistinguishedNames( d->groupsDn,
-									   constructQueryFilter( d->groupMemberAttribute, computerDn, d->computerGroupsFilter ) );
+									   constructQueryFilter( d->groupMemberAttribute, computerDn, d->computerGroupsFilter ),
+									   d->defaultSearchScope );
 }
 
 
@@ -318,7 +324,8 @@ QStringList LdapDirectory::commonAggregations(const QString &objectOne, const QS
 
 	return commonComputerPools +
 			d->queryDistinguishedNames( d->groupsDn,
-										QString( "(&(%1=%2)(%1=%3))" ).arg( d->groupMemberAttribute, objectOne, objectTwo ) );
+										QString( "(&(%1=%2)(%1=%3))" ).arg( d->groupMemberAttribute, objectOne, objectTwo ),
+										d->defaultSearchScope );
 }
 
 
