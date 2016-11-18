@@ -275,8 +275,10 @@ QStringList LdapDirectory::groupMembers(const QString &groupDn)
 
 QStringList LdapDirectory::groupsOfUser(const QString &userDn)
 {
+	QString userId = groupMemberIdentification( userDn );
+
 	return d->queryDistinguishedNames( d->groupsDn,
-									   constructQueryFilter( d->groupMemberAttribute, userDn, d->userGroupsFilter ) );
+									   constructQueryFilter( d->groupMemberAttribute, userId, d->userGroupsFilter ) );
 }
 
 
