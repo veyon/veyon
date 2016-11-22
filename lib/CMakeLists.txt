@@ -91,3 +91,7 @@ TARGET_LINK_LIBRARIES(ItalcCore
 
 ADD_DEPENDENCIES(ItalcCore GenerateTranslationFiles)
 
+# create target for building included MOC files from kldap before building ItalcCore library
+ADD_CUSTOM_TARGET(kldap_MOC ALL DEPENDS ${kldap_MOCINC_out})
+ADD_DEPENDENCIES(ItalcCore kldap_MOC)
+
