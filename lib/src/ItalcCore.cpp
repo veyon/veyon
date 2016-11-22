@@ -33,6 +33,7 @@
 #include <QtCore/QLocale>
 #include <QtCore/QTranslator>
 #include <QApplication>
+#include <QMetaEnum>
 
 #include "ItalcCore.h"
 #include "ItalcConfiguration.h"
@@ -161,28 +162,38 @@ bool ItalcCore::init()
 
 	initResources();
 
-	const QString loc = QLocale::system().name();
+	config = new ItalcConfiguration( ItalcConfiguration::defaultConfiguration() );
+	*config += ItalcConfiguration( Configuration::Store::LocalBackend );
+
+	const QString configuredLanguageString = config->uiLanguage().split( " " ).first();
+	const QLocale::Language configuredLanguage =
+			static_cast<QLocale::Language>( QMetaEnum::fromType<QLocale::Language>().
+											keyToValue( configuredLanguageString.toUtf8().constData() ) );
+	QLocale configuredLocale = QLocale( configuredLanguage ).name();
 
 	QTranslator *tr = new QTranslator;
-	tr->load( QString( ":/resources/%1.qm" ).arg( loc ) );
+	if( tr->load( QString( ":/resources/%1.qm" ).arg( configuredLocale.name() ) ) == false )
+	{
+		configuredLocale = QLocale::system();
+		tr->load( QString( ":/resources/%1.qm" ).arg( QLocale::system().name() ) );
+	}
+
 	QCoreApplication::installTranslator( tr );
 
 	QTranslator *qtTr = new QTranslator;
 #ifdef QT_TRANSLATIONS_DIR
-	qtTr->load( QString( "qt_%1.qm" ).arg( loc ), QT_TRANSLATIONS_DIR );
+	qtTr->load( QString( "qt_%1.qm" ).arg( configuredLocale.name() ), QT_TRANSLATIONS_DIR );
 #else
-	qtTr->load( QString( ":/qt_%1.qm" ).arg( loc ) );
+	qtTr->load( QString( ":/qt_%1.qm" ).arg( configuredLocale.name() ) );
 #endif
 	QCoreApplication::installTranslator( qtTr );
 
-	if( QLocale::system().language() == QLocale::Hebrew ||
-		QLocale::system().language() == QLocale::Arabic )
+	if( configuredLocale.language() == QLocale::Hebrew ||
+		configuredLocale.language() == QLocale::Arabic )
 	{
 		QApplication::setLayoutDirection( Qt::RightToLeft );
 	}
 
-	config = new ItalcConfiguration( ItalcConfiguration::defaultConfiguration() );
-	*config += ItalcConfiguration( Configuration::Store::LocalBackend );
 
 	serverPort = config->coreServerPort();
 

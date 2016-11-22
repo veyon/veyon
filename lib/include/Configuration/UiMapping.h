@@ -33,7 +33,11 @@
 			_INIT_WIDGET_FROM_PROPERTY(config,property,QAbstractButton,setChecked)
 
 #define INIT_WIDGET_FROM_STRING_PROPERTY(config,property,slot)							\
-			_INIT_WIDGET_FROM_PROPERTY(config,property,QLineEdit,setText)
+			if(ui->property->inherits("QComboBox"))	{							\
+				_INIT_WIDGET_FROM_PROPERTY(config,property,QComboBox,setCurrentText)	\
+			} else { \
+				_INIT_WIDGET_FROM_PROPERTY(config,property,QLineEdit,setText) \
+			}
 
 #define INIT_WIDGET_FROM_STRINGLIST_PROPERTY(config,property,slot)							\
 /*			if(ui->property->inherits("QListWidget")) {					\
@@ -60,8 +64,13 @@
 #define CONNECT_WIDGET_TO_STRINGLIST_PROPERTY(config,property,slot)
 
 #define CONNECT_WIDGET_TO_STRING_PROPERTY(config,property,slot)						\
+		if(ui->property->inherits("QComboBox"))	{							\
+			connect( ui->property, SIGNAL(currentTextChanged(const QString &)),		\
+						config, SLOT(slot(const QString &)) );				\
+		} else {															\
 			connect( ui->property, SIGNAL(textChanged(const QString &)),		\
-						config, SLOT(slot(const QString &)) );
+						config, SLOT(slot(const QString &)) );					\
+		}
 
 #define CONNECT_WIDGET_TO_INT_PROPERTY(config,property,slot)							\
 			if(ui->property->inherits("QComboBox"))	{							\

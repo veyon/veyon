@@ -70,6 +70,22 @@ MainWindow::MainWindow() :
 
 	setWindowTitle( tr( "iTALC Management Console %1" ).arg( ITALC_VERSION ) );
 
+	// retrieve list of builtin translations and populate language combobox
+	QStringList languages;
+	for( auto language : QDir(":/resources/").entryList( QStringList("*.qm") ) )
+	{
+		QLocale loc(language);
+		if( loc.language() == QLocale::C )
+		{
+			loc = QLocale( QLocale::English );
+		}
+		languages += QLocale::languageToString(loc.language()) + " - " + loc.nativeLanguageName();
+	}
+
+	qSort( languages );
+
+	ui->uiLanguage->addItems( languages );
+
 	// reset all widget's values to current configuration
 	reset();
 

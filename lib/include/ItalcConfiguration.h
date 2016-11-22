@@ -46,6 +46,7 @@ public:
 
 #define FOREACH_ITALC_CONFIG_PROPERTY(OP)												\
 		/* UI */																		\
+		OP( ItalcConfiguration, ItalcCore::config, STRING, uiLanguage, setUiLanguage, "Language", "UI" );			\
 		OP( ItalcConfiguration, ItalcCore::config, BOOL, isHighDPIScalingEnabled, setHighDPIScalingEnabled, "EnableHighDPIScaling", "UI" );			\
 		/* iTALC Service */																\
 		OP( ItalcConfiguration, ItalcCore::config, BOOL, isTrayIconHidden, setTrayIconHidden, "HideTrayIcon", "Service" );			\
@@ -115,6 +116,7 @@ public:
 	// unluckily we have to declare slots manually as Qt's MOC doesn't do any
 	// macro expansion :-(
 public slots:
+	void setUiLanguage( const QString& );
 	void setHighDPIScalingEnabled( bool );
 	void setTrayIconHidden( bool );
 	void setLockWithDesktopSwitching( bool );
