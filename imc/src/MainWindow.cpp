@@ -553,7 +553,7 @@ void MainWindow::testLdapBaseDn()
 		if( entries.isEmpty() )
 		{
 			QMessageBox::critical( this, tr( "LDAP base DN test failed"),
-								   tr( "Could query the configured base DN. "
+								   tr( "Could not query the configured base DN. "
 									   "Please check the base DN parameter.\n"
 									   "%1" ).arg( ldapDirectory.ldapErrorDescription() ) );
 		}
@@ -579,7 +579,7 @@ void MainWindow::testLdapNamingContext()
 		if( baseDn.isEmpty() )
 		{
 			QMessageBox::critical( this, tr( "LDAP naming context test failed"),
-								   tr( "Could query the base DN via naming contexts. "
+								   tr( "Could not query the base DN via naming contexts. "
 									   "Please check the naming context attribute parameter.\n"
 									   "%1" ).arg( ldapDirectory.ldapErrorDescription() ) );
 		}
@@ -1048,7 +1048,7 @@ void MainWindow::reportLdapTreeQueryResult(const QString &name, int count, const
 	if( count <= 0 )
 	{
 		QMessageBox::critical( this, tr( "LDAP %1 test failed").arg( name ),
-							   tr( "Could query any entries in configured %1. "
+							   tr( "Could not query any entries in configured %1. "
 								   "Please check the %1 parameter.\n\n"
 								   "%2" ).arg( name, errorDescription ) );
 	}
@@ -1070,7 +1070,7 @@ void MainWindow::reportLdapObjectQueryResults( const QString &objectsName, const
 	if( results.isEmpty() )
 	{
 		QMessageBox::critical( this, tr( "LDAP %2 test failed").arg( parameterName ),
-							   tr( "Could query any %1. "
+							   tr( "Could not query any %1. "
 								   "Please check the %2 parameter or enter the name of an existing object.\n\n"
 								   "%3" ).arg( objectsName, parameterName, directory.ldapErrorDescription() ) );
 	}
@@ -1093,7 +1093,7 @@ void MainWindow::reportLdapFilterTestResult( const QString &filterObjects, int c
 	if( count <= 0 )
 	{
 		QMessageBox::critical( this, tr( "LDAP filter test failed"),
-							   tr( "Could query any %1 using the configured filter. "
+							   tr( "Could not query any %1 using the configured filter. "
 								   "Please check the LDAP filter for %1.\n\n"
 								   "%2" ).arg( filterObjects, errorDescription ) );
 	}
