@@ -512,6 +512,8 @@ void MainWindow::testLogonAuthentication()
 
 bool MainWindow::testLdapBind(bool reportSuccess )
 {
+	qDebug() << "[TEST][LDAP] Testing bind";
+
 	LdapDirectory ldapDirectory;
 
 	if( ldapDirectory.isConnected() == false )
@@ -547,6 +549,8 @@ void MainWindow::testLdapBaseDn()
 {
 	if( testLdapBind( false ) )
 	{
+		qDebug() << "[TEST][LDAP] Testing base DN";
+
 		LdapDirectory ldapDirectory;
 		QStringList entries = ldapDirectory.queryBaseDn();
 
@@ -573,6 +577,8 @@ void MainWindow::testLdapNamingContext()
 {
 	if( testLdapBind( false ) )
 	{
+		qDebug() << "[TEST][LDAP] Testing naming context";
+
 		LdapDirectory ldapDirectory;
 		QString baseDn = ldapDirectory.queryNamingContext();
 
@@ -599,6 +605,8 @@ void MainWindow::testLdapUserTree()
 {
 	if( testLdapBind( false ) )
 	{
+		qDebug() << "[TEST][LDAP] Testing user tree";
+
 		LdapDirectory ldapDirectory;
 		ldapDirectory.disableFilters();
 		int count = ldapDirectory.users().count();
@@ -613,6 +621,8 @@ void MainWindow::testLdapGroupTree()
 {
 	if( testLdapBind( false ) )
 	{
+		qDebug() << "[TEST][LDAP] Testing group tree";
+
 		LdapDirectory ldapDirectory;
 		ldapDirectory.disableFilters();
 		int count = ldapDirectory.groups().count();
@@ -627,6 +637,8 @@ void MainWindow::testLdapComputerTree()
 {
 	if( testLdapBind( false ) )
 	{
+		qDebug() << "[TEST][LDAP] Testing computer tree";
+
 		LdapDirectory ldapDirectory;
 		ldapDirectory.disableFilters();
 		int count = ldapDirectory.computers().count();
@@ -643,6 +655,8 @@ void MainWindow::testLdapUserLoginAttribute()
 										  tr( "Please enter a user login name (wildcards allowed) which to query:") );
 	if( userFilter.isEmpty() == false )
 	{
+		qDebug() << "[TEST][LDAP] Testing user login attribute for" << userFilter;
+
 		LdapDirectory ldapDirectory;
 		ldapDirectory.disableFilters();
 
@@ -659,6 +673,8 @@ void MainWindow::testLdapGroupMemberAttribute()
 										  tr( "Please enter a group name whose members to query:") );
 	if( groupFilter.isEmpty() == false )
 	{
+		qDebug() << "[TEST][LDAP] Testing group member attribute for" << groupFilter;
+
 		LdapDirectory ldapDirectory;
 		ldapDirectory.disableFilters();
 
@@ -687,6 +703,8 @@ void MainWindow::testLdapComputerHostNameAttribute()
 										  tr( "Please enter a computer name whose host name to query:") );
 	if( computerName.isEmpty() == false )
 	{
+		qDebug() << "[TEST][LDAP] Testing computer host name attribute";
+
 		LdapDirectory ldapDirectory;
 		ldapDirectory.disableFilters();
 
@@ -699,6 +717,8 @@ void MainWindow::testLdapComputerHostNameAttribute()
 
 void MainWindow::testLdapUsersFilter()
 {
+	qDebug() << "[TEST][LDAP] Testing users filter";
+
 	LdapDirectory ldapDirectory;
 	int count = ldapDirectory.users().count();
 
@@ -709,6 +729,8 @@ void MainWindow::testLdapUsersFilter()
 
 void MainWindow::testLdapUserGroupsFilter()
 {
+	qDebug() << "[TEST][LDAP] Testing user groups filter";
+
 	LdapDirectory ldapDirectory;
 	int count = ldapDirectory.userGroups().count();
 
@@ -719,6 +741,8 @@ void MainWindow::testLdapUserGroupsFilter()
 
 void MainWindow::testLdapComputerGroupsFilter()
 {
+	qDebug() << "[TEST][LDAP] Testing computer groups filter";
+
 	LdapDirectory ldapDirectory;
 	int count = ldapDirectory.computerGroups().count();
 
@@ -733,6 +757,8 @@ void MainWindow::testLdapComputerPoolAttribute()
 										  tr( "Please enter the name of a computer pool (wildcards allowed):") );
 	if( computerPoolName.isEmpty() == false )
 	{
+		qDebug() << "[TEST][LDAP] Testing computer pool attribute for" << computerPoolName;
+
 		LdapDirectory ldapDirectory;
 
 		reportLdapObjectQueryResults( tr( "computer pools" ), tr( "computer pool attribute" ),
@@ -748,6 +774,8 @@ void MainWindow::testLdapGroupsOfUser()
 										  tr( "Please enter a user login name whose group memberships to query:") );
 	if( userName.isEmpty() == false )
 	{
+		qDebug() << "[TEST][LDAP] Testing groups of user" << userName;
+
 		LdapDirectory ldapDirectory;
 
 		QStringList userObjects = ldapDirectory.users(userName);
@@ -775,6 +803,8 @@ void MainWindow::testLdapGroupsOfComputer()
 										  tr( "Please enter a computer host name whose group memberships to query:") );
 	if( computerHostName.isEmpty() == false )
 	{
+		qDebug() << "[TEST][LDAP] Testing groups of computer for" << computerHostName;
+
 		LdapDirectory ldapDirectory;
 
 		QStringList computerObjects = ldapDirectory.computers(computerHostName);
@@ -802,6 +832,8 @@ void MainWindow::testLdapComputerPoolMembers()
 													  tr( "Please enter the name of a computer pool whose members to query:") );
 	if( computerPoolName.isEmpty() == false )
 	{
+		qDebug() << "[TEST][LDAP] Testing computer pool members for" << computerPoolName;
+
 		LdapDirectory ldapDirectory;
 		reportLdapObjectQueryResults( tr( "computer pool members" ),
 									  tr( "computer group filter or computer pool member aggregation" ),
@@ -826,6 +858,8 @@ void MainWindow::testLdapCommonAggregations()
 	{
 		return;
 	}
+
+	qDebug() << "[TEST][LDAP] Testing common aggregations of" << ( QStringList() << objectOne << objectTwo );
 
 	LdapDirectory ldapDirectory;
 
