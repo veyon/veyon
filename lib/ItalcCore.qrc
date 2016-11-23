@@ -23,19 +23,19 @@
     <file>resources/sl.qm</file>
     <file>resources/sv.qm</file>
     <file>resources/uk.qm</file>
-    <file>resources/zh_cn.qm</file>
-    <file>resources/zh_tw.qm</file>
+    <file>resources/zh_CN.qm</file>
+    <file>resources/zh_TW.qm</file>
     <file>resources/fi.qm</file>
     <file>resources/ru.qm</file>
     <file>resources/sk.qm</file>
-    <file>resources/pt_br.qm</file>
+    <file>resources/pt_BR.qm</file>
     <file>resources/el.qm</file>
     <file>resources/tr.qm</file>
     <file>resources/he.qm</file>
     <file>resources/mn.qm</file>
     <file>resources/nl.qm</file>
     <file>resources/lt.qm</file>
-    <file>resources/ko_kr.qm</file>
+    <file>resources/ko_KR.qm</file>
     <file>resources/bb.qm</file>
     <file>resources/ca_ES.qm</file>
     <file>resources/locked_bg.png</file>

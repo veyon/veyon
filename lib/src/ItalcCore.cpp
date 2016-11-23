@@ -165,20 +165,26 @@ bool ItalcCore::init()
 	config = new ItalcConfiguration( ItalcConfiguration::defaultConfiguration() );
 	*config += ItalcConfiguration( Configuration::Store::LocalBackend );
 
-	const QString configuredLanguageString = config->uiLanguage().split( " " ).first();
-	const QLocale::Language configuredLanguage =
-			static_cast<QLocale::Language>( QMetaEnum::fromType<QLocale::Language>().
-											keyToValue( configuredLanguageString.toUtf8().constData() ) );
-	QLocale configuredLocale = QLocale( configuredLanguage ).name();
+	QLocale configuredLocale( QLocale::C );
 
-	QTranslator *tr = new QTranslator;
-	if( tr->load( QString( ":/resources/%1.qm" ).arg( configuredLocale.name() ) ) == false )
+	QRegExp localeRegEx( "[^(]*\\(([^)]*)\\)");
+	if( localeRegEx.indexIn( config->uiLanguage() ) == 0 )
 	{
-		configuredLocale = QLocale::system();
-		tr->load( QString( ":/resources/%1.qm" ).arg( QLocale::system().name() ) );
+		configuredLocale = QLocale( localeRegEx.cap( 1 ) );
 	}
 
-	QCoreApplication::installTranslator( tr );
+	if( configuredLocale.language() != QLocale::English )
+	{
+		QTranslator *tr = new QTranslator;
+		if( configuredLocale == QLocale::C ||
+				tr->load( QString( ":/resources/%1.qm" ).arg( configuredLocale.name() ) ) == false )
+		{
+			configuredLocale = QLocale::system();
+			tr->load( QString( ":/resources/%1.qm" ).arg( QLocale::system().name() ) );
+		}
+
+		QCoreApplication::installTranslator( tr );
+	}
 
 	QTranslator *qtTr = new QTranslator;
 #ifdef QT_TRANSLATIONS_DIR
