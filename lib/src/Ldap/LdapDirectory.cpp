@@ -410,7 +410,6 @@ bool LdapDirectory::reconnect()
 
 	server.setHost( c->ldapServerHost() );
 	server.setPort( c->ldapServerPort() );
-	server.setBaseDn( KLDAP::LdapDN( c->ldapBaseDn() ) );
 
 	if( c->ldapUseBindCredentials() )
 	{
