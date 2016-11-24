@@ -45,7 +45,7 @@ public:
 	{
 		QStringList entries;
 
-		if( dn.isEmpty() )
+		if( dn.isEmpty() && attribute != namingContextAttribute )
 		{
 			qCritical() << "LdapDirectory::queryAttributes(): DN is empty!";
 			return entries;
