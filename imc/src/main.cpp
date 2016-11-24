@@ -91,8 +91,6 @@ int main( int argc, char **argv )
 		return -1;
 	}
 
-	app.connect( &app, SIGNAL( lastWindowClosed() ), SLOT( quit() ) );
-
 	// parse arguments
 	QStringListIterator argIt( app.arguments() );
 	argIt.next();
