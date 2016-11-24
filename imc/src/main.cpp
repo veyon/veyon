@@ -148,6 +148,38 @@ int importPublicKey( QStringListIterator& argIt )
 
 
 
+bool parseRole( QStringListIterator& argIt )
+{
+	if( argIt.hasNext() )
+	{
+		const QString role = argIt.next();
+		if( role == "teacher" )
+		{
+			ItalcCore::role = ItalcCore::RoleTeacher;
+		}
+		else if( role == "admin" )
+		{
+			ItalcCore::role = ItalcCore::RoleAdmin;
+		}
+		else if( role == "supporter" )
+		{
+			ItalcCore::role = ItalcCore::RoleSupporter;
+		}
+	}
+	else
+	{
+		qCritical( "-role needs an argument:\n"
+			"	teacher\n"
+			"	admin\n"
+			"	supporter\n\n" );
+		return false;
+	}
+
+	return true;
+}
+
+
+
 int main( int argc, char **argv )
 {
 	if( checkPrivileges( argc, argv ) == false )
@@ -226,28 +258,8 @@ int main( int argc, char **argv )
 		}
 		else if( a == "-role" )
 		{
-			if( argIt.hasNext() )
+			if( parseRole( argIt ) == false )
 			{
-				const QString role = argIt.next();
-				if( role == "teacher" )
-				{
-					ItalcCore::role = ItalcCore::RoleTeacher;
-				}
-				else if( role == "admin" )
-				{
-					ItalcCore::role = ItalcCore::RoleAdmin;
-				}
-				else if( role == "supporter" )
-				{
-					ItalcCore::role = ItalcCore::RoleSupporter;
-				}
-			}
-			else
-			{
-				qCritical( "-role needs an argument:\n"
-					"	teacher\n"
-					"	admin\n"
-					"	supporter\n\n" );
 				return -1;
 			}
 		}
