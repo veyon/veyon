@@ -62,18 +62,26 @@ int main( int argc, char **argv )
 		return 0;
 	}
 
+	QCoreApplication* app = Q_NULLPTR;
+
 #ifdef ITALC_BUILD_LINUX
-	QApplication app( argc, argv,
-			QProcessEnvironment::systemEnvironment().contains( "DISPLAY" ) );
+	if( QProcessEnvironment::systemEnvironment().contains( "DISPLAY" ) == false )
+	{
+		app = new QCoreApplication( argc, argv );
+	}
+	else
+	{
+		app = new QApplication( argc, argv );
+	}
 #else
-	QApplication app( argc, argv );
+	app = new QApplication( argc, argv );
 #endif
 
 	ItalcCore::init();
 
-	ImcCore::silent = app.arguments().contains( "-quiet" ) ||
-						app.arguments().contains( "-silent" ) ||
-						app.arguments().contains( "-q" );
+	ImcCore::silent = app->arguments().contains( "-quiet" ) ||
+						app->arguments().contains( "-silent" ) ||
+						app->arguments().contains( "-q" );
 
 
 	// default to teacher role for various command line operations
@@ -92,7 +100,7 @@ int main( int argc, char **argv )
 	}
 
 	// parse arguments
-	QStringListIterator argIt( app.arguments() );
+	QStringListIterator argIt( app->arguments() );
 	argIt.next();
 
 	while( argc > 1 && argIt.hasNext() )
@@ -233,16 +241,18 @@ int main( int argc, char **argv )
 
 	mainWindow->show();
 
-	if( app.arguments().contains( "-manageACLs" ) )
+	if( app->arguments().contains( "-manageACLs" ) )
 	{
 		mainWindow->manageACLs();
 	}
 
 	ilog( Info, "App.Exec" );
 
-	int ret = app.exec();
+	int ret = app->exec();
 
 	ItalcCore::destroy();
+
+	delete app;
 
 	return ret;
 }
