@@ -40,7 +40,7 @@ class LdapDirectory::LdapDirectoryPrivate
 public:
 
 	QStringList queryAttributes(const QString &dn, const QString &attribute,
-								const QString& filter = QString(),
+								const QString& filter = QStringLiteral( "(objectclass=*)" ),
 								KLDAP::LdapUrl::Scope scope = KLDAP::LdapUrl::Base )
 	{
 		QStringList entries;
@@ -203,7 +203,7 @@ QString LdapDirectory::ldapErrorDescription() const
 
 QStringList LdapDirectory::queryBaseDn()
 {
-	return d->queryDistinguishedNames( d->baseDn, QString(), KLDAP::LdapUrl::Base );
+	return d->queryDistinguishedNames( d->baseDn, QString( "(objectclass=*)"), KLDAP::LdapUrl::Base );
 }
 
 
