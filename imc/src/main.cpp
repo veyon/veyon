@@ -36,12 +36,10 @@
 #include "Logger.h"
 
 
-
-int main( int argc, char **argv )
+bool checkPrivileges( int argc, char **argv )
 {
-
 	// make sure to run as admin
-	if( !LocalSystem::Process::isRunningAsAdmin() )
+	if( LocalSystem::Process::isRunningAsAdmin() == false )
 	{
 		QCoreApplication app( argc, argv );
 		QStringList args = app.arguments();
@@ -49,28 +47,16 @@ int main( int argc, char **argv )
 		LocalSystem::Process::runAsAdmin(
 				QCoreApplication::applicationFilePath(),
 				args.join( " " ) );
-		return 0;
+		return false;
 	}
 
-#ifdef ITALC_BUILD_LINUX
-	QApplication app( argc, argv,
-			QProcessEnvironment::systemEnvironment().contains( "DISPLAY" ) );
-#else
-	QApplication app( argc, argv );
-#endif
-
-	ItalcCore::init();
-
-	ImcCore::silent = app.arguments().contains( "-quiet" ) ||
-						app.arguments().contains( "-silent" ) ||
-						app.arguments().contains( "-q" );
+	return true;
+}
 
 
-	// default to teacher role for various command line operations
-	ItalcCore::role = ItalcCore::RoleTeacher;
 
-	Logger l( "ItalcManagementConsole" );
-
+bool checkWritableConfiguration()
+{
 	if( !ItalcConfiguration().isStoreWritable() &&
 			ItalcCore::config->logLevel() < Logger::LogLevelDebug )
 	{
@@ -78,37 +64,207 @@ int main( int argc, char **argv )
 			MainWindow::tr( "The local configuration backend reported that the "
 							"configuration is not writable! Please run the iTALC "
 							"Management Console with higher privileges." ) );
+		return false;
+	}
+
+	return true;
+}
+
+
+int applySettings( QStringListIterator& argIt )
+{
+	if( argIt.hasNext() == false )
+	{
+		qCritical( "Please specify settings file!" );
 		return -1;
 	}
 
-	app.connect( &app, SIGNAL( lastWindowClosed() ), SLOT( quit() ) );
+	const QString file = argIt.next();
+	Configuration::XmlStore xs( Configuration::XmlStore::System, file );
+
+	if( ImcCore::applyConfiguration( ItalcConfiguration( &xs ) ) )
+	{
+		ImcCore::informationMessage(
+			MainWindow::tr( "iTALC Management Console" ),
+			MainWindow::tr( "All settings were applied successfully." ) );
+	}
+	else
+	{
+		ImcCore::criticalMessage(
+			MainWindow::tr( "iTALC Management Console" ),
+			MainWindow::tr( "An error occured while applying settings!" ) );
+	}
+
+	return 0;
+}
+
+int setConfigurationValue( QStringListIterator& argIt )
+{
+	if( !argIt.hasNext() )
+	{
+		qCritical( "No configuration property specified!" );
+		return -1;
+	}
+
+	QString prop = argIt.next();
+	QString value;
+	if( !argIt.hasNext() )
+	{
+		if( !prop.contains( '=' ) )
+		{
+			qCritical() << "No value for property" << prop << "specified!";
+			return -1;
+		}
+		else
+		{
+			value = prop.section( '=', -1, -1 );
+			prop = prop.section( '=', 0, -2 );
+		}
+	}
+	else
+	{
+		value = argIt.next();
+	}
+
+	const QString key = prop.section( '/', -1, -1 );
+	const QString parentKey = prop.section( '/', 0, -2 );
+
+	ItalcCore::config->setValue( key, value, parentKey );
+
+	ImcCore::applyConfiguration( *ItalcCore::config );
+
+	return 0;
+}
+
+
+
+int createKeyPair( QStringListIterator& argIt )
+{
+	const QString destDir = argIt.hasNext() ? argIt.next() : QString();
+	ImcCore::createKeyPair( ItalcCore::role, destDir );
+	return 0;
+}
+
+
+
+int importPublicKey( QStringListIterator& argIt )
+{
+	QString pubKeyFile;
+	if( !argIt.hasNext() )
+	{
+		QStringList l =
+			QDir::current().entryList( QStringList() << "*.key.txt",
+										QDir::Files | QDir::Readable );
+		if( l.size() != 1 )
+		{
+			qCritical( "Please specify location of the public key "
+						"to import" );
+			return -1;
+		}
+		pubKeyFile = QDir::currentPath() + QDir::separator() +
+											l.first();
+		qWarning() << "No public key file specified. Trying to import "
+						"the public key file found at" << pubKeyFile;
+	}
+	else
+	{
+		pubKeyFile = argIt.next();
+	}
+
+	if( !ImcCore::importPublicKey( ItalcCore::role, pubKeyFile, QString() ) )
+	{
+		LogStream( Logger::LogLevelInfo ) << "Public key import "
+											"failed";
+		return -1;
+	}
+	LogStream( Logger::LogLevelInfo ) << "Public key successfully "
+											"imported";
+	return 0;
+}
+
+
+
+bool parseRole( QStringListIterator& argIt )
+{
+	if( argIt.hasNext() )
+	{
+		const QString role = argIt.next();
+		if( role == "teacher" )
+		{
+			ItalcCore::role = ItalcCore::RoleTeacher;
+		}
+		else if( role == "admin" )
+		{
+			ItalcCore::role = ItalcCore::RoleAdmin;
+		}
+		else if( role == "supporter" )
+		{
+			ItalcCore::role = ItalcCore::RoleSupporter;
+		}
+	}
+	else
+	{
+		qCritical( "-role needs an argument:\n"
+			"	teacher\n"
+			"	admin\n"
+			"	supporter\n\n" );
+		return false;
+	}
+
+	return true;
+}
+
+
+
+int main( int argc, char **argv )
+{
+	if( checkPrivileges( argc, argv ) == false )
+	{
+		return 0;
+	}
+
+	QCoreApplication* app = Q_NULLPTR;
+
+#ifdef ITALC_BUILD_LINUX
+	if( QProcessEnvironment::systemEnvironment().contains( "DISPLAY" ) == false )
+	{
+		app = new QCoreApplication( argc, argv );
+	}
+	else
+	{
+		app = new QApplication( argc, argv );
+	}
+#else
+	app = new QApplication( argc, argv );
+#endif
+
+	ItalcCore::init();
+
+	ImcCore::silent = app->arguments().contains( "-quiet" ) ||
+						app->arguments().contains( "-silent" ) ||
+						app->arguments().contains( "-q" );
+
+
+	// default to teacher role for various command line operations
+	ItalcCore::role = ItalcCore::RoleTeacher;
+
+	Logger l( "ItalcManagementConsole" );
+
+	if( checkWritableConfiguration() == false )
+	{
+		return -1;
+	}
 
 	// parse arguments
-	QStringListIterator argIt( app.arguments() );
+	QStringListIterator argIt( app->arguments() );
 	argIt.next();
 
 	while( argc > 1 && argIt.hasNext() )
 	{
 		const QString a = argIt.next().toLower();
-		if( ( a == "-applysettings" || a == "-a" ) && argIt.hasNext() )
+		if( a == "-applysettings" || a == "-a"  )
 		{
-			const QString file = argIt.next();
-			Configuration::XmlStore xs( Configuration::XmlStore::System, file );
-
-			if( ImcCore::applyConfiguration( ItalcConfiguration( &xs ) ) )
-			{
-				ImcCore::informationMessage(
-					MainWindow::tr( "iTALC Management Console" ),
-					MainWindow::tr( "All settings were applied successfully." ) );
-			}
-			else
-			{
-				ImcCore::criticalMessage(
-					MainWindow::tr( "iTALC Management Console" ),
-					MainWindow::tr( "An error occured while applying settings!" ) );
-			}
-
-			return 0;
+			return applySettings( argIt );
 		}
 		else if( a == "-listconfig" || a == "-l" )
 		{
@@ -118,105 +274,22 @@ int main( int argc, char **argv )
 		}
 		else if( a == "-setconfigvalue" || a == "-s" )
 		{
-			if( !argIt.hasNext() )
-			{
-				qCritical( "No configuration property specified!" );
-				return -1;
-			}
-			QString prop = argIt.next();
-			QString value;
-			if( !argIt.hasNext() )
-			{
-				if( !prop.contains( '=' ) )
-				{
-					qCritical() << "No value for property" << prop << "specified!";
-					return -1;
-				}
-				else
-				{
-					value = prop.section( '=', -1, -1 );
-					prop = prop.section( '=', 0, -2 );
-				}
-			}
-			else
-			{
-				value = argIt.next();
-			}
-			const QString key = prop.section( '/', -1, -1 );
-			const QString parentKey = prop.section( '/', 0, -2 );
-
-			ItalcCore::config->setValue( key, value, parentKey );
-
-			ImcCore::applyConfiguration( *ItalcCore::config );
-
-			return 0;
+			return setConfigurationValue( argIt );
 		}
 		else if( a == "-role" )
 		{
-			if( argIt.hasNext() )
+			if( parseRole( argIt ) == false )
 			{
-				const QString role = argIt.next();
-				if( role == "teacher" )
-				{
-					ItalcCore::role = ItalcCore::RoleTeacher;
-				}
-				else if( role == "admin" )
-				{
-					ItalcCore::role = ItalcCore::RoleAdmin;
-				}
-				else if( role == "supporter" )
-				{
-					ItalcCore::role = ItalcCore::RoleSupporter;
-				}
-			}
-			else
-			{
-				qCritical( "-role needs an argument:\n"
-					"	teacher\n"
-					"	admin\n"
-					"	supporter\n\n" );
 				return -1;
 			}
 		}
 		else if( a == "-createkeypair" )
 		{
-			const QString destDir = argIt.hasNext() ? argIt.next() : QString();
-			ImcCore::createKeyPair( ItalcCore::role, destDir );
-			return 0;
+			return createKeyPair( argIt );
 		}
 		else if( a == "-importpublickey" || a == "-i" )
 		{
-			QString pubKeyFile;
-			if( !argIt.hasNext() )
-			{
-				QStringList l =
-					QDir::current().entryList( QStringList() << "*.key.txt",
-												QDir::Files | QDir::Readable );
-				if( l.size() != 1 )
-				{
-					qCritical( "Please specify location of the public key "
-								"to import" );
-					return -1;
-				}
-				pubKeyFile = QDir::currentPath() + QDir::separator() +
-													l.first();
-				qWarning() << "No public key file specified. Trying to import "
-								"the public key file found at" << pubKeyFile;
-			}
-			else
-			{
-				pubKeyFile = argIt.next();
-			}
-
-			if( !ImcCore::importPublicKey( ItalcCore::role, pubKeyFile, QString() ) )
-			{
-				LogStream( Logger::LogLevelInfo ) << "Public key import "
-													"failed";
-				return -1;
-			}
-			LogStream( Logger::LogLevelInfo ) << "Public key successfully "
-													"imported";
-			return 0;
+			return importPublicKey( argIt );
 		}
 	}
 
@@ -225,16 +298,18 @@ int main( int argc, char **argv )
 
 	mainWindow->show();
 
-	if( app.arguments().contains( "-manageACLs" ) )
+	if( app->arguments().contains( "-manageACLs" ) )
 	{
 		mainWindow->manageACLs();
 	}
 
 	ilog( Info, "App.Exec" );
 
-	int ret = app.exec();
+	int ret = app->exec();
 
 	ItalcCore::destroy();
+
+	delete app;
 
 	return ret;
 }

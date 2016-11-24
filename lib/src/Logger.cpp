@@ -141,8 +141,9 @@ QString Logger::formatMessage( LogLevel ll, const QString &msg )
 		default: break;
 	}
 
-	return QString( "%1: [%2] %3%4" ).
-				arg( QDateTime::currentDateTime().toString() ).
+	return QString( "%1.%2: [%3] %4%5" ).
+				arg( QDateTime::currentDateTime().toString( Qt::ISODate ) ).
+				arg( QDateTime::currentDateTime().toString( "zzz") ).
 				arg( msgType ).
 				arg( msg.trimmed() ).
 				arg( linebreak );

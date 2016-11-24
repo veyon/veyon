@@ -183,6 +183,8 @@ bool ItalcCore::init()
 			tr->load( QString( ":/resources/%1.qm" ).arg( QLocale::system().name() ) );
 		}
 
+		QLocale::setDefault( configuredLocale );
+
 		QCoreApplication::installTranslator( tr );
 	}
 
