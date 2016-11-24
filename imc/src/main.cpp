@@ -55,6 +55,23 @@ bool checkPrivileges( int argc, char **argv )
 
 
 
+bool checkWritableConfiguration()
+{
+	if( !ItalcConfiguration().isStoreWritable() &&
+			ItalcCore::config->logLevel() < Logger::LogLevelDebug )
+	{
+		ImcCore::criticalMessage( MainWindow::tr( "Configuration not writable" ),
+			MainWindow::tr( "The local configuration backend reported that the "
+							"configuration is not writable! Please run the iTALC "
+							"Management Console with higher privileges." ) );
+		return false;
+	}
+
+	return true;
+}
+
+
+
 int main( int argc, char **argv )
 {
 	if( checkPrivileges( argc, argv ) == false )
@@ -89,13 +106,8 @@ int main( int argc, char **argv )
 
 	Logger l( "ItalcManagementConsole" );
 
-	if( !ItalcConfiguration().isStoreWritable() &&
-			ItalcCore::config->logLevel() < Logger::LogLevelDebug )
+	if( checkWritableConfiguration() == false )
 	{
-		ImcCore::criticalMessage( MainWindow::tr( "Configuration not writable" ),
-			MainWindow::tr( "The local configuration backend reported that the "
-							"configuration is not writable! Please run the iTALC "
-							"Management Console with higher privileges." ) );
 		return -1;
 	}
 
