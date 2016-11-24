@@ -26,12 +26,13 @@
 #define LDAP_DIRECTORY_H
 
 #include <QObject>
+#include <QUrl>
 
 class LdapDirectory : public QObject
 {
 	Q_OBJECT
 public:
-	LdapDirectory();
+	LdapDirectory( const QUrl& url = QUrl() );
 	virtual ~LdapDirectory();
 
 	bool isConnected() const;
@@ -67,7 +68,7 @@ public:
 	QStringList computerPoolMembers( const QString& computerPoolName );
 
 private:
-	bool reconnect();
+	bool reconnect( const QUrl& url );
 
 	static QString constructQueryFilter( const QString& filterAttribute,
 										 const QString& filterValue,

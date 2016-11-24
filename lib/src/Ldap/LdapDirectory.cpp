@@ -176,10 +176,10 @@ public:
 
 
 
-LdapDirectory::LdapDirectory() :
+LdapDirectory::LdapDirectory( const QUrl &url ) :
 	d( new LdapDirectoryPrivate )
 {
-	reconnect();
+	reconnect( url );
 }
 
 
@@ -424,26 +424,33 @@ QStringList LdapDirectory::computerPoolMembers(const QString &computerPoolName)
 
 
 
-bool LdapDirectory::reconnect()
+bool LdapDirectory::reconnect( const QUrl &url )
 {
 	ItalcConfiguration* c = ItalcCore::config;
 
 	KLDAP::LdapServer server;
 
-	server.setHost( c->ldapServerHost() );
-	server.setPort( c->ldapServerPort() );
-
-	if( c->ldapUseBindCredentials() )
+	if( url.isValid() )
 	{
-		server.setBindDn( c->ldapBindDn() );
-		server.setPassword( c->ldapBindPassword() );
-		server.setAuth( KLDAP::LdapServer::Simple );
+		server.setUrl( KLDAP::LdapUrl( url ) );
 	}
 	else
 	{
-		server.setAuth( KLDAP::LdapServer::Anonymous );
+		server.setHost( c->ldapServerHost() );
+		server.setPort( c->ldapServerPort() );
+
+		if( c->ldapUseBindCredentials() )
+		{
+			server.setBindDn( c->ldapBindDn() );
+			server.setPassword( c->ldapBindPassword() );
+			server.setAuth( KLDAP::LdapServer::Simple );
+		}
+		else
+		{
+			server.setAuth( KLDAP::LdapServer::Anonymous );
+		}
+		server.setSecurity( KLDAP::LdapServer::None );
 	}
-	server.setSecurity( KLDAP::LdapServer::None );
 
 	d->connection.close();
 
