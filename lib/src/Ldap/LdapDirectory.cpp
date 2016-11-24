@@ -88,6 +88,7 @@ public:
 					entries += value;
 				}
 			}
+			qDebug() << "LdapDirectory::queryAttributes(): results:" << entries;
 		}
 		else
 		{
@@ -116,6 +117,7 @@ public:
 			{
 				distinguishedNames += operation.object().dn().toString();
 			}
+			qDebug() << "LdapDirectory::queryDistinguishedNames(): results:" << distinguishedNames;
 		}
 		else
 		{
