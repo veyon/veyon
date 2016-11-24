@@ -466,9 +466,9 @@ bool LdapDirectory::reconnect()
 		d->baseDn = c->ldapBaseDn();
 	}
 
-	d->usersDn = c->ldapUserTree() + "," + c->ldapBaseDn();
-	d->groupsDn = c->ldapGroupTree() + "," + c->ldapBaseDn();
-	d->computersDn = c->ldapComputerTree() + "," + c->ldapBaseDn();
+	d->usersDn = c->ldapUserTree() + "," + d->baseDn;
+	d->groupsDn = c->ldapGroupTree() + "," + d->baseDn;
+	d->computersDn = c->ldapComputerTree() + "," + d->baseDn;
 
 	if( c->ldapRecursiveSearchOperations() )
 	{
