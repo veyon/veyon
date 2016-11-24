@@ -10,7 +10,7 @@
 !define APP_NAME "iTALC"
 !define COMP_NAME "iTALC Solutions Inc."
 !define WEB_SITE "http://italc.sf.net"
-!define VERSION "@VERSION@"
+!define VERSION "@NSI_VERSION@"
 !define COPYRIGHT "© Tobias Doerffel 2004-2016"
 !define DESCRIPTION "Intelligent Teaching and Learning with Computers"
 !define LICENSE_TXT "@CMAKE_SOURCE_DIR@/COPYING"
@@ -23,7 +23,7 @@
 
 ######################################################################
 
-VIProductVersion  "${VERSION}.0"
+VIProductVersion  "${VERSION}"
 VIAddVersionKey "ProductName"  "${APP_NAME}"
 VIAddVersionKey "CompanyName"  "${COMP_NAME}"
 VIAddVersionKey "LegalCopyright"  "${COPYRIGHT}"
