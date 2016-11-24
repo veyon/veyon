@@ -71,6 +71,45 @@ bool checkWritableConfiguration()
 }
 
 
+int setConfigurationValue( QStringListIterator& argIt )
+{
+	if( !argIt.hasNext() )
+	{
+		qCritical( "No configuration property specified!" );
+		return -1;
+	}
+
+	QString prop = argIt.next();
+	QString value;
+	if( !argIt.hasNext() )
+	{
+		if( !prop.contains( '=' ) )
+		{
+			qCritical() << "No value for property" << prop << "specified!";
+			return -1;
+		}
+		else
+		{
+			value = prop.section( '=', -1, -1 );
+			prop = prop.section( '=', 0, -2 );
+		}
+	}
+	else
+	{
+		value = argIt.next();
+	}
+
+	const QString key = prop.section( '/', -1, -1 );
+	const QString parentKey = prop.section( '/', 0, -2 );
+
+	ItalcCore::config->setValue( key, value, parentKey );
+
+	ImcCore::applyConfiguration( *ItalcCore::config );
+
+	return 0;
+}
+
+
 
 int main( int argc, char **argv )
 {
@@ -146,38 +185,7 @@ int main( int argc, char **argv )
 		}
 		else if( a == "-setconfigvalue" || a == "-s" )
 		{
-			if( !argIt.hasNext() )
-			{
-				qCritical( "No configuration property specified!" );
-				return -1;
-			}
-			QString prop = argIt.next();
-			QString value;
-			if( !argIt.hasNext() )
-			{
-				if( !prop.contains( '=' ) )
-				{
-					qCritical() << "No value for property" << prop << "specified!";
-					return -1;
-				}
-				else
-				{
-					value = prop.section( '=', -1, -1 );
-					prop = prop.section( '=', 0, -2 );
-				}
-			}
-			else
-			{
-				value = argIt.next();
-			}
-			const QString key = prop.section( '/', -1, -1 );
-			const QString parentKey = prop.section( '/', 0, -2 );
-
-			ItalcCore::config->setValue( key, value, parentKey );
-
-			ImcCore::applyConfiguration( *ItalcCore::config );
-
-			return 0;
+			return setConfigurationValue( argIt );
 		}
 		else if( a == "-role" )
 		{
