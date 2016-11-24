@@ -71,6 +71,33 @@ bool checkWritableConfiguration()
 }
 
 
+int applySettings( QStringListIterator& argIt )
+{
+	if( argIt.hasNext() == false )
+	{
+		qCritical( "Please specify settings file!" );
+		return -1;
+	}
+
+	const QString file = argIt.next();
+	Configuration::XmlStore xs( Configuration::XmlStore::System, file );
+
+	if( ImcCore::applyConfiguration( ItalcConfiguration( &xs ) ) )
+	{
+		ImcCore::informationMessage(
+			MainWindow::tr( "iTALC Management Console" ),
+			MainWindow::tr( "All settings were applied successfully." ) );
+	}
+	else
+	{
+		ImcCore::criticalMessage(
+			MainWindow::tr( "iTALC Management Console" ),
+			MainWindow::tr( "An error occured while applying settings!" ) );
+	}
+
+	return 0;
+}
+
 int setConfigurationValue( QStringListIterator& argIt )
 {
 	if( !argIt.hasNext() )
@@ -226,25 +253,9 @@ int main( int argc, char **argv )
 	while( argc > 1 && argIt.hasNext() )
 	{
 		const QString a = argIt.next().toLower();
-		if( ( a == "-applysettings" || a == "-a" ) && argIt.hasNext() )
+		if( a == "-applysettings" || a == "-a"  )
 		{
-			const QString file = argIt.next();
-			Configuration::XmlStore xs( Configuration::XmlStore::System, file );
-
-			if( ImcCore::applyConfiguration( ItalcConfiguration( &xs ) ) )
-			{
-				ImcCore::informationMessage(
-					MainWindow::tr( "iTALC Management Console" ),
-					MainWindow::tr( "All settings were applied successfully." ) );
-			}
-			else
-			{
-				ImcCore::criticalMessage(
-					MainWindow::tr( "iTALC Management Console" ),
-					MainWindow::tr( "An error occured while applying settings!" ) );
-			}
-
-			return 0;
+			return applySettings( argIt );
 		}
 		else if( a == "-listconfig" || a == "-l" )
 		{
