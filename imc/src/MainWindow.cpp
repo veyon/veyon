@@ -79,7 +79,9 @@ MainWindow::MainWindow() :
 		{
 			loc = QLocale( QLocale::English );
 		}
-		languages += QLocale::languageToString(loc.language()) + " - " + loc.nativeLanguageName();
+		languages += QString( "%1 - %2 (%3)" ).arg( QLocale::languageToString(loc.language() ),
+													loc.nativeLanguageName(),
+													loc.name() );
 	}
 
 	qSort( languages );
