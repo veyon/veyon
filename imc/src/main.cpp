@@ -36,12 +36,10 @@
 #include "Logger.h"
 
 
-
-int main( int argc, char **argv )
+bool checkPrivileges( int argc, char **argv )
 {
-
 	// make sure to run as admin
-	if( !LocalSystem::Process::isRunningAsAdmin() )
+	if( LocalSystem::Process::isRunningAsAdmin() == false )
 	{
 		QCoreApplication app( argc, argv );
 		QStringList args = app.arguments();
@@ -49,6 +47,18 @@ int main( int argc, char **argv )
 		LocalSystem::Process::runAsAdmin(
 				QCoreApplication::applicationFilePath(),
 				args.join( " " ) );
+		return false;
+	}
+
+	return true;
+}
+
+
+
+int main( int argc, char **argv )
+{
+	if( checkPrivileges( argc, argv ) == false )
+	{
 		return 0;
 	}
 
