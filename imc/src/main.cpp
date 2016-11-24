@@ -138,6 +138,15 @@ int setConfigurationValue( QStringListIterator& argIt )
 
 
 
+int createKeyPair( QStringListIterator& argIt )
+{
+	const QString destDir = argIt.hasNext() ? argIt.next() : QString();
+	ImcCore::createKeyPair( ItalcCore::role, destDir );
+	return 0;
+}
+
+
+
 int importPublicKey( QStringListIterator& argIt )
 {
 	QString pubKeyFile;
@@ -276,9 +285,7 @@ int main( int argc, char **argv )
 		}
 		else if( a == "-createkeypair" )
 		{
-			const QString destDir = argIt.hasNext() ? argIt.next() : QString();
-			ImcCore::createKeyPair( ItalcCore::role, destDir );
-			return 0;
+			return createKeyPair( argIt );
 		}
 		else if( a == "-importpublickey" || a == "-i" )
 		{
