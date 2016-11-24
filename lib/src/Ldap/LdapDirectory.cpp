@@ -61,9 +61,29 @@ public:
 
 		if( id != -1 )
 		{
+			bool isFirstResult = true;
+			QString realAttributeName = attribute.toLower();
+
 			while( operation.waitForResult( id, LdapQueryTimeout ) == KLDAP::LdapOperation::RES_SEARCH_ENTRY )
 			{
-				for( auto value : operation.object().values( attribute ) )
+				if( isFirstResult )
+				{
+					isFirstResult = false;
+
+					// match attribute name from result with requested attribute name in order
+					// to keep result aggregation below case-insensitive
+					for( auto a : operation.object().attributes().keys() )
+					{
+						if( a.toLower() == realAttributeName )
+						{
+							realAttributeName = a;
+							break;
+						}
+					}
+				}
+
+				// convert result list from type QList<QByteArray> to QStringList
+				for( auto value : operation.object().values( realAttributeName ) )
 				{
 					entries += value;
 				}
