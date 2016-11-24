@@ -227,7 +227,7 @@ QStringList LdapDirectory::users(const QString &filterValue)
 QStringList LdapDirectory::groups(const QString &filterValue)
 {
 	return d->queryDistinguishedNames( d->groupsDn,
-									   constructQueryFilter( "cn", filterValue, QString() ),
+									   constructQueryFilter( "cn", filterValue ),
 									   d->defaultSearchScope );
 }
 
