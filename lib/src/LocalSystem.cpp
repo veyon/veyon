@@ -1266,7 +1266,21 @@ QStringList userGroups()
 #endif
 
 #ifdef ITALC_BUILD_WIN32
-	// TODO
+	LPBYTE outBuffer = NULL;
+	DWORD entriesRead = 0;
+	DWORD totalEntries = 0;
+
+	if( NetLocalGroupEnum( NULL, 0, &outBuffer, MAX_PREFERRED_LENGTH, &entriesRead, &totalEntries, NULL ) == NERR_Success )
+	{
+		LOCALGROUP_INFO_0* groupInfos = (LOCALGROUP_INFO_0 *) outBuffer;
+
+		for( DWORD i = 0; i < entriesRead; ++i )
+		{
+				groups += QString::fromUtf16( (const ushort *) groupInfos[i].lgrpi0_name );
+		}
+
+		NetApiBufferFree( outBuffer );
+	}
 #endif
 
 	// remove all empty entries
