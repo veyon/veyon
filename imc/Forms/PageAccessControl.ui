@@ -34,6 +34,9 @@
         <property name="checked">
          <bool>true</bool>
         </property>
+        <attribute name="buttonGroup">
+         <string notr="true">accessControlModeGroup</string>
+        </attribute>
        </widget>
       </item>
       <item>
@@ -41,6 +44,9 @@
         <property name="text">
          <string>Restrict access to members of certain user groups</string>
         </property>
+        <attribute name="buttonGroup">
+         <string notr="true">accessControlModeGroup</string>
+        </attribute>
        </widget>
       </item>
       <item>
@@ -48,13 +54,19 @@
         <property name="text">
          <string>Process custom ruleset for authorization</string>
         </property>
+        <attribute name="buttonGroup">
+         <string notr="true">accessControlModeGroup</string>
+        </attribute>
        </widget>
       </item>
      </layout>
     </widget>
    </item>
    <item>
-    <widget class="QGroupBox" name="groupBox_20">
+    <widget class="QGroupBox" name="authorizedGroupsComboBox">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="title">
       <string>Authorized user groups for computer access</string>
      </property>
@@ -159,7 +171,10 @@
     </widget>
    </item>
    <item>
-    <widget class="QGroupBox" name="groupBox_21">
+    <widget class="QGroupBox" name="customAuthorizationRuleSetComboBox">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="title">
       <string>Custom rule set for authorization</string>
      </property>
@@ -386,6 +401,38 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>restrictAccessToUserGroups</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>authorizedGroupsComboBox</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>494</x>
+     <y>114</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>494</x>
+     <y>354</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>processAuthorizationRuleset</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>customAuthorizationRuleSetComboBox</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>494</x>
+     <y>160</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>494</x>
+     <y>660</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>addGroup()</slot>
@@ -396,4 +443,7 @@
   <slot>moveAuthorizationRuleUp()</slot>
   <slot>moveAuthorizationRuleDown()</slot>
  </slots>
+ <buttongroups>
+  <buttongroup name="accessControlModeGroup"/>
+ </buttongroups>
 </ui>
