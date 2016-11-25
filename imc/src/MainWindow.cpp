@@ -41,8 +41,6 @@ void Win32AclEditor( HWND hwnd );
 #include "Configuration/XmlStore.h"
 #include "Configuration/UiMapping.h"
 
-#include "Ldap/LdapDirectory.h"
-
 #include "AboutDialog.h"
 #include "KeyFileAssistant.h"
 #include "FileSystemBrowser.h"
