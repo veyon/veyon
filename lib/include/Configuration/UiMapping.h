@@ -25,6 +25,8 @@
 #ifndef CONFIGURATION_UI_MAPPING_H
 #define CONFIGURATION_UI_MAPPING_H
 
+#include <QComboBox>
+
 // widget initialization
 #define _INIT_WIDGET_FROM_PROPERTY(config,property,widgetType,setvalue)				\
 			qobject_cast<widgetType *>( ui->property )->setvalue( config->property() );
