@@ -673,7 +673,7 @@
              </property>
              <property name="icon">
               <iconset resource="../imc.qrc">
-               <normaloff>:/Resources/preferences-other.png</normaloff>:/Resources/preferences-other.png</iconset>
+               <normaloff>:/Resources/document-edit.png</normaloff>:/Resources/document-edit.png</iconset>
              </property>
             </widget>
            </item>
@@ -684,7 +684,7 @@
              </property>
              <property name="icon">
               <iconset resource="../imc.qrc">
-               <normaloff>:/Resources/task-accepted.png</normaloff>:/Resources/task-accepted.png</iconset>
+               <normaloff>:/Resources/dialog-ok-apply.png</normaloff>:/Resources/dialog-ok-apply.png</iconset>
              </property>
             </widget>
            </item>

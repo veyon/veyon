@@ -1,9 +1,7 @@
 <RCC>
     <qresource prefix="/">
-        <file>Resources/task-accepted.png</file>
-        <file>Resources/preferences-other.png</file>
         <file>Resources/imc.png</file>
-        <file>Resources/help-hint.png</file>
+        <file>Resources/help-about.png</file>
         <file>Resources/media-playback-start.png</file>
         <file>Resources/media-playback-stop.png</file>
         <file>Resources/document-open.png</file>

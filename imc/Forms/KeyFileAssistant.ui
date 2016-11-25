@@ -288,7 +288,7 @@ The public key part is used on the client computers to verify that any incoming 
        </size>
       </property>
       <property name="pixmap">
-       <pixmap resource="../imc.qrc">:/Resources/help-hint.png</pixmap>
+       <pixmap resource="../imc.qrc">:/Resources/help-about.png</pixmap>
       </property>
      </widget>
     </item>
