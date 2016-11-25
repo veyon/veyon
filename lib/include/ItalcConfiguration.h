@@ -30,6 +30,8 @@
 
 #include "Configuration/Object.h"
 
+#include "ItalcConfigurationProperties.h"
+
 class ItalcConfiguration : public Configuration::Object
 {
 	Q_OBJECT
@@ -42,74 +44,6 @@ public:
 	static ItalcConfiguration defaultConfiguration();
 
 	static QString expandPath( QString path );
-
-
-#define FOREACH_ITALC_CONFIG_PROPERTY(OP)												\
-		/* UI */																		\
-		OP( ItalcConfiguration, ItalcCore::config, STRING, uiLanguage, setUiLanguage, "Language", "UI" );			\
-		OP( ItalcConfiguration, ItalcCore::config, BOOL, isHighDPIScalingEnabled, setHighDPIScalingEnabled, "EnableHighDPIScaling", "UI" );			\
-		/* iTALC Service */																\
-		OP( ItalcConfiguration, ItalcCore::config, BOOL, isTrayIconHidden, setTrayIconHidden, "HideTrayIcon", "Service" );			\
-		OP( ItalcConfiguration, ItalcCore::config, BOOL, lockWithDesktopSwitching, setLockWithDesktopSwitching, "LockWithDesktopSwitching", "Service" );			\
-		OP( ItalcConfiguration, ItalcCore::config, BOOL, autostartService, setServiceAutostart, "Autostart", "Service" );			\
-		OP( ItalcConfiguration, ItalcCore::config, STRING, serviceArguments, setServiceArguments, "Arguments", "Service" );			\
-		/* Logging */																	\
-		OP( ItalcConfiguration, ItalcCore::config, INT, logLevel, setLogLevel, "LogLevel", "Logging" );								\
-		OP( ItalcConfiguration, ItalcCore::config, BOOL, limittedLogFileSize, setLimittedLogFileSize, "LimittedLogFileSize", "Logging" );	\
-		OP( ItalcConfiguration, ItalcCore::config, BOOL, logToStdErr, setLogToStdErr, "LogToStdErr", "Logging" );	\
-		OP( ItalcConfiguration, ItalcCore::config, BOOL, logToWindowsEventLog, setLogToWindowsEventLog, "LogToWindowsEventLog", "Logging" );	\
-		OP( ItalcConfiguration, ItalcCore::config, INT, logFileSizeLimit, setLogFileSizeLimit, "LogFileSizeLimit", "Logging" );		\
-		OP( ItalcConfiguration, ItalcCore::config, STRING, logFileDirectory, setLogFileDirectory, "LogFileDirectory", "Logging" );		\
-		/* VNC Server */																\
-		OP( ItalcConfiguration, ItalcCore::config, BOOL, vncCaptureLayeredWindows, setVncCaptureLayeredWindows, "CaptureLayeredWindows", "VNC" );	\
-		OP( ItalcConfiguration, ItalcCore::config, BOOL, vncPollFullScreen, setVncPollFullScreen, "PollFullScreen", "VNC" );			\
-		OP( ItalcConfiguration, ItalcCore::config, BOOL, vncLowAccuracy, setVncLowAccuracy, "LowAccuracy", "VNC" );					\
-		/* Demo server */																\
-		OP( ItalcConfiguration, ItalcCore::config, INT, demoServerBackend, setDemoServerBackend, "Backend", "DemoServer" );		\
-		/* Network */																	\
-		OP( ItalcConfiguration, ItalcCore::config, INT, coreServerPort, setCoreServerPort, "CoreServerPort", "Network" );			\
-		OP( ItalcConfiguration, ItalcCore::config, INT, httpServerPort, setHttpServerPort, "HttpServerPort", "Network" );			\
-		OP( ItalcConfiguration, ItalcCore::config, INT, demoServerPort, setDemoServerPort, "DemoServerPort", "Network" );			\
-		OP( ItalcConfiguration, ItalcCore::config, BOOL, isHttpServerEnabled, setHttpServerEnabled, "HttpServerEnabled", "Network" );	\
-		OP( ItalcConfiguration, ItalcCore::config, BOOL, isFirewallExceptionEnabled, setFirewallExceptionEnabled, "FirewallExceptionEnabled", "Network" );	\
-		OP( ItalcConfiguration, ItalcCore::config, BOOL, localConnectOnly, setLocalConnectOnly, "LocalConnectOnly", "Network" );					\
-		/* Configuration file paths */													\
-		OP( ItalcConfiguration, ItalcCore::config, STRING, globalConfigurationPath, setGlobalConfigurationPath, "GlobalConfiguration", "Paths" );	\
-		OP( ItalcConfiguration, ItalcCore::config, STRING, personalConfigurationPath, setPersonalConfigurationPath, "PersonalConfiguration", "Paths" );	\
-		/* Data directories */															\
-		OP( ItalcConfiguration, ItalcCore::config, STRING, snapshotDirectory, setSnapshotDirectory, "SnapshotDirectory", "Paths" );	\
-		/* Authentication */															\
-		OP( ItalcConfiguration, ItalcCore::config, BOOL, isKeyAuthenticationEnabled, setKeyAuthenticationEnabled, "KeyAuthenticationEnabled", "Authentication" );	\
-		OP( ItalcConfiguration, ItalcCore::config, BOOL, isLogonAuthenticationEnabled, setLogonAuthenticationEnabled, "LogonAuthenticationEnabled", "Authentication" );	\
-		OP( ItalcConfiguration, ItalcCore::config, BOOL, isPermissionRequiredWithKeyAuthentication, setPermissionRequiredWithKeyAuthentication, "PermissionRequiredWithKeyAuthentication", "Authentication" );	\
-		OP( ItalcConfiguration, ItalcCore::config, STRING, privateKeyBaseDir, setPrivateKeyBaseDir, "PrivateKeyBaseDir", "Authentication" );	\
-		OP( ItalcConfiguration, ItalcCore::config, STRING, publicKeyBaseDir, setPublicKeyBaseDir, "PublicKeyBaseDir", "Authentication" );	\
-		OP( ItalcConfiguration, ItalcCore::config, BOOL, isPermissionRequiredWithLogonAuthentication, setPermissionRequiredWithLogonAuthentication, "PermissionRequiredWithLogonAuthentication", "Authentication" );	\
-		OP( ItalcConfiguration, ItalcCore::config, BOOL, isSameUserConfirmationDisabled, setSameUserConfirmationDisabled, "SameUserConfirmationDisabled", "Authentication" );	\
-		OP( ItalcConfiguration, ItalcCore::config, STRINGLIST, logonGroups, setLogonGroups, "LogonGroups", "Authentication" );	\
-		/* LDAP */															\
-		OP( ItalcConfiguration, ItalcCore::config, STRING, ldapServerHost, setLdapServerHost, "ServerHost", "LDAP" );	\
-		OP( ItalcConfiguration, ItalcCore::config, INT, ldapServerPort, setLdapServerPort, "ServerPort", "LDAP" );	\
-		OP( ItalcConfiguration, ItalcCore::config, BOOL, ldapUseBindCredentials, setLdapUseBindCredentials, "UseBindCredentials", "LDAP" );	\
-		OP( ItalcConfiguration, ItalcCore::config, STRING, ldapBindDn, setLdapBindDn, "BindDN", "LDAP" );	\
-		OP( ItalcConfiguration, ItalcCore::config, STRING, ldapBindPassword, setLdapBindPassword, "BindPassword", "LDAP" );	\
-		OP( ItalcConfiguration, ItalcCore::config, BOOL, ldapQueryNamingContext, setLdapQueryNamingContext, "QueryNamingContext", "LDAP" );	\
-		OP( ItalcConfiguration, ItalcCore::config, STRING, ldapBaseDn, setLdapBaseDn, "BaseDN", "LDAP" );	\
-		OP( ItalcConfiguration, ItalcCore::config, STRING, ldapNamingContextAttribute, setLdapNamingContextAttribute, "NamingContextAttribute", "LDAP" );	\
-		OP( ItalcConfiguration, ItalcCore::config, STRING, ldapUserTree, setLdapUserTree, "UserTree", "LDAP" );	\
-		OP( ItalcConfiguration, ItalcCore::config, STRING, ldapGroupTree, setLdapGroupTree, "GroupTree", "LDAP" );	\
-		OP( ItalcConfiguration, ItalcCore::config, STRING, ldapComputerTree, setLdapComputerTree, "ComputerTree", "LDAP" );	\
-		OP( ItalcConfiguration, ItalcCore::config, BOOL, ldapRecursiveSearchOperations, setLdapRecursiveSearchOperations, "RecursiveSearchOperations", "LDAP" );	\
-		OP( ItalcConfiguration, ItalcCore::config, STRING, ldapUserLoginAttribute, setLdapUserLoginAttribute, "UserLoginAttribute", "LDAP" );	\
-		OP( ItalcConfiguration, ItalcCore::config, STRING, ldapGroupMemberAttribute, setLdapGroupMemberAttribute, "GroupMemberAttribute", "LDAP" );	\
-		OP( ItalcConfiguration, ItalcCore::config, STRING, ldapComputerHostNameAttribute, setLdapComputerHostNameAttribute, "ComputerHostNameAttribute", "LDAP" );	\
-		OP( ItalcConfiguration, ItalcCore::config, STRING, ldapUsersFilter, setLdapUsersFilter, "UsersFilter", "LDAP" );	\
-		OP( ItalcConfiguration, ItalcCore::config, STRING, ldapUserGroupsFilter, setLdapUserGroupsFilter, "UserGroupsFilter", "LDAP" );	\
-		OP( ItalcConfiguration, ItalcCore::config, BOOL, ldapIdentifyGroupMembersByNameAttribute, setLdapIdentifyGroupMembersByNameAttribute, "IdentifyGroupMembersByNameAttribute", "LDAP" );	\
-		OP( ItalcConfiguration, ItalcCore::config, STRING, ldapComputerGroupsFilter, setLdapComputerGroupsFilter, "ComputerGroupsFilter", "LDAP" );	\
-		OP( ItalcConfiguration, ItalcCore::config, BOOL, ldapComputerPoolMembersByAttribute, setLdapComputerPoolMembersByAttribute, "ComputerPoolMembersByAttribute", "LDAP" );	\
-		OP( ItalcConfiguration, ItalcCore::config, STRING, ldapComputerPoolAttribute, setLdapComputerPoolAttribute, "ComputerPoolAttribute", "LDAP" );	\
-
 
 	FOREACH_ITALC_CONFIG_PROPERTY(DECLARE_CONFIG_PROPERTY)
 
@@ -149,6 +83,10 @@ public slots:
 	void setPermissionRequiredWithLogonAuthentication( bool );
 	void setSameUserConfirmationDisabled( bool );
 	void setLogonGroups( const QStringList & );
+	void setAccessRestrictedToUserGroups( bool );
+	void setAuthorizationRulesetProcessingEnabled( bool );
+	void setAuthorizedUserGroups( const QStringList& );
+	void setAuthorizationRuleSet( const QStringList& );
 	void setLdapServerHost( const QString& );
 	void setLdapServerPort( int );
 	void setLdapUseBindCredentials( bool );
