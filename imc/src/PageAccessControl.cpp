@@ -8,7 +8,58 @@ PageAccessControl::PageAccessControl(QWidget *parent) :
 	ui->setupUi(this);
 }
 
+
+
 PageAccessControl::~PageAccessControl()
 {
 	delete ui;
+}
+
+
+
+void PageAccessControl::addGroup()
+{
+
+}
+
+
+
+void PageAccessControl::removeGroup()
+{
+
+}
+
+
+
+void PageAccessControl::addAuthorizationRule()
+{
+
+}
+
+
+
+void PageAccessControl::removeAuthorizationRule()
+{
+
+}
+
+
+
+void PageAccessControl::editAuthorizationRule()
+{
+
+}
+
+
+
+void PageAccessControl::moveAuthorizationRuleDown()
+{
+
+}
+
+
+
+void PageAccessControl::moveAuthorizationRuleUp()
+{
+
 }

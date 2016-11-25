@@ -1004,16 +1004,7 @@
         </item>
        </layout>
       </widget>
-      <widget class="PageAccessControl" name="pageAccessControl">
-       <layout class="QVBoxLayout" name="verticalLayout_17">
-        <property name="topMargin">
-         <number>0</number>
-        </property>
-        <property name="bottomMargin">
-         <number>0</number>
-        </property>
-       </layout>
-      </widget>
+      <widget class="PageAccessControl" name="pageAccessControl"/>
       <widget class="QWidget" name="ldapSettingsPage">
        <layout class="QVBoxLayout" name="verticalLayout_13">
         <property name="topMargin">

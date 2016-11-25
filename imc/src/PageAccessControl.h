@@ -15,6 +15,15 @@ public:
 	explicit PageAccessControl(QWidget *parent = 0);
 	~PageAccessControl();
 
+private slots:
+	void addGroup();
+	void removeGroup();
+	void addAuthorizationRule();
+	void removeAuthorizationRule();
+	void editAuthorizationRule();
+	void moveAuthorizationRuleDown();
+	void moveAuthorizationRuleUp();
+
 private:
 	Ui::PageAccessControl *ui;
 };

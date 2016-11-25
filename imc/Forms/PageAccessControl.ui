@@ -14,6 +14,12 @@
    <string>Form</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
    <item>
     <widget class="QGroupBox" name="groupBox_19">
      <property name="title">
@@ -54,7 +60,7 @@
      </property>
      <layout class="QGridLayout" name="gridLayout_18">
       <item row="2" column="0">
-       <widget class="QListWidget" name="allGroups">
+       <widget class="QListWidget" name="allGroupsList">
         <property name="selectionMode">
          <enum>QAbstractItemView::MultiSelection</enum>
         </property>
@@ -66,7 +72,7 @@
       <item row="0" column="0" colspan="3">
        <widget class="QLabel" name="label_40">
         <property name="text">
-         <string>Please add the groups whose members should be allowed to access computers in your iTALC network.</string>
+         <string>Please add the groups whose members should be authorized to access computers in your iTALC network.</string>
         </property>
         <property name="wordWrap">
          <bool>true</bool>
@@ -81,7 +87,7 @@
        </widget>
       </item>
       <item row="2" column="2">
-       <widget class="QListWidget" name="logonGroups">
+       <widget class="QListWidget" name="authorizedGroupsList">
         <property name="selectionMode">
          <enum>QAbstractItemView::MultiSelection</enum>
         </property>
@@ -113,23 +119,23 @@
          </spacer>
         </item>
         <item>
-         <widget class="QToolButton" name="addLogonGroup">
+         <widget class="QToolButton" name="addGroupButton">
           <property name="text">
            <string>...</string>
           </property>
           <property name="icon">
-           <iconset>
+           <iconset resource="../imc.qrc">
             <normaloff>:/Resources/go-next.png</normaloff>:/Resources/go-next.png</iconset>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QToolButton" name="removeLogonGroup">
+         <widget class="QToolButton" name="removeGroupButton">
           <property name="text">
            <string>...</string>
           </property>
           <property name="icon">
-           <iconset>
+           <iconset resource="../imc.qrc">
             <normaloff>:/Resources/go-previous.png</normaloff>:/Resources/go-previous.png</iconset>
           </property>
          </widget>
@@ -155,11 +161,11 @@
    <item>
     <widget class="QGroupBox" name="groupBox_21">
      <property name="title">
-      <string>Custom ruleset for authorization</string>
+      <string>Custom rule set for authorization</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_23">
       <item row="0" column="1">
-       <widget class="QPushButton" name="addAuthorizationRule">
+       <widget class="QPushButton" name="addAuthorizationRuleButton">
         <property name="toolTip">
          <string>Add authorization rule</string>
         </property>
@@ -167,7 +173,7 @@
          <string/>
         </property>
         <property name="icon">
-         <iconset>
+         <iconset resource="../imc.qrc">
           <normaloff>:/Resources/list-add.png</normaloff>:/Resources/list-add.png</iconset>
         </property>
        </widget>
@@ -181,13 +187,13 @@
          <string/>
         </property>
         <property name="icon">
-         <iconset>
+         <iconset resource="../imc.qrc">
           <normaloff>:/Resources/list-remove.png</normaloff>:/Resources/list-remove.png</iconset>
         </property>
        </widget>
       </item>
       <item row="4" column="1">
-       <widget class="QPushButton" name="moveAuthorizationRuleDown">
+       <widget class="QPushButton" name="moveAuthorizationRuleDownButton">
         <property name="toolTip">
          <string>Move selected rule down</string>
         </property>
@@ -195,13 +201,13 @@
          <string/>
         </property>
         <property name="icon">
-         <iconset>
+         <iconset resource="../imc.qrc">
           <normaloff>:/Resources/go-down.png</normaloff>:/Resources/go-down.png</iconset>
         </property>
        </widget>
       </item>
       <item row="0" column="0" rowspan="6">
-       <widget class="QListView" name="listView"/>
+       <widget class="QListView" name="authorizationRuleListView"/>
       </item>
       <item row="5" column="1">
        <spacer name="verticalSpacer_12">
@@ -217,7 +223,7 @@
        </spacer>
       </item>
       <item row="3" column="1">
-       <widget class="QPushButton" name="moveAuthorizationRuleUp">
+       <widget class="QPushButton" name="moveAuthorizationRuleUpButton">
         <property name="toolTip">
          <string>Move selected rule up</string>
         </property>
@@ -225,13 +231,13 @@
          <string/>
         </property>
         <property name="icon">
-         <iconset>
+         <iconset resource="../imc.qrc">
           <normaloff>:/Resources/go-up.png</normaloff>:/Resources/go-up.png</iconset>
         </property>
        </widget>
       </item>
       <item row="2" column="1">
-       <widget class="QPushButton" name="editAuthorizationRule">
+       <widget class="QPushButton" name="editAuthorizationRuleButton">
         <property name="toolTip">
          <string>Edit selected rule</string>
         </property>
@@ -239,7 +245,7 @@
          <string/>
         </property>
         <property name="icon">
-         <iconset>
+         <iconset resource="../imc.qrc">
           <normaloff>:/Resources/document-edit.png</normaloff>:/Resources/document-edit.png</iconset>
         </property>
        </widget>
@@ -253,17 +259,141 @@
   <tabstop>skipAccessControl</tabstop>
   <tabstop>restrictAccessToUserGroups</tabstop>
   <tabstop>processAuthorizationRuleset</tabstop>
-  <tabstop>allGroups</tabstop>
-  <tabstop>addLogonGroup</tabstop>
-  <tabstop>removeLogonGroup</tabstop>
-  <tabstop>logonGroups</tabstop>
-  <tabstop>listView</tabstop>
-  <tabstop>addAuthorizationRule</tabstop>
+  <tabstop>allGroupsList</tabstop>
+  <tabstop>addGroupButton</tabstop>
+  <tabstop>removeGroupButton</tabstop>
+  <tabstop>authorizedGroupsList</tabstop>
+  <tabstop>authorizationRuleListView</tabstop>
+  <tabstop>addAuthorizationRuleButton</tabstop>
   <tabstop>removeAuthorizationRule</tabstop>
-  <tabstop>editAuthorizationRule</tabstop>
-  <tabstop>moveAuthorizationRuleUp</tabstop>
-  <tabstop>moveAuthorizationRuleDown</tabstop>
+  <tabstop>editAuthorizationRuleButton</tabstop>
+  <tabstop>moveAuthorizationRuleUpButton</tabstop>
+  <tabstop>moveAuthorizationRuleDownButton</tabstop>
  </tabstops>
- <resources/>
- <connections/>
+ <resources>
+  <include location="../imc.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>addGroupButton</sender>
+   <signal>clicked()</signal>
+   <receiver>PageAccessControl</receiver>
+   <slot>addGroup()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>494</x>
+     <y>412</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>494</x>
+     <y>404</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>removeGroupButton</sender>
+   <signal>clicked()</signal>
+   <receiver>PageAccessControl</receiver>
+   <slot>removeGroup()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>494</x>
+     <y>455</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>494</x>
+     <y>404</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>addAuthorizationRuleButton</sender>
+   <signal>clicked()</signal>
+   <receiver>PageAccessControl</receiver>
+   <slot>addAuthorizationRule()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>935</x>
+     <y>580</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>494</x>
+     <y>404</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>removeAuthorizationRule</sender>
+   <signal>clicked()</signal>
+   <receiver>PageAccessControl</receiver>
+   <slot>removeAuthorizationRule()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>935</x>
+     <y>622</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>494</x>
+     <y>404</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>editAuthorizationRuleButton</sender>
+   <signal>clicked()</signal>
+   <receiver>PageAccessControl</receiver>
+   <slot>editAuthorizationRule()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>935</x>
+     <y>665</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>494</x>
+     <y>404</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>moveAuthorizationRuleDownButton</sender>
+   <signal>clicked()</signal>
+   <receiver>PageAccessControl</receiver>
+   <slot>moveAuthorizationRuleDown()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>935</x>
+     <y>749</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>494</x>
+     <y>404</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>moveAuthorizationRuleUpButton</sender>
+   <signal>clicked()</signal>
+   <receiver>PageAccessControl</receiver>
+   <slot>moveAuthorizationRuleUp()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>935</x>
+     <y>707</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>494</x>
+     <y>404</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>addGroup()</slot>
+  <slot>removeGroup()</slot>
+  <slot>addAuthorizationRule()</slot>
+  <slot>removeAuthorizationRule()</slot>
+  <slot>editAuthorizationRule()</slot>
+  <slot>moveAuthorizationRuleUp()</slot>
+  <slot>moveAuthorizationRuleDown()</slot>
+ </slots>
 </ui>
