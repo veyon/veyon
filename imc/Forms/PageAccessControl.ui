@@ -40,7 +40,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QRadioButton" name="restrictAccessToUserGroups">
+       <widget class="QRadioButton" name="isAccessRestrictedToUserGroups">
         <property name="text">
          <string>Restrict access to members of certain user groups</string>
         </property>
@@ -50,7 +50,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QRadioButton" name="processAuthorizationRuleset">
+       <widget class="QRadioButton" name="isAuthorizationRulesetProcessingEnabled">
         <property name="text">
          <string>Process custom ruleset for authorization</string>
         </property>
@@ -272,8 +272,8 @@
  </widget>
  <tabstops>
   <tabstop>skipAccessControl</tabstop>
-  <tabstop>restrictAccessToUserGroups</tabstop>
-  <tabstop>processAuthorizationRuleset</tabstop>
+  <tabstop>isAccessRestrictedToUserGroups</tabstop>
+  <tabstop>isAuthorizationRulesetProcessingEnabled</tabstop>
   <tabstop>allGroupsList</tabstop>
   <tabstop>addGroupButton</tabstop>
   <tabstop>removeGroupButton</tabstop>
@@ -402,7 +402,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>restrictAccessToUserGroups</sender>
+   <sender>isAccessRestrictedToUserGroups</sender>
    <signal>toggled(bool)</signal>
    <receiver>authorizedGroupsComboBox</receiver>
    <slot>setEnabled(bool)</slot>
@@ -418,7 +418,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>processAuthorizationRuleset</sender>
+   <sender>isAuthorizationRulesetProcessingEnabled</sender>
    <signal>toggled(bool)</signal>
    <receiver>customAuthorizationRuleSetComboBox</receiver>
    <slot>setEnabled(bool)</slot>
