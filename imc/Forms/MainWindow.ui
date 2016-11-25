@@ -26,8 +26,11 @@
       </property>
       <widget class="QWidget" name="generalSettingsPage">
        <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,0,0,1">
-        <property name="spacing">
-         <number>10</number>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
         </property>
         <item>
          <widget class="QGroupBox" name="groupBox_11">
@@ -373,8 +376,11 @@
       </widget>
       <widget class="QWidget" name="italcServerSettingsPage">
        <layout class="QVBoxLayout" name="verticalLayout_6" stretch="0,0,0,1">
-        <property name="spacing">
-         <number>10</number>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
         </property>
         <item>
          <widget class="QGroupBox" name="groupBox_6">
@@ -593,8 +599,11 @@
       </widget>
       <widget class="QWidget" name="pathSettingsPage">
        <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,1">
-        <property name="spacing">
-         <number>10</number>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
         </property>
         <item>
          <widget class="QGroupBox" name="groupBox">
@@ -719,8 +728,8 @@
       </widget>
       <widget class="QWidget" name="authSettingsPage">
        <layout class="QVBoxLayout" name="verticalLayout_5" stretch="0,0,0,0,1">
-        <property name="spacing">
-         <number>4</number>
+        <property name="topMargin">
+         <number>0</number>
         </property>
         <property name="bottomMargin">
          <number>0</number>
@@ -996,10 +1005,23 @@
        </layout>
       </widget>
       <widget class="PageAccessControl" name="pageAccessControl">
-       <layout class="QVBoxLayout" name="verticalLayout_17"/>
+       <layout class="QVBoxLayout" name="verticalLayout_17">
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+       </layout>
       </widget>
       <widget class="QWidget" name="ldapSettingsPage">
        <layout class="QVBoxLayout" name="verticalLayout_13">
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
         <item>
          <widget class="QGroupBox" name="groupBox_12">
           <property name="title">
@@ -1644,8 +1666,8 @@
       </widget>
       <widget class="QWidget" name="debugPage">
        <layout class="QVBoxLayout" name="verticalLayout_9" stretch="0,1">
-        <property name="spacing">
-         <number>4</number>
+        <property name="topMargin">
+         <number>0</number>
         </property>
         <property name="bottomMargin">
          <number>0</number>
