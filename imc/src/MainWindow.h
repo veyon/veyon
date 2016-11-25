@@ -31,8 +31,6 @@ class QAbstractButton;
 
 namespace Ui { class MainWindow; } ;
 
-class LdapDirectory;
-
 class MainWindow : public QMainWindow
 {
 	Q_OBJECT
@@ -65,23 +63,6 @@ private slots:
 	void saveSettingsToFile();
 	void launchKeyFileAssistant();
 	void testLogonAuthentication();
-	bool testLdapBind(bool reportSuccess = true);
-	void testLdapBaseDn();
-	void testLdapNamingContext();
-	void testLdapUserTree();
-	void testLdapGroupTree();
-	void testLdapComputerTree();
-	void testLdapUserLoginAttribute();
-	void testLdapGroupMemberAttribute();
-	void testLdapComputerHostNameAttribute();
-	void testLdapUsersFilter();
-	void testLdapUserGroupsFilter();
-	void testLdapComputerGroupsFilter();
-	void testLdapComputerPoolAttribute();
-	void testLdapGroupsOfUser();
-	void testLdapGroupsOfComputer();
-	void testLdapComputerPoolMembers();
-	void testLdapCommonAggregations();
 	void generateBugReportArchive();
 	void aboutItalc();
 
@@ -92,13 +73,6 @@ private:
 										const QString &arg );
 
 	bool isServiceRunning();
-
-	void reportLdapTreeQueryResult( const QString& name, int count, const QString& errorDescription );
-	void reportLdapObjectQueryResults( const QString &objectsName, const QString& parameterName,
-									   const QStringList &results, const LdapDirectory& directory );
-	void reportLdapFilterTestResult( const QString &filterObjects, int count, const QString &errorDescription );
-
-	static QString formatResultsString( const QStringList& results );
 
 	Ui::MainWindow *ui;
 	bool m_configChanged;
