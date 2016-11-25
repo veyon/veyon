@@ -28,6 +28,7 @@
 
 #include "ItalcConfiguration.h"
 #include "ItalcCore.h"
+#include "LocalSystem.h"
 #include "LogonGroupEditor.h"
 
 #include "ui_LogonGroupEditor.h"
@@ -94,80 +95,7 @@ void LogonGroupEditor::removeLogonGroup()
 
 void LogonGroupEditor::updateLogonGroupsUI()
 {
-	QStringList groupNames;
-#ifdef ITALC_BUILD_LINUX
-	QProcess p;
-	p.start( "getent", QStringList() << "group" );
-	p.waitForFinished();
-
-	QStringList groups = QString( p.readAll() ).split( '\n' );
-	foreach( const QString &group, groups )
-	{
-		groupNames += group.split( ':' ).first();
-	}
-	static const char *ignoredGroups[] = {
-		"root",
-		"daemon",
-		"bin",
-		"tty",
-		"disk",
-		"lp",
-		"mail",
-		"news",
-		"uucp",
-		"man",
-		"proxy",
-		"kmem",
-		"dialout",
-		"fax",
-		"voice",
-		"cdrom",
-		"tape",
-		"audio",
-		"dip",
-		"www-data",
-		"backup",
-		"list",
-		"irc",
-		"src",
-		"gnats",
-		"shadow",
-		"utmp",
-		"video",
-		"sasl",
-		"plugdev",
-		"games",
-		"users",
-		"nogroup",
-		"libuuid",
-		"syslog",
-		"fuse",
-		"lpadmin",
-		"ssl-cert",
-		"messagebus",
-		"crontab",
-		"mlocate",
-		"avahi-autoipd",
-		"netdev",
-		"saned",
-		"sambashare",
-		"haldaemon",
-		"polkituser",
-		"mysql",
-		"avahi",
-		"klog",
-		"floppy",
-		"oprofile",
-		"netdev",
-		"dirmngr",
-		"vboxusers",
-		"",
-		NULL };
-	for( int i = 0; ignoredGroups[i] != NULL; ++i )
-	{
-		groupNames.removeAll( ignoredGroups[i] );
-	}
-#endif
+	QStringList groupNames = LocalSystem::userGroups();
 
 	ui->logonGroups->setUpdatesEnabled( false );
 
