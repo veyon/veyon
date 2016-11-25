@@ -39,20 +39,20 @@ public:
 	virtual void resetWidgets();
 	virtual void connectWidgetsToProperties();
 
+	bool isServiceRunning();
 
-private slots:
+public slots:
 	void startService();
 	void stopService();
+
+private slots:
 	void updateServiceControl();
 	void openLogFileDirectory();
 	void clearLogFiles();
 
-
 private:
 	void serviceControlWithProgressBar( const QString &title,
 										const QString &arg );
-
-	bool isServiceRunning();
 
 	Ui::GeneralConfigurationPage *ui;
 
