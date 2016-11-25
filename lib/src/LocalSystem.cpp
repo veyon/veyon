@@ -1186,5 +1186,93 @@ void activateWindow( QWidget* w )
 }
 
 
+
+QStringList userGroups()
+{
+	QStringList groups;
+
+#ifdef ITALC_BUILD_LINUX
+	QProcess p;
+	p.start( "getent", QStringList( { "group" } ) );
+	p.waitForFinished();
+
+	for( auto group : QString( p.readAll() ).split( '\n' ) )
+	{
+		groups += group.split( ':' ).first();
+	}
+
+	QStringList ignoredGroups( {
+		"root",
+		"daemon",
+		"bin",
+		"tty",
+		"disk",
+		"lp",
+		"mail",
+		"news",
+		"uucp",
+		"man",
+		"proxy",
+		"kmem",
+		"dialout",
+		"fax",
+		"voice",
+		"cdrom",
+		"tape",
+		"audio",
+		"dip",
+		"www-data",
+		"backup",
+		"list",
+		"irc",
+		"src",
+		"gnats",
+		"shadow",
+		"utmp",
+		"video",
+		"sasl",
+		"plugdev",
+		"games",
+		"users",
+		"nogroup",
+		"libuuid",
+		"syslog",
+		"fuse",
+		"lpadmin",
+		"ssl-cert",
+		"messagebus",
+		"crontab",
+		"mlocate",
+		"avahi-autoipd",
+		"netdev",
+		"saned",
+		"sambashare",
+		"haldaemon",
+		"polkituser",
+		"mysql",
+		"avahi",
+		"klog",
+		"floppy",
+		"oprofile",
+		"netdev",
+		"dirmngr",
+		"vboxusers",
+		""
+							   } );
+
+	for( auto ignoredGroup : ignoredGroups )
+	{
+		groups.removeAll( ignoredGroup );
+	}
+#endif
+
+#ifdef ITALC_BUILD_WIN32
+	// TODO
+#endif
+
+	return groups;
+}
+
+
 } // end of namespace LocalSystem
 

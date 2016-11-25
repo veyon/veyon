@@ -196,6 +196,8 @@ namespace LocalSystem
 
 	void activateWindow( QWidget * _window );
 
+	QStringList userGroups();
+
 }
 
 #endif
