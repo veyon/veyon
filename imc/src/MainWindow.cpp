@@ -47,7 +47,6 @@ void Win32AclEditor( HWND hwnd );
 #include "ImcCore.h"
 #include "ItalcConfiguration.h"
 #include "LocalSystem.h"
-#include "Logger.h"
 #include "LogonAclSettings.h"
 #include "LogonAuthentication.h"
 #include "MainWindow.h"
