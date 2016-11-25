@@ -99,7 +99,7 @@
        </widget>
       </item>
       <item row="2" column="2">
-       <widget class="QListWidget" name="authorizedGroupsList">
+       <widget class="QListWidget" name="accessGroupsList">
         <property name="selectionMode">
          <enum>QAbstractItemView::MultiSelection</enum>
         </property>
@@ -131,7 +131,7 @@
          </spacer>
         </item>
         <item>
-         <widget class="QToolButton" name="addGroupButton">
+         <widget class="QToolButton" name="addAccessGroupButton">
           <property name="text">
            <string>...</string>
           </property>
@@ -142,7 +142,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QToolButton" name="removeGroupButton">
+         <widget class="QToolButton" name="removeAccessGroupButton">
           <property name="text">
            <string>...</string>
           </property>
@@ -275,9 +275,9 @@
   <tabstop>isAccessRestrictedToUserGroups</tabstop>
   <tabstop>isAuthorizationRulesetProcessingEnabled</tabstop>
   <tabstop>allGroupsList</tabstop>
-  <tabstop>addGroupButton</tabstop>
-  <tabstop>removeGroupButton</tabstop>
-  <tabstop>authorizedGroupsList</tabstop>
+  <tabstop>addAccessGroupButton</tabstop>
+  <tabstop>removeAccessGroupButton</tabstop>
+  <tabstop>accessGroupsList</tabstop>
   <tabstop>authorizationRuleListView</tabstop>
   <tabstop>addAuthorizationRuleButton</tabstop>
   <tabstop>removeAuthorizationRule</tabstop>
@@ -290,10 +290,10 @@
  </resources>
  <connections>
   <connection>
-   <sender>addGroupButton</sender>
+   <sender>addAccessGroupButton</sender>
    <signal>clicked()</signal>
    <receiver>AccessControlPage</receiver>
-   <slot>addGroup()</slot>
+   <slot>addAccessGroup()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>494</x>
@@ -306,10 +306,10 @@
    </hints>
   </connection>
   <connection>
-   <sender>removeGroupButton</sender>
+   <sender>removeAccessGroupButton</sender>
    <signal>clicked()</signal>
    <receiver>AccessControlPage</receiver>
-   <slot>removeGroup()</slot>
+   <slot>removeAccessGroup()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>494</x>
@@ -435,8 +435,8 @@
   </connection>
  </connections>
  <slots>
-  <slot>addGroup()</slot>
-  <slot>removeGroup()</slot>
+  <slot>addAccessGroup()</slot>
+  <slot>removeAccessGroup()</slot>
   <slot>addAuthorizationRule()</slot>
   <slot>removeAuthorizationRule()</slot>
   <slot>editAuthorizationRule()</slot>

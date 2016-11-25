@@ -155,7 +155,7 @@
     <item row="0" column="1">
      <widget class="QStackedWidget" name="configPages">
       <property name="currentIndex">
-       <number>0</number>
+       <number>3</number>
       </property>
       <widget class="GeneralConfigurationPage" name="generalConfigurationPage"/>
       <widget class="QWidget" name="italcServerSettingsPage">
@@ -533,20 +533,6 @@
            <property name="verticalSpacing">
             <number>2</number>
            </property>
-           <item row="0" column="0">
-            <widget class="QCheckBox" name="isKeyAuthenticationEnabled">
-             <property name="text">
-              <string>Key file authentication</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="0">
-            <widget class="QCheckBox" name="isLogonAuthenticationEnabled">
-             <property name="text">
-              <string>ACL-based logon authentication</string>
-             </property>
-            </widget>
-           </item>
            <item row="2" column="1">
             <spacer name="horizontalSpacer_7">
              <property name="orientation">
@@ -559,6 +545,20 @@
               </size>
              </property>
             </spacer>
+           </item>
+           <item row="1" column="0">
+            <widget class="QCheckBox" name="isLogonAuthenticationEnabled">
+             <property name="text">
+              <string>Logon authentication</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QCheckBox" name="isKeyAuthenticationEnabled">
+             <property name="text">
+              <string>Key file authentication</string>
+             </property>
+            </widget>
            </item>
           </layout>
          </widget>
@@ -660,7 +660,7 @@
            <bool>false</bool>
           </property>
           <property name="title">
-           <string>Logon settings</string>
+           <string>Logon authentication</string>
           </property>
           <layout class="QGridLayout" name="gridLayout">
            <property name="horizontalSpacing">
@@ -677,17 +677,6 @@
              </property>
             </widget>
            </item>
-           <item row="0" column="1">
-            <widget class="QPushButton" name="testLogonAuthentication">
-             <property name="text">
-              <string>Test</string>
-             </property>
-             <property name="icon">
-              <iconset resource="../imc.qrc">
-               <normaloff>:/Resources/dialog-ok-apply.png</normaloff>:/Resources/dialog-ok-apply.png</iconset>
-             </property>
-            </widget>
-           </item>
            <item row="0" column="2">
             <spacer name="horizontalSpacer_9">
              <property name="orientation">
@@ -700,6 +689,17 @@
               </size>
              </property>
             </spacer>
+           </item>
+           <item row="0" column="1">
+            <widget class="QPushButton" name="testLogonAuthentication">
+             <property name="text">
+              <string>Test</string>
+             </property>
+             <property name="icon">
+              <iconset resource="../imc.qrc">
+               <normaloff>:/Resources/dialog-ok-apply.png</normaloff>:/Resources/dialog-ok-apply.png</iconset>
+             </property>
+            </widget>
            </item>
           </layout>
          </widget>

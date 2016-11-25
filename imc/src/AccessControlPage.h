@@ -43,8 +43,9 @@ public:
 	virtual void connectWidgetsToProperties();
 
 private slots:
-	void addGroup();
-	void removeGroup();
+	void addAccessGroup();
+	void removeAccessGroup();
+	void updateAccessGroupsLists();
 	void addAuthorizationRule();
 	void removeAuthorizationRule();
 	void editAuthorizationRule();
@@ -53,6 +54,9 @@ private slots:
 
 private:
 	Ui::AccessControlPage *ui;
+
+	QStringList m_accessGroups;
+
 };
 
 #endif // ACCESS_CONTROL_PAGE_H

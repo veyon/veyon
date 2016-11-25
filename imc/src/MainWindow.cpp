@@ -50,7 +50,6 @@ void Win32AclEditor( HWND hwnd );
 #include "Logger.h"
 #include "LogonAclSettings.h"
 #include "LogonAuthentication.h"
-#include "LogonGroupEditor.h"
 #include "MainWindow.h"
 #include "PasswordDialog.h"
 
@@ -64,6 +63,10 @@ MainWindow::MainWindow() :
 	m_configChanged( false )
 {
 	ui->setupUi( this );
+
+#ifndef ITALC_BUILD_WIN32
+	ui->manageACLs->hide();
+#endif
 
 	setWindowTitle( tr( "iTALC Management Console %1" ).arg( ITALC_VERSION ) );
 
@@ -330,8 +333,6 @@ void MainWindow::manageACLs()
 	{
 		configurationChanged();
 	}
-#else
-	LogonGroupEditor( this ).exec();
 #endif
 }
 

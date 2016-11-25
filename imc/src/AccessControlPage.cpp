@@ -25,6 +25,7 @@
 #include "AccessControlPage.h"
 #include "ItalcCore.h"
 #include "ItalcConfiguration.h"
+#include "LocalSystem.h"
 #include "Configuration/UiMapping.h"
 
 #include "ui_AccessControlPage.h"
@@ -34,6 +35,8 @@ AccessControlPage::AccessControlPage() :
 	ui(new Ui::AccessControlPage)
 {
 	ui->setupUi(this);
+
+	updateAccessGroupsLists();
 }
 
 
@@ -48,6 +51,10 @@ AccessControlPage::~AccessControlPage()
 void AccessControlPage::resetWidgets()
 {
 	FOREACH_ITALC_ACCESS_CONTROL_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
+
+	m_accessGroups = ItalcCore::config->logonGroups();
+
+	updateAccessGroupsLists();
 }
 
 
@@ -59,16 +66,55 @@ void AccessControlPage::connectWidgetsToProperties()
 
 
 
-void AccessControlPage::addGroup()
+void AccessControlPage::addAccessGroup()
 {
+	foreach( QListWidgetItem *item, ui->allGroupsList->selectedItems() )
+	{
+		m_accessGroups.removeAll( item->text() );
+		m_accessGroups += item->text();
+	}
 
+	ItalcCore::config->setLogonGroups( m_accessGroups );
+
+	updateAccessGroupsLists();
 }
 
 
 
-void AccessControlPage::removeGroup()
+void AccessControlPage::removeAccessGroup()
 {
+	foreach( QListWidgetItem *item, ui->accessGroupsList->selectedItems() )
+	{
+		m_accessGroups.removeAll( item->text() );
+	}
 
+	ItalcCore::config->setLogonGroups( m_accessGroups );
+
+	updateAccessGroupsLists();
+}
+
+
+
+void AccessControlPage::updateAccessGroupsLists()
+{
+	ui->accessGroupsList->setUpdatesEnabled( false );
+
+	ui->allGroupsList->clear();
+	ui->accessGroupsList->clear();
+
+	for( auto group : LocalSystem::userGroups() )
+	{
+		if( m_accessGroups.contains( group ) )
+		{
+			ui->accessGroupsList->addItem( group );
+		}
+		else
+		{
+			ui->allGroupsList->addItem( group );
+		}
+	}
+
+	ui->accessGroupsList->setUpdatesEnabled( true );
 }
 
 
