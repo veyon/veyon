@@ -1,5 +1,5 @@
 /*
- * PageAccessControl.cpp - implementation of the access control page in IMC
+ * AccessControlPage.cpp - implementation of the access control page in IMC
  *
  * Copyright (c) 2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
@@ -22,86 +22,86 @@
  *
  */
 
-#include "PageAccessControl.h"
+#include "AccessControlPage.h"
 #include "ItalcCore.h"
 #include "ItalcConfiguration.h"
 #include "Configuration/UiMapping.h"
 
-#include "ui_PageAccessControl.h"
+#include "ui_AccessControlPage.h"
 
-PageAccessControl::PageAccessControl() :
+AccessControlPage::AccessControlPage() :
 	ConfigurationPage(),
-	ui(new Ui::PageAccessControl)
+	ui(new Ui::AccessControlPage)
 {
 	ui->setupUi(this);
 }
 
 
 
-PageAccessControl::~PageAccessControl()
+AccessControlPage::~AccessControlPage()
 {
 	delete ui;
 }
 
 
 
-void PageAccessControl::resetWidgets()
+void AccessControlPage::resetWidgets()
 {
 	FOREACH_ITALC_ACCESS_CONTROL_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
 }
 
 
 
-void PageAccessControl::connectWidgetsToProperties()
+void AccessControlPage::connectWidgetsToProperties()
 {
 	FOREACH_ITALC_ACCESS_CONTROL_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY)
 }
 
 
 
-void PageAccessControl::addGroup()
+void AccessControlPage::addGroup()
 {
 
 }
 
 
 
-void PageAccessControl::removeGroup()
+void AccessControlPage::removeGroup()
 {
 
 }
 
 
 
-void PageAccessControl::addAuthorizationRule()
+void AccessControlPage::addAuthorizationRule()
 {
 
 }
 
 
 
-void PageAccessControl::removeAuthorizationRule()
+void AccessControlPage::removeAuthorizationRule()
 {
 
 }
 
 
 
-void PageAccessControl::editAuthorizationRule()
+void AccessControlPage::editAuthorizationRule()
 {
 
 }
 
 
 
-void PageAccessControl::moveAuthorizationRuleDown()
+void AccessControlPage::moveAuthorizationRuleDown()
 {
 
 }
 
 
 
-void PageAccessControl::moveAuthorizationRuleUp()
+void AccessControlPage::moveAuthorizationRuleUp()
 {
 
 }

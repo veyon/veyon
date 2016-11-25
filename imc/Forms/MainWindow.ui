@@ -19,6 +19,139 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_4">
+    <item row="0" column="0">
+     <widget class="QListWidget" name="pageSelector">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>250</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="verticalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOff</enum>
+      </property>
+      <property name="horizontalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOff</enum>
+      </property>
+      <property name="sizeAdjustPolicy">
+       <enum>QAbstractScrollArea::AdjustToContents</enum>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>48</width>
+        <height>48</height>
+       </size>
+      </property>
+      <property name="textElideMode">
+       <enum>Qt::ElideNone</enum>
+      </property>
+      <property name="movement">
+       <enum>QListView::Free</enum>
+      </property>
+      <property name="spacing">
+       <number>4</number>
+      </property>
+      <property name="viewMode">
+       <enum>QListView::ListMode</enum>
+      </property>
+      <property name="uniformItemSizes">
+       <bool>true</bool>
+      </property>
+      <property name="currentRow">
+       <number>0</number>
+      </property>
+      <item>
+       <property name="text">
+        <string>General</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../imc.qrc">
+         <normaloff>:/Resources/configure-shortcuts.png</normaloff>:/Resources/configure-shortcuts.png</iconset>
+       </property>
+       <property name="flags">
+        <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>iTALC Server</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../imc.qrc">
+         <normaloff>:/Resources/preferences-system-network.png</normaloff>:/Resources/preferences-system-network.png</iconset>
+       </property>
+       <property name="flags">
+        <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Paths</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../imc.qrc">
+         <normaloff>:/Resources/kfind.png</normaloff>:/Resources/kfind.png</iconset>
+       </property>
+       <property name="flags">
+        <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Authentication</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../imc.qrc">
+         <normaloff>:/Resources/preferences-system-login.png</normaloff>:/Resources/preferences-system-login.png</iconset>
+       </property>
+       <property name="flags">
+        <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Access control</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../imc.qrc">
+         <normaloff>:/Resources/preferences-desktop-screensaver.png</normaloff>:/Resources/preferences-desktop-screensaver.png</iconset>
+       </property>
+       <property name="flags">
+        <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>LDAP</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../imc.qrc">
+         <normaloff>:/Resources/folder-publicshare.png</normaloff>:/Resources/folder-publicshare.png</iconset>
+       </property>
+       <property name="flags">
+        <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Debugging</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../imc.qrc">
+         <normaloff>:/Resources/debug-step-into.png</normaloff>:/Resources/debug-step-into.png</iconset>
+       </property>
+       <property name="flags">
+        <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
+       </property>
+      </item>
+     </widget>
+    </item>
     <item row="0" column="1">
      <widget class="QStackedWidget" name="configPages">
       <property name="currentIndex">
@@ -1004,17 +1137,8 @@
         </item>
        </layout>
       </widget>
-      <widget class="PageAccessControl" name="pageAccessControl"/>
-      <widget class="LdapConfigurationPage" name="ldapConfigurationPage">
-       <layout class="QVBoxLayout" name="verticalLayout_13">
-        <property name="topMargin">
-         <number>0</number>
-        </property>
-        <property name="bottomMargin">
-         <number>0</number>
-        </property>
-       </layout>
-      </widget>
+      <widget class="AccessControlPage" name="accessControlPage"/>
+      <widget class="LdapConfigurationPage" name="ldapConfigurationPage"/>
       <widget class="QWidget" name="debugPage">
        <layout class="QVBoxLayout" name="verticalLayout_9" stretch="0,1">
         <property name="topMargin">
@@ -1334,139 +1458,6 @@ Note: if the bug involves both a master and client computer, attach bug report a
       </property>
      </widget>
     </item>
-    <item row="0" column="0">
-     <widget class="QListWidget" name="pageSelector">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="minimumSize">
-       <size>
-        <width>250</width>
-        <height>0</height>
-       </size>
-      </property>
-      <property name="verticalScrollBarPolicy">
-       <enum>Qt::ScrollBarAlwaysOff</enum>
-      </property>
-      <property name="horizontalScrollBarPolicy">
-       <enum>Qt::ScrollBarAlwaysOff</enum>
-      </property>
-      <property name="sizeAdjustPolicy">
-       <enum>QAbstractScrollArea::AdjustToContents</enum>
-      </property>
-      <property name="iconSize">
-       <size>
-        <width>48</width>
-        <height>48</height>
-       </size>
-      </property>
-      <property name="textElideMode">
-       <enum>Qt::ElideNone</enum>
-      </property>
-      <property name="movement">
-       <enum>QListView::Free</enum>
-      </property>
-      <property name="spacing">
-       <number>4</number>
-      </property>
-      <property name="viewMode">
-       <enum>QListView::ListMode</enum>
-      </property>
-      <property name="uniformItemSizes">
-       <bool>true</bool>
-      </property>
-      <property name="currentRow">
-       <number>0</number>
-      </property>
-      <item>
-       <property name="text">
-        <string>General</string>
-       </property>
-       <property name="icon">
-        <iconset resource="../imc.qrc">
-         <normaloff>:/Resources/configure-shortcuts.png</normaloff>:/Resources/configure-shortcuts.png</iconset>
-       </property>
-       <property name="flags">
-        <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>iTALC Server</string>
-       </property>
-       <property name="icon">
-        <iconset resource="../imc.qrc">
-         <normaloff>:/Resources/preferences-system-network.png</normaloff>:/Resources/preferences-system-network.png</iconset>
-       </property>
-       <property name="flags">
-        <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Paths</string>
-       </property>
-       <property name="icon">
-        <iconset resource="../imc.qrc">
-         <normaloff>:/Resources/kfind.png</normaloff>:/Resources/kfind.png</iconset>
-       </property>
-       <property name="flags">
-        <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Authentication</string>
-       </property>
-       <property name="icon">
-        <iconset resource="../imc.qrc">
-         <normaloff>:/Resources/preferences-system-login.png</normaloff>:/Resources/preferences-system-login.png</iconset>
-       </property>
-       <property name="flags">
-        <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Access control</string>
-       </property>
-       <property name="icon">
-        <iconset resource="../imc.qrc">
-         <normaloff>:/Resources/preferences-desktop-screensaver.png</normaloff>:/Resources/preferences-desktop-screensaver.png</iconset>
-       </property>
-       <property name="flags">
-        <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>LDAP</string>
-       </property>
-       <property name="icon">
-        <iconset resource="../imc.qrc">
-         <normaloff>:/Resources/folder-publicshare.png</normaloff>:/Resources/folder-publicshare.png</iconset>
-       </property>
-       <property name="flags">
-        <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Debugging</string>
-       </property>
-       <property name="icon">
-        <iconset resource="../imc.qrc">
-         <normaloff>:/Resources/debug-step-into.png</normaloff>:/Resources/debug-step-into.png</iconset>
-       </property>
-       <property name="flags">
-        <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
-       </property>
-      </item>
-     </widget>
-    </item>
     <item row="2" column="1">
      <widget class="QDialogButtonBox" name="buttonBox">
       <property name="standardButtons">
@@ -1559,15 +1550,15 @@ Note: if the bug involves both a master and client computer, attach bug report a
  </widget>
  <customwidgets>
   <customwidget>
-   <class>PageAccessControl</class>
-   <extends>QWidget</extends>
-   <header>PageAccessControl.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
    <class>LdapConfigurationPage</class>
    <extends>QWidget</extends>
    <header>LdapConfigurationPage.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>AccessControlPage</class>
+   <extends>QWidget</extends>
+   <header>AccessControlPage.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
@@ -1724,10 +1715,4 @@ Note: if the bug involves both a master and client computer, attach bug report a
  <slots>
   <slot>aboutItalc()</slot>
  </slots>
- <buttongroups>
-  <buttongroup name="baseDnConfigGroup"/>
-  <buttongroup name="bindConfigurationGroup"/>
-  <buttongroup name="groupMemberMatchingGroup"/>
-  <buttongroup name="computerGroupingGroup"/>
- </buttongroups>
 </ui>

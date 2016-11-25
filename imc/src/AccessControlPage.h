@@ -1,5 +1,5 @@
 /*
- * PageAccessControl.h - header for the PageAccessControl class
+ * AccessControlPage.h - header for the AccessControlPage class
  *
  * Copyright (c) 2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
@@ -22,22 +22,22 @@
  *
  */
 
-#ifndef PAGE_ACCESS_CONTROL_H
-#define PAGE_ACCESS_CONTROL_H
+#ifndef ACCESS_CONTROL_PAGE_H
+#define ACCESS_CONTROL_PAGE_H
 
 #include "ConfigurationPage.h"
 
 namespace Ui {
-class PageAccessControl;
+class AccessControlPage;
 }
 
-class PageAccessControl : public ConfigurationPage
+class AccessControlPage : public ConfigurationPage
 {
 	Q_OBJECT
 
 public:
-	PageAccessControl();
-	~PageAccessControl();
+	AccessControlPage();
+	~AccessControlPage();
 
 	virtual void resetWidgets();
 	virtual void connectWidgetsToProperties();
@@ -52,7 +52,7 @@ private slots:
 	void moveAuthorizationRuleUp();
 
 private:
-	Ui::PageAccessControl *ui;
+	Ui::AccessControlPage *ui;
 };
 
-#endif // PAGE_ACCESS_CONTROL_H
+#endif // ACCESS_CONTROL_PAGE_H

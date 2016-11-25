@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>PageAccessControl</class>
- <widget class="QWidget" name="PageAccessControl">
+ <class>AccessControlPage</class>
+ <widget class="QWidget" name="AccessControlPage">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -292,7 +292,7 @@
   <connection>
    <sender>addGroupButton</sender>
    <signal>clicked()</signal>
-   <receiver>PageAccessControl</receiver>
+   <receiver>AccessControlPage</receiver>
    <slot>addGroup()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -308,7 +308,7 @@
   <connection>
    <sender>removeGroupButton</sender>
    <signal>clicked()</signal>
-   <receiver>PageAccessControl</receiver>
+   <receiver>AccessControlPage</receiver>
    <slot>removeGroup()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -324,7 +324,7 @@
   <connection>
    <sender>addAuthorizationRuleButton</sender>
    <signal>clicked()</signal>
-   <receiver>PageAccessControl</receiver>
+   <receiver>AccessControlPage</receiver>
    <slot>addAuthorizationRule()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -340,7 +340,7 @@
   <connection>
    <sender>removeAuthorizationRule</sender>
    <signal>clicked()</signal>
-   <receiver>PageAccessControl</receiver>
+   <receiver>AccessControlPage</receiver>
    <slot>removeAuthorizationRule()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -356,7 +356,7 @@
   <connection>
    <sender>editAuthorizationRuleButton</sender>
    <signal>clicked()</signal>
-   <receiver>PageAccessControl</receiver>
+   <receiver>AccessControlPage</receiver>
    <slot>editAuthorizationRule()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -372,7 +372,7 @@
   <connection>
    <sender>moveAuthorizationRuleDownButton</sender>
    <signal>clicked()</signal>
-   <receiver>PageAccessControl</receiver>
+   <receiver>AccessControlPage</receiver>
    <slot>moveAuthorizationRuleDown()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -388,7 +388,7 @@
   <connection>
    <sender>moveAuthorizationRuleUpButton</sender>
    <signal>clicked()</signal>
-   <receiver>PageAccessControl</receiver>
+   <receiver>AccessControlPage</receiver>
    <slot>moveAuthorizationRuleUp()</slot>
    <hints>
     <hint type="sourcelabel">
