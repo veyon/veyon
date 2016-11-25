@@ -522,12 +522,15 @@ void MainWindow::generateBugReportArchive()
 	QString os = "Windows %1 SP%2 (%3.%4.%5)";
 	switch( QSysInfo::windowsVersion() )
 	{
-		case QSysInfo::WV_NT: os = os.arg( "NT 4.0" ); break;
-		case QSysInfo::WV_2000: os = os.arg( "2000" ); break;
-		case QSysInfo::WV_XP: os = os.arg( "XP" ); break;
-		case QSysInfo::WV_VISTA: os = os.arg( "Vista" ); break;
-		case QSysInfo::WV_WINDOWS7: os = os.arg( "7" ); break;
-		default: os = os.arg( "<unknown>" );
+	case QSysInfo::WV_NT: os = os.arg( "NT 4.0" ); break;
+	case QSysInfo::WV_2000: os = os.arg( "2000" ); break;
+	case QSysInfo::WV_XP: os = os.arg( "XP" ); break;
+	case QSysInfo::WV_VISTA: os = os.arg( "Vista" ); break;
+	case QSysInfo::WV_WINDOWS7: os = os.arg( "7" ); break;
+	case QSysInfo::WV_WINDOWS8: os = os.arg( "8" ); break;
+	case QSysInfo::WV_WINDOWS8_1: os = os.arg( "8.1" ); break;
+	case QSysInfo::WV_WINDOWS10: os = os.arg( "10" ); break;
+	default: os = os.arg( "<unknown>" );
 	}
 
 	os = os.arg( ovi.wServicePackMajor ).
