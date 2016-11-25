@@ -180,15 +180,15 @@ void MainWindow::apply()
 	if( ImcCore::applyConfiguration( *ItalcCore::config ) )
 	{
 #ifdef ITALC_BUILD_WIN32
-		if( isServiceRunning() &&
+		if( ui->generalConfigurationPage->isServiceRunning() &&
 			QMessageBox::question( this, tr( "Restart iTALC Service" ),
 				tr( "All settings were saved successfully. In order to take "
 					"effect the iTALC service needs to be restarted. "
 					"Restart it now?" ), QMessageBox::Yes | QMessageBox::No,
 				QMessageBox::Yes ) == QMessageBox::Yes )
 		{
-			stopService();
-			startService();
+			ui->generalConfigurationPage->stopService();
+			ui->generalConfigurationPage->startService();
 		}
 #endif
 		ui->buttonBox->setEnabled( false );
