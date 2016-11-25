@@ -995,6 +995,9 @@
         </item>
        </layout>
       </widget>
+      <widget class="PageAccessControl" name="pageAccessControl">
+       <layout class="QVBoxLayout" name="verticalLayout_17"/>
+      </widget>
       <widget class="QWidget" name="ldapSettingsPage">
        <layout class="QVBoxLayout" name="verticalLayout_13">
         <item>
@@ -2055,6 +2058,18 @@ Note: if the bug involves both a master and client computer, attach bug report a
       </item>
       <item>
        <property name="text">
+        <string>Access control</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../imc.qrc">
+         <normaloff>:/Resources/preferences-desktop-screensaver.png</normaloff>:/Resources/preferences-desktop-screensaver.png</iconset>
+       </property>
+       <property name="flags">
+        <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
+       </property>
+      </item>
+      <item>
+       <property name="text">
         <string>LDAP</string>
        </property>
        <property name="icon">
@@ -2169,6 +2184,14 @@ Note: if the bug involves both a master and client computer, attach bug report a
    </property>
   </action>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>PageAccessControl</class>
+   <extends>QWidget</extends>
+   <header>PageAccessControl.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="../imc.qrc"/>
   <include location="../../lib/ItalcCore.qrc"/>

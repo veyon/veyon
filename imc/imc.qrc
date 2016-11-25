@@ -9,6 +9,8 @@
         <file>Resources/document-open.png</file>
         <file>Resources/document-save.png</file>
         <file>Resources/edit-clear.png</file>
+        <file>Resources/go-up.png</file>
+        <file>Resources/go-down.png</file>
         <file>Resources/go-next.png</file>
         <file>Resources/go-previous.png</file>
         <file>Resources/tools-wizard.png</file>
@@ -23,5 +25,9 @@
         <file>Resources/kfind.png</file>
         <file>Resources/preferences-system-login.png</file>
         <file>Resources/preferences-system-network.png</file>
+        <file>Resources/preferences-desktop-screensaver.png</file>
+        <file>Resources/list-add.png</file>
+        <file>Resources/list-remove.png</file>
+        <file>Resources/document-edit.png</file>
     </qresource>
 </RCC>
