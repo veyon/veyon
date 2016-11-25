@@ -49,11 +49,6 @@ public slots:
 private slots:
 	void configurationChanged();
 	void resetOrApply( QAbstractButton *btn );
-	void startService();
-	void stopService();
-	void updateServiceControl();
-	void openLogFileDirectory();
-	void clearLogFiles();
 	void openGlobalConfig();
 	void openPersonalConfig();
 	void openSnapshotDirectory();
@@ -69,10 +64,6 @@ private slots:
 
 private:
 	virtual void closeEvent( QCloseEvent *closeEvent );
-	void serviceControlWithProgressBar( const QString &title,
-										const QString &arg );
-
-	bool isServiceRunning();
 
 	Ui::MainWindow *ui;
 	bool m_configChanged;

@@ -67,24 +67,6 @@ MainWindow::MainWindow() :
 
 	setWindowTitle( tr( "iTALC Management Console %1" ).arg( ITALC_VERSION ) );
 
-	// retrieve list of builtin translations and populate language combobox
-	QStringList languages;
-	for( auto language : QDir(":/resources/").entryList( QStringList("*.qm") ) )
-	{
-		QLocale loc(language);
-		if( loc.language() == QLocale::C )
-		{
-			loc = QLocale( QLocale::English );
-		}
-		languages += QString( "%1 - %2 (%3)" ).arg( QLocale::languageToString(loc.language() ),
-													loc.nativeLanguageName(),
-													loc.name() );
-	}
-
-	qSort( languages );
-
-	ui->uiLanguage->addItems( languages );
-
 	// reset all widget's values to current configuration
 	reset();
 
@@ -97,9 +79,6 @@ MainWindow::MainWindow() :
 	}
 
 	// connect widget signals to configuration property write methods
-	FOREACH_ITALC_UI_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY);
-	FOREACH_ITALC_SERVICE_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY);
-	FOREACH_ITALC_LOGGING_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY);
 	FOREACH_ITALC_VNC_SERVER_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY);
 	FOREACH_ITALC_DEMO_SERVER_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY);
 	FOREACH_ITALC_NETWORK_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY);
@@ -114,12 +93,6 @@ MainWindow::MainWindow() :
 
 #define CONNECT_BUTTON_SLOT(name) \
 			connect( ui->name, SIGNAL( clicked() ), this, SLOT( name() ) );
-
-	CONNECT_BUTTON_SLOT( startService );
-	CONNECT_BUTTON_SLOT( stopService );
-
-	CONNECT_BUTTON_SLOT( openLogFileDirectory );
-	CONNECT_BUTTON_SLOT( clearLogFiles );
 
 	CONNECT_BUTTON_SLOT( openGlobalConfig );
 	CONNECT_BUTTON_SLOT( openPersonalConfig );
@@ -145,20 +118,8 @@ MainWindow::MainWindow() :
 	connect( ui->actionAboutQt, SIGNAL( triggered() ),
 				QApplication::instance(), SLOT( aboutQt() ) );
 
-	updateServiceControl();
-
-	QTimer *serviceUpdateTimer = new QTimer( this );
-	serviceUpdateTimer->start( 2000 );
-
-	connect( serviceUpdateTimer, SIGNAL( timeout() ),
-				this, SLOT( updateServiceControl() ) );
-
 	connect( ItalcCore::config, SIGNAL( configurationChanged() ),
 				this, SLOT( configurationChanged() ) );
-
-#ifndef ITALC_BUILD_WIN32
-	ui->logToWindowsEventLog->hide();
-#endif
 }
 
 
@@ -188,9 +149,6 @@ void MainWindow::reset( bool onlyUI )
 		ItalcCore::config->value( "EncodedLogonACL", "Authentication" ) );
 #endif
 
-	FOREACH_ITALC_UI_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
-	FOREACH_ITALC_SERVICE_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
-	FOREACH_ITALC_LOGGING_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
 	FOREACH_ITALC_VNC_SERVER_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
 	FOREACH_ITALC_DEMO_SERVER_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
 	FOREACH_ITALC_NETWORK_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
@@ -258,116 +216,6 @@ void MainWindow::resetOrApply( QAbstractButton *btn )
 		reset();
 	}
 }
-
-
-
-
-void MainWindow::startService()
-{
-	serviceControlWithProgressBar( tr( "Starting iTALC service" ), "-startservice" );
-}
-
-
-
-
-void MainWindow::stopService()
-{
-	serviceControlWithProgressBar( tr( "Stopping iTALC service" ), "-stopservice" );
-}
-
-
-
-
-void MainWindow::updateServiceControl()
-{
-	bool running = isServiceRunning();
-#ifdef ITALC_BUILD_WIN32
-	ui->startService->setEnabled( !running );
-	ui->stopService->setEnabled( running );
-#else
-	ui->startService->setEnabled( false );
-	ui->stopService->setEnabled( false );
-#endif
-	ui->serviceState->setText( running ? tr( "Running" ) : tr( "Stopped" ) );
-}
-
-
-
-
-void MainWindow::openLogFileDirectory()
-{
-	FileSystemBrowser( FileSystemBrowser::ExistingDirectory ).
-												exec( ui->logFileDirectory );
-}
-
-
-
-
-void MainWindow::clearLogFiles()
-{
-#ifdef ITALC_BUILD_WIN32
-	bool stopped = false;
-	if( isServiceRunning() )
-	{
-		if( QMessageBox::question( this, tr( "iTALC Service" ),
-				tr( "The iTALC service needs to be stopped temporarily "
-					"in order to remove the log files. Continue?"
-					), QMessageBox::Yes | QMessageBox::No,
-				QMessageBox::Yes ) == QMessageBox::Yes )
-		{
-			stopService();
-			stopped = true;
-		}
-		else
-		{
-			return;
-		}
-	}
-#endif
-
-	bool success = true;
-	QDir d( LocalSystem::Path::expand( ItalcCore::config->logFileDirectory() ) );
-	foreach( const QString &f, d.entryList( QStringList() << "Italc*.log" ) )
-	{
-		if( f != "ItalcManagementConsole.log" )
-		{
-			success &= d.remove( f );
-		}
-	}
-
-#ifdef ITALC_BUILD_WIN32
-	d = QDir( "C:\\Windows\\Temp" );
-#else
-	d = QDir( "/tmp" );
-#endif
-
-	foreach( const QString &f, d.entryList( QStringList() << "Italc*.log" ) )
-	{
-		if( f != "ItalcManagementConsole.log" )
-		{
-			success &= d.remove( f );
-		}
-	}
-
-#ifdef ITALC_BUILD_WIN32
-	if( stopped )
-	{
-		startService();
-	}
-#endif
-
-	if( success )
-	{
-		QMessageBox::information( this, tr( "Log files cleared" ),
-			tr( "All log files were cleared successfully." ) );
-	}
-	else
-	{
-		QMessageBox::critical( this, tr( "Error" ),
-			tr( "Could not remove all log files." ) );
-	}
-}
-
 
 
 
@@ -651,69 +499,4 @@ void MainWindow::closeEvent( QCloseEvent *closeEvent )
 
 	closeEvent->accept();
 	QMainWindow::closeEvent( closeEvent );
-}
-
-
-
-
-void MainWindow::serviceControlWithProgressBar( const QString &title,
-												const QString &arg )
-{
-	QProcess p;
-	p.start( ImcCore::icaFilePath(), QStringList() << arg );
-	p.waitForStarted();
-
-	QProgressDialog pd( title, QString(), 0, 0, this );
-	pd.setWindowTitle( windowTitle() );
-
-	QProgressBar *b = new QProgressBar( &pd );
-	b->setMaximum( 100 );
-	b->setTextVisible( false );
-	pd.setBar( b );
-	b->show();
-	pd.setWindowModality( Qt::WindowModal );
-	pd.show();
-
-	int j = 0;
-	while( p.state() == QProcess::Running )
-	{
-		QApplication::processEvents();
-		b->setValue( ++j % 100 );
-		LocalSystem::sleep( 10 );
-	}
-
-	updateServiceControl();
-}
-
-
-
-
-bool MainWindow::isServiceRunning()
-{
-#ifdef ITALC_BUILD_WIN32
-	SC_HANDLE hsrvmanager = OpenSCManager( NULL, NULL, SC_MANAGER_CONNECT );
-	if( !hsrvmanager )
-	{
-		ilog_failed( "OpenSCManager()" );
-		return false;
-	}
-
-	SC_HANDLE hservice = OpenService( hsrvmanager, "icas", SERVICE_QUERY_STATUS );
-	if( !hservice )
-	{
-		ilog_failed( "OpenService()" );
-		CloseServiceHandle( hsrvmanager );
-		return false;
-	}
-
-	SERVICE_STATUS status;
-	QueryServiceStatus( hservice, &status );
-
-	CloseServiceHandle( hservice );
-	CloseServiceHandle( hsrvmanager );
-
-	return( status.dwCurrentState == SERVICE_RUNNING );
-#else
-	return false;
-#endif
 }
