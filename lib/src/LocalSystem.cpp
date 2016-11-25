@@ -1257,7 +1257,6 @@ QStringList userGroups()
 		"netdev",
 		"dirmngr",
 		"vboxusers",
-		""
 							   } );
 
 	for( auto ignoredGroup : ignoredGroups )
@@ -1269,6 +1268,9 @@ QStringList userGroups()
 #ifdef ITALC_BUILD_WIN32
 	// TODO
 #endif
+
+	// remove all empty entries
+	groups.removeAll( "" );
 
 	return groups;
 }
