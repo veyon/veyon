@@ -22,6 +22,12 @@
  *
  */
 
+#include <italcconfig.h>
+
+#ifdef ITALC_BUILD_WIN32
+#include <windows.h>
+#endif
+
 #include <QDir>
 #include <QMessageBox>
 #include <QProcess>
@@ -35,6 +41,7 @@
 #include "ItalcCore.h"
 #include "ItalcConfiguration.h"
 #include "LocalSystem.h"
+#include "Logger.h"
 #include "Configuration/UiMapping.h"
 
 #include "ui_GeneralConfigurationPage.h"
