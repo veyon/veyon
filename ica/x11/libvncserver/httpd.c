@@ -81,9 +81,7 @@
     "<HEAD><TITLE>Invalid Request</TITLE></HEAD>\n" \
     "<BODY><H1>Invalid request</H1></BODY>\n"
 
-#define OK_STR "HTTP/1.0 200 OK\r\nConnection: close\r\n\r\n"
-#define OK_STR_HTML "HTTP/1.0 200 OK\r\nConnection: close\r\nContent-Type: text/html\r\n\r\n"
-
+#define OK_STR "HTTP/1.0 200 OK\r\nConnection: close\r\n"
 
 
 static void httpProcessInput(rfbScreenInfoPtr screen);
@@ -454,10 +452,18 @@ httpProcessInput(rfbScreenInfoPtr rfbScreen)
         return;
     }
 
-    if(performSubstitutions) /* is the 'index.vnc' file */
-      rfbWriteExact(&cl, OK_STR_HTML, strlen(OK_STR_HTML));
-    else
-      rfbWriteExact(&cl, OK_STR, strlen(OK_STR));
+    rfbWriteExact(&cl, OK_STR, strlen(OK_STR));
+    char *ext = strrchr(fname, '.');
+    char *contentType = "";
+    if(ext && strcasecmp(ext, ".vnc") == 0)
+	contentType = "Content-Type: text/html\r\n";
+    else if(ext && strcasecmp(ext, ".css") == 0)
+	contentType = "Content-Type: text/css\r\n";
+    else if(ext && strcasecmp(ext, ".svg") == 0)
+	contentType = "Content-Type: image/svg+xml\r\n";
+    rfbWriteExact(&cl, contentType, strlen(contentType));
+    /* end the header */
+    rfbWriteExact(&cl, "\r\n", 4);
 
     while (1) {
 	int n = fread(buf, 1, BUF_SIZE-1, fd);

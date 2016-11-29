@@ -352,7 +352,7 @@ static InlineX void Harr(signed char* pX0, signed char* pX1)
  In this method, H/L and X0/X1 is always same position.
  This lead us to more speed and less memory.
  Of cause, the result of both method is quite same
- because it's only difference that coefficient position.
+ because its only difference is that coefficient position.
 */
 static InlineX void WaveletLevel(int* data, int size, int l, int SkipPixel)
 {
