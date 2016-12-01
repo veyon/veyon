@@ -437,6 +437,22 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>accessControlListView</sender>
+   <signal>doubleClicked(QModelIndex)</signal>
+   <receiver>AccessControlPage</receiver>
+   <slot>editAccessControlRule()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>739</x>
+     <y>652</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>983</x>
+     <y>527</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>addAccessGroup()</slot>
