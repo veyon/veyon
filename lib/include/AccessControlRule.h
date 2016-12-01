@@ -27,9 +27,8 @@
 
 #include <QObject>
 #include <QVariant>
-#include <QMetaEnum>
 
-class AccessControlRule : public QObject
+class AccessControlRule
 {
 	Q_GADGET
 public:

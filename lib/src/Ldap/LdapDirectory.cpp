@@ -295,6 +295,8 @@ QStringList LdapDirectory::computerPools(const QString &filterValue)
 
 	computerPools.removeDuplicates();
 
+	qSort( computerPools );
+
 	return computerPools;
 }
 
