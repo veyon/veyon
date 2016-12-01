@@ -531,9 +531,16 @@ QString LdapDirectory::constructQueryFilter( const QString& filterAttribute,
 {
 	QString queryFilter;
 
-	if( filterAttribute.isEmpty() == false && filterValue.isEmpty() == false )
+	if( filterAttribute.isEmpty() == false )
 	{
-		queryFilter = QString( "(%1=%2)" ).arg( filterAttribute ).arg( filterValue );
+		if( filterValue.isEmpty() )
+		{
+			queryFilter = QString( "(%1=*)" ).arg( filterAttribute );
+		}
+		else
+		{
+			queryFilter = QString( "(%1=%2)" ).arg( filterAttribute ).arg( filterValue );
+		}
 	}
 
 	if( extraFilter.isEmpty() == false )
