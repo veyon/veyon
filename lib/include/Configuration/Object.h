@@ -112,6 +112,11 @@ private:
 	public:													\
 		inline QStringList get() const						\
 		{													\
+			QString v = value( key, parentKey );			\
+			if( v.isEmpty() )								\
+			{												\
+				return QStringList();						\
+			}												\
 			return value( key, parentKey ).split( ',' );	\
 		}
 
