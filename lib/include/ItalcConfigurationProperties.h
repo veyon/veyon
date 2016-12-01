@@ -79,9 +79,9 @@
 
 #define FOREACH_ITALC_ACCESS_CONTROL_CONFIG_PROPERTY(OP)		\
 	OP( ItalcConfiguration, ItalcCore::config, BOOL, isAccessRestrictedToUserGroups, setAccessRestrictedToUserGroups, "AccessRestrictedToUserGroups", "AccessControl");		\
-	OP( ItalcConfiguration, ItalcCore::config, BOOL, isAuthorizationRulesetProcessingEnabled, setAuthorizationRulesetProcessingEnabled, "AuthorizationRulesetProcessingEnabled", "AccessControl");	\
+	OP( ItalcConfiguration, ItalcCore::config, BOOL, isAccessControlListProcessingEnabled, setAccessControlListProcessingEnabled, "AccessControlListProcessingEnabled", "AccessControl");	\
 	OP( ItalcConfiguration, ItalcCore::config, STRINGLIST, authorizedUserGroups, setAuthorizedUserGroups, "AuthorizedUserGroups", "AccessControl" );	\
-	OP( ItalcConfiguration, ItalcCore::config, STRINGLIST, authorizationRuleSet, setAuthorizationRuleSet, "AuthorizationRuleSet", "AccessControl" );	\
+	OP( ItalcConfiguration, ItalcCore::config, STRINGLIST, accessControlList, setAccessControlList, "AccessControlList", "AccessControl" );	\
 
 #define FOREACH_ITALC_LDAP_CONFIG_PROPERTY(OP) \
 	OP( ItalcConfiguration, ItalcCore::config, STRING, ldapServerHost, setLdapServerHost, "ServerHost", "LDAP" );	\
