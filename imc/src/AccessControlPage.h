@@ -46,11 +46,11 @@ private slots:
 	void addAccessGroup();
 	void removeAccessGroup();
 	void updateAccessGroupsLists();
-	void addAuthorizationRule();
-	void removeAuthorizationRule();
-	void editAuthorizationRule();
-	void moveAuthorizationRuleDown();
-	void moveAuthorizationRuleUp();
+	void addAccessControlRule();
+	void removeAccessControlRule();
+	void editAccessControlRule();
+	void moveAccessControlRuleDown();
+	void moveAccessControlRuleUp();
 
 private:
 	Ui::AccessControlPage *ui;

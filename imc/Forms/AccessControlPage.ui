@@ -50,9 +50,9 @@
        </widget>
       </item>
       <item>
-       <widget class="QRadioButton" name="isAuthorizationRulesetProcessingEnabled">
+       <widget class="QRadioButton" name="isAccessControlListProcessingEnabled">
         <property name="text">
-         <string>Process custom ruleset for authorization</string>
+         <string>Process access control list</string>
         </property>
         <attribute name="buttonGroup">
          <string notr="true">accessControlModeGroup</string>
@@ -68,7 +68,7 @@
       <bool>false</bool>
      </property>
      <property name="title">
-      <string>Authorized user groups for computer access</string>
+      <string>User groups authorized for computer access</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_18">
       <item row="2" column="0">
@@ -171,18 +171,18 @@
     </widget>
    </item>
    <item>
-    <widget class="QGroupBox" name="customAuthorizationRuleSetComboBox">
+    <widget class="QGroupBox" name="customAccessControlListComboBox">
      <property name="enabled">
       <bool>false</bool>
      </property>
      <property name="title">
-      <string>Custom rule set for authorization</string>
+      <string>Access control list</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_23">
       <item row="0" column="1">
-       <widget class="QPushButton" name="addAuthorizationRuleButton">
+       <widget class="QPushButton" name="addAccessControlRuleButton">
         <property name="toolTip">
-         <string>Add authorization rule</string>
+         <string>Add access control rule</string>
         </property>
         <property name="text">
          <string/>
@@ -194,9 +194,9 @@
        </widget>
       </item>
       <item row="1" column="1">
-       <widget class="QPushButton" name="removeAuthorizationRule">
+       <widget class="QPushButton" name="removeAccessControlRule">
         <property name="toolTip">
-         <string>Remove authorization rule</string>
+         <string>Remove access control rule</string>
         </property>
         <property name="text">
          <string/>
@@ -208,7 +208,7 @@
        </widget>
       </item>
       <item row="4" column="1">
-       <widget class="QPushButton" name="moveAuthorizationRuleDownButton">
+       <widget class="QPushButton" name="moveAccessControlRuleDownButton">
         <property name="toolTip">
          <string>Move selected rule down</string>
         </property>
@@ -222,7 +222,7 @@
        </widget>
       </item>
       <item row="0" column="0" rowspan="6">
-       <widget class="QListView" name="authorizationRuleListView"/>
+       <widget class="QListView" name="accessControlListView"/>
       </item>
       <item row="5" column="1">
        <spacer name="verticalSpacer_12">
@@ -238,7 +238,7 @@
        </spacer>
       </item>
       <item row="3" column="1">
-       <widget class="QPushButton" name="moveAuthorizationRuleUpButton">
+       <widget class="QPushButton" name="moveAccessControlRuleUpButton">
         <property name="toolTip">
          <string>Move selected rule up</string>
         </property>
@@ -252,7 +252,7 @@
        </widget>
       </item>
       <item row="2" column="1">
-       <widget class="QPushButton" name="editAuthorizationRuleButton">
+       <widget class="QPushButton" name="editAccessControlRuleButton">
         <property name="toolTip">
          <string>Edit selected rule</string>
         </property>
@@ -273,17 +273,17 @@
  <tabstops>
   <tabstop>skipAccessControl</tabstop>
   <tabstop>isAccessRestrictedToUserGroups</tabstop>
-  <tabstop>isAuthorizationRulesetProcessingEnabled</tabstop>
+  <tabstop>isAccessControlListProcessingEnabled</tabstop>
   <tabstop>allGroupsList</tabstop>
   <tabstop>addAccessGroupButton</tabstop>
   <tabstop>removeAccessGroupButton</tabstop>
   <tabstop>accessGroupsList</tabstop>
-  <tabstop>authorizationRuleListView</tabstop>
-  <tabstop>addAuthorizationRuleButton</tabstop>
-  <tabstop>removeAuthorizationRule</tabstop>
-  <tabstop>editAuthorizationRuleButton</tabstop>
-  <tabstop>moveAuthorizationRuleUpButton</tabstop>
-  <tabstop>moveAuthorizationRuleDownButton</tabstop>
+  <tabstop>accessControlListView</tabstop>
+  <tabstop>addAccessControlRuleButton</tabstop>
+  <tabstop>removeAccessControlRule</tabstop>
+  <tabstop>editAccessControlRuleButton</tabstop>
+  <tabstop>moveAccessControlRuleUpButton</tabstop>
+  <tabstop>moveAccessControlRuleDownButton</tabstop>
  </tabstops>
  <resources>
   <include location="../imc.qrc"/>
@@ -322,10 +322,10 @@
    </hints>
   </connection>
   <connection>
-   <sender>addAuthorizationRuleButton</sender>
+   <sender>addAccessControlRuleButton</sender>
    <signal>clicked()</signal>
    <receiver>AccessControlPage</receiver>
-   <slot>addAuthorizationRule()</slot>
+   <slot>addAccessControlRule()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>935</x>
@@ -338,10 +338,10 @@
    </hints>
   </connection>
   <connection>
-   <sender>removeAuthorizationRule</sender>
+   <sender>removeAccessControlRule</sender>
    <signal>clicked()</signal>
    <receiver>AccessControlPage</receiver>
-   <slot>removeAuthorizationRule()</slot>
+   <slot>removeAccessControlRule()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>935</x>
@@ -354,10 +354,10 @@
    </hints>
   </connection>
   <connection>
-   <sender>editAuthorizationRuleButton</sender>
+   <sender>editAccessControlRuleButton</sender>
    <signal>clicked()</signal>
    <receiver>AccessControlPage</receiver>
-   <slot>editAuthorizationRule()</slot>
+   <slot>editAccessControlRule()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>935</x>
@@ -370,10 +370,10 @@
    </hints>
   </connection>
   <connection>
-   <sender>moveAuthorizationRuleDownButton</sender>
+   <sender>moveAccessControlRuleDownButton</sender>
    <signal>clicked()</signal>
    <receiver>AccessControlPage</receiver>
-   <slot>moveAuthorizationRuleDown()</slot>
+   <slot>moveAccessControlRuleDown()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>935</x>
@@ -386,10 +386,10 @@
    </hints>
   </connection>
   <connection>
-   <sender>moveAuthorizationRuleUpButton</sender>
+   <sender>moveAccessControlRuleUpButton</sender>
    <signal>clicked()</signal>
    <receiver>AccessControlPage</receiver>
-   <slot>moveAuthorizationRuleUp()</slot>
+   <slot>moveAccessControlRuleUp()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>935</x>
@@ -418,9 +418,9 @@
    </hints>
   </connection>
   <connection>
-   <sender>isAuthorizationRulesetProcessingEnabled</sender>
+   <sender>isAccessControlListProcessingEnabled</sender>
    <signal>toggled(bool)</signal>
-   <receiver>customAuthorizationRuleSetComboBox</receiver>
+   <receiver>customAccessControlListComboBox</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -437,11 +437,11 @@
  <slots>
   <slot>addAccessGroup()</slot>
   <slot>removeAccessGroup()</slot>
-  <slot>addAuthorizationRule()</slot>
-  <slot>removeAuthorizationRule()</slot>
-  <slot>editAuthorizationRule()</slot>
-  <slot>moveAuthorizationRuleUp()</slot>
-  <slot>moveAuthorizationRuleDown()</slot>
+  <slot>addAccessControlRule()</slot>
+  <slot>removeAccessControlRule()</slot>
+  <slot>editAccessControlRule()</slot>
+  <slot>moveAccessControlRuleUp()</slot>
+  <slot>moveAccessControlRuleDown()</slot>
  </slots>
  <buttongroups>
   <buttongroup name="accessControlModeGroup"/>

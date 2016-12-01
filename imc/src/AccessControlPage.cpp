@@ -119,35 +119,35 @@ void AccessControlPage::updateAccessGroupsLists()
 
 
 
-void AccessControlPage::addAuthorizationRule()
+void AccessControlPage::addAccessControlRule()
 {
 
 }
 
 
 
-void AccessControlPage::removeAuthorizationRule()
+void AccessControlPage::removeAccessControlRule()
 {
 
 }
 
 
 
-void AccessControlPage::editAuthorizationRule()
+void AccessControlPage::editAccessControlRule()
 {
 
 }
 
 
 
-void AccessControlPage::moveAuthorizationRuleDown()
+void AccessControlPage::moveAccessControlRuleDown()
 {
 
 }
 
 
 
-void AccessControlPage::moveAuthorizationRuleUp()
+void AccessControlPage::moveAccessControlRuleUp()
 {
 
 }

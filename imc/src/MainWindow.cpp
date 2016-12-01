@@ -54,6 +54,8 @@ void Win32AclEditor( HWND hwnd );
 
 #include "ui_MainWindow.h"
 
+#include <QDebug>
+#include <QImage>
 
 
 MainWindow::MainWindow() :
