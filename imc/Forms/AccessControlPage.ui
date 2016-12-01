@@ -222,7 +222,11 @@
        </widget>
       </item>
       <item row="0" column="0" rowspan="6">
-       <widget class="QListView" name="accessControlListView"/>
+       <widget class="QListView" name="accessControlListView">
+        <property name="editTriggers">
+         <set>QAbstractItemView::NoEditTriggers</set>
+        </property>
+       </widget>
       </item>
       <item row="5" column="1">
        <spacer name="verticalSpacer_12">
