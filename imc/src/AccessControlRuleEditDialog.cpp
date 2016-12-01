@@ -23,6 +23,7 @@
  */
 
 #include "AccessControlRuleEditDialog.h"
+#include "AccessControlProvider.h"
 
 #include "ui_AccessControlRuleEditDialog.h"
 
@@ -39,9 +40,13 @@ AccessControlRuleEditDialog::AccessControlRuleEditDialog(AccessControlRule &rule
 {
 	ui->setupUi(this);
 
+	AccessControlProvider accessControlProvider;
+
 	// populate comboboxes
 	QStringList entityNames = m_entityNameMap.values();
 	ui->entityComboBox->addItems( entityNames );
+	ui->groupsComboBox->addItems( accessControlProvider.groups() );
+	ui->computerPoolsComboBox->addItems( accessControlProvider.computerPools() );
 	ui->commonGroupComboBox->addItems( entityNames );
 	ui->commonComputerPoolComboBox->addItems( entityNames );
 
