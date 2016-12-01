@@ -25,6 +25,8 @@
 #ifndef ACCESS_CONTROL_PAGE_H
 #define ACCESS_CONTROL_PAGE_H
 
+#include <QStringListModel>
+
 #include "ConfigurationPage.h"
 
 namespace Ui {
@@ -46,6 +48,7 @@ private slots:
 	void addAccessGroup();
 	void removeAccessGroup();
 	void updateAccessGroupsLists();
+
 	void addAccessControlRule();
 	void removeAccessControlRule();
 	void editAccessControlRule();
@@ -53,9 +56,13 @@ private slots:
 	void moveAccessControlRuleUp();
 
 private:
+	void modifyAccessControlList( const QStringList& accessControlList, int selectedRow );
+	void updateAccessControlList();
+
 	Ui::AccessControlPage *ui;
 
 	QStringList m_accessGroups;
+	QStringListModel m_accessControlListModel;
 
 };
 
