@@ -50,9 +50,9 @@
        </widget>
       </item>
       <item>
-       <widget class="QRadioButton" name="isAccessControlListProcessingEnabled">
+       <widget class="QRadioButton" name="isAccessControlRulesProcessingEnabled">
         <property name="text">
-         <string>Process access control list</string>
+         <string>Process access control rules</string>
         </property>
         <attribute name="buttonGroup">
          <string notr="true">accessControlModeGroup</string>
@@ -171,12 +171,12 @@
     </widget>
    </item>
    <item>
-    <widget class="QGroupBox" name="customAccessControlListComboBox">
+    <widget class="QGroupBox" name="accessControlRulesComboBox">
      <property name="enabled">
       <bool>false</bool>
      </property>
      <property name="title">
-      <string>Access control list</string>
+      <string>Access control rules</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_23">
       <item row="0" column="1">
@@ -222,7 +222,7 @@
        </widget>
       </item>
       <item row="0" column="0" rowspan="6">
-       <widget class="QListView" name="accessControlListView">
+       <widget class="QListView" name="accessControlRulesView">
         <property name="editTriggers">
          <set>QAbstractItemView::NoEditTriggers</set>
         </property>
@@ -277,12 +277,12 @@
  <tabstops>
   <tabstop>skipAccessControl</tabstop>
   <tabstop>isAccessRestrictedToUserGroups</tabstop>
-  <tabstop>isAccessControlListProcessingEnabled</tabstop>
+  <tabstop>isAccessControlRulesProcessingEnabled</tabstop>
   <tabstop>allGroupsList</tabstop>
   <tabstop>addAccessGroupButton</tabstop>
   <tabstop>removeAccessGroupButton</tabstop>
   <tabstop>accessGroupsList</tabstop>
-  <tabstop>accessControlListView</tabstop>
+  <tabstop>accessControlRulesView</tabstop>
   <tabstop>addAccessControlRuleButton</tabstop>
   <tabstop>removeAccessControlRule</tabstop>
   <tabstop>editAccessControlRuleButton</tabstop>
@@ -422,9 +422,9 @@
    </hints>
   </connection>
   <connection>
-   <sender>isAccessControlListProcessingEnabled</sender>
+   <sender>isAccessControlRulesProcessingEnabled</sender>
    <signal>toggled(bool)</signal>
-   <receiver>customAccessControlListComboBox</receiver>
+   <receiver>accessControlRulesComboBox</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -438,7 +438,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>accessControlListView</sender>
+   <sender>accessControlRulesView</sender>
    <signal>doubleClicked(QModelIndex)</signal>
    <receiver>AccessControlPage</receiver>
    <slot>editAccessControlRule()</slot>

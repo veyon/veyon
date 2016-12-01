@@ -35,14 +35,14 @@
 AccessControlPage::AccessControlPage() :
 	ConfigurationPage(),
 	ui(new Ui::AccessControlPage),
-	m_accessControlListModel( this )
+	m_accessControlRulesModel( this )
 {
 	ui->setupUi(this);
 
-	ui->accessControlListView->setModel( &m_accessControlListModel );
+	ui->accessControlRulesView->setModel( &m_accessControlRulesModel );
 
 	updateAccessGroupsLists();
-	updateAccessControlList();
+	updateAccessControlRules();
 }
 
 
@@ -130,9 +130,9 @@ void AccessControlPage::addAccessControlRule()
 
 	if( AccessControlRuleEditDialog( newRule, this ).exec() )
 	{
-		ItalcCore::config->setAccessControlList( ItalcCore::config->accessControlList() << newRule.encode() );
+		ItalcCore::config->setAccessControlRules( ItalcCore::config->accessControlRules() << newRule.encode() );
 
-		updateAccessControlList();
+		updateAccessControlRules();
 	}
 }
 
@@ -140,24 +140,24 @@ void AccessControlPage::addAccessControlRule()
 
 void AccessControlPage::removeAccessControlRule()
 {
-	QStringList accessControlList = ItalcCore::config->accessControlList();
+	QStringList accessControlRules = ItalcCore::config->accessControlRules();
 
-	accessControlList.removeAt( ui->accessControlListView->currentIndex().row() );
+	accessControlRules.removeAt( ui->accessControlRulesView->currentIndex().row() );
 
-	ItalcCore::config->setAccessControlList( accessControlList );
+	ItalcCore::config->setAccessControlRules( accessControlRules );
 
-	updateAccessControlList();
+	updateAccessControlRules();
 }
 
 
 
 void AccessControlPage::editAccessControlRule()
 {
-	QStringList accessControlList = ItalcCore::config->accessControlList();
+	QStringList accessControlRules = ItalcCore::config->accessControlRules();
 
-	int row = ui->accessControlListView->currentIndex().row();
+	int row = ui->accessControlRulesView->currentIndex().row();
 
-	QString encodedRule = accessControlList.value( row );
+	QString encodedRule = accessControlRules.value( row );
 	if( encodedRule.isEmpty() )
 	{
 		return;
@@ -167,9 +167,9 @@ void AccessControlPage::editAccessControlRule()
 
 	if( AccessControlRuleEditDialog( rule, this ).exec() )
 	{
-		accessControlList.replace( row, rule.encode() );
+		accessControlRules.replace( row, rule.encode() );
 
-		modifyAccessControlList( accessControlList, row );
+		modifyAccessControlRules( accessControlRules, row );
 	}
 }
 
@@ -177,16 +177,16 @@ void AccessControlPage::editAccessControlRule()
 
 void AccessControlPage::moveAccessControlRuleDown()
 {
-	QStringList accessControlList = ItalcCore::config->accessControlList();
+	QStringList accessControlRules = ItalcCore::config->accessControlRules();
 
-	int row = ui->accessControlListView->currentIndex().row();
+	int row = ui->accessControlRulesView->currentIndex().row();
 	int newRow = row + 1;
 
-	if( newRow < accessControlList.size() )
+	if( newRow < accessControlRules.size() )
 	{
-		accessControlList.move( row, newRow );
+		accessControlRules.move( row, newRow );
 
-		modifyAccessControlList( accessControlList, newRow );
+		modifyAccessControlRules( accessControlRules, newRow );
 	}
 }
 
@@ -194,40 +194,40 @@ void AccessControlPage::moveAccessControlRuleDown()
 
 void AccessControlPage::moveAccessControlRuleUp()
 {
-	QStringList accessControlList = ItalcCore::config->accessControlList();
+	QStringList accessControlRules = ItalcCore::config->accessControlRules();
 
-	int row = ui->accessControlListView->currentIndex().row();
+	int row = ui->accessControlRulesView->currentIndex().row();
 	int newRow = row - 1;
 
 	if( newRow >= 0 )
 	{
-		accessControlList.move( row, newRow );
+		accessControlRules.move( row, newRow );
 
-		modifyAccessControlList( accessControlList, newRow );
+		modifyAccessControlRules( accessControlRules, newRow );
 	}
 }
 
 
 
-void AccessControlPage::modifyAccessControlList(const QStringList &accessControlList, int selectedRow)
+void AccessControlPage::modifyAccessControlRules(const QStringList &accessControlRules, int selectedRow)
 {
-	ItalcCore::config->setAccessControlList( accessControlList );
+	ItalcCore::config->setAccessControlRules( accessControlRules );
 
-	updateAccessControlList();
+	updateAccessControlRules();
 
-	ui->accessControlListView->setCurrentIndex( m_accessControlListModel.index( selectedRow ) );
+	ui->accessControlRulesView->setCurrentIndex( m_accessControlRulesModel.index( selectedRow ) );
 }
 
 
 
-void AccessControlPage::updateAccessControlList()
+void AccessControlPage::updateAccessControlRules()
 {
 	QStringList ruleNames;
 
-	for( auto encodedRule : ItalcCore::config->accessControlList() )
+	for( auto encodedRule : ItalcCore::config->accessControlRules() )
 	{
 		ruleNames += AccessControlRule( encodedRule ).name();
 	}
 
-	m_accessControlListModel.setStringList( ruleNames );
+	m_accessControlRulesModel.setStringList( ruleNames );
 }

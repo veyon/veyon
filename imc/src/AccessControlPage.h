@@ -56,13 +56,13 @@ private slots:
 	void moveAccessControlRuleUp();
 
 private:
-	void modifyAccessControlList( const QStringList& accessControlList, int selectedRow );
-	void updateAccessControlList();
+	void modifyAccessControlRules( const QStringList& accessControlRules, int selectedRow );
+	void updateAccessControlRules();
 
 	Ui::AccessControlPage *ui;
 
 	QStringList m_accessGroups;
-	QStringListModel m_accessControlListModel;
+	QStringListModel m_accessControlRulesModel;
 
 };
 
