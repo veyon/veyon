@@ -141,7 +141,7 @@
          </font>
         </property>
         <property name="text">
-         <string>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access rules.</string>
+         <string>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</string>
         </property>
         <property name="wordWrap">
          <bool>true</bool>
