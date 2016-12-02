@@ -23,6 +23,7 @@
  */
 
 #include "AccessControlProvider.h"
+#include "LocalSystem.h"
 
 AccessControlProvider::AccessControlProvider() :
 	m_ldapDirectory()
@@ -41,6 +42,10 @@ QStringList AccessControlProvider::groups()
 		{
 			groups += m_ldapDirectory.groupName( groupDn );
 		}
+	}
+	else
+	{
+		groups = LocalSystem::userGroups();
 	}
 
 	qSort( groups );
