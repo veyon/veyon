@@ -33,6 +33,7 @@ public:
 	AccessControlProvider();
 
 	QStringList userGroups();
+	QStringList computerGroups();
 	QStringList computerPools();
 
 private:

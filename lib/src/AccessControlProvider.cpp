@@ -52,6 +52,22 @@ QStringList AccessControlProvider::userGroups()
 
 
 
+QStringList AccessControlProvider::computerGroups()
+{
+	QStringList groups;
+
+	if( m_ldapDirectory.isBound() )
+	{
+		groups = m_ldapDirectory.computerGroupsNames();
+	}
+
+	qSort( groups );
+
+	return groups;
+}
+
+
+
 QStringList AccessControlProvider::computerPools()
 {
 	QStringList compoterPoolList;
