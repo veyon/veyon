@@ -26,7 +26,7 @@
 #include "AccessControlRule.h"
 #include "ItalcCore.h"
 #include "ItalcConfiguration.h"
-#include "LocalSystem.h"
+#include "AccessControlProvider.h"
 #include "Configuration/UiMapping.h"
 #include "AccessControlRuleEditDialog.h"
 
@@ -108,7 +108,7 @@ void AccessControlPage::updateAccessGroupsLists()
 	ui->allGroupsList->clear();
 	ui->accessGroupsList->clear();
 
-	for( auto group : LocalSystem::userGroups() )
+	for( auto group : AccessControlProvider().userGroups() )
 	{
 		if( m_accessGroups.contains( group ) )
 		{
