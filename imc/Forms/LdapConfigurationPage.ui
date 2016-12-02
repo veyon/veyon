@@ -18,9 +18,15 @@
     <number>0</number>
    </property>
    <item>
-    <widget class="QGroupBox" name="groupBox_12">
+    <widget class="QGroupBox" name="isLdapIntegrationEnabled">
      <property name="title">
-      <string>LDAP base settings</string>
+      <string>LDAP/AD integration</string>
+     </property>
+     <property name="checkable">
+      <bool>true</bool>
+     </property>
+     <property name="checked">
+      <bool>false</bool>
      </property>
      <layout class="QGridLayout" name="gridLayout_15">
       <item row="2" column="1" colspan="2">
@@ -130,6 +136,9 @@
    </item>
    <item>
     <widget class="QTabWidget" name="tabWidget">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="currentIndex">
       <number>0</number>
      </property>
@@ -670,12 +679,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>757</x>
-     <y>232</y>
+     <x>506</x>
+     <y>142</y>
     </hint>
     <hint type="destinationlabel">
-     <x>872</x>
-     <y>327</y>
+     <x>842</x>
+     <y>241</y>
     </hint>
    </hints>
   </connection>
@@ -686,12 +695,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>757</x>
-     <y>232</y>
+     <x>506</x>
+     <y>142</y>
     </hint>
     <hint type="destinationlabel">
-     <x>872</x>
-     <y>279</y>
+     <x>842</x>
+     <y>193</y>
     </hint>
    </hints>
   </connection>
@@ -702,12 +711,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>515</x>
-     <y>403</y>
+     <x>467</x>
+     <y>423</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1214</x>
-     <y>403</y>
+     <x>825</x>
+     <y>425</y>
     </hint>
    </hints>
   </connection>
@@ -718,12 +727,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>532</x>
-     <y>733</y>
+     <x>279</x>
+     <y>888</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1045</x>
-     <y>733</y>
+     <x>730</x>
+     <y>889</y>
     </hint>
    </hints>
   </connection>
@@ -734,12 +743,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>532</x>
-     <y>752</y>
+     <x>279</x>
+     <y>888</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1297</x>
-     <y>752</y>
+     <x>825</x>
+     <y>890</y>
     </hint>
    </hints>
   </connection>
@@ -750,12 +759,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>502</x>
-     <y>418</y>
+     <x>467</x>
+     <y>474</y>
     </hint>
     <hint type="destinationlabel">
-     <x>929</x>
-     <y>418</y>
+     <x>730</x>
+     <y>475</y>
     </hint>
    </hints>
   </connection>
@@ -766,12 +775,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>502</x>
-     <y>383</y>
+     <x>467</x>
+     <y>423</y>
     </hint>
     <hint type="destinationlabel">
-     <x>929</x>
-     <y>383</y>
+     <x>730</x>
+     <y>424</y>
     </hint>
    </hints>
   </connection>
@@ -782,12 +791,28 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>515</x>
-     <y>453</y>
+     <x>467</x>
+     <y>474</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1214</x>
-     <y>453</y>
+     <x>825</x>
+     <y>476</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>isLdapIntegrationEnabled</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>tabWidget</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>97</x>
+     <y>12</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>237</x>
+     <y>319</y>
     </hint>
    </hints>
   </connection>
@@ -796,9 +821,9 @@
   <slot>aboutItalc()</slot>
  </slots>
  <buttongroups>
+  <buttongroup name="groupMemberMatchingGroup"/>
   <buttongroup name="baseDnConfigGroup"/>
   <buttongroup name="bindConfigurationGroup"/>
-  <buttongroup name="groupMemberMatchingGroup"/>
   <buttongroup name="computerGroupingGroup"/>
  </buttongroups>
 </ui>
