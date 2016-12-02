@@ -32,7 +32,7 @@ AccessControlProvider::AccessControlProvider() :
 
 
 
-QStringList AccessControlProvider::groups()
+QStringList AccessControlProvider::userGroups()
 {
 	QStringList groups;
 

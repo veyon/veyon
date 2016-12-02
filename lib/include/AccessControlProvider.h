@@ -32,7 +32,7 @@ class AccessControlProvider
 public:
 	AccessControlProvider();
 
-	QStringList groups();
+	QStringList userGroups();
 	QStringList computerPools();
 
 private:

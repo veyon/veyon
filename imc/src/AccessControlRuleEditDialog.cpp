@@ -45,7 +45,7 @@ AccessControlRuleEditDialog::AccessControlRuleEditDialog(AccessControlRule &rule
 	// populate comboboxes
 	QStringList entityNames = m_entityNameMap.values();
 	ui->entityComboBox->addItems( entityNames );
-	ui->groupsComboBox->addItems( accessControlProvider.groups() );
+	ui->groupsComboBox->addItems( accessControlProvider.userGroups() );
 	ui->computerPoolsComboBox->addItems( accessControlProvider.computerPools() );
 	ui->commonGroupComboBox->addItems( entityNames );
 	ui->commonComputerPoolComboBox->addItems( entityNames );
