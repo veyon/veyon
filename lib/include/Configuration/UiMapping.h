@@ -32,7 +32,11 @@
 			qobject_cast<widgetType *>( ui->property )->setvalue( config->property() );
 
 #define INIT_WIDGET_FROM_BOOL_PROPERTY(config,property,slot)							\
-			_INIT_WIDGET_FROM_PROPERTY(config,property,QAbstractButton,setChecked)
+			if(ui->property->inherits("QGroupBox")) {									\
+				_INIT_WIDGET_FROM_PROPERTY(config,property,QGroupBox,setChecked)		\
+			} else {																	\
+				_INIT_WIDGET_FROM_PROPERTY(config,property,QAbstractButton,setChecked)	\
+			}
 
 #define INIT_WIDGET_FROM_STRING_PROPERTY(config,property,slot)							\
 			if(ui->property->inherits("QComboBox"))	{							\
