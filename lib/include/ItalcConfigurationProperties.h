@@ -84,6 +84,7 @@
 	OP( ItalcConfiguration, ItalcCore::config, STRINGLIST, accessControlRules, setAccessControlRules, "AccessControlRules", "AccessControl" );	\
 
 #define FOREACH_ITALC_LDAP_CONFIG_PROPERTY(OP) \
+	OP( ItalcConfiguration, ItalcCore::config, BOOL, isLdapIntegrationEnabled, setLdapIntegrationEnabled, "LdapIntegrationEnabled", "LDAP" );	\
 	OP( ItalcConfiguration, ItalcCore::config, STRING, ldapServerHost, setLdapServerHost, "ServerHost", "LDAP" );	\
 	OP( ItalcConfiguration, ItalcCore::config, INT, ldapServerPort, setLdapServerPort, "ServerPort", "LDAP" );	\
 	OP( ItalcConfiguration, ItalcCore::config, BOOL, ldapUseBindCredentials, setLdapUseBindCredentials, "UseBindCredentials", "LDAP" );	\

@@ -87,6 +87,7 @@ public slots:
 	void setAccessControlRulesProcessingEnabled( bool );
 	void setAuthorizedUserGroups( const QStringList& );
 	void setAccessControlRules( const QStringList& );
+	void setLdapIntegrationEnabled( bool );
 	void setLdapServerHost( const QString& );
 	void setLdapServerPort( int );
 	void setLdapUseBindCredentials( bool );
