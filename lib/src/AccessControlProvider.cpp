@@ -38,10 +38,7 @@ QStringList AccessControlProvider::groups()
 
 	if( m_ldapDirectory.isBound() )
 	{
-		for( auto groupDn : m_ldapDirectory.groups() )
-		{
-			groups += m_ldapDirectory.groupName( groupDn );
-		}
+		groups = m_ldapDirectory.userGroupsNames();
 	}
 	else
 	{
