@@ -158,9 +158,9 @@
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout_2">
       <item>
-       <widget class="QRadioButton" name="actionNoneRadioButton">
+       <widget class="QRadioButton" name="actionAllowRadioButton">
         <property name="text">
-         <string>None (rule disabled)</string>
+         <string>Allow access</string>
         </property>
         <property name="checked">
          <bool>true</bool>
@@ -171,9 +171,9 @@
        </widget>
       </item>
       <item>
-       <widget class="QRadioButton" name="actionAllowRadioButton">
+       <widget class="QRadioButton" name="actionDenyRadioButton">
         <property name="text">
-         <string>Allow access</string>
+         <string>Deny access</string>
         </property>
         <attribute name="buttonGroup">
          <string notr="true">actionButtonGroup</string>
@@ -181,9 +181,9 @@
        </widget>
       </item>
       <item>
-       <widget class="QRadioButton" name="actionDenyRadioButton">
+       <widget class="QRadioButton" name="actionNoneRadioButton">
         <property name="text">
-         <string>Deny access</string>
+         <string>None (rule disabled)</string>
         </property>
         <attribute name="buttonGroup">
          <string notr="true">actionButtonGroup</string>
@@ -206,17 +206,20 @@
   </layout>
  </widget>
  <tabstops>
+  <tabstop>ruleNameLineEdit</tabstop>
+  <tabstop>ruleDescriptionLineEdit</tabstop>
+  <tabstop>entityComboBox</tabstop>
   <tabstop>isMemberOfGroupCheckBox</tabstop>
-  <tabstop>groupsComboBox</tabstop>
   <tabstop>isMemberOfComputerPoolCheckBox</tabstop>
-  <tabstop>computerPoolsComboBox</tabstop>
   <tabstop>hasCommonGroupsCheckBox</tabstop>
-  <tabstop>commonGroupComboBox</tabstop>
   <tabstop>hasCommonComputerPoolsCheckBox</tabstop>
+  <tabstop>groupsComboBox</tabstop>
+  <tabstop>computerPoolsComboBox</tabstop>
+  <tabstop>commonGroupComboBox</tabstop>
   <tabstop>commonComputerPoolComboBox</tabstop>
-  <tabstop>actionNoneRadioButton</tabstop>
   <tabstop>actionAllowRadioButton</tabstop>
   <tabstop>actionDenyRadioButton</tabstop>
+  <tabstop>actionNoneRadioButton</tabstop>
  </tabstops>
  <resources/>
  <connections>
