@@ -23,11 +23,18 @@
  */
 
 #include "AccessControlProvider.h"
+#include "ItalcConfiguration.h"
+#include "ItalcCore.h"
 #include "LocalSystem.h"
+
 
 AccessControlProvider::AccessControlProvider() :
 	m_ldapDirectory()
 {
+	for( auto encodedRule : ItalcCore::config->accessControlRules() )
+	{
+		m_accessControlRules.append( AccessControlRule( encodedRule ) );
+	}
 }
 
 

@@ -26,6 +26,7 @@
 #define ACCESS_CONTROL_PROVIDER_H
 
 #include "Ldap/LdapDirectory.h"
+#include "AccessControlRule.h"
 
 class AccessControlProvider
 {
@@ -38,6 +39,7 @@ public:
 
 private:
 	LdapDirectory m_ldapDirectory;
+	QList<AccessControlRule> m_accessControlRules;
 
 } ;
 
