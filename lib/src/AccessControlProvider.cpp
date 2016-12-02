@@ -61,7 +61,7 @@ QStringList AccessControlProvider::computerPools()
 
 	if( m_ldapDirectory.isBound() )
 	{
-		compoterPoolList += m_ldapDirectory.computerPools();
+		compoterPoolList = m_ldapDirectory.computerPools();
 	}
 
 	qSort( compoterPoolList );
