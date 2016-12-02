@@ -67,6 +67,8 @@ public:
 
 	QStringList computerPoolMembers( const QString& computerPoolName );
 	QStringList userGroupsNames();
+	QStringList computerGroupsNames();
+
 
 private:
 	bool reconnect( const QUrl& url );

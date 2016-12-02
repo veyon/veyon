@@ -449,6 +449,15 @@ QStringList LdapDirectory::userGroupsNames()
 
 
 
+QStringList LdapDirectory::computerGroupsNames()
+{
+	return d->queryCommonNames( d->groupsDn,
+								d->computerGroupsFilter,
+								d->defaultSearchScope );
+}
+
+
+
 bool LdapDirectory::reconnect( const QUrl &url )
 {
 	ItalcConfiguration* c = ItalcCore::config;
