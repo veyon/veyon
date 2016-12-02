@@ -66,6 +66,7 @@ public:
 	QString groupMemberComputerIdentification( const QString& computerDn );
 
 	QStringList computerPoolMembers( const QString& computerPoolName );
+	QStringList userGroupsNames();
 
 private:
 	bool reconnect( const QUrl& url );
