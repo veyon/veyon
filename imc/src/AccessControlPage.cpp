@@ -127,6 +127,7 @@ void AccessControlPage::updateAccessGroupsLists()
 void AccessControlPage::addAccessControlRule()
 {
 	AccessControlRule newRule;
+	newRule.setAction( AccessControlRule::ActionAllow );
 
 	if( AccessControlRuleEditDialog( newRule, this ).exec() )
 	{
