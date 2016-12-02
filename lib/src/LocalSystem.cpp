@@ -1257,6 +1257,23 @@ QStringList userGroups()
 		"netdev",
 		"dirmngr",
 		"vboxusers",
+		"bluetooth",
+		"colord",
+		"libvirtd",
+		"nm-openvpn",
+		"input",
+		"kvm",
+		"pulse",
+		"pulse-access",
+		"rtkit",
+		"scanner",
+		"sddm",
+		"systemd-bus-proxy",
+		"systemd-journal",
+		"systemd-network",
+		"systemd-resolve",
+		"systemd-timesync",
+		"uuidd",
 							   } );
 
 	for( auto ignoredGroup : ignoredGroups )
