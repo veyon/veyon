@@ -45,6 +45,12 @@ public:
 	{
 		QStringList entries;
 
+		if( isConnected == false || isBound == false )
+		{
+			qCritical() << "LdapDirectory::queryAttributes(): not connected or not bound to server!";
+			return entries;
+		}
+
 		if( dn.isEmpty() && attribute != namingContextAttribute )
 		{
 			qCritical() << "LdapDirectory::queryAttributes(): DN is empty!";
@@ -101,6 +107,12 @@ public:
 	QStringList queryDistinguishedNames( const QString &dn, const QString &filter, KLDAP::LdapUrl::Scope scope )
 	{
 		QStringList distinguishedNames;
+
+		if( isConnected == false || isBound == false )
+		{
+			qCritical() << "LdapDirectory::queryAttributes(): not connected or not bound to server!";
+			return distinguishedNames;
+		}
 
 		if( dn.isEmpty() )
 		{
@@ -429,6 +441,14 @@ QStringList LdapDirectory::computerPoolMembers(const QString &computerPoolName)
 bool LdapDirectory::reconnect( const QUrl &url )
 {
 	ItalcConfiguration* c = ItalcCore::config;
+
+	if( c->isLdapIntegrationEnabled() == false )
+	{
+		d->isConnected = false;
+		d->isBound = false;
+
+		return false;
+	}
 
 	KLDAP::LdapServer server;
 
