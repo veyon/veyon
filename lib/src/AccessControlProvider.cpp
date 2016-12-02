@@ -35,9 +35,12 @@ QStringList AccessControlProvider::groups()
 {
 	QStringList groups;
 
-	for( auto groupDn : m_ldapDirectory.groups() )
+	if( m_ldapDirectory.isBound() )
 	{
-		groups += m_ldapDirectory.groupName( groupDn );
+		for( auto groupDn : m_ldapDirectory.groups() )
+		{
+			groups += m_ldapDirectory.groupName( groupDn );
+		}
 	}
 
 	qSort( groups );
@@ -49,9 +52,14 @@ QStringList AccessControlProvider::groups()
 
 QStringList AccessControlProvider::computerPools()
 {
-	QStringList compoterPools = m_ldapDirectory.computerPools();
+	QStringList compoterPoolList;
 
-	qSort( compoterPools );
+	if( m_ldapDirectory.isBound() )
+	{
+		compoterPoolList += m_ldapDirectory.computerPools();
+	}
 
-	return compoterPools;
+	qSort( compoterPoolList );
+
+	return compoterPoolList;
 }
