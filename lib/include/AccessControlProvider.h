@@ -37,7 +37,32 @@ public:
 	QStringList computerGroups();
 	QStringList computerPools();
 
+	AccessControlRule::Action processAccessControlRules( const QString& accessingUser,
+														 const QString& accessingComputer,
+														 const QString& localUser,
+														 const QString& localComputer );
+
+
 private:
+	bool isMemberOfGroup( AccessControlRule::EntityType entityType, const QString& entity, const QString& groupName );
+	bool isMemberOfComputerPool( AccessControlRule::EntityType entityType, const QString& entity, const QString& computerPoolName );
+	bool hasGroupsInCommon( AccessControlRule::EntityType entityOneType, const QString& entityOne,
+							AccessControlRule::EntityType entityTwoType, const QString& entityTwo );
+	bool hasComputerPoolsInCommon( AccessControlRule::EntityType entityOneType, const QString& entityOne,
+								   AccessControlRule::EntityType entityTwoType, const QString& entityTwo );
+
+	QString lookupEntity( AccessControlRule::Entity entity,
+						  const QString& accessingUser, const QString& accessingComputer,
+						  const QString& localUser, const QString& localComputer );
+
+	QString ldapObjectOfEntity( AccessControlRule::EntityType entityType, const QString& entity );
+	QStringList ldapGroupsOfEntity( AccessControlRule::EntityType entityType, const QString& entity );
+	QStringList ldapComputerPoolsOfEntity( AccessControlRule::EntityType entityType, const QString& entity );
+
+	bool matchConditions( const AccessControlRule& rule,
+						  const QString& accessingUser, const QString& accessingComputer,
+						  const QString& localUser, const QString& localComputer);
+
 	LdapDirectory m_ldapDirectory;
 	QList<AccessControlRule> m_accessControlRules;
 

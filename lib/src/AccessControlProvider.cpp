@@ -22,6 +22,8 @@
  *
  */
 
+#include <QDebug>
+
 #include "AccessControlProvider.h"
 #include "ItalcConfiguration.h"
 #include "ItalcCore.h"
@@ -87,4 +89,270 @@ QStringList AccessControlProvider::computerPools()
 	qSort( compoterPoolList );
 
 	return compoterPoolList;
+}
+
+
+
+AccessControlRule::Action AccessControlProvider::processAccessControlRules(const QString &accessingUser,
+																		   const QString &accessingComputer,
+																		   const QString &localUser,
+																		   const QString &localComputer)
+{
+	for( auto rule : m_accessControlRules )
+	{
+		// rule disabled?
+		if( rule.action() == AccessControlRule::ActionNone )
+		{
+			// then continue with next rule
+			continue;
+		}
+
+		if( matchConditions( rule, accessingUser, accessingComputer, localUser, localComputer ) )
+		{
+			return rule.action();
+		}
+	}
+
+	return AccessControlRule::ActionDeny;
+}
+
+
+
+bool AccessControlProvider::isMemberOfGroup( AccessControlRule::EntityType entityType,
+											 const QString &entity,
+											 const QString &groupName )
+{
+	if( m_ldapDirectory.isBound() )
+	{
+		QStringList groups = m_ldapDirectory.groups( groupName );
+		if( groups.isEmpty() )
+		{
+			return false;
+		}
+
+		if( groups.count() > 1 )
+		{
+			qWarning() << "AccessControlProvider::isMemberOfGroup(): more than one group resolved from LDAP!";
+		}
+
+		return ldapGroupsOfEntity( entityType, entity ).contains( groups.first() );
+	}
+	else
+	{
+		// TODO: LocalSystem implementation
+	}
+
+	return false;
+}
+
+
+
+bool AccessControlProvider::isMemberOfComputerPool( AccessControlRule::EntityType entityType,
+													const QString &entity,
+													const QString &computerPoolName )
+{
+	if( m_ldapDirectory.isBound() )
+	{
+		QStringList computerPoolMembers = m_ldapDirectory.computerPoolMembers( computerPoolName );
+
+		if( computerPoolMembers.isEmpty() )
+		{
+			qWarning() << "AccessControlProvider::isMemberOfComputerPool(): empty computer pool!";
+			return false;
+		}
+
+		const QString objectDn = ldapObjectOfEntity( entityType, entity );
+
+		return objectDn.isEmpty() == false && computerPoolMembers.contains( objectDn );
+	}
+
+	return false;
+}
+
+
+
+bool AccessControlProvider::hasGroupsInCommon( AccessControlRule::EntityType entityOneType, const QString &entityOne,
+											   AccessControlRule::EntityType entityTwoType, const QString &entityTwo )
+{
+	if( m_ldapDirectory.isBound() )
+	{
+		QStringList objectOneGroups = ldapGroupsOfEntity( entityOneType, entityOne );
+		QStringList objectTwoGroups = ldapGroupsOfEntity( entityTwoType, entityTwo );
+
+		return objectOneGroups.toSet().intersect( objectTwoGroups.toSet() ).isEmpty() == false;
+	}
+
+	return false;
+}
+
+
+
+bool AccessControlProvider::hasComputerPoolsInCommon( AccessControlRule::EntityType entityOneType, const QString &entityOne,
+													  AccessControlRule::EntityType entityTwoType, const QString &entityTwo )
+{
+	if( m_ldapDirectory.isBound() )
+	{
+		QStringList objectOneComputerPools = ldapComputerPoolsOfEntity( entityOneType, entityOne );
+		QStringList objectTwoComputerPools = ldapComputerPoolsOfEntity( entityTwoType, entityTwo );
+
+		return objectOneComputerPools.toSet().intersect( objectTwoComputerPools.toSet() ).isEmpty() == false;
+	}
+
+	return false;
+}
+
+
+
+QString AccessControlProvider::lookupEntity( AccessControlRule::Entity entity,
+											 const QString &accessingUser, const QString &accessingComputer,
+											 const QString &localUser, const QString &localComputer )
+{
+	switch( entity )
+	{
+	case AccessControlRule::EntityAccessingUser: return accessingUser;
+	case AccessControlRule::EntityAccessingComputer: return accessingComputer;
+	case AccessControlRule::EntityLocalUser: return localUser;
+	case AccessControlRule::EntityLocalComputer: return localComputer;
+	default: break;
+	}
+
+	return QString();
+}
+
+
+
+QString AccessControlProvider::ldapObjectOfEntity( AccessControlRule::EntityType entityType, const QString &entity )
+{
+	QStringList objects;
+
+	switch( entityType )
+	{
+	case AccessControlRule::EntityTypeUser:
+		objects = m_ldapDirectory.users( entity );
+		break;
+	case AccessControlRule::EntityTypeComputer:
+		objects = m_ldapDirectory.computers( entity );
+		break;
+	default: break;
+	}
+
+	if( objects.isEmpty() )
+	{
+		return QString();
+	}
+
+	if( objects.count() > 1 )
+	{
+		qWarning() << "AccessControlProvider::getLdapObjectForEntity(): more than one entity object resolved from LDAP!";
+	}
+
+	return objects.first();
+}
+
+
+
+QStringList AccessControlProvider::ldapGroupsOfEntity( AccessControlRule::EntityType entityType, const QString &entity )
+{
+	const QString objectDn = ldapObjectOfEntity( entityType, entity );
+
+	if( objectDn.isEmpty() )
+	{
+		return QStringList();
+	}
+
+	if( entityType == AccessControlRule::EntityTypeUser )
+	{
+		return m_ldapDirectory.groupsOfUser( objectDn );
+	}
+	else if( entityType == AccessControlRule::EntityTypeComputer )
+	{
+		// use LdapDirectory::groupsOfComputer() as it automatically uses the correct group
+		// member attribute and resolves the required attribute of the computer object
+		return m_ldapDirectory.groupsOfComputer( objectDn );
+	}
+
+	return QStringList();
+}
+
+
+
+QStringList AccessControlProvider::ldapComputerPoolsOfEntity( AccessControlRule::EntityType entityType, const QString &entity )
+{
+	const QString objectDn = ldapObjectOfEntity( entityType, entity );
+
+	if( objectDn.isEmpty() )
+	{
+		return QStringList();
+	}
+
+	if( entityType == AccessControlRule::EntityTypeUser )
+	{
+		return m_ldapDirectory.computerPoolsOfUser( objectDn );
+	}
+	else if( entityType == AccessControlRule::EntityTypeComputer )
+	{
+		return m_ldapDirectory.computerPoolsOfComputer( objectDn );
+	}
+
+	return QStringList();
+}
+
+
+
+bool AccessControlProvider::matchConditions( const AccessControlRule &rule,
+											 const QString& accessingUser, const QString& accessingComputer,
+											 const QString& localUser, const QString& localComputer)
+{
+	const AccessControlRule::Entity ruleEntity = rule.entity();
+	const AccessControlRule::EntityType ruleEntityType = AccessControlRule::entityType( ruleEntity );
+
+	const QString ruleEntityValue = lookupEntity( ruleEntity, accessingUser, accessingComputer, localUser, localComputer );
+
+	if( rule.hasCondition( AccessControlRule::ConditionMemberOfGroup ) &&
+			isMemberOfGroup( ruleEntityType,
+							 ruleEntityValue,
+							 rule.conditionArgument( AccessControlRule::ConditionMemberOfGroup ).toString() ) == false )
+	{
+		return false;
+	}
+
+	if( rule.hasCondition( AccessControlRule::ConditionMemberOfComputerPool ) &&
+			isMemberOfComputerPool( ruleEntityType,
+									ruleEntityValue,
+									rule.conditionArgument( AccessControlRule::ConditionMemberOfComputerPool ).toString() ) == false )
+	{
+		return false;
+	}
+
+	if( rule.hasCondition( AccessControlRule::ConditionGroupsInCommon ) )
+	{
+		const AccessControlRule::Entity secondEntity =
+				rule.conditionArgument( AccessControlRule::ConditionGroupsInCommon ).value<AccessControlRule::Entity>();
+
+		const AccessControlRule::EntityType secondEntityType = AccessControlRule::entityType( secondEntity );
+		const QString secondEntityValue = lookupEntity( secondEntity, accessingUser, accessingComputer, localUser, localComputer );
+
+		if( hasGroupsInCommon( ruleEntityType, ruleEntityValue,
+							   secondEntityType, secondEntityValue ) == false )
+		{
+			return false;
+		}
+	}
+
+	if( rule.hasCondition( AccessControlRule::ConditionComputerPoolsInCommon ) )
+	{
+		const AccessControlRule::Entity secondEntity =
+				rule.conditionArgument( AccessControlRule::ConditionComputerPoolsInCommon ).value<AccessControlRule::Entity>();
+
+		const AccessControlRule::EntityType secondEntityType = AccessControlRule::entityType( secondEntity );
+		const QString secondEntityValue = lookupEntity( secondEntity, accessingUser, accessingComputer, localUser, localComputer );
+
+		if( hasComputerPoolsInCommon( ruleEntityType, ruleEntityValue,
+							   secondEntityType, secondEntityValue ) == false )
+		{
+			return false;
+		}
+	}
+
+	return true;
 }
