@@ -127,7 +127,7 @@ public:
 		return m_conditions;
 	}
 
-	ConditionArgument conditionArgument( Condition condition )
+	ConditionArgument conditionArgument( Condition condition ) const
 	{
 		return m_conditions.value( condition );
 	}
