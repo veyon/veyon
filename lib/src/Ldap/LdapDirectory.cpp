@@ -345,9 +345,34 @@ QStringList LdapDirectory::groupsOfComputer(const QString &computerDn)
 
 
 
-QStringList LdapDirectory::computerPoolsOfObject(const QString &objectDn)
+QStringList LdapDirectory::computerPoolsOfUser(const QString &userDn)
 {
-	return d->queryAttributes( objectDn, d->computerPoolAttribute );
+	if( d->computerPoolMembersByAttribute )
+	{
+		return d->queryAttributes( userDn, d->computerPoolAttribute );
+	}
+
+	QString userId = groupMemberUserIdentification( userDn );
+
+	return d->queryCommonNames( d->groupsDn,
+								constructQueryFilter( d->groupMemberAttribute, userId, d->computerGroupsFilter ),
+								d->defaultSearchScope );
+}
+
+
+
+QStringList LdapDirectory::computerPoolsOfComputer(const QString &computerDn)
+{
+	if( d->computerPoolMembersByAttribute )
+	{
+		return d->queryAttributes( computerDn, d->computerPoolAttribute );
+	}
+
+	QString computerId = groupMemberComputerIdentification( computerDn );
+
+	return d->queryCommonNames( d->groupsDn,
+								constructQueryFilter( d->groupMemberAttribute, computerId, d->computerGroupsFilter ),
+								d->defaultSearchScope );
 }
 
 
@@ -363,9 +388,12 @@ QStringList LdapDirectory::commonAggregations(const QString &objectOne, const QS
 
 	if( d->computerPoolMembersByAttribute )
 	{
+		QStringList computerPoolsOfObjectOne = d->queryAttributes( objectOne, d->computerPoolAttribute );
+		QStringList computerPoolsOfObjectTwo = d->queryAttributes( objectTwo, d->computerPoolAttribute );
+
 		// get intersection of computer pool list of both objects
-		commonComputerPools = computerPoolsOfObject(objectOne).toSet().intersect(
-					computerPoolsOfObject(objectTwo).toSet() ).toList();
+		commonComputerPools = computerPoolsOfObjectOne.toSet().intersect(
+					computerPoolsOfObjectTwo.toSet() ).toList();
 	}
 
 	return commonComputerPools +
