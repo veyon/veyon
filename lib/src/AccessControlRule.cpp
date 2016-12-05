@@ -104,3 +104,21 @@ QString AccessControlRule::encode() const
 
 	return QString::fromUtf8( buffer.toBase64() );
 }
+
+
+
+AccessControlRule::EntityType AccessControlRule::entityType( Entity entity )
+{
+	switch( entity )
+	{
+	case EntityAccessingUser:
+	case EntityLocalUser:
+		return EntityTypeUser;
+	case EntityAccessingComputer:
+	case EntityLocalComputer:
+		return EntityTypeComputer;
+	default: break;
+	}
+
+	return EntityTypeNone;
+}

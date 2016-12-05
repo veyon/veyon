@@ -56,6 +56,17 @@ public:
 	Q_ENUM(Entity)
 
 
+	typedef enum EntityTypes
+	{
+		EntityTypeNone,
+		EntityTypeUser,
+		EntityTypeComputer,
+		EntityTypeCount
+	} EntityType;
+
+	Q_ENUM(EntityType)
+
+
 	enum Condition
 	{
 		ConditionNone,
@@ -143,6 +154,9 @@ public:
 	}
 
 	QString encode() const;
+
+	static EntityType entityType( Entity entity );
+
 
 private:
 	QString m_name;
