@@ -85,7 +85,6 @@ public:
 	virtual ~ItalcVncConnection();
 
 	const QImage image( int x = 0, int y = 0, int w = 0, int h = 0 ) const;
-	void setImage( const QImage &img );
 	void stop( bool deleteAfterFinished = false );
 	void reset( const QString &host );
 	void setHost( const QString &host );
@@ -219,8 +218,8 @@ private:
 	static void hookOutputHandler( const char *format, ... );
 	static rfbBool hookHandleItalcMessage( rfbClient *cl,
 						rfbServerToClientMsg *msg );
+	static void framebufferCleanup( void* framebuffer );
 
-	uint8_t *m_frameBuffer;
 	bool m_framebufferInitialized;
 	rfbClient *m_cl;
 	ItalcAuthType m_italcAuthType;
