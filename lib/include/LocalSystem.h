@@ -197,6 +197,7 @@ namespace LocalSystem
 	void activateWindow( QWidget * _window );
 
 	QStringList userGroups();
+	QStringList groupsOfUser( const QString& userName );
 
 }
 

@@ -1307,5 +1307,51 @@ QStringList userGroups()
 }
 
 
+
+QStringList groupsOfUser( const QString &userName )
+{
+	QStringList groups;
+
+#ifdef ITALC_BUILD_LINUX
+	QProcess p;
+	p.start( "getent", QStringList() << "group" );
+	p.waitForFinished();
+
+	for( auto group : QString( p.readAll() ).split( '\n' ) )
+	{
+		QStringList groupComponents = group.split( ':' );
+		if( groupComponents.size() == 4 &&
+				groupComponents.last().split( ',' ).contains( userName ) )
+		{
+			groups += groupComponents.first();
+		}
+	}
+#endif
+
+#ifdef ITALC_BUILD_WIN32
+	LPBYTE outBuffer = NULL;
+	DWORD entriesRead = 0;
+	DWORD totalEntries = 0;
+
+	if( NetUserGetLocalGroups( NULL, (LPCWSTR) userName.utf16(), 0, 0, &outBuffer, MAX_PREFERRED_LENGTH,
+							   &entriesRead, &totalEntries ) == NERR_Success )
+	{
+		LOCALGROUP_USERS_INFO_0* localGroupUsersInfo = (LOCALGROUP_USERS_INFO_0 *) outBuffer;
+
+		for( DWORD i = 0; i < entriesRead; ++i )
+		{
+				groups += QString::fromUtf16( (const ushort *) localGroupUsersInfo[i].lgrui0_name );
+		}
+
+		NetApiBufferFree( outBuffer );
+	}
+#endif
+
+	groups.removeAll( "" );
+
+	return groups;
+}
+
+
 } // end of namespace LocalSystem
 
