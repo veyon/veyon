@@ -55,6 +55,9 @@ private slots:
 	void moveAccessControlRuleDown();
 	void moveAccessControlRuleUp();
 
+	void testUserGroupsAccessControl();
+	void testAccessControlRules();
+
 private:
 	void modifyAccessControlRules( const QStringList& accessControlRules, int selectedRow );
 	void updateAccessControlRules();

@@ -29,6 +29,7 @@
 #include "AccessControlProvider.h"
 #include "Configuration/UiMapping.h"
 #include "AccessControlRuleEditDialog.h"
+#include "AccessControlRulesTestDialog.h"
 
 #include "ui_AccessControlPage.h"
 
@@ -206,6 +207,20 @@ void AccessControlPage::moveAccessControlRuleUp()
 
 		modifyAccessControlRules( accessControlRules, newRow );
 	}
+}
+
+
+
+void AccessControlPage::testUserGroupsAccessControl()
+{
+
+}
+
+
+
+void AccessControlPage::testAccessControlRules()
+{
+	AccessControlRulesTestDialog( this ).exec();
 }
 
 

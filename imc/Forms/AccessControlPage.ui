@@ -25,8 +25,28 @@
      <property name="title">
       <string>Computer access control</string>
      </property>
-     <layout class="QVBoxLayout" name="verticalLayout_16">
-      <item>
+     <layout class="QGridLayout" name="gridLayout" columnstretch="1,0">
+      <item row="2" column="0">
+       <widget class="QRadioButton" name="isAccessControlRulesProcessingEnabled">
+        <property name="text">
+         <string>Process access control rules</string>
+        </property>
+        <attribute name="buttonGroup">
+         <string notr="true">accessControlModeGroup</string>
+        </attribute>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QRadioButton" name="isAccessRestrictedToUserGroups">
+        <property name="text">
+         <string>Restrict access to members of certain user groups</string>
+        </property>
+        <attribute name="buttonGroup">
+         <string notr="true">accessControlModeGroup</string>
+        </attribute>
+       </widget>
+      </item>
+      <item row="0" column="0">
        <widget class="QRadioButton" name="skipAccessControl">
         <property name="text">
          <string>Grant access to every authenticated user (default)</string>
@@ -39,24 +59,32 @@
         </attribute>
        </widget>
       </item>
-      <item>
-       <widget class="QRadioButton" name="isAccessRestrictedToUserGroups">
-        <property name="text">
-         <string>Restrict access to members of certain user groups</string>
+      <item row="2" column="1">
+       <widget class="QPushButton" name="testAccessControlRulesButton">
+        <property name="enabled">
+         <bool>false</bool>
         </property>
-        <attribute name="buttonGroup">
-         <string notr="true">accessControlModeGroup</string>
-        </attribute>
+        <property name="text">
+         <string>Test</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../imc.qrc">
+          <normaloff>:/Resources/dialog-ok-apply.png</normaloff>:/Resources/dialog-ok-apply.png</iconset>
+        </property>
        </widget>
       </item>
-      <item>
-       <widget class="QRadioButton" name="isAccessControlRulesProcessingEnabled">
-        <property name="text">
-         <string>Process access control rules</string>
+      <item row="1" column="1">
+       <widget class="QPushButton" name="testUserGroupsAccessControlButton">
+        <property name="enabled">
+         <bool>false</bool>
         </property>
-        <attribute name="buttonGroup">
-         <string notr="true">accessControlModeGroup</string>
-        </attribute>
+        <property name="text">
+         <string>Test</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../imc.qrc">
+          <normaloff>:/Resources/dialog-ok-apply.png</normaloff>:/Resources/dialog-ok-apply.png</iconset>
+        </property>
        </widget>
       </item>
      </layout>
@@ -278,6 +306,8 @@
   <tabstop>skipAccessControl</tabstop>
   <tabstop>isAccessRestrictedToUserGroups</tabstop>
   <tabstop>isAccessControlRulesProcessingEnabled</tabstop>
+  <tabstop>testUserGroupsAccessControlButton</tabstop>
+  <tabstop>testAccessControlRulesButton</tabstop>
   <tabstop>allGroupsList</tabstop>
   <tabstop>addAccessGroupButton</tabstop>
   <tabstop>removeAccessGroupButton</tabstop>
@@ -453,6 +483,70 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>testUserGroupsAccessControlButton</sender>
+   <signal>clicked()</signal>
+   <receiver>AccessControlPage</receiver>
+   <slot>testUserGroupsAccessControl()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>920</x>
+     <y>118</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>986</x>
+     <y>114</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>testAccessControlRulesButton</sender>
+   <signal>clicked()</signal>
+   <receiver>AccessControlPage</receiver>
+   <slot>testAccessControlRules()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>933</x>
+     <y>167</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>984</x>
+     <y>162</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>isAccessRestrictedToUserGroups</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>testUserGroupsAccessControlButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>447</x>
+     <y>116</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>914</x>
+     <y>116</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>isAccessControlRulesProcessingEnabled</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>testAccessControlRulesButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>447</x>
+     <y>166</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>914</x>
+     <y>166</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>addAccessGroup()</slot>
@@ -462,6 +556,8 @@
   <slot>editAccessControlRule()</slot>
   <slot>moveAccessControlRuleUp()</slot>
   <slot>moveAccessControlRuleDown()</slot>
+  <slot>testAccessControlRules()</slot>
+  <slot>testUserGroupsAccessControl()</slot>
  </slots>
  <buttongroups>
   <buttongroup name="accessControlModeGroup"/>
