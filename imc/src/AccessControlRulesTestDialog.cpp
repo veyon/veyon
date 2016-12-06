@@ -63,8 +63,10 @@ void AccessControlRulesTestDialog::accept()
 	case AccessControlRule::ActionDeny:
 		resultText = tr( "The access in the given scenario is denied." );
 		break;
+	default:
+		resultText = tr( "ERROR: Unknown action" );
+		break;
 	}
 
-	QMessageBox::information( this, tr( "Test result"),
-							  resultText );
+	QMessageBox::information( this, tr( "Test result" ), resultText );
 }
