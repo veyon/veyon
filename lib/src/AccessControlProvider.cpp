@@ -45,9 +45,12 @@ QStringList AccessControlProvider::userGroups()
 {
 	QStringList groups;
 
-	if( m_ldapDirectory.isBound() )
+	if( m_ldapDirectory.isEnabled() )
 	{
-		groups = m_ldapDirectory.userGroups();
+		if( m_ldapDirectory.isBound() )
+		{
+			groups = m_ldapDirectory.userGroups();
+		}
 	}
 	else
 	{
@@ -65,7 +68,7 @@ QStringList AccessControlProvider::computerGroups()
 {
 	QStringList groups;
 
-	if( m_ldapDirectory.isBound() )
+	if( m_ldapDirectory.isEnabled() && m_ldapDirectory.isBound() )
 	{
 		groups = m_ldapDirectory.computerGroups();
 	}
@@ -81,7 +84,7 @@ QStringList AccessControlProvider::computerPools()
 {
 	QStringList compoterPoolList;
 
-	if( m_ldapDirectory.isBound() )
+	if( m_ldapDirectory.isEnabled() && m_ldapDirectory.isBound() )
 	{
 		compoterPoolList = m_ldapDirectory.computerPools();
 	}
@@ -122,9 +125,12 @@ bool AccessControlProvider::isMemberOfGroup( AccessControlRule::EntityType entit
 											 const QString &entity,
 											 const QString &groupName )
 {
-	if( m_ldapDirectory.isBound() )
+	if( m_ldapDirectory.isEnabled() )
 	{
-		return ldapGroupsOfEntity( entityType, entity ).contains( groupName );
+		if( m_ldapDirectory.isBound() )
+		{
+			return ldapGroupsOfEntity( entityType, entity ).contains( groupName );
+		}
 	}
 	else if( entityType == AccessControlRule::EntityTypeUser &&
 			 LocalSystem::groupsOfUser( entity ).contains( groupName ) )
@@ -141,7 +147,7 @@ bool AccessControlProvider::isMemberOfComputerPool( AccessControlRule::EntityTyp
 													const QString &entity,
 													const QString &computerPoolName )
 {
-	if( m_ldapDirectory.isBound() )
+	if( m_ldapDirectory.isEnabled() && m_ldapDirectory.isBound() )
 	{
 		QStringList computerPoolMembers = m_ldapDirectory.computerPoolMembers( computerPoolName );
 
@@ -164,12 +170,15 @@ bool AccessControlProvider::isMemberOfComputerPool( AccessControlRule::EntityTyp
 bool AccessControlProvider::hasGroupsInCommon( AccessControlRule::EntityType entityOneType, const QString &entityOne,
 											   AccessControlRule::EntityType entityTwoType, const QString &entityTwo )
 {
-	if( m_ldapDirectory.isBound() )
+	if( m_ldapDirectory.isEnabled() )
 	{
-		QStringList objectOneGroups = ldapGroupsOfEntity( entityOneType, entityOne );
-		QStringList objectTwoGroups = ldapGroupsOfEntity( entityTwoType, entityTwo );
+		if( m_ldapDirectory.isBound() )
+		{
+			QStringList objectOneGroups = ldapGroupsOfEntity( entityOneType, entityOne );
+			QStringList objectTwoGroups = ldapGroupsOfEntity( entityTwoType, entityTwo );
 
-		return objectOneGroups.toSet().intersect( objectTwoGroups.toSet() ).isEmpty() == false;
+			return objectOneGroups.toSet().intersect( objectTwoGroups.toSet() ).isEmpty() == false;
+		}
 	}
 	else if( entityOneType == AccessControlRule::EntityTypeUser &&
 			 entityTwoType == AccessControlRule::EntityTypeUser )
@@ -186,7 +195,7 @@ bool AccessControlProvider::hasGroupsInCommon( AccessControlRule::EntityType ent
 bool AccessControlProvider::hasComputerPoolsInCommon( AccessControlRule::EntityType entityOneType, const QString &entityOne,
 													  AccessControlRule::EntityType entityTwoType, const QString &entityTwo )
 {
-	if( m_ldapDirectory.isBound() )
+	if( m_ldapDirectory.isEnabled() && m_ldapDirectory.isBound() )
 	{
 		QStringList objectOneComputerPools = ldapComputerPoolsOfEntity( entityOneType, entityOne );
 		QStringList objectTwoComputerPools = ldapComputerPoolsOfEntity( entityTwoType, entityTwo );
