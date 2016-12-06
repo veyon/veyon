@@ -47,7 +47,7 @@ QStringList AccessControlProvider::userGroups()
 
 	if( m_ldapDirectory.isBound() )
 	{
-		groups = m_ldapDirectory.userGroupsNames();
+		groups = m_ldapDirectory.userGroups();
 	}
 	else
 	{
@@ -67,7 +67,7 @@ QStringList AccessControlProvider::computerGroups()
 
 	if( m_ldapDirectory.isBound() )
 	{
-		groups = m_ldapDirectory.computerGroupsNames();
+		groups = m_ldapDirectory.computerGroups();
 	}
 
 	qSort( groups );
@@ -124,18 +124,7 @@ bool AccessControlProvider::isMemberOfGroup( AccessControlRule::EntityType entit
 {
 	if( m_ldapDirectory.isBound() )
 	{
-		QStringList groups = m_ldapDirectory.groups( groupName );
-		if( groups.isEmpty() )
-		{
-			return false;
-		}
-
-		if( groups.count() > 1 )
-		{
-			qWarning() << "AccessControlProvider::isMemberOfGroup(): more than one group resolved from LDAP!";
-		}
-
-		return ldapGroupsOfEntity( entityType, entity ).contains( groups.first() );
+		return ldapGroupsOfEntity( entityType, entity ).contains( groupName );
 	}
 	else
 	{
