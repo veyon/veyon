@@ -35,6 +35,7 @@ public:
 	LdapDirectory( const QUrl& url = QUrl() );
 	virtual ~LdapDirectory();
 
+	bool isEnabled() const;
 	bool isConnected() const;
 	bool isBound() const;
 

@@ -204,6 +204,13 @@ LdapDirectory::~LdapDirectory()
 
 
 
+bool LdapDirectory::isEnabled() const
+{
+	return ItalcCore::config->isLdapIntegrationEnabled();
+}
+
+
+
 bool LdapDirectory::isConnected() const
 {
 	return d->isConnected;
