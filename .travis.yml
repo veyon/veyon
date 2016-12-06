@@ -1,0 +1,13 @@
+language: cpp
+compiler: gcc
+dist: xenial
+sudo: required
+before_install:
+   - . ${TRAVIS_BUILD_DIR}/.travis/${TRAVIS_OS_NAME}.${TARGET_OS}.before_install.sh
+install:
+    - . ${TRAVIS_BUILD_DIR}/.travis/${TRAVIS_OS_NAME}.${TARGET_OS}.install.sh
+before_script:
+    - mkdir build && cd build
+script:
+    - . ${TRAVIS_BUILD_DIR}/.travis/${TRAVIS_OS_NAME}.${TARGET_OS}.script.sh
+    - make -j4
