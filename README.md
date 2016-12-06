@@ -1,6 +1,8 @@
 iTALC 3.0.1 - Intelligent Teaching and Learning with Computers
 ===============================================================
 
+[![Build status](https://img.shields.io/travis/iTALC/italc.svg)](https://travis-ci.org/iTALC/italc)
+
 
 Copyright (c) 2004-2016 Tobias Doerffel
 
