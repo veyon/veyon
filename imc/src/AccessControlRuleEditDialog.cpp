@@ -105,10 +105,18 @@ void AccessControlRuleEditDialog::accept()
 	{
 		m_rule.setCondition( AccessControlRule::ConditionMemberOfGroup, ui->groupsComboBox->currentText() );
 	}
+	else
+	{
+		m_rule.clearCondition( AccessControlRule::ConditionMemberOfGroup );
+	}
 
 	if( ui->isMemberOfComputerPoolCheckBox->isChecked() )
 	{
 		m_rule.setCondition( AccessControlRule::ConditionMemberOfComputerPool, ui->computerPoolsComboBox->currentText() );
+	}
+	else
+	{
+		m_rule.clearCondition( AccessControlRule::ConditionMemberOfComputerPool );
 	}
 
 	if( ui->hasCommonGroupsCheckBox->isChecked() )
@@ -116,11 +124,19 @@ void AccessControlRuleEditDialog::accept()
 		m_rule.setCondition( AccessControlRule::ConditionGroupsInCommon,
 							 m_entityNameMap.key( ui->commonGroupComboBox->currentText() ) );
 	}
+	else
+	{
+		m_rule.clearCondition( AccessControlRule::ConditionGroupsInCommon );
+	}
 
 	if( ui->hasCommonComputerPoolsCheckBox->isChecked() )
 	{
 		m_rule.setCondition( AccessControlRule::ConditionComputerPoolsInCommon,
 							 m_entityNameMap.key( ui->commonComputerPoolComboBox->currentText() ) );
+	}
+	else
+	{
+		m_rule.clearCondition( AccessControlRule::ConditionComputerPoolsInCommon );
 	}
 
 	// save action
