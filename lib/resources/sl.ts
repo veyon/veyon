@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="sl_SI">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="sl" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -10,6 +8,15 @@
     <message>
         <source>About</source>
         <translation>Splošno</translation>
+    </message>
+    <message>
+        <source>iTALC - Intelligent Teaching And Learning with Computers
+
+Copyright © 2004-2016 Tobias Doerffel / iTALC Solutions</source>
+        <translation>iTALC - Intelligent Teaching And Learning with Computers
+Iteligentno poučevanje ter učenje z računalniki
+
+Copyright © 2004-2016 Tobias Doerffel / iTALC Solutions</translation>
     </message>
     <message>
         <source>&lt;a href=&quot;http://italc.sourceforge.net&quot;&gt;http://italc.sourceforge.net&lt;/a&gt;</source>
@@ -35,25 +42,9 @@ If you&apos;re interested in translating iTALC into your local or another langua
         <source>License</source>
         <translation>Licence</translation>
     </message>
-    <message>
-        <source>iTALC - Intelligent Teaching And Learning with Computers
-
-Copyright © 2004-2013 Tobias Doerffel / iTALC Solutions</source>
-        <translation>iTALC - Intelligent Teaching And Learning with Computers
-
-Copyright © 2004-2013 Tobias Doerffel / iTALC Solutions</translation>
-    </message>
 </context>
 <context>
     <name>AccessDialogSlave</name>
-    <message>
-        <source>Never for this session</source>
-        <translation>Nikoli za to sejo</translation>
-    </message>
-    <message>
-        <source>Always for this session</source>
-        <translation>Zmeraj za to sejo</translation>
-    </message>
     <message>
         <source>Confirm desktop access</source>
         <translation>Potrdi dostop do namizja</translation>
@@ -61,6 +52,14 @@ Copyright © 2004-2013 Tobias Doerffel / iTALC Solutions</translation>
     <message>
         <source>The user %1 at host %2 wants to access your desktop. Do you want to grant access?</source>
         <translation>Uporabnik %1 na %2 želi dostopat do vašega namizja. Želite dostop odobriti?</translation>
+    </message>
+    <message>
+        <source>Never for this session</source>
+        <translation>Nikoli za to sejo</translation>
+    </message>
+    <message>
+        <source>Always for this session</source>
+        <translation>Zmeraj za to sejo</translation>
     </message>
 </context>
 <context>
@@ -98,8 +97,8 @@ Copyright © 2004-2013 Tobias Doerffel / iTALC Solutions</translation>
         <translation>Uporabite kontekstni meni(desni miškin gumb) za dodajo/izbris računlanikov in/ali učilnic.</translation>
     </message>
     <message>
-        <source>Export to text-file</source>
-        <translation>Izvozi v tekstovno datoteko</translation>
+        <source>Export to text file</source>
+        <translation>Izvozi v besedilno datoteko</translation>
     </message>
     <message>
         <source>Use this button for exporting this list of computers and usernames into a text-file. You can use this file later for collecting files after an exam has finished. This is sometimes neccessary, because some users might have finished and logged out earlier and so you cannot collect their files at the end of the exam.</source>
@@ -146,30 +145,24 @@ Copyright © 2004-2013 Tobias Doerffel / iTALC Solutions</translation>
         <translation>Dodaj učilnico</translation>
     </message>
     <message>
-        <source>No configuration-file found</source>
-        <translation>Ne najdem nastavitvene datoteke</translation>
+        <source>No configuration file found</source>
+        <translation>Ni mogoče najt konfiguracijske datoteke</translation>
     </message>
     <message>
-        <source>Could not open configuration file %1.
-You will have to add at least one classroom and computers using the classroom-manager which you&apos;ll find inside the program in the sidebar on the left side.</source>
-        <translation>Ne morem odpreti nastavitvene datoteke %1.
-Z uporabo upravitelja učilnice, ki ga najdete v levi stranski orodni vrstici, boste morali dodati najmanj eno učilnico in računalnike.</translation>
+        <source>Could not open configuration file %1. You will have to add at least one classroom and computers using the classroom manager which you&apos;ll find inside the program in the sidebar on the left side.</source>
+        <translation>Ni mogoče odpret konfiguracijske datoteke %1. Potrebno bo dodat vsaj eno učilnico ter računalnike z uporabo upravitelja razredov, katerega boste našli znotraj programa na levi stranski vrstici.</translation>
     </message>
     <message>
-        <source>Error in configuration-file</source>
-        <translation>Napaka v nastavitveni datoteki</translation>
+        <source>Error in configuration file</source>
+        <translation>Napaka v konfiguracijski datoteki</translation>
     </message>
     <message>
-        <source>Error while parsing configuration-file %1.
-Please edit it. Otherwise you should delete this file and have to add all classrooms and computers again.</source>
-        <translation>Napaka pri procesiranju nastavitvene datoteke %1.
-Prosim, uredite jo. Sicer boste morali to datoteko izbrisati in ponovno dodati vse učilnice in računalnike.</translation>
+        <source>Error while parsing configuration file %1. Please fix the file manually. Otherwise you should delete the file and add all classrooms and computers again.</source>
+        <translation>Napaka med procesiranjem konfiguracijske datoteke %1. Popravite datoteko ročno. Sicer izbrišite datoteko ter dodajte znova vse razrede in računalnike.</translation>
     </message>
     <message>
-        <source>Error while parsing configuration-file %1.
-Please edit it. Otherwise you should delete this file.</source>
-        <translation>Napaka pri procesiranju nastavitvene datoteke %1.
-Prosim, uredite jo. Sicer bi morali to datoteko izbrisati.</translation>
+        <source>Error while parsing configuration file %1. Please fix the file manually. Otherwise you should delete the file.</source>
+        <translation>Napaka med procesiranjem konfiguracijske datoteke %1. Popravite datoteko ročno ali jo izbrišite.</translation>
     </message>
     <message>
         <source>Select output-file</source>
@@ -246,6 +239,10 @@ Jo želite ustvariti zdaj?</translation>
         <source>Desktop locked</source>
         <translation>Namizje je zaklenjeno</translation>
     </message>
+    <message>
+        <source>Message from teacher</source>
+        <translation>Sporočilo predavatelja</translation>
+    </message>
 </context>
 <context>
     <name>ClientAction</name>
@@ -284,14 +281,6 @@ Jo želite ustvariti zdaj?</translation>
 </context>
 <context>
     <name>ClientSettingsDialog</name>
-    <message>
-        <source>Invalid MAC-address</source>
-        <translation>Neveljaven MAC-naslov</translation>
-    </message>
-    <message>
-        <source>You specified an invalid MAC-address. Either leave the field blank or enter a valid MAC-address (use &quot;:&quot; as separator!).</source>
-        <translation>Navedli ste neveljaven MAC-naslov. Ali pustite polje prazno ali vnesite veljaven MAC-naslov (uporabite &quot;:&quot; kot ločilo!).</translation>
-    </message>
     <message>
         <source>Client settings</source>
         <translation>Nastavitve odjemalca</translation>
@@ -348,6 +337,14 @@ Jo želite ustvariti zdaj?</translation>
         <source>You didn&apos;t specify an IP address or hostname for the computer!</source>
         <translation>Niste definirali IP naslova ali imena računalnika za oddaljen računalnik!</translation>
     </message>
+    <message>
+        <source>Invalid MAC address</source>
+        <translation>Neveljavni MAC naslov</translation>
+    </message>
+    <message>
+        <source>You specified an invalid MAC address. Either leave the field blank or enter a valid MAC address (use &quot;:&quot; as separator!).</source>
+        <translation>Vnesli ste neveljaven MAC naslov. Polje pustite prazno ali vnesite veljavni MAC naslov (uporabite &quot;:&quot; kot delitelj!)</translation>
+    </message>
 </context>
 <context>
     <name>Config</name>
@@ -388,13 +385,113 @@ Jo želite ustvariti zdaj?</translation>
         <translation>Brez besedila pod gumbi v vrstici</translation>
     </message>
     <message>
+        <source>Language:</source>
+        <translation>Jezik:</translation>
+    </message>
+    <message>
+        <source>System default</source>
+        <translation>Sistemsko privzeti</translation>
+    </message>
+    <message>
+        <source>ar - العربية</source>
+        <translation>ar - العربية</translation>
+    </message>
+    <message>
+        <source>cs - Česky</source>
+        <translation>cs - Česky</translation>
+    </message>
+    <message>
+        <source>de - Deutsch</source>
+        <translation>de - Deutsch</translation>
+    </message>
+    <message>
+        <source>el - Ελληνικά</source>
+        <translation>el - Ελληνικά</translation>
+    </message>
+    <message>
+        <source>es - Español</source>
+        <translation>es - Español</translation>
+    </message>
+    <message>
+        <source>fi - Suomi</source>
+        <translation>fi - Suomi</translation>
+    </message>
+    <message>
+        <source>fr - Français</source>
+        <translation>fr - Français</translation>
+    </message>
+    <message>
+        <source>he - עִבְרִית</source>
+        <translation>he - עִבְרִית</translation>
+    </message>
+    <message>
+        <source>hu - Magyar</source>
+        <translation>hu - Magyar</translation>
+    </message>
+    <message>
+        <source>it - Italiano</source>
+        <translation>it - Italiano</translation>
+    </message>
+    <message>
+        <source>nl - Nederlands</source>
+        <translation>nl - Nederlands</translation>
+    </message>
+    <message>
+        <source>nn - Norsk</source>
+        <translation>nn - Norsk</translation>
+    </message>
+    <message>
+        <source>pl - Polski</source>
+        <translation>pl - Polski</translation>
+    </message>
+    <message>
+        <source>pt_br - Brasileiro</source>
+        <translation>pt_br - Brasileiro</translation>
+    </message>
+    <message>
+        <source>pt_pt - Português</source>
+        <translation>pt_pt - Português</translation>
+    </message>
+    <message>
+        <source>ru - Русский</source>
+        <translation>ru - Русский</translation>
+    </message>
+    <message>
+        <source>sk - Slovenský</source>
+        <translation>sk - Slovenský</translation>
+    </message>
+    <message>
+        <source>sl - Slovenčina</source>
+        <translation>sl - Slovenčina</translation>
+    </message>
+    <message>
+        <source>sv - Svenska</source>
+        <translation>sv - Svenska</translation>
+    </message>
+    <message>
+        <source>tr - Türkçe</source>
+        <translation>tr - Türkçe</translation>
+    </message>
+    <message>
+        <source>uk - Українська</source>
+        <translation>uk - Українська</translation>
+    </message>
+    <message>
+        <source>zh_cn - 简体字</source>
+        <translation>zh_cn - 简体字</translation>
+    </message>
+    <message>
+        <source>zh_tw - 簡體字</source>
+        <translation>zh_tw - 簡體字</translation>
+    </message>
+    <message>
         <source>Your role (needs according keys!)</source>
         <translation>Vaša vloga (zahteva ustrezne ključe!)</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Here you can select your role. Only change this if you know what you&apos;re doing. Otherwise you won&apos;t be able to access any clients until you restore your old role.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;(new line)
 p, li { white-space: pre-wrap; }(new line)
@@ -418,21 +515,13 @@ p, li { white-space: pre-wrap; }(new line)
         <translation>Drugo</translation>
     </message>
     <message>
-        <source>Settings for multi-logon</source>
-        <translation>Nastavitve za večkratno prijavo</translation>
-    </message>
-    <message>
-        <source>Domain</source>
-        <translation>Domena</translation>
-    </message>
-    <message>
-        <source>Double-click action for client-window</source>
-        <translation>Dejanje ob dvokliku na okno klienta</translation>
+        <source>Double click action for client window</source>
+        <translation>Akcija ob dvokliku na okno klienta</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Here you can set what should happen if you double-click a client-window.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;(new line)
 p, li { white-space: pre-wrap; }(new line)
@@ -451,106 +540,6 @@ p, li { white-space: pre-wrap; }(new line)
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;Please note, that some changes won&apos;t take effect until you restart iTALC.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;/head&gt;&lt;body style=&quot; white-space: pre-wrap; font-family:Sans Serif; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-style:italic;&quot;&gt;Nekatere spremembe ne bodo stopile v veljavo, dokler ponovno ne zaženete iTALC-a.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
-    <message>
-        <source>Language:</source>
-        <translation>Jezik:</translation>
-    </message>
-    <message>
-        <source>System default</source>
-        <translation>Sistemsko privzeti</translation>
-    </message>
-    <message>
-        <source>ar - العربية</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>cs - Česky</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>de - Deutsch</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>el - Ελληνικά</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>es - Español</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>fi - Suomi</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>fr - Français</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>he - עִבְרִית</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>hu - Magyar</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>it - Italiano</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>nl - Nederlands</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>nn - Norsk</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>pl - Polski</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>pt_br - Brasileiro</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>pt_pt - Português</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>ru - Русский</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>sk - Slovenský</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>sl - Slovenčina</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>sv - Svenska</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>tr - Türkçe</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>uk - Українська</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>zh_cn - 简体字</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>zh_tw - 簡體字</source>
-        <translation></translation>
-    </message>
 </context>
 <context>
     <name>ConfigWidget</name>
@@ -561,13 +550,6 @@ p, li { white-space: pre-wrap; }(new line)
     <message>
         <source>In this workspace you can customize iTALC to fit your needs.</source>
         <translation>Tukaj lahko prilagodite iTALC vašim potrebam.</translation>
-    </message>
-</context>
-<context>
-    <name>DecoratedMessageBox</name>
-    <message>
-        <source>OK</source>
-        <translation>V redu</translation>
     </message>
 </context>
 <context>
@@ -584,8 +566,8 @@ p, li { white-space: pre-wrap; }(new line)
         <translation>Napaka avtentifikacije</translation>
     </message>
     <message>
-        <source>Somebody (IP: %1) tried to access this computer but could not authenticate itself successfully!</source>
-        <translation>Nekdo (IP: %1) poskuša dostopati do tega računalnika, vendar ne more potrditi svoje verodostojnosti!</translation>
+        <source>Somebody (IP: %1) tried to access this computer but could not authenticate successfully!</source>
+        <translation>Nekdo (IP: %1) je poizkusil dostopat do tega računalnika a je bila avtentifikacija neuspešna!</translation>
     </message>
 </context>
 <context>
@@ -645,10 +627,6 @@ JAVNI del ključa je uporabljen NA računalnikih KLIENTOV za kontrolo ali so pri
     <message>
         <source>Create new access keys (master computer)</source>
         <translation>Ustvari nove ključe za dostop (NADZORNI računalnik)</translation>
-    </message>
-    <message>
-        <source>assistantModeButtonGroup</source>
-        <translation>Gumb načina skupine pomočnikov</translation>
     </message>
     <message>
         <source>Import public key (client computer)</source>
@@ -827,16 +805,20 @@ JAVNI del ključa je uporabljen NA računalnikih KLIENTOV za kontrolo ali so pri
 <context>
     <name>MainWindow</name>
     <message>
-        <source>General</source>
-        <translation>Splošno</translation>
+        <source>MainWindow</source>
+        <translation>Glavno okno</translation>
     </message>
     <message>
-        <source>Quit</source>
-        <translation>Zapusti</translation>
+        <source>toolBar</source>
+        <translation>Orodna vrstica</translation>
     </message>
     <message>
         <source>iTALC Management Console</source>
         <translation>iTALC upraviteljska konzola</translation>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>Splošno</translation>
     </message>
     <message>
         <source>iTALC Server</source>
@@ -849,6 +831,10 @@ JAVNI del ključa je uporabljen NA računalnikih KLIENTOV za kontrolo ali so pri
     <message>
         <source>Authentication</source>
         <translation>Avtentifikacija</translation>
+    </message>
+    <message>
+        <source>Debugging</source>
+        <translation>Razhroščevanje</translation>
     </message>
     <message>
         <source>iTALC Service</source>
@@ -881,6 +867,10 @@ JAVNI del ključa je uporabljen NA računalnikih KLIENTOV za kontrolo ali so pri
     <message>
         <source>Stopped</source>
         <translation>Ustavljeno</translation>
+    </message>
+    <message>
+        <source>Enable desktop switching for screen lock (experimental)</source>
+        <translation>Mogoči &quot;preklopi uporabnika&quot; za zaklepanje zaslona (eksperimentalno)</translation>
     </message>
     <message>
         <source>Logging</source>
@@ -931,6 +921,14 @@ JAVNI del ključa je uporabljen NA računalnikih KLIENTOV za kontrolo ali so pri
         <translation>MB</translation>
     </message>
     <message>
+        <source>Log to standard error output</source>
+        <translation>Logiraj v standardni izhod</translation>
+    </message>
+    <message>
+        <source>Log to Windows event log</source>
+        <translation>Logiraj v Windows event log</translation>
+    </message>
+    <message>
         <source>Clear all log files</source>
         <translation>Počisti vse log datoteke</translation>
     </message>
@@ -943,12 +941,28 @@ JAVNI del ključa je uporabljen NA računalnikih KLIENTOV za kontrolo ali so pri
         <translation>Omogoči zajemanje plastnih (delno prosojnih) oken</translation>
     </message>
     <message>
+        <source>Poll full screen (leave this enabled per default)</source>
+        <translation>Prenašaj polni zaslon (vklopljeno po privzetem)</translation>
+    </message>
+    <message>
         <source>Low accuracy (turbo mode)</source>
         <translation>Majhna natančnost (turbo način)</translation>
     </message>
     <message>
         <source>Demo server</source>
         <translation>Strežnik predavanj</translation>
+    </message>
+    <message>
+        <source>Backend</source>
+        <translation>Ogrodje</translation>
+    </message>
+    <message>
+        <source>VNC reflector</source>
+        <translation>VNC reflector (VNC server = drug močnejši računalnik)</translation>
+    </message>
+    <message>
+        <source>iTALC 1 demo server</source>
+        <translation>iTALC 1 demo server (VNC server = predavateljev PC)</translation>
     </message>
     <message>
         <source>Network</source>
@@ -965,6 +979,18 @@ JAVNI del ključa je uporabljen NA računalnikih KLIENTOV za kontrolo ali so pri
     <message>
         <source>Enable firewall exception</source>
         <translation>Omogoči izjemo požarnega zidu</translation>
+    </message>
+    <message>
+        <source>Enable HTTP server which provides a JavaViewer applet</source>
+        <translation>Omogoči HTTP strežnik kateri ponuja JavaViewer vmesnik</translation>
+    </message>
+    <message>
+        <source>HTTP server port</source>
+        <translation>Vrata HTTP strežnika</translation>
+    </message>
+    <message>
+        <source>Allow connections from localhost only</source>
+        <translation>Dovoli povezave samo iz localhost</translation>
     </message>
     <message>
         <source>Configuration files</source>
@@ -991,12 +1017,118 @@ JAVNI del ključa je uporabljen NA računalnikih KLIENTOV za kontrolo ali so pri
         <translation>Načini avtentifikacije</translation>
     </message>
     <message>
+        <source>Key file authentication</source>
+        <translation>Avtentifikacija z ključi v datoteki</translation>
+    </message>
+    <message>
+        <source>ACL-based logon authentication</source>
+        <translation>ACL-temelječa avtentifikacija (lokalni računi, skupine, domena...)</translation>
+    </message>
+    <message>
         <source>Access key management</source>
         <translation>Upravljanje ključev</translation>
     </message>
     <message>
+        <source>Public key file base directory</source>
+        <translation>Direktorij datotek z javnim ključem</translation>
+    </message>
+    <message>
+        <source>Private key file base directory</source>
+        <translation>Direktorij datotek z privatnim ključem</translation>
+    </message>
+    <message>
+        <source>Launch key file assistant</source>
+        <translation>Zaženi čarovnika za datoteke z ključi</translation>
+    </message>
+    <message>
         <source>Logon settings</source>
         <translation>Nastavitve ACL prijave</translation>
+    </message>
+    <message>
+        <source>Manage permissions</source>
+        <translation>Upravljaj pravice</translation>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation>Preizkusi</translation>
+    </message>
+    <message>
+        <source>Access confirmation</source>
+        <translation>Potrdilo dostopa</translation>
+    </message>
+    <message>
+        <source>You can configure iTALC to ask the user for permission to access the desktop when using certain authentication methods.</source>
+        <translation>iTALC lahko nastavite tako, da vpraša uporabnika, če odobri dostop do namizja ob uporabi določene metode avtentifikacije.</translation>
+    </message>
+    <message>
+        <source>Logon authentication</source>
+        <translation>Avtentifikacija preko uporabniškega imena sistema</translation>
+    </message>
+    <message>
+        <source>Allow same user to access desktop without confirmation</source>
+        <translation>Dovoli, da isti uporabnik(isto ime &amp; geslo) dostopa do namizja brez potrjevanja</translation>
+    </message>
+    <message>
+        <source>Debugging iTALC</source>
+        <translation>Razhroščevanje iTALC</translation>
+    </message>
+    <message>
+        <source>When encountering bugs or other misbehaviour in iTALC it is important to inform the developers about them, so that the bugs can be fixed in future releases. This page allows you to submit a helpful bug report easily.
+
+If the bug is not reproducible, skip step 1) - 3).</source>
+        <translation>Ko naletite na hrošče ali nenavadno obnašanje v iTALC-u je pomembno, da o tem obvestite razvijalce. Le tako so lahko hrošči odpravljeni v bodočih verzijah.  Ta stran vam omogoča, da oddate uporabne prijave hriščev na enostaven način.
+
+Če hrošča ni mogoče reproducirat, preskočite korake 1) - 3).</translation>
+    </message>
+    <message>
+        <source>1)</source>
+        <translation>1)</translation>
+    </message>
+    <message>
+        <source>Clear the logfiles in the &quot;General&quot; section.</source>
+        <translation>Počistite log datoteke pod razdelkom &quot;Splošno&quot;.</translation>
+    </message>
+    <message>
+        <source>2)</source>
+        <translation>2)</translation>
+    </message>
+    <message>
+        <source>In the &quot;General&quot; section set the log level to &quot;Debug messages and everything else&quot;.</source>
+        <translation>Pod razdelkom &quot;Splošno&quot; nastavite &quot;nivo beleženja&quot; na &quot;Debug sporočila in vse ostalo&quot;.</translation>
+    </message>
+    <message>
+        <source>3)</source>
+        <translation>3)</translation>
+    </message>
+    <message>
+        <source>Repeat the actions leading to the bug or misbehaviour.</source>
+        <translation>Ponovite korake, ki vodijo do hrošča ali nenavadnega obnašanja.</translation>
+    </message>
+    <message>
+        <source>4)</source>
+        <translation>4)</translation>
+    </message>
+    <message>
+        <source>Click the following button and save the file to a known location.</source>
+        <translation>Kliknite spodni gumb ter shranite datoteko na znano lokacijo.</translation>
+    </message>
+    <message>
+        <source>Generate bug report archive</source>
+        <translation>Ustvari arhiv prijave hrošča</translation>
+    </message>
+    <message>
+        <source>5)</source>
+        <translation>5)</translation>
+    </message>
+    <message>
+        <source>Go to the &lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;amp;atid=724375&quot;&gt;iTALC bug tracker&lt;/a&gt;, open a new bug, describe what you did in step 3) and attach the file you saved in step 4).&lt;/p&gt;
+&lt;br/&gt;
+&lt;br/&gt;
+Note: if the bug involves both a master and client computer, attach bug report archives for both computers.</source>
+        <translation>Pojdite na &lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;amp;atid=724375&quot;&gt;iTALC bug tracker&lt;/a&gt;, &quot;open a new bug&quot;, opišite(ang) kaj ste nardili v koraku 3) ter pripnite datoteko, ki ste jo shranili pri koraku 4).&lt;/p&gt;
+&lt;br/&gt;
+&lt;br/&gt;
+Opomba: Če hrošč obsega tako klienta kot nadzorni računalnik, pripnite datoteko koraka 4) od obeh računalnikov.</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -1041,58 +1173,6 @@ JAVNI del ključa je uporabljen NA računalnikih KLIENTOV za kontrolo ali so pri
     <message>
         <source>About Qt</source>
         <translation>Kaj je Qt</translation>
-    </message>
-    <message>
-        <source>MainWindow</source>
-        <translation>Glavno okno</translation>
-    </message>
-    <message>
-        <source>toolBar</source>
-        <translation>Orodna vrstica</translation>
-    </message>
-    <message>
-        <source>iTALC Management Console %1</source>
-        <translation>iTALC upraviteljska konzola %1</translation>
-    </message>
-    <message>
-        <source>Running</source>
-        <translation>V teku</translation>
-    </message>
-    <message>
-        <source>Load settings from file</source>
-        <translation>Naloži nastavitve iz datoteke</translation>
-    </message>
-    <message>
-        <source>XML files (*.xml)</source>
-        <translation>XML datoteke (*.xml)</translation>
-    </message>
-    <message>
-        <source>Save settings to file</source>
-        <translation>Shrani nastavitve v datoteko</translation>
-    </message>
-    <message>
-        <source>Unsaved settings</source>
-        <translation>Neshranjene nastavitve</translation>
-    </message>
-    <message>
-        <source>There are unsaved settings. Quit anyway?</source>
-        <translation>Nekatere nastavitve niso shranjene. Vseeno končam?</translation>
-    </message>
-    <message>
-        <source>Configuration not writable</source>
-        <translation>Nastavitve niso pisljive</translation>
-    </message>
-    <message>
-        <source>The local configuration backend reported that the configuration is not writable! Please run the iTALC Management Console with higher privileges.</source>
-        <translation>Lokalno nastavitveno ogrodje je sporočilo, da nastavitve niso pisljive! Prosim zaženite iTALC upraviteljsko konzolo z povišanimi privilegiji.</translation>
-    </message>
-    <message>
-        <source>All settings were applied successfully.</source>
-        <translation>Vse nastavitve so bile izvedene uspešno.</translation>
-    </message>
-    <message>
-        <source>An error occured while applying settings!</source>
-        <translation>Prišlo je do napake med izvedbo spremeb!</translation>
     </message>
     <message>
         <source>iTALC</source>
@@ -1251,12 +1331,32 @@ JAVNI del ključa je uporabljen NA računalnikih KLIENTOV za kontrolo ali so pri
         <translation>Po kliku tega gumba bodo vsa vidna okna samodejno preurejena in ponovno nastavljena.</translation>
     </message>
     <message>
+        <source>Could not contact iTALC service</source>
+        <translation>Ni bilo možno poklicat iTALC servis</translation>
+    </message>
+    <message>
+        <source>Could not contact the local iTALC service. It is likely that you entered wrong credentials or key files are not set up properly. Try again or contact your administrator for solving this problem using the iTALC Management Console.</source>
+        <translation>Ni bilo možno poklicat lokalni iTALC servis. Verjetno ste vnesli napačne prijavne podatke ali datoteke ključev niso nastavljene pravilno. Poizkusite znova ali kontaktirajte vašega administratorja za odpravo te napake v iTALC upravni konzoli.</translation>
+    </message>
+    <message>
         <source>iTALC Master Control</source>
         <translation>iTALC glavne nastavitve</translation>
     </message>
     <message>
+        <source>Authentication impossible</source>
+        <translation>Avtentifikacija NI možna</translation>
+    </message>
+    <message>
+        <source>No authentication key files were found or your current ones are outdated. Please create new key files using the iTALC Management Console. Alternatively set up logon authentication using the iTALC Management Console. Otherwise you won&apos;t be able to access computers using iTALC.</source>
+        <translation>Ni možno najt nobenih datotek ključev ali vaši trenutni niso aktualni. Prosim ustvarite nove ključe z porabo iTALC upravilne konzole. Namesto tega lahko tudi nastavite prijavo preko uporabniškega imena sistema prav tako v iTALC upravilni konzoli. Brez tega ne boste mogli dostopat do računlanikov z uporabo iTALC-a.</translation>
+    </message>
+    <message>
         <source>Remote control</source>
         <translation>Nadzor na daljavo</translation>
+    </message>
+    <message>
+        <source>Quit</source>
+        <translation>Zapusti</translation>
     </message>
     <message>
         <source>Could not modify the autostart property for the iTALC Service.</source>
@@ -1271,154 +1371,24 @@ JAVNI del ključa je uporabljen NA računalnikih KLIENTOV za kontrolo ali so pri
         <translation>Ni mogoče spremeniti nastavitev požarnega zida za iTALC servis.</translation>
     </message>
     <message>
-        <source>Debugging</source>
-        <translation>Razhroščevanje</translation>
+        <source>Configuration not writable</source>
+        <translation>Nastavitve niso pisljive</translation>
     </message>
     <message>
-        <source>Enable desktop switching for screen lock (experimental)</source>
-        <translation>Mogoči &quot;preklopi uporabnika&quot; za zaklepanje zaslona (eksperimentalno)</translation>
+        <source>The local configuration backend reported that the configuration is not writable! Please run the iTALC Management Console with higher privileges.</source>
+        <translation>Lokalno nastavitveno ogrodje je sporočilo, da nastavitve niso pisljive! Prosim zaženite iTALC upraviteljsko konzolo z povišanimi privilegiji.</translation>
     </message>
     <message>
-        <source>Log to standard error output</source>
-        <translation>Logiraj v standardni izhod</translation>
+        <source>All settings were applied successfully.</source>
+        <translation>Vse nastavitve so bile izvedene uspešno.</translation>
     </message>
     <message>
-        <source>Log to Windows event log</source>
-        <translation>Logiraj v Windows event log</translation>
+        <source>An error occured while applying settings!</source>
+        <translation>Prišlo je do napake med izvedbo spremeb!</translation>
     </message>
     <message>
-        <source>Backend</source>
-        <translation>Ogrodje</translation>
-    </message>
-    <message>
-        <source>VNC reflector</source>
-        <translation>VNC reflector (VNC server = drug močnejši računalnik)</translation>
-    </message>
-    <message>
-        <source>iTALC 1 demo server</source>
-        <translation>iTALC 1 demo server (VNC server = predavateljev PC)</translation>
-    </message>
-    <message>
-        <source>Multithreading (can be enabled when using the VNC reflector backend)</source>
-        <translation>Večnitnost (možno aktivirat, ko je izbrano ogordje VNC reflector)</translation>
-    </message>
-    <message>
-        <source>Enable HTTP server which provides a JavaViewer applet</source>
-        <translation>Omogoči HTTP strežnik kateri ponuja JavaViewer vmesnik</translation>
-    </message>
-    <message>
-        <source>HTTP server port</source>
-        <translation>Vrata HTTP strežnika</translation>
-    </message>
-    <message>
-        <source>Allow connections from localhost only</source>
-        <translation>Dovoli povezave samo iz localhost</translation>
-    </message>
-    <message>
-        <source>Key file authentication</source>
-        <translation>Avtentifikacija z ključi v datoteki</translation>
-    </message>
-    <message>
-        <source>ACL-based logon authentication</source>
-        <translation>ACL-temelječa avtentifikacija (lokalni računi, skupine, domena...)</translation>
-    </message>
-    <message>
-        <source>Public key file base directory</source>
-        <translation>Direktorij datotek z javnim ključem</translation>
-    </message>
-    <message>
-        <source>Private key file base directory</source>
-        <translation>Direktorij datotek z privatnim ključem</translation>
-    </message>
-    <message>
-        <source>Launch key file assistant</source>
-        <translation>Zaženi čarovnika za datoteke z ključi</translation>
-    </message>
-    <message>
-        <source>Manage permissions</source>
-        <translation>Upravljaj pravice</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>Preizkusi</translation>
-    </message>
-    <message>
-        <source>Access confirmation</source>
-        <translation>Potrdilo dostopa</translation>
-    </message>
-    <message>
-        <source>You can configure iTALC to ask the user for permission to access the desktop when using certain authentication methods.</source>
-        <translation>iTALC lahko nastavite tako, da vpraša uporabnika, če odobri dostop do namizja ob uporabi določene metode avtentifikacije.</translation>
-    </message>
-    <message>
-        <source>Logon authentication</source>
-        <translation>Avtentifikacija preko uporabniškega imena sistema</translation>
-    </message>
-    <message>
-        <source>Allow same user to access desktop without confirmation</source>
-        <translation>Dovoli, da isti uporabnik(isto ime &amp; geslo) dostopa do namizja brez potrjevanja</translation>
-    </message>
-    <message>
-        <source>Debugging iTALC</source>
-        <translation>Razhroščevanje iTALC</translation>
-    </message>
-    <message>
-        <source>When encountering bugs or other misbehaviour in iTALC it is important to inform the developers about them, so that the bugs can be fixed in future releases. This page allows you to submit a helpful bug report easily.
-
-If the bug is not reproducible, skip step 1) - 3).</source>
-        <translation>Ko naletite na hrošče ali nenavadno obnašanje v iTALC-u je pomembno, da o tem obvestite razvijalce. Le tako so lahko hrošči odpravljeni v bodočih verzijah.  Ta stran vam omogoča, da oddate uporabne prijave hriščev na enostaven način.
-
-Če hrošča ni mogoče reproducirat, preskočite korake 1) - 3).</translation>
-    </message>
-    <message>
-        <source>1)</source>
-        <translation>1)</translation>
-    </message>
-    <message>
-        <source>Clear the logfiles in the &quot;General&quot; section.</source>
-        <translation>Počistite log datoteke pod razdelkom &quot;Splošno&quot;.</translation>
-    </message>
-    <message>
-        <source>2)</source>
-        <translation>2)</translation>
-    </message>
-    <message>
-        <source>In the &quot;General&quot; section set the log level to &quot;Debug messages and everything else&quot;.</source>
-        <translation>Pod razdelkom &quot;Splošno&quot; nastavite &quot;nivo beleženja&quot; na &quot;Debug sporočila in vse ostalo&quot;.</translation>
-    </message>
-    <message>
-        <source>3)</source>
-        <translation>3)</translation>
-    </message>
-    <message>
-        <source>Repeat the actions leading to the bug or misbehaviour.</source>
-        <translation>Ponovite korake, ki vodijo do hrošča ali nenavadnega obnašanja.</translation>
-    </message>
-    <message>
-        <source>4)</source>
-        <translation>4)</translation>
-    </message>
-    <message>
-        <source>Click the following button and save the file to a known location.</source>
-        <translation>Kliknite spodni gumb ter shranite datoteko na znano lokacijo.</translation>
-    </message>
-    <message>
-        <source>Generate bug report archive</source>
-        <translation>Ustvari arhiv prijave hrošča</translation>
-    </message>
-    <message>
-        <source>5)</source>
-        <translation>5)</translation>
-    </message>
-    <message>
-        <source>Go to the &lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;amp;atid=724375&quot;&gt;iTALC bug tracker&lt;/a&gt;, open a new bug, describe what you did in step 3) and attach the file you saved in step 4).&lt;/p&gt;
-&lt;br/&gt;
-&lt;br/&gt;
-Note: if the bug involves both a master and client computer, attach bug report archives for both computers.</source>
-        <translation>Pojdite na &lt;a href=&quot;http://sourceforge.net/tracker/?group_id=132465&amp;amp;atid=724375&quot;&gt;iTALC bug tracker&lt;/a&gt;, &quot;open a new bug&quot;, opišite(ang) kaj ste nardili v koraku 3) ter pripnite datoteko, ki ste jo shranili pri koraku 4).&lt;/p&gt;
-&lt;br/&gt;
-&lt;br/&gt;
-Opomba: Če hrošč obsega tako klienta kot nadzorni računalnik, pripnite datoteko koraka 4) od obeh računalnikov.</translation>
+        <source>iTALC Management Console %1</source>
+        <translation>iTALC upraviteljska konzola %1</translation>
     </message>
     <message>
         <source>Restart iTALC Service</source>
@@ -1435,6 +1405,10 @@ Opomba: Če hrošč obsega tako klienta kot nadzorni računalnik, pripnite datot
     <message>
         <source>Stopping iTALC service</source>
         <translation>Ustavljam iTALC servis</translation>
+    </message>
+    <message>
+        <source>Running</source>
+        <translation>V teku</translation>
     </message>
     <message>
         <source>The iTALC service needs to be stopped temporarily in order to remove the log files. Continue?</source>
@@ -1455,6 +1429,18 @@ Opomba: Če hrošč obsega tako klienta kot nadzorni računalnik, pripnite datot
     <message>
         <source>Could not remove all log files.</source>
         <translation>Ni bilo možno odstranit vseh log datotek.</translation>
+    </message>
+    <message>
+        <source>Load settings from file</source>
+        <translation>Naloži nastavitve iz datoteke</translation>
+    </message>
+    <message>
+        <source>XML files (*.xml)</source>
+        <translation>XML datoteke (*.xml)</translation>
+    </message>
+    <message>
+        <source>Save settings to file</source>
+        <translation>Shrani nastavitve v datoteko</translation>
     </message>
     <message>
         <source>Logon authentication test</source>
@@ -1485,31 +1471,12 @@ Opomba: Če hrošč obsega tako klienta kot nadzorni računalnik, pripnite datot
         <translation>iTALC arhiv prijave hrošča je bil shranjen v %1. Vsebuje iTALC log datoteke in informacije o vašem operacijskem sistemu. Sedaj ga lahko pripnete k prijavi hrišča.</translation>
     </message>
     <message>
-        <source>Could not contact iTALC service</source>
-        <translation>Ni bilo možno poklicat iTALC servis</translation>
+        <source>Unsaved settings</source>
+        <translation>Neshranjene nastavitve</translation>
     </message>
     <message>
-        <source>Could not contact the local iTALC service. It is likely that you entered wrong credentials or key files are not set up properly. Try again or contact your administrator for solving this problem using the iTALC Management Console.</source>
-        <translation>Ni bilo možno poklicat lokalni iTALC servis. Verjetno ste vnesli napačne prijavne podatke ali datoteke ključev niso nastavljene pravilno. Poizkusite znova ali kontaktirajte vašega administratorja za odpravo te napake v iTALC upravni konzoli.</translation>
-    </message>
-    <message>
-        <source>Authentication impossible</source>
-        <translation>Avtentifikacija NI možna</translation>
-    </message>
-    <message>
-        <source>No authentication key files were found or your current ones are outdated. Please create new key files using the iTALC Management Console. Alternatively set up logon authentication using the iTALC Management Console. Otherwise you won&apos;t be able to access computers using iTALC.</source>
-        <translation>Ni možno najt nobenih datotek ključev ali vaši trenutni niso aktualni. Prosim ustvarite nove ključe z porabo iTALC upravilne konzole. Namesto tega lahko tudi nastavite prijavo preko uporabniškega imena sistema prav tako v iTALC upravilni konzoli. Brez tega ne boste mogli dostopat do računlanikov z uporabo iTALC-a.</translation>
-    </message>
-    <message>
-        <source>Poll full screen (leave this enabled per default)</source>
-        <translation>Prenašaj polni zaslon (vklopljeno po privzetem)</translation>
-    </message>
-</context>
-<context>
-    <name>MessageBoxSlave</name>
-    <message>
-        <source>Message from teacher</source>
-        <translation>Sporočilo od učitelja</translation>
+        <source>There are unsaved settings. Quit anyway?</source>
+        <translation>Nekatere nastavitve niso shranjene. Vseeno končam?</translation>
     </message>
 </context>
 <context>
@@ -1517,7 +1484,7 @@ Opomba: Če hrošč obsega tako klienta kot nadzorni računalnik, pripnite datot
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; font-style:italic;&quot;&gt;Welcome to iTALC!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;(new line)
 p, li { white-space: pre-wrap; }
@@ -1559,6 +1526,10 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>PasswordDialog</name>
     <message>
+        <source>iTALC Logon</source>
+        <translation>iTALC prijava</translation>
+    </message>
+    <message>
         <source>Please enter your username and password in order to access iTALC clients.</source>
         <translation>Prosim vnesite uporabniško ime ter geslo, za dostop do iTALC klientov.</translation>
     </message>
@@ -1569,10 +1540,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Password</source>
         <translation>Geslo</translation>
-    </message>
-    <message>
-        <source>iTALC Logon</source>
-        <translation>iTALC prijava</translation>
     </message>
     <message>
         <source>Manage</source>
@@ -1757,7 +1724,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;All snapshots you made are listed here. You can make snapshots by selecting the according entry in the context-menu of a client-window. These snapshosts can be managed using the buttons below.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;(new line)
 p, li { white-space: pre-wrap; }(new line)
