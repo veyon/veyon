@@ -126,9 +126,10 @@ bool AccessControlProvider::isMemberOfGroup( AccessControlRule::EntityType entit
 	{
 		return ldapGroupsOfEntity( entityType, entity ).contains( groupName );
 	}
-	else
+	else if( entityType == AccessControlRule::EntityTypeUser &&
+			 LocalSystem::groupsOfUser( entity ).contains( groupName ) )
 	{
-		// TODO: LocalSystem implementation
+		return true;
 	}
 
 	return false;
@@ -169,6 +170,12 @@ bool AccessControlProvider::hasGroupsInCommon( AccessControlRule::EntityType ent
 		QStringList objectTwoGroups = ldapGroupsOfEntity( entityTwoType, entityTwo );
 
 		return objectOneGroups.toSet().intersect( objectTwoGroups.toSet() ).isEmpty() == false;
+	}
+	else if( entityOneType == AccessControlRule::EntityTypeUser &&
+			 entityTwoType == AccessControlRule::EntityTypeUser )
+	{
+		return LocalSystem::groupsOfUser( entityOne ).toSet().
+				intersect( LocalSystem::groupsOfUser( entityTwo ).toSet() ).isEmpty() == false;
 	}
 
 	return false;
