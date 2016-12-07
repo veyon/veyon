@@ -25,4 +25,4 @@ deploy:
         tags: true
         repo: iTALC/italc
         all_branches: true
-        condition: "$TARGET_OS != linux"
+        condition: "$TARGET_OS == win*"
