@@ -34,12 +34,6 @@
 #include "ItalcConfiguration.h"
 #include "Logger.h"
 
-#ifdef ITALC_BUILD_WIN32
-#include <windows.h>
-#define DEV_NULL "NUL"
-#else
-#define DEV_NULL "/dev/null"
-#endif
 
 namespace Ipc
 {
