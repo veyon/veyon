@@ -117,15 +117,20 @@ rfbBool ItalcVncConnection::hookNewClient( rfbClient *cl )
 
 	const int size = (int) cl->width * cl->height *
 					( cl->format.bitsPerPixel / 8 );
-	if( t->m_frameBuffer )
-	{
-		// do not leak if we get a new framebuffer size
-		delete [] t->m_frameBuffer;
-	}
-	t->m_frameBuffer = new uint8_t[size];
+
+	cl->frameBuffer = new uint8_t[size];
+
 	t->m_framebufferInitialized = false;
-	cl->frameBuffer = t->m_frameBuffer;
+
 	memset( cl->frameBuffer, '\0', size );
+
+	// initialize framebuffer image which just wraps the allocated memory and ensures cleanup after last
+	// image copy using the framebuffer gets destroyed
+	t->m_imgLock.lockForWrite();
+	t->m_image = QImage( cl->frameBuffer, cl->width, cl->height, QImage::Format_RGB32, framebufferCleanup, cl->frameBuffer );
+	t->m_imgLock.unlock();
+
+	// initialize desired framebuffer format
 	cl->format.bitsPerPixel = 32;
 	cl->format.redShift = 16;
 	cl->format.greenShift = 8;
@@ -187,14 +192,6 @@ rfbBool ItalcVncConnection::hookNewClient( rfbClient *cl )
 
 void ItalcVncConnection::hookUpdateFB( rfbClient *cl, int x, int y, int w, int h )
 {
-	QImage img( cl->frameBuffer, cl->width, cl->height, QImage::Format_RGB32 );
-
-	if( img.isNull() )
-	{
-		qWarning( "image not loaded" );
-		return;
-	}
-
 	ItalcVncConnection * t = (ItalcVncConnection *) rfbClientGetClientData( cl, 0 );
 
 	if( t->quality() == DemoServerQuality )
@@ -203,7 +200,7 @@ void ItalcVncConnection::hookUpdateFB( rfbClient *cl, int x, int y, int w, int h
 		// color-reduction for better compression-results
 		for( int ry = y; ry < y+h; ++ry )
 		{
-			QRgb *data = ( (QRgb *) img.scanLine( ry ) );
+			QRgb *data = ( (QRgb *) t->m_image.scanLine( ry ) );
 			for( int rx = x; rx < x+w; ++rx )
 			{
 				data[rx] &= 0xfcfcfc;
@@ -211,8 +208,13 @@ void ItalcVncConnection::hookUpdateFB( rfbClient *cl, int x, int y, int w, int h
 		}
 	}
 
-	t->setImage( img );
-	t->m_framebufferInitialized = true;
+	if( t->m_framebufferInitialized == false )
+	{
+		t->framebufferSizeChanged( cl->width, cl->height );
+
+		t->m_framebufferInitialized = true;
+	}
+
 	t->imageUpdated( x, y, w, h );
 }
 
@@ -323,10 +325,16 @@ void ItalcVncConnection::hookOutputHandler( const char *format, ... )
 
 
 
+void ItalcVncConnection::framebufferCleanup( void *framebuffer )
+{
+	delete[] (uchar *) framebuffer;
+}
+
+
+
 
 ItalcVncConnection::ItalcVncConnection( QObject *parent ) :
 	QThread( parent ),
-	m_frameBuffer( NULL ),
 	m_framebufferInitialized( false ),
 	m_cl( NULL ),
 	m_italcAuthType( ItalcAuthDSA ),
@@ -360,8 +368,6 @@ ItalcVncConnection::~ItalcVncConnection()
 		terminate();
 		wait();
 	}
-
-	delete[] m_frameBuffer;
 }
 
 
@@ -451,22 +457,6 @@ bool ItalcVncConnection::waitForConnected( int timeout ) const
 	}
 
 	return isConnected();
-}
-
-
-
-
-void ItalcVncConnection::setImage( const QImage & img )
-{
-	m_imgLock.lockForWrite();
-	const QSize oldSize = m_image.size();
-	m_image = img;
-	m_imgLock.unlock();
-
-	if( img.size() != oldSize )
-	{
-		emit framebufferSizeChanged( img.width(), img.height() );
-	}
 }
 
 

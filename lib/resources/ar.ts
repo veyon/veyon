@@ -99,7 +99,7 @@ Copyright © 2004-2013 Tobias Doerffel / iTALC Solutions</source>
         <translation>تصدير إلى ملف نصي </translation>
     </message>
     <message>
-        <source>Use this button for exporting this list of computers and usernames into a text-file. You can use this file later for collecting files after an exam has finished. This is sometimes neccessary, because some users might have finished and logged out earlier and so you cannot collect their files at the end of the exam.</source>
+        <source>Use this button for exporting this list of computers and usernames into a text-file. You can use this file later for collecting files after an exam has finished. This is sometimes necessary, because some users might have finished and logged out earlier and so you cannot collect their files at the end of the exam.</source>
         <translation>استخدم هذا الزر لتصدير قائمة الحاسبات وأسماء المستخدمين الحالية إلى ملف نصي. يمكنك استخدام هذا الملف لاحقا لجمع الملفات بعد إنتهاء الإختبار. يكون هذا الإجراء ضروريا، في بعض الأحيان، إذ أن بعض المستخدمين قد </translation>
     </message>
     <message>
@@ -1571,7 +1571,7 @@ p, li { white-space: pre-wrap; }
         <translation>غير قادر على تسجيل الخدمة 1%‏</translation>
     </message>
     <message>
-        <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not registered.</source>
+        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not registered.</source>
         <translation>تعذر الاتصال بمدير التحكم في الخدمة (هل لديك الصلاحيات اللازمة؟) - لم يتم تسجيل الخدمة 1%.‏</translation>
     </message>
     <message>
@@ -1607,11 +1607,11 @@ p, li { white-space: pre-wrap; }
         <translation>تعذر العثور على الخدمة 1% </translation>
     </message>
     <message>
-        <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not unregistered.</source>
+        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not unregistered.</source>
         <translation>تعذر الاتصال بمدير التحكم في الخدمة (هل لديك الصلاحيات اللازمة؟) - لم يتم إلغاءتسجيل الخدمة 1%.‏</translation>
     </message>
     <message>
-        <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not stopped.</source>
+        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not stopped.</source>
         <translation>تعذر الاتصال بمدير التحكم في الخدمة (هل لديك الصلاحيات اللازمة؟) - لم يتم إيقاف الخدمة 1%.‏</translation>
     </message>
     <message>

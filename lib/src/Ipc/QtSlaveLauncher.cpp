@@ -34,12 +34,6 @@
 #include "ItalcConfiguration.h"
 #include "Logger.h"
 
-#ifdef ITALC_BUILD_WIN32
-#include <windows.h>
-#define DEV_NULL "NUL"
-#else
-#define DEV_NULL "/dev/null"
-#endif
 
 namespace Ipc
 {
@@ -71,7 +65,7 @@ void QtSlaveLauncher::start( const QStringList &arguments )
 	// forward stdout/stderr from slave to master
 	m_process->setProcessChannelMode( QProcess::ForwardedChannels );
 
-#if QT_VERSION >= 0x050000
+#if QT_VERSION >= 0x050300
 	QObject::connect( m_process, static_cast<void(QProcess::*)(int, QProcess::ExitStatus)>(&QProcess::finished),
 					  m_process, &QProcess::deleteLater );
 	QObject::connect( m_process, static_cast<void(QProcess::*)(int, QProcess::ExitStatus)>(&QProcess::finished),

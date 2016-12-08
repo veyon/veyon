@@ -100,7 +100,7 @@ Jeigu norėtumėte padėti su programos iTALC vertimų į naują kalbą arba pat
         <translation>Eksportuoti į tekstinį failą</translation>
     </message>
     <message>
-        <source>Use this button for exporting this list of computers and usernames into a text-file. You can use this file later for collecting files after an exam has finished. This is sometimes neccessary, because some users might have finished and logged out earlier and so you cannot collect their files at the end of the exam.</source>
+        <source>Use this button for exporting this list of computers and usernames into a text-file. You can use this file later for collecting files after an exam has finished. This is sometimes necessary, because some users might have finished and logged out earlier and so you cannot collect their files at the end of the exam.</source>
         <translation>Naudokitės šiuo mygtuku kad eksportuotumėte šį kompiuterių ir vartotojų sąrašą į tekstinį failą.Vėliau galėsite pasinaudoti šiuo failu rinkdami informacją po testų pabaigos.Tai kai kada būtina ,nes vartotojas gali pabaigti ir atsijungti ankščiau ir taip jūs negalėsite išsaugoti jų failų po egzaminų pabaigos.</translation>
     </message>
     <message>
@@ -1549,7 +1549,7 @@ p, li { white-space: pre-wrap; }
         <translation>Negaliu užregistruoti tarnybos &apos;%1&apos;.</translation>
     </message>
     <message>
-        <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not registered.</source>
+        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not registered.</source>
         <translation>Neįmanoma susisiekti su tarnybos administratoriumi (Gal jums neužtenka teisių?!) - tarnyba &apos;%1&apos; neužregistruota</translation>
     </message>
     <message>
@@ -1585,11 +1585,11 @@ p, li { white-space: pre-wrap; }
         <translation>Tarnyba &apos;%1&apos; nerasta.</translation>
     </message>
     <message>
-        <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not unregistered.</source>
+        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not unregistered.</source>
         <translation>Neįmanoma susisiekti su tarnybos administratoriumi (Gal jums neužtenka teisių?!) - tarnyba &apos;%1&apos; neužregistruota.</translation>
     </message>
     <message>
-        <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not stopped.</source>
+        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not stopped.</source>
         <translation>Neįmanoma susisiekti su tarnybos administratoriumi (Gal jums neužtenka teisių?!) - tarnyba &apos;%1&apos; nesustabdyta.</translation>
     </message>
 </context>

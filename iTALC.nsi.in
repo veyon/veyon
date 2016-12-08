@@ -10,7 +10,7 @@
 !define APP_NAME "iTALC"
 !define COMP_NAME "iTALC Solutions Inc."
 !define WEB_SITE "http://italc.sf.net"
-!define VERSION "@NSI_VERSION@"
+!define VERSION "@VERSION_MAJOR@.@VERSION_MINOR@.@VERSION_PATCH@.@VERSION_BUILD@"
 !define COPYRIGHT "© Tobias Doerffel 2004-2016"
 !define DESCRIPTION "Intelligent Teaching and Learning with Computers"
 !define LICENSE_TXT "@CMAKE_SOURCE_DIR@/COPYING"

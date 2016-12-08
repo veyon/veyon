@@ -61,7 +61,7 @@ Requirements:
 
 Of course you should have some computers, connected via TCP/IP network... :-)
 
-First you should download the neccessary packages depending on your
+First you should download the necessary packages depending on your
 Linux distribution. If there're no packages for your distribution,
 try to build iTALC yourself. See previous section for details.
 
@@ -71,7 +71,7 @@ RPM etc.) will complain about it.
 
 Installing:
 
-First you have to install the neccessary packages on your computer(s).
+First you have to install the necessary packages on your computer(s).
 On clients you only have to install the packages italc:
 
 on DPKG-based systems:

@@ -1009,8 +1009,15 @@ QString Path::shrink( QString path )
 		path.replace( QDTNS( QDir::tempPath() ), envVar.arg( "TEMP" ) );
 	}
 
-	return QDTNS( path.replace( QString( "%1%1" ).
-								arg( QDir::separator() ), QDir::separator() ) );
+	// remove duplicate directory separators - however skip the first two chars
+	// as they might specify an UNC path on Windows
+	if( path.length() > 3 )
+	{
+		return QDTNS( path.left( 2 ) + path.mid( 2 ).replace(
+									QString( "%1%1" ).arg( QDir::separator() ), QDir::separator() ) );
+	}
+
+	return QDTNS( path );
 }
 
 

@@ -100,7 +100,7 @@ If you&apos;re interested in translating iTALC into your local or another langua
         <translation>Текст файл болгох</translation>
     </message>
     <message>
-        <source>Use this button for exporting this list of computers and usernames into a text-file. You can use this file later for collecting files after an exam has finished. This is sometimes neccessary, because some users might have finished and logged out earlier and so you cannot collect their files at the end of the exam.</source>
+        <source>Use this button for exporting this list of computers and usernames into a text-file. You can use this file later for collecting files after an exam has finished. This is sometimes necessary, because some users might have finished and logged out earlier and so you cannot collect their files at the end of the exam.</source>
         <translation>Энэ даралтыг компьютерууд болон хэрэглэгчийн нэрсийн жагсаалтыг текст-файлд хадгалахад хэрэглэнэ. Энэ файлаа шалгалт дууссаны дараа файл хураахад хэрэглэнэ. Энэ нь заримдаа хэрэгтэй, яагаад гэвэл зарим сурагч шалгалтаа эрт дуусгаад системээс гардаг.</translation>
     </message>
     <message>
@@ -1558,7 +1558,7 @@ p, li { white-space: pre-wrap; }
         <translation>Сервист бүртгүүлэх боломжгүй &apos;%1&apos;.</translation>
     </message>
     <message>
-        <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not registered.</source>
+        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not registered.</source>
         <translation>Сервис удирлагын менежер холбогдсонгүй(танд шаардлагатай эрх байгаа юу?!) - сервис &apos;%1&apos; бүргэгдээгүй.</translation>
     </message>
     <message>
@@ -1594,11 +1594,11 @@ p, li { white-space: pre-wrap; }
         <translation>Сервис &apos;%1&apos; олдохгүй байна.</translation>
     </message>
     <message>
-        <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not unregistered.</source>
+        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not unregistered.</source>
         <translation>Сервис удирлагын менежер холбогдсонгүй(танд шаардлагатай эрх байгаа юу?!)  - сервисийн &apos;%1&apos; бүртгэлийг цуцлагдсангүй.</translation>
     </message>
     <message>
-        <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not stopped.</source>
+        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not stopped.</source>
         <translation>Сервис удирлагын менежер холбогдсонгүй(танд шаардлагатай эрх байгаа юу?!)  - сервисийг &apos;%1&apos; зогсоож чадсангүй.</translation>
     </message>
 </context>

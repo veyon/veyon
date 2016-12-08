@@ -2,7 +2,7 @@
  * DemoServer.cpp - multi-threaded slim VNC-server for demo-purposes (optimized
  *                   for lot of clients accessing server in read-only-mode)
  *
- * Copyright (c) 2006-2013 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -23,8 +23,6 @@
  *
  */
 
-#define USE_QREGION
-
 #include <QtCore/QDateTime>
 #include <QtNetwork/QTcpSocket>
 #include <QtCore/QTimer>
@@ -33,9 +31,6 @@
 #include "DemoServer.h"
 #include "ItalcCoreServer.h"
 #include "ItalcVncConnection.h"
-#ifndef USE_QREGION
-#include "QuadTree.h"
-#endif
 #include "RfbLZORLE.h"
 #include "RfbItalcCursor.h"
 #include "SocketDevice.h"
@@ -329,22 +324,12 @@ void DemoServerClient::sendUpdates()
 	// e.g. if we didn't get an update-request for a quite long time
 	// and there were a lot of updates - at the end we don't send
 	// more than the whole screen one time
-#ifdef USE_QREGION
 	QRegion region;
-	foreach( const QRect &rect, m_changedRects )
+	for( auto rect : m_changedRects )
 	{
 		region += rect;
 	}
 	QVector<QRect> r = region.rects();
-#else
-	QuadTree q( 0, 0, m_vncConn->image().width()-1, m_vncConn->image().height()-1, 4 );
-	QVector<QuadTreeRect> r;
-	if( !m_changedRects.isEmpty() )
-	{
-		q.addRects( m_changedRects );
-		r = q.rects();
-	}
-#endif
 
 	// no we gonna post all changed rects!
 	const rfbFramebufferUpdateMsg m =
@@ -359,23 +344,12 @@ void DemoServerClient::sendUpdates()
 	sd.write( (const char *) &m, sz_rfbFramebufferUpdateMsg );
 
 	// process each rect
-#ifdef USE_QREGION
 	for( QVector<QRect>::ConstIterator it = r.begin(); it != r.end(); ++it )
-#else
-	for( QVector<QuadTreeRect>::const_iterator it = r.begin(); it != r.end(); ++it )
-#endif
 	{
-#ifdef USE_QREGION
 		const int rx = it->x();
 		const int ry = it->y();
 		const int rw = it->width();
 		const int rh = it->height();
-#else
-		const int rx = it->x1();
-		const int ry = it->y1();
-		const int rw = it->x2()-it->x1()+1;
-		const int rh = it->y2()-it->y1()+1;
-#endif
 		const rfbRectangle rr =
 		{
 			(uint16_t) Swap16IfLE( rx ),

@@ -1,7 +1,7 @@
 /*
  * ImcCore.cpp - global instances for the iTALC Management Console
  *
- * Copyright (c) 2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2010-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -58,7 +58,7 @@ bool applyConfiguration( const ItalcConfiguration &c )
 	// merge configuration
 	*ItalcCore::config += c;
 
-	// do neccessary modifications of system configuration
+	// do necessary modifications of system configuration
 	if( !SystemConfigurationModifier::setServiceAutostart(
 									ItalcCore::config->autostartService() ) )
 	{

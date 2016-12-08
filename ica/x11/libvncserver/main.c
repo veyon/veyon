@@ -582,7 +582,7 @@ listenerRun(void *data)
     socklen_t len;
     fd_set listen_fds;  /* temp file descriptor list for select() */
 
-    /* TODO: this thread wont die by restarting the server */
+    /* TODO: this thread won't die by restarting the server */
     /* TODO: HTTP is not handled */
     while (1) {
         client_fd = -1;

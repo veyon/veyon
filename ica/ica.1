@@ -29,7 +29,7 @@ ica \- iTALC Client Application
 .\" \fI<whatever>\fP escape sequences to invode bold face and italics, 
 .\" respectively.
 .B ICA
-is the software which needs to run on clients in order to access them using iTALC master application. It provides a VNC server and a service daemon which is neccessary for taking control over the client.
+is the software which needs to run on clients in order to access them using iTALC master application. It provides a VNC server and a service daemon which is necessary for taking control over the client.
 
 .SH iTALC OPTIONS
 .IP "\fB\-role\fP \fIrole\fP
@@ -79,7 +79,7 @@ Currently  this  option only works on GNOME, KDE3, CDE, XFCE, and classic X (i.e
 .IP
 If  the display supports the XRANDR (X Resize, Rotate and Reflection) extension, and you expect XRANDR events to occur to the display while
 x11vnc is running, this options indicates x11vnc should try to respond to them (as opposed to simply crashing by assuming  the  old  screen
-size).  See the xrandr(1) manpage and run ´xrandr -q' for more info.  [mode] is optional and described below.
+size).  See the xrandr(1) manpage and run ´xrandr \-q' for more info.  [mode] is optional and described below.
 .IP
 Since  watching for XRANDR events and trapping errors increases polling overhead, only use this option if XRANDR changes are expected.  For
 example on a rotatable screen PDA or laptop, or using a XRANDR-aware Desktop where you resize often.  It is  best  to  be  viewing  with  a
