@@ -1,6 +1,6 @@
 language: cpp
 compiler: gcc
-dist: xenial
+dist: trusty
 sudo: required
 matrix:
     include:
@@ -20,9 +20,11 @@ deploy:
     provider: releases
     api_key:
         secure: wMNqgYorSWB2TKY7fututo+Lj+Fmupa6e26nq/2WWe5i/VvucSZv37Sb1wtYpJD034ptJ6WT5wO5a+k88BorUt9Dz27S/FpTIxMh8py06OOnb9vJjLLLPsZn+0TWtLoseBLd4zzIJkJ7gGnd0LzcaNLT1GHlpEit6MNPDWZvBJxgzxDlwyNfwABWIvHOu7ylmAVfXHgNn14EZ6OZ/MRY/YMvh+Ee1xIKk8eNLTolPMRmaSJVmyHZvgeye7ZUZrJiE3B9zViwr+AwoZ/Vo3Yk6WK4Hmg7SwaQgvXffD4IV2vHs0wxnhwADynuWPfQ1xWP93UIMPpMMgZX/5ts0H7TcggPmZU0wx7fWHHw/CObbisJFXy4Hi4umRcF5wMIzWdgcE5q/NtrjE7u+F6DmDWG9ify/VvgwhiLAbYe+Rb3iVL4NhmU/ZbLKA5zjTmhqXOxfOod3rYqb+nwsipYpPV04uM5yETsqPZd2ayjmJGWE8BDFdI8aEjn5ZxEwjLot+x5qcu7RJ4DGlpI08yCpkcQYx1yY/XANbXVCLy2YU7hAp/y5I/hhTlegDFpqmMGUEkFtodeM7Wgn6mQfRr5WMASz01Yc/ietP+mdD+sx1+KO0j4jL73tnEaGfXEvU+S8c+SiJa5aezlV7/iCWIeNvi9tXhcfNQ215AUCYm5PM3/87M=
-    file: italc-${TRAVIS_TAG:1}-$TARGET_OS-setup.exe
+    repo: iTALC/italc
+    skip_cleanup: true
+    file_glob: true
+    file: "italc-*-$TARGET_OS-setup.exe"
     on:
         tags: true
-        repo: iTALC/italc
         all_branches: true
         condition: "$TARGET_OS == win*"
