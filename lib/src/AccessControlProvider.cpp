@@ -96,6 +96,38 @@ QStringList AccessControlProvider::computerPools()
 
 
 
+AccessControlProvider::AccessResult AccessControlProvider::checkAccess( const QString &accessingUser,
+																		const QString &accessingComputer,
+																		const QString &localUser,
+																		const QString &localComputer)
+{
+	if( ItalcCore::config->isAccessRestrictedToUserGroups() )
+	{
+		if( processAuthorizedGroups( accessingUser ) )
+		{
+			return AccessAllow;
+		}
+	}
+	else if( ItalcCore::config->isAccessControlRulesProcessingEnabled() )
+	{
+		if( processAccessControlRules( accessingUser, accessingComputer, localUser, localComputer ) ==
+				AccessControlRule::ActionAllow )
+		{
+			return AccessAllow;
+		}
+	}
+	else
+	{
+		// no access control method configured, therefore grant access
+		return AccessAllow;
+	}
+
+	// configured access control method did not succeed, therefore deny access
+	return AccessDeny;
+}
+
+
+
 bool AccessControlProvider::processAuthorizedGroups(const QString &accessingUser)
 {
 	return groupsOfUser( accessingUser ).toSet().intersects( ItalcCore::config->logonGroups().toSet() );

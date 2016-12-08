@@ -31,11 +31,22 @@
 class AccessControlProvider
 {
 public:
+	typedef enum AccessResults {
+		AccessDeny,
+		AccessAllow,
+		AccessResultCount
+	} AccessResult;
+
 	AccessControlProvider();
 
 	QStringList userGroups();
 	QStringList computerGroups();
 	QStringList computerPools();
+
+	AccessResult checkAccess( const QString& accessingUser,
+							  const QString& accessingComputer,
+							  const QString& localUser,
+							  const QString& localComputer );
 
 	bool processAuthorizedGroups( const QString& accessingUser );
 
