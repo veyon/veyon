@@ -28,6 +28,10 @@
 #include <QObject>
 #include <QVariant>
 
+#if QT_VERSION < 0x505000
+#define Q_ENUM(x)
+#endif
+
 class AccessControlRule
 {
 	Q_GADGET
