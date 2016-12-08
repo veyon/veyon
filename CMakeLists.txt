@@ -16,23 +16,36 @@ INCLUDE(CheckIncludeFiles)
 INCLUDE(CheckFunctionExists)
 INCLUDE(FindPkgConfig)
 
-SET(VERSION_MAJOR "3")
-SET(VERSION_MINOR "0")
-SET(VERSION_PATCH "1")
-SET(VERSION "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}")
+EXECUTE_PROCESS(COMMAND git describe --tags
+		WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+		OUTPUT_STRIP_TRAILING_WHITESPACE
+		OUTPUT_VARIABLE VERSION_STRING)
+STRING(REGEX REPLACE "^v([0-9]+)\\..*" "\\1" VERSION_MAJOR "${VERSION_STRING}")
+STRING(REGEX REPLACE "^v[0-9]+\\.([0-9]+).*" "\\1" VERSION_MINOR "${VERSION_STRING}")
+STRING(REGEX REPLACE "^v[0-9]+\\.[0-9]+\\.([0-9]+).*" "\\1" VERSION_PATCH "${VERSION_STRING}")
 
+# can't retrieve version information as not building from Git repository?
+IF(NOT VERSION_STRING)
+	SET(VERSION_MAJOR 3)
+	SET(VERSION_MINOR 0)
+	SET(VERSION_PATCH 1)
+	SET(VERSION_STRING "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}")
+ELSE()
+	# remove leading character from tag name
+	STRING(REPLACE "v" "" VERSION_STRING "${VERSION_STRING}")
+ENDIF()
+
+ADD_DEFINITIONS(-DITALC_VERSION="${VERSION_STRING}")
+
+# determine build number to use in NSIS installer and resource files
 EXECUTE_PROCESS(COMMAND git describe --tags
 		COMMAND cut -d "-" -f2
+		WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
 		OUTPUT_STRIP_TRAILING_WHITESPACE
 		OUTPUT_VARIABLE VERSION_BUILD)
-IF(VERSION_BUILD)
-	SET(VERSION "${VERSION}.${VERSION_BUILD}")
-	SET(NSI_VERSION "${VERSION}")
-ELSE()
-	SET(NSI_VERSION "${VERSION}.0")
-ENDIF(VERSION_BUILD)
-
-ADD_DEFINITIONS(-DITALC_VERSION="${VERSION}")
+IF(NOT VERSION_BUILD GREATER 0)
+	SET(VERSION_BUILD 0)
+ENDIF()
 
 
 INCLUDE(DetectMachine)
@@ -249,7 +262,7 @@ ENDFOREACH(_item ${qm_targets})
 #
 # add target for generating Windows installer
 #
-SET(TMP "italc-${VERSION}")
+SET(TMP "italc-${VERSION_STRING}")
 
 ADD_CUSTOM_TARGET(win-nsi
 			COMMAND make
@@ -275,6 +288,7 @@ ADD_CUSTOM_TARGET(win-nsi
 MESSAGE("\n"
 "iTALC build summary\n"
 "--------------------\n"
+"* Version                     : ${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}.${VERSION_BUILD} (${VERSION_STRING})\n"
 "* Install prefix              : ${CMAKE_INSTALL_PREFIX}\n"
 "* Build type                  : ${CMAKE_BUILD_TYPE}\n"
 "* Platform                    : ${CMAKE_SYSTEM_PROCESSOR} (${Machine})\n"
