@@ -35,6 +35,7 @@
 #include <QtNetwork/QHostInfo>
 
 #include "ItalcCoreServer.h"
+#include "AccessControlProvider.h"
 #include "DesktopAccessPermission.h"
 #include "DsaKey.h"
 #include "ItalcRfbExt.h"
@@ -299,7 +300,8 @@ bool ItalcCoreServer::authSecTypeItalc( socketDispatcher sd, void *user )
 
 		// authentication via DSA-challenge/-response
 		case ItalcAuthDSA:
-			if( doKeyBasedAuth( sdev, host ) )
+			if( doKeyBasedAuth( sdev, host ) &&
+					AccessControlProvider().checkAccess( username, host ) == AccessControlProvider::AccessAllow )
 			{
 				if( DesktopAccessPermission(
 						DesktopAccessPermission::KeyAuthentication ).

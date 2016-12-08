@@ -78,7 +78,7 @@
 
 #ifdef ULTRAVNC_ITALC_SUPPORT
 extern BOOL ultravnc_italc_load_int( LPCSTR valname, LONG *out );
-extern BOOL ultravnc_italc_ask_permission( const char *username, const char *host );
+extern BOOL ultravnc_italc_access_control( const char *username, const char *host );
 #endif
 
 bool isDirectoryTransfer(const char *szFileName);
@@ -1670,7 +1670,7 @@ vncClientThread::AuthMsLogon(std::string& auth_message)
 
 	if (result) {
 #ifdef ULTRAVNC_ITALC_SUPPORT
-		return ultravnc_italc_ask_permission( user, m_socket->GetPeerName() );
+		return ultravnc_italc_access_control( user, m_socket->GetPeerName() );
 #endif
 		return TRUE;
 	} else {

@@ -6,6 +6,7 @@
 #include "ItalcCore.h"
 #include "ItalcCoreServer.h"
 #include "ItalcConfiguration.h"
+#include "AccessControlProvider.h"
 #include "Configuration/LocalStore.h"
 
 static QSettings *__italcSettings = NULL;
@@ -102,11 +103,10 @@ BOOL ultravnc_italc_load_int( LPCSTR valname, LONG *out )
 }
 
 
-BOOL ultravnc_italc_ask_permission( const char *username, const char *host )
+BOOL ultravnc_italc_access_control( const char *username, const char *host )
 {
-	return DesktopAccessPermission(
-				DesktopAccessPermission::LogonAuthentication ).
-														ask( username, host );
+	return AccessControlProvider().checkAccess( username, host ) == AccessControlProvider::AccessAllow &&
+	        DesktopAccessPermission( DesktopAccessPermission::LogonAuthentication ).ask( username, host );
 }
 
 

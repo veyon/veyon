@@ -46,6 +46,7 @@ extern "C"
 #include <QtCore/QDir>
 #include <QtCore/QProcess>
 
+#include "AccessControlProvider.h"
 #include "ItalcVncServer.h"
 #include "ItalcConfiguration.h"
 #include "ItalcCore.h"
@@ -171,7 +172,8 @@ static bool authMsLogon( struct _rfbClientRec *cl )
 	credentials.setLogonUsername( user );
 	credentials.setLogonPassword( passwd );
 
-	return LogonAuthentication::authenticateUser( credentials );
+	return LogonAuthentication::authenticateUser( credentials ) &&
+			AccessControlProvider().checkAccess( credentials.logonUsername(), cl->host ) == AccessControlProvider::AccessAllow;
 }
 
 
