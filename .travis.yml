@@ -19,8 +19,8 @@ before_deploy: make win-nsi
 deploy:
     provider: releases
     api_key:
-        secure: wMNqgYorSWB2TKY7fututo+Lj+Fmupa6e26nq/2WWe5i/VvucSZv37Sb1wtYpJD034ptJ6WT5wO5a+k88BorUt9Dz27S/FpTIxMh8py06OOnb9vJjLLLPsZn+0TWtLoseBLd4zzIJkJ7gGnd0LzcaNLT1GHlpEit6MNPDWZvBJxgzxDlwyNfwABWIvHOu7ylmAVfXHgNn14EZ6OZ/MRY/YMvh+Ee1xIKk8eNLTolPMRmaSJVmyHZvgeye7ZUZrJiE3B9zViwr+AwoZ/Vo3Yk6WK4Hmg7SwaQgvXffD4IV2vHs0wxnhwADynuWPfQ1xWP93UIMPpMMgZX/5ts0H7TcggPmZU0wx7fWHHw/CObbisJFXy4Hi4umRcF5wMIzWdgcE5q/NtrjE7u+F6DmDWG9ify/VvgwhiLAbYe+Rb3iVL4NhmU/ZbLKA5zjTmhqXOxfOod3rYqb+nwsipYpPV04uM5yETsqPZd2ayjmJGWE8BDFdI8aEjn5ZxEwjLot+x5qcu7RJ4DGlpI08yCpkcQYx1yY/XANbXVCLy2YU7hAp/y5I/hhTlegDFpqmMGUEkFtodeM7Wgn6mQfRr5WMASz01Yc/ietP+mdD+sx1+KO0j4jL73tnEaGfXEvU+S8c+SiJa5aezlV7/iCWIeNvi9tXhcfNQ215AUCYm5PM3/87M=
-    repo: iTALC/italc
+        secure: J1BqH4gUyCfgrE/H/Z3JZk6rEcOFJSrLCNEjsyVpVWlFJXnlIeMD4L0Qz8rCyztWXMVAIbWnRUZDmOvoS5SV/anyEhcNZrWQ/p0LERctb2CxeCD3GiNqjg5IbxZOh5wGSJG3HuAMz6JiwTH/WX0cc07GWFuhK98z/BBSDqdkKo6Nz5opNzOQ46juKIIeDzr/zmUpH5086uwx2ogb4LxokpJiYra1g3elLc+RiHeSOnNQbt+nB3RUWck4YyZV/vyOMg1XzKyG4f8UAYRDntsRH/cK+bjO0eL0LcYi/HY4IRh+4qvEXIiRnHenOju2P6nqLyjBHwm5ZfyJQjTrGDRJxnexyjK08AugEPeXtHyoSsz297EiV4gknYP4Tf06XZD6br/zS3GeVF0vPMXLakDf3l8nkhPxk7BqfVtcGUPiJZbS4j4VoijTtZQVpHfKx8vKoYd4oVs6I3zFnGDHMSZfNoYjzLWXzeCwkbXlAfWN8PEYL90O5IIj4YF5+gcJg/QxXwwChkAFh9K2xYRZx1B022O+SYDQTalKcDFSHZn5HHV1oxh/dhU9MhV3WB2fruOpij65FTuJ4WHi7hfpSiXJj6ODpPea2RKMPUV2NsR+RVVKEEX53qH6E+LlZMm9tKOfUNgmsJe1EAqvkBvXWPoFzygpUG2h2NMndpWBqPZE7ts=
+    repo: iTALC/italc-mso
     skip_cleanup: true
     file_glob: true
     file: "italc-*-$TARGET_OS-setup.exe"
