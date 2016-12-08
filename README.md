@@ -1,34 +1,15 @@
-iTALC 3.0.1 - Intelligent Teaching and Learning with Computers
-===============================================================
+# iTALC - Intelligent Teaching and Learning with Computers
 
 [![Build status](https://img.shields.io/travis/iTALC/italc.svg)](https://travis-ci.org/iTALC/italc)
+[![Latest stable release](https://img.shields.io/github/release/iTALC/italc.svg?maxAge=3600)](https://github.com/iTALC/italc/releases)
+[![Overall downloads on Github](https://img.shields.io/github/downloads/iTALC/italc/total.svg?maxAge=3600)](https://github.com/iTALC/italc/releases)
+[![Localise on transifex](https://img.shields.io/badge/localise-on_transifex-green.svg)](https://www.transifex.com/italc/italc/)
 
 
-Copyright (c) 2004-2016 Tobias Doerffel
-
-
-
-This program is free software; you can redistribute it and/or modify 
-it under the terms of the GNU General Public License as published by the
-Free Software Foundation; either version 2 of the License, or (at your option)
-any later version.
-
-This program is distributed in the hope that it will be useful, but
-WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
-details.
-
-You should have received a copy of the GNU General Public License along
-with this program; if not, write to the Free Software Foundation, Inc.,
-51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-
-
-
-What is iTALC?
-----------------
+## What is iTALC?
 
 iTALC is a powerful didactical tool which allows teachers to view and control
-computer labs and interact with students. It's available in many languages and
+computer labs and interact with students. It's available in different languages and
 provides lots of useful features such as:
 
   * see what's going on in computer labs by using overview mode and make snapshots
@@ -44,32 +25,26 @@ provides lots of useful features such as:
     installing the iTALC service
 
 
+## License
 
-How to build, install and setup iTALC
----------------------------------------
+Copyright (c) 2004-2016 Tobias Doerffel / iTALC Solutions.
 
-* Linux:
-   run CMake, make and make install - see INSTALL for details.
-
-* Windows:
-   run setup file
+See the file COPYING for the GNU GENERAL PUBLIC LICENSE.
 
 
+## Building
 
-More Information
-------------------
-
-http://italc.sourceforge.net/
-http://italc.sourceforge.net/wiki/
+See the file INSTALL for information on how to build iTALC.
 
 
+## Join development
 
-Help developing iTALC
------------------------
+If you are interested in iTALC, its programming, artwork, testing or something like that, you're welcome to participate in the development of iTALC!
 
-If you want to help developing iTALC, have any problems or anything else,
-feel free to e-mail me!
-
-My e-mail-adress: tobydox/at/users/dot/sf/dot/net
+Before starting the implementation of a new feature, please always file an issue for your idea and suggestions about your feature and about the intended implementation on GitHub or post to the iTALC developers mailing list (italc-devel@lists.sourceforge.net) and wait for replies! There may be different ideas, improvements, hints or maybe an already ongoing work on this feature.
 
 
+## More Information
+
+* http://italc.sourceforge.net/
+* http://italc.sourceforge.net/wiki/
