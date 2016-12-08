@@ -37,6 +37,8 @@ public:
 	QStringList computerGroups();
 	QStringList computerPools();
 
+	bool processAuthorizedGroups( const QString& accessingUser );
+
 	AccessControlRule::Action processAccessControlRules( const QString& accessingUser,
 														 const QString& accessingComputer,
 														 const QString& localUser,

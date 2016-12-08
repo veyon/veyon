@@ -96,6 +96,13 @@ QStringList AccessControlProvider::computerPools()
 
 
 
+bool AccessControlProvider::processAuthorizedGroups(const QString &accessingUser)
+{
+	return groupsOfUser( accessingUser ).toSet().intersects( ItalcCore::config->logonGroups().toSet() );
+}
+
+
+
 AccessControlRule::Action AccessControlProvider::processAccessControlRules(const QString &accessingUser,
 																		   const QString &accessingComputer,
 																		   const QString &localUser,
