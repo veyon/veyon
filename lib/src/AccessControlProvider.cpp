@@ -130,7 +130,11 @@ AccessControlProvider::AccessResult AccessControlProvider::checkAccess( const QS
 
 bool AccessControlProvider::processAuthorizedGroups(const QString &accessingUser)
 {
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 6, 0))
 	return groupsOfUser( accessingUser ).toSet().intersects( ItalcCore::config->logonGroups().toSet() );
+#else
+	return groupsOfUser( accessingUser ).toSet().intersect( ItalcCore::config->logonGroups().toSet() ).isEmpty() == false;
+#endif
 }
 
 
