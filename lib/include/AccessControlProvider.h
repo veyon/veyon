@@ -44,6 +44,8 @@ public:
 
 
 private:
+	QStringList groupsOfUser( const QString& userName );
+
 	bool isMemberOfGroup( AccessControlRule::EntityType entityType, const QString& entity, const QString& groupName );
 	bool isMemberOfComputerPool( AccessControlRule::EntityType entityType, const QString& entity, const QString& computerPoolName );
 	bool hasGroupsInCommon( AccessControlRule::EntityType entityOneType, const QString& entityOne,

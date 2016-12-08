@@ -121,24 +121,36 @@ AccessControlRule::Action AccessControlProvider::processAccessControlRules(const
 
 
 
-bool AccessControlProvider::isMemberOfGroup( AccessControlRule::EntityType entityType,
-											 const QString &entity,
-											 const QString &groupName )
+QStringList AccessControlProvider::groupsOfUser( const QString &userName )
 {
 	if( m_ldapDirectory.isEnabled() )
 	{
 		if( m_ldapDirectory.isBound() )
 		{
-			return ldapGroupsOfEntity( entityType, entity ).contains( groupName );
+			const QString userDn = m_ldapDirectory.users( userName ).value( 0 );
+
+			if( userDn.isEmpty() == false )
+			{
+				return m_ldapDirectory.groupsOfUser( userDn );
+			}
 		}
 	}
-	else if( entityType == AccessControlRule::EntityTypeUser &&
-			 LocalSystem::groupsOfUser( entity ).contains( groupName ) )
+	else
 	{
-		return true;
+		return LocalSystem::groupsOfUser( userName );
 	}
 
-	return false;
+	return QStringList();
+}
+
+
+
+bool AccessControlProvider::isMemberOfGroup( AccessControlRule::EntityType entityType,
+											 const QString &entity,
+											 const QString &groupName )
+{
+	return entityType == AccessControlRule::EntityTypeUser &&
+			groupsOfUser( entity ).contains( groupName );
 }
 
 
