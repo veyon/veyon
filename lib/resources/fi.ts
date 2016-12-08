@@ -98,7 +98,7 @@ Copyright © 2004-2013 Tobias Doerffel / iTALC Solutions</source>
         <translation type="unfinished">Vie tekstitiedostoksi</translation>
     </message>
     <message>
-        <source>Use this button for exporting this list of computers and usernames into a text-file. You can use this file later for collecting files after an exam has finished. This is sometimes neccessary, because some users might have finished and logged out earlier and so you cannot collect their files at the end of the exam.</source>
+        <source>Use this button for exporting this list of computers and usernames into a text-file. You can use this file later for collecting files after an exam has finished. This is sometimes necessary, because some users might have finished and logged out earlier and so you cannot collect their files at the end of the exam.</source>
         <translation type="unfinished">Käytä tätä luodaksesi tekstitiedoston tietokoneista ja käyttäjistä. Voit käyttää tiedostoa myöhemmin kerätäksesi tiedostoja kokeen loputtua. Tätä tarvitaan, jos jotkut käyttäjät kirjautuvat ulos muita aikaisemmin ja tiedostojen suora kopiointi ei enää onnistu.</translation>
     </message>
     <message>
@@ -1576,7 +1576,7 @@ p, li { white-space: pre-wrap; }
         <translation>Rekisteröityminen palveluun &apos;%1&apos; epäonnistui.</translation>
     </message>
     <message>
-        <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not registered.</source>
+        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not registered.</source>
         <translation>Kytkeytyminen Service Control Manageriin epäonnistui (ovatko käyttöoikeutesi riittävät?) - palvelua &apos;%1&apos; ei rekisteröity.</translation>
     </message>
     <message>
@@ -1612,11 +1612,11 @@ p, li { white-space: pre-wrap; }
         <translation>Palvelua &apos;%1&apos; ei löydy.</translation>
     </message>
     <message>
-        <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not unregistered.</source>
+        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not unregistered.</source>
         <translation>Kytkeytyminen Service Control Manageriin epäonnistui (ovatko käyttöoikeutesi riittävät?!) - palvelua &apos;%1&apos; ei poistettu.</translation>
     </message>
     <message>
-        <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not stopped.</source>
+        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not stopped.</source>
         <translation>Kytkeytyminen Service Control Manageriin epäonnistui (ovatko käyttöoikeutesi riittävät?!) - palvelua &apos;%1&apos; ei pysäytetty.</translation>
     </message>
 </context>

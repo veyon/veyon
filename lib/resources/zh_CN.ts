@@ -100,7 +100,7 @@ If you&apos;re interested in translating iTALC into your local or another langua
         <translation>导出为文本文件</translation>
     </message>
     <message>
-        <source>Use this button for exporting this list of computers and usernames into a text-file. You can use this file later for collecting files after an exam has finished. This is sometimes neccessary, because some users might have finished and logged out earlier and so you cannot collect their files at the end of the exam.</source>
+        <source>Use this button for exporting this list of computers and usernames into a text-file. You can use this file later for collecting files after an exam has finished. This is sometimes necessary, because some users might have finished and logged out earlier and so you cannot collect their files at the end of the exam.</source>
         <translation>使用此按钮将列表中的计算机和用户名导出为文本文件。例如，您可以在一场考试结束后使用此文件统计考生信息。这在某些时候是很有必要的，因为有些考生可能会提前完成并退出，那样考试结束后您就不能收集到所有参加考试的考生信息。</translation>
     </message>
     <message>
@@ -1555,7 +1555,7 @@ p, li { white-space: pre-wrap; }
         <translation>不能注册服务 &apos;%1&apos;。</translation>
     </message>
     <message>
-        <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not registered.</source>
+        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not registered.</source>
         <translation>无法连接服务控制管理器(您是否拥有所需的权限？) － 服务 &apos;%1&apos; 未被注册。</translation>
     </message>
     <message>
@@ -1591,11 +1591,11 @@ p, li { white-space: pre-wrap; }
         <translation>服务 &apos;%1&apos; 未发现。</translation>
     </message>
     <message>
-        <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not unregistered.</source>
+        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not unregistered.</source>
         <translation>无法连接服务控制管理器(您是否拥有所需的权限？) － 服务 &apos;%1&apos; 未能被取消注册。</translation>
     </message>
     <message>
-        <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not stopped.</source>
+        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not stopped.</source>
         <translation>无法连接服务控制管理器(您是否拥有所需的权限？) － 服务 &apos;%1&apos; 不能停止。</translation>
     </message>
 </context>

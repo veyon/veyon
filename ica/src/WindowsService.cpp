@@ -244,7 +244,7 @@ bool WindowsService::install()
 				QApplication::tr(
 					"The Service Control Manager could "
 					"not be contacted (do you have the "
-					"neccessary rights?!) - the "
+					"necessary rights?!) - the "
 					"service '%1' was not registered." ).
 							arg( m_displayName ) );
 		return false;
@@ -410,7 +410,7 @@ bool WindowsService::remove()
 	{
 		QMessageBox::critical( NULL, m_displayName,
 			QApplication::tr( "The Service Control Manager could not be "
-								"contacted (do you have the neccessary "
+								"contacted (do you have the necessary "
 								"rights?!) - the service '%1' was not "
 								"unregistered." ).arg( m_displayName ) );
 		suc = false;
@@ -479,7 +479,7 @@ bool WindowsService::start()
 		QMessageBox::critical( NULL, m_displayName,
 			QApplication::tr( "The Service Control Manager could "
 						"not be contacted (do you have "
-						"the neccessary rights?!) - "
+						"the necessary rights?!) - "
 						"the service '%1' was not "
 						"started." ).
 							arg( m_displayName )  );
@@ -552,7 +552,7 @@ bool WindowsService::stop()
 		QMessageBox::critical( NULL, m_displayName,
 			QApplication::tr( "The Service Control Manager could "
 						"not be contacted (do you have "
-						"the neccessary rights?!) - "
+						"the necessary rights?) - "
 						"the service '%1' was not "
 						"stopped." ).
 							arg( m_displayName ) );

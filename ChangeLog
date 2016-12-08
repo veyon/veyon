@@ -78,7 +78,7 @@
 	removed obsolete files
 
 	* build_mingw32:
-	-fno-strict-aliasing is not neccessary anymore with GCC 4.3
+	-fno-strict-aliasing is not necessary anymore with GCC 4.3
 
 	* ima/src/main.cpp:
 	if custom ISD-port is used, apply at startup
@@ -2314,7 +2314,7 @@
 
 	* setup/src/dialogs.cpp:
 	- fixed typo which made key-import not working - closes #1686845
-	- added "net stop icas"-call which might be neccessary when updating
+	- added "net stop icas"-call which might be necessary when updating
 	  old installations
 
 	* ica/src/isd_server.h:
@@ -3065,7 +3065,7 @@
 2006-12-01	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* ima/src/client_manager.cpp:
-	do not sleep in changeGlobalClientMode( ... ) at all as not neccessary
+	do not sleep in changeGlobalClientMode( ... ) at all as not necessary
 	any longer
 
 	* common/src/local_system.cpp:
@@ -3122,7 +3122,7 @@
 2006-11-27	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
 	* ima/src/main.cpp:
-	do not set mask on splash as not neccessary anymore
+	do not set mask on splash as not necessary anymore
 
 	* acinclude.m4:
 	* configure.in:
@@ -3409,7 +3409,7 @@
 	* ima/src/main_window.cpp:
 	added multi-user-logon-feature, i.e. the teacher enters the username
 	and password which will be used for logging on the according users on
-	selected computers by faking neccessary key-events
+	selected computers by faking necessary key-events
 
 2006-11-06	Tobias Doerffel	<tobydox/at/users/dot/sourceforge/dot/net>
 
@@ -3781,7 +3781,7 @@
 
 	* ima/src/client.cpp:
 	- do not lock m_syncMutex when changing client-mode as it isn't
-	  neccessary anymore and just causes senseless delays
+	  necessary anymore and just causes senseless delays
 	- only lock m_queueMutex where it is really needed, improves reaction-
 	  time when changing client-mode as well
 
@@ -4243,7 +4243,7 @@
 
 	* Makefile.am:
 	added target "win32-pkg" for creating distribution-zip-file of iTALC
-	including neccessary DLLs
+	including necessary DLLs
 
 	* configure.in:
 	changed some optimization-flags

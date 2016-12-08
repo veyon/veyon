@@ -98,7 +98,7 @@ Copyright © 2004-2013 Tobias Doerffel / iTALC Solutions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Use this button for exporting this list of computers and usernames into a text-file. You can use this file later for collecting files after an exam has finished. This is sometimes neccessary, because some users might have finished and logged out earlier and so you cannot collect their files at the end of the exam.</source>
+        <source>Use this button for exporting this list of computers and usernames into a text-file. You can use this file later for collecting files after an exam has finished. This is sometimes necessary, because some users might have finished and logged out earlier and so you cannot collect their files at the end of the exam.</source>
         <translation type="unfinished">Użyj tego przycisku aby wyeksportować widoczną listę komputerów i użytkowników do pliku tekstowego. Możesz użyć tego pliku po skończonych zajęciach aby sprawdzić, kto w nich brał udział. Pamiętaj, że niektórzy użytkownicy mogą wylogować się przed końcem zajęć, więc zrób listę w ich trakcie lub na początku.</translation>
     </message>
     <message>
@@ -1576,7 +1576,7 @@ p, li { white-space: pre-wrap; }
         <translation>Nie można zarejestrować usługi &apos;%1&apos;.</translation>
     </message>
     <message>
-        <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not registered.</source>
+        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not registered.</source>
         <translation>Manager usług nie odpowiada (masz odpowiednie uprawnienia?) - usługa &apos;%1&apos; nie została zarejestrowana.</translation>
     </message>
     <message>
@@ -1612,11 +1612,11 @@ p, li { white-space: pre-wrap; }
         <translation>Nie można znaleźć usługi &apos;%1&apos;.</translation>
     </message>
     <message>
-        <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not unregistered.</source>
+        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not unregistered.</source>
         <translation>Manager usług nie odpowiada (masz odpowiednie uprawnienia?) - usługa &apos;%1&apos; nie została wyrejestrowana.</translation>
     </message>
     <message>
-        <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not stopped.</source>
+        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not stopped.</source>
         <translation>Manager usług nie odpowiada (masz odpowiednie uprawnienia?) - usługa &apos;%1&apos; nie została zatrzymana.</translation>
     </message>
 </context>

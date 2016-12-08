@@ -99,7 +99,7 @@ If you&apos;re interested in translating iTALC into your local or another langua
         <translation>Exportera till textfil</translation>
     </message>
     <message>
-        <source>Use this button for exporting this list of computers and usernames into a text-file. You can use this file later for collecting files after an exam has finished. This is sometimes neccessary, because some users might have finished and logged out earlier and so you cannot collect their files at the end of the exam.</source>
+        <source>Use this button for exporting this list of computers and usernames into a text-file. You can use this file later for collecting files after an exam has finished. This is sometimes necessary, because some users might have finished and logged out earlier and so you cannot collect their files at the end of the exam.</source>
         <translation>Använd denna knapp för att exportera denna lista över datorer och användarnamn till en textfil. Du kan använda denna fil senare för att samla in filer efter ett prov har avslutats. Detta är ibland nödvändigt därför att vissa användare kanske har gjort färdigt provet tidigt och loggat ut och på sätt kan du inte samla in deras filer när provet avslutas.</translation>
     </message>
     <message>
@@ -1630,7 +1630,7 @@ p, li { white-space: pre-wrap; }
         <translation>Nemôžem zaregistrovať službu &apos;%1&apos;.</translation>
     </message>
     <message>
-        <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not registered.</source>
+        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not registered.</source>
         <translation>Nemôžem kontaktovat Správcu služieb (máte potrebné oprávnenie?!) - služba &apos;%1&apos; nebola zaregistrovaná.</translation>
     </message>
     <message>
@@ -1666,11 +1666,11 @@ p, li { white-space: pre-wrap; }
         <translation>Služba &apos;%1&apos; sa nedá nájsť.</translation>
     </message>
     <message>
-        <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not unregistered.</source>
+        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not unregistered.</source>
         <translation>Nemôžem kontaktovať Správcu služieb (máte potrebné oprávnenie?!) - služba &apos;%1&apos; sa nedá odregistrovať.</translation>
     </message>
     <message>
-        <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not stopped.</source>
+        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not stopped.</source>
         <translation>Nemôžem kontaktovať Správcu služieb (máte potrebné oprávnenie?!) - služba &apos;%1&apos; nebola zastavená.</translation>
     </message>
 </context>

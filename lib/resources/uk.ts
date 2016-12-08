@@ -100,7 +100,7 @@ If you&apos;re interested in translating iTALC into your local or another langua
         <translation>Експортувати до текстового файла</translation>
     </message>
     <message>
-        <source>Use this button for exporting this list of computers and usernames into a text-file. You can use this file later for collecting files after an exam has finished. This is sometimes neccessary, because some users might have finished and logged out earlier and so you cannot collect their files at the end of the exam.</source>
+        <source>Use this button for exporting this list of computers and usernames into a text-file. You can use this file later for collecting files after an exam has finished. This is sometimes necessary, because some users might have finished and logged out earlier and so you cannot collect their files at the end of the exam.</source>
         <translation>Скористайтеся цієї кнопкою, щоб експортувати список комп’ютерів і імен користувачів до текстового файла. Пізніше ви можете використати цей файл для збирання файлів після завершення контрольної. Іноді це просто необхідно, оскільки деякі користувачі можуть завершити роботу і вийти з системи раніше за інших, і ви не зможете зібрати їх роботи після завершення контрольної.</translation>
     </message>
     <message>
@@ -1555,7 +1555,7 @@ p, li { white-space: pre-wrap; }
         <translation>Не вдалося зареєструвати службу &apos;%1&apos;.</translation>
     </message>
     <message>
-        <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not registered.</source>
+        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not registered.</source>
         <translation>Неможливо зв’язатися з Керуванням службою (можливо, у Вас недостатньо прав?!) - службу &apos;%1&apos; не зареєстровано.</translation>
     </message>
     <message>
@@ -1591,11 +1591,11 @@ p, li { white-space: pre-wrap; }
         <translation>Службу &apos;%1&apos; неможливо знайти.</translation>
     </message>
     <message>
-        <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not unregistered.</source>
+        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not unregistered.</source>
         <translation>Неможливо зв’язатися з Керуванням службою (можливо, у Вас недостатньо прав?!) - реєстрацію служби &apos;%1&apos; не було скасовано.</translation>
     </message>
     <message>
-        <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not stopped.</source>
+        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not stopped.</source>
         <translation>Неможливо зв’язатися з Керуванням службою (можливо, у Вас недостатньо прав?!) - службу &apos;%1&apos; не було зупинено.</translation>
     </message>
 </context>

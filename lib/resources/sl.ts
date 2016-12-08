@@ -101,7 +101,7 @@ If you&apos;re interested in translating iTALC into your local or another langua
         <translation>Izvozi v besedilno datoteko</translation>
     </message>
     <message>
-        <source>Use this button for exporting this list of computers and usernames into a text-file. You can use this file later for collecting files after an exam has finished. This is sometimes neccessary, because some users might have finished and logged out earlier and so you cannot collect their files at the end of the exam.</source>
+        <source>Use this button for exporting this list of computers and usernames into a text-file. You can use this file later for collecting files after an exam has finished. This is sometimes necessary, because some users might have finished and logged out earlier and so you cannot collect their files at the end of the exam.</source>
         <translation>Uporabite ta gumb za izvoz tega seznama računalnikov in uporabniških imen v tekstovno datoteko. To datoteko lahko uporabite kasneje za pobiranje datotek, ko se je ocenjevanje končalo. To je občasno potrebno, saj so morebiti nekateri uporabniki končali prej ter se odjavili ter zaradi tega ne morete pobrat njihove datoteke ob koncu ocenjevanja.   </translation>
     </message>
     <message>
@@ -1557,7 +1557,7 @@ p, li { white-space: pre-wrap; }
         <translation>Ne morem registrirati storitve &apos;%1&apos;.</translation>
     </message>
     <message>
-        <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not registered.</source>
+        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not registered.</source>
         <translation>Storitev urejevalnika nadzora ne more biti povezana (imate ustrezne pravice?!) - storitev  &apos;%1&apos;  ni bila registrirana.</translation>
     </message>
     <message>
@@ -1593,11 +1593,11 @@ p, li { white-space: pre-wrap; }
         <translation>Storitve &apos;%1&apos; ni mogoče najti.</translation>
     </message>
     <message>
-        <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not unregistered.</source>
+        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not unregistered.</source>
         <translation>Storitev urejevalnika nadzora ne more biti povezana (imate ustrezne pravice?!) - storitevi  &apos;%1&apos;  ni bila neregistrirana.</translation>
     </message>
     <message>
-        <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not stopped.</source>
+        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not stopped.</source>
         <translation>Storitev urejevalnika nadzora ne more biti povezana (imate ustrezne pravice?!) - storitev  &apos;%1&apos;  ni bila ustavljena..</translation>
     </message>
 </context>

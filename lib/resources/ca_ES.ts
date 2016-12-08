@@ -102,7 +102,7 @@ Si voleu millorar una traducció existent, contacteu amb un desenvolupador d&apo
         <translation>Exporta a un fitxer de text</translation>
     </message>
     <message>
-        <source>Use this button for exporting this list of computers and usernames into a text-file. You can use this file later for collecting files after an exam has finished. This is sometimes neccessary, because some users might have finished and logged out earlier and so you cannot collect their files at the end of the exam.</source>
+        <source>Use this button for exporting this list of computers and usernames into a text-file. You can use this file later for collecting files after an exam has finished. This is sometimes necessary, because some users might have finished and logged out earlier and so you cannot collect their files at the end of the exam.</source>
         <translation>Utilitzeu aquest botó per exportar aquesta llista d&apos;ordinadors i noms d&apos;usuari a un fitxer de text. Podeu utilitzar aquest fitxer més tard per recollir els arxius després d&apos;acabar un examen. Açò de vegades és necessari, ja que alguns usuaris poden haver acabat i tancat la sessió abans, de manera que no és possible recuperar els seus fitxers al final de l&apos;examen.</translation>
     </message>
     <message>
@@ -1557,7 +1557,7 @@ p, li { white-space: pre-wrap; }
         <translation>No es pot registrar el servei &apos;%1&apos;.</translation>
     </message>
     <message>
-        <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not registered.</source>
+        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not registered.</source>
         <translation>No es pot contactar amb el gestor de control de serveis (teniu els permisos necessaris?!) . el servei &apos;%1&apos; no s&apos;ha registrat.</translation>
     </message>
     <message>
@@ -1593,11 +1593,11 @@ p, li { white-space: pre-wrap; }
         <translation>No es troba el servei &apos;%1&apos;.</translation>
     </message>
     <message>
-        <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not unregistered.</source>
+        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not unregistered.</source>
         <translation>No es pot contactar amb el gestor de control de serveis (teniu els permisos necessaris?!) . el servei &apos;%1&apos; no s&apos;ha des-registrat.</translation>
     </message>
     <message>
-        <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not stopped.</source>
+        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not stopped.</source>
         <translation>No es pot contactar amb el gestor de control de serveis (teniu els permisos necessaris?!) . el servei &apos;%1&apos; no s&apos;ha aturat.</translation>
     </message>
 </context>

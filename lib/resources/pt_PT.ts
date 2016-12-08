@@ -98,7 +98,7 @@ Copyright © 2004-2013 Tobias Doerffel / iTALC Solutions</source>
         <translation type="unfinished">Exportar para ficheiro de texto</translation>
     </message>
     <message>
-        <source>Use this button for exporting this list of computers and usernames into a text-file. You can use this file later for collecting files after an exam has finished. This is sometimes neccessary, because some users might have finished and logged out earlier and so you cannot collect their files at the end of the exam.</source>
+        <source>Use this button for exporting this list of computers and usernames into a text-file. You can use this file later for collecting files after an exam has finished. This is sometimes necessary, because some users might have finished and logged out earlier and so you cannot collect their files at the end of the exam.</source>
         <translation type="unfinished">Utilize este botão para exportar esta lista de computadores e nomes de utilizadores para um ficheiro de texto. Pode usar este ficheiro mais tarde para recolher ficheiros após um exame ter terminado. Isso às vezes é necessário, pois alguns utilizadores podem ter acabado e desligado mais cedo e por isso não pôde recolher os seus ficheiros no final do exame.</translation>
     </message>
     <message>
@@ -1576,7 +1576,7 @@ p, li { white-space: pre-wrap; }
         <translation>Não foi possível registrar serviço &apos;%1&apos;.</translation>
     </message>
     <message>
-        <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not registered.</source>
+        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not registered.</source>
         <translation>O Gestor de Serviços não pôde ser contactado (tem os privilégios necessários?) - o serviço &apos;%1&apos; não foi registado.</translation>
     </message>
     <message>
@@ -1612,11 +1612,11 @@ p, li { white-space: pre-wrap; }
         <translation>O serviço &apos;%1&apos; não foi encontrado.</translation>
     </message>
     <message>
-        <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not unregistered.</source>
+        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not unregistered.</source>
         <translation>O Gestor de Serviços não pôde ser contactado (tem os privilégios necessários?) - o serviço &apos;%1&apos; não foi removido.</translation>
     </message>
     <message>
-        <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not stopped.</source>
+        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not stopped.</source>
         <translation>O Gestor de Serviços não pôde ser contactado (tem os privilégios necessários?) - o serviço &apos;%1&apos; não foi interrompido.</translation>
     </message>
 </context>

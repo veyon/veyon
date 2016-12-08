@@ -106,7 +106,7 @@ Copyright © 2004-2011 Tobias Doerffel / iTALC Solutions
         <translation type="unfinished">Exportálás fájlba</translation>
     </message>
     <message>
-        <source>Use this button for exporting this list of computers and usernames into a text-file. You can use this file later for collecting files after an exam has finished. This is sometimes neccessary, because some users might have finished and logged out earlier and so you cannot collect their files at the end of the exam.</source>
+        <source>Use this button for exporting this list of computers and usernames into a text-file. You can use this file later for collecting files after an exam has finished. This is sometimes necessary, because some users might have finished and logged out earlier and so you cannot collect their files at the end of the exam.</source>
         <translation type="unfinished">A gomb segítségével exportálhatja a számítógépeket és a felhasználókat a szöveges állományba. A vizsga befejeztével egyszerűen begyűjtheti ezeket a fájlokat. Néhány alkalommal szükséges lehet, mert a vizsgával már korábban végzett és kijelentkezett felhasználók már nem érhetőek el a rendszerben.</translation>
     </message>
     <message>
@@ -1602,7 +1602,7 @@ vagy Az elérhető munkaterület(ek) / munkaasztal(ok) kiválasztásához kattin
         <translation type="unfinished">Nem sikerült regisztrálni a %1 szolgáltatást.</translation>
     </message>
     <message>
-        <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not registered.</source>
+        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not registered.</source>
         <translation type="unfinished">A Service Control Manager nem tudott kapcsolódni (rendelkezik Ön a megfelelő jogosultságokkal?!) - a &apos;%1&apos; szolgáltatás nem volt regisztrálva.</translation>
     </message>
     <message>
@@ -1638,11 +1638,11 @@ vagy Az elérhető munkaterület(ek) / munkaasztal(ok) kiválasztásához kattin
         <translation type="unfinished">Nem található a &apos;%1&apos; szolgáltatás.</translation>
     </message>
     <message>
-        <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not unregistered.</source>
+        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not unregistered.</source>
         <translation type="unfinished">A Service Control Manager nem tudott kapcsolódni (rendelkezik Ön a megfelelő jogosultságokkal?!) - a &apos;%1&apos; szolgáltatás még nem volt regisztrálva.</translation>
     </message>
     <message>
-        <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not stopped.</source>
+        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not stopped.</source>
         <translation type="unfinished">A Service Control Manager nem tudott kapcsolódni (rendelkezik Ön a megfelelő jogosultságokkal?!) - a &apos;%1&apos; szolgáltatás nem állt meg.</translation>
     </message>
     <message>

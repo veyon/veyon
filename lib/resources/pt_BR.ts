@@ -98,7 +98,7 @@ Se você estiver interessado em traduzir o iTALC em seu idioma local ou outro id
         <translation>Exportar para arquivo de texto</translation>
     </message>
     <message>
-        <source>Use this button for exporting this list of computers and usernames into a text-file. You can use this file later for collecting files after an exam has finished. This is sometimes neccessary, because some users might have finished and logged out earlier and so you cannot collect their files at the end of the exam.</source>
+        <source>Use this button for exporting this list of computers and usernames into a text-file. You can use this file later for collecting files after an exam has finished. This is sometimes necessary, because some users might have finished and logged out earlier and so you cannot collect their files at the end of the exam.</source>
         <translation>Use este botão para exportar esta lista de computadores e nomes de usuários para um arquivo texto. Você pode usar este arquivo mais tarde para recolher os arquivos dos usuários depois que um exame terminou. As vezes isso é necessário, porque alguns usuários podem ter terminado o exame mais cedo e ter feito logoff do computador e por isso impedindo você de recolher seus arquivos no final do exame.</translation>
     </message>
     <message>
@@ -1553,7 +1553,7 @@ p, li { white-space: pre-wrap; }
         <translation>Não foi possível registrar o serviço  &apos;%1&apos;.</translation>
     </message>
     <message>
-        <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not registered.</source>
+        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not registered.</source>
         <translation>O Gerenciador de Controle de Servicos não pode ser contatado (você tem os direitos necessários?!) - o serviço &apos;%1&apos; não foi registrado.</translation>
     </message>
     <message>
@@ -1589,11 +1589,11 @@ p, li { white-space: pre-wrap; }
         <translation>O serviço &apos;%1&apos; não pode ser encontrado.</translation>
     </message>
     <message>
-        <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not unregistered.</source>
+        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not unregistered.</source>
         <translation>O Gerenciador de Controle de Servicos não pode ser contatado (você tem os direitos necessários?!) - o serviço &apos;%1&apos; não foi registrado.</translation>
     </message>
     <message>
-        <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not stopped.</source>
+        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not stopped.</source>
         <translation>O Gerenciador de Controle de Servicos não pode ser contatado (você tem os direitos necessários?!) - o serviço &apos;%1&apos; não foi parado.</translation>
     </message>
 </context>

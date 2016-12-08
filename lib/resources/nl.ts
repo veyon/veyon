@@ -98,7 +98,7 @@ Copyright © 2004-2016 Tobias Doerffel / iTALC Solutions</source>
         <translation>Exporteren naar tekst-bestand</translation>
     </message>
     <message>
-        <source>Use this button for exporting this list of computers and usernames into a text-file. You can use this file later for collecting files after an exam has finished. This is sometimes neccessary, because some users might have finished and logged out earlier and so you cannot collect their files at the end of the exam.</source>
+        <source>Use this button for exporting this list of computers and usernames into a text-file. You can use this file later for collecting files after an exam has finished. This is sometimes necessary, because some users might have finished and logged out earlier and so you cannot collect their files at the end of the exam.</source>
         <translation>Gebruik deze knop voor het exporteren van deze lijst met computers en gebruikersnamen in een text-bestand. U kunt dit bestand later gebruiken voor het verzamelen van bestanden na een examen voltooid is. Dit is soms nodig, omdat sommige gebruikers eerder zijn afgerond en uitgelogd hebben en dus kun je hun bestanden niet verzamelen aan het einde van het examen.</translation>
     </message>
     <message>
@@ -1584,7 +1584,7 @@ p, li { white-space: pre-wrap; }
         <translation>Niet in staat om dienst &apos;%1&apos; te registreren.</translation>
     </message>
     <message>
-        <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not registered.</source>
+        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not registered.</source>
         <translation>De Service Control Manager kon niet worden gecontacteerd (heb je de benodigde rechten?!) - de service &apos;%1&apos; werd niet geregistreerd.</translation>
     </message>
     <message>
@@ -1620,11 +1620,11 @@ p, li { white-space: pre-wrap; }
         <translation>De service &apos;%1&apos; kon niet gevonden worden.</translation>
     </message>
     <message>
-        <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not unregistered.</source>
+        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not unregistered.</source>
         <translation>De Service Control Manager kon niet worden gecontacteerd (heb je de benodigde rechten?!) - de service &apos;%1&apos; werd niet op ongeristreerd gezet.</translation>
     </message>
     <message>
-        <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not stopped.</source>
+        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not stopped.</source>
         <translation>De Service Control Manager kon niet worden gecontacteerd (heb je de benodigde rechten?!) - de service &apos;%1&apos; kon niet worden gestopt.</translation>
     </message>
 </context>

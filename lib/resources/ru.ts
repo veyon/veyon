@@ -100,7 +100,7 @@ If you&apos;re interested in translating iTALC into your local or another langua
         <translation>Экспорт в текстовый файл</translation>
     </message>
     <message>
-        <source>Use this button for exporting this list of computers and usernames into a text-file. You can use this file later for collecting files after an exam has finished. This is sometimes neccessary, because some users might have finished and logged out earlier and so you cannot collect their files at the end of the exam.</source>
+        <source>Use this button for exporting this list of computers and usernames into a text-file. You can use this file later for collecting files after an exam has finished. This is sometimes necessary, because some users might have finished and logged out earlier and so you cannot collect their files at the end of the exam.</source>
         <translation>Используйте эту кнопку для экспорта этого списока компьютеров и пользователей в текстовый файл. Вы можете использовать этот файл позже для сбора файлов после завершения экзамена. Иногда это необходимо, потому что некоторые пользователи могли завершить работу и выполнить выход раньше и поэтому вы не сможете собрать их файлы в конце экзамена.</translation>
     </message>
     <message>
@@ -1555,7 +1555,7 @@ p, li { white-space: pre-wrap; }
         <translation>Не удалось зарегистрировать службу &apos;%1&apos;.</translation>
     </message>
     <message>
-        <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not registered.</source>
+        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not registered.</source>
         <translation>Невозможно связаться с Service Control Manager (может у Вас недостаточно прав?!) - служба &apos;%1&apos; не зарегистрирована.</translation>
     </message>
     <message>
@@ -1591,11 +1591,11 @@ p, li { white-space: pre-wrap; }
         <translation>Службу &apos;%1&apos; нельзя найти.</translation>
     </message>
     <message>
-        <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not unregistered.</source>
+        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not unregistered.</source>
         <translation>Невозможно связаться с Service Control Manager (может у Вас недостаточно прав?!) - отмена регистрации службы &apos;%1&apos; не выполнена.</translation>
     </message>
     <message>
-        <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not stopped.</source>
+        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not stopped.</source>
         <translation>Невозможно связаться с Service Control Manager (может у Вас недостаточно прав?!) - служба &apos;%1&apos; не остановлена.</translation>
     </message>
 </context>

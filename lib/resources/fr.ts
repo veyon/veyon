@@ -100,7 +100,7 @@ Si vous êtes intéressé pour traduire iTALC dans votre langue natale ou dans u
         <translation>Exporte dans un fichier texte</translation>
     </message>
     <message>
-        <source>Use this button for exporting this list of computers and usernames into a text-file. You can use this file later for collecting files after an exam has finished. This is sometimes neccessary, because some users might have finished and logged out earlier and so you cannot collect their files at the end of the exam.</source>
+        <source>Use this button for exporting this list of computers and usernames into a text-file. You can use this file later for collecting files after an exam has finished. This is sometimes necessary, because some users might have finished and logged out earlier and so you cannot collect their files at the end of the exam.</source>
         <translation>Utilisez ce bouton pour exporter cette liste d&apos;ordinateurs et de noms d&apos;utilisateurs dans un fichier texte. 
 Vous pourrez utiliser ensuite ce fichier pour collecter des fichiers à la fin d&apos;un examen. C&apos;est parfois nécessaires, car certains étudiants peuvent terminer et se déconnecter en avance, ce qui vous empêche de collecter leurs fichiers.</translation>
     </message>
@@ -1556,7 +1556,7 @@ p, li { white-space: pre-wrap; }
         <translation>Impossible d&apos;enregistrer le service « %1 ».</translation>
     </message>
     <message>
-        <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not registered.</source>
+        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not registered.</source>
         <translation>Le contrôleur de services (SCM) ne répond pas (avez-vous les permissions nécessaires ?) - le service « %1 » n&apos;a pas été enregistré.</translation>
     </message>
     <message>
@@ -1592,11 +1592,11 @@ p, li { white-space: pre-wrap; }
         <translation>Le service « %1 » est introuvable.</translation>
     </message>
     <message>
-        <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not unregistered.</source>
+        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not unregistered.</source>
         <translation>Le contrôleur de service (SCM) ne répond pas (avez-vous les permissions nécessaires ?) - le service « %1 » n&apos;a pas été désenregistré.</translation>
     </message>
     <message>
-        <source>The Service Control Manager could not be contacted (do you have the neccessary rights?!) - the service &apos;%1&apos; was not stopped.</source>
+        <source>The Service Control Manager could not be contacted (do you have the necessary rights?!) - the service &apos;%1&apos; was not stopped.</source>
         <translation>Le contrôleur de services (SCM) ne répond pas (avez-vous les permissions nécessaires ?) - le service « %1 » n&apos;a pas été arrêté.</translation>
     </message>
 </context>
