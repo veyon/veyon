@@ -23,6 +23,7 @@
  */
 
 #include <QDebug>
+#include <QHostInfo>
 
 #include "AccessControlProvider.h"
 #include "ItalcConfiguration.h"
@@ -96,10 +97,10 @@ QStringList AccessControlProvider::computerPools()
 
 
 
-AccessControlProvider::AccessResult AccessControlProvider::checkAccess( const QString &accessingUser,
-																		const QString &accessingComputer,
-																		const QString &localUser,
-																		const QString &localComputer)
+AccessControlProvider::AccessResult AccessControlProvider::checkAccess( QString accessingUser,
+																		QString accessingComputer,
+																		QString localUser,
+																		QString localComputer )
 {
 	if( ItalcCore::config->isAccessRestrictedToUserGroups() )
 	{
@@ -110,6 +111,16 @@ AccessControlProvider::AccessResult AccessControlProvider::checkAccess( const QS
 	}
 	else if( ItalcCore::config->isAccessControlRulesProcessingEnabled() )
 	{
+		if( localUser.isEmpty() )
+		{
+			localUser = LocalSystem::User::loggedOnUser().name();
+		}
+
+		if( localComputer.isEmpty() )
+		{
+			localComputer = QHostInfo::localHostName();
+		}
+
 		if( processAccessControlRules( accessingUser, accessingComputer, localUser, localComputer ) ==
 				AccessControlRule::ActionAllow )
 		{
