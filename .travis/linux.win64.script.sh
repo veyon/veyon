@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-../build_mingw64
+../cmake/build_mingw64
