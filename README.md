@@ -3,7 +3,7 @@
 [![Build status](https://img.shields.io/travis/iTALC/italc.svg)](https://travis-ci.org/iTALC/italc)
 [![Latest stable release](https://img.shields.io/github/release/iTALC/italc.svg?maxAge=3600)](https://github.com/iTALC/italc/releases)
 [![Overall downloads on Github](https://img.shields.io/github/downloads/iTALC/italc/total.svg?maxAge=3600)](https://github.com/iTALC/italc/releases)
-[![Localise on transifex](https://img.shields.io/badge/localise-on_transifex-green.svg)](https://www.transifex.com/italc/italc/)
+[![Localise on transifex](https://img.shields.io/badge/localise-on_transifex-green.svg)](https://www.transifex.com/italc-solutions/italc/)
 
 
 ## What is iTALC?
