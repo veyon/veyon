@@ -1,7 +1,7 @@
 /*
  * PasswordDialog.cpp - dialog for querying logon credentials
  *
- * Copyright (c) 2010-2011 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2010-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -98,14 +98,5 @@ void PasswordDialog::updateOkButton()
 {
 	ui->buttonBox->button( QDialogButtonBox::Ok )->
 					setEnabled( !username().isEmpty() && !password().isEmpty() );
-}
-
-
-
-void PasswordDialog::manage()
-{
-	QProcess::startDetached( QCoreApplication::applicationDirPath() +
-								QDir::separator() + "imc",
-									QStringList( "-manageACLs" ) );
 }
 

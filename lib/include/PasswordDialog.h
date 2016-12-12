@@ -1,7 +1,7 @@
 /*
  * PasswordDialog.h - declaration of password dialog
  *
- * Copyright (c) 2010-2011 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2010-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -46,7 +46,6 @@ public:
 
 private slots:
 	void updateOkButton();
-	void manage();
 
 
 private:
