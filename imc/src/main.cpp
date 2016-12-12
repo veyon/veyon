@@ -346,11 +346,6 @@ int main( int argc, char **argv )
 
 	mainWindow->show();
 
-	if( app->arguments().contains( "-manageACLs" ) )
-	{
-		mainWindow->manageACLs();
-	}
-
 	ilog( Info, "App.Exec" );
 
 	int ret = app->exec();

@@ -24,11 +24,6 @@
 
 #include <italcconfig.h>
 
-#ifdef ITALC_BUILD_WIN32
-#include <windows.h>
-void Win32AclEditor( HWND hwnd );
-#endif
-
 #include <QtCore/QDir>
 #include <QtCore/QProcess>
 #include <QtCore/QTimer>
@@ -64,10 +59,6 @@ MainWindow::MainWindow() :
 	m_configChanged( false )
 {
 	ui->setupUi( this );
-
-#ifndef ITALC_BUILD_WIN32
-	ui->manageACLs->hide();
-#endif
 
 	setWindowTitle( tr( "iTALC Management Console %1" ).arg( ITALC_VERSION ) );
 
@@ -106,7 +97,6 @@ MainWindow::MainWindow() :
 	CONNECT_BUTTON_SLOT( openPrivateKeyBaseDir );
 
 	CONNECT_BUTTON_SLOT( launchKeyFileAssistant );
-	CONNECT_BUTTON_SLOT( manageACLs );
 	CONNECT_BUTTON_SLOT( testLogonAuthentication );
 
 	CONNECT_BUTTON_SLOT( generateBugReportArchive );
@@ -320,23 +310,6 @@ void MainWindow::launchKeyFileAssistant()
 {
 	KeyFileAssistant().exec();
 }
-
-
-
-
-void MainWindow::manageACLs()
-{
-#ifdef ITALC_BUILD_WIN32
-	Win32AclEditor( LocalSystem::getHWNDForWidget( this ) );
-
-	if( LogonAclSettings().acl() !=
-				ItalcCore::config->value( "EncodedLogonACL", "Authentication" ) )
-	{
-		configurationChanged();
-	}
-#endif
-}
-
 
 
 

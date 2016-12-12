@@ -42,10 +42,6 @@ public:
 	void apply();
 
 
-public slots:
-	void manageACLs();
-
-
 private slots:
 	void configurationChanged();
 	void resetOrApply( QAbstractButton *btn );
