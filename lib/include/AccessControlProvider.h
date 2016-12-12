@@ -43,10 +43,7 @@ public:
 	QStringList computerGroups();
 	QStringList computerPools();
 
-	AccessResult checkAccess( QString accessingUser,
-							  QString accessingComputer,
-							  QString localUser = QString(),
-							  QString localComputer = QString() );
+	AccessResult checkAccess( const QString& accessingUser, const QString& accessingComputer );
 
 	bool processAuthorizedGroups( const QString& accessingUser );
 

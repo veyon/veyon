@@ -97,10 +97,7 @@ QStringList AccessControlProvider::computerPools()
 
 
 
-AccessControlProvider::AccessResult AccessControlProvider::checkAccess( QString accessingUser,
-																		QString accessingComputer,
-																		QString localUser,
-																		QString localComputer )
+AccessControlProvider::AccessResult AccessControlProvider::checkAccess( const QString& accessingUser, const QString& accessingComputer )
 {
 	if( ItalcCore::config->isAccessRestrictedToUserGroups() )
 	{
@@ -111,18 +108,10 @@ AccessControlProvider::AccessResult AccessControlProvider::checkAccess( QString 
 	}
 	else if( ItalcCore::config->isAccessControlRulesProcessingEnabled() )
 	{
-		if( localUser.isEmpty() )
-		{
-			localUser = LocalSystem::User::loggedOnUser().name();
-		}
-
-		if( localComputer.isEmpty() )
-		{
-			localComputer = QHostInfo::localHostName();
-		}
-
-		if( processAccessControlRules( accessingUser, accessingComputer, localUser, localComputer ) ==
-				AccessControlRule::ActionAllow )
+		if( processAccessControlRules( accessingUser,
+									   accessingComputer,
+									   LocalSystem::User::loggedOnUser().name(),
+									   QHostInfo::localHostName() ) == AccessControlRule::ActionAllow )
 		{
 			return AccessAllow;
 		}
