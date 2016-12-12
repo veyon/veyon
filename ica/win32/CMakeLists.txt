@@ -30,7 +30,6 @@ ADD_LIBRARY(authSSP MODULE
 				${CMAKE_CURRENT_SOURCE_DIR}/addon/ms-logon/authSSP/authSSP.cpp
 				${CMAKE_CURRENT_SOURCE_DIR}/addon/ms-logon/authSSP/EventLogging.cpp
 				${CMAKE_CURRENT_SOURCE_DIR}/addon/ms-logon/authSSP/GenClientServerContext.cpp
-				${CMAKE_CURRENT_SOURCE_DIR}/addon/ms-logon/authSSP/vncAccessControl.cpp
 				${CMAKE_CURRENT_SOURCE_DIR}/addon/ms-logon/authSSP/vncSSP.cpp
 				${AUTHSSP_WINRC})
 TARGET_LINK_LIBRARIES(authSSP ItalcCore)

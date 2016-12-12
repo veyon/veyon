@@ -32,10 +32,7 @@
 Fn fn;
 
 BOOL CUPSD2(const char * domainuser, 
-		  const char *password, 
-		  PSECURITY_DESCRIPTOR psdSD,
-		  PBOOL isAuthenticated,
-		  PDWORD pdwAccessGranted)	// returns bitmask with accessrights
+		  const char *password)	// returns bitmask with accessrights
 {
 	char domain[MAXLEN];
 	const char *user = 0;
@@ -56,22 +53,13 @@ BOOL CUPSD2(const char * domainuser,
 	strcpy(password2, password);
 #endif
 
-	// On NT4, prepend computer- or domainname if username is unqualified.
-	if (isNT4() && _tcscmp(domain2, _T("")) == 0) {
-		if (!QualifyName(user2, domain2)) {
-			_tcscpy(domain2, _T("\0"));
-		}
-	}
-	return SSPLogonUser(domain2, user2, password2, psdSD, isAuthenticated, pdwAccessGranted);
+	return SSPLogonUser(domain2, user2, password2);
 }
 
 
 BOOL WINAPI SSPLogonUser(LPTSTR szDomain, 
 						 LPTSTR szUser, 
-						 LPTSTR szPassword, 
-						 PSECURITY_DESCRIPTOR psdSD,
-						 PBOOL isAuthenticated,
-						 PDWORD pdwAccessGranted)	// returns bitmask with accessrights
+						 LPTSTR szPassword)	// returns bitmask with accessrights
 {
 	AUTH_SEQ    asServer   = {0};
 	AUTH_SEQ    asClient   = {0};
@@ -155,17 +143,7 @@ BOOL WINAPI SSPLogonUser(LPTSTR szDomain,
             &fDone))
 			__leave;
 		
-		*isAuthenticated = TRUE;
-
-		// Check authorization
-		if (IsImpersonationAllowed()) {
-			if (ImpersonateAndCheckAccess(&(asServer.hctxt), psdSD, pdwAccessGranted))
-				fResult = TRUE;
-		} else {
-			// Todo: Make alternative access check
-			if (ImpersonateAndCheckAccess(&(asServer.hctxt), psdSD, pdwAccessGranted))
-				fResult = TRUE;
-		}
+		fResult = TRUE;
 
 	} __finally {
 
@@ -196,38 +174,17 @@ BOOL WINAPI SSPLogonUser(LPTSTR szDomain,
 	return fResult;
 }
 
-BOOL ImpersonateAndCheckAccess(PCtxtHandle phContext, 
-							   PSECURITY_DESCRIPTOR psdSD, 
-							   PDWORD pdwAccessGranted) {
-	HANDLE hToken = NULL;
+BOOL Impersonate(PCtxtHandle phContext) {
 	
 	// AccessCheck() variables
-	DWORD           dwAccessDesired = MAXIMUM_ALLOWED;
-	PRIVILEGE_SET   PrivilegeSet;
-	DWORD           dwPrivSetSize = sizeof(PRIVILEGE_SET);
 	BOOL            fAccessGranted = FALSE;
-	GENERIC_MAPPING GenericMapping = { vncGenericRead, vncGenericWrite, 
-									   vncGenericExecute, vncGenericAll };
 	
-	// This only does something if we want to use generic access
-	// rights, like GENERIC_ALL, in our call to AccessCheck().
-	MapGenericMask(&dwAccessDesired, &GenericMapping);
-	
-	// AccessCheck() requires an impersonation token.
-	if ((fn._ImpersonateSecurityContext(phContext) == SEC_E_OK)
-		&& OpenThreadToken(GetCurrentThread(), TOKEN_QUERY, TRUE, &hToken)
-		&& AccessCheck(psdSD, hToken, dwAccessDesired, &GenericMapping,
-		&PrivilegeSet, &dwPrivSetSize, pdwAccessGranted, &fAccessGranted)) {
-		// Restrict access to relevant rights only
-		fAccessGranted = AreAnyAccessesGranted(*pdwAccessGranted, ViewOnly | Interact);
+	if (fn._ImpersonateSecurityContext(phContext) == SEC_E_OK) {
+		fAccessGranted = TRUE;
 	}
 	
 	// End impersonation
 	fn._RevertSecurityContext(phContext);
-	
-	// Close handles
-	if (hToken)
-		CloseHandle(hToken);
 	
 	return fAccessGranted;
 }
@@ -316,17 +273,3 @@ bool QualifyName(const TCHAR *user, LPTSTR DomName) {
 	return isNameQualified;
 }
 
-bool isNT4() {
-	OSVERSIONINFO VerInfo;
-
-	VerInfo.dwOSVersionInfoSize = sizeof (OSVERSIONINFO);
-	if (!GetVersionEx (&VerInfo))   // If this fails, something has gone wrong
-		return false;
-	
-	if (VerInfo.dwPlatformId == VER_PLATFORM_WIN32_NT &&
-		VerInfo.dwMajorVersion == 4 &&
-		VerInfo.dwMinorVersion == 0)
-		return true;
-	else
-		return false;
-}

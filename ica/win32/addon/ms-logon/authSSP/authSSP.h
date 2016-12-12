@@ -45,21 +45,13 @@
 #define MAXLEN 256
 
 BOOL CUPSD2(const char * domainuser, 
-					   const char *password, 
-					   PSECURITY_DESCRIPTOR psdSD,
-					   PBOOL isAuthenticated,
-					   PDWORD pdwAccessGranted);
+					   const char *password);
 
 BOOL WINAPI SSPLogonUser(LPTSTR szDomain, 
 						 LPTSTR szUser, 
-						 LPTSTR szPassword, 
-						 PSECURITY_DESCRIPTOR psdSD, 
-						 PBOOL isAuthenticated,
-						 PDWORD pdwAccessGranted);
+						 LPTSTR szPassword);
 
-BOOL ImpersonateAndCheckAccess(PCtxtHandle phContext, 
-							   PSECURITY_DESCRIPTOR psdSD, 
-							   PDWORD pdwAccessGranted);
+BOOL Impersonate(PCtxtHandle phContext);
 
 BOOL GenClientContext(PAUTH_SEQ pAS, 
 					  PSEC_WINNT_AUTH_IDENTITY pAuthIdentity,
@@ -83,16 +75,8 @@ HMODULE LoadSecurityDll();
 const char * SplitString(const char *input, char separator, char *head);
 bool IsImpersonationAllowed();
  
-#define ViewOnly 0x0001
-#define	Interact 0x0002
-#define vncGenericRead (STANDARD_RIGHTS_READ | ViewOnly)
-#define	vncGenericWrite	(STANDARD_RIGHTS_WRITE | Interact)
-#define	vncGenericExecute (STANDARD_RIGHTS_EXECUTE)
-#define	vncGenericAll (STANDARD_RIGHTS_ALL | ViewOnly | Interact)
-
 void LOG(long EvenID, const TCHAR *format, ...);
 
 bool QualifyName(const TCHAR *user, LPTSTR DomName);
-bool isNT4();
 
 

@@ -25,24 +25,13 @@
 #include <objbase.h> // for CoInitialize/CoUninitialize ???
 #include <time.h>
 #include "vncSSP.h"
-// From vncAccessControl.h
-#define ViewOnly 0x0001
-#define Interact 0x0002
 
 //#include "..\..\winvnc\localization.h" // Act : add localization on messages
-
-CheckUserPasswordSDFn CheckUserPasswordSD = 0;
-
-const TCHAR REGISTRY_KEY [] = _T("Software\\UltraVnc");
 
 AUTHSSP_API
 int CUPSD(const char * userin, const char *password, const char *machine)
 {
-	DWORD dwAccessGranted = 0;
-	BOOL isAccessOK = FALSE;
 	BOOL isAuthenticated = FALSE;
-	bool isViewOnly = false;
-	bool isInteract = false;
 	TCHAR machine2[MAXSTRING];
 	TCHAR user2[MAXSTRING];
 #if defined(UNICODE) || defined(_UNICODE)
@@ -53,44 +42,7 @@ int CUPSD(const char * userin, const char *password, const char *machine)
 	strcpy(user2, userin);
 #endif
 
-	OSVERSIONINFO VerInfo;
-	VerInfo.dwOSVersionInfoSize = sizeof (OSVERSIONINFO);
-	if (!GetVersionEx (&VerInfo)) {  // If this fails, something has gone wrong
-		return FALSE;
-	}
-	
-	if (VerInfo.dwPlatformId == VER_PLATFORM_WIN32_NT) { // WinNT 3.51 or better 
-		vncAccessControl vncAC;
-		isAccessOK = CUPSD2(userin, password, vncAC.GetSD(), &isAuthenticated, &dwAccessGranted);
-		// This logging should be moved to LOGLOGONUSER etc.
-            time_t current;
-			time(&current);
-			char* timestr = ctime(&current);
-			timestr[24] = '\0'; // remove newline
-			LOG(0, "%s - CUPSD2: Access is %u, user %s is %sauthenticated, access granted is 0x%x\n",
-				timestr, isAccessOK, userin, isAuthenticated ? "" : "not ", (int) dwAccessGranted);
-	} else { // message text to be moved to localization.h
-		MessageBox(NULL, _T("New MS-Logon currently not supported on Win9x"), _T("Warning"), MB_OK);
-		return FALSE;
-	}
-
-	if (isAccessOK) {
-		if (dwAccessGranted & ViewOnly) isViewOnly = true;
-		if (dwAccessGranted & Interact) isInteract = true;
-	}
-	
-	//LookupAccountName(NULL, user2, Sid, cbSid, DomainName, cbDomainName, peUse);
-
-	if (isInteract)	{
-		LOG(0x00640001L, _T("Connection received from %s using %s account\n"), machine2, user2);
-	} else if (isViewOnly) {
-		LOG(0x00640001L, _T("Connection received from %s using %s account\n"), machine2, user2);
-		isAccessOK = 2;
-	} else {
-		LOG(0x00640002L, _T("Invalid attempt (not %s) from client %s using %s account\n"), 
-			isAuthenticated ? _T("authorized") : _T("authenticated"), machine2, user2);
-	}
-	return isAccessOK;
+	return CUPSD2(userin, password);
 }
 	
 
