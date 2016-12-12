@@ -130,6 +130,8 @@ AccessControlProvider::AccessResult AccessControlProvider::checkAccess( const QS
 
 bool AccessControlProvider::processAuthorizedGroups(const QString &accessingUser)
 {
+	qDebug() << "AccessControlProvider::processAuthorizedGroups(): processing for user" << accessingUser;
+
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 6, 0))
 	return groupsOfUser( accessingUser ).toSet().intersects( ItalcCore::config->logonGroups().toSet() );
 #else
@@ -144,6 +146,9 @@ AccessControlRule::Action AccessControlProvider::processAccessControlRules(const
 																		   const QString &localUser,
 																		   const QString &localComputer)
 {
+	qDebug() << "AccessControlProvider::processAccessControlRules(): processing rules for"
+			 << accessingUser << accessingComputer << localUser << localComputer;
+
 	for( auto rule : m_accessControlRules )
 	{
 		// rule disabled?
@@ -155,9 +160,13 @@ AccessControlRule::Action AccessControlProvider::processAccessControlRules(const
 
 		if( matchConditions( rule, accessingUser, accessingComputer, localUser, localComputer ) )
 		{
+			qDebug() << "AccessControlProvider::processAccessControlRules(): rule"
+					 << rule.name() << "matched with action" << rule.action();
 			return rule.action();
 		}
 	}
+
+	qDebug() << "AccessControlProvider::processAccessControlRules(): no matching rule, denying access";
 
 	return AccessControlRule::ActionDeny;
 }
@@ -367,6 +376,8 @@ bool AccessControlProvider::matchConditions( const AccessControlRule &rule,
 	const AccessControlRule::EntityType ruleEntityType = AccessControlRule::entityType( ruleEntity );
 
 	const QString ruleEntityValue = lookupEntity( ruleEntity, accessingUser, accessingComputer, localUser, localComputer );
+
+	qDebug() << "AccessControlProvider::matchConditions():" << rule.name() << rule.entity() << ruleEntityValue << rule.conditions();
 
 	if( rule.hasCondition( AccessControlRule::ConditionMemberOfGroup ) &&
 			isMemberOfGroup( ruleEntityType,
