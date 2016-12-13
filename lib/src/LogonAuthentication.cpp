@@ -1,7 +1,7 @@
 /*
  * LogonAuthentication.cpp - class doing logon authentication
  *
- * Copyright (c) 2011 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2011-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -24,31 +24,26 @@
 #include <italcconfig.h>
 
 #include <QtCore/QDebug>
-#include <QtCore/QLibrary>
 #include <QtCore/QProcess>
 
 #include "LogonAuthentication.h"
 #include "ItalcConfiguration.h"
 #include "ItalcCore.h"
 
+#ifdef ITALC_BUILD_WIN32
+#include "authSSP.h"
+#endif
+
 
 bool LogonAuthentication::authenticateUser( const AuthenticationCredentials &cred )
 {
 	bool result = false;
 #ifdef ITALC_BUILD_WIN32
-	typedef int(*cupsdPtr_t)(const char * userin, const char *password, const char *machine);
-
-	QLibrary authSSP( "authSSP" );
-	if( authSSP.load() )
-	{
-		cupsdPtr_t cupsdPtr = (cupsdPtr_t) authSSP.resolve( "CUPSD" );
-		if( cupsdPtr )
-		{
-			result = cupsdPtr( cred.logonUsername().toUtf8().constData(),
-								cred.logonPassword().toUtf8().constData(),
-											"127.0.0.1" ) > 0 ? true : false;
-		}
-	}
+#ifdef UNICODE
+	return CUPSD2( (const char *) cred.logonUsername().unicode(), (const char *) cred.logonPassword().unicode() );
+#else
+	return CUPSD2( cred.logonUsername().toLocal8Bit().constData(), cred.logonPassword().toLocal8Bit().constData() );
+#endif
 #endif
 
 #ifdef ITALC_BUILD_LINUX
