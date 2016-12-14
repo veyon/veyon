@@ -42,6 +42,10 @@ class vncMenu;
 // Constants
 extern const UINT MENU_ADD_CLIENT_MSG;
 extern const UINT MENU_ADD_CLIENT_MSG_INIT;
+#ifdef IPV6V4
+extern const UINT MENU_ADD_CLIENT6_MSG;
+extern const UINT MENU_ADD_CLIENT6_MSG_INIT;
+#endif
 extern const UINT MENU_AUTO_RECONNECT_MSG;
 extern const UINT MENU_STOP_RECONNECT_MSG;
 extern const UINT MENU_STOP_ALL_RECONNECT_MSG;

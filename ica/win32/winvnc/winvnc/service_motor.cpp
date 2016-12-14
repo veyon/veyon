@@ -1,5 +1,5 @@
 /////////////////////////////////////////////////////////////////////////////
-//  Copyright (C) 2002-2010 Ultr@VNC Team Members. All Rights Reserved.
+//  Copyright (C) 2002-2013 UltraVNC Team Members. All Rights Reserved.
 //
 //  This program is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -26,6 +26,7 @@
 #include <windows.h>
 #include <wtsapi32.h>
 #include "common/win32_helpers.h"
+#include "inifile.h"
 
 static void WINAPI service_main(DWORD, LPTSTR *);
 static void WINAPI control_handler(DWORD controlCode);
@@ -38,12 +39,14 @@ HANDLE stopServiceEvent=0;
 extern HANDLE hEvent;
 static char service_path[MAX_PATH];
 void monitor_sessions();
+void monitor_sessions_RDP();
 void Restore_after_reboot();
 char service_name[256]="uvnc_service";
 char *app_name = "UltraVNC";
 void disconnect_remote_sessions();
 char cmdtext[256];
 extern int clear_console;
+
 bool IsWin2000()
 {
 	OSVERSIONINFO OSversion;
@@ -96,8 +99,13 @@ static void WINAPI service_main(DWORD argc, LPTSTR* argv) {
         serviceStatus.dwCurrentState=SERVICE_RUNNING;
         SetServiceStatus(serviceStatusHandle, &serviceStatus);
 
-Restore_after_reboot();
-monitor_sessions();
+		Restore_after_reboot();
+		//IniFile myIniFile;
+		//bool  RDPMODE = true;
+		//RDPMODE = myIniFile.ReadInt("admin", "rdpmode", 0);
+		//if (RDPMODE)
+			monitor_sessions_RDP();
+		//else monitor_sessions();
 
         /* service was stopped */
         serviceStatus.dwCurrentState=SERVICE_STOP_PENDING;
@@ -233,7 +241,7 @@ int install_service(void) {
 		if (myerror==ERROR_SERVICE_EXISTS)
 		{
 			//MessageBoxSecure(NULL, "Failed: Already exist",
-            //"UltraVnc", MB_ICONERROR);
+            //"UltraVNC", MB_ICONERROR);
 			CloseServiceHandle(scm);
 			return 1;
 		}
@@ -296,7 +304,7 @@ int uninstall_service(void) {
     }
     if(serviceStatus.dwCurrentState!=SERVICE_STOPPED) {
         //MessageBoxSecure(NULL, "The service is still running, disable it first",
-        //    "UltraVnc", MB_ICONERROR);
+        //    "UltraVNC", MB_ICONERROR);
         CloseServiceHandle(service);
         CloseServiceHandle(scm);
 		Sleep(2500);uninstall_service();
@@ -330,7 +338,7 @@ static int pad()
 
     strcpy(service_path, "\"");
     strcat(service_path, exe_file_name);
-    strcat(service_path, "\" -service");
+	strcat(service_path, "\" -service");
 	return 0;
 }
 ////////////////////////////////////////////////////////////////////////////////

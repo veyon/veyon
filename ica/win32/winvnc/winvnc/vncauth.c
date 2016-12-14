@@ -94,7 +94,7 @@ char *
 vncDecryptPasswdMs(char *inouttext) 
 { 
         // Marscha@2004: corrected bug which occured for some passwords. 
-        // See http://forum.ultravnc.net/viewtopic.php?t=803 
+        // See http://forum.UltraVNC.net/viewtopic.php?t=803 
     unsigned char *passwd = (unsigned char *)malloc(33); 
         int i; 
         for (i = 0; i < MAXMSPWLEN; i++) 

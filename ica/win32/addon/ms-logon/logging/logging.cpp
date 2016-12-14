@@ -1,5 +1,5 @@
 /////////////////////////////////////////////////////////////////////////////
-//  Copyright (C) 2002 Ultr@VNC Team Members. All Rights Reserved.
+//  Copyright (C) 2002 UltraVNC Team Members. All Rights Reserved.
 //
 //  This program is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -18,7 +18,7 @@
 //
 // If the source code for the program is not available from the place from
 // which you received this file, check 
-// http://ultravnc.sourceforge.net/
+// http://www.uvnc.com
 // /macine-vnc Greg Wood (wood@agressiv.com)
 #include "logging.h"
 
@@ -48,7 +48,7 @@ BOOL APIENTRY DllMain( HANDLE hModule,
 EventLogging::EventLogging()
 {
 	// returns a handle that links the source to the registry 
-	m_hEventLinker = RegisterEventSource(NULL,"UltraVnc");
+	m_hEventLinker = RegisterEventSource(NULL,"UltraVNC");
 
 }
 
@@ -79,7 +79,7 @@ void EventLogging::AddEventSourceToRegistry(LPCTSTR lpszSourceName)
     TCHAR szKey[255] =_T("SYSTEM\\CurrentControlSet\\Services\\EventLog\\Application\\");
     TCHAR szServicePath[MAX_PATH];
 
-    lstrcat(szKey, _T("UltraVnc"));
+    lstrcat(szKey, _T("UltraVNC"));
 
     if(RegCreateKey(HKEY_LOCAL_MACHINE, szKey, &hk) != ERROR_SUCCESS)
     {

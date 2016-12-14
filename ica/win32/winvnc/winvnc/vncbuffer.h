@@ -1,4 +1,4 @@
-//  Copyright (C) 2002 Ultr@VNC Team Members. All Rights Reserved.
+//  Copyright (C) 2002 UltraVNC Team Members. All Rights Reserved.
 //  Copyright (C) 2002 RealVNC Ltd. All Rights Reserved.
 //  Copyright (C) 1999 AT&T Laboratories Cambridge. All Rights Reserved.
 //
@@ -28,6 +28,7 @@
 // The vncBuffer object provides a client-local copy of the screen
 // It can tell the client which bits have changed in a given region
 // It uses the specified vncDesktop to read screen data from
+#include <omnithread.h>
 class vncDesktop;
 
 class vncBuffer;
@@ -87,13 +88,14 @@ public:
 	void MultiMonitors(int number);
 	bool  IsMultiMonitor();
 	void WriteMessageOnScreen(char*);
+	void WriteMessageOnScreenPreConnect();
 
 	// sf@2005 - Grey Palette
 	void EnableGreyPalette(BOOL enable);
 
 	// Modif sf@2002 - Scaling
 	void ScaleRect(rfb::Rect &rect);
-	void GreyScaleRect(rfb::Rect &rect);
+	bool GreyScaleRect(rfb::Rect &rect);
 	rfb::Rect GetViewerSize();
 	UINT GetScale();
 	BOOL SetScale(int scale);
@@ -142,10 +144,11 @@ public:
 	BYTE		*m_backbuff;
 	int			m_backbuffsize;
 	// CACHE RDV
+	omni_mutex			m_cacheLock;
 	BYTE		*m_cachebuff;
 	BYTE		*m_mainbuff;
 	vncDesktop	*m_desktop;
-//	Ultravncmemcpy mem;
+//	UltraVNCmemcpy mem;
 	BOOL			m_cursor_shape_cleared;
 
 	// sf@2005 - Grey palette

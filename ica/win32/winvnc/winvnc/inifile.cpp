@@ -1,5 +1,5 @@
 /////////////////////////////////////////////////////////////////////////////
-//  Copyright (C) 2002-2010 Ultr@VNC Team Members. All Rights Reserved.
+//  Copyright (C) 2002-2013 UltraVNC Team Members. All Rights Reserved.
 //
 //  This program is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -25,7 +25,6 @@
 #include "stdhdrs.h"
 #include "inifile.h"
 void Set_settings_as_admin(char *mycommand);
-
 
 IniFile::IniFile()
 {
@@ -60,7 +59,7 @@ char WORKDIR[MAX_PATH];
 
 void
 IniFile::IniFileSetTemp(char *lpCmdLine)
-{	
+{
 	strcpy_s(myInifile,260,lpCmdLine);
 }
 
@@ -93,6 +92,7 @@ char WORKDIR[MAX_PATH];
 void
 IniFile::copy_to_secure()
 {
+	{
 		char dir[MAX_PATH];
 
 		char exe_file_name[MAX_PATH];
@@ -102,7 +102,6 @@ IniFile::copy_to_secure()
 		strcat(dir, " -settingshelper");
 		strcat(dir, ":");
 		strcat(dir, myInifile);
-
 
 		STARTUPINFO          StartUPInfo;
 		PROCESS_INFORMATION  ProcessInfo;
@@ -115,15 +114,15 @@ IniFile::copy_to_secure()
 		StartUPInfo.cb = sizeof(STARTUPINFO);
 		HWND tray = FindWindow(("Shell_TrayWnd"), 0);
 		if (!tray)
-			return;
-	
+			goto error;
+
 		DWORD processId = 0;
 			GetWindowThreadProcessId(tray, &processId);
 		if (!processId)
-			return;	
+			goto error;
 		process = OpenProcess(MAXIMUM_ALLOWED, FALSE, processId);
 		if (!process)
-			return;	
+			goto error;
 		OpenProcessToken(process, MAXIMUM_ALLOWED, &Token);
 		CreateProcessAsUser(Token,NULL,dir,NULL,NULL,FALSE,DETACHED_PROCESS,NULL,NULL,&StartUPInfo,&ProcessInfo);
 		DWORD error=GetLastError();
@@ -131,11 +130,11 @@ IniFile::copy_to_secure()
 		if (Token) CloseHandle(Token);
 		if (ProcessInfo.hThread) CloseHandle (ProcessInfo.hThread);
 		if (ProcessInfo.hProcess) CloseHandle (ProcessInfo.hProcess);
-		if (error==1314)
-		{
-			Set_settings_as_admin(myInifile);
-		}
-
+		if (error == 1314) goto error;
+		return;
+	}
+		error:
+		Set_settings_as_admin(myInifile);
 }
 
 IniFile::~IniFile()
@@ -145,11 +144,11 @@ IniFile::~IniFile()
 bool
 IniFile::WriteString(char *key1, char *key2,char *value)
 {
-	//vnclog.Print(LL_INTERR, VNCLOG("%s \n"),myInifile); 
+	//vnclog.Print(LL_INTERR, VNCLOG("%s \n"),myInifile);
 	return (FALSE != WritePrivateProfileString(key1,key2, value,myInifile));
 }
 
-bool 
+bool
 IniFile::WriteInt(char *key1, char *key2,int value)
 {
 	char       buf[32];
@@ -167,39 +166,39 @@ IniFile::ReadInt(char *key1, char *key2,int Defaultvalue)
 	return GetPrivateProfileInt(key1, key2, Defaultvalue, myInifile);
 }
 
-void 
+void
 IniFile::ReadString(char *key1, char *key2,char *value,int valuesize)
 {
 	//vnclog.Print(LL_INTERR, VNCLOG("%s \n"),myInifile);
 	GetPrivateProfileString(key1,key2, "",value,valuesize,myInifile);
 }
 
-void 
+void
 IniFile::ReadPassword(char *value,int valuesize)
 {
-	//int size=ReadInt("ultravnc", "passwdsize",0);
+	//int size=ReadInt("UltraVNC", "passwdsize",0);
 	//vnclog.Print(LL_INTERR, VNCLOG("%s \n"),myInifilePasswd);
-	GetPrivateProfileStruct("ultravnc","passwd",value,8,myInifile);
+	GetPrivateProfileStruct("UltraVNC","passwd",value,8,myInifile);
 }
 
 void //PGM
 IniFile::ReadPassword2(char *value,int valuesize) //PGM
 { //PGM
-	GetPrivateProfileStruct("ultravnc","passwd2",value,8,myInifile); //PGM
+	GetPrivateProfileStruct("UltraVNC","passwd2",value,8,myInifile); //PGM
 } //PGM
 
 bool
 IniFile::WritePassword(char *value)
 {
-		//WriteInt("ultravnc", "passwdsize",sizeof(value));
+		//WriteInt("UltraVNC", "passwdsize",sizeof(value));
 		//vnclog.Print(LL_INTERR, VNCLOG("%s \n"),myInifile);
-		return (FALSE != WritePrivateProfileStruct("ultravnc","passwd", value,8,myInifile));
+		return (FALSE != WritePrivateProfileStruct("UltraVNC","passwd", value,8,myInifile));
 }
 
 bool //PGM
 IniFile::WritePassword2(char *value) //PGM
 { //PGM
-		return (FALSE != WritePrivateProfileStruct("ultravnc","passwd2", value,8,myInifile)); //PGM
+		return (FALSE != WritePrivateProfileStruct("UltraVNC","passwd2", value,8,myInifile)); //PGM
 } //PGM
 
 bool IniFile::IsWritable()
@@ -210,4 +209,3 @@ bool IniFile::IsWritable()
 
     return writable;
 }
-

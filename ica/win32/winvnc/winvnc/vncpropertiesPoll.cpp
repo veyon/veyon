@@ -1,4 +1,4 @@
-//  Copyright (C) 2002 Ultr@VNC Team Members. All Rights Reserved.
+//  Copyright (C) 2002 UltraVNC Team Members. All Rights Reserved.
 //  Copyright (C) 2000-2002 Const Kaplinsky. All Rights Reserved.
 //  Copyright (C) 2002 TightVNC. All Rights Reserved.
 //  Copyright (C) 2002 RealVNC Ltd. All Rights Reserved.
@@ -312,13 +312,6 @@ vncPropertiesPoll::DialogProcPoll(HWND hwnd,
 			SendMessage(hDriver,
 				BM_SETCHECK,
 				_this->m_server->Driver(),0);
-
-			if (OSversion()==3) // If NT4 or below, no driver
-			{
-				SendMessage(hDriver,BM_SETCHECK,false,0);
-				_this->m_server->Driver(false);
-				EnableWindow(hDriver, false);
-			}
 
 			HWND hHook = GetDlgItem(hwnd, IDC_HOOK);
 			SendMessage(hHook,
@@ -753,12 +746,12 @@ LABELUSERSETTINGS:
 
 	// Set the default user prefs
 	vnclog.Print(LL_INTINFO, VNCLOG("clearing user settings\n"));
-	m_pref_TurboMode = ((vncService::VersionMajor() >= 6) ? TRUE : FALSE);
+	m_pref_TurboMode = TRUE;//((vncService::VersionMajor() >= 6) ? TRUE : FALSE);
 	m_pref_PollUnderCursor=FALSE;
-	m_pref_PollForeground= TRUE;
-	m_pref_PollFullScreen= ((vncService::VersionMajor() >= 6) ? FALSE : TRUE);
+	m_pref_PollForeground= FALSE;
+	m_pref_PollFullScreen= TRUE;//((vncService::VersionMajor() >= 6) ? TRUE : FALSE);
 	m_pref_PollConsoleOnly=FALSE;
-	m_pref_PollOnEventOnly=TRUE;
+	m_pref_PollOnEventOnly=FALSE;
 	m_pref_MaxCpu=40;
 	m_pref_Driver=CheckVideoDriver(0);
 	m_pref_Hook=TRUE;
@@ -967,12 +960,12 @@ void vncPropertiesPoll::LoadFromIniFile()
 //		return;
 //	}
 	
-	m_pref_TurboMode = ((vncService::VersionMajor() >= 6) ? TRUE : FALSE);
+	m_pref_TurboMode = TRUE;//((vncService::VersionMajor() >= 6) ? TRUE : FALSE);
 	m_pref_PollUnderCursor=FALSE;
-	m_pref_PollForeground= TRUE;
-	m_pref_PollFullScreen= ((vncService::VersionMajor() >= 6) ? FALSE : TRUE);
+	m_pref_PollForeground= FALSE;
+	m_pref_PollFullScreen= TRUE;//((vncService::VersionMajor() >= 6) ? TRUE : FALSE);
 	m_pref_PollConsoleOnly=FALSE;
-	m_pref_PollOnEventOnly=TRUE;
+	m_pref_PollOnEventOnly=FALSE;
 	m_pref_MaxCpu=40;
 	m_pref_Driver=CheckVideoDriver(0);
 	m_pref_Hook=TRUE;
@@ -1013,17 +1006,22 @@ void vncPropertiesPoll::SaveToIniFile()
 	bool use_uac=false;
 	if (!myIniFile.IsWritable())
 			{
-				// We can't write to the ini file , Vista in service mode
-				if (!Copy_to_Temp(m_Tempfile)) return ;
-				myIniFile.IniFileSetTemp(m_Tempfile);
-				use_uac=true;
+				myIniFile.IniFileSetTemp( m_Tempfile);
+				if (!myIniFile.IsWritable())
+					{
+						vnclog.Print(LL_INTERR, VNCLOG("file %s not writable, error saving new settings\n"), m_Tempfile);
+						return;				
+					}
+				if (!Copy_to_Temp(m_Tempfile))
+					{
+						vnclog.Print(LL_INTERR, VNCLOG("file %s not writable, error saving new settings\n"), m_Tempfile);
+						return;				
+					}
+				SaveUserPrefsPollToIniFile();
+				myIniFile.copy_to_secure();
+				myIniFile.IniFileSetSecure();
 			}
 	SaveUserPrefsPollToIniFile();
-	if (use_uac==true)
-	{
-	myIniFile.copy_to_secure();
-	myIniFile.IniFileSetSecure();
-	}
 }
 
 

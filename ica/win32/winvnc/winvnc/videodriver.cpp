@@ -1,5 +1,5 @@
 /////////////////////////////////////////////////////////////////////////////
-//  Copyright (C) 2002-2010 Ultr@VNC Team Members. All Rights Reserved.
+//  Copyright (C) 2002-2013 UltraVNC Team Members. All Rights Reserved.
 //
 //  This program is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -32,6 +32,8 @@ LPSTR driverName = "mv video hook driver2";
 #define CURSOREN 1060
 #define CURSORDIS 1061
 
+int g_video_info=2;
+
 VIDEODRIVER::VIDEODRIVER()
 {
 	mypVideoMemory=NULL;
@@ -53,12 +55,14 @@ VIDEODRIVER::VIDEODRIVER_start(int x,int y,int w,int h)
 		{
 			if (GetDcMirror()!=NULL)
 			{
+			g_video_info=1;
 			mypVideoMemory=VideoMemory_GetSharedMemory();
 			mypchangebuf=(PCHANGES_BUF)mypVideoMemory;
 			myframebuffer=mypVideoMemory+sizeof(CHANGES_BUF);
 			}
 			else
 			{
+				g_video_info=0;
 				mypVideoMemory=NULL;
 			}
 		}
@@ -73,6 +77,7 @@ VIDEODRIVER::VIDEODRIVER_start(int x,int y,int w,int h)
 		{
 			if (GetDcMirror()!=NULL)
 			{
+			g_video_info=1;
 			mypVideoMemory=VideoMemory_GetSharedMemory();
 			mypchangebuf=(PCHANGES_BUF)mypVideoMemory;
 			myframebuffer=mypVideoMemory+sizeof(CHANGES_BUF);
@@ -80,18 +85,22 @@ VIDEODRIVER::VIDEODRIVER_start(int x,int y,int w,int h)
 			}
 			else
 			{
+				g_video_info=0;
 	//			MessageBoxSecure(NULL,"Video driver failed", NULL, MB_OK);
 ////////////////////////////////////////////////////////////////////////////////
 				if (Mirror_driver_attach_XP(x,y,w,h))
 					{
 						if (GetDcMirror()!=NULL)
 						{
+						g_video_info=1;
+						g_video_info=true,
 						mypVideoMemory=VideoMemory_GetSharedMemory();
 						mypchangebuf=(PCHANGES_BUF)mypVideoMemory;
 						myframebuffer=mypVideoMemory+sizeof(CHANGES_BUF);
 						}
 						else
 						{
+							g_video_info=0;
 							mypVideoMemory=NULL;
 						}
 					}
@@ -943,6 +952,7 @@ typedef BOOL (WINAPI* pEnumDisplayDevices)(PVOID,DWORD,PVOID,DWORD);
 				{
 				deviceName = (LPSTR)&dd.DeviceName[0];
 				m_hrootdc = CreateDC("DISPLAY",deviceName,NULL,NULL);	
+				DWORD myerror=GetLastError();
 				if (m_hrootdc) DeleteDC(m_hrootdc);
 				}
 			}

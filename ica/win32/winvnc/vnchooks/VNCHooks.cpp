@@ -1,4 +1,4 @@
-//  Copyright (C) 2002 Ultr@VNC Team Members. All Rights Reserved.
+//  Copyright (C) 2002 UltraVNC Team Members. All Rights Reserved.
 //  Copyright (C) 2002 RealVNC Ltd. All Rights Reserved.
 //  Copyright (C) 1997 AT&T Laboratories Cambridge. All Rights Reserved.
 //
@@ -42,7 +42,7 @@
 // Storage for the global data in the DLL
 // Note: For Borland C++ compilers, this data segment is defined in a
 //       separate file, SharedData.cpp.
-
+/*
 #ifdef _MSC_VER
 
 // MSVC is bugged - if a default value is missed off from one of the following
@@ -67,6 +67,25 @@ HHOOK hLLMouseHook = NULL;							// Handle to LowLevel mouse hook
 
 
 #endif // _MSC_VER
+*/
+
+typedef struct _shared_variables
+{
+	DWORD vnc_thread_id;
+	UINT UpdateRectMessage;
+	UINT CopyRectMessage;
+	UINT MouseMoveMessage;
+} shared_variables;
+
+static shared_variables *g_shdata = NULL;
+
+static HHOOK hCallWndHook = NULL;							// Handle to the CallWnd hook
+static HHOOK hGetMsgHook = NULL;							// Handle to the GetMsg hook
+static HHOOK hDialogMsgHook = NULL;						// Handle to the DialogMsg hook
+static HHOOK hLLKeyboardHook = NULL;						// Handle to LowLevel kbd hook
+static HHOOK hLLMouseHook = NULL;							// Handle to LowLevel mouse hookT
+static HANDLE filemapping = NULL;
+static BOOL isAttached = FALSE;
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -120,6 +139,7 @@ BOOL ExitInstance();
 // The DLL's main procedure
 extern "C" BOOL WINAPI DllMain (HANDLE hInst, ULONG ul_reason_for_call, LPVOID lpReserved)
 {
+   HANDLE filemapping = NULL;
 	// Find out why we're being called
 	switch (ul_reason_for_call)
 	{
@@ -129,11 +149,42 @@ extern "C" BOOL WINAPI DllMain (HANDLE hInst, ULONG ul_reason_for_call, LPVOID l
 		_RPT0(_CRT_WARN, "vncHooks : Hook DLL loaded\n");
 #endif
 
+		filemapping = CreateFileMapping(INVALID_HANDLE_VALUE,
+							NULL,
+							PAGE_READWRITE,
+							0,
+							sizeof(shared_variables),
+							"Local\\SeamlessRDPData");
+
+			if (filemapping)
+			{
+				/* From MSDN: The initial contents of
+				   the pages in a file mapping object
+				   backed by the paging file are 0
+				   (zero)." */
+				g_shdata = (shared_variables*)MapViewOfFile(filemapping, FILE_MAP_ALL_ACCESS, 0, 0, 0);
+			}
+			if (!filemapping || !g_shdata)
+			{
+				/* Clean up in reverse order */
+				if (g_shdata)
+				{
+					UnmapViewOfFile(g_shdata);
+				}
+				if (filemapping)
+				{
+					CloseHandle(filemapping);
+				}
+				return FALSE;
+			}
+
 		// Save the instance handle
 		hInstance = (HINSTANCE)hInst;
 
 		// Call the initialisation function
 		appHookedOK = InitInstance();
+
+      isAttached = TRUE;
 
 		// ALWAYS return TRUE to avoid breaking unhookable applications!!!
 		return TRUE;
@@ -143,9 +194,18 @@ extern "C" BOOL WINAPI DllMain (HANDLE hInst, ULONG ul_reason_for_call, LPVOID l
 		_RPT0(_CRT_WARN, "vncHooks : Hook DLL unloaded\n");
 #endif
 		
-		// Call the exit function
-		// If the app failed to hook OK, ExitInstance will still operate OK (hopefully...)
-		ExitInstance();
+      //lpReserved > 0 if owner process is about to exit/terminate
+      //in this case, no handles should be closed, because an entry point of the DLL can be called
+     if ( NULL == lpReserved )
+      {
+         //lpReserved == 0 if DLL is unloaded,
+         // Call the exit function
+		   // If the app failed to hook OK, ExitInstance will still operate OK (hopefully...)
+		   ExitInstance();
+		   if (g_shdata) UnmapViewOfFile(g_shdata);
+		   if (filemapping)CloseHandle(filemapping);
+      }
+      isAttached = FALSE;
 
 		return TRUE;
 
@@ -173,7 +233,7 @@ DllExport BOOL SetHooks(DWORD thread_id, UINT UpdateMsg, UINT CopyMsg, UINT Mous
 	m_ddihook=ddihook;
 	
 	// Don't add a hook if there is already one added
-	if (vnc_thread_id)
+	if ( g_shdata->vnc_thread_id)
 		return FALSE;
 	// Add the CallWnd hook
 	hCallWndHook = SetWindowsHookEx(
@@ -204,10 +264,10 @@ DllExport BOOL SetHooks(DWORD thread_id, UINT UpdateMsg, UINT CopyMsg, UINT Mous
 	// Check that it worked
 	if ((hCallWndHook != NULL) && (hGetMsgHook != NULL) && (hDialogMsgHook != NULL))
 	{
-		vnc_thread_id = thread_id;			// Save the WinVNC thread id
-		UpdateRectMessage = UpdateMsg;		// Save the message ID to use for rectangle updates
-		CopyRectMessage = CopyMsg;			// Save the message ID to use for copyrect
-		MouseMoveMessage = MouseMsg;		// Save the message ID to send when mouse moves
+		 g_shdata->vnc_thread_id = thread_id;			// Save the WinVNC thread id
+		 g_shdata->UpdateRectMessage = UpdateMsg;		// Save the message ID to use for rectangle updates
+		 g_shdata->CopyRectMessage = CopyMsg;			// Save the message ID to use for copyrect
+		 g_shdata->MouseMoveMessage = MouseMsg;		// Save the message ID to send when mouse moves
 		HookMaster = TRUE;					// Set the HookMaster flag for this instance
 		return TRUE;
 	}
@@ -267,7 +327,7 @@ DllExport BOOL UnSetHooks(DWORD thread_id)
 	unHooked = unHooked && SetMouseFilterHook(FALSE);
 
 	// Is the window handle valid?
-	if (thread_id != vnc_thread_id)
+	if (thread_id !=  g_shdata->vnc_thread_id)
 		return FALSE;
 
 	// Unhook the procs
@@ -292,7 +352,7 @@ DllExport BOOL UnSetHooks(DWORD thread_id)
 	// If we managed to unhook then reset
 	if (unHooked)
 	{
-		vnc_thread_id = 0;
+		 g_shdata->vnc_thread_id = 0;
 		HookMaster = FALSE;
 	}
 
@@ -405,13 +465,13 @@ inline void SendUpdateRect(SHORT x, SHORT y, SHORT x2, SHORT y2)
 
 	// Send the update to WinVNC
 	PostThreadMessage(
-		vnc_thread_id,
-		UpdateRectMessage,
+		 g_shdata->vnc_thread_id,
+		 g_shdata->UpdateRectMessage,
 		vwParam,
 		vlParam
 		);
 	HWND hWndRemote=FindWindow("WinVNC desktop sink", "WinVNC");
-	if (hWndRemote==NULL) UnSetHooks(vnc_thread_id);
+	if (hWndRemote==NULL) UnSetHooks( g_shdata->vnc_thread_id);
 }
 
 // Send a window's position to WinVNC
@@ -459,8 +519,8 @@ inline void SendDeferredUpdateRect(HWND hWnd, SHORT x, SHORT y, SHORT x2, SHORT 
 	{
 		// Send the update to WinVNC
 		PostThreadMessage(
-			vnc_thread_id,
-			UpdateRectMessage,
+			 g_shdata->vnc_thread_id,
+			 g_shdata->UpdateRectMessage,
 			vwParam,
 			vlParam
 			);
@@ -516,8 +576,8 @@ inline BOOL HookHandleddi(UINT MessageId, HWND hWnd, WPARAM wParam, LPARAM lPara
 			HICON new_cursor = GetCursor();
 			if (new_cursor != old_cursor) {
 				PostThreadMessage(
-					vnc_thread_id,
-					MouseMoveMessage,
+					 g_shdata->vnc_thread_id,
+					 g_shdata->MouseMoveMessage,
 					(ULONG_PTR)new_cursor, 0);
 				old_cursor=new_cursor;
 			}
@@ -544,8 +604,8 @@ inline BOOL HookHandle(UINT MessageId, HWND hWnd, WPARAM wParam, LPARAM lParam)
 		//		so just send the exact same message data to WinVNC
 
 		PostThreadMessage(
-			vnc_thread_id,
-			UpdateRectMessage,
+			 g_shdata->vnc_thread_id,
+			 g_shdata->UpdateRectMessage,
 			wParam,
 			lParam
 			);
@@ -728,8 +788,8 @@ inline BOOL HookHandle(UINT MessageId, HWND hWnd, WPARAM wParam, LPARAM lParam)
 			HICON new_cursor = GetCursor();
 			if (new_cursor != old_cursor) {
 				PostThreadMessage(
-					vnc_thread_id,
-					MouseMoveMessage,
+					 g_shdata->vnc_thread_id,
+					 g_shdata->MouseMoveMessage,
 					(ULONG_PTR)new_cursor, 0);
 				old_cursor=new_cursor;
 			}
@@ -755,16 +815,19 @@ inline BOOL HookHandle(UINT MessageId, HWND hWnd, WPARAM wParam, LPARAM lParam)
 
 LRESULT CALLBACK CallWndProc(int nCode, WPARAM wParam, LPARAM lParam)
 {
-	// Do we have to handle this message?
-	if (nCode == HC_ACTION)
-	{
-		// Process the hook if the WinVNC thread ID is valid
-		if (vnc_thread_id)
-		{
-			CWPSTRUCT *cwpStruct = (CWPSTRUCT *) lParam;
-			HookHandle(cwpStruct->message, cwpStruct->hwnd, cwpStruct->wParam, cwpStruct->lParam);
-		}
-	}
+   if (isAttached)
+   {
+      // Do we have to handle this message?
+	   if (nCode == HC_ACTION)
+	   {
+		   // Process the hook if the WinVNC thread ID is valid
+		   if ( g_shdata->vnc_thread_id)
+		   {
+			   CWPSTRUCT *cwpStruct = (CWPSTRUCT *) lParam;
+			   HookHandle(cwpStruct->message, cwpStruct->hwnd, cwpStruct->wParam, cwpStruct->lParam);
+		   }
+	   }
+   }
 
 	// Call the next handler in the chain
     return CallNextHookEx (hCallWndHook, nCode, wParam, lParam);
@@ -774,24 +837,27 @@ LRESULT CALLBACK CallWndProc(int nCode, WPARAM wParam, LPARAM lParam)
 
 LRESULT CALLBACK GetMessageProc(int nCode, WPARAM wParam, LPARAM lParam)
 {
-	// Do we have to handle this message?
-	if (nCode == HC_ACTION)
-	{
-		// Process the hook only if the WinVNC thread id is valid
-		if (vnc_thread_id)
-		{
-			MSG *msg = (MSG *) lParam;
+   if (isAttached)
+   {
+      // Do we have to handle this message?
+	   if (nCode == HC_ACTION)
+	   {
+		   // Process the hook only if the WinVNC thread id is valid
+		   if ( g_shdata->vnc_thread_id)
+		   {
+			   MSG *msg = (MSG *) lParam;
 
-			// Only handle application messages if they're being removed:
-			if (wParam & PM_REMOVE)
-			{
-				// Handle the message
-				if (m_ddihook)
-				HookHandleddi(msg->message, msg->hwnd, msg->wParam, msg->lParam);
-				else HookHandle(msg->message, msg->hwnd, msg->wParam, msg->lParam);
-			}
-		}
-	}
+			   // Only handle application messages if they're being removed:
+			   if (wParam & PM_REMOVE)
+			   {
+				   // Handle the message
+				   if (m_ddihook)
+				   HookHandleddi(msg->message, msg->hwnd, msg->wParam, msg->lParam);
+				   else HookHandle(msg->message, msg->hwnd, msg->wParam, msg->lParam);
+			   }
+		   }
+	   }
+   }
 
 	// Call the next handler in the chain
     return CallNextHookEx (hGetMsgHook, nCode, wParam, lParam);
@@ -801,19 +867,22 @@ LRESULT CALLBACK GetMessageProc(int nCode, WPARAM wParam, LPARAM lParam)
 // Hook procedure for DialogMessageProc hook
 
 LRESULT CALLBACK DialogMessageProc(int nCode, WPARAM wParam, LPARAM lParam)
-{
-	// Do we have to handle this message?
-	if (nCode >= 0)
-	{
-		// Process the hook only if the WinVNC thread ID is valid
-		if (vnc_thread_id)
-		{
-			MSG *msg = (MSG *) lParam;
+{	
+	if (isAttached)
+   {  
+      // Do we have to handle this message?
+	   if (nCode >= 0)
+	   {
+		   // Process the hook only if the WinVNC thread ID is valid
+		   if ( g_shdata->vnc_thread_id)
+		   {
+			   MSG *msg = (MSG *) lParam;
 
-			// Handle the message
-			HookHandle(msg->message, msg->hwnd, msg->wParam, msg->lParam);
-		}
-	}
+			   // Handle the message
+			   HookHandle(msg->message, msg->hwnd, msg->wParam, msg->lParam);
+		   }
+	   }
+   }
 
 	// Call the next handler in the chain
     return CallNextHookEx (hGetMsgHook, nCode, wParam, lParam);
@@ -824,17 +893,21 @@ LRESULT CALLBACK DialogMessageProc(int nCode, WPARAM wParam, LPARAM lParam)
 #ifdef WH_KEYBOARD_LL
 LRESULT CALLBACK LowLevelKeyboardFilterProc(int nCode, WPARAM wParam, LPARAM lParam)
 {
-	// Are we expected to handle this callback?
-	if (nCode == HC_ACTION)
-	{
-		// Is this keyboard event "real" or "injected"
-		// i.e. hardware or software-produced?
-		KBDLLHOOKSTRUCT *hookStruct = (KBDLLHOOKSTRUCT*)lParam;
-		if (!(hookStruct->flags & LLKHF_INJECTED)) {
-			// Message was not injected - reject it!
-			return TRUE;
-		}
-	}
+   if (isAttached)
+   {
+      // Are we expected to handle this callback?
+	   if (nCode == HC_ACTION)
+	   {
+		   // Is this keyboard event "real" or "injected"
+		   // i.e. hardware or software-produced?
+		   KBDLLHOOKSTRUCT *hookStruct = (KBDLLHOOKSTRUCT*)lParam;
+		   if (!(hookStruct->flags & LLKHF_INJECTED)) {
+			   // Message was not injected - reject it!
+			   return TRUE;
+		   }
+	   }
+   }
+
 
 	// Otherwise, pass on the message
 	return CallNextHookEx(hLLKeyboardHook, nCode, wParam, lParam);
@@ -846,17 +919,20 @@ LRESULT CALLBACK LowLevelKeyboardFilterProc(int nCode, WPARAM wParam, LPARAM lPa
 #ifdef WH_MOUSE_LL
 LRESULT CALLBACK LowLevelMouseFilterProc(int nCode, WPARAM wParam, LPARAM lParam)
 {
-	// Are we expected to handle this callback?
-	if (nCode == HC_ACTION)
-	{
-		// Is this mouse event "real" or "injected"
-		// i.e. hardware or software-produced?
-		MSLLHOOKSTRUCT *hookStruct = (MSLLHOOKSTRUCT*)lParam;
-		if (!(hookStruct->flags & LLMHF_INJECTED)) {
-			// Message was not injected - reject it!
-			return TRUE;
-		}
-	}
+   if (isAttached)
+   {	
+      // Are we expected to handle this callback?
+	   if (nCode == HC_ACTION)
+	   {
+		   // Is this mouse event "real" or "injected"
+		   // i.e. hardware or software-produced?
+		   MSLLHOOKSTRUCT *hookStruct = (MSLLHOOKSTRUCT*)lParam;
+		   if (!(hookStruct->flags & LLMHF_INJECTED)) {
+			   // Message was not injected - reject it!
+			   return TRUE;
+		   }
+	   }
+   }
 
 	// Otherwise, pass on the message
 	return CallNextHookEx(hLLMouseHook, nCode, wParam, lParam);
@@ -1021,32 +1097,32 @@ void WriteProfileInt(LPTSTR key, int value)
 void ReadSettings() {
   // Read in the prefs
 	prf_use_GetUpdateRect = GetProfileInt(
-		(CHAR *) "use_GetUpdateRect",
+		"use_GetUpdateRect",
 		TRUE
 		);
 
 	prf_use_Timer = GetProfileInt(
-		(CHAR *) "use_Timer",
+		"use_Timer",
 		FALSE
 		);
 	prf_use_KeyPress = GetProfileInt(
-		(CHAR *) "use_KeyPress",
+		"use_KeyPress",
 		TRUE
 		);
 	prf_use_LButtonUp = GetProfileInt(
-		(CHAR *) "use_LButtonUp",
+		"use_LButtonUp",
 		TRUE
 		);
 	prf_use_MButtonUp = GetProfileInt(
-		(CHAR *) "use_MButtonUp",
+		"use_MButtonUp",
 		TRUE
 		);
 	prf_use_RButtonUp = GetProfileInt(
-		(CHAR *) "use_RButtonUp",
+		"use_RButtonUp",
 		TRUE
 		);
 	prf_use_Deferral = GetProfileInt(
-		(CHAR *) "use_Deferral",
+		"use_Deferral",
 		TRUE
 		);
 }
@@ -1132,37 +1208,37 @@ BOOL ExitInstance()
 #endif
 
 		WriteProfileInt(
-			(CHAR *) "use_GetUpdateRect",
+			"use_GetUpdateRect",
 			prf_use_GetUpdateRect
 			);
 
 		WriteProfileInt(
-			(CHAR *) "use_Timer",
+			"use_Timer",
 			prf_use_Timer
 			);
 
 		WriteProfileInt(
-			(CHAR *) "use_KeyPress",
+			"use_KeyPress",
 			prf_use_KeyPress
 			);
 
 		WriteProfileInt(
-			(CHAR *) "use_LButtonUp",
+			"use_LButtonUp",
 			prf_use_LButtonUp
 			);
 
 		WriteProfileInt(
-			(CHAR *) "use_MButtonUp",
+			"use_MButtonUp",
 			prf_use_MButtonUp
 			);
 
 		WriteProfileInt(
-			(CHAR *) "use_RButtonUp",
+			"use_RButtonUp",
 			prf_use_RButtonUp
 			);
 
 		WriteProfileInt(
-			(CHAR *) "use_Deferral",
+			"use_Deferral",
 			prf_use_Deferral
 			);
 

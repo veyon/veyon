@@ -18,7 +18,7 @@
 // If the source code for the program is not available from the place from
 // which you received this file, check http://www.realvnc.com/ or contact
 // the authors on info@realvnc.com for information on obtaining it.
-
+#include "stdhdrs.h"
 #include "vncencodezrle.h"
 #include "rfb.h"
 #include "rfbMisc.h"

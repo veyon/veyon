@@ -1,5 +1,5 @@
 /////////////////////////////////////////////////////////////////////////////
-//  Copyright (C) 2002 Ultr@VNC Team Members. All Rights Reserved.
+//  Copyright (C) 2002-2013 UltraVNC Team Members. All Rights Reserved.
 //
 //  This program is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -18,7 +18,7 @@
 //
 // If the source code for the program is not available from the place from
 // which you received this file, check 
-// http://ultravnc.sourceforge.net/
+// http://www.uvnc.com/
 //
 ////////////////////////////////////////////////////////////////////////////
 //
@@ -66,14 +66,14 @@
 // Consequently, WinVNc will impose all its clients to use the same plugin. Maybe we'll 
 // improve that soon. It depends on the demand/production of DSM plugins.
 
-
+#include <winsock2.h>
 #include <memory.h>
 #include <stdio.h>
 #include <string.h>
-#include "stdhdrs.h"
 #include "DSMPlugin.h"
 
-
+#include <stdlib.h>
+#include <limits.h>
 //
 // Utils
 //
@@ -96,7 +96,7 @@ BOOL MyStrToken(LPSTR szToken, LPSTR lpString, int nTokenNum, char cSep)
 		lpString++;
 	}
 	*szToken = '\0' ;
-	if (( ! *lpString ) || (! *szToken)) return FALSE;
+	if (( ! *lpString ) || (! *szToken)) return NULL;
 	return FALSE;
 }
 
@@ -243,7 +243,7 @@ bool CDSMPlugin::SetPluginParams(HWND hWnd, char* szParams, char* szConfig, char
 
 	//adzm 2010-05-12 - dsmplugin config
 	if (m_PConfig) {
-		//char* szNewConfig = NULL;
+		char* szNewConfig = NULL;
 		int nRes = (*m_PConfig)(hWnd, szParams, szConfig, pszNewConfig);		
 		if (nRes > 0) return true; else return false;
 	} else {
@@ -330,9 +330,9 @@ bool CDSMPlugin::LoadPlugin(char* szPlugin, bool fAllowMulti)
 		char szCurrentDir_szDllCopyName[MAX_PATH];
 		while (!fDllCopyCreated)
 		{
-			/*strcpy_s(szDllCopyName, 260,szPlugin);
+			strcpy_s(szDllCopyName, 260,szPlugin);
 			szDllCopyName[strlen(szPlugin) - 4] = '\0'; //remove the ".dsm" extension
-			sprintf(szDllCopyName, "%s-tmp.d%d", szDllCopyName, i++);*/
+			sprintf(szDllCopyName, "%s-tmp.d%d", szDllCopyName, i++);
 			//fDllCopyCreated = (FALSE != CopyFile(szPlugin, szDllCopyName, false));
 			// Note: Let's be really dirty; Overwrite if it's possible only (dll not loaded). 
 			// This way if for some reason (abnormal process termination) the dll wasn't previously 
@@ -380,8 +380,8 @@ bool CDSMPlugin::LoadPlugin(char* szPlugin, bool fAllowMulti)
 		//Try current PATH
 		if (m_hPDll==NULL)
 		{
-			char szCurrentDir[MAX_PATH];
-			char szCurrentDir_szPlugin[MAX_PATH];
+			char szCurrentDir[MAX_PATH]="";
+			char szCurrentDir_szPlugin[MAX_PATH]="";
 			if (GetModuleFileName(NULL, szCurrentDir, MAX_PATH))
 				{
 					char* p = strrchr(szCurrentDir, '\\');
@@ -493,7 +493,11 @@ bool CDSMPlugin::SupportsIntegrated()
 BYTE* CDSMPlugin::TransformBuffer(BYTE* pDataBuffer, int nDataLen, int* pnTransformedDataLen)
 {
 	// FixME: possible pb with this mutex in WinVNC
+#ifdef _VIEWER
 	omni_mutex_lock l(m_TransMutex);
+#else
+	omni_mutex_lock l(m_TransMutex,105);
+#endif
 
 	m_pTransBuffer = (*m_PTransformBuffer)(pDataBuffer, nDataLen, pnTransformedDataLen);
 
@@ -521,5 +525,171 @@ BYTE* CDSMPlugin::RestoreBufferStep2(BYTE* pRestoredDataBuffer, int nDataLen, in
 void CDSMPlugin::RestoreBufferUnlock()
 {
 	//m_RestMutex.unlock();
+}
+
+
+const char Base64::cb64[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+
+/*
+** Translation Table to decode (created by author)
+*/
+const char Base64::cd64[] = "|$$$}rstuvwxyz{$$$$$$$>?@ABCDEFGHIJKLMNOPQRSTUVW$$$$$$XYZ[\\]^_`abcdefghijklmnopq";
+
+
+void Base64::encodeblock(BYTE in[3], BYTE out[4], int len)
+{
+    out[0] = cb64[ in[0] >> 2 ];
+    out[1] = cb64[ ((in[0] & 0x03) << 4) | ((in[1] & 0xf0) >> 4) ];
+    out[2] = (BYTE) (len > 1 ? cb64[ ((in[1] & 0x0f) << 2) | ((in[2] & 0xc0) >> 6) ] : '=');
+    out[3] = (BYTE) (len > 2 ? cb64[ in[2] & 0x3f ] : '=');
+}
+
+void Base64::decodeblock(BYTE in[4], BYTE out[3])
+{
+    out[ 0 ] = (BYTE) (in[0] << 2 | in[1] >> 4);
+    out[ 1 ] = (BYTE) (in[1] << 4 | in[2] >> 2);
+    out[ 2 ] = (BYTE) (((in[2] << 6) & 0xc0) | in[3]);
+}
+
+void Base64::encode(const char* szIn, char* szOut)
+{
+    BYTE in[3], out[4];
+    int i, len, blocksout = 0;
+
+	const char* pIn = szIn;
+	char* pOut = szOut;
+
+    while(*pIn != '\0') {
+        len = 0;
+        for( i = 0; i < 3; i++ ) {
+            in[i] = (BYTE)*pIn;
+			if (*pIn != '\0') {
+				len++;
+				pIn++;
+			}
+            else {
+                in[i] = 0;
+            }
+        }
+        if( len ) {
+            encodeblock( in, out, len );
+            for( i = 0; i < 4; i++ ) {
+				*pOut = (char)out[i];
+				pOut++;
+            }
+        }
+    }
+	*pOut = '\0';
+}
+
+void Base64::decode(const char* szIn, char* szOut)
+{
+    BYTE in[4], out[3], v, o;
+    int i, len;
+
+	const char* pIn = szIn;
+	char* pOut = szOut;
+
+    while(*pIn != '\0') {
+        for( len = 0, i = 0; i < 4 && *pIn != '\0'; i++ ) {
+            v = 0;
+			o = 0;
+            while( *pIn != '\0' && v == 0 ) {
+                v = (BYTE)*pIn;
+				o = v;
+				pIn++;
+
+                v = (BYTE) ((v < 43 || v > 122) ? 0 : cd64[ v - 43 ]);
+                if( v ) {
+                    v = (BYTE) ((v == '$') ? 0 : v - 61);
+                }
+            }
+            if( o != '\0' && v != 0) {
+                len++;
+                //if( v ) {
+                    in[ i ] = (BYTE) (v - 1);
+                //}
+            }
+            else {
+                in[i] = 0;
+            }
+        }
+        if( len ) {
+            decodeblock( in, out );
+            for( i = 0; i < len - 1; i++ ) {
+				*pOut = (char)out[i];
+				pOut++;
+            }
+        }
+    }
+	*pOut = '\0';
+}
+
+
+void ConfigHelper::SetConfigHelper(DWORD dwFlags, char* szPassphrase)
+{
+	m_szConfig = new char[512];
+	m_szConfig[0] = '\0';
+
+	char szEncoded[256];
+	szEncoded[0] = '\0';
+	if (szPassphrase[0] != '\0') {
+		Base64::encode(szPassphrase, szEncoded);
+	}
+
+	_snprintf_s(m_szConfig, 512 - 1 - 1, _TRUNCATE, "SecureVNC;0;0x%08x;%s", dwFlags, szEncoded);
+}
+
+ConfigHelper::ConfigHelper(const char* szConfig)
+	: m_szConfig(NULL)
+	, m_szPassphrase(NULL)
+	, m_dwFlags(0x01 | 0x4000 | 0x00100000)
+{
+	m_szPassphrase = new char[256];
+	m_szPassphrase[0] = '\0';
+
+	if (szConfig == NULL) return;
+
+	const char* szHeader = "SecureVNC;0;";
+
+	if (strncmp(szConfig, "SecureVNC;0;", strlen(szHeader)) != 0) {
+		return;
+	}
+	
+	szConfig += strlen(szHeader);
+
+	char* szEnd = NULL;
+	DWORD dwFlags = strtoul(szConfig, &szEnd, 16);
+
+	if (dwFlags != ULONG_MAX) {
+		m_dwFlags = dwFlags;
+
+		if (szEnd && szEnd != szConfig) {
+			//m_szPassphrase = new char[256];
+			//m_szPassphrase[0] = '\0';
+
+			char szEncoded[256];
+			szEncoded[0] = '\0';
+
+			strcpy_s(szEncoded, 256 - 1, szEnd + 1);
+
+			if (szEncoded[0] != '\0') {
+				Base64::decode(szEncoded, m_szPassphrase);
+			}
+		}
+	}
+}
+
+ConfigHelper::~ConfigHelper()
+{
+	if (m_szConfig) {
+		delete[] m_szConfig;
+		m_szConfig = NULL;
+	}
+
+	if (m_szPassphrase) {
+		delete[] m_szPassphrase;
+		m_szPassphrase = NULL;
+	}
 }
 

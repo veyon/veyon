@@ -28,7 +28,7 @@
 // Implementation of service-oriented functionality of WinVNC
 
 #include "stdhdrs.h"
-
+extern HWND G_MENU_HWND;
 // Header
 
 #include "vncservice.h"
@@ -68,6 +68,7 @@ pProcessIdToSessionId WTSProcessIdToSessionIdF=NULL;
 
 extern BOOL SPECIAL_SC_EXIT;
 extern BOOL SPECIAL_SC_PROMPT;
+in6_addr G_LPARAM_IN6;
 
 void ClearKeyState(BYTE key);
 DWORD GetCurrentSessionID()
@@ -98,8 +99,30 @@ DWORD GetCurrentSessionID()
 	return dwSessionId;
 }
 
+DWORD GetCurrentConsoleSessionID()
+{
+	DWORD dwSessionId;
+	pWTSGetActiveConsoleSessionId WTSGetActiveConsoleSessionIdF = NULL;
+
+	HMODULE  hlibkernel = LoadLibrary("kernel32.dll");
+	if (hlibkernel)
+	{
+		WTSGetActiveConsoleSessionIdF = (pWTSGetActiveConsoleSessionId)GetProcAddress(hlibkernel, "WTSGetActiveConsoleSessionId");
+	}
+	if (WTSGetActiveConsoleSessionIdF != NULL)
+		dwSessionId = WTSGetActiveConsoleSessionIdF();
+	else dwSessionId = 0;
+	if (hlibkernel) FreeLibrary(hlibkernel);
+	return dwSessionId;
+}
+
 DWORD GetExplorerLogonPid()
 {
+	char alternate_shell[129];
+	IniFile myIniFile;
+	strcpy(alternate_shell, "");
+	myIniFile.ReadString("admin", "alternate_shell", alternate_shell, 256);
+
 	DWORD dwSessionId;
 	DWORD dwExplorerLogonPid=0;
 	PROCESSENTRY32 procEntry;
@@ -147,7 +170,7 @@ DWORD GetExplorerLogonPid()
 
     do
     {
-        if (_stricmp(procEntry.szExeFile, "explorer.exe") == 0)
+		if ((_stricmp(procEntry.szExeFile, "explorer.exe") == 0) || ( strlen(alternate_shell) != 0 && (_stricmp(procEntry.szExeFile, alternate_shell) == 0)))
         {
           DWORD dwExplorerSessId = 0;
 		  if (WTSProcessIdToSessionIdF!=NULL)
@@ -333,7 +356,7 @@ GetCurrentUser(char *buffer, UINT size) // RealVNC 336 change
 				}
 			}
 		}
-		vnclog.Print(LL_INTERR, VNCLOG("@@@@@@@@@@@@@ GetCurrentUser - UserNAme found: %s \n"), buffer);
+		//vnclog.Print(LL_INTERR, VNCLOG("@@@@@@@@@@@@@ GetCurrentUser - UserNAme found: %s \n"), buffer);
 		return TRUE;
 	};
 
@@ -430,7 +453,9 @@ FindWinVNCWindow(bool bThisProcess)
 
 	if (!bThisProcess) {
 		// Find any window with the MENU_CLASS_NAME window class
-		return FindWindow(MENU_CLASS_NAME, NULL);
+		HWND returnvalue= FindWindow(MENU_CLASS_NAME, NULL);
+		if (returnvalue == NULL) goto nullreturn;
+		return returnvalue;
 	} else {
 		// Find one that matches the class and is the same process		
 		HWND hwndZ = NULL;
@@ -449,12 +474,13 @@ FindWinVNCWindow(bool bThisProcess)
 					hwndServer = NULL;
 				}
 			} else {
-				return NULL;
+				goto nullreturn;
 			}
 		}
 	}
 
-	return NULL;
+nullreturn:
+	return G_MENU_HWND;
 }
 
 // Internal routine to find the WinVNC menu class window and
@@ -810,6 +836,74 @@ vncService::LockWorkstation()
 // Static routine to tell a locally-running instance of the server
 // to connect out to a new client
 
+#ifdef IPV6V4
+BOOL
+vncService::PostAddNewClient4(unsigned long ipaddress, unsigned short port)
+{
+	// Post to the WinVNC menu window
+	if (!PostToWinVNC(MENU_ADD_CLIENT_MSG, (WPARAM)port, (LPARAM)ipaddress))
+	{
+
+		//MessageBoxSecure(NULL, sz_ID_NO_EXIST_INST, szAppName, MB_ICONEXCLAMATION | MB_OK);
+
+		//Little hack, seems postmessage fail in some cases on some os.
+		//permission proble
+		//use G_var + WM_time to reconnect
+		vnclog.Print(LL_INTERR, VNCLOG("PostAddNewClient failed\n"));
+		if (port == 1111 && ipaddress == 1111) G_1111 = true;
+		return FALSE;
+	}
+
+	return TRUE;
+}
+
+BOOL
+vncService::PostAddNewClientInit4(unsigned long ipaddress, unsigned short port)
+{
+	// Post to the WinVNC menu window
+	if (!PostToWinVNC(MENU_ADD_CLIENT_MSG_INIT, (WPARAM)port, (LPARAM)ipaddress))
+	{
+
+		//MessageBoxSecure(NULL, sz_ID_NO_EXIST_INST, szAppName, MB_ICONEXCLAMATION | MB_OK);
+
+		//Little hack, seems postmessage fail in some cases on some os.
+		//permission proble
+		//use G_var + WM_time to reconnect
+		vnclog.Print(LL_INTERR, VNCLOG("PostAddNewClient failed\n"));
+		if (port == 1111 && ipaddress == 1111) G_1111 = true;
+		return FALSE;
+	}
+
+	return TRUE;
+}
+BOOL
+vncService::PostAddNewClient6(in6_addr *ipaddress, unsigned short port)
+{
+	// Post to the WinVNC menu window
+	// We can not sen a ipv6 address with a LPARAM, so we fake the message by copying in a gloobal var.
+	memcpy(&G_LPARAM_IN6, ipaddress, sizeof(in6_addr));
+	if (!PostToWinVNC(MENU_ADD_CLIENT6_MSG, (WPARAM)port, (LPARAM)ipaddress))
+	{
+		return FALSE;
+	}
+
+	return TRUE;
+}
+
+BOOL
+vncService::PostAddNewClientInit6(in6_addr *ipaddress, unsigned short port)
+{
+	// Post to the WinVNC menu window
+	// We can not sen a ipv6 address with a LPARAM, so we fake the message by copying in a gloobal var.
+	memcpy(&G_LPARAM_IN6, ipaddress, sizeof(in6_addr));
+	if (!PostToWinVNC(MENU_ADD_CLIENT6_MSG_INIT, (WPARAM)port, (LPARAM)ipaddress))
+	{
+		return FALSE;
+	}
+
+	return TRUE;
+}
+#else
 BOOL
 vncService::PostAddNewClient(unsigned long ipaddress, unsigned short port)
 {
@@ -849,7 +943,7 @@ vncService::PostAddNewClientInit(unsigned long ipaddress, unsigned short port)
 
 	return TRUE;
 }
-
+#endif
 //adzm 2009-06-20
 // Static routine to tell a locally-running instance of the server
 // to prompt for a new ID to connect out to the repeater

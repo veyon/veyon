@@ -46,14 +46,24 @@ rfbInitColourMapSingleTableOUTVNC (char **table,
 	}
 
 	// Obtain the system palette
+	bool create_dc = false;
 	HDC hDC = GetDcMirror();
-	if (hDC==NULL) vnclog.Print(LL_ALL, VNCLOG("Using video Palette\n"));
-	else vnclog.Print(LL_ALL, VNCLOG("Using mirror video Palette\n"));
-	if (hDC==NULL) hDC = GetDC(NULL);
+	if (hDC == NULL)
+	{
+		vnclog.Print(LL_ALL, VNCLOG("Using video Palette\n"));
+		hDC = GetDC(NULL);
+	}
+	else
+	{
+		vnclog.Print(LL_ALL, VNCLOG("Using mirror video Palette\n"));
+		create_dc = true;
+	}
+
 	PALETTEENTRY palette[256];
   UINT entries = ::GetSystemPaletteEntries(hDC,	0, 256, palette);
 	vnclog.Print(LL_INTINFO, VNCLOG("got %u palette entries\n"), GetLastError());
-	ReleaseDC(NULL, hDC);
+	if (create_dc) DeleteDC(hDC);
+	else ReleaseDC(NULL, hDC);
 
   // - Set the rest of the palette to something nasty but usable
   unsigned int i;

@@ -18,7 +18,7 @@
 //
 // If the source code for the program is not available from the place from
 // which you received this file, check 
-// http://ultravnc.sourceforge.net/
+// http://www.uvnc.com
 
 // This table maps permissions onto strings.
 // Notice the first entry, which includes all permissions; it maps to a string "Full Control".

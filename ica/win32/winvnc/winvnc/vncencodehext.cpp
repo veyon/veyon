@@ -30,7 +30,7 @@
 // Hextile encoder.  Hextile splits all top-level update rectangles
 // into smaller, 16x16 rectangles and encodes these using the
 // optimised Hextile sub-encodings.
-
+#include "stdhdrs.h"
 #include "vncencodehext.h"
 #include "rfb.h"
 #include "rfbMisc.h"

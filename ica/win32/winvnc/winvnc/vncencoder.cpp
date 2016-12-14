@@ -1,4 +1,5 @@
-//  Copyright (C) 2002 Ultr@VNC Team Members. All Rights Reserved.
+//  Copyright (C) 2002 UltraVNC Team Members. All Rights Reserved.
+//  Copyright (C) 2015 D. R. Commander. All Rights Reserved.
 //  Copyright (C) 2002 RealVNC Ltd. All Rights Reserved.
 //  Copyright (C) 1999 AT&T Laboratories Cambridge. All Rights Reserved.
 //
@@ -25,7 +26,7 @@
 
 
 // vncEncoder - Object used to encode data for RFB
-
+#include "stdhdrs.h"
 #include "vncencoder.h"
 #include "vncbuffer.h"
 
@@ -52,6 +53,8 @@ vncEncoder::vncEncoder()
 	// Tight - CURSOR HANDLING
 	m_compresslevel = 6;
 	m_qualitylevel = -1;
+	m_finequalitylevel = -1;
+	m_subsampling = SUBSAMP_2X;
 	m_use_lastrect = FALSE;
 	m_use_xcursor = FALSE;
 	m_use_richcursor = FALSE;
@@ -444,6 +447,18 @@ void
 vncEncoder::SetQualityLevel(int level)
 {
 	m_qualitylevel = (level >= 0 && level <= 9) ? level : -1;
+}
+
+void
+vncEncoder::SetFineQualityLevel(int level)
+{
+	m_finequalitylevel = (level >= 0 && level <= 100) ? level : -1;
+}
+
+void
+vncEncoder::SetSubsampling(subsamp_type subsamp)
+{
+	m_subsampling = subsamp;
 }
 
 inline void

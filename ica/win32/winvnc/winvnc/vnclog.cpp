@@ -74,13 +74,13 @@ void VNCLog::SetMode(int mode)
             AllocConsole(); //lint !e534
             fclose(stdout);
             fclose(stderr);
-#ifdef _MSC_VER
+#ifdef _MSC_VER3
             int fh = _open_osfhandle((long)GetStdHandle(STD_OUTPUT_HANDLE), 0);
             _dup2(fh, 1);
             _dup2(fh, 2);
             _fdopen(1, "wt");
             _fdopen(2, "wt");
-            printf("fh is %d\n",fh);
+            printf("fh is %i\n",fh);
             fflush(stdout);
 #endif
         }

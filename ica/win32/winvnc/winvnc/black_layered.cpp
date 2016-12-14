@@ -1,5 +1,5 @@
 /////////////////////////////////////////////////////////////////////////////
-//  Copyright (C) 2002-2010 Ultr@VNC Team Members. All Rights Reserved.
+//  Copyright (C) 2002-2013 UltraVNC Team Members. All Rights Reserved.
 //
 //  This program is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -21,6 +21,7 @@
 // http://www.uvnc.com/
 //
 ////////////////////////////////////////////////////////////////////////////
+#include "stdhdrs.h"
 
 #if !defined(AFX_STDAFX_H__A9DB83DB_A9FD_11D0_BFD1_444553540000__INCLUDED_)
 #define AFX_STDAFX_H__A9DB83DB_A9FD_11D0_BFD1_444553540000__INCLUDED_
@@ -29,6 +30,7 @@
 #pragma once
 #endif // _MSC_VER > 1000
 #define WIN32_LEAN_AND_MEAN		// Exclude rarely-used stuff from Windows headers
+#include <winsock2.h>
 #include <windows.h>
 #endif // !defined(AFX_STDAFX_H__A9DB83DB_A9FD_11D0_BFD1_444553540000__INCLUDED_)
 #include <time.h>
@@ -260,14 +262,25 @@ create_window(void)
 	/*
 	* Make the windows a layered window
 	*/
+
+#ifndef _X64
 	LONG style = GetWindowLong(hwnd, GWL_STYLE);
 	style = GetWindowLong(hwnd, GWL_STYLE);
 	style &= ~(WS_DLGFRAME | WS_THICKFRAME);
 	SetWindowLong(hwnd, GWL_STYLE, style);
+#else
+	LONG_PTR style = GetWindowLongPtr(hwnd, GWL_STYLE);
+	style = GetWindowLongPtr(hwnd, GWL_STYLE);
+	style &= ~(WS_DLGFRAME | WS_THICKFRAME);
+	SetWindowLongPtr(hwnd, GWL_STYLE, style);
+#endif
 
 	if (pSetLayeredWindowAttributes != NULL) {
-		SetWindowLong (hwnd, GWL_EXSTYLE, GetWindowLong
-		(hwnd, GWL_EXSTYLE) |WS_EX_LAYERED|WS_EX_TRANSPARENT|WS_EX_TOPMOST);
+#ifndef _X64
+		SetWindowLong (hwnd, GWL_EXSTYLE, GetWindowLong(hwnd, GWL_EXSTYLE) |WS_EX_LAYERED|WS_EX_TRANSPARENT|WS_EX_TOPMOST);
+#else
+		SetWindowLongPtr (hwnd, GWL_EXSTYLE, GetWindowLongPtr(hwnd, GWL_EXSTYLE) |WS_EX_LAYERED|WS_EX_TRANSPARENT|WS_EX_TOPMOST);
+#endif
 	    ShowWindow (hwnd, SW_SHOWNORMAL);
 	}
 	if (pSetLayeredWindowAttributes != NULL) {

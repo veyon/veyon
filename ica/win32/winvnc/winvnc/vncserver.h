@@ -1,4 +1,4 @@
-//  Copyright (C) 2002 Ultr@VNC Team Members. All Rights Reserved.
+//  Copyright (C) 2002 UltraVNC Team Members. All Rights Reserved.
 //  Copyright (C) 2000-2002 Const Kaplinsky. All Rights Reserved.
 //  Copyright (C) 2002 RealVNC Ltd. All Rights Reserved.
 //  Copyright (C) 1999 AT&T Laboratories Cambridge. All Rights Reserved.
@@ -89,23 +89,21 @@ public:
 	~vncServer();
 
 	// Client handling functions
-	virtual vncClientId AddClient(VSocket *socket, BOOL auth, BOOL shared);
-	virtual vncClientId AddClient(VSocket *socket, BOOL auth, BOOL shared,rfbProtocolVersionMsg *protocolMsg);
+	virtual vncClientId AddClient(VSocket *socket, BOOL auth, BOOL shared, BOOL outgoing);
+	virtual vncClientId AddClient(VSocket *socket, BOOL auth, BOOL shared, rfbProtocolVersionMsg *protocolMsg, BOOL outgoing);
 	virtual vncClientId AddClient(VSocket *socket,
-		BOOL auth, BOOL shared, int capability,
-		/*BOOL keysenabled, BOOL ptrenabled,*/rfbProtocolVersionMsg *protocolMsg);
+		BOOL auth, BOOL shared, int capability,rfbProtocolVersionMsg *protocolMsg, BOOL outgoing);
 	
 	// adzm 2009-07-05
 	// adzm 2009-08-02
 	virtual vncClientId AddClient(VSocket *socket,
-		BOOL auth, BOOL shared, int capability,
-		/*BOOL keysenabled, BOOL ptrenabled,*/rfbProtocolVersionMsg *protocolMsg,VString szRepeaterID,VString szHost,VCard port);
+		BOOL auth, BOOL shared, int capability,rfbProtocolVersionMsg *protocolMsg, VString szRepeaterID, VString szHost, VCard port, BOOL outgoing);
 
 	virtual BOOL Authenticated(vncClientId client);
 	virtual void KillClient(vncClientId client);
 	virtual void KillClient(LPSTR szClientName); // sf@2002
 	virtual void TextChatClient(LPSTR szClientName); // sf@2002
-	bool IsUltraVncViewer();
+	bool IsUltraVNCViewer();
 	bool AreThereMultipleViewers();
 
 	virtual UINT AuthClientCount();
@@ -159,6 +157,8 @@ public:
 
 	// Lock to protect the client list from concurrency - lock when reading/updating client list
 	omni_mutex			m_clientsLock;
+	omni_mutex			m_clientsLockBlackList;
+	omni_mutex			m_clientsLock_notifyList;
 
 	UINT				m_port;
 	UINT				m_port_http; // TightVNC 1.2.7
@@ -268,6 +268,8 @@ public:
 	// Tray icon disposition
 	virtual BOOL SetDisableTrayIcon(BOOL disableTrayIcon);
 	virtual BOOL GetDisableTrayIcon();
+	virtual BOOL SetRdpmode(BOOL Rdpmode);
+	virtual BOOL GetRdpmode();
 	virtual BOOL SetAllowEditClients(BOOL AllowEditClients);
 	virtual BOOL GetAllowEditClients();
 
@@ -275,8 +277,8 @@ public:
 	// HTTP daemon handling
 	virtual BOOL EnableHTTPConnect(BOOL enable);
 	virtual BOOL HTTPConnectEnabled() {return m_enableHttpConn;};
-	virtual BOOL EnableXDMCPConnect(BOOL enable);
-	virtual BOOL XDMCPConnectEnabled() {return m_enableXdmcpConn;};
+
+
 
 	virtual void GetScreenInfo(int &width, int &height, int &depth);
 
@@ -299,7 +301,16 @@ public:
 	virtual void SetQuerySetting(const UINT setting) {m_querysetting = setting;};
 	virtual UINT QuerySetting() {return m_querysetting;};
 	virtual void SetQueryAccept(const UINT setting) {m_queryaccept = setting;};
-	virtual UINT QueryAccept() {return m_queryaccept;};
+	virtual UINT QueryAccept() 
+	{
+		if (m_queryaccept==2) return 0;
+		else return m_queryaccept;
+	};
+	virtual UINT QueryAcceptLocked() 
+	{
+		if (m_queryaccept==2) return 0;
+		else return 1;
+	};
 	virtual void SetQueryTimeout(const UINT setting) {m_querytimeout = setting;};
 	virtual UINT QueryTimeout() {return m_querytimeout;};
 
@@ -310,7 +321,11 @@ public:
 	// Whether or not to allow connections from the local machine
 	virtual void SetLoopbackOk(BOOL ok) {m_loopback_allowed = ok;};
 	virtual BOOL LoopbackOk() {return m_loopback_allowed;};
-
+#ifdef IPV6V4
+	// Whether or not to allow connections from the local machine
+	virtual void SetIPV6(BOOL ok) { G_ipv6_allowed = ok; };
+	virtual BOOL IPV6() { return G_ipv6_allowed; };
+#endif
 	// Whether or not to shutdown or logoff when the last client leaves
 	virtual void SetLockSettings(int ok) {m_lock_on_exit = ok;};
 	virtual int LockSettings() {return m_lock_on_exit;};
@@ -369,6 +384,7 @@ public:
 	virtual void DisableCacheForAllClients();
 	virtual bool IsThereASlowClient();
 	virtual bool IsThereAUltraEncodingClient();
+	virtual bool IsEncoderSet();
 	virtual bool IsThereFileTransBusy();
 
 	// sf@2002 - Turbo Mode
@@ -405,15 +421,6 @@ public:
 	virtual BOOL FTUserImpersonation(){return m_fFTUserImpersonation;};
 	virtual void FTUserImpersonation(BOOL fEnabled){m_fFTUserImpersonation = fEnabled;};
 
-	virtual BOOL CaptureAlphaBlending(){return m_fCaptureAlphaBlending;};
-	virtual void CaptureAlphaBlending(BOOL fEnabled){m_fCaptureAlphaBlending = fEnabled;};
-	virtual BOOL BlackAlphaBlending(){return m_fBlackAlphaBlending;};
-	virtual void BlackAlphaBlending(BOOL fEnabled){m_fBlackAlphaBlending = fEnabled;};
-
-	// [v1.0.2-jp1 fix]
-//	virtual BOOL GammaGray(){return m_fGammaGray;};
-//	virtual void GammaGray(BOOL fEnabled){m_fGammaGray = fEnabled;};
-
 	virtual void Clear_Update_Tracker();
 	virtual void UpdateCursorShape();
 
@@ -424,6 +431,9 @@ public:
     void NotifyClients_StateChange(CARD32 state, CARD32 value);
     int  GetFTTimeout() { return m_ftTimeout; }
     int  GetKeepAliveInterval () { return m_keepAliveInterval; }
+	int  GetIdleInputTimeout() { return m_IdleInputTimeout; }
+	void SetIdleInputTimeout(int secs) { m_IdleInputTimeout = secs; }
+
     void SetFTTimeout(int msecs);
     void EnableKeepAlives(bool newstate) { m_fEnableKeepAlive = newstate; }
     bool DoKeepAlives() { return m_fEnableKeepAlive; }
@@ -432,10 +442,6 @@ public:
     if (m_keepAliveInterval >= (m_ftTimeout - KEEPALIVE_HEADROOM))
         m_keepAliveInterval = m_ftTimeout  - KEEPALIVE_HEADROOM;
     }
-
-	// adzm 2010-08
-	void SetSocketKeepAliveTimeout(int timeout)	{ m_socketKeepAliveTimeout = timeout > 0 ? timeout : 0; VSocket::SetSocketKeepAliveTimeoutDefault(m_socketKeepAliveTimeout); }
-	int GetSocketKeepAliveTimeout() { return m_socketKeepAliveTimeout; }
 
 	void TriggerUpdate();
 	UINT				m_retry_timeout;
@@ -471,9 +477,8 @@ protected:
 	// Connection servers
 	vncSockConnect		*m_socketConn;
 	vncHTTPConnect		*m_httpConn;
-	HANDLE				m_xdmcpConn;
 	BOOL				m_enableHttpConn;
-	BOOL				m_enableXdmcpConn;
+
 
 	// The desktop handler
 	vncDesktop			*m_desktop;
@@ -485,7 +490,7 @@ protected:
 	char				m_password[MAXPWLEN];
 	char				m_password2[MAXPWLEN]; //PGM
 	BOOL				m_passwd_required;
-	BOOL				m_loopback_allowed;
+	BOOL				m_loopback_allowed;	
 	BOOL				m_loopbackOnly;
 	char				*m_auth_hosts;
 	BOOL				m_enable_remote_inputs;
@@ -505,6 +510,7 @@ protected:
 	BOOL				m_remove_fontsmoothing;
 	BOOL				m_remove_Aero;
 	BOOL				m_disableTrayIcon;
+	BOOL				m_Rdpmode;
 	BOOL				m_AllowEditClients;
 
 	// Polling preferences
@@ -596,18 +602,12 @@ protected:
 	// sf@2005 - FTUserImpersonation
 	BOOL m_fFTUserImpersonation;
 
-	// sf@2005
-	BOOL m_fCaptureAlphaBlending;
-	BOOL m_fBlackAlphaBlending;
-	//BOOL m_fGammaGray;	// [v1.0.2-jp1 fix]
-
 	HINSTANCE   hWtsLib;
     bool m_fEnableStateUpdates;
     bool m_fEnableKeepAlive;
     int m_ftTimeout;
     int m_keepAliveInterval;
-	// adzm 2010-08
-	int m_socketKeepAliveTimeout;
+	int m_IdleInputTimeout;
 	bool clearconsole;
 };
 

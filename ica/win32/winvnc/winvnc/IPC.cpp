@@ -1,5 +1,5 @@
 /////////////////////////////////////////////////////////////////////////////
-//  Copyright (C) 2002-2010 Ultr@VNC Team Members. All Rights Reserved.
+//  Copyright (C) 2002-2013 UltraVNC Team Members. All Rights Reserved.
 //
 //  This program is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -21,7 +21,7 @@
 // http://www.uvnc.com/
 //
 ////////////////////////////////////////////////////////////////////////////
-
+#include <winsock2.h>
 #include <windows.h>
 #include <tchar.h>
 #include <crtdbg.h>
@@ -30,15 +30,27 @@
 
 const static LPCTSTR g_szIPCSharedMMF = _T("{34F673E0-878F-11D5-B98A-00B0D07B8C7C}");
 const static LPCTSTR g_szIPCMutex = _T("{34F673E1-878F-11D5-B98A-00B0D07B8C7C}");
+
+//const static LPCTSTR g_szIPCSharedMMFW8 = _T("{34F673E0-878F-11D5-B98A-56B0D07B8C7C}");
+//const static LPCTSTR g_szIPCMutexW8 = _T("{34F673E1-878F-11D5-B98A-56B0D07B8C7C}");
+const static LPCTSTR g_szIPCSharedMMFBitmap = _T("{34F673E0-878F-11D5-B98A-57B0D07B8C7C}");
+const static LPCTSTR g_szIPCMutexBitmap = _T("{34F673E1-878F-11D5-B98A-57B0D07B8C7C}");
+
 int oldcounter=0;
 
 
 
 //***********************************************
-CIPC::CIPC() : m_hFileMap(NULL), m_hMutex(NULL)
+CIPC::CIPC() 
 {
+	m_hFileMap=NULL;
+	m_hMutex=NULL;
+	m_hFileMapBitmap=NULL;
+	m_hMutexBitmap=NULL;
+	pBitmap=NULL;
 	plist=NULL;
 	m_FileView=0;
+	m_FileViewBitmap=0;
 	CreateIPCMMF();
 	OpenIPCMMF();
 }
@@ -47,32 +59,83 @@ CIPC::CIPC() : m_hFileMap(NULL), m_hMutex(NULL)
 CIPC::~CIPC()
 {
 	CloseIPCMMF();
+	CloseIPCMMFBitmap();
 	Unlock();
+	UnlockBitmap();
 }
+
+/*unsigned char * CIPC::CreateBitmap(int size)
+{
+	CreateIPCMMFBitmap(size);
+	OpenIPCMMFBitmap();
+	plist->rect1[0].left = size;
+	return pBitmap;
+}
+
+//***********************************************
+unsigned char * CIPC::CreateBitmap()
+{
+	int size=plist->rect1[0].left;
+	CreateIPCMMFBitmap(size);
+	OpenIPCMMFBitmap();	
+	return pBitmap;
+}
+
+void CIPC::CloseBitmap()
+{
+	CloseIPCMMFBitmap();
+	pBitmap=NULL;
+}*/
+
 
 //***********************************************
 bool CIPC::CreateIPCMMF(void)
 {
 	bool bCreated = false;
-
+	int listsize=sizeof(mystruct);
 	try
 	{
 		if(m_hFileMap != NULL)
 			return false;	// Already created
-
+		
 		// Create an in-memory 4KB memory mapped file to share data
-		m_hFileMap = CreateFileMapping((HANDLE)0xFFFFFFFF,
+		m_hFileMap = CreateFileMapping(INVALID_HANDLE_VALUE,
 			NULL,
 			PAGE_READWRITE,
 			0,
-			sizeof(list),
+			listsize,
 			g_szIPCSharedMMF);
+		DWORD error=GetLastError();
 		if(m_hFileMap != NULL)
 			bCreated = true;
 	}
 	catch(...) {}
 
 	return bCreated;
+}
+//***********************************************
+bool CIPC::CreateIPCMMFBitmap(int size)
+{
+	bool bCreatedBitmap = false;
+
+	try
+	{
+		if(m_hFileMapBitmap != NULL)
+			return false;	// Already created
+
+		// Create an in-memory 4KB memory mapped file to share data
+		m_hFileMapBitmap = CreateFileMapping(INVALID_HANDLE_VALUE,
+			NULL,
+			PAGE_READWRITE,
+			0,
+			size,
+			g_szIPCSharedMMFBitmap);
+		if(m_hFileMapBitmap != NULL)
+			bCreatedBitmap = true;
+	}
+	catch(...) {}
+
+	return bCreatedBitmap;
 }
 
 //***********************************************
@@ -105,7 +168,36 @@ bool CIPC::OpenIPCMMF(void)
 
 	return bOpened;
 }
+//***********************************************
+bool CIPC::OpenIPCMMFBitmap(void)
+{
+	bool bOpenedBitmap = false;
 
+	try
+	{
+		if(m_hFileMapBitmap == NULL)
+		{
+
+		m_hFileMapBitmap = OpenFileMapping(FILE_MAP_READ | FILE_MAP_WRITE,
+			FALSE,
+			g_szIPCSharedMMFBitmap);
+		}
+
+		if(m_hFileMapBitmap != NULL)
+		{
+			bOpenedBitmap = true;
+			m_FileViewBitmap = MapViewOfFile(m_hFileMapBitmap,
+			FILE_MAP_READ | FILE_MAP_WRITE,
+			0, 0, 0);
+			if (m_FileViewBitmap==0) bOpenedBitmap = false;
+			pBitmap=(byte*) m_FileViewBitmap;
+
+		}
+	}
+	catch(...) {}
+
+	return bOpenedBitmap;
+}
 //***********************************************
 void CIPC::CloseIPCMMF(void)
 {
@@ -114,6 +206,19 @@ void CIPC::CloseIPCMMF(void)
 		if (m_FileView) UnmapViewOfFile(m_FileView);
 		if(m_hFileMap != NULL)
 			CloseHandle(m_hFileMap), m_hFileMap = NULL;
+	}
+	catch(...) {}
+}
+//***********************************************
+void CIPC::CloseIPCMMFBitmap(void)
+{
+	try
+	{
+		if (m_FileViewBitmap) UnmapViewOfFile((LPVOID)m_FileViewBitmap);
+			m_FileViewBitmap=NULL;
+		if(m_hFileMapBitmap != NULL)
+			CloseHandle(m_hFileMapBitmap);
+		m_hFileMapBitmap = NULL;
 	}
 	catch(...) {}
 }
@@ -194,6 +299,42 @@ void CIPC::Unlock(void)
 			ReleaseMutex(m_hMutex);
 			CloseHandle(m_hMutex);
 			m_hMutex = NULL;
+		}
+	}
+	catch(...) {}
+}
+
+//***********************************************
+bool CIPC::LockBitmap(void)
+{
+	bool bLockedBitmap = false;
+
+	try
+	{
+		// First get the handle to the mutex
+		m_hMutexBitmap = CreateMutex(NULL, FALSE, g_szIPCMutexBitmap);
+		if(m_hMutexBitmap != NULL)
+		{
+			// Wait to get the lock on the mutex
+			if(WaitForSingleObject(m_hMutexBitmap, INFINITE) == WAIT_OBJECT_0)
+				bLockedBitmap = true;
+		}
+	}
+	catch(...) {}
+
+	return bLockedBitmap;
+}
+
+//***********************************************
+void CIPC::UnlockBitmap(void)
+{
+	try
+	{
+		if(m_hMutexBitmap != NULL)
+		{
+			ReleaseMutex(m_hMutexBitmap);
+			CloseHandle(m_hMutexBitmap);
+			m_hMutexBitmap = NULL;
 		}
 	}
 	catch(...) {}

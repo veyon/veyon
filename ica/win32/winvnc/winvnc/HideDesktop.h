@@ -1,10 +1,7 @@
-//  Copyright (C) 2002 Ultr@VNC Team Members. All Rights Reserved.
-//  Copyright (C) 2002 RealVNC Ltd. All Rights Reserved.
-//  Copyright (C) 1999 AT&T Laboratories Cambridge. All Rights Reserved.
+/////////////////////////////////////////////////////////////////////////////
+//  Copyright (C) 2002-2013 UltraVNC Team Members. All Rights Reserved.
 //
-//  This file is part of the VNC system.
-//
-//  The VNC system is free software; you can redistribute it and/or modify
+//  This program is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation; either version 2 of the License, or
 //  (at your option) any later version.
@@ -19,17 +16,11 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307,
 //  USA.
 //
+// If the source code for the program is not available from the place from
+// which you received this file, check 
+// http://www.uvnc.com/
 //
-// Functions to hide the Windows Desktop
-//
-// This hides three variants:
-//	- Desktop Patterns  (WIN.INI [Desktop] Pattern=)
-//	- Desktop Wallpaper (.bmp [and JPEG on Windows XP])
-//	- Active Desktop
-//
-// Written by Ed Hardebeck - Glance Networks, Inc.
-// With some code from Paul DiLascia, MSDN Magazine - May 2001
-//
+////////////////////////////////////////////////////////////////////////////
 
 #ifndef _G_HIDEDESKTOP_H_
 #define _G_HIDEDESKTOP_H_

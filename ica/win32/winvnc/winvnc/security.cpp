@@ -1,5 +1,5 @@
 /////////////////////////////////////////////////////////////////////////////
-//  Copyright (C) 2002-2010 Ultr@VNC Team Members. All Rights Reserved.
+//  Copyright (C) 2002-2013 UltraVNC Team Members. All Rights Reserved.
 //
 //  This program is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -33,7 +33,6 @@ typedef BOOL (WINAPI *pWTSQueryUserToken_proto)(ULONG, PHANDLE);
 
 DWORD GetCurrentUserToken(HANDLE& process, HANDLE &Token)
 {
-	if(OSversion()==4 || OSversion()==5) return 1;
 	if (!vncService::RunningAsService())
 	{
 		if (!OpenProcessToken(GetCurrentProcess(), TOKEN_ALL_ACCESS, &Token))
@@ -124,17 +123,23 @@ bool RunningAsAdministrator ()
  // to an additional group between our first call to
  // GetTokenInformation and this one.
 
- if ( !GetTokenInformation ( Token, TokenGroups, ptg, cbTokenGroups,
-          &cbTokenGroups) )
-  return ( FALSE);
+ if (!GetTokenInformation(Token, TokenGroups, ptg, cbTokenGroups,
+	 &cbTokenGroups))
+ {
+	 _freea(ptg);
+	 return (FALSE);
+ }
 
  // Now we must create a System Identifier for the Admin group.
 
- if ( ! AllocateAndInitializeSid ( &SystemSidAuthority, 2, 
-            SECURITY_BUILTIN_DOMAIN_RID, 
-            DOMAIN_ALIAS_RID_ADMINS,
-            0, 0, 0, 0, 0, 0, &psidAdmin) )
-  return ( FALSE);
+ if (!AllocateAndInitializeSid(&SystemSidAuthority, 2,
+	 SECURITY_BUILTIN_DOMAIN_RID,
+	 DOMAIN_ALIAS_RID_ADMINS,
+	 0, 0, 0, 0, 0, 0, &psidAdmin))
+ {
+	 _freea(ptg);
+	 return (FALSE);
+ }
 
  // Finally we'll iterate through the list of groups for this access
  // token looking for a match against the SID we created above.
@@ -152,7 +157,7 @@ bool RunningAsAdministrator ()
  }
 
  // Before we exit we must explicity deallocate the SID we created.
-
+ _freea(ptg);
  FreeSid ( psidAdmin);
  return (FALSE != fAdmin);
 }

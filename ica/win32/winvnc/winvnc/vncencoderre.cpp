@@ -29,7 +29,7 @@
 // This class overrides some vncEncoder functions to produce a bitmap
 // to RRE encoder.  RRE is much more efficient than RAW format on
 // most screen data.
-
+#include "stdhdrs.h"
 #include "vncencoderre.h"
 
 vncEncodeRRE::vncEncodeRRE()

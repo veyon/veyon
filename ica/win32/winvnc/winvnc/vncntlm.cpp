@@ -1,5 +1,5 @@
 /////////////////////////////////////////////////////////////////////////////
-//  Copyright (C) 2002-2010 Ultr@VNC Team Members. All Rights Reserved.
+//  Copyright (C) 2002-2013 UltraVNC Team Members. All Rights Reserved.
 //
 //  This program is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -52,7 +52,7 @@ CheckUserPasswordSDUniFn CheckUserPasswordSDUni = 0;
 
 #define MAXSTRING 254
 
-const TCHAR REGISTRY_KEY [] = "Software\\UltraVnc";
+const TCHAR REGISTRY_KEY [] = "Software\\UltraVNC";
 
 HKEY hkLocal=NULL;
 HKEY hkDefault=NULL;
@@ -902,7 +902,7 @@ if (strcmp(pszgroup3,"")!=0)
 			}
 
 	}
-	if (result==1) goto accessOK;
+	if (result==1) goto accessOK2;
 	////////////////////////////////////////////////////////
 	if ( NT4OS || W2KOS){
 		char szCurrentDir[MAX_PATH];
@@ -929,7 +929,7 @@ if (strcmp(pszgroup3,"")!=0)
 			}
 
 	}
-	if (result==1) goto accessOK;
+	if (result==1) goto accessOK2;
 	////////////////////////////////////////////////////////////////
 	if (CheckAD() && W2KOS && (locdom3==2||locdom3==3))
 	{
@@ -956,7 +956,7 @@ if (strcmp(pszgroup3,"")!=0)
 				result=0;
 			}
 	}
-	if (result==1) goto accessOK;
+	if (result==1) goto accessOK2;
 	///////////////////////////////////////////////////////////////////
 	if (CheckAD() && NT4OS && CheckDsGetDcNameW() && (locdom3==2||locdom3==3))
 	{

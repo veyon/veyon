@@ -1,4 +1,5 @@
-//  Copyright (C) 2002 Ultr@VNC Team Members. All Rights Reserved.
+//  Copyright (C) 2002 UltraVNC Team Members. All Rights Reserved.
+//  Copyright (C) 2015 D. R. Commander. All Rights Reserved.
 //  Copyright (C) 2000-2002 Const Kaplinsky. All Rights Reserved.
 //  Copyright (C) 2002 RealVNC Ltd. All Rights Reserved.
 //  Copyright (C) 1999 AT&T Laboratories Cambridge. All Rights Reserved.
@@ -41,6 +42,13 @@ class vncEncoder;
 #include "vsocket.h"
 #include "vncmemcpy.h"
 
+#define NUM_SUBSAMPOPT 6
+enum subsamp_type
+{
+	SUBSAMP_1X = 0, SUBSAMP_4X, SUBSAMP_2X, SUBSAMP_GRAY, SUBSAMP_8X,
+	SUBSAMP_16X
+};
+
 // Class definition
 
 class vncEncoder
@@ -73,6 +81,7 @@ public:
 	virtual UINT EncodeRect(BYTE *source, BYTE *source2,VSocket *outConn, BYTE *dest, const rfb::Rect &rect);
 	virtual UINT EncodeRect(BYTE *source,VSocket *outConn, BYTE *dest, const rfb::Rect &rect);
 	virtual UINT EncodeRect(BYTE *source, VSocket *outConn, BYTE *dest, const RECT &rect); // sf@2002 - For Tight...
+	virtual UINT EncodeBulkRects(const rfb::RectVector &rects, BYTE *source, BYTE *dest, VSocket *outConn) { return 0; };
 
 	// CURSOR HANDLING
 	void Translate(BYTE *source, BYTE *dest, int w, int h, int bytesPerRow);
@@ -88,6 +97,8 @@ public:
 	// Tight
 	void SetCompressLevel(int level);
 	void SetQualityLevel(int level);
+	void SetFineQualityLevel(int level);
+	void SetSubsampling(subsamp_type subsamp);
 	void EnableLastRect(BOOL enable) { m_use_lastrect = enable; }
 
 	// Tight - CURSOR HANDLING
@@ -128,12 +139,14 @@ protected:
 	// Tight
 	int					m_compresslevel;		// Encoding-specific compression level (if needed).
 	int					m_qualitylevel;			// Image quality level for lossy JPEG compression.
+	int					m_finequalitylevel;		// Fine-grained image quality level for lossy JPEG compression.
+	int					m_subsampling;			// Chroma subsampling level for lossy JPEG compression.
 	BOOL				m_use_lastrect;
 	// Tight - CURSOR HANDLING
 	BOOL				m_use_xcursor;			// XCursor cursor shape updates allowed.
 	BOOL				m_use_richcursor;		// RichCursor cursor shape updates allowed.
 
-//	Ultravncmemcpy mem;
+//	UltraVNCmemcpy mem;
 };
 
 #endif // vncENCODER_DEFINED

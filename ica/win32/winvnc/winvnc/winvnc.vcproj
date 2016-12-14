@@ -257,10 +257,6 @@
 				RuntimeLibrary="0"
 				StructMemberAlignment="5"
 				EnableFunctionLevelLinking="true"
-				PrecompiledHeaderFile=".\..\Release/winvnc.pch"
-				AssemblerListingLocation=".\..\Release/"
-				ObjectFile=".\..\Release/"
-				ProgramDataBaseFileName=".\..\Release/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 				DebugInformationFormat="3"
@@ -279,19 +275,16 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalOptions="/LTCG"
 				AdditionalDependencies="ws2_32.lib winmm.lib version.lib comctl32.lib wtsapi32.lib userenv.lib"
-				OutputFile=".\..\Release/winvnc_32.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				GenerateManifest="true"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile=".\..\Release/winvnc.pdb"
 				SubSystem="2"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="0"
-				RandomizedBaseAddress="1"
-				DataExecutionPrevention="0"
+				RandomizedBaseAddress="2"
+				DataExecutionPrevention="2"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -316,6 +309,8 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
+				CommandLine="&quot;C:\Program Files (x86)\Windows Kits\8.1\bin\x86\signtool.exe&quot; sign /sha1 075BD1CAB5AE085E523AF7883FC0A8127BE08C71 /n &quot;uvnc bvba&quot; /v /fd sha1 /t http://timestamp.verisign.com/scripts/timstamp.dll &quot;$(OutDir)\$(ProjectName).exe&quot;&#x0D;&#x0A;&quot;C:\Program Files (x86)\Windows Kits\8.1\bin\x86\signtool.exe&quot; sign /sha1 0F96782496EA96F2BA96CF177E61F993CA5BC2E8 /n &quot;uvnc bvba&quot; /v /as /fd sha256 /tr http://timestamp.geotrust.com/tsa &quot;$(OutDir)\$(ProjectName).exe&quot;&#x0D;&#x0A;copy &quot;$(OutDir)\$(ProjectName).exe&quot; c:\uvnc\32\w2k&#x0D;&#x0A;"
+				ExcludedFromBuild="false"
 			/>
 		</Configuration>
 		<Configuration
@@ -611,6 +606,30 @@
 		</Configuration>
 	</Configurations>
 	<References>
+		<ProjectReference
+			ReferencedProjectIdentifier="{04F91FA4-2D94-4803-BA3B-B61FBEF0ABE3}"
+			RelativePathToProject="..\libjpeg-turbo-win\libjpeg-turbo-win.vcproj"
+		/>
+		<ProjectReference
+			ReferencedProjectIdentifier="{E52B9956-FE67-47F7-BC4F-67CC5A64B708}"
+			RelativePathToProject=".\omnithread\omnithread.vcproj"
+		/>
+		<ProjectReference
+			ReferencedProjectIdentifier="{F5244002-0FFF-4F19-A941-FCCE1861F132}"
+			RelativePathToProject="..\rdr\rdr.vcproj"
+		/>
+		<ProjectReference
+			ReferencedProjectIdentifier="{F9321962-FBED-4581-BF7D-D0EBC303D891}"
+			RelativePathToProject="..\zipunzip_src\unzip\windll\vc6\lib\unz32lib.vcproj"
+		/>
+		<ProjectReference
+			ReferencedProjectIdentifier="{E8BA959F-B652-4BAB-9EA7-8E9FC8D7F39C}"
+			RelativePathToProject="..\zipunzip_src\zip20\windll\visualc\lib\zip32.vcproj"
+		/>
+		<ProjectReference
+			ReferencedProjectIdentifier="{745DEC58-EBB3-47A9-A9B8-4C6627C01BF8}"
+			RelativePathToProject="..\zlib-1.2.5\contrib\vstudio\vc9\zlibstat.vcproj"
+		/>
 	</References>
 	<Files>
 		<Filter
@@ -678,6 +697,10 @@
 						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath=".\blankmonitor.cpp"
+				>
 			</File>
 			<File
 				RelativePath="buildtime.cpp"
@@ -996,14 +1019,6 @@
 						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
-			</File>
-			<File
-				RelativePath=".\httpconnect.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\httpconnect.h"
-				>
 			</File>
 			<File
 				RelativePath="inifile.cpp"
@@ -1684,6 +1699,10 @@
 						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath=".\uvncUiAccess.cpp"
+				>
 			</File>
 			<File
 				RelativePath="videodriver.cpp"
@@ -4290,98 +4309,26 @@
 			Filter="ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"
 			>
 			<File
-				RelativePath="res\background.bmp"
-				>
-			</File>
-			<File
-				RelativePath="res\background2.bmp"
-				>
-			</File>
-			<File
-				RelativePath="res\clipboardframe.class"
-				>
-			</File>
-			<File
-				RelativePath="res\descipher.class"
-				>
-			</File>
-			<File
 				RelativePath=".\res\Finger.cur"
 				>
 			</File>
 			<File
-				RelativePath="res\ico00001.ico"
+				RelativePath=".\res\icon2.ico"
 				>
 			</File>
 			<File
-				RelativePath="res\icon1.ico"
+				RelativePath=".\res\vnc-1.bmp"
 				>
 			</File>
 			<File
-				RelativePath="res\icon2.ico"
-				>
-			</File>
-			<File
-				RelativePath="res\optionsframe.class"
-				>
-			</File>
-			<File
-				RelativePath="res\rfbproto.class"
-				>
-			</File>
-			<File
-				RelativePath=".\res\runas.bmp"
-				>
-			</File>
-			<File
-				RelativePath="res\vdacc.bmp"
-				>
-			</File>
-			<File
-				RelativePath="res\vnc-1.bmp"
-				>
-			</File>
-			<File
-				RelativePath="res\vnc-1.ico"
-				>
-			</File>
-			<File
-				RelativePath="res\vnc.bmp"
-				>
-			</File>
-			<File
-				RelativePath="vnc.bmp"
-				>
-			</File>
-			<File
-				RelativePath="res\vnc64.BMP"
-				>
-			</File>
-			<File
-				RelativePath="res\vnccanvas.class"
-				>
-			</File>
-			<File
-				RelativePath="res\vncviewer.class"
-				>
-			</File>
-			<File
-				RelativePath="res\vncviewer.jar"
-				>
-			</File>
-			<File
-				RelativePath="res\winvnc.ico"
-				>
-			</File>
-			<File
-				RelativePath="res\world3a.ico"
-				>
-			</File>
-			<File
-				RelativePath="res\ww-grn-sq2.ico"
+				RelativePath=".\res\world3a.ico"
 				>
 			</File>
 		</Filter>
+		<File
+			RelativePath=".\res\mslogon\AuthPanel.class"
+			>
+		</File>
 		<File
 			RelativePath="res\AuthPanel.class"
 			>
@@ -4395,7 +4342,31 @@
 			>
 		</File>
 		<File
+			RelativePath=".\res\mslogon\ButtonPanel.class"
+			>
+		</File>
+		<File
 			RelativePath="res\ButtonPanel.class"
+			>
+		</File>
+		<File
+			RelativePath=".\res\clipboardframe.class"
+			>
+		</File>
+		<File
+			RelativePath=".\res\mslogon\ClipboardFrame.class"
+			>
+		</File>
+		<File
+			RelativePath=".\res\descipher.class"
+			>
+		</File>
+		<File
+			RelativePath=".\res\mslogon\DesCipher.class"
+			>
+		</File>
+		<File
+			RelativePath=".\res\mslogon\DH.class"
 			>
 		</File>
 		<File
@@ -4411,7 +4382,15 @@
 			>
 		</File>
 		<File
+			RelativePath=".\res\mslogon\FTPFrame$StrComp.class"
+			>
+		</File>
+		<File
 			RelativePath="res\FTPFrame.class"
+			>
+		</File>
+		<File
+			RelativePath=".\res\mslogon\FTPFrame.class"
 			>
 		</File>
 		<File
@@ -4423,7 +4402,19 @@
 			>
 		</File>
 		<File
+			RelativePath=".\res\optionsframe.class"
+			>
+		</File>
+		<File
+			RelativePath=".\res\mslogon\OptionsFrame.class"
+			>
+		</File>
+		<File
 			RelativePath="..\README_BINARY.txt"
+			>
+		</File>
+		<File
+			RelativePath=".\res\mslogon\RecordingFrame.class"
 			>
 		</File>
 		<File
@@ -4431,7 +4422,43 @@
 			>
 		</File>
 		<File
+			RelativePath=".\res\mslogon\RfbProto.class"
+			>
+		</File>
+		<File
+			RelativePath=".\res\rfbproto.class"
+			>
+		</File>
+		<File
+			RelativePath=".\res\mslogon\SessionRecorder.class"
+			>
+		</File>
+		<File
 			RelativePath="res\SessionRecorder.class"
+			>
+		</File>
+		<File
+			RelativePath=".\res\vnccanvas.class"
+			>
+		</File>
+		<File
+			RelativePath=".\res\mslogon\VncCanvas.class"
+			>
+		</File>
+		<File
+			RelativePath=".\res\mslogon\VncViewer.class"
+			>
+		</File>
+		<File
+			RelativePath=".\res\vncviewer.class"
+			>
+		</File>
+		<File
+			RelativePath=".\res\vncviewer.jar"
+			>
+		</File>
+		<File
+			RelativePath=".\res\mslogon\VncViewer.jar"
 			>
 		</File>
 		<File

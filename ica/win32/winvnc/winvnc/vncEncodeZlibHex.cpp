@@ -32,7 +32,7 @@
 // Hextile encoder with zlib.  Hextile splits all top-level update rectangles
 // into smaller, 16x16 rectangles and encodes these using the
 // optimized Hextile sub-encodings, including zlib.
-
+#include "stdhdrs.h"
 #include "vncEncodeZlibHex.h"
 #include "rfb.h"
 // #include "MinMax.h"

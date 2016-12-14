@@ -24,7 +24,35 @@
 
 #if !defined(DISPL)
 #define DISPL
+typedef HRESULT (CALLBACK *P_DwmIsCompositionEnabled) (BOOL *pfEnabled); 
+typedef HRESULT (CALLBACK *P_DwmEnableComposition) (BOOL   fEnable); 
+
+class VNC_OSVersion
+{
+public:
+	VNC_OSVersion();
+	virtual ~VNC_OSVersion();
+	void SetAeroState();
+	bool CaptureAlphaBlending();
+	void DisableAero(VOID);
+	void ResetAero(VOID);
+	bool OS_WIN8;
+	bool OS_WIN7;
+	bool OS_VISTA;
+	bool OS_XP;
+	bool OS_W2K;
+	bool OS_AERO_ON;
+	bool OS_LAYER_ON;
+	bool OS_NOTSUPPORTED;
+	bool AeroWasEnabled;
+protected:	
+	HMODULE DMdll; 
+	void UnloadDM(VOID);
+	bool LoadDM(VOID);
+	P_DwmIsCompositionEnabled pfnDwmIsCompositionEnabled;
+	P_DwmEnableComposition pfnDwmEnableComposition; 
+};
+
 #pragma once
-void SetOSVersion();
-int OSversion();
+extern VNC_OSVersion VNCOS;
 #endif

@@ -1,5 +1,5 @@
 /////////////////////////////////////////////////////////////////////////////
-//  Copyright (C) 2002-2010 Ultr@VNC Team Members. All Rights Reserved.
+//  Copyright (C) 2002-2013 UltraVNC Team Members. All Rights Reserved.
 //
 //  This program is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -34,6 +34,7 @@
 
 
 #define VC_EXTRALEAN
+#include <winsock2.h>
 #include <windows.h>
 
 #include <string>
@@ -44,12 +45,12 @@
 #ifdef IPP
 #include "..\..\ipp_zlib\src\zlib\zlib.h"
 #else
-#include <zlib/zlib.h>
+#include <zlib-1.2.5/zlib.h>
 #endif
 
 
 ExtendedClipboardDataMessage::ExtendedClipboardDataMessage()
-	: m_pExtendedData(NULL), m_nInternalLength(0), m_pCurrentPos(NULL), m_pData(NULL)
+	: m_pExtendedData(NULL), m_pData(NULL), m_pCurrentPos(NULL), m_nInternalLength(0)
 {
 	EnsureBufferLength(sz_rfbExtendedClipboardData);
 	m_pCurrentPos += sz_rfbExtendedClipboardData;
@@ -211,8 +212,8 @@ ClipboardSettings::ClipboardSettings(CARD32 caps)
 	, m_nRequestedLimitRTF(m_nLimitRTF)
 	, m_nRequestedLimitHTML(m_nLimitHTML)
 	, m_nRequestedLimitDIB(m_nLimitDIB)
-	, m_myCaps(caps)
 	, m_remoteCaps(ClipboardSettings::defaultCaps)
+	, m_myCaps(caps)
 {
 }
 
@@ -294,8 +295,7 @@ ClipboardHolder::~ClipboardHolder()
 }
 
 ClipboardData::ClipboardData()
-	: m_crc(0)
-	, m_lengthText(0)
+	: m_lengthText(0)
 	, m_lengthRTF(0)
 	, m_lengthHTML(0)
 	, m_lengthDIB(0)
@@ -303,6 +303,7 @@ ClipboardData::ClipboardData()
 	, m_pDataRTF(NULL)
 	, m_pDataHTML(NULL)
 	, m_pDataDIB(NULL)
+	, m_crc(0)
 {
 }
 
@@ -627,11 +628,11 @@ bool ClipboardData::Restore(HWND hwndOwner, ExtendedClipboardDataMessage& extend
 }
 
 Clipboard::Clipboard(CARD32 caps)
-	: settings(caps)
-	, m_crc(0)
-	, m_bNeedToProvide(false)
+	: m_bNeedToProvide(false)
 	, m_bNeedToNotify(false)
+	, m_crc(0)
 	, m_notifiedRemoteFormats(0)
+	, settings(caps)
 {
 }
 

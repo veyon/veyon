@@ -7,20 +7,10 @@
 #define IDS_WARNING                     103
 #define IDR_TRAYMENU                    104
 #define IDR_VNCVIEWER_JAR               116
-#define IDR_RECFRAME_CLASS              117
-#define IDR_SESSIONREC_CLASS            118
-#define IDR_AUTHPANEL_CLASS             119
 #define IDR_BLOCKCIPHER_CLASS           120
 #define IDR_CIPHER_CLASS                121
-#define IDR_CLIPBOARDFRAME_CLASS        122
 #define IDR_CRYPTOUTILS_CLASS           123
 #define IDR_IDEACIPHER_CLASS            124
-#define IDR_OPTIONSFRAME_CLASS          125
-#define IDR_RFBPROTO_CLASS              126
-#define IDR_VNCCANVAS_CLASS             127
-#define IDR_VNCVIEWER_CLASS             128
-#define IDR_BUTTONPANEL_CLASS           129
-#define IDR_DESCIPHER_CLASS             130
 #define IDD_ABOUT                       131
 #define IDB_VNCLOGO                     132
 #define IDI_FLASH                       134
@@ -36,23 +26,7 @@
 #define IDD_MSLOGON                     145
 #define IDD_PROPERTIES1                 146
 #define IDD_ABOUT1                      147
-#define IDR_FTPFRAME_CLASS              148
-#define IDR_DH_CLASS                    149
-#define IDR_FTPFRAMESTRCOMP_CLASS       151
 #define IDR_JAVAARCHIVE1                155
-#define IDR_JAVACLASS1                  156
-#define IDR_JAVACLASS2                  157
-#define IDR_JAVACLASS3                  158
-#define IDR_JAVACLASS4                  159
-#define IDR_JAVACLASS5                  160
-#define IDR_JAVACLASS6                  161
-#define IDR_JAVACLASS7                  162
-#define IDR_JAVACLASS8                  163
-#define IDR_JAVACLASS9                  164
-#define IDR_JAVACLASS10                 165
-#define IDR_JAVACLASS11                 166
-#define IDR_JAVACLASS12                 167
-#define IDR_JAVACLASS13                 169
 #define IDD_USER_NAME                   604
 #define IDD_PASSWORD                    608
 #define IDR_MESSAGES_PROPERTIES         900
@@ -189,9 +163,6 @@
 #define IDC_ALLOWEDITCLIENTS            1108
 #define IDC_NEW_MSLOGON                 1109
 #define IDC_HIDE_B                      1110
-#define IDC_ALPHA                       1112
-#define IDC_ALPHABLACK                  1114
-#define IDC_ALPHABLACK2                 1116
 #define IDC_FTUSERIMPERSONATION_CHECK   1117
 #define IDC_REMOVE_Aero                 1118
 #define IDE_CUSTOM1                     1119
@@ -201,13 +172,17 @@
 #define IDC_JAP_INPUTS                  1122
 #define IDC_CHECK3                      1123
 #define IDC_EURO                        1123
+#define IDC_RDPMODE                     1123
 #define IDC_VIDEO                       1125
 #define IDC_BUTTON1                     1126
 #define IDC_CLEAR                       1126
 #define IDC_CONNECTION_NUMBER_LABEL     1128
 #define IDC_CONNECTION_NUMBER_STATIC    1128
 #define IDC_CAPTION_STATIC              1129
+#define IDC_ACCEPTLOGO                  1131
 #define IDC_Path1                       1132
+#define IDC_CHECK4                      1132
+#define IDC_IPV6                        1132
 #define IDC_Path2                       1133
 #define IDC_Path3                       1134
 #define IDC_LOCALTEXT_EDIT              1140
@@ -306,7 +281,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        170
 #define _APS_NEXT_COMMAND_VALUE         40030
-#define _APS_NEXT_CONTROL_VALUE         1131
+#define _APS_NEXT_CONTROL_VALUE         1133
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

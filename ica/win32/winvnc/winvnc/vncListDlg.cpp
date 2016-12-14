@@ -1,5 +1,5 @@
 /////////////////////////////////////////////////////////////////////////////
-//  Copyright (C) 2002 Ultr@Vnc Team Members. All Rights Reserved.
+//  Copyright (C) 2002 UltraVNC Team Members. All Rights Reserved.
 //
 //  This program is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -89,7 +89,7 @@ BOOL CALLBACK vncListDlg::DialogProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM
             helper::SafeSetWindowUserData(hwnd, lParam);
 			_this = (vncListDlg *) lParam;
 
-			vncClientList::iterator i;
+			//vncClientList::iterator i;
 			HWND hList = GetDlgItem(hwnd, IDC_VIEWERS_LISTBOX);
 
 			_this->m_pServer->ListAuthClients(hList);

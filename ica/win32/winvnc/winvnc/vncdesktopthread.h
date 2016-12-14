@@ -1,5 +1,5 @@
 /////////////////////////////////////////////////////////////////////////////
-//  Copyright (C) 2002-2010 Ultr@VNC Team Members. All Rights Reserved.
+//  Copyright (C) 2002-2010 UltraVNC Team Members. All Rights Reserved.
 //
 //  This program is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -78,9 +78,12 @@ public:
 		if (hUser32)
 		{
 		pfnFilter =(CHANGEWINDOWMESSAGEFILTER)GetProcAddress(hUser32,"ChangeWindowMessageFilter");
-		if (pfnFilter) pfnFilter(RFB_SCREEN_UPDATE, MSGFLT_ADD);
-		if (pfnFilter) pfnFilter(RFB_COPYRECT_UPDATE, MSGFLT_ADD);
-		if (pfnFilter) pfnFilter(RFB_MOUSE_UPDATE, MSGFLT_ADD);
+		if (pfnFilter) 
+			{
+				pfnFilter(RFB_SCREEN_UPDATE, MSGFLT_ADD);
+				pfnFilter(RFB_COPYRECT_UPDATE, MSGFLT_ADD);
+				pfnFilter(RFB_MOUSE_UPDATE, MSGFLT_ADD);
+			}
 		}
 		cpuUsage=0;
 		MIN_UPDATE_INTERVAL=33;
@@ -88,6 +91,7 @@ public:
 		MIN_UPDATE_INTERVAL_MIN=33;
 		// replaced by macpu ini setting
 		MAX_CPU_USAGE=20;
+		monitor_sleep_timer=0;
 	};
 protected:
 	~vncDesktopThread() {
@@ -137,6 +141,7 @@ protected:
 	bool capture;
 	bool first_run;
 	bool initialupdate;
+	DWORD monitor_sleep_timer;
 
 };
 #endif

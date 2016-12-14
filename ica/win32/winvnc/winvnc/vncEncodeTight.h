@@ -1,3 +1,4 @@
+//  Copyright (C) 2015 D. R. Commander. All Rights Reserved.
 //  Copyright (C) 2000 Constantin Kaplinsky. All Rights Reserved.
 //  Copyright (C) 2000 Tridia Corporation. All Rights Reserved.
 //  Copyright (C) 1999 AT&T Laboratories Cambridge. All Rights Reserved.
@@ -82,12 +83,10 @@ struct PALETTE {
 
 struct TIGHT_CONF {
 	int maxRectSize, maxRectWidth;
-	int monoMinRectSize, gradientMinRectSize;
-	int idxZlibLevel, monoZlibLevel, rawZlibLevel, gradientZlibLevel;
-	unsigned long gradientThreshold, gradientThreshold24;
+	int monoMinRectSize;
+	int idxZlibLevel, monoZlibLevel, rawZlibLevel;
 	int idxMaxColorsDivisor;
-	int jpegQuality;
-	unsigned long jpegThreshold, jpegThreshold24;
+	int palMaxColorsWithJPEG;
 };
 
 
@@ -126,11 +125,12 @@ protected:
 	int m_hdrBufferBytes;
 	BYTE *m_buffer;
 	int m_bufflen;
-	int *m_prevRowBuf;
 
 	bool m_usePixelFormat24;
 
-	static const TIGHT_CONF m_conf[10];
+	static const TIGHT_CONF m_conf[4];
+
+    int m_turboCompressLevel;
 
 	// Protected member functions.
 
@@ -158,7 +158,6 @@ protected:
 	int SendMonoRect      (BYTE *dest, int w, int h);
 	int SendIndexedRect   (BYTE *dest, int w, int h);
 	int SendFullColorRect (BYTE *dest, int w, int h);
-	int SendGradientRect  (BYTE *dest, int w, int h);
 	int CompressData      (BYTE *dest, int streamId, int dataLen,
 						   int zlibLevel, int zlibStrategy);
 	int SendCompressedData(int compressedLen);
@@ -166,6 +165,9 @@ protected:
 	void FillPalette8 (int count);
 	void FillPalette16(int count);
 	void FillPalette32(int count);
+
+	void FastFillPalette16(CARD16 *data, int w, int pitch, int h);
+	void FastFillPalette32(CARD32 *data, int w, int pitch, int h);
 
 	void PaletteReset(void);
 	int PaletteInsert(CARD32 rgb, int numPixels, int bpp);
@@ -179,16 +181,7 @@ protected:
 	void EncodeMonoRect16(BYTE *buf, int w, int h);
 	void EncodeMonoRect32(BYTE *buf, int w, int h);
 
-	void FilterGradient24(BYTE *buf, int w, int h);
-	void FilterGradient16(CARD16 *buf, int w, int h);
-	void FilterGradient32(CARD32 *buf, int w, int h);
-
-	int DetectSmoothImage (int w, int h);
-	unsigned long DetectSmoothImage24 (int w, int h);
-	unsigned long DetectSmoothImage16 (int w, int h);
-	unsigned long DetectSmoothImage32 (int w, int h);
-
-	int SendJpegRect(BYTE *dst, int w, int h, int quality);
+	int SendJpegRect(BYTE *source, BYTE *dst, int x, int y, int w, int h);
 	void PrepareRowForJpeg(BYTE *dst, int y, int w);
 	void PrepareRowForJpeg24(BYTE *dst, CARD32 *src, int count);
 	void PrepareRowForJpeg16(BYTE *dst, CARD16 *src, int count);

@@ -1,6 +1,6 @@
 /////////////////////////////////////////////////////////////////////////////
 //  Copyright (C) 2004 Martin Scharpf. All Rights Reserved.
-//  Copyright (C) 2002 Ultr@VNC Team Members. All Rights Reserved.
+//  Copyright (C) 2002 UltraVNC Team Members. All Rights Reserved.
 //
 //  This program is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -19,7 +19,7 @@
 //
 // If the source code for the program is not available from the place from
 // which you received this file, check 
-// http://ultravnc.sourceforge.net/
+// http://www.uvnc.com
 // /macine-vnc Greg Wood (wood@agressiv.com)
 //#include "..\..\winvnc\stdhdrs.h"
 #include <objbase.h> // for CoInitialize/CoUninitialize ???

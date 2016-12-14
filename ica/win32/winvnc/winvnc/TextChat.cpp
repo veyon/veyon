@@ -1,5 +1,5 @@
 /////////////////////////////////////////////////////////////////////////////
-//  Copyright (C) 2002 Ultr@VNC Team Members. All Rights Reserved.
+//  Copyright (C) 2002-2013 UltraVNC Team Members. All Rights Reserved.
 //
 //  This program is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -19,6 +19,8 @@
 // If the source code for the program is not available from the place from
 // which you received this file, check 
 // http://www.uvnc.com/
+//
+////////////////////////////////////////////////////////////////////////////
 
 #include "stdhdrs.h"
 #include "resource.h"
@@ -315,10 +317,10 @@ void TextChat::PrintMessage(const char* szMessage,const char* szSender,DWORD dwC
 	// Todo: test if chat text + sender + message > TEXTMAXSIZE -> Modulo display
 	if (szSender != NULL && strlen(szSender) > 0) //print the sender's name
 	{
-		SendDlgItemMessage(m_hDlg, IDC_CHATAREA_EDIT,WM_GETTEXT, TEXTMAXSIZE-1,(LONG)m_szTextBoxBuffer);
+		SendDlgItemMessage(m_hDlg, IDC_CHATAREA_EDIT,WM_GETTEXT, TEXTMAXSIZE-1,(LPARAM)m_szTextBoxBuffer);
 		cr.cpMax = nLen; //strlen(m_szTextBoxBuffer);	 // Select the last caracter to make the text insertion
 		cr.cpMin  = cr.cpMax;
-		SendDlgItemMessage(m_hDlg, IDC_CHATAREA_EDIT,EM_EXSETSEL,0,(LONG) &cr);
+		SendDlgItemMessage(m_hDlg, IDC_CHATAREA_EDIT,EM_EXSETSEL,0,(LPARAM) &cr);
 
 		//	[v1.0.2-jp1 fix]
 		//SetTextFormat(false,false,0x75,"MS Sans Serif",dwColor);
@@ -330,16 +332,16 @@ void TextChat::PrintMessage(const char* szMessage,const char* szSender,DWORD dwC
 		}
 
 		_snprintf(m_szTextBoxBuffer, MAXNAMESIZE-1 + 4, "<%s>: ", szSender);		
-		SendDlgItemMessage(m_hDlg, IDC_CHATAREA_EDIT,EM_REPLACESEL,FALSE,(LONG)m_szTextBoxBuffer); // Replace the selection with the message
+		SendDlgItemMessage(m_hDlg, IDC_CHATAREA_EDIT,EM_REPLACESEL,FALSE,(LPARAM)m_szTextBoxBuffer); // Replace the selection with the message
 	}
 
 	nLen = SendDlgItemMessage(m_hDlg, IDC_CHATAREA_EDIT, EM_GETTEXTLENGTHEX, (WPARAM)&lpG, 0L);
 	if (szMessage != NULL) //print the sender's message
 	{	
-		SendDlgItemMessage(m_hDlg, IDC_CHATAREA_EDIT,WM_GETTEXT, TEXTMAXSIZE-1,(LONG)m_szTextBoxBuffer);
+		SendDlgItemMessage(m_hDlg, IDC_CHATAREA_EDIT,WM_GETTEXT, TEXTMAXSIZE-1,(LPARAM)m_szTextBoxBuffer);
 		cr.cpMax = nLen; //strlen(m_szTextBoxBuffer);	 // Select the last caracter to make the text insertion
 		cr.cpMin  = cr.cpMax;
-		SendDlgItemMessage(m_hDlg, IDC_CHATAREA_EDIT,EM_EXSETSEL,0,(LONG) &cr);
+		SendDlgItemMessage(m_hDlg, IDC_CHATAREA_EDIT,EM_EXSETSEL,0,(LPARAM) &cr);
 
 		//	[v1.0.2-jp1 fix]
 		//SetTextFormat(false, false, 0x75, "MS Sans Serif", dwColor != GREY ? BLACK : GREY);	
@@ -351,7 +353,7 @@ void TextChat::PrintMessage(const char* szMessage,const char* szSender,DWORD dwC
 		}
 
 		_snprintf(m_szTextBoxBuffer, TEXTMAXSIZE-1, "%s", szMessage);		
-		SendDlgItemMessage(m_hDlg, IDC_CHATAREA_EDIT,EM_REPLACESEL,FALSE,(LONG)m_szTextBoxBuffer); 
+		SendDlgItemMessage(m_hDlg, IDC_CHATAREA_EDIT,EM_REPLACESEL,FALSE,(LPARAM)m_szTextBoxBuffer); 
 	}
 
 	// Scroll down the chat window
@@ -434,9 +436,6 @@ LRESULT CALLBACK TextChat::DoDialogThread(LPVOID lpParameter)
 		}
 	}
 
-	 //	[v1.0.2-jp1 fix]
- 	 //DialogBoxParam(hAppInstance, MAKEINTRESOURCE(IDD_TEXTCHAT_DLG), 
-	 //						NULL, (DLGPROC) TextChatDlgProc, (LONG) _this);
  	 DialogBoxParam(hInstResDLL, MAKEINTRESOURCE(IDD_TEXTCHAT_DLG), 
 	 						NULL, (DLGPROC) TextChatDlgProc, (LPARAM) _this);
 	 SetThreadDesktop(old_desktop);
@@ -444,17 +443,6 @@ LRESULT CALLBACK TextChat::DoDialogThread(LPVOID lpParameter)
 	 return 0;
 }
 
-
-/*int TextChat::DoDialog()
-{
-	m_fTextChatRunning = true; // Here.Important.
-
-	//	[v1.0.2-jp1 fix]
-	//return DialogBoxParam(hAppInstance, MAKEINTRESOURCE(IDD_TEXTCHAT_DLG), 
-	//						NULL, (DLGPROC) TextChatDlgProc, (LONG) this);
-	return DialogBoxParam(hInstResDLL, MAKEINTRESOURCE(IDD_TEXTCHAT_DLG), 
-							NULL, (DLGPROC) TextChatDlgProc, (LONG) this);
-}*/
 
 HWND TextChat::DisplayTextChat()
 {

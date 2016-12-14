@@ -98,8 +98,15 @@ public:
 
 	// Routine to make an already running copy of WinVNC form an outgoing
 	// connection to a new VNC client
+#ifdef IPV6V4
+	static BOOL PostAddNewClient4(unsigned long ipaddress, unsigned short port);
+	static BOOL PostAddNewClientInit4(unsigned long ipaddress, unsigned short port);
+	static BOOL PostAddNewClient6(in6_addr *ipaddress, unsigned short port);
+	static BOOL PostAddNewClientInit6(in6_addr *ipaddress, unsigned short port);
+#else
 	static BOOL PostAddNewClient(unsigned long ipaddress, unsigned short port);
 	static BOOL PostAddNewClientInit(unsigned long ipaddress, unsigned short port);
+#endif
 
 	//adzm 2009-06-20
 	// Static routine to tell a locally-running instance of the server

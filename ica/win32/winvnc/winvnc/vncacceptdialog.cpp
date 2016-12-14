@@ -17,10 +17,9 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307,
 //  USA.
 //
-// If the source code for the VNC system is not available from the place 
+// If the source code for the VNC system is not available from the place
 // whence you received this file, check http://www.uk.research.att.com/vnc or contact
 // the authors on vnc@uk.research.att.com for information on obtaining it.
-
 
 // vncAcceptDialog.cpp: implementation of the vncAcceptDialog class, used
 // to query whether or not to accept incoming connections.
@@ -32,6 +31,7 @@
 
 #include "resource.h"
 #include "common/win32_helpers.h"
+#include "inifile.h"
 
 #include "Localization.h" // Act : add localization on messages
 
@@ -61,11 +61,11 @@ vncAcceptDialog::~vncAcceptDialog()
 BOOL vncAcceptDialog::DoDialog()
 {
 	//	[v1.0.2-jp1 fix]
-	//int retVal = DialogBoxParam(hAppInstance, MAKEINTRESOURCE(IDD_ACCEPT_CONN), 
-	int retVal = DialogBoxParam(hInstResDLL, MAKEINTRESOURCE(IDD_ACCEPT_CONN), 
+	//int retVal = DialogBoxParam(hAppInstance, MAKEINTRESOURCE(IDD_ACCEPT_CONN),
+	int retVal = DialogBoxParam(hInstResDLL, MAKEINTRESOURCE(IDD_ACCEPT_CONN),
 		NULL, (DLGPROC) vncAcceptDlgProc, (LONG_PTR) this);
 	delete this;
-	switch (retVal) 
+	switch (retVal)
 	{
 		case IDREJECT:
 			return 0;
@@ -73,7 +73,6 @@ BOOL vncAcceptDialog::DoDialog()
 			return 1;
 	}
 	return (m_acceptOnTimeout) ? 1 : 0;
-
 }
 
 // Callback function - handles messages sent to the dialog box
@@ -82,13 +81,13 @@ BOOL CALLBACK vncAcceptDialog::vncAcceptDlgProc(HWND hwnd,
 											UINT uMsg,
 											WPARAM wParam,
 											LPARAM lParam) {
-	// This is a static method, so we don't know which instantiation we're 
-	// dealing with. But we can get a pseudo-this from the parameter to 
+	// This is a static method, so we don't know which instantiation we're
+	// dealing with. But we can get a pseudo-this from the parameter to
 	// WM_INITDIALOG, which we therafter store with the window and retrieve
 	// as follows:
+	 static HBITMAP hbmBkGnd = NULL;
      vncAcceptDialog *_this = helper::SafeGetWindowUserData<vncAcceptDialog>(hwnd);
 	switch (uMsg) {
-
 		// Dialog has just been created
 	case WM_INITDIALOG:
 		{
@@ -98,7 +97,28 @@ BOOL CALLBACK vncAcceptDialog::vncAcceptDlgProc(HWND hwnd,
             vncAcceptDialog *_this = (vncAcceptDialog *) lParam;
 
 			// Set the IP-address string
+			char accept_reject_mesg[512];
+			IniFile myIniFile;
+			myIniFile.ReadString("admin", "accept_reject_mesg", accept_reject_mesg,512);
+			if (strlen(accept_reject_mesg)==0) strcpy(accept_reject_mesg,"WinVNC has received an incoming connection from");
+			SetDlgItemText(hwnd, IDC_STATIC_TEXT1, accept_reject_mesg);
 			SetDlgItemText(hwnd, IDC_ACCEPT_IP, _this->m_ipAddress);
+
+			{
+			char WORKDIR[MAX_PATH];
+			char mycommand[MAX_PATH];
+			if (GetModuleFileName(NULL, WORKDIR, MAX_PATH))
+				{
+				char* p = strrchr(WORKDIR, '\\');
+				if (p == NULL) return 0;
+				*p = '\0';
+			}
+			strcpy(mycommand,WORKDIR);
+			strcat(mycommand,"\\mylogo.bmp");
+			hbmBkGnd = (HBITMAP)LoadImage(NULL, mycommand, IMAGE_BITMAP, 0, 0,LR_LOADFROMFILE);
+			}
+			SendMessage(GetDlgItem(hwnd, IDC_ACCEPTLOGO),STM_SETIMAGE,IMAGE_BITMAP,(LPARAM)(HBITMAP)hbmBkGnd);
+
 			if (SetTimer(hwnd, 1, 1000, NULL) == 0)
 			{
 				if (_this->m_acceptOnTimeout)
@@ -114,7 +134,6 @@ BOOL CALLBACK vncAcceptDialog::vncAcceptDlgProc(HWND hwnd,
 			else
 				sprintf(temp, "AutoReject:%u", (_this->m_timeoutCount));
 			SetDlgItemText(hwnd, IDC_ACCEPT_TIMEOUT, temp);
-
 
 			// Attempt to mimic Win98/2000 dialog behaviour
 			if ((vncService::IsWinNT() && (vncService::VersionMajor() <= 4)) ||
@@ -136,7 +155,7 @@ BOOL CALLBACK vncAcceptDialog::vncAcceptDlgProc(HWND hwnd,
 
 			// Beep
 			MessageBeep(MB_ICONEXCLAMATION);
-            
+
             // Return success!
 			return TRUE;
 		}
@@ -145,11 +164,11 @@ BOOL CALLBACK vncAcceptDialog::vncAcceptDlgProc(HWND hwnd,
 	case WM_TIMER:
 		if ((_this->m_timeoutCount) == 0)
 			{
-				if ( _this->m_acceptOnTimeout ) 
+				if ( _this->m_acceptOnTimeout )
 					{
 						EndDialog(hwnd, IDACCEPT);
 					}
-				else 
+				else
 					{
 						EndDialog(hwnd, IDREJECT);
 					}
@@ -179,7 +198,6 @@ BOOL CALLBACK vncAcceptDialog::vncAcceptDlgProc(HWND hwnd,
 		// Dialog has just received a command
 	case WM_COMMAND:
 		switch (LOWORD(wParam)) {
-
 			// User clicked Accept or pressed return
 		case IDACCEPT:
 		case IDOK:
@@ -196,9 +214,9 @@ BOOL CALLBACK vncAcceptDialog::vncAcceptDlgProc(HWND hwnd,
 
 		// Window is being destroyed!  (Should never happen)
 	case WM_DESTROY:
+		DeleteObject(hbmBkGnd);
 		EndDialog(hwnd, IDREJECT);
 		return TRUE;
 	}
 	return 0;
 }
-

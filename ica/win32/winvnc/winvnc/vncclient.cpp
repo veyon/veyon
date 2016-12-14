@@ -1,4 +1,5 @@
-//  Copyright (C) 2002 Ultr@VNC Team Members. All Rights Reserved.
+//  Copyright (C) 2002 UltraVNC Team Members. All Rights Reserved.
+//  Copyright (C) 2015 D. R. Commander. All Rights Reserved.
 //  Copyright (C) 2000-2002 Const Kaplinsky. All Rights Reserved.
 //  Copyright (C) 2002 RealVNC Ltd. All Rights Reserved.
 //  Copyright (C) 1999 AT&T Laboratories Cambridge. All Rights Reserved.
@@ -64,7 +65,11 @@
 #ifdef IPP
 #include "..\..\ipp_zlib\src\zlib\zlib.h"
 #else
-#include "zlib.h"
+#ifdef ULTRAVNC_ITALC_SUPPORT
+#include <zlib.h>
+#else
+#include "zlib-1.2.5/zlib.h"
+#endif
 #endif
 #include "mmsystem.h" // sf@2002
 #include "sys/types.h"
@@ -75,6 +80,7 @@
 #include <shlobj.h>
 #include "vncOSVersion.h"
 #include "common/win32_helpers.h"
+#include "uvncUiAccess.h"
 
 #ifdef ULTRAVNC_ITALC_SUPPORT
 extern BOOL ultravnc_italc_load_int( LPCSTR valname, LONG *out );
@@ -85,6 +91,11 @@ bool isDirectoryTransfer(const char *szFileName);
 extern BOOL SPECIAL_SC_PROMPT;
 extern BOOL SPECIAL_SC_EXIT;
 int getinfo(char mytext[1024]);
+int calc_updates=0;
+int old_calc_updates=0;
+extern bool PreConnect;
+int PreConnectID = 0;
+extern BOOL	m_fRunningFromExternalService;
 
 #ifndef ULTRAVNC_ITALC_SUPPORT
 // take a full path & file name, split it, prepend prefix to filename, then merge it back
@@ -146,14 +157,7 @@ bool replaceFile(const char *src, const char *dst)
     if (dwFileAttribs != INVALID_FILE_ATTRIBUTES && dwFileAttribs & FILE_ATTRIBUTE_READONLY)
         SetFileAttributes(dst, dwFileAttribs & ~FILE_ATTRIBUTE_READONLY);
 
-    if (OSversion() == 3)
-    {
-        status = ::CopyFile(src, dst, false) ? true : false;
-        if (status)
-            ::DeleteFile(src);
-    }
-    else
-        status = ::MoveFileEx(src, dst, MOVEFILE_REPLACE_EXISTING) ? true : false;
+     status = ::MoveFileEx(src, dst, MOVEFILE_REPLACE_EXISTING) ? true : false;
 
     // restore orginal file attributes, if we have them. We won't have them if
     // the destination file didn't exist prior to the copy/move.
@@ -360,28 +364,6 @@ protected:
 	BOOL m_enable;
 };
 
-// Modif cs@2005
-#ifdef DSHOW
-class MutexAutoLock 
-{
-public:
-	MutexAutoLock(HANDLE* phMutex) 
-	{ 
-		m_phMutex = phMutex;
-
-		if(WAIT_OBJECT_0 != WaitForSingleObject(*phMutex, INFINITE))
-		{
-			vnclog.Print(LL_INTERR, VNCLOG("Could not get access to the mutex\n"));
-		}
-	}
-	~MutexAutoLock() 
-	{ 
-		ReleaseMutex(*m_phMutex);
-	}
-
-	HANDLE* m_phMutex;
-};
-#endif
 
 BOOL
 vncClientUpdateThread::Init(vncClient *client)
@@ -389,7 +371,7 @@ vncClientUpdateThread::Init(vncClient *client)
 	vnclog.Print(LL_INTINFO, VNCLOG("init update thread\n"));
 
 	m_client = client;
-	omni_mutex_lock l(m_client->GetUpdateLock());
+	omni_mutex_lock l(m_client->GetUpdateLock(),80);
 	m_signal = new omni_condition(&m_client->GetUpdateLock());
 	m_sync_sig = new omni_condition(&m_client->GetUpdateLock());
 	m_active = TRUE;
@@ -424,7 +406,7 @@ vncClientUpdateThread::Kill()
 {
 	vnclog.Print(LL_INTINFO, VNCLOG("kill update thread\n"));
 
-	omni_mutex_lock l(m_client->GetUpdateLock());
+	omni_mutex_lock l(m_client->GetUpdateLock(),81);
 	m_active=FALSE;
 	m_signal->signal();
 }
@@ -465,9 +447,13 @@ vncClientUpdateThread::EnableUpdates(BOOL enable)
 
 	m_enable = enable;
 	m_signal->signal();
-	unsigned long now_sec, now_nsec;
-    get_time_now(&now_sec, &now_nsec);
-	m_sync_sig->wait();
+	//unsigned long now_sec, now_nsec;
+    //get_time_now(&now_sec, &now_nsec);
+
+	// give bad results with java
+	//if (enable)
+		if (!m_sync_sig->wait(5000))
+			vnclog.Print(LL_INTINFO, VNCLOG("wait timeout\n"));
 	/*if  (m_sync_sig->timedwait(now_sec+1,0)==0)
 		{
 //			m_signal->signal();
@@ -475,6 +461,8 @@ vncClientUpdateThread::EnableUpdates(BOOL enable)
 		} */
 	vnclog.Print(LL_INTINFO, VNCLOG("enable/disable synced\n"));
 }
+
+extern bool g_DesktopThread_running;
 
 void*
 vncClientUpdateThread::run_undetached(void *arg)
@@ -485,31 +473,34 @@ vncClientUpdateThread::run_undetached(void *arg)
 	//char *clipboard_text = 0;
 	update.enable_copyrect(true);
 	BOOL send_palette = FALSE;
-
+	const int UPDATE_INTERVAL=40;
 	updates_sent=0;
 
 	vnclog.Print(LL_INTINFO, VNCLOG("starting update thread\n"));
-
-	while (1)
-	{
-//#ifdef _DEBUG
-//										char			szText[256];
-//										sprintf(szText," run_undetached loop \n");
-//										OutputDebugString(szText);		
-//#endif
-		// Block waiting for an update to send
+	//Make sure we never can get locked by the initail m_initial_update) wait loop
+	//After 5 sec cont.
+	int esc_counter=0;
+	while (g_DesktopThread_running && m_client->cl_connected)
+	{		
+		/*if (m_client->m_server->AreThereMultipleViewers() == false)
 		{
-			omni_mutex_lock l(m_client->GetUpdateLock());
-			/*#ifdef _DEBUG
-					char			szText[256];
-					sprintf(szText," ++++++ Mutex lock clientupdatethread\n");
-					OutputDebugString(szText);		
-			#endif*/
+			while (!m_client->m_initial_update)
+			{
+				if (!m_client->cl_connected) return 0;
+				esc_counter++;
+				Sleep(50);
+				if (esc_counter > 100) break;
+			}
+		}*/
+		if (!m_client->cl_connected) return 0;
 
+
+		{
 			m_client->m_incr_rgn.assign_union(clipregion);
-
+			omni_mutex_lock l(m_client->GetUpdateLock(),82);
 			// We block as long as updates are disabled, or the client
 			// isn't interested in them, unless this thread is killed.
+
 			if (updates_sent < 1) 
 			{
 			while (m_active && (
@@ -526,7 +517,6 @@ vncClientUpdateThread::run_undetached(void *arg)
 				// Issue the synchronisation signal, to tell other threads
 				// where we have got to
 				m_sync_sig->broadcast();
-
 				// Wait to be kicked into action
 				m_signal->wait();
 			}
@@ -549,13 +539,29 @@ vncClientUpdateThread::run_undetached(void *arg)
 				// Issue the synchronisation signal, to tell other threads
 				// where we have got to
 				m_sync_sig->broadcast();
+				do{
+					if (!m_client->cl_connected) return 0;
+					if(m_signal->wait(UPDATE_INTERVAL*100)==false)
+					{
+						{
+								//do forcefull update after 4 seconds
+								m_client->m_encodemgr.m_buffer->m_desktop->TriggerUpdate();
+								m_client->TriggerUpdateThread();
+						}
 
-				// Wait to be kicked into action
-				m_signal->wait();
+					}
+					else 
+						{
+							break;
+						}
+				}while(g_DesktopThread_running);
+
 			}
 			}
 			// If the thread is being killed then quit
 			if (!m_active) break;
+			clipregion = m_client->m_incr_rgn;
+			m_client->m_incr_rgn.clear();
 
 			// SEND AN UPDATE!
 			// The thread is active, updates are enabled, and the
@@ -610,19 +616,9 @@ vncClientUpdateThread::run_undetached(void *arg)
 			// Has the palette changed?
 			send_palette = m_client->m_palettechanged;
 			m_client->m_palettechanged = FALSE;
-
-			// Fetch the incremental region
-			clipregion = m_client->m_incr_rgn;
-			//m_client->m_incr_rgn.clear();
-
-			// Get the clipboard data, if any
-			// adzm - 2010-07 - Extended clipboard
-			if (!(m_client->m_clipboard.m_bNeedToProvide || m_client->m_clipboard.m_bNeedToNotify))
-			{
-				m_client->m_incr_rgn.clear();
-			}
 		
 			// Get the update details from the update tracker
+			//m_client->m_update_tracker.flush_update(update, m_client->m_incr_rgn);
 			m_client->m_update_tracker.flush_update(update, clipregion);
 
 		//if (!m_client->m_encodemgr.m_buffer->m_desktop->IsVideoDriverEnabled())
@@ -777,26 +773,20 @@ vncClientUpdateThread::run_undetached(void *arg)
 		if ((m_client->m_encodemgr.m_scrinfo.framebufferHeight == m_client->m_encodemgr.m_buffer->m_scrinfo.framebufferHeight) &&
 			(m_client->m_encodemgr.m_scrinfo.framebufferWidth == m_client->m_encodemgr.m_buffer->m_scrinfo.framebufferWidth) &&
 			(m_client->m_encodemgr.m_scrinfo.format.bitsPerPixel == m_client->m_encodemgr.m_buffer->m_scrinfo.format.bitsPerPixel))
-		{
-
-			// Send updates to the client - this implicitly clears
-			// the supplied update tracker
+			{
 			if (m_client->SendUpdate(update)) {
 				updates_sent++;
+				//m_client->m_incr_rgn.clear();
 				clipregion.clear();
 			}
 		}
 		else
 		{
+			//m_client->m_incr_rgn.clear();
 			clipregion.clear();
 		}
 
-			/*#ifdef _DEBUG
-//					char			szText[256];
-					sprintf(szText," ++++++ Mutex unlock clientupdatethread\n");
-					OutputDebugString(szText);		
-			#endif*/
-		}
+	}//end omni_mutex_lock l(m_client->GetUpdateLock(),82);
 
 		yield();
 	}
@@ -811,6 +801,12 @@ vncClientThread::~vncClientThread()
 {
 	if (m_client != NULL)
 		delete m_client;
+#ifdef _Gii
+#ifdef _USE_DLL
+	if (win8dllHandle) FreeLibrary(win8dllHandle);
+#endif
+	if (point_status) delete [] point_status;
+#endif
 }
 
 BOOL
@@ -829,6 +825,10 @@ vncClientThread::Init(vncClient *client, vncServer *server, VSocket *socket, BOO
 	m_AutoReconnectPort=m_server->AutoReconnectPort();
 	strcpy(m_szAutoReconnectAdr,m_server->AutoReconnectAdr());
 	strcpy(m_szAutoReconnectId,m_server->AutoReconnectId());
+#ifdef _Gii
+	point_status = NULL;
+	nr_points = 0;
+#endif
 	// Start the thread
 	start();
 
@@ -838,56 +838,80 @@ vncClientThread::Init(vncClient *client, vncServer *server, VSocket *socket, BOO
 BOOL
 vncClientThread::InitVersion()
 {
-	// adzm 2010-09
-	m_major = 0;
-	m_minor = 0;
-
+	bool repeaterkeepaliveloop = true;
 	rfbProtocolVersionMsg protocol_ver;
-	protocol_ver[12] = 0;
-	if (strcmp(m_client->ProtocolVersionMsg,"0.0.0.0")==0)
+	while (repeaterkeepaliveloop)
 	{
-		// Generate the server's protocol version
-		// RDV 2010-6-10 
-		// removed SPECIAL_SC_PROMPT
-		rfbProtocolVersionMsg protocolMsg;		
-		sprintf((char *)protocolMsg,
-					rfbProtocolVersionFormat,
-					rfbProtocolMajorVersion,
-					rfbProtocolMinorVersion);
-		// adzm 2010-08
-		bool bRetry = true;
-		bool bReady = false;
-		int nRetry = 0;
-		while (!bReady && bRetry) {
+		// adzm 2010-09
+		repeaterkeepaliveloop = false;
+		m_major = 0;
+		m_minor = 0;
+
+		
+		protocol_ver[12] = 0;
+		if (strcmp(m_client->ProtocolVersionMsg, "0.0.0.0") == 0)
+		{
+			// Generate the server's protocol version
 			// RDV 2010-6-10 
 			// removed SPECIAL_SC_PROMPT
-
-			// Send our protocol version, and get the client's protocol version
-			if (!m_socket->SendExact((char *)&protocolMsg, sz_rfbProtocolVersionMsg) || 
-				!m_socket->ReadExact((char *)&protocol_ver, sz_rfbProtocolVersionMsg)) {
-				bReady = false;
-				// we need to reconnect!
-				
-				Sleep(min(nRetry * 1000, 30000));
-
-				if (TryReconnect()) {
-					// reconnect if in SC mode and not already using AutoReconnect
-					bRetry = true;
-					nRetry++;
-				} else {
-					bRetry = false;
+			rfbProtocolVersionMsg protocolMsg;
+			sprintf((char *)protocolMsg,
+				rfbProtocolVersionFormat,
+				rfbProtocolMajorVersion,
+				rfbProtocolMinorVersion);
+			// adzm 2010-08
+			bool bRetry = true;
+			bool bReady = false;
+			int nRetry = 0;
+			while (!bReady && bRetry) {
+				// RDV 2010-6-10 
+				// removed SPECIAL_SC_PROMPT
+				int Send_OK = 0;
+				int Recv_OK = 0;
+				vnclog.Print(LL_STATE, VNCLOG("Repeater connect\n"));
+				Send_OK = m_socket->SendExact((char *)&protocolMsg, sz_rfbProtocolVersionMsg);				
+				if (Send_OK == 1)
+				{
+					vnclog.Print(LL_STATE, VNCLOG("Repeater connected, waiting viewer\n"));
+					Recv_OK = m_socket->ReadExact((char *)&protocol_ver, sz_rfbProtocolVersionMsg);					
 				}
-			} else {
-				bReady = true;
+				// Send our protocol version, and get the client's protocol version
+				if (!Send_OK || !Recv_OK) {
+					if (!Recv_OK) vnclog.Print(LL_STATE, VNCLOG("Reconnect to repeater\n"));
+					bReady = false;
+					// we need to reconnect!
+
+					Sleep(min(nRetry * 1000, 30000));
+
+					if (TryReconnect()) {
+						// reconnect if in SC mode and not already using AutoReconnect
+						bRetry = true;
+						nRetry++;
+					}
+					else {
+						bRetry = false;
+					}
+				}
+				else {
+					bReady = true;
+				}
+			}
+
+			if (!bReady) {
+				return FALSE;
 			}
 		}
+		else memcpy(protocol_ver, m_client->ProtocolVersionMsg, sz_rfbProtocolVersionMsg);
+		//We let the repeater send a invalid sz_rfbProtocolVersionMsg, that start with "REP"
+		//Old serverversion return FALSE; and close repeater connection
+		//Using an old repeater this doesn't make a difference
 
-		if (!bReady) {
-			return FALSE;
+		if (strncmp(protocol_ver, "REP", 3) == 0)
+		{
+			vnclog.Print(LL_STATE, VNCLOG("Keepalive received\n"));
+			repeaterkeepaliveloop = true;
 		}
 	}
-	else 
-		memcpy(protocol_ver,m_client->ProtocolVersionMsg, sz_rfbProtocolVersionMsg);
 
 	// sf@2006 - Trying to fix neverending authentication bug - Check if this is RFB protocole
 	if (strncmp(protocol_ver,"RFB", 3)!=0)
@@ -915,6 +939,44 @@ vncClientThread::InitVersion()
 	return TRUE;
 }
 
+#ifdef _Gii
+BOOL
+vncClientThread::InitGiiVersion()
+{
+	BOOL bReady = FALSE;
+	if (true)
+	{
+		// Generate the server's Gii protocol version
+		rfbGIIServerVersionMsg rfbGIIServerVersion;
+		rfbGIIServerVersion.header.messageType = rfbGIIMessage;
+		rfbGIIServerVersion.header.subType = rfbGIIVersionMessage; //big endian
+		//rfbGIIServerVersion.header.subType = 1;
+		rfbGIIServerVersion.header.length = 4;
+		rfbGIIServerVersion.header.length = Swap16IfLE(rfbGIIServerVersion.header.length);
+		rfbGIIServerVersion.maxVersion = rfbGIIMaxVersion;
+		rfbGIIServerVersion.maxVersion = Swap16IfLE(rfbGIIServerVersion.maxVersion);
+		rfbGIIServerVersion.minVersion = rfbGIIMinVersion;
+		rfbGIIServerVersion.minVersion = Swap16IfLE(rfbGIIServerVersion.minVersion);
+		// Send our protocol version, and get the client's protocol version
+		if (!m_socket->SendExactQueue((char *) &rfbGIIServerVersion, sz_rfbGIIServerVersionMsg))
+		{
+			vnclog.Print(LL_INTINFO, VNCLOG("Write GII Protocol Version failed"));
+			bReady = FALSE;
+		}
+		else
+		{
+			vnclog.Print(LL_INTINFO, VNCLOG("Write GII Protocol Version"));
+			bReady = TRUE;
+		}
+	}
+	else
+	{
+		vnclog.Print(LL_INTINFO, VNCLOG("Touch Support Disabled -> DOESN'T Write GII Protocol Version"));
+	}
+	return bReady;
+}
+#endif
+
 // RDV 2010-4-10
 // Ask user Permission Accept/Reject
 // Interactive, destop depended
@@ -938,7 +1000,15 @@ vncClientThread::FilterClients_Ask_Permission()
 		if (verified == vncServer::aqrQuery) {
             // 10 Dec 2008 jdp reject/accept all incoming connections if the workstation is locked
             if (vncService::IsWSLocked() && !m_server->QueryIfNoLogon()) {
-                verified = m_server->QueryAccept() == 1 ? vncServer::aqrAccept : vncServer::aqrReject;
+				if (m_server->QueryAcceptLocked())
+				{
+					verified = m_server->QueryAccept() == 1 ? vncServer::aqrAccept : vncServer::aqrReject;
+				}
+				else
+				{
+					//m_queryaccept==2, new method to allow accept on locked user
+					verified = vncServer::aqrAccept;
+				}
             } else {
 
 			vncAcceptDialog *acceptDlg = new vncAcceptDialog(m_server->QueryTimeout(),m_server->QueryAccept(), m_socket->GetPeerName());
@@ -1049,6 +1119,19 @@ vncClientThread::CheckLoopBack()
 				SendConnFailed("Local loop-back connections are disabled.");
 				return FALSE;
 			}
+#ifdef ULTRAVNC_ITALC_SUPPORT
+			else
+			{
+				LONG val = 0;
+				if( ultravnc_italc_load_int( "LocalConnectOnly", &val ) && val )
+				{
+					// FOOOOOOO
+					vnclog.Print(LL_CONNERR, VNCLOG("non-loopback connections disabled - client rejected\n"));
+					SendConnFailed("non-loopback connections are disabled.");
+					return FALSE;
+				}
+			}
+#endif
 		}
 	}
 	else
@@ -1072,19 +1155,6 @@ vncClientThread::CheckLoopBack()
 				vnclog.Print(LL_CONNERR, VNCLOG("loopback connection attempted - client accepted\n"));
 				m_client->m_IsLoopback=true;
 			}
-#ifdef ULTRAVNC_ITALC_SUPPORT
-			else
-			{
-				LONG val = 0;
-				if( ultravnc_italc_load_int( "LocalConnectOnly", &val ) && val )
-				{
-					// FOOOOOOO
-					vnclog.Print(LL_CONNERR, VNCLOG("non-loopback connections disabled - client rejected\n"));
-					SendConnFailed("non-loopback connections are disabled.");
-					return FALSE;
-				}
-			}
-#endif
 		}
 
 	}
@@ -1132,7 +1202,7 @@ void vncClientThread::LogAuthResult(bool success)
 		HMODULE hModule = LoadLibrary(szCurrentDir);
 		if (hModule)
 			{
-				//BOOL result=false;
+				BOOL result=false;
 				Logevent = (LogeventFn) GetProcAddress( hModule, "LOGFAILED" );
 				Logevent((char *)m_client->GetClientName());
 				FreeLibrary(hModule);
@@ -1152,7 +1222,7 @@ void vncClientThread::LogAuthResult(bool success)
 		HMODULE hModule = LoadLibrary(szCurrentDir);
 		if (hModule)
 			{
-				//BOOL result=false;
+				BOOL result=false;
 				Logevent = (LogeventFn) GetProcAddress( hModule, "LOGLOGON" );
 				Logevent((char *)m_client->GetClientName());
 				FreeLibrary(hModule);
@@ -1241,7 +1311,7 @@ BOOL vncClientThread::AuthenticateClient(std::vector<CARD8>& current_auth)
 	const bool bUseSessionSelect = false;
 	
 	// obviously needs to be one that we suggested in the first place
-	bool bSecureVNCPluginActive = std::find(current_auth.begin(), current_auth.end(), rfbUltraVNC_SecureVNCPluginAuth) != current_auth.end();
+	bool bSecureVNCPluginActive = std::find(current_auth.begin(), current_auth.end(), rfbUltraVNC_SecureVNCPluginAuth_new) != current_auth.end();
 	bool bSCPromptActive = std::find(current_auth.begin(), current_auth.end(), rfbUltraVNC_SCPrompt) != current_auth.end();
 	bool bSessionSelectActive = std::find(current_auth.begin(), current_auth.end(), rfbUltraVNC_SessionSelect) != current_auth.end();
 
@@ -1255,7 +1325,8 @@ BOOL vncClientThread::AuthenticateClient(std::vector<CARD8>& current_auth)
 	// Include the SecureVNCPluginAuth type for those that support it but are not UltraVNC viewers
 	if (!bSecureVNCPluginActive && m_socket->IsUsePluginEnabled() && m_server->GetDSMPluginPointer()->IsEnabled() && m_socket->GetIntegratedPlugin() != NULL)
 	{
-		auth_types.push_back(rfbUltraVNC_SecureVNCPluginAuth);
+		auth_types.push_back(rfbUltraVNC_SecureVNCPluginAuth_new);
+		auth_types.push_back(rfbUltraVNC_SecureVNCPluginAuth);		
 	}
 	else if ( (SPECIAL_SC_PROMPT || SPECIAL_SC_EXIT) && !bSCPromptActive ) 
 	{
@@ -1328,6 +1399,7 @@ BOOL vncClientThread::AuthenticateClient(std::vector<CARD8>& current_auth)
 
 	// Authenticate the connection, if required
 	BOOL auth_success = FALSE;
+	BOOL version_warning = FALSE;
 	std::string auth_message;
 	switch (auth_accepted)
 	{
@@ -1335,8 +1407,13 @@ BOOL vncClientThread::AuthenticateClient(std::vector<CARD8>& current_auth)
 		m_client->SetUltraViewer(true);
 		auth_success = true;
 		break;
-	case rfbUltraVNC_SecureVNCPluginAuth:
+	case rfbUltraVNC_SecureVNCPluginAuth_new:
 		auth_success = AuthSecureVNCPlugin(auth_message);	
+		break;
+	case rfbUltraVNC_SecureVNCPluginAuth:
+		auth_success=AuthSecureVNCPlugin_old(auth_message);	
+		auth_success = 0;
+		version_warning = 1;
 		break;
 	case rfbUltraVNC_MsLogonIIAuth:
 		auth_success = AuthMsLogon(auth_message);
@@ -1371,13 +1448,13 @@ BOOL vncClientThread::AuthenticateClient(std::vector<CARD8>& current_auth)
 
 	// Return the result
 	CARD32 auth_result = rfbVncAuthFailed;
-	if (auth_success) {
+	if (auth_success==1) {
 		current_auth.push_back(auth_accepted);
 
 		// continue the authentication if mslogon is enabled. any method of authentication should
 		// work out fine with this method. Currently we limit ourselves to only one layer beyond
 		// the plugin to avoid deep recursion, but that can easily be changed if necessary.
-		if (m_ms_logon && auth_accepted == rfbUltraVNC_SecureVNCPluginAuth && m_socket->GetIntegratedPlugin()) {
+		if (m_ms_logon && auth_accepted == rfbUltraVNC_SecureVNCPluginAuth_new && m_socket->GetIntegratedPlugin()) {
 			auth_result = rfbVncAuthContinue;
 		} else if (auth_accepted == rfbUltraVNC) {
 			auth_result = rfbVncAuthContinue;
@@ -1416,8 +1493,16 @@ BOOL vncClientThread::AuthenticateClient(std::vector<CARD8>& current_auth)
 	if (!m_socket->SendExactQueue((char *)&auth_result_msg, sizeof(auth_result_msg)))
 		return FALSE;
 
+	//adzm 2010-09 - Set handshake complete if integrated plugin finished auth
+	/*if ((auth_success || auth_accepted == rfbUltraVNC_SecureVNCPluginAuth) && (auth_accepted == rfbUltraVNC_SecureVNCPluginAuth_new || auth_accepted == rfbUltraVNC_SecureVNCPluginAuth) && m_socket->GetIntegratedPlugin()) {			
+		m_socket->GetIntegratedPlugin()->SetHandshakeComplete();	
+	}*/
+	if ((auth_success || auth_accepted == rfbUltraVNC_SecureVNCPluginAuth) && ( auth_accepted == rfbUltraVNC_SecureVNCPluginAuth) && m_socket->GetIntegratedPlugin()) {			
+		m_socket->GetIntegratedPlugin()->SetHandshakeComplete();	
+	}
+
 	// Send a failure reason	
-	if (!auth_success) {
+	if (!auth_success && !version_warning) {
 		if (auth_message.empty()) {
 			auth_message = "authentication rejected";
 		}
@@ -1429,13 +1514,20 @@ BOOL vncClientThread::AuthenticateClient(std::vector<CARD8>& current_auth)
 		return FALSE;
 	}
 
+	else if (!auth_success) {
+		if (auth_message.empty()) {
+			auth_message = "Server require a higher viewer version.";
+		}
+		CARD32 auth_message_length = Swap32IfLE(auth_message.length());
+		if (!m_socket->SendExactQueue((char *)&auth_message_length, sizeof(auth_message_length)))
+			return FALSE;
+		if (!m_socket->SendExact(auth_message.c_str(), auth_message.length()))
+			return FALSE;
+		return FALSE;
+	}
+
 	if (!m_socket->ClearQueue())
 		return FALSE;
-	
-	//adzm 2010-09 - Set handshake complete if integrated plugin finished auth
-	if (auth_success && auth_accepted == rfbUltraVNC_SecureVNCPluginAuth && m_socket->GetIntegratedPlugin()) {			
-		m_socket->GetIntegratedPlugin()->SetHandshakeComplete();	
-	}
 
 	if (auth_success && auth_result == rfbVncAuthContinue) {
 		if (!AuthenticateClient(current_auth)) {
@@ -1544,10 +1636,13 @@ BOOL vncClientThread::AuthenticateLegacyClient()
 	if (auth_success) {
 		auth_result = rfbVncAuthOK;
 	}
-
+	//proto 6.2.1 np securityresult for none 3.3 and 3.7
+	if (auth_type != rfbNoAuth)
+	{
 	CARD32 auth_result_msg = Swap32IfLE(auth_result);
 	if (!m_socket->SendExact((char *)&auth_result_msg, sizeof(auth_result_msg)))
 		return FALSE;
+	}
 	
 	//adzm 2010-09 - Set handshake complete if integrated plugin finished auth
 	if (auth_success && auth_type == rfbLegacy_SecureVNCPlugin && m_socket->GetIntegratedPlugin()) {			
@@ -1563,6 +1658,120 @@ BOOL vncClientThread::AuthenticateLegacyClient()
 
 // must SetHandshakeComplete after sending auth result!
 BOOL vncClientThread::AuthSecureVNCPlugin(std::string& auth_message)
+{
+	bool bPassphrase=false;
+	char password[MAXPWLEN];
+	m_server->GetPassword(password);
+	vncPasswd::ToText plain(password);
+	ConfigHelper ConfigHelpervar(m_server->GetDSMPluginConfig());
+	if (strlen(ConfigHelpervar.m_szPassphrase)>0)
+	{
+		bPassphrase=true;
+		ConfigHelpervar.SetConfigHelper(ConfigHelpervar.m_dwFlags,"");
+		m_socket->SetDSMPluginConfig(ConfigHelpervar.m_szConfig);
+	}
+	else
+	{
+		m_socket->SetDSMPluginConfig(m_server->GetDSMPluginConfig());
+	}
+
+	BOOL auth_ok = FALSE;
+
+	const char* plainPassword = plain;	
+	/*if (!m_ms_logon && plainPassword && strlen(plainPassword) > 0) {
+		m_socket->GetIntegratedPlugin()->SetPasswordData((const BYTE*)plainPassword, strlen(plainPassword));
+	}*/
+
+	int nSequenceNumber = 0;
+	bool bSendChallenge = true;
+	do
+	{
+		BYTE* pChallenge = NULL;
+		int nChallengeLength = 0;
+		if (!m_socket->GetIntegratedPlugin()->GetChallenge(pChallenge, nChallengeLength, nSequenceNumber)) {
+			m_socket->GetIntegratedPlugin()->FreeMemory(pChallenge);
+			auth_message = m_socket->GetIntegratedPlugin()->GetLastErrorString();
+			return FALSE;
+		}
+
+		WORD wChallengeLength = (WORD)nChallengeLength;
+
+		if (!m_socket->SendExactQueue((const char*)&wChallengeLength, sizeof(wChallengeLength))) {
+			m_socket->GetIntegratedPlugin()->FreeMemory(pChallenge);
+			return FALSE;
+		}
+
+		if (!m_socket->SendExact((const char*)pChallenge, nChallengeLength)) {
+			m_socket->GetIntegratedPlugin()->FreeMemory(pChallenge);
+			return FALSE;
+		}
+
+		char passphraseused=bPassphrase;
+		if (m_ms_logon || strlen(plainPassword)==0) passphraseused=2;
+		if (!m_socket->SendExact((const char*)&passphraseused, 1)) {
+			m_socket->GetIntegratedPlugin()->FreeMemory(pChallenge);
+			return FALSE;
+		}
+
+
+
+		m_socket->GetIntegratedPlugin()->FreeMemory(pChallenge);
+		WORD wResponseLength = 0;
+		if (!m_socket->ReadExact((char*)&wResponseLength, sizeof(wResponseLength))) {
+			return FALSE;
+		}
+		if (wResponseLength>2024) return FALSE;
+		BYTE* pResponseData = new BYTE[wResponseLength];
+		
+		if (!m_socket->ReadExact((char*)pResponseData, wResponseLength)) {
+			delete[] pResponseData;
+			return FALSE;
+		}
+
+		if (!m_socket->GetIntegratedPlugin()->HandleResponse(pResponseData, (int)wResponseLength, nSequenceNumber, bSendChallenge)) {
+			auth_message = m_socket->GetIntegratedPlugin()->GetLastErrorString();
+			auth_ok = FALSE;
+			bSendChallenge = false;
+		} else if (!bSendChallenge) {
+			auth_ok = TRUE;
+		}
+
+		delete[] pResponseData;
+
+		m_socket->GetIntegratedPlugin()->SetHandshakeComplete();	
+
+
+		if (!m_ms_logon && strlen(plainPassword)!=0)
+		{
+			if (!m_socket->ReadExact((char*)&wResponseLength, sizeof(wResponseLength))) {
+				return FALSE;
+			}
+			if (wResponseLength>2024) return FALSE;
+			pResponseData = new BYTE[wResponseLength];
+		
+			if (!m_socket->ReadExact((char*)pResponseData, wResponseLength)) {
+				delete[] pResponseData;
+				return FALSE;
+			}		
+			if (bPassphrase==false)
+				{
+					if (memcmp(plain,pResponseData,strlen(plain))!=NULL) auth_ok=false;
+				}
+			else if (memcmp(ConfigHelpervar.m_szPassphrase,pResponseData,strlen(ConfigHelpervar.m_szPassphrase))!=NULL) auth_ok=false;
+			delete[] pResponseData;
+		}		
+		nSequenceNumber++;
+	} while (bSendChallenge);
+
+	if (auth_ok) {
+		return TRUE;
+	} else {
+		return FALSE;
+	}
+}
+
+// must SetHandshakeComplete after sending auth result!
+BOOL vncClientThread::AuthSecureVNCPlugin_old(std::string& auth_message)
 {
 	char password[MAXPWLEN];
 	m_server->GetPassword(password);
@@ -1621,7 +1830,7 @@ BOOL vncClientThread::AuthSecureVNCPlugin(std::string& auth_message)
 			auth_ok = TRUE;
 		}
 
-		delete[] pResponseData;
+		delete[] pResponseData;		
 		nSequenceNumber++;
 	} while (bSendChallenge);
 
@@ -1714,7 +1923,7 @@ BOOL vncClientThread::AuthVnc(std::string& auth_message)
 
 			auth_ok = TRUE;
 			// Compare them to the response
-			for (size_t i=0; i<sizeof(challenge); i++)
+			for (int i=0; i<sizeof(challenge); i++)
 			{
 				if (challenge[i] != response[i])
 				{
@@ -1738,7 +1947,7 @@ BOOL vncClientThread::AuthVnc(std::string& auth_message)
 					vncEncryptBytes((BYTE *)&challenge2, plain2); //PGM
 
 					// Compare them to the response //PGM
-					for (size_t i=0; i<sizeof(challenge2); i++) //PGM
+					for (int i=0; i<sizeof(challenge2); i++) //PGM
 					{ //PGM
 						if (challenge2[i] != response[i]) //PGM
 						{ //PGM
@@ -1832,10 +2041,10 @@ ClearKeyState(BYTE key)
 	if(keyState[key] & 1)
 	{
 		// Simulate the key being pressed
-		keybd_event(key, 0, KEYEVENTF_EXTENDEDKEY, 0);
+		keybd_uni_event(key, 0, KEYEVENTF_EXTENDEDKEY, 0);
 
 		// Simulate it being release
-		keybd_event(key, 0, KEYEVENTF_EXTENDEDKEY | KEYEVENTF_KEYUP, 0);
+		keybd_uni_event(key, 0, KEYEVENTF_EXTENDEDKEY | KEYEVENTF_KEYUP, 0);
 	}
 }
 
@@ -1853,7 +2062,97 @@ void GetIPString(char *buffer, int buflen)
 		strncpy(buffer, "Host name unavailable", buflen);
 		return;
     }
+#ifdef IPV6V4
+	*buffer = '\0';
 
+	LPSOCKADDR sockaddr_ip;
+	struct addrinfo hint;
+	struct addrinfo *serverinfo = 0;
+	memset(&hint, 0, sizeof(hint));
+	hint.ai_family = AF_UNSPEC;
+	hint.ai_socktype = SOCK_STREAM;
+	hint.ai_protocol = IPPROTO_TCP;
+	struct sockaddr_in6 *pIpv6Addr;
+	struct sockaddr_in *pIpv4Addr;
+	struct sockaddr_in6 Ipv6Addr;
+	struct sockaddr_in Ipv4Addr;
+	memset(&Ipv6Addr, 0, sizeof(Ipv6Addr));
+	memset(&Ipv4Addr, 0, sizeof(Ipv4Addr));
+
+	//make sure the buffer is not overwritten
+
+
+	if (getaddrinfo(namebuf, 0, &hint, &serverinfo) == 0)
+	{
+		struct addrinfo *p;
+		if (!G_ipv6_allowed)
+		{
+			p = serverinfo;
+			for (p = serverinfo; p != NULL; p = p->ai_next) {
+				switch (p->ai_family) {
+				case AF_INET:
+				{
+					pIpv4Addr = (struct sockaddr_in *) p->ai_addr;
+					memcpy(&Ipv4Addr, pIpv4Addr, sizeof(Ipv4Addr));
+					Ipv4Addr.sin_family = AF_INET;
+					char			szText[256];
+					sprintf(szText, "%s-", inet_ntoa(Ipv4Addr.sin_addr));
+					int len = strlen(buffer);
+					int len2 = strlen(szText);
+					if (len + len2 < buflen) strcat_s(buffer, buflen, szText);
+					break;
+				}
+				case AF_INET6:
+				{
+					break;
+				}
+				default:
+					break;
+				}
+			}
+		}
+
+
+		if (G_ipv6_allowed)
+		{
+			p = serverinfo;
+			for (p = serverinfo; p != NULL; p = p->ai_next) {
+				switch (p->ai_family) {
+				case AF_INET:
+				{
+					break;
+				}
+				case AF_INET6:
+				{
+					char ipstringbuffer[46];
+					DWORD ipbufferlength = 46;
+					ipbufferlength = 46;
+					memset(ipstringbuffer, 0, 46);
+
+					pIpv6Addr = (struct sockaddr_in6 *) p->ai_addr;
+					memcpy(&Ipv6Addr, pIpv6Addr, sizeof(Ipv6Addr));
+					Ipv6Addr.sin6_family = AF_INET6;
+
+					sockaddr_ip = (LPSOCKADDR)p->ai_addr;
+
+					WSAAddressToString(sockaddr_ip, (DWORD)p->ai_addrlen, NULL, ipstringbuffer, &ipbufferlength);
+					char			szText[256];
+					memset(szText, 0, 256);
+					strncpy(szText, ipstringbuffer, ipbufferlength - 4);
+					strcat(szText, "-");
+					int len = strlen(buffer);
+					int len2 = strlen(szText);
+					if (len + len2 < buflen)strcat_s(buffer, buflen, szText);
+					break;
+				}
+				default:
+					break;
+				}
+			}
+		}
+	}
+	freeaddrinfo(serverinfo);
+#else
     HOSTENT *ph = NULL;
 	ph=gethostbyname(namebuf);
     if (!ph)
@@ -1875,6 +2174,7 @@ void GetIPString(char *buffer, int buflen)
 		if (ph->h_addr_list[i+1] != 0)
 			strncat(buffer, ", ", (buflen-1)-strlen(buffer));
     }
+#endif
 }
 
 // adzm 2010-08
@@ -1900,7 +2200,7 @@ bool vncClientThread::InitSocket()
 		vnclog.Print(LL_INTINFO, VNCLOG("DSMPlugin Pointer to socket OK\n"));
 
 		//adzm 2010-05-12 - dsmplugin config
-		m_socket->SetDSMPluginConfig(m_server->GetDSMPluginConfig());
+		//m_socket->SetDSMPluginConfig(m_server->GetDSMPluginConfig());
 	}
 	else
 	{
@@ -1944,6 +2244,7 @@ bool vncClientThread::InitSocket()
 
 bool vncClientThread::TryReconnect()
 {
+	if (m_client==NULL) return false;
 	if (fShutdownOrdered || m_client->m_Autoreconnect || !m_client->GetHost() || !m_client->GetRepeaterID()) {
 		return false;
 	}
@@ -1971,8 +2272,13 @@ bool vncClientThread::TryReconnect()
 	// Connect out to the specified host on the VNCviewer listen port
 	// To be really good, we should allow a display number here but
 	// for now we'll just assume we're connecting to display zero
+#ifdef IPV6V4
+	if (m_socket->CreateConnect(m_client->GetHost(), m_client->GetHostPort()))
+#else
 	m_socket->Create();
-	if (m_socket->Connect(m_client->GetHost(), m_client->GetHostPort()))	{
+	if (m_socket->Connect(m_client->GetHost(), m_client->GetHostPort()))	
+#endif
+	{
 		if (m_client->GetRepeaterID()) {
 			char finalidcode[_MAX_PATH];
 			//adzm 2010-08 - this was sending uninitialized data over the wire
@@ -1993,6 +2299,19 @@ bool vncClientThread::TryReconnect()
 void
 vncClientThread::run(void *arg)
 {
+#ifdef _Gii
+#ifdef _USE_DLL
+	DLL_InitializeTouchInjection = NULL;
+	DLL_PInjectTouch = NULL;
+	win8dllHandle = NULL;
+	if (VNCOS.OS_WIN8)
+	{
+		win8dllHandle = LoadLibrary("InjectTouch.dll");
+		DLL_InitializeTouchInjection = (PInitializeTouchInjection) GetProcAddress(win8dllHandle, "DLL_InitializeTouchInjection");
+		DLL_PInjectTouch = (PInjectTouch) GetProcAddress(win8dllHandle, "DLL_PInjectTouch");;
+	}
+#endif
+#endif
 	// All this thread does is go into a socket-receive loop,
 	// waiting for stuff on the given socket
 
@@ -2013,7 +2332,7 @@ vncClientThread::run(void *arg)
 	// adzm 2010-08
 	if (!InitSocket()) {
 		m_server->RemoveClient(m_client->GetClientId());
-		return;
+		return; 
 	}
 
 	// GET PROTOCOL VERSION
@@ -2031,12 +2350,10 @@ vncClientThread::run(void *arg)
 
 			szInfo[255] = '\0';
 
-			vncMenu::NotifyBalloon(szInfo, NULL);
+			if (m_client->m_outgoing) vncMenu::NotifyBalloon(szInfo, NULL);
 		}
-		m_server->RemoveClient(m_client->GetClientId());
-		
 		// wa@2005 - AutoReconnection attempt if required
-		if (m_client->m_Autoreconnect)
+		if (m_client->m_Autoreconnect && !fShutdownOrdered)
 		{
 			for (int i=0;i<10*m_server->AutoReconnect_counter;i++)
 			{
@@ -2044,16 +2361,19 @@ vncClientThread::run(void *arg)
 				if (m_autoreconnectcounter_quit) return;
 			}
 			m_server->AutoReconnect_counter+=10;
-			if (m_server->AutoReconnect_counter>1800) m_server->AutoReconnect_counter=1800;
+			if (m_server->AutoReconnect_counter>20) m_server->AutoReconnect_counter=20;
 			vnclog.Print(LL_INTERR, VNCLOG("PostAddNewClient I\n"));
 			m_server->AutoReconnect(m_client->m_Autoreconnect);
 			m_server->AutoReconnectPort(m_AutoReconnectPort);
 			m_server->AutoReconnectAdr(m_szAutoReconnectAdr);
 			m_server->AutoReconnectId(m_szAutoReconnectId);
-
+#ifdef IPV6V4
+			vncService::PostAddNewClient4(1111, 1111);
+#else
 			vncService::PostAddNewClient(1111, 1111);
+#endif
 		}
-
+		m_server->RemoveClient(m_client->GetClientId());
 		return;
 	}
 	m_server->AutoReconnect_counter=0;
@@ -2080,11 +2400,11 @@ vncClientThread::run(void *arg)
 //	m_client->m_fullscreen = m_client->m_encodemgr.GetSize();
 
 	// Modif sf@2002 - Scaling
-	{
-	omni_mutex_lock l(m_client->GetUpdateLock());
 	if (m_server->AreThereMultipleViewers()==false)
-		m_client->m_encodemgr.m_buffer->SetScale(m_server->GetDefaultScale()); // v1.1.2
-	}
+		{
+			omni_mutex_lock l(m_client->GetUpdateLock(),84);
+			m_client->m_encodemgr.m_buffer->SetScale(m_server->GetDefaultScale()); // v1.1.2
+		}
 	m_client->m_ScaledScreen = m_client->m_encodemgr.m_buffer->GetViewerSize();
 	m_client->m_nScale = m_client->m_encodemgr.m_buffer->GetScale();
 
@@ -2167,7 +2487,7 @@ vncClientThread::run(void *arg)
 	// sf@2002 - Scaling
 	// m_client->m_update_tracker.add_changed(m_client->m_fullscreen);
 	{ // RealVNC 336
-		omni_mutex_lock l(m_client->GetUpdateLock());
+		omni_mutex_lock l(m_client->GetUpdateLock(),91);
 		m_client->m_update_tracker.add_changed(m_client->m_ScaledScreen);
 	}
 
@@ -2180,18 +2500,20 @@ vncClientThread::run(void *arg)
 	// Set the input thread to a high priority
 	set_priority(omni_thread::PRIORITY_HIGH);
 
-	BOOL connected = TRUE;
+	m_client->cl_connected = TRUE;
 	// added jeff
 	BOOL need_to_disable_input = m_server->LocalInputsDisabled();
     bool need_to_clear_keyboard = true;
     bool need_first_keepalive = false;
+	bool need_first_idletime = false;
+	bool firstrun=true;
     bool need_ft_version_msg =  false;
 	// adzm - 2010-07 - Extended clipboard
 	bool need_notify_extended_clipboard = false;
 	// adzm 2010-09 - Notify streaming DSM plugin support
 	bool need_notify_streaming_DSM = false;
 
-	while (connected)
+	while (m_client->cl_connected)
 	{
 		rfbClientToServerMsg msg;
 
@@ -2224,15 +2546,24 @@ vncClientThread::run(void *arg)
         }
 
         // reclaim input block after local C+A+D if user currently has it blocked 
-        m_client->m_encodemgr.m_buffer->m_desktop->block_input();
+        m_client->m_encodemgr.m_buffer->m_desktop->block_input(firstrun);
+		firstrun=false;
 
         if (need_first_keepalive)
         {
             // send first keepalive to let the client know we accepted the encoding request
             m_client->SendServerStateUpdate(rfbKeepAliveInterval, m_server->GetKeepAliveInterval());
-            m_client->SendKeepAlive();
+            m_client->SendKeepAlive(true);
             need_first_keepalive = false;
         }
+
+		if (need_first_idletime)
+		{
+			// send first keepalive to let the client know we accepted the encoding request
+			m_client->SendServerStateUpdate(rfbIdleInputTimeout, m_server->GetIdleInputTimeout());
+			need_first_idletime = false;
+		}
+
 		if (m_client->m_want_update_state && m_client->m_Support_rfbSetServerInput)
 		{
 			m_client->m_want_update_state=false;
@@ -2269,7 +2600,7 @@ vncClientThread::run(void *arg)
 		{
 			if (!m_socket->ReadExact((char *)&msg.type, sizeof(msg.type)))
 			{
-				connected = FALSE;
+				m_client->cl_connected = FALSE;
 				break;
 			}
 		    nTO = 0;
@@ -2279,7 +2610,7 @@ vncClientThread::run(void *arg)
 			// Try to read a message ID
 			if (!m_socket->ReadExact((char *)&msg.type, sizeof(msg.type)))
 			{
-				connected = FALSE;
+				m_client->cl_connected = FALSE;
 				break;
 			}
 		}
@@ -2307,21 +2638,13 @@ vncClientThread::run(void *arg)
 
                     }
 #endif
-            if (sz_rfbKeepAliveMsg > 1)
-            {
-			    if (!m_socket->ReadExact(((char *) &msg)+nTO, sz_rfbKeepAliveMsg-nTO))
-			    {
-				    connected = FALSE;
-				    break;
-			    }
-            }
             break;
 
 		case rfbSetPixelFormat:
 			// Read the rest of the message:
 			if (!m_socket->ReadExact(((char *) &msg)+nTO, sz_rfbSetPixelFormatMsg-nTO))
 			{
-				connected = FALSE;
+				m_client->cl_connected = FALSE;
 				break;
 			}
 
@@ -2341,7 +2664,7 @@ vncClientThread::run(void *arg)
 			{
 				vnclog.Print(LL_CONNERR, VNCLOG("remote pixel format invalid\n"));
 
-				connected = FALSE;
+				m_client->cl_connected = FALSE;
 			}
 
 			// Set the palette-changed flag, just in case...
@@ -2356,7 +2679,7 @@ vncClientThread::run(void *arg)
 			// Read the rest of the message:
 			if (!m_socket->ReadExact(((char *) &msg)+nTO, sz_rfbSetEncodingsMsg-nTO))
 			{
-				connected = FALSE;
+				m_client->cl_connected = FALSE;
 				break;
 			}
 
@@ -2366,10 +2689,14 @@ vncClientThread::run(void *arg)
 	        // RDV XOR and client detection
 			m_client->m_encodemgr.AvailableXOR(FALSE);
 			m_client->m_encodemgr.AvailableZRLE(FALSE);
+#ifdef _XZ
+			m_client->m_encodemgr.AvailableXZ(FALSE);
+#endif
 			m_client->m_encodemgr.AvailableTight(FALSE);
 
 			// sf@2002 - Tight
 			m_client->m_encodemgr.SetQualityLevel(-1);
+			m_client->m_encodemgr.SetFineQualityLevel(-1);
 			m_client->m_encodemgr.SetCompressLevel(6);
 			m_client->m_encodemgr.EnableLastRect(FALSE);
 
@@ -2388,7 +2715,9 @@ vncClientThread::run(void *arg)
 			{
 				int x;
 				BOOL encoding_set = FALSE;
-
+#ifdef _Gii
+				BOOL gii_set = FALSE;
+#endif
 				// By default, don't use copyrect!
 				m_client->m_update_tracker.enable_copyrect(false);
 
@@ -2399,7 +2728,7 @@ vncClientThread::run(void *arg)
 					// Read an encoding in
 					if (!m_socket->ReadExact((char *)&encoding, sizeof(encoding)))
 					{
-						connected = FALSE;
+						m_client->cl_connected = FALSE;
 						break;
 					}
 
@@ -2455,6 +2784,28 @@ vncClientThread::run(void *arg)
 						continue;
 					}
 
+					// Is this a FineQualityLevel encoding?
+					if ((Swap32IfLE(encoding) >= rfbEncodingFineQualityLevel0) &&
+						(Swap32IfLE(encoding) <= rfbEncodingFineQualityLevel100))
+					{
+						// Client specified fine-grained image quality level used for JPEG compression
+						int level = (int)(Swap32IfLE(encoding) - rfbEncodingFineQualityLevel0);
+						m_client->m_encodemgr.SetFineQualityLevel(level);
+						vnclog.Print(LL_INTINFO, VNCLOG("fine-grained image quality level requested: %d\n"), level);
+						continue;
+					}
+
+					// Is this a Subsamp encoding?
+					if ((Swap32IfLE(encoding) >= rfbEncodingSubsamp1X) &&
+						(Swap32IfLE(encoding) <= rfbEncodingSubsamp16X))
+					{
+						// Client specified subsampling used for JPEG compression
+						int subsamp = (int)(Swap32IfLE(encoding) - rfbEncodingSubsamp1X);
+						m_client->m_encodemgr.SetSubsampling((subsamp_type)subsamp);
+						vnclog.Print(LL_INTINFO, VNCLOG("subsampling requested: %d\n"), subsamp);
+						continue;
+					}
+
 					// Is this a LastRect encoding request?
 					if (Swap32IfLE(encoding) == rfbEncodingLastRect) {
 						m_client->m_encodemgr.EnableLastRect(TRUE); // We forbid Last Rect for now 
@@ -2505,6 +2856,12 @@ vncClientThread::run(void *arg)
 						vnclog.Print(LL_INTINFO, VNCLOG("KeepAlive protocol extension enabled\n"));
                         continue;
 					}
+					
+					if (Swap32IfLE(encoding) == rfbEncodingEnableIdleTime) {
+						need_first_idletime = true;
+						vnclog.Print(LL_INTINFO, VNCLOG("IdleTime protocol extension enabled\n"));
+						continue;
+						}
 
 					if (Swap32IfLE(encoding) == rfbEncodingFTProtocolVersion) {
                         need_ft_version_msg = true;
@@ -2533,6 +2890,13 @@ vncClientThread::run(void *arg)
 						vnclog.Print(LL_INTINFO, VNCLOG("ZRLE found \n"));
 						// continue;
 					}
+#ifdef _XZ
+					if (Swap32IfLE(encoding) == rfbEncodingXZ) {
+						m_client->m_encodemgr.AvailableXZ(TRUE);
+						vnclog.Print(LL_INTINFO, VNCLOG("XZ found \n"));
+						// continue;
+					}
+#endif
 
 					if (Swap32IfLE(encoding) == rfbEncodingTight) {
 						m_client->m_encodemgr.AvailableTight(TRUE);
@@ -2544,22 +2908,28 @@ vncClientThread::run(void *arg)
 					if (!encoding_set)
 					{
 						// No, so try the buffer to see if this encoding will work...
-						omni_mutex_lock l(m_client->GetUpdateLock());
+						omni_mutex_lock l(m_client->GetUpdateLock(),85);
 						if (m_client->m_encodemgr.SetEncoding(Swap32IfLE(encoding),FALSE))
 							encoding_set = TRUE;
 					}
+#ifdef _Gii
+					if (Swap32IfLE(encoding) == rfbEncodingGII) {
+						vnclog.Print(LL_INTINFO, VNCLOG("Gii Encoding found\n"));
+						gii_set = TRUE;
+						// continue;
+					}
+#endif
 				}
-
 				// If no encoding worked then default to RAW!
 				if (!encoding_set)
 				{
 					vnclog.Print(LL_INTINFO, VNCLOG("defaulting to raw encoder\n"));
-					omni_mutex_lock l(m_client->GetUpdateLock());
+					omni_mutex_lock l(m_client->GetUpdateLock(),86);
 					if (!m_client->m_encodemgr.SetEncoding(Swap32IfLE(rfbEncodingRaw),FALSE))
 					{
 						vnclog.Print(LL_INTERR, VNCLOG("failed to select raw encoder!\n"));
 
-						connected = FALSE;
+						m_client->cl_connected = FALSE;
 					}
 				}
 
@@ -2567,15 +2937,395 @@ vncClientThread::run(void *arg)
 				// (But the cache buffer (if exists) is kept intact (for XORZlib usage))
 				if (m_server->AuthClientCount() > 1)
 					m_server->DisableCacheForAllClients();
+#ifdef _Gii
+				// Gii encoding requested (MC Multitouch Extensions)
+				if (gii_set)
+				{
+					InitGiiVersion();
+				}
+#endif
 
 			}
 
 			// Re-enable updates
 			m_client->client_settings_passed=true;
 			m_client->EnableProtocol();
-
-
 			break;
+
+#ifdef _Gii
+			case rfbGIIMessage:
+			{
+				// Read the subtype and length of the message:
+				uint8_t subType;
+				uint16_t lengthMsg;
+				bool bigEndian = false;
+				omni_mutex_lock ll(m_client->GetUpdateLock(), 776);
+				if (!m_socket->ReadExact((char *) &subType, sizeof(subType)))
+				{
+					vnclog.Print(LL_INTERR, VNCLOG("GII:Extension Reading subtype failed !\n"));
+					m_client->cl_connected = FALSE;
+					break;
+				}
+				if (!m_socket->ReadExact((char *) &lengthMsg, sizeof(lengthMsg)))
+				{
+					vnclog.Print(LL_INTERR, VNCLOG("GII:Extension Reading length failed !\n"));
+					m_client->cl_connected = FALSE;
+					break;
+				}
+				//unmask big endian flag
+				if (subType & 0x80)
+				{
+					bigEndian = true;
+					//format is big endian, convert to multi byte data to little
+					lengthMsg = Swap16IfLE(lengthMsg);
+					//mask subtype
+					subType &= 0x7f;
+				}
+				// process Gii Message
+				switch (subType) {
+				case _rfbGIIEventInjection:
+				{
+					rfbGIIValuatorEventMsg rfbGIIValutorEvent;
+					rfbGIIValutorEvent.header.messageType = rfbGIIMessage;
+					rfbGIIValutorEvent.header.subType = subType;
+					rfbGIIValutorEvent.header.length = lengthMsg;
+					// read rest of client's inject data
+					if (!m_socket->ReadExact((char *) (&rfbGIIValutorEvent) + sz_rfbGIIMsgHeader, sizeof(rfbGIIValutorEvent) - sz_rfbGIIMsgHeader))
+					{
+						vnclog.Print(LL_INTERR, VNCLOG("GIIExtension reading client creation failed\n"));
+						m_client->cl_connected = FALSE;
+						break;
+					}
+					if (bigEndian)
+					{
+						rfbGIIValutorEvent.padding = Swap16IfLE(rfbGIIValutorEvent.padding);
+						rfbGIIValutorEvent.deviceOrigin = Swap32IfLE(rfbGIIValutorEvent.deviceOrigin);
+						rfbGIIValutorEvent.first = Swap32IfLE(rfbGIIValutorEvent.first);
+						rfbGIIValutorEvent.count = Swap32IfLE(rfbGIIValutorEvent.count);
+					}
+					/////////////////////////////////////////////////////////////////////////////////////////
+					/////////////////////////////////////////////////////////////////////////////////////////
+					/////////////////////////////////////////////////////////////////////////////////////////
+#ifdef _USE_DLL
+					if (DLL_PInjectTouch)
+#endif
+					{
+						MyTouchINfo *TI = NULL;
+						TI = new MyTouchINfo[rfbGIIValutorEvent.first];
+						//POINTER_TOUCH_INFO contact[10];
+						//memset(&contact, 0, sizeof(POINTER_TOUCH_INFO) * 10);
+						BOOL bRet = TRUE;
+						char			szText[256];
+
+
+						for (unsigned int j = 0; j < rfbGIIValutorEvent.first; j++)
+						{
+							DWORD ValuatorFlag = 0;
+							DWORD ValuatorTouch_Id = 0;
+							DWORD ValuatorTouch_Position16XY = 0;
+							DWORD ValuatorTouch_Area = 0;
+							DWORD ValuatorTouch_Pressure = 0;
+							DWORD ValuatorTime_msec = 0;
+							DWORD64 ValuatorTime_usec = 0;
+
+							if (!m_socket->ReadExact((char *) &ValuatorFlag, sizeof(DWORD))){
+								vnclog.Print(LL_INTERR, VNCLOG("GIIExtension reading TouchINfo failed\n"));
+								m_client->cl_connected = FALSE;
+								break;
+							}
+							if (bigEndian) ValuatorFlag = Swap32IfLE(ValuatorFlag);
+
+							if (!m_socket->ReadExact((char *) &ValuatorTouch_Id, sizeof(DWORD))){
+								vnclog.Print(LL_INTERR, VNCLOG("GIIExtension reading TouchINfo failed\n"));
+								m_client->cl_connected = FALSE;
+								break;
+							}
+							if (bigEndian) ValuatorTouch_Id = Swap32IfLE(ValuatorTouch_Id);
+							TI[j].TouchId = ValuatorTouch_Id;
+
+							if (!m_socket->ReadExact((char *) &ValuatorTouch_Position16XY, sizeof(DWORD))){
+								vnclog.Print(LL_INTERR, VNCLOG("GIIExtension reading TouchINfo failed\n"));
+								m_client->cl_connected = FALSE;
+								break;
+							}
+							if (bigEndian) ValuatorTouch_Position16XY = Swap32IfLE(ValuatorTouch_Position16XY);
+							if (ValuatorFlag & LANGE_16_flag)
+							{
+								TI[j].X = ((ValuatorTouch_Position16XY & 0xffff0000) >> 16);
+								TI[j].Y = ((ValuatorTouch_Position16XY & 0x0000ffff));
+							}
+							else
+							{
+								vnclog.Print(LL_INTERR, VNCLOG("Only 16bit XT supported\n"));
+								m_client->cl_connected = FALSE;
+								break;
+							}
+
+							if (ValuatorFlag & S1_flag)
+							{
+								if (!m_socket->ReadExact((char *) &ValuatorTouch_Area, sizeof(DWORD))){
+									vnclog.Print(LL_INTERR, VNCLOG("GIIExtension reading TouchINfo failed\n"));
+									m_client->cl_connected = FALSE;
+									break;
+								}
+								if (bigEndian) ValuatorTouch_Area = Swap32IfLE(ValuatorTouch_Area);
+								TI[j].ContactWidth = ((ValuatorTouch_Area & 0xffff0000) >> 16);
+								TI[j].ContactHeight = ((ValuatorTouch_Area & 0x0000ffff));
+							}
+							else
+							{
+								TI[j].ContactWidth = 4;
+								TI[j].ContactHeight = 4;
+							}
+
+							if (ValuatorFlag &PR_flag)
+								if (!m_socket->ReadExact((char *) &ValuatorTouch_Pressure, sizeof(DWORD))){
+								vnclog.Print(LL_INTERR, VNCLOG("GIIExtension reading TouchINfo failed\n"));
+								m_client->cl_connected = FALSE;
+								break;
+								}
+							if (bigEndian) ValuatorTouch_Pressure = Swap32IfLE(ValuatorTouch_Pressure);
+
+							if (ValuatorFlag &TI_flag)
+								if (!m_socket->ReadExact((char *) &ValuatorTime_msec, sizeof(DWORD))){
+								vnclog.Print(LL_INTERR, VNCLOG("GIIExtension reading TouchINfo failed\n"));
+								m_client->cl_connected = FALSE;
+								break;
+								}
+							if (bigEndian) ValuatorTime_msec = Swap32IfLE(ValuatorTime_msec);
+
+							if (ValuatorFlag &HC_flag)
+								if (!m_socket->ReadExact((char *) &ValuatorTime_usec, sizeof(DWORD64))){
+								vnclog.Print(LL_INTERR, VNCLOG("GIIExtension reading TouchINfo failed\n"));
+								m_client->cl_connected = FALSE;
+								break;
+								}
+							int endianTest = 1;
+							if (bigEndian) ValuatorTime_usec = Swap64IfLE(ValuatorTime_usec);
+
+							TI[j].pointerflag = POINTER_FLAG_NONE;
+
+							if (TI[j].TouchId < nr_points)  // protect point_status array, else wronf value crash
+							{
+								if (ValuatorFlag & PF_flag)
+								{
+									if (point_status[TI[j].TouchId] == 1)
+									{
+										//move
+										TI[j].pointerflag |= POINTER_FLAG_UPDATE;
+										TI[j].pointerflag |= POINTER_FLAG_INRANGE | POINTER_FLAG_INCONTACT;
+									}
+									else
+									{
+										//down
+										TI[j].pointerflag |= POINTER_FLAG_DOWN;
+										TI[j].pointerflag |= POINTER_FLAG_INRANGE | POINTER_FLAG_INCONTACT;
+										point_status[TI[j].TouchId] = 1;
+
+									}
+								}
+								else
+								{
+									// UP
+									TI[j].pointerflag |= POINTER_FLAG_UP;
+									point_status[TI[j].TouchId] = 0;
+								}
+							}
+
+							TI[j].time = 0;
+						}
+#ifdef _USE_DLL
+						bRet = DLL_PInjectTouch(rfbGIIValutorEvent.first, TI);
+#ifdef _DEBUG					
+						if (bRet == 0) sprintf(szText, "FAIL index %d %i\n", GetLastError(), rfbGIIValutorEvent.first);
+						else sprintf(szText, "OK %i\n", rfbGIIValutorEvent.first);
+						OutputDebugString(szText);
+#endif
+#else
+						//////////////////////////////////////////////////
+						// Copy src from dll
+						//////////////////////////////////////////////////
+						MyTouchINfo *ti_array = TI;
+						if (rfbGIIValutorEvent.first < 0 || rfbGIIValutorEvent.first >254) goto mydllend;
+						POINTER_TOUCH_INFO *contact = new POINTER_TOUCH_INFO[rfbGIIValutorEvent.first];
+						if (contact == NULL)  goto mydllend;
+						memset(contact, 0, sizeof(POINTER_TOUCH_INFO) * rfbGIIValutorEvent.first);
+
+						for (int i = 0; i < rfbGIIValutorEvent.first; i++)
+						{
+							contact[i].pointerInfo.pointerType = PT_TOUCH; //we're sending touch input		
+							contact[i].pointerInfo.ptPixelLocation.x = ti_array[i].X;
+							contact[i].pointerInfo.ptPixelLocation.y = ti_array[i].Y;
+
+							contact[i].pointerInfo.dwTime = ti_array[i].time;
+
+							contact[i].touchFlags = TOUCH_FLAG_NONE;
+							contact[i].touchMask = TOUCH_MASK_CONTACTAREA | TOUCH_MASK_ORIENTATION | TOUCH_MASK_PRESSURE;
+							contact[i].orientation = 90;
+							contact[i].pressure = 32000;
+
+							contact[i].rcContact.top = contact[i].pointerInfo.ptPixelLocation.y - ti_array[i].ContactHeight / 2;
+							contact[i].rcContact.bottom = contact[i].pointerInfo.ptPixelLocation.y + ti_array[i].ContactHeight / 2;
+							contact[i].rcContact.left = contact[i].pointerInfo.ptPixelLocation.x - ti_array[i].ContactWidth / 2;
+							contact[i].rcContact.right = contact[i].pointerInfo.ptPixelLocation.x + ti_array[i].ContactWidth / 2;
+
+							contact[i].pointerInfo.pointerId = ti_array[i].TouchId;          //contact 0
+							contact[i].pointerInfo.pointerFlags = ti_array[i].pointerflag;
+						}
+						BOOL value = InjectTouchInput(rfbGIIValutorEvent.first, contact);
+#ifdef _DEBUG					
+						if (value == 0) sprintf(szText, "FAIL index %d %i\n", GetLastError(), rfbGIIValutorEvent.first);
+						else sprintf(szText, "OK number points %i\n", rfbGIIValutorEvent.first);
+						OutputDebugString(szText);
+#endif
+						delete []contact;
+					mydllend:
+						//////////////////////////////////////////////////
+#endif					
+						if (TI) delete []TI;
+					}
+					/////////////////////////////////////////////////////////////////////////////////////////
+					/////////////////////////////////////////////////////////////////////////////////////////
+					/////////////////////////////////////////////////////////////////////////////////////////
+				}
+					break;
+
+				case _rfbGIIVersionMessage:
+				{
+					uint16_t clientVersion;
+					//check length
+					vnclog.Print(LL_INTINFO, VNCLOG("GII: Get Subtype _rfbGIIVersionMessage \n"));
+					if (lengthMsg != sizeof(clientVersion))
+					{
+						vnclog.Print(LL_INTERR, VNCLOG("GII:Extension invalid length: %d\n"), clientVersion);
+						m_client->cl_connected = FALSE;
+						break;
+					}
+					// read client's version info and process
+					if (!m_socket->ReadExact((char *) &clientVersion, sizeof(clientVersion)))
+					{
+						vnclog.Print(LL_INTERR, VNCLOG("GIIExtension reading client version failed\n"));
+						m_client->cl_connected = FALSE;
+						break;
+					}
+					if (bigEndian)
+					{
+						clientVersion = Swap16IfLE(clientVersion);
+					}
+					if ((clientVersion < rfbGIIMinVersion || clientVersion > rfbGIIMaxVersion))           //TBR
+					{
+						vnclog.Print(LL_INTERR, VNCLOG("GII: Extension client version invalid number: %d\n"), clientVersion);
+						m_client->cl_connected = FALSE;
+						break;
+					}
+					break;
+				}
+
+				case _rfbGIIDeviceCreation:
+				{
+					rfbGIIClientDeviceCreationMsg rfbGIIClientDeviceCreation;
+					//prepare already known data 
+					omni_mutex_lock ll(m_client->GetUpdateLock(), 777);
+					vnclog.Print(LL_INTINFO, VNCLOG("GII: Get Subtype _rfbGIIDeviceCreation \n"));
+					rfbGIIClientDeviceCreation.header.messageType = rfbGIIMessage;
+					rfbGIIClientDeviceCreation.header.subType = subType;
+					rfbGIIClientDeviceCreation.header.length = lengthMsg;
+					// read rest of client's creation data
+					if (!m_socket->ReadExact((char *) (&rfbGIIClientDeviceCreation) + sz_rfbGIIMsgHeader, sizeof(rfbGIIClientDeviceCreation) - sz_rfbGIIMsgHeader))
+					{
+						vnclog.Print(LL_INTERR, VNCLOG("GIIExtension reading client creation failed\n"));
+						m_client->cl_connected = FALSE;
+						break;
+					}
+					if (bigEndian)
+					{
+						rfbGIIClientDeviceCreation.vendorID = Swap32IfLE(rfbGIIClientDeviceCreation.vendorID);
+						rfbGIIClientDeviceCreation.productID = Swap32IfLE(rfbGIIClientDeviceCreation.productID);
+						rfbGIIClientDeviceCreation.eventMask = Swap32IfLE(rfbGIIClientDeviceCreation.eventMask);
+						rfbGIIClientDeviceCreation.numRegisters = Swap32IfLE(rfbGIIClientDeviceCreation.numRegisters);
+						rfbGIIClientDeviceCreation.numValuators = Swap32IfLE(rfbGIIClientDeviceCreation.numValuators);
+						rfbGIIClientDeviceCreation.numButtons = Swap32IfLE(rfbGIIClientDeviceCreation.numButtons);                                                                                                         rfbGIIClientDeviceCreation.vendorID = Swap32IfLE(rfbGIIClientDeviceCreation.vendorID);
+					}
+					if (rfbGIIClientDeviceCreation.numValuators == 0 || rfbGIIClientDeviceCreation.numValuators > 10)
+					{
+						vnclog.Print(LL_INTERR, VNCLOG("GIIExtension reading device creation, invalid amount of valuators\n"));
+						m_client->cl_connected = FALSE;
+						break;
+					}
+					else
+					{
+						//read all valutor 
+						rfbGIIValuatorMsg rfbGIIValutor;
+						for (unsigned int i = 0; i < rfbGIIClientDeviceCreation.numValuators; i++)
+						{
+							if (!m_socket->ReadExact((char *) &rfbGIIValutor, sizeof(rfbGIIValutor)))
+							{
+								vnclog.Print(LL_INTERR, VNCLOG("GIIExtension reading device creation valuators failed\n"));
+								m_client->cl_connected = FALSE;
+								break;
+							}
+							else
+							{
+								if (bigEndian)
+								{
+									rfbGIIValutor.index = Swap32IfLE(rfbGIIValutor.index);
+									rfbGIIValutor.rangeMin = Swap32IfLE(rfbGIIValutor.rangeMin);
+									rfbGIIValutor.rangeCenter = Swap32IfLE(rfbGIIValutor.rangeCenter);
+									rfbGIIValutor.rangeMax = Swap32IfLE(rfbGIIValutor.rangeMax);
+									rfbGIIValutor.SIUnit = Swap32IfLE(rfbGIIValutor.SIUnit);
+									rfbGIIValutor.SIAdd = Swap32IfLE(rfbGIIValutor.SIAdd);
+									rfbGIIValutor.SIMul = Swap32IfLE(rfbGIIValutor.SIMul);
+									rfbGIIValutor.SIDiv = Swap32IfLE(rfbGIIValutor.SIDiv);
+									rfbGIIValutor.SIShift = Swap32IfLE(rfbGIIValutor.SIShift);
+								}
+								//send device origin //TBR 
+								BOOL bReady = FALSE;
+								rfbGIIServerDeviceCreationMsg rfbGIIServerDeviceCreation;
+								// Generate the server's creation message
+								rfbGIIServerDeviceCreation.header.messageType = rfbGIIMessage;
+								rfbGIIServerDeviceCreation.header.subType = rfbGIIDeviceCreation;
+								//rfbGIIServerDeviceCreation.header.subType =  2; //no use of little endian
+								rfbGIIServerDeviceCreation.header.length = 4;
+								rfbGIIServerDeviceCreation.header.length = Swap16IfLE(rfbGIIServerDeviceCreation.header.length);
+								rfbGIIServerDeviceCreation.deviceOrigin = 1;       //TBR
+								rfbGIIServerDeviceCreation.deviceOrigin = Swap32IfLE(rfbGIIServerDeviceCreation.deviceOrigin);
+								// Send our protocol version, and get the client's protocol version
+
+								vnclog.Print(LL_INTERR, VNCLOG("GIIExtension writing device creation\n"));
+								if (!m_socket->SendExactQueue((char *) &rfbGIIServerDeviceCreation, sz_rfbGIIServerDeviceCreationMsg))
+								{
+									vnclog.Print(LL_INTERR, VNCLOG("GIIExtension writing device creation failed\n"));
+									m_client->cl_connected = FALSE;
+									break;
+								}
+
+#ifdef _USE_DLL					   
+								if (DLL_InitializeTouchInjection) DLL_InitializeTouchInjection(rfbGIIClientDeviceCreation.numButtons);
+#else
+								InitializeTouchInjection(rfbGIIClientDeviceCreation.numButtons, TOUCH_FEEDBACK_DEFAULT);
+#endif
+								nr_points = rfbGIIClientDeviceCreation.numButtons;
+								if (nr_points>0 && nr_points<254) point_status = new bool[nr_points];
+							}
+						}
+					}
+					break;
+				}
+
+				case _rfbGIIDeviceDestruction:
+					//not yet implemented
+					vnclog.Print(LL_INTERR, VNCLOG("GIIExtension writing device creation failed\n"));
+					m_client->cl_connected = FALSE;
+					break;
+
+				default:
+					vnclog.Print(LL_INTERR, VNCLOG("GII: Extension invalid subtype: %d\n"), subType);
+					m_client->cl_connected = FALSE;
+					break;
+				}
+			}
+				break;
+#endif
 			
 		case rfbFramebufferUpdateRequest:
 			// Read the rest of the message:
@@ -2586,100 +3336,54 @@ vncClientThread::run(void *arg)
 #endif*/
 			if (!m_socket->ReadExact(((char *) &msg)+nTO, sz_rfbFramebufferUpdateRequestMsg-nTO))
 			{
-				connected = FALSE;
+				m_client->cl_connected = FALSE;
 				break;
 			}
 
-			{
-				//Fix server viewer crash, when server site scaling is used
-				//
-				m_client->m_ScaledScreen =m_client->m_encodemgr.m_buffer->GetViewerSize();
-
-				rfb::Rect update;
-				// Get the specified rectangle as the region to send updates for
-				// Modif sf@2002 - Scaling.
-				update.tl.x = (Swap16IfLE(msg.fur.x) + m_client->m_SWOffsetx) * m_client->m_nScale;
-				update.tl.y = (Swap16IfLE(msg.fur.y) + m_client->m_SWOffsety) * m_client->m_nScale;
-				update.br.x = update.tl.x + Swap16IfLE(msg.fur.w) * m_client->m_nScale;
-				update.br.y = update.tl.y + Swap16IfLE(msg.fur.h) * m_client->m_nScale;
-				// Verify max size, scaled changed on server while not pushed to viewer
-				if (update.tl.x< (int)((m_client->m_ScaledScreen.tl.x + m_client->m_SWOffsetx) * m_client->m_nScale)) update.tl.x = (m_client->m_ScaledScreen.tl.x + m_client->m_SWOffsetx) * m_client->m_nScale;
-				if (update.tl.y < (int)((m_client->m_ScaledScreen.tl.y + m_client->m_SWOffsety) * m_client->m_nScale)) update.tl.y = (m_client->m_ScaledScreen.tl.y + m_client->m_SWOffsety) * m_client->m_nScale;
-				if (update.br.x > (int)(update.tl.x + (m_client->m_ScaledScreen.br.x-m_client->m_ScaledScreen.tl.x) * m_client->m_nScale)) update.br.x = update.tl.x + (m_client->m_ScaledScreen.br.x-m_client->m_ScaledScreen.tl.x) * m_client->m_nScale;
-				if (update.br.y > (int)(update.tl.y + (m_client->m_ScaledScreen.br.y-m_client->m_ScaledScreen.tl.y) * m_client->m_nScale)) update.br.y = update.tl.y + (m_client->m_ScaledScreen.br.y-m_client->m_ScaledScreen.tl.y) * m_client->m_nScale;
-				rfb::Region2D update_rgn = update;
-
-				//fullscreeen request, make it independed of the incremental rectangle
-				if (!msg.fur.incremental)
-				{
-#ifdef _DEBUG
-										char			szText[256];
-										sprintf(szText,"FULL update request \n");
-										OutputDebugString(szText);		
-#endif
-
-					update.tl.x = (m_client->m_ScaledScreen.tl.x + m_client->m_SWOffsetx) * m_client->m_nScale;
-					update.tl.y = (m_client->m_ScaledScreen.tl.y + m_client->m_SWOffsety) * m_client->m_nScale;
-					update.br.x = update.tl.x + (m_client->m_ScaledScreen.br.x-m_client->m_ScaledScreen.tl.x) * m_client->m_nScale;
-					update.br.y = update.tl.y + (m_client->m_ScaledScreen.br.y-m_client->m_ScaledScreen.tl.y) * m_client->m_nScale;
-
-					update_rgn=update;
-				}
-/*#ifdef _DEBUG
-										char			szText[256];
-										sprintf(szText,"Update asked for region %i %i %i %i %i \n",update.tl.x,update.tl.y,update.br.x,update.br.y,m_client->m_SWOffsetx);
-										OutputDebugString(szText);		
-#endif*/
-//				vnclog.Print(LL_SOCKERR, VNCLOG("Update asked for region %i %i %i %i %i\n"),update.tl.x,update.tl.y,update.br.x,update.br.y,m_client->m_SWOffsetx);
-
-				// RealVNC 336
-				if (update_rgn.is_empty()) {
-#ifdef _DEBUG
-										char			szText[256];
-										sprintf(szText,"FATAL! client update region is empty!\n");
-										OutputDebugString(szText);		
-#endif
-					vnclog.Print(LL_INTERR, VNCLOG("FATAL! client update region is empty!\n"));
-					connected = FALSE;
-					break;
-				}
-
-				{
-					omni_mutex_lock l(m_client->GetUpdateLock());
-
-					// Add the requested area to the incremental update cliprect
-					m_client->m_incr_rgn.assign_union(update_rgn);
-
-					// Is this request for a full update?
-					if (!msg.fur.incremental)
-					{
-						// Yes, so add the region to the update tracker
-						m_client->m_update_tracker.add_changed(update_rgn);
-						
-						// Tell the desktop grabber to fetch the region's latest state
-						m_client->m_encodemgr.m_buffer->m_desktop->QueueRect(update);
-					}					
-
-					 // Kick the update thread (and create it if not there already)
-					m_client->m_encodemgr.m_buffer->m_desktop->TriggerUpdate();
-					m_client->TriggerUpdateThread();
-				}
-			}
+			if (!m_client->NotifyUpdate(msg.fur)) m_client->cl_connected = FALSE;
 			break;
 
 		case rfbKeyEvent:
 			// Read the rest of the message:
 			if (m_socket->ReadExact(((char *) &msg)+nTO, sz_rfbKeyEventMsg-nTO))
-			{				
-				if (m_client->m_keyboardenabled)
+			{		
+				if (PreConnect)
 				{
 					msg.ke.key = Swap32IfLE(msg.ke.key);
+					if (msg.ke.down != 0)
+					{
+						int index = msg.ke.key - 97;
+						HANDLE		hprconnectevent=NULL;
+						if (-1<index<100)
+						{
+							PreConnectID = m_client->m_encodemgr.m_buffer->m_desktop->sesmsg[index].ID;
+							hprconnectevent = OpenEvent(EVENT_MODIFY_STATE, FALSE, "Global\\SessionEventUltraPreConnect");
+							HANDLE m_hFileMa = NULL;
+							m_hFileMa = OpenFileMapping(FILE_MAP_READ | FILE_MAP_WRITE, FALSE, "Global\\SessionUltraPreConnect");
+							PVOID data = NULL;
+							if (m_hFileMa) data = MapViewOfFile(m_hFileMa, FILE_MAP_READ | FILE_MAP_WRITE, 0, 0, 0);
+							int *mydata = (int *)data;
+							if (data) *mydata = PreConnectID;
+							if (data) UnmapViewOfFile(data);
+							if (m_hFileMa != NULL) CloseHandle(m_hFileMa);
+							if (hprconnectevent) SetEvent(hprconnectevent);						
+							if (hprconnectevent) CloseHandle(hprconnectevent);
+						}
+					}
 
-					// Get the keymapper to do the work
-					// m_client->m_keymap.DoXkeysym(msg.ke.key, msg.ke.down);
-					vncKeymap::keyEvent(msg.ke.key, (0 != msg.ke.down),m_client->m_jap);
+				}
+				else
+				{
+					if (m_client->m_keyboardenabled)
+					{
+						msg.ke.key = Swap32IfLE(msg.ke.key);
 
-					m_client->m_remoteevent = TRUE;
+						// Get the keymapper to do the work
+						// m_client->m_keymap.DoXkeysym(msg.ke.key, msg.ke.down);
+						vncKeymap::keyEvent(msg.ke.key, (0 != msg.ke.down), m_client->m_jap);
+
+						m_client->m_remoteevent = TRUE;
+					}
 				}
 			}
 			m_client->m_encodemgr.m_buffer->m_desktop->TriggerUpdate();
@@ -2689,6 +3393,7 @@ vncClientThread::run(void *arg)
 			// Read the rest of the message:
 			if (m_socket->ReadExact(((char *) &msg)+nTO, sz_rfbPointerEventMsg-nTO))
 			{
+				if (PreConnect) break;
 				if (m_client->m_pointerenabled)
 				{
 					// Convert the coords to Big Endian
@@ -2943,7 +3648,7 @@ vncClientThread::run(void *arg)
 			{
 				if (!m_socket->ReadExact(((char *) &msg) + nTO, sz_rfbPalmVNCSetScaleFactorMsg - nTO))
 				{
-					connected = FALSE;
+					m_client->cl_connected = FALSE;
 					break;
 				}
 			}
@@ -2951,7 +3656,7 @@ vncClientThread::run(void *arg)
 			{
 				if (!m_socket->ReadExact(((char *) &msg) + nTO, sz_rfbSetScaleMsg - nTO))
 				{
-					connected = FALSE;
+					m_client->cl_connected = FALSE;
 					break;
 				}
 			}
@@ -2961,10 +3666,10 @@ vncClientThread::run(void *arg)
 			m_client->m_nScale_viewer = msg.ssc.scale;
 			m_client->m_nScale = msg.ssc.scale;
 			{
-				omni_mutex_lock l(m_client->GetUpdateLock());
+				omni_mutex_lock l(m_client->GetUpdateLock(),87);
 				if (!m_client->m_encodemgr.m_buffer->SetScale(msg.ssc.scale))
 					{
-						connected = FALSE;
+					m_client->cl_connected = FALSE;
 						break;
 					}
 	
@@ -2985,7 +3690,7 @@ vncClientThread::run(void *arg)
 		case rfbSetServerInput:
 			if (!m_socket->ReadExact(((char *) &msg) + nTO, sz_rfbSetServerInputMsg - nTO))
 			{
-				connected = FALSE;
+				m_client->cl_connected = FALSE;
 				break;
 			}
 
@@ -3003,20 +3708,21 @@ vncClientThread::run(void *arg)
 				/// fix by PGM (pgmoney)
 				if (!m_server->GetDesktopPointer()->GetBlockInputState() && msg.sim.status==1) 
 					{ 
-						//CARD32 state = rfbServerState_Enabled; 
+						CARD32 state = rfbServerState_Enabled; 
 						m_client->m_encodemgr.m_buffer->m_desktop->SetBlockInputState(true); 
 						m_client->m_bClientHasBlockedInput = (true);
 					} 
-				if (m_server->GetDesktopPointer()->GetBlockInputState() && msg.sim.status==0)
+
+				else if (m_server->GetDesktopPointer()->GetBlockInputState() && m_client->m_bClientHasBlockedInput && msg.sim.status==0)
 					{
-						//CARD32 state = rfbServerState_Disabled; 
+						CARD32 state = rfbServerState_Disabled; 
 						m_client->m_encodemgr.m_buffer->m_desktop->SetBlockInputState(FALSE);
 						m_client->m_bClientHasBlockedInput = (FALSE); 
 					} 
 
-				if (!m_server->GetDesktopPointer()->GetBlockInputState() && msg.sim.status==0)
+				else if (!m_server->GetDesktopPointer()->GetBlockInputState() && !m_client->m_bClientHasBlockedInput && msg.sim.status==0)
 					{
-						//CARD32 state = rfbServerState_Disabled; 
+						CARD32 state = rfbServerState_Disabled; 
 						m_client->m_encodemgr.m_buffer->m_desktop->SetBlockInputState(FALSE);
 						m_client->m_bClientHasBlockedInput = (FALSE);
 					}
@@ -3028,7 +3734,7 @@ vncClientThread::run(void *arg)
 		case rfbSetSW:
 			if (!m_socket->ReadExact(((char *) &msg) + nTO, sz_rfbSetSWMsg - nTO))
 			{
-				connected = FALSE;
+				m_client->cl_connected = FALSE;
 				break;
 			}
 			if (Swap16IfLE(msg.sw.x)<5 && Swap16IfLE(msg.sw.y)<5) 
@@ -3047,10 +3753,8 @@ vncClientThread::run(void *arg)
 		case rfbTextChat:
 			m_client->m_pTextChat->ProcessTextChatMsg(nTO);
 			break;
-#endif
 
 
-#ifndef ULTRAVNC_ITALC_SUPPORT
 		// Modif sf@2002 - FileTransfer
 		// File Transfer Message
 		case rfbFileTransfer:
@@ -3064,7 +3768,7 @@ vncClientThread::run(void *arg)
 
 		    if (!m_client->m_keyboardenabled || !m_client->m_pointerenabled) fUserOk = false; //PGM
 
-			omni_mutex_lock l(m_client->GetUpdateLock());
+			omni_mutex_lock l(m_client->GetUpdateLock(),88);
 
 			// Read the rest of the message:
 			m_client->m_fFileTransferRunning = TRUE; 
@@ -3082,7 +3786,7 @@ vncClientThread::run(void *arg)
                         break;
 					case rfbFileTransferOffer:
 						{
-						omni_mutex_lock ll(m_client->GetUpdateLock());
+						omni_mutex_lock ll(m_client->GetUpdateLock(),89);
 						if (!m_server->FileTransferEnabled() || !fUserOk) break;
 						// bool fError = false;
 						const UINT length = Swap32IfLE(msg.ft.length);
@@ -3266,7 +3970,7 @@ vncClientThread::run(void *arg)
 					// The client requests a File
 					case rfbFileTransferRequest:
 						{
-						omni_mutex_lock ll(m_client->GetUpdateLock());
+						omni_mutex_lock ll(m_client->GetUpdateLock(),90);
 						m_client->m_fCompressionEnabled = (Swap32IfLE(msg.ft.size) == 1);
 						const UINT length = Swap32IfLE(msg.ft.length);
 						memset(m_client->m_szSrcFileName, 0, sizeof(m_client->m_szSrcFileName));
@@ -3317,7 +4021,7 @@ vncClientThread::run(void *arg)
 						m_client->m_hSrcFile = CreateFile(
 															m_client->m_szSrcFileName,		
 															GENERIC_READ,		
-															FILE_SHARE_READ,	
+															FILE_SHARE_READ | FILE_SHARE_WRITE,
 															NULL,				
 															OPEN_EXISTING,		
 															FILE_FLAG_SEQUENTIAL_SCAN,	
@@ -3416,7 +4120,7 @@ vncClientThread::run(void *arg)
 					// Destination file already exists - the viewer sends the checksums
 					case rfbFileChecksums:
                         m_socket->SetSendTimeout(m_server->GetFTTimeout()*1000);
-						connected = m_client->ReceiveDestinationFileChecksums(Swap32IfLE(msg.ft.size), Swap32IfLE(msg.ft.length));
+						m_client->cl_connected = m_client->ReceiveDestinationFileChecksums(Swap32IfLE(msg.ft.size), Swap32IfLE(msg.ft.length));
 						break;
 
 					// Destination file (viewer side) is ready for reception (size > 0) or not (size = -1)
@@ -3467,14 +4171,14 @@ vncClientThread::run(void *arg)
 						m_client->m_fFileUploadRunning = true;
                         m_client->m_fUserAbortedFileTransfer = false;
 
-						connected = m_client->SendFileChunk();
+						m_client->cl_connected = m_client->SendFileChunk();
 						}
 						break;
 
 
 					case rfbFilePacket:
 						if (!m_server->FileTransferEnabled() || !fUserOk) break;
-						connected = m_client->ReceiveFileChunk(Swap32IfLE(msg.ft.length), Swap32IfLE(msg.ft.size));
+						m_client->cl_connected = m_client->ReceiveFileChunk(Swap32IfLE(msg.ft.length), Swap32IfLE(msg.ft.size));
                         m_client->SendKeepAlive();
 						break;
 
@@ -3901,65 +4605,20 @@ vncClientThread::run(void *arg)
 			m_client->m_fFileTransferRunning = FALSE;
 			}
 			break;
-#endif
 
-			// Modif cs@2005
-#ifdef DSHOW
-		case rfbKeyFrameRequest:
-			{
-				MutexAutoLock l_Lock(&m_client->m_hmtxEncodeAccess);
-
-				omni_mutex_lock l(m_client->GetUpdateLock());
-
-				if(m_client->m_encodemgr.ResetZRLEEncoding())
-				{
-					rfb::Rect update;
-
-					rfb::Rect ViewerSize = m_client->m_encodemgr.m_buffer->GetViewerSize();
-
-					update.tl.x = 0;
-					update.tl.y = 0;
-					update.br.x = ViewerSize.br.x;
-					update.br.y = ViewerSize.br.y;
-					rfb::Region2D update_rgn = update;
-
-					// Add the requested area to the incremental update cliprect
-					m_client->m_incr_rgn.assign_union(update_rgn);
-
-					// Yes, so add the region to the update tracker
-					m_client->m_update_tracker.add_changed(update_rgn);
-					
-					// Tell the desktop grabber to fetch the region's latest state
-					m_client->m_encodemgr.m_buffer->m_desktop->QueueRect(update);
-
-					// Kick the update thread (and create it if not there already)
-					m_client->TriggerUpdateThread();
-
-					// Send a message back to the client to confirm that we have reset the zrle encoding			
-					rfbKeyFrameUpdateMsg header;
-					header.type = rfbKeyFrameUpdate;
-					m_client->SendRFBMsg(rfbKeyFrameUpdate, (BYTE *)&header, sz_rfbKeyFrameUpdateMsg);
-				}				
-				else
-				{
-					vnclog.Print(LL_INTERR, VNCLOG("[rfbKeyFrameRequest] Unable to Reset ZRLE Encoding\n"));
-				}
-			}
-			break;
-#endif
 		// adzm 2010-09 - Notify streaming DSM plugin support
         case rfbNotifyPluginStreaming:
             if (sz_rfbNotifyPluginStreamingMsg > 1)
             {
 			    if (!m_socket->ReadExact(((char *) &msg)+nTO, sz_rfbNotifyPluginStreamingMsg-nTO))
 			    {
-				    connected = FALSE;
+					m_client->cl_connected = FALSE;
 				    break;
 			    }
             }
 			m_socket->SetPluginStreamingIn();
             break;
-#ifdef ULTRAVNC_ITALC_SUPPORT
+
 		case rfbItalcCoreRequest:
 		{
 			omni_mutex_lock l(m_client->GetUpdateLock());
@@ -3973,7 +4632,7 @@ vncClientThread::run(void *arg)
 #endif
 		default:
 			// Unknown message, so fail!
-			connected = FALSE;
+			m_client->cl_connected = FALSE;
 		}
 
 		// sf@2005 - Cancel FT User impersonation if possible
@@ -4044,7 +4703,7 @@ vncClientThread::run(void *arg)
 		HMODULE hModule = LoadLibrary(szCurrentDir);
 		if (hModule)
 			{
-				//BOOL result=false;
+				BOOL result=false;
 				Logevent = (LogeventFn) GetProcAddress( hModule, "LOGEXIT" );
 				Logevent((char *)m_client->GetClientName());
 				FreeLibrary(hModule);
@@ -4054,7 +4713,8 @@ vncClientThread::run(void *arg)
 
 	// Disable the protocol to ensure that the update thread
 	// is not accessing the desktop and buffer objects
-	m_client->DisableProtocol();
+	// DEADLOCK ON EXIT SLow systems... IS this realy needed
+	//m_client->DisableProtocol();
 
 	// Finally, it's safe to kill the update thread here
 	if (m_client->m_updatethread) {
@@ -4068,6 +4728,7 @@ vncClientThread::run(void *arg)
 	m_server->RemoveClient(m_client->GetClientId());
 
 	// sf@2003 - AutoReconnection attempt if required
+
 	if (!fShutdownOrdered) {
 		if (m_client->m_Autoreconnect)
 		{
@@ -4076,7 +4737,11 @@ vncClientThread::run(void *arg)
 			m_server->AutoReconnectPort(m_AutoReconnectPort);
 			m_server->AutoReconnectAdr(m_szAutoReconnectAdr);
 			m_server->AutoReconnectId(m_szAutoReconnectId);
+#ifdef IPV6V4
+			vncService::PostAddNewClient4(1111, 1111);
+#else
 			vncService::PostAddNewClient(1111, 1111);
+#endif
 		}
 	}
 }
@@ -4084,7 +4749,7 @@ vncClientThread::run(void *arg)
 // The vncClient itself
 
 // adzm - 2010-07 - Extended clipboard
-vncClient::vncClient() : m_clipboard(ClipboardSettings::defaultServerCaps), Sendinput("USER32", "SendInput")
+vncClient::vncClient() : Sendinput("USER32", "SendInput"), m_clipboard(ClipboardSettings::defaultServerCaps)
 {
 	vnclog.Print(LL_INTINFO, VNCLOG("vncClient() executing...\n"));
 
@@ -4098,7 +4763,7 @@ vncClient::vncClient() : m_clipboard(ClipboardSettings::defaultServerCaps), Send
 	m_ptrevent.y=0;
 
 	// Other misc flags
-	m_thread = NULL;
+	m_thread_ClientThread = NULL;
 	m_palettechanged = FALSE;
 
 	// Initialise the two update stores
@@ -4186,17 +4851,6 @@ vncClient::vncClient() : m_clipboard(ClipboardSettings::defaultServerCaps), Send
 	m_IsLoopback=false;
 	m_NewSWUpdateWaiting=false;
 	client_settings_passed=false;
-/*	roundrobin_counter=0;
-	for (int i=0;i<rfbEncodingZRLE+1;i++)
-		for (int j=0;j<31;j++)
-		{
-		  timearray[i][j]=0;
-		  sizearray[i][j]=0;
-		}*/
-// Modif cs@2005
-#ifdef DSHOW
-	m_hmtxEncodeAccess = CreateMutex(NULL, FALSE, NULL);
-#endif
     m_wants_ServerStateUpdates =  false;
     m_bClientHasBlockedInput = false;
 	m_Support_rfbSetServerInput = false;
@@ -4215,12 +4869,14 @@ vncClient::vncClient() : m_clipboard(ClipboardSettings::defaultServerCaps), Send
 	m_szHost = NULL;
 	m_hostPort = 0;
 	m_want_update_state=false;
-	m_initial_update=true;
+	m_initial_update=false;
 	m_nScale_viewer = 1;
+	nr_incr_rgn_empty = 0;
 }
 
 vncClient::~vncClient()
 {
+	cl_connected = false;
 	vnclog.Print(LL_INTINFO, VNCLOG("~vncClient() executing...\n"));
 
 #ifndef ULTRAVNC_ITALC_SUPPORT
@@ -4231,10 +4887,8 @@ vncClient::~vncClient()
 		delete(m_pTextChat);
 		m_pTextChat = NULL;
 	}
-#endif
 
 	// Directory FileTransfer utils
-#ifndef ULTRAVNC_ITALC_SUPPORT
 	if (m_pZipUnZip) delete m_pZipUnZip;
 #endif
 
@@ -4262,14 +4916,6 @@ vncClient::~vncClient()
 			delete [] m_pCacheZipBuf;
 			m_pCacheZipBuf = NULL;
 		}
-	// adzm - 2010-07 - Extended clipboard
-	/*if (m_clipboard_text) {
-		free(m_clipboard_text);
-	}*/
-// Modif cs@2005
-#ifdef DSHOW
-	CloseHandle(m_hmtxEncodeAccess);
-#endif
 	if (m_lpCSBuffer)
 		delete [] m_lpCSBuffer;
 	if (m_pBuff)
@@ -4279,7 +4925,8 @@ vncClient::~vncClient()
 
 	//thos give sometimes errors, hlogfile is already removed at this point
 	//vnclog.Print(LL_INTINFO, VNCLOG("cached %d \n"),totalraw);
-	if (SPECIAL_SC_EXIT && !fShutdownOrdered) // if fShutdownOrdered, hwnd may not be valid
+
+	if ((SPECIAL_SC_EXIT || (m_server->GetRdpmode() && m_fRunningFromExternalService)) && !fShutdownOrdered) // if fShutdownOrdered, hwnd may not be valid
 	{
 		//adzm 2009-06-20 - if we are SC, only exit if no other viewers are connected!
 		// (since multiple viewers is now allowed with the new DSM plugin)
@@ -4300,6 +4947,21 @@ vncClient::~vncClient()
 	// adzm 2009-08-02
 	if (m_szHost) {
 		free(m_szHost);
+	}
+	if (m_updatethread) {
+		m_updatethread->Kill();
+		m_updatethread->join(NULL);
+	}
+
+	int counter = 0;
+	while (m_updatethread != NULL)
+	{
+		char			szText[256];
+		sprintf(szText, " m_updatethread != NULL \n");
+		OutputDebugString(szText);
+		Sleep(100);
+		counter++;
+		if (counter == 30) break;
 	}
 }
 
@@ -4328,10 +4990,10 @@ vncClient::Init(vncServer *server,
 	m_id = newid;
 
 	// Spawn the child thread here
-	m_thread = new vncClientThread;
-	if (m_thread == NULL)
+	m_thread_ClientThread = new vncClientThread;
+	if (m_thread_ClientThread == NULL)
 		return FALSE;
-	return ((vncClientThread *)m_thread)->Init(this, m_server, m_socket, auth, shared);
+	return ((vncClientThread *) m_thread_ClientThread)->Init(this, m_server, m_socket, auth, shared);
 
 	return FALSE;
 }
@@ -4340,7 +5002,7 @@ void
 vncClient::Kill()
 {
 	// Close the socket
-	vnclog.Print(LL_INTINFO, VNCLOG("client Kill() called"));
+	vnclog.Print(LL_INTERR, VNCLOG("client Kill() called"));
 #ifndef ULTRAVNC_ITALC_SUPPORT
 	if (m_pTextChat)
         m_pTextChat->KillDialog();
@@ -4359,6 +5021,86 @@ vncClient::SetBuffer(vncBuffer *buffer)
 	m_encodemgr.SetBuffer(buffer);
 }
 
+
+//helper to trigger update 
+bool
+vncClient::NotifyUpdate(rfbFramebufferUpdateRequestMsg fur) 
+{
+		//Fix server viewer crash, when server site scaling is used
+    	//
+	    m_ScaledScreen =m_encodemgr.m_buffer->GetViewerSize();
+
+		rfb::Rect update;
+		// Get the specified rectangle as the region to send updates for
+		// Modif sf@2002 - Scaling.
+		update.tl.x = (Swap16IfLE(fur.x) + m_SWOffsetx) * m_nScale;
+		update.tl.y = (Swap16IfLE(fur.y) + m_SWOffsety) * m_nScale;
+		update.br.x = update.tl.x + Swap16IfLE(fur.w) * m_nScale;
+		update.br.y = update.tl.y + Swap16IfLE(fur.h) * m_nScale;
+		// Verify max size, scaled changed on server while not pushed to viewer
+		if (update.tl.x< ((m_ScaledScreen.tl.x + m_SWOffsetx) * m_nScale)) update.tl.x = (m_ScaledScreen.tl.x + m_SWOffsetx) * m_nScale;
+		if (update.tl.y < ((m_ScaledScreen.tl.y + m_SWOffsety) * m_nScale)) update.tl.y = (m_ScaledScreen.tl.y + m_SWOffsety) * m_nScale;
+		if (update.br.x > (update.tl.x + (m_ScaledScreen.br.x-m_ScaledScreen.tl.x) * m_nScale)) update.br.x = update.tl.x + (m_ScaledScreen.br.x-m_ScaledScreen.tl.x) * m_nScale;
+		if (update.br.y > (update.tl.y + (m_ScaledScreen.br.y-m_ScaledScreen.tl.y) * m_nScale)) update.br.y = update.tl.y + (m_ScaledScreen.br.y-m_ScaledScreen.tl.y) * m_nScale;
+		rfb::Region2D update_rgn = update;
+
+		//fullscreeen request, make it independed of the incremental rectangle
+		if (!fur.incremental)
+		{
+#ifdef _DEBUG
+			char			szText[256];
+			sprintf(szText,"FULL update request \n");
+			OutputDebugString(szText);		
+#endif
+
+		update.tl.x = (m_ScaledScreen.tl.x + m_SWOffsetx) * m_nScale;
+		update.tl.y = (m_ScaledScreen.tl.y + m_SWOffsety) * m_nScale;
+		update.br.x = update.tl.x + (m_ScaledScreen.br.x-m_ScaledScreen.tl.x) * m_nScale;
+		update.br.y = update.tl.y + (m_ScaledScreen.br.y-m_ScaledScreen.tl.y) * m_nScale;
+
+		update_rgn=update;
+		}
+/*#ifdef _DEBUG
+										char			szText[256];
+										sprintf(szText,"Update asked for region %i %i %i %i %i \n",update.tl.x,update.tl.y,update.br.x,update.br.y,m_client->m_SWOffsetx);
+										OutputDebugString(szText);		
+#endif*/
+//				vnclog.Print(LL_SOCKERR, VNCLOG("Update asked for region %i %i %i %i %i\n"),update.tl.x,update.tl.y,update.br.x,update.br.y,m_client->m_SWOffsetx);
+
+		// RealVNC 336
+		if (update_rgn.is_empty()) {
+#ifdef _DEBUG
+				char			szText[256];
+				sprintf(szText,"FATAL! client update region is empty!\n");
+				OutputDebugString(szText);		
+#endif
+		     	vnclog.Print(LL_INTERR, VNCLOG("FATAL! client update region is empty!\n"));
+				return FALSE;
+		}
+
+		{
+			// lock removed, clipregion solve unwanted m_incr_rgn clear
+			//omni_mutex_lock l(GetUpdateLock(),92);
+
+	     	// Add the requested area to the incremental update cliprect
+			m_incr_rgn.assign_union(update_rgn);
+			// Is this request for a full update?
+			if (!fur.incremental)
+			{
+				// Yes, so add the region to the update tracker
+				m_update_tracker.add_changed(update_rgn);
+					
+				// Tell the desktop grabber to fetch the region's latest state
+				m_encodemgr.m_buffer->m_desktop->QueueRect(update);
+			}					
+
+		    // Kick the update thread (and create it if not there already)
+			m_encodemgr.m_buffer->m_desktop->TriggerUpdate();
+			TriggerUpdateThread();
+		}
+		return TRUE;
+}
+
 void
 vncClient::TriggerUpdateThread()
 {
@@ -4370,6 +5112,8 @@ vncClient::TriggerUpdateThread()
 	
 	if (!m_updatethread)
 	{
+		if (m_server->AreThereMultipleViewers()) 
+			cl_connected = TRUE;
 		m_updatethread = new vncClientUpdateThread;
 		if (!m_updatethread || 
 			!m_updatethread->Init(this)) {
@@ -4383,9 +5127,21 @@ vncClient::TriggerUpdateThread()
 void
 vncClient::UpdateMouse()
 {
+	RECT testrect;
+	testrect.top = m_encodemgr.m_buffer->m_desktop->m_Cliprect.tl.y;
+	testrect.bottom = m_encodemgr.m_buffer->m_desktop->m_Cliprect.br.y;
+	testrect.left = m_encodemgr.m_buffer->m_desktop->m_Cliprect.tl.x;
+	testrect.right = m_encodemgr.m_buffer->m_desktop->m_Cliprect.br.x;
+	{
+		POINT cursorPos;
+		GetCursorPos(&cursorPos);
+		if (!PtInRect(&testrect, cursorPos)) return;
+	}
+	
+
 	if (!m_mousemoved && !m_cursor_update_sent)
 	{
-	omni_mutex_lock l(GetUpdateLock());
+	omni_mutex_lock l(GetUpdateLock(),93);
     m_mousemoved=TRUE;
 	}
 	// nyama/marscha - PointerPos
@@ -4401,7 +5157,7 @@ vncClient::UpdateMouse()
 		if (cursorPos.x != m_cursor_pos.x || cursorPos.y != m_cursor_pos.y) {
 			// This movement isn't by this client, but generated locally or by other client.
 			// Send it to this client.
-			omni_mutex_lock l(GetUpdateLock());
+			omni_mutex_lock l(GetUpdateLock(),94);
 			m_cursor_pos.x = cursorPos.x;
 			m_cursor_pos.y = cursorPos.y;
 			m_cursor_pos_changed = TRUE;
@@ -4433,7 +5189,7 @@ vncClient::UpdateClipTextEx(ClipboardData& clipboardData, CARD32 overrideFlags)
 	//This is already locked in the vncdesktopsynk
 	//But it's just a critical section, doesn't matter how often you lock it in the same thread
 	//as long as it is unlocked the same number of times.
-	omni_mutex_lock l(GetUpdateLock());
+	omni_mutex_lock l(GetUpdateLock(),95);
 	if (m_clipboard.UpdateClipTextEx(clipboardData, overrideFlags)) {
 		TriggerUpdateThread();
 	}
@@ -4442,14 +5198,14 @@ vncClient::UpdateClipTextEx(ClipboardData& clipboardData, CARD32 overrideFlags)
 void
 vncClient::UpdateCursorShape()
 {
-	omni_mutex_lock l(GetUpdateLock());
+	//omni_mutex_lock l(GetUpdateLock(),96);
 	TriggerUpdateThread();
 }
 
 void
 vncClient::UpdatePalette(bool lock)
 {
-	if (lock) omni_mutex_lock l(GetUpdateLock());
+	if (lock) omni_mutex_lock l(GetUpdateLock(),97);
 	m_palettechanged = TRUE;
 }
 
@@ -4505,7 +5261,7 @@ vncClient::DisableProtocol()
 {
 	BOOL disable = FALSE;
 	{	 
-		omni_mutex_lock l(GetUpdateLock());
+		omni_mutex_lock l(GetUpdateLock(),98);
 		if (m_disable_protocol == 0)
 			disable = TRUE;
 		m_disable_protocol++;
@@ -4518,7 +5274,7 @@ void
 vncClient::EnableProtocol()
 {
 	{	 
-		omni_mutex_lock l(GetUpdateLock());
+		omni_mutex_lock l(GetUpdateLock(),99);
 		if (m_disable_protocol == 0) {
 			vnclog.Print(LL_INTERR, VNCLOG("protocol enabled too many times!\n"));
 			m_socket->Close();
@@ -4597,12 +5353,11 @@ vncClient::SendRFBMsgQueue(CARD8 type, BYTE *buffer, int buflen)
 
 BOOL
 vncClient::SendUpdate(rfb::SimpleUpdateTracker &update)
-{
-	if (!m_initial_update) return FALSE;
-
+{		
 	// If there is nothing to send then exit
 
-	if (update.is_empty() && !m_cursor_update_pending && !m_NewSWUpdateWaiting && !m_cursor_pos_changed) return FALSE;
+	if (update.is_empty() && !m_cursor_update_pending && !m_NewSWUpdateWaiting && !m_cursor_pos_changed) 
+		return FALSE;
 	
 	// Get the update info from the tracker
 	rfb::UpdateInfo update_info;
@@ -4655,7 +5410,7 @@ vncClient::SendUpdate(rfb::SimpleUpdateTracker &update)
 	rfb::RectVector::const_iterator i;
 	if (updates!= 0xFFFF)
 	{
-		for ( i=update_info.changed.begin(); i != update_info.changed.end(); ++i)
+		for ( i=update_info.changed.begin(); i != update_info.changed.end(); i++)
 		{
 			// Tight specific (lastrect)
 			numsubrects = m_encodemgr.GetNumCodedRects(*i);
@@ -4674,7 +5429,7 @@ vncClient::SendUpdate(rfb::SimpleUpdateTracker &update)
 	// We need to send the cache as a normal update
 	if (!m_encodemgr.IsCacheEnabled() && updates!= 0xFFFF) 
 	{
-		for (i=update_info.cached.begin(); i != update_info.cached.end(); ++i)
+		for (i=update_info.cached.begin(); i != update_info.cached.end(); i++)
 		{
 			// Tight specific (lastrect)
 			numsubrects = m_encodemgr.GetNumCodedRects(*i);
@@ -4707,7 +5462,7 @@ vncClient::SendUpdate(rfb::SimpleUpdateTracker &update)
 
 //	Sendtimer.start();
 
-	omni_mutex_lock l(GetUpdateLock());
+	omni_mutex_lock l(GetUpdateLock(),100);
 	// Otherwise, send <number of rectangles> header
 	rfbFramebufferUpdateMsg header;
 	header.nRects = Swap16IfLE(updates);
@@ -4772,19 +5527,21 @@ vncClient::SendUpdate(rfb::SimpleUpdateTracker &update)
 BOOL
 vncClient::SendRectangles(const rfb::RectVector &rects)
 {
-	// Modif cs@2005
-#ifdef DSHOW
-	MutexAutoLock l_Lock(&m_hmtxEncodeAccess);
-#endif
 	rfb::RectVector::const_iterator i;
 	rfb::Rect rect;
 	int x,y;
 	int Blocksize=254;
 	int BlocksizeX=254;
 
+#ifdef _XZ
+	if (m_encodemgr.IsBulkRectEncoding()) {
+		return m_encodemgr.EncodeBulkRects(rects, m_nScale, m_socket);
+	}
+#endif
+
 
 	// Work through the list of rectangles, sending each one
-	for (i=rects.begin();i!=rects.end();++i) {
+	for (i=rects.begin();i!=rects.end();i++) {
 		if (m_encodemgr.ultra2_encoder_in_use)
 		{
 			//We want smaller rect, so data can be send and decoded while handling next update
@@ -4839,6 +5596,11 @@ vncClient::SendRectangle(const rfb::Rect &rect)
 	ScaledRect.br.y = rect.br.y / m_nScale;
 	ScaledRect.tl.x = rect.tl.x / m_nScale;
 	ScaledRect.br.x = rect.br.x / m_nScale;
+	#ifdef _DEBUG
+	char			szText[256];
+	sprintf(szText,"++++++++++++++++++++++++++++++++++++++++++++++REct1 %i %i %i %i  \n",rect.tl.x,rect.br.x,rect.tl.y,rect.br.y);
+	OutputDebugString(szText);
+	#endif
 
 	//	Totalsend+=(ScaledRect.br.x-ScaledRect.tl.x)*(ScaledRect.br.y-ScaledRect.tl.y);
 
@@ -5063,7 +5825,7 @@ vncClient::SendCacheRectangles(const rfb::RectVector &rects)
 	vnclog.Print(LL_INTINFO, VNCLOG("******** Sending %d Cache Rects \r\n"), rects.size());
 
 	// Work through the list of rectangles, sending each one
-	for (i= rects.begin();i != rects.end();++i)
+	for (i= rects.begin();i != rects.end();i++)
 	{
 		if (!SendCacheRect(*i))
 			return FALSE;
@@ -5183,7 +5945,7 @@ BOOL vncClient::SendCacheZip(const rfb::RectVector &rects)
 	rfbRectangle theRect;
 	rfb::RectVector::const_iterator i;
 	BYTE* p = m_pRawCacheZipBuf;
-	for (i = rects.begin();i != rects.end();++i)
+	for (i = rects.begin();i != rects.end();i++)
 	{
 		theRect.x = Swap16IfLE(((*i).tl.x - m_SWOffsetx) / m_nScale );
 		theRect.y = Swap16IfLE(((*i).tl.y - m_SWOffsety) / m_nScale);
@@ -5201,9 +5963,9 @@ BOOL vncClient::SendCacheZip(const rfb::RectVector &rects)
 			delete [] m_pCacheZipBuf;
 			m_pCacheZipBuf = NULL;
 		}
-		m_pCacheZipBuf = new BYTE [maxCompSize+1];
+		m_pCacheZipBuf = new BYTE [maxCompSize+1000];
 		if (m_pCacheZipBuf == NULL) return 0;
-		m_nCacheZipBufSize = maxCompSize;
+		m_nCacheZipBufSize = maxCompSize+999;
 	}
 
 	int nRet = compress((unsigned char*)(m_pCacheZipBuf),
@@ -5371,7 +6133,7 @@ bool vncClient::ReceiveFileChunk(int nLen, int nSize)
 	if (fAlreadyHere) 
 	{
 		DWORD dwPtr = SetFilePointer(m_hDestFile, nLen, NULL, FILE_CURRENT); 
-		if (dwPtr == 0xFFFFFFFF)
+		if (dwPtr == INVALID_SET_FILE_POINTER)
 			fRes = false;
 	}
 	else
@@ -5535,7 +6297,7 @@ void vncClient::FinishFileReception()
 bool vncClient::SendFileChunk()
 {
     bool connected = true;
-	omni_mutex_lock l(GetUpdateLock());
+	omni_mutex_lock l(GetUpdateLock(),101);
 
 	if (!m_fFileUploadRunning) return connected;
 	if ( m_fEof || m_fFileUploadError)
@@ -5648,7 +6410,7 @@ bool vncClient::SendFileChunk()
 
 void vncClient::FinishFileSending()
 {
-	omni_mutex_lock l(GetUpdateLock());
+	omni_mutex_lock l(GetUpdateLock(),102);
 
 	if (!m_fFileUploadRunning)
 		return;
@@ -5890,7 +6652,7 @@ bool vncClient::MyGetFileSize(char* szFilePath, ULARGE_INTEGER *n2FileSize)
 bool vncClient::DoFTUserImpersonation()
 {
 	vnclog.Print(LL_INTERR, VNCLOG("%%%%%%%%%%%%% vncClient::DoFTUserImpersonation - Call\n"));
-	omni_mutex_lock l(GetUpdateLock());
+	omni_mutex_lock l(GetUpdateLock(),103);
 
 	if (m_fFileDownloadRunning) return true;
 	if (m_fFileUploadRunning) return true;
@@ -6004,7 +6766,7 @@ void vncClient::UndoFTUserImpersonation()
 	vnclog.Print(LL_INTERR, VNCLOG("%%%%%%%%%%%%% vncClient::UNDoFTUserImpersonation - 1\n"));
 	DWORD lTime = timeGetTime();
 	if (lTime - m_lLastFTUserImpersonationTime < 10000) return;
-	omni_mutex_lock l(GetUpdateLock());
+	omni_mutex_lock l(GetUpdateLock(),104);
 	vnclog.Print(LL_INTERR, VNCLOG("%%%%%%%%%%%%% vncClient::UNDoFTUserImpersonation - Impersonationtoken exists\n"));
 	RevertToSelf();
 	m_fFTUserImpersonatedOk = false;

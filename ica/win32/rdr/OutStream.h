@@ -51,7 +51,7 @@ namespace rdr {
         if (ptr + itemSize > end)
           return overrun(itemSize, nItems);
 
-        nItems = (end - ptr) / itemSize;
+        nItems = (int)((end - ptr) / itemSize);
       }
       return nItems;
     }
@@ -72,7 +72,7 @@ namespace rdr {
     // written to the stream).
 
     inline void writeString(const char* str) {
-      U32 len = strlen(str);
+      U32 len = (U32)strlen(str);
       writeU32(len);
       writeBytes(str, len);
     }

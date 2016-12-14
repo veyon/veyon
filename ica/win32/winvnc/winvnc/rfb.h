@@ -49,6 +49,11 @@ typedef unsigned char  CARD8;
 #define DISPLAY_TO_PORT(d)  ( (d) + RFB_PORT_OFFSET )
 #define DISPLAY_TO_HPORT(d) ( (d) + HTTP_PORT_OFFSET )
 
+#ifdef _Gii
+#include <stdint.h>
+#include <rfb/gii.h>
+#endif
+
 // include the protocol spec
 #include <rfb/rfbproto.h>
 
@@ -81,6 +86,20 @@ typedef unsigned char  CARD8;
      (((l) & 0x00ff0000) >> 8)  | \
 	 (((l) & 0x0000ff00) << 8)  | \
 	 (((l) & 0x000000ff) << 24)))
+
+#ifdef _Gii
+#define Swap64IfLE(ll) \
+    (*(char *)&endianTest ? ((((ll) & 0xff00000000000000LL) >> 56) | \
+			     (((ll) & 0x00ff000000000000LL) >> 40)  | \
+			     (((ll) & 0x0000ff0000000000LL) >> 24)  | \
+			     (((ll) & 0x000000ff00000000LL) >> 8) | \
+			     (((ll) & 0x00000000ff000000LL) << 8) | \
+			     (((ll) & 0x0000000000ff0000LL) << 24)  | \
+			     (((ll) & 0x000000000000ff00LL) << 40)  | \
+			     (((ll) & 0x00000000000000ffLL) << 56))  : (ll))
+
+
+#endif
 
 
 #endif

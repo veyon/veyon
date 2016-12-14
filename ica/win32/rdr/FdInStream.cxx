@@ -1,4 +1,4 @@
-// Copyright (C) 2002 Ultr@VNC Team Members. All Rights Reserved.
+// Copyright (C) 2002 UltraVNC Team Members. All Rights Reserved.
 // Copyright (C) 2002 RealVNC Ltd.  All Rights Reserved.
 //
 // This is free software; you can redistribute it and/or modify

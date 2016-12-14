@@ -1,5 +1,5 @@
 /////////////////////////////////////////////////////////////////////////////
-//  Copyright (C) 2002-2010 Ultr@VNC Team Members. All Rights Reserved.
+//  Copyright (C) 2002-2013 UltraVNC Team Members. All Rights Reserved.
 //
 //  This program is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -27,7 +27,6 @@ DWORD MessageBoxSecure(HWND hWnd,LPCTSTR lpText,LPCTSTR lpCaption,UINT uType);
 
 bool do_copy (IniFile& myIniFile_In, IniFile& myIniFile_Out)
 {
-
 TCHAR *group1=new char[150];
 TCHAR *group2=new char[150];
 TCHAR *group3=new char[150];
@@ -41,9 +40,10 @@ LONG DebugMode;
 LONG Avilog;
 LONG DebugLevel;
 LONG DisableTrayIcon;
+LONG Rdpmode=0;
 LONG LoopbackOnly;
 LONG UseDSMPlugin;
-LONG AllowLoopback;
+LONG AllowLoopback=1;
 LONG AuthRequired;
 LONG ConnectPriority;
 
@@ -59,19 +59,17 @@ LONG FTUserImpersonation=1;
 LONG BlankMonitorEnabled=1;
 LONG BlankInputsOnly=0; //PGM
 LONG DefaultScale=1;
-LONG CaptureAlphaBlending=1;
-LONG BlackAlphaBlending=1;
 
 LONG SocketConnect=1;
 LONG HTTPConnect;
-LONG XDMCPConnect;
 LONG AutoPortSelect=1;
 LONG PortNumber=5900;
 LONG HttpPortNumber=5800;
 LONG IdleTimeout=0;
+LONG IdleInputTimeout = 0;
 
-LONG RemoveWallpaper=1;
-LONG RemoveAero=1;
+LONG RemoveWallpaper=0;
+LONG RemoveAero=0;
 
 LONG QuerySetting=1;
 LONG QueryTimeout=10;
@@ -99,8 +97,13 @@ LONG Hook=1;
 LONG Virtual=0;
 LONG SingleWindow=0;
 char SingleWindowName[32];
+LONG FTTimeout = 30;
 char path[512];
+char accept_reject_mesg[512];
 LONG MaxCpu=40;
+
+char DSMPluginConfig[512];
+*DSMPluginConfig = '\0';
 
 LONG Primary=1;
 LONG Secondary=0;
@@ -120,15 +123,12 @@ myIniFile_Out.WriteInt("admin", "MSLogonRequired", MSLogonRequired);
 NewMSLogon=myIniFile_In.ReadInt("admin", "NewMSLogon", false);
 myIniFile_Out.WriteInt("admin", "NewMSLogon", NewMSLogon);
 
-
 myIniFile_In.ReadString("admin_auth","group1",group1,150);
 myIniFile_In.ReadString("admin_auth","group2",group2,150);
 myIniFile_In.ReadString("admin_auth","group3",group3,150);
 myIniFile_Out.WriteString("admin_auth", "group1",group1);
 myIniFile_Out.WriteString("admin_auth", "group2",group2);
 myIniFile_Out.WriteString("admin_auth", "group3",group3);
-
-
 
 locdom1=myIniFile_In.ReadInt("admin_auth", "locdom1",0);
 locdom2=myIniFile_In.ReadInt("admin_auth", "locdom2",0);
@@ -137,31 +137,35 @@ myIniFile_Out.WriteInt("admin_auth", "locdom1", locdom1);
 myIniFile_Out.WriteInt("admin_auth", "locdom2", locdom2);
 myIniFile_Out.WriteInt("admin_auth", "locdom3", locdom3);
 
-
 DebugMode=myIniFile_In.ReadInt("admin", "DebugMode", 0);
 Avilog=myIniFile_In.ReadInt("admin", "Avilog", 0);
 myIniFile_In.ReadString("admin", "path", path,512);
+myIniFile_In.ReadString("admin", "accept_reject_mesg", accept_reject_mesg,512);
 DebugLevel=myIniFile_In.ReadInt("admin", "DebugLevel", 0);
 DisableTrayIcon=myIniFile_In.ReadInt("admin", "DisableTrayIcon", false);
+Rdpmode = myIniFile_In.ReadInt("admin", "rdpmode", 0);
 LoopbackOnly=myIniFile_In.ReadInt("admin", "LoopbackOnly", false);
 
 myIniFile_Out.WriteInt("admin", "DebugMode", DebugMode);
 myIniFile_Out.WriteInt("admin", "Avilog", Avilog);
 myIniFile_Out.WriteString("admin", "path", path);
+myIniFile_Out.WriteString("admin", "accept_reject_mesg", accept_reject_mesg);
 myIniFile_Out.WriteInt("admin", "DebugLevel", DebugLevel);
 myIniFile_Out.WriteInt("admin", "DisableTrayIcon", DisableTrayIcon);
+myIniFile_Out.WriteInt("admin", "rdpmode", Rdpmode);
 myIniFile_Out.WriteInt("admin", "LoopbackOnly", LoopbackOnly);
 
 UseDSMPlugin=myIniFile_In.ReadInt("admin", "UseDSMPlugin", false);
-AllowLoopback=myIniFile_In.ReadInt("admin", "AllowLoopback", false);
+myIniFile_In.ReadString("admin", "DSMPluginConfig", DSMPluginConfig, 512);
+AllowLoopback=myIniFile_In.ReadInt("admin", "AllowLoopback", true);
 AuthRequired=myIniFile_In.ReadInt("admin", "AuthRequired", true);
 ConnectPriority=myIniFile_In.ReadInt("admin", "ConnectPriority", 0);
 
 myIniFile_Out.WriteInt("admin", "UseDSMPlugin", UseDSMPlugin);
+myIniFile_Out.WriteString("admin", "DSMPluginConfig", DSMPluginConfig);
 myIniFile_Out.WriteInt("admin", "AllowLoopback", AllowLoopback);
 myIniFile_Out.WriteInt("admin", "AuthRequired", AuthRequired);
 myIniFile_Out.WriteInt("admin", "ConnectPriority", ConnectPriority);
-
 
 myIniFile_In.ReadString("admin", "DSMPlugin",DSMPlugin,128);
 myIniFile_In.ReadString("admin", "AuthHosts",authhosts,150);
@@ -176,26 +180,21 @@ myIniFile_Out.WriteInt("admin", "AllowShutdown" ,AllowShutdown);
 myIniFile_Out.WriteInt("admin", "AllowProperties" ,AllowProperties);
 myIniFile_Out.WriteInt("admin", "AllowEditClients" ,AllowEditClients);
 
-
 FileTransferEnabled=myIniFile_In.ReadInt("admin", "FileTransferEnabled", true);
 FTUserImpersonation=myIniFile_In.ReadInt("admin", "FTUserImpersonation", true);
 BlankMonitorEnabled = myIniFile_In.ReadInt("admin", "BlankMonitorEnabled", true);
 BlankInputsOnly = myIniFile_In.ReadInt("admin", "BlankInputsOnly", false); //PGM
 DefaultScale = myIniFile_In.ReadInt("admin", "DefaultScale", 1);
-CaptureAlphaBlending = myIniFile_In.ReadInt("admin", "CaptureAlphaBlending", false); // sf@2005
-BlackAlphaBlending = myIniFile_In.ReadInt("admin", "BlackAlphaBlending", false); // sf@2005
+FTTimeout = myIniFile_In.ReadInt("admin", "FileTransferTimeout", 30);
 
 Primary = myIniFile_In.ReadInt("admin", "primary", true);
 Secondary = myIniFile_In.ReadInt("admin", "secondary", false);
-
 
 myIniFile_Out.WriteInt("admin", "FileTransferEnabled", FileTransferEnabled);
 myIniFile_Out.WriteInt("admin", "FTUserImpersonation", FTUserImpersonation);
 myIniFile_Out.WriteInt("admin", "BlankMonitorEnabled", BlankMonitorEnabled);
 myIniFile_Out.WriteInt("admin", "BlankInputsOnly", BlankInputsOnly); //PGM
 myIniFile_Out.WriteInt("admin", "DefaultScale", DefaultScale);
-myIniFile_Out.WriteInt("admin", "CaptureAlphaBlending", CaptureAlphaBlending);
-myIniFile_Out.WriteInt("admin", "BlackAlphaBlending", BlackAlphaBlending);
 myIniFile_Out.WriteInt("admin", "FileTransferTimeout", 30);
 
 myIniFile_Out.WriteInt("admin", "primary", Primary);
@@ -204,19 +203,19 @@ myIniFile_Out.WriteInt("admin", "secondary", Secondary);
 	// Connection prefs
 SocketConnect=myIniFile_In.ReadInt("admin", "SocketConnect", true);
 HTTPConnect=myIniFile_In.ReadInt("admin", "HTTPConnect", true);
-XDMCPConnect=myIniFile_In.ReadInt("admin", "XDMCPConnect", true);
 AutoPortSelect=myIniFile_In.ReadInt("admin", "AutoPortSelect", true);
 PortNumber=myIniFile_In.ReadInt("admin", "PortNumber", PortNumber);
 HttpPortNumber=myIniFile_In.ReadInt("admin", "HTTPPortNumber",HttpPortNumber);
 IdleTimeout=myIniFile_In.ReadInt("admin", "IdleTimeout", IdleTimeout);
+IdleInputTimeout = myIniFile_In.ReadInt("admin", "IdleInputTimeout", IdleInputTimeout);
 myIniFile_Out.WriteInt("admin", "SocketConnect", SocketConnect);
 myIniFile_Out.WriteInt("admin", "HTTPConnect", HTTPConnect);
-myIniFile_Out.WriteInt("admin", "XDMCPConnect", XDMCPConnect);
 myIniFile_Out.WriteInt("admin", "AutoPortSelect", AutoPortSelect);
 myIniFile_Out.WriteInt("admin", "PortNumber", PortNumber);
 myIniFile_Out.WriteInt("admin", "HTTPPortNumber", HttpPortNumber);
 myIniFile_Out.WriteInt("admin", "IdleTimeout", IdleTimeout);
-	
+myIniFile_Out.WriteInt("admin", "IdleInputTimeout", IdleInputTimeout);
+
 RemoveWallpaper=myIniFile_In.ReadInt("admin", "RemoveWallpaper", RemoveWallpaper);
 RemoveAero=myIniFile_In.ReadInt("admin", "RemoveAero", RemoveAero);
 myIniFile_Out.WriteInt("admin", "RemoveWallpaper", RemoveWallpaper);
@@ -234,7 +233,7 @@ myIniFile_Out.WriteInt("admin", "QueryIfNoLogon", QueryIfNoLogon);
 
 myIniFile_In.ReadPassword(passwd,MAXPWLEN);
 myIniFile_Out.WritePassword(passwd);
-memset(passwd, '\0', MAXPWLEN); //PGM 
+memset(passwd, '\0', MAXPWLEN); //PGM
 myIniFile_In.ReadPassword2(passwd,MAXPWLEN); //PGM
 myIniFile_Out.WritePassword2(passwd); //PGM
 
@@ -247,11 +246,10 @@ clearconsole=myIniFile_In.ReadInt("admin", "clearconsole", clearconsole);
 
 myIniFile_Out.WriteInt("admin", "InputsEnabled", EnableRemoteInputs);
 myIniFile_Out.WriteInt("admin", "LockSetting", LockSettings);
-myIniFile_Out.WriteInt("admin", "LocalInputsDisabled", DisableLocalInputs);	
+myIniFile_Out.WriteInt("admin", "LocalInputsDisabled", DisableLocalInputs);
 myIniFile_Out.WriteInt("admin", "EnableJapInput", EnableJapInput);
 myIniFile_Out.WriteInt("admin", "kickrdp", kickrdp);
 myIniFile_Out.WriteInt("admin", "clearconsole", clearconsole);
-
 
 TurboMode = myIniFile_In.ReadInt("poll", "TurboMode", TurboMode);
 PollUnderCursor=myIniFile_In.ReadInt("poll", "PollUnderCursor", PollUnderCursor);
@@ -291,9 +289,7 @@ myIniFile_In.IniFileSetSecure();
 myIniFile_Out.IniFileSetTemp(tempfile);
 
 return do_copy(myIniFile_In, myIniFile_Out);
-
 }
-
 
 bool Copy_to_Secure_from_temp(char *tempfile)
 {

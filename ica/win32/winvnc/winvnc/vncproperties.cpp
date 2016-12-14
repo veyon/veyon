@@ -1,4 +1,4 @@
-//  Copyright (C) 2002 Ultr@VNC Team Members. All Rights Reserved.
+//  Copyright (C) 2002 UltraVNC Team Members. All Rights Reserved.
 //  Copyright (C) 2000-2002 Const Kaplinsky. All Rights Reserved.
 //  Copyright (C) 2002 TightVNC. All Rights Reserved.
 //  Copyright (C) 2002 RealVNC Ltd. All Rights Reserved.
@@ -57,7 +57,11 @@ vncEditSecurityFn vncEditSecurity = 0;
 DWORD GetExplorerLogonPid();
 // ethernet packet 1500 - 40 tcp/ip header - 8 PPPoE info
 //unsigned int G_SENDBUFFER=8192;
-unsigned int G_SENDBUFFER=1452;
+unsigned int G_SENDBUFFER_EX=1452;
+
+void Secure_Save_Plugin_Config(char *szPlugin);
+void Secure_Plugin_elevated(char *szPlugin);
+void Secure_Plugin(char *szPlugin);
 
 // Constructor & Destructor
 vncProperties::vncProperties()
@@ -71,7 +75,7 @@ vncProperties::vncProperties()
 	m_fUseRegistry = FALSE;
     m_ftTimeout = FT_RECV_TIMEOUT;
     m_keepAliveInterval = KEEPALIVE_INTERVAL;
-	m_socketKeepAliveTimeout = SOCKET_KEEPALIVE_TIMEOUT; // adzm 2010-08
+	m_IdleInputTimeout = 0;
 	m_pref_Primary=true;
 	m_pref_Secondary=false;
 
@@ -149,12 +153,13 @@ vncProperties::Init(vncServer *server)
 								sz_ID_WINVNC_ERROR,
 								MB_OK | MB_ICONSTOP);
 					PostQuitMessage(0);
-				} else {
+				}
+				/*else {
 					if (!vncService::RunningAsService())
 						MessageBoxSecure(NULL, sz_ID_NO_PASSWD_NO_OVERRIDE_WARN,
 								sz_ID_WINVNC_ERROR,
 								MB_OK | MB_ICONEXCLAMATION);
-				}
+				}*/
 			} else {
 				// If null passwords are not allowed, ensure that one is entered!
 				if (m_server->AuthRequired()) {
@@ -169,8 +174,6 @@ vncProperties::Init(vncServer *server)
 						ShowAdmin(TRUE, FALSE);
 						Lock_service_helper=false;
 					} else {
-						//Warning box removed, to ugly
-						//DialogBoxParam(hInstResDLL,MAKEINTRESOURCE(IDD_ABOUT1), NULL,(DLGPROC) DialogProc1,(LONG) this);
 						ShowAdmin(TRUE, TRUE);
 					}
 				}
@@ -187,12 +190,11 @@ vncProperties::Init(vncServer *server)
 void
 vncProperties::ShowAdmin(BOOL show, BOOL usersettings)
 {
+#ifndef ULTRAVNC_ITALC_SUPPORT
 //	if (Lock_service_helper) return;
 	HANDLE hProcess=NULL;
 	HANDLE hPToken=NULL;
-#ifndef ULTRAVNC_ITALC_SUPPORT
 	DWORD id=GetExplorerLogonPid();
-#endif
 	int iImpersonateResult=0;
 	{
 		char WORKDIR[MAX_PATH];
@@ -217,7 +219,6 @@ vncProperties::ShowAdmin(BOOL show, BOOL usersettings)
 			strcat(m_Tempfile,INIFILE_NAME);
 		}
 	}
-#ifndef ULTRAVNC_ITALC_SUPPORT
 	if (id!=0) 
 			{
 				hProcess = OpenProcess(MAXIMUM_ALLOWED,FALSE,id);
@@ -235,7 +236,6 @@ vncProperties::ShowAdmin(BOOL show, BOOL usersettings)
 					}
 				}
 	}
-#endif
 
 	if (!m_allowproperties) 
 	{
@@ -415,8 +415,10 @@ vncProperties::ShowAdmin(BOOL show, BOOL usersettings)
 	if(iImpersonateResult == ERROR_SUCCESS)RevertToSelf();
 	if (hProcess) CloseHandle(hProcess);
 	if (hPToken) CloseHandle(hPToken);
+#endif
 }
 
+#ifndef ULTRAVNC_ITALC_SUPPORT
 BOOL CALLBACK
 vncProperties::DialogProc(HWND hwnd,
 						  UINT uMsg,
@@ -486,11 +488,6 @@ vncProperties::DialogProc(HWND hwnd,
 				BM_SETCHECK,
 				_this->m_server->HTTPConnectEnabled(),
 				0);
-//			HWND hConnectXDMCP = GetDlgItem(hwnd, IDC_CONNECT_XDMCP);
-//			SendMessage(hConnectXDMCP,
-//				BM_SETCHECK,
-//				_this->m_server->XDMCPConnectEnabled(),
-//				0);
 
 			// Modif sf@2002
 //		   HWND hSingleWindow = GetDlgItem(hwnd, IDC_SINGLE_WINDOW);
@@ -516,20 +513,18 @@ vncProperties::DialogProc(HWND hwnd,
 
 		   HWND hBlank2 = GetDlgItem(hwnd, IDC_BLANK2); //PGM
            SendMessage(hBlank2, BM_SETCHECK, _this->m_server->BlankInputsOnly(), 0); //PGM
-
-		   HWND hAlpha = GetDlgItem(hwnd, IDC_ALPHA);
-           SendMessage(hAlpha, BM_SETCHECK, _this->m_server->CaptureAlphaBlending(), 0);
-		   HWND hAlphab = GetDlgItem(hwnd, IDC_ALPHABLACK);
-           SendMessage(hAlphab, BM_SETCHECK, _this->m_server->BlackAlphaBlending(), 0);
-
-		   // [v1.0.2-jp1 fix]
-//		   HWND hGammaGray = GetDlgItem(hwnd, IDC_GAMMAGRAY);
-//         SendMessage(hGammaGray, BM_SETCHECK, _this->m_server->GammaGray(), 0);
 		   
 		   HWND hLoopback = GetDlgItem(hwnd, IDC_ALLOWLOOPBACK);
 		   BOOL fLoopback = _this->m_server->LoopbackOk();
 		   SendMessage(hLoopback, BM_SETCHECK, fLoopback, 0);
-
+#ifdef IPV6V4
+		   HWND hIPV6 = GetDlgItem(hwnd, IDC_IPV6);
+		   BOOL fIPV6 = _this->m_server->IPV6();
+		   SendMessage(hIPV6, BM_SETCHECK, fIPV6, 0);
+#else
+		   HWND hIPV6 = GetDlgItem(hwnd, IDC_IPV6);
+		   EnableWindow(hIPV6, false);
+#endif
 		   HWND hLoopbackonly = GetDlgItem(hwnd, IDC_LOOPBACKONLY);
 		   BOOL fLoopbackonly = _this->m_server->LoopbackOnly();
 		   SendMessage(hLoopbackonly, BM_SETCHECK, fLoopbackonly, 0);
@@ -537,6 +532,10 @@ vncProperties::DialogProc(HWND hwnd,
 		   HWND hTrayicon = GetDlgItem(hwnd, IDC_DISABLETRAY);
 		   BOOL fTrayicon = _this->m_server->GetDisableTrayIcon();
 		   SendMessage(hTrayicon, BM_SETCHECK, fTrayicon, 0);
+
+		   HWND hrdpmode = GetDlgItem(hwnd, IDC_RDPMODE);
+		   BOOL frdpmode = _this->m_server->GetRdpmode();
+		   SendMessage(hrdpmode, BM_SETCHECK, frdpmode, 0);
 
 		   HWND hAllowshutdown = GetDlgItem(hwnd, IDC_ALLOWSHUTDOWN);
 		   SendMessage(hAllowshutdown, BM_SETCHECK, !_this->m_allowshutdown , 0);
@@ -707,40 +706,6 @@ vncProperties::DialogProc(HWND hwnd,
 			UINT t = _this->m_server->QueryTimeout();
 			sprintf(timeout, "%d", (int)t);
 		    SetDlgItemText(hwnd, IDQUERYTIMEOUT, (const char *) timeout);
-
-			// 2006 - Patch from KP774 - disable some options depending on this OS version
-			// for Win9x, no user impersonation, no LockWorkstation
-			if(OSversion() == 4 || OSversion() == 5)
-			{
-				// Disable userimpersonation
-				_this->m_server->FTUserImpersonation(FALSE);
-				EnableWindow(hFileTransferUserImp, FALSE);
-				SendMessage(hFileTransferUserImp, BM_SETCHECK, FALSE, 0);
-
-				// Disable Lock Workstation
-				if(_this->m_server->LockSettings() == 1)
-				{
-					SendMessage(GetDlgItem(hwnd, IDC_LOCKSETTING_LOCK), BM_SETCHECK, FALSE, 0);
-					_this->m_server->SetLockSettings(0);
-					SendMessage(GetDlgItem(hwnd, IDC_LOCKSETTING_NOTHING), BM_SETCHECK, TRUE, 0);
-				}
-				EnableWindow(GetDlgItem(hwnd, IDC_LOCKSETTING_LOCK), FALSE);
-			}
-
-			// if not XP or above (if win9x or NT4 or NT3.51), disable Alpha blending
-			if(!(OSversion() == 1 || OSversion()==2))
-			{
-				// Disable Capture Alpha Blending
-				_this->m_server->CaptureAlphaBlending(FALSE);
-				EnableWindow(hAlpha, FALSE);
-				SendMessage(hAlpha, BM_SETCHECK, FALSE, 0);
-
-				// Disable Alpha Blending Monitor Blanking
-				_this->m_server->BlackAlphaBlending(FALSE);
-				EnableWindow(hAlphab, FALSE);
-				SendMessage(hAlphab, BM_SETCHECK, FALSE, 0);
-			}
-
 			SetForegroundWindow(hwnd);
 
 			return FALSE; // Because we've set the focus
@@ -767,6 +732,7 @@ vncProperties::DialogProc(HWND hwnd,
 
 				// Save the password
 				char passwd[MAXPWLEN+1];
+				char passwd2[MAXPWLEN+1];
 				// TightVNC method
 				int len = GetDlgItemText(hwnd, IDC_PASSWORD, (LPSTR) &passwd, MAXPWLEN+1);
 				if (strcmp(passwd, "~~~~~~~~") != 0) {
@@ -782,10 +748,10 @@ vncProperties::DialogProc(HWND hwnd,
 					}
 				}
 
-				memset(passwd, '\0', MAXPWLEN+1); //PGM
+				memset(passwd2, '\0', MAXPWLEN+1); //PGM
 				len = 0; //PGM
-				len = GetDlgItemText(hwnd, IDC_PASSWORD2, (LPSTR) &passwd, MAXPWLEN+1); //PGM
-				if (strcmp(passwd, "~~~~~~~~") != 0) { //PGM
+				len = GetDlgItemText(hwnd, IDC_PASSWORD2, (LPSTR) &passwd2, MAXPWLEN+1); //PGM
+				if (strcmp(passwd2, "~~~~~~~~") != 0) { //PGM
 					if (len == 0) //PGM
 					{ //PGM
 						vncPasswd::FromClear crypt2; //PGM
@@ -793,26 +759,19 @@ vncProperties::DialogProc(HWND hwnd,
 					} //PGM
 					else //PGM
 					{ //PGM
-						vncPasswd::FromText crypt2(passwd); //PGM
+						vncPasswd::FromText crypt2(passwd2); //PGM
 						_this->m_server->SetPassword2(crypt2); //PGM
 					} //PGM
 				} //PGM
 
-				memset(passwd, '\0', MAXPWLEN+1); //PGM
-				len = 0; //PGM
-				len = GetDlgItemText(hwnd, IDC_PASSWORD2, (LPSTR) &passwd, MAXPWLEN+1); //PGM
-				if (strcmp(passwd, "~~~~~~~~") != 0) { //PGM
-					if (len == 0) //PGM
-					{ //PGM
-						vncPasswd::FromClear crypt2; //PGM
-						_this->m_server->SetPassword2(crypt2); //PGM
-					} //PGM
-					else //PGM
-					{ //PGM
-						vncPasswd::FromText crypt2(passwd); //PGM
-						_this->m_server->SetPassword2(crypt2); //PGM
-					} //PGM
-				} //PGM
+
+				//avoid readonly and full passwd being set the same
+				if (strcmp(passwd, "~~~~~~~~") != 0 && strcmp(passwd2, "~~~~~~~~") != 0) { 
+					if (strcmp(passwd,passwd2)==0)
+					{
+						MessageBox(NULL,"View only and full password are the same\nRunning in view only mode","Warning",0);
+					}					
+				} 
 
 				// Save the new settings to the server
 				int state = SendDlgItemMessage(hwnd, IDC_PORTNO_AUTO, BM_GETCHECK, 0, 0);
@@ -851,11 +810,6 @@ vncProperties::DialogProc(HWND hwnd,
 				HWND hConnectHTTP = GetDlgItem(hwnd, IDC_CONNECT_HTTP);
 				_this->m_server->EnableHTTPConnect(
 					SendMessage(hConnectHTTP, BM_GETCHECK, 0, 0) == BST_CHECKED
-					);
-
-				HWND hConnectXDMCP = GetDlgItem(hwnd, IDC_CONNECT_XDMCP);
-				_this->m_server->EnableXDMCPConnect(
-					SendMessage(hConnectXDMCP, BM_GETCHECK, 0, 0) == BST_CHECKED
 					);
 				
 				// Remote input stuff
@@ -950,20 +904,16 @@ vncProperties::DialogProc(HWND hwnd,
 				HWND hBlank = GetDlgItem(hwnd, IDC_BLANK);
 				_this->m_server->BlankMonitorEnabled(SendMessage(hBlank, BM_GETCHECK, 0, 0) == BST_CHECKED);
 				HWND hBlank2 = GetDlgItem(hwnd, IDC_BLANK2); //PGM
-				_this->m_server->BlankInputsOnly(SendMessage(hBlank2, BM_GETCHECK, 0, 0) == BST_CHECKED); //PGM
-				HWND hAlpha = GetDlgItem(hwnd, IDC_ALPHA);
-				_this->m_server->CaptureAlphaBlending(SendMessage(hAlpha, BM_GETCHECK, 0, 0) == BST_CHECKED);
-				HWND hAlphab = GetDlgItem(hwnd, IDC_ALPHABLACK);
-				_this->m_server->BlackAlphaBlending(SendMessage(hAlphab, BM_GETCHECK, 0, 0) == BST_CHECKED);
-
-				// [v1.0.2-jp1 fix]
-//				HWND hGammaGray = GetDlgItem(hwnd, IDC_GAMMAGRAY);
-//				_this->m_server->GammaGray(SendMessage(hGammaGray, BM_GETCHECK, 0, 0) == BST_CHECKED);
-
+				_this->m_server->BlankInputsOnly(SendMessage(hBlank2, BM_GETCHECK, 0, 0) == BST_CHECKED); //PGM				
+				
 				_this->m_server->SetLoopbackOk(IsDlgButtonChecked(hwnd, IDC_ALLOWLOOPBACK));
+#ifdef IPV6V4
+				_this->m_server->SetIPV6(IsDlgButtonChecked(hwnd, IDC_IPV6));
+#endif
 				_this->m_server->SetLoopbackOnly(IsDlgButtonChecked(hwnd, IDC_LOOPBACKONLY));
 
 				_this->m_server->SetDisableTrayIcon(IsDlgButtonChecked(hwnd, IDC_DISABLETRAY));
+				_this->m_server->SetRdpmode(IsDlgButtonChecked(hwnd, IDC_RDPMODE));
 				_this->m_allowshutdown=!IsDlgButtonChecked(hwnd, IDC_ALLOWSHUTDOWN);
 				_this->m_alloweditclients=!IsDlgButtonChecked(hwnd, IDC_ALLOWEDITCLIENTS);
 				_this->m_server->SetAllowEditClients(_this->m_alloweditclients);
@@ -1023,6 +973,7 @@ vncProperties::DialogProc(HWND hwnd,
 
 				// Query Window options - Taken from TightVNC advanced properties
 				char timeout[256];
+				strcpy(timeout,"5");
 				if (GetDlgItemText(hwnd, IDQUERYTIMEOUT, (LPSTR) &timeout, 256) == 0)
 				    _this->m_server->SetQueryTimeout(atoi(timeout));
 				else
@@ -1087,9 +1038,7 @@ vncProperties::DialogProc(HWND hwnd,
         case IDC_BLANK:
             {
                 // only enable alpha blanking if blanking is enabled
-                HWND hBlank = ::GetDlgItem(hwnd, IDC_BLANK);
-                HWND hAlphab = ::GetDlgItem(hwnd, IDC_ALPHABLACK);
-                ::EnableWindow(hAlphab, ::SendMessage(hBlank, BM_GETCHECK, 0, 0) == BST_CHECKED);
+                HWND hBlank = ::GetDlgItem(hwnd, IDC_BLANK);               
                 HWND hBlank2 = ::GetDlgItem(hwnd, IDC_BLANK2); //PGM
                 ::EnableWindow(hBlank2, ::SendMessage(hBlank, BM_GETCHECK, 0, 0) == BST_CHECKED); //PGM
             }
@@ -1098,9 +1047,7 @@ vncProperties::DialogProc(HWND hwnd,
         case IDC_BLANK2: //PGM
             { //PGM
                 // only enable alpha blanking if Disable Only Inputs is disabled //PGM
-                HWND hBlank = ::GetDlgItem(hwnd, IDC_BLANK2); //PGM
-                HWND hAlphab = ::GetDlgItem(hwnd, IDC_ALPHABLACK); //PGM
-                ::EnableWindow(hAlphab, ::SendMessage(hBlank, BM_GETCHECK, 0, 0) == BST_UNCHECKED); //PGM
+                HWND hBlank = ::GetDlgItem(hwnd, IDC_BLANK2); //PGM              
             } //PGM
             break; //PGM
 
@@ -1196,6 +1143,7 @@ vncProperties::DialogProc(HWND hwnd,
 				SetDlgItemInt(hwnd, IDC_PORTRFB, _this->m_server->GetPort(), FALSE);
 				SetDlgItemInt(hwnd, IDC_PORTHTTP, _this->m_server->GetHttpPort(), FALSE);
 
+
 				SetFocus(GetDlgItem(hwnd, IDC_DISPLAYNO));
 				SendDlgItemMessage(hwnd, IDC_DISPLAYNO, EM_SETSEL, 0, (LPARAM)-1);
 			}
@@ -1216,6 +1164,7 @@ vncProperties::DialogProc(HWND hwnd,
 				}
 				SetDlgItemInt(hwnd, IDC_PORTRFB, _this->m_server->GetPort(), FALSE);
 				SetDlgItemInt(hwnd, IDC_PORTHTTP, _this->m_server->GetHttpPort(), FALSE);
+
 
 				SetFocus(GetDlgItem(hwnd, IDC_PORTRFB));
 				SendDlgItemMessage(hwnd, IDC_PORTRFB, EM_SETSEL, 0, (LPARAM)-1);
@@ -1290,6 +1239,7 @@ vncProperties::DialogProc(HWND hwnd,
 						if (id!=0) 
 						{
 							hProcess = OpenProcess(MAXIMUM_ALLOWED,FALSE,id);
+							if (!hProcess) goto error;
 							if(!OpenProcessToken(hProcess,TOKEN_ADJUST_PRIVILEGES|TOKEN_QUERY
 													|TOKEN_DUPLICATE|TOKEN_ASSIGN_PRIMARY|TOKEN_ADJUST_SESSIONID
 													|TOKEN_READ|TOKEN_WRITE,&hPToken)) break;
@@ -1310,32 +1260,16 @@ vncProperties::DialogProc(HWND hwnd,
 								StartUPInfo.cb = sizeof(STARTUPINFO);
 						
 								CreateProcessAsUser(hPToken,NULL,dir,NULL,NULL,FALSE,DETACHED_PROCESS,NULL,NULL,&StartUPInfo,&ProcessInfo);
-								DWORD error=GetLastError();
+								DWORD errorcode=GetLastError();
                                 if (ProcessInfo.hThread) CloseHandle(ProcessInfo.hThread);
                                 if (ProcessInfo.hProcess) CloseHandle(ProcessInfo.hProcess);
-								if (error==1314)
-									{
+								if (errorcode == 1314) goto error;
+								break;
+								error:
 										winvncSecurityEditorHelper_as_admin();
-									}
 
 							}
 						}
-
-/*
-					char szCurrentDir[MAX_PATH];
-					if (GetModuleFileName(NULL, szCurrentDir, MAX_PATH)) {
-						char* p = strrchr(szCurrentDir, '\\');
-						*p = '\0';
-						strcat (szCurrentDir,"\\authSSP.dll");
-					}
-					HMODULE hModule = LoadLibrary(szCurrentDir);
-					if (hModule) {
-						vncEditSecurity = (vncEditSecurityFn) GetProcAddress(hModule, "vncEditSecurity");
-						HRESULT hr = CoInitialize(NULL);
-						vncEditSecurity(hwnd, hAppInstance);
-						CoUninitialize();
-						FreeLibrary(hModule);
-					}*/
 				} else { 
 					// Marscha@2004 - authSSP: end of change
 					_this->m_vncauth.Init(_this->m_server);
@@ -1372,7 +1306,43 @@ vncProperties::DialogProc(HWND hwnd,
 				
 					if (_this->m_server->GetDSMPluginPointer()->IsLoaded())
 					{
-						// We don't send the password yet... no matter the plugin requires
+
+
+						/*HANDLE hProcess = NULL;
+						HANDLE hPToken = NULL;
+						DWORD id = GetExplorerLogonPid();
+						DWORD iImpersonateResult=0;
+
+						if (id != 0)
+						{
+							hProcess = OpenProcess(MAXIMUM_ALLOWED, FALSE, id);
+							if (OpenProcessToken(hProcess, TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY
+								| TOKEN_DUPLICATE | TOKEN_ASSIGN_PRIMARY | TOKEN_ADJUST_SESSIONID
+								| TOKEN_READ | TOKEN_WRITE, &hPToken))
+							{
+								ImpersonateLoggedOnUser(hPToken);
+								iImpersonateResult = GetLastError();
+								if (iImpersonateResult == ERROR_SUCCESS)
+								{									
+									char szParams[32];
+									strcpy(szParams, "NoPassword,");
+									strcat(szParams, vncService::RunningAsService() ? "server-svc" : "server-app");
+									//adzm 2010-05-12 - dsmplugin config
+									char* szNewConfig = NULL;
+									if (_this->m_server->GetDSMPluginPointer()->SetPluginParams(hwnd, szParams, _this->m_pref_DSMPluginConfig, &szNewConfig)) {
+										if (szNewConfig != NULL && strlen(szNewConfig) > 0) {
+											strcpy_s(_this->m_pref_DSMPluginConfig, 511, szNewConfig);
+										}
+									}
+								}
+								if (iImpersonateResult == ERROR_SUCCESS)RevertToSelf();
+							}
+
+						}*/
+
+						//Secure_Plugin(szPlugin);
+						Secure_Save_Plugin_Config(szPlugin);
+						/*// We don't send the password yet... no matter the plugin requires
 						// it or not, we will provide it later (at plugin "real" init)
 						// Knowing the environnement ("server-svc" or "server-app") right 
 						// now can be usefull or even mandatory for the plugin 
@@ -1386,7 +1356,7 @@ vncProperties::DialogProc(HWND hwnd,
 							if (szNewConfig != NULL && strlen(szNewConfig) > 0) {
 								strcpy_s(_this->m_pref_DSMPluginConfig, 511, szNewConfig);
 							}
-						}
+						}*/
 					}
 					else
 					{
@@ -1405,6 +1375,7 @@ vncProperties::DialogProc(HWND hwnd,
 	}
 	return 0;
 }
+#endif
 
 
 
@@ -1730,6 +1701,7 @@ vncProperties::Load(BOOL usersettings)
 
 	// Disable Tray Icon
 	m_server->SetDisableTrayIcon(LoadInt(hkLocal, "DisableTrayIcon", false));
+	m_server->SetRdpmode(LoadInt(hkLocal, "rdpmode", 0));
 
 	// Authentication required, loopback allowed, loopbackOnly
 
@@ -1759,9 +1731,11 @@ vncProperties::Load(BOOL usersettings)
 			m_pref_DSMPluginConfig[0] = '\0';
 		}
 	}
-
+#ifdef IPV6V4
+	m_server->SetIPV6(LoadInt(hkLocal, "UseIpv6", true));
+#endif
 	if (m_server->LoopbackOnly()) m_server->SetLoopbackOk(true);
-	else m_server->SetLoopbackOk(LoadInt(hkLocal, "AllowLoopback", false));
+	else m_server->SetLoopbackOk(LoadInt(hkLocal, "AllowLoopback", true));
 	m_server->SetAuthRequired(LoadInt(hkLocal, "AuthRequired", true));
 
 	m_server->SetConnectPriority(LoadInt(hkLocal, "ConnectPriority", 0));
@@ -1787,7 +1761,6 @@ LABELUSERSETTINGS:
 	vnclog.Print(LL_INTINFO, VNCLOG("clearing user settings\n"));
 	m_pref_AutoPortSelect=TRUE;
     m_pref_HTTPConnect = TRUE;
-	m_pref_XDMCPConnect = TRUE;
 	m_pref_PortNumber = RFB_PORT_OFFSET; 
 	m_pref_SockConnect=TRUE;
 	{
@@ -1804,11 +1777,11 @@ LABELUSERSETTINGS:
 	m_pref_clearconsole=FALSE;
 	m_pref_LockSettings=-1;
 
-	m_pref_RemoveWallpaper=TRUE;
+	m_pref_RemoveWallpaper=FALSE;
 	// adzm - 2010-07 - Disable more effects or font smoothing
 	m_pref_RemoveEffects=FALSE;
 	m_pref_RemoveFontSmoothing=FALSE;
-	m_pref_RemoveAero=TRUE;
+	m_pref_RemoveAero=FALSE;
     m_alloweditclients = TRUE;
 	m_allowshutdown = TRUE;
 	m_allowproperties = TRUE;
@@ -1826,10 +1799,6 @@ LABELUSERSETTINGS:
 	m_pref_BlankInputsOnly = FALSE;
 	m_pref_QueryIfNoLogon = FALSE;
 	m_pref_DefaultScale = 1;
-	m_pref_CaptureAlphaBlending = FALSE; 
-	m_pref_BlackAlphaBlending = FALSE; 
-//	m_pref_GammaGray = FALSE;			// [v1.0.2-jp1 fix]
-
 
 	// Load the local prefs for this user
 	if (hkDefault != NULL)
@@ -1911,8 +1880,6 @@ vncProperties::LoadUserPrefs(HKEY appkey)
 	m_pref_EnableBlankMonitor = LoadInt(appkey, "BlankMonitorEnabled", m_pref_EnableBlankMonitor);
 	m_pref_BlankInputsOnly = LoadInt(appkey, "BlankInputsOnly", m_pref_BlankInputsOnly); //PGM
 	m_pref_DefaultScale = LoadInt(appkey, "DefaultScale", m_pref_DefaultScale);
-	m_pref_CaptureAlphaBlending = LoadInt(appkey, "CaptureAlphaBlending", m_pref_CaptureAlphaBlending); // sf@2005
-	m_pref_BlackAlphaBlending = LoadInt(appkey, "BlackAlphaBlending", m_pref_BlackAlphaBlending); // sf@2005
 	
 	m_pref_Primary=LoadInt(appkey, "primary", m_pref_Primary);
 	m_pref_Secondary=LoadInt(appkey, "secondary", m_pref_Secondary);
@@ -1923,7 +1890,6 @@ vncProperties::LoadUserPrefs(HKEY appkey)
 	// Connection prefs
 	m_pref_SockConnect=LoadInt(appkey, "SocketConnect", m_pref_SockConnect);
 	m_pref_HTTPConnect=LoadInt(appkey, "HTTPConnect", m_pref_HTTPConnect);
-	m_pref_XDMCPConnect=LoadInt(appkey, "XDMCPConnect", m_pref_XDMCPConnect);
 	m_pref_AutoPortSelect=LoadInt(appkey, "AutoPortSelect", m_pref_AutoPortSelect);
 	m_pref_PortNumber=LoadInt(appkey, "PortNumber", m_pref_PortNumber);
 	m_pref_HttpPortNumber=LoadInt(appkey, "HTTPPortNumber",
@@ -1968,8 +1934,6 @@ vncProperties::ApplyUserPrefs()
 	// Modif sf@2002
 	m_server->EnableFileTransfer(m_pref_EnableFileTransfer);
 	m_server->FTUserImpersonation(m_pref_FTUserImpersonation); // sf@2005
-	m_server->CaptureAlphaBlending(m_pref_CaptureAlphaBlending); // sf@2005
-	m_server->BlackAlphaBlending(m_pref_BlackAlphaBlending); // sf@2005
 	m_server->Primary(m_pref_Primary);
 	m_server->Secondary(m_pref_Secondary);
 
@@ -1994,7 +1958,6 @@ vncProperties::ApplyUserPrefs()
 		m_server->SockConnect(m_pref_SockConnect);
 
 	m_server->EnableHTTPConnect(m_pref_HTTPConnect);
-	m_server->EnableXDMCPConnect(m_pref_XDMCPConnect);
 
 	// Are inputs being disabled?
 	if (!m_pref_EnableRemoteInputs)
@@ -2172,12 +2135,19 @@ vncProperties::Save()
 	SaveString(hkLocal, "path", vnclog.GetPath());
 	SaveInt(hkLocal, "DebugLevel", vnclog.GetLevel());
 	SaveInt(hkLocal, "AllowLoopback", m_server->LoopbackOk());
+#ifdef IPV6V4
+	SaveInt(hkLocal, "UseIpv6", m_server->IPV6());
+#endif
 	SaveInt(hkLocal, "LoopbackOnly", m_server->LoopbackOnly());
-	if (hkDefault) SaveInt(hkDefault, "AllowShutdown", m_allowshutdown);
-	if (hkDefault) SaveInt(hkDefault, "AllowProperties",  m_allowproperties);
-	if (hkDefault) SaveInt(hkDefault, "AllowEditClients", m_alloweditclients);
+	if (hkDefault) 
+		{
+			SaveInt(hkDefault, "AllowShutdown", m_allowshutdown);
+			SaveInt(hkDefault, "AllowProperties",  m_allowproperties);
+			SaveInt(hkDefault, "AllowEditClients", m_alloweditclients);
+		}
 
 	SaveInt(hkLocal, "DisableTrayIcon", m_server->GetDisableTrayIcon());
+	SaveInt(hkLocal, "rdpmode", m_server->GetRdpmode());
 	SaveInt(hkLocal, "MSLogonRequired", m_server->MSLogonRequired());
 	// Marscha@2004 - authSSP: save "New MS-Logon" state
 	SaveInt(hkLocal, "NewMSLogon", m_server->GetNewMSLogon());
@@ -2204,8 +2174,6 @@ vncProperties::SaveUserPrefs(HKEY appkey)
 	SaveInt(appkey, "FTUserImpersonation", m_server->FTUserImpersonation()); // sf@2005
 	SaveInt(appkey, "BlankMonitorEnabled", m_server->BlankMonitorEnabled());
 	SaveInt(appkey, "BlankInputsOnly", m_server->BlankInputsOnly()); //PGM
-	SaveInt(appkey, "CaptureAlphaBlending", m_server->CaptureAlphaBlending()); // sf@2005
-	SaveInt(appkey, "BlackAlphaBlending", m_server->BlackAlphaBlending()); // sf@2005
 	SaveInt(appkey, "primary", m_server->Primary());
 	SaveInt(appkey, "secondary", m_server->Secondary());
 
@@ -2219,7 +2187,6 @@ vncProperties::SaveUserPrefs(HKEY appkey)
 	// Connection prefs
 	SaveInt(appkey, "SocketConnect", m_server->SockConnected());
 	SaveInt(appkey, "HTTPConnect", m_server->HTTPConnectEnabled());
-	SaveInt(appkey, "XDMCPConnect", m_server->XDMCPConnectEnabled());
 	SaveInt(appkey, "AutoPortSelect", m_server->AutoPortSelect());
 	if (!m_server->AutoPortSelect()) {
 		SaveInt(appkey, "PortNumber", m_server->GetPort());
@@ -2297,6 +2264,7 @@ void vncProperties::LoadFromIniFile()
 
 	// Disable Tray Icon
 	m_server->SetDisableTrayIcon(myIniFile.ReadInt("admin", "DisableTrayIcon", false));
+	m_server->SetRdpmode(myIniFile.ReadInt("admin", "rdpmode", 0));
 
 	// Authentication required, loopback allowed, loopbackOnly
 
@@ -2318,9 +2286,11 @@ void vncProperties::LoadFromIniFile()
 	
 	//adzm 2010-05-12 - dsmplugin config
 	myIniFile.ReadString("admin", "DSMPluginConfig", m_pref_DSMPluginConfig, 512);
-
+#ifdef IPV6V4
+	m_server->SetIPV6(myIniFile.ReadInt("admin", "UseIpv6", false));
+#endif
 	if (m_server->LoopbackOnly()) m_server->SetLoopbackOk(true);
-	else m_server->SetLoopbackOk(myIniFile.ReadInt("admin", "AllowLoopback", false));
+	else m_server->SetLoopbackOk(myIniFile.ReadInt("admin", "AllowLoopback", true));
 	m_server->SetAuthRequired(myIniFile.ReadInt("admin", "AuthRequired", true));
 
 	m_server->SetConnectPriority(myIniFile.ReadInt("admin", "ConnectPriority", 0));
@@ -2344,7 +2314,6 @@ void vncProperties::LoadFromIniFile()
 	vnclog.Print(LL_INTINFO, VNCLOG("clearing user settings\n"));
 	m_pref_AutoPortSelect=TRUE;
     m_pref_HTTPConnect = TRUE;
-	m_pref_XDMCPConnect = TRUE;
 	m_pref_PortNumber = RFB_PORT_OFFSET; 
 	m_pref_SockConnect=TRUE;
 	{
@@ -2361,11 +2330,11 @@ void vncProperties::LoadFromIniFile()
 	m_pref_clearconsole=FALSE;
 	m_pref_LockSettings=-1;
 
-	m_pref_RemoveWallpaper=TRUE;
+	m_pref_RemoveWallpaper=FALSE;
 	// adzm - 2010-07 - Disable more effects or font smoothing
 	m_pref_RemoveEffects=FALSE;
 	m_pref_RemoveFontSmoothing=FALSE;
-	m_pref_RemoveAero=TRUE;
+	m_pref_RemoveAero=FALSE;
     m_alloweditclients = TRUE;
 	m_allowshutdown = TRUE;
 	m_allowproperties = TRUE;
@@ -2382,8 +2351,6 @@ void vncProperties::LoadFromIniFile()
 	m_pref_BlankInputsOnly = FALSE;
 	m_pref_QueryIfNoLogon = FALSE;
 	m_pref_DefaultScale = 1;
-	m_pref_CaptureAlphaBlending = FALSE; 
-	m_pref_BlackAlphaBlending = FALSE; 
 
 	LoadUserPrefsFromIniFile();
 	m_allowshutdown = myIniFile.ReadInt("admin", "AllowShutdown", m_allowshutdown);
@@ -2395,16 +2362,14 @@ void vncProperties::LoadFromIniFile()
         m_ftTimeout = 60;
 
     m_keepAliveInterval = myIniFile.ReadInt("admin", "KeepAliveInterval", m_keepAliveInterval);
+	m_IdleInputTimeout = myIniFile.ReadInt("admin", "IdleInputTimeout", m_IdleInputTimeout);
+
     if (m_keepAliveInterval >= (m_ftTimeout - KEEPALIVE_HEADROOM))
         m_keepAliveInterval = m_ftTimeout - KEEPALIVE_HEADROOM;
 
-	// adzm 2010-08
-	m_socketKeepAliveTimeout = myIniFile.ReadInt("admin", "SocketKeepAliveTimeout", m_socketKeepAliveTimeout); 
-	if (m_socketKeepAliveTimeout < 0) m_socketKeepAliveTimeout = 0;
-
     m_server->SetFTTimeout(m_ftTimeout);
     m_server->SetKeepAliveInterval(m_keepAliveInterval);
-	m_server->SetSocketKeepAliveTimeout(m_socketKeepAliveTimeout); // adzm 2010-08
+	m_server->SetIdleInputTimeout(m_IdleInputTimeout);
     
 
 	ApplyUserPrefs();
@@ -2419,8 +2384,6 @@ void vncProperties::LoadUserPrefsFromIniFile()
 	m_pref_EnableBlankMonitor = myIniFile.ReadInt("admin", "BlankMonitorEnabled", m_pref_EnableBlankMonitor);
 	m_pref_BlankInputsOnly = myIniFile.ReadInt("admin", "BlankInputsOnly", m_pref_BlankInputsOnly); //PGM
 	m_pref_DefaultScale = myIniFile.ReadInt("admin", "DefaultScale", m_pref_DefaultScale);
-	m_pref_CaptureAlphaBlending = myIniFile.ReadInt("admin", "CaptureAlphaBlending", m_pref_CaptureAlphaBlending); // sf@2005
-	m_pref_BlackAlphaBlending = myIniFile.ReadInt("admin", "BlackAlphaBlending", m_pref_BlackAlphaBlending); // sf@2005
 
 	m_pref_UseDSMPlugin = myIniFile.ReadInt("admin", "UseDSMPlugin", m_pref_UseDSMPlugin);
 	myIniFile.ReadString("admin", "DSMPlugin",m_pref_szDSMPlugin,128);
@@ -2434,7 +2397,6 @@ void vncProperties::LoadUserPrefsFromIniFile()
 	// Connection prefs
 	m_pref_SockConnect=myIniFile.ReadInt("admin", "SocketConnect", m_pref_SockConnect);
 	m_pref_HTTPConnect=myIniFile.ReadInt("admin", "HTTPConnect", m_pref_HTTPConnect);
-	m_pref_XDMCPConnect=myIniFile.ReadInt("admin", "XDMCPConnect", m_pref_XDMCPConnect);
 	m_pref_AutoPortSelect=myIniFile.ReadInt("admin", "AutoPortSelect", m_pref_AutoPortSelect);
 	m_pref_PortNumber=myIniFile.ReadInt("admin", "PortNumber", m_pref_PortNumber);
 	m_pref_HttpPortNumber=myIniFile.ReadInt("admin", "HTTPPortNumber",
@@ -2469,7 +2431,7 @@ void vncProperties::LoadUserPrefsFromIniFile()
 	m_pref_DisableLocalInputs=myIniFile.ReadInt("admin", "LocalInputsDisabled", m_pref_DisableLocalInputs);
 	m_pref_EnableJapInput=myIniFile.ReadInt("admin", "EnableJapInput", m_pref_EnableJapInput);
 	m_pref_clearconsole=myIniFile.ReadInt("admin", "clearconsole", m_pref_clearconsole);
-	G_SENDBUFFER=myIniFile.ReadInt("admin", "sendbuffer", G_SENDBUFFER);
+	G_SENDBUFFER_EX=myIniFile.ReadInt("admin", "sendbuffer", G_SENDBUFFER_EX);
 }
 
 
@@ -2479,13 +2441,47 @@ void vncProperties::SaveToIniFile()
 		return;
 
 	// SAVE PER-USER PREFS IF ALLOWED
-	bool use_uac=false;
 	if (!myIniFile.IsWritable()  || vncService::RunningAsService())
 			{
-				// We can't write to the ini file , Vista in service mode
-				if (!Copy_to_Temp( m_Tempfile)) return;
+				//First check if temp file is writable
 				myIniFile.IniFileSetTemp( m_Tempfile);
-				use_uac=true;
+				if (!myIniFile.IsWritable())
+					{
+						vnclog.Print(LL_INTERR, VNCLOG("file %s not writable, error saving new settings\n"), m_Tempfile);
+						return;				
+					}
+				if (!Copy_to_Temp( m_Tempfile))
+					{
+						vnclog.Print(LL_INTERR, VNCLOG("file %s not writable, error saving new settings\n"), m_Tempfile);
+						return;				
+					}
+
+				SaveUserPrefsToIniFile();
+				myIniFile.WriteInt("admin", "DebugMode", vnclog.GetMode());
+				myIniFile.WriteInt("admin", "Avilog", vnclog.GetVideo());
+				myIniFile.WriteString("admin", "path", vnclog.GetPath());
+				myIniFile.WriteInt("admin", "DebugLevel", vnclog.GetLevel());
+				myIniFile.WriteInt("admin", "AllowLoopback", m_server->LoopbackOk());
+#ifdef IPV6V4
+				myIniFile.WriteInt("admin", "UseIpv6", m_server->IPV6());
+#endif
+				myIniFile.WriteInt("admin", "LoopbackOnly", m_server->LoopbackOnly());
+				myIniFile.WriteInt("admin", "AllowShutdown", m_allowshutdown);
+				myIniFile.WriteInt("admin", "AllowProperties",  m_allowproperties);
+				myIniFile.WriteInt("admin", "AllowEditClients", m_alloweditclients);
+				myIniFile.WriteInt("admin", "FileTransferTimeout", m_ftTimeout);
+				myIniFile.WriteInt("admin", "KeepAliveInterval", m_keepAliveInterval);
+				myIniFile.WriteInt("admin", "IdleInputTimeout", m_IdleInputTimeout);
+				myIniFile.WriteInt("admin", "DisableTrayIcon", m_server->GetDisableTrayIcon());
+				myIniFile.WriteInt("admin", "rdpmode", m_server->GetRdpmode());
+				myIniFile.WriteInt("admin", "MSLogonRequired", m_server->MSLogonRequired());
+				// Marscha@2004 - authSSP: save "New MS-Logon" state
+				myIniFile.WriteInt("admin", "NewMSLogon", m_server->GetNewMSLogon());
+				// sf@2003 - DSM params here
+				myIniFile.WriteInt("admin", "ConnectPriority", m_server->ConnectPriority());
+				myIniFile.copy_to_secure();
+				myIniFile.IniFileSetSecure();
+				return;
 			}
 
 	SaveUserPrefsToIniFile();
@@ -2494,32 +2490,24 @@ void vncProperties::SaveToIniFile()
 	myIniFile.WriteString("admin", "path", vnclog.GetPath());
 	myIniFile.WriteInt("admin", "DebugLevel", vnclog.GetLevel());
 	myIniFile.WriteInt("admin", "AllowLoopback", m_server->LoopbackOk());
+#ifdef IPV6V4
+	myIniFile.WriteInt("admin", "UseIpv6", m_server->IPV6());
+#endif
 	myIniFile.WriteInt("admin", "LoopbackOnly", m_server->LoopbackOnly());
 	myIniFile.WriteInt("admin", "AllowShutdown", m_allowshutdown);
 	myIniFile.WriteInt("admin", "AllowProperties",  m_allowproperties);
 	myIniFile.WriteInt("admin", "AllowEditClients", m_alloweditclients);
     myIniFile.WriteInt("admin", "FileTransferTimeout", m_ftTimeout);
     myIniFile.WriteInt("admin", "KeepAliveInterval", m_keepAliveInterval);
-	// adzm 2010-08
-    myIniFile.WriteInt("admin", "SocketKeepAliveTimeout", m_socketKeepAliveTimeout);
-
+	myIniFile.WriteInt("admin", "IdleInputTimeout", m_IdleInputTimeout);
 	myIniFile.WriteInt("admin", "DisableTrayIcon", m_server->GetDisableTrayIcon());
+	myIniFile.WriteInt("admin", "rdpmode", m_server->GetRdpmode());
 	myIniFile.WriteInt("admin", "MSLogonRequired", m_server->MSLogonRequired());
 	// Marscha@2004 - authSSP: save "New MS-Logon" state
 	myIniFile.WriteInt("admin", "NewMSLogon", m_server->GetNewMSLogon());
 	// sf@2003 - DSM params here
-	myIniFile.WriteInt("admin", "UseDSMPlugin", m_server->IsDSMPluginEnabled());
 	myIniFile.WriteInt("admin", "ConnectPriority", m_server->ConnectPriority());
-	myIniFile.WriteString("admin", "DSMPlugin",m_server->GetDSMPluginName());
-
-	//adzm 2010-05-12 - dsmplugin config
-	myIniFile.WriteString("admin", "DSMPluginConfig", m_server->GetDSMPluginConfig());
-
-	if (use_uac==true)
-	{
-	myIniFile.copy_to_secure();
-	myIniFile.IniFileSetSecure();
-	}
+	return;
 }
 
 
@@ -2533,8 +2521,6 @@ void vncProperties::SaveUserPrefsToIniFile()
 	myIniFile.WriteInt("admin", "FTUserImpersonation", m_server->FTUserImpersonation()); // sf@2005
 	myIniFile.WriteInt("admin", "BlankMonitorEnabled", m_server->BlankMonitorEnabled());
 	myIniFile.WriteInt("admin", "BlankInputsOnly", m_server->BlankInputsOnly()); //PGM
-	myIniFile.WriteInt("admin", "CaptureAlphaBlending", m_server->CaptureAlphaBlending()); // sf@2005
-	myIniFile.WriteInt("admin", "BlackAlphaBlending", m_server->BlackAlphaBlending()); // sf@2005
 
 	myIniFile.WriteInt("admin", "DefaultScale", m_server->GetDefaultScale());
 
@@ -2542,7 +2528,7 @@ void vncProperties::SaveUserPrefsToIniFile()
 	myIniFile.WriteString("admin", "DSMPlugin",m_server->GetDSMPluginName());
 
 	//adzm 2010-05-12 - dsmplugin config
-	myIniFile.WriteString("admin", "DSMPluginConfig", m_server->GetDSMPluginConfig());
+	//myIniFile.WriteString("admin", "DSMPluginConfig", m_server->GetDSMPluginConfig());
 
 	myIniFile.WriteInt("admin", "primary", m_server->Primary());
 	myIniFile.WriteInt("admin", "secondary", m_server->Secondary());
@@ -2550,7 +2536,6 @@ void vncProperties::SaveUserPrefsToIniFile()
 	// Connection prefs
 	myIniFile.WriteInt("admin", "SocketConnect", m_server->SockConnected());
 	myIniFile.WriteInt("admin", "HTTPConnect", m_server->HTTPConnectEnabled());
-	myIniFile.WriteInt("admin", "XDMCPConnect", m_server->XDMCPConnectEnabled());
 	myIniFile.WriteInt("admin", "AutoPortSelect", m_server->AutoPortSelect());
 	if (!m_server->AutoPortSelect()) {
 		myIniFile.WriteInt("admin", "PortNumber", m_server->GetPort());
@@ -2609,4 +2594,148 @@ void vncProperties::ReloadDynamicSettings()
 	// Logging/debugging prefs
 	vnclog.SetMode(myIniFile.ReadInt("admin", "DebugMode", 0));
 	vnclog.SetLevel(myIniFile.ReadInt("admin", "DebugLevel", 0));
+}
+
+
+
+
+
+
+void Secure_Save_Plugin_Config(char *szPlugin)
+{
+	HANDLE hProcess = NULL, hPToken = NULL;
+	DWORD id = GetExplorerLogonPid();
+	if (id != 0)
+	{
+		hProcess = OpenProcess(MAXIMUM_ALLOWED, FALSE, id);
+		if (!hProcess) goto error3;
+		if (!OpenProcessToken(hProcess, TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY
+			| TOKEN_DUPLICATE | TOKEN_ASSIGN_PRIMARY | TOKEN_ADJUST_SESSIONID
+			| TOKEN_READ | TOKEN_WRITE, &hPToken))
+		{
+			CloseHandle(hProcess);
+			goto error3;
+		}
+
+		char dir[MAX_PATH];
+		char exe_file_name[MAX_PATH];
+		GetModuleFileName(0, exe_file_name, MAX_PATH);
+		strcpy(dir, exe_file_name);
+		strcat(dir, " -dsmpluginhelper ");
+		strcat(dir, szPlugin);
+
+		{
+			STARTUPINFO          StartUPInfo;
+			PROCESS_INFORMATION  ProcessInfo;
+			HANDLE Token = NULL;
+			HANDLE process = NULL;
+			ZeroMemory(&StartUPInfo, sizeof(STARTUPINFO));
+			ZeroMemory(&ProcessInfo, sizeof(PROCESS_INFORMATION));
+			StartUPInfo.wShowWindow = SW_SHOW;
+			StartUPInfo.lpDesktop = "Winsta0\\Default";
+			StartUPInfo.cb = sizeof(STARTUPINFO);
+
+			CreateProcessAsUser(hPToken, NULL, dir, NULL, NULL, FALSE, DETACHED_PROCESS, NULL, NULL, &StartUPInfo, &ProcessInfo);
+			DWORD errorcode = GetLastError();
+			if (errorcode == 1314) goto error1;
+			if (process) CloseHandle(process);
+			if (Token) CloseHandle(Token);
+			if (ProcessInfo.hProcess) CloseHandle(ProcessInfo.hProcess);
+			if (ProcessInfo.hThread) CloseHandle(ProcessInfo.hThread);	
+			return;
+		error1:
+			Secure_Plugin(szPlugin);
+		}
+	error3:
+		return;
+	}
+}
+
+
+void Secure_Plugin_elevated(char *szPlugin)
+{
+	char dir[MAX_PATH];
+	char exe_file_name[MAX_PATH];
+	strcpy(dir, " -dsmplugininstance ");
+	strcat(dir, szPlugin);
+
+	GetModuleFileName(0, exe_file_name, MAX_PATH);
+	SHELLEXECUTEINFO shExecInfo;
+	shExecInfo.cbSize = sizeof(SHELLEXECUTEINFO);
+	shExecInfo.fMask = NULL;
+	shExecInfo.hwnd = GetForegroundWindow();
+	shExecInfo.lpVerb = "runas";
+	shExecInfo.lpFile = exe_file_name;
+	shExecInfo.lpParameters = dir;
+	shExecInfo.lpDirectory = NULL;
+	shExecInfo.nShow = SW_HIDE;
+	shExecInfo.hInstApp = NULL;
+	ShellExecuteEx(&shExecInfo);
+}
+
+void Secure_Plugin(char *szPlugin)
+{
+	CDSMPlugin* m_pDSMPlugin = NULL;
+	m_pDSMPlugin = new CDSMPlugin();
+	m_pDSMPlugin->LoadPlugin(szPlugin, false);
+	if (m_pDSMPlugin->IsLoaded())
+	{
+		char szParams[32];
+		strcpy(szParams, "NoPassword,");
+		strcat(szParams, "server-app");
+
+		HDESK desktop;
+		desktop = OpenInputDesktop(0, FALSE,
+			DESKTOP_CREATEMENU | DESKTOP_CREATEWINDOW |
+			DESKTOP_ENUMERATE | DESKTOP_HOOKCONTROL |
+			DESKTOP_WRITEOBJECTS | DESKTOP_READOBJECTS |
+			DESKTOP_SWITCHDESKTOP | GENERIC_WRITE
+			);
+
+		if (desktop == NULL)
+			vnclog.Print(LL_INTERR, VNCLOG("OpenInputdesktop Error \n"));
+		else
+			vnclog.Print(LL_INTERR, VNCLOG("OpenInputdesktop OK\n"));
+
+		HDESK old_desktop = GetThreadDesktop(GetCurrentThreadId());
+		DWORD dummy;
+
+		char new_name[256];
+		if (desktop)
+		{
+			if (!GetUserObjectInformation(desktop, UOI_NAME, &new_name, 256, &dummy))
+			{
+				vnclog.Print(LL_INTERR, VNCLOG("!GetUserObjectInformation \n"));
+			}
+
+			vnclog.Print(LL_INTERR, VNCLOG("SelectHDESK to %s (%x) from %x\n"), new_name, desktop, old_desktop);
+
+			if (!SetThreadDesktop(desktop))
+			{
+				vnclog.Print(LL_INTERR, VNCLOG("SelectHDESK:!SetThreadDesktop \n"));
+			}
+		}
+
+		HRESULT hr = CoInitialize(NULL);
+		HWND hwnd2 = CreateWindowA("STATIC", "dummy", WS_VISIBLE, 0, 0, 100, 100, NULL, NULL, NULL, NULL);
+		ShowWindow(hwnd2, SW_HIDE);
+		char* szNewConfig = NULL;
+		char DSMPluginConfig[512];
+		DSMPluginConfig[0] = '\0';
+		IniFile myIniFile;
+		myIniFile.ReadString("admin", "DSMPluginConfig", DSMPluginConfig, 512);
+		m_pDSMPlugin->SetPluginParams(hwnd2, szParams, DSMPluginConfig, &szNewConfig);
+
+
+		if (szNewConfig != NULL && strlen(szNewConfig) > 0) {
+			strcpy_s(DSMPluginConfig, 511, szNewConfig);
+		}
+		myIniFile.WriteString("admin", "DSMPluginConfig", DSMPluginConfig);
+
+
+		CoUninitialize();
+		SetThreadDesktop(old_desktop);
+		if (desktop) CloseDesktop(desktop);
+	}
+	if (m_pDSMPlugin != NULL) delete(m_pDSMPlugin);
 }

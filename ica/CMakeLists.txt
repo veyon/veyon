@@ -140,7 +140,8 @@ IF(ITALC_BUILD_WIN32)
 		${CMAKE_CURRENT_SOURCE_DIR}/win32/winvnc/winvnc/CpuUsage.cpp
 		${CMAKE_CURRENT_SOURCE_DIR}/win32/winvnc/winvnc/getinfo.cpp
 		${CMAKE_CURRENT_SOURCE_DIR}/win32/winvnc/winvnc/Dtwinver.cpp
-		${CMAKE_CURRENT_SOURCE_DIR}/win32/winvnc/winvnc/httpconnect.cpp
+		${CMAKE_CURRENT_SOURCE_DIR}/win32/winvnc/winvnc/uvncUiAccess.cpp
+		${CMAKE_CURRENT_SOURCE_DIR}/win32/winvnc/winvnc/blankmonitor.cpp
 		${CMAKE_CURRENT_SOURCE_DIR}/win32/winvnc/omnithread/nt.cpp
 		${CMAKE_CURRENT_SOURCE_DIR}/win32/winvnc/DSMPlugin/DSMPlugin.cpp
 		${CMAKE_CURRENT_SOURCE_DIR}/win32/common/Clipboard.cpp

@@ -60,15 +60,15 @@ int main(int argc, char* argv[])
 	if (argc<5) 
 	{
 		printf("Enter user name : ");
-		gets(pszBuffer);
+		fgets(pszBuffer,256,stdin);
 		printf("\nEnter password : ");
-		gets(pszBuffer2);
+		fgets(pszBuffer2, 256, stdin);
 		printf("\n");
 		printf("Enter group : ");
-		gets(pszBuffer3);
+		fgets(pszBuffer3, 256, stdin);
 		printf("\n");
 		printf("loc=1 dom=3 local+domain=3 : ");
-		gets(pszBuffer4);
+		fgets(pszBuffer4, 256, stdin);
 		printf("\n");
 	if (0==strcmp("", pszBuffer)) 
 	{
@@ -227,6 +227,6 @@ int main(int argc, char* argv[])
 	}
 	}
 	printf("Enter to quit ");
-	gets(pszBuffer);
+	fgets(pszBuffer, 256, stdin);
 	return 0;
 }

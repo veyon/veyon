@@ -39,6 +39,7 @@ static void
 rfbInitTrueColourSingleTableOUTVNC (char **table, rfbPixelFormat *in,
 				 rfbPixelFormat *out)
 {
+	if (table==NULL) return;
     int i;
     int inRed, inGreen, inBlue, outRed, outGreen, outBlue;
     OUT_T *t=NULL;

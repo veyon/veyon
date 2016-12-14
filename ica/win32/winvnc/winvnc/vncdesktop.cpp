@@ -1,4 +1,4 @@
-//  Copyright (C) 2002 Ultr@VNC Team Members. All Rights Reserved.
+//  Copyright (C) 2002 UltraVNC Team Members. All Rights Reserved.
 //  Copyright (C) 2000-2002 Const Kaplinsky. All Rights Reserved.
 //  Copyright (C) 2002 RealVNC Ltd. All Rights Reserved.
 //  Copyright (C) 1999 AT&T Laboratories Cambridge. All Rights Reserved.
@@ -51,6 +51,9 @@
 #include <algorithm>
 #include <commctrl.h>
 
+extern bool PreConnect;
+int getinfo(char mytext[1024]);
+
 
 
 // Constants
@@ -62,7 +65,6 @@ const char szDesktopSink[] = "WinVNC desktop sink";
 bool g_Desktop_running;
 extern bool g_DesktopThread_running;
 extern bool g_update_triggered;
-DWORD WINAPI BlackWindow(LPVOID lpParam);
 
 //
 // // Modif sf@2002 - v1.1.0 - Optimization
@@ -89,31 +91,51 @@ DWORD WINAPI BlackWindow(LPVOID lpParam);
 // 
 // 
 //
+#ifndef ULTRAVNC_ITALC_SUPPORT
  extern bool G_USE_PIXEL;
+#endif
 PixelCaptureEngine::~PixelCaptureEngine()
 {
 }
 
 PixelCaptureEngine::PixelCaptureEngine()
 	{
-		if (OSversion()==2) m_bIsVista=true;
+		if (VNCOS.OS_VISTA || VNCOS.OS_WIN7 || VNCOS.OS_WIN8) m_bIsVista=true;
 		else 
 			m_bIsVista=false;
-/*		if (G_USE_PIXEL)
-			m_bIsVista=false;*/
+
+#ifndef ULTRAVNC_ITALC_SUPPORT
+		if (G_USE_PIXEL)
+			m_bIsVista=false;
+#endif
 	}
 void
-PixelCaptureEngine::PixelCaptureEngineInit(HDC rootdc, HDC memdc, HBITMAP membitmap, bool bCaptureAlpha, void *dibbits, int bpp, int bpr)
+PixelCaptureEngine::PixelCaptureEngineInit(HDC rootdc, HDC memdc, HBITMAP membitmap, bool bCaptureAlpha, void *dibbits, int bpp, int bpr,int offsetx,int offsety)
 	{
 		m_hmemdc=memdc;
 		m_membitmap=membitmap;
 		m_oldbitmap=0;
 		m_DIBbits=dibbits;
 		m_bCaptureAlpha=bCaptureAlpha;
-		m_hrootdc=rootdc;
+		m_hrootdc_PixelEngine=rootdc;
 		m_bytesPerPixel=bpp;
 		m_bytesPerRow=bpr;
+		m_ScreenOffsetx=offsetx;
+		m_ScreenOffsety=offsety;
 	}
+
+//SImulate high load biblt
+void Highcpu(long counter)
+{
+	float number = 1.5;
+
+	while (counter>0)
+	{
+		number *= number;
+		counter--;
+	}
+
+}
 
 bool
 PixelCaptureEngine::CaptureRect(const rfb::Rect& rect)
@@ -123,9 +145,10 @@ PixelCaptureEngine::CaptureRect(const rfb::Rect& rect)
 				m_rect = rect;
 				if ((m_oldbitmap = (HBITMAP) SelectObject(m_hmemdc, m_membitmap)) == NULL)
 					return false;
-
+				//Highcpu(100000000);
+	//			Beep(1000, 100);
 				// Capture screen into bitmap
-				BOOL blitok = BitBlt(m_hmemdc, 0, 0, rect.width(), rect.height(), m_hrootdc, rect.tl.x, rect.tl.y, 
+				BOOL blitok = BitBlt(m_hmemdc, 0, 0, rect.width(), rect.height(), m_hrootdc_PixelEngine, rect.tl.x + m_ScreenOffsetx, rect.tl.y + m_ScreenOffsety,
 									 m_bCaptureAlpha ? (CAPTUREBLT | SRCCOPY) : SRCCOPY);
 				return blitok ? true : false;
 		}
@@ -138,6 +161,9 @@ PixelCaptureEngine::CapturePixel(int x, int y)
 		if (m_bIsVista)
 		{
 				COLORREF cr = 0;
+				int tx = x - m_rect.tl.x;
+				int ty = y - m_rect.tl.y;
+
 				unsigned int index = (m_bytesPerRow * y) + (m_bytesPerPixel * x);
 				memcpy(&cr, ((char*)m_DIBbits)+index, m_bytesPerPixel);
 
@@ -147,7 +173,7 @@ PixelCaptureEngine::CapturePixel(int x, int y)
 		{
 
 				COLORREF cr=0;		
-				cr=GetPixel(m_hrootdc, x, y);
+				cr = GetPixel(m_hrootdc_PixelEngine, x, y);
 				return cr;
 		}
 	}
@@ -166,6 +192,7 @@ PixelCaptureEngine::ReleaseCapture()
 
 bool vncDesktop::FastDetectChanges(rfb::Region2D &rgn, rfb::Rect &rect, int nZone, bool fTurbo)
 {
+	if (m_DIBbits == NULL) return false;
 	bool returnvalue=false;
 	bool fInitGrid = false;
 	bool fIncCycle = false;
@@ -216,7 +243,8 @@ bool vncDesktop::FastDetectChanges(rfb::Region2D &rgn, rfb::Rect &rect, int nZon
                 {
 					DWORD pid;
 					GetWindowThreadProcessId(hWnd, &pid);
-					HANDLE hProcess = OpenProcess(PROCESS_ALL_ACCESS, 0, pid);
+					HANDLE hProcess = NULL;
+					hProcess = OpenProcess(PROCESS_ALL_ACCESS, 0, pid);
 					RECT* ptritemrect;
 					RECT itemrect;
 					ptritemrect = (RECT*)VirtualAllocEx(hProcess, NULL, sizeof(RECT), MEM_RESERVE | MEM_COMMIT, PAGE_READWRITE);
@@ -234,17 +262,19 @@ bool vncDesktop::FastDetectChanges(rfb::Region2D &rgn, rfb::Rect &rect, int nZon
 					iconregion.assign_union(wrect);
 					VirtualFreeEx(hProcess, ptritemrect, 0, MEM_RELEASE);
 					}
+					if (hProcess) CloseHandle(hProcess);
 				}
 			}
 
 	}
 
-	PixelEngine.PixelCaptureEngineInit(m_hrootdc, m_hmemdc, m_membitmap, m_fCaptureAlphaBlending && !m_Black_window_active, 
-		                           m_DIBbits, m_scrinfo.format.bitsPerPixel / 8, m_bytesPerRow);
+	PixelEngine.PixelCaptureEngineInit(m_hrootdc_Desktop, m_hmemdc, m_membitmap, VNCOS.CaptureAlphaBlending() && !m_Black_window_active,
+		                           m_DIBbits, m_scrinfo.format.bitsPerPixel / 8, m_bytesPerRow,m_ScreenOffsetx,m_ScreenOffsety);
 	// We test one zone at a time 
 	// vnclog.Print(LL_INTINFO, VNCLOG("### Polling Grid %d - SubGrid %d\n"), nZone, m_nGridCycle); 
 	GridsList::iterator iGrid;
 	int nGridPos = (nZone * PIXEL_BLOCK_SIZE / GRID_OFFSET) + m_nGridCycle;
+	int nIndex = nGridPos;
 
 	iGrid = m_lGridsList.begin();
     std::advance(iGrid, nGridPos);
@@ -273,6 +303,46 @@ bool vncDesktop::FastDetectChanges(rfb::Region2D &rgn, rfb::Rect &rect, int nZon
 	// Try to detect if screen is almost idle
 	// no need to poll static screens very fast, it only use cpu
 	change_found=0;
+	/*//Detect text faster
+	//If the caret change use a 64x64 for his last position
+	static	DWORD	dwCurrentThreadId = GetCurrentThreadId();
+ 	static	HWND	hWindow = GetForegroundWindow();
+ 	static	DWORD	dwWindowThreadId = GetWindowThreadProcessId(hWindow, NULL);
+ 	HWND	hCurrentWindow = GetForegroundWindow();
+ 	if (hCurrentWindow != hWindow )
+ 	{
+ 		// Release
+ 		AttachThreadInput(dwCurrentThreadId, dwWindowThreadId, FALSE);
+		hWindow = hCurrentWindow;
+ 		dwWindowThreadId = GetWindowThreadProcessId(hWindow, NULL);
+		AttachThreadInput(dwCurrentThreadId, dwWindowThreadId, TRUE);
+ 	}
+
+
+	POINT	pt;
+ 	if (GetCaretPos(&pt))
+ 	{
+		HWND hwnd=GetForegroundWindow();
+ 		if (hwnd) ClientToScreen(GetFocus(), &pt);
+ 	}
+	if (old_caret_pt.x!=pt.x || old_caret_pt.y!=pt.y)
+	{		
+		RECT rect;
+		rect.left=old_caret_pt.x-m_ScreenOffsetx;
+		rect.right=old_caret_pt.x-m_ScreenOffsetx+64;
+		rect.top=old_caret_pt.y-m_ScreenOffsety;
+		rect.bottom=old_caret_pt.y-m_ScreenOffsety+64;
+		rfb::Rect wrect = rfb::Rect(rect).intersect(m_Cliprect);
+		if (!wrect.is_empty())
+			{
+				rgn.assign_union(wrect);
+			}
+
+		old_caret_pt.x=pt.x;
+		old_caret_pt.y=pt.y;
+	}*/
+
+
 	// We walk our way through the Grids
 	for (y = rect.tl.y; y < (rect.br.y -nOffset -1) ; y += PIXEL_BLOCK_SIZE)
 	{
@@ -310,8 +380,8 @@ bool vncDesktop::FastDetectChanges(rfb::Region2D &rgn, rfb::Rect &rect, int nZon
 				POINT point;
 				RECT rect;
 
-				point.x = xo;
-				point.y = yo;
+				point.x = xo+m_ScreenOffsetx;
+				point.y = yo+m_ScreenOffsety;
 
 				// Find the smallest, non-hidden, non-disabled Window containing this pixel
 				// REM: We don't use ChildWindowFromPoint because we don't want of hidden windows
@@ -377,10 +447,20 @@ bool vncDesktop::FastDetectChanges(rfb::Region2D &rgn, rfb::Rect &rect, int nZon
 	// after x time, force some timeout
 	if (change_found)
 	{
+		#ifdef _DEBUG
+			char			szText[256];
+			sprintf(szText,"Change found %d\n",GetTickCount());
+			OutputDebugString(szText);		
+		#endif
 		idle_counter=0;
 	}
 	else
 	{
+		#ifdef _DEBUG
+			char			szText[256];
+			sprintf(szText,"Change idle %d\n",GetTickCount());
+			OutputDebugString(szText);		
+		#endif
 		idle_counter=idle_counter+5;
 	}
 	if (idle_counter>20) 
@@ -406,6 +486,7 @@ bool vncDesktop::FastDetectChanges(rfb::Region2D &rgn, rfb::Rect &rect, int nZon
 
 vncDesktop::vncDesktop()
 {
+	m_server = NULL;
 	m_thread = NULL;
 #ifdef AVILOG
 	AviGen=NULL;
@@ -423,7 +504,7 @@ vncDesktop::vncDesktop()
 	m_update_triggered = FALSE;
 	g_update_triggered = FALSE;
 
-	m_hrootdc = NULL;
+	m_hrootdc_Desktop = NULL;
 	m_hmemdc = NULL;
 	m_membitmap = NULL;
 
@@ -460,14 +541,13 @@ vncDesktop::vncDesktop()
 	m_ScreenOffsety=0;
 	m_hookdriver=false;
 
-	OldPowerOffTimeout=0;
+	m_screen_in_powersave=0;
 
 	On_Off_hookdll=false;
 	g_Desktop_running=true;
 	hUser32=LoadLibrary("USER32");
 	if (hUser32) pbi = (pBlockInput)GetProcAddress( hUser32, "BlockInput");
-	m_OrigpollingSet=false;
-	m_Origpolling=false;
+	no_default_desktop=false;
 	DriverWantedSet=false;
 	can_be_hooked=false;
 
@@ -492,6 +572,27 @@ vncDesktop::vncDesktop()
 	nr_rects=0;
 	iconregion.clear();
 	blankmonitorstate=false;
+
+// JnZn558
+	m_current_monitor = MULTI_MON_PRIMARY;
+	m_old_monitor = MULTI_MON_PRIMARY;
+	m_ScreenWidth = 0;
+	m_ScreenHeight = 0;
+	//old_caret_pt.x=0;
+	//old_caret_pt.y=0;
+
+	startedw8 = false;
+	plist = NULL;
+	sesmsg = NULL;
+	sesmsg = new sessionmsg[100];
+	for (int i = 0; i < 100; i++)
+	{
+		sesmsg[i].ID = 9999;
+		memset(sesmsg[i].name, 0, 32);
+		memset(sesmsg[i].username, 0, 32);
+		memset(sesmsg[i].type, 0, 32);
+	}
+//
 }
 
 vncDesktop::~vncDesktop()
@@ -503,10 +604,12 @@ vncDesktop::~vncDesktop()
 	if(m_thread != NULL)
 	{
 		StopInitWindowthread();
+		vncDesktopThread *thread=(vncDesktopThread*)m_thread;
 		int counter=0;
 		while (g_DesktopThread_running!=false)
 		{
-			if (Window()==NULL)SetEvent(trigger_events[5]);;
+			if (Window()==NULL)
+				SetEvent(trigger_events[5]);;
 			Sleep(100);
 			counter++;
 			if (counter>50) 
@@ -525,7 +628,7 @@ vncDesktop::~vncDesktop()
 
 
 	// added jeff
-    SetBlockInputState(false);
+	if (m_server) SetBlockInputState(false);
 	// Let's call Shutdown just in case something went wrong...
 	Shutdown();
 	vnclog.Print(LL_INTINFO, VNCLOG("~vncDesktop Shutdown()\n"));
@@ -543,7 +646,7 @@ vncDesktop::~vncDesktop()
 			// we must be carefull to avoid memory leaks...
 			((RGBPixelList*)(*iGrid))->clear();
 			delete ((RGBPixelList*)(*iGrid));
-			//vnclog.Print(LL_INTWARN, VNCLOG("delete ((RGBPixelList) \n"));
+			vnclog.Print(LL_INTWARN, VNCLOG("delete ((RGBPixelList) \n"));
 		}
 	}
 	vnclog.Print(LL_INTINFO, VNCLOG("~vncDesktop m_lGridsList.clear\n"));
@@ -561,6 +664,16 @@ vncDesktop::~vncDesktop()
       vnclog.Print(LL_INTERR, VNCLOG("~vncDesktop:: second request to close InitWindowthread\n"));
       StopInitWindowthread();
 	}
+	Sleep(1000);//FIX
+	if (m_hrootdc_Desktop != NULL)
+	{
+		if (!ReleaseDC(NULL, m_hrootdc_Desktop))
+			vnclog.Print(LL_INTERR, VNCLOG("failed to DeleteDC hrootdc\n"));
+		DeleteDC(m_hrootdc_Desktop);
+		m_hrootdc_Desktop = NULL;
+	}
+	if (sesmsg) delete[] sesmsg;
+	sesmsg = NULL;
 }
 
 
@@ -586,11 +699,63 @@ vncDesktop::TriggerUpdate()
 	}
 }
 
+DWORD
+vncDesktop::PreConnectInitBitmap()
+{
 
+	multi_monitor = false;
+    m_hrootdc_Desktop = GetDC(NULL);
+	if (m_hrootdc_Desktop == NULL) return ERROR_DESKTOP_NO_ROOTDC;
+
+	m_ScreenOffsetx = 0;
+	m_ScreenOffsety = 0;
+	m_ScreenWidth = 0;
+	m_ScreenHeight = 0;
+	m_bmrect = rfb::Rect(0, 0, 640, 640);
+
+	m_hmemdc = CreateCompatibleDC(m_hrootdc_Desktop);
+	if (m_hmemdc == NULL) return ERROR_DESKTOP_NO_ROOTDC;
+
+	m_membitmap = CreateCompatibleBitmap(m_hrootdc_Desktop, 640, 640);
+	if (m_membitmap == NULL) return ERROR_DESKTOP_NO_COMPATBITMAP;
+	memset(&m_bminfo, 0, sizeof(m_bminfo));
+	m_bminfo.bmi.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
+	m_bminfo.bmi.bmiHeader.biBitCount = 32;
+	m_bminfo.bmi.bmiHeader.biPlanes = 1;
+	m_bminfo.bmi.bmiHeader.biWidth = m_bmrect.br.x;
+	m_bminfo.bmi.bmiHeader.biHeight = m_bmrect.br.y;
+	m_bminfo.bmi.bmiHeader.biSizeImage = abs((m_bminfo.bmi.bmiHeader.biWidth *m_bminfo.bmi.bmiHeader.biHeight *m_bminfo.bmi.bmiHeader.biBitCount) / 8);
+	m_bminfo.bmi.bmiHeader.biHeight = -abs(m_bminfo.bmi.bmiHeader.biHeight);
+	m_bminfo.bmi.bmiHeader.biCompression = BI_RGB;
+	m_bminfo.truecolour = true;
+	m_DIBbits = NULL;
+	return 0;
+}
+DWORD
+vncDesktop::PreConnectStartup()
+{
+	DWORD status;
+	if (!InitDesktop())
+	{
+		vnclog.Print(LL_INTINFO, VNCLOG("InitDesktop Failed\n"));
+		return ERROR_DESKTOP_INIT_FAILED;
+	}
+	m_server->Driver(false);
+	m_server->Hook(false);
+	m_buffer.VideDriverUsed(false);
+	if ((status = PreConnectInitBitmap()) != 0) return status;
+	SetPixFormat();
+	SetPixShifts();
+	StartInitWindowthread();
+	if (!m_buffer.SetDesktop(this))return ERROR_DESKTOP_OUT_OF_MEMORY;
+	GetQuarterSize();
+	return 0;
+}
 // Routine to startup and install all the hooks and stuff
 DWORD
 vncDesktop::Startup()
 {
+	if (PreConnect) return PreConnectStartup();
 	// Initialise the Desktop object
     DWORD status;
 	if (!InitDesktop())
@@ -607,30 +772,30 @@ vncDesktop::Startup()
 			m_server->Hook(HookWanted);
 			DriverWantedSet=FALSE;
 			}
+	no_default_desktop=false;
 	if (m_server->Driver())
 				{
 					vnclog.Print(LL_INTINFO, VNCLOG("Driver option enabled \n"));
-					if(OSversion()==1 || OSversion()==2 )
+					//Enable only the video driver for the Default desktop
+					HDESK desktop = GetThreadDesktop(GetCurrentThreadId());
+					DWORD dummy;
+					char new_name[256];
+					if (GetUserObjectInformation(desktop, UOI_NAME, &new_name, 256, &dummy))
 						{
-							//Enable only the video driver for the Default desktop
-							HDESK desktop = GetThreadDesktop(GetCurrentThreadId());
-							DWORD dummy;
-							char new_name[256];
-							if (GetUserObjectInformation(desktop, UOI_NAME, &new_name, 256, &dummy))
+							if (strcmp(new_name,"Default")==0)
 								{
-									if (strcmp(new_name,"Default")==0)
-										{
-											InitVideoDriver();
-										}
-									else 
-										vnclog.Print(LL_INTINFO, VNCLOG("no default desktop \n"));
+									InitVideoDriver();
+									no_default_desktop=false;
+								}
+							else 
+								{
+									vnclog.Print(LL_INTINFO, VNCLOG("no default desktop \n"));
+									no_default_desktop=true;
 								}
 						}
 				}
-    else
-	vnclog.Print(LL_INTINFO, VNCLOG("Driver option disabled \n"));
-	if (m_Origpolling) m_server->PollFullScreen(m_Origpolling);
-	m_OrigpollingSet=false;
+    else vnclog.Print(LL_INTINFO, VNCLOG("Driver option disabled \n"));
+
 	
 	if (VideoBuffer())
 	{
@@ -732,16 +897,16 @@ vncDesktop::Shutdown()
 			delete AviGen;
 			AviGen=NULL;
 		}
-#endif
-
+#endif	
 	ShutdownInitWindowthread();
 
 	// Now free all the bitmap stuff
-	if (m_hrootdc != NULL)
+	if (m_hrootdc_Desktop != NULL)
 	{
-		if (!DeleteDC(m_hrootdc))
+		if (!ReleaseDC(NULL, m_hrootdc_Desktop))
 				vnclog.Print(LL_INTERR, VNCLOG("failed to DeleteDC hrootdc\n"));
-		m_hrootdc = NULL;
+		DeleteDC(m_hrootdc_Desktop);
+		m_hrootdc_Desktop = NULL;
 	}
 	if (m_hmemdc != NULL)
 	{
@@ -915,58 +1080,64 @@ DWORD
 vncDesktop::InitBitmap()
 {	
 	// Get the device context for the whole screen and find it's size
-	DriverType=NONE;
-	if (OSversion()==1 || OSversion()==2) //XP W2k
-		{	
-			if (VideoBuffer())
-				{
-					pEnumDisplayDevices pd=NULL;
-					const CHAR driverName[] = "mv video hook driver2";
-					BOOL DriverFound;
-					DEVMODE devmode;
-					FillMemory(&devmode, sizeof(DEVMODE), 0);
-					devmode.dmSize = sizeof(DEVMODE);
-					devmode.dmDriverExtra = 0;
-					/*BOOL change = */EnumDisplaySettings(NULL,ENUM_CURRENT_SETTINGS,&devmode);
-					devmode.dmFields = DM_BITSPERPEL | DM_PELSWIDTH | DM_PELSHEIGHT;
-					HMODULE hUser32=LoadLibrary("USER32");
-					if (hUser32) pd = (pEnumDisplayDevices)GetProcAddress( hUser32, "EnumDisplayDevicesA");
-						if (pd)
+	DriverType=NONE;	
+	if (VideoBuffer())
+		{
+			pEnumDisplayDevices pd=NULL;
+			LPSTR driverName = "mv video hook driver2";
+			BOOL DriverFound;
+			DEVMODE devmode;
+			FillMemory(&devmode, sizeof(DEVMODE), 0);
+			devmode.dmSize = sizeof(DEVMODE);
+			devmode.dmDriverExtra = 0;
+			BOOL change = EnumDisplaySettings(NULL,ENUM_CURRENT_SETTINGS,&devmode);
+			devmode.dmFields = DM_BITSPERPEL | DM_PELSWIDTH | DM_PELSHEIGHT;
+			HMODULE hUser32=LoadLibrary("USER32");
+			if (hUser32) pd = (pEnumDisplayDevices)GetProcAddress( hUser32, "EnumDisplayDevicesA");
+				if (pd)
+					{
+						LPSTR deviceName=NULL;
+						DISPLAY_DEVICE dd;
+						ZeroMemory(&dd, sizeof(dd));
+						dd.cb = sizeof(dd);
+						devmode.dmDeviceName[0] = '\0';
+						INT devNum = 0;
+						BOOL result;
+						DriverFound=false;
+						while (result = (*pd)(NULL,devNum, &dd,0))
 							{
-								LPSTR deviceName=NULL;
-								DISPLAY_DEVICE dd;
-								ZeroMemory(&dd, sizeof(dd));
-								dd.cb = sizeof(dd);
-								devmode.dmDeviceName[0] = '\0';
-								INT devNum = 0;
-								BOOL result;
-								DriverFound=false;
-								while ((result = (*pd)(NULL,devNum, &dd,0)))
+								if (strcmp((const char *)&dd.DeviceString[0], driverName) == 0)
 									{
-										if (strcmp((const char *)&dd.DeviceString[0], driverName) == 0)
-											{
-												DriverFound=true;
-												break;
-											}
-										devNum++;
+										DriverFound=true;
+										break;
 									}
-								if (DriverFound)
-									{
-										deviceName = (LPSTR)&dd.DeviceName[0];
-										m_hrootdc = CreateDC("DISPLAY",deviceName,NULL,NULL);
-										/*BOOL change = */EnumDisplaySettings(deviceName,ENUM_CURRENT_SETTINGS,&devmode);
-										m_ScreenOffsetx=devmode.dmPosition.x;
-										m_ScreenOffsety=devmode.dmPosition.y;
-										if (m_hrootdc) DriverType=MIRROR;
-										Checkmonitors();
-										requested_multi_monitor=m_buffer.IsMultiMonitor();
-										multi_monitor=false;
-										if (requested_multi_monitor && nr_monitors>1) multi_monitor=true;
-									}
+								devNum++;
 							}
-					if (hUser32) FreeLibrary(hUser32);
-				}//VIDEOBUFFER
-			}//OS
+						if (DriverFound)
+							{
+								deviceName = (LPSTR)&dd.DeviceName[0];
+								//JnZn558 
+								if (m_hrootdc_Desktop != NULL)
+								{
+									if (!ReleaseDC(NULL, m_hrootdc_Desktop))
+										vnclog.Print(LL_INTERR, VNCLOG("failed to DeleteDC hrootdc\n"));
+									DeleteDC(m_hrootdc_Desktop);
+									m_hrootdc_Desktop = NULL;
+								}
+								m_hrootdc_Desktop = CreateDC("DISPLAY", deviceName, NULL, NULL);
+								//m_hrootdc = GetDC(NULL);
+								BOOL temp_para = EnumDisplaySettings(deviceName,ENUM_CURRENT_SETTINGS,&devmode);
+								m_ScreenOffsetx=devmode.dmPosition.x;
+								m_ScreenOffsety=devmode.dmPosition.y;
+								if (m_hrootdc_Desktop) DriverType = MIRROR;
+								Checkmonitors();
+								requested_multi_monitor=m_buffer.IsMultiMonitor();
+								multi_monitor=false;
+								if (requested_multi_monitor && nr_monitors>1) multi_monitor=true;
+							}
+					}
+			if (hUser32) FreeLibrary(hUser32);
+		}//VIDEOBUFFER
 
 	// RDV SINGLE WINDOW
 	if (m_server->SingleWindow() && m_Single_hWnd==NULL)
@@ -974,14 +1145,16 @@ vncDesktop::InitBitmap()
 		EnumWindows((WNDENUMPROC)EnumWindowsHnd, (LPARAM) this);
 	}
 
-	if (m_hrootdc == NULL) {
+
+	if (m_hrootdc_Desktop == NULL) {
 		vnclog.Print(LL_INTERR, VNCLOG("No driver used \n"));
 		//Multi-Monitor changes
 		Checkmonitors();
 		requested_multi_monitor=m_buffer.IsMultiMonitor();
 		multi_monitor=false;
 		if (requested_multi_monitor && nr_monitors>1) multi_monitor=true;
-
+		
+		/* JnZn558
 		if (!multi_monitor)
 		{
 			m_hrootdc = CreateDC(("DISPLAY"),mymonitor[0].device,NULL,NULL);
@@ -991,29 +1164,47 @@ vncDesktop::InitBitmap()
 		else
 		{
 			m_hrootdc = GetDC(NULL);
+			
 			m_ScreenOffsetx=mymonitor[2].offsetx;
-			m_ScreenOffsety=mymonitor[2].offsety;;
+			m_ScreenOffsety=mymonitor[2].offsety;
+			
+			
 		}
-		if (m_hrootdc == NULL) {
+		*/
+		m_hrootdc_Desktop = GetDC(NULL);
+		if (m_hrootdc_Desktop == NULL) {
 				vnclog.Print(LL_INTERR, VNCLOG("Failed m_rootdc \n"));
 				return ERROR_DESKTOP_NO_ROOTDC;
 		}
 		
 	}
-	if (multi_monitor && !VideoBuffer()) m_bmrect = rfb::Rect(0, 0,mymonitor[2].Width,mymonitor[2].Height);
-	else if (!VideoBuffer()) m_bmrect = rfb::Rect(0, 0,mymonitor[0].Width,mymonitor[0].Height);
-	else m_bmrect = rfb::Rect(0, 0,GetDeviceCaps(m_hrootdc, HORZRES),GetDeviceCaps(m_hrootdc, VERTRES));
+
+	m_ScreenOffsetx=mymonitor[3].offsetx;
+	m_ScreenOffsety=mymonitor[3].offsety;
+	m_ScreenWidth = mymonitor[3].Width;
+	m_ScreenHeight = mymonitor[3].Height;
+	
+	// JnZn558 if (multi_monitor && !VideoBuffer()) m_bmrect = rfb::Rect(0, 0,mymonitor[2].Width,mymonitor[2].Height);
+	if (multi_monitor && !VideoBuffer()) m_bmrect = rfb::Rect(0, 0,mymonitor[3].Width,mymonitor[3].Height);
+	else if (!VideoBuffer()) 
+		{
+			m_bmrect = rfb::Rect(0, 0,mymonitor[0].Width,mymonitor[0].Height);
+			m_ScreenOffsetx=mymonitor[0].offsetx;
+			m_ScreenOffsety=mymonitor[0].offsety;
+		}
+	// JnZn558 else m_bmrect = rfb::Rect(0, 0,GetDeviceCaps(m_hrootdc, HORZRES),GetDeviceCaps(m_hrootdc, VERTRES));
+	else m_bmrect = rfb::Rect(m_ScreenOffsetx, m_ScreenOffsety,m_ScreenWidth,m_ScreenHeight);
 	vnclog.Print(LL_INTINFO, VNCLOG("bitmap dimensions are %d x %d\n"), m_bmrect.br.x, m_bmrect.br.y);
 
 	// Create a compatible memory DC
-	m_hmemdc = CreateCompatibleDC(m_hrootdc);
+	m_hmemdc = CreateCompatibleDC(m_hrootdc_Desktop);
 	if (m_hmemdc == NULL) {
 		vnclog.Print(LL_INTERR, VNCLOG("failed to create compatibleDC(%d)\n"), GetLastError());
 		return ERROR_DESKTOP_NO_ROOTDC;
 	}
 
 	// Check that the device capabilities are ok
-	if ((GetDeviceCaps(m_hrootdc, RASTERCAPS) & RC_BITBLT) == 0)
+	if ((GetDeviceCaps(m_hrootdc_Desktop, RASTERCAPS) & RC_BITBLT) == 0)
 	{
 		MessageBoxSecure(
 			NULL,
@@ -1037,7 +1228,7 @@ vncDesktop::InitBitmap()
 	}
 
 	// Create the bitmap to be compatible with the ROOT DC!!!
-	m_membitmap = CreateCompatibleBitmap(m_hrootdc,1,1); //m_bmrect.br.x, m_bmrect.br.y);
+	m_membitmap = CreateCompatibleBitmap(m_hrootdc_Desktop, 1, 1); //m_bmrect.br.x, m_bmrect.br.y);
 	if (m_membitmap == NULL) {
 		vnclog.Print(LL_INTERR, VNCLOG("failed to create memory bitmap(%d)\n"), GetLastError());
 		return ERROR_DESKTOP_NO_COMPATBITMAP;
@@ -1138,7 +1329,7 @@ vncDesktop::SetPixFormat()
   // The VNC code can only handle formats with a single plane (CHUNKY pixels)
   if (!m_DIBbits) {
 	  vnclog.Print(LL_INTINFO, VNCLOG("DBG:display context has %d planes!\n"),
-      GetDeviceCaps(m_hrootdc, PLANES));
+		  GetDeviceCaps(m_hrootdc_Desktop, PLANES));
 	  vnclog.Print(LL_INTINFO, VNCLOG("DBG:memory context has %d planes!\n"),
       GetDeviceCaps(m_hmemdc, PLANES));
 	  if (GetDeviceCaps(m_hmemdc, PLANES) != 1)
@@ -1160,8 +1351,13 @@ vncDesktop::SetPixFormat()
 	m_scrinfo.format.bigEndian = 0;
 
 	// Set up the native buffer width, height and format
+	/* JnZn558
 	m_scrinfo.framebufferWidth = (CARD16) (m_bmrect.br.x - m_bmrect.tl.x);		// Swap endian before actually sending
 	m_scrinfo.framebufferHeight = (CARD16) (m_bmrect.br.y - m_bmrect.tl.y);	// Swap endian before actually sending
+	*/
+
+	m_scrinfo.framebufferWidth = (CARD16) (m_bmrect.br.x - ((m_bmrect.tl.x < 0)? 0: m_bmrect.tl.x));		// Swap endian before actually sending
+	m_scrinfo.framebufferHeight = (CARD16) (m_bmrect.br.y - ((m_bmrect.tl.y < 0)? 0: m_bmrect.tl.y));	// Swap endian before actually sending
 	m_scrinfo.format.bitsPerPixel = (CARD8) m_bminfo.bmi.bmiHeader.biBitCount;
 	m_scrinfo.format.depth        = (CARD8) m_bminfo.bmi.bmiHeader.biBitCount;
 
@@ -1195,7 +1391,9 @@ vncDesktop::SetPixShifts()
 				blueMask =  *(DWORD *) &m_bminfo.bmi.bmiColors[2];
 			}
 		}
+		//if (m_videodriver) redMask = 0x7c00; greenMask = 0x03e0; blueMask = 0x001f;
 		break;
+		
 
 	case 32:
 		// Standard 24/32 bit displays
@@ -1259,7 +1457,7 @@ vncDesktop::SetPalette()
 			palette->palNumEntries = 256;
 			
 			// Get the system colours
-			if (GetSystemPaletteEntries(m_hrootdc,
+			if (GetSystemPaletteEntries(m_hrootdc_Desktop,
 				0, 256, palette->palPalEntry) == 0)
 			{
 				vnclog.Print(LL_INTERR, VNCLOG("unable to get system palette entries\n"));
@@ -1303,7 +1501,7 @@ vncDesktop::SetPalette()
 			
 			// - Fetch the system palette for the framebuffer
 			PALETTEENTRY syspalette[256];
-			UINT entries = ::GetSystemPaletteEntries(m_hrootdc, 0, 256, syspalette);
+			UINT entries = ::GetSystemPaletteEntries(m_hrootdc_Desktop, 0, 256, syspalette);
 			vnclog.Print(LL_INTERR, VNCLOG("framebuffer has %u palette entries"), entries);
 			
 			// - Store it and convert it to RGBQUAD format
@@ -1325,7 +1523,7 @@ vncDesktop::SetPalette()
 			}
 			
 			// - Update the DIB section to use the same palette
-			HDC bitmapDC=::CreateCompatibleDC(m_hrootdc);
+			HDC bitmapDC = ::CreateCompatibleDC(m_hrootdc_Desktop);
 			if (!bitmapDC) {
 				vnclog.Print(LL_INTERR, VNCLOG("unable to create temporary DC"), GetLastError());
 				return FALSE;
@@ -1361,35 +1559,32 @@ vncDesktop::SetPalette()
 DWORD WINAPI Driverwatch(LPVOID lpParam)
 {
 	//Mouse shape changed
-	if (OSversion()==1 || OSversion()==2)
+	HANDLE event;
+	//DrvWatch *mywatch=(DrvWatch*)lpParam;
+	HWND hwnd=(HWND)lpParam;
+	event=NULL;
+	while (event==NULL)
 	{
-		HANDLE event;
-		//DrvWatch *mywatch=(DrvWatch*)lpParam;
-		HWND hwnd=(HWND)lpParam;
-		event=NULL;
-		while (event==NULL)
-		{
-			event = OpenEvent (SYNCHRONIZE, FALSE, "VncEvent") ;
-			Sleep(900);
-			if (!IsWindow(hwnd)) 
-			{
-				if (event) CloseHandle(event);
-				return 0;
-			}
-		}
-		SetThreadPriority(GetCurrentThread(), THREAD_PRIORITY_NORMAL);
-		for (;;)
-		{
-		if (WaitForSingleObject(event, 2000) == WAIT_OBJECT_0)
-			{
-				PostMessage(hwnd, WM_MOUSESHAPE, 0, 0);
-			}
-		if (!IsWindow(hwnd) || !g_Desktop_running)
+		event = OpenEvent (SYNCHRONIZE, FALSE, "VncEvent") ;
+		Sleep(900);
+		if (!IsWindow(hwnd)) 
 		{
 			if (event) CloseHandle(event);
-			break;
+			return 0;
 		}
+	}
+	SetThreadPriority(GetCurrentThread(), THREAD_PRIORITY_NORMAL);
+	for (;;)
+	{
+	if (WaitForSingleObject(event, 2000) == WAIT_OBJECT_0)
+		{
+			PostMessage(hwnd, WM_MOUSESHAPE, 0, 0);
 		}
+	if (!IsWindow(hwnd) || !g_Desktop_running)
+	{
+		if (event) CloseHandle(event);
+		break;
+	}
 	}
 	return 0;
 }
@@ -1407,7 +1602,7 @@ vncDesktop::EnableOptimisedBlits()
 	if (tempbitmap == NULL) {
 		vnclog.Print(LL_INTINFO, VNCLOG("failed to build DIB section - reverting to slow blits\n"));
 		m_DIBbits = NULL;
-        tempbitmap = CreateCompatibleBitmap(m_hrootdc, m_bmrect.br.x, m_bmrect.br.y);
+		tempbitmap = CreateCompatibleBitmap(m_hrootdc_Desktop, m_bmrect.br.x, m_bmrect.br.y);
 	    if (tempbitmap == NULL) {
 		    vnclog.Print(LL_INTERR, VNCLOG("failed to create memory bitmap(%d)\n"), GetLastError());
 		    return ERROR_DESKTOP_NO_DIBSECTION_OR_COMPATBITMAP;
@@ -1436,12 +1631,6 @@ vncDesktop::Init(vncServer *server)
 
 	// Save the server pointer
 	m_server = server;
-
-	// sf@2005
-	if (OSversion()==1 || OSversion()==2)
-	m_fCaptureAlphaBlending = m_server->CaptureAlphaBlending();
-	else m_fCaptureAlphaBlending=false;
-
 	// Load in the arrow cursor
 	m_hdefcursor = LoadCursor(NULL, IDC_ARROW);
 	m_hcursor = m_hdefcursor;
@@ -1507,6 +1696,194 @@ vncDesktop::WriteMessageOnScreen(char * tt,BYTE *scrBuff, UINT scrBuffSize)
 	CopyToBuffer(rect, scrBuff, scrBuffSize);
 }
 
+#include "wtsapi32.h"
+char mytext22[1024] = "";
+DWORD GetCurrentConsoleSessionID();
+
+void
+vncDesktop::WriteMessageOnScreenPreConnect(BYTE *scrBuff, UINT scrBuffSize)
+{
+	typedef BOOL(WINAPI *pfnWTSEnumerateSessions)(HANDLE, DWORD, DWORD, PWTS_SESSION_INFO*, DWORD*);
+	typedef VOID(WINAPI *pfnWTSFreeMemory)(PVOID);
+	typedef BOOL(WINAPI * _WTSQUERYSESSIONINFORMATION)(HANDLE hServer, DWORD SessionId, WTS_INFO_CLASS WTSInfoClass, LPTSTR *ppBuffer, DWORD *pBytesReturned);
+	helper::DynamicFn<pfnWTSEnumerateSessions> pWTSEnumerateSessions("wtsapi32", "WTSEnumerateSessionsA");
+	helper::DynamicFn<pfnWTSFreeMemory> pWTSFreeMemory("wtsapi32", "WTSFreeMemory");
+
+	aantal_session = 0;
+	//Current Console session
+	DWORD SessionId = 0xFFFFFFFF;
+	int coutersessionid = 0;
+	while (SessionId == 0xFFFFFFFF)
+	{
+		SessionId = GetCurrentConsoleSessionID();
+		Sleep(1000);
+		coutersessionid++;
+		if (coutersessionid > 10) break;
+	}
+	if (SessionId != 0 && SessionId != 0xFFFFFFFF)
+	{
+		sesmsg[0].ID = SessionId;
+		memset(sesmsg[0].type, 0, 32);
+		memset(sesmsg[0].name, 0, 32);
+		strcpy_s(sesmsg[0].type, 32, "Not Active");
+		strcpy_s(sesmsg[0].name, 32, "Console");
+		memset(sesmsg[aantal_session].username, 0, 32);
+		strcpy_s(sesmsg[aantal_session].username, 32, "Current Console");
+		HMODULE handle = LoadLibrary("WTSAPI32.DLL");
+		_WTSQUERYSESSIONINFORMATION pFunc;
+		LPTSTR  ppBuffer = NULL;    DWORD   pBytesReturned = 0;
+		if (handle)
+		{
+			pFunc = (_WTSQUERYSESSIONINFORMATION)GetProcAddress(handle, "WTSQuerySessionInformationA");
+			if (pFunc(WTS_CURRENT_SERVER_HANDLE, sesmsg[0].ID, WTSUserName, &ppBuffer, &pBytesReturned))
+			{
+				strcpy_s(sesmsg[0].username, 32, ppBuffer);
+				strcpy_s(sesmsg[0].type, 32, "Active");
+			}
+		}
+		aantal_session++;
+
+		WTS_SESSION_INFO *pSessions = 0;
+		DWORD   nSessions(0);
+		if (pWTSEnumerateSessions.isValid() && pWTSFreeMemory.isValid())
+		{
+			if ((*pWTSEnumerateSessions)(WTS_CURRENT_SERVER_HANDLE, 0, 1, &pSessions, &nSessions))
+			{
+				for (DWORD i(0); i < nSessions; ++i)
+				{
+					if (((pSessions[i].State == WTSActive || pSessions[i].State == WTSShadow || pSessions[i].State == WTSConnectQuery)) && (_stricmp(pSessions[i].pWinStationName, "Console") != 0))
+					{
+						sesmsg[aantal_session].ID = pSessions[i].SessionId;
+						memset(sesmsg[aantal_session].type, 0, 32);
+						memset(sesmsg[aantal_session].name, 0, 32);
+						strcpy_s(sesmsg[aantal_session].type, 32, "Active");
+						strcpy_s(sesmsg[aantal_session].name, 32, pSessions[i].pWinStationName);
+						HMODULE handle = LoadLibrary("WTSAPI32.DLL");
+						_WTSQUERYSESSIONINFORMATION pFunc;
+						LPTSTR  ppBuffer = NULL;    DWORD   pBytesReturned = 0;
+						if (handle)
+						{
+							pFunc = (_WTSQUERYSESSIONINFORMATION)GetProcAddress(handle, "WTSQuerySessionInformationA");
+							if (pFunc(WTS_CURRENT_SERVER_HANDLE, pSessions[i].SessionId, WTSUserName, &ppBuffer, &pBytesReturned))
+							{
+								memset(sesmsg[aantal_session].username, 0, 32);
+								strcpy_s(sesmsg[aantal_session].username, 32, ppBuffer);
+							}
+						}
+						aantal_session++;
+						if (handle) FreeLibrary(handle);
+						(*pWTSFreeMemory)(ppBuffer);
+					}
+				}
+				(*pWTSFreeMemory)(pSessions);
+			}
+		}
+	}
+	else
+	{
+		WTS_SESSION_INFO *pSessions = 0;
+		DWORD   nSessions(0);
+		if (pWTSEnumerateSessions.isValid() && pWTSFreeMemory.isValid())
+		{
+			if ((*pWTSEnumerateSessions)(WTS_CURRENT_SERVER_HANDLE, 0, 1, &pSessions, &nSessions))
+			{
+				for (DWORD i(0); i < nSessions; ++i)
+				{
+					if (((pSessions[i].State == WTSActive || pSessions[i].State == WTSShadow || pSessions[i].State == WTSConnectQuery)))
+					{
+						sesmsg[aantal_session].ID = pSessions[i].SessionId;
+						memset(sesmsg[aantal_session].type, 0, 32);
+						memset(sesmsg[aantal_session].name, 0, 32);
+						strcpy_s(sesmsg[aantal_session].type, 32, "Active");
+						strcpy_s(sesmsg[aantal_session].name, 32, pSessions[i].pWinStationName);
+						HMODULE handle = LoadLibrary("WTSAPI32.DLL");
+						_WTSQUERYSESSIONINFORMATION pFunc;
+						LPTSTR  ppBuffer = NULL;    DWORD   pBytesReturned = 0;
+						if (handle)
+						{
+							pFunc = (_WTSQUERYSESSIONINFORMATION)GetProcAddress(handle, "WTSQuerySessionInformationA");
+							if (pFunc(WTS_CURRENT_SERVER_HANDLE, pSessions[i].SessionId, WTSUserName, &ppBuffer, &pBytesReturned))
+							{
+								memset(sesmsg[aantal_session].username, 0, 32);
+								strcpy_s(sesmsg[aantal_session].username, 32, ppBuffer);
+							}
+						}
+						aantal_session++;
+						if (handle) FreeLibrary(handle);
+						(*pWTSFreeMemory)(ppBuffer);
+					}
+				}
+				(*pWTSFreeMemory)(pSessions);
+			}
+		}
+	}
+////////////////////////////////////////////////
+		char bigstring[128];
+		char menustring[12800];
+		strcpy(menustring, "");
+
+		for (DWORD i(0); i < aantal_session; ++i)
+		{
+			if (sesmsg[i].ID != 65536 && sesmsg[i].ID!=0)
+			{
+			sprintf(bigstring, "%c) session%i %s user=%s  status=%s", 97+i, sesmsg[i].ID, sesmsg[i].name, sesmsg[i].username, sesmsg[i].type);
+			strcat(menustring, bigstring);
+			strcat(menustring, "\n");
+			}
+		}
+		strcat(menustring, "\n");
+		strcat(menustring, "\n");
+		strcat(menustring, "Enter session to clone: \n");
+////////////////////////////////////////////////
+	// Select the memory bitmap into the memory DC
+	RECT rect;
+	SetRect(&rect, 0, 0, 640, 640);
+	COLORREF bgcol = RGB(0x00, 0x00, 0xff);
+	COLORREF oldtxtcol = SetTextColor(m_hmemdc, RGB(254, 254, 254));
+	COLORREF oldbgcol = SetBkColor(m_hmemdc, bgcol);
+	HBRUSH backgroundBrush = CreateSolidBrush(bgcol);
+
+	HBITMAP oldbitmap;
+	if ((oldbitmap = (HBITMAP)SelectObject(m_hmemdc, m_membitmap)) == NULL)
+		return;
+
+	FillRect(m_hmemdc, &rect, backgroundBrush);
+	
+	HFONT hFont, hOldFont;
+	SetRect(&rect, 0, 10, 640, 640);
+	DrawText(m_hmemdc, "UVNC experimental server 1.2.1.2 pre-connect window \n", strlen("UVNC experimental server 1.2.1.2 pre-connect window \n"), &rect, DT_CENTER);
+
+	
+	if (strlen(mytext22) == 0)getinfo(mytext22);
+
+	SetRect(&rect, 30, 50, 640, 640);
+	hFont = (HFONT)GetStockObject(ANSI_FIXED_FONT);
+	if (hOldFont = (HFONT)SelectObject(m_hmemdc, hFont))
+	{
+		DrawText(m_hmemdc, mytext22, strlen(mytext22), &rect, DT_LEFT | DT_WORDBREAK);
+		SelectObject(m_hmemdc, hOldFont);
+
+	}
+
+	SetRect(&rect, 30, 180, 640, 640);
+	hFont = (HFONT)GetStockObject(ANSI_FIXED_FONT);
+	if (hOldFont = (HFONT)SelectObject(m_hmemdc, hFont))
+	{
+		DrawText(m_hmemdc, menustring, strlen(menustring), &rect, DT_LEFT);
+		SelectObject(m_hmemdc, hOldFont);
+
+	}
+
+	SetBkColor(m_hmemdc, oldbgcol);
+	SetTextColor(m_hmemdc, oldtxtcol);
+	SelectObject(m_hmemdc, oldbitmap);
+	DeleteObject(backgroundBrush);
+	SetRect(&rect, 0, 0, 640, 640);
+	CopyToBuffer(rect, scrBuff, scrBuffSize);
+}
+
+
+
 #ifndef CAPTUREBLT
 #define CAPTUREBLT  0x40000000
 #endif
@@ -1517,12 +1894,11 @@ void
 vncDesktop::CaptureScreen(const rfb::Rect &rect, BYTE *scrBuff, UINT scrBuffSize,BOOL capture)
 {
 	assert(rect.enclosed_by(m_bmrect));
+
+	//Highcpu(100000000);
+	//Beep(100, 100);
 	if (capture)
 	{
-		if (OSversion()==1 || OSversion()==2)
-		m_fCaptureAlphaBlending = m_server->CaptureAlphaBlending();
-
-
 		// Select the memory bitmap into the memory DC
 		HBITMAP oldbitmap;
 		if ((oldbitmap = (HBITMAP) SelectObject(m_hmemdc, m_membitmap)) == NULL)
@@ -1540,10 +1916,10 @@ vncDesktop::CaptureScreen(const rfb::Rect &rect, BYTE *scrBuff, UINT scrBuffSize
 			 rect.tl.y,
 			(rect.br.x-rect.tl.x),
 			(rect.br.y-rect.tl.y),
-			m_hrootdc,
+			m_hrootdc_Desktop,
 			rect.tl.x+m_ScreenOffsetx,
 			rect.tl.y+m_ScreenOffsety,
-			(m_fCaptureAlphaBlending && !m_Black_window_active) ? (CAPTUREBLT | SRCCOPY) : SRCCOPY
+			(VNCOS.CaptureAlphaBlending() && !m_Black_window_active) ? (CAPTUREBLT | SRCCOPY) : SRCCOPY
 			);
 		}
 		else
@@ -1553,14 +1929,14 @@ vncDesktop::CaptureScreen(const rfb::Rect &rect, BYTE *scrBuff, UINT scrBuffSize
 			 rect.tl.y,
 			(rect.br.x-rect.tl.x),
 			(rect.br.y-rect.tl.y),
-			m_hrootdc, rect.tl.x, rect.tl.y, (m_fCaptureAlphaBlending && !m_Black_window_active) ? (CAPTUREBLT | SRCCOPY) : SRCCOPY);
+			m_hrootdc_Desktop, rect.tl.x, rect.tl.y, (VNCOS.CaptureAlphaBlending() && !m_Black_window_active) ? (CAPTUREBLT | SRCCOPY) : SRCCOPY);
 		}
-	#if defined(_DEBUG)
+	/*#if defined(_DEBUG)
 		DWORD e = timeGetTime() - t;
 		vnclog.Print(LL_INTWARN, VNCLOG("Blit (%u,%u - %u,%u) (%ux%u took %ums\n"), 
 			rect.tl.x, rect.tl.y, rect.br.x, rect.br.y,
 			rect.width(), rect.height(), e);
-	#endif
+	#endif*/
 	#if 0
 		//*******************************
 		static int cycle(0);
@@ -1604,9 +1980,14 @@ vncDesktop::CaptureMouse(BYTE *scrBuff, UINT scrBuffSize)
 	// Get the cursor position
 	if (!GetCursorPos(&CursorPos))
 		return;
-	CursorPos.x -= m_ScreenOffsetx;
-	CursorPos.y -= m_ScreenOffsety;
-	//vnclog.Print(LL_INTINFO, VNCLOG("CursorPos %i %i\n"),CursorPos.x, CursorPos.y);
+	RECT testrect;
+	testrect.top = m_Cliprect.tl.y;
+	testrect.bottom = m_Cliprect.br.y;
+	testrect.left = m_Cliprect.tl.x;
+	testrect.right = m_Cliprect.br.x;
+
+	if (!PtInRect(&testrect, CursorPos)) return;
+
 	// Translate position for hotspot
 	if (GetIconInfo(m_hcursor, &IconInfo))
 	{
@@ -1707,10 +2088,10 @@ BOOL
 vncDesktop::GetRichCursorData(BYTE *databuf, HCURSOR hcursor, int width, int height)
 {
 	// Protect the memory bitmap (is it really necessary here?)
-	omni_mutex_lock l(m_update_lock);
+	omni_mutex_lock l(m_update_lock,278);
 
 	// Create bitmap, select it into memory DC
-	HBITMAP membitmap = CreateCompatibleBitmap(m_hrootdc, width, height);
+	HBITMAP membitmap = CreateCompatibleBitmap(m_hrootdc_Desktop, width, height);
 	if (membitmap == NULL) {
 		return FALSE;
 	}
@@ -1799,12 +2180,14 @@ void vncDesktop::SetClipText(char* rfbStr)
 // adzm - 2010-07 - Extended clipboard
 void vncDesktop::SetClipTextEx(ExtendedClipboardDataMessage& extendedClipboardDataMessage)
 {
+	bool bRestored = false;
 	{
 		ClipboardData newClipboard;
 
 		if (newClipboard.Restore(Window(), extendedClipboardDataMessage)) {
 			vnclog.Print(LL_INTINFO, VNCLOG("Set extended clipboard data\n"));
 
+			bRestored = true;
 			newClipboard.FreeData();
 		} else {
 			vnclog.Print(LL_INTWARN, VNCLOG("Failed to set extended clipboard data\n"));
@@ -1979,74 +2362,12 @@ vncDesktop::CalcCopyRects(rfb::UpdateTracker &tracker)
 }
 
 
-// added jef
-void vncDesktop::SetBlankMonitor(bool enabled)
-{
-
-	// Added Jef Fix
-	typedef DWORD (WINAPI *PSLWA)(HWND, DWORD, BYTE, DWORD);
-	PSLWA pSetLayeredWindowAttributes=NULL;
-	HMODULE hDLL = LoadLibrary ("user32");
-	if (hDLL) pSetLayeredWindowAttributes = (PSLWA) GetProcAddress(hDLL,"SetLayeredWindowAttributes");
-	if (!pSetLayeredWindowAttributes) m_server->BlackAlphaBlending(false);
-	//if (VideoBuffer()) m_server->BlackAlphaBlending(false);
-
-    vnclog.Print(LL_INTINFO, VNCLOG("SetBlankMonitor: monitor %s, using alpha %s\n"), 
-        enabled ? "off" : "on",
-        m_server->BlackAlphaBlending() ? "true" : "false");
-
-	// Also Turn Off the Monitor if allowed ("Blank Screen", "Blank Monitor")
-	if (m_server->BlankMonitorEnabled())
-    {
-	    if (enabled)
-	    {
-		    if ((!m_server->BlackAlphaBlending() || VideoBuffer()) && (OSversion()!=2))
-		    {
-			    SetProcessShutdownParameters(0x100, 0);
-			    SystemParametersInfo(SPI_GETPOWEROFFTIMEOUT, 0, &OldPowerOffTimeout, 0);
-			    SystemParametersInfo(SPI_SETPOWEROFFTIMEOUT, 100, NULL, 0);
-			    SystemParametersInfo(SPI_SETPOWEROFFACTIVE, 1, NULL, 0);
-			    SendMessage(m_hwnd,WM_SYSCOMMAND,SC_MONITORPOWER,(LPARAM)2);
-		    }
-		    else
-		    {
-			    HANDLE ThreadHandle2=NULL;
-			    DWORD dwTId;
-			    ThreadHandle2 = CreateThread(NULL, 0, BlackWindow, NULL, 0, &dwTId);
-			   if (ThreadHandle2)  CloseHandle(ThreadHandle2);
-			    m_Black_window_active=true;
-		    }
-	    }
-	    else // Monitor On
-	    {
-		    if ((!m_server->BlackAlphaBlending() || VideoBuffer()) && (OSversion()!=2))
-		    {
-			    if (OldPowerOffTimeout!=0)
-				    SystemParametersInfo(SPI_SETPOWEROFFTIMEOUT, OldPowerOffTimeout, NULL, 0);
-			    SystemParametersInfo(SPI_SETPOWEROFFACTIVE, 0, NULL, 0);
-			    if (m_hwnd!=NULL) SendMessage(m_hwnd,WM_SYSCOMMAND,SC_MONITORPOWER,(LPARAM)-1);
-			    OldPowerOffTimeout=0;
-				//JUst in case video driver state was changed
-				HWND Blackhnd = FindWindow(("blackscreen"), 0);
-			    if (Blackhnd) PostMessage(Blackhnd, WM_CLOSE, 0, 0);
-		    }
-		    else
-		    {
-			    HWND Blackhnd = FindWindow(("blackscreen"), 0);
-			    if (Blackhnd) PostMessage(Blackhnd, WM_CLOSE, 0, 0);
-			    m_Black_window_active=false;
-		    }
-	    }
-    }
-}
-
-
 // Modif rdv@2002 Dis/enable input
 void
 vncDesktop::SetDisableInput()
 {
     CARD32 state;
-    state=!block_input();
+    state=!block_input(false);
     m_server->NotifyClients_StateChange(rfbServerRemoteInputsState, state);
 }
 
@@ -2067,8 +2388,48 @@ void vncDesktop::SetSW(int x,int y)
 		{
 			// 2= multi monitor
 			// 1= single monitor
+			/* yz
 			if (requested_multi_monitor)m_buffer.MultiMonitors(1);
 			else m_buffer.MultiMonitors(2);
+			*/
+			switch (nr_monitors) {
+			case 2:
+				{
+					if (m_current_monitor == MULTI_MON_PRIMARY) {
+						m_current_monitor = MULTI_MON_SECOND;
+						m_buffer.MultiMonitors(1);
+					} else if (m_current_monitor == MULTI_MON_SECOND) {
+						m_current_monitor = MULTI_MON_ALL;
+						m_buffer.MultiMonitors(2);
+					} else if (m_current_monitor == MULTI_MON_ALL) {
+						m_buffer.MultiMonitors(1);
+						m_current_monitor = MULTI_MON_PRIMARY;
+					} 
+				} break;
+			case 3:
+				{
+					if (m_current_monitor == MULTI_MON_PRIMARY) {
+						m_current_monitor = MULTI_MON_SECOND;
+						m_buffer.MultiMonitors(1);
+					} else if (m_current_monitor == MULTI_MON_SECOND) {
+						m_current_monitor = MULTI_MON_THIRD;
+						m_buffer.MultiMonitors(1);
+					} else if (m_current_monitor == MULTI_MON_THIRD) {
+						m_current_monitor = MULTI_MON_FIRST_TWO;
+						m_buffer.MultiMonitors(2);
+					} else if (m_current_monitor == MULTI_MON_FIRST_TWO) {
+						m_current_monitor = MULTI_MON_LAST_TWO;
+						m_buffer.MultiMonitors(2);
+					} else if (m_current_monitor == MULTI_MON_LAST_TWO) {
+						m_current_monitor = MULTI_MON_ALL;
+						m_buffer.MultiMonitors(2);
+					} else if (m_current_monitor == MULTI_MON_ALL) {
+						m_current_monitor = MULTI_MON_PRIMARY;
+						m_buffer.MultiMonitors(1);
+					} 
+				} break;
+			}
+
 			m_Single_hWnd=NULL;
 			return;
 		}
@@ -2113,7 +2474,7 @@ void vncDesktop::SetSW(int x,int y)
 }
 
 /***************************************************************************
-* Ultravnc use 2 different software hooking methods 
+* UltraVNC use 2 different software hooking methods 
 * hookdll: Hook the messages between the windows (nt,9.x)
 * ddihook: Hook the messages to the video buffer (9.x)
 * Driver hooking
@@ -2152,9 +2513,7 @@ DWORD WINAPI Warningbox_non_locked(LPVOID lpParam)
 // Modif rdv@2002 - v1.1.x - videodriver
 BOOL vncDesktop::InitVideoDriver()
 {
-	omni_mutex_lock l(m_videodriver_lock);
-	
-	if(!(OSversion()==1  || OSversion()==2)) return true; //we need w2k or xp
+	omni_mutex_lock l(m_videodriver_lock,79);
 	vnclog.Print(LL_INTERR, VNCLOG("Driver option is enabled\n"));
 	// If m_videodriver exist, the driver was activated.
 	// This does not mean he is still active
@@ -2180,57 +2539,55 @@ BOOL vncDesktop::InitVideoDriver()
 		{
 			m_ScreenOffsetx=mymonitor[0].offsetx;
 			m_ScreenOffsety=mymonitor[0].offsety;
-			m_videodriver->VIDEODRIVER_start(mymonitor[0].offsetx,mymonitor[0].offsety,mymonitor[0].Width,mymonitor[0].Height);
+			if (m_videodriver!=NULL) m_videodriver->VIDEODRIVER_start(mymonitor[0].offsetx,mymonitor[0].offsety,mymonitor[0].Width,mymonitor[0].Height);
 		}
 	if (nr_monitors>1)
 		{
+			/* JnZn558
 			m_ScreenOffsetx=mymonitor[2].offsetx;
 			m_ScreenOffsety=mymonitor[2].offsety;
 			m_videodriver->VIDEODRIVER_start(mymonitor[2].offsetx,mymonitor[2].offsety,mymonitor[2].Width,mymonitor[2].Height);
+			*/
+			m_ScreenOffsetx=mymonitor[3].offsetx;
+			m_ScreenOffsety=mymonitor[3].offsety;
+			if (m_videodriver!=NULL)m_videodriver->VIDEODRIVER_start(mymonitor[3].offsetx,mymonitor[3].offsety,mymonitor[3].Width,mymonitor[3].Height);
 		}		
 	vnclog.Print(LL_INTERR, VNCLOG("Start Mirror driver\n"));
+	
+	// check if driver has mapped the shared memory
+	if (m_videodriver!=NULL)
+			if (!m_videodriver->mypVideoMemory) 
+			{
+				vnclog.Print(LL_INTERR, VNCLOG("Start Mirror driver Failed\n"));
+				vnclog.Print(LL_INTERR, VNCLOG("Using non driver mode\n"));
+				if (m_videodriver!=NULL) delete m_videodriver;
+				m_videodriver=NULL;
+				// If driver selected and fialed to start default to hookdll
+				// 
+				m_hookdriver=false;
+				m_hookdll=true;
+				// sf@2002 - Necessary for the following InitHookSettings() call
+				// Remember old states
+				DriverWantedSet=true;
+				DriverWanted=m_server->Driver();
+				HookWanted=m_server->Hook();
+				m_server->Driver(false);
+				m_server->Hook(true);
+				return false;
+			}
+
 	m_hookdriver=true;
 	m_hookdll=false;
-	// check if driver has mapped the shared memory
-	if (!m_videodriver->mypVideoMemory) 
-	{
-		vnclog.Print(LL_INTERR, VNCLOG("Start Mirror driver Failed\n"));
-		vnclog.Print(LL_INTERR, VNCLOG("Using non driver mode\n"));
-		if (m_videodriver!=NULL) delete m_videodriver;
-		m_videodriver=NULL;
-		// If driver selected and fialed to start default to hookdll
-		// 
-		m_hookdriver=false;
-		m_hookdll=true;
-		// sf@2002 - Necessary for the following InitHookSettings() call
-		// Remember old states
-		DriverWantedSet=true;
-		DriverWanted=m_server->Driver();
-		HookWanted=m_server->Hook();
-		m_server->Driver(false);
-		m_server->Hook(true);
-		return false;
-	}
 	
-	if (m_videodriver->mypVideoMemory)
-	{
-		vnclog.Print(LL_INTERR, VNCLOG("Driver Used\n"));
-		if (!m_videodriver->mypVideoMemory)
+	if (m_videodriver!=NULL)
+		if (m_videodriver->mypVideoMemory)
 		{
-			vnclog.Print(LL_INTERR, VNCLOG("Unable to map memory\n"));
-			delete m_videodriver;
-			m_videodriver=NULL;
-			// If driver selected and fialed to start default to hookdll
-			// 
-			m_hookdriver=false;
-			m_hookdll=true;
-			return false;
-		}
-		vnclog.Print(LL_INTERR, VNCLOG("Shared memory mapped\n"));
-		InvalidateRect(NULL,NULL,TRUE);
+			vnclog.Print(LL_INTERR, VNCLOG("Driver Used\n"));			
+			vnclog.Print(LL_INTERR, VNCLOG("Shared memory mapped\n"));
+			InvalidateRect(NULL,NULL,TRUE);
 
-		return true;
-	}
+			return true;
+		}
 	return true;
 }
 
@@ -2238,7 +2595,6 @@ BOOL vncDesktop::InitVideoDriver()
 // Modif rdv@2002 - v1.1.x - videodriver
 void vncDesktop::ShutdownVideoDriver()
 {
-	if(!(OSversion()!=1 || OSversion()!=2)) return;
 	if (m_videodriver==NULL) return;
 	if (m_videodriver!=NULL)
 	{
@@ -2265,60 +2621,26 @@ void vncDesktop::SethookMechanism(BOOL hookall,BOOL hookdriver)
 		m_server->PollFullScreen(TRUE);
 	}
 
-	// 9,x case 
-	vnclog.Print(LL_INTERR, VNCLOG("SethookMechanism called\r\n"));
-	if(OSversion()==4 || OSversion()==5)
-	{
-		m_hookdriver=false;//(user driver updates)
-		m_hookdll=false;//(use hookdll updates)
-		if (hookall || hookdriver) m_hookdll=true;
-		//always try to stop the ddihook before starting
-		StartStopddihook(false);ddihook=false;
-		if (hookdriver) StartStopddihook(true);
-		// same for the hookdll
-		BOOL old_On_Off_hookdll=On_Off_hookdll;
-		if (hookdriver || hookall) On_Off_hookdll=true;
-		else On_Off_hookdll=false;
-		if (old_On_Off_hookdll!=On_Off_hookdll) Hookdll_Changed=true;
-		else Hookdll_Changed=false;
-	}
-	// W2k-XP case
-	else if(OSversion()==1 || OSversion()==2)
-	{
-		// sf@2002 - We forbid hoodll and hookdriver at the same time (pointless and high CPU load)
-		if (!hookall && !hookdriver) {m_hookdll=false;m_hookdriver=false;}
-		if (hookall && hookdriver) {m_hookdll=false;m_hookdriver=true;}
-		if (hookall && !hookdriver) {m_hookdll=true;m_hookdriver=false;}
-		if (!hookall && hookdriver) {m_hookdll=false;m_hookdriver=true;}
+	// sf@2002 - We forbid hoodll and hookdriver at the same time (pointless and high CPU load)
+	if (!hookall && !hookdriver) {m_hookdll=false;m_hookdriver=false;}
+	if (hookall && hookdriver) {m_hookdll=false;m_hookdriver=true;}
+	if (hookall && !hookdriver) {m_hookdll=true;m_hookdriver=false;}
+	if (!hookall && hookdriver) {m_hookdll=false;m_hookdriver=true;}
 
-		BOOL old_On_Off_hookdll=On_Off_hookdll;
-		if (m_hookdll) On_Off_hookdll=true;
-		else On_Off_hookdll=false;
-		if (old_On_Off_hookdll!=On_Off_hookdll) Hookdll_Changed=true;
-		else Hookdll_Changed=false;
-		if (OSversion()==2) Hookdll_Changed=true;
-		
-		vnclog.Print(LL_INTERR, VNCLOG("Sethook_restart_wanted hook=%d driver=%d \r\n"),m_hookdll,m_hookdriver);
-		if (Hookdll_Changed)
-			vnclog.Print(LL_INTERR, VNCLOG("Hookdll status changed \r\n"));
-
+	BOOL old_On_Off_hookdll=On_Off_hookdll;
+	if (m_hookdll) On_Off_hookdll=true;
+	else On_Off_hookdll=false;
+	if (old_On_Off_hookdll!=On_Off_hookdll) Hookdll_Changed=true;
+	else Hookdll_Changed=false;
+	if (VNCOS.OS_VISTA|| VNCOS.OS_WIN7||VNCOS.OS_WIN8) Hookdll_Changed=true;
+	
+	vnclog.Print(LL_INTERR, VNCLOG("Sethook_restart_wanted hook=%d driver=%d \r\n"),m_hookdll,m_hookdriver);
+	if (Hookdll_Changed)
+		vnclog.Print(LL_INTERR, VNCLOG("Hookdll status changed \r\n"));
 		if ((m_hookdriver && !VideoBuffer()) || (!m_hookdriver && VideoBuffer()))
-		{
-			m_hookswitch=true;
-			vnclog.Print(LL_INTERR, VNCLOG("Driver Status changed\r\n"));
-		}
-	}
-	else //NT4
 	{
-		if (!hookall && !hookdriver) {m_hookdll=false;m_hookdriver=false;}
-		if (hookall && hookdriver) {m_hookdll=true;m_hookdriver=false;}
-		if (hookall && !hookdriver) {m_hookdll=true;m_hookdriver=false;}
-		if (!hookall && hookdriver) {m_hookdll=false;m_hookdriver=false;}
-		BOOL old_On_Off_hookdll=On_Off_hookdll;
-		if (m_hookdll) On_Off_hookdll=true;
-		else On_Off_hookdll=false;
-		if (old_On_Off_hookdll!=On_Off_hookdll) Hookdll_Changed=true;
-		else Hookdll_Changed=false;
+		m_hookswitch=true;
+		vnclog.Print(LL_INTERR, VNCLOG("Driver Status changed\r\n"));
 	}
 
 }
@@ -2368,7 +2690,6 @@ void vncDesktop::StartStopddihook(BOOL enabled)
 
 void vncDesktop::StartStophookdll(BOOL enabled)
 {
-	vnclog.Print(LL_INTERR, VNCLOG("PostMessage(m_hwnd, WM_HOOKCHANGE \n"));
 	PostMessage(m_hwnd, WM_HOOKCHANGE, enabled, 0);
 }
 
@@ -2384,12 +2705,12 @@ void vncDesktop::InitHookSettings()
 
 void vncDesktop::SetBlockInputState(bool newstate)
 {
-	CARD32 state = 0;
+	CARD32 state;
 	if (m_server->BlankMonitorEnabled())
     {
 		if (!m_server->BlankInputsOnly()) 
 			{
-				if (blankmonitorstate==1 && newstate==1) 
+				if (blankmonitorstate==newstate==1) 
 					{
 						SetBlankMonitor(0);
 						blankmonitorstate=0;
@@ -2401,7 +2722,7 @@ void vncDesktop::SetBlockInputState(bool newstate)
 				}
 			}
 		m_bIsInputDisabledByClient=newstate;
-		state=!block_input();
+		state=!block_input(false);
 		
     }
 	else state=!newstate;
@@ -2411,9 +2732,18 @@ void vncDesktop::SetBlockInputState(bool newstate)
  m_server->NotifyClients_StateChange(rfbServerRemoteInputsState, state);
 }
 
-bool vncDesktop::block_input()
+bool vncDesktop::block_input(bool first)
 {
-    int Blockinput_val;
+	if (first)
+	{
+		old_Blockinput1=m_bIsInputDisabledByClient;
+		old_Blockinput2=m_server->LocalInputsDisabled();
+		return false;
+	}
+	else
+	{
+    bool Blockinput_val;
+	BOOL returnvalue;
 	if(m_bIsInputDisabledByClient || m_server->LocalInputsDisabled())
 	{
 		Blockinput_val=true;
@@ -2438,7 +2768,7 @@ bool vncDesktop::block_input()
 	}
     if (pbi)
     {
-		(*pbi)(Blockinput_val);
+        returnvalue = (*pbi)(Blockinput_val);
 		DWORD aa=GetLastError();
 		if (old_Blockinput!=Blockinput_val && aa==5)
 		{
@@ -2451,6 +2781,6 @@ bool vncDesktop::block_input()
 	old_Blockinput1=m_bIsInputDisabledByClient;
 	old_Blockinput2=m_server->LocalInputsDisabled();
 	old_Blockinput=Blockinput_val;
-
     return Blockinput_val;
+	}
 }

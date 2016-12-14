@@ -1,4 +1,4 @@
-//  Copyright (C) 2002 Ultr@VNC Team Members. All Rights Reserved.
+//  Copyright (C) 2002 UltraVNC Team Members. All Rights Reserved.
 //  Copyright (C) 2000 Const Kaplinsky. All Rights Reserved.
 //  Copyright (C) 2002 RealVNC Ltd. All Rights Reserved.
 //  Copyright (C) 1999 AT&T Laboratories Cambridge. All Rights Reserved.
@@ -48,7 +48,7 @@ const char HTTP_MSG_OK []			="HTTP/1.0 200 OK\r\n\r\n";
 const char HTTP_FMT_INDEX[]			="<HTML><TITLE>VNC desktop [%.256s]</TITLE>\n"
 	"<APPLET CODE=vncviewer.class ARCHIVE=vncviewer.jar WIDTH=%d HEIGHT=%d>\n"
 	"<param name=PORT value=%d></APPLET></HTML>\n";
-const char HTTP_MSG_NOSOCKCONN []	="<HTML><TITLE>Ultr@VNC desktop</TITLE>\n"
+const char HTTP_MSG_NOSOCKCONN []	="<HTML><TITLE>UltraVNC desktop</TITLE>\n"
 	"<BODY>The requested desktop is not configured to accept incoming connections.</BODY>\n"
 	"</HTML>\n";
 const char HTTP_MSG_NOSUCHFILE []	="HTTP/1.0 404 Not found\r\n\r\n"
@@ -76,7 +76,6 @@ const char HTTP_FMT_INDEX[] =
 "    <PARAM NAME = PORT VALUE=%d>\n"
 "    <PARAM NAME = ENCODING VALUE=Tight>\n"
 "    <PARAM NAME = 'Open New Window' VALUE='Yes'>\n"
-"    %s\n"
 "    <COMMENT>\n"
 "	<EMBED \n"
 "            type = 'application/x-java-applet;version=1.4' \\\n"
@@ -86,7 +85,6 @@ const char HTTP_FMT_INDEX[] =
 "            HEIGHT = %d \\\n"
 "            PORT =%d \\\n"
 "            ENCODING =Tight \\\n"
-"            %s\\\n"
 "	    scriptable = false \\\n"
 "	    pluginspage ='http://java.sun.com/products/plugin/index.html#download'>\n"
 "	    <NOEMBED>\n"            
@@ -101,13 +99,13 @@ const char HTTP_FMT_INDEX[] =
 "    </APPLET>"*/
 "  </SPAN>\n"
 // "    <BR>\n"
-// "    <A href=\"http://ultravnc.sf.net\">Ultr@VNC Home Page</A></HTML>\n" // sf@2002: don't waste space 
+// "    <A href=\"http://UltraVNC.sf.net\">UltraVNC Home Page</A></HTML>\n" // sf@2002: don't waste space 
 "  </BODY>\n"
 "</HTML>\n";
 
 const char HTTP_MSG_NOSOCKCONN [] =
 "<HTML>\n"
-"  <HEAD><TITLE>Ultr@VNC desktop</TITLE></HEAD>\n"
+"  <HEAD><TITLE>UltraVNC desktop</TITLE></HEAD>\n"
 "  <BODY>\n"
 "    <H1>Connections Disabled</H1>\n"
 "    The requested desktop is not configured to accept incoming connections.\n"
@@ -116,7 +114,7 @@ const char HTTP_MSG_NOSOCKCONN [] =
 
 const char HTTP_MSG_BADPARAMS [] =
 "<HTML>\n"
-"  <HEAD><TITLE>Ultr@VNC desktop</TITLE></HEAD>\n"
+"  <HEAD><TITLE>UltraVNC desktop</TITLE></HEAD>\n"
 "  <BODY>\n"
 "    <H1>Bad Parameters</H1>\n"
 "    The sequence of applet parameters specified within the URL is invalid.\n"
@@ -143,83 +141,38 @@ typedef struct _FileToResourceMap {
 } FileMap;
 
 const FileMap filemapping []	={
-	{"/VncViewer.jar", "JavaArchive", IDR_VNCVIEWER_JAR},
-	{"/AuthPanel.class", "JavaClass", IDR_AUTHPANEL_CLASS},
-	{"/ClipboardFrame.class", "JavaClass", IDR_CLIPBOARDFRAME_CLASS},
-	{"/DesCipher.class", "JavaClass", IDR_DESCIPHER_CLASS},
-	{"/OptionsFrame.class", "JavaClass", IDR_OPTIONSFRAME_CLASS},
-	{"/RfbProto.class", "JavaClass", IDR_RFBPROTO_CLASS},
-	{"/VncCanvas.class", "JavaClass", IDR_VNCCANVAS_CLASS},
-	{"/VncViewer.class", "JavaClass", IDR_VNCVIEWER_CLASS},
-	{"/ButtonPanel.class", "JavaClass", IDR_BUTTONPANEL_CLASS},
-	{"/RecordingFrame.class", "JavaClass", IDR_RECFRAME_CLASS},
-	{"/SessionRecorder.class", "JavaClass", IDR_SESSIONREC_CLASS},
-	{"/FTPFrame.class", "JavaClass", IDR_FTPFRAME_CLASS},
-	{"/DH.class", "JavaClass", IDR_DH_CLASS},
-	{"/FTPFRame$StrComp.class", "JavaClass", IDR_FTPFRAMESTRCOMP_CLASS},
+	{"/VncViewer.jar", "JavaArchive", IDR_VNCVIEWER_JAR},	
 	};
 
 const FileMap filemapping2 []	={
-	{"/VncViewer.jar", "JavaArchive", IDR_JAVAARCHIVE1},
-	{"/AuthPanel.class", "JavaClass", IDR_JAVACLASS1},
-	{"/ClipboardFrame.class", "JavaClass", IDR_JAVACLASS3},
-	{"/DesCipher.class", "JavaClass", IDR_JAVACLASS4},
-	{"/OptionsFrame.class", "JavaClass", IDR_JAVACLASS8},
-	{"/RfbProto.class", "JavaClass", IDR_JAVACLASS10},
-	{"/VncCanvas.class", "JavaClass", IDR_JAVACLASS12},
-	{"/VncViewer.class", "JavaClass", IDR_JAVACLASS13},
-	{"/ButtonPanel.class", "JavaClass", IDR_JAVACLASS2},
-	{"/RecordingFrame.class", "JavaClass", IDR_JAVACLASS9},
-	{"/SessionRecorder.class", "JavaClass", IDR_JAVACLASS11},
-	{"/FTPFrame.class", "JavaClass", IDR_JAVACLASS7},
-	{"/DH.class", "JavaClass", IDR_JAVACLASS5},
-	{"/FTPFRame$StrComp.class", "JavaClass", IDR_JAVACLASS6},
+	{"/VncViewer.jar", "JavaArchive", IDR_JAVAARCHIVE1},	
 	};
-const int filemappingsize		= 14;
+const int filemappingsize		= 1;
 
-#ifdef HTTP_SAMEPORT
-// Added for HTTP-via-RFB. Allows us to handle an HTTP transaction
-// without starting a separate thread.
-class vncHTTPConnectThreadHelper {
-public:
-	// Routines to handle HTTP requests
-	void Init(vncServer* svr) { m_server = svr; }
-	void DoHTTP(VSocket *socket);
-	char *ReadLine(VSocket *socket, char delimiter);
-protected:
-	vncServer	*m_server;
-};
-#endif
-
-#ifdef HTTP_SAMEPORT
-class vncHTTPConnectThread : public omni_thread, public vncHTTPConnectThreadHelper
-#else
 // The function for the spawned thread to run
 class vncHTTPConnectThread : public omni_thread
-#endif
 {
 public:
 	// Init routine
 	virtual BOOL Init(VSocket *socket, vncServer *server);
+	void Inithttp(vncServer* svr) { m_server = svr; }
 
 	// Code to be executed by the thread
 	virtual void *run_undetached(void * arg);
-#ifndef HTTP_SAMEPORT
 	// Routines to handle HTTP requests
 	virtual void DoHTTP(VSocket *socket);
 	virtual char *ReadLine(VSocket *socket, char delimiter);
-#endif
+
 
 	// Fields used internally
 	BOOL		m_shutdown;
 protected:
-#ifndef HTTP_SAMEPORT
+
 	vncServer	*m_server;
-#endif
 	VSocket		*m_socket;
 };
 
-#ifdef HTTP_SAMEPORT
+
 // Added for HTTP-via-RFB. This function is called when a connection is
 // accepted on the RFB port. If the client sends an HTTP request we
 // handle it here and return TRUE. Otherwise we return
@@ -230,15 +183,15 @@ VBool maybeHandleHTTPRequest(VSocket* sock,vncServer* svr)
 
 	// Client is sending data. Create a vncHTTPConnectThread to
 	// handle it.
-	vncHTTPConnectThreadHelper http;
-	http.Init(svr);
+	vncHTTPConnectThread http;
+	http.Inithttp(svr);
 	http.DoHTTP(sock);
 	sock->Shutdown();
 	sock->Close();
 	delete sock;
 	return true;
 }
-#endif
+
 
 // Method implementations
 BOOL vncHTTPConnectThread::Init(VSocket *socket, vncServer *server)
@@ -290,11 +243,8 @@ void *vncHTTPConnectThread::run_undetached(void * arg)
 	return NULL;
 }
 
-#ifdef HTTP_SAMEPORT
-void vncHTTPConnectThreadHelper::DoHTTP(VSocket *socket)
-#else
 void vncHTTPConnectThread::DoHTTP(VSocket *socket)
-#endif
+
 {
 	char filename[1024];
 	char *line;
@@ -343,9 +293,7 @@ void vncHTTPConnectThread::DoHTTP(VSocket *socket)
 	}
 
 	// Switch, dependent upon the filename:
-	if (strcmp(filename, "/") == 0 ||
-			( strlen(filename) > 4 &&
-				filename[0]=='/' && filename[1]=='?' ) )
+	if (strcmp(filename, "/") == 0)
 	{
 		char indexpage[2048 + MAX_COMPUTERNAME_LENGTH + 1];
 
@@ -379,55 +327,11 @@ void vncHTTPConnectThread::DoHTTP(VSocket *socket)
 				strcpy(desktopname, "WinVNC");
 			}
 
-			// Tobias Doerffel, 2010/12
-			char paramsObj[4096];
-			char paramsEmbed[4096];
-			paramsObj[0] = 0;
-			paramsEmbed[0] = 0;
-			char *pf = filename+1;
-			while( ( *pf == '?' || ( pf = strchr( pf, '&' ) ) != NULL ) && pf[1] )
-			{
-				pf = pf+1;
-				char buf[128];
-				size_t curlen = strlen( pf );
-				char *next = strchr( pf, '&' );
-				if( next )
-				{
-					curlen = next - pf;
-				}
-				if( curlen > 0 && curlen+1 < sizeof( buf ) )
-				{
-					strncpy( buf, pf, curlen );
-					buf[curlen] = 0;
-					char *eq = strchr( buf, '=' );
-					if( eq )
-					{
-						*eq = 0;
-						char paramObj[128];
-						char paramEmbed[128];
-						sprintf( paramObj, "<PARAM NAME=%s VALUE=%s>\n", buf, eq+1 );
-						sprintf( paramEmbed, "%s = %s\n", buf, eq+1 );
-						if( strlen(paramObj)+strlen(paramsObj) < sizeof( paramsObj ) )
-						{
-							strcat( paramsObj, paramObj );
-						}
-						if( strlen(paramEmbed)+strlen(paramsEmbed) < sizeof( paramsEmbed ) )
-						{
-							strcat( paramsEmbed, paramEmbed );
-						}
-					}
-				}
-			}
-			// END - Tobias Doerffel, 2010/12
-
 			// Send the java applet page
 			sprintf(indexpage, HTTP_FMT_INDEX,
 				desktopname, width, height+32,
-				m_server->GetPort(),
-				paramsObj,
-				width, height+32,
-				m_server->GetPort(),
-				paramsEmbed
+				m_server->GetPort(), width, height+32,
+				m_server->GetPort()
 				);
 		}
 		else
@@ -565,11 +469,9 @@ void vncHTTPConnectThread::DoHTTP(VSocket *socket)
 	if (!socket->SendExactHTTP(HTTP_MSG_NOSUCHFILE, strlen(HTTP_MSG_NOSUCHFILE)))
 		return;
 }
-#ifdef HTTP_SAMEPORT
-char *vncHTTPConnectThreadHelper::ReadLine(VSocket *socket, char delimiter)
-#else
+
 char *vncHTTPConnectThread::ReadLine(VSocket *socket, char delimiter)
-#endif
+
 {
 	int max=1024;
 	// Allocate the maximum required buffer
@@ -623,9 +525,13 @@ vncHTTPConnect::~vncHTTPConnect()
 		((vncHTTPConnectThread *)m_thread)->m_shutdown = TRUE;
 
 		VSocket socket;
+#ifdef IPV6V4
+		socket.CreateBindConnect("localhost", m_port);
+#else
 		socket.Create();
 		socket.Bind(0);
 		socket.Connect("localhost", m_port);
+#endif
 		socket.Close();
 
 		void *returnval;
@@ -640,7 +546,10 @@ BOOL vncHTTPConnect::Init(vncServer *server, UINT port)
 {
 	// Save the port id
 	m_port = port;
-
+#ifdef IPV6V4
+	if (!m_socket.CreateBindListen(m_port, server->LoopbackOnly()))
+		return FALSE;
+#else
 	// Create the listening socket
 	if (!m_socket.Create())
 		return FALSE;
@@ -652,7 +561,7 @@ BOOL vncHTTPConnect::Init(vncServer *server, UINT port)
 	// Set it to listen
 	if (!m_socket.Listen())
 		return FALSE;
-
+#endif
 	// Create the new thread
 	m_thread = new vncHTTPConnectThread;
 	if (m_thread == NULL)

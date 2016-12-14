@@ -30,15 +30,29 @@
 // The VSocket class provides simple socket functionality,
 // independent of platform.  Hurrah.
 
-class VSocket;
+//#define FLOWCONTROL
 
+class VSocket;
+extern BOOL G_ipv6_allowed;
 #if (!defined(_ATT_VSOCKET_DEFINED))
 #define _ATT_VSOCKET_DEFINED
 
 #include "vtypes.h"
 #include <DSMPlugin/DSMPlugin.h>
-
 ////////////////////////////
+#include <iphlpapi.h>
+extern "C" {
+        typedef ULONG (WINAPI *t_GetPerTcpConnectionEStats)(
+                PMIB_TCPROW Row, TCP_ESTATS_TYPE EstatsType,
+                PUCHAR Rw, ULONG RwVersion, ULONG RwSize,
+                PUCHAR Ros, ULONG RosVersion, ULONG RosSize,
+                PUCHAR Rod, ULONG RodVersion, ULONG RodSize);
+       typedef ULONG (WINAPI *t_SetPerTcpConnectionEStats)(
+                PMIB_TCPROW Row, TCP_ESTATS_TYPE EstatsType,
+                PUCHAR Rw, ULONG RwVersion, ULONG RwSize,
+				ULONG Offset);
+}
+
 // Socket implementation
 
 // Create one or more VSocketSystem objects per application
@@ -60,81 +74,178 @@ public:
   VSocket();
   virtual ~VSocket();
 
-  ////////////////////////////
-  // Socket implementation
-
   // Create
   //        Create a socket and attach it to this VSocket object
+#ifdef IPV6V4
+#else
   VBool Create();
+#endif
+
+#ifdef IPV6V4
+  VBool CreateConnect(const VString address, const VCard port);
+  VBool CreateBindConnect(const VString address, const VCard port);
+  VBool	CreateBindListen(const VCard port, const VBool localOnly = VFalse);
+#endif
 
   // Shutdown
   //        Shutdown the currently attached socket
+#ifdef IPV6V4
   VBool Shutdown();
+  VBool Shutdown4();
+  VBool Shutdown6();
+#else
+  VBool Shutdown();
+#endif
 
   // Close
   //        Close the currently attached socket
+#ifdef IPV6V4
   VBool Close();
+  VBool Close4();
+  VBool Close6();
+#else
+  VBool Close();
+#endif
 
   // Bind
   //        Bind the attached socket to the specified port
   //		If localOnly is VTrue then the socket is bound only
   //        to the loopback adapter.
+#ifdef IPV6V4
+  VBool Bind4(const VCard port, const VBool localOnly=VFalse);
+  VBool Bind6(const VCard port, const VBool localOnly=VFalse);
+#else
   VBool Bind(const VCard port, const VBool localOnly=VFalse);
+#endif
 
   // Connect
   //        Make a stream socket connection to the specified port
   //        on the named machine.
+#ifdef IPV6V4
+#else
   VBool Connect(const VString address, const VCard port);
+#endif
 
   // Listen
   //        Set the attached socket to listen for connections
+#ifdef IPV6V4
+  VBool Listen4();
+  VBool Listen6();
+#else
   VBool Listen();
+#endif
 
   // Accept
   //        If the attached socket is set to listen then this
   //        call blocks waiting for an incoming connection, then
   //        returns a new socket object for the new connection
+#ifdef IPV6V4
   VSocket *Accept();
+  VSocket *Accept4();
+  VSocket *Accept6();
+#else
+  VSocket *Accept();
+#endif
 
   // GetPeerName
   //        If the socket is connected then this returns the name
   //        of the machine to which it is connected.
   //        This string MUST be copied before the next socket call...
+#ifdef IPV6V4
   VString GetPeerName();
+  VString GetPeerName4();
+  VString GetPeerName6();
+#else
+  VString GetPeerName();
+#endif
 
   // GetSockName
   //		If the socket exists then the name of the local machine
   //		is returned.  This string MUST be copied before the next
   //		socket call!
+#ifdef IPV6V4
   VString GetSockName();
+  VString GetSockName4();
+  VString GetSockName6();
+#else
+  VString GetSockName();
+#endif
 
   // Resolve
   //        Uses the Winsock API to resolve the supplied DNS name to
   //        an IP address and returns it as an Int32
+#ifdef IPV6V4
+  static VCard32 Resolve4(const VString name);
+  static bool Resolve6(const VString name, in6_addr * addr);
+#else
   static VCard32 Resolve(const VString name);
+#endif
 
   // SetTimeout
   //        Sets the socket timeout on reads and writes.
+#ifdef IPV6V4
+  VBool SetSendTimeout(VCard32 msecs);
+  VBool SetRecvTimeout(VCard32 msecs);
+
+  VBool SetTimeout(VCard32 msecs);
+  VBool SetTimeout4(VCard32 msecs);
+  VBool SetSendTimeout4(VCard32 msecs);
+  VBool SetRecvTimeout4(VCard32 msecs);
+  VBool SetTimeout6(VCard32 msecs);
+  VBool SetSendTimeout6(VCard32 msecs);
+  VBool SetRecvTimeout6(VCard32 msecs);
+#else
   VBool SetTimeout(VCard32 msecs);
   VBool SetSendTimeout(VCard32 msecs);
   VBool SetRecvTimeout(VCard32 msecs);
+#endif
   
   // adzm 2010-08
+#ifdef IPV6V4
+  VBool SetDefaultSocketOptions4();
+  VBool SetDefaultSocketOptions6();
+#else
   VBool SetDefaultSocketOptions();
+#endif
 
   // adzm 2010-08
   static void SetSocketKeepAliveTimeoutDefault(int timeout) { m_defaultSocketKeepAliveTimeout = timeout; }
-
+#ifdef IPV6V4
+  bool GetPeerAddress4(char *address, int size);
+  bool GetPeerAddress6(char *address, int size);
+#else
   bool GetPeerAddress(char *address, int size);
+#endif
 
-  VBool Http_CreateConnect(const VString address);
-  SOCKET GetChannel() const { return (SOCKET) sock; }
+#ifdef IPV6V4
+ 
+  VBool ReadSelect(VCard to);
+  VInt Send(const char *buff, const VCard bufflen);
+  VInt SendQueued(const char *buff, const VCard bufflen);
+  VInt Read(char *buff, const VCard bufflen);
+  VBool SendExact(const char *buff, const VCard bufflen);
+  VBool SendExact(const char *buff, const VCard bufflen, unsigned char msgType);
+  VBool SendExactQueue(const char *buff, const VCard bufflen);
+  VBool SendExactQueue(const char *buff, const VCard bufflen, unsigned char msgType);
+  VBool ReadExact(char *buff, const VCard bufflen);
+  VBool ClearQueue();
+
+  VBool ReadSelect(VCard to , int allsock);
+  VInt Send(const char *buff, const VCard bufflen, int allsock);
+  VInt SendQueued(const char *buff, const VCard bufflen, int allsock);
+  VInt Read(char *buff, const VCard bufflen, int allsock);
+  VBool SendExact(const char *buff, const VCard bufflen, int allsock);
+  VBool SendExact(const char *buff, const VCard bufflen, unsigned char msgType, int allsock);
+  VBool SendExactQueue(const char *buff, const VCard bufflen, int allsock);
+  VBool SendExactQueue(const char *buff, const VCard bufflen, unsigned char msgType, int allsock);
+  VBool ReadExact(char *buff, const VCard bufflen, int allsock);
+  VBool ClearQueue(int allsock);
+#else
+  //VBool Http_CreateConnect(const VString address);
   // I/O routines
-#ifdef HTTP_SAMEPORT
   // Check to see if the socket becomes readable within <to> msec.
   // Added to support HTTP-via-RFB.
   VBool ReadSelect(VCard to);
-#endif
 
   // Send and Read return the number of bytes sent or recieved.
   VInt Send(const char *buff, const VCard bufflen);
@@ -150,7 +261,7 @@ public:
   VBool SendExactQueue(const char *buff, const VCard bufflen, unsigned char msgType);
   VBool ReadExact(char *buff, const VCard bufflen);
   VBool ClearQueue();
-
+#endif
   // sf@2002 - DSMPlugin
   //adzm 2009-06-20
   void SetDSMPluginPointer(CDSMPlugin* pDSMPlugin);
@@ -179,13 +290,16 @@ public:
   //adzm 2010-08-01
   DWORD GetLastSentTick() { return m_LastSentTick; };
   IIntegratedPlugin* m_pIntegratedPluginInterface;
-
-
   ////////////////////////////
   // Internal structures
 protected:
   // The internal socket id
+#ifdef IPV6V4
+	int sock4;
+	int sock6;
+#else
   int sock;	      
+#endif
 
   //adzm 2010-08-01
   DWORD m_LastSentTick;
@@ -194,7 +308,6 @@ protected:
   //adzm 2009-06-20
   IPlugin* m_pPluginInterface;
   //adzm 2010-05-10
-  //IIntegratedPlugin* m_pIntegratedPluginInterface;
   bool m_fUsePlugin;
   bool m_fPluginStreamingIn; //adzm 2010-09
   bool m_fPluginStreamingOut; //adzm 2010-09
@@ -219,6 +332,8 @@ protected:
   // adzm 2010-08
   static int m_defaultSocketKeepAliveTimeout;
 
+  bool							GetOptimalSndBuf();
+  unsigned int							G_SENDBUFFER;
 };
 
 #endif // _ATT_VSOCKET_DEFINED

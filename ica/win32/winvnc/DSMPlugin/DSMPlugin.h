@@ -1,5 +1,5 @@
 /////////////////////////////////////////////////////////////////////////////
-//  Copyright (C) 2002 Ultr@Vnc Team Members. All Rights Reserved.
+//  Copyright (C) 2002-2013 UltraVNC Team Members. All Rights Reserved.
 //
 //  This program is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -18,7 +18,8 @@
 //
 // If the source code for the program is not available from the place from
 // which you received this file, check 
-// http://ultravnc.sourceforge.net/
+// http://www.uvnc.com/
+//
 ////////////////////////////////////////////////////////////////////////////
 //
 // DSMPlugin.h: interface for the CDSMPlugin class.
@@ -39,10 +40,15 @@
 #ifdef UNDER_CE
 #include "omnithreadce.h"
 #else
+#ifdef _VNCVIEWER
+#include "../vncviewer/omnithread/omnithread.h"
+#else
 #include "omnithread.h"
 #endif
+#endif
 
-#include "windows.h"
+#include <winsock2.h>
+#include <windows.h>
 
 //adzm - 2009-06-21
 class IPlugin
@@ -190,5 +196,34 @@ private:
 	omni_mutex m_TransMutex;
 	// omni_mutex m_RestMutex;
 };
+
+class ConfigHelper
+{
+public:
+	void SetConfigHelper(DWORD dwFlags, char* szPassphrase);
+	ConfigHelper(const char* szConfig);
+	~ConfigHelper();
+
+
+
+	DWORD m_dwFlags;
+	char* m_szConfig;
+	char* m_szPassphrase;
+};
+
+class Base64
+{
+public:
+	static void encode(const char* szIn, char* szOut);
+	static void decode(const char* szIn, char* szOut);
+
+protected:
+	static const char cb64[];
+	static const char cd64[];
+
+	static void encodeblock(BYTE in[3], BYTE out[4], int len);
+	static void decodeblock(BYTE in[4], BYTE out[3]);
+};
+
 
 #endif

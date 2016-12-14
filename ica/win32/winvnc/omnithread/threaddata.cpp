@@ -33,7 +33,7 @@ static omni_thread::key_t allocated_keys = 0;
 omni_thread::key_t
 omni_thread::allocate_key()
 {
-  omni_mutex_lock l(*next_id_mutex);
+  omni_mutex_lock l(*next_id_mutex,1);
   return ++allocated_keys;
 }
 

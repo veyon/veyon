@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9.00"
+	Version="9,00"
 	Name="vnchooks"
 	ProjectGUID="{1D18E045-6B72-43F4-ACBD-3E679A3DE349}"
+	RootNamespace="vnchooks"
 	TargetFrameworkVersion="131072"
 	>
 	<Platforms>
@@ -205,8 +206,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory=".\..\Release"
-			IntermediateDirectory=".\..\Release"
+			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="2"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
@@ -241,10 +242,6 @@
 				StringPooling="true"
 				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="true"
-				PrecompiledHeaderFile=".\..\Release/vnchooks.pch"
-				AssemblerListingLocation=".\..\Release/"
-				ObjectFile=".\..\Release/"
-				ProgramDataBaseFileName=".\..\Release/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 			/>
@@ -261,16 +258,12 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile=".\..\Release/vnchooks.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
-				ModuleDefinitionFile=".\VNCHooks.def"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile=".\..\Release/vnchooks.pdb"
 				OptimizeReferences="2"
-				RandomizedBaseAddress="1"
-				DataExecutionPrevention="0"
-				ImportLibrary=".\..\Release/vnchooks.lib"
+				RandomizedBaseAddress="2"
+				DataExecutionPrevention="2"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -295,6 +288,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
+				CommandLine="&quot;C:\Program Files (x86)\Windows Kits\8.1\bin\x86\signtool.exe&quot; sign /sha1 075BD1CAB5AE085E523AF7883FC0A8127BE08C71 /n &quot;uvnc bvba&quot; /v /fd sha1 /t http://timestamp.verisign.com/scripts/timstamp.dll &quot;$(OutDir)\$(ProjectName).dll&quot;&#x0D;&#x0A;&quot;C:\Program Files (x86)\Windows Kits\8.1\bin\x86\signtool.exe&quot; sign /sha1 0F96782496EA96F2BA96CF177E61F993CA5BC2E8 /n &quot;uvnc bvba&quot; /v /as /fd sha256 /tr http://timestamp.geotrust.com/tsa &quot;$(OutDir)\$(ProjectName).dll&quot;&#x0D;&#x0A;copy &quot;$(OutDir)\$(ProjectName).dll&quot; c:\uvnc\32\w2k&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
@@ -355,7 +349,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile=".\..\Release/vnchooks.dll"
+				OutputFile=".\..\Release/vnchooks64.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				ModuleDefinitionFile=".\VNCHooks.def"

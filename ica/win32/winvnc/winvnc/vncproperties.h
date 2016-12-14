@@ -1,5 +1,5 @@
 /////////////////////////////////////////////////////////////////////////////
-//  Copyright (C) 2002-2010 Ultr@VNC Team Members. All Rights Reserved.
+//  Copyright (C) 2002-2010 UltraVNC Team Members. All Rights Reserved.
 //
 //  This program is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -92,7 +92,7 @@ protected:
 	BOOL				m_alloweditclients;
     int                 m_ftTimeout;
     int                 m_keepAliveInterval;
-	int                 m_socketKeepAliveTimeout; // adzm 2010-08
+	int					m_IdleInputTimeout;
 
 
 	// Password handling
@@ -122,10 +122,9 @@ protected:
 	// STORAGE FOR THE PROPERTIES PRIOR TO APPLICATION
 	BOOL m_pref_SockConnect;
 	BOOL m_pref_HTTPConnect;
-	BOOL m_pref_XDMCPConnect;
 	BOOL m_pref_AutoPortSelect;
 	LONG m_pref_PortNumber;
-	LONG m_pref_HttpPortNumber;  // TightVNC 1.1.7
+	LONG m_pref_HttpPortNumber;  // TightVNC 1.1.8
 	char m_pref_passwd[MAXPWLEN];
 	char m_pref_passwd2[MAXPWLEN]; //PGM
 	UINT m_pref_QuerySetting;
@@ -154,11 +153,7 @@ protected:
 	BOOL m_pref_BlankInputsOnly; //PGM
 	int  m_pref_DefaultScale;
 	BOOL m_pref_RequireMSLogon;
-	BOOL m_pref_CaptureAlphaBlending;
-	BOOL m_pref_BlackAlphaBlending;
-//	BOOL m_pref_GammaGray;	// [v1.0.2-jp1 fix1]
 
-	
 	// Marscha@2004 - authSSP: added state of "New MS-Logon"
 	BOOL m_pref_NewMSLogon;
 
@@ -177,7 +172,7 @@ protected:
 	BOOL m_pref_Secondary;
 
 private:
-	void InitPortSettings(HWND hwnd); // TightVNC 1.1.7
+	void InitPortSettings(HWND hwnd); // TightVNC 1.1.8
 
 
 };

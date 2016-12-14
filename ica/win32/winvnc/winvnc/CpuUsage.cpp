@@ -1,5 +1,5 @@
 /////////////////////////////////////////////////////////////////////////////
-//  Copyright (C) 2002-2010 Ultr@VNC Team Members. All Rights Reserved.
+//  Copyright (C) 2002-2013 UltraVNC Team Members. All Rights Reserved.
 //
 //  This program is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -25,6 +25,7 @@
 #include <stdio.h>
 #include <tchar.h>
 #include <time.h>
+#include <winsock2.h>
 #include <windows.h>
 #include "CpuUsage.h"
 
@@ -157,6 +158,12 @@ short CProcessorUsage::GetUsage()
    }
 
     __int64 div = (time - sTime);
+	if (div==0)
+		{
+			if (m_bLocked) ::LeaveCriticalSection( &m_cs );
+			m_bLocked = false;
+			return sLastCpu;
+		}
 
    GetSysTimes(idleTime, kernelTime, userTime);
 

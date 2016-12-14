@@ -250,12 +250,28 @@ OMNI_THREAD_EXPOSE:
 // This has the advantage that mutex.unlock() will be called automatically
 // when an exception is thrown.
 //
-
+#include <stdio.h>
 class _OMNITHREAD_NTDLL_ omni_mutex_lock {
     omni_mutex& mutex;
 public:
-    omni_mutex_lock(omni_mutex& m) : mutex(m) { mutex.lock(); }
-    ~omni_mutex_lock(void) { mutex.unlock(); }
+	int nummer;
+    omni_mutex_lock(omni_mutex& m,int i) : mutex(m) {
+		nummer=i;
+		mutex.lock();
+/*#ifdef _DEBUG
+			char			szText[256];
+			sprintf(szText,"lock %i %d\n",nummer,GetTickCount());
+			if (nummer>0) OutputDebugString(szText);		
+#endif*/
+	}
+    ~omni_mutex_lock(void) {
+		mutex.unlock(); 
+		/*#ifdef _DEBUG
+			char			szText[256];
+			sprintf(szText,"unlock %i %d\n",nummer,GetTickCount());
+			if (nummer>0) OutputDebugString(szText);		
+#endif*/
+	}
 private:
     // dummy copy constructor and operator= to prevent copying
     omni_mutex_lock(const omni_mutex_lock&);
@@ -295,7 +311,7 @@ public:
 
     ~omni_condition(void);
 
-    void wait(void);
+    bool wait(DWORD dwTimeout=INFINITE);
 	// wait for the condition variable to be signalled.  The mutex is
 	// implicitly released before waiting and locked again after waking up.
 	// If wait() is called by multiple threads, a signal may wake up more
@@ -614,7 +630,7 @@ public:
 
 	// return this thread's priority.
 
-	omni_mutex_lock l(mutex);
+	omni_mutex_lock l(mutex,1);
 	return _priority;
     }
 
@@ -622,7 +638,7 @@ public:
 
 	// return thread state (invalid, new, running or terminated).
 
-	omni_mutex_lock l(mutex);
+	omni_mutex_lock l(mutex,1);
 	return _state;
     }
 

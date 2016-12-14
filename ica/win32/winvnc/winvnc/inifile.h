@@ -1,5 +1,5 @@
 /////////////////////////////////////////////////////////////////////////////
-//  Copyright (C) 2002-2010 Ultr@VNC Team Members. All Rights Reserved.
+//  Copyright (C) 2002-2013 UltraVNC Team Members. All Rights Reserved.
 //
 //  This program is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -21,14 +21,14 @@
 // http://www.uvnc.com/
 //
 ////////////////////////////////////////////////////////////////////////////
-
+#include <winsock2.h>
 #include <windows.h>
 #if (!defined(_WINVNC_INIFILE))
 #define _WINVNC_INIFILE
 
 bool Copy_to_Temp(char *tempfile);
 bool Copy_to_Secure_from_temp(char *tempfile);
-#define INIFILE_NAME "ultravnc.ini"
+#define INIFILE_NAME "UltraVNC.ini"
 
 class IniFile
 {

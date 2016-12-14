@@ -1,10 +1,7 @@
-//  Copyright (C) 2002 Ultr@VNC Team Members. All Rights Reserved.
-//  Copyright (C) 2002 RealVNC Ltd. All Rights Reserved.
-//  Copyright (C) 1999 AT&T Laboratories Cambridge. All Rights Reserved.
+/////////////////////////////////////////////////////////////////////////////
+//  Copyright (C) 2002-2013 UltraVNC Team Members. All Rights Reserved.
 //
-//  This file is part of the VNC system.
-//
-//  The VNC system is free software; you can redistribute it and/or modify
+//  This program is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation; either version 2 of the License, or
 //  (at your option) any later version.
@@ -19,28 +16,21 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307,
 //  USA.
 //
-// Functions to hide the Windows Desktop
+// If the source code for the program is not available from the place from
+// which you received this file, check 
+// http://www.uvnc.com/
 //
-// This hides three variants:
-//	- Desktop Patterns  (WIN.INI [Desktop] Pattern=)
-//	- Desktop Wallpaper (.bmp [and JPEG on Windows XP])
-//	- Active Desktop
-//
-// Written by Ed Hardebeck - Glance Networks, Inc.
-// With some code from Paul DiLascia, MSDN Magazine - May 2001
-//
-//	HideDesktop()		- hides the desktop
-//	RestoreDesktop()	- restore the desktop
-//
-
+////////////////////////////////////////////////////////////////////////////
+#include "stdhdrs.h"
 #define WIN32_LEAN_AND_MEAN
 #include <shlwapi.h>
+#include <tchar.h>
+#include <winsock2.h>
 #include <windows.h>
 #include <wininet.h> // Shell object uses INTERNET_MAX_URL_LENGTH (go figure)
 #if !__GNUC__ && _MSC_VER < 1400
 #define _WIN32_IE 0x0400
 #endif
-#include <tchar.h>
 #include <shlguid.h> // shell GUIDs
 #include <shlobj.h>  // IActiveDesktop
 #include "stdhdrs.h"
@@ -170,6 +160,7 @@ void ShowActiveDesktop()
 }
 		
 // OK, so this doesn't work in multiple threads or nest...
+static TCHAR	DesktopPattern[40];
 static BOOL		ADWasEnabled = false;
 static BOOL		ISWallPaperHided = false;
 static TCHAR SCREENNAME[1024];
@@ -208,6 +199,8 @@ void RestoreWallpaperStyle()
 
 void HideDesktop()
 {
+	//GetProfileString("Desktop", "Pattern", "0 0 0 0 0 0 0 0", DesktopPattern, sizeof(DesktopPattern));
+
 	// @@@efh Setting the desktop pattern via pvParam works, but is undocumented (except by www.winehq.com)
 	//SystemParametersInfo(SPI_SETDESKPATTERN, 0, "0 0 0 0 0 0 0 0", SPIF_SENDCHANGE);
 
@@ -241,6 +234,8 @@ void RestoreDesktop()
 	}
 
 	ISWallPaperHided=false;
+
+	//SystemParametersInfo(SPI_SETDESKPATTERN, 0, DesktopPattern, SPIF_SENDCHANGE);
 }
 
 
@@ -286,15 +281,16 @@ void DisableEffects()
 
 		::ZeroMemory(spiValues, sizeof(spiValues));
 
-		for (size_t iParam = 0; iParam < (sizeof(spiParams) / sizeof(spiParams[0])); iParam++) {
+		size_t iParam = 0;
+		for (iParam = 0; iParam < (sizeof(spiParams) / sizeof(spiParams[0])); iParam++) {
 			if (!SystemParametersInfo(spiParams[iParam], 0, &(spiValues[iParam]), 0)) {
 				vnclog.Print(LL_INTWARN, VNCLOG("Failed to get SPI value for 0x%04x (0x%08x)\n"), spiParams[iParam], GetLastError());
 			} else {
 				vnclog.Print(LL_INTINFO, VNCLOG("Retrieved SPI value for 0x%04x: 0x%08x\n"), spiParams[iParam], spiValues[iParam]);
 			}
 		}
-		for (size_t iParam = 0; iParam < (sizeof(spiParams) / sizeof(spiParams[0])); iParam++) {
-			if (spiValues[iParam] != (BOOL) spiSuggested[iParam]) {
+		for (iParam = 0; iParam < (sizeof(spiParams) / sizeof(spiParams[0])); iParam++) {
+			if (spiValues[iParam] != spiSuggested[iParam]) {
 				if (!SystemParametersInfo(spiParams[iParam]+1, 0, (PVOID)spiSuggested[iParam], SPIF_SENDCHANGE)) {				
 					vnclog.Print(LL_INTWARN, VNCLOG("Failed to set SPI value for 0x%04x to 0x%08x (0x%08x)\n"), spiParams[iParam]+1, spiSuggested[iParam], GetLastError());
 				} else {
@@ -309,8 +305,9 @@ void DisableEffects()
 void EnableEffects()
 {
 	if (g_bEffectsDisabled) {
-		for (size_t iParam = 0; iParam < (sizeof(spiParams) / sizeof(spiParams[0])); iParam++) {
-			if (spiValues[iParam] != (BOOL) spiSuggested[iParam]) {
+		size_t iParam = 0;
+		for (iParam = 0; iParam < (sizeof(spiParams) / sizeof(spiParams[0])); iParam++) {
+			if (spiValues[iParam] != spiSuggested[iParam]) {
 				if (!SystemParametersInfo(spiParams[iParam]+1, 0, (PVOID)spiValues[iParam], SPIF_SENDCHANGE)) {
 					vnclog.Print(LL_INTWARN, VNCLOG("Failed to restore SPI value for 0x%04x (0x%08x)\n"), spiParams[iParam]+1, GetLastError());
 				} else {

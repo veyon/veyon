@@ -1,4 +1,4 @@
-//  Copyright (C) 2002 Ultr@VNC Team Members. All Rights Reserved.
+//  Copyright (C) 2002 UltraVNC Team Members. All Rights Reserved.
 //  Copyright (C) 2000-2002 Const Kaplinsky. All Rights Reserved.
 //  Copyright (C) 2002 RealVNC Ltd. All Rights Reserved.
 //  Copyright (C) 1999 AT&T Laboratories Cambridge. All Rights Reserved.
@@ -64,6 +64,9 @@ typedef std::list<vncClientId> vncClientList;
 #include "vncbuffer.h"
 #include "vncencodemgr.h"
 #include "TextChat.h" // sf@2002 - TextChat
+#ifndef ULTRAVNC_ITALC_SUPPORT
+#include "ZipUnZip32/zipUnZip32.h"
+#endif
 //#include "timer.h"
 // adzm - 2010-07 - Extended clipboard
 #include "common/Clipboard.h"
@@ -80,7 +83,23 @@ class vncClientUpdateThread;
 #define FT_PROTO_VERSION_2   2  // base ft protocol
 #define FT_PROTO_VERSION_3   3  // new ft protocol session messages
 
-
+#ifdef _Gii
+struct MyTouchINfo
+{
+	DWORD TouchId;
+	DWORD pointerflag;
+	DWORD touchmask;
+	int X;
+	int Y;
+	int ContactWidth;
+	int ContactHeight;
+	DWORD time;
+};
+#ifdef _USE_DLL
+typedef BOOL(__cdecl*PInitializeTouchInjection)(int);
+typedef BOOL(__cdecl*PInjectTouch)(int points, MyTouchINfo *ti_array);
+#endif
+#endif
 
 extern int CheckUserGroupPasswordUni(char * userin,char *password,const char *machine);
 
@@ -111,6 +130,7 @@ public:
 
 	// Client manipulation functions for use by the server
 	virtual void SetBuffer(vncBuffer *buffer);
+	bool	NotifyUpdate(rfbFramebufferUpdateRequestMsg fur);
 
 	// Update handling functions
 	// These all lock the UpdateLock themselves
@@ -120,24 +140,40 @@ public:
 	virtual void UpdateClipTextEx(ClipboardData& clipboardData, CARD32 overrideFlags = 0);
 	virtual void UpdatePalette(bool lock);
 	virtual void UpdateLocalFormat(bool lock);
+	int nr_incr_rgn_empty;
 
 	// Is the client waiting on an update?
 	// YES IFF there is an incremental update region,
 	//     AND no changed or copied updates intersect it
 	virtual BOOL UpdateWanted() {
-		omni_mutex_lock l(GetUpdateLock());
-/*#ifdef _DEBUG
+		omni_mutex_lock l(GetUpdateLock(),324);
+#ifdef _DEBUG
 										char			szText[256];
-										sprintf(szText," UpdateWanted %i \n",!m_incr_rgn.is_empty() &&
-											m_incr_rgn.intersect(m_update_tracker.get_changed_region()).is_empty() &&
-											m_incr_rgn.intersect(m_update_tracker.get_cached_region()).is_empty() &&
+										sprintf(szText," UpdateWanted %i %i %i %i \n",!m_incr_rgn.is_empty(),
+											m_incr_rgn.intersect(m_update_tracker.get_changed_region()).is_empty() ,
+											m_incr_rgn.intersect(m_update_tracker.get_cached_region()).is_empty() ,
 											m_incr_rgn.intersect(m_update_tracker.get_copied_region()).is_empty());
 										OutputDebugString(szText);		
-#endif*/
-		return  !m_incr_rgn.is_empty() &&
-			m_incr_rgn.intersect(m_update_tracker.get_changed_region()).is_empty() &&
+#endif
+		BOOL value =!m_incr_rgn.is_empty() &&m_incr_rgn.intersect(m_update_tracker.get_changed_region()).is_empty() &&
 			m_incr_rgn.intersect(m_update_tracker.get_cached_region()).is_empty() &&
 			m_incr_rgn.intersect(m_update_tracker.get_copied_region()).is_empty();
+		if (m_incr_rgn.is_empty())
+		{
+			nr_incr_rgn_empty++;
+			if (nr_incr_rgn_empty > 300)
+			{
+				nr_incr_rgn_empty=0;				
+				rfbFramebufferUpdateRequestMsg fur;
+				fur.x = 0;
+				fur.y = 0;
+				fur.w = 10;
+				fur.h = 10;
+				NotifyUpdate(fur);
+			}
+		}
+		else nr_incr_rgn_empty = 0;
+		return value;
 
 	};
 
@@ -186,8 +222,10 @@ public:
 	virtual long GetConnectTime() {return m_lConnectTime;};
 	virtual bool IsSlowEncoding() {return m_encodemgr.IsSlowEncoding();};
 	virtual bool IsUltraEncoding() {return m_encodemgr.IsUltraEncoding();};
+	virtual bool IsEncoderSet() { return m_encodemgr.IsEncoderSet(); };
 	virtual bool IsFileTransBusy(){return (m_fFileUploadRunning||m_fFileDownloadRunning || m_fFileSessionOpen);};
 	void SetProtocolVersion(rfbProtocolVersionMsg *protocolMsg);
+	void SetOutgoing(bool outgoing) {m_outgoing = outgoing;};
 	void Clear_Update_Tracker();
 	void TriggerUpdate();
 	void UpdateCursorShape();
@@ -266,6 +304,7 @@ public:
 	void NotifyExtendedClipboardSupport();
 	// adzm 2010-09 - Notify streaming DSM plugin support
 	void NotifyPluginStreamingSupport();
+	bool cl_connected;
 
 	// sf@2002 
 	// Update routines
@@ -410,7 +449,7 @@ protected:
 	char			*m_client_name;
 
 	// The client thread
-	omni_thread		*m_thread;
+	omni_thread		*m_thread_ClientThread;
 
 	// adzm 2009-07-05
 	char*			m_szRepeaterID;
@@ -529,10 +568,6 @@ protected:
 	int totalraw;
 
     helper::DynamicFn<pSendinput> Sendinput;
-	// Modif cs@2005
-#ifdef DSHOW
-	HANDLE m_hmtxEncodeAccess;
-#endif
 
     std::string m_OrigSourceDirectoryName;
     bool        m_wants_ServerStateUpdates;
@@ -541,6 +576,7 @@ protected:
     bool        m_wants_KeepAlive;
 	bool		m_session_supported;
 	bool		m_initial_update;
+	bool		m_outgoing;
 };
 
 
@@ -559,11 +595,15 @@ public:
 
 	// Sub-Init routines
 	virtual BOOL InitVersion();
+#ifdef _Gii
+	BOOL InitGiiVersion();
+#endif
 	virtual BOOL InitAuthenticate();
 	virtual BOOL AuthenticateClient(std::vector<CARD8>& current_auth);
 	virtual BOOL AuthenticateLegacyClient();
 
 	BOOL AuthSecureVNCPlugin(std::string& auth_message); // must SetHandshakeComplete after sending auth result!
+	BOOL AuthSecureVNCPlugin_old(std::string& auth_message);
 	BOOL AuthMsLogon(std::string& auth_message);
 	BOOL AuthVnc(std::string& auth_message);
 	BOOL AuthSCPrompt(std::string& auth_message); // adzm 2010-10
@@ -601,5 +641,14 @@ protected:
 	BOOL m_ms_logon;
 	int m_major;
 	int m_minor;
+#ifdef _Gii
+#ifdef _USE_DLL
+	PInitializeTouchInjection DLL_InitializeTouchInjection;
+	PInjectTouch DLL_PInjectTouch;
+	HMODULE win8dllHandle;
+#endif
+	bool *point_status;
+	DWORD nr_points;
+#endif
 };
 #endif

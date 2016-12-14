@@ -1,10 +1,7 @@
-//  Copyright (C) 2002 Ultr@VNC Team Members. All Rights Reserved.
-//  Copyright (C) 2000 Tridia Corporation. All Rights Reserved.
-//  Copyright (C) 1999 AT&T Laboratories Cambridge. All Rights Reserved.
+/////////////////////////////////////////////////////////////////////////////
+//  Copyright (C) 2002-2013 UltraVNC Team Members. All Rights Reserved.
 //
-//  This file is part of the VNC system.
-//
-//  The VNC system is free software; you can redistribute it and/or modify
+//  This program is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation; either version 2 of the License, or
 //  (at your option) any later version.
@@ -19,24 +16,12 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307,
 //  USA.
 //
-// TightVNC distribution homepage on the Web: http://www.tightvnc.com/
+// If the source code for the program is not available from the place from
+// which you received this file, check 
+// http://www.uvnc.com/
 //
-// If the source code for the VNC system is not available from the place 
-// whence you received this file, check http://www.uk.research.att.com/vnc or contact
-// the authors on vnc@uk.research.att.com for information on obtaining it.
-
-
-// vncEncodeUltra
-
-// This file implements the vncEncoder-derived vncEncodeUltra class.
-// This class overrides some vncEncoder functions to produce a bitmap
-// to Ultra encoder.  Ultra is much more efficient than RAW format on
-// most screen data and usually twice as efficient as hextile.  Of
-// course, Ultra compression uses more CPU time on the server.
-// However, over slower (64kbps or less) connections, the reduction
-// in data transmitted usually outweighs the extra latency added
-// while the server CPU performs the compression algorithms.
-
+////////////////////////////////////////////////////////////////////////////
+#include "stdhdrs.h"
 #include "vncEncodeUltra.h"
 
 #define IN_LEN		(128*1024)
@@ -230,10 +215,10 @@ vncEncodeUltra::EncodeOneRect(BYTE *source, BYTE *dest, const RECT &rect,VSocket
 			delete [] m_buffer;
 			m_buffer = NULL;
 		}
-		m_buffer = new BYTE [rawDataSize+1];
+		m_buffer = new BYTE [rawDataSize+1000];
 		if (m_buffer == NULL)
 			return vncEncoder::EncodeRect(source, dest, rect);
-		m_bufflen = rawDataSize;
+		m_bufflen = rawDataSize+999;
 	}
 	// Translate the data into our new buffer
 	Translate(source, m_buffer, rect);

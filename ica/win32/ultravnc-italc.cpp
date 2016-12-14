@@ -139,32 +139,6 @@ BOOL ultravnc_italc_access_control( const char *username, const char *host )
 #define SIZE_T_MAX	((size_t)-1)
 
 
-errno_t strcat_s( char* dst, size_t elem, const char* src )
-{
-    size_t i, j;
-    if(!dst) return EINVAL;
-    if(elem == 0) return EINVAL;
-    if(!src)
-    {
-        dst[0] = '\0';
-        return EINVAL;
-    }
-
-    for(i = 0; i < elem; i++)
-    {
-        if(dst[i] == '\0')
-        {
-            for(j = 0; (j + i) < elem; j++)
-            {
-                if((dst[j + i] = src[j]) == '\0') return 0;
-            }
-        }
-    }
-    /* Set the first element to 0, not the first element after the skipped part */
-    dst[0] = '\0';
-    return ERANGE;
-}
-
 errno_t strncat_s( char* dst, size_t elem, const char* src, size_t count )
 {
     size_t i, j;
@@ -196,26 +170,6 @@ errno_t strncat_s( char* dst, size_t elem, const char* src, size_t count )
         }
     }
     /* Set the first element to 0, not the first element after the skipped part */
-    dst[0] = '\0';
-    return ERANGE;
-}
-
-
-errno_t strcpy_s(char* dst, size_t elem, const char* src)
-{
-    size_t i;
-    if(!elem) return EINVAL;
-    if(!dst) return EINVAL;
-    if(!src)
-    {
-        dst[0] = '\0';
-        return EINVAL;
-    }
-
-    for(i = 0; i < elem; i++)
-    {
-        if((dst[i] = src[i]) == '\0') return 0;
-    }
     dst[0] = '\0';
     return ERANGE;
 }

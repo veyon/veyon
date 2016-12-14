@@ -1,4 +1,4 @@
-//  Copyright (C) 2002 Ultr@VNC Team Members. All Rights Reserved.
+//  Copyright (C) 2002 UltraVNC Team Members. All Rights Reserved.
 //  Copyright (C) 2000-2002 Const Kaplinsky. All Rights Reserved.
 //  Copyright (C) 2002 RealVNC Ltd. All Rights Reserved.
 //  Copyright (C) 1999 AT&T Laboratories Cambridge. All Rights Reserved.
@@ -60,8 +60,19 @@ class vncServer;
 #endif
 // adzm - 2010-07 - Extended clipboard
 #include "common/Clipboard.h"
+#include "IPC.h"
 //#define COMPILE_MULTIMON_STUBS
 //#include "Multimon.h"
+
+// JnZn558
+#define MULTI_MON_PRIMARY		1
+#define MULTI_MON_SECOND		2
+#define MULTI_MON_THIRD			3
+#define MULTI_MON_FIRST_TWO		4
+#define MULTI_MON_LAST_TWO		5
+#define MULTI_MON_ALL			6
+//
+
 #ifndef SM_CMONITORS
 
 #define SM_XVIRTUALSCREEN       76
@@ -182,7 +193,6 @@ typedef BOOL (WINAPI*  pBlockInput) (BOOL);
 typedef BOOL (WINAPI* LPGETMONITORINFO)(HMONITOR, LPMONITORINFO);
 typedef HMONITOR (WINAPI* LPMONITOTFROMPOINT) (POINT,DWORD);
 
-
 // Class definition
 // multi monitor
 struct monitor
@@ -195,20 +205,28 @@ struct monitor
 	int offsety;
 };
 
+typedef struct _sessionmessage
+{
+	DWORD ID;
+	char type[32];
+	char name[32];
+	char username[32];
+}sessionmsg;
+
 
 class PixelCaptureEngine
 {
 public:
 	PixelCaptureEngine();
 	~PixelCaptureEngine();
-	void PixelCaptureEngineInit(HDC rootdc, HDC memdc, HBITMAP membitmap, bool bCaptureAlpha, void *dibbits, int bpp, int bpr);
+	void PixelCaptureEngineInit(HDC rootdc, HDC memdc, HBITMAP membitmap, bool bCaptureAlpha, void *dibbits, int bpp, int bpr,int offsetx,int offsety);
 	bool CaptureRect(const rfb::Rect& rect);
 	COLORREF CapturePixel(int x, int y);
 	void ReleaseCapture();
 	bool		m_bIsVista;
 
 private:
-	HDC			m_hrootdc;
+	HDC			m_hrootdc_PixelEngine;
 	HDC			m_hmemdc;
 	HBITMAP		m_membitmap;
 	HBITMAP		m_oldbitmap;
@@ -217,10 +235,17 @@ private:
 	bool		m_bCaptureAlpha;
 	int			m_bytesPerPixel;
 	int			m_bytesPerRow;
+	int m_ScreenOffsetx;
+	int m_ScreenOffsety;
 };
 
 class vncDesktop
 {
+// JnZn558
+protected:
+	int m_current_monitor;
+	int m_old_monitor;
+//
 
 // Fields
 public:
@@ -290,6 +315,10 @@ public:
 	BOOL VideoBuffer();
 	int m_ScreenOffsetx;
 	int m_ScreenOffsety;
+	// JnZn558
+	int m_ScreenWidth;
+	int m_ScreenHeight;
+	//
 	int DriverType;
 	DWORD color[10];
 	// added jeff
@@ -310,11 +339,14 @@ public:
 	int GetNrMonitors();
 	void GetPrimaryDevice();
 	void GetSecondaryDevice();
+	// JnZn558
+	void GetThirdDevice();
+	//
 	void Checkmonitors();
     // 28 Mar 2008 jdp
     void SetBlockInputState(bool newstate);
     bool GetBlockInputState() { return m_bIsInputDisabledByClient; }
-    bool block_input();
+    bool block_input(bool state);
 	BOOL InitWindow();
 	HANDLE trigger_events[6];
 	HANDLE restart_event;
@@ -325,12 +357,17 @@ public:
 	// The current mouse position
 	rfb::Rect		m_cursorpos;
 	void WriteMessageOnScreen(char*,BYTE *scrBuff, UINT scrBuffSize);
+	void WriteMessageOnScreenPreConnect( BYTE *scrBuff, UINT scrBuffSize);
+
+	sessionmsg *sesmsg ;
+	int aantal_session;
 
 	// Implementation
 protected:
 
 	// Routines to hook and unhook us
 	DWORD Startup();
+	DWORD PreConnectStartup();
 	BOOL Shutdown();
 	
 	// Init routines called by the child thread
@@ -339,6 +376,7 @@ protected:
 //	void KillWallpaper();
 //	void RestoreWallpaper();
 	DWORD InitBitmap();
+	DWORD PreConnectInitBitmap();
 	BOOL ThunkBitmapInfo();
 	DWORD SetPixFormat();
 	BOOL SetPixShifts();
@@ -375,7 +413,6 @@ protected:
 	// bool m_fTextChatRunning;
 	// TextChat* m_pCurrentTextChat;
 
-	BOOL m_fCaptureAlphaBlending;
 	// DATA
 
 	// Generally useful stuff
@@ -390,7 +427,7 @@ protected:
 
 	// device contexts for memory and the screen
 	HDC				m_hmemdc;
-	HDC				m_hrootdc;
+	HDC				m_hrootdc_Desktop;
 
 	// New and old bitmaps
 	HBITMAP			m_membitmap;
@@ -460,7 +497,7 @@ protected:
 	// Modif input dis/enabke
 	DWORD m_thread_hooks;
 	BOOL ddihook;
-	UINT OldPowerOffTimeout;
+	bool m_screen_in_powersave;
 	bool m_Black_window_active;
 
 	//	[v1.0.2-jp1 fix] Monitor Blanking
@@ -473,6 +510,7 @@ protected:
 	BOOL m_hookswitch;
 	BOOL Hookdll_Changed;
 	BOOL m_hookinited;
+	BOOL m_bitmappointer;
 	HANDLE m_hddihook;
 	void StartStopddihook(BOOL enabled);
 	void StartStophookdll(BOOL enabled);
@@ -492,9 +530,7 @@ protected:
 
 	pBlockInput pbi;
 	HMODULE hUser32;
-	BOOL m_OrigpollingSet;
-	BOOL m_Origpolling;
-/*	BOOL Check24bit();*/
+	BOOL no_default_desktop;
 	COLORREF CapturePixel(int x,int y);
 	HANDLE InitWindowThreadh;
 	void StopInitWindowthread();
@@ -516,7 +552,7 @@ BOOL HookWanted;
 BOOL DriverWantedSet;
 
 //Multi monitor
-monitor mymonitor[3];
+monitor mymonitor[4];
 int nr_monitors;
 bool multi_monitor;
 bool requested_multi_monitor;
@@ -526,12 +562,17 @@ bool m_bIsInputDisabledByClient; // 28 March 2008 jdp
 CAVIGenerator *AviGen;
 #endif
 
+bool startedw8;
+unsigned char *w8_data;
+mystruct *plist;
+
 private:
 	HDESK m_input_desktop;
 	HDESK m_home_desktop;
 	PixelCaptureEngine PixelEngine;
 	int idle_counter;
 	bool change_found;
+	//POINT	old_caret_pt;
 };
 
 #endif // _WINVNC_VNCDESKTOP

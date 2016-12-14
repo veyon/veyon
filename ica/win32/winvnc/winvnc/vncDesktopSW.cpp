@@ -1,5 +1,5 @@
 /////////////////////////////////////////////////////////////////////////////
-//  Copyright (C) 2002 Ultr@VNC Team Members. All Rights Reserved.
+//  Copyright (C) 2002-2013 UltraVNC Team Members. All Rights Reserved.
 //
 //  This program is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -19,6 +19,8 @@
 // If the source code for the program is not available from the place from
 // which you received this file, check 
 // http://www.uvnc.com/
+//
+////////////////////////////////////////////////////////////////////////////
 
 
 // System headers
@@ -170,10 +172,69 @@ vncDesktop::GetSize()
 		}
 	 else
 		{
+			/* JnZn558
 			if (multi_monitor)
 				return rfb::Rect(0,0,mymonitor[2].Width,mymonitor[2].Height);	
 			else
 				return rfb::Rect(0,0,mymonitor[0].Width,mymonitor[0].Height);
+			*/
+
+			if (multi_monitor) {
+				int nWidth = mymonitor[0].Width;
+				int nHeight = mymonitor[0].Height;
+				switch (nr_monitors) {
+				case 2:
+					{
+					nWidth=mymonitor[0].Width+mymonitor[1].Width;
+					nHeight=max(mymonitor[0].Height, mymonitor[1].Height);
+					} break;
+				case 3:
+					{
+						switch (m_current_monitor) {
+							case 4:
+							{
+								if (nr_monitors > 2) {
+									if ((mymonitor[0].offsetx < mymonitor[1].offsetx && mymonitor[1].offsetx < mymonitor[2].offsetx) ||
+										(mymonitor[1].offsetx < mymonitor[0].offsetx && mymonitor[0].offsetx < mymonitor[2].offsetx))
+										nWidth = mymonitor[0].Width+mymonitor[1].Width;
+									if ((mymonitor[0].offsetx < mymonitor[2].offsetx && mymonitor[2].offsetx < mymonitor[1].offsetx) ||
+										(mymonitor[2].offsetx < mymonitor[0].offsetx && mymonitor[0].offsetx < mymonitor[2].offsetx))
+										nWidth = mymonitor[0].Width+mymonitor[2].Width;
+									if ((mymonitor[1].offsetx < mymonitor[2].offsetx && mymonitor[2].offsetx < mymonitor[0].offsetx) ||
+										(mymonitor[2].offsetx < mymonitor[1].offsetx && mymonitor[1].offsetx < mymonitor[0].offsetx))
+										nWidth = mymonitor[1].Width+mymonitor[2].Width;
+									} else
+										nWidth = mymonitor[3].Width;
+									nHeight = max(mymonitor[0].Height, mymonitor[1].Height);
+							} break;
+							case 5:
+							{
+								if (nr_monitors > 2) {
+									if ((mymonitor[0].offsetx < mymonitor[1].offsetx && mymonitor[1].offsetx < mymonitor[2].offsetx) ||
+										(mymonitor[0].offsetx < mymonitor[2].offsetx && mymonitor[2].offsetx < mymonitor[1].offsetx))
+										nWidth = mymonitor[1].Width+mymonitor[2].Width;
+									if ((mymonitor[1].offsetx < mymonitor[0].offsetx && mymonitor[0].offsetx < mymonitor[2].offsetx) ||
+										(mymonitor[1].offsetx < mymonitor[2].offsetx && mymonitor[2].offsetx < mymonitor[0].offsetx))
+										nWidth = mymonitor[0].Width+mymonitor[2].Width;
+									if ((mymonitor[2].offsetx < mymonitor[1].offsetx && mymonitor[1].offsetx < mymonitor[0].offsetx) ||
+										(mymonitor[2].offsetx < mymonitor[0].offsetx && mymonitor[0].offsetx < mymonitor[1].offsetx))
+										nWidth = mymonitor[0].Width+mymonitor[1].Width;
+								} else
+									nWidth = mymonitor[3].Width;
+									nHeight = max(mymonitor[1].Height, mymonitor[2].Height);
+							} break;
+							default:
+							{
+								nWidth = mymonitor[3].Width;
+								nHeight = mymonitor[3].Height;
+							}
+						}
+					}
+					default: break;
+				}
+				return rfb::Rect(0,0,nWidth,nHeight);
+			} else
+				return rfb::Rect(0,0,mymonitor[m_current_monitor-1].Width,mymonitor[m_current_monitor-1].Height);
 		}
 }
 
@@ -212,13 +273,14 @@ if (m_server->SingleWindow())
 	}
 	}
 else
-	{ 
-	m_SWOffsetx=0;
-	m_SWOffsety=0;
-	m_Cliprect.tl.x=0;
-	m_Cliprect.tl.y=0;
+	{	
+	m_SWOffsetx=m_bmrect.tl.x;
+	m_SWOffsety=m_bmrect.tl.y;
+	m_Cliprect.tl.x=m_bmrect.tl.x;
+	m_Cliprect.tl.y=m_bmrect.tl.y;
 	m_Cliprect.br.x=m_bmrect.br.x;
 	m_Cliprect.br.y=m_bmrect.br.y;
+
 	vnclog.Print(LL_INTINFO, VNCLOG("GetQuarterSize \n"));
 	return rfb::Rect(0, 0, m_bmrect.br.x, m_bmrect.br.y/4);
 	}

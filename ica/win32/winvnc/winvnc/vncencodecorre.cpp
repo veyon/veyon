@@ -32,7 +32,7 @@
 // splits large rectangles up into ones of at most 256 pixels width
 // & height.  This results in better granularity to use for deciding
 // whether to send RAW or CoRRE/RRE. 
-
+#include "stdhdrs.h"
 #include "vncencodecorre.h"
 #include "rfb.h"
 #include "rfbMisc.h"

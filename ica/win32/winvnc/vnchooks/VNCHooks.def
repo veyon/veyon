@@ -3,5 +3,5 @@
 LIBRARY      "VNCHooks"
 ; DESCRIPTION  'WinVNC 3.0 Hook Library'
 
-SECTIONS
-	.SharedData read write shared
+;SECTIONS
+;	.SharedData read write shared
