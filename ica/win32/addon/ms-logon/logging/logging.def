@@ -1,8 +1,0 @@
-LIBRARY   Logging
-
-             EXPORTS
-			   LOGEXIT
-			   LOGLOGON
-			   LOGFAILED
-			   LOGLOGONUSER
-			   LOGFAILEDUSER

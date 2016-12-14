@@ -1,5 +1,5 @@
 #include <windows.h>
-#include "win32/winvnc/winvnc/resource.h"
+#include "../3rdparty/ultravnc/winvnc/winvnc/resource.h"
 
 /////////////////////////////////////////////////////////////////////////////
 //
