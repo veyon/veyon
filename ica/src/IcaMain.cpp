@@ -175,6 +175,7 @@ static int runCoreServer( int argc, char **argv )
 		// control of the ICA service supervisor?
 		if( GetLastError() == ERROR_FILE_NOT_FOUND )
 		{
+			qWarning( "Creating session event" );
 			// then create our own event as otherwise the VNC server main loop
 			// will eat 100% CPU due to failing WaitForSingleObject() calls
 			hShutdownEvent = CreateEvent( NULL, FALSE, FALSE,
