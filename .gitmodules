@@ -3,4 +3,4 @@
 	url = https://github.com/KDE/kldap.git
 [submodule "3rdparty/ultravnc"]
 	path = 3rdparty/ultravnc
-	url = git@github.com:iTALC/ultravnc.git
+	url = https://github.com/iTALC/ultravnc.git
