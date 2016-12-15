@@ -89,7 +89,6 @@ IF(ITALC_BUILD_WIN32)
 		${ULTRAVNC_DIR}/winvnc/winvnc/vncdesktopthread.cpp
 		${ULTRAVNC_DIR}/winvnc/winvnc/vncdesktopsink.cpp
 		${ULTRAVNC_DIR}/winvnc/winvnc/IPC.cpp
-		${ULTRAVNC_DIR}/winvnc/winvnc/vncmenu.cpp
 		${ULTRAVNC_DIR}/winvnc/winvnc/vncencoderre.cpp
 		${ULTRAVNC_DIR}/winvnc/winvnc/vncserver.cpp
 		${ULTRAVNC_DIR}/winvnc/winvnc/vncabout.cpp

@@ -239,3 +239,25 @@ qint64 vsocketDispatcher( char * _buf, const qint64 _len,
 #include "vncclient.cpp"
 #include "vncdesktop.cpp"
 
+
+#ifdef IPV6V4
+const UINT MENU_ADD_CLIENT6_MSG_INIT = RegisterWindowMessage("WinVNC.AddClient6.Message.Init");
+const UINT MENU_ADD_CLIENT6_MSG = RegisterWindowMessage("WinVNC.AddClient6.Message");
+#endif
+
+const UINT MENU_ADD_CLIENT_MSG_INIT = RegisterWindowMessage("WinVNC.AddClient.Message.Init");
+const UINT MENU_ADD_CLIENT_MSG = RegisterWindowMessage("WinVNC.AddClient.Message");
+const UINT MENU_AUTO_RECONNECT_MSG = RegisterWindowMessage("WinVNC.AddAutoClient.Message");
+const UINT MENU_STOP_RECONNECT_MSG = RegisterWindowMessage("WinVNC.AddStopClient.Message");
+const UINT MENU_STOP_ALL_RECONNECT_MSG = RegisterWindowMessage("WinVNC.AddStopAllClient.Message");
+const UINT MENU_REPEATER_ID_MSG = RegisterWindowMessage("WinVNC.AddRepeaterID.Message");
+// adzm 2009-07-05 - Tray icon balloon tips
+// adzm 2010-02-10 - Changed this window message (added 2) to prevent receiving the same message from older UltraVNC builds 
+// which will send this message between processes with process-local pointers to strings as the wParam and lParam
+const UINT MENU_TRAYICON_BALLOON_MSG = RegisterWindowMessage("WinVNC.TrayIconBalloon2.Message");
+ 
+
+const char *MENU_CLASS_NAME = "WinVNC Tray Icon";
+
+
+HWND G_MENU_HWND = NULL;
