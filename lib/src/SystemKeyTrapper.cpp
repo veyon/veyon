@@ -2,7 +2,7 @@
  * SystemKeyTrapper.cpp - class for trapping system-keys and -key-sequences
  *                        such as Alt+Ctrl+Del, Alt+Tab etc.
  *
- * Copyright (c) 2006-2013 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -27,8 +27,6 @@
 #include <italcconfig.h>
 
 #ifdef ITALC_BUILD_WIN32
-
-#define _WIN32_WINNT 0x0500 // for KBDLLHOOKSTRUCT
 
 #include <windows.h>
 
