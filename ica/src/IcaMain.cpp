@@ -211,6 +211,8 @@ static int runCoreServer( int argc, char **argv )
 	ilog( Info, "Exec" );
 	int ret = app.exec();
 
+	ilog( Info, "Exec Done" );
+
 #ifdef ITALC_BUILD_WIN32
 	CloseHandle( hShutdownEvent );
 #endif
