@@ -76,6 +76,7 @@ public:
 	enum States
 	{
 		Disconnected,
+		Connecting,
 		HostUnreachable,
 		AuthenticationFailed,
 		ConnectionFailed,

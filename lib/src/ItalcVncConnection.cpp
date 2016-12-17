@@ -531,6 +531,8 @@ void ItalcVncConnection::run()
 	{
 		doConnection();
 	}
+
+	m_state = Disconnected;
 }
 
 
@@ -538,6 +540,8 @@ void ItalcVncConnection::run()
 void ItalcVncConnection::doConnection()
 {
 	QMutex sleeperMutex;
+
+	m_state = Connecting;
 
 	while( isInterruptionRequested() == false && m_state != Connected ) // try to connect as long as the server allows
 	{
