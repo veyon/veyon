@@ -383,6 +383,8 @@ void ItalcVncConnection::stop( bool deleteAfterFinished )
 					 this, &ItalcVncConnection::deleteLater );
 		}
 
+		m_scaledScreen = QImage();
+
 		requestInterruption();
 
 		m_updateIntervalSleeper.wakeAll();
@@ -486,26 +488,18 @@ void ItalcVncConnection::setFramebufferUpdateInterval( int interval )
 
 void ItalcVncConnection::rescaleScreen()
 {
-	if( m_scaledSize.isNull() )
+	if( m_image.size().isValid() == false ||
+			m_scaledSize.isNull() ||
+			m_framebufferInitialized == false ||
+			m_scaledScreenNeedsUpdate == false )
 	{
 		return;
 	}
 
-	if( m_scaledScreen.isNull() || m_scaledScreen.size() != m_scaledSize )
-	{
-		m_scaledScreen = QImage( m_scaledSize, QImage::Format_RGB32 );
-		m_scaledScreen.fill( Qt::black );
-	}
+	QReadLocker locker( &m_imgLock );
+	m_scaledScreen = m_image.scaled( m_scaledSize, Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
 
-	if( m_scaledScreenNeedsUpdate )
-	{
-		QReadLocker locker( &m_imgLock );
-		if( m_image.size().isValid() )
-		{
-			m_scaledScreenNeedsUpdate = false;
-			m_scaledScreen = m_image.scaled( m_scaledSize, Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
-		}
-	}
+	m_scaledScreenNeedsUpdate = false;
 }
 
 
