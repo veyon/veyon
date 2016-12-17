@@ -470,6 +470,7 @@ Client::Client( const QString & _hostname,
 	m_connection( NULL ),
 	m_vncConn( NULL ),
 	m_framebufferUpdated( false ),
+	m_userInformationAge(),
 	m_clickPoint( -1, -1 ),
 	m_origPos( -1, -1 ),
 	m_hostname( _hostname ),
@@ -681,19 +682,6 @@ void Client::update()
 
 	m_state = currentState();
 	QWidget::update();
-}
-
-
-
-
-bool Client::userLoggedIn( void )
-{
-	if( m_connection->isConnected() )
-	{
-		return true;
-	}
-	m_connection->vncConnection()->reset( m_hostname );
-	return false;
 }
 
 
@@ -1005,37 +993,54 @@ void Client::reload()
 				m_mainWindow->getClassroomManager()->updateInterval(),
 				this,
 				SLOT( reload() ) );
+
 	if( !isVisible() )
 	{
 		if( m_connection->vncConnection()->isRunning() )
 		{
 			m_connection->vncConnection()->stop();
+
 			update();
 		}
+
 		return;
 	}
 
-	if( userLoggedIn() )
+	switch( m_connection->state() )
 	{
-		m_connection->sendGetUserInformationRequest();
-		if( m_connection->user() != m_user )
-		{
-			m_user = m_connection->user();
-			update();
-		}
+	case ItalcVncConnection::Connected:
 		if( m_framebufferUpdated )
 		{
 			m_framebufferUpdated = false;
 			update();
 		}
-	}
-	else
-	{
-		if( !m_user.isEmpty() )
+
+		if( m_userInformationAge.isValid() == false ||
+				m_userInformationAge.elapsed() > 60*1000 )
 		{
-			m_user = QString();
+			m_connection->sendGetUserInformationRequest();
+
+			m_userInformationAge.restart();
+		}
+
+		if( m_connection->user() != m_user )
+		{
+			m_user = m_connection->user();
 			update();
 		}
+
+		break;
+
+	case ItalcVncConnection::Connecting:
+		update();
+		break;
+
+	default:
+		m_userInformationAge = QTime();
+		m_user = QString();
+		m_connection->vncConnection()->reset( m_hostname );
+		update();
+		break;
 	}
 
 	if( m_classRoomItem )

@@ -29,9 +29,8 @@
 #include <italcconfig.h>
 
 #include <QtCore/QHash>
-#include <QtCore/QThread>
-#include <QtCore/QQueue>
 #include <QtCore/QVector>
+#include <QTime>
 #include <QWidget>
 #include <QtGui/QImage>
 #include <QMenu>
@@ -282,8 +281,6 @@ private slots:
 
 
 private:
-	bool userLoggedIn( void );
-
 	virtual void contextMenuEvent( QContextMenuEvent * _cme );
 	virtual void closeEvent( QCloseEvent * _ce );
 	virtual void hideEvent( QHideEvent * _he );
@@ -303,6 +300,7 @@ private:
 	ItalcCoreConnection *m_connection;
 	ItalcVncConnection *m_vncConn;
 	bool m_framebufferUpdated;
+	QTime m_userInformationAge;
 	QPoint m_clickPoint;
 	QPoint m_origPos;
 	QSize m_origSize;
