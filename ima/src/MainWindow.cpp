@@ -345,8 +345,6 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 					QSystemTrayIcon::ActivationReason ) ) );
 
 
-	QTimer::singleShot( 2000, m_classroomManager, SLOT( updateClients() ) );
-
 	m_updateThread = new MainWindowUpdateThread( this );
 }
 

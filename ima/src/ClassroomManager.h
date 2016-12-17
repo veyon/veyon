@@ -126,8 +126,6 @@ public:
 	}
 
 public slots:
-	void updateClients( void );
-
 	// slots for context menu
 	void clientMenuRequest( void );
 	void clientMenuTriggered( QAction * _action );

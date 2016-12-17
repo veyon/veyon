@@ -955,23 +955,6 @@ void ClassroomManager::loadPersonalConfig( void )
 
 
 
-
-void ClassroomManager::updateClients( void )
-{
-	QVector<Client *> vc = visibleClients();
-
-	foreach( Client * cl, vc )
-	{
-		// update current client
-		cl->update();
-	}
-
-	QTimer::singleShot( m_clientUpdateInterval, this, SLOT( updateClients() ) );
-}
-
-
-
-
 void ClassroomManager::clickedExportToFile( void )
 {
 	QString outfn = QFileDialog::getSaveFileName( this,
