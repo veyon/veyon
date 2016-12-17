@@ -120,8 +120,6 @@ rfbBool ItalcVncConnection::hookNewClient( rfbClient *cl )
 
 	cl->frameBuffer = new uint8_t[size];
 
-	t->m_framebufferInitialized = false;
-
 	memset( cl->frameBuffer, '\0', size );
 
 	// initialize framebuffer image which just wraps the allocated memory and ensures cleanup after last
@@ -536,6 +534,8 @@ void ItalcVncConnection::doConnection()
 	QMutex sleeperMutex;
 
 	m_state = Connecting;
+
+	m_framebufferInitialized = false;
 
 	while( isInterruptionRequested() == false && m_state != Connected ) // try to connect as long as the server allows
 	{
