@@ -80,6 +80,7 @@ public:
 		QWidget::leaveEvent( _fe );
 		update();
 	}
+
 	virtual void paintEvent( QPaintEvent * _pe )
 	{
 		QPainter p( this );
@@ -499,7 +500,7 @@ Client::Client( const QString & _hostname,
 				m_mainWindow->getClassroomManager()->updateInterval() );
 
 	// set a flag so we only update the view if there were some updates
-	connect( m_vncConn, SIGNAL( imageUpdated( int, int, int, int ) ),
+	connect( m_vncConn, SIGNAL( framebufferUpdateComplete() ),
 				this, SLOT( setUpdateFlag() ) );
 
 	m_connection = new ItalcCoreConnection( m_vncConn );
@@ -1197,6 +1198,3 @@ Client::States Client::currentState( void ) const
 
 	return State_Unkown;
 }
-
-
-
