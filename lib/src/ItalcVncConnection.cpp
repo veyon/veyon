@@ -340,6 +340,7 @@ ItalcVncConnection::ItalcVncConnection( QObject *parent ) :
 	m_italcAuthType( ItalcAuthDSA ),
 	m_quality( DemoClientQuality ),
 	m_port( PortOffsetVncServer ),
+	m_terminateTimer( this ),
 	m_framebufferUpdateInterval( 0 ),
 	m_image(),
 	m_scaledScreenNeedsUpdate( false ),
@@ -347,6 +348,13 @@ ItalcVncConnection::ItalcVncConnection( QObject *parent ) :
 	m_scaledSize(),
 	m_state( Disconnected )
 {
+	m_terminateTimer.setSingleShot( true );
+	m_terminateTimer.setInterval( ThreadTerminationTimeout );
+#if QT_VERSION < 0x050400
+	connect( &m_terminateTimer, SIGNAL(timeout()), this, SLOT(terminate()) );
+#else
+	connect( &m_terminateTimer, &QTimer::timeout, this, &ItalcVncConnection::terminate );
+#endif
 }
 
 
@@ -388,11 +396,11 @@ void ItalcVncConnection::stop( bool deleteAfterFinished )
 		m_updateIntervalSleeper.wakeAll();
 
 		// terminate thread in background after timeout
-#if QT_VERSION < 0x050400
-		QTimer::singleShot( ThreadTerminationTimeout, this, SLOT(terminate()) );
-#else
-		QTimer::singleShot( ThreadTerminationTimeout, this, &ItalcVncConnection::terminate );
-#endif
+		m_terminateTimer.start();
+
+		// stop timer if thread terminates properly before timeout
+		connect( this, &ItalcVncConnection::finished,
+				 &m_terminateTimer, &QTimer::stop );
 	}
 	else if( deleteAfterFinished )
 	{

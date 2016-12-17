@@ -32,6 +32,8 @@
 #include <QtCore/QQueue>
 #include <QtCore/QReadWriteLock>
 #include <QtCore/QThread>
+#include <QTimer>
+#include <QTime>
 #include <QtCore/QWaitCondition>
 #include <QtGui/QImage>
 
@@ -226,6 +228,7 @@ private:
 	QualityLevels m_quality;
 	QString m_host;
 	int m_port;
+	QTimer m_terminateTimer;
 	QWaitCondition m_updateIntervalSleeper;
 	int m_framebufferUpdateInterval;
 	QMutex m_mutex;
