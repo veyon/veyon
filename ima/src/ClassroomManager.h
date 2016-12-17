@@ -1,7 +1,7 @@
 /*
 * ClassroomManager.h - include file for classroom-manager
 *
- * Copyright (c) 2004-2011 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -21,7 +21,6 @@
  * Boston, MA 02111-1307, USA.
  *
  */
-
 
 #ifndef CLASSROOM_MANAGER_H
 #define CLASSROOM_MANAGER_H
@@ -253,7 +252,7 @@ class classTreeWidget : public QTreeWidget
 	Q_OBJECT
 public:
 	classTreeWidget( QWidget * _parent );
-	virtual ~classTreeWidget() { } ;
+	virtual ~classTreeWidget() { }
 
 	void setCurrentItem( QTreeWidgetItem * _item );
 
