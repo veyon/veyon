@@ -326,7 +326,7 @@ public:
 	}
 
 	void setVisible( const bool _obs );
-	void setUser( const QString & _name );
+	void setUser( const QString & user );
 
 	inline bool isVisible( void ) const
 	{

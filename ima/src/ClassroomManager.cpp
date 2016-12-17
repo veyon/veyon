@@ -2163,9 +2163,12 @@ void classRoomItem::setVisible( const bool _obs )
 
 
 
-void classRoomItem::setUser( const QString & _name )
+void classRoomItem::setUser( const QString & user )
 {
-	setText( 2, _name );
+	//if( text( 2 ) != user )
+	{
+		setText( 2, user );
+	}
 }
 
 
