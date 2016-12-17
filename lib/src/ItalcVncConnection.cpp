@@ -208,13 +208,6 @@ void ItalcVncConnection::hookUpdateFB( rfbClient *cl, int x, int y, int w, int h
 		}
 	}
 
-	if( t->m_framebufferInitialized == false )
-	{
-		t->framebufferSizeChanged( cl->width, cl->height );
-
-		t->m_framebufferInitialized = true;
-	}
-
 	t->imageUpdated( x, y, w, h );
 }
 
@@ -223,11 +216,12 @@ void ItalcVncConnection::hookUpdateFB( rfbClient *cl, int x, int y, int w, int h
 
 void ItalcVncConnection::hookFinishFrameBufferUpdate( rfbClient *cl )
 {
-	ItalcVncConnection *t = (ItalcVncConnection *)
-					rfbClientGetClientData( cl, 0 );
-	t->m_scaledScreenNeedsUpdate = true;
+	ItalcVncConnection *t = (ItalcVncConnection *) rfbClientGetClientData( cl, 0 );
 
-	t->framebufferUpdateComplete();
+	if( t )
+	{
+		t->finishFrameBufferUpdate();
+	}
 }
 
 
@@ -713,6 +707,22 @@ void ItalcVncConnection::doConnection()
 	m_state = Disconnected;
 
 	emit stateChanged( m_state );
+}
+
+
+
+void ItalcVncConnection::finishFrameBufferUpdate()
+{
+	if( m_framebufferInitialized == false )
+	{
+		m_framebufferInitialized = true;
+
+		emit framebufferSizeChanged( m_image.width(), m_image.height() );
+	}
+
+	emit framebufferUpdateComplete();
+
+	m_scaledScreenNeedsUpdate = true;
 }
 
 

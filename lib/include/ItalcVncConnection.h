@@ -211,6 +211,8 @@ private:
 		ThreadTerminationTimeout = 10000
 	};
 
+	void finishFrameBufferUpdate();
+
 	// hooks for LibVNCClient
 	static rfbBool hookNewClient( rfbClient *cl );
 	static void hookUpdateFB( rfbClient *cl, int x, int y, int w, int h );
