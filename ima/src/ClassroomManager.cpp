@@ -955,23 +955,6 @@ void ClassroomManager::loadPersonalConfig( void )
 
 
 
-
-void ClassroomManager::updateClients( void )
-{
-	QVector<Client *> vc = visibleClients();
-
-	foreach( Client * cl, vc )
-	{
-		// update current client
-		cl->update();
-	}
-
-	QTimer::singleShot( m_clientUpdateInterval, this, SLOT( updateClients() ) );
-}
-
-
-
-
 void ClassroomManager::clickedExportToFile( void )
 {
 	QString outfn = QFileDialog::getSaveFileName( this,
@@ -2163,9 +2146,12 @@ void classRoomItem::setVisible( const bool _obs )
 
 
 
-void classRoomItem::setUser( const QString & _name )
+void classRoomItem::setUser( const QString & user )
 {
-	setText( 2, _name );
+	//if( text( 2 ) != user )
+	{
+		setText( 2, user );
+	}
 }
 
 

@@ -120,8 +120,6 @@ rfbBool ItalcVncConnection::hookNewClient( rfbClient *cl )
 
 	cl->frameBuffer = new uint8_t[size];
 
-	t->m_framebufferInitialized = false;
-
 	memset( cl->frameBuffer, '\0', size );
 
 	// initialize framebuffer image which just wraps the allocated memory and ensures cleanup after last
@@ -156,7 +154,6 @@ rfbBool ItalcVncConnection::hookNewClient( rfbClient *cl )
 			cl->appData.useRemoteCursor = true;
 			break;
 		case ThumbnailQuality:
-			cl->appData.useBGR233 = 1;
 			cl->appData.encodingsString = "tight zrle ultra "
 							"copyrect hextile zlib "
 							"corre rre raw";
@@ -208,13 +205,6 @@ void ItalcVncConnection::hookUpdateFB( rfbClient *cl, int x, int y, int w, int h
 		}
 	}
 
-	if( t->m_framebufferInitialized == false )
-	{
-		t->framebufferSizeChanged( cl->width, cl->height );
-
-		t->m_framebufferInitialized = true;
-	}
-
 	t->imageUpdated( x, y, w, h );
 }
 
@@ -223,11 +213,12 @@ void ItalcVncConnection::hookUpdateFB( rfbClient *cl, int x, int y, int w, int h
 
 void ItalcVncConnection::hookFinishFrameBufferUpdate( rfbClient *cl )
 {
-	ItalcVncConnection *t = (ItalcVncConnection *)
-					rfbClientGetClientData( cl, 0 );
-	t->m_scaledScreenNeedsUpdate = true;
+	ItalcVncConnection *t = (ItalcVncConnection *) rfbClientGetClientData( cl, 0 );
 
-	t->framebufferUpdateComplete();
+	if( t )
+	{
+		t->finishFrameBufferUpdate();
+	}
 }
 
 
@@ -340,13 +331,22 @@ ItalcVncConnection::ItalcVncConnection( QObject *parent ) :
 	m_italcAuthType( ItalcAuthDSA ),
 	m_quality( DemoClientQuality ),
 	m_port( PortOffsetVncServer ),
+	m_terminateTimer( this ),
 	m_framebufferUpdateInterval( 0 ),
+	m_lastFullUpdate(),
 	m_image(),
 	m_scaledScreenNeedsUpdate( false ),
 	m_scaledScreen(),
 	m_scaledSize(),
 	m_state( Disconnected )
 {
+	m_terminateTimer.setSingleShot( true );
+	m_terminateTimer.setInterval( ThreadTerminationTimeout );
+#if QT_VERSION < 0x050400
+	connect( &m_terminateTimer, SIGNAL(timeout()), this, SLOT(terminate()) );
+#else
+	connect( &m_terminateTimer, &QTimer::timeout, this, &ItalcVncConnection::terminate );
+#endif
 }
 
 
@@ -383,16 +383,18 @@ void ItalcVncConnection::stop( bool deleteAfterFinished )
 					 this, &ItalcVncConnection::deleteLater );
 		}
 
+		m_scaledScreen = QImage();
+
 		requestInterruption();
 
 		m_updateIntervalSleeper.wakeAll();
 
 		// terminate thread in background after timeout
-#if QT_VERSION < 0x050400
-		QTimer::singleShot( ThreadTerminationTimeout, this, SLOT(terminate()) );
-#else
-		QTimer::singleShot( ThreadTerminationTimeout, this, &ItalcVncConnection::terminate );
-#endif
+		m_terminateTimer.start();
+
+		// stop timer if thread terminates properly before timeout
+		connect( this, &ItalcVncConnection::finished,
+				 &m_terminateTimer, &QTimer::stop );
 	}
 	else if( deleteAfterFinished )
 	{
@@ -486,26 +488,18 @@ void ItalcVncConnection::setFramebufferUpdateInterval( int interval )
 
 void ItalcVncConnection::rescaleScreen()
 {
-	if( m_scaledSize.isNull() )
+	if( m_image.size().isValid() == false ||
+			m_scaledSize.isNull() ||
+			m_framebufferInitialized == false ||
+			m_scaledScreenNeedsUpdate == false )
 	{
 		return;
 	}
 
-	if( m_scaledScreen.isNull() || m_scaledScreen.size() != m_scaledSize )
-	{
-		m_scaledScreen = QImage( m_scaledSize, QImage::Format_RGB32 );
-		m_scaledScreen.fill( Qt::black );
-	}
+	QReadLocker locker( &m_imgLock );
+	m_scaledScreen = m_image.scaled( m_scaledSize, Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
 
-	if( m_scaledScreenNeedsUpdate )
-	{
-		QReadLocker locker( &m_imgLock );
-		if( m_image.size().isValid() )
-		{
-			m_scaledScreenNeedsUpdate = false;
-			m_scaledScreen = m_image.scaled( m_scaledSize, Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
-		}
-	}
+	m_scaledScreenNeedsUpdate = false;
 }
 
 
@@ -523,6 +517,8 @@ void ItalcVncConnection::run()
 	{
 		doConnection();
 	}
+
+	m_state = Disconnected;
 }
 
 
@@ -530,6 +526,10 @@ void ItalcVncConnection::run()
 void ItalcVncConnection::doConnection()
 {
 	QMutex sleeperMutex;
+
+	m_state = Connecting;
+
+	m_framebufferInitialized = false;
 
 	while( isInterruptionRequested() == false && m_state != Connected ) // try to connect as long as the server allows
 	{
@@ -619,11 +619,19 @@ void ItalcVncConnection::doConnection()
 		}
 	}
 
-	//QTime lastFullUpdate = QTime::currentTime();
+	m_lastFullUpdate.restart();
 
 	// Main VNC event loop
 	while( isInterruptionRequested() == false )
 	{
+		if( m_framebufferInitialized == false )
+		{
+			// request initial full framebuffer update
+			SendFramebufferUpdateRequest( m_cl, 0, 0,
+					framebufferSize().width(), framebufferSize().height(),
+					false );
+		}
+
 		int timeout = 500;
 		if( m_framebufferUpdateInterval < 0 )
 		{
@@ -650,20 +658,16 @@ void ItalcVncConnection::doConnection()
 				break;
 			}
 		}
-		else
+
+		// ensure that we're not missing updates due to slow update rate therefore
+		// regularly request full updates
+		if( m_framebufferUpdateInterval > 0 &&
+					m_lastFullUpdate.elapsed() > 10*m_framebufferUpdateInterval )
 		{
-		/*	// work around a bug in UltraVNC on Win7 where it does not handle
-			// incremental updates correctly
-			int msecs = lastFullUpdate.msecsTo( QTime::currentTime() );
-			if( ( m_framebufferUpdateInterval > 0 &&
-					msecs > 10*m_framebufferUpdateInterval ) ||
-				( m_framebufferUpdateInterval == 0 && msecs > 1000 ) )
-			{
-				SendFramebufferUpdateRequest( m_cl, 0, 0,
-						framebufferSize().width(), framebufferSize().height(),
-						false );
-				lastFullUpdate = QTime::currentTime();
-			}*/
+			SendFramebufferUpdateRequest( m_cl, 0, 0,
+										  framebufferSize().width(), framebufferSize().height(),
+										  false );
+			m_lastFullUpdate.restart();
 		}
 
 		m_mutex.lock();
@@ -701,6 +705,22 @@ void ItalcVncConnection::doConnection()
 	m_state = Disconnected;
 
 	emit stateChanged( m_state );
+}
+
+
+
+void ItalcVncConnection::finishFrameBufferUpdate()
+{
+	if( m_framebufferInitialized == false )
+	{
+		m_framebufferInitialized = true;
+
+		emit framebufferSizeChanged( m_image.width(), m_image.height() );
+	}
+
+	emit framebufferUpdateComplete();
+
+	m_scaledScreenNeedsUpdate = true;
 }
 
 

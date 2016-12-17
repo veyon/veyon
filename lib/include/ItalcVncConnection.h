@@ -32,6 +32,8 @@
 #include <QtCore/QQueue>
 #include <QtCore/QReadWriteLock>
 #include <QtCore/QThread>
+#include <QTimer>
+#include <QTime>
 #include <QtCore/QWaitCondition>
 #include <QtGui/QImage>
 
@@ -74,6 +76,7 @@ public:
 	enum States
 	{
 		Disconnected,
+		Connecting,
 		HostUnreachable,
 		AuthenticationFailed,
 		ConnectionFailed,
@@ -208,6 +211,8 @@ private:
 		ThreadTerminationTimeout = 10000
 	};
 
+	void finishFrameBufferUpdate();
+
 	// hooks for LibVNCClient
 	static rfbBool hookNewClient( rfbClient *cl );
 	static void hookUpdateFB( rfbClient *cl, int x, int y, int w, int h );
@@ -226,8 +231,10 @@ private:
 	QualityLevels m_quality;
 	QString m_host;
 	int m_port;
+	QTimer m_terminateTimer;
 	QWaitCondition m_updateIntervalSleeper;
 	int m_framebufferUpdateInterval;
+	QTime m_lastFullUpdate;
 	QMutex m_mutex;
 	mutable QReadWriteLock m_imgLock;
 	QQueue<ClientEvent *> m_eventQueue;
