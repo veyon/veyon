@@ -154,7 +154,6 @@ rfbBool ItalcVncConnection::hookNewClient( rfbClient *cl )
 			cl->appData.useRemoteCursor = true;
 			break;
 		case ThumbnailQuality:
-			cl->appData.useBGR233 = 1;
 			cl->appData.encodingsString = "tight zrle ultra "
 							"copyrect hextile zlib "
 							"corre rre raw";
