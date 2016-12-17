@@ -662,7 +662,7 @@ void Client::resetConnection( void )
 
 
 
-void Client::update( void )
+void Client::update()
 {
 	// at least set tooltip with user-name if it is not displayed
 	// in title-bar
@@ -907,11 +907,11 @@ void Client::paintEvent( QPaintEvent * _pe )
 	p.setPen( m_classRoomItem->isSelected() ? Qt::white : Qt::black );
 	p.drawText( 10, TITLE_HEIGHT-7, s );
 
-	if( m_mode == Mode_Overview && m_connection->isConnected() &&
+	if( m_mode == Mode_Overview &&
+			m_connection->isConnected() &&
 			m_connection->vncConnection()->framebufferInitialized() )
 	{
-		p.drawImage( CONTENT_OFFSET, m_connection->
-					vncConnection()->scaledScreen() );
+		p.drawImage( CONTENT_OFFSET, m_connection->vncConnection()->scaledScreen() );
 	}
 	else
 	{
@@ -968,7 +968,6 @@ void Client::paintEvent( QPaintEvent * _pe )
 		Snapshot().take( m_connection->vncConnection(), m_user );
 		m_takeSnapshot = false;
 	}
-
 }
 
 

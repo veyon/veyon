@@ -261,7 +261,7 @@ public:
 
 	void resetConnection( void );
 
-	virtual void update( void );
+	virtual void update();
 
 
 	void zoom( void );
@@ -319,7 +319,6 @@ private:
 	States m_state;
 
 	classRoomItem * m_classRoomItem;
-
 
 	// static data
 	static QHash<int, Client *> s_clientIDs;
