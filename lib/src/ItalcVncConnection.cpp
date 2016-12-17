@@ -334,6 +334,7 @@ ItalcVncConnection::ItalcVncConnection( QObject *parent ) :
 	m_port( PortOffsetVncServer ),
 	m_terminateTimer( this ),
 	m_framebufferUpdateInterval( 0 ),
+	m_lastFullUpdate(),
 	m_image(),
 	m_scaledScreenNeedsUpdate( false ),
 	m_scaledScreen(),
@@ -619,11 +620,19 @@ void ItalcVncConnection::doConnection()
 		}
 	}
 
-	//QTime lastFullUpdate = QTime::currentTime();
+	m_lastFullUpdate.restart();
 
 	// Main VNC event loop
 	while( isInterruptionRequested() == false )
 	{
+		if( m_framebufferInitialized == false )
+		{
+			// request initial full framebuffer update
+			SendFramebufferUpdateRequest( m_cl, 0, 0,
+					framebufferSize().width(), framebufferSize().height(),
+					false );
+		}
+
 		int timeout = 500;
 		if( m_framebufferUpdateInterval < 0 )
 		{
@@ -650,20 +659,16 @@ void ItalcVncConnection::doConnection()
 				break;
 			}
 		}
-		else
+
+		// ensure that we're not missing updates due to slow update rate therefore
+		// regularly request full updates
+		if( m_framebufferUpdateInterval > 0 &&
+					m_lastFullUpdate.elapsed() > 10*m_framebufferUpdateInterval )
 		{
-		/*	// work around a bug in UltraVNC on Win7 where it does not handle
-			// incremental updates correctly
-			int msecs = lastFullUpdate.msecsTo( QTime::currentTime() );
-			if( ( m_framebufferUpdateInterval > 0 &&
-					msecs > 10*m_framebufferUpdateInterval ) ||
-				( m_framebufferUpdateInterval == 0 && msecs > 1000 ) )
-			{
-				SendFramebufferUpdateRequest( m_cl, 0, 0,
-						framebufferSize().width(), framebufferSize().height(),
-						false );
-				lastFullUpdate = QTime::currentTime();
-			}*/
+			SendFramebufferUpdateRequest( m_cl, 0, 0,
+										  framebufferSize().width(), framebufferSize().height(),
+										  false );
+			m_lastFullUpdate.restart();
 		}
 
 		m_mutex.lock();

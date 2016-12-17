@@ -234,6 +234,7 @@ private:
 	QTimer m_terminateTimer;
 	QWaitCondition m_updateIntervalSleeper;
 	int m_framebufferUpdateInterval;
+	QTime m_lastFullUpdate;
 	QMutex m_mutex;
 	mutable QReadWriteLock m_imgLock;
 	QQueue<ClientEvent *> m_eventQueue;
