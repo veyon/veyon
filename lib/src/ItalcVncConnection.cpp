@@ -159,7 +159,7 @@ rfbBool ItalcVncConnection::hookNewClient( rfbClient *cl )
 							"corre rre raw";
 			cl->appData.compressLevel = 9;
 			cl->appData.qualityLevel = 5;
-			//cl->appData.enableJPEG = true;
+			cl->appData.enableJPEG = true;
 			break;
 		case DemoServerQuality:
 			cl->appData.encodingsString = "copyrect corre rre raw";
