@@ -571,10 +571,6 @@ void ItalcVncConnection::doConnection()
 
 			m_state = Connected;
 			emit stateChanged( m_state );
-			if( m_framebufferUpdateInterval < 0 )
-			{
-				rfbClientSetClientData( m_cl, (void *) 0x555, (void *) 1 );
-			}
 		}
 		else
 		{
@@ -632,12 +628,7 @@ void ItalcVncConnection::doConnection()
 					false );
 		}
 
-		int timeout = 500;
-		if( m_framebufferUpdateInterval < 0 )
-		{
-			timeout = 100*1000;	// 100 ms
-		}
-		const int i = WaitForMessage( m_cl, timeout );
+		const int i = WaitForMessage( m_cl, 500 );
 		if( isInterruptionRequested() || i < 0 )
 		{
 			break;
