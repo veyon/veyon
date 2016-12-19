@@ -193,7 +193,6 @@ void RemoteControlWidgetToolBar::paintEvent( QPaintEvent *paintEv )
 	p.setFont( f );
 
 	p.setPen( Qt::white );
-	m_parent->updateWindowTitle();
 	p.drawText( 64, 22, m_parent->windowTitle() );
 
 	p.setPen( QColor( 192, 192, 192 ) );
@@ -288,6 +287,9 @@ RemoteControlWidget::RemoteControlWidget( const QString &host,
 				this, SLOT( checkKeyEvent( int, bool ) ) );
 	connect( m_vncView, SIGNAL( sizeHintChanged() ),
 					this, SLOT( updateSize() ) );
+
+	connect( m_coreConnection, SIGNAL( receivedUserInfo( QString, QString ) ),
+			 this, SLOT( updateWindowTitle() ) );
 
 	show();
 	LocalSystem::activateWindow( this );
