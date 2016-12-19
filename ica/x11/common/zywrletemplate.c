@@ -9,7 +9,7 @@
  *                                                                  *
  * THE 'ZYWRLE' VNC CODEC SOURCE CODE IS (C) COPYRIGHT 2006         *
  * BY Hitachi Systems & Services, Ltd.                              *
- * (Noriaki Yamazaki, Research & Developement Center)               *                                                                 *
+ * (Noriaki Yamazaki, Research & Development Center)               *                                                                 *
  *                                                                  *
  ********************************************************************
 Redistribution and use in source and binary forms, with or without
