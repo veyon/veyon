@@ -193,7 +193,6 @@ void RemoteControlWidgetToolBar::paintEvent( QPaintEvent *paintEv )
 	p.setFont( f );
 
 	p.setPen( Qt::white );
-	m_parent->updateWindowTitle();
 	p.drawText( 64, 22, m_parent->windowTitle() );
 
 	p.setPen( QColor( 192, 192, 192 ) );
@@ -286,8 +285,11 @@ RemoteControlWidget::RemoteControlWidget( const QString &host,
 							SLOT( appear() ) );
 	connect( m_vncView, SIGNAL( keyEvent( int, bool ) ),
 				this, SLOT( checkKeyEvent( int, bool ) ) );
-	connect( m_vncView, SIGNAL( connectionEstablished() ),
-					this, SLOT( lateInit() ) );
+	connect( m_vncView, SIGNAL( sizeHintChanged() ),
+					this, SLOT( updateSize() ) );
+
+	connect( m_coreConnection, SIGNAL( receivedUserInfo( QString, QString ) ),
+			 this, SLOT( updateWindowTitle() ) );
 
 	show();
 	LocalSystem::activateWindow( this );
@@ -331,26 +333,30 @@ void RemoteControlWidget::updateWindowTitle()
 
 
 
-void RemoteControlWidget::enterEvent( QEvent * )
+void RemoteControlWidget::enterEvent( QEvent* event )
 {
 	QTimer::singleShot( 500, m_toolBar, SLOT( disappear() ) );
+	QWidget::enterEvent( event );
 }
 
 
 
 
-void RemoteControlWidget::leaveEvent( QEvent * )
+void RemoteControlWidget::leaveEvent( QEvent* event )
 {
 	m_toolBar->appear();
+	QWidget::leaveEvent( event );
 }
 
 
 
 
-void RemoteControlWidget::resizeEvent( QResizeEvent * )
+void RemoteControlWidget::resizeEvent( QResizeEvent* event )
 {
 	m_vncView->resize( size() );
 	m_toolBar->setFixedSize( width(), m_toolBar->height() );
+
+	QWidget::resizeEvent( event );
 }
 
 
@@ -366,10 +372,10 @@ void RemoteControlWidget::checkKeyEvent( int key, bool pressed )
 
 
 
-
-void RemoteControlWidget::lateInit()
+void RemoteControlWidget::updateSize()
 {
-	if( !( windowState() & Qt::WindowFullScreen ) )
+	if( !( windowState() & Qt::WindowFullScreen ) &&
+			m_vncView->sizeHint().isEmpty() == false )
 	{
 		resize( m_vncView->sizeHint() );
 	}

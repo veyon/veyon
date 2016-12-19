@@ -90,18 +90,18 @@ public slots:
 	void toggleFullScreen( bool );
 	void toggleViewOnly( bool );
 	void takeSnapshot();
+	void updateWindowTitle();
 
 
 protected:
-	void updateWindowTitle();
-	virtual void enterEvent( QEvent * );
-	virtual void leaveEvent( QEvent * );
-	virtual void resizeEvent( QResizeEvent * );
+	virtual void enterEvent( QEvent* event );
+	virtual void leaveEvent( QEvent* event );
+	virtual void resizeEvent( QResizeEvent* event );
 
 
 private slots:
 	void checkKeyEvent( int, bool );
-	void lateInit();
+	void updateSize();
 
 
 private:
