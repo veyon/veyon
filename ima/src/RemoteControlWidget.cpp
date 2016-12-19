@@ -286,8 +286,8 @@ RemoteControlWidget::RemoteControlWidget( const QString &host,
 							SLOT( appear() ) );
 	connect( m_vncView, SIGNAL( keyEvent( int, bool ) ),
 				this, SLOT( checkKeyEvent( int, bool ) ) );
-	connect( m_vncView, SIGNAL( connectionEstablished() ),
-					this, SLOT( lateInit() ) );
+	connect( m_vncView, SIGNAL( sizeHintChanged() ),
+					this, SLOT( updateSize() ) );
 
 	show();
 	LocalSystem::activateWindow( this );
@@ -366,10 +366,10 @@ void RemoteControlWidget::checkKeyEvent( int key, bool pressed )
 
 
 
-
-void RemoteControlWidget::lateInit()
+void RemoteControlWidget::updateSize()
 {
-	if( !( windowState() & Qt::WindowFullScreen ) )
+	if( !( windowState() & Qt::WindowFullScreen ) &&
+			m_vncView->sizeHint().isEmpty() == false )
 	{
 		resize( m_vncView->sizeHint() );
 	}

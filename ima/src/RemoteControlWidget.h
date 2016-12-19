@@ -101,7 +101,7 @@ protected:
 
 private slots:
 	void checkKeyEvent( int, bool );
-	void lateInit();
+	void updateSize();
 
 
 private:
