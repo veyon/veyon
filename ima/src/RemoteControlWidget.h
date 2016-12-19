@@ -94,9 +94,9 @@ public slots:
 
 
 protected:
-	virtual void enterEvent( QEvent * );
-	virtual void leaveEvent( QEvent * );
-	virtual void resizeEvent( QResizeEvent * );
+	virtual void enterEvent( QEvent* event );
+	virtual void leaveEvent( QEvent* event );
+	virtual void resizeEvent( QResizeEvent* event );
 
 
 private slots:

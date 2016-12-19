@@ -333,26 +333,30 @@ void RemoteControlWidget::updateWindowTitle()
 
 
 
-void RemoteControlWidget::enterEvent( QEvent * )
+void RemoteControlWidget::enterEvent( QEvent* event )
 {
 	QTimer::singleShot( 500, m_toolBar, SLOT( disappear() ) );
+	QWidget::enterEvent( event );
 }
 
 
 
 
-void RemoteControlWidget::leaveEvent( QEvent * )
+void RemoteControlWidget::leaveEvent( QEvent* event )
 {
 	m_toolBar->appear();
+	QWidget::leaveEvent( event );
 }
 
 
 
 
-void RemoteControlWidget::resizeEvent( QResizeEvent * )
+void RemoteControlWidget::resizeEvent( QResizeEvent* event )
 {
 	m_vncView->resize( size() );
 	m_toolBar->setFixedSize( width(), m_toolBar->height() );
+
+	QWidget::resizeEvent( event );
 }
 
 
