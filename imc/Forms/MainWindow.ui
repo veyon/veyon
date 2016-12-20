@@ -155,7 +155,7 @@
     <item row="0" column="1">
      <widget class="QStackedWidget" name="configPages">
       <property name="currentIndex">
-       <number>3</number>
+       <number>0</number>
       </property>
       <widget class="GeneralConfigurationPage" name="generalConfigurationPage"/>
       <widget class="QWidget" name="italcServerSettingsPage">
@@ -1209,8 +1209,8 @@ Note: if the bug involves both a master and client computer, attach bug report a
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="../imc.qrc"/>
   <include location="../../lib/ItalcCore.qrc"/>
+  <include location="../imc.qrc"/>
  </resources>
  <connections>
   <connection>
