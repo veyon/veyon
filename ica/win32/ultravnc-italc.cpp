@@ -33,20 +33,16 @@
 #include "AccessControlProvider.h"
 #include "Configuration/LocalStore.h"
 
-static QSettings *__italcSettings = NULL;
-
 
 BOOL ultravnc_italc_load_int( LPCSTR valname, LONG *out )
 {
-	if( strcmp( valname, "LocalConnectOnly" ) == 0 )
+	if( strcmp( valname, "LoopbackOnly" ) == 0 )
 	{
-		if( __italcSettings == NULL )
+		*out = 0;
+		if( ItalcCore::config->localConnectOnly() )
 		{
-			__italcSettings = Configuration::LocalStore( Configuration::Store::System ).createSettingsObject();
-			__italcSettings->beginGroup( "Network" );
+			*out = 1;
 		}
-
-		*out = __italcSettings->value( valname ).toInt();
 		return true;
 	}
 	if( strcmp( valname, "DisableTrayIcon" ) == 0 )
