@@ -328,6 +328,12 @@ void ItalcVncServer::run()
 		}
 	}
 
+	if( ItalcCore::config->localConnectOnly() ||
+			AccessControlProvider().isAccessDeniedByLocalState() )
+	{
+		cmdline.append( "-localhost" );
+	}
+
 	runX11vnc( cmdline, m_port, false );
 
 #elif ITALC_BUILD_WIN32
