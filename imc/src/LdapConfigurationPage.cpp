@@ -279,9 +279,28 @@ void LdapConfigurationPage::testLdapGroupMemberAttribute()
 void LdapConfigurationPage::testLdapComputerHostNameAttribute()
 {
 	QString computerName = QInputDialog::getText( this, tr( "Enter computer name" ),
-										  tr( "Please enter a computer name whose host name to query:") );
+										  tr( "Please enter a computer host name to query:") );
 	if( computerName.isEmpty() == false )
 	{
+		if( ItalcCore::config->ldapComputerHostNameAsFQDN() &&
+				computerName.contains( '.' ) == false )
+		{
+			QMessageBox::critical( this, tr( "Invalid host name" ),
+								   tr( "You configured computer host names to be stored "
+									   "as fully qualified domain names (FQDN) but entered "
+									   "a host name without domain." ) );
+			return;
+		}
+		else if( ItalcCore::config->ldapComputerHostNameAsFQDN() == false &&
+				 computerName.contains( '.') )
+		{
+			QMessageBox::critical( this, tr( "Invalid host name" ),
+								   tr( "You configured computer host names to be stored "
+									   "as simple host names without a domain name but "
+									   "entered a host name with a domain name part." ) );
+			return;
+		}
+
 		qDebug() << "[TEST][LDAP] Testing computer host name attribute";
 
 		LdapDirectory ldapDirectory;
