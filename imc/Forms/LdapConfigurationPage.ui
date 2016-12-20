@@ -244,35 +244,10 @@
           <string>Object attributes</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_22">
-          <item row="1" column="0">
-           <widget class="QLabel" name="label_35">
-            <property name="text">
-             <string>Group member attribute</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="label_33">
-            <property name="text">
-             <string>User login attribute</string>
-            </property>
-           </widget>
-          </item>
           <item row="0" column="1">
            <widget class="QLineEdit" name="ldapUserLoginAttribute">
             <property name="placeholderText">
              <string>e.g. uid or sAMAccountName</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="2">
-           <widget class="QPushButton" name="testLdapGroupMemberAttribute">
-            <property name="text">
-             <string>Test</string>
-            </property>
-            <property name="icon">
-             <iconset resource="../imc.qrc">
-              <normaloff>:/Resources/dialog-ok-apply.png</normaloff>:/Resources/dialog-ok-apply.png</iconset>
             </property>
            </widget>
           </item>
@@ -287,10 +262,21 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="1">
-           <widget class="QLineEdit" name="ldapGroupMemberAttribute">
-            <property name="placeholderText">
-             <string>e.g. member or memberUid</string>
+          <item row="2" column="2">
+           <widget class="QPushButton" name="testLdapComputerHostNameAttribute">
+            <property name="text">
+             <string>Test</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../imc.qrc">
+              <normaloff>:/Resources/dialog-ok-apply.png</normaloff>:/Resources/dialog-ok-apply.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_33">
+            <property name="text">
+             <string>User login attribute</string>
             </property>
            </widget>
           </item>
@@ -308,14 +294,35 @@
             </property>
            </widget>
           </item>
-          <item row="2" column="2">
-           <widget class="QPushButton" name="testLdapComputerHostNameAttribute">
+          <item row="1" column="1">
+           <widget class="QLineEdit" name="ldapGroupMemberAttribute">
+            <property name="placeholderText">
+             <string>e.g. member or memberUid</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2">
+           <widget class="QPushButton" name="testLdapGroupMemberAttribute">
             <property name="text">
              <string>Test</string>
             </property>
             <property name="icon">
              <iconset resource="../imc.qrc">
               <normaloff>:/Resources/dialog-ok-apply.png</normaloff>:/Resources/dialog-ok-apply.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_35">
+            <property name="text">
+             <string>Group member attribute</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0" colspan="3">
+           <widget class="QCheckBox" name="ldapComputerHostNameAsFQDN">
+            <property name="text">
+             <string>Host names stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</string>
             </property>
            </widget>
           </item>
