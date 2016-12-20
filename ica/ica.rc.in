@@ -1,14 +1,6 @@
 #include <windows.h>
 #include "../3rdparty/ultravnc/winvnc/winvnc/resource.h"
 
-/////////////////////////////////////////////////////////////////////////////
-//
-// JAVAARCHIVE
-//
-
-IDR_VNCVIEWER_JAR       JAVAARCHIVE             "JavaViewer/VncViewer.jar"
-
-
 
 VS_VERSION_INFO	VERSIONINFO
   FILEVERSION	@VERSION_MAJOR@,@VERSION_MINOR@,@VERSION_PATCH@,@VERSION_BUILD@

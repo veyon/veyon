@@ -68,10 +68,8 @@ public slots:
 	void setDemoServerBackend( int );
 	void setCoreServerPort( int );
 	void setDemoServerPort( int );
-	void setHttpServerPort( int );
 	void setFirewallExceptionEnabled( bool );
 	void setLocalConnectOnly( bool );
-	void setHttpServerEnabled( bool );
 	void setGlobalConfigurationPath( const QString & );
 	void setPersonalConfigurationPath( const QString & );
 	void setSnapshotDirectory( const QString & );

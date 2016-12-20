@@ -54,9 +54,7 @@
 
 #define FOREACH_ITALC_NETWORK_CONFIG_PROPERTY(OP) \
 	OP( ItalcConfiguration, ItalcCore::config, INT, coreServerPort, setCoreServerPort, "CoreServerPort", "Network" );			\
-	OP( ItalcConfiguration, ItalcCore::config, INT, httpServerPort, setHttpServerPort, "HttpServerPort", "Network" );			\
 	OP( ItalcConfiguration, ItalcCore::config, INT, demoServerPort, setDemoServerPort, "DemoServerPort", "Network" );			\
-	OP( ItalcConfiguration, ItalcCore::config, BOOL, isHttpServerEnabled, setHttpServerEnabled, "HttpServerEnabled", "Network" );	\
 	OP( ItalcConfiguration, ItalcCore::config, BOOL, isFirewallExceptionEnabled, setFirewallExceptionEnabled, "FirewallExceptionEnabled", "Network" );	\
 	OP( ItalcConfiguration, ItalcCore::config, BOOL, localConnectOnly, setLocalConnectOnly, "LocalConnectOnly", "Network" );					\
 

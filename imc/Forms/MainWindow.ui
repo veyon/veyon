@@ -252,27 +252,17 @@
            <string>Network</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_11">
+           <item row="3" column="0" colspan="2">
+            <widget class="QCheckBox" name="localConnectOnly">
+             <property name="text">
+              <string>Allow connections from localhost only</string>
+             </property>
+            </widget>
+           </item>
            <item row="0" column="0">
             <widget class="QLabel" name="label_12">
              <property name="text">
               <string>Core server port</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="1">
-            <widget class="QSpinBox" name="coreServerPort">
-             <property name="minimum">
-              <number>1024</number>
-             </property>
-             <property name="maximum">
-              <number>65535</number>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="0">
-            <widget class="QLabel" name="label_13">
-             <property name="text">
-              <string>Demo server port</string>
              </property>
             </widget>
            </item>
@@ -293,73 +283,20 @@
              </property>
             </widget>
            </item>
-           <item row="4" column="0" colspan="2">
-            <widget class="QCheckBox" name="isHttpServerEnabled">
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_13">
              <property name="text">
-              <string>Enable HTTP server which provides a JavaViewer applet</string>
+              <string>Demo server port</string>
              </property>
             </widget>
            </item>
-           <item row="5" column="0" colspan="2">
-            <layout class="QHBoxLayout" name="horizontalLayout_5">
-             <item>
-              <spacer name="horizontalSpacer_10">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeType">
-                <enum>QSizePolicy::Fixed</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>20</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-             <item>
-              <widget class="QLabel" name="httpServerPortLabel">
-               <property name="enabled">
-                <bool>false</bool>
-               </property>
-               <property name="text">
-                <string>HTTP server port</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QSpinBox" name="httpServerPort">
-               <property name="enabled">
-                <bool>false</bool>
-               </property>
-               <property name="minimum">
-                <number>1024</number>
-               </property>
-               <property name="maximum">
-                <number>65535</number>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <spacer name="horizontalSpacer_11">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-            </layout>
-           </item>
-           <item row="3" column="0" colspan="2">
-            <widget class="QCheckBox" name="localConnectOnly">
-             <property name="text">
-              <string>Allow connections from localhost only</string>
+           <item row="0" column="1">
+            <widget class="QSpinBox" name="coreServerPort">
+             <property name="minimum">
+              <number>1024</number>
+             </property>
+             <property name="maximum">
+              <number>65535</number>
              </property>
             </widget>
            </item>
@@ -1258,38 +1195,6 @@ Note: if the bug involves both a master and client computer, attach bug report a
     <hint type="destinationlabel">
      <x>455</x>
      <y>372</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>isHttpServerEnabled</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>httpServerPort</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>367</x>
-     <y>364</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>413</x>
-     <y>396</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>isHttpServerEnabled</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>httpServerPortLabel</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>367</x>
-     <y>364</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>320</x>
-     <y>396</y>
     </hint>
    </hints>
   </connection>

@@ -197,14 +197,6 @@ ENDIF(NOT ITALC_BUILD_WIN32)
 SET(ITALC_ALLOW24BPP TRUE)
 SET(ITALC_BACKCHANNEL TRUE)
 
-# find Java compiler for the JavaViewer
-FIND_PACKAGE(Java)
-IF(JAVA_COMPILE)
-	SET(STATUS_JAVA "yes")
-ELSE(JAVA_COMPILE)
-	SET(STATUS_JAVA "no - please install a Java compiler")
-ENDIF(JAVA_COMPILE)
-
 
 SET(ITALCCONFIG ${CMAKE_BINARY_DIR}/italcconfig.h)
 SET(RFBCONFIG ${CMAKE_BINARY_DIR}/rfb/rfbconfig.h)
@@ -320,7 +312,6 @@ MESSAGE("\n"
 "* Install prefix              : ${CMAKE_INSTALL_PREFIX}\n"
 "* Build type                  : ${CMAKE_BUILD_TYPE}\n"
 "* Platform                    : ${CMAKE_SYSTEM_PROCESSOR} (${Machine})\n"
-"* Builtin JavaViewer support  : ${STATUS_JAVA}\n"
 "* Compile flags               : ${CMAKE_C_FLAGS} (CXX: ${CMAKE_CXX_FLAGS})\n"
 )
 

@@ -2,7 +2,7 @@
  * ItalcRfbExt.h - an extension of the RFB-protocol, used for communication
  *                 between master and clients
  *
- * Copyright (c) 2004-2013 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -41,8 +41,7 @@
 enum PortOffsets
 {
 	PortOffsetVncServer = 11100,
-	PortOffsetDemoServer = PortOffsetVncServer + 300,
-	PortOffsetHttpServer = 5800
+	PortOffsetDemoServer = PortOffsetVncServer + 300
 } ;
 
 

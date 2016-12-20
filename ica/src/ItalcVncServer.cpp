@@ -2,7 +2,7 @@
  * ItalcVncServer.cpp - implementation of ItalcVncServer, a VNC-server-
  *                      abstraction for platform independent VNC-server-usage
  *
- * Copyright (c) 2006-2013 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -232,24 +232,6 @@ static void runX11vnc( QStringList cmdline, int port, bool plainVnc )
 		;
 
 #ifdef ITALC_BUILD_LINUX
-	if( !plainVnc && ItalcCore::config->isHttpServerEnabled() )
-	{
-		QDir d( QCoreApplication::applicationDirPath() );
-		if( d.cdUp() && d.cd( "share" ) && d.cd( "italc" ) &&
-				d.cd( "JavaViewer" ) )
-		{
-			cmdline << "-httpport"
-					<< QString::number( ItalcCore::config->httpServerPort() )
-					<< "-httpdir" << d.absolutePath();
-			LogStream() << "Using JavaViewer files at" << d.absolutePath();
-		}
-		else
-		{
-			qWarning( "Could not find JavaViewer files. "
-						"Check your iTALC installation!" );
-		}
-	}
-
 	// workaround for x11vnc when running in an NX session or a Thin client LTSP session
 	foreach( const QString &s, QProcess::systemEnvironment() )
 	{
