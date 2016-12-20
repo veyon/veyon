@@ -2,14 +2,6 @@
 <ui version="4.0">
  <class>GeneralConfigurationPage</class>
  <widget class="QWidget" name="GeneralConfigurationPage">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>724</width>
-    <height>866</height>
-   </rect>
-  </property>
   <layout class="QVBoxLayout" name="verticalLayout_14">
    <property name="topMargin">
     <number>0</number>
@@ -37,6 +29,9 @@
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
+        </property>
+        <property name="sizeAdjustPolicy">
+         <enum>QComboBox::AdjustToContents</enum>
         </property>
         <item>
          <property name="text">
@@ -208,6 +203,9 @@
         </item>
         <item row="1" column="1">
          <widget class="QComboBox" name="logLevel">
+          <property name="sizeAdjustPolicy">
+           <enum>QComboBox::AdjustToContents</enum>
+          </property>
           <item>
            <property name="text">
             <string>Nothing</string>

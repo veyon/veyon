@@ -2,14 +2,6 @@
 <ui version="4.0">
  <class>AccessControlPage</class>
  <widget class="QWidget" name="AccessControlPage">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>990</width>
-    <height>809</height>
-   </rect>
-  </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
@@ -101,6 +93,9 @@
      <layout class="QGridLayout" name="gridLayout_18">
       <item row="2" column="0">
        <widget class="QListWidget" name="allGroupsList">
+        <property name="sizeAdjustPolicy">
+         <enum>QAbstractScrollArea::AdjustToContents</enum>
+        </property>
         <property name="selectionMode">
          <enum>QAbstractItemView::MultiSelection</enum>
         </property>
@@ -128,6 +123,9 @@
       </item>
       <item row="2" column="2">
        <widget class="QListWidget" name="accessGroupsList">
+        <property name="sizeAdjustPolicy">
+         <enum>QAbstractScrollArea::AdjustToContents</enum>
+        </property>
         <property name="selectionMode">
          <enum>QAbstractItemView::MultiSelection</enum>
         </property>
@@ -251,6 +249,9 @@
       </item>
       <item row="0" column="0" rowspan="6">
        <widget class="QListView" name="accessControlRulesView">
+        <property name="sizeAdjustPolicy">
+         <enum>QAbstractScrollArea::AdjustToContents</enum>
+        </property>
         <property name="editTriggers">
          <set>QAbstractItemView::NoEditTriggers</set>
         </property>

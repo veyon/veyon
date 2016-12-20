@@ -2,14 +2,6 @@
 <ui version="4.0">
  <class>AccessControlRuleEditDialog</class>
  <widget class="QDialog" name="AccessControlRuleEditDialog">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>975</width>
-    <height>667</height>
-   </rect>
-  </property>
   <property name="windowTitle">
    <string>Edit access control rule</string>
   </property>
@@ -58,7 +50,11 @@
      </property>
      <layout class="QGridLayout" name="gridLayout_2">
       <item row="0" column="0">
-       <widget class="QComboBox" name="entityComboBox"/>
+       <widget class="QComboBox" name="entityComboBox">
+        <property name="sizeAdjustPolicy">
+         <enum>QComboBox::AdjustToContents</enum>
+        </property>
+       </widget>
       </item>
       <item row="0" column="1">
        <spacer name="horizontalSpacer">
@@ -80,12 +76,18 @@
           <property name="enabled">
            <bool>false</bool>
           </property>
+          <property name="sizeAdjustPolicy">
+           <enum>QComboBox::AdjustToContents</enum>
+          </property>
          </widget>
         </item>
         <item row="0" column="1">
          <widget class="QComboBox" name="groupsComboBox">
           <property name="enabled">
            <bool>false</bool>
+          </property>
+          <property name="sizeAdjustPolicy">
+           <enum>QComboBox::AdjustToContents</enum>
           </property>
          </widget>
         </item>
@@ -94,12 +96,18 @@
           <property name="enabled">
            <bool>false</bool>
           </property>
+          <property name="sizeAdjustPolicy">
+           <enum>QComboBox::AdjustToContents</enum>
+          </property>
          </widget>
         </item>
         <item row="2" column="1">
          <widget class="QComboBox" name="commonGroupComboBox">
           <property name="enabled">
            <bool>false</bool>
+          </property>
+          <property name="sizeAdjustPolicy">
+           <enum>QComboBox::AdjustToContents</enum>
           </property>
          </widget>
         </item>

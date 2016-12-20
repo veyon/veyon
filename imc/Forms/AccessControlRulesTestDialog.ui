@@ -2,14 +2,6 @@
 <ui version="4.0">
  <class>AccessControlRulesTestDialog</class>
  <widget class="QDialog" name="AccessControlRulesTestDialog">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>757</width>
-    <height>364</height>
-   </rect>
-  </property>
   <property name="windowTitle">
    <string>Access control rules test</string>
   </property>

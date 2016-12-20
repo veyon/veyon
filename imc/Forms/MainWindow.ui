@@ -2,14 +2,6 @@
 <ui version="4.0">
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>1355</width>
-    <height>1157</height>
-   </rect>
-  </property>
   <property name="windowTitle">
    <string>iTALC Management Console</string>
   </property>
@@ -1048,14 +1040,6 @@ Note: if the bug involves both a master and client computer, attach bug report a
    </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>1355</width>
-     <height>35</height>
-    </rect>
-   </property>
    <widget class="QMenu" name="menu_File">
     <property name="title">
      <string>&amp;File</string>
