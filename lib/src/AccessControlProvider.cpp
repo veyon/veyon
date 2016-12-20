@@ -172,6 +172,31 @@ AccessControlRule::Action AccessControlProvider::processAccessControlRules(const
 }
 
 
+/*!
+ * \brief Returns whether any incoming access requests would be denied due to a deny rule matching the local state (e.g. teacher logged on)
+ */
+bool AccessControlProvider::isAccessDeniedByLocalState()
+{
+	if( ItalcCore::config->isAccessControlRulesProcessingEnabled() == false )
+	{
+		return false;
+	}
+
+	for( auto rule : m_accessControlRules )
+	{
+		if( rule.action() == AccessControlRule::ActionDeny &&
+				matchConditions( rule, QString(), QString(),
+								 LocalSystem::User::loggedOnUser().name(),
+								 QHostInfo::localHostName() ) )
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+
+
 
 QStringList AccessControlProvider::groupsOfUser( const QString &userName )
 {
