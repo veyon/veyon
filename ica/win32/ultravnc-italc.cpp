@@ -43,6 +43,10 @@ BOOL ultravnc_italc_load_int( LPCSTR valname, LONG *out )
 		{
 			*out = 1;
 		}
+		else if( AccessControlProvider().isAccessDeniedByLocalState() )
+		{
+			*out = 1;
+		}
 		return true;
 	}
 	if( strcmp( valname, "DisableTrayIcon" ) == 0 )
