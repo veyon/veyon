@@ -71,6 +71,8 @@ public:
 	QStringList userGroupsNames();
 	QStringList computerGroupsNames();
 
+	QString hostNameToLdapFormat( const QString& hostName );
+
 
 private:
 	bool reconnect( const QUrl& url );

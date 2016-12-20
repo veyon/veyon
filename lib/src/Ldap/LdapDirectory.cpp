@@ -23,6 +23,8 @@
  */
 
 #include <QDebug>
+#include <QHostAddress>
+#include <QHostInfo>
 
 #include "LdapDirectory.h"
 
@@ -175,6 +177,7 @@ public:
 	QString userLoginAttribute;
 	QString groupMemberAttribute;
 	QString computerHostNameAttribute;
+	bool computerHostNameAsFQDN;
 
 	QString usersFilter;
 	QString userGroupsFilter;
@@ -587,6 +590,7 @@ bool LdapDirectory::reconnect( const QUrl &url )
 	d->userLoginAttribute = c->ldapUserLoginAttribute();
 	d->groupMemberAttribute = c->ldapGroupMemberAttribute();
 	d->computerHostNameAttribute = c->ldapComputerHostNameAttribute();
+	d->computerHostNameAsFQDN = c->ldapComputerHostNameAsFQDN();
 
 	d->usersFilter = c->ldapUsersFilter();
 	d->userGroupsFilter = c->ldapUserGroupsFilter();
@@ -633,4 +637,44 @@ QString LdapDirectory::constructQueryFilter( const QString& filterAttribute,
 	}
 
 	return queryFilter;
+}
+
+
+
+QString LdapDirectory::hostNameToLdapFormat(const QString &hostName)
+{
+	QHostAddress hostAddress( hostName );
+
+	// no valid IP address given?
+	if( hostAddress.protocol() == QAbstractSocket::UnknownNetworkLayerProtocol )
+	{
+		// then try to resolve ist first
+		QHostInfo hostInfo = QHostInfo::fromName( hostName );
+		if( hostInfo.error() != QHostInfo::NoError || hostInfo.addresses().isEmpty() )
+		{
+			qWarning() << "LdapDirectory::hostNameToLdapFormat(): could not lookup IP address host host"
+					   << hostName << "error:" << hostInfo.errorString();
+			return hostName;
+		}
+
+		hostAddress = hostInfo.addresses().first();
+	}
+
+	// now do a name lookup to get the full host name information
+	QHostInfo hostInfo = QHostInfo::fromName( hostAddress.toString() );
+	if( hostInfo.error() != QHostInfo::NoError )
+	{
+		qWarning() << "LdapDirectory::hostNameToLdapFormat(): could not lookup host name for IP"
+				   << hostAddress.toString() << "error:" << hostInfo.errorString();
+		return hostName;
+	}
+
+	// are we working with fully qualified domain name?
+	if( d->computerHostNameAsFQDN )
+	{
+		return hostInfo.hostName();
+	}
+
+	// return first part of host name which should be the actual machine name
+	return hostInfo.hostName().split( '.' ).value( 0 );
 }
