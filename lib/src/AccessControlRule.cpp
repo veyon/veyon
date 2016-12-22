@@ -31,6 +31,7 @@ AccessControlRule::AccessControlRule() :
 	m_description(),
 	m_action( ActionNone ),
 	m_entity( EntityNone ),
+	m_invertConditions( false ),
 	m_conditions()
 {
 
@@ -43,6 +44,7 @@ AccessControlRule::AccessControlRule(const AccessControlRule &other) :
 	m_description( other.description() ),
 	m_action( other.action() ),
 	m_entity( other.entity() ),
+	m_invertConditions( other.areConditionsInverted() ),
 	m_conditions( other.conditions() )
 {
 
@@ -55,6 +57,7 @@ AccessControlRule::AccessControlRule(const QString &encodedData) :
 	m_description(),
 	m_action( ActionNone ),
 	m_entity( EntityNone ),
+	m_invertConditions( false ),
 	m_conditions()
 {
 	QByteArray buffer = QByteArray::fromBase64( encodedData.toUtf8() );
@@ -62,12 +65,14 @@ AccessControlRule::AccessControlRule(const QString &encodedData) :
 
 	qint8 action;
 	qint8 entity;
+	qint8 invertConditions;
 	qint8 conditionCount;
 
 	ds >> m_name;
 	ds >> m_description;
 	ds >> action;
 	ds >> entity;
+	ds >> invertConditions;
 	ds >> conditionCount;
 
 	for( int i = 0; i < conditionCount; ++i )
@@ -81,6 +86,7 @@ AccessControlRule::AccessControlRule(const QString &encodedData) :
 
 	m_action = static_cast<Action>( action );
 	m_entity = static_cast<Entity>( entity );
+	m_invertConditions = static_cast<bool>( invertConditions );
 }
 
 
@@ -94,6 +100,7 @@ QString AccessControlRule::encode() const
 	ds << m_description;
 	ds << static_cast<qint8>( m_action );
 	ds << static_cast<qint8>( m_entity );
+	ds << static_cast<qint8>( m_invertConditions );
 	ds << static_cast<qint8>( m_conditions.count() );
 
 	for( auto condition : m_conditions.keys() )

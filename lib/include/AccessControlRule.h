@@ -128,6 +128,16 @@ public:
 		m_entity = entity;
 	}
 
+	bool areConditionsInverted() const
+	{
+		return m_invertConditions;
+	}
+
+	void setConditionsInverted( bool inverted )
+	{
+		m_invertConditions = inverted;
+	}
+
 	bool hasCondition( Condition condition ) const
 	{
 		return m_conditions.contains( condition );
@@ -163,6 +173,7 @@ private:
 	QString m_description;
 	Action m_action;
 	Entity m_entity;
+	bool m_invertConditions;
 	Conditions m_conditions;
 
 } ;
