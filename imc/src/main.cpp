@@ -1,7 +1,7 @@
 /*
  * main.cpp - main file for iTALC Management Console
  *
- * Copyright (c) 2010-2011 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2010-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -27,6 +27,7 @@
 #include <QtCore/QProcessEnvironment>
 #include <QApplication>
 
+#include "ConfigurationTestController.h"
 #include "Configuration/XmlStore.h"
 #include "ImcCore.h"
 #include "ItalcConfiguration.h"
@@ -338,6 +339,10 @@ int main( int argc, char **argv )
 		else if( a == "-autoconfigureldapbasedn" )
 		{
 			return autoConfigureLdapBaseDn( argIt );
+		}
+		else if( a == "-test" )
+		{
+			return ConfigurationTestController( app->arguments().mid( 2 ) ).run();
 		}
 	}
 
