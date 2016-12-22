@@ -39,12 +39,16 @@ AccessControlRuleListModel::AccessControlRuleListModel(QObject *parent)
 
 void AccessControlRuleListModel::reload()
 {
+	beginResetModel();
+
 	m_accessControlRules.clear();
 
 	for( AccessControlRule accessControlRule : ItalcCore::config->accessControlRules() )
 	{
 		m_accessControlRules.append( accessControlRule );
 	}
+
+	endResetModel();
 }
 
 
