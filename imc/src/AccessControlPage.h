@@ -35,10 +35,9 @@ class AccessControlPage;
 class AccessControlPage : public ConfigurationPage
 {
 	Q_OBJECT
-
 public:
 	AccessControlPage();
-	~AccessControlPage();
+	virtual ~AccessControlPage();
 
 	virtual void resetWidgets();
 	virtual void connectWidgetsToProperties();
