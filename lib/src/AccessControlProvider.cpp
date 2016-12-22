@@ -419,6 +419,12 @@ bool AccessControlProvider::matchConditions( const AccessControlRule &rule,
 
 	const QString ruleEntityValue = lookupEntity( ruleEntity, accessingUser, accessingComputer, localUser, localComputer );
 
+	// we can't match empty entity values therefore ignore this rule
+	if( ruleEntityValue.isEmpty() )
+	{
+		return false;
+	}
+
 	// normally all selected conditions have to match in order to make the whole rule match
 	// if conditions should be inverted (i.e. "is member of" is to be interpreted as "is NOT member of")
 	// we have to check against the opposite boolean value
