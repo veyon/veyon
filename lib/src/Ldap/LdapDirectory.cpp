@@ -322,10 +322,21 @@ QStringList LdapDirectory::computerGroups(const QString &filterValue)
 
 QStringList LdapDirectory::computerPools(const QString &filterValue)
 {
-	QStringList computerPools = d->queryAttributes( d->computersDn,
-													d->computerPoolAttribute,
-													constructQueryFilter( d->computerPoolAttribute, filterValue ),
-													d->defaultSearchScope );
+	QStringList computerPools;
+
+	if( d->computerPoolMembersByAttribute )
+	{
+		computerPools = d->queryAttributes( d->computersDn,
+											d->computerPoolAttribute,
+											constructQueryFilter( d->computerPoolAttribute, filterValue ),
+											d->defaultSearchScope );
+	}
+	else
+	{
+		computerPools = d->queryAttributes( d->groupsDn, "cn",
+											constructQueryFilter( "cn", filterValue, d->computerGroupsFilter ) ,
+											d->defaultSearchScope );
+	}
 
 	computerPools.removeDuplicates();
 
