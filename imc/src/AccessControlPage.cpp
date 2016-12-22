@@ -239,12 +239,5 @@ void AccessControlPage::modifyAccessControlRules(const QStringList &accessContro
 
 void AccessControlPage::updateAccessControlRules()
 {
-	QStringList ruleNames;
-
-	for( auto encodedRule : ItalcCore::config->accessControlRules() )
-	{
-		ruleNames += AccessControlRule( encodedRule ).name();
-	}
-
-	m_accessControlRulesModel.setStringList( ruleNames );
+	m_accessControlRulesModel.reload();
 }

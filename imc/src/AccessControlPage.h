@@ -25,8 +25,7 @@
 #ifndef ACCESS_CONTROL_PAGE_H
 #define ACCESS_CONTROL_PAGE_H
 
-#include <QStringListModel>
-
+#include "AccessControlRuleListModel.h"
 #include "ConfigurationPage.h"
 
 namespace Ui {
@@ -65,7 +64,7 @@ private:
 	Ui::AccessControlPage *ui;
 
 	QStringList m_accessGroups;
-	QStringListModel m_accessControlRulesModel;
+	AccessControlRuleListModel m_accessControlRulesModel;
 
 };
 
