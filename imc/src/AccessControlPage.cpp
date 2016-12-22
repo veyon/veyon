@@ -22,6 +22,9 @@
  *
  */
 
+#include <QInputDialog>
+#include <QMessageBox>
+
 #include "AccessControlPage.h"
 #include "AccessControlRule.h"
 #include "ItalcCore.h"
@@ -214,7 +217,19 @@ void AccessControlPage::moveAccessControlRuleUp()
 
 void AccessControlPage::testUserGroupsAccessControl()
 {
+	QString userName = QInputDialog::getText( this, tr( "Enter username" ),
+										  tr( "Please enter a user login name whose access permissions to test:" ) );
 
+	if( AccessControlProvider().processAuthorizedGroups( userName ) )
+	{
+		QMessageBox::information( this, tr( "Access allowed" ),
+								  tr( "The specified user is allowed to access computers with this configuration." ) );
+	}
+	else
+	{
+		QMessageBox::warning( this, tr( "Access denied" ),
+								  tr( "The specified user is not allowed to access computers with this configuration." ) );
+	}
 }
 
 
