@@ -73,6 +73,7 @@ public:
 	QStringList computerGroupsNames();
 
 	QString hostToLdapFormat( const QString& host );
+	QString computerObjectFromHost( const QString& host );
 
 
 private:

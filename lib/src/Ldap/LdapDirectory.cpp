@@ -694,3 +694,17 @@ QString LdapDirectory::hostToLdapFormat(const QString &host)
 	qDebug() << "LdapDirectory::hostToLdapFormat(): resolved host name" << hostName;
 	return hostName;
 }
+
+
+
+QString LdapDirectory::computerObjectFromHost(const QString &host)
+{
+	QString hostName = hostToLdapFormat( host );
+	if( hostName.isEmpty() )
+	{
+		qWarning( "LdapDirectory::computerObjectFromHost(): could not resolve hostname, returning empty computer object" );
+		return QString();
+	}
+
+	return computers( hostName ).value( 0 );
+}
