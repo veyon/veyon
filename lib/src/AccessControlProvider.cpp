@@ -419,12 +419,17 @@ bool AccessControlProvider::matchConditions( const AccessControlRule &rule,
 
 	const QString ruleEntityValue = lookupEntity( ruleEntity, accessingUser, accessingComputer, localUser, localComputer );
 
-	qDebug() << "AccessControlProvider::matchConditions():" << rule.name() << rule.entity() << ruleEntityValue << rule.conditions();
+	// normally all selected conditions have to match in order to make the whole rule match
+	// if conditions should be inverted (i.e. "is member of" is to be interpreted as "is NOT member of")
+	// we have to check against the opposite boolean value
+	bool matchResult = rule.areConditionsInverted();
+
+	qDebug() << "AccessControlProvider::matchConditions():" << rule.name() << rule.entity() << ruleEntityValue << matchResult << rule.conditions();
 
 	if( rule.hasCondition( AccessControlRule::ConditionMemberOfGroup ) &&
 			isMemberOfGroup( ruleEntityType,
 							 ruleEntityValue,
-							 rule.conditionArgument( AccessControlRule::ConditionMemberOfGroup ).toString() ) == false )
+							 rule.conditionArgument( AccessControlRule::ConditionMemberOfGroup ).toString() ) == matchResult )
 	{
 		return false;
 	}
@@ -432,7 +437,7 @@ bool AccessControlProvider::matchConditions( const AccessControlRule &rule,
 	if( rule.hasCondition( AccessControlRule::ConditionMemberOfComputerPool ) &&
 			isMemberOfComputerPool( ruleEntityType,
 									ruleEntityValue,
-									rule.conditionArgument( AccessControlRule::ConditionMemberOfComputerPool ).toString() ) == false )
+									rule.conditionArgument( AccessControlRule::ConditionMemberOfComputerPool ).toString() ) == matchResult )
 	{
 		return false;
 	}
@@ -446,7 +451,7 @@ bool AccessControlProvider::matchConditions( const AccessControlRule &rule,
 		const QString secondEntityValue = lookupEntity( secondEntity, accessingUser, accessingComputer, localUser, localComputer );
 
 		if( hasGroupsInCommon( ruleEntityType, ruleEntityValue,
-							   secondEntityType, secondEntityValue ) == false )
+							   secondEntityType, secondEntityValue ) == matchResult )
 		{
 			return false;
 		}
@@ -461,7 +466,7 @@ bool AccessControlProvider::matchConditions( const AccessControlRule &rule,
 		const QString secondEntityValue = lookupEntity( secondEntity, accessingUser, accessingComputer, localUser, localComputer );
 
 		if( hasComputerPoolsInCommon( ruleEntityType, ruleEntityValue,
-							   secondEntityType, secondEntityValue ) == false )
+							   secondEntityType, secondEntityValue ) == matchResult )
 		{
 			return false;
 		}
