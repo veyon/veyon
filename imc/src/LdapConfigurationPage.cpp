@@ -62,6 +62,7 @@ LdapConfigurationPage::LdapConfigurationPage() :
 
 	CONNECT_BUTTON_SLOT( testLdapGroupsOfUser );
 	CONNECT_BUTTON_SLOT( testLdapGroupsOfComputer );
+	CONNECT_BUTTON_SLOT( testLdapComputerObjectByIpAddress );
 	CONNECT_BUTTON_SLOT( testLdapComputerPoolMembers );
 	CONNECT_BUTTON_SLOT( testLdapCommonAggregations );
 }
@@ -422,6 +423,37 @@ void LdapConfigurationPage::testLdapGroupsOfComputer()
 									  "Please check the host name or the computer tree "
 									  "tree parameter.").arg( computerHostName ) );
 		}
+	}
+}
+
+
+
+void LdapConfigurationPage::testLdapComputerObjectByIpAddress()
+{
+	QString computerIpAddress = QInputDialog::getText( this, tr( "Enter computer IP address" ),
+										  tr( "Please enter a computer IP address which to resolve to an computer object:") );
+	if( computerIpAddress.isEmpty() == false )
+	{
+		qDebug() << "[TEST][LDAP] Testing computer object resolve by IP address" << computerIpAddress;
+
+		LdapDirectory ldapDirectory;
+
+		QString computerName = ldapDirectory.hostToLdapFormat( computerIpAddress );
+
+		qDebug() << "[TEST][LDAP] Resolved IP address to computer name" << computerName;
+
+		if( computerName.isEmpty() )
+		{
+			QMessageBox::critical( this, tr( "Host name lookup failed" ),
+								   tr( "Could not lookup host name for IP address %1. "
+									   "Please check your DNS server settings." ).arg( computerIpAddress ) );
+		}
+		else
+		{
+			reportLdapObjectQueryResults( tr( "computers" ), tr( "computer host name attribute" ),
+										  ldapDirectory.computers( computerName ), ldapDirectory );
+		}
+
 	}
 }
 

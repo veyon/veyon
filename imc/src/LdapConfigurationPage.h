@@ -59,6 +59,7 @@ private slots:
 	void testLdapComputerPoolAttribute();
 	void testLdapGroupsOfUser();
 	void testLdapGroupsOfComputer();
+	void testLdapComputerObjectByIpAddress();
 	void testLdapComputerPoolMembers();
 	void testLdapCommonAggregations();
 
