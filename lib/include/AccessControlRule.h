@@ -153,9 +153,9 @@ public:
 		return m_conditions.value( condition );
 	}
 
-	void clearCondition( Condition condition )
+	void clearConditions()
 	{
-		m_conditions.remove( condition );
+		m_conditions.clear();
 	}
 
 	void setCondition( Condition condition, ConditionArgument conditionArgument )
