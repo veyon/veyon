@@ -62,6 +62,7 @@ void AccessControlPage::resetWidgets()
 	m_accessGroups = ItalcCore::config->logonGroups();
 
 	updateAccessGroupsLists();
+	updateAccessControlRules();
 }
 
 
