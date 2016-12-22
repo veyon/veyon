@@ -187,6 +187,7 @@ void LdapConfigurationPage::testLdapUserTree()
 		qDebug() << "[TEST][LDAP] Testing user tree";
 
 		LdapDirectory ldapDirectory;
+		ldapDirectory.disableAttributes();
 		ldapDirectory.disableFilters();
 		int count = ldapDirectory.users().count();
 
@@ -203,6 +204,7 @@ void LdapConfigurationPage::testLdapGroupTree()
 		qDebug() << "[TEST][LDAP] Testing group tree";
 
 		LdapDirectory ldapDirectory;
+		ldapDirectory.disableAttributes();
 		ldapDirectory.disableFilters();
 		int count = ldapDirectory.groups().count();
 
@@ -219,6 +221,7 @@ void LdapConfigurationPage::testLdapComputerTree()
 		qDebug() << "[TEST][LDAP] Testing computer tree";
 
 		LdapDirectory ldapDirectory;
+		ldapDirectory.disableAttributes();
 		ldapDirectory.disableFilters();
 		int count = ldapDirectory.computers().count();
 
