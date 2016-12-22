@@ -326,6 +326,13 @@ QString AccessControlProvider::ldapObjectOfEntity( AccessControlRule::EntityType
 {
 	QStringList objects;
 
+	// do not query objects without a filter value
+	if( entity.isEmpty() )
+	{
+		qWarning() << "AccessControlProvider::getLdapObjectForEntity(): empty entity of type" << entityType;
+		return QString();
+	}
+
 	switch( entityType )
 	{
 	case AccessControlRule::EntityTypeUser:
