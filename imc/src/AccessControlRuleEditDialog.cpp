@@ -57,6 +57,9 @@ AccessControlRuleEditDialog::AccessControlRuleEditDialog(AccessControlRule &rule
 	// load selected entity
 	ui->entityComboBox->setCurrentText( m_entityNameMap.value( rule.entity() ) );
 
+	// load condition invertion setting
+	ui->invertConditionsCheckBox->setChecked( rule.areConditionsInverted() );
+
 	// load conditions
 	ui->isMemberOfGroupCheckBox->setChecked( rule.hasCondition( AccessControlRule::ConditionMemberOfGroup ) );
 	ui->isMemberOfComputerPoolCheckBox->setChecked( rule.hasCondition( AccessControlRule::ConditionMemberOfComputerPool ) );
@@ -99,6 +102,9 @@ void AccessControlRuleEditDialog::accept()
 
 	// save selected entity
 	m_rule.setEntity( m_entityNameMap.key( ui->entityComboBox->currentText() ) );
+
+	// save condition invertion setting
+	m_rule.setConditionsInverted( ui->invertConditionsCheckBox->isChecked() );
 
 	// save conditions
 	if( ui->isMemberOfGroupCheckBox->isChecked() )

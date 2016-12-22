@@ -49,27 +49,22 @@
       <string>Conditions</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_2">
-      <item row="0" column="0">
-       <widget class="QComboBox" name="entityComboBox">
-        <property name="sizeAdjustPolicy">
-         <enum>QComboBox::AdjustToContents</enum>
+      <item row="2" column="0" colspan="3">
+       <widget class="QLabel" name="label">
+        <property name="font">
+         <font>
+          <italic>true</italic>
+         </font>
+        </property>
+        <property name="text">
+         <string>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
-      <item row="0" column="1">
-       <spacer name="horizontalSpacer">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item row="0" column="2">
+      <item row="1" column="2">
        <layout class="QGridLayout" name="gridLayout">
         <item row="1" column="1">
          <widget class="QComboBox" name="computerPoolsComboBox">
@@ -141,18 +136,30 @@
         </item>
        </layout>
       </item>
-      <item row="1" column="0" colspan="3">
-       <widget class="QLabel" name="label">
-        <property name="font">
-         <font>
-          <italic>true</italic>
-         </font>
+      <item row="1" column="0">
+       <widget class="QComboBox" name="entityComboBox">
+        <property name="sizeAdjustPolicy">
+         <enum>QComboBox::AdjustToContents</enum>
         </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="0" column="0" colspan="3">
+       <widget class="QCheckBox" name="invertConditionsCheckBox">
         <property name="text">
-         <string>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</string>
-        </property>
-        <property name="wordWrap">
-         <bool>true</bool>
+         <string>Invert all conditions (&quot;is member&quot; is interpreted as &quot;is not member&quot;)</string>
         </property>
        </widget>
       </item>
