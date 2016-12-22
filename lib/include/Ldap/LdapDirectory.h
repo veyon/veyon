@@ -72,7 +72,7 @@ public:
 	QStringList userGroupsNames();
 	QStringList computerGroupsNames();
 
-	QString hostNameToLdapFormat( const QString& hostName );
+	QString hostToLdapFormat( const QString& host );
 
 
 private:

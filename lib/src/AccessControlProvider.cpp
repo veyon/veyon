@@ -325,7 +325,7 @@ QString AccessControlProvider::ldapObjectOfEntity( AccessControlRule::EntityType
 		objects = m_ldapDirectory.users( entity );
 		break;
 	case AccessControlRule::EntityTypeComputer:
-		objects = m_ldapDirectory.computers( m_ldapDirectory.hostNameToLdapFormat( entity ) );
+		objects = m_ldapDirectory.computers( m_ldapDirectory.hostToLdapFormat( entity ) );
 		break;
 	default: break;
 	}

@@ -651,40 +651,46 @@ QString LdapDirectory::constructQueryFilter( const QString& filterAttribute,
 
 
 
-QString LdapDirectory::hostNameToLdapFormat(const QString &hostName)
+QString LdapDirectory::hostToLdapFormat(const QString &host)
 {
-	QHostAddress hostAddress( hostName );
+	QHostAddress hostAddress( host );
 
 	// no valid IP address given?
 	if( hostAddress.protocol() == QAbstractSocket::UnknownNetworkLayerProtocol )
 	{
 		// then try to resolve ist first
-		QHostInfo hostInfo = QHostInfo::fromName( hostName );
+		QHostInfo hostInfo = QHostInfo::fromName( host );
 		if( hostInfo.error() != QHostInfo::NoError || hostInfo.addresses().isEmpty() )
 		{
-			qWarning() << "LdapDirectory::hostNameToLdapFormat(): could not lookup IP address host host"
-					   << hostName << "error:" << hostInfo.errorString();
-			return hostName;
+			qWarning() << "LdapDirectory::hostToLdapFormat(): could not lookup IP address of host"
+					   << host << "error:" << hostInfo.errorString();
+			return host;
 		}
 
 		hostAddress = hostInfo.addresses().first();
+		qDebug() << "LdapDirectory::hostToLdapFormat(): no valid IP address given, resolved IP address of host"
+				 << host << "to" << hostAddress.toString();
 	}
 
 	// now do a name lookup to get the full host name information
 	QHostInfo hostInfo = QHostInfo::fromName( hostAddress.toString() );
 	if( hostInfo.error() != QHostInfo::NoError )
 	{
-		qWarning() << "LdapDirectory::hostNameToLdapFormat(): could not lookup host name for IP"
+		qWarning() << "LdapDirectory::hostToLdapFormat(): could not lookup host name for IP"
 				   << hostAddress.toString() << "error:" << hostInfo.errorString();
-		return hostName;
+		return host;
 	}
 
 	// are we working with fully qualified domain name?
 	if( d->computerHostNameAsFQDN )
 	{
+		qDebug() << "LdapDirectory::hostToLdapFormat(): Resolved FQDN" << hostInfo.hostName();
 		return hostInfo.hostName();
 	}
 
 	// return first part of host name which should be the actual machine name
-	return hostInfo.hostName().split( '.' ).value( 0 );
+	const QString hostName = hostInfo.hostName().split( '.' ).value( 0 );
+
+	qDebug() << "LdapDirectory::hostToLdapFormat(): resolved host name" << hostName;
+	return hostName;
 }
