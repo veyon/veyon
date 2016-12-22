@@ -27,5 +27,8 @@
         <file>Resources/list-add.png</file>
         <file>Resources/list-remove.png</file>
         <file>Resources/document-edit.png</file>
+        <file>Resources/vcs-conflicting.png</file>
+        <file>Resources/vcs-normal.png</file>
+        <file>Resources/vcs-removed.png</file>
     </qresource>
 </RCC>
