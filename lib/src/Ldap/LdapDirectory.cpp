@@ -717,5 +717,13 @@ QString LdapDirectory::computerObjectFromHost(const QString &host)
 		return QString();
 	}
 
-	return computers( hostName ).value( 0 );
+	QStringList computerObjects = computers( hostName );
+	if( computerObjects.count() == 1 )
+	{
+		return computerObjects.first();
+	}
+
+	// return empty result if not exactly one object was found
+	qWarning( "LdapDirectory::computerObjectFromHost(): more than one computer object found, returning empty computer object!" );
+	return QString();
 }
