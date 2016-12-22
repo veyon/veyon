@@ -227,6 +227,16 @@ bool LdapDirectory::isBound() const
 }
 
 
+/*!
+ * \brief Disables any configured attributes which is required for some test scenarious
+ */
+void LdapDirectory::disableAttributes()
+{
+	d->userLoginAttribute.clear();
+	d->computerHostNameAttribute.clear();
+}
+
+
 
 /*!
  * \brief Disables any configured filters which is required for some test scenarious

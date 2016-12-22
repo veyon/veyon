@@ -39,6 +39,7 @@ public:
 	bool isConnected() const;
 	bool isBound() const;
 
+	void disableAttributes();
 	void disableFilters();
 
 	QString ldapErrorDescription() const;
