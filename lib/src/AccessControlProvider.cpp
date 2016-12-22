@@ -352,6 +352,9 @@ QString AccessControlProvider::ldapObjectOfEntity( AccessControlRule::EntityType
 	if( objects.count() > 1 )
 	{
 		qWarning() << "AccessControlProvider::getLdapObjectForEntity(): more than one entity object resolved from LDAP!";
+
+		// return empty result in order to prevent undesired effects leading to possible security issues
+		return QString();
 	}
 
 	return objects.first();
