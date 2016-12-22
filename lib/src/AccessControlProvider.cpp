@@ -97,8 +97,15 @@ QStringList AccessControlProvider::computerPools()
 
 
 
-AccessControlProvider::AccessResult AccessControlProvider::checkAccess( const QString& accessingUser, const QString& accessingComputer )
+AccessControlProvider::AccessResult AccessControlProvider::checkAccess( QString accessingUser, QString accessingComputer )
 {
+	// remove the domain part of the accessing user (e.g. "EXAMPLE.COM\Teacher" -> "TEACHER")
+	int domainSeparator = accessingUser.indexOf( '\\' );
+	if( domainSeparator >= 0 )
+	{
+		accessingUser = accessingUser.mid( domainSeparator + 1 );
+	}
+
 	if( ItalcCore::config->isAccessRestrictedToUserGroups() )
 	{
 		if( processAuthorizedGroups( accessingUser ) )
