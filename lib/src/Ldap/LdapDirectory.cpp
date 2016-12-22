@@ -664,7 +664,7 @@ QString LdapDirectory::hostToLdapFormat(const QString &host)
 		{
 			qWarning() << "LdapDirectory::hostToLdapFormat(): could not lookup IP address of host"
 					   << host << "error:" << hostInfo.errorString();
-			return host;
+			return QString();
 		}
 
 		hostAddress = hostInfo.addresses().first();
@@ -678,7 +678,7 @@ QString LdapDirectory::hostToLdapFormat(const QString &host)
 	{
 		qWarning() << "LdapDirectory::hostToLdapFormat(): could not lookup host name for IP"
 				   << hostAddress.toString() << "error:" << hostInfo.errorString();
-		return host;
+		return QString();
 	}
 
 	// are we working with fully qualified domain name?
