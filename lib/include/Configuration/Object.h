@@ -1,7 +1,7 @@
 /*
  * Configuration/Object.h - ConfigurationObject class
  *
- * Copyright (c) 2009-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2009-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -117,7 +117,7 @@ private:
 			{												\
 				return QStringList();						\
 			}												\
-			return value( key, parentKey ).split( ',' );	\
+			return value( key, parentKey ).split( ';' );	\
 		}
 
 #define DECLARE_CONFIG_INT_PROPERTY(get,key,parentKey)	\
@@ -148,7 +148,7 @@ private:
 #define IMPLEMENT_CONFIG_SET_STRINGLIST_PROPERTY(className,set,key,parentKey)\
 		void className::set( const QStringList &val )					\
 		{																\
-			setValue( key, val.join( "," ),	parentKey );				\
+			setValue( key, val.join( ";" ),	parentKey );				\
 		}
 
 #define IMPLEMENT_CONFIG_SET_INT_PROPERTY(className,set,key,parentKey)	\
