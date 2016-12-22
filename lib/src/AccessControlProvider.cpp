@@ -83,16 +83,16 @@ QStringList AccessControlProvider::computerGroups()
 
 QStringList AccessControlProvider::computerPools()
 {
-	QStringList compoterPoolList;
+	QStringList computerPoolList;
 
 	if( m_ldapDirectory.isEnabled() && m_ldapDirectory.isBound() )
 	{
-		compoterPoolList = m_ldapDirectory.computerPools();
+		computerPoolList = m_ldapDirectory.computerPools();
 	}
 
-	qSort( compoterPoolList );
+	qSort( computerPoolList );
 
-	return compoterPoolList;
+	return computerPoolList;
 }
 
 
