@@ -66,13 +66,54 @@
       </item>
       <item row="1" column="2">
        <layout class="QGridLayout" name="gridLayout">
-        <item row="1" column="1">
-         <widget class="QComboBox" name="computerPoolsComboBox">
+        <item row="0" column="0">
+         <widget class="QCheckBox" name="isMemberOfGroupCheckBox">
+          <property name="text">
+           <string>is member of group</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="QComboBox" name="commonComputerLabComboBox">
           <property name="enabled">
            <bool>false</bool>
           </property>
           <property name="sizeAdjustPolicy">
            <enum>QComboBox::AdjustToContents</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QComboBox" name="commonGroupComboBox">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="sizeAdjustPolicy">
+           <enum>QComboBox::AdjustToContents</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QComboBox" name="computerLabsComboBox">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="sizeAdjustPolicy">
+           <enum>QComboBox::AdjustToContents</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QCheckBox" name="hasCommonGroupsCheckBox">
+          <property name="text">
+           <string>has one or more groups in common with</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QCheckBox" name="isLocatedInComputerLabCheckBox">
+          <property name="text">
+           <string>is located in computer lab</string>
           </property>
          </widget>
         </item>
@@ -86,51 +127,10 @@
           </property>
          </widget>
         </item>
-        <item row="3" column="1">
-         <widget class="QComboBox" name="commonComputerPoolComboBox">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="sizeAdjustPolicy">
-           <enum>QComboBox::AdjustToContents</enum>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="1">
-         <widget class="QComboBox" name="commonGroupComboBox">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="sizeAdjustPolicy">
-           <enum>QComboBox::AdjustToContents</enum>
-          </property>
-         </widget>
-        </item>
         <item row="3" column="0">
-         <widget class="QCheckBox" name="hasCommonComputerPoolsCheckBox">
+         <widget class="QCheckBox" name="isLocatedInSameComputerLabCheckBox">
           <property name="text">
-           <string>is member of the same computer pool(s) as</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="0">
-         <widget class="QCheckBox" name="hasCommonGroupsCheckBox">
-          <property name="text">
-           <string>has one or more groups in common with</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="QCheckBox" name="isMemberOfComputerPoolCheckBox">
-          <property name="text">
-           <string>is member of computer pool</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="0">
-         <widget class="QCheckBox" name="isMemberOfGroupCheckBox">
-          <property name="text">
-           <string>is member of group</string>
+           <string>is located in the same computer lab as</string>
           </property>
          </widget>
         </item>
@@ -225,13 +225,11 @@
   <tabstop>ruleDescriptionLineEdit</tabstop>
   <tabstop>entityComboBox</tabstop>
   <tabstop>isMemberOfGroupCheckBox</tabstop>
-  <tabstop>isMemberOfComputerPoolCheckBox</tabstop>
   <tabstop>hasCommonGroupsCheckBox</tabstop>
-  <tabstop>hasCommonComputerPoolsCheckBox</tabstop>
+  <tabstop>isLocatedInSameComputerLabCheckBox</tabstop>
   <tabstop>groupsComboBox</tabstop>
-  <tabstop>computerPoolsComboBox</tabstop>
   <tabstop>commonGroupComboBox</tabstop>
-  <tabstop>commonComputerPoolComboBox</tabstop>
+  <tabstop>commonComputerLabComboBox</tabstop>
   <tabstop>actionAllowRadioButton</tabstop>
   <tabstop>actionDenyRadioButton</tabstop>
   <tabstop>actionNoneRadioButton</tabstop>
@@ -287,9 +285,9 @@
    </hints>
   </connection>
   <connection>
-   <sender>isMemberOfComputerPoolCheckBox</sender>
+   <sender>isLocatedInComputerLabCheckBox</sender>
    <signal>toggled(bool)</signal>
-   <receiver>computerPoolsComboBox</receiver>
+   <receiver>computerLabsComboBox</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -319,9 +317,9 @@
    </hints>
   </connection>
   <connection>
-   <sender>hasCommonComputerPoolsCheckBox</sender>
+   <sender>isLocatedInSameComputerLabCheckBox</sender>
    <signal>toggled(bool)</signal>
-   <receiver>commonComputerPoolComboBox</receiver>
+   <receiver>commonComputerLabComboBox</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">

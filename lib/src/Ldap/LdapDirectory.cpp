@@ -184,8 +184,8 @@ public:
 	QString computerGroupsFilter;
 
 	bool identifyGroupMembersByNameAttribute;
-	bool computerPoolMembersByAttribute;
-	QString computerPoolAttribute;
+	bool computerLabMembersByAttribute;
+	QString computerLabAttribute;
 
 	bool isConnected;
 	bool isBound;
@@ -320,29 +320,29 @@ QStringList LdapDirectory::computerGroups(const QString &filterValue)
 
 
 
-QStringList LdapDirectory::computerPools(const QString &filterValue)
+QStringList LdapDirectory::computerLabs(const QString &filterValue)
 {
-	QStringList computerPools;
+	QStringList computerLabs;
 
-	if( d->computerPoolMembersByAttribute )
+	if( d->computerLabMembersByAttribute )
 	{
-		computerPools = d->queryAttributes( d->computersDn,
-											d->computerPoolAttribute,
-											constructQueryFilter( d->computerPoolAttribute, filterValue ),
+		computerLabs = d->queryAttributes( d->computersDn,
+											d->computerLabAttribute,
+											constructQueryFilter( d->computerLabAttribute, filterValue ),
 											d->defaultSearchScope );
 	}
 	else
 	{
-		computerPools = d->queryAttributes( d->groupsDn, "cn",
+		computerLabs = d->queryAttributes( d->groupsDn, "cn",
 											constructQueryFilter( "cn", filterValue, d->computerGroupsFilter ) ,
 											d->defaultSearchScope );
 	}
 
-	computerPools.removeDuplicates();
+	computerLabs.removeDuplicates();
 
-	qSort( computerPools );
+	qSort( computerLabs );
 
-	return computerPools;
+	return computerLabs;
 }
 
 
@@ -376,11 +376,11 @@ QStringList LdapDirectory::groupsOfComputer(const QString &computerDn)
 
 
 
-QStringList LdapDirectory::computerPoolsOfUser(const QString &userDn)
+QStringList LdapDirectory::computerLabsOfUser(const QString &userDn)
 {
-	if( d->computerPoolMembersByAttribute )
+	if( d->computerLabMembersByAttribute )
 	{
-		return d->queryAttributes( userDn, d->computerPoolAttribute );
+		return d->queryAttributes( userDn, d->computerLabAttribute );
 	}
 
 	QString userId = groupMemberUserIdentification( userDn );
@@ -392,11 +392,11 @@ QStringList LdapDirectory::computerPoolsOfUser(const QString &userDn)
 
 
 
-QStringList LdapDirectory::computerPoolsOfComputer(const QString &computerDn)
+QStringList LdapDirectory::computerLabsOfComputer(const QString &computerDn)
 {
-	if( d->computerPoolMembersByAttribute )
+	if( d->computerLabMembersByAttribute )
 	{
-		return d->queryAttributes( computerDn, d->computerPoolAttribute );
+		return d->queryAttributes( computerDn, d->computerLabAttribute );
 	}
 
 	QString computerId = groupMemberComputerIdentification( computerDn );
@@ -408,26 +408,26 @@ QStringList LdapDirectory::computerPoolsOfComputer(const QString &computerDn)
 
 
 /*!
- * \brief Determines common aggregations (groups, computer pools) of two objects
+ * \brief Determines common aggregations (groups, computer labs) of two objects
  * \param objectOne DN of first object
  * \param objectTwo DN of second object
- * \return list of computer pools and groups which both objects have in common
+ * \return list of computer labs and groups which both objects have in common
  */
 QStringList LdapDirectory::commonAggregations(const QString &objectOne, const QString &objectTwo)
 {
-	QStringList commonComputerPools;
+	QStringList commoncomputerLabs;
 
-	if( d->computerPoolMembersByAttribute )
+	if( d->computerLabMembersByAttribute )
 	{
-		QStringList computerPoolsOfObjectOne = d->queryAttributes( objectOne, d->computerPoolAttribute );
-		QStringList computerPoolsOfObjectTwo = d->queryAttributes( objectTwo, d->computerPoolAttribute );
+		QStringList computerLabsOfObjectOne = d->queryAttributes( objectOne, d->computerLabAttribute );
+		QStringList computerLabsOfObjectTwo = d->queryAttributes( objectTwo, d->computerLabAttribute );
 
-		// get intersection of computer pool list of both objects
-		commonComputerPools = computerPoolsOfObjectOne.toSet().intersect(
-					computerPoolsOfObjectTwo.toSet() ).toList();
+		// get intersection of computer lab list of both objects
+		commoncomputerLabs = computerLabsOfObjectOne.toSet().intersect(
+					computerLabsOfObjectTwo.toSet() ).toList();
 	}
 
-	return commonComputerPools +
+	return commoncomputerLabs +
 			d->queryDistinguishedNames( d->groupsDn,
 										QString( "(&(%1=%2)(%1=%3))" ).arg( d->groupMemberAttribute, objectOne, objectTwo ),
 										d->defaultSearchScope );
@@ -485,16 +485,16 @@ QString LdapDirectory::groupMemberComputerIdentification(const QString &computer
 
 
 
-QStringList LdapDirectory::computerPoolMembers(const QString &computerPoolName)
+QStringList LdapDirectory::computerLabMembers(const QString &computerLabName)
 {
-	if( d->computerPoolMembersByAttribute )
+	if( d->computerLabMembersByAttribute )
 	{
 		return d->queryDistinguishedNames( d->baseDn,
-										   constructQueryFilter( d->computerPoolAttribute, computerPoolName ),
+										   constructQueryFilter( d->computerLabAttribute, computerLabName ),
 										   KLDAP::LdapUrl::Sub );
 	}
 
-	return groupMembers( computerGroups( computerPoolName ).value( 0 ) );
+	return groupMembers( computerGroups( computerLabName ).value( 0 ) );
 }
 
 
@@ -619,8 +619,8 @@ bool LdapDirectory::reconnect( const QUrl &url )
 
 	d->identifyGroupMembersByNameAttribute = c->ldapIdentifyGroupMembersByNameAttribute();
 
-	d->computerPoolMembersByAttribute = c->ldapComputerPoolMembersByAttribute();
-	d->computerPoolAttribute = c->ldapComputerPoolAttribute();
+	d->computerLabMembersByAttribute = c->ldapComputerLabMembersByAttribute();
+	d->computerLabAttribute = c->ldapComputerLabAttribute();
 
 	return true;
 }

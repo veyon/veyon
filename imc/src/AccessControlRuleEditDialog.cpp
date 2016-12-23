@@ -46,9 +46,9 @@ AccessControlRuleEditDialog::AccessControlRuleEditDialog(AccessControlRule &rule
 	QStringList entityNames = m_entityNameMap.values();
 	ui->entityComboBox->addItems( entityNames );
 	ui->groupsComboBox->addItems( accessControlProvider.userGroups() + accessControlProvider.computerGroups() );
-	ui->computerPoolsComboBox->addItems( accessControlProvider.computerPools() );
 	ui->commonGroupComboBox->addItems( entityNames );
-	ui->commonComputerPoolComboBox->addItems( entityNames );
+	ui->computerLabsComboBox->addItems( accessControlProvider.computerLabs() );
+	ui->commonComputerLabComboBox->addItems( entityNames );
 
 	// load general settings
 	ui->ruleNameLineEdit->setText( rule.name() );
@@ -62,21 +62,21 @@ AccessControlRuleEditDialog::AccessControlRuleEditDialog(AccessControlRule &rule
 
 	// load conditions
 	ui->isMemberOfGroupCheckBox->setChecked( rule.hasCondition( AccessControlRule::ConditionMemberOfGroup ) );
-	ui->isMemberOfComputerPoolCheckBox->setChecked( rule.hasCondition( AccessControlRule::ConditionMemberOfComputerPool ) );
 	ui->hasCommonGroupsCheckBox->setChecked( rule.hasCondition( AccessControlRule::ConditionGroupsInCommon ) );
-	ui->hasCommonComputerPoolsCheckBox->setChecked( rule.hasCondition( AccessControlRule::ConditionComputerPoolsInCommon ) );
+	ui->isLocatedInComputerLabCheckBox->setChecked( rule.hasCondition( AccessControlRule::ConditionLocatedInComputerLab ) );
+	ui->isLocatedInSameComputerLabCheckBox->setChecked( rule.hasCondition( AccessControlRule::ConditionLocatedInSameComputerLab ) );
 
 	// load condition arguments
 	ui->groupsComboBox->setCurrentText( rule.conditionArgument( AccessControlRule::ConditionMemberOfGroup ).toString() );
-
-	ui->computerPoolsComboBox->setCurrentText( rule.conditionArgument( AccessControlRule::ConditionMemberOfComputerPool ).toString() );
 
 	ui->commonGroupComboBox->setCurrentText(
 				m_entityNameMap.value( rule.conditionArgument( AccessControlRule::ConditionGroupsInCommon ).
 									   value<AccessControlRule::Entity>() ) );
 
-	ui->commonComputerPoolComboBox->setCurrentText(
-				m_entityNameMap.value( rule.conditionArgument( AccessControlRule::ConditionComputerPoolsInCommon ).
+	ui->computerLabsComboBox->setCurrentText( rule.conditionArgument( AccessControlRule::ConditionLocatedInComputerLab ).toString() );
+
+	ui->commonComputerLabComboBox->setCurrentText(
+				m_entityNameMap.value( rule.conditionArgument( AccessControlRule::ConditionLocatedInSameComputerLab ).
 									   value<AccessControlRule::Entity>() ) );
 
 	// load action
@@ -114,21 +114,21 @@ void AccessControlRuleEditDialog::accept()
 		m_rule.setCondition( AccessControlRule::ConditionMemberOfGroup, ui->groupsComboBox->currentText() );
 	}
 
-	if( ui->isMemberOfComputerPoolCheckBox->isChecked() )
-	{
-		m_rule.setCondition( AccessControlRule::ConditionMemberOfComputerPool, ui->computerPoolsComboBox->currentText() );
-	}
-
 	if( ui->hasCommonGroupsCheckBox->isChecked() )
 	{
 		m_rule.setCondition( AccessControlRule::ConditionGroupsInCommon,
 							 m_entityNameMap.key( ui->commonGroupComboBox->currentText() ) );
 	}
 
-	if( ui->hasCommonComputerPoolsCheckBox->isChecked() )
+	if( ui->isLocatedInComputerLabCheckBox->isChecked() )
 	{
-		m_rule.setCondition( AccessControlRule::ConditionComputerPoolsInCommon,
-							 m_entityNameMap.key( ui->commonComputerPoolComboBox->currentText() ) );
+		m_rule.setCondition( AccessControlRule::ConditionLocatedInComputerLab, ui->computerLabsComboBox->currentText() );
+	}
+
+	if( ui->isLocatedInSameComputerLabCheckBox->isChecked() )
+	{
+		m_rule.setCondition( AccessControlRule::ConditionLocatedInSameComputerLab,
+							 m_entityNameMap.key( ui->commonComputerLabComboBox->currentText() ) );
 	}
 
 	// save action

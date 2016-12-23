@@ -103,8 +103,8 @@
 	OP( ItalcConfiguration, ItalcCore::config, STRING, ldapUserGroupsFilter, setLdapUserGroupsFilter, "UserGroupsFilter", "LDAP" );	\
 	OP( ItalcConfiguration, ItalcCore::config, BOOL, ldapIdentifyGroupMembersByNameAttribute, setLdapIdentifyGroupMembersByNameAttribute, "IdentifyGroupMembersByNameAttribute", "LDAP" );	\
 	OP( ItalcConfiguration, ItalcCore::config, STRING, ldapComputerGroupsFilter, setLdapComputerGroupsFilter, "ComputerGroupsFilter", "LDAP" );	\
-	OP( ItalcConfiguration, ItalcCore::config, BOOL, ldapComputerPoolMembersByAttribute, setLdapComputerPoolMembersByAttribute, "ComputerPoolMembersByAttribute", "LDAP" );	\
-	OP( ItalcConfiguration, ItalcCore::config, STRING, ldapComputerPoolAttribute, setLdapComputerPoolAttribute, "ComputerPoolAttribute", "LDAP" );	\
+	OP( ItalcConfiguration, ItalcCore::config, BOOL, ldapComputerLabMembersByAttribute, setLdapComputerLabMembersByAttribute, "ComputerLabMembersByAttribute", "LDAP" );	\
+	OP( ItalcConfiguration, ItalcCore::config, STRING, ldapComputerLabAttribute, setLdapComputerLabAttribute, "ComputerLabAttribute", "LDAP" );	\
 
 #define FOREACH_ITALC_CONFIG_PROPERTY(OP)				\
 	FOREACH_ITALC_UI_CONFIG_PROPERTY(OP)				\

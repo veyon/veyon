@@ -71,9 +71,9 @@ public:
 	{
 		ConditionNone,
 		ConditionMemberOfGroup,
-		ConditionMemberOfComputerPool,
 		ConditionGroupsInCommon,
-		ConditionComputerPoolsInCommon,
+		ConditionLocatedInComputerLab,
+		ConditionLocatedInSameComputerLab,
 		ConditionCount
 	} ;
 

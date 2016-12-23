@@ -476,7 +476,7 @@
           <item row="2" column="1">
            <widget class="QLineEdit" name="ldapComputerGroupsFilter">
             <property name="placeholderText">
-             <string>e.g. objectClass=computerPool or objectClass=room</string>
+             <string>e.g. objectClass=computerLab or objectClass=room</string>
             </property>
            </widget>
           </item>
@@ -529,11 +529,11 @@
        <item>
         <widget class="QGroupBox" name="groupBox_13">
          <property name="title">
-          <string>Computer pools</string>
+          <string>Computer labs</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_16">
           <item row="3" column="2">
-           <widget class="QPushButton" name="testLdapComputerPoolAttribute">
+           <widget class="QPushButton" name="testLdapComputerLabAttribute">
             <property name="enabled">
              <bool>false</bool>
             </property>
@@ -547,7 +547,7 @@
            </widget>
           </item>
           <item row="1" column="0" colspan="3">
-           <widget class="QRadioButton" name="ldapComputerPoolMembersByGroups">
+           <widget class="QRadioButton" name="ldapComputerLabMembersByGroups">
             <property name="text">
              <string>Dedicated computer groups</string>
             </property>
@@ -560,17 +560,17 @@
            </widget>
           </item>
           <item row="3" column="1">
-           <widget class="QLineEdit" name="ldapComputerPoolAttribute">
+           <widget class="QLineEdit" name="ldapComputerLabAttribute">
             <property name="enabled">
              <bool>false</bool>
             </property>
             <property name="placeholderText">
-             <string>e.g. computerPool or room</string>
+             <string>e.g. computerLab or room</string>
             </property>
            </widget>
           </item>
           <item row="3" column="0">
-           <widget class="QRadioButton" name="ldapComputerPoolMembersByAttribute">
+           <widget class="QRadioButton" name="ldapComputerLabMembersByAttribute">
             <property name="text">
              <string>Common attribute</string>
             </property>
@@ -582,7 +582,7 @@
           <item row="0" column="0" colspan="3">
            <widget class="QLabel" name="label_32">
             <property name="text">
-             <string>Aggregate computer pool members using:</string>
+             <string>Aggregate computer lab members using:</string>
             </property>
            </widget>
           </item>
@@ -635,9 +635,9 @@
         </widget>
        </item>
        <item row="3" column="0">
-        <widget class="QPushButton" name="testLdapComputerPoolMembers">
+        <widget class="QPushButton" name="testLdapComputerLabMembers">
          <property name="text">
-          <string>List all members of a computer pool</string>
+          <string>List all members of a computer lab</string>
          </property>
          <property name="icon">
           <iconset resource="../imc.qrc">
@@ -739,9 +739,9 @@
    </hints>
   </connection>
   <connection>
-   <sender>ldapComputerPoolMembersByAttribute</sender>
+   <sender>ldapComputerLabMembersByAttribute</sender>
    <signal>toggled(bool)</signal>
-   <receiver>ldapComputerPoolAttribute</receiver>
+   <receiver>ldapComputerLabAttribute</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -755,9 +755,9 @@
    </hints>
   </connection>
   <connection>
-   <sender>ldapComputerPoolMembersByAttribute</sender>
+   <sender>ldapComputerLabMembersByAttribute</sender>
    <signal>toggled(bool)</signal>
-   <receiver>testLdapComputerPoolAttribute</receiver>
+   <receiver>testLdapComputerLabAttribute</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">

@@ -53,13 +53,13 @@ public:
 	QStringList userGroups( const QString& filterValue = QString() );
 	QStringList computers( const QString& filterValue = QString() );
 	QStringList computerGroups( const QString& filterValue = QString() );
-	QStringList computerPools( const QString& filterValue = QString() );
+	QStringList computerLabs( const QString& filterValue = QString() );
 
 	QStringList groupMembers( const QString& groupDn );
 	QStringList groupsOfUser( const QString& userDn );
 	QStringList groupsOfComputer( const QString& computerDn );
-	QStringList computerPoolsOfUser( const QString& userDn );
-	QStringList computerPoolsOfComputer( const QString& computerDn );
+	QStringList computerLabsOfUser( const QString& userDn );
+	QStringList computerLabsOfComputer( const QString& computerDn );
 	QStringList commonAggregations( const QString& objectOne, const QString& objectTwo );
 
 	QString userLoginName( const QString& userDn );
@@ -68,7 +68,7 @@ public:
 	QString groupMemberUserIdentification( const QString& userDn );
 	QString groupMemberComputerIdentification( const QString& computerDn );
 
-	QStringList computerPoolMembers( const QString& computerPoolName );
+	QStringList computerLabMembers( const QString& computerLabName );
 	QStringList userGroupsNames();
 	QStringList computerGroupsNames();
 

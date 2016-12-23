@@ -56,11 +56,11 @@ private slots:
 	void testLdapUsersFilter();
 	void testLdapUserGroupsFilter();
 	void testLdapComputerGroupsFilter();
-	void testLdapComputerPoolAttribute();
+	void testLdapComputerLabAttribute();
 	void testLdapGroupsOfUser();
 	void testLdapGroupsOfComputer();
 	void testLdapComputerObjectByIpAddress();
-	void testLdapComputerPoolMembers();
+	void testLdapComputerLabMembers();
 	void testLdapCommonAggregations();
 
 private:

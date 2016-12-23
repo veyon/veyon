@@ -106,8 +106,8 @@ public slots:
 	void setLdapUserGroupsFilter( const QString& );
 	void setLdapIdentifyGroupMembersByNameAttribute( bool );
 	void setLdapComputerGroupsFilter( const QString& );
-	void setLdapComputerPoolMembersByAttribute( bool );
-	void setLdapComputerPoolAttribute( const QString& );
+	void setLdapComputerLabMembersByAttribute( bool );
+	void setLdapComputerLabAttribute( const QString& );
 
 } ;
 
