@@ -272,6 +272,9 @@ ADD_CUSTOM_TARGET(win-nsi
 			COMMAND make
 			COMMAND rm -rf ${TMP}
 			COMMAND mkdir -p ${TMP}
+			COMMAND wget -P ${TMP} https://github.com/oblitum/Interception/releases/download/1.0.0/Interception.zip
+			COMMAND unzip -j -d ${TMP} ${TMP}/Interception.zip Interception/command\ line\ installer/install-interception.exe
+			COMMAND rm ${TMP}/*.zip
 			COMMAND cp lib/ItalcCore.dll ica/ica.exe ica/win32/vnchooks.dll ica/win32/authSSP.dll ima/italc.exe imc/imc.exe ${TMP}
 			COMMAND ${STRIP} ${TMP}/*
 			COMMAND cp -r ${CMAKE_SOURCE_DIR}/doc ${TMP}

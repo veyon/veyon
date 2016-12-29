@@ -165,6 +165,7 @@ File "${DLLDIR}\libjpeg-62.dll"
 File "${DLLDIR}\libeay32.dll"
 File "${DLLDIR}\libssl32.dll"
 File "${DLLDIR}\libpng16-16.dll"
+File "${DLLDIR}\interception.dll"
 File "${DLLDIR_LIB}\zlib1.dll"
 File "${DLLDIR_LIB}\libwinpthread-1.dll"
 File "${DLLDIR_GCC}\libstdc++-6.dll"
@@ -177,6 +178,7 @@ File "italc-${VERSION}\ItalcCore.dll"
 File "italc-${VERSION}\imc.exe"
 File "italc-${VERSION}\LICENSE.TXT"
 File "italc-${VERSION}\README.TXT"
+File "italc-${VERSION}\install-interception.exe"
 SetOutPath "$INSTDIR\platforms"
 File "${QT5_PLUGINS_PLATFORMS}/qwindows.dll"
 File "${QT5_PLUGINS_PLATFORMS}/qminimal.dll"
@@ -186,6 +188,7 @@ SetOutPath "$INSTDIR\contrib"
 File "italc-${VERSION}\contrib\*"
 SetOutPath "$INSTDIR\contrib\en-US"
 File "italc-${VERSION}\contrib\en-US\*"
+ExecWait '"$INSTDIR\install-interception.exe" /install'
 ExecWait '"$INSTDIR\ica.exe" -quiet -registerservice'
 ExecWait '"$INSTDIR\imc.exe" -s Network/FirewallExceptionEnabled=1'
 ExecWait '"$INSTDIR\ica.exe" -quiet -startservice'
@@ -255,6 +258,7 @@ SectionEnd
 Section Uninstall
 ${INSTALL_TYPE}
 ExecWait '"$INSTDIR\imc.exe" -s Network/FirewallExceptionEnabled=0'
+ExecWait '"$INSTDIR\install-interception.exe" /uninstall'
 ExecWait '"$INSTDIR\ica.exe" -quiet -unregisterservice'
 # make sure the service is stopped and all file handles are released
 Sleep 2000
@@ -268,6 +272,7 @@ Delete "$INSTDIR\libjpeg-62.dll"
 Delete "$INSTDIR\Qt5Xml.dll"
 Delete "$INSTDIR\libeay32.dll"
 Delete "$INSTDIR\libpng16-16.dll"
+Delete "$INSTDIR\interception.dll"
 Delete "$INSTDIR\Qt5Network.dll"
 Delete "$INSTDIR\Qt5Core.dll"
 Delete "$INSTDIR\libssl32.dll"
@@ -280,6 +285,7 @@ Delete "$INSTDIR\README.TXT"
 Delete "$INSTDIR\ItalcCore.dll"
 Delete "$INSTDIR\Qt5Gui.dll"
 Delete "$INSTDIR\Qt5Widgets.dll"
+Delete "$INSTDIR\install-interception.exe"
 Delete "$INSTDIR\uninstall.exe"
 Delete "$INSTDIR\iTALC website.url"
 RmDir /r "$INSTDIR\platforms"
