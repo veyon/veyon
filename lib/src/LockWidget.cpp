@@ -57,19 +57,24 @@ static int __ss_val[3];
 
 
 
-LockWidget::LockWidget( Modes _mode ) :
+LockWidget::LockWidget( Mode mode ) :
 	QWidget( 0, Qt::X11BypassWindowManagerHint ),
-	m_background(
-		_mode == Black ?
-			QPixmap( ":/resources/locked_bg.png" )
-		:
-			_mode == DesktopVisible ?
-				QPixmap::grabWindow( qApp->desktop()->winId() )
-			:
-				QPixmap() ),
-	m_mode( _mode ),
+	m_background(),
+	m_mode( mode ),
 	m_inputDeviceBlocker()
 {
+	switch( mode )
+	{
+	case Black:
+		m_background = QPixmap( ":/resources/locked_bg.png" );
+		break;
+	case DesktopVisible:
+		QPixmap::grabWindow( qApp->desktop()->winId() );
+		break;
+	default:
+		break;
+	}
+
 	setWindowTitle( tr( "screen lock" ) );
 	setWindowIcon( QIcon( ":/resources/icon32.png" ) );
 	showFullScreen();
