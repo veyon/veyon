@@ -28,8 +28,7 @@
 
 #include <QApplication>
 #include <QDesktopWidget>
-#include <QtGui/QIcon>
-#include <QtGui/QPainter>
+#include <QPainter>
 
 
 #ifdef ITALC_BUILD_WIN32
@@ -67,7 +66,6 @@ LockWidget::LockWidget( Mode mode ) :
 	}
 
 	setWindowTitle( tr( "screen lock" ) );
-	setWindowIcon( QIcon( ":/resources/icon32.png" ) );
 	showFullScreen();
 	move( 0, 0 );
 	setFixedSize( qApp->desktop()->size() );
