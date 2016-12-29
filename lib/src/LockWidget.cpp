@@ -22,9 +22,6 @@
  */
 
 #include <italcconfig.h>
-#ifdef ITALC_BUILD_WIN32
-#include <windows.h>
-#endif
 
 #include "LockWidget.h"
 #include "LocalSystem.h"
@@ -35,14 +32,8 @@
 #include <QtGui/QPainter>
 
 
+#ifdef ITALC_BUILD_WIN32
 
-#ifdef ITALC_BUILD_LINUX
-
-#include <X11/Xlib.h>
-
-#elif ITALC_BUILD_WIN32
-
-#define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 
 static const UINT __ss_get_list[] = { SPI_GETLOWPOWERTIMEOUT,
@@ -79,9 +70,7 @@ LockWidget::LockWidget( Mode mode ) :
 	setWindowIcon( QIcon( ":/resources/icon32.png" ) );
 	showFullScreen();
 	move( 0, 0 );
-	//setFixedSize( QApplication::desktop()->screenGeometry( this ).size() );
 	setFixedSize( qApp->desktop()->size() );
-	setCursor( Qt::BlankCursor );
 	LocalSystem::activateWindow( this );
 	setFocusPolicy( Qt::StrongFocus );
 	setFocus();
