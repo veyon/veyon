@@ -1,7 +1,7 @@
 /*
  *  LockWidget.h - widget for locking a client
  *
- *  Copyright (c) 2006-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ *  Copyright (c) 2006-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  *  This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -27,37 +27,32 @@
 #include <italcconfig.h>
 
 #include <QWidget>
-#include <QtGui/QPixmap>
+#include <QPixmap>
 
-#include "SystemKeyTrapper.h"
+#include "InputDeviceBlocker.h"
 
 
 class LockWidget : public QWidget
 {
 	Q_OBJECT
 public:
-	enum Modes
+	typedef enum Modes
 	{
 		DesktopVisible,
 		Black,
 		NoBackground
-	} ;
+	} Mode;
 
-	LockWidget( Modes _mode = Black );
+	LockWidget( Mode mode = Black );
 	virtual ~LockWidget();
 
 
 private:
 	virtual void paintEvent( QPaintEvent * );
-#ifdef ITALC_BUILD_LINUX
-#if QT_VERSION < 0x050000
-	virtual bool x11Event( XEvent * _e );
-#endif
-#endif
 
 	QPixmap m_background;
-	Modes m_mode;
-	SystemKeyTrapper m_sysKeyTrapper;
+	Mode m_mode;
+	InputDeviceBlocker m_inputDeviceBlocker;
 
 } ;
 
