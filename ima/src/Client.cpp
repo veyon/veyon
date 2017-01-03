@@ -859,7 +859,6 @@ void Client::paintEvent( QPaintEvent * _pe )
 	static QImage * img_unknown = NULL;
 	static QImage * img_host_unreachable = NULL;
 	static QImage * img_demo = NULL;
-	static QImage * img_locked = NULL;
 
 	if( img_unknown == NULL )
 		img_unknown = new QImage( ":/resources/preferences-desktop-display-gray.png" );
@@ -867,8 +866,7 @@ void Client::paintEvent( QPaintEvent * _pe )
 		img_host_unreachable = new QImage( ":/resources/preferences-desktop-display-red.png" );
 	if( img_demo == NULL )
 		img_demo = new QImage( ":/resources/preferences-desktop-display-orange.png" );
-	if( img_locked == NULL )
-		img_locked = new QImage( ":/resources/preferences-desktop-display-purple.png" );
+
 
 	QPainter p( this );
 	p.setBrush( Qt::white );
@@ -891,7 +889,7 @@ void Client::paintEvent( QPaintEvent * _pe )
 	p.setPen( m_classRoomItem->isSelected() ? Qt::white : Qt::black );
 	p.drawText( 10, TITLE_HEIGHT-7, s );
 
-	if( m_mode == Mode_Overview &&
+	if( ( m_mode == Mode_Overview || m_mode == Mode_Locked ) &&
 			m_connection->isConnected() &&
 			m_connection->vncConnection()->framebufferInitialized() )
 	{
@@ -916,10 +914,6 @@ void Client::paintEvent( QPaintEvent * _pe )
 		case State_Demo:
 			pm = img_demo;
 			msg = tr( "Demo running" );
-			break;
-		case State_Locked:
-			pm = img_locked;
-			msg = tr( "Desktop locked" );
 			break;
 		default:
 			break;
