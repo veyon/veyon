@@ -2,7 +2,7 @@
  * Client.cpp - code for client-windows, which are displayed in several
  *              instances in the main-window of iTALC
  *
- * Copyright (c) 2004-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -24,7 +24,6 @@
  */
 
 #include <QCloseEvent>
-#include <QtGui/QLinearGradient>
 #include <QMenu>
 #include <QtGui/QPainter>
 #include <QtGui/QPixmap>
@@ -858,15 +857,12 @@ void Client::mouseDoubleClickEvent( QMouseEvent * _me )
 void Client::paintEvent( QPaintEvent * _pe )
 {
 	static QImage * img_unknown = NULL;
-	static QImage * img_no_user = NULL;
 	static QImage * img_host_unreachable = NULL;
 	static QImage * img_demo = NULL;
 	static QImage * img_locked = NULL;
 
 	if( img_unknown == NULL )
 		img_unknown = new QImage( ":/resources/preferences-desktop-display-gray.png" );
-	if( img_no_user == NULL )
-		img_no_user = new QImage( ":/resources/preferences-system-login.png" );
 	if( img_host_unreachable == NULL )
 		img_host_unreachable = new QImage( ":/resources/preferences-desktop-display-red.png" );
 	if( img_demo == NULL )
@@ -913,10 +909,6 @@ void Client::paintEvent( QPaintEvent * _pe )
 	{
 		case State_Overview:
 			return;
-		case State_NoUserLoggedIn:
-			pm = img_no_user;
-			msg = tr( "No user logged in" );
-			break;
 		case State_Unreachable:
 			pm = img_host_unreachable;
 			msg = tr( "Host unreachable" );
@@ -1182,11 +1174,7 @@ Client::States Client::currentState( void ) const
 			{
 				return State_Overview;
 			}
-		/*	else if( m_connection->state() ==
-					ivsConnection::ConnectionRefused )
-			{
-				return( State_NoUserLoggedIn );
-			}*/
+
 			return State_Unreachable;
 
 		case Mode_FullscreenDemo:
