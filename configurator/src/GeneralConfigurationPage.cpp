@@ -154,7 +154,7 @@ bool GeneralConfigurationPage::isServiceRunning()
 
 void GeneralConfigurationPage::startService()
 {
-	serviceControlWithProgressBar( tr( "Starting iTALC service" ), "-startservice" );
+	serviceControlWithProgressBar( tr( "Starting %1 service" ).arg( QCoreApplication::applicationName() ), "-startservice" );
 }
 
 
@@ -162,7 +162,7 @@ void GeneralConfigurationPage::startService()
 
 void GeneralConfigurationPage::stopService()
 {
-	serviceControlWithProgressBar( tr( "Stopping iTALC service" ), "-stopservice" );
+	serviceControlWithProgressBar( tr( "Stopping %1 service" ).arg( QCoreApplication::applicationName() ), "-stopservice" );
 }
 
 
@@ -199,10 +199,10 @@ void GeneralConfigurationPage::clearLogFiles()
 	bool stopped = false;
 	if( isServiceRunning() )
 	{
-		if( QMessageBox::question( this, tr( "iTALC Service" ),
-				tr( "The iTALC service needs to be stopped temporarily "
+		if( QMessageBox::question( this, tr( "%1 Service" ).arg( QCoreApplication::applicationName() ),
+				tr( "The %1 service needs to be stopped temporarily "
 					"in order to remove the log files. Continue?"
-					), QMessageBox::Yes | QMessageBox::No,
+					).arg( QCoreApplication::applicationName() ), QMessageBox::Yes | QMessageBox::No,
 				QMessageBox::Yes ) == QMessageBox::Yes )
 		{
 			stopService();

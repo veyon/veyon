@@ -64,8 +64,8 @@ bool checkWritableConfiguration()
 	{
 		ConfiguratorCore::criticalMessage( MainWindow::tr( "Configuration not writable" ),
 			MainWindow::tr( "The local configuration backend reported that the "
-							"configuration is not writable! Please run the iTALC "
-							"Configurator with higher privileges." ) );
+							"configuration is not writable! Please run the %1 "
+							"Configurator with higher privileges." ).arg( QCoreApplication::applicationName() ) );
 		return false;
 	}
 
@@ -87,13 +87,13 @@ int applySettings( QStringListIterator& argIt )
 	if( ConfiguratorCore::applyConfiguration( ItalcConfiguration( &xs ) ) )
 	{
 		ConfiguratorCore::informationMessage(
-			MainWindow::tr( "iTALC Configurator" ),
+			MainWindow::tr( "%1 Configurator" ).arg( QCoreApplication::applicationName() ),
 			MainWindow::tr( "All settings were applied successfully." ) );
 	}
 	else
 	{
 		ConfiguratorCore::criticalMessage(
-			MainWindow::tr( "iTALC Configurator" ),
+			MainWindow::tr( "%1 Configurator" ).arg( QCoreApplication::applicationName() ),
 			MainWindow::tr( "An error occured while applying settings!" ) );
 	}
 

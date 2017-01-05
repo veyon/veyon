@@ -60,7 +60,7 @@ MainWindow::MainWindow() :
 {
 	ui->setupUi( this );
 
-	setWindowTitle( tr( "iTALC Configurator %1" ).arg( ITALC_VERSION ) );
+	setWindowTitle( tr( "%1 Configurator %2" ).arg( QCoreApplication::applicationName() ).arg( ITALC_VERSION ) );
 
 	// reset all widget's values to current configuration
 	reset();
@@ -172,11 +172,11 @@ void MainWindow::apply()
 	{
 #ifdef ITALC_BUILD_WIN32
 		if( ui->generalConfigurationPage->isServiceRunning() &&
-			QMessageBox::question( this, tr( "Restart iTALC Service" ),
+			QMessageBox::question( this, tr( "Restart %1 Service" ).arg( QCoreApplication::applicationName() ),
 				tr( "All settings were saved successfully. In order to take "
-					"effect the iTALC service needs to be restarted. "
-					"Restart it now?" ), QMessageBox::Yes | QMessageBox::No,
-				QMessageBox::Yes ) == QMessageBox::Yes )
+					"effect the %1 service needs to be restarted. "
+					"Restart it now?" ).arg( QCoreApplication::applicationName() ),
+				QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes ) == QMessageBox::Yes )
 		{
 			ui->generalConfigurationPage->stopService();
 			ui->generalConfigurationPage->startService();
@@ -343,7 +343,7 @@ void MainWindow::generateBugReportArchive()
 	fsb.setExpandPath( false );
 	QString outfile = fsb.exec( QDir::homePath(),
 								tr( "Save bug report archive" ),
-								tr( "iTALC bug report archive (*.ibra.xml)" ) );
+								tr( "%1 bug report archive (*.ibra.xml)" ).arg( QCoreApplication::applicationName() ) );
 	if( outfile.isEmpty() )
 	{
 		return;
@@ -443,11 +443,11 @@ void MainWindow::generateBugReportArchive()
 	// write the file
 	obj.flushStore();
 
-	QMessageBox::information( this, tr( "iTALC bug report archive saved" ),
-			tr( "An iTALC bug report archive has been saved to %1. "
-				"It includes iTALC log files and information about your "
-				"operating system. You can attach it to a bug report." ).
-				arg( QDTNS( outfile ) ) );
+	QMessageBox::information( this, tr( "%1 bug report archive saved" ).arg( QCoreApplication::applicationName() ),
+			tr( "An %1 bug report archive has been saved to %2. "
+				"It includes %3 log files and information about your "
+				"operating system. You can attach it to a bug report." ).arg( QCoreApplication::applicationName() ).
+				arg( QDTNS( outfile ) ).arg( QCoreApplication::applicationName() ) );
 }
 
 
