@@ -2,7 +2,7 @@
  * SystemKeyTrapper.h - class for trapping system-keys and -key-sequences
  *                      such as Alt+Ctrl+Del, Alt+Tab etc.
  *
- * Copyright (c) 2006-2011 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -61,21 +61,12 @@ public:
 		return m_enabled;
 	}
 
-	void setTaskBarHidden( bool on );
-
-	void setAllKeysDisabled( bool on );
-
 
 private:
 	static QMutex s_refCntMutex;
 	static int s_refCnt;
 
 	bool m_enabled;
-	bool m_taskBarHidden;
-#ifdef ITALC_BUILD_LINUX
-	QByteArray m_origKeyTable;
-#endif
-
 
 private slots:
 	void checkForTrappedKeys();

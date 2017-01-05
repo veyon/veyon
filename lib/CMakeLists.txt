@@ -73,7 +73,7 @@ QT5_ADD_RESOURCES(ic_RCC_out ${QRC_FILE})
 
 ADD_DEFINITIONS(-DBUILD_ICA -DBUILD_LIBRARY)
 IF(ITALC_BUILD_WIN32)
-	LINK_LIBRARIES(-lws2_32 -lwtsapi32 -lnetapi32 -luserenv -ladvapi32)
+	LINK_LIBRARIES(-lws2_32 -lwtsapi32 -lnetapi32 -luserenv -ladvapi32 -linterception)
 	SET(CMAKE_MODULE_LINKER_FLAGS -Wl,-export-all-symbols)
 	INCLUDE_DIRECTORIES(${Qt5Gui_PRIVATE_INCLUDE_DIRS} ${ULTRAVNC_DIR}/addon/ms-logon/authSSP)
 ENDIF(ITALC_BUILD_WIN32)

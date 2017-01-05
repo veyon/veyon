@@ -1,8 +1,7 @@
 /*
- * Inject.h - functions for injecting code into winlogon.exe for disabling
- *            SAS (Alt+Ctrl+Del)
+ * InputDeviceBlocker.h - class for blocking all input devices
  *
- * Copyright (c) 2006-2013 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -23,20 +22,51 @@
  *
  */
 
-
-#ifndef INJECT_H
-#define INJECT_H
+#ifndef INPUT_DEVICE_BLOCKER_H
+#define INPUT_DEVICE_BLOCKER_H
 
 #include <italcconfig.h>
 
 #ifdef ITALC_BUILD_WIN32
-
-#include <windows.h>
-
-BOOL Inject( void );
-BOOL Eject( void );
-
+#include <interception.h>
 #endif
+
+#include <QtCore/QByteArray>
+#include <QtCore/QMutex>
+
+
+class InputDeviceBlocker
+{
+public:
+	InputDeviceBlocker( bool enable = true );
+	~InputDeviceBlocker();
+
+	void setEnabled( bool on );
+	bool isEnabled() const
+	{
+		return m_enabled;
+	}
+
+
+private:
+	void enableInterception();
+	void disableInterception();
+	void saveKeyMapTable();
+	void setEmptyKeyMapTable();
+	void restoreKeyMapTable();
+
+	static QMutex s_refCntMutex;
+	static int s_refCnt;
+
+	bool m_enabled;
+#ifdef ITALC_BUILD_LINUX
+	QByteArray m_origKeyTable;
+#endif
+#ifdef ITALC_BUILD_WIN32
+	InterceptionContext m_interceptionContext;
+#endif
+
+} ;
 
 #endif
 

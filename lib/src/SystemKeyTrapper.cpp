@@ -30,8 +30,6 @@
 
 #include <windows.h>
 
-#include "Inject.h"
-
 #endif
 
 
@@ -45,7 +43,6 @@
 
 static QMutex __trapped_keys_mutex;
 static QList<SystemKeyTrapper::TrappedKeys> __trapped_keys;
-static bool __disable_all_keys = false;
 
 QMutex SystemKeyTrapper::s_refCntMutex;
 int SystemKeyTrapper::s_refCnt = 0;
@@ -54,7 +51,7 @@ int SystemKeyTrapper::s_refCnt = 0;
 #ifdef ITALC_BUILD_WIN32
 
 
-// some code for disabling system's hotkeys such as Alt+Ctrl+Del, Alt+Tab,
+// some code for trapping system's hotkeys such as Alt+Ctrl+Del, Alt+Tab,
 // Ctrl+Esc, Alt+Esc, Windows-key etc. - otherwise locking wouldn't be very
 // effective... ;-)
 
@@ -125,72 +122,18 @@ LRESULT CALLBACK TaskKeyHookLL( int nCode, WPARAM wp, LPARAM lp )
 			}
 			return 1;
 		}
-		if( __disable_all_keys )
-		{
-			return 1;
-		}
 	}
 	return CallNextHookEx( g_hHookKbdLL, nCode, wp, lp );
 }
 
-
-
-
-static STICKYKEYS settings_sk = { sizeof( STICKYKEYS ), 0 };
-static TOGGLEKEYS settings_tk = { sizeof( TOGGLEKEYS ), 0 };
-static FILTERKEYS settings_fk = { sizeof( FILTERKEYS ), 0 };
-
-
-void enableStickyKeys( bool _enable )
-{
-	if( _enable )
-	{
-		SystemParametersInfo( SPI_SETSTICKYKEYS, sizeof( STICKYKEYS ),
-							&settings_sk, 0 );
-		SystemParametersInfo( SPI_SETTOGGLEKEYS, sizeof( TOGGLEKEYS ),
-							&settings_tk, 0 );
-		SystemParametersInfo( SPI_SETFILTERKEYS, sizeof( FILTERKEYS ),
-							&settings_fk, 0 );
-	}
-	else
-	{
-		SystemParametersInfo( SPI_GETSTICKYKEYS, sizeof( STICKYKEYS ),
-							&settings_sk, 0 );
-		SystemParametersInfo( SPI_GETTOGGLEKEYS, sizeof( TOGGLEKEYS ),
-							&settings_tk, 0 );
-		SystemParametersInfo( SPI_GETFILTERKEYS, sizeof( FILTERKEYS ),
-							&settings_fk, 0 );
-
-		STICKYKEYS skOff = settings_sk;
-		skOff.dwFlags &= ~SKF_HOTKEYACTIVE;
-		skOff.dwFlags &= ~SKF_CONFIRMHOTKEY;
-		SystemParametersInfo( SPI_SETSTICKYKEYS, sizeof( STICKYKEYS ),
-								&skOff, 0 );
-
-		TOGGLEKEYS tkOff = settings_tk;
-		tkOff.dwFlags &= ~TKF_HOTKEYACTIVE;
-		tkOff.dwFlags &= ~TKF_CONFIRMHOTKEY;
-		SystemParametersInfo( SPI_SETTOGGLEKEYS, sizeof( TOGGLEKEYS ),
-								&tkOff, 0 );
-
-		FILTERKEYS fkOff = settings_fk;
-		fkOff.dwFlags &= ~FKF_HOTKEYACTIVE;
-		fkOff.dwFlags &= ~FKF_CONFIRMHOTKEY;
-		SystemParametersInfo( SPI_SETFILTERKEYS, sizeof( FILTERKEYS ),
-								&fkOff, 0 );
-	}
-}
-
-
 #endif
 
 
-SystemKeyTrapper::SystemKeyTrapper( bool _enabled ) :
+SystemKeyTrapper::SystemKeyTrapper( bool enabled ) :
 	QObject(),
-	m_enabled( false ),
-	m_taskBarHidden( false )
+	m_enabled( false )
 {
-	setEnabled( _enabled );
+	setEnabled( enabled );
 }
 
 
@@ -199,33 +142,7 @@ SystemKeyTrapper::SystemKeyTrapper( bool _enabled ) :
 SystemKeyTrapper::~SystemKeyTrapper()
 {
 	setEnabled( false );
-	if( m_taskBarHidden )
-	{
-		setTaskBarHidden( false );
-	}
 }
-
-
-
-
-void SystemKeyTrapper::setTaskBarHidden( bool on )
-{
-	m_taskBarHidden = on;
-#ifdef ITALC_BUILD_WIN32
-	if( on )
-	{
-		EnableWindow( FindWindow( "Shell_traywnd", NULL ), false );
-		//ShowWindow( FindWindow( "Shell_traywnd", NULL ), SW_HIDE );
-	}
-	else
-	{
-		EnableWindow( FindWindow( "Shell_traywnd", NULL ), true );
-		// causes hang on Win7
-		//ShowWindow( FindWindow( "Shell_traywnd", NULL ), SW_NORMAL );
-	}
-#endif
-}
-
 
 
 
@@ -255,38 +172,12 @@ void SystemKeyTrapper::setEnabled( bool on )
 								hAppInstance,
 								0 );
 			}
-
-			enableStickyKeys( false );
-
-			if( !Inject() )
-			{
-				qWarning( "SystemKeyTrapper: Inject() failed");
-			}
 		}
 
 		QTimer * t = new QTimer( this );
 		connect( t, SIGNAL( timeout() ),
 					this, SLOT( checkForTrappedKeys() ) );
 		t->start( 10 );
-#endif
-#ifdef ITALC_BUILD_LINUX
-		// read original keymap
-		QProcess p;
-		p.start( "xmodmap", QStringList() << "-pke" );	// print keymap
-		p.waitForFinished();
-		m_origKeyTable = p.readAll();
-
-		// remove all Switch_VT and Terminate_Server references
-		QString keyTableModified = QString( m_origKeyTable ).
-					replace( QRegExp( "XF86_Switch_VT_\\d+" ), QString() ).
-					replace( "Terminate_Server", QString() );
-
-		// start new xmodmap process and dump our modified keytable from stdin
-		p.start( "xmodmap", QStringList() << "-" );
-		p.waitForStarted();
-		p.write( keyTableModified.toLatin1() );
-		p.closeWriteChannel();
-		p.waitForFinished();
 #endif
 		++s_refCnt;
 	}
@@ -298,23 +189,7 @@ void SystemKeyTrapper::setEnabled( bool on )
 		{
 			UnhookWindowsHookEx( g_hHookKbdLL );
 			g_hHookKbdLL = NULL;
-
-			if( !Eject() )
-			{
-				qWarning( "SystemKeyTrapper: Eject() failed");
-			}
-
-			enableStickyKeys( true );
 		}
-#endif
-#ifdef ITALC_BUILD_LINUX
-		// start xmodmap process and dump our original keytable from stdin
-		QProcess p;
-		p.start( "xmodmap", QStringList() << "-" );
-		p.waitForStarted();
-		p.write( m_origKeyTable );
-		p.closeWriteChannel();
-		p.waitForFinished();
 #endif
 	}
 	s_refCntMutex.unlock();
@@ -322,11 +197,6 @@ void SystemKeyTrapper::setEnabled( bool on )
 
 
 
-
-void SystemKeyTrapper::setAllKeysDisabled( bool on )
-{
-	__disable_all_keys = on;
-}
 
 
 
