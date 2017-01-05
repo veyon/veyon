@@ -1,7 +1,7 @@
 /*
  * RfbLZORLE.cpp - LZO+RLE-based VNC rectangle encoding
  *
- * Copyright (c) 2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2010-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -24,7 +24,7 @@
 
 #include "RfbLZORLE.h"
 
-#include "minilzo.h"
+#include <lzo/lzo1x.h>
 
 #include <QtGui/QColor>
 

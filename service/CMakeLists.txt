@@ -54,7 +54,7 @@ IF(ITALC_BUILD_WIN32)
 	ADD_SUBDIRECTORY(win32)
 
 	ADD_DEFINITIONS(-DX11VNC_IPV6=0 -DPTW32_STATIC_LIB -DTLS=__thread -DX11VNC_USLEEP -D__USE_MINGW_ANSI_STDIO=1)
-	INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/win32 ${ultravnc_DIR} ${ultravnc_DIR}/winvnc ${ultravnc_DIR}/winvnc/omnithread ${ultravnc_DIR}/winvnc/winvnc ${libvncserver_DIR}/libvncclient)
+	INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/win32 ${ultravnc_DIR} ${ultravnc_DIR}/winvnc ${ultravnc_DIR}/winvnc/omnithread ${ultravnc_DIR}/winvnc/winvnc)
 	SET(platform_SOURCES
 		${CMAKE_CURRENT_SOURCE_DIR}/win32/ultravnc.cpp
 		${CMAKE_CURRENT_SOURCE_DIR}/win32/ultravnc-italc.cpp

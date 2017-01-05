@@ -2,7 +2,7 @@
  * DemoServer.cpp - multi-threaded slim VNC-server for demo-purposes (optimized
  *                   for lot of clients accessing server in read-only-mode)
  *
- * Copyright (c) 2006-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -35,7 +35,7 @@
 #include "RfbItalcCursor.h"
 #include "SocketDevice.h"
 
-#include "minilzo.h"
+#include <lzo/lzo1x.h>
 #include "rfb/rfb.h"
 
 const int CURSOR_UPDATE_TIME = 35;

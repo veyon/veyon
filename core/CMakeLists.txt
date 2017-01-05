@@ -55,7 +55,6 @@ ENDIF()
 SET(libvncclient_SOURCE_DIR ${CMAKE_SOURCE_DIR}/3rdparty/libvncserver/libvncclient)
 
 SET(libvncclient_SOURCES
-${libvncserver_DIR}/common/minilzo.c
 ${libvncserver_DIR}/common/turbojpeg.c
 ${libvncserver_DIR}/libvncclient/cursor.c
 ${libvncserver_DIR}/libvncclient/listen.c
@@ -83,7 +82,7 @@ IF(ITALC_BUILD_WIN32)
 	INCLUDE_DIRECTORIES(${Qt5Gui_PRIVATE_INCLUDE_DIRS} ${ultravnc_DIR}/addon/ms-logon/authSSP)
 ENDIF(ITALC_BUILD_WIN32)
 
-INCLUDE_DIRECTORIES(${CMAKE_BINARY_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/include ${CMAKE_CURRENT_SOURCE_DIR}/include/Ldap ${libvncserver_DIR}/common/ ${kldap_SOURCE_DIR} ${kldap_BINARY_DIR})
+INCLUDE_DIRECTORIES(${Ldap_INCLUDE_DIRS} ${CMAKE_BINARY_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/include ${CMAKE_CURRENT_SOURCE_DIR}/include/Ldap ${libvncserver_DIR}/common/ ${kldap_SOURCE_DIR} ${kldap_BINARY_DIR})
 ADD_LIBRARY(italc-core SHARED ${ic_SOURCES} ${kldap_SOURCES} ${ic_INCLUDES} ${ic_MOC_out} ${kldap_MOC_out} ${ic_UIC_out} ${ic_RCC_out} ${ic_qt_qm_out} ${libvncclient_SOURCES} ${WIN32_AUTHSSP_SOURCES})
 
 IF(ITALC_BUILD_WIN32)
@@ -99,6 +98,7 @@ TARGET_LINK_LIBRARIES(italc-core
 	Qt5::Widgets
 	Qt5::Xml
 	${Ldap_LIBRARIES}
+	${LZO_LIBRARIES}
 	)
 
 ADD_DEPENDENCIES(italc-core GenerateTranslationFiles)
