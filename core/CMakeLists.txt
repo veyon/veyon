@@ -11,32 +11,35 @@ FILE(GLOB ic_SOURCES
 						${CMAKE_CURRENT_SOURCE_DIR}/src/Ldap/*.cpp
 )
 
+SET(kldap_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../3rdparty/kldap/src)
+SET(kldap_BINARY_DIR ${CMAKE_CURRENT_BINARY_DIR}/__/3rdparty/kldap/src)
+
 SET(kldap_INCLUDES_MOCINC
-  ${CMAKE_CURRENT_SOURCE_DIR}/kldap/src/ldapsearch.h
-  ${CMAKE_CURRENT_SOURCE_DIR}/kldap/src/ldapmodel.h
+  ${kldap_SOURCE_DIR}/ldapsearch.h
+  ${kldap_SOURCE_DIR}/ldapmodel.h
 )
 
 SET(kldap_INCLUDES
-  ${CMAKE_CURRENT_SOURCE_DIR}/kldap/src/ldapattributeproxymodel.h
-  ${CMAKE_CURRENT_SOURCE_DIR}/kldap/src/ldapstructureproxymodel.h
+  ${kldap_SOURCE_DIR}/ldapattributeproxymodel.h
+  ${kldap_SOURCE_DIR}/ldapstructureproxymodel.h
 )
 
 SET(kldap_SOURCES
-  ${CMAKE_CURRENT_SOURCE_DIR}/kldap/src/ber.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/kldap/src/ldif.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/kldap/src/ldapurl.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/kldap/src/ldapserver.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/kldap/src/ldapobject.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/kldap/src/ldapconnection.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/kldap/src/ldapoperation.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/kldap/src/ldapcontrol.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/kldap/src/ldapsearch.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/kldap/src/ldapdn.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/kldap/src/ldapmodelnode_p.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/kldap/src/ldapmodel.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/kldap/src/ldapmodel_p.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/kldap/src/ldapstructureproxymodel.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/kldap/src/ldapattributeproxymodel.cpp
+  ${kldap_SOURCE_DIR}/ber.cpp
+  ${kldap_SOURCE_DIR}/ldif.cpp
+  ${kldap_SOURCE_DIR}/ldapurl.cpp
+  ${kldap_SOURCE_DIR}/ldapserver.cpp
+  ${kldap_SOURCE_DIR}/ldapobject.cpp
+  ${kldap_SOURCE_DIR}/ldapconnection.cpp
+  ${kldap_SOURCE_DIR}/ldapoperation.cpp
+  ${kldap_SOURCE_DIR}/ldapcontrol.cpp
+  ${kldap_SOURCE_DIR}/ldapsearch.cpp
+  ${kldap_SOURCE_DIR}/ldapdn.cpp
+  ${kldap_SOURCE_DIR}/ldapmodelnode_p.cpp
+  ${kldap_SOURCE_DIR}/ldapmodel.cpp
+  ${kldap_SOURCE_DIR}/ldapmodel_p.cpp
+  ${kldap_SOURCE_DIR}/ldapstructureproxymodel.cpp
+  ${kldap_SOURCE_DIR}/ldapattributeproxymodel.cpp
 )
 
 FILE(GLOB ic_UI ${CMAKE_CURRENT_SOURCE_DIR}/dialogs/*.ui)
@@ -78,7 +81,7 @@ IF(ITALC_BUILD_WIN32)
 	INCLUDE_DIRECTORIES(${Qt5Gui_PRIVATE_INCLUDE_DIRS} ${ULTRAVNC_DIR}/addon/ms-logon/authSSP)
 ENDIF(ITALC_BUILD_WIN32)
 
-INCLUDE_DIRECTORIES(${CMAKE_BINARY_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/include ${CMAKE_CURRENT_SOURCE_DIR}/include/Ldap ${CMAKE_CURRENT_SOURCE_DIR}/../service/x11/common/ ${CMAKE_CURRENT_SOURCE_DIR}/kldap/src ${CMAKE_CURRENT_BINARY_DIR}/kldap/src)
+INCLUDE_DIRECTORIES(${CMAKE_BINARY_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/include ${CMAKE_CURRENT_SOURCE_DIR}/include/Ldap ${CMAKE_CURRENT_SOURCE_DIR}/../service/x11/common/ ${kldap_SOURCE_DIR} ${kldap_BINARY_DIR})
 ADD_LIBRARY(italc-core SHARED ${ic_SOURCES} ${kldap_SOURCES} ${ic_INCLUDES} ${ic_MOC_out} ${kldap_MOC_out} ${ic_UIC_out} ${ic_RCC_out} ${ic_qt_qm_out} ${LIBVNCCLIENT_SOURCES} ${WIN32_AUTHSSP_SOURCES})
 
 IF(ITALC_BUILD_WIN32)
