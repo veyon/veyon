@@ -46,21 +46,23 @@ FILE(GLOB ic_UI ${CMAKE_CURRENT_SOURCE_DIR}/dialogs/*.ui)
 
 IF(ITALC_BUILD_WIN32)
 	SET(WIN32_AUTHSSP_SOURCES
-${ULTRAVNC_DIR}/addon/ms-logon/authSSP/authSSP.cpp
-${ULTRAVNC_DIR}/addon/ms-logon/authSSP/GenClientServerContext.cpp)
+${ultravnc_DIR}/addon/ms-logon/authSSP/authSSP.cpp
+${ultravnc_DIR}/addon/ms-logon/authSSP/GenClientServerContext.cpp)
 ELSE()
 	SET(WIN32_AUTHSSP_SOURCES "")
 ENDIF()
 
-SET(LIBVNCCLIENT_SOURCES
-${CMAKE_CURRENT_SOURCE_DIR}/../service/x11/common/minilzo.c
-${CMAKE_CURRENT_SOURCE_DIR}/../service/x11/common/turbojpeg.c
-${CMAKE_CURRENT_SOURCE_DIR}/../service/x11/libvncclient/cursor.c
-${CMAKE_CURRENT_SOURCE_DIR}/../service/x11/libvncclient/listen.c
-${CMAKE_CURRENT_SOURCE_DIR}/../service/x11/libvncclient/rfbproto.c
-${CMAKE_CURRENT_SOURCE_DIR}/../service/x11/libvncclient/sockets.c
-${CMAKE_CURRENT_SOURCE_DIR}/../service/x11/libvncclient/tls_none.c
-${CMAKE_CURRENT_SOURCE_DIR}/../service/x11/libvncclient/vncviewer.c)
+SET(libvncclient_SOURCE_DIR ${CMAKE_SOURCE_DIR}/3rdparty/libvncserver/libvncclient)
+
+SET(libvncclient_SOURCES
+${libvncserver_DIR}/common/minilzo.c
+${libvncserver_DIR}/common/turbojpeg.c
+${libvncserver_DIR}/libvncclient/cursor.c
+${libvncserver_DIR}/libvncclient/listen.c
+${libvncserver_DIR}/libvncclient/rfbproto.c
+${libvncserver_DIR}/libvncclient/sockets.c
+${libvncserver_DIR}/libvncclient/tls_none.c
+${libvncserver_DIR}/libvncclient/vncviewer.c)
 
 
 SET(QRC_FILE ${CMAKE_CURRENT_SOURCE_DIR}/core.qrc)
@@ -78,11 +80,11 @@ ADD_DEFINITIONS(-DBUILD_ICA -DBUILD_LIBRARY)
 IF(ITALC_BUILD_WIN32)
 	LINK_LIBRARIES(-lws2_32 -lwtsapi32 -lnetapi32 -luserenv -ladvapi32 -linterception)
 	SET(CMAKE_MODULE_LINKER_FLAGS -Wl,-export-all-symbols)
-	INCLUDE_DIRECTORIES(${Qt5Gui_PRIVATE_INCLUDE_DIRS} ${ULTRAVNC_DIR}/addon/ms-logon/authSSP)
+	INCLUDE_DIRECTORIES(${Qt5Gui_PRIVATE_INCLUDE_DIRS} ${ultravnc_DIR}/addon/ms-logon/authSSP)
 ENDIF(ITALC_BUILD_WIN32)
 
-INCLUDE_DIRECTORIES(${CMAKE_BINARY_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/include ${CMAKE_CURRENT_SOURCE_DIR}/include/Ldap ${CMAKE_CURRENT_SOURCE_DIR}/../service/x11/common/ ${kldap_SOURCE_DIR} ${kldap_BINARY_DIR})
-ADD_LIBRARY(italc-core SHARED ${ic_SOURCES} ${kldap_SOURCES} ${ic_INCLUDES} ${ic_MOC_out} ${kldap_MOC_out} ${ic_UIC_out} ${ic_RCC_out} ${ic_qt_qm_out} ${LIBVNCCLIENT_SOURCES} ${WIN32_AUTHSSP_SOURCES})
+INCLUDE_DIRECTORIES(${CMAKE_BINARY_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/include ${CMAKE_CURRENT_SOURCE_DIR}/include/Ldap ${libvncserver_DIR}/common/ ${kldap_SOURCE_DIR} ${kldap_BINARY_DIR})
+ADD_LIBRARY(italc-core SHARED ${ic_SOURCES} ${kldap_SOURCES} ${ic_INCLUDES} ${ic_MOC_out} ${kldap_MOC_out} ${ic_UIC_out} ${ic_RCC_out} ${ic_qt_qm_out} ${libvncclient_SOURCES} ${WIN32_AUTHSSP_SOURCES})
 
 IF(ITALC_BUILD_WIN32)
 	SET_TARGET_PROPERTIES(italc-core PROPERTIES PREFIX "")

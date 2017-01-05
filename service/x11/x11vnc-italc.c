@@ -88,6 +88,9 @@ static int mkstemp(char * template)
 #include "x11vnc/uinput.c"
 #undef db
 
+#undef main
+#undef SHOW_NO_PASSWORD_WARNING
+
 #define SHOW_NO_PASSWORD_WARNING 0
 #define main x11vnc_main
 
