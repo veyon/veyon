@@ -2,3 +2,5 @@
 b/*
 .DS_Store
 *.qm
+svg
+Makefile

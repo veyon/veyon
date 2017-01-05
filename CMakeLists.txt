@@ -202,7 +202,7 @@ SET(ITALCCONFIG ${CMAKE_BINARY_DIR}/italcconfig.h)
 SET(RFBCONFIG ${CMAKE_BINARY_DIR}/rfb/rfbconfig.h)
 
 CONFIGURE_FILE(${CMAKE_SOURCE_DIR}/italcconfig.h.in ${ITALCCONFIG})
-SET(IN_FILES iTALC.nsi ima/data/italc ima/data/italc.desktop ica/ica.rc ima/italc.rc imc/imc.rc)
+SET(IN_FILES iTALC.nsi service/italc-service.rc master/data/italc-master master/data/italc-master.desktop master/italc-master.rc configurator/italc-configurator.rc)
 FOREACH(f ${IN_FILES})
 	CONFIGURE_FILE(${CMAKE_SOURCE_DIR}/${f}.in ${CMAKE_BINARY_DIR}/${f} @ONLY)
 ENDFOREACH(f ${IN_FILES})
@@ -232,8 +232,8 @@ ENDIF(PNG_FOUND)
 
 SET(ULTRAVNC_DIR ${CMAKE_SOURCE_DIR}/3rdparty/ultravnc/)
 
-INCLUDE_DIRECTORIES(${CMAKE_BINARY_DIR} ${CMAKE_SOURCE_DIR}/lib/include ${ZLIB_INCLUDE_DIR} ${JPEG_INCLUDE_DIR} ${PNG_INCLUDE_DIR} ${OPENSSL_INCLUDE_DIR})
-LINK_DIRECTORIES(${CMAKE_INSTALL_PREFIX}/lib ${CMAKE_BINARY_DIR}/lib)
+INCLUDE_DIRECTORIES(${CMAKE_BINARY_DIR} ${CMAKE_SOURCE_DIR}/core/include ${ZLIB_INCLUDE_DIR} ${JPEG_INCLUDE_DIR} ${PNG_INCLUDE_DIR} ${OPENSSL_INCLUDE_DIR})
+LINK_DIRECTORIES(${CMAKE_INSTALL_PREFIX}/core ${CMAKE_BINARY_DIR}/core)
 LINK_LIBRARIES(${QT_LIBRARIES} ${ZLIB_LIBRARIES} ${JPEG_LIBRARIES} ${PNG_LIBRARIES} ${OPENSSL_LIBRARIES})
 
 SET(CMAKE_SKIP_BUILD_RPATH  FALSE)
@@ -242,25 +242,25 @@ SET(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/${LIB_DIR}")
 SET(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 
 # make sub-directories
-ADD_SUBDIRECTORY(lib)
-ADD_SUBDIRECTORY(ica)
-ADD_SUBDIRECTORY(ima)
-ADD_SUBDIRECTORY(imc)
+ADD_SUBDIRECTORY(core)
+ADD_SUBDIRECTORY(service)
+ADD_SUBDIRECTORY(master)
+ADD_SUBDIRECTORY(configurator)
 
 INSTALL()
 
 #
 # rules for building localizations
 #
-FILE(GLOB italc_LOCALES lib/resources/*.ts)
+FILE(GLOB italc_LOCALES core/resources/*.ts)
 SET(ts_targets "")
 SET(qm_targets "")
 FILE(GLOB_RECURSE italc_SOURCES *.cpp *.h *.ui)
 FOREACH(_ts_file ${italc_LOCALES})
-	STRING(REPLACE "${CMAKE_SOURCE_DIR}/lib/resources/" "" _ts_target "${_ts_file}")
+	STRING(REPLACE "${CMAKE_SOURCE_DIR}/core/resources/" "" _ts_target "${_ts_file}")
 	STRING(REPLACE ".ts" ".qm" _qm_file "${_ts_file}")
 	STRING(REPLACE ".ts" ".qm" _qm_target "${_ts_target}")
-	ADD_CUSTOM_TARGET(${_ts_target} COMMAND ${Qt5_LUPDATE_EXECUTABLE} -I${CMAKE_SOURCE_DIR}/lib/include -locations none -no-obsolete ${italc_SOURCES} -ts ${_ts_file})
+	ADD_CUSTOM_TARGET(${_ts_target} COMMAND ${Qt5_LUPDATE_EXECUTABLE} -I${CMAKE_SOURCE_DIR}/core/include -locations none -no-obsolete ${italc_SOURCES} -ts ${_ts_file})
 	# add command and target for generating/updating QM file if TS file is newer or no QM file exists yet
 	ADD_CUSTOM_COMMAND(OUTPUT ${_qm_file} COMMAND ${Qt5_LRELEASE_EXECUTABLE} ${_ts_file} -qm ${_qm_file} DEPENDS ${_ts_file})
 	ADD_CUSTOM_TARGET(${_qm_target} ALL DEPENDS ${_qm_file})
@@ -291,7 +291,7 @@ ADD_CUSTOM_TARGET(win-nsi
 			COMMAND wget -P ${TMP} https://github.com/oblitum/Interception/releases/download/1.0.0/Interception.zip
 			COMMAND unzip -j -d ${TMP} ${TMP}/Interception.zip Interception/command\ line\ installer/install-interception.exe
 			COMMAND rm ${TMP}/*.zip
-			COMMAND cp lib/ItalcCore.dll ica/ica.exe ica/win32/vnchooks.dll ima/italc.exe imc/imc.exe ${TMP}
+			COMMAND cp core/italc-core.dll service/italc-service.exe service/win32/vnchooks.dll master/italc-master.exe configurator/italc-configurator.exe ${TMP}
 			COMMAND ${STRIP} ${TMP}/*
 			COMMAND cp -r ${CMAKE_SOURCE_DIR}/doc ${TMP}
 			COMMAND cp -r ${CMAKE_SOURCE_DIR}/contrib ${TMP}
@@ -326,39 +326,4 @@ MESSAGE(
 "running cmake again!\n"
 "-----------------------------------------------------------------\n"
 "\n\n")
-
-
-INCLUDE(InstallRequiredSystemLibraries)
-SET(CPACK_PACKAGE_DESCRIPTION_SUMMARY "iTALC - Intelligent Teaching And Learning with Computers")
-SET(CPACK_PACKAGE_VENDOR "ITALC Developers")
-SET(CPACK_PACKAGE_DESCRIPTION_FILE "${CMAKE_SOURCE_DIR}/README.md")
-SET(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_SOURCE_DIR}/COPYING")
-SET(CPACK_PACKAGE_VERSION_MAJOR "${VERSION_MAJOR}")
-SET(CPACK_PACKAGE_VERSION_MINOR "${VERSION_MINOR}")
-SET(CPACK_PACKAGE_VERSION_PATCH "${VERSION_PATCH}")
-SET(CPACK_PACKAGE_INSTALL_DIRECTORY "iTALC ${VERSION}")
-IF(WIN32)
-SET(CPACK_PACKAGE_ICON "${CMAKE_SOURCE_DIR}/data\\\\nsis_branding.bmp")
-SET(CPACK_NSIS_MUI_ICON "${CMAKE_SOURCE_DIR}/ima/data\\\\italc.ico")
-SET(CPACK_NSIS_INSTALLED_ICON_NAME "italc.exe")
-SET(CPACK_NSIS_DISPLAY_NAME "iTALC ${VERSION}")
-SET(CPACK_NSIS_HELP_LINK "http:\\\\\\\\italc.sourceforge.net")
-SET(CPACK_NSIS_URL_INFO_ABOUT "http:\\\\\\\\italc.sourceforge.net")
-SET(CPACK_NSIS_CONTACT "italc-devel@lists.sourceforge.net")
-SET(CPACK_PACKAGE_EXECUTABLES "italc.exe;iTALC ${VERSION}")
-SET(CPACK_NSIS_MENU_LINKS "italc.exe;iTALC ${VERSION}")
-ELSE(WIN32)
-SET(CPACK_STRIP_FILES "bin/italc;bin/ica;${LIB_DIR}/*.so")
-SET(CPACK_PACKAGE_EXECUTABLES "italc" "iTALC binary")
-ENDIF(WIN32)
-
-SET(MACOSX_BUNDLE_ICON_FILE "${CMAKE_SOURCE_DIR}/data/themes/default/icon.png")
-SET(MACOSX_BUNDLE_GUI_IDENTIFIER "iTALC")
-SET(MACOSX_BUNDLE_LONG_VERSION_STRING "${VERSION}")
-SET(MACOSX_BUNDLE_BUNDLE_NAME "iTALC")
-SET(MACOSX_BUNDLE_SHORT_VERSION_STRING "${VERSION}")
-SET(MACOSX_BUNDLE_BUNDLE_VERSION "${VERSION}")
-SET(MACOSX_BUNDLE_COPYRIGHT "Tobias Doerffel, 2008")
-
-INCLUDE(CPack)
 

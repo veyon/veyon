@@ -1,0 +1,34 @@
+<RCC>
+    <qresource prefix="/">
+        <file>resources/italc-configurator.png</file>
+        <file>resources/help-about.png</file>
+        <file>resources/media-playback-start.png</file>
+        <file>resources/media-playback-stop.png</file>
+        <file>resources/document-open.png</file>
+        <file>resources/document-save.png</file>
+        <file>resources/edit-delete.png</file>
+        <file>resources/go-up.png</file>
+        <file>resources/go-down.png</file>
+        <file>resources/go-next.png</file>
+        <file>resources/go-previous.png</file>
+        <file>resources/tools-wizard.png</file>
+        <file>resources/user-group-properties.png</file>
+        <file>resources/dialog-ok-apply.png</file>
+        <file>resources/configure.png</file>
+        <file>resources/computer.png</file>
+        <file>resources/distribute-vertical-margin.png</file>
+        <file>resources/configure-shortcuts.png</file>
+        <file>resources/debug-step-into.png</file>
+        <file>resources/folder-publicshare.png</file>
+        <file>resources/kfind.png</file>
+        <file>resources/preferences-system-login.png</file>
+        <file>resources/preferences-system-network.png</file>
+        <file>resources/preferences-desktop-screensaver.png</file>
+        <file>resources/list-add.png</file>
+        <file>resources/list-remove.png</file>
+        <file>resources/document-edit.png</file>
+        <file>resources/vcs-conflicting.png</file>
+        <file>resources/vcs-normal.png</file>
+        <file>resources/vcs-removed.png</file>
+    </qresource>
+</RCC>

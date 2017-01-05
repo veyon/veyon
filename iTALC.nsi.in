@@ -15,7 +15,7 @@
 !define DESCRIPTION "Intelligent Teaching and Learning with Computers"
 !define LICENSE_TXT "@CMAKE_SOURCE_DIR@/COPYING"
 !define INSTALLER_NAME "italc-${VERSION}-@MINGW_PLATFORM@-setup.exe"
-!define MAIN_APP_EXE "italc.exe"
+!define MAIN_APP_EXE "italc-master.exe"
 !define INSTALL_TYPE "SetShellVarContext all"
 !define REG_ROOT "HKLM"
 !define REG_APP_PATH "Software\Microsoft\Windows\CurrentVersion\App Paths\${MAIN_APP_EXE}"
@@ -78,8 +78,8 @@ ShowInstDetails show
 !insertmacro MUI_PAGE_INSTFILES
 
 !define MUI_FINISHPAGE_RUN
-!define MUI_FINISHPAGE_RUN_TEXT "Run iTALC Management Console now"
-!define MUI_FINISHPAGE_RUN_FUNCTION "RunIMC"
+!define MUI_FINISHPAGE_RUN_TEXT "Run iTALC Configurator now"
+!define MUI_FINISHPAGE_RUN_FUNCTION "RunConfigurator"
 
 !insertmacro MUI_PAGE_FINISH
 
@@ -153,6 +153,7 @@ Section "iTALC Service"
 SectionIn RO
 ${INSTALL_TYPE}
 ExecWait '"$INSTDIR\ica.exe" -quiet -unregisterservice'
+ExecWait '"$INSTDIR\italc-service.exe" -quiet -unregisterservice'
 SetOverwrite on
 SetOutPath "$INSTDIR"
 # DLLs
@@ -173,10 +174,10 @@ File "${DLLDIR_LIB}\libwinpthread-1.dll"
 File "${DLLDIR_GCC}\libstdc++-6.dll"
 File "${DLLDIR_GCC}\${DLL_GCC}"
 # core components
-File "italc-${VERSION}\ica.exe"
+File "italc-${VERSION}\italc-service.exe"
 File "italc-${VERSION}\vnchooks.dll"
-File "italc-${VERSION}\ItalcCore.dll"
-File "italc-${VERSION}\imc.exe"
+File "italc-${VERSION}\italc-core.dll"
+File "italc-${VERSION}\italc-configurator.exe"
 File "italc-${VERSION}\LICENSE.TXT"
 File "italc-${VERSION}\README.TXT"
 File "italc-${VERSION}\install-interception.exe"
@@ -190,9 +191,9 @@ File "italc-${VERSION}\contrib\*"
 SetOutPath "$INSTDIR\contrib\en-US"
 File "italc-${VERSION}\contrib\en-US\*"
 ExecWait '"$INSTDIR\install-interception.exe" /install'
-ExecWait '"$INSTDIR\ica.exe" -quiet -registerservice'
-ExecWait '"$INSTDIR\imc.exe" -s Network/FirewallExceptionEnabled=1'
-ExecWait '"$INSTDIR\ica.exe" -quiet -startservice'
+ExecWait '"$INSTDIR\italc-service.exe" -quiet -registerservice'
+ExecWait '"$INSTDIR\italc-configurator.exe" -s Network/FirewallExceptionEnabled=1'
+ExecWait '"$INSTDIR\italc-service.exe" -quiet -startservice'
 # disable forced guest logon as otherwise logon authentication fails
 WriteRegDWORD ${REG_ROOT} "SYSTEM\CurrentControlSet\Control\Lsa"  "ForceGuest" "0"
 SectionEnd
@@ -200,7 +201,7 @@ SectionEnd
 Section "iTALC Master"
 ${INSTALL_TYPE}
 SetOutPath "$INSTDIR"
-File "italc-${VERSION}\italc.exe"
+File "italc-${VERSION}\italc-master.exe"
 
 !ifdef REG_START_MENU
 !insertmacro MUI_STARTMENU_WRITE_BEGIN Application
@@ -217,8 +218,8 @@ CreateShortCut "$DESKTOP\${APP_NAME}.lnk" "$INSTDIR\${MAIN_APP_EXE}"
 !endif
 SectionEnd
 
-Function RunIMC
-	Exec '"$INSTDIR\imc.exe"'
+Function RunConfigurator
+	Exec '"$INSTDIR\italc-configurator.exe"'
 FunctionEnd
 
 ######################################################################
@@ -230,7 +231,7 @@ WriteUninstaller "$INSTDIR\uninstall.exe"
 !ifdef REG_START_MENU
 !insertmacro MUI_STARTMENU_WRITE_BEGIN Application
 CreateDirectory "$SMPROGRAMS\$SM_Folder"
-CreateShortCut "$SMPROGRAMS\$SM_Folder\iTALC Management Console.lnk" "$INSTDIR\imc.exe"
+CreateShortCut "$SMPROGRAMS\$SM_Folder\iTALC Configurator.lnk" "$INSTDIR\italc-configurator.exe"
 CreateShortCut "$SMPROGRAMS\$SM_Folder\Uninstall iTALC.lnk" "$INSTDIR\uninstall.exe"
 WriteIniStr "$INSTDIR\iTALC website.url" "InternetShortcut" "URL" "${WEB_SITE}"
 CreateShortCut "$SMPROGRAMS\$SM_Folder\iTALC Website.lnk" "$INSTDIR\iTALC website.url"
@@ -239,7 +240,7 @@ CreateShortCut "$SMPROGRAMS\$SM_Folder\iTALC Website.lnk" "$INSTDIR\iTALC websit
 
 !ifndef REG_START_MENU
 CreateDirectory "$SMPROGRAMS\iTALC"
-CreateShortCut "$SMPROGRAMS\iTALC\iTALC Management Console.lnk" "$INSTDIR\imc.exe"
+CreateShortCut "$SMPROGRAMS\iTALC\iTALC Configurator.lnk" "$INSTDIR\italc-configurator.exe"
 CreateShortCut "$SMPROGRAMS\iTALC\Uninstall iTALC.lnk" "$INSTDIR\uninstall.exe"
 WriteIniStr "$INSTDIR\iTALC website.url" "InternetShortcut" "URL" "${WEB_SITE}"
 CreateShortCut "$SMPROGRAMS\iTALC\iTALC Website.lnk" "$INSTDIR\iTALC website.url"
@@ -258,12 +259,12 @@ SectionEnd
 
 Section Uninstall
 ${INSTALL_TYPE}
-ExecWait '"$INSTDIR\imc.exe" -s Network/FirewallExceptionEnabled=0'
+ExecWait '"$INSTDIR\italc-configurator.exe" -s Network/FirewallExceptionEnabled=0'
+ExecWait '"$INSTDIR\italc-service.exe" -quiet -unregisterservice'
 ExecWait '"$INSTDIR\install-interception.exe" /uninstall'
-ExecWait '"$INSTDIR\ica.exe" -quiet -unregisterservice'
 # make sure the service is stopped and all file handles are released
 Sleep 2000
-Delete "$INSTDIR\ica.exe"
+Delete "$INSTDIR\italc-service.exe"
 Delete "$INSTDIR\libwinpthread-1.dll"
 Delete "$INSTDIR\libgcc_s_sjlj-1.dll"
 Delete "$INSTDIR\libgcc_s_seh-1.dll"
@@ -281,10 +282,10 @@ Delete "$INSTDIR\Qt5Core.dll"
 Delete "$INSTDIR\libssl32.dll"
 Delete "$INSTDIR\LICENSE.TXT"
 Delete "$INSTDIR\vnchooks.dll"
-Delete "$INSTDIR\imc.exe"
-Delete "$INSTDIR\italc.exe"
+Delete "$INSTDIR\italc-configurator.exe"
+Delete "$INSTDIR\italc-master.exe"
 Delete "$INSTDIR\README.TXT"
-Delete "$INSTDIR\ItalcCore.dll"
+Delete "$INSTDIR\italc-core.dll"
 Delete "$INSTDIR\Qt5Gui.dll"
 Delete "$INSTDIR\Qt5Widgets.dll"
 Delete "$INSTDIR\install-interception.exe"
@@ -298,21 +299,21 @@ RmDir "$INSTDIR"
 
 !ifdef REG_START_MENU
 !insertmacro MUI_STARTMENU_GETFOLDER "Application" $SM_Folder
-Delete "$SMPROGRAMS\$SM_Folder\iTALC.lnk"
+Delete "$SMPROGRAMS\$SM_Folder\iTALC Master.lnk"
 Delete "$SMPROGRAMS\$SM_Folder\Uninstall iTALC.lnk"
-Delete "$SMPROGRAMS\$SM_Folder\iTALC Management Console.lnk"
+Delete "$SMPROGRAMS\$SM_Folder\iTALC Configurator.lnk"
 Delete "$SMPROGRAMS\$SM_Folder\iTALC Website.lnk"
-Delete "$DESKTOP\iTALC.lnk"
+Delete "$DESKTOP\iTALC Master.lnk"
 
 RmDir "$SMPROGRAMS\$SM_Folder"
 !endif
 
 !ifndef REG_START_MENU
-Delete "$SMPROGRAMS\iTALC\iTALC.lnk"
-Delete "$SMPROGRAMS\iTALC\iTALC Management Console.lnk"
+Delete "$SMPROGRAMS\iTALC\iTALC Master.lnk"
+Delete "$SMPROGRAMS\iTALC\iTALC Configurator.lnk"
 Delete "$SMPROGRAMS\iTALC\Uninstall iTALC.lnk"
 Delete "$SMPROGRAMS\iTALC\iTALC Website.lnk"
-Delete "$DESKTOP\iTALC.lnk"
+Delete "$DESKTOP\iTALC Master.lnk"
 
 RmDir "$SMPROGRAMS\iTALC"
 !endif

@@ -1,7 +1,0 @@
-?package(italc-master):\
-	needs="X11"\
-	section="Applications/Education"\
-	title="iTALC"\
-	command="@prefix@/bin/italc" \
-	icon32x32="@prefix@/share/pixmaps/italc.png"\
-	hints="KDE"

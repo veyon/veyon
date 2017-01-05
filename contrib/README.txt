@@ -14,9 +14,9 @@ policy.  This would be best created using the command line options as suggested
 in your last email:
  
   I guess you won't be able to somehow generate this binary data. Easiest 
-  possibility will be to export current settings in IMC as XML file, delete all 
-  undesired settings from that file (e.g. only leave the LogonACL tags etc.) and 
-  run  "imc -ApplySettings mySettings.xml".
+  possibility will be to export current settings in Configurator as XML file,
+  delete all undesired settings from that file (e.g. only leave the LogonACL tags
+  etc.) and run  "italc-configurator -ApplySettings mySettings.xml".
  
 From the testing in my AD environment the settings do get applied correctly.
 I would suggest that a couple people who may be interested could try it if they

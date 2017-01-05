@@ -1,0 +1,847 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>LdapConfigurationPage</class>
+ <widget class="QWidget" name="LdapConfigurationPage">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>876</width>
+    <height>997</height>
+   </rect>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <item>
+    <widget class="QGroupBox" name="isLdapIntegrationEnabled">
+     <property name="title">
+      <string>LDAP/AD integration</string>
+     </property>
+     <property name="checkable">
+      <bool>true</bool>
+     </property>
+     <property name="checked">
+      <bool>false</bool>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_15">
+      <item row="2" column="1" colspan="2">
+       <widget class="QLineEdit" name="ldapBindDn">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_27">
+        <property name="text">
+         <string>LDAP server and port</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1" colspan="2">
+       <widget class="QLineEdit" name="ldapBindPassword">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="echoMode">
+         <enum>QLineEdit::Password</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="ldapServerHost"/>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="label_30">
+        <property name="text">
+         <string>Bind DN</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QSpinBox" name="ldapServerPort">
+        <property name="maximum">
+         <number>65536</number>
+        </property>
+        <property name="value">
+         <number>389</number>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="label_31">
+        <property name="text">
+         <string>Bind password</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0" colspan="3">
+       <layout class="QHBoxLayout" name="horizontalLayout_12">
+        <item>
+         <widget class="QRadioButton" name="ldapAnonymousBind">
+          <property name="text">
+           <string>Anonymous bind</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+          <attribute name="buttonGroup">
+           <string notr="true">bindConfigurationGroup</string>
+          </attribute>
+         </widget>
+        </item>
+        <item>
+         <widget class="QRadioButton" name="ldapUseBindCredentials">
+          <property name="text">
+           <string>Use bind credentials</string>
+          </property>
+          <attribute name="buttonGroup">
+           <string notr="true">bindConfigurationGroup</string>
+          </attribute>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_16">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QPushButton" name="testLdapBind">
+          <property name="text">
+           <string>Test</string>
+          </property>
+          <property name="icon">
+           <iconset resource="../italc-configurator.qrc">
+            <normaloff>:/resources/dialog-ok-apply.png</normaloff>:/resources/dialog-ok-apply.png</iconset>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="tab">
+      <attribute name="title">
+       <string>LDAP environment settings</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_17">
+       <item row="1" column="0" colspan="2">
+        <widget class="QGroupBox" name="groupBox_17">
+         <property name="title">
+          <string>Object trees</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_21">
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_29">
+            <property name="text">
+             <string>Computer tree</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLineEdit" name="ldapGroupTree">
+            <property name="placeholderText">
+             <string>e.g. OU=Groups</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_16">
+            <property name="text">
+             <string>User tree</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLineEdit" name="ldapUserTree">
+            <property name="placeholderText">
+             <string>e.g. OU=Users</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="2">
+           <widget class="QPushButton" name="testLdapComputerTree">
+            <property name="text">
+             <string>Test</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../italc-configurator.qrc">
+              <normaloff>:/resources/dialog-ok-apply.png</normaloff>:/resources/dialog-ok-apply.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2">
+           <widget class="QPushButton" name="testLdapGroupTree">
+            <property name="text">
+             <string>Test</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../italc-configurator.qrc">
+              <normaloff>:/resources/dialog-ok-apply.png</normaloff>:/resources/dialog-ok-apply.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QPushButton" name="testLdapUserTree">
+            <property name="text">
+             <string>Test</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../italc-configurator.qrc">
+              <normaloff>:/resources/dialog-ok-apply.png</normaloff>:/resources/dialog-ok-apply.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QLineEdit" name="ldapComputerTree">
+            <property name="placeholderText">
+             <string>e.g. OU=Computers</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_28">
+            <property name="text">
+             <string>Group tree</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0" colspan="3">
+           <widget class="QCheckBox" name="ldapRecursiveSearchOperations">
+            <property name="text">
+             <string>Perform recursive search operations in object trees</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="2" column="0" colspan="2">
+        <widget class="QGroupBox" name="groupBox_18">
+         <property name="title">
+          <string>Object attributes</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_22">
+          <item row="0" column="1">
+           <widget class="QLineEdit" name="ldapUserLoginAttribute">
+            <property name="placeholderText">
+             <string>e.g. uid or sAMAccountName</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QPushButton" name="testLdapUserLoginAttribute">
+            <property name="text">
+             <string>Test</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../italc-configurator.qrc">
+              <normaloff>:/resources/dialog-ok-apply.png</normaloff>:/resources/dialog-ok-apply.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="2">
+           <widget class="QPushButton" name="testLdapComputerHostNameAttribute">
+            <property name="text">
+             <string>Test</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../italc-configurator.qrc">
+              <normaloff>:/resources/dialog-ok-apply.png</normaloff>:/resources/dialog-ok-apply.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_33">
+            <property name="text">
+             <string>User login attribute</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_38">
+            <property name="text">
+             <string>Computer host name attribute</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QLineEdit" name="ldapComputerHostNameAttribute">
+            <property name="placeholderText">
+             <string>e.g. dNSHostName</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLineEdit" name="ldapGroupMemberAttribute">
+            <property name="placeholderText">
+             <string>e.g. member or memberUid</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2">
+           <widget class="QPushButton" name="testLdapGroupMemberAttribute">
+            <property name="text">
+             <string>Test</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../italc-configurator.qrc">
+              <normaloff>:/resources/dialog-ok-apply.png</normaloff>:/resources/dialog-ok-apply.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_35">
+            <property name="text">
+             <string>Group member attribute</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0" colspan="3">
+           <widget class="QCheckBox" name="ldapComputerHostNameAsFQDN">
+            <property name="text">
+             <string>Host names stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="0" column="0" colspan="2">
+        <widget class="QGroupBox" name="groupBox_14">
+         <property name="title">
+          <string>Base DN</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_20">
+          <item row="0" column="2">
+           <widget class="QPushButton" name="testLdapBaseDn">
+            <property name="text">
+             <string>Test</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../italc-configurator.qrc">
+              <normaloff>:/resources/dialog-ok-apply.png</normaloff>:/resources/dialog-ok-apply.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QRadioButton" name="ldapIsFixedBaseDn">
+            <property name="text">
+             <string>Fixed base DN</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">baseDnConfigGroup</string>
+            </attribute>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLineEdit" name="ldapBaseDn">
+            <property name="placeholderText">
+             <string>e.g. dc=example,dc=org</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QRadioButton" name="ldapQueryNamingContext">
+            <property name="text">
+             <string>Discover base DN by naming context</string>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">baseDnConfigGroup</string>
+            </attribute>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLineEdit" name="ldapNamingContextAttribute">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="placeholderText">
+             <string>e.g. namingContexts or defaultNamingContext</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2">
+           <widget class="QPushButton" name="testLdapNamingContext">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="text">
+             <string>Test</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../italc-configurator.qrc">
+              <normaloff>:/resources/dialog-ok-apply.png</normaloff>:/resources/dialog-ok-apply.png</iconset>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_2">
+      <attribute name="title">
+       <string>Advanced LDAP settings</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_15">
+       <item>
+        <widget class="QGroupBox" name="groupBox_15">
+         <property name="title">
+          <string>Optional object filters</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_14">
+          <item row="1" column="1">
+           <widget class="QLineEdit" name="ldapUserGroupsFilter">
+            <property name="placeholderText">
+             <string>e.g. objectClass=group</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_36">
+            <property name="text">
+             <string>Filter for user groups</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLineEdit" name="ldapUsersFilter">
+            <property name="placeholderText">
+             <string>e.g. objectClass=person</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2">
+           <widget class="QPushButton" name="testLdapUserGroupsFilter">
+            <property name="text">
+             <string>Test</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../italc-configurator.qrc">
+              <normaloff>:/resources/dialog-ok-apply.png</normaloff>:/resources/dialog-ok-apply.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QPushButton" name="testLdapUsersFilter">
+            <property name="text">
+             <string>Test</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../italc-configurator.qrc">
+              <normaloff>:/resources/dialog-ok-apply.png</normaloff>:/resources/dialog-ok-apply.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_34">
+            <property name="text">
+             <string>Filter for users</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_37">
+            <property name="text">
+             <string>Filter for computer groups</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QLineEdit" name="ldapComputerGroupsFilter">
+            <property name="placeholderText">
+             <string>e.g. objectClass=computerLab or objectClass=room</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="2">
+           <widget class="QPushButton" name="testLdapComputerGroupsFilter">
+            <property name="text">
+             <string>Test</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../italc-configurator.qrc">
+              <normaloff>:/resources/dialog-ok-apply.png</normaloff>:/resources/dialog-ok-apply.png</iconset>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox_16">
+         <property name="title">
+          <string>Group member identification</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_14">
+          <item>
+           <widget class="QRadioButton" name="ldapIdentifyGroupMembersByDN">
+            <property name="text">
+             <string>Distinguished name (Samba/AD)</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">groupMemberMatchingGroup</string>
+            </attribute>
+           </widget>
+          </item>
+          <item>
+           <widget class="QRadioButton" name="ldapIdentifyGroupMembersByNameAttribute">
+            <property name="text">
+             <string>Configured attribute for user login or computer host name (OpenLDAP)</string>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">groupMemberMatchingGroup</string>
+            </attribute>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox_13">
+         <property name="title">
+          <string>Computer labs</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_16">
+          <item row="3" column="2">
+           <widget class="QPushButton" name="testLdapComputerLabAttribute">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="text">
+             <string>Test</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../italc-configurator.qrc">
+              <normaloff>:/resources/dialog-ok-apply.png</normaloff>:/resources/dialog-ok-apply.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0" colspan="3">
+           <widget class="QRadioButton" name="ldapComputerLabMembersByGroups">
+            <property name="text">
+             <string>Dedicated computer groups</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">computerGroupingGroup</string>
+            </attribute>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QLineEdit" name="ldapComputerLabAttribute">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="placeholderText">
+             <string>e.g. computerLab or room</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QRadioButton" name="ldapComputerLabMembersByAttribute">
+            <property name="text">
+             <string>Common attribute</string>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">computerGroupingGroup</string>
+            </attribute>
+           </widget>
+          </item>
+          <item row="0" column="0" colspan="3">
+           <widget class="QLabel" name="label_32">
+            <property name="text">
+             <string>Aggregate computer lab members using:</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_11">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::MinimumExpanding</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>0</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_3">
+      <attribute name="title">
+       <string>Functionality tests</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_19">
+       <item row="4" column="0">
+        <widget class="QPushButton" name="testLdapCommonAggregations">
+         <property name="text">
+          <string>Get common aggregations of two objects</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../italc-configurator.qrc">
+           <normaloff>:/resources/distribute-vertical-margin.png</normaloff>:/resources/distribute-vertical-margin.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QPushButton" name="testLdapGroupsOfUser">
+         <property name="text">
+          <string>List all groups of a user</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../italc-configurator.qrc">
+           <normaloff>:/resources/user-group-properties.png</normaloff>:/resources/user-group-properties.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QPushButton" name="testLdapComputerLabMembers">
+         <property name="text">
+          <string>List all members of a computer lab</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../italc-configurator.qrc">
+           <normaloff>:/resources/configure.png</normaloff>:/resources/configure.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0">
+        <spacer name="verticalSpacer_10">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="1" column="0">
+        <widget class="QPushButton" name="testLdapGroupsOfComputer">
+         <property name="text">
+          <string>List all groups of a computer</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../italc-configurator.qrc">
+           <normaloff>:/resources/computer.png</normaloff>:/resources/computer.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QPushButton" name="testLdapComputerObjectByIpAddress">
+         <property name="text">
+          <string>Get computer object by IP address</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../italc-configurator.qrc">
+           <normaloff>:/resources/computer.png</normaloff>:/resources/computer.png</iconset>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="../italc-configurator.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>ldapUseBindCredentials</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>ldapBindPassword</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>506</x>
+     <y>142</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>842</x>
+     <y>241</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ldapUseBindCredentials</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>ldapBindDn</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>506</x>
+     <y>142</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>842</x>
+     <y>193</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ldapIsFixedBaseDn</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>testLdapBaseDn</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>467</x>
+     <y>423</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>825</x>
+     <y>425</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ldapComputerLabMembersByAttribute</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>ldapComputerLabAttribute</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>279</x>
+     <y>888</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>730</x>
+     <y>889</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ldapComputerLabMembersByAttribute</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>testLdapComputerLabAttribute</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>279</x>
+     <y>888</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>825</x>
+     <y>890</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ldapQueryNamingContext</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>ldapNamingContextAttribute</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>467</x>
+     <y>474</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>730</x>
+     <y>475</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ldapIsFixedBaseDn</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>ldapBaseDn</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>467</x>
+     <y>423</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>730</x>
+     <y>424</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ldapQueryNamingContext</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>testLdapNamingContext</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>467</x>
+     <y>474</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>825</x>
+     <y>476</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>isLdapIntegrationEnabled</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>tabWidget</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>97</x>
+     <y>12</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>237</x>
+     <y>319</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>aboutItalc()</slot>
+ </slots>
+ <buttongroups>
+  <buttongroup name="groupMemberMatchingGroup"/>
+  <buttongroup name="baseDnConfigGroup"/>
+  <buttongroup name="bindConfigurationGroup"/>
+  <buttongroup name="computerGroupingGroup"/>
+ </buttongroups>
+</ui>

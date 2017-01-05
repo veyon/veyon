@@ -134,7 +134,7 @@ authorized persons are able to access computers using iTALC.
 The security is achieved by data signing and -verification using a public and
 a private key. Thus you have to create a key pair by invoking
 
-	imc -role teacher -createkeypair
+	italc-configurator -role teacher -createkeypair
 
 which will create a key pair in /etc/italc/keys.
 

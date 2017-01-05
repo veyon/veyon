@@ -1,0 +1,71 @@
+Using iTALC Configurator at the commandline
+===========================================
+
+This document describes how the iTALC Configurator can be used
+to alter an iTALC installation at the command line.
+
+
+Listing current configuration
+-----------------------------
+
+The current configuration with all keys and values can be listed via the
+"ListConfig" command. It can be abbreviated with "-l".
+
+Example:
+
+   italc-configurator -ListConfig
+
+
+This will give an output like
+
+   ...
+   Logging/LogLevel=1
+   Network/CoreServerPort=11100
+   Network/DemoServerPort=11400
+   ...
+
+
+
+Changing the value of a configuration property
+----------------------------------------------
+
+A the value of configuration property can be changed using the
+"SetConfigValue" command. It can be abbreviated with "-s".
+
+Examples:
+
+  italc-configurator -SetConfigValue Logging/LogFileDirectory C:\temp
+  italc-configurator -s Logging/LogLevel=4
+
+
+
+Applying settings from settings file
+------------------------------------
+
+You can apply the settings previously saved in a settings file using the
+"ApplySettings" command. It can be abbreviated with "-a".
+
+Examples:
+
+  italc-configurator -ApplySettings MyCustomSettings.xml
+
+
+
+Importing a public key
+----------------------
+
+You can import a public key file which has been exported during the installation
+of the iTALC master computer using the "ImportPublicKey" command. It can be
+abbreviated with "-i".
+
+You can omit the the second parameter which specifies the public key file if it
+is located in the directory from which you launch iTALC Configurator. The
+program will automatically search for a *.key.txt file. If it finds exactly one,
+it'll import this one.
+
+Examples:
+
+  italc-configurator -ImportPublicKey MyPublicKey.key.txt
+  italc-configurator -i
+
+

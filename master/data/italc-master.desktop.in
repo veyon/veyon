@@ -1,0 +1,11 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=iTALC Master
+GenericName=View and remote-control student computers
+GenericName[de]=Schülercomputer überwachen und fernsteuern
+Comment=Intelligent Teaching And Learning with Computers
+Icon=italc-master
+Exec=@CMAKE_INSTALL_PREFIX@/bin/italc-master
+Type=Application
+Terminal=false
+Categories=Qt;KDE;Education;X-KDE-Edu-Teaching;RemoteAccess;

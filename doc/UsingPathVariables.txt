@@ -2,8 +2,8 @@ Using path variables
 ====================
 
 This document describes how to use the builtin path variables for paths which
-can be customized using IMC. Path variables are helpful if you do not want
-to hardcode paths e.g. for configuration files but make them relative to a
+can be customized using Configurator. Path variables are helpful if you do not
+want to hardcode paths e.g. for configuration files but make them relative to a
 certain environment, e.g. the user's home/profile.
 
 The following path variables are known to iTALC and replaced automatically:
