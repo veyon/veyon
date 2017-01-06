@@ -1096,7 +1096,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
   </action>
   <action name="actionAboutItalc">
    <property name="icon">
-    <iconset resource="../../lib/ItalcCore.qrc">
+    <iconset resource="../../core/core.qrc">
      <normaloff>:/resources/info.png</normaloff>:/resources/info.png</iconset>
    </property>
    <property name="text">
@@ -1130,7 +1130,7 @@ Note: if the bug involves both a master and client computer, attach bug report a
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="../../lib/ItalcCore.qrc"/>
+  <include location="../../core/core.qrc"/>
   <include location="../italc-configurator.qrc"/>
  </resources>
  <connections>

@@ -15,7 +15,7 @@
    <string>About iTALC</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../ItalcCore.qrc">
+   <iconset resource="../core.qrc">
     <normaloff>:/resources/info.png</normaloff>:/resources/info.png</iconset>
   </property>
   <property name="modal">
@@ -48,7 +48,7 @@
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="../ItalcCore.qrc">:/resources/icon64.png</pixmap>
+        <pixmap resource="../core.qrc">:/resources/icon64.png</pixmap>
        </property>
       </widget>
      </item>
@@ -75,7 +75,7 @@
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="icon">
-       <iconset resource="../ItalcCore.qrc">
+       <iconset resource="../core.qrc">
         <normaloff>:/resources/info.png</normaloff>:/resources/info.png</iconset>
       </attribute>
       <attribute name="title">
@@ -133,7 +133,7 @@ Copyright © 2004-2016 Tobias Doerffel / iTALC Solutions</string>
      </widget>
      <widget class="QWidget" name="tab_2">
       <attribute name="icon">
-       <iconset resource="../ItalcCore.qrc">
+       <iconset resource="../core.qrc">
         <normaloff>:/resources/authors.png</normaloff>:/resources/authors.png</iconset>
       </attribute>
       <attribute name="title">
@@ -160,7 +160,7 @@ Copyright © 2004-2016 Tobias Doerffel / iTALC Solutions</string>
      </widget>
      <widget class="QWidget" name="tab_3">
       <attribute name="icon">
-       <iconset resource="../ItalcCore.qrc">
+       <iconset resource="../core.qrc">
         <normaloff>:/resources/locale.png</normaloff>:/resources/locale.png</iconset>
       </attribute>
       <attribute name="title">
@@ -202,7 +202,7 @@ If you're interested in translating iTALC into your local or another language or
      </widget>
      <widget class="QWidget" name="tab_4">
       <attribute name="icon">
-       <iconset resource="../ItalcCore.qrc">
+       <iconset resource="../core.qrc">
         <normaloff>:/resources/license.png</normaloff>:/resources/license.png</iconset>
       </attribute>
       <attribute name="title">
@@ -239,7 +239,7 @@ If you're interested in translating iTALC into your local or another language or
   </layout>
  </widget>
  <resources>
-  <include location="../ItalcCore.qrc"/>
+  <include location="../core.qrc"/>
  </resources>
  <connections>
   <connection>
