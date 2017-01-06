@@ -123,7 +123,10 @@ int main( int argc, char * * argv )
 
 
 	QSplashScreen splashScreen( QPixmap( ":/resources/splash.png" ) );
-	splashScreen.show();
+	if( ItalcCore::config->applicationName().isEmpty() )
+	{
+		splashScreen.show();
+	}
 
 	if( !MainWindow::initAuthentication() )
 	{
