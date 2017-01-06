@@ -1,10 +1,9 @@
 <RCC>
   <qresource>
+    <file>../COPYING</file>
     <file>resources/icon64.png</file>
     <file>resources/dialog-password.png</file>
-    <file>../COPYING</file>
     <file>resources/license.png</file>
-    <file>../AUTHORS</file>
     <file>resources/authors.png</file>
     <file>resources/locale.png</file>
     <file>resources/info.png</file>
