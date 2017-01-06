@@ -2,6 +2,14 @@
 <ui version="4.0">
  <class>GeneralConfigurationPage</class>
  <widget class="QWidget" name="GeneralConfigurationPage">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>724</width>
+    <height>846</height>
+   </rect>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout_14">
    <property name="topMargin">
     <number>0</number>
@@ -40,10 +48,17 @@
         </item>
        </widget>
       </item>
-      <item row="0" column="0" colspan="3">
+      <item row="2" column="0" colspan="2">
        <widget class="QCheckBox" name="isHighDPIScalingEnabled">
         <property name="text">
          <string>Enable high DPI scaling</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0" colspan="2">
+       <widget class="QLineEdit" name="applicationName">
+        <property name="text">
+         <string>iTALC</string>
         </property>
        </widget>
       </item>

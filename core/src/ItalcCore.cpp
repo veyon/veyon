@@ -58,6 +58,8 @@ AuthenticationCredentials *ItalcCore::authenticationCredentials = NULL;
 int ItalcCore::serverPort = PortOffsetVncServer;
 ItalcCore::UserRoles ItalcCore::role = ItalcCore::RoleOther;
 
+static QString appName = "iTALC";
+
 
 void initResources()
 {
@@ -205,6 +207,10 @@ bool ItalcCore::init()
 		QApplication::setLayoutDirection( Qt::RightToLeft );
 	}
 
+	if( config->applicationName().isEmpty() == false )
+	{
+		appName = config->applicationName();
+	}
 
 	serverPort = config->coreServerPort();
 
@@ -285,7 +291,7 @@ void ItalcCore::destroy()
 
 QString ItalcCore::applicationName()
 {
-	return "iTALC";
+	return appName;
 }
 
 

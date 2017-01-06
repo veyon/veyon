@@ -63,6 +63,7 @@ ItalcConfiguration ItalcConfiguration::defaultConfiguration()
 {
 	ItalcConfiguration c( Configuration::Store::NoBackend );
 
+	c.setApplicationName( QString() );
 	c.setHighDPIScalingEnabled( false );
 	c.setUiLanguage( QString() );
 

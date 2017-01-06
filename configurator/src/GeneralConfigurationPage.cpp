@@ -53,6 +53,8 @@ GeneralConfigurationPage::GeneralConfigurationPage() :
 {
 	ui->setupUi(this);
 
+	ui->applicationName->hide();
+
 	// retrieve list of builtin translations and populate language combobox
 	QStringList languages;
 	for( auto language : QDir(":/resources/").entryList( QStringList("*.qm") ) )

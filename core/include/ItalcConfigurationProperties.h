@@ -2,7 +2,7 @@
  * ItalcConfigurationProperties.h - definition of every configuration property
  *                                  stored in global iTALC configuration
  *
- * Copyright (c) 2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2016-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -27,6 +27,7 @@
 #define ITALC_CONFIGURATION_PROPERTIES_H
 
 #define FOREACH_ITALC_UI_CONFIG_PROPERTY(OP)				\
+	OP( ItalcConfiguration, ItalcCore::config, STRING, applicationName, setApplicationName, "ApplicationName", "UI" );			\
 	OP( ItalcConfiguration, ItalcCore::config, STRING, uiLanguage, setUiLanguage, "Language", "UI" );			\
 	OP( ItalcConfiguration, ItalcCore::config, BOOL, isHighDPIScalingEnabled, setHighDPIScalingEnabled, "EnableHighDPIScaling", "UI" );			\
 

@@ -2,7 +2,7 @@
  * ItalcConfiguration.h - a Configuration object storing system wide
  *                        configuration values
  *
- * Copyright (c) 2010-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2010-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -50,6 +50,7 @@ public:
 	// unluckily we have to declare slots manually as Qt's MOC doesn't do any
 	// macro expansion :-(
 public slots:
+	void setApplicationName( const QString& );
 	void setUiLanguage( const QString& );
 	void setHighDPIScalingEnabled( bool );
 	void setTrayIconHidden( bool );
