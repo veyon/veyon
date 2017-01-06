@@ -36,7 +36,7 @@ AboutDialog::AboutDialog( QWidget *parent ) :
 {
 	ui->setupUi( this );
 
-	QFile authors( ":/AUTHORS" );
+	QFile authors( ":/CONTRIBUTORS" );
 	authors.open( QFile::ReadOnly );
 	ui->authors->setPlainText( authors.readAll() );
 
