@@ -318,12 +318,12 @@ void ItalcCore::enforceBranding( QWidget *topLevelWidget )
 		action->setText( action->text().replace( "iTALC", ItalcCore::applicationName() ) );
 	}
 
-	for( auto widget : topLevelWidget->findChildren<QWidget *>() << topLevelWidget )
+	for( auto widget : topLevelWidget->findChildren<QWidget *>() )
 	{
 		widget->setWindowTitle( widget->windowTitle().replace( "iTALC", ItalcCore::applicationName() ) );
 	}
 
-	qDebug() << topLevelWidget->windowTitle();
+	topLevelWidget->setWindowTitle( topLevelWidget->windowTitle().replace( "iTALC", ItalcCore::applicationName() ) );
 }
 
 
