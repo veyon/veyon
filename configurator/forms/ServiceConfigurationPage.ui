@@ -7,89 +7,117 @@
     <x>0</x>
     <y>0</y>
     <width>682</width>
-    <height>666</height>
+    <height>970</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
+  <layout class="QVBoxLayout" name="verticalLayout_2">
    <item>
-    <widget class="QGroupBox" name="groupBox_6">
+    <widget class="QGroupBox" name="groupBox_3">
      <property name="title">
-      <string>Desktop capturing</string>
+      <string>General</string>
      </property>
-     <layout class="QGridLayout" name="gridLayout_7">
-      <item row="0" column="0">
-       <widget class="QCheckBox" name="vncCaptureLayeredWindows">
+     <layout class="QGridLayout" name="gridLayout_12">
+      <item row="0" column="0" colspan="5">
+       <widget class="QCheckBox" name="isTrayIconHidden">
         <property name="text">
-         <string>Enable capturing of layered (semi-transparent) windows</string>
+         <string>Hide tray icon</string>
         </property>
        </widget>
       </item>
-      <item row="1" column="0">
-       <widget class="QCheckBox" name="vncPollFullScreen">
+      <item row="3" column="3">
+       <widget class="QPushButton" name="startService">
         <property name="text">
-         <string>Poll full screen (leave this enabled per default)</string>
+         <string>Start service</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../italc-configurator.qrc">
+          <normaloff>:/resources/media-playback-start.png</normaloff>:/resources/media-playback-start.png</iconset>
         </property>
        </widget>
       </item>
-      <item row="2" column="0">
-       <widget class="QCheckBox" name="vncLowAccuracy">
+      <item row="1" column="0" colspan="5">
+       <widget class="QCheckBox" name="autostartService">
         <property name="text">
-         <string>Low accuracy (turbo mode)</string>
+         <string>Autostart</string>
         </property>
        </widget>
       </item>
-     </layout>
-    </widget>
-   </item>
-   <item>
-    <widget class="QGroupBox" name="groupBox_9">
-     <property name="title">
-      <string>Demo server</string>
-     </property>
-     <layout class="QVBoxLayout" name="verticalLayout_7">
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_11" stretch="0,1,2">
-        <property name="spacing">
-         <number>16</number>
-        </property>
+      <item row="2" column="0" colspan="5">
+       <layout class="QHBoxLayout" name="horizontalLayout_3">
         <item>
-         <widget class="QLabel" name="label_6">
-          <property name="text">
-           <string>Backend</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QComboBox" name="demoServerBackend">
-          <item>
-           <property name="text">
-            <string>VNC reflector</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>iTALC 1 demo server</string>
-           </property>
-          </item>
-         </widget>
-        </item>
-        <item>
-         <spacer name="horizontalSpacer_15">
+         <spacer name="horizontalSpacer_5">
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
           </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Fixed</enum>
+          </property>
           <property name="sizeHint" stdset="0">
            <size>
-            <width>40</width>
-            <height>20</height>
+            <width>24</width>
+            <height>10</height>
            </size>
           </property>
          </spacer>
         </item>
+        <item>
+         <widget class="QLabel" name="label_10">
+          <property name="text">
+           <string>Additional arguments</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="serviceArguments"/>
+        </item>
        </layout>
+      </item>
+      <item row="3" column="1">
+       <widget class="QLabel" name="serviceState">
+        <property name="font">
+         <font>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Stopped</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="4">
+       <widget class="QPushButton" name="stopService">
+        <property name="text">
+         <string>Stop service</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../italc-configurator.qrc">
+          <normaloff>:/resources/media-playback-stop.png</normaloff>:/resources/media-playback-stop.png</iconset>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="label_16">
+        <property name="text">
+         <string>State:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="2">
+       <spacer name="horizontalSpacer_9">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
       </item>
      </layout>
     </widget>
@@ -152,6 +180,93 @@
     </widget>
    </item>
    <item>
+    <widget class="QGroupBox" name="groupBox_6">
+     <property name="title">
+      <string>Desktop capturing</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_7">
+      <item row="0" column="0">
+       <widget class="QCheckBox" name="vncCaptureLayeredWindows">
+        <property name="text">
+         <string>Enable capturing of layered (semi-transparent) windows</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QCheckBox" name="vncPollFullScreen">
+        <property name="text">
+         <string>Poll full screen (leave this enabled per default)</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QCheckBox" name="vncLowAccuracy">
+        <property name="text">
+         <string>Low accuracy (turbo mode)</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="groupBox_9">
+     <property name="title">
+      <string>Fine tuning</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_11" stretch="0,1,2">
+        <property name="spacing">
+         <number>16</number>
+        </property>
+        <item>
+         <widget class="QLabel" name="label_6">
+          <property name="text">
+           <string>Demo server backend</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="demoServerBackend">
+          <item>
+           <property name="text">
+            <string>VNC reflector</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>iTALC 1 demo server</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_15">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="lockWithDesktopSwitching">
+        <property name="text">
+         <string>Enable desktop switching for screen lock (experimental)</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
     <spacer name="verticalSpacer">
      <property name="orientation">
       <enum>Qt::Vertical</enum>
@@ -166,6 +281,8 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="../italc-configurator.qrc"/>
+ </resources>
  <connections/>
 </ui>

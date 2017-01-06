@@ -32,7 +32,7 @@
 #endif
 
 #include "SystemConfigurationModifier.h"
-#include "ConfiguratorCore.h"
+#include "ServiceControl.h"
 #include "Logger.h"
 
 
@@ -104,7 +104,7 @@ bool SystemConfigurationModifier::setServiceArguments( const QString &serviceArg
 	}
 
 	QString binaryPath = QString( "\"%1\" -service %2" ).
-								arg( ConfiguratorCore::icaFilePath() ).
+								arg( ServiceControl::serviceFilePath() ).
 								arg( serviceArgs );
 
 	if( !ChangeServiceConfig( hservice,
@@ -500,7 +500,7 @@ bool SystemConfigurationModifier::enableFirewallException( bool enabled )
 
 	static const wchar_t *fwRuleName = L"iTALC Client Application";
 
-	const QString p = ConfiguratorCore::icaFilePath().replace( '/', '\\' );
+	const QString p = ServiceControl::serviceFilePath().replace( '/', '\\' );
 
 	wchar_t icaPath[MAX_PATH];
 	p.toWCharArray( icaPath );

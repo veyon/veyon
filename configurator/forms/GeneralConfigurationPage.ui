@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>724</width>
-    <height>846</height>
+    <height>587</height>
    </rect>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_14">
@@ -59,121 +59,6 @@
        <widget class="QLineEdit" name="applicationName">
         <property name="text">
          <string>iTALC</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item>
-    <widget class="QGroupBox" name="groupBox_3">
-     <property name="title">
-      <string>iTALC Service</string>
-     </property>
-     <layout class="QGridLayout" name="gridLayout_10">
-      <item row="0" column="0" colspan="5">
-       <widget class="QCheckBox" name="isTrayIconHidden">
-        <property name="text">
-         <string>Hide tray icon</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="0" colspan="5">
-       <widget class="QCheckBox" name="autostartService">
-        <property name="text">
-         <string>Autostart</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="0" colspan="5">
-       <layout class="QHBoxLayout" name="horizontalLayout_2">
-        <item>
-         <spacer name="horizontalSpacer_4">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeType">
-           <enum>QSizePolicy::Fixed</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>24</width>
-            <height>10</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_9">
-          <property name="text">
-           <string>Additional arguments</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLineEdit" name="serviceArguments"/>
-        </item>
-       </layout>
-      </item>
-      <item row="4" column="3">
-       <widget class="QPushButton" name="startService">
-        <property name="text">
-         <string>Start service</string>
-        </property>
-        <property name="icon">
-         <iconset resource="../italc-configurator.qrc">
-          <normaloff>:/resources/media-playback-start.png</normaloff>:/resources/media-playback-start.png</iconset>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="4">
-       <widget class="QPushButton" name="stopService">
-        <property name="text">
-         <string>Stop service</string>
-        </property>
-        <property name="icon">
-         <iconset resource="../italc-configurator.qrc">
-          <normaloff>:/resources/media-playback-stop.png</normaloff>:/resources/media-playback-stop.png</iconset>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="2">
-       <spacer name="horizontalSpacer_8">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item row="4" column="0">
-       <widget class="QLabel" name="label_15">
-        <property name="text">
-         <string>State:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="1">
-       <widget class="QLabel" name="serviceState">
-        <property name="font">
-         <font>
-          <weight>75</weight>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="text">
-         <string>Stopped</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0" colspan="5">
-       <widget class="QCheckBox" name="lockWithDesktopSwitching">
-        <property name="text">
-         <string>Enable desktop switching for screen lock (experimental)</string>
         </property>
        </widget>
       </item>

@@ -41,10 +41,19 @@ public:
 	virtual void resetWidgets();
 	virtual void connectWidgetsToProperties();
 
+
+public slots:
+	void startService();
+	void stopService();
+
+
 private slots:
+	void updateServiceControl();
+
 
 private:
 	Ui::ServiceConfigurationPage *ui;
+
 };
 
 #endif // SERVICE_CONFIGURATION_PAGE_H

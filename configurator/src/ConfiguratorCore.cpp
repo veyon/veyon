@@ -206,18 +206,6 @@ bool importPublicKey( ItalcCore::UserRole role,
 
 
 
-QString icaFilePath()
-{
-	QString path = QCoreApplication::applicationDirPath() + QDir::separator() + "ica";
-#ifdef ITALC_BUILD_WIN32
-	path += ".exe";
-#endif
-	return QDTNS( path );
-}
-
-
-
-
 void informationMessage( const QString &title, const QString &msg )
 {
 	LogStream( Logger::LogLevelInfo ) << title.toUtf8().constData()

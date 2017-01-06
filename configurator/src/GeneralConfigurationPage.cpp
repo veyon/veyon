@@ -22,26 +22,15 @@
  *
  */
 
-#include <italcconfig.h>
-
-#ifdef ITALC_BUILD_WIN32
-#include <windows.h>
-#endif
-
 #include <QDir>
 #include <QMessageBox>
-#include <QProcess>
-#include <QProgressBar>
-#include <QProgressDialog>
-#include <QTimer>
 
 #include "GeneralConfigurationPage.h"
 #include "FileSystemBrowser.h"
-#include "ConfiguratorCore.h"
 #include "ItalcCore.h"
 #include "ItalcConfiguration.h"
 #include "LocalSystem.h"
-#include "Logger.h"
+#include "ServiceControl.h"
 #include "Configuration/UiMapping.h"
 
 #include "ui_GeneralConfigurationPage.h"
@@ -80,19 +69,8 @@ GeneralConfigurationPage::GeneralConfigurationPage() :
 #define CONNECT_BUTTON_SLOT(name) \
 			connect( ui->name, SIGNAL( clicked() ), this, SLOT( name() ) );
 
-	CONNECT_BUTTON_SLOT( startService );
-	CONNECT_BUTTON_SLOT( stopService );
-
 	CONNECT_BUTTON_SLOT( openLogFileDirectory );
 	CONNECT_BUTTON_SLOT( clearLogFiles );
-
-	updateServiceControl();
-
-	QTimer *serviceUpdateTimer = new QTimer( this );
-	serviceUpdateTimer->start( 2000 );
-
-	connect( serviceUpdateTimer, SIGNAL( timeout() ),
-				this, SLOT( updateServiceControl() ) );
 }
 
 
@@ -107,7 +85,6 @@ GeneralConfigurationPage::~GeneralConfigurationPage()
 void GeneralConfigurationPage::resetWidgets()
 {
 	FOREACH_ITALC_UI_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
-	FOREACH_ITALC_SERVICE_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
 	FOREACH_ITALC_LOGGING_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
 }
 
@@ -116,73 +93,8 @@ void GeneralConfigurationPage::resetWidgets()
 void GeneralConfigurationPage::connectWidgetsToProperties()
 {
 	FOREACH_ITALC_UI_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY);
-	FOREACH_ITALC_SERVICE_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY);
 	FOREACH_ITALC_LOGGING_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY);
 }
-
-
-
-bool GeneralConfigurationPage::isServiceRunning()
-{
-#ifdef ITALC_BUILD_WIN32
-	SC_HANDLE hsrvmanager = OpenSCManager( NULL, NULL, SC_MANAGER_CONNECT );
-	if( !hsrvmanager )
-	{
-		ilog_failed( "OpenSCManager()" );
-		return false;
-	}
-
-	SC_HANDLE hservice = OpenService( hsrvmanager, "ItalcService", SERVICE_QUERY_STATUS );
-	if( !hservice )
-	{
-		ilog_failed( "OpenService()" );
-		CloseServiceHandle( hsrvmanager );
-		return false;
-	}
-
-	SERVICE_STATUS status;
-	QueryServiceStatus( hservice, &status );
-
-	CloseServiceHandle( hservice );
-	CloseServiceHandle( hsrvmanager );
-
-	return( status.dwCurrentState == SERVICE_RUNNING );
-#else
-	return false;
-#endif
-}
-
-
-
-void GeneralConfigurationPage::startService()
-{
-	serviceControlWithProgressBar( tr( "Starting %1 service" ).arg( ItalcCore::applicationName() ), "-startservice" );
-}
-
-
-
-
-void GeneralConfigurationPage::stopService()
-{
-	serviceControlWithProgressBar( tr( "Stopping %1 service" ).arg( ItalcCore::applicationName() ), "-stopservice" );
-}
-
-
-
-
-void GeneralConfigurationPage::updateServiceControl()
-{
-	bool running = isServiceRunning();
-#ifdef ITALC_BUILD_WIN32
-	ui->startService->setEnabled( !running );
-	ui->stopService->setEnabled( running );
-#else
-	ui->startService->setEnabled( false );
-	ui->stopService->setEnabled( false );
-#endif
-	ui->serviceState->setText( running ? tr( "Running" ) : tr( "Stopped" ) );
-}
-
 
 
 
@@ -197,9 +109,11 @@ void GeneralConfigurationPage::openLogFileDirectory()
 
 void GeneralConfigurationPage::clearLogFiles()
 {
-#ifdef ITALC_BUILD_WIN32
-	bool stopped = false;
-	if( isServiceRunning() )
+	bool serviceStopped = false;
+
+	ServiceControl serviceControl( this );
+
+	if( serviceControl.isServiceRunning() )
 	{
 		if( QMessageBox::question( this, tr( "%1 Service" ).arg( ItalcCore::applicationName() ),
 				tr( "The %1 service needs to be stopped temporarily "
@@ -207,15 +121,14 @@ void GeneralConfigurationPage::clearLogFiles()
 					).arg( ItalcCore::applicationName() ), QMessageBox::Yes | QMessageBox::No,
 				QMessageBox::Yes ) == QMessageBox::Yes )
 		{
-			stopService();
-			stopped = true;
+			serviceControl.stopService();
+			serviceStopped = true;
 		}
 		else
 		{
 			return;
 		}
 	}
-#endif
 
 	bool success = true;
 	QDir d( LocalSystem::Path::expand( ItalcCore::config->logFileDirectory() ) );
@@ -241,12 +154,10 @@ void GeneralConfigurationPage::clearLogFiles()
 		}
 	}
 
-#ifdef ITALC_BUILD_WIN32
-	if( stopped )
+	if( serviceStopped )
 	{
-		startService();
+		serviceControl.startService();
 	}
-#endif
 
 	if( success )
 	{
@@ -258,35 +169,4 @@ void GeneralConfigurationPage::clearLogFiles()
 		QMessageBox::critical( this, tr( "Error" ),
 			tr( "Could not remove all log files." ) );
 	}
-}
-
-
-
-void GeneralConfigurationPage::serviceControlWithProgressBar( const QString &title,
-												const QString &arg )
-{
-	QProcess p;
-	p.start( ConfiguratorCore::icaFilePath(), QStringList() << arg );
-	p.waitForStarted();
-
-	QProgressDialog pd( title, QString(), 0, 0, this );
-	pd.setWindowTitle( windowTitle() );
-
-	QProgressBar *b = new QProgressBar( &pd );
-	b->setMaximum( 100 );
-	b->setTextVisible( false );
-	pd.setBar( b );
-	b->show();
-	pd.setWindowModality( Qt::WindowModal );
-	pd.show();
-
-	int j = 0;
-	while( p.state() == QProcess::Running )
-	{
-		QApplication::processEvents();
-		b->setValue( ++j % 100 );
-		LocalSystem::sleep( 10 );
-	}
-
-	updateServiceControl();
 }

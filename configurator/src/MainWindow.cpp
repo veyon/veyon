@@ -46,6 +46,7 @@
 #include "LogonAuthentication.h"
 #include "MainWindow.h"
 #include "PasswordDialog.h"
+#include "ServiceControl.h"
 
 #include "ui_MainWindow.h"
 
@@ -158,18 +159,19 @@ void MainWindow::apply()
 #endif
 	if( ConfiguratorCore::applyConfiguration( *ItalcCore::config ) )
 	{
-#ifdef ITALC_BUILD_WIN32
-		if( ui->generalConfigurationPage->isServiceRunning() &&
+		ServiceControl serviceControl( this );
+
+		if( serviceControl.isServiceRunning() &&
 			QMessageBox::question( this, tr( "Restart %1 Service" ).arg( ItalcCore::applicationName() ),
 				tr( "All settings were saved successfully. In order to take "
 					"effect the %1 service needs to be restarted. "
 					"Restart it now?" ).arg( ItalcCore::applicationName() ),
 				QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes ) == QMessageBox::Yes )
 		{
-			ui->generalConfigurationPage->stopService();
-			ui->generalConfigurationPage->startService();
+			serviceControl.stopService();
+			serviceControl.startService();
 		}
-#endif
+
 		ui->buttonBox->setEnabled( false );
 		m_configChanged = false;
 	}

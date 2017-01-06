@@ -43,8 +43,6 @@ namespace ConfiguratorCore
 	bool importPublicKey( ItalcCore::UserRole role,
 							const QString &pubKey, const QString &destDir );
 
-	QString icaFilePath();
-
 	void informationMessage( const QString &title, const QString &msg );
 	void criticalMessage( const QString &title, const QString &msg );
 

@@ -22,10 +22,15 @@
  *
  */
 
+#include <QMessageBox>
+#include <QTimer>
+
+#include "ConfiguratorCore.h"
 #include "FileSystemBrowser.h"
 #include "ItalcCore.h"
 #include "ItalcConfiguration.h"
 #include "ServiceConfigurationPage.h"
+#include "ServiceControl.h"
 #include "Configuration/UiMapping.h"
 
 #include "ui_ServiceConfigurationPage.h"
@@ -36,6 +41,20 @@ ServiceConfigurationPage::ServiceConfigurationPage() :
 	ui(new Ui::ServiceConfigurationPage)
 {
 	ui->setupUi(this);
+
+#define CONNECT_BUTTON_SLOT(name) \
+			connect( ui->name, SIGNAL( clicked() ), this, SLOT( name() ) );
+
+	CONNECT_BUTTON_SLOT( startService );
+	CONNECT_BUTTON_SLOT( stopService );
+
+	updateServiceControl();
+
+	QTimer *serviceUpdateTimer = new QTimer( this );
+	serviceUpdateTimer->start( 2000 );
+
+	connect( serviceUpdateTimer, SIGNAL( timeout() ),
+				this, SLOT( updateServiceControl() ) );
 }
 
 
@@ -49,16 +68,59 @@ ServiceConfigurationPage::~ServiceConfigurationPage()
 
 void ServiceConfigurationPage::resetWidgets()
 {
+	FOREACH_ITALC_SERVICE_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
+	FOREACH_ITALC_NETWORK_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
 	FOREACH_ITALC_VNC_SERVER_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
 	FOREACH_ITALC_DEMO_SERVER_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
-	FOREACH_ITALC_NETWORK_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
+
 }
 
 
 
 void ServiceConfigurationPage::connectWidgetsToProperties()
 {
+	FOREACH_ITALC_SERVICE_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY);
+	FOREACH_ITALC_NETWORK_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY);
 	FOREACH_ITALC_VNC_SERVER_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY);
 	FOREACH_ITALC_DEMO_SERVER_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY);
-	FOREACH_ITALC_NETWORK_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY);
 }
+
+
+
+
+
+
+
+void ServiceConfigurationPage::startService()
+{
+	ServiceControl( this ).startService();
+
+	updateServiceControl();
+}
+
+
+
+
+void ServiceConfigurationPage::stopService()
+{
+	ServiceControl( this ).stopService();
+
+	updateServiceControl();
+}
+
+
+
+void ServiceConfigurationPage::updateServiceControl()
+{
+	bool running = ServiceControl( this ).isServiceRunning();
+
+#ifdef ITALC_BUILD_WIN32
+	ui->startService->setEnabled( !running );
+	ui->stopService->setEnabled( running );
+#else
+	ui->startService->setEnabled( false );
+	ui->stopService->setEnabled( false );
+#endif
+	ui->serviceState->setText( running ? tr( "Running" ) : tr( "Stopped" ) );
+}
+
