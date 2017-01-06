@@ -33,6 +33,10 @@
 #include <QProgressBar>
 #include <QProgressDialog>
 
+#ifdef ITALC_BUILD_WIN32
+#include <windows.h>
+#endif
+
 #include "Configuration/XmlStore.h"
 #include "Configuration/UiMapping.h"
 
@@ -42,16 +46,12 @@
 #include "ConfiguratorCore.h"
 #include "ItalcConfiguration.h"
 #include "LocalSystem.h"
-#include "LogonAclSettings.h"
 #include "LogonAuthentication.h"
 #include "MainWindow.h"
 #include "PasswordDialog.h"
 #include "ServiceControl.h"
 
 #include "ui_MainWindow.h"
-
-#include <QDebug>
-#include <QImage>
 
 
 MainWindow::MainWindow() :
@@ -128,15 +128,6 @@ void MainWindow::reset( bool onlyUI )
 		*ItalcCore::config += ItalcConfiguration( Configuration::Store::LocalBackend );
 	}
 
-#ifdef ITALC_BUILD_WIN32
-	// always make sure we do not have a LogonACL string in our config
-	ItalcCore::config->removeValue( "LogonACL", "Authentication" );
-
-	// revert LogonACL to what has been saved in the encoded logon ACL
-	LogonAclSettings().setACL(
-		ItalcCore::config->value( "EncodedLogonACL", "Authentication" ) );
-#endif
-
 	FOREACH_ITALC_AUTHENTICATION_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
 
 	for( auto page : findChildren<ConfigurationPage *>() )
@@ -153,10 +144,6 @@ void MainWindow::reset( bool onlyUI )
 
 void MainWindow::apply()
 {
-#ifdef ITALC_BUILD_WIN32
-	ItalcCore::config->setValue( "EncodedLogonACL", LogonAclSettings().acl(),
-															"Authentication" );
-#endif
 	if( ConfiguratorCore::applyConfiguration( *ItalcCore::config ) )
 	{
 		ServiceControl serviceControl( this );
@@ -250,12 +237,6 @@ void MainWindow::saveSettingsToFile()
 		}
 
 		bool configChangedPrevious = m_configChanged;
-
-#ifdef ITALC_BUILD_WIN32
-		ItalcCore::config->removeValue( "LogonACL", "Authentication" );
-		ItalcCore::config->setValue( "EncodedLogonACL",
-								LogonAclSettings().acl(), "Authentication" );
-#endif
 
 		// write current configuration to output file
 		Configuration::XmlStore( Configuration::XmlStore::System,
@@ -434,9 +415,6 @@ void MainWindow::closeEvent( QCloseEvent *closeEvent )
 		closeEvent->ignore();
 		return;
 	}
-
-	// make sure to revert the LogonACL
-	reset();
 
 	closeEvent->accept();
 	QMainWindow::closeEvent( closeEvent );

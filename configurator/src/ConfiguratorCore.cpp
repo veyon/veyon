@@ -34,7 +34,6 @@
 #include "ItalcCore.h"
 #include "LocalSystem.h"
 #include "Logger.h"
-#include "LogonAclSettings.h"
 #include "MainWindow.h"
 #include "SystemConfigurationModifier.h"
 
@@ -81,14 +80,6 @@ bool applyConfiguration( const ItalcConfiguration &c )
 			MainWindow::tr( "Could not change the firewall configuration "
 									"for the %1 Service." ).arg( ItalcCore::applicationName() ) );
 	}
-
-#ifdef ITALC_BUILD_WIN32
-	ItalcCore::config->removeValue( "LogonACL", "Authentication" );
-
-	// if EncodedLogonACL is empty, nothing is done in setACL()
-	LogonAclSettings().setACL(
-		ItalcCore::config->value( "EncodedLogonACL", "Authentication" ) );
-#endif
 
 	// write global configuration
 	Configuration::LocalStore localStore( Configuration::LocalStore::System );
