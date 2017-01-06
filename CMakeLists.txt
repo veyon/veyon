@@ -345,12 +345,3 @@ MESSAGE("\n"
 "* Compile flags               : ${CMAKE_C_FLAGS} (CXX: ${CMAKE_CXX_FLAGS})\n"
 )
 
-MESSAGE(
-"\n"
-"-----------------------------------------------------------------\n"
-"IMPORTANT:\n"
-"After installing missing packages, remove CMakeCache.txt before\n"
-"running cmake again!\n"
-"-----------------------------------------------------------------\n"
-"\n\n")
-
