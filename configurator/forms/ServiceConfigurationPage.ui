@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ServiceConfigurationPage</class>
+ <widget class="QWidget" name="ServiceConfigurationPage">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>682</width>
+    <height>666</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QGroupBox" name="groupBox_6">
+     <property name="title">
+      <string>Desktop capturing</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_7">
+      <item row="0" column="0">
+       <widget class="QCheckBox" name="vncCaptureLayeredWindows">
+        <property name="text">
+         <string>Enable capturing of layered (semi-transparent) windows</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QCheckBox" name="vncPollFullScreen">
+        <property name="text">
+         <string>Poll full screen (leave this enabled per default)</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QCheckBox" name="vncLowAccuracy">
+        <property name="text">
+         <string>Low accuracy (turbo mode)</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="groupBox_9">
+     <property name="title">
+      <string>Demo server</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_7">
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_11" stretch="0,1,2">
+        <property name="spacing">
+         <number>16</number>
+        </property>
+        <item>
+         <widget class="QLabel" name="label_6">
+          <property name="text">
+           <string>Backend</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="demoServerBackend">
+          <item>
+           <property name="text">
+            <string>VNC reflector</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>iTALC 1 demo server</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_15">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="groupBox_8">
+     <property name="title">
+      <string>Network</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_11">
+      <item row="3" column="0" colspan="2">
+       <widget class="QCheckBox" name="localConnectOnly">
+        <property name="text">
+         <string>Allow connections from localhost only</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_12">
+        <property name="text">
+         <string>Core server port</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QSpinBox" name="demoServerPort">
+        <property name="minimum">
+         <number>1024</number>
+        </property>
+        <property name="maximum">
+         <number>65535</number>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0" colspan="2">
+       <widget class="QCheckBox" name="isFirewallExceptionEnabled">
+        <property name="text">
+         <string>Enable firewall exception</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="label_13">
+        <property name="text">
+         <string>Demo server port</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QSpinBox" name="coreServerPort">
+        <property name="minimum">
+         <number>1024</number>
+        </property>
+        <property name="maximum">
+         <number>65535</number>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
