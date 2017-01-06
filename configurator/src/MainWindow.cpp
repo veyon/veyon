@@ -77,8 +77,6 @@ MainWindow::MainWindow() :
 	FOREACH_ITALC_VNC_SERVER_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY);
 	FOREACH_ITALC_DEMO_SERVER_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY);
 	FOREACH_ITALC_NETWORK_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY);
-	FOREACH_ITALC_CONFIG_FILE_PATHS_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY);
-	FOREACH_ITALC_DATA_DIRECTORIES_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY);
 	FOREACH_ITALC_AUTHENTICATION_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY);
 
 	for( auto page : findChildren<ConfigurationPage *>() )
@@ -88,10 +86,6 @@ MainWindow::MainWindow() :
 
 #define CONNECT_BUTTON_SLOT(name) \
 			connect( ui->name, SIGNAL( clicked() ), this, SLOT( name() ) );
-
-	CONNECT_BUTTON_SLOT( openGlobalConfig );
-	CONNECT_BUTTON_SLOT( openPersonalConfig );
-	CONNECT_BUTTON_SLOT( openSnapshotDirectory );
 
 	CONNECT_BUTTON_SLOT( openPublicKeyBaseDir );
 	CONNECT_BUTTON_SLOT( openPrivateKeyBaseDir );
@@ -148,8 +142,6 @@ void MainWindow::reset( bool onlyUI )
 	FOREACH_ITALC_VNC_SERVER_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
 	FOREACH_ITALC_DEMO_SERVER_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
 	FOREACH_ITALC_NETWORK_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
-	FOREACH_ITALC_CONFIG_FILE_PATHS_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
-	FOREACH_ITALC_DATA_DIRECTORIES_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
 	FOREACH_ITALC_AUTHENTICATION_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
 
 	for( auto page : findChildren<ConfigurationPage *>() )
@@ -212,33 +204,6 @@ void MainWindow::resetOrApply( QAbstractButton *btn )
 		reset();
 	}
 }
-
-
-
-void MainWindow::openGlobalConfig()
-{
-	FileSystemBrowser( FileSystemBrowser::ExistingFile ).
-										exec( ui->globalConfigurationPath );
-}
-
-
-
-
-void MainWindow::openPersonalConfig()
-{
-	FileSystemBrowser( FileSystemBrowser::ExistingFile ).
-										exec( ui->personalConfigurationPath );
-}
-
-
-
-
-void MainWindow::openSnapshotDirectory()
-{
-	FileSystemBrowser( FileSystemBrowser::ExistingDirectory ).
-												exec( ui->snapshotDirectory );
-}
-
 
 
 

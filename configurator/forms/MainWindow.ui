@@ -2,6 +2,14 @@
 <ui version="4.0">
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1355</width>
+    <height>919</height>
+   </rect>
+  </property>
   <property name="windowTitle">
    <string>iTALC Configurator</string>
   </property>
@@ -11,139 +19,6 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_4">
-    <item row="0" column="0">
-     <widget class="QListWidget" name="pageSelector">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="minimumSize">
-       <size>
-        <width>250</width>
-        <height>0</height>
-       </size>
-      </property>
-      <property name="verticalScrollBarPolicy">
-       <enum>Qt::ScrollBarAlwaysOff</enum>
-      </property>
-      <property name="horizontalScrollBarPolicy">
-       <enum>Qt::ScrollBarAlwaysOff</enum>
-      </property>
-      <property name="sizeAdjustPolicy">
-       <enum>QAbstractScrollArea::AdjustToContents</enum>
-      </property>
-      <property name="iconSize">
-       <size>
-        <width>48</width>
-        <height>48</height>
-       </size>
-      </property>
-      <property name="textElideMode">
-       <enum>Qt::ElideNone</enum>
-      </property>
-      <property name="movement">
-       <enum>QListView::Free</enum>
-      </property>
-      <property name="spacing">
-       <number>4</number>
-      </property>
-      <property name="viewMode">
-       <enum>QListView::ListMode</enum>
-      </property>
-      <property name="uniformItemSizes">
-       <bool>true</bool>
-      </property>
-      <property name="currentRow">
-       <number>0</number>
-      </property>
-      <item>
-       <property name="text">
-        <string>General</string>
-       </property>
-       <property name="icon">
-        <iconset resource="../italc-configurator.qrc">
-         <normaloff>:/resources/configure-shortcuts.png</normaloff>:/resources/configure-shortcuts.png</iconset>
-       </property>
-       <property name="flags">
-        <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Service</string>
-       </property>
-       <property name="icon">
-        <iconset resource="../italc-configurator.qrc">
-         <normaloff>:/resources/preferences-system-network.png</normaloff>:/resources/preferences-system-network.png</iconset>
-       </property>
-       <property name="flags">
-        <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Paths</string>
-       </property>
-       <property name="icon">
-        <iconset resource="../italc-configurator.qrc">
-         <normaloff>:/resources/kfind.png</normaloff>:/resources/kfind.png</iconset>
-       </property>
-       <property name="flags">
-        <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Authentication</string>
-       </property>
-       <property name="icon">
-        <iconset resource="../italc-configurator.qrc">
-         <normaloff>:/resources/preferences-system-login.png</normaloff>:/resources/preferences-system-login.png</iconset>
-       </property>
-       <property name="flags">
-        <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Access control</string>
-       </property>
-       <property name="icon">
-        <iconset resource="../italc-configurator.qrc">
-         <normaloff>:/resources/preferences-desktop-screensaver.png</normaloff>:/resources/preferences-desktop-screensaver.png</iconset>
-       </property>
-       <property name="flags">
-        <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>LDAP</string>
-       </property>
-       <property name="icon">
-        <iconset resource="../italc-configurator.qrc">
-         <normaloff>:/resources/folder-publicshare.png</normaloff>:/resources/folder-publicshare.png</iconset>
-       </property>
-       <property name="flags">
-        <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Debugging</string>
-       </property>
-       <property name="icon">
-        <iconset resource="../italc-configurator.qrc">
-         <normaloff>:/resources/debug-step-into.png</normaloff>:/resources/debug-step-into.png</iconset>
-       </property>
-       <property name="flags">
-        <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
-       </property>
-      </item>
-     </widget>
-    </item>
     <item row="0" column="1">
      <widget class="QStackedWidget" name="configPages">
       <property name="currentIndex">
@@ -310,135 +185,7 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="pathSettingsPage">
-       <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,1">
-        <property name="topMargin">
-         <number>0</number>
-        </property>
-        <property name="bottomMargin">
-         <number>0</number>
-        </property>
-        <item>
-         <widget class="QGroupBox" name="groupBox">
-          <property name="title">
-           <string>Configuration files</string>
-          </property>
-          <layout class="QGridLayout" name="gridLayout_3">
-           <property name="leftMargin">
-            <number>10</number>
-           </property>
-           <property name="horizontalSpacing">
-            <number>10</number>
-           </property>
-           <item row="0" column="1">
-            <widget class="QLineEdit" name="globalConfigurationPath"/>
-           </item>
-           <item row="0" column="0">
-            <widget class="QLabel" name="label_5">
-             <property name="text">
-              <string>Global configuration</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="0">
-            <widget class="QLabel" name="label_2">
-             <property name="text">
-              <string>Personal configuration</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="1">
-            <widget class="QLineEdit" name="personalConfigurationPath"/>
-           </item>
-           <item row="0" column="2">
-            <widget class="QToolButton" name="openGlobalConfig">
-             <property name="text">
-              <string>...</string>
-             </property>
-             <property name="icon">
-              <iconset resource="../italc-configurator.qrc">
-               <normaloff>:/resources/document-open.png</normaloff>:/resources/document-open.png</iconset>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="2">
-            <widget class="QToolButton" name="openPersonalConfig">
-             <property name="text">
-              <string>...</string>
-             </property>
-             <property name="icon">
-              <iconset resource="../italc-configurator.qrc">
-               <normaloff>:/resources/document-open.png</normaloff>:/resources/document-open.png</iconset>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item>
-         <widget class="QGroupBox" name="groupBox_2">
-          <property name="title">
-           <string>Data directories</string>
-          </property>
-          <layout class="QGridLayout" name="gridLayout_2">
-           <property name="leftMargin">
-            <number>10</number>
-           </property>
-           <property name="horizontalSpacing">
-            <number>10</number>
-           </property>
-           <item row="0" column="1">
-            <spacer name="horizontalSpacer_3">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>0</width>
-               <height>0</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-           <item row="1" column="1">
-            <widget class="QLineEdit" name="snapshotDirectory"/>
-           </item>
-           <item row="1" column="0">
-            <widget class="QLabel" name="label">
-             <property name="text">
-              <string>Snapshots</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="2">
-            <widget class="QToolButton" name="openSnapshotDirectory">
-             <property name="text">
-              <string>...</string>
-             </property>
-             <property name="icon">
-              <iconset resource="../italc-configurator.qrc">
-               <normaloff>:/resources/document-open.png</normaloff>:/resources/document-open.png</iconset>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item>
-         <spacer name="verticalSpacer">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>0</width>
-            <height>0</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-       </layout>
-      </widget>
+      <widget class="MasterConfigurationPage" name="masterSettingsPage"/>
       <widget class="QWidget" name="authSettingsPage">
        <layout class="QVBoxLayout" name="verticalLayout_5" stretch="0,0,0,0,1">
         <property name="topMargin">
@@ -1020,11 +767,137 @@ Note: if the bug involves both a master and client computer, attach bug report a
       </widget>
      </widget>
     </item>
-    <item row="1" column="0" colspan="2">
-     <widget class="Line" name="line">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
+    <item row="0" column="0">
+     <widget class="QListWidget" name="pageSelector">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
       </property>
+      <property name="minimumSize">
+       <size>
+        <width>250</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="verticalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOff</enum>
+      </property>
+      <property name="horizontalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOff</enum>
+      </property>
+      <property name="sizeAdjustPolicy">
+       <enum>QAbstractScrollArea::AdjustToContents</enum>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>48</width>
+        <height>48</height>
+       </size>
+      </property>
+      <property name="textElideMode">
+       <enum>Qt::ElideNone</enum>
+      </property>
+      <property name="movement">
+       <enum>QListView::Free</enum>
+      </property>
+      <property name="spacing">
+       <number>4</number>
+      </property>
+      <property name="viewMode">
+       <enum>QListView::ListMode</enum>
+      </property>
+      <property name="uniformItemSizes">
+       <bool>true</bool>
+      </property>
+      <property name="currentRow">
+       <number>-1</number>
+      </property>
+      <item>
+       <property name="text">
+        <string>General</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../italc-configurator.qrc">
+         <normaloff>:/resources/configure-shortcuts.png</normaloff>:/resources/configure-shortcuts.png</iconset>
+       </property>
+       <property name="flags">
+        <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Service</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../italc-configurator.qrc">
+         <normaloff>:/resources/run-build.png</normaloff>:/resources/run-build.png</iconset>
+       </property>
+       <property name="flags">
+        <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Master</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../italc-configurator.qrc">
+         <normaloff>:/resources/preferences-system-windows-effect-presentwindows.png</normaloff>:/resources/preferences-system-windows-effect-presentwindows.png</iconset>
+       </property>
+       <property name="flags">
+        <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Authentication</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../italc-configurator.qrc">
+         <normaloff>:/resources/preferences-system-login.png</normaloff>:/resources/preferences-system-login.png</iconset>
+       </property>
+       <property name="flags">
+        <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Access control</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../italc-configurator.qrc">
+         <normaloff>:/resources/preferences-desktop-screensaver.png</normaloff>:/resources/preferences-desktop-screensaver.png</iconset>
+       </property>
+       <property name="flags">
+        <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>LDAP</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../italc-configurator.qrc">
+         <normaloff>:/resources/folder-publicshare.png</normaloff>:/resources/folder-publicshare.png</iconset>
+       </property>
+       <property name="flags">
+        <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Debugging</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../italc-configurator.qrc">
+         <normaloff>:/resources/debug-step-into.png</normaloff>:/resources/debug-step-into.png</iconset>
+       </property>
+       <property name="flags">
+        <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
+       </property>
+      </item>
      </widget>
     </item>
     <item row="2" column="1">
@@ -1037,9 +910,24 @@ Note: if the bug involves both a master and client computer, attach bug report a
       </property>
      </widget>
     </item>
+    <item row="1" column="0" colspan="2">
+     <widget class="Line" name="line">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1355</width>
+     <height>35</height>
+    </rect>
+   </property>
    <widget class="QMenu" name="menu_File">
     <property name="title">
      <string>&amp;File</string>
@@ -1128,10 +1016,16 @@ Note: if the bug involves both a master and client computer, attach bug report a
    <header>GeneralConfigurationPage.h</header>
    <container>1</container>
   </customwidget>
+  <customwidget>
+   <class>MasterConfigurationPage</class>
+   <extends>QWidget</extends>
+   <header>MasterConfigurationPage.h</header>
+   <container>1</container>
+  </customwidget>
  </customwidgets>
  <resources>
-  <include location="../../core/core.qrc"/>
   <include location="../italc-configurator.qrc"/>
+  <include location="../../core/core.qrc"/>
  </resources>
  <connections>
   <connection>
@@ -1157,12 +1051,12 @@ Note: if the bug involves both a master and client computer, attach bug report a
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>441</x>
-     <y>78</y>
+     <x>335</x>
+     <y>100</y>
     </hint>
     <hint type="destinationlabel">
-     <x>455</x>
-     <y>190</y>
+     <x>359</x>
+     <y>58</y>
     </hint>
    </hints>
   </connection>
@@ -1173,12 +1067,12 @@ Note: if the bug involves both a master and client computer, attach bug report a
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>441</x>
-     <y>102</y>
+     <x>335</x>
+     <y>84</y>
     </hint>
     <hint type="destinationlabel">
-     <x>455</x>
-     <y>372</y>
+     <x>359</x>
+     <y>66</y>
     </hint>
    </hints>
   </connection>
@@ -1189,12 +1083,12 @@ Note: if the bug involves both a master and client computer, attach bug report a
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>458</x>
-     <y>322</y>
+     <x>341</x>
+     <y>106</y>
     </hint>
     <hint type="destinationlabel">
-     <x>473</x>
-     <y>345</y>
+     <x>340</x>
+     <y>97</y>
     </hint>
    </hints>
   </connection>

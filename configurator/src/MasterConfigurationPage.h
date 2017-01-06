@@ -1,7 +1,7 @@
 /*
- * MainWindow.h - main window of the iTALC Configurator
+ * MasterConfigurationPage.h - header for the MasterConfigurationPage class
  *
- * Copyright (c) 2010-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -22,45 +22,32 @@
  *
  */
 
-#ifndef MAIN_WINDOW_H
-#define MAIN_WINDOW_H
+#ifndef MASTER_CONFIGURATION_PAGE_H
+#define MASTER_CONFIGURATION_PAGE_H
 
-#include <QMainWindow>
+#include "ConfigurationPage.h"
 
-class QAbstractButton;
+namespace Ui {
+class MasterConfigurationPage;
+}
 
-namespace Ui { class MainWindow; } ;
-
-class MainWindow : public QMainWindow
+class MasterConfigurationPage : public ConfigurationPage
 {
 	Q_OBJECT
 public:
-	MainWindow();
-	virtual ~MainWindow();
+	MasterConfigurationPage();
+	virtual ~MasterConfigurationPage();
 
-	void reset( bool onlyUI = false );
-	void apply();
-
+	virtual void resetWidgets();
+	virtual void connectWidgetsToProperties();
 
 private slots:
-	void configurationChanged();
-	void resetOrApply( QAbstractButton *btn );
-	void openPublicKeyBaseDir();
-	void openPrivateKeyBaseDir();
-	void loadSettingsFromFile();
-	void saveSettingsToFile();
-	void launchKeyFileAssistant();
-	void testLogonAuthentication();
-	void generateBugReportArchive();
-	void aboutItalc();
-
+	void openGlobalConfig();
+	void openPersonalConfig();
+	void openSnapshotDirectory();
 
 private:
-	virtual void closeEvent( QCloseEvent *closeEvent );
+	Ui::MasterConfigurationPage *ui;
+};
 
-	Ui::MainWindow *ui;
-	bool m_configChanged;
-
-} ;
-
-#endif
+#endif // MASTER_CONFIGURATION_PAGE_H
