@@ -49,7 +49,7 @@ bool silent = false;
 
 static void configApplyError( const QString &msg )
 {
-	criticalMessage( MainWindow::tr( "%1 Configurator" ).arg( QCoreApplication::applicationName() ), msg );
+	criticalMessage( MainWindow::tr( "%1 Configurator" ).arg( ItalcCore::applicationName() ), msg );
 }
 
 
@@ -64,7 +64,7 @@ bool applyConfiguration( const ItalcConfiguration &c )
 	{
 		configApplyError(
 			MainWindow::tr( "Could not modify the autostart property "
-										"for the %1 Service." ).arg( QCoreApplication::applicationName() ) );
+										"for the %1 Service." ).arg( ItalcCore::applicationName() ) );
 	}
 
 	if( !SystemConfigurationModifier::setServiceArguments(
@@ -72,14 +72,14 @@ bool applyConfiguration( const ItalcConfiguration &c )
 	{
 		configApplyError(
 			MainWindow::tr( "Could not modify the service arguments "
-									"for the %1 Service." ).arg( QCoreApplication::applicationName() ) );
+									"for the %1 Service." ).arg( ItalcCore::applicationName() ) );
 	}
 	if( !SystemConfigurationModifier::enableFirewallException(
 							ItalcCore::config->isFirewallExceptionEnabled() ) )
 	{
 		configApplyError(
 			MainWindow::tr( "Could not change the firewall configuration "
-									"for the %1 Service." ).arg( QCoreApplication::applicationName() ) );
+									"for the %1 Service." ).arg( ItalcCore::applicationName() ) );
 	}
 
 #ifdef ITALC_BUILD_WIN32

@@ -53,6 +53,25 @@ IF(NOT VERSION_BUILD GREATER 0)
 ENDIF()
 
 
+# Get list of all committers from git history, ordered by number of commits.
+# The CONTRIBUTORS file is used by AboutDialog. This information can be provided
+# with -DCONTRIBUTORS=/path/to/CONTRIBUTORS instead. For instance, to generate
+# this file for version 3.0.2, the command is:
+#   git shortlog -sne v3.0.2 | cut -c8-
+FIND_PACKAGE(Git)
+IF(GIT_FOUND AND NOT CONTRIBUTORS)
+    SET(CONTRIBUTORS "${CMAKE_BINARY_DIR}/CONTRIBUTORS")
+    EXECUTE_PROCESS(
+        COMMAND "${GIT_EXECUTABLE}" shortlog -sne
+        COMMAND cut -c8-
+		COMMAND grep -v root
+		OUTPUT_FILE "${CONTRIBUTORS}"
+        WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
+        TIMEOUT 1)
+	FILE(RELATIVE_PATH CONTRIBUTORS ${CMAKE_BINARY_DIR}/core ${CONTRIBUTORS})
+ENDIF()
+
+
 INCLUDE(DetectMachine)
 
 # check for pthreads and TLS support
@@ -207,7 +226,7 @@ SET(ITALCCONFIG ${CMAKE_BINARY_DIR}/italcconfig.h)
 SET(RFBCONFIG ${CMAKE_BINARY_DIR}/rfb/rfbconfig.h)
 
 CONFIGURE_FILE(${CMAKE_SOURCE_DIR}/italcconfig.h.in ${ITALCCONFIG})
-SET(IN_FILES iTALC.nsi service/italc-service.rc master/data/italc-master master/data/italc-master.desktop master/italc-master.rc configurator/italc-configurator.rc)
+SET(IN_FILES iTALC.nsi core/builddata.qrc service/italc-service.rc master/data/italc-master master/data/italc-master.desktop master/italc-master.rc configurator/italc-configurator.rc)
 FOREACH(f ${IN_FILES})
 	CONFIGURE_FILE(${CMAKE_SOURCE_DIR}/${f}.in ${CMAKE_BINARY_DIR}/${f} @ONLY)
 ENDFOREACH(f ${IN_FILES})

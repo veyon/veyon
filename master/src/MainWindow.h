@@ -153,7 +153,7 @@ private slots:
 	void remoteControlClient( QAction * _c );
 	void stopDemoAfterRemoteControl();
 
-	void aboutITALC( void );
+	void aboutITALC();
 
 	void changeGlobalClientMode( int );
 

@@ -198,7 +198,8 @@ static int runCoreServer( int argc, char **argv )
 
 	// start the SystemTrayIconSlave and set the default tooltip
 	coreServer.slaveManager()->setSystemTrayToolTip(
-		QApplication::tr( "iTALC Service %1 at %2:%3" ).
+		QApplication::tr( "%1 Service %2 at %3:%4" ).
+							arg( ItalcCore::applicationName() ).
 							arg( ITALC_VERSION ).
 							arg( QHostInfo::localHostName() ).
 							arg( QString::number( vncServer.serverPort() ) ) );

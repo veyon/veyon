@@ -136,7 +136,7 @@ ClassroomManager::ClassroomManager( MainWindow * _main_window,
 
 	l->addSpacing( 5 );
 	QLabel * help_txt = new QLabel(
-		tr( "Use the context-menu (right mouse-button) to add/remove "
+		tr( "Use the context menu (right click) to add/remove "
 			"computers and/or classrooms." ), contentParent() );
 	l->addWidget( help_txt );
 	help_txt->setWordWrap( true );
@@ -153,7 +153,7 @@ ClassroomManager::ClassroomManager( MainWindow * _main_window,
 			this, SLOT( clickedExportToFile() ) );
 	m_exportToFileBtn->setWhatsThis( tr( "Use this button for exporting "
 				"this list of computers and usernames into "
-				"a text-file. You can use this file "
+				"a text file. You can use this file "
 				"later for collecting files "
 				"after an exam has finished. "
 				"This is sometimes neccessary, "
@@ -321,19 +321,9 @@ void ClassroomManager::saveGlobalClientConfig( void )
 	}
 
 	QString xml = "<?xml version=\"1.0\"?>\n" + doc.toString( 2 );
-/*	if( MainWindow::ensureConfigPathExists() == false )
-	{
-		qFatal( QString( "Could not read/write or create directory %1!"
-					"For running iTALC, make sure you have "
-					"write-access to your home-directory "
-					"and to %1 (if already existing)."
-					).arg( ITALC_CONFIG_PATH
-						).toUtf8().constData() );
-	}*/
 
 	QFile( m_globalClientConfiguration + ".bak" ).remove();
-	QFile( m_globalClientConfiguration ).copy( m_globalClientConfiguration +
-									".bak" );
+	QFile( m_globalClientConfiguration ).copy( m_globalClientConfiguration + ".bak" );
 	QFile outfile( m_globalClientConfiguration );
 	outfile.open( QFile::WriteOnly | QFile::Truncate );
 

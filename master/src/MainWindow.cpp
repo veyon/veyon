@@ -73,7 +73,7 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 {
 	setupUi( this );
 
-	setWindowTitle( tr( "iTALC" ) + " " + ITALC_VERSION );
+	setWindowTitle( ItalcCore::applicationName() + " " + ITALC_VERSION );
 
 	if( LocalSystem::Path::ensurePathExists(
 						LocalSystem::Path::personalConfigDataPath() ) == false )
@@ -84,9 +84,10 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 		}
 		QMessageBox::information( this, tr( "No write access" ),
 			tr( "Could not read/write or create directory %1! "
-			"For running iTALC, make sure you're permitted to "
+			"For running %2, make sure you're permitted to "
 			"create or write this directory." ).arg(
-					LocalSystem::Path::personalConfigDataPath() ) );
+					LocalSystem::Path::personalConfigDataPath() ).
+								  arg( ItalcCore::applicationName() ) );
 		return;
 	}
 
@@ -151,11 +152,11 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 	m_sysTrayActions << a;
 	ToolButton * overview_mode = new ToolButton(
 			a, tr( "Overview" ), QString::null,
-			tr( "This is the default mode in iTALC and allows you "
+			tr( "This is the default mode in %1 and allows you "
 				"to have an overview over all visible "
 				"computers. Also click on this button for "
 				"unlocking locked workstations or for leaving "
-				"demo-mode." ),
+				"demo-mode." ).arg( ItalcCore::applicationName() ),
 			this, SLOT( mapOverview() ), m_toolBar );
 
 
@@ -312,12 +313,13 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 	if( !conn->waitForConnected( 5000 ) )
 	{
 		QMessageBox::information( this,
-			tr( "Could not contact iTALC service" ),
-			tr( "Could not contact the local iTALC service. It is likely "
+			tr( "Could not contact %1 service" ).arg( ItalcCore::applicationName() ),
+			tr( "Could not contact the local %1 service. It is likely "
 				"that you entered wrong credentials or key files are "
 				"not set up properly. Try again or contact your "
-				"administrator for solving this problem using the iTALC "
-				"Management Console." ) );
+				"administrator for solving this problem using the %2 "
+				"Management Console." ).arg( ItalcCore::applicationName() ).
+								  arg( ItalcCore::applicationName() ) );
 		if( ItalcCore::config->logLevel() < Logger::LogLevelDebug )
 		{
 			return;
@@ -329,15 +331,13 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 	m_localICA->startDemoServer( ItalcCore::config->coreServerPort(),
 									ItalcCore::config->demoServerPort() );
 
-//	##ITALC2: m_localISD->hideTrayIcon();
-
 	// setup system tray icon
 	QIcon icon( ":/resources/icon16.png" );
 	icon.addFile( ":/resources/icon22.png" );
 	icon.addFile( ":/resources/icon32.png" );
 
 	m_systemTrayIcon.setIcon( icon );
-	m_systemTrayIcon.setToolTip( tr( "iTALC Master Control" ) );
+	m_systemTrayIcon.setToolTip( tr( "%1 Master Control" ).arg( ItalcCore::applicationName() ) );
 	m_systemTrayIcon.show();
 	connect( &m_systemTrayIcon, SIGNAL( activated(
 					QSystemTrayIcon::ActivationReason ) ),
@@ -346,6 +346,8 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 
 
 	m_updateThread = new MainWindowUpdateThread( this );
+
+	ItalcCore::enforceBranding( this );
 }
 
 
@@ -392,10 +394,10 @@ bool MainWindow::initAuthentication()
 	QMessageBox::information( NULL,
 			tr( "Authentication impossible" ),
 			tr(	"No authentication key files were found or your current ones "
-				"are outdated. Please create new key files using the iTALC "
-				"Management Console. Alternatively set up logon authentication "
-				"using the iTALC Management Console. Otherwise you won't be "
-				"able to access computers using iTALC." ) );
+				"are outdated. Please create new key files using the %1 "
+				"Configurator. Alternatively set up logon authentication "
+				"using the %1 Configurator. Otherwise you won't be "
+				"able to access computers using %1." ).arg( ItalcCore::applicationName() ) );
 
 	return false;
 }
@@ -531,7 +533,7 @@ void MainWindow::stopDemoAfterRemoteControl()
 
 
 
-void MainWindow::aboutITALC( void )
+void MainWindow::aboutITALC()
 {
 	AboutDialog( this ).exec();
 }

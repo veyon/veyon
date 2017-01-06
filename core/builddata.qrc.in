@@ -1,0 +1,5 @@
+<RCC>
+  <qresource>
+    <file>@CONTRIBUTORS@</file>
+  </qresource>
+</RCC>

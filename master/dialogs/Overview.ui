@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>289</width>
-    <height>571</height>
+    <width>763</width>
+    <height>873</height>
    </rect>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
@@ -60,7 +60,7 @@ p, li { white-space: pre-wrap; }
      <item>
       <widget class="QLabel" name="label1">
        <property name="text">
-        <string>Here you see the working-bar which contains several buttons. Each button is connected to a workspace. Just take a look at the available workspaces by clicking on the corresponding button.</string>
+        <string>This is the sidebar with buttons connected to workspaces. Just take a look at the available workspaces by clicking the corresponding button.</string>
        </property>
        <property name="wordWrap">
         <bool>true</bool>
@@ -105,7 +105,7 @@ p, li { white-space: pre-wrap; }
      <item>
       <widget class="QLabel" name="label2">
        <property name="text">
-        <string>Using the classroom-manager you can manage your classrooms and computers. You can also see which users are logged in.</string>
+        <string>Using the classroom manager you can manage your classrooms and computers. You can also see which users are logged in.</string>
        </property>
        <property name="wordWrap">
         <bool>true</bool>
@@ -150,7 +150,7 @@ p, li { white-space: pre-wrap; }
      <item>
       <widget class="QLabel" name="label4">
        <property name="text">
-        <string>The snapshot-workspace is a very useful tool. It let's you manage the snapshots you made.</string>
+        <string>The snapshot workspace let's you view and manage student computer snapshots.</string>
        </property>
        <property name="wordWrap">
         <bool>true</bool>
@@ -195,7 +195,7 @@ p, li { white-space: pre-wrap; }
      <item>
       <widget class="QLabel" name="label5">
        <property name="text">
-        <string>Of course you can configure iTALC. This is usually done using the configuration-workspace.</string>
+        <string>If you want to change the appearence and behaviour of the program use the configuration workspace.</string>
        </property>
        <property name="wordWrap">
         <bool>true</bool>

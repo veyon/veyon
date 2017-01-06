@@ -1,7 +1,7 @@
 /*
  * AboutDialog.h - declaration of AboutDialog class
  *
- * Copyright (c) 2011-2013 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2011-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -42,6 +42,5 @@ public:
 private:
 	Ui::AboutDialog *ui;
 } ;
-
 
 #endif

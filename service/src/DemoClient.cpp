@@ -40,7 +40,7 @@ DemoClient::DemoClient( const QString &host, bool fullscreen ) :
 	m_toplevel( fullscreen ? new LockWidget( LockWidget::NoBackground )
 							: new QWidget() )
 {
-	m_toplevel->setWindowTitle( tr( "iTALC Demo" ) );
+	m_toplevel->setWindowTitle( tr( "%1 Demo" ).arg( ItalcCore::applicationName() ) );
 	m_toplevel->setWindowIcon( QPixmap( ":/resources/display.png" ) );
 	m_toplevel->setAttribute( Qt::WA_DeleteOnClose, false );
 

@@ -36,6 +36,7 @@
 
 class ItalcConfiguration;
 class SocketDevice;
+class QWidget;
 
 namespace ItalcCore
 {
@@ -44,6 +45,9 @@ namespace ItalcCore
 	bool initAuthentication( int credentialTypes =
 										AuthenticationCredentials::AllTypes );
 	void destroy();
+
+	QString applicationName();
+	void enforceBranding( QWidget* topLevelWidget );
 
 	extern ItalcConfiguration *config;
 	extern AuthenticationCredentials *authenticationCredentials;

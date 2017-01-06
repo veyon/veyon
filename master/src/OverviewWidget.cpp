@@ -1,7 +1,7 @@
 /*
  * OverviewWidget.cpp - implementation of overview-widget for side-bar
  *
- * Copyright (c) 2004-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2004-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -28,19 +28,18 @@
 
 #include "OverviewWidget.h"
 #include "MainWindow.h"
-
+#include "ItalcCore.h"
 
 
 OverviewWidget::OverviewWidget( MainWindow * _main_window, QWidget * _parent ) :
 	SideBarWidget( QPixmap( ":/resources/view-calendar-month.png" ),
 			tr( "Overview" ),
-			tr( "Some basic information on iTALC and how to use "
-				"it." ), _main_window, _parent )
+			tr( "Some basic information on %1 Master and how to use it." ).
+				   arg( ItalcCore::applicationName() ), _main_window, _parent )
 {
 	setupUi( contentParent() );
 
-	connect( aboutButton, SIGNAL( clicked() ), mainWindow(),
-							SLOT( aboutITALC() ) );
+	connect( aboutButton, SIGNAL( clicked() ), mainWindow(), SLOT( aboutITALC() ) );
 }
 
 

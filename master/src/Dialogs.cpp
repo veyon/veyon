@@ -1,7 +1,7 @@
 /*
  * Dialogs.cpp - implementation of dialogs
  *
- * Copyright (c) 2006-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -29,6 +29,7 @@
 #include "Client.h"
 #include "ClassroomManager.h"
 #include "MainWindow.h"
+#include "ItalcCore.h"
 
 #include "ui_ClientSettingsDialog.h"
 #include "ui_TextMessageDialog.h"
@@ -104,6 +105,8 @@ ClientSettingsDialog::ClientSettingsDialog( Client * _client,
 #endif
 		ui->typeComboBox->setCurrentIndex( m_client->type() );
 	}
+
+	ItalcCore::enforceBranding( this );
 }
 
 
@@ -176,6 +179,8 @@ SupportDialog::SupportDialog( QWidget *parent ) :
 	ui( new Ui::SupportDialog )
 {
 	ui->setupUi( this );
+
+	ItalcCore::enforceBranding( this );
 }
 
 
@@ -201,6 +206,8 @@ TextMessageDialog::TextMessageDialog( QString &msgStr, QWidget *parent ) :
 	m_msgStr( msgStr )
 {
 	ui->setupUi( this );
+
+	ItalcCore::enforceBranding( this );
 }
 
 
@@ -234,7 +241,6 @@ RemoteLogonDialog::RemoteLogonDialog( QWidget *parent ) :
 			this, SLOT( passwordChanged( const QString & ) ) );
 	connect( ui->domainEdit, SIGNAL( textChanged( const QString & ) ),
 			this, SLOT( domainChanged( const QString & ) ) );
+
+	ItalcCore::enforceBranding( this );
 }
-
-
-

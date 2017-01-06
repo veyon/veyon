@@ -1,7 +1,7 @@
 /*
  * AboutDialog.cpp - implementation of AboutDialog
  *
- * Copyright (c) 2011-2013 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2011-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -22,9 +22,10 @@
  *
  */
 
-#include <QtCore/QFile>
+#include <QFile>
 
 #include "AboutDialog.h"
+#include "ItalcCore.h"
 
 #include "ui_AboutDialog.h"
 
@@ -42,7 +43,6 @@ AboutDialog::AboutDialog( QWidget *parent ) :
 	QFile license( ":/COPYING" );
 	license.open( QFile::ReadOnly );
 	ui->license->setPlainText( license.readAll() );
+
+	ItalcCore::enforceBranding( this );
 }
-
-
-

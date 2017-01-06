@@ -72,7 +72,7 @@
       </item>
       <item>
        <property name="text">
-        <string>iTALC Server</string>
+        <string>Service</string>
        </property>
        <property name="icon">
         <iconset resource="../italc-configurator.qrc">

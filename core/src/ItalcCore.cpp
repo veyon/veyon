@@ -32,8 +32,11 @@
 #include <QtCore/QFileInfo>
 #include <QtCore/QLocale>
 #include <QtCore/QTranslator>
+#include <QAbstractButton>
+#include <QAction>
 #include <QApplication>
-#include <QMetaEnum>
+#include <QGroupBox>
+#include <QLabel>
 
 #include "ItalcCore.h"
 #include "ItalcConfiguration.h"
@@ -280,6 +283,45 @@ void ItalcCore::destroy()
 
 
 
+QString ItalcCore::applicationName()
+{
+	return "iTALC";
+}
+
+
+
+void ItalcCore::enforceBranding( QWidget *topLevelWidget )
+{
+	for( auto label : topLevelWidget->findChildren<QLabel *>() )
+	{
+		label->setText( label->text().replace( "iTALC", ItalcCore::applicationName() ) );
+	}
+
+	for( auto button : topLevelWidget->findChildren<QAbstractButton *>() )
+	{
+		button->setText( button->text().replace( "iTALC", ItalcCore::applicationName() ) );
+	}
+
+	for( auto groupBox : topLevelWidget->findChildren<QGroupBox *>() )
+	{
+		groupBox->setTitle( groupBox->title().replace( "iTALC", ItalcCore::applicationName() ) );
+	}
+
+	for( auto action : topLevelWidget->findChildren<QAction *>() )
+	{
+		action->setText( action->text().replace( "iTALC", ItalcCore::applicationName() ) );
+	}
+
+	for( auto widget : topLevelWidget->findChildren<QWidget *>() << topLevelWidget )
+	{
+		widget->setWindowTitle( widget->windowTitle().replace( "iTALC", ItalcCore::applicationName() ) );
+	}
+
+	qDebug() << topLevelWidget->windowTitle();
+}
+
+
+
 static const char *userRoleNames[] =
 {
 	"none",
@@ -352,6 +394,4 @@ const Command StopDemoServer = "StopDemoServer";
 
 const Command ReportSlaveStateFlags = "ReportSlaveStateFlags";
 
-
 } ;
-
