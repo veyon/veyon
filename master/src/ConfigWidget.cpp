@@ -41,7 +41,7 @@
 
 ConfigWidget::ConfigWidget( MainWindow * _main_window, QWidget * _parent ) :
 	SideBarWidget( QPixmap( ":/resources/adjustrgb.png" ),
-			tr( "%1 Master preferences" ).arg( ItalcCore::applicationName() ),
+			tr( "Preferences" ),
 			tr( "In this workspace you can customize the user interface and its behaviour of %1 Master." ).arg( ItalcCore::applicationName() ),
 			_main_window, _parent )
 {
