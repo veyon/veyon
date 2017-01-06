@@ -73,7 +73,7 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 {
 	setupUi( this );
 
-	setWindowTitle( ItalcCore::applicationName() + " " + ITALC_VERSION );
+	setWindowTitle( QString( "%1 Master %2" ).arg( ItalcCore::applicationName() ).arg( ITALC_VERSION ) );
 
 	if( LocalSystem::Path::ensurePathExists(
 						LocalSystem::Path::personalConfigDataPath() ) == false )
