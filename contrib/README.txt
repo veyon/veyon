@@ -5,7 +5,7 @@ Peter Gigengack <Peter/dot/Gigengack/at/sthildas/dot/wa/dot/edu/dot/au>:
 
 I believe I have successfully created an ADMX template that will work for
 iTALC 2. Each of the policies when created will control the parameters in use
-created/modified when using the iTALC Management Console.
+created/modified when using the iTALC Configurator.
  
 The only limitation as mentioned in previous emails is using the Active Directory
 integrated or “Logon settings” from authentication where binary values are

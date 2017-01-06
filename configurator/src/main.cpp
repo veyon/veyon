@@ -293,7 +293,7 @@ int main( int argc, char **argv )
 	// default to teacher role for various command line operations
 	ItalcCore::role = ItalcCore::RoleTeacher;
 
-	Logger l( "ItalcManagementConsole" );
+	Logger l( "ItalcConfigurator" );
 
 	if( checkWritableConfiguration() == false )
 	{

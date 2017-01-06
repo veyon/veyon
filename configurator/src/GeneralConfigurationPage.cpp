@@ -1,7 +1,7 @@
 /*
  * GeneralConfigurationPage.cpp - configuration page with general settings
  *
- * Copyright (c) 2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2016-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -221,7 +221,7 @@ void GeneralConfigurationPage::clearLogFiles()
 	QDir d( LocalSystem::Path::expand( ItalcCore::config->logFileDirectory() ) );
 	foreach( const QString &f, d.entryList( QStringList() << "Italc*.log" ) )
 	{
-		if( f != "ItalcManagementConsole.log" )
+		if( f != "ItalcConfigurator.log" )
 		{
 			success &= d.remove( f );
 		}
@@ -235,7 +235,7 @@ void GeneralConfigurationPage::clearLogFiles()
 
 	foreach( const QString &f, d.entryList( QStringList() << "Italc*.log" ) )
 	{
-		if( f != "ItalcManagementConsole.log" )
+		if( f != "ItalcConfigurator.log" )
 		{
 			success &= d.remove( f );
 		}

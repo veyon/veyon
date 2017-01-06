@@ -318,7 +318,7 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 				"that you entered wrong credentials or key files are "
 				"not set up properly. Try again or contact your "
 				"administrator for solving this problem using the %2 "
-				"Management Console." ).arg( ItalcCore::applicationName() ).
+				"Configurator." ).arg( ItalcCore::applicationName() ).
 								  arg( ItalcCore::applicationName() ) );
 		if( ItalcCore::config->logLevel() < Logger::LogLevelDebug )
 		{
