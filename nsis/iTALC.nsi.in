@@ -175,22 +175,22 @@ File "${DLLDIR_LIB}\libwinpthread-1.dll"
 File "${DLLDIR_GCC}\libstdc++-6.dll"
 File "${DLLDIR_GCC}\${DLL_GCC}"
 # core components
-File "italc-${VERSION}\italc-service.exe"
-File "italc-${VERSION}\vnchooks.dll"
-File "italc-${VERSION}\italc-core.dll"
-File "italc-${VERSION}\italc-configurator.exe"
-File "italc-${VERSION}\LICENSE.TXT"
-File "italc-${VERSION}\README.TXT"
-File "italc-${VERSION}\install-interception.exe"
+File "italc-service.exe"
+File "vnchooks.dll"
+File "italc-core.dll"
+File "italc-configurator.exe"
+File "LICENSE.TXT"
+File "README.TXT"
+File "install-interception.exe"
 SetOutPath "$INSTDIR\platforms"
 File "${QT5_PLUGINS_PLATFORMS}/qwindows.dll"
 File "${QT5_PLUGINS_PLATFORMS}/qminimal.dll"
 SetOutPath "$INSTDIR\doc"
-File "italc-${VERSION}\doc\*txt"
+File "doc\*txt"
 SetOutPath "$INSTDIR\contrib"
-File "italc-${VERSION}\contrib\*"
+File "contrib\*"
 SetOutPath "$INSTDIR\contrib\en-US"
-File "italc-${VERSION}\contrib\en-US\*"
+File "contrib\en-US\*"
 ExecWait '"$INSTDIR\install-interception.exe" /install'
 ExecWait '"$INSTDIR\italc-service.exe" -quiet -registerservice'
 ExecWait '"$INSTDIR\italc-configurator.exe" -s Network/FirewallExceptionEnabled=1'
@@ -202,7 +202,7 @@ SectionEnd
 Section "iTALC Master"
 ${INSTALL_TYPE}
 SetOutPath "$INSTDIR"
-File "italc-${VERSION}\italc-master.exe"
+File "italc-master.exe"
 
 !ifdef REG_START_MENU
 !insertmacro MUI_STARTMENU_WRITE_BEGIN Application

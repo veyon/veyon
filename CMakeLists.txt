@@ -225,7 +225,7 @@ SET(ITALC_CORE_INCLUDE_DIR core/include)
 SET(ITALCCONFIG ${CMAKE_BINARY_DIR}/${ITALC_CORE_INCLUDE_DIR}/italcconfig.h)
 SET(RFBCONFIG ${CMAKE_BINARY_DIR}/${ITALC_CORE_INCLUDE_DIR}/rfb/rfbconfig.h)
 
-SET(IN_FILES ${ITALC_CORE_INCLUDE_DIR}/italcconfig.h iTALC.nsi core/builddata.qrc service/italc-service.rc master/data/italc-master master/data/italc-master.desktop master/italc-master.rc configurator/italc-configurator.rc)
+SET(IN_FILES ${ITALC_CORE_INCLUDE_DIR}/italcconfig.h nsis/iTALC.nsi core/builddata.qrc service/italc-service.rc master/data/italc-master master/data/italc-master.desktop master/italc-master.rc configurator/italc-configurator.rc)
 FOREACH(f ${IN_FILES})
 	CONFIGURE_FILE(${CMAKE_SOURCE_DIR}/${f}.in ${CMAKE_BINARY_DIR}/${f} @ONLY)
 ENDFOREACH(f ${IN_FILES})
@@ -325,7 +325,8 @@ ADD_CUSTOM_TARGET(win-nsi
 			COMMAND cp ${CMAKE_SOURCE_DIR}/COPYING ${TMP}/LICENSE.TXT
 			COMMAND cp ${CMAKE_SOURCE_DIR}/README.md ${TMP}/README.TXT
 			COMMAND todos ${TMP}/*.txt ${TMP}/*.TXT
-			COMMAND makensis iTALC.nsi
+			COMMAND cp nsis/iTALC.nsi ${TMP}
+			COMMAND makensis ${TMP}/iTALC.nsi
 			#COMMAND rm -rf ${TMP}
 		)
 
