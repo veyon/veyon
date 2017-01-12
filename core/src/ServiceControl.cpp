@@ -29,6 +29,8 @@
 #include <QProgressDialog>
 #include <QThread>
 
+#include <italcconfig.h>
+
 #ifdef ITALC_BUILD_WIN32
 #include <windows.h>
 #endif
@@ -36,6 +38,7 @@
 #include "ItalcCore.h"
 #include "ItalcConfiguration.h"
 #include "LocalSystem.h"
+#include "Logger.h"
 #include "ServiceControl.h"
 
 
