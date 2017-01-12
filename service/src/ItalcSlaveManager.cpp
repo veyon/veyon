@@ -1,7 +1,7 @@
 /*
  * ItalcSlaveManager.cpp - ItalcSlaveManager which manages (GUI) slave apps
  *
- * Copyright (c) 2010-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2010-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  * Copyright (c) 2010 Univention GmbH
  *
  * This file is part of iTALC - http://italc.sourceforge.net
@@ -76,8 +76,7 @@ const Ipc::Argument ItalcSlaveManager::SystemTrayIcon::Text = "Text";
 
 
 ItalcSlaveManager::ItalcSlaveManager() :
-	Ipc::Master( QCoreApplication::applicationDirPath() +
-					QDir::separator() + "ica" ),
+	Ipc::Master( QCoreApplication::applicationFilePath() ),
 	m_demoServerMaster( this )
 {
 }
