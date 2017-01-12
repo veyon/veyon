@@ -1,7 +1,7 @@
 /*
  * AccessControlRulesTestDialog.h - dialog for testing access control rules
  *
- * Copyright (c) 2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2016-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -39,6 +39,7 @@ public:
 	explicit AccessControlRulesTestDialog(QWidget *parent = 0);
 	virtual ~AccessControlRulesTestDialog();
 
+	virtual int exec();
 	virtual void accept();
 
 private:
