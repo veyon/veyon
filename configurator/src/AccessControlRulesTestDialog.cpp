@@ -22,10 +22,12 @@
  *
  */
 
+#include <QHostInfo>
 #include <QMessageBox>
 
 #include "AccessControlRulesTestDialog.h"
 #include "AccessControlProvider.h"
+#include "LocalSystem.h"
 
 #include "ui_AccessControlRulesTestDialog.h"
 
@@ -35,6 +37,9 @@ AccessControlRulesTestDialog::AccessControlRulesTestDialog(QWidget *parent) :
 	ui(new Ui::AccessControlRulesTestDialog)
 {
 	ui->setupUi(this);
+
+	ui->localUserLineEdit->setText( LocalSystem::User::loggedOnUser().name() );
+	ui->localComputerLineEdit->setText( QHostInfo::localHostName() );
 }
 
 
