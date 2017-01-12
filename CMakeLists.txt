@@ -327,6 +327,7 @@ ADD_CUSTOM_TARGET(win-nsi
 			COMMAND todos ${TMP}/*.txt ${TMP}/*.TXT
 			COMMAND cp nsis/iTALC.nsi ${TMP}
 			COMMAND makensis ${TMP}/iTALC.nsi
+			COMMAND mv ${TMP}/italc-*setup.exe .
 			#COMMAND rm -rf ${TMP}
 		)
 
