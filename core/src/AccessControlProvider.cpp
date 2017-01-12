@@ -140,9 +140,9 @@ bool AccessControlProvider::processAuthorizedGroups(const QString &accessingUser
 	qDebug() << "AccessControlProvider::processAuthorizedGroups(): processing for user" << accessingUser;
 
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 6, 0))
-	return groupsOfUser( accessingUser ).toSet().intersects( ItalcCore::config->logonGroups().toSet() );
+	return groupsOfUser( accessingUser ).toSet().intersects( ItalcCore::config->authorizedUserGroups().toSet() );
 #else
-	return groupsOfUser( accessingUser ).toSet().intersect( ItalcCore::config->logonGroups().toSet() ).isEmpty() == false;
+	return groupsOfUser( accessingUser ).toSet().intersect( ItalcCore::config->authorizedUserGroups().toSet() ).isEmpty() == false;
 #endif
 }
 

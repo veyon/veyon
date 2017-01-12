@@ -1,7 +1,7 @@
 /*
  * LogonAuthentication.cpp - class doing logon authentication
  *
- * Copyright (c) 2011-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2011-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -69,8 +69,7 @@ bool LogonAuthentication::authenticateUser( const AuthenticationCredentials &cre
 		{
 			QStringList groupComponents = group.split( ':' );
 			if( groupComponents.size() == 4 &&
-				ItalcCore::config->logonGroups().
-										contains( groupComponents.first() ) &&
+				ItalcCore::config->authorizedUserGroups().contains( groupComponents.first() ) &&
 				groupComponents.last().split( ',' ).contains( cred.logonUsername() ) )
 			{
 				result = true;

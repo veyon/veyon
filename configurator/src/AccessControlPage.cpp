@@ -1,7 +1,7 @@
 /*
  * AccessControlPage.cpp - implementation of the access control page
  *
- * Copyright (c) 2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2016-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -62,7 +62,7 @@ void AccessControlPage::resetWidgets()
 {
 	FOREACH_ITALC_ACCESS_CONTROL_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
 
-	m_accessGroups = ItalcCore::config->logonGroups();
+	m_accessGroups = ItalcCore::config->authorizedUserGroups();
 
 	updateAccessGroupsLists();
 	updateAccessControlRules();
@@ -85,7 +85,7 @@ void AccessControlPage::addAccessGroup()
 		m_accessGroups += item->text();
 	}
 
-	ItalcCore::config->setLogonGroups( m_accessGroups );
+	ItalcCore::config->setAuthorizedUserGroups( m_accessGroups );
 
 	updateAccessGroupsLists();
 }
@@ -99,7 +99,7 @@ void AccessControlPage::removeAccessGroup()
 		m_accessGroups.removeAll( item->text() );
 	}
 
-	ItalcCore::config->setLogonGroups( m_accessGroups );
+	ItalcCore::config->setAuthorizedUserGroups( m_accessGroups );
 
 	updateAccessGroupsLists();
 }

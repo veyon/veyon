@@ -81,7 +81,6 @@ public slots:
 	void setPublicKeyBaseDir( const QString & );
 	void setPermissionRequiredWithLogonAuthentication( bool );
 	void setSameUserConfirmationDisabled( bool );
-	void setLogonGroups( const QStringList & );
 	void setAccessRestrictedToUserGroups( bool );
 	void setAccessControlRulesProcessingEnabled( bool );
 	void setAuthorizedUserGroups( const QStringList& );
