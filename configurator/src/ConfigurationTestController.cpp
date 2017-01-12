@@ -68,9 +68,22 @@ int ConfigurationTestController::run()
 		default: printf( "[TEST]: AccessControlRules: FAIL\n" ); return -1;
 		}
 	}
+	else if( command == "isaccessdeniedbylocalstate" )
+	{
+		if( AccessControlProvider().isAccessDeniedByLocalState() )
+		{
+			printf( "[TEST]: IsAccessDeniedByLocalState: YES (service will listen on localhost only)\n" );
+		}
+		else
+		{
+			printf( "[TEST]: IsAccessDeniedByLocalState: NO (service will listen normally on all interfaces)\n" );
+		}
+		return 0;
+	}
 	else
 	{
 		printf( "TEST COMMANDS:\n\n" );
+		printf( "IsAccessDeniedByLocalState\n" );
 		printf( "CheckAccess [ACCESSING USER] [ACCESSING COMPUTER]\n" );
 		printf( "AuthorizedGroups [ACCESSING USER]\n" );
 		printf( "AccessControlRules [ACCESSING USER] [ACCESSING COMPUTER] [LOCAL USER] [LOCAL COMPUTER]\n" );
