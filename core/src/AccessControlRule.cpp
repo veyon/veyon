@@ -1,7 +1,7 @@
 /*
  * AccessControlRule.cpp - implementation of the AccessControlRule class
  *
- * Copyright (c) 2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2016-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -22,7 +22,10 @@
  *
  */
 
-#include <QDataStream>
+#include <QDebug>
+#include <QJsonDocument>
+#include <QJsonArray>
+#include <QJsonObject>
 
 #include "AccessControlRule.h"
 
@@ -60,56 +63,47 @@ AccessControlRule::AccessControlRule(const QString &encodedData) :
 	m_invertConditions( false ),
 	m_conditions()
 {
-	QByteArray buffer = QByteArray::fromBase64( encodedData.toUtf8() );
-	QDataStream ds( buffer );
+	QJsonObject json = QJsonDocument::fromJson( QByteArray::fromBase64( encodedData.toUtf8() ) ).object();
 
-	qint8 action;
-	qint8 entity;
-	qint8 invertConditions;
-	qint8 conditionCount;
+	m_name = json["n"].toString();
+	m_description = json["d"].toString();
+	m_action = static_cast<Action>( json["a"].toInt() );
+	m_entity = static_cast<Entity>( json["e"].toInt() );
+	m_invertConditions = json["i"].toBool();
 
-	ds >> m_name;
-	ds >> m_description;
-	ds >> action;
-	ds >> entity;
-	ds >> invertConditions;
-	ds >> conditionCount;
-
-	for( int i = 0; i < conditionCount; ++i )
+	for( auto conditionValue : json["c"].toArray() )
 	{
-		qint8 condition;
-		QVariant conditionArgument;
-		ds >> condition;
-		ds >> conditionArgument;
-		m_conditions[static_cast<Condition>(condition)] = conditionArgument;
+		QJsonObject conditionObj = conditionValue.toObject();
+		Condition condition = static_cast<Condition>(conditionObj["c"].toInt());
+		m_conditions[condition] = conditionObj["a"].toVariant();
 	}
-
-	m_action = static_cast<Action>( action );
-	m_entity = static_cast<Entity>( entity );
-	m_invertConditions = static_cast<bool>( invertConditions );
 }
 
 
 
 QString AccessControlRule::encode() const
 {
-	QByteArray buffer;
-	QDataStream ds( &buffer, QIODevice::ReadWrite );
+	QJsonObject json;
 
-	ds << m_name;
-	ds << m_description;
-	ds << static_cast<qint8>( m_action );
-	ds << static_cast<qint8>( m_entity );
-	ds << static_cast<qint8>( m_invertConditions );
-	ds << static_cast<qint8>( m_conditions.count() );
+	json["n"] = m_name;
+	json["d"] = m_description;
+	json["a"] = m_action;
+	json["e"] = m_entity;
+	json["i"] = m_invertConditions;
+
+	QJsonArray conditions;
 
 	for( auto condition : m_conditions.keys() )
 	{
-		ds << static_cast<qint8>( condition );
-		ds << m_conditions[condition];
+		QJsonObject conditionObj;
+		conditionObj["c"] = condition;
+		conditionObj["a"] = QJsonValue::fromVariant( m_conditions[condition] );
+		conditions.append( conditionObj );
 	}
 
-	return QString::fromUtf8( buffer.toBase64() );
+	json["c"] = conditions;
+
+	return QString::fromUtf8( QJsonDocument( json ).toJson( QJsonDocument::Compact ).toBase64() );
 }
 
 
