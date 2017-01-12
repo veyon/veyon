@@ -32,14 +32,14 @@
 #include "AccessControlProvider.h"
 #include "Configuration/UiMapping.h"
 #include "AccessControlRuleEditDialog.h"
-#include "AccessControlRulesTestDialog.h"
 
 #include "ui_AccessControlPage.h"
 
 AccessControlPage::AccessControlPage() :
 	ConfigurationPage(),
 	ui(new Ui::AccessControlPage),
-	m_accessControlRulesModel( this )
+	m_accessControlRulesModel( this ),
+	m_accessControlRulesTestDialog( this )
 {
 	ui->setupUi(this);
 
@@ -236,7 +236,7 @@ void AccessControlPage::testUserGroupsAccessControl()
 
 void AccessControlPage::testAccessControlRules()
 {
-	AccessControlRulesTestDialog( this ).exec();
+	m_accessControlRulesTestDialog.exec();
 }
 
 
