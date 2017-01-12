@@ -98,18 +98,17 @@ or
 Setup an iTALC client
 ----------------------
 
-On clients you have to make sure that the iTALC Client Application (ICA),
-is being started when either X is started or a user logs on.
-There're several methods to achieve this (this is why it's not done
-automatically when installing the package):
+On clients you have to make sure that the iTALC Service is being started when
+either X is started or a user logs on. There're several methods to achieve this
+(this is why it's not done automatically when installing the package):
 
-1. Add the appropriate command ("ica &") to /etc/X11/xinit/xinitrc or
+1. Add the appropriate command ("italc-service &") to /etc/X11/xinit/xinitrc or
    add an according desktop file to /etc/xdg/autostart.
    This method isn't recommend, because ICA then runs with the user's
    privileges -> the user is able to kill ICA and get out of teacher's
    control.
 
-2. add "ica &" to /etc/X11/xdm/Xsetup. On some systems, this
+2. add "italc-service &" to /etc/X11/xdm/Xsetup. On some systems, this
    doesn't take effect, so either edit /etc/kde4/kdm/Xsetup or
    /etc/X11/gdm/Xsetup
 
