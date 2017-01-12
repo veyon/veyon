@@ -1,6 +1,8 @@
 #ifndef ITALC_CONFIG_H
 #define ITALC_CONFIG_H
 
+#define ITALC_VERSION "@VERSION_STRING@"
+
 #cmakedefine ITALC_BUILD_LINUX 1
 #cmakedefine ITALC_BUILD_WIN32 1
 #cmakedefine ITALC_BUILD_APPLE 1
@@ -91,8 +93,12 @@
 #cmakedefine ITALC_ALLOW24BPP
 #cmakedefine ITALC_BACKCHANNEL
 #cmakedefine ITALC_HAVE_X11 1
+#cmakedefine ITALC_HAVE_X509_PRINT_EX_FP 1
+#cmakedefine ITALC_HAVE_XI2
+#cmakedefine ITALC_HAVE_XKEYBOARD 1
 #cmakedefine ITALC_HAVE_XSHM 1
 #cmakedefine ITALC_HAVE_XTEST 1
+#cmakedefine ITALC_HAVE_XTESTGRABCONTROL 1
 #cmakedefine ITALC_HAVE_LIBXINERAMA 1
 #cmakedefine ITALC_HAVE_LIBXRANDR 1
 #cmakedefine ITALC_HAVE_LIBXFIXES 1
@@ -100,11 +106,9 @@
 #cmakedefine ITALC_HAVE_SOLARIS_XREADSCREEN 1
 #cmakedefine ITALC_HAVE_FBPM 1
 #cmakedefine ITALC_HAVE_DPMS 1
-#cmakedefine ITALC_HAVE_XTESTGRABCONTROL 1
 #cmakedefine ITALC_HAVE_RECORD 1
 #cmakedefine ITALC_HAVE_IRIX_XREADDISPLAY 1
 #cmakedefine ITALC_HAVE_XKBLIB_H 1
-#cmakedefine ITALC_HAVE_XKEYBOARD 1
 #cmakedefine ITALC_HAVE_LIBCRYPT 1
 #cmakedefine ITALC_HAVE_LIBPTHREAD 1
 #cmakedefine ITALC_HAVE_TLS 1
@@ -114,7 +118,6 @@
 #cmakedefine LDAP_FOUND
 #cmakedefine SASL2_FOUND
 #cmakedefine HAVE_LDAP_H
-#cmakedefine HAVE_SYS_TIME_H
 #cmakedefine HAVE_LDAP_START_TLS_S
 #cmakedefine HAVE_LDAP_INITIALIZE
 #cmakedefine HAVE_BER_MEMFREE

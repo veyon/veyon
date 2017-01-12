@@ -35,7 +35,7 @@ SET(libvncserver_SOURCES
 SET(x11vnc_SOURCES
 		${CMAKE_CURRENT_SOURCE_DIR}/x11/x11vnc-italc.c )
 
-INCLUDE_DIRECTORIES(${libvncserver_DIR} ${libvncserver_DIR}/libvncserver ${libvncserver_DIR}/common ${x11vnc_DIR})
+INCLUDE_DIRECTORIES(${libvncserver_DIR} ${libvncserver_DIR}/libvncserver ${libvncserver_DIR}/common ${x11vnc_DIR}/src)
 ADD_DEFINITIONS(-DVNCSHARED -DFOREVER -DNOREPEAT=0 -DNOPW=1 -DREMOTE_CONTROL=0 -DEXTERNAL_COMMANDS=0 -DFILEXFER=0 -DNOGUI -DSMALL_FOOTPRINT=3)
 
 IF(ITALC_BUILD_LINUX)
@@ -43,9 +43,9 @@ IF(ITALC_BUILD_LINUX)
 	ADD_SUBDIRECTORY(helpers)
 
 	SET(platform_SOURCES
-		${x11vnc_DIR}/appshare.c)
+		${x11vnc_DIR}/src/appshare.c)
 
-	LINK_LIBRARIES(${X11_LIBRARIES} ${X11_XTest_LIB} ${X11_Xfixes_LIB} ${X11_Xinerama_LIB} ${X11_Xdamage_LIB} ${X11_Xrandr_LIB})
+	LINK_LIBRARIES(${X11_LIBRARIES} ${X11_XTest_LIB} ${X11_Xfixes_LIB} ${X11_Xinerama_LIB} ${X11_Xdamage_LIB} ${X11_Xrandr_LIB} ${X11_Xi2_LIB})
 
 ENDIF(ITALC_BUILD_LINUX)
 

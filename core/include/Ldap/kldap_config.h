@@ -1,7 +1,7 @@
 /*
  * kldap_config.h - configuration header wrapper for kldap
  *
- * Copyright (c) 2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2016-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -26,6 +26,7 @@
 #define KLDAP_CONFIG_H
 
 #include <italcconfig.h>
+#include <config.h>
 
 #endif
 

@@ -1,5 +1,6 @@
 #include <rfb/rfbconfig.h>
 #include <rfb/keysym.h>
+#include <config.h>
 
 #ifdef WIN32
 #define WNOHANG 1
@@ -40,52 +41,49 @@ static int mkstemp(char * template)
 }
 #endif
 
-#ifdef LIBVNCSERVER_HAVE_RECORD
-#include <X11/Xproto.h>
-#endif
-
-#include "x11vnc/avahi.c"
-#include "x11vnc/pm.c"
-#include "x11vnc/rates.c"
-#include "x11vnc/cleanup.c"
-#include "x11vnc/remote.c"
-#include "x11vnc/pointer.c"
-#include "x11vnc/userinput.c"
-#include "x11vnc/unixpw.c"
-#include "x11vnc/gui.c"
-#include "x11vnc/xkb_bell.c"
-#include "x11vnc/xinerama.c"
-#include "x11vnc/solid.c"
-#include "x11vnc/selection.c"
-#include "x11vnc/xrandr.c"
-#include "x11vnc/win_utils.c"
-#include "x11vnc/cursor.c"
-#include "x11vnc/screen.c"
-#include "x11vnc/xevents.c"
-#include "x11vnc/help.c"
-#include "x11vnc/inet.c"
-#include "x11vnc/sslcmds.c"
-#include "x11vnc/xwrappers.c"
-#include "x11vnc/scan.c"
-#include "x11vnc/options.c"
-#include "x11vnc/user.c"
-#include "x11vnc/util.c"
-#include "x11vnc/x11vnc_defs.c"
-#include "x11vnc/xrecord.c"
-#include "x11vnc/8to24.c"
-#include "x11vnc/xdamage.c"
-#include "x11vnc/keyboard.c"
-#include "x11vnc/connections.c"
-#include "x11vnc/sslhelper.c"
-#include "x11vnc/linuxfb.c"
-#include "x11vnc/v4l.c"
-#include "x11vnc/macosx.c"
-#include "x11vnc/macosxCG.c"
-#include "x11vnc/macosxCGP.c"
-#include "x11vnc/macosxCGS.c"
+#include "x11vnc/src/avahi.c"
+#include "x11vnc/src/pm.c"
+#include "x11vnc/src/rates.c"
+#include "x11vnc/src/cleanup.c"
+#include "x11vnc/src/remote.c"
+#include "x11vnc/src/pointer.c"
+#include "x11vnc/src/userinput.c"
+#include "x11vnc/src/unixpw.c"
+#include "x11vnc/src/gui.c"
+#include "x11vnc/src/xkb_bell.c"
+#include "x11vnc/src/xinerama.c"
+#include "x11vnc/src/solid.c"
+#include "x11vnc/src/selection.c"
+#include "x11vnc/src/xrandr.c"
+#include "x11vnc/src/win_utils.c"
+#include "x11vnc/src/cursor.c"
+#include "x11vnc/src/screen.c"
+#include "x11vnc/src/xevents.c"
+#include "x11vnc/src/help.c"
+#include "x11vnc/src/inet.c"
+#include "x11vnc/src/sslcmds.c"
+#include "x11vnc/src/xwrappers.c"
+#include "x11vnc/src/scan.c"
+#include "x11vnc/src/options.c"
+#include "x11vnc/src/user.c"
+#include "x11vnc/src/util.c"
+#include "x11vnc/src/x11vnc_defs.c"
+#include "x11vnc/src/xrecord.c"
+#include "x11vnc/src/8to24.c"
+#include "x11vnc/src/xdamage.c"
+#include "x11vnc/src/keyboard.c"
+#include "x11vnc/src/connections.c"
+#include "x11vnc/src/sslhelper.c"
+#include "x11vnc/src/linuxfb.c"
+#include "x11vnc/src/v4l.c"
+#include "x11vnc/src/macosx.c"
+#include "x11vnc/src/macosxCG.c"
+#include "x11vnc/src/macosxCGP.c"
+#include "x11vnc/src/macosxCGS.c"
+#include "x11vnc/src/xi2_devices.c"
 
 #define db db2
-#include "x11vnc/uinput.c"
+#include "x11vnc/src/uinput.c"
 #undef db
 
 #undef main
@@ -94,5 +92,5 @@ static int mkstemp(char * template)
 #define SHOW_NO_PASSWORD_WARNING 0
 #define main x11vnc_main
 
-#include "x11vnc/x11vnc.c"
+#include "x11vnc/src/x11vnc.c"
 
