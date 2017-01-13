@@ -1,7 +1,7 @@
 /*
- * KLdapIntegration.h - definition of logging category for kldap
+ * LdapDirectory.cpp - class representing the LDAP directory and providing access to directory entries
  *
- * Copyright (c) 2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2016-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -267,6 +267,40 @@ QStringList LdapDirectory::queryBaseDn()
 QString LdapDirectory::queryNamingContext()
 {
 	return d->queryAttributes( QString(), d->namingContextAttribute ).value( 0 );
+}
+
+
+
+QString LdapDirectory::toRelativeDn( QString fullDn )
+{
+	if( fullDn.toLower().endsWith( QLatin1Char( ',' ) + d->baseDn.toLower() ) &&
+			fullDn.length() > d->baseDn.length()+1 )
+	{
+		// cut off comma and base DN
+		return fullDn.left( fullDn.length() - d->baseDn.length() - 1 );
+	}
+	return fullDn;
+}
+
+
+
+QString LdapDirectory::toFullDn( QString relativeDn )
+{
+	return relativeDn + QLatin1Char( ',' ) + d->baseDn;
+}
+
+
+
+QStringList LdapDirectory::toRelativeDnList( const QStringList &fullDnList )
+{
+	QStringList relativeDnList;
+
+	for( auto fullDn : fullDnList )
+	{
+		relativeDnList += toRelativeDn( fullDn );
+	}
+
+	return relativeDnList;
 }
 
 
