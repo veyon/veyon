@@ -37,6 +37,8 @@
 
 bool LogonAuthentication::authenticateUser( const AuthenticationCredentials &cred )
 {
+	qDebug() << "Authenticating user" << cred.logonUsername();
+
 	bool result = false;
 #ifdef ITALC_BUILD_WIN32
 #ifdef UNICODE
@@ -60,22 +62,8 @@ bool LogonAuthentication::authenticateUser( const AuthenticationCredentials &cre
 
 	if( p.exitCode() == 0 )
 	{
-		QProcess p;
-		p.start( "getent", QStringList() << "group" );
-		p.waitForFinished();
-
-		QStringList groups = QString( p.readAll() ).split( '\n' );
-		foreach( const QString &group, groups )
-		{
-			QStringList groupComponents = group.split( ':' );
-			if( groupComponents.size() == 4 &&
-				ItalcCore::config->authorizedUserGroups().contains( groupComponents.first() ) &&
-				groupComponents.last().split( ',' ).contains( cred.logonUsername() ) )
-			{
-				result = true;
-			}
-		}
-		qCritical() << "User not in a privileged group";
+		result = true;
+		qDebug() << "User authenticated successfully";
 	}
 	else
 	{
