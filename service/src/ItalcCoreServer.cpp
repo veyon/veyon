@@ -338,13 +338,22 @@ bool ItalcCoreServer::authSecTypeItalc( socketDispatcher sd, void *user )
 
 
 
+void ItalcCoreServer::setAllowedIPs(const QStringList &allowedIPs)
+{
+	QMutexLocker l( &m_dataMutex );
+	m_allowedIPs = allowedIPs;
+}
+
+
 
 void ItalcCoreServer::errorMsgAuth( const QString &ip )
 {
-	if( _this->m_failedAuthHosts.contains( ip ) == false )
+	QMutexLocker l( &m_dataMutex );
+
+	if( m_failedAuthHosts.contains( ip ) == false )
 	{
-		_this->m_failedAuthHosts += ip;
-		_this->m_slaveManager.systemTrayMessage(
+		m_failedAuthHosts += ip;
+		m_slaveManager.systemTrayMessage(
 					tr( "Authentication error" ),
 					tr( "Somebody (IP: %1) tried to access this computer "
 						"but could not authenticate successfully!" ).arg( ip ) );
@@ -381,6 +390,8 @@ bool ItalcCoreServer::doKeyBasedAuth( SocketDevice &sdev, const QString &host )
 
 bool ItalcCoreServer::doHostBasedAuth( const QString &host )
 {
+	QMutexLocker l( &m_dataMutex );
+
 	qDebug() << "ItalcCoreServer: doing host based auth for host" << host;
 
 	if( m_allowedIPs.isEmpty() )

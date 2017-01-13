@@ -54,15 +54,11 @@ public:
 		return &m_slaveManager;
 	}
 
-	void setAllowedIPs( const QStringList &allowedIPs )
-	{
-		QMutexLocker l( &m_dataMutex );
-		m_allowedIPs = allowedIPs;
-	}
+	void setAllowedIPs( const QStringList &allowedIPs );
 
 
 private:
-	static void errorMsgAuth( const QString & _ip );
+	void errorMsgAuth( const QString & _ip );
 
 	bool doKeyBasedAuth( SocketDevice &sdev, const QString &host );
 	bool doHostBasedAuth( const QString &host );
