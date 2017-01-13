@@ -1,7 +1,7 @@
 /*
  * ItalcCoreServer.cpp - ItalcCoreServer
  *
- * Copyright (c) 2006-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -324,15 +324,12 @@ bool ItalcCoreServer::authSecTypeItalc( socketDispatcher sd, void *user )
 
 	if( result != rfbVncAuthOK )
 	{
-		// only report about failed authentications for hosts that are not
-		// blacklisted already
-		if( !m_manuallyDeniedHosts.contains( host ) &&
-				chosen != ItalcAuthHostBased )
+		// only report about failed authentications for regular authentication methods
+		if( chosen != ItalcAuthHostBased )
 		{
 			errorMsgAuth( host );
 		}
-		qWarning() << "ItalcCoreServer::authSecTypeItalc(): failed "
-						"authenticating client" << host;
+		qWarning() << "ItalcCoreServer::authSecTypeItalc(): failed authenticating client" << host;
 		return false;
 	}
 
@@ -366,31 +363,6 @@ bool ItalcCoreServer::doKeyBasedAuth( SocketDevice &sdev, const QString &host )
 	// get user-role
 	const ItalcCore::UserRoles urole =
 				static_cast<ItalcCore::UserRoles>( sdev.read().toInt() );
-#if 0
-	if( ItalcCore::role != ItalcCore::RoleOther &&
-		host != QHostAddress( QHostAddress::LocalHost ).toString() )
-	{
-		if( m_manuallyDeniedHosts.contains( host ) )
-		{
-			return false;
-		}
-		if( !m_manuallyAllowedHosts.contains( host ) )
-		{
-			switch( m_slaveManager.execAccessDialog( host ) )
-			{
-				case ItalcSlaveManager::AccessAlways:
-					m_manuallyAllowedHosts += host;
-				case ItalcSlaveManager::AccessYes:
-					break;
-				case ItalcSlaveManager::AccessNever:
-					m_manuallyDeniedHosts += host;
-				case ItalcSlaveManager::AccessNo:
-				default:
-					return false;
-			}
-		}
-	}
-#endif
 
 	// now try to verify received signed data using public key of the user
 	// under which the client claims to run
