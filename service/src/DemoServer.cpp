@@ -396,7 +396,7 @@ void DemoServerClient::sendUpdates()
 		{
 
 	hdr.compressed = 1;
-	QRgb last_pix = *( (QRgb *) i.scanLine( ry ) + rx );
+	QRgb last_pix = *( (QRgb *) i.constScanLine( ry ) + rx );
 
 	// re-allocate RLE buffer if current one is too small
 	const size_t rleBufSize = rw * rh * sizeof( QRgb )+16;
@@ -416,7 +416,7 @@ void DemoServerClient::sendUpdates()
 	uint8_t *out_ptr = out;
 	for( int y = ry; y < ry+rh; ++y )
 	{
-		const QRgb * data = ( (const QRgb *) i.scanLine( y ) ) + rx;
+		const QRgb * data = ( (const QRgb *) i.constScanLine( y ) ) + rx;
 		for( int x = 0; x < rw; ++x )
 		{
 			if( data[x] != last_pix || rle_cnt > 254 )
