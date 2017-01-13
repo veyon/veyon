@@ -1,7 +1,7 @@
 /*
  * AccessControlRule.h - declaration of class AccessControlRule
  *
- * Copyright (c) 2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2016-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -37,6 +37,7 @@ public:
 		ActionNone,
 		ActionAllow,
 		ActionDeny,
+		ActionAskForPermission,
 		ActionCount
 	} Action;
 
