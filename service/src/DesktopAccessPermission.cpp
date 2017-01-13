@@ -1,7 +1,7 @@
 /*
  * DesktopAccessPermission.cpp - DesktopAccessPermission
  *
- * Copyright (c) 2006-2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -22,12 +22,10 @@
  *
  */
 
-#include <QMessageBox>
-
 #include "DesktopAccessPermission.h"
 #include "ItalcConfiguration.h"
 #include "ItalcCoreServer.h"
-#include "LocalSystem.h"
+#include "ItalcCore.h"
 
 
 DesktopAccessPermission::DesktopAccessPermission( AuthenticationMethod authMethod ) :
@@ -37,9 +35,27 @@ DesktopAccessPermission::DesktopAccessPermission( AuthenticationMethod authMetho
 
 
 
-
-DesktopAccessPermission::~DesktopAccessPermission()
+bool DesktopAccessPermission::authenticationMethodRequiresConfirmation()
 {
+	switch( m_authenticationMethod )
+	{
+	case KeyAuthentication:
+		if( ItalcCore::config->isPermissionRequiredWithKeyAuthentication() )
+		{
+			return true;
+		}
+		break;
+	case LogonAuthentication:
+		if( ItalcCore::config->isPermissionRequiredWithLogonAuthentication() )
+		{
+			return true;
+		}
+		break;
+	default:
+		break;
+	}
+
+	return false;
 }
 
 
@@ -47,47 +63,17 @@ DesktopAccessPermission::~DesktopAccessPermission()
 
 bool DesktopAccessPermission::ask( const QString &user, const QString &host )
 {
-	// look for exceptions
-	if( host == QHostAddress( QHostAddress::LocalHost ).toString() )
-	{
-		return true;
-	}
+	int r = ItalcCoreServer::instance()->slaveManager()->execAccessDialog( user, host, ChoiceDefault );
 
-	switch( m_authenticationMethod )
-	{
-		case KeyAuthentication:
-			if( !ItalcCore::config->isPermissionRequiredWithKeyAuthentication() )
-			{
-				return true;
-			}
-			break;
-		case LogonAuthentication:
-			if( !ItalcCore::config->isPermissionRequiredWithLogonAuthentication() )
-			{
-				return true;
-			}
-			if( ItalcCore::config->isSameUserConfirmationDisabled() &&
-					!user.isEmpty() &&
-					LocalSystem::User::loggedOnUser().name() == user )
-			{
-				return true;
-			}
-			break;
-		default:
-			break;
-	}
-
-	// okay we got to ask now
-	int r = ItalcCoreServer::instance()->slaveManager()->
-				execAccessDialog( user, host, ChoiceDefault );
 	if( r & ChoiceNo )
 	{
 		return false;
 	}
+
 	if( r & ChoiceYes )
 	{
 		return true;
 	}
+
 	return false;
 }
-

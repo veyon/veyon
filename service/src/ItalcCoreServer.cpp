@@ -298,14 +298,9 @@ bool ItalcCoreServer::authSecTypeItalc( socketDispatcher sd, void *user )
 		// authentication via DSA-challenge/-response
 		case ItalcAuthDSA:
 			if( doKeyBasedAuth( sdev, host ) &&
-					AccessControlProvider().checkAccess( username, host ) == AccessControlProvider::AccessAllow )
+					performAccessControl( username, host, DesktopAccessPermission::KeyAuthentication ) )
 			{
-				if( DesktopAccessPermission(
-						DesktopAccessPermission::KeyAuthentication ).
-							ask( username, host ) )
-				{
-					result = rfbVncAuthOK;
-				}
+				result = rfbVncAuthOK;
 			}
 			break;
 
@@ -445,3 +440,30 @@ bool ItalcCoreServer::doCommonSecretAuth( SocketDevice &sdev )
 	return false;
 }
 
+
+
+bool ItalcCoreServer::performAccessControl( const QString &username, const QString &host,
+											DesktopAccessPermission::AuthenticationMethod authenticationMethod )
+{
+	auto accessResult = AccessControlProvider().checkAccess( username, host );
+
+	DesktopAccessPermission desktopAccessPermission( authenticationMethod );
+
+	switch( accessResult )
+	{
+	case AccessControlProvider::AccessToBeConfirmed:
+		return desktopAccessPermission.ask( username, host );
+
+	case AccessControlProvider::AccessAllow:
+		if( desktopAccessPermission.authenticationMethodRequiresConfirmation() )
+		{
+			return desktopAccessPermission.ask( username, host );
+		}
+		break;
+
+	default:
+		break;
+	}
+
+	return false;
+}

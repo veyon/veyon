@@ -30,7 +30,7 @@
 
 #include "SocketDevice.h"
 #include "ItalcSlaveManager.h"
-
+#include "DesktopAccessPermission.h"
 
 class ItalcCoreServer : public QObject
 {
@@ -63,6 +63,9 @@ private:
 	bool doKeyBasedAuth( SocketDevice &sdev, const QString &host );
 	bool doHostBasedAuth( const QString &host );
 	bool doCommonSecretAuth( SocketDevice &sdev );
+
+	bool performAccessControl( const QString& username, const QString& host,
+							   DesktopAccessPermission::AuthenticationMethod authenticationMethod );
 
 	static ItalcCoreServer *_this;
 

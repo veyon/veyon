@@ -1,7 +1,7 @@
 /*
  * DesktopAccessPermission.h - DesktopAccessPermission
  *
- * Copyright (c) 2010 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2010-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -49,7 +49,8 @@ public:
 	typedef AuthenticationMethods AuthenticationMethod;
 
 	DesktopAccessPermission( AuthenticationMethod authMethod );
-	~DesktopAccessPermission();
+
+	bool authenticationMethodRequiresConfirmation();
 
 	bool ask( const QString &user, const QString &host );
 
