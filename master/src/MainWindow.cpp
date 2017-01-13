@@ -307,7 +307,6 @@ MainWindow::MainWindow( int _rctrl_screen ) :
 
 	conn->setHost( QHostAddress( QHostAddress::LocalHost ).toString() );
 	conn->setPort( ItalcCore::config->coreServerPort() );
-	conn->setFramebufferUpdateInterval( 30000 );
 	conn->start();
 
 	if( !conn->waitForConnected( 5000 ) )
