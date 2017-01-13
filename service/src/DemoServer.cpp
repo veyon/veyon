@@ -675,12 +675,11 @@ void DemoServerClient::run()
 	}
 
 
-	connect( m_vncConn, SIGNAL( cursorShapeUpdated( const QImage &, int, int ) ),
-			this, SLOT( updateCursorShape( const QImage &, int, int ) ),
-							Qt::QueuedConnection );
-	connect( m_vncConn, SIGNAL( imageUpdated( int, int, int, int ) ),
-			this, SLOT( updateRect( int, int, int, int ) ),
-							Qt::QueuedConnection );
+	connect( m_vncConn, &ItalcVncConnection::cursorShapeUpdated,
+			this, &DemoServerClient::updateCursorShape, Qt::QueuedConnection );
+
+	connect( m_vncConn, &ItalcVncConnection::imageUpdated,
+			this, &DemoServerClient::updateRect, Qt::QueuedConnection );
 
 	ml.unlock();
 
@@ -691,10 +690,8 @@ void DemoServerClient::run()
 	QSize s = m_vncConn->framebufferSize();
 	updateRect( 0, 0, s.width(), s.height() );
 
-	connect( m_sock, SIGNAL( readyRead() ),
-				this, SLOT( processClient() ), Qt::DirectConnection );
-	connect( m_sock, SIGNAL( disconnected() ),
-						this, SLOT( quit() ) );
+	connect( m_sock, &QTcpSocket::readyRead, this, &DemoServerClient::processClient, Qt::DirectConnection );
+	connect( m_sock, &QTcpSocket::disconnected, this, &DemoServerClient::quit );
 
 	// TODO
 /*	QTimer t;
