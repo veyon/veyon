@@ -80,6 +80,7 @@ QVariant AccessControlRuleListModel::data(const QModelIndex &index, int role) co
 		{
 		case AccessControlRule::ActionAllow: return QIcon( ":/resources/vcs-normal.png" );
 		case AccessControlRule::ActionDeny: return QIcon( ":/resources/vcs-conflicting.png" );
+		case AccessControlRule::ActionAskForPermission: return QIcon( ":/resources/access-rule-ask.png" );
 		default: return QIcon( ":/resources/vcs-removed.png" );
 		}
 	}

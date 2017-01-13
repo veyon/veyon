@@ -30,5 +30,6 @@
         <file>resources/vcs-conflicting.png</file>
         <file>resources/vcs-normal.png</file>
         <file>resources/vcs-removed.png</file>
+        <file>resources/access-rule-ask.png</file>
     </qresource>
 </RCC>
