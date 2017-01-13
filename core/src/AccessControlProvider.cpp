@@ -50,7 +50,7 @@ QStringList AccessControlProvider::userGroups()
 	{
 		if( m_ldapDirectory.isBound() )
 		{
-			groups = m_ldapDirectory.userGroups();
+			groups = m_ldapDirectory.toRelativeDnList( m_ldapDirectory.userGroups() );
 		}
 	}
 	else
@@ -71,7 +71,7 @@ QStringList AccessControlProvider::computerGroups()
 
 	if( m_ldapDirectory.isEnabled() && m_ldapDirectory.isBound() )
 	{
-		groups = m_ldapDirectory.computerGroups();
+		groups = m_ldapDirectory.toRelativeDnList( m_ldapDirectory.computerGroups() );
 	}
 
 	qSort( groups );
@@ -215,7 +215,7 @@ QStringList AccessControlProvider::groupsOfUser( const QString &userName )
 
 			if( userDn.isEmpty() == false )
 			{
-				return m_ldapDirectory.groupsOfUser( userDn );
+				return m_ldapDirectory.toRelativeDnList( m_ldapDirectory.groupsOfUser( userDn ) );
 			}
 		}
 	}
