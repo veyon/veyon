@@ -1,7 +1,7 @@
 /*
  * AccessControlRuleEditDialog.cpp - dialog for editing an AccessControlRule
  *
- * Copyright (c) 2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2016-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -83,6 +83,7 @@ AccessControlRuleEditDialog::AccessControlRuleEditDialog(AccessControlRule &rule
 	ui->actionNoneRadioButton->setChecked( rule.action() == AccessControlRule::ActionNone );
 	ui->actionAllowRadioButton->setChecked( rule.action() == AccessControlRule::ActionAllow );
 	ui->actionDenyRadioButton->setChecked( rule.action() == AccessControlRule::ActionDeny );
+	ui->actionAskForPermissionRadioButton->setChecked( rule.action() == AccessControlRule::ActionAskForPermission );
 }
 
 
@@ -139,6 +140,10 @@ void AccessControlRuleEditDialog::accept()
 	else if( ui->actionDenyRadioButton->isChecked() )
 	{
 		m_rule.setAction( AccessControlRule::ActionDeny );
+	}
+	else if( ui->actionAskForPermissionRadioButton->isChecked() )
+	{
+		m_rule.setAction( AccessControlRule::ActionAskForPermission );
 	}
 	else
 	{
