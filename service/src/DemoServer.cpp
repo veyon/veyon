@@ -103,7 +103,6 @@ static qint64 qtcpsocketDispatcher( char * buffer, const qint64 bytes,
 					opStartTime.restart();
 				}
 			}
-			//sock->flush();
 			break;
 
 		case SocketGetPeerAddress:
@@ -515,6 +514,8 @@ void DemoServerClient::sendUpdates()
 
 		sd.write( QVariant::fromValue( cur ) );
 	}
+
+	m_sock->flush();
 
 	// reset vars
 	m_changedRects.clear();
