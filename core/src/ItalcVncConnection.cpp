@@ -197,7 +197,7 @@ void ItalcVncConnection::hookUpdateFB( rfbClient *cl, int x, int y, int w, int h
 		// color-reduction for better compression-results
 		for( int ry = y; ry < y+h; ++ry )
 		{
-			QRgb *data = ( (QRgb *) t->m_image.scanLine( ry ) );
+			QRgb *data = ( (QRgb *) cl->frameBuffer ) + ry * cl->width;
 			for( int rx = x; rx < x+w; ++rx )
 			{
 				data[rx] &= 0xfcfcfc;
