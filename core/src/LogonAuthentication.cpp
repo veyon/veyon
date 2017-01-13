@@ -48,7 +48,7 @@ bool LogonAuthentication::authenticateUser( const AuthenticationCredentials &cre
 
 #ifdef ITALC_BUILD_LINUX
 	QProcess p;
-	p.start( "italc_auth_helper" );
+	p.start( "italc-auth-helper" );
 	p.waitForStarted();
 
 	QDataStream ds( &p );
