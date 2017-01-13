@@ -34,6 +34,7 @@ public:
 	typedef enum AccessResults {
 		AccessDeny,
 		AccessAllow,
+		AccessToBeConfirmed,
 		AccessResultCount
 	} AccessResult;
 

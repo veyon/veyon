@@ -115,12 +115,17 @@ AccessControlProvider::AccessResult AccessControlProvider::checkAccess( QString 
 	}
 	else if( ItalcCore::config->isAccessControlRulesProcessingEnabled() )
 	{
-		if( processAccessControlRules( accessingUser,
-									   accessingComputer,
-									   LocalSystem::User::loggedOnUser().name(),
-									   QHostInfo::localHostName() ) == AccessControlRule::ActionAllow )
+		auto action = processAccessControlRules( accessingUser,
+												 accessingComputer,
+												 LocalSystem::User::loggedOnUser().name(),
+												 QHostInfo::localHostName() );
+		switch( action )
 		{
+		case AccessControlRule::ActionAllow:
 			return AccessAllow;
+		case AccessControlRule::ActionAskForPermission:
+			return AccessToBeConfirmed;
+		default: break;
 		}
 	}
 	else
