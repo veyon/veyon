@@ -115,14 +115,19 @@ private slots:
 	void sendUpdates();
 
 private:
+	enum {
+		MaxRects = 100
+	};
+
 	// thread-entry-point - does some initializations and then enters
 	// event-loop of thread
 	virtual void run();
 
 	DemoServer * m_demoServer;
 	QMutex m_dataMutex;
-	bool m_updatesPending;
+	bool m_updateRequested;
 	QList<QRect> m_changedRects;
+	bool m_fullUpdatePending;
 	QImage m_cursorShape;
 	int m_cursorHotX;
 	int m_cursorHotY;

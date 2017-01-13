@@ -197,8 +197,9 @@ DemoServerClient::DemoServerClient( qintptr sock, const ItalcVncConnection *vncC
 	QThread( parent ),
 	m_demoServer( parent ),
 	m_dataMutex( QMutex::Recursive ),
-	m_updatesPending( false ),
+	m_updateRequested( false ),
 	m_changedRects(),
+	m_fullUpdatePending( false ),
 	m_cursorHotX( 0 ),
 	m_cursorHotY( 0 ),
 	m_cursorShapeChanged( false ),
@@ -245,7 +246,18 @@ DemoServerClient::~DemoServerClient()
 void DemoServerClient::updateRect( int x, int y, int w, int h )
 {
 	m_dataMutex.lock();
-	m_changedRects += QRect( x, y, w, h );
+	if( m_fullUpdatePending == false )
+	{
+		if( m_changedRects.size() < MaxRects )
+		{
+			m_changedRects += QRect( x, y, w, h );
+		}
+		else
+		{
+			m_fullUpdatePending = true;
+			m_changedRects.clear();
+		}
+	}
 	m_dataMutex.unlock();
 }
 
@@ -310,33 +322,42 @@ void DemoServerClient::sendUpdates()
 {
 	QMutexLocker ml( &m_dataMutex );
 
-	if( m_changedRects.isEmpty() && m_cursorShapeChanged == false )
+	if( m_fullUpdatePending == false && m_changedRects.isEmpty() )// && m_cursorShapeChanged == false )
 	{
-		if( m_updatesPending )
+		if( m_updateRequested )
 		{
 			QTimer::singleShot( 50, this, SLOT( sendUpdates() ) );
 		}
 		return;
 	}
 
-	// extract single (non-overlapping) rects out of changed region
-	// this way we avoid lot of simliar/overlapping rectangles,
-	// e.g. if we didn't get an update-request for a quite long time
-	// and there were a lot of updates - at the end we don't send
-	// more than the whole screen one time
-	QRegion region;
-	for( auto rect : m_changedRects )
+	QVector<QRect> rects;
+
+	if( m_fullUpdatePending )
 	{
-		region += rect;
+		rects += QRect( QPoint( 0, 0 ), m_vncConn->framebufferSize() );
 	}
-	QVector<QRect> r = region.rects();
+	else
+	{
+		// extract single (non-overlapping) rects out of changed region
+		// this way we avoid lot of simliar/overlapping rectangles,
+		// e.g. if we didn't get an update-request for a quite long time
+		// and there were a lot of updates - at the end we don't send
+		// more than the whole screen one time
+		QRegion region;
+		for( auto rect : m_changedRects )
+		{
+			region += rect;
+		}
+		rects = region.rects();
+	}
 
 	// no we gonna post all changed rects!
 	const rfbFramebufferUpdateMsg m =
 	{
 		rfbFramebufferUpdate,
 		0,
-		(uint16_t) Swap16IfLE( r.size() +
+		(uint16_t) Swap16IfLE( rects.size() +
 				( m_cursorShapeChanged ? 1 : 0 ) )
 	} ;
 
@@ -344,12 +365,12 @@ void DemoServerClient::sendUpdates()
 	sd.write( (const char *) &m, sz_rfbFramebufferUpdateMsg );
 
 	// process each rect
-	for( QVector<QRect>::ConstIterator it = r.begin(); it != r.end(); ++it )
+	for( auto rect : rects )
 	{
-		const int rx = it->x();
-		const int ry = it->y();
-		const int rw = it->width();
-		const int rh = it->height();
+		const int rx = rect.x();
+		const int ry = rect.y();
+		const int rw = rect.width();
+		const int rh = rect.height();
 		const rfbRectangle rr =
 		{
 			(uint16_t) Swap16IfLE( rx ),
@@ -498,15 +519,16 @@ void DemoServerClient::sendUpdates()
 	// reset vars
 	m_changedRects.clear();
 	m_cursorShapeChanged = false;
+	m_fullUpdatePending = false;
 
-	if( m_updatesPending )
+	if( m_updateRequested )
 	{
 		// make sure to send an update once more even if there has
 		// been no update request
 		QTimer::singleShot( 1000, this, SLOT( sendUpdates() ) );
 	}
 
-	m_updatesPending = false;
+	m_updateRequested = false;
 }
 
 
@@ -556,7 +578,7 @@ void DemoServerClient::processClient()
 				continue;
 			case rfbFramebufferUpdateRequest:
 				sd.read( ((char *) &msg)+1, sz_rfbFramebufferUpdateRequestMsg-1 );
-				m_updatesPending = true;
+				m_updateRequested = true;
 				break;
 			default:
 				qWarning( "DemoServerClient::processClient(): "
@@ -566,7 +588,7 @@ void DemoServerClient::processClient()
 
 	}
 
-	if( m_updatesPending )
+	if( m_updateRequested )
 	{
 		sendUpdates();
 	}
@@ -585,8 +607,7 @@ void DemoServerClient::run()
 	m_sock = &sock;
 	if( !m_sock->setSocketDescriptor( m_socketDescriptor ) )
 	{
-		qCritical( "DemoServerClient::run(): "
-				"could not set socket-descriptor - aborting" );
+		qCritical( "DemoServerClient::run(): could not set socket descriptor - aborting" );
 		deleteLater();
 		return;
 	}
