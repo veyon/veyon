@@ -248,8 +248,6 @@ int ItalcCoreServer::handleItalcClientMessage( socketDispatcher sock,
 
 bool ItalcCoreServer::authSecTypeItalc( socketDispatcher sd, void *user )
 {
-	QMutexLocker l( &m_dataMutex );
-
 	// find out IP of host - needed at several places
 	const int MAX_HOST_LEN = 255;
 	char host[MAX_HOST_LEN+1];
