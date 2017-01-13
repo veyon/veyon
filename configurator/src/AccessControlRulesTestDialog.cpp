@@ -77,6 +77,9 @@ void AccessControlRulesTestDialog::accept()
 	case AccessControlRule::ActionDeny:
 		resultText = tr( "The access in the given scenario is denied." );
 		break;
+	case AccessControlRule::ActionAskForPermission:
+		resultText = tr( "The access in the given scenario needs permission of the logged on user." );
+		break;
 	default:
 		resultText = tr( "ERROR: Unknown action" );
 		break;
