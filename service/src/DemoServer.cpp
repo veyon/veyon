@@ -182,7 +182,7 @@ return;	// TODO
 
 
 
-void DemoServer::incomingConnection( int sock )
+void DemoServer::incomingConnection( qintptr sock )
 {
 	new DemoServerClient( sock, &m_vncConn, this );
 }
@@ -192,7 +192,7 @@ void DemoServer::incomingConnection( int sock )
 
 #define RAW_MAX_PIXELS 1024
 
-DemoServerClient::DemoServerClient( int sock, const ItalcVncConnection *vncConn,
+DemoServerClient::DemoServerClient( qintptr sock, const ItalcVncConnection *vncConn,
 										DemoServer *parent ) :
 	QThread( parent ),
 	m_demoServer( parent ),

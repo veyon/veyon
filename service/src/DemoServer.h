@@ -2,7 +2,7 @@
  * DemoServer.h - multi-threaded slim VNC-server for demo-purposes (optimized
  *                for lot of clients accessing server in read-only-mode)
  *
- * Copyright (c) 2006-2011 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -68,7 +68,7 @@ private slots:
 
 
 private:
-	virtual void incomingConnection( int sock );
+	virtual void incomingConnection( qintptr sock );
 
 	ItalcVncConnection m_vncConn;
 	QReadWriteLock m_cursorLock;
@@ -86,7 +86,7 @@ class DemoServerClient : public QThread
 {
 	Q_OBJECT
 public:
-	DemoServerClient( int sock, const ItalcVncConnection *vncConn,
+	DemoServerClient( qintptr sock, const ItalcVncConnection *vncConn,
 							DemoServer *parent );
 	virtual ~DemoServerClient();
 
@@ -129,7 +129,7 @@ private:
 	QPoint m_lastCursorPos;
 	volatile bool m_cursorShapeChanged;
 
-	int m_socketDescriptor;
+	qintptr m_socketDescriptor;
 	QTcpSocket *m_sock;
 	const ItalcVncConnection *m_vncConn;
 	bool m_otherEndianess;
