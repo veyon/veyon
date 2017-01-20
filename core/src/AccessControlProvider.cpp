@@ -436,6 +436,8 @@ bool AccessControlProvider::matchConditions( const AccessControlRule &rule,
 		return false;
 	}
 
+	bool hasConditions = false;
+
 	// normally all selected conditions have to match in order to make the whole rule match
 	// if conditions should be inverted (i.e. "is member of" is to be interpreted as "is NOT member of")
 	// we have to check against the opposite boolean value
@@ -443,17 +445,23 @@ bool AccessControlProvider::matchConditions( const AccessControlRule &rule,
 
 	qDebug() << "AccessControlProvider::matchConditions():" << rule.name() << rule.entity() << ruleEntityValue << matchResult << rule.conditions();
 
-	if( rule.hasCondition( AccessControlRule::ConditionMemberOfGroup ) &&
-			isMemberOfGroup( ruleEntityType,
+	if( rule.hasCondition( AccessControlRule::ConditionMemberOfGroup ) )
+	{
+		hasConditions = true;
+
+		if( isMemberOfGroup( ruleEntityType,
 							 ruleEntityValue,
 							 rule.conditionArgument( AccessControlRule::ConditionMemberOfGroup ).toString() ) == matchResult )
-	{
-		return false;
+		{
+			return false;
+		}
 	}
 
 
 	if( rule.hasCondition( AccessControlRule::ConditionGroupsInCommon ) )
 	{
+		hasConditions = true;
+
 		const AccessControlRule::Entity secondEntity =
 				rule.conditionArgument( AccessControlRule::ConditionGroupsInCommon ).value<AccessControlRule::Entity>();
 
@@ -468,17 +476,23 @@ bool AccessControlProvider::matchConditions( const AccessControlRule &rule,
 	}
 
 
-	if( rule.hasCondition( AccessControlRule::ConditionLocatedInComputerLab ) &&
-			isLocatedInComputerLab( ruleEntityType,
+	if( rule.hasCondition( AccessControlRule::ConditionLocatedInComputerLab ) )
+	{
+		hasConditions = true;
+
+		if( isLocatedInComputerLab( ruleEntityType,
 									ruleEntityValue,
 									rule.conditionArgument( AccessControlRule::ConditionLocatedInComputerLab ).toString() ) == matchResult )
-	{
-		return false;
+		{
+			return false;
+		}
 	}
 
 
 	if( rule.hasCondition( AccessControlRule::ConditionLocatedInSameComputerLab ) )
 	{
+		hasConditions = true;
+
 		const AccessControlRule::Entity secondEntity =
 				rule.conditionArgument( AccessControlRule::ConditionLocatedInSameComputerLab ).value<AccessControlRule::Entity>();
 
@@ -490,6 +504,12 @@ bool AccessControlProvider::matchConditions( const AccessControlRule &rule,
 		{
 			return false;
 		}
+	}
+
+	// do not match the rule if no conditions are set at all
+	if( hasConditions == false )
+	{
+		return false;
 	}
 
 	return true;
