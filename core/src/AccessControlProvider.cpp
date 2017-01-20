@@ -244,8 +244,19 @@ bool AccessControlProvider::isMemberOfGroup( AccessControlRule::EntityType entit
 											 const QString &entity,
 											 const QString &groupName )
 {
-	return entityType == AccessControlRule::EntityTypeUser &&
-			groupsOfUser( entity ).contains( groupName );
+	if( entityType != AccessControlRule::EntityTypeUser )
+	{
+		return false;
+	}
+
+	QRegExp groupNameRX( groupName );
+
+	if( groupNameRX.isValid() )
+	{
+		return groupsOfUser( entity ).indexOf( QRegExp( groupName ) ) >= 0;
+	}
+
+	return groupsOfUser( entity ).contains( groupName );
 }
 
 
