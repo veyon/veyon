@@ -1,7 +1,7 @@
 /*
  * WindowsService.cpp - implementation of WindowsService-class
  *
- * Copyright (c) 2006-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -207,6 +207,7 @@ WindowsService *WindowsService::s_this = NULL;
 SERVICE_STATUS WindowsService::s_status;
 SERVICE_STATUS_HANDLE WindowsService::s_statusHandle;
 HANDLE WindowsService::s_stopServiceEvent = (DWORD) NULL;
+QAtomicInt WindowsService::s_sessionChangeEvent = 0;
 
 
 
@@ -662,6 +663,20 @@ DWORD WINAPI WindowsService::serviceCtrl( DWORD _ctrlcode, DWORD dwEventType,
 			// Service control manager just wants to know our state
 			break;
 
+		case SERVICE_CONTROL_SESSIONCHANGE:
+			switch( dwEventType )
+			{
+				case WTS_SESSION_LOGOFF:
+					ilog( Info, "Session change event: WTS_SESSION_LOGOFF" );
+					s_sessionChangeEvent = 1;
+					break;
+				case WTS_SESSION_LOGON:
+					ilog( Info, "Session change event: WTS_SESSION_LOGON" );
+					s_sessionChangeEvent = 1;
+					break;
+			}
+			break;
+
 		default:
 			// Control code not recognised
 			break;
@@ -740,8 +755,10 @@ void WindowsService::monitorSessions()
 
 	while( WaitForSingleObject( s_stopServiceEvent, 1000 ) == WAIT_TIMEOUT )
 	{
+		bool sessionChanged = s_sessionChangeEvent.testAndSetOrdered( 1, 0 );
+
 		const DWORD sessionId = WTSGetActiveConsoleSessionId();
-		if( oldSessionId != sessionId )
+		if( oldSessionId != sessionId || sessionChanged )
 		{
 			ilogf( Info, "Session ID changed from %d to %d",
 									oldSessionId, sessionId );
@@ -755,7 +772,7 @@ void WindowsService::monitorSessions()
 				continue;
 			}
 
-			if( oldSessionId != SESSION_INVALID )
+			if( oldSessionId != SESSION_INVALID || sessionChanged )
 			{
 				// workaround for situations where service is stopped
 				// while it is still starting up
@@ -769,7 +786,7 @@ void WindowsService::monitorSessions()
 
 				Sleep( 5000 );
 			}
-			if( sessionId != SESSION_INVALID )
+			if( sessionId != SESSION_INVALID || sessionChanged )
 			{
 				italcProcess.start( sessionId );
 				lastServiceStart.restart();
