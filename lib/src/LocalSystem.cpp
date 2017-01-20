@@ -2,7 +2,7 @@
  * LocalSystem.cpp - namespace LocalSystem, providing an interface for
  *				   transparent usage of operating-system-specific functions
  *
- * Copyright (c) 2006-2016 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
+ * Copyright (c) 2006-2017 Tobias Doerffel <tobydox/at/users/dot/sf/dot/net>
  *
  * This file is part of iTALC - http://italc.sourceforge.net
  *
@@ -502,7 +502,7 @@ void User::lookupFullName()
 				shell.endsWith( "/null" ) ||
 				shell.endsWith( "/nologin") ) )
 		{
-			m_fullName = QString::fromUtf8( pw_entry->pw_gecos );
+			m_fullName = QString::fromUtf8( pw_entry->pw_gecos ).split( ',' ).first();
 		}
 	}
 #endif
