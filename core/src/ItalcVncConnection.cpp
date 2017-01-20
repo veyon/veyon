@@ -636,6 +636,7 @@ void ItalcVncConnection::doConnection()
 			}
 			else
 			{
+				qDebug( "ItalcVncConnection: InitialFrameBufferTimeout exceeded - disconnecting" );
 				// no so disconnect and try again
 				break;
 			}
