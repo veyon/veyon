@@ -15,6 +15,7 @@ INCLUDE(CheckCSourceCompiles)
 INCLUDE(CheckIncludeFiles)
 INCLUDE(CheckFunctionExists)
 INCLUDE(FindPkgConfig)
+INCLUDE(GNUInstallDirs)
 
 EXECUTE_PROCESS(COMMAND git describe --tags
 		WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
